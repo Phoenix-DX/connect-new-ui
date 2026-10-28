@@ -109,7 +109,17 @@
    "evidence": "present (UBTConnect.controller.js:2518); Different action in React: platform/navigation/exitConfirmation.ts:9-12 exitApp() (ExitAppJS of the exit dialog, no Delay). Caller in the original: Upgrade_WebV",
    "verdict": "n/a",
    "note": "Different action in React: platform/navigation/exitConfirmation.ts:9-12 exitApp() (ExitAppJS of the exit dialog, no Delay). Caller in the original: Upgrade_WebView only (Delay=10000). Native only (Cordova exitApp, market:// links in the store app): U16 Native and WebView variants skipped (app-shell.spec.md:348, 383); BR-UBTCON-506/524-526.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-010",
@@ -121,7 +131,17 @@
    "evidence": "app/src/lib/ubtConnect/actions.ts:214-228",
    "verdict": "match",
    "note": "DEV pack and TST differ: TST first branch for Member raises InvalidAction \"Bookmarks not available\" (UBTConnect.controller.js:7154-7266, first throw before the Locality test). React follows TST. DEV differs from TST (section 6.1 D1).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines)"
+    ]
+   }
   },
   {
    "id": "_shared-011",
@@ -208,7 +228,17 @@
    "verified": "live",
    "severity": "minor",
    "finding": "F1",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-018",
@@ -472,7 +502,17 @@
    "evidence": "present (UBTConnect.controller.js:14249); Dead on TST: no compiled screen or block calls it (survey grep of all .mvc.js and controllers). window.ancestryViewHouseholds is only read, never written (UC:14",
    "verdict": "n/a",
    "note": "Dead on TST: no compiled screen or block calls it (survey grep of all .mvc.js and controllers). window.ancestryViewHouseholds is only read, never written (UC:14324-14326); DEV lists 5 flows (section 6.1 D4).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-040",
@@ -508,7 +548,17 @@
    "evidence": "present (UBTConnect.controller.js:15852); React keeps only the button: components/version/UnsupportedVersion/UnsupportedVersion.tsx:48-53 `buttonText=\"Upgrade From Google Play\" ... onButtonOnClick={onEv",
    "verdict": "n/a",
    "note": "React keeps only the button: components/version/UnsupportedVersion/UnsupportedVersion.tsx:48-53 `buttonText=\"Upgrade From Google Play\" ... onButtonOnClick={onEventNavigateToPlaystore}`. Only comment hit for market://: app/src/lib/ubtConnectUtils/actions.ts:198 (IsCordovaDefined is False). Native only (Cordova exitApp, market:// links in the store app): U16 Native and WebView variants skipped (app-shell.spec.md:348, 383); BR-UBTCON-506/524-526.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-043",
@@ -520,7 +570,17 @@
    "evidence": "present (UBTConnect.controller.js:15886); React keeps only the button: components/version/UnsupportedVersion/UnsupportedVersion.tsx:48-53 `buttonText=\"Upgrade From Google Play\" ... onButtonOnClick={onEv",
    "verdict": "n/a",
    "note": "React keeps only the button: components/version/UnsupportedVersion/UnsupportedVersion.tsx:48-53 `buttonText=\"Upgrade From Google Play\" ... onButtonOnClick={onEventNavigateToPlaystore}`. Only comment hit for market://: app/src/lib/ubtConnectUtils/actions.ts:198 (IsCordovaDefined is False). Native only (Cordova exitApp, market:// links in the store app): U16 Native and WebView variants skipped (app-shell.spec.md:348, 383); BR-UBTCON-506/524-526.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-044",
@@ -532,7 +592,17 @@
    "evidence": "present (UBTConnect.controller.js:15924); React keeps only the button: components/version/UnsupportedVersion/UnsupportedVersion.tsx:48-53 `buttonText=\"Upgrade From Google Play\" ... onButtonOnClick={onEv",
    "verdict": "n/a",
    "note": "React keeps only the button: components/version/UnsupportedVersion/UnsupportedVersion.tsx:48-53 `buttonText=\"Upgrade From Google Play\" ... onButtonOnClick={onEventNavigateToPlaystore}`. Only comment hit for market://: app/src/lib/ubtConnectUtils/actions.ts:198 (IsCordovaDefined is False). Native only (Cordova exitApp, market:// links in the store app): U16 Native and WebView variants skipped (app-shell.spec.md:348, 383); BR-UBTCON-506/524-526.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-045",
@@ -616,7 +686,17 @@
    "evidence": "app/src/lib/ubtConnect/actions.ts:292-293",
    "verdict": "match",
    "note": "TST (UBTConnect.controller.js:17122-17298) has no LogMessage call in this action; only the DEV model has it (DEV differs from TST). TST has no LogMessage; React follows TST (section 6.1 D3).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines)"
+    ]
+   }
   },
   {
    "id": "_shared-052",
@@ -664,7 +744,17 @@
    "evidence": "app/src/lib/ubtConnect/actions.ts:306-309",
    "verdict": "match",
    "note": "TST handler is not system only (UBTConnect.controller.js:17122-17298 `if(!(OS.Exceptions.isSystem(ex)))`); the DEV model says log=True. React does not log in the catch. No log in React: U17 no telemetry (app-shell.spec.md:384).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines)"
+    ]
+   }
   },
   {
    "id": "_shared-056",
@@ -676,7 +766,17 @@
    "evidence": "present (UBTConnect.controller.js:17351); Module UBT_AppManager actions; get_IsUnsupportedVersion in React returns constants (see that row). references.md names no TST file for them. Decision: U16 (app-",
    "verdict": "differs",
    "note": "Module UBT_AppManager actions; get_IsUnsupportedVersion in React returns constants (see that row). references.md names no TST file for them. Decision: U16 (app-shell.spec.md:348, 383) and U2 (:363): React does not call the UBT_AppManager version checks",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-057",
@@ -688,7 +788,17 @@
    "evidence": "present (UBTConnect.controller.js:17790); Handler of onEventNavigateToPlaystore (UnsupportedVersion.tsx:48-53) is a prop; the wrapper does not pass one (UnsupportedVersionWrapper.tsx:24-45). Native only",
    "verdict": "n/a",
    "note": "Handler of onEventNavigateToPlaystore (UnsupportedVersion.tsx:48-53) is a prop; the wrapper does not pass one (UnsupportedVersionWrapper.tsx:24-45). Native only (Cordova exitApp, market:// links in the store app): U16 Native and WebView variants skipped (app-shell.spec.md:348, 383); BR-UBTCON-506/524-526.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-058",
@@ -700,7 +810,17 @@
    "evidence": "present (UBTConnect.controller.js:17819); Native only (Cordova exitApp, market:// links in the store app): U16 Native and WebView variants skipped (app-shell.spec.md:348, 383); BR-UBTCON-506/524-526.",
    "verdict": "n/a",
    "note": "Native only (Cordova exitApp, market:// links in the store app): U16 Native and WebView variants skipped (app-shell.spec.md:348, 383); BR-UBTCON-506/524-526.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-059",
@@ -712,7 +832,17 @@
    "evidence": "present (UBTConnect.controller.js:17819); TST: UBTConnect.controller.js:17819-17890 (exitApplicationForWebViewUpdate$Action(10000)). Native only (Cordova exitApp, market:// links in the store app): U16 ",
    "verdict": "n/a",
    "note": "TST: UBTConnect.controller.js:17819-17890 (exitApplicationForWebViewUpdate$Action(10000)). Native only (Cordova exitApp, market:// links in the store app): U16 Native and WebView variants skipped (app-shell.spec.md:348, 383); BR-UBTCON-506/524-526.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-060",
@@ -820,7 +950,17 @@
    "evidence": "app/src/platform/session/usePinRegisterContent.ts:65; session.ts:190",
    "verdict": "match",
    "note": "FCM_DeeplinkCallback writes LastURL in the original (UBTConnect.controller.js:2569); React has no FCM callback. The writer of this unit (FCM_DeeplinkCallback) is native only (U12).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-069",
@@ -1096,7 +1236,17 @@
    "evidence": "present (UBTConnect.controller.js:629); Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dea",
    "verdict": "n/a",
    "note": "Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dead\", user 2026-10).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-092",
@@ -1108,7 +1258,17 @@
    "evidence": "present (UBTConnect.controller.js:694); Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dea",
    "verdict": "n/a",
    "note": "Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dead\", user 2026-10).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-093",
@@ -1120,7 +1280,17 @@
    "evidence": "present (UBTConnect.controller.js:976); Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dea",
    "verdict": "n/a",
    "note": "Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dead\", user 2026-10).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-094",
@@ -1132,7 +1302,17 @@
    "evidence": "present (UBTConnect.controller.js:1307); Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dea",
    "verdict": "n/a",
    "note": "Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dead\", user 2026-10).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-095",
@@ -1168,7 +1348,17 @@
    "evidence": "present (UBTConnect.controller.js:2569); See the detail rows below. Native only (FCM push, local notifications): U12 no push (app-shell.spec.md:344, 379).",
    "verdict": "n/a",
    "note": "See the detail rows below. Native only (FCM push, local notifications): U12 no push (app-shell.spec.md:344, 379).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-098",
@@ -1180,7 +1370,17 @@
    "evidence": "present (UBTConnect.controller.js:2724); See the detail rows below. Native only (FCM push, local notifications): U12 no push (app-shell.spec.md:344, 379).",
    "verdict": "n/a",
    "note": "See the detail rows below. Native only (FCM push, local notifications): U12 no push (app-shell.spec.md:344, 379).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-099",
@@ -1192,7 +1392,17 @@
    "evidence": "present (UBTConnect.controller.js:3268); Only comment hit: app/src/platform/feedback/delayedMessage.ts:6 (FRD_HandleEvent_Logout). Native only (Firebase realtime database): U17 no telemetry (app-shell.",
    "verdict": "n/a",
    "note": "Only comment hit: app/src/platform/feedback/delayedMessage.ts:6 (FRD_HandleEvent_Logout). Native only (Firebase realtime database): U17 no telemetry (app-shell.spec.md:349, 384).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-100",
@@ -1204,7 +1414,17 @@
    "evidence": "present (UBTConnect.controller.js:3159); Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dea",
    "verdict": "n/a",
    "note": "Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dead\", user 2026-10).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-101",
@@ -1216,7 +1436,17 @@
    "evidence": "present (UBTConnect.controller.js:8244); Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dea",
    "verdict": "n/a",
    "note": "Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dead\", user 2026-10).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-102",
@@ -1228,7 +1458,17 @@
    "evidence": "present (UBTConnect.controller.js:8299); Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dea",
    "verdict": "n/a",
    "note": "Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dead\", user 2026-10).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-103",
@@ -1240,7 +1480,17 @@
    "evidence": "present (UBTConnect.controller.js:8354); Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dea",
    "verdict": "n/a",
    "note": "Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dead\", user 2026-10).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-104",
@@ -1252,7 +1502,17 @@
    "evidence": "present (UBTConnect.controller.js:8411); Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dea",
    "verdict": "n/a",
    "note": "Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dead\", user 2026-10).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-105",
@@ -1264,7 +1524,17 @@
    "evidence": "present (UBTConnect.controller.js:8472); Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dea",
    "verdict": "n/a",
    "note": "Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dead\", user 2026-10).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-106",
@@ -1288,7 +1558,17 @@
    "evidence": "present (UBTConnect.controller.js:8594); Uses TextListAppend_Function and ListJoin (both not found in React). Owned by flow Directory_OneSchoolGlobal_Blocks (OneSchoolGlobal_Event_Card and _ListCard ca",
    "verdict": "n/a",
    "note": "Uses TextListAppend_Function and ListJoin (both not found in React). Owned by flow Directory_OneSchoolGlobal_Blocks (OneSchoolGlobal_Event_Card and _ListCard call it on TST; the cards are not rendered: OneSchoolGlobalDetails shows ComingSoon, its report line 59-66), see its report.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-108",
@@ -1324,7 +1604,17 @@
    "evidence": "present (UBTConnect.controller.js:8870); Related, not the same action: pages/Notes/components/Notes_FilterSheet.tsx:25-33 initialize_FilterYearOptions (years arrive as In_YearsOptions). Pack gap: Years",
    "verdict": "n/a",
    "note": "Related, not the same action: pages/Notes/components/Notes_FilterSheet.tsx:25-33 initialize_FilterYearOptions (years arrive as In_YearsOptions). Pack gap: Years local list is never appended in the model (ListAny on empty list). Dead on TST: no compiled screen or block calls it (survey grep of all .mvc.js and controllers). Only caller: Get_Years_Extra_Option_FlatList, itself without a caller.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-111",
@@ -1384,7 +1674,17 @@
    "evidence": "present (UBTConnect.controller.js:9746); Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dea",
    "verdict": "n/a",
    "note": "Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dead\", user 2026-10).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-116",
@@ -1396,7 +1696,17 @@
    "evidence": "present (UBTConnect.controller.js:9788); Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dea",
    "verdict": "n/a",
    "note": "Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dead\", user 2026-10).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-117",
@@ -1408,7 +1718,17 @@
    "evidence": "present (UBTConnect.controller.js:9830); Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dea",
    "verdict": "n/a",
    "note": "Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dead\", user 2026-10).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-118",
@@ -1420,7 +1740,17 @@
    "evidence": "present (UBTConnect.controller.js:10271); Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dea",
    "verdict": "n/a",
    "note": "Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dead\", user 2026-10).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-119",
@@ -1432,7 +1762,17 @@
    "evidence": "present (UBTConnect.controller.js:10458); Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dea",
    "verdict": "n/a",
    "note": "Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dead\", user 2026-10).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-120",
@@ -1444,7 +1784,17 @@
    "evidence": "present (UBTConnect.controller.js:10553); Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dea",
    "verdict": "n/a",
    "note": "Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dead\", user 2026-10).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-121",
@@ -1456,7 +1806,17 @@
    "evidence": "present (UBTConnect.controller.js:10691); Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dea",
    "verdict": "n/a",
    "note": "Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dead\", user 2026-10).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-122",
@@ -1468,7 +1828,17 @@
    "evidence": "present (UBTConnect.controller.js:13382); Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dea",
    "verdict": "n/a",
    "note": "Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dead\", user 2026-10).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-123",
@@ -1480,7 +1850,17 @@
    "evidence": "app/src/platform/bootstrap/appStartSteps.ts:79-90",
    "verdict": "match",
    "note": "Error: React logs a warning (:88-90). Original has no handler inside the action; the JS caller starts both calls without waiting (TST UBTConnect.controller.js:15530). Order of the 5 caches: GlobalEntities, CountriesMarker, CountriesGeoJSON, LocalitiesMarker, LocalitiesGeoJSON in both. TTL: cacheMapObject at :74-76, TTL set in appCache.mapObject (not read here). TTL 7200 s: app/src/api/app/keys.ts:16.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-124",
@@ -1504,7 +1884,17 @@
    "evidence": "present (UBTConnect.controller.js:4271); FormatConnectTime exists inline only in Locality_Details/components/actions.ts:40. Owned by flow Directory_OneSchoolGlobal_Blocks (OneSchoolGlobal_Event_Card; c",
    "verdict": "n/a",
    "note": "FormatConnectTime exists inline only in Locality_Details/components/actions.ts:40. Owned by flow Directory_OneSchoolGlobal_Blocks (OneSchoolGlobal_Event_Card; cards not rendered, ComingSoon), see its report.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-126",
@@ -1516,7 +1906,17 @@
    "evidence": "absent; Absent on TST: no define of UBTConnect.controller$Get_FormattedDistance in UBTConnect.controller.js (202 actions defined). Board: Map is skip:variant (C2EnableM",
    "verdict": "n/a",
    "note": "Absent on TST: no define of UBTConnect.controller$Get_FormattedDistance in UBTConnect.controller.js (202 actions defined). Board: Map is skip:variant (C2EnableMaps off on TST). Map is skip:variant, getHasMapsEnabled false on TST (migration/board.md:73; migration/knowledge/flag-values-tst.json:13); DEV only (section 6.1 D5).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "UBTConnect.controller.js (file)"
+    ]
+   }
   },
   {
    "id": "_shared-127",
@@ -1528,7 +1928,17 @@
    "evidence": "present (UBTConnect.controller.js:5900); Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dea",
    "verdict": "n/a",
    "note": "Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dead\", user 2026-10).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-128",
@@ -1540,7 +1950,17 @@
    "evidence": "present (UBTConnect.controller.js:5358); Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dea",
    "verdict": "n/a",
    "note": "Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dead\", user 2026-10).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-129",
@@ -1552,7 +1972,17 @@
    "evidence": "present (UBTConnect.controller.js:5462); Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dea",
    "verdict": "n/a",
    "note": "Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dead\", user 2026-10).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-130",
@@ -1564,7 +1994,17 @@
    "evidence": "present (UBTConnect.controller.js:5642); Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dea",
    "verdict": "n/a",
    "note": "Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dead\", user 2026-10).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-131",
@@ -1576,7 +2016,17 @@
    "evidence": "present (UBTConnect.controller.js:6243); Callers of the sibling ByEntityTypeId exist (next row). Owned by flow Bookmarks (Bookmarks_Card_Item calls it on TST; the Bookmarks screen is not built, its rep",
    "verdict": "n/a",
    "note": "Callers of the sibling ByEntityTypeId exist (next row). Owned by flow Bookmarks (Bookmarks_Card_Item calls it on TST; the Bookmarks screen is not built, its report section 2.n), see its report.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-132",
@@ -1600,7 +2050,17 @@
    "evidence": "present (UBTConnect.controller.js:6862); Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dea",
    "verdict": "n/a",
    "note": "Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dead\", user 2026-10).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-134",
@@ -1612,7 +2072,17 @@
    "evidence": "present (UBTConnect.controller.js:6917); Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dea",
    "verdict": "n/a",
    "note": "Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dead\", user 2026-10).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-135",
@@ -1624,7 +2094,17 @@
    "evidence": "present (UBTConnect.controller.js:7009); Related: pages/Notes/components/Notes_FilterSheet.tsx:23,25-33 builds the same title \"Filter by year\", Order 1, from In_YearsOptions. Dead on TST: no compiled s",
    "verdict": "n/a",
    "note": "Related: pages/Notes/components/Notes_FilterSheet.tsx:23,25-33 builds the same title \"Filter by year\", Order 1, from In_YearsOptions. Dead on TST: no compiled screen or block calls it (survey grep of all .mvc.js and controllers).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-136",
@@ -1636,7 +2116,17 @@
    "evidence": "present (UBTConnect.controller.js:14092); Dead on TST: no compiled screen or block calls it (survey grep of all .mvc.js and controllers).",
    "verdict": "n/a",
    "note": "Dead on TST: no compiled screen or block calls it (survey grep of all .mvc.js and controllers).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-137",
@@ -1648,7 +2138,17 @@
    "evidence": "present (UBTConnect.controller.js:14153); Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dea",
    "verdict": "n/a",
    "note": "Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dead\", user 2026-10).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-138",
@@ -1660,7 +2160,17 @@
    "evidence": "present (UBTConnect.controller.js:14331); Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dea",
    "verdict": "n/a",
    "note": "Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dead\", user 2026-10).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-139",
@@ -1684,7 +2194,17 @@
    "evidence": "present (UBTConnect.controller.js:14719); Only unrelated hits: platform/session/useNotificationIcon.ts (LocalNotifications = bell badge count). Native only (FCM push, local notifications): U12 no push (",
    "verdict": "n/a",
    "note": "Only unrelated hits: platform/session/useNotificationIcon.ts (LocalNotifications = bell badge count). Native only (FCM push, local notifications): U12 no push (app-shell.spec.md:344, 379).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-141",
@@ -1696,7 +2216,17 @@
    "evidence": "present (UBTConnect.controller.js:14615); Used by GetDescriptor_OneSchool_Event_Years. No React copy. Owned by flow Directory_OneSchoolGlobal_Blocks (only caller: GetDescriptor_OneSchool_Event_Years), s",
    "verdict": "n/a",
    "note": "Used by GetDescriptor_OneSchool_Event_Years. No React copy. Owned by flow Directory_OneSchoolGlobal_Blocks (only caller: GetDescriptor_OneSchool_Event_Years), see its report.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-142",
@@ -1708,7 +2238,17 @@
    "evidence": "present (UBTConnect.controller.js:14802); Native-only (window.cordova). Only comment hit: app/src/platform/navigation/transitionEvents.ts:4 names LockOrientationWithNavigationTransition as a listener of",
    "verdict": "n/a",
    "note": "Native-only (window.cordova). Only comment hit: app/src/platform/navigation/transitionEvents.ts:4 names LockOrientationWithNavigationTransition as a listener of the transition events. Native only (Cordova orientation and keyboard plugins): U18 no orientation lock, keyboard class by visualViewport (app-shell.spec.md:350, 385).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-143",
@@ -1720,7 +2260,17 @@
    "evidence": "present (UBTConnect.controller.js:14904); Event source exists: app/src/platform/navigation/transitionEvents.ts:19-25 dispatchTransitionStart/End. Native only (Cordova orientation and keyboard plugins): ",
    "verdict": "n/a",
    "note": "Event source exists: app/src/platform/navigation/transitionEvents.ts:19-25 dispatchTransitionStart/End. Native only (Cordova orientation and keyboard plugins): U18 no orientation lock, keyboard class by visualViewport (app-shell.spec.md:350, 385).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-144",
@@ -1732,7 +2282,17 @@
    "evidence": "present (UBTConnect.controller.js:14998); Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dea",
    "verdict": "n/a",
    "note": "Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dead\", user 2026-10).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-145",
@@ -1744,7 +2304,17 @@
    "evidence": "present (UBTConnect.controller.js:15092); Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dea",
    "verdict": "n/a",
    "note": "Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dead\", user 2026-10). No compiled caller on TST either (survey grep).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-146",
@@ -1756,7 +2326,17 @@
    "evidence": "present (UBTConnect.controller.js:15538); OnApplicationReady passes [\"/UBTConnect/Photobook\"] (UBTConnect.controller.js:15358-15366). React window event is named dx-navigation-transition-start/end, not ",
    "verdict": "n/a",
    "note": "OnApplicationReady passes [\"/UBTConnect/Photobook\"] (UBTConnect.controller.js:15358-15366). React window event is named dx-navigation-transition-start/end, not dx-navigation. Native only (Cordova orientation and keyboard plugins): U18 no orientation lock, keyboard class by visualViewport (app-shell.spec.md:350, 385).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-147",
@@ -1792,7 +2372,17 @@
    "evidence": "present (UBTConnect.controller.js:16812); Only used by GetDescriptor_OneSchool_Event_Years. Owned by flow Directory_OneSchoolGlobal_Blocks (only caller: GetDescriptor_OneSchool_Event_Years), see its rep",
    "verdict": "n/a",
    "note": "Only used by GetDescriptor_OneSchool_Event_Years. Owned by flow Directory_OneSchoolGlobal_Blocks (only caller: GetDescriptor_OneSchool_Event_Years), see its report.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-150",
@@ -1816,7 +2406,17 @@
    "evidence": "present (UBTConnect.controller.js:17461); Static entity UBTConnect_JSUtils_ElementCache_Parent (data.md) also not in React. Only unrelated hit: components/ui/os/OSList/ListItemSwipeable.tsx:213 updateEl",
    "verdict": "n/a",
    "note": "Static entity UBTConnect_JSUtils_ElementCache_Parent (data.md) also not in React. Only unrelated hit: components/ui/os/OSList/ListItemSwipeable.tsx:213 updateElementCachedInfo. Dead on TST: no compiled screen or block calls it (survey grep of all .mvc.js and controllers).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-152",
@@ -1828,7 +2428,17 @@
    "evidence": "present (UBTConnect.controller.js:17522); Static entity UBTConnect_JSUtils_ElementCache_Parent (data.md) also not in React. Only unrelated hit: components/ui/os/OSList/ListItemSwipeable.tsx:213 updateEl",
    "verdict": "n/a",
    "note": "Static entity UBTConnect_JSUtils_ElementCache_Parent (data.md) also not in React. Only unrelated hit: components/ui/os/OSList/ListItemSwipeable.tsx:213 updateElementCachedInfo. Dead on TST: no compiled screen or block calls it (survey grep of all .mvc.js and controllers).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-153",
@@ -1840,7 +2450,17 @@
    "evidence": "present (UBTConnect.controller.js:17583); Static entity UBTConnect_JSUtils_ElementCache_Parent (data.md) also not in React. Only unrelated hit: components/ui/os/OSList/ListItemSwipeable.tsx:213 updateEl",
    "verdict": "n/a",
    "note": "Static entity UBTConnect_JSUtils_ElementCache_Parent (data.md) also not in React. Only unrelated hit: components/ui/os/OSList/ListItemSwipeable.tsx:213 updateElementCachedInfo. Dead on TST: no compiled screen or block calls it (survey grep of all .mvc.js and controllers).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-154",
@@ -1852,7 +2472,17 @@
    "evidence": "present (UBTConnect.controller.js:17635); Static entity UBTConnect_JSUtils_ElementCache_Parent (data.md) also not in React. Only unrelated hit: components/ui/os/OSList/ListItemSwipeable.tsx:213 updateEl",
    "verdict": "n/a",
    "note": "Static entity UBTConnect_JSUtils_ElementCache_Parent (data.md) also not in React. Only unrelated hit: components/ui/os/OSList/ListItemSwipeable.tsx:213 updateElementCachedInfo. Dead on TST: no compiled screen or block calls it (survey grep of all .mvc.js and controllers).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-155",
@@ -1864,7 +2494,17 @@
    "evidence": "present (UBTConnect.controller.js:17687); Native only (Cordova orientation and keyboard plugins): U18 no orientation lock, keyboard class by visualViewport (app-shell.spec.md:350, 385).",
    "verdict": "n/a",
    "note": "Native only (Cordova orientation and keyboard plugins): U18 no orientation lock, keyboard class by visualViewport (app-shell.spec.md:350, 385).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-156",
@@ -1876,7 +2516,17 @@
    "evidence": "present (UBTConnect.controller.js:17888); Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dea",
    "verdict": "n/a",
    "note": "Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dead\", user 2026-10).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-157",
@@ -1888,7 +2538,17 @@
    "evidence": "present (UBTConnect.controller.js:18094); Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dea",
    "verdict": "n/a",
    "note": "Board: calendar and personal-event screens are skip:dead (MyCalendar, PersonalEventDetails, PersonalEventForm, Recurrence: migration/board.md rows, \"V7 skip:dead\", user 2026-10).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-158",
@@ -1900,7 +2560,17 @@
    "evidence": "present (UBTConnect.controller.js:2569); TST agrees with the DEV model (UBTConnect.controller.js:2569-2723: linkVar, setLastURL, PINRegister/PINUnlock links, screenController_NavigateToPage$Action(link",
    "verdict": "n/a",
    "note": "TST agrees with the DEV model (UBTConnect.controller.js:2569-2723: linkVar, setLastURL, PINRegister/PINUnlock links, screenController_NavigateToPage$Action(link, false)). Navigation on the web would use platform/navigation; the PIN screens exist (app/src/platform/session/usePinRegisterContent.ts:65 reads LastURL). Native only (FCM push, local notifications): U12 no push (app-shell.spec.md:344, 379).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-159",
@@ -1912,7 +2582,17 @@
    "evidence": "present (UBTConnect.controller.js:2569); TST agrees with the DEV model (UBTConnect.controller.js:2569-2723: linkVar, setLastURL, PINRegister/PINUnlock links, screenController_NavigateToPage$Action(link",
    "verdict": "n/a",
    "note": "TST agrees with the DEV model (UBTConnect.controller.js:2569-2723: linkVar, setLastURL, PINRegister/PINUnlock links, screenController_NavigateToPage$Action(link, false)). Navigation on the web would use platform/navigation; the PIN screens exist (app/src/platform/session/usePinRegisterContent.ts:65 reads LastURL). Native only (FCM push, local notifications): U12 no push (app-shell.spec.md:344, 379).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-160",
@@ -1924,7 +2604,17 @@
    "evidence": "present (UBTConnect.controller.js:2569); TST agrees with the DEV model (UBTConnect.controller.js:2569-2723: linkVar, setLastURL, PINRegister/PINUnlock links, screenController_NavigateToPage$Action(link",
    "verdict": "n/a",
    "note": "TST agrees with the DEV model (UBTConnect.controller.js:2569-2723: linkVar, setLastURL, PINRegister/PINUnlock links, screenController_NavigateToPage$Action(link, false)). Navigation on the web would use platform/navigation; the PIN screens exist (app/src/platform/session/usePinRegisterContent.ts:65 reads LastURL). Native only (FCM push, local notifications): U12 no push (app-shell.spec.md:344, 379).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-161",
@@ -1936,7 +2626,17 @@
    "evidence": "present (UBTConnect.controller.js:2569); TST agrees with the DEV model (UBTConnect.controller.js:2569-2723: linkVar, setLastURL, PINRegister/PINUnlock links, screenController_NavigateToPage$Action(link",
    "verdict": "n/a",
    "note": "TST agrees with the DEV model (UBTConnect.controller.js:2569-2723: linkVar, setLastURL, PINRegister/PINUnlock links, screenController_NavigateToPage$Action(link, false)). Navigation on the web would use platform/navigation; the PIN screens exist (app/src/platform/session/usePinRegisterContent.ts:65 reads LastURL). Native only (FCM push, local notifications): U12 no push (app-shell.spec.md:344, 379).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-162",
@@ -1948,7 +2648,17 @@
    "evidence": "present (UBTConnect.controller.js:2569); TST agrees with the DEV model (UBTConnect.controller.js:2569-2723: linkVar, setLastURL, PINRegister/PINUnlock links, screenController_NavigateToPage$Action(link",
    "verdict": "n/a",
    "note": "TST agrees with the DEV model (UBTConnect.controller.js:2569-2723: linkVar, setLastURL, PINRegister/PINUnlock links, screenController_NavigateToPage$Action(link, false)). Navigation on the web would use platform/navigation; the PIN screens exist (app/src/platform/session/usePinRegisterContent.ts:65 reads LastURL). Native only (FCM push, local notifications): U12 no push (app-shell.spec.md:344, 379).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-163",
@@ -1960,7 +2670,17 @@
    "evidence": "present (UBTConnect.controller.js:2569); TST agrees with the DEV model (UBTConnect.controller.js:2569-2723: linkVar, setLastURL, PINRegister/PINUnlock links, screenController_NavigateToPage$Action(link",
    "verdict": "n/a",
    "note": "TST agrees with the DEV model (UBTConnect.controller.js:2569-2723: linkVar, setLastURL, PINRegister/PINUnlock links, screenController_NavigateToPage$Action(link, false)). Navigation on the web would use platform/navigation; the PIN screens exist (app/src/platform/session/usePinRegisterContent.ts:65 reads LastURL). Native only (FCM push, local notifications): U12 no push (app-shell.spec.md:344, 379).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-164",
@@ -1972,7 +2692,17 @@
    "evidence": "present (UBTConnect.controller.js:2569); TST agrees with the DEV model (UBTConnect.controller.js:2569-2723: linkVar, setLastURL, PINRegister/PINUnlock links, screenController_NavigateToPage$Action(link",
    "verdict": "n/a",
    "note": "TST agrees with the DEV model (UBTConnect.controller.js:2569-2723: linkVar, setLastURL, PINRegister/PINUnlock links, screenController_NavigateToPage$Action(link, false)). Navigation on the web would use platform/navigation; the PIN screens exist (app/src/platform/session/usePinRegisterContent.ts:65 reads LastURL). Native only (FCM push, local notifications): U12 no push (app-shell.spec.md:344, 379).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-165",
@@ -1984,7 +2714,17 @@
    "evidence": "present (UBTConnect.controller.js:2569); TST agrees with the DEV model (UBTConnect.controller.js:2569-2723: linkVar, setLastURL, PINRegister/PINUnlock links, screenController_NavigateToPage$Action(link",
    "verdict": "n/a",
    "note": "TST agrees with the DEV model (UBTConnect.controller.js:2569-2723: linkVar, setLastURL, PINRegister/PINUnlock links, screenController_NavigateToPage$Action(link, false)). Navigation on the web would use platform/navigation; the PIN screens exist (app/src/platform/session/usePinRegisterContent.ts:65 reads LastURL). Native only (FCM push, local notifications): U12 no push (app-shell.spec.md:344, 379).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-166",
@@ -1996,7 +2736,17 @@
    "evidence": "present (UBTConnect.controller.js:2724); SynchronizeNumberUnreadMessages exists in React for the app start only: app/src/platform/bootstrap/startup.ts:88 (GetNumberUnreadMessages). TST: UBTConnect.cont",
    "verdict": "n/a",
    "note": "SynchronizeNumberUnreadMessages exists in React for the app start only: app/src/platform/bootstrap/startup.ts:88 (GetNumberUnreadMessages). TST: UBTConnect.controller.js:2724-2760 same 4 steps. Native only (FCM push, local notifications): U12 no push (app-shell.spec.md:344, 379).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-167",
@@ -2008,7 +2758,17 @@
    "evidence": "present (UBTConnect.controller.js:2724); SynchronizeNumberUnreadMessages exists in React for the app start only: app/src/platform/bootstrap/startup.ts:88 (GetNumberUnreadMessages). TST: UBTConnect.cont",
    "verdict": "n/a",
    "note": "SynchronizeNumberUnreadMessages exists in React for the app start only: app/src/platform/bootstrap/startup.ts:88 (GetNumberUnreadMessages). TST: UBTConnect.controller.js:2724-2760 same 4 steps. Native only (FCM push, local notifications): U12 no push (app-shell.spec.md:344, 379).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-168",
@@ -2020,7 +2780,17 @@
    "evidence": "present (UBTConnect.controller.js:2724); SynchronizeNumberUnreadMessages exists in React for the app start only: app/src/platform/bootstrap/startup.ts:88 (GetNumberUnreadMessages). TST: UBTConnect.cont",
    "verdict": "n/a",
    "note": "SynchronizeNumberUnreadMessages exists in React for the app start only: app/src/platform/bootstrap/startup.ts:88 (GetNumberUnreadMessages). TST: UBTConnect.controller.js:2724-2760 same 4 steps. Native only (FCM push, local notifications): U12 no push (app-shell.spec.md:344, 379).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-169",
@@ -2032,7 +2802,17 @@
    "evidence": "present (UBTConnect.controller.js:2724); SynchronizeNumberUnreadMessages exists in React for the app start only: app/src/platform/bootstrap/startup.ts:88 (GetNumberUnreadMessages). TST: UBTConnect.cont",
    "verdict": "n/a",
    "note": "SynchronizeNumberUnreadMessages exists in React for the app start only: app/src/platform/bootstrap/startup.ts:88 (GetNumberUnreadMessages). TST: UBTConnect.controller.js:2724-2760 same 4 steps. Native only (FCM push, local notifications): U12 no push (app-shell.spec.md:344, 379).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-170",
@@ -2044,7 +2824,17 @@
    "evidence": "present (UBTConnect.controller.js:3268); Both If branches end without action in the DEV model (a LogOut event has no node). TST: UBTConnect.controller.js:3268-3290 only calls parseFirevaseEventValue$Ac",
    "verdict": "n/a",
    "note": "Both If branches end without action in the DEV model (a LogOut event has no node). TST: UBTConnect.controller.js:3268-3290 only calls parseFirevaseEventValue$Action. Native only (Firebase realtime database): U17 no telemetry (app-shell.spec.md:349, 384).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-171",
@@ -2056,7 +2846,17 @@
    "evidence": "present (UBTConnect.controller.js:3268); [DEAD BRANCH]-like: both branches empty in the model. React delayedMessage.ts:6 comment says the original writer of DelayedMessage is FRD_HandleEvent_Logout (Fi",
    "verdict": "n/a",
    "note": "[DEAD BRANCH]-like: both branches empty in the model. React delayedMessage.ts:6 comment says the original writer of DelayedMessage is FRD_HandleEvent_Logout (Firebase), not in this action. Native only (Firebase realtime database): U17 no telemetry (app-shell.spec.md:349, 384).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-172",
@@ -2068,7 +2868,17 @@
    "evidence": "present (UBTConnect.controller.js:14719); TST: UBTConnect.controller.js:14719-14790 same steps. Native only (FCM push, local notifications): U12 no push (app-shell.spec.md:344, 379).",
    "verdict": "n/a",
    "note": "TST: UBTConnect.controller.js:14719-14790 same steps. Native only (FCM push, local notifications): U12 no push (app-shell.spec.md:344, 379).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-173",
@@ -2080,7 +2890,17 @@
    "evidence": "present (UBTConnect.controller.js:14719); TST: UBTConnect.controller.js:14719-14790 same steps. Native only (FCM push, local notifications): U12 no push (app-shell.spec.md:344, 379).",
    "verdict": "n/a",
    "note": "TST: UBTConnect.controller.js:14719-14790 same steps. Native only (FCM push, local notifications): U12 no push (app-shell.spec.md:344, 379).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-174",
@@ -2092,7 +2912,17 @@
    "evidence": "present (UBTConnect.controller.js:14719); TST: UBTConnect.controller.js:14719-14790 same steps. Native only (FCM push, local notifications): U12 no push (app-shell.spec.md:344, 379).",
    "verdict": "n/a",
    "note": "TST: UBTConnect.controller.js:14719-14790 same steps. Native only (FCM push, local notifications): U12 no push (app-shell.spec.md:344, 379).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-175",
@@ -2104,7 +2934,17 @@
    "evidence": "present (UBTConnect.controller.js:14719); TST: UBTConnect.controller.js:14719-14790 same steps. Native only (FCM push, local notifications): U12 no push (app-shell.spec.md:344, 379).",
    "verdict": "n/a",
    "note": "TST: UBTConnect.controller.js:14719-14790 same steps. Native only (FCM push, local notifications): U12 no push (app-shell.spec.md:344, 379).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-176",
@@ -2152,7 +2992,17 @@
    "evidence": "present (UBTConnect.controller.js:15262-15425); Native only (Firebase realtime database): U17 no telemetry (app-shell.spec.md:349, 384).",
    "verdict": "n/a",
    "note": "Native only (Firebase realtime database): U17 no telemetry (app-shell.spec.md:349, 384).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-180",
@@ -2164,7 +3014,17 @@
    "evidence": "present (UBTConnect.controller.js:15262-15425); Native only (FCM push, local notifications): U12 no push (app-shell.spec.md:344, 379).",
    "verdict": "n/a",
    "note": "Native only (FCM push, local notifications): U12 no push (app-shell.spec.md:344, 379).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-181",
@@ -2224,7 +3084,19 @@
    "evidence": "present (UBTConnect.controller.js:15262-15425); Native only (Cordova orientation and keyboard plugins): U18 no orientation lock, keyboard class by visualViewport (app-shell.spec.md:350, 385). TST body runs on",
    "verdict": "n/a",
    "note": "Native only (Cordova orientation and keyboard plugins): U18 no orientation lock, keyboard class by visualViewport (app-shell.spec.md:350, 385). TST body runs only if window.cordova (UBTConnectLibrary.controller.js:7917-7955 HandleMobileKeyboardVisibilityJS).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines",
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)",
+     "UBTConnectLibrary.controller.js (lines)"
+    ]
+   }
   },
   {
    "id": "_shared-186",
@@ -2250,7 +3122,17 @@
    "note": "app/src/api/app/types.ts:81 comment: \"FeedBaseURL and MyEntertainingBaseURL are not read\". TST JS node (UC:15512-15528): adds link rel=preconnect and rel=dns-prefetch for the two base URLs. Web code, not native.",
    "verified": "pack",
    "severity": "info",
-   "finding": "F2"
+   "finding": "F2",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-188",
@@ -2262,7 +3144,17 @@
    "evidence": "present (UBTConnect.controller.js:15262-15425); Board: Photobook is built (migration/board.md line 34). Native only (Cordova orientation and keyboard plugins): U18 no orientation lock, keyboard class by visua",
    "verdict": "n/a",
    "note": "Board: Photobook is built (migration/board.md line 34). Native only (Cordova orientation and keyboard plugins): U18 no orientation lock, keyboard class by visualViewport (app-shell.spec.md:350, 385). Photobook is built (board:34) but the lock is out by U18.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-189",
@@ -2286,7 +3178,17 @@
    "evidence": "present (UBTConnect.controller.js:15262-15425); Native only (FCM push, local notifications): U12 no push (app-shell.spec.md:344, 379).",
    "verdict": "n/a",
    "note": "Native only (FCM push, local notifications): U12 no push (app-shell.spec.md:344, 379).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-191",
@@ -2326,7 +3228,17 @@
    "question": "Q1: does an app-start failure show the exception toast on TST (ScreenController_RaiseError, UC:15397-15417, then the App_Common handler: U10 answer app-shell.spec.md:367), and should React show it? React logs only (appStartSteps.ts:192-196).",
    "severity": "minor",
    "finding": "F3",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_shared-194",

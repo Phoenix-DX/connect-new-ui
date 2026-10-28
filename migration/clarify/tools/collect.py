@@ -72,18 +72,22 @@ def main():
     out = ["# Clarify screens: index of the flow reports", "",
            "One report per UI flow of `UBTConnect` (DEV model through the MCP as the checklist; TST is the source of truth).",
            "Rows and verdicts come from `flows/<Flow>/checklist.json`; findings, questions and notes from `report.md` §5–§7.",
-           "Verdicts: match · partial · missing · differs · mock-only · n/a · unclear (meaning in `PLAN.md` §4).", ""]
+           "Verdicts: match · partial · missing · differs · mock-only · n/a · unclear (meaning in `PLAN.md` §4).",
+           "Stale (strong): the rows that rest on TST code that changed after the verdict, and the strong ones of them in"
+           " brackets (`tools/mark_stale.py`, `review/survey-drift-2026-10-28.md`). Read the strong rows first when a flow"
+           " is judged again.", ""]
     out.append("## 1. Verdict matrix")
     out.append("")
-    out.append("| Group | Flow | Status | Rows | " + " | ".join(VERDICTS) + " | Findings (B/M/m/i) | Questions |")
-    out.append("|---|---|---|---|" + "---|" * len(VERDICTS) + "---|---|")
+    out.append("| Group | Flow | Status | Rows | " + " | ".join(VERDICTS) + " | Findings (B/M/m/i) | Questions | Stale (strong) |")
+    out.append("|---|---|---|---|" + "---|" * len(VERDICTS) + "---|---|---|")
     tot = collections.Counter()
     sev_tot = collections.Counter()
+    stale_tot = collections.Counter()
     for g, fls in GROUPS.items():
         for fl in fls:
             d = data[fl]
             if d is None:
-                out.append(f"| {g} | {fl} | pending | | " + " | ".join("" for _ in VERDICTS) + " | | |")
+                out.append(f"| {g} | {fl} | pending | | " + " | ".join("" for _ in VERDICTS) + " | | | |")
                 continue
             cnt = collections.Counter(r.get("verdict") for r in d["rows"])
             tot.update(cnt)
@@ -91,11 +95,15 @@ def main():
             sv = collections.Counter(r[1].lower() for r in fnd if len(r) > 1)
             sev_tot.update(sv)
             qs = table_rows(section(d["report"], 7))
+            st = collections.Counter(r["stale"].get("level") for r in d["rows"] if r.get("stale"))
+            stale_tot.update(st)
             out.append(f"| {g} | [{fl}](flows/{fl}/report.md) | {d['status']} | {len(d['rows'])} | " + " | ".join(str(cnt.get(v, 0)) for v in VERDICTS)
-                       + f" | {sv.get('blocker', 0)}/{sv.get('major', 0)}/{sv.get('minor', 0)}/{sv.get('info', 0)} | {len(qs)} |")
+                       + f" | {sv.get('blocker', 0)}/{sv.get('major', 0)}/{sv.get('minor', 0)}/{sv.get('info', 0)} | {len(qs)}"
+                       + f" | {sum(st.values())} ({st.get('strong', 0)}) |")
     done = sum(1 for d in data.values() if d)
     out.append(f"| | **total ({done}/{len(data)} flows)** | | {sum(tot.values())} | " + " | ".join(str(tot.get(v, 0)) for v in VERDICTS)
-               + f" | {sev_tot.get('blocker', 0)}/{sev_tot.get('major', 0)}/{sev_tot.get('minor', 0)}/{sev_tot.get('info', 0)} | |")
+               + f" | {sev_tot.get('blocker', 0)}/{sev_tot.get('major', 0)}/{sev_tot.get('minor', 0)}/{sev_tot.get('info', 0)} |"
+               + f" | {sum(stale_tot.values())} ({stale_tot.get('strong', 0)}) |")
     out.append("")
     # findings by severity
     out.append("## 2. Findings by severity (blocker and major first)")

@@ -14,7 +14,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: OS.RolesInfo.checkRegistered() at :492; no setInputs body (:51).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A002",
@@ -27,7 +37,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST wrapper creates the block view (:125), BottomBarMenu (:186), CommonUI_InsideLayout (:208).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A003",
@@ -43,7 +63,17 @@
    "verified": "live",
    "severity": "major",
    "finding": "F3",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A004",
@@ -59,7 +89,17 @@
    "verified": "live",
    "severity": "major",
    "finding": "F3",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A005",
@@ -75,7 +115,17 @@
    "verified": "live",
    "severity": "major",
    "finding": "F3",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A006",
@@ -91,7 +141,17 @@
    "verified": "live",
    "severity": "major",
    "finding": "F3",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A007",
@@ -104,7 +164,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "GetHasOrbitAccess in React = flag mobileOrbitAccess (useFlagOn, :24). TST calls UBTConnect_UtilsController.getHasOrbitAccess$Action (:402).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A008",
@@ -117,7 +187,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A009",
@@ -130,7 +210,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A010",
@@ -143,7 +233,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A011",
@@ -156,7 +256,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A012",
@@ -169,7 +279,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A013",
@@ -182,7 +302,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "React comment: 'MemberId is not passed on'. TST destination /UBTConnect/MyEntertaining at :266-267; parameter list not read in this pass.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A014",
@@ -195,7 +325,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "Shared client action of Connect2_LegacyShared; body not read here (React comment cites a 500 ms JS node).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A015",
@@ -208,7 +348,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "Flag value on TST: grep migration/knowledge/flag-values-tst.json for mobileOrbitAccess returned no line in this pass (judge: check).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A016",
@@ -221,7 +371,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A017",
@@ -234,7 +396,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A018",
@@ -247,7 +421,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A019",
@@ -260,7 +446,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A020",
@@ -273,7 +471,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A021",
@@ -286,7 +496,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A022",
@@ -299,7 +521,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A023",
@@ -312,7 +546,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A024",
@@ -325,7 +571,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A025",
@@ -338,7 +596,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A026",
@@ -351,7 +621,19 @@
    "tst": "present",
    "verdict": "mock-only",
    "note": "Mock file: app/src/pages/OrbitLanding/mocks.ts (handlers :105-). Production needs server data action DataActionGet_HouseholdMembers.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A027",
@@ -364,7 +646,19 @@
    "tst": "present",
    "verdict": "mock-only",
    "note": "Mock file: app/src/pages/OrbitLanding/mocks.ts. Production needs server data action DataActionGet_EventsByMemberId. React sends the 7 block variables (orbitLandingState.ts:67-75).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A028",
@@ -377,7 +671,17 @@
    "tst": "-",
    "verdict": "n/a",
    "note": "Shared action of the bottom bar; belongs to App_Common report. Client variables of data.md (App_PIN_BiometricEnabled, App_Policies_*, Directory_Updates_*, IsNavigateToHomeOnBack) are shared; not read here. | owned by flow App_Common (BottomBarMenu / CommonUI_InsideLayout), see its report; client variables of data.md are shared",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A029",
@@ -390,7 +694,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A030",
@@ -405,7 +721,19 @@
    "note": "User 2026-10-27 (F4 a): keep W34. Differs by decision W34 (a), 2026-10-22 (auto-decisions-2026-10-22.md; page-template.md): the port re-fetches on a restored view without data, reads only. React adds a condition (isEventsDataFetched) that TST does not have: TST ends on restore, React ends only when the events were fetched. | F4: React re-runs OnReady on a restored view when the events were not fetched (useOrbitLanding.ts:105, comment \"F40\"); TST ends on every restore (ScreenBlock_OrbitLanding :1669 show). No recorded decision names F40.",
    "verified": "code",
    "severity": "minor",
-   "finding": "F4"
+   "finding": "F4",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A031",
@@ -418,7 +746,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A032",
@@ -431,7 +771,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A033",
@@ -444,7 +796,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A034",
@@ -457,7 +821,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A035",
@@ -470,7 +846,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A036",
@@ -483,7 +871,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A037",
@@ -496,7 +896,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A038",
@@ -509,7 +921,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "Pack names the lists 'Last8DaysAndFuture' and 'MoreThan8DaysAgo'; the compiled code uses -22 days.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A039",
@@ -522,7 +946,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A040",
@@ -535,7 +971,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "Fifth argument 'previous' (state.eventsSummary) in React suggests a keep-previous branch; filterEvents body not read in this pass.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A041",
@@ -548,7 +996,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A042",
@@ -561,7 +1021,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A043",
@@ -574,7 +1046,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A044",
@@ -587,7 +1071,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "JS body of GetMeasurementsJS not read in this pass; React comment states the formulas.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A045",
@@ -600,7 +1096,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "React sends only MemberId in the audit log (actions.ts:32-37); TST payload has MemberId and FirstName (telemetry not wired, decision U17 per React comment).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A046",
@@ -613,7 +1121,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A047",
@@ -626,7 +1146,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A048",
@@ -639,7 +1171,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A049",
@@ -652,7 +1196,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A050",
@@ -665,7 +1221,19 @@
    "tst": "present",
    "verdict": "differs",
    "note": "Telemetry not wired in the mock phase (React comment: decision U17). | app-shell.spec.md U17 (user decision: no telemetry in the mock phase); React logs the event only",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A051",
@@ -678,7 +1246,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A052",
@@ -691,7 +1271,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A053",
@@ -704,7 +1296,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A054",
@@ -720,7 +1324,19 @@
    "verified": "live",
    "severity": "major",
    "finding": "F3",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A055",
@@ -733,7 +1349,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A056",
@@ -746,7 +1374,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A057",
@@ -759,7 +1399,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A058",
@@ -772,7 +1424,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A059",
@@ -785,7 +1449,19 @@
    "tst": "present",
    "verdict": "n/a",
    "note": "Possible non-behaviour in React (virtualization is a runtime property); judge decides. | rendering option of the OutSystems List widget (isListVirtualizationDisabled); no user behaviour, nothing to port",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A060",
@@ -798,7 +1474,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "The two popup blocks (Connect2_OrbitMobile_MUI.Orbit_Blocks.Popup_OrbitLanding_Filters 30919 B / _Sort 13773 B in TST) are not read in this pass.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A061",
@@ -811,7 +1499,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js (file)",
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A062",
@@ -824,7 +1524,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A063",
@@ -1071,7 +1781,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "Defaults of the TST variables were not extracted (only types).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A082",
@@ -1084,7 +1804,17 @@
    "tst": "present",
    "verdict": "mock-only",
    "note": "Mock file app/src/pages/EventDetail/mocks.ts:156-171. Production needs server data action DataActionGet_EventDetails.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A083",
@@ -1097,7 +1827,17 @@
    "tst": "present",
    "verdict": "mock-only",
    "note": "Mock handler in mocks.ts:160. Production needs DataActionGet_HostSurveyStatus.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A084",
@@ -1110,7 +1850,17 @@
    "tst": "present",
    "verdict": "mock-only",
    "note": "Mock handler in mocks.ts:166. Production needs DataActionGet_HasQRCode.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A085",
@@ -1123,7 +1873,17 @@
    "tst": "present",
    "verdict": "mock-only",
    "note": "Mock handler in mocks.ts:163. Production needs DataActionGet_HasDocuments.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A086",
@@ -1136,7 +1896,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A087",
@@ -1149,7 +1919,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "Flag values on TST not read in this pass.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A088",
@@ -1162,7 +1942,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A089",
@@ -1175,7 +1965,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A090",
@@ -1188,7 +1988,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A091",
@@ -1201,7 +2011,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A092",
@@ -1214,7 +2034,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "Reducer body for the day/before branches not read line by line in this pass.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A093",
@@ -1240,7 +2070,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A095",
@@ -1253,7 +2093,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A096",
@@ -1266,7 +2116,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A097",
@@ -1279,7 +2139,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "Telemetry not wired (React comment: decision U17).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A098",
@@ -1292,7 +2162,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A099",
@@ -1305,7 +2185,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A100",
@@ -1318,7 +2208,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A101",
@@ -1331,7 +2231,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A102",
@@ -1344,7 +2254,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A103",
@@ -1357,7 +2277,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A104",
@@ -1370,7 +2300,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A105",
@@ -1383,7 +2323,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "Type list is in React MILESTONE_DETAIL_TYPES (file eventDetailState.ts, list not printed in this pass).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A106",
@@ -1396,7 +2346,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A107",
@@ -1409,7 +2369,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A108",
@@ -1422,7 +2392,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A109",
@@ -1435,7 +2415,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "Last branch of TimeType (:2462) not read in this pass.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A110",
@@ -1448,7 +2438,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST view :419 visible (hasQRCode && !hasScanned); :700 visible hasQRCode. Label strings 'GENERATE QR CODE' / 'QR CODE GENERATED' not read in TST in this pass.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A111",
@@ -1461,7 +2461,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A112",
@@ -1474,7 +2484,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A113",
@@ -1487,7 +2507,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A114",
@@ -1500,7 +2530,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "Message texts NO_LONGER_AVAILABLE and NO_ITINERARY not compared with TST in this pass.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A115",
@@ -1513,7 +2553,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A116",
@@ -1526,7 +2576,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "Inner blocks not read in this pass.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A117",
@@ -1539,7 +2599,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-A118",
@@ -2630,7 +3700,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "Flag mobileOrbitAccess: see migration/knowledge/flag-values-tst.json (not read here).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-B016",
@@ -5906,7 +6986,17 @@
    "evidence": "Orbit block pass 2026-10-27: Legacy_OrbitEventsFlow-K rows; tst_source.py list Popup_OrbitLanding",
    "verdict": "match",
    "verified": "live",
-   "note": "Settled by the Orbit block pass (rows K001-K021, report section 10): Popup_OrbitLanding_Sort and Popup_OrbitLanding_Filters match TST in every input, event, branch, visible rule and text."
+   "note": "Settled by the Orbit block pass (rows K001-K021, report section 10): Popup_OrbitLanding_Sort and Popup_OrbitLanding_Filters match TST in every input, event, branch, visible rule and text.",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-J017",
@@ -5946,7 +7036,17 @@
    "tst": "present",
    "verdict": "match",
    "verified": "live",
-   "note": "The popup mounts at each open (OrbitLandingPopup.tsx:33 renders nothing when closed), so the copy starts from the input, as setInputs does. Orbit block pass 2026-10-27."
+   "note": "The popup mounts at each open (OrbitLandingPopup.tsx:33 renders nothing when closed), so the copy starts from the input, as setInputs does. Orbit block pass 2026-10-27.",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-K002",
@@ -5959,7 +7059,17 @@
    "tst": "present",
    "verdict": "match",
    "verified": "live",
-   "note": "Orbit block pass 2026-10-27."
+   "note": "Orbit block pass 2026-10-27.",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-K003",
@@ -5972,7 +7082,17 @@
    "tst": "present",
    "verdict": "match",
    "verified": "live",
-   "note": "Orbit block pass 2026-10-27."
+   "note": "Orbit block pass 2026-10-27.",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-K004",
@@ -5985,7 +7105,17 @@
    "tst": "present",
    "verdict": "match",
    "verified": "live",
-   "note": "Orbit block pass 2026-10-27."
+   "note": "Orbit block pass 2026-10-27.",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-K005",
@@ -5998,7 +7128,17 @@
    "tst": "present",
    "verdict": "match",
    "verified": "live",
-   "note": "Orbit block pass 2026-10-27."
+   "note": "Orbit block pass 2026-10-27.",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-K006",
@@ -6011,7 +7151,17 @@
    "tst": "present",
    "verdict": "match",
    "verified": "live",
-   "note": "Orbit block pass 2026-10-27."
+   "note": "Orbit block pass 2026-10-27.",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-K007",
@@ -6024,7 +7174,17 @@
    "tst": "present",
    "verdict": "match",
    "verified": "live",
-   "note": "Orbit block pass 2026-10-27."
+   "note": "Orbit block pass 2026-10-27.",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-K008",
@@ -6037,7 +7197,17 @@
    "tst": "present",
    "verdict": "match",
    "verified": "live",
-   "note": "React receives the sum Top + Bottom, the only use of PopupMeasurements. Orbit block pass 2026-10-27."
+   "note": "React receives the sum Top + Bottom, the only use of PopupMeasurements. Orbit block pass 2026-10-27.",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-K009",
@@ -6050,7 +7220,17 @@
    "tst": "present",
    "verdict": "match",
    "verified": "live",
-   "note": "Orbit block pass 2026-10-27."
+   "note": "Orbit block pass 2026-10-27.",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-K010",
@@ -6063,7 +7243,17 @@
    "tst": "present",
    "verdict": "match",
    "verified": "live",
-   "note": "Orbit block pass 2026-10-27."
+   "note": "Orbit block pass 2026-10-27.",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-K011",
@@ -6076,7 +7266,17 @@
    "tst": "present",
    "verdict": "match",
    "verified": "live",
-   "note": "Orbit block pass 2026-10-27."
+   "note": "Orbit block pass 2026-10-27.",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-K012",
@@ -6089,7 +7289,17 @@
    "tst": "present",
    "verdict": "match",
    "verified": "live",
-   "note": "Orbit block pass 2026-10-27."
+   "note": "Orbit block pass 2026-10-27.",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-K013",
@@ -6102,7 +7312,17 @@
    "tst": "present",
    "verdict": "match",
    "verified": "live",
-   "note": "The three containers have animate True; the Container widget of OutSystemsReactWidgets.js reads no animate property (only the swipe widget animates). Orbit block pass 2026-10-27."
+   "note": "The three containers have animate True; the Container widget of OutSystemsReactWidgets.js reads no animate property (only the swipe widget animates). Orbit block pass 2026-10-27.",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-K014",
@@ -6115,7 +7335,17 @@
    "tst": "present",
    "verdict": "match",
    "verified": "live",
-   "note": "OutSystemsReactWidgets.js:1, Container render: cursor pointer when extendedEvents.onClick. Orbit block pass 2026-10-27."
+   "note": "OutSystemsReactWidgets.js:1, Container render: cursor pointer when extendedEvents.onClick. Orbit block pass 2026-10-27.",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-K015",
@@ -6128,7 +7358,17 @@
    "tst": "present",
    "verdict": "match",
    "verified": "live",
-   "note": "Orbit block pass 2026-10-27."
+   "note": "Orbit block pass 2026-10-27.",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-K016",
@@ -6141,7 +7381,17 @@
    "tst": "present",
    "verdict": "match",
    "verified": "live",
-   "note": "Orbit block pass 2026-10-27."
+   "note": "Orbit block pass 2026-10-27.",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-K017",
@@ -6154,7 +7404,17 @@
    "tst": "present",
    "verdict": "match",
    "verified": "live",
-   "note": "Orbit block pass 2026-10-27."
+   "note": "Orbit block pass 2026-10-27.",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-K018",
@@ -6167,7 +7427,17 @@
    "tst": "present",
    "verdict": "match",
    "verified": "live",
-   "note": "A derived value gives the same result after each change. Orbit block pass 2026-10-27."
+   "note": "A derived value gives the same result after each change. Orbit block pass 2026-10-27.",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-K019",
@@ -6180,7 +7450,17 @@
    "tst": "present",
    "verdict": "match",
    "verified": "live",
-   "note": "Orbit block pass 2026-10-27."
+   "note": "Orbit block pass 2026-10-27.",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-K020",
@@ -6193,7 +7473,17 @@
    "tst": "present",
    "verdict": "match",
    "verified": "live",
-   "note": "Orbit block pass 2026-10-27."
+   "note": "Orbit block pass 2026-10-27.",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-K021",
@@ -6206,7 +7496,17 @@
    "tst": "present",
    "verdict": "match",
    "verified": "live",
-   "note": "Orbit block pass 2026-10-27."
+   "note": "Orbit block pass 2026-10-27.",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitEventsFlow-K022",

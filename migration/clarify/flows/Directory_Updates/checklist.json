@@ -279,7 +279,17 @@
    "evidence": "app/src/pages/Updates_SingleList/hooks/updatesSingleListState.ts:175-177; app/src/platform/session/clientVars.ts:26; TST UBTConnect.controller.js:2404-2420",
    "verdict": "match",
    "note": "pack data.md does not list this variable; it appears in the AugmentDateRanges pack text as function Directory_Updates_MinDateToShow | judge: TST Directory_Updates_MinDateToShow: NullDate when MonthsToShow = 0, else AddMonths(CurrDate, -MonthsToShow); React does the same. React default 0.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Updates-024",
@@ -1321,7 +1331,17 @@
    "evidence": "app/src/pages/Updates_SingleList/hooks/updatesSingleListState.ts:275-292; TST UBTConnect.controller.js:12474-12499; BR-UBTCON-174",
    "verdict": "match",
    "note": "date '' (null date) instead of 1901-01-01 per React comment {S}:273-274 (NewDate(1,1,1901) invalid -> null date; claim from React comment, not verified); TST of UBTConnect.controller not read | judge: TST GetSkeleton_UI_UpdatesContent: \"Example & Example\", Taken, newDate(1, 1, 1901), \"Example, Example\". React uses the null date. The date shows under SkeletonSection while isLoading, so it is not visible.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Updates-110",
@@ -1333,7 +1353,17 @@
    "evidence": "app/src/pages/Updates_SingleList/hooks/updatesSingleListState.ts:175-177; TST UBTConnect.controller.js:2404-2420",
    "verdict": "match",
    "note": "function body not in the pack; React comment says UC",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Updates-111",

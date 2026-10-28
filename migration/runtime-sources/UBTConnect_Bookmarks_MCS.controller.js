@@ -42,7 +42,7 @@ varBag.vars = vars;
 varBag.createLocalBookmarkVar = createLocalBookmarkVar;
 varBag.getLocalBookmarksByUserIdVar = getLocalBookmarksByUserIdVar;
 varBag.outVars = outVars;
-OutSystemsDebugger.push("eIe57fGQl06d7_wNN6doow:tWWed5o_F0mCRaiO_duAGA:/ClientActionFlows.tWWed5o_F0mCRaiO_duAGA:Lr3Ii3YBZ+V95AOaVPIaVQ", "UBTConnect_Bookmarks_MCS", "Create_LocalBookmark", "NRFlows.ClientActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("eIe57fGQl06d7_wNN6doow:tWWed5o_F0mCRaiO_duAGA:/ClientActionFlows.tWWed5o_F0mCRaiO_duAGA:txUpcOE1ocJMKxm0gU4E+g", "UBTConnect_Bookmarks_MCS", "Create_LocalBookmark", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("eIe57fGQl06d7_wNN6doow:RJUd4mLXGUSbYCghdYGskA", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 return OS.Flow.executeSequence(function () {
@@ -66,7 +66,7 @@ maxRecords = 0;
 }
 
 var qpinUserId = OS.BuiltinFunctions.getUserId();
-var qploItemId = vars.value.in_ItemIdInLocal;
+var qpstItemId = vars.value.in_ItemIdInLocal;
 
 var optimizeSelect = false;
 var selectSql = "";
@@ -89,8 +89,8 @@ argsList.add("qpinUserId", /*INTEGER*/ 3, qpinUserId);
 } else {
 fromAndWhereSql += "(\"ENLocalBookmark\".\"UserId\" IS NULL)";
 }
-fromAndWhereSql += " AND (\"ENLocalBookmark\".\"ItemId\" = CAST(:qploItemId AS INTEGER))";
-argsList.add("qploItemId", /*LONGINTEGER*/ 4, qploItemId);
+fromAndWhereSql += " AND (\"ENLocalBookmark\".\"ItemId\" = :qpstItemId)";
+argsList.add("qpstItemId", /*TEXT*/ 0, qpstItemId);
 if (maxRecords > 0) {
 orderBySql += " LIMIT ";
 orderBySql += maxRecords;
@@ -192,9 +192,9 @@ UBTConnect_Bookmarks_MCSController.default.constructor.registerVariableGroupType
 name: "In_ItemId",
 attrName: "in_ItemIdInLocal",
 mandatory: true,
-dataType: OS.DataTypes.DataTypes.LongInteger,
+dataType: OS.DataTypes.DataTypes.Text,
 defaultValue: function () {
-return OS.DataTypes.LongInteger.defaultValue;
+return "";
 }
 }, {
 name: "In_BookmarkCategoryId",
@@ -231,11 +231,11 @@ return OS.DataTypes.LongInteger.defaultValue;
 }
 }]);
 UBTConnect_Bookmarks_MCSController.default.clientActionProxies.create_LocalBookmark$Action = function (in_ItemIdIn, in_BookmarkCategoryIdIn, in_BookmarkIdIn, in_DateCreatedUtcIn) {
-in_ItemIdIn = (in_ItemIdIn === undefined) ? OS.DataTypes.LongInteger.defaultValue : in_ItemIdIn;
+in_ItemIdIn = (in_ItemIdIn === undefined) ? "" : in_ItemIdIn;
 in_BookmarkCategoryIdIn = (in_BookmarkCategoryIdIn === undefined) ? "" : in_BookmarkCategoryIdIn;
 in_BookmarkIdIn = (in_BookmarkIdIn === undefined) ? OS.DataTypes.LongInteger.defaultValue : in_BookmarkIdIn;
 in_DateCreatedUtcIn = (in_DateCreatedUtcIn === undefined) ? OS.DataTypes.DateTime.defaultValue : in_DateCreatedUtcIn;
-return controller.executeActionInsideJSNode(UBTConnect_Bookmarks_MCSController.default.create_LocalBookmark$Action.bind(controller, OS.DataConversion.JSNodeParamConverter.from(in_ItemIdIn, OS.DataTypes.DataTypes.LongInteger), in_BookmarkCategoryIdIn, OS.DataConversion.JSNodeParamConverter.from(in_BookmarkIdIn, OS.DataTypes.DataTypes.LongInteger), OS.DataConversion.JSNodeParamConverter.from(in_DateCreatedUtcIn, OS.DataTypes.DataTypes.DateTime)), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
+return controller.executeActionInsideJSNode(UBTConnect_Bookmarks_MCSController.default.create_LocalBookmark$Action.bind(controller, OS.DataConversion.JSNodeParamConverter.from(in_ItemIdIn, OS.DataTypes.DataTypes.Text), in_BookmarkCategoryIdIn, OS.DataConversion.JSNodeParamConverter.from(in_BookmarkIdIn, OS.DataTypes.DataTypes.LongInteger), OS.DataConversion.JSNodeParamConverter.from(in_DateCreatedUtcIn, OS.DataTypes.DataTypes.DateTime)), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
 return {
 LocalBookmarkId: actionResults.localBookmarkIdOut
 };
@@ -347,19 +347,19 @@ return {};
 };
 });
 
-define("UBTConnect_Bookmarks_MCS.controller$Get_LocalDynamicBookmarkPills", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Bookmarks_MCS.model", "UBTConnect_Bookmarks_MCS.controller", "UBTConnect_Bookmarks_MCS.entities", "UBTConnect_Bookmarks_MCS.model$DynamicBookmark_PillList", "UBTConnect_Bookmarks_MCS.controller$ServerAction.Get_BookmarkPills_ByBookmarkCategoryIds", "UBTConnect_Bookmarks_MCS.model$BookmarkCategoryIdentifierRecordList", "UBTConnect_Bookmarks_MCS.model$LocalBookmarkRec"], function (exports, OutSystems, UBTConnect_Bookmarks_MCSModel, UBTConnect_Bookmarks_MCSController, UBTConnect_Bookmarks_MCSEntities) {
+define("UBTConnect_Bookmarks_MCS.controller$Get_LocalDynamicBookmarkPills", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Bookmarks_MCS.model", "UBTConnect_Bookmarks_MCS.controller", "UBTConnect_Bookmarks_MCS.entities", "UBTConnect_Bookmarks_MCS.model$DynamicBookmark_PillList", "UBTConnect_Bookmarks_MCS.controller$ServerAction.Get_BookmarkPills_ByBookmarkCategoryIds", "UBTConnect_Bookmarks_MCS.model$LongIntegerBookmarkCategoryIdentifierRecordList", "UBTConnect_Bookmarks_MCS.model$LocalBookmarkRec"], function (exports, OutSystems, UBTConnect_Bookmarks_MCSModel, UBTConnect_Bookmarks_MCSController, UBTConnect_Bookmarks_MCSEntities) {
 var OS = OutSystems.Internal;
 UBTConnect_Bookmarks_MCSController.default.get_LocalDynamicBookmarkPills$Action = function (callContext) {
 var varBag = {};
 callContext = controller.callContext(callContext);
 var get_BookmarkPills_ByBookmarkCategoryIdsVar = new OS.DataTypes.VariableHolder();
-var getLocalBookmarkCategoryIds_ByUserIdVar = new OS.DataTypes.VariableHolder(new (OS.Controller.BaseController.getAggregateOutputType(UBTConnect_Bookmarks_MCSModel.BookmarkCategoryIdentifierRecordList))());
+var getLocalBookmarkCategoryIds_ByUserIdVar = new OS.DataTypes.VariableHolder(new (OS.Controller.BaseController.getAggregateOutputType(UBTConnect_Bookmarks_MCSModel.LongIntegerBookmarkCategoryIdentifierRecordList))());
 var outVars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect_Bookmarks_MCS.Get_LocalDynamicBookmarkPills$outVars"))());
 varBag.callContext = callContext;
 varBag.get_BookmarkPills_ByBookmarkCategoryIdsVar = get_BookmarkPills_ByBookmarkCategoryIdsVar;
 varBag.getLocalBookmarkCategoryIds_ByUserIdVar = getLocalBookmarkCategoryIds_ByUserIdVar;
 varBag.outVars = outVars;
-OutSystemsDebugger.push("eIe57fGQl06d7_wNN6doow:FKgov8gn0UygbE85+2Qi3A:/ClientActionFlows.FKgov8gn0UygbE85+2Qi3A:NgnxOpdsEeYKhm2tyPWKBA", "UBTConnect_Bookmarks_MCS", "Get_LocalDynamicBookmarkPills", "NRFlows.ClientActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("eIe57fGQl06d7_wNN6doow:FKgov8gn0UygbE85+2Qi3A:/ClientActionFlows.FKgov8gn0UygbE85+2Qi3A:3Q1xWtN_1OkCIl9NzNimng", "UBTConnect_Bookmarks_MCS", "Get_LocalDynamicBookmarkPills", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("eIe57fGQl06d7_wNN6doow:p46SbWVUakGA3jkHEILU_Q", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 OutSystemsDebugger.handleBreakpoint("eIe57fGQl06d7_wNN6doow:mnonKyNBl0+fs2aGXQXkjA", callContext.id);
@@ -368,7 +368,7 @@ var getLocalBookmarkCategoryIds_ByUserIdAggr = function (maxRecords) {
 var executeQuery = null;
 if(OS.NativeHelper.isRunningOnNative()) {
 executeQuery = function () {
-var targetListType = UBTConnect_Bookmarks_MCSModel.BookmarkCategoryIdentifierRecordList;
+var targetListType = UBTConnect_Bookmarks_MCSModel.LongIntegerBookmarkCategoryIdentifierRecordList;
 var result = {
 list: null,
 count: OS.DataTypes.LongInteger.defaultValue
@@ -389,9 +389,9 @@ var argsList = new OS.Entities.QueryArgumentsList();
 
 selectSql += "SELECT ";
 if (optimizeSelect) {
-selectSql += "\"ENLocalBookmark\".\"BookmarkCategoryId\" \"BookmarkCategoryId\"";
+selectSql += "\"ENLocalBookmark\".\"BookmarkCategoryId\" \"BookmarkCategoryId\", Count(\"ENLocalBookmark\".\"BookmarkId\") \"Count\"";
 } else {
-selectSql += "\"ENLocalBookmark\".\"BookmarkCategoryId\" \"BookmarkCategoryId\"";
+selectSql += "\"ENLocalBookmark\".\"BookmarkCategoryId\" \"BookmarkCategoryId\", Count(\"ENLocalBookmark\".\"BookmarkId\") \"Count\"";
 }
 fromAndWhereSql += " FROM \"MAIN\".\"OSUSR_hcr_LocalBookmark\" \"ENLocalBookmark\"";
 fromAndWhereSql += " WHERE ";
@@ -401,19 +401,26 @@ argsList.add("qpinUserId", /*INTEGER*/ 3, qpinUserId);
 } else {
 fromAndWhereSql += "(\"ENLocalBookmark\".\"UserId\" IS NULL)";
 }
+fromAndWhereSql += " AND (\"ENLocalBookmark\".\"BookmarkCategoryId\" IS NOT NULL)";
 groupByAndHavingSql += " GROUP BY \"ENLocalBookmark\".\"BookmarkCategoryId\"";
+orderBySql += " ORDER BY ";
+var orderByColumns = [];
+orderByColumns.push("\"Count\" DESC ");
+orderByColumns.push("\"BookmarkCategoryId\" ASC ");
+orderBySql += OS.Entities.webSQLStorageInstance.getOrderByColumnsWithoutDuplicates(orderByColumns);
 if (maxRecords > 0) {
 orderBySql += " LIMIT ";
 orderBySql += maxRecords;
 }
 var sql = selectSql + fromAndWhereSql + groupByAndHavingSql + orderBySql;
 
-return OS.Entities.webSQLStorageInstance.executeQuery(sql, UBTConnect_Bookmarks_MCSModel.BookmarkCategoryIdentifierRecordList, function (rec, r) {
+return OS.Entities.webSQLStorageInstance.executeQuery(sql, UBTConnect_Bookmarks_MCSModel.LongIntegerBookmarkCategoryIdentifierRecordList, function (rec, r) {
 var indexRef = {
 value: 0
 };
 var attrOrder = [
 "bookmarkCategoryIdAttr",
+"countAttr",
 ];
 return OS.DataConversion.LocalStorageConverter.from(r, targetListType.getItemType(), indexRef, attrOrder);
 
@@ -504,7 +511,7 @@ var outVars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVar
 varBag.callContext = callContext;
 varBag.getLocalBookmarksByUserIdVar = getLocalBookmarksByUserIdVar;
 varBag.outVars = outVars;
-OutSystemsDebugger.push("eIe57fGQl06d7_wNN6doow:dKhCi+6g2US4CLssS+YSNw:/ClientActionFlows.dKhCi+6g2US4CLssS+YSNw:94uCUBSBGcqBYnS7xnTmmQ", "UBTConnect_Bookmarks_MCS", "Get_LocalDynamicBookmarkYears", "NRFlows.ClientActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("eIe57fGQl06d7_wNN6doow:dKhCi+6g2US4CLssS+YSNw:/ClientActionFlows.dKhCi+6g2US4CLssS+YSNw:qNbC+Q0Pyu_91nocgJXAkw", "UBTConnect_Bookmarks_MCS", "Get_LocalDynamicBookmarkYears", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("eIe57fGQl06d7_wNN6doow:w+M14R6dIkeajYV99Dg_ug", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 OutSystemsDebugger.handleBreakpoint("eIe57fGQl06d7_wNN6doow:kmQMjXkq5kOb3hHVIWBU9w", callContext.id);
@@ -534,9 +541,9 @@ var argsList = new OS.Entities.QueryArgumentsList();
 
 selectSql += "SELECT ";
 if (optimizeSelect) {
-selectSql += "(CAST(Strftime('%Y', \"ENLocalBookmark\".\"CreatedAtDateUtc\") AS INTEGER)) \"Year\"";
+selectSql += "(CAST(Strftime('%Y', \"ENLocalBookmark\".\"CreatedAtDateUtc\") AS INTEGER)) \"GroupByYear\"";
 } else {
-selectSql += "(CAST(Strftime('%Y', \"ENLocalBookmark\".\"CreatedAtDateUtc\") AS INTEGER)) \"Year\"";
+selectSql += "(CAST(Strftime('%Y', \"ENLocalBookmark\".\"CreatedAtDateUtc\") AS INTEGER)) \"GroupByYear\"";
 }
 fromAndWhereSql += " FROM \"MAIN\".\"OSUSR_hcr_LocalBookmark\" \"ENLocalBookmark\"";
 fromAndWhereSql += " WHERE ";
@@ -558,7 +565,7 @@ var indexRef = {
 value: 0
 };
 var attrOrder = [
-"yearAttr",
+"groupByYearAttr",
 ];
 return OS.DataConversion.LocalStorageConverter.from(r, targetListType.getItemType(), indexRef, attrOrder);
 
@@ -595,7 +602,7 @@ return getLocalBookmarksByUserIdAggr().then(function () {
 OutSystemsDebugger.handleBreakpoint("eIe57fGQl06d7_wNN6doow:nl3I_U45aUqMHfrgcg7AVA", callContext.id);
 // Execute Action: ListAppendAllYears
 OS.SystemActions.listAppendAll(outVars.value.yearsOut, OS.DataConversion.JSConversions.typeConvertRecordList(getLocalBookmarksByUserIdVar.value.listOut, new OS.DataTypes.TextList(), function (source, target) {
-target = (source.yearAttr).toString();
+target = (source.groupByYearAttr).toString();
 return target;
 }), callContext);
 OutSystemsDebugger.handleBreakpoint("eIe57fGQl06d7_wNN6doow:62tBdfJgekC9_Fqaw1kViQ", callContext.id);
@@ -644,7 +651,7 @@ var outVars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVar
 varBag.callContext = callContext;
 varBag.vars = vars;
 varBag.outVars = outVars;
-try {OutSystemsDebugger.push("eIe57fGQl06d7_wNN6doow:rJHbTDd1wkW8AwmKo05zyw:/ClientActionFlows.rJHbTDd1wkW8AwmKo05zyw:fFm9GmB9i4y1K_ovqpN1UQ", "UBTConnect_Bookmarks_MCS", "GetBookmarkCategoryLabel", "NRFlows.ClientActionFlow", callContext.id, varBag);
+try {OutSystemsDebugger.push("eIe57fGQl06d7_wNN6doow:rJHbTDd1wkW8AwmKo05zyw:/ClientActionFlows.rJHbTDd1wkW8AwmKo05zyw:JSSKQlVfeD5JOp0nBdMs4A", "UBTConnect_Bookmarks_MCS", "GetBookmarkCategoryLabel", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("eIe57fGQl06d7_wNN6doow:vNb5H85rVUCinmqo3+ybOg", callContext.id);
 if((OutSystemsDebugger.handleBreakpoint("eIe57fGQl06d7_wNN6doow:_tZ2Ie4dzEWG6OROAyITDw", callContext.id) && (vars.value.in_BookmarkCategoryIdInLocal === UBTConnect_Bookmarks_MCSModel.staticEntities.bookmarkCategory.assembleEvent))) {
 OutSystemsDebugger.handleBreakpoint("eIe57fGQl06d7_wNN6doow:ILhTjtOFrEOvFxsfeLAYgg", callContext.id);
@@ -694,7 +701,7 @@ OutSystemsDebugger.handleBreakpoint("eIe57fGQl06d7_wNN6doow:D3m2iimBQ0Wle6BkrPb5
 outVars.value.out_LabelOut = "Members";
 OutSystemsDebugger.handleBreakpoint("eIe57fGQl06d7_wNN6doow:K5L4O0zjkUqo6KH3tn6MZw", callContext.id);
 } else {
-if((vars.value.in_BookmarkCategoryIdInLocal === UBTConnect_Bookmarks_MCSModel.staticEntities.bookmarkCategory.oneSchoolGlobal)) {
+if((vars.value.in_BookmarkCategoryIdInLocal === UBTConnect_Bookmarks_MCSModel.staticEntities.bookmarkCategory.oneSchoolGlobal2)) {
 OutSystemsDebugger.handleBreakpoint("eIe57fGQl06d7_wNN6doow:wnggfqOqakyLeT2zfDM4hw", callContext.id);
 // Out_Label = ""
 outVars.value.out_LabelOut = "";
@@ -953,7 +960,7 @@ varBag.callContext = callContext;
 varBag.vars = vars;
 varBag.getLocalBookmarksByObjectIdVar = getLocalBookmarksByObjectIdVar;
 varBag.outVars = outVars;
-OutSystemsDebugger.push("eIe57fGQl06d7_wNN6doow:lqTee2pdOEWJYmXUw5UQPA:/ClientActionFlows.lqTee2pdOEWJYmXUw5UQPA:fJKOGwe7wh_S5r2iLEngoQ", "UBTConnect_Bookmarks_MCS", "GetLocalBookmarkByObjectId", "NRFlows.ClientActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("eIe57fGQl06d7_wNN6doow:lqTee2pdOEWJYmXUw5UQPA:/ClientActionFlows.lqTee2pdOEWJYmXUw5UQPA:j22XsmVYTAXX3chz5FDp7g", "UBTConnect_Bookmarks_MCS", "GetLocalBookmarkByObjectId", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("eIe57fGQl06d7_wNN6doow:qii39VcGME+rNiSGPOjWeQ", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 OutSystemsDebugger.handleBreakpoint("eIe57fGQl06d7_wNN6doow:n+Gdk4bo3kWCp5GV8yPJyQ", callContext.id);
@@ -973,7 +980,7 @@ maxRecords = 0;
 }
 
 var qpinUserId = OS.BuiltinFunctions.getUserId();
-var qploObjectId = vars.value.itemIdInLocal;
+var qpstItemId = vars.value.itemIdInLocal;
 
 var optimizeSelect = false;
 var selectSql = "";
@@ -989,8 +996,8 @@ selectSql += "\"ENLocalBookmark\".\"Id\" o0, \"ENLocalBookmark\".\"UserId\" o1, 
 selectSql += "\"ENLocalBookmark\".\"Id\" o0, \"ENLocalBookmark\".\"UserId\" o1, \"ENLocalBookmark\".\"BookmarkId\" o2, \"ENLocalBookmark\".\"BookmarkCategoryId\" o3, \"ENLocalBookmark\".\"ItemId\" o4, \"ENLocalBookmark\".\"CreatedAtDateUtc\" o5";
 }
 fromAndWhereSql += " FROM \"MAIN\".\"OSUSR_hcr_LocalBookmark\" \"ENLocalBookmark\"";
-fromAndWhereSql += " WHERE (\"ENLocalBookmark\".\"ItemId\" = CAST(:qploObjectId AS INTEGER)) AND ";
-argsList.add("qploObjectId", /*LONGINTEGER*/ 4, qploObjectId);
+fromAndWhereSql += " WHERE (\"ENLocalBookmark\".\"ItemId\" = :qpstItemId) AND ";
+argsList.add("qpstItemId", /*TEXT*/ 0, qpstItemId);
 if (qpinUserId != 0) {
 fromAndWhereSql += "((\"ENLocalBookmark\".\"UserId\" = :qpinUserId) AND (\"ENLocalBookmark\".\"UserId\" IS NOT NULL))";
 argsList.add("qpinUserId", /*INTEGER*/ 3, qpinUserId);
@@ -1065,9 +1072,9 @@ UBTConnect_Bookmarks_MCSController.default.constructor.registerVariableGroupType
 name: "ItemId",
 attrName: "itemIdInLocal",
 mandatory: true,
-dataType: OS.DataTypes.DataTypes.LongInteger,
+dataType: OS.DataTypes.DataTypes.Text,
 defaultValue: function () {
-return OS.DataTypes.LongInteger.defaultValue;
+return "";
 }
 }]);
 UBTConnect_Bookmarks_MCSController.default.constructor.registerVariableGroupType("UBTConnect_Bookmarks_MCS.GetLocalBookmarkByObjectId$outVars", [{
@@ -1081,8 +1088,8 @@ return new UBTConnect_Bookmarks_MCSModel.LocalBookmarkRec();
 complexType: UBTConnect_Bookmarks_MCSModel.LocalBookmarkRec
 }]);
 UBTConnect_Bookmarks_MCSController.default.clientActionProxies.getLocalBookmarkByObjectId$Action = function (itemIdIn) {
-itemIdIn = (itemIdIn === undefined) ? OS.DataTypes.LongInteger.defaultValue : itemIdIn;
-return controller.executeActionInsideJSNode(UBTConnect_Bookmarks_MCSController.default.getLocalBookmarkByObjectId$Action.bind(controller, OS.DataConversion.JSNodeParamConverter.from(itemIdIn, OS.DataTypes.DataTypes.LongInteger)), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
+itemIdIn = (itemIdIn === undefined) ? "" : itemIdIn;
+return controller.executeActionInsideJSNode(UBTConnect_Bookmarks_MCSController.default.getLocalBookmarkByObjectId$Action.bind(controller, OS.DataConversion.JSNodeParamConverter.from(itemIdIn, OS.DataTypes.DataTypes.Text)), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
 return {
 LocalBookmark: actionResults.localBookmarkOut
 };
@@ -1249,7 +1256,7 @@ dataType: OS.DataTypes.DataTypes.Text
 getter: function (varBag, idService) {
 return varBag.vars.value.in_ItemIdInLocal;
 },
-dataType: OS.DataTypes.DataTypes.LongInteger
+dataType: OS.DataTypes.DataTypes.Text
 },
 "IC_yHjM+YUyH3ZoY4C71hg": {
 getter: function (varBag, idService) {
@@ -1289,7 +1296,7 @@ return varBag.getLocalBookmarksByUserIdVar.value;
 getter: function (varBag, idService) {
 return varBag.vars.value.itemIdInLocal;
 },
-dataType: OS.DataTypes.DataTypes.LongInteger
+dataType: OS.DataTypes.DataTypes.Text
 },
 "ycAEU6u9kkSW5_envOV+zg": {
 getter: function (varBag, idService) {

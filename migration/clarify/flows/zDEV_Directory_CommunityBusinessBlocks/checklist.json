@@ -131,7 +131,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST view: StaticInput inputs {} and events only _handleError. Default prompt text comes from the library block (references.md gives its TST file only if listed; not checked here). Judge: TST UBTConnectLibrary.ConnectPatterns.StaticInput.mvc.js:12-13 has the same default In_Prompt as React.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnectLibrary.ConnectPatterns.StaticInput.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "zDEV_Directory_CommunityBusinessBlocks-011",
@@ -222,7 +232,18 @@
    "tst": "-",
    "verdict": "match",
    "note": "searched: CoomingSoon in app/src. Change requests say both screens pass In_CommunityBusinessId. Judge: check MyBookmarks/BookmarksByGroup flows for the link. Judge: Reader grep missed the callers (unquoted zsh glob). React links CoomingSoon for a non-OneSchool Global community business, as TST does; Bookmarks report rows 015, 017, 063.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed"
+    ],
+    "files": [
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (removed)"
+    ]
+   }
   },
   {
    "id": "zDEV_Directory_CommunityBusinessBlocks-018",
@@ -248,7 +269,19 @@
    "tst": "present",
    "verdict": "n/a",
    "note": "TST file UBTConnect.zDEV_Directory_CommunityBusinessBlocks.CommunityBusinessCard_Content_Block.mvc.js exists. TST Locality_LocalityContacts (UBTConnect.Directory_Locality.Locality_LocalityContacts.mvc.js:257) renders the block per list item. No React page/folder Locality_LocalityContacts found by ls app/src/pages | grep -i locality (only Locality_Details); board row for Locality_LocalityContacts not found with grep '^| Locality_LocalityContacts '. Judge: decide whether the block is in scope (belongs to another flow, Directory_Locality). Judge: Dead on TST: the only host Locality_LocalityContacts is never rendered; TST Locality_Details.mvc.js:986-990 shows ComingSoon (BR-UBTCON-796, BR-UBTCON-807; Directory_Locality report §3.7).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines",
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (lines)",
+     "UBTConnect.Directory_Locality.Locality_LocalityContacts.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "zDEV_Directory_CommunityBusinessBlocks-020",
@@ -261,7 +294,19 @@
    "tst": "present",
    "verdict": "n/a",
    "note": "TST view line 157 returns the same class string. Sub-block of UBTConnectLibrary.ConnectCorePatterns. Judge: Dead on TST: the only host Locality_LocalityContacts is never rendered; TST Locality_Details.mvc.js:986-990 shows ComingSoon (BR-UBTCON-796, BR-UBTCON-807; Directory_Locality report §3.7).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines",
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (lines)",
+     "UBTConnect.Directory_Locality.Locality_LocalityContacts.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "zDEV_Directory_CommunityBusinessBlocks-021",
@@ -274,7 +319,19 @@
    "tst": "present",
    "verdict": "n/a",
    "note": "Function from Connect2_LegacyShared.controller (TST model list). Judge: Dead on TST: the only host Locality_LocalityContacts is never rendered; TST Locality_Details.mvc.js:986-990 shows ComingSoon (BR-UBTCON-796, BR-UBTCON-807; Directory_Locality report §3.7).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines",
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (lines)",
+     "UBTConnect.Directory_Locality.Locality_LocalityContacts.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "zDEV_Directory_CommunityBusinessBlocks-022",
@@ -287,7 +344,19 @@
    "tst": "present",
    "verdict": "n/a",
    "note": "TST view lines 299-302 give EntityId and EntityType via getCachedValue. Judge: Dead on TST: the only host Locality_LocalityContacts is never rendered; TST Locality_Details.mvc.js:986-990 shows ComingSoon (BR-UBTCON-796, BR-UBTCON-807; Directory_Locality report §3.7).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines",
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (lines)",
+     "UBTConnect.Directory_Locality.Locality_LocalityContacts.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "zDEV_Directory_CommunityBusinessBlocks-023",
@@ -300,7 +369,19 @@
    "tst": "present",
    "verdict": "n/a",
    "note": "Dead in the model (empty action). TST controller line 354-378 defines it. Judge: Dead on TST: the only host Locality_LocalityContacts is never rendered; TST Locality_Details.mvc.js:986-990 shows ComingSoon (BR-UBTCON-796, BR-UBTCON-807; Directory_Locality report §3.7). Also dead in the model (empty action).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines",
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (lines)",
+     "UBTConnect.Directory_Locality.Locality_LocalityContacts.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "zDEV_Directory_CommunityBusinessBlocks-024",
@@ -313,7 +394,19 @@
    "tst": "present",
    "verdict": "n/a",
    "note": "TST controller lines 381-387 define the three event actions. Judge: Dead on TST: the only host Locality_LocalityContacts is never rendered; TST Locality_Details.mvc.js:986-990 shows ComingSoon (BR-UBTCON-796, BR-UBTCON-807; Directory_Locality report §3.7).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines",
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (lines)",
+     "UBTConnect.Directory_Locality.Locality_LocalityContacts.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "zDEV_Directory_CommunityBusinessBlocks-025",
@@ -326,7 +419,19 @@
    "tst": "present",
    "verdict": "n/a",
    "note": "TST Locality_LocalityContacts line ~258-268 builds the record: ContactFullName = Name + ' ' + Surname; HasCall = phone <> ''; HasEmail = email <> ''. Judge: Dead on TST: the only host Locality_LocalityContacts is never rendered; TST Locality_Details.mvc.js:986-990 shows ComingSoon (BR-UBTCON-796, BR-UBTCON-807; Directory_Locality report §3.7).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines",
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (lines)",
+     "UBTConnect.Directory_Locality.Locality_LocalityContacts.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "zDEV_Directory_CommunityBusinessBlocks-026",
@@ -573,7 +678,18 @@
    "tst": "present",
    "verdict": "n/a",
    "note": "Judge: board skip:variant for both New_ screens (user, 2026-10-14).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed"
+    ],
+    "files": [
+     "UBTConnect.Legacy_MyBookmarks.New_BookmarksByGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.New_MyBookmarks.mvc.js (removed)"
+    ]
+   }
   }
  ]
 }

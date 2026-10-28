@@ -586,7 +586,17 @@
    "tst": "present; id aab084a9-... matches pack static entity",
    "verdict": "differs",
    "note": "U17: no telemetry in the mock phase; React logs the call. Production needs the telemetry sink: the action builds EventInfo (dateLocalIso, logLevel 3, EventType \"LDM\", GuestHouseholdName \"\", GuestHouseholdId 0, EventDate, EventLocality) and sends it as an App Insights custom event. The React call already carries the event id, the date and the locality.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_LegacyShared.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "ContactFlow-046",
@@ -599,7 +609,18 @@
    "tst": "present",
    "verdict": "differs",
    "note": "U17: logged only. React passes the full attachment JSON (EmailTo, NameOfSender), the same fields as EmailHouseholdEventRec; the log leaves the attachment out. Production needs the App Insights custom event. The reader note on an ISO date does not apply: the record has no date field.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_LegacyShared.controller.js (lines-same)",
+     "Connect2_OrbitMobile_MUI.model.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "ContactFlow-047",
@@ -888,7 +909,17 @@
    "verified": "code",
    "severity": "info",
    "finding": "F1",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_LegacyShared.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "ContactFlow-069",
@@ -940,7 +971,17 @@
    "tst": "present",
    "verdict": "differs",
    "note": "U17: logged only; React passes the attachment JSON in full. Production needs the App Insights custom event.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_LegacyShared.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "ContactFlow-073",
@@ -1161,7 +1202,17 @@
    "tst": "present: zOnApplicationEvent_Wrapper$Action(emailHousehold, \"\")",
    "verdict": "differs",
    "note": "U17: logged only. Production needs the App Insights custom event (name from GetAppEventName, empty attachment).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_LegacyShared.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "ContactFlow-090",
@@ -1372,7 +1423,17 @@
    "verified": "code",
    "severity": "info",
    "finding": "F1",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_LegacyShared.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "ContactFlow-106",

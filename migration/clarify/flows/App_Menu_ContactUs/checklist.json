@@ -233,7 +233,17 @@
    "react": "get_LookupContactUsMenu with option(subject, icon)",
    "evidence": "app/src/pages/ContactUsMenu/hooks/contactUsMenuState.ts:54-74; TST UBTConnect.controller.js:4835-4948",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Menu_ContactUs-022",
@@ -244,7 +254,17 @@
    "react": "isSignedIn branch with the same records and icons",
    "evidence": "app/src/pages/ContactUsMenu/hooks/contactUsMenuState.ts:75-84; TST UBTConnect.controller.js:4835-4948; BR-UBTCON-266",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Menu_ContactUs-023",
@@ -255,7 +275,17 @@
    "react": "get_ContactUsMenuSections with the same sections and rows",
    "evidence": "app/src/pages/ContactUsMenu/hooks/contactUsMenuState.ts:92-112; TST UBTConnect.controller.js:4057-4140; BR-UBTCON-266",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Menu_ContactUs-024",
@@ -266,7 +296,17 @@
    "react": "MenuList: HasSeparator ?? true",
    "evidence": "app/src/components/menu/MenuList/MenuList.tsx:63; TST UBTConnect.model.js:13559-13561",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.model.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Menu_ContactUs-025",
@@ -1410,7 +1450,17 @@
    "react": "get_ContactUsFormDescription switch with the same texts",
    "evidence": "app/src/pages/ContactUsDetails/hooks/contactUsDetailsState.ts:83-128; TST UBTConnect.controller.js:3811-4043; BR-UBTCON-267",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Menu_ContactUs-121",
@@ -1435,7 +1485,17 @@
    "question": "Q3",
    "verified": "live",
    "note": "App_Menu_ContactUs Q3 (a): TST tests /^[a-z0-9][a-z0-9_&\\-.+]{0,31}@[a-z0-9-]{1,}(\\.[a-z0-9]{2,20}){1,}$/i on text.toLowerCase() with no trim (UBTConnectLibrary.controller.js:7565-7569); the caller passes ContactUsForm.Email as is (ContactUsDetails.mvc.js:1918). React uses the same expression on in_Text.trim().toLowerCase(): an e-mail with a leading or trailing space is valid in React and \"Invalid email!\" on TST. Candidate finding (no id yet). | user decision 2026-10-27 C1: keep the React trim",
-   "severity": "minor"
+   "severity": "minor",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Menu_ContactUs-123",
@@ -1449,7 +1509,17 @@
    "question": "Q3",
    "verified": "live",
    "note": "App_Menu_ContactUs Q3 (a): TST tests /^\\+?(\\d+( |\\-)?)*\\d$/ on the text as is, null gives false (UBTConnectLibrary.controller.js:7647-7666); the caller passes ContactUsForm.PhoneNumber as is (ContactUsDetails.mvc.js:1939). React uses the same expression on in_Text.trim(): a number with a leading or trailing space is valid in React and \"Invalid Phone\" on TST. Candidate finding (no id yet). | user decision 2026-10-27 C1: keep the React trim",
-   "severity": "minor"
+   "severity": "minor",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Menu_ContactUs-124",

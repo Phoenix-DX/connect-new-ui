@@ -146,6 +146,22 @@ var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
             return React.createElement("div", this.getRootNodeProperties(), React.createElement(OSWidgets.Container, {
 align: /*Default*/ 0,
 animate: false,
+extendedEvents: {
+onClick: function () {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "CW_Share/ShareableObject_Generic/Container onclick");
+controller.event_OnClick$Action(controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+
+;
+}
+},
 style: "shareable-object-generic",
 visible: true,
 _idProps: {
@@ -191,22 +207,6 @@ _dependencies: []
 }), React.createElement(OSWidgets.Container, {
 align: /*Default*/ 0,
 animate: false,
-extendedEvents: {
-onClick: function () {
-var eventHandlerContext = callContext.clone();
-return OS.Flow.tryFinally(function () {
-var varBag = {};
-controller.pushDebuggerContext(eventHandlerContext);
-
-OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "CW_Share/ShareableObject_Generic/Container onclick");
-controller.event_OnClick$Action(controller.callContext(eventHandlerContext));
-}, function () {
-controller.popDebuggerContext(eventHandlerContext);
-});
-
-;
-}
-},
 style: "text-align-left margin-top-base",
 visible: true,
 _idProps: {
@@ -422,7 +422,7 @@ return Promise.resolve();
 Controller.prototype.pushDebuggerContext = function (callContext) {
 var varBag = {};
 OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:pDMoTWIiTkS1lgPdIBVaUg:/NRWebFlows.pDMoTWIiTkS1lgPdIBVaUg:HjSruKDLIyQt9ROE1cl6OA", "UBTConnect_Utils", "CW_Share", "NRFlows.WebFlow", callContext.id, varBag);
-OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:s3JUSei11UST2wgfNyWSng:/NRWebFlows.pDMoTWIiTkS1lgPdIBVaUg/NodesShownInESpaceTree.s3JUSei11UST2wgfNyWSng:SvC7_nO1OSrR2sxse_r95w", "UBTConnect_Utils", "ShareableObject_Generic", "NRNodes.WebBlock", callContext.id, varBag);
+OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:s3JUSei11UST2wgfNyWSng:/NRWebFlows.pDMoTWIiTkS1lgPdIBVaUg/NodesShownInESpaceTree.s3JUSei11UST2wgfNyWSng:FXpXa+4+dFLkweeEKAs8Dg", "UBTConnect_Utils", "ShareableObject_Generic", "NRNodes.WebBlock", callContext.id, varBag);
 };
 Controller.prototype.popDebuggerContext = function (callContext) {
 OutSystemsDebugger.pop("_OwvmJqPz0GyaZBFX4uPyQ:s3JUSei11UST2wgfNyWSng", callContext.id);

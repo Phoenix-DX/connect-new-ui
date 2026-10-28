@@ -20,10 +20,15 @@ Earlier status (third session): the clarify work was complete before the fix wav
   (PlaceholderLib port, known bug B19), PD9 (rows recorded), PD10 to PD12 (known bugs B15 to B18), PD13 (Q2).
   Next: the follow-ups of `builds/README.md`.
 - Survey drift check (2026-10-28, `review/survey-drift-2026-10-28.md`): TST was published again on 2026-10-27; 79
-  files changed logic, 2 React routes copy removed screens. OPEN: the user chooses (a), (b) or (c) for the drift
-  (report section "Decision for the user"; (c) recommended).
+  files changed logic, 2 React routes copy removed screens. Decided (user, 2026-10-28): (c).
+  - The source switch is done: the live code is the source of truth (`capture/survey-UBTConnect.json`, not
+    committed). The survey of 2026-10-13 is `capture/survey-UBTConnect-2026-10-13.json`.
+  - 1885 checklist rows are `stale`, 422 of them strong (`tools/mark_stale.py`, `INDEX.md` §1 "Stale (strong)"). A
+    build or a new judge of a route reads the live code and its stale rows first.
+  - Open for the user, later: the 5 new TST screens and the routes MyBookmarks and BookmarksByGroup.
+  - Open for the user, later: the bookmarkCategory constant ("OneSchool Global" on TST).
 - The user's work list of 2026-10-28: one item at a time, and ask the user after each item.
-  1. Survey drift check: done; the decision is open.
+  1. Survey drift check: done; decision (c) done (2026-10-28).
   2. Error handling of the data calls (B4 follow-up).
   3. Merge the two custom dropdowns and add `useValidationWidget`.
   4. SanitizedHtml `<nobr>` and the double `?` of `generateScreenURL`.
@@ -86,5 +91,6 @@ Open items for the user:
 | `tools/app_index.py`, `tools/kb_index.py`, `tools/decisions_index.py` | the React, KB and decision indexes of a pack |
 | `tools/tst_source.py list|show|grep` | TST compiled code (survey + `migration/runtime-sources/` + `migration/shell/sources/`) |
 | `tools/collect.py [--questions G<n>]` | `INDEX.md`; the questions of a group |
+| `tools/mark_stale.py [--mark …] [--dry-run]` | mark the checklist rows that rest on TST code changed by a later publish (`stale`, strong or weak); `review/survey-drift/impact.txt` |
 | `tools/answers.py` | record the user's answers; `decisions.md` |
 | `tools/agent_cost.py label=<transcript> …` | token-waste statistics of subagent transcripts |

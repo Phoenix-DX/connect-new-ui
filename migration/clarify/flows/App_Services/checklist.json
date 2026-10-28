@@ -223,7 +223,17 @@
    "evidence": "app/src/pages/Services/ServicesPage.tsx:19, 27; app/src/platform/navigation/osNavigate.ts:135-145; TST UBTConnectLibrary.Layouts.Layout_DetailPage.mvc.js:497",
    "verdict": "match",
    "note": "The other internals of the layout are not checked here.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.Layouts.Layout_DetailPage.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Services-020",

@@ -12,7 +12,17 @@
    "react": "MEMBER_ROUTE (member, enforce): HomeFeed is not in ROUTE_META",
    "evidence": "app/src/app/routes.ts:40-57, 92; TST HomeFeed.mvc.js:1059",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.HomeFeed.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-002",
@@ -23,7 +33,17 @@
    "react": "route inputs []",
    "evidence": "app/src/app/routes.generated.ts:8",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Home.HomeFeed.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Home-003",
@@ -34,7 +54,17 @@
    "react": "useState(false); an effect sets true after the mount (one resolved promise)",
    "evidence": "app/src/pages/HomeFeed/HomeFeedPage.tsx:88-98; TST HomeFeed.mvc.js:727-741, 880-894",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Home.HomeFeed.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Home-004",
@@ -45,7 +75,17 @@
    "react": "useViewState with the same names and defaults",
    "evidence": "app/src/pages/HomeFeed/HomeFeedPage.tsx:82-87; TST HomeFeed.mvc.js:13-33",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Home.HomeFeed.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Home-005",
@@ -57,7 +97,17 @@
    "evidence": "TST HomeFeed.mvc.js:645-648 (dataFetchActionNames empty); pack/screens.md HomeFeed",
    "verdict": "match",
    "note": "DEV and TST differ (section 6.1). React follows TST.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Home.HomeFeed.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Home-006",
@@ -68,7 +118,17 @@
    "react": "HomeLayout contentBackgroundColor Neutral4, sVGHeight 260px, onOnSearchClick; the other inputs keep the library defaults",
    "evidence": "app/src/pages/HomeFeed/HomeFeedPage.tsx:131-138; app/src/components/layout/HomeLayout/HomeLayout.tsx:62-67; TST HomeFeed.mvc.js:148-157",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.HomeFeed.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-007",
@@ -79,7 +139,17 @@
    "react": "AppLogo_White; NotificationIcon with useNotificationIcon()",
    "evidence": "app/src/pages/HomeFeed/HomeFeedPage.tsx:78, 139-140; TST HomeFeed.mvc.js:183, 203",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.HomeFeed.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-008",
@@ -90,7 +160,17 @@
    "react": "the same four inputs; FeedServices with itemPerPage 6, forceAddService false",
    "evidence": "app/src/pages/HomeFeed/HomeFeedPage.tsx:55-60, 143-152; TST HomeFeed.mvc.js:241-249",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.HomeFeed.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-009",
@@ -102,7 +182,17 @@
    "evidence": "pack/screens.md HomeFeed; TST HomeFeed.mvc.js:286-292 (no If, no Directory_CommunityNumbers)",
    "verdict": "n/a",
    "note": "dead in the model",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.HomeFeed.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-010",
@@ -113,7 +203,17 @@
    "react": "the same three inputs; CommunityPopulation with useCommunityPopulationQuery()",
    "evidence": "app/src/pages/HomeFeed/HomeFeedPage.tsx:79, 153-168; TST HomeFeed.mvc.js:286-292",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.HomeFeed.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-011",
@@ -124,7 +224,17 @@
    "react": "hasUpdates && Section_FeedWrapper with the same inputs > FeedUpdates(onEventNoUpdates, onEventShare)",
    "evidence": "app/src/pages/HomeFeed/HomeFeedPage.tsx:169-184; TST HomeFeed.mvc.js:313-372",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.HomeFeed.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-012",
@@ -135,7 +245,17 @@
    "react": "EmbeddedFeed with useEmbeddedFeed() (FeedItemId '') and onEventShare = onShareFeed",
    "evidence": "app/src/pages/HomeFeed/HomeFeedPage.tsx:80, 185; TST HomeFeed.mvc.js:404-410",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.HomeFeed.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-013",
@@ -146,7 +266,17 @@
    "react": "isScreenInitialized && DialogExitConfirmation",
    "evidence": "app/src/pages/HomeFeed/HomeFeedPage.tsx:186; TST HomeFeed.mvc.js:435-436; decision U15 (migration/app-shell.spec.md:382)",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.HomeFeed.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-014",
@@ -157,7 +287,17 @@
    "react": "BottomBar activeItem Home, isRootPage",
    "evidence": "app/src/pages/HomeFeed/HomeFeedPage.tsx:189; TST HomeFeed.mvc.js:459-462",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.HomeFeed.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-015",
@@ -168,7 +308,17 @@
    "react": "CommonUiLayout with no inputs",
    "evidence": "app/src/pages/HomeFeed/HomeFeedPage.tsx:190; TST HomeFeed.mvc.js:482",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.HomeFeed.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-016",
@@ -180,7 +330,17 @@
    "evidence": "pack/screens.md HomeFeed; TST HomeFeed.mvc.js:503 (ShareSheet with no If)",
    "verdict": "n/a",
    "note": "dead in the model",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Home.HomeFeed.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Home-017",
@@ -191,7 +351,17 @@
    "react": "the same expressions; NullDate() as '1900-01-01'",
    "evidence": "app/src/pages/HomeFeed/HomeFeedPage.tsx:29-30, 192-201; TST HomeFeed.mvc.js:503-527",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Home.HomeFeed.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Home-018",
@@ -202,7 +372,17 @@
    "react": "isUpdate && UpdateListItem with the same inputs",
    "evidence": "app/src/pages/HomeFeed/HomeFeedPage.tsx:203-219; TST HomeFeed.mvc.js:553-597",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Home.HomeFeed.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Home-019",
@@ -213,7 +393,17 @@
    "react": "ShareableObject inShareableObject = shareableFeedItem",
    "evidence": "app/src/pages/HomeFeed/HomeFeedPage.tsx:220-222; TST HomeFeed.mvc.js:599-600",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.HomeFeed.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-020",
@@ -224,7 +414,17 @@
    "react": "setIsShareOpen(false)",
    "evidence": "app/src/pages/HomeFeed/HomeFeedPage.tsx:199-201; TST HomeFeed.mvc.js:856-870",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.HomeFeed.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-021",
@@ -235,7 +435,17 @@
    "react": "setHasUpdates(false)",
    "evidence": "app/src/pages/HomeFeed/HomeFeedPage.tsx:101-103; TST HomeFeed.mvc.js:751-765",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.HomeFeed.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-022",
@@ -246,7 +456,17 @@
    "react": "the same assignments; the other fields of ShareableFeedItem keep their values",
    "evidence": "app/src/pages/HomeFeed/HomeFeedPage.tsx:115-126; TST HomeFeed.mvc.js:775-812",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.HomeFeed.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-023",
@@ -257,7 +477,17 @@
    "react": "the same assignments",
    "evidence": "app/src/pages/HomeFeed/HomeFeedPage.tsx:105-113; TST HomeFeed.mvc.js:904-931",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.HomeFeed.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-024",
@@ -268,7 +498,17 @@
    "react": "navigate(/UBTConnect/Search)",
    "evidence": "app/src/pages/HomeFeed/HomeFeedPage.tsx:136-138; TST HomeFeed.mvc.js:704-717",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.HomeFeed.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-025",
@@ -279,7 +519,17 @@
    "react": "navigate(/UBTConnect/Updates_SingleList)",
    "evidence": "app/src/pages/HomeFeed/HomeFeedPage.tsx:178-180; TST HomeFeed.mvc.js:651-664",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.HomeFeed.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-026",
@@ -290,7 +540,17 @@
    "react": "useState(false)",
    "evidence": "app/src/pages/HomeFeed/HomeFeedPage.tsx:89; TST HomeFeed.mvc.js:880-894",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.HomeFeed.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-027",
@@ -302,7 +562,17 @@
    "evidence": "app/src/pages/HomeFeed/HomeFeedPage.tsx:90-98; TST HomeFeed.mvc.js:727-741",
    "verdict": "match",
    "note": "DEV and TST differ (section 6.1). React follows TST.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Home.HomeFeed.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Home-028",
@@ -314,7 +584,17 @@
    "evidence": "TST HomeFeed.mvc.js:674-695; KB ui/home-feed.md:33",
    "verdict": "n/a",
    "note": "dead in TST: no widget binds it. DEV has no such action (section 6.1).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Home.HomeFeed.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Home-029",
@@ -326,7 +606,17 @@
    "evidence": "pack/screens.md HomeFeed",
    "verdict": "n/a",
    "note": "dead in the model",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Home.HomeFeed.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Home-030",
@@ -337,7 +627,17 @@
    "react": "hasUpdates (view state, default true) set false by onNoUpdates",
    "evidence": "app/src/pages/HomeFeed/HomeFeedPage.tsx:82, 101-103, 169; BR-UBTCON-051",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Home.HomeFeed.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Home-031",
@@ -348,7 +648,17 @@
    "react": "the two handlers, the ShareSheet expressions and the two placeholder Ifs",
    "evidence": "app/src/pages/HomeFeed/HomeFeedPage.tsx:105-127, 192-222; BR-UBTCON-052",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Home.HomeFeed.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Home-032",
@@ -359,7 +669,17 @@
    "react": "the same text",
    "evidence": "app/src/pages/HomeFeed/HomeFeedPage.tsx:174",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Home.HomeFeed.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Home-033",
@@ -795,7 +1115,17 @@
    "react": "useFeedServices({ itemPerPage: 6, forceAddService: false })",
    "evidence": "app/src/pages/HomeFeed/HomeFeedPage.tsx:58; app/src/pages/HomeFeed/hooks/useFeedServices.ts:18-24",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Home-072",
@@ -806,7 +1136,17 @@
    "react": "MAIN_ELEMENT_CLASS, pages, two useState",
    "evidence": "app/src/pages/HomeFeed/hooks/feedServicesState.ts:7, 12; app/src/pages/HomeFeed/hooks/useFeedServices.ts:55-56; TST FeedBlock_Services.mvc.js:41-51",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-073",
@@ -817,7 +1157,17 @@
    "react": "INITIAL_PAGES until the data",
    "evidence": "app/src/pages/HomeFeed/hooks/feedServicesState.ts:14-17; app/src/pages/HomeFeed/hooks/useFeedServices.ts:66-69; TST FeedBlock_Services.mvc.js:730-750",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-074",
@@ -832,7 +1182,17 @@
    "finding": "F2",
    "verified": "live",
    "fixed": "2026-10-27",
-   "note": "Fixed 2026-10-27 (fixes/C-errors.md)."
+   "note": "Fixed 2026-10-27 (fixes/C-errors.md).",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-075",
@@ -844,7 +1204,17 @@
    "evidence": "app/src/pages/HomeFeed/mocks.ts:14-15, 23",
    "verdict": "mock-only",
    "note": "Production needs DataActionGetServices of FeedBlock_Services with the four UBTConnect_ServerConfigs server actions and Connect_Services_CS Service_ConnectServices_GetByUser.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Home-076",
@@ -855,7 +1225,17 @@
    "react": "the same options",
    "evidence": "app/src/pages/HomeFeed/components/FeedBlock_Services.tsx:77-87; TST FeedBlock_Services.mvc.js:180-242",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-077",
@@ -866,7 +1246,17 @@
    "react": "the same",
    "evidence": "app/src/pages/HomeFeed/components/FeedBlock_Services.tsx:88-103; TST FeedBlock_Services.mvc.js:250-288",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-078",
@@ -877,7 +1267,17 @@
    "react": "hasCustomEvents && CircleButton with the same inputs",
    "evidence": "app/src/pages/HomeFeed/components/FeedBlock_Services.tsx:104-122; app/src/pages/HomeFeed/HomeFeedPage.tsx:56; TST FeedBlock_Services.mvc.js:309-351",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-079",
@@ -888,7 +1288,17 @@
    "react": "the same inputs",
    "evidence": "app/src/pages/HomeFeed/components/FeedBlock_Services.tsx:124-131; TST FeedBlock_Services.mvc.js:414-444",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-080",
@@ -899,7 +1309,17 @@
    "react": "the same classes and Gallery inputs",
    "evidence": "app/src/pages/HomeFeed/components/FeedBlock_Services.tsx:132-155; TST FeedBlock_Services.mvc.js:471-501",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-081",
@@ -910,7 +1330,17 @@
    "react": "isLoading = not isSuccess or isError; the same inputs and the same SVG_ test",
    "evidence": "app/src/pages/HomeFeed/components/FeedBlock_Services.tsx:155-178; app/src/pages/HomeFeed/hooks/useFeedServices.ts:146; TST FeedBlock_Services.mvc.js:513-602",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-082",
@@ -921,7 +1351,17 @@
    "react": "Dialog_GoExternalApp externalAppPopUpInfo, onOnPopUpReady",
    "evidence": "app/src/pages/HomeFeed/components/FeedBlock_Services.tsx:189-194; TST FeedBlock_Services.mvc.js:642-648",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-083",
@@ -932,7 +1372,17 @@
    "react": "setExternalAppPopUpId(popUpId)",
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedServices.ts:71-73; TST FeedBlock_Services.mvc.js:775-791",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-084",
@@ -943,7 +1393,17 @@
    "react": "toPages",
    "evidence": "app/src/pages/HomeFeed/hooks/feedServicesState.ts:21-31; TST FeedBlock_Services.mvc.js:811-890; BR-UBTCON-053",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-085",
@@ -957,7 +1417,17 @@
    "severity": "info",
    "finding": "F3",
    "note": "HomeFeed passes ForceAddService False, so no screen shows the tile.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-086",
@@ -968,7 +1438,17 @@
    "react": "go('OrbitLanding')",
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedServices.ts:83-86; TST FeedBlock_Services.mvc.js:953-954",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-087",
@@ -979,7 +1459,17 @@
    "react": "hasNewLDM → go('LDM_MyEvents_V2')",
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedServices.ts:87-91; TST FeedBlock_Services.mvc.js:957-965; BR-UBTCON-055",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-088",
@@ -990,7 +1480,17 @@
    "react": "not built: nothing happens",
    "evidence": "board row LDM_MyEvents: skip (user, 2026-10-16); migration/flags.md getHasNewLDM default-only, TST value on; TST FeedBlock_Services.mvc.js:968-969",
    "verdict": "n/a",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-089",
@@ -1001,7 +1501,17 @@
    "react": "go('MyEntertaining')",
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedServices.ts:92-95; TST FeedBlock_Services.mvc.js:976-977",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-090",
@@ -1012,7 +1522,17 @@
    "react": "go('AssembleEvents')",
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedServices.ts:96-99; TST FeedBlock_Services.mvc.js:982-983",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-091",
@@ -1023,7 +1543,17 @@
    "react": "go('OrbitAdminLanding')",
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedServices.ts:100-103; TST FeedBlock_Services.mvc.js:988-989",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-092",
@@ -1035,7 +1565,17 @@
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedServices.ts:104-107; TST FeedBlock_Services.mvc.js:992-995",
    "verdict": "match",
    "note": "The KB says \"coming soon\" here (K1).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-093",
@@ -1046,7 +1586,17 @@
    "react": "setPopUpInfo with the same values, then await confirmAction(externalAppPopUpId)",
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedServices.ts:110-120, 138-140; TST FeedBlock_Services.mvc.js:997-1029, 1065-1067; BR-UBTCON-056",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-094",
@@ -1058,7 +1608,17 @@
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedServices.ts:120-123; TST FeedBlock_Services.mvc.js:1031-1040; CR-HomeFeed-1; BR-UBTCON-056",
    "verdict": "match",
    "note": "DEV and TST differ (section 6.1). React follows TST.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Home-095",
@@ -1069,7 +1629,17 @@
    "react": "feedbackMessageAutoClose with the same arguments",
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedServices.ts:124-134; TST FeedBlock_Services.mvc.js:1043-1046; BR-UBTCON-057",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-096",
@@ -1080,7 +1650,17 @@
    "react": "return",
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedServices.ts:135-137; TST FeedBlock_Services.mvc.js:1050-1052",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-097",
@@ -1092,7 +1672,17 @@
    "evidence": "pack/blocks.md FeedBlock_Services; TST FeedBlock_Services.mvc.js:1041-1052 (no such case)",
    "verdict": "n/a",
    "note": "dead in the model",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-098",
@@ -1103,7 +1693,17 @@
    "react": "go('Services')",
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedServices.ts:149-151; TST FeedBlock_Services.mvc.js:1119-1132",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-099",
@@ -1115,7 +1715,17 @@
    "evidence": "pack/blocks.md FeedBlock_Services",
    "verdict": "n/a",
    "note": "dead in the model",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Home-100",
@@ -1127,7 +1737,17 @@
    "evidence": "app/src/pages/HomeFeed/hooks/feedServicesState.ts:14-31; BR-UBTCON-053",
    "verdict": "match",
    "note": "The icon of the Add tile is F3.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Home-101",
@@ -1139,7 +1759,17 @@
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedServices.ts:83-107; BR-UBTCON-054",
    "verdict": "match",
    "note": "The KB leaves out MyNotes → Notes (K1).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Home-102",
@@ -1150,7 +1780,17 @@
    "react": "the on arm; the off arm is n/a (board skip)",
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedServices.ts:87-91; BR-UBTCON-055",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Home-103",
@@ -1161,7 +1801,17 @@
    "react": "the same",
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedServices.ts:110-140; BR-UBTCON-056",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Home-104",
@@ -1173,7 +1823,17 @@
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedServices.ts:104-137; BR-UBTCON-057",
    "verdict": "match",
    "note": "The KB says MyNotes shows \"coming soon\" (K1).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Home-105",
@@ -1188,7 +1848,19 @@
    "finding": "F4",
    "verified": "live",
    "fixed": "2026-10-27",
-   "note": "Fixed 2026-10-27 (fixes/G1-content.md)."
+   "note": "Fixed 2026-10-27 (fixes/G1-content.md).",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (screen)",
+     "UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_GoExternalApp.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Home-106",
@@ -1200,7 +1872,17 @@
    "evidence": "app/src/pages/HomeFeed/components/FeedBlock_Services.tsx:101; app/src/pages/HomeFeed/hooks/feedServicesState.ts:25; app/src/pages/HomeFeed/hooks/useFeedServices.ts:111-133",
    "verdict": "match",
    "note": "\"El Gusto\" is a DEV string only: TST sets no app name for El Gusto.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Home-107",
@@ -1211,7 +1893,19 @@
    "react": "the same texts",
    "evidence": "app/src/pages/HomeFeed/components/Dialog_GoExternalApp.tsx:64, 98, 109, 126; app/src/pages/HomeFeed/hooks/goToExternalApp.ts:14-15; TST Dialog_GoExternalApp.mvc.js:211, 426, 494, 550, 625",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Services.mvc.js (screen)",
+     "UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_GoExternalApp.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Home-108",
@@ -1222,7 +1916,17 @@
    "react": "onEventNoUpdates, onEventShare(updateItemId, item)",
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedUpdates.ts:17-23, 55-58",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Updates.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Home-109",
@@ -1233,7 +1937,17 @@
    "react": "readOverrides from the preload object when restored; loadingItems() when not restored",
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedUpdates.ts:60-66",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Updates.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Home-110",
@@ -1248,7 +1962,17 @@
    "finding": "F2",
    "verified": "live",
    "fixed": "2026-10-27",
-   "note": "Fixed 2026-10-27 (fixes/C-errors.md)."
+   "note": "Fixed 2026-10-27 (fixes/C-errors.md).",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Updates.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Home-111",
@@ -1260,7 +1984,18 @@
    "evidence": "migration/runtime-sources/OutSystemsReactView.js:7, 9; migration/runtime-sources/OutSystems.js:16-17; TST UBTConnect.Home.FeedBlock_Updates.mvc.js:1301; app/src/platform/navigation/viewCache.ts:73-80; app/src/api/update/hooks.ts:10-16; app/src/api/service/hooks.ts:27-33",
    "verdict": "match",
    "verified": "live",
-   "note": "Home Q3 (a): settled from the runtime code. A view restored from the cache gets its state back and then runs fireInitialize (OutSystemsReactView.js:7: fromImmutableData, viewWasRestoredFromCache = true, controller.fireInitialize(); :9 for the screen: viewWasRestoredFromCache passed to initialize). fireInitialize runs OnInitialize and then fetchData (OutSystems.js:17), and innerFetchDataWithDependencies resets the dependencies and fetches every ready source with no check of the restore (:17). The only reader of the flag is the public API wasCurrentViewRestoredFromCache (OutSystems.js:16); HomeFeed.mvc.js and FeedBlock_Updates.mvc.js do not read it. So TST runs FetchUpdates and GetServices again on a restored HomeFeed, as React does after enterView. A read-only capture (open an update, Back, watch the two calls) can confirm it. | capture 2026-10-27 (review/captures.md §5): after Back to HomeFeed, DataActionFetchUpdates and DataActionGetServices run again (+118 ms), as React does"
+   "note": "Home Q3 (a): settled from the runtime code. A view restored from the cache gets its state back and then runs fireInitialize (OutSystemsReactView.js:7: fromImmutableData, viewWasRestoredFromCache = true, controller.fireInitialize(); :9 for the screen: viewWasRestoredFromCache passed to initialize). fireInitialize runs OnInitialize and then fetchData (OutSystems.js:17), and innerFetchDataWithDependencies resets the dependencies and fetches every ready source with no check of the restore (:17). The only reader of the flag is the public API wasCurrentViewRestoredFromCache (OutSystems.js:16); HomeFeed.mvc.js and FeedBlock_Updates.mvc.js do not read it. So TST runs FetchUpdates and GetServices again on a restored HomeFeed, as React does after enterView. A read-only capture (open an update, Back, watch the two calls) can confirm it. | capture 2026-10-27 (review/captures.md §5): after Back to HomeFeed, DataActionFetchUpdates and DataActionGetServices run again (+118 ms), as React does",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Updates.mvc.js (file)",
+     "UBTConnect.Home.HomeFeed.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Home-112",
@@ -1272,7 +2007,17 @@
    "evidence": "app/src/pages/HomeFeed/mocks.ts:24-26; app/src/mocks/modules/UBTConnect/Directory_Updates/mocks.ts:42-59",
    "verdict": "mock-only",
    "note": "Production needs DataActionFetchUpdates of FeedBlock_Updates, which calls Connect_Updates_CS Get_UI_UpdateItemsForHomePage.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Updates.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Home-113",
@@ -1284,7 +2029,17 @@
    "evidence": "app/src/pages/HomeFeed/mocks.ts:27-34; app/src/api/update/repository.ts:44-53",
    "verdict": "mock-only",
    "note": "Production needs the service actions Action_UI_UpdateItem_MarkAsRead and Action_UI_UpdateItem_MarkAsUnread of Connect_Updates_CS.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Updates.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Home-114",
@@ -1295,7 +2050,17 @@
    "react": "isLoading = not isSuccess and not isError; the same list class, with list-error after a failed fetch",
    "evidence": "app/src/pages/HomeFeed/components/FeedBlock_Updates.tsx:55-60; app/src/pages/HomeFeed/hooks/useFeedUpdates.ts:108-109; TST FeedBlock_Updates.mvc.js:155, 180",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Updates.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-115",
@@ -1306,7 +2071,17 @@
    "react": "the same options",
    "evidence": "app/src/pages/HomeFeed/components/FeedBlock_Updates.tsx:64-78; TST FeedBlock_Updates.mvc.js:197-232",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Updates.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-116",
@@ -1317,7 +2092,17 @@
    "react": "the same inputs and the five handlers",
    "evidence": "app/src/pages/HomeFeed/components/FeedBlock_Updates.tsx:79-108; TST FeedBlock_Updates.mvc.js:254-370",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Updates.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-117",
@@ -1332,7 +2117,17 @@
    "finding": "F1",
    "verified": "live",
    "fixed": "2026-10-27",
-   "note": "Fixed 2026-10-27 (fixes/G1-content.md)."
+   "note": "Fixed 2026-10-27 (fixes/G1-content.md).",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Updates.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-118",
@@ -1343,7 +2138,17 @@
    "react": "div data-container",
    "evidence": "app/src/pages/HomeFeed/components/FeedBlock_Updates.tsx:124",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Updates.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Home-119",
@@ -1354,7 +2159,17 @@
    "react": "await showUpgradePopUp()",
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedUpdates.ts:83-86; TST FeedBlock_Updates.mvc.js:717; BR-UBTCON-058; BR-C2UTL-107",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Updates.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-120",
@@ -1365,7 +2180,17 @@
    "react": "await markUpdateItemAsRead, then the same carousel steps; no local IsRead change, as TST",
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedUpdates.ts:87-102; TST FeedBlock_Updates.mvc.js:639-703; CR-HomeFeed-2; BR-UBTCON-059",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Updates.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-121",
@@ -1376,7 +2201,17 @@
    "react": "not built: nothing after MarkAsRead",
    "evidence": "migration/flags.md getHasCarouselEnabled default-only, TST value on (user, 2026-10-14); migration/knowledge/flag-values-tst.json; TST FeedBlock_Updates.mvc.js:708-709",
    "verdict": "n/a",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Updates.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-122",
@@ -1388,7 +2223,17 @@
    "evidence": "pack/blocks.md FeedBlock_Updates; BR-UBTCON-059",
    "verdict": "n/a",
    "note": "dead in the model",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Updates.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Home-123",
@@ -1400,7 +2245,17 @@
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedUpdates.ts:118-122; TST FeedBlock_Updates.mvc.js:789-810",
    "verdict": "match",
    "note": "DEV and TST differ (section 6.1). React follows TST.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Updates.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Home-124",
@@ -1412,7 +2267,17 @@
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedUpdates.ts:123-127; TST FeedBlock_Updates.mvc.js:744-765",
    "verdict": "match",
    "note": "DEV and TST differ (section 6.1). React follows TST.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Updates.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Home-125",
@@ -1423,7 +2288,17 @@
    "react": "showFeedbackMessage('Send gift', info)",
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedUpdates.ts:115-117; TST FeedBlock_Updates.mvc.js:870-886",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Updates.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-126",
@@ -1434,7 +2309,17 @@
    "react": "an effect raises onEventNoUpdates for an empty answer",
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedUpdates.ts:68-72; TST FeedBlock_Updates.mvc.js:834-850",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Updates.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-127",
@@ -1445,7 +2330,17 @@
    "react": "hasExtendedShare → onEventShare(id, item)",
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedUpdates.ts:111-114; TST FeedBlock_Updates.mvc.js:1034-1056",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Updates.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-128",
@@ -1456,7 +2351,17 @@
    "react": "not built",
    "evidence": "migration/flags.md getHasExtendedShare default-only, TST value on (user, 2026-10-14); TST FeedBlock_Updates.mvc.js:1061-1062",
    "verdict": "n/a",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Updates.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-129",
@@ -1467,7 +2372,17 @@
    "react": "onClickUpgrade → showUpgradePopUp()",
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedUpdates.ts:128; TST FeedBlock_Updates.mvc.js:1004-1018",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Updates.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-130",
@@ -1478,7 +2393,17 @@
    "react": "restored → swipedItemsRead(getPreloadObject()); overrides only set read",
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedUpdates.ts:62-65; app/src/pages/HomeFeed/hooks/feedUpdatesState.ts:36-50; TST FeedBlock_Updates.mvc.js:905-959",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Updates.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-131",
@@ -1489,7 +2414,17 @@
    "react": "loadingItems() while FetchUpdates runs",
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedUpdates.ts:66, 74; app/src/pages/HomeFeed/hooks/feedUpdatesState.ts:17-34; TST FeedBlock_Updates.mvc.js:1087-1121",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Updates.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-132",
@@ -1501,7 +2436,17 @@
    "evidence": "pack/blocks.md FeedBlock_Updates",
    "verdict": "n/a",
    "note": "dead in the model",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Updates.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Home-133",
@@ -1512,7 +2457,17 @@
    "react": "the same",
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedUpdates.ts:82-102; BR-UBTCON-058",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Updates.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Home-134",
@@ -1523,7 +2478,17 @@
    "react": "the on arm; the off arm is n/a by the flag decision",
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedUpdates.ts:88-102; BR-UBTCON-059",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Updates.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Home-135",
@@ -1534,7 +2499,17 @@
    "react": "the same",
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedUpdates.ts:68-72; app/src/pages/HomeFeed/HomeFeedPage.tsx:101-103; BR-UBTCON-060",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Updates.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Home-136",
@@ -1545,7 +2520,17 @@
    "react": "the same",
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedUpdates.ts:62-65; BR-UBTCON-061",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Updates.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Home-137",
@@ -1556,7 +2541,17 @@
    "react": "the on arm",
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedUpdates.ts:111-114; BR-UBTCON-062",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Updates.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Home-138",
@@ -1567,7 +2562,17 @@
    "react": "the same",
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedUpdates.ts:115-127; BR-UBTCON-063",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Updates.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Home-139",
@@ -1578,7 +2583,19 @@
    "react": "the same per item, in order",
    "evidence": "app/src/lib/ubtConnect/actions.ts:86-112; pack/actions.md; TST UBTConnect.controller.js:1831-1866; BR-UBTCON-172",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Updates.mvc.js (screen)",
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Home-140",
@@ -1589,7 +2606,17 @@
    "react": "the same texts",
    "evidence": "app/src/pages/HomeFeed/hooks/useFeedUpdates.ts:116; app/src/pages/HomeFeed/hooks/feedUpdatesState.ts:25, 28; app/src/pages/HomeFeed/components/FeedBlock_Updates.tsx:120",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Home.FeedBlock_Updates.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Home-141",

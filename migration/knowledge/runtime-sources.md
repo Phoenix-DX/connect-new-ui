@@ -100,7 +100,20 @@ contract of the finished Search and ShareSheet mocks. The foundation owner decid
 
 | Survey drift check (2026-10-28) | Size | What it answers |
 |---|---|---|
-| `moduleinfo-2026-10-28.json` (GET `/UBTConnect/moduleservices/moduleinfo`) | 290 kB | Live manifest version 15682 (15568 on 2026-10-15): URL versions, URL mappings and static-entity values |
-| `capture/survey-UBTConnect-2026-10-28.json` (641 `.mvc.js` files, the `survey.js` filter) | 25 MB | The live compiled screens and blocks; compared with the survey of 2026-10-13 (`migration/clarify/review/survey-drift-2026-10-28.md`); not committed |
-| `capture/runtime-sources-live-2026-10-28/` (155 files of `migration/runtime-sources/`) | 21 MB | Live copies of the runtime sources: 19 changed; not committed |
+| `moduleinfo-2026-10-28.json` (GET `/UBTConnect/moduleservices/moduleinfo`) | 290 kB | Live manifest version 15682 (15568 on 2026-10-15): URL versions, URL mappings and static-entity values. It is `moduleinfo.json` since the source switch |
+| `capture/survey-UBTConnect-2026-10-28.json` (641 `.mvc.js` files, the `survey.js` filter) | 25 MB | The live compiled screens and blocks; compared with the survey of 2026-10-13 (`migration/clarify/review/survey-drift-2026-10-28.md`). It is `capture/survey-UBTConnect.json` since the source switch; not committed |
+| `capture/runtime-sources-live-2026-10-28/` (155 files of `migration/runtime-sources/`, and `shell/` with the 16 shell sources) | 21 MB | Live copies of the runtime sources: 19 changed, 1 shell source changed; not committed (in `.gitignore`) |
+
+Source switch (user decision (c), 2026-10-28): the live TST code of 2026-10-27 is the source of truth.
+- `capture/survey-UBTConnect.json` is the live survey (not committed, in `.gitignore`). The survey of 2026-10-13 is
+  `capture/survey-UBTConnect-2026-10-13.json` (committed).
+- The 19 changed runtime sources and `migration/shell/sources/UBTConnect.App_Common.controller.js` are the live copies.
+  The old copies are in git at commit f9f68bfc.
+- `migration/runtime-sources/moduleinfo.json` is the live moduleinfo (version 15682); the old one is in git at f9f68bfc.
+- `Connect2_MyBookmarks_MUI.controller.js` and `UBTConnect.Legacy_MyBookmarks.controller.js` stay as evidence for the
+  React routes MyBookmarks and BookmarksByGroup. TST removed these modules.
+- The clarify checklist rows that rest on changed code are marked `stale` (`migration/clarify/tools/mark_stale.py`).
+- Line numbers: 147 citations with line numbers in `app/src` comments (83), specs of `migration/screens` (59) and docs
+  (5) point to the 20 replaced files. They refer to the copies at f9f68bfc: read them with
+  `git show f9f68bfc:migration/runtime-sources/<file>`. The citations were not changed.
 

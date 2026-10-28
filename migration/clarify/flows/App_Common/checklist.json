@@ -1085,7 +1085,17 @@
    "react": "props activeItem, useMapsItems, isHouseholder, isRootPage, onBottomBarClicked",
    "evidence": "app/src/components/layout/BottomBar/BottomBar.tsx:27-37, 53-60",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Common.BottomBarMenu.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Common-094",
@@ -1096,7 +1106,17 @@
    "react": "items from bottomBar_GetList, a retried ref, two effects",
    "evidence": "app/src/components/layout/BottomBar/BottomBar.tsx:64, 70-97",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Common.BottomBarMenu.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Common-095",
@@ -1119,7 +1139,17 @@
    "react": "div list list-group; OSLink with class active; onClick",
    "evidence": "app/src/components/layout/BottomBar/BottomBar.tsx:126-136; TST UBTConnect.App_Common.BottomBarMenu.mvc.js:241",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Common.BottomBarMenu.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Common-097",
@@ -1131,7 +1161,17 @@
    "evidence": "app/src/components/layout/BottomBar/BottomBar.tsx:139-147; TST UBTConnect.App_Common.BottomBarMenu.mvc.js:276-278",
    "verdict": "match",
    "note": "The internals of App_IconBadge (BR-UBTCON-319) are checked in the report of _shared.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Common.BottomBarMenu.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Common-098",
@@ -1142,7 +1182,17 @@
    "react": "Icon with the same arguments",
    "evidence": "app/src/components/layout/BottomBar/BottomBar.tsx:149; TST UBTConnect.App_Common.BottomBarMenu.mvc.js:354",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Common.BottomBarMenu.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Common-099",
@@ -1153,7 +1203,17 @@
    "react": "CustomText with the same options",
    "evidence": "app/src/components/layout/BottomBar/BottomBar.tsx:152-156; TST UBTConnect.App_Common.BottomBarMenu.mvc.js:381",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Common.BottomBarMenu.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Common-100",
@@ -1165,7 +1225,17 @@
    "evidence": "app/src/components/layout/BottomBar/BottomBar.tsx:123-125; migration/board.md Map (skip, V4a, skip:variant, user 2026-10-14)",
    "verdict": "n/a",
    "note": "Only Map passes useMapsItems True (pack/screens.md of Map).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Common.BottomBarMenu.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Common-101",
@@ -1176,7 +1246,17 @@
    "react": "the same",
    "evidence": "app/src/components/layout/BottomBar/BottomBar.tsx:101-102; TST UBTConnect.App_Common.BottomBarMenu.mvc.js:588-597",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Common.BottomBarMenu.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Common-102",
@@ -1187,7 +1267,17 @@
    "react": "the same destinations and the event",
    "evidence": "app/src/components/layout/BottomBar/BottomBar.tsx:103-117; TST UBTConnect.App_Common.BottomBarMenu.mvc.js:604-627, 672-676",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Common.BottomBarMenu.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Common-103",
@@ -1199,7 +1289,17 @@
    "evidence": "app/src/components/layout/BottomBar/BottomBar.tsx:109-112; TST UBTConnect.App_Common.BottomBarMenu.mvc.js:631-662",
    "verdict": "match",
    "note": "React follows TST (§6.1). The KB outcome \"Notes\" disagrees with TST (K3).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Common.BottomBarMenu.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Common-104",
@@ -1211,7 +1311,17 @@
    "evidence": "app/src/lib/ubtConnectUtils/actions.ts:52-70; TST UBTConnect.App_Common.BottomBarMenu.mvc.js:444-460; BR-C2UTL-175; BR-C2UTL-176",
    "verdict": "match",
    "note": "isHouseholder changes only the maps list (BR-C2UTL-176).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Common.BottomBarMenu.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Common-105",
@@ -1222,7 +1332,17 @@
    "react": "the refresh once per instance; SetBottomBarActiveElement(-1) changes nothing",
    "evidence": "app/src/components/layout/BottomBar/BottomBar.tsx:66-77; TST UBTConnect.App_Common.BottomBarMenu.mvc.js:474-490",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Common.BottomBarMenu.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Common-106",
@@ -1234,7 +1354,17 @@
    "evidence": "app/src/components/layout/BottomBar/BottomBar.tsx:79-97; TST UBTConnect.App_Common.BottomBarMenu.mvc.js:510-560",
    "verdict": "match",
    "note": "The householder branch runs only from Map (board skip).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Common.BottomBarMenu.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Common-107",
@@ -1246,7 +1376,17 @@
    "evidence": "pack/blocks.md BottomBarMenu",
    "verdict": "n/a",
    "note": "dead in the model",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Common.BottomBarMenu.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Common-108",
@@ -1257,7 +1397,17 @@
    "react": "the same",
    "evidence": "app/src/components/layout/BottomBar/BottomBar.tsx:101-102",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Common.BottomBarMenu.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Common-109",
@@ -1268,7 +1418,17 @@
    "react": "the same",
    "evidence": "app/src/components/layout/BottomBar/BottomBar.tsx:103-117",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Common.BottomBarMenu.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Common-110",
@@ -1280,7 +1440,17 @@
    "evidence": "app/src/components/layout/BottomBar/BottomBar.tsx:109-112",
    "verdict": "match",
    "note": "KB disagreement K3.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Common.BottomBarMenu.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Common-111",
@@ -1291,7 +1461,17 @@
    "react": "the same branch",
    "evidence": "app/src/components/layout/BottomBar/BottomBar.tsx:88-96",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Common.BottomBarMenu.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Common-112",
@@ -1302,7 +1482,17 @@
    "react": "the same",
    "evidence": "app/src/components/layout/BottomBar/BottomBar.tsx:139-147",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Common.BottomBarMenu.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Common-113",
@@ -1313,7 +1503,17 @@
    "react": "the same names; default 5",
    "evidence": "app/src/platform/session/clientVars.ts:25; app/src/components/layout/BottomBar/BottomBar.tsx:62; app/src/lib/ubtConnect/actions.ts:65-71",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Common.BottomBarMenu.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Common-114",
@@ -1767,7 +1967,17 @@
    "react": "connectLogout: clearMemoryCache, clearAllLocalEntities (ADR-10), then the AppManager_Logout steps",
    "evidence": "app/src/platform/session/auth.ts:60-96; app/docs/reference/stack.md ADR-10; TST UBTConnect.controller.js:1063-1066",
    "verdict": "differs",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Common-154",
@@ -1778,7 +1988,17 @@
    "react": "connectSetLoggedContext with the same steps and flags",
    "evidence": "app/src/platform/bootstrap/postLogin.ts:25-48; TST UBTConnect.controller.js:1108-1165; BR-UBTCON-200; BR-UBTCON-201; BR-UBTCON-202",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Common-155",
@@ -1801,7 +2021,17 @@
    "evidence": "app/src/platform/bootstrap/startup.ts:75-86; TST UBTConnect.controller.js:16579-16618",
    "verdict": "match",
    "note": "MyEntertainingBaseURL and FeedBaseURL are not returned: no reader in this flow. React also catches system exceptions.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Common-157",
@@ -1812,7 +2042,17 @@
    "react": "setClientVar Directory_Updates_MonthsToShow",
    "evidence": "app/src/platform/bootstrap/startup.ts:80; TST UBTConnect.controller.js:16611",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Common-158",
@@ -1857,7 +2097,17 @@
    "evidence": "app/src/platform/feedback/exceptionMessages.ts:17-23; TST UBTConnect.controller.js:16110-16118",
    "verdict": "match",
    "note": "DEV also tests navigator.onLine (§6.1).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Common-162",
@@ -1868,7 +2118,17 @@
    "react": "RULES in the same order, the same toast arguments, signedOutRemotely, then pageRedirect",
    "evidence": "app/src/platform/feedback/exceptionMessages.ts:42-126; TST UBTConnect.controller.js:16141-16470; BR-UBTCON-210 to BR-UBTCON-222",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Common-163",
@@ -1919,7 +2179,17 @@
    "finding": "F1",
    "note": "Built 2026-10-27 (builds/B4-errors.md). A non-ok answer gives \"Request failed with status N\". No rule of ShowExceptionMessage matches it, so React shows the raw text as an error.",
    "verified": "code",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Common.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Common-167",
@@ -1930,7 +2200,17 @@
    "react": "the same",
    "evidence": "app/src/legacy/os/exceptions.ts:70-73; TST migration/shell/sources/UBTConnect.App_Common.controller.js:46-54",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Common.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Common-168",
@@ -1941,7 +2221,17 @@
    "react": "the same",
    "evidence": "app/src/legacy/os/exceptions.ts:74-77; TST migration/shell/sources/UBTConnect.App_Common.controller.js:61-71",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Common.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Common-169",
@@ -1952,7 +2242,17 @@
    "react": "the same; the route guard does the same for a member route",
    "evidence": "app/src/legacy/os/exceptions.ts:79-81; app/src/app/RouteGuard.tsx:46-52; TST migration/shell/sources/UBTConnect.App_Common.controller.js:79-82; migration/app-shell.spec.md U1",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Common.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Common-170",
@@ -1966,7 +2266,17 @@
    "severity": "info",
    "finding": "F5",
    "note": "The visible effect of the runtime handler is not in local code.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Common.controller.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Common-171",
@@ -1977,7 +2287,17 @@
    "react": "the same",
    "evidence": "app/src/lib/ubtConnect/unsupportedVersion.ts:29-34; TST UBTConnect.controller.js:4533-4538",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Common-172",
@@ -2105,7 +2425,17 @@
    "react": "the same texts, with \\r\\n and <br> as compiled",
    "evidence": "app/src/platform/feedback/exceptionMessages.ts:10-98; TST UBTConnect.controller.js:16113-16118, 16203-16335",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   }
  ]
 }

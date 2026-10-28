@@ -6,7 +6,7 @@ callContext = controller.callContext(callContext);
 var cache_UserInfo_GetVar = new OS.DataTypes.VariableHolder();
 varBag.callContext = callContext;
 varBag.cache_UserInfo_GetVar = cache_UserInfo_GetVar;
-OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:dXhoLnFWykiH6hJ66tDNIA:/ClientActionFlows.dXhoLnFWykiH6hJ66tDNIA:Gq7hvaHw3zslJKlaAt6GdQ", "UBTConnect_Utils", "App_Subscription_NavigateToUpgrade", "NRFlows.ClientActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:dXhoLnFWykiH6hJ66tDNIA:/ClientActionFlows.dXhoLnFWykiH6hJ66tDNIA:6YL2qgksQ3dSWRWNmWLRvA", "UBTConnect_Utils", "App_Subscription_NavigateToUpgrade", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:VG0w4wk8lkyq5FG_G3ooug", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:DM77vqbtnEeEyeNrgjhMBQ", callContext.id);
@@ -19,7 +19,7 @@ OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:qBB6FJlpiE2YmXxN7HXi
 UBTConnect_UtilsController.default.cache_UserInfo_Invalidate$Action(callContext);
 OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:ZCqGxd2qR0eQgp2A5_F6QA", callContext.id);
 // Execute Action: OpenInApp_OpenExternalLink
-UBTConnect_UtilsController.default.openInApp_OpenExternalLink$Action(cache_UserInfo_GetVar.value.userInformationOut.directory_UserCurrentAttr.directory_UserCurrent_SubscriptionAttr.subscriptionManageLinkAttr, false, callContext);
+UBTConnect_UtilsController.default.openInApp_OpenExternalLink$Action(cache_UserInfo_GetVar.value.userInformationOut.directory_UserCurrentAttr.directory_UserCurrent_SubscriptionAttr.subscriptionManageLinkAttr, true, callContext);
 OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:BHVbJPjAtEehKkpyESRVgQ", callContext.id);
 });
 }).then(function () {
@@ -4754,7 +4754,7 @@ varBag.callContext = callContext;
 varBag.vars = vars;
 varBag.openVar = openVar;
 varBag.checkInAppBrowserPluginVar = checkInAppBrowserPluginVar;
-try {OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:2aKKpZNaMUm4jpWhk7AedA:/ClientActionFlows.2aKKpZNaMUm4jpWhk7AedA:I8_vQVYFAcJ_W6o3XERJvg", "UBTConnect_Utils", "OpenInApp_OpenExternalLink", "NRFlows.ClientActionFlow", callContext.id, varBag);
+try {OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:2aKKpZNaMUm4jpWhk7AedA:/ClientActionFlows.2aKKpZNaMUm4jpWhk7AedA:Yr+VGTWiLNIP6BFnEobjLw", "UBTConnect_Utils", "OpenInApp_OpenExternalLink", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:q1YN9HG460aWuiQ00VzloQ", callContext.id);
 OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:kmVpR5eejkqMc+BTflXDaw", callContext.id);
 // Execute Action: CheckInAppBrowserPlugin
@@ -4763,7 +4763,12 @@ checkInAppBrowserPluginVar.value = InAppBrowserPluginController.default.checkInA
 if((OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:iRvJ6Iu8N0+s+epIpIdGGg", callContext.id) && (checkInAppBrowserPluginVar.value.isAvailableOut && !(((OS.BuiltinFunctions.index(vars.value.urlInLocal, "http://", 0, false, true) === -1) && (OS.BuiltinFunctions.index(vars.value.urlInLocal, "https://", 0, false, true) === -1)))))) {
 OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:yt+BEnJWrE6d_UE2VTvsWg", callContext.id);
 // Execute Action: Open
-openVar.value = InAppBrowserPluginController.default.open$Action(vars.value.urlInLocal, ((vars.value.inNewTabInLocal) ? (UBTConnect_UtilsModel.staticEntities.target.sYSTEM) : (UBTConnect_UtilsModel.staticEntities.target.iN_APP_BROWSER)), new InAppBrowserPluginModel.OptionsRec(), callContext);
+openVar.value = InAppBrowserPluginController.default.open$Action(vars.value.urlInLocal, ((vars.value.inNewTabInLocal) ? (UBTConnect_UtilsModel.staticEntities.target.sYSTEM) : (UBTConnect_UtilsModel.staticEntities.target.iN_APP_BROWSER)), function () {
+var rec = new InAppBrowserPluginModel.OptionsRec();
+rec.clearcacheAttr = false;
+rec.clearsessioncacheAttr = false;
+return rec;
+}(), callContext);
 
 OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:+qrXidq7bEO9xBs+FUs2vw", callContext.id);
 } else {

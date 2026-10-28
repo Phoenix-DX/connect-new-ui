@@ -14,7 +14,17 @@
    "verdict": "n/a",
    "note": "Board skip. TST runs this screen since 2026-10-21 (C2NewBookmarks true); React keeps the MyBookmarks branch by the recorded decision Bookmarks Q1 a. Not detailed.",
    "verified": "pack",
-   "id": "Bookmarks-001"
+   "id": "Bookmarks-001",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Bookmarks.Bookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "Bookmarks_Card_Item",
@@ -27,7 +37,17 @@
    "verdict": "n/a",
    "note": "Board skip of its only screen. Not detailed.",
    "verified": "pack",
-   "id": "Bookmarks-002"
+   "id": "Bookmarks-002",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Bookmarks.Bookmarks_Card_Item.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "Bookmarks_Card_List",
@@ -53,7 +73,17 @@
    "verdict": "n/a",
    "note": "Board skip of its only screen. Not detailed.",
    "verified": "pack",
-   "id": "Bookmarks-004"
+   "id": "Bookmarks-004",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Bookmarks.Bookmarks_FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks",
@@ -66,7 +96,17 @@
    "verdict": "match",
    "note": "Board: built, D2(a) (migration/board.md:47). Inputs: none (show:2-57 $model has no screen input).",
    "verified": "pack",
-   "id": "Bookmarks-005"
+   "id": "Bookmarks-005",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed"
+    ],
+    "files": [
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (removed)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks",
@@ -79,7 +119,17 @@
    "verdict": "match",
    "note": "TST UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js show:~228-236",
    "verified": "pack",
-   "id": "Bookmarks-006"
+   "id": "Bookmarks-006",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed"
+    ],
+    "files": [
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (removed)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks",
@@ -92,7 +142,17 @@
    "verdict": "match",
    "note": "TST show:~250",
    "verified": "pack",
-   "id": "Bookmarks-007"
+   "id": "Bookmarks-007",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed"
+    ],
+    "files": [
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (removed)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks",
@@ -105,7 +165,17 @@
    "verdict": "match",
    "note": "TST show:~700 (BookmarksByGroup file shows the same checkRegistered; MyBookmarks file: roles check is part of the controller)",
    "verified": "pack",
-   "id": "Bookmarks-008"
+   "id": "Bookmarks-008",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed"
+    ],
+    "files": [
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (removed)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks",
@@ -120,7 +190,17 @@
    "finding": "F2",
    "severity": "minor",
    "id": "Bookmarks-009",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed"
+    ],
+    "files": [
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (removed)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks",
@@ -133,7 +213,17 @@
    "verdict": "match",
    "note": "TST UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js show:282-340; condition at show:303",
    "verified": "pack",
-   "id": "Bookmarks-010"
+   "id": "Bookmarks-010",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed"
+    ],
+    "files": [
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (removed)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks",
@@ -146,7 +236,17 @@
    "verdict": "match",
    "note": "TST show:305-332",
    "verified": "pack",
-   "id": "Bookmarks-011"
+   "id": "Bookmarks-011",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed"
+    ],
+    "files": [
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (removed)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks",
@@ -159,7 +259,17 @@
    "verdict": "match",
    "note": "Branch of C2EnableCarousel false: built, not taken on TST (flag true).",
    "verified": "pack",
-   "id": "Bookmarks-012"
+   "id": "Bookmarks-012",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed"
+    ],
+    "files": [
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (removed)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks",
@@ -172,7 +282,17 @@
    "verdict": "match",
    "note": "TST show:385-401",
    "verified": "pack",
-   "id": "Bookmarks-013"
+   "id": "Bookmarks-013",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed"
+    ],
+    "files": [
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (removed)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks",
@@ -185,7 +305,17 @@
    "verdict": "match",
    "note": "TST show:422-438",
    "verified": "pack",
-   "id": "Bookmarks-014"
+   "id": "Bookmarks-014",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed"
+    ],
+    "files": [
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (removed)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks",
@@ -198,7 +328,17 @@
    "verdict": "match",
    "note": "TST show:459-477, condition at show:477",
    "verified": "pack",
-   "id": "Bookmarks-015"
+   "id": "Bookmarks-015",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed"
+    ],
+    "files": [
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (removed)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks",
@@ -211,7 +351,17 @@
    "verdict": "match",
    "note": "TST show:479",
    "verified": "pack",
-   "id": "Bookmarks-016"
+   "id": "Bookmarks-016",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed"
+    ],
+    "files": [
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (removed)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks",
@@ -224,7 +374,17 @@
    "verdict": "match",
    "note": "TST show:485",
    "verified": "pack",
-   "id": "Bookmarks-017"
+   "id": "Bookmarks-017",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed"
+    ],
+    "files": [
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (removed)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks",
@@ -237,7 +397,17 @@
    "verdict": "match",
    "note": "LocalityName and InitialTab are dropped in both (KB legacy-bookmarks.md \"Dead / odd\").",
    "verified": "pack",
-   "id": "Bookmarks-018"
+   "id": "Bookmarks-018",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed"
+    ],
+    "files": [
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (removed)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks",
@@ -250,7 +420,17 @@
    "verdict": "match",
    "note": "TST show:~118-200",
    "verified": "pack",
-   "id": "Bookmarks-019"
+   "id": "Bookmarks-019",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed"
+    ],
+    "files": [
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (removed)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -263,7 +443,19 @@
    "verdict": "match",
    "note": "CountSize default 4: KB landing.md (CountPerGroup = CountSize (4)).",
    "verified": "pack",
-   "id": "Bookmarks-020"
+   "id": "Bookmarks-020",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -276,7 +468,19 @@
    "verdict": "match",
    "note": "TST show:677-706; mock: app/src/pages/MyBookmarks/mocks.ts:62 (PATH .../DataActionGetGroupSummaries); error scenario handler at mocks.ts:65",
    "verified": "pack",
-   "id": "Bookmarks-021"
+   "id": "Bookmarks-021",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -288,7 +492,19 @@
    "evidence": "TST Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js show:687; app/src/pages/MyBookmarks/mocks.ts:62-86 (handlers), app/src/mocks/modules/Connect2_MyBookmarks_MUI/mocks.ts:153-162 (collection)",
    "verified": "pack",
    "note": "Production needs the data action DataActionGetGroupSummaries of Connect2_MyBookmarks_MUI (CR-MyBookmarks-2 names the shared collection).",
-   "id": "Bookmarks-022"
+   "id": "Bookmarks-022",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -300,7 +516,20 @@
    "evidence": "migration/runtime-sources/Connect2_MyBookmarks_MUI.controller.js:195-240; app/src/mocks/modules/Connect2_MyBookmarks_MUI/mocks.ts:214-215",
    "verified": "pack",
    "note": "Production needs the server actions GetBookmarkById and New_GetBookmarkById of Connect2_MyBookmarks_MUI (CR-MyBookmarks-1, CR-BookmarksByGroup-1: applied).",
-   "id": "Bookmarks-023"
+   "id": "Bookmarks-023",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (screen)",
+     "Connect2_MyBookmarks_MUI.controller.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -313,7 +542,19 @@
    "verdict": "match",
    "note": "TST show:1249-1282; JS node show:1405",
    "verified": "pack",
-   "id": "Bookmarks-024"
+   "id": "Bookmarks-024",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -326,7 +567,19 @@
    "verdict": "match",
    "note": "BR-C2LEG-181.",
    "verified": "pack",
-   "id": "Bookmarks-025"
+   "id": "Bookmarks-025",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -339,7 +592,19 @@
    "verdict": "match",
    "note": "TST show:758-817",
    "verified": "pack",
-   "id": "Bookmarks-026"
+   "id": "Bookmarks-026",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -352,7 +617,19 @@
    "verdict": "match",
    "note": "TST show:708-757",
    "verified": "pack",
-   "id": "Bookmarks-027"
+   "id": "Bookmarks-027",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -365,7 +642,19 @@
    "verdict": "match",
    "note": "TST show:818-946",
    "verified": "pack",
-   "id": "Bookmarks-028"
+   "id": "Bookmarks-028",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -378,7 +667,19 @@
    "verdict": "match",
    "note": "BR-C2LEG-179.",
    "verified": "pack",
-   "id": "Bookmarks-029"
+   "id": "Bookmarks-029",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -391,7 +692,19 @@
    "verdict": "match",
    "note": "TST show:~880; Exact text with the ellipsis character; message type /*Error*/ 3",
    "verified": "pack",
-   "id": "Bookmarks-030"
+   "id": "Bookmarks-030",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -404,7 +717,19 @@
    "verdict": "match",
    "note": "TST show:~890",
    "verified": "pack",
-   "id": "Bookmarks-031"
+   "id": "Bookmarks-031",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -417,7 +742,19 @@
    "verdict": "match",
    "note": "TST show:~900",
    "verified": "pack",
-   "id": "Bookmarks-032"
+   "id": "Bookmarks-032",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -430,7 +767,19 @@
    "verdict": "match",
    "note": "TST show:~915-925",
    "verified": "pack",
-   "id": "Bookmarks-033"
+   "id": "Bookmarks-033",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -443,7 +792,21 @@
    "verdict": "match",
    "note": "TST show:~925-950; Helper texts: isRequestFailed = 'Request failed with an error' (myBookmarksState.ts:75), isTimeout = 'The operation has timed out' or 'The connection has timed out' (myBookmarksState.ts:78-79); their source in TST is Connect2_LegacyShared.controller (not read)",
    "verified": "pack",
-   "id": "Bookmarks-034"
+   "id": "Bookmarks-034",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "Connect2_LegacyShared.controller.js (lines-same)",
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -456,7 +819,20 @@
    "verdict": "match",
    "note": "TST show:982-1020",
    "verified": "pack",
-   "id": "Bookmarks-035"
+   "id": "Bookmarks-035",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "Connect2_MyBookmarks_MUI.controller.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -469,7 +845,19 @@
    "verdict": "match",
    "note": "BR-C2LEG-176. Same order in both: the Contact ListIndexOf runs before the IsBookmarkFound test.",
    "verified": "pack",
-   "id": "Bookmarks-036"
+   "id": "Bookmarks-036",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -482,7 +870,20 @@
    "verdict": "match",
    "note": "TST show:~1030; message text in Connect2_MyBookmarks_MUI.controller.js show:165 ('This' + ' household '/... + 'is no longer available.')",
    "verified": "pack",
-   "id": "Bookmarks-037"
+   "id": "Bookmarks-037",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "Connect2_MyBookmarks_MUI.controller.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -495,7 +896,19 @@
    "verdict": "match",
    "note": "TST show:~1040, upgrade call show:~1135",
    "verified": "pack",
-   "id": "Bookmarks-038"
+   "id": "Bookmarks-038",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -508,7 +921,19 @@
    "verdict": "match",
    "note": "BR-C2LEG-182.",
    "verified": "pack",
-   "id": "Bookmarks-039"
+   "id": "Bookmarks-039",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -521,7 +946,19 @@
    "verdict": "match",
    "note": "TST show:~1078 (conditional expression cut at 330 chars); Tail of the TST InitialTab expression is cut in the extract; the React helper says 3 for OneSchoolGlobal, 4 for CampusCo, else 0",
    "verified": "pack",
-   "id": "Bookmarks-040"
+   "id": "Bookmarks-040",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -534,7 +971,19 @@
    "verdict": "match",
    "note": "TST show:~1085",
    "verified": "pack",
-   "id": "Bookmarks-041"
+   "id": "Bookmarks-041",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -547,7 +996,19 @@
    "verdict": "match",
    "note": "Other object types: no branch in either.",
    "verified": "pack",
-   "id": "Bookmarks-042"
+   "id": "Bookmarks-042",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -560,7 +1021,19 @@
    "verdict": "match",
    "note": "TST show:1208-1239",
    "verified": "pack",
-   "id": "Bookmarks-043"
+   "id": "Bookmarks-043",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -573,7 +1046,19 @@
    "verdict": "match",
    "note": "TST show:~590-610",
    "verified": "pack",
-   "id": "Bookmarks-044"
+   "id": "Bookmarks-044",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -586,7 +1071,19 @@
    "verdict": "match",
    "note": "TST show:~330 and ~620-630",
    "verified": "pack",
-   "id": "Bookmarks-045"
+   "id": "Bookmarks-045",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -599,7 +1096,19 @@
    "verdict": "match",
    "note": "TST show:~590",
    "verified": "pack",
-   "id": "Bookmarks-046"
+   "id": "Bookmarks-046",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -612,7 +1121,19 @@
    "verdict": "match",
    "note": "BR-C2LEG-180.",
    "verified": "pack",
-   "id": "Bookmarks-047"
+   "id": "Bookmarks-047",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -625,7 +1146,19 @@
    "verdict": "match",
    "note": "TST show:296 (MyBookmarks_Contacts), 375 (Locations), 454 (Entities)",
    "verified": "pack",
-   "id": "Bookmarks-048"
+   "id": "Bookmarks-048",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -638,7 +1171,19 @@
    "verdict": "match",
    "note": "TST show:296 (MyBookmarks_Contacts), 375 (Locations), 454 (Entities)",
    "verified": "pack",
-   "id": "Bookmarks-049"
+   "id": "Bookmarks-049",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -651,7 +1196,19 @@
    "verdict": "match",
    "note": "The Entities list number (59) is not captured (MyBookmarksView.tsx:91); not a behaviour.",
    "verified": "pack",
-   "id": "Bookmarks-050"
+   "id": "Bookmarks-050",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -664,7 +1221,19 @@
    "verdict": "match",
    "note": "TST show:514",
    "verified": "pack",
-   "id": "Bookmarks-051"
+   "id": "Bookmarks-051",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -677,7 +1246,19 @@
    "verdict": "match",
    "note": "TST show:~190-260; The pack/TST MenuAction for MyBookmarks is `menuAction.menu`; BookmarksByGroup uses `menuAction.back`",
    "verified": "pack",
-   "id": "Bookmarks-052"
+   "id": "Bookmarks-052",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -690,7 +1271,19 @@
    "verdict": "match",
    "note": "TST show:~575-585",
    "verified": "pack",
-   "id": "Bookmarks-053"
+   "id": "Bookmarks-053",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks (ScreenBlock_MyBookmarks)",
@@ -703,7 +1296,19 @@
    "verdict": "match",
    "note": "All strings of the block match.",
    "verified": "pack",
-   "id": "Bookmarks-054"
+   "id": "Bookmarks-054",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks_Card",
@@ -715,7 +1320,17 @@
    "evidence": "TST Connect2_MyBookmarks_MUI.MyBookmarksFlow.MyBookmarks_Card.mvc.js show:153,163,179,191,208,220,232-235,248; app/src/pages/MyBookmarks/components/MyBookmarks_Card.tsx:30-62",
    "verified": "pack",
    "note": "BR-C2LEG-180 (\"View All\").",
-   "id": "Bookmarks-055"
+   "id": "Bookmarks-055",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.MyBookmarks_Card.mvc.js (removed)"
+    ]
+   }
   },
   {
    "screen": "MyBookmarks_Album",
@@ -727,7 +1342,17 @@
    "evidence": "TST Connect2_MyBookmarks_MUI.MyBookmarksFlow.MyBookmarks_Album.mvc.js show:161-176 (columns), 197-206 (list), 227 (event), 246 and 267 (placeholders), 261 (image class), 301 (title fallback); app/src/pages/MyBookmarks/components/MyBookmarks_Album.tsx:28-53,69,79-114",
    "verified": "pack",
    "note": "BR-C2LEG-194, BR-C2LEG-195.",
-   "id": "Bookmarks-056"
+   "id": "Bookmarks-056",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.MyBookmarks_Album.mvc.js (removed)"
+    ]
+   }
   },
   {
    "screen": "NoBookmarks",
@@ -739,7 +1364,17 @@
    "evidence": "TST Connect2_MyBookmarks_MUI.MyBookmarksFlow.NoBookmarks.mvc.js show:141-142, 159-166, 173-190; app/src/components/bookmark/NoBookmarks/NoBookmarks.tsx:22-38",
    "verified": "pack",
    "note": "The block has no text of its own: the texts come from the screen blocks (K1 of the report).",
-   "id": "Bookmarks-057"
+   "id": "Bookmarks-057",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.NoBookmarks.mvc.js (removed)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup",
@@ -752,7 +1387,17 @@
    "verdict": "match",
    "note": "Board: built, D2(a) (migration/board.md:46).",
    "verified": "pack",
-   "id": "Bookmarks-058"
+   "id": "Bookmarks-058",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed"
+    ],
+    "files": [
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (removed)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup",
@@ -765,7 +1410,17 @@
    "verdict": "match",
    "note": "TST show:230",
    "verified": "pack",
-   "id": "Bookmarks-059"
+   "id": "Bookmarks-059",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed"
+    ],
+    "files": [
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (removed)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup",
@@ -778,7 +1433,17 @@
    "verdict": "match",
    "note": "TST show:254",
    "verified": "pack",
-   "id": "Bookmarks-060"
+   "id": "Bookmarks-060",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed"
+    ],
+    "files": [
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (removed)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup",
@@ -793,7 +1458,17 @@
    "finding": "F2",
    "severity": "minor",
    "id": "Bookmarks-061",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed"
+    ],
+    "files": [
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (removed)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup",
@@ -806,7 +1481,17 @@
    "verdict": "match",
    "note": "BR-UBTCON-617.",
    "verified": "pack",
-   "id": "Bookmarks-062"
+   "id": "Bookmarks-062",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed"
+    ],
+    "files": [
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (removed)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup",
@@ -819,7 +1504,17 @@
    "verdict": "match",
    "note": "BR-UBTCON-619.",
    "verified": "pack",
-   "id": "Bookmarks-063"
+   "id": "Bookmarks-063",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed"
+    ],
+    "files": [
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (removed)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup",
@@ -832,7 +1527,17 @@
    "verdict": "match",
    "note": "TST show:415, show:311",
    "verified": "pack",
-   "id": "Bookmarks-064"
+   "id": "Bookmarks-064",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed"
+    ],
+    "files": [
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (removed)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup",
@@ -845,7 +1550,18 @@
    "verdict": "n/a",
    "note": "flag on on TST: the branch that raises the event is not taken. Not built (BookmarksByGroupPage.tsx:23-24). BR-UBTCON-620 describes the flag-off path.",
    "verified": "pack",
-   "id": "Bookmarks-065"
+   "id": "Bookmarks-065",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (removed)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup",
@@ -858,7 +1574,19 @@
    "verdict": "match",
    "note": "TST Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js show:1767 (In_IsOpen), show:1666 (condition)",
    "verified": "pack",
-   "id": "Bookmarks-066"
+   "id": "Bookmarks-066",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -871,7 +1599,19 @@
    "verdict": "match",
    "note": "ShowSearch, SearchString, SortColumn, WasSearchDone, SearchString_SearchDone never change on TST (no search widget in the compiled view, see the search row): React sends their defaults (bookmarkGroupState.ts:130-146).",
    "verified": "pack",
-   "id": "Bookmarks-067"
+   "id": "Bookmarks-067",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -884,7 +1624,19 @@
    "verdict": "match",
    "note": "TST Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js show:1917-1946; mock app/src/pages/BookmarksByGroup/mocks.ts:25-35 (WasSearched: false, Total = String(results.length))",
    "verified": "pack",
-   "id": "Bookmarks-068"
+   "id": "Bookmarks-068",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -897,7 +1649,19 @@
    "verdict": "mock-only",
    "note": "Production needs the data action DataActionGetAllBookmarksByGroup of Connect2_MyBookmarks_MUI. The DEV services of Connect_Bookmarks_CS (GetBookmarks, DeleteBookmarkByBookmarkId2) are not called by the TST screens.",
    "verified": "pack",
-   "id": "Bookmarks-069"
+   "id": "Bookmarks-069",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -910,7 +1674,19 @@
    "verdict": "match",
    "note": "The call. Server side: next row.",
    "verified": "pack",
-   "id": "Bookmarks-070"
+   "id": "Bookmarks-070",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -922,7 +1698,19 @@
    "evidence": "TST Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js show:1875; app/src/mocks/modules/Connect2_MyBookmarks_MUI/mocks.ts:216-222",
    "verified": "pack",
    "note": "Production needs the server action DeleteBookmarkByBookmarkId of Connect2_MyBookmarks_MUI (a write; CR-MyBookmarks-2 / P-MUTATION).",
-   "id": "Bookmarks-071"
+   "id": "Bookmarks-071",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -935,7 +1723,19 @@
    "verdict": "match",
    "note": "The call. Server side: next row.",
    "verified": "pack",
-   "id": "Bookmarks-072"
+   "id": "Bookmarks-072",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -947,7 +1747,19 @@
    "evidence": "TST Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js show:1898; app/src/mocks/modules/Connect2_MyBookmarks_MUI/mocks.ts:223-229",
    "verified": "pack",
    "note": "Production needs the server action New_UpdateBookmarkNote of Connect2_MyBookmarks_MUI (a write).",
-   "id": "Bookmarks-073"
+   "id": "Bookmarks-073",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -958,7 +1770,21 @@
    "verdict": "match",
    "evidence": "migration/runtime-sources/Connect2_LegacyShared.controller.js:4531-4557; TST Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js show:2193, 2375, 2802, 2948-2958, 3199; app/src/lib/legacyShared/actions.ts:425-433; app/src/pages/BookmarksByGroup/hooks/useBookmarkGroup.ts:138,155-162, hooks/bookmarkGroupActions.ts:25-59",
    "verified": "pack",
-   "id": "Bookmarks-074"
+   "id": "Bookmarks-074",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "Connect2_LegacyShared.controller.js (lines-same)",
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -970,7 +1796,21 @@
    "evidence": "migration/runtime-sources/Connect2_LegacyShared.controller.js:1923; TST Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js show:3194-3196; app/src/platform/storage/localEntities/localBookmarks.ts:290; app/src/pages/BookmarksByGroup/hooks/useBookmarkGroup.ts:216",
    "verified": "pack",
    "note": "CR-BookmarksByGroup-2 (applied).",
-   "id": "Bookmarks-075"
+   "id": "Bookmarks-075",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "Connect2_LegacyShared.controller.js (lines-same)",
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -982,7 +1822,21 @@
    "evidence": "migration/runtime-sources/Connect2_LegacyShared.controller.js:287; TST Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js show:3507-3509; app/src/pages/BookmarksByGroup/hooks/bookmarkGroupActions.ts:82-99; migration/app-shell.spec.md:349,384 (U17: no telemetry in the mock phase)",
    "verified": "pack",
    "note": "Decision U17 (app-shell.spec.md:349): telemetry none in the mock phase. BR-C2LEG-191.",
-   "id": "Bookmarks-076"
+   "id": "Bookmarks-076",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "Connect2_LegacyShared.controller.js (lines-same)",
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -996,7 +1850,19 @@
    "note": "The mechanism differs (anchor vs offset); the clicked row is in view either way. No recorded decision names it.",
    "finding": "F3",
    "severity": "info",
-   "id": "Bookmarks-077"
+   "id": "Bookmarks-077",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1007,7 +1873,19 @@
    "verdict": "match",
    "evidence": "TST Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js show:565, 854, 1042, 1110, 1442, 2239; app/src/pages/BookmarksByGroup/BookmarksByGroupPage.tsx:30-33; migration/knowledge/flag-values-tst.json:9,21 (false, true); app/src/platform/flags/registry.ts:81-87 (default false), 141-146 (default true)",
    "verified": "pack",
-   "id": "Bookmarks-078"
+   "id": "Bookmarks-078",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1019,7 +1897,20 @@
    "evidence": "TST Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js show:2852-2854; TST Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js show:1121-1123; app/src/pages/BookmarksByGroup/hooks/useBookmarkGroup.ts:289; app/src/pages/MyBookmarks/hooks/useMyBookmarks.ts:181",
    "verified": "pack",
    "note": "Internals of the pop-up: not checked here (shared, UBTConnect_Utils).",
-   "id": "Bookmarks-079"
+   "id": "Bookmarks-079",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1032,7 +1923,19 @@
    "verdict": "match",
    "note": "TST show:3407-3449",
    "verified": "pack",
-   "id": "Bookmarks-080"
+   "id": "Bookmarks-080",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1047,7 +1950,19 @@
    "verified": "pack",
    "id": "Bookmarks-081",
    "finding": "F4",
-   "severity": "info"
+   "severity": "info",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1060,7 +1975,19 @@
    "verdict": "match",
    "note": "TST show:2436-2471",
    "verified": "pack",
-   "id": "Bookmarks-082"
+   "id": "Bookmarks-082",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1073,7 +2000,19 @@
    "verdict": "match",
    "note": "TST show:1948-2027",
    "verified": "pack",
-   "id": "Bookmarks-083"
+   "id": "Bookmarks-083",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1086,7 +2025,19 @@
    "verdict": "match",
    "note": "TST JS node show:3776",
    "verified": "pack",
-   "id": "Bookmarks-084"
+   "id": "Bookmarks-084",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1099,7 +2050,19 @@
    "verdict": "match",
    "note": "SearchString = \"\" has no counterpart: the variable never leaves \"\" on TST (no search widget).",
    "verified": "pack",
-   "id": "Bookmarks-085"
+   "id": "Bookmarks-085",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1112,7 +2075,19 @@
    "verdict": "match",
    "note": "TST show:2168-2202",
    "verified": "pack",
-   "id": "Bookmarks-086"
+   "id": "Bookmarks-086",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1125,7 +2100,19 @@
    "verdict": "match",
    "note": "BR-C2LEG-176.",
    "verified": "pack",
-   "id": "Bookmarks-087"
+   "id": "Bookmarks-087",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1138,7 +2125,20 @@
    "verdict": "match",
    "note": "TST show:~2790-2870",
    "verified": "pack",
-   "id": "Bookmarks-088"
+   "id": "Bookmarks-088",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "Connect2_MyBookmarks_MUI.controller.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1151,7 +2151,19 @@
    "verdict": "match",
    "note": "RememberFocusedScrollAnchor (show:2798-2799): see the logic row of that action (F3).",
    "verified": "pack",
-   "id": "Bookmarks-089"
+   "id": "Bookmarks-089",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1164,7 +2176,18 @@
    "verdict": "match",
    "note": "The wrapper drops ItemsLength and SearchString (TST UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js show:174-181), so the React event carries three arguments. BR-C2LEG-178.",
    "verified": "pack",
-   "id": "Bookmarks-090"
+   "id": "Bookmarks-090",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (removed)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1177,7 +2200,18 @@
    "verdict": "match",
    "note": "The wrapper drops ItemsLength (TST UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js show:188-195).",
    "verified": "pack",
-   "id": "Bookmarks-091"
+   "id": "Bookmarks-091",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (removed)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1190,7 +2224,19 @@
    "verdict": "match",
    "note": "A group that is none of the three: no branch in either.",
    "verified": "pack",
-   "id": "Bookmarks-092"
+   "id": "Bookmarks-092",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1203,7 +2249,20 @@
    "verdict": "match",
    "note": "BR-C2LEG-184.",
    "verified": "pack",
-   "id": "Bookmarks-093"
+   "id": "Bookmarks-093",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "Connect2_MyBookmarks_MUI.controller.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1216,7 +2275,19 @@
    "verdict": "match",
    "note": "TST show:~3215",
    "verified": "pack",
-   "id": "Bookmarks-094"
+   "id": "Bookmarks-094",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1229,7 +2300,19 @@
    "verdict": "match",
    "note": "BR-C2LEG-190.",
    "verified": "pack",
-   "id": "Bookmarks-095"
+   "id": "Bookmarks-095",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1242,7 +2325,19 @@
    "verdict": "match",
    "note": "TST show:~2225",
    "verified": "pack",
-   "id": "Bookmarks-096"
+   "id": "Bookmarks-096",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1255,7 +2350,19 @@
    "verdict": "match",
    "note": "TST show:~2240-2290",
    "verified": "pack",
-   "id": "Bookmarks-097"
+   "id": "Bookmarks-097",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1268,7 +2375,19 @@
    "verdict": "n/a",
    "note": "flag on on TST; the branch is not built (React returns).",
    "verified": "pack",
-   "id": "Bookmarks-098"
+   "id": "Bookmarks-098",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1281,7 +2400,19 @@
    "verdict": "match",
    "note": "TST show:3300-3326",
    "verified": "pack",
-   "id": "Bookmarks-099"
+   "id": "Bookmarks-099",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1294,7 +2425,19 @@
    "verdict": "match",
    "note": "BR-C2LEG-191. The audit sink: see the differs row (U17).",
    "verified": "pack",
-   "id": "Bookmarks-100"
+   "id": "Bookmarks-100",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1307,7 +2450,19 @@
    "verdict": "match",
    "note": "BR-C2LEG-189. Reachable on TST only through the note dialogs, which only the BookmarkNote block opens (flag off).",
    "verified": "pack",
-   "id": "Bookmarks-101"
+   "id": "Bookmarks-101",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1320,7 +2475,19 @@
    "verdict": "match",
    "note": "TST show:~3270",
    "verified": "pack",
-   "id": "Bookmarks-102"
+   "id": "Bookmarks-102",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1331,7 +2498,19 @@
    "verdict": "match",
    "evidence": "TST Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js show:1556-1565 (DeleteNoteConfirm -> handler_ConfirmDeleteNote), 2395-2411; app/src/pages/BookmarksByGroup/components/BookmarkGroupView.tsx:125-132",
    "verified": "pack",
-   "id": "Bookmarks-103"
+   "id": "Bookmarks-103",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1344,7 +2523,19 @@
    "verdict": "n/a",
    "note": "flag off on TST: the BookmarkNote block and its three handlers are not built. BR-C2LEG-188.",
    "verified": "pack",
-   "id": "Bookmarks-104"
+   "id": "Bookmarks-104",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1357,7 +2548,19 @@
    "verdict": "match",
    "note": "The search branch cannot run on TST (SearchString and ShowSearch never change: no search widget in the compiled view). React implements the reachable branch.",
    "verified": "pack",
-   "id": "Bookmarks-105"
+   "id": "Bookmarks-105",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1370,7 +2573,19 @@
    "verdict": "n/a",
    "note": "dead on TST: defined, no caller in the compiled view. DEV model has the search input (KB group-page.md): §6.1 of the report. BR-C2LEG-183 describes DEV.",
    "verified": "pack",
-   "id": "Bookmarks-106"
+   "id": "Bookmarks-106",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1383,7 +2598,19 @@
    "verdict": "match",
    "note": "TST show:~285-310 (menuAction.back at show:~262); Both header If widgets have the constant condition true (TST $if(true,...))",
    "verified": "pack",
-   "id": "Bookmarks-107"
+   "id": "Bookmarks-107",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1396,7 +2623,19 @@
    "verdict": "match",
    "note": "TST show:~288 (condition), spinner ~1680",
    "verified": "pack",
-   "id": "Bookmarks-108"
+   "id": "Bookmarks-108",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1409,7 +2648,19 @@
    "verdict": "match",
    "note": "IsToDisplay expression read in full: equal.",
    "verified": "pack",
-   "id": "Bookmarks-109"
+   "id": "Bookmarks-109",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1422,7 +2673,19 @@
    "verdict": "match",
    "note": "BR-C2LEG-192, BR-C2LEG-193.",
    "verified": "pack",
-   "id": "Bookmarks-110"
+   "id": "Bookmarks-110",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1433,7 +2696,19 @@
    "verdict": "match",
    "evidence": "TST Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js show:357-360, 692-695, 1252-1255; app/src/pages/BookmarksByGroup/components/bookmarkGroupRows.tsx:70,157,249",
    "verified": "pack",
-   "id": "Bookmarks-111"
+   "id": "Bookmarks-111",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1445,7 +2720,19 @@
    "evidence": "TST Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js show:486-513 (onShareToConnect / onShareToOthers of Household_List_Item), 1368-1405 (Entity_List_Item), 2203-2275; app/src/components/bookmark/ItemOptionsMenu/ItemOptionsMenu.tsx:23-29,65-70; migration/knowledge/flag-values-tst.json:21",
    "verified": "pack",
    "note": "flag on on TST (C2ExtendedShare): the item is not offered; its plugin check is native only. Shared block of Connect2_LegacyShared.",
-   "id": "Bookmarks-112"
+   "id": "Bookmarks-112",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1458,7 +2745,19 @@
    "verdict": "match",
    "note": "BR-C2LEG-192, BR-C2LEG-193 (never on localities).",
    "verified": "pack",
-   "id": "Bookmarks-113"
+   "id": "Bookmarks-113",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1473,7 +2772,19 @@
    "finding": "F1",
    "severity": "minor",
    "id": "Bookmarks-114",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1485,7 +2796,19 @@
    "evidence": "TST Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js show:1039-1046, 1058, 1073; app/src/pages/BookmarksByGroup/components/bookmarkGroupRows.tsx:135-154,219, staticEntities.ts:22,26",
    "verified": "pack",
    "note": "BR-C2LEG-193.",
-   "id": "Bookmarks-115"
+   "id": "Bookmarks-115",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1498,7 +2821,19 @@
    "verdict": "match",
    "note": "BR-C2LEG-192, BR-C2LEG-193, BR-C2LEG-195.",
    "verified": "pack",
-   "id": "Bookmarks-116"
+   "id": "Bookmarks-116",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1511,7 +2846,19 @@
    "verdict": "match",
    "note": "TST show:1551, 1584, 1601",
    "verified": "pack",
-   "id": "Bookmarks-117"
+   "id": "Bookmarks-117",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "BookmarkNoteAddEdit",
@@ -1523,7 +2870,17 @@
    "evidence": "TST Connect2_MyBookmarks_MUI.MyBookmarksFlow.BookmarkNoteAddEdit.mvc.js show:165, 189, 235-240, 276, 290-304, 373, 397, 425-428; app/src/pages/BookmarksByGroup/components/BookmarkNoteAddEdit.tsx:25-77",
    "verified": "pack",
    "note": "BR-C2LEG-189. On TST the dialog opens only from the BookmarkNote block (flag off): never opened.",
-   "id": "Bookmarks-118"
+   "id": "Bookmarks-118",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.BookmarkNoteAddEdit.mvc.js (removed)"
+    ]
+   }
   },
   {
    "screen": "BookmarkNoteAddEdit",
@@ -1535,7 +2892,17 @@
    "evidence": "TST Connect2_MyBookmarks_MUI.MyBookmarksFlow.BookmarkNoteAddEdit.mvc.js show:200-274 (dialogBody); app/src/pages/BookmarksByGroup/components/BookmarkNoteAddEdit.tsx:61; migration/knowledge/flag-values-tst.json:9",
    "verified": "pack",
    "note": "flag off on TST: the dialog never opens (only the BookmarkNote block opens it). Not built.",
-   "id": "Bookmarks-119"
+   "id": "Bookmarks-119",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.BookmarkNoteAddEdit.mvc.js (removed)"
+    ]
+   }
   },
   {
    "screen": "BookmarkNoteDelete",
@@ -1547,7 +2914,17 @@
    "evidence": "TST Connect2_MyBookmarks_MUI.MyBookmarksFlow.BookmarkNoteDelete.mvc.js show:183, 195, 198, 210; app/src/pages/BookmarksByGroup/components/BookmarkNoteDelete.tsx:19-36",
    "verified": "pack",
    "note": "Never opened on TST (flag off).",
-   "id": "Bookmarks-120"
+   "id": "Bookmarks-120",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.BookmarkNoteDelete.mvc.js (removed)"
+    ]
+   }
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",
@@ -1560,7 +2937,20 @@
    "verdict": "match",
    "note": "All strings of the block match.",
    "verified": "pack",
-   "id": "Bookmarks-121"
+   "id": "Bookmarks-121",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed",
+     "screen"
+    ],
+    "files": [
+     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js (removed)",
+     "Connect2_MyBookmarks_MUI.controller.js (removed)",
+     "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "New_MyBookmarks",
@@ -1573,7 +2963,17 @@
    "verdict": "n/a",
    "note": "Board skip; flag off on TST.",
    "verified": "pack",
-   "id": "Bookmarks-122"
+   "id": "Bookmarks-122",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Legacy_MyBookmarks.New_MyBookmarks.mvc.js (screen)"
+    ]
+   }
   },
   {
    "screen": "New_BookmarksByGroup",
@@ -1586,7 +2986,17 @@
    "verdict": "n/a",
    "note": "Board skip; flag off on TST.",
    "verified": "pack",
-   "id": "Bookmarks-123"
+   "id": "Bookmarks-123",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Legacy_MyBookmarks.New_BookmarksByGroup.mvc.js (screen)"
+    ]
+   }
   }
  ]
 }

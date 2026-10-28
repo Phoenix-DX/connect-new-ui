@@ -47,6 +47,31 @@ return DynamicBookmark_PillRec;
 UBTConnect_Bookmarks_MCSModel.DynamicBookmark_PillRec = DynamicBookmark_PillRec;
 
 });
+define("UBTConnect_Bookmarks_MCS.model$LongIntegerBookmarkCategoryIdentifierRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Bookmarks_MCS.model"], function (exports, OutSystems, UBTConnect_Bookmarks_MCSModel) {
+var OS = OutSystems.Internal;
+var LongIntegerBookmarkCategoryIdentifierRecord = (function (_super) {
+__extends(LongIntegerBookmarkCategoryIdentifierRecord, _super);
+function LongIntegerBookmarkCategoryIdentifierRecord(defaults) {
+_super.apply(this, arguments);
+}
+LongIntegerBookmarkCategoryIdentifierRecord.attributesToDeclare = function () {
+return [
+this.attr("Count", "countAttr", "Count", false, false, OS.DataTypes.DataTypes.LongInteger, function () {
+return OS.DataTypes.LongInteger.defaultValue;
+}, true), 
+this.attr("BookmarkCategoryId", "bookmarkCategoryIdAttr", "BookmarkCategoryId", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true)
+].concat(_super.attributesToDeclare.call(this));
+};
+LongIntegerBookmarkCategoryIdentifierRecord._isAnonymousRecord = true;
+LongIntegerBookmarkCategoryIdentifierRecord.UniqueId = "085165aa-1df1-c00e-849b-16dbf52bfdce";
+LongIntegerBookmarkCategoryIdentifierRecord.init();
+return LongIntegerBookmarkCategoryIdentifierRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnect_Bookmarks_MCSModel.LongIntegerBookmarkCategoryIdentifierRecord = LongIntegerBookmarkCategoryIdentifierRecord;
+
+});
 define("UBTConnect_Bookmarks_MCS.model$APIM_CommonHeaderRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIUtilitiesLib.model", "UBTConnect_Bookmarks_MCS.model", "APIUtilitiesLib.model$APIM_CommonHeaderRec", "UBTConnect_Bookmarks_MCS.referencesHealth", "UBTConnect_Bookmarks_MCS.referencesHealth$APIUtilitiesLib"], function (exports, OutSystems, APIUtilitiesLibModel, UBTConnect_Bookmarks_MCSModel) {
 var OS = OutSystems.Internal;
 var APIM_CommonHeaderRecord = (function (_super) {
@@ -375,8 +400,8 @@ return OS.DataTypes.LongInteger.defaultValue;
 this.attr("BookmarkCategoryId", "bookmarkCategoryIdAttr", "BookmarkCategoryId", false, false, OS.DataTypes.DataTypes.Text, function () {
 return "";
 }, true), 
-this.attr("ItemId", "itemIdAttr", "ItemId", false, false, OS.DataTypes.DataTypes.LongInteger, function () {
-return OS.DataTypes.LongInteger.defaultValue;
+this.attr("ItemId", "itemIdAttr", "ItemId", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
 }, true), 
 this.attr("CreatedAtDateUtc", "createdAtDateUtcAttr", "CreatedAtDateUtc", false, false, OS.DataTypes.DataTypes.DateTime, function () {
 return OS.DataTypes.DateTime.defaultValue;
@@ -506,6 +531,19 @@ return Source2List;
 UBTConnect_Bookmarks_MCSModel.Source2List = Source2List;
 
 });
+define("UBTConnect_Bookmarks_MCS.model$LongIntegerBookmarkCategoryIdentifierRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Bookmarks_MCS.model", "UBTConnect_Bookmarks_MCS.model$LongIntegerBookmarkCategoryIdentifierRecord"], function (exports, OutSystems, UBTConnect_Bookmarks_MCSModel) {
+var OS = OutSystems.Internal;
+var LongIntegerBookmarkCategoryIdentifierRecordList = (function (_super) {
+__extends(LongIntegerBookmarkCategoryIdentifierRecordList, _super);
+function LongIntegerBookmarkCategoryIdentifierRecordList(defaults) {
+_super.apply(this, arguments);
+}
+LongIntegerBookmarkCategoryIdentifierRecordList.itemType = UBTConnect_Bookmarks_MCSModel.LongIntegerBookmarkCategoryIdentifierRecord;
+return LongIntegerBookmarkCategoryIdentifierRecordList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnect_Bookmarks_MCSModel.LongIntegerBookmarkCategoryIdentifierRecordList = LongIntegerBookmarkCategoryIdentifierRecordList;
+
+});
 define("UBTConnect_Bookmarks_MCS.model$BookmarkItemRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect_Bookmarks_MCS.model", "APIDomain_Directory_IS.model$BookmarkItemRec", "UBTConnect_Bookmarks_MCS.referencesHealth", "UBTConnect_Bookmarks_MCS.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnect_Bookmarks_MCSModel) {
 var OS = OutSystems.Internal;
 var BookmarkItemRecord = (function (_super) {
@@ -624,46 +662,6 @@ BookmarkItemRecordList.itemType = UBTConnect_Bookmarks_MCSModel.BookmarkItemReco
 return BookmarkItemRecordList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnect_Bookmarks_MCSModel.BookmarkItemRecordList = BookmarkItemRecordList;
-
-});
-define("UBTConnect_Bookmarks_MCS.model$IntegerRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Bookmarks_MCS.model"], function (exports, OutSystems, UBTConnect_Bookmarks_MCSModel) {
-var OS = OutSystems.Internal;
-var IntegerRecord = (function (_super) {
-__extends(IntegerRecord, _super);
-function IntegerRecord(defaults) {
-_super.apply(this, arguments);
-}
-IntegerRecord.attributesToDeclare = function () {
-return [
-this.attr("Year", "yearAttr", "Year", false, false, OS.DataTypes.DataTypes.Integer, function () {
-return 0;
-}, true)
-].concat(_super.attributesToDeclare.call(this));
-};
-IntegerRecord.fromStructure = function (str) {
-return new IntegerRecord(new IntegerRecord.RecordClass({
-yearAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-IntegerRecord._isAnonymousRecord = true;
-IntegerRecord.UniqueId = "b5e9e14c-08bc-c516-4bd3-e42fd9136ffa";
-IntegerRecord.init();
-return IntegerRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnect_Bookmarks_MCSModel.IntegerRecord = IntegerRecord;
-
-});
-define("UBTConnect_Bookmarks_MCS.model$IntegerRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Bookmarks_MCS.model", "UBTConnect_Bookmarks_MCS.model$IntegerRecord"], function (exports, OutSystems, UBTConnect_Bookmarks_MCSModel) {
-var OS = OutSystems.Internal;
-var IntegerRecordList = (function (_super) {
-__extends(IntegerRecordList, _super);
-function IntegerRecordList(defaults) {
-_super.apply(this, arguments);
-}
-IntegerRecordList.itemType = UBTConnect_Bookmarks_MCSModel.IntegerRecord;
-return IntegerRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnect_Bookmarks_MCSModel.IntegerRecordList = IntegerRecordList;
 
 });
 define("UBTConnect_Bookmarks_MCS.model$Directory_UserCurrent_GeographyRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect_Bookmarks_MCS.model", "APIDomain_Directory_IS.model$Directory_UserCurrent_GeographyRec", "UBTConnect_Bookmarks_MCS.referencesHealth", "UBTConnect_Bookmarks_MCS.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnect_Bookmarks_MCSModel) {
@@ -906,46 +904,6 @@ return Custom_AddressList;
 UBTConnect_Bookmarks_MCSModel.Custom_AddressList = Custom_AddressList;
 
 });
-define("UBTConnect_Bookmarks_MCS.model$BookmarkCategoryIdentifierRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Bookmarks_MCS.model"], function (exports, OutSystems, UBTConnect_Bookmarks_MCSModel) {
-var OS = OutSystems.Internal;
-var BookmarkCategoryIdentifierRecord = (function (_super) {
-__extends(BookmarkCategoryIdentifierRecord, _super);
-function BookmarkCategoryIdentifierRecord(defaults) {
-_super.apply(this, arguments);
-}
-BookmarkCategoryIdentifierRecord.attributesToDeclare = function () {
-return [
-this.attr("BookmarkCategoryId", "bookmarkCategoryIdAttr", "BookmarkCategoryId", false, false, OS.DataTypes.DataTypes.Text, function () {
-return "";
-}, true)
-].concat(_super.attributesToDeclare.call(this));
-};
-BookmarkCategoryIdentifierRecord.fromStructure = function (str) {
-return new BookmarkCategoryIdentifierRecord(new BookmarkCategoryIdentifierRecord.RecordClass({
-bookmarkCategoryIdAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-BookmarkCategoryIdentifierRecord._isAnonymousRecord = true;
-BookmarkCategoryIdentifierRecord.UniqueId = "ffa7ecfa-7285-5067-49fc-5f3622a2537c";
-BookmarkCategoryIdentifierRecord.init();
-return BookmarkCategoryIdentifierRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnect_Bookmarks_MCSModel.BookmarkCategoryIdentifierRecord = BookmarkCategoryIdentifierRecord;
-
-});
-define("UBTConnect_Bookmarks_MCS.model$BookmarkCategoryIdentifierRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Bookmarks_MCS.model", "UBTConnect_Bookmarks_MCS.model$BookmarkCategoryIdentifierRecord"], function (exports, OutSystems, UBTConnect_Bookmarks_MCSModel) {
-var OS = OutSystems.Internal;
-var BookmarkCategoryIdentifierRecordList = (function (_super) {
-__extends(BookmarkCategoryIdentifierRecordList, _super);
-function BookmarkCategoryIdentifierRecordList(defaults) {
-_super.apply(this, arguments);
-}
-BookmarkCategoryIdentifierRecordList.itemType = UBTConnect_Bookmarks_MCSModel.BookmarkCategoryIdentifierRecord;
-return BookmarkCategoryIdentifierRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnect_Bookmarks_MCSModel.BookmarkCategoryIdentifierRecordList = BookmarkCategoryIdentifierRecordList;
-
-});
 define("UBTConnect_Bookmarks_MCS.model$BookmarkCategoryRec", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Bookmarks_MCS.model"], function (exports, OutSystems, UBTConnect_Bookmarks_MCSModel) {
 var OS = OutSystems.Internal;
 var BookmarkCategoryRec = (function (_super) {
@@ -963,6 +921,9 @@ return "";
 }, true), 
 this.attr("Initials", "initialsAttr", "Initials", false, false, OS.DataTypes.DataTypes.Text, function () {
 return "";
+}, true), 
+this.attr("IsActive", "isActiveAttr", "IsActive", false, false, OS.DataTypes.DataTypes.Boolean, function () {
+return true;
 }, true)
 ].concat(_super.attributesToDeclare.call(this));
 };
@@ -1131,6 +1092,33 @@ return EnrichmentRecordList;
 UBTConnect_Bookmarks_MCSModel.EnrichmentRecordList = EnrichmentRecordList;
 
 });
+define("UBTConnect_Bookmarks_MCS.model$IntegerRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Bookmarks_MCS.model"], function (exports, OutSystems, UBTConnect_Bookmarks_MCSModel) {
+var OS = OutSystems.Internal;
+var IntegerRecord = (function (_super) {
+__extends(IntegerRecord, _super);
+function IntegerRecord(defaults) {
+_super.apply(this, arguments);
+}
+IntegerRecord.attributesToDeclare = function () {
+return [
+this.attr("GroupByYear", "groupByYearAttr", "GroupByYear", false, false, OS.DataTypes.DataTypes.Integer, function () {
+return 0;
+}, true)
+].concat(_super.attributesToDeclare.call(this));
+};
+IntegerRecord.fromStructure = function (str) {
+return new IntegerRecord(new IntegerRecord.RecordClass({
+groupByYearAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+IntegerRecord._isAnonymousRecord = true;
+IntegerRecord.UniqueId = "c4a96837-aeac-e18f-81ec-74bc6c760f5f";
+IntegerRecord.init();
+return IntegerRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnect_Bookmarks_MCSModel.IntegerRecord = IntegerRecord;
+
+});
 define("UBTConnect_Bookmarks_MCS.model$General_Normalized_BookmarksForSyncList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect_Bookmarks_MCS.model", "APIDomain_Directory_IS.model$General_Normalized_BookmarksForSyncRec", "UBTConnect_Bookmarks_MCS.referencesHealth", "UBTConnect_Bookmarks_MCS.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnect_Bookmarks_MCSModel) {
 var OS = OutSystems.Internal;
 var General_Normalized_BookmarksForSyncList = (function (_super) {
@@ -1222,6 +1210,19 @@ return Source2RecordList;
 UBTConnect_Bookmarks_MCSModel.Source2RecordList = Source2RecordList;
 
 });
+define("UBTConnect_Bookmarks_MCS.model$IntegerRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Bookmarks_MCS.model", "UBTConnect_Bookmarks_MCS.model$IntegerRecord"], function (exports, OutSystems, UBTConnect_Bookmarks_MCSModel) {
+var OS = OutSystems.Internal;
+var IntegerRecordList = (function (_super) {
+__extends(IntegerRecordList, _super);
+function IntegerRecordList(defaults) {
+_super.apply(this, arguments);
+}
+IntegerRecordList.itemType = UBTConnect_Bookmarks_MCSModel.IntegerRecord;
+return IntegerRecordList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnect_Bookmarks_MCSModel.IntegerRecordList = IntegerRecordList;
+
+});
 define("UBTConnect_Bookmarks_MCS.model$DynamicBookmark_PillList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Bookmarks_MCS.model", "UBTConnect_Bookmarks_MCS.model$DynamicBookmark_PillRec"], function (exports, OutSystems, UBTConnect_Bookmarks_MCSModel) {
 var OS = OutSystems.Internal;
 var DynamicBookmark_PillList = (function (_super) {
@@ -1310,6 +1311,12 @@ return getBookmarkCategoryRecord("889d590c-4fae-41ef-9273-0a1eff8e4dd0");
 }
 });
 
+Object.defineProperty(UBTConnect_Bookmarks_MCSModel.staticEntities.bookmarkCategory, "oneSchoolGlobal2", {
+get: function () {
+return getBookmarkCategoryRecord("9d26144a-975b-45a3-9e6d-2c93d53828bd");
+}
+});
+
 Object.defineProperty(UBTConnect_Bookmarks_MCSModel.staticEntities.bookmarkCategory, "locality", {
 get: function () {
 return getBookmarkCategoryRecord("a348818a-fa35-4bff-a34e-178519d83bf7");
@@ -1331,12 +1338,6 @@ return getBookmarkCategoryRecord("d6e17b52-a77d-48c1-9198-b4eab4db6972");
 Object.defineProperty(UBTConnect_Bookmarks_MCSModel.staticEntities.bookmarkCategory, "interchange", {
 get: function () {
 return getBookmarkCategoryRecord("d824fe40-c000-47ee-8361-5c0a281dd640");
-}
-});
-
-Object.defineProperty(UBTConnect_Bookmarks_MCSModel.staticEntities.bookmarkCategory, "oneSchoolGlobal", {
-get: function () {
-return getBookmarkCategoryRecord("e3054760-7ac9-4429-afe2-a499783f232e");
 }
 });
 

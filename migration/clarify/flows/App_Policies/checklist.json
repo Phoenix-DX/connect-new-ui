@@ -263,7 +263,17 @@
    "verdict": "partial",
    "severity": "info",
    "finding": "F5",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Policies-024",
@@ -288,7 +298,17 @@
    "verdict": "match",
    "question": "Q1: Behaviour of Get_MemoryCacheKey_UniqueKey in module UBTConnect_Utils: not in the dump, no KB page. Is Key equal to Client.UniqueCacheKey, the key that Cache_UserInfo_Get reads (BR-C2UTL-141)?",
    "verified": "live",
-   "note": "App_Policies Q1 (a), settled from the TST file: Get_MemoryCacheKey_UniqueKey returns Key = UniqueCacheKey (getUniqueCacheKey(), UBTConnect_Utils.controller.js:2383-2384). React uses UBTConnect_Utils.UniqueCacheKey for the write and the read (BR-C2UTL-141)."
+   "note": "App_Policies Q1 (a), settled from the TST file: Get_MemoryCacheKey_UniqueKey returns Key = UniqueCacheKey (getUniqueCacheKey(), UBTConnect_Utils.controller.js:2383-2384). React uses UBTConnect_Utils.UniqueCacheKey for the write and the read (BR-C2UTL-141).",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Policies-026",
@@ -973,7 +993,17 @@
    "evidence": "app/src/pages/AcceptPendingPolicies/actions.ts:8-39; TST UBTConnect.controller.js:13439-13470, 13528-13570; BR-UBTCON-514",
    "verdict": "match",
    "note": "Without a V or Q value React uses 0. TST converts the null JavaScript outputs; the runtime conversion and the Decimal division by 0 are not captured.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Policies-085",
@@ -985,7 +1015,17 @@
    "evidence": "app/src/platform/feedback/exceptionMessages.ts:16-23; TST UBTConnect.controller.js:16104-16117; BR-UBTCON-213",
    "verdict": "match",
    "note": "DEV adds a live navigator.onLine check (section 6.1).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Policies-086",
@@ -996,7 +1036,17 @@
    "react": "title or '', encodedHtml true, extendedClass '', delayMs 0, useDebounce false",
    "evidence": "app/src/platform/feedback/exceptionMessages.ts:17-23; app/src/platform/feedback/feedbackMessageAutoClose.ts:76-86; TST UBTConnect.controller.js:16112-16116",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Policies-087",
@@ -1042,7 +1092,17 @@
    "react": "the same texts (the full TST text, with \\r\\n)",
    "evidence": "app/src/platform/feedback/exceptionMessages.ts:10-14; TST UBTConnect.controller.js:16112-16116",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   }
  ]
 }

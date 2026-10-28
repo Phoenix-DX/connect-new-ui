@@ -27,7 +27,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "DEV lists Registered and UBTOne_User; TST checks Registered only (report 6.1). The route guard is shared: checked in the report of App_Common.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Calendar-003",
@@ -40,7 +50,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST input type Text, default \"\"",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Calendar-004",
@@ -53,7 +73,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: all event handlers null (onInitializeEventHandler = null ... onParametersChanged = null)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Calendar-005",
@@ -66,7 +96,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "The internals of CommonUI_InsideLayout: checked in the report of App_Common.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Calendar-006",
@@ -79,7 +119,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST inputs: In_InitialEventSouceId: model.variables.myCalendarEventSourceIdIn",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Calendar-007",
@@ -92,7 +142,17 @@
    "tst": "absent",
    "verdict": "match",
    "note": "DEV only: TST MyEntertaining passes only the inputs and _handleError to MyEntertaining_Embedded (report 6.1). React raises no OnNavBack, as TST.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Calendar-008",
@@ -105,7 +165,19 @@
    "tst": "absent",
    "verdict": "match",
    "note": "Handle_NavBack is DEV only (report 6.1). On TST the back arrow runs the own OnClick_BackNavigation of Layout_DetailPage; React gives the same navigateBack to DetailLayout.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining.mvc.js (screen)",
+     "UBTConnectLibrary.Layouts.Layout_DetailPage.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Calendar-009",
@@ -118,7 +190,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST local variable PreloadedSource Text",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Calendar-010",
@@ -131,7 +213,17 @@
    "tst": "present (In_IsHideTitle absent)",
    "verdict": "match",
    "note": "DEV In_IsHideTitle=True, In_IsPrimaryColor=True; TST In_IsPrimaryColor only, so the title shows (report 6.1). React follows TST.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Calendar-011",
@@ -144,7 +236,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "tst_emb.js:158-160",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Calendar-012",
@@ -157,7 +259,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST inputs B2CTenant: getEmbedd_B2CTenant(), Sources: preloadedSourceVar (tst_emb.js:170-172)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Calendar-013",
@@ -170,7 +282,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Calendar-014",
@@ -183,7 +305,17 @@
    "tst": "OnError, OnOpenMap present; OnNavBack absent",
    "verdict": "match",
    "note": "TST binds OnError and OnOpenMap only; OnNavBack is DEV only (report 6.1). OnReady, OnAuthenticated, OnComplete are not bound in DEV or TST.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Calendar-015",
@@ -196,7 +328,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "tst_emb.js:279-282",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Calendar-016",
@@ -209,7 +351,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "tst_emb.js:287-288",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Calendar-017",
@@ -222,7 +374,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "tst_emb.js:291-294",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Calendar-018",
@@ -235,7 +397,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "tst_emb.js:297-300",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Calendar-019",
@@ -248,7 +420,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "tst_emb.js:301-303; BR-UBTCON-689: any other source opens unfiltered",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Calendar-020",
@@ -261,7 +443,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Calendar-021",
@@ -274,7 +466,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "The four values equal TST.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Calendar-022",
@@ -287,7 +489,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "tst_emb.js:391: feedbackMessage_AutoClose(\"\", message, info, true, \"\", 0, false); BR-UBTCON-691",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Calendar-023",
@@ -300,7 +512,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "Label is not used, as TST. OpenInApp_OpenExternalLink is shared (UBTConnect_Utils, BR-C2UTL-160/161): not checked here.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Calendar-024",
@@ -313,7 +535,17 @@
    "tst": "absent",
    "verdict": "match",
    "note": "DEV only (report 6.1). React raises no event, as TST.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Calendar-025",
@@ -326,7 +558,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "default '' at app/src/platform/session/clientVars.ts:27; TST getEmbedd_B2CTenant() tst_emb.js:171",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Calendar-026",
@@ -339,7 +581,19 @@
    "tst": "-",
    "verdict": "match",
    "note": "OnNavBack is in the DEV signature only (report 6.1). The internals of the block are rows 060 to 071.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js (screen)",
+     "UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Calendar-027",
@@ -352,7 +606,19 @@
    "tst": "-",
    "verdict": "match",
    "note": "The server side is row 058; a failed fetch is row 060.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js (screen)",
+     "UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Calendar-028",
@@ -365,7 +631,19 @@
    "tst": "-",
    "verdict": "match",
    "note": "The server side is row 059; a failed call is row 061.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js (screen)",
+     "UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Calendar-029",
@@ -378,7 +656,19 @@
    "tst": "-",
    "verdict": "differs",
    "note": "Board decision D8(b): a same-size mock of embed-entertaining.js; the real embed plugs in at requireEmbed later.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js (screen)",
+     "UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Calendar-030",
@@ -391,7 +681,17 @@
    "tst": "-",
    "verdict": "n/a",
    "note": "Used only by MyCalendar or its blocks: board skip (migration/board.md:75). Called only by blocks used by MyCalendar (EventList_CacheWrapper, CacheControl_Calendar_Coordinator); no built screen calls it",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Calendar-031",
@@ -404,7 +704,17 @@
    "tst": "-",
    "verdict": "n/a",
    "note": "Used only by MyCalendar or its blocks: board skip (migration/board.md:75). Called by Calendar_ViewActionMenu (MyCalendar only)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Calendar-032",
@@ -417,7 +727,17 @@
    "tst": "-",
    "verdict": "n/a",
    "note": "Used only by MyCalendar or its blocks: board skip (migration/board.md:75). Read only by MyCalendar blocks; no built screen reads it",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Calendar-033",
@@ -430,7 +750,17 @@
    "tst": "-",
    "verdict": "n/a",
    "note": "Used only by MyCalendar or its blocks: board skip (migration/board.md:75). Read only by MyCalendar blocks; no built screen reads it",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Calendar-034",
@@ -443,7 +773,17 @@
    "tst": "-",
    "verdict": "n/a",
    "note": "Used only by MyCalendar or its blocks: board skip (migration/board.md:75). Read only by MyCalendar, MonthPicker; no built screen reads it",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Calendar-035",
@@ -456,7 +796,17 @@
    "tst": "-",
    "verdict": "n/a",
    "note": "Used only by MyCalendar or its blocks: board skip (migration/board.md:75). Read only by MyCalendar blocks; no built screen reads it",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Calendar-036",
@@ -469,7 +819,17 @@
    "tst": "-",
    "verdict": "n/a",
    "note": "Used only by MyCalendar or its blocks: board skip (migration/board.md:75). Read only by MyCalendar blocks; no built screen reads it",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Calendar-037",
@@ -482,7 +842,17 @@
    "tst": "-",
    "verdict": "n/a",
    "note": "Owned by flows App_Common, App_PIN and App_Policies (shared blocks), see their reports.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Calendar-038",
@@ -495,7 +865,17 @@
    "tst": "-",
    "verdict": "n/a",
    "note": "Owned by flows App_Common, App_PIN and App_Policies (shared blocks), see their reports.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Calendar-039",
@@ -508,7 +888,17 @@
    "tst": "-",
    "verdict": "n/a",
    "note": "Owned by flows App_Common, App_PIN and App_Policies (shared blocks), see their reports.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Calendar-040",
@@ -521,7 +911,17 @@
    "tst": "-",
    "verdict": "n/a",
    "note": "Owned by flows App_Common, App_PIN and App_Policies (shared blocks), see their reports.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Calendar-041",
@@ -534,7 +934,19 @@
    "tst": "-",
    "verdict": "match",
    "note": "The only string of the built screens is the title \"My Entertaining\". The other strings of strings.md belong to MyCalendar blocks (skip) or to other flows.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining.mvc.js (screen)",
+     "UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Calendar-042",
@@ -755,7 +1167,17 @@
    "tst": "present",
    "verdict": "mock-only",
    "note": "Production needs the data action DataActionGetEntertainingConfig of UBTConnect_EmbedMyEntertaining (decision D8(b) keeps the mock for now).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Calendar-059",
@@ -768,7 +1190,17 @@
    "tst": "present",
    "verdict": "mock-only",
    "note": "Production needs the server action AppManager_Get_UserIdToken of UBT_AppManager_CS.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Calendar-060",
@@ -784,7 +1216,17 @@
    "verified": "code",
    "severity": "major",
    "finding": "F1",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Calendar-061",
@@ -800,7 +1242,17 @@
    "verified": "live",
    "severity": "minor",
    "finding": "F2",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Calendar-062",
@@ -813,7 +1265,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Calendar-063",
@@ -826,7 +1288,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "The widget arguments are covered by the parity gate (decision D8(b) exemption for the iframe pixels).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Calendar-064",
@@ -839,7 +1311,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "RequireScript of the real SDK is row 029 (D8(b)).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Calendar-065",
@@ -852,7 +1334,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Calendar-066",
@@ -867,7 +1359,17 @@
    "note": "Console output only: no user impact.",
    "verified": "pack",
    "severity": "info",
-   "finding": "F4"
+   "finding": "F4",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Calendar-067",
@@ -880,7 +1382,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Calendar-068",
@@ -893,7 +1405,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Calendar-069",
@@ -906,7 +1428,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Calendar-070",
@@ -919,7 +1451,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Calendar-071",
@@ -932,7 +1474,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Calendar-072",
@@ -948,7 +1500,17 @@
    "verified": "live",
    "severity": "minor",
    "finding": "F3",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Calendar.MyEntertaining.mvc.js (lines-same)"
+    ]
+   }
   }
  ]
 }

@@ -339,7 +339,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: Layout_DetailPage.mvc.js:22-46.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.Layouts.Layout_DetailPage.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-027",
@@ -352,7 +362,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: Layout_DetailPage.mvc.js:206-226.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.Layouts.Layout_DetailPage.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-028",
@@ -365,7 +385,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "Line cut at 170 columns; tail of the TST expression (line 231) not printed TST: Layout_DetailPage.mvc.js:230-238. judge: TST expression (Layout_DetailPage.mvc.js:231) = React line 80, token for token, including \" has-accessible-features\".",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.Layouts.Layout_DetailPage.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-029",
@@ -378,7 +408,17 @@
    "tst": "present",
    "verdict": "differs",
    "note": "React does not call a SkipToContent equivalent (only preventDefault) TST: Layout_DetailPage.mvc.js:246-276, 583-600. judge: data-showskipcontent matches. SkipToContent is not ported: decision: migration/knowledge/auto-decisions-2026-10-16.md:115 (favicon row, CONFIRMED by the user 2026-10-17): the other OSUI layout helpers stay unported. TST effect: the link moves focus to MainContentWrapper (OutSystemsUI.js, Utilities SkipToContent). See Q1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.Layouts.Layout_DetailPage.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-030",
@@ -391,7 +431,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "onBack is a required prop; the PreviousScreen destination lives in the caller (not in this file) TST: Layout_DetailPage.mvc.js:328-349, 483-500. judge: the PreviousScreen destination is in the caller (onBack prop); checked per screen in the screen flows.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.Layouts.Layout_DetailPage.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-031",
@@ -404,7 +454,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: Layout_DetailPage.mvc.js:363-396.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.Layouts.Layout_DetailPage.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-032",
@@ -417,7 +477,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: Layout_DetailPage.mvc.js:398-458.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.Layouts.Layout_DetailPage.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-033",
@@ -430,7 +500,17 @@
    "tst": "present",
    "verdict": "differs",
    "note": "React: no LayoutReady, SetLang or AddFavicon call in this file (searched: SetLang, AddFavicon, LayoutReady, layoutReady in DetailLayout.tsx) TST: Layout_DetailPage.mvc.js:610-660. judge: LayoutReady (OutSystemsUI_2_23.controller.js:15248: IsWebApp/IsPWA, RunOnStart with SetDeviceClass = body device classes, SetExpandableExceptions, FixInputs) and AddFavicon are not ported: decision: migration/knowledge/auto-decisions-2026-10-16.md:115 (favicon row, CONFIRMED by the user 2026-10-17): the other OSUI layout helpers stay unported; the favicon link is static in app/index.html:11. SetLang(\"\") is a no-op on TST (OutSystemsUI.js:3199: only when language !== \"\"). React device classes: app/src/platform/device/device.ts (not compared here). See Q1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.Layouts.Layout_DetailPage.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-034",
@@ -443,7 +523,17 @@
    "tst": "present",
    "verdict": "differs",
    "note": "React: no LayoutDestroy equivalent in this file TST: Layout_DetailPage.mvc.js:543-580. judge: LayoutDestroy = OSUI LayoutPrivate.Dispose (OutSystemsUI_2_23.controller.js:15214-15247), listener cleanup, no user effect; decision: migration/knowledge/auto-decisions-2026-10-16.md:115 (favicon row, CONFIRMED by the user 2026-10-17): the other OSUI layout helpers stay unported.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.Layouts.Layout_DetailPage.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-035",
@@ -482,7 +572,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "React component name: EntityLazyImage TST: UBT_LazyImage.mvc.js:43-85.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-038",
@@ -495,7 +595,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: UBT_LazyImage.mvc.js:269-340.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "_libraries-039",
@@ -508,7 +618,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "false-branch text not printed (line cut) TST: UBT_LazyImage.mvc.js:324-326. judge: the false branch is ExtendedClass (reader); not re-read.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-040",
@@ -521,7 +641,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: UBT_LazyImage.mvc.js:377-436.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-041",
@@ -534,7 +664,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST lines 440-509 comments only; the Switch conditions (which UBT_ImageSize each case tests) are not in the extract TST: UBT_LazyImage.mvc.js:436-575. judge: TST height cases (UBT_LazyImage.mvc.js:437-500): ExtraSmall_32, Small_40, Base_52, Medium_60, Large_65, ExtraLarge_100, DoubleExtraLarge_176, FullHeight_100_Percent, MaxHeight_100vh with the font and icon sizes the reader listed: same keys as the React HEIGHT map.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-042",
@@ -547,7 +687,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "The In_HighRes condition at TST line ~670-675 is not in the extract TST: UBT_LazyImage.mvc.js:580-676. judge: TST \"If not In_HighRes -> LocalImageSizeId = Medium\" (UBT_LazyImage.mvc.js:673-676): same as React. KB BR-C2UTL-350.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-043",
@@ -560,7 +710,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: UBT_LazyImage.mvc.js:679-706.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-044",
@@ -573,7 +733,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "The three If conditions (738-746) are not printed in the extract; the server action is GetSignedImagesInBulk per React comment TST: UBT_LazyImage.mvc.js:717-780. judge: TST conditions (UBT_LazyImage.mvc.js:740-746): AlreadyHasURL = LocalImageURL <> \"\"; HasData = EntityId <> \"\" and <> \"0\" and EntityType <> \"\"; IsValidType = LocalImageType <> \"\": same as React needsSignedUrl. KB BR-C2UTL-349. Server side: row _libraries-245.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-045",
@@ -586,7 +756,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: UBT_LazyImage.mvc.js:809-850. judge: TST condition EntityId <> LocalEntityId (UBT_LazyImage.mvc.js:822): same as React.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-046",
@@ -1006,7 +1186,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: OutSystemsUI_2_23.Interaction.BottomSheet.mvc.js:13-30.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "_libraries-078",
@@ -1019,7 +1209,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "The outer If(false) wrapper at line 167; focus-trap spans, aria and inert come from the provider JS (OutSystemsUI.js, not read here) TST: BottomSheet.mvc.js:167-220.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-079",
@@ -1032,7 +1232,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "React has no JSON-serialized config object; props drive the render TST: BottomSheet.mvc.js:266-360.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-080",
@@ -1045,7 +1255,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "React raises OnToggle only when isOpen changes (previousOpen guard, lines 93-95); initial closed state raises nothing TST: BottomSheet.mvc.js:376-460, 491-510. judge: the OSUI provider raises OnToggle on open and close only; React raises it on a change of isOpen: same.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-081",
@@ -1058,7 +1278,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: BottomSheet.mvc.js:515-560.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-082",
@@ -1071,7 +1301,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: BottomSheet.mvc.js:467-485.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-083",
@@ -1084,7 +1324,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "React cites runtime-sources/OutSystemsUI_2_23.OutSystemsUI.js:4913-5136; the provider file was not compared here. judge: the provider (OutSystemsUI.js:4913-5136) has the Escape key (:4969), a focus trap (:4937) and the header drag gesture (:4940-4964); React has Escape, drag and hasScroll. Not compared line by line.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "_libraries-084",
@@ -1097,7 +1347,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "Local_isOpen and HideContentWhenClosed are local state in React (lines 94-95) TST: UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc.js:13-98.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "_libraries-085",
@@ -1110,7 +1370,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST Shape argument not printed in extract (line 336-345); React passes Shape.Rounded TST: BottomSheet.mvc.js:318-340. judge: TST passes Shape: rounded (BottomSheet.mvc.js:319): same as React.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-086",
@@ -1123,7 +1393,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "CustomText options in TST at 505-514 not printed (React: Neutral10, Small, SemiBold) TST: BottomSheet.mvc.js:397-600. judge: TST title options neutral10 / small / semiBold (BottomSheet.mvc.js:508-510): same as React.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-087",
@@ -1136,7 +1416,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "Content.Style expression (620-630) not printed TST: BottomSheet.mvc.js:613-645.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-088",
@@ -1149,7 +1439,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "React runs OnReady once with first-render inputs TST: BottomSheet.mvc.js:751-800.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-089",
@@ -1162,7 +1462,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "The RemoveInert condition (line 722) is not in the extract TST: BottomSheet.mvc.js:689-745. judge: TST RemoveInert condition = IsNotInertWhenClosed and not Local_isOpen (BottomSheet.mvc.js:721): same as React.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-090",
@@ -1175,7 +1485,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST drag-to-open JS is at lines 1095-1215; React jsNodes.ts bindDragToOpen not compared line by line TST: BottomSheet.mvc.js:915-950, 1090-1215. judge: jsNodes.ts bindDragToOpen (60 px, 0.3 px/ms) cites TST:1123-1211; not compared line by line.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "_libraries-091",
@@ -1188,7 +1508,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "Conditions of MaybeHideContentWhenClosed (line 800-830) and the RemoveInert guard (line 896) not printed TST: BottomSheet.mvc.js:800-835, 869-910.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-092",
@@ -1201,7 +1531,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: BottomSheet.mvc.js:428-440.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-093",
@@ -1240,7 +1580,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "Locals: SearchPromt \"Search\", RecentlySharedLabel \"Recently Shared\", AvatarImageSize_HorizontalList small_40, AvatarImageSize_VerticalList base_52, AvatarSize_HorizontalList small_40 (lines 77-110); React keeps SEARCH_PROMPT in shareSheetState.ts:23 TST: CW_Share.ShareSheet.mvc.js:113-146.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-096",
@@ -1253,7 +1603,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "Legacy class text is cut in the extract (line 321) TST: ShareSheet.mvc.js:317-345. judge: TST legacy class = \" connect-share-sheet--legacy\" (ShareSheet.mvc.js:321): same as React.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "_libraries-097",
@@ -1266,7 +1626,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: ShareSheet.mvc.js:358-403.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-098",
@@ -1279,7 +1649,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "React isSharing = CurrentExternalShareIdOption <> \"\" or SharingRecentMemberId <> \"\" (jsNodes.ts:5-6); the TST expression at 470-477 is a JS-node call not printed TST: ShareSheet.mvc.js:477, 489.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-099",
@@ -1292,7 +1672,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "Cancel calls Event_ClosedShareSheet only (no reset), as in React; ButtonOptions in TST at 1760,1803 not printed TST: ShareSheet.mvc.js:1755-1825. judge: both buttons use UBT_ButtonSize.small (ShareSheet.mvc.js:1762, 1805): same as React.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "_libraries-100",
@@ -1305,7 +1695,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "The If wrapping the TST block (line ~1850) is not printed TST: ShareSheet.mvc.js:1853-1870.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-101",
@@ -1318,7 +1718,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "searched: ExternalShare, CopyLink, WhatsApp, Signal, Outlook, ShareVia in app/src/containers/ShareSheet and components/share: no list of options (only currentExternalShareIdOption state and a CS_CreateShareProfileLink mock) TST: ShareSheet.mvc.js:640-1050. judge: ShareSheetFirstStep.tsx read: Input (focus -> onSearchFocus, prompt \"Search\", debounce 300), Recently Shared list with CircleButtonWithLabel (border primary and isProcessing while sharing, last-row padding), hidden when fetched and empty (TST $if at ShareSheet.mvc.js:691). The \"Shared To\" section is native only: HasNativeShare = AppManager_GetIsNative (TST:3238), KB BR-C2UTL-340; the PWA has isNativeDevice false (app/src/platform/device/deviceContext.ts:38).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-102",
@@ -1331,7 +1741,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "Result title text: If(IsSearching,\"Results\",\"Recently shared\") (line 1517) TST: ShareSheet.mvc.js:1167-1750. judge: ShareSheetSearchStep.tsx read: \"N person/people selected\", RemoveFill primary Small_12 badge, Lock / CheckboxFill / CheckboxOutlineBlank icons, EmptyState texts \"No results found for ...\" and \"Sorry, we couldn’t find ...\" (TST:1438, 1448), title \"Results\" / \"Recently shared\": same as TST.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-103",
@@ -1344,7 +1764,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "searched: HasNativeShare, isNative in useShareSheet.ts: not found (README:78-84 says the section is not rendered in the PWA) TST: ShareSheet.mvc.js:3219-3258, 2413-2570. judge: the skeleton list matches (KB BR-C2UTL-333). HasNativeShare and Action_SetExternalShareOptions are native only (rows 116, 117).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-104",
@@ -1357,7 +1787,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: ShareSheet.mvc.js:2133-2209.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-105",
@@ -1370,7 +1810,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: ShareSheet.mvc.js:2756-2800, 3325-3358.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-106",
@@ -1383,7 +1833,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "React does not clear SearchResultItemList as state (derived) TST: ShareSheet.mvc.js:3178-3215.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-107",
@@ -1396,7 +1856,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "IsSubmitting and ShareId have no React local (README:86) TST: ShareSheet.mvc.js:2864-2900. judge: IsSubmitting and ShareId have no visible effect; no React local.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-108",
@@ -1409,7 +1879,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: ShareSheet.mvc.js:3259-3300.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "_libraries-109",
@@ -1422,7 +1902,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: ShareSheet.mvc.js:2373-2410.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-110",
@@ -1435,7 +1925,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "Empty-term condition of Submit in TST (line ~2815-2827) not printed; React sets IsSearching only when the trimmed term is non-empty TST: ShareSheet.mvc.js:2726-2760, 2805-2860. judge: TST Submit: SearchTerm = Trim(...); If SearchTerm <> \"\" -> IsSearching = True, skeleton, fetch (ShareSheet.mvc.js:2824-2830): same as React.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-111",
@@ -1451,7 +1951,18 @@
    "verified": "code",
    "severity": "major",
    "finding": "F1",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js (lines-same)",
+     "UBTConnect_Utils.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-112",
@@ -1467,7 +1978,17 @@
    "verified": "live",
    "severity": "minor",
    "finding": "F2",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "_libraries-113",
@@ -1480,7 +2001,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: ShareSheet.mvc.js:2211-2248.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-114",
@@ -1493,7 +2024,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: ShareSheet.mvc.js:3003-3075.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-115",
@@ -1509,7 +2050,17 @@
    "verified": "live",
    "severity": "minor",
    "finding": "F3",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "_libraries-116",
@@ -1522,7 +2073,17 @@
    "tst": "present",
    "verdict": "n/a",
    "note": "searched: onClickExternalOption, ExternalShare in app/src/containers/ShareSheet; README:82-84 says the ExternalShare client action is not ported; mock ActionCS_CreateShareProfileLink in mocks.ts:40 exists. native only: HasNativeShare = AppManager_GetIsNative() (ShareSheet.mvc.js:3238) gates the \"Shared To\" section; KB BR-C2UTL-340 (\"External share options exist only in the native app\"); ADR-1 web/PWA only; app-shell.spec.md U14 (native link plugins dropped).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-117",
@@ -1535,7 +2096,17 @@
    "tst": "present",
    "verdict": "n/a",
    "note": "searched: CanLaunchWithData, WhatsApp, Signal, Outlook, CopyLink in app/src/containers/ShareSheet, app/src/components/share. native only: see row 116. CanLaunchWithData is the app-launcher plugin (BR-C2UTL-340).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-118",
@@ -1548,7 +2119,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "mock handlers: app/src/containers/ShareSheet/mocks.ts TST: ShareSheet.mvc.js:2031-2132, 2303-2372.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "_libraries-119",
@@ -1847,7 +2428,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: NotesSheet.mvc.js:13-50.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "_libraries-142",
@@ -1860,7 +2451,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "Title \"Note\" and FooterHeight \"72px\" are in the BottomSheet arguments (TST lines 208-222) that the extract does not print TST: NotesSheet.mvc.js:206-370. judge: TST Title \"Note\", ShowHeader true, FooterHeight \"72px\" (NotesSheet.mvc.js:209-213): same as React. KB BR-C2UTL-326.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "_libraries-143",
@@ -1873,7 +2474,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "The If around the TST block (line ~372) is not printed; flow body at 602-632 has no printed nodes TST: NotesSheet.mvc.js:374-390, 602-632.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "_libraries-144",
@@ -1886,7 +2497,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "React adds delaySetIsOpen before BottomSheetClose; TST nodes between 705-721 are not printed (delay JS node unverified) TST: NotesSheet.mvc.js:671-735. judge: TST runs the JS node DelaySetIsOpen before BottomSheetClose (NotesSheet.mvc.js:707-712): same as React.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-145",
@@ -1899,7 +2520,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: NotesSheet.mvc.js:635-665.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-146",
@@ -1912,7 +2543,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: NotesSheet.mvc.js:737-812.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-147",
@@ -1925,7 +2566,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "React puts the new note first in the list; ListAppendAll order in TST (line 525) not verified; mock: app/src/components/note/NotesSheet/mocks.ts TST: NotesSheet.mvc.js:476-535. judge: TST appends In_Notes after the new note (ListAppendAll at NotesSheet.mvc.js:525), so the new note is first: same as React. KB BR-C2UTL-325. Server side: row _libraries-243.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "_libraries-148",
@@ -1938,7 +2589,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: NotesSheet.mvc.js:536-565.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "_libraries-149",
@@ -1951,7 +2612,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: NotesSheet.mvc.js:259-285.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-150",
@@ -2081,7 +2752,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: StaticInput.mvc.js:13-20.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnectLibrary.ConnectPatterns.StaticInput.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "_libraries-160",
@@ -2094,7 +2775,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "Block at TST line 205 (Text = In_Prompt) assumed TextEllipsis from the React port; block name not printed TST: StaticInput.mvc.js:155-215. judge: the block name at TST:205 was not confirmed; React uses TextEllipsis.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnectLibrary.ConnectPatterns.StaticInput.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "_libraries-161",
@@ -2107,7 +2798,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "React cites SearchInputRec defaults from UBTConnectLibrary.model.js:1477-1516 (not read here) TST: UBTConnectLibrary.ConnectPatterns.Input.mvc.js:13-24. judge: SearchInputRec defaults (UBTConnectLibrary.model.js:1473-1526, fetched 2026-10-27): IsEnabled true, IsMandatory false, ValidationMessage \"Required\", MaxLength 50, InitalString \"\", SearchPrompt \"Search\", IsForceInvalid false, Debounce_DelayMS -1, BorderRadius shape.softRounded, EnableAutocompleteHTML false, FocusOnReady false, IsSyncValueWithInput false = the 12 React withDefaults values (Input.tsx:44-59; Shape.SoftRounded = the TST shape value, staticEntities.ts:286-288).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.ConnectPatterns.Input.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-162",
@@ -2120,7 +2821,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: Input.mvc.js:155-159.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.ConnectPatterns.Input.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-163",
@@ -2133,7 +2844,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: Input.mvc.js:165-210.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.ConnectPatterns.Input.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-164",
@@ -2146,7 +2867,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: Input.mvc.js:213-272.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.ConnectPatterns.Input.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-165",
@@ -2159,7 +2890,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: enabled=IsEnabled, mandatory=IsMandatory, maxLength: 50 (widget literal), extendedProperties.maxLength=In_Options.MaxLength; React uses only MaxLength TST: Input.mvc.js:276-341. judge: the extended attribute maxLength = In_Options.MaxLength replaces the widget literal 50 at run time; the default MaxLength is 50 (UBTConnectLibrary.model.js:1473-1526), as React.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.ConnectPatterns.Input.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-166",
@@ -2172,7 +2913,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: Input.mvc.js:314-318.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.ConnectPatterns.Input.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-167",
@@ -2185,7 +2936,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: Input.mvc.js:320-348.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnectLibrary.ConnectPatterns.Input.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "_libraries-168",
@@ -2198,7 +2959,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST sets Valid/ValidationMessage lines 459,462 under the 'Is Mandatory?' branch (line 454); branch condition not shown in extract, React guards with IsMandatory TST: Input.mvc.js:439-505 (OnChange). judge: TST sets Valid and ValidationMessage under \"Is Mandatory?\" (Input.mvc.js:455-462): same as React.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.ConnectPatterns.Input.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-169",
@@ -2211,7 +2982,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: Input.mvc.js:510-545.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.ConnectPatterns.Input.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-170",
@@ -2224,7 +3005,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "FocusOnReady branch condition not in extract; initial state = InitalString (line 76) TST: Input.mvc.js:560-625. judge: TST focuses the input when In_Options.FocusOnReady (Input.mvc.js:597): same as React.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.ConnectPatterns.Input.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-171",
@@ -2237,7 +3028,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: Input.mvc.js:628-645.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.ConnectPatterns.Input.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-172",
@@ -2250,7 +3051,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "React's replace condition (InitalString<>\"\" and differs, or IsSyncValueWithInput) not verified in the TST extract (lines 664-668) TST: Input.mvc.js:652-684. judge: TST \"Needs to replace\" = (InitalString <> \"\" and InitalString <> SearchString) or IsSyncValueWithInput (Input.mvc.js:665); ValidationMessage = If(IsForceInvalid, msg, If(IsMandatory and SearchString = \"\", msg, \"\")): same as React Input.tsx:122-132.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.ConnectPatterns.Input.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-173",
@@ -2263,7 +3074,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: Input.mvc.js:687-720.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.ConnectPatterns.Input.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-174",
@@ -2276,7 +3097,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: Input.mvc.js:297-308.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnectLibrary.ConnectPatterns.Input.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-175",
@@ -2526,7 +3357,17 @@
    "verified": "code",
    "severity": "major",
    "finding": "F1",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-194",
@@ -2539,7 +3380,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: NoteListActions.mvc.js:13-46.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Notes.NoteListActions.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "_libraries-195",
@@ -2552,7 +3403,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "React resets notesData on change of any of five inputs TST: NoteListActions.mvc.js:421-465, 665-685.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Notes.NoteListActions.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-196",
@@ -2565,7 +3426,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: NoteListActions.mvc.js:203-290.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Notes.NoteListActions.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "_libraries-197",
@@ -2578,7 +3449,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST trigger lines after 404 and 796 not in the extract: the event raise is not verified TST: NoteListActions.mvc.js:389-415, 778-800. judge: the On_EditingStateChanged trigger lines (TST:404, 796) were not read; NotesSheet handles the event (row 146), so the event exists.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Notes.NoteListActions.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-198",
@@ -2591,7 +3472,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "Order of CreateOrUpdate_LocalNote vs. list change: TST line 522 comes after 'NewNotes = NotesData' (517) and before the Note assignment (528); React matches per its comment TST: NoteListActions.mvc.js:469-548. judge: TST calls the server action UpdateNote (NoteListActions.mvc.js:326, 496). KB BR-C2UTL-324 says the edit never reaches the server: K3. Server side: row _libraries-244.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Notes.NoteListActions.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "_libraries-199",
@@ -2604,7 +3495,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: NoteListActions.mvc.js:550-595.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Notes.NoteListActions.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "_libraries-200",
@@ -2617,7 +3518,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: NoteListActions.mvc.js:603-615.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Notes.NoteListActions.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-201",
@@ -2630,7 +3541,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "IsLastNoteDeleted expression in TST (lines 722-726) not printed TST: NoteListActions.mvc.js:689-770. judge: TST calls the server action DeleteNoteByNoteId (NoteListActions.mvc.js:357, 709). KB BR-C2UTL-323 says the delete never reaches the server: K2. The IsLastNoteDeleted expression (TST:722-726) was not read; React passes length = 1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Notes.NoteListActions.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "_libraries-202",
@@ -2643,7 +3564,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: NoteListActions.mvc.js:215-225.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Notes.NoteListActions.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-203",
@@ -2799,7 +3730,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "ImageWidth and BorderRadius are locals in TST (not inputs); React uses constants TST: ShareableObject_Generic.mvc.js:13-20.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Share.ShareableObject_Generic.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-215",
@@ -2812,7 +3753,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST ImageSize record (164-172) not printed TST: ShareableObject_Generic.mvc.js:157-180.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Share.ShareableObject_Generic.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-216",
@@ -2825,7 +3776,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST: ShareableObject_Generic.mvc.js:196-211.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Share.ShareableObject_Generic.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "_libraries-217",
@@ -2838,7 +3799,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "The If conditions at TST lines ~255 and ~297 are not printed in the extract TST: ShareableObject_Generic.mvc.js:218-370. judge: TST $if(Subtitle <> \"\") and $if(Location <> \"\") (ShareableObject_Generic.mvc.js:255, 297): same as React.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Share.ShareableObject_Generic.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-218",
@@ -3162,7 +4133,17 @@
    "evidence": "app/src/containers/ShareSheet/mocks.ts; ShareSheet.mvc.js:2031-2132",
    "verdict": "mock-only",
    "note": "production needs the four UBTConnect_Utils service actions. KB BR-C2UTL-338 (at most 20 recently shared), BR-C2UTL-339.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "_libraries-243",
@@ -3174,7 +4155,17 @@
    "evidence": "app/src/components/note/NotesSheet/mocks.ts; NotesSheet.mvc.js:476-535",
    "verdict": "mock-only",
    "note": "production needs AddNote. KB BR-C2UTL-325.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "_libraries-244",
@@ -3186,7 +4177,17 @@
    "evidence": "app/src/containers/NoteListActions/mocks.ts; NoteListActions.mvc.js:326, 357",
    "verdict": "mock-only",
    "note": "production needs both. KB BR-C2UTL-323 and 324 disagree with TST (K2, K3).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Notes.NoteListActions.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "_libraries-245",
@@ -3198,7 +4199,17 @@
    "evidence": "app/src/components/ui/EntityLazyImage/mocks.ts; UBT_LazyImage.mvc.js:717-780",
    "verdict": "mock-only",
    "note": "production needs the signed-URL service. KB BR-C2UTL-349.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc.js (lines-same)"
+    ]
+   }
   }
  ]
 }

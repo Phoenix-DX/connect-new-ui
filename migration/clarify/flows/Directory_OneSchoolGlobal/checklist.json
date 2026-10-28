@@ -13,7 +13,17 @@
    "evidence": "app/src/pages/OneSchoolGlobalDetails/inputs.ts:11-14; app/src/app/routes.ts:40; TST OneSchoolGlobalDetails.mvc.js:92-96 (setInputs, default 0), :1446-1447 (checkRegistered)",
    "verdict": "match",
    "note": "TST checks Registered only; UBTOne_User is DEV only (report 6.1). A missing id gives 0 on TST and \"0\" in React.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-002",
@@ -25,7 +35,17 @@
    "evidence": "app/src/pages/OneSchoolGlobalDetails/hooks/useOneSchoolGlobalDetails.ts:39, :47; TST OneSchoolGlobalDetails.mvc.js:1458, :1463",
    "verdict": "match",
    "note": "TST has no screen variable: the JS node runs in OnInitialize and in OnReady (report 6.1).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-003",
@@ -37,7 +57,17 @@
    "evidence": "app/src/pages/OneSchoolGlobalDetails/hooks/useOneSchoolGlobalDetails.ts:27-52; TST OneSchoolGlobalDetails.mvc.js:1404-1442",
    "verdict": "match",
    "note": "TST screen has OnInitialize and OnReady; OnParametersChanged is null (report 6.1).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-004",
@@ -49,7 +79,17 @@
    "evidence": "app/src/pages/OneSchoolGlobalDetails/OneSchoolGlobalDetailsPage.tsx:259-262; app/src/components/layout/DetailLayout/DetailLayout.tsx:46; pack/references.md:46 (In_IsPrimaryColor = True); TST OneSchoolGlobalDetails.mvc.js:170-171 (inputs {})",
    "verdict": "match",
    "note": "No input on DEV and TST, so the layout default True applies; React default true.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-005",
@@ -61,7 +101,17 @@
    "evidence": "app/src/pages/OneSchoolGlobalDetails/OneSchoolGlobalDetailsPage.tsx:264-269",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-006",
@@ -73,7 +123,17 @@
    "evidence": "app/src/pages/OneSchoolGlobalDetails/OneSchoolGlobalDetailsPage.tsx:271-272",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-007",
@@ -85,7 +145,17 @@
    "evidence": "app/src/pages/OneSchoolGlobalDetails/hooks/useOneSchoolGlobalDetails.ts:39-47; TST OneSchoolGlobalDetails.mvc.js:1216-1245",
    "verdict": "match",
    "note": "React has no separate assign; the flag feeds skipFetch. Hook comment at :28-33.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-008",
@@ -97,7 +167,17 @@
    "evidence": "app/src/pages/OneSchoolGlobalDetails/OneSchoolGlobalDetailsPage.tsx:62-272 (block inlined in the page); TST: no file OneSchoolGlobalDetails_Block, its widgets are in OneSchoolGlobalDetails.mvc.js",
    "verdict": "match",
    "note": "TST inlines the block in the screen; React follows (report 6.1). The second caller EntitiesCarousel_OneSchoolGlobal belongs to the carousel, not built (V8).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-009",
@@ -109,7 +189,17 @@
    "evidence": "app/src/pages/OneSchoolGlobalDetails/hooks/oneSchoolGlobalDetailsState.ts:40-43; TST OneSchoolGlobalDetails.mvc.js:1239-1243",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-010",
@@ -121,7 +211,17 @@
    "evidence": "app/src/pages/OneSchoolGlobalDetails/hooks/useOneSchoolGlobalDetails.ts:47; TST OneSchoolGlobalDetails.mvc.js:1294 (restored and isDataFetched); BR-UBTCON-905 condition",
    "verdict": "match",
    "note": "DEV tests IsRestoredFromCache only; TST also tests IsDataFetched, as React does (report 6.1).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-011",
@@ -133,7 +233,17 @@
    "evidence": "app/src/pages/OneSchoolGlobalDetails/hooks/oneSchoolGlobalDetailsState.ts:41; app/src/lib/ubtConnect/actions.ts:318-332; TST OneSchoolGlobalDetails.mvc.js:1299; BR-UBTCON-517",
    "verdict": "match",
    "note": "React sets the value in the initial state; TST sets it in OnReady. The value is the same: get_LookupSection(false).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-012",
@@ -145,7 +255,17 @@
    "evidence": "app/src/pages/OneSchoolGlobalDetails/hooks/oneSchoolGlobalDetailsState.ts:49-56; app/src/pages/OneSchoolGlobalDetails/OneSchoolGlobalDetailsPage.tsx:70; TST OneSchoolGlobalDetails.mvc.js:1306-1310",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-013",
@@ -157,7 +277,17 @@
    "evidence": "app/src/pages/OneSchoolGlobalDetails/hooks/useOneSchoolGlobalDetails.ts:48-52; TST OneSchoolGlobalDetails.mvc.js:1313",
    "verdict": "match",
    "note": "TST shouldSendClientVarsToDataSources=false.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-014",
@@ -169,7 +299,17 @@
    "evidence": "TST OneSchoolGlobalDetails.mvc.js:1442 (onParametersChangedEventHandler = null); no handler in app/src/pages/OneSchoolGlobalDetails/hooks/useOneSchoolGlobalDetails.ts",
    "verdict": "match",
    "note": "DEV only (report 6.1). The React refetch on an id change is row 056.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-015",
@@ -193,7 +333,17 @@
    "evidence": "app/src/pages/OneSchoolGlobalDetails/hooks/useOneSchoolGlobalDetails.ts:67-69; app/src/pages/OneSchoolGlobalDetails/OneSchoolGlobalDetailsPage.tsx:220-224; TST OneSchoolGlobalDetails.mvc.js:943",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-017",
@@ -205,7 +355,17 @@
    "evidence": "app/src/pages/OneSchoolGlobalDetails/components/ButtonGroup.tsx:5-12; TST OneSchoolGlobalDetails.mvc.js:67 (ValidationWidgetRecord), mandatory false",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-018",
@@ -217,7 +377,17 @@
    "evidence": "app/src/api/locality/repository.ts:178-188; TST OneSchoolGlobalDetails.mvc.js:1189-1212 (callDataAction DataActionGetOneSchoolGlobalDetails)",
    "verdict": "match",
    "note": "React calls the screen data action over the wire; the server action calls below are server side. Mock: app/src/pages/OneSchoolGlobalDetails/mocks.ts:24-38 (contractHandler, fixture UBTConnect/DataActionGetOneSchoolGlobalDetails/01-5a0e2715.json, name overridden, SignedURL = placeholder).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-019",
@@ -241,7 +411,17 @@
    "evidence": "app/src/api/locality/mapper.ts:376-393; TST OneSchoolGlobalDetails.mvc.js:18-20 (UI_Timezone is an output only); BR-UBTCON-905",
    "verdict": "mock-only",
    "note": "Production needs Connect_Geography_CS.Get_Core_LocalityTimezone in the same data action. No TST widget reads UI_Timezone; the React mapper drops it.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-021",
@@ -265,7 +445,17 @@
    "evidence": "app/src/pages/OneSchoolGlobalDetails/OneSchoolGlobalDetailsPage.tsx:69, :81, :178; TST OneSchoolGlobalDetails.mvc.js:238, :645",
    "verdict": "match",
    "note": "The third SkeletonSection of DEV is in a dead branch (row 042).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-023",
@@ -325,7 +515,17 @@
    "evidence": "app/src/pages/OneSchoolGlobalDetails/OneSchoolGlobalDetailsPage.tsx:97-99; TST OneSchoolGlobalDetails.mvc.js:315",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-028",
@@ -373,7 +573,17 @@
    "evidence": "app/src/pages/OneSchoolGlobalDetails/OneSchoolGlobalDetailsPage.tsx:127; TST OneSchoolGlobalDetails.mvc.js:431",
    "verdict": "match",
    "note": "If true branch / false branch both match the quote.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-032",
@@ -397,7 +607,17 @@
    "evidence": "app/src/pages/OneSchoolGlobalDetails/OneSchoolGlobalDetailsPage.tsx:136-148; app/src/pages/OneSchoolGlobalDetails/hooks/oneSchoolGlobalDetailsState.ts:60-63; TST OneSchoolGlobalDetails.mvc.js:479 (source_dataFetchStatus), :485",
    "verdict": "match",
    "note": "React adds list-loading or list-error from the fetch status, as the TST List widget does through source_dataFetchStatus.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-034",
@@ -433,7 +653,17 @@
    "evidence": "app/src/pages/OneSchoolGlobalDetails/OneSchoolGlobalDetailsPage.tsx:41, :75-78, :166-173; TST OneSchoolGlobalDetails.mvc.js:588 (trim of Name), :599-603 (EnableOptions: EnableNotes True)",
    "verdict": "match",
    "note": "The Name expression that the DEV dump cuts is Trim(Name) on TST.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-037",
@@ -457,7 +687,17 @@
    "evidence": "app/src/pages/OneSchoolGlobalDetails/OneSchoolGlobalDetailsPage.tsx:181-197; TST OneSchoolGlobalDetails.mvc.js:690",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-039",
@@ -469,7 +709,17 @@
    "evidence": "pack/blocks.md [DEAD BRANCH]; TST OneSchoolGlobalDetails.mvc.js:815-837 (ComingSoon only)",
    "verdict": "n/a",
    "note": "Dead in the model. React does not build DW_OneSchoolGlobal_Numbers. The live else branch is row 055.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-040",
@@ -481,7 +731,17 @@
    "evidence": "app/src/pages/OneSchoolGlobalDetails/OneSchoolGlobalDetailsPage.tsx:206-219; TST OneSchoolGlobalDetails.mvc.js:906-909 (flag ? extraSmall : nullTextIdentifier())",
    "verdict": "match",
    "note": "TST gives ExtraSmall with the flag and an empty identifier without it, as React does.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-041",
@@ -505,7 +765,17 @@
    "evidence": "pack/blocks.md [DEAD BRANCH]; TST OneSchoolGlobalDetails.mvc.js:1075-1097 (ComingSoon4 only)",
    "verdict": "n/a",
    "note": "Dead in the model. React builds no event list, no about text and no Skeleton_TextBlock. The live else branch is row 055.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-043",
@@ -517,7 +787,17 @@
    "evidence": "app/src/pages/OneSchoolGlobalDetails/OneSchoolGlobalDetailsPage.tsx:49-53; TST OneSchoolGlobalDetails.mvc.js:817, :1077",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-044",
@@ -576,7 +856,17 @@
    "react": "Fetch unless restored with data; coordinates from the wire (empty)",
    "evidence": "app/src/pages/OneSchoolGlobalDetails/hooks/useOneSchoolGlobalDetails.ts:47-52; app/src/api/locality/mapper.ts:391; TST OneSchoolGlobalDetails.mvc.js:1294, :1313; BR-UBTCON-905",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-049",
@@ -587,7 +877,17 @@
    "react": "useFlag(FLAG_MobileStudentInformation); ComingSoon inside the ExpandableSection",
    "evidence": "app/src/pages/OneSchoolGlobalDetails/OneSchoolGlobalDetailsPage.tsx:66, :179-202; TST OneSchoolGlobalDetails.mvc.js:664-837; BR-UBTCON-906",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-050",
@@ -599,7 +899,17 @@
    "evidence": "app/src/pages/OneSchoolGlobalDetails/OneSchoolGlobalDetailsPage.tsx:206-254; TST OneSchoolGlobalDetails.mvc.js:943, :1075-1097; BR-UBTCON-907",
    "verdict": "match",
    "note": "The KB rule says the button group never renders and the about text shows. DEV and TST say the reverse (report 6.2, K1).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-051",
@@ -622,7 +932,17 @@
    "react": "get_LookupSection(false) gives the same label and icon",
    "evidence": "app/src/lib/ubtConnect/actions.ts:318-332; app/src/pages/OneSchoolGlobalDetails/hooks/oneSchoolGlobalDetailsState.ts:41; TST OneSchoolGlobalDetails.mvc.js:1299; BR-UBTCON-517",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-053",
@@ -633,7 +953,17 @@
    "react": "raiseToFlowHandler(getDetails.error); the skeleton card stays",
    "evidence": "app/src/pages/OneSchoolGlobalDetails/hooks/useOneSchoolGlobalDetails.ts:58-61; TST OneSchoolGlobalDetails.mvc.js:1443-1444; migration/knowledge/auto-decisions-2026-10-15.md:56",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-054",
@@ -648,7 +978,17 @@
    "severity": "minor",
    "finding": "F1",
    "verified": "live",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-055",
@@ -659,7 +999,17 @@
    "react": "The same two containers and ComingSoon instances",
    "evidence": "app/src/pages/OneSchoolGlobalDetails/OneSchoolGlobalDetailsPage.tsx:200-202, :242-254; TST OneSchoolGlobalDetails.mvc.js:815-837, :1075-1097",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal-056",
@@ -671,7 +1021,17 @@
    "evidence": "TST OneSchoolGlobalDetails.mvc.js:1442; migration/runtime-sources/OutSystemsReactView.js:7 (UNSAFE_componentWillUpdate, fireAfterInputsChanged); migration/runtime-sources/OutSystems.js:17; app/src/api/locality/keys.ts:13-14; app/src/pages/OneSchoolGlobalDetails/hooks/useOneSchoolGlobalDetails.ts:48-52",
    "verdict": "match",
    "note": "No in-app path from this screen to itself is known. The code read does not show if the TST router keeps the screen mounted. | capture 2026-10-27 (review/captures.md §1): a navigation to the open screen with another id re-mounts the screen and runs DataActionGetOneSchoolGlobalDetails again (+55 ms); React refetches too (user Q1: (c) then (a))",
-   "verified": "live"
+   "verified": "live",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (lines-same)"
+    ]
+   }
   }
  ]
 }

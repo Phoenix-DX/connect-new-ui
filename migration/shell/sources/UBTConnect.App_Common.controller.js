@@ -26,7 +26,7 @@ return OS.ErrorHandling.IGNORED_ERROR_RESULT;
 }
 
 return OS.Flow.tryCatchFinally(function () {
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:0eZ+W3SSVk+CJcw1X48PQA.#FlowExceptionHandler:/NRWebFlows.0eZ+W3SSVk+CJcw1X48PQA/FlowExceptionHandler:h4V3LB38RqGzdGa14bzMCA", "UBTConnect", "OnException", "NRFlows.FlowExceptionHandlingFlow", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:0eZ+W3SSVk+CJcw1X48PQA.#FlowExceptionHandler:/NRWebFlows.0eZ+W3SSVk+CJcw1X48PQA/FlowExceptionHandler:8mQ+H9Oi0VUKkzVUaayrPQ", "UBTConnect", "OnException", "NRFlows.FlowExceptionHandlingFlow", callContext.id, varBag);
 OS.Logger.trace("App_Common.OnException", OS.Exceptions.getMessage(ex), ex.name);
 // Handle Error: BubbleCommunicationException
 if(OS.Exceptions.isInstanceOf(ex, OS.Exceptions.Exceptions.UserException, "UBTConnect.BubbleCommunicationException")) {
@@ -94,11 +94,23 @@ OS.Logger.error(null, ex);
 allExceptionsVar.value.exceptionMessageAttr = OS.Exceptions.getMessage(ex);
 return OS.Flow.executeAsyncFlow(function () {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:JQXMLU7l8EOUtInh5UKA2w", callContext.id);
+return OS.Flow.executeSequence(function () {
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:agZvotoLwEKnKM44eDeEPw", callContext.id) && ((OS.BuiltinFunctions.index(allExceptionsVar.value.exceptionMessageAttr, "NoteCommunicationError", 0, false, false)) !== (-1)))) {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:nan+oS3Cj0SL6Aw7SyzUWw", callContext.id);
+// Execute Action: ShowCommunicationExceptionMessage3
+UBTConnectController.default.showCommunicationExceptionMessage$Action(callContext);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Ye3GapYLrEa8aUKgi8WTXA", callContext.id);
+return OS.Flow.returnAsync();
+
+} else {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:IHOV8mH0yk6KPCv5Md6EIw", callContext.id);
 // Execute Action: ShowExceptionMessage
 return UBTConnectController.default.showExceptionMessage$Action(allExceptionsVar.value.exceptionMessageAttr, false, callContext).then(function () {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:fXSWSf1Tr0GIlmZrafZseQ", callContext.id);
 return OS.Flow.returnAsync();
+
+});
+}
 
 });
 });

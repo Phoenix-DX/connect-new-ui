@@ -2715,7 +2715,17 @@
    "evidence": "Connect2_OrbitMobile_MUI.LDM_Blocks_V2.EventCard_V2.mvc.js:287; EventCard_V2.tsx:69-95",
    "verdict": "match",
    "verified": "pack",
-   "note": "In_Length (the filtered count of EventCard_Guests) is passed on TST and not read by the screen handler (UBTConnect wrapper :422-470)"
+   "note": "In_Length (the filtered count of EventCard_Guests) is passed on TST and not read by the screen handler (UBTConnect wrapper :422-470)",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.LDM_Blocks_V2.EventCard_V2.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_LDMEventsFlow_V2-208",
@@ -2726,7 +2736,17 @@
    "react": "onClick={onCardClicked} EventCard_Info_V2.tsx:24",
    "evidence": "EventCard_Info_V2.mvc.js:324-360; EventCard_Info_V2.tsx:24",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "removed"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.EventCard_Info_V2.mvc.js (removed)"
+    ]
+   }
   },
   {
    "id": "Legacy_LDMEventsFlow_V2-209",
@@ -2748,7 +2768,17 @@
    "react": "toggleGuestList when inIsExpandable EventCard_Guests.tsx:64-68, :145",
    "evidence": "EG :619-640; EventCard_Guests.tsx:64-68",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.LDM_Blocks.EventCard_Guests.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_LDMEventsFlow_V2-211",
@@ -2760,7 +2790,17 @@
    "evidence": "EG :700-760; EventCard_Guests.tsx:170-210; UBTConnect wrapper :422-470",
    "verdict": "match",
    "verified": "pack",
-   "note": "the filter changes only In_CurrentRowNumber and In_Length here; the household list comes from EventCard_V2 (row 207) and the screen handler reads In_HouseholdId and In_HouseholdIdList only. The subscription actions are not called in React; no visible effect on this screen"
+   "note": "the filter changes only In_CurrentRowNumber and In_Length here; the household list comes from EventCard_V2 (row 207) and the screen handler reads In_HouseholdId and In_HouseholdIdList only. The subscription actions are not called in React; no visible effect on this screen",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.LDM_Blocks.EventCard_Guests.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_LDMEventsFlow_V2-212",
@@ -2775,7 +2815,17 @@
    "severity": "minor",
    "finding": "F4",
    "fixed": "2026-10-27",
-   "note": "Fixed 2026-10-27 (fixes/G2-orbit-ldm.md)."
+   "note": "Fixed 2026-10-27 (fixes/G2-orbit-ldm.md).",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.LDM_Blocks.EventCard_Guests.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_LDMEventsFlow_V2-213",
@@ -2786,7 +2836,17 @@
    "react": "callClicked EventCard_Guests.tsx:71-86",
    "evidence": "EG :571-620; EventCard_Guests.tsx:71-86",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.LDM_Blocks.EventCard_Guests.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_LDMEventsFlow_V2-214",

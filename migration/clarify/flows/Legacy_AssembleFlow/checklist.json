@@ -1132,7 +1132,17 @@
    "note": "TST: all Text inputs default \"\", Start DateTime default; EventId mandatory not enforced in TST code",
    "id": "Legacy_AssembleFlow-087",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js (lines)"
+    ]
+   }
   },
   {
    "screen": "AssembleDetail",
@@ -1145,7 +1155,17 @@
    "note": "IsEventNotFound: row 108 (dead on TST).",
    "id": "Legacy_AssembleFlow-088",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js (lines)"
+    ]
+   }
   },
   {
    "screen": "AssembleDetail",
@@ -1158,7 +1178,17 @@
    "note": "DEV only: absent on TST (0 grep hits in UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js). React follows TST. Section 6.1.",
    "id": "Legacy_AssembleFlow-089",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "screen": "AssembleDetail",
@@ -1171,7 +1201,17 @@
    "note": "DEV only: absent on TST (0 grep hits in UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js). React follows TST. Section 6.1.",
    "id": "Legacy_AssembleFlow-090",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "screen": "AssembleDetail",
@@ -1184,7 +1224,17 @@
    "note": "",
    "id": "Legacy_AssembleFlow-091",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "screen": "AssembleDetail",
@@ -1197,7 +1247,17 @@
    "note": "",
    "id": "Legacy_AssembleFlow-092",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "screen": "AssembleDetail",
@@ -1210,7 +1270,17 @@
    "note": "",
    "id": "Legacy_AssembleFlow-093",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js (lines)"
+    ]
+   }
   },
   {
    "screen": "AssembleDetail",
@@ -1223,7 +1293,17 @@
    "note": "DEV only: absent on TST (0 grep hits in UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js). React follows TST. Section 6.1.",
    "id": "Legacy_AssembleFlow-094",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "screen": "AssembleDetail",
@@ -1236,7 +1316,17 @@
    "note": "DEV only: absent on TST (0 grep hits in UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js). React follows TST. Section 6.1.",
    "id": "Legacy_AssembleFlow-095",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "screen": "AssembleDetail",
@@ -1249,7 +1339,17 @@
    "note": "Dead in the model (constant False). TST has no If and renders ShareSheet directly (AssembleDetail.mvc.js:309-325); React renders it always (AssembleDetailPage.tsx:103-111).",
    "id": "Legacy_AssembleFlow-096",
    "verdict": "n/a",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "screen": "AssembleDetail",
@@ -1262,7 +1362,17 @@
    "note": "",
    "id": "Legacy_AssembleFlow-097",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "screen": "AssembleDetail",
@@ -1275,7 +1385,17 @@
    "note": "",
    "id": "Legacy_AssembleFlow-098",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "screen": "AssembleDetail",
@@ -1288,7 +1408,17 @@
    "note": "",
    "id": "Legacy_AssembleFlow-099",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "screen": "AssembleDetail",
@@ -1301,7 +1431,17 @@
    "note": "",
    "id": "Legacy_AssembleFlow-100",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "screen": "AssembleDetail",
@@ -1314,7 +1454,17 @@
    "note": "",
    "id": "Legacy_AssembleFlow-101",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "screen": "AssembleDetail",
@@ -1327,7 +1477,17 @@
    "note": "",
    "id": "Legacy_AssembleFlow-102",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "screen": "AssembleDetail",
@@ -1340,7 +1500,17 @@
    "note": "",
    "id": "Legacy_AssembleFlow-103",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "screen": "AssembleDetail",
@@ -1353,7 +1523,17 @@
    "note": "Flag on on TST; the carousel branch is built (rows 100-103).",
    "id": "Legacy_AssembleFlow-104",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "screen": "AssembleDetail",
@@ -1366,7 +1546,17 @@
    "note": "The TST event carries Event_ContactSurname (AssembleDetail.mvc.js:287); the handler ignores it and uses GetNameAndSurname_ByFullName (BR-UBTCON-259). React does the same: AssembleDetailPage.tsx:81-91. Section 6.",
    "id": "Legacy_AssembleFlow-105",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "screen": "AssembleDetail",
@@ -1379,7 +1569,17 @@
    "note": "Native only. In_IsExternalSharing = True comes only from Handler_OnShareToOthers (AssembleEventDetail_AttendeeSubdivision.mvc.js:495, :1232), raised by the \"Share to others...\" item of ItemOptionsMenu behind IsShareToOThersAvailable = CheckSocialSharingPlugin (Connect2_LegacyShared.Utility.ItemOptionsMenu.mvc.js:373, :522, Cordova plugin). app/src/components/bookmark/ItemOptionsMenu/README.md:38. BR-UBTCON-621 external branch.",
    "id": "Legacy_AssembleFlow-106",
    "verdict": "n/a",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "screen": "AssembleDetail",
@@ -1392,7 +1592,17 @@
    "note": "",
    "id": "Legacy_AssembleFlow-107",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "screen": "AssembleDetail",
@@ -1405,7 +1615,18 @@
    "note": "Dead on TST: AssembleEventDetail defines eventNotFound$Action (AssembleEventDetail.mvc.js:1100) and never calls it (1 grep hit); IsEventNotFound is written (AssembleDetail.mvc.js:701) and never read (:915 getter only). React has no variable (AssembleDetailPage.tsx:44).",
    "id": "Legacy_AssembleFlow-108",
    "verdict": "n/a",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_Assemble_MUI.Assemble.AssembleEventDetail.mvc.js (lines-same)",
+     "UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "screen": "AssembleDetail",
@@ -1418,7 +1639,17 @@
    "note": "DEV only: absent on TST (0 grep hits in UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js). React follows TST. Section 6.1.",
    "id": "Legacy_AssembleFlow-109",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "screen": "ScreenBlock_AssembleDetail",
@@ -1431,7 +1662,17 @@
    "note": "",
    "id": "Legacy_AssembleFlow-110",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_Assemble_MUI.Assemble.ScreenBlock_AssembleDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "screen": "ScreenBlock_AssembleDetail",
@@ -1444,7 +1685,17 @@
    "note": "Preload from GetPreloadObject/AssignFromObject (SBD:557-565)",
    "id": "Legacy_AssembleFlow-111",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_Assemble_MUI.Assemble.ScreenBlock_AssembleDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "screen": "ScreenBlock_AssembleDetail",
@@ -1457,7 +1708,17 @@
    "note": "",
    "id": "Legacy_AssembleFlow-112",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_Assemble_MUI.Assemble.ScreenBlock_AssembleDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "screen": "ScreenBlock_AssembleDetail",
@@ -1470,7 +1731,17 @@
    "note": "",
    "id": "Legacy_AssembleFlow-113",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_Assemble_MUI.Assemble.ScreenBlock_AssembleDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "screen": "ScreenBlock_AssembleDetail",
@@ -1483,7 +1754,18 @@
    "note": "The TST event NavigateTo_HouseholdCarousel carries ItemPosition and SelectedHouseholdId; the handler receives itemPositionIn (AssembleDetail.mvc.js:245) and never uses it. React ignores _itemPosition (AssembleDetailPage.tsx:70). Section 6.",
    "id": "Legacy_AssembleFlow-114",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_Assemble_MUI.Assemble.ScreenBlock_AssembleDetail.mvc.js (lines-same)",
+     "UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "screen": "AssembleEventDetail",
@@ -1496,7 +1778,17 @@
    "note": "Mock: AssembleDetail/mocks.ts:56 AssembleEventDetail/DataActionGetAssembleEvent (scenarios real, notfound, unavailable, error, loading)",
    "id": "Legacy_AssembleFlow-115",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_Assemble_MUI.Assemble.AssembleEventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "screen": "AssembleEventDetail",
@@ -1509,7 +1801,17 @@
    "note": "",
    "id": "Legacy_AssembleFlow-116",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_Assemble_MUI.Assemble.AssembleEventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "screen": "AssembleEventDetail",
@@ -1522,7 +1824,17 @@
    "note": "",
    "id": "Legacy_AssembleFlow-117",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_Assemble_MUI.Assemble.AssembleEventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "screen": "AssembleEventDetail",
@@ -1535,7 +1847,17 @@
    "note": "",
    "id": "Legacy_AssembleFlow-118",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_Assemble_MUI.Assemble.AssembleEventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "screen": "AssembleEventDetail",
@@ -1548,7 +1870,17 @@
    "note": "This is the only meeting-note UI on TST for AssembleDetail",
    "id": "Legacy_AssembleFlow-119",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "Connect2_Assemble_MUI.Assemble.AssembleEventDetail.mvc.js (lines)"
+    ]
+   }
   },
   {
    "screen": "AssembleEventDetail",
@@ -1561,7 +1893,17 @@
    "note": "Sections: rows 130-133.",
    "id": "Legacy_AssembleFlow-120",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_Assemble_MUI.Assemble.AssembleEventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "screen": "AssembleEventDetail_AttendeeSubdivision",
@@ -1689,7 +2031,17 @@
    "react": "AssembleEventDetail.tsx:83-108 `!isDataFetched && (summary?.EventId ?? \"\") === \"\"` -> AssembleSummarySkeleton, else AssembleSummaryCardContainer isListItem={false}",
    "evidence": "Connect2_Assemble_MUI.Assemble.AssembleEventDetail.mvc.js:252 (If), :403 (IsListItem: false); app/src/pages/AssembleDetail/components/AssembleEventDetail.tsx:83-108",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_Assemble_MUI.Assemble.AssembleEventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_AssembleFlow-131",
@@ -1700,7 +2052,17 @@
    "react": "AssembleEventDetail.tsx:138-148 isVisible={!isDataFetched || attendees.length > 0 || special.length > 0 || guests.length > 0}",
    "evidence": "Connect2_Assemble_MUI.Assemble.AssembleEventDetail.mvc.js:551-552, :570; app/src/pages/AssembleDetail/components/AssembleEventDetail.tsx:138-148",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_Assemble_MUI.Assemble.AssembleEventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_AssembleFlow-132",
@@ -1711,7 +2073,17 @@
    "react": "AssembleEventDetail.tsx:151-170 attendees.length > 0, special.length > 0, headers",
    "evidence": "Connect2_Assemble_MUI.Assemble.AssembleEventDetail.mvc.js:627, :683, :690, :746; app/src/pages/AssembleDetail/components/AssembleEventDetail.tsx:151-170",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_Assemble_MUI.Assemble.AssembleEventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_AssembleFlow-133",
@@ -1722,7 +2094,17 @@
    "react": "AssembleEventDetail.tsx:174-194 isVisible={contacts.length > 0 || !isDataFetched}",
    "evidence": "Connect2_Assemble_MUI.Assemble.AssembleEventDetail.mvc.js:757-758, :776; app/src/pages/AssembleDetail/components/AssembleEventDetail.tsx:174-194",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_Assemble_MUI.Assemble.AssembleEventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_AssembleFlow-134",
@@ -1900,7 +2282,17 @@
    "react": "AssembleEventDetail.tsx:117, :142, :156, :166, :178 (same texts, leading space kept)",
    "evidence": "Connect2_Assemble_MUI.Assemble.AssembleEventDetail.mvc.js:462, :570, :683, :746, :776; app/src/pages/AssembleDetail/components/AssembleEventDetail.tsx:117, :142, :156, :166, :178",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "Connect2_Assemble_MUI.Assemble.AssembleEventDetail.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Legacy_AssembleFlow-150",
@@ -1911,7 +2303,17 @@
    "react": "assembleFilterState.ts:9, :11; AssembleEventsPage.tsx:119; AssembleFilterView.tsx:125; Assemble_FilterSheet.tsx:173; AssembleEventDetail.tsx:34-35, :63; AssembleSummary_List.tsx:118; VirtualMeetingUrl.tsx:80-86; AssembleSummaryCard.tsx:64; AssembleSummaryCardContainer.tsx:34",
    "evidence": "ScreenBlock_Assemble_Filter.mvc.js:13-14, :361, :592; AssembleEvents.mvc.js:267-300; Connect2_Assemble_MUI.Assemble.AssembleEventDetail.mvc.js:195-199; AssembleSummary_List.mvc.js:374; Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingURL.mvc.js:226, :266; Connect2_Assemble_MUI.Assemble.AssembleSummaryCard.mvc.js:441, :756",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_Assemble_MUI.Assemble.AssembleEventDetail.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_AssembleFlow-151",
@@ -1987,7 +2389,17 @@
    "evidence": "app/src/pages/AssembleDetail/mocks.ts:56",
    "verdict": "mock-only",
    "note": "Production needs AssembleEventDetail/DataActionGetAssembleEvent.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "Connect2_Assemble_MUI.Assemble.AssembleEventDetail.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_AssembleFlow-157",

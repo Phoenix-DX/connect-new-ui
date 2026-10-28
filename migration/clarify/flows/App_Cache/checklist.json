@@ -27,7 +27,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "No CacheKey on TST either; empty key becomes UniqueCacheKey in both",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CacheControl.CacheControl_UserInfo.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Cache-003",
@@ -79,7 +89,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "Internals judged here (App_Common report row 176 assigns them to this flow)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Cache-007",
@@ -92,7 +112,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "Read by Policy_Checker in React; second writer GetUserInformation_Wrapper (userInfo.ts:44) is in the _shared report",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Cache-008",
@@ -105,7 +135,17 @@
    "tst": "-",
    "verdict": "mock-only",
    "note": "Production needs the screen service UBTConnect_Utils/CacheControl/CacheControl_UserInfo/DataActionGetCacheInfo",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect_Utils.CacheControl.CacheControl_UserInfo.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Cache-009",
@@ -118,7 +158,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "Miss: GetCacheInfo, PutCacheableObject, Result; hit: AssignFromObject, Result",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.CacheControl.CacheControl_UserInfo.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Cache-010",

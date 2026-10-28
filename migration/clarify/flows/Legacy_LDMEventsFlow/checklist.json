@@ -254,7 +254,17 @@
    "evidence": "app/src/pages/EmailTarget/hooks/emailTargetState.ts:17; Connect2_OrbitMobile_MUI.controller.js:241-276; Connect2_LegacyShared.controller.js:7570",
    "verdict": "differs",
    "note": "Not read in TST (Orbit client action). Judge: no repository call by decision U17 (app-shell.spec.md:241,349,384: no telemetry or application events in the mock phase). Production need: the application-event sink behind Connect2_LegacyShared zOnApplicationEvent_Wrapper (called by AddAuditEventDetailEvent).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_LegacyShared.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_LDMEventsFlow-022",
@@ -772,7 +782,17 @@
    "evidence": "app/src/pages/EmailTarget/hooks/useHouseholdEmail.ts:131-134; app/src/pages/EmailTarget/hooks/householdEmailState.ts:12,69-77; Connect2_LegacyShared.Email.ScreenBlock_Household_Email.mvc.js:815-827; Connect2_LegacyShared.controller.js:7570; app-shell.spec.md:349,384",
    "verdict": "differs",
    "note": "React stub only logs (no server call). Judge: logged only by decision U17 (app-shell.spec.md:241,349,384: no telemetry or application events in the mock phase). Production need: Connect2_LegacyShared zOnApplicationEvent_Wrapper(EventId, AttachmentJSON) and its application-event sink.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_LegacyShared.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_LDMEventsFlow-067",

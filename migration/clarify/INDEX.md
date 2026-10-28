@@ -3,57 +3,58 @@
 One report per UI flow of `UBTConnect` (DEV model through the MCP as the checklist; TST is the source of truth).
 Rows and verdicts come from `flows/<Flow>/checklist.json`; findings, questions and notes from `report.md` §5–§7.
 Verdicts: match · partial · missing · differs · mock-only · n/a · unclear (meaning in `PLAN.md` §4).
+Stale (strong): the rows that rest on TST code that changed after the verdict, and the strong ones of them in brackets (`tools/mark_stale.py`, `review/survey-drift-2026-10-28.md`). Read the strong rows first when a flow is judged again.
 
 ## 1. Verdict matrix
 
-| Group | Flow | Status | Rows | match | partial | missing | differs | mock-only | n/a | unclear | Findings (B/M/m/i) | Questions |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| G1 | [App_Common](flows/App_Common/report.md) | draft | 182 | 133 | 5 | 0 | 20 | 4 | 20 | 0 | 0/1/2/3 | 4 |
-| G1 | [App_PIN](flows/App_PIN/report.md) | draft | 131 | 118 | 3 | 0 | 3 | 1 | 6 | 0 | 0/0/1/4 | 3 |
-| G1 | [App_Policies](flows/App_Policies/report.md) | draft | 90 | 79 | 2 | 0 | 2 | 2 | 5 | 0 | 0/1/3/2 | 2 |
-| G1 | [Home](flows/Home/report.md) | draft | 148 | 127 | 1 | 0 | 1 | 5 | 14 | 0 | 0/0/3/1 | 3 |
-| G1 | [App_Menu](flows/App_Menu/report.md) | draft | 122 | 112 | 0 | 0 | 3 | 4 | 3 | 0 | 0/0/1/1 | 2 |
-| G1 | [App_Menu_ContactUs](flows/App_Menu_ContactUs/report.md) | draft | 147 | 136 | 0 | 0 | 2 | 3 | 6 | 0 | 1/2/0/0 | 4 |
-| G1 | [App_Notifications](flows/App_Notifications/report.md) | draft | 120 | 108 | 0 | 0 | 0 | 2 | 10 | 0 | 0/2/0/0 | 3 |
-| G1 | [App_Profile](flows/App_Profile/report.md) | draft | 110 | 98 | 4 | 0 | 0 | 2 | 6 | 0 | 0/1/1/4 | 1 |
-| G1 | [App_Services](flows/App_Services/report.md) | draft | 81 | 75 | 2 | 0 | 0 | 2 | 2 | 0 | 0/2/3/2 | 4 |
-| G2 | [Directory_Locality](flows/Directory_Locality/report.md) | draft | 280 | 241 | 1 | 0 | 1 | 15 | 22 | 0 | 0/0/3/1 | 0 |
-| G2 | [Directory_Household](flows/Directory_Household/report.md) | draft | 241 | 230 | 0 | 0 | 1 | 5 | 5 | 0 | 0/0/0/0 | 1 |
-| G2 | [Directory_Search](flows/Directory_Search/report.md) | draft | 146 | 139 | 0 | 0 | 2 | 2 | 3 | 0 | 0/3/2/0 | 0 |
-| G2 | [Directory_Photobook](flows/Directory_Photobook/report.md) | draft | 203 | 189 | 2 | 0 | 3 | 6 | 0 | 3 | 0/0/2/1 | 1 |
-| G2 | [Directory_SupperMeetings](flows/Directory_SupperMeetings/report.md) | draft | 111 | 94 | 0 | 0 | 4 | 5 | 8 | 0 | 0/1/0/0 | 1 |
-| G2 | [Directory_OneSchoolGlobal](flows/Directory_OneSchoolGlobal/report.md) | draft | 56 | 48 | 0 | 0 | 0 | 2 | 6 | 0 | 0/0/1/0 | 2 |
-| G2 | [Directory_Updates](flows/Directory_Updates/report.md) | draft | 149 | 134 | 1 | 0 | 0 | 5 | 9 | 0 | 0/1/2/0 | 2 |
-| G3 | [Bookmarks](flows/Bookmarks/report.md) | draft | 123 | 103 | 2 | 0 | 1 | 5 | 12 | 0 | 0/0/2/2 | 2 |
-| G3 | [Notes](flows/Notes/report.md) | draft | 121 | 107 | 0 | 0 | 0 | 2 | 12 | 0 | 0/1/1/0 | 1 |
-| G3 | [Calendar](flows/Calendar/report.md) | draft | 72 | 40 | 0 | 1 | 1 | 2 | 28 | 0 | 0/1/2/1 | 2 |
-| G3 | [ContactFlow](flows/ContactFlow/report.md) | draft | 142 | 124 | 0 | 0 | 8 | 5 | 5 | 0 | 0/0/1/1 | 2 |
-| G3 | [Legacy_Share](flows/Legacy_Share/report.md) | draft | 95 | 71 | 1 | 0 | 2 | 5 | 16 | 0 | 0/0/2/1 | 0 |
-| G3 | [Legacy_MyNotificationsFlow](flows/Legacy_MyNotificationsFlow/report.md) | draft | 152 | 128 | 1 | 0 | 0 | 11 | 12 | 0 | 0/4/2/0 | 4 |
-| G4 | [Legacy_OrbitEventsFlow](flows/Legacy_OrbitEventsFlow/report.md) | draft | 518 | 482 | 1 | 0 | 8 | 18 | 9 | 0 | 2/1/4/1 | 4 |
-| G4 | [Legacy_OrbitAdminFlow](flows/Legacy_OrbitAdminFlow/report.md) | draft | 109 | 96 | 0 | 0 | 5 | 4 | 4 | 0 | 0/1/2/0 | 2 |
-| G4 | [Legacy_OrbitQRCodeFlow](flows/Legacy_OrbitQRCodeFlow/report.md) | draft | 68 | 62 | 0 | 0 | 0 | 2 | 4 | 0 | 0/0/2/0 | 1 |
-| G4 | [Legacy_LDMEventsFlow](flows/Legacy_LDMEventsFlow/report.md) | draft | 94 | 70 | 0 | 0 | 5 | 2 | 17 | 0 | 0/0/2/0 | 0 |
-| G4 | [Legacy_LDMEventsFlow_V2](flows/Legacy_LDMEventsFlow_V2/report.md) | draft | 219 | 177 | 2 | 0 | 6 | 4 | 30 | 0 | 0/2/3/2 | 1 |
-| G4 | [Legacy_AssembleFlow](flows/Legacy_AssembleFlow/report.md) | draft | 159 | 145 | 0 | 0 | 0 | 8 | 6 | 0 | 0/0/1/0 | 0 |
-| G5 | [Map](flows/Map/report.md) | draft | 21 | 0 | 0 | 0 | 0 | 0 | 21 | 0 | 0/0/0/0 | 0 |
-| G5 | [Deprecated_Calendar_PersonalEvent](flows/Deprecated_Calendar_PersonalEvent/report.md) | draft | 9 | 0 | 0 | 0 | 0 | 0 | 9 | 0 | 0/0/0/0 | 0 |
-| G5 | [zTemp_Flow](flows/zTemp_Flow/report.md) | draft | 3 | 0 | 0 | 0 | 0 | 0 | 3 | 0 | 0/0/0/0 | 0 |
-| G5 | [zDEV_Directory_CommunityBusinessBlocks](flows/zDEV_Directory_CommunityBusinessBlocks/report.md) | draft | 44 | 18 | 0 | 0 | 0 | 0 | 26 | 0 | 0/0/0/0 | 0 |
-| X | [App_Cache](flows/App_Cache/report.md) | draft | 10 | 9 | 0 | 0 | 0 | 1 | 0 | 0 | 0/0/0/0 | 0 |
-| X | [App_Common_Blocks](flows/App_Common_Blocks/report.md) | draft | 42 | 31 | 1 | 0 | 0 | 0 | 10 | 0 | 0/0/0/1 | 0 |
-| X | [App_Common_Blocks_PopupDialogs](flows/App_Common_Blocks_PopupDialogs/report.md) | draft | 24 | 20 | 0 | 0 | 0 | 0 | 4 | 0 | 0/0/0/0 | 0 |
-| X | [SubLayout](flows/SubLayout/report.md) | draft | 12 | 10 | 0 | 0 | 0 | 0 | 2 | 0 | 0/0/0/0 | 0 |
-| X | [App_CommonBlocks_Filter](flows/App_CommonBlocks_Filter/report.md) | draft | 213 | 211 | 0 | 0 | 0 | 0 | 2 | 0 | 0/1/0/0 | 0 |
-| X | [Directory_CommonBlocks](flows/Directory_CommonBlocks/report.md) | draft | 151 | 109 | 0 | 0 | 0 | 13 | 29 | 0 | 0/0/3/0 | 0 |
-| X | [Directory_Caroussel](flows/Directory_Caroussel/report.md) | draft | 94 | 70 | 0 | 0 | 0 | 0 | 24 | 0 | 0/0/0/0 | 1 |
-| X | [Directory_Interchange](flows/Directory_Interchange/report.md) | draft | 40 | 22 | 0 | 0 | 0 | 0 | 18 | 0 | 0/0/0/0 | 0 |
-| X | [Directory_Household_Blocks](flows/Directory_Household_Blocks/report.md) | draft | 84 | 79 | 0 | 0 | 0 | 2 | 3 | 0 | 0/0/1/0 | 0 |
-| X | [Directory_OneSchoolGlobal_Blocks](flows/Directory_OneSchoolGlobal_Blocks/report.md) | draft | 29 | 11 | 0 | 0 | 0 | 0 | 18 | 0 | 0/0/0/0 | 0 |
-| X | [Calendar_Events](flows/Calendar_Events/report.md) | draft | 8 | 0 | 0 | 0 | 0 | 0 | 8 | 0 | 0/0/0/0 | 0 |
-| X | [_shared](flows/_shared/report.md) | draft | 194 | 84 | 0 | 1 | 5 | 7 | 97 | 0 | 0/1/1/1 | 1 |
-| X | [_libraries](flows/_libraries/report.md) | draft | 245 | 230 | 0 | 0 | 9 | 4 | 2 | 0 | 0/1/3/0 | 2 |
-| | **total (45/45 flows)** | | 5412 | 4570 | 29 | 2 | 92 | 160 | 556 | 3 | 3/27/56/29 | |
+| Group | Flow | Status | Rows | match | partial | missing | differs | mock-only | n/a | unclear | Findings (B/M/m/i) | Questions | Stale (strong) |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| G1 | [App_Common](flows/App_Common/report.md) | draft | 182 | 133 | 5 | 0 | 20 | 4 | 20 | 0 | 0/1/2/3 | 4 | 33 (2) |
+| G1 | [App_PIN](flows/App_PIN/report.md) | draft | 131 | 118 | 3 | 0 | 3 | 1 | 6 | 0 | 0/0/1/4 | 3 | 0 (0) |
+| G1 | [App_Policies](flows/App_Policies/report.md) | draft | 90 | 79 | 2 | 0 | 2 | 2 | 5 | 0 | 0/1/3/2 | 2 | 6 (1) |
+| G1 | [Home](flows/Home/report.md) | draft | 148 | 127 | 1 | 0 | 1 | 5 | 14 | 0 | 0/0/3/1 | 3 | 102 (14) |
+| G1 | [App_Menu](flows/App_Menu/report.md) | draft | 122 | 112 | 0 | 0 | 3 | 4 | 3 | 0 | 0/0/1/1 | 2 | 4 (1) |
+| G1 | [App_Menu_ContactUs](flows/App_Menu_ContactUs/report.md) | draft | 147 | 136 | 0 | 0 | 2 | 3 | 6 | 0 | 1/2/0/0 | 4 | 7 (0) |
+| G1 | [App_Notifications](flows/App_Notifications/report.md) | draft | 120 | 108 | 0 | 0 | 0 | 2 | 10 | 0 | 0/2/0/0 | 3 | 105 (48) |
+| G1 | [App_Profile](flows/App_Profile/report.md) | draft | 110 | 98 | 4 | 0 | 0 | 2 | 6 | 0 | 0/1/1/4 | 1 | 0 (0) |
+| G1 | [App_Services](flows/App_Services/report.md) | draft | 81 | 75 | 2 | 0 | 0 | 2 | 2 | 0 | 0/2/3/2 | 4 | 1 (0) |
+| G2 | [Directory_Locality](flows/Directory_Locality/report.md) | draft | 280 | 241 | 1 | 0 | 1 | 15 | 22 | 0 | 0/0/3/1 | 0 | 155 (15) |
+| G2 | [Directory_Household](flows/Directory_Household/report.md) | draft | 241 | 230 | 0 | 0 | 1 | 5 | 5 | 0 | 0/0/0/0 | 1 | 166 (2) |
+| G2 | [Directory_Search](flows/Directory_Search/report.md) | draft | 146 | 139 | 0 | 0 | 2 | 2 | 3 | 0 | 0/3/2/0 | 0 | 131 (7) |
+| G2 | [Directory_Photobook](flows/Directory_Photobook/report.md) | draft | 203 | 189 | 2 | 0 | 3 | 6 | 0 | 3 | 0/0/2/1 | 1 | 2 (1) |
+| G2 | [Directory_SupperMeetings](flows/Directory_SupperMeetings/report.md) | draft | 111 | 94 | 0 | 0 | 4 | 5 | 8 | 0 | 0/1/0/0 | 1 | 2 (0) |
+| G2 | [Directory_OneSchoolGlobal](flows/Directory_OneSchoolGlobal/report.md) | draft | 56 | 48 | 0 | 0 | 0 | 2 | 6 | 0 | 0/0/1/0 | 2 | 36 (27) |
+| G2 | [Directory_Updates](flows/Directory_Updates/report.md) | draft | 149 | 134 | 1 | 0 | 0 | 5 | 9 | 0 | 0/1/2/0 | 2 | 3 (0) |
+| G3 | [Bookmarks](flows/Bookmarks/report.md) | draft | 123 | 103 | 2 | 0 | 1 | 5 | 12 | 0 | 0/0/2/2 | 2 | 122 (117) |
+| G3 | [Notes](flows/Notes/report.md) | draft | 121 | 107 | 0 | 0 | 0 | 2 | 12 | 0 | 0/1/1/0 | 1 | 121 (3) |
+| G3 | [Calendar](flows/Calendar/report.md) | draft | 72 | 40 | 0 | 1 | 1 | 2 | 28 | 0 | 0/1/2/1 | 2 | 55 (7) |
+| G3 | [ContactFlow](flows/ContactFlow/report.md) | draft | 142 | 124 | 0 | 0 | 8 | 5 | 5 | 0 | 0/0/1/1 | 2 | 6 (0) |
+| G3 | [Legacy_Share](flows/Legacy_Share/report.md) | draft | 95 | 71 | 1 | 0 | 2 | 5 | 16 | 0 | 0/0/2/1 | 0 | 8 (1) |
+| G3 | [Legacy_MyNotificationsFlow](flows/Legacy_MyNotificationsFlow/report.md) | draft | 152 | 128 | 1 | 0 | 0 | 11 | 12 | 0 | 0/4/2/0 | 4 | 1 (0) |
+| G4 | [Legacy_OrbitEventsFlow](flows/Legacy_OrbitEventsFlow/report.md) | draft | 518 | 482 | 1 | 0 | 8 | 18 | 9 | 0 | 2/1/4/1 | 4 | 121 (50) |
+| G4 | [Legacy_OrbitAdminFlow](flows/Legacy_OrbitAdminFlow/report.md) | draft | 109 | 96 | 0 | 0 | 5 | 4 | 4 | 0 | 0/1/2/0 | 2 | 67 (59) |
+| G4 | [Legacy_OrbitQRCodeFlow](flows/Legacy_OrbitQRCodeFlow/report.md) | draft | 68 | 62 | 0 | 0 | 0 | 2 | 4 | 0 | 0/0/2/0 | 1 | 0 (0) |
+| G4 | [Legacy_LDMEventsFlow](flows/Legacy_LDMEventsFlow/report.md) | draft | 94 | 70 | 0 | 0 | 5 | 2 | 17 | 0 | 0/0/2/0 | 0 | 2 (0) |
+| G4 | [Legacy_LDMEventsFlow_V2](flows/Legacy_LDMEventsFlow_V2/report.md) | draft | 219 | 177 | 2 | 0 | 6 | 4 | 30 | 0 | 0/2/3/2 | 1 | 6 (1) |
+| G4 | [Legacy_AssembleFlow](flows/Legacy_AssembleFlow/report.md) | draft | 159 | 145 | 0 | 0 | 0 | 8 | 6 | 0 | 0/0/1/0 | 0 | 41 (10) |
+| G5 | [Map](flows/Map/report.md) | draft | 21 | 0 | 0 | 0 | 0 | 0 | 21 | 0 | 0/0/0/0 | 0 | 21 (0) |
+| G5 | [Deprecated_Calendar_PersonalEvent](flows/Deprecated_Calendar_PersonalEvent/report.md) | draft | 9 | 0 | 0 | 0 | 0 | 0 | 9 | 0 | 0/0/0/0 | 0 | 0 (0) |
+| G5 | [zTemp_Flow](flows/zTemp_Flow/report.md) | draft | 3 | 0 | 0 | 0 | 0 | 0 | 3 | 0 | 0/0/0/0 | 0 | 0 (0) |
+| G5 | [zDEV_Directory_CommunityBusinessBlocks](flows/zDEV_Directory_CommunityBusinessBlocks/report.md) | draft | 44 | 18 | 0 | 0 | 0 | 0 | 26 | 0 | 0/0/0/0 | 0 | 10 (10) |
+| X | [App_Cache](flows/App_Cache/report.md) | draft | 10 | 9 | 0 | 0 | 0 | 1 | 0 | 0 | 0/0/0/0 | 0 | 5 (1) |
+| X | [App_Common_Blocks](flows/App_Common_Blocks/report.md) | draft | 42 | 31 | 1 | 0 | 0 | 0 | 10 | 0 | 0/0/0/1 | 0 | 9 (0) |
+| X | [App_Common_Blocks_PopupDialogs](flows/App_Common_Blocks_PopupDialogs/report.md) | draft | 24 | 20 | 0 | 0 | 0 | 0 | 4 | 0 | 0/0/0/0 | 0 | 0 (0) |
+| X | [SubLayout](flows/SubLayout/report.md) | draft | 12 | 10 | 0 | 0 | 0 | 0 | 2 | 0 | 0/0/0/0 | 0 | 0 (0) |
+| X | [App_CommonBlocks_Filter](flows/App_CommonBlocks_Filter/report.md) | draft | 213 | 211 | 0 | 0 | 0 | 0 | 2 | 0 | 0/1/0/0 | 0 | 165 (10) |
+| X | [Directory_CommonBlocks](flows/Directory_CommonBlocks/report.md) | draft | 151 | 109 | 0 | 0 | 0 | 13 | 29 | 0 | 0/0/3/0 | 0 | 124 (0) |
+| X | [Directory_Caroussel](flows/Directory_Caroussel/report.md) | draft | 94 | 70 | 0 | 0 | 0 | 0 | 24 | 0 | 0/0/0/0 | 1 | 55 (5) |
+| X | [Directory_Interchange](flows/Directory_Interchange/report.md) | draft | 40 | 22 | 0 | 0 | 0 | 0 | 18 | 0 | 0/0/0/0 | 0 | 0 (0) |
+| X | [Directory_Household_Blocks](flows/Directory_Household_Blocks/report.md) | draft | 84 | 79 | 0 | 0 | 0 | 2 | 3 | 0 | 0/0/1/0 | 0 | 0 (0) |
+| X | [Directory_OneSchoolGlobal_Blocks](flows/Directory_OneSchoolGlobal_Blocks/report.md) | draft | 29 | 11 | 0 | 0 | 0 | 0 | 18 | 0 | 0/0/0/0 | 0 | 1 (0) |
+| X | [Calendar_Events](flows/Calendar_Events/report.md) | draft | 8 | 0 | 0 | 0 | 0 | 0 | 8 | 0 | 0/0/0/0 | 0 | 0 (0) |
+| X | [_shared](flows/_shared/report.md) | draft | 194 | 84 | 0 | 1 | 5 | 7 | 97 | 0 | 0/1/1/1 | 1 | 91 (5) |
+| X | [_libraries](flows/_libraries/report.md) | draft | 245 | 230 | 0 | 0 | 9 | 4 | 2 | 0 | 0/1/3/0 | 2 | 101 (25) |
+| | **total (45/45 flows)** | | 5412 | 4570 | 29 | 2 | 92 | 160 | 556 | 3 | 3/27/56/29 | | 1885 (422) |
 
 ## 2. Findings by severity (blocker and major first)
 

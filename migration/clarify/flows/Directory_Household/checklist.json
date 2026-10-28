@@ -913,7 +913,17 @@
    "evidence": "app/src/containers/HouseholdDetails/HouseholdDetailsContainer.tsx:20-40",
    "verdict": "match",
    "note": "TST: present (inputs, js:123-125,224-225)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-077",
@@ -925,7 +935,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:115-119",
    "verdict": "match",
    "note": "TST: present (js:195-205)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-078",
@@ -937,7 +957,17 @@
    "evidence": "-",
    "verdict": "match",
    "note": "TST: - | Judge: The hosts Locality_Details and Profile_HouseholdPreview are checked in the reports of their flows.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-079",
@@ -949,7 +979,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/householdDetailsState.ts:19",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-080",
@@ -961,7 +1001,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/householdDetailsState.ts:21",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-081",
@@ -973,7 +1023,17 @@
    "evidence": "app/src/components/household/householdCard.ts:7",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-082",
@@ -985,7 +1045,17 @@
    "evidence": "app/src/components/household/householdCard.ts:8",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-083",
@@ -997,7 +1067,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/householdDetailsState.ts:23",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-084",
@@ -1009,7 +1089,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/householdDetailsState.ts:25",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-085",
@@ -1021,7 +1111,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/householdDetailsState.ts:27",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-086",
@@ -1033,7 +1133,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/householdDetailsState.ts:29",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-087",
@@ -1045,7 +1155,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/householdDetailsState.ts:31",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-088",
@@ -1057,7 +1177,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/householdDetailsState.ts:33",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-089",
@@ -1069,7 +1199,17 @@
    "evidence": "app/src/api/household/repository.ts:42-44",
    "verdict": "match",
    "note": "TST: present (GetHousehold data action) | Server action GetHouseholdDetails (Connect_Household_CS) is behind the mocked wire action. Production needs GetHouseholdDetails(HouseholdId, User_AgeVisibility, CheckVisibility). Pack data.md shows 'no mock handler found' for GetHouseholdDetails by name; the handler is by the data-action name. | Judge: Server side: row 093.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-090",
@@ -1081,7 +1221,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:86-97",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-091",
@@ -1093,7 +1243,17 @@
    "evidence": "app/src/api/household/repository.ts:47-51",
    "verdict": "match",
    "note": "TST: present | Production needs the service action GetHouseholdCoordinates (Connect_Household_CS). Also mocked at mocks/fictional/ldm.ts:235 (other contract). | Judge: Server side: row 092.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-092",
@@ -1105,7 +1265,17 @@
    "evidence": "-; app/src/containers/HouseholdDetails/mocks.ts:38-40",
    "verdict": "mock-only",
    "note": "TST: - | Judge: Production needs the service action GetHouseholdCoordinates(In_HouseholdId) of Connect_Household_CS.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-093",
@@ -1117,7 +1287,17 @@
    "evidence": "-; app/src/containers/HouseholdDetails/mocks.ts:27-37",
    "verdict": "mock-only",
    "note": "TST: - | Judge: Production needs the service action GetHouseholdDetails(HouseholdId, User_AgeVisibility, CheckVisibility) of Connect_Household_CS.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-094",
@@ -1129,7 +1309,17 @@
    "evidence": "app/src/lib/ubtConnect/actions.ts:448",
    "verdict": "match",
    "note": "TST: present (GetSkeleton_UI_HouseholdDetails in block list)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-095",
@@ -1141,7 +1331,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:134",
    "verdict": "match",
    "note": "TST: present | Shared, App_Common.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-096",
@@ -1153,7 +1353,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:48; migration/knowledge/feature-flag-helpers.md:20,27; app/src/platform/flags/registry.ts:141-145,234-239 (default true; the descriptions name GetHasExtendedShare and GetHasPhotobookAccess); migration/knowledge/flag-values-tst.json:14,21",
    "verdict": "match",
    "note": "TST: present | TST values true for both (flag-values-tst.json:14,21). Flag keys 'mobilePhotobook' and 'C2ExtendedShare' are React names; mapping to the OS flag helpers not verified here. | Judge: GetHasPhotobookAccess reads launchDarkly_FF.mobilePhotobook and GetHasExtendedShare reads outSystems_FF.C2ExtendedShare. The React keys are the same flags.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-097",
@@ -1165,7 +1375,17 @@
    "evidence": "-",
    "verdict": "match",
    "note": "TST: - | They belong to shared actions and blocks (App_Common, bottom bar, Directory_EntityDetailsActions). | Judge: Shared blocks read and write these variables (App_Common, Directory_CommonBlocks). The own elements of the flow write only Directory_Updates_UnreadCount (row 055).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-098",
@@ -1177,7 +1397,17 @@
    "evidence": "app/src/components/household/HouseholdDetailsView/HouseholdDetailsView.tsx:236",
    "verdict": "match",
    "note": "TST: present (js:307 `HideActions: (in_HideActionsIn && tagsList_SelectedTagVar === tagsList_Id_AboutVar)`)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-099",
@@ -1189,7 +1419,17 @@
    "evidence": "app/src/components/household/HouseholdDetailsView/HouseholdDetailsView.tsx:135,138",
    "verdict": "match",
    "note": "TST: present (js:1735 `!getHouseholdDataAct.isDataFetchedAttr`)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-100",
@@ -1201,7 +1441,17 @@
    "evidence": "app/src/components/household/HouseholdDetailsView/HouseholdDetailsView.tsx:139-141",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-101",
@@ -1213,7 +1463,17 @@
    "evidence": "app/src/components/household/HouseholdDetailsView/HouseholdDetailsView.tsx:143-148; TST UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js:379 (else value \"\"); BR-UBTCON-813",
    "verdict": "match",
    "note": "TST: present | The dump cuts the If at 3 conditions; React uses isShownHousehold (not hidden, not deceased, not ancestry) and falls back to ''. The OS else value is not in the dump. | Judge: The cut value is read on TST: If(not IsHidden and not IsDeceased and not IsAncestry, HouseholdId, \"\").",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-102",
@@ -1225,7 +1485,17 @@
    "evidence": "app/src/components/household/HouseholdDetailsView/HouseholdDetailsView.tsx:150",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-103",
@@ -1237,7 +1507,17 @@
    "evidence": "app/src/components/household/HouseholdDetailsView/HouseholdDetailsView.tsx:153",
    "verdict": "match",
    "note": "TST: present (string found)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-104",
@@ -1249,7 +1529,17 @@
    "evidence": "app/src/components/household/HouseholdDetailsView/HouseholdDetailsView.tsx:154",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-105",
@@ -1261,7 +1551,17 @@
    "evidence": "app/src/components/household/HouseholdDetailsView/HouseholdDetailsView.tsx:155",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-106",
@@ -1273,7 +1573,17 @@
    "evidence": "app/src/components/household/HouseholdTags/HouseholdTags.tsx:53-61; TST UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js:472 (FlexDirection row)",
    "verdict": "match",
    "note": "TST: present | FlexDirection value is cut in the dump (Row in React).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-107",
@@ -1285,7 +1595,17 @@
    "evidence": "app/src/components/household/HouseholdTags/HouseholdTags.tsx:64-70",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-108",
@@ -1297,7 +1617,17 @@
    "evidence": "app/src/components/household/HouseholdTags/HouseholdTags.tsx:72-76",
    "verdict": "match",
    "note": "TST: present (In_ShowKebabMenu used 3x in js)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-109",
@@ -1309,7 +1639,17 @@
    "evidence": "app/src/components/household/HouseholdTags/HouseholdTags.tsx:78-95; BR-UBTCON-812",
    "verdict": "match",
    "note": "TST: present (isHouseholdHidden in js, string found)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-110",
@@ -1321,7 +1661,17 @@
    "evidence": "app/src/components/household/HouseholdTags/HouseholdTags.tsx:78",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-111",
@@ -1333,7 +1683,17 @@
    "evidence": "app/src/components/household/HouseholdDetailsView/HouseholdDetailsView.tsx:169-177",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-112",
@@ -1345,7 +1705,17 @@
    "evidence": "app/src/components/household/HouseholdAddress/HouseholdAddress.tsx:54-55; TST UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js:704; BR-UBTCON-813",
    "verdict": "match",
    "note": "TST: present | The dump cuts the visible condition after 2 terms. React adds `Address <> \"\"` and the not-ancestry term. The full TST expression was not read. | Judge: The full TST condition is: not IsHidden and not IsDeceased and not IsAncestry and Address <> \"\". React has the same four terms.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-113",
@@ -1357,7 +1727,17 @@
    "evidence": "app/src/components/household/HouseholdAddress/HouseholdAddress.tsx:57-62",
    "verdict": "match",
    "note": "TST: present | Behaviour of AddressPopup_Wrapper: TST file UBTConnect_Utils.CW_CTA_PopUps.AddressPopup_Wrapper.mvc.js (not read).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-114",
@@ -1369,7 +1749,17 @@
    "evidence": "app/src/components/household/HouseholdAddress/HouseholdAddress.tsx:66-67",
    "verdict": "match",
    "note": "TST: present (StartExpanded in js)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-115",
@@ -1381,7 +1771,17 @@
    "evidence": "app/src/components/household/HouseholdAddress/HouseholdAddress.tsx:72-92; TST UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js:989 (else value \"\"); BR-UBTCON-815",
    "verdict": "match",
    "note": "TST: present (link-disabled-view in js) | The else value of the If is cut in the dump; React uses ''.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-116",
@@ -1393,7 +1793,17 @@
    "evidence": "app/src/components/household/HouseholdAddress/HouseholdAddress.tsx:94-115; app/src/components/household/HouseholdAddress/HouseholdAddress.tsx:108-112 (extendedClasses={linkClasses}); TST UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js:1206; BR-UBTCON-815",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-117",
@@ -1405,7 +1815,17 @@
    "evidence": "app/src/components/household/HouseholdDetailsView/HouseholdDetailsView.tsx:178-180",
    "verdict": "match",
    "note": "TST: present (Gallery container, js:1255)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-118",
@@ -1417,7 +1837,17 @@
    "evidence": "app/src/components/household/HouseholdTimelinePhotos/HouseholdTimelinePhotos.tsx:23-39; BR-UBTCON-816",
    "verdict": "match",
    "note": "TST: absent (no LaunchDarkly/PermissionCheck/MobileDirectoryHouseholdGallery in the TST block; the Photos branch holds `$if(false, ...)` and renders ComingSoon in its else branch, js:1291) | DEV != TST: TST has a constant false instead of the LD check. | Judge: React follows TST (section 6.1 of the report).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-119",
@@ -1429,7 +1859,17 @@
    "evidence": "absent",
    "verdict": "match",
    "note": "TST: absent | TST condition is constant false. | Judge: TST has a constant false, so there is no true branch to build. React follows TST.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-120",
@@ -1441,7 +1881,17 @@
    "evidence": "app/src/components/household/HouseholdTimelinePhotos/HouseholdTimelinePhotos.tsx:23-39",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-121",
@@ -1453,7 +1903,17 @@
    "evidence": "app/src/components/household/HouseholdDetailsView/HouseholdDetailsView.tsx:189",
    "verdict": "match",
    "note": "TST: present (HideActionsPhotoBook2 in js)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-122",
@@ -1465,7 +1925,17 @@
    "evidence": "app/src/components/household/HouseholdDetailsView/HouseholdDetailsView.tsx:197-203",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-123",
@@ -1477,7 +1947,17 @@
    "evidence": "app/src/components/household/HouseholdDetailsView/HouseholdDetailsView.tsx:205-209; TST UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js:1505-1509 (EnableNotes and EnableShare = not IsDeceased, no other field); BR-UBTCON-817",
    "verdict": "match",
    "note": "TST: present | The dump cuts EnableOptions after 2 fields. Behaviour of Directory_EntityDetailsActions: other flow (Directory_CommonBlocks). | Judge: BR-UBTCON-817 gives EnableNotes = GetHasNewBookmarks(): K1 of the report.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-124",
@@ -1489,7 +1969,17 @@
    "evidence": "app/src/components/household/HouseholdDetailsView/HouseholdDetailsView.tsx:211-227",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-125",
@@ -1501,7 +1991,17 @@
    "evidence": "app/src/components/household/HouseholdDetailsView/HouseholdDetailsView.tsx:240",
    "verdict": "match",
    "note": "TST: present (VisibleAboutTab in js)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-126",
@@ -1513,7 +2013,17 @@
    "evidence": "app/src/components/household/HouseholdDetailsView/HouseholdDetailsView.tsx:241",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-127",
@@ -1525,7 +2035,17 @@
    "evidence": "app/src/components/household/HouseholdDetailsView/HouseholdDetailsView.tsx:242-249",
    "verdict": "match",
    "note": "TST: present | Members block belongs to flow Directory_Household_Blocks (not an own block of this flow); its checks are in the report of that flow. | Judge: HouseholdDetails_Members_Block belongs to the flow Directory_Household_Blocks; the report of that flow checks its behaviour.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-128",
@@ -1537,7 +2057,17 @@
    "evidence": "app/src/components/household/HouseholdDetailsView/HouseholdDetailsView.tsx:251",
    "verdict": "match",
    "note": "TST: present (js:1757)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-129",
@@ -1549,7 +2079,17 @@
    "evidence": "app/src/components/household/HouseholdDetailsView/HouseholdDetailsView.tsx:250; app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:216-229; BR-UBTCON-819; BR-UBTCON-824",
    "verdict": "match",
    "note": "TST: present (js:1743-1755: event param householdIdIn is passed) | The dump shows In_HouseholdId=HouseholdId; on TST the event parameter is passed. HasAccessToRegion/ShowUpgradePopUp run in Handler_NonMemberOnClick of the Members block on TST (Members.js:868-885), not in this block. | Judge: React passes the HouseholdId of the tapped row, as TST does (section 6.1). The region check runs before the isEnabled check, the same order as TST (Members block, then this handler).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-130",
@@ -1561,7 +2101,17 @@
    "evidence": "present; pack/blocks.md:177 [DEAD BRANCH]",
    "verdict": "n/a",
    "note": "TST: present | [DEAD BRANCH]: dead in the model; React must not implement it. | Judge: Dead in the model. React does not implement it.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-131",
@@ -1573,7 +2123,17 @@
    "evidence": "app/src/components/household/HouseholdDetailsView/HouseholdDetailsView.tsx:257; BR-UBTCON-817",
    "verdict": "match",
    "note": "TST: present (ShowShareSheet in js)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-132",
@@ -1585,7 +2145,17 @@
    "evidence": "app/src/containers/HouseholdDetails/HouseholdDetailsContainer.tsx:104-112; TST UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js:1831-1836",
    "verdict": "match",
    "note": "TST: present | The dump cuts the argument after Subtitle; the remaining fields were not compared. | Judge: TST has five fields: ConnectEntityTypeId, Id, Title, Subtitle, Location = LocalityName + \", \" + CountryName. React has the same five.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-133",
@@ -1597,7 +2167,17 @@
    "evidence": "app/src/containers/HouseholdDetails/HouseholdDetailsContainer.tsx:86-96; BR-UBTCON-825",
    "verdict": "match",
    "note": "TST: - | Not in this block's dump; belongs to the Members block. | Judge: The Members block (Directory_Household_Blocks) owns the member actions; the report of that flow checks them.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-134",
@@ -1609,7 +2189,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:133-149",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-135",
@@ -1621,7 +2211,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/householdDetailsState.ts:132-133",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-136",
@@ -1633,7 +2233,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:148",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-137",
@@ -1645,7 +2255,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:134",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-138",
@@ -1657,7 +2277,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:138-139",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-139",
@@ -1669,7 +2299,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:139; BR-UBTCON-821",
    "verdict": "match",
    "note": "TST: present | Equivalent form (negated).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-140",
@@ -1681,7 +2321,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:140-146; BR-UBTCON-821",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-141",
@@ -1693,7 +2343,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:146; BR-UBTCON-821",
    "verdict": "match",
    "note": "TST: present | The constant false means the refresh always runs; React matches. | Judge: The true branch is dead (constant False). React implements the live else branch only.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-142",
@@ -1705,7 +2365,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:152-165",
    "verdict": "match",
    "note": "TST: present (js: 5 hits)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-143",
@@ -1717,7 +2387,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:154-160; BR-UBTCON-820",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-144",
@@ -1729,7 +2409,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:161",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-145",
@@ -1741,7 +2431,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:161-164",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-146",
@@ -1753,7 +2453,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:165",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-147",
@@ -1765,7 +2475,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:112-119",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-148",
@@ -1777,7 +2497,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/householdDetailsState.ts:107,145-149; BR-UBTCON-814",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-149",
@@ -1789,7 +2519,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/householdDetailsState.ts:147",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-150",
@@ -1801,7 +2541,17 @@
    "evidence": "absent; pack/blocks.md:352 [DISABLED]; BR-UBTCON-518",
    "verdict": "n/a",
    "note": "TST: absent | [DISABLED] in the model; React must not implement it. | Judge: Dead in the model. React does not implement it.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-151",
@@ -1813,7 +2563,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/householdDetailsState.ts:154-181; pack/blocks.md:195 (Email is assigned without a toggle); TST UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js:2166; BR-UBTCON-820",
    "verdict": "match",
    "note": "TST: present | The dump cuts the Email assignment at 'AccountForm_PersonalInformati…'; React sets Email from AccountForm_PersonalInformation.Email (line 176) without the visibility toggle. TST not read for this line. | Judge: The pack has the full Email assignment; TST agrees.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-152",
@@ -1825,7 +2585,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/householdDetailsState.ts:155",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-153",
@@ -1837,7 +2607,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/householdDetailsState.ts:165-166",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-154",
@@ -1849,7 +2629,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/householdDetailsState.ts:178",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-155",
@@ -1861,7 +2651,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/householdDetailsState.ts:117; BR-UBTCON-816",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-156",
@@ -1873,7 +2673,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:171-173;",
    "verdict": "match",
    "note": "TST: present | With no selected tag OS fails on GetItem(-1); React returns '' (state.ts:137-138 comment). | Judge: HorizontalTagList has In_IsMandatorySelection = True (row 107), so a list without a selected tag does not occur.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-157",
@@ -1885,7 +2695,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:175-177",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-158",
@@ -1897,7 +2717,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:179-182; BR-UBTCON-817",
    "verdict": "match",
    "note": "TST: present | TST flag getHasExtendedShare = true.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-159",
@@ -1909,7 +2739,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:180",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-160",
@@ -1921,7 +2761,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:181",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-161",
@@ -1933,7 +2783,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:184-186",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-162",
@@ -1945,7 +2805,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:202-203; BR-UBTCON-816",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-163",
@@ -1957,7 +2827,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:204",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-164",
@@ -1969,7 +2849,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:206-209; BR-UBTCON-816",
    "verdict": "match",
    "note": "TST: present (string found)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-165",
@@ -1981,7 +2871,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:213-215; BR-UBTCON-818",
    "verdict": "match",
    "note": "TST: present (js:1980-2000: navigate to /UBTConnect/Household_Relations with HouseholdId, MemberId) | The `if True` is constant: the inner else (MeberId = 0) is dead in the model. [DISABLED] nodes (ListFilter, AwayFather/AwayMother, CheckUserAccessToHousehold, ChecUserAwayHouseholdAccess) are dead; React must not implement them. isEnabled=false branch: end. | Judge: The inner else of If True is dead. React implements the live branch only.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-166",
@@ -1993,7 +2893,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:214",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-167",
@@ -2005,7 +2915,17 @@
    "evidence": "present (names CheckUserAccessToHousehold/ChecUserAwayHouseholdAccess exist in TST as empty actions); pack/blocks.md:258-288 [DISABLED]; BR-UBTCON-818",
    "verdict": "n/a",
    "note": "TST: present (names CheckUserAccessToHousehold/ChecUserAwayHouseholdAccess exist in TST as empty actions) | [DISABLED] in the model; dead. | Judge: Dead in the model. React does not implement it.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-168",
@@ -2017,7 +2937,17 @@
    "evidence": "present; pack/blocks.md:216-227, 266, 268",
    "verdict": "n/a",
    "note": "TST: present | Judge: Empty actions. Their only callers are [DISABLED] nodes of Handler_OnClickMember: dead in the model.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-169",
@@ -2029,7 +2959,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:217-219; BR-UBTCON-819",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-170",
@@ -2041,7 +2981,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:218",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-171",
@@ -2053,7 +3003,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/householdDetailsState.ts:184-189",
    "verdict": "match",
    "note": "TST: present | [DISABLED] second loop: dead; not in React. | Judge: The [DISABLED] second loop is dead. React implements the live loop only.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-172",
@@ -2065,7 +3025,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:230-232",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-173",
@@ -2077,7 +3047,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:189; BR-UBTCON-815",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-174",
@@ -2089,7 +3069,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:190-193",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-175",
@@ -2101,7 +3091,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:197; BR-UBTCON-815",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-176",
@@ -2113,7 +3113,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:198",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-177",
@@ -2125,7 +3135,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:100-130",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-178",
@@ -2137,7 +3157,17 @@
    "evidence": "no input widgets (MaxLength/Mandatory not applicable)",
    "verdict": "match",
    "note": "TST: no input widgets (MaxLength/Mandatory not applicable)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-179",
@@ -2149,7 +3179,17 @@
    "evidence": "app/src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts:68-83",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-180",
@@ -2161,7 +3201,17 @@
    "evidence": "app/src/containers/HouseholdDetails/mockData.ts; app/src/containers/HouseholdDetails/mocks.ts:18-37",
    "verdict": "mock-only",
    "note": "TST: - | Mock data is not a finding. Any HouseholdId not in sampleHouseholds answers the default household (mocks.ts:28). isVisible is always true (mocks.ts:35): the private-profile line has no mock case. | Judge: The server side is the mock (rows 092 and 093). Mock data is not a finding.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-181",
@@ -2173,7 +3223,17 @@
    "evidence": "present",
    "verdict": "match",
    "note": "TST: present | 5 strings found. Other strings of strings.md belong to shared blocks (PIN unlock, unsupported version, OneSchool Global, skeleton examples).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-182",
@@ -2185,7 +3245,17 @@
    "evidence": "app/src/pages/Household_Relations/hooks/useHouseholdRelations.ts:32-37",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-183",
@@ -2197,7 +3267,17 @@
    "evidence": "app/src/pages/Household_Relations/hooks/useHouseholdRelations.ts:153",
    "verdict": "match",
    "note": "TST: present (js:218)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-184",
@@ -2209,7 +3289,17 @@
    "evidence": "app/src/pages/Household_Relations/hooks/householdRelationsState.ts:32",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-185",
@@ -2221,7 +3311,17 @@
    "evidence": "app/src/pages/Household_Relations/hooks/householdRelationsState.ts:33,43",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-186",
@@ -2233,7 +3333,17 @@
    "evidence": "app/src/pages/Household_Relations/hooks/householdRelationsState.ts:34,44",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-187",
@@ -2245,7 +3355,17 @@
    "evidence": "app/src/api/household/repository.ts:77-80",
    "verdict": "match",
    "note": "TST: present (Get_MemberDetails) | Production needs service action Member_GetContext_Service (Connect_Household_CS). The React type MemberRelations (api/household/types.ts:146-153) has no IsMemberDeceased; TST has no IsMemberDeceased (0 hits). | Judge: Server side: row 191.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-188",
@@ -2257,7 +3377,17 @@
    "evidence": "absent (0 hits in HouseholdRelations_Block.js); TST UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (0 hits of IsMemberDeceased)",
    "verdict": "match",
    "note": "TST: absent (0 hits in HouseholdRelations_Block.js) | DEV != TST: the Notes button IsDisabled is the constant false on TST (js:504). | Judge: DEV only. React follows TST (section 6.1).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-189",
@@ -2269,7 +3399,17 @@
    "evidence": "app/src/api/household/repository.ts:84-87",
    "verdict": "match",
    "note": "TST: present | Production needs service action Household_GetMemberSiblings. The ParentHouseholdId conversion is done server side behind the wire action; not visible in React. | Judge: Server side: row 191.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-190",
@@ -2281,7 +3421,17 @@
    "evidence": "app/src/pages/Household_Relations/hooks/householdRelationsState.ts:37,55; TST UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js:1595-1599 (FetchNotes on demand) and no call of fetchNotes$DataActRefresh; js:1921-1928",
    "verdict": "match",
    "note": "TST: present (FetchNotes data action and DataActionFetchNotes call exist, js:1634-1647) | Server action GetNotesByItemId: not called in React and not mocked (pack: no mock handler). On TST Handler_AddNotes does not refresh FetchNotes either (js:1921-1928 sets ShowNotesSheet only), so no TST call is missed. The DEV Handler_AddNotes does `refresh data FetchNotes`. The ItemId sent in DEV is HouseholdId-MemberId; React gives NotesSheet inItemId={memberId} (view.tsx:304). | Judge: On TST FetchNotes never runs, so the block never calls GetNotesByItemId. React makes no call, and NotesSheet gets the empty Notes record, as on TST. Production needs no server action for this data action.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-191",
@@ -2293,7 +3443,17 @@
    "evidence": "app/src/pages/Household_Relations/mocks.ts:6-13; app/src/pages/Household_Relations/mocks.ts:75-90",
    "verdict": "mock-only",
    "note": "TST: - | Any MemberId answers the same member. IsMemberDeceased true and former-spouse cases are not mocked (FormerSpouses = wireList([]), mocks.ts:80). | Judge: Production needs the service actions Member_GetContext_Service and Household_GetMemberSiblings of Connect_Household_CS. Mock data is not a finding.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-192",
@@ -2305,7 +3465,17 @@
    "evidence": "app/src/pages/Household_Relations/hooks/householdRelationsState.ts:118-126;",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-193",
@@ -2317,7 +3487,17 @@
    "evidence": "app/src/pages/Household_Relations/hooks/useHouseholdRelations.ts:162",
    "verdict": "match",
    "note": "TST: present (HasAccessToRegion 4, ShowUpgradePopUp 5 hits) | Shared, App_Common.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-194",
@@ -2329,7 +3509,17 @@
    "evidence": "app/src/pages/Household_Relations/components/HouseholdRelationsView.tsx:142",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-195",
@@ -2341,7 +3531,17 @@
    "evidence": "app/src/pages/Household_Relations/components/HouseholdRelationsView.tsx:144-154",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-196",
@@ -2353,7 +3553,17 @@
    "evidence": "app/src/pages/Household_Relations/components/HouseholdRelationsView.tsx:155-169",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-197",
@@ -2365,7 +3575,17 @@
    "evidence": "app/src/pages/Household_Relations/components/HouseholdRelationsView.tsx:181-188",
    "verdict": "match",
    "note": "TST: IsDisabled=false (js:504-505) | DEV != TST: DEV passes IsMemberDeceased, TST a constant false. React equals TST. | Judge: DEV != TST. React follows TST (section 6.1).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-198",
@@ -2377,7 +3597,17 @@
    "evidence": "app/src/pages/Household_Relations/components/HouseholdRelationsView.tsx:191-197",
    "verdict": "match",
    "note": "TST: IsDisabled=true (js:551-552)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-199",
@@ -2389,7 +3619,17 @@
    "evidence": "app/src/pages/Household_Relations/components/HouseholdRelationsView.tsx:171-180",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-200",
@@ -2401,7 +3641,17 @@
    "evidence": "app/src/pages/Household_Relations/components/HouseholdRelationsView.tsx:203",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-201",
@@ -2413,7 +3663,17 @@
    "evidence": "app/src/pages/Household_Relations/components/HouseholdRelationsView.tsx:111-113; BR-UBTCON-828",
    "verdict": "match",
    "note": "TST: present | OS compares with NullIdentifier(); React compares with '0' (the Long Integer null).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-202",
@@ -2425,7 +3685,17 @@
    "evidence": "app/src/pages/Household_Relations/components/HouseholdRelationsView.tsx:206-211",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-203",
@@ -2437,7 +3707,17 @@
    "evidence": "app/src/pages/Household_Relations/components/HouseholdRelationsView.tsx:296-300",
    "verdict": "match",
    "note": "TST: present (string found, incl. the typo 'avaialble')",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-204",
@@ -2449,7 +3729,17 @@
    "evidence": "app/src/pages/Household_Relations/components/HouseholdRelationsView.tsx:213; BR-UBTCON-828",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-205",
@@ -2461,7 +3751,17 @@
    "evidence": "app/src/pages/Household_Relations/components/HouseholdRelationsView.tsx:213",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-206",
@@ -2473,7 +3773,17 @@
    "evidence": "app/src/pages/Household_Relations/components/HouseholdRelationsView.tsx:115-125,136",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-207",
@@ -2485,7 +3795,17 @@
    "evidence": "app/src/pages/Household_Relations/components/HouseholdRelationsView.tsx:214-218; BR-UBTCON-828",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-208",
@@ -2497,7 +3817,17 @@
    "evidence": "app/src/pages/Household_Relations/components/HouseholdRelationsView.tsx:214",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-209",
@@ -2509,7 +3839,17 @@
    "evidence": "app/src/pages/Household_Relations/components/HouseholdRelationsView.tsx:219-228",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-210",
@@ -2521,7 +3861,17 @@
    "evidence": "app/src/pages/Household_Relations/components/HouseholdRelationsView.tsx:230-239",
    "verdict": "match",
    "note": "TST: present (string found)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-211",
@@ -2533,7 +3883,17 @@
    "evidence": "app/src/pages/Household_Relations/components/HouseholdRelationsView.tsx:239; BR-UBTCON-828",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-212",
@@ -2545,7 +3905,17 @@
    "evidence": "app/src/pages/Household_Relations/components/HouseholdRelationsView.tsx:246-248; BR-UBTCON-828",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-213",
@@ -2557,7 +3927,17 @@
    "evidence": "app/src/pages/Household_Relations/components/HouseholdRelationsView.tsx:258-266",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-214",
@@ -2569,7 +3949,17 @@
    "evidence": "app/src/pages/Household_Relations/components/HouseholdRelationsView.tsx:268-287",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-215",
@@ -2581,7 +3971,17 @@
    "evidence": "present (name in js); pack/blocks.md:607 [DEAD BRANCH]",
    "verdict": "n/a",
    "note": "TST: present (name in js) | [DEAD BRANCH]: dead in the model. | Judge: Dead in the model. React does not implement it.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-216",
@@ -2593,7 +3993,19 @@
    "evidence": "app/src/pages/Household_Relations/components/HouseholdRelationsView.tsx:302-310",
    "verdict": "match",
    "note": "TST: present | Behaviour of NotesSheet (UBTConnect_Utils.CW_Notes, TST file UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js): shared, not read here. | Judge: The arguments match. NotesSheet behaviour (UBTConnect_Utils) is not checked here (section 4 of the report).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)",
+     "UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-217",
@@ -2605,7 +4017,17 @@
    "evidence": "app/src/pages/Household_Relations/hooks/householdRelationsState.ts:80-82; BR-UBTCON-829",
    "verdict": "match",
    "note": "TST: present (js:1814)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-218",
@@ -2617,7 +4039,17 @@
    "evidence": "present; pack/blocks.md:474-489 (all data actions OnDemand); TST UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js:1595-1599; BR-UBTCON-829",
    "verdict": "match",
    "note": "TST: present | React applies the skeleton to every new (not restored) view; a view with fetched data comes only from the cache (restored). Equivalence not shown in code. | Judge: All three data actions are OnDemand, and only OnReady and OnAfterFetch refresh them. So a block that is not restored has fetched nothing at OnInitialize: the check is always false there, and React has no need for it.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-219",
@@ -2629,7 +4061,17 @@
    "evidence": "app/src/pages/Household_Relations/hooks/householdRelationsState.ts:61-76; BR-UBTCON-829",
    "verdict": "match",
    "note": "TST: present (js:1822-1843)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-220",
@@ -2641,7 +4083,17 @@
    "evidence": "app/src/pages/Household_Relations/hooks/useHouseholdRelations.ts:161-167; BR-UBTCON-829",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-221",
@@ -2653,7 +4105,17 @@
    "evidence": "app/src/pages/Household_Relations/hooks/useHouseholdRelations.ts:167-169",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-222",
@@ -2665,7 +4127,17 @@
    "evidence": "app/src/pages/Household_Relations/hooks/useHouseholdRelations.ts:166",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-223",
@@ -2677,7 +4149,17 @@
    "evidence": "app/src/pages/Household_Relations/hooks/useHouseholdRelations.ts:166-169",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-224",
@@ -2689,7 +4171,17 @@
    "evidence": "app/src/pages/Household_Relations/hooks/useHouseholdRelations.ts:168-169",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-225",
@@ -2701,7 +4193,17 @@
    "evidence": "app/src/pages/Household_Relations/hooks/householdRelationsState.ts:123",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-226",
@@ -2713,7 +4215,17 @@
    "evidence": "app/src/pages/Household_Relations/hooks/householdRelationsState.ts:124-125",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-227",
@@ -2725,7 +4237,17 @@
    "evidence": "app/src/pages/Household_Relations/hooks/useHouseholdRelations.ts:151-155",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-228",
@@ -2737,7 +4259,17 @@
    "evidence": "app/src/pages/Household_Relations/hooks/householdRelationsState.ts:174; BR-UBTCON-827",
    "verdict": "match",
    "note": "TST: present (OnClick_Member in js:1962) | No caller sets Target_IsDeceased (every caller passes none).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-229",
@@ -2749,7 +4281,17 @@
    "evidence": "app/src/pages/Household_Relations/hooks/householdRelationsState.ts:174",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-230",
@@ -2761,7 +4303,17 @@
    "evidence": "app/src/pages/Household_Relations/hooks/householdRelationsState.ts:174",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-231",
@@ -2773,7 +4325,17 @@
    "evidence": "app/src/pages/Household_Relations/hooks/useHouseholdRelations.ts:178; BR-UBTCON-827",
    "verdict": "match",
    "note": "TST: present | Argument order in React: locality first, country second; matches the React signature.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-232",
@@ -2785,7 +4347,17 @@
    "evidence": "app/src/pages/Household_Relations/hooks/useHouseholdRelations.ts:179; BR-UBTCON-827",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-233",
@@ -2797,7 +4369,17 @@
    "evidence": "app/src/pages/Household_Relations/hooks/useHouseholdRelations.ts:181; BR-UBTCON-827",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-234",
@@ -2809,7 +4391,17 @@
    "evidence": "app/src/pages/Household_Relations/hooks/useHouseholdRelations.ts:201-203",
    "verdict": "match",
    "note": "TST: ShowNotesSheet = true only (js:1921-1928); no FetchNotes refresh on TST | DEV != TST on the refresh. React equals TST. | Judge: DEV != TST. React follows TST (section 6.1).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-235",
@@ -2821,7 +4413,17 @@
    "evidence": "app/src/pages/Household_Relations/hooks/useHouseholdRelations.ts:204-206;",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-236",
@@ -2833,7 +4435,17 @@
    "evidence": "app/src/pages/Household_Relations/hooks/householdRelationsState.ts:152-153",
    "verdict": "match",
    "note": "TST: present (js:1893)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-237",
@@ -2845,7 +4457,17 @@
    "evidence": "app/src/pages/Household_Relations/hooks/householdRelationsState.ts:154-164",
    "verdict": "match",
    "note": "TST: present (js:2197-2207)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-238",
@@ -2857,7 +4479,17 @@
    "evidence": "app/src/pages/Household_Relations/hooks/householdRelationsState.ts:157",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-239",
@@ -2869,7 +4501,17 @@
    "evidence": "app/src/pages/Household_Relations/components/HouseholdRelationsView.tsx:84; migration/knowledge/audit-a1-empty-handlers.md:45",
    "verdict": "match",
    "note": "TST: present | Empty in DEV and in TST (audit-a1-empty-handlers.md:45); the button is disabled.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-240",
@@ -2881,7 +4523,17 @@
    "evidence": "no input widgets (MaxLength/Mandatory not applicable)",
    "verdict": "match",
    "note": "TST: no input widgets (MaxLength/Mandatory not applicable)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Household-241",
@@ -2893,7 +4545,17 @@
    "evidence": "present",
    "verdict": "match",
    "note": "TST: present | 9 strings found. Other strings of strings.md are shared blocks, skeleton examples, or other flows.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js (screen)"
+    ]
+   }
   }
  ]
 }

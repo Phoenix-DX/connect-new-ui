@@ -96,4 +96,6 @@ Gates: `npm run ci` green (4338 tests, 0 new unused exports, build OK); the 64-r
   OrbitAdminTag stays NotCaptured as in AccommodationHost.
 - Orchestrator (2026-10-28): the survey of 2026-10-13 is stale. Done the same day: the live scripts were fetched
   read-only and compared (`../review/survey-drift-2026-10-28.md`): 79 files with logic changes, 21 added, 20 removed,
-  19 runtime sources changed; TST was last published on 2026-10-27. The next step is the user's decision.
+  19 runtime sources changed; TST was last published on 2026-10-27.
+- Decided (user, 2026-10-28): (c). The source switch is done: the live code is the source of truth, and 1885 checklist
+  rows are `stale` (422 strong). A build or a new judge of a route starts from the live code and its stale rows.

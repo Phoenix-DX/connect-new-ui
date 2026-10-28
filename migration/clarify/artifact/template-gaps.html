@@ -161,8 +161,8 @@
 
   <section class="block" id="matrix">
     <details><summary>Per-flow verdict matrix (45 reports)</summary>
-      <p class="note">match = same as TST · partial = present but different in a detail · missing = not in React · differs = different by a recorded decision · mock-only = UI present, server side is a mock · n/a = out of scope by decision or dead in the model · unclear = evidence not enough.</p>
-      <div class="tablebox"><table id="matrixTable"><thead><tr><th>Group</th><th>Flow</th><th>Rows</th><th>match</th><th>partial</th><th>missing</th><th>differs</th><th>mock-only</th><th>n/a</th><th>unclear</th><th>Findings B/M/m/i</th></tr></thead><tbody></tbody></table></div>
+      <p class="note">match = same as TST · partial = present but different in a detail · missing = not in React · differs = different by a recorded decision · mock-only = UI present, server side is a mock · n/a = out of scope by decision or dead in the model · unclear = evidence not enough. Stale = rows that rest on TST code that changed in the TST publish of 2026-10-27 (strong in brackets: removed file or changed cited lines); the verdict was made on the code of 2026-10-13.</p>
+      <div class="tablebox"><table id="matrixTable"><thead><tr><th>Group</th><th>Flow</th><th>Rows</th><th>match</th><th>partial</th><th>missing</th><th>differs</th><th>mock-only</th><th>n/a</th><th>unclear</th><th>Findings B/M/m/i</th><th>Stale (strong)</th></tr></thead><tbody></tbody></table></div>
     </details>
   </section>
 
@@ -275,7 +275,7 @@
   document.getElementById('steps').innerHTML = D.setup_order.map(function (s) { return '<li>' + md(s) + '</li>'; }).join('');
 
   // matrix
-  tb('matrixTable').innerHTML = D.matrix.map(function (r) { return '<tr><td>' + esc(r.Group) + '</td><td class="mono">' + md(flowOf(r)) + '</td><td class="mono">' + esc(r.Rows) + '</td>' + V.map(function (v) { return '<td>' + esc(r[v]) + '</td>'; }).join('') + '<td class="mono">' + esc(r['Findings (B/M/m/i)']) + '</td></tr>'; }).join('');
+  tb('matrixTable').innerHTML = D.matrix.map(function (r) { return '<tr><td>' + esc(r.Group) + '</td><td class="mono">' + md(flowOf(r)) + '</td><td class="mono">' + esc(r.Rows) + '</td>' + V.map(function (v) { return '<td>' + esc(r[v]) + '</td>'; }).join('') + '<td class="mono">' + esc(r['Findings (B/M/m/i)']) + '</td><td class="mono">' + esc(r['Stale (strong)'] || '') + '</td></tr>'; }).join('');
   // open
   document.getElementById('openList').innerHTML = D.open_items.map(function (s) { return '<li>' + md(s) + '</li>'; }).join('');
   tb('unclearTable').innerHTML = D.unclear.map(function (r) { var k = Object.keys(r); return '<tr><td class="mono">' + esc(r[k[0]]) + '</td><td class="mono">' + esc(r[k[1]]) + '</td><td>' + md(r[k[2]]) + '</td><td>' + md(r[k[3]]) + '</td></tr>'; }).join('');

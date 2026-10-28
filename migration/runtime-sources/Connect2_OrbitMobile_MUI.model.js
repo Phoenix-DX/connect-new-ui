@@ -276,6 +276,59 @@ return SpecialNeedsRecordList;
 Connect2_OrbitMobile_MUIModel.SpecialNeedsRecordList = SpecialNeedsRecordList;
 
 });
+define("Connect2_OrbitMobile_MUI.model$FormerSpouseItemList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$FormerSpouseItemRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var FormerSpouseItemList = (function (_super) {
+__extends(FormerSpouseItemList, _super);
+function FormerSpouseItemList(defaults) {
+_super.apply(this, arguments);
+}
+FormerSpouseItemList.itemType = ContactBase_ISModel.FormerSpouseItemRec;
+return FormerSpouseItemList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.FormerSpouseItemList = FormerSpouseItemList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$FamilyMemberFormattedDetailList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$FamilyMemberFormattedDetailRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var FamilyMemberFormattedDetailList = (function (_super) {
+__extends(FamilyMemberFormattedDetailList, _super);
+function FamilyMemberFormattedDetailList(defaults) {
+_super.apply(this, arguments);
+}
+FamilyMemberFormattedDetailList.itemType = ContactBase_ISModel.FamilyMemberFormattedDetailRec;
+return FamilyMemberFormattedDetailList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.FamilyMemberFormattedDetailList = FamilyMemberFormattedDetailList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$Member2Record", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$MemberRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var Member2Record = (function (_super) {
+__extends(Member2Record, _super);
+function Member2Record(defaults) {
+_super.apply(this, arguments);
+}
+Member2Record.attributesToDeclare = function () {
+return [
+this.attr("Member", "memberAttr", "Member2", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.MemberRec());
+}, true, ContactBase_ISModel.MemberRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+Member2Record.fromStructure = function (str) {
+return new Member2Record(new Member2Record.RecordClass({
+memberAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+Member2Record._isAnonymousRecord = true;
+Member2Record.UniqueId = "010671ad-cf1b-713f-05ca-b9ee282b9ce8";
+Member2Record.init();
+return Member2Record;
+})(OS.DataTypes.GenericRecord);
+Connect2_OrbitMobile_MUIModel.Member2Record = Member2Record;
+
+});
 define("Connect2_OrbitMobile_MUI.model$HostSurveyRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_IS.model", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_IS.model$HostSurveyRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_IS"], function (exports, OutSystems, Connect2_OrbitMobile_ISModel, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var HostSurveyRecord = (function (_super) {
@@ -314,6 +367,33 @@ HostSurveyRecordList.itemType = Connect2_OrbitMobile_MUIModel.HostSurveyRecord;
 return HostSurveyRecordList;
 })(OS.DataTypes.GenericRecordList);
 Connect2_OrbitMobile_MUIModel.HostSurveyRecordList = HostSurveyRecordList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$PolicyActivationRecord", ["exports", "OutSystems/ClientRuntime/Main", "DirectoryClientCore.model", "Connect2_OrbitMobile_MUI.model", "DirectoryClientCore.model$PolicyActivationRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$DirectoryClientCore"], function (exports, OutSystems, DirectoryClientCoreModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var PolicyActivationRecord = (function (_super) {
+__extends(PolicyActivationRecord, _super);
+function PolicyActivationRecord(defaults) {
+_super.apply(this, arguments);
+}
+PolicyActivationRecord.attributesToDeclare = function () {
+return [
+this.attr("PolicyActivation", "policyActivationAttr", "PolicyActivation", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new DirectoryClientCoreModel.PolicyActivationRec());
+}, true, DirectoryClientCoreModel.PolicyActivationRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+PolicyActivationRecord.fromStructure = function (str) {
+return new PolicyActivationRecord(new PolicyActivationRecord.RecordClass({
+policyActivationAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+PolicyActivationRecord._isAnonymousRecord = true;
+PolicyActivationRecord.UniqueId = "01ee98e9-3feb-f886-de04-a215ebcdad12";
+PolicyActivationRecord.init();
+return PolicyActivationRecord;
+})(OS.DataTypes.GenericRecord);
+Connect2_OrbitMobile_MUIModel.PolicyActivationRecord = PolicyActivationRecord;
 
 });
 define("Connect2_OrbitMobile_MUI.model$PhotoURLRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "Connect2_OrbitMobile_MUI.model", "APIDomain_Directory_IS.model$PhotoURLRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, Connect2_OrbitMobile_MUIModel) {
@@ -798,6 +878,33 @@ return GetOrbitEventsSummary_ScreenRecord;
 Connect2_OrbitMobile_MUIModel.GetOrbitEventsSummary_ScreenRecord = GetOrbitEventsSummary_ScreenRecord;
 
 });
+define("Connect2_OrbitMobile_MUI.model$HallPhoto2Record", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$HallPhotoRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var HallPhoto2Record = (function (_super) {
+__extends(HallPhoto2Record, _super);
+function HallPhoto2Record(defaults) {
+_super.apply(this, arguments);
+}
+HallPhoto2Record.attributesToDeclare = function () {
+return [
+this.attr("HallPhoto", "hallPhotoAttr", "HallPhoto2", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.HallPhotoRec());
+}, true, ContactBase_ISModel.HallPhotoRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+HallPhoto2Record.fromStructure = function (str) {
+return new HallPhoto2Record(new HallPhoto2Record.RecordClass({
+hallPhotoAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+HallPhoto2Record._isAnonymousRecord = true;
+HallPhoto2Record.UniqueId = "04bf4c71-7c0b-bbb7-2b8d-48c4afab29c3";
+HallPhoto2Record.init();
+return HallPhoto2Record;
+})(OS.DataTypes.GenericRecord);
+Connect2_OrbitMobile_MUIModel.HallPhoto2Record = HallPhoto2Record;
+
+});
 define("Connect2_OrbitMobile_MUI.model$LocalHostSurveyStepRec", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var LocalHostSurveyStepRec = (function (_super) {
@@ -1079,6 +1186,19 @@ return GenderPreferenceList;
 Connect2_OrbitMobile_MUIModel.GenderPreferenceList = GenderPreferenceList;
 
 });
+define("Connect2_OrbitMobile_MUI.model$FamilyMemberFormattedList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$FamilyMemberFormattedRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var FamilyMemberFormattedList = (function (_super) {
+__extends(FamilyMemberFormattedList, _super);
+function FamilyMemberFormattedList(defaults) {
+_super.apply(this, arguments);
+}
+FamilyMemberFormattedList.itemType = ContactBase_ISModel.FamilyMemberFormattedRec;
+return FamilyMemberFormattedList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.FamilyMemberFormattedList = FamilyMemberFormattedList;
+
+});
 define("Connect2_OrbitMobile_MUI.model$RoomInformationList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_IS.model", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_IS.model$RoomInformationRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_IS"], function (exports, OutSystems, Connect2_OrbitMobile_ISModel, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var RoomInformationList = (function (_super) {
@@ -1179,6 +1299,19 @@ SeatItemList.itemType = Connect2_OrbitMobile_ISModel.SeatItemRec;
 return SeatItemList;
 })(OS.DataTypes.GenericRecordList);
 Connect2_OrbitMobile_MUIModel.SeatItemList = SeatItemList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$ActionBarOptionsList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "Connect2_OrbitMobile_MUI.model", "UBTConnectLibrary.model$ActionBarOptionsRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var ActionBarOptionsList = (function (_super) {
+__extends(ActionBarOptionsList, _super);
+function ActionBarOptionsList(defaults) {
+_super.apply(this, arguments);
+}
+ActionBarOptionsList.itemType = UBTConnectLibraryModel.ActionBarOptionsRec;
+return ActionBarOptionsList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.ActionBarOptionsList = ActionBarOptionsList;
 
 });
 define("Connect2_OrbitMobile_MUI.model$AccommodationHelperRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_IS.model", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_IS.model$AccommodationHelperRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_IS"], function (exports, OutSystems, Connect2_OrbitMobile_ISModel, Connect2_OrbitMobile_MUIModel) {
@@ -2081,6 +2214,46 @@ return OrbitMilestoneTypeRecordList;
 Connect2_OrbitMobile_MUIModel.OrbitMilestoneTypeRecordList = OrbitMilestoneTypeRecordList;
 
 });
+define("Connect2_OrbitMobile_MUI.model$FamilyMemberFormattedRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$FamilyMemberFormattedRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var FamilyMemberFormattedRecord = (function (_super) {
+__extends(FamilyMemberFormattedRecord, _super);
+function FamilyMemberFormattedRecord(defaults) {
+_super.apply(this, arguments);
+}
+FamilyMemberFormattedRecord.attributesToDeclare = function () {
+return [
+this.attr("FamilyMemberFormatted", "familyMemberFormattedAttr", "FamilyMemberFormatted", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.FamilyMemberFormattedRec());
+}, true, ContactBase_ISModel.FamilyMemberFormattedRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+FamilyMemberFormattedRecord.fromStructure = function (str) {
+return new FamilyMemberFormattedRecord(new FamilyMemberFormattedRecord.RecordClass({
+familyMemberFormattedAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+FamilyMemberFormattedRecord._isAnonymousRecord = true;
+FamilyMemberFormattedRecord.UniqueId = "53161015-816a-7b22-b946-27bd3a779d70";
+FamilyMemberFormattedRecord.init();
+return FamilyMemberFormattedRecord;
+})(OS.DataTypes.GenericRecord);
+Connect2_OrbitMobile_MUIModel.FamilyMemberFormattedRecord = FamilyMemberFormattedRecord;
+
+});
+define("Connect2_OrbitMobile_MUI.model$FamilyMemberFormattedRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$FamilyMemberFormattedRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var FamilyMemberFormattedRecordList = (function (_super) {
+__extends(FamilyMemberFormattedRecordList, _super);
+function FamilyMemberFormattedRecordList(defaults) {
+_super.apply(this, arguments);
+}
+FamilyMemberFormattedRecordList.itemType = Connect2_OrbitMobile_MUIModel.FamilyMemberFormattedRecord;
+return FamilyMemberFormattedRecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.FamilyMemberFormattedRecordList = FamilyMemberFormattedRecordList;
+
+});
 define("Connect2_OrbitMobile_MUI.model$MilestoneInfoList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_IS.model", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_IS.model$MilestoneInfoRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_IS"], function (exports, OutSystems, Connect2_OrbitMobile_ISModel, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var MilestoneInfoList = (function (_super) {
@@ -2646,6 +2819,33 @@ return GetAccommodationGuest_ScreenRecord;
 Connect2_OrbitMobile_MUIModel.GetAccommodationGuest_ScreenRecord = GetAccommodationGuest_ScreenRecord;
 
 });
+define("Connect2_OrbitMobile_MUI.model$GetSettingResponseDetailsRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$GetSettingResponseDetailsRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var GetSettingResponseDetailsRecord = (function (_super) {
+__extends(GetSettingResponseDetailsRecord, _super);
+function GetSettingResponseDetailsRecord(defaults) {
+_super.apply(this, arguments);
+}
+GetSettingResponseDetailsRecord.attributesToDeclare = function () {
+return [
+this.attr("GetSettingResponseDetails", "getSettingResponseDetailsAttr", "GetSettingResponseDetails", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.GetSettingResponseDetailsRec());
+}, true, ContactBase_ISModel.GetSettingResponseDetailsRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+GetSettingResponseDetailsRecord.fromStructure = function (str) {
+return new GetSettingResponseDetailsRecord(new GetSettingResponseDetailsRecord.RecordClass({
+getSettingResponseDetailsAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+GetSettingResponseDetailsRecord._isAnonymousRecord = true;
+GetSettingResponseDetailsRecord.UniqueId = "177f67c8-6de6-63c5-3166-3f50ecc6c0be";
+GetSettingResponseDetailsRecord.init();
+return GetSettingResponseDetailsRecord;
+})(OS.DataTypes.GenericRecord);
+Connect2_OrbitMobile_MUIModel.GetSettingResponseDetailsRecord = GetSettingResponseDetailsRecord;
+
+});
 define("Connect2_OrbitMobile_MUI.model$CalendarGuestItemList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_IS.model", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_IS.model$CalendarGuestItemRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_IS"], function (exports, OutSystems, Connect2_OrbitMobile_ISModel, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var CalendarGuestItemList = (function (_super) {
@@ -2722,6 +2922,19 @@ return AgendaRecord;
 Connect2_OrbitMobile_MUIModel.AgendaRecord = AgendaRecord;
 
 });
+define("Connect2_OrbitMobile_MUI.model$DefaultLocalityList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$DefaultLocalityRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var DefaultLocalityList = (function (_super) {
+__extends(DefaultLocalityList, _super);
+function DefaultLocalityList(defaults) {
+_super.apply(this, arguments);
+}
+DefaultLocalityList.itemType = ContactBase_ISModel.DefaultLocalityRec;
+return DefaultLocalityList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.DefaultLocalityList = DefaultLocalityList;
+
+});
 define("Connect2_OrbitMobile_MUI.model$GetCountriesBySubscriptionIdList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "Connect2_OrbitMobile_MUI.model", "APIDomain_Directory_IS.model$GetCountriesBySubscriptionIdRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var GetCountriesBySubscriptionIdList = (function (_super) {
@@ -2733,6 +2946,19 @@ GetCountriesBySubscriptionIdList.itemType = APIDomain_Directory_ISModel.GetCount
 return GetCountriesBySubscriptionIdList;
 })(OS.DataTypes.GenericRecordList);
 Connect2_OrbitMobile_MUIModel.GetCountriesBySubscriptionIdList = GetCountriesBySubscriptionIdList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$PolicyActivationRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$PolicyActivationRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var PolicyActivationRecordList = (function (_super) {
+__extends(PolicyActivationRecordList, _super);
+function PolicyActivationRecordList(defaults) {
+_super.apply(this, arguments);
+}
+PolicyActivationRecordList.itemType = Connect2_OrbitMobile_MUIModel.PolicyActivationRecord;
+return PolicyActivationRecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.PolicyActivationRecordList = PolicyActivationRecordList;
 
 });
 define("Connect2_OrbitMobile_MUI.model$SubscribedRegionItemRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "Connect2_OrbitMobile_MUI.model", "APIDomain_Directory_IS.model$SubscribedRegionItemRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, Connect2_OrbitMobile_MUIModel) {
@@ -3458,6 +3684,46 @@ ResultList.itemType = Connect2_OrbitMobile_BLModel.ResultRec;
 return ResultList;
 })(OS.DataTypes.GenericRecordList);
 Connect2_OrbitMobile_MUIModel.ResultList = ResultList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$PhotoTag2Record", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$PhotoTagRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var PhotoTag2Record = (function (_super) {
+__extends(PhotoTag2Record, _super);
+function PhotoTag2Record(defaults) {
+_super.apply(this, arguments);
+}
+PhotoTag2Record.attributesToDeclare = function () {
+return [
+this.attr("PhotoTag", "photoTagAttr", "PhotoTag2", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.PhotoTagRec());
+}, true, ContactBase_ISModel.PhotoTagRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+PhotoTag2Record.fromStructure = function (str) {
+return new PhotoTag2Record(new PhotoTag2Record.RecordClass({
+photoTagAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+PhotoTag2Record._isAnonymousRecord = true;
+PhotoTag2Record.UniqueId = "20fee28b-3c7f-ea5c-4304-e469befb98a2";
+PhotoTag2Record.init();
+return PhotoTag2Record;
+})(OS.DataTypes.GenericRecord);
+Connect2_OrbitMobile_MUIModel.PhotoTag2Record = PhotoTag2Record;
+
+});
+define("Connect2_OrbitMobile_MUI.model$Timezone3List", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$TimezoneRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var Timezone3List = (function (_super) {
+__extends(Timezone3List, _super);
+function Timezone3List(defaults) {
+_super.apply(this, arguments);
+}
+Timezone3List.itemType = ContactBase_ISModel.TimezoneRec;
+return Timezone3List;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.Timezone3List = Timezone3List;
 
 });
 define("Connect2_OrbitMobile_MUI.model$ScannedUserList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_BL.model", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_BL.model$ScannedUserRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_BL"], function (exports, OutSystems, Connect2_OrbitMobile_BLModel, Connect2_OrbitMobile_MUIModel) {
@@ -4229,6 +4495,46 @@ return GetAccommodationHelper_ScreenList;
 Connect2_OrbitMobile_MUIModel.GetAccommodationHelper_ScreenList = GetAccommodationHelper_ScreenList;
 
 });
+define("Connect2_OrbitMobile_MUI.model$ActionBarOptionsRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "Connect2_OrbitMobile_MUI.model", "UBTConnectLibrary.model$ActionBarOptionsRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var ActionBarOptionsRecord = (function (_super) {
+__extends(ActionBarOptionsRecord, _super);
+function ActionBarOptionsRecord(defaults) {
+_super.apply(this, arguments);
+}
+ActionBarOptionsRecord.attributesToDeclare = function () {
+return [
+this.attr("ActionBarOptions", "actionBarOptionsAttr", "ActionBarOptions", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ActionBarOptionsRec());
+}, true, UBTConnectLibraryModel.ActionBarOptionsRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+ActionBarOptionsRecord.fromStructure = function (str) {
+return new ActionBarOptionsRecord(new ActionBarOptionsRecord.RecordClass({
+actionBarOptionsAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+ActionBarOptionsRecord._isAnonymousRecord = true;
+ActionBarOptionsRecord.UniqueId = "e6dab178-52e1-ec4a-1946-c48270768708";
+ActionBarOptionsRecord.init();
+return ActionBarOptionsRecord;
+})(OS.DataTypes.GenericRecord);
+Connect2_OrbitMobile_MUIModel.ActionBarOptionsRecord = ActionBarOptionsRecord;
+
+});
+define("Connect2_OrbitMobile_MUI.model$ActionBarOptionsRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$ActionBarOptionsRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var ActionBarOptionsRecordList = (function (_super) {
+__extends(ActionBarOptionsRecordList, _super);
+function ActionBarOptionsRecordList(defaults) {
+_super.apply(this, arguments);
+}
+ActionBarOptionsRecordList.itemType = Connect2_OrbitMobile_MUIModel.ActionBarOptionsRecord;
+return ActionBarOptionsRecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.ActionBarOptionsRecordList = ActionBarOptionsRecordList;
+
+});
 define("Connect2_OrbitMobile_MUI.model$CalendarGuestItemRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_IS.model", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_IS.model$CalendarGuestItemRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_IS"], function (exports, OutSystems, Connect2_OrbitMobile_ISModel, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var CalendarGuestItemRecord = (function (_super) {
@@ -4361,6 +4667,33 @@ GuestItemRecordList.itemType = Connect2_OrbitMobile_MUIModel.GuestItemRecord;
 return GuestItemRecordList;
 })(OS.DataTypes.GenericRecordList);
 Connect2_OrbitMobile_MUIModel.GuestItemRecordList = GuestItemRecordList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$FormerSpouseItemRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$FormerSpouseItemRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var FormerSpouseItemRecord = (function (_super) {
+__extends(FormerSpouseItemRecord, _super);
+function FormerSpouseItemRecord(defaults) {
+_super.apply(this, arguments);
+}
+FormerSpouseItemRecord.attributesToDeclare = function () {
+return [
+this.attr("FormerSpouseItem", "formerSpouseItemAttr", "FormerSpouseItem", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.FormerSpouseItemRec());
+}, true, ContactBase_ISModel.FormerSpouseItemRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+FormerSpouseItemRecord.fromStructure = function (str) {
+return new FormerSpouseItemRecord(new FormerSpouseItemRecord.RecordClass({
+formerSpouseItemAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+FormerSpouseItemRecord._isAnonymousRecord = true;
+FormerSpouseItemRecord.UniqueId = "26480892-2036-a9ae-6f3a-1739d0e73452";
+FormerSpouseItemRecord.init();
+return FormerSpouseItemRecord;
+})(OS.DataTypes.GenericRecord);
+Connect2_OrbitMobile_MUIModel.FormerSpouseItemRecord = FormerSpouseItemRecord;
 
 });
 define("Connect2_OrbitMobile_MUI.model$AuditLog_EventDetail_EventRec", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
@@ -5564,6 +5897,85 @@ return HouseholdNavigationTypeRecordList;
 Connect2_OrbitMobile_MUIModel.HouseholdNavigationTypeRecordList = HouseholdNavigationTypeRecordList;
 
 });
+define("Connect2_OrbitMobile_MUI.model$RolesList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$RolesRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var RolesList = (function (_super) {
+__extends(RolesList, _super);
+function RolesList(defaults) {
+_super.apply(this, arguments);
+}
+RolesList.itemType = ContactBase_ISModel.RolesRec;
+return RolesList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.RolesList = RolesList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$PermissionsList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$PermissionsRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var PermissionsList = (function (_super) {
+__extends(PermissionsList, _super);
+function PermissionsList(defaults) {
+_super.apply(this, arguments);
+}
+PermissionsList.itemType = ContactBase_ISModel.PermissionsRec;
+return PermissionsList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.PermissionsList = PermissionsList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$SubscriptionRegionList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$SubscriptionRegionRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var SubscriptionRegionList = (function (_super) {
+__extends(SubscriptionRegionList, _super);
+function SubscriptionRegionList(defaults) {
+_super.apply(this, arguments);
+}
+SubscriptionRegionList.itemType = ContactBase_ISModel.SubscriptionRegionRec;
+return SubscriptionRegionList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.SubscriptionRegionList = SubscriptionRegionList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$Country2List", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$CountryRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var Country2List = (function (_super) {
+__extends(Country2List, _super);
+function Country2List(defaults) {
+_super.apply(this, arguments);
+}
+Country2List.itemType = ContactBase_ISModel.CountryRec;
+return Country2List;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.Country2List = Country2List;
+
+});
+define("Connect2_OrbitMobile_MUI.model$GetCurrentUserResponseRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$GetCurrentUserResponseRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var GetCurrentUserResponseRecord = (function (_super) {
+__extends(GetCurrentUserResponseRecord, _super);
+function GetCurrentUserResponseRecord(defaults) {
+_super.apply(this, arguments);
+}
+GetCurrentUserResponseRecord.attributesToDeclare = function () {
+return [
+this.attr("GetCurrentUserResponse", "getCurrentUserResponseAttr", "GetCurrentUserResponse", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.GetCurrentUserResponseRec());
+}, true, ContactBase_ISModel.GetCurrentUserResponseRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+GetCurrentUserResponseRecord.fromStructure = function (str) {
+return new GetCurrentUserResponseRecord(new GetCurrentUserResponseRecord.RecordClass({
+getCurrentUserResponseAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+GetCurrentUserResponseRecord._isAnonymousRecord = true;
+GetCurrentUserResponseRecord.UniqueId = "301e253b-1743-abe3-28b5-1ff6cedc8f87";
+GetCurrentUserResponseRecord.init();
+return GetCurrentUserResponseRecord;
+})(OS.DataTypes.GenericRecord);
+Connect2_OrbitMobile_MUIModel.GetCurrentUserResponseRecord = GetCurrentUserResponseRecord;
+
+});
 define("Connect2_OrbitMobile_MUI.model$HostDetailsRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_BL.model", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_BL.model$HostDetailsRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_BL"], function (exports, OutSystems, Connect2_OrbitMobile_BLModel, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var HostDetailsRecord = (function (_super) {
@@ -5775,6 +6187,19 @@ return PhotoTagList;
 Connect2_OrbitMobile_MUIModel.PhotoTagList = PhotoTagList;
 
 });
+define("Connect2_OrbitMobile_MUI.model$MemberHouseholderList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$MemberHouseholderRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var MemberHouseholderList = (function (_super) {
+__extends(MemberHouseholderList, _super);
+function MemberHouseholderList(defaults) {
+_super.apply(this, arguments);
+}
+MemberHouseholderList.itemType = ContactBase_ISModel.MemberHouseholderRec;
+return MemberHouseholderList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.MemberHouseholderList = MemberHouseholderList;
+
+});
 define("Connect2_OrbitMobile_MUI.model$SubdivisionRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "Connect2_OrbitMobile_MUI.model", "APIDomain_Directory_IS.model$SubdivisionRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var SubdivisionRecord = (function (_super) {
@@ -5800,6 +6225,33 @@ SubdivisionRecord.init();
 return SubdivisionRecord;
 })(OS.DataTypes.GenericRecord);
 Connect2_OrbitMobile_MUIModel.SubdivisionRecord = SubdivisionRecord;
+
+});
+define("Connect2_OrbitMobile_MUI.model$PermissionsRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$PermissionsRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var PermissionsRecord = (function (_super) {
+__extends(PermissionsRecord, _super);
+function PermissionsRecord(defaults) {
+_super.apply(this, arguments);
+}
+PermissionsRecord.attributesToDeclare = function () {
+return [
+this.attr("Permissions", "permissionsAttr", "Permissions", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.PermissionsRec());
+}, true, ContactBase_ISModel.PermissionsRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+PermissionsRecord.fromStructure = function (str) {
+return new PermissionsRecord(new PermissionsRecord.RecordClass({
+permissionsAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+PermissionsRecord._isAnonymousRecord = true;
+PermissionsRecord.UniqueId = "329706fe-d7b4-c12c-f5e6-dabe0ab0274a";
+PermissionsRecord.init();
+return PermissionsRecord;
+})(OS.DataTypes.GenericRecord);
+Connect2_OrbitMobile_MUIModel.PermissionsRecord = PermissionsRecord;
 
 });
 define("Connect2_OrbitMobile_MUI.model$MemoryCacheResultRecord", ["exports", "OutSystems/ClientRuntime/Main", "MemoryClientCache.model", "Connect2_OrbitMobile_MUI.model", "MemoryClientCache.model$MemoryCacheResultRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$MemoryClientCache"], function (exports, OutSystems, MemoryClientCacheModel, Connect2_OrbitMobile_MUIModel) {
@@ -7190,6 +7642,33 @@ return EventRecord;
 Connect2_OrbitMobile_MUIModel.EventRecord = EventRecord;
 
 });
+define("Connect2_OrbitMobile_MUI.model$Note_ItemRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "Connect2_OrbitMobile_MUI.model", "UBTConnectLibrary.model$Note_ItemRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var Note_ItemRecord = (function (_super) {
+__extends(Note_ItemRecord, _super);
+function Note_ItemRecord(defaults) {
+_super.apply(this, arguments);
+}
+Note_ItemRecord.attributesToDeclare = function () {
+return [
+this.attr("Note_Item", "note_ItemAttr", "Note_Item", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.Note_ItemRec());
+}, true, UBTConnectLibraryModel.Note_ItemRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+Note_ItemRecord.fromStructure = function (str) {
+return new Note_ItemRecord(new Note_ItemRecord.RecordClass({
+note_ItemAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+Note_ItemRecord._isAnonymousRecord = true;
+Note_ItemRecord.UniqueId = "40840cdc-a00c-a67b-3706-6e29081ba6ba";
+Note_ItemRecord.init();
+return Note_ItemRecord;
+})(OS.DataTypes.GenericRecord);
+Connect2_OrbitMobile_MUIModel.Note_ItemRecord = Note_ItemRecord;
+
+});
 define("Connect2_OrbitMobile_MUI.model$GetTimezoneResponseRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_IS.model", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_IS.model$GetTimezoneResponseRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_IS"], function (exports, OutSystems, Connect2_OrbitMobile_ISModel, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var GetTimezoneResponseRecord = (function (_super) {
@@ -7255,6 +7734,33 @@ PathDirectoryRecord.init();
 return PathDirectoryRecord;
 })(OS.DataTypes.GenericRecord);
 Connect2_OrbitMobile_MUIModel.PathDirectoryRecord = PathDirectoryRecord;
+
+});
+define("Connect2_OrbitMobile_MUI.model$RolesRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$RolesRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var RolesRecord = (function (_super) {
+__extends(RolesRecord, _super);
+function RolesRecord(defaults) {
+_super.apply(this, arguments);
+}
+RolesRecord.attributesToDeclare = function () {
+return [
+this.attr("Roles", "rolesAttr", "Roles", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.RolesRec());
+}, true, ContactBase_ISModel.RolesRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+RolesRecord.fromStructure = function (str) {
+return new RolesRecord(new RolesRecord.RecordClass({
+rolesAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+RolesRecord._isAnonymousRecord = true;
+RolesRecord.UniqueId = "411e348d-e5b9-2a7e-8865-3f536a894814";
+RolesRecord.init();
+return RolesRecord;
+})(OS.DataTypes.GenericRecord);
+Connect2_OrbitMobile_MUIModel.RolesRecord = RolesRecord;
 
 });
 define("Connect2_OrbitMobile_MUI.model$BreakColumnsList", ["exports", "OutSystems/ClientRuntime/Main", "OutSystemsUI_2_23.model", "Connect2_OrbitMobile_MUI.model", "OutSystemsUI_2_23.model$BreakColumnsRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$OutSystemsUI_2_23"], function (exports, OutSystems, OutSystemsUI_2_23Model, Connect2_OrbitMobile_MUIModel) {
@@ -7525,6 +8031,33 @@ return AuditLog_RequestAPIRecordList;
 Connect2_OrbitMobile_MUIModel.AuditLog_RequestAPIRecordList = AuditLog_RequestAPIRecordList;
 
 });
+define("Connect2_OrbitMobile_MUI.model$FilterRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$FilterRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var FilterRecord = (function (_super) {
+__extends(FilterRecord, _super);
+function FilterRecord(defaults) {
+_super.apply(this, arguments);
+}
+FilterRecord.attributesToDeclare = function () {
+return [
+this.attr("Filter", "filterAttr", "Filter", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.FilterRec());
+}, true, ContactBase_ISModel.FilterRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+FilterRecord.fromStructure = function (str) {
+return new FilterRecord(new FilterRecord.RecordClass({
+filterAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+FilterRecord._isAnonymousRecord = true;
+FilterRecord.UniqueId = "43eabd2c-b8d3-11c4-fbe2-e2e05b57487a";
+FilterRecord.init();
+return FilterRecord;
+})(OS.DataTypes.GenericRecord);
+Connect2_OrbitMobile_MUIModel.FilterRecord = FilterRecord;
+
+});
 define("Connect2_OrbitMobile_MUI.model$AuditPayload_QRCodeScannedRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$AuditPayload_QRCodeScannedRec"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var AuditPayload_QRCodeScannedRecord = (function (_super) {
@@ -7671,6 +8204,33 @@ return ScanClientList;
 Connect2_OrbitMobile_MUIModel.ScanClientList = ScanClientList;
 
 });
+define("Connect2_OrbitMobile_MUI.model$CountryWithMapPositionRecord", ["exports", "OutSystems/ClientRuntime/Main", "Directory_BL.model", "Connect2_OrbitMobile_MUI.model", "Directory_BL.model$CountryWithMapPositionRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$Directory_BL"], function (exports, OutSystems, Directory_BLModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var CountryWithMapPositionRecord = (function (_super) {
+__extends(CountryWithMapPositionRecord, _super);
+function CountryWithMapPositionRecord(defaults) {
+_super.apply(this, arguments);
+}
+CountryWithMapPositionRecord.attributesToDeclare = function () {
+return [
+this.attr("CountryWithMapPosition", "countryWithMapPositionAttr", "CountryWithMapPosition", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Directory_BLModel.CountryWithMapPositionRec());
+}, true, Directory_BLModel.CountryWithMapPositionRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+CountryWithMapPositionRecord.fromStructure = function (str) {
+return new CountryWithMapPositionRecord(new CountryWithMapPositionRecord.RecordClass({
+countryWithMapPositionAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+CountryWithMapPositionRecord._isAnonymousRecord = true;
+CountryWithMapPositionRecord.UniqueId = "45a7d8ed-0944-314f-cdd6-f2acc8b3070c";
+CountryWithMapPositionRecord.init();
+return CountryWithMapPositionRecord;
+})(OS.DataTypes.GenericRecord);
+Connect2_OrbitMobile_MUIModel.CountryWithMapPositionRecord = CountryWithMapPositionRecord;
+
+});
 define("Connect2_OrbitMobile_MUI.model$ClientsRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$ClientsRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var ClientsRecord = (function (_super) {
@@ -7696,6 +8256,46 @@ ClientsRecord.init();
 return ClientsRecord;
 })(OS.DataTypes.GenericRecord);
 Connect2_OrbitMobile_MUIModel.ClientsRecord = ClientsRecord;
+
+});
+define("Connect2_OrbitMobile_MUI.model$SubscriptionRegionRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$SubscriptionRegionRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var SubscriptionRegionRecord = (function (_super) {
+__extends(SubscriptionRegionRecord, _super);
+function SubscriptionRegionRecord(defaults) {
+_super.apply(this, arguments);
+}
+SubscriptionRegionRecord.attributesToDeclare = function () {
+return [
+this.attr("SubscriptionRegion", "subscriptionRegionAttr", "SubscriptionRegion", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.SubscriptionRegionRec());
+}, true, ContactBase_ISModel.SubscriptionRegionRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+SubscriptionRegionRecord.fromStructure = function (str) {
+return new SubscriptionRegionRecord(new SubscriptionRegionRecord.RecordClass({
+subscriptionRegionAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+SubscriptionRegionRecord._isAnonymousRecord = true;
+SubscriptionRegionRecord.UniqueId = "c1e8a122-3431-6da8-6e92-63b893660e02";
+SubscriptionRegionRecord.init();
+return SubscriptionRegionRecord;
+})(OS.DataTypes.GenericRecord);
+Connect2_OrbitMobile_MUIModel.SubscriptionRegionRecord = SubscriptionRegionRecord;
+
+});
+define("Connect2_OrbitMobile_MUI.model$SubscriptionRegionRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$SubscriptionRegionRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var SubscriptionRegionRecordList = (function (_super) {
+__extends(SubscriptionRegionRecordList, _super);
+function SubscriptionRegionRecordList(defaults) {
+_super.apply(this, arguments);
+}
+SubscriptionRegionRecordList.itemType = Connect2_OrbitMobile_MUIModel.SubscriptionRegionRecord;
+return SubscriptionRegionRecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.SubscriptionRegionRecordList = SubscriptionRegionRecordList;
 
 });
 define("Connect2_OrbitMobile_MUI.model$Timezone2Record", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "Connect2_OrbitMobile_MUI.model", "APIDomain_Directory_IS.model$TimezoneRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, Connect2_OrbitMobile_MUIModel) {
@@ -8097,6 +8697,19 @@ return GetTimezoneResponseRecordList;
 Connect2_OrbitMobile_MUIModel.GetTimezoneResponseRecordList = GetTimezoneResponseRecordList;
 
 });
+define("Connect2_OrbitMobile_MUI.model$PermissionsRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$PermissionsRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var PermissionsRecordList = (function (_super) {
+__extends(PermissionsRecordList, _super);
+function PermissionsRecordList(defaults) {
+_super.apply(this, arguments);
+}
+PermissionsRecordList.itemType = Connect2_OrbitMobile_MUIModel.PermissionsRecord;
+return PermissionsRecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.PermissionsRecordList = PermissionsRecordList;
+
+});
 define("Connect2_OrbitMobile_MUI.model$ScannedQRCodeInfoRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$ScannedQRCodeInfoRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var ScannedQRCodeInfoRecordList = (function (_super) {
@@ -8438,6 +9051,32 @@ return LocalGenderPreferenceRecordList;
 Connect2_OrbitMobile_MUIModel.LocalGenderPreferenceRecordList = LocalGenderPreferenceRecordList;
 
 });
+define("Connect2_OrbitMobile_MUI.model$Note_ItemList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "Connect2_OrbitMobile_MUI.model", "UBTConnectLibrary.model$Note_ItemRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var Note_ItemList = (function (_super) {
+__extends(Note_ItemList, _super);
+function Note_ItemList(defaults) {
+_super.apply(this, arguments);
+}
+Note_ItemList.itemType = UBTConnectLibraryModel.Note_ItemRec;
+return Note_ItemList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.Note_ItemList = Note_ItemList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$NotesList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "Connect2_OrbitMobile_MUI.model", "UBTConnectLibrary.model$NotesRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var NotesList = (function (_super) {
+__extends(NotesList, _super);
+function NotesList(defaults) {
+_super.apply(this, arguments);
+}
+NotesList.itemType = UBTConnectLibraryModel.NotesRec;
+return NotesList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.NotesList = NotesList;
+
+});
 define("Connect2_OrbitMobile_MUI.model$CDNRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "Connect2_OrbitMobile_MUI.model", "APIDomain_Directory_IS.model$CDNRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var CDNRecord = (function (_super) {
@@ -8723,6 +9362,19 @@ return MapNavigationRedirectList;
 Connect2_OrbitMobile_MUIModel.MapNavigationRedirectList = MapNavigationRedirectList;
 
 });
+define("Connect2_OrbitMobile_MUI.model$CountryWithMapPositionList", ["exports", "OutSystems/ClientRuntime/Main", "Directory_BL.model", "Connect2_OrbitMobile_MUI.model", "Directory_BL.model$CountryWithMapPositionRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$Directory_BL"], function (exports, OutSystems, Directory_BLModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var CountryWithMapPositionList = (function (_super) {
+__extends(CountryWithMapPositionList, _super);
+function CountryWithMapPositionList(defaults) {
+_super.apply(this, arguments);
+}
+CountryWithMapPositionList.itemType = Directory_BLModel.CountryWithMapPositionRec;
+return CountryWithMapPositionList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.CountryWithMapPositionList = CountryWithMapPositionList;
+
+});
 define("Connect2_OrbitMobile_MUI.model$TextLocalHostSurveyStepRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$LocalHostSurveyStepRec"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var TextLocalHostSurveyStepRecord = (function (_super) {
@@ -8852,6 +9504,19 @@ GetEventCalendarDetailResponse_V2RecordList.itemType = Connect2_OrbitMobile_MUIM
 return GetEventCalendarDetailResponse_V2RecordList;
 })(OS.DataTypes.GenericRecordList);
 Connect2_OrbitMobile_MUIModel.GetEventCalendarDetailResponse_V2RecordList = GetEventCalendarDetailResponse_V2RecordList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$Spouse2List", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$SpouseRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var Spouse2List = (function (_super) {
+__extends(Spouse2List, _super);
+function Spouse2List(defaults) {
+_super.apply(this, arguments);
+}
+Spouse2List.itemType = ContactBase_ISModel.SpouseRec;
+return Spouse2List;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.Spouse2List = Spouse2List;
 
 });
 define("Connect2_OrbitMobile_MUI.model$SubdivisionRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$SubdivisionRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
@@ -9053,6 +9718,46 @@ return GetGmpMilestoneHostResponseRecord;
 Connect2_OrbitMobile_MUIModel.GetGmpMilestoneHostResponseRecord = GetGmpMilestoneHostResponseRecord;
 
 });
+define("Connect2_OrbitMobile_MUI.model$Country2Record", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$CountryRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var Country2Record = (function (_super) {
+__extends(Country2Record, _super);
+function Country2Record(defaults) {
+_super.apply(this, arguments);
+}
+Country2Record.attributesToDeclare = function () {
+return [
+this.attr("Country", "countryAttr", "Country2", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.CountryRec());
+}, true, ContactBase_ISModel.CountryRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+Country2Record.fromStructure = function (str) {
+return new Country2Record(new Country2Record.RecordClass({
+countryAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+Country2Record._isAnonymousRecord = true;
+Country2Record.UniqueId = "8bcd7014-47e3-9c2e-7074-7b8c12bbb165";
+Country2Record.init();
+return Country2Record;
+})(OS.DataTypes.GenericRecord);
+Connect2_OrbitMobile_MUIModel.Country2Record = Country2Record;
+
+});
+define("Connect2_OrbitMobile_MUI.model$Country2RecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$Country2Record"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var Country2RecordList = (function (_super) {
+__extends(Country2RecordList, _super);
+function Country2RecordList(defaults) {
+_super.apply(this, arguments);
+}
+Country2RecordList.itemType = Connect2_OrbitMobile_MUIModel.Country2Record;
+return Country2RecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.Country2RecordList = Country2RecordList;
+
+});
 define("Connect2_OrbitMobile_MUI.model$MemberInformationRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_IS.model", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_IS.model$MemberInformationRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_IS"], function (exports, OutSystems, Connect2_OrbitMobile_ISModel, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var MemberInformationRecord = (function (_super) {
@@ -9078,6 +9783,46 @@ MemberInformationRecord.init();
 return MemberInformationRecord;
 })(OS.DataTypes.GenericRecord);
 Connect2_OrbitMobile_MUIModel.MemberInformationRecord = MemberInformationRecord;
+
+});
+define("Connect2_OrbitMobile_MUI.model$FamilyMemberFormattedDetailRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$FamilyMemberFormattedDetailRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var FamilyMemberFormattedDetailRecord = (function (_super) {
+__extends(FamilyMemberFormattedDetailRecord, _super);
+function FamilyMemberFormattedDetailRecord(defaults) {
+_super.apply(this, arguments);
+}
+FamilyMemberFormattedDetailRecord.attributesToDeclare = function () {
+return [
+this.attr("FamilyMemberFormattedDetail", "familyMemberFormattedDetailAttr", "FamilyMemberFormattedDetail", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.FamilyMemberFormattedDetailRec());
+}, true, ContactBase_ISModel.FamilyMemberFormattedDetailRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+FamilyMemberFormattedDetailRecord.fromStructure = function (str) {
+return new FamilyMemberFormattedDetailRecord(new FamilyMemberFormattedDetailRecord.RecordClass({
+familyMemberFormattedDetailAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+FamilyMemberFormattedDetailRecord._isAnonymousRecord = true;
+FamilyMemberFormattedDetailRecord.UniqueId = "9afbbd71-2ad8-2cbe-b5da-613640a95511";
+FamilyMemberFormattedDetailRecord.init();
+return FamilyMemberFormattedDetailRecord;
+})(OS.DataTypes.GenericRecord);
+Connect2_OrbitMobile_MUIModel.FamilyMemberFormattedDetailRecord = FamilyMemberFormattedDetailRecord;
+
+});
+define("Connect2_OrbitMobile_MUI.model$FamilyMemberFormattedDetailRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$FamilyMemberFormattedDetailRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var FamilyMemberFormattedDetailRecordList = (function (_super) {
+__extends(FamilyMemberFormattedDetailRecordList, _super);
+function FamilyMemberFormattedDetailRecordList(defaults) {
+_super.apply(this, arguments);
+}
+FamilyMemberFormattedDetailRecordList.itemType = Connect2_OrbitMobile_MUIModel.FamilyMemberFormattedDetailRecord;
+return FamilyMemberFormattedDetailRecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.FamilyMemberFormattedDetailRecordList = FamilyMemberFormattedDetailRecordList;
 
 });
 define("Connect2_OrbitMobile_MUI.model$ShapeList", ["exports", "OutSystems/ClientRuntime/Main", "OutSystemsUI_2_23.model", "Connect2_OrbitMobile_MUI.model", "OutSystemsUI_2_23.model$ShapeRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$OutSystemsUI_2_23"], function (exports, OutSystems, OutSystemsUI_2_23Model, Connect2_OrbitMobile_MUIModel) {
@@ -9649,6 +10394,33 @@ return EventDocumentItem_ScreenRec;
 Connect2_OrbitMobile_MUIModel.EventDocumentItem_ScreenRec = EventDocumentItem_ScreenRec;
 
 });
+define("Connect2_OrbitMobile_MUI.model$SubscriptionPlanRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$SubscriptionPlanRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var SubscriptionPlanRecord = (function (_super) {
+__extends(SubscriptionPlanRecord, _super);
+function SubscriptionPlanRecord(defaults) {
+_super.apply(this, arguments);
+}
+SubscriptionPlanRecord.attributesToDeclare = function () {
+return [
+this.attr("SubscriptionPlan", "subscriptionPlanAttr", "SubscriptionPlan", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.SubscriptionPlanRec());
+}, true, ContactBase_ISModel.SubscriptionPlanRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+SubscriptionPlanRecord.fromStructure = function (str) {
+return new SubscriptionPlanRecord(new SubscriptionPlanRecord.RecordClass({
+subscriptionPlanAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+SubscriptionPlanRecord._isAnonymousRecord = true;
+SubscriptionPlanRecord.UniqueId = "61b5e7ef-87a6-8696-58c3-e7c3f127509a";
+SubscriptionPlanRecord.init();
+return SubscriptionPlanRecord;
+})(OS.DataTypes.GenericRecord);
+Connect2_OrbitMobile_MUIModel.SubscriptionPlanRecord = SubscriptionPlanRecord;
+
+});
 define("Connect2_OrbitMobile_MUI.model$BaggageAllowanceRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$BaggageAllowanceRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var BaggageAllowanceRecordList = (function (_super) {
@@ -9699,6 +10471,19 @@ Event_ScreenRecordList.itemType = Connect2_OrbitMobile_MUIModel.Event_ScreenReco
 return Event_ScreenRecordList;
 })(OS.DataTypes.GenericRecordList);
 Connect2_OrbitMobile_MUIModel.Event_ScreenRecordList = Event_ScreenRecordList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$GetCurrentUserResponseRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$GetCurrentUserResponseRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var GetCurrentUserResponseRecordList = (function (_super) {
+__extends(GetCurrentUserResponseRecordList, _super);
+function GetCurrentUserResponseRecordList(defaults) {
+_super.apply(this, arguments);
+}
+GetCurrentUserResponseRecordList.itemType = Connect2_OrbitMobile_MUIModel.GetCurrentUserResponseRecord;
+return GetCurrentUserResponseRecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.GetCurrentUserResponseRecordList = GetCurrentUserResponseRecordList;
 
 });
 define("Connect2_OrbitMobile_MUI.model$RoleItemList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "Connect2_OrbitMobile_MUI.model", "APIDomain_Directory_IS.model$RoleItemRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, Connect2_OrbitMobile_MUIModel) {
@@ -9765,6 +10550,33 @@ Users_Current_GETResponseRecordList.itemType = Connect2_OrbitMobile_MUIModel.Use
 return Users_Current_GETResponseRecordList;
 })(OS.DataTypes.GenericRecordList);
 Connect2_OrbitMobile_MUIModel.Users_Current_GETResponseRecordList = Users_Current_GETResponseRecordList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$MemberHouseholderHouseholderRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$MemberHouseholderHouseholderRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var MemberHouseholderHouseholderRecord = (function (_super) {
+__extends(MemberHouseholderHouseholderRecord, _super);
+function MemberHouseholderHouseholderRecord(defaults) {
+_super.apply(this, arguments);
+}
+MemberHouseholderHouseholderRecord.attributesToDeclare = function () {
+return [
+this.attr("MemberHouseholderHouseholder", "memberHouseholderHouseholderAttr", "MemberHouseholderHouseholder", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.MemberHouseholderHouseholderRec());
+}, true, ContactBase_ISModel.MemberHouseholderHouseholderRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+MemberHouseholderHouseholderRecord.fromStructure = function (str) {
+return new MemberHouseholderHouseholderRecord(new MemberHouseholderHouseholderRecord.RecordClass({
+memberHouseholderHouseholderAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+MemberHouseholderHouseholderRecord._isAnonymousRecord = true;
+MemberHouseholderHouseholderRecord.UniqueId = "63ff5dc2-ad52-5b51-d600-12fd1d0cfd43";
+MemberHouseholderHouseholderRecord.init();
+return MemberHouseholderHouseholderRecord;
+})(OS.DataTypes.GenericRecord);
+Connect2_OrbitMobile_MUIModel.MemberHouseholderHouseholderRecord = MemberHouseholderHouseholderRecord;
 
 });
 define("Connect2_OrbitMobile_MUI.model$GetTransportDetail_ResponseRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_IS.model", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_IS.model$GetTransportDetail_ResponseRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_IS"], function (exports, OutSystems, Connect2_OrbitMobile_ISModel, Connect2_OrbitMobile_MUIModel) {
@@ -10069,6 +10881,19 @@ return PriorCheckInItemRecord;
 Connect2_OrbitMobile_MUIModel.PriorCheckInItemRecord = PriorCheckInItemRecord;
 
 });
+define("Connect2_OrbitMobile_MUI.model$UserSubscriptionList", ["exports", "OutSystems/ClientRuntime/Main", "DirectoryClientCore.model", "Connect2_OrbitMobile_MUI.model", "DirectoryClientCore.model$UserSubscriptionRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$DirectoryClientCore"], function (exports, OutSystems, DirectoryClientCoreModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var UserSubscriptionList = (function (_super) {
+__extends(UserSubscriptionList, _super);
+function UserSubscriptionList(defaults) {
+_super.apply(this, arguments);
+}
+UserSubscriptionList.itemType = DirectoryClientCoreModel.UserSubscriptionRec;
+return UserSubscriptionList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.UserSubscriptionList = UserSubscriptionList;
+
+});
 define("Connect2_OrbitMobile_MUI.model$Directory_PhotoRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "Connect2_OrbitMobile_MUI.model", "APIDomain_Directory_IS.model$Directory_PhotoRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var Directory_PhotoRecord = (function (_super) {
@@ -10120,6 +10945,46 @@ HostRecordList.itemType = Connect2_OrbitMobile_MUIModel.HostRecord;
 return HostRecordList;
 })(OS.DataTypes.GenericRecordList);
 Connect2_OrbitMobile_MUIModel.HostRecordList = HostRecordList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$GetSettingResponseParsedRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$GetSettingResponseParsedRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var GetSettingResponseParsedRecord = (function (_super) {
+__extends(GetSettingResponseParsedRecord, _super);
+function GetSettingResponseParsedRecord(defaults) {
+_super.apply(this, arguments);
+}
+GetSettingResponseParsedRecord.attributesToDeclare = function () {
+return [
+this.attr("GetSettingResponseParsed", "getSettingResponseParsedAttr", "GetSettingResponseParsed", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.GetSettingResponseParsedRec());
+}, true, ContactBase_ISModel.GetSettingResponseParsedRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+GetSettingResponseParsedRecord.fromStructure = function (str) {
+return new GetSettingResponseParsedRecord(new GetSettingResponseParsedRecord.RecordClass({
+getSettingResponseParsedAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+GetSettingResponseParsedRecord._isAnonymousRecord = true;
+GetSettingResponseParsedRecord.UniqueId = "fdc2a182-44e9-e1dd-a12a-7a7a551d01a7";
+GetSettingResponseParsedRecord.init();
+return GetSettingResponseParsedRecord;
+})(OS.DataTypes.GenericRecord);
+Connect2_OrbitMobile_MUIModel.GetSettingResponseParsedRecord = GetSettingResponseParsedRecord;
+
+});
+define("Connect2_OrbitMobile_MUI.model$GetSettingResponseParsedRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$GetSettingResponseParsedRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var GetSettingResponseParsedRecordList = (function (_super) {
+__extends(GetSettingResponseParsedRecordList, _super);
+function GetSettingResponseParsedRecordList(defaults) {
+_super.apply(this, arguments);
+}
+GetSettingResponseParsedRecordList.itemType = Connect2_OrbitMobile_MUIModel.GetSettingResponseParsedRecord;
+return GetSettingResponseParsedRecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.GetSettingResponseParsedRecordList = GetSettingResponseParsedRecordList;
 
 });
 define("Connect2_OrbitMobile_MUI.model$HouseholdCarouselServerItemRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$HouseholdCarouselServerItemRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
@@ -10242,6 +11107,19 @@ return EventOrbitRecord;
 Connect2_OrbitMobile_MUIModel.EventOrbitRecord = EventOrbitRecord;
 
 });
+define("Connect2_OrbitMobile_MUI.model$ActionsMenuEnableOptionsList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "Connect2_OrbitMobile_MUI.model", "UBTConnectLibrary.model$ActionsMenuEnableOptionsRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var ActionsMenuEnableOptionsList = (function (_super) {
+__extends(ActionsMenuEnableOptionsList, _super);
+function ActionsMenuEnableOptionsList(defaults) {
+_super.apply(this, arguments);
+}
+ActionsMenuEnableOptionsList.itemType = UBTConnectLibraryModel.ActionsMenuEnableOptionsRec;
+return ActionsMenuEnableOptionsList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.ActionsMenuEnableOptionsList = ActionsMenuEnableOptionsList;
+
+});
 define("Connect2_OrbitMobile_MUI.model$LocalHelperRoleRec", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var LocalHelperRoleRec = (function (_super) {
@@ -10301,6 +11179,46 @@ return LocalHelperRoleRecord;
 Connect2_OrbitMobile_MUIModel.LocalHelperRoleRecord = LocalHelperRoleRecord;
 
 });
+define("Connect2_OrbitMobile_MUI.model$DefaultLocalityRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$DefaultLocalityRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var DefaultLocalityRecord = (function (_super) {
+__extends(DefaultLocalityRecord, _super);
+function DefaultLocalityRecord(defaults) {
+_super.apply(this, arguments);
+}
+DefaultLocalityRecord.attributesToDeclare = function () {
+return [
+this.attr("DefaultLocality", "defaultLocalityAttr", "DefaultLocality", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.DefaultLocalityRec());
+}, true, ContactBase_ISModel.DefaultLocalityRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+DefaultLocalityRecord.fromStructure = function (str) {
+return new DefaultLocalityRecord(new DefaultLocalityRecord.RecordClass({
+defaultLocalityAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+DefaultLocalityRecord._isAnonymousRecord = true;
+DefaultLocalityRecord.UniqueId = "d9880970-9108-9f19-b524-2c8eb22ffdf0";
+DefaultLocalityRecord.init();
+return DefaultLocalityRecord;
+})(OS.DataTypes.GenericRecord);
+Connect2_OrbitMobile_MUIModel.DefaultLocalityRecord = DefaultLocalityRecord;
+
+});
+define("Connect2_OrbitMobile_MUI.model$DefaultLocalityRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$DefaultLocalityRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var DefaultLocalityRecordList = (function (_super) {
+__extends(DefaultLocalityRecordList, _super);
+function DefaultLocalityRecordList(defaults) {
+_super.apply(this, arguments);
+}
+DefaultLocalityRecordList.itemType = Connect2_OrbitMobile_MUIModel.DefaultLocalityRecord;
+return DefaultLocalityRecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.DefaultLocalityRecordList = DefaultLocalityRecordList;
+
+});
 define("Connect2_OrbitMobile_MUI.model$Directory_CoordinatesList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "Connect2_OrbitMobile_MUI.model", "APIDomain_Directory_IS.model$Directory_CoordinatesRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var Directory_CoordinatesList = (function (_super) {
@@ -10312,6 +11230,33 @@ Directory_CoordinatesList.itemType = APIDomain_Directory_ISModel.Directory_Coord
 return Directory_CoordinatesList;
 })(OS.DataTypes.GenericRecordList);
 Connect2_OrbitMobile_MUIModel.Directory_CoordinatesList = Directory_CoordinatesList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$Timezone3Record", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$TimezoneRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var Timezone3Record = (function (_super) {
+__extends(Timezone3Record, _super);
+function Timezone3Record(defaults) {
+_super.apply(this, arguments);
+}
+Timezone3Record.attributesToDeclare = function () {
+return [
+this.attr("Timezone", "timezoneAttr", "Timezone3", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.TimezoneRec());
+}, true, ContactBase_ISModel.TimezoneRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+Timezone3Record.fromStructure = function (str) {
+return new Timezone3Record(new Timezone3Record.RecordClass({
+timezoneAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+Timezone3Record._isAnonymousRecord = true;
+Timezone3Record.UniqueId = "6c01928a-9223-2067-aa7f-dfb292703859";
+Timezone3Record.init();
+return Timezone3Record;
+})(OS.DataTypes.GenericRecord);
+Connect2_OrbitMobile_MUIModel.Timezone3Record = Timezone3Record;
 
 });
 define("Connect2_OrbitMobile_MUI.model$MemberContactWithTimezoneRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_LegacyShared.model", "Connect2_OrbitMobile_MUI.model", "Connect2_LegacyShared.model$MemberContactWithTimezoneRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_LegacyShared"], function (exports, OutSystems, Connect2_LegacySharedModel, Connect2_OrbitMobile_MUIModel) {
@@ -10381,6 +11326,33 @@ return GetEventDetailScreenList;
 Connect2_OrbitMobile_MUIModel.GetEventDetailScreenList = GetEventDetailScreenList;
 
 });
+define("Connect2_OrbitMobile_MUI.model$ActionsMenuOptionsRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "Connect2_OrbitMobile_MUI.model", "UBTConnectLibrary.model$ActionsMenuOptionsRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var ActionsMenuOptionsRecord = (function (_super) {
+__extends(ActionsMenuOptionsRecord, _super);
+function ActionsMenuOptionsRecord(defaults) {
+_super.apply(this, arguments);
+}
+ActionsMenuOptionsRecord.attributesToDeclare = function () {
+return [
+this.attr("ActionsMenuOptions", "actionsMenuOptionsAttr", "ActionsMenuOptions", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ActionsMenuOptionsRec());
+}, true, UBTConnectLibraryModel.ActionsMenuOptionsRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+ActionsMenuOptionsRecord.fromStructure = function (str) {
+return new ActionsMenuOptionsRecord(new ActionsMenuOptionsRecord.RecordClass({
+actionsMenuOptionsAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+ActionsMenuOptionsRecord._isAnonymousRecord = true;
+ActionsMenuOptionsRecord.UniqueId = "6e1fc01f-5ce9-a5aa-34e8-00543b0e34e2";
+ActionsMenuOptionsRecord.init();
+return ActionsMenuOptionsRecord;
+})(OS.DataTypes.GenericRecord);
+Connect2_OrbitMobile_MUIModel.ActionsMenuOptionsRecord = ActionsMenuOptionsRecord;
+
+});
 define("Connect2_OrbitMobile_MUI.model$GetMealHostResponseRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$GetMealHostResponseRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var GetMealHostResponseRecordList = (function (_super) {
@@ -10415,6 +11387,33 @@ EmailHouseholdEventRec.init();
 return EmailHouseholdEventRec;
 })(OS.DataTypes.GenericRecord);
 Connect2_OrbitMobile_MUIModel.EmailHouseholdEventRec = EmailHouseholdEventRec;
+
+});
+define("Connect2_OrbitMobile_MUI.model$PhotoUrl2Record", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$PhotoUrlRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var PhotoUrl2Record = (function (_super) {
+__extends(PhotoUrl2Record, _super);
+function PhotoUrl2Record(defaults) {
+_super.apply(this, arguments);
+}
+PhotoUrl2Record.attributesToDeclare = function () {
+return [
+this.attr("PhotoUrl", "photoUrlAttr", "PhotoUrl2", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.PhotoUrlRec());
+}, true, ContactBase_ISModel.PhotoUrlRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+PhotoUrl2Record.fromStructure = function (str) {
+return new PhotoUrl2Record(new PhotoUrl2Record.RecordClass({
+photoUrlAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+PhotoUrl2Record._isAnonymousRecord = true;
+PhotoUrl2Record.UniqueId = "6f382051-bdb2-ccaf-bf6d-cac7a41f0a52";
+PhotoUrl2Record.init();
+return PhotoUrl2Record;
+})(OS.DataTypes.GenericRecord);
+Connect2_OrbitMobile_MUIModel.PhotoUrl2Record = PhotoUrl2Record;
 
 });
 define("Connect2_OrbitMobile_MUI.model$GetTransportDetails_ScreenRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_BL.model", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_BL.model$GetTransportDetails_ScreenRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_BL"], function (exports, OutSystems, Connect2_OrbitMobile_BLModel, Connect2_OrbitMobile_MUIModel) {
@@ -10482,6 +11481,33 @@ EventCalendarFiltersAsTextRecordList.itemType = Connect2_OrbitMobile_MUIModel.Ev
 return EventCalendarFiltersAsTextRecordList;
 })(OS.DataTypes.GenericRecordList);
 Connect2_OrbitMobile_MUIModel.EventCalendarFiltersAsTextRecordList = EventCalendarFiltersAsTextRecordList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$DefaultCountry2Record", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$DefaultCountryRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var DefaultCountry2Record = (function (_super) {
+__extends(DefaultCountry2Record, _super);
+function DefaultCountry2Record(defaults) {
+_super.apply(this, arguments);
+}
+DefaultCountry2Record.attributesToDeclare = function () {
+return [
+this.attr("DefaultCountry", "defaultCountryAttr", "DefaultCountry2", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.DefaultCountryRec());
+}, true, ContactBase_ISModel.DefaultCountryRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+DefaultCountry2Record.fromStructure = function (str) {
+return new DefaultCountry2Record(new DefaultCountry2Record.RecordClass({
+defaultCountryAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+DefaultCountry2Record._isAnonymousRecord = true;
+DefaultCountry2Record.UniqueId = "709d4487-fc90-0da1-fe40-4702c458e3e5";
+DefaultCountry2Record.init();
+return DefaultCountry2Record;
+})(OS.DataTypes.GenericRecord);
+Connect2_OrbitMobile_MUIModel.DefaultCountry2Record = DefaultCountry2Record;
 
 });
 define("Connect2_OrbitMobile_MUI.model$RegionOrbitRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$RegionOrbitRec"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
@@ -10562,6 +11588,33 @@ SeatItemRecordList.itemType = Connect2_OrbitMobile_MUIModel.SeatItemRecord;
 return SeatItemRecordList;
 })(OS.DataTypes.GenericRecordList);
 Connect2_OrbitMobile_MUIModel.SeatItemRecordList = SeatItemRecordList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$Subscription2Record", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$SubscriptionRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var Subscription2Record = (function (_super) {
+__extends(Subscription2Record, _super);
+function Subscription2Record(defaults) {
+_super.apply(this, arguments);
+}
+Subscription2Record.attributesToDeclare = function () {
+return [
+this.attr("Subscription", "subscriptionAttr", "Subscription2", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.SubscriptionRec());
+}, true, ContactBase_ISModel.SubscriptionRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+Subscription2Record.fromStructure = function (str) {
+return new Subscription2Record(new Subscription2Record.RecordClass({
+subscriptionAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+Subscription2Record._isAnonymousRecord = true;
+Subscription2Record.UniqueId = "72c286f0-9901-fadf-0dd5-1329b5367cb2";
+Subscription2Record.init();
+return Subscription2Record;
+})(OS.DataTypes.GenericRecord);
+Connect2_OrbitMobile_MUIModel.Subscription2Record = Subscription2Record;
 
 });
 define("Connect2_OrbitMobile_MUI.model$BreakColumnsRecord", ["exports", "OutSystems/ClientRuntime/Main", "OutSystemsUI_2_23.model", "Connect2_OrbitMobile_MUI.model", "OutSystemsUI_2_23.model$BreakColumnsRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$OutSystemsUI_2_23"], function (exports, OutSystems, OutSystemsUI_2_23Model, Connect2_OrbitMobile_MUIModel) {
@@ -11398,6 +12451,19 @@ return GetMealGuestResponseRecordList;
 Connect2_OrbitMobile_MUIModel.GetMealGuestResponseRecordList = GetMealGuestResponseRecordList;
 
 });
+define("Connect2_OrbitMobile_MUI.model$PhotoUrl2List", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$PhotoUrlRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var PhotoUrl2List = (function (_super) {
+__extends(PhotoUrl2List, _super);
+function PhotoUrl2List(defaults) {
+_super.apply(this, arguments);
+}
+PhotoUrl2List.itemType = ContactBase_ISModel.PhotoUrlRec;
+return PhotoUrl2List;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.PhotoUrl2List = PhotoUrl2List;
+
+});
 define("Connect2_OrbitMobile_MUI.model$Event_ScreenList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_BL.model", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_BL.model$Event_ScreenRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_BL"], function (exports, OutSystems, Connect2_OrbitMobile_BLModel, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var Event_ScreenList = (function (_super) {
@@ -12087,6 +13153,19 @@ return GetHouseholdCoordinatesResponseList;
 Connect2_OrbitMobile_MUIModel.GetHouseholdCoordinatesResponseList = GetHouseholdCoordinatesResponseList;
 
 });
+define("Connect2_OrbitMobile_MUI.model$ActionsMenuOptionsList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "Connect2_OrbitMobile_MUI.model", "UBTConnectLibrary.model$ActionsMenuOptionsRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var ActionsMenuOptionsList = (function (_super) {
+__extends(ActionsMenuOptionsList, _super);
+function ActionsMenuOptionsList(defaults) {
+_super.apply(this, arguments);
+}
+ActionsMenuOptionsList.itemType = UBTConnectLibraryModel.ActionsMenuOptionsRec;
+return ActionsMenuOptionsList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.ActionsMenuOptionsList = ActionsMenuOptionsList;
+
+});
 define("Connect2_OrbitMobile_MUI.model$YearItemList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_BL.model", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_BL.model$YearItemRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_BL"], function (exports, OutSystems, Connect2_OrbitMobile_BLModel, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var YearItemList = (function (_super) {
@@ -12111,6 +13190,32 @@ LocalityOrbitList.itemType = Connect2_OrbitMobile_MUIModel.LocalityOrbitRec;
 return LocalityOrbitList;
 })(OS.DataTypes.GenericRecordList);
 Connect2_OrbitMobile_MUIModel.LocalityOrbitList = LocalityOrbitList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$CountryWithMapPositionRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$CountryWithMapPositionRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var CountryWithMapPositionRecordList = (function (_super) {
+__extends(CountryWithMapPositionRecordList, _super);
+function CountryWithMapPositionRecordList(defaults) {
+_super.apply(this, arguments);
+}
+CountryWithMapPositionRecordList.itemType = Connect2_OrbitMobile_MUIModel.CountryWithMapPositionRecord;
+return CountryWithMapPositionRecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.CountryWithMapPositionRecordList = CountryWithMapPositionRecordList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$FilterList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$FilterRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var FilterList = (function (_super) {
+__extends(FilterList, _super);
+function FilterList(defaults) {
+_super.apply(this, arguments);
+}
+FilterList.itemType = ContactBase_ISModel.FilterRec;
+return FilterList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.FilterList = FilterList;
 
 });
 define("Connect2_OrbitMobile_MUI.model$ApplicationEvents_DirectoryRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_LegacyShared.model", "Connect2_OrbitMobile_MUI.model", "Connect2_LegacyShared.model$ApplicationEvents_DirectoryRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_LegacyShared"], function (exports, OutSystems, Connect2_LegacySharedModel, Connect2_OrbitMobile_MUIModel) {
@@ -12310,6 +13415,33 @@ HostSurveyList.itemType = Connect2_OrbitMobile_ISModel.HostSurveyRec;
 return HostSurveyList;
 })(OS.DataTypes.GenericRecordList);
 Connect2_OrbitMobile_MUIModel.HostSurveyList = HostSurveyList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$ConnectConfig2Record", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$ConnectConfigRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var ConnectConfig2Record = (function (_super) {
+__extends(ConnectConfig2Record, _super);
+function ConnectConfig2Record(defaults) {
+_super.apply(this, arguments);
+}
+ConnectConfig2Record.attributesToDeclare = function () {
+return [
+this.attr("ConnectConfig", "connectConfigAttr", "ConnectConfig2", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.ConnectConfigRec());
+}, true, ContactBase_ISModel.ConnectConfigRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+ConnectConfig2Record.fromStructure = function (str) {
+return new ConnectConfig2Record(new ConnectConfig2Record.RecordClass({
+connectConfigAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+ConnectConfig2Record._isAnonymousRecord = true;
+ConnectConfig2Record.UniqueId = "88e155f6-cc7d-58fd-e636-1920a272ee72";
+ConnectConfig2Record.init();
+return ConnectConfig2Record;
+})(OS.DataTypes.GenericRecord);
+Connect2_OrbitMobile_MUIModel.ConnectConfig2Record = ConnectConfig2Record;
 
 });
 define("Connect2_OrbitMobile_MUI.model$ScannedUserInformationRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_BL.model", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_BL.model$ScannedUserInformationRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_BL"], function (exports, OutSystems, Connect2_OrbitMobile_BLModel, Connect2_OrbitMobile_MUIModel) {
@@ -12656,6 +13788,19 @@ return LocalBedSizeRecordList;
 Connect2_OrbitMobile_MUIModel.LocalBedSizeRecordList = LocalBedSizeRecordList;
 
 });
+define("Connect2_OrbitMobile_MUI.model$PhotoTag2List", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$PhotoTagRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var PhotoTag2List = (function (_super) {
+__extends(PhotoTag2List, _super);
+function PhotoTag2List(defaults) {
+_super.apply(this, arguments);
+}
+PhotoTag2List.itemType = ContactBase_ISModel.PhotoTagRec;
+return PhotoTag2List;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.PhotoTag2List = PhotoTag2List;
+
+});
 define("Connect2_OrbitMobile_MUI.model$GetCoordinatorDetailsResponseRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_IS.model", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_IS.model$GetCoordinatorDetailsResponseRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_IS"], function (exports, OutSystems, Connect2_OrbitMobile_ISModel, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var GetCoordinatorDetailsResponseRecord = (function (_super) {
@@ -12868,6 +14013,46 @@ QRCodeScanResultRecordList.itemType = Connect2_OrbitMobile_MUIModel.QRCodeScanRe
 return QRCodeScanResultRecordList;
 })(OS.DataTypes.GenericRecordList);
 Connect2_OrbitMobile_MUIModel.QRCodeScanResultRecordList = QRCodeScanResultRecordList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$MemberHouseholderHouseholderRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$MemberHouseholderHouseholderRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var MemberHouseholderHouseholderRecordList = (function (_super) {
+__extends(MemberHouseholderHouseholderRecordList, _super);
+function MemberHouseholderHouseholderRecordList(defaults) {
+_super.apply(this, arguments);
+}
+MemberHouseholderHouseholderRecordList.itemType = Connect2_OrbitMobile_MUIModel.MemberHouseholderHouseholderRecord;
+return MemberHouseholderHouseholderRecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.MemberHouseholderHouseholderRecordList = MemberHouseholderHouseholderRecordList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$Subdivision2Record", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$SubdivisionRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var Subdivision2Record = (function (_super) {
+__extends(Subdivision2Record, _super);
+function Subdivision2Record(defaults) {
+_super.apply(this, arguments);
+}
+Subdivision2Record.attributesToDeclare = function () {
+return [
+this.attr("Subdivision", "subdivisionAttr", "Subdivision2", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.SubdivisionRec());
+}, true, ContactBase_ISModel.SubdivisionRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+Subdivision2Record.fromStructure = function (str) {
+return new Subdivision2Record(new Subdivision2Record.RecordClass({
+subdivisionAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+Subdivision2Record._isAnonymousRecord = true;
+Subdivision2Record.UniqueId = "908992d6-ee84-83ba-24b2-0e71ddbe7580";
+Subdivision2Record.init();
+return Subdivision2Record;
+})(OS.DataTypes.GenericRecord);
+Connect2_OrbitMobile_MUIModel.Subdivision2Record = Subdivision2Record;
 
 });
 define("Connect2_OrbitMobile_MUI.model$Custom_Address_ItemRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "Connect2_OrbitMobile_MUI.model", "APIDomain_Directory_IS.model$Custom_Address_ItemRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, Connect2_OrbitMobile_MUIModel) {
@@ -13229,6 +14414,19 @@ return OrbitEmailInformationRecordList;
 Connect2_OrbitMobile_MUIModel.OrbitEmailInformationRecordList = OrbitEmailInformationRecordList;
 
 });
+define("Connect2_OrbitMobile_MUI.model$ConnectConfig2List", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$ConnectConfigRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var ConnectConfig2List = (function (_super) {
+__extends(ConnectConfig2List, _super);
+function ConnectConfig2List(defaults) {
+_super.apply(this, arguments);
+}
+ConnectConfig2List.itemType = ContactBase_ISModel.ConnectConfigRec;
+return ConnectConfig2List;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.ConnectConfig2List = ConnectConfig2List;
+
+});
 define("Connect2_OrbitMobile_MUI.model$ConnectConfigList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "Connect2_OrbitMobile_MUI.model", "APIDomain_Directory_IS.model$ConnectConfigRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var ConnectConfigList = (function (_super) {
@@ -13315,6 +14513,19 @@ CallInfoStructureList.itemType = Connect2_LegacySharedModel.CallInfoStructureRec
 return CallInfoStructureList;
 })(OS.DataTypes.GenericRecordList);
 Connect2_OrbitMobile_MUIModel.CallInfoStructureList = CallInfoStructureList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$Member2List", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$MemberRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var Member2List = (function (_super) {
+__extends(Member2List, _super);
+function Member2List(defaults) {
+_super.apply(this, arguments);
+}
+Member2List.itemType = ContactBase_ISModel.MemberRec;
+return Member2List;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.Member2List = Member2List;
 
 });
 define("Connect2_OrbitMobile_MUI.model$IntegerLocalHostSurveyStepRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$LocalHostSurveyStepRec"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
@@ -13870,6 +15081,19 @@ return MilestoneTransportInfoRecordList;
 Connect2_OrbitMobile_MUIModel.MilestoneTransportInfoRecordList = MilestoneTransportInfoRecordList;
 
 });
+define("Connect2_OrbitMobile_MUI.model$GetSettingResponseDetailsList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$GetSettingResponseDetailsRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var GetSettingResponseDetailsList = (function (_super) {
+__extends(GetSettingResponseDetailsList, _super);
+function GetSettingResponseDetailsList(defaults) {
+_super.apply(this, arguments);
+}
+GetSettingResponseDetailsList.itemType = ContactBase_ISModel.GetSettingResponseDetailsRec;
+return GetSettingResponseDetailsList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.GetSettingResponseDetailsList = GetSettingResponseDetailsList;
+
+});
 define("Connect2_OrbitMobile_MUI.model$AddressOrbitRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$AddressOrbitRec"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var AddressOrbitRecord = (function (_super) {
@@ -13895,6 +15119,46 @@ AddressOrbitRecord.init();
 return AddressOrbitRecord;
 })(OS.DataTypes.GenericRecord);
 Connect2_OrbitMobile_MUIModel.AddressOrbitRecord = AddressOrbitRecord;
+
+});
+define("Connect2_OrbitMobile_MUI.model$MemberHouseholderRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$MemberHouseholderRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var MemberHouseholderRecord = (function (_super) {
+__extends(MemberHouseholderRecord, _super);
+function MemberHouseholderRecord(defaults) {
+_super.apply(this, arguments);
+}
+MemberHouseholderRecord.attributesToDeclare = function () {
+return [
+this.attr("MemberHouseholder", "memberHouseholderAttr", "MemberHouseholder", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.MemberHouseholderRec());
+}, true, ContactBase_ISModel.MemberHouseholderRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+MemberHouseholderRecord.fromStructure = function (str) {
+return new MemberHouseholderRecord(new MemberHouseholderRecord.RecordClass({
+memberHouseholderAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+MemberHouseholderRecord._isAnonymousRecord = true;
+MemberHouseholderRecord.UniqueId = "b6b5d540-36da-54d2-9062-83f410ea14a4";
+MemberHouseholderRecord.init();
+return MemberHouseholderRecord;
+})(OS.DataTypes.GenericRecord);
+Connect2_OrbitMobile_MUIModel.MemberHouseholderRecord = MemberHouseholderRecord;
+
+});
+define("Connect2_OrbitMobile_MUI.model$MemberHouseholderRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$MemberHouseholderRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var MemberHouseholderRecordList = (function (_super) {
+__extends(MemberHouseholderRecordList, _super);
+function MemberHouseholderRecordList(defaults) {
+_super.apply(this, arguments);
+}
+MemberHouseholderRecordList.itemType = Connect2_OrbitMobile_MUIModel.MemberHouseholderRecord;
+return MemberHouseholderRecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.MemberHouseholderRecordList = MemberHouseholderRecordList;
 
 });
 define("Connect2_OrbitMobile_MUI.model$TimeFormatList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$TimeFormatRec"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
@@ -14041,6 +15305,59 @@ return Users_Current_GETResponseList;
 Connect2_OrbitMobile_MUIModel.Users_Current_GETResponseList = Users_Current_GETResponseList;
 
 });
+define("Connect2_OrbitMobile_MUI.model$ActionsMenuEnableOptionsRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "Connect2_OrbitMobile_MUI.model", "UBTConnectLibrary.model$ActionsMenuEnableOptionsRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var ActionsMenuEnableOptionsRecord = (function (_super) {
+__extends(ActionsMenuEnableOptionsRecord, _super);
+function ActionsMenuEnableOptionsRecord(defaults) {
+_super.apply(this, arguments);
+}
+ActionsMenuEnableOptionsRecord.attributesToDeclare = function () {
+return [
+this.attr("ActionsMenuEnableOptions", "actionsMenuEnableOptionsAttr", "ActionsMenuEnableOptions", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ActionsMenuEnableOptionsRec());
+}, true, UBTConnectLibraryModel.ActionsMenuEnableOptionsRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+ActionsMenuEnableOptionsRecord.fromStructure = function (str) {
+return new ActionsMenuEnableOptionsRecord(new ActionsMenuEnableOptionsRecord.RecordClass({
+actionsMenuEnableOptionsAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+ActionsMenuEnableOptionsRecord._isAnonymousRecord = true;
+ActionsMenuEnableOptionsRecord.UniqueId = "f9b93a40-fc47-12f4-c337-862f1fa983ce";
+ActionsMenuEnableOptionsRecord.init();
+return ActionsMenuEnableOptionsRecord;
+})(OS.DataTypes.GenericRecord);
+Connect2_OrbitMobile_MUIModel.ActionsMenuEnableOptionsRecord = ActionsMenuEnableOptionsRecord;
+
+});
+define("Connect2_OrbitMobile_MUI.model$ActionsMenuEnableOptionsRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$ActionsMenuEnableOptionsRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var ActionsMenuEnableOptionsRecordList = (function (_super) {
+__extends(ActionsMenuEnableOptionsRecordList, _super);
+function ActionsMenuEnableOptionsRecordList(defaults) {
+_super.apply(this, arguments);
+}
+ActionsMenuEnableOptionsRecordList.itemType = Connect2_OrbitMobile_MUIModel.ActionsMenuEnableOptionsRecord;
+return ActionsMenuEnableOptionsRecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.ActionsMenuEnableOptionsRecordList = ActionsMenuEnableOptionsRecordList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$ConnectConfig2RecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$ConnectConfig2Record"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var ConnectConfig2RecordList = (function (_super) {
+__extends(ConnectConfig2RecordList, _super);
+function ConnectConfig2RecordList(defaults) {
+_super.apply(this, arguments);
+}
+ConnectConfig2RecordList.itemType = Connect2_OrbitMobile_MUIModel.ConnectConfig2Record;
+return ConnectConfig2RecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.ConnectConfig2RecordList = ConnectConfig2RecordList;
+
+});
 define("Connect2_OrbitMobile_MUI.model$OrbitEventTypeRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_BL.model", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_BL.model$OrbitEventTypeRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_BL"], function (exports, OutSystems, Connect2_OrbitMobile_BLModel, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var OrbitEventTypeRecord = (function (_super) {
@@ -14094,6 +15411,19 @@ return HostSurveyStepRecordList;
 Connect2_OrbitMobile_MUIModel.HostSurveyStepRecordList = HostSurveyStepRecordList;
 
 });
+define("Connect2_OrbitMobile_MUI.model$MemberHouseholderHouseholderList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$MemberHouseholderHouseholderRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var MemberHouseholderHouseholderList = (function (_super) {
+__extends(MemberHouseholderHouseholderList, _super);
+function MemberHouseholderHouseholderList(defaults) {
+_super.apply(this, arguments);
+}
+MemberHouseholderHouseholderList.itemType = ContactBase_ISModel.MemberHouseholderHouseholderRec;
+return MemberHouseholderHouseholderList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.MemberHouseholderHouseholderList = MemberHouseholderHouseholderList;
+
+});
 define("Connect2_OrbitMobile_MUI.model$HelperStatusRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_BL.model", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_BL.model$HelperStatusRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_BL"], function (exports, OutSystems, Connect2_OrbitMobile_BLModel, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var HelperStatusRecord = (function (_super) {
@@ -14132,6 +15462,19 @@ HelperStatusRecordList.itemType = Connect2_OrbitMobile_MUIModel.HelperStatusReco
 return HelperStatusRecordList;
 })(OS.DataTypes.GenericRecordList);
 Connect2_OrbitMobile_MUIModel.HelperStatusRecordList = HelperStatusRecordList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$DefaultCountry2List", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$DefaultCountryRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var DefaultCountry2List = (function (_super) {
+__extends(DefaultCountry2List, _super);
+function DefaultCountry2List(defaults) {
+_super.apply(this, arguments);
+}
+DefaultCountry2List.itemType = ContactBase_ISModel.DefaultCountryRec;
+return DefaultCountry2List;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.DefaultCountry2List = DefaultCountry2List;
 
 });
 define("Connect2_OrbitMobile_MUI.model$PriorCheckInItemRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$PriorCheckInItemRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
@@ -14304,6 +15647,32 @@ return MemberContactWithTimezoneList;
 Connect2_OrbitMobile_MUIModel.MemberContactWithTimezoneList = MemberContactWithTimezoneList;
 
 });
+define("Connect2_OrbitMobile_MUI.model$GetSettingResponseParsedList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$GetSettingResponseParsedRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var GetSettingResponseParsedList = (function (_super) {
+__extends(GetSettingResponseParsedList, _super);
+function GetSettingResponseParsedList(defaults) {
+_super.apply(this, arguments);
+}
+GetSettingResponseParsedList.itemType = ContactBase_ISModel.GetSettingResponseParsedRec;
+return GetSettingResponseParsedList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.GetSettingResponseParsedList = GetSettingResponseParsedList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$GetCurrentUserResponseList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$GetCurrentUserResponseRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var GetCurrentUserResponseList = (function (_super) {
+__extends(GetCurrentUserResponseList, _super);
+function GetCurrentUserResponseList(defaults) {
+_super.apply(this, arguments);
+}
+GetCurrentUserResponseList.itemType = ContactBase_ISModel.GetCurrentUserResponseRec;
+return GetCurrentUserResponseList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.GetCurrentUserResponseList = GetCurrentUserResponseList;
+
+});
 define("Connect2_OrbitMobile_MUI.model$AccordionIconPositionList", ["exports", "OutSystems/ClientRuntime/Main", "OutSystemsUI_2_23.model", "Connect2_OrbitMobile_MUI.model", "OutSystemsUI_2_23.model$AccordionIconPositionRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$OutSystemsUI_2_23"], function (exports, OutSystems, OutSystemsUI_2_23Model, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var AccordionIconPositionList = (function (_super) {
@@ -14384,6 +15753,19 @@ return CallInfoStructureRecord;
 Connect2_OrbitMobile_MUIModel.CallInfoStructureRecord = CallInfoStructureRecord;
 
 });
+define("Connect2_OrbitMobile_MUI.model$HallPhoto2List", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$HallPhotoRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var HallPhoto2List = (function (_super) {
+__extends(HallPhoto2List, _super);
+function HallPhoto2List(defaults) {
+_super.apply(this, arguments);
+}
+HallPhoto2List.itemType = ContactBase_ISModel.HallPhotoRec;
+return HallPhoto2List;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.HallPhoto2List = HallPhoto2List;
+
+});
 define("Connect2_OrbitMobile_MUI.model$SubdivisionLocalityRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$SubdivisionLocalityRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var SubdivisionLocalityRecordList = (function (_super) {
@@ -14421,6 +15803,19 @@ ProgressList.itemType = FileTransferPluginModel.ProgressRec;
 return ProgressList;
 })(OS.DataTypes.GenericRecordList);
 Connect2_OrbitMobile_MUIModel.ProgressList = ProgressList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$DefaultCountry2RecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$DefaultCountry2Record"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var DefaultCountry2RecordList = (function (_super) {
+__extends(DefaultCountry2RecordList, _super);
+function DefaultCountry2RecordList(defaults) {
+_super.apply(this, arguments);
+}
+DefaultCountry2RecordList.itemType = Connect2_OrbitMobile_MUIModel.DefaultCountry2Record;
+return DefaultCountry2RecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.DefaultCountry2RecordList = DefaultCountry2RecordList;
 
 });
 define("Connect2_OrbitMobile_MUI.model$HostSurvey_MealItemList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_IS.model", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_IS.model$HostSurvey_MealItemRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_IS"], function (exports, OutSystems, Connect2_OrbitMobile_ISModel, Connect2_OrbitMobile_MUIModel) {
@@ -14461,6 +15856,19 @@ MilestoneInfoRecord.init();
 return MilestoneInfoRecord;
 })(OS.DataTypes.GenericRecord);
 Connect2_OrbitMobile_MUIModel.MilestoneInfoRecord = MilestoneInfoRecord;
+
+});
+define("Connect2_OrbitMobile_MUI.model$ActionsMenuOptionsRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$ActionsMenuOptionsRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var ActionsMenuOptionsRecordList = (function (_super) {
+__extends(ActionsMenuOptionsRecordList, _super);
+function ActionsMenuOptionsRecordList(defaults) {
+_super.apply(this, arguments);
+}
+ActionsMenuOptionsRecordList.itemType = Connect2_OrbitMobile_MUIModel.ActionsMenuOptionsRecord;
+return ActionsMenuOptionsRecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.ActionsMenuOptionsRecordList = ActionsMenuOptionsRecordList;
 
 });
 define("Connect2_OrbitMobile_MUI.model$LocalOrbitEventTypeList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$LocalOrbitEventTypeRec"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
@@ -14595,6 +16003,19 @@ return DirectoryAccess2List;
 Connect2_OrbitMobile_MUIModel.DirectoryAccess2List = DirectoryAccess2List;
 
 });
+define("Connect2_OrbitMobile_MUI.model$Subdivision2RecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$Subdivision2Record"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var Subdivision2RecordList = (function (_super) {
+__extends(Subdivision2RecordList, _super);
+function Subdivision2RecordList(defaults) {
+_super.apply(this, arguments);
+}
+Subdivision2RecordList.itemType = Connect2_OrbitMobile_MUIModel.Subdivision2Record;
+return Subdivision2RecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.Subdivision2RecordList = Subdivision2RecordList;
+
+});
 define("Connect2_OrbitMobile_MUI.model$LocalVehicleOwnerList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$LocalVehicleOwnerRec"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var LocalVehicleOwnerList = (function (_super) {
@@ -14619,6 +16040,33 @@ TravelInfoList.itemType = Connect2_OrbitMobile_ISModel.TravelInfoRec;
 return TravelInfoList;
 })(OS.DataTypes.GenericRecordList);
 Connect2_OrbitMobile_MUIModel.TravelInfoList = TravelInfoList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$Locality2Record", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$LocalityRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var Locality2Record = (function (_super) {
+__extends(Locality2Record, _super);
+function Locality2Record(defaults) {
+_super.apply(this, arguments);
+}
+Locality2Record.attributesToDeclare = function () {
+return [
+this.attr("Locality", "localityAttr", "Locality2", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.LocalityRec());
+}, true, ContactBase_ISModel.LocalityRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+Locality2Record.fromStructure = function (str) {
+return new Locality2Record(new Locality2Record.RecordClass({
+localityAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+Locality2Record._isAnonymousRecord = true;
+Locality2Record.UniqueId = "b69fced6-2251-c2ef-f9bc-e0cc53f92f3d";
+Locality2Record.init();
+return Locality2Record;
+})(OS.DataTypes.GenericRecord);
+Connect2_OrbitMobile_MUIModel.Locality2Record = Locality2Record;
 
 });
 define("Connect2_OrbitMobile_MUI.model$EventList", ["exports", "OutSystems/ClientRuntime/Main", "FullCalendarReactive.model", "Connect2_OrbitMobile_MUI.model", "FullCalendarReactive.model$EventRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$FullCalendarReactive"], function (exports, OutSystems, FullCalendarReactiveModel, Connect2_OrbitMobile_MUIModel) {
@@ -14831,6 +16279,19 @@ return ScannerAdminInfoRecordList;
 Connect2_OrbitMobile_MUIModel.ScannerAdminInfoRecordList = ScannerAdminInfoRecordList;
 
 });
+define("Connect2_OrbitMobile_MUI.model$Note_ItemRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$Note_ItemRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var Note_ItemRecordList = (function (_super) {
+__extends(Note_ItemRecordList, _super);
+function Note_ItemRecordList(defaults) {
+_super.apply(this, arguments);
+}
+Note_ItemRecordList.itemType = Connect2_OrbitMobile_MUIModel.Note_ItemRecord;
+return Note_ItemRecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.Note_ItemRecordList = Note_ItemRecordList;
+
+});
 define("Connect2_OrbitMobile_MUI.model$Connect_Entity2List", ["exports", "OutSystems/ClientRuntime/Main", "Connect_CommonEntities_DB.model", "Connect2_OrbitMobile_MUI.model", "Connect_CommonEntities_DB.model$Connect_EntityRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$Connect_CommonEntities_DB"], function (exports, OutSystems, Connect_CommonEntities_DBModel, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var Connect_Entity2List = (function (_super) {
@@ -14935,6 +16396,19 @@ return LocalMealTypeRecordList;
 Connect2_OrbitMobile_MUIModel.LocalMealTypeRecordList = LocalMealTypeRecordList;
 
 });
+define("Connect2_OrbitMobile_MUI.model$Subscription2List", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$SubscriptionRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var Subscription2List = (function (_super) {
+__extends(Subscription2List, _super);
+function Subscription2List(defaults) {
+_super.apply(this, arguments);
+}
+Subscription2List.itemType = ContactBase_ISModel.SubscriptionRec;
+return Subscription2List;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.Subscription2List = Subscription2List;
+
+});
 define("Connect2_OrbitMobile_MUI.model$MemberInformationRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$MemberInformationRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var MemberInformationRecordList = (function (_super) {
@@ -14946,6 +16420,33 @@ MemberInformationRecordList.itemType = Connect2_OrbitMobile_MUIModel.MemberInfor
 return MemberInformationRecordList;
 })(OS.DataTypes.GenericRecordList);
 Connect2_OrbitMobile_MUIModel.MemberInformationRecordList = MemberInformationRecordList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$Spouse2Record", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$SpouseRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var Spouse2Record = (function (_super) {
+__extends(Spouse2Record, _super);
+function Spouse2Record(defaults) {
+_super.apply(this, arguments);
+}
+Spouse2Record.attributesToDeclare = function () {
+return [
+this.attr("Spouse", "spouseAttr", "Spouse2", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.SpouseRec());
+}, true, ContactBase_ISModel.SpouseRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+Spouse2Record.fromStructure = function (str) {
+return new Spouse2Record(new Spouse2Record.RecordClass({
+spouseAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+Spouse2Record._isAnonymousRecord = true;
+Spouse2Record.UniqueId = "c00b45d7-e93c-7003-b19c-5e78fe69488d";
+Spouse2Record.init();
+return Spouse2Record;
+})(OS.DataTypes.GenericRecord);
+Connect2_OrbitMobile_MUIModel.Spouse2Record = Spouse2Record;
 
 });
 define("Connect2_OrbitMobile_MUI.model$LocalityRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "Connect2_OrbitMobile_MUI.model", "APIDomain_Directory_IS.model$LocalityRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, Connect2_OrbitMobile_MUIModel) {
@@ -14975,6 +16476,59 @@ return LocalityRecord;
 Connect2_OrbitMobile_MUIModel.LocalityRecord = LocalityRecord;
 
 });
+define("Connect2_OrbitMobile_MUI.model$Timezone3RecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$Timezone3Record"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var Timezone3RecordList = (function (_super) {
+__extends(Timezone3RecordList, _super);
+function Timezone3RecordList(defaults) {
+_super.apply(this, arguments);
+}
+Timezone3RecordList.itemType = Connect2_OrbitMobile_MUIModel.Timezone3Record;
+return Timezone3RecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.Timezone3RecordList = Timezone3RecordList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$UserSubscriptionRecord", ["exports", "OutSystems/ClientRuntime/Main", "DirectoryClientCore.model", "Connect2_OrbitMobile_MUI.model", "DirectoryClientCore.model$UserSubscriptionRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$DirectoryClientCore"], function (exports, OutSystems, DirectoryClientCoreModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var UserSubscriptionRecord = (function (_super) {
+__extends(UserSubscriptionRecord, _super);
+function UserSubscriptionRecord(defaults) {
+_super.apply(this, arguments);
+}
+UserSubscriptionRecord.attributesToDeclare = function () {
+return [
+this.attr("UserSubscription", "userSubscriptionAttr", "UserSubscription", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new DirectoryClientCoreModel.UserSubscriptionRec());
+}, true, DirectoryClientCoreModel.UserSubscriptionRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+UserSubscriptionRecord.fromStructure = function (str) {
+return new UserSubscriptionRecord(new UserSubscriptionRecord.RecordClass({
+userSubscriptionAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+UserSubscriptionRecord._isAnonymousRecord = true;
+UserSubscriptionRecord.UniqueId = "e7c19f78-907b-4217-d008-28c49c95c048";
+UserSubscriptionRecord.init();
+return UserSubscriptionRecord;
+})(OS.DataTypes.GenericRecord);
+Connect2_OrbitMobile_MUIModel.UserSubscriptionRecord = UserSubscriptionRecord;
+
+});
+define("Connect2_OrbitMobile_MUI.model$UserSubscriptionRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$UserSubscriptionRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var UserSubscriptionRecordList = (function (_super) {
+__extends(UserSubscriptionRecordList, _super);
+function UserSubscriptionRecordList(defaults) {
+_super.apply(this, arguments);
+}
+UserSubscriptionRecordList.itemType = Connect2_OrbitMobile_MUIModel.UserSubscriptionRecord;
+return UserSubscriptionRecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.UserSubscriptionRecordList = UserSubscriptionRecordList;
+
+});
 define("Connect2_OrbitMobile_MUI.model$UserContactRequestList", ["exports", "OutSystems/ClientRuntime/Main", "UBT_Email.model", "Connect2_OrbitMobile_MUI.model", "UBT_Email.model$UserContactRequestRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$UBT_Email"], function (exports, OutSystems, UBT_EmailModel, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var UserContactRequestList = (function (_super) {
@@ -14999,6 +16553,19 @@ CalendarGuestItemExtList.itemType = Connect2_OrbitMobile_MUIModel.CalendarGuestI
 return CalendarGuestItemExtList;
 })(OS.DataTypes.GenericRecordList);
 Connect2_OrbitMobile_MUIModel.CalendarGuestItemExtList = CalendarGuestItemExtList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$SubscriptionPlanList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$SubscriptionPlanRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var SubscriptionPlanList = (function (_super) {
+__extends(SubscriptionPlanList, _super);
+function SubscriptionPlanList(defaults) {
+_super.apply(this, arguments);
+}
+SubscriptionPlanList.itemType = ContactBase_ISModel.SubscriptionPlanRec;
+return SubscriptionPlanList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.SubscriptionPlanList = SubscriptionPlanList;
 
 });
 define("Connect2_OrbitMobile_MUI.model$EventDocumentItem_ScreenList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$EventDocumentItem_ScreenRec"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
@@ -15331,6 +16898,19 @@ return GetMealHelper_ScreenList;
 Connect2_OrbitMobile_MUIModel.GetMealHelper_ScreenList = GetMealHelper_ScreenList;
 
 });
+define("Connect2_OrbitMobile_MUI.model$PhotoTag2RecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$PhotoTag2Record"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var PhotoTag2RecordList = (function (_super) {
+__extends(PhotoTag2RecordList, _super);
+function PhotoTag2RecordList(defaults) {
+_super.apply(this, arguments);
+}
+PhotoTag2RecordList.itemType = Connect2_OrbitMobile_MUIModel.PhotoTag2Record;
+return PhotoTag2RecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.PhotoTag2RecordList = PhotoTag2RecordList;
+
+});
 define("Connect2_OrbitMobile_MUI.model$UBT_MessageTypeRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$UBT_MessageTypeRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var UBT_MessageTypeRecordList = (function (_super) {
@@ -15342,6 +16922,19 @@ UBT_MessageTypeRecordList.itemType = Connect2_OrbitMobile_MUIModel.UBT_MessageTy
 return UBT_MessageTypeRecordList;
 })(OS.DataTypes.GenericRecordList);
 Connect2_OrbitMobile_MUIModel.UBT_MessageTypeRecordList = UBT_MessageTypeRecordList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$PolicyActivationList", ["exports", "OutSystems/ClientRuntime/Main", "DirectoryClientCore.model", "Connect2_OrbitMobile_MUI.model", "DirectoryClientCore.model$PolicyActivationRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$DirectoryClientCore"], function (exports, OutSystems, DirectoryClientCoreModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var PolicyActivationList = (function (_super) {
+__extends(PolicyActivationList, _super);
+function PolicyActivationList(defaults) {
+_super.apply(this, arguments);
+}
+PolicyActivationList.itemType = DirectoryClientCoreModel.PolicyActivationRec;
+return PolicyActivationList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.PolicyActivationList = PolicyActivationList;
 
 });
 define("Connect2_OrbitMobile_MUI.model$Connect_Entity2RecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$Connect_Entity2Record"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
@@ -15436,6 +17029,33 @@ return EventOrbitRecordList;
 Connect2_OrbitMobile_MUIModel.EventOrbitRecordList = EventOrbitRecordList;
 
 });
+define("Connect2_OrbitMobile_MUI.model$NotesRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "Connect2_OrbitMobile_MUI.model", "UBTConnectLibrary.model$NotesRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var NotesRecord = (function (_super) {
+__extends(NotesRecord, _super);
+function NotesRecord(defaults) {
+_super.apply(this, arguments);
+}
+NotesRecord.attributesToDeclare = function () {
+return [
+this.attr("Notes", "notesAttr", "Notes", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec());
+}, true, UBTConnectLibraryModel.NotesRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+NotesRecord.fromStructure = function (str) {
+return new NotesRecord(new NotesRecord.RecordClass({
+notesAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+NotesRecord._isAnonymousRecord = true;
+NotesRecord.UniqueId = "c84c9882-6524-388c-39d8-99cc3e580925";
+NotesRecord.init();
+return NotesRecord;
+})(OS.DataTypes.GenericRecord);
+Connect2_OrbitMobile_MUIModel.NotesRecord = NotesRecord;
+
+});
 define("Connect2_OrbitMobile_MUI.model$PhotoRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$PhotoRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var PhotoRecordList = (function (_super) {
@@ -15460,6 +17080,19 @@ DateFilterRecordList.itemType = Connect2_OrbitMobile_MUIModel.DateFilterRecord;
 return DateFilterRecordList;
 })(OS.DataTypes.GenericRecordList);
 Connect2_OrbitMobile_MUIModel.DateFilterRecordList = DateFilterRecordList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$SubscriptionPlanRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$SubscriptionPlanRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var SubscriptionPlanRecordList = (function (_super) {
+__extends(SubscriptionPlanRecordList, _super);
+function SubscriptionPlanRecordList(defaults) {
+_super.apply(this, arguments);
+}
+SubscriptionPlanRecordList.itemType = Connect2_OrbitMobile_MUIModel.SubscriptionPlanRecord;
+return SubscriptionPlanRecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.SubscriptionPlanRecordList = SubscriptionPlanRecordList;
 
 });
 define("Connect2_OrbitMobile_MUI.model$CountryRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "Connect2_OrbitMobile_MUI.model", "APIDomain_Directory_IS.model$CountryRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, Connect2_OrbitMobile_MUIModel) {
@@ -15605,6 +17238,19 @@ AgendaList.itemType = Connect2_OrbitMobile_MUIModel.AgendaRec;
 return AgendaList;
 })(OS.DataTypes.GenericRecordList);
 Connect2_OrbitMobile_MUIModel.AgendaList = AgendaList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$Spouse2RecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$Spouse2Record"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var Spouse2RecordList = (function (_super) {
+__extends(Spouse2RecordList, _super);
+function Spouse2RecordList(defaults) {
+_super.apply(this, arguments);
+}
+Spouse2RecordList.itemType = Connect2_OrbitMobile_MUIModel.Spouse2Record;
+return Spouse2RecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.Spouse2RecordList = Spouse2RecordList;
 
 });
 define("Connect2_OrbitMobile_MUI.model$Timezone_V2RecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$Timezone_V2Record"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
@@ -15882,6 +17528,32 @@ OrbitSummaryItemList.itemType = Connect2_OrbitMobile_ISModel.OrbitSummaryItemRec
 return OrbitSummaryItemList;
 })(OS.DataTypes.GenericRecordList);
 Connect2_OrbitMobile_MUIModel.OrbitSummaryItemList = OrbitSummaryItemList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$RolesRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$RolesRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var RolesRecordList = (function (_super) {
+__extends(RolesRecordList, _super);
+function RolesRecordList(defaults) {
+_super.apply(this, arguments);
+}
+RolesRecordList.itemType = Connect2_OrbitMobile_MUIModel.RolesRecord;
+return RolesRecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.RolesRecordList = RolesRecordList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$PhotoUrl2RecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$PhotoUrl2Record"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var PhotoUrl2RecordList = (function (_super) {
+__extends(PhotoUrl2RecordList, _super);
+function PhotoUrl2RecordList(defaults) {
+_super.apply(this, arguments);
+}
+PhotoUrl2RecordList.itemType = Connect2_OrbitMobile_MUIModel.PhotoUrl2Record;
+return PhotoUrl2RecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.PhotoUrl2RecordList = PhotoUrl2RecordList;
 
 });
 define("Connect2_OrbitMobile_MUI.model$Directory_UserCurrent_SubscriptionRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$Directory_UserCurrent_SubscriptionRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
@@ -16291,6 +17963,19 @@ return AuditLog_Calendar_EventInfoRecordList;
 Connect2_OrbitMobile_MUIModel.AuditLog_Calendar_EventInfoRecordList = AuditLog_Calendar_EventInfoRecordList;
 
 });
+define("Connect2_OrbitMobile_MUI.model$HallPhoto2RecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$HallPhoto2Record"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var HallPhoto2RecordList = (function (_super) {
+__extends(HallPhoto2RecordList, _super);
+function HallPhoto2RecordList(defaults) {
+_super.apply(this, arguments);
+}
+HallPhoto2RecordList.itemType = Connect2_OrbitMobile_MUIModel.HallPhoto2Record;
+return HallPhoto2RecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.HallPhoto2RecordList = HallPhoto2RecordList;
+
+});
 define("Connect2_OrbitMobile_MUI.model$DirectoryAPIFilterRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$DirectoryAPIFilterRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var DirectoryAPIFilterRecordList = (function (_super) {
@@ -16315,6 +18000,19 @@ GetGmpMilestoneHostResponseRecordList.itemType = Connect2_OrbitMobile_MUIModel.G
 return GetGmpMilestoneHostResponseRecordList;
 })(OS.DataTypes.GenericRecordList);
 Connect2_OrbitMobile_MUIModel.GetGmpMilestoneHostResponseRecordList = GetGmpMilestoneHostResponseRecordList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$Locality2RecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$Locality2Record"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var Locality2RecordList = (function (_super) {
+__extends(Locality2RecordList, _super);
+function Locality2RecordList(defaults) {
+_super.apply(this, arguments);
+}
+Locality2RecordList.itemType = Connect2_OrbitMobile_MUIModel.Locality2Record;
+return Locality2RecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.Locality2RecordList = Locality2RecordList;
 
 });
 define("Connect2_OrbitMobile_MUI.model$GetAdminOrbitMilestone_ScreenList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_BL.model", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_BL.model$GetAdminOrbitMilestone_ScreenRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_BL"], function (exports, OutSystems, Connect2_OrbitMobile_BLModel, Connect2_OrbitMobile_MUIModel) {
@@ -16354,6 +18052,19 @@ GetAccomodationHostDocumentList.itemType = Connect2_OrbitMobile_ISModel.GetAccom
 return GetAccomodationHostDocumentList;
 })(OS.DataTypes.GenericRecordList);
 Connect2_OrbitMobile_MUIModel.GetAccomodationHostDocumentList = GetAccomodationHostDocumentList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$Member2RecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$Member2Record"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var Member2RecordList = (function (_super) {
+__extends(Member2RecordList, _super);
+function Member2RecordList(defaults) {
+_super.apply(this, arguments);
+}
+Member2RecordList.itemType = Connect2_OrbitMobile_MUIModel.Member2Record;
+return Member2RecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.Member2RecordList = Member2RecordList;
 
 });
 define("Connect2_OrbitMobile_MUI.model$GetScanEventQRCodeResponseRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$GetScanEventQRCodeResponseRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
@@ -16420,6 +18131,19 @@ DropdownTagsOptionalConfigsRecordList.itemType = Connect2_OrbitMobile_MUIModel.D
 return DropdownTagsOptionalConfigsRecordList;
 })(OS.DataTypes.GenericRecordList);
 Connect2_OrbitMobile_MUIModel.DropdownTagsOptionalConfigsRecordList = DropdownTagsOptionalConfigsRecordList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$Subscription2RecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$Subscription2Record"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var Subscription2RecordList = (function (_super) {
+__extends(Subscription2RecordList, _super);
+function Subscription2RecordList(defaults) {
+_super.apply(this, arguments);
+}
+Subscription2RecordList.itemType = Connect2_OrbitMobile_MUIModel.Subscription2Record;
+return Subscription2RecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.Subscription2RecordList = Subscription2RecordList;
 
 });
 define("Connect2_OrbitMobile_MUI.model$AuditPayload_ViewHouseholdRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$AuditPayload_ViewHouseholdRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
@@ -16593,6 +18317,19 @@ return LocalOrbitMilestoneTypeList;
 Connect2_OrbitMobile_MUIModel.LocalOrbitMilestoneTypeList = LocalOrbitMilestoneTypeList;
 
 });
+define("Connect2_OrbitMobile_MUI.model$GetSettingResponseDetailsRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$GetSettingResponseDetailsRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var GetSettingResponseDetailsRecordList = (function (_super) {
+__extends(GetSettingResponseDetailsRecordList, _super);
+function GetSettingResponseDetailsRecordList(defaults) {
+_super.apply(this, arguments);
+}
+GetSettingResponseDetailsRecordList.itemType = Connect2_OrbitMobile_MUIModel.GetSettingResponseDetailsRecord;
+return GetSettingResponseDetailsRecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.GetSettingResponseDetailsRecordList = GetSettingResponseDetailsRecordList;
+
+});
 define("Connect2_OrbitMobile_MUI.model$DropdownItemList", ["exports", "OutSystems/ClientRuntime/Main", "OutSystemsUI_2_23.model", "Connect2_OrbitMobile_MUI.model", "OutSystemsUI_2_23.model$DropdownItemRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$OutSystemsUI_2_23"], function (exports, OutSystems, OutSystemsUI_2_23Model, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var DropdownItemList = (function (_super) {
@@ -16708,6 +18445,19 @@ LocalMealTypeList.itemType = Connect2_OrbitMobile_MUIModel.LocalMealTypeRec;
 return LocalMealTypeList;
 })(OS.DataTypes.GenericRecordList);
 Connect2_OrbitMobile_MUIModel.LocalMealTypeList = LocalMealTypeList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$FilterRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$FilterRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var FilterRecordList = (function (_super) {
+__extends(FilterRecordList, _super);
+function FilterRecordList(defaults) {
+_super.apply(this, arguments);
+}
+FilterRecordList.itemType = Connect2_OrbitMobile_MUIModel.FilterRecord;
+return FilterRecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.FilterRecordList = FilterRecordList;
 
 });
 define("Connect2_OrbitMobile_MUI.model$TimeFormatRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$TimeFormatRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
@@ -16880,6 +18630,19 @@ return CallInfoStructureRecordList;
 Connect2_OrbitMobile_MUIModel.CallInfoStructureRecordList = CallInfoStructureRecordList;
 
 });
+define("Connect2_OrbitMobile_MUI.model$Locality2List", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$LocalityRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var Locality2List = (function (_super) {
+__extends(Locality2List, _super);
+function Locality2List(defaults) {
+_super.apply(this, arguments);
+}
+Locality2List.itemType = ContactBase_ISModel.LocalityRec;
+return Locality2List;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.Locality2List = Locality2List;
+
+});
 define("Connect2_OrbitMobile_MUI.model$EventBooklet_FiltersRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$EventBooklet_FiltersRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var EventBooklet_FiltersRecordList = (function (_super) {
@@ -16932,6 +18695,19 @@ return ClientsList;
 Connect2_OrbitMobile_MUIModel.ClientsList = ClientsList;
 
 });
+define("Connect2_OrbitMobile_MUI.model$NotesRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$NotesRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var NotesRecordList = (function (_super) {
+__extends(NotesRecordList, _super);
+function NotesRecordList(defaults) {
+_super.apply(this, arguments);
+}
+NotesRecordList.itemType = Connect2_OrbitMobile_MUIModel.NotesRecord;
+return NotesRecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.NotesRecordList = NotesRecordList;
+
+});
 define("Connect2_OrbitMobile_MUI.model$OrbitLandingFilterList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$OrbitLandingFilterRec"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
 var OS = OutSystems.Internal;
 var OrbitLandingFilterList = (function (_super) {
@@ -16956,6 +18732,19 @@ EventCalendar_V2RecordList.itemType = Connect2_OrbitMobile_MUIModel.EventCalenda
 return EventCalendar_V2RecordList;
 })(OS.DataTypes.GenericRecordList);
 Connect2_OrbitMobile_MUIModel.EventCalendar_V2RecordList = EventCalendar_V2RecordList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$FormerSpouseItemRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$FormerSpouseItemRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var FormerSpouseItemRecordList = (function (_super) {
+__extends(FormerSpouseItemRecordList, _super);
+function FormerSpouseItemRecordList(defaults) {
+_super.apply(this, arguments);
+}
+FormerSpouseItemRecordList.itemType = Connect2_OrbitMobile_MUIModel.FormerSpouseItemRecord;
+return FormerSpouseItemRecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.FormerSpouseItemRecordList = FormerSpouseItemRecordList;
 
 });
 define("Connect2_OrbitMobile_MUI.model$PositionRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$PositionRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
@@ -17138,6 +18927,19 @@ TimezoneList.itemType = Connect2_OrbitMobile_ISModel.TimezoneRec;
 return TimezoneList;
 })(OS.DataTypes.GenericRecordList);
 Connect2_OrbitMobile_MUIModel.TimezoneList = TimezoneList;
+
+});
+define("Connect2_OrbitMobile_MUI.model$Subdivision2List", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "Connect2_OrbitMobile_MUI.model", "ContactBase_IS.model$SubdivisionRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, Connect2_OrbitMobile_MUIModel) {
+var OS = OutSystems.Internal;
+var Subdivision2List = (function (_super) {
+__extends(Subdivision2List, _super);
+function Subdivision2List(defaults) {
+_super.apply(this, arguments);
+}
+Subdivision2List.itemType = ContactBase_ISModel.SubdivisionRec;
+return Subdivision2List;
+})(OS.DataTypes.GenericRecordList);
+Connect2_OrbitMobile_MUIModel.Subdivision2List = Subdivision2List;
 
 });
 define("Connect2_OrbitMobile_MUI.model$AgendaRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.model$AgendaRecord"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel) {
@@ -19264,6 +21066,12 @@ return getLaunchDarkly_FFRecord("3da821c6-6cc9-473b-9291-11e94a69f532");
 }
 });
 
+Object.defineProperty(Connect2_OrbitMobile_MUIModel.staticEntities.launchDarkly_FF, "mobileDirectoryHouseholdGallery", {
+get: function () {
+return getLaunchDarkly_FFRecord("4ab53042-7c90-44b2-8df8-324120f19c21");
+}
+});
+
 Object.defineProperty(Connect2_OrbitMobile_MUIModel.staticEntities.launchDarkly_FF, "mobileOrbitAccess", {
 get: function () {
 return getLaunchDarkly_FFRecord("4bde037a-0800-47eb-92d9-e95aab8d74e4");
@@ -19385,6 +21193,34 @@ return getConnect_Entity2Record("dbaf9275-057c-4718-b4fb-c4b31ae95ccc");
 Object.defineProperty(Connect2_OrbitMobile_MUIModel.staticEntities.connect_Entity2, "feedItem", {
 get: function () {
 return getConnect_Entity2Record("e22d3178-31c6-411a-a572-083e8aa9db11");
+}
+});
+
+Connect2_OrbitMobile_MUIModel.staticEntities.subscriptionPlan = {};
+var getSubscriptionPlanRecord = function (record) {
+return OS.ApplicationInfo.getModules()["da986718-6b39-4978-8cd9-1e166b827735"].staticEntities["14e4f628-7e6a-4cdf-8a8a-c0a4ee8262cc"][record];
+};
+Object.defineProperty(Connect2_OrbitMobile_MUIModel.staticEntities.subscriptionPlan, "advancedPlus", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getSubscriptionPlanRecord("270236cb-ba2d-46ff-8224-814f4d62d17b"));
+}
+});
+
+Object.defineProperty(Connect2_OrbitMobile_MUIModel.staticEntities.subscriptionPlan, "free", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getSubscriptionPlanRecord("3f7cf360-7cc1-4405-b18b-f334549cfc6c"));
+}
+});
+
+Object.defineProperty(Connect2_OrbitMobile_MUIModel.staticEntities.subscriptionPlan, "global", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getSubscriptionPlanRecord("82cc01c7-c45f-40cf-9465-687c4cf6cb77"));
+}
+});
+
+Object.defineProperty(Connect2_OrbitMobile_MUIModel.staticEntities.subscriptionPlan, "regional", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getSubscriptionPlanRecord("c8de9485-2d42-4739-911f-265cce900960"));
 }
 });
 

@@ -604,7 +604,17 @@
    "evidence": "app/src/pages/CountryDetails/inputs.ts:13",
    "verdict": "match",
    "note": "TST: present. Locals MarkersList/Center/Local_MapId/Local_List/BottomSheetId* map to refs and state in useCountryDetails (:92-97)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-051",
@@ -616,7 +626,17 @@
    "evidence": "app/src/pages/CountryDetails/hooks/useCountryDetails.ts:110",
    "verdict": "match",
    "note": "TST: present. Names Get_UI_LocalityStatistics / ContactBase not found in React",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-052",
@@ -628,7 +648,17 @@
    "evidence": "app/src/pages/CountryDetails/mocks.ts:10",
    "verdict": "mock-only",
    "note": "Production needs Get_UI_LocalityStatistics (Connect_Geography_CS) and the ContactBase_Country lookup behind CountryDetails/DataActionGetLocalityStatistics. The AR recording for other countries: decision CountryDetails Q1 (auto-accepted, user instruction 2026-10-15; migration/knowledge/auto-decisions-2026-10-15.md:30). | reader: One recording (AR); other countries get the AR data with a console warning (code comment Q1)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-053",
@@ -640,7 +670,17 @@
    "evidence": "app/src/pages/CountryDetails/hooks/useCountryDetails.ts:122-135",
    "verdict": "match",
    "note": "The tail of OnAfterFetch (Action_DefineList, Center, ListClear(MarkersList), markers, GetCallback) is in rows 266 to 269. React derives the lists from the query result, so MarkersList is rebuilt (= ListClear then append). | reader: TST: present. Pack text of OnAfterFetch start was read only from the first lines; React derives from the query result so MarkersList is rebuilt, not appended",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-054",
@@ -652,7 +692,17 @@
    "evidence": "app/src/pages/CountryDetails/CountryDetailsPage.tsx:51",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-055",
@@ -664,7 +714,17 @@
    "evidence": "pack/screens.md CountryDetails Placeholder_Header_Right [DEAD BRANCH]",
    "verdict": "n/a",
    "note": "dead in the model: If False #HidingForNow; FilterSheet_Icon is never rendered. React must not implement it. | reader: TST: present (HidingForNow x1). Dead branch: never rendered",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-056",
@@ -676,7 +736,17 @@
    "evidence": "app/src/pages/CountryDetails/components/CountryDetailsContent.tsx:131-147",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-057",
@@ -688,7 +758,17 @@
    "evidence": "app/src/pages/CountryDetails/components/CountryDetailsContent.tsx:153",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-058",
@@ -700,7 +780,17 @@
    "evidence": "app/src/pages/CountryDetails/hooks/countryDetailsState.ts:64-72",
    "verdict": "match",
    "note": "TST: present; maxBoundsViscosity = default (TST :462). DEV pack 0.5; TST type default",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-059",
@@ -712,7 +802,17 @@
    "evidence": "app/src/pages/CountryDetails/components/CountryDetailsContent.tsx:66-69",
    "verdict": "match",
    "note": "TST: present (TST :431 arcgisonline URL). ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-060",
@@ -724,7 +824,17 @@
    "evidence": "app/src/pages/CountryDetails/components/CountryDetailsContent.tsx:72-82",
    "verdict": "match",
    "note": "TST: present (isAddGoToMyLocationButtonAttr = false). ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-061",
@@ -736,7 +846,17 @@
    "evidence": "app/src/pages/CountryDetails/components/CountryDetailsContent.tsx:161-166",
    "verdict": "match",
    "note": "TST: present (LeafletMapOnParametersChanged x2). ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-062",
@@ -748,7 +868,17 @@
    "evidence": "app/src/pages/CountryDetails/components/CountryDetailsContent.tsx:85-90",
    "verdict": "match",
    "note": "DEV passes InitalString: SearchString; the TST In_Options record has no InitalString (CountryDetails.mvc.js:668-673: IsEnabled, SearchPrompt, Debounce_DelayMS, BorderRadius only). React passes none and follows TST. See report section 6.1. No MaxLength on TST. | reader: TST: IsEnabled=(out_LocalitiesStatisticsOut.length > 1), searchPrompt=\"Search locality\", Debounce_DelayMS=200 (TST :669-671). InitalString: React passes no InitalString (searched: InitalString, initialString in app/src/pages/CountryDetails/components/CountryDetailsContent.tsx); TST InitalString not looked at; no MaxLength found in either list",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-063",
@@ -760,7 +890,17 @@
    "evidence": "app/src/pages/CountryDetails/components/CountryDetailsContent.tsx:184-188",
    "verdict": "match",
    "note": "TST: present (Handler_Search_ClearString x2). ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-064",
@@ -772,7 +912,17 @@
    "evidence": "app/src/pages/CountryDetails/components/CountryDetailsContent.tsx:198-217",
    "verdict": "match",
    "note": "TST: present (\"Browse by Locality\" x1). ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-065",
@@ -784,7 +934,17 @@
    "evidence": "app/src/pages/CountryDetails/components/CountryDetailsContent.tsx:221-231",
    "verdict": "match",
    "note": "A failed refresh keeps the skeleton rows in Out_LocalitiesStatistics on TST too (the output is assigned before the refresh); both count 10. | reader: TST: present. Counts the skeleton rows too (10) after a failed fetch (code comment in hook :116-117)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-066",
@@ -796,7 +956,17 @@
    "evidence": "app/src/pages/CountryDetails/components/CountryDetailsContent.tsx:236-248",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-067",
@@ -808,7 +978,17 @@
    "evidence": "app/src/pages/CountryDetails/components/CountryDetailsContent.tsx:249-253",
    "verdict": "match",
    "note": "NotCaptured renders its children as they are in a built app (app/src/platform/feedback/NotCaptured.tsx:8); the frame shows only with ?review=1 on the dev server. | reader: TST: present (\"No results found for\" x1). React wraps it in NotCaptured (not a captured state); text is in JSX with &apos;",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-068",
@@ -820,7 +1000,17 @@
    "evidence": "app/src/pages/CountryDetails/components/CountryDetailsContent.tsx:255-277",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-069",
@@ -832,7 +1022,17 @@
    "evidence": "app/src/pages/CountryDetails/CountryDetailsPage.tsx:15",
    "verdict": "match",
    "note": "TST: present (HideInServiceStudio_BottomSheet x1). Constant If: else branch always runs",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-070",
@@ -844,7 +1044,17 @@
    "evidence": "app/src/pages/CountryDetails/CountryDetailsPage.tsx:84-89",
    "verdict": "match",
    "note": "TST: present (HideInServiceStudio_LegendBottomSheet x1). ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-071",
@@ -856,7 +1066,17 @@
    "evidence": "app/src/pages/CountryDetails/CountryDetailsPage.tsx:70-71",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-072",
@@ -868,7 +1088,17 @@
    "evidence": "app/src/pages/CountryDetails/hooks/countryDetailsState.ts:33",
    "verdict": "match",
    "note": "TST: present (Action_DefineList x5). ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-073",
@@ -880,7 +1110,17 @@
    "evidence": "app/src/pages/CountryDetails/hooks/countryDetailsState.ts:34-35",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-074",
@@ -892,7 +1132,17 @@
    "evidence": "app/src/pages/CountryDetails/hooks/useCountryDetails.ts:163-172",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-075",
@@ -904,7 +1154,17 @@
    "evidence": "app/src/pages/CountryDetails/hooks/useCountryDetails.ts:176",
    "verdict": "match",
    "note": "TST: present (Action_ManuallyOpenFilterSheet x3). ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-076",
@@ -916,7 +1176,17 @@
    "evidence": "app/src/pages/CountryDetails/hooks/useCountryDetails.ts:177",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-077",
@@ -928,7 +1198,17 @@
    "evidence": "app/src/pages/CountryDetails/hooks/useCountryDetails.ts:178",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-078",
@@ -940,7 +1220,17 @@
    "evidence": "app/src/pages/CountryDetails/hooks/useCountryDetails.ts:116-119",
    "verdict": "match",
    "note": "The query fetches on mount with the skeleton rows in place of Out_LocalitiesStatistics; a restored view keeps its data. Same steps as Action_RefreshData. | reader: TST: present. React: a TanStack query that fetches on mount; no explicit Action_RefreshData; restored view skips fetch (comment :108-109)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-079",
@@ -952,7 +1242,17 @@
    "evidence": "app/src/pages/CountryDetails/hooks/useCountryDetails.ts:237-239",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-080",
@@ -964,7 +1264,17 @@
    "evidence": "app/src/pages/CountryDetails/hooks/useCountryDetails.ts:207-209",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-081",
@@ -976,7 +1286,17 @@
    "evidence": "app/src/pages/CountryDetails/hooks/countryDetailsState.ts:82-86",
    "verdict": "match",
    "note": "When the chosen code equals the current one React refetches; otherwise the new CountryCode changes the query key, which fetches. Same result as the refresh. | reader: TST: present (Handler_FilterSheetApplyFilters x4). React refetches when the code is unchanged, else sets CountryCode (the query key changes)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-082",
@@ -988,7 +1308,17 @@
    "evidence": "app/src/pages/CountryDetails/hooks/useCountryDetails.ts:183-187",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-083",
@@ -1000,7 +1330,17 @@
    "evidence": "app/src/pages/CountryDetails/hooks/useCountryDetails.ts:229-232",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-084",
@@ -1012,7 +1352,17 @@
    "evidence": "app/src/pages/CountryDetails/hooks/useCountryDetails.ts:233-235",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-085",
@@ -1024,7 +1374,17 @@
    "evidence": "app/src/pages/CountryDetails/hooks/useCountryDetails.ts:218-222",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-086",
@@ -1036,7 +1396,17 @@
    "evidence": "app/src/pages/CountryDetails/hooks/useCountryDetails.ts:210-212",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-087",
@@ -1048,7 +1418,17 @@
    "evidence": "app/src/pages/CountryDetails/components/CountryDetailsContent.tsx:186-188",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-088",
@@ -1060,7 +1440,17 @@
    "evidence": "app/src/pages/CountryDetails/hooks/useCountryDetails.ts:191-194",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-089",
@@ -1072,7 +1462,17 @@
    "evidence": "app/src/pages/CountryDetails/hooks/useCountryDetails.ts:140",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-090",
@@ -1084,7 +1484,17 @@
    "evidence": "app/src/pages/CountryDetails/hooks/useCountryDetails.ts:141",
    "verdict": "match",
    "note": "The pack action also passes CountryCode, the screen input that Handler_FilterSheetApplyFilters reassigns. | reader: React passes the current CountryCode (changes after the filter)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-091",
@@ -1096,7 +1506,17 @@
    "evidence": "app/src/pages/CountryDetails/hooks/useCountryDetails.ts:142-145",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-092",
@@ -1108,7 +1528,17 @@
    "evidence": "app/src/pages/CountryDetails/hooks/useCountryDetails.ts:146-151",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-093",
@@ -1120,7 +1550,17 @@
    "evidence": "app/src/pages/CountryDetails/hooks/useCountryDetails.ts:223",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-094",
@@ -1132,7 +1572,17 @@
    "evidence": "app/src/pages/CountryDetails/hooks/useCountryDetails.ts:213-217",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-095",
@@ -1144,7 +1594,17 @@
    "evidence": "app/src/pages/CountryDetails/hooks/useCountryDetails.ts:225-227",
    "verdict": "match",
    "note": "TST: present (OnClick_LegendInfo x2). ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-096",
@@ -1156,7 +1616,17 @@
    "evidence": "app/src/pages/CountryDetails/hooks/useCountryDetails.ts:85",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-097",
@@ -1168,7 +1638,17 @@
    "evidence": "app/src/pages/CountryDetails/hooks/useCountryDetails.ts:108-110",
    "verdict": "match",
    "note": "TST: present. See Action_RefreshData row",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-098",
@@ -1180,7 +1660,17 @@
    "evidence": "pack/screens.md CountryDetails widget tree (no StatisticsList); app/src/pages/CountryDetails/hooks/useCountryDetails.ts",
    "verdict": "n/a",
    "note": "dead in the model: no widget of CountryDetails raises OnParametersChangedEv (the screen has no StatisticsList). React must not implement it. | reader: The CountryDetails widget tree has no StatisticsList; the action is not wired in the pack",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-099",
@@ -1192,7 +1682,17 @@
    "evidence": "app/src/pages/CountryDetails/components/CountryDetailsContent.tsx",
    "verdict": "match",
    "note": "The \"Sorry, we couldn't find…\" text is in JSX with &apos; (CountryDetailsContent.tsx:251-252); rendered text is the same. | reader: TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-100",
@@ -1204,7 +1704,17 @@
    "evidence": "app/src/pages/CountryList/CountryListPage.tsx:20",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-101",
@@ -1216,7 +1726,17 @@
    "evidence": "TST UBTConnect.Directory_Locality.CountryList.mvc.js (GetCommunityStatistics x0); app/src/pages/CountryList/hooks/useCountryList.ts",
    "verdict": "match",
    "note": "DEV only: GetCommunityStatistics and Get_UI_CommunityNumbers are absent from the TST compiled screen (0 hits). React follows TST. See report section 6.1. | reader: TST: absent (GetCommunityStatistics x0, Directory_CommunityNumbers x0, Action_RefreshData_CommunityStatistics x0). Pack element is absent on TST",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-102",
@@ -1228,7 +1748,17 @@
    "evidence": "app/src/pages/CountryList/hooks/useCountryList.ts:95",
    "verdict": "match",
    "note": "TST: present. Server-action name not found in React",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-103",
@@ -1240,7 +1770,17 @@
    "evidence": "app/src/pages/CountryList/mocks.ts:8",
    "verdict": "mock-only",
    "note": "Production needs Get_UI_CountryStatistics (Connect_Geography_CS) behind CountryList/DataActionGetCountriesStatistics. | reader: 17 countries recording",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-104",
@@ -1252,7 +1792,17 @@
    "evidence": "app/src/pages/CountryList/hooks/useCountryList.ts:101-106",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-105",
@@ -1264,7 +1814,17 @@
    "evidence": "app/src/pages/CountryList/CountryListPage.tsx:38-42",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-106",
@@ -1276,7 +1836,17 @@
    "evidence": "app/src/pages/CountryList/CountryListPage.tsx:43",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-107",
@@ -1288,7 +1858,17 @@
    "evidence": "app/src/pages/CountryList/CountryListPage.tsx:44-46",
    "verdict": "match",
    "note": "TST: present (\"Search any member or location\" x1; StaticInputClick_Input x2). ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-108",
@@ -1300,7 +1880,17 @@
    "evidence": "app/src/pages/CountryList/components/CountryListContent.tsx:101",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-109",
@@ -1312,7 +1902,17 @@
    "evidence": "app/src/pages/CountryList/components/CountryListContent.tsx:106-123",
    "verdict": "match",
    "note": "TST CountryList.mvc.js:484: LongIntegerToText(Locality_SubdivisionCount) + If(count = 1, \" Supper Meeting\", \" Supper Meetings\"). React countText (countryListState.ts:100-103) does the same. | reader: TST: present: label and count args present; the count formula has no Locality_SubdivisionCount token in the view (TST count x0). Pack count expression is cut (\"If(LocalCacheControl_...\"); the singular/plural words \" Supper Meeting\"/\" Supper Meetings\" are from the pack strings; TST text not compared",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-110",
@@ -1324,7 +1924,17 @@
    "evidence": "app/src/pages/CountryList/components/CountryListContent.tsx:126-145",
    "verdict": "match",
    "note": "TST CountryList.mvc.js:689: count = 1 ? \" Locality\" : \" Localities\". React countText does the same. | reader: TST: present (\"MY COUNTRY\" x1). ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-111",
@@ -1336,7 +1946,17 @@
    "evidence": "app/src/pages/CountryList/components/CountryListContent.tsx:149-156",
    "verdict": "match",
    "note": "The true branch of the constant If renders FeedBlock_CommunityPopulation (flow Home). The dead else branch is row 270. | reader: TST: FeedBlock_CommunityPopulation x5; Directory_CommunityNumbers x0. Else branch (Directory_CommunityNumbers) is dead in DEV and absent on TST",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-112",
@@ -1348,7 +1968,17 @@
    "evidence": "app/src/pages/CountryList/components/CountryListContent.tsx:157-175",
    "verdict": "match",
    "note": "TST: present (\"Browse by Country\" x1). ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-113",
@@ -1360,7 +1990,17 @@
    "evidence": "app/src/pages/CountryList/components/CountryListContent.tsx:176-199",
    "verdict": "match",
    "note": "The list-loading and list-error classes come from the captured TST states (the offline capture shows the list-error state: migration/parity-exemptions.json:67). | reader: TST: present. React adds list-loading / list-error classes (captured states, code comment)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-114",
@@ -1372,7 +2012,17 @@
    "evidence": "app/src/pages/CountryList/CountryListPage.tsx:62-63",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-115",
@@ -1384,7 +2034,17 @@
    "evidence": "app/src/pages/CountryList/CountryListPage.tsx:65",
    "verdict": "match",
    "note": "TST: present (CacheControl_UserInfo_WrapperResult x4). ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-116",
@@ -1396,7 +2056,17 @@
    "evidence": "app/src/pages/CountryList/CountryListPage.tsx:66-71",
    "verdict": "match",
    "note": "TST: present (Directory_LegendBottomSheet x10). ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-117",
@@ -1408,7 +2078,17 @@
    "evidence": "TST UBTConnect.Directory_Locality.CountryList.mvc.js (Action_RefreshData_CommunityStatistics x0)",
    "verdict": "match",
    "note": "DEV only: Action_RefreshData_CommunityStatistics is absent on TST (0 hits). React follows TST. See report section 6.1. | reader: TST: absent. See GetCommunityStatistics row",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-118",
@@ -1420,7 +2100,17 @@
    "evidence": "app/src/pages/CountryList/hooks/useCountryList.ts:90-106",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-119",
@@ -1432,7 +2122,17 @@
    "evidence": "app/src/pages/CountryList/hooks/useCountryList.ts:113-116",
    "verdict": "match",
    "note": "TST: present (BubbleGenericException x2). ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-120",
@@ -1444,7 +2144,17 @@
    "evidence": "app/src/pages/CountryList/hooks/useCountryList.ts:108-111",
    "verdict": "match",
    "note": "TST: present (BubbleCommunicationException x2). ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-121",
@@ -1456,7 +2166,17 @@
    "evidence": "app/src/pages/CountryList/hooks/useCountryList.ts:112",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-122",
@@ -1468,7 +2188,17 @@
    "evidence": "app/src/pages/CountryList/hooks/useCountryList.ts:159-161",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-123",
@@ -1480,7 +2210,17 @@
    "evidence": "app/src/pages/CountryList/hooks/useCountryList.ts:162-164",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-124",
@@ -1492,7 +2232,17 @@
    "evidence": "app/src/pages/CountryList/hooks/useCountryList.ts:130",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-125",
@@ -1504,7 +2254,17 @@
    "evidence": "app/src/pages/CountryList/hooks/useCountryList.ts:131-132",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-126",
@@ -1516,7 +2276,17 @@
    "evidence": "app/src/pages/CountryList/hooks/useCountryList.ts:133",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-127",
@@ -1528,7 +2298,17 @@
    "evidence": "app/src/pages/CountryList/hooks/useCountryList.ts:102",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-128",
@@ -1540,7 +2320,17 @@
    "evidence": "app/src/pages/CountryList/hooks/useCountryList.ts:153-155",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-129",
@@ -1552,7 +2342,17 @@
    "evidence": "app/src/pages/CountryList/hooks/useCountryList.ts:147-149",
    "verdict": "match",
    "note": "TST: present (OnClick_MyCountry x2). ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-130",
@@ -1564,7 +2364,17 @@
    "evidence": "app/src/pages/CountryList/hooks/useCountryList.ts:141-146",
    "verdict": "match",
    "note": "TST: present (OnClick_MyLocality x2). ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-131",
@@ -1576,7 +2386,17 @@
    "evidence": "app/src/pages/CountryList/hooks/useCountryList.ts:123",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-132",
@@ -1588,7 +2408,17 @@
    "evidence": "app/src/pages/CountryList/hooks/useCountryList.ts:124",
    "verdict": "match",
    "note": "The JavaScript node that calls Action_RefreshData_CommunityStatistics is DEV only (absent on TST); the TST else branch calls Action_RefreshData_CountryStatistics only, as React does. See report section 6.1. | reader: TST:  JS call to Action_RefreshData_CommunityStatistics: absent on TST. The community-statistics refresh is not in React; TST has no such action (count 0)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-133",
@@ -1600,7 +2430,17 @@
    "evidence": "app/src/pages/CountryList/hooks/useCountryList.ts:138-140",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-134",
@@ -1612,7 +2452,17 @@
    "evidence": "app/src/pages/CountryList/hooks/useCountryList.ts:150-152",
    "verdict": "match",
    "note": "The block instance has no arguments and no events in the pack; the click flow is inside FeedBlock_CommunityPopulation (flow Home), checked in the report of Home. | reader: Block is in flow Home; the caller wiring is not in the CountryList pack",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-135",
@@ -1624,7 +2474,17 @@
    "evidence": "app/src/pages/CountryList/CountryListPage.tsx",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-136",
@@ -1636,7 +2496,17 @@
    "evidence": "app/src/pages/Locality_Details/inputs.ts:12-15",
    "verdict": "match",
    "note": "DEV roles include Anonymous; TST has an empty permission check for Locality_Details (migration/knowledge/shell-facts.md:14); React route access anonymous with the lock enforced. | reader: TST: present. App meta says anonymous access; DEV roles include Anonymous",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-137",
@@ -1648,7 +2518,17 @@
    "evidence": "app/src/pages/Locality_Details/hooks/useLocalityDetails.ts:84",
    "verdict": "match",
    "note": "TST: present. Get_UI_LocalityDetails name not found in React (TST client JS x0, server side)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-138",
@@ -1660,7 +2540,17 @@
    "evidence": "app/src/pages/Locality_Details/mocks.ts:120",
    "verdict": "mock-only",
    "note": "Production needs Get_UI_LocalityDetails (Connect_Geography_CS) behind Locality_Details/DataActionGet_LocalityDetails. | reader: Households, tags, supper meetings, interchange and schools mocks are fictional (mocks.ts comments)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-139",
@@ -1672,7 +2562,17 @@
    "evidence": "app/src/pages/Locality_Details/hooks/localityDetailsState.ts:130-136",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-140",
@@ -1684,7 +2584,17 @@
    "evidence": "app/src/pages/Locality_Details/Locality_DetailsPage.tsx:82-89",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-141",
@@ -1696,7 +2606,17 @@
    "evidence": "app/src/pages/Locality_Details/Locality_DetailsPage.tsx:85-87",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-142",
@@ -1708,7 +2628,17 @@
    "evidence": "app/src/pages/Locality_Details/Locality_DetailsPage.tsx:77-79",
    "verdict": "match",
    "note": "C2EnableMaps is off on TST (migration/knowledge/flag-values-tst.json getHasMapsEnabled false; board.md:73). React keeps the branch behind the same flag. | reader: TST: present (GetHasMapsEnabled x3). Flag C2EnableMaps; flag value file migration/knowledge/flag-values-tst.json not read by the reader",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-143",
@@ -1720,7 +2650,17 @@
    "evidence": "app/src/pages/Locality_Details/Locality_DetailsPage.tsx:93-96",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-144",
@@ -1732,7 +2672,17 @@
    "evidence": "app/src/pages/Locality_Details/Locality_DetailsPage.tsx:99-103",
    "verdict": "match",
    "note": "NotCaptured renders its children in a built app (NotCaptured.tsx:8). | reader: TST: \"My Locality\" x1. React wraps it in NotCaptured (not a captured state)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-145",
@@ -1744,7 +2694,17 @@
    "evidence": "app/src/pages/Locality_Details/Locality_DetailsPage.tsx:104-108",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-146",
@@ -1756,7 +2716,17 @@
    "evidence": "app/src/pages/Locality_Details/Locality_DetailsPage.tsx:110-116",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-147",
@@ -1768,7 +2738,17 @@
    "evidence": "app/src/pages/Locality_Details/Locality_DetailsPage.tsx:119-125",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-148",
@@ -1780,7 +2760,17 @@
    "evidence": "app/src/pages/Locality_Details/Locality_DetailsPage.tsx:129-134",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-149",
@@ -1792,7 +2782,17 @@
    "evidence": "app/src/pages/Locality_Details/Locality_DetailsPage.tsx:135-144",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-150",
@@ -1807,7 +2807,17 @@
    "verified": "live",
    "finding": "F1",
    "severity": "minor",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-151",
@@ -1819,7 +2829,17 @@
    "evidence": "app/src/pages/Locality_Details/Locality_DetailsPage.tsx:154-169",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-152",
@@ -1831,7 +2851,17 @@
    "evidence": "app/src/pages/Locality_Details/Locality_DetailsPage.tsx:175-184",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-153",
@@ -1843,7 +2873,17 @@
    "evidence": "app/src/pages/Locality_Details/Locality_DetailsPage.tsx:185-196",
    "verdict": "match",
    "note": "NotCaptured renders its children in a built app. HouseholdDetails_Block is a block of flow Directory_Household, checked in that report. | reader: TST: HouseholdDetails_Block x5. React wraps it in NotCaptured (not a captured state)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-154",
@@ -1855,7 +2895,17 @@
    "evidence": "app/src/pages/Locality_Details/Locality_DetailsPage.tsx:197-199",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-155",
@@ -1867,7 +2917,17 @@
    "evidence": "app/src/pages/Locality_Details/Locality_DetailsPage.tsx:200-202",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-156",
@@ -1879,7 +2939,18 @@
    "evidence": "app/src/pages/Locality_Details/Locality_DetailsPage.tsx:203-214",
    "verdict": "match",
    "note": "In_LocalityTimezoneData is an input of the TST block (Locality_OneSchoolGlobal.mvc.js:50) and the TST screen passes it (Locality_Details.mvc.js:933); the DEV pack has no such input. React follows TST. Event_OnClick_Bookmark: the DEV handler has no nodes (row 171). See report section 6.1. | reader: TST: present (Event_OnClick_Bookmark x1 in block file). React does not wire Event_OnClick_Bookmark (hook comment LDH:57-59); React passes In_LocalityTimezoneData, which the pack block does not have",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (lines)",
+     "UBTConnect.Directory_Locality.Locality_OneSchoolGlobal.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-157",
@@ -1891,7 +2962,17 @@
    "evidence": "app/src/pages/Locality_Details/Locality_DetailsPage.tsx:215-219",
    "verdict": "match",
    "note": "DEV only: the LaunchDarkly check and the Locality_LocalityContacts block are absent from the TST view, which renders ComingSoon only (Locality_Details.mvc.js:986-990). React follows TST; BR-UBTCON-796. See report section 6.1. | reader: TST: TST view: `$if(true, false, ...)` then ConnectPatterns.ComingSoon only; Connect_LaunchDarkly_PermissionCheck x0, MobileDirectoryLocalityContacts x0, Locality_LocalityContacts x0 (TST Locality_Details :986-990). Pack elements (LaunchDarkly check, block Locality_LocalityContacts) absent on TST; React shows ComingSoon like TST",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-158",
@@ -1903,7 +2984,17 @@
    "evidence": "app/src/pages/Locality_Details/Locality_DetailsPage.tsx:222-223",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-159",
@@ -1915,7 +3006,17 @@
    "evidence": "app/src/pages/Locality_Details/hooks/useLocalityDetails.ts:99-104",
    "verdict": "match",
    "note": "TST: present (Action_InitializeScreen x3). ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-160",
@@ -1927,7 +3028,17 @@
    "evidence": "app/src/pages/Locality_Details/hooks/localityDetailsState.ts:84-91",
    "verdict": "match",
    "note": "TST: present. Locality label string is \"LocalityName, CountryName\" (LDS:52)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-161",
@@ -1939,7 +3050,17 @@
    "evidence": "app/src/pages/Locality_Details/hooks/localityDetailsState.ts:86-95",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-162",
@@ -1951,7 +3072,19 @@
    "evidence": "app/src/pages/Locality_Details/components/actions.ts:23-30; TST UBTConnect.controller.js:10863-10920",
    "verdict": "match",
    "note": "TST UBTConnect.controller.js:10900-10913: Tag_LocalityContacts is appended only when Connect_LaunchDarkly_PermissionCheck(mobileDirectoryLocalityContacts) has access; DEV appends it always. React follows TST; the flag is off by decision Locality_Details Q2 (auto-accepted, user instruction 2026-10-15). See report section 6.1. | reader: TST: present (UBTConnect.controller$GetSample_FilterTags in TST dependency list; body not in this file). DEV appends \"Locality Contacts\" always; React appends it only when flag mobileDirectoryLocalityContacts is on (LDA:20-22 comment: \"flag still undecided: Q2, off by default\"). TST body not compared",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)",
+     "UBTConnect.controller.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-163",
@@ -1963,7 +3096,17 @@
    "evidence": "app/src/pages/Locality_Details/hooks/localityDetailsState.ts:52",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-164",
@@ -1975,7 +3118,17 @@
    "evidence": "app/src/pages/Locality_Details/hooks/useLocalityDetails.ts:151-156",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-165",
@@ -1987,7 +3140,17 @@
    "evidence": "app/src/pages/Locality_Details/hooks/useLocalityDetails.ts:131",
    "verdict": "match",
    "note": "TST Locality_Details.mvc.js:1126-1136: flag true navigates to CountryDetails, else BrowseDirectory (= DEV). KB BR-UBTCON-793 states the reverse: see report section 6.2 K1. C2EnableC1DirectoryView is on on TST. | reader: TST: present (GetHasC1DirectoryView x3). Flag C2EnableC1DirectoryView",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-166",
@@ -1999,7 +3162,17 @@
    "evidence": "app/src/pages/Locality_Details/hooks/useLocalityDetails.ts:131-133",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-167",
@@ -2011,7 +3184,17 @@
    "evidence": "app/src/pages/Locality_Details/hooks/useLocalityDetails.ts:138",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-168",
@@ -2023,7 +3206,17 @@
    "evidence": "app/src/pages/Locality_Details/hooks/useLocalityDetails.ts:139",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-169",
@@ -2035,7 +3228,17 @@
    "evidence": "app/src/pages/Locality_Details/hooks/useLocalityDetails.ts:145",
    "verdict": "match",
    "note": "TST: present (StopPropagationHelper_Check x4). ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-170",
@@ -2047,7 +3250,17 @@
    "evidence": "app/src/pages/Locality_Details/hooks/useLocalityDetails.ts:146",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-171",
@@ -2059,7 +3272,17 @@
    "evidence": "app/src/pages/Locality_Details/Locality_DetailsPage.tsx",
    "verdict": "match",
    "note": "The DEV handler has no nodes (end only) and TST has the empty _handler_OnClick_Bookmark$Action (Locality_Details.mvc.js:1149). React wires nothing: same effect. | reader: TST: present (Handler_OnClick_Bookmark x4). Empty in DEV, not wired in React",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-172",
@@ -2071,7 +3294,17 @@
    "evidence": "app/src/pages/Locality_Details/hooks/useLocalityDetails.ts:115-117",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-173",
@@ -2083,7 +3316,17 @@
    "evidence": "app/src/pages/Locality_Details/hooks/useLocalityDetails.ts:123-126",
    "verdict": "match",
    "note": "TST: present (OnClick_Maps x2). ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-174",
@@ -2095,7 +3338,17 @@
    "evidence": "app/src/pages/Locality_Details/hooks/useLocalityDetails.ts:119-121",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-175",
@@ -2107,7 +3360,17 @@
    "evidence": "app/src/pages/Locality_Details/hooks/localityDetailsState.ts:56-72",
    "verdict": "match",
    "note": "IsUserLocality defaults to True, so the first tag list has My Household; React builds the initial state with isUserLocality = true. | reader: React builds this in the initial state",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-176",
@@ -2119,7 +3382,17 @@
    "evidence": "app/src/pages/Locality_Details/hooks/useLocalityDetails.ts:95-96",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-177",
@@ -2131,7 +3404,17 @@
    "evidence": "app/src/pages/Locality_Details/hooks/useLocalityDetails.ts:112",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-178",
@@ -2143,7 +3426,17 @@
    "evidence": "app/src/pages/Locality_Details/hooks/useLocalityDetails.ts:97-112",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-179",
@@ -2155,7 +3448,17 @@
    "evidence": "app/src/pages/Locality_Details/Locality_DetailsPage.tsx:47-50",
    "verdict": "match",
    "note": "A navigation to the same screen creates a new OutSystems screen instance; React remounts on the location key.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-180",
@@ -2167,7 +3470,17 @@
    "evidence": "app/src/pages/Locality_Details/Locality_DetailsPage.tsx:86",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-181",
@@ -2299,7 +3612,17 @@
    "evidence": "app/src/pages/Locality_Details/components/Locality_DateTimeLabel.tsx:20",
    "verdict": "match",
    "note": "TST UBTConnect.controller.js:9366-9414: local time = In_LocalDateTime + JSUtils_DateTime_GetUTCOffset minutes + In_UTCOffsetSeconds; label = weekday long label + \", \" + FormatConnectTime + \" (UTC\" + (\" - \" or \" + \") + Trunc(hours) [+ \":\" + minutes when the fraction > 0] + \")\". React actions.ts:35-46 does the same. | reader: TST: present (GetLocalityCurrentTimeLabel x3). React formats \"<weekday>, <hh:mm tt> (UTC +/- h)\" itself; the DEV client action body is not in the pack",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-192",
@@ -2578,7 +3901,19 @@
    "evidence": "migration/board.md:55; TST UBTConnect.Directory_Locality.Locality_Details.mvc.js:986-990",
    "verdict": "n/a",
    "note": "The block is never rendered on TST: the tab renders ComingSoon (Locality_Details.mvc.js:986-990; BR-UBTCON-796, BR-UBTCON-807; migration/knowledge/navigation.md:21). Board: ContactByEmailContacts skip:dead \"only link in Locality_LocalityContacts, not embedded on TST; revisit if the block appears\" (user, 2026-10-14; migration/board.md:55). Not built. | reader: TST: block file present in TST (Handler_MessageOnClick x4, ContactPopup_ByPhone x7); not used by the TST Locality_Details view (x0). Block exists on TST but the TST screen never renders it (constant `$if(true)` ComingSoon)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (lines)",
+     "UBTConnect.Directory_Locality.Locality_LocalityContacts.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-215",
@@ -2590,7 +3925,17 @@
    "evidence": "migration/board.md:55; pack/blocks.md Locality_LocalityContacts",
    "verdict": "n/a",
    "note": "Server side of a block that TST never renders (row 214). Not built. | reader: No repository function, no mock",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_LocalityContacts.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-216",
@@ -2602,7 +3947,17 @@
    "evidence": "migration/board.md:55; pack/strings.md",
    "verdict": "n/a",
    "note": "Strings of a block that TST never renders (row 214). | reader: TST: present (\"No Locality Contacts\" x1 in block file). ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_LocalityContacts.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-217",
@@ -2614,7 +3969,17 @@
    "evidence": "app/src/pages/Locality_Details/hooks/useLocalityOneSchoolGlobal.ts:55",
    "verdict": "match",
    "note": "TST: present. Server-action name not found (app.md 0 hits); mock: app/src/pages/Locality_Details/mocks.ts:101-118 fictional schools",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_OneSchoolGlobal.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-218",
@@ -2626,7 +3991,17 @@
    "evidence": "app/src/pages/Locality_Details/components/Locality_OneSchoolGlobal.tsx:51-61",
    "verdict": "match",
    "note": "React does not forward Event_OnClick_Bookmark because the screen handler has no nodes (row 171). The list block OneSchoolGlobal_List belongs to flow Directory_OneSchoolGlobal_Blocks (_shared pack). | reader: TST: present (Event_OnClick_Bookmark x1). React does not pass Event_OnClick_Bookmark to the list",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_OneSchoolGlobal.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-219",
@@ -2638,7 +4013,17 @@
    "evidence": "app/src/pages/Locality_Details/hooks/useLocalityOneSchoolGlobal.ts:60",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_OneSchoolGlobal.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-220",
@@ -2650,7 +4035,17 @@
    "evidence": "app/src/pages/Locality_Details/hooks/useLocalityOneSchoolGlobal.ts:61-62",
    "verdict": "match",
    "note": "TST: present (GetSkeletonList_UI_OneSchoolGlobal_ListCard x5). ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_OneSchoolGlobal.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-221",
@@ -2662,7 +4057,17 @@
    "evidence": "app/src/pages/Locality_Details/hooks/localityBlocksState.ts:251-262",
    "verdict": "match",
    "note": "Reducer app/src/pages/Locality_Details/hooks/localityBlocksState.ts:251-262: the first answer clears the skeleton rows and sets IsLoading false, every answer appends (ListAppendAll). | reader: TST: present. Reducer not read line by line; hook comment :35 states the same sequence",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_OneSchoolGlobal.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-222",
@@ -2674,7 +4079,17 @@
    "evidence": "app/src/pages/Locality_Details/hooks/useLocalityOneSchoolGlobal.ts:65-70",
    "verdict": "match",
    "note": "TST: present (Handler_OnScrollEnding x2). ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_OneSchoolGlobal.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-223",
@@ -2686,7 +4101,17 @@
    "evidence": "app/src/pages/Locality_Details/hooks/useLocalityOneSchoolGlobal.ts:67-68",
    "verdict": "match",
    "note": "TST: present. ",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_OneSchoolGlobal.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-224",
@@ -3192,7 +4617,17 @@
    "evidence": "pack/screens.md CountryList [DEAD BRANCH]; TST CountryList.mvc.js (Directory_CommunityNumbers x0)",
    "verdict": "n/a",
    "note": "String of Directory_CommunityNumbers, the dead else branch of CountryList (row 270), absent on TST. | reader: Block Directory_CommunityNumbers (dead branch in CountryList; absent on TST)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-266",
@@ -3204,7 +4639,17 @@
    "evidence": "app/src/pages/CountryDetails/hooks/useCountryDetails.ts:124-128; countryDetailsState.ts:32-36",
    "verdict": "match",
    "note": "Before the first answer Local_List is empty on DEV too; the #isLoading branch shows the three skeleton rows.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-267",
@@ -3216,7 +4661,17 @@
    "evidence": "app/src/pages/CountryDetails/hooks/useCountryDetails.ts:129-134",
    "verdict": "match",
    "note": "An empty answer gives 0/0 in both: the OutSystems Current of an empty list is the default record.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-268",
@@ -3228,7 +4683,17 @@
    "evidence": "app/src/pages/CountryDetails/hooks/useCountryDetails.ts:135; app/src/pages/CountryDetails/hooks/countryDetailsState.ts:45-61",
    "verdict": "match",
    "note": "Marker JSON names kept by CR-CountryDetails-2.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-269",
@@ -3240,7 +4705,17 @@
    "evidence": "pack/screens.md CountryDetails OnAfterFetch_GetLocalityStatistics; app/src/pages/CountryDetails/hooks/useCountryDetails.ts:213-217",
    "verdict": "match",
    "note": "Same as BrowseDirectory row 024.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-270",
@@ -3252,7 +4727,17 @@
    "evidence": "pack/screens.md CountryList widget tree [DEAD BRANCH]; TST UBTConnect.Directory_Locality.CountryList.mvc.js (Directory_CommunityNumbers x0)",
    "verdict": "n/a",
    "note": "dead in the model; also absent on TST. React must not implement it.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.CountryList.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-271",
@@ -3288,7 +4773,17 @@
    "evidence": "app/src/pages/Locality_Details/mocks.ts:134; app/src/pages/Locality_Details/mocks.ts:101-118",
    "verdict": "mock-only",
    "note": "Production needs Get_OneSchoolGlobalListByLocality behind Locality_OneSchoolGlobal/DataActionGet_OneSchoolGlobal_List.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_OneSchoolGlobal.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-274",
@@ -3312,7 +4807,19 @@
    "evidence": "migration/board.md:55; TST UBTConnect.Directory_Locality.Locality_Details.mvc.js:986-990; pack/blocks.md Locality_LocalityContacts",
    "verdict": "n/a",
    "note": "Block never rendered on TST (ComingSoon in the tab; BR-UBTCON-796, BR-UBTCON-807); board ContactByEmailContacts skip:dead (user, 2026-10-14). Not built.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (lines)",
+     "UBTConnect.Directory_Locality.Locality_LocalityContacts.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-276",
@@ -3324,7 +4831,19 @@
    "evidence": "migration/board.md:55; TST UBTConnect.Directory_Locality.Locality_Details.mvc.js:986-990; pack/blocks.md Locality_LocalityContacts",
    "verdict": "n/a",
    "note": "Block never rendered on TST (ComingSoon in the tab; BR-UBTCON-796, BR-UBTCON-807); board ContactByEmailContacts skip:dead (user, 2026-10-14). Not built.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (lines)",
+     "UBTConnect.Directory_Locality.Locality_LocalityContacts.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-277",
@@ -3336,7 +4855,19 @@
    "evidence": "migration/board.md:55; TST UBTConnect.Directory_Locality.Locality_Details.mvc.js:986-990; pack/blocks.md Locality_LocalityContacts",
    "verdict": "n/a",
    "note": "Block never rendered on TST (ComingSoon in the tab; BR-UBTCON-796, BR-UBTCON-807); board ContactByEmailContacts skip:dead (user, 2026-10-14). Not built. The disabled nodes are dead in the model.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (lines)",
+     "UBTConnect.Directory_Locality.Locality_LocalityContacts.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-278",
@@ -3348,7 +4879,19 @@
    "evidence": "migration/board.md:55; TST UBTConnect.Directory_Locality.Locality_Details.mvc.js:986-990; pack/blocks.md Locality_LocalityContacts",
    "verdict": "n/a",
    "note": "Block never rendered on TST (ComingSoon in the tab; BR-UBTCON-796, BR-UBTCON-807); board ContactByEmailContacts skip:dead (user, 2026-10-14). Not built.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (lines)",
+     "UBTConnect.Directory_Locality.Locality_LocalityContacts.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-279",
@@ -3360,7 +4903,19 @@
    "evidence": "migration/board.md:55; TST UBTConnect.Directory_Locality.Locality_Details.mvc.js:986-990; pack/blocks.md Locality_LocalityContacts",
    "verdict": "n/a",
    "note": "Block never rendered on TST (ComingSoon in the tab; BR-UBTCON-796, BR-UBTCON-807); board ContactByEmailContacts skip:dead (user, 2026-10-14). Not built. ContactByEmailContacts is skip:dead on the board.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (lines)",
+     "UBTConnect.Directory_Locality.Locality_LocalityContacts.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Locality-280",
@@ -3372,7 +4927,19 @@
    "evidence": "migration/board.md:55; TST UBTConnect.Directory_Locality.Locality_Details.mvc.js:986-990; pack/blocks.md Locality_LocalityContacts",
    "verdict": "n/a",
    "note": "Block never rendered on TST (ComingSoon in the tab; BR-UBTCON-796, BR-UBTCON-807); board ContactByEmailContacts skip:dead (user, 2026-10-14). Not built.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Locality.Locality_Details.mvc.js (lines)",
+     "UBTConnect.Directory_Locality.Locality_LocalityContacts.mvc.js (screen)"
+    ]
+   }
   }
  ]
 }

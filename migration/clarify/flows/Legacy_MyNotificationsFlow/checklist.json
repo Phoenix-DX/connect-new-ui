@@ -1603,7 +1603,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js:914. AddFirstSentence body is in Connect2_LegacyShared controller (not read by the reader); React text from its own comment. | Judge: AddFirstSentence read: Out_MessageContent = \"Hello \" + In_UserFirstName + \", <br> <br>\" + In_MessageContent (migration/runtime-sources/Connect2_LegacyShared.controller.js:99-150). React matches. KB BR-C2LEG-481.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_LegacyShared.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_MyNotificationsFlow-121",

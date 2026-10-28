@@ -91,59 +91,6 @@ return Connect_SearchCategoriesRecord;
 UBTConnectModel.Connect_SearchCategoriesRecord = Connect_SearchCategoriesRecord;
 
 });
-define("UBTConnect.model$FormerSpouseItemList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$FormerSpouseItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var FormerSpouseItemList = (function (_super) {
-__extends(FormerSpouseItemList, _super);
-function FormerSpouseItemList(defaults) {
-_super.apply(this, arguments);
-}
-FormerSpouseItemList.itemType = ContactBase_ISModel.FormerSpouseItemRec;
-return FormerSpouseItemList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.FormerSpouseItemList = FormerSpouseItemList;
-
-});
-define("UBTConnect.model$FamilyMemberFormattedDetailList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$FamilyMemberFormattedDetailRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var FamilyMemberFormattedDetailList = (function (_super) {
-__extends(FamilyMemberFormattedDetailList, _super);
-function FamilyMemberFormattedDetailList(defaults) {
-_super.apply(this, arguments);
-}
-FamilyMemberFormattedDetailList.itemType = ContactBase_ISModel.FamilyMemberFormattedDetailRec;
-return FamilyMemberFormattedDetailList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.FamilyMemberFormattedDetailList = FamilyMemberFormattedDetailList;
-
-});
-define("UBTConnect.model$Member2Record", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$MemberRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var Member2Record = (function (_super) {
-__extends(Member2Record, _super);
-function Member2Record(defaults) {
-_super.apply(this, arguments);
-}
-Member2Record.attributesToDeclare = function () {
-return [
-this.attr("Member", "memberAttr", "Member2", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.MemberRec());
-}, true, ContactBase_ISModel.MemberRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-Member2Record.fromStructure = function (str) {
-return new Member2Record(new Member2Record.RecordClass({
-memberAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-Member2Record._isAnonymousRecord = true;
-Member2Record.UniqueId = "010671ad-cf1b-713f-05ca-b9ee282b9ce8";
-Member2Record.init();
-return Member2Record;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.Member2Record = Member2Record;
-
-});
 define("UBTConnect.model$", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var TextList = (function (_super) {
@@ -432,33 +379,6 @@ UBT_ShadowRecordList.itemType = UBTConnectModel.UBT_ShadowRecord;
 return UBT_ShadowRecordList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.UBT_ShadowRecordList = UBT_ShadowRecordList;
-
-});
-define("UBTConnect.model$PolicyActivationRecord", ["exports", "OutSystems/ClientRuntime/Main", "DirectoryClientCore.model", "UBTConnect.model", "DirectoryClientCore.model$PolicyActivationRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$DirectoryClientCore"], function (exports, OutSystems, DirectoryClientCoreModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var PolicyActivationRecord = (function (_super) {
-__extends(PolicyActivationRecord, _super);
-function PolicyActivationRecord(defaults) {
-_super.apply(this, arguments);
-}
-PolicyActivationRecord.attributesToDeclare = function () {
-return [
-this.attr("PolicyActivation", "policyActivationAttr", "PolicyActivation", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new DirectoryClientCoreModel.PolicyActivationRec());
-}, true, DirectoryClientCoreModel.PolicyActivationRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-PolicyActivationRecord.fromStructure = function (str) {
-return new PolicyActivationRecord(new PolicyActivationRecord.RecordClass({
-policyActivationAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-PolicyActivationRecord._isAnonymousRecord = true;
-PolicyActivationRecord.UniqueId = "01ee98e9-3feb-f886-de04-a215ebcdad12";
-PolicyActivationRecord.init();
-return PolicyActivationRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.PolicyActivationRecord = PolicyActivationRecord;
 
 });
 define("UBTConnect.model$UI_HouseholdTimelineImagesRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Household_CS.model", "UBTConnect.model", "Connect_Household_CS.model$UI_HouseholdTimelineImagesRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Household_CS"], function (exports, OutSystems, Connect_Household_CSModel, UBTConnectModel) {
@@ -833,6 +753,57 @@ OrbitEmailInformationRecord.init();
 return OrbitEmailInformationRecord;
 })(OS.DataTypes.GenericRecord);
 UBTConnectModel.OrbitEmailInformationRecord = OrbitEmailInformationRecord;
+
+});
+define("UBTConnect.model$", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model"], function (exports, OutSystems, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var LongIntegerList = (function (_super) {
+__extends(LongIntegerList, _super);
+function LongIntegerList(defaults) {
+_super.apply(this, arguments);
+}
+LongIntegerList.itemType = OS.DataTypes.DataTypes.LongInteger;
+return LongIntegerList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.LongIntegerList = LongIntegerList;
+
+});
+define("UBTConnect.model$PreloadedCarouselRec", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model"], function (exports, OutSystems, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var PreloadedCarouselRec = (function (_super) {
+__extends(PreloadedCarouselRec, _super);
+function PreloadedCarouselRec(defaults) {
+_super.apply(this, arguments);
+}
+PreloadedCarouselRec.attributesToDeclare = function () {
+return [
+this.attr("CarouselItemIds", "carouselItemIdsAttr", "CarouselItemIds", false, false, OS.DataTypes.DataTypes.RecordList, function () {
+return OS.DataTypes.ImmutableBase.getData(new OS.DataTypes.LongIntegerList());
+}, true, OS.DataTypes.LongIntegerList)
+].concat(_super.attributesToDeclare.call(this));
+};
+PreloadedCarouselRec.fromStructure = function (str) {
+return new PreloadedCarouselRec(new PreloadedCarouselRec.RecordClass({
+carouselItemIdsAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+PreloadedCarouselRec.init();
+return PreloadedCarouselRec;
+})(OS.DataTypes.GenericRecord);
+UBTConnectModel.PreloadedCarouselRec = PreloadedCarouselRec;
+
+});
+define("UBTConnect.model$PreloadedCarouselList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$PreloadedCarouselRec"], function (exports, OutSystems, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var PreloadedCarouselList = (function (_super) {
+__extends(PreloadedCarouselList, _super);
+function PreloadedCarouselList(defaults) {
+_super.apply(this, arguments);
+}
+PreloadedCarouselList.itemType = UBTConnectModel.PreloadedCarouselRec;
+return PreloadedCarouselList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.PreloadedCarouselList = PreloadedCarouselList;
 
 });
 define("UBTConnect.model$CacheableMapObjectsList", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Map_CS.model", "UBTConnect.model", "Connect_Map_CS.model$CacheableMapObjectsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Map_CS"], function (exports, OutSystems, Connect_Map_CSModel, UBTConnectModel) {
@@ -1237,73 +1208,6 @@ return UBT_FlexDirectionRecordList;
 UBTConnectModel.UBT_FlexDirectionRecordList = UBT_FlexDirectionRecordList;
 
 });
-define("UBTConnect.model$HallPhotoRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$HallPhotoRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var HallPhotoRecord = (function (_super) {
-__extends(HallPhotoRecord, _super);
-function HallPhotoRecord(defaults) {
-_super.apply(this, arguments);
-}
-HallPhotoRecord.attributesToDeclare = function () {
-return [
-this.attr("HallPhoto", "hallPhotoAttr", "HallPhoto", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.HallPhotoRec());
-}, true, ContactBase_ISModel.HallPhotoRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-HallPhotoRecord.fromStructure = function (str) {
-return new HallPhotoRecord(new HallPhotoRecord.RecordClass({
-hallPhotoAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-HallPhotoRecord._isAnonymousRecord = true;
-HallPhotoRecord.UniqueId = "04bf4c71-7c0b-bbb7-2b8d-48c4afab29c3";
-HallPhotoRecord.init();
-return HallPhotoRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.HallPhotoRecord = HallPhotoRecord;
-
-});
-define("UBTConnect.model$BaseNotification_MultipleRecepientsRecord", ["exports", "OutSystems/ClientRuntime/Main", "Comms_BL.model", "UBTConnect.model", "Comms_BL.model$BaseNotification_MultipleRecepientsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Comms_BL"], function (exports, OutSystems, Comms_BLModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var BaseNotification_MultipleRecepientsRecord = (function (_super) {
-__extends(BaseNotification_MultipleRecepientsRecord, _super);
-function BaseNotification_MultipleRecepientsRecord(defaults) {
-_super.apply(this, arguments);
-}
-BaseNotification_MultipleRecepientsRecord.attributesToDeclare = function () {
-return [
-this.attr("BaseNotification_MultipleRecepients", "baseNotification_MultipleRecepientsAttr", "BaseNotification_MultipleRecepients", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new Comms_BLModel.BaseNotification_MultipleRecepientsRec());
-}, true, Comms_BLModel.BaseNotification_MultipleRecepientsRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-BaseNotification_MultipleRecepientsRecord.fromStructure = function (str) {
-return new BaseNotification_MultipleRecepientsRecord(new BaseNotification_MultipleRecepientsRecord.RecordClass({
-baseNotification_MultipleRecepientsAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-BaseNotification_MultipleRecepientsRecord._isAnonymousRecord = true;
-BaseNotification_MultipleRecepientsRecord.UniqueId = "04e13d97-80fc-ed34-de49-c2c4384619f4";
-BaseNotification_MultipleRecepientsRecord.init();
-return BaseNotification_MultipleRecepientsRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.BaseNotification_MultipleRecepientsRecord = BaseNotification_MultipleRecepientsRecord;
-
-});
-define("UBTConnect.model$BaseNotification_MultipleRecepientsList", ["exports", "OutSystems/ClientRuntime/Main", "Comms_BL.model", "UBTConnect.model", "Comms_BL.model$BaseNotification_MultipleRecepientsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Comms_BL"], function (exports, OutSystems, Comms_BLModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var BaseNotification_MultipleRecepientsList = (function (_super) {
-__extends(BaseNotification_MultipleRecepientsList, _super);
-function BaseNotification_MultipleRecepientsList(defaults) {
-_super.apply(this, arguments);
-}
-BaseNotification_MultipleRecepientsList.itemType = Comms_BLModel.BaseNotification_MultipleRecepientsRec;
-return BaseNotification_MultipleRecepientsList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.BaseNotification_MultipleRecepientsList = BaseNotification_MultipleRecepientsList;
-
-});
 define("UBTConnect.model$MemberRec", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$SignedURLRec", "UBTConnect.model$DetailByTypeList"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var MemberRec = (function (_super) {
@@ -1460,19 +1364,6 @@ return Map_GeoJSONStructureList;
 UBTConnectModel.Map_GeoJSONStructureList = Map_GeoJSONStructureList;
 
 });
-define("UBTConnect.model$BookmarkItem3List", ["exports", "OutSystems/ClientRuntime/Main", "MyBookmarks_IS.model", "UBTConnect.model", "MyBookmarks_IS.model$BookmarkItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$MyBookmarks_IS"], function (exports, OutSystems, MyBookmarks_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var BookmarkItem3List = (function (_super) {
-__extends(BookmarkItem3List, _super);
-function BookmarkItem3List(defaults) {
-_super.apply(this, arguments);
-}
-BookmarkItem3List.itemType = MyBookmarks_ISModel.BookmarkItemRec;
-return BookmarkItem3List;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.BookmarkItem3List = BookmarkItem3List;
-
-});
 define("UBTConnect.model$ApplicationEvents_LDMList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_LegacyShared.model", "UBTConnect.model", "Connect2_LegacyShared.model$ApplicationEvents_LDMRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_LegacyShared"], function (exports, OutSystems, Connect2_LegacySharedModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var ApplicationEvents_LDMList = (function (_super) {
@@ -1552,31 +1443,31 @@ return UI_CalendarviewRecordList;
 UBTConnectModel.UI_CalendarviewRecordList = UI_CalendarviewRecordList;
 
 });
-define("UBTConnect.model$Filter_BookmarkRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Bookmarks_CS.model", "UBTConnect.model", "Connect_Bookmarks_CS.model$Filter_BookmarkRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Bookmarks_CS"], function (exports, OutSystems, Connect_Bookmarks_CSModel, UBTConnectModel) {
+define("UBTConnect.model$Bookmark_FilterRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Bookmarks_CS.model", "UBTConnect.model", "Connect_Bookmarks_CS.model$Bookmark_FilterRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Bookmarks_CS"], function (exports, OutSystems, Connect_Bookmarks_CSModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
-var Filter_BookmarkRecord = (function (_super) {
-__extends(Filter_BookmarkRecord, _super);
-function Filter_BookmarkRecord(defaults) {
+var Bookmark_FilterRecord = (function (_super) {
+__extends(Bookmark_FilterRecord, _super);
+function Bookmark_FilterRecord(defaults) {
 _super.apply(this, arguments);
 }
-Filter_BookmarkRecord.attributesToDeclare = function () {
+Bookmark_FilterRecord.attributesToDeclare = function () {
 return [
-this.attr("Filter_Bookmark", "filter_BookmarkAttr", "Filter_Bookmark", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new Connect_Bookmarks_CSModel.Filter_BookmarkRec());
-}, true, Connect_Bookmarks_CSModel.Filter_BookmarkRec)
+this.attr("Bookmark_Filter", "bookmark_FilterAttr", "Bookmark_Filter", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Connect_Bookmarks_CSModel.Bookmark_FilterRec());
+}, true, Connect_Bookmarks_CSModel.Bookmark_FilterRec)
 ].concat(_super.attributesToDeclare.call(this));
 };
-Filter_BookmarkRecord.fromStructure = function (str) {
-return new Filter_BookmarkRecord(new Filter_BookmarkRecord.RecordClass({
-filter_BookmarkAttr: OS.DataTypes.ImmutableBase.getData(str)
+Bookmark_FilterRecord.fromStructure = function (str) {
+return new Bookmark_FilterRecord(new Bookmark_FilterRecord.RecordClass({
+bookmark_FilterAttr: OS.DataTypes.ImmutableBase.getData(str)
 }));
 };
-Filter_BookmarkRecord._isAnonymousRecord = true;
-Filter_BookmarkRecord.UniqueId = "06a4a29e-7424-eb96-983d-deca0ece703b";
-Filter_BookmarkRecord.init();
-return Filter_BookmarkRecord;
+Bookmark_FilterRecord._isAnonymousRecord = true;
+Bookmark_FilterRecord.UniqueId = "06a4a29e-7424-eb96-983d-deca0ece703b";
+Bookmark_FilterRecord.init();
+return Bookmark_FilterRecord;
 })(OS.DataTypes.GenericRecord);
-UBTConnectModel.Filter_BookmarkRecord = Filter_BookmarkRecord;
+UBTConnectModel.Bookmark_FilterRecord = Bookmark_FilterRecord;
 
 });
 define("UBTConnect.model$UI_Bookmark_List_APIRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Bookmarks_CS.model", "UBTConnect.model", "Connect_Bookmarks_CS.model$UI_Bookmark_List_APIRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Bookmarks_CS"], function (exports, OutSystems, Connect_Bookmarks_CSModel, UBTConnectModel) {
@@ -1644,19 +1535,6 @@ FirebaseEventRecordList.itemType = UBTConnectModel.FirebaseEventRecord;
 return FirebaseEventRecordList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.FirebaseEventRecordList = FirebaseEventRecordList;
-
-});
-define("UBTConnect.model$BookmarkItem2List", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect.model", "APIDomain_Directory_IS.model$BookmarkItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var BookmarkItem2List = (function (_super) {
-__extends(BookmarkItem2List, _super);
-function BookmarkItem2List(defaults) {
-_super.apply(this, arguments);
-}
-BookmarkItem2List.itemType = APIDomain_Directory_ISModel.BookmarkItemRec;
-return BookmarkItem2List;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.BookmarkItem2List = BookmarkItem2List;
 
 });
 define("UBTConnect.model$DetailRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect.model", "APIDomain_Directory_IS.model$DetailRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnectModel) {
@@ -1735,19 +1613,6 @@ LongIntegerIntegerRecordList.itemType = UBTConnectModel.LongIntegerIntegerRecord
 return LongIntegerIntegerRecordList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.LongIntegerIntegerRecordList = LongIntegerIntegerRecordList;
-
-});
-define("UBTConnect.model$BaseNotificationList", ["exports", "OutSystems/ClientRuntime/Main", "Comms_BL.model", "UBTConnect.model", "Comms_BL.model$BaseNotificationRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Comms_BL"], function (exports, OutSystems, Comms_BLModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var BaseNotificationList = (function (_super) {
-__extends(BaseNotificationList, _super);
-function BaseNotificationList(defaults) {
-_super.apply(this, arguments);
-}
-BaseNotificationList.itemType = Comms_BLModel.BaseNotificationRec;
-return BaseNotificationList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.BaseNotificationList = BaseNotificationList;
 
 });
 define("UBTConnect.model$LookupConceptsRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect.model", "UBTConnectLibrary.model$LookupConceptsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnectModel) {
@@ -1989,19 +1854,6 @@ return Map_GeoJSONStructureRecord;
 UBTConnectModel.Map_GeoJSONStructureRecord = Map_GeoJSONStructureRecord;
 
 });
-define("UBTConnect.model$FamilyMemberFormattedList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$FamilyMemberFormattedRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var FamilyMemberFormattedList = (function (_super) {
-__extends(FamilyMemberFormattedList, _super);
-function FamilyMemberFormattedList(defaults) {
-_super.apply(this, arguments);
-}
-FamilyMemberFormattedList.itemType = ContactBase_ISModel.FamilyMemberFormattedRec;
-return FamilyMemberFormattedList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.FamilyMemberFormattedList = FamilyMemberFormattedList;
-
-});
 define("UBTConnect.model$UI_OneSchoolGlobal_ListCard_ContentRec", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect.model", "UBTConnectLibrary.model$ActionsMenuOptionsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var UI_OneSchoolGlobal_ListCard_ContentRec = (function (_super) {
@@ -2109,33 +1961,6 @@ UI_Screen_SubdivisionDetailsRecord.init();
 return UI_Screen_SubdivisionDetailsRecord;
 })(OS.DataTypes.GenericRecord);
 UBTConnectModel.UI_Screen_SubdivisionDetailsRecord = UI_Screen_SubdivisionDetailsRecord;
-
-});
-define("UBTConnect.model$ShareUserListTypeRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_LegacyShared.model", "UBTConnect.model", "Connect2_LegacyShared.model$ShareUserListTypeRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_LegacyShared"], function (exports, OutSystems, Connect2_LegacySharedModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var ShareUserListTypeRecord = (function (_super) {
-__extends(ShareUserListTypeRecord, _super);
-function ShareUserListTypeRecord(defaults) {
-_super.apply(this, arguments);
-}
-ShareUserListTypeRecord.attributesToDeclare = function () {
-return [
-this.attr("ShareUserListType", "shareUserListTypeAttr", "ShareUserListType", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new Connect2_LegacySharedModel.ShareUserListTypeRec());
-}, true, Connect2_LegacySharedModel.ShareUserListTypeRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-ShareUserListTypeRecord.fromStructure = function (str) {
-return new ShareUserListTypeRecord(new ShareUserListTypeRecord.RecordClass({
-shareUserListTypeAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-ShareUserListTypeRecord._isAnonymousRecord = true;
-ShareUserListTypeRecord.UniqueId = "0a74df8b-6062-e25c-c7ad-8ce63073496a";
-ShareUserListTypeRecord.init();
-return ShareUserListTypeRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.ShareUserListTypeRecord = ShareUserListTypeRecord;
 
 });
 define("UBTConnect.model$UI_CalendarEventSourceRec", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model"], function (exports, OutSystems, UBTConnectModel) {
@@ -2584,19 +2409,6 @@ return Type_ContactSubjectList;
 UBTConnectModel.Type_ContactSubjectList = Type_ContactSubjectList;
 
 });
-define("UBTConnect.model$", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var LongIntegerList = (function (_super) {
-__extends(LongIntegerList, _super);
-function LongIntegerList(defaults) {
-_super.apply(this, arguments);
-}
-LongIntegerList.itemType = OS.DataTypes.DataTypes.LongInteger;
-return LongIntegerList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.LongIntegerList = LongIntegerList;
-
-});
 define("UBTConnect.model$TooltipList", ["exports", "OutSystems/ClientRuntime/Main", "Leaflet.model", "UBTConnect.model", "Leaflet.model$TooltipRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Leaflet"], function (exports, OutSystems, LeafletModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var TooltipList = (function (_super) {
@@ -2701,33 +2513,6 @@ UI_LocalityStatisticsList.itemType = Connect_Geography_CSModel.UI_LocalityStatis
 return UI_LocalityStatisticsList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.UI_LocalityStatisticsList = UI_LocalityStatisticsList;
-
-});
-define("UBTConnect.model$HostConfigRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBT_CW.model", "UBTConnect.model", "UBT_CW.model$HostConfigRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBT_CW"], function (exports, OutSystems, UBT_CWModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var HostConfigRecord = (function (_super) {
-__extends(HostConfigRecord, _super);
-function HostConfigRecord(defaults) {
-_super.apply(this, arguments);
-}
-HostConfigRecord.attributesToDeclare = function () {
-return [
-this.attr("HostConfig", "hostConfigAttr", "HostConfig", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new UBT_CWModel.HostConfigRec());
-}, true, UBT_CWModel.HostConfigRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-HostConfigRecord.fromStructure = function (str) {
-return new HostConfigRecord(new HostConfigRecord.RecordClass({
-hostConfigAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-HostConfigRecord._isAnonymousRecord = true;
-HostConfigRecord.UniqueId = "0d79c116-7838-558e-ee60-b190e2aae094";
-HostConfigRecord.init();
-return HostConfigRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.HostConfigRecord = HostConfigRecord;
 
 });
 define("UBTConnect.model$HeaderListRec", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model"], function (exports, OutSystems, UBTConnectModel) {
@@ -3365,19 +3150,6 @@ return IntegerIntegerIntegerRecord;
 UBTConnectModel.IntegerIntegerIntegerRecord = IntegerIntegerIntegerRecord;
 
 });
-define("UBTConnect.model$UI_Note_AddedList", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Notes_CS.model", "UBTConnect.model", "Connect_Notes_CS.model$UI_Note_AddedRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Notes_CS"], function (exports, OutSystems, Connect_Notes_CSModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var UI_Note_AddedList = (function (_super) {
-__extends(UI_Note_AddedList, _super);
-function UI_Note_AddedList(defaults) {
-_super.apply(this, arguments);
-}
-UI_Note_AddedList.itemType = Connect_Notes_CSModel.UI_Note_AddedRec;
-return UI_Note_AddedList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.UI_Note_AddedList = UI_Note_AddedList;
-
-});
 define("UBTConnect.model$Filter_CommonRec", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var Filter_CommonRec = (function (_super) {
@@ -3644,32 +3416,6 @@ return MarkerWithWindowRecordList;
 UBTConnectModel.MarkerWithWindowRecordList = MarkerWithWindowRecordList;
 
 });
-define("UBTConnect.model$MemberItemList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect.model", "APIDomain_Directory_IS.model$MemberItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var MemberItemList = (function (_super) {
-__extends(MemberItemList, _super);
-function MemberItemList(defaults) {
-_super.apply(this, arguments);
-}
-MemberItemList.itemType = APIDomain_Directory_ISModel.MemberItemRec;
-return MemberItemList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.MemberItemList = MemberItemList;
-
-});
-define("UBTConnect.model$SourceList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect.model", "APIDomain_Directory_IS.model$SourceRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var SourceList = (function (_super) {
-__extends(SourceList, _super);
-function SourceList(defaults) {
-_super.apply(this, arguments);
-}
-SourceList.itemType = APIDomain_Directory_ISModel.SourceRec;
-return SourceList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.SourceList = SourceList;
-
-});
 define("UBTConnect.model$MapOptionsList", ["exports", "OutSystems/ClientRuntime/Main", "Leaflet.model", "UBTConnect.model", "Leaflet.model$MapOptionsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Leaflet"], function (exports, OutSystems, LeafletModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var MapOptionsList = (function (_super) {
@@ -3747,86 +3493,6 @@ LookupSectionsRec.init();
 return LookupSectionsRec;
 })(OS.DataTypes.GenericRecord);
 UBTConnectModel.LookupSectionsRec = LookupSectionsRec;
-
-});
-define("UBTConnect.model$FamilyMemberFormattedRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$FamilyMemberFormattedRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var FamilyMemberFormattedRecord = (function (_super) {
-__extends(FamilyMemberFormattedRecord, _super);
-function FamilyMemberFormattedRecord(defaults) {
-_super.apply(this, arguments);
-}
-FamilyMemberFormattedRecord.attributesToDeclare = function () {
-return [
-this.attr("FamilyMemberFormatted", "familyMemberFormattedAttr", "FamilyMemberFormatted", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.FamilyMemberFormattedRec());
-}, true, ContactBase_ISModel.FamilyMemberFormattedRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-FamilyMemberFormattedRecord.fromStructure = function (str) {
-return new FamilyMemberFormattedRecord(new FamilyMemberFormattedRecord.RecordClass({
-familyMemberFormattedAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-FamilyMemberFormattedRecord._isAnonymousRecord = true;
-FamilyMemberFormattedRecord.UniqueId = "53161015-816a-7b22-b946-27bd3a779d70";
-FamilyMemberFormattedRecord.init();
-return FamilyMemberFormattedRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.FamilyMemberFormattedRecord = FamilyMemberFormattedRecord;
-
-});
-define("UBTConnect.model$FamilyMemberFormattedRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$FamilyMemberFormattedRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var FamilyMemberFormattedRecordList = (function (_super) {
-__extends(FamilyMemberFormattedRecordList, _super);
-function FamilyMemberFormattedRecordList(defaults) {
-_super.apply(this, arguments);
-}
-FamilyMemberFormattedRecordList.itemType = UBTConnectModel.FamilyMemberFormattedRecord;
-return FamilyMemberFormattedRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.FamilyMemberFormattedRecordList = FamilyMemberFormattedRecordList;
-
-});
-define("UBTConnect.model$Directory_LocalityRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect.model", "APIDomain_Directory_IS.model$Directory_LocalityRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var Directory_LocalityRecord = (function (_super) {
-__extends(Directory_LocalityRecord, _super);
-function Directory_LocalityRecord(defaults) {
-_super.apply(this, arguments);
-}
-Directory_LocalityRecord.attributesToDeclare = function () {
-return [
-this.attr("Directory_Locality", "directory_LocalityAttr", "Directory_Locality", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.Directory_LocalityRec());
-}, true, APIDomain_Directory_ISModel.Directory_LocalityRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-Directory_LocalityRecord.fromStructure = function (str) {
-return new Directory_LocalityRecord(new Directory_LocalityRecord.RecordClass({
-directory_LocalityAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-Directory_LocalityRecord._isAnonymousRecord = true;
-Directory_LocalityRecord.UniqueId = "aacc44ac-b32e-740a-9681-ae0ab5929474";
-Directory_LocalityRecord.init();
-return Directory_LocalityRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.Directory_LocalityRecord = Directory_LocalityRecord;
-
-});
-define("UBTConnect.model$Directory_LocalityRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$Directory_LocalityRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var Directory_LocalityRecordList = (function (_super) {
-__extends(Directory_LocalityRecordList, _super);
-function Directory_LocalityRecordList(defaults) {
-_super.apply(this, arguments);
-}
-Directory_LocalityRecordList.itemType = UBTConnectModel.Directory_LocalityRecord;
-return Directory_LocalityRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.Directory_LocalityRecordList = Directory_LocalityRecordList;
 
 });
 define("UBTConnect.model$UBT_DisplayRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$UBT_DisplayRecord"], function (exports, OutSystems, UBTConnectModel) {
@@ -3967,33 +3633,6 @@ Directory_UserCurrent_SubscriptionRecord.init();
 return Directory_UserCurrent_SubscriptionRecord;
 })(OS.DataTypes.GenericRecord);
 UBTConnectModel.Directory_UserCurrent_SubscriptionRecord = Directory_UserCurrent_SubscriptionRecord;
-
-});
-define("UBTConnect.model$Extension2Record", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect.model", "APIDomain_Directory_IS.model$Extension2Rec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var Extension2Record = (function (_super) {
-__extends(Extension2Record, _super);
-function Extension2Record(defaults) {
-_super.apply(this, arguments);
-}
-Extension2Record.attributesToDeclare = function () {
-return [
-this.attr("Extension2", "extension2Attr", "Extension2", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.Extension2Rec());
-}, true, APIDomain_Directory_ISModel.Extension2Rec)
-].concat(_super.attributesToDeclare.call(this));
-};
-Extension2Record.fromStructure = function (str) {
-return new Extension2Record(new Extension2Record.RecordClass({
-extension2Attr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-Extension2Record._isAnonymousRecord = true;
-Extension2Record.UniqueId = "1300518a-0a39-a115-4ca7-e6d53c455f51";
-Extension2Record.init();
-return Extension2Record;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.Extension2Record = Extension2Record;
 
 });
 define("UBTConnect.model$ContactPopUp_OverrideOptionsList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Utils.model", "UBTConnect.model", "UBTConnect_Utils.model$ContactPopUp_OverrideOptionsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils"], function (exports, OutSystems, UBTConnect_UtilsModel, UBTConnectModel) {
@@ -4777,33 +4416,6 @@ return SelectionOption_ItemRecord;
 UBTConnectModel.SelectionOption_ItemRecord = SelectionOption_ItemRecord;
 
 });
-define("UBTConnect.model$DetailsJson2Record", ["exports", "OutSystems/ClientRuntime/Main", "MyBookmarks_IS.model", "UBTConnect.model", "MyBookmarks_IS.model$DetailsJsonRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$MyBookmarks_IS"], function (exports, OutSystems, MyBookmarks_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var DetailsJson2Record = (function (_super) {
-__extends(DetailsJson2Record, _super);
-function DetailsJson2Record(defaults) {
-_super.apply(this, arguments);
-}
-DetailsJson2Record.attributesToDeclare = function () {
-return [
-this.attr("DetailsJson", "detailsJsonAttr", "DetailsJson2", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new MyBookmarks_ISModel.DetailsJsonRec());
-}, true, MyBookmarks_ISModel.DetailsJsonRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-DetailsJson2Record.fromStructure = function (str) {
-return new DetailsJson2Record(new DetailsJson2Record.RecordClass({
-detailsJsonAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-DetailsJson2Record._isAnonymousRecord = true;
-DetailsJson2Record.UniqueId = "16ee8be4-e0ee-a6dd-a7ce-a4db8999af6e";
-DetailsJson2Record.init();
-return DetailsJson2Record;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.DetailsJson2Record = DetailsJson2Record;
-
-});
 define("UBTConnect.model$ContactByPhonePopupDataRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$ContactByPhonePopupDataRecord"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var ContactByPhonePopupDataRecordList = (function (_super) {
@@ -4815,33 +4427,6 @@ ContactByPhonePopupDataRecordList.itemType = UBTConnectModel.ContactByPhonePopup
 return ContactByPhonePopupDataRecordList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.ContactByPhonePopupDataRecordList = ContactByPhonePopupDataRecordList;
-
-});
-define("UBTConnect.model$GetSettingResponseDetailsRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$GetSettingResponseDetailsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var GetSettingResponseDetailsRecord = (function (_super) {
-__extends(GetSettingResponseDetailsRecord, _super);
-function GetSettingResponseDetailsRecord(defaults) {
-_super.apply(this, arguments);
-}
-GetSettingResponseDetailsRecord.attributesToDeclare = function () {
-return [
-this.attr("GetSettingResponseDetails", "getSettingResponseDetailsAttr", "GetSettingResponseDetails", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.GetSettingResponseDetailsRec());
-}, true, ContactBase_ISModel.GetSettingResponseDetailsRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-GetSettingResponseDetailsRecord.fromStructure = function (str) {
-return new GetSettingResponseDetailsRecord(new GetSettingResponseDetailsRecord.RecordClass({
-getSettingResponseDetailsAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-GetSettingResponseDetailsRecord._isAnonymousRecord = true;
-GetSettingResponseDetailsRecord.UniqueId = "177f67c8-6de6-63c5-3166-3f50ecc6c0be";
-GetSettingResponseDetailsRecord.init();
-return GetSettingResponseDetailsRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.GetSettingResponseDetailsRecord = GetSettingResponseDetailsRecord;
 
 });
 define("UBTConnect.model$BONotificationNavigationInputParametersRecord", ["exports", "OutSystems/ClientRuntime/Main", "BackofficeNotifications_CS.model", "UBTConnect.model", "BackofficeNotifications_CS.model$BONotificationNavigationInputParametersRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$BackofficeNotifications_CS"], function (exports, OutSystems, BackofficeNotifications_CSModel, UBTConnectModel) {
@@ -4869,32 +4454,6 @@ BONotificationNavigationInputParametersRecord.init();
 return BONotificationNavigationInputParametersRecord;
 })(OS.DataTypes.GenericRecord);
 UBTConnectModel.BONotificationNavigationInputParametersRecord = BONotificationNavigationInputParametersRecord;
-
-});
-define("UBTConnect.model$Enrichment2List", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect.model", "APIDomain_Directory_IS.model$Enrichment2Rec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var Enrichment2List = (function (_super) {
-__extends(Enrichment2List, _super);
-function Enrichment2List(defaults) {
-_super.apply(this, arguments);
-}
-Enrichment2List.itemType = APIDomain_Directory_ISModel.Enrichment2Rec;
-return Enrichment2List;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.Enrichment2List = Enrichment2List;
-
-});
-define("UBTConnect.model$DefaultLocalityList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$DefaultLocalityRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var DefaultLocalityList = (function (_super) {
-__extends(DefaultLocalityList, _super);
-function DefaultLocalityList(defaults) {
-_super.apply(this, arguments);
-}
-DefaultLocalityList.itemType = ContactBase_ISModel.DefaultLocalityRec;
-return DefaultLocalityList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.DefaultLocalityList = DefaultLocalityList;
 
 });
 define("UBTConnect.model$SelectedHouseholdRec", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model"], function (exports, OutSystems, UBTConnectModel) {
@@ -5117,19 +4676,6 @@ Updates_CarouselSwipeCallbackParametersRecordList.itemType = UBTConnectModel.Upd
 return Updates_CarouselSwipeCallbackParametersRecordList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.Updates_CarouselSwipeCallbackParametersRecordList = Updates_CarouselSwipeCallbackParametersRecordList;
-
-});
-define("UBTConnect.model$PolicyActivationRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$PolicyActivationRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var PolicyActivationRecordList = (function (_super) {
-__extends(PolicyActivationRecordList, _super);
-function PolicyActivationRecordList(defaults) {
-_super.apply(this, arguments);
-}
-PolicyActivationRecordList.itemType = UBTConnectModel.PolicyActivationRecord;
-return PolicyActivationRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.PolicyActivationRecordList = PolicyActivationRecordList;
 
 });
 define("UBTConnect.model$PolicyInformation2List", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Utils.model", "UBTConnect.model", "UBTConnect_Utils.model$PolicyInformationRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils"], function (exports, OutSystems, UBTConnect_UtilsModel, UBTConnectModel) {
@@ -5445,19 +4991,6 @@ return BottomBar_ItemList;
 UBTConnectModel.BottomBar_ItemList = BottomBar_ItemList;
 
 });
-define("UBTConnect.model$FeedItemList", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Feed_CS.model", "UBTConnect.model", "Connect_Feed_CS.model$FeedItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Feed_CS"], function (exports, OutSystems, Connect_Feed_CSModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var FeedItemList = (function (_super) {
-__extends(FeedItemList, _super);
-function FeedItemList(defaults) {
-_super.apply(this, arguments);
-}
-FeedItemList.itemType = Connect_Feed_CSModel.FeedItemRec;
-return FeedItemList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.FeedItemList = FeedItemList;
-
-});
 define("UBTConnect.model$RadiusOptionsRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect.model", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var RadiusOptionsRecord = (function (_super) {
@@ -5761,33 +5294,6 @@ return UBT_ShapeList;
 UBTConnectModel.UBT_ShapeList = UBT_ShapeList;
 
 });
-define("UBTConnect.model$Source2Record", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect.model", "APIDomain_Directory_IS.model$Source2Rec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var Source2Record = (function (_super) {
-__extends(Source2Record, _super);
-function Source2Record(defaults) {
-_super.apply(this, arguments);
-}
-Source2Record.attributesToDeclare = function () {
-return [
-this.attr("Source2", "source2Attr", "Source2", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.Source2Rec());
-}, true, APIDomain_Directory_ISModel.Source2Rec)
-].concat(_super.attributesToDeclare.call(this));
-};
-Source2Record.fromStructure = function (str) {
-return new Source2Record(new Source2Record.RecordClass({
-source2Attr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-Source2Record._isAnonymousRecord = true;
-Source2Record.UniqueId = "1d0ec838-7a43-b968-a257-29f4ca404fe6";
-Source2Record.init();
-return Source2Record;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.Source2Record = Source2Record;
-
-});
 define("UBTConnect.model$CacheControl_UserInformationRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Utils.model", "UBTConnect.model", "UBTConnect_Utils.model$CacheControl_UserInformationRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils"], function (exports, OutSystems, UBTConnect_UtilsModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var CacheControl_UserInformationRecord = (function (_super) {
@@ -6061,19 +5567,6 @@ return Lookup_RecurrencePatternWeekIndexRecordList;
 UBTConnectModel.Lookup_RecurrencePatternWeekIndexRecordList = Lookup_RecurrencePatternWeekIndexRecordList;
 
 });
-define("UBTConnect.model$ShareUserListTypeList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_LegacyShared.model", "UBTConnect.model", "Connect2_LegacyShared.model$ShareUserListTypeRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_LegacyShared"], function (exports, OutSystems, Connect2_LegacySharedModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var ShareUserListTypeList = (function (_super) {
-__extends(ShareUserListTypeList, _super);
-function ShareUserListTypeList(defaults) {
-_super.apply(this, arguments);
-}
-ShareUserListTypeList.itemType = Connect2_LegacySharedModel.ShareUserListTypeRec;
-return ShareUserListTypeList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.ShareUserListTypeList = ShareUserListTypeList;
-
-});
 define("UBTConnect.model$UI_LocalityTimezoneList", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Geography_CS.model", "UBTConnect.model", "Connect_Geography_CS.model$UI_LocalityTimezoneRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Geography_CS"], function (exports, OutSystems, Connect_Geography_CSModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var UI_LocalityTimezoneList = (function (_super) {
@@ -6286,33 +5779,6 @@ return UI_OneSchool_Card_ContentList;
 UBTConnectModel.UI_OneSchool_Card_ContentList = UI_OneSchool_Card_ContentList;
 
 });
-define("UBTConnect.model$PhotoTagRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$PhotoTagRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var PhotoTagRecord = (function (_super) {
-__extends(PhotoTagRecord, _super);
-function PhotoTagRecord(defaults) {
-_super.apply(this, arguments);
-}
-PhotoTagRecord.attributesToDeclare = function () {
-return [
-this.attr("PhotoTag", "photoTagAttr", "PhotoTag", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.PhotoTagRec());
-}, true, ContactBase_ISModel.PhotoTagRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-PhotoTagRecord.fromStructure = function (str) {
-return new PhotoTagRecord(new PhotoTagRecord.RecordClass({
-photoTagAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-PhotoTagRecord._isAnonymousRecord = true;
-PhotoTagRecord.UniqueId = "20fee28b-3c7f-ea5c-4304-e469befb98a2";
-PhotoTagRecord.init();
-return PhotoTagRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.PhotoTagRecord = PhotoTagRecord;
-
-});
 define("UBTConnect.model$PolicyInformationRecord", ["exports", "OutSystems/ClientRuntime/Main", "ApplicationPolicies.model", "UBTConnect.model", "ApplicationPolicies.model$PolicyInformationRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ApplicationPolicies"], function (exports, OutSystems, ApplicationPoliciesModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var PolicyInformationRecord = (function (_super) {
@@ -6338,19 +5804,6 @@ PolicyInformationRecord.init();
 return PolicyInformationRecord;
 })(OS.DataTypes.GenericRecord);
 UBTConnectModel.PolicyInformationRecord = PolicyInformationRecord;
-
-});
-define("UBTConnect.model$TimezoneList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$TimezoneRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var TimezoneList = (function (_super) {
-__extends(TimezoneList, _super);
-function TimezoneList(defaults) {
-_super.apply(this, arguments);
-}
-TimezoneList.itemType = ContactBase_ISModel.TimezoneRec;
-return TimezoneList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.TimezoneList = TimezoneList;
 
 });
 define("UBTConnect.model$MarkerWithWindowMapExploreItemRecord", ["exports", "OutSystems/ClientRuntime/Main", "Leaflet.model", "Connect_Map_CS.model", "UBTConnect.model", "Leaflet.model$MarkerWithWindowRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Leaflet", "Connect_Map_CS.model$MapExploreItemRec", "UBTConnect.referencesHealth$Connect_Map_CS"], function (exports, OutSystems, LeafletModel, Connect_Map_CSModel, UBTConnectModel) {
@@ -7214,46 +6667,6 @@ return UI_Note_CardContentList;
 UBTConnectModel.UI_Note_CardContentList = UI_Note_CardContentList;
 
 });
-define("UBTConnect.model$Enrichment2Record", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect.model", "APIDomain_Directory_IS.model$Enrichment2Rec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var Enrichment2Record = (function (_super) {
-__extends(Enrichment2Record, _super);
-function Enrichment2Record(defaults) {
-_super.apply(this, arguments);
-}
-Enrichment2Record.attributesToDeclare = function () {
-return [
-this.attr("Enrichment2", "enrichment2Attr", "Enrichment2", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.Enrichment2Rec());
-}, true, APIDomain_Directory_ISModel.Enrichment2Rec)
-].concat(_super.attributesToDeclare.call(this));
-};
-Enrichment2Record.fromStructure = function (str) {
-return new Enrichment2Record(new Enrichment2Record.RecordClass({
-enrichment2Attr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-Enrichment2Record._isAnonymousRecord = true;
-Enrichment2Record.UniqueId = "751eb7c0-42e9-0d83-3863-0b0e5d9aaa2b";
-Enrichment2Record.init();
-return Enrichment2Record;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.Enrichment2Record = Enrichment2Record;
-
-});
-define("UBTConnect.model$Enrichment2RecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$Enrichment2Record"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var Enrichment2RecordList = (function (_super) {
-__extends(Enrichment2RecordList, _super);
-function Enrichment2RecordList(defaults) {
-_super.apply(this, arguments);
-}
-Enrichment2RecordList.itemType = UBTConnectModel.Enrichment2Record;
-return Enrichment2RecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.Enrichment2RecordList = Enrichment2RecordList;
-
-});
 define("UBTConnect.model$EntitiesCarousel_ItemRec", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var EntitiesCarousel_ItemRec = (function (_super) {
@@ -7383,33 +6796,6 @@ MyCalendarEventNavigationDataList.itemType = Connect2_MyCalendar_BLModel.MyCalen
 return MyCalendarEventNavigationDataList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.MyCalendarEventNavigationDataList = MyCalendarEventNavigationDataList;
-
-});
-define("UBTConnect.model$FormerSpouseItemRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$FormerSpouseItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var FormerSpouseItemRecord = (function (_super) {
-__extends(FormerSpouseItemRecord, _super);
-function FormerSpouseItemRecord(defaults) {
-_super.apply(this, arguments);
-}
-FormerSpouseItemRecord.attributesToDeclare = function () {
-return [
-this.attr("FormerSpouseItem", "formerSpouseItemAttr", "FormerSpouseItem", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.FormerSpouseItemRec());
-}, true, ContactBase_ISModel.FormerSpouseItemRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-FormerSpouseItemRecord.fromStructure = function (str) {
-return new FormerSpouseItemRecord(new FormerSpouseItemRecord.RecordClass({
-formerSpouseItemAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-FormerSpouseItemRecord._isAnonymousRecord = true;
-FormerSpouseItemRecord.UniqueId = "26480892-2036-a9ae-6f3a-1739d0e73452";
-FormerSpouseItemRecord.init();
-return FormerSpouseItemRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.FormerSpouseItemRecord = FormerSpouseItemRecord;
 
 });
 define("UBTConnect.model$Lookup_ReminderTypeRec", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model"], function (exports, OutSystems, UBTConnectModel) {
@@ -7771,46 +7157,6 @@ return FileTransferErrorRecordList;
 UBTConnectModel.FileTransferErrorRecordList = FileTransferErrorRecordList;
 
 });
-define("UBTConnect.model$FeedItemRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Feed_CS.model", "UBTConnect.model", "Connect_Feed_CS.model$FeedItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Feed_CS"], function (exports, OutSystems, Connect_Feed_CSModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var FeedItemRecord = (function (_super) {
-__extends(FeedItemRecord, _super);
-function FeedItemRecord(defaults) {
-_super.apply(this, arguments);
-}
-FeedItemRecord.attributesToDeclare = function () {
-return [
-this.attr("FeedItem", "feedItemAttr", "FeedItem", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new Connect_Feed_CSModel.FeedItemRec());
-}, true, Connect_Feed_CSModel.FeedItemRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-FeedItemRecord.fromStructure = function (str) {
-return new FeedItemRecord(new FeedItemRecord.RecordClass({
-feedItemAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-FeedItemRecord._isAnonymousRecord = true;
-FeedItemRecord.UniqueId = "b98326aa-81b9-cdf8-d18b-1a0cd423e3ea";
-FeedItemRecord.init();
-return FeedItemRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.FeedItemRecord = FeedItemRecord;
-
-});
-define("UBTConnect.model$FeedItemRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$FeedItemRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var FeedItemRecordList = (function (_super) {
-__extends(FeedItemRecordList, _super);
-function FeedItemRecordList(defaults) {
-_super.apply(this, arguments);
-}
-FeedItemRecordList.itemType = UBTConnectModel.FeedItemRecord;
-return FeedItemRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.FeedItemRecordList = FeedItemRecordList;
-
-});
 define("UBTConnect.model$UBT_ImageSizeList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect.model", "UBTConnectLibrary.model$UBT_ImageSizeRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var UBT_ImageSizeList = (function (_super) {
@@ -8090,19 +7436,6 @@ return UI_Bookmark_CardItemRecord;
 UBTConnectModel.UI_Bookmark_CardItemRecord = UI_Bookmark_CardItemRecord;
 
 });
-define("UBTConnect.model$UI_HouseholdMember_ParentsDetailList", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Household_CS.model", "UBTConnect.model", "Connect_Household_CS.model$UI_HouseholdMember_ParentsDetailRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Household_CS"], function (exports, OutSystems, Connect_Household_CSModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var UI_HouseholdMember_ParentsDetailList = (function (_super) {
-__extends(UI_HouseholdMember_ParentsDetailList, _super);
-function UI_HouseholdMember_ParentsDetailList(defaults) {
-_super.apply(this, arguments);
-}
-UI_HouseholdMember_ParentsDetailList.itemType = Connect_Household_CSModel.UI_HouseholdMember_ParentsDetailRec;
-return UI_HouseholdMember_ParentsDetailList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.UI_HouseholdMember_ParentsDetailList = UI_HouseholdMember_ParentsDetailList;
-
-});
 define("UBTConnect.model$CarouselItemsRecord", ["exports", "OutSystems/ClientRuntime/Main", "OutSystemsUI_2_23.model", "UBTConnect.model", "OutSystemsUI_2_23.model$CarouselItemsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$OutSystemsUI_2_23"], function (exports, OutSystems, OutSystemsUI_2_23Model, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var CarouselItemsRecord = (function (_super) {
@@ -8364,46 +7697,6 @@ return UBT_ButtonSizeRecordList;
 UBTConnectModel.UBT_ButtonSizeRecordList = UBT_ButtonSizeRecordList;
 
 });
-define("UBTConnect.model$ImageBorderOptionsRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect.model", "UBTConnectLibrary.model$ImageBorderOptionsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var ImageBorderOptionsRecord = (function (_super) {
-__extends(ImageBorderOptionsRecord, _super);
-function ImageBorderOptionsRecord(defaults) {
-_super.apply(this, arguments);
-}
-ImageBorderOptionsRecord.attributesToDeclare = function () {
-return [
-this.attr("ImageBorderOptions", "imageBorderOptionsAttr", "ImageBorderOptions", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ImageBorderOptionsRec());
-}, true, UBTConnectLibraryModel.ImageBorderOptionsRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-ImageBorderOptionsRecord.fromStructure = function (str) {
-return new ImageBorderOptionsRecord(new ImageBorderOptionsRecord.RecordClass({
-imageBorderOptionsAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-ImageBorderOptionsRecord._isAnonymousRecord = true;
-ImageBorderOptionsRecord.UniqueId = "f4ee7189-4cac-b1ec-c90f-31fe90073a0d";
-ImageBorderOptionsRecord.init();
-return ImageBorderOptionsRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.ImageBorderOptionsRecord = ImageBorderOptionsRecord;
-
-});
-define("UBTConnect.model$ImageBorderOptionsRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$ImageBorderOptionsRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var ImageBorderOptionsRecordList = (function (_super) {
-__extends(ImageBorderOptionsRecordList, _super);
-function ImageBorderOptionsRecordList(defaults) {
-_super.apply(this, arguments);
-}
-ImageBorderOptionsRecordList.itemType = UBTConnectModel.ImageBorderOptionsRecord;
-return ImageBorderOptionsRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.ImageBorderOptionsRecordList = ImageBorderOptionsRecordList;
-
-});
 define("UBTConnect.model$UI_AccountFormRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Household_CS.model", "UBTConnect.model", "Connect_Household_CS.model$UI_AccountFormRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Household_CS"], function (exports, OutSystems, Connect_Household_CSModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var UI_AccountFormRecord = (function (_super) {
@@ -8658,85 +7951,6 @@ return PolicyRecordList;
 UBTConnectModel.PolicyRecordList = PolicyRecordList;
 
 });
-define("UBTConnect.model$RolesList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$RolesRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var RolesList = (function (_super) {
-__extends(RolesList, _super);
-function RolesList(defaults) {
-_super.apply(this, arguments);
-}
-RolesList.itemType = ContactBase_ISModel.RolesRec;
-return RolesList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.RolesList = RolesList;
-
-});
-define("UBTConnect.model$PermissionsList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$PermissionsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var PermissionsList = (function (_super) {
-__extends(PermissionsList, _super);
-function PermissionsList(defaults) {
-_super.apply(this, arguments);
-}
-PermissionsList.itemType = ContactBase_ISModel.PermissionsRec;
-return PermissionsList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.PermissionsList = PermissionsList;
-
-});
-define("UBTConnect.model$SubscriptionRegionList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$SubscriptionRegionRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var SubscriptionRegionList = (function (_super) {
-__extends(SubscriptionRegionList, _super);
-function SubscriptionRegionList(defaults) {
-_super.apply(this, arguments);
-}
-SubscriptionRegionList.itemType = ContactBase_ISModel.SubscriptionRegionRec;
-return SubscriptionRegionList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.SubscriptionRegionList = SubscriptionRegionList;
-
-});
-define("UBTConnect.model$CountryList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$CountryRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var CountryList = (function (_super) {
-__extends(CountryList, _super);
-function CountryList(defaults) {
-_super.apply(this, arguments);
-}
-CountryList.itemType = ContactBase_ISModel.CountryRec;
-return CountryList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.CountryList = CountryList;
-
-});
-define("UBTConnect.model$GetCurrentUserResponseRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$GetCurrentUserResponseRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var GetCurrentUserResponseRecord = (function (_super) {
-__extends(GetCurrentUserResponseRecord, _super);
-function GetCurrentUserResponseRecord(defaults) {
-_super.apply(this, arguments);
-}
-GetCurrentUserResponseRecord.attributesToDeclare = function () {
-return [
-this.attr("GetCurrentUserResponse", "getCurrentUserResponseAttr", "GetCurrentUserResponse", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.GetCurrentUserResponseRec());
-}, true, ContactBase_ISModel.GetCurrentUserResponseRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-GetCurrentUserResponseRecord.fromStructure = function (str) {
-return new GetCurrentUserResponseRecord(new GetCurrentUserResponseRecord.RecordClass({
-getCurrentUserResponseAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-GetCurrentUserResponseRecord._isAnonymousRecord = true;
-GetCurrentUserResponseRecord.UniqueId = "301e253b-1743-abe3-28b5-1ff6cedc8f87";
-GetCurrentUserResponseRecord.init();
-return GetCurrentUserResponseRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.GetCurrentUserResponseRecord = GetCurrentUserResponseRecord;
-
-});
 define("UBTConnect.model$UI_StatisticsTextsRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Geography_CS.model", "UBTConnect.model", "Connect_Geography_CS.model$UI_StatisticsTextsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Geography_CS"], function (exports, OutSystems, Connect_Geography_CSModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var UI_StatisticsTextsRecord = (function (_super) {
@@ -8842,19 +8056,6 @@ StringSplitResultRecord.init();
 return StringSplitResultRecord;
 })(OS.DataTypes.GenericRecord);
 UBTConnectModel.StringSplitResultRecord = StringSplitResultRecord;
-
-});
-define("UBTConnect.model$BaseNotification_MultipleRecepientsRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$BaseNotification_MultipleRecepientsRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var BaseNotification_MultipleRecepientsRecordList = (function (_super) {
-__extends(BaseNotification_MultipleRecepientsRecordList, _super);
-function BaseNotification_MultipleRecepientsRecordList(defaults) {
-_super.apply(this, arguments);
-}
-BaseNotification_MultipleRecepientsRecordList.itemType = UBTConnectModel.BaseNotification_MultipleRecepientsRecord;
-return BaseNotification_MultipleRecepientsRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.BaseNotification_MultipleRecepientsRecordList = BaseNotification_MultipleRecepientsRecordList;
 
 });
 define("UBTConnect.model$Connect_ServicesRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Services_CS.model", "UBTConnect.model", "Connect_Services_CS.model$Connect_ServicesRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Services_CS"], function (exports, OutSystems, Connect_Services_CSModel, UBTConnectModel) {
@@ -9078,19 +8279,6 @@ return StaticEntities_OrbitRecordList;
 UBTConnectModel.StaticEntities_OrbitRecordList = StaticEntities_OrbitRecordList;
 
 });
-define("UBTConnect.model$MemberHouseholderList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$MemberHouseholderRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var MemberHouseholderList = (function (_super) {
-__extends(MemberHouseholderList, _super);
-function MemberHouseholderList(defaults) {
-_super.apply(this, arguments);
-}
-MemberHouseholderList.itemType = ContactBase_ISModel.MemberHouseholderRec;
-return MemberHouseholderList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.MemberHouseholderList = MemberHouseholderList;
-
-});
 define("UBTConnect.model$RecurrenceList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_Assemble_CS.model", "UBTConnect.model", "Connect2_Assemble_CS.model$RecurrenceRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_Assemble_CS"], function (exports, OutSystems, Connect2_Assemble_CSModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var RecurrenceList = (function (_super) {
@@ -9195,33 +8383,6 @@ GeoJSONFeatureList.itemType = LeafletModel.GeoJSONFeatureRec;
 return GeoJSONFeatureList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.GeoJSONFeatureList = GeoJSONFeatureList;
-
-});
-define("UBTConnect.model$PermissionsRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$PermissionsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var PermissionsRecord = (function (_super) {
-__extends(PermissionsRecord, _super);
-function PermissionsRecord(defaults) {
-_super.apply(this, arguments);
-}
-PermissionsRecord.attributesToDeclare = function () {
-return [
-this.attr("Permissions", "permissionsAttr", "Permissions", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.PermissionsRec());
-}, true, ContactBase_ISModel.PermissionsRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-PermissionsRecord.fromStructure = function (str) {
-return new PermissionsRecord(new PermissionsRecord.RecordClass({
-permissionsAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-PermissionsRecord._isAnonymousRecord = true;
-PermissionsRecord.UniqueId = "329706fe-d7b4-c12c-f5e6-dabe0ab0274a";
-PermissionsRecord.init();
-return PermissionsRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.PermissionsRecord = PermissionsRecord;
 
 });
 define("UBTConnect.model$UI_CalendarEventSourceRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$UI_CalendarEventSourceRec"], function (exports, OutSystems, UBTConnectModel) {
@@ -9859,46 +9020,6 @@ return UBT_FlexBehaviorRecordList;
 UBTConnectModel.UBT_FlexBehaviorRecordList = UBT_FlexBehaviorRecordList;
 
 });
-define("UBTConnect.model$HostConfig_FontSizeRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBT_CW.model", "UBTConnect.model", "UBT_CW.model$HostConfig_FontSizeRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBT_CW"], function (exports, OutSystems, UBT_CWModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var HostConfig_FontSizeRecord = (function (_super) {
-__extends(HostConfig_FontSizeRecord, _super);
-function HostConfig_FontSizeRecord(defaults) {
-_super.apply(this, arguments);
-}
-HostConfig_FontSizeRecord.attributesToDeclare = function () {
-return [
-this.attr("HostConfig_FontSize", "hostConfig_FontSizeAttr", "HostConfig_FontSize", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new UBT_CWModel.HostConfig_FontSizeRec());
-}, true, UBT_CWModel.HostConfig_FontSizeRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-HostConfig_FontSizeRecord.fromStructure = function (str) {
-return new HostConfig_FontSizeRecord(new HostConfig_FontSizeRecord.RecordClass({
-hostConfig_FontSizeAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-HostConfig_FontSizeRecord._isAnonymousRecord = true;
-HostConfig_FontSizeRecord.UniqueId = "e0b40cfb-4e89-a85a-1e2a-d51536204abb";
-HostConfig_FontSizeRecord.init();
-return HostConfig_FontSizeRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.HostConfig_FontSizeRecord = HostConfig_FontSizeRecord;
-
-});
-define("UBTConnect.model$HostConfig_FontSizeRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$HostConfig_FontSizeRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var HostConfig_FontSizeRecordList = (function (_super) {
-__extends(HostConfig_FontSizeRecordList, _super);
-function HostConfig_FontSizeRecordList(defaults) {
-_super.apply(this, arguments);
-}
-HostConfig_FontSizeRecordList.itemType = UBTConnectModel.HostConfig_FontSizeRecord;
-return HostConfig_FontSizeRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.HostConfig_FontSizeRecordList = HostConfig_FontSizeRecordList;
-
-});
 define("UBTConnect.model$UI_CalendarEventSourceConfigurationRec", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var UI_CalendarEventSourceConfigurationRec = (function (_super) {
@@ -10046,33 +9167,6 @@ return LookupConceptsList;
 UBTConnectModel.LookupConceptsList = LookupConceptsList;
 
 });
-define("UBTConnect.model$BaseNotificationRecord", ["exports", "OutSystems/ClientRuntime/Main", "Comms_BL.model", "UBTConnect.model", "Comms_BL.model$BaseNotificationRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Comms_BL"], function (exports, OutSystems, Comms_BLModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var BaseNotificationRecord = (function (_super) {
-__extends(BaseNotificationRecord, _super);
-function BaseNotificationRecord(defaults) {
-_super.apply(this, arguments);
-}
-BaseNotificationRecord.attributesToDeclare = function () {
-return [
-this.attr("BaseNotification", "baseNotificationAttr", "BaseNotification", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new Comms_BLModel.BaseNotificationRec());
-}, true, Comms_BLModel.BaseNotificationRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-BaseNotificationRecord.fromStructure = function (str) {
-return new BaseNotificationRecord(new BaseNotificationRecord.RecordClass({
-baseNotificationAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-BaseNotificationRecord._isAnonymousRecord = true;
-BaseNotificationRecord.UniqueId = "37964a46-818b-f97d-af36-e1119cd1737b";
-BaseNotificationRecord.init();
-return BaseNotificationRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.BaseNotificationRecord = BaseNotificationRecord;
-
-});
 define("UBTConnect.model$UI_NoteCard_SourceHeaderRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Notes_CS.model", "UBTConnect.model", "Connect_Notes_CS.model$UI_NoteCard_SourceHeaderRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Notes_CS"], function (exports, OutSystems, Connect_Notes_CSModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var UI_NoteCard_SourceHeaderRecord = (function (_super) {
@@ -10179,19 +9273,6 @@ return UI_TypedStatisticsRecord;
 UBTConnectModel.UI_TypedStatisticsRecord = UI_TypedStatisticsRecord;
 
 });
-define("UBTConnect.model$BaseNotificationRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$BaseNotificationRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var BaseNotificationRecordList = (function (_super) {
-__extends(BaseNotificationRecordList, _super);
-function BaseNotificationRecordList(defaults) {
-_super.apply(this, arguments);
-}
-BaseNotificationRecordList.itemType = UBTConnectModel.BaseNotificationRecord;
-return BaseNotificationRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.BaseNotificationRecordList = BaseNotificationRecordList;
-
-});
 define("UBTConnect.model$UI_CalendarEventSourceConfigurationRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$UI_CalendarEventSourceConfigurationRec"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var UI_CalendarEventSourceConfigurationRecord = (function (_super) {
@@ -10245,6 +9326,19 @@ return Share_AttributesList;
 UBTConnectModel.Share_AttributesList = Share_AttributesList;
 
 });
+define("UBTConnect.model$Map_GeoJSON_PointMatchList", ["exports", "OutSystems/ClientRuntime/Main", "Leaflet.model", "UBTConnect.model", "Leaflet.model$Map_GeoJSON_PointMatchRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Leaflet"], function (exports, OutSystems, LeafletModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var Map_GeoJSON_PointMatchList = (function (_super) {
+__extends(Map_GeoJSON_PointMatchList, _super);
+function Map_GeoJSON_PointMatchList(defaults) {
+_super.apply(this, arguments);
+}
+Map_GeoJSON_PointMatchList.itemType = LeafletModel.Map_GeoJSON_PointMatchRec;
+return Map_GeoJSON_PointMatchList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.Map_GeoJSON_PointMatchList = Map_GeoJSON_PointMatchList;
+
+});
 define("UBTConnect.model$UI_LocalityDetailsWithStatisticsList", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Geography_CS.model", "UBTConnect.model", "Connect_Geography_CS.model$UI_LocalityDetailsWithStatisticsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Geography_CS"], function (exports, OutSystems, Connect_Geography_CSModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var UI_LocalityDetailsWithStatisticsList = (function (_super) {
@@ -10281,59 +9375,6 @@ BookmarkCardItemRec.init();
 return BookmarkCardItemRec;
 })(OS.DataTypes.GenericRecord);
 UBTConnectModel.BookmarkCardItemRec = BookmarkCardItemRec;
-
-});
-define("UBTConnect.model$HostConfig_FontWeightsRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBT_CW.model", "UBTConnect.model", "UBT_CW.model$HostConfig_FontWeightsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBT_CW"], function (exports, OutSystems, UBT_CWModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var HostConfig_FontWeightsRecord = (function (_super) {
-__extends(HostConfig_FontWeightsRecord, _super);
-function HostConfig_FontWeightsRecord(defaults) {
-_super.apply(this, arguments);
-}
-HostConfig_FontWeightsRecord.attributesToDeclare = function () {
-return [
-this.attr("HostConfig_FontWeights", "hostConfig_FontWeightsAttr", "HostConfig_FontWeights", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new UBT_CWModel.HostConfig_FontWeightsRec());
-}, true, UBT_CWModel.HostConfig_FontWeightsRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-HostConfig_FontWeightsRecord.fromStructure = function (str) {
-return new HostConfig_FontWeightsRecord(new HostConfig_FontWeightsRecord.RecordClass({
-hostConfig_FontWeightsAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-HostConfig_FontWeightsRecord._isAnonymousRecord = true;
-HostConfig_FontWeightsRecord.UniqueId = "b94d3213-38ce-2d69-df58-784c9d08c5f9";
-HostConfig_FontWeightsRecord.init();
-return HostConfig_FontWeightsRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.HostConfig_FontWeightsRecord = HostConfig_FontWeightsRecord;
-
-});
-define("UBTConnect.model$HostConfig_FontWeightsRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$HostConfig_FontWeightsRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var HostConfig_FontWeightsRecordList = (function (_super) {
-__extends(HostConfig_FontWeightsRecordList, _super);
-function HostConfig_FontWeightsRecordList(defaults) {
-_super.apply(this, arguments);
-}
-HostConfig_FontWeightsRecordList.itemType = UBTConnectModel.HostConfig_FontWeightsRecord;
-return HostConfig_FontWeightsRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.HostConfig_FontWeightsRecordList = HostConfig_FontWeightsRecordList;
-
-});
-define("UBTConnect.model$DetailsJson2List", ["exports", "OutSystems/ClientRuntime/Main", "MyBookmarks_IS.model", "UBTConnect.model", "MyBookmarks_IS.model$DetailsJsonRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$MyBookmarks_IS"], function (exports, OutSystems, MyBookmarks_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var DetailsJson2List = (function (_super) {
-__extends(DetailsJson2List, _super);
-function DetailsJson2List(defaults) {
-_super.apply(this, arguments);
-}
-DetailsJson2List.itemType = MyBookmarks_ISModel.DetailsJsonRec;
-return DetailsJson2List;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.DetailsJson2List = DetailsJson2List;
 
 });
 define("UBTConnect.model$ZoomControlOptionsList", ["exports", "OutSystems/ClientRuntime/Main", "Leaflet.model", "UBTConnect.model", "Leaflet.model$ZoomControlOptionsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Leaflet"], function (exports, OutSystems, LeafletModel, UBTConnectModel) {
@@ -10956,33 +9997,6 @@ return RangeSliderOptionalConfigsRecordList;
 UBTConnectModel.RangeSliderOptionalConfigsRecordList = RangeSliderOptionalConfigsRecordList;
 
 });
-define("UBTConnect.model$RolesRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$RolesRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var RolesRecord = (function (_super) {
-__extends(RolesRecord, _super);
-function RolesRecord(defaults) {
-_super.apply(this, arguments);
-}
-RolesRecord.attributesToDeclare = function () {
-return [
-this.attr("Roles", "rolesAttr", "Roles", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.RolesRec());
-}, true, ContactBase_ISModel.RolesRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-RolesRecord.fromStructure = function (str) {
-return new RolesRecord(new RolesRecord.RecordClass({
-rolesAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-RolesRecord._isAnonymousRecord = true;
-RolesRecord.UniqueId = "411e348d-e5b9-2a7e-8865-3f536a894814";
-RolesRecord.init();
-return RolesRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.RolesRecord = RolesRecord;
-
-});
 define("UBTConnect.model$CacheControl_AllLocalitiesRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Utils.model", "UBTConnect.model", "UBTConnect_Utils.model$CacheControl_AllLocalitiesRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils"], function (exports, OutSystems, UBTConnect_UtilsModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var CacheControl_AllLocalitiesRecord = (function (_super) {
@@ -11061,6 +10075,46 @@ UI_MyCalendar_MonthRecordList.itemType = UBTConnectModel.UI_MyCalendar_MonthReco
 return UI_MyCalendar_MonthRecordList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.UI_MyCalendar_MonthRecordList = UI_MyCalendar_MonthRecordList;
+
+});
+define("UBTConnect.model$PreloadedCarouselRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$PreloadedCarouselRec"], function (exports, OutSystems, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var PreloadedCarouselRecord = (function (_super) {
+__extends(PreloadedCarouselRecord, _super);
+function PreloadedCarouselRecord(defaults) {
+_super.apply(this, arguments);
+}
+PreloadedCarouselRecord.attributesToDeclare = function () {
+return [
+this.attr("PreloadedCarousel", "preloadedCarouselAttr", "PreloadedCarousel", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.PreloadedCarouselRec());
+}, true, UBTConnectModel.PreloadedCarouselRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+PreloadedCarouselRecord.fromStructure = function (str) {
+return new PreloadedCarouselRecord(new PreloadedCarouselRecord.RecordClass({
+preloadedCarouselAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+PreloadedCarouselRecord._isAnonymousRecord = true;
+PreloadedCarouselRecord.UniqueId = "49ff51e8-14da-3f36-08e4-a3885a980d21";
+PreloadedCarouselRecord.init();
+return PreloadedCarouselRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnectModel.PreloadedCarouselRecord = PreloadedCarouselRecord;
+
+});
+define("UBTConnect.model$PreloadedCarouselRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$PreloadedCarouselRecord"], function (exports, OutSystems, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var PreloadedCarouselRecordList = (function (_super) {
+__extends(PreloadedCarouselRecordList, _super);
+function PreloadedCarouselRecordList(defaults) {
+_super.apply(this, arguments);
+}
+PreloadedCarouselRecordList.itemType = UBTConnectModel.PreloadedCarouselRecord;
+return PreloadedCarouselRecordList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.PreloadedCarouselRecordList = PreloadedCarouselRecordList;
 
 });
 define("UBTConnect.model$CommunityBusiness_Card_ContentRec", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model"], function (exports, OutSystems, UBTConnectModel) {
@@ -11300,33 +10354,6 @@ return Connect_SearchCategoriesList;
 UBTConnectModel.Connect_SearchCategoriesList = Connect_SearchCategoriesList;
 
 });
-define("UBTConnect.model$FilterRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$FilterRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var FilterRecord = (function (_super) {
-__extends(FilterRecord, _super);
-function FilterRecord(defaults) {
-_super.apply(this, arguments);
-}
-FilterRecord.attributesToDeclare = function () {
-return [
-this.attr("Filter", "filterAttr", "Filter", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.FilterRec());
-}, true, ContactBase_ISModel.FilterRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-FilterRecord.fromStructure = function (str) {
-return new FilterRecord(new FilterRecord.RecordClass({
-filterAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-FilterRecord._isAnonymousRecord = true;
-FilterRecord.UniqueId = "43eabd2c-b8d3-11c4-fbe2-e2e05b57487a";
-FilterRecord.init();
-return FilterRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.FilterRecord = FilterRecord;
-
-});
 define("UBTConnect.model$UBT_Icons2List", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect.model", "UBTConnectLibrary.model$UBT_IconsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var UBT_Icons2List = (function (_super) {
@@ -11445,73 +10472,6 @@ Text_ListRecord.init();
 return Text_ListRecord;
 })(OS.DataTypes.GenericRecord);
 UBTConnectModel.Text_ListRecord = Text_ListRecord;
-
-});
-define("UBTConnect.model$CountryWithMapPositionRecord", ["exports", "OutSystems/ClientRuntime/Main", "Directory_BL.model", "UBTConnect.model", "Directory_BL.model$CountryWithMapPositionRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Directory_BL"], function (exports, OutSystems, Directory_BLModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var CountryWithMapPositionRecord = (function (_super) {
-__extends(CountryWithMapPositionRecord, _super);
-function CountryWithMapPositionRecord(defaults) {
-_super.apply(this, arguments);
-}
-CountryWithMapPositionRecord.attributesToDeclare = function () {
-return [
-this.attr("CountryWithMapPosition", "countryWithMapPositionAttr", "CountryWithMapPosition", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new Directory_BLModel.CountryWithMapPositionRec());
-}, true, Directory_BLModel.CountryWithMapPositionRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-CountryWithMapPositionRecord.fromStructure = function (str) {
-return new CountryWithMapPositionRecord(new CountryWithMapPositionRecord.RecordClass({
-countryWithMapPositionAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-CountryWithMapPositionRecord._isAnonymousRecord = true;
-CountryWithMapPositionRecord.UniqueId = "45a7d8ed-0944-314f-cdd6-f2acc8b3070c";
-CountryWithMapPositionRecord.init();
-return CountryWithMapPositionRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.CountryWithMapPositionRecord = CountryWithMapPositionRecord;
-
-});
-define("UBTConnect.model$SubscriptionRegionRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$SubscriptionRegionRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var SubscriptionRegionRecord = (function (_super) {
-__extends(SubscriptionRegionRecord, _super);
-function SubscriptionRegionRecord(defaults) {
-_super.apply(this, arguments);
-}
-SubscriptionRegionRecord.attributesToDeclare = function () {
-return [
-this.attr("SubscriptionRegion", "subscriptionRegionAttr", "SubscriptionRegion", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.SubscriptionRegionRec());
-}, true, ContactBase_ISModel.SubscriptionRegionRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-SubscriptionRegionRecord.fromStructure = function (str) {
-return new SubscriptionRegionRecord(new SubscriptionRegionRecord.RecordClass({
-subscriptionRegionAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-SubscriptionRegionRecord._isAnonymousRecord = true;
-SubscriptionRegionRecord.UniqueId = "c1e8a122-3431-6da8-6e92-63b893660e02";
-SubscriptionRegionRecord.init();
-return SubscriptionRegionRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.SubscriptionRegionRecord = SubscriptionRegionRecord;
-
-});
-define("UBTConnect.model$SubscriptionRegionRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$SubscriptionRegionRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var SubscriptionRegionRecordList = (function (_super) {
-__extends(SubscriptionRegionRecordList, _super);
-function SubscriptionRegionRecordList(defaults) {
-_super.apply(this, arguments);
-}
-SubscriptionRegionRecordList.itemType = UBTConnectModel.SubscriptionRegionRecord;
-return SubscriptionRegionRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.SubscriptionRegionRecordList = SubscriptionRegionRecordList;
 
 });
 define("UBTConnect.model$Connect_SearchCategoriesRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$Connect_SearchCategoriesRecord"], function (exports, OutSystems, UBTConnectModel) {
@@ -11787,19 +10747,6 @@ return TooltipOptionsList;
 UBTConnectModel.TooltipOptionsList = TooltipOptionsList;
 
 });
-define("UBTConnect.model$PermissionsRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$PermissionsRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var PermissionsRecordList = (function (_super) {
-__extends(PermissionsRecordList, _super);
-function PermissionsRecordList(defaults) {
-_super.apply(this, arguments);
-}
-PermissionsRecordList.itemType = UBTConnectModel.PermissionsRecord;
-return PermissionsRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.PermissionsRecordList = PermissionsRecordList;
-
-});
 define("UBTConnect.model$Gender2Record", ["exports", "OutSystems/ClientRuntime/Main", "Connect_CommonEntities_DB.model", "UBTConnect.model", "Connect_CommonEntities_DB.model$GenderRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_CommonEntities_DB"], function (exports, OutSystems, Connect_CommonEntities_DBModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var Gender2Record = (function (_super) {
@@ -11973,44 +10920,17 @@ return FileDownloadResultRecord;
 UBTConnectModel.FileDownloadResultRecord = FileDownloadResultRecord;
 
 });
-define("UBTConnect.model$SearchResult2Record", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect.model", "APIDomain_Directory_IS.model$SearchResultRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnectModel) {
+define("UBTConnect.model$Bookmark_FilterRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$Bookmark_FilterRecord"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
-var SearchResult2Record = (function (_super) {
-__extends(SearchResult2Record, _super);
-function SearchResult2Record(defaults) {
+var Bookmark_FilterRecordList = (function (_super) {
+__extends(Bookmark_FilterRecordList, _super);
+function Bookmark_FilterRecordList(defaults) {
 _super.apply(this, arguments);
 }
-SearchResult2Record.attributesToDeclare = function () {
-return [
-this.attr("SearchResult", "searchResultAttr", "SearchResult2", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.SearchResultRec());
-}, true, APIDomain_Directory_ISModel.SearchResultRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-SearchResult2Record.fromStructure = function (str) {
-return new SearchResult2Record(new SearchResult2Record.RecordClass({
-searchResultAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-SearchResult2Record._isAnonymousRecord = true;
-SearchResult2Record.UniqueId = "4b216680-645f-a870-125a-9289a4e38c87";
-SearchResult2Record.init();
-return SearchResult2Record;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.SearchResult2Record = SearchResult2Record;
-
-});
-define("UBTConnect.model$Filter_BookmarkRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$Filter_BookmarkRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var Filter_BookmarkRecordList = (function (_super) {
-__extends(Filter_BookmarkRecordList, _super);
-function Filter_BookmarkRecordList(defaults) {
-_super.apply(this, arguments);
-}
-Filter_BookmarkRecordList.itemType = UBTConnectModel.Filter_BookmarkRecord;
-return Filter_BookmarkRecordList;
+Bookmark_FilterRecordList.itemType = UBTConnectModel.Bookmark_FilterRecord;
+return Bookmark_FilterRecordList;
 })(OS.DataTypes.GenericRecordList);
-UBTConnectModel.Filter_BookmarkRecordList = Filter_BookmarkRecordList;
+UBTConnectModel.Bookmark_FilterRecordList = Bookmark_FilterRecordList;
 
 });
 define("UBTConnect.model$Photobook_SpeedRec", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model"], function (exports, OutSystems, UBTConnectModel) {
@@ -12198,19 +11118,6 @@ return Connect_Subscription_RegionRecordList;
 UBTConnectModel.Connect_Subscription_RegionRecordList = Connect_Subscription_RegionRecordList;
 
 });
-define("UBTConnect.model$Source2List", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect.model", "APIDomain_Directory_IS.model$Source2Rec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var Source2List = (function (_super) {
-__extends(Source2List, _super);
-function Source2List(defaults) {
-_super.apply(this, arguments);
-}
-Source2List.itemType = APIDomain_Directory_ISModel.Source2Rec;
-return Source2List;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.Source2List = Source2List;
-
-});
 define("UBTConnect.model$LocalBookmarkList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_LegacyShared.model", "UBTConnect.model", "Connect2_LegacyShared.model$LocalBookmarkRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_LegacyShared"], function (exports, OutSystems, Connect2_LegacySharedModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var LocalBookmarkList = (function (_super) {
@@ -12329,33 +11236,6 @@ return NotesList;
 UBTConnectModel.NotesList = NotesList;
 
 });
-define("UBTConnect.model$CDNRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect.model", "APIDomain_Directory_IS.model$CDNRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var CDNRecord = (function (_super) {
-__extends(CDNRecord, _super);
-function CDNRecord(defaults) {
-_super.apply(this, arguments);
-}
-CDNRecord.attributesToDeclare = function () {
-return [
-this.attr("CDN", "cDNAttr", "CDN", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.CDNRec());
-}, true, APIDomain_Directory_ISModel.CDNRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-CDNRecord.fromStructure = function (str) {
-return new CDNRecord(new CDNRecord.RecordClass({
-cDNAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-CDNRecord._isAnonymousRecord = true;
-CDNRecord.UniqueId = "4dcfb80a-1587-3f18-b937-819347fc346c";
-CDNRecord.init();
-return CDNRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.CDNRecord = CDNRecord;
-
-});
 define("UBTConnect.model$ShareItemRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect.model", "APIDomain_Directory_IS.model$ShareItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var ShareItemRecord = (function (_super) {
@@ -12448,19 +11328,6 @@ UI_PersonalEvent_InviteesRecord.init();
 return UI_PersonalEvent_InviteesRecord;
 })(OS.DataTypes.GenericRecord);
 UBTConnectModel.UI_PersonalEvent_InviteesRecord = UI_PersonalEvent_InviteesRecord;
-
-});
-define("UBTConnect.model$HostConfigList", ["exports", "OutSystems/ClientRuntime/Main", "UBT_CW.model", "UBTConnect.model", "UBT_CW.model$HostConfigRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBT_CW"], function (exports, OutSystems, UBT_CWModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var HostConfigList = (function (_super) {
-__extends(HostConfigList, _super);
-function HostConfigList(defaults) {
-_super.apply(this, arguments);
-}
-HostConfigList.itemType = UBT_CWModel.HostConfigRec;
-return HostConfigList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.HostConfigList = HostConfigList;
 
 });
 define("UBTConnect.model$UI_AccountForm_ContactInformationRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Household_CS.model", "UBTConnect.model", "Connect_Household_CS.model$UI_AccountForm_ContactInformationRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Household_CS"], function (exports, OutSystems, Connect_Household_CSModel, UBTConnectModel) {
@@ -13007,19 +11874,6 @@ return UI_NotificationItem_BreakpointList;
 UBTConnectModel.UI_NotificationItem_BreakpointList = UI_NotificationItem_BreakpointList;
 
 });
-define("UBTConnect.model$CountryWithMapPositionList", ["exports", "OutSystems/ClientRuntime/Main", "Directory_BL.model", "UBTConnect.model", "Directory_BL.model$CountryWithMapPositionRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Directory_BL"], function (exports, OutSystems, Directory_BLModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var CountryWithMapPositionList = (function (_super) {
-__extends(CountryWithMapPositionList, _super);
-function CountryWithMapPositionList(defaults) {
-_super.apply(this, arguments);
-}
-CountryWithMapPositionList.itemType = Directory_BLModel.CountryWithMapPositionRec;
-return CountryWithMapPositionList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.CountryWithMapPositionList = CountryWithMapPositionList;
-
-});
 define("UBTConnect.model$TileLayerList", ["exports", "OutSystems/ClientRuntime/Main", "Leaflet.model", "UBTConnect.model", "Leaflet.model$TileLayerRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Leaflet"], function (exports, OutSystems, LeafletModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var TileLayerList = (function (_super) {
@@ -13263,19 +12117,6 @@ UI_ServiceItemRecord.init();
 return UI_ServiceItemRecord;
 })(OS.DataTypes.GenericRecord);
 UBTConnectModel.UI_ServiceItemRecord = UI_ServiceItemRecord;
-
-});
-define("UBTConnect.model$SpouseList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$SpouseRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var SpouseList = (function (_super) {
-__extends(SpouseList, _super);
-function SpouseList(defaults) {
-_super.apply(this, arguments);
-}
-SpouseList.itemType = ContactBase_ISModel.SpouseRec;
-return SpouseList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.SpouseList = SpouseList;
 
 });
 define("UBTConnect.model$UI_Updates_DateRangeRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$UI_Updates_DateRangeRec"], function (exports, OutSystems, UBTConnectModel) {
@@ -13648,73 +12489,6 @@ return UI_ServicesPageList;
 UBTConnectModel.UI_ServicesPageList = UI_ServicesPageList;
 
 });
-define("UBTConnect.model$BookmarkItem2Record", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect.model", "APIDomain_Directory_IS.model$BookmarkItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var BookmarkItem2Record = (function (_super) {
-__extends(BookmarkItem2Record, _super);
-function BookmarkItem2Record(defaults) {
-_super.apply(this, arguments);
-}
-BookmarkItem2Record.attributesToDeclare = function () {
-return [
-this.attr("BookmarkItem", "bookmarkItemAttr", "BookmarkItem2", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.BookmarkItemRec());
-}, true, APIDomain_Directory_ISModel.BookmarkItemRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-BookmarkItem2Record.fromStructure = function (str) {
-return new BookmarkItem2Record(new BookmarkItem2Record.RecordClass({
-bookmarkItemAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-BookmarkItem2Record._isAnonymousRecord = true;
-BookmarkItem2Record.UniqueId = "57713998-6cd6-0111-9aa6-492a1f11c9bf";
-BookmarkItem2Record.init();
-return BookmarkItem2Record;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.BookmarkItem2Record = BookmarkItem2Record;
-
-});
-define("UBTConnect.model$CountryRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$CountryRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var CountryRecord = (function (_super) {
-__extends(CountryRecord, _super);
-function CountryRecord(defaults) {
-_super.apply(this, arguments);
-}
-CountryRecord.attributesToDeclare = function () {
-return [
-this.attr("Country", "countryAttr", "Country", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.CountryRec());
-}, true, ContactBase_ISModel.CountryRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-CountryRecord.fromStructure = function (str) {
-return new CountryRecord(new CountryRecord.RecordClass({
-countryAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-CountryRecord._isAnonymousRecord = true;
-CountryRecord.UniqueId = "8bcd7014-47e3-9c2e-7074-7b8c12bbb165";
-CountryRecord.init();
-return CountryRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.CountryRecord = CountryRecord;
-
-});
-define("UBTConnect.model$CountryRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$CountryRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var CountryRecordList = (function (_super) {
-__extends(CountryRecordList, _super);
-function CountryRecordList(defaults) {
-_super.apply(this, arguments);
-}
-CountryRecordList.itemType = UBTConnectModel.CountryRecord;
-return CountryRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.CountryRecordList = CountryRecordList;
-
-});
 define("UBTConnect.model$IconRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$IconRecord"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var IconRecordList = (function (_super) {
@@ -13755,19 +12529,6 @@ return Connect_CacheTypeRecord;
 UBTConnectModel.Connect_CacheTypeRecord = Connect_CacheTypeRecord;
 
 });
-define("UBTConnect.model$SearchResult2RecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$SearchResult2Record"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var SearchResult2RecordList = (function (_super) {
-__extends(SearchResult2RecordList, _super);
-function SearchResult2RecordList(defaults) {
-_super.apply(this, arguments);
-}
-SearchResult2RecordList.itemType = UBTConnectModel.SearchResult2Record;
-return SearchResult2RecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.SearchResult2RecordList = SearchResult2RecordList;
-
-});
 define("UBTConnect.model$CustomScrollListElementRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$CustomScrollListElementRecord"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var CustomScrollListElementRecordList = (function (_super) {
@@ -13779,86 +12540,6 @@ CustomScrollListElementRecordList.itemType = UBTConnectModel.CustomScrollListEle
 return CustomScrollListElementRecordList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.CustomScrollListElementRecordList = CustomScrollListElementRecordList;
-
-});
-define("UBTConnect.model$FamilyMemberFormattedDetailRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$FamilyMemberFormattedDetailRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var FamilyMemberFormattedDetailRecord = (function (_super) {
-__extends(FamilyMemberFormattedDetailRecord, _super);
-function FamilyMemberFormattedDetailRecord(defaults) {
-_super.apply(this, arguments);
-}
-FamilyMemberFormattedDetailRecord.attributesToDeclare = function () {
-return [
-this.attr("FamilyMemberFormattedDetail", "familyMemberFormattedDetailAttr", "FamilyMemberFormattedDetail", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.FamilyMemberFormattedDetailRec());
-}, true, ContactBase_ISModel.FamilyMemberFormattedDetailRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-FamilyMemberFormattedDetailRecord.fromStructure = function (str) {
-return new FamilyMemberFormattedDetailRecord(new FamilyMemberFormattedDetailRecord.RecordClass({
-familyMemberFormattedDetailAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-FamilyMemberFormattedDetailRecord._isAnonymousRecord = true;
-FamilyMemberFormattedDetailRecord.UniqueId = "9afbbd71-2ad8-2cbe-b5da-613640a95511";
-FamilyMemberFormattedDetailRecord.init();
-return FamilyMemberFormattedDetailRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.FamilyMemberFormattedDetailRecord = FamilyMemberFormattedDetailRecord;
-
-});
-define("UBTConnect.model$FamilyMemberFormattedDetailRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$FamilyMemberFormattedDetailRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var FamilyMemberFormattedDetailRecordList = (function (_super) {
-__extends(FamilyMemberFormattedDetailRecordList, _super);
-function FamilyMemberFormattedDetailRecordList(defaults) {
-_super.apply(this, arguments);
-}
-FamilyMemberFormattedDetailRecordList.itemType = UBTConnectModel.FamilyMemberFormattedDetailRecord;
-return FamilyMemberFormattedDetailRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.FamilyMemberFormattedDetailRecordList = FamilyMemberFormattedDetailRecordList;
-
-});
-define("UBTConnect.model$UI_Note_AddedRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Notes_CS.model", "UBTConnect.model", "Connect_Notes_CS.model$UI_Note_AddedRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Notes_CS"], function (exports, OutSystems, Connect_Notes_CSModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var UI_Note_AddedRecord = (function (_super) {
-__extends(UI_Note_AddedRecord, _super);
-function UI_Note_AddedRecord(defaults) {
-_super.apply(this, arguments);
-}
-UI_Note_AddedRecord.attributesToDeclare = function () {
-return [
-this.attr("UI_Note_Added", "uI_Note_AddedAttr", "UI_Note_Added", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new Connect_Notes_CSModel.UI_Note_AddedRec());
-}, true, Connect_Notes_CSModel.UI_Note_AddedRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-UI_Note_AddedRecord.fromStructure = function (str) {
-return new UI_Note_AddedRecord(new UI_Note_AddedRecord.RecordClass({
-uI_Note_AddedAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-UI_Note_AddedRecord._isAnonymousRecord = true;
-UI_Note_AddedRecord.UniqueId = "f1c4cc0b-49e4-755d-6a15-ece4438b631e";
-UI_Note_AddedRecord.init();
-return UI_Note_AddedRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.UI_Note_AddedRecord = UI_Note_AddedRecord;
-
-});
-define("UBTConnect.model$UI_Note_AddedRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$UI_Note_AddedRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var UI_Note_AddedRecordList = (function (_super) {
-__extends(UI_Note_AddedRecordList, _super);
-function UI_Note_AddedRecordList(defaults) {
-_super.apply(this, arguments);
-}
-UI_Note_AddedRecordList.itemType = UBTConnectModel.UI_Note_AddedRecord;
-return UI_Note_AddedRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.UI_Note_AddedRecordList = UI_Note_AddedRecordList;
 
 });
 define("UBTConnect.model$LatLongRecord", ["exports", "OutSystems/ClientRuntime/Main", "TurfJS.model", "UBTConnect.model", "TurfJS.model$LatLongRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$TurfJS"], function (exports, OutSystems, TurfJSModel, UBTConnectModel) {
@@ -14515,46 +13196,6 @@ return IconList;
 UBTConnectModel.IconList = IconList;
 
 });
-define("UBTConnect.model$UI_HouseholdMember_ParentsDetailRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Household_CS.model", "UBTConnect.model", "Connect_Household_CS.model$UI_HouseholdMember_ParentsDetailRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Household_CS"], function (exports, OutSystems, Connect_Household_CSModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var UI_HouseholdMember_ParentsDetailRecord = (function (_super) {
-__extends(UI_HouseholdMember_ParentsDetailRecord, _super);
-function UI_HouseholdMember_ParentsDetailRecord(defaults) {
-_super.apply(this, arguments);
-}
-UI_HouseholdMember_ParentsDetailRecord.attributesToDeclare = function () {
-return [
-this.attr("UI_HouseholdMember_ParentsDetail", "uI_HouseholdMember_ParentsDetailAttr", "UI_HouseholdMember_ParentsDetail", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new Connect_Household_CSModel.UI_HouseholdMember_ParentsDetailRec());
-}, true, Connect_Household_CSModel.UI_HouseholdMember_ParentsDetailRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-UI_HouseholdMember_ParentsDetailRecord.fromStructure = function (str) {
-return new UI_HouseholdMember_ParentsDetailRecord(new UI_HouseholdMember_ParentsDetailRecord.RecordClass({
-uI_HouseholdMember_ParentsDetailAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-UI_HouseholdMember_ParentsDetailRecord._isAnonymousRecord = true;
-UI_HouseholdMember_ParentsDetailRecord.UniqueId = "9b6eeb94-96c3-6d7b-f75a-a4f7ff406bae";
-UI_HouseholdMember_ParentsDetailRecord.init();
-return UI_HouseholdMember_ParentsDetailRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.UI_HouseholdMember_ParentsDetailRecord = UI_HouseholdMember_ParentsDetailRecord;
-
-});
-define("UBTConnect.model$UI_HouseholdMember_ParentsDetailRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$UI_HouseholdMember_ParentsDetailRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var UI_HouseholdMember_ParentsDetailRecordList = (function (_super) {
-__extends(UI_HouseholdMember_ParentsDetailRecordList, _super);
-function UI_HouseholdMember_ParentsDetailRecordList(defaults) {
-_super.apply(this, arguments);
-}
-UI_HouseholdMember_ParentsDetailRecordList.itemType = UBTConnectModel.UI_HouseholdMember_ParentsDetailRecord;
-return UI_HouseholdMember_ParentsDetailRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.UI_HouseholdMember_ParentsDetailRecordList = UI_HouseholdMember_ParentsDetailRecordList;
-
-});
 define("UBTConnect.model$Type_ShareObjectList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_Sharing_CS.model", "UBTConnect.model", "Connect2_Sharing_CS.model$Type_ShareObjectRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_Sharing_CS"], function (exports, OutSystems, Connect2_Sharing_CSModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var Type_ShareObjectList = (function (_super) {
@@ -14673,46 +13314,6 @@ return ParamRecordList;
 UBTConnectModel.ParamRecordList = ParamRecordList;
 
 });
-define("UBTConnect.model$General_Normalized_BookmarksForSyncRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect.model", "APIDomain_Directory_IS.model$General_Normalized_BookmarksForSyncRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var General_Normalized_BookmarksForSyncRecord = (function (_super) {
-__extends(General_Normalized_BookmarksForSyncRecord, _super);
-function General_Normalized_BookmarksForSyncRecord(defaults) {
-_super.apply(this, arguments);
-}
-General_Normalized_BookmarksForSyncRecord.attributesToDeclare = function () {
-return [
-this.attr("General_Normalized_BookmarksForSync", "general_Normalized_BookmarksForSyncAttr", "General_Normalized_BookmarksForSync", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.General_Normalized_BookmarksForSyncRec());
-}, true, APIDomain_Directory_ISModel.General_Normalized_BookmarksForSyncRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-General_Normalized_BookmarksForSyncRecord.fromStructure = function (str) {
-return new General_Normalized_BookmarksForSyncRecord(new General_Normalized_BookmarksForSyncRecord.RecordClass({
-general_Normalized_BookmarksForSyncAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-General_Normalized_BookmarksForSyncRecord._isAnonymousRecord = true;
-General_Normalized_BookmarksForSyncRecord.UniqueId = "8a353bff-c32a-b7f5-6c5e-acf3811207e6";
-General_Normalized_BookmarksForSyncRecord.init();
-return General_Normalized_BookmarksForSyncRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.General_Normalized_BookmarksForSyncRecord = General_Normalized_BookmarksForSyncRecord;
-
-});
-define("UBTConnect.model$General_Normalized_BookmarksForSyncRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$General_Normalized_BookmarksForSyncRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var General_Normalized_BookmarksForSyncRecordList = (function (_super) {
-__extends(General_Normalized_BookmarksForSyncRecordList, _super);
-function General_Normalized_BookmarksForSyncRecordList(defaults) {
-_super.apply(this, arguments);
-}
-General_Normalized_BookmarksForSyncRecordList.itemType = UBTConnectModel.General_Normalized_BookmarksForSyncRecord;
-return General_Normalized_BookmarksForSyncRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.General_Normalized_BookmarksForSyncRecordList = General_Normalized_BookmarksForSyncRecordList;
-
-});
 define("UBTConnect.model$UI_CommunityBusiness_ContactRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Geography_CS.model", "UBTConnect.model", "Connect_Geography_CS.model$UI_CommunityBusiness_ContactRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Geography_CS"], function (exports, OutSystems, Connect_Geography_CSModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var UI_CommunityBusiness_ContactRecord = (function (_super) {
@@ -14751,19 +13352,6 @@ UI_CommunityBusiness_ContactRecordList.itemType = UBTConnectModel.UI_CommunityBu
 return UI_CommunityBusiness_ContactRecordList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.UI_CommunityBusiness_ContactRecordList = UI_CommunityBusiness_ContactRecordList;
-
-});
-define("UBTConnect.model$UI_HouseholdMember_ParentList", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Household_CS.model", "UBTConnect.model", "Connect_Household_CS.model$UI_HouseholdMember_ParentRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Household_CS"], function (exports, OutSystems, Connect_Household_CSModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var UI_HouseholdMember_ParentList = (function (_super) {
-__extends(UI_HouseholdMember_ParentList, _super);
-function UI_HouseholdMember_ParentList(defaults) {
-_super.apply(this, arguments);
-}
-UI_HouseholdMember_ParentList.itemType = Connect_Household_CSModel.UI_HouseholdMember_ParentRec;
-return UI_HouseholdMember_ParentList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.UI_HouseholdMember_ParentList = UI_HouseholdMember_ParentList;
 
 });
 define("UBTConnect.model$SearchInputRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$SearchInputRecord"], function (exports, OutSystems, UBTConnectModel) {
@@ -14857,19 +13445,6 @@ return UI_MyProfileList;
 UBTConnectModel.UI_MyProfileList = UI_MyProfileList;
 
 });
-define("UBTConnect.model$BookmarkItem2RecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$BookmarkItem2Record"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var BookmarkItem2RecordList = (function (_super) {
-__extends(BookmarkItem2RecordList, _super);
-function BookmarkItem2RecordList(defaults) {
-_super.apply(this, arguments);
-}
-BookmarkItem2RecordList.itemType = UBTConnectModel.BookmarkItem2Record;
-return BookmarkItem2RecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.BookmarkItem2RecordList = BookmarkItem2RecordList;
-
-});
 define("UBTConnect.model$UBT_SizeRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect.model", "UBTConnectLibrary.model$UBT_SizeRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var UBT_SizeRecord = (function (_super) {
@@ -14910,59 +13485,6 @@ return UBT_SizeRecordList;
 UBTConnectModel.UBT_SizeRecordList = UBT_SizeRecordList;
 
 });
-define("UBTConnect.model$GetCurrentUserResponseRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$GetCurrentUserResponseRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var GetCurrentUserResponseRecordList = (function (_super) {
-__extends(GetCurrentUserResponseRecordList, _super);
-function GetCurrentUserResponseRecordList(defaults) {
-_super.apply(this, arguments);
-}
-GetCurrentUserResponseRecordList.itemType = UBTConnectModel.GetCurrentUserResponseRecord;
-return GetCurrentUserResponseRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.GetCurrentUserResponseRecordList = GetCurrentUserResponseRecordList;
-
-});
-define("UBTConnect.model$UI_HouseholdRelationsMemberRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Household_CS.model", "UBTConnect.model", "Connect_Household_CS.model$UI_HouseholdRelationsMemberRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Household_CS"], function (exports, OutSystems, Connect_Household_CSModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var UI_HouseholdRelationsMemberRecord = (function (_super) {
-__extends(UI_HouseholdRelationsMemberRecord, _super);
-function UI_HouseholdRelationsMemberRecord(defaults) {
-_super.apply(this, arguments);
-}
-UI_HouseholdRelationsMemberRecord.attributesToDeclare = function () {
-return [
-this.attr("UI_HouseholdRelationsMember", "uI_HouseholdRelationsMemberAttr", "UI_HouseholdRelationsMember", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new Connect_Household_CSModel.UI_HouseholdRelationsMemberRec());
-}, true, Connect_Household_CSModel.UI_HouseholdRelationsMemberRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-UI_HouseholdRelationsMemberRecord.fromStructure = function (str) {
-return new UI_HouseholdRelationsMemberRecord(new UI_HouseholdRelationsMemberRecord.RecordClass({
-uI_HouseholdRelationsMemberAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-UI_HouseholdRelationsMemberRecord._isAnonymousRecord = true;
-UI_HouseholdRelationsMemberRecord.UniqueId = "eb4842e6-14a3-b088-5a12-b4156a91bb33";
-UI_HouseholdRelationsMemberRecord.init();
-return UI_HouseholdRelationsMemberRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.UI_HouseholdRelationsMemberRecord = UI_HouseholdRelationsMemberRecord;
-
-});
-define("UBTConnect.model$UI_HouseholdRelationsMemberRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$UI_HouseholdRelationsMemberRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var UI_HouseholdRelationsMemberRecordList = (function (_super) {
-__extends(UI_HouseholdRelationsMemberRecordList, _super);
-function UI_HouseholdRelationsMemberRecordList(defaults) {
-_super.apply(this, arguments);
-}
-UI_HouseholdRelationsMemberRecordList.itemType = UBTConnectModel.UI_HouseholdRelationsMemberRecord;
-return UI_HouseholdRelationsMemberRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.UI_HouseholdRelationsMemberRecordList = UI_HouseholdRelationsMemberRecordList;
-
-});
 define("UBTConnect.model$CarouselOptionalConfigsList", ["exports", "OutSystems/ClientRuntime/Main", "OutSystemsUI_2_23.model", "UBTConnect.model", "OutSystemsUI_2_23.model$CarouselOptionalConfigsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$OutSystemsUI_2_23"], function (exports, OutSystems, OutSystemsUI_2_23Model, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var CarouselOptionalConfigsList = (function (_super) {
@@ -14987,33 +13509,6 @@ UI_Note_CardItemRecordList.itemType = UBTConnectModel.UI_Note_CardItemRecord;
 return UI_Note_CardItemRecordList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.UI_Note_CardItemRecordList = UI_Note_CardItemRecordList;
-
-});
-define("UBTConnect.model$MemberHouseholderHouseholderRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$MemberHouseholderHouseholderRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var MemberHouseholderHouseholderRecord = (function (_super) {
-__extends(MemberHouseholderHouseholderRecord, _super);
-function MemberHouseholderHouseholderRecord(defaults) {
-_super.apply(this, arguments);
-}
-MemberHouseholderHouseholderRecord.attributesToDeclare = function () {
-return [
-this.attr("MemberHouseholderHouseholder", "memberHouseholderHouseholderAttr", "MemberHouseholderHouseholder", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.MemberHouseholderHouseholderRec());
-}, true, ContactBase_ISModel.MemberHouseholderHouseholderRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-MemberHouseholderHouseholderRecord.fromStructure = function (str) {
-return new MemberHouseholderHouseholderRecord(new MemberHouseholderHouseholderRecord.RecordClass({
-memberHouseholderHouseholderAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-MemberHouseholderHouseholderRecord._isAnonymousRecord = true;
-MemberHouseholderHouseholderRecord.UniqueId = "63ff5dc2-ad52-5b51-d600-12fd1d0cfd43";
-MemberHouseholderHouseholderRecord.init();
-return MemberHouseholderHouseholderRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.MemberHouseholderHouseholderRecord = MemberHouseholderHouseholderRecord;
 
 });
 define("UBTConnect.model$MessageListItemRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$MessageListItemRecord"], function (exports, OutSystems, UBTConnectModel) {
@@ -15107,33 +13602,6 @@ Directory_UserCurrent_GeographyRecord.init();
 return Directory_UserCurrent_GeographyRecord;
 })(OS.DataTypes.GenericRecord);
 UBTConnectModel.Directory_UserCurrent_GeographyRecord = Directory_UserCurrent_GeographyRecord;
-
-});
-define("UBTConnect.model$EnrichmentRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect.model", "APIDomain_Directory_IS.model$EnrichmentRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var EnrichmentRecord = (function (_super) {
-__extends(EnrichmentRecord, _super);
-function EnrichmentRecord(defaults) {
-_super.apply(this, arguments);
-}
-EnrichmentRecord.attributesToDeclare = function () {
-return [
-this.attr("Enrichment", "enrichmentAttr", "Enrichment", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.EnrichmentRec());
-}, true, APIDomain_Directory_ISModel.EnrichmentRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-EnrichmentRecord.fromStructure = function (str) {
-return new EnrichmentRecord(new EnrichmentRecord.RecordClass({
-enrichmentAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-EnrichmentRecord._isAnonymousRecord = true;
-EnrichmentRecord.UniqueId = "66eba77f-121e-ff03-e304-cfbd3e95e1fb";
-EnrichmentRecord.init();
-return EnrichmentRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.EnrichmentRecord = EnrichmentRecord;
 
 });
 define("UBTConnect.model$AppManager_CachedUserInfoRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBT_AppManager.model", "UBTConnect.model", "UBT_AppManager.model$AppManager_CachedUserInfoRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBT_AppManager"], function (exports, OutSystems, UBT_AppManagerModel, UBTConnectModel) {
@@ -15239,46 +13707,6 @@ return UI_RecurrenceTypesRecordList;
 UBTConnectModel.UI_RecurrenceTypesRecordList = UI_RecurrenceTypesRecordList;
 
 });
-define("UBTConnect.model$NotificationDeepLinkParameterRecord", ["exports", "OutSystems/ClientRuntime/Main", "Comms_CS.model", "UBTConnect.model", "Comms_CS.model$NotificationDeepLinkParameterRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Comms_CS"], function (exports, OutSystems, Comms_CSModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var NotificationDeepLinkParameterRecord = (function (_super) {
-__extends(NotificationDeepLinkParameterRecord, _super);
-function NotificationDeepLinkParameterRecord(defaults) {
-_super.apply(this, arguments);
-}
-NotificationDeepLinkParameterRecord.attributesToDeclare = function () {
-return [
-this.attr("NotificationDeepLinkParameter", "notificationDeepLinkParameterAttr", "NotificationDeepLinkParameter", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new Comms_CSModel.NotificationDeepLinkParameterRec());
-}, true, Comms_CSModel.NotificationDeepLinkParameterRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-NotificationDeepLinkParameterRecord.fromStructure = function (str) {
-return new NotificationDeepLinkParameterRecord(new NotificationDeepLinkParameterRecord.RecordClass({
-notificationDeepLinkParameterAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-NotificationDeepLinkParameterRecord._isAnonymousRecord = true;
-NotificationDeepLinkParameterRecord.UniqueId = "eef1f729-76fd-fde7-5c4b-35aed4f8fa80";
-NotificationDeepLinkParameterRecord.init();
-return NotificationDeepLinkParameterRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.NotificationDeepLinkParameterRecord = NotificationDeepLinkParameterRecord;
-
-});
-define("UBTConnect.model$NotificationDeepLinkParameterRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$NotificationDeepLinkParameterRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var NotificationDeepLinkParameterRecordList = (function (_super) {
-__extends(NotificationDeepLinkParameterRecordList, _super);
-function NotificationDeepLinkParameterRecordList(defaults) {
-_super.apply(this, arguments);
-}
-NotificationDeepLinkParameterRecordList.itemType = UBTConnectModel.NotificationDeepLinkParameterRecord;
-return NotificationDeepLinkParameterRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.NotificationDeepLinkParameterRecordList = NotificationDeepLinkParameterRecordList;
-
-});
 define("UBTConnect.model$AddNoteList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$AddNoteRec"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var AddNoteList = (function (_super) {
@@ -15356,19 +13784,6 @@ UI_OneSchoolGlobal_DetailCard2RecordList.itemType = UBTConnectModel.UI_OneSchool
 return UI_OneSchoolGlobal_DetailCard2RecordList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.UI_OneSchoolGlobal_DetailCard2RecordList = UI_OneSchoolGlobal_DetailCard2RecordList;
-
-});
-define("UBTConnect.model$UserSubscriptionList", ["exports", "OutSystems/ClientRuntime/Main", "DirectoryClientCore.model", "UBTConnect.model", "DirectoryClientCore.model$UserSubscriptionRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$DirectoryClientCore"], function (exports, OutSystems, DirectoryClientCoreModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var UserSubscriptionList = (function (_super) {
-__extends(UserSubscriptionList, _super);
-function UserSubscriptionList(defaults) {
-_super.apply(this, arguments);
-}
-UserSubscriptionList.itemType = DirectoryClientCoreModel.UserSubscriptionRec;
-return UserSubscriptionList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.UserSubscriptionList = UserSubscriptionList;
 
 });
 define("UBTConnect.model$Directory_PhotoRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect.model", "APIDomain_Directory_IS.model$Directory_PhotoRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnectModel) {
@@ -15489,46 +13904,6 @@ Photobook_SpeedRecord.init();
 return Photobook_SpeedRecord;
 })(OS.DataTypes.GenericRecord);
 UBTConnectModel.Photobook_SpeedRecord = Photobook_SpeedRecord;
-
-});
-define("UBTConnect.model$GetSettingResponseParsedRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$GetSettingResponseParsedRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var GetSettingResponseParsedRecord = (function (_super) {
-__extends(GetSettingResponseParsedRecord, _super);
-function GetSettingResponseParsedRecord(defaults) {
-_super.apply(this, arguments);
-}
-GetSettingResponseParsedRecord.attributesToDeclare = function () {
-return [
-this.attr("GetSettingResponseParsed", "getSettingResponseParsedAttr", "GetSettingResponseParsed", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.GetSettingResponseParsedRec());
-}, true, ContactBase_ISModel.GetSettingResponseParsedRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-GetSettingResponseParsedRecord.fromStructure = function (str) {
-return new GetSettingResponseParsedRecord(new GetSettingResponseParsedRecord.RecordClass({
-getSettingResponseParsedAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-GetSettingResponseParsedRecord._isAnonymousRecord = true;
-GetSettingResponseParsedRecord.UniqueId = "fdc2a182-44e9-e1dd-a12a-7a7a551d01a7";
-GetSettingResponseParsedRecord.init();
-return GetSettingResponseParsedRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.GetSettingResponseParsedRecord = GetSettingResponseParsedRecord;
-
-});
-define("UBTConnect.model$GetSettingResponseParsedRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$GetSettingResponseParsedRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var GetSettingResponseParsedRecordList = (function (_super) {
-__extends(GetSettingResponseParsedRecordList, _super);
-function GetSettingResponseParsedRecordList(defaults) {
-_super.apply(this, arguments);
-}
-GetSettingResponseParsedRecordList.itemType = UBTConnectModel.GetSettingResponseParsedRecord;
-return GetSettingResponseParsedRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.GetSettingResponseParsedRecordList = GetSettingResponseParsedRecordList;
 
 });
 define("UBTConnect.model$UBT_ButtonTypeList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect.model", "UBTConnectLibrary.model$UBT_ButtonTypeRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnectModel) {
@@ -15796,46 +14171,6 @@ return OrbitApplicationEventRecordList;
 UBTConnectModel.OrbitApplicationEventRecordList = OrbitApplicationEventRecordList;
 
 });
-define("UBTConnect.model$DefaultLocalityRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$DefaultLocalityRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var DefaultLocalityRecord = (function (_super) {
-__extends(DefaultLocalityRecord, _super);
-function DefaultLocalityRecord(defaults) {
-_super.apply(this, arguments);
-}
-DefaultLocalityRecord.attributesToDeclare = function () {
-return [
-this.attr("DefaultLocality", "defaultLocalityAttr", "DefaultLocality", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.DefaultLocalityRec());
-}, true, ContactBase_ISModel.DefaultLocalityRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-DefaultLocalityRecord.fromStructure = function (str) {
-return new DefaultLocalityRecord(new DefaultLocalityRecord.RecordClass({
-defaultLocalityAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-DefaultLocalityRecord._isAnonymousRecord = true;
-DefaultLocalityRecord.UniqueId = "d9880970-9108-9f19-b524-2c8eb22ffdf0";
-DefaultLocalityRecord.init();
-return DefaultLocalityRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.DefaultLocalityRecord = DefaultLocalityRecord;
-
-});
-define("UBTConnect.model$DefaultLocalityRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$DefaultLocalityRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var DefaultLocalityRecordList = (function (_super) {
-__extends(DefaultLocalityRecordList, _super);
-function DefaultLocalityRecordList(defaults) {
-_super.apply(this, arguments);
-}
-DefaultLocalityRecordList.itemType = UBTConnectModel.DefaultLocalityRecord;
-return DefaultLocalityRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.DefaultLocalityRecordList = DefaultLocalityRecordList;
-
-});
 define("UBTConnect.model$Directory_CoordinatesList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect.model", "APIDomain_Directory_IS.model$Directory_CoordinatesRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var Directory_CoordinatesList = (function (_super) {
@@ -15847,33 +14182,6 @@ Directory_CoordinatesList.itemType = APIDomain_Directory_ISModel.Directory_Coord
 return Directory_CoordinatesList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.Directory_CoordinatesList = Directory_CoordinatesList;
-
-});
-define("UBTConnect.model$TimezoneRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$TimezoneRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var TimezoneRecord = (function (_super) {
-__extends(TimezoneRecord, _super);
-function TimezoneRecord(defaults) {
-_super.apply(this, arguments);
-}
-TimezoneRecord.attributesToDeclare = function () {
-return [
-this.attr("Timezone", "timezoneAttr", "Timezone", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.TimezoneRec());
-}, true, ContactBase_ISModel.TimezoneRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-TimezoneRecord.fromStructure = function (str) {
-return new TimezoneRecord(new TimezoneRecord.RecordClass({
-timezoneAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-TimezoneRecord._isAnonymousRecord = true;
-TimezoneRecord.UniqueId = "6c01928a-9223-2067-aa7f-dfb292703859";
-TimezoneRecord.init();
-return TimezoneRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.TimezoneRecord = TimezoneRecord;
 
 });
 define("UBTConnect.model$AutoplaySettingsRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$AutoplaySettingsRec"], function (exports, OutSystems, UBTConnectModel) {
@@ -15980,46 +14288,6 @@ MarkerWithWindowMapExploreItemRecordList.itemType = UBTConnectModel.MarkerWithWi
 return MarkerWithWindowMapExploreItemRecordList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.MarkerWithWindowMapExploreItemRecordList = MarkerWithWindowMapExploreItemRecordList;
-
-});
-define("UBTConnect.model$UI_HouseholdMember_ParentRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Household_CS.model", "UBTConnect.model", "Connect_Household_CS.model$UI_HouseholdMember_ParentRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Household_CS"], function (exports, OutSystems, Connect_Household_CSModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var UI_HouseholdMember_ParentRecord = (function (_super) {
-__extends(UI_HouseholdMember_ParentRecord, _super);
-function UI_HouseholdMember_ParentRecord(defaults) {
-_super.apply(this, arguments);
-}
-UI_HouseholdMember_ParentRecord.attributesToDeclare = function () {
-return [
-this.attr("UI_HouseholdMember_Parent", "uI_HouseholdMember_ParentAttr", "UI_HouseholdMember_Parent", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new Connect_Household_CSModel.UI_HouseholdMember_ParentRec());
-}, true, Connect_Household_CSModel.UI_HouseholdMember_ParentRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-UI_HouseholdMember_ParentRecord.fromStructure = function (str) {
-return new UI_HouseholdMember_ParentRecord(new UI_HouseholdMember_ParentRecord.RecordClass({
-uI_HouseholdMember_ParentAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-UI_HouseholdMember_ParentRecord._isAnonymousRecord = true;
-UI_HouseholdMember_ParentRecord.UniqueId = "d52d3eb8-0d2a-3d26-8e34-6421ae77c169";
-UI_HouseholdMember_ParentRecord.init();
-return UI_HouseholdMember_ParentRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.UI_HouseholdMember_ParentRecord = UI_HouseholdMember_ParentRecord;
-
-});
-define("UBTConnect.model$UI_HouseholdMember_ParentRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$UI_HouseholdMember_ParentRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var UI_HouseholdMember_ParentRecordList = (function (_super) {
-__extends(UI_HouseholdMember_ParentRecordList, _super);
-function UI_HouseholdMember_ParentRecordList(defaults) {
-_super.apply(this, arguments);
-}
-UI_HouseholdMember_ParentRecordList.itemType = UBTConnectModel.UI_HouseholdMember_ParentRecord;
-return UI_HouseholdMember_ParentRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.UI_HouseholdMember_ParentRecordList = UI_HouseholdMember_ParentRecordList;
 
 });
 define("UBTConnect.model$ActionsMenuOptionsRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect.model", "UBTConnectLibrary.model$ActionsMenuOptionsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnectModel) {
@@ -16193,33 +14461,6 @@ return UI_Screen_HouseholdDetailsList;
 UBTConnectModel.UI_Screen_HouseholdDetailsList = UI_Screen_HouseholdDetailsList;
 
 });
-define("UBTConnect.model$PhotoUrlRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$PhotoUrlRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var PhotoUrlRecord = (function (_super) {
-__extends(PhotoUrlRecord, _super);
-function PhotoUrlRecord(defaults) {
-_super.apply(this, arguments);
-}
-PhotoUrlRecord.attributesToDeclare = function () {
-return [
-this.attr("PhotoUrl", "photoUrlAttr", "PhotoUrl", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.PhotoUrlRec());
-}, true, ContactBase_ISModel.PhotoUrlRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-PhotoUrlRecord.fromStructure = function (str) {
-return new PhotoUrlRecord(new PhotoUrlRecord.RecordClass({
-photoUrlAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-PhotoUrlRecord._isAnonymousRecord = true;
-PhotoUrlRecord.UniqueId = "6f382051-bdb2-ccaf-bf6d-cac7a41f0a52";
-PhotoUrlRecord.init();
-return PhotoUrlRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.PhotoUrlRecord = PhotoUrlRecord;
-
-});
 define("UBTConnect.model$TextLongIntegerRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var TextLongIntegerRecord = (function (_super) {
@@ -16363,33 +14604,6 @@ SearchCategory_ItemRecordList.itemType = UBTConnectModel.SearchCategory_ItemReco
 return SearchCategory_ItemRecordList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.SearchCategory_ItemRecordList = SearchCategory_ItemRecordList;
-
-});
-define("UBTConnect.model$DefaultCountryRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$DefaultCountryRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var DefaultCountryRecord = (function (_super) {
-__extends(DefaultCountryRecord, _super);
-function DefaultCountryRecord(defaults) {
-_super.apply(this, arguments);
-}
-DefaultCountryRecord.attributesToDeclare = function () {
-return [
-this.attr("DefaultCountry", "defaultCountryAttr", "DefaultCountry", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.DefaultCountryRec());
-}, true, ContactBase_ISModel.DefaultCountryRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-DefaultCountryRecord.fromStructure = function (str) {
-return new DefaultCountryRecord(new DefaultCountryRecord.RecordClass({
-defaultCountryAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-DefaultCountryRecord._isAnonymousRecord = true;
-DefaultCountryRecord.UniqueId = "709d4487-fc90-0da1-fe40-4702c458e3e5";
-DefaultCountryRecord.init();
-return DefaultCountryRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.DefaultCountryRecord = DefaultCountryRecord;
 
 });
 define("UBTConnect.model$Type_ShareObjectRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_Sharing_CS.model", "UBTConnect.model", "Connect2_Sharing_CS.model$Type_ShareObjectRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_Sharing_CS"], function (exports, OutSystems, Connect2_Sharing_CSModel, UBTConnectModel) {
@@ -16587,46 +14801,6 @@ UI_BookmarksRecord.init();
 return UI_BookmarksRecord;
 })(OS.DataTypes.GenericRecord);
 UBTConnectModel.UI_BookmarksRecord = UI_BookmarksRecord;
-
-});
-define("UBTConnect.model$SubscriptionRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$SubscriptionRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var SubscriptionRecord = (function (_super) {
-__extends(SubscriptionRecord, _super);
-function SubscriptionRecord(defaults) {
-_super.apply(this, arguments);
-}
-SubscriptionRecord.attributesToDeclare = function () {
-return [
-this.attr("Subscription", "subscriptionAttr", "Subscription", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.SubscriptionRec());
-}, true, ContactBase_ISModel.SubscriptionRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-SubscriptionRecord.fromStructure = function (str) {
-return new SubscriptionRecord(new SubscriptionRecord.RecordClass({
-subscriptionAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-SubscriptionRecord._isAnonymousRecord = true;
-SubscriptionRecord.UniqueId = "72c286f0-9901-fadf-0dd5-1329b5367cb2";
-SubscriptionRecord.init();
-return SubscriptionRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.SubscriptionRecord = SubscriptionRecord;
-
-});
-define("UBTConnect.model$NotificationDeepLinkParameterList", ["exports", "OutSystems/ClientRuntime/Main", "Comms_CS.model", "UBTConnect.model", "Comms_CS.model$NotificationDeepLinkParameterRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Comms_CS"], function (exports, OutSystems, Comms_CSModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var NotificationDeepLinkParameterList = (function (_super) {
-__extends(NotificationDeepLinkParameterList, _super);
-function NotificationDeepLinkParameterList(defaults) {
-_super.apply(this, arguments);
-}
-NotificationDeepLinkParameterList.itemType = Comms_CSModel.NotificationDeepLinkParameterRec;
-return NotificationDeepLinkParameterList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.NotificationDeepLinkParameterList = NotificationDeepLinkParameterList;
 
 });
 define("UBTConnect.model$UI_OneSchoolGlobal_ListCard_ContentList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$UI_OneSchoolGlobal_ListCard_ContentRec"], function (exports, OutSystems, UBTConnectModel) {
@@ -17115,19 +15289,6 @@ return HouseholdDetailTagsList;
 UBTConnectModel.HouseholdDetailTagsList = HouseholdDetailTagsList;
 
 });
-define("UBTConnect.model$Directory_LocalityList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect.model", "APIDomain_Directory_IS.model$Directory_LocalityRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var Directory_LocalityList = (function (_super) {
-__extends(Directory_LocalityList, _super);
-function Directory_LocalityList(defaults) {
-_super.apply(this, arguments);
-}
-Directory_LocalityList.itemType = APIDomain_Directory_ISModel.Directory_LocalityRec;
-return Directory_LocalityList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.Directory_LocalityList = Directory_LocalityList;
-
-});
 define("UBTConnect.model$LatLongRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$LatLongRecord"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var LatLongRecordList = (function (_super) {
@@ -17205,33 +15366,6 @@ TextOptionsList.itemType = UBTConnectLibraryModel.TextOptionsRec;
 return TextOptionsList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.TextOptionsList = TextOptionsList;
-
-});
-define("UBTConnect.model$HostConfig_FontTypeRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBT_CW.model", "UBTConnect.model", "UBT_CW.model$HostConfig_FontTypeRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBT_CW"], function (exports, OutSystems, UBT_CWModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var HostConfig_FontTypeRecord = (function (_super) {
-__extends(HostConfig_FontTypeRecord, _super);
-function HostConfig_FontTypeRecord(defaults) {
-_super.apply(this, arguments);
-}
-HostConfig_FontTypeRecord.attributesToDeclare = function () {
-return [
-this.attr("HostConfig_FontType", "hostConfig_FontTypeAttr", "HostConfig_FontType", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new UBT_CWModel.HostConfig_FontTypeRec());
-}, true, UBT_CWModel.HostConfig_FontTypeRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-HostConfig_FontTypeRecord.fromStructure = function (str) {
-return new HostConfig_FontTypeRecord(new HostConfig_FontTypeRecord.RecordClass({
-hostConfig_FontTypeAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-HostConfig_FontTypeRecord._isAnonymousRecord = true;
-HostConfig_FontTypeRecord.UniqueId = "79445e6f-bd11-c56f-f4b3-d25325ab8e9f";
-HostConfig_FontTypeRecord.init();
-return HostConfig_FontTypeRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.HostConfig_FontTypeRecord = HostConfig_FontTypeRecord;
 
 });
 define("UBTConnect.model$SenderRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect.model", "APIDomain_Directory_IS.model$SenderRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnectModel) {
@@ -17366,46 +15500,6 @@ return BackgroundImageRecord;
 UBTConnectModel.BackgroundImageRecord = BackgroundImageRecord;
 
 });
-define("UBTConnect.model$PhotoUrlList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$PhotoUrlRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var PhotoUrlList = (function (_super) {
-__extends(PhotoUrlList, _super);
-function PhotoUrlList(defaults) {
-_super.apply(this, arguments);
-}
-PhotoUrlList.itemType = ContactBase_ISModel.PhotoUrlRec;
-return PhotoUrlList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.PhotoUrlList = PhotoUrlList;
-
-});
-define("UBTConnect.model$CarouselDirectionRecord", ["exports", "OutSystems/ClientRuntime/Main", "OutSystemsUI_2_23.model", "UBTConnect.model", "OutSystemsUI_2_23.model$CarouselDirectionRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$OutSystemsUI_2_23"], function (exports, OutSystems, OutSystemsUI_2_23Model, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var CarouselDirectionRecord = (function (_super) {
-__extends(CarouselDirectionRecord, _super);
-function CarouselDirectionRecord(defaults) {
-_super.apply(this, arguments);
-}
-CarouselDirectionRecord.attributesToDeclare = function () {
-return [
-this.attr("CarouselDirection", "carouselDirectionAttr", "CarouselDirection", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new OutSystemsUI_2_23Model.CarouselDirectionRec());
-}, true, OutSystemsUI_2_23Model.CarouselDirectionRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-CarouselDirectionRecord.fromStructure = function (str) {
-return new CarouselDirectionRecord(new CarouselDirectionRecord.RecordClass({
-carouselDirectionAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-CarouselDirectionRecord._isAnonymousRecord = true;
-CarouselDirectionRecord.UniqueId = "7ab034d1-5012-634d-9942-ba9399c94ade";
-CarouselDirectionRecord.init();
-return CarouselDirectionRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.CarouselDirectionRecord = CarouselDirectionRecord;
-
-});
 define("UBTConnect.model$GeoJSONFeatureRecord", ["exports", "OutSystems/ClientRuntime/Main", "Leaflet.model", "UBTConnect.model", "Leaflet.model$GeoJSONFeatureRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Leaflet"], function (exports, OutSystems, LeafletModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var GeoJSONFeatureRecord = (function (_super) {
@@ -17471,19 +15565,6 @@ UI_CommunityBusiness_ContactList.itemType = Connect_Geography_CSModel.UI_Communi
 return UI_CommunityBusiness_ContactList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.UI_CommunityBusiness_ContactList = UI_CommunityBusiness_ContactList;
-
-});
-define("UBTConnect.model$Extension2List", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect.model", "APIDomain_Directory_IS.model$Extension2Rec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var Extension2List = (function (_super) {
-__extends(Extension2List, _super);
-function Extension2List(defaults) {
-_super.apply(this, arguments);
-}
-Extension2List.itemType = APIDomain_Directory_ISModel.Extension2Rec;
-return Extension2List;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.Extension2List = Extension2List;
 
 });
 define("UBTConnect.model$HouseFloorRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$HouseFloorRecord"], function (exports, OutSystems, UBTConnectModel) {
@@ -17590,19 +15671,6 @@ return Lookup_MyProfileMenuOptionsRecordList;
 UBTConnectModel.Lookup_MyProfileMenuOptionsRecordList = Lookup_MyProfileMenuOptionsRecordList;
 
 });
-define("UBTConnect.model$HostConfig_FontSizeList", ["exports", "OutSystems/ClientRuntime/Main", "UBT_CW.model", "UBTConnect.model", "UBT_CW.model$HostConfig_FontSizeRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBT_CW"], function (exports, OutSystems, UBT_CWModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var HostConfig_FontSizeList = (function (_super) {
-__extends(HostConfig_FontSizeList, _super);
-function HostConfig_FontSizeList(defaults) {
-_super.apply(this, arguments);
-}
-HostConfig_FontSizeList.itemType = UBT_CWModel.HostConfig_FontSizeRec;
-return HostConfig_FontSizeList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.HostConfig_FontSizeList = HostConfig_FontSizeList;
-
-});
 define("UBTConnect.model$PhotoDetailsList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_MyBookmarks_IS.model", "UBTConnect.model", "Connect2_MyBookmarks_IS.model$PhotoDetailsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_MyBookmarks_IS"], function (exports, OutSystems, Connect2_MyBookmarks_ISModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var PhotoDetailsList = (function (_super) {
@@ -17640,19 +15708,6 @@ Range2List.itemType = Connect2_Assemble_CSModel.RangeRec;
 return Range2List;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.Range2List = Range2List;
-
-});
-define("UBTConnect.model$HostConfigRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$HostConfigRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var HostConfigRecordList = (function (_super) {
-__extends(HostConfigRecordList, _super);
-function HostConfigRecordList(defaults) {
-_super.apply(this, arguments);
-}
-HostConfigRecordList.itemType = UBTConnectModel.HostConfigRecord;
-return HostConfigRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.HostConfigRecordList = HostConfigRecordList;
 
 });
 define("UBTConnect.model$UI_LocalityHouseholdList", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Household_CS.model", "UBTConnect.model", "Connect_Household_CS.model$UI_LocalityHouseholdRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Household_CS"], function (exports, OutSystems, Connect_Household_CSModel, UBTConnectModel) {
@@ -18058,6 +16113,33 @@ return UI_AccountFormList;
 UBTConnectModel.UI_AccountFormList = UI_AccountFormList;
 
 });
+define("UBTConnect.model$UI_CommunityStatisticsRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Geography_CS.model", "UBTConnect.model", "Connect_Geography_CS.model$UI_CommunityStatisticsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Geography_CS"], function (exports, OutSystems, Connect_Geography_CSModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var UI_CommunityStatisticsRecord = (function (_super) {
+__extends(UI_CommunityStatisticsRecord, _super);
+function UI_CommunityStatisticsRecord(defaults) {
+_super.apply(this, arguments);
+}
+UI_CommunityStatisticsRecord.attributesToDeclare = function () {
+return [
+this.attr("UI_CommunityStatistics", "uI_CommunityStatisticsAttr", "UI_CommunityStatistics", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Connect_Geography_CSModel.UI_CommunityStatisticsRec());
+}, true, Connect_Geography_CSModel.UI_CommunityStatisticsRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+UI_CommunityStatisticsRecord.fromStructure = function (str) {
+return new UI_CommunityStatisticsRecord(new UI_CommunityStatisticsRecord.RecordClass({
+uI_CommunityStatisticsAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+UI_CommunityStatisticsRecord._isAnonymousRecord = true;
+UI_CommunityStatisticsRecord.UniqueId = "82eb0a15-cc30-986f-9b3b-ce1491b206f3";
+UI_CommunityStatisticsRecord.init();
+return UI_CommunityStatisticsRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnectModel.UI_CommunityStatisticsRecord = UI_CommunityStatisticsRecord;
+
+});
 define("UBTConnect.model$LDMApplicationEventList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_BL.model", "UBTConnect.model", "Connect2_OrbitMobile_BL.model$LDMApplicationEventRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_OrbitMobile_BL"], function (exports, OutSystems, Connect2_OrbitMobile_BLModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var LDMApplicationEventList = (function (_super) {
@@ -18136,46 +16218,6 @@ UBT_DisplayList.itemType = UBTConnectLibraryModel.UBT_DisplayRec;
 return UBT_DisplayList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.UBT_DisplayList = UBT_DisplayList;
-
-});
-define("UBTConnect.model$PhotoDetails2Record", ["exports", "OutSystems/ClientRuntime/Main", "MyBookmarks_IS.model", "UBTConnect.model", "MyBookmarks_IS.model$PhotoDetailsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$MyBookmarks_IS"], function (exports, OutSystems, MyBookmarks_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var PhotoDetails2Record = (function (_super) {
-__extends(PhotoDetails2Record, _super);
-function PhotoDetails2Record(defaults) {
-_super.apply(this, arguments);
-}
-PhotoDetails2Record.attributesToDeclare = function () {
-return [
-this.attr("PhotoDetails", "photoDetailsAttr", "PhotoDetails2", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new MyBookmarks_ISModel.PhotoDetailsRec());
-}, true, MyBookmarks_ISModel.PhotoDetailsRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-PhotoDetails2Record.fromStructure = function (str) {
-return new PhotoDetails2Record(new PhotoDetails2Record.RecordClass({
-photoDetailsAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-PhotoDetails2Record._isAnonymousRecord = true;
-PhotoDetails2Record.UniqueId = "d768b661-84ac-ab46-6e89-ec74938a835a";
-PhotoDetails2Record.init();
-return PhotoDetails2Record;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.PhotoDetails2Record = PhotoDetails2Record;
-
-});
-define("UBTConnect.model$PhotoDetails2RecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$PhotoDetails2Record"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var PhotoDetails2RecordList = (function (_super) {
-__extends(PhotoDetails2RecordList, _super);
-function PhotoDetails2RecordList(defaults) {
-_super.apply(this, arguments);
-}
-PhotoDetails2RecordList.itemType = UBTConnectModel.PhotoDetails2Record;
-return PhotoDetails2RecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.PhotoDetails2RecordList = PhotoDetails2RecordList;
 
 });
 define("UBTConnect.model$CarouselOptionalConfigsRecord", ["exports", "OutSystems/ClientRuntime/Main", "OutSystemsUI_2_23.model", "UBTConnect.model", "OutSystemsUI_2_23.model$CarouselOptionalConfigsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$OutSystemsUI_2_23"], function (exports, OutSystems, OutSystemsUI_2_23Model, UBTConnectModel) {
@@ -18335,32 +16377,6 @@ LazyImageSizeList.itemType = UBTConnectLibraryModel.LazyImageSizeRec;
 return LazyImageSizeList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.LazyImageSizeList = LazyImageSizeList;
-
-});
-define("UBTConnect.model$CountryWithMapPositionRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$CountryWithMapPositionRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var CountryWithMapPositionRecordList = (function (_super) {
-__extends(CountryWithMapPositionRecordList, _super);
-function CountryWithMapPositionRecordList(defaults) {
-_super.apply(this, arguments);
-}
-CountryWithMapPositionRecordList.itemType = UBTConnectModel.CountryWithMapPositionRecord;
-return CountryWithMapPositionRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.CountryWithMapPositionRecordList = CountryWithMapPositionRecordList;
-
-});
-define("UBTConnect.model$FilterList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$FilterRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var FilterList = (function (_super) {
-__extends(FilterList, _super);
-function FilterList(defaults) {
-_super.apply(this, arguments);
-}
-FilterList.itemType = ContactBase_ISModel.FilterRec;
-return FilterList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.FilterList = FilterList;
 
 });
 define("UBTConnect.model$ApplicationEvents_DirectoryRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_LegacyShared.model", "UBTConnect.model", "Connect2_LegacyShared.model$ApplicationEvents_DirectoryRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_LegacyShared"], function (exports, OutSystems, Connect2_LegacySharedModel, UBTConnectModel) {
@@ -18612,33 +16628,6 @@ return Lookup_RecurrenceDayOfWeekBooleanRecord;
 UBTConnectModel.Lookup_RecurrenceDayOfWeekBooleanRecord = Lookup_RecurrenceDayOfWeekBooleanRecord;
 
 });
-define("UBTConnect.model$ConnectConfigRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$ConnectConfigRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var ConnectConfigRecord = (function (_super) {
-__extends(ConnectConfigRecord, _super);
-function ConnectConfigRecord(defaults) {
-_super.apply(this, arguments);
-}
-ConnectConfigRecord.attributesToDeclare = function () {
-return [
-this.attr("ConnectConfig", "connectConfigAttr", "ConnectConfig", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.ConnectConfigRec());
-}, true, ContactBase_ISModel.ConnectConfigRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-ConnectConfigRecord.fromStructure = function (str) {
-return new ConnectConfigRecord(new ConnectConfigRecord.RecordClass({
-connectConfigAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-ConnectConfigRecord._isAnonymousRecord = true;
-ConnectConfigRecord.UniqueId = "88e155f6-cc7d-58fd-e636-1920a272ee72";
-ConnectConfigRecord.init();
-return ConnectConfigRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.ConnectConfigRecord = ConnectConfigRecord;
-
-});
 define("UBTConnect.model$SearchInputList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect.model", "UBTConnectLibrary.model$SearchInputRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var SearchInputList = (function (_super) {
@@ -18650,19 +16639,6 @@ SearchInputList.itemType = UBTConnectLibraryModel.SearchInputRec;
 return SearchInputList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.SearchInputList = SearchInputList;
-
-});
-define("UBTConnect.model$HostConfig_FontTypeRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$HostConfig_FontTypeRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var HostConfig_FontTypeRecordList = (function (_super) {
-__extends(HostConfig_FontTypeRecordList, _super);
-function HostConfig_FontTypeRecordList(defaults) {
-_super.apply(this, arguments);
-}
-HostConfig_FontTypeRecordList.itemType = UBTConnectModel.HostConfig_FontTypeRecord;
-return HostConfig_FontTypeRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.HostConfig_FontTypeRecordList = HostConfig_FontTypeRecordList;
 
 });
 define("UBTConnect.model$MapVisibleBoundariesRecord", ["exports", "OutSystems/ClientRuntime/Main", "Leaflet.model", "UBTConnect.model", "Leaflet.model$MapVisibleBoundariesRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Leaflet"], function (exports, OutSystems, LeafletModel, UBTConnectModel) {
@@ -18864,33 +16840,6 @@ return RadiusOptionsList;
 UBTConnectModel.RadiusOptionsList = RadiusOptionsList;
 
 });
-define("UBTConnect.model$UI_CountryDetailsRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Geography_CS.model", "UBTConnect.model", "Connect_Geography_CS.model$UI_CountryDetailsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Geography_CS"], function (exports, OutSystems, Connect_Geography_CSModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var UI_CountryDetailsRecord = (function (_super) {
-__extends(UI_CountryDetailsRecord, _super);
-function UI_CountryDetailsRecord(defaults) {
-_super.apply(this, arguments);
-}
-UI_CountryDetailsRecord.attributesToDeclare = function () {
-return [
-this.attr("UI_CountryDetails", "uI_CountryDetailsAttr", "UI_CountryDetails", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new Connect_Geography_CSModel.UI_CountryDetailsRec());
-}, true, Connect_Geography_CSModel.UI_CountryDetailsRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-UI_CountryDetailsRecord.fromStructure = function (str) {
-return new UI_CountryDetailsRecord(new UI_CountryDetailsRecord.RecordClass({
-uI_CountryDetailsAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-UI_CountryDetailsRecord._isAnonymousRecord = true;
-UI_CountryDetailsRecord.UniqueId = "8b288b75-bcc0-6127-4653-d101c3823e37";
-UI_CountryDetailsRecord.init();
-return UI_CountryDetailsRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.UI_CountryDetailsRecord = UI_CountryDetailsRecord;
-
-});
 define("UBTConnect.model$AppManager_CachedUserInfoList", ["exports", "OutSystems/ClientRuntime/Main", "UBT_AppManager.model", "UBTConnect.model", "UBT_AppManager.model$AppManager_CachedUserInfoRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBT_AppManager"], function (exports, OutSystems, UBT_AppManagerModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var AppManager_CachedUserInfoList = (function (_super) {
@@ -18928,46 +16877,6 @@ ReminderOptionList.itemType = Connect2_Assemble_CSModel.ReminderOptionRec;
 return ReminderOptionList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.ReminderOptionList = ReminderOptionList;
-
-});
-define("UBTConnect.model$SourceRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect.model", "APIDomain_Directory_IS.model$SourceRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var SourceRecord = (function (_super) {
-__extends(SourceRecord, _super);
-function SourceRecord(defaults) {
-_super.apply(this, arguments);
-}
-SourceRecord.attributesToDeclare = function () {
-return [
-this.attr("Source", "sourceAttr", "Source", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.SourceRec());
-}, true, APIDomain_Directory_ISModel.SourceRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-SourceRecord.fromStructure = function (str) {
-return new SourceRecord(new SourceRecord.RecordClass({
-sourceAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-SourceRecord._isAnonymousRecord = true;
-SourceRecord.UniqueId = "8c816a8f-0233-04f4-9b04-cc49e17538a9";
-SourceRecord.init();
-return SourceRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.SourceRecord = SourceRecord;
-
-});
-define("UBTConnect.model$PhotoTagList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$PhotoTagRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var PhotoTagList = (function (_super) {
-__extends(PhotoTagList, _super);
-function PhotoTagList(defaults) {
-_super.apply(this, arguments);
-}
-PhotoTagList.itemType = ContactBase_ISModel.PhotoTagRec;
-return PhotoTagList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.PhotoTagList = PhotoTagList;
 
 });
 define("UBTConnect.model$LookupItemRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect.model", "UBTConnectLibrary.model$LookupItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnectModel) {
@@ -19022,33 +16931,6 @@ UI_Screen_HouseholdDetailsRecord.init();
 return UI_Screen_HouseholdDetailsRecord;
 })(OS.DataTypes.GenericRecord);
 UBTConnectModel.UI_Screen_HouseholdDetailsRecord = UI_Screen_HouseholdDetailsRecord;
-
-});
-define("UBTConnect.model$UI_OneSchoolGlobalRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Geography_CS.model", "UBTConnect.model", "Connect_Geography_CS.model$UI_OneSchoolGlobalRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Geography_CS"], function (exports, OutSystems, Connect_Geography_CSModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var UI_OneSchoolGlobalRecord = (function (_super) {
-__extends(UI_OneSchoolGlobalRecord, _super);
-function UI_OneSchoolGlobalRecord(defaults) {
-_super.apply(this, arguments);
-}
-UI_OneSchoolGlobalRecord.attributesToDeclare = function () {
-return [
-this.attr("UI_OneSchoolGlobal", "uI_OneSchoolGlobalAttr", "UI_OneSchoolGlobal", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new Connect_Geography_CSModel.UI_OneSchoolGlobalRec());
-}, true, Connect_Geography_CSModel.UI_OneSchoolGlobalRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-UI_OneSchoolGlobalRecord.fromStructure = function (str) {
-return new UI_OneSchoolGlobalRecord(new UI_OneSchoolGlobalRecord.RecordClass({
-uI_OneSchoolGlobalAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-UI_OneSchoolGlobalRecord._isAnonymousRecord = true;
-UI_OneSchoolGlobalRecord.UniqueId = "8daa967c-b5aa-d010-029e-b69a1504aec4";
-UI_OneSchoolGlobalRecord.init();
-return UI_OneSchoolGlobalRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.UI_OneSchoolGlobalRecord = UI_OneSchoolGlobalRecord;
 
 });
 define("UBTConnect.model$Map_MarkersStructureRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Map_CS.model", "UBTConnect.model", "Connect_Map_CS.model$Map_MarkersStructureRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Map_CS"], function (exports, OutSystems, Connect_Map_CSModel, UBTConnectModel) {
@@ -19210,19 +17092,6 @@ return UI_TypedStatisticsList;
 UBTConnectModel.UI_TypedStatisticsList = UI_TypedStatisticsList;
 
 });
-define("UBTConnect.model$MemberHouseholderHouseholderRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$MemberHouseholderHouseholderRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var MemberHouseholderHouseholderRecordList = (function (_super) {
-__extends(MemberHouseholderHouseholderRecordList, _super);
-function MemberHouseholderHouseholderRecordList(defaults) {
-_super.apply(this, arguments);
-}
-MemberHouseholderHouseholderRecordList.itemType = UBTConnectModel.MemberHouseholderHouseholderRecord;
-return MemberHouseholderHouseholderRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.MemberHouseholderHouseholderRecordList = MemberHouseholderHouseholderRecordList;
-
-});
 define("UBTConnect.model$Updates_CarouselSwipeCallbackParametersList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$Updates_CarouselSwipeCallbackParametersRec"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var Updates_CarouselSwipeCallbackParametersList = (function (_super) {
@@ -19236,19 +17105,6 @@ return Updates_CarouselSwipeCallbackParametersList;
 UBTConnectModel.Updates_CarouselSwipeCallbackParametersList = Updates_CarouselSwipeCallbackParametersList;
 
 });
-define("UBTConnect.model$SourceRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$SourceRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var SourceRecordList = (function (_super) {
-__extends(SourceRecordList, _super);
-function SourceRecordList(defaults) {
-_super.apply(this, arguments);
-}
-SourceRecordList.itemType = UBTConnectModel.SourceRecord;
-return SourceRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.SourceRecordList = SourceRecordList;
-
-});
 define("UBTConnect.model$AvatarImageFallbackoptionsList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect.model", "UBTConnectLibrary.model$AvatarImageFallbackoptionsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var AvatarImageFallbackoptionsList = (function (_super) {
@@ -19260,33 +17116,6 @@ AvatarImageFallbackoptionsList.itemType = UBTConnectLibraryModel.AvatarImageFall
 return AvatarImageFallbackoptionsList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.AvatarImageFallbackoptionsList = AvatarImageFallbackoptionsList;
-
-});
-define("UBTConnect.model$SubdivisionRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$SubdivisionRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var SubdivisionRecord = (function (_super) {
-__extends(SubdivisionRecord, _super);
-function SubdivisionRecord(defaults) {
-_super.apply(this, arguments);
-}
-SubdivisionRecord.attributesToDeclare = function () {
-return [
-this.attr("Subdivision", "subdivisionAttr", "Subdivision", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.SubdivisionRec());
-}, true, ContactBase_ISModel.SubdivisionRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-SubdivisionRecord.fromStructure = function (str) {
-return new SubdivisionRecord(new SubdivisionRecord.RecordClass({
-subdivisionAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-SubdivisionRecord._isAnonymousRecord = true;
-SubdivisionRecord.UniqueId = "908992d6-ee84-83ba-24b2-0e71ddbe7580";
-SubdivisionRecord.init();
-return SubdivisionRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.SubdivisionRecord = SubdivisionRecord;
 
 });
 define("UBTConnect.model$MapOptionsRecord", ["exports", "OutSystems/ClientRuntime/Main", "Leaflet.model", "UBTConnect.model", "Leaflet.model$MapOptionsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Leaflet"], function (exports, OutSystems, LeafletModel, UBTConnectModel) {
@@ -19473,6 +17302,19 @@ BorderOptionsList.itemType = UBTConnectLibraryModel.BorderOptionsRec;
 return BorderOptionsList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.BorderOptionsList = BorderOptionsList;
+
+});
+define("UBTConnect.model$UI_CommunityStatisticsList", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Geography_CS.model", "UBTConnect.model", "Connect_Geography_CS.model$UI_CommunityStatisticsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Geography_CS"], function (exports, OutSystems, Connect_Geography_CSModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var UI_CommunityStatisticsList = (function (_super) {
+__extends(UI_CommunityStatisticsList, _super);
+function UI_CommunityStatisticsList(defaults) {
+_super.apply(this, arguments);
+}
+UI_CommunityStatisticsList.itemType = Connect_Geography_CSModel.UI_CommunityStatisticsRec;
+return UI_CommunityStatisticsList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.UI_CommunityStatisticsList = UI_CommunityStatisticsList;
 
 });
 define("UBTConnect.model$HelperRoleRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_BL.model", "UBTConnect.model", "Connect2_OrbitMobile_BL.model$HelperRoleRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_OrbitMobile_BL"], function (exports, OutSystems, Connect2_OrbitMobile_BLModel, UBTConnectModel) {
@@ -19978,19 +17820,6 @@ return Filter_Common_Options_ListRecord;
 UBTConnectModel.Filter_Common_Options_ListRecord = Filter_Common_Options_ListRecord;
 
 });
-define("UBTConnect.model$ConnectConfigList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$ConnectConfigRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var ConnectConfigList = (function (_super) {
-__extends(ConnectConfigList, _super);
-function ConnectConfigList(defaults) {
-_super.apply(this, arguments);
-}
-ConnectConfigList.itemType = ContactBase_ISModel.ConnectConfigRec;
-return ConnectConfigList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.ConnectConfigList = ConnectConfigList;
-
-});
 define("UBTConnect.model$LookupItemRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$LookupItemRecord"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var LookupItemRecordList = (function (_super) {
@@ -20218,19 +18047,6 @@ return BookmarkCategoryRecordList;
 UBTConnectModel.BookmarkCategoryRecordList = BookmarkCategoryRecordList;
 
 });
-define("UBTConnect.model$Member2List", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$MemberRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var Member2List = (function (_super) {
-__extends(Member2List, _super);
-function Member2List(defaults) {
-_super.apply(this, arguments);
-}
-Member2List.itemType = ContactBase_ISModel.MemberRec;
-return Member2List;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.Member2List = Member2List;
-
-});
 define("UBTConnect.model$UI_OneSchoolGlobal_Event_Card_ContentRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$UI_OneSchoolGlobal_Event_Card_ContentRec"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var UI_OneSchoolGlobal_Event_Card_ContentRecord = (function (_super) {
@@ -20310,19 +18126,6 @@ return Type_OneschoolGlobal_SubsectionList;
 UBTConnectModel.Type_OneschoolGlobal_SubsectionList = Type_OneschoolGlobal_SubsectionList;
 
 });
-define("UBTConnect.model$UI_HouseholdRelationsMemberList", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Household_CS.model", "UBTConnect.model", "Connect_Household_CS.model$UI_HouseholdRelationsMemberRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Household_CS"], function (exports, OutSystems, Connect_Household_CSModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var UI_HouseholdRelationsMemberList = (function (_super) {
-__extends(UI_HouseholdRelationsMemberList, _super);
-function UI_HouseholdRelationsMemberList(defaults) {
-_super.apply(this, arguments);
-}
-UI_HouseholdRelationsMemberList.itemType = Connect_Household_CSModel.UI_HouseholdRelationsMemberRec;
-return UI_HouseholdRelationsMemberList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.UI_HouseholdRelationsMemberList = UI_HouseholdRelationsMemberList;
-
-});
 define("UBTConnect.model$UBT_SizeList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect.model", "UBTConnectLibrary.model$UBT_SizeRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var UBT_SizeList = (function (_super) {
@@ -20334,32 +18137,6 @@ UBT_SizeList.itemType = UBTConnectLibraryModel.UBT_SizeRec;
 return UBT_SizeList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.UBT_SizeList = UBT_SizeList;
-
-});
-define("UBTConnect.model$EnrichmentList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect.model", "APIDomain_Directory_IS.model$EnrichmentRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var EnrichmentList = (function (_super) {
-__extends(EnrichmentList, _super);
-function EnrichmentList(defaults) {
-_super.apply(this, arguments);
-}
-EnrichmentList.itemType = APIDomain_Directory_ISModel.EnrichmentRec;
-return EnrichmentList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.EnrichmentList = EnrichmentList;
-
-});
-define("UBTConnect.model$SearchResult2List", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect.model", "APIDomain_Directory_IS.model$SearchResultRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var SearchResult2List = (function (_super) {
-__extends(SearchResult2List, _super);
-function SearchResult2List(defaults) {
-_super.apply(this, arguments);
-}
-SearchResult2List.itemType = APIDomain_Directory_ISModel.SearchResultRec;
-return SearchResult2List;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.SearchResult2List = SearchResult2List;
 
 });
 define("UBTConnect.model$Filter_Common_OptionsRec", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$Filter_Common_Options_ChoiceRec", "UBTConnect.model$Filter_Common_Options_ListRec", "UBTConnect.model$Filter_Common_Control_ListList", "UBTConnect.model$Filter_Common_Control_ChoiceList"], function (exports, OutSystems, UBTConnectModel) {
@@ -20408,46 +18185,6 @@ Filter_Common_OptionsList.itemType = UBTConnectModel.Filter_Common_OptionsRec;
 return Filter_Common_OptionsList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.Filter_Common_OptionsList = Filter_Common_OptionsList;
-
-});
-define("UBTConnect.model$HostConfig_SpacingRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBT_CW.model", "UBTConnect.model", "UBT_CW.model$HostConfig_SpacingRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBT_CW"], function (exports, OutSystems, UBT_CWModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var HostConfig_SpacingRecord = (function (_super) {
-__extends(HostConfig_SpacingRecord, _super);
-function HostConfig_SpacingRecord(defaults) {
-_super.apply(this, arguments);
-}
-HostConfig_SpacingRecord.attributesToDeclare = function () {
-return [
-this.attr("HostConfig_Spacing", "hostConfig_SpacingAttr", "HostConfig_Spacing", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new UBT_CWModel.HostConfig_SpacingRec());
-}, true, UBT_CWModel.HostConfig_SpacingRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-HostConfig_SpacingRecord.fromStructure = function (str) {
-return new HostConfig_SpacingRecord(new HostConfig_SpacingRecord.RecordClass({
-hostConfig_SpacingAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-HostConfig_SpacingRecord._isAnonymousRecord = true;
-HostConfig_SpacingRecord.UniqueId = "ecc3f0b7-8d87-dedb-c3a9-97f242a496d7";
-HostConfig_SpacingRecord.init();
-return HostConfig_SpacingRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.HostConfig_SpacingRecord = HostConfig_SpacingRecord;
-
-});
-define("UBTConnect.model$HostConfig_SpacingRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$HostConfig_SpacingRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var HostConfig_SpacingRecordList = (function (_super) {
-__extends(HostConfig_SpacingRecordList, _super);
-function HostConfig_SpacingRecordList(defaults) {
-_super.apply(this, arguments);
-}
-HostConfig_SpacingRecordList.itemType = UBTConnectModel.HostConfig_SpacingRecord;
-return HostConfig_SpacingRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.HostConfig_SpacingRecordList = HostConfig_SpacingRecordList;
 
 });
 define("UBTConnect.model$ContainerOptionsRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect.model", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnectModel) {
@@ -20847,19 +18584,6 @@ return TooltipOptionsRecordList;
 UBTConnectModel.TooltipOptionsRecordList = TooltipOptionsRecordList;
 
 });
-define("UBTConnect.model$Extension2RecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$Extension2Record"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var Extension2RecordList = (function (_super) {
-__extends(Extension2RecordList, _super);
-function Extension2RecordList(defaults) {
-_super.apply(this, arguments);
-}
-Extension2RecordList.itemType = UBTConnectModel.Extension2Record;
-return Extension2RecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.Extension2RecordList = Extension2RecordList;
-
-});
 define("UBTConnect.model$Filter_CommonList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$Filter_CommonRec"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var Filter_CommonList = (function (_super) {
@@ -20871,19 +18595,6 @@ Filter_CommonList.itemType = UBTConnectModel.Filter_CommonRec;
 return Filter_CommonList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.Filter_CommonList = Filter_CommonList;
-
-});
-define("UBTConnect.model$HostConfig_FontTypeList", ["exports", "OutSystems/ClientRuntime/Main", "UBT_CW.model", "UBTConnect.model", "UBT_CW.model$HostConfig_FontTypeRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBT_CW"], function (exports, OutSystems, UBT_CWModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var HostConfig_FontTypeList = (function (_super) {
-__extends(HostConfig_FontTypeList, _super);
-function HostConfig_FontTypeList(defaults) {
-_super.apply(this, arguments);
-}
-HostConfig_FontTypeList.itemType = UBT_CWModel.HostConfig_FontTypeRec;
-return HostConfig_FontTypeList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.HostConfig_FontTypeList = HostConfig_FontTypeList;
 
 });
 define("UBTConnect.model$UBTConnect_JSUtils_ElementCache_ParentList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$UBTConnect_JSUtils_ElementCache_ParentRec"], function (exports, OutSystems, UBTConnectModel) {
@@ -21111,17 +18822,17 @@ return UI_Household_CardRecordList;
 UBTConnectModel.UI_Household_CardRecordList = UI_Household_CardRecordList;
 
 });
-define("UBTConnect.model$Filter_BookmarkList", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Bookmarks_CS.model", "UBTConnect.model", "Connect_Bookmarks_CS.model$Filter_BookmarkRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Bookmarks_CS"], function (exports, OutSystems, Connect_Bookmarks_CSModel, UBTConnectModel) {
+define("UBTConnect.model$Bookmark_FilterList", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Bookmarks_CS.model", "UBTConnect.model", "Connect_Bookmarks_CS.model$Bookmark_FilterRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Bookmarks_CS"], function (exports, OutSystems, Connect_Bookmarks_CSModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
-var Filter_BookmarkList = (function (_super) {
-__extends(Filter_BookmarkList, _super);
-function Filter_BookmarkList(defaults) {
+var Bookmark_FilterList = (function (_super) {
+__extends(Bookmark_FilterList, _super);
+function Bookmark_FilterList(defaults) {
 _super.apply(this, arguments);
 }
-Filter_BookmarkList.itemType = Connect_Bookmarks_CSModel.Filter_BookmarkRec;
-return Filter_BookmarkList;
+Bookmark_FilterList.itemType = Connect_Bookmarks_CSModel.Bookmark_FilterRec;
+return Bookmark_FilterList;
 })(OS.DataTypes.GenericRecordList);
-UBTConnectModel.Filter_BookmarkList = Filter_BookmarkList;
+UBTConnectModel.Bookmark_FilterList = Bookmark_FilterList;
 
 });
 define("UBTConnect.model$CalendarViewList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect.model", "UBTConnectLibrary.model$CalendarViewRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnectModel) {
@@ -21135,19 +18846,6 @@ CalendarViewList.itemType = UBTConnectLibraryModel.CalendarViewRec;
 return CalendarViewList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.CalendarViewList = CalendarViewList;
-
-});
-define("UBTConnect.model$GetSettingResponseDetailsList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$GetSettingResponseDetailsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var GetSettingResponseDetailsList = (function (_super) {
-__extends(GetSettingResponseDetailsList, _super);
-function GetSettingResponseDetailsList(defaults) {
-_super.apply(this, arguments);
-}
-GetSettingResponseDetailsList.itemType = ContactBase_ISModel.GetSettingResponseDetailsRec;
-return GetSettingResponseDetailsList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.GetSettingResponseDetailsList = GetSettingResponseDetailsList;
 
 });
 define("UBTConnect.model$AvatarIconOptionsRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect.model", "UBTConnectLibrary.model$AvatarIconOptionsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnectModel) {
@@ -21203,46 +18901,6 @@ return GeoJSONFeatureRecordList;
 UBTConnectModel.GeoJSONFeatureRecordList = GeoJSONFeatureRecordList;
 
 });
-define("UBTConnect.model$MemberHouseholderRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$MemberHouseholderRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var MemberHouseholderRecord = (function (_super) {
-__extends(MemberHouseholderRecord, _super);
-function MemberHouseholderRecord(defaults) {
-_super.apply(this, arguments);
-}
-MemberHouseholderRecord.attributesToDeclare = function () {
-return [
-this.attr("MemberHouseholder", "memberHouseholderAttr", "MemberHouseholder", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.MemberHouseholderRec());
-}, true, ContactBase_ISModel.MemberHouseholderRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-MemberHouseholderRecord.fromStructure = function (str) {
-return new MemberHouseholderRecord(new MemberHouseholderRecord.RecordClass({
-memberHouseholderAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-MemberHouseholderRecord._isAnonymousRecord = true;
-MemberHouseholderRecord.UniqueId = "b6b5d540-36da-54d2-9062-83f410ea14a4";
-MemberHouseholderRecord.init();
-return MemberHouseholderRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.MemberHouseholderRecord = MemberHouseholderRecord;
-
-});
-define("UBTConnect.model$MemberHouseholderRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$MemberHouseholderRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var MemberHouseholderRecordList = (function (_super) {
-__extends(MemberHouseholderRecordList, _super);
-function MemberHouseholderRecordList(defaults) {
-_super.apply(this, arguments);
-}
-MemberHouseholderRecordList.itemType = UBTConnectModel.MemberHouseholderRecord;
-return MemberHouseholderRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.MemberHouseholderRecordList = MemberHouseholderRecordList;
-
-});
 define("UBTConnect.model$UI_StatisticsTextsRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$UI_StatisticsTextsRecord"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var UI_StatisticsTextsRecordList = (function (_super) {
@@ -21254,46 +18912,6 @@ UI_StatisticsTextsRecordList.itemType = UBTConnectModel.UI_StatisticsTextsRecord
 return UI_StatisticsTextsRecordList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.UI_StatisticsTextsRecordList = UI_StatisticsTextsRecordList;
-
-});
-define("UBTConnect.model$MemberItemRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect.model", "APIDomain_Directory_IS.model$MemberItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var MemberItemRecord = (function (_super) {
-__extends(MemberItemRecord, _super);
-function MemberItemRecord(defaults) {
-_super.apply(this, arguments);
-}
-MemberItemRecord.attributesToDeclare = function () {
-return [
-this.attr("MemberItem", "memberItemAttr", "MemberItem", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.MemberItemRec());
-}, true, APIDomain_Directory_ISModel.MemberItemRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-MemberItemRecord.fromStructure = function (str) {
-return new MemberItemRecord(new MemberItemRecord.RecordClass({
-memberItemAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-MemberItemRecord._isAnonymousRecord = true;
-MemberItemRecord.UniqueId = "cec4bb7b-f204-f26c-8066-ab28e4a14a02";
-MemberItemRecord.init();
-return MemberItemRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.MemberItemRecord = MemberItemRecord;
-
-});
-define("UBTConnect.model$MemberItemRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$MemberItemRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var MemberItemRecordList = (function (_super) {
-__extends(MemberItemRecordList, _super);
-function MemberItemRecordList(defaults) {
-_super.apply(this, arguments);
-}
-MemberItemRecordList.itemType = UBTConnectModel.MemberItemRecord;
-return MemberItemRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.MemberItemRecordList = MemberItemRecordList;
 
 });
 define("UBTConnect.model$Member_OptionalRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$Member_OptionalRec"], function (exports, OutSystems, UBTConnectModel) {
@@ -21494,19 +19112,6 @@ return UI_LocalityDetails2RecordList;
 UBTConnectModel.UI_LocalityDetails2RecordList = UI_LocalityDetails2RecordList;
 
 });
-define("UBTConnect.model$ConnectConfigRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$ConnectConfigRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var ConnectConfigRecordList = (function (_super) {
-__extends(ConnectConfigRecordList, _super);
-function ConnectConfigRecordList(defaults) {
-_super.apply(this, arguments);
-}
-ConnectConfigRecordList.itemType = UBTConnectModel.ConnectConfigRecord;
-return ConnectConfigRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.ConnectConfigRecordList = ConnectConfigRecordList;
-
-});
 define("UBTConnect.model$BookmarkItemRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_MyBookmarks_IS.model", "UBTConnect.model", "Connect2_MyBookmarks_IS.model$BookmarkItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_MyBookmarks_IS"], function (exports, OutSystems, Connect2_MyBookmarks_ISModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var BookmarkItemRecord = (function (_super) {
@@ -21574,19 +19179,6 @@ return HostSurveyStepRecordList;
 UBTConnectModel.HostSurveyStepRecordList = HostSurveyStepRecordList;
 
 });
-define("UBTConnect.model$MemberHouseholderHouseholderList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$MemberHouseholderHouseholderRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var MemberHouseholderHouseholderList = (function (_super) {
-__extends(MemberHouseholderHouseholderList, _super);
-function MemberHouseholderHouseholderList(defaults) {
-_super.apply(this, arguments);
-}
-MemberHouseholderHouseholderList.itemType = ContactBase_ISModel.MemberHouseholderHouseholderRec;
-return MemberHouseholderHouseholderList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.MemberHouseholderHouseholderList = MemberHouseholderHouseholderList;
-
-});
 define("UBTConnect.model$HelperStatusRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_BL.model", "UBTConnect.model", "Connect2_OrbitMobile_BL.model$HelperStatusRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_OrbitMobile_BL"], function (exports, OutSystems, Connect2_OrbitMobile_BLModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var HelperStatusRecord = (function (_super) {
@@ -21627,19 +19219,6 @@ return HelperStatusRecordList;
 UBTConnectModel.HelperStatusRecordList = HelperStatusRecordList;
 
 });
-define("UBTConnect.model$DefaultCountryList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$DefaultCountryRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var DefaultCountryList = (function (_super) {
-__extends(DefaultCountryList, _super);
-function DefaultCountryList(defaults) {
-_super.apply(this, arguments);
-}
-DefaultCountryList.itemType = ContactBase_ISModel.DefaultCountryRec;
-return DefaultCountryList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.DefaultCountryList = DefaultCountryList;
-
-});
 define("UBTConnect.model$Updates_DateRangesList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$Updates_DateRangesRec"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var Updates_DateRangesList = (function (_super) {
@@ -21666,46 +19245,6 @@ return SelectedHouseholdRecordList;
 UBTConnectModel.SelectedHouseholdRecordList = SelectedHouseholdRecordList;
 
 });
-define("UBTConnect.model$UI_MemberHouseholdContextRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Household_CS.model", "UBTConnect.model", "Connect_Household_CS.model$UI_MemberHouseholdContextRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Household_CS"], function (exports, OutSystems, Connect_Household_CSModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var UI_MemberHouseholdContextRecord = (function (_super) {
-__extends(UI_MemberHouseholdContextRecord, _super);
-function UI_MemberHouseholdContextRecord(defaults) {
-_super.apply(this, arguments);
-}
-UI_MemberHouseholdContextRecord.attributesToDeclare = function () {
-return [
-this.attr("UI_MemberHouseholdContext", "uI_MemberHouseholdContextAttr", "UI_MemberHouseholdContext", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new Connect_Household_CSModel.UI_MemberHouseholdContextRec());
-}, true, Connect_Household_CSModel.UI_MemberHouseholdContextRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-UI_MemberHouseholdContextRecord.fromStructure = function (str) {
-return new UI_MemberHouseholdContextRecord(new UI_MemberHouseholdContextRecord.RecordClass({
-uI_MemberHouseholdContextAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-UI_MemberHouseholdContextRecord._isAnonymousRecord = true;
-UI_MemberHouseholdContextRecord.UniqueId = "ad55c5be-537d-abed-b02f-296f4af2544f";
-UI_MemberHouseholdContextRecord.init();
-return UI_MemberHouseholdContextRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.UI_MemberHouseholdContextRecord = UI_MemberHouseholdContextRecord;
-
-});
-define("UBTConnect.model$UI_MemberHouseholdContextRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$UI_MemberHouseholdContextRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var UI_MemberHouseholdContextRecordList = (function (_super) {
-__extends(UI_MemberHouseholdContextRecordList, _super);
-function UI_MemberHouseholdContextRecordList(defaults) {
-_super.apply(this, arguments);
-}
-UI_MemberHouseholdContextRecordList.itemType = UBTConnectModel.UI_MemberHouseholdContextRecord;
-return UI_MemberHouseholdContextRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.UI_MemberHouseholdContextRecordList = UI_MemberHouseholdContextRecordList;
-
-});
 define("UBTConnect.model$CacheControl_UserInformationList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Utils.model", "UBTConnect.model", "UBTConnect_Utils.model$CacheControl_UserInformationRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils"], function (exports, OutSystems, UBTConnect_UtilsModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var CacheControl_UserInformationList = (function (_super) {
@@ -21719,19 +19258,6 @@ return CacheControl_UserInformationList;
 UBTConnectModel.CacheControl_UserInformationList = CacheControl_UserInformationList;
 
 });
-define("UBTConnect.model$GetSettingResponseParsedList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$GetSettingResponseParsedRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var GetSettingResponseParsedList = (function (_super) {
-__extends(GetSettingResponseParsedList, _super);
-function GetSettingResponseParsedList(defaults) {
-_super.apply(this, arguments);
-}
-GetSettingResponseParsedList.itemType = ContactBase_ISModel.GetSettingResponseParsedRec;
-return GetSettingResponseParsedList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.GetSettingResponseParsedList = GetSettingResponseParsedList;
-
-});
 define("UBTConnect.model$BottomBar_ItemRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$BottomBar_ItemRecord"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var BottomBar_ItemRecordList = (function (_super) {
@@ -21743,19 +19269,6 @@ BottomBar_ItemRecordList.itemType = UBTConnectModel.BottomBar_ItemRecord;
 return BottomBar_ItemRecordList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.BottomBar_ItemRecordList = BottomBar_ItemRecordList;
-
-});
-define("UBTConnect.model$GetCurrentUserResponseList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$GetCurrentUserResponseRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var GetCurrentUserResponseList = (function (_super) {
-__extends(GetCurrentUserResponseList, _super);
-function GetCurrentUserResponseList(defaults) {
-_super.apply(this, arguments);
-}
-GetCurrentUserResponseList.itemType = ContactBase_ISModel.GetCurrentUserResponseRec;
-return GetCurrentUserResponseList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.GetCurrentUserResponseList = GetCurrentUserResponseList;
 
 });
 define("UBTConnect.model$UI_Map_VisibilityPreferencesList", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Map_CS.model", "UBTConnect.model", "Connect_Map_CS.model$UI_Map_VisibilityPreferencesRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Map_CS"], function (exports, OutSystems, Connect_Map_CSModel, UBTConnectModel) {
@@ -21782,19 +19295,6 @@ UI_CalendarEventSourceRecordList.itemType = UBTConnectModel.UI_CalendarEventSour
 return UI_CalendarEventSourceRecordList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.UI_CalendarEventSourceRecordList = UI_CalendarEventSourceRecordList;
-
-});
-define("UBTConnect.model$HallPhotoList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$HallPhotoRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var HallPhotoList = (function (_super) {
-__extends(HallPhotoList, _super);
-function HallPhotoList(defaults) {
-_super.apply(this, arguments);
-}
-HallPhotoList.itemType = ContactBase_ISModel.HallPhotoRec;
-return HallPhotoList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.HallPhotoList = HallPhotoList;
 
 });
 define("UBTConnect.model$ShareItemList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect.model", "APIDomain_Directory_IS.model$ShareItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnectModel) {
@@ -21834,45 +19334,6 @@ ProgressList.itemType = FileTransferPluginModel.ProgressRec;
 return ProgressList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.ProgressList = ProgressList;
-
-});
-define("UBTConnect.model$DefaultCountryRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$DefaultCountryRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var DefaultCountryRecordList = (function (_super) {
-__extends(DefaultCountryRecordList, _super);
-function DefaultCountryRecordList(defaults) {
-_super.apply(this, arguments);
-}
-DefaultCountryRecordList.itemType = UBTConnectModel.DefaultCountryRecord;
-return DefaultCountryRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.DefaultCountryRecordList = DefaultCountryRecordList;
-
-});
-define("UBTConnect.model$EnrichmentRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$EnrichmentRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var EnrichmentRecordList = (function (_super) {
-__extends(EnrichmentRecordList, _super);
-function EnrichmentRecordList(defaults) {
-_super.apply(this, arguments);
-}
-EnrichmentRecordList.itemType = UBTConnectModel.EnrichmentRecord;
-return EnrichmentRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.EnrichmentRecordList = EnrichmentRecordList;
-
-});
-define("UBTConnect.model$CarouselDirectionRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$CarouselDirectionRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var CarouselDirectionRecordList = (function (_super) {
-__extends(CarouselDirectionRecordList, _super);
-function CarouselDirectionRecordList(defaults) {
-_super.apply(this, arguments);
-}
-CarouselDirectionRecordList.itemType = UBTConnectModel.CarouselDirectionRecord;
-return CarouselDirectionRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.CarouselDirectionRecordList = CarouselDirectionRecordList;
 
 });
 define("UBTConnect.model$ActionsMenuOptionsRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$ActionsMenuOptionsRecord"], function (exports, OutSystems, UBTConnectModel) {
@@ -22165,19 +19626,6 @@ return AuditLog_ShareEventInfoList;
 UBTConnectModel.AuditLog_ShareEventInfoList = AuditLog_ShareEventInfoList;
 
 });
-define("UBTConnect.model$SubdivisionRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$SubdivisionRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var SubdivisionRecordList = (function (_super) {
-__extends(SubdivisionRecordList, _super);
-function SubdivisionRecordList(defaults) {
-_super.apply(this, arguments);
-}
-SubdivisionRecordList.itemType = UBTConnectModel.SubdivisionRecord;
-return SubdivisionRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.SubdivisionRecordList = SubdivisionRecordList;
-
-});
 define("UBTConnect.model$UI_CalendarDotEventTypeRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$UI_CalendarDotEventTypeRecord"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var UI_CalendarDotEventTypeRecordList = (function (_super) {
@@ -22294,33 +19742,6 @@ AvatarImageRecordList.itemType = UBTConnectModel.AvatarImageRecord;
 return AvatarImageRecordList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.AvatarImageRecordList = AvatarImageRecordList;
-
-});
-define("UBTConnect.model$LocalityRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$LocalityRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var LocalityRecord = (function (_super) {
-__extends(LocalityRecord, _super);
-function LocalityRecord(defaults) {
-_super.apply(this, arguments);
-}
-LocalityRecord.attributesToDeclare = function () {
-return [
-this.attr("Locality", "localityAttr", "Locality", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.LocalityRec());
-}, true, ContactBase_ISModel.LocalityRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-LocalityRecord.fromStructure = function (str) {
-return new LocalityRecord(new LocalityRecord.RecordClass({
-localityAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-LocalityRecord._isAnonymousRecord = true;
-LocalityRecord.UniqueId = "b69fced6-2251-c2ef-f9bc-e0cc53f92f3d";
-LocalityRecord.init();
-return LocalityRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.LocalityRecord = LocalityRecord;
 
 });
 define("UBTConnect.model$ContainerOptionsList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect.model", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnectModel) {
@@ -22467,19 +19888,6 @@ MemoryCacheTypeList.itemType = MemoryClientCacheModel.MemoryCacheTypeRec;
 return MemoryCacheTypeList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.MemoryCacheTypeList = MemoryCacheTypeList;
-
-});
-define("UBTConnect.model$HostConfig_FontList", ["exports", "OutSystems/ClientRuntime/Main", "UBT_CW.model", "UBTConnect.model", "UBT_CW.model$HostConfig_FontRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBT_CW"], function (exports, OutSystems, UBT_CWModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var HostConfig_FontList = (function (_super) {
-__extends(HostConfig_FontList, _super);
-function HostConfig_FontList(defaults) {
-_super.apply(this, arguments);
-}
-HostConfig_FontList.itemType = UBT_CWModel.HostConfig_FontRec;
-return HostConfig_FontList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.HostConfig_FontList = HostConfig_FontList;
 
 });
 define("UBTConnect.model$MarkerOptionsRecord", ["exports", "OutSystems/ClientRuntime/Main", "Leaflet.model", "UBTConnect.model", "Leaflet.model$MarkerOptionsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Leaflet"], function (exports, OutSystems, LeafletModel, UBTConnectModel) {
@@ -22666,19 +20074,6 @@ MapExploreItemList.itemType = Connect_Map_CSModel.MapExploreItemRec;
 return MapExploreItemList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.MapExploreItemList = MapExploreItemList;
-
-});
-define("UBTConnect.model$CDNList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect.model", "APIDomain_Directory_IS.model$CDNRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var CDNList = (function (_super) {
-__extends(CDNList, _super);
-function CDNList(defaults) {
-_super.apply(this, arguments);
-}
-CDNList.itemType = APIDomain_Directory_ISModel.CDNRec;
-return CDNList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.CDNList = CDNList;
 
 });
 define("UBTConnect.model$BackgroundImageRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$BackgroundImageRecord"], function (exports, OutSystems, UBTConnectModel) {
@@ -23047,19 +20442,6 @@ return UBT_VisibilityRecordList;
 UBTConnectModel.UBT_VisibilityRecordList = UBT_VisibilityRecordList;
 
 });
-define("UBTConnect.model$SubscriptionList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$SubscriptionRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var SubscriptionList = (function (_super) {
-__extends(SubscriptionList, _super);
-function SubscriptionList(defaults) {
-_super.apply(this, arguments);
-}
-SubscriptionList.itemType = ContactBase_ISModel.SubscriptionRec;
-return SubscriptionList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.SubscriptionList = SubscriptionList;
-
-});
 define("UBTConnect.model$DayOfWeekList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_Assemble_CS.model", "UBTConnect.model", "Connect2_Assemble_CS.model$DayOfWeekRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_Assemble_CS"], function (exports, OutSystems, Connect2_Assemble_CSModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var DayOfWeekList = (function (_super) {
@@ -23084,46 +20466,6 @@ EntityMember_ExtraDataRecordList.itemType = UBTConnectModel.EntityMember_ExtraDa
 return EntityMember_ExtraDataRecordList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.EntityMember_ExtraDataRecordList = EntityMember_ExtraDataRecordList;
-
-});
-define("UBTConnect.model$SpouseRecord", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$SpouseRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var SpouseRecord = (function (_super) {
-__extends(SpouseRecord, _super);
-function SpouseRecord(defaults) {
-_super.apply(this, arguments);
-}
-SpouseRecord.attributesToDeclare = function () {
-return [
-this.attr("Spouse", "spouseAttr", "Spouse", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new ContactBase_ISModel.SpouseRec());
-}, true, ContactBase_ISModel.SpouseRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-SpouseRecord.fromStructure = function (str) {
-return new SpouseRecord(new SpouseRecord.RecordClass({
-spouseAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-SpouseRecord._isAnonymousRecord = true;
-SpouseRecord.UniqueId = "c00b45d7-e93c-7003-b19c-5e78fe69488d";
-SpouseRecord.init();
-return SpouseRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.SpouseRecord = SpouseRecord;
-
-});
-define("UBTConnect.model$TimezoneRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$TimezoneRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var TimezoneRecordList = (function (_super) {
-__extends(TimezoneRecordList, _super);
-function TimezoneRecordList(defaults) {
-_super.apply(this, arguments);
-}
-TimezoneRecordList.itemType = UBTConnectModel.TimezoneRecord;
-return TimezoneRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.TimezoneRecordList = TimezoneRecordList;
 
 });
 define("UBTConnect.model$MyBookmarks_GroupRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_MyBookmarks_BL.model", "UBTConnect.model", "Connect2_MyBookmarks_BL.model$MyBookmarks_GroupRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_MyBookmarks_BL"], function (exports, OutSystems, Connect2_MyBookmarks_BLModel, UBTConnectModel) {
@@ -23190,46 +20532,6 @@ UI_CalendarEventSourceConfigurationList.itemType = UBTConnectModel.UI_CalendarEv
 return UI_CalendarEventSourceConfigurationList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.UI_CalendarEventSourceConfigurationList = UI_CalendarEventSourceConfigurationList;
-
-});
-define("UBTConnect.model$UserSubscriptionRecord", ["exports", "OutSystems/ClientRuntime/Main", "DirectoryClientCore.model", "UBTConnect.model", "DirectoryClientCore.model$UserSubscriptionRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$DirectoryClientCore"], function (exports, OutSystems, DirectoryClientCoreModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var UserSubscriptionRecord = (function (_super) {
-__extends(UserSubscriptionRecord, _super);
-function UserSubscriptionRecord(defaults) {
-_super.apply(this, arguments);
-}
-UserSubscriptionRecord.attributesToDeclare = function () {
-return [
-this.attr("UserSubscription", "userSubscriptionAttr", "UserSubscription", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new DirectoryClientCoreModel.UserSubscriptionRec());
-}, true, DirectoryClientCoreModel.UserSubscriptionRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-UserSubscriptionRecord.fromStructure = function (str) {
-return new UserSubscriptionRecord(new UserSubscriptionRecord.RecordClass({
-userSubscriptionAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-UserSubscriptionRecord._isAnonymousRecord = true;
-UserSubscriptionRecord.UniqueId = "e7c19f78-907b-4217-d008-28c49c95c048";
-UserSubscriptionRecord.init();
-return UserSubscriptionRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.UserSubscriptionRecord = UserSubscriptionRecord;
-
-});
-define("UBTConnect.model$UserSubscriptionRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$UserSubscriptionRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var UserSubscriptionRecordList = (function (_super) {
-__extends(UserSubscriptionRecordList, _super);
-function UserSubscriptionRecordList(defaults) {
-_super.apply(this, arguments);
-}
-UserSubscriptionRecordList.itemType = UBTConnectModel.UserSubscriptionRecord;
-return UserSubscriptionRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.UserSubscriptionRecordList = UserSubscriptionRecordList;
 
 });
 define("UBTConnect.model$SizeOptionsRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect.model", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnectModel) {
@@ -23496,32 +20798,6 @@ return MaxBoundsList;
 UBTConnectModel.MaxBoundsList = MaxBoundsList;
 
 });
-define("UBTConnect.model$UI_MemberHouseholdContextList", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Household_CS.model", "UBTConnect.model", "Connect_Household_CS.model$UI_MemberHouseholdContextRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Household_CS"], function (exports, OutSystems, Connect_Household_CSModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var UI_MemberHouseholdContextList = (function (_super) {
-__extends(UI_MemberHouseholdContextList, _super);
-function UI_MemberHouseholdContextList(defaults) {
-_super.apply(this, arguments);
-}
-UI_MemberHouseholdContextList.itemType = Connect_Household_CSModel.UI_MemberHouseholdContextRec;
-return UI_MemberHouseholdContextList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.UI_MemberHouseholdContextList = UI_MemberHouseholdContextList;
-
-});
-define("UBTConnect.model$PhotoTagRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$PhotoTagRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var PhotoTagRecordList = (function (_super) {
-__extends(PhotoTagRecordList, _super);
-function PhotoTagRecordList(defaults) {
-_super.apply(this, arguments);
-}
-PhotoTagRecordList.itemType = UBTConnectModel.PhotoTagRecord;
-return PhotoTagRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.PhotoTagRecordList = PhotoTagRecordList;
-
-});
 define("UBTConnect.model$UBT_MessageTypeRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$UBT_MessageTypeRecord"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var UBT_MessageTypeRecordList = (function (_super) {
@@ -23535,17 +20811,17 @@ return UBT_MessageTypeRecordList;
 UBTConnectModel.UBT_MessageTypeRecordList = UBT_MessageTypeRecordList;
 
 });
-define("UBTConnect.model$PolicyActivationList", ["exports", "OutSystems/ClientRuntime/Main", "DirectoryClientCore.model", "UBTConnect.model", "DirectoryClientCore.model$PolicyActivationRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$DirectoryClientCore"], function (exports, OutSystems, DirectoryClientCoreModel, UBTConnectModel) {
+define("UBTConnect.model$UI_CommunityStatisticsRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$UI_CommunityStatisticsRecord"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
-var PolicyActivationList = (function (_super) {
-__extends(PolicyActivationList, _super);
-function PolicyActivationList(defaults) {
+var UI_CommunityStatisticsRecordList = (function (_super) {
+__extends(UI_CommunityStatisticsRecordList, _super);
+function UI_CommunityStatisticsRecordList(defaults) {
 _super.apply(this, arguments);
 }
-PolicyActivationList.itemType = DirectoryClientCoreModel.PolicyActivationRec;
-return PolicyActivationList;
+UI_CommunityStatisticsRecordList.itemType = UBTConnectModel.UI_CommunityStatisticsRecord;
+return UI_CommunityStatisticsRecordList;
 })(OS.DataTypes.GenericRecordList);
-UBTConnectModel.PolicyActivationList = PolicyActivationList;
+UBTConnectModel.UI_CommunityStatisticsRecordList = UI_CommunityStatisticsRecordList;
 
 });
 define("UBTConnect.model$Connect_EntityRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$Connect_EntityRecord"], function (exports, OutSystems, UBTConnectModel) {
@@ -23810,46 +21086,6 @@ Type_MessageChannelRecord.init();
 return Type_MessageChannelRecord;
 })(OS.DataTypes.GenericRecord);
 UBTConnectModel.Type_MessageChannelRecord = Type_MessageChannelRecord;
-
-});
-define("UBTConnect.model$BookmarkItem3Record", ["exports", "OutSystems/ClientRuntime/Main", "MyBookmarks_IS.model", "UBTConnect.model", "MyBookmarks_IS.model$BookmarkItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$MyBookmarks_IS"], function (exports, OutSystems, MyBookmarks_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var BookmarkItem3Record = (function (_super) {
-__extends(BookmarkItem3Record, _super);
-function BookmarkItem3Record(defaults) {
-_super.apply(this, arguments);
-}
-BookmarkItem3Record.attributesToDeclare = function () {
-return [
-this.attr("BookmarkItem", "bookmarkItemAttr", "BookmarkItem3", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new MyBookmarks_ISModel.BookmarkItemRec());
-}, true, MyBookmarks_ISModel.BookmarkItemRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-BookmarkItem3Record.fromStructure = function (str) {
-return new BookmarkItem3Record(new BookmarkItem3Record.RecordClass({
-bookmarkItemAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-BookmarkItem3Record._isAnonymousRecord = true;
-BookmarkItem3Record.UniqueId = "efaf0f24-af5b-88ea-1e26-c469240ba70e";
-BookmarkItem3Record.init();
-return BookmarkItem3Record;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.BookmarkItem3Record = BookmarkItem3Record;
-
-});
-define("UBTConnect.model$BookmarkItem3RecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$BookmarkItem3Record"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var BookmarkItem3RecordList = (function (_super) {
-__extends(BookmarkItem3RecordList, _super);
-function BookmarkItem3RecordList(defaults) {
-_super.apply(this, arguments);
-}
-BookmarkItem3RecordList.itemType = UBTConnectModel.BookmarkItem3Record;
-return BookmarkItem3RecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.BookmarkItem3RecordList = BookmarkItem3RecordList;
 
 });
 define("UBTConnect.model$OutSystems_FFList", ["exports", "OutSystems/ClientRuntime/Main", "Connect_CommonEntities_DB.model", "UBTConnect.model", "Connect_CommonEntities_DB.model$OutSystems_FFRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_CommonEntities_DB"], function (exports, OutSystems, Connect_CommonEntities_DBModel, UBTConnectModel) {
@@ -24142,19 +21378,6 @@ return UI_LocalityHouseholdRecordList;
 UBTConnectModel.UI_LocalityHouseholdRecordList = UI_LocalityHouseholdRecordList;
 
 });
-define("UBTConnect.model$SpouseRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$SpouseRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var SpouseRecordList = (function (_super) {
-__extends(SpouseRecordList, _super);
-function SpouseRecordList(defaults) {
-_super.apply(this, arguments);
-}
-SpouseRecordList.itemType = UBTConnectModel.SpouseRecord;
-return SpouseRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.SpouseRecordList = SpouseRecordList;
-
-});
 define("UBTConnect.model$HeaderListRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$HeaderListRec"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var HeaderListRecord = (function (_super) {
@@ -24232,19 +21455,6 @@ CacheControl_PoliciesList.itemType = UBTConnect_UtilsModel.CacheControl_Policies
 return CacheControl_PoliciesList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.CacheControl_PoliciesList = CacheControl_PoliciesList;
-
-});
-define("UBTConnect.model$General_Normalized_BookmarksForSyncList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect.model", "APIDomain_Directory_IS.model$General_Normalized_BookmarksForSyncRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var General_Normalized_BookmarksForSyncList = (function (_super) {
-__extends(General_Normalized_BookmarksForSyncList, _super);
-function General_Normalized_BookmarksForSyncList(defaults) {
-_super.apply(this, arguments);
-}
-General_Normalized_BookmarksForSyncList.itemType = APIDomain_Directory_ISModel.General_Normalized_BookmarksForSyncRec;
-return General_Normalized_BookmarksForSyncList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.General_Normalized_BookmarksForSyncList = General_Normalized_BookmarksForSyncList;
 
 });
 define("UBTConnect.model$MyBookmarks_ObjectTypeRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$MyBookmarks_ObjectTypeRecord"], function (exports, OutSystems, UBTConnectModel) {
@@ -24731,45 +21941,6 @@ return UI_ContactByEmailFormList;
 UBTConnectModel.UI_ContactByEmailFormList = UI_ContactByEmailFormList;
 
 });
-define("UBTConnect.model$RolesRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$RolesRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var RolesRecordList = (function (_super) {
-__extends(RolesRecordList, _super);
-function RolesRecordList(defaults) {
-_super.apply(this, arguments);
-}
-RolesRecordList.itemType = UBTConnectModel.RolesRecord;
-return RolesRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.RolesRecordList = RolesRecordList;
-
-});
-define("UBTConnect.model$ShareUserListTypeRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$ShareUserListTypeRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var ShareUserListTypeRecordList = (function (_super) {
-__extends(ShareUserListTypeRecordList, _super);
-function ShareUserListTypeRecordList(defaults) {
-_super.apply(this, arguments);
-}
-ShareUserListTypeRecordList.itemType = UBTConnectModel.ShareUserListTypeRecord;
-return ShareUserListTypeRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.ShareUserListTypeRecordList = ShareUserListTypeRecordList;
-
-});
-define("UBTConnect.model$PhotoUrlRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$PhotoUrlRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var PhotoUrlRecordList = (function (_super) {
-__extends(PhotoUrlRecordList, _super);
-function PhotoUrlRecordList(defaults) {
-_super.apply(this, arguments);
-}
-PhotoUrlRecordList.itemType = UBTConnectModel.PhotoUrlRecord;
-return PhotoUrlRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.PhotoUrlRecordList = PhotoUrlRecordList;
-
-});
 define("UBTConnect.model$Directory_UserCurrent_SubscriptionRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$Directory_UserCurrent_SubscriptionRecord"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var Directory_UserCurrent_SubscriptionRecordList = (function (_super) {
@@ -24781,32 +21952,6 @@ Directory_UserCurrent_SubscriptionRecordList.itemType = UBTConnectModel.Director
 return Directory_UserCurrent_SubscriptionRecordList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.Directory_UserCurrent_SubscriptionRecordList = Directory_UserCurrent_SubscriptionRecordList;
-
-});
-define("UBTConnect.model$CarouselDirectionList", ["exports", "OutSystems/ClientRuntime/Main", "OutSystemsUI_2_23.model", "UBTConnect.model", "OutSystemsUI_2_23.model$CarouselDirectionRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$OutSystemsUI_2_23"], function (exports, OutSystems, OutSystemsUI_2_23Model, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var CarouselDirectionList = (function (_super) {
-__extends(CarouselDirectionList, _super);
-function CarouselDirectionList(defaults) {
-_super.apply(this, arguments);
-}
-CarouselDirectionList.itemType = OutSystemsUI_2_23Model.CarouselDirectionRec;
-return CarouselDirectionList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.CarouselDirectionList = CarouselDirectionList;
-
-});
-define("UBTConnect.model$PhotoDetails2List", ["exports", "OutSystems/ClientRuntime/Main", "MyBookmarks_IS.model", "UBTConnect.model", "MyBookmarks_IS.model$PhotoDetailsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$MyBookmarks_IS"], function (exports, OutSystems, MyBookmarks_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var PhotoDetails2List = (function (_super) {
-__extends(PhotoDetails2List, _super);
-function PhotoDetails2List(defaults) {
-_super.apply(this, arguments);
-}
-PhotoDetails2List.itemType = MyBookmarks_ISModel.PhotoDetailsRec;
-return PhotoDetails2List;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.PhotoDetails2List = PhotoDetails2List;
 
 });
 define("UBTConnect.model$UI_LocalityDetailsRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$UI_LocalityDetailsRecord"], function (exports, OutSystems, UBTConnectModel) {
@@ -25071,46 +22216,6 @@ return RecurrencePatternWeekIndexIdentifierBooleanRecordList;
 UBTConnectModel.RecurrencePatternWeekIndexIdentifierBooleanRecordList = RecurrencePatternWeekIndexIdentifierBooleanRecordList;
 
 });
-define("UBTConnect.model$HostConfig_FontRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBT_CW.model", "UBTConnect.model", "UBT_CW.model$HostConfig_FontRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBT_CW"], function (exports, OutSystems, UBT_CWModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var HostConfig_FontRecord = (function (_super) {
-__extends(HostConfig_FontRecord, _super);
-function HostConfig_FontRecord(defaults) {
-_super.apply(this, arguments);
-}
-HostConfig_FontRecord.attributesToDeclare = function () {
-return [
-this.attr("HostConfig_Font", "hostConfig_FontAttr", "HostConfig_Font", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new UBT_CWModel.HostConfig_FontRec());
-}, true, UBT_CWModel.HostConfig_FontRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-HostConfig_FontRecord.fromStructure = function (str) {
-return new HostConfig_FontRecord(new HostConfig_FontRecord.RecordClass({
-hostConfig_FontAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-HostConfig_FontRecord._isAnonymousRecord = true;
-HostConfig_FontRecord.UniqueId = "dc40e6c3-0e4c-c69a-a862-d24a808ef35d";
-HostConfig_FontRecord.init();
-return HostConfig_FontRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnectModel.HostConfig_FontRecord = HostConfig_FontRecord;
-
-});
-define("UBTConnect.model$HostConfig_FontRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$HostConfig_FontRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var HostConfig_FontRecordList = (function (_super) {
-__extends(HostConfig_FontRecordList, _super);
-function HostConfig_FontRecordList(defaults) {
-_super.apply(this, arguments);
-}
-HostConfig_FontRecordList.itemType = UBTConnectModel.HostConfig_FontRecord;
-return HostConfig_FontRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.HostConfig_FontRecordList = HostConfig_FontRecordList;
-
-});
 define("UBTConnect.model$UI_LocalityDetailsWithStatisticsRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Geography_CS.model", "UBTConnect.model", "Connect_Geography_CS.model$UI_LocalityDetailsWithStatisticsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Geography_CS"], function (exports, OutSystems, Connect_Geography_CSModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var UI_LocalityDetailsWithStatisticsRecord = (function (_super) {
@@ -25203,19 +22308,6 @@ return UpdateFeed_ReadStatusRecordList;
 UBTConnectModel.UpdateFeed_ReadStatusRecordList = UpdateFeed_ReadStatusRecordList;
 
 });
-define("UBTConnect.model$DetailsJson2RecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$DetailsJson2Record"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var DetailsJson2RecordList = (function (_super) {
-__extends(DetailsJson2RecordList, _super);
-function DetailsJson2RecordList(defaults) {
-_super.apply(this, arguments);
-}
-DetailsJson2RecordList.itemType = UBTConnectModel.DetailsJson2Record;
-return DetailsJson2RecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.DetailsJson2RecordList = DetailsJson2RecordList;
-
-});
 define("UBTConnect.model$Directory_UserCurrent_GeographyRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$Directory_UserCurrent_GeographyRecord"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var Directory_UserCurrent_GeographyRecordList = (function (_super) {
@@ -25253,19 +22345,6 @@ EmailHouseholdEventRecordList.itemType = UBTConnectModel.EmailHouseholdEventReco
 return EmailHouseholdEventRecordList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.EmailHouseholdEventRecordList = EmailHouseholdEventRecordList;
-
-});
-define("UBTConnect.model$ImageBorderOptionsList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect.model", "UBTConnectLibrary.model$ImageBorderOptionsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var ImageBorderOptionsList = (function (_super) {
-__extends(ImageBorderOptionsList, _super);
-function ImageBorderOptionsList(defaults) {
-_super.apply(this, arguments);
-}
-ImageBorderOptionsList.itemType = UBTConnectLibraryModel.ImageBorderOptionsRec;
-return ImageBorderOptionsList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.ImageBorderOptionsList = ImageBorderOptionsList;
 
 });
 define("UBTConnect.model$CDN4List", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect.model", "APIDomain_Directory_IS.model$CDN4Rec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnectModel) {
@@ -25318,6 +22397,46 @@ UI_UpdateItem_BreakpointList.itemType = UBTConnectModel.UI_UpdateItem_Breakpoint
 return UI_UpdateItem_BreakpointList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.UI_UpdateItem_BreakpointList = UI_UpdateItem_BreakpointList;
+
+});
+define("UBTConnect.model$Map_GeoJSON_PointMatchRecord", ["exports", "OutSystems/ClientRuntime/Main", "Leaflet.model", "UBTConnect.model", "Leaflet.model$Map_GeoJSON_PointMatchRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Leaflet"], function (exports, OutSystems, LeafletModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var Map_GeoJSON_PointMatchRecord = (function (_super) {
+__extends(Map_GeoJSON_PointMatchRecord, _super);
+function Map_GeoJSON_PointMatchRecord(defaults) {
+_super.apply(this, arguments);
+}
+Map_GeoJSON_PointMatchRecord.attributesToDeclare = function () {
+return [
+this.attr("Map_GeoJSON_PointMatch", "map_GeoJSON_PointMatchAttr", "Map_GeoJSON_PointMatch", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new LeafletModel.Map_GeoJSON_PointMatchRec());
+}, true, LeafletModel.Map_GeoJSON_PointMatchRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+Map_GeoJSON_PointMatchRecord.fromStructure = function (str) {
+return new Map_GeoJSON_PointMatchRecord(new Map_GeoJSON_PointMatchRecord.RecordClass({
+map_GeoJSON_PointMatchAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+Map_GeoJSON_PointMatchRecord._isAnonymousRecord = true;
+Map_GeoJSON_PointMatchRecord.UniqueId = "ec495aba-4541-ec72-69af-96c485c82fb0";
+Map_GeoJSON_PointMatchRecord.init();
+return Map_GeoJSON_PointMatchRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnectModel.Map_GeoJSON_PointMatchRecord = Map_GeoJSON_PointMatchRecord;
+
+});
+define("UBTConnect.model$Map_GeoJSON_PointMatchRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$Map_GeoJSON_PointMatchRecord"], function (exports, OutSystems, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var Map_GeoJSON_PointMatchRecordList = (function (_super) {
+__extends(Map_GeoJSON_PointMatchRecordList, _super);
+function Map_GeoJSON_PointMatchRecordList(defaults) {
+_super.apply(this, arguments);
+}
+Map_GeoJSON_PointMatchRecordList.itemType = UBTConnectModel.Map_GeoJSON_PointMatchRecord;
+return Map_GeoJSON_PointMatchRecordList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.Map_GeoJSON_PointMatchRecordList = Map_GeoJSON_PointMatchRecordList;
 
 });
 define("UBTConnect.model$UI_ContactByEmailFormRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$UI_ContactByEmailFormRecord"], function (exports, OutSystems, UBTConnectModel) {
@@ -25477,19 +22596,6 @@ return Type_MyCalendarEventSourceRecordList;
 UBTConnectModel.Type_MyCalendarEventSourceRecordList = Type_MyCalendarEventSourceRecordList;
 
 });
-define("UBTConnect.model$HallPhotoRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$HallPhotoRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var HallPhotoRecordList = (function (_super) {
-__extends(HallPhotoRecordList, _super);
-function HallPhotoRecordList(defaults) {
-_super.apply(this, arguments);
-}
-HallPhotoRecordList.itemType = UBTConnectModel.HallPhotoRecord;
-return HallPhotoRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.HallPhotoRecordList = HallPhotoRecordList;
-
-});
 define("UBTConnect.model$UI_Bookmark_CardItemRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$UI_Bookmark_CardItemRecord"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var UI_Bookmark_CardItemRecordList = (function (_super) {
@@ -25501,32 +22607,6 @@ UI_Bookmark_CardItemRecordList.itemType = UBTConnectModel.UI_Bookmark_CardItemRe
 return UI_Bookmark_CardItemRecordList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.UI_Bookmark_CardItemRecordList = UI_Bookmark_CardItemRecordList;
-
-});
-define("UBTConnect.model$LocalityRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$LocalityRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var LocalityRecordList = (function (_super) {
-__extends(LocalityRecordList, _super);
-function LocalityRecordList(defaults) {
-_super.apply(this, arguments);
-}
-LocalityRecordList.itemType = UBTConnectModel.LocalityRecord;
-return LocalityRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.LocalityRecordList = LocalityRecordList;
-
-});
-define("UBTConnect.model$Member2RecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$Member2Record"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var Member2RecordList = (function (_super) {
-__extends(Member2RecordList, _super);
-function Member2RecordList(defaults) {
-_super.apply(this, arguments);
-}
-Member2RecordList.itemType = UBTConnectModel.Member2Record;
-return Member2RecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.Member2RecordList = Member2RecordList;
 
 });
 define("UBTConnect.model$CS_CountryNameList", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Geography_CS.model", "UBTConnect.model", "Connect_Geography_CS.model$CS_CountryNameRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Geography_CS"], function (exports, OutSystems, Connect_Geography_CSModel, UBTConnectModel) {
@@ -25606,19 +22686,6 @@ MessageTemplateList.itemType = Comms_CSModel.MessageTemplateRec;
 return MessageTemplateList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.MessageTemplateList = MessageTemplateList;
-
-});
-define("UBTConnect.model$SubscriptionRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$SubscriptionRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var SubscriptionRecordList = (function (_super) {
-__extends(SubscriptionRecordList, _super);
-function SubscriptionRecordList(defaults) {
-_super.apply(this, arguments);
-}
-SubscriptionRecordList.itemType = UBTConnectModel.SubscriptionRecord;
-return SubscriptionRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.SubscriptionRecordList = SubscriptionRecordList;
 
 });
 define("UBTConnect.model$Notes_FilterRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$Notes_FilterRecord"], function (exports, OutSystems, UBTConnectModel) {
@@ -25725,19 +22792,6 @@ return CarouselPreloadedHouseholdsRecordList;
 UBTConnectModel.CarouselPreloadedHouseholdsRecordList = CarouselPreloadedHouseholdsRecordList;
 
 });
-define("UBTConnect.model$UI_CountryDetailsRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$UI_CountryDetailsRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var UI_CountryDetailsRecordList = (function (_super) {
-__extends(UI_CountryDetailsRecordList, _super);
-function UI_CountryDetailsRecordList(defaults) {
-_super.apply(this, arguments);
-}
-UI_CountryDetailsRecordList.itemType = UBTConnectModel.UI_CountryDetailsRecord;
-return UI_CountryDetailsRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.UI_CountryDetailsRecordList = UI_CountryDetailsRecordList;
-
-});
 define("UBTConnect.model$UI_OneSchoolGlobal_DetailCard_Content2List", ["exports", "OutSystems/ClientRuntime/Main", "Connect_CommunityBusiness_CS.model", "UBTConnect.model", "Connect_CommunityBusiness_CS.model$UI_OneSchoolGlobal_DetailCard_ContentRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_CommunityBusiness_CS"], function (exports, OutSystems, Connect_CommunityBusiness_CSModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var UI_OneSchoolGlobal_DetailCard_Content2List = (function (_super) {
@@ -25749,19 +22803,6 @@ UI_OneSchoolGlobal_DetailCard_Content2List.itemType = Connect_CommunityBusiness_
 return UI_OneSchoolGlobal_DetailCard_Content2List;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.UI_OneSchoolGlobal_DetailCard_Content2List = UI_OneSchoolGlobal_DetailCard_Content2List;
-
-});
-define("UBTConnect.model$GetSettingResponseDetailsRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$GetSettingResponseDetailsRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var GetSettingResponseDetailsRecordList = (function (_super) {
-__extends(GetSettingResponseDetailsRecordList, _super);
-function GetSettingResponseDetailsRecordList(defaults) {
-_super.apply(this, arguments);
-}
-GetSettingResponseDetailsRecordList.itemType = UBTConnectModel.GetSettingResponseDetailsRecord;
-return GetSettingResponseDetailsRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.GetSettingResponseDetailsRecordList = GetSettingResponseDetailsRecordList;
 
 });
 define("UBTConnect.model$UI_MyCalendar_WeekRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$UI_MyCalendar_WeekRecord"], function (exports, OutSystems, UBTConnectModel) {
@@ -25815,19 +22856,6 @@ AuditLog_ShareEventInfoRecord.init();
 return AuditLog_ShareEventInfoRecord;
 })(OS.DataTypes.GenericRecord);
 UBTConnectModel.AuditLog_ShareEventInfoRecord = AuditLog_ShareEventInfoRecord;
-
-});
-define("UBTConnect.model$Source2RecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$Source2Record"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var Source2RecordList = (function (_super) {
-__extends(Source2RecordList, _super);
-function Source2RecordList(defaults) {
-_super.apply(this, arguments);
-}
-Source2RecordList.itemType = UBTConnectModel.Source2Record;
-return Source2RecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.Source2RecordList = Source2RecordList;
 
 });
 define("UBTConnect.model$UI_LocalityDetailsWithStatisticsRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$UI_LocalityDetailsWithStatisticsRecord"], function (exports, OutSystems, UBTConnectModel) {
@@ -25934,19 +22962,6 @@ return Share_AttributesRecordList;
 UBTConnectModel.Share_AttributesRecordList = Share_AttributesRecordList;
 
 });
-define("UBTConnect.model$FilterRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$FilterRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var FilterRecordList = (function (_super) {
-__extends(FilterRecordList, _super);
-function FilterRecordList(defaults) {
-_super.apply(this, arguments);
-}
-FilterRecordList.itemType = UBTConnectModel.FilterRecord;
-return FilterRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.FilterRecordList = FilterRecordList;
-
-});
 define("UBTConnect.model$Type_CarouselItemSwipeActionList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$Type_CarouselItemSwipeActionRec"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var Type_CarouselItemSwipeActionList = (function (_super) {
@@ -26050,19 +23065,6 @@ MyBookmarks_GroupList.itemType = Connect2_MyBookmarks_BLModel.MyBookmarks_GroupR
 return MyBookmarks_GroupList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.MyBookmarks_GroupList = MyBookmarks_GroupList;
-
-});
-define("UBTConnect.model$HostConfig_SpacingList", ["exports", "OutSystems/ClientRuntime/Main", "UBT_CW.model", "UBTConnect.model", "UBT_CW.model$HostConfig_SpacingRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBT_CW"], function (exports, OutSystems, UBT_CWModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var HostConfig_SpacingList = (function (_super) {
-__extends(HostConfig_SpacingList, _super);
-function HostConfig_SpacingList(defaults) {
-_super.apply(this, arguments);
-}
-HostConfig_SpacingList.itemType = UBT_CWModel.HostConfig_SpacingRec;
-return HostConfig_SpacingList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.HostConfig_SpacingList = HostConfig_SpacingList;
 
 });
 define("UBTConnect.model$CacheableCalendarEventsSourceList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_MyCalendar_BL.model", "UBTConnect.model", "Connect2_MyCalendar_BL.model$CacheableCalendarEventsSourceRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_MyCalendar_BL"], function (exports, OutSystems, Connect2_MyCalendar_BLModel, UBTConnectModel) {
@@ -26183,19 +23185,6 @@ return MarkerRecordList;
 UBTConnectModel.MarkerRecordList = MarkerRecordList;
 
 });
-define("UBTConnect.model$UI_OneSchoolGlobalList", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Geography_CS.model", "UBTConnect.model", "Connect_Geography_CS.model$UI_OneSchoolGlobalRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Geography_CS"], function (exports, OutSystems, Connect_Geography_CSModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var UI_OneSchoolGlobalList = (function (_super) {
-__extends(UI_OneSchoolGlobalList, _super);
-function UI_OneSchoolGlobalList(defaults) {
-_super.apply(this, arguments);
-}
-UI_OneSchoolGlobalList.itemType = Connect_Geography_CSModel.UI_OneSchoolGlobalRec;
-return UI_OneSchoolGlobalList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.UI_OneSchoolGlobalList = UI_OneSchoolGlobalList;
-
-});
 define("UBTConnect.model$Connect_SearchBirthdayOptionsRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$Connect_SearchBirthdayOptionsRecord"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var Connect_SearchBirthdayOptionsRecordList = (function (_super) {
@@ -26207,19 +23196,6 @@ Connect_SearchBirthdayOptionsRecordList.itemType = UBTConnectModel.Connect_Searc
 return Connect_SearchBirthdayOptionsRecordList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.Connect_SearchBirthdayOptionsRecordList = Connect_SearchBirthdayOptionsRecordList;
-
-});
-define("UBTConnect.model$LocalityList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$LocalityRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var LocalityList = (function (_super) {
-__extends(LocalityList, _super);
-function LocalityList(defaults) {
-_super.apply(this, arguments);
-}
-LocalityList.itemType = ContactBase_ISModel.LocalityRec;
-return LocalityList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.LocalityList = LocalityList;
 
 });
 define("UBTConnect.model$UI_Subdivision_Card_ContentRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$UI_Subdivision_Card_ContentRecord"], function (exports, OutSystems, UBTConnectModel) {
@@ -26287,19 +23263,6 @@ return NotesRecordList;
 UBTConnectModel.NotesRecordList = NotesRecordList;
 
 });
-define("UBTConnect.model$HostConfig_FontWeightsList", ["exports", "OutSystems/ClientRuntime/Main", "UBT_CW.model", "UBTConnect.model", "UBT_CW.model$HostConfig_FontWeightsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBT_CW"], function (exports, OutSystems, UBT_CWModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var HostConfig_FontWeightsList = (function (_super) {
-__extends(HostConfig_FontWeightsList, _super);
-function HostConfig_FontWeightsList(defaults) {
-_super.apply(this, arguments);
-}
-HostConfig_FontWeightsList.itemType = UBT_CWModel.HostConfig_FontWeightsRec;
-return HostConfig_FontWeightsList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.HostConfig_FontWeightsList = HostConfig_FontWeightsList;
-
-});
 define("UBTConnect.model$AppManager_JSUtils_CustomEventsList", ["exports", "OutSystems/ClientRuntime/Main", "UBT_AppManager.model", "UBTConnect.model", "UBT_AppManager.model$AppManager_JSUtils_CustomEventsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBT_AppManager"], function (exports, OutSystems, UBT_AppManagerModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var AppManager_JSUtils_CustomEventsList = (function (_super) {
@@ -26311,19 +23274,6 @@ AppManager_JSUtils_CustomEventsList.itemType = UBT_AppManagerModel.AppManager_JS
 return AppManager_JSUtils_CustomEventsList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.AppManager_JSUtils_CustomEventsList = AppManager_JSUtils_CustomEventsList;
-
-});
-define("UBTConnect.model$FormerSpouseItemRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$FormerSpouseItemRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var FormerSpouseItemRecordList = (function (_super) {
-__extends(FormerSpouseItemRecordList, _super);
-function FormerSpouseItemRecordList(defaults) {
-_super.apply(this, arguments);
-}
-FormerSpouseItemRecordList.itemType = UBTConnectModel.FormerSpouseItemRecord;
-return FormerSpouseItemRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.FormerSpouseItemRecordList = FormerSpouseItemRecordList;
 
 });
 define("UBTConnect.model$PositionRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$PositionRecord"], function (exports, OutSystems, UBTConnectModel) {
@@ -26521,32 +23471,6 @@ return ConnectSearch_RecentSearchTermList;
 UBTConnectModel.ConnectSearch_RecentSearchTermList = ConnectSearch_RecentSearchTermList;
 
 });
-define("UBTConnect.model$CDNRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$CDNRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var CDNRecordList = (function (_super) {
-__extends(CDNRecordList, _super);
-function CDNRecordList(defaults) {
-_super.apply(this, arguments);
-}
-CDNRecordList.itemType = UBTConnectModel.CDNRecord;
-return CDNRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.CDNRecordList = CDNRecordList;
-
-});
-define("UBTConnect.model$UI_CountryDetailsList", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Geography_CS.model", "UBTConnect.model", "Connect_Geography_CS.model$UI_CountryDetailsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Geography_CS"], function (exports, OutSystems, Connect_Geography_CSModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var UI_CountryDetailsList = (function (_super) {
-__extends(UI_CountryDetailsList, _super);
-function UI_CountryDetailsList(defaults) {
-_super.apply(this, arguments);
-}
-UI_CountryDetailsList.itemType = Connect_Geography_CSModel.UI_CountryDetailsRec;
-return UI_CountryDetailsList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.UI_CountryDetailsList = UI_CountryDetailsList;
-
-});
 define("UBTConnect.model$UI_ServicesPageRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$UI_ServicesPageRecord"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var UI_ServicesPageRecordList = (function (_super) {
@@ -26610,19 +23534,6 @@ RecurrencePatternWeekIndexList.itemType = Connect2_Assemble_CSModel.RecurrencePa
 return RecurrencePatternWeekIndexList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.RecurrencePatternWeekIndexList = RecurrencePatternWeekIndexList;
-
-});
-define("UBTConnect.model$SubdivisionList", ["exports", "OutSystems/ClientRuntime/Main", "ContactBase_IS.model", "UBTConnect.model", "ContactBase_IS.model$SubdivisionRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$ContactBase_IS"], function (exports, OutSystems, ContactBase_ISModel, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var SubdivisionList = (function (_super) {
-__extends(SubdivisionList, _super);
-function SubdivisionList(defaults) {
-_super.apply(this, arguments);
-}
-SubdivisionList.itemType = ContactBase_ISModel.SubdivisionRec;
-return SubdivisionList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.SubdivisionList = SubdivisionList;
 
 });
 define("UBTConnect.model$Type_FCMExtraParameterList", ["exports", "OutSystems/ClientRuntime/Main", "UBT_AppManager_CS.model", "UBTConnect.model", "UBT_AppManager_CS.model$Type_FCMExtraParameterRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBT_AppManager_CS"], function (exports, OutSystems, UBT_AppManager_CSModel, UBTConnectModel) {
@@ -26793,19 +23704,6 @@ CommunityBusinessType2List.itemType = Connect2_LegacySharedModel.CommunityBusine
 return CommunityBusinessType2List;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.CommunityBusinessType2List = CommunityBusinessType2List;
-
-});
-define("UBTConnect.model$UI_OneSchoolGlobalRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$UI_OneSchoolGlobalRecord"], function (exports, OutSystems, UBTConnectModel) {
-var OS = OutSystems.Internal;
-var UI_OneSchoolGlobalRecordList = (function (_super) {
-__extends(UI_OneSchoolGlobalRecordList, _super);
-function UI_OneSchoolGlobalRecordList(defaults) {
-_super.apply(this, arguments);
-}
-UI_OneSchoolGlobalRecordList.itemType = UBTConnectModel.UI_OneSchoolGlobalRecord;
-return UI_OneSchoolGlobalRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnectModel.UI_OneSchoolGlobalRecordList = UI_OneSchoolGlobalRecordList;
 
 });
 define("UBTConnect.model$DetailDisplayTypeList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect.model", "UBTConnectLibrary.model$DetailDisplayTypeRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnectModel) {
@@ -27259,94 +24157,6 @@ return getRecurrenceRangeTypeRecord("f60a7eeb-2f69-4bca-ae73-4a288b0dfcde");
 }
 });
 
-UBTConnectModel.staticEntities.notificationDeepLinkParameter = {};
-var getNotificationDeepLinkParameterRecord = function (record) {
-return OS.ApplicationInfo.getModules()["1ead1054-e761-4048-8aa9-2cf23d90b9e7"].staticEntities["6645eef2-4964-4f83-bacb-cce4bf0f2e0f"][record];
-};
-Object.defineProperty(UBTConnectModel.staticEntities.notificationDeepLinkParameter, "isPushNotificationOnly", {
-get: function () {
-return getNotificationDeepLinkParameterRecord("0833d74f-fd16-4c93-a9f4-5a4c0abcb793");
-}
-});
-
-Object.defineProperty(UBTConnectModel.staticEntities.notificationDeepLinkParameter, "assembleEventTypeTitle", {
-get: function () {
-return getNotificationDeepLinkParameterRecord("12bc6a05-1c3e-4718-9cfb-7f5f760620e8");
-}
-});
-
-Object.defineProperty(UBTConnectModel.staticEntities.notificationDeepLinkParameter, "retractedMessage", {
-get: function () {
-return getNotificationDeepLinkParameterRecord("14d8c447-21c1-42e1-b9eb-0bfd77f18750");
-}
-});
-
-Object.defineProperty(UBTConnectModel.staticEntities.notificationDeepLinkParameter, "userId", {
-get: function () {
-return getNotificationDeepLinkParameterRecord("200284dc-7941-4319-a785-1828be92dc2e");
-}
-});
-
-Object.defineProperty(UBTConnectModel.staticEntities.notificationDeepLinkParameter, "logout", {
-get: function () {
-return getNotificationDeepLinkParameterRecord("5ee55975-9def-4625-96bb-cd1e567404cd");
-}
-});
-
-Object.defineProperty(UBTConnectModel.staticEntities.notificationDeepLinkParameter, "isGeneralInformation", {
-get: function () {
-return getNotificationDeepLinkParameterRecord("664b31fa-b681-4ce9-ad88-bcb06a4992f9");
-}
-});
-
-Object.defineProperty(UBTConnectModel.staticEntities.notificationDeepLinkParameter, "messageInstanceId", {
-get: function () {
-return getNotificationDeepLinkParameterRecord("79652ce6-f781-4801-809d-347f0f5c809b");
-}
-});
-
-Object.defineProperty(UBTConnectModel.staticEntities.notificationDeepLinkParameter, "seriesId", {
-get: function () {
-return getNotificationDeepLinkParameterRecord("963f5652-904c-44ca-a63c-5114dca3f263");
-}
-});
-
-Object.defineProperty(UBTConnectModel.staticEntities.notificationDeepLinkParameter, "isPrivate", {
-get: function () {
-return getNotificationDeepLinkParameterRecord("adfad4c3-6ece-4396-b236-9556bf6ff1ab");
-}
-});
-
-Object.defineProperty(UBTConnectModel.staticEntities.notificationDeepLinkParameter, "message", {
-get: function () {
-return getNotificationDeepLinkParameterRecord("b76eaac4-a04f-461b-b945-d8aa8bd1295d");
-}
-});
-
-Object.defineProperty(UBTConnectModel.staticEntities.notificationDeepLinkParameter, "messageTemplateId", {
-get: function () {
-return getNotificationDeepLinkParameterRecord("b98fc89e-1c3b-49c3-9a14-e2524e79b86f");
-}
-});
-
-Object.defineProperty(UBTConnectModel.staticEntities.notificationDeepLinkParameter, "event_TEST", {
-get: function () {
-return getNotificationDeepLinkParameterRecord("bf4d784f-12a5-4655-9818-2b330924124e");
-}
-});
-
-Object.defineProperty(UBTConnectModel.staticEntities.notificationDeepLinkParameter, "deviceId", {
-get: function () {
-return getNotificationDeepLinkParameterRecord("e9181199-4ae8-4716-9656-46a7deb5c917");
-}
-});
-
-Object.defineProperty(UBTConnectModel.staticEntities.notificationDeepLinkParameter, "eventId", {
-get: function () {
-return getNotificationDeepLinkParameterRecord("f0e64e34-aaa7-4e19-b95e-97e4da1bc566");
-}
-});
-
 UBTConnectModel.staticEntities.uBT_MessageType = {};
 var getUBT_MessageTypeRecord = function (record) {
 return OS.ApplicationInfo.getModules()["2c2986c3-daaf-4dc5-a0c6-d9a75a42125d"].staticEntities["5a451e53-0d4f-4a13-8dcd-d2c12db5eb4f"][record];
@@ -27514,28 +24324,6 @@ return getUBT_SystemExceptionTypesRecord("d9a03bb3-fb91-4d21-aa5c-f41fb0caf330")
 Object.defineProperty(UBTConnectModel.staticEntities.uBT_SystemExceptionTypes, "invalidJavascriptType", {
 get: function () {
 return getUBT_SystemExceptionTypesRecord("e59877ec-a2e0-4453-9e5b-6f7af461913c");
-}
-});
-
-UBTConnectModel.staticEntities.shareUserListType = {};
-var getShareUserListTypeRecord = function (record) {
-return OS.ApplicationInfo.getModules()["3712370e-f7b5-4c2a-ade3-d8800219efd4"].staticEntities["2af19486-bd71-4f23-a89b-e41c05f688e0"][record];
-};
-Object.defineProperty(UBTConnectModel.staticEntities.shareUserListType, "recentShared", {
-get: function () {
-return getShareUserListTypeRecord("21e34f21-11c2-4b26-bc0f-9ab30d404c1e");
-}
-});
-
-Object.defineProperty(UBTConnectModel.staticEntities.shareUserListType, "searchResult", {
-get: function () {
-return getShareUserListTypeRecord("5cb5e571-d6e6-44bf-98bd-816047bf7e93");
-}
-});
-
-Object.defineProperty(UBTConnectModel.staticEntities.shareUserListType, "suggestion", {
-get: function () {
-return getShareUserListTypeRecord("b1cfeee0-ad8d-4be9-8b07-f0f5bedcfb7c");
 }
 });
 
@@ -32109,22 +28897,6 @@ return getShapeRecord("f20c2269-270a-43b2-ba29-bd8fbff2519f");
 }
 });
 
-UBTConnectModel.staticEntities.carouselDirection = {};
-var getCarouselDirectionRecord = function (record) {
-return OS.ApplicationInfo.getModules()["d56fb881-3978-4994-bb55-529378718c43"].staticEntities["71cbe266-f7c5-42fb-beae-76bc325d99ea"][record];
-};
-Object.defineProperty(UBTConnectModel.staticEntities.carouselDirection, "rightToLeft", {
-get: function () {
-return getCarouselDirectionRecord("4b5575cd-7598-420a-97db-5088d4d86a4d");
-}
-});
-
-Object.defineProperty(UBTConnectModel.staticEntities.carouselDirection, "leftToRight", {
-get: function () {
-return getCarouselDirectionRecord("a05b6420-43c5-4660-9526-95e2052a45a8");
-}
-});
-
 UBTConnectModel.staticEntities.position = {};
 var getPositionRecord = function (record) {
 return OS.ApplicationInfo.getModules()["d56fb881-3978-4994-bb55-529378718c43"].staticEntities["83c073e8-bac2-4122-9772-aa6e122a5d36"][record];
@@ -32648,6 +29420,12 @@ return getLaunchDarkly_FFRecord("233728ad-021f-4feb-9206-eb4e8a0db1b8");
 Object.defineProperty(UBTConnectModel.staticEntities.launchDarkly_FF, "mobileHasDeceasedPhotos", {
 get: function () {
 return getLaunchDarkly_FFRecord("3da821c6-6cc9-473b-9291-11e94a69f532");
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.launchDarkly_FF, "mobileDirectoryHouseholdGallery", {
+get: function () {
+return getLaunchDarkly_FFRecord("4ab53042-7c90-44b2-8df8-324120f19c21");
 }
 });
 
@@ -33347,6 +30125,12 @@ return getBookmarkCategoryRecord("889d590c-4fae-41ef-9273-0a1eff8e4dd0");
 }
 });
 
+Object.defineProperty(UBTConnectModel.staticEntities.bookmarkCategory, "oneSchoolGlobal2", {
+get: function () {
+return getBookmarkCategoryRecord("9d26144a-975b-45a3-9e6d-2c93d53828bd");
+}
+});
+
 Object.defineProperty(UBTConnectModel.staticEntities.bookmarkCategory, "locality", {
 get: function () {
 return getBookmarkCategoryRecord("a348818a-fa35-4bff-a34e-178519d83bf7");
@@ -33368,12 +30152,6 @@ return getBookmarkCategoryRecord("d6e17b52-a77d-48c1-9198-b4eab4db6972");
 Object.defineProperty(UBTConnectModel.staticEntities.bookmarkCategory, "interchange", {
 get: function () {
 return getBookmarkCategoryRecord("d824fe40-c000-47ee-8361-5c0a281dd640");
-}
-});
-
-Object.defineProperty(UBTConnectModel.staticEntities.bookmarkCategory, "oneSchoolGlobal", {
-get: function () {
-return getBookmarkCategoryRecord("e3054760-7ac9-4429-afe2-a499783f232e");
 }
 });
 

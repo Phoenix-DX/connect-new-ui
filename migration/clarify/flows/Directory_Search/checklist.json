@@ -37,7 +37,17 @@
    "evidence": "app/src/pages/Search/SearchPage.tsx:9; TST ScreenBlock_Search.mvc.js:3267-3268; migration/knowledge/flag-values-tst.json:26 (c2EnableSearchByBirthday true); migration/flags.md:117",
    "verdict": "match",
    "note": "TST: present (ScreenBlock_Search.js:3267-3268); flags.md:117: default-only, TST value on (user, 2026-10-14)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-004",
@@ -49,7 +59,17 @@
    "evidence": "app/src/pages/Search/SearchPage.tsx:10; TST ScreenBlock_Search.mvc.js:3156-3157; migration/knowledge/feature-flag-helpers.md:17 (GetHasCarouselEnabled reads C2EnableCarousel); migration/knowledge/flag-values-tst.json:11 (true)",
    "verdict": "match",
    "note": "TST: present (ScreenBlock_Search.js:3156-3157); flags.md:138 lists action:getHasCarouselEnabled for ScreenBlock_Search; flag name C2EnableCarousel is from the React comment, not from the pack",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-005",
@@ -76,7 +96,17 @@
    "verified": "code",
    "severity": "major",
    "finding": "F3",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-007",
@@ -136,7 +166,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:46-60 | present (ScreenBlock_Search.js:115 attr list)",
    "verdict": "match",
    "note": "TST: present (ScreenBlock_Search.js:115 attr list); Search screen passes no value; Map screen also uses the block (pack: used by Map, Search)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-012",
@@ -148,7 +188,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:49 | present (ScreenBlock_Search.js:115, 188-189)",
    "verdict": "match",
    "note": "TST: present (ScreenBlock_Search.js:115, 188-189)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-013",
@@ -163,7 +213,17 @@
    "verified": "live",
    "severity": "minor",
    "finding": "F4",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-014",
@@ -175,7 +235,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:62-66 | present (ScreenBlock_Search.js:2997)",
    "verdict": "match",
    "note": "TST: present (ScreenBlock_Search.js:2997); The Search screen gives no handler; only Map embeds the block with the event",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-015",
@@ -187,7 +257,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:125-136 comment | present",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-016",
@@ -199,7 +279,17 @@
    "evidence": "app/src/pages/Search/hooks/searchState.ts:14-16 | present (searchKey_CurrentVar, searchKey_LastSearchedVar)",
    "verdict": "match",
    "note": "TST: present (searchKey_CurrentVar, searchKey_LastSearchedVar)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-017",
@@ -211,7 +301,17 @@
    "evidence": "app/src/pages/Search/hooks/searchState.ts:18 | present (hasSearchedVar, set at :2464, :2664)",
    "verdict": "match",
    "note": "TST: present (hasSearchedVar, set at :2464, :2664)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-018",
@@ -223,7 +323,17 @@
    "evidence": "app/src/pages/Search/hooks/searchState.ts:22 | present",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-019",
@@ -235,7 +345,17 @@
    "evidence": "app/src/pages/Search/hooks/searchState.ts:20 | present",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-020",
@@ -247,7 +367,17 @@
    "evidence": "app/src/pages/Search/hooks/searchState.ts:24 | present",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-021",
@@ -259,7 +389,17 @@
    "evidence": "app/src/pages/Search/hooks/searchState.ts:26 | present",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-022",
@@ -271,7 +411,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:77-84 | present",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-023",
@@ -283,7 +433,17 @@
    "evidence": "app/src/pages/Search/hooks/searchState.ts:28 | present",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-024",
@@ -295,7 +455,17 @@
    "evidence": "app/src/pages/Search/hooks/searchState.ts:30-34 | present",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-025",
@@ -307,7 +477,17 @@
    "evidence": "app/src/pages/Search/hooks/searchState.ts:36 | present",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-026",
@@ -319,7 +499,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:157 | present (ScreenBlock_Search.js:100)",
    "verdict": "match",
    "note": "TST: present (ScreenBlock_Search.js:100)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-027",
@@ -331,7 +521,17 @@
    "evidence": "absent (the TST list source is get_RecentClickedResultsAggr.listOut, ScreenBlock",
    "verdict": "match",
    "note": "TST absent: the TST list reads get_RecentClickedResultsAggr.listOut (TST ScreenBlock_Search.mvc.js:741). DEV only, see section 6.1",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-028",
@@ -343,7 +543,17 @@
    "evidence": "absent (grep recentClickedResults_Skeleton in ScreenBlock_Search.js: no match)",
    "verdict": "match",
    "note": "TST absent (no recentClickedResults_Skeleton in the TST file). DEV only, see section 6.1",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-029",
@@ -355,7 +565,17 @@
    "evidence": "app/src/api/search/repository.ts:11-23",
    "verdict": "match",
    "note": "The React call sends the block variables, as the TST server data action receives them. The CountryCode mapping is server side. In_SearchTargetId on the wire: F4",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-030",
@@ -367,7 +587,17 @@
    "evidence": "migration/knowledge/auto-decisions-2026-10-16.md:46: TST added SearchResult.DisplayAddress / DisplayHouseholdName after the survey; CONFIRMED (user, 2026-10-17): not adopted, Search/ShareSheet unchanged",
    "verdict": "differs",
    "note": "The TST client file has no displayHouseholdName: the data action runs on the server. The branch runs only for In_SearchTargetId = Map (Map screen); the Search screen never takes it",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-031",
@@ -379,7 +609,17 @@
    "evidence": "app/src/api/search/mapper.ts:34-38 | present (server side)",
    "verdict": "match",
    "note": "the outputs of the data action are Households, People, Places; the mapper reads the same wire names",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-032",
@@ -391,7 +631,17 @@
    "evidence": "app/src/pages/Search/mocks.ts:8-11, 45-49 (handler keyed by ScreenBlock_Search/DataActionFetchSearchResults)",
    "verdict": "mock-only",
    "note": "Production needs Connect_Search_CS.Connect_Search behind the server data action DataActionFetchSearchResults. The mock gives the same lists for any term",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-033",
@@ -403,7 +653,17 @@
    "evidence": "absent (grep FilteredRecentClicked and SearchResultsVisibility in ScreenBlock_Se",
    "verdict": "match",
    "note": "TST absent (no FilteredRecentClicked in the TST file). DEV only, see section 6.1",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-034",
@@ -415,7 +675,17 @@
    "evidence": "absent (no match in ScreenBlock_Search.js)",
    "verdict": "match",
    "note": "TST absent (no SearchResultsVisibility in the TST file). DEV only, see section 6.1",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-035",
@@ -427,7 +697,17 @@
    "evidence": "app.md: generic System actions",
    "verdict": "match",
    "note": "generic list operations; the missing ListAppend of the loading rows is F3 (rows 089-092)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-036",
@@ -439,7 +719,17 @@
    "evidence": "app/src/platform/storage/localEntities/recentSearch.ts:177-203; TST ScreenBlock_Search.mvc.js:1868-1945 (UserId AND category group AND search-key group AND target group), :1971-1972 (default maxRecords 5)",
    "verdict": "match",
    "note": "The React AND of the four groups equals the TST SQL. DEV max 100 at start against TST 5: section 6.1",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-037",
@@ -451,7 +741,17 @@
    "evidence": "app/src/platform/storage/localEntities/recentSearch.ts:158-175; TST ScreenBlock_Search.mvc.js:2023-2091 (default maxRecords 10)",
    "verdict": "match",
    "note": "TST: present (get_RecentSearchTermsAggr, SQL ScreenBlock_Search.js:2395+)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-038",
@@ -463,7 +763,17 @@
    "evidence": "app/src/api/search/repository.ts:25-33 | present",
    "verdict": "match",
    "note": "React call only; the server side is row 146",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-039",
@@ -475,7 +785,17 @@
    "evidence": "app/src/platform/storage/localEntities/recentSearch.ts:208-280; migration/change-requests/CR-Search-1.md (port of the local entities)",
    "verdict": "match",
    "note": "TST: present (entity actions in ScreenBlock_Search.js); Stored in the browser (IndexedDB); no server action",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-040",
@@ -487,7 +807,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:321; app/src/platform/session/clientVars.ts:20; TST ScreenBlock_Search.mvc.js:2975",
    "verdict": "match",
    "note": "TST: present (ScreenBlock_Search.js:2975 getSearch_RecenctClickedResultsLimit)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-041",
@@ -499,7 +829,17 @@
    "evidence": "app/src/platform/session/clientVars.ts:30",
    "verdict": "match",
    "note": "shared layout variable, not read by the Search block; checked in the report of App_Common",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-042",
@@ -511,7 +851,17 @@
    "evidence": "app/src/platform/session/clientVars.ts:16",
    "verdict": "match",
    "note": "shared layout variable, not read by the Search block; checked in the report of App_Common",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-043",
@@ -523,7 +873,17 @@
    "evidence": "App_Policies report row 083: read and written only by disabled nodes; grep App_Policies_RedirectURL in app/src: 0 hits",
    "verdict": "n/a",
    "note": "dead in the model",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-044",
@@ -535,7 +895,17 @@
    "evidence": "app/src/platform/session/clientVars.ts:23",
    "verdict": "match",
    "note": "shared layout variable, not read by the Search block; checked in the report of App_Common",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-045",
@@ -547,7 +917,17 @@
    "evidence": "app/src/platform/session/clientVars.ts:24-25",
    "verdict": "match",
    "note": "shared layout variable, not read by the Search block; checked in the report of App_Common",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-046",
@@ -559,7 +939,17 @@
    "evidence": "app/src/platform/session/clientVars.ts:15",
    "verdict": "match",
    "note": "shared layout variable, not read by the Search block; checked in the report of App_Common",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-047",
@@ -571,7 +961,17 @@
    "evidence": "app/src/pages/Search/components/SearchView.tsx:78-80 | present",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-048",
@@ -583,7 +983,17 @@
    "evidence": "app/src/pages/Search/components/SearchView.tsx:82-94 | present: searchPromptAttr, debounce_DelayMSAttr=300, focusOnReadyAttr=true (Scre",
    "verdict": "match",
    "note": "TST: present: searchPromptAttr, debounce_DelayMSAttr=300, focusOnReadyAttr=true (ScreenBlock_Search.js:304-307); parity-exemptions.json:32: FocusOnReady kept (Search Q4)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-049",
@@ -595,7 +1005,19 @@
    "evidence": "app/src/components/ui/Input/Input.tsx:47, 204 (MaxLength default 50); TST Input.mvc.js:326 (maxLength 50 for the Search input type); TST ScreenBlock_Search.mvc.js:300-308 (In_Options sets only InitalString, SearchPrompt, Debounce_DelayMS, BorderRadius, FocusOnReady)",
    "verdict": "match",
    "note": "TST: Input.mvc.js (UBTConnectLibrary): maxLength: 50 at the Search input type (line 326), mandatory: in_OptionsIn.isMandatoryAttr (line 325), enabled: in_OptionsIn.isEnabledAttr (line 281), inputType Search (8); ScreenBlock_Search passes MaxLength/IsMandatory/IsEnabled? In the TST ScreenBlock_Search.js the record lines 304-307 set only SearchPrompt, Debounce_DelayMS, FocusOnReady plus InitalString and BorderRadius",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (lines-same)",
+     "UBTConnectLibrary.ConnectPatterns.Input.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-050",
@@ -607,7 +1029,17 @@
    "evidence": "app/src/pages/Search/components/SearchView.tsx:91 | present (ScreenBlock_Search.js InputEvent_OnChange)",
    "verdict": "match",
    "note": "TST: present (ScreenBlock_Search.js InputEvent_OnChange)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-051",
@@ -619,7 +1051,17 @@
    "evidence": "app/src/pages/Search/components/SearchView.tsx:92 | present",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-052",
@@ -631,7 +1073,17 @@
    "evidence": "app/src/pages/Search/components/SearchView.tsx:93 | present (ScreenBlock_Search.js:2184-2200)",
    "verdict": "match",
    "note": "TST: present (ScreenBlock_Search.js:2184-2200)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-053",
@@ -643,7 +1095,17 @@
    "evidence": "app/src/pages/Search/components/SearchView.tsx:97-104 | present",
    "verdict": "match",
    "note": "TST: present; FilterSheet_Icon logic is in flow App_CommonBlocks_Filter (BR-UBTCON-327)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-054",
@@ -655,7 +1117,17 @@
    "evidence": "app/src/pages/Search/components/SearchView.tsx:106-122 | present",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-055",
@@ -667,7 +1139,17 @@
    "evidence": "app/src/pages/Search/components/SearchView.tsx:128 | present (ScreenBlock_Search.js:~499 area)",
    "verdict": "match",
    "note": "TST: present (ScreenBlock_Search.js:~499 area)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-056",
@@ -679,7 +1161,17 @@
    "evidence": "app/src/pages/Search/components/SearchView.tsx:130 | present",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-057",
@@ -691,7 +1183,17 @@
    "evidence": "app/src/pages/Search/components/SearchView.tsx:74 | present, condition uses get_RecentClickedResultsAggr.listOut and get_RecentSearc",
    "verdict": "match",
    "note": "TST reads get_RecentClickedResultsAggr.listOut (TST ScreenBlock_Search.mvc.js:499); DEV reads Get_FilteredRecentClickedResults: section 6.1",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-058",
@@ -703,7 +1205,17 @@
    "evidence": "app/src/pages/Search/components/RecentSearch.tsx:67-90 | present (ScreenBlock_Search.js:582)",
    "verdict": "match",
    "note": "TST: present (ScreenBlock_Search.js:582)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-059",
@@ -715,7 +1227,17 @@
    "evidence": "app/src/pages/Search/components/RecentSearch.tsx:77-88 | present (ScreenBlock_Search.js:627)",
    "verdict": "match",
    "note": "TST: present (ScreenBlock_Search.js:627); The inner If (lists not empty) has no separate React condition; it sits inside the hasRecent true branch",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-060",
@@ -727,7 +1249,17 @@
    "evidence": "TST ScreenBlock_Search.mvc.js:690-713: Recent_SearchResults holds a Gallery, no SkeletonSection; the only SkeletonSection of the block is at :1334 (results)",
    "verdict": "match",
    "note": "DEV only: section 6.1",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-061",
@@ -739,7 +1271,17 @@
    "evidence": "app/src/pages/Search/components/RecentSearch.tsx:93-105; TST ScreenBlock_Search.mvc.js:709-713 (Gallery 5/5/5, ItemsGap ExtraSmall), :741-742 (list style \"list list-group\"), :777-781 (item style overflow-wrap-anywhere, text-align center)",
    "verdict": "match",
    "note": "DEV shows a plain list with class recent-search-list: section 6.1",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-062",
@@ -751,7 +1293,17 @@
    "evidence": "app/src/pages/Search/components/RecentSearch.tsx:106-108 | present (ScreenBlock_Search.js:764 typeConvertRecord)",
    "verdict": "match",
    "note": "TST: present (ScreenBlock_Search.js:764 typeConvertRecord)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-063",
@@ -766,7 +1318,17 @@
    "verified": "live",
    "severity": "minor",
    "finding": "F5",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-064",
@@ -778,7 +1340,17 @@
    "evidence": "app/src/pages/Search/components/RecentSearch.tsx:116-123 | present",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-065",
@@ -790,7 +1362,17 @@
    "evidence": "app/src/pages/Search/components/RecentSearch.tsx:129-172 | present (Recent_SearchTerms at ScreenBlock_Search.js:880)",
    "verdict": "match",
    "note": "TST: present (Recent_SearchTerms at ScreenBlock_Search.js:880)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-066",
@@ -802,7 +1384,17 @@
    "evidence": "app/src/pages/Search/components/RecentSearch.tsx:144-157; TST ScreenBlock_Search.mvc.js:953-962 (TextOptions set Color, FontSize, FontWeight only)",
    "verdict": "match",
    "note": "DEV sets IsOverflowEllipsis True: section 6.1",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-067",
@@ -814,7 +1406,17 @@
    "evidence": "app/src/pages/Search/components/RecentSearch.tsx:160-166 | present",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-068",
@@ -826,7 +1428,17 @@
    "evidence": "app/src/pages/Search/components/RecentSearch.tsx:174-184 | present (ScreenBlock_Search.js:1080)",
    "verdict": "match",
    "note": "unreachable on TST (the outer If at TST ScreenBlock_Search.mvc.js:499 needs a non-empty list) and in React (SearchView.tsx:131)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-069",
@@ -838,7 +1450,17 @@
    "evidence": "app/src/pages/Search/components/SearchView.tsx:73 | present (ScreenBlock_Search.js:1123, 1165)",
    "verdict": "match",
    "note": "TST: present (ScreenBlock_Search.js:1123, 1165)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-070",
@@ -850,7 +1472,17 @@
    "evidence": "app/src/pages/Search/components/SearchView.tsx:152 | present (widget HasSubmittedSearched, ScreenBlock_Search.js:1207)",
    "verdict": "match",
    "note": "TST: present (widget HasSubmittedSearched, ScreenBlock_Search.js:1207)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-071",
@@ -865,7 +1497,17 @@
    "verified": "code",
    "severity": "major",
    "finding": "F1",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-072",
@@ -877,7 +1519,17 @@
    "evidence": "app/src/pages/Search/components/SearchView.tsx:169 | present",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-073",
@@ -889,7 +1541,17 @@
    "evidence": "app/src/pages/Search/components/SearchView.tsx:171-180; TST ScreenBlock_Search.mvc.js:1354 (hasPlaces || (isLoading && category))",
    "verdict": "match",
    "note": "TST: present; Pack text 'HasPlaces or IsLoading and (cat...)' has no brackets; React reads it as hasPlaces || (isLoading && category). Also the pack condition is written as one flat expression",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-074",
@@ -901,7 +1563,17 @@
    "evidence": "app/src/pages/Search/components/SearchView.tsx:181-190 | present",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-075",
@@ -913,7 +1585,17 @@
    "evidence": "app/src/pages/Search/components/SearchView.tsx:191-202 | present",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-076",
@@ -925,7 +1607,17 @@
    "evidence": "app/src/pages/Search/components/SearchView.tsx:203 | present",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-077",
@@ -937,7 +1629,17 @@
    "evidence": "app/src/pages/Search/components/SearchView.tsx:205 | present (ScreenBlock_Search.js:1483)",
    "verdict": "match",
    "note": "TST: present (ScreenBlock_Search.js:1483)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-078",
@@ -949,7 +1651,17 @@
    "evidence": "app/src/pages/Search/components/SearchView.tsx:206-223 | present (ScreenBlock_Search.js:1581)",
    "verdict": "match",
    "note": "TST also uses \\r\\n (TST ScreenBlock_Search.mvc.js:1581)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-079",
@@ -961,7 +1673,17 @@
    "evidence": "app/src/pages/Search/components/SearchView.tsx:224-234; TST ScreenBlock_Search.mvc.js:1614",
    "verdict": "match",
    "note": "TST: present (ScreenBlock_Search.js:1614)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-080",
@@ -973,7 +1695,17 @@
    "evidence": "app/src/pages/Search/components/SearchView.tsx:243 | present",
    "verdict": "match",
    "note": "TST: present; BottomBarMenu logic: flow App_Common (BR-UBTCON-314..318)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-081",
@@ -985,7 +1717,17 @@
    "evidence": "app/src/pages/Search/components/SearchView.tsx:244 | present",
    "verdict": "match",
    "note": "TST: present; Logic in flow App_Common / App_PIN / App_Policies (BR-UBTCON-310..313)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-082",
@@ -997,7 +1739,17 @@
    "evidence": "app/src/pages/Search/components/SearchView.tsx:249-270 FilterSheetContainer rendered unconditionally | present (widget HideInServiceStudio_BottomSheets, ScreenBlock_Search.js:4731)",
    "verdict": "n/a",
    "note": "dead in the model; React renders only the else branch (FilterSheetContainer, row 083)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-083",
@@ -1009,7 +1761,17 @@
    "evidence": "app/src/pages/Search/components/SearchView.tsx:249-256 | present",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-084",
@@ -1021,7 +1783,17 @@
    "evidence": "app/src/pages/Search/components/SearchView.tsx:257-269 | present (event_ApplyFilters ScreenBlock_Search.js:3647-3698)",
    "verdict": "match",
    "note": "TST: present (event_ApplyFilters ScreenBlock_Search.js:3647-3698); The DEV event passes SortBy_Title, OptionChoice_Control, SubState_Localities; React passes only optionLists, countriesTitle, hasFilters to the hook",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-085",
@@ -1033,7 +1805,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:219-223 | present (ScreenBlock_Search.js:2664 hasSearchedVar = false)",
    "verdict": "match",
    "note": "TST: present (ScreenBlock_Search.js:2664 hasSearchedVar = false); The pack's Action_ClearResults comes after FetchSearchResults data is in the view; React clears results in one dispatch",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-086",
@@ -1045,7 +1827,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:227 | present",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-087",
@@ -1057,7 +1849,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:228-229 | present (ScreenBlock_Search.js:2395+, 2440-2460)",
    "verdict": "match",
    "note": "TST: present (ScreenBlock_Search.js:2395+, 2440-2460)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-088",
@@ -1069,7 +1871,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:230-231 | present (ScreenBlock_Search.js:2464)",
    "verdict": "match",
    "note": "TST: present (ScreenBlock_Search.js:2464)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-089",
@@ -1084,7 +1896,17 @@
    "verified": "code",
    "severity": "major",
    "finding": "F3",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-090",
@@ -1099,7 +1921,17 @@
    "verified": "code",
    "severity": "major",
    "finding": "F3",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-091",
@@ -1114,7 +1946,17 @@
    "verified": "code",
    "severity": "major",
    "finding": "F3",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-092",
@@ -1129,7 +1971,17 @@
    "verified": "code",
    "severity": "major",
    "finding": "F3",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-093",
@@ -1141,7 +1993,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:232-241 | present",
    "verdict": "match",
    "note": "React also drops a stale answer (fetchSeq, useSearch.ts:232, 239). The TST runtime rule for two overlapping refreshes was not checked",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-094",
@@ -1153,7 +2015,17 @@
    "evidence": "app/src/pages/Search/hooks/searchState.ts:180-191 | present",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-095",
@@ -1165,7 +2037,17 @@
    "evidence": "TST ScreenBlock_Search.mvc.js:2551-2600 (NotRegistered, then BubbleCommunicationException, then AllExceptions only when not OS.Exceptions.isSystem); app/src/pages/Search/hooks/useSearch.ts:242-256 (same order, same system-exception rule)",
    "verdict": "match",
    "note": "At this point SearchKey_LastSearched equals SearchKey_Current on TST, so the React clear arguments are the same",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-096",
@@ -1177,7 +2059,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:246-249 | present (ScreenBlock_Search.js:2324-2331, 2567)",
    "verdict": "match",
    "note": "TST: present (ScreenBlock_Search.js:2324-2331, 2567)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-097",
@@ -1189,7 +2081,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:244-245 | present (ScreenBlock_Search.js:2323, 2330)",
    "verdict": "match",
    "note": "TST: present (ScreenBlock_Search.js:2323, 2330); In React the NotRegistered check is first; the pack lists All Exceptions first (handler order in OutSystems is by specificity)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-098",
@@ -1201,7 +2103,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:383-390 | present (ScreenBlock_Search.js:3667-3698)",
    "verdict": "match",
    "note": "TST: present (ScreenBlock_Search.js:3667-3698)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-099",
@@ -1213,7 +2125,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:375-377 | present",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-100",
@@ -1225,7 +2147,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:379-381 | present",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-101",
@@ -1240,7 +2172,17 @@
    "verified": "code",
    "severity": "major",
    "finding": "F2",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-102",
@@ -1252,7 +2194,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:302-306 | present",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-103",
@@ -1264,7 +2216,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:260-264 | present",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-104",
@@ -1276,7 +2238,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:266-268 | present (ScreenBlock_Search.js:2184-2195)",
    "verdict": "match",
    "note": "TST: present (ScreenBlock_Search.js:2184-2195)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-105",
@@ -1288,7 +2260,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:269-272 | present",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-106",
@@ -1300,7 +2282,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:273-281; TST ScreenBlock_Search.mvc.js:2206 (feedbackMessage_AutoClose(\"\", ErrorMessage, Error, true, \"\", 0, false)); BR-UBTCON-879, BR-UBTCON-179",
    "verdict": "match",
    "note": "TST: present (ScreenBlock_Search.js:2199-2208); BR-UBTCON-879. Other FeedbackMessage_AutoClose parameters are not in the pack",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-107",
@@ -1312,7 +2304,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:284-287 | present",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-108",
@@ -1324,7 +2326,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:289-294 | present (ScreenBlock_Search.js:3774-3792 per LE comment)",
    "verdict": "match",
    "note": "TST: present (ScreenBlock_Search.js:3774-3792 per LE comment)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-109",
@@ -1336,7 +2348,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:296-301 | present",
    "verdict": "match",
    "note": "TST: present; Pack filter for terms and clicked results includes the target; React filters by sameText target in both loops",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-110",
@@ -1348,7 +2370,17 @@
    "evidence": "absent (no OnAfterFetch for the aggregate in ScreenBlock_Search.js; grep Filtere",
    "verdict": "match",
    "note": "TST absent (no OnAfterFetch for the aggregate). DEV only, see section 6.1",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-111",
@@ -1360,7 +2392,17 @@
    "evidence": "app/src/pages/Search/hooks/searchState.ts:74-103; BR-C2UTL-178 (All, Households, Members, Places; UBTIcon unset); no TST file for SearchCategory_GetList (tst_source.py show: no output)",
    "verdict": "match",
    "note": "SearchCategory_GetList is in UBTConnect_Utils; React labels All, Households, Members, Places (searchState.ts:76-89) follow BR-C2UTL-178",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-112",
@@ -1372,7 +2414,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:160-170 | present (ScreenBlock_Search.js:3267-3272)",
    "verdict": "match",
    "note": "TST: present (ScreenBlock_Search.js:3267-3272)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-113",
@@ -1384,7 +2436,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:315-318 | present (ScreenBlock_Search.js:2710-2714)",
    "verdict": "match",
    "note": "TST: present (ScreenBlock_Search.js:2710-2714); BR-UBTCON-882",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-114",
@@ -1396,7 +2458,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:321 | present",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-115",
@@ -1408,7 +2480,17 @@
    "evidence": "app/src/platform/storage/localEntities/recentSearch.ts:254-257 | present (ScreenBlock_Search.js:2957-2975)",
    "verdict": "match",
    "note": "TST: present (ScreenBlock_Search.js:2957-2975); BR-UBTCON-883",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-116",
@@ -1420,7 +2502,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:322-325 | present (ScreenBlock_Search.js:2997)",
    "verdict": "match",
    "note": "TST: present (ScreenBlock_Search.js:2997)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-117",
@@ -1432,7 +2524,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:326-329 | present (ScreenBlock_Search.js:3005-3006)",
    "verdict": "match",
    "note": "React passes the id as text in the route; TextToInteger of a numeric id gives the same value",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-118",
@@ -1444,7 +2546,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:332-337 | present",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-119",
@@ -1456,7 +2568,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:338-339 | present",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-120",
@@ -1468,7 +2590,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:340-341 | present",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-121",
@@ -1480,7 +2612,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:342-344 | present",
    "verdict": "match",
    "note": "TST: present; Locality is handled earlier (navigate); the empty Locality case is unreachable in DEV",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-122",
@@ -1492,7 +2634,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:345-348 | present (ScreenBlock_Search.js:3156-3183)",
    "verdict": "match",
    "note": "TST: present (ScreenBlock_Search.js:3156-3183)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-123",
@@ -1504,7 +2656,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:349-351 | present (ScreenBlock_Search.js:3189-3190)",
    "verdict": "match",
    "note": "C2EnableCarousel is true on TST (flag-values-tst.json:11); the False branch is built and matches",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-124",
@@ -1516,7 +2678,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:321-325 (saveRecentClickedResult handles the cap inside | present",
    "verdict": "match",
    "note": "TST: present",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-125",
@@ -1528,7 +2700,17 @@
    "evidence": "app/src/pages/Search/hooks/searchState.ts:133-143; pack/actions.md ValidateSearchPhoneNumber (JS ValidatePhoneNumber); BR-UBTCON-178, BR-UBTCON-179",
    "verdict": "match",
    "note": "the pack JS and React give the same result for each input class",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-126",
@@ -1543,7 +2725,17 @@
    "verified": "code",
    "severity": "major",
    "finding": "F3",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-127",
@@ -1555,7 +2747,17 @@
    "evidence": "app/src/pages/Search/components/SearchView.tsx:171-203; BR-UBTCON-881",
    "verdict": "match",
    "note": "TST: -",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-128",
@@ -1567,7 +2769,17 @@
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:314-352; app/src/platform/storage/localEntities/recentSearch.ts:254-257; BR-UBTCON-882, BR-UBTCON-883",
    "verdict": "match",
    "note": "TST: -",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-129",
@@ -1579,7 +2791,19 @@
    "evidence": "app/src/components/ui/Input/Input.tsx:47-55, 136-146, 153; TST Input.mvc.js (constraints, row 049)",
    "verdict": "match",
    "note": "TST: present (Input.mvc.js read for constraints above)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)",
+     "UBTConnectLibrary.ConnectPatterns.Input.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-130",
@@ -1591,7 +2815,17 @@
    "evidence": "TST HorizontalTagList.mvc.js:344-398 (mandatory check with ListFilter_Selected, toggle, single selection clears the others, trigger Changed); app/src/components/ui/HorizontalTagList/HorizontalTagList.tsx:50-62",
    "verdict": "match",
    "note": "checked against the TST file that references.md names",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-131",
@@ -1603,7 +2837,17 @@
    "evidence": "TST SearchResult_Item.mvc.js:410-554 (name, If subscription warning, If AdditionalInformation, If Location), :745-776 (Member: Square, Medium_60, Rounded; else Auto, ListThumbnail_104, Soft; inputs override); app/src/components/search/SearchResultItem/SearchResultItem.tsx:50-52, 109-142",
    "verdict": "match",
    "note": "checked against the TST file that references.md names",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-132",
@@ -1711,7 +2955,17 @@
    "evidence": "pack/blocks.md SearchResults_Recent (used by: nothing); migration/change-requests/CR-Search-1.md:43; KB ui/search.md \"Dead / unreachable\"",
    "verdict": "n/a",
    "note": "dead in the model: no caller on DEV; the TST file exists, but ScreenBlock_Search does not use it",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.SearchResults_Recent.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-141",
@@ -1723,7 +2977,17 @@
    "evidence": "app/src/platform/storage/localEntities/recentSearch.ts:145-203; TST ScreenBlock_Search.mvc.js:1868-1972, 2023-2091; BR-UBTCON-884",
    "verdict": "match",
    "verified": "pack",
-   "note": "the refresh on a category change before a search is missing: F2"
+   "note": "the refresh on a category change before a search is missing: F2",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-142",
@@ -1734,7 +2998,17 @@
    "react": "showsBirthdayOptions hides RecentSearch and shows Search_BirthdayOptions; Selected runs onRecentSearchTerm",
    "evidence": "app/src/pages/Search/components/SearchView.tsx:73, 131, 142-149; app/src/pages/Search/hooks/useSearch.ts:284-287; TST ScreenBlock_Search.mvc.js:499, 1123-1165; BR-UBTCON-885",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-143",
@@ -1746,7 +3020,17 @@
    "evidence": "app/src/pages/Search/components/SearchView.tsx:72, 128, 152; TST ScreenBlock_Search.mvc.js:1207; BR-UBTCON-886",
    "verdict": "match",
    "verified": "pack",
-   "note": "the caption inside the results area is F1"
+   "note": "the caption inside the results area is F1",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-144",
@@ -1757,7 +3041,17 @@
    "react": "onTagListChanged and onApplyFilters call refreshSearch, which saves the term; no validateSearchPhoneNumber call",
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:229, 308-311, 383-390; TST ScreenBlock_Search.mvc.js:3667-3698, 3929-3938; BR-UBTCON-887",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-145",
@@ -1768,7 +3062,17 @@
    "react": "removeAllRecentSearch(target) and deleteConnectSearch_RecentSearchTerm(id), then the lists refresh",
    "evidence": "app/src/pages/Search/hooks/useSearch.ts:289-301; app/src/platform/storage/localEntities/recentSearch.ts:269-280; BR-UBTCON-888",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_Search-146",
@@ -1780,7 +3084,17 @@
    "evidence": "app/src/pages/Search/mocks.ts:44 (recordedHandler)",
    "verdict": "mock-only",
    "verified": "pack",
-   "note": "Production needs the screen data set ScreenDataSetGet_SearchBirthdayOptions of ScreenBlock_Search on the server"
+   "note": "Production needs the screen data set ScreenDataSetGet_SearchBirthdayOptions of ScreenBlock_Search on the server",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
+    ]
+   }
   }
  ]
 }

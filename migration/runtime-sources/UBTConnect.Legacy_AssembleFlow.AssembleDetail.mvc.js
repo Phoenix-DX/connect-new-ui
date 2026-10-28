@@ -1,6 +1,26 @@
-﻿define("UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect_Utils.controller", "NavigationHandler.controller", "UBTConnect.controller", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$model", "Connect2_Assemble_MUI.Assemble.ScreenBlock_AssembleDetail.mvc$model", "UBTConnect.App_Common.BottomBarMenu.mvc$model", "UBTConnect_Utils.CW_Share.ShareSheet.mvc$model", "UBTConnect_Utils.controller$ShareEntity_ByURL", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect_Utils.controller$GetHasCarouselEnabled", "NavigationHandler.controller$GetPreloadObject", "UBTConnect.referencesHealth$NavigationHandler", "NavigationHandler.controller$SetPreloadObject", "NavigationHandler.controller$AssignFromObject", "UBTConnect.model$SwipeActionLongIntegerRecord", "UBTConnect.model$SwipeActionLongIntegerRecordList", "UBTConnect.model$CarouselPreloadedHouseholdsRec", "UBTConnect.controller$GetNameAndSurname_ByFullName"], function (OutSystems, UBTConnectModel, UBTConnect_UtilsController, NavigationHandlerController, UBTConnectController, UBTConnect_App_Common_CommonUI_InsideLayout_mvcModel, Connect2_Assemble_MUI_Assemble_ScreenBlock_AssembleDetail_mvcModel, UBTConnect_App_Common_BottomBarMenu_mvcModel, UBTConnect_Utils_CW_Share_ShareSheet_mvcModel) {
+﻿define("UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnectLibrary.model", "UBTConnect_Utils.controller", "NavigationHandler.controller", "UBTConnect.controller", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$model", "Connect2_Assemble_MUI.Assemble.ScreenBlock_AssembleDetail.mvc$model", "UBTConnect_Utils.CW_Notes.NoteListActions.mvc$model", "UBTConnectLibrary.ConnectCorePatterns.ItemCard_ActionBar.mvc$model", "UBTConnect.App_Common.BottomBarMenu.mvc$model", "UBTConnect_Utils.CW_Share.ShareSheet.mvc$model", "UBTConnect_Utils.CW_Notes.NotesSheet.mvc$model", "UBTConnectLibrary.model$NotesRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$Note_ItemRec", "UBTConnect.model$Note_ItemList", "UBTConnectLibrary.model$ActionBarOptionsRec", "UBTConnect_Utils.controller$ShareEntity_ByURL", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect_Utils.controller$GetHasCarouselEnabled", "NavigationHandler.controller$GetPreloadObject", "UBTConnect.referencesHealth$NavigationHandler", "NavigationHandler.controller$SetPreloadObject", "NavigationHandler.controller$AssignFromObject", "UBTConnect.model$SwipeActionLongIntegerRecord", "UBTConnect.model$SwipeActionLongIntegerRecordList", "UBTConnect.model$CarouselPreloadedHouseholdsRec", "UBTConnect.controller$GetNameAndSurname_ByFullName"], function (OutSystems, UBTConnectModel, UBTConnectLibraryModel, UBTConnect_UtilsController, NavigationHandlerController, UBTConnectController, UBTConnect_App_Common_CommonUI_InsideLayout_mvcModel, Connect2_Assemble_MUI_Assemble_ScreenBlock_AssembleDetail_mvcModel, UBTConnect_Utils_CW_Notes_NoteListActions_mvcModel, UBTConnectLibrary_ConnectCorePatterns_ItemCard_ActionBar_mvcModel, UBTConnect_App_Common_BottomBarMenu_mvcModel, UBTConnect_Utils_CW_Share_ShareSheet_mvcModel, UBTConnect_Utils_CW_Notes_NotesSheet_mvcModel) {
 var OS = OutSystems.Internal;
 
+var GetAssembleNotesDataActRec = (function (_super) {
+__extends(GetAssembleNotesDataActRec, _super);
+function GetAssembleNotesDataActRec(defaults) {
+_super.apply(this, arguments);
+}
+GetAssembleNotesDataActRec.attributesToDeclare = function () {
+return [
+this.attr("Out_Notes", "out_NotesOut", "Out_Notes", true, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec());
+}, true, UBTConnectLibraryModel.NotesRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+GetAssembleNotesDataActRec.fromStructure = function (str) {
+return new GetAssembleNotesDataActRec(new GetAssembleNotesDataActRec.RecordClass({
+out_NotesOut: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+GetAssembleNotesDataActRec.init();
+return GetAssembleNotesDataActRec;
+})(OS.Model.DataSourceRecord);
 
 var VariablesRecord = (function (_super) {
 __extends(VariablesRecord, _super);
@@ -17,6 +37,9 @@ return false;
 }, false), 
 this.attr("ShareableObjectId", "shareableObjectIdVar", "ShareableObjectId", true, false, OS.DataTypes.DataTypes.Text, function () {
 return "";
+}, false), 
+this.attr("IsAddNote", "isAddNoteVar", "IsAddNote", true, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
 }, false), 
 this.attr("EventId", "eventIdIn", "EventId", true, false, OS.DataTypes.DataTypes.Text, function () {
 return "";
@@ -41,7 +64,10 @@ return "";
 }, false), 
 this.attr("_assembleEventTypeTileInDataFetchStatus", "_assembleEventTypeTileInDataFetchStatus", "_assembleEventTypeTileInDataFetchStatus", true, false, OS.DataTypes.DataTypes.Integer, function () {
 return /*Fetched*/ 1;
-}, false)
+}, false), 
+this.attr("GetAssembleNotes", "getAssembleNotesDataAct", "getAssembleNotesDataAct", true, true, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new GetAssembleNotesDataActRec());
+}, true, GetAssembleNotesDataActRec)
 ].concat(_super.attributesToDeclare.call(this));
 };
 VariablesRecord.init();
@@ -75,7 +101,7 @@ enumerable: true,
 configurable: true,
 get: function () {
 if((Model._hasValidationWidgetsValue === undefined)) {
-Model._hasValidationWidgetsValue = (((UBTConnect_App_Common_CommonUI_InsideLayout_mvcModel.hasValidationWidgets || Connect2_Assemble_MUI_Assemble_ScreenBlock_AssembleDetail_mvcModel.hasValidationWidgets) || UBTConnect_App_Common_BottomBarMenu_mvcModel.hasValidationWidgets) || UBTConnect_Utils_CW_Share_ShareSheet_mvcModel.hasValidationWidgets);
+Model._hasValidationWidgetsValue = ((((((UBTConnect_App_Common_CommonUI_InsideLayout_mvcModel.hasValidationWidgets || Connect2_Assemble_MUI_Assemble_ScreenBlock_AssembleDetail_mvcModel.hasValidationWidgets) || UBTConnect_Utils_CW_Notes_NoteListActions_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectCorePatterns_ItemCard_ActionBar_mvcModel.hasValidationWidgets) || UBTConnect_App_Common_BottomBarMenu_mvcModel.hasValidationWidgets) || UBTConnect_Utils_CW_Share_ShareSheet_mvcModel.hasValidationWidgets) || UBTConnect_Utils_CW_Notes_NotesSheet_mvcModel.hasValidationWidgets);
 }
 
 return Model._hasValidationWidgetsValue;
@@ -104,7 +130,7 @@ return Model;
 })(OS.Model.BaseViewModel);
 return new OS.Model.ModelFactory(Model, "Legacy_AssembleFlow.AssembleDetail");
 });
-define("UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnect_Utils.controller", "NavigationHandler.controller", "react", "OutSystems/ReactView/Main", "UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc$model", "UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc$controller", "UBTConnect.clientVariables", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$view", "OutSystems/ReactWidgets/Main", "Connect2_Assemble_MUI.Assemble.ScreenBlock_AssembleDetail.mvc$view", "UBTConnect.App_Common.BottomBarMenu.mvc$view", "UBTConnect_Utils.CW_Share.ShareSheet.mvc$view", "UBTConnect_Utils.controller$ShareEntity_ByURL", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect_Utils.controller$GetHasCarouselEnabled", "NavigationHandler.controller$GetPreloadObject", "UBTConnect.referencesHealth$NavigationHandler", "NavigationHandler.controller$SetPreloadObject", "NavigationHandler.controller$AssignFromObject", "UBTConnect.model$SwipeActionLongIntegerRecord", "UBTConnect.model$SwipeActionLongIntegerRecordList", "UBTConnect.model$CarouselPreloadedHouseholdsRec", "UBTConnect.controller$GetNameAndSurname_ByFullName"], function (OutSystems, UBTConnectModel, UBTConnectController, UBTConnect_UtilsController, NavigationHandlerController, React, OSView, UBTConnect_Legacy_AssembleFlow_AssembleDetail_mvc_model, UBTConnect_Legacy_AssembleFlow_AssembleDetail_mvc_controller, UBTConnectClientVariables, UBTConnect_App_Common_CommonUI_InsideLayout_mvc_view, OSWidgets, Connect2_Assemble_MUI_Assemble_ScreenBlock_AssembleDetail_mvc_view, UBTConnect_App_Common_BottomBarMenu_mvc_view, UBTConnect_Utils_CW_Share_ShareSheet_mvc_view) {
+define("UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnectLibrary.model", "UBTConnect_Utils.controller", "NavigationHandler.controller", "react", "OutSystems/ReactView/Main", "UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc$model", "UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc$controller", "UBTConnect.clientVariables", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$view", "OutSystems/ReactWidgets/Main", "Connect2_Assemble_MUI.Assemble.ScreenBlock_AssembleDetail.mvc$view", "UBTConnect_Utils.CW_Notes.NoteListActions.mvc$view", "UBTConnectLibrary.ConnectCorePatterns.ItemCard_ActionBar.mvc$view", "UBTConnect.App_Common.BottomBarMenu.mvc$view", "UBTConnect_Utils.CW_Share.ShareSheet.mvc$view", "UBTConnect_Utils.CW_Notes.NotesSheet.mvc$view", "UBTConnectLibrary.model$NotesRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$Note_ItemRec", "UBTConnect.model$Note_ItemList", "UBTConnectLibrary.model$ActionBarOptionsRec", "UBTConnect_Utils.controller$ShareEntity_ByURL", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect_Utils.controller$GetHasCarouselEnabled", "NavigationHandler.controller$GetPreloadObject", "UBTConnect.referencesHealth$NavigationHandler", "NavigationHandler.controller$SetPreloadObject", "NavigationHandler.controller$AssignFromObject", "UBTConnect.model$SwipeActionLongIntegerRecord", "UBTConnect.model$SwipeActionLongIntegerRecordList", "UBTConnect.model$CarouselPreloadedHouseholdsRec", "UBTConnect.controller$GetNameAndSurname_ByFullName"], function (OutSystems, UBTConnectModel, UBTConnectController, UBTConnectLibraryModel, UBTConnect_UtilsController, NavigationHandlerController, React, OSView, UBTConnect_Legacy_AssembleFlow_AssembleDetail_mvc_model, UBTConnect_Legacy_AssembleFlow_AssembleDetail_mvc_controller, UBTConnectClientVariables, UBTConnect_App_Common_CommonUI_InsideLayout_mvc_view, OSWidgets, Connect2_Assemble_MUI_Assemble_ScreenBlock_AssembleDetail_mvc_view, UBTConnect_Utils_CW_Notes_NoteListActions_mvc_view, UBTConnectLibrary_ConnectCorePatterns_ItemCard_ActionBar_mvc_view, UBTConnect_App_Common_BottomBarMenu_mvc_view, UBTConnect_Utils_CW_Share_ShareSheet_mvc_view, UBTConnect_Utils_CW_Notes_NotesSheet_mvc_view) {
     var OS = OutSystems.Internal;
 var PlaceholderContent = OSView.Widget.PlaceholderContent;
 var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
@@ -136,7 +162,7 @@ var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
             return [];
         };
         View.getBlocks = function() {
-            return [UBTConnect_App_Common_CommonUI_InsideLayout_mvc_view, Connect2_Assemble_MUI_Assemble_ScreenBlock_AssembleDetail_mvc_view, UBTConnect_App_Common_BottomBarMenu_mvc_view, UBTConnect_Utils_CW_Share_ShareSheet_mvc_view];
+            return [UBTConnect_App_Common_CommonUI_InsideLayout_mvc_view, Connect2_Assemble_MUI_Assemble_ScreenBlock_AssembleDetail_mvc_view, UBTConnect_Utils_CW_Notes_NoteListActions_mvc_view, UBTConnectLibrary_ConnectCorePatterns_ItemCard_ActionBar_mvc_view, UBTConnect_App_Common_BottomBarMenu_mvc_view, UBTConnect_Utils_CW_Share_ShareSheet_mvc_view, UBTConnect_Utils_CW_Notes_NotesSheet_mvc_view];
         };
         Object.defineProperty(View.prototype, "modelFactory", {
             get: function () {
@@ -282,6 +308,124 @@ alias: "2"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
+meetingNotes: new PlaceholderContent(function () {
+return [React.createElement(UBTConnect_Utils_CW_Notes_NoteListActions_mvc_view, {
+inputs: {
+In_ShowPreviewOnly: true,
+Notes: model.variables.getAssembleNotesDataAct.out_NotesOut,
+_notesInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.getAssembleNotesDataAct.dataFetchStatusAttr),
+In_ItemId: model.variables.eventIdIn,
+In_NoteCategoryId: UBTConnectModel.staticEntities.noteCategory2.assembleEvent
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+},
+on_ShowAllNotesRequested$Action: function () {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "CW_Notes/NoteListActions On_ShowAllNotesRequested");
+controller.openNoteSheet$Action(controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+
+;
+},
+on_NoteDeleted$Action: function (noteIdIn, isLastNoteDeletedIn) {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "CW_Notes/NoteListActions On_NoteDeleted");
+controller.handler_OnNoteDeleted$Action(noteIdIn, controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+
+;
+},
+onSaveEditNote$Action: function (notesIn) {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "CW_Notes/NoteListActions OnSaveEditNote");
+controller.handler_OnNotesChanged$Action(notesIn, controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+
+;
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+uuid: "2",
+alias: "3"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+_dependencies: []
+}), React.createElement(OSWidgets.Container, {
+align: /*Default*/ 0,
+animate: false,
+style: "margin-top-xs",
+visible: true,
+_idProps: {
+service: idService,
+uuid: "3"
+},
+_widgetRecordProvider: widgetsRecordProvider
+}, React.createElement(UBTConnectLibrary_ConnectCorePatterns_ItemCard_ActionBar_mvc_view, {
+inputs: {
+ActionBarOptions: model.getCachedValue(idService.getId("cKqOuuoblkK2VO5bdIIUqg.ActionBarOptions"), function () {
+return function () {
+var rec = new UBTConnectLibraryModel.ActionBarOptionsRec();
+rec.showAddNoteAttr = true;
+rec.isAddNoteEnabledAttr = true;
+return rec;
+}();
+})
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+},
+onClickAddNote$Action: function () {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectCorePatterns/ItemCard_ActionBar OnClickAddNote");
+controller.openNoteSheet$Action(controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+
+;
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+uuid: "4",
+alias: "4"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+_dependencies: []
+}))];
+}),
 bottomBar: new PlaceholderContent(function () {
 return [React.createElement(UBTConnect_App_Common_BottomBarMenu_mvc_view, {
 inputs: {},
@@ -295,8 +439,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "2",
-alias: "3"
+uuid: "5",
+alias: "5"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
@@ -304,8 +448,11 @@ _dependencies: []
 }),
 commonUI_Elements: PlaceholderContent.Empty
 },
-_dependencies: []
-}), React.createElement(UBTConnect_Utils_CW_Share_ShareSheet_mvc_view, {
+_dependencies: [asPrimitiveValue(model.variables.eventIdIn), asPrimitiveValue(model.variables.getAssembleNotesDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.getAssembleNotesDataAct.out_NotesOut)]
+}), $if(false, false, this, function () {
+return [];
+}, function () {
+return [React.createElement(UBTConnect_Utils_CW_Share_ShareSheet_mvc_view, {
 inputs: {
 In_ShareObjectTypeId: UBTConnectModel.staticEntities.type_ShareObject.household,
 In_IsOpen: model.variables.isShareOpenVar,
@@ -335,14 +482,80 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "3",
-alias: "4"
+uuid: "6",
+alias: "6"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
 placeholder_ShareableObject: PlaceholderContent.Empty
 },
 _dependencies: []
+}), React.createElement(UBTConnect_Utils_CW_Notes_NotesSheet_mvc_view, {
+inputs: {
+In_IsOpen: model.variables.isAddNoteVar,
+In_NoteCategoryId: UBTConnectModel.staticEntities.noteCategory2.assembleEvent,
+In_Notes: model.variables.getAssembleNotesDataAct.out_NotesOut,
+_in_NotesInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.getAssembleNotesDataAct.dataFetchStatusAttr),
+In_ItemId: model.variables.eventIdIn
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+},
+on_NoteSheet_Closed$Action: function () {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "CW_Notes/NotesSheet On_NoteSheet_Closed");
+controller.handler_NoteSheet_Closed$Action(controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+
+;
+},
+on_NoteDeleted$Action: function (noteIdIn, wasLastNoteIn) {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "CW_Notes/NotesSheet On_NoteDeleted");
+controller.handler_OnNoteDeleted$Action(noteIdIn, controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+
+;
+},
+on_NotesChanged$Action: function (new_NotesIn) {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "CW_Notes/NotesSheet On_NotesChanged");
+controller.handler_OnNotesChanged$Action(new_NotesIn, controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+
+;
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+uuid: "7",
+alias: "7"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+_dependencies: []
+})];
 }));
         };
         return View;
@@ -350,7 +563,7 @@ _dependencies: []
 	
     return View;
 });
-define("UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnect_Utils.controller", "NavigationHandler.controller", "UBTConnect.languageResources", "UBTConnect.clientVariables", "UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc$debugger", "UBTConnect.Legacy_AssembleFlow.controller", "UBTConnect_Utils.controller$ShareEntity_ByURL", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect_Utils.controller$GetHasCarouselEnabled", "NavigationHandler.controller$GetPreloadObject", "UBTConnect.referencesHealth$NavigationHandler", "NavigationHandler.controller$SetPreloadObject", "NavigationHandler.controller$AssignFromObject", "UBTConnect.model$SwipeActionLongIntegerRecord", "UBTConnect.model$SwipeActionLongIntegerRecordList", "UBTConnect.model$CarouselPreloadedHouseholdsRec", "UBTConnect.controller$GetNameAndSurname_ByFullName"], function (OutSystems, UBTConnectModel, UBTConnectController, UBTConnect_UtilsController, NavigationHandlerController, UBTConnectLanguageResources, UBTConnectClientVariables, UBTConnect_Legacy_AssembleFlow_AssembleDetail_mvc_Debugger, _flow_UBTConnect_Legacy_AssembleFlowController) {
+define("UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnectLibrary.model", "UBTConnect_Utils.controller", "NavigationHandler.controller", "UBTConnect.languageResources", "UBTConnect.clientVariables", "UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc$debugger", "UBTConnect.Legacy_AssembleFlow.controller", "UBTConnectLibrary.model$NotesRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$Note_ItemRec", "UBTConnect.model$Note_ItemList", "UBTConnectLibrary.model$ActionBarOptionsRec", "UBTConnect_Utils.controller$ShareEntity_ByURL", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect_Utils.controller$GetHasCarouselEnabled", "NavigationHandler.controller$GetPreloadObject", "UBTConnect.referencesHealth$NavigationHandler", "NavigationHandler.controller$SetPreloadObject", "NavigationHandler.controller$AssignFromObject", "UBTConnect.model$SwipeActionLongIntegerRecord", "UBTConnect.model$SwipeActionLongIntegerRecordList", "UBTConnect.model$CarouselPreloadedHouseholdsRec", "UBTConnect.controller$GetNameAndSurname_ByFullName"], function (OutSystems, UBTConnectModel, UBTConnectController, UBTConnectLibraryModel, UBTConnect_UtilsController, NavigationHandlerController, UBTConnectLanguageResources, UBTConnectClientVariables, UBTConnect_Legacy_AssembleFlow_AssembleDetail_mvc_Debugger, _flow_UBTConnect_Legacy_AssembleFlowController) {
 var OS = OutSystems.Internal;
 var Controller = (function (_super) {
 __extends(Controller, _super);
@@ -358,15 +571,43 @@ function Controller() {
 _super.apply(this, arguments);
 var controller = this.controller;
 this.clientActionProxies = {};
-this.dataFetchDependenciesOriginal = {};
-this.dataFetchDependentsGraph = {};
+this.dataFetchDependenciesOriginal = {
+getAssembleNotes$DataActRefresh: 0
+};
+this.dataFetchDependentsGraph = {
+getAssembleNotes$DataActRefresh: []
+};
 this.shouldSendClientVarsToDataSources = false;
 }
 // Server Actions
 
 // Aggregates and Data Actions
+Controller.prototype.getAssembleNotes$DataActRefresh = function (callContext) {
+var model = this.model;
+var controller = this.controller;
+var callContext = controller.callContext(callContext);
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(callContext);
 
-Controller.prototype.dataFetchActionNames = [];
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:+n2BeZ9Pc0mmZorme+9tAw:/NRWebFlows.oopA8UC9ZEGRmQoiLfCXdg/NodesShownInESpaceTree.UhZy6XyctkmbEYZIMPPQng/DataActions.+n2BeZ9Pc0mmZorme+9tAw:S338X1TF+vHIku2hsJ73vA", "UBTConnect", "GetAssembleNotes", "NRFlows.DataScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.setThreadStartName(callContext.id, "Legacy_AssembleFlow/AssembleDetail/GetAssembleNotes");
+return controller.callDataAction("DataActionGetAssembleNotes", "screenservices/UBTConnect/Legacy_AssembleFlow/AssembleDetail/DataActionGetAssembleNotes", "wuklwGNKoE74ANAKSGacYQ", function (b) {
+model.variables.getAssembleNotesDataAct.dataFetchStatusAttr = b;
+}, function (json) {
+model.variables.getAssembleNotesDataAct.replaceWith(OS.DataConversion.ServerDataConverter.from(json, model.variables.getAssembleNotesDataAct.constructor));
+}, undefined, OutSystemsDebugger.getRequestHeaders(callContext.id), function (json, headers) {
+OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
+}, callContext, undefined, false);
+
+}, function () {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:+n2BeZ9Pc0mmZorme+9tAw", callContext.id);
+controller.popDebuggerContext(callContext);
+
+});
+};
+
+Controller.prototype.dataFetchActionNames = ["getAssembleNotes$DataActRefresh"];
 // Client Actions
 Controller.prototype._handler_CloseShareSheet$Action = function (callContext) {
 var varBag = {};
@@ -588,6 +829,58 @@ return new UBTConnectModel.CarouselPreloadedHouseholdsRec();
 },
 complexType: UBTConnectModel.CarouselPreloadedHouseholdsRec
 }]);
+Controller.prototype._handler_OnNoteDeleted$Action = function (noteIdIn, callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("Handler_OnNoteDeleted");
+callContext = controller.callContext(callContext);
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.Legacy_AssembleFlow.AssembleDetail.Handler_OnNoteDeleted$vars"))());
+vars.value.noteIdInLocal = noteIdIn;
+var listIndexOfVar = new OS.DataTypes.VariableHolder();
+varBag.callContext = callContext;
+varBag.vars = vars;
+varBag.listIndexOfVar = listIndexOfVar;
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:U7QVdxW8TEak2IUUHlY7FA:/NRWebFlows.oopA8UC9ZEGRmQoiLfCXdg/NodesShownInESpaceTree.UhZy6XyctkmbEYZIMPPQng/ClientActions.U7QVdxW8TEak2IUUHlY7FA:mNL3cofLhjfB+nVeAYF1JQ", "UBTConnect", "Handler_OnNoteDeleted", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:gKKGPLxX3EurbkCr6Sd77w", callContext.id);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:X3snn9Hgd0eM+rA_v1wutQ", callContext.id);
+// Execute Action: ListIndexOf
+listIndexOfVar.value = OS.SystemActions.listIndexOf(model.variables.getAssembleNotesDataAct.out_NotesOut.note_Item_ListAttr, function (p) {
+return p.idAttr.equals(vars.value.noteIdInLocal);
+}, callContext);
+
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:An2DTXkx40OGiA17kwS2fA", callContext.id) && ((listIndexOfVar.value.positionOut) !== (-1)))) {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:4TjRPfbo0kK06rvh88HL5Q", callContext.id);
+// Execute Action: ListRemove
+OS.SystemActions.listRemove(model.variables.getAssembleNotesDataAct.out_NotesOut.note_Item_ListAttr, listIndexOfVar.value.positionOut, callContext);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:D86K6oSg_UKZ4u1ehmUA1Q", callContext.id);
+// GetAssembleNotes.Out_Notes.Total = GetAssembleNotes.Out_Notes.Total - 1
+model.variables.getAssembleNotesDataAct.out_NotesOut.totalAttr = (model.variables.getAssembleNotesDataAct.out_NotesOut.totalAttr - 1);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:4SIYCbC1Vkymjihr8q91ew", callContext.id);
+} else {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:hWuYJ_ApmEeIy2S0B75aBA", callContext.id);
+}
+
+} catch (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+throw ex;
+} finally {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:U7QVdxW8TEak2IUUHlY7FA", callContext.id);
+}
+
+};
+Controller.registerVariableGroupType("UBTConnect.Legacy_AssembleFlow.AssembleDetail.Handler_OnNoteDeleted$vars", [{
+name: "NoteId",
+attrName: "noteIdInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.LongInteger,
+defaultValue: function () {
+return OS.DataTypes.LongInteger.defaultValue;
+}
+}]);
 Controller.prototype._handler_NavigateTo_EmailContact$Action = function (event_AvatarURLIn, event_ContactNameIn, event_ContactLocalityIn, event_ContactCountryIn, event_EmailToIn, event_MemberIdIn, callContext) {
 var varBag = {};
 var model = this.model;
@@ -684,6 +977,43 @@ defaultValue: function () {
 return OS.DataTypes.LongInteger.defaultValue;
 }
 }]);
+Controller.prototype._handler_OnNotesChanged$Action = function (new_NotesIn, callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("Handler_OnNotesChanged");
+callContext = controller.callContext(callContext);
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.Legacy_AssembleFlow.AssembleDetail.Handler_OnNotesChanged$vars"))());
+vars.value.new_NotesInLocal = new_NotesIn.clone();
+varBag.callContext = callContext;
+varBag.vars = vars;
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:RteFnDVCg0u+gKxN1SxUsQ:/NRWebFlows.oopA8UC9ZEGRmQoiLfCXdg/NodesShownInESpaceTree.UhZy6XyctkmbEYZIMPPQng/ClientActions.RteFnDVCg0u+gKxN1SxUsQ:9NZFBemVVi1s3Cp_oZvBDw", "UBTConnect", "Handler_OnNotesChanged", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:8VL8oMkDCEWCAcSnRwHuQg", callContext.id);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:NM6fFtxUb0OKgstbt3hKsg", callContext.id);
+// GetAssembleNotes.Out_Notes = New_Notes
+model.variables.getAssembleNotesDataAct.out_NotesOut = vars.value.new_NotesInLocal;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Xa1OhYaKC06BlUPektlNIQ", callContext.id);
+} catch (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+throw ex;
+} finally {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:RteFnDVCg0u+gKxN1SxUsQ", callContext.id);
+}
+
+};
+Controller.registerVariableGroupType("UBTConnect.Legacy_AssembleFlow.AssembleDetail.Handler_OnNotesChanged$vars", [{
+name: "New_Notes",
+attrName: "new_NotesInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Record,
+defaultValue: function () {
+return new UBTConnectLibraryModel.NotesRec();
+},
+complexType: UBTConnectLibraryModel.NotesRec
+}]);
 Controller.prototype._handler_EventNotFound$Action = function (callContext) {
 var varBag = {};
 var model = this.model;
@@ -745,6 +1075,54 @@ defaultValue: function () {
 return OS.DataTypes.LongInteger.defaultValue;
 }
 }]);
+Controller.prototype._handler_NoteSheet_Closed$Action = function (callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("Handler_NoteSheet_Closed");
+callContext = controller.callContext(callContext);
+varBag.callContext = callContext;
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:iVz4vLjMdkyCy4sihmfcLg:/NRWebFlows.oopA8UC9ZEGRmQoiLfCXdg/NodesShownInESpaceTree.UhZy6XyctkmbEYZIMPPQng/ClientActions.iVz4vLjMdkyCy4sihmfcLg:1W4oANq0q1cxYgGcSJcwrw", "UBTConnect", "Handler_NoteSheet_Closed", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:0JfIoySa6EKhI7Bue3m7fw", callContext.id);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:wcygG1J2NEW_NPHxxbNCRg", callContext.id);
+// IsAddNote = False
+model.variables.isAddNoteVar = false;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:nU_pk0ZV+kK8_RHDIxWhRg", callContext.id);
+} catch (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+throw ex;
+} finally {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:iVz4vLjMdkyCy4sihmfcLg", callContext.id);
+}
+
+};
+Controller.prototype._openNoteSheet$Action = function (callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("OpenNoteSheet");
+callContext = controller.callContext(callContext);
+varBag.callContext = callContext;
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:RD6w99HidUCwD_NSYCa6rw:/NRWebFlows.oopA8UC9ZEGRmQoiLfCXdg/NodesShownInESpaceTree.UhZy6XyctkmbEYZIMPPQng/ClientActions.RD6w99HidUCwD_NSYCa6rw:B4zOyflu_5uy3JkiWH9u5w", "UBTConnect", "OpenNoteSheet", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:MyUyh0yrDUulnAexgW0frw", callContext.id);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:7E+GDVH5g0m25CxTQOsqlg", callContext.id);
+// IsAddNote = True
+model.variables.isAddNoteVar = true;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:liDpV8YZ_kyVpd1_daHgvg", callContext.id);
+} catch (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+throw ex;
+} finally {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:RD6w99HidUCwD_NSYCa6rw", callContext.id);
+}
+
+};
 
 Controller.prototype.handler_CloseShareSheet$Action = function (callContext) {
 var controller = this.controller;
@@ -761,9 +1139,19 @@ var controller = this.controller;
 return controller.safeExecuteClientAction(controller._handler_NavigateToHouseholdCarousel$Action, callContext, selectedHouseholdIdIn);
 
 };
+Controller.prototype.handler_OnNoteDeleted$Action = function (noteIdIn, callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._handler_OnNoteDeleted$Action, callContext, noteIdIn);
+
+};
 Controller.prototype.handler_NavigateTo_EmailContact$Action = function (event_AvatarURLIn, event_ContactNameIn, event_ContactLocalityIn, event_ContactCountryIn, event_EmailToIn, event_MemberIdIn, callContext) {
 var controller = this.controller;
 return controller.safeExecuteClientAction(controller._handler_NavigateTo_EmailContact$Action, callContext, event_AvatarURLIn, event_ContactNameIn, event_ContactLocalityIn, event_ContactCountryIn, event_EmailToIn, event_MemberIdIn);
+
+};
+Controller.prototype.handler_OnNotesChanged$Action = function (new_NotesIn, callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._handler_OnNotesChanged$Action, callContext, new_NotesIn);
 
 };
 Controller.prototype.handler_EventNotFound$Action = function (callContext) {
@@ -776,12 +1164,22 @@ var controller = this.controller;
 return controller.safeExecuteClientAction(controller._handler_NavigateToHousehold$Action, callContext, householdIdIn);
 
 };
+Controller.prototype.handler_NoteSheet_Closed$Action = function (callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._handler_NoteSheet_Closed$Action, callContext);
+
+};
+Controller.prototype.openNoteSheet$Action = function (callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._openNoteSheet$Action, callContext);
+
+};
 
 // Event Handler Actions
 Controller.prototype.pushDebuggerContext = function (callContext) {
 var varBag = {};
 OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:oopA8UC9ZEGRmQoiLfCXdg:/NRWebFlows.oopA8UC9ZEGRmQoiLfCXdg:dN024IGxNurNTd_3Az0hHQ", "UBTConnect", "Legacy_AssembleFlow", "NRFlows.WebFlow", callContext.id, varBag);
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:UhZy6XyctkmbEYZIMPPQng:/NRWebFlows.oopA8UC9ZEGRmQoiLfCXdg/NodesShownInESpaceTree.UhZy6XyctkmbEYZIMPPQng:IQf76i+pFo_LOGjyQ5syKg", "UBTConnect", "AssembleDetail", "NRNodes.WebScreen", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:UhZy6XyctkmbEYZIMPPQng:/NRWebFlows.oopA8UC9ZEGRmQoiLfCXdg/NodesShownInESpaceTree.UhZy6XyctkmbEYZIMPPQng:X4wsIAq+c26bB6FHj9e5CA", "UBTConnect", "AssembleDetail", "NRNodes.WebScreen", callContext.id, varBag);
 };
 Controller.prototype.popDebuggerContext = function (callContext) {
 OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:UhZy6XyctkmbEYZIMPPQng", callContext.id);
@@ -863,6 +1261,17 @@ getter: function (varBag, idService) {
 return varBag.assignFromObjectVar.value;
 }
 },
+"nVgw2797y0qnL+vJ3cAJZg": {
+getter: function (varBag, idService) {
+return varBag.vars.value.noteIdInLocal;
+},
+dataType: OS.DataTypes.DataTypes.LongInteger
+},
+"X3snn9Hgd0eM+rA_v1wutQ": {
+getter: function (varBag, idService) {
+return varBag.listIndexOfVar.value;
+}
+},
 "dIhF3EFZ6UmKWF7N6RbI6A": {
 getter: function (varBag, idService) {
 return varBag.vars.value.event_AvatarURLInLocal;
@@ -904,6 +1313,11 @@ getter: function (varBag, idService) {
 return varBag.getNameAndSurname_ByFullNameVar.value;
 }
 },
+"abXs9FL7lkGBXgStNa33fA": {
+getter: function (varBag, idService) {
+return varBag.vars.value.new_NotesInLocal;
+}
+},
 "O_jzxyEznkiEnHe8a9rr6g": {
 getter: function (varBag, idService) {
 return varBag.vars.value.householdIdInLocal;
@@ -927,6 +1341,12 @@ getter: function (varBag, idService) {
 return varBag.model.variables.shareableObjectIdVar;
 },
 dataType: OS.DataTypes.DataTypes.Text
+},
+"IUMpQ2CpkUCnLOtr6B3qcQ": {
+getter: function (varBag, idService) {
+return varBag.model.variables.isAddNoteVar;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
 },
 "dzrhv0xJQk6CnHRaH5iQhQ": {
 getter: function (varBag, idService) {
@@ -952,6 +1372,18 @@ return varBag.model.variables.assembleEventTypeTileIn;
 },
 dataType: OS.DataTypes.DataTypes.Text
 },
+"+n2BeZ9Pc0mmZorme+9tAw": {
+getter: function (varBag, idService) {
+return varBag.model.variables.getAssembleNotesDataAct;
+}
+},
+"WxMySbeDNUSEDDECVKKYeQ": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("MeetingNotes"));
+})(varBag.model, idService);
+}
+},
 "UZEy1HnCi0Cq40c9ELqKjg": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
@@ -966,7 +1398,14 @@ return model.widgets.get(idService.getId("CommonUI_Elements"));
 })(varBag.model, idService);
 }
 },
-"0hccaKffrker12zY2rRBdw": {
+"27l9yRe0kkyUUdYmv6fcWA": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("HideInServiceStudio_BottomSheet"));
+})(varBag.model, idService);
+}
+},
+"bRqZkZp2JU60n3oqRit_rw": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("Placeholder_ShareableObject"));

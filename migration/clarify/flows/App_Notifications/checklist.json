@@ -12,7 +12,17 @@
    "react": "MEMBER_ROUTE (member, enforce): the screen is not in ROUTE_META",
    "evidence": "app/src/app/routes.ts:40-57",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-002",
@@ -23,7 +33,17 @@
    "react": "route inputs []",
    "evidence": "app/src/app/routes.generated.ts:27",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-003",
@@ -35,7 +55,17 @@
    "evidence": "app/src/app/routes.ts:63-69; migration/board.md:20 (D11(c), user 2026-10-14); migration/knowledge/flag-values-tst.json:10; BR-UBTCON-320",
    "verdict": "match",
    "note": "On TST the bell and MessageDetail open MessageList, so the screen is a flag variant that the board builds.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-004",
@@ -46,7 +76,17 @@
    "react": "reducer initializer initialNotificationsState before the first render; one effect runs onReady once; no destroy step (no listener is set)",
    "evidence": "app/src/pages/Notifications/hooks/useNotifications.ts:53-56, 133-141; TST Notifications.mvc.js:2801-2850",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-005",
@@ -58,7 +98,17 @@
    "evidence": "app/src/pages/Notifications/hooks/notificationsState.ts:98-131; TST Notifications.mvc.js:63-152",
    "verdict": "match",
    "note": "DEV and TST differ: see section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-006",
@@ -69,7 +119,17 @@
    "react": "fetchNotifications(latest.current), called only by refreshNotifications",
    "evidence": "app/src/pages/Notifications/hooks/useNotifications.ts:100-114; app/src/api/notification/repository.ts:35-43; TST Notifications.mvc.js:1184-1203, 2082-2112",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-007",
@@ -80,7 +140,17 @@
    "react": "toNotificationsVariablesWire sends every screen variable with its OutSystems name",
    "evidence": "app/src/api/notification/mapper.ts:69-108",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-008",
@@ -92,7 +162,17 @@
    "evidence": "app/src/pages/Notifications/mocks.ts:74-81",
    "verdict": "mock-only",
    "note": "Production needs the screen data action DataActionFetchNotifications (UBTConnect, App_Notifications) and the service action Get_UI_Notifications of Connect2_Notification_CS.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-009",
@@ -104,7 +184,17 @@
    "evidence": "pack/screens.md Notifications FetchNotifications; TST Notifications.mvc.js:63-152",
    "verdict": "match",
    "note": "DEV and TST differ: see section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-010",
@@ -115,7 +205,17 @@
    "react": "fetchNotificationDateRanges, called only by onReady",
    "evidence": "app/src/pages/Notifications/hooks/useNotifications.ts:121-123; TST Notifications.mvc.js:1148-1180, 1884-1931",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-011",
@@ -127,7 +227,17 @@
    "evidence": "app/src/pages/Notifications/mocks.ts:13-15, 73",
    "verdict": "mock-only",
    "note": "Production needs the screen data action DataActionGetDateRanges (UBTConnect, App_Notifications).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-012",
@@ -138,7 +248,17 @@
    "react": "toNotificationList maps items, hasUnreadMessages and unreadNotificationsCount; the state keeps items, isDataFetched and unreadNotificationsCount",
    "evidence": "app/src/api/notification/mapper.ts:42-46; app/src/pages/Notifications/hooks/notificationsState.ts:152-158",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-013",
@@ -149,7 +269,17 @@
    "react": "Layout_MainPages_Upgrade isGrayBackground, onOnHeaderScrolled",
    "evidence": "app/src/pages/Notifications/NotificationsPage.tsx:77-79; TST Notifications.mvc.js:261-282",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-014",
@@ -160,7 +290,17 @@
    "react": "isToggleSearch && isHeaderScrolled ? search container : title with Badge",
    "evidence": "app/src/pages/Notifications/NotificationsPage.tsx:80-113; TST Notifications.mvc.js:294-496",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-015",
@@ -172,7 +312,17 @@
    "evidence": "app/src/pages/Notifications/NotificationsPage.tsx:82-109; TST Notifications.mvc.js:296-440",
    "verdict": "match",
    "note": "DEV and TST differ: see section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-016",
@@ -183,7 +333,17 @@
    "react": "searchOptions; onEventOnChange → onChangeSearchInput(text, false); onEventSubmit; onEventClearString → onFilterSearchText('')",
    "evidence": "app/src/pages/Notifications/NotificationsPage.tsx:46-53, 98-108; TST Notifications.mvc.js:355-440",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-017",
@@ -195,7 +355,17 @@
    "evidence": "app/src/pages/Notifications/NotificationsPage.tsx:54-65; TST Notifications.mvc.js:446-496; BR-UBTCON-979",
    "verdict": "match",
    "note": "DEV and TST differ: see section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-018",
@@ -206,7 +376,17 @@
    "react": "the same arms and icons",
    "evidence": "app/src/pages/Notifications/NotificationsPage.tsx:66-74, 114-131; TST Notifications.mvc.js:497-612",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-019",
@@ -218,7 +398,17 @@
    "evidence": "app/src/pages/Notifications/NotificationsPage.tsx:132-144; TST Notifications.mvc.js:613-691",
    "verdict": "match",
    "note": "DEV and TST differ: see section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-020",
@@ -229,7 +419,17 @@
    "react": "onChangeSearchInput(text, true); onFilterSearchText('') ; onFilterSearchText",
    "evidence": "app/src/pages/Notifications/NotificationsPage.tsx:133-143; TST Notifications.mvc.js:615-691",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-021",
@@ -241,7 +441,17 @@
    "evidence": "app/src/pages/Notifications/NotificationsPage.tsx:145-153; TST Notifications.mvc.js:692-716",
    "verdict": "match",
    "note": "DEV and TST differ: see section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-022",
@@ -252,7 +462,17 @@
    "react": "not rendered",
    "evidence": "TST Notifications.mvc.js:716-746; migration/runtime-sources/OutSystemsReactWidgets.js (Container render returns null when not visible)",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-023",
@@ -263,7 +483,17 @@
    "react": "`!v.isLoading && v.isDataFetched && v.items.length === 0`",
    "evidence": "app/src/pages/Notifications/NotificationsPage.tsx:155; TST Notifications.mvc.js:747-748",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-024",
@@ -278,7 +508,17 @@
    "finding": "F1",
    "verified": "code",
    "fixed": "2026-10-27",
-   "note": "Built 2026-10-27 (builds/B5-lists.md)."
+   "note": "Built 2026-10-27 (builds/B5-lists.md).",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-025",
@@ -290,7 +530,17 @@
    "evidence": "pack/screens.md If_HasNoNotifications; TST Notifications.mvc.js:747-767",
    "verdict": "match",
    "note": "DEV and TST differ: see section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-026",
@@ -302,7 +552,17 @@
    "evidence": "app/src/pages/Notifications/NotificationsPage.tsx:157-164; TST Notifications.mvc.js:768-790",
    "verdict": "match",
    "note": "DEV and TST differ: see section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-027",
@@ -313,7 +573,17 @@
    "react": "not rendered",
    "evidence": "TST Notifications.mvc.js:791-917",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-028",
@@ -325,7 +595,17 @@
    "evidence": "app/src/pages/Notifications/NotificationsPage.tsx:166; TST Notifications.mvc.js:918-941",
    "verdict": "match",
    "note": "The behaviour of the block is checked in the report of App_Common.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-029",
@@ -337,7 +617,17 @@
    "evidence": "app/src/pages/Notifications/NotificationsPage.tsx:167; TST Notifications.mvc.js:942-960",
    "verdict": "match",
    "note": "The behaviour of the block is checked in the report of App_Common.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-030",
@@ -349,7 +639,17 @@
    "evidence": "pack/screens.md; TST Notifications.mvc.js:962-1090",
    "verdict": "n/a",
    "note": "dead in the model",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-031",
@@ -361,7 +661,19 @@
    "evidence": "app/src/pages/Notifications/NotificationsPage.tsx:169-173; TST Notifications.mvc.js:962-1028; TST UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc.js:522",
    "verdict": "match",
    "note": "SortSheet raises Loaded only from CacheControl_UserInfo_Wrapper. That block renders only with HasCountries or HasLocalities, and this sheet sets neither.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines",
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc.js (lines-same)",
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-032",
@@ -373,7 +685,19 @@
    "evidence": "app/src/pages/Notifications/NotificationsPage.tsx:174-178; TST Notifications.mvc.js:1029-1090; TST UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js:653",
    "verdict": "match",
    "note": "MoreActionSheet raises Loaded under the same condition as SortSheet. DEV and TST differ: see section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines",
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (lines-same)",
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-033",
@@ -384,7 +708,17 @@
    "react": "initialNotificationsState sets the same values",
    "evidence": "app/src/pages/Notifications/hooks/notificationsState.ts:93-131; TST Notifications.mvc.js:1516-1540",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-034",
@@ -396,7 +730,17 @@
    "evidence": "app/src/pages/Notifications/hooks/notificationsState.ts:93-97, 116-125; TST Notifications.mvc.js:1968-2019; BR-UBTCON-976",
    "verdict": "match",
    "note": "The route needs a signed-in user, so the anonymous branch does not run.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-035",
@@ -408,7 +752,17 @@
    "evidence": "pack/screens.md Notifications; BR-UBTCON-976",
    "verdict": "n/a",
    "note": "dead in the model",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-036",
@@ -420,7 +774,17 @@
    "evidence": "TST Notifications.mvc.js:1460-1469; migration/runtime-sources/OutSystemsReactView.js (getRootNodeProperties)",
    "verdict": "match",
    "note": "No effect: the id names the block instance, not its input element, and a block root is not focusable.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-037",
@@ -431,7 +795,17 @@
    "react": "loadingStarted, then fetchNotificationDateRanges",
    "evidence": "app/src/pages/Notifications/hooks/useNotifications.ts:116-131; TST Notifications.mvc.js:1884-1931",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-038",
@@ -443,7 +817,17 @@
    "evidence": "TST Notifications.mvc.js:1884-1931, 791-917; pack/actions.md GetSkeletonList_UI_Notification",
    "verdict": "match",
    "note": "No visible effect.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-039",
@@ -454,7 +838,17 @@
    "react": "app_Notifications_AugmentDateRanges, dateRangesAugmented (with setDefaultFilters), refreshNotifications",
    "evidence": "app/src/pages/Notifications/hooks/useNotifications.ts:124-127; app/src/pages/Notifications/hooks/notificationsState.ts:146-151; TST Notifications.mvc.js:2020-2081",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-040",
@@ -465,7 +859,17 @@
    "react": "bubbleGenericException: loadingEnded, then UserException UBTConnect.BubbleGenericException",
    "evidence": "app/src/pages/Notifications/hooks/useNotifications.ts:92-96, 128-130; TST Notifications.mvc.js:2040-2075",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-041",
@@ -476,7 +880,17 @@
    "react": "refreshNotifications → fetchNotifications",
    "evidence": "app/src/pages/Notifications/hooks/useNotifications.ts:100-102; TST Notifications.mvc.js:2082-2112",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-042",
@@ -488,7 +902,17 @@
    "evidence": "app/src/pages/Notifications/hooks/useNotifications.ts:103-110; app/src/pages/Notifications/hooks/notificationsState.ts:159-166; TST Notifications.mvc.js:2277-2340",
    "verdict": "match",
    "note": "DEV and TST differ: see section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-043",
@@ -500,7 +924,17 @@
    "evidence": "TST Notifications.mvc.js:2324-2330, 2574-2650, 716-746",
    "verdict": "match",
    "note": "No effect.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-044",
@@ -511,7 +945,17 @@
    "react": "the same through bubbleGenericException",
    "evidence": "app/src/pages/Notifications/hooks/useNotifications.ts:111-113; TST Notifications.mvc.js:2340-2370",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-045",
@@ -523,7 +967,17 @@
    "evidence": "app/src/pages/Notifications/hooks/useNotifications.ts:143-157; app/src/pages/Notifications/hooks/notificationsState.ts:167-170; TST Notifications.mvc.js:1206-1270; BR-UBTCON-977",
    "verdict": "match",
    "note": "DEV and TST differ: see section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-046",
@@ -534,7 +988,17 @@
    "react": "searchInputChanged",
    "evidence": "app/src/pages/Notifications/hooks/useNotifications.ts:159-161; app/src/pages/Notifications/hooks/notificationsState.ts:171-174; TST Notifications.mvc.js:1322-1374",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-047",
@@ -545,7 +1009,17 @@
    "react": "searchToggled",
    "evidence": "app/src/pages/Notifications/hooks/notificationsState.ts:175-176; TST Notifications.mvc.js:1298-1321",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-048",
@@ -556,7 +1030,17 @@
    "react": "headerScrolled",
    "evidence": "app/src/pages/Notifications/hooks/useNotifications.ts:176-178; TST Notifications.mvc.js:2414-2449",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-049",
@@ -567,7 +1051,17 @@
    "react": "bottomSheetOpen(latest.current.moreAction_BottomSheetId)",
    "evidence": "app/src/pages/Notifications/hooks/useNotifications.ts:167-169; TST Notifications.mvc.js:1605-1631",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-050",
@@ -579,7 +1073,17 @@
    "evidence": "app/src/pages/Notifications/hooks/useNotifications.ts:143-149, 171-174; app/src/pages/Notifications/hooks/notificationsState.ts:177-179; TST Notifications.mvc.js:2450-2504; BR-UBTCON-978",
    "verdict": "match",
    "note": "DEV and TST differ: see section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-051",
@@ -590,7 +1094,17 @@
    "react": "filterSheetInitialized, moreActionSheetInitialized",
    "evidence": "app/src/pages/Notifications/hooks/useNotifications.ts:180-186; app/src/pages/Notifications/hooks/notificationsState.ts:182-185; TST Notifications.mvc.js:1569-1604, 1932-1967",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-052",
@@ -601,7 +1115,17 @@
    "react": "not ported; bottomSheetId_ShowSubscription stays false",
    "evidence": "TST Notifications.mvc.js:2146-2185, 2374-2413; rows 031 and 032",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-053",
@@ -613,7 +1137,17 @@
    "evidence": "TST Notifications.mvc.js:1816-1883; pack/screens.md; BR-UBTCON-980",
    "verdict": "n/a",
    "note": "dead in the model",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-054",
@@ -625,7 +1159,17 @@
    "evidence": "TST Notifications.mvc.js:1375-1428, 2113-2145, 2223-2276; pack/screens.md",
    "verdict": "n/a",
    "note": "dead in the model",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-055",
@@ -637,7 +1181,17 @@
    "evidence": "TST Notifications.mvc.js:1632-1707, 1774-1815, 2186-2222, 2505-2573",
    "verdict": "n/a",
    "note": "dead in the model",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-056",
@@ -649,7 +1203,17 @@
    "evidence": "pack/screens.md; TST Notifications.mvc.js (no such action)",
    "verdict": "match",
    "note": "DEV and TST differ: see section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-057",
@@ -661,7 +1225,17 @@
    "evidence": "pack/screens.md; TST Notifications.mvc.js (no such action)",
    "verdict": "match",
    "note": "DEV and TST differ: see section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-058",
@@ -673,7 +1247,17 @@
    "evidence": "pack/screens.md; TST Notifications.mvc.js (no such action)",
    "verdict": "match",
    "note": "DEV and TST differ: see section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-059",
@@ -685,7 +1269,17 @@
    "evidence": "pack/screens.md; TST Notifications.mvc.js (no such action)",
    "verdict": "match",
    "note": "DEV and TST differ: see section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-060",
@@ -697,7 +1291,17 @@
    "evidence": "pack/screens.md; TST Notifications.mvc.js (no such action)",
    "verdict": "match",
    "note": "DEV and TST differ: see section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-061",
@@ -709,7 +1313,17 @@
    "evidence": "pack/screens.md Notifications",
    "verdict": "n/a",
    "note": "dead in the model",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-062",
@@ -720,7 +1334,18 @@
    "react": "no validation",
    "evidence": "pack/screens.md Notifications; pack/blocks.md Notifications_Action; TST Notifications_Action.mvc.js:502-516; TST Notifications.mvc.js:355-370, 615-630",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines)",
+     "UBTConnect.App_Notifications.Notifications_Action.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-063",
@@ -731,7 +1356,17 @@
    "react": "maxRecords 20, orderByIsAscending false, both message types true, deviceHardwareId ''",
    "evidence": "app/src/pages/Notifications/hooks/notificationsState.ts:115-119; app/src/api/notification/mapper.ts:94-99; BR-UBTCON-976",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-064",
@@ -742,7 +1377,17 @@
    "react": "searchTextFiltered writes filter_Updates.searchText; selectedHistorySearch stays ''",
    "evidence": "app/src/pages/Notifications/hooks/notificationsState.ts:114, 169-170; BR-UBTCON-977",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-065",
@@ -753,7 +1398,17 @@
    "react": "no writer of orderByIsAscending",
    "evidence": "app/src/pages/Notifications/hooks/notificationsState.ts:118, 177-179; BR-UBTCON-978",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-066",
@@ -764,7 +1419,17 @@
    "react": "hasUnreadMessages is mapped and not rendered; showMarkAll is not rendered; badgeNumber 0",
    "evidence": "app/src/api/notification/mapper.ts:42-46; app/src/pages/Notifications/NotificationsPage.tsx:54-65; BR-UBTCON-979",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-067",
@@ -775,7 +1440,17 @@
    "react": "the MoreActionSheet handlers are no-ops; the list item has no click handler",
    "evidence": "app/src/pages/Notifications/components/MoreActionSheet.tsx:154-160; app/src/pages/Notifications/components/NotificationsList.tsx:38-57; BR-UBTCON-980",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-068",
@@ -790,7 +1465,17 @@
    "finding": "F2",
    "verified": "code",
    "fixed": "2026-10-27",
-   "note": "Built 2026-10-27 (builds/B5-lists.md)."
+   "note": "Built 2026-10-27 (builds/B5-lists.md).",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-069",
@@ -803,7 +1488,17 @@
    "verdict": "n/a",
    "question": "Q2: can the preload branch of ScreenEvent_OnInitialize run on TST? React does not port it.",
    "verified": "live",
-   "note": "user decision 2026-10-27, App_Notifications Q2 (b): on TST, Notifications opens no carousel and no item has a click handler, so no restored view carries a preload; the branch is dead on TST. React does not port it."
+   "note": "user decision 2026-10-27, App_Notifications Q2 (b): on TST, Notifications opens no carousel and no item has a click handler, so no restored view carries a preload; the branch is dead on TST. React does not port it.",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-070",
@@ -818,7 +1513,17 @@
    "finding": "F1",
    "verified": "code",
    "fixed": "2026-10-27",
-   "note": "Built 2026-10-27 (builds/B5-lists.md)."
+   "note": "Built 2026-10-27 (builds/B5-lists.md).",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-071",
@@ -829,7 +1534,17 @@
    "react": "maxRecords 20; no scroll-end or pull handler",
    "evidence": "app/src/pages/Notifications/hooks/notificationsState.ts:119; app/src/pages/Notifications/components/Layout_MainPages_Upgrade.tsx:28-31; BR-UBTCON-985",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-072",
@@ -840,7 +1555,17 @@
    "react": "setDefaultFilters with the same three checks",
    "evidence": "app/src/pages/Notifications/hooks/notificationsState.ts:237-248; TST Notifications.mvc.js:1708-1773; BR-UBTCON-987",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-073",
@@ -852,7 +1577,19 @@
    "evidence": "app/src/pages/Notifications/hooks/notificationsState.ts:197-213; TST UBTConnect.controller.js:359-484, 420, 423; BR-UBTCON-161",
    "verdict": "match",
    "note": "The KB rule gives another Older range: see K1 in section 6.2.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (screen)",
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-074",
@@ -863,7 +1600,19 @@
    "react": "the same",
    "evidence": "app/src/pages/Notifications/hooks/notificationsState.ts:215-235; app/src/pages/Notifications/components/actions.ts:9-10; TST UBTConnect.controller.js:498-617; BR-UBTCON-268",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (screen)",
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-075",
@@ -874,7 +1623,17 @@
    "react": "useViewState keeps CurrentSearchString, Filter_Updates and HasFiltersApplied; onReady fetches again",
    "evidence": "app/src/pages/Notifications/hooks/useNotifications.ts:49-85; app/src/pages/Notifications/hooks/notificationsState.ts:34-50; migration/patterns/P-BACK.md",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-076",
@@ -885,7 +1644,17 @@
    "react": "the same texts",
    "evidence": "app/src/pages/Notifications/NotificationsPage.tsx:48, 56",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-077",
@@ -897,7 +1666,17 @@
    "evidence": "pack/strings.md",
    "verdict": "match",
    "note": "DEV and TST differ: see section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-078",
@@ -909,7 +1688,17 @@
    "evidence": "pack/strings.md; pack/screens.md InitializeSetting",
    "verdict": "n/a",
    "note": "dead in the model",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-079",
@@ -921,7 +1710,19 @@
    "evidence": "TST UBTConnect.controller.js:11929-11936",
    "verdict": "match",
    "note": "See row 038.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications.mvc.js (screen)",
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-080",
@@ -946,7 +1747,17 @@
    "evidence": "app/src/pages/Notifications/components/Notifications_Action.tsx:20-39; TST Notifications_Action.mvc.js:13-37",
    "verdict": "match",
    "note": "DEV and TST differ: see section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications_Action.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-082",
@@ -957,7 +1768,17 @@
    "react": "the same options",
    "evidence": "app/src/pages/Notifications/components/Notifications_Action.tsx:55-65; TST Notifications_Action.mvc.js:190-205",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications_Action.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-083",
@@ -968,7 +1789,17 @@
    "react": "the same tree; onClicked and onClick → iconClick",
    "evidence": "app/src/pages/Notifications/components/Notifications_Action.tsx:45-88; TST Notifications_Action.mvc.js:250-430",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications_Action.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-084",
@@ -979,7 +1810,17 @@
    "react": "the same label; a checkbox switch bound to the local state",
    "evidence": "app/src/pages/Notifications/components/Notifications_Action.tsx:89-110; TST Notifications_Action.mvc.js:434-520",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications_Action.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-085",
@@ -990,7 +1831,17 @@
    "react": "the same branches",
    "evidence": "app/src/pages/Notifications/components/Notifications_Action.tsx:40-44; TST Notifications_Action.mvc.js:554-610",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications_Action.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-086",
@@ -1002,7 +1853,17 @@
    "evidence": "pack/blocks.md Notifications_Action; TST Notifications_Action.mvc.js:502-516",
    "verdict": "match",
    "note": "DEV and TST differ: see section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications_Action.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-087",
@@ -1013,7 +1874,17 @@
    "react": "as in the rows above",
    "evidence": "app/src/pages/Notifications/components/Notifications_Action.tsx:40-44, 96-107; BR-UBTCON-984",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications_Action.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-088",
@@ -1024,7 +1895,17 @@
    "react": "the same texts",
    "evidence": "app/src/pages/Notifications/components/Notifications_Action.tsx:70, 94",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications_Action.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-089",
@@ -1084,7 +1965,17 @@
    "evidence": "app/src/pages/Notifications/components/NotificationsListBreakpoints.tsx:7-21; TST NotificationsListBreakpoints.mvc.js:13-30",
    "verdict": "match",
    "note": "DEV and TST differ: see section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.NotificationsListBreakpoints.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-094",
@@ -1095,7 +1986,17 @@
    "react": "the same",
    "evidence": "app/src/pages/Notifications/components/NotificationsListBreakpoints.tsx:25-44; TST NotificationsListBreakpoints.mvc.js:170-245",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.NotificationsListBreakpoints.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-095",
@@ -1107,7 +2008,17 @@
    "evidence": "pack/blocks.md NotificationsListBreakpoints",
    "verdict": "match",
    "note": "DEV and TST differ: see section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.NotificationsListBreakpoints.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-096",
@@ -1119,7 +2030,17 @@
    "evidence": "app/src/pages/Notifications/components/NotificationsList.tsx:10-27; TST NotificationsList.mvc.js:13-33",
    "verdict": "match",
    "note": "DEV and TST differ: see section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.NotificationsList.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-097",
@@ -1130,7 +2051,17 @@
    "react": "the same tree",
    "evidence": "app/src/pages/Notifications/components/NotificationsList.tsx:31-58; TST NotificationsList.mvc.js:175-270",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.NotificationsList.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-098",
@@ -1142,7 +2073,17 @@
    "evidence": "pack/blocks.md NotificationsList",
    "verdict": "match",
    "note": "DEV and TST differ: see section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.NotificationsList.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-099",
@@ -1154,7 +2095,17 @@
    "evidence": "app/src/pages/Notifications/components/Notification_ListItem.tsx:29-101; TST UBTConnectLibrary.ConnectCorePatterns.Notification_ListItem.mvc.js:222-511",
    "verdict": "match",
    "note": "No KB page and no pack entry: checked against the TST compiled file only.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.NotificationsList.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-100",
@@ -1165,7 +2116,17 @@
    "react": "useState(() => itemsOfRange(…)) once per mount",
    "evidence": "app/src/pages/Notifications/components/NotificationsList.tsx:27; app/src/pages/Notifications/components/actions.ts:9-14; TST NotificationsList.mvc.js:308-356",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.NotificationsList.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-101",
@@ -1177,7 +2138,17 @@
    "evidence": "pack/blocks.md NotificationsList; TST NotificationsList.mvc.js:375-378",
    "verdict": "match",
    "note": "DEV and TST differ: see section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.NotificationsList.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-102",
@@ -1189,7 +2160,17 @@
    "evidence": "pack/blocks.md NotificationsList; TST NotificationsList.mvc.js:175-270",
    "verdict": "match",
    "note": "DEV and TST differ: see section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.NotificationsList.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-103",
@@ -1200,7 +2181,17 @@
    "react": "SortSheet yesLabel and noLabel; NoneLabel '' gives no third choice (BR-UBTCON-333)",
    "evidence": "app/src/pages/Notifications/components/SortSheet.tsx:82-95, 161-172; TST Notifications_SortSheet.mvc.js:137-160",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications_SortSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-104",
@@ -1212,7 +2203,17 @@
    "evidence": "app/src/pages/Notifications/components/SortSheet.tsx:161-172; TST Notifications_SortSheet.mvc.js:163-200, 286-320",
    "verdict": "match",
    "note": "DEV and TST differ: see section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications_SortSheet.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-105",
@@ -1223,7 +2224,17 @@
    "react": "the same texts",
    "evidence": "app/src/pages/Notifications/components/SortSheet.tsx:166-167",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications_SortSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-106",
@@ -1234,7 +2245,17 @@
    "react": "MoreActionSheet without filter options",
    "evidence": "app/src/pages/Notifications/components/MoreActionSheet.tsx:154-160; TST Notifications_MoreActionSheet.mvc.js:126-140",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-107",
@@ -1246,7 +2267,19 @@
    "evidence": "app/src/pages/Notifications/components/MoreActionSheet.tsx:35-131; TST UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js:418, 520, 641, 1908, 1937, 2168",
    "verdict": "match",
    "note": "DEV and TST differ: see section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (lines)",
+     "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-108",
@@ -1257,7 +2290,17 @@
    "react": "onMarkAllAsRead and onDeleteAllNotification are no-ops; onApplySort → onApplyFilters; onSheetInitialized",
    "evidence": "app/src/pages/Notifications/components/MoreActionSheet.tsx:141-162; TST Notifications_MoreActionSheet.mvc.js:145-215, 253-365; migration/knowledge/audit-a1-empty-handlers.md:36",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-109",
@@ -1269,7 +2312,17 @@
    "evidence": "pack/blocks.md Notifications_MoreActionSheet",
    "verdict": "match",
    "note": "DEV and TST differ: see section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-110",
@@ -1280,7 +2333,17 @@
    "react": "the same texts",
    "evidence": "app/src/pages/Notifications/components/MoreActionSheet.tsx:86-93, 117",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Notifications-111",

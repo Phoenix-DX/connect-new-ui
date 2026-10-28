@@ -1,4 +1,4 @@
-﻿define("UBTConnect_Notes_MCS.aggregates.IDB", ["OutSystems/ClientRuntime/Main", "UBTConnect_Notes_MCS.model", "UBTConnect_Notes_MCS.entities", "UBTConnect_Notes_MCS.model$LocalNoteRecordList", "UBTConnect_Notes_MCS.model$NoteCategoryIdentifierRecordList", "UBTConnect_Notes_MCS.model$IntegerRecordList", "UBTConnect_Notes_MCS.model$LocalNoteRec"], function (OutSystems, UBTConnect_Notes_MCSModel, UBTConnect_Notes_MCSEntities) {
+﻿define("UBTConnect_Notes_MCS.aggregates.IDB", ["OutSystems/ClientRuntime/Main", "UBTConnect_Notes_MCS.model", "UBTConnect_Notes_MCS.entities", "UBTConnect_Notes_MCS.model$LocalNoteRecordList", "UBTConnect_Notes_MCS.model$LongIntegerNoteCategoryIdentifierRecordList", "UBTConnect_Notes_MCS.model$IntegerRecordList", "UBTConnect_Notes_MCS.model$LocalNoteRec"], function (OutSystems, UBTConnect_Notes_MCSModel, UBTConnect_Notes_MCSEntities) {
 var OS = OutSystems.Internal;
 var serializer = new OS.IndexedDBSerializer.default();
 function ClientAggregates() {
@@ -16,7 +16,7 @@ return (v1.toLocaleLowerCase() > v2.toLocaleLowerCase()) ? 1 : (v1.toLocaleLower
 
 return OS.DataTypes.compare(v1, v2);
 }
-ClientAggregates.executeCreateOrUpdateLocalNote$ClientAction$getLocalNotesByNoteIdAggr = function (qpinUserId, qploNoteId, maxRecords) {
+ClientAggregates.executeCreateLocalNote$ClientAction$getLocalNotesByNoteIdAggr = function (qpinUserId, qpstItemId, qpstNoteCategoryId, maxRecords) {
 var LocalNote_Info = UBTConnect_Notes_MCSEntities.getEntityInfos().filter(function (info) {
 return (info.key === "33971c5f-8dc6-4984-b811-3fdccecb57f5");
 })[0];
@@ -28,7 +28,7 @@ return new Promise(function (resolve, reject) {
 var groups = {};
 var result = new UBTConnect_Notes_MCSModel.LocalNoteRecordList();
 var GetLocalNotesByNoteId_Item = {};
-OS.Logger.trace("AggregatesModule_GetLocalNotesByNoteId", "Executing Client Aggregate: executeCreateOrUpdateLocalNote$ClientAction$getLocalNotesByNoteIdAggr");
+OS.Logger.trace("AggregatesModule_GetLocalNotesByNoteId", "Executing Client Aggregate: executeCreateLocalNote$ClientAction$getLocalNotesByNoteIdAggr");
 var LocalNote_ObjectStore = transaction.objectStore("OSUSR_18U_LOCALNOTE");
 OS.Logger.trace("AggregatesModule_GetLocalNotesByNoteId", function () {
 return "Opening store: " + LocalNote_ObjectStore.name;
@@ -50,7 +50,79 @@ LocalNote_GetRequest.onsuccess = function (event) {
 Promise.all(event.target.result.map(function (LocalNote_Value) {
 return new Promise(function (LocalNote_GetResolve, reject) {
 LocalNote_Value = serializer.deserialize(LocalNote_Value, LocalNote_Info, UBTConnect_Notes_MCSModel.LocalNoteRec);
-if(LocalNote_Value.noteIdAttr.equals(qploNoteId)) {
+if(((LocalNote_Value.noteCategoryIdAttr === qpstNoteCategoryId) && (LocalNote_Value.itemIdAttr === qpstItemId))) {
+var GetLocalNotesByNoteId_Result = new UBTConnect_Notes_MCSModel.LocalNoteRecord();
+GetLocalNotesByNoteId_Result.localNoteAttr = LocalNote_Value;
+for (let key in GetLocalNotesByNoteId_Item) {
+GetLocalNotesByNoteId_Result[key]=GetLocalNotesByNoteId_Item[key];
+}
+
+result.append(GetLocalNotesByNoteId_Result);
+}
+
+LocalNote_GetResolve();
+});
+})).then(function () {
+resolve(result);
+}).catch(function (error) {
+reject(error);
+});
+};
+});
+}, aggrEntityInfos).then(function (resultList) {
+OS.Logger.trace("AggregatesModule_GetLocalNotesByNoteId", "Executing Max Records");
+var result = {
+list: new UBTConnect_Notes_MCSModel.LocalNoteRecordList(),
+count: OS.BuiltinFunctions.integerToLongInteger(resultList.length)
+};
+if((!(maxRecords) || (maxRecords >= resultList.length))) {
+result.list = resultList;
+return result;
+}
+
+for (let i = 0; i < maxRecords; i++) {
+var newResultItem = resultList.getItem(i);
+result.list.append(newResultItem);
+}
+
+return result;
+});
+};
+ClientAggregates.executeDeleteLocalNote$ClientAction$getLocalNotesByNoteIdAggr = function (qpinUserId, qpstItemId, qpstNoteCategoryId, maxRecords) {
+var LocalNote_Info = UBTConnect_Notes_MCSEntities.getEntityInfos().filter(function (info) {
+return (info.key === "33971c5f-8dc6-4984-b811-3fdccecb57f5");
+})[0];
+var aggrEntityInfos = [LocalNote_Info];
+
+var resultsPromisesCache = {};
+return executeTransaction(function (transaction) {
+return new Promise(function (resolve, reject) {
+var groups = {};
+var result = new UBTConnect_Notes_MCSModel.LocalNoteRecordList();
+var GetLocalNotesByNoteId_Item = {};
+OS.Logger.trace("AggregatesModule_GetLocalNotesByNoteId", "Executing Client Aggregate: executeDeleteLocalNote$ClientAction$getLocalNotesByNoteIdAggr");
+var LocalNote_ObjectStore = transaction.objectStore("OSUSR_18U_LOCALNOTE");
+OS.Logger.trace("AggregatesModule_GetLocalNotesByNoteId", function () {
+return "Opening store: " + LocalNote_ObjectStore.name;
+});
+var LocalNote_idxValue = serializer.serialize(qpinUserId, LocalNote_Info.attributes.filter(function (e) {
+return (e.name === "UserId");
+})[0]);
+LocalNote_ObjectStore = LocalNote_ObjectStore.index(OS.TableInfoUtils.formatObjectName("UserId"));
+OS.Logger.trace("AggregatesModule_GetLocalNotesByNoteId", function () {
+return "Using Index Attribute: UserId; Column Name: " + OS.TableInfoUtils.formatObjectName("UserId");
+});
+var LocalNote_GetRequest = LocalNote_ObjectStore.getAll(IDBKeyRange.only(LocalNote_idxValue));
+LocalNote_GetRequest.onerror = function (event) {
+event.stopPropagation();
+event.preventDefault();
+reject("Error executing Aggregate \"GetLocalNotesByNoteId\": " + LocalNote_GetRequest.error);
+};
+LocalNote_GetRequest.onsuccess = function (event) {
+Promise.all(event.target.result.map(function (LocalNote_Value) {
+return new Promise(function (LocalNote_GetResolve, reject) {
+LocalNote_Value = serializer.deserialize(LocalNote_Value, LocalNote_Info, UBTConnect_Notes_MCSModel.LocalNoteRec);
+if(((LocalNote_Value.noteCategoryIdAttr === qpstNoteCategoryId) && (LocalNote_Value.itemIdAttr === qpstItemId))) {
 var GetLocalNotesByNoteId_Result = new UBTConnect_Notes_MCSModel.LocalNoteRecord();
 GetLocalNotesByNoteId_Result.localNoteAttr = LocalNote_Value;
 for (let key in GetLocalNotesByNoteId_Item) {
@@ -170,7 +242,7 @@ var resultsPromisesCache = {};
 return executeTransaction(function (transaction) {
 return new Promise(function (resolve, reject) {
 var groups = {};
-var result = new UBTConnect_Notes_MCSModel.NoteCategoryIdentifierRecordList();
+var result = new UBTConnect_Notes_MCSModel.LongIntegerNoteCategoryIdentifierRecordList();
 var GetLocalNotesCategoryIds_ByUserId_Item = {};
 OS.Logger.trace("AggregatesModule_GetLocalNotesCategoryIds_ByUserId", "Executing Client Aggregate: executeGetNoteDynamicPills$ClientAction$getLocalNotesCategoryIds_ByUserIdAggr");
 var LocalNote_ObjectStore = transaction.objectStore("OSUSR_18U_LOCALNOTE");
@@ -204,17 +276,19 @@ var group = groups[key];
 if(!(group)) {
 group = {};
 group.noteCategoryIdAttr = LocalNote_Value.noteCategoryIdAttr;
+group.notesTotalCountSumAttr = OS.DataTypes.LongInteger.defaultValue;
 groups[key]=group;
 }
 
+group.notesTotalCountSumAttr = group.notesTotalCountSumAttr.add(LocalNote_Value.notesTotalCountAttr);
 }
 
 LocalNote_GetResolve();
 });
 })).then(function () {
-var GetLocalNotesCategoryIds_ByUserId_Result = new UBTConnect_Notes_MCSModel.NoteCategoryIdentifierRecord();
+var GetLocalNotesCategoryIds_ByUserId_Result = new UBTConnect_Notes_MCSModel.LongIntegerNoteCategoryIdentifierRecord();
 for (let groupKey in groups) {
-var GetLocalNotesCategoryIds_ByUserId_Result = new UBTConnect_Notes_MCSModel.NoteCategoryIdentifierRecord();
+var GetLocalNotesCategoryIds_ByUserId_Result = new UBTConnect_Notes_MCSModel.LongIntegerNoteCategoryIdentifierRecord();
 for (let key in groups[groupKey]) {
 GetLocalNotesCategoryIds_ByUserId_Result[key]=groups[groupKey][key];
 }
@@ -229,9 +303,53 @@ reject(error);
 };
 });
 }, aggrEntityInfos).then(function (resultList) {
+OS.Logger.trace("AggregatesModule_GetLocalNotesCategoryIds_ByUserId", "Executing outter Sorts");
+resultList.sort(function (e) {
+return {
+lessThan: function (other) {
+var i = 0;
+while ((i < this.sorts.length)) {
+var res = compare(this.sorts[i].value, other.sorts[i].value);
+res = this.sorts[i].isAscending ? res : -res;
+if(((res) !== (0))) {
+return (res < 0);
+} else {
+i = (i + 1);
+}
+
+}
+
+return false;
+},
+greaterThan: function (other) {
+var i = 0;
+while ((i < this.sorts.length)) {
+var res = compare(this.sorts[i].value, other.sorts[i].value);
+res = this.sorts[i].isAscending ? res : -res;
+if(((res) !== (0))) {
+return (res > 0);
+} else {
+i = (i + 1);
+}
+
+}
+
+return false;
+},
+sorts: [].concat({
+value: e.notesTotalCountSumAttr,
+isAscending: false
+}).concat({
+value: e.noteCategoryIdAttr,
+isAscending: true
+})
+};
+}, true);
+return resultList;
+}).then(function (resultList) {
 OS.Logger.trace("AggregatesModule_GetLocalNotesCategoryIds_ByUserId", "Executing Max Records");
 var result = {
-list: new UBTConnect_Notes_MCSModel.NoteCategoryIdentifierRecordList(),
+list: new UBTConnect_Notes_MCSModel.LongIntegerNoteCategoryIdentifierRecordList(),
 count: OS.BuiltinFunctions.integerToLongInteger(resultList.length)
 };
 if((!(maxRecords) || (maxRecords >= resultList.length))) {
@@ -317,6 +435,78 @@ reject(error);
 OS.Logger.trace("AggregatesModule_GetLocalNotesByUserId", "Executing Max Records");
 var result = {
 list: new UBTConnect_Notes_MCSModel.IntegerRecordList(),
+count: OS.BuiltinFunctions.integerToLongInteger(resultList.length)
+};
+if((!(maxRecords) || (maxRecords >= resultList.length))) {
+result.list = resultList;
+return result;
+}
+
+for (let i = 0; i < maxRecords; i++) {
+var newResultItem = resultList.getItem(i);
+result.list.append(newResultItem);
+}
+
+return result;
+});
+};
+ClientAggregates.executeUpdateLocalNote$ClientAction$getLocalNotesByNoteIdAggr = function (qpinUserId, qpstItemId, qpstNoteCategoryId, maxRecords) {
+var LocalNote_Info = UBTConnect_Notes_MCSEntities.getEntityInfos().filter(function (info) {
+return (info.key === "33971c5f-8dc6-4984-b811-3fdccecb57f5");
+})[0];
+var aggrEntityInfos = [LocalNote_Info];
+
+var resultsPromisesCache = {};
+return executeTransaction(function (transaction) {
+return new Promise(function (resolve, reject) {
+var groups = {};
+var result = new UBTConnect_Notes_MCSModel.LocalNoteRecordList();
+var GetLocalNotesByNoteId_Item = {};
+OS.Logger.trace("AggregatesModule_GetLocalNotesByNoteId", "Executing Client Aggregate: executeUpdateLocalNote$ClientAction$getLocalNotesByNoteIdAggr");
+var LocalNote_ObjectStore = transaction.objectStore("OSUSR_18U_LOCALNOTE");
+OS.Logger.trace("AggregatesModule_GetLocalNotesByNoteId", function () {
+return "Opening store: " + LocalNote_ObjectStore.name;
+});
+var LocalNote_idxValue = serializer.serialize(qpinUserId, LocalNote_Info.attributes.filter(function (e) {
+return (e.name === "UserId");
+})[0]);
+LocalNote_ObjectStore = LocalNote_ObjectStore.index(OS.TableInfoUtils.formatObjectName("UserId"));
+OS.Logger.trace("AggregatesModule_GetLocalNotesByNoteId", function () {
+return "Using Index Attribute: UserId; Column Name: " + OS.TableInfoUtils.formatObjectName("UserId");
+});
+var LocalNote_GetRequest = LocalNote_ObjectStore.getAll(IDBKeyRange.only(LocalNote_idxValue));
+LocalNote_GetRequest.onerror = function (event) {
+event.stopPropagation();
+event.preventDefault();
+reject("Error executing Aggregate \"GetLocalNotesByNoteId\": " + LocalNote_GetRequest.error);
+};
+LocalNote_GetRequest.onsuccess = function (event) {
+Promise.all(event.target.result.map(function (LocalNote_Value) {
+return new Promise(function (LocalNote_GetResolve, reject) {
+LocalNote_Value = serializer.deserialize(LocalNote_Value, LocalNote_Info, UBTConnect_Notes_MCSModel.LocalNoteRec);
+if(((LocalNote_Value.noteCategoryIdAttr === qpstNoteCategoryId) && (LocalNote_Value.itemIdAttr === qpstItemId))) {
+var GetLocalNotesByNoteId_Result = new UBTConnect_Notes_MCSModel.LocalNoteRecord();
+GetLocalNotesByNoteId_Result.localNoteAttr = LocalNote_Value;
+for (let key in GetLocalNotesByNoteId_Item) {
+GetLocalNotesByNoteId_Result[key]=GetLocalNotesByNoteId_Item[key];
+}
+
+result.append(GetLocalNotesByNoteId_Result);
+}
+
+LocalNote_GetResolve();
+});
+})).then(function () {
+resolve(result);
+}).catch(function (error) {
+reject(error);
+});
+};
+});
+}, aggrEntityInfos).then(function (resultList) {
+OS.Logger.trace("AggregatesModule_GetLocalNotesByNoteId", "Executing Max Records");
+var result = {
+list: new UBTConnect_Notes_MCSModel.LocalNoteRecordList(),
 count: OS.BuiltinFunctions.integerToLongInteger(resultList.length)
 };
 if((!(maxRecords) || (maxRecords >= resultList.length))) {

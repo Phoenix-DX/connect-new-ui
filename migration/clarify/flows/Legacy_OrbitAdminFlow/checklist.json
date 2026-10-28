@@ -14,7 +14,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST and BR-UBTCON-608: Registered only; the pack also lists UBTOne_User (see report 6.1)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-002",
@@ -27,7 +37,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-003",
@@ -40,7 +60,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-004",
@@ -53,7 +83,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-005",
@@ -66,7 +106,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "BottomBarMenu internals: owned by flow App_Common, see its report",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-006",
@@ -79,7 +129,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "CommonUI_InsideLayout internals: owned by flow App_Common, see its report",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-007",
@@ -95,7 +155,19 @@
    "verified": "code",
    "severity": "major",
    "finding": "F1",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines",
+     "file"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js (lines/file)",
+     "UBTConnect.controller.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-008",
@@ -111,7 +183,17 @@
    "verified": "code",
    "severity": "major",
    "finding": "F1",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-009",
@@ -124,7 +206,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "Destination and the 6 parameters in the TST order. TST transition Default, pack Inherited (report 6.1)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-010",
@@ -137,7 +229,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-011",
@@ -150,7 +252,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-012",
@@ -163,7 +275,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-013",
@@ -411,7 +533,17 @@
    "verdict": "match",
    "note": "TST: disable-virtualization = LaunchDarkly flag Mobile-Directory-list-virtualization (HasAccess). The flag is open in flags.md and absent from flag-values-tst.json. React always sets it | capture 2026-10-27 (review/captures.md §4): the flag Mobile-Directory-list-virtualization is a PermissionList item of ActionAppManager_SynchAppContext and evaluates true on TST (no LaunchDarkly request); React's constant equals it; reading it live comes with the flag endpoint (infra-gaps §6)",
    "verified": "live",
-   "severity": "minor"
+   "severity": "minor",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-032",
@@ -492,7 +624,17 @@
    "tst": "-",
    "verdict": "n/a",
    "note": "owned by flow App_Common, see its report (BottomBarMenu calls it, not these screens)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-038",
@@ -635,7 +777,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-049",
@@ -648,7 +800,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-050",
@@ -661,7 +823,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-051",
@@ -674,7 +846,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-052",
@@ -687,7 +869,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-053",
@@ -700,7 +892,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-054",
@@ -713,7 +915,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-055",
@@ -726,7 +938,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "Fetch moment on demand matches. The server side is row 106 (mock-only)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-056",
@@ -739,7 +961,17 @@
    "tst": "present",
    "verdict": "differs",
    "note": "Extra clause isDataFetched: F40, intended difference",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-057",
@@ -752,7 +984,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-058",
@@ -765,7 +1007,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-059",
@@ -778,7 +1030,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-060",
@@ -791,7 +1053,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-061",
@@ -804,7 +1076,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "Payload fields and order match: EventId, EventTitle, EventType (In_EventTypeFriendly), EventLocation, EventStartDate, EventEndDate. Sink: row 104",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-062",
@@ -817,7 +1099,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "All 9 arguments match, the last one is \"Entities.AndroidScanningLibrary.ZXing\" in TST too; Hint TextToInteger(\"Entities.Format.ALL\") = 0",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-063",
@@ -830,7 +1122,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-064",
@@ -843,7 +1145,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-065",
@@ -856,7 +1168,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "value of SCANNER_CLOSED_BY_USER in platform/device/barcodePlugin.ts not read",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-066",
@@ -869,7 +1191,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "react quote: adminEventDetailActions.ts:26 const text = codeScanned.toLowerCase();",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-067",
@@ -882,7 +1214,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-068",
@@ -895,7 +1237,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "GetCacheableSignedImageURL(MemberId, DirectoryAPIFilter.Member, ImageSigningSize.Small) as TST. The server side of GetMemberByMemberId is row 107",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-069",
@@ -908,7 +1260,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-070",
@@ -924,7 +1286,17 @@
    "verified": "live",
    "severity": "minor",
    "finding": "F3",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-071",
@@ -937,7 +1309,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-072",
@@ -950,7 +1332,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "Order matches: ScanResult, toggle, IsProcessingData False, then the audit event. Payload fields match. Sink: row 104",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-073",
@@ -963,7 +1355,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-074",
@@ -976,7 +1378,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-075",
@@ -992,7 +1404,17 @@
    "verified": "live",
    "severity": "minor",
    "finding": "F2",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-076",
@@ -1005,7 +1427,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-077",
@@ -1018,7 +1450,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-078",
@@ -1031,7 +1473,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-079",
@@ -1044,7 +1496,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-080",
@@ -1057,7 +1519,19 @@
    "tst": "present",
    "verdict": "match",
    "note": "No Dialog component here: AdminPopup is its own portal. The Root grandparent is the content placeholder (TST Layout_Orbit Placeholder, React OrbitLayout.tsx:84), both without a class",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_LegacyShared.controller.js (lines-same)",
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-081",
@@ -1070,7 +1544,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "customClass 'orbit-detail' not checked in TST in this pass",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-082",
@@ -1083,7 +1567,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-083",
@@ -1096,7 +1590,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-084",
@@ -1109,7 +1613,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-085",
@@ -1122,7 +1636,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-086",
@@ -1135,7 +1659,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-087",
@@ -1148,7 +1682,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "Popup_QRCodeScan internals: rows 093 to 096",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-088",
@@ -1161,7 +1705,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-089",
@@ -1174,7 +1728,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-090",
@@ -1226,7 +1790,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_Blocks.Popup_QRCodeScan.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-094",
@@ -1239,7 +1813,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_Blocks.Popup_QRCodeScan.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-095",
@@ -1252,7 +1836,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_Blocks.Popup_QRCodeScan.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-096",
@@ -1265,7 +1859,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_Blocks.Popup_QRCodeScan.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-097",
@@ -1330,7 +1934,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_LegacyShared.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-102",
@@ -1356,7 +1970,17 @@
    "tst": "present",
    "verdict": "differs",
    "note": "ADR-11: production uses the web scanner; dev and demo keep the fictional scanner. migration/knowledge/pwa-file-plugins.md has no BarcodePlugin section",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-104",
@@ -1369,7 +1993,17 @@
    "tst": "present",
    "verdict": "differs",
    "note": "U17: no telemetry in the mock phase. Production needs the App Insights custom event",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_LegacyShared.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-105",
@@ -1395,7 +2029,17 @@
    "tst": "present",
    "verdict": "mock-only",
    "note": "Production needs .../ScreenBlock_AdminEventDetail/DataActionGet_EventInformation",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-107",
@@ -1408,7 +2052,17 @@
    "tst": "present",
    "verdict": "mock-only",
    "note": "Production needs ActionGetMemberByMemberId",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-108",
@@ -1421,7 +2075,17 @@
    "tst": "present",
    "verdict": "mock-only",
    "note": "Production needs ActionGetScanEventQRCode",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_OrbitAdminFlow-109",
@@ -1434,7 +2098,18 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "Connect2_OrbitMobile_MUI.Orbit_Blocks.Popup_QRCodeScan.mvc.js (file)",
+     "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js (file)"
+    ]
+   }
   }
  ]
 }

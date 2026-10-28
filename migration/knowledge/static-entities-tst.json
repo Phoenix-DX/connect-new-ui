@@ -727,6 +727,7 @@
   "addCircle": "connect-icon-add_circle",
   "aod": "connect-icon-aod",
   "aodFill": "connect-icon-aod_fill",
+  "arrowDown": "connect-icon-Arrow-down",
   "arrowDropDown": "connect-icon-arrow_drop_down",
   "arrowDropUp": "connect-icon-arrow_drop_up",
   "arrowLeft": "connect-icon-arrow_left",
@@ -734,6 +735,7 @@
   "arrowOutward": "connect-icon-arrow_outward",
   "arrowRight": "connect-icon-arrow_right",
   "arrowRightAlt": "connect-icon-arrow_right_alt",
+  "arrowUp": "connect-icon-Arrow-up1",
   "assemble": "connect-icon-assemble",
   "attachFile": "connect-icon-attach_file",
   "autorenew": "connect-icon-autorenew",
@@ -882,6 +884,10 @@
   "replay": "connect-icon-replay",
   "reply": "connect-icon-reply",
   "sMS": "connect-icon-sms",
+  "sVG_CommunityCountries": "SVG_CommunityCountries",
+  "sVG_CommunityHouseholds": "SVG_CommunityHouseholds",
+  "sVG_CommunityLocalities": "SVG_CommunityLocalities",
+  "sVG_CommunityMembers": "SVG_CommunityMembers",
   "sVG_CommunityTradelink": "SVG_CommunityTradelink",
   "sVG_ElGusto": "SVG_ElGusto",
   "sVG_HR100": "SVG_HR100",
@@ -928,12 +934,14 @@
  "Connect2_LegacyShared.uBT_Icons2ize": {
   "base_24": "icon-base",
   "display_36": "icon-display",
+  "extraSmall_10": "icon-extra-small",
   "medium_20": "icon-medium",
   "nonStandard_108": "icon-non-standard-108",
   "nonStandard_14": "icon-non-standard-14",
   "nonStandard_16": "icon-non-standard-16",
   "nonStandard_18": "icon-non-standard-18",
   "nonStandard_32": "icon-non-standard-32",
+  "nonStandard_40": "icon-non-standard-40",
   "nonStandard_64": "icon-non-standard-64",
   "small_12": "icon-small"
  },
@@ -1281,10 +1289,6 @@
   "oneSchoolGlobal": "OneSchool Global",
   "subdivision": "Subdivision"
  },
- "Connect2_MyBookmarks_MUI.myBookmarks_SortColumn": {
-  "dateCreated": "DateCreatedUtc",
-  "title": "Title"
- },
  "Connect2_MyBookmarks_MUI.orientation": {
   "horizontal": "horizontal",
   "vertical": "vertical"
@@ -1484,6 +1488,17 @@
   "backCamera": "1",
   "frontCamera": "2"
  },
+ "Connect2_OrbitMobile_MUI.clients": {
+  "alphaBackoffice": "4",
+  "connectMobile": "3",
+  "hR100Mobile": "9",
+  "hR100Web": "10",
+  "rRTMobile": "1",
+  "rRTWeb": "2",
+  "subscriptionsAndPayments": "7",
+  "troveBackoffice": "11",
+  "troveMobile": "8"
+ },
  "Connect2_OrbitMobile_MUI.connect_Entity2": {
   "country": "Country",
   "feedItem": "Feed Item",
@@ -1583,7 +1598,9 @@
  "Connect2_OrbitMobile_MUI.launchDarkly_FF": {
   "mobileAssemble": "mobile-assemble",
   "mobileDirectoryBookmarkNote": "mobile-directory-bookmark-notes",
+  "mobileDirectoryHouseholdGallery": "directory-household-gallery",
   "mobileDirectoryListVirtualization": "Mobile-Directory-list-virtualization",
+  "mobileDirectoryLocalityContacts": "directory-locality-contacts",
   "mobileDirectoryUpdateFeedDeceasedProfile": "Mobile-Directory-UpdateFeed-DeceasedProfile",
   "mobileHasDeceasedPhotos": "mobile-has-deceased-photos",
   "mobileHasHiddenMembersAccess": "connect-mobile-ancestry-away-members",
@@ -1653,6 +1670,12 @@
   "accommodationHelper": "accommodation-helper",
   "accommodationHost": "accommodation-host",
   "accommodationHotel": "accommodation-hotel",
+  "adminAccommodation": "accommodation-admin",
+  "adminBreak": "break-admin",
+  "adminMeal": "meeting-meal",
+  "adminMealAtHall": "meal-at-hall-admin",
+  "adminMeeting": "meeting-admin",
+  "adminTransportVehicle": "transport-vehicle-admin",
   "boat": "transport-boat",
   "break": "break",
   "flight": "transport-flight",
@@ -1707,9 +1730,18 @@
   "topLeft": "top-left",
   "topRight": "top-right"
  },
- "Connect2_OrbitMobile_MUI.qRCodeErrorType": {
-  "alreadyCheckedIn": "AlreadyCheckedIn",
-  "genericError": "GenericError"
+ "Connect2_OrbitMobile_MUI.qRCodeScanResult": {
+  "alreadyCheckedInForMilestone": "AlreadyCheckedInForMilestone",
+  "checkedIn": "CheckedIn",
+  "checkedInForOtherMilestone": "CheckedInForOtherMilestone",
+  "genericError": "GenericError",
+  "moved": "Moved",
+  "notAllocated": "NotAllocated",
+  "notInvited": "NotInvited"
+ },
+ "Connect2_OrbitMobile_MUI.scanClient": {
+  "connectMobile": "ConnectMobile",
+  "webScanner": "WebScanner"
  },
  "Connect2_OrbitMobile_MUI.scanOrientation": {
   "adaptive": "3",
@@ -1730,6 +1762,12 @@
   "none": "none",
   "small": "s",
   "xXLarge": "xxl"
+ },
+ "Connect2_OrbitMobile_MUI.subscriptionPlan": {
+  "advancedPlus": "1",
+  "free": "2",
+  "global": "3",
+  "regional": "4"
  },
  "Connect2_OrbitMobile_MUI.surveyStatus": {
   "confirmed": "2",
@@ -2732,7 +2770,7 @@
   "locality": "Locality",
   "localityContact": "Locality Contact",
   "member": "Member",
-  "oneSchoolGlobal": "OneSchoolGlobal",
+  "oneSchoolGlobal2": "OneSchool Global",
   "orbitEvent": "Orbit Event",
   "personalEvent": "Personal Event",
   "supperMeeting": "Supper Meeting",
@@ -2757,10 +2795,6 @@
   "day": "Day",
   "month": "Month",
   "week": "Week"
- },
- "UBTConnect.carouselDirection": {
-  "leftToRight": "LeftToRight",
-  "rightToLeft": "RightToLeft"
  },
  "UBTConnect.carouselNavigation": {
   "arrows": "arrows",
@@ -3044,6 +3078,7 @@
  "UBTConnect.launchDarkly_FF": {
   "mobileAssemble": "mobile-assemble",
   "mobileDirectoryBookmarkNote": "mobile-directory-bookmark-notes",
+  "mobileDirectoryHouseholdGallery": "directory-household-gallery",
   "mobileDirectoryListVirtualization": "Mobile-Directory-list-virtualization",
   "mobileDirectoryLocalityContacts": "directory-locality-contacts",
   "mobileDirectoryUpdateFeedDeceasedProfile": "Mobile-Directory-UpdateFeed-DeceasedProfile",
@@ -3096,22 +3131,6 @@
   "supperMeeting": "Supper Meeting",
   "update": "Update"
  },
- "UBTConnect.notificationDeepLinkParameter": {
-  "assembleEventTypeTitle": "AssembleEventTypeTitle",
-  "deviceId": "DeviceId",
-  "eventId": "EventId",
-  "event_TEST": "Event",
-  "isGeneralInformation": "IsGeneralInformation",
-  "isPrivate": "IsPrivate",
-  "isPushNotificationOnly": "IsPushNotificationOnly",
-  "logout": "Logout",
-  "message": "Message",
-  "messageInstanceId": "MessageInstanceId",
-  "messageTemplateId": "MessageTemplateId",
-  "retractedMessage": "RetractedMessage",
-  "seriesId": "SeriesId",
-  "userId": "UserId"
- },
  "UBTConnect.orbitApplicationEvent": {
   "applyFilter": "54f62806-9b67-4a96-bca6-1cd0f0b90f51",
   "applySort": "fae133ca-3809-49c9-956d-93b66d88e4b9",
@@ -3137,6 +3156,12 @@
   "accommodationHelper": "accommodation-helper",
   "accommodationHost": "accommodation-host",
   "accommodationHotel": "accommodation-hotel",
+  "adminAccommodation": "accommodation-admin",
+  "adminBreak": "break-admin",
+  "adminMeal": "meeting-meal",
+  "adminMealAtHall": "meal-at-hall-admin",
+  "adminMeeting": "meeting-admin",
+  "adminTransportVehicle": "transport-vehicle-admin",
   "boat": "transport-boat",
   "break": "break",
   "flight": "transport-flight",
@@ -3217,11 +3242,6 @@
   "rounded": "rounded",
   "sharp": "none",
   "softRounded": "soft"
- },
- "UBTConnect.shareUserListType": {
-  "recentShared": "RecentShared",
-  "searchResult": "SearchResult",
-  "suggestion": "Suggestion"
  },
  "UBTConnect.sideMenuBehavior": {
   "expandable": "aside-expandable",
@@ -3484,6 +3504,7 @@
   "addCircle": "connect-icon-add_circle",
   "aod": "connect-icon-aod",
   "aodFill": "connect-icon-aod_fill",
+  "arrowDown": "connect-icon-Arrow-down",
   "arrowDropDown": "connect-icon-arrow_drop_down",
   "arrowDropUp": "connect-icon-arrow_drop_up",
   "arrowLeft": "connect-icon-arrow_left",
@@ -3491,6 +3512,7 @@
   "arrowOutward": "connect-icon-arrow_outward",
   "arrowRight": "connect-icon-arrow_right",
   "arrowRightAlt": "connect-icon-arrow_right_alt",
+  "arrowUp": "connect-icon-Arrow-up1",
   "assemble": "connect-icon-assemble",
   "attachFile": "connect-icon-attach_file",
   "autorenew": "connect-icon-autorenew",
@@ -3639,6 +3661,10 @@
   "replay": "connect-icon-replay",
   "reply": "connect-icon-reply",
   "sMS": "connect-icon-sms",
+  "sVG_CommunityCountries": "SVG_CommunityCountries",
+  "sVG_CommunityHouseholds": "SVG_CommunityHouseholds",
+  "sVG_CommunityLocalities": "SVG_CommunityLocalities",
+  "sVG_CommunityMembers": "SVG_CommunityMembers",
   "sVG_CommunityTradelink": "SVG_CommunityTradelink",
   "sVG_ElGusto": "SVG_ElGusto",
   "sVG_HR100": "SVG_HR100",
@@ -3685,12 +3711,14 @@
  "UBTConnect.uBT_IconsSize": {
   "base_24": "icon-base",
   "display_36": "icon-display",
+  "extraSmall_10": "icon-extra-small",
   "medium_20": "icon-medium",
   "nonStandard_108": "icon-non-standard-108",
   "nonStandard_14": "icon-non-standard-14",
   "nonStandard_16": "icon-non-standard-16",
   "nonStandard_18": "icon-non-standard-18",
   "nonStandard_32": "icon-non-standard-32",
+  "nonStandard_40": "icon-non-standard-40",
   "nonStandard_64": "icon-non-standard-64",
   "small_12": "icon-small"
  },
@@ -4132,12 +4160,14 @@
  "UBTConnectLibrary.uBT_IconSize": {
   "base_24": "icon-base",
   "display_36": "icon-display",
+  "extraSmall_10": "icon-extra-small",
   "medium_20": "icon-medium",
   "nonStandard_108": "icon-non-standard-108",
   "nonStandard_14": "icon-non-standard-14",
   "nonStandard_16": "icon-non-standard-16",
   "nonStandard_18": "icon-non-standard-18",
   "nonStandard_32": "icon-non-standard-32",
+  "nonStandard_40": "icon-non-standard-40",
   "nonStandard_64": "icon-non-standard-64",
   "small_12": "icon-small"
  },
@@ -4148,6 +4178,7 @@
   "addCircle": "connect-icon-add_circle",
   "aod": "connect-icon-aod",
   "aodFill": "connect-icon-aod_fill",
+  "arrowDown": "connect-icon-Arrow-down",
   "arrowDropDown": "connect-icon-arrow_drop_down",
   "arrowDropUp": "connect-icon-arrow_drop_up",
   "arrowLeft": "connect-icon-arrow_left",
@@ -4155,6 +4186,7 @@
   "arrowOutward": "connect-icon-arrow_outward",
   "arrowRight": "connect-icon-arrow_right",
   "arrowRightAlt": "connect-icon-arrow_right_alt",
+  "arrowUp": "connect-icon-Arrow-up1",
   "assemble": "connect-icon-assemble",
   "attachFile": "connect-icon-attach_file",
   "autorenew": "connect-icon-autorenew",
@@ -4303,6 +4335,10 @@
   "replay": "connect-icon-replay",
   "reply": "connect-icon-reply",
   "sMS": "connect-icon-sms",
+  "sVG_CommunityCountries": "SVG_CommunityCountries",
+  "sVG_CommunityHouseholds": "SVG_CommunityHouseholds",
+  "sVG_CommunityLocalities": "SVG_CommunityLocalities",
+  "sVG_CommunityMembers": "SVG_CommunityMembers",
   "sVG_CommunityTradelink": "SVG_CommunityTradelink",
   "sVG_ElGusto": "SVG_ElGusto",
   "sVG_HR100": "SVG_HR100",
@@ -4440,7 +4476,7 @@
   "locality": "Locality",
   "localityContact": "Locality Contact",
   "member": "Member",
-  "oneSchoolGlobal": "OneSchoolGlobal",
+  "oneSchoolGlobal2": "OneSchool Global",
   "orbitEvent": "Orbit Event",
   "personalEvent": "Personal Event",
   "supperMeeting": "Supper Meeting",
@@ -5216,7 +5252,6 @@
   "locality": "Locality",
   "localityContact": "Locality Contact",
   "member": "Member",
-  "oneSchoolGlobal": "OneSchoolGlobal",
   "orbitEvent": "Orbit Event",
   "personalEvent": "Personal Event",
   "supperMeeting": "Supper Meeting",

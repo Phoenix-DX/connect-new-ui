@@ -1,4 +1,4 @@
-﻿define("UBTConnect.aggregates.IDB", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.entities", "UBTConnect.model$ConnectSearch_RecentSearchTermRecordList", "UBTConnect.model$ConnectSearch_RecentClickedResultsRecordList", "UBTConnect.model$Temp_PersonalEventIdsRecordList", "UBTConnect.model$ConnectSearch_RecentSearchTermRec", "UBTConnect.model$ConnectSearch_RecentClickedResultsRec", "UBTConnect.model$Temp_PersonalEventIdsRec"], function (OutSystems, UBTConnectModel, UBTConnectEntities) {
+﻿define("UBTConnect.aggregates.IDB", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect_Bookmarks_MCS.entities", "UBTConnect_Bookmarks_MCS.model", "UBTConnect.entities", "UBTConnect.model$LocalBookmark2RecordList", "UBTConnect.model$ConnectSearch_RecentSearchTermRecordList", "UBTConnect.model$ConnectSearch_RecentClickedResultsRecordList", "UBTConnect.model$Temp_PersonalEventIdsRecordList", "UBTConnect_Bookmarks_MCS.model$LocalBookmarkRec", "UBTConnect.model$ConnectSearch_RecentSearchTermRec", "UBTConnect.model$ConnectSearch_RecentClickedResultsRec", "UBTConnect.model$Temp_PersonalEventIdsRec"], function (OutSystems, UBTConnectModel, UBTConnect_Bookmarks_MCSEntities, UBTConnect_Bookmarks_MCSModel, UBTConnectEntities) {
 var OS = OutSystems.Internal;
 var serializer = new OS.IndexedDBSerializer.default();
 function ClientAggregates() {
@@ -16,6 +16,222 @@ return (v1.toLocaleLowerCase() > v2.toLocaleLowerCase()) ? 1 : (v1.toLocaleLower
 
 return OS.DataTypes.compare(v1, v2);
 }
+ClientAggregates.executeMap$ActionMapExploreItemsToBookmarkItems$Action$getMatchingBookmark_OneSchoolGlobalAggr = function (qpstItemId, qpstBookmarkCategoryId, qpinUserId, maxRecords) {
+var LocalBookmark2_Info = UBTConnect_Bookmarks_MCSEntities.getEntityInfos().filter(function (info) {
+return (info.key === "d8bbc5bd-997c-4686-a8a5-b4c5ce905b7c");
+})[0];
+var aggrEntityInfos = [LocalBookmark2_Info];
+
+var resultsPromisesCache = {};
+return executeTransaction(function (transaction) {
+return new Promise(function (resolve, reject) {
+var groups = {};
+var result = new UBTConnectModel.LocalBookmark2RecordList();
+var GetMatchingBookmark_OneSchoolGlobal_Item = {};
+OS.Logger.trace("AggregatesModule_GetMatchingBookmark_OneSchoolGlobal", "Executing Client Aggregate: executeMap$ActionMapExploreItemsToBookmarkItems$Action$getMatchingBookmark_OneSchoolGlobalAggr");
+var LocalBookmark_ObjectStore = transaction.objectStore("OSUSR_HCR_LOCALBOOKMARK");
+OS.Logger.trace("AggregatesModule_GetMatchingBookmark_OneSchoolGlobal", function () {
+return "Opening store: " + LocalBookmark_ObjectStore.name;
+});
+var LocalBookmark_idxValue = serializer.serialize(qpstItemId, LocalBookmark2_Info.attributes.filter(function (e) {
+return (e.name === "ItemId");
+})[0]);
+LocalBookmark_ObjectStore = LocalBookmark_ObjectStore.index(OS.TableInfoUtils.formatObjectName("ItemId"));
+OS.Logger.trace("AggregatesModule_GetMatchingBookmark_OneSchoolGlobal", function () {
+return "Using Index Attribute: ItemId; Column Name: " + OS.TableInfoUtils.formatObjectName("ItemId");
+});
+var LocalBookmark_GetRequest = LocalBookmark_ObjectStore.getAll(IDBKeyRange.only(LocalBookmark_idxValue));
+LocalBookmark_GetRequest.onerror = function (event) {
+event.stopPropagation();
+event.preventDefault();
+reject("Error executing Aggregate \"GetMatchingBookmark_OneSchoolGlobal\": " + LocalBookmark_GetRequest.error);
+};
+LocalBookmark_GetRequest.onsuccess = function (event) {
+Promise.all(event.target.result.map(function (LocalBookmark_Value) {
+return new Promise(function (LocalBookmark_GetResolve, reject) {
+LocalBookmark_Value = serializer.deserialize(LocalBookmark_Value, LocalBookmark2_Info, UBTConnect_Bookmarks_MCSModel.LocalBookmarkRec);
+if(((LocalBookmark_Value.bookmarkCategoryIdAttr === qpstBookmarkCategoryId) && (LocalBookmark_Value.userIdAttr === qpinUserId))) {
+var GetMatchingBookmark_OneSchoolGlobal_Result = new UBTConnectModel.LocalBookmark2Record();
+GetMatchingBookmark_OneSchoolGlobal_Result.localBookmarkAttr = LocalBookmark_Value;
+for (let key in GetMatchingBookmark_OneSchoolGlobal_Item) {
+GetMatchingBookmark_OneSchoolGlobal_Result[key]=GetMatchingBookmark_OneSchoolGlobal_Item[key];
+}
+
+result.append(GetMatchingBookmark_OneSchoolGlobal_Result);
+}
+
+LocalBookmark_GetResolve();
+});
+})).then(function () {
+resolve(result);
+}).catch(function (error) {
+reject(error);
+});
+};
+});
+}, aggrEntityInfos).then(function (resultList) {
+OS.Logger.trace("AggregatesModule_GetMatchingBookmark_OneSchoolGlobal", "Executing Max Records");
+var result = {
+list: new UBTConnectModel.LocalBookmark2RecordList(),
+count: OS.BuiltinFunctions.integerToLongInteger(resultList.length)
+};
+if((!(maxRecords) || (maxRecords >= resultList.length))) {
+result.list = resultList;
+return result;
+}
+
+for (let i = 0; i < maxRecords; i++) {
+var newResultItem = resultList.getItem(i);
+result.list.append(newResultItem);
+}
+
+return result;
+});
+};
+ClientAggregates.executeMap$ActionMapExploreItemsToBookmarkItems$Action$getMatchingBookmark_SupperMeetingsAggr = function (qpstItemId, qpstBookmarkCategoryId, qpinUserId, maxRecords) {
+var LocalBookmark2_Info = UBTConnect_Bookmarks_MCSEntities.getEntityInfos().filter(function (info) {
+return (info.key === "d8bbc5bd-997c-4686-a8a5-b4c5ce905b7c");
+})[0];
+var aggrEntityInfos = [LocalBookmark2_Info];
+
+var resultsPromisesCache = {};
+return executeTransaction(function (transaction) {
+return new Promise(function (resolve, reject) {
+var groups = {};
+var result = new UBTConnectModel.LocalBookmark2RecordList();
+var GetMatchingBookmark_SupperMeetings_Item = {};
+OS.Logger.trace("AggregatesModule_GetMatchingBookmark_SupperMeetings", "Executing Client Aggregate: executeMap$ActionMapExploreItemsToBookmarkItems$Action$getMatchingBookmark_SupperMeetingsAggr");
+var LocalBookmark_ObjectStore = transaction.objectStore("OSUSR_HCR_LOCALBOOKMARK");
+OS.Logger.trace("AggregatesModule_GetMatchingBookmark_SupperMeetings", function () {
+return "Opening store: " + LocalBookmark_ObjectStore.name;
+});
+var LocalBookmark_idxValue = serializer.serialize(qpstItemId, LocalBookmark2_Info.attributes.filter(function (e) {
+return (e.name === "ItemId");
+})[0]);
+LocalBookmark_ObjectStore = LocalBookmark_ObjectStore.index(OS.TableInfoUtils.formatObjectName("ItemId"));
+OS.Logger.trace("AggregatesModule_GetMatchingBookmark_SupperMeetings", function () {
+return "Using Index Attribute: ItemId; Column Name: " + OS.TableInfoUtils.formatObjectName("ItemId");
+});
+var LocalBookmark_GetRequest = LocalBookmark_ObjectStore.getAll(IDBKeyRange.only(LocalBookmark_idxValue));
+LocalBookmark_GetRequest.onerror = function (event) {
+event.stopPropagation();
+event.preventDefault();
+reject("Error executing Aggregate \"GetMatchingBookmark_SupperMeetings\": " + LocalBookmark_GetRequest.error);
+};
+LocalBookmark_GetRequest.onsuccess = function (event) {
+Promise.all(event.target.result.map(function (LocalBookmark_Value) {
+return new Promise(function (LocalBookmark_GetResolve, reject) {
+LocalBookmark_Value = serializer.deserialize(LocalBookmark_Value, LocalBookmark2_Info, UBTConnect_Bookmarks_MCSModel.LocalBookmarkRec);
+if(((LocalBookmark_Value.bookmarkCategoryIdAttr === qpstBookmarkCategoryId) && (LocalBookmark_Value.userIdAttr === qpinUserId))) {
+var GetMatchingBookmark_SupperMeetings_Result = new UBTConnectModel.LocalBookmark2Record();
+GetMatchingBookmark_SupperMeetings_Result.localBookmarkAttr = LocalBookmark_Value;
+for (let key in GetMatchingBookmark_SupperMeetings_Item) {
+GetMatchingBookmark_SupperMeetings_Result[key]=GetMatchingBookmark_SupperMeetings_Item[key];
+}
+
+result.append(GetMatchingBookmark_SupperMeetings_Result);
+}
+
+LocalBookmark_GetResolve();
+});
+})).then(function () {
+resolve(result);
+}).catch(function (error) {
+reject(error);
+});
+};
+});
+}, aggrEntityInfos).then(function (resultList) {
+OS.Logger.trace("AggregatesModule_GetMatchingBookmark_SupperMeetings", "Executing Max Records");
+var result = {
+list: new UBTConnectModel.LocalBookmark2RecordList(),
+count: OS.BuiltinFunctions.integerToLongInteger(resultList.length)
+};
+if((!(maxRecords) || (maxRecords >= resultList.length))) {
+result.list = resultList;
+return result;
+}
+
+for (let i = 0; i < maxRecords; i++) {
+var newResultItem = resultList.getItem(i);
+result.list.append(newResultItem);
+}
+
+return result;
+});
+};
+ClientAggregates.executeMap$ActionMapExploreItemsToBookmarkItems$Action$getMatchingBookmark_HouseholdsAggr = function (qpstItemId, qpstBookmarkCategoryId, qpinUserId, maxRecords) {
+var LocalBookmark2_Info = UBTConnect_Bookmarks_MCSEntities.getEntityInfos().filter(function (info) {
+return (info.key === "d8bbc5bd-997c-4686-a8a5-b4c5ce905b7c");
+})[0];
+var aggrEntityInfos = [LocalBookmark2_Info];
+
+var resultsPromisesCache = {};
+return executeTransaction(function (transaction) {
+return new Promise(function (resolve, reject) {
+var groups = {};
+var result = new UBTConnectModel.LocalBookmark2RecordList();
+var GetMatchingBookmark_Households_Item = {};
+OS.Logger.trace("AggregatesModule_GetMatchingBookmark_Households", "Executing Client Aggregate: executeMap$ActionMapExploreItemsToBookmarkItems$Action$getMatchingBookmark_HouseholdsAggr");
+var LocalBookmark_ObjectStore = transaction.objectStore("OSUSR_HCR_LOCALBOOKMARK");
+OS.Logger.trace("AggregatesModule_GetMatchingBookmark_Households", function () {
+return "Opening store: " + LocalBookmark_ObjectStore.name;
+});
+var LocalBookmark_idxValue = serializer.serialize(qpstItemId, LocalBookmark2_Info.attributes.filter(function (e) {
+return (e.name === "ItemId");
+})[0]);
+LocalBookmark_ObjectStore = LocalBookmark_ObjectStore.index(OS.TableInfoUtils.formatObjectName("ItemId"));
+OS.Logger.trace("AggregatesModule_GetMatchingBookmark_Households", function () {
+return "Using Index Attribute: ItemId; Column Name: " + OS.TableInfoUtils.formatObjectName("ItemId");
+});
+var LocalBookmark_GetRequest = LocalBookmark_ObjectStore.getAll(IDBKeyRange.only(LocalBookmark_idxValue));
+LocalBookmark_GetRequest.onerror = function (event) {
+event.stopPropagation();
+event.preventDefault();
+reject("Error executing Aggregate \"GetMatchingBookmark_Households\": " + LocalBookmark_GetRequest.error);
+};
+LocalBookmark_GetRequest.onsuccess = function (event) {
+Promise.all(event.target.result.map(function (LocalBookmark_Value) {
+return new Promise(function (LocalBookmark_GetResolve, reject) {
+LocalBookmark_Value = serializer.deserialize(LocalBookmark_Value, LocalBookmark2_Info, UBTConnect_Bookmarks_MCSModel.LocalBookmarkRec);
+if(((LocalBookmark_Value.bookmarkCategoryIdAttr === qpstBookmarkCategoryId) && (LocalBookmark_Value.userIdAttr === qpinUserId))) {
+var GetMatchingBookmark_Households_Result = new UBTConnectModel.LocalBookmark2Record();
+GetMatchingBookmark_Households_Result.localBookmarkAttr = LocalBookmark_Value;
+for (let key in GetMatchingBookmark_Households_Item) {
+GetMatchingBookmark_Households_Result[key]=GetMatchingBookmark_Households_Item[key];
+}
+
+result.append(GetMatchingBookmark_Households_Result);
+}
+
+LocalBookmark_GetResolve();
+});
+})).then(function () {
+resolve(result);
+}).catch(function (error) {
+reject(error);
+});
+};
+});
+}, aggrEntityInfos).then(function (resultList) {
+OS.Logger.trace("AggregatesModule_GetMatchingBookmark_Households", "Executing Max Records");
+var result = {
+list: new UBTConnectModel.LocalBookmark2RecordList(),
+count: OS.BuiltinFunctions.integerToLongInteger(resultList.length)
+};
+if((!(maxRecords) || (maxRecords >= resultList.length))) {
+result.list = resultList;
+return result;
+}
+
+for (let i = 0; i < maxRecords; i++) {
+var newResultItem = resultList.getItem(i);
+result.list.append(newResultItem);
+}
+
+return result;
+});
+};
 ClientAggregates.executeScreenBlock_Search$OnClickRecentSearchRemoveAll$Action$getConnectSearchRecentSearchTermsByUserIdAggr = function (qpinUserId, qpstSearchTargetId, maxRecords) {
 var ConnectSearch_RecentSearchTerm_Info = UBTConnectEntities.getEntityInfos().filter(function (info) {
 return (info.key === "b992bfa1-e231-4566-8b7a-a282933b94bd");

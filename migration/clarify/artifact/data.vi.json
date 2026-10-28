@@ -21,7 +21,8 @@
    "n/a": "20",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/1/2/3",
-   "Questions": "4"
+   "Questions": "4",
+   "Stale (strong)": "33 (2)"
   },
   {
    "Group": "G1",
@@ -36,7 +37,8 @@
    "n/a": "6",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/0/1/4",
-   "Questions": "3"
+   "Questions": "3",
+   "Stale (strong)": "0 (0)"
   },
   {
    "Group": "G1",
@@ -51,7 +53,8 @@
    "n/a": "5",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/1/3/2",
-   "Questions": "2"
+   "Questions": "2",
+   "Stale (strong)": "6 (1)"
   },
   {
    "Group": "G1",
@@ -66,7 +69,8 @@
    "n/a": "14",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/0/3/1",
-   "Questions": "3"
+   "Questions": "3",
+   "Stale (strong)": "102 (14)"
   },
   {
    "Group": "G1",
@@ -81,7 +85,8 @@
    "n/a": "3",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/0/1/1",
-   "Questions": "2"
+   "Questions": "2",
+   "Stale (strong)": "4 (1)"
   },
   {
    "Group": "G1",
@@ -96,7 +101,8 @@
    "n/a": "6",
    "unclear": "0",
    "Findings (B/M/m/i)": "1/2/0/0",
-   "Questions": "4"
+   "Questions": "4",
+   "Stale (strong)": "7 (0)"
   },
   {
    "Group": "G1",
@@ -111,7 +117,8 @@
    "n/a": "10",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/2/0/0",
-   "Questions": "3"
+   "Questions": "3",
+   "Stale (strong)": "105 (48)"
   },
   {
    "Group": "G1",
@@ -126,7 +133,8 @@
    "n/a": "6",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/1/1/4",
-   "Questions": "1"
+   "Questions": "1",
+   "Stale (strong)": "0 (0)"
   },
   {
    "Group": "G1",
@@ -141,7 +149,8 @@
    "n/a": "2",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/2/3/2",
-   "Questions": "4"
+   "Questions": "4",
+   "Stale (strong)": "1 (0)"
   },
   {
    "Group": "G2",
@@ -156,7 +165,8 @@
    "n/a": "22",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/0/3/1",
-   "Questions": "0"
+   "Questions": "0",
+   "Stale (strong)": "155 (15)"
   },
   {
    "Group": "G2",
@@ -171,7 +181,8 @@
    "n/a": "5",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/0/0/0",
-   "Questions": "1"
+   "Questions": "1",
+   "Stale (strong)": "166 (2)"
   },
   {
    "Group": "G2",
@@ -186,7 +197,8 @@
    "n/a": "3",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/3/2/0",
-   "Questions": "0"
+   "Questions": "0",
+   "Stale (strong)": "131 (7)"
   },
   {
    "Group": "G2",
@@ -201,7 +213,8 @@
    "n/a": "0",
    "unclear": "3",
    "Findings (B/M/m/i)": "0/0/2/1",
-   "Questions": "1"
+   "Questions": "1",
+   "Stale (strong)": "2 (1)"
   },
   {
    "Group": "G2",
@@ -216,7 +229,8 @@
    "n/a": "8",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/1/0/0",
-   "Questions": "1"
+   "Questions": "1",
+   "Stale (strong)": "2 (0)"
   },
   {
    "Group": "G2",
@@ -231,7 +245,8 @@
    "n/a": "6",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/0/1/0",
-   "Questions": "2"
+   "Questions": "2",
+   "Stale (strong)": "36 (27)"
   },
   {
    "Group": "G2",
@@ -246,7 +261,8 @@
    "n/a": "9",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/1/2/0",
-   "Questions": "2"
+   "Questions": "2",
+   "Stale (strong)": "3 (0)"
   },
   {
    "Group": "G3",
@@ -261,7 +277,8 @@
    "n/a": "12",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/0/2/2",
-   "Questions": "2"
+   "Questions": "2",
+   "Stale (strong)": "122 (117)"
   },
   {
    "Group": "G3",
@@ -276,7 +293,8 @@
    "n/a": "12",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/1/1/0",
-   "Questions": "1"
+   "Questions": "1",
+   "Stale (strong)": "121 (3)"
   },
   {
    "Group": "G3",
@@ -291,7 +309,8 @@
    "n/a": "28",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/1/2/1",
-   "Questions": "2"
+   "Questions": "2",
+   "Stale (strong)": "55 (7)"
   },
   {
    "Group": "G3",
@@ -306,7 +325,8 @@
    "n/a": "5",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/0/1/1",
-   "Questions": "2"
+   "Questions": "2",
+   "Stale (strong)": "6 (0)"
   },
   {
    "Group": "G3",
@@ -321,7 +341,8 @@
    "n/a": "16",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/0/2/1",
-   "Questions": "0"
+   "Questions": "0",
+   "Stale (strong)": "8 (1)"
   },
   {
    "Group": "G3",
@@ -336,7 +357,8 @@
    "n/a": "12",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/4/2/0",
-   "Questions": "4"
+   "Questions": "4",
+   "Stale (strong)": "1 (0)"
   },
   {
    "Group": "G4",
@@ -351,7 +373,8 @@
    "n/a": "9",
    "unclear": "0",
    "Findings (B/M/m/i)": "2/1/4/1",
-   "Questions": "4"
+   "Questions": "4",
+   "Stale (strong)": "121 (50)"
   },
   {
    "Group": "G4",
@@ -366,7 +389,8 @@
    "n/a": "4",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/1/2/0",
-   "Questions": "2"
+   "Questions": "2",
+   "Stale (strong)": "67 (59)"
   },
   {
    "Group": "G4",
@@ -381,7 +405,8 @@
    "n/a": "4",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/0/2/0",
-   "Questions": "1"
+   "Questions": "1",
+   "Stale (strong)": "0 (0)"
   },
   {
    "Group": "G4",
@@ -396,7 +421,8 @@
    "n/a": "17",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/0/2/0",
-   "Questions": "0"
+   "Questions": "0",
+   "Stale (strong)": "2 (0)"
   },
   {
    "Group": "G4",
@@ -411,7 +437,8 @@
    "n/a": "30",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/2/3/2",
-   "Questions": "1"
+   "Questions": "1",
+   "Stale (strong)": "6 (1)"
   },
   {
    "Group": "G4",
@@ -426,7 +453,8 @@
    "n/a": "6",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/0/1/0",
-   "Questions": "0"
+   "Questions": "0",
+   "Stale (strong)": "41 (10)"
   },
   {
    "Group": "G5",
@@ -441,7 +469,8 @@
    "n/a": "21",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/0/0/0",
-   "Questions": "0"
+   "Questions": "0",
+   "Stale (strong)": "21 (0)"
   },
   {
    "Group": "G5",
@@ -456,7 +485,8 @@
    "n/a": "9",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/0/0/0",
-   "Questions": "0"
+   "Questions": "0",
+   "Stale (strong)": "0 (0)"
   },
   {
    "Group": "G5",
@@ -471,7 +501,8 @@
    "n/a": "3",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/0/0/0",
-   "Questions": "0"
+   "Questions": "0",
+   "Stale (strong)": "0 (0)"
   },
   {
    "Group": "G5",
@@ -486,7 +517,8 @@
    "n/a": "26",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/0/0/0",
-   "Questions": "0"
+   "Questions": "0",
+   "Stale (strong)": "10 (10)"
   },
   {
    "Group": "X",
@@ -501,7 +533,8 @@
    "n/a": "0",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/0/0/0",
-   "Questions": "0"
+   "Questions": "0",
+   "Stale (strong)": "5 (1)"
   },
   {
    "Group": "X",
@@ -516,7 +549,8 @@
    "n/a": "10",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/0/0/1",
-   "Questions": "0"
+   "Questions": "0",
+   "Stale (strong)": "9 (0)"
   },
   {
    "Group": "X",
@@ -531,7 +565,8 @@
    "n/a": "4",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/0/0/0",
-   "Questions": "0"
+   "Questions": "0",
+   "Stale (strong)": "0 (0)"
   },
   {
    "Group": "X",
@@ -546,7 +581,8 @@
    "n/a": "2",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/0/0/0",
-   "Questions": "0"
+   "Questions": "0",
+   "Stale (strong)": "0 (0)"
   },
   {
    "Group": "X",
@@ -561,7 +597,8 @@
    "n/a": "2",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/1/0/0",
-   "Questions": "0"
+   "Questions": "0",
+   "Stale (strong)": "165 (10)"
   },
   {
    "Group": "X",
@@ -576,7 +613,8 @@
    "n/a": "29",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/0/3/0",
-   "Questions": "0"
+   "Questions": "0",
+   "Stale (strong)": "124 (0)"
   },
   {
    "Group": "X",
@@ -591,7 +629,8 @@
    "n/a": "24",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/0/0/0",
-   "Questions": "1"
+   "Questions": "1",
+   "Stale (strong)": "55 (5)"
   },
   {
    "Group": "X",
@@ -606,7 +645,8 @@
    "n/a": "18",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/0/0/0",
-   "Questions": "0"
+   "Questions": "0",
+   "Stale (strong)": "0 (0)"
   },
   {
    "Group": "X",
@@ -621,7 +661,8 @@
    "n/a": "3",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/0/1/0",
-   "Questions": "0"
+   "Questions": "0",
+   "Stale (strong)": "0 (0)"
   },
   {
    "Group": "X",
@@ -636,7 +677,8 @@
    "n/a": "18",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/0/0/0",
-   "Questions": "0"
+   "Questions": "0",
+   "Stale (strong)": "1 (0)"
   },
   {
    "Group": "X",
@@ -651,7 +693,8 @@
    "n/a": "8",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/0/0/0",
-   "Questions": "0"
+   "Questions": "0",
+   "Stale (strong)": "0 (0)"
   },
   {
    "Group": "X",
@@ -666,7 +709,8 @@
    "n/a": "97",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/1/1/1",
-   "Questions": "1"
+   "Questions": "1",
+   "Stale (strong)": "91 (5)"
   },
   {
    "Group": "X",
@@ -681,7 +725,8 @@
    "n/a": "2",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/1/3/0",
-   "Questions": "2"
+   "Questions": "2",
+   "Stale (strong)": "101 (25)"
   },
   {
    "Group": "",
@@ -696,7 +741,8 @@
    "n/a": "556",
    "unclear": "3",
    "Findings (B/M/m/i)": "3/27/56/29",
-   "Questions": ""
+   "Questions": "",
+   "Stale (strong)": "1885 (422)"
   }
  ],
  "gaps": [

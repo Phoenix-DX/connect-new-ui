@@ -13,7 +13,17 @@
    "element": "screen Map",
    "os": "not built; Leaflet map with explore and details sheets",
    "evidence": "migration/board.md:73 | Map | skip | V4a skip:variant (user, 2026-10-14)",
-   "note": "Skipped: entry icon shown only if C2EnableMaps, false on TST; revisit when enabled"
+   "note": "Skipped: entry icon shown only if C2EnableMaps, false on TST; revisit when enabled",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Map.Map.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Map-002",
@@ -25,7 +35,17 @@
    "element": "AddBookmark2",
    "os": "service Connect_Bookmarks_CS",
    "evidence": "migration/clarify/flows/Map/pack/data.md (server and service actions table)",
-   "note": "needed for a build"
+   "note": "needed for a build",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Map.Map.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Map-003",
@@ -37,7 +57,17 @@
    "element": "Connect_Search",
    "os": "service Connect_Search_CS",
    "evidence": "migration/clarify/flows/Map/pack/data.md (server and service actions table)",
-   "note": "needed for a build"
+   "note": "needed for a build",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Map.Map.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Map-004",
@@ -49,7 +79,17 @@
    "element": "DeleteBookmarkByBookmarkId2",
    "os": "service Connect_Bookmarks_CS",
    "evidence": "migration/clarify/flows/Map/pack/data.md (server and service actions table)",
-   "note": "needed for a build"
+   "note": "needed for a build",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Map.Map.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Map-005",
@@ -61,7 +101,17 @@
    "element": "FetchData_Countries",
    "os": "service Connect_Map_CS",
    "evidence": "migration/clarify/flows/Map/pack/data.md (server and service actions table)",
-   "note": "needed for a build"
+   "note": "needed for a build",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Map.Map.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Map-006",
@@ -73,7 +123,17 @@
    "element": "FetchData_GlobalLocation",
    "os": "service Connect_Map_CS",
    "evidence": "migration/clarify/flows/Map/pack/data.md (server and service actions table)",
-   "note": "needed for a build"
+   "note": "needed for a build",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Map.Map.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Map-007",
@@ -85,7 +145,17 @@
    "element": "FetchData_Households_ByCoordinates",
    "os": "service Connect_Map_CS",
    "evidence": "migration/clarify/flows/Map/pack/data.md (server and service actions table)",
-   "note": "needed for a build"
+   "note": "needed for a build",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Map.Map.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Map-008",
@@ -97,7 +167,17 @@
    "element": "FetchData_Localities",
    "os": "service Connect_Map_CS",
    "evidence": "migration/clarify/flows/Map/pack/data.md (server and service actions table)",
-   "note": "needed for a build"
+   "note": "needed for a build",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Map.Map.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Map-009",
@@ -109,7 +189,17 @@
    "element": "FetchData_VisibilityPreferences",
    "os": "service Connect_Map_CS",
    "evidence": "migration/clarify/flows/Map/pack/data.md (server and service actions table)",
-   "note": "needed for a build"
+   "note": "needed for a build",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Map.Map.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Map-010",
@@ -121,7 +211,17 @@
    "element": "GetHouseholdDetails",
    "os": "service Connect_Household_CS",
    "evidence": "migration/clarify/flows/Map/pack/data.md (server and service actions table)",
-   "note": "needed for a build"
+   "note": "needed for a build",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Map.Map.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Map-011",
@@ -133,7 +233,17 @@
    "element": "GetNotesByItemId",
    "os": "service Connect_Notes_CS",
    "evidence": "migration/clarify/flows/Map/pack/data.md (server and service actions table)",
-   "note": "needed for a build"
+   "note": "needed for a build",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Map.Map.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Map-012",
@@ -145,7 +255,17 @@
    "element": "GetSubdivisionDetails_BySubdivisionId",
    "os": "service Connect_Subdivision_CS",
    "evidence": "migration/clarify/flows/Map/pack/data.md (server and service actions table)",
-   "note": "needed for a build"
+   "note": "needed for a build",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Map.Map.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Map-013",
@@ -157,7 +277,17 @@
    "element": "GetSubdivisionLocation_BySubdivisionId",
    "os": "service Connect_Subdivision_CS",
    "evidence": "migration/clarify/flows/Map/pack/data.md (server and service actions table)",
-   "note": "needed for a build"
+   "note": "needed for a build",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Map.Map.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Map-014",
@@ -169,7 +299,17 @@
    "element": "Get_Core_LocalityTimezone",
    "os": "service Connect_Geography_CS",
    "evidence": "migration/clarify/flows/Map/pack/data.md (server and service actions table)",
-   "note": "needed for a build"
+   "note": "needed for a build",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Map.Map.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Map-015",
@@ -181,7 +321,17 @@
    "element": "Get_OneSchoolGlobalDetails",
    "os": "service Connect_CommunityBusiness_CS",
    "evidence": "migration/clarify/flows/Map/pack/data.md (server and service actions table)",
-   "note": "needed for a build"
+   "note": "needed for a build",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Map.Map.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Map-016",
@@ -193,7 +343,17 @@
    "element": "Get_SearchResultsVisibilityStatus",
    "os": "service Connect_Search_CS",
    "evidence": "migration/clarify/flows/Map/pack/data.md (server and service actions table)",
-   "note": "needed for a build"
+   "note": "needed for a build",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Map.Map.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Map-017",
@@ -205,7 +365,17 @@
    "element": "Get_UI_CountryStatistics",
    "os": "service Connect_Geography_CS",
    "evidence": "migration/clarify/flows/Map/pack/data.md (server and service actions table)",
-   "note": "needed for a build"
+   "note": "needed for a build",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Map.Map.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Map-018",
@@ -217,7 +387,17 @@
    "element": "Get_UI_LocalityDetailsWithStatistics",
    "os": "service Connect_Geography_CS",
    "evidence": "migration/clarify/flows/Map/pack/data.md (server and service actions table)",
-   "note": "needed for a build"
+   "note": "needed for a build",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Map.Map.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Map-019",
@@ -229,7 +409,17 @@
    "element": "Get_UI_UpdateItems_UnreadCount_All",
    "os": "service Connect_Updates_CS",
    "evidence": "migration/clarify/flows/Map/pack/data.md (server and service actions table)",
-   "note": "needed for a build"
+   "note": "needed for a build",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Map.Map.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Map-020",
@@ -241,7 +431,17 @@
    "element": "Member_ContactDetails_Service",
    "os": "service Connect_Household_CS",
    "evidence": "migration/clarify/flows/Map/pack/data.md (server and service actions table)",
-   "note": "needed for a build"
+   "note": "needed for a build",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Map.Map.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Map-021",
@@ -253,7 +453,17 @@
    "element": "Update_VisibilityPreferences",
    "os": "service Connect_Map_CS",
    "evidence": "migration/clarify/flows/Map/pack/data.md (server and service actions table)",
-   "note": "needed for a build"
+   "note": "needed for a build",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Map.Map.mvc.js (screen)"
+    ]
+   }
   }
  ]
 }

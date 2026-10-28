@@ -118,7 +118,17 @@
       "tst": "present (EntitiesCarousel.mvc.js)",
       "verdict": "match",
       "note": "",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "strong",
+        "by": [
+          "file"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js (file)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-010",
@@ -131,7 +141,17 @@
       "tst": "-",
       "verdict": "match",
       "note": "",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-011",
@@ -144,7 +164,17 @@
       "tst": "present (EntitiesCarousel.js:37)",
       "verdict": "match",
       "note": "",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-012",
@@ -157,7 +187,17 @@
       "tst": "-",
       "verdict": "match",
       "note": "",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-013",
@@ -170,7 +210,17 @@
       "tst": "-",
       "verdict": "match",
       "note": "",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-014",
@@ -183,7 +233,17 @@
       "tst": "-",
       "verdict": "match",
       "note": "",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-015",
@@ -196,7 +256,17 @@
       "tst": "present (EntitiesCarousel.js:13)",
       "verdict": "match",
       "note": "",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-016",
@@ -209,7 +279,17 @@
       "tst": "-",
       "verdict": "match",
       "note": "React starts at inStartingPosition; OutSystems starts at -1 and OnInitialize assigns In_StartingPosition. Same value after OnInitialize.",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-017",
@@ -222,7 +302,17 @@
       "tst": "-",
       "verdict": "match",
       "note": "",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-018",
@@ -235,7 +325,17 @@
       "tst": "-",
       "verdict": "match",
       "note": "",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-019",
@@ -248,7 +348,17 @@
       "tst": "present (EntitiesCarousel.js:25)",
       "verdict": "match",
       "note": "",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-020",
@@ -261,7 +371,17 @@
       "tst": "present (EntitiesCarousel.js:28)",
       "verdict": "match",
       "note": "",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-021",
@@ -274,7 +394,17 @@
       "tst": "present (EntitiesCarousel.js:540-546)",
       "verdict": "match",
       "note": "Index_ActiveElement is always -1 at OnInitialize, so the true branch never runs. Judge: TST EntitiesCarousel.mvc.js:537 tests Index_ActiveElement = -1 first; the value is -1 at OnInitialize.",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "lines-same"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js (lines-same)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-022",
@@ -287,7 +417,17 @@
       "tst": "present (EntitiesCarousel.js:540-546)",
       "verdict": "match",
       "note": "",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-023",
@@ -300,7 +440,17 @@
       "tst": "present (EntitiesCarousel.js:195-199 StartingPosition)",
       "verdict": "match",
       "note": "",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-024",
@@ -313,7 +463,17 @@
       "tst": "-",
       "verdict": "match",
       "note": "",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-025",
@@ -326,7 +486,17 @@
       "tst": "-",
       "verdict": "match",
       "note": "",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-026",
@@ -339,7 +509,17 @@
       "tst": "-",
       "verdict": "match",
       "note": "CurrentRowNumber in OutSystems is 0-based for the compiled list; React passes index (0-based).",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-027",
@@ -352,7 +532,17 @@
       "tst": "-",
       "verdict": "match",
       "note": "",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-028",
@@ -365,7 +555,17 @@
       "tst": "-",
       "verdict": "match",
       "note": "",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-029",
@@ -378,7 +578,17 @@
       "tst": "present (EntitiesCarousel.js:583)",
       "verdict": "match",
       "note": "",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-030",
@@ -391,7 +601,17 @@
       "tst": "present (EntitiesCarousel.js:592-595)",
       "verdict": "match",
       "note": "",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-031",
@@ -404,7 +624,17 @@
       "tst": "-",
       "verdict": "match",
       "note": "",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-032",
@@ -417,7 +647,17 @@
       "tst": "present (EntitiesCarousel.js:615-619)",
       "verdict": "match",
       "note": "React comment says the calls change nothing (README of EntitiesCarousel).",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-033",
@@ -430,7 +670,17 @@
       "tst": "-",
       "verdict": "match",
       "note": "",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-034",
@@ -443,7 +693,17 @@
       "tst": "present (EntitiesCarousel.js:626)",
       "verdict": "match",
       "note": "UseMoveHandler is never assigned (False), so the move branch does not run. TST has no RemoveCarouselOnResizeHandler node (EntitiesCarousel.mvc.js:611-633). React matches TST. See section 6.1.",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "strong",
+        "by": [
+          "lines"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js (lines)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-035",
@@ -456,7 +716,17 @@
       "tst": "-",
       "verdict": "match",
       "note": "DEV only: TST has no [M1] RemoveCarouselOnResizeHandler JS node. The TST handler ends after the UseMoveHandler If. React follows TST. See section 6.1.",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "strong",
+        "by": [
+          "lines"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js (lines)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-036",
@@ -469,7 +739,17 @@
       "tst": "-",
       "verdict": "n/a",
       "note": "dead in the model",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-037",
@@ -482,7 +762,17 @@
       "tst": "-",
       "verdict": "match",
       "note": "",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-038",
@@ -495,7 +785,17 @@
       "tst": "-",
       "verdict": "match",
       "note": "",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-039",
@@ -508,7 +808,17 @@
       "tst": "-",
       "verdict": "n/a",
       "note": "dead in the model",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-040",
@@ -521,7 +831,17 @@
       "tst": "present (EntitiesCarousel.js:842)",
       "verdict": "n/a",
       "note": "dead in the model: no live caller. React does not implement it.",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "lines-same"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js (lines-same)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-041",
@@ -534,7 +854,17 @@
       "tst": "present (EntitiesCarousel.js:417)",
       "verdict": "match",
       "note": "",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-042",
@@ -547,7 +877,17 @@
       "tst": "present (EntitiesCarousel.js:426)",
       "verdict": "match",
       "note": "",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-043",
@@ -560,7 +900,17 @@
       "tst": "present (EntitiesCarousel_Element.mvc.js)",
       "verdict": "match",
       "note": "",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "strong",
+        "by": [
+          "file"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc.js (file)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-044",
@@ -573,7 +923,17 @@
       "tst": "-",
       "verdict": "match",
       "note": "React gives a default; OutSystems marks it mandatory.",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-045",
@@ -586,7 +946,17 @@
       "tst": "-",
       "verdict": "match",
       "note": "React gives a default; OutSystems marks it mandatory.",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-046",
@@ -599,7 +969,17 @@
       "tst": "-",
       "verdict": "match",
       "note": "React gives a default; OutSystems marks it mandatory.",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-047",
@@ -612,7 +992,17 @@
       "tst": "-",
       "verdict": "match",
       "note": "React gives a default; OutSystems marks it mandatory.",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-048",
@@ -625,7 +1015,17 @@
       "tst": "-",
       "verdict": "match",
       "note": "React gives a default; OutSystems marks it mandatory.",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-049",
@@ -638,7 +1038,17 @@
       "tst": "-",
       "verdict": "match",
       "note": "React gives a default; OutSystems marks it mandatory.",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-050",
@@ -651,7 +1061,17 @@
       "tst": "present (EntitiesCarousel_Element.js model)",
       "verdict": "match",
       "note": "React gives a default; OutSystems marks it mandatory.",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-051",
@@ -664,7 +1084,17 @@
       "tst": "present (EntitiesCarousel_Element.js:13 IsInsideRenderBuffer)",
       "verdict": "match",
       "note": "",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-052",
@@ -677,7 +1107,17 @@
       "tst": "present (EntitiesCarousel_Element.js:434-439)",
       "verdict": "match",
       "note": "",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-053",
@@ -690,7 +1130,17 @@
       "tst": "present (EntitiesCarousel_Element.js:442-443)",
       "verdict": "match",
       "note": "",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-054",
@@ -703,7 +1153,17 @@
       "tst": "-",
       "verdict": "match",
       "note": "",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-055",
@@ -716,7 +1176,17 @@
       "tst": "-",
       "verdict": "match",
       "note": "dead at run time: IsSinglePassRender is never assigned.",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-056",
@@ -729,7 +1199,17 @@
       "tst": "-",
       "verdict": "match",
       "note": "",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-057",
@@ -742,7 +1222,17 @@
       "tst": "-",
       "verdict": "match",
       "note": "The style expression is commented out in the model; React uses className \"\".",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-058",
@@ -755,7 +1245,17 @@
       "tst": "absent (TST view dependencies list at EntitiesCarousel_Element.js:201 has SupperMeetingDetails, CarouselTag, HouseholdDetails only)",
       "verdict": "n/a",
       "note": "board skip: OneSchoolGlobalCarousel is skip (V8, dev-only, migration/board.md:93). TST has no OneSchoolGlobal branch (EntitiesCarousel_Element.mvc.js:236-335). See section 6.1.",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "strong",
+        "by": [
+          "lines"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc.js (lines)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-059",
@@ -768,7 +1268,17 @@
       "tst": "present (EntitiesCarousel_Element.js:249 $if ... supperMeetings_aka_Subdivisions)",
       "verdict": "match",
       "note": "",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-060",
@@ -781,7 +1291,17 @@
       "tst": "present (EntitiesCarousel_Element.js:299 $if ... household)",
       "verdict": "match",
       "note": "",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "screen"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc.js (screen)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-061",
@@ -794,7 +1314,17 @@
       "tst": "-",
       "verdict": "match",
       "note": "DEV and TST differ: TST renders one CarouselTag per entity branch, in Placeholder_CarouselTag (EntitiesCarousel_Element.mvc.js:269, 335). React follows TST. See section 6.1.",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "lines-same"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc.js (lines-same)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-062",
@@ -859,7 +1389,17 @@
       "tst": "-",
       "verdict": "match",
       "note": "Body not in pack; React port cites UC HouseholdCarousel :4174-4256. Judge: TST UBTConnect.controller.js:4174-4215: with IsSingleHeader the Current label, else ListIndexOf by Index. React matches.",
-      "verified": "pack"
+      "verified": "pack",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "lines-same"
+        ],
+        "files": [
+          "UBTConnect.controller.js (lines-same)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-067",
@@ -873,7 +1413,18 @@
       "verdict": "match",
       "note": "Settled from the TST file: Get_IsInsideRenderBuffer is in UBTConnect.controller.js:4444-4466 (the earlier row said it was absent). IsInsideRenderBuffer = Abs(In_Index_CurrentElement - In_Index_ActiveElement) <= In_RenderBuffer (:4461-4462). React actions.ts:527-533 does the same, with the same argument order.",
       "verified": "live",
-      "question": "Q1: behaviour of Get_IsInsideRenderBuffer in module UBTConnect: not in the pack, and migration/runtime-sources/UBTConnect.controller.js has no definition. Is it Abs(Current - Active) <= RenderBuffer, as React does?"
+      "question": "Q1: behaviour of Get_IsInsideRenderBuffer in module UBTConnect: not in the pack, and migration/runtime-sources/UBTConnect.controller.js has no definition. Is it Abs(Current - Active) <= RenderBuffer, as React does?",
+      "stale": {
+        "since": "2026-10-27",
+        "level": "weak",
+        "by": [
+          "lines-same"
+        ],
+        "files": [
+          "UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc.js (lines-same)",
+          "UBTConnect.controller.js (lines-same)"
+        ]
+      }
     },
     {
       "id": "Directory_Caroussel-068",

@@ -172,7 +172,17 @@
    "evidence": "TST: no read or write in UBTConnect.App_Policies.Policy_Checker.mvc.js, AcceptPendingPolicies.mvc.js, Policy_Custom_AcceptPendingPolicies.mvc.js; only the debugger getter table in UBTConnect.controller.js:22591. grep of app/src: no such client variable",
    "verdict": "match",
    "note": "TST: -. shared block; not located by the exact name Judge: DEV only for this flow; React follows TST (report 6.1).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_Photobook-015",
@@ -1510,7 +1520,17 @@
    "evidence": "app/src/pages/Photobook/components/Photobook_Gallery.tsx:126-132",
    "verdict": "match",
    "note": "TST: present. UBT_LazyImage mapped to EntityLazyImage; TST file UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc.js named in references.md, not read Judge: The arguments match. The internals of UBT_LazyImage (UBTConnect_Utils) are not checked here; the reports of App_Menu and App_Profile also check only the arguments.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "Directory_Photobook-126",

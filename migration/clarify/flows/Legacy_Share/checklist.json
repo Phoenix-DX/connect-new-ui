@@ -392,7 +392,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST UBTConnect.controller.js:15637-15638 get_ShareDetails$ServerAction(shareId, false)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_Share-030",
@@ -457,7 +467,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "React compares with '' for NullTextIdentifier(); TST UBTConnect.controller.js ~15665 compares with OS.BuiltinFunctions.nullTextIdentifier()",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "UBTConnect.controller.js (file)"
+    ]
+   }
   },
   {
    "id": "Legacy_Share-035",
@@ -496,7 +516,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST UBTConnect.controller.js:15691-15710: Handle Error only for non-system exceptions, OS.Logger.error(null, ex) then the message; React lines 64-68 show no log call (judge: platform logging may sit in exceptionMessage/raise path, not opened). Judge: message, audit call and the rethrow of system exceptions match TST UBTConnect.controller.js:15691-15710; the OS.Logger.error call is row 091",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_Share-038",
@@ -509,7 +539,17 @@
    "tst": "absent",
    "verdict": "n/a",
    "note": "dead in the model; TST UBTConnect.controller.js:15622-15712 has no audit call on the success path. Judge: dead in the model ([DISABLED]); absent on TST (§6.1); React has no code for it",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_Share-039",
@@ -535,7 +575,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "TST UBTConnect.controller.js:782-788. React drops the unused parameters (the only caller passes ShareId and 'Others')",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_Share-041",
@@ -548,7 +598,17 @@
    "tst": "-",
    "verdict": "n/a",
    "note": "unreachable from the flow's only caller. Judge: dead in the model: the only caller passes TargetUserId = \"\" (UBTConnect.controller.js:15691-15710)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_Share-042",
@@ -1168,7 +1228,17 @@
    "tst": "-",
    "verdict": "n/a",
    "note": "TST UBTConnect.controller.js:13586 `replace(eventDataURL, \"ConnectSharing/Details\", \"UBTConnect/ConnectShare\")`. React getColdStartLinkURL returns '' (decision U14: plugins later). Judge: native only: decision U14 (app-shell.spec.md:346 options; :381 'U14: plain URLs + the resume-link helper'; :234 'plugins later (U14)')",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_Share-089",
@@ -1206,7 +1276,17 @@
    "evidence": "TST UBTConnect.controller.js:15691-15710; app/src/pages/ConnectShare/hooks/connectShareActions.ts:64-68; migration/app-shell.spec.md:349, :384 (U17)",
    "verdict": "differs",
    "note": "decision U17: no telemetry now, a log.ts sink comes later",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Legacy_Share-092",

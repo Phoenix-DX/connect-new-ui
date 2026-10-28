@@ -159,7 +159,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "Same client variable",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "Connect2_LegacyShared.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_Common_Blocks-013",
@@ -289,7 +299,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "NoteCard_Item passes ShowUnbookmark False, ShowAddNote True, ShowShare False",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Common_Blocks.ItemCardActions.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Common_Blocks-023",
@@ -302,7 +322,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "React ItemCard_ActionBar is a local file pages/Notes/components/ItemCard_ActionBar.tsx; only onEventAddNote is wired",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Common_Blocks.ItemCardActions.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Common_Blocks-024",
@@ -315,7 +345,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Common_Blocks.ItemCardActions.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Common_Blocks-025",
@@ -328,7 +368,17 @@
    "tst": "present",
    "verdict": "n/a",
    "note": "Share hidden on Notes; other user Bookmarks_Card_Item -> Bookmarks_Card_List -> Bookmarks (board skip)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Common_Blocks.ItemCardActions.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Common_Blocks-026",
@@ -341,7 +391,17 @@
    "tst": "present",
    "verdict": "n/a",
    "note": "Unbookmark hidden on Notes; other user on Bookmarks (board skip)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Common_Blocks.ItemCardActions.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Common_Blocks-027",
@@ -354,7 +414,17 @@
    "tst": "present",
    "verdict": "n/a",
    "note": "As row 026",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Common_Blocks.ItemCardActions.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Common_Blocks-028",
@@ -523,7 +593,17 @@
    "tst": "present",
    "verdict": "n/a",
    "note": "Unmark path not reachable on a built screen",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Common_Blocks.ItemCardActions.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_Common_Blocks-041",
@@ -549,7 +629,17 @@
    "tst": "present",
    "verdict": "n/a",
    "note": "NoteCard_Item passes neither",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_Common_Blocks.ItemCardActions.mvc.js (screen)"
+    ]
+   }
   }
  ]
 }

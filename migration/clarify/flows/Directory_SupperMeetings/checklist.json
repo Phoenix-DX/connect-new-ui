@@ -1015,7 +1015,17 @@
    "evidence": "TST UBTConnect.controller.js:8745; app/src/lib/ubtConnect/actions.ts:336-339",
    "verdict": "match",
    "note": "Body checked on TST: In_BrothersCount + \" \" + Brother.Plural + \" & \" + In_SistersCount + \" \" + Sister.Plural.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_SupperMeetings-085",
@@ -1147,7 +1157,17 @@
    "evidence": "TST UBTConnect.controller.js:8538, :8814; app/src/lib/ubtConnect/actions.ts:144-151",
    "verdict": "match",
    "note": "Bodies checked on TST: <Plural> + \": \" + count. The values of GetLookupConcepts belong to UBTConnectLibrary.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Directory_SupperMeetings-096",

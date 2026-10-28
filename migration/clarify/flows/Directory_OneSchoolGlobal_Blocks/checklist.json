@@ -144,7 +144,17 @@
    "tst": "present",
    "verdict": "n/a",
    "note": "Owned by flow Directory_OneSchoolGlobal, see its report.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Directory_OneSchoolGlobal_Blocks-012",

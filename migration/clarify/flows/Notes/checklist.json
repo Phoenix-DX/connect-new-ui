@@ -14,7 +14,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "route index of the pack (app_index.py); route guard owned by the shell",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-002",
@@ -27,7 +37,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-003",
@@ -40,7 +60,17 @@
    "tst": "present (isGrayBackground: true, Notes.js:197)",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-004",
@@ -53,7 +83,17 @@
    "tst": "present (Notes.js:229)",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-005",
@@ -66,7 +106,17 @@
    "tst": "present (Notes.js:~238-250)",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-006",
@@ -79,7 +129,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-007",
@@ -92,7 +152,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "logic of App_NotificationIcon is shared, other flow",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-008",
@@ -105,7 +175,17 @@
    "tst": "MaxLength=50, IsEnabled=GetNotes.Out_Notes.NoteCardItem_List.Length > 1, SearchPrompt=Search, Debounce_DelayMS=200, EnableAutocompleteHTML=False (Notes.js:293-300)",
    "verdict": "match",
    "note": "TST Notes.js:293-300 sets IsEnabled = list length > 1; the DEV dump omits it; React = TST (§6.1)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-009",
@@ -118,7 +198,17 @@
    "tst": "MaxLength=50, IsEnabled=(list length > 1)",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-010",
@@ -131,7 +221,17 @@
    "tst": "present (Notes.js:1256 assigns SearchTerm only)",
    "verdict": "match",
    "note": "TST Handler_SearchOnChange assigns SearchTerm only (Notes.js:1256-1257); React = TST",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-011",
@@ -144,7 +244,17 @@
    "tst": "present (no Refresh in 1256-1260)",
    "verdict": "n/a",
    "note": "dead in the model ([DISABLED] node)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-012",
@@ -157,7 +267,17 @@
    "tst": "present (Notes.js:1222-1225)",
    "verdict": "match",
    "note": "TST Notes.js:1222-1226; BR-UBTCON-038 disagrees (K6)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-013",
@@ -170,7 +290,17 @@
    "tst": "present (Notes.js:737,1580)",
    "verdict": "match",
    "note": "TST Input Event_Submit calls Refresh_GetNotes directly (Notes.js:342-350); Handler_SearchOnSubmit (Notes.js:737) only calls Refresh_GetNotes and is not bound; same behaviour",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-014",
@@ -183,7 +313,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-015",
@@ -196,7 +336,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-016",
@@ -209,7 +359,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "isLoaded is the constant True in DEV (rest of expression is a comment)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-017",
@@ -222,7 +382,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-018",
@@ -235,7 +405,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-019",
@@ -248,7 +428,17 @@
    "tst": "present (HideInServiceStudio_BottomSheet widget, NoteCard_Item.js:739)",
    "verdict": "n/a",
    "note": "dead in the model (If False); Notes-020 covers the live branch",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-020",
@@ -261,7 +451,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "instance arguments and events match TST (Notes.js:582-583); the render moment after OnInitialize is not checked against the runtime",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-021",
@@ -274,7 +474,17 @@
    "tst": "defaults present (Notes.js:33-72)",
    "verdict": "match",
    "note": "TST PageSize 20, PageNumber 1 (Notes.js:57-62)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-022",
@@ -287,7 +497,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-023",
@@ -300,7 +520,17 @@
    "tst": "present (getNotes$DataActRefresh, Notes.js:670,699)",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-024",
@@ -313,7 +543,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "TST screen data action DataActionGetNotes (Notes.js:680)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-025",
@@ -326,7 +566,17 @@
    "tst": "-",
    "verdict": "mock-only",
    "note": "mock-only: production needs Connect_Notes_CS.GetNotes behind the screen data action DataActionGetNotes (TST Notes.js:680)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-026",
@@ -339,7 +589,17 @@
    "tst": "present (UBTConnect.controller$GetNotes_Pills, ctl 10171)",
    "verdict": "mock-only",
    "note": "mock-only: production needs the UBTConnect_Notes_MCS server action behind Get_Note_DynamicPills (React calls ActionGet_NotePills_ByNoteCategoryIds; KB BR-C2UTL-042 names Get_DynamicPill_ItemByNoteCategoryId)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-027",
@@ -352,7 +612,17 @@
    "tst": "-",
    "verdict": "n/a",
    "note": "owned by another flow: shared action ToggleBookmarkItem_C2; not reachable from Notes, NoteCard_Item hides unbookmark (BR-UBTCON-040)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-028",
@@ -365,7 +635,17 @@
    "tst": "-",
    "verdict": "n/a",
    "note": "owned by another flow: shared action ToggleBookmarkItem_C2; not reachable from Notes (BR-UBTCON-040)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-029",
@@ -378,7 +658,17 @@
    "tst": "-",
    "verdict": "n/a",
    "note": "owned by flow App_Common (BottomBarMenu), see its report; a fixture exists (mocks/fixtures/UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All/01-4f5c3a3c.json), pack data.md is wrong",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-030",
@@ -391,7 +681,17 @@
    "tst": "-",
    "verdict": "n/a",
    "note": "owned by flow App_Common (bottom bar count), see its report; the Notes widgets use none of the client variables",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-031",
@@ -404,7 +704,17 @@
    "tst": "-",
    "verdict": "n/a",
    "note": "owned by flow App_Common (CommonUI_InsideLayout), see its report",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-032",
@@ -417,7 +727,17 @@
    "tst": "-",
    "verdict": "n/a",
    "note": "owned by flow App_Common_Blocks (App_NotificationIcon), see its report",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-033",
@@ -430,7 +750,17 @@
    "tst": "-",
    "verdict": "n/a",
    "note": "owned by flow App_Common (CommonUI_InsideLayout, PIN unlock), see its report",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-034",
@@ -443,7 +773,17 @@
    "tst": "-",
    "verdict": "n/a",
    "note": "owned by flow App_Common (Policy_Checker), see its report",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-035",
@@ -456,7 +796,17 @@
    "tst": "absent (grep Restored|FromHistory in Notes.js: 0 hits)",
    "verdict": "match",
    "note": "DEV only; TST OnInitialize has no restore check (Notes.js:1316-1351); React = TST (§6.1)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-036",
@@ -469,7 +819,17 @@
    "tst": "present (Notes.js:1316-1335)",
    "verdict": "match",
    "note": "TST Notes.js:1331-1333",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-037",
@@ -482,7 +842,17 @@
    "tst": "present (ctl GetNotes_FilterYear calls Get_Note_DynamicFilter_YearOptions of UBTConnect_Notes_MCS)",
    "verdict": "match",
    "note": "TST Notes.js:1337-1351; React = TST (§6.1); BR-UBTCON-033 disagrees (K1)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-038",
@@ -495,7 +865,19 @@
    "tst": "absent in TST: Get_RecentYears has 0 hits in UBTConnect.controller; TST GetNotes_FilterYear -> Get_Note_DynamicFilter_YearOptions (ctl 10115-10150)",
    "verdict": "match",
    "note": "TST GetNotes_FilterYear calls Get_Note_DynamicFilter_YearOptions (UBTConnect.controller.js:10115-10150); React ports UBTConnect_Notes_MCS.controller.js:504 (localNotes.ts:84-89,145-147); year rule as BR-C2UTL-044",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines",
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines)",
+     "UBTConnect_Notes_MCS.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Notes-039",
@@ -508,7 +890,17 @@
    "tst": "absent (no hit in UBTConnect.controller)",
    "verdict": "match",
    "note": "DEV only; no hit in TST UBTConnect.controller.js; React has none (§6.1)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "UBTConnect.controller.js (file)"
+    ]
+   }
   },
   {
    "id": "Notes-040",
@@ -521,7 +913,17 @@
    "tst": "present (ctl 10171-10250)",
    "verdict": "match",
    "note": "TST GetNotes_Pills has the In_SelectedPillId logic (UBTConnect.controller.js:10184-10240), but TST ResetPillsVallues calls it with no argument (Notes.js:1294), default \"\" (controller.js:10247-10249): \"All\" selected, the others not. React gives the same list; its function has no In_SelectedPillId input (§6.1)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "Notes-041",
@@ -534,7 +936,17 @@
    "tst": "present (Notes.js:1379-1382)",
    "verdict": "match",
    "note": "React runs Ready after OnInitialize ended (once)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-042",
@@ -547,7 +959,17 @@
    "tst": "present (Notes.js:1292-1301)",
    "verdict": "match",
    "note": "TST calls GetNotes_Pills with no argument (Notes.js:1294); DEV passes Notes_Filter.NoteCategoryId (§6.1)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-043",
@@ -560,7 +982,17 @@
    "tst": "present (Notes.js:1089-1093)",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-044",
@@ -573,7 +1005,17 @@
    "tst": "present (Notes.js:839-869)",
    "verdict": "match",
    "note": "TST Notes.js:837-869",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-045",
@@ -586,7 +1028,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-046",
@@ -599,7 +1051,17 @@
    "tst": "present (Notes.js:863-869)",
    "verdict": "match",
    "note": "React does not set PillsLoaded/MaxRecords on later pages, as the model",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-047",
@@ -615,7 +1077,17 @@
    "verified": "live",
    "severity": "minor",
    "finding": "F1",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-048",
@@ -628,7 +1100,17 @@
    "tst": "present (Notes.js:1125-1128)",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-049",
@@ -641,7 +1123,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-050",
@@ -654,7 +1146,17 @@
    "tst": "present (Notes.js:903-918)",
    "verdict": "match",
    "note": "TST Notes.js:903-918; the \"?? true\" default of selectedCategoryId acts only on a tag with no IsSelected value, and notePillTags sets it on every tag",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-051",
@@ -667,7 +1169,17 @@
    "tst": "absent for the Years assign: TST Notes.js:1416 assigns SortByNewest only, then 1419 HasFiltersApplied, 1422 Refresh",
    "verdict": "match",
    "note": "TST assigns SortByNewest and HasFiltersApplied, then Refresh_GetNotes (Notes.js:1416-1422); DEV also copies Years (§6.1); BR-UBTCON-035 disagrees (K3); see Notes-110 (Q1)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-052",
@@ -680,7 +1192,17 @@
    "tst": "present (Notes.js:1164)",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-053",
@@ -693,7 +1215,17 @@
    "tst": "present (Notes.js:1052-1055)",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-054",
@@ -706,7 +1238,17 @@
    "tst": "present (Notes.js:717)",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-055",
@@ -719,7 +1261,17 @@
    "tst": "present (Notes.js:1197)",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-056",
@@ -732,7 +1284,17 @@
    "tst": "absent for the carousel (TST Notes.js:1473-1476 navigates HouseholdDetails only, no Notes_Filter check)",
    "verdict": "match",
    "note": "DEV only; TST navigates HouseholdDetails for every household card (Notes.js:1471-1476); React = TST (§6.1)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-057",
@@ -745,7 +1307,17 @@
    "tst": "present (Notes.js:1474)",
    "verdict": "match",
    "note": "TST HouseholdId = TextToLongInteger(ObjectId) (Notes.js:1474-1476); ObjectId is LongIntegerToText(ItemId) (NoteCard_List.js:388), so the text is the same",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-058",
@@ -758,7 +1330,17 @@
    "tst": "absent (TST Notes.js:1479-1480 empty branch)",
    "verdict": "match",
    "note": "TST FeedItem branch is empty (Notes.js:1478); React = TST (§6.1)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-059",
@@ -771,7 +1353,17 @@
    "tst": "absent (empty branch, Notes.js:~1495)",
    "verdict": "match",
    "note": "TST Member branch is empty (Notes.js:1496); React = TST (§6.1)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-060",
@@ -784,7 +1376,17 @@
    "tst": "absent (no FeedbackMessage in Notes.js)",
    "verdict": "match",
    "note": "DEV only; TST has no message (Notes.js:1496); React = TST (§6.1)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-061",
@@ -797,7 +1399,17 @@
    "tst": "absent (TST Notes.js:1501-1504 navigates OneSchoolGlobalDetails only)",
    "verdict": "match",
    "note": "DEV only; TST navigates OneSchoolGlobalDetails (Notes.js:1499-1504); React = TST (§6.1)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-062",
@@ -810,7 +1422,17 @@
    "tst": "present (Notes.js:1502)",
    "verdict": "match",
    "note": "TST Notes.js:1499-1504",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-063",
@@ -823,7 +1445,17 @@
    "tst": "present (Notes.js:1514-1516)",
    "verdict": "match",
    "note": "TST Notes.js:1512-1517",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-064",
@@ -836,7 +1468,17 @@
    "tst": "present (empty branches)",
    "verdict": "match",
    "note": "TST empty branches (Notes.js:1478-1519)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-065",
@@ -849,7 +1491,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "TST NoteCard_List triggers OnClick_NoteCardItem(LongIntegerToText(ItemId), NoteCategoryId) (NoteCard_List.js:388); the screen handler takes (ObjectId, ObjectType) (Notes.js:1455); React = TST (§6.1)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-066",
@@ -862,7 +1514,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.NoteCard_Item.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-067",
@@ -875,7 +1537,17 @@
    "tst": "In_TotalNotes=Notes.Total.toString() (NoteCard_Item.js:162)",
    "verdict": "match",
    "note": "TST passes In_SearchString, In_TotalNotes, In_Title, In_Subtitle, In_Label, AvatarImage only (NoteCard_Item.js:160-175); React = TST (§6.1)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.NoteCard_Item.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-068",
@@ -888,7 +1560,17 @@
    "tst": "present (NoteCard_Item.js:235)",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.NoteCard_Item.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-069",
@@ -901,7 +1583,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.NoteCard_Item.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-070",
@@ -914,7 +1606,17 @@
    "tst": "ShowUnbookmark=False, ShowAddNote=True, ShowShare=False (NoteCard_Item.js:319-321)",
    "verdict": "match",
    "note": "KB BR-UBTCON-040",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.NoteCard_Item.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-071",
@@ -927,7 +1629,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "the If False branch is dead in the model; the live else branch NotesSheet matches",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.NoteCard_Item.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-072",
@@ -940,7 +1652,17 @@
    "tst": "present (onClickTotalNotesIcon NoteCard_Item.js:209)",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.NoteCard_Item.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-073",
@@ -953,7 +1675,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.NoteCard_Item.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-074",
@@ -966,7 +1698,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "also wired to NoteListActions OnSaveEditNote (line 85)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.NoteCard_Item.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-075",
@@ -979,7 +1721,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "TST NoteCard_Item.js:561-564",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.NoteCard_Item.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-076",
@@ -992,7 +1744,17 @@
    "tst": "present (Notes total assign NoteCard_Item.js:579)",
    "verdict": "match",
    "note": "TST Total = Note_Item_List.Length (NoteCard_Item.js:579)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.NoteCard_Item.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-077",
@@ -1005,7 +1767,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.NoteCard_Item.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-078",
@@ -1018,7 +1790,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "React keeps a copy; resets when the parent passes a new object",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.NoteCard_Item.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-079",
@@ -1031,7 +1813,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.NoteCard_List.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-080",
@@ -1044,7 +1836,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "TST Options have Background and PaddingSize only, no HeightOptions (NoteCard_List.js:171-186); React = TST (§6.1)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.NoteCard_List.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-081",
@@ -1057,7 +1859,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.NoteCard_List.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-082",
@@ -1070,7 +1882,17 @@
    "tst": "IconId=bookmark (NoteCard_List.js:229)",
    "verdict": "match",
    "note": "TST bookmark icon (NoteCard_List.js:229); React = TST (§6.1)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.NoteCard_List.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-083",
@@ -1083,7 +1905,17 @@
    "tst": "\"No Notes found\" (NoteCard_List.js:249)",
    "verdict": "match",
    "note": "TST \"No Notes found\" (NoteCard_List.js:249); React = TST (§6.1)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.NoteCard_List.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-084",
@@ -1096,7 +1928,17 @@
    "tst": "same as React (NoteCard_List.js:280, 315)",
    "verdict": "match",
    "note": "TST NoteCard_List.js:280,315; React = TST (§6.1)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.NoteCard_List.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-085",
@@ -1109,7 +1951,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.NoteCard_List.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-086",
@@ -1122,7 +1974,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.NoteCard_List.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-087",
@@ -1138,7 +2000,17 @@
    "verified": "live",
    "severity": "minor",
    "finding": "F1",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.NoteCard_List.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-088",
@@ -1151,7 +2023,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.NoteCard_List.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-089",
@@ -1164,7 +2046,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.NoteCard_List.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-090",
@@ -1177,7 +2069,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.NoteCard_List.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-091",
@@ -1190,7 +2092,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.NoteCard_List.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-092",
@@ -1203,7 +2115,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "both events are empty in the model; React needs no code",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.NoteCard_List.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-093",
@@ -1216,7 +2138,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes_FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-094",
@@ -1229,7 +2161,17 @@
    "tst": "present (Notes_FilterSheet.js:172-177)",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes_FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-095",
@@ -1242,7 +2184,17 @@
    "tst": "empty Filter_CommonRec (Notes_FilterSheet.js:163-167)",
    "verdict": "match",
    "note": "TST passes an empty Filter_Common (Notes_FilterSheet.js:163-167); React = TST (§6.1)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes_FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-096",
@@ -1255,7 +2207,17 @@
    "tst": "Id, DisplayText, isEnabled only (Notes_FilterSheet.js:296-300)",
    "verdict": "match",
    "note": "TST sets Id, DisplayText, isEnabled (Notes_FilterSheet.js:294-299); React = TST (§6.1)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes_FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-097",
@@ -1268,7 +2230,17 @@
    "tst": "Title, Order only (Notes_FilterSheet.js:~312-314)",
    "verdict": "match",
    "note": "TST sets Title, Order (Notes_FilterSheet.js:310-316); React = TST (§6.1)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes_FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-098",
@@ -1281,7 +2253,17 @@
    "tst": "OnParametersChanged handler is null in TST (Notes_FilterSheet.js:522)",
    "verdict": "match",
    "note": "TST onParametersChangedEventHandler = null (Notes_FilterSheet.js:522); OnInitialize builds the options (337-350); React = TST (§6.1)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes_FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-099",
@@ -1294,7 +2276,17 @@
    "tst": "present (Notes_FilterSheet.js:395)",
    "verdict": "match",
    "note": "TST reads OptionFlatList_Control.Current, not the filtered list (Notes_FilterSheet.js:388-395): the first list. React optionFlatLists[0] = TST",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes_FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-100",
@@ -1307,7 +2299,17 @@
    "tst": "present (Notes_FilterSheet.js:403-404)",
    "verdict": "match",
    "note": "TST Notes_FilterSheet.js:397-404",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes_FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-101",
@@ -1320,7 +2322,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "TST sets Filter_Notes.Years and .SortByNewest, then triggers ApplyFilters(Filter_Notes, hasFitlerApplied) (Notes_FilterSheet.js:386-406); BR-UBTCON-036 disagrees (K4)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes_FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-102",
@@ -1333,7 +2345,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes_FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-103",
@@ -1346,7 +2368,17 @@
    "tst": "absent",
    "verdict": "match",
    "note": "DEV only; React = TST (§6.1)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-104",
@@ -1359,7 +2391,17 @@
    "tst": "absent (TST has \"No Notes found\")",
    "verdict": "match",
    "note": "DEV only; TST and React use the strings of Notes-083/084",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-105",
@@ -1372,7 +2414,17 @@
    "tst": "present (Notes.js:956-1016)",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-106",
@@ -1385,7 +2437,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-107",
@@ -1398,7 +2460,17 @@
    "tst": "-",
    "verdict": "n/a",
    "note": "owned by flow App_CommonBlocks_Filter (FilterSheet), see its report",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-108",
@@ -1411,7 +2483,17 @@
    "tst": "-",
    "verdict": "n/a",
    "note": "owned by other flows (App_PIN, App_Common, Directory_Search), see their reports",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-109",
@@ -1424,7 +2506,17 @@
    "tst": "present",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-110",
@@ -1438,7 +2530,17 @@
    "note": "Built 2026-10-27 (builds/B10-misc.md). If the record is shared, TST sends the chosen years (and sort) to GetNotes on Apply; React never sends years. | capture 2026-10-27 (review/captures.md §3): after Apply, DataActionGetNotes sends Notes_Filter.Years (1 item) and SortByNewest \"Yes\"; React never sends Years, so the year filter has no effect (finding F2, major)",
    "verified": "code",
    "finding": "F2",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes_FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-111",
@@ -1450,7 +2552,17 @@
    "evidence": "TST PageSize 20 (Notes.js:57-58), OnAfterFetch Notes.js:837-869; BR file ../ubt_sharing_kb/connect/outsystems/apps/ubtconnect/modules/UBTConnect/rules/BR-UBTCON-031.md",
    "verdict": "match",
    "note": "KB page size 6 disagrees with DEV and TST (K2); the replace and append part matches",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-112",
@@ -1462,7 +2574,17 @@
    "evidence": "TST Notes.js:1123; BR file ../ubt_sharing_kb/connect/outsystems/apps/ubtconnect/modules/UBTConnect/rules/BR-UBTCON-032.md",
    "verdict": "match",
    "note": "the compare matches; the KB note on 6-card pages is K2; the loading clause is Notes-047",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-113",
@@ -1474,7 +2596,19 @@
    "evidence": "TST Notes.js:1344-1351; UBTConnect.controller.js:10115-10150; BR file ../ubt_sharing_kb/connect/outsystems/apps/ubtconnect/modules/UBTConnect/rules/BR-UBTCON-033.md",
    "verdict": "match",
    "note": "React = TST; the KB rule disagrees with DEV and TST (K1)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)",
+     "UBTConnect.controller.js (lines)"
+    ]
+   }
   },
   {
    "id": "Notes-114",
@@ -1486,7 +2620,17 @@
    "evidence": "TST Notes.js:903-918; BR file ../ubt_sharing_kb/connect/outsystems/apps/ubtconnect/modules/UBTConnect/rules/BR-UBTCON-034.md",
    "verdict": "match",
    "note": "matches",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-115",
@@ -1498,7 +2642,17 @@
    "evidence": "TST Notes.js:1416-1422; BR file ../ubt_sharing_kb/connect/outsystems/apps/ubtconnect/modules/UBTConnect/rules/BR-UBTCON-035.md",
    "verdict": "match",
    "note": "React = TST; the KB \"no refetch\" disagrees with DEV and TST (K3); the years part is Q1",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-116",
@@ -1510,7 +2664,17 @@
    "evidence": "TST Notes_FilterSheet.js:386-406; BR file ../ubt_sharing_kb/connect/outsystems/apps/ubtconnect/modules/UBTConnect/rules/BR-UBTCON-036.md",
    "verdict": "match",
    "note": "React = TST; the KB rule disagrees with DEV and TST (K4)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes_FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-117",
@@ -1522,7 +2686,17 @@
    "evidence": "TST Notes.js:1471-1519; BR file ../ubt_sharing_kb/connect/outsystems/apps/ubtconnect/modules/UBTConnect/rules/BR-UBTCON-037.md",
    "verdict": "match",
    "note": "React = TST; the KB rule disagrees with DEV and TST (K5)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-118",
@@ -1534,7 +2708,17 @@
    "evidence": "TST Notes.js:310-350,1208-1257; BR file ../ubt_sharing_kb/connect/outsystems/apps/ubtconnect/modules/UBTConnect/rules/BR-UBTCON-038.md",
    "verdict": "match",
    "note": "React = TST; the KB rule disagrees with DEV and TST (K6)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-119",
@@ -1546,7 +2730,17 @@
    "evidence": "TST NoteCard_Item.js:561-579; NoteCard_List.js:479-486; BR file ../ubt_sharing_kb/connect/outsystems/apps/ubtconnect/modules/UBTConnect/rules/BR-UBTCON-039.md",
    "verdict": "match",
    "note": "matches (Notes-075 to Notes-077, Notes-088)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.NoteCard_Item.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-120",
@@ -1558,7 +2752,17 @@
    "evidence": "pack blocks.md NoteCard_Item; KB BR-UBTCON-040; BR file ../ubt_sharing_kb/connect/outsystems/apps/ubtconnect/modules/UBTConnect/rules/BR-UBTCON-040.md",
    "verdict": "match",
    "note": "matches (Notes-070)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.NoteCard_Item.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "Notes-121",
@@ -1570,7 +2774,19 @@
    "evidence": "TST UBTConnect.controller.js:10184-10240; Notes.js:1294; BR file ../ubt_sharing_kb/connect/outsystems/apps/ubtconnect/modules/UBTConnect/rules/BR-UBTCON-243.md",
    "verdict": "match",
    "note": "matches the TST call without argument (Notes-040)",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Notes.Notes.mvc.js (screen)",
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
   }
  ]
 }

@@ -14,7 +14,17 @@
    "tst": "present (UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js, 3 mvc.js 3629 lines)",
    "verdict": "match",
    "note": "Port = component (props only) + hook + actions file + container with the 3 cache blocks, BackNavigationHandler and upgrade popup. TST also has per-screen wrappers Bookmarks_FilterSheet, Notes_FilterSheet, Directory_Updates_FilterSheet and Connect2_Assemble_MUI.Assemble_FilterSheet (not in this flow).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-002",
@@ -27,7 +37,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "React defaults are empty records; OutSystems marks the first two mandatory.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-003",
@@ -40,7 +60,17 @@
    "tst": "present (fs.js:797 in_OptionsIn)",
    "verdict": "match",
    "note": "React defaults are empty records; OutSystems marks the first two mandatory.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-004",
@@ -53,7 +83,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-005",
@@ -66,7 +106,17 @@
    "tst": "present (fs.js:2312 applyFilters$Action)",
    "verdict": "match",
    "note": "Positional in React; same 7 values and order as the TST call at fs.js:2312.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-006",
@@ -79,7 +129,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-007",
@@ -92,7 +152,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "Pack text cut at \"SheetIn\".",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-008",
@@ -105,7 +175,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-009",
@@ -118,7 +198,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-010",
@@ -131,7 +221,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-011",
@@ -144,7 +244,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-012",
@@ -157,7 +267,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-013",
@@ -170,7 +290,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "Pack variable list is cut at \"Local…\" for the last variables; the list above comes from the action text.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-014",
@@ -183,7 +313,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-015",
@@ -196,7 +336,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-016",
@@ -209,7 +359,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-017",
@@ -222,7 +382,17 @@
    "tst": "present (fs.js: view In_IsLoading, not located)",
    "verdict": "match",
    "note": "Pack expression is cut at \"or not LocalCacheControl_…\". React reads \"!isFetched(v.user)\" in the second factor. Check against TST before judging. Judge: TST FilterSheet.mvc.js:304 has the same expression, with not UserInfo.isFetched in the second factor. React matches TST.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-018",
@@ -235,7 +405,17 @@
    "tst": "present (fs.js: OptionList_Control list)",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-019",
@@ -248,7 +428,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-020",
@@ -261,7 +451,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-021",
@@ -274,7 +474,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-022",
@@ -287,7 +497,17 @@
    "tst": "present (fs.js:699 title from extra_OptionFlatLists.getCurrent)",
    "verdict": "match",
    "note": "Both DEV and TST read the title from Extra_OptionFlatLists.Current (not from the iterated OptionFlatList_Control row). React always reads row 0 of Extra_OptionFlatLists. Judge: TST view fs.js:699 reads Extra_OptionFlatLists.getCurrent. React reads row 0. The output is the same for one flat list.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-023",
@@ -300,7 +520,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-024",
@@ -313,7 +543,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-025",
@@ -326,7 +566,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-026",
@@ -339,7 +589,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-027",
@@ -352,7 +612,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-028",
@@ -365,7 +635,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-029",
@@ -378,7 +658,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-030",
@@ -391,7 +681,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-031",
@@ -404,7 +704,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-032",
@@ -417,7 +727,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-033",
@@ -430,7 +750,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-034",
@@ -443,7 +773,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-035",
@@ -456,7 +796,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-036",
@@ -469,7 +819,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-037",
@@ -482,7 +842,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-038",
@@ -495,7 +865,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "The If has an empty assign in the true branch; both branches reach [M4].",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-039",
@@ -508,7 +888,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-040",
@@ -521,7 +911,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "Pack names the field HasCountries.AddAllOption; React reads AddAllOptions. SheetTitle \"Country\" is not visible in the pack (cut). Judge: TST fs.js:1615 reads HasCountries.AddAllOptions; fs.js:1618 sets SheetTitle Country. React matches.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-041",
@@ -534,7 +934,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-042",
@@ -547,7 +957,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-043",
@@ -560,7 +980,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "Body in the shared action; not in this pack.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-044",
@@ -573,7 +1003,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-045",
@@ -586,7 +1026,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-046",
@@ -599,7 +1049,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "React sorts with localeCompare; OutSystems ListSort order rule not in the pack. Judge: The OutSystems ListSort compares Text values with localeCompare (OutSystems.js, compare function of RecordList sort). React matches.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-047",
@@ -612,7 +1072,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-048",
@@ -625,7 +1095,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "In the pack the three calls run only when the replace branch ran (Position >= 0); in React finishList runs after both replace and append (see merge M4 in the pack: append branch continues at M4 and also runs the calls). Judge: TST fs.js:1686-1703 runs the three calls after the replace branch and after the append branch. React matches TST.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-049",
@@ -638,7 +1118,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-050",
@@ -651,7 +1141,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "Original quirk (Order from HasSorting). React copies it. Not an ADR: judge decides. Judge: TST fs.js:1883 Order = HasSorting.Order; fs.js:1886 AddAllOptions from HasLocalities; fs.js:1889 SheetTitle Locality. The KB page records the same detail. React copies TST.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-051",
@@ -664,7 +1164,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-052",
@@ -677,7 +1187,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "Original quirk replicated. Judge: TST fs.js:1903 appends In_StartFilter.CountryIds.Current. BR-UBTCON-324 records this. React copies TST.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-053",
@@ -690,7 +1210,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "Judge: TST fs.js:1925-1945 runs the tail calls after both branches.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-054",
@@ -703,7 +1233,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-055",
@@ -716,7 +1256,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-056",
@@ -729,7 +1279,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-057",
@@ -742,7 +1302,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-058",
@@ -755,7 +1325,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-059",
@@ -768,7 +1348,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-060",
@@ -781,7 +1371,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "Pack clears SelectedNames then DefineOptionNames rebuilds them; React relies on DefineOptionNames for names. Judge: React app_CommonFilter_DefineOptionNames (lib/ubtConnect/actions.ts:122-134) builds SelectedNames from an empty list. The TST ListClear (fs.js:2079) gives the same result.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-061",
@@ -794,7 +1394,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-062",
@@ -807,7 +1417,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-063",
@@ -820,7 +1440,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-064",
@@ -833,7 +1463,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-065",
@@ -846,7 +1486,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "Pack text cut after NoLabel; NoneLabel and Order assigns not visible. Judge: TST fs.js:2367 NoneLabel empty; fs.js:2370 Order = HasSorting.Order. React matches.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-066",
@@ -859,7 +1509,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-067",
@@ -872,7 +1532,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-068",
@@ -885,7 +1555,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "Input isFromApply is not read in the action text.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-069",
@@ -898,7 +1578,17 @@
    "tst": "present (fs.js:2434-2437 clears Selected* of Empty_OptionControl.OptionList_Control)",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-070",
@@ -911,7 +1601,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-071",
@@ -924,7 +1624,17 @@
    "tst": "absent (grep of fs.js 2425-2480 finds no OptionFlatList clearing; only OptionList_Control at :2434,2437)",
    "verdict": "match",
    "note": "DEV only: the DEV pack has the flat-list loop. TST clears OptionList_Control only (fs.js:2436-2439). React follows TST. See section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-072",
@@ -937,7 +1647,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-073",
@@ -950,7 +1670,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-074",
@@ -963,7 +1693,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-075",
@@ -976,7 +1716,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-076",
@@ -989,7 +1739,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-077",
@@ -1002,7 +1762,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-078",
@@ -1015,7 +1785,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-079",
@@ -1028,7 +1808,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-080",
@@ -1041,7 +1831,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-081",
@@ -1054,7 +1854,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-082",
@@ -1067,7 +1877,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-083",
@@ -1080,7 +1900,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-084",
@@ -1093,7 +1923,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-085",
@@ -1106,7 +1946,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-086",
@@ -1119,7 +1969,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-087",
@@ -1132,7 +1992,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-088",
@@ -1145,7 +2015,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-089",
@@ -1158,7 +2038,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-090",
@@ -1171,7 +2061,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-091",
@@ -1184,7 +2084,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-092",
@@ -1197,7 +2107,17 @@
    "tst": "present (fs.js:2568-2575)",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-093",
@@ -1210,7 +2130,17 @@
    "tst": "present (fs.js:2588)",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-094",
@@ -1223,7 +2153,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-095",
@@ -1236,7 +2176,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-096",
@@ -1249,7 +2199,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-097",
@@ -1262,7 +2222,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "In the pack the call is reached from the Countries branch (both sub-branches); not reached when In_Title <> Countries. Judge: TST fs.js:2680-2725: the If In_Title = SubState_Countries holds the All-countries If and the FilterLocalitiesByCountry call. React :201-209 matches.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-098",
@@ -1275,7 +2245,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-099",
@@ -1288,7 +2268,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-100",
@@ -1301,7 +2291,17 @@
    "tst": "present (fs.js:1418-1432)",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-101",
@@ -1314,7 +2314,17 @@
    "tst": "present (fs.js:1434, 2312)",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-102",
@@ -1327,7 +2337,17 @@
    "tst": "-",
    "verdict": "n/a",
    "note": "owned by the _shared unit (_shared-001 CheckCountry, _shared-002 DefineOptionNames, _shared-029 GetUserInformation_Wrapper_Assign), see its report.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-103",
@@ -1340,7 +2360,17 @@
    "tst": "-",
    "verdict": "n/a",
    "note": "owned by the _shared unit (_shared-029, _shared-030), see its report. The filter blocks only render CacheControl_UserInfo_Wrapper.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-104",
@@ -1902,7 +2932,19 @@
    "tst": "present (UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js, 159833 bytes)",
    "verdict": "match",
    "note": "React props: id, onSheetInitialized, onMarkAllAsRead, onDeleteAllNotification, onApplySort. No In_StartFilter, In_Filter_Common_Options_Choice, ExtendedClasses, no Loaded event. Judge: The only user, Notifications_MoreActionSheet, passes empty Filter_Common_Options and Filter_Common records (TST Notifications_MoreActionSheet.mvc.js:127-139). The reduced React props give the same output.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (file)",
+     "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-147",
@@ -1915,7 +2957,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "Notifications passes empty filter inputs (Notifications_MoreActionSheet doc comment :147 area). Judge: With empty options CacheControl_UserInfo_Wrapper does not render, so TST never raises Loaded.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-148",
@@ -1928,7 +2980,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "Judge: TST mas.js:221 ShowHeader false; the title Sort (mas.js:233) does not show.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-149",
@@ -1941,7 +3003,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "DEV only: TST MoreActionSheet.mvc.js has no moreActionContainer style (grep: 0 hits). React follows TST. See section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-150",
@@ -1954,7 +3026,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-151",
@@ -1967,7 +3049,17 @@
    "tst": "present (mas.js:2161 MarkAllAsReadClicked)",
    "verdict": "match",
    "note": "DEV and TST differ: the DEV pack also calls BottomSheetOnClose. TST MarkAllAsReadClicked only triggers MarkAllAsRead (mas.js:2150-2170). React follows TST. See section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-152",
@@ -1980,7 +3072,17 @@
    "tst": "absent (mas.js has no ShowConfirmDeleteAllPopup, Toggle_DeleteAllPopup or ConfirmDialog; it has DeleteAllNotificationClicked at :1930)",
    "verdict": "match",
    "note": "DEV only popup. TST view mas.js:498 binds the row to DeleteAllNotificationClicked, which triggers DeleteAllNotification (mas.js:1923-1940). React follows TST. See section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-153",
@@ -1993,7 +3095,17 @@
    "tst": "absent (mas.js: no ConfirmDialog)",
    "verdict": "match",
    "note": "DEV only. React has no popup, as TST. See section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-154",
@@ -2006,7 +3118,17 @@
    "tst": "present (mas.js:1930)",
    "verdict": "match",
    "note": "Pack body of DeleteAllNotificationClicked is not shown in the lines read (sections cut). Notifications wrapper handlers are empty (MA comment :120-122). Judge: TST mas.js:1923-1940 triggers DeleteAllNotification only.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-155",
@@ -2019,7 +3141,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-156",
@@ -2032,7 +3164,19 @@
    "tst": "-",
    "verdict": "match",
    "note": "React skips the Empty/OptionControl assigns (no option state in the port). Judge: TST OnClick_Apply raises ApplySort(SortBy_Title) (mas.js:1908). The wrapper handler ignores the argument (Notifications_MoreActionSheet.mvc.js:201-210). With empty options the Empty and Last assigns change no visible state.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-157",
@@ -2045,7 +3189,19 @@
    "tst": "-",
    "verdict": "match",
    "note": "Judge: TST OnClick_Apply raises ApplySort(SortBy_Title) (mas.js:1908). The wrapper handler ignores the argument (Notifications_MoreActionSheet.mvc.js:201-210). With empty options the Empty and Last assigns change no visible state.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-158",
@@ -2058,7 +3214,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-159",
@@ -2071,7 +3237,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "BottomSheetOnClose (OptionControl = LastSearched; ForceUpdate toggle) not ported. Judge: ConnectBottomSheet closes the sheet itself before onOnClose (ConnectBottomSheet.tsx:135-136). With empty options BottomSheetOnClose changes no visible state on TST.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-160",
@@ -2084,7 +3260,19 @@
    "tst": "present (mas.js, 159833 bytes; not read per action)",
    "verdict": "match",
    "note": "Judged once with the FilterSheet action of the same name (section 2.1). The only user passes empty records, so the action changes no visible state. React does not port it; the output is the same.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-161",
@@ -2097,7 +3285,19 @@
    "tst": "present (mas.js, 159833 bytes; not read per action)",
    "verdict": "match",
    "note": "Judged once with the FilterSheet action of the same name (section 2.1). The only user passes empty records, so the action changes no visible state. React does not port it; the output is the same.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-162",
@@ -2110,7 +3310,19 @@
    "tst": "present (mas.js, 159833 bytes; not read per action)",
    "verdict": "match",
    "note": "Judged once with the FilterSheet action of the same name (section 2.1). The only user passes empty records, so the action changes no visible state. React does not port it; the output is the same.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-163",
@@ -2123,7 +3335,19 @@
    "tst": "present (mas.js, 159833 bytes; not read per action)",
    "verdict": "match",
    "note": "Judged once with the FilterSheet action of the same name (section 2.1). The only user passes empty records, so the action changes no visible state. React does not port it; the output is the same.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-164",
@@ -2136,7 +3360,19 @@
    "tst": "present (mas.js, 159833 bytes; not read per action)",
    "verdict": "match",
    "note": "Judged once with the FilterSheet action of the same name (section 2.1). The only user passes empty records, so the action changes no visible state. React does not port it; the output is the same.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-165",
@@ -2149,7 +3385,19 @@
    "tst": "present (mas.js, 159833 bytes; not read per action)",
    "verdict": "match",
    "note": "Judged once with the FilterSheet action of the same name (section 2.1). The only user passes empty records, so the action changes no visible state. React does not port it; the output is the same.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-166",
@@ -2162,7 +3410,19 @@
    "tst": "present (mas.js, 159833 bytes; not read per action)",
    "verdict": "match",
    "note": "Judged once with the FilterSheet action of the same name (section 2.1). The only user passes empty records, so the action changes no visible state. React does not port it; the output is the same.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-167",
@@ -2175,7 +3435,19 @@
    "tst": "present (mas.js, 159833 bytes; not read per action)",
    "verdict": "match",
    "note": "Judged once with the FilterSheet action of the same name (section 2.1). The only user passes empty records, so the action changes no visible state. React does not port it; the output is the same.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-168",
@@ -2188,7 +3460,19 @@
    "tst": "present (mas.js, 159833 bytes; not read per action)",
    "verdict": "match",
    "note": "Judged once with the FilterSheet action of the same name (section 2.1). The only user passes empty records, so the action changes no visible state. React does not port it; the output is the same.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-169",
@@ -2201,7 +3485,19 @@
    "tst": "present (mas.js, 159833 bytes; not read per action)",
    "verdict": "match",
    "note": "Judged once with the FilterSheet action of the same name (section 2.1). The only user passes empty records, so the action changes no visible state. React does not port it; the output is the same.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-170",
@@ -2214,7 +3510,19 @@
    "tst": "present (mas.js, 159833 bytes; not read per action)",
    "verdict": "match",
    "note": "Judged once with the FilterSheet action of the same name (section 2.1). The only user passes empty records, so the action changes no visible state. React does not port it; the output is the same.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-171",
@@ -2227,7 +3535,19 @@
    "tst": "present (mas.js, 159833 bytes; not read per action)",
    "verdict": "match",
    "note": "Judged once with the FilterSheet action of the same name (section 2.1). The only user passes empty records, so the action changes no visible state. React does not port it; the output is the same.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-172",
@@ -2240,7 +3560,19 @@
    "tst": "present (mas.js, 159833 bytes; not read per action)",
    "verdict": "match",
    "note": "Judged once with the FilterSheet action of the same name (section 2.1). The only user passes empty records, so the action changes no visible state. React does not port it; the output is the same.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-173",
@@ -2253,7 +3585,19 @@
    "tst": "present (mas.js, 159833 bytes; not read per action)",
    "verdict": "match",
    "note": "Judged once with the FilterSheet action of the same name (section 2.1). The only user passes empty records, so the action changes no visible state. React does not port it; the output is the same.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-174",
@@ -2266,7 +3610,19 @@
    "tst": "present (mas.js, 159833 bytes; not read per action)",
    "verdict": "match",
    "note": "Judged once with the FilterSheet action of the same name (section 2.1). The only user passes empty records, so the action changes no visible state. React does not port it; the output is the same.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-175",
@@ -2279,7 +3635,19 @@
    "tst": "present (mas.js, 159833 bytes; not read per action)",
    "verdict": "match",
    "note": "Judged once with the FilterSheet action of the same name (section 2.1). The only user passes empty records, so the action changes no visible state. React does not port it; the output is the same.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-176",
@@ -2292,7 +3660,19 @@
    "tst": "present (mas.js, 159833 bytes; not read per action)",
    "verdict": "match",
    "note": "Judged once with the FilterSheet action of the same name (section 2.1). The only user passes empty records, so the action changes no visible state. React does not port it; the output is the same.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-177",
@@ -2305,7 +3685,19 @@
    "tst": "present (mas.js, 159833 bytes; not read per action)",
    "verdict": "match",
    "note": "Judged once with the FilterSheet action of the same name (section 2.1). The only user passes empty records, so the action changes no visible state. React does not port it; the output is the same.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-178",
@@ -2318,7 +3710,19 @@
    "tst": "present (mas.js, 159833 bytes; not read per action)",
    "verdict": "match",
    "note": "Judged once with the FilterSheet action of the same name (section 2.1). The only user passes empty records, so the action changes no visible state. React does not port it; the output is the same.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-179",
@@ -2331,7 +3735,19 @@
    "tst": "present (mas.js, 159833 bytes; not read per action)",
    "verdict": "match",
    "note": "Judged once with the FilterSheet action of the same name (section 2.1). The only user passes empty records, so the action changes no visible state. React does not port it; the output is the same.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-180",
@@ -2344,7 +3760,19 @@
    "tst": "present (UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc.js, 153246 bytes)",
    "verdict": "match",
    "note": "React props: id, yesLabel, noLabel, onSheetInitialized, onApplySort. The port keeps only the sort choice (HasSorting only). Judge: TST Notifications_SortSheet.mvc.js:135-157 passes HasSorting (Newest to Oldest, Oldest to Newest, Order 1) and an empty In_StartFilter.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file",
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc.js (file)",
+     "UBTConnect.App_Notifications.Notifications_SortSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-181",
@@ -2357,7 +3785,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-182",
@@ -2370,7 +3808,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "React builds the single choice by hand; OutSystems builds it in Action_DefineSortBy from In_Filter_Common_Options_Choice.HasSorting.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-183",
@@ -2383,7 +3831,17 @@
    "tst": "present (ss.js:423 In_IsDisabled equals empty_OptionControl)",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-184",
@@ -2396,7 +3854,17 @@
    "tst": "present (ss.js:514)",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-185",
@@ -2409,7 +3877,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-186",
@@ -2422,7 +3900,19 @@
    "tst": "present (ss.js:1709 applySort$Action(sortBy_TitleVar))",
    "verdict": "match",
    "note": "React raises ApplySort without SortBy_Title or OptionControl. Judge: The wrapper handler ignores SortBy_Title and calls FilterSheetApplyFilters (Notifications_SortSheet.mvc.js:164-172).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_SortSheet.mvc.js (lines)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-187",
@@ -2435,7 +3925,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "Empty state is the Yes choice only.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-188",
@@ -2448,7 +3948,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-189",
@@ -2461,7 +3971,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-190",
@@ -2474,7 +3994,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-191",
@@ -2487,7 +4017,19 @@
    "tst": "present (ss.js, 153246 bytes; not read per action)",
    "verdict": "match",
    "note": "Judged once with the FilterSheet action of the same name (section 2.1). With HasSorting only, the country and locality actions do not run. React builds the one sort choice by hand (row 182).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_SortSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-192",
@@ -2500,7 +4042,19 @@
    "tst": "present (ss.js, 153246 bytes; not read per action)",
    "verdict": "match",
    "note": "Judged once with the FilterSheet action of the same name (section 2.1). With HasSorting only, the country and locality actions do not run. React builds the one sort choice by hand (row 182).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_SortSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-193",
@@ -2513,7 +4067,19 @@
    "tst": "present (ss.js, 153246 bytes; not read per action)",
    "verdict": "match",
    "note": "Judged once with the FilterSheet action of the same name (section 2.1). With HasSorting only, the country and locality actions do not run. React builds the one sort choice by hand (row 182).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_SortSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-194",
@@ -2526,7 +4092,19 @@
    "tst": "present (ss.js, 153246 bytes; not read per action)",
    "verdict": "match",
    "note": "Judged once with the FilterSheet action of the same name (section 2.1). With HasSorting only, the country and locality actions do not run. React builds the one sort choice by hand (row 182).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_SortSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-195",
@@ -2539,7 +4117,19 @@
    "tst": "present (ss.js, 153246 bytes; not read per action)",
    "verdict": "match",
    "note": "Judged once with the FilterSheet action of the same name (section 2.1). With HasSorting only, the country and locality actions do not run. React builds the one sort choice by hand (row 182).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_SortSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-196",
@@ -2552,7 +4142,19 @@
    "tst": "present (ss.js, 153246 bytes; not read per action)",
    "verdict": "match",
    "note": "Judged once with the FilterSheet action of the same name (section 2.1). With HasSorting only, the country and locality actions do not run. React builds the one sort choice by hand (row 182).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_SortSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-197",
@@ -2565,7 +4167,19 @@
    "tst": "present (ss.js, 153246 bytes; not read per action)",
    "verdict": "match",
    "note": "Judged once with the FilterSheet action of the same name (section 2.1). With HasSorting only, the country and locality actions do not run. React builds the one sort choice by hand (row 182).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_SortSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-198",
@@ -2578,7 +4192,19 @@
    "tst": "present (ss.js, 153246 bytes; not read per action)",
    "verdict": "match",
    "note": "Judged once with the FilterSheet action of the same name (section 2.1). With HasSorting only, the country and locality actions do not run. React builds the one sort choice by hand (row 182).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_SortSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-199",
@@ -2591,7 +4217,19 @@
    "tst": "present (ss.js, 153246 bytes; not read per action)",
    "verdict": "match",
    "note": "Judged once with the FilterSheet action of the same name (section 2.1). With HasSorting only, the country and locality actions do not run. React builds the one sort choice by hand (row 182).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_SortSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-200",
@@ -2604,7 +4242,19 @@
    "tst": "present (ss.js, 153246 bytes; not read per action)",
    "verdict": "match",
    "note": "Judged once with the FilterSheet action of the same name (section 2.1). With HasSorting only, the country and locality actions do not run. React builds the one sort choice by hand (row 182).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_SortSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-201",
@@ -2617,7 +4267,19 @@
    "tst": "present (ss.js, 153246 bytes; not read per action)",
    "verdict": "match",
    "note": "Judged once with the FilterSheet action of the same name (section 2.1). With HasSorting only, the country and locality actions do not run. React builds the one sort choice by hand (row 182).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_SortSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-202",
@@ -2630,7 +4292,19 @@
    "tst": "present (ss.js, 153246 bytes; not read per action)",
    "verdict": "match",
    "note": "Judged once with the FilterSheet action of the same name (section 2.1). With HasSorting only, the country and locality actions do not run. React builds the one sort choice by hand (row 182).",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same",
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc.js (screen)",
+     "UBTConnect.App_Notifications.Notifications_SortSheet.mvc.js (lines-same)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-203",
@@ -2643,7 +4317,17 @@
    "tst": "-",
    "verdict": "match",
    "note": "",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc.js (screen)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-204",
@@ -2734,7 +4418,17 @@
    "tst": "absent (mas.js: no ConfirmDialog)",
    "verdict": "match",
    "note": "DEV only (Notifications_ConfirmDialog). React follows TST. See section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-211",
@@ -2747,7 +4441,17 @@
    "tst": "absent (mas.js: no ConfirmDialog)",
    "verdict": "match",
    "note": "DEV only (Notifications_ConfirmDialog). React follows TST. See section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-212",
@@ -2760,7 +4464,17 @@
    "tst": "absent (mas.js: no ConfirmDialog)",
    "verdict": "match",
    "note": "DEV only (Notifications_ConfirmDialog). React follows TST. See section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (file)"
+    ]
+   }
   },
   {
    "id": "App_CommonBlocks_Filter-213",
@@ -2773,7 +4487,17 @@
    "tst": "absent (mas.js: no ConfirmDialog)",
    "verdict": "match",
    "note": "DEV only (Notifications_ConfirmDialog). React follows TST. See section 6.1.",
-   "verified": "pack"
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "file"
+    ],
+    "files": [
+     "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js (file)"
+    ]
+   }
   }
  ]
 }

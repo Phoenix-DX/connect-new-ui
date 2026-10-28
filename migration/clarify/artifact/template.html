@@ -143,8 +143,8 @@
 
     <section class="block" id="s-matrix">
       <details><summary>Ma trận verdict của 45 báo cáo (5.412 dòng)</summary>
-        <p class="note">Verdict: <code>match</code> giống TST · <code>partial</code> có nhưng lệch · <code>missing</code> thiếu · <code>differs</code> khác có quyết định · <code>mock-only</code> UI có, server là mock · <code>n/a</code> ngoài phạm vi · <code>unclear</code> chưa đủ bằng chứng.</p>
-        <div class="tablebox"><table id="matrixTable"><thead><tr><th>Nhóm</th><th>Flow</th><th>Dòng</th><th>match</th><th>partial</th><th>missing</th><th>differs</th><th>mock-only</th><th>n/a</th><th>unclear</th><th>Findings B/M/m/i</th></tr></thead><tbody></tbody></table></div>
+        <p class="note">Verdict: <code>match</code> giống TST · <code>partial</code> có nhưng lệch · <code>missing</code> thiếu · <code>differs</code> khác có quyết định · <code>mock-only</code> UI có, server là mock · <code>n/a</code> ngoài phạm vi · <code>unclear</code> chưa đủ bằng chứng. <code>Stale</code>: số dòng dựa trên code TST đã đổi ở lần publish 2026-10-27 (trong ngoặc là dòng mạnh: file bị xóa hoặc dòng được trích đã đổi); verdict được chấm trên code ngày 2026-10-13.</p>
+        <div class="tablebox"><table id="matrixTable"><thead><tr><th>Nhóm</th><th>Flow</th><th>Dòng</th><th>match</th><th>partial</th><th>missing</th><th>differs</th><th>mock-only</th><th>n/a</th><th>unclear</th><th>Findings B/M/m/i</th><th>Stale (strong)</th></tr></thead><tbody></tbody></table></div>
       </details>
     </section>
   </section>
@@ -294,7 +294,7 @@
   // ---- matrix
   tb('matrixTable').innerHTML = D.matrix.map(function (r) {
     var flow = (r.Flow || '').replace(/\[([^\]]+)\]\([^)]*\)/, '$1');
-    return '<tr><td>' + esc(r.Group) + '</td><td class="mono">' + md(flow) + '</td><td class="mono">' + esc(r.Rows) + '</td><td>' + esc(r.match) + '</td><td>' + esc(r.partial) + '</td><td>' + esc(r.missing) + '</td><td>' + esc(r.differs) + '</td><td>' + esc(r['mock-only']) + '</td><td>' + esc(r['n/a']) + '</td><td>' + esc(r.unclear) + '</td><td class="mono">' + esc(r['Findings (B/M/m/i)']) + '</td></tr>';
+    return '<tr><td>' + esc(r.Group) + '</td><td class="mono">' + md(flow) + '</td><td class="mono">' + esc(r.Rows) + '</td><td>' + esc(r.match) + '</td><td>' + esc(r.partial) + '</td><td>' + esc(r.missing) + '</td><td>' + esc(r.differs) + '</td><td>' + esc(r['mock-only']) + '</td><td>' + esc(r['n/a']) + '</td><td>' + esc(r.unclear) + '</td><td class="mono">' + esc(r['Findings (B/M/m/i)']) + '</td><td class="mono">' + esc(r['Stale (strong)'] || '') + '</td></tr>';
   }).join('');
 
   // ---- steps
