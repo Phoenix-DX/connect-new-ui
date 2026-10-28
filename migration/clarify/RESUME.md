@@ -25,7 +25,8 @@ Earlier status (third session): the clarify work was complete before the fix wav
     committed). The survey of 2026-10-13 is `capture/survey-UBTConnect-2026-10-13.json`.
   - 1885 checklist rows are `stale`, 422 of them strong (`tools/mark_stale.py`, `INDEX.md` §1 "Stale (strong)"). A
     build or a new judge of a route reads the live code and its stale rows first.
-  - Open for the user, later: the 5 new TST screens and the routes MyBookmarks and BookmarksByGroup.
+  - Open for the user, later: the 5 new TST screens and the routes MyBookmarks and BookmarksByGroup. With them (user,
+    2026-10-28, item 8 N1): TST added `GetMilestoneScanFF` and the milestone branch to OrbitAdminLanding again.
   - Open for the user, later: the bookmarkCategory constant ("OneSchool Global" on TST).
 - The user's work list of 2026-10-28: one item at a time, and ask the user after each item.
   1. Survey drift check: done; decision (c) done (2026-10-28).
@@ -50,6 +51,10 @@ Earlier status (third session): the clarify work was complete before the fix wav
      - 7.2 `infra-gaps.md` §10.4: nothing open (30 of 30 "build now" items closed; checks done); §10.5 closed.
      - 7.3 `infra-gaps.md` §11: the set-up order is approved (user, 2026-10-28); no production work until ordered.
      The work list of 2026-10-28 is complete.
+  8. The W23 flows and `_error.html` (user, 2026-10-28): evidence `review/item8-w23-errorpage.md` (R1-R6, P1-P7, 55
+     hooks, N1-N6); design `review/item8-solution.md` approved (flow scope, static error page, open points as
+     recommended, N2-N4 fixed in the waves). Build steps S0a, S0b, then groups B, A, C, D, then cleanup; notes in
+     `builds/item8-*.md`.
 
 Open items for the user:
 - The 13 decisions of the build wave: answered 2026-10-28.
