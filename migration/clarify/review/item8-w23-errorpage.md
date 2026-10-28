@@ -142,6 +142,33 @@ All four groups are checked: 76 data actions and aggregates, all of the kind tha
   handler (MCP IScreenAction RefreshMessages, Connect2_LegacyShared). In the TST code, its catch and the catch of
   OnScrollEnding throw the error again (`ScreenBlock_MessageList` dump :1654-1707, :1829-1902). So a failed GetMessages
   stops OnScrollEnding before `isLoadMore = False`, and also OnHandle_SearchHistorySelectedItem and OnParametersChanged
-  (PullToRefresh before the PullToRefreshTriggered event, :1529-1588, :1756-1795). The error goes to the flow handler
-  once. React (`useMessageList.ts` `refreshGetMessages`) raises and returns false, and its callers go on. S5 makes it
+  (PullToRefresh before the PullToRefreshTriggered event, :1529-1588, :1756-1795).
+- The error goes to the flow handler once. React (`useMessageList.ts` `refreshGetMessages`) raises and returns false, and its callers go on. S5 makes it
   throw (the user's decision (a)).
+
+## 7. Result (2026-10-28)
+
+The user approved the design (`item8-solution.md`, decisions §9). Build notes: `../builds/item8-S0a.md` to
+`item8-S5c.md`.
+
+| Step | Result |
+|---|---|
+| S0a | Platform flow scope (`flow.fetch` R1, `flow.own` R3, `flow.events`, `flow.run`), R4 in the navigation hooks, R6 in `raiseToFlowHandler`, the ignore filter |
+| S0b | The error page is the static `/UBTConnect/_error.html`; pixel check against TST: 0 different pixels |
+| S1 to S4 | The 55 hooks of groups B, A, C and D follow the rules; N2, N3, N4 fixed; N5 closed |
+| S5 | `flow.runAwaited`, sync throws in `flow.run`, `onReady(flow, restored)`, the `flow-fetch` CI check; two more hooks found by the check (ContactUsDetails, MyTimelineFilterButton) |
+
+Evidence:
+- the TST runtime (R1 to R6) and live probes on TST (R1 in item 2, R3 and R4 here);
+- the MCP for the 76 data actions and aggregates of the four groups, plus RefreshMessages;
+- the TST code per hook.
+
+Gates:
+- `npm run ci` green after each step (4624 tests at the end);
+- parity: 64 of 64 at the end of groups B and A, and 18 of 18 for C and D;
+- one last full sweep at the end of item 8: 64 of 64.
+
+Known differences, recorded: the R4 timing (React blocks from the start of the navigation; TST after the new screen's
+controller exists); `onParametersChanged(isAlive)` keeps its meaning for a superseded run (open point 5 (a)).
+Deferred by the user: N1 (with the new TST screens), the render and route errors (Q3 c), the production precache of
+`_error.html` (Q4 a).
