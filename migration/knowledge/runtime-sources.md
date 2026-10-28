@@ -117,3 +117,7 @@ Source switch (user decision (c), 2026-10-28): the live TST code of 2026-10-27 i
   (5) point to the 20 replaced files. They refer to the copies at f9f68bfc: read them with
   `git show f9f68bfc:migration/runtime-sources/<file>`. The citations were not changed.
 
+| Files fetched 2026-10-28 (clarify-screens item 8, standing rule) | Size | What it answers |
+|---|---|---|
+| `UBTConnect._error.html` (GET `/UBTConnect/_error.html?JO44F_K2Ljmr0N30QJ9VZg`, in the moduleinfo manifest) | 5 kB | The runtime error page: markup, inline styles, and the script that fills it (`migration/clarify/review/item8-w23-errorpage.md` §2) |
+| `UBTConnect.error.js` (GET `/UBTConnect/scripts/UBTConnect.error.js?drE4MR3zgKxVEvidfreC4w`, in the manifest) | 0.5 kB | The page script: `OS.ErrorScreen.initializeErrorPage(UBTConnect.appDefinition)` |

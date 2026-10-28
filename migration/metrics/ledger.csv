@@ -1053,3 +1053,8 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-28,clarify-item5,build,299373,build-opus,opus,"item 5 build Tooltip + loader, tests first, 127 calls"
 2026-10-28,clarify-item6,spec,122069,design-fable,fable,"item 6 DataActionGetShare inputs: Fable design (item6-solution.md), 25 calls"
 2026-10-28,clarify-item6,build,136911,build-opus,opus,"item 6 build: DataActionGetShare sends the four block variables, tests first, 48 calls"
+2026-10-28,clarify-item8,analyze,290997,w23-A-sonnet,sonnet,"item 8 W23 inventory group A (13 hooks), 76 calls"
+2026-10-28,clarify-item8,analyze,149956,w23-B-sonnet,sonnet,"item 8 W23 inventory group B (15 hooks), 43 calls"
+2026-10-28,clarify-item8,analyze,193309,w23-C-sonnet,sonnet,"item 8 W23 inventory group C (14 hooks), 54 calls"
+2026-10-28,clarify-item8,analyze,190409,w23-D-sonnet,sonnet,"item 8 W23 inventory group D (13 hooks), 58 calls"
+2026-10-28,clarify-item8,spec,192510,design-fable,fable,"item 8 flow scope + error page design (item8-solution.md), 17 calls"
