@@ -366,3 +366,7 @@ proves no regression). A pixel check of `_error.html` against one TST capture (s
 - N1 (OrbitAdminLanding `GetMilestoneScanFF`) waits with the deferred item "the 5 new TST screens" (`../RESUME.md`).
 - Build: S0a (flow scope), S0b (error page), then the groups B, A, C, D, then the cleanup S5. Each step passes
   `npm run ci` and the 64-route parity sweep, then gets a local commit.
+- Timing of R4 (user, 2026-10-28, after the live probe `probe-leave-rules.json`): (a) keep S0a. React blocks a
+  navigation of the old screen from the start of the navigation. TST blocks it only after the new screen's controller
+  exists (`setAsActiveScreen`, OutSystems.js W517020). The two differ only while the new screen's code loads. This is
+  a known difference.
