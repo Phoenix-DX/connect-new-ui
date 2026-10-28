@@ -35,7 +35,8 @@ Earlier status (third session): the clarify work was complete before the fix wav
   3. Merge the two custom dropdowns and add `useValidationWidget`: done 2026-10-28 (`review/item3-dropdowns.md` §4;
      design `review/item3-solution.md`, approved by the user; note `builds/item3-dropdowns.md`). Open: check D2 on
      TST when the test account has a host survey.
-  4. SanitizedHtml `<nobr>` and the double `?` of `generateScreenURL`.
+  4. SanitizedHtml `<nobr>` and the double `?` of `generateScreenURL`: done 2026-10-28 (`review/item4-findings.md`).
+     Both are TST behaviours that React ports 1:1; the user keeps them (known original bugs B20, B21).
   5. HostSurvey Tooltip and MultiResolutionImageLoader.
   6. The inputs of DataActionGetShare.
   7. The user's decisions: Photobook move log, `infra-gaps.md` §10.4 and §11.

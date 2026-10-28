@@ -90,9 +90,9 @@ Gates: `npm run ci` green (4338 tests, 0 new unused exports, build OK); the 64-r
   name) and MultiResolutionImageLoader (Card_MemberInformation_Survey) are minimal ports to complete. The instance ids
   inside the data-step lists are `l<list>_<row>` without the runtime counter (no capture shows them).
 - B3 (done by the orchestrator): `api/event/index.ts` exports `milestoneBlocks.ts`; the page imports `@/api/event`.
-- B3 (open): shared `SanitizedHtml`: HouseholdCaptions starts with `<nobr>`. The port matches tag names against
-  upper-case names with KEEP_CONTENT false. So AllowedTags "nobr,sup" drops the caption (renders empty): check on
-  TST. Shared `generateScreenURL` adds a second `?` to the maps URL `…/dir/?api=1` (AssembleSummaryCard too).
+- B3 (closed 2026-10-28, item 4): two TST behaviours that React ports 1:1. They are the `<nobr>` of the shared
+  `SanitizedHtml` and the second `?` of the Maps link. The user keeps them: known original bugs B20 and B21
+  (`../review/item4-findings.md`).
   OrbitAdminTag stays NotCaptured as in AccommodationHost.
 - Orchestrator (2026-10-28): the survey of 2026-10-13 is stale. Done the same day: the live scripts were fetched
   read-only and compared (`../review/survey-drift-2026-10-28.md`): 79 files with logic changes, 21 added, 20 removed,
