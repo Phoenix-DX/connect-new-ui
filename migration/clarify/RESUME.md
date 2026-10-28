@@ -18,7 +18,9 @@ Earlier status (third session): the clarify work was complete before the fix wav
 - Decisions of the build wave (2026-10-28): the user answered all 13 (`builds/pending-decisions.md`, "Answers"; PD9 to
   PD13 per the Fable advice). Done the same day: PD2 (Choice constants), PD7 (`adaptivecards@2.5.0`), PD8
   (PlaceholderLib port, known bug B19), PD9 (rows recorded), PD10 to PD12 (known bugs B15 to B18), PD13 (Q2).
-  Next: the follow-ups of `builds/README.md` and a re-fetch of the live TST scripts against the survey of 2026-10-13.
+  Next: the follow-ups of `builds/README.md`.
+- Survey drift check (2026-10-28, `review/survey-drift-2026-10-28.md`): TST was published again on 2026-10-27; 79
+  files changed logic, 2 React routes copy removed screens. The user decides what to do with the drift.
 
 Open items for the user:
 - The 13 decisions of the build wave: answered 2026-10-28.

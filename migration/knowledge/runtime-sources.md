@@ -97,3 +97,10 @@ contract of the finished Search and ShareSheet mocks. The foundation owner decid
 | `PlaceholderLib.controller.js` | 39 kB | 2026-10-27, build wave B9 (standing approval): the PlaceholderLib module (SetTextPlaceholdersValue, used by BuildAssembleNotificationContent of MessageDetail); evidence for PD8 |
 | `PlaceholderLib.model.js` | 16 kB | 2026-10-28 (standing approval, decision PD8): the PlaceholderLib records (PlaceholderRec: PlaceholderFunctionId, Parameters; PlaceholderParametersRec: Parameter1, Parameter2) for the port of SetTextPlaceholdersValue |
 | `Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js` | 125 kB | 2026-10-28 (standing approval): the live TST block, fetched after the parity sweep showed `orbit-landing-passport-cont` in the TST capture; it has `OnHandle_ViewPassportDetails` and the event NavigateTo_PassportScan, which the survey copy of 2026-10-13 lacks (TST deployed the control between the survey and the capture). `tst_source.py` prefers this file over the survey copy. Evidence for PD13 |
+
+| Survey drift check (2026-10-28) | Size | What it answers |
+|---|---|---|
+| `moduleinfo-2026-10-28.json` (GET `/UBTConnect/moduleservices/moduleinfo`) | 290 kB | Live manifest version 15682 (15568 on 2026-10-15): URL versions, URL mappings and static-entity values |
+| `capture/survey-UBTConnect-2026-10-28.json` (641 `.mvc.js` files, the `survey.js` filter) | 25 MB | The live compiled screens and blocks; compared with the survey of 2026-10-13 (`migration/clarify/review/survey-drift-2026-10-28.md`); not committed |
+| `capture/runtime-sources-live-2026-10-28/` (155 files of `migration/runtime-sources/`) | 21 MB | Live copies of the runtime sources: 19 changed; not committed |
+

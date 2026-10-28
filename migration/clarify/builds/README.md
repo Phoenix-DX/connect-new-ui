@@ -94,7 +94,6 @@ Gates: `npm run ci` green (4338 tests, 0 new unused exports, build OK); the 64-r
   upper-case names with KEEP_CONTENT false. So AllowedTags "nobr,sup" drops the caption (renders empty): check on
   TST. Shared `generateScreenURL` adds a second `?` to the maps URL `…/dir/?api=1` (AssembleSummaryCard too).
   OrbitAdminTag stays NotCaptured as in AccommodationHost.
-- Orchestrator (2026-10-28): the survey of 2026-10-13 is stale for at least one block. ScreenBlock_OrbitLanding on
-  live TST has the passport control; the survey copy has not. Next step: re-fetch the live scripts of the TST manifest
-  and compare them with the survey (read-only, standing approval) before the next judge pass. Every finding that rests
-  on a survey file alone is at risk.
+- Orchestrator (2026-10-28): the survey of 2026-10-13 is stale. Done the same day: the live scripts were fetched
+  read-only and compared (`../review/survey-drift-2026-10-28.md`): 79 files with logic changes, 21 added, 20 removed,
+  19 runtime sources changed; TST was last published on 2026-10-27. The next step is the user's decision.

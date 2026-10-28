@@ -1,0 +1,1504 @@
+{
+ "added": [
+  "Connect2_LegacyShared.Layout.BaseLayoutBlank_UpdatedOSUI.mvc.js",
+  "Connect2_LegacyShared.Layout_OrbitTheme.Layout_OrbitBlank.mvc.js",
+  "Connect2_OrbitMobile_MUI.LDM_Blocks_V2.EventCard_Info_V2.mvc.js",
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.Popup_QRCodeScan_Milestone.mvc.js",
+  "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminMilestoneDetail.mvc.js",
+  "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminMilestones.mvc.js",
+  "OrbitPassportScanC2.PassportScan.ScreenBlock_PassportScan.mvc.js",
+  "UBTConnect.App_Notifications.NotificationDetails.mvc.js",
+  "UBTConnect.App_Notifications.Notifications_ConfirmDialog.mvc.js",
+  "UBTConnect.Directory_Caroussel.EntitiesCarousel_OneSchoolGlobal.mvc.js",
+  "UBTConnect.Directory_CommonBlocks.Directory_CommunityNumbers.mvc.js",
+  "UBTConnect.Directory_CommonBlocks.Directory_CommunityNumbers__Number.mvc.js",
+  "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalCarousel.mvc.js",
+  "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js",
+  "UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminMilestoneDetail.mvc.js",
+  "UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminMilestones.mvc.js",
+  "UBTConnect.Legacy_OrbitEventsFlow.PassportScan.mvc.js",
+  "UBTConnect.Map.Map_LocationInfoPopup.mvc.js",
+  "UBTConnectLibrary.ConnectPatterns.ComingSoon_V2.mvc.js",
+  "UBTConnectLibrary.ConnectPatterns.EmptyListBorderless.mvc.js",
+  "UBTConnect_Utils.CW_Notes.ItemNotesSection.mvc.js"
+ ],
+ "removed": [
+  "Connect2_LegacyShared.Utility.PhotoAsync.mvc.js",
+  "Connect2_LegacyShared.Utility.Result_Item_Badge.mvc.js",
+  "Connect2_LegacyShared.Utility.ShowMoreShowLessContainer.mvc.js",
+  "Connect2_MyBookmarks_MUI.MyBookmarksFlow.BookmarkNote.mvc.js",
+  "Connect2_MyBookmarks_MUI.MyBookmarksFlow.BookmarkNoteAddEdit.mvc.js",
+  "Connect2_MyBookmarks_MUI.MyBookmarksFlow.BookmarkNoteDelete.mvc.js",
+  "Connect2_MyBookmarks_MUI.MyBookmarksFlow.MyBookmarks_Album.mvc.js",
+  "Connect2_MyBookmarks_MUI.MyBookmarksFlow.MyBookmarks_Card.mvc.js",
+  "Connect2_MyBookmarks_MUI.MyBookmarksFlow.New_MyBookmarks_Album.mvc.js",
+  "Connect2_MyBookmarks_MUI.MyBookmarksFlow.New_ScreenBlock_BookmarkGroup.mvc.js",
+  "Connect2_MyBookmarks_MUI.MyBookmarksFlow.New_ScreenBlock_MyBookmarks.mvc.js",
+  "Connect2_MyBookmarks_MUI.MyBookmarksFlow.NoBookmarks.mvc.js",
+  "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js",
+  "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js",
+  "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.EventCard_Info_V2.mvc.js",
+  "OutSystemsUI_2_23.Adaptive.DEPRECATED_GalleryV2.mvc.js",
+  "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js",
+  "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js",
+  "UBTConnect.Legacy_MyBookmarks.New_BookmarksByGroup.mvc.js",
+  "UBTConnect.Legacy_MyBookmarks.New_MyBookmarks.mvc.js"
+ ],
+ "changed": {
+  "Connect2_Assemble_MUI.Assemble.AssembleEventDetail.mvc.js": {
+   "plus": 103,
+   "minus": 257
+  },
+  "Connect2_Assemble_MUI.Assemble.ScreenBlock_AssembleDetail.mvc.js": {
+   "plus": 30,
+   "minus": 5
+  },
+  "Connect2_LegacyShared.Calendars.DayCalendar.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_LegacyShared.Calendars.EventCalendarWeekMonth.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_LegacyShared.Layout.BaseLayout_UpdatedOSUI.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_LegacyShared.Layout.Layout.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_LegacyShared.Layout.MenuIcon_Back.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_LegacyShared.Layout.MenuIcon__UpdatedOSUI.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_LegacyShared.Layout_OrbitTheme.Layout_Orbit.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_LegacyShared.Share_UI.ScreenBlock_ShareObject.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_LegacyShared.Share_UI.ShareObjectDetail.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_LegacyShared.Widgets.AdaptiveCardViewer.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_LegacyShared.Widgets.OverlappingImages.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.LDM_Blocks.EventCard_Guests.mvc.js": {
+   "plus": 34,
+   "minus": 16
+  },
+  "Connect2_OrbitMobile_MUI.LDM_Blocks_V2.Agenda_V2.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.LDM_Blocks_V2.EventCard_V2.mvc.js": {
+   "plus": 8,
+   "minus": 8
+  },
+  "Connect2_OrbitMobile_MUI.LDM_Blocks_V2.MyEvents_MyTimelineFilterButton.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.LDM_Blocks_V2.MyTimeline_V2.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_Event_Email_V2.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_MyEvents_V2.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Event.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_MemberInformation.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_MemberInformation_Survey.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Milestone.mvc.js": {
+   "plus": 139,
+   "minus": 6
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Template.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.ContactHelpdesk_Footer.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.EventBooklet_ListHeader.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.EventBooklet_MembersItem.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.EventDateSelection.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostAllocation_HelperItem.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostAllocation_List.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostAllocation_ListItem.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostInformation.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AccommodationItem.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AccommodationPills.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AddHelper.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AdminNotes.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_HelperItem.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_HelperPills.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_Item.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_MealItem.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_MealPills.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_NavigationItem.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_PillItem.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_StepHeader.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_TopMessage.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_VehicleItem.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_VehiclePills.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.Household_Members_Selection.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.MilestoneHeader.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.OrbitAdminTag.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.PopUp_OrbitBookletFilters.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.Popup_OrbitLanding_Filters.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.Popup_OrbitLanding_Sort.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.Popup_QRCodeScan.mvc.js": {
+   "plus": 7,
+   "minus": 7
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.TransportDetail.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Blocks.TransportDetail_TravelInfo.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.PhotoLazyLoaded.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_AccommodationGuest.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_AccommodationHelper.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_ContactForm.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js": {
+   "plus": 352,
+   "minus": 56
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_MealGuest.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_MealHelper.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js": {
+   "plus": 118,
+   "minus": 19
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js": {
+   "plus": 10,
+   "minus": 17
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminLanding.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_HostSurvey.ScreenBlock_HostSurvey.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_Common.BottomBarMenu.mvc.js": {
+   "plus": 5,
+   "minus": 59
+  },
+  "UBTConnect.App_Common.InvalidPermissions.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_Common.Login.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_Common.Splash.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_Common.UnsupportedVersion.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_Common.Version.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_Common.Version_LoginWrapper.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_Common.WelcomeToConnect.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js": {
+   "plus": 37,
+   "minus": 2
+  },
+  "UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon_Label.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_CommonBlocks_Filter.FilterSheet_OptionChoice_Item.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_CommonBlocks_Filter.FilterSheet_OptionList_Item.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js": {
+   "plus": 191,
+   "minus": 82
+  },
+  "UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc.js": {
+   "plus": 3,
+   "minus": 3
+  },
+  "UBTConnect.App_Common_Blocks.External_Link.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_Common_Blocks.ItemCardActions.mvc.js": {
+   "plus": 5,
+   "minus": 14
+  },
+  "UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_CustomChoice.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_ExitConfirmation.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_Information.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_Information_NonNavigation.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_Navigation.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_Menu.Menu.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_Menu.Menu_List.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_Menu.PINBiometricsMenu.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_Menu.TermsAndPoliciesMenu.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_Menu_ContactUs.ContactUsDetails.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_Menu_ContactUs.ContactUs_Rate.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_Menu_ContactUs.ContactUs_RateItem.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_Notifications.MessageListItem.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_Notifications.Notifications.mvc.js": {
+   "plus": 767,
+   "minus": 204
+  },
+  "UBTConnect.App_Notifications.NotificationsList.mvc.js": {
+   "plus": 723,
+   "minus": 23
+  },
+  "UBTConnect.App_Notifications.NotificationsListBreakpoints.mvc.js": {
+   "plus": 257,
+   "minus": 3
+  },
+  "UBTConnect.App_Notifications.Notifications_Action.mvc.js": {
+   "plus": 54,
+   "minus": 2
+  },
+  "UBTConnect.App_Notifications.Notifications_Header.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc.js": {
+   "plus": 42,
+   "minus": 18
+  },
+  "UBTConnect.App_Notifications.Notifications_NoItemsFound.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "UBTConnect.App_Notifications.Notifications_SortSheet.mvc.js": {
+   "plus": 31,
+   "minus": 13
+  },
+  "UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_PIN.PINChange.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_PIN.PINRegister.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_PIN.PINUnlock.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_Profile.Profile.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_Profile.Profile_HouseholdPreview.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.App_Services.Services.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Bookmarks.Bookmarks.mvc.js": {
+   "plus": 244,
+   "minus": 138
+  },
+  "UBTConnect.Bookmarks.Bookmarks_Card_Item.mvc.js": {
+   "plus": 11,
+   "minus": 5
+  },
+  "UBTConnect.Bookmarks.Bookmarks_Card_List.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Bookmarks.Bookmarks_FilterSheet.mvc.js": {
+   "plus": 126,
+   "minus": 13
+  },
+  "UBTConnect.Calendar.Calendar_Header_SelectedDate.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Calendar.Calendar_ViewActionMenu.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Calendar.EventList.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Calendar.MyCalendar.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Calendar.MyEntertaining.mvc.js": {
+   "plus": 44,
+   "minus": 2
+  },
+  "UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js": {
+   "plus": 61,
+   "minus": 25
+  },
+  "UBTConnect.Calendar.Weekday.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.ContactFlow.ContactByEmailContacts.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.ContactFlow.ContactByEmailForm.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.ContactFlow.ContactByEmailMember.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.ContactFlow.ContactByEmailOneSchoolGlobal.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Deprecated_Calendar_PersonalEvent.CustomScrollListWrapper.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Deprecated_Calendar_PersonalEvent.Indev_AddAttendees.mvc.js": {
+   "plus": 4,
+   "minus": 2
+  },
+  "UBTConnect.Deprecated_Calendar_PersonalEvent.PersonalEventDetails.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Deprecated_Calendar_PersonalEvent.PersonalEventForm.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Deprecated_Calendar_PersonalEvent.PersonalEventForm_IconContent.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Deprecated_Calendar_PersonalEvent.PersonalEventForm_LabelContent.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Deprecated_Calendar_PersonalEvent.PersonalEventForm_TagInput.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Deprecated_Calendar_PersonalEvent.Recurrence.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Deprecated_Calendar_PersonalEvent.Reminder.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Deprecated_Calendar_PersonalEvent.UserEventDetails_IconTextWrapper.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Deprecated_Calendar_PersonalEvent.UserEventDetails_InviteeList.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Deprecated_Calendar_PersonalEvent.ViewEventList.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_Caroussel.CarouselTag.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_Caroussel.EntitiesCarouse_lSupperMeetingDetails.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js": {
+   "plus": 26,
+   "minus": 7
+  },
+  "UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc.js": {
+   "plus": 46,
+   "minus": 15
+  },
+  "UBTConnect.Directory_Caroussel.EntitiesCarousel_HeaderGenerator.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_Caroussel.EntitiesCarousel_HouseholdDetails.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_CommonBlocks.Directory_EmptyState.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js": {
+   "plus": 219,
+   "minus": 294
+  },
+  "UBTConnect.Directory_Household.HouseholdCarousel.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_Household.HouseholdDetails.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js": {
+   "plus": 8,
+   "minus": 6
+  },
+  "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js": {
+   "plus": 38,
+   "minus": 23
+  },
+  "UBTConnect.Directory_Household.Household_Relations.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_Household_Blocks.HouseholdDetails_Members_Block.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_Household_Blocks.HouseholdDetails_TimelinePhoto.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_Household_Blocks.Household_Card.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_Household_Blocks.Household_GalleryCard.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_Interchange.Directory_Interchange_StatisticsList.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_Locality.BrowseCountries.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_Locality.BrowseDirectory.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_Locality.CountryDetails.mvc.js": {
+   "plus": 11,
+   "minus": 9
+  },
+  "UBTConnect.Directory_Locality.CountryList.mvc.js": {
+   "plus": 144,
+   "minus": 19
+  },
+  "UBTConnect.Directory_Locality.Directory_LegendBottomSheet.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_Locality.Directory_LegendBottomSheet2.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_Locality.Locality_Details.mvc.js": {
+   "plus": 90,
+   "minus": 25
+  },
+  "UBTConnect.Directory_Locality.Locality_Households.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_Locality.Locality_LocalityContacts.mvc.js": {
+   "plus": 13,
+   "minus": 35
+  },
+  "UBTConnect.Directory_Locality.Locality_OneSchoolGlobal.mvc.js": {
+   "plus": 4,
+   "minus": 23
+  },
+  "UBTConnect.Directory_Locality.Locality_Subdivisions.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_Locality.StatisticsList.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_Locality.Statistics_Icons.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_Locality.Statistics_TypedItem.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js": {
+   "plus": 49,
+   "minus": 1380
+  },
+  "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalEventDetail.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "UBTConnect.Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_DetailCard_Content.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_Event_ListCard.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_List.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_Numbers.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_OneSchoolGlobal_Blocks.UI_OneSchoolGlobalEventDetail_IconTextWrapper.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_Photobook.Photobook.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_Photobook.Photobook_Gallery_Item.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_Photobook.Photobook_Item.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_Photobook.Photobook_Options_Bottom.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_Photobook.Photobook_Options_Left.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_Photobook.Photobook_Options_Right.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js": {
+   "plus": 308,
+   "minus": 170
+  },
+  "UBTConnect.Directory_Search.Search.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_Search.SearchResult_Section.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_Search.SearchResults_Recent.mvc.js": {
+   "plus": 2,
+   "minus": 1
+  },
+  "UBTConnect.Directory_SupperMeetings.SupperMeeting_Carousel.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_SupperMeetings.SupperMeeting_Details.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_SupperMeetings.SupperMeeting_DetailsBlock.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_SupperMeetings.SupperMeeting_ImageCard_Content_IconText.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_SupperMeetings.SupperMeeting_ImageCard_Content_Statistics.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_Updates.Directory_Updates_Section_Wrapper.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_Updates.UpdateItem_Header.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_Updates.Updates_NoItemsFound.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Directory_Updates.Updates_SingleList.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Home.FeedBlock_CommunityPopulation.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Home.FeedBlock_Services.mvc.js": {
+   "plus": 15,
+   "minus": 16
+  },
+  "UBTConnect.Home.FeedBlock_Updates.mvc.js": {
+   "plus": 16,
+   "minus": 6
+  },
+  "UBTConnect.Home.FeedItemDetail.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Home.HomeFeed.mvc.js": {
+   "plus": 154,
+   "minus": 72
+  },
+  "UBTConnect.Home.Section_FeedWrapper.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js": {
+   "plus": 457,
+   "minus": 18
+  },
+  "UBTConnect.Legacy_AssembleFlow.AssembleEvents.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Legacy_AssembleFlow.Assemble_BrowseByCountry.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Legacy_LDMEventsFlow.EmailTarget.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Legacy_LDMEventsFlow.LDM_Email.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Legacy_LDMEventsFlow.LDM_EventDetail.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Legacy_LDMEventsFlow.LDM_MyEvents.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Legacy_LDMEventsFlow_V2.LDM_Email_V2.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Legacy_LDMEventsFlow_V2.LDM_MyEvents_V2.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Legacy_MyNotificationsFlow.MessageList.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminEventDetail.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js": {
+   "plus": 60,
+   "minus": 12
+  },
+  "UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "UBTConnect.Legacy_OrbitEventsFlow.EventBooklet.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "UBTConnect.Legacy_OrbitEventsFlow.HelpersDetail.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "UBTConnect.Legacy_OrbitEventsFlow.HostSurvey.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js": {
+   "plus": 99,
+   "minus": 2
+  },
+  "UBTConnect.Legacy_OrbitEventsFlow.TransportDetail.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "UBTConnect.Legacy_OrbitQRCodeFlow.QRCodeGenerate.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Legacy_Share.ConnectShare.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Legacy_Share.LegacyShareObject.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Map.CacheControl_CountriesMarkers.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Map.CacheControl_GlobalEntities.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "UBTConnect.Map.CacheControl_Household.mvc.js": {
+   "plus": 3,
+   "minus": 3
+  },
+  "UBTConnect.Map.CacheControl_Localities.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.Map.Map.mvc.js": {
+   "plus": 4220,
+   "minus": 1455
+  },
+  "UBTConnect.Map.Map_ExploreList_EmptyState.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "UBTConnect.Map.Map_ExploreList_Item.mvc.js": {
+   "plus": 8,
+   "minus": 6
+  },
+  "UBTConnect.Map.Map_ExploreList_Section.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "UBTConnect.Map.Map_PoIPreview.mvc.js": {
+   "plus": 41,
+   "minus": 26
+  },
+  "UBTConnect.Notes.NoteCard_Item.mvc.js": {
+   "plus": 9,
+   "minus": 3
+  },
+  "UBTConnect.Notes.NoteCard_List.mvc.js": {
+   "plus": 21,
+   "minus": 13
+  },
+  "UBTConnect.Notes.Notes.mvc.js": {
+   "plus": 199,
+   "minus": 47
+  },
+  "UBTConnect.Notes.Notes_FilterSheet.mvc.js": {
+   "plus": 116,
+   "minus": 3
+  },
+  "UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen_Section.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.zDEV_Directory_CommunityBusinessBlocks.CommunityBusinessCard_Content_Block.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.zDEV_Directory_CommunityBusinessBlocks.CommunityBusinessDetails.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.zDEV_Directory_CommunityBusinessBlocks.CommunityBusinessDetails_CoomingSoon.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.zTemp_Flow.ShareObject.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect.zTemp_Flow.TestOpenShare.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.ConnectCorePatterns.ItemCard_ActionBar.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.ConnectCorePatterns.MemberRelation_ListItem.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.ConnectCorePatterns.Member_ListItem.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.ConnectCorePatterns.NonMember_ListItem.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.ConnectCorePatterns.Notification_ListItem.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.ConnectCorePatterns.Statistics_ListItem.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.ConnectCorePatterns.Update_ListItem.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.ConnectPatterns.AddNote.mvc.js": {
+   "plus": 226,
+   "minus": 29
+  },
+  "UBTConnectLibrary.ConnectPatterns.AvatarDouble.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.ConnectPatterns.AvatarImage.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "UBTConnectLibrary.ConnectPatterns.AvatarImageList.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc.js": {
+   "plus": 145,
+   "minus": 7
+  },
+  "UBTConnectLibrary.ConnectPatterns.BottomSheetAnchor.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.ConnectPatterns.Button.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.ConnectPatterns.CircleButton.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "UBTConnectLibrary.ConnectPatterns.CircleButton_IconPrimary.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "UBTConnectLibrary.ConnectPatterns.CircleButton_WithLabel.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.ConnectPatterns.ComingSoon.mvc.js": {
+   "plus": 11,
+   "minus": 2
+  },
+  "UBTConnectLibrary.ConnectPatterns.ContextMenu_Item.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.ConnectPatterns.CustomScrollList.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.ConnectPatterns.DynamicTextArea.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.ConnectPatterns.EmptyList.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.ConnectPatterns.EventCard.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "UBTConnectLibrary.ConnectPatterns.ExpandableSection.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.ConnectPatterns.FixedFooter.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.ConnectPatterns.HighlightSearch.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.ConnectPatterns.HorizontalDot_List.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.ConnectPatterns.HorizontalTagList.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.ConnectPatterns.Icon.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.ConnectPatterns.IconInline_Internal.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.ConnectPatterns.IconSVG.mvc.js": {
+   "plus": 78,
+   "minus": 2
+  },
+  "UBTConnectLibrary.ConnectPatterns.IconText.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.ConnectPatterns.ImageCard__Content.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "UBTConnectLibrary.ConnectPatterns.ImageCard__Content__Tag.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "UBTConnectLibrary.ConnectPatterns.Input.mvc.js": {
+   "plus": 3,
+   "minus": 3
+  },
+  "UBTConnectLibrary.ConnectPatterns.InputCounter.mvc.js": {
+   "plus": 49,
+   "minus": 3
+  },
+  "UBTConnectLibrary.ConnectPatterns.Input_Underlined.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.ConnectPatterns.ItemCard_WithNotes.mvc.js": {
+   "plus": 302,
+   "minus": 44
+  },
+  "UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.ConnectPatterns.LazyImage.mvc.js": {
+   "plus": 28,
+   "minus": 6
+  },
+  "UBTConnectLibrary.ConnectPatterns.LoadingDots.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "UBTConnectLibrary.ConnectPatterns.Note_Item.mvc.js": {
+   "plus": 210,
+   "minus": 26
+  },
+  "UBTConnectLibrary.ConnectPatterns.Note_Item_List.mvc.js": {
+   "plus": 16,
+   "minus": 12
+  },
+  "UBTConnectLibrary.ConnectPatterns.Popup.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "UBTConnectLibrary.ConnectPatterns.PopupMenu.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.ConnectPatterns.SeeMoreSection.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "UBTConnectLibrary.ConnectPatterns.SelectionOption_List.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.ConnectPatterns.Skeleton_TextBlock.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "UBTConnectLibrary.ConnectPatterns.StaticInput.mvc.js": {
+   "plus": 4,
+   "minus": 4
+  },
+  "UBTConnectLibrary.ConnectPatterns.StopPropagationHelper.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.ConnectPatterns.TagContent.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "UBTConnectLibrary.ConnectPatterns.TagToggle.mvc.js": {
+   "plus": 2,
+   "minus": 2
+  },
+  "UBTConnectLibrary.ConnectPatterns.TextArea_WithCounter.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.ConnectPatterns.TextEllipsis.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.ConnectPatterns.Tile.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.ConnectPatterns.Unavailable_Image.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnectLibrary.Layouts.Layout_DetailPage.mvc.js": {
+   "plus": 38,
+   "minus": 7
+  },
+  "UBTConnect_EmbedFeed.Blocks.Embedded_FeedCMS.mvc.js": {
+   "plus": 17,
+   "minus": 8
+  },
+  "UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc.js": {
+   "plus": 50,
+   "minus": 2
+  },
+  "UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_GoExternalApp.mvc.js": {
+   "plus": 13,
+   "minus": 5
+  },
+  "UBTConnect_Utils.CW_CTA_PopUps.AddressPopup_Wrapper.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect_Utils.CW_Common.StickySearchInput.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc.js": {
+   "plus": 24,
+   "minus": 2
+  },
+  "UBTConnect_Utils.CW_Image.UBT_LazyImage_List.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect_Utils.CW_Notes.NoteListActions.mvc.js": {
+   "plus": 72,
+   "minus": 43
+  },
+  "UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js": {
+   "plus": 249,
+   "minus": 60
+  },
+  "UBTConnect_Utils.CW_Search.SearchResult_Item.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js": {
+   "plus": 58,
+   "minus": 17
+  },
+  "UBTConnect_Utils.CW_Share.ShareSheet_SectionTitle.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect_Utils.CW_Share.ShareableObject_Generic.mvc.js": {
+   "plus": 17,
+   "minus": 17
+  },
+  "UBTConnect_Utils.CW_ShearchSheet.SearchSheet_BottomSheet.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect_Utils.CW_ShearchSheet.SearchSheet_SelectSearchResults.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  },
+  "UBTConnect_Utils.CacheControl.CacheControl_UserInfo.mvc.js": {
+   "plus": 1,
+   "minus": 1
+  }
+ },
+ "manifest_added": [
+  "/UBTConnect/css/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.css",
+  "/UBTConnect/css/UBTConnect.App_Notifications.NotificationsList.css",
+  "/UBTConnect/css/UBTConnect.Directory_CommonBlocks.Directory_CommunityNumbers.css",
+  "/UBTConnect/css/UBTConnect.Map.Map_LocationInfoPopup.css",
+  "/UBTConnect/css/UBTConnect_Utils.CW_Notes.NotesSheet.css",
+  "/UBTConnect/img/UBTConnectLibrary.CommunityCountries.svg",
+  "/UBTConnect/img/UBTConnectLibrary.CommunityHouseholds.svg",
+  "/UBTConnect/img/UBTConnectLibrary.CommunityLocalities.svg",
+  "/UBTConnect/img/UBTConnectLibrary.CommunityMembers.svg",
+  "/UBTConnect/scripts/APIUtilitiesLib.referencesHealth.js",
+  "/UBTConnect/scripts/AuditCore.referencesHealth.js",
+  "/UBTConnect/scripts/AzureB2C_IS.referencesHealth.js",
+  "/UBTConnect/scripts/CameraPlugin.Camera.js",
+  "/UBTConnect/scripts/CameraPlugin.CameraStream.js",
+  "/UBTConnect/scripts/CameraPlugin.Cropper.js",
+  "/UBTConnect/scripts/CameraPlugin.Errors.js",
+  "/UBTConnect/scripts/CameraPlugin.ImageEditor.js",
+  "/UBTConnect/scripts/CameraPlugin.NativeCamera.js",
+  "/UBTConnect/scripts/CameraPlugin.controller.js",
+  "/UBTConnect/scripts/CameraPlugin.model.js",
+  "/UBTConnect/scripts/CameraPlugin.referencesHealth.js",
+  "/UBTConnect/scripts/CameraPlugin.wrapper.js",
+  "/UBTConnect/scripts/Connect2_Assemble_BL.referencesHealth.js",
+  "/UBTConnect/scripts/Connect2_Assemble_IS.referencesHealth.js",
+  "/UBTConnect/scripts/Connect2_LegacyShared.Layout.BaseLayoutBlank_UpdatedOSUI.mvc.js",
+  "/UBTConnect/scripts/Connect2_LegacyShared.Layout_OrbitTheme.Layout_OrbitBlank.mvc.js",
+  "/UBTConnect/scripts/Connect2_MyCalendar_IS.referencesHealth.js",
+  "/UBTConnect/scripts/Connect2_OpenAppSettingsPlugin.controller.js",
+  "/UBTConnect/scripts/Connect2_OpenAppSettingsPlugin.model.js",
+  "/UBTConnect/scripts/Connect2_OpenAppSettingsPlugin.referencesHealth.js",
+  "/UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_Blocks_V2.EventCard_Info_V2.mvc.js",
+  "/UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.Popup_QRCodeScan_Milestone.mvc.js",
+  "/UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminMilestoneDetail.mvc.js",
+  "/UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminMilestones.mvc.js",
+  "/UBTConnect/scripts/FeatureToggle_Lib.referencesHealth.js",
+  "/UBTConnect/scripts/FirebaseCloudMessageSender.referencesHealth.js",
+  "/UBTConnect/scripts/FirebaseWeb.referencesHealth.js",
+  "/UBTConnect/scripts/FocusWebViewPlugin.referencesHealth.js",
+  "/UBTConnect/scripts/GSAPSVGAnimations.referencesHealth.js",
+  "/UBTConnect/scripts/JWT.referencesHealth.js",
+  "/UBTConnect/scripts/MyBookmarks_BL.referencesHealth.js",
+  "/UBTConnect/scripts/OAuth2.referencesHealth.js",
+  "/UBTConnect/scripts/OAuth2_CrossTenant.referencesHealth.js",
+  "/UBTConnect/scripts/ODataUtils.referencesHealth.js",
+  "/UBTConnect/scripts/OneSignalAPI.referencesHealth.js",
+  "/UBTConnect/scripts/OrbitPassportScanC2.PassportScan.ScreenBlock_PassportScan.mvc.js",
+  "/UBTConnect/scripts/OrbitPassportScanC2.PassportScan.js",
+  "/UBTConnect/scripts/OrbitPassportScanC2.controller.js",
+  "/UBTConnect/scripts/OrbitPassportScanC2.languageResources.js",
+  "/UBTConnect/scripts/OrbitPassportScanC2.model.js",
+  "/UBTConnect/scripts/OrbitPassportScanC2.referencesHealth.js",
+  "/UBTConnect/scripts/OutSystemsUI.referencesHealth.js",
+  "/UBTConnect/scripts/OutSystemsUIWeb.referencesHealth.js",
+  "/UBTConnect/scripts/Policies_CS.referencesHealth.js",
+  "/UBTConnect/scripts/RichWidgets.referencesHealth.js",
+  "/UBTConnect/scripts/Sharing_BL.referencesHealth.js",
+  "/UBTConnect/scripts/Sharing_IS.referencesHealth.js",
+  "/UBTConnect/scripts/Streamline_IS.referencesHealth.js",
+  "/UBTConnect/scripts/UBTConnect.App_Notifications.NotificationDetails.mvc.js",
+  "/UBTConnect/scripts/UBTConnect.App_Notifications.Notifications_ConfirmDialog.mvc.js",
+  "/UBTConnect/scripts/UBTConnect.Directory_Caroussel.EntitiesCarousel_OneSchoolGlobal.mvc.js",
+  "/UBTConnect/scripts/UBTConnect.Directory_CommonBlocks.Directory_CommunityNumbers.mvc.js",
+  "/UBTConnect/scripts/UBTConnect.Directory_CommonBlocks.Directory_CommunityNumbers__Number.mvc.js",
+  "/UBTConnect/scripts/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalCarousel.mvc.js",
+  "/UBTConnect/scripts/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js",
+  "/UBTConnect/scripts/UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminMilestoneDetail.mvc.js",
+  "/UBTConnect/scripts/UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminMilestones.mvc.js",
+  "/UBTConnect/scripts/UBTConnect.Legacy_OrbitEventsFlow.PassportScan.mvc.js",
+  "/UBTConnect/scripts/UBTConnect.Map.Map_LocationInfoPopup.mvc.js",
+  "/UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.ComingSoon_V2.mvc.js",
+  "/UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.EmptyListBorderless.mvc.js",
+  "/UBTConnect/scripts/UBTConnectLibrary_Resources.referencesHealth.js",
+  "/UBTConnect/scripts/UBTConnect_ServerConfigs.referencesHealth.js",
+  "/UBTConnect/scripts/UBTConnect_Utils.CW_Notes.ItemNotesSection.mvc.js",
+  "/UBTConnect/scripts/UBTIntegrationConfiguration.referencesHealth.js",
+  "/UBTConnect/scripts/UBT_AppManager_IS.referencesHealth.js",
+  "/UBTConnect/scripts/UBT_CW.clientVariables.js",
+  "/UBTConnect/scripts/UBT_CW.controller.js",
+  "/UBTConnect/scripts/UBT_OneSignalAPI.referencesHealth.js",
+  "/UBTConnect/scripts/UBT_Resources.referencesHealth.js",
+  "/UBTConnect/scripts/UBT_Users_BL.referencesHealth.js",
+  "/UBTConnect/scripts/UBT_Users_CS.referencesHealth.js",
+  "/UBTConnect/scripts/Users.referencesHealth.js"
+ ],
+ "manifest_removed": [
+  "/UBTConnect/img/Connect2_LegacyShared.bookmark_unavailable_icon.svg",
+  "/UBTConnect/scripts/Comms_BL.model.js",
+  "/UBTConnect/scripts/Connect2_LegacyShared.Utility.PhotoAsync.mvc.js",
+  "/UBTConnect/scripts/Connect2_LegacyShared.Utility.Result_Item_Badge.mvc.js",
+  "/UBTConnect/scripts/Connect2_LegacyShared.Utility.ShowMoreShowLessContainer.mvc.js",
+  "/UBTConnect/scripts/Connect2_MyBookmarks_MUI.MyBookmarksFlow.BookmarkNote.mvc.js",
+  "/UBTConnect/scripts/Connect2_MyBookmarks_MUI.MyBookmarksFlow.BookmarkNoteAddEdit.mvc.js",
+  "/UBTConnect/scripts/Connect2_MyBookmarks_MUI.MyBookmarksFlow.BookmarkNoteDelete.mvc.js",
+  "/UBTConnect/scripts/Connect2_MyBookmarks_MUI.MyBookmarksFlow.MyBookmarks_Album.mvc.js",
+  "/UBTConnect/scripts/Connect2_MyBookmarks_MUI.MyBookmarksFlow.MyBookmarks_Card.mvc.js",
+  "/UBTConnect/scripts/Connect2_MyBookmarks_MUI.MyBookmarksFlow.New_MyBookmarks_Album.mvc.js",
+  "/UBTConnect/scripts/Connect2_MyBookmarks_MUI.MyBookmarksFlow.New_ScreenBlock_BookmarkGroup.mvc.js",
+  "/UBTConnect/scripts/Connect2_MyBookmarks_MUI.MyBookmarksFlow.New_ScreenBlock_MyBookmarks.mvc.js",
+  "/UBTConnect/scripts/Connect2_MyBookmarks_MUI.MyBookmarksFlow.NoBookmarks.mvc.js",
+  "/UBTConnect/scripts/Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js",
+  "/UBTConnect/scripts/Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks.mvc.js",
+  "/UBTConnect/scripts/Connect2_MyBookmarks_MUI.controller.js",
+  "/UBTConnect/scripts/Connect2_MyBookmarks_MUI.languageResources.js",
+  "/UBTConnect/scripts/Connect2_MyBookmarks_MUI.model.js",
+  "/UBTConnect/scripts/Connect2_MyBookmarks_MUI.referencesHealth.js",
+  "/UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.EventCard_Info_V2.mvc.js",
+  "/UBTConnect/scripts/Connect_Feed_CS.model.js",
+  "/UBTConnect/scripts/ContactBase_IS.model.js",
+  "/UBTConnect/scripts/DirectoryClientCore.model.js",
+  "/UBTConnect/scripts/Directory_BL.model.js",
+  "/UBTConnect/scripts/MyBookmarks_IS.model.js",
+  "/UBTConnect/scripts/OutSystemsUI_2_23.Adaptive.DEPRECATED_GalleryV2.mvc.js",
+  "/UBTConnect/scripts/UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js",
+  "/UBTConnect/scripts/UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js",
+  "/UBTConnect/scripts/UBTConnect.Legacy_MyBookmarks.New_BookmarksByGroup.mvc.js",
+  "/UBTConnect/scripts/UBTConnect.Legacy_MyBookmarks.New_MyBookmarks.mvc.js",
+  "/UBTConnect/scripts/UBTConnect.Legacy_MyBookmarks.controller.js"
+ ]
+}

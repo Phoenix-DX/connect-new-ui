@@ -1,0 +1,65 @@
+Route | own screen file | changed lines (screen + specific blocks) | shared blocks changed | specific blocks
+OneSchoolGlobalDetails | changed | 2933 | 8 | Directory_EntityDetailsActions(505), NotesSheet(303), AddNote(249), Note_Item(232)
+Notifications | changed | 2380 | 5 | NotificationsList(742), MoreActionSheet(267), NotificationsListBreakpoints(256), Notifications_MoreActionSheet(64)
+Notes | changed | 1696 | 6 | ItemCard_WithNotes(342), NotesSheet(303), AddNote(249), Note_Item(232)
+Locality_Details | changed | 1662 | 8 | Directory_EntityDetailsActions(505), NotesSheet(303), AddNote(249), Note_Item(232)
+HouseholdCarousel | same | 1614 | 8 | Directory_EntityDetailsActions(505), NotesSheet(303), AddNote(249), Note_Item(232)
+SupperMeeting_Carousel | same | 1614 | 7 | Directory_EntityDetailsActions(505), NotesSheet(303), AddNote(249), Note_Item(232)
+Profile | same | 1528 | 7 | Directory_EntityDetailsActions(505), NotesSheet(303), AddNote(249), Note_Item(232)
+HouseholdDetails | same | 1526 | 8 | Directory_EntityDetailsActions(505), NotesSheet(303), AddNote(249), Note_Item(232)
+SupperMeeting_Details | same | 1505 | 7 | Directory_EntityDetailsActions(505), NotesSheet(303), AddNote(249), Note_Item(232)
+Household_Relations | same | 972 | 7 | NotesSheet(303), AddNote(249), Note_Item(232), NoteListActions(107)
+AssembleDetail | changed | 949 | 6 | AssembleEventDetail(358), ShareSheet(53), ScreenBlock_AssembleDetail(33), ShareableObject_Generic(32) | removed blocks 1
+EventDetail | same | 545 | 1 | ScreenBlock_EventDetail(404), Card_Milestone(141)
+Search | same | 507 | 7 | ScreenBlock_Search(470), FilterSheet(35), CacheControl_UserInfo(2)
+HomeFeed | changed | 393 | 7 | ShareSheet(53), ShareableObject_Generic(32), FeedBlock_Services(27), Embedded_FeedCMS(25)
+OrbitLanding | changed | 373 | 2 | Card_Milestone(141), ScreenBlock_OrbitLanding(135)
+MyEntertaining | changed | 174 | 3 | MyEntertaining_Embedded(82), Embedded_MyEntertaining(48)
+CountryList | changed | 161 | 6 | CacheControl_UserInfo(2)
+FeedItemDetail | same | 110 | 6 | ShareSheet(53), ShareableObject_Generic(32), Embedded_FeedCMS(25)
+Updates_SingleList | same | 90 | 6 | ShareSheet(53), FilterSheet(35), CacheControl_UserInfo(2)
+BookmarksByGroup | removed | 85 | 6 | ShareSheet(53), ShareableObject_Generic(32) | removed blocks 7
+OrbitAdminLanding | changed | 68 | 2 | 
+LDM_MyEvents_V2 | same | 58 | 4 | EventCard_Guests(46), EventCard_V2(12) | removed blocks 1
+MessageDetail | same | 57 | 4 | ShareableObject_Generic(32), Embedded_FeedCMS(25)
+CountryDetails | changed | 55 | 7 | FilterSheet(35), CacheControl_UserInfo(2)
+OrbitAdminEventDetail | same | 31 | 2 | ScreenBlock_AdminEventDetail(21), Popup_QRCodeScan(10)
+MilestoneDetail | same | 8 | 3 | ScreenBlock_AccommodationHelper(2), ScreenBlock_AccommodationGuest(2), ScreenBlock_MealHelper(2), ScreenBlock_MealGuest(2)
+ContactUsDetails | same | 2 | 5 | CacheControl_UserInfo(2)
+Menu | same | 2 | 5 | CacheControl_UserInfo(2)
+AcceptPendingPolicies | same | 0 | 1 | 
+AssembleEvents | same | 0 | 4 | 
+Assemble_BrowseByCountry | same | 0 | 1 | 
+BrowseCountries | same | 0 | 4 | 
+BrowseDirectory | same | 0 | 4 | 
+CommunityBusinessDetails_CoomingSoon | same | 0 | 2 | 
+ConnectShare | same | 0 | 1 | 
+ContactByEmailLDMCoordinator | same | 0 | 3 | 
+ContactByEmailMember | same | 0 | 5 | 
+ContactByEmailOneSchoolGlobal | same | 0 | 3 | 
+ContactByEmailOrbitHelpdesk | same | 0 | 3 | 
+ContactByEmailOrbitHost | same | 0 | 5 | 
+ContactUsMenu | same | 0 | 2 | 
+EmailContact | same | 0 | 2 | 
+EmailTarget | same | 0 | 2 | 
+EventBooklet | same | 0 | 1 | 
+GuestArrangements | same | 0 | 1 | 
+HelpersDetail | same | 0 | 3 | 
+HostSurvey | same | 0 | 1 | 
+LDM_Email_V2 | same | 0 | 4 | 
+LDM_EventDetail_V2 | same | 0 | 4 | 
+LegacyShareObject | same | 0 | 3 | 
+Login | same | 0 | 1 | 
+MessageList | same | 0 | 2 | 
+MyBookmarks | removed | 0 | 2 |  | removed blocks 6
+PINBiometricsMenu | same | 0 | 2 | 
+PINChange | same | 0 | 1 | 
+PINRegister | same | 0 | 1 | 
+PINUnlock | same | 0 | 1 | 
+Photobook | same | 0 | 4 | 
+QRCodeGenerate | same | 0 | 1 | 
+Services | same | 0 | 2 | 
+Splash | same | 0 | 1 | 
+TermsAndPoliciesMenu | same | 0 | 2 | 
+TransportDetail | same | 0 | 1 | 
+ViewDocuments | same | 0 | 1 | 
