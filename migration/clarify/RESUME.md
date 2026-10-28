@@ -47,6 +47,9 @@ Earlier status (third session): the clarify work was complete before the fix wav
   7. The user's decisions: Photobook move log, `infra-gaps.md` §10.4 and §11.
      - 7.1 Photobook move log: decided 2026-10-28, (a) not ported (`review/item7-photobook-move-log.md`); rows 074,
        076, 105 are `differs`; no `unclear` row is left.
+     - 7.2 `infra-gaps.md` §10.4: nothing open (30 of 30 "build now" items closed; checks done); §10.5 closed.
+     - 7.3 `infra-gaps.md` §11: the set-up order is approved (user, 2026-10-28); no production work until ordered.
+     The work list of 2026-10-28 is complete.
 
 Open items for the user:
 - The 13 decisions of the build wave: answered 2026-10-28.

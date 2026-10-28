@@ -208,10 +208,10 @@
    "match": "189",
    "partial": "2",
    "missing": "0",
-   "differs": "3",
+   "differs": "6",
    "mock-only": "6",
    "n/a": "0",
-   "unclear": "3",
+   "unclear": "0",
    "Findings (B/M/m/i)": "0/0/2/1",
    "Questions": "1",
    "Stale (strong)": "2 (1)"
@@ -736,10 +736,10 @@
    "match": "4570",
    "partial": "29",
    "missing": "2",
-   "differs": "92",
+   "differs": "95",
    "mock-only": "160",
    "n/a": "556",
-   "unclear": "3",
+   "unclear": "0",
    "Findings (B/M/m/i)": "3/27/56/29",
    "Questions": "",
    "Stale (strong)": "1872 (420)"
@@ -1568,7 +1568,7 @@
     [
      "Directory_Photobook",
      "Q1",
-     "Rows 074, 076 and 105 need a recorded decision. CR-Photobook-1 (:34-36) covers only the toggle-drag failure logs. The NO-CONSOLE rule (`migration/stack.json` rules.forbidden, `migration/architecture.m"
+     "(a) Do not port the move log (user, 2026-10-28, item 7.1). Rows 074, 076 and 105 are differs by this decision, as rows 089 and 091."
     ],
     [
      "Legacy_OrbitEventsFlow",
@@ -1863,7 +1863,7 @@
   {
    "Flow": "Directory_Photobook",
    "Id": "Q1",
-   "Decision": "Rows 074, 076 and 105 need a recorded decision. CR-Photobook-1 (:34-36) covers only the toggle-drag failure logs. The NO-CONSOLE rule (`migration/stack.json` rules.forbidden, `migration/architecture.m"
+   "Decision": "(a) Do not port the move log (user, 2026-10-28, item 7.1). Rows 074, 076 and 105 are differs by this decision, as rows 089 and 091."
   },
   {
    "Flow": "Legacy_OrbitEventsFlow",
@@ -1949,9 +1949,10 @@
   }
  ],
  "open_items": [
-  "New finding Notes F2 (major): TST sends the selected years and the sort in `DataActionGetNotes` after Apply; React never",
-  "Directory_Updates rows 073 and 074 (scroll anchor on Back) stay `unclear`: the read-only capture stops at the tap on an",
-  "The last 5 `unclear` rows: Directory_Photobook 074, 076, 105 (a recorded decision on the Splide move log is needed)"
+  "Notes F2 (major, the Years of `DataActionGetNotes`): built 2026-10-27 (`builds/B10-misc.md`); row Notes-110 is `match`.",
+  "Directory_Updates rows 073 and 074 (scroll anchor on Back): fixed 2026-10-27 (`fixes/H-user-followups.md`); `match`.",
+  "Directory_Photobook rows 074, 076 and 105: `differs` by the user's decision of 2026-10-28 (Q1 (a), item 7.1).",
+  "No `unclear` row is left in the 45 flows (`INDEX.md`)."
  ],
  "setup_order": [
   "**Identity and the BFF session.** Nothing signed-in runs without it. Every protected screen calls `checkRegistered` (`shell-facts.md` U1), and the app-start calls 2 to 7 need a session (`app-shell.spec.md` §10). This step gives steps 1 to 3 and 10 of §4 and the `AuthProvider` for production. Evidence: App_Common-027 to 032, 153.",
@@ -3187,26 +3188,7 @@
    "Status": ""
   }
  ],
- "unclear": [
-  {
-   "Flow": "Directory_Photobook",
-   "Row": "Directory_Photobook-074",
-   "Element": "OnInitialize_Carousel: javascript GetSplideCallbacks; SetSplideEvent(\"moved\", Sp",
-   "Question": "Not a capture: a recorded decision settles it. The user answer of 2026-10-27 (Directory_Photobook Q1) confirms that rows 074, 076 and 105 need a record; CR-Phot"
-  },
-  {
-   "Flow": "Directory_Photobook",
-   "Row": "Directory_Photobook-076",
-   "Element": "SplideEvent_Moved: JSUtils_Console_Log(\"New/Current: \" + newIndex + \"",
-   "Question": "Previous"
-  },
-  {
-   "Flow": "Directory_Photobook",
-   "Row": "Directory_Photobook-105",
-   "Element": "Strings \"Carousel Toggle Drag Error - Code:\", \"",
-   "Question": "Message:\", \""
-  }
- ],
+ "unclear": [],
  "decisions": [
   {
    "flow": "App_Common",
@@ -3419,10 +3401,10 @@
   {
    "flow": "Directory_Photobook",
    "id": "Q1",
-   "question": "Photobook_Carousel registers SplideEvent_Moved on the Splide \"moved\" event (TST Photobook_Carousel :1041). The handler only writes \"New/Current: … \\",
-   "answer": "Rows 074, 076 and 105 need a recorded decision. CR-Photobook-1 (:34-36) covers only the toggle-drag failure logs. The NO-CONSOLE rule (`migration/stack.json` rules.forbidden, `migration/architecture.md:117`) is a lint rule for the code, not a decision on the original's debug output.",
+   "question": "Photobook_Carousel registers SplideEvent_Moved on the Splide \"moved\" event (TST Photobook_Carousel :1041). The handler only writes \"New/Current: … | Previous: … | Destination: …\" to the console (:1422). React has neither. Do you accept that both stay out?",
+   "answer": "(a) Do not port the move log: SetSplideEvent(moved) and the console line of SplideEvent_Moved stay out. Rows 074, 076 and 105 are differs by decision, as rows 089 and 091.",
    "by": "user",
-   "date": "2026-10-27"
+   "date": "2026-10-28"
   },
   {
    "flow": "Directory_SupperMeetings",

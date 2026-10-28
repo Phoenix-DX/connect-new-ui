@@ -363,7 +363,7 @@ Recorded as a decision, no build (React keeps its behaviour, or the item is out 
 | App_PIN | Q3 | (a) Confirm the HomeFeed branch and record it on the PINUnlock row of the board |
 | App_Policies | Q2 | (a) Store it in `localStorage["UUID"]` as TST does, and record the decision |
 | ContactFlow | Q2 | (a) keep the TST behaviour and record it as a known original bug |
-| Directory_Photobook | Q1 | Rows 074, 076 and 105 need a recorded decision. CR-Photobook-1 (:34-36) covers only the toggle-drag failure logs. The NO-CONSOLE rule (`migration/stack.json` rules.forbidden, `migration/architecture.m |
+| Directory_Photobook | Q1 | (a) Do not port the move log (user, 2026-10-28, item 7.1). Rows 074, 076 and 105 are differs by this decision, as rows 089 and 091. |
 | Legacy_OrbitEventsFlow | C2 | Keep the React behaviour: IsGuestView starts false until the guests fetch (TST starts true). Row A121 is differs by this decision. |
 | Legacy_OrbitQRCodeFlow | Q1 | (a) Set document.title from the route title in the app shell, for all routes; the same answer as App_Services Q4 (accepted 2026-10-27). |
 
@@ -387,16 +387,17 @@ Checks and facts (a read-only capture or a TST read settles them):
 | Notes | Q1 | A. The capture is a read; it settles the fact before a code change. |
 
 
-### 10.5 Open after the captures of 2026-10-27
+### 10.5 Open after the captures of 2026-10-27 (all closed on 2026-10-28)
 
-- New finding Notes F2 (major): TST sends the selected years and the sort in `DataActionGetNotes` after Apply; React never
-  sends Years, so the year filter has no effect (`review/captures.md` §3). No user decision yet.
-- Directory_Updates rows 073 and 074 (scroll anchor on Back) stay `unclear`: the read-only capture stops at the tap on an
-  update (`MarkAsRead` is a write). A capture with that write allowed by the user, or a decision, settles them.
-- The last 5 `unclear` rows: Directory_Photobook 074, 076, 105 (a recorded decision on the Splide move log is needed)
-  and Directory_Updates 073, 074.
+- Notes F2 (major, the Years of `DataActionGetNotes`): built 2026-10-27 (`builds/B10-misc.md`); row Notes-110 is `match`.
+- Directory_Updates rows 073 and 074 (scroll anchor on Back): fixed 2026-10-27 (`fixes/H-user-followups.md`); `match`.
+- Directory_Photobook rows 074, 076 and 105: `differs` by the user's decision of 2026-10-28 (Q1 (a), item 7.1).
+- No `unclear` row is left in the 45 flows (`INDEX.md`).
 
 ## 11. Order of set-up
+
+Approved by the user on 2026-10-28 (item 7.3) as the order for production. No production work starts until the user
+orders it (current focus: the local demo).
 
 The dependencies run from the session to the screens. Each step names the rows that show the dependency.
 

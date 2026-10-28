@@ -1,6 +1,6 @@
 # Aggregate of the 45 checklists (input of the P2 synthesis)
 
-Rows: 5412; differs 92, match 4570, missing 2, mock-only 160, n/a 556, partial 29, unclear 3
+Rows: 5412; differs 95, match 4570, missing 2, mock-only 160, n/a 556, partial 29
 
 ## 1. Server and service actions behind mock-only rows (production needs a backend for each)
 
@@ -232,17 +232,17 @@ Rows: 5412; differs 92, match 4570, missing 2, mock-only 160, n/a 556, partial 2
 
 ## 3. Rows that differ by a recorded decision, grouped by decision id
 
-- **no id in the row** (28 rows): App_Common App_Common-054 ApplicationLoadEvents: the moment of load complete; App_Common App_Common-115 events OnSyncComplete, OnSyncError, OnSyncStart and the three ActionHandler_OnSy; App_Common App_Common-120 OnReady: LayoutReady, SetLang, AddFavicon("favicon.png"); OnDestroy: LayoutDestr; App_Common App_Common-123 OfflineDataSyncCore (OutSystemsUI) with OnSync, OnSyncStart, OnSyncComplete, OnC; App_Common App_Common-124 OnConfigure: OfflineDataSyncConfiguration → ConfigureOfflineDataSync; App_Common App_Common-125 OnSync: OfflineDataSync (empty), then EndOfflineDataSync: success, retryable err; App_Common App_Common-126 ActionHandler_OnSyncStart / Complete / Error Trigger; App_Common App_Common-158 TriggerOfflineDataSync (own action) …
+- **no id in the row** (30 rows): App_Common App_Common-054 ApplicationLoadEvents: the moment of load complete; App_Common App_Common-115 events OnSyncComplete, OnSyncError, OnSyncStart and the three ActionHandler_OnSy; App_Common App_Common-120 OnReady: LayoutReady, SetLang, AddFavicon("favicon.png"); OnDestroy: LayoutDestr; App_Common App_Common-123 OfflineDataSyncCore (OutSystemsUI) with OnSync, OnSyncStart, OnSyncComplete, OnC; App_Common App_Common-124 OnConfigure: OfflineDataSyncConfiguration → ConfigureOfflineDataSync; App_Common App_Common-125 OnSync: OfflineDataSync (empty), then EndOfflineDataSync: success, retryable err; App_Common App_Common-126 ActionHandler_OnSyncStart / Complete / Error Trigger; App_Common App_Common-158 TriggerOfflineDataSync (own action) …
 - **U17** (25 rows): Bookmarks Bookmarks-076 client action AuditBookmarkSubscriptionEvent (Connect2_LegacyShared); ContactFlow ContactFlow-045 Handler_SubmitForm: AddAuditEventDetailEvent; ContactFlow ContactFlow-046 Handler_SubmitForm: JSONSerialize + zOnApplicationEvent_Wrapper; ContactFlow ContactFlow-070 LDM true: AddAuditEventDetailEvent + JSONSerialize -> EventJSON; ContactFlow ContactFlow-072 [M1] zOnApplicationEvent_Wrapper; ContactFlow ContactFlow-089 Handler_SubmitForm: zOnApplicationEvent_Wrapper; ContactFlow ContactFlow-136 BR-UBTCON-045; ContactFlow ContactFlow-137 BR-UBTCON-046 …
 - **F40** (7 rows): Directory_SupperMeetings Directory_SupperMeetings-062 OnReady If restored (FromCache or FromHistory) -> end; Directory_SupperMeetings Directory_SupperMeetings-076 OnReady restored true -> end; Legacy_OrbitEventsFlow Legacy_OrbitEventsFlow-A030 Block OnReady: restored-from-cache branch; Legacy_OrbitAdminFlow Legacy_OrbitAdminFlow-018 OnReady: WasCurrentViewRestoredFromCache JS node; Legacy_OrbitAdminFlow Legacy_OrbitAdminFlow-019 OnReady: If FromCache true branch; Legacy_OrbitAdminFlow Legacy_OrbitAdminFlow-056 OnReady: WasCurrentViewRestoredFromCache If; Legacy_LDMEventsFlow_V2 Legacy_LDMEventsFlow_V2-101 OnReady: restored from cache true
 - **U4** (4 rows): App_Common App_Common-030 AppManager_Callback routing: IdP_OnLogin → HomeFeed; PIN_NeedRegistration → PINR; App_Common App_Common-032 AppManager_Callback failure → FeedbackMessage_AutoClose(Message, MessageType, Me; App_Common App_Common-041 BR-UBTCON-304; App_Common App_Common-042 BR-UBTCON-305
 - **ADR-1, U16** (3 rows): App_Common App_Common-134 UnsupportedVersion("unsupported-card--native", In_HideButton = AppManager_GetPac; App_Common App_Common-135 UnsupportedVersion("unsupported-card--webview"), message, Event → Upgrade_WebVie; Directory_Search Directory_Search-009 'We have noticed you are using an old version of Connect.' (UnsupportedVersion_N
 - **U16, U2** (3 rows): App_Common App_Common-172 Get_IsUnsupportedVersion and Try_GetIsSupportedVersion (shared); _shared _shared-032 call Try_GetIsSupportedVersion; 3 output assignments; _shared _shared-056 call AppManager_GetIsSupportedNativeVersion + AppManager_GetIsSupportedWebviewVe
+- **CR-Photobook-1** (3 rows): Directory_Photobook Directory_Photobook-089 Handler_MinZoomReached: If CarouselToggleDrag.Success false -> JSUtils_Console_L; Directory_Photobook Directory_Photobook-091 Handler_ZoomIn: Success false -> JSUtils_Console_Log; Directory_Photobook Directory_Photobook-105 Strings "Carousel Toggle Drag Error - Code:", "| Message:", "| Previous:", "| De
 - **U16** (2 rows): App_Common App_Common-137 the native and WebView messages (3 sentences); Directory_Photobook Directory_Photobook-042 Strings of other blocks in the pack list (PIN unlock, UnsupportedVersion*, Welco
 - **ADR-10** (2 rows): App_Common App_Common-153 Connect_Logout (own action); App_Menu App_Menu-048 Connect_Logout (own action of the flow; BR-UBTCON-208)
 - **U13** (2 rows): App_PIN App_PIN-108 fingerprint option of PinUnlock_MobileWrapper; App_Menu App_Menu-060 AppManager_GetPIN_FingerprintReaderAvailable (UBT_AppManager)
 - **D8(b** (2 rows): Home Home-049 Embedded_FeedCMS (UBTConnect_EmbedFeed.Blocks); Calendar Calendar-029 embed SDK stand-in
-- **CR-Photobook-1** (2 rows): Directory_Photobook Directory_Photobook-089 Handler_MinZoomReached: If CarouselToggleDrag.Success false -> JSUtils_Console_L; Directory_Photobook Directory_Photobook-091 Handler_ZoomIn: Success false -> JSUtils_Console_Log
 - **D3(a, U4** (1 rows): App_Common App_Common-018 AppManager_Events (UBT_AppManager), OnCallback → AppManager_Callback
 - **CR-Splash-2, U14** (1 rows): App_Common App_Common-160 GetColdStartLinkURL (own action) and GetURLFromEventDataURL
 - **CR-PINUnlock-1** (1 rows): App_PIN App_PIN-043 Block_PINUnlockUnlock: empty LastURL
@@ -384,9 +384,6 @@ C2EnableCarousel (21), getHasExtendedShare (15), mobileOrbitAccess (12), getHasC
 
 | Flow | Row | Element | Question |
 |---|---|---|---|
-| Directory_Photobook | Directory_Photobook-074 | OnInitialize_Carousel: javascript GetSplideCallbacks; SetSplideEvent("moved", Sp | Not a capture: a recorded decision settles it. The user answer of 2026-10-27 (Directory_Photobook Q1) confirms that rows 074, 076 and 105 need a record; CR-Phot |
-| Directory_Photobook | Directory_Photobook-076 | SplideEvent_Moved: JSUtils_Console_Log("New/Current: " + newIndex + " | Previous | Not a capture: a recorded decision settles it, as for row 074 (user answer 2026-10-27, Directory_Photobook Q1). The log text is "New/Current: <new> | Previous:  |
-| Directory_Photobook | Directory_Photobook-105 | Strings "Carousel Toggle Drag Error - Code:", "| Message:", "| Previous:", "| De | Not a capture: a recorded decision settles it, as for row 074 (user answer 2026-10-27, Directory_Photobook Q1). The strings "Carousel Toggle Drag Error - Code:" |
 
 ## 7. DEV vs TST lines per flow (report §6.1)
 
