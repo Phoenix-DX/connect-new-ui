@@ -10,4 +10,5 @@ export type { AvailableUsersWire, AvailableUserWire, ShareObjectTypeByIdWire } f
 export { fetchAvailableUsers, fetchShareObjectTypeLabel, shareObject } from './repository';
 
 /* MessageDetail: DataActionGetShare of Share_UI.ShareObjectDetail_ExtendedShare. */
+export { emptyShareableUpdateItem } from './mapper';
 export { fetchSharedObjectDetail } from './repository';

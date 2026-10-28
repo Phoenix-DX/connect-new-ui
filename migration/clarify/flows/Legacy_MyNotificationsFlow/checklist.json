@@ -1757,11 +1757,12 @@
    "evidence": "app/src/pages/MessageDetail/components/MessageDetailView.tsx:46-48",
    "tst": "present",
    "verdict": "match",
-   "note": "Built 2026-10-28 (builds/B9-messagedetail.md, decisions PD7, PD8, PD9). The TST branch (C2ExtendedShare on) is built; the flag-off branch keeps a NotCaptured marker, out of scope (PD9). TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js view ~lines 392-526. Blocks not in pack and not built (NotCaptured). | Judge: TST (TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js:385-400): sharing branch, GetHasExtendedShare (True on TST, flag-values-tst.json) -> Share_UI.ShareObjectDetail_ExtendedShare(ShareId = first template parameter value, HasAccessToDeceasedHousehold = GetHasDeceasedProfileAccess). KB BR-C2LEG-485. The Share_UI blocks are owned by Legacy_Share; their use here is missing.",
+   "note": "Item 6 (2026-10-28; migration/clarify/review/item6-getshare-inputs.md, item6-solution.md): DataActionGetShare of ShareObjectDetail_ExtendedShare sends the four block variables as TST (ShareId, HasAccessToDeceasedHousehold, ShareableObject_Generic, ShareableUpdateItem with 13 attributes); no _<x>InDataFetchStatus keys. No visible change. | Built 2026-10-28 (builds/B9-messagedetail.md, decisions PD7, PD8, PD9). The TST branch (C2ExtendedShare on) is built; the flag-off branch keeps a NotCaptured marker, out of scope (PD9). TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js view ~lines 392-526. Blocks not in pack and not built (NotCaptured). | Judge: TST (TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js:385-400): sharing branch, GetHasExtendedShare (True on TST, flag-values-tst.json) -> Share_UI.ShareObjectDetail_ExtendedShare(ShareId = first template parameter value, HasAccessToDeceasedHousehold = GetHasDeceasedProfileAccess). KB BR-C2LEG-485. The Share_UI blocks are owned by Legacy_Share; their use here is missing.",
    "verified": "code",
    "severity": "major",
    "finding": "F1",
-   "fixed": "2026-10-28"
+   "fixed": "2026-10-28",
+   "rechecked": "2026-10-28"
   },
   {
    "id": "Legacy_MyNotificationsFlow-131",

@@ -83,7 +83,8 @@ Gates: `npm run ci` green (4338 tests, 0 new unused exports, build OK); the 64-r
   `RangeSlider` is a new folder under `components/ui/` (noUiSlider 15.8.1 markup; the runtime file
   `OutSystemsUI_2_23.NoUISlider.js` fetched read-only, logged in `migration/knowledge/runtime-sources.md`).
 - B9 (done by the orchestrator): one `containers/FreeSubscriptionActionDialog` for both pages; known bug B14 keeps its
-  number. B9 (open): DataActionGetShare sends only ShareId and HasAccessToDeceasedHousehold.
+  number. B9 (done 2026-10-28, item 6): DataActionGetShare sends the four block variables, as TST
+  (`../review/item6-getshare-inputs.md`, design `../review/item6-solution.md`; note `item6-getshare-inputs.md`).
 - B2 (done by the orchestrator): the FooterWithActions and NoResults clones merged into `components/orbit`; `npm run
   dup` is under its limit again.
 - B2: the dropdown merge is done (item 3, 2026-10-28). The Tooltip and the MultiResolutionImageLoader are done (item

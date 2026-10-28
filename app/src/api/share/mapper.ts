@@ -84,6 +84,9 @@ export const toShareObjectResult = (wire: ShareObjectWire): ShareObjectResult =>
 
 /* ---- MessageDetail: Share_UI.ShareObjectDetail_ExtendedShare ---- */
 
+import type { ActionInputs } from '@/api/client/callAction';
+import type { ShareableUpdateItem, SharedObjectDetailVariables } from './types';
+
 /** The outputs of DataActionGetShare of ShareObjectDetail_ExtendedShare. */
 type SharedObjectDetailWire = ActionOutputs<
   PathOf<'Connect2_LegacyShared', 'ShareObjectDetail_ExtendedShare/DataActionGetShare'>
@@ -117,5 +120,62 @@ export const toSharedObjectDetail = (w: SharedObjectDetailWire): SharedObjectDet
     shareObjectTypeLabel: w.ShareObjectType.Label,
     isShareAvailable: w.IsShareAvailable,
     updateDate: osDate(w.UpdateDate),
+  };
+};
+
+/** The variables of ShareObjectDetail_ExtendedShare as OutSystems sends them with DataActionGetShare. */
+type SharedObjectDetailVariablesWire = ActionInputs<
+  PathOf<'Connect2_LegacyShared', 'ShareObjectDetail_ExtendedShare/DataActionGetShare'>
+>;
+
+/** ShareableUpdateItem at OnInitialize: the UI_UpdateItem defaults. A Long Integer is "0", the Date the null date. */
+export const emptyShareableUpdateItem = (): ShareableUpdateItem => ({
+  updateItemId: '0',
+  updateItemTypeId: '',
+  name: '',
+  date: null,
+  genderId: '',
+  locationString: '',
+  isRead: false,
+  hasAccess: false,
+  hasShare: false,
+  householdId: '0',
+  parentsNames: '',
+  birthType: '',
+  memberId: '',
+});
+
+/** The block variables of DataActionGetShare (screenData.variables), with their OutSystems names. A record sends every
+    attribute: a missing one gets its default. A Long Integer goes as text ("0" for NullIdentifier), a null Date as
+    NullDate. The _<input>InDataFetchStatus integers stay out, as in the contract. */
+export const toSharedObjectDetailVariablesWire = (v: SharedObjectDetailVariables): SharedObjectDetailVariablesWire => {
+  const o = v.shareableObject;
+  const u = v.shareableUpdateItem;
+  return {
+    ShareId: v.shareId,
+    HasAccessToDeceasedHousehold: v.hasAccessToDeceasedHousehold,
+    ShareableObject_Generic: {
+      ConnectEntityTypeId: o.ConnectEntityTypeId ?? '',
+      Id: o.Id ?? '',
+      Location: o.Location ?? '',
+      SignedURL: o.SignedURL ?? '',
+      Subtitle: o.Subtitle ?? '',
+      Title: o.Title ?? '',
+    },
+    ShareableUpdateItem: {
+      UpdateItemId: osLong(u.updateItemId) ?? '0',
+      UpdateItemTypeId: u.updateItemTypeId,
+      Name: u.name,
+      Date: u.date ?? NULL_DATE,
+      GenderId: u.genderId,
+      LocationString: u.locationString,
+      IsRead: u.isRead,
+      HasAccess: u.hasAccess,
+      HasShare: u.hasShare,
+      HouseholdId: osLong(u.householdId) ?? '0',
+      ParentsNames: u.parentsNames,
+      BirthType: u.birthType,
+      MemberId: u.memberId,
+    },
   };
 };

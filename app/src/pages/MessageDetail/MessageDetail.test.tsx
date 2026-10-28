@@ -6,7 +6,7 @@ import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter'
 import { MOCK_USER } from '@/mocks/fictional/directory';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { getClientVar, setClientVar, setSignedInUser } from '@/platform/session/session';
-import { calledActions, freshPage, setFlags } from '@/test/testSupport';
+import { calledActions, freshPage, recordBodies, setFlags } from '@/test/testSupport';
 import MessageDetail from './MessageDetailPage';
 
 /* The page with the flows of its block (useMessageDetail) and the MSW mocks of the route, in the app frame on a memory
@@ -204,12 +204,31 @@ describe('MessageDetail page', () => {
   });
 
   it('Sharing: the shared household card of ShareObjectDetail_ExtendedShare opens HouseholdDetails', async () => {
+    const bodies = recordBodies('Connect2_LegacyShared/ShareObjectDetail_ExtendedShare/DataActionGetShare');
     const view = await open('?MessageInstanceId=5965304');
     await waitFor(() => {
       expect(document.getElementById('b1-b5-$b5')?.textContent).toContain('Lindqvist Household');
     });
     expect(document.getElementById('b1-$b5')?.dataset.block).toBe('Share_UI.ShareObjectDetail_ExtendedShare');
     expect(calledActions()).toContain('ShareObjectDetail_ExtendedShare/DataActionGetShare');
+    // GetShare sends the four block variables (screenData.variables), without the _<input>InDataFetchStatus integers.
+    await waitFor(() => {
+      expect(bodies[0]).toBeDefined();
+    });
+    const body = bodies[0] as {
+      ShareableObject_Generic: Record<string, unknown>;
+      ShareableUpdateItem: Record<string, unknown>;
+    };
+    expect(Object.keys(body)).toEqual([
+      'ShareId',
+      'HasAccessToDeceasedHousehold',
+      'ShareableObject_Generic',
+      'ShareableUpdateItem',
+    ]);
+    expect(Object.keys(body.ShareableObject_Generic)).toHaveLength(6);
+    expect(Object.keys(body.ShareableUpdateItem)).toHaveLength(13);
+    expect(body.ShareableObject_Generic.Title).toBe('Loading Shared Object');
+    expect(body.ShareableUpdateItem).toMatchObject({ UpdateItemId: '0', Date: '1900-01-01', HouseholdId: '0' });
     const card = [...document.querySelectorAll<HTMLElement>('#b1-b5-\\$b5 [style*="cursor"]')].find((e) =>
       e.textContent.includes('Lindqvist Household'),
     );

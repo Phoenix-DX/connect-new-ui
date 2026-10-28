@@ -1,4 +1,4 @@
-import type { SharedObjectDetail } from '@/api/share';
+import { emptyShareableUpdateItem, type ShareableUpdateItem, type SharedObjectDetail } from '@/api/share';
 import type { UI_ShareableObject_Generic } from '@/lib/ubtConnectUtils/structures';
 import { Type_ShareObject } from '@/lib/ubtConnect/staticEntities';
 import { Connect_Entity } from '@/lib/ubtConnectUtils/staticEntities';
@@ -7,21 +7,10 @@ import { getConnectEntity_ByShareType } from '@/pages/MessageDetail/actions';
 /** The state of Share_UI.ShareObjectDetail_ExtendedShare and its reducer, and the pure parts of its flows and view.
     @origin Connect2_LegacyShared.Share_UI.ShareObjectDetail_ExtendedShare */
 
-/** Connect_Updates_CS UI_UpdateItem: the fields that Update_ListItem gets from the block. */
-export interface ShareableUpdateItem {
-  updateItemTypeId: string;
-  name: string;
-  date: string | null;
-  genderId: string;
-  locationString: string;
-  parentsNames: string;
-  birthType: string;
-}
-
 export interface ShareObjectDetailState {
   /** Local ShareableObject_Generic. */
   shareableObject: UI_ShareableObject_Generic;
-  /** Local ShareableUpdateItem. */
+  /** Local ShareableUpdateItem: the full UI_UpdateItem record; Update_ListItem reads 7 fields. */
   shareableUpdateItem: ShareableUpdateItem;
   /** GetShare outputs; null until the first answer (isDataFetched False). */
   share: SharedObjectDetail | null;
@@ -36,18 +25,9 @@ type ShareObjectDetailAction =
     shareableUpdateItem: ShareableUpdateItem;
   };
 
-const emptyUpdateItem = (): ShareableUpdateItem => ({
-  updateItemTypeId: '',
-  name: '',
-  date: null,
-  genderId: '',
-  locationString: '',
-  parentsNames: '',
-  birthType: '',
-});
-
 /** OnInitialize of a new view (not restored from the view cache): ShareableObject_Generic is the Household
-    "Loading Shared Object" card (ConnectEntityTypeId, Title, Subtitle, Location). */
+    "Loading Shared Object" card (ConnectEntityTypeId, Title, Subtitle, Location); ShareableUpdateItem has its
+    defaults. */
 export function initialShareObjectDetailState(): ShareObjectDetailState {
   const loading = 'Loading Shared Object';
   return {
@@ -57,7 +37,7 @@ export function initialShareObjectDetailState(): ShareObjectDetailState {
       Subtitle: loading,
       Location: loading,
     },
-    shareableUpdateItem: emptyUpdateItem(),
+    shareableUpdateItem: emptyShareableUpdateItem(),
     share: null,
   };
 }
@@ -83,16 +63,23 @@ export function prepareSharedObject(
 ): Pick<ShareObjectDetailState, 'shareableObject' | 'shareableUpdateItem'> {
   const item = share.shareItem;
   if (share.shareObjectTypeId === Type_ShareObject.Update) {
+    // The mapTo of the Assign gives a new record. MemberId is not mapped, so it has its default.
     return {
       shareableObject: state.shareableObject,
       shareableUpdateItem: {
+        updateItemId: '0', // NullIdentifier()
         updateItemTypeId: item.type,
         name: item.title,
         date: share.updateDate,
         genderId: item.genderId,
         locationString: item.label,
+        isRead: false,
+        hasAccess: item.canAccess,
+        hasShare: false,
+        householdId: item.householderId,
         parentsNames: item.parentsName,
         birthType: item.birthType,
+        memberId: '',
       },
     };
   }

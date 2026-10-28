@@ -1051,3 +1051,5 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-28,clarify-item3,build,231601,build-opus,opus,"item 3 build OSDropdownCustom + useValidationWidget, 125 calls"
 2026-10-28,clarify-item5,spec,216902,design-fable,fable,"item 5 Tooltip + MultiResolutionImageLoader: Fable design (item5-solution.md), 70 calls"
 2026-10-28,clarify-item5,build,299373,build-opus,opus,"item 5 build Tooltip + loader, tests first, 127 calls"
+2026-10-28,clarify-item6,spec,122069,design-fable,fable,"item 6 DataActionGetShare inputs: Fable design (item6-solution.md), 25 calls"
+2026-10-28,clarify-item6,build,136911,build-opus,opus,"item 6 build: DataActionGetShare sends the four block variables, tests first, 48 calls"

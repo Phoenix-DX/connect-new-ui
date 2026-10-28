@@ -161,3 +161,122 @@ describe('share mapper (LegacyShareObject)', () => {
     });
   });
 });
+
+/* ---- MessageDetail: Share_UI.ShareObjectDetail_ExtendedShare ---- */
+
+import { emptyShareableUpdateItem, toSharedObjectDetailVariablesWire } from './mapper';
+import type { ShareableUpdateItem } from './types';
+
+/** ShareableUpdateItem after GetShareOnAfterFetch of a fictional Update share. */
+const updateRecord: ShareableUpdateItem = {
+  updateItemId: '0',
+  updateItemTypeId: 'Birth',
+  name: 'Freya Lindqvist',
+  date: '2026-10-19',
+  genderId: 'F',
+  locationString: 'Uppsala',
+  isRead: false,
+  hasAccess: true,
+  hasShare: false,
+  householdId: '61208',
+  parentsNames: 'Anders and Maja Lindqvist',
+  birthType: 'Daughter',
+  memberId: '',
+};
+
+const loading = 'Loading Shared Object';
+
+describe('share mapper (ShareObjectDetail_ExtendedShare)', () => {
+  it('toSharedObjectDetailVariablesWire sends the four block variables with their OutSystems names', () => {
+    const wire = toSharedObjectDetailVariablesWire({
+      shareId: '9001',
+      hasAccessToDeceasedHousehold: true,
+      shareableObject: {
+        ConnectEntityTypeId: 'Household',
+        Id: '61207',
+        Location: 'Uppsala',
+        SignedURL: 'https://cdn.example.org/lindqvist.jpg',
+        Subtitle: 'Anders and Maja Lindqvist',
+        Title: 'Lindqvist Household',
+      },
+      shareableUpdateItem: updateRecord,
+    });
+    expect(Object.keys(wire)).toEqual([
+      'ShareId',
+      'HasAccessToDeceasedHousehold',
+      'ShareableObject_Generic',
+      'ShareableUpdateItem',
+    ]);
+    expect(wire).toEqual({
+      ShareId: '9001',
+      HasAccessToDeceasedHousehold: true,
+      ShareableObject_Generic: {
+        ConnectEntityTypeId: 'Household',
+        Id: '61207',
+        Location: 'Uppsala',
+        SignedURL: 'https://cdn.example.org/lindqvist.jpg',
+        Subtitle: 'Anders and Maja Lindqvist',
+        Title: 'Lindqvist Household',
+      },
+      ShareableUpdateItem: {
+        UpdateItemId: '0',
+        UpdateItemTypeId: 'Birth',
+        Name: 'Freya Lindqvist',
+        Date: '2026-10-19',
+        GenderId: 'F',
+        LocationString: 'Uppsala',
+        IsRead: false,
+        HasAccess: true,
+        HasShare: false,
+        HouseholdId: '61208',
+        ParentsNames: 'Anders and Maja Lindqvist',
+        BirthType: 'Daughter',
+        MemberId: '',
+      },
+    });
+  });
+
+  it('the Loading card and the empty record give the defaults: "", "0" for a Long Integer, the null date', () => {
+    const wire = toSharedObjectDetailVariablesWire({
+      shareId: '9001',
+      hasAccessToDeceasedHousehold: false,
+      shareableObject: { ConnectEntityTypeId: 'Household', Title: loading, Subtitle: loading, Location: loading },
+      shareableUpdateItem: emptyShareableUpdateItem(),
+    });
+    expect(wire.ShareableObject_Generic).toEqual({
+      ConnectEntityTypeId: 'Household',
+      Id: '',
+      Location: loading,
+      SignedURL: '',
+      Subtitle: loading,
+      Title: loading,
+    });
+    expect(wire.ShareableUpdateItem).toEqual({
+      UpdateItemId: '0',
+      UpdateItemTypeId: '',
+      Name: '',
+      Date: '1900-01-01',
+      GenderId: '',
+      LocationString: '',
+      IsRead: false,
+      HasAccess: false,
+      HasShare: false,
+      HouseholdId: '0',
+      ParentsNames: '',
+      BirthType: '',
+      MemberId: '',
+    });
+    // The _<input>InDataFetchStatus integers are runtime bookkeeping: the contract leaves them out.
+    expect(Object.keys(wire).filter((key) => key.endsWith('DataFetchStatus'))).toEqual([]);
+  });
+
+  it('toSharedObjectDetailVariablesWire sends an empty Long Integer as "0"', () => {
+    const wire = toSharedObjectDetailVariablesWire({
+      shareId: '9001',
+      hasAccessToDeceasedHousehold: false,
+      shareableObject: {},
+      shareableUpdateItem: { ...updateRecord, updateItemId: '', householdId: '' },
+    });
+    expect(wire.ShareableUpdateItem).toMatchObject({ UpdateItemId: '0', HouseholdId: '0' });
+  });
+});

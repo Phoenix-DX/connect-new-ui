@@ -57,10 +57,17 @@ export function useShareObjectDetail(
     onParametersChanged: (isAlive) => refreshGetShare(isAlive),
   });
 
-  /** Refresh GetShare, then GetShareOnAfterFetch. */
+  /** Refresh GetShare, then GetShareOnAfterFetch. GetShare sends the block variables: the inputs and the two locals as
+      they are when the fetch starts (after OnInitialize, or what the last GetShareOnAfterFetch set). */
   const refreshGetShare = async (isAlive: IsAlive) => {
     const { ShareId, HasAccessToDeceasedHousehold } = parameters.current;
-    const share = await fetchSharedObjectDetail({ ShareId, HasAccessToDeceasedHousehold });
+    const { shareableObject, shareableUpdateItem } = latest.current;
+    const share = await fetchSharedObjectDetail({
+      shareId: ShareId,
+      hasAccessToDeceasedHousehold: HasAccessToDeceasedHousehold,
+      shareableObject,
+      shareableUpdateItem,
+    });
     // GetShareOnAfterFetch: AuditShareViewEvent, GetConnectEntity_ByShareType, then the locals.
     await auditShareViewEvent(ShareId, share.shareObjectTypeId);
     if (!isAlive()) return;

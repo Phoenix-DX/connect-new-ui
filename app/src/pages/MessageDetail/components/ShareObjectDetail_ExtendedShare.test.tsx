@@ -50,21 +50,50 @@ const share = (patch: Partial<SharedObjectDetail> = {}, item: Partial<SharedObje
 
 const events = { onGoToObjectDetail: vi.fn(), onSubscriptionDenied: vi.fn() };
 
+const block = (shareId: string) => (
+  <MemoryRouter>
+    <ShareObjectDetail_ExtendedShare
+      id="b1-$b5"
+      prefix="b1-b5"
+      inputs={{ ShareId: shareId, HasAccessToDeceasedHousehold: true }}
+      {...events}
+    />
+  </MemoryRouter>
+);
+
+const settle = () => act(() => new Promise((resolve) => setTimeout(resolve, 0)));
+
 async function renderBlock(answer: SharedObjectDetail) {
   vi.mocked(fetchSharedObjectDetail).mockResolvedValue(answer);
-  const view = render(
-    <MemoryRouter>
-      <ShareObjectDetail_ExtendedShare
-        id="b1-$b5"
-        prefix="b1-b5"
-        inputs={{ ShareId: '9001', HasAccessToDeceasedHousehold: true }}
-        {...events}
-      />
-    </MemoryRouter>,
-  );
-  await act(() => new Promise((resolve) => setTimeout(resolve, 0)));
+  const view = render(block('9001'));
+  await settle();
   return view;
 }
+
+/** ShareableObject_Generic after OnInitialize: the Household "Loading Shared Object" card. */
+const loadingCard = {
+  ConnectEntityTypeId: 'Household',
+  Title: 'Loading Shared Object',
+  Subtitle: 'Loading Shared Object',
+  Location: 'Loading Shared Object',
+};
+
+/** ShareableUpdateItem after OnInitialize: the UI_UpdateItem defaults. */
+const emptyRecord = {
+  updateItemId: '0',
+  updateItemTypeId: '',
+  name: '',
+  date: null,
+  genderId: '',
+  locationString: '',
+  isRead: false,
+  hasAccess: false,
+  hasShare: false,
+  householdId: '0',
+  parentsNames: '',
+  birthType: '',
+  memberId: '',
+};
 
 const clickCard = () => {
   fireEvent.click(screen.getByText('Lindqvist Household').closest('[style*="cursor"]') as HTMLElement);
@@ -77,20 +106,75 @@ beforeEach(() => {
 describe('ShareObjectDetail_ExtendedShare', () => {
   it('shows the "Loading Shared Object" card in the skeleton until GetShare answers', () => {
     vi.mocked(fetchSharedObjectDetail).mockReturnValue(new Promise(() => undefined));
-    render(
-      <MemoryRouter>
-        <ShareObjectDetail_ExtendedShare
-          id="b1-$b5"
-          prefix="b1-b5"
-          inputs={{ ShareId: '9001', HasAccessToDeceasedHousehold: true }}
-          {...events}
-        />
-      </MemoryRouter>,
-    );
+    render(block('9001'));
     expect(document.querySelector('#b1-b5-\\$b3')?.innerHTML).toContain('ubt-skeleton-section');
     expect(screen.getAllByText('Loading Shared Object').length).toBeGreaterThan(0);
-    expect(fetchSharedObjectDetail).toHaveBeenCalledWith({ ShareId: '9001', HasAccessToDeceasedHousehold: true });
+    // GetShare sends the block variables: the two inputs and the two locals of OnInitialize.
+    expect(fetchSharedObjectDetail).toHaveBeenCalledWith({
+      shareId: '9001',
+      hasAccessToDeceasedHousehold: true,
+      shareableObject: loadingCard,
+      shareableUpdateItem: emptyRecord,
+    });
     expect(document.getElementById('b1-b5-FreeSubscriptionAlert')).not.toBeNull();
+  });
+
+  it('OnParametersChanged sends the locals that the last GetShareOnAfterFetch set; a non-Update keeps the record', async () => {
+    const view = await renderBlock(
+      share(
+        { shareObjectTypeId: 'Update', updateDate: '2026-10-19' },
+        {
+          type: 'Birth',
+          title: 'Freya Lindqvist',
+          householderId: '61208',
+          genderId: 'F',
+          parentsName: 'Anders and Maja Lindqvist',
+          birthType: 'Daughter',
+        },
+      ),
+    );
+    // The Assign of an Update: NullIdentifier, IsRead and HasShare False, CanAccess, HouseholderId; MemberId not set.
+    const updateRecord = {
+      updateItemId: '0',
+      updateItemTypeId: 'Birth',
+      name: 'Freya Lindqvist',
+      date: '2026-10-19',
+      genderId: 'F',
+      locationString: 'Uppsala',
+      isRead: false,
+      hasAccess: true,
+      hasShare: false,
+      householdId: '61208',
+      parentsNames: 'Anders and Maja Lindqvist',
+      birthType: 'Daughter',
+      memberId: '',
+    };
+    vi.mocked(fetchSharedObjectDetail).mockResolvedValue(share());
+    view.rerender(block('9002'));
+    await settle();
+    expect(fetchSharedObjectDetail).toHaveBeenLastCalledWith({
+      shareId: '9002',
+      hasAccessToDeceasedHousehold: true,
+      shareableObject: loadingCard,
+      shareableUpdateItem: updateRecord,
+    });
+
+    view.rerender(block('9003'));
+    await settle();
+    expect(fetchSharedObjectDetail).toHaveBeenCalledTimes(3);
+    expect(fetchSharedObjectDetail).toHaveBeenLastCalledWith({
+      shareId: '9003',
+      hasAccessToDeceasedHousehold: true,
+      shareableObject: {
+        ConnectEntityTypeId: 'Household',
+        Id: '61207',
+        Title: 'Lindqvist Household',
+        Subtitle: 'Anders and Maja Lindqvist',
+        SignedURL: '',
+        Location: 'Uppsala',
+      },
+      shareableUpdateItem: updateRecord,
+    });
   });
 
   it('shows the shared household and opens it', async () => {
