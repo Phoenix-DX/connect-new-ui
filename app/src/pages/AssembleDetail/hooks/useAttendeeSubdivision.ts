@@ -77,15 +77,16 @@ export interface AttendeeSubdivisionFlows {
       flow handler.
     - Share to Connect: the popup check; C2ExtendedShare → the household share sheet opens, else
       NavigateTo_ShareObject(Household, id, False).
-    - The handlers read the variables of the render in which the user clicked, as the old port. The household click
-      and share to Connect send no failure to the flow handler (as the old port).
+    - The handlers read the variables of the render in which the user clicked, as the old port.
     Flow scope (item 8): GetCacheableSubdivision_V2, MaybeDisplaySubscriptionPopup, ConfirmAction, ToggleBookmarkItem,
     RememberFocusedScrollAnchor and SetPreloadObject are module actions (R2, AssembleEventDetail_AttendeeSubdivision.js
     :846, :738, :964, :980, :747, :756): they run after the unmount. Set_SelectedAssembleAttendeeListBookmarks is an
     own action of the block (R3, `flow.own`, ensureControllerAlive :1153): OnReady stops there after the unmount. The
     events NavigateTo_HouseholdCarousel and NavigateTo_ShareObject go through `flow.events` (R3): their screen
     handlers start with ensureControllerAlive (screen_AssembleDetail.js:716, :644). A state write after the unmount is
-    dropped (`dispatch`). The bookmark failure goes to the flow handler with the flow scope (`flow.run`, R6). */
+    dropped (`dispatch`). A failure of the household click, the bookmark or share to Connect goes to the flow handler
+    with the flow scope (`flow.run`, R6): MaybeDisplaySubscriptionPopup rethrows to its caller
+    (AssembleEventDetail_AttendeeSubdivision.js:770-773; S3a Q1 (a), user 2026-10-28). */
 export function useAttendeeSubdivision(
   blockId: string,
   subdivision: AssembleAttendeeSubdivision,
@@ -167,11 +168,15 @@ export function useAttendeeSubdivision(
     onToggleSelected: () => {
       dispatch({ type: 'selectionToggled' });
     },
-    onClickHousehold: (row, index) => void onClickHousehold(row, index),
+    onClickHousehold: (row, index) => {
+      flow.run(() => onClickHousehold(row, index));
+    },
     onClickBookmarkButton: (row, index, isItemBookmarked) => {
       flow.run(() => onClickBookmarkButton(row, index, isItemBookmarked));
     },
-    onClickShareConnect: (row) => void onClickShareConnect(row),
+    onClickShareConnect: (row) => {
+      flow.run(() => onClickShareConnect(row));
+    },
     onSaveNote: (note) => {
       bookmarkNote.current = note;
     },

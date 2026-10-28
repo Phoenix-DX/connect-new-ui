@@ -167,7 +167,7 @@ export function useAccommodationHost(
     } catch (e) {
       if (isUserException(e, 'Connect2_OrbitMobile_MUI.UnknownError'))
         dispatch({ type: 'documentLoadingChanged', isLoadingDocument: false });
-      raiseToFlowHandler(e);
+      raiseToFlowHandler(e, flow);
     }
   };
 

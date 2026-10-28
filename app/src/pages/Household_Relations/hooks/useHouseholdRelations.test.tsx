@@ -12,6 +12,7 @@ import {
 import { DataFetchStatus } from '@/components/ui/os/OSList';
 import {
   CommunicationException,
+  ControllerDisposedException,
   IgnorableSystemException,
   OutOfContextException,
   ViewHasChangedException,
@@ -313,7 +314,7 @@ describe('useHouseholdRelations after an unmount and in StrictMode (flow scope, 
     resetNavigation();
   });
 
-  it('after an unmount during GetUserInformation_Wrapper: no call, no state write', async () => {
+  it('R3: after an unmount during GetUserInformation_Wrapper, Action_Refresh_Get_MemberDetails (flow.own) stops: no call, no state write', async () => {
     const user = pending<ReturnType<typeof userWithDisplayAge>>();
     vi.mocked(getUserInformation).mockReturnValue(user.promise);
     const { unmount } = renderFlows();
@@ -323,6 +324,13 @@ describe('useHouseholdRelations after an unmount and in StrictMode (flow scope, 
     await settle();
     expect(fetchMemberRelations).not.toHaveBeenCalled();
     expect(householdRelationsReducer).not.toHaveBeenCalled();
+    // The own action throws ControllerDisposedException (ensureControllerAlive); the handler ignores it.
+    const isFlowScope = (scope: unknown) => typeof (scope as { alive?: unknown } | undefined)?.alive === 'function';
+    const raised = vi
+      .mocked(raiseToFlowHandler)
+      .mock.calls.map(([error, scope]) => [error instanceof ControllerDisposedException, isFlowScope(scope)]);
+    expect(raised).toEqual([[true, true]]);
+    expect(raisedErrors()).toEqual([]);
   });
 
   it('after an unmount during Get_MemberDetails: no event, no sibling call, no state write', async () => {

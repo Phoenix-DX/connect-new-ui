@@ -154,7 +154,7 @@ describe('MyEntertaining', () => {
     );
   });
 
-  /* W23: a flow that started runs to its end after the screen closed; it writes no state. */
+  /* Flow scope (item 8, R1): the config call that started ends, but the closed screen drops its answer: no state. */
   it('closed while GetEntertainingConfig is pending: the call ends, the calendar does not start', async () => {
     sessionStorage.setItem('mock:latency', '30');
     const errors = vi.spyOn(console, 'error');

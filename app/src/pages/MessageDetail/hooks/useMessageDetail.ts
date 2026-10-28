@@ -95,12 +95,12 @@ export interface MessageDetailFlows {
   parameters: MessageParameter[] | null;
   /** [ShowAssembleAction]. */
   showAssembleAction: boolean;
-  /** OnClick_ViewOrbitEvent(MessageSenderTargetId). */
-  onClickViewOrbitEvent: (messageSenderTargetId: number) => Promise<void>;
+  /** OnClick_ViewOrbitEvent(MessageSenderTargetId): the click starts the flow (`flow.run`, R6). */
+  onClickViewOrbitEvent: (messageSenderTargetId: number) => void;
   /** OnClick_ViewAssembleEvent(MessageSenderTargetId): the input is not read. */
   onClickViewAssembleEvent: () => void;
   /** AdaptiveCardViewerOnExecuteAction(CardPayload, ActionId, FormPayload), the handler of the NotificationDetailBlock
-      event AdaptiveCardEventExecuted. */
+      event AdaptiveCardEventExecuted. The block awaits it (`flow.runAwaited`, R6); the promise never rejects. */
   adaptiveCardViewerOnExecuteAction: (cardPayload: string, actionId: string, formPayload: string) => Promise<void>;
 }
 
@@ -128,6 +128,10 @@ function autoCloseError(message: string): void {
       action (R3, `flow.own`, MessageDetail.js:1388) and the events go through `flow.events` (R3: the screen handlers
       check that the screen is alive, MessageDetailScreen.js:769, :827).
     - Cache_SignedImageURL_Get and Cache_UserInfo_Get are module actions: they run after leaving, as on TST.
+    - The widget handlers OnClick_ViewOrbitEvent and AdaptiveCardViewerOnExecuteAction start their flows with
+      `flow.run` and `flow.runAwaited` (R6): an unhandled error (a failed Get_OrbitNotificationParameters, a failed
+      StoreAdaptiveCardResponses that is not a CommunicationException) goes to the flow handler with the flow scope
+      (user, 2026-10-28, S2a Q1 (a)).
     A state write after the unmount is a no-op (`dispatch`). */
 export function useMessageDetail(inputs: MessageDetailInputs, events: MessageDetailEvents): MessageDetailFlows {
   /** WasCurrentViewRestoredFromCache of this view, for the refresh after a card submit. */
@@ -370,8 +374,12 @@ export function useMessageDetail(inputs: MessageDetailInputs, events: MessageDet
     message: state.message,
     parameters: state.parameters,
     showAssembleAction: state.variables.ShowAssembleAction,
-    onClickViewOrbitEvent,
+    onClickViewOrbitEvent: (messageSenderTargetId) => {
+      flow.run(() => onClickViewOrbitEvent(messageSenderTargetId));
+    },
     onClickViewAssembleEvent,
-    adaptiveCardViewerOnExecuteAction,
+    adaptiveCardViewerOnExecuteAction: async (cardPayload, actionId, formPayload) => {
+      await flow.runAwaited(() => adaptiveCardViewerOnExecuteAction(cardPayload, actionId, formPayload));
+    },
   };
 }

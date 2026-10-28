@@ -83,7 +83,8 @@ export interface HouseholdRelationsFlows {
     the unmount their answer and their failure are dropped, so OnAfterFetch_Get_MemberDetails (the event
     RelationsDetails_Fetched, the sibling refresh, Actions_DefineLoading) does not run (HouseholdRelations_Block.js:
     1695-1740). After GetUserInformation_Wrapper (a module action), Action_Refresh_Get_MemberDetails is an own action
-    of the block (R3, ensureControllerAlive): the `flow.alive()` check of OnReady stops there. HasAccessToRegion and the
+    of the block (R3, ensureControllerAlive, `flow.own`; S1a Q2 (a), user 2026-10-28): OnReady stops there after the
+    unmount. HasAccessToRegion and the
     upgrade popup are module actions: they run after leaving. The navigation from a left screen does not happen (R4,
     useOsNavigate). useFlowState runs OnReady once, also in StrictMode. */
 export function useHouseholdRelations(
@@ -149,18 +150,25 @@ export function useHouseholdRelations(
     dispatch({ type: 'loadingDefined', isRefresh: false });
   };
 
+  /** Action_Refresh_Get_MemberDetails: Actions_DefineLoading(True), then the refresh of Get_MemberDetails. An own
+      action of the block (R3, ensureControllerAlive, HouseholdRelations_Block.js:2094): after the unmount the call
+      throws ControllerDisposedException, so the flow that calls it stops there and the handler ignores the exception. */
+  const actionRefreshGetMemberDetails = flow.own(async () => {
+    dispatch({ type: 'loadingDefined', isRefresh: true });
+    await refreshMemberDetails();
+  });
+
   /** ScreenEvent_OnReady: GetUserInformation_Wrapper (after the app start's own step), then, unless the view is
-      restored from the cache with the same age visibility, UserAge_Visibility and Action_Refresh_Get_MemberDetails
-      (Actions_DefineLoading(True), then the refresh of Get_MemberDetails). */
+      restored from the cache with the same age visibility, UserAge_Visibility and Action_Refresh_Get_MemberDetails.
+      After the unmount the wrapper still answers; the variable write then does nothing and
+      Action_Refresh_Get_MemberDetails (R3) stops the flow (HouseholdRelations_Block.js:2136-2160). */
   const onReady = async (restored: boolean) => {
     const userInformation = await getUserInformation(); // a module action: not wrapped
-    if (!flow.alive()) return; // R3: Action_Refresh_Get_MemberDetails is an own action of the block
     // The wrapper returns the cached record: its Directory_UserCurrent is the action's UserInformation output.
     const displayAge = userInformation.Directory_UserCurrent.Directory_UserCurrent_Visibility.DisplayAge;
     if (restored && displayAge === latest.current.UserAge_Visibility) return;
     dispatch({ type: 'userAgeVisibilitySet', displayAge });
-    dispatch({ type: 'loadingDefined', isRefresh: true });
-    await refreshMemberDetails();
+    await actionRefreshGetMemberDetails();
   };
 
   /** OnClick_Member: HasAccessToRegion (a module action), then HouseholdDetails(HouseholdId) (R4 in useOsNavigate) or

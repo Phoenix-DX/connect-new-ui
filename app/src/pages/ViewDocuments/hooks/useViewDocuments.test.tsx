@@ -221,7 +221,15 @@ describe('useViewDocuments', () => {
     expect(getFeedbackMessage()?.message).toContain('Document not found');
   });
 
-  it('an UnknownError resets IsLoadingDocument and is raised again; another error keeps it', async () => {
+  it('an UnknownError resets IsLoadingDocument and is raised again with the flow scope; another error keeps it', async () => {
+    /* Each raise: the error, and whether it carried the flow scope of useFlowState (`alive` is a function). */
+    const raisedWithScope = () =>
+      vi
+        .mocked(raiseToFlowHandler)
+        .mock.calls.map(([error, scope]) => [
+          error,
+          typeof (scope as { alive?: unknown } | undefined)?.alive === 'function',
+        ]);
     const unknown = new UserException('cannot open', 'Connect2_OrbitMobile_MUI.UnknownError');
     vi.mocked(openInApp_TryOpenFileInApp).mockImplementationOnce(() => {
       throw unknown;
@@ -231,7 +239,7 @@ describe('useViewDocuments', () => {
       result.current.onDocumentClick(DOCS[0]?.DocumentURL ?? '', 'Conference Programme');
     });
     expect(result.current.state.isLoadingDocument).toBe(false);
-    expect(vi.mocked(raiseToFlowHandler).mock.calls).toEqual([[unknown]]);
+    expect(raisedWithScope()).toEqual([[unknown, true]]);
 
     const other = new TypeError('no name');
     vi.mocked(openInApp_TryOpenFileInApp).mockImplementationOnce(() => {
@@ -241,7 +249,7 @@ describe('useViewDocuments', () => {
       result.current.onDocumentClick('', '');
     });
     expect(result.current.state.isLoadingDocument).toBe(true);
-    expect(vi.mocked(raiseToFlowHandler).mock.calls[1]).toEqual([other]);
+    expect(raisedWithScope()[1]).toEqual([other, true]);
   });
 
   it('Contact Orbit Helpdesk with Orbit access: ContactByEmailOrbitHelpdesk with the event subject', async () => {

@@ -3,7 +3,11 @@ import type { ReactNode } from 'react';
 import { MemoryRouter } from 'react-router';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { fetchHousehold, fetchHouseholdCoordinates, type Household } from '@/api/household';
-import { CommunicationException, IgnorableSystemException } from '@/legacy/os/os-exceptions';
+import {
+  CommunicationException,
+  ControllerDisposedException,
+  IgnorableSystemException,
+} from '@/legacy/os/os-exceptions';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { mockUserInformation } from '@/platform/session/mockUser';
@@ -96,6 +100,8 @@ const raisedErrors = () =>
     .mocked(raiseToFlowHandler)
     .mock.calls.map(([error]) => error)
     .filter((error) => !(error instanceof IgnorableSystemException));
+/** The raise carried a flow scope (the `flow` of useFlowState: `alive` is a function). */
+const isFlowScope = (scope: unknown) => typeof (scope as { alive?: unknown } | undefined)?.alive === 'function';
 
 beforeEach(() => {
   vi.clearAllMocks();
@@ -112,6 +118,26 @@ describe('useHouseholdDetails after an unmount (flow scope, item 8)', () => {
     expect(fetchHouseholdCoordinates).toHaveBeenCalledTimes(1);
     expect(events.onHouseholdDataFetched).toHaveBeenCalledWith('Bahia Blanca', 'Argentina', false);
     expect(raiseToFlowHandler).not.toHaveBeenCalled();
+  });
+
+  it('R3: unmount while GetUserInformation_Wrapper is pending: the Refreshes node (flow.own) stops, no data action, no state write', async () => {
+    const user = pending<Awaited<ReturnType<typeof getUserInformation>>>();
+    vi.mocked(getUserInformation).mockReturnValueOnce(user.promise);
+    const { unmount } = renderFlows();
+    unmount();
+    vi.mocked(householdDetailsReducer).mockClear();
+    user.resolve(mockUserInformation());
+    await settle();
+    expect(fetchHousehold).not.toHaveBeenCalled();
+    expect(fetchHouseholdCoordinates).not.toHaveBeenCalled();
+    expect(householdDetailsReducer).not.toHaveBeenCalled();
+    expect(events.onHouseholdDataFetched).not.toHaveBeenCalled();
+    // The own action throws ControllerDisposedException (ensureControllerAlive); the handler ignores it.
+    const raised = vi
+      .mocked(raiseToFlowHandler)
+      .mock.calls.map(([error, scope]) => [error instanceof ControllerDisposedException, isFlowScope(scope)]);
+    expect(raised).toEqual([[true, true]]);
+    expect(raisedErrors()).toEqual([]);
   });
 
   it('R1: unmount while GetHousehold is pending: no event, no state write, nothing raised', async () => {

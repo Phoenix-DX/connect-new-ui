@@ -72,6 +72,14 @@ const advance = (ms: number) =>
   act(async () => {
     await vi.advanceTimersByTimeAsync(ms);
   });
+/** Each raise to the flow handler: the error, and whether it carried a flow scope (the `flow` of useFlowState). */
+const raisedWithScope = () =>
+  vi
+    .mocked(raiseToFlowHandler)
+    .mock.calls.map(([error, scope]) => [
+      error,
+      typeof (scope as { alive?: unknown } | undefined)?.alive === 'function',
+    ]);
 /** A promise that the test resolves or rejects. */
 function deferred<T>() {
   let resolve: (value: T) => void = () => undefined;
@@ -163,6 +171,17 @@ describe('useConnectShare', () => {
     expect(spy.navigate).not.toHaveBeenCalled();
   });
 
+  it('a failed upgrade popup of the alert timer goes to the flow handler with the flow scope (flow.run)', async () => {
+    vi.useFakeTimers();
+    const failure = new Error('popup failed');
+    vi.mocked(fetchShareDetails).mockResolvedValue(NO_ACCESS);
+    vi.mocked(showUpgradePopUp).mockRejectedValueOnce(failure);
+    renderFlows();
+    await advance(1000);
+    expect(showUpgradePopUp).toHaveBeenCalledTimes(1);
+    expect(raisedWithScope()).toEqual([[failure, true]]);
+  });
+
   it('an unavailable share shows its message and no popup', async () => {
     vi.useFakeTimers();
     vi.mocked(fetchShareDetails).mockResolvedValue(share({ isShareAvailable: false }));
@@ -183,13 +202,13 @@ describe('useConnectShare', () => {
     expect(raiseToFlowHandler).not.toHaveBeenCalled();
   });
 
-  it('a failed audit goes to the flow handler, and the screen renders with the first variables', async () => {
+  it('a failed audit goes to the flow handler with the flow scope, and the screen renders with the first variables', async () => {
     const failure = new ServerException('Request failed with an error');
     vi.mocked(fetchShareDetails).mockRejectedValue(new ServerException('Share not found'));
     vi.mocked(getUserInformation).mockRejectedValue(failure);
     const { result } = renderFlows();
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(failure);
+    expect(raisedWithScope()).toEqual([[failure, true]]);
     expect(result.current.isInitialized).toBe(true);
     expect(result.current.state.statusMessage).toBe('');
   });

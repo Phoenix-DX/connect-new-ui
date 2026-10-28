@@ -35,12 +35,6 @@ const ALLOWED = new Map([
   ['src/pages/Assemble_BrowseByCountry/hooks/useAssembleFilter.ts | fetchCountries', 'an own action (flow.own, R3)'],
   ['src/pages/BookmarksByGroup/hooks/useBookmarkGroup.ts | fetchBookmarks', 'a local refresh: flow.fetch is inside'],
   ['src/pages/EventBooklet/hooks/eventBookletDataFlows.ts | fetch', 'the parameter `fetch` is flow.fetch'],
-  // Data actions in two hooks outside the item 8 inventory, with no flow scope yet: item8-S5a.md, question Q1.
-  ['src/pages/ContactUsDetails/hooks/useContactUsDetails.ts | fetchLocalityTimezone', 'open: item8-S5a.md Q1'],
-  [
-    'src/pages/LDM_MyEvents_V2/hooks/useMyTimelineFilterButton.ts | fetchEventFilterLocalities',
-    'open: item8-S5a.md Q1',
-  ],
 ]);
 
 /** The .ts and .tsx files under a `hooks` folder, without the tests. */

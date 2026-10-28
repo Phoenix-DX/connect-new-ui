@@ -304,6 +304,27 @@ describe('useAttendeeSubdivision: the bookmark and the share', () => {
   });
 });
 
+describe('useAttendeeSubdivision: a failure of the household click and of share to Connect (flow.run, R6)', () => {
+  it.each(['the household click', 'share to Connect'] as const)(
+    '%s: a MaybeDisplaySubscriptionPopup failure goes to the flow handler with the flow scope (TST rethrows it, :770-773)',
+    async (handler) => {
+      const failure = new Error('Subscription check failed');
+      const { result, row } = await renderLoadedHall();
+      vi.mocked(maybeDisplaySubscriptionPopup).mockRejectedValueOnce(failure);
+      act(() => {
+        if (handler === 'the household click') result.current.onClickHousehold(row, 0);
+        else result.current.onClickShareConnect(row);
+      });
+      await settle();
+      expect(raisedErrors()).toEqual([failure]);
+      expect(scopeOf(failure)?.alive()).toBe(true);
+      expect(rememberFocusedScrollAnchor).not.toHaveBeenCalled();
+      expect(EVENTS.onNavigateToHouseholdCarousel).not.toHaveBeenCalled();
+      expect(EVENTS.onNavigateToShareObject).not.toHaveBeenCalled();
+    },
+  );
+});
+
 describe('useAttendeeSubdivision after an unmount (flow scope, item 8)', () => {
   it('R3: unmount while GetCacheableSubdivision_V2 is pending: Set_SelectedAssembleAttendeeListBookmarks does not run', async () => {
     const info = deferred<SubdivisionInformation>();

@@ -1072,3 +1072,5 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-28,clarify-item8,build,200170,build-S4a-opus,opus,"item 8 S4a Orbit events 5 hooks + N3, 63 calls"
 2026-10-28,clarify-item8,build,244022,build-S4b-opus,opus,"item 8 S4b LDM/milestones/docs 8 hooks, 63 calls"
 2026-10-28,clarify-item8,build,177268,build-S5a-opus,opus,"item 8 S5a platform: run sync throw, runAwaited, onReady(flow), flow-fetch check, 46 calls"
+2026-10-28,clarify-item8,build,169238,build-S5b-opus,opus,"item 8 S5b cleanup 6 hooks, 94 calls (over budget)"
+2026-10-28,clarify-item8,build,179377,build-S5c-opus,opus,"item 8 S5c MessageDetail/MessageList/ContactUs/TimelineFilter, 76 calls (over budget)"

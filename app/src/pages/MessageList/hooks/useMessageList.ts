@@ -11,7 +11,6 @@ import {
 import { markAllNotificationsAsRead, type NotificationReadFilter } from '@/api/notification';
 import { synchronizeNumberUnreadMessages } from '@/platform/bootstrap/startup';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
-import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { useFlowState, useWasRestoredFromCache, type BackNavigationEvent } from '@/platform/navigation';
 import { clientVar } from '@/platform/session/session';
 import { decrementReadMessagesCounter } from '@/platform/session/unreadCounters';
@@ -28,7 +27,9 @@ import { setUnreadNotificationsNumber } from './unreadNotifications';
     events, the info message and the refresh do not run. Wrapper_MarkAllAsReadNotifications, MarkMessageAsRead and
     MarkMessageAsClear are server actions (R2): their flows go on, and stop at the next own action of the block
     (RefreshMessages MessageList.js:1661, UpdateMessageRead :1952, UpdateMessageClear :1910: R3, `flow.own`). The
-    block events go through `flow.events` (R3).
+    block events go through `flow.events` (R3). A failed GetMessages throws (`refreshGetMessages`): OnScrollEnding,
+    OnHandle_SearchHistorySelectedItem, OnParametersChanged and the other callers of RefreshMessages stop, and the
+    error reaches the flow handler once (user, 2026-10-28, S2c Q1 (a)).
     @origin Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageList */
 
 /** The inputs of the block, and the session state that the block reads. */
@@ -114,25 +115,22 @@ export function useMessageList(
     setUnreadNotificationsNumber(result.countUnreadMessages);
   };
 
-  /** Refresh Query GetMessages (R1, `flow.fetch`); a failure goes to the flow handler with the flow scope. Returns
-      false when the flow stops. */
-  const refreshGetMessages = async (): Promise<boolean> => {
+  /** Refresh Query GetMessages (R1, `flow.fetch`). A failure throws: the calling flow stops and the error reaches the
+      flow handler once, from the top of the flow (`useFlowState`, `flow.run`, `flow.runAwaited`). On TST, the catch of
+      RefreshMessages and of OnScrollEnding throws the error again (ScreenBlock_MessageList :1654-1707, :1829-1902;
+      item8-w23-errorpage.md §6; user, 2026-10-28, S2c Q1 (a)). */
+  const refreshGetMessages = async (): Promise<void> => {
     const result = await flow.fetch(getMessages.refetch());
-    if (result.isSuccess) {
-      onAfterFetchGetMessages(result.data);
-      return true;
-    }
-    raiseToFlowHandler(result.error, flow);
-    return false;
+    if (result.isError) throw result.error;
+    if (result.isSuccess) onAfterFetchGetMessages(result.data);
   };
 
   /** RefreshMessages(IsScrollToTop): IsRefreshing True, refresh GetMessages, ScrollToTop JS. An own action of the
-      block (R3, MessageList.js:1661). */
-  const refreshMessages = flow.own(async (isScrollToTop: boolean): Promise<boolean> => {
+      block (R3, MessageList.js:1661) with no exception handler: a failed refresh stops its caller. */
+  const refreshMessages = flow.own(async (isScrollToTop: boolean): Promise<void> => {
     dispatch({ type: 'refreshStarted' });
-    const ok = await refreshGetMessages();
-    if (ok && isScrollToTop) scrollContentToTop();
-    return ok;
+    await refreshGetMessages();
+    if (isScrollToTop) scrollContentToTop();
   });
 
   // OnInitialize of a view that the view cache restores: FocusCursor only (the variables come back with the view).
@@ -172,14 +170,14 @@ export function useMessageList(
   /** OnClick_ApplyFilters: SaveSetting, RefreshMessages(False), then ToggleShowFilters. */
   const onClickApplyFilters = async () => {
     dispatch({ type: 'settingSaved' });
-    if (!(await refreshMessages(false))) return;
+    await refreshMessages(false);
     toggleShowFilters();
   };
   /** OnClick_ResetFilters: the default filters, SaveSetting, RefreshMessages(False), then ToggleShowFilters. */
   const onClickResetFilters = async () => {
     dispatch({ type: 'filtersReset', signedIn });
     dispatch({ type: 'settingSaved' });
-    if (!(await refreshMessages(false))) return;
+    await refreshMessages(false);
     toggleShowFilters();
   };
 
@@ -244,7 +242,7 @@ export function useMessageList(
     dispatch({ type: 'showLoadingSet', isShowLoading: true });
     const totalChange = await markAllNotificationsAsRead(markAllAsReadFilter(latest.current.variables));
     if (totalChange > 0) {
-      if (!(await refreshMessages(false))) return;
+      await refreshMessages(false);
       await synchronizeNumberUnreadMessages();
     }
     dispatch({ type: 'showLoadingSet', isShowLoading: false });
@@ -278,7 +276,7 @@ export function useMessageList(
   };
 
   /** OnScrollEnding: not refreshing → isLoadMore; when fetched and the list holds at least MaxRecords - 20 rows,
-      MaxRecords + 20 and RefreshMessages; isLoadMore False. */
+      MaxRecords + 20 and RefreshMessages; isLoadMore False. A failed refresh stops it before isLoadMore False. */
   const onScrollEnding = async (): Promise<void> => {
     if (latest.current.variables.IsRefreshing) return;
     dispatch({ type: 'loadMoreSet', isLoadMore: true });

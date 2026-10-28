@@ -83,7 +83,7 @@ input goes to `pages/<Route>/inputs.ts`, not to `api.ts`. A `types.ts` that hold
     | a widget handler that starts a flow                                                                              | `flow.run(() => handler(…))`                                                              | R6                      |
     | a widget handler that starts a flow and awaits it (a list's OnScrollEnding, a swipe item that keeps its class)   | `return flow.runAwaited(() => handler(…))`                                                | R6                      |
     | a state write                                                                                                    | `dispatch(…)` as today                                                                    | no-op after the unmount |
-    - The hooks that still have W23 guards and once-guards keep them until their group step (item 8 §7.1, S1–S5).
+    - All hooks follow these rules since item 8 (S1 to S5, 2026-10-28); `npm run flow-fetch` checks the R1 wraps.
     - `flow.run` and `flow.runAwaited` start the flow at once and send its error to the flow handler with the flow
       scope: a rejection, and also a synchronous throw (for example the `ControllerDisposedException` of a `flow.own`
       action that a widget calls after the unmount). `flow.runAwaited` returns the promise of the flow: its value, or

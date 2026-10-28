@@ -90,6 +90,12 @@ const raisedErrors = () =>
     .mock.calls.map(([error]) => error)
     .filter((error) => !(error instanceof IgnorableSystemException));
 
+/** The second argument of a raise: the flow scope of the block. */
+const FLOW_SCOPE: unknown = expect.objectContaining({
+  alive: expect.any(Function) as unknown,
+  active: expect.any(Function) as unknown,
+});
+
 /** OnReady to its end: GetMessages answers an empty list. */
 async function loaded(strict = false) {
   const view = renderFlows(strict);
@@ -290,7 +296,66 @@ describe('useMessageList while the block lives', () => {
     vi.mocked(fetchMessages).mockRejectedValueOnce(error);
     renderFlows();
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
+    expect(vi.mocked(raiseToFlowHandler).mock.calls).toEqual([[error, FLOW_SCOPE]]);
+  });
+
+  /* S2c Q1 (a): RefreshMessages has no exception handler and the catch of OnScrollEnding throws again
+     (item8-w23-errorpage.md §6): a failed GetMessages stops the calling flow, and the error reaches the flow handler
+     once. */
+  it('a failed GetMessages stops OnScrollEnding before isLoadMore = False; one raise; the Promise settles', async () => {
+    const { result } = await loaded();
+    const error = new Error('Service Interruption');
+    vi.mocked(fetchMessages).mockRejectedValueOnce(error);
+    let done: Promise<void> = Promise.resolve();
+    act(() => {
+      done = result.current.onScrollEnding();
+    });
+    await act(() => done);
+    expect(result.current.variables.isLoadMore).toBe(true);
+    expect(vi.mocked(raiseToFlowHandler).mock.calls).toEqual([[error, FLOW_SCOPE]]);
+  });
+
+  it('a failed GetMessages stops OnHandle_SearchHistorySelectedItem: no ScrollToTop; one raise', async () => {
+    const content = document.createElement('div');
+    content.className = 'content';
+    document.body.append(content);
+    const scrollTop = vi.fn();
+    Object.defineProperty(content, 'scrollTop', { configurable: true, get: () => 50, set: scrollTop });
+    const { result } = await loaded();
+    const error = new Error('Service Interruption');
+    vi.mocked(fetchMessages).mockRejectedValueOnce(error);
+    act(() => {
+      result.current.onSearchSubmit();
+    });
+    await settle();
+    expect(scrollTop).not.toHaveBeenCalled();
+    expect(vi.mocked(raiseToFlowHandler).mock.calls).toEqual([[error, FLOW_SCOPE]]);
+  });
+
+  it('a failed GetMessages stops OnParametersChanged before the PullToRefreshTriggered event; one raise', async () => {
+    const { rerender } = await loaded();
+    const error = new Error('Service Interruption');
+    vi.mocked(fetchMessages).mockRejectedValueOnce(error);
+    rerender({ triggerPullToRefresh: true });
+    await settle();
+    expect(fetchMessages).toHaveBeenCalledTimes(1);
+    expect(events.onPullToRefreshTriggered).not.toHaveBeenCalled();
+    expect(vi.mocked(raiseToFlowHandler).mock.calls).toEqual([[error, FLOW_SCOPE]]);
+  });
+
+  it('a failed GetMessages of OnClick_ApplyFilters keeps the filters open; one raise', async () => {
+    const { result } = await loaded();
+    act(() => {
+      result.current.onFilter();
+    });
+    const error = new Error('Service Interruption');
+    vi.mocked(fetchMessages).mockRejectedValueOnce(error);
+    act(() => {
+      result.current.onApplyFilters();
+    });
+    await settle();
+    expect(result.current.variables.ShowFilters).toBe(true);
+    expect(vi.mocked(raiseToFlowHandler).mock.calls).toEqual([[error, FLOW_SCOPE]]);
   });
 
   it('the own actions run: UpdateMessageRead and UpdateMessageClear (not read) decrement the counter', async () => {

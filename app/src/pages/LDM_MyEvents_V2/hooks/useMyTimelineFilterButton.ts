@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type { EventCalendarFiltersAsText } from '@/api/event';
 import { fetchEventFilterLocalities } from '@/api/locality';
-import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
+import { useFlowScope } from '@/platform/navigation';
 import { addAuditEvent_LDM, getCurrentTimeInMill } from '@/lib/orbit/actions';
 import { NULL_DATE } from './myTimelineFiltersState';
 
@@ -43,6 +43,10 @@ const NO_FILTERS: EventCalendarFiltersAsText = { FromDate: NULL_DATE, ToDate: NU
     - OnHandle_ResetFilters(In_ResetFilters) (:465-492): SelectedFilters = In_ResetFilters.
     The variables of the block are not kept by the view cache: a view restored by a back navigation fetches the
     localities again.
+    Flow scope (item 8, user 2026-10-28, item8-S5a.md Q1 (a)): GetEventLocalitiesForFilter is a data action
+    (IDataAction on the MCP, R1, `flow.fetch`). After the unmount its answer and its failure are dropped: no
+    SelectedFilters write, no RequestAPI_EventLocalities audit, no raise. A failure while the block lives goes to the
+    flow handler with the flow scope (`flow.run`, R6).
     @origin Connect2_OrbitMobile_MUI.LDM_Blocks_V2.MyEvents_MyTimelineFilterButton */
 export function useMyTimelineFilterButton(
   hasLoaded: boolean,
@@ -64,29 +68,31 @@ export function useMyTimelineFilterButton(
     setSelectedFiltersState(value);
   };
 
+  const flow = useFlowScope();
+
   useEffect(() => {
     if (!hasLoaded || hasLocalityData.current || fetching.current) return;
     fetching.current = true;
-    void (async () => {
+    flow.run(async () => {
       try {
         const start = getCurrentTimeInMill();
-        const localities = await fetchEventFilterLocalities({
-          In_HasLoaded: hasLoaded,
-          In_DefaultDateRangeInMonths: defaultDateRangeInMonths,
-          In_IsShowing: isShowing,
-          IsShowFilters: isShowFilters,
-          HasLocalityData: false,
-        });
+        const localities = await flow.fetch(
+          fetchEventFilterLocalities({
+            In_HasLoaded: hasLoaded,
+            In_DefaultDateRangeInMonths: defaultDateRangeInMonths,
+            In_IsShowing: isShowing,
+            IsShowFilters: isShowFilters,
+            HasLocalityData: false,
+          }),
+        ); // R1
         setSelectedFilters({ ...latest.current.selectedFilters, Localities: localities });
         hasLocalityData.current = true;
         addAuditEvent_LDM('RequestAPI_EventLocalities', { RequestTime: String(getCurrentTimeInMill() - start) });
-      } catch (e) {
-        raiseToFlowHandler(e);
       } finally {
         fetching.current = false;
       }
-    })();
-  }, [hasLoaded, defaultDateRangeInMonths, isShowing, isShowFilters]);
+    });
+  }, [flow, hasLoaded, defaultDateRangeInMonths, isShowing, isShowFilters]);
 
   const toggleEventFilters = () => {
     if (latest.current.isShowing) setIsShowFilters((v) => !v);

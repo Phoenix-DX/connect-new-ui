@@ -353,6 +353,9 @@ describe('useMessageDetail', () => {
   });
 });
 
+/** The second argument of a raise: the flow scope of the block. */
+const FLOW_SCOPE: unknown = expect.objectContaining({ alive: expect.any(Function) as unknown });
+
 /** The errors that reached the flow handler, without the ignorable ones (the handler drops them: R1, R3). */
 const raisedErrors = () =>
   vi
@@ -476,11 +479,14 @@ describe('useMessageDetail after an unmount and in StrictMode (flow scope, item 
     await settle();
     const orbit = pending<{ orbitMilestoneId: string; orbitEventId: string; orbitEventName: string }>();
     vi.mocked(getOrbitNotificationParameters).mockReturnValueOnce(orbit.promise);
-    const click = result.current.onClickViewOrbitEvent(MessageSenderTarget.Orbit);
+    act(() => {
+      result.current.onClickViewOrbitEvent(MessageSenderTarget.Orbit);
+    });
     unmount();
     orbit.resolve({ orbitMilestoneId: 'M-77', orbitEventId: '7301', orbitEventName: 'Harvest Supper' });
-    await click;
+    await settle();
     expect(events.onNavigateToOrbitMilestone).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 
   it('a card submit after the unmount: the refresh (R1) stops the flow; no "Thanks" message', async () => {
@@ -489,14 +495,14 @@ describe('useMessageDetail after an unmount and in StrictMode (flow scope, item 
     await settle();
     const stored = pending<undefined>();
     vi.mocked(storeAdaptiveCardResponses).mockReturnValueOnce(stored.promise);
-    const submit = result.current
-      .adaptiveCardViewerOnExecuteAction('{}', 'rsvp', '{"answer":"yes"}')
-      .catch((error: unknown) => error);
+    const submit = result.current.adaptiveCardViewerOnExecuteAction('{}', 'rsvp', '{"answer":"yes"}');
     vi.mocked(showFeedbackMessage).mockClear();
     unmount();
     stored.resolve(undefined);
-    // The caller (NotificationDetailBlock) sends it to the flow handler, which drops it.
-    expect(await submit).toBeInstanceOf(IgnorableSystemException);
+    // `flow.runAwaited` sends the ControllerDisposedException to the flow handler with the scope, which drops it.
+    await expect(submit).resolves.toBeUndefined();
+    expect(vi.mocked(raiseToFlowHandler).mock.calls).toEqual([[expect.any(IgnorableSystemException), FLOW_SCOPE]]);
+    expect(raisedErrors()).toEqual([]);
     expect(showFeedbackMessage).not.toHaveBeenCalled();
   });
 
@@ -553,6 +559,14 @@ async function loaded(
   return flows.result;
 }
 
+/** The click of ViewOrbitEvent: `flow.run` starts OnClick_ViewOrbitEvent and returns nothing, so the test settles. */
+async function viewOrbitEvent(flows: { current: MessageDetailFlows }, messageSenderTargetId: number) {
+  act(() => {
+    flows.current.onClickViewOrbitEvent(messageSenderTargetId);
+  });
+  await settle();
+}
+
 describe('OnClick_ViewOrbitEvent and OnClick_ViewAssembleEvent (SBMD:1210-1506)', () => {
   const orbitParameters = [param(2, '7301'), param(3, 'Harvest Supper')];
 
@@ -563,7 +577,7 @@ describe('OnClick_ViewOrbitEvent and OnClick_ViewAssembleEvent (SBMD:1210-1506)'
       orbitEventId: '7301',
       orbitEventName: 'Harvest Supper',
     });
-    await act(() => result.current.onClickViewOrbitEvent(MessageSenderTarget.Orbit));
+    await viewOrbitEvent(result, MessageSenderTarget.Orbit);
     expect(getOrbitNotificationParameters).toHaveBeenCalledWith(orbitParameters);
     expect(events.onNavigateToOrbitMilestone).toHaveBeenCalledWith('M-77', '7301', 'Harvest Supper');
 
@@ -572,7 +586,7 @@ describe('OnClick_ViewOrbitEvent and OnClick_ViewAssembleEvent (SBMD:1210-1506)'
       orbitEventId: '7301',
       orbitEventName: 'Harvest Supper',
     });
-    await act(() => result.current.onClickViewOrbitEvent(MessageSenderTarget.Orbit));
+    await viewOrbitEvent(result, MessageSenderTarget.Orbit);
     expect(events.onNavigateToOrbitEvent).toHaveBeenCalledWith(MOCK_USER_ID, '7301', 'Harvest Supper');
   });
 
@@ -584,7 +598,7 @@ describe('OnClick_ViewOrbitEvent and OnClick_ViewAssembleEvent (SBMD:1210-1506)'
       orbitStartDate: '2026-11-02T18:00:00',
       orbitEndDate: null,
     });
-    await act(() => result.current.onClickViewOrbitEvent(MessageSenderTarget.OrbitHostSurvey));
+    await viewOrbitEvent(result, MessageSenderTarget.OrbitHostSurvey);
     expect(events.onNavigateToOrbitHostSurvey).not.toHaveBeenCalled();
     vi.mocked(getOrbitHostSurveyNotificationParameters).mockResolvedValueOnce({
       orbitEventId: '7301',
@@ -592,7 +606,7 @@ describe('OnClick_ViewOrbitEvent and OnClick_ViewAssembleEvent (SBMD:1210-1506)'
       orbitStartDate: '2026-11-02T18:00:00',
       orbitEndDate: '2026-11-02T21:00:00',
     });
-    await act(() => result.current.onClickViewOrbitEvent(MessageSenderTarget.OrbitHostSurvey));
+    await viewOrbitEvent(result, MessageSenderTarget.OrbitHostSurvey);
     expect(events.onNavigateToOrbitHostSurvey).toHaveBeenCalledWith(
       MOCK_USER_ID,
       '7301',
@@ -605,13 +619,13 @@ describe('OnClick_ViewOrbitEvent and OnClick_ViewAssembleEvent (SBMD:1210-1506)'
   it('shows the access errors and does nothing without parameters', async () => {
     const result = await loaded(MessageSenderTarget.OrbitHostSurvey, orbitParameters);
     vi.mocked(getHasOrbitHostSurvey).mockReturnValueOnce(false);
-    await act(() => result.current.onClickViewOrbitEvent(MessageSenderTarget.OrbitHostSurvey));
+    await viewOrbitEvent(result, MessageSenderTarget.OrbitHostSurvey);
     expect(showFeedbackMessage).toHaveBeenLastCalledWith(
       "You don't have access to Orbit Host Survey. Please contact the Orbit Helpdesk if you have any questions.",
       3,
     );
     vi.mocked(getHasOrbitAccess).mockReturnValueOnce(false);
-    await act(() => result.current.onClickViewOrbitEvent(MessageSenderTarget.Orbit));
+    await viewOrbitEvent(result, MessageSenderTarget.Orbit);
     expect(showFeedbackMessage).toHaveBeenLastCalledWith(
       "You don't have access to Orbit. Please contact the Orbit Helpdesk if you have any questions.",
       3,
@@ -619,9 +633,19 @@ describe('OnClick_ViewOrbitEvent and OnClick_ViewAssembleEvent (SBMD:1210-1506)'
 
     const empty = await loaded(MessageSenderTarget.Orbit, []);
     vi.mocked(showFeedbackMessage).mockClear();
-    await act(() => empty.current.onClickViewOrbitEvent(MessageSenderTarget.Orbit));
+    await viewOrbitEvent(empty, MessageSenderTarget.Orbit);
     expect(showFeedbackMessage).not.toHaveBeenCalled();
     expect(getOrbitNotificationParameters).not.toHaveBeenCalled();
+  });
+
+  it('a failed Get_OrbitNotificationParameters goes to the flow handler once, with the flow scope (S2a Q1 (a))', async () => {
+    const result = await loaded(MessageSenderTarget.Orbit, orbitParameters);
+    const error = new Error('Service Interruption');
+    vi.mocked(getOrbitNotificationParameters).mockRejectedValueOnce(error);
+    await viewOrbitEvent(result, MessageSenderTarget.Orbit);
+    expect(vi.mocked(raiseToFlowHandler).mock.calls).toEqual([[error, FLOW_SCOPE]]);
+    expect(events.onNavigateToOrbitMilestone).not.toHaveBeenCalled();
+    expect(events.onNavigateToOrbitEvent).not.toHaveBeenCalled();
   });
 
   it('opens the Assemble event of its parameters, or shows the access error', async () => {
@@ -689,5 +713,20 @@ describe('AdaptiveCardViewerOnExecuteAction (SBMD:1569-1737)', () => {
     vi.mocked(storeAdaptiveCardResponses).mockRejectedValueOnce(new CommunicationException('offline'));
     await act(() => result.current.adaptiveCardViewerOnExecuteAction(card, 'rsvp', '{"answer":"yes"}'));
     expect(showFeedbackMessage).toHaveBeenLastCalledWith('Please check your internet connection!', 0);
+    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+  });
+
+  it('another failure goes to the flow handler once, with the flow scope; the promise resolves', async () => {
+    const result = await loaded(MessageSenderTarget.Directory, [], { isAdaptiveCard: true, adaptiveCardContent: card });
+    const error = new Error('Service Interruption');
+    vi.mocked(storeAdaptiveCardResponses).mockRejectedValueOnce(error);
+    vi.mocked(showFeedbackMessage).mockClear();
+    await act(async () => {
+      await expect(
+        result.current.adaptiveCardViewerOnExecuteAction(card, 'rsvp', '{"answer":"yes"}'),
+      ).resolves.toBeUndefined();
+    });
+    expect(vi.mocked(raiseToFlowHandler).mock.calls).toEqual([[error, FLOW_SCOPE]]);
+    expect(showFeedbackMessage).not.toHaveBeenCalled();
   });
 });

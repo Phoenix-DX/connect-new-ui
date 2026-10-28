@@ -62,7 +62,9 @@ export interface HouseholdDetailsEvents {
     Flow scope (item 8): GetHousehold and GetHousehold_Coordinates are data actions (R1, `flow.fetch`): after the
     unmount their answer and their failure are dropped, so OnAfterFetch_GetHouseholdDetail, the event and the rest of
     OnParametersChanged do not run. Handler_OnClickNavigateTomarriedChildren_Household is an own action of the block
-    (R3, `flow.own`, HouseholdDetails_Block.js:1745-1750). HasAccessToRegion and the upgrade popup are module
+    (R3, `flow.own`, HouseholdDetails_Block.js:1745-1750). The "Refreshes" node of OnInitialize, after
+    GetUserInformation_Wrapper, calls own actions too (R3, `flow.own`, :2677-2680, 2733; S1a Q2 (a), user
+    2026-10-28). HasAccessToRegion and the upgrade popup are module
     actions: they run after leaving. The `isAlive` checks that stay guard a superseded OnParametersChanged run
     (item 8 §6, point 5 (a)). */
 export function useHouseholdDetails(
@@ -78,7 +80,8 @@ export function useHouseholdDetails(
     parameters: inputs,
     events,
     // The flows are defined below; the hook calls the ones of the newest render.
-    // OnReady gets the `flow` that this call returns: `scope.alive()` is false after the unmount.
+    // OnReady gets the `flow` that this call returns. `scope.alive` goes to the refresh helpers, whose `isAlive`
+    // checks are for a superseded OnParametersChanged run.
     onReady: (scope, restored) => onInitialize(scope.alive, restored),
     onParametersChanged: (isAlive) => onParametersChanged(isAlive),
   });
@@ -124,16 +127,19 @@ export function useHouseholdDetails(
     const coordinates = await flow.fetch(fetchHouseholdCoordinates(callInputs())); // R1
     if (isAlive()) dispatch({ type: 'coordinatesFetched', coordinates });
   };
-  /** The "Refreshes" node: both refreshes, not awaited. */
-  const refreshes = (isAlive: IsAlive) => {
+  /** The "Refreshes" node: both refreshes, not awaited. Refresh_GetHouseholdDetail and
+      Refresh_GetHouseholdDetail_Coordinates are own actions of the block (R3, ensureControllerAlive,
+      HouseholdDetails_Block.js:2326+, 2512+): after the unmount the call throws ControllerDisposedException, so the
+      flow that calls it stops there and the handler ignores the exception. */
+  const refreshes = flow.own((isAlive: IsAlive) => {
     flow.run(() => refreshHousehold(isAlive));
     flow.run(() => refreshCoordinates(isAlive));
-  };
+  });
 
-  /** OnInitialize (OnReady). */
+  /** OnInitialize (OnReady). After the unmount, GetUserInformation_Wrapper (a module action) still answers; the
+      variable writes then do nothing and the "Refreshes" node (R3) stops the flow. */
   const onInitialize = async (isAlive: IsAlive, restored: boolean) => {
-    const userInformation = await getUserInformation(); // GetUserInformation_Wrapper, after the app start's step
-    if (!isAlive()) return;
+    const userInformation = await getUserInformation(); // GetUserInformation_Wrapper, a module action: not wrapped
     // The shell wrapper returns the cached record: its Directory_UserCurrent is the action's UserInformation output.
     const displayAge = userInformation.Directory_UserCurrent.Directory_UserCurrent_Visibility.DisplayAge;
     // CheckRestored (FromHistory is commented out): a restored view with the same age visibility keeps its data.

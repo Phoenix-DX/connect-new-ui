@@ -56,7 +56,8 @@ function feedbackMessageAfterTransition(message: string, messageType: number): v
     - OnClick_Document: nothing while a document opens; else IsLoadingDocument True and OpenInApp_TryOpenFileInApp
       (name with the PDF extension, URL, "orbit-documents", PDF). Not in the app (always in the browser: the document
       opens in a new tab, decision U18): Action_OpenDoc(name), IsLoadingDocument False. An UnknownError resets
-      IsLoadingDocument and is raised again.
+      IsLoadingDocument and is raised again. Every error of the synchronous call goes to the flow handler with the
+      flow scope (R6, item 8 S4b D6).
     - The HandleDownload events (only a FileTransfer download in the app raises them, never in the browser):
       OnDownloadComplete runs OpenDocumentFromLocalPath (FileViewerPlugin, Cordova only: logged), then
       Action_OpenDoc(Name); OnDownloadError resets IsLoadingDocument and shows the plugin's message
@@ -121,7 +122,7 @@ export function useViewDocuments(
       }
     } catch (e) {
       if (isUserException(e, 'Connect2_OrbitMobile_MUI.UnknownError')) set({ isLoadingDocument: false });
-      raiseToFlowHandler(e);
+      raiseToFlowHandler(e, flow); // R6: the flow handler checks the context of the screen
     }
   };
 

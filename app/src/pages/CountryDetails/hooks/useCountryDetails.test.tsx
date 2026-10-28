@@ -190,7 +190,7 @@ describe('useCountryDetails', () => {
     expect(result.current.location.pathname).toBe('/UBTConnect/CountryDetails');
   });
 
-  it('W23: an access check that is pending when the screen closes still shows the upgrade pop-up, once', async () => {
+  it('flow scope (item 8): an access check (module action) pending when the screen closes still shows the upgrade pop-up, once', async () => {
     let answer: (hasAccess: boolean) => void = () => undefined;
     vi.mocked(hasAccessToRegion).mockReturnValueOnce(
       new Promise((resolve) => {

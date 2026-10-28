@@ -9,7 +9,7 @@ import { Type_ContactSubject } from '@/pages/ContactUsDetails/staticEntities';
 import { feedbackMessageAutoClose } from '@/platform/feedback';
 import { confirmAction } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { useNavigateBack } from '@/platform/navigation';
+import { useFlowScope, useNavigateBack } from '@/platform/navigation';
 import { pinCheck } from '@/platform/session/pin';
 import { currentUserId } from '@/platform/session/session';
 import { preventNavigation, type NavigationEvent } from '@/lib/navigationEvent';
@@ -84,28 +84,33 @@ export function useContactUsDetails(inputs: ContactUsDetailsInputs): ContactUsDe
     dispatchToView(action);
   }, []);
 
+  /* Flow scope (item 8, user 2026-10-28, item8-S5a.md Q1 (a)): DataAction_GetCountriesNames and
+     DataAction_GetLocalityTimezone are data actions (IDataAction on the MCP, R1, `flow.fetch`). After the unmount
+     their answer and their failure are dropped: no state write, no raise. A failure while the screen lives goes to
+     the flow handler with the flow scope (`flow.run`, R6). */
+  const flow = useFlowScope();
+
   // ScreenEvent_OnReady: signed out, refresh DataAction_GetCountriesNames.
   const onReadyDone = useRef(false);
   useEffect(() => {
     if (onReadyDone.current) return;
     onReadyDone.current = true;
     if (latest.current.isLogged) return;
-    fetchCountryNames(countriesCallInputs(latest.current, inputs))
-      .then((countries) => {
-        dispatch({ type: 'countriesFetched', countries });
-      })
-      .catch(raiseToFlowHandler);
-  }, [dispatch, inputs]);
+    flow.run(async () => {
+      const countries = await flow.fetch(fetchCountryNames(countriesCallInputs(latest.current, inputs))); // R1
+      dispatch({ type: 'countriesFetched', countries });
+    });
+  }, [dispatch, flow, inputs]);
 
   // CacheControl_UserInfo_WrapperResult(UserInformation), then the refresh of DataAction_GetLocalityTimezone.
   const userInformationResult = async (userInformation: Directory_UserCurrent) => {
     dispatch({ type: 'userInformationFetched', user: userInformation });
-    const timezone = await fetchLocalityTimezone(localityTimezoneCallInputs(latest.current, inputs));
+    const timezone = await flow.fetch(fetchLocalityTimezone(localityTimezoneCallInputs(latest.current, inputs))); // R1
     dispatch({ type: 'timezoneFetched', timezone });
   };
 
   const onUserInformation = (userInformation: Directory_UserCurrent) => {
-    userInformationResult(userInformation).catch(raiseToFlowHandler);
+    flow.run(() => userInformationResult(userInformation));
   };
 
   const onMessageChange = (message: string) => {

@@ -32,8 +32,8 @@ export interface MessageDetailViewProps {
   hasAssemble?: boolean;
   /** The Share_UI block of a Sharing message (Placeholder MessageDetails): the page builds it. */
   shareObjectDetail?: ReactNode;
-  /** OnClick_ViewOrbitEvent(MessageSenderTargetId). */
-  onClickViewOrbitEvent?: (messageSenderTargetId: number) => unknown;
+  /** OnClick_ViewOrbitEvent(MessageSenderTargetId): the handler starts the flow and sends its error to the flow handler. */
+  onClickViewOrbitEvent?: (messageSenderTargetId: number) => void;
   /** OnClick_ViewAssembleEvent(MessageSenderTargetId). */
   onClickViewAssembleEvent?: (messageSenderTargetId: number) => unknown;
   /** AdaptiveCardViewerOnExecuteAction, the handler of NotificationDetailBlock's AdaptiveCardEventExecuted. */
@@ -91,7 +91,9 @@ function MessageContent({
         data-button=""
         id={`${prefix}-ViewOrbitEvent`}
         type="button"
-        onClick={() => void onClickViewOrbitEvent?.(target)}
+        onClick={() => {
+          onClickViewOrbitEvent?.(target);
+        }}
       >
         {orbitButtonText(target)}
       </button>
