@@ -370,3 +370,6 @@ proves no regression). A pixel check of `_error.html` against one TST capture (s
   navigation of the old screen from the start of the navigation. TST blocks it only after the new screen's controller
   exists (`setAsActiveScreen`, OutSystems.js W517020). The two differ only while the new screen's code loads. This is
   a known difference.
+- S0b questions (user, 2026-10-28): Q3 (c), a separate item after item 8. It checks the TST global error handler
+  (`setErrorHandler`) first, then designs the render and route errors (`ErrorBoundary`, `RouteError`). Q4 (a): the
+  production precache of `_error.html` waits for the production phase.

@@ -55,6 +55,8 @@ Earlier status (third session): the clarify work was complete before the fix wav
      hooks, N1-N6); design `review/item8-solution.md` approved (flow scope, static error page, open points as
      recommended, N2-N4 fixed in the waves). Build steps S0a, S0b, then groups B, A, C, D, then cleanup; notes in
      `builds/item8-*.md`.
+     - Later (user, 2026-10-28): a separate item for the render and route errors (check the TST global error handler
+       first, Q3 c); the production precache of `_error.html` waits for the production phase (Q4 a).
 
 Open items for the user:
 - The 13 decisions of the build wave: answered 2026-10-28.
