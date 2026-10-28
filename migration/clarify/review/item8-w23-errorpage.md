@@ -135,3 +135,13 @@ Group D (2026-10-28): DEV = TST on every call.
 | IDataAction (R1) | GetAccommodationGuest, GetCaptions, GetAccommodationHelper, GetAccommodationHost, Get_Document, Get_EventBookletFilters, Get_EventBookletGuests, Get_EventBookletHelpers, FetchEventNotes (Fetch AtStart), Get_EventDetails, Get_HasDocuments, Get_HasQRCode, Get_HostSurveyStatus, GetCoordinatorDetails, GetEventByEventId, GetGuestArrangements, GetHelperDetails, GetHostSurvey, GetMealGuest, GetMealHelper, GetMealHost, GetGmpMilestoneHost, GetEventsForCalendar, GetEventsForMyTimeline, Get_TransportDetail, GetEventDocuments |
 
 All four groups are checked: 76 data actions and aggregates, all of the kind that the TST code shows.
+
+## 6. Facts for the cleanup step S5
+
+- S2c Q1, MessageList (2026-10-28). The screen action RefreshMessages refreshes GetMessages and has no exception
+  handler (MCP IScreenAction RefreshMessages, Connect2_LegacyShared). In the TST code, its catch and the catch of
+  OnScrollEnding throw the error again (`ScreenBlock_MessageList` dump :1654-1707, :1829-1902). So a failed GetMessages
+  stops OnScrollEnding before `isLoadMore = False`, and also OnHandle_SearchHistorySelectedItem and OnParametersChanged
+  (PullToRefresh before the PullToRefreshTriggered event, :1529-1588, :1756-1795). The error goes to the flow handler
+  once. React (`useMessageList.ts` `refreshGetMessages`) raises and returns false, and its callers go on. S5 makes it
+  throw (the user's decision (a)).
