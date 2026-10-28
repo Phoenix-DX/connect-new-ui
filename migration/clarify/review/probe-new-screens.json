@@ -1,0 +1,248 @@
+{
+ "ranAt": "2026-10-28T15:51:00.656Z",
+ "site": "UBTConnect TST",
+ "account": "the test account of site_auth (not named)",
+ "steps": {
+  "notifications": {
+   "route": "/UBTConnect/Notifications",
+   "httpStatus": 200,
+   "reachedView": true,
+   "view": "App_Notifications.Notifications",
+   "path": "/UBTConnect/Notifications",
+   "title": "Notifications",
+   "counts": {
+    "App_Notifications.Notifications_Action": 1,
+    "App_Notifications.NotificationsListBreakpoints": 1,
+    "App_Notifications.Notifications_Header": 1,
+    "App_Notifications.NotificationsList": 1,
+    "ConnectCorePatterns.Notification_ListItem": 3,
+    "App_Notifications.Notifications_SortSheet": 1,
+    "App_Notifications.Notifications_MoreActionSheet": 1
+   },
+   "lines": null,
+   "listItems": 3,
+   "calls": [
+    "moduleversioninfo",
+    "moduleinfo",
+    "UBT_AppManager/ActionAppManager_SynchAppContext",
+    "UBTConnect/ActionSync_Info_GetMain",
+    "UBTConnect_Utils/ActionGet_RuntimeVersion",
+    "UBT_AppManager/ActionAppManager_Login",
+    "UBT_AppManager/ActionAppManager_AfterInitialize",
+    "UBTConnect_Utils/ActionGetUserInformation",
+    "Connect2_LegacyShared/ActionGetNumberUnreadMessages",
+    "UBTConnect/ServiceAPIFetchData_CacheableMapEntities",
+    "UBTConnect/ServiceAPIFetchData_CacheableHouseholds",
+    "UBTConnect/Home/FeedBlock_Services/DataActionGetServices",
+    "UBTConnect/Home/FeedBlock_CommunityPopulation/DataActionFetchCount",
+    "UBTConnect/Home/FeedBlock_Updates/DataActionFetchUpdates",
+    "UBTConnect_EmbedFeed/Blocks/Embedded_FeedCMS/DataActionGetFeedConfig",
+    "UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All",
+    "UBTConnect/Home/HomeFeed/DataActionGetCommunityStatistics",
+    "UBTConnect/App_Notifications/Notifications/DataActionGetDateRanges",
+    "UBTConnect/App_Notifications/Notifications/DataActionFetchNotifications"
+   ]
+  },
+  "orbitLanding": {
+   "route": "/UBTConnect/OrbitLanding",
+   "httpStatus": 200,
+   "reachedView": true,
+   "view": "Legacy_OrbitEventsFlow.OrbitLanding",
+   "path": "/UBTConnect/OrbitLanding",
+   "title": "OrbitLanding",
+   "counts": {
+    "Orbit_ScreenBlocks.ScreenBlock_OrbitLanding": 1,
+    "Layout_OrbitTheme.Layout_Orbit": 1,
+    "Orbit_Blocks.Household_Members_Selection": 1,
+    "Orbit_Generic_Blocks.NoInformation_Orbit": 1
+   },
+   "lines": null,
+   "passportLink": {
+    "exists": true,
+    "visible": true,
+    "text": "View Passport details"
+   },
+   "calls": [
+    "moduleversioninfo",
+    "UBT_AppManager/ActionAppManager_SynchAppContext",
+    "Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_OrbitLanding/DataActionGet_HouseholdMembers",
+    "Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_OrbitLanding/DataActionGet_EventsByMemberId",
+    "UBT_AppManager/ActionAppManager_AfterInitialize",
+    "UBTConnect/ActionSync_Info_GetMain",
+    "UBTConnect_Utils/ActionGetUserInformation",
+    "Connect2_LegacyShared/ActionGetNumberUnreadMessages",
+    "UBTConnect/ServiceAPIFetchData_CacheableMapEntities",
+    "UBTConnect/ServiceAPIFetchData_CacheableHouseholds"
+   ]
+  },
+  "orbitAdminLanding": {
+   "route": "/UBTConnect/OrbitAdminLanding",
+   "httpStatus": 200,
+   "reachedView": true,
+   "view": "Legacy_OrbitAdminFlow.OrbitAdminLanding",
+   "path": "/UBTConnect/OrbitAdminLanding",
+   "title": "OrbitAdminLanding",
+   "counts": {
+    "Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminLanding": 1,
+    "Layout_OrbitTheme.Layout_Orbit": 1,
+    "Orbit_Generic_Blocks.NoInformation_Orbit": 1
+   },
+   "lines": null,
+   "getMilestoneScanFF": {
+    "isScanPerMilestone": false
+   },
+   "calls": [
+    "moduleversioninfo",
+    "UBT_AppManager/ActionAppManager_SynchAppContext",
+    "Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks_AdminFlow/ScreenBlock_AdminLanding/DataActionGet_AdminEventsList",
+    "UBT_AppManager/ActionAppManager_AfterInitialize",
+    "UBTConnect/ActionSync_Info_GetMain",
+    "UBTConnect_Utils/ActionGetUserInformation",
+    "Connect2_LegacyShared/ActionGetNumberUnreadMessages",
+    "UBTConnect/ServiceAPIFetchData_CacheableMapEntities",
+    "UBTConnect/ServiceAPIFetchData_CacheableHouseholds",
+    "UBTConnect/Legacy_OrbitAdminFlow/OrbitAdminLanding/ActionGetMilestoneScanFF"
+   ]
+  },
+  "notes": {
+   "route": "/UBTConnect/Notes",
+   "httpStatus": 200,
+   "reachedView": true,
+   "view": "Notes.Notes",
+   "path": "/UBTConnect/Notes",
+   "title": "Notes",
+   "counts": {
+    "ConnectPatterns.Horizontal_Filter_TagList": 1,
+    "Notes.NoteCard_List": 1,
+    "ConnectPatterns.EmptyListBorderless": 1,
+    "Notes.Notes_FilterSheet": 1
+   },
+   "lines": [
+    "Filter",
+    "All",
+    "Assemble",
+    "Feeds",
+    "Households",
+    "Interchange",
+    "LDM",
+    "Members",
+    "OneSchool Global",
+    "Orbit",
+    "Supper Meetings"
+   ],
+   "calls": [
+    "moduleversioninfo",
+    "UBT_AppManager/ActionAppManager_SynchAppContext",
+    "UBTConnect_Notes_MCS/ActionGet_NotePills_ByNoteCategoryIds",
+    "UBTConnect/Notes/Notes/DataActionGetNotes",
+    "UBT_AppManager/ActionAppManager_AfterInitialize",
+    "UBTConnect/ActionSync_Info_GetMain",
+    "UBTConnect_Utils/ActionGetUserInformation",
+    "Connect2_LegacyShared/ActionGetNumberUnreadMessages",
+    "UBTConnect/ServiceAPIFetchData_CacheableMapEntities",
+    "UBTConnect/ServiceAPIFetchData_CacheableHouseholds"
+   ]
+  },
+  "bookmarks": {
+   "route": "/UBTConnect/Bookmarks",
+   "httpStatus": 200,
+   "reachedView": true,
+   "view": "Bookmarks.Bookmarks",
+   "path": "/UBTConnect/Bookmarks",
+   "title": "Bookmarks",
+   "counts": {
+    "ConnectPatterns.Horizontal_Filter_TagList": 1,
+    "Bookmarks.Bookmarks_Card_List": 1,
+    "ConnectPatterns.EmptyList": 1,
+    "Bookmarks.Bookmarks_FilterSheet": 1
+   },
+   "lines": [
+    "Filter",
+    "All",
+    "Assemble",
+    "Feeds",
+    "Households",
+    "Interchange",
+    "LDM",
+    "Members",
+    "OneSchool Global",
+    "Orbit",
+    "Supper Meetings"
+   ],
+   "calls": [
+    "moduleversioninfo",
+    "UBT_AppManager/ActionAppManager_SynchAppContext",
+    "UBTConnect_Bookmarks_MCS/ActionGet_BookmarkPills_ByBookmarkCategoryIds",
+    "UBTConnect/Bookmarks/Bookmarks/DataActionGetBookmarks",
+    "UBT_AppManager/ActionAppManager_AfterInitialize",
+    "UBTConnect/ActionSync_Info_GetMain",
+    "UBTConnect_Utils/ActionGetUserInformation",
+    "Connect2_LegacyShared/ActionGetNumberUnreadMessages",
+    "UBTConnect/ServiceAPIFetchData_CacheableMapEntities",
+    "UBTConnect/ServiceAPIFetchData_CacheableHouseholds"
+   ]
+  },
+  "myBookmarks": {
+   "route": "/UBTConnect/MyBookmarks",
+   "httpStatus": 404,
+   "reachedView": true,
+   "view": null,
+   "path": "/UBTConnect/MyBookmarks",
+   "title": "404 - File or directory not found.",
+   "counts": {},
+   "lines": null,
+   "notFoundText": true,
+   "topBlocks": [],
+   "calls": []
+  },
+  "bookmarksByGroup": {
+   "route": "/UBTConnect/BookmarksByGroup",
+   "httpStatus": 404,
+   "reachedView": true,
+   "view": null,
+   "path": "/UBTConnect/BookmarksByGroup",
+   "title": "404 - File or directory not found.",
+   "counts": {},
+   "lines": null,
+   "notFoundText": true,
+   "topBlocks": [],
+   "calls": []
+  },
+  "homeFeed": {
+   "view": "Home.HomeFeed",
+   "path": "/UBTConnect/HomeFeed",
+   "flags": {
+    "getHasOrbitAccess": true,
+    "getHasC1DirectoryView": true,
+    "getHasNewNotifications": false,
+    "getHasNewBookmarks": true,
+    "getHasBookmarNote": false,
+    "getHasCarouselEnabled": true
+   },
+   "bottomBar": [
+    "Home",
+    "Directory",
+    "9+",
+    "Updates",
+    "Bookmarks",
+    "Menu"
+   ],
+   "calls": [
+    "moduleversioninfo",
+    "UBT_AppManager/ActionAppManager_SynchAppContext",
+    "UBTConnect/Home/FeedBlock_Services/DataActionGetServices",
+    "UBTConnect/Home/FeedBlock_CommunityPopulation/DataActionFetchCount",
+    "UBTConnect/Home/FeedBlock_Updates/DataActionFetchUpdates",
+    "UBTConnect_EmbedFeed/Blocks/Embedded_FeedCMS/DataActionGetFeedConfig",
+    "UBTConnect/Home/HomeFeed/DataActionGetCommunityStatistics",
+    "UBT_AppManager/ActionAppManager_AfterInitialize",
+    "UBTConnect/ActionSync_Info_GetMain",
+    "UBTConnect_Utils/ActionGetUserInformation",
+    "Connect2_LegacyShared/ActionGetNumberUnreadMessages",
+    "UBTConnect/ServiceAPIFetchData_CacheableMapEntities",
+    "UBTConnect/ServiceAPIFetchData_CacheableHouseholds"
+   ]
+  }
+ },
+ "blocked": []
+}
