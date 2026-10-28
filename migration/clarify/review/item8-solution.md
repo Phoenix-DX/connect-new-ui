@@ -377,3 +377,10 @@ proves no regression). A pixel check of `_error.html` against one TST capture (s
   `useFlowScope` and `flow.run`, and replaces the OnReady `isAlive` checks after a module action with `flow.own`.
   S1b Q1 (a): `onScrollEnding`-style events keep `.catch((e) => raiseToFlowHandler(e, flow))`; S5 decides on a
   promise-returning `flow.run` from the count of such sites in groups A, C and D.
+- Group A questions (user, 2026-10-28), all for the cleanup step S5: S2a Q1 (a), MessageDetail returns
+  `(id) => flow.run(...)` for the Orbit event click, so a failure reaches the flow handler. S2b Q1 (a), useConnectShare
+  moves to `useFlowState` and `flow.run`. S2c Q1 (a), check MessageList on the MCP and the TST code: does a failed
+  GetMessages stop OnScrollEnding, the search-history selection and the pull-to-refresh? If yes, `refreshGetMessages`
+  throws.
+- Gates (user, 2026-10-28): `npm run unused` before the full `npm run ci`; groups C and D build in parallel with one gate;
+  parity per change scope; one full 64-route sweep at the end of item 8.
