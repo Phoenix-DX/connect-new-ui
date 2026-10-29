@@ -1,45 +1,13 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import { addLogSink, type LogEntry } from '@/platform/log/log';
 import { ApplicationEvents_Orbit } from '@/pages/OrbitAdminEventDetail/staticEntities';
-import { deserializeQRCodeInformation, onApplicationEvent_Orbit } from './adminEventDetailActions';
+import { onApplicationEvent_Orbit, textToIntegerToLongInteger } from './adminEventDetailActions';
 
 /* The client actions of the scan flow, without React. */
 let removeSink: (() => void) | null = null;
 afterEach(() => {
   removeSink?.();
   removeSink = null;
-});
-
-describe('deserializeQRCodeInformation', () => {
-  it('reads the event id, the member id and the milestone id of a member QR code', () => {
-    expect(deserializeQRCodeInformation('{"eventid":7301,"id":9101,"milestoneid":""}')).toEqual({
-      EventId: '7301',
-      MemberId: '9101',
-      MilestoneId: '',
-    });
-  });
-
-  it('reads the JSON names in any case and numeric texts', () => {
-    expect(deserializeQRCodeInformation('{"EventId":"7301","ID":" 9101 ","MilestoneId":12}')).toEqual({
-      EventId: '7301',
-      MemberId: '9101',
-      MilestoneId: '12',
-    });
-  });
-
-  it('an empty text and missing fields give the default record', () => {
-    expect(deserializeQRCodeInformation('')).toEqual({ EventId: '0', MemberId: '0', MilestoneId: '' });
-    expect(deserializeQRCodeInformation('{}')).toEqual({ EventId: '0', MemberId: '0', MilestoneId: '' });
-  });
-
-  it('a text that is not JSON or a field that is not a number fails as the JSON deserializer', () => {
-    expect(() => deserializeQRCodeInformation('WIFI:S:Hall-Guests;T:WPA;;')).toThrow(
-      /^Failed to deserialize JSON to QRCodeInformation/,
-    );
-    expect(() => deserializeQRCodeInformation('{"eventid":"abc","id":1}')).toThrow(
-      'Failed to deserialize JSON to QRCodeInformation: eventid',
-    );
-  });
 });
 
 describe('onApplicationEvent_Orbit', () => {
@@ -57,5 +25,24 @@ describe('onApplicationEvent_Orbit', () => {
         },
       }),
     ]);
+  });
+});
+
+describe('textToIntegerToLongInteger (EB:1018)', () => {
+  it('keeps an id in the Integer range', () => {
+    expect(textToIntegerToLongInteger('9101')).toBe('9101');
+    expect(textToIntegerToLongInteger('2147483647')).toBe('2147483647');
+    expect(textToIntegerToLongInteger('-2147483648')).toBe('-2147483648');
+  });
+
+  it('gives 0 for an id outside the Integer range, where TextToLongInteger keeps it', () => {
+    expect(textToIntegerToLongInteger('2147483648')).toBe('0');
+    expect(textToIntegerToLongInteger('-2147483649')).toBe('0');
+  });
+
+  it('gives 0 for a text that is not an integer', () => {
+    expect(textToIntegerToLongInteger('')).toBe('0');
+    expect(textToIntegerToLongInteger('12a')).toBe('0');
+    expect(textToIntegerToLongInteger('1.5')).toBe('0');
   });
 });

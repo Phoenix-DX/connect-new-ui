@@ -56,17 +56,41 @@ describe('Search page', () => {
   it('a search shows the three sections with their counts; a member opens the household carousel', async () => {
     renderRoutes(routes, PATH);
     submit('Vitale');
-    expect(await screen.findByText("'Vitale':")).toBeInTheDocument();
-    expect(screen.getByText('Showing results for')).toBeInTheDocument();
     await waitFor(() => {
       expect(screen.getByText('3 Results')).toBeInTheDocument();
     });
     expect(screen.getByText('2 Results')).toBeInTheDocument();
     expect(screen.getByText('1 Results')).toBeInTheDocument();
+    // If StartedDifferentSearch (ScreenBlock_Search.mvc.js:1207-1327): no caption while the input is the searched term.
+    expect(screen.queryByText('Showing results for')).toBeNull();
+    expect(screen.queryByText("'Vitale':")).toBeNull();
     const members = document.querySelector('#b1-MembersSection [data-block="CW_Search.SearchResult_Item"]');
     if (members === null) throw new Error('member result not rendered');
     fireEvent.click(members.querySelector('[data-container]') ?? members);
     expect(await screen.findByText('HouseholdCarousel screen')).toBeInTheDocument();
+  });
+
+  it('once the input differs from the last searched term, the caption shows that term', async () => {
+    renderRoutes(routes, PATH);
+    submit('Vitale');
+    expect(await screen.findByText('1 Results')).toBeInTheDocument();
+    fireEvent.change(searchInput(), { target: { value: 'Roj' } });
+    expect(await screen.findByText('Showing results for')).toBeInTheDocument();
+    expect(screen.getByText("'Vitale':")).toBeInTheDocument();
+  });
+
+  // Action_RefreshSearch (ScreenBlock_Search.mvc.js:2475-2533) with the SkeletonSection of the results.
+  it('while the search loads, each section shows three loading rows inside the skeleton', async () => {
+    sessionStorage.setItem('mock:latency', '300');
+    renderRoutes(routes, PATH);
+    submit('Vitale');
+    const names = await screen.findAllByText('Loading Name');
+    expect(names).toHaveLength(9);
+    for (const name of names) expect(name.closest('.ubt-skeleton-section')).not.toBeNull();
+    for (const section of ['b1-PlacesSection', 'b1-HouseholdsSection', 'b1-MembersSection'])
+      expect(document.querySelectorAll(`#${section} [data-block="CW_Search.SearchResult_Item"]`)).toHaveLength(3);
+    expect(await screen.findByText('1 Results')).toBeInTheDocument();
+    expect(screen.queryByText('Loading Name')).toBeNull();
   });
 
   it('a search without results shows the no-match texts', async () => {
@@ -82,6 +106,7 @@ describe('Search page', () => {
     fireEvent.change(searchInput(), { target: { value: 'birthday' } });
     const option = await screen.findByText('Birthday Today');
     fireEvent.click(option);
-    expect(await screen.findByText("'Birthday Today':")).toBeInTheDocument();
+    expect(await screen.findByText('1 Results')).toBeInTheDocument();
+    expect(searchInput()).toHaveValue('Birthday Today');
   });
 });

@@ -9,6 +9,7 @@ import {
   cachedVariablesOf,
   initialNotificationsState,
   notificationsReducer,
+  updatedReadCount,
   setDefaultFilters,
 } from './notificationsState';
 
@@ -56,15 +57,15 @@ describe('Notifications client actions', () => {
       ...EMPTY_FILTER,
       dateFrom: '2026-04-16',
       dateTo: '2026-10-16',
-      readOnly: 'Choice.None',
-      sortByNewest: 'Choice.Yes',
+      readOnly: 'None',
+      sortByNewest: 'Yes',
     });
     const set = {
       ...EMPTY_FILTER,
       dateFrom: '2026-01-01',
       dateTo: '2026-02-01',
-      readOnly: 'Choice.No',
-      sortByNewest: 'Choice.No',
+      readOnly: 'No',
+      sortByNewest: 'No',
     };
     expect(setDefaultFilters(set, RANGES)).toEqual(set);
   });
@@ -127,7 +128,7 @@ describe('Notifications state', () => {
     state = notificationsReducer(state, { type: 'searchTextFiltered', text: 'camp' });
     expect(state).toMatchObject({ currentSearchString: 'camp', showMarkAll: false });
     expect(state.filter_Updates.searchText).toBe('camp');
-    state = notificationsReducer({ ...state, showMarkAll: true }, { type: 'filtersApplied' });
+    state = notificationsReducer({ ...state, showMarkAll: true }, { type: 'filtersApplied', isNewestToOldest: true });
     expect(state).toMatchObject({ showMarkAll: false, hasFiltersApplied: false });
     state = notificationsReducer(state, { type: 'headerScrolled', isHeaderScrolled: true });
     state = notificationsReducer(state, { type: 'filterSheetInitialized', sheetId: 'sort-sheet' });
@@ -137,5 +138,31 @@ describe('Notifications state', () => {
       filter_BottomSheetId: 'sort-sheet',
       moreAction_BottomSheetId: 'more-sheet',
     });
+  });
+
+  it('read count, only unread, mark all as read and the search text (TST publish of 2026-10-27)', () => {
+    expect(updatedReadCount(2, true, false)).toBe(3);
+    expect(updatedReadCount(2, false, false)).toBe(1);
+    expect(updatedReadCount(2, false, true)).toBe(2);
+    const s0 = initialNotificationsState(INITIAL_CACHED_VARIABLES);
+    expect(s0.readCount).toBe(0);
+    const fetched = notificationsReducer(s0, { type: 'notificationsFetched', items: [], unreadNotificationsCount: 2 });
+    const withBreakpoints = notificationsReducer(fetched, {
+      type: 'breakpointsSet',
+      breakpoints: [
+        { position: 0, sectionName: 'Older', badgeCount: 2, dateRange: { range: 'Older', from: '', to: '' } },
+      ],
+    });
+    expect(withBreakpoints.readCount).toBe(2);
+    const read = notificationsReducer(withBreakpoints, { type: 'readCountUpdated', addToCount: false, isRead: false });
+    expect(read.readCount).toBe(1);
+    const zeroed = notificationsReducer(read, { type: 'badgeCountsZeroed' });
+    expect(zeroed.breakpoints[0]?.badgeCount).toBe(0);
+    expect(zeroed.currentBreakpoint.badgeCount).toBe(0);
+    expect(notificationsReducer(s0, { type: 'onlyShowUnreadSet', onlyShowUnread: true }).local_OnlyShowUnread).toBe(
+      true,
+    );
+    expect(notificationsReducer(s0, { type: 'searchTextFiltered', text: 'hall' }).selectedHistorySearch).toBe('hall');
+    expect(notificationsReducer(s0, { type: 'filtersApplied', isNewestToOldest: false }).orderByIsAscending).toBe(true);
   });
 });

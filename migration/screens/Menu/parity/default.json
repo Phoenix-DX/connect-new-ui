@@ -1,30 +1,33 @@
 {
  "state": "default",
  "route": "/UBTConnect/Menu?mocksession=unlocked",
- "mock": "householder",
+ "mock": "member",
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "2c99fdf11b281fc19c05",
+ "fingerprint": "ad03b05490d448c78d60",
  "options": {
   "text": true,
   "style": true,
   "pixel": true,
   "calls": true,
+  "visibleOnly": false,
   "full": true,
-  "replay": "builder"
+  "replay": "builder",
+  "skipKinds": [],
+  "selfRef": false
  },
  "replay": {
   "mode": "builder",
-  "elements": 350,
-  "texts": 28,
+  "elements": 327,
+  "texts": 27,
   "comments": 0,
   "dropped": 0,
   "endTagMismatch": 0,
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-21T04:53:15.532Z",
+ "at": "2026-10-29T16:02:18.711Z",
  "counts": {},
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
@@ -35,11 +38,11 @@
   "CAPTURE-MASKED-AVATAR-MENU-SHIFT": 1
  },
  "pixel": {
-  "ratio": 0.01283,
+  "ratio": 0.01078,
   "maxCell": 0.1025,
   "maxCellRatio": 0.03,
-  "diffPixels": 4158,
-  "comparedPixels": 324148,
+  "diffPixels": 3491,
+  "comparedPixels": 323958,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -54,9 +57,9 @@
   "hotspots": [
    "160,200 (164px)",
    "80,200 (160px)",
-   "80,280 (156px)",
+   "80,240 (156px)",
    "80,120 (154px)",
-   "80,240 (153px)"
+   "80,160 (151px)"
   ],
   "diffPng": "migration/screens/Menu/parity/default.diff.png"
  },

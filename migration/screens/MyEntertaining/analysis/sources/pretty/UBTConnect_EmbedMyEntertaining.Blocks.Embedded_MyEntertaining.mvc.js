@@ -50,6 +50,9 @@ define("UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$model"
                 this.attr("MaxLoadingItems", "maxLoadingItemsVar", "MaxLoadingItems", true, false, OS.DataTypes.DataTypes.Integer, function() {
                     return 5;
                 }, false),
+                this.attr("ResumeListener", "resumeListenerVar", "ResumeListener", true, false, OS.DataTypes.DataTypes.Object, function() {
+                    return null;
+                }, false),
                 this.attr("View", "viewIn", "View", true, false, OS.DataTypes.DataTypes.Text, function() {
                     return "timeline";
                 }, false),
@@ -410,7 +413,7 @@ define("UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$view",
 
     return View;
 });
-define("UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnect_EmbedMyEntertaining.model", "UBTConnect_EmbedMyEntertaining.controller", "UBTConnectLibrary.model", "UBTJavaScriptUtils.controller", "UBTConnect_EmbedMyEntertaining.languageResources", "UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$debugger", "UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$controller.ScreenEvent_OnDestroy.CleanupCalendarJS", "UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$controller.Action_SetSources.ApplySourcesJS", "UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$controller.OnAfterFetch_GetEntertainingConfig.InitializeCalendarJS", "UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$controller.Action_RefreshToken.RefreshEmbedTokenJS", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnect_EmbedMyEntertaining.referencesHealth", "UBTConnect_EmbedMyEntertaining.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$LazyImageSizeRec", "UBTConnectLibrary.model$AvatarImageFallbackoptionsRec", "UBTConnectLibrary.model$ImageBorderOptionsRec", "UBTJavaScriptUtils.controller$JSUtils_Console_Log", "UBTConnect_EmbedMyEntertaining.referencesHealth$UBTJavaScriptUtils"], function(OutSystems, UBTConnect_EmbedMyEntertainingModel, UBTConnect_EmbedMyEntertainingController, UBTConnectLibraryModel, UBTJavaScriptUtilsController, UBTConnect_EmbedMyEntertainingLanguageResources, UBTConnect_EmbedMyEntertaining_Blocks_Embedded_MyEntertaining_mvc_Debugger, UBTConnect_EmbedMyEntertaining_Blocks_Embedded_MyEntertaining_mvc_controller_ScreenEvent_OnDestroy_CleanupCalendarJS, UBTConnect_EmbedMyEntertaining_Blocks_Embedded_MyEntertaining_mvc_controller_Action_SetSources_ApplySourcesJS, UBTConnect_EmbedMyEntertaining_Blocks_Embedded_MyEntertaining_mvc_controller_OnAfterFetch_GetEntertainingConfig_InitializeCalendarJS, UBTConnect_EmbedMyEntertaining_Blocks_Embedded_MyEntertaining_mvc_controller_Action_RefreshToken_RefreshEmbedTokenJS) {
+define("UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnect_EmbedMyEntertaining.model", "UBTConnect_EmbedMyEntertaining.controller", "UBTConnectLibrary.model", "UBTJavaScriptUtils.controller", "UBTConnect_EmbedMyEntertaining.languageResources", "UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$debugger", "UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$controller.ScreenEvent_OnDestroy.CleanupCalendarJS", "UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$controller.Action_SetSources.ApplySourcesJS", "UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$controller.Action_SetToken.SetEntertainingTokenJS", "UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$controller.OnAfterFetch_GetEntertainingConfig.InitializeCalendarJS", "UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$controller.Action_RefreshToken.RefreshEmbedTokenJS", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnect_EmbedMyEntertaining.referencesHealth", "UBTConnect_EmbedMyEntertaining.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$LazyImageSizeRec", "UBTConnectLibrary.model$AvatarImageFallbackoptionsRec", "UBTConnectLibrary.model$ImageBorderOptionsRec", "UBTJavaScriptUtils.controller$JSUtils_Console_Log", "UBTConnect_EmbedMyEntertaining.referencesHealth$UBTJavaScriptUtils"], function(OutSystems, UBTConnect_EmbedMyEntertainingModel, UBTConnect_EmbedMyEntertainingController, UBTConnectLibraryModel, UBTJavaScriptUtilsController, UBTConnect_EmbedMyEntertainingLanguageResources, UBTConnect_EmbedMyEntertaining_Blocks_Embedded_MyEntertaining_mvc_Debugger, UBTConnect_EmbedMyEntertaining_Blocks_Embedded_MyEntertaining_mvc_controller_ScreenEvent_OnDestroy_CleanupCalendarJS, UBTConnect_EmbedMyEntertaining_Blocks_Embedded_MyEntertaining_mvc_controller_Action_SetSources_ApplySourcesJS, UBTConnect_EmbedMyEntertaining_Blocks_Embedded_MyEntertaining_mvc_controller_Action_SetToken_SetEntertainingTokenJS, UBTConnect_EmbedMyEntertaining_Blocks_Embedded_MyEntertaining_mvc_controller_OnAfterFetch_GetEntertainingConfig_InitializeCalendarJS, UBTConnect_EmbedMyEntertaining_Blocks_Embedded_MyEntertaining_mvc_controller_Action_RefreshToken_RefreshEmbedTokenJS) {
     var OS = OutSystems.Internal;
     var Controller = (function(_super) {
         __extends(Controller, _super);
@@ -450,6 +453,13 @@ define("UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$contro
                         return;
                     }, "Action_OnError");
                 },
+                action_OnNavBack$Action: function() {
+                    return controller.executeActionInsideJSNode(controller._action_OnNavBack$Action.bind(controller), controller.callContext(), function(actionResults) {
+                        return {};
+                    }, function() {
+                        return;
+                    }, "Action_OnNavBack");
+                },
                 action_OnOpenMap$Action: function(latIn, lngIn, labelIn) {
                     latIn = (latIn === undefined) ? "" : latIn;
                     lngIn = (lngIn === undefined) ? "" : lngIn;
@@ -482,6 +492,14 @@ define("UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$contro
                     }, function() {
                         return;
                     }, "Action_SetRefreshInterval");
+                },
+                action_SetResumeListener$Action: function(listenerIn) {
+                    listenerIn = (listenerIn === undefined) ? null : listenerIn;
+                    return controller.executeActionInsideJSNode(controller._action_SetResumeListener$Action.bind(controller, OS.DataConversion.JSNodeParamConverter.from(listenerIn, OS.DataTypes.DataTypes.Object)), controller.callContext(), function(actionResults) {
+                        return {};
+                    }, function() {
+                        return;
+                    }, "Action_SetResumeListener");
                 }
             };
             this.dataFetchDependenciesOriginal = {
@@ -584,12 +602,13 @@ define("UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$contro
             callContext = controller.callContext(callContext);
             varBag.callContext = callContext;
             try {
-                OutSystemsDebugger.push("ACDBfnTIv0CUD+CXJHudLg:SomYEeug30C+Z8dpJFIOeA:/NRWebFlows.1K4x3zRe7EmqzrGYLHmosg/NodesShownInESpaceTree.pUFusax9kkCG9mFy6SB2Ig/ClientActions.SomYEeug30C+Z8dpJFIOeA:LhyHTiraiydqkHTwysIwXQ", "UBTConnect_EmbedMyEntertaining", "ScreenEvent_OnDestroy", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.push("ACDBfnTIv0CUD+CXJHudLg:SomYEeug30C+Z8dpJFIOeA:/NRWebFlows.1K4x3zRe7EmqzrGYLHmosg/NodesShownInESpaceTree.pUFusax9kkCG9mFy6SB2Ig/ClientActions.SomYEeug30C+Z8dpJFIOeA:rdRuzoB5SLrdRAwPAdBUMA", "UBTConnect_EmbedMyEntertaining", "ScreenEvent_OnDestroy", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
                 OutSystemsDebugger.handleBreakpoint("ACDBfnTIv0CUD+CXJHudLg:XVq5LRW0l0WFs1J1Yhy7JA", callContext.id);
                 OutSystemsDebugger.handleBreakpoint("ACDBfnTIv0CUD+CXJHudLg:eo9CDdEkEkmGh49ZAQT0OA", callContext.id);
                 controller.safeExecuteJSNode(UBTConnect_EmbedMyEntertaining_Blocks_Embedded_MyEntertaining_mvc_controller_ScreenEvent_OnDestroy_CleanupCalendarJS, "CleanupCalendar", "ScreenEvent_OnDestroy", {
                     RefreshIntervalId: OS.DataConversion.JSNodeParamConverter.to(model.variables.refreshIntervalIdVar, OS.DataTypes.DataTypes.Object),
-                    MessageListener: OS.DataConversion.JSNodeParamConverter.to(model.variables.messageListenerVar, OS.DataTypes.DataTypes.Object)
+                    MessageListener: OS.DataConversion.JSNodeParamConverter.to(model.variables.messageListenerVar, OS.DataTypes.DataTypes.Object),
+                    ResumeListener: OS.DataConversion.JSNodeParamConverter.to(model.variables.resumeListenerVar, OS.DataTypes.DataTypes.Object)
                 }, function($parameters) {}, {}, {});
                 OutSystemsDebugger.handleBreakpoint("ACDBfnTIv0CUD+CXJHudLg:+qQXyjCOnk+KXAeSMhRtoQ", callContext.id);
             } catch (ex) {
@@ -763,6 +782,81 @@ define("UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$contro
                 return "";
             }
         }]);
+        Controller.prototype._action_SetToken$Action = function(tokenIn, callContext) {
+            var varBag = {};
+            var model = this.model;
+            var controller = this.controller;
+            var idService = this.idService;
+            varBag.model = model;
+            varBag.idService = idService;
+            controller.ensureControllerAlive("Action_SetToken");
+            callContext = controller.callContext(callContext);
+            var vars = new OS.DataTypes.VariableHolder(new(controller.constructor.getVariableGroupType("UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.Action_SetToken$vars"))());
+            vars.value.tokenInLocal = tokenIn;
+            varBag.callContext = callContext;
+            varBag.vars = vars;
+            try {
+                OutSystemsDebugger.push("ACDBfnTIv0CUD+CXJHudLg:GvyUY3PrAk6F1J9Ol2gMvA:/NRWebFlows.1K4x3zRe7EmqzrGYLHmosg/NodesShownInESpaceTree.pUFusax9kkCG9mFy6SB2Ig/ClientActions.GvyUY3PrAk6F1J9Ol2gMvA:Tc6huBePwrGuW6ACp7UIyw", "UBTConnect_EmbedMyEntertaining", "Action_SetToken", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.handleBreakpoint("ACDBfnTIv0CUD+CXJHudLg:NwglIlzFBUWJBU7XI2Isjw", callContext.id);
+                OutSystemsDebugger.handleBreakpoint("ACDBfnTIv0CUD+CXJHudLg:2g1YVxtJzEC4R0jZ6Fv70Q", callContext.id);
+                controller.safeExecuteJSNode(UBTConnect_EmbedMyEntertaining_Blocks_Embedded_MyEntertaining_mvc_controller_Action_SetToken_SetEntertainingTokenJS, "SetEntertainingToken", "Action_SetToken", {
+                    Token: OS.DataConversion.JSNodeParamConverter.to(vars.value.tokenInLocal, OS.DataTypes.DataTypes.Text)
+                }, function($parameters) {}, {}, {});
+                OutSystemsDebugger.handleBreakpoint("ACDBfnTIv0CUD+CXJHudLg:nX1GrHHIB0Ke15m6feyF5A", callContext.id);
+            } catch (ex) {
+                OutSystemsDebugger.handleException(ex, callContext.id);
+                throw ex;
+            } finally {
+                OutSystemsDebugger.pop("ACDBfnTIv0CUD+CXJHudLg:GvyUY3PrAk6F1J9Ol2gMvA", callContext.id);
+            }
+
+        };
+        Controller.registerVariableGroupType("UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.Action_SetToken$vars", [{
+            name: "Token",
+            attrName: "tokenInLocal",
+            mandatory: true,
+            dataType: OS.DataTypes.DataTypes.Text,
+            defaultValue: function() {
+                return "";
+            }
+        }]);
+        Controller.prototype._action_SetResumeListener$Action = function(listenerIn, callContext) {
+            var varBag = {};
+            var model = this.model;
+            var controller = this.controller;
+            var idService = this.idService;
+            varBag.model = model;
+            varBag.idService = idService;
+            controller.ensureControllerAlive("Action_SetResumeListener");
+            callContext = controller.callContext(callContext);
+            var vars = new OS.DataTypes.VariableHolder(new(controller.constructor.getVariableGroupType("UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.Action_SetResumeListener$vars"))());
+            vars.value.listenerInLocal = listenerIn;
+            varBag.callContext = callContext;
+            varBag.vars = vars;
+            try {
+                OutSystemsDebugger.push("ACDBfnTIv0CUD+CXJHudLg:4nNHamjcSkq3wbaZgRiwuA:/NRWebFlows.1K4x3zRe7EmqzrGYLHmosg/NodesShownInESpaceTree.pUFusax9kkCG9mFy6SB2Ig/ClientActions.4nNHamjcSkq3wbaZgRiwuA:WZHmDVyV4xF087VTYqySxg", "UBTConnect_EmbedMyEntertaining", "Action_SetResumeListener", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.handleBreakpoint("ACDBfnTIv0CUD+CXJHudLg:FSMobMKv3UGJobZg2x_JNw", callContext.id);
+                OutSystemsDebugger.handleBreakpoint("ACDBfnTIv0CUD+CXJHudLg:uxTB+kQW5EyFlLDGvRoeuw", callContext.id);
+                // ResumeListener = Listener
+                model.variables.resumeListenerVar = vars.value.listenerInLocal;
+                OutSystemsDebugger.handleBreakpoint("ACDBfnTIv0CUD+CXJHudLg:oBCofFOmpEai2KTP7mU_Xg", callContext.id);
+            } catch (ex) {
+                OutSystemsDebugger.handleException(ex, callContext.id);
+                throw ex;
+            } finally {
+                OutSystemsDebugger.pop("ACDBfnTIv0CUD+CXJHudLg:4nNHamjcSkq3wbaZgRiwuA", callContext.id);
+            }
+
+        };
+        Controller.registerVariableGroupType("UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.Action_SetResumeListener$vars", [{
+            name: "Listener",
+            attrName: "listenerInLocal",
+            mandatory: true,
+            dataType: OS.DataTypes.DataTypes.Object,
+            defaultValue: function() {
+                return null;
+            }
+        }]);
         Controller.prototype._action_OnReady$Action = function(callContext) {
             var varBag = {};
             var model = this.model;
@@ -888,6 +982,35 @@ define("UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$contro
                 return null;
             }
         }]);
+        Controller.prototype._action_OnNavBack$Action = function(callContext) {
+            var varBag = {};
+            var model = this.model;
+            var controller = this.controller;
+            var idService = this.idService;
+            varBag.model = model;
+            varBag.idService = idService;
+            controller.ensureControllerAlive("Action_OnNavBack");
+            callContext = controller.callContext(callContext);
+            varBag.callContext = callContext;
+            OutSystemsDebugger.push("ACDBfnTIv0CUD+CXJHudLg:UUvTnyB4eUqi+uLQvKA+JQ:/NRWebFlows.1K4x3zRe7EmqzrGYLHmosg/NodesShownInESpaceTree.pUFusax9kkCG9mFy6SB2Ig/ClientActions.UUvTnyB4eUqi+uLQvKA+JQ:1e8eUoWTD8saP77nop3h_g", "UBTConnect_EmbedMyEntertaining", "Action_OnNavBack", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.handleBreakpoint("ACDBfnTIv0CUD+CXJHudLg:W28jcqM0QkqR+T3zCsHjCw", callContext.id);
+            return OS.Flow.executeAsyncFlow(function() {
+                OutSystemsDebugger.handleBreakpoint("ACDBfnTIv0CUD+CXJHudLg:sVDVpEtz7E6g0RTRPRdqvA", callContext.id);
+                // Trigger Event: OnNavBack
+                return controller.onNavBack$Action(callContext).then(function() {
+                    OutSystemsDebugger.handleBreakpoint("ACDBfnTIv0CUD+CXJHudLg:GLGLHB3ZJ06AsMwIrsnMTg", callContext.id);
+                });
+            }).then(function(res) {
+                OutSystemsDebugger.pop("ACDBfnTIv0CUD+CXJHudLg:UUvTnyB4eUqi+uLQvKA+JQ", callContext.id);
+                return res;
+
+            }).catch(function(ex) {
+                OutSystemsDebugger.handleException(ex, callContext.id);
+                OutSystemsDebugger.pop("ACDBfnTIv0CUD+CXJHudLg:UUvTnyB4eUqi+uLQvKA+JQ", callContext.id);
+                throw ex;
+
+            });
+        };
         Controller.prototype._action_OnAuthenticated$Action = function(callContext) {
             var varBag = {};
             var model = this.model;
@@ -927,36 +1050,41 @@ define("UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$contro
             controller.ensureControllerAlive("OnAfterFetch_GetEntertainingConfig");
             callContext = controller.callContext(callContext);
             varBag.callContext = callContext;
-            OutSystemsDebugger.push("ACDBfnTIv0CUD+CXJHudLg:aiEroe1B4EaUxcM4r1js7w:/NRWebFlows.1K4x3zRe7EmqzrGYLHmosg/NodesShownInESpaceTree.pUFusax9kkCG9mFy6SB2Ig/ClientActions.aiEroe1B4EaUxcM4r1js7w:WyyCiLvgRGQe9xrPwAPAAA", "UBTConnect_EmbedMyEntertaining", "OnAfterFetch_GetEntertainingConfig", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.push("ACDBfnTIv0CUD+CXJHudLg:aiEroe1B4EaUxcM4r1js7w:/NRWebFlows.1K4x3zRe7EmqzrGYLHmosg/NodesShownInESpaceTree.pUFusax9kkCG9mFy6SB2Ig/ClientActions.aiEroe1B4EaUxcM4r1js7w:zRqM5sUAcdD5yIdHI0vppA", "UBTConnect_EmbedMyEntertaining", "OnAfterFetch_GetEntertainingConfig", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
             OutSystemsDebugger.handleBreakpoint("ACDBfnTIv0CUD+CXJHudLg:B6h4W8zkjkOf43BUKHSqbw", callContext.id);
             return OS.Flow.executeAsyncFlow(function() {
                 OutSystemsDebugger.handleBreakpoint("ACDBfnTIv0CUD+CXJHudLg:kjFEpoES7kirHCpm9ufqeA", callContext.id);
                 // Execute Action: RequireScript
                 model.flush();
                 return OS.SystemActions.requireScript((model.variables.getEntertainingConfigDataAct.baseURLOut + "/embed-entertaining.js"), callContext).then(function() {
+                    OutSystemsDebugger.handleBreakpoint("ACDBfnTIv0CUD+CXJHudLg:EK6HdpAweUyBLX7DtKWRJA", callContext.id);
+                    // Execute Action: Action_SetToken
+                    controller._action_SetToken$Action(model.variables.getEntertainingConfigDataAct.tokenOut, callContext);
                     OutSystemsDebugger.handleBreakpoint("ACDBfnTIv0CUD+CXJHudLg:qtvecuMOV0Cx_OK7NBuv2Q", callContext.id);
                     controller.safeExecuteJSNode(UBTConnect_EmbedMyEntertaining_Blocks_Embedded_MyEntertaining_mvc_controller_OnAfterFetch_GetEntertainingConfig_InitializeCalendarJS, "InitializeCalendar", "OnAfterFetch_GetEntertainingConfig", {
                         Sources: OS.DataConversion.JSNodeParamConverter.to(model.variables.sourcesIn, OS.DataTypes.DataTypes.Text),
                         MessageListener: OS.DataConversion.JSNodeParamConverter.to(model.variables.messageListenerVar, OS.DataTypes.DataTypes.Object),
                         View: OS.DataConversion.JSNodeParamConverter.to(model.variables.viewIn, OS.DataTypes.DataTypes.Text),
+                        ResumeListener: OS.DataConversion.JSNodeParamConverter.to(model.variables.resumeListenerVar, OS.DataTypes.DataTypes.Object),
                         B2CTenant: OS.DataConversion.JSNodeParamConverter.to(model.variables.b2CTenantIn, OS.DataTypes.DataTypes.Text),
                         B2CPolicy: OS.DataConversion.JSNodeParamConverter.to(model.variables.getEntertainingConfigDataAct.b2CPolicyOut, OS.DataTypes.DataTypes.Text),
                         Theme: OS.DataConversion.JSNodeParamConverter.to(model.variables.themeIn, OS.DataTypes.DataTypes.Text),
                         RefreshIntervalId: OS.DataConversion.JSNodeParamConverter.to(model.variables.refreshIntervalIdVar, OS.DataTypes.DataTypes.Object),
                         BaseURL: OS.DataConversion.JSNodeParamConverter.to(model.variables.getEntertainingConfigDataAct.baseURLOut, OS.DataTypes.DataTypes.Text),
                         ContainerId: OS.DataConversion.JSNodeParamConverter.to(idService.getId("connect2entertaining"), OS.DataTypes.DataTypes.Text),
-                        B2CClientId: OS.DataConversion.JSNodeParamConverter.to(model.variables.getEntertainingConfigDataAct.b2CClientIdOut, OS.DataTypes.DataTypes.Text),
-                        Token: OS.DataConversion.JSNodeParamConverter.to(model.variables.getEntertainingConfigDataAct.tokenOut, OS.DataTypes.DataTypes.Text)
+                        B2CClientId: OS.DataConversion.JSNodeParamConverter.to(model.variables.getEntertainingConfigDataAct.b2CClientIdOut, OS.DataTypes.DataTypes.Text)
                     }, function($parameters) {}, {
                         JSUtils_Console_Log: UBTJavaScriptUtilsController.default.getClientActionProxies(controller).jSUtils_Console_Log$Action,
                         Action_OnReady: controller.clientActionProxies.action_OnReady$Action,
                         Action_OnAuthenticated: controller.clientActionProxies.action_OnAuthenticated$Action,
                         Action_OnComplete: controller.clientActionProxies.action_OnComplete$Action,
                         Action_OnError: controller.clientActionProxies.action_OnError$Action,
+                        Action_OnNavBack: controller.clientActionProxies.action_OnNavBack$Action,
                         Action_OnOpenMap: controller.clientActionProxies.action_OnOpenMap$Action,
                         Action_SetMessageListener: controller.clientActionProxies.action_SetMessageListener$Action,
                         Action_RefreshToken: controller.clientActionProxies.action_RefreshToken$Action,
-                        Action_SetRefreshInterval: controller.clientActionProxies.action_SetRefreshInterval$Action
+                        Action_SetRefreshInterval: controller.clientActionProxies.action_SetRefreshInterval$Action,
+                        Action_SetResumeListener: controller.clientActionProxies.action_SetResumeListener$Action
                     }, {});
                     OutSystemsDebugger.handleBreakpoint("ACDBfnTIv0CUD+CXJHudLg:cFWLCQdS10GsFr7oPGczCA", callContext.id);
                 });
@@ -1024,7 +1152,7 @@ define("UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$contro
             var appManager_Get_UserIdTokenVar = new OS.DataTypes.VariableHolder();
             varBag.callContext = callContext;
             varBag.appManager_Get_UserIdTokenVar = appManager_Get_UserIdTokenVar;
-            OutSystemsDebugger.push("ACDBfnTIv0CUD+CXJHudLg:ru8T37Ap1USjYh146e82PQ:/NRWebFlows.1K4x3zRe7EmqzrGYLHmosg/NodesShownInESpaceTree.pUFusax9kkCG9mFy6SB2Ig/ClientActions.ru8T37Ap1USjYh146e82PQ:NXdBEPkVi11DF37o3tt7nQ", "UBTConnect_EmbedMyEntertaining", "Action_RefreshToken", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.push("ACDBfnTIv0CUD+CXJHudLg:ru8T37Ap1USjYh146e82PQ:/NRWebFlows.1K4x3zRe7EmqzrGYLHmosg/NodesShownInESpaceTree.pUFusax9kkCG9mFy6SB2Ig/ClientActions.ru8T37Ap1USjYh146e82PQ:8f+QJdPj5jqct2GzznB1dA", "UBTConnect_EmbedMyEntertaining", "Action_RefreshToken", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
             OutSystemsDebugger.handleBreakpoint("ACDBfnTIv0CUD+CXJHudLg:85yTfbkuGESEP3K1XWn4gw", callContext.id);
             return OS.Flow.executeAsyncFlow(function() {
                 OutSystemsDebugger.handleBreakpoint("ACDBfnTIv0CUD+CXJHudLg:6lUWFV817UCEF7KvXTwbHQ", callContext.id);
@@ -1033,6 +1161,9 @@ define("UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$contro
                 return controller.appManager_Get_UserIdToken$ServerAction("", callContext).then(function(value) {
                     appManager_Get_UserIdTokenVar.value = value;
                 }).then(function() {
+                    OutSystemsDebugger.handleBreakpoint("ACDBfnTIv0CUD+CXJHudLg:LBTETW+VIk2r1O1j0BYGsQ", callContext.id);
+                    // Execute Action: Action_SetToken
+                    controller._action_SetToken$Action(appManager_Get_UserIdTokenVar.value.idTokenOut, callContext);
                     OutSystemsDebugger.handleBreakpoint("ACDBfnTIv0CUD+CXJHudLg:KD4JQlNLtk2jvOasPkllVQ", callContext.id);
                     controller.safeExecuteJSNode(UBTConnect_EmbedMyEntertaining_Blocks_Embedded_MyEntertaining_mvc_controller_Action_RefreshToken_RefreshEmbedTokenJS, "RefreshEmbedToken", "Action_RefreshToken", {
                         IdToken: OS.DataConversion.JSNodeParamConverter.to(appManager_Get_UserIdTokenVar.value.idTokenOut, OS.DataTypes.DataTypes.Text)
@@ -1081,6 +1212,16 @@ define("UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$contro
             return controller.safeExecuteClientAction(controller._action_OnComplete$Action, callContext, statusIn, totalIn);
 
         };
+        Controller.prototype.action_SetToken$Action = function(tokenIn, callContext) {
+            var controller = this.controller;
+            return controller.safeExecuteClientAction(controller._action_SetToken$Action, callContext, tokenIn);
+
+        };
+        Controller.prototype.action_SetResumeListener$Action = function(listenerIn, callContext) {
+            var controller = this.controller;
+            return controller.safeExecuteClientAction(controller._action_SetResumeListener$Action, callContext, listenerIn);
+
+        };
         Controller.prototype.action_OnReady$Action = function(callContext) {
             var controller = this.controller;
             return controller.safeExecuteClientAction(controller._action_OnReady$Action, callContext);
@@ -1094,6 +1235,11 @@ define("UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$contro
         Controller.prototype.action_SetMessageListener$Action = function(listenerIn, callContext) {
             var controller = this.controller;
             return controller.safeExecuteClientAction(controller._action_SetMessageListener$Action, callContext, listenerIn);
+
+        };
+        Controller.prototype.action_OnNavBack$Action = function(callContext) {
+            var controller = this.controller;
+            return controller.safeExecuteClientAction(controller._action_OnNavBack$Action, callContext);
 
         };
         Controller.prototype.action_OnAuthenticated$Action = function(callContext) {
@@ -1119,6 +1265,9 @@ define("UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$contro
         Controller.prototype.onReady$Action = function() {
             return Promise.resolve();
         };
+        Controller.prototype.onNavBack$Action = function() {
+            return Promise.resolve();
+        };
         Controller.prototype.onAuthenticated$Action = function() {
             return Promise.resolve();
         };
@@ -1136,7 +1285,7 @@ define("UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$contro
         Controller.prototype.pushDebuggerContext = function(callContext) {
             var varBag = {};
             OutSystemsDebugger.push("ACDBfnTIv0CUD+CXJHudLg:1K4x3zRe7EmqzrGYLHmosg:/NRWebFlows.1K4x3zRe7EmqzrGYLHmosg:hvLv3lpmYtwoYmMHyFgf5g", "UBTConnect_EmbedMyEntertaining", "Blocks", "NRFlows.WebFlow", callContext.id, varBag);
-            OutSystemsDebugger.push("ACDBfnTIv0CUD+CXJHudLg:pUFusax9kkCG9mFy6SB2Ig:/NRWebFlows.1K4x3zRe7EmqzrGYLHmosg/NodesShownInESpaceTree.pUFusax9kkCG9mFy6SB2Ig:7tMgVFLRgpazZIjFVJP+dg", "UBTConnect_EmbedMyEntertaining", "Embedded_MyEntertaining", "NRNodes.WebBlock", callContext.id, varBag);
+            OutSystemsDebugger.push("ACDBfnTIv0CUD+CXJHudLg:pUFusax9kkCG9mFy6SB2Ig:/NRWebFlows.1K4x3zRe7EmqzrGYLHmosg/NodesShownInESpaceTree.pUFusax9kkCG9mFy6SB2Ig:FyTAivu3k5_9wjI3l28j4w", "UBTConnect_EmbedMyEntertaining", "Embedded_MyEntertaining", "NRNodes.WebBlock", callContext.id, varBag);
         };
         Controller.prototype.popDebuggerContext = function(callContext) {
             OutSystemsDebugger.pop("ACDBfnTIv0CUD+CXJHudLg:pUFusax9kkCG9mFy6SB2Ig", callContext.id);
@@ -1217,6 +1366,10 @@ define("UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$contro
         if ($parameters.RefreshIntervalId) {
             clearInterval($parameters.RefreshIntervalId);
         }
+        if ($parameters.ResumeListener) {
+            document.removeEventListener('resume', $parameters.ResumeListener);
+            document.removeEventListener('visibilitychange', $parameters.ResumeListener);
+        }
         if (window.Connect2Entertaining && window.Connect2Entertaining.embed.isConfigured()) {
             window.Connect2Entertaining.embed.destroy();
         }
@@ -1227,6 +1380,11 @@ define("UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$contro
         if (window.Connect2Entertaining && window.Connect2Entertaining.embed.isConfigured()) {
             window.Connect2Entertaining.embed.setSources($parameters.SourceFilter || null);
         }
+    };
+});
+define("UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$controller.Action_SetToken.SetEntertainingTokenJS", [], function() {
+    return function($parameters, $actions, $roles, $public) {
+        window.__ubtEntertainingToken = $parameters.Token;
     };
 });
 define("UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$controller.OnAfterFetch_GetEntertainingConfig.InitializeCalendarJS", [], function() {
@@ -1240,6 +1398,10 @@ define("UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$contro
         if ($parameters.RefreshIntervalId) {
             clearInterval($parameters.RefreshIntervalId);
         }
+        if ($parameters.ResumeListener) {
+            document.removeEventListener('resume', $parameters.ResumeListener);
+            document.removeEventListener('visibilitychange', $parameters.ResumeListener);
+        }
 
         Connect2Entertaining.embed.init({
             baseUrl: $parameters.BaseURL,
@@ -1250,7 +1412,7 @@ define("UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$contro
             autoResize: false,
             sources: $parameters.Sources || null,
             getIdToken: function() {
-                return $parameters.Token;
+                return window.__ubtEntertainingToken;
             },
             b2cTenants: $parameters.B2CTenant,
             b2cClientIds: $parameters.B2CClientId,
@@ -1276,6 +1438,9 @@ define("UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$contro
                 var message = (error && (error.message || error.type)) || 'Unknown error';
                 $actions.JSUtils_Console_Log('My Entertaining error: ' + message);
                 $actions.Action_OnError(message);
+            },
+            onNavBack: function() {
+                $actions.Action_OnNavBack();
             }
         });
 
@@ -1299,6 +1464,14 @@ define("UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$contro
             $actions.Action_RefreshToken();
         }, 10 * 60 * 1000);
         $actions.Action_SetRefreshInterval(refreshIntervalId);
+
+        var resumeListener = function() {
+            if (document.hidden) return;
+            $actions.Action_RefreshToken();
+        };
+        document.addEventListener('resume', resumeListener, false);
+        document.addEventListener('visibilitychange', resumeListener);
+        $actions.Action_SetResumeListener(resumeListener);
     };
 });
 define("UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$controller.Action_RefreshToken.RefreshEmbedTokenJS", [], function() {
@@ -1345,6 +1518,23 @@ define("UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$debugg
                 return varBag.vars.value.totalInLocal;
             },
             dataType: OS.DataTypes.DataTypes.Text
+        },
+        "lQrAnqH2+UKpBmRvNl_6DA": {
+            getter: function(varBag, idService) {
+                return varBag.vars.value.tokenInLocal;
+            },
+            dataType: OS.DataTypes.DataTypes.Text
+        },
+        "2g1YVxtJzEC4R0jZ6Fv70Q": {
+            getter: function(varBag, idService) {
+                return varBag.setEntertainingTokenJSResult.value;
+            }
+        },
+        "gWK5oKkJ6kCmpLEpqZKO5g": {
+            getter: function(varBag, idService) {
+                return varBag.vars.value.listenerInLocal;
+            },
+            dataType: OS.DataTypes.DataTypes.Object
         },
         "F5EDpxatGUyWOVcdrukELQ": {
             getter: function(varBag, idService) {
@@ -1419,6 +1609,12 @@ define("UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$debugg
                 return varBag.model.variables.maxLoadingItemsVar;
             },
             dataType: OS.DataTypes.DataTypes.Integer
+        },
+        "Mzf4z31OkkWXOni6wY_0ZA": {
+            getter: function(varBag, idService) {
+                return varBag.model.variables.resumeListenerVar;
+            },
+            dataType: OS.DataTypes.DataTypes.Object
         },
         "oxStrwLZkECCd15pgRZyYA": {
             getter: function(varBag, idService) {

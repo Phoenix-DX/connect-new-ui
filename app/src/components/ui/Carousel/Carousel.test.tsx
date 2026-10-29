@@ -2,7 +2,12 @@ import { composeStories } from '@storybook/react-vite';
 import { render } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { expectToMatchCapture } from '@/test/dom';
-import { carouselGoTo, carouselToggleDrag, setCarouselStartingPosition } from '@/components/ui/lib/actions';
+import {
+  carouselGoTo,
+  carouselToggleDrag,
+  removeCarouselOnResizeHandler,
+  setCarouselStartingPosition,
+} from '@/components/ui/lib/actions';
 import { CarouselNavigation } from '@/components/ui/lib/staticEntities';
 import { carousel_SetCurrentPosition } from '@/lib/ubtConnect/actions';
 import { Carousel, splideOptions, type CarouselConfig } from './Carousel';
@@ -179,6 +184,20 @@ describe('Carousel', () => {
     expect(carouselGoTo('b9-Carousel_Test', 2)).toBe(true);
     expect(listTransform(container)).toContain('translateX(-780px)');
     expect(carouselGoTo('no-such-carousel', 1)).toBe(false);
+  });
+
+  it('RemoveCarouselOnResizeHandler drops the window resize handler of the build; an unknown id does nothing', () => {
+    stubCarouselLayout(390);
+    const add = vi.spyOn(window, 'addEventListener');
+    const remove = vi.spyOn(window, 'removeEventListener');
+    render(threeSlides({}));
+    const handler = add.mock.calls.find(([type]) => type === 'resize')?.[1];
+    expect(handler).toBeTypeOf('function');
+    removeCarouselOnResizeHandler('b9-Carousel_Test');
+    expect(remove).toHaveBeenCalledWith('resize', handler);
+    remove.mockClear();
+    removeCarouselOnResizeHandler('no-such-carousel');
+    expect(remove).not.toHaveBeenCalled();
   });
 
   it('CarouselToggleDrag sets the live drag option (OSUI:18407-18409): splide--draggable follows it', () => {

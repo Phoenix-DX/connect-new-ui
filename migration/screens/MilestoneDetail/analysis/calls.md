@@ -2,9 +2,9 @@
 
 | # | t (ms) | call | status | scope | path |
 |---|---|---|---|---|---|
-| 1 | 2700 | `DataActionGetAccommodationHost` | 200 | this screen | `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_AccommodationHost/DataActionGetAccommodationHost` |
-| 2 | 3017 | `DataActionGet_Document` | 200 | this screen | `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_AccommodationHost/DataActionGet_Document` |
-| 3 | 3560 | `ActionGetSignedImagesInBulk` | 200 | this screen | `/UBTConnect/screenservices/Connect2_LegacyShared/ActionGetSignedImagesInBulk` |
+| 1 | 2457 | `DataActionGetAccommodationHost` | 200 | this screen | `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_AccommodationHost/DataActionGetAccommodationHost` |
+| 2 | 2881 | `DataActionGet_Document` | 200 | this screen | `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_AccommodationHost/DataActionGet_Document` |
+| 3 | 8162 | `ActionGetSignedImagesInBulk` | 200 | this screen | `/UBTConnect/screenservices/Connect2_LegacyShared/ActionGetSignedImagesInBulk` |
 
 ## DataActionGetAccommodationHost
 - Scope: this screen
@@ -227,52 +227,52 @@
 | request | count |
 |---|---|
 | `fetch /UBTConnect/EventDetail` | 1 |
-| `xmlhttprequest /UBTConnect/moduleservices/moduleversioninfo` | 2 |
 | `script /UBTConnect/scripts/UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_MilestoneWrapper.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_MealHost.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_AccommodationHost.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_MealGuest.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_MealHelper.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_AccommodationGuest.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_AccommodationHelper.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.MilestoneHeader.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_MemberInformation.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_AccommodationGuest.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_AccommodationHost.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.OrbitAdminTag.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_MemberInformation.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.MilestoneHeader.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy.mvc.js` | 1 |
 | `script /UBTConnect/scripts/FileTransferPlugin.model.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostInformation.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper.mvc.js` | 1 |
-| `script /UBTConnect/scripts/FileTransferPlugin.FileTransfer.HandleDownload.mvc.js` | 1 |
 | `script /UBTConnect/scripts/FilePlugin.model.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostInformation.mvc.js` | 1 |
+| `script /UBTConnect/scripts/FileTransferPlugin.FileTransfer.HandleDownload.mvc.js` | 1 |
 | `script /UBTConnect/scripts/FileTransferPlugin.controller.js` | 1 |
 | `script /UBTConnect/scripts/FileViewerPlugin.controller.js` | 1 |
 | `script /UBTConnect/scripts/FilePlugin.controller.js` | 1 |
-| `script /UBTConnect/scripts/ReactiveHtmlSanitizer.HtmlSanitizer.SanitizedHtml.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.ContactOptions_Orbit.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.PhotoLazyLoaded.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByMessage.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_AppLauncherPlugin.model.js` | 1 |
-| `script /UBTConnect/scripts/FileTransferPlugin.referencesHealth.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_AppLauncherPlugin.model.js` | 1 |
+| `script /UBTConnect/scripts/ReactiveHtmlSanitizer.HtmlSanitizer.SanitizedHtml.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.PhotoLazyLoaded.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_AppLauncherPlugin.controller.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByMessage.mvc.js` | 1 |
+| `script /UBTConnect/scripts/FileTransferPlugin.referencesHealth.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.ContactOptions_Orbit.mvc.js` | 1 |
 | `script /UBTConnect/scripts/FileViewerPlugin.referencesHealth.js` | 1 |
 | `script /UBTConnect/scripts/FileViewerPlugin.model.js` | 1 |
 | `script /UBTConnect/scripts/FilePlugin.referencesHealth.js` | 1 |
 | `script /UBTConnect/scripts/ReactiveHtmlSanitizer.model.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_LegacyShared.Widgets.MultiResolutionImageLoader.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.LazyImage.mvc.js` | 1 |
 | `script /UBTConnect/scripts/ReactiveHtmlSanitizer.controller.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.LazyImage.mvc.js` | 1 |
-| `script /UBTConnect/scripts/ReactiveHtmlSanitizer.languageResources.js` | 1 |
 | `script /UBTConnect/scripts/FileTransferPlugin.languageResources.js` | 1 |
-| `script /UBTConnect/scripts/ReactiveHtmlSanitizer.HtmlSanitizer.js` | 1 |
+| `script /UBTConnect/scripts/ReactiveHtmlSanitizer.languageResources.js` | 1 |
 | `script /UBTConnect/scripts/FileTransferPlugin.FileTransfer_HandleDownload.js` | 1 |
+| `script /UBTConnect/scripts/ReactiveHtmlSanitizer.HtmlSanitizer.js` | 1 |
 | `script /UBTConnect/scripts/FileTransferPlugin.osfiletransfer_bundle.js` | 1 |
 | `script /UBTConnect/scripts/FileTransferPlugin.wrapper.js` | 1 |
 | `xmlhttprequest https://australiaeast-0.in.applicationinsights.azure.com/v2/track` | 1 |
-| `fetch /UBTConnect/MilestoneDetail` | 1 |
+| `xmlhttprequest /UBTConnect/moduleservices/moduleversioninfo` | 1 |
+| `fetch /UBTConnect/MilestoneDetail` | 2 |
 | `fetch /UBTConnect/moduleservices/moduleinfo` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_MilestoneWrapper.mvc.js` | 1 |
@@ -289,6 +289,16 @@
 | `fetch /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.ContactHelpdesk_Footer.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect.App_Common.CommonUI_InsideLayout.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect.App_Common.OfflineDataSyncEvents.mvc.js` | 1 |
+| `img https://cbcdn.ubtconnect.com/3/US/335/1501/52989/117499_f_52989.jpg` | 1 |
+| `img https://cbcdn.ubtconnect.com/3/US/335/1501/52989/117499_f_73842.jpg` | 1 |
+| `img https://cbcdn.ubtconnect.com/3/CA/381/2424/52471/122853_f_52472.jpg` | 1 |
+| `img https://cbcdn.ubtconnect.com/3/US/335/1501/52989/117499_f_52990.jpg` | 1 |
+| `img https://cbcdn.ubtconnect.com/3/CA/381/2424/52471/122853_f_57972.jpg` | 1 |
+| `img https://cbcdn.ubtconnect.com/3/CA/381/2424/52471/122853_f_66774.jpg` | 1 |
+| `img https://cbcdn.ubtconnect.com/3/US/335/1501/52989/117499_f_77810.jpg` | 1 |
+| `img https://cbcdn.ubtconnect.com/3/CA/381/2424/52471/122853_f_52471.jpg` | 1 |
+| `img https://cbcdn.ubtconnect.com/3/US/335/1501/52989/117499_f_52992.jpg` | 1 |
+| `img https://cbcdn.ubtconnect.com/3/US/335/1501/52989/117499_f_52991.jpg` | 1 |
 | `fetch /UBTConnect/scripts/OutSystemsUI_2_23.Private.OfflineDataSyncCore.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/OutSystemsUI_2_23.Private.NetworkStatusChanged.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect.App_PIN.Block_PINUnlock.mvc.js` | 1 |
@@ -299,19 +309,10 @@
 | `fetch /UBTConnect/scripts/UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBT_AppManager_Mobile.Fingerprint.PinUnlock_MobileWrapper.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBT_AppManager.PIN.Pincode_Unlock.mvc.js` | 1 |
-| `img https://cbcdn.ubtconnect.com/3/CA/381/2424/52471/122853_f_66774.jpg` | 1 |
-| `img https://cbcdn.ubtconnect.com/3/US/335/1501/52989/117499_f_52991.jpg` | 1 |
-| `img https://cbcdn.ubtconnect.com/3/US/335/1501/52989/117499_f_52990.jpg` | 1 |
-| `img https://cbcdn.ubtconnect.com/3/CA/381/2424/52471/122853_f_52471.jpg` | 1 |
-| `img https://cbcdn.ubtconnect.com/3/CA/381/2424/52471/122853_f_52472.jpg` | 1 |
-| `img https://cbcdn.ubtconnect.com/3/US/335/1501/52989/117499_f_52989.jpg` | 1 |
-| `img https://cbcdn.ubtconnect.com/3/CA/381/2424/52471/122853_f_57972.jpg` | 1 |
-| `img https://cbcdn.ubtconnect.com/3/US/335/1501/52989/117499_f_52992.jpg` | 1 |
-| `img https://cbcdn.ubtconnect.com/3/US/335/1501/52989/117499_f_73842.jpg` | 1 |
-| `img https://cbcdn.ubtconnect.com/3/US/335/1501/52989/117499_f_77810.jpg` | 1 |
 | `fetch /UBTConnect/scripts/UBT_AppManager.PIN.InactivityTimer.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/NavigationHandler.ConfirmationDialogs.ActionConfirmationDialog.mvc.js` | 1 |
+| `fetch /UBTConnect/status/network-ping.txt` | 2 |
 | `fetch /UBTConnect/scripts/UBTConnect.Legacy_Share.HandleOnResumeOpenLink.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/Connect2_AndroidAppLinksPlugin.AndroidAppLinks.AndroidAppLinkOnResumeHandler.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/EventfulDeeplinksPlugin.EventfulDeeplinksPlugin.DeeplinkHandlerCentral.mvc.js` | 1 |
@@ -319,7 +320,6 @@
 | `fetch /UBTConnect/scripts/NavigationHandler.NavigationHandler.BackNavigationHandler.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/FileTransferPlugin.FileTransfer.HandleDownload.mvc.js` | 1 |
-| `fetch /UBTConnect/status/network-ping.txt` | 2 |
 | `fetch /UBTConnect/scripts/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect.controller.js` | 1 |
@@ -373,6 +373,7 @@
 | `fetch /UBTConnect/css/Connect2_LegacyShared.ConnectMobile.css` | 1 |
 | `fetch /UBTConnect/css/Connect2_LegacyShared.UBTConnect_LegacyChain.css` | 1 |
 | `fetch /UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css` | 1 |
+| `img /UBTConnect/MilestoneDetail` | 1 |
 | `fetch /UBTConnect/fonts/fontawesome-webfont.woff2` | 1 |
 | `fetch /UBTConnect/fonts/fontawesome-webfont.woff` | 1 |
 | `fetch /UBTConnect/Inter-VariableFont_opsz,wght.ttf` | 1 |

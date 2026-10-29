@@ -1,6 +1,6 @@
 import { fetchTransportDetail, type TransportDetails } from '@/api/event';
 import { getSkeletonLoadingIdFromMilestoneTypeId } from '@/pages/TransportDetail/actions';
-import { useFlowState, type IsAlive } from '@/platform/navigation';
+import { useFlowState } from '@/platform/navigation';
 import {
   contactHelpdeskEvent,
   initialTransportDetailState,
@@ -38,36 +38,31 @@ export interface TransportDetailFlows {
       True, then the refresh of Get_TransportDetail, then OnAfterFetch_GetTransportDetail (TransportDetail and Title
       from the answer, IsFetchingData = False). A failure keeps the skeleton and goes to the flow handler.
     - OnHandle_ContactHelpdesk raises NavigateTo_ContactHelpdesk with the subject of the transport.
-    Decision W23: `isAlive` guards the state writes only. The flow has no app-level side effect after its call; a call
-    that started runs to its end after an unmount, and a failure still goes to the flow handler. StrictMode runs
-    OnReady once (one call).
+    Flow scope (item 8): Get_TransportDetail is a data action (R1, `flow.fetch`): after the unmount its answer and its
+    failure are dropped (no state write, no flow handler). StrictMode runs OnReady once (one call).
     @origin Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_TransportDetail */
 export function useTransportDetail(
   inputs: TransportDetailBlockInputs,
   events: TransportDetailEvents,
 ): TransportDetailFlows {
-  const {
-    state,
-    dispatch,
-    latest,
-    parameters,
-    events: eventsRef,
-  } = useFlowState({
+  const { state, dispatch, latest, parameters, flow } = useFlowState({
     viewName: 'Orbit_ScreenBlocks.ScreenBlock_TransportDetail',
     reducer: transportDetailReducer,
     initial: initialTransportDetailState(inputs.In_PreloadMilestoneName),
     parameters: inputs,
     events,
     // The flow is defined below; the hook calls the one of the newest render.
-    onReady: (isAlive) => onReady(isAlive),
+    onReady: () => onReady(),
     beforePaint: true,
   });
 
   /** OnReady: IsFetchingData = True, the refresh of Get_TransportDetail, then OnAfterFetch_GetTransportDetail. */
-  const onReady = async (isAlive: IsAlive) => {
+  const onReady = async () => {
     dispatch({ type: 'fetchStarted' });
-    const transportDetail = await fetchTransportDetail(transportDetailCallInputs(latest.current, parameters.current));
-    if (isAlive()) dispatch({ type: 'fetched', transportDetail });
+    const transportDetail = await flow.fetch(
+      fetchTransportDetail(transportDetailCallInputs(latest.current, parameters.current)), // R1
+    );
+    dispatch({ type: 'fetched', transportDetail });
   };
 
   return {
@@ -78,7 +73,7 @@ export function useTransportDetail(
     skeletonLoadingId: getSkeletonLoadingIdFromMilestoneTypeId(inputs.In_OrbitMilestoneTypeId),
     onContactHelpdesk: () => {
       const { subject, eventName } = contactHelpdeskEvent(latest.current, parameters.current);
-      eventsRef.current.onNavigateToContactHelpdesk(subject, eventName);
+      flow.events.onNavigateToContactHelpdesk(subject, eventName);
     },
   };
 }

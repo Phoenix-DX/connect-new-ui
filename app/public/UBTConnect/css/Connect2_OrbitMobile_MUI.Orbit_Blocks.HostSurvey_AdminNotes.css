@@ -1,1 +1,11 @@
-﻿
+﻿.orbit-host-survey-admin-msg {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    margin-top: var(--space-xs);
+    padding: var(--space-m);
+    border-radius: var(--space-s);
+    font-size: var(--font-size-xs);
+    background-color: var(--orbit-primary-1);
+}

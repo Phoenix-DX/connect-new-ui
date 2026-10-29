@@ -50,7 +50,7 @@ describe('CommunityBusinessDetails_CoomingSoon page', () => {
     );
     expect(layout.querySelector('.header-title')?.textContent).toBe('');
     expect(layout.querySelector('.ubt-layout-main__search [data-block="ConnectPatterns.StaticInput"]')).not.toBeNull();
-    expect(screen.getByText('Search for households. entities, news')).toBeInTheDocument();
+    expect(screen.getByText('Search for households, members or places.')).toBeInTheDocument();
 
     const slate = layout.querySelector('.content-middle [data-block="Content.BlankSlate"]');
     if (slate === null) throw new Error('blank slate not rendered');
@@ -69,7 +69,7 @@ describe('CommunityBusinessDetails_CoomingSoon page', () => {
   it('a click on the StaticInput does nothing', () => {
     const { container, at } = renderRoutes(routes, PATH);
     const before = container.innerHTML;
-    fireEvent.click(screen.getByText('Search for households. entities, news'));
+    fireEvent.click(screen.getByText('Search for households, members or places.'));
     expect(at()).toBe(PATH);
     expect(container.innerHTML).toBe(before);
     expect(calledActions()).toEqual([]);

@@ -36,4 +36,24 @@ describe('Dialog_GoExternalApp', () => {
     await expect(answer).resolves.toBe(true);
     expect(onGoToExternalApp).toHaveBeenCalledOnce();
   });
+
+  it('open, the icon is in a text-align center container and the confirm label in a flex row CustomContainer (mvc.js:276-281, 438-450)', async () => {
+    render(<Dialog_GoExternalApp id="b5-$b12" externalAppPopUpInfo={TROVE} />);
+    act(() => {
+      void confirmAction('b5-b12-PopUp');
+    });
+    await waitFor(() => {
+      expect(document.body.textContent).toContain('Move to Trove');
+    });
+    let centred = document.querySelector('.connect-icon-trove')?.parentElement ?? null;
+    while (centred && centred.style.textAlign !== 'center') centred = centred.parentElement;
+    expect(centred?.getAttribute('data-container')).toBe('');
+    const label = [...document.querySelectorAll('button')].find((b) => b.textContent.includes('Continue to Trove'));
+    const row = label?.querySelector('.display-flex') as HTMLElement;
+    expect(row.className).toContain('align-items-center');
+    expect(row.className).toContain('justify-content-center');
+    expect(row.className).toContain('flex-direction-row');
+    expect(row.textContent).toContain('Continue to Trove');
+    expect(row.querySelector('.margin-left-s .connect-icon-open_new')).not.toBeNull();
+  });
 });

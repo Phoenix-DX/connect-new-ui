@@ -24,7 +24,8 @@ mode, their configs; line refs inside). The vscomp / osui-dropdown CSS is the or
 ## Captured variants
 
 None: the pattern was never rendered in a capture (Profile only). Built from the compiled view: story `CompiledView`
-(Profile's locality dropdown inputs, mock names). A fake provider plus a smoke test of the vendored script
+(Profile's locality dropdown inputs, mock names). Profile renders LocalityDropdown and SubdivisionDropdown in the
+address section of the householder (mock scenario `?mock=address`). A fake provider plus a smoke test of the vendored script
 (`vendor/index.test.ts`) test the behaviour.
 
 ## Not captured / not settled
@@ -39,6 +40,6 @@ None: the pattern was never rendered in a capture (Profile only). Built from the
 
 The block registers its provider under its unique id (`name`) and widget id (`id`), as DropdownAPI.Create / Dispose do;
 `../lib/actions.ts` ports the client actions on it: `dropdownClear(WidgetId, SilentOnChangedEvent)`,
-`dropdownClearValidation(WidgetId)`, `dropdownTogglePopup(WidgetId, EnablePopup)` and `dropdownClose(id)`
-(DropdownAPI.Close). Provider methods `clear`, `close`, `togglePopup` (ShowDropboxAsPopup, default true) and `validation`
+`dropdownClearValidation(WidgetId)`, `dropdownNotValid(WidgetId, ValidationMessage)` (Profile, App_Profile F1),
+`dropdownTogglePopup(WidgetId, EnablePopup)` and `dropdownClose(id)` (DropdownAPI.Close). Provider methods `clear`, `close`, `togglePopup` (ShowDropboxAsPopup, default true) and `validation`
 in `provider.ts` (AbstractVirtualSelect U:20075-20178). Rendering and events of this block are unchanged.

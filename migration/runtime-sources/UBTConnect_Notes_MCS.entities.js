@@ -58,25 +58,32 @@ type: /*DATE_TIME*/ 6,
 addColumn: {
 sql: "ALTER TABLE \"MAIN\".\"OSUSR_18U_LOCALNOTE\" ADD \"DateEditedUtc\" DATETIME DEFAULT \'1900-01-01 00:00:00\'"
 }
+}, {
+name: "NotesTotalCount",
+columnName: "NOTESTOTALCOUNT",
+type: /*LONGINTEGER*/ 4,
+addColumn: {
+sql: "ALTER TABLE \"MAIN\".\"OSUSR_18U_LOCALNOTE\" ADD \"NotesTotalCount\" BIGINT DEFAULT 0"
+}
 }],
 idIsAutoNumber: /*YesIfEmpty*/ 2,
 getIdAttribute: function () {
 return this.attributes[0];
 },
-hash: "422191e9-3dd5-db72-2f7a-e92548a44146",
+hash: "5b337394-f6b3-f5d3-e632-0afb8066d8df",
 dbRecordToRecord: function (dbRecord) {
 return new UBTConnect_Notes_MCSModel.LocalNoteRecord(OS.DataConversion.LocalStorageConverter.from(dbRecord, UBTConnect_Notes_MCSModel.LocalNoteRecord, {
 value: 0
 }));
 },
 createTable: {
-sql: "CREATE TABLE \"MAIN\".\"OSUSR_18U_LOCALNOTE\" (\"Id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \"UserId\" INTEGER DEFAULT NULL, \"NoteId\" BIGINT DEFAULT 0, \"NoteCategoryId\" TEXT(50) DEFAULT NULL, \"ItemId\" TEXT(50) DEFAULT \'\', \"DateCreatedUtc\" DATETIME DEFAULT \'1900-01-01 00:00:00\', \"DateEditedUtc\" DATETIME DEFAULT \'1900-01-01 00:00:00\')"
+sql: "CREATE TABLE \"MAIN\".\"OSUSR_18U_LOCALNOTE\" (\"Id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \"UserId\" INTEGER DEFAULT NULL, \"NoteId\" BIGINT DEFAULT 0, \"NoteCategoryId\" TEXT(50) DEFAULT NULL, \"ItemId\" TEXT(50) DEFAULT \'\', \"DateCreatedUtc\" DATETIME DEFAULT \'1900-01-01 00:00:00\', \"DateEditedUtc\" DATETIME DEFAULT \'1900-01-01 00:00:00\', \"NotesTotalCount\" BIGINT DEFAULT 0)"
 },
 select: {
-sql: "SELECT \"Id\" o0, \"UserId\" o1, \"NoteId\" o2, \"NoteCategoryId\" o3, \"ItemId\" o4, \"DateCreatedUtc\" o5, \"DateEditedUtc\" o6 FROM \"OSUSR_18U_LOCALNOTE\" WHERE \"Id\" = ?"
+sql: "SELECT \"Id\" o0, \"UserId\" o1, \"NoteId\" o2, \"NoteCategoryId\" o3, \"ItemId\" o4, \"DateCreatedUtc\" o5, \"DateEditedUtc\" o6, \"NotesTotalCount\" o7 FROM \"OSUSR_18U_LOCALNOTE\" WHERE \"Id\" = ?"
 },
 insert: {
-sql: "INSERT INTO \"OSUSR_18U_LOCALNOTE\" (\"Id\", \"UserId\", \"NoteId\", \"NoteCategoryId\", \"ItemId\", \"DateCreatedUtc\", \"DateEditedUtc\") VALUES (?, ?, ?, ?, ?, ?, ?)",
+sql: "INSERT INTO \"OSUSR_18U_LOCALNOTE\" (\"Id\", \"UserId\", \"NoteId\", \"NoteCategoryId\", \"ItemId\", \"DateCreatedUtc\", \"DateEditedUtc\", \"NotesTotalCount\") VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
 getArguments: function (record) {
 var obj = record.localNoteAttr;
 var argsList = new OS.Entities.QueryArgumentsList();
@@ -87,12 +94,13 @@ argsList.add("NoteCategoryId", /*TEXT*/ 0, obj.noteCategoryIdAttr, null, null, t
 argsList.add("ItemId", /*TEXT*/ 0, obj.itemIdAttr);
 argsList.add("DateCreatedUtc", /*DATE_TIME*/ 6, obj.dateCreatedUtcAttr);
 argsList.add("DateEditedUtc", /*DATE_TIME*/ 6, obj.dateEditedUtcAttr);
+argsList.add("NotesTotalCount", /*LONGINTEGER*/ 4, obj.notesTotalCountAttr);
 
 return argsList;
 }
 },
 upsert: {
-sql: "INSERT OR REPLACE INTO \"OSUSR_18U_LOCALNOTE\" (\"Id\", \"UserId\", \"NoteId\", \"NoteCategoryId\", \"ItemId\", \"DateCreatedUtc\", \"DateEditedUtc\") VALUES (?, ?, ?, ?, ?, ?, ?)",
+sql: "INSERT OR REPLACE INTO \"OSUSR_18U_LOCALNOTE\" (\"Id\", \"UserId\", \"NoteId\", \"NoteCategoryId\", \"ItemId\", \"DateCreatedUtc\", \"DateEditedUtc\", \"NotesTotalCount\") VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
 getArguments: function (record) {
 var obj = record.localNoteAttr;
 var argsList = new OS.Entities.QueryArgumentsList();
@@ -103,15 +111,16 @@ argsList.add("NoteCategoryId", /*TEXT*/ 0, obj.noteCategoryIdAttr, null, null, t
 argsList.add("ItemId", /*TEXT*/ 0, obj.itemIdAttr);
 argsList.add("DateCreatedUtc", /*DATE_TIME*/ 6, obj.dateCreatedUtcAttr);
 argsList.add("DateEditedUtc", /*DATE_TIME*/ 6, obj.dateEditedUtcAttr);
+argsList.add("NotesTotalCount", /*LONGINTEGER*/ 4, obj.notesTotalCountAttr);
 
 return argsList;
 },
 getBulkSql: function (recordCount) {
-return OS.ObjectExtensions.concatenateMultipleTimes(this.sql, ",(?,?,?,?,?,?,?)", (recordCount - 1));
+return OS.ObjectExtensions.concatenateMultipleTimes(this.sql, ",(?,?,?,?,?,?,?,?)", (recordCount - 1));
 }
 },
 update: {
-sql: "UPDATE \"OSUSR_18U_LOCALNOTE\" SET \"UserId\" = ?, \"NoteId\" = ?, \"NoteCategoryId\" = ?, \"ItemId\" = ?, \"DateCreatedUtc\" = ?, \"DateEditedUtc\" = ? WHERE \"Id\" = ?",
+sql: "UPDATE \"OSUSR_18U_LOCALNOTE\" SET \"UserId\" = ?, \"NoteId\" = ?, \"NoteCategoryId\" = ?, \"ItemId\" = ?, \"DateCreatedUtc\" = ?, \"DateEditedUtc\" = ?, \"NotesTotalCount\" = ? WHERE \"Id\" = ?",
 getArguments: function (record) {
 var obj = record.localNoteAttr;
 var argsList = new OS.Entities.QueryArgumentsList();
@@ -121,6 +130,7 @@ argsList.add("NoteCategoryId", /*TEXT*/ 0, obj.noteCategoryIdAttr, null, null, t
 argsList.add("ItemId", /*TEXT*/ 0, obj.itemIdAttr);
 argsList.add("DateCreatedUtc", /*DATE_TIME*/ 6, obj.dateCreatedUtcAttr);
 argsList.add("DateEditedUtc", /*DATE_TIME*/ 6, obj.dateEditedUtcAttr);
+argsList.add("NotesTotalCount", /*LONGINTEGER*/ 4, obj.notesTotalCountAttr);
 argsList.add("Id", /*LONGINTEGER*/ 4, obj.idAttr);
 
 return argsList;
@@ -142,6 +152,7 @@ argsList.add("NoteCategoryId", /*TEXT*/ 0, obj.noteCategoryIdAttr, null, null, t
 argsList.add("ItemId", /*TEXT*/ 0, obj.itemIdAttr);
 argsList.add("DateCreatedUtc", /*DATE_TIME*/ 6, obj.dateCreatedUtcAttr);
 argsList.add("DateEditedUtc", /*DATE_TIME*/ 6, obj.dateEditedUtcAttr);
+argsList.add("NotesTotalCount", /*LONGINTEGER*/ 4, obj.notesTotalCountAttr);
 
 return argsList;
 },

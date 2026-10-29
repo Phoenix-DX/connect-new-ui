@@ -3,116 +3,118 @@ Layouts.Layout_DetailPage
   ConnectPatterns.Icon
   BasePatterns.CustomText
     ConnectPatterns.IconInline_Internal
-  SubLayout.SubLayout_DirectoryDetailScreen
-    ConnectPatterns.SkeletonSection
-      ConnectCorePatterns.ImageCard_LazyLoading
-        BasePatterns.CustomContainer
+  Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block
+    SubLayout.SubLayout_DirectoryDetailScreen
+      ConnectPatterns.SkeletonSection
+        ConnectCorePatterns.ImageCard_LazyLoading
           BasePatterns.CustomContainer
-            CW_Image.UBT_LazyImage
-              ConnectPatterns.SkeletonSection
-                ConnectPatterns.LazyImage
-                  ConnectPatterns.SkeletonSection
-                    BasePatterns.CustomContainer
-          BasePatterns.CustomContainer
-            ConnectPatterns.ImageCard__Content
-              BasePatterns.CustomText
-                ConnectPatterns.IconInline_Internal
-              BasePatterns.CustomText
-                ConnectPatterns.IconInline_Internal
+            BasePatterns.CustomContainer
+              CW_Image.UBT_LazyImage
+                ConnectPatterns.SkeletonSection
+                  ConnectPatterns.LazyImage
+                    ConnectPatterns.SkeletonSection
+                      BasePatterns.CustomContainer
+            BasePatterns.CustomContainer
+              ConnectPatterns.ImageCard__Content
+                BasePatterns.CustomText
+                  ConnectPatterns.IconInline_Internal
+                BasePatterns.CustomText
+                  ConnectPatterns.IconInline_Internal
+                BasePatterns.CustomContainer
+                  CW_CTA_PopUps.AddressPopup_Wrapper
+                    BasePatterns.CustomText
+                      ConnectPatterns.IconInline_Internal
+                        ConnectPatterns.Icon
+                    CW_CTA_PopUps.AddressPopup
+                      CW_CTA_PopUps.ContactPopup
+                  App_Common_Blocks.External_Link
+                    ConnectPatterns.IconText
+                      BasePatterns.Columns_Two
+                        Adaptive.Columns2
+                          ConnectPatterns.Icon
+                          BasePatterns.CustomText
+                            ConnectPatterns.IconInline_Internal
+      BasePatterns.CustomContainer
+        Directory_CommonBlocks.Directory_EntityDetailsActions
+          ConnectPatterns.SkeletonSection
+            ConnectCorePatterns.ActionsMenu
               BasePatterns.CustomContainer
-                CW_CTA_PopUps.AddressPopup_Wrapper
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-                      ConnectPatterns.Icon
-                  CW_CTA_PopUps.AddressPopup
-                    CW_CTA_PopUps.ContactPopup
-                App_Common_Blocks.External_Link
+                ConnectPatterns.CircleButton_IconPrimary
+                  ConnectPatterns.CircleButton_WithLabel
+                    ConnectPatterns.CircleButton
+                      BasePatterns.CustomContainer
+                        ConnectPatterns.Icon
+                    BasePatterns.CustomContainer
+                      BasePatterns.CustomText
+                        ConnectPatterns.IconInline_Internal
+                ConnectPatterns.CircleButton_IconPrimary
+                  ConnectPatterns.CircleButton_WithLabel
+                    ConnectPatterns.CircleButton
+                      BasePatterns.CustomContainer
+                        ConnectPatterns.Icon
+                    BasePatterns.CustomContainer
+                      BasePatterns.CustomText
+                        ConnectPatterns.IconInline_Internal
+                ConnectPatterns.CircleButton_IconPrimary
+                  ConnectPatterns.CircleButton_WithLabel
+                    ConnectPatterns.CircleButton
+                      BasePatterns.CustomContainer
+                        ConnectPatterns.Icon
+                    BasePatterns.CustomContainer
+                      BasePatterns.CustomText
+                        ConnectPatterns.IconInline_Internal
+                ConnectPatterns.CircleButton_IconPrimary
+                  ConnectPatterns.CircleButton_WithLabel
+                    ConnectPatterns.CircleButton
+                      BasePatterns.CustomContainer
+                        ConnectPatterns.Icon
+                    BasePatterns.CustomContainer
+                      BasePatterns.CustomText
+                        ConnectPatterns.IconInline_Internal
+                ConnectPatterns.CircleButton_IconPrimary
+                  ConnectPatterns.CircleButton_WithLabel
+                    ConnectPatterns.CircleButton
+                      BasePatterns.CustomContainer
+                        ConnectPatterns.Icon
+                    BasePatterns.CustomContainer
+                      BasePatterns.CustomText
+                        ConnectPatterns.IconInline_Internal
+          CW_CTA_PopUps.ContactByMessage_Wrapper
+            CW_CTA_PopUps.ContactPopup_ByMessage
+              CW_CTA_PopUps.ContactPopup
+          CW_CTA_PopUps.ContactPopup_ByPhone
+            CW_CTA_PopUps.ContactPopup
+          CW_CTA_PopUps.SharePopup
+            CW_CTA_PopUps.ContactPopup
+      ConnectPatterns.SkeletonSection
+        BasePatterns.CustomContainer
+          ConnectPatterns.ExpandableSection
+            BasePatterns.CustomContainer
+              BasePatterns.Columns_Two
+                Adaptive.Columns2
                   ConnectPatterns.IconText
                     BasePatterns.Columns_Two
                       Adaptive.Columns2
                         ConnectPatterns.Icon
                         BasePatterns.CustomText
                           ConnectPatterns.IconInline_Internal
-    BasePatterns.CustomContainer
-      Directory_CommonBlocks.Directory_EntityDetailsActions
-        ConnectPatterns.SkeletonSection
-          ConnectCorePatterns.ActionsMenu
+                  ConnectPatterns.Icon
             BasePatterns.CustomContainer
-              ConnectPatterns.CircleButton_IconPrimary
-                ConnectPatterns.CircleButton_WithLabel
-                  ConnectPatterns.CircleButton
-                    BasePatterns.CustomContainer
-                      ConnectPatterns.Icon
+              BasePatterns.CustomContainer
+                ConnectPatterns.ComingSoon
                   BasePatterns.CustomContainer
                     BasePatterns.CustomText
                       ConnectPatterns.IconInline_Internal
-              ConnectPatterns.CircleButton_IconPrimary
-                ConnectPatterns.CircleButton_WithLabel
-                  ConnectPatterns.CircleButton
-                    BasePatterns.CustomContainer
-                      ConnectPatterns.Icon
-                  BasePatterns.CustomContainer
-                    BasePatterns.CustomText
-                      ConnectPatterns.IconInline_Internal
-              ConnectPatterns.CircleButton_IconPrimary
-                ConnectPatterns.CircleButton_WithLabel
-                  ConnectPatterns.CircleButton
-                    BasePatterns.CustomContainer
-                      ConnectPatterns.Icon
-                  BasePatterns.CustomContainer
-                    BasePatterns.CustomText
-                      ConnectPatterns.IconInline_Internal
-              ConnectPatterns.CircleButton_IconPrimary
-                ConnectPatterns.CircleButton_WithLabel
-                  ConnectPatterns.CircleButton
-                    BasePatterns.CustomContainer
-                      ConnectPatterns.Icon
-                  BasePatterns.CustomContainer
-                    BasePatterns.CustomText
-                      ConnectPatterns.IconInline_Internal
-              ConnectPatterns.CircleButton_IconPrimary
-                ConnectPatterns.CircleButton_WithLabel
-                  ConnectPatterns.CircleButton
-                    BasePatterns.CustomContainer
-                      ConnectPatterns.Icon
-                  BasePatterns.CustomContainer
-                    BasePatterns.CustomText
-                      ConnectPatterns.IconInline_Internal
-        CW_CTA_PopUps.ContactByMessage_Wrapper
-          CW_CTA_PopUps.ContactPopup_ByMessage
-            CW_CTA_PopUps.ContactPopup
-        CW_CTA_PopUps.ContactPopup_ByPhone
-          CW_CTA_PopUps.ContactPopup
-        CW_CTA_PopUps.SharePopup
-          CW_CTA_PopUps.ContactPopup
-        CW_Notes.NotesSheet
-    ConnectPatterns.SkeletonSection
-      BasePatterns.CustomContainer
-        ConnectPatterns.ExpandableSection
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Two
-              Adaptive.Columns2
-                ConnectPatterns.IconText
-                  BasePatterns.Columns_Two
-                    Adaptive.Columns2
-                      ConnectPatterns.Icon
-                      BasePatterns.CustomText
-                        ConnectPatterns.IconInline_Internal
-                ConnectPatterns.Icon
-          BasePatterns.CustomContainer
-            BasePatterns.CustomContainer
-              ConnectPatterns.ComingSoon
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-      BasePatterns.CustomContainer
+                        ConnectPatterns.Icon
         BasePatterns.CustomContainer
-      BasePatterns.CustomContainer
+          BasePatterns.CustomContainer
         BasePatterns.CustomContainer
-          ConnectPatterns.ComingSoon
-            BasePatterns.CustomContainer
-              BasePatterns.CustomText
-                ConnectPatterns.IconInline_Internal
+          BasePatterns.CustomContainer
+            ConnectPatterns.ComingSoon
+              BasePatterns.CustomContainer
+                BasePatterns.CustomText
+                  ConnectPatterns.IconInline_Internal
+                    ConnectPatterns.Icon
   App_Common.BottomBarMenu
     App_Common.BottomBarContent
       Navigation.BottomBarItem
@@ -159,4 +161,5 @@ Layouts.Layout_DetailPage
       EventfulDeeplinksPlugin.DeeplinkHandlerCentral
     Utility.HandleImageLoadError
     NavigationHandler.BackNavigationHandler
+CW_Notes.NotesSheet
 CW_Share.ShareSheet

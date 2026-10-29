@@ -71,15 +71,6 @@ Layouts.Layout_DetailPage
                   ConnectPatterns.IconInline_Internal
                 ConnectPatterns.SkeletonSection
                   ConnectPatterns.Icon
-        ConnectPatterns.SkeletonSection
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.Icon
-                BasePatterns.CustomText
-                  ConnectPatterns.IconInline_Internal
-                ConnectPatterns.SkeletonSection
-                  ConnectPatterns.Icon
     BasePatterns.CustomContainer
       App_Common.Version
         BasePatterns.CustomText

@@ -118,6 +118,12 @@
 .connect-icon-close:before {
   content: "\e900";
 }
+
+/* New UBT icons use the connect-icon font: keep the UBTConnect close code */
+.ubt-icon.connect-icon-close:before {
+    content: "\f07c";
+}
+
 .connect-icon-info_outline:before {
   content: "\e901";
 }
@@ -157,6 +163,12 @@
 .connect-icon-edit:before {
   content: "\e90d";
 }
+
+/* New UBT icons use the connect-icon font: keep the UBTConnect pencil code */
+.ubt-icon.connect-icon-edit:before {
+  content: "\f06e";
+}
+
 .connect-icon-trash:before {
   content: "\e90e";
 }

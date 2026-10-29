@@ -13,6 +13,9 @@ import { initFlagOverrides } from './platform/flags';
 import { config, FLAG_OVERRIDES_BUILT, MOCKS_BUILT } from './platform/config/config';
 import { ErrorBoundary } from './app/ErrorBoundary';
 import { connectDialogs } from './app/dialogs';
+import { connectLayoutTheme } from './app/layoutTheme';
+import { installQueryErrorsToFlowHandler } from './platform/feedback/flowErrors';
+import { installIgnorableErrorFilter } from './platform/feedback/ignorableErrors';
 import { bootPlan } from './pwa/bootPlan';
 import { clearStaleServiceWorkers, registerAppServiceWorker } from './pwa/register';
 
@@ -21,6 +24,9 @@ applyDeviceClasses();
 window.addEventListener('resize', applyDeviceClasses);
 if (FLAG_OVERRIDES_BUILT) initFlagOverrides(); // ?ff= (dev and demo builds; plan v2 §3.1)
 connectDialogs(); // components/ui/Dialog markup with the platform triggers (app/dialogs.ts)
+connectLayoutTheme(); // body theme class for components/layout (app/layoutTheme.ts)
+installQueryErrorsToFlowHandler(queryClient); // a failed query fetch goes to the flow handler (flowErrors.ts)
+installIgnorableErrorFilter(); // an IgnorableSystemException is ignored at the top, as TST ignoreError (W324172)
 
 // OutSystems keeps --viewport-height on <body> in sync with the window.
 const syncViewport = () => {

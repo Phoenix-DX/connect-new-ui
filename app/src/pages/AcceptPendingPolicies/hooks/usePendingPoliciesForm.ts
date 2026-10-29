@@ -61,13 +61,8 @@ export function usePendingPoliciesForm(
   }
   const rows = list?.rows;
 
-  // A failed GetPendingPolicies goes to the screen's handleError → App_Policies flow → App_Common handler (Q2):
-  // communication errors → communication message, others → ShowExceptionMessage(message, False). Once per failed fetch.
-  const errorAt = query.isError ? query.errorUpdatedAt : 0;
-  const fetchError = query.error;
-  useEffect(() => {
-    if (errorAt !== 0) handleFlowError(fetchError);
-  }, [errorAt, fetchError]);
+  // A failed GetPendingPolicies goes to the screen's handleError → App_Policies flow → App_Common handler (Q2), once per
+  // failed fetch: the query-cache subscription does it (platform/feedback/flowErrors.ts installQueryErrorsToFlowHandler).
 
   const events = useRef({ onAcceptedAll, onNetworkError });
   useLayoutEffect(() => {

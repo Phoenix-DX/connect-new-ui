@@ -5,30 +5,32 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "d9f70fe9af796caad9c2",
+ "fingerprint": "4e62900396abff4abe21",
  "options": {
   "text": true,
   "style": true,
   "pixel": true,
   "calls": true,
+  "visibleOnly": false,
   "full": true,
-  "replay": "builder"
+  "replay": "builder",
+  "skipKinds": [],
+  "selfRef": false
  },
  "replay": {
   "mode": "builder",
-  "elements": 140,
-  "texts": 22,
+  "elements": 146,
+  "texts": 24,
   "comments": 0,
   "dropped": 0,
   "endTagMismatch": 0,
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-21T04:56:04.192Z",
+ "at": "2026-10-29T16:05:31.564Z",
  "counts": {},
  "exemptionsUsed": {
-  "ignoreSubtrees": 2,
-  "CAPTURE-LINK-HREF-CURSOR-PINCODE": 2
+  "ignoreSubtrees": 1
  },
  "pixel": {
   "ratio": 0,
@@ -46,7 +48,7 @@
    390,
    844
   ],
-  "masks": 12,
+  "masks": 1,
   "hotspots": [],
   "diffPng": "migration/screens/PINUnlock/parity/loading.diff.png"
  },

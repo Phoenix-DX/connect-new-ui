@@ -21,8 +21,8 @@ const COUNTRIES = [
   { CountryName: 'Uruguay', CountryCode: 'UY' },
 ];
 const LOCALITIES = [
-  { LocalityId: '252', Name: 'Bahia Blanca', CountryCode: 'AR' },
-  { LocalityId: '254', Name: 'Montevideo', CountryCode: 'UY' },
+  { LocalityId: '252', Name: 'Bahia Blanca', CountryName: 'Argentina', CountryCode: 'AR' },
+  { LocalityId: '254', Name: 'Montevideo', CountryName: 'Uruguay', CountryCode: 'UY' },
 ];
 /** A Global subscription: every country and locality is enabled. */
 const SUBSCRIPTION: FilterSheetSubscription = {

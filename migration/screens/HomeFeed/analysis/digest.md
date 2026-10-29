@@ -235,6 +235,7 @@ CW_Share.ShareSheet
 ## `UBTConnect.Home.HomeFeed.mvc.js`
 | variable | kind | type | default |
 |---|---|---|---|
+| Out_CommunityStatistics | output | Record | `OS.DataTypes.ImmutableBase.getData(new Connect_Geography_CSModel.UI_CommunityStatisticsRec())` |
 | HasUpdates | local | Boolean | `true` |
 | IsScreenInitialized | local | Boolean | `false` |
 | ShareableUpdateItem | local | Record | `OS.DataTypes.ImmutableBase.getData(new Connect_Updates_CSModel.UI_UpdateItemRec())` |
@@ -242,9 +243,12 @@ CW_Share.ShareSheet
 | ShareableObjectId | local | Text | `""` |
 | ShareObjectTypeId | local | Text | `""` |
 | ShareableFeedItem | local | Record | `OS.DataTypes.ImmutableBase.getData(new Connect2_Sharing_CSModel.UI_ShareableObject_GenericRec())` |
+| GetCommunityStatistics | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new GetCommunityStatisticsDataActRec())` |
+- Data actions: `DataActionGetCommunityStatistics` → `screenservices/UBTConnect/Home/HomeFeed/DataActionGetCommunityStatistics`
 - Lifecycle handlers: Initialize, Ready
-- Client actions / event handlers: `section_UpdatesOnClick_ViewAll`, `buttonOnClick`, `onClick_Search`, `screenEvent_OnReady`, `handler_NoUpdates`, `handler_ShareFeed`, `handler_CloseShareSheet`, `screenEvent_OnInitialize`, `handler_ShareUpdate`
+- Client actions / event handlers: `section_UpdatesOnClick_ViewAll`, `onClick_Search`, `screenEvent_OnReady`, `handler_NoUpdates`, `handler_ShareFeed`, `handler_CloseShareSheet`, `screenEvent_OnInitialize`, `handler_ShareUpdate`
 - Navigation: `/UBTConnect/Updates_SingleList`(); `/UBTConnect/Search`()
+- JavaScript nodes: `UBTConnect.Home.HomeFeed.mvc$controller.ScreenEvent_OnReady.IsRestoredFromCacheJS`
 - Static entities / flags: `uBT_Color.neutral4`, `uBT_Size.base`, `uBT_Size.small`, `connect_BottomBar_Items.home`, `type_ShareObject.update`, `type_ShareObject.feed`, `connect_Entity.feedItem`
 
 ## `UBTConnectLibrary.Layouts.Layout_HomePage.mvc.js`
@@ -401,7 +405,7 @@ CW_Share.ShareSheet
 ## `UBTConnectLibrary.ConnectPatterns.StaticInput.mvc.js`
 | variable | kind | type | default |
 |---|---|---|---|
-| In_Prompt | input | Text | `"Search for households. entities, news"` |
+| In_Prompt | input | Text | `"Search for households, members or places."` |
 | In_ExtendedClasses | input | Text | `""` |
 - Client actions / event handlers: `click_Input`
 - Static entities / flags: `uBT_Color.inherit`, `uBT_Icons.search`, `uBT_IconSize.medium_20`
@@ -743,9 +747,9 @@ CW_Share.ShareSheet
 | isRootPage | input | Boolean | `false` |
 - Lifecycle handlers: Initialize, Ready, ParametersChanged
 - Client actions / event handlers: `onInitialize`, `onReady`, `onParametersChanged`, `event_BottomBar_Clicked`, `bottomBar_Clicked`
-- Navigation: `/UBTConnect/HomeFeed`(); `/UBTConnect/CountryList`(); `/UBTConnect/Locality_Details`(); `/UBTConnect/Updates_SingleList`(); `/UBTConnect/Bookmarks`(); `/UBTConnect/New_MyBookmarks`(); `/UBTConnect/MyBookmarks`(); `/UBTConnect/Menu`()
+- Navigation: `/UBTConnect/HomeFeed`(); `/UBTConnect/CountryList`(); `/UBTConnect/Locality_Details`(); `/UBTConnect/Updates_SingleList`(); `/UBTConnect/Bookmarks`(); `/UBTConnect/Menu`()
 - JavaScript nodes: `UBTConnect.App_Common.BottomBarMenu.mvc$controller.OnParametersChanged.Delayed_BottomBarSlider_ForceRefreshJS`
-- Static entities / flags: `connect_BottomBar_Items.updates`, `uBT_Color.primary`, `uBT_Color.neutral6`, `uBT_IconsSize.base_24`, `uBT_FontSize.extraSmall`, `connect_BottomBar_Items.bookmarks`, `connect_BottomBar_Items.home`, `connect_BottomBar_Items.directory`, `launchDarkly_FF.mobileDirectoryBookmarkNote`, `connect_BottomBar_Items.menu`
+- Static entities / flags: `connect_BottomBar_Items.updates`, `uBT_Color.primary`, `uBT_Color.neutral6`, `uBT_IconsSize.base_24`, `uBT_FontSize.extraSmall`, `connect_BottomBar_Items.bookmarks`, `connect_BottomBar_Items.home`, `connect_BottomBar_Items.directory`, `connect_BottomBar_Items.menu`
 - Client variables: getDirectory_Updates_UnreadCount
 
 ## `OutSystemsUI_2_23.Navigation.BottomBarItem.mvc.js`
@@ -948,8 +952,8 @@ CW_Share.ShareSheet
 - Lifecycle handlers: Initialize, ParametersChanged
 - Client actions / event handlers: `onAfterFetch_GetAvailableMembers`, `screenEvent_OnParametersChanged`, `handler_SelectedListItemOnClick`, `handler_OnClickExternalOption`, `onAfterFetch_GetRecentlyShared`, `handler_SearchOnFocus`, `action_SetExternalShareOptions`, `handler_OnClickRecentMember`, `action_CreateSkeletonList`, `action_ScrollTop`, `handler_InputEventClearString`, `handler_BottomSheetOnToggle`, `handler_InputEventSubmit`, `action_ResetLocalVariables`, `handler_SearchResultItemOnSelect`, `handler_OnClickSend`, `action_SubmitShare`, `action_ResetAndCloseSheetState`, `screenEvent_OnInitialize`, `handler_OnBack`, `handler_SearchResultItemOnClick`, `handler_BottomSheetInitialized`, `action_SetLocalIsOpen`, `event_ClosedShareSheet`
 - JavaScript nodes: `UBTConnect_Utils.CW_Share.ShareSheet.mvc$controller.ScreenEvent_OnParametersChanged.DelaySetIsOpenJS`, `UBTConnect_Utils.CW_Share.ShareSheet.mvc$controller.Handler_OnClickExternalOption.ExternalShareWithDelayJS`, `UBTConnect_Utils.CW_Share.ShareSheet.mvc$controller.Action_ScrollTop.ScrollToTopJS`
-- Feedback messages: `(model.variables.in_ShareObjectTypeIdIn + " has been shared."), /*Info*/ 0)` | `"Share failed. Please try again.", /*Error*/ 3)`
-- Exceptions handled: NotRegisteredException
+- Feedback messages: `(vars.value.submitMessageVar + " has been shared."), /*Info*/ 0)` | `"Share failed. Please try again.", /*Error*/ 3)`
+- Exceptions handled: NotRegisteredException, UserException, CommunicationException
 - Static entities / flags: `uBT_ImageSize.small_40`, `uBT_ImageSize.base_52`, `uBT_AvatarSize.small_40`, `uBT_Color.neutral2`, `uBT_Size.none`, `uBT_Color.neutral0`, `uBT_Size.base`, `uBT_Size.small`, `uBT_Shape.medium`, `uBT_Color.neutral5`, `uBT_Shape.large`, `shape.rounded`, `uBT_FontSize.doubleExtraSmall`, `uBT_Color.primary`, `uBT_Color.transparent`, `connect_Entity.member`, `uBT_ImageSize.square`, `uBT_AvatarSize.smallBase_48`, `uBT_IconSize.base_24`, `uBT_Display.flex`, `uBT_FlexDirection.column`, `uBT_Icons.removeFill`, `uBT_IconSize.small_12`, `uBT_Icons.search`, `uBT_FontSize.small`, `uBT_Color.neutral7`, `uBT_Icons.lock`, `uBT_Icons.checkboxFill`, `uBT_Icons.checkboxOutlineBlank`, `uBT_ButtonSize.small`
 - Candidate static strings: `Action_SetLocalIsOpen`
 
@@ -959,17 +963,18 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 3799 ms
-- 2. `DataActionGetFeedConfig` (200) at 5034 ms
-- 3. `DataActionFetchUpdates` (200) at 5057 ms
-- 4. `DataActionFetchCount` (200) at 5062 ms
-- 5. `DataActionGetServices` (200) at 5326 ms
-- 6. `ActionAppManager_AfterInitialize` (200) at 7211 ms
-- 7. `ActionSync_Info_GetMain` (200) at 7961 ms
-- 8. `ActionGetUserInformation` (200) at 8301 ms
-- 9. `ActionGetNumberUnreadMessages` (200) at 8680 ms
-- 10. `ServiceAPIFetchData_CacheableMapEntities` (200) at 9806 ms
-- 11. `ServiceAPIFetchData_CacheableHouseholds` (200) at 9812 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 3219 ms
+- 2. `DataActionGetFeedConfig` (200) at 4584 ms
+- 3. `DataActionGetCommunityStatistics` (200) at 4585 ms
+- 4. `DataActionFetchUpdates` (200) at 4597 ms
+- 5. `DataActionFetchCount` (200) at 4620 ms
+- 6. `DataActionGetServices` (200) at 4721 ms
+- 7. `ActionAppManager_AfterInitialize` (200) at 6984 ms
+- 8. `ActionSync_Info_GetMain` (200) at 7561 ms
+- 9. `ActionGetUserInformation` (200) at 7960 ms
+- 10. `ActionGetNumberUnreadMessages` (200) at 8224 ms
+- 11. `ServiceAPIFetchData_CacheableMapEntities` (200) at 10010 ms
+- 12. `ServiceAPIFetchData_CacheableHouseholds` (200) at 14994 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

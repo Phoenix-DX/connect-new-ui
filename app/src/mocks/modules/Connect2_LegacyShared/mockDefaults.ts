@@ -684,6 +684,8 @@ export const defaultActionGetUserInformation_Output =
         IsDeceased: false,
         IsHouseholder: false,
         LastName: '',
+        Latitude: '0',
+        Longitude: '0',
         Locality: {
           Active: false,
           AddressForMap: '',

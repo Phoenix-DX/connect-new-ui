@@ -3,7 +3,11 @@ import { StrictMode, useEffect, type ReactNode } from 'react';
 import { MemoryRouter } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { fetchGuestArrangements, type GuestArrangementsResult } from '@/api/event';
-import { CommunicationException } from '@/legacy/os/os-exceptions';
+import {
+  CommunicationException,
+  ControllerDisposedException,
+  IgnorableSystemException,
+} from '@/legacy/os/os-exceptions';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { log } from '@/platform/log/log';
@@ -158,7 +162,7 @@ describe('useGuestArrangements', () => {
     const { result } = renderFlows();
     await settle();
     expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(result.current.state).toMatchObject({ isFetchingData: true, isDataFetched: false });
   });
 
@@ -203,7 +207,7 @@ describe('useGuestArrangements', () => {
       result.current.onClickedMember('770101');
     });
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(events.onNavigateToHouseholdDetail).not.toHaveBeenCalled();
   });
 
@@ -229,8 +233,15 @@ describe('useGuestArrangements', () => {
   });
 });
 
-describe('useGuestArrangements after an unmount and in StrictMode (decision W23)', () => {
-  it('after an unmount during GetGuestArrangements: no state write', async () => {
+/** The errors that reach the flow handler, without the ignorable ones (ControllerDisposedException of a left block). */
+const raisedErrors = () =>
+  vi
+    .mocked(raiseToFlowHandler)
+    .mock.calls.map(([error]) => error)
+    .filter((error) => !(error instanceof IgnorableSystemException));
+
+describe('useGuestArrangements after an unmount and in StrictMode (flow scope, item 8)', () => {
+  it('R1: unmount while GetGuestArrangements is pending: no state write, no raise', async () => {
     const call = pending<GuestArrangementsResult>();
     vi.mocked(fetchGuestArrangements).mockReturnValue(call.promise);
     const { unmount } = renderFlows();
@@ -240,24 +251,22 @@ describe('useGuestArrangements after an unmount and in StrictMode (decision W23)
     await settle();
     expect(fetchGuestArrangements).toHaveBeenCalledTimes(1);
     expect(guestArrangementsReducer).not.toHaveBeenCalled();
-    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 
-  it('after an unmount during GetGuestArrangements, a failure still goes to the flow handler once', async () => {
+  it('R1: unmount while GetGuestArrangements is pending: its failure reaches no handler and writes no state', async () => {
     const call = pending<GuestArrangementsResult>();
     vi.mocked(fetchGuestArrangements).mockReturnValue(call.promise);
     const { unmount } = renderFlows();
     unmount();
     vi.mocked(guestArrangementsReducer).mockClear();
-    const error = new CommunicationException('The connection has timed out');
-    call.reject(error);
+    call.reject(new CommunicationException('The connection has timed out'));
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raisedErrors()).toEqual([]);
     expect(guestArrangementsReducer).not.toHaveBeenCalled();
   });
 
-  it('after an unmount during CheckDirectoryAccess: the navigation event and the application event run once', async () => {
+  it('R2 then R3: unmount while CheckDirectoryAccess is pending: no navigation event, no application event', async () => {
     const access = pending<boolean>();
     vi.mocked(checkDirectoryAccess).mockReturnValue(access.promise);
     const { result, unmount } = renderFlows();
@@ -269,13 +278,18 @@ describe('useGuestArrangements after an unmount and in StrictMode (decision W23)
     vi.mocked(guestArrangementsReducer).mockClear();
     access.resolve(true);
     await settle();
-    expect(events.onNavigateToHouseholdDetail).toHaveBeenCalledTimes(1);
-    expect(events.onNavigateToHouseholdDetail).toHaveBeenCalledWith('770101');
-    expect(applicationEvents()).toHaveLength(1);
+    expect(checkDirectoryAccess).toHaveBeenCalledTimes(1);
+    expect(events.onNavigateToHouseholdDetail).not.toHaveBeenCalled();
+    expect(applicationEvents()).toEqual([]);
     expect(guestArrangementsReducer).not.toHaveBeenCalled();
+    // The own action NavigateTo_HouseholdDetail ends the flow with an ignorable exception.
+    expect(vi.mocked(raiseToFlowHandler).mock.calls.map(([error]) => error)).toEqual([
+      expect.any(ControllerDisposedException),
+    ]);
+    expect(raisedErrors()).toEqual([]);
   });
 
-  it('after an unmount during CheckDirectoryAccess without access: the upgrade popup runs once', async () => {
+  it('R2: unmount while CheckDirectoryAccess is pending, without access: the upgrade popup still opens', async () => {
     const access = pending<boolean>();
     vi.mocked(checkDirectoryAccess).mockReturnValue(access.promise);
     const { result, unmount } = renderFlows();

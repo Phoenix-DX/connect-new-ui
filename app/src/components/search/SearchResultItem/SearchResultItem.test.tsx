@@ -37,6 +37,19 @@ describe('SearchResult_Item', () => {
     expect(screen.queryByText('Bahia Blanca, Argentina')).toBeNull();
   });
 
+  it('a click on the warning runs OnClick_UpgradeSubscription (App_Subscription_NavigateToUpgrade, TST :702-735)', () => {
+    const onClickUpgradeSubscription = vi.fn();
+    render(
+      <SearchResultItem
+        inSearchResult={{ Id: '9301', Name: 'Rosalind Ashcombe' }}
+        inShowSubscriptionWarning
+        onClickUpgradeSubscription={onClickUpgradeSubscription}
+      />,
+    );
+    fireEvent.click(screen.getByText('Subscription upgrade needed'));
+    expect(onClickUpgradeSubscription).toHaveBeenCalledTimes(1);
+  });
+
   it('a click raises OnClick with the search result', () => {
     const onOnClick = vi.fn();
     const result = { Id: '0', Name: 'Bahia Blanca' };

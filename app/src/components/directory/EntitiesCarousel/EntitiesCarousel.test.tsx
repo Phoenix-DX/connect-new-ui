@@ -16,6 +16,7 @@ vi.mock('@/components/ui/lib/actions', async (importOriginal) => {
     carouselDisableOnRender: vi.fn(real.carouselDisableOnRender),
     setSplideConfigs: vi.fn(real.setSplideConfigs),
     unsetSplideEvent: vi.fn(real.unsetSplideEvent),
+    removeCarouselOnResizeHandler: vi.fn(real.removeCarouselOnResizeHandler),
     setSplideEvent: vi.fn((widgetId: string, eventName: string, handler: SplideEventHandler) => {
       bound.set(eventName, handler);
       return real.setSplideEvent(widgetId, eventName, handler);
@@ -69,6 +70,11 @@ describe('EntitiesCarousel', () => {
     ]);
     expect(vi.mocked(osuiActions.unsetSplideEvent).mock.results.map((r) => r.value as boolean)).toEqual([false, false]);
     expect([...bound.keys()]).toEqual(['moved']);
+    // Last step (live TST of 2026-10-27, RemoveCarouselOnResizeHandlerJS): the window resize handler goes away.
+    expect(osuiActions.removeCarouselOnResizeHandler).toHaveBeenCalledWith(WIDGET);
+    expect(vi.mocked(osuiActions.removeCarouselOnResizeHandler).mock.invocationCallOrder[0]).toBeGreaterThan(
+      vi.mocked(osuiActions.setSplideEvent).mock.invocationCallOrder.at(-1) ?? Infinity,
+    );
     // After the redraw the extended options apply: the fixed slide height of the capture.
     await waitFor(() => {
       expect(container.querySelector('.splide__slide')?.getAttribute('style')).toContain(

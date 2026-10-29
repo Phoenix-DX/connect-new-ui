@@ -48,6 +48,12 @@ define("UBTConnectLibrary.Layouts.Layout_DetailPage.mvc$model", ["OutSystems/Cli
                 }, false),
                 this.attr("_in_InitializeNavigationHandlerInDataFetchStatus", "_in_InitializeNavigationHandlerInDataFetchStatus", "_in_InitializeNavigationHandlerInDataFetchStatus", true, false, OS.DataTypes.DataTypes.Integer, function() {
                     return /*Fetched*/ 1;
+                }, false),
+                this.attr("In_IsHideTitle", "in_IsHideTitleIn", "In_IsHideTitle", true, false, OS.DataTypes.DataTypes.Boolean, function() {
+                    return false;
+                }, false),
+                this.attr("_in_IsHideTitleInDataFetchStatus", "_in_IsHideTitleInDataFetchStatus", "_in_IsHideTitleInDataFetchStatus", true, false, OS.DataTypes.DataTypes.Integer, function() {
+                    return /*Fetched*/ 1;
                 }, false)
             ].concat(_super.attributesToDeclare.call(this));
         };
@@ -128,6 +134,14 @@ define("UBTConnectLibrary.Layouts.Layout_DetailPage.mvc$model", ["OutSystems/Cli
                 this.variables.in_InitializeNavigationHandlerIn = inputs.In_InitializeNavigationHandler;
                 if ("_in_InitializeNavigationHandlerInDataFetchStatus" in inputs) {
                     this.variables._in_InitializeNavigationHandlerInDataFetchStatus = inputs._in_InitializeNavigationHandlerInDataFetchStatus;
+                }
+
+            }
+
+            if ("In_IsHideTitle" in inputs) {
+                this.variables.in_IsHideTitleIn = inputs.In_IsHideTitle;
+                if ("_in_IsHideTitleInDataFetchStatus" in inputs) {
+                    this.variables._in_IsHideTitleInDataFetchStatus = inputs._in_IsHideTitleInDataFetchStatus;
                 }
 
             }
@@ -287,118 +301,122 @@ define("UBTConnectLibrary.Layouts.Layout_DetailPage.mvc$view", ["OutSystems/Clie
                     uuid: "3"
                 },
                 _widgetRecordProvider: widgetsRecordProvider
-            }, React.createElement(OSWidgets.AdvancedHtml, {
-                extendedProperties: {
-                    role: "banner",
-                    className: "header"
-                },
-                tag: "header",
-                _idProps: {
-                    service: idService,
-                    name: "Header"
-                },
-                _widgetRecordProvider: widgetsRecordProvider
-            }, React.createElement(OSWidgets.Container, {
-                align: /*Default*/ 0,
-                animate: false,
-                style: "header-top",
-                visible: true,
-                _idProps: {
-                    service: idService,
-                    uuid: "5"
-                },
-                _widgetRecordProvider: widgetsRecordProvider
-            }, React.createElement(OSWidgets.Container, {
-                align: /*Default*/ 0,
-                animate: false,
-                style: "header-content",
-                visible: true,
-                _idProps: {
-                    service: idService,
-                    uuid: "6"
-                },
-                _widgetRecordProvider: widgetsRecordProvider
-            }, React.createElement(OSWidgets.Container, {
-                align: /*Default*/ 0,
-                animate: false,
-                style: "ubt-layout-detail__left",
-                visible: true,
-                _idProps: {
-                    service: idService,
-                    uuid: "7"
-                },
-                _widgetRecordProvider: widgetsRecordProvider
-            }, React.createElement(UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, {
-                inputs: {
-                    In_IconId: UBTConnectLibraryModel.staticEntities.uBT_Icons.arrowLeftAlt,
-                    In_ColorId: UBTConnectLibraryModel.staticEntities.uBT_Color.inherit,
-                    In_SizeId: UBTConnectLibraryModel.staticEntities.uBT_IconSize.base_24
-                },
-                events: {
-                    _handleError: function(ex) {
-                        controller.handleError(ex);
+            }, $if(model.variables.in_IsHideTitleIn, false, this, function() {
+                return [];
+            }, function() {
+                return [React.createElement(OSWidgets.AdvancedHtml, {
+                    extendedProperties: {
+                        role: "banner",
+                        className: "header"
                     },
-                    click$Action: function() {
-                        var eventHandlerContext = callContext.clone();
-                        return OS.Flow.tryFinally(function() {
-                            var varBag = {};
-                            controller.pushDebuggerContext(eventHandlerContext);
+                    tag: "header",
+                    _idProps: {
+                        service: idService,
+                        name: "Header"
+                    },
+                    _widgetRecordProvider: widgetsRecordProvider
+                }, React.createElement(OSWidgets.Container, {
+                    align: /*Default*/ 0,
+                    animate: false,
+                    style: "header-top",
+                    visible: true,
+                    _idProps: {
+                        service: idService,
+                        uuid: "5"
+                    },
+                    _widgetRecordProvider: widgetsRecordProvider
+                }, React.createElement(OSWidgets.Container, {
+                    align: /*Default*/ 0,
+                    animate: false,
+                    style: "header-content",
+                    visible: true,
+                    _idProps: {
+                        service: idService,
+                        uuid: "6"
+                    },
+                    _widgetRecordProvider: widgetsRecordProvider
+                }, React.createElement(OSWidgets.Container, {
+                    align: /*Default*/ 0,
+                    animate: false,
+                    style: "ubt-layout-detail__left",
+                    visible: true,
+                    _idProps: {
+                        service: idService,
+                        uuid: "7"
+                    },
+                    _widgetRecordProvider: widgetsRecordProvider
+                }, React.createElement(UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, {
+                    inputs: {
+                        In_IconId: UBTConnectLibraryModel.staticEntities.uBT_Icons.arrowLeftAlt,
+                        In_ColorId: UBTConnectLibraryModel.staticEntities.uBT_Color.inherit,
+                        In_SizeId: UBTConnectLibraryModel.staticEntities.uBT_IconSize.base_24
+                    },
+                    events: {
+                        _handleError: function(ex) {
+                            controller.handleError(ex);
+                        },
+                        click$Action: function() {
+                            var eventHandlerContext = callContext.clone();
+                            return OS.Flow.tryFinally(function() {
+                                var varBag = {};
+                                controller.pushDebuggerContext(eventHandlerContext);
 
-                            OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectPatterns/Icon Click");
-                            controller.onClick_BackNavigation$Action(controller.callContext(eventHandlerContext));
-                        }, function() {
-                            controller.popDebuggerContext(eventHandlerContext);
-                        });
+                                OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectPatterns/Icon Click");
+                                controller.onClick_BackNavigation$Action(controller.callContext(eventHandlerContext));
+                            }, function() {
+                                controller.popDebuggerContext(eventHandlerContext);
+                            });
 
-                        ;
-                    }
-                },
-                _validationProps: {
-                    validationService: validationService
-                },
-                _idProps: {
-                    service: idService,
-                    uuid: "8",
-                    alias: "2"
-                },
-                _widgetRecordProvider: widgetsRecordProvider,
-                _dependencies: []
-            }), React.createElement(OSWidgets.Placeholder, {
-                align: /*Default*/ 0,
-                content: _this.props.placeholders.placeholder_Header_Title,
-                gridProperties: {
-                    classes: "OSInline"
-                },
-                style: model.getCachedValue(idService.getId("Placeholder_Header_Title.Style"), function() {
-                    return ("header-title" + ((model.variables.in_AlignTitleLeftIn) ? (" text-align-left") : (" text-align-center")));
-                }, function() {
-                    return model.variables.in_AlignTitleLeftIn;
-                }),
-                _idProps: {
-                    service: idService,
-                    name: "Placeholder_Header_Title"
-                },
-                _widgetRecordProvider: widgetsRecordProvider,
-                style_dataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables._in_AlignTitleLeftInDataFetchStatus)
-            })), React.createElement(OSWidgets.Placeholder, {
-                align: /*Default*/ 0,
-                content: _this.props.placeholders.placeholder_Header_Right,
-                style: "header-right",
-                _idProps: {
-                    service: idService,
-                    name: "Placeholder_Header_Right"
-                },
-                _widgetRecordProvider: widgetsRecordProvider
-            }))), React.createElement(OSWidgets.Placeholder, {
-                align: /*Default*/ 0,
-                content: _this.props.placeholders.headerContent,
-                style: "header-top-content ph",
-                _idProps: {
-                    service: idService,
-                    name: "HeaderContent"
-                },
-                _widgetRecordProvider: widgetsRecordProvider
-            })), React.createElement(OSWidgets.Container, {
+                            ;
+                        }
+                    },
+                    _validationProps: {
+                        validationService: validationService
+                    },
+                    _idProps: {
+                        service: idService,
+                        uuid: "8",
+                        alias: "2"
+                    },
+                    _widgetRecordProvider: widgetsRecordProvider,
+                    _dependencies: []
+                }), React.createElement(OSWidgets.Placeholder, {
+                    align: /*Default*/ 0,
+                    content: _this.props.placeholders.placeholder_Header_Title,
+                    gridProperties: {
+                        classes: "OSInline"
+                    },
+                    style: model.getCachedValue(idService.getId("Placeholder_Header_Title.Style"), function() {
+                        return ("header-title" + ((model.variables.in_AlignTitleLeftIn) ? (" text-align-left") : (" text-align-center")));
+                    }, function() {
+                        return model.variables.in_AlignTitleLeftIn;
+                    }),
+                    _idProps: {
+                        service: idService,
+                        name: "Placeholder_Header_Title"
+                    },
+                    _widgetRecordProvider: widgetsRecordProvider,
+                    style_dataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables._in_AlignTitleLeftInDataFetchStatus)
+                })), React.createElement(OSWidgets.Placeholder, {
+                    align: /*Default*/ 0,
+                    content: _this.props.placeholders.placeholder_Header_Right,
+                    style: "header-right",
+                    _idProps: {
+                        service: idService,
+                        name: "Placeholder_Header_Right"
+                    },
+                    _widgetRecordProvider: widgetsRecordProvider
+                }))), React.createElement(OSWidgets.Placeholder, {
+                    align: /*Default*/ 0,
+                    content: _this.props.placeholders.headerContent,
+                    style: "header-top-content ph",
+                    _idProps: {
+                        service: idService,
+                        name: "HeaderContent"
+                    },
+                    _widgetRecordProvider: widgetsRecordProvider
+                }))];
+            }), React.createElement(OSWidgets.Container, {
                 align: /*Default*/ 0,
                 animate: false,
                 style: "content",
@@ -696,7 +714,7 @@ define("UBTConnectLibrary.Layouts.Layout_DetailPage.mvc$controller", ["OutSystem
         Controller.prototype.pushDebuggerContext = function(callContext) {
             var varBag = {};
             OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:szBrd5WGsE6bcDfQ68RumQ:/NRWebFlows.szBrd5WGsE6bcDfQ68RumQ:LSOi3iQzjd8avvO2ZKIsMw", "UBTConnectLibrary", "Layouts", "NRFlows.WebFlow", callContext.id, varBag);
-            OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:rZtkhfag2kOPgRW3ZluqUw:/NRWebFlows.szBrd5WGsE6bcDfQ68RumQ/NodesShownInESpaceTree.rZtkhfag2kOPgRW3ZluqUw:vClcaUXy0JnE4k2GJzn77Q", "UBTConnectLibrary", "Layout_DetailPage", "NRNodes.WebBlock", callContext.id, varBag);
+            OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:rZtkhfag2kOPgRW3ZluqUw:/NRWebFlows.szBrd5WGsE6bcDfQ68RumQ/NodesShownInESpaceTree.rZtkhfag2kOPgRW3ZluqUw:_JzflNoGPvIIBrjBzQSOTg", "UBTConnectLibrary", "Layout_DetailPage", "NRNodes.WebBlock", callContext.id, varBag);
         };
         Controller.prototype.popDebuggerContext = function(callContext) {
             OutSystemsDebugger.pop("lAQ0zS6tEEyl6BBIK9yo1A:rZtkhfag2kOPgRW3ZluqUw", callContext.id);
@@ -824,6 +842,12 @@ define("UBTConnectLibrary.Layouts.Layout_DetailPage.mvc$debugger", ["exports", "
             },
             dataType: OS.DataTypes.DataTypes.Boolean
         },
+        "ooO1JWwLbkyOUp0UC5l+qg": {
+            getter: function(varBag, idService) {
+                return varBag.model.variables.in_IsHideTitleIn;
+            },
+            dataType: OS.DataTypes.DataTypes.Boolean
+        },
         "ZTAjDCz2jkuL_x5f7r4qyg": {
             getter: function(varBag, idService) {
                 return (function(model, idService) {
@@ -831,28 +855,35 @@ define("UBTConnectLibrary.Layouts.Layout_DetailPage.mvc$debugger", ["exports", "
                 })(varBag.model, idService);
             }
         },
-        "jFQvRtLCtEi6DvfpHz7H2A": {
+        "XB38ZQ7gsEK_JK8cqeuhEw": {
+            getter: function(varBag, idService) {
+                return (function(model, idService) {
+                    return model.widgets.get(idService.getId("In_IsHideTitle_IF"));
+                })(varBag.model, idService);
+            }
+        },
+        "cLHRw4UYx0CP7cNj2GAXWw": {
             getter: function(varBag, idService) {
                 return (function(model, idService) {
                     return model.widgets.get(idService.getId("Header"));
                 })(varBag.model, idService);
             }
         },
-        "mDUKWaxQBU6V2a3eI3xcYA": {
+        "TXhscKR8PkalhuGXWsrxrA": {
             getter: function(varBag, idService) {
                 return (function(model, idService) {
                     return model.widgets.get(idService.getId("Placeholder_Header_Title"));
                 })(varBag.model, idService);
             }
         },
-        "luhcpFL7dUWZyKCTj8UbNw": {
+        "BzRnG2q4cEmvnFdNXuxQWg": {
             getter: function(varBag, idService) {
                 return (function(model, idService) {
                     return model.widgets.get(idService.getId("Placeholder_Header_Right"));
                 })(varBag.model, idService);
             }
         },
-        "eFNvWsKH5EW_0tV80AuYwA": {
+        "l8PKfcUNBUy5SrCwH56HeA": {
             getter: function(varBag, idService) {
                 return (function(model, idService) {
                     return model.widgets.get(idService.getId("HeaderContent"));

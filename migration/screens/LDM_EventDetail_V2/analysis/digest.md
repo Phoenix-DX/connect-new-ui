@@ -17,6 +17,18 @@ LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2
         LDM_Blocks.EventDetail_Banner
         LDM_Blocks.EventDetail_HostCard
           Reusable.Person_Contact_Options
+          CW_Notes.ItemNotesSection
+            BasePatterns.CustomContainer
+              BasePatterns.CustomContainer
+                ConnectCorePatterns.ItemCard_ActionBar
+                  BasePatterns.CustomContainer
+                    ConnectPatterns.IconText
+                      BasePatterns.Columns_Two
+                        Adaptive.Columns2
+                          ConnectPatterns.Icon
+                          BasePatterns.CustomText
+                            ConnectPatterns.IconInline_Internal
+              CW_Notes.NotesSheet
       CW_CTA_PopUps.ContactPopup_ByPhone
         CW_CTA_PopUps.ContactPopup
       CW_CTA_PopUps.ContactByMessage_Wrapper
@@ -89,6 +101,7 @@ App_Common.CommonUI_InsideLayout
 | Out_CoordinatorDetails | output | Record | `OS.DataTypes.ImmutableBase.getData(new Connect2_OrbitMobile_BLModel.HostDetailsRec())` |
 | Out_HasContent | output | Boolean | `true` |
 | EventName | output | Text | `""` |
+| Notes | output | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec())` |
 | EventResponse | output | Record | `OS.DataTypes.ImmutableBase.getData(new Connect2_OrbitMobile_ISModel.GetEventCalendarDetailResponse_V2Rec())` |
 | Out_HasContent | output | Boolean | `true` |
 | IsFetching | local | Boolean | `false` |
@@ -100,14 +113,16 @@ App_Common.CommonUI_InsideLayout
 | ContactByPhoneData | local | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnect_UtilsModel.ContactByPhonePopupDataRec())` |
 | ContactByMessagePopupData | local | Record | `OS.DataTypes.ImmutableBase.getData(new Connect2_OrbitMobile_MUIModel.UI_ContactByMessage_WrapperDataTextRecord())` |
 | ContactByMessagePopupData_IsCoordinator | local | Boolean | `false` |
+| EventNotes | local | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec())` |
 | EventHostId | input | LongInteger | `OS.DataTypes.LongInteger.defaultValue` |
 | EventId | input | LongInteger | `OS.DataTypes.LongInteger.defaultValue` |
 | GetCoordinatorDetails | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new GetCoordinatorDetailsDataActRec())` |
+| FetchEventNotes | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new FetchEventNotesDataActRec())` |
 | GetEventByEventId | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new GetEventByEventIdDataActRec())` |
-- Data actions: `DataActionGetCoordinatorDetails` → `screenservices/Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionGetCoordinatorDetails`, `DataActionGetEventByEventId` → `screenservices/Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionGetEventByEventId`
+- Data actions: `DataActionGetCoordinatorDetails` → `screenservices/Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionGetCoordinatorDetails`, `DataActionFetchEventNotes` → `screenservices/Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionFetchEventNotes`, `DataActionGetEventByEventId` → `screenservices/Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionGetEventByEventId`
 - Server actions: `GetHouseholdCoordinates` → `screenservices/Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/ActionGetHouseholdCoordinates`
 - Lifecycle handlers: Initialize, Ready, ParametersChanged
-- Client actions / event handlers: `onInitialize`, `onHandle_ContactByPhone_Cancel`, `onHandle_ContactByPhone`, `onHandle_GoToHousehold`, `onParametersChanged`, `onHandle_ContactByMessage`, `onAfterFetch_GetEventByEventId`, `onHandle_ContactHost_Message`, `onHandle_SetContainerHeight`, `onHandle_ContactByMessage_Cancel`, `onHandle_ContactByMessage_ClickedEmail`, `onHandle_ContactByPhone_Call`, `onReady`, `toggle_IsFetching`, `onHandle_HostCardAddress`, `onHandle_ContactHost_Call`, `onHandle_HostInformation`, `onHandle_ContactOrganiser`, `navigateTo_WebMaps`, `navigateTo_AndroidMaps`, `navigateTo_ContactByEmail`, `navigateTo_HouseholdCarousel`, `navigateTo_HouseholdDetail`
+- Client actions / event handlers: `onInitialize`, `onHandle_ContactByPhone_Cancel`, `onHandle_ContactByPhone`, `onHandle_GoToHousehold`, `onParametersChanged`, `onHandle_ContactByMessage`, `onAfterFetch_GetEventByEventId`, `onHandle_ContactHost_Message`, `onHandle_SetContainerHeight`, `onHandle_ContactByMessage_Cancel`, `onHandle_ContactByMessage_ClickedEmail`, `handler_OnNotesChanged`, `onAfterFetch_FetchEventNotes`, `onHandle_ContactByPhone_Call`, `onReady`, `toggle_IsFetching`, `onHandle_HostCardAddress`, `onHandle_ContactHost_Call`, `handlerOn_NoteDeleted`, `onHandle_HostInformation`, `onHandle_ContactOrganiser`, `navigateTo_WebMaps`, `navigateTo_AndroidMaps`, `navigateTo_ContactByEmail`, `navigateTo_HouseholdCarousel`, `navigateTo_HouseholdDetail`
 - JavaScript nodes: `Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc$controller.OnHandle_ContactHost_Message.GetLocalityNameJS`, `Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc$controller.OnReady.WasCurrentViewRestoredFromCacheJS`, `Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc$controller.OnHandle_ContactHost_Call.GetLocalityNameJS`
 - Feedback messages: `"Map is not available", /*Info*/ 0)` | `"Please check your network connection and try again", /*Info*/ 0)`
 - Exceptions handled: UserException
@@ -193,7 +208,10 @@ App_Common.CommonUI_InsideLayout
 | MaxPhotoHeight | input | Integer | `55` |
 | HouseholdDisplay | input | Boolean | `false` |
 | In_HostEmail | input | Email | `""` |
-- Client actions / event handlers: `address`, `hostInformation`, `callPhone`, `navigateToEmail_Household`
+| EventId | input | LongInteger | `OS.DataTypes.LongInteger.defaultValue` |
+| EventNotes | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec())` |
+| EventHostId | input | LongInteger | `OS.DataTypes.LongInteger.defaultValue` |
+- Client actions / event handlers: `address`, `hostInformation`, `handlerOn_NoteDeleted`, `callPhone`, `navigateToEmail_Household`, `handlerOn_NotesChanged`
 
 ## `Connect2_LegacyShared.Reusable.Person_Contact_Options.mvc.js`
 | variable | kind | type | default |
@@ -203,6 +221,127 @@ App_Common.CommonUI_InsideLayout
 | WorkPhone | input | PhoneNumber | `""` |
 | EmailAddress | input | Email | `""` |
 - Client actions / event handlers: `callClicked`, `emailClicked`
+
+## `UBTConnect_Utils.CW_Notes.ItemNotesSection.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| IsAddNote | local | Boolean | `false` |
+| ShareContactData | local | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnect_UtilsModel.ContactPopupDataRec())` |
+| ShareObjectTypeId | local | Text | `""` |
+| In_ItemId | input | Text | `""` |
+| In_EntityType | input | Text | `""` |
+| In_NoteCategoryId | input | Text | `""` |
+| In_Notes | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec())` |
+| In_IsBookmarked | input | Boolean | `false` |
+| In_ContactPopupData | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnect_UtilsModel.ContactPopupDataRec())` |
+| useViewDetails | input | Boolean | `false` |
+| ActionBarOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ActionBarOptionsRec())` |
+- Lifecycle handlers: Ready
+- Client actions / event handlers: `handler_OnNoteDeleted`, `handler_OnSharedCancel`, `handler_OnNoteSheetClosed`, `handler_OnShareToOthers`, `handler_OnSaveEditNote`, `handler_OnShowAllNotesRequested`, `handler_OnAddNoteClicked`, `onReady`, `handler_OnShareClicked`, `handler_OnSheetNotesChanged`, `on_UnbookmarkClicked`, `on_BookmarkClicked`, `on_NoteDeleted`, `on_NotesChanged`
+- JavaScript nodes: `UBTConnect_Utils.CW_Notes.ItemNotesSection.mvc$controller.OnReady.CheckRestoredJS`
+- Static entities / flags: `uBT_Size.small`, `uBT_Color.neutral2`
+
+## `UBTConnectLibrary.BasePatterns.CustomContainer.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| MainContainerClass | local | Text | `"ubt-custom-container"` |
+| ExtendedClasses | input | Text | `""` |
+| Options | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ContainerOptionsRec())` |
+- Lifecycle handlers: Ready, ParametersChanged
+- Client actions / event handlers: `onReady`, `onParametersChanged`, `clicked`
+
+## `UBTConnectLibrary.ConnectCorePatterns.ItemCard_ActionBar.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| MainContainerClass | local | Text | `"ubt-action-bar"` |
+| ActionBarOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ActionBarOptionsRec())` |
+- Client actions / event handlers: `onClickAddNote`, `onClickUnbookmark`, `onClickShare`
+- Static entities / flags: `uBT_Display.flex`, `uBT_JustifyContent.flexStart`, `uBT_Size.extraSmall`, `uBT_Color.primary`, `uBT_FontSize.doubleExtraSmall`, `uBT_FontWeight.semiBold`, `uBT_Icons.check`, `uBT_IconSize.nonStandard_18`, `uBT_Color.neutral7`, `uBT_Icons.borderColor`, `uBT_Icons.share`
+
+## `UBTConnectLibrary.ConnectPatterns.IconText.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| IsIconOnRight | input | Boolean | `false` |
+| Text | input | Text | `""` |
+| TextOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())` |
+| SpacingSize | input | Text | `UBTConnectLibraryModel.staticEntities.uBT_Size.extraSmall` |
+| ExtendedClasses | input | Text | `""` |
+| SubtextOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())` |
+| In_Subtext | input | Text | `""` |
+| In_JustifyText | input | Boolean | `false` |
+- Client actions / event handlers: `clicked`
+- Static entities / flags: `uBT_Size.extraSmall`, `uBT_ColumnBehaviour.reduceFirst`, `uBT_ColumnBehaviour.reduceLast`, `uBT_VerticalAlign.center`, `uBT_FlexDirection.rowReverse`
+
+## `UBTConnectLibrary.BasePatterns.Columns_Two.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| MainContainerClass | local | Text | `"ubt-columns"` |
+| ColumnOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ColumnOptionsRec())` |
+| ExtendedClasses | input | Text | `""` |
+- Lifecycle handlers: Ready
+- Client actions / event handlers: `onReady`
+
+## `OutSystemsUI_2_23.Adaptive.Columns2.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| GutterSize | input | Text | `OutSystemsUI_2_23Model.staticEntities.gutterSize.base` |
+| TabletBehavior | input | Text | `OutSystemsUI_2_23Model.staticEntities.breakColumns.none` |
+| PhoneBehavior | input | Text | `OutSystemsUI_2_23Model.staticEntities.breakColumns.none` |
+| ExtendedClass | input | Text | `""` |
+- Static entities / flags: `gutterSize.base`, `breakColumns.none`
+
+## `UBTConnectLibrary.ConnectPatterns.Icon.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| MainContainerClass | local | Text | `"ubt-icon"` |
+| In_IconId | input | Text | `""` |
+| In_ColorId | input | Text | `UBTConnectLibraryModel.staticEntities.uBT_Color.neutral9` |
+| In_SizeId | input | Text | `""` |
+| In_Visible | input | Boolean | `true` |
+| In_ExtendedClasses | input | Text | `""` |
+- Client actions / event handlers: `click`
+- Static entities / flags: `uBT_Color.neutral9`
+
+## `UBTConnectLibrary.BasePatterns.CustomText.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| In_Text | input | Text | `""` |
+| In_TextOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())` |
+| In_PaddingOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.SpacingOptionsRec())` |
+| In_HighlightWords | input | Text | `""` |
+| In_HighlightOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())` |
+| ExtendedClasses | input | Text | `""` |
+| FitContent | input | Boolean | `false` |
+| InJustifyText | input | Boolean | `false` |
+| NoWrap | input | Boolean | `false` |
+| InlineIcon | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.InlineIconRec())` |
+- Client actions / event handlers: `clicked`
+
+## `UBTConnectLibrary.ConnectPatterns.IconInline_Internal.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| InlineIcon | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.InlineIconRec())` |
+
+## `UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| BottomSheetId | local | Text | `""` |
+| IsEditing | local | Boolean | `false` |
+| IsSheetOpen | local | Boolean | `false` |
+| NoteText | local | Text | `""` |
+| IsSubmittingNote | local | Boolean | `false` |
+| In_IsOpen | input | Boolean | `false` |
+| ExtendedClasses | input | Text | `""` |
+| In_ItemId | input | Text | `""` |
+| In_NoteCategoryId | input | Text | `""` |
+| In_Notes | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec())` |
+- Server actions: `AddNote` → `screenservices/UBTConnect_Utils/CW_Notes/NotesSheet/ServiceAPIAddNote`
+- Lifecycle handlers: ParametersChanged
+- Client actions / event handlers: `handler_OnSubmitNote`, `backNavigationHandlerBackNavigation`, `bottomSheetOnToggle`, `bottomSheet_Initialized`, `onParametersChanged`, `handler_OnEditingStateChanged`, `handler_OnSaveEditNote`, `action_SetBottomSheetOpen`, `handler_OnNoteSheet_Closed`, `on_NotesChanged`, `on_NoteSheet_Closed`, `on_NoteDeleted`
+- JavaScript nodes: `UBTConnect_Utils.CW_Notes.NotesSheet.mvc$controller.OnParametersChanged.DelaySetIsOpenJS`
+- Exceptions handled: CommunicationException, UserException
+- Static entities / flags: `noteActionType.add`
+- Candidate static strings: `Action_SetBottomSheetOpen`
 
 ## `UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone.mvc.js`
 | variable | kind | type | default |
@@ -260,47 +399,15 @@ App_Common.CommonUI_InsideLayout
 | isRootPage | input | Boolean | `false` |
 - Lifecycle handlers: Initialize, Ready, ParametersChanged
 - Client actions / event handlers: `onInitialize`, `onReady`, `onParametersChanged`, `event_BottomBar_Clicked`, `bottomBar_Clicked`
-- Navigation: `/UBTConnect/HomeFeed`(); `/UBTConnect/CountryList`(); `/UBTConnect/Locality_Details`(); `/UBTConnect/Updates_SingleList`(); `/UBTConnect/Bookmarks`(); `/UBTConnect/New_MyBookmarks`(); `/UBTConnect/MyBookmarks`(); `/UBTConnect/Menu`()
+- Navigation: `/UBTConnect/HomeFeed`(); `/UBTConnect/CountryList`(); `/UBTConnect/Locality_Details`(); `/UBTConnect/Updates_SingleList`(); `/UBTConnect/Bookmarks`(); `/UBTConnect/Menu`()
 - JavaScript nodes: `UBTConnect.App_Common.BottomBarMenu.mvc$controller.OnParametersChanged.Delayed_BottomBarSlider_ForceRefreshJS`
-- Static entities / flags: `connect_BottomBar_Items.updates`, `uBT_Color.primary`, `uBT_Color.neutral6`, `uBT_IconsSize.base_24`, `uBT_FontSize.extraSmall`, `connect_BottomBar_Items.bookmarks`, `connect_BottomBar_Items.home`, `connect_BottomBar_Items.directory`, `launchDarkly_FF.mobileDirectoryBookmarkNote`, `connect_BottomBar_Items.menu`
+- Static entities / flags: `connect_BottomBar_Items.updates`, `uBT_Color.primary`, `uBT_Color.neutral6`, `uBT_IconsSize.base_24`, `uBT_FontSize.extraSmall`, `connect_BottomBar_Items.bookmarks`, `connect_BottomBar_Items.home`, `connect_BottomBar_Items.directory`, `connect_BottomBar_Items.menu`
 - Client variables: getDirectory_Updates_UnreadCount
 
 ## `OutSystemsUI_2_23.Navigation.BottomBarItem.mvc.js`
 | variable | kind | type | default |
 |---|---|---|---|
 | ExtendedClass | input | Text | `""` |
-
-## `UBTConnectLibrary.ConnectPatterns.Icon.mvc.js`
-| variable | kind | type | default |
-|---|---|---|---|
-| MainContainerClass | local | Text | `"ubt-icon"` |
-| In_IconId | input | Text | `""` |
-| In_ColorId | input | Text | `UBTConnectLibraryModel.staticEntities.uBT_Color.neutral9` |
-| In_SizeId | input | Text | `""` |
-| In_Visible | input | Boolean | `true` |
-| In_ExtendedClasses | input | Text | `""` |
-- Client actions / event handlers: `click`
-- Static entities / flags: `uBT_Color.neutral9`
-
-## `UBTConnectLibrary.BasePatterns.CustomText.mvc.js`
-| variable | kind | type | default |
-|---|---|---|---|
-| In_Text | input | Text | `""` |
-| In_TextOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())` |
-| In_PaddingOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.SpacingOptionsRec())` |
-| In_HighlightWords | input | Text | `""` |
-| In_HighlightOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())` |
-| ExtendedClasses | input | Text | `""` |
-| FitContent | input | Boolean | `false` |
-| InJustifyText | input | Boolean | `false` |
-| NoWrap | input | Boolean | `false` |
-| InlineIcon | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.InlineIconRec())` |
-- Client actions / event handlers: `clicked`
-
-## `UBTConnectLibrary.ConnectPatterns.IconInline_Internal.mvc.js`
-| variable | kind | type | default |
-|---|---|---|---|
-| InlineIcon | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.InlineIconRec())` |
 
 ## `UBTConnect.App_Common_Blocks.App_IconBadge.mvc.js`
 | variable | kind | type | default |
@@ -551,20 +658,21 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `DataActionGetCoordinatorDetails` (200) at 1297 ms
-- 2. `DataActionGetEventByEventId` (200) at 1320 ms
+- 1. `DataActionFetchEventNotes` (200) at 2795 ms
+- 2. `DataActionGetCoordinatorDetails` (200) at 2816 ms
+- 3. `DataActionGetEventByEventId` (200) at 3210 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`
 - `App_Policies.Policy_Checker`
-- `BasePatterns.Columns_Two`
-- `BasePatterns.CustomContainer`
 - `CW_Image.UBT_LazyImage`
+- `CW_Notes.NoteListActions`
 - `CacheControl.CacheControl_Policies`
+- `ConnectPatterns.AddNote`
+- `ConnectPatterns.BottomSheet`
 - `ConnectPatterns.Button`
 - `ConnectPatterns.HighlightSearch`
 - `ConnectPatterns.IconSVG`
-- `ConnectPatterns.IconText`
 - `ConnectPatterns.LazyImage`
 - `Fingerprint.FingerprintScanner`
 - `LDM_Blocks.EventDetail_ListItem`

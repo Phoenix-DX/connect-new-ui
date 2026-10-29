@@ -75,14 +75,22 @@ export type NotificationsAction =
   | { type: 'breakpointsSet'; breakpoints: NotificationBreakpoint[] }
   /** Handler_FilterSearchText: CurrentSearchString. */
   | { type: 'searchStringSet'; text: string }
-  /** Handler_FilterSearchText with a new text: Filter_Updates.SearchText and ShowMarkAll False. */
+  /** Handler_FilterSearchText with a new text: Filter_Updates.SearchText, SelectedHistorySearch and ShowMarkAll False. */
   | { type: 'searchTextFiltered'; text: string }
   /** Handler_OnChangeSearchInput: CurrentSearchString; IsToggleSearch True when In_IsToggleSearch is True. */
   | { type: 'searchInputChanged'; text: string; inIsToggleSearch: boolean }
   /** Handler_ToggleSearch: IsToggleSearch = not IsToggleSearch. */
   | { type: 'searchToggled' }
-  /** Handler_ApplyFilters: HasFiltersApplied (the value it has) and ShowMarkAll False. */
-  | { type: 'filtersApplied' }
+  /** Handler_ApplyFilters(Event_HasFiltersApplied, IsNewestToOldest): HasFiltersApplied (the screen passes the value it
+      has), ShowMarkAll False, isLoading True and OrderByIsAscending = not IsNewestToOldest. */
+  | { type: 'filtersApplied'; isNewestToOldest: boolean }
+  /** Handler_OnlyShowUnread: Local_OnlyShowUnread. */
+  | { type: 'onlyShowUnreadSet'; onlyShowUnread: boolean }
+  /** Handler_UpdateReadCount(AddToCount, IsDelete, IsRead): ReadCount + 1, or - 1 when the item was not read. */
+  | { type: 'readCountUpdated'; addToCount: boolean; isRead: boolean }
+  /** SetBadgeCountsToZero (Handler_MoreActionSheetMarkAllAsRead): BadgeCount 0 on every breakpoint and on
+      CurrentBreakpoint. */
+  | { type: 'badgeCountsZeroed' }
   /** OnHeaderScrolled of Layout_MainPages_Upgrade: IsHeaderScrolled. */
   | { type: 'headerScrolled'; isHeaderScrolled: boolean }
   /** SheetInitialized of Notifications_SortSheet: Filter_BottomSheetId. */
@@ -110,7 +118,6 @@ export function initialNotificationsState(cached: NotificationsCachedVariables):
     isHeaderScrolled: false,
     isToggleSearch: false,
     currentSearchString: cached.currentSearchString,
-    badgeNumber: 0,
     selectedHistorySearch: '',
     deviceHardwareId: '',
     filter_MessageTypePrivate: true,
@@ -124,6 +131,8 @@ export function initialNotificationsState(cached: NotificationsCachedVariables):
     selectedFilter_MessageTypePrivate: true,
     selectedFilter_MessageTypePublic: true,
     moreAction_BottomSheetId: '',
+    local_OnlyShowUnread: false,
+    readCount: 0,
     items: [],
     isDataFetched: false,
     unreadNotificationsCount: 0,
@@ -162,12 +171,18 @@ export function notificationsReducer(state: NotificationsState, action: Notifica
         breakpoints: action.breakpoints,
         currentBreakpoint: action.breakpoints[0] ?? EMPTY_BREAKPOINT,
         showMarkAll: state.unreadNotificationsCount > 0,
+        readCount: state.unreadNotificationsCount,
         isLoading: false,
       };
     case 'searchStringSet':
       return { ...state, currentSearchString: action.text };
     case 'searchTextFiltered':
-      return { ...state, filter_Updates: { ...state.filter_Updates, searchText: action.text }, showMarkAll: false };
+      return {
+        ...state,
+        filter_Updates: { ...state.filter_Updates, searchText: action.text },
+        selectedHistorySearch: action.text,
+        showMarkAll: false,
+      };
     case 'searchInputChanged':
       return action.inIsToggleSearch
         ? { ...state, currentSearchString: action.text, isToggleSearch: true }
@@ -176,7 +191,23 @@ export function notificationsReducer(state: NotificationsState, action: Notifica
       return { ...state, isToggleSearch: !state.isToggleSearch };
     case 'filtersApplied':
       // The sheets raise ApplyFilters without a value: HasFiltersApplied = HasFiltersApplied.
-      return { ...state, hasFiltersApplied: state.hasFiltersApplied, showMarkAll: false };
+      return {
+        ...state,
+        hasFiltersApplied: state.hasFiltersApplied,
+        showMarkAll: false,
+        isLoading: true,
+        orderByIsAscending: !action.isNewestToOldest,
+      };
+    case 'onlyShowUnreadSet':
+      return { ...state, local_OnlyShowUnread: action.onlyShowUnread };
+    case 'readCountUpdated':
+      return { ...state, readCount: updatedReadCount(state.readCount, action.addToCount, action.isRead) };
+    case 'badgeCountsZeroed':
+      return {
+        ...state,
+        breakpoints: state.breakpoints.map((b) => ({ ...b, badgeCount: 0 })),
+        currentBreakpoint: { ...state.currentBreakpoint, badgeCount: 0 },
+      };
     case 'headerScrolled':
       return { ...state, isHeaderScrolled: action.isHeaderScrolled };
     case 'filterSheetInitialized':
@@ -187,6 +218,13 @@ export function notificationsReducer(state: NotificationsState, action: Notifica
 }
 
 /* ---- The client actions of the screen ---- */
+
+/** Handler_UpdateReadCount (Notifications.mvc.js:2845-2880): AddToCount → ReadCount + 1; otherwise ReadCount - 1
+    unless the item was read (IsRead). IsDelete is not read. */
+export function updatedReadCount(readCount: number, addToCount: boolean, isRead: boolean): number {
+  if (addToCount) return readCount + 1;
+  return isRead ? readCount : readCount - 1;
+}
 
 const pad = (n: number) => String(n).padStart(2, '0');
 /** A local Date as an OutSystems Date "yyyy-MM-dd". */

@@ -14,14 +14,22 @@ interface Menu_Item {
   ubtIcon: string;
 }
 
-/** The screen variables. The OutSystems name of each variable is in brackets. They are not kept in the view cache. */
-export interface MenuState {
-  /** [MenuOptionList] The rows of Menu_List. */
-  menuOptionList: UI_ListMenuOption[];
-  /** [LocalCacheControl_UserInformation] The signed-in user; null (the default record) until the cache answers. */
+/** [LocalCacheControl_UserInformation] The part of the screen variables that the view cache keeps (U19, decision
+    App_Menu Q2 (a)). TST Menu has no IsViewRestoredFromCache check, so a restored view keeps the record that it had. */
+export interface MenuUserInformation {
+  /** The signed-in user; null (the default record) until the cache answers. */
   user: Directory_UserCurrent | null;
   /** [LocalCacheControl_UserInformation.isFetched] The user record has come. */
   isFetched: boolean;
+}
+
+/** LocalCacheControl_UserInformation of a new visit: the default record, isFetched False. */
+export const NO_USER_INFORMATION: MenuUserInformation = { user: null, isFetched: false };
+
+/** The screen variables. The OutSystems name of each variable is in brackets. */
+export interface MenuState extends MenuUserInformation {
+  /** [MenuOptionList] The rows of Menu_List. OnInitialize builds them again on every visit. */
+  menuOptionList: UI_ListMenuOption[];
 }
 
 /** The changes of the state: the result of CacheControl_UserInfo_Wrapper. */
@@ -106,10 +114,10 @@ function applyUserInformation(list: UI_ListMenuOption[], user: Directory_UserCur
   return next;
 }
 
-/** ScreenEvent_OnInitialize: MenuOptionList from Menu_GetList; the user record stays the default until the cache
-    answers (isFetched False). */
-export function initialMenuState(): MenuState {
-  return { menuOptionList: toMenuOptionList(menu_GetList()), user: null, isFetched: false };
+/** ScreenEvent_OnInitialize: MenuOptionList from Menu_GetList (TST Menu.mvc.js:877-904, on every visit). The user
+    record is `saved`: the default record (isFetched False) on a new visit, the cached record on a restored view. */
+export function initialMenuState(saved: MenuUserInformation = NO_USER_INFORMATION): MenuState {
+  return { menuOptionList: toMenuOptionList(menu_GetList()), user: saved.user, isFetched: saved.isFetched };
 }
 
 /** CacheControl_UserInfo_WrapperResult (the only action): the user record, the changed rows and isFetched True. */

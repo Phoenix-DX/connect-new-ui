@@ -67,13 +67,13 @@ Rules file (`assets/mock-rules.example.json`): `keep` (field names never touched
 ## 4. Using fixtures in a route
 
 ```ts
-// src/screens/<S>/mocks.ts
+// src/pages/<S>/mocks.ts
 import { recordedHandler } from '../../mocks/fixtures';
 export const handlers = [recordedHandler('<Module>', '<Action>')];
 ```
 
 - The action name is the last segment of the screenservice URL (as in `calls.md`); the module is the segment after `screenservices/`.
-- The adapter (`api.ts`) calls `callAction('<Module>', '<Action>', inputs)` with the **OutSystems input names** (data actions: screen variables; server actions: input parameters). The handler returns the recording whose inputs match; with no match it returns the first recording and logs `[mock] no recorded call for inputs …` (record that case, or ask the user how to mock it).
+- The repository (`app/src/api/<domain>/`) calls `callAction('<Module>', '<Action>', inputs)` with the **OutSystems input names** (data actions: screen variables; server actions: input parameters). The handler returns the recording whose inputs match; with no match it returns the first recording and logs `[mock] no recorded call for inputs …` (record that case, or ask the user how to mock it).
 - Scenarios: `real` (recorded), `empty` (every list emptied), `error` (HTTP 500), plus hand-written handlers for captured states the recording does not have.
 - An action or branch never recorded gets fictional data with captured counts and shapes (P-MOCKS), and is listed under "Decisions to confirm".
 - Never edit a fixture by hand: change the rules and convert again.

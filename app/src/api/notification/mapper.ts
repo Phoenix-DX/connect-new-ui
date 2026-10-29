@@ -90,7 +90,6 @@ export const toNotificationsVariablesWire = (v: NotificationsVariables): Notific
     IsHeaderScrolled: v.isHeaderScrolled,
     IsToggleSearch: v.isToggleSearch,
     CurrentSearchString: v.currentSearchString,
-    BadgeNumber: v.badgeNumber,
     SelectedHistorySearch: v.selectedHistorySearch,
     DeviceHardwareId: v.deviceHardwareId,
     Filter_MessageTypePrivate: v.filter_MessageTypePrivate,
@@ -104,8 +103,29 @@ export const toNotificationsVariablesWire = (v: NotificationsVariables): Notific
     SelectedFilter_MessageTypePrivate: v.selectedFilter_MessageTypePrivate,
     SelectedFilter_MessageTypePublic: v.selectedFilter_MessageTypePublic,
     MoreAction_BottomSheetId: v.moreAction_BottomSheetId,
+    Local_OnlyShowUnread: v.local_OnlyShowUnread,
+    ReadCount: String(v.readCount),
+    // No flow of the screen sets Screen_NotificationItemList (Notifications.mvc.js:146): it stays empty.
+    Screen_NotificationItemList: wireList<NotificationItemWire>([]),
   };
 };
+
+/** A notification as Connect2_Notification_CS.MessageListItem, for the inputs of Delete_Notifications. The list keeps
+    only the fields it reads: the other fields go with their default values (the mock store reads Id only). */
+export const toMessageListItemWire = (item: NotificationItem): NotificationItemWire => ({
+  CreatedByUserId: 0,
+  DateTimeCreated: item.dateTimeCreated,
+  Id: item.id,
+  IsClear: false,
+  IsRead: item.isRead,
+  MessageInfoTypeId: 0,
+  MessageSenderTargetName: '',
+  MessageTemplatePriorityId: 0,
+  MessageTemplateTypeId: 0,
+  ProfileIconURL: item.profileIconURL,
+  Summary: '',
+  Title: item.title,
+});
 
 /** The filter of Wrapper_MarkAllAsReadNotifications with its OutSystems input names. */
 export const toNotificationReadFilterWire = (f: NotificationReadFilter): NotificationReadFilterWire => ({

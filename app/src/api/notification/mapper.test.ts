@@ -56,7 +56,6 @@ const variables = (fields: Partial<NotificationsVariables> = {}): NotificationsV
   isHeaderScrolled: false,
   isToggleSearch: false,
   currentSearchString: '',
-  badgeNumber: 0,
   selectedHistorySearch: '',
   deviceHardwareId: '',
   filter_MessageTypePrivate: true,
@@ -70,6 +69,8 @@ const variables = (fields: Partial<NotificationsVariables> = {}): NotificationsV
   selectedFilter_MessageTypePrivate: true,
   selectedFilter_MessageTypePublic: true,
   moreAction_BottomSheetId: '',
+  local_OnlyShowUnread: false,
+  readCount: 0,
   ...fields,
 });
 
@@ -160,7 +161,6 @@ describe('notification mapper: inputs', () => {
       IsHeaderScrolled: false,
       IsToggleSearch: false,
       CurrentSearchString: '',
-      BadgeNumber: 0,
       SelectedHistorySearch: '',
       DeviceHardwareId: '',
       Filter_MessageTypePrivate: true,
@@ -174,6 +174,9 @@ describe('notification mapper: inputs', () => {
       SelectedFilter_MessageTypePrivate: true,
       SelectedFilter_MessageTypePublic: true,
       MoreAction_BottomSheetId: '',
+      Local_OnlyShowUnread: false,
+      ReadCount: '0',
+      Screen_NotificationItemList: { List: [] },
     });
     expect(Object.keys(wire)).toEqual([
       'Filter_BottomSheetId',
@@ -189,7 +192,6 @@ describe('notification mapper: inputs', () => {
       'IsHeaderScrolled',
       'IsToggleSearch',
       'CurrentSearchString',
-      'BadgeNumber',
       'SelectedHistorySearch',
       'DeviceHardwareId',
       'Filter_MessageTypePrivate',
@@ -203,6 +205,9 @@ describe('notification mapper: inputs', () => {
       'SelectedFilter_MessageTypePrivate',
       'SelectedFilter_MessageTypePublic',
       'MoreAction_BottomSheetId',
+      'Local_OnlyShowUnread',
+      'ReadCount',
+      'Screen_NotificationItemList',
     ]);
   });
 
@@ -220,8 +225,8 @@ describe('notification mapper: inputs', () => {
           dateTo: '',
           searchText: 'supper',
           updateTypeId: '',
-          readOnly: 'Choice.Yes',
-          sortByNewest: 'Choice.No',
+          readOnly: 'Yes',
+          sortByNewest: 'No',
         },
         dateRanges: [
           { range: 'Today', from: '2026-10-14', to: '2026-10-14' },
@@ -238,8 +243,8 @@ describe('notification mapper: inputs', () => {
       Filter_UpdateTypeId: '',
       CountryIds: { List: [] },
       LocalitiesIds: { List: [] },
-      Filter_ReadOnly: 'Choice.Yes',
-      Sort_ByNewest: 'Choice.No',
+      Filter_ReadOnly: 'Yes',
+      Sort_ByNewest: 'No',
     });
     expect(wire.DateRanges).toEqual({
       List: [
@@ -264,7 +269,7 @@ describe('notification mapper: inputs', () => {
     expect(wire).not.toHaveProperty('items');
     expect(wire).not.toHaveProperty('isDataFetched');
     expect(wire).not.toHaveProperty('unreadNotificationsCount');
-    expect(Object.keys(wire)).toHaveLength(27);
+    expect(Object.keys(wire)).toHaveLength(29);
   });
 
   it('toNotificationReadFilterWire gives the inputs of Wrapper_MarkAllAsReadNotifications', () => {

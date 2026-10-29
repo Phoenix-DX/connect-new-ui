@@ -3,9 +3,10 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { collection } from '@/mocks/store';
 import { getFeedbackMessage, resetFeedbackMessages } from '@/platform/feedback/feedbackStore';
 import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
+import { MOCK_USER } from '@/mocks/fictional/directory';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { getClientVar, setClientVar, setSignedInUser } from '@/platform/session/session';
-import { calledActions, freshPage, setFlags } from '@/test/testSupport';
+import { calledActions, freshPage, recordBodies, setFlags } from '@/test/testSupport';
 import MessageDetail from './MessageDetailPage';
 
 /* The page with the flows of its block (useMessageDetail) and the MSW mocks of the route, in the app frame on a memory
@@ -19,6 +20,10 @@ const routes = {
   '/UBTConnect/MessageList': <p>MessageList screen</p>,
   '/UBTConnect/Notifications': <p>Notifications screen</p>,
   '/UBTConnect/Login': <p>Login screen</p>,
+  '/UBTConnect/MilestoneDetail': <p>MilestoneDetail screen</p>,
+  '/UBTConnect/HostSurvey': <p>HostSurvey screen</p>,
+  '/UBTConnect/AssembleDetail': <p>AssembleDetail screen</p>,
+  '/UBTConnect/HouseholdDetails': <p>HouseholdDetails screen</p>,
   [PATH]: <MessageDetail />,
 };
 
@@ -131,5 +136,118 @@ describe('MessageDetail page', () => {
     expect(getClientVar('Connect2_LegacyShared.UnreadNotificationsNumber')).toBe(4);
     expect(getClientVar('Connect2_LegacyShared.UnreadPublicMessagesNumber')).toBe(4);
     expect(document.querySelector('.notification-detail-icon-badge')?.className).toBe('notification-detail-icon-badge');
+  });
+
+  it('Orbit: "View Event" asks Get_OrbitNotificationParameters and opens the milestone from the notification', async () => {
+    const view = await open('?MessageInstanceId=5965301');
+    const button = await waitFor(() => {
+      const b = document.getElementById('b1-ViewOrbitEvent');
+      expect(b?.textContent).toBe('View Event');
+      return b as HTMLElement;
+    });
+    expect(document.querySelector('.notification-detail-content')?.textContent).toContain('Hello ');
+    await act(async () => {
+      button.click();
+      await Promise.resolve();
+    });
+    await waitFor(() => {
+      expect(view.router.state.location.pathname).toBe('/UBTConnect/MilestoneDetail');
+    });
+    expect(Object.fromEntries(new URLSearchParams(view.router.state.location.search))).toEqual({
+      In_EventName: 'Harvest Supper',
+      In_FromNotification: 'True',
+      In_MilestoneId: 'M-7714',
+      In_EventId: '7301',
+    });
+    expect(calledActions()).toContain('ActionGet_OrbitNotificationParameters');
+  });
+
+  it('Orbit host survey: "Go to Host Survey" opens HostSurvey with the event and its dates', async () => {
+    const view = await open('?MessageInstanceId=5965302');
+    const button = await waitFor(() => {
+      const b = document.getElementById('b1-ViewOrbitEvent');
+      expect(b?.textContent).toBe('Go to Host Survey');
+      return b as HTMLElement;
+    });
+    await act(async () => {
+      button.click();
+      await Promise.resolve();
+    });
+    await waitFor(() => {
+      expect(view.router.state.location.pathname).toBe('/UBTConnect/HostSurvey');
+    });
+    const params = new URLSearchParams(view.router.state.location.search);
+    expect(params.get('In_EventId')).toBe('7301');
+    expect(params.get('In_MemberId')).toBe(MOCK_USER_ID);
+  });
+
+  it('Assemble: "View Meeting" opens AssembleDetail with the series, the instance and the type', async () => {
+    const view = await open('?MessageInstanceId=5965303');
+    const button = await waitFor(() => {
+      const b = document.getElementById('b1-ViewAssembleEvent');
+      expect(b?.textContent).toBe('View Meeting');
+      return b as HTMLElement;
+    });
+    // BuildAssembleNotificationContent fills the FirstName placeholder (PlaceholderLib, decision PD8).
+    expect(document.body.textContent).toContain(`Dear ${MOCK_USER.firstName}, the Bible Reading meeting`);
+    expect(document.body.textContent).not.toContain('##');
+    await act(async () => {
+      button.click();
+      await Promise.resolve();
+    });
+    expect(view.router.state.location.pathname).toBe('/UBTConnect/AssembleDetail');
+    expect(Object.fromEntries(new URLSearchParams(view.router.state.location.search))).toEqual({
+      EventId: '4412',
+      SeriesId: '4410',
+      AssembleEventTypeTile: 'Bible Reading',
+    });
+  });
+
+  it('Sharing: the shared household card of ShareObjectDetail_ExtendedShare opens HouseholdDetails', async () => {
+    const bodies = recordBodies('Connect2_LegacyShared/ShareObjectDetail_ExtendedShare/DataActionGetShare');
+    const view = await open('?MessageInstanceId=5965304');
+    await waitFor(() => {
+      expect(document.getElementById('b1-b5-$b5')?.textContent).toContain('Lindqvist Household');
+    });
+    expect(document.getElementById('b1-$b5')?.dataset.block).toBe('Share_UI.ShareObjectDetail_ExtendedShare');
+    expect(calledActions()).toContain('ShareObjectDetail_ExtendedShare/DataActionGetShare');
+    // GetShare sends the four block variables (screenData.variables), without the _<input>InDataFetchStatus integers.
+    await waitFor(() => {
+      expect(bodies[0]).toBeDefined();
+    });
+    const body = bodies[0] as {
+      ShareableObject_Generic: Record<string, unknown>;
+      ShareableUpdateItem: Record<string, unknown>;
+    };
+    expect(Object.keys(body)).toEqual([
+      'ShareId',
+      'HasAccessToDeceasedHousehold',
+      'ShareableObject_Generic',
+      'ShareableUpdateItem',
+    ]);
+    expect(Object.keys(body.ShareableObject_Generic)).toHaveLength(6);
+    expect(Object.keys(body.ShareableUpdateItem)).toHaveLength(13);
+    expect(body.ShareableObject_Generic.Title).toBe('Loading Shared Object');
+    expect(body.ShareableUpdateItem).toMatchObject({ UpdateItemId: '0', Date: '1900-01-01', HouseholdId: '0' });
+    const card = [...document.querySelectorAll<HTMLElement>('#b1-b5-\\$b5 [style*="cursor"]')].find((e) =>
+      e.textContent.includes('Lindqvist Household'),
+    );
+    await act(async () => {
+      card?.click();
+      await Promise.resolve();
+    });
+    expect(card).not.toBeNull();
+    await waitFor(() => {
+      expect(view.router.state.location.pathname).toBe('/UBTConnect/HouseholdDetails');
+    });
+    expect(view.router.state.location.search).toBe('?HouseholdId=61207');
+  });
+
+  it('adaptive card: the viewer gets the card payload (its container stays empty until the renderer is installed)', async () => {
+    await open('?MessageInstanceId=5965305');
+    await waitFor(() => {
+      expect(document.getElementById('b1-b4-b2-AdaptiveCardContainer')).not.toBeNull();
+    });
+    expect(document.querySelector('.notification-detail-content')).toBeNull();
   });
 });

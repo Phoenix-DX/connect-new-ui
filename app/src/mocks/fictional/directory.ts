@@ -396,9 +396,9 @@ export const MOCK_USER = {
 /** The Profile capture's account (spouse scenario): Amanda Ward (word lengths 6 4). */
 export const PROFILE_SPOUSE_NAME = 'Amanda Ward';
 
-/** Households bookmarked by the mock user outside its locality (BookmarksByGroup capture, rows 1-3 and 5-7), with the
-    captured ScrollAnchor ids as household ids. Titles of rows 1-3 use narrow letters, so that each fits on one line of
-    the MyBookmarks album as the captured ones do. */
+/** Households bookmarked by the mock user outside its locality (rows 1-3 and 5-7 of a capture of the retired legacy
+    bookmark list), with the captured ScrollAnchor ids as household ids. Titles of rows 1-3 use narrow letters, as the
+    captured ones. */
 export const BOOKMARKED_ELSEWHERE = {
   riley: {
     id: '51207',

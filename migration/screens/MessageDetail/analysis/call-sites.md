@@ -13,6 +13,9 @@ For every service call: the chains of code that lead to it, from a root (user ev
 - `ScreenBlock_MessageDetail.OnReady` → `ScreenBlock_MessageDetail.onReady` → `ScreenBlock_MessageDetail.DataActionGetMessageInstance`
 - `ScreenBlock_MessageDetail fetch at start` → `ScreenBlock_MessageDetail.DataActionGetMessageInstance`
 
+### `UBTConnect_Utils/ActionGetSignedImagesInBulk`
+- `UBTConnect_Utils.cache_SignedImageURL_GetCallback` → `server GetSignedImagesInBulk`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
+
 ### `UBT_AppManager/ActionAppManager_AfterInitialize`
 - `UBT_AppManager.appManager_OnAppReady_Web` → `UBT_AppManager.appManager_InitializeWebComponents` → `UBT_AppManager.appManager_AfterInitialize` → `server AppManager_AfterInitialize`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 - `UBTConnect.onApplicationReady` → `UBT_AppManager_Mobile.appManager_Mobile_OnAppReady` → `UBT_AppManager.appManager_InitializeWebComponents` → `UBT_AppManager.appManager_AfterInitialize` → `server AppManager_AfterInitialize`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)

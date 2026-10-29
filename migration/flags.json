@@ -5,63 +5,25 @@
     "flag check action"
    ],
    "files": [
-    "UBTConnect.App_Common.BottomBarMenu.mvc.js",
-    "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js",
-    "UBTConnect.controller.js",
+    "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js",
+    "UBTConnect.Directory_Locality.Locality_Details.mvc.js",
+    "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js",
     "UBTConnect_Utils.controller.js"
    ],
    "screens": [
-    "AssembleDetail",
-    "AssembleEvents",
-    "Bookmarks",
-    "BookmarksByGroup",
-    "BrowseCountries",
-    "BrowseDirectory",
-    "CommunityBusinessDetails",
-    "CountryDetails",
-    "CountryList",
-    "EmailContact",
-    "EmailTarget",
-    "HomeFeed",
     "HouseholdCarousel",
     "HouseholdDetails",
-    "Household_Relations",
-    "InvalidPermissions",
-    "LDM_Email",
-    "LDM_Email_V2",
-    "LDM_EventDetail",
-    "LDM_EventDetail_V2",
-    "LDM_MyEvents",
-    "LDM_MyEvents_V2",
     "Locality_Details",
-    "Map",
-    "Menu",
-    "MessageDetail",
-    "MessageList",
-    "MyBookmarks",
-    "New_BookmarksByGroup",
-    "New_MyBookmarks",
-    "Notes",
-    "Notifications",
+    "OneSchoolGlobalCarousel",
     "OneSchoolGlobalDetails",
-    "OrbitAdminEventDetail",
-    "OrbitAdminLanding",
-    "OrbitLanding",
-    "Search",
-    "Updates_SingleList"
+    "Profile",
+    "SupperMeeting_Carousel"
    ],
    "inControllers": [
-    "UBTConnect.controller.js",
     "UBTConnect_Utils.controller.js"
    ],
    "candidate": true,
-   "variantGroups": [
-    "bookmarksbygroup",
-    "ldm_email",
-    "ldm_eventdetail",
-    "ldm_myevents",
-    "mybookmarks"
-   ],
+   "variantGroups": [],
    "mcp": {
     "status": "unavailable",
     "answer": "not a feature flag: shared wrapper that reads LaunchDarkly flags (the flags are decided one by one)",
@@ -174,22 +136,18 @@
    ],
    "files": [
     "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_AttendeeSubdivision.mvc.js",
-    "Connect2_MyBookmarks_MUI.MyBookmarksFlow.New_ScreenBlock_BookmarkGroup.mvc.js",
     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js",
     "Connect2_MyBookmarks_MUI.controller.js"
    ],
    "screens": [
     "AssembleDetail",
-    "BookmarksByGroup",
-    "New_BookmarksByGroup"
+    "BookmarksByGroup"
    ],
    "inControllers": [
     "Connect2_MyBookmarks_MUI.controller.js"
    ],
    "candidate": true,
-   "variantGroups": [
-    "bookmarksbygroup"
-   ],
+   "variantGroups": [],
    "mcp": {
     "status": "unavailable",
     "answer": "mobileDirectoryBookmarkNote: bookmark note branch (D2)",
@@ -249,13 +207,15 @@
     "MessageDetail",
     "MessageList",
     "MyBookmarks",
-    "New_BookmarksByGroup",
-    "New_MyBookmarks",
     "Notes",
+    "NotificationDetails",
     "Notifications",
+    "OneSchoolGlobalCarousel",
     "OneSchoolGlobalDetails",
     "OrbitAdminEventDetail",
     "OrbitAdminLanding",
+    "OrbitAdminMilestoneDetail",
+    "OrbitAdminMilestones",
     "OrbitLanding",
     "Search",
     "Updates_SingleList"
@@ -263,11 +223,9 @@
    "inControllers": [],
    "candidate": true,
    "variantGroups": [
-    "bookmarksbygroup",
     "ldm_email",
     "ldm_eventdetail",
-    "ldm_myevents",
-    "mybookmarks"
+    "ldm_myevents"
    ],
    "mcp": {
     "status": "unavailable",
@@ -323,6 +281,7 @@
     "Locality_Details",
     "Map",
     "MyBookmarks",
+    "OneSchoolGlobalCarousel",
     "Photobook",
     "Search",
     "SupperMeeting_Carousel",
@@ -332,10 +291,8 @@
    "inControllers": [],
    "candidate": true,
    "variantGroups": [
-    "bookmarksbygroup",
     "ldm_eventdetail",
-    "ldm_myevents",
-    "mybookmarks"
+    "ldm_myevents"
    ],
    "mcp": {
     "status": "unavailable",
@@ -458,7 +415,7 @@
     "Locality_Details",
     "Map",
     "MessageDetail",
-    "New_BookmarksByGroup",
+    "OneSchoolGlobalCarousel",
     "OneSchoolGlobalDetails",
     "Profile",
     "SupperMeeting_Carousel",
@@ -467,9 +424,7 @@
    ],
    "inControllers": [],
    "candidate": true,
-   "variantGroups": [
-    "bookmarksbygroup"
-   ],
+   "variantGroups": [],
    "mcp": {
     "status": "unavailable",
     "answer": "C2ExtendedShare: extended share UI inside screens",
@@ -551,11 +506,11 @@
    },
    "decision": {
     "status": "decided",
-    "value": "default-only: TST value off (user, 2026-10-14)",
+    "value": "user decision H-Q3 (a), 2026-10-29: on as TST (the 2026-10-29 capture of Locality_Details shows the header explore icon, placeholder_Header_Input_Icon If GetHasMapsEnabled; the probe of 2026-10-14 gave false); the icon opens the not-migrated Map route like other not-built targets until a Maps screen is in scope. Drift wave WP8 (migration/clarify/builds/drift-WP4.md).",
     "by": "user",
-    "at": "2026-10-14T12:31:36",
+    "at": "2026-10-29T17:28:10",
     "key": "C2EnableMaps",
-    "default": "off",
+    "default": "on",
     "values": [
      "on",
      "off"
@@ -569,62 +524,14 @@
     "flag check action"
    ],
    "files": [
-    "UBTConnect.App_Common.BottomBarMenu.mvc.js",
-    "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js",
     "UBTConnect.Directory_Locality.Locality_Households_HouseholdList.mvc.js"
    ],
    "screens": [
-    "AssembleDetail",
-    "AssembleEvents",
-    "Bookmarks",
-    "BookmarksByGroup",
-    "BrowseCountries",
-    "BrowseDirectory",
-    "CommunityBusinessDetails",
-    "CountryDetails",
-    "CountryList",
-    "EmailContact",
-    "EmailTarget",
-    "HomeFeed",
-    "HouseholdCarousel",
-    "HouseholdDetails",
-    "Household_Relations",
-    "InvalidPermissions",
-    "LDM_Email",
-    "LDM_Email_V2",
-    "LDM_EventDetail",
-    "LDM_EventDetail_V2",
-    "LDM_MyEvents",
-    "LDM_MyEvents_V2",
-    "Locality_Details",
-    "Map",
-    "Menu",
-    "MessageDetail",
-    "MessageList",
-    "MyBookmarks",
-    "New_BookmarksByGroup",
-    "New_MyBookmarks",
-    "Notes",
-    "Notifications",
-    "OneSchoolGlobalDetails",
-    "OrbitAdminEventDetail",
-    "OrbitAdminLanding",
-    "OrbitLanding",
-    "Profile",
-    "Search",
-    "SupperMeeting_Carousel",
-    "SupperMeeting_Details",
-    "Updates_SingleList"
+    "Locality_Details"
    ],
    "inControllers": [],
    "candidate": true,
-   "variantGroups": [
-    "bookmarksbygroup",
-    "ldm_email",
-    "ldm_eventdetail",
-    "ldm_myevents",
-    "mybookmarks"
-   ],
+   "variantGroups": [],
    "mcp": {
     "status": "unavailable",
     "answer": "C2NewBookmarks: selects the bookmarks branch (D2)",
@@ -634,11 +541,11 @@
    },
    "decision": {
     "status": "decided",
-    "value": "default-only: TST value off (user, 2026-10-14)",
+    "value": "user decision H-Q2 (a), 2026-10-29: on as TST since 2026-10-21 (migration/knowledge/flag-values-tst.json changes[0]); TST removed the GetHasNewBookmarks branch from Directory_EntityDetailsActions (C2 bookmarks only, new mvc.js:375-376, :1864-1887); the reader left is Locality_Households_HouseholdList (GetLocal_Bookmark_C2). Drift wave WP4/WP8 (migration/clarify/builds/drift-WP4.md).",
     "by": "user",
-    "at": "2026-10-14T12:31:35",
+    "at": "2026-10-29T17:28:09",
     "key": "C2NewBookmarks",
-    "default": "off",
+    "default": "on",
     "values": [
      "on",
      "off"
@@ -823,13 +730,16 @@
    ],
    "files": [
     "Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js",
-    "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js"
+    "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js",
+    "Connect2_OrbitMobile_MUI.controller.js"
    ],
    "screens": [
     "EventDetail",
     "MessageDetail"
    ],
-   "inControllers": [],
+   "inControllers": [
+    "Connect2_OrbitMobile_MUI.controller.js"
+   ],
    "candidate": true,
    "variantGroups": [],
    "mcp": {
@@ -892,6 +802,7 @@
     "HouseholdCarousel",
     "HouseholdDetails",
     "Locality_Details",
+    "OneSchoolGlobalCarousel",
     "Profile",
     "SupperMeeting_Carousel"
    ],
@@ -929,14 +840,11 @@
    ],
    "screens": [
     "AssembleDetail",
-    "BookmarksByGroup",
-    "New_BookmarksByGroup"
+    "BookmarksByGroup"
    ],
    "inControllers": [],
    "candidate": true,
-   "variantGroups": [
-    "bookmarksbygroup"
-   ],
+   "variantGroups": [],
    "mcp": {
     "status": "unavailable",
     "answer": "WalletAccess: constant HasAccess = False in GetHasWalletAccess",
@@ -1055,6 +963,33 @@
     "at": null
    }
   },
+  "action:map_GeoJSON_GetFeatureIdsAtPoint": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.Map.Map.mvc.js"
+   ],
+   "screens": [
+    "Map"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   }
+  },
   "action:refreshUpdatesAndFlags": {
    "kinds": [
     "flag check action"
@@ -1145,18 +1080,21 @@
     "MyBookmarks",
     "MyCalendar",
     "MyEntertaining",
-    "New_BookmarksByGroup",
-    "New_MyBookmarks",
     "Notes",
+    "NotificationDetails",
     "Notifications",
+    "OneSchoolGlobalCarousel",
     "OneSchoolGlobalDetails",
     "OrbitAdminEventDetail",
     "OrbitAdminLanding",
+    "OrbitAdminMilestoneDetail",
+    "OrbitAdminMilestones",
     "OrbitLanding",
     "PINBiometricsMenu",
     "PINChange",
     "PINRegister",
     "PINUnlock",
+    "PassportScan",
     "PersonalEventDetails",
     "PersonalEventForm",
     "Photobook",
@@ -1177,11 +1115,9 @@
    ],
    "candidate": true,
    "variantGroups": [
-    "bookmarksbygroup",
     "ldm_email",
     "ldm_eventdetail",
-    "ldm_myevents",
-    "mybookmarks"
+    "ldm_myevents"
    ],
    "mcp": {
     "status": "unavailable",
@@ -1275,60 +1211,14 @@
     "static entity record"
    ],
    "files": [
-    "UBTConnect.App_Common.BottomBarMenu.mvc.js",
     "UBTConnect_Utils.controller.js"
    ],
-   "screens": [
-    "AssembleDetail",
-    "AssembleEvents",
-    "Bookmarks",
-    "BookmarksByGroup",
-    "BrowseCountries",
-    "BrowseDirectory",
-    "CommunityBusinessDetails",
-    "CountryDetails",
-    "CountryList",
-    "EmailContact",
-    "EmailTarget",
-    "HomeFeed",
-    "HouseholdCarousel",
-    "HouseholdDetails",
-    "Household_Relations",
-    "InvalidPermissions",
-    "LDM_Email",
-    "LDM_Email_V2",
-    "LDM_EventDetail",
-    "LDM_EventDetail_V2",
-    "LDM_MyEvents",
-    "LDM_MyEvents_V2",
-    "Locality_Details",
-    "Map",
-    "Menu",
-    "MessageDetail",
-    "MessageList",
-    "MyBookmarks",
-    "New_BookmarksByGroup",
-    "New_MyBookmarks",
-    "Notes",
-    "Notifications",
-    "OneSchoolGlobalDetails",
-    "OrbitAdminEventDetail",
-    "OrbitAdminLanding",
-    "OrbitLanding",
-    "Search",
-    "Updates_SingleList"
-   ],
+   "screens": [],
    "inControllers": [
     "UBTConnect_Utils.controller.js"
    ],
    "candidate": false,
-   "variantGroups": [
-    "bookmarksbygroup",
-    "ldm_email",
-    "ldm_eventdetail",
-    "ldm_myevents",
-    "mybookmarks"
-   ],
+   "variantGroups": [],
    "mcp": {
     "status": "unavailable",
     "answer": "mobileDirectoryBookmarkNote: bookmark note branch, read directly by the bottom bar (D2)",
@@ -1343,6 +1233,46 @@
     "at": "2026-10-14T12:31:36",
     "key": "mobileDirectoryBookmarkNote",
     "default": "off",
+    "values": [
+     "on",
+     "off"
+    ],
+    "branches": "default-only",
+    "reference": "none"
+   }
+  },
+  "launchDarkly_FF.mobileDirectoryHouseholdGallery": {
+   "kinds": [
+    "static entity record"
+   ],
+   "files": [
+    "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js"
+   ],
+   "screens": [
+    "HouseholdCarousel",
+    "HouseholdDetails",
+    "Locality_Details",
+    "OneSchoolGlobalCarousel",
+    "Profile",
+    "SupperMeeting_Carousel"
+   ],
+   "inControllers": [],
+   "candidate": false,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "decided",
+    "value": "user decision (a) 'probe then record', drift wave round 2, 2026-10-29: on as TST (read-only probe migration/tools/flag_probe.cjs, 2026-10-29: true). HouseholdDetails_Block.mvc.js:1298-1301: on hides the Coming Soon box of the Photos tag. The off branch stays in the code with unit tests (HouseholdDetailsView.test.tsx); same record shape as getHasMapsEnabled (H-Q3). migration/clarify/review/drift-decisions-2026-10-29.md",
+    "by": "user",
+    "at": "2026-10-29T20:05:07",
+    "key": "mobileDirectoryHouseholdGallery",
+    "default": "on",
     "values": [
      "on",
      "off"
@@ -1383,12 +1313,12 @@
     "static entity record"
    ],
    "files": [
-    "UBTConnect.controller.js"
+    "UBTConnect.Directory_Locality.Locality_Details.mvc.js"
    ],
-   "screens": [],
-   "inControllers": [
-    "UBTConnect.controller.js"
+   "screens": [
+    "Locality_Details"
    ],
+   "inControllers": [],
    "candidate": false,
    "variantGroups": [],
    "mcp": {
@@ -1607,9 +1537,10 @@
     "static entity record"
    ],
    "files": [
-    "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js"
+    "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js"
    ],
    "screens": [
+    "OneSchoolGlobalCarousel",
     "OneSchoolGlobalDetails"
    ],
    "inControllers": [],
@@ -1955,7 +1886,6 @@
     "AssembleDetail",
     "AssembleEvents",
     "Bookmarks",
-    "BookmarksByGroup",
     "CountryDetails",
     "CountryList",
     "FeedItemDetail",
@@ -1968,6 +1898,7 @@
     "Map",
     "Notes",
     "Notifications",
+    "OneSchoolGlobalCarousel",
     "OneSchoolGlobalDetails",
     "PersonalEventForm",
     "Photobook",
@@ -1979,9 +1910,7 @@
    ],
    "inControllers": [],
    "candidate": true,
-   "variantGroups": [
-    "bookmarksbygroup"
-   ],
+   "variantGroups": [],
    "mcp": {
     "status": "unavailable",
     "answer": "not a feature flag: bottom sheet toggle event",
@@ -3975,5 +3904,5 @@
    "gone": true
   }
  },
- "scannedAt": "2026-10-14T12:23:10"
+ "scannedAt": "2026-10-29T22:29:31"
 }

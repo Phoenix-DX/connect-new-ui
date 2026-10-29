@@ -1,4 +1,4 @@
-define("Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.mvc$model", ["OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_LegacyShared.controller", "Connect2_LegacyShared.Reusable.Person_Contact_Options.mvc$model", "Connect2_LegacyShared.controller$FlipHouseholdName", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_LegacyShared"], function (OutSystems, Connect2_OrbitMobile_MUIModel, Connect2_LegacySharedController, Connect2_LegacyShared_Reusable_Person_Contact_Options_mvcModel) {
+define("Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.mvc$model", ["OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_LegacyShared.controller", "UBTConnectLibrary.model", "UBTConnect_Utils.model", "Connect2_LegacyShared.Reusable.Person_Contact_Options.mvc$model", "UBTConnect_Utils.CW_Notes.ItemNotesSection.mvc$model", "Connect2_LegacyShared.controller$FlipHouseholdName", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_LegacyShared", "UBTConnectLibrary.model$NotesRec", "Connect2_OrbitMobile_MUI.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$Note_ItemRec", "Connect2_OrbitMobile_MUI.model$Note_ItemList", "UBTConnect_Utils.model$ContactPopupDataRec", "Connect2_OrbitMobile_MUI.referencesHealth$UBTConnect_Utils", "UBTConnectLibrary.model$ActionBarOptionsRec"], function (OutSystems, Connect2_OrbitMobile_MUIModel, Connect2_LegacySharedController, UBTConnectLibraryModel, UBTConnect_UtilsModel, Connect2_LegacyShared_Reusable_Person_Contact_Options_mvcModel, UBTConnect_Utils_CW_Notes_ItemNotesSection_mvcModel) {
 var OS = OutSystems.Internal;
 
 
@@ -68,6 +68,24 @@ return "";
 }, false), 
 this.attr("_in_HostEmailInDataFetchStatus", "_in_HostEmailInDataFetchStatus", "_in_HostEmailInDataFetchStatus", true, false, OS.DataTypes.DataTypes.Integer, function () {
 return /*Fetched*/ 1;
+}, false), 
+this.attr("EventId", "eventIdIn", "EventId", true, false, OS.DataTypes.DataTypes.LongInteger, function () {
+return OS.DataTypes.LongInteger.defaultValue;
+}, false), 
+this.attr("_eventIdInDataFetchStatus", "_eventIdInDataFetchStatus", "_eventIdInDataFetchStatus", true, false, OS.DataTypes.DataTypes.Integer, function () {
+return /*Fetched*/ 1;
+}, false), 
+this.attr("EventNotes", "eventNotesIn", "EventNotes", true, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec());
+}, false, UBTConnectLibraryModel.NotesRec), 
+this.attr("_eventNotesInDataFetchStatus", "_eventNotesInDataFetchStatus", "_eventNotesInDataFetchStatus", true, false, OS.DataTypes.DataTypes.Integer, function () {
+return /*Fetched*/ 1;
+}, false), 
+this.attr("EventHostId", "eventHostIdIn", "EventHostId", true, false, OS.DataTypes.DataTypes.LongInteger, function () {
+return OS.DataTypes.LongInteger.defaultValue;
+}, false), 
+this.attr("_eventHostIdInDataFetchStatus", "_eventHostIdInDataFetchStatus", "_eventHostIdInDataFetchStatus", true, false, OS.DataTypes.DataTypes.Integer, function () {
+return /*Fetched*/ 1;
 }, false)
 ].concat(_super.attributesToDeclare.call(this));
 };
@@ -102,7 +120,7 @@ enumerable: true,
 configurable: true,
 get: function () {
 if((Model._hasValidationWidgetsValue === undefined)) {
-Model._hasValidationWidgetsValue = Connect2_LegacyShared_Reusable_Person_Contact_Options_mvcModel.hasValidationWidgets;
+Model._hasValidationWidgetsValue = (Connect2_LegacyShared_Reusable_Person_Contact_Options_mvcModel.hasValidationWidgets || UBTConnect_Utils_CW_Notes_ItemNotesSection_mvcModel.hasValidationWidgets);
 }
 
 return Model._hasValidationWidgetsValue;
@@ -190,12 +208,36 @@ this.variables._in_HostEmailInDataFetchStatus = inputs._in_HostEmailInDataFetchS
 
 }
 
+if("EventId" in inputs) {
+this.variables.eventIdIn = inputs.EventId;
+if("_eventIdInDataFetchStatus" in inputs) {
+this.variables._eventIdInDataFetchStatus = inputs._eventIdInDataFetchStatus;
+}
+
+}
+
+if("EventNotes" in inputs) {
+this.variables.eventNotesIn = inputs.EventNotes;
+if("_eventNotesInDataFetchStatus" in inputs) {
+this.variables._eventNotesInDataFetchStatus = inputs._eventNotesInDataFetchStatus;
+}
+
+}
+
+if("EventHostId" in inputs) {
+this.variables.eventHostIdIn = inputs.EventHostId;
+if("_eventHostIdInDataFetchStatus" in inputs) {
+this.variables._eventHostIdInDataFetchStatus = inputs._eventHostIdInDataFetchStatus;
+}
+
+}
+
 };
 return Model;
 })(OS.Model.BaseViewModel);
 return new OS.Model.ModelFactory(Model, "LDM_Blocks.EventDetail_HostCard");
 });
-define("Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.mvc$view", ["OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.controller", "Connect2_LegacyShared.controller", "react", "OutSystems/ReactView/Main", "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.mvc$model", "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.mvc$controller", "Connect2_OrbitMobile_MUI.clientVariables", "OutSystems/ReactWidgets/Main", "Connect2_LegacyShared.Reusable.Person_Contact_Options.mvc$view", "Connect2_LegacyShared.controller$FlipHouseholdName", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_LegacyShared"], function (OutSystems, Connect2_OrbitMobile_MUIModel, Connect2_OrbitMobile_MUIController, Connect2_LegacySharedController, React, OSView, Connect2_OrbitMobile_MUI_LDM_Blocks_EventDetail_HostCard_mvc_model, Connect2_OrbitMobile_MUI_LDM_Blocks_EventDetail_HostCard_mvc_controller, Connect2_OrbitMobile_MUIClientVariables, OSWidgets, Connect2_LegacyShared_Reusable_Person_Contact_Options_mvc_view) {
+define("Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.mvc$view", ["OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.controller", "Connect2_LegacyShared.controller", "UBTConnectLibrary.model", "UBTConnect_Utils.model", "react", "OutSystems/ReactView/Main", "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.mvc$model", "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.mvc$controller", "Connect2_OrbitMobile_MUI.clientVariables", "OutSystems/ReactWidgets/Main", "Connect2_LegacyShared.Reusable.Person_Contact_Options.mvc$view", "UBTConnect_Utils.CW_Notes.ItemNotesSection.mvc$view", "Connect2_LegacyShared.controller$FlipHouseholdName", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_LegacyShared", "UBTConnectLibrary.model$NotesRec", "Connect2_OrbitMobile_MUI.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$Note_ItemRec", "Connect2_OrbitMobile_MUI.model$Note_ItemList", "UBTConnect_Utils.model$ContactPopupDataRec", "Connect2_OrbitMobile_MUI.referencesHealth$UBTConnect_Utils", "UBTConnectLibrary.model$ActionBarOptionsRec"], function (OutSystems, Connect2_OrbitMobile_MUIModel, Connect2_OrbitMobile_MUIController, Connect2_LegacySharedController, UBTConnectLibraryModel, UBTConnect_UtilsModel, React, OSView, Connect2_OrbitMobile_MUI_LDM_Blocks_EventDetail_HostCard_mvc_model, Connect2_OrbitMobile_MUI_LDM_Blocks_EventDetail_HostCard_mvc_controller, Connect2_OrbitMobile_MUIClientVariables, OSWidgets, Connect2_LegacyShared_Reusable_Person_Contact_Options_mvc_view, UBTConnect_Utils_CW_Notes_ItemNotesSection_mvc_view) {
     var OS = OutSystems.Internal;
 var PlaceholderContent = OSView.Widget.PlaceholderContent;
 var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
@@ -221,13 +263,13 @@ var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
         };
         View.displayName = "LDM_Blocks.EventDetail_HostCard";
         View.getCssDependencies = function() {
-            return ["css/OutSystemsReactWidgets.css"];
+            return ["css/OutSystemsReactWidgets.css", "css/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.css"];
         };
         View.getJsDependencies = function() {
             return [];
         };
         View.getBlocks = function() {
-            return [Connect2_LegacyShared_Reusable_Person_Contact_Options_mvc_view];
+            return [Connect2_LegacyShared_Reusable_Person_Contact_Options_mvc_view, UBTConnect_Utils_CW_Notes_ItemNotesSection_mvc_view];
         };
         Object.defineProperty(View.prototype, "modelFactory", {
             get: function () {
@@ -652,14 +694,85 @@ service: idService,
 uuid: "22"
 },
 _widgetRecordProvider: widgetsRecordProvider
-}), "Directions"))))));
+}), "Directions")))), React.createElement(OSWidgets.Container, {
+align: /*Default*/ 0,
+animate: false,
+style: "ldm-notes",
+visible: true,
+_idProps: {
+service: idService,
+uuid: "23"
+},
+_widgetRecordProvider: widgetsRecordProvider
+}, React.createElement(UBTConnect_Utils_CW_Notes_ItemNotesSection_mvc_view, {
+inputs: {
+In_NoteCategoryId: model.getCachedValue(idService.getId("IQbEsk3jvEK9z8t4CGc6Aw.In_NoteCategoryId"), function () {
+return OS.BuiltinFunctions.textToIdentifier("LDM Event");
+}),
+ActionBarOptions: model.getCachedValue(idService.getId("IQbEsk3jvEK9z8t4CGc6Aw.ActionBarOptions"), function () {
+return function () {
+var rec = new UBTConnectLibraryModel.ActionBarOptionsRec();
+rec.showAddNoteAttr = true;
+rec.isAddNoteEnabledAttr = true;
+return rec;
+}();
+}),
+In_ItemId: ((OS.BuiltinFunctions.longIntegerToText(model.variables.eventHostIdIn) + ":") + OS.BuiltinFunctions.longIntegerToText(model.variables.eventIdIn)),
+_in_ItemIdInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables._eventHostIdInDataFetchStatus, model.variables._eventIdInDataFetchStatus),
+In_Notes: model.variables.eventNotesIn,
+_in_NotesInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables._eventNotesInDataFetchStatus)
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+},
+on_NotesChanged$Action: function (new_NotesIn) {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "CW_Notes/ItemNotesSection On_NotesChanged");
+controller.handlerOn_NotesChanged$Action(new_NotesIn, controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+
+;
+},
+on_NoteDeleted$Action: function (noteIdIn, wasLastNoteIn) {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "CW_Notes/ItemNotesSection On_NoteDeleted");
+controller.handlerOn_NoteDeleted$Action(noteIdIn, wasLastNoteIn, controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+
+;
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+uuid: "24",
+alias: "2"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+_dependencies: []
+}))));
         };
         return View;
     })(OSView.BaseView.BaseWebBlock);
 	
     return View;
 });
-define("Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.mvc$controller", ["OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.controller", "Connect2_LegacyShared.controller", "Connect2_OrbitMobile_MUI.languageResources", "Connect2_OrbitMobile_MUI.clientVariables", "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.mvc$debugger", "Connect2_LegacyShared.controller$FlipHouseholdName", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_LegacyShared"], function (OutSystems, Connect2_OrbitMobile_MUIModel, Connect2_OrbitMobile_MUIController, Connect2_LegacySharedController, Connect2_OrbitMobile_MUILanguageResources, Connect2_OrbitMobile_MUIClientVariables, Connect2_OrbitMobile_MUI_LDM_Blocks_EventDetail_HostCard_mvc_Debugger) {
+define("Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.mvc$controller", ["OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.controller", "Connect2_LegacyShared.controller", "UBTConnectLibrary.model", "UBTConnect_Utils.model", "Connect2_OrbitMobile_MUI.languageResources", "Connect2_OrbitMobile_MUI.clientVariables", "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.mvc$debugger", "Connect2_LegacyShared.controller$FlipHouseholdName", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_LegacyShared", "UBTConnectLibrary.model$NotesRec", "Connect2_OrbitMobile_MUI.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$Note_ItemRec", "Connect2_OrbitMobile_MUI.model$Note_ItemList", "UBTConnect_Utils.model$ContactPopupDataRec", "Connect2_OrbitMobile_MUI.referencesHealth$UBTConnect_Utils", "UBTConnectLibrary.model$ActionBarOptionsRec"], function (OutSystems, Connect2_OrbitMobile_MUIModel, Connect2_OrbitMobile_MUIController, Connect2_LegacySharedController, UBTConnectLibraryModel, UBTConnect_UtilsModel, Connect2_OrbitMobile_MUILanguageResources, Connect2_OrbitMobile_MUIClientVariables, Connect2_OrbitMobile_MUI_LDM_Blocks_EventDetail_HostCard_mvc_Debugger) {
 var OS = OutSystems.Internal;
 var Controller = (function (_super) {
 __extends(Controller, _super);
@@ -684,10 +797,16 @@ return Promise.resolve();
 Controller.prototype.hostInformation$Action = function () {
 return Promise.resolve();
 };
+Controller.prototype.handlerOn_NoteDeleted$Action = function () {
+return Promise.resolve();
+};
 Controller.prototype.callPhone$Action = function () {
 return Promise.resolve();
 };
 Controller.prototype.navigateToEmail_Household$Action = function () {
+return Promise.resolve();
+};
+Controller.prototype.handlerOn_NotesChanged$Action = function () {
 return Promise.resolve();
 };
 
@@ -695,7 +814,7 @@ return Promise.resolve();
 Controller.prototype.pushDebuggerContext = function (callContext) {
 var varBag = {};
 OutSystemsDebugger.push("rMzmm49Sw0CsKZc1bJZ9DQ:u4BC4QhydUm9ABIHkrjpQQ:/NRWebFlows.u4BC4QhydUm9ABIHkrjpQQ:_P7gfhFmARrzYcq0IncBSg", "Connect2_OrbitMobile_MUI", "LDM_Blocks", "NRFlows.WebFlow", callContext.id, varBag);
-OutSystemsDebugger.push("rMzmm49Sw0CsKZc1bJZ9DQ:W0FwH5E7TEuZhnquVp2DWg:/NRWebFlows.u4BC4QhydUm9ABIHkrjpQQ/NodesShownInESpaceTree.W0FwH5E7TEuZhnquVp2DWg:5m3Bgy7w0fODsClCpgtW0w", "Connect2_OrbitMobile_MUI", "EventDetail_HostCard", "NRNodes.WebBlock", callContext.id, varBag);
+OutSystemsDebugger.push("rMzmm49Sw0CsKZc1bJZ9DQ:W0FwH5E7TEuZhnquVp2DWg:/NRWebFlows.u4BC4QhydUm9ABIHkrjpQQ/NodesShownInESpaceTree.W0FwH5E7TEuZhnquVp2DWg:9CNawHFYwvYh3jEDxwmtRA", "Connect2_OrbitMobile_MUI", "EventDetail_HostCard", "NRNodes.WebBlock", callContext.id, varBag);
 };
 Controller.prototype.popDebuggerContext = function (callContext) {
 OutSystemsDebugger.pop("rMzmm49Sw0CsKZc1bJZ9DQ:W0FwH5E7TEuZhnquVp2DWg", callContext.id);
@@ -781,6 +900,23 @@ getter: function (varBag, idService) {
 return varBag.model.variables.in_HostEmailIn;
 },
 dataType: OS.DataTypes.DataTypes.Email
+},
+"iH9JqIZpG0+2_KSdTGoxmg": {
+getter: function (varBag, idService) {
+return varBag.model.variables.eventIdIn;
+},
+dataType: OS.DataTypes.DataTypes.LongInteger
+},
+"UfBvz75970q55vuj0lfFWw": {
+getter: function (varBag, idService) {
+return varBag.model.variables.eventNotesIn;
+}
+},
+"7qpOoUyo8U6YCDRx+sg9Ww": {
+getter: function (varBag, idService) {
+return varBag.model.variables.eventHostIdIn;
+},
+dataType: OS.DataTypes.DataTypes.LongInteger
 },
 "rYTrvqTRmE+JRisZGQOsQg": {
 getter: function (varBag, idService) {

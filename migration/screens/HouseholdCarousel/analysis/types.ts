@@ -120,6 +120,16 @@ export interface GetHouseholdResponse {
   isVisible: boolean;
 }
 
+export interface HouseholdCoordinates {
+  Longitude: string /* Decimal as string */;
+  Latitude: string /* Decimal as string */;
+  UseCoordinates: boolean;
+}
+
+export interface GetHousehold_CoordinatesResponse {
+  HouseholdCoordinates: HouseholdCoordinates;
+}
+
 export interface ContactPopupData {
   ImageURL: string /* "" in capture */;
   EntityTypeId: string;
@@ -154,21 +164,25 @@ export interface FetchContactDetailsResponse {
   EntityName: string;
 }
 
-export interface HouseholdCoordinates {
-  Longitude: string /* Decimal as string */;
-  Latitude: string /* Decimal as string */;
-  UseCoordinates: boolean;
+export interface Note_Item_List {
+  List: unknown[] /* empty in capture */;
+  EmptyListItem: EmptyListItem;
 }
 
-export interface GetHousehold_CoordinatesResponse {
-  HouseholdCoordinates: HouseholdCoordinates;
+export interface Notes {
+  Total: number /* 0 in capture */;
+  Note_Item_List: Note_Item_List;
+}
+
+export interface FetchNotesResponse {
+  Notes: Notes;
 }
 
 export interface ResultsItem {
   Id: string /* Long Integer as string */;
   Type: string;
   Size: string;
-  SignedURL: string;
+  SignedURL: string /* "" in capture */;
   Error: string /* "" in capture */;
 }
 

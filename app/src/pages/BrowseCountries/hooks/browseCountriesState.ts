@@ -19,7 +19,7 @@ export interface BrowseCountriesState {
 export const INITIAL_BROWSE_COUNTRIES_STATE: BrowseCountriesState = { countriesStatistics: [], isDataFetched: false };
 
 /** The changes of the state. */
-export type BrowseCountriesAction =
+type BrowseCountriesAction =
   /** Action_RefreshData, before the refresh: Out_CountriesStatistics = GetSkeletonList_UI_CountryStatistics(10).
       IsDataFetched does not change. */
   | { type: 'refreshStarted' }

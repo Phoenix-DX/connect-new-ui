@@ -19,9 +19,7 @@ Names and categories only; no values were captured. Inferences are marked as suc
 - `permissions-policy`: **missing**
 
 ## Third-party hosts contacted
-- `cbcdn.ubtconnect.com`
 - `server.arcgisonline.com`
-- `www.googleapis.com`
 
 ## Client storage by category
 ### token/secret (4)

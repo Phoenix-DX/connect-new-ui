@@ -139,6 +139,22 @@ describe('RouteGuard', () => {
     );
     expect(router.state.location.state).toEqual(transitionState(DEFAULT_TRANSITION));
     expect(getClientVar('UBT_AppManager.OutSystems_LastURL')).toBe('/UBTConnect/Notes');
+    // N8 (R281345: CheckPermissionsNavigationCallbacks.goTo → this.replace): Login replaces the protected entry
+    expect(router.state.historyAction).toBe('REPLACE');
+  });
+
+  test('the PINUnlock redirect adds an entry (no TST fact for a replace)', async () => {
+    setClientVar('UBT_AppManager.PIN_Use', true);
+    setSignedInUser(MOCK_USER_ID);
+    await registerPin('2468');
+    reloadPage({ newTab: true });
+    const router = renderAt('/UBTConnect/Menu');
+    await act(async () => {
+      markAppReady();
+      await Promise.resolve();
+    });
+    expect(router.state.location.pathname).toBe('/UBTConnect/PINUnlock');
+    expect(router.state.historyAction).toBe('PUSH');
   });
 
   test('the PIN check is done at the first check only', async () => {

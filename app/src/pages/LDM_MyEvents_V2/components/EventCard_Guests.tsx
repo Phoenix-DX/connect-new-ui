@@ -9,6 +9,7 @@ import type { ContactByPhonePopupData, UI_ContactByMessage_WrapperData } from '@
 import { OverlappingImages } from './OverlappingImages';
 import { flipHouseholdName } from '@/lib/legacyShared/actions';
 import { getLocalityName } from '@/lib/orbit/actions';
+import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { buildGuestString, validateBottomBorderOnListItem } from './actions';
 
 export interface EventCard_GuestsProps {
@@ -48,7 +49,8 @@ export interface EventCard_GuestsProps {
     OnHandle_HouseholdClicked (EG :700-760) triggers HouseholdClicked; its CarouselFilteredEventResults only lowers the
     row number, which the screen does not use for navigation (LDM_MyEvents_V2 Handler_NavigateTo_HouseholdCarousel).
     Call: OnClick_PhoneCall with the guest's contact data (EG :585-630). Email: OnClick_Message with the guest's
-    email and the flipped household name (EG :764-800; offline it does nothing, GetNetworkStatus).
+    email and the flipped household name (EG :764-800); offline (GetNetworkStatus) the Info message "Please check
+    your network connection and try again" (EG :867).
     @origin Connect2_OrbitMobile_MUI.LDM_Blocks.EventCard_Guests */
 export function EventCard_Guests({
   id,
@@ -86,7 +88,11 @@ export function EventCard_Guests({
   };
 
   const emailClicked = (g: CalendarGuestItem) => {
-    if (!navigator.onLine) return;
+    // GetNetworkStatus: IsOnline? else Network (EG :867).
+    if (!navigator.onLine) {
+      showFeedbackMessage('Please check your network connection and try again', PLATFORM_MESSAGE_TYPE.info);
+      return;
+    }
     onClickMessage(
       {
         Email: g.Email,

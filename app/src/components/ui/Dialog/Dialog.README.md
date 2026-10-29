@@ -38,7 +38,7 @@ A dialog that renders before `connectDialogs()` throws an error.
 ## Presets (not in this folder)
 
 - `pages/HomeFeed/components/Dialog_GoExternalApp`, `pages/ContactUsDetails/components/InformationDialog`,
-  `pages/LegacyShareObject/components/UpgradeSubscriptionDialog`, the bookmark note dialogs: ConfirmDialog with their
+  `containers/FreeSubscriptionActionDialog`, the bookmark note dialogs: ConfirmDialog with their
   texts.
 - `platform/feedback/dialogs/DialogAccessRestrictedAction`, its legacy block `DialogAccessRestrictedActionLegacy` (same
   folder, a module of its own) and `platform/navigation/DialogExitConfirmation`.

@@ -1,0 +1,76 @@
+{
+ "flow": "App_Menu_ContactUs",
+ "screens": [
+  "ContactUsDetails",
+  "ContactUsMenu"
+ ],
+ "ownBlocks": [
+  "ContactUs_Rate",
+  "ContactUs_RateItem"
+ ],
+ "usedBlocks": [
+  "Block_PINUnlock",
+  "Block_PINUnlock_ContentWrapper",
+  "CacheControl_UserInfo_Wrapper",
+  "CommonUI_InsideLayout",
+  "ContactUs_Rate",
+  "ContactUs_RateItem",
+  "Dialog_Information",
+  "Dialog_Navigation",
+  "HandleOnResumeOpenLink",
+  "Menu_List",
+  "OfflineDataSyncEvents",
+  "Policy_Checker",
+  "SectionSeparator",
+  "SubLayout_DirectoryDetailScreen_Section",
+  "UnsupportedVersion",
+  "UnsupportedVersion_Browser",
+  "UnsupportedVersion_Native",
+  "UnsupportedVersion_WebView",
+  "UnsupportedVersion_Wrapper",
+  "WelcomeToConnect"
+ ],
+ "referencedBlocks": [
+  "Button",
+  "ButtonLoading",
+  "CircleButton_IconPrimary",
+  "CircleButton_WithLabel",
+  "Columns_Two",
+  "ContactPopup_ByPhone",
+  "CustomContainer",
+  "CustomText",
+  "FixedFooter",
+  "Icon",
+  "IconText",
+  "Input",
+  "Layout_DetailPage",
+  "RangeSlider",
+  "SkeletonSection",
+  "TextArea_WithCounter"
+ ],
+ "clientActions": [
+  "ExitApplicationForWebViewUpdate",
+  "GetURLFromEventDataURL",
+  "GetUserInformation_Wrapper_Assign",
+  "Get_ContactUsFormDescription",
+  "Get_ContactUsMenuSections",
+  "Get_IsUnsupportedSystem",
+  "Get_IsUnsupportedVersion",
+  "Get_LookupContactUsMenu",
+  "OfflineDataSync",
+  "OfflineDataSyncConfiguration",
+  "OpenGooglePlay_Chrome",
+  "OpenGooglePlay_UBTConnect",
+  "OpenGooglePlay_WebView",
+  "SetResumeLoginLink",
+  "Try_GetIsSupportedVersion",
+  "Upgrade_UBTConnect",
+  "Upgrade_WebView"
+ ],
+ "serverActions": [
+  "Get_Core_CountriesNames",
+  "Get_Core_LocalityTimezone",
+  "SendContactUsMessage"
+ ],
+ "externalSites": []
+}

@@ -1,16 +1,9 @@
 import { fetchInterchanges, type Interchange } from '@/api/locality';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
-import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { useFlowState, useOsNavigate } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
 import { getLocalityLabel, hasAccessToRegion } from '@/lib/ubtConnect/actions';
-import {
-  INITIAL_LOCALITY_INTERCHANGE,
-  localityInterchangeReducer,
-  withStatisticIcons,
-  type LocalityInterchangeAction,
-} from './localityBlocksState';
-import { useReadyOnce } from './readyOnce';
+import { INITIAL_LOCALITY_INTERCHANGE, localityInterchangeReducer, withStatisticIcons } from './localityBlocksState';
 
 /** What the interchange tag renders. */
 export interface LocalityInterchangeFlows {
@@ -29,34 +22,32 @@ export interface LocalityInterchangeFlows {
     - Handler_NavigateToLocality: HasAccessToRegion(LocalityId, CountryName) → Locality_Details of that locality
       (PreloadedLocalityLabel = GetLocalityLabel of the matching row, "" when none); no access →
       App_Subscription_ShowUpgradePopUp.
+    Flow scope (item 8): GetInterchangesByLocalityId is a data action (R1, Locality_Interchange.js:237): after an
+    unmount its answer and its failure are dropped. HasAccessToRegion and App_Subscription_ShowUpgradePopUp are module
+    actions (R2, :270, :313): they run after leaving. The navigation of a left screen is blocked by useOsNavigate (R4,
+    :304).
     @origin UBTConnect.Directory_Locality.Locality_Interchange */
 export function useLocalityInterchange(interchangeLocalityId: string): LocalityInterchangeFlows {
   const navigate = useOsNavigate();
-  const ready = useReadyOnce();
-  const { state, dispatch, latest } = useFlowState({
+  const { state, dispatch, latest, flow } = useFlowState({
     viewName: 'Locality_Interchange',
     reducer: localityInterchangeReducer,
     initial: INITIAL_LOCALITY_INTERCHANGE,
     parameters: { interchangeLocalityId },
-    onReady: (isAlive, restored) => ready.once(isAlive, () => onReady(restored)),
+    onReady: (_flow, restored) => onReady(restored),
   });
-
-  /** A state write of OnReady, skipped after the unmount (W23). */
-  const write = (action: LocalityInterchangeAction) => {
-    if (ready.isAlive()) dispatch(action);
-  };
 
   async function onReady(restored: boolean) {
     if (restored && latest.current.isDataFetched) return;
-    write({ type: 'loadingShown' });
+    dispatch({ type: 'loadingShown' });
     let list: Interchange[];
     try {
-      list = await fetchInterchanges(interchangeLocalityId);
+      list = await flow.fetch(fetchInterchanges(interchangeLocalityId)); // R1
     } catch (e) {
-      write({ type: 'interchangesFailed' });
+      dispatch({ type: 'interchangesFailed' });
       throw e;
     }
-    write({ type: 'interchangesFetched', list: withStatisticIcons(list) });
+    dispatch({ type: 'interchangesFetched', list: withStatisticIcons(list) });
   }
 
   const navigateToLocality = async (localityId: string, countryName: string) => {
@@ -73,7 +64,7 @@ export function useLocalityInterchange(interchangeLocalityId: string): LocalityI
     interchangeList: state.out_InterchangeList,
     isLoading: state.hasFetchError || !state.isDataFetched,
     onNavigateToLocality: (localityId, countryName) => {
-      navigateToLocality(localityId, countryName).catch(raiseToFlowHandler);
+      flow.run(() => navigateToLocality(localityId, countryName));
     },
   };
 }

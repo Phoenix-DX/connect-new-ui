@@ -4,6 +4,7 @@ import { MemoryRouter } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { fetchEventDocuments, type EventDocumentItem } from '@/api/event';
 import { CommunicationException, UserException } from '@/legacy/os/exceptions';
+import { ControllerDisposedException } from '@/legacy/os/os-exceptions';
 import type { ViewDocumentsInputs } from '@/pages/ViewDocuments/inputs';
 import { getFeedbackMessage, resetFeedbackMessages } from '@/platform/feedback/feedbackStore';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
@@ -148,7 +149,7 @@ describe('useViewDocuments', () => {
     vi.mocked(fetchEventDocuments).mockRejectedValueOnce(error);
     const { result } = await loaded();
     expect(result.current.state).toMatchObject({ isFetchingData: true, isDataFetched: false });
-    expect(vi.mocked(raiseToFlowHandler).mock.calls).toEqual([[error]]);
+    expect(vi.mocked(raiseToFlowHandler).mock.calls.map(([raised]) => raised)).toEqual([error]);
   });
 
   it('StrictMode: OnReady runs once and the documents come', async () => {
@@ -220,7 +221,15 @@ describe('useViewDocuments', () => {
     expect(getFeedbackMessage()?.message).toContain('Document not found');
   });
 
-  it('an UnknownError resets IsLoadingDocument and is raised again; another error keeps it', async () => {
+  it('an UnknownError resets IsLoadingDocument and is raised again with the flow scope; another error keeps it', async () => {
+    /* Each raise: the error, and whether it carried the flow scope of useFlowState (`alive` is a function). */
+    const raisedWithScope = () =>
+      vi
+        .mocked(raiseToFlowHandler)
+        .mock.calls.map(([error, scope]) => [
+          error,
+          typeof (scope as { alive?: unknown } | undefined)?.alive === 'function',
+        ]);
     const unknown = new UserException('cannot open', 'Connect2_OrbitMobile_MUI.UnknownError');
     vi.mocked(openInApp_TryOpenFileInApp).mockImplementationOnce(() => {
       throw unknown;
@@ -230,7 +239,7 @@ describe('useViewDocuments', () => {
       result.current.onDocumentClick(DOCS[0]?.DocumentURL ?? '', 'Conference Programme');
     });
     expect(result.current.state.isLoadingDocument).toBe(false);
-    expect(vi.mocked(raiseToFlowHandler).mock.calls).toEqual([[unknown]]);
+    expect(raisedWithScope()).toEqual([[unknown, true]]);
 
     const other = new TypeError('no name');
     vi.mocked(openInApp_TryOpenFileInApp).mockImplementationOnce(() => {
@@ -240,7 +249,7 @@ describe('useViewDocuments', () => {
       result.current.onDocumentClick('', '');
     });
     expect(result.current.state.isLoadingDocument).toBe(true);
-    expect(vi.mocked(raiseToFlowHandler).mock.calls[1]).toEqual([other]);
+    expect(raisedWithScope()[1]).toEqual([other, true]);
   });
 
   it('Contact Orbit Helpdesk with Orbit access: ContactByEmailOrbitHelpdesk with the event subject', async () => {
@@ -278,7 +287,7 @@ describe('useViewDocuments', () => {
     });
   });
 
-  it('W23: after the unmount, the started flow makes its call once and writes no state', async () => {
+  it('R1: unmount while GetEventDocuments is pending: one call, no state write, nothing raised', async () => {
     const answer = pendingDocuments();
     let renders = 0;
     const { unmount } = renderHook(
@@ -297,10 +306,13 @@ describe('useViewDocuments', () => {
     expect(fetchEventDocuments).toHaveBeenCalledTimes(1);
     expect(viewDocumentsReducer).not.toHaveBeenCalled();
     expect(renders).toBe(rendersAtUnmount);
-    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    // Only the ignorable ControllerDisposedException reaches the flow handler, which drops it (R1).
+    expect(vi.mocked(raiseToFlowHandler).mock.calls.every(([e]) => e instanceof ControllerDisposedException)).toBe(
+      true,
+    );
   });
 
-  it('W23: an exception after the unmount still goes to the flow handler, once, without a state write', async () => {
+  it('R1: unmount while GetEventDocuments is pending: its failure reaches no handler, without a state write', async () => {
     const answer = pendingDocuments();
     const { unmount } = render(true, true);
     await settle();
@@ -309,7 +321,10 @@ describe('useViewDocuments', () => {
     const error = new CommunicationException('offline');
     answer.reject(error);
     await settle();
-    expect(vi.mocked(raiseToFlowHandler).mock.calls).toEqual([[error]]);
+    const raised = vi.mocked(raiseToFlowHandler).mock.calls.map(([e]) => e);
+    expect(raised).toHaveLength(1);
+    expect(raised[0]).toBeInstanceOf(ControllerDisposedException);
+    expect(raised).not.toContain(error);
     expect(viewDocumentsReducer).not.toHaveBeenCalled();
   });
 });

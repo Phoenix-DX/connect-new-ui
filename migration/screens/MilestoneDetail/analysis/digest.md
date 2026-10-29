@@ -484,9 +484,9 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `DataActionGetAccommodationHost` (200) at 2700 ms
-- 2. `DataActionGet_Document` (200) at 3017 ms
-- 3. `ActionGetSignedImagesInBulk` (200) at 3560 ms
+- 1. `DataActionGetAccommodationHost` (200) at 2457 ms
+- 2. `DataActionGet_Document` (200) at 2881 ms
+- 3. `ActionGetSignedImagesInBulk` (200) at 8162 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

@@ -1,10 +1,10 @@
 /** @origin UBTConnectLibrary.ConnectPatterns.HorizontalTagList */
 // @os-block UBTConnectLibrary.ConnectPatterns.HorizontalTagList
-import { useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { TagToggle } from '@/components/ui/TagToggle';
 import { formatClasses } from '@/lib/ubtConnectLibrary/actions';
 import type { Tag } from './types';
+import { useTagToggleList } from './useTagToggleList';
 
 export interface HorizontalTagListProps {
   /** OutSystems instance id of the block. */
@@ -37,30 +37,12 @@ export function HorizontalTagList({
   isEnabled = true,
   onChanged,
 }: HorizontalTagListProps) {
-  const [input, setInput] = useState(inTagToggleList);
-  const [list, setList] = useState(inTagToggleList);
-  if (input !== inTagToggleList) {
-    setInput(inTagToggleList);
-    setList(inTagToggleList);
-  }
-  const currentListIndex = useRef(0);
-  const selectedTagId = useRef('');
-
-  /** TagToggleToggle (:322-430). In_TagToggleList.Current in the event handler is the clicked row. */
-  const toggle = (isSelected: boolean, listIndex: number, isTagEnabled: boolean) => {
-    if (inIsSingleSelection && listIndex === currentListIndex.current) return;
-    currentListIndex.current = listIndex;
-    if (!isTagEnabled) return;
-    if (isSelected && inIsMandatorySelection && !(list.filter((t) => t.IsSelected ?? true).length > 1)) return;
-    const next = list.map((t, i) => (i === listIndex ? { ...t, IsSelected: !isSelected } : t));
-    selectedTagId.current = next[listIndex]?.Identifier ?? '';
-    const result =
-      inIsSingleSelection && (next[listIndex]?.IsSelected ?? true)
-        ? next.map((t) => ((t.Identifier ?? '') !== selectedTagId.current ? { ...t, IsSelected: false } : t))
-        : next;
-    setList(result);
-    onChanged?.(result);
-  };
+  /* TagToggleToggle (:322-430): useTagToggleList. An omitted Enabled is True (TagRec defaults, :1269-1274). */
+  const { list, toggle } = useTagToggleList(inTagToggleList, {
+    isSingleSelection: inIsSingleSelection,
+    isMandatorySelection: inIsMandatorySelection,
+    onChanged,
+  });
 
   const listClass =
     formatClasses(formatClasses('list list-group list-horizontal--gap-xs', MAIN_CONTAINER_CLASS), extendedClasses) +

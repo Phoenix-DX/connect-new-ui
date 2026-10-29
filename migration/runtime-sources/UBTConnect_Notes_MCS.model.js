@@ -11,33 +11,6 @@ return APIM_CommonHeaderList;
 UBTConnect_Notes_MCSModel.APIM_CommonHeaderList = APIM_CommonHeaderList;
 
 });
-define("UBTConnect_Notes_MCS.model$NoteCategoryIdentifierRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Notes_MCS.model"], function (exports, OutSystems, UBTConnect_Notes_MCSModel) {
-var OS = OutSystems.Internal;
-var NoteCategoryIdentifierRecord = (function (_super) {
-__extends(NoteCategoryIdentifierRecord, _super);
-function NoteCategoryIdentifierRecord(defaults) {
-_super.apply(this, arguments);
-}
-NoteCategoryIdentifierRecord.attributesToDeclare = function () {
-return [
-this.attr("NoteCategoryId", "noteCategoryIdAttr", "NoteCategoryId", false, false, OS.DataTypes.DataTypes.Text, function () {
-return "";
-}, true)
-].concat(_super.attributesToDeclare.call(this));
-};
-NoteCategoryIdentifierRecord.fromStructure = function (str) {
-return new NoteCategoryIdentifierRecord(new NoteCategoryIdentifierRecord.RecordClass({
-noteCategoryIdAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-NoteCategoryIdentifierRecord._isAnonymousRecord = true;
-NoteCategoryIdentifierRecord.UniqueId = "06818463-fbf3-7648-2c90-ebb5a4d87899";
-NoteCategoryIdentifierRecord.init();
-return NoteCategoryIdentifierRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnect_Notes_MCSModel.NoteCategoryIdentifierRecord = NoteCategoryIdentifierRecord;
-
-});
 define("UBTConnect_Notes_MCS.model$LocalNoteRec", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Notes_MCS.model"], function (exports, OutSystems, UBTConnect_Notes_MCSModel) {
 var OS = OutSystems.Internal;
 var LocalNoteRec = (function (_super) {
@@ -67,6 +40,9 @@ return OS.DataTypes.DateTime.defaultValue;
 }, true), 
 this.attr("DateEditedUtc", "dateEditedUtcAttr", "DateEditedUtc", false, false, OS.DataTypes.DataTypes.DateTime, function () {
 return OS.DataTypes.DateTime.defaultValue;
+}, true), 
+this.attr("NotesTotalCount", "notesTotalCountAttr", "NotesTotalCount", false, false, OS.DataTypes.DataTypes.LongInteger, function () {
+return OS.DataTypes.LongInteger.defaultValue;
 }, true)
 ].concat(_super.attributesToDeclare.call(this));
 };
@@ -457,6 +433,31 @@ return Directory_UserCurrentList;
 UBTConnect_Notes_MCSModel.Directory_UserCurrentList = Directory_UserCurrentList;
 
 });
+define("UBTConnect_Notes_MCS.model$LongIntegerNoteCategoryIdentifierRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Notes_MCS.model"], function (exports, OutSystems, UBTConnect_Notes_MCSModel) {
+var OS = OutSystems.Internal;
+var LongIntegerNoteCategoryIdentifierRecord = (function (_super) {
+__extends(LongIntegerNoteCategoryIdentifierRecord, _super);
+function LongIntegerNoteCategoryIdentifierRecord(defaults) {
+_super.apply(this, arguments);
+}
+LongIntegerNoteCategoryIdentifierRecord.attributesToDeclare = function () {
+return [
+this.attr("NotesTotalCountSum", "notesTotalCountSumAttr", "NotesTotalCountSum", false, false, OS.DataTypes.DataTypes.LongInteger, function () {
+return OS.DataTypes.LongInteger.defaultValue;
+}, true), 
+this.attr("NoteCategoryId", "noteCategoryIdAttr", "NoteCategoryId", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true)
+].concat(_super.attributesToDeclare.call(this));
+};
+LongIntegerNoteCategoryIdentifierRecord._isAnonymousRecord = true;
+LongIntegerNoteCategoryIdentifierRecord.UniqueId = "45a4ee78-1f82-7dce-c916-7a95a0b35338";
+LongIntegerNoteCategoryIdentifierRecord.init();
+return LongIntegerNoteCategoryIdentifierRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnect_Notes_MCSModel.LongIntegerNoteCategoryIdentifierRecord = LongIntegerNoteCategoryIdentifierRecord;
+
+});
 define("UBTConnect_Notes_MCS.model$Directory_UserCurrent_GeographyRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect_Notes_MCS.model", "APIDomain_Directory_IS.model$Directory_UserCurrent_GeographyRec", "UBTConnect_Notes_MCS.referencesHealth", "UBTConnect_Notes_MCS.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnect_Notes_MCSModel) {
 var OS = OutSystems.Internal;
 var Directory_UserCurrent_GeographyRecord = (function (_super) {
@@ -590,19 +591,6 @@ return DynamicPillList;
 UBTConnect_Notes_MCSModel.DynamicPillList = DynamicPillList;
 
 });
-define("UBTConnect_Notes_MCS.model$NoteCategoryIdentifierRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Notes_MCS.model", "UBTConnect_Notes_MCS.model$NoteCategoryIdentifierRecord"], function (exports, OutSystems, UBTConnect_Notes_MCSModel) {
-var OS = OutSystems.Internal;
-var NoteCategoryIdentifierRecordList = (function (_super) {
-__extends(NoteCategoryIdentifierRecordList, _super);
-function NoteCategoryIdentifierRecordList(defaults) {
-_super.apply(this, arguments);
-}
-NoteCategoryIdentifierRecordList.itemType = UBTConnect_Notes_MCSModel.NoteCategoryIdentifierRecord;
-return NoteCategoryIdentifierRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnect_Notes_MCSModel.NoteCategoryIdentifierRecordList = NoteCategoryIdentifierRecordList;
-
-});
 define("UBTConnect_Notes_MCS.model$NoteCategoryRec", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Notes_MCS.model"], function (exports, OutSystems, UBTConnect_Notes_MCSModel) {
 var OS = OutSystems.Internal;
 var NoteCategoryRec = (function (_super) {
@@ -620,6 +608,9 @@ return "";
 }, true), 
 this.attr("Initials", "initialsAttr", "Initials", false, false, OS.DataTypes.DataTypes.Text, function () {
 return "";
+}, true), 
+this.attr("IsActive", "isActiveAttr", "IsActive", false, false, OS.DataTypes.DataTypes.Boolean, function () {
+return true;
 }, true)
 ].concat(_super.attributesToDeclare.call(this));
 };
@@ -893,6 +884,19 @@ LocalNoteList.itemType = UBTConnect_Notes_MCSModel.LocalNoteRec;
 return LocalNoteList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnect_Notes_MCSModel.LocalNoteList = LocalNoteList;
+
+});
+define("UBTConnect_Notes_MCS.model$LongIntegerNoteCategoryIdentifierRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Notes_MCS.model", "UBTConnect_Notes_MCS.model$LongIntegerNoteCategoryIdentifierRecord"], function (exports, OutSystems, UBTConnect_Notes_MCSModel) {
+var OS = OutSystems.Internal;
+var LongIntegerNoteCategoryIdentifierRecordList = (function (_super) {
+__extends(LongIntegerNoteCategoryIdentifierRecordList, _super);
+function LongIntegerNoteCategoryIdentifierRecordList(defaults) {
+_super.apply(this, arguments);
+}
+LongIntegerNoteCategoryIdentifierRecordList.itemType = UBTConnect_Notes_MCSModel.LongIntegerNoteCategoryIdentifierRecord;
+return LongIntegerNoteCategoryIdentifierRecordList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnect_Notes_MCSModel.LongIntegerNoteCategoryIdentifierRecordList = LongIntegerNoteCategoryIdentifierRecordList;
 
 });
 define("UBTConnect_Notes_MCS.model$Directory_PhotoList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect_Notes_MCS.model", "APIDomain_Directory_IS.model$Directory_PhotoRec", "UBTConnect_Notes_MCS.referencesHealth", "UBTConnect_Notes_MCS.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnect_Notes_MCSModel) {

@@ -30,7 +30,7 @@ export const INITIAL_CONNECT_SHARE_STATE: ConnectShareState = {
     - `sharingScreenInitialized`: the result of OnInitializeSharingScreen in OnInitialize;
     - `freeSubscriptionAlertShown`: Action_SetShowFreeSubscriptionAlert(True);
     - `redirectCancelled`: Action_Redirect with a type that it does not route. */
-export type ConnectShareAction =
+type ConnectShareAction =
   | { type: 'sharingScreenInitialized'; result: OnInitializeSharingScreenResult }
   | { type: 'freeSubscriptionAlertShown' }
   | { type: 'redirectCancelled' };

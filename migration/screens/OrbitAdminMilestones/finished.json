@@ -1,0 +1,14 @@
+{
+ "finishedAt": "2026-10-29T15:06:56",
+ "files": {
+  "src/pages/OrbitAdminMilestones/OrbitAdminMilestones.test.tsx": "cccf9114cc0fd3f9",
+  "src/pages/OrbitAdminMilestones/OrbitAdminMilestonesPage.tsx": "1f86371f3362d395",
+  "src/pages/OrbitAdminMilestones/components/AdminMilestonesView.tsx": "f80e6da9d3484a10",
+  "src/pages/OrbitAdminMilestones/hooks/adminMilestonesState.ts": "d7b77e93a08d5e9b",
+  "src/pages/OrbitAdminMilestones/hooks/useAdminMilestones.ts": "9769684e5acf1632",
+  "src/pages/OrbitAdminMilestones/hooks/useNavigateToMilestoneDetail.ts": "0a01e09dbdd8a5d5",
+  "src/pages/OrbitAdminMilestones/inputs.ts": "b05c8ef30f958e2f",
+  "src/pages/OrbitAdminMilestones/mocks.ts": "f4ffbc74ac83f40e",
+  "src/pages/OrbitAdminMilestones/staticEntities.ts": "02d8052ae3464b39"
+ }
+}

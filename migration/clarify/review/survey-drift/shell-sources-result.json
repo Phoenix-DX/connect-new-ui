@@ -1,0 +1,18 @@
+{
+ "ApplicationPolicies_CW.controller.js": "same",
+ "NetworkDetection.clientVariables.js": "same",
+ "NetworkDetection.controller.js": "same",
+ "UBTConnect.App_Cache.controller.js": "same",
+ "UBTConnect.App_Common.controller.js": "changed",
+ "UBTConnect.App_Menu.controller.js": "same",
+ "UBTConnect.App_PIN.controller.js": "same",
+ "UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js": "same",
+ "UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js": "same",
+ "UBTConnect.App_Policies.controller.js": "same",
+ "UBTConnect.Home.controller.js": "same",
+ "UBTConnect.clientVariables.js": "same",
+ "UBTConnectLibrary.clientVariables.js": "same",
+ "UBTConnect_Utils.clientVariables.js": "same",
+ "UBTJavaScriptUtils.controller.js": "same",
+ "UBT_AppManager.clientVariables.js": "same"
+}

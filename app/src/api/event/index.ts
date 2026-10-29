@@ -42,11 +42,13 @@ export {
   fetchBookletGuestsMaxRows,
   fetchBookletHelpersMaxRows,
   fetchCoordinatorDetails,
+  fetchLdmEventNotes,
   fetchEventBookletFilters,
   fetchEventBookletGuests,
   fetchEventBookletHelpers,
   fetchEventByEventId,
   fetchEventDetails,
+  fetchEventNotes,
   fetchEventDocuments,
   fetchEventQRCode,
   fetchEventsByMemberId,
@@ -58,8 +60,12 @@ export {
   fetchHelperDetails,
   fetchHostSurvey,
   fetchHostSurveyStatus,
-  fetchMilestoneScanFF,
+  fetchSurveyHelpers,
+  postHostSurvey,
   fetchScanEventQRCode,
   fetchTransportDetail,
 } from './repository';
 export type * from './types';
+export * from './milestoneBlocks';
+export * from './adminMilestones';
+export * from './adminMilestoneDetail';

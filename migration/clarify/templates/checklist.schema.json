@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Clarify checklist of one UI flow",
+  "type": "object",
+  "required": ["flow", "date", "rows"],
+  "properties": {
+    "flow": { "type": "string" },
+    "date": { "type": "string", "description": "YYYY-MM-DD" },
+    "status": { "type": "string", "enum": ["draft", "reviewed"] },
+    "rows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "screen", "area", "element", "verdict", "evidence"],
+        "properties": {
+          "id": { "type": "string", "description": "<Flow>-<nnn>" },
+          "screen": { "type": "string", "description": "screen or block name; '-' for flow-level rows" },
+          "area": { "type": "string", "enum": ["identity", "data", "ui", "actions", "validations", "logic", "strings"] },
+          "element": { "type": "string", "description": "the OutSystems element: widget, action, node, rule id, variable" },
+          "os": { "type": "string", "description": "what OutSystems does, in one line" },
+          "react": { "type": "string", "description": "what React does, in one line; '-' when missing" },
+          "evidence": { "type": "string", "description": "file:line, MCP element, BR-UBTCON id, TST file; never empty" },
+          "verdict": { "type": "string", "enum": ["match", "partial", "missing", "differs", "mock-only", "n/a", "unclear"] },
+          "severity": { "type": "string", "enum": ["blocker", "major", "minor", "info"] },
+          "finding": { "type": "string", "description": "F<n> of the report when the row is a finding" },
+          "note": { "type": "string" },
+          "question": { "type": "string", "description": "the question for the user when verdict is unclear" },
+          "verified": { "type": "string", "enum": ["pack", "live"], "description": "live = read again from the MCP in the review pass" }
+        }
+      }
+    }
+  }
+}

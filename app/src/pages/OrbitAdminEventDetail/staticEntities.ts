@@ -10,6 +10,5 @@ export const ApplicationEvents_Orbit = {
   QRCodeScanned: '28ffe0db-ddc1-45dd-9bdc-d6ecac5518a7',
 } as const;
 
-/** Connect2_OrbitMobile_MUI.cameraDirection / scanOrientation: the ScanBarcode inputs the block passes (SB ctrl :1241). */
-export const CameraDirection = { BackCamera: 1, FrontCamera: 2 } as const;
-export const ScanOrientation = { Portrait: 1, Landscape: 2, Adaptive: 3 } as const;
+/* The ScanBarcode inputs (cameraDirection, scanOrientation) are in containers/AdminQRCodeScan, shared with
+   OrbitAdminMilestoneDetail. */

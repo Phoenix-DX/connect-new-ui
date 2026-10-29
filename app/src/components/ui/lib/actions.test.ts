@@ -2,6 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   dropdownClear,
   dropdownClearValidation,
+  dropdownNotValid,
   dropdownClose,
   dropdownTogglePopup,
   registerDropdown,
@@ -103,6 +104,8 @@ describe('Dropdown client actions', () => {
     expect(pattern.clear).toHaveBeenLastCalledWith(true);
     expect(dropdownClearValidation('b5-DropdownTags_Roles')).toBe(true);
     expect(pattern.validation).toHaveBeenCalledWith(true, '');
+    expect(dropdownNotValid('b5-DropdownTags_Roles', 'This field is required.')).toBe(true);
+    expect(pattern.validation).toHaveBeenLastCalledWith(false, 'This field is required.');
     expect(dropdownTogglePopup('b5-DropdownTags_Roles', false)).toBe(true);
     expect(pattern.togglePopup).toHaveBeenCalledWith(false);
     expect(dropdownClose(':r1:')).toBe(true);

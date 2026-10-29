@@ -94,6 +94,7 @@ Layouts.Layout_DetailPage
 | In_ExtendedClass | input | Text | `""` |
 | In_EnableAccessibilityFeatures | input | Boolean | `false` |
 | In_InitializeNavigationHandler | input | Boolean | `true` |
+| In_IsHideTitle | input | Boolean | `false` |
 - Lifecycle handlers: Ready, Destroy
 - Client actions / event handlers: `onClick_BackNavigation`, `setScrollEvents`, `onDestroy`, `skipToContentOnClick`, `onReady`, `onReadyEvent`
 - navigateBack calls: 1
@@ -184,6 +185,7 @@ Layouts.Layout_DetailPage
 | In_BorderRadius | input | Text | `""` |
 | In_HighRes | input | Boolean | `false` |
 | HasErrorMessage | input | Boolean | `false` |
+| In_ForceLoadingState | input | Boolean | `false` |
 - Lifecycle handlers: Initialize, Ready, ParametersChanged
 - Client actions / event handlers: `onInitialize`, `onReady`, `setLocalEntityId`, `onParametersChanged`
 - Static entities / flags: `uBT_Shape.circle`, `connect_Entity.member`, `uBT_Color.cyanLightest`, `uBT_Color.cyanDarker`, `uBT_Size.none`, `uBT_Shape.none`, `uBT_Size.base`, `uBT_FontSize.display`, `uBT_ImageSize.extraSmall_32`, `uBT_FontSize.extraSmall`, `uBT_IconSize.medium_20`, `uBT_ImageSize.small_40`, `uBT_FontSize.small`, `uBT_IconSize.base_24`, `uBT_ImageSize.base_52`, `uBT_FontSize.base`, `uBT_IconSize.nonStandard_32`, `uBT_ImageSize.medium_60`, `uBT_FontSize.heading6`, `uBT_IconSize.display_36`, `uBT_ImageSize.large_65`, `uBT_FontSize.heading4`, `uBT_ImageSize.extraLarge_100`, `uBT_FontSize.heading2`, `uBT_IconSize.nonStandard_64`, `uBT_ImageSize.doubleExtraLarge_176`, `uBT_IconSize.nonStandard_108`, `uBT_ImageSize.fullHeight_100_Percent`, `uBT_ImageSize.maxHeight_100vh`, `uBT_ImageSize.fullWidth_100_Percent`
@@ -214,6 +216,7 @@ Layouts.Layout_DetailPage
 | In_BorderOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ImageBorderOptionsRec())` |
 | HasErrorMessage | input | Boolean | `false` |
 | ExtendedClass | input | Text | `""` |
+| In_ForceLoadingState | input | Boolean | `false` |
 - Lifecycle handlers: Initialize, Ready, Destroy, ParametersChanged
 - Client actions / event handlers: `actionDefineHasImage`, `onParametersChanged`, `onLoad`, `onReady`, `onError`, `onInitialize`, `onDestroy`
 - JavaScript nodes: `UBTConnectLibrary.ConnectPatterns.LazyImage.mvc$controller.OnReady.SetupOnLoadJS`, `UBTConnectLibrary.ConnectPatterns.LazyImage.mvc$controller.OnInitialize.IsViewRestoredFromCacheJS`, `UBTConnectLibrary.ConnectPatterns.LazyImage.mvc$controller.OnDestroy.JavaScript1JS`
@@ -279,8 +282,8 @@ Layouts.Layout_DetailPage
 | CurrentLength | local | Integer | `0` |
 | In_InputId | input | Text | `""` |
 | In_InitialLength | input | Integer | `0` |
-- Lifecycle handlers: Initialize, Ready
-- Client actions / event handlers: `onInitialize`, `onReady`, `setCurrentLength`
+- Lifecycle handlers: Initialize, Ready, ParametersChanged
+- Client actions / event handlers: `onInitialize`, `onParametersChanged`, `onReady`, `setCurrentLength`
 - JavaScript nodes: `UBTConnectLibrary.ConnectPatterns.InputCounter.mvc$controller.OnReady.LimitMaxLenthJS`
 - Static entities / flags: `uBT_Color.neutral7`, `uBT_FontSize.doubleExtraSmall`, `uBT_FontWeight.semiBold`
 - Candidate static strings: `SetCurrentLength`
@@ -348,10 +351,10 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 3. `ActionSync_Info_GetMain` (200) at 6270 ms
-- 4. `ActionGetUserInformation` (200) at 6591 ms
-- 6. `ServiceAPIFetchData_CacheableMapEntities` (200) at 7844 ms
-- 7. `ServiceAPIFetchData_CacheableHouseholds` (200) at 7953 ms
+- 3. `ActionSync_Info_GetMain` (200) at 7277 ms
+- 4. `ActionGetUserInformation` (200) at 7612 ms
+- 6. `ServiceAPIFetchData_CacheableMapEntities` (200) at 10059 ms
+- 7. `ServiceAPIFetchData_CacheableHouseholds` (200) at 12263 ms
 - plus 3 call(s) outside this screen, listed in calls.md
 
 ## Not yet captured (see coverage.md)

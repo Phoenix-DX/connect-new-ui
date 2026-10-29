@@ -57,3 +57,29 @@ export interface SearchTag {
   IsSelected?: boolean;
   Enabled?: boolean;
 }
+
+/** One row of the block variable RecentClickedResults: a record of the client entity ConnectSearch_RecentClickedResults
+    (ids and decimals are Text on the wire, SearchedOn a local DateTime text). DataActionGet_FilteredRecentClickedResults
+    gets these rows and gives back the rows to show, with the same fields. */
+export interface RecentClickedResultRow {
+  Id: string;
+  UserId: number;
+  EntityId: string;
+  EntityType: string;
+  HouseholderId: string;
+  Name: string;
+  AdditionalInformation: string;
+  Location: string;
+  SearchedOn: string;
+  Latitude: string;
+  Longitude: string;
+  SearchTargetId: string;
+}
+
+/** Get_FilteredRecentClickedResults outputs. */
+export interface FilteredRecentClickedResults {
+  /** Out_RecentClickedResults: the rows to show, in the server order. */
+  recentClickedResults: RecentClickedResultRow[];
+  /** Out_IdsToRemove: the local ids to delete (LongInteger, as text). */
+  idsToRemove: string[];
+}

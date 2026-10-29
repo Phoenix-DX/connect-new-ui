@@ -39,9 +39,10 @@ sql: "ALTER TABLE \"MAIN\".\"OSUSR_HCR_LOCALBOOKMARK\" ADD \"BookmarkCategoryId\
 }, {
 name: "ItemId",
 columnName: "ITEMID",
-type: /*LONGINTEGER*/ 4,
+type: /*TEXT*/ 0,
+length: 50,
 addColumn: {
-sql: "ALTER TABLE \"MAIN\".\"OSUSR_HCR_LOCALBOOKMARK\" ADD \"ItemId\" BIGINT DEFAULT 0"
+sql: "ALTER TABLE \"MAIN\".\"OSUSR_HCR_LOCALBOOKMARK\" ADD \"ItemId\" TEXT(50) DEFAULT \'\'"
 }
 }, {
 name: "CreatedAtDateUtc",
@@ -55,14 +56,14 @@ idIsAutoNumber: /*YesIfEmpty*/ 2,
 getIdAttribute: function () {
 return this.attributes[0];
 },
-hash: "08a41ac5-3907-282f-9419-b97651f611e8",
+hash: "62b1ea55-5978-cd2b-e5a9-7c6efd6e866c",
 dbRecordToRecord: function (dbRecord) {
 return new UBTConnect_Bookmarks_MCSModel.LocalBookmarkRecord(OS.DataConversion.LocalStorageConverter.from(dbRecord, UBTConnect_Bookmarks_MCSModel.LocalBookmarkRecord, {
 value: 0
 }));
 },
 createTable: {
-sql: "CREATE TABLE \"MAIN\".\"OSUSR_HCR_LOCALBOOKMARK\" (\"Id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \"UserId\" INTEGER DEFAULT NULL, \"BookmarkId\" BIGINT DEFAULT 0, \"BookmarkCategoryId\" TEXT(50) DEFAULT NULL, \"ItemId\" BIGINT DEFAULT 0, \"CreatedAtDateUtc\" DATETIME DEFAULT \'1900-01-01 00:00:00\')"
+sql: "CREATE TABLE \"MAIN\".\"OSUSR_HCR_LOCALBOOKMARK\" (\"Id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, \"UserId\" INTEGER DEFAULT NULL, \"BookmarkId\" BIGINT DEFAULT 0, \"BookmarkCategoryId\" TEXT(50) DEFAULT NULL, \"ItemId\" TEXT(50) DEFAULT \'\', \"CreatedAtDateUtc\" DATETIME DEFAULT \'1900-01-01 00:00:00\')"
 },
 select: {
 sql: "SELECT \"Id\" o0, \"UserId\" o1, \"BookmarkId\" o2, \"BookmarkCategoryId\" o3, \"ItemId\" o4, \"CreatedAtDateUtc\" o5 FROM \"OSUSR_HCR_LOCALBOOKMARK\" WHERE \"Id\" = ?"
@@ -76,7 +77,7 @@ argsList.add("Id", /*LONGINTEGER*/ 4, obj.idAttr.equals(OS.DataTypes.LongInteger
 argsList.add("UserId", /*INTEGER*/ 3, obj.userIdAttr, null, null, true);
 argsList.add("BookmarkId", /*LONGINTEGER*/ 4, obj.bookmarkIdAttr);
 argsList.add("BookmarkCategoryId", /*TEXT*/ 0, obj.bookmarkCategoryIdAttr, null, null, true);
-argsList.add("ItemId", /*LONGINTEGER*/ 4, obj.itemIdAttr);
+argsList.add("ItemId", /*TEXT*/ 0, obj.itemIdAttr);
 argsList.add("CreatedAtDateUtc", /*DATE_TIME*/ 6, obj.createdAtDateUtcAttr);
 
 return argsList;
@@ -91,7 +92,7 @@ argsList.add("Id", /*LONGINTEGER*/ 4, obj.idAttr.equals(OS.DataTypes.LongInteger
 argsList.add("UserId", /*INTEGER*/ 3, obj.userIdAttr, null, null, true);
 argsList.add("BookmarkId", /*LONGINTEGER*/ 4, obj.bookmarkIdAttr);
 argsList.add("BookmarkCategoryId", /*TEXT*/ 0, obj.bookmarkCategoryIdAttr, null, null, true);
-argsList.add("ItemId", /*LONGINTEGER*/ 4, obj.itemIdAttr);
+argsList.add("ItemId", /*TEXT*/ 0, obj.itemIdAttr);
 argsList.add("CreatedAtDateUtc", /*DATE_TIME*/ 6, obj.createdAtDateUtcAttr);
 
 return argsList;
@@ -108,7 +109,7 @@ var argsList = new OS.Entities.QueryArgumentsList();
 argsList.add("UserId", /*INTEGER*/ 3, obj.userIdAttr, null, null, true);
 argsList.add("BookmarkId", /*LONGINTEGER*/ 4, obj.bookmarkIdAttr);
 argsList.add("BookmarkCategoryId", /*TEXT*/ 0, obj.bookmarkCategoryIdAttr, null, null, true);
-argsList.add("ItemId", /*LONGINTEGER*/ 4, obj.itemIdAttr);
+argsList.add("ItemId", /*TEXT*/ 0, obj.itemIdAttr);
 argsList.add("CreatedAtDateUtc", /*DATE_TIME*/ 6, obj.createdAtDateUtcAttr);
 argsList.add("Id", /*LONGINTEGER*/ 4, obj.idAttr);
 
@@ -128,7 +129,7 @@ argsList.add("Id", /*LONGINTEGER*/ 4, obj.idAttr);
 argsList.add("UserId", /*INTEGER*/ 3, obj.userIdAttr, null, null, true);
 argsList.add("BookmarkId", /*LONGINTEGER*/ 4, obj.bookmarkIdAttr);
 argsList.add("BookmarkCategoryId", /*TEXT*/ 0, obj.bookmarkCategoryIdAttr, null, null, true);
-argsList.add("ItemId", /*LONGINTEGER*/ 4, obj.itemIdAttr);
+argsList.add("ItemId", /*TEXT*/ 0, obj.itemIdAttr);
 argsList.add("CreatedAtDateUtc", /*DATE_TIME*/ 6, obj.createdAtDateUtcAttr);
 
 return argsList;

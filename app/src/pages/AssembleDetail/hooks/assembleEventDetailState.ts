@@ -16,7 +16,7 @@ export interface AssembleEventDetailState {
 }
 
 /** An assignment of one or more variables. */
-export type AssembleEventDetailPatch = Partial<AssembleEventDetailState>;
+type AssembleEventDetailPatch = Partial<AssembleEventDetailState>;
 
 /** The variables after OnInitialize. */
 export const initialAssembleEventDetailState = (deviceTimezone: string): AssembleEventDetailState => ({

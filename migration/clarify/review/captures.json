@@ -1,0 +1,650 @@
+{
+ "ranAt": "2026-10-27T15:19:29.394Z",
+ "site": "UBTConnect TST",
+ "account": "the test account of site_auth (not named)",
+ "allowedActions": 13,
+ "captures": [
+  {
+   "row": "Directory_OneSchoolGlobal-056",
+   "screen": "OneSchoolGlobalDetails",
+   "dataAction": "DataActionGetOneSchoolGlobalDetails",
+   "entry": {
+    "screen": "Locality_Details",
+    "source": "path of journeys J11/J13: HomeFeed, bottom bar Directory, MY COUNTRY, first locality",
+    "note": "the capture-plan route of Locality_Details redirected to HomeFeed after about 5 s in two runs",
+    "params": [
+     "LocalityId",
+     "PreloadedLocalityLabel"
+    ]
+   },
+   "cardsInList": 3,
+   "firstOpen": {
+    "from": "Locality_Details OneSchool Global card (in-app tap)",
+    "params": [
+     "In_OneSchoolGlobalId"
+    ],
+    "calls": [
+     {
+      "name": "DataActionGetOneSchoolGlobalDetails",
+      "atMs": 80,
+      "ms": 334
+     }
+    ],
+    "allCallNames": [
+     "DataActionFetchContactDetails",
+     "DataActionGetOneSchoolGlobalDetails",
+     "DataActionFetchNotes"
+    ]
+   },
+   "secondIdSource": "second card of the same locality list",
+   "secondNavigation": {
+    "method": "OutSystems client runtime: require(\"OutSystems/ClientRuntime/Main\").Internal.Navigation.navigateTo(url) (no link to another OneSchool Global page exists on the screen)",
+    "path": "/UBTConnect/OneSchoolGlobalDetails",
+    "urlIdChanged": true,
+    "fullPageLoad": false,
+    "dataActionRanAgain": true,
+    "dataActionCount": 1,
+    "dataActionTimings": [
+     {
+      "name": "DataActionGetOneSchoolGlobalDetails",
+      "atMs": 55,
+      "ms": 380
+     }
+    ],
+    "requestBodyShape": {
+     "versionInfo": {
+      "moduleVersion": "text",
+      "apiVersion": "text"
+     },
+     "viewName": "text",
+     "screenData": {
+      "variables": {
+       "LookupSections": {
+        "Actions": {
+         "Singular": "text",
+         "Plural": "text",
+         "Icon": "text",
+         "Icon_Color": "text"
+        },
+        "Households": {
+         "Singular": "text",
+         "Plural": "text",
+         "Icon": "text",
+         "Icon_Color": "text"
+        },
+        "OneSchoolStatistitics": {
+         "Singular": "text",
+         "Plural": "text",
+         "Icon": "text",
+         "Icon_Color": "text"
+        }
+       },
+       "Selected_OneschoolGlobal_SubsectionId": "text",
+       "Type_OneschoolGlobal_SubsectionId": {
+        "UpcomingEvents": "text",
+        "AboutOurCampus": "text"
+       },
+       "LocalIsBookmarked": "boolean",
+       "In_OneSchoolGlobalId": "text",
+       "_in_OneSchoolGlobalIdInDataFetchStatus": "number",
+       "IsRestoredFromCache": "boolean",
+       "_isRestoredFromCacheInDataFetchStatus": "number"
+      }
+     }
+    },
+    "requestBodyCarriesNewId": true,
+    "requestBodyCarriesOldId": false,
+    "allCalls": [
+     {
+      "name": "DataActionFetchContactDetails",
+      "atMs": 55,
+      "ms": 361
+     },
+     {
+      "name": "DataActionGetOneSchoolGlobalDetails",
+      "atMs": 55,
+      "ms": 380
+     },
+     {
+      "name": "DataActionFetchContactDetails",
+      "atMs": 56,
+      "ms": 364
+     },
+     {
+      "name": "DataActionFetchNotes",
+      "atMs": 58,
+      "ms": 404
+     },
+     {
+      "name": "DataActionFetchContactDetails",
+      "atMs": 435,
+      "ms": 341
+     }
+    ],
+    "dom": {
+     "titleMentionsOneSchool": true,
+     "titleChanged": false,
+     "screenContainersBefore": 1,
+     "screenContainersAfter": 1,
+     "maxScreenContainersDuringTransition": 2,
+     "oldScreenElementKept": false,
+     "currentScreenIsOldElement": false,
+     "screenTextChanged": true
+    }
+   },
+   "result": "DataActionGetOneSchoolGlobalDetails ran again; a new screen element was mounted (re-initialised); text changed; URL id changed",
+   "key": "osg",
+   "ranAt": "2026-10-27T13:52:48.612Z",
+   "seconds": 50
+  },
+  {
+   "row": "Directory_Updates-073/074",
+   "screen": "Updates_SingleList",
+   "rounds": [
+    {
+     "round": 1,
+     "beforeTap": {
+      "host": "div.active-screen.screen-container",
+      "scrollTop": 1800,
+      "scrollHeight": 13011,
+      "clientHeight": 844,
+      "renderedItems": 86,
+      "itemsHaveScrollAnchorAttr": true
+     },
+     "tappedItem": {
+      "renderedIndex": 20,
+      "topInViewport": 402,
+      "hasScrollAnchorAttr": false
+     },
+     "tap": {
+      "navigated": true,
+      "openedScreen": "/UBTConnect/HouseholdCarousel",
+      "params": [
+       "In_StartingHouseholdId"
+      ],
+      "calls": [
+       {
+        "name": "ServiceAPIAction_UI_UpdateItem_MarkAsRead",
+        "atMs": 27,
+        "ms": 388
+       },
+       {
+        "name": "ServiceAPIGet_UI_UpdateItems_UnreadCount_All",
+        "atMs": 415,
+        "ms": 304
+       }
+      ],
+      "blocked": [],
+      "ms": 4043
+     },
+     "storageAfterTap": [
+      {
+       "area": "localStorage",
+       "key": "scrollAnchorId",
+       "valueLength": 5,
+       "valueShape": "number"
+      },
+      {
+       "area": "localStorage",
+       "key": "scrollAnchorDelta",
+       "valueLength": 3,
+       "value": 500
+      },
+      {
+       "area": "history.state",
+       "topLevelKeys": [
+        "key",
+        "state"
+       ],
+       "scrollKeys": []
+      }
+     ],
+     "afterBack": [
+      {
+       "msAfterBack": 302,
+       "scrollTop": 0,
+       "sameHostElement": false,
+       "tappedAnchorTopInViewport": null
+      },
+      {
+       "msAfterBack": 1002,
+       "scrollTop": 0,
+       "sameHostElement": false,
+       "tappedAnchorTopInViewport": null
+      },
+      {
+       "msAfterBack": 2502,
+       "scrollTop": 0,
+       "sameHostElement": false,
+       "tappedAnchorTopInViewport": null
+      },
+      {
+       "msAfterBack": 4004,
+       "scrollTop": 0,
+       "sameHostElement": false,
+       "tappedAnchorTopInViewport": null
+      }
+     ],
+     "backCalls": [
+      {
+       "name": "DataActionGetServices",
+       "atMs": 1822,
+       "ms": 647
+      },
+      {
+       "name": "DataActionFetchCount",
+       "atMs": 1822,
+       "ms": 307
+      },
+      {
+       "name": "DataActionFetchUpdates",
+       "atMs": 1822,
+       "ms": 289
+      },
+      {
+       "name": "DataActionGetFeedConfig",
+       "atMs": 1822,
+       "ms": 263
+      },
+      {
+       "name": "DataActionGetCommunityStatistics",
+       "atMs": 1822,
+       "ms": 290
+      }
+     ],
+     "storageAfterBack": [
+      {
+       "area": "localStorage",
+       "key": "scrollAnchorId",
+       "valueLength": 5,
+       "valueShape": "number"
+      },
+      {
+       "area": "localStorage",
+       "key": "scrollAnchorDelta",
+       "valueLength": 3,
+       "value": 500
+      },
+      {
+       "area": "history.state",
+       "topLevelKeys": [
+        "key",
+        "state"
+       ],
+       "scrollKeys": []
+      }
+     ],
+     "result": "offset 1800 before the tap, 0 after Back (4004 ms)"
+    },
+    {
+     "round": 2,
+     "beforeTap": {
+      "host": "div.active-screen.screen-container.slide-from-right-enter-done",
+      "scrollTop": 901,
+      "scrollHeight": 1745,
+      "clientHeight": 844,
+      "renderedItems": 3,
+      "itemsHaveScrollAnchorAttr": false
+     },
+     "result": "no fully visible update item to tap"
+    }
+   ],
+   "storageAtStart": [
+    {
+     "area": "history.state",
+     "topLevelKeys": [
+      "key",
+      "state"
+     ],
+     "scrollKeys": []
+    }
+   ],
+   "result": "round 1: offset 1800 before the tap, 0 after Back (4004 ms); round 2: no fully visible update item to tap",
+   "key": "updates",
+   "ranAt": "2026-10-27T15:21:27.098Z",
+   "seconds": 29
+  },
+  {
+   "row": "Notes-110",
+   "screen": "Notes",
+   "dataAction": "DataActionGetNotes",
+   "onOpen": {
+    "getNotesCalls": 1,
+    "keys": [
+     {
+      "path": "$.screenData.variables.Notes_Filter.SortByNewest",
+      "type": "string",
+      "value": ""
+     },
+     {
+      "path": "$.screenData.variables.Notes_Filter.Years",
+      "type": "OutSystems list of 0"
+     },
+     {
+      "path": "$.screenData.variables.Years",
+      "type": "OutSystems list of 3",
+      "itemType": "string"
+     }
+    ],
+    "calls": [
+     "ActionAppManager_SynchAppContext",
+     "ActionGet_NotePills_ByNoteCategoryIds",
+     "DataActionGetNotes",
+     "ActionAppManager_AfterInitialize",
+     "ActionSync_Info_GetMain",
+     "ActionGetUserInformation",
+     "ActionGetNumberUnreadMessages",
+     "ServiceAPIFetchData_CacheableMapEntities",
+     "ServiceAPIFetchData_CacheableHouseholds"
+    ]
+   },
+   "sheetRootVisible": false,
+   "yearOptions": 3,
+   "sheetGroups": [
+    "ConnectPatterns.BottomSheet",
+    "Interaction.BottomSheet",
+    "BasePatterns.Columns_Three",
+    "Adaptive.Columns3",
+    "ConnectPatterns.Icon",
+    "BasePatterns.CustomText",
+    "ConnectPatterns.IconInline_Internal",
+    "ConnectPatterns.SkeletonSection",
+    "App_CommonBlocks_Filter.FilterSheet_OptionChoice_Item",
+    "BasePatterns.CustomContainer",
+    "ConnectPatterns.SelectionOption_List",
+    "BasePatterns.Columns_Two",
+    "Adaptive.Columns2",
+    "ConnectPatterns.Button",
+    "NavigationHandler.BackNavigationHandler"
+   ],
+   "applyEnabledAfterYear": true,
+   "afterApply": {
+    "getNotesCalls": 1,
+    "calls": [
+     {
+      "name": "DataActionGetNotes",
+      "atMs": 48,
+      "ms": 400
+     }
+    ],
+    "bodyTopLevel": [
+     "versionInfo",
+     "viewName",
+     "screenData"
+    ],
+    "keys": [
+     {
+      "path": "$.screenData.variables.Notes_Filter.SortByNewest",
+      "type": "string",
+      "value": "Yes"
+     },
+     {
+      "path": "$.screenData.variables.Notes_Filter.Years",
+      "type": "OutSystems list of 1",
+      "itemType": "string"
+     },
+     {
+      "path": "$.screenData.variables.Years",
+      "type": "OutSystems list of 3",
+      "itemType": "string"
+     }
+    ],
+    "variablesShape": {
+     "HeaderIsScrolled": "boolean",
+     "Note_Pills": {
+      "List": {
+       "list": 10,
+       "item": {
+        "Text": "text",
+        "Identifier": "text",
+        "IconId": "text",
+        "IsSelected": "boolean",
+        "Enabled": "boolean"
+       }
+      }
+     },
+     "Notes_Filter": {
+      "NoteCategoryId": "text",
+      "SortByNewest": "text",
+      "Years": {
+       "List": {
+        "list": 1,
+        "item": "text"
+       }
+      },
+      "SearchTerm": "text"
+     },
+     "HasFiltersApplied": "boolean true",
+     "Filter_BottomSheetId": "text",
+     "BottomSheetId_Filter_IsLoaded": "boolean",
+     "BottomSheetId_Filter_ShowSubscriptionOnClick": "boolean",
+     "Years": {
+      "List": {
+       "list": 3,
+       "item": "text"
+      }
+     },
+     "PageSize": "number",
+     "PageNumber": "number",
+     "MaxRecords": "text",
+     "Notes_List": {
+      "List": {
+       "list": 0
+      },
+      "EmptyListItem": {
+       "Id": "text",
+       "ItemId": "text",
+       "ItemId2": "text",
+       "HasDetailAccess": "boolean false",
+       "NoteCategoryId": "text",
+       "NoteCardContent": {
+        "SourceHeader": {
+         "ImageURL": "text",
+         "IconId": "text",
+         "Initials": "text",
+         "Label": "text"
+        },
+        "Title": "text",
+        "Subtitle": "text",
+        "Notes": {
+         "Total": "number",
+         "Note_Item_List": {
+          "List": {
+           "list": 0
+          },
+          "EmptyListItem": "object"
+         }
+        },
+        "PublishedAt": "text",
+        "ChannelLogo": "text",
+        "ChannelName": "text"
+       }
+      }
+     },
+     "ResetPillsValue": "boolean",
+     "PillsLoaded": "boolean",
+     "Notes_Loading": "boolean"
+    }
+   },
+   "result": "Years $.screenData.variables.Notes_Filter.Years (OutSystems list of 1), $.screenData.variables.Years (OutSystems list of 3); SortByNewest $.screenData.variables.Notes_Filter.SortByNewest (Yes)",
+   "key": "notes",
+   "ranAt": "2026-10-27T13:54:33.738Z",
+   "seconds": 19
+  },
+  {
+   "row": "Legacy_OrbitAdminFlow-031",
+   "screen": "OrbitAdminLanding",
+   "flag": "Mobile-Directory-list-virtualization",
+   "access": "direct route /UBTConnect/OrbitAdminLanding: J26 records that no test account is an Orbit admin (no Orbit Admin item in Services)",
+   "openedPath": "/UBTConnect/OrbitAdminLanding",
+   "callsOnOpen": [
+    {
+     "name": "ActionAppManager_SynchAppContext",
+     "atMs": 2838,
+     "ms": 458
+    },
+    {
+     "name": "DataActionGet_AdminEventsList",
+     "atMs": 3894,
+     "ms": 1061
+    },
+    {
+     "name": "ActionAppManager_AfterInitialize",
+     "atMs": 5485,
+     "ms": 255
+    },
+    {
+     "name": "ActionSync_Info_GetMain",
+     "atMs": 5740,
+     "ms": 494
+    },
+    {
+     "name": "ActionGetUserInformation",
+     "atMs": 6259,
+     "ms": 335
+    },
+    {
+     "name": "ActionGetNumberUnreadMessages",
+     "atMs": 6607,
+     "ms": 309
+    },
+    {
+     "name": "ServiceAPIFetchData_CacheableMapEntities",
+     "atMs": 6915,
+     "ms": 1155
+    },
+    {
+     "name": "ServiceAPIFetchData_CacheableHouseholds",
+     "atMs": 6915,
+     "ms": 1963
+    }
+   ],
+   "launchDarklyRequests": [],
+   "launchDarklyRequestsSinceAppStart": [],
+   "screenserviceResponsesMentioningVirtualization": [
+    {
+     "name": "ActionAppManager_SynchAppContext",
+     "hits": [
+      {
+       "path": "$.data.PermissionList.List.List.[i]",
+       "type": "text",
+       "equalsFlagKey": true
+      }
+     ]
+    }
+   ],
+   "clientEvaluation": {
+    "IsListVirtualizationDisabled": true,
+    "staticRecord": "Mobile-Directory-list-virtualization",
+    "staticRecordIsFlagKey": true
+   },
+   "callsDuringClientEvaluation": [],
+   "dom": {
+    "listsOnScreen": 1,
+    "withDisableVirtualizationAttr": 0,
+    "disableVirtualizationValues": [],
+    "withDisableVirtualizationClass": 0,
+    "lists": [
+     {
+      "classes": "list list-group OSFillParent",
+      "disableVirtualization": null,
+      "children": 5
+     }
+    ],
+    "adminLandingBlock": true,
+    "listWidgetProps": [
+     {
+      "extendedPropertyNames": [],
+      "disableVirtualization": "not set",
+      "virtualized": true,
+      "levelsUp": 2
+     }
+    ]
+   },
+   "ldLocalStorage": [],
+   "result": "/UBTConnect/OrbitAdminLanding; IsListVirtualizationDisabled (Connect_LaunchDarkly_PermissionCheck.HasAccess) = true; LD client responses with the flag: none seen; SynchAppContext PermissionList holds the flag key: true; List widget disable-virtualization: [\"not set\"]",
+   "key": "orbit",
+   "ranAt": "2026-10-27T13:54:52.989Z",
+   "seconds": 15
+  },
+  {
+   "row": "Home-111",
+   "screen": "HomeFeed",
+   "callsOnOpen": [
+    "ActionAppManager_SynchAppContext",
+    "DataActionGetServices",
+    "DataActionFetchCount",
+    "DataActionFetchUpdates",
+    "DataActionGetFeedConfig",
+    "DataActionGetCommunityStatistics",
+    "ActionAppManager_AfterInitialize",
+    "ActionSync_Info_GetMain",
+    "ActionGetUserInformation",
+    "ActionGetNumberUnreadMessages",
+    "ServiceAPIFetchData_CacheableMapEntities",
+    "ServiceAPIFetchData_CacheableHouseholds"
+   ],
+   "updateTap": {
+    "via": "an update item on HomeFeed",
+    "navigated": false,
+    "openCalls": [
+     {
+      "name": "ServiceAPIAction_UI_UpdateItem_MarkAsRead",
+      "atMs": 13,
+      "ms": 18,
+      "failed": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+     }
+    ],
+    "blocked": [
+     "ServiceAPIAction_UI_UpdateItem_MarkAsRead"
+    ]
+   },
+   "fallback": {
+    "via": "Updates 'View all' (J5 step 1), not an update item",
+    "navigated": true,
+    "openCalls": [],
+    "blocked": [],
+    "openedScreen": "/UBTConnect/Updates_SingleList",
+    "backCalls": [
+     {
+      "name": "DataActionGetServices",
+      "atMs": 118,
+      "ms": 363
+     },
+     {
+      "name": "DataActionFetchCount",
+      "atMs": 118,
+      "ms": 299
+     },
+     {
+      "name": "DataActionFetchUpdates",
+      "atMs": 119,
+      "ms": 296
+     },
+     {
+      "name": "DataActionGetFeedConfig",
+      "atMs": 119,
+      "ms": 260
+     },
+     {
+      "name": "DataActionGetCommunityStatistics",
+      "atMs": 119,
+      "ms": 258
+     }
+    ],
+    "fetchUpdatesAgain": true,
+    "getServicesAgain": true
+   },
+   "servicesCallNamesOnOpen": [
+    "DataActionGetServices"
+   ],
+   "result": "update tap blocked, View all used; after Back: FetchUpdates ran again, GetServices ran again",
+   "key": "home",
+   "ranAt": "2026-10-27T13:55:08.411Z",
+   "seconds": 51
+  }
+ ],
+ "blockedAll": [
+  "ServiceAPIAction_UI_UpdateItem_MarkAsRead"
+ ]
+}

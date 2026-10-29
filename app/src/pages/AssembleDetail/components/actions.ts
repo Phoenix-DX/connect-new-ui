@@ -30,10 +30,6 @@ export async function maybeDisplaySubscriptionPopup(countryCode: string, localit
   return true;
 }
 
-/** window.dx.Navigation.Storage of the original (FSA:464-472): only FocusScrollAnchorOnBack writes it in this route;
-    the reader (the list's ScrollAnchor focus on back) is not part of the clone, so the value is kept here only. */
-export const navigationStorage = new Map<string, { id: string; index: number }>();
-
 /** Connect2_LegacyShared ShowUnknownErrorMessage(Message, Title) (migration/runtime-sources/Connect2_LegacyShared
     .controller.js, define "…$ShowUnknownErrorMessage"): in TST it ignores its inputs and calls
     ShowCustomFeedbackMessageAndTitle("Service Interruption", <the high-traffic text>, Info, False,

@@ -10,8 +10,14 @@ import { Type_ShareObject } from './components/staticEntities';
 /* Mocks of LegacyShareObject (P-MOCKS, P-MUTATION). Scenarios: real (default), empty, error, loading (src/mocks).
    - ScreenDataSetGetShareObjectTypeById: recorded for Household only (fixture 01-585887a6, Label "Household"); any other
      type answers one record whose Label is the type identifier (fictional, Q1 → A pending).
-   - GetAvailableUsers: fictional (person data), the captured count (1 row) and text lengths (dom/default.html:136-160);
-     the answer keeps the users whose FullName holds every word of SearchFilter (Q2, server rule unknown).
+   - GetAvailableUsers: fictional (person data), as the TST capture of 2026-10-29 (drift wave, messages B3,
+     dom/default.html): Label "Locality Members" (unmasked) and, for an empty search, 50 members of one locality (the
+     block's MaxRecords 50) in the captured order and word lengths ("Granite Falls, United States": 7 6 6 6 letters).
+     A search (M-Q4 (b), read-only TST probe of 2026-10-29, migration/clarify/tools/probe_share_search.cjs): a non-empty
+     SearchFilter answers Label "" (the title container hides), a term that matches nobody 0 rows, and at most MaxRecords
+     (50) rows; the empty search answers "Locality Members" again. The rows of a search come from the external Directory
+     API (API_Directory_Share_SuggestedUsers_Grouped_GET, MCP row 11b), so the mock keeps the members whose FullName holds
+     every word of SearchFilter (Q2).
    - GetHouseholdDetails: the household of the directory cast (src/mocks/fictional/directory.ts) for the id, else the
      Vitale household (the captured text lengths, dom/default.html:92-106: Bahia Blanca, Argentina); no members
      (captured empty lists).
@@ -19,26 +25,78 @@ import { Type_ShareObject } from './components/staticEntities';
    - ShareObject: a write, never the real server (Q3 → A pending): stored in the in-memory collection
      LegacyShareObject.shares; IsAllowed = the mock user's subscription is active (?mockuser=expired → not allowed). */
 
-const LABEL = 'Contacts list';
+const LABEL = 'Locality Members';
 
-const users: AvailableUserWire[] = [
-  {
-    Id: '990101',
-    Email: 'alice.thornton@example.com',
-    FirstName: 'Alice',
-    LastName: 'Thornton',
-    FullName: 'Alice Thornton',
-    LocalityId: '990201',
-    LocalityName: 'Las Cruces',
-    CountryCode: '',
-    CountryName: 'United States',
-    Photo: { Bucket: '', Path: '', Type: '', SignedPath: '' },
-    CountryId: 'US',
-    Source: '',
-    MemberId: '990102',
-    HasAccess: true,
-  },
+/** The locality members (FirstName, LastName), in the captured order and word lengths. */
+const MEMBERS: [string, string][] = [
+  ['Robert', 'Callahan'],
+  ['Margaret', 'Callahan'],
+  ['Grace', 'Henderson'],
+  ['Josephine', 'Henderson'],
+  ['Steven', 'Hamilton'],
+  ['Andrew', 'Murphy'],
+  ['Peter', 'Henderson'],
+  ['Lindsay', 'Whitfield'],
+  ['Philip', 'Whitfield'],
+  ['Rachel', 'Whitfield'],
+  ['Joy', 'Murphy'],
+  ['Ben', 'Henderson'],
+  ['Laura', 'Black'],
+  ['Thomas', 'Henderson'],
+  ['Douglas', 'Black'],
+  ['Susan', 'Whitfield'],
+  ['Kathleen', 'Henderson'],
+  ['Ian', 'Whitfield'],
+  ['Kim', 'Murphy'],
+  ['Mark', 'Fowler'],
+  ['Lisa', 'Fowler'],
+  ['Helen', 'Whitfield'],
+  ['Paul', 'Henderson'],
+  ['Michael', 'Henderson'],
+  ['Joanne', 'Hutchinson'],
+  ['Graham', 'Whitfield'],
+  ['Amy', 'Henderson'],
+  ['Stephen', 'Whitfield'],
+  ['Martin', 'Black'],
+  ['Hannah', 'Henderson'],
+  ['James', 'Black'],
+  ['Sarah', 'Fowler'],
+  ['Natalie', 'Murphy'],
+  ['Rebecca', 'Black'],
+  ['Matthew', 'Henderson'],
+  ['Joanna', 'Hamilton'],
+  ['John', 'Whitfield'],
+  ['David', 'Sanders'],
+  ['Charles', 'Whitfield'],
+  ['Emily', 'Henderson'],
+  ['Joseph', 'Whitfield'],
+  ['Tom', 'Henderson'],
+  ['Deborah', 'Henderson'],
+  ['Alice', 'Whitfield'],
+  ['Simon', 'Henderson'],
+  ['Jo', 'Whitfield'],
+  ['Ruth', 'Henderson'],
+  ['Daniel', 'Black'],
+  ['Jessica', 'Black'],
+  ['Roy', 'Callahan'],
 ];
+
+const users: AvailableUserWire[] = MEMBERS.map(([FirstName, LastName], i) => ({
+  Id: String(990101 + i * 2),
+  Email: `${FirstName}.${LastName}@example.com`.toLowerCase(),
+  FirstName,
+  LastName,
+  FullName: `${FirstName} ${LastName}`,
+  LocalityId: '990201',
+  LocalityName: 'Granite Falls',
+  CountryCode: '',
+  CountryName: 'United States',
+  Photo: { Bucket: '', Path: '', Type: '', SignedPath: '' },
+  CountryId: 'US',
+  Source: '',
+  MemberId: String(990102 + i * 2),
+  HasAccess: true,
+}));
 
 const shares = collection('LegacyShareObject.shares', () => [], 'Id');
 
@@ -69,10 +127,16 @@ export const handlers: RequestHandler[] = [
       };
     },
   ),
-  contractHandler('Connect2_LegacyShared', 'ProfileList/DataActionGetAvailableUsers', ({ SearchFilter = '' }) => ({
-    Label: LABEL,
-    Response: { Type: '', Items: { List: users.filter((u) => matches(u, SearchFilter)) } },
-  })),
+  contractHandler(
+    'Connect2_LegacyShared',
+    'ProfileList/DataActionGetAvailableUsers',
+    ({ SearchFilter = '', MaxRecords }) => {
+      const found = users.filter((u) => matches(u, SearchFilter));
+      const max = typeof MaxRecords === 'number' && MaxRecords > 0 ? MaxRecords : found.length;
+      const label = SearchFilter.trim() === '' ? LABEL : '';
+      return { Label: label, Response: { Type: '', Items: { List: found.slice(0, max) } } };
+    },
+  ),
   contractHandler('Connect2_LegacyShared', 'ServiceAPIGetHouseholdDetails', ({ HouseholdId }) => {
     const cast = householdById(HouseholdId) ?? VITALE;
     return {

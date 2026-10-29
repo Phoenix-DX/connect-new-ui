@@ -1,0 +1,289 @@
+[
+ {
+  "flow": "Directory_Search",
+  "finding": "F1",
+  "group": "B7-search",
+  "note": "builds/B7-search.md",
+  "date": "2026-10-27",
+  "status": "built",
+  "verified": "code"
+ },
+ {
+  "flow": "Directory_Search",
+  "finding": "F2",
+  "group": "B7-search",
+  "note": "builds/B7-search.md",
+  "date": "2026-10-27",
+  "status": "built",
+  "verified": "code"
+ },
+ {
+  "flow": "Directory_Search",
+  "finding": "F3",
+  "group": "B7-search",
+  "note": "builds/B7-search.md",
+  "date": "2026-10-27",
+  "status": "built",
+  "verified": "code"
+ },
+ {
+  "flow": "App_CommonBlocks_Filter",
+  "finding": "F1",
+  "group": "B5-lists",
+  "note": "builds/B5-lists.md",
+  "date": "2026-10-27",
+  "status": "built",
+  "verified": "code"
+ },
+ {
+  "flow": "App_Notifications",
+  "finding": "F1",
+  "group": "B5-lists",
+  "note": "builds/B5-lists.md",
+  "date": "2026-10-27",
+  "status": "built",
+  "verified": "code"
+ },
+ {
+  "flow": "App_Notifications",
+  "finding": "F2",
+  "group": "B5-lists",
+  "note": "builds/B5-lists.md",
+  "date": "2026-10-27",
+  "status": "built",
+  "verified": "code"
+ },
+ {
+  "flow": "Directory_Updates",
+  "finding": "F1",
+  "group": "B5-lists",
+  "note": "builds/B5-lists.md",
+  "date": "2026-10-27",
+  "status": "built",
+  "verified": "code"
+ },
+ {
+  "flow": "App_Policies",
+  "finding": "F1",
+  "group": "B5-lists",
+  "note": "builds/B5-lists.md",
+  "date": "2026-10-27",
+  "status": "built",
+  "verified": "code"
+ },
+ {
+  "flow": "App_Common",
+  "finding": "F1",
+  "group": "B4-errors",
+  "note": "builds/B4-errors.md",
+  "date": "2026-10-27",
+  "status": "built",
+  "verified": "code"
+ },
+ {
+  "flow": "App_Services",
+  "finding": "F1",
+  "group": "B4-errors",
+  "note": "builds/B4-errors.md",
+  "date": "2026-10-27",
+  "status": "built",
+  "verified": "code"
+ },
+ {
+  "flow": "App_Services",
+  "finding": "F2",
+  "group": "B4-errors",
+  "note": "builds/B4-errors.md",
+  "date": "2026-10-27",
+  "status": "built",
+  "verified": "code"
+ },
+ {
+  "flow": "Calendar",
+  "finding": "F1",
+  "group": "B4-errors",
+  "note": "builds/B4-errors.md",
+  "date": "2026-10-27",
+  "status": "built",
+  "verified": "code"
+ },
+ {
+  "flow": "Directory_SupperMeetings",
+  "finding": "F1",
+  "group": "B4-errors",
+  "note": "builds/B4-errors.md",
+  "date": "2026-10-27",
+  "status": "built",
+  "verified": "code"
+ },
+ {
+  "flow": "_shared",
+  "finding": "F3",
+  "group": "B4-errors",
+  "note": "builds/B4-errors.md",
+  "date": "2026-10-27",
+  "status": "built",
+  "verified": "code"
+ },
+ {
+  "flow": "Legacy_OrbitEventsFlow",
+  "finding": "F3",
+  "group": "B10-misc",
+  "date": "2026-10-27",
+  "status": "no-fix",
+  "verified": "code",
+  "reason": "finding withdrawn 2026-10-28: the live TST block script has OnHandle_ViewPassportDetails and the TST capture DOM has `orbit-landing-passport-cont`; the survey copy of 2026-10-13 was stale. The React control is restored (B10's removal reverted); the user confirms in PD13"
+ },
+ {
+  "flow": "Legacy_OrbitAdminFlow",
+  "finding": "F1",
+  "group": "B10-misc",
+  "note": "builds/B10-misc.md",
+  "date": "2026-10-27",
+  "status": "built",
+  "verified": "code"
+ },
+ {
+  "flow": "Notes",
+  "finding": "F2",
+  "group": "B10-misc",
+  "note": "builds/B10-misc.md",
+  "date": "2026-10-27",
+  "status": "built",
+  "verified": "code",
+  "suffix": "Choice constants switched to the TST identifiers 2026-10-28 (PD2)"
+ },
+ {
+  "flow": "_libraries",
+  "finding": "F1",
+  "group": "B10-misc",
+  "note": "builds/B10-misc.md",
+  "date": "2026-10-27",
+  "status": "built",
+  "verified": "code"
+ },
+ {
+  "flow": "ContactFlow",
+  "finding": "F1",
+  "group": "B10-misc",
+  "note": "builds/B10-misc.md",
+  "date": "2026-10-27",
+  "status": "built",
+  "verified": "code"
+ },
+ {
+  "flow": "Legacy_LDMEventsFlow_V2",
+  "finding": "F2",
+  "group": "B8-ldm",
+  "note": "builds/B8-ldm.md",
+  "date": "2026-10-27",
+  "status": "built",
+  "verified": "code"
+ },
+ {
+  "flow": "Legacy_LDMEventsFlow_V2",
+  "finding": "F1",
+  "group": "B8-ldm",
+  "note": "builds/B8-ldm.md",
+  "date": "2026-10-27",
+  "status": "built",
+  "verified": "code",
+  "suffix": "the three actions ported; the screen handler keeps every guest (the block event passes only the id list, `LDM_EventDetail_V2.mvc.js:212-219`), so the finding was partly wrong"
+ },
+ {
+  "flow": "App_Profile",
+  "finding": "F1",
+  "group": "B6-profile",
+  "note": "builds/B6-profile.md",
+  "date": "2026-10-27",
+  "status": "built",
+  "verified": "code"
+ },
+ {
+  "flow": "App_Menu_ContactUs",
+  "finding": "F1",
+  "group": "B1-contactus",
+  "note": "builds/B1-contactus.md",
+  "date": "2026-10-27",
+  "status": "built",
+  "verified": "code"
+ },
+ {
+  "flow": "App_Menu_ContactUs",
+  "finding": "F2",
+  "group": "B1-contactus",
+  "note": "builds/B1-contactus.md",
+  "date": "2026-10-27",
+  "status": "built",
+  "verified": "code"
+ },
+ {
+  "flow": "App_Menu_ContactUs",
+  "finding": "F3",
+  "group": "B1-contactus",
+  "note": "builds/B1-contactus.md",
+  "date": "2026-10-27",
+  "status": "built",
+  "verified": "code"
+ },
+ {
+  "flow": "Legacy_MyNotificationsFlow",
+  "finding": "F1",
+  "group": "B9-messagedetail",
+  "note": "builds/B9-messagedetail.md",
+  "date": "2026-10-27",
+  "status": "built",
+  "verified": "code",
+  "rows": [],
+  "suffix": "ShareObjectDetail_ExtendedShare (the TST branch, C2ExtendedShare on); the flag-off ShareObjectDetail branch is out of scope (PD9, user 2026-10-28)"
+ },
+ {
+  "flow": "Legacy_MyNotificationsFlow",
+  "finding": "F2",
+  "group": "B9-messagedetail",
+  "note": "builds/B9-messagedetail.md",
+  "date": "2026-10-27",
+  "status": "built",
+  "verified": "code",
+  "rows": [],
+  "suffix": "PlaceholderLib SetTextPlaceholdersValue ported 2026-10-28 (PD8; known-original-bugs B19)"
+ },
+ {
+  "flow": "Legacy_MyNotificationsFlow",
+  "finding": "F3",
+  "group": "B9-messagedetail",
+  "note": "builds/B9-messagedetail.md",
+  "date": "2026-10-27",
+  "status": "built",
+  "verified": "code",
+  "rows": [],
+  "suffix": "renderer adaptivecards 2.5.0 installed 2026-10-28 (PD7)"
+ },
+ {
+  "flow": "Legacy_MyNotificationsFlow",
+  "finding": "F6",
+  "group": "B9-messagedetail",
+  "note": "builds/B9-messagedetail.md",
+  "date": "2026-10-27",
+  "status": "built",
+  "verified": "code"
+ },
+ {
+  "flow": "Legacy_OrbitEventsFlow",
+  "finding": "F1",
+  "group": "B2-hostsurvey",
+  "note": "builds/B2-hostsurvey.md",
+  "date": "2026-10-27",
+  "status": "built",
+  "verified": "code"
+ },
+ {
+  "flow": "Legacy_OrbitEventsFlow",
+  "finding": "F2",
+  "group": "B3-milestones",
+  "note": "builds/B3-milestones.md",
+  "date": "2026-10-27",
+  "status": "built",
+  "verified": "code"
+ }
+]

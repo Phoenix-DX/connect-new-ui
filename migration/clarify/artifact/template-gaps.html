@@ -1,0 +1,284 @@
+<title>UBTConnect React Gaps</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,600&display=swap">
+<style>
+  /* Layout: a verdict bar and the counts first; then "what is missing" as cards per flow, grouped by area;
+     then "what must be added" in two columns: inside the app (build list) and outside the app (infra needs). */
+  :root {
+    --bg: #f6f7f9; --surface: #ffffff; --surface-2: #eef1f5; --fg: #17202b; --fg-2: #4c5968; --line: #d7dde6;
+    --accent: #0f6e73; --accent-ink: #0b4f53; --accent-soft: #d9efef;
+    --good: #2f7d4a; --good-soft: #dff1e5; --warn: #9a6400; --warn-soft: #fbefd2; --crit: #b4322a; --crit-soft: #f9dedb;
+    --muted: #6b7684; --muted-soft: #e7eaef;
+    --v-match: #6fae85; --v-partial: #d9a441; --v-missing: #c85a52; --v-differs: #7b8fb0; --v-mock: #b48ad2; --v-na: #c3c9d1; --v-unclear: #e37d3c;
+    --display: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --body: "IBM Plex Sans", "Segoe UI", Roboto, Arial, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+    --radius: 6px; --gutter-l: max(16px, env(safe-area-inset-left, 0px)); --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+    --bg: #0f1419; --surface: #171d25; --surface-2: #1f2730; --fg: #e6ebf0; --fg-2: #aab4c0; --line: #2d3741;
+    --accent: #4fb8bd; --accent-ink: #8bd3d6; --accent-soft: #15393b;
+    --good: #6fcf8a; --good-soft: #163e25; --warn: #e5b357; --warn-soft: #3d2f0d; --crit: #ef7b72; --crit-soft: #4a1b18;
+    --muted: #8d98a6; --muted-soft: #262f39;
+    --v-match: #4f8f68; --v-partial: #b8862e; --v-missing: #c0524a; --v-differs: #6b7f9f; --v-mock: #9a74b8; --v-na: #4a5260; --v-unclear: #d06c2b; color-scheme: dark } }
+  :root[data-theme="dark"] {
+    --bg: #0f1419; --surface: #171d25; --surface-2: #1f2730; --fg: #e6ebf0; --fg-2: #aab4c0; --line: #2d3741;
+    --accent: #4fb8bd; --accent-ink: #8bd3d6; --accent-soft: #15393b;
+    --good: #6fcf8a; --good-soft: #163e25; --warn: #e5b357; --warn-soft: #3d2f0d; --crit: #ef7b72; --crit-soft: #4a1b18;
+    --muted: #8d98a6; --muted-soft: #262f39;
+    --v-match: #4f8f68; --v-partial: #b8862e; --v-missing: #c0524a; --v-differs: #6b7f9f; --v-mock: #9a74b8; --v-na: #4a5260; --v-unclear: #d06c2b; color-scheme: dark }
+  * { box-sizing: border-box }
+  body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px; line-height: 1.5; margin: 0 }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface) }
+  a { color: var(--accent-ink) }
+  code { font-family: var(--mono); font-size: 0.92em; background: var(--surface-2); padding: 0 .3em; border-radius: 3px; overflow-wrap: anywhere }
+  .mono { font-family: var(--mono); font-size: 0.92em }
+  h1, h2, h3 { text-wrap: balance; margin: 0 }
+  h1 { font-family: var(--display); font-weight: 600; font-size: clamp(26px, 3.4vw, 36px); line-height: 1.15 }
+  h2 { font-family: var(--display); font-weight: 600; font-size: clamp(21px, 2.4vw, 26px); margin-block: 6px 4px }
+  h3 { font-size: 15px; font-weight: 600; margin: 0 }
+  p { margin: 0 0 10px; max-width: 72ch }
+  .eyebrow { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--fg-2); font-weight: 500 }
+  .wrap { padding-inline: var(--gutter-l) var(--gutter-r); padding-block: 18px 40px; max-width: 1240px; margin: 0 auto }
+  header.top { border-bottom: 1px solid var(--line); background: var(--surface) }
+  header.top .wrap { padding-block: 18px 14px }
+  .meta { color: var(--fg-2); font-size: 13px }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-block: 14px 10px }
+  .tile { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; min-width: 0 }
+  .tile b { display: block; font-size: 26px; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1.1 }
+  .tile span { color: var(--fg-2); font-size: 13px }
+  .tile.crit b { color: var(--crit) } .tile.warn b { color: var(--warn) } .tile.good b { color: var(--good) } .tile.accent b { color: var(--accent-ink) }
+  .vbar { display: flex; height: 18px; border-radius: 4px; overflow: hidden; border: 1px solid var(--line); margin-block: 8px 6px }
+  .vbar span { display: block; height: 100%; min-width: 2px }
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--fg-2) }
+  .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: middle }
+  nav.jump { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--surface); border-block: 1px solid var(--line) }
+  nav.jump .wrap { padding-block: 0; display: flex; gap: 2px; overflow-x: auto }
+  nav.jump a { padding: 11px 14px; font-weight: 500; color: var(--fg-2); text-decoration: none; white-space: nowrap; border-bottom: 3px solid transparent }
+  nav.jump a:hover, nav.jump a:focus-visible { color: var(--fg); border-bottom-color: var(--accent); outline: none }
+  section.block { margin-block: 26px }
+  .lead { color: var(--fg-2); max-width: 80ch }
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-block: 10px }
+  .filters input { font: 14px var(--body); padding: 7px 10px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--fg); min-width: 0; flex: 1 1 220px }
+  .chip { display: inline-block; font-size: 12px; font-weight: 500; padding: 1px 8px; border-radius: 999px; border: 1px solid transparent; white-space: nowrap }
+  .chip.good { background: var(--good-soft); color: var(--good) } .chip.warn { background: var(--warn-soft); color: var(--warn) }
+  .chip.crit { background: var(--crit-soft); color: var(--crit) } .chip.muted { background: var(--muted-soft); color: var(--fg-2) }
+  .chip.accent { background: var(--accent-soft); color: var(--accent-ink) }
+  li.fixed { color: var(--fg-2) } li.fixed .chip.good { font-size: 11px }
+  button.chip { cursor: pointer; font: 500 12px var(--body); padding: 4px 10px; background: var(--surface); border-color: var(--line); color: var(--fg-2) }
+  button.chip[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-ink) }
+  button:focus-visible, input:focus-visible, details summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+  .count { color: var(--fg-2); font-size: 13px; font-variant-numeric: tabular-nums }
+  .group { margin-block: 18px }
+  .group h3 { font-family: var(--display); font-size: 19px; font-weight: 600; margin-block: 0 10px; padding-bottom: 4px; border-bottom: 1px solid var(--line) }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 12px }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; min-width: 0; display: flex; flex-direction: column; gap: 8px }
+  .card.blocker { border-left: 4px solid var(--crit) } .card.major { border-left: 4px solid var(--warn) } .card.minor { border-left: 4px solid var(--accent) } .card.clean { border-left: 4px solid var(--good) }
+  .card header { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; flex-wrap: wrap }
+  .card .mini { display: flex; height: 6px; border-radius: 3px; overflow: hidden; background: var(--surface-2) }
+  .card .mini span { display: block; height: 100% }
+  .card ul { margin: 0; padding-left: 18px; font-size: 13.5px }
+  .card li { margin-block: 4px }
+  .card li .dec { display: block; font-size: 12.5px; color: var(--fg-2) }
+  .sev { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: middle }
+  .sev.blocker { background: var(--crit) } .sev.major { background: var(--warn) } .sev.minor { background: var(--accent) } .sev.info { background: var(--muted) }
+  .two { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px }
+  .two > * { min-width: 0 }
+  .tablebox { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface) }
+  table { border-collapse: collapse; width: 100%; font-size: 13.5px; min-width: 560px }
+  th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--line) }
+  th { background: var(--surface-2); font-weight: 600; position: sticky; top: 0; z-index: 1 }
+  tbody tr:last-child td { border-bottom: 0 }
+  td.k { font-weight: 600; min-width: 150px }
+  details { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: 0 12px; margin-block: 10px }
+  details summary { cursor: pointer; padding: 10px 0; font-weight: 600 }
+  details[open] summary { border-bottom: 1px solid var(--line); margin-bottom: 10px }
+  .note { font-size: 13px; color: var(--fg-2) }
+  footer { color: var(--fg-2); font-size: 13px; border-top: 1px solid var(--line); margin-top: 30px; padding-top: 12px }
+  @media (max-width: 600px) { .tile b { font-size: 22px } th, td { padding: 7px 8px } .cards { grid-template-columns: 1fr } }
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="eyebrow">UBTConnect · OutSystems 11 → React · verified flow by flow</div>
+    <h1>UBTConnect React Gaps</h1>
+    <p class="meta" id="meta"></p>
+  </div>
+</header>
+
+<div class="wrap" style="padding-block: 6px 0">
+  <div class="tiles" id="tiles"></div>
+  <div class="vbar" id="vbar" role="img" aria-label="Verdicts of all checklist rows"></div>
+  <div class="legend" id="legend"></div>
+  <p class="lead" id="lead" style="margin-top: 12px"></p>
+</div>
+
+<nav class="jump" aria-label="Sections">
+  <div class="wrap">
+    <a href="#missing">What is missing</a><a href="#add-fe">What to add in the app</a><a href="#add-infra">What to add outside the app</a><a href="#matrix">Per-flow matrix</a><a href="#open">Open points</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section class="block" id="missing">
+    <h2>What is missing or different, flow by flow</h2>
+    <p class="lead">One card per UI flow that has a finding. The bar under the flow name shows its verdict mix. Each finding carries the user's decision when one exists.</p>
+    <div class="filters">
+      <button type="button" class="chip" data-sev="blocker" aria-pressed="true"><i class="sev blocker"></i>Blocker</button>
+      <button type="button" class="chip" data-sev="major" aria-pressed="true"><i class="sev major"></i>Major</button>
+      <button type="button" class="chip" data-sev="minor" aria-pressed="true"><i class="sev minor"></i>Minor</button>
+      <button type="button" class="chip" data-sev="info" aria-pressed="false"><i class="sev info"></i>Info</button>
+      <button type="button" class="chip" id="fixedToggle" aria-pressed="true">Show fixed and withdrawn</button>
+      <input type="search" id="findSearch" placeholder="Filter by flow, screen or text" aria-label="Filter findings">
+      <span class="count" id="findCount"></span>
+    </div>
+    <div id="groups"></div>
+  </section>
+
+  <section class="block" id="add-fe">
+    <h2>What to add or change inside the app</h2>
+    <p class="lead">The front-end work the project owner decided on 27 Oct 2026. "Build now" means in scope; a build starts on the owner's order. Source: <code>decisions.md</code>.</p>
+    <div class="filters">
+      <button type="button" class="chip" data-fe="build" aria-pressed="true">Build or change</button>
+      <button type="button" class="chip" data-fe="keep" aria-pressed="false">Recorded, no build</button>
+      <button type="button" class="chip" data-fe="check" aria-pressed="false">Checks and facts</button>
+      <span class="count" id="feCount"></span>
+    </div>
+    <div class="tablebox"><table id="feTable"><thead><tr><th>Flow</th><th>Id</th><th>Decision</th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section class="block" id="add-infra">
+    <h2>What to add outside the app</h2>
+    <p class="lead" id="infraLead"></p>
+    <div class="filters">
+      <input type="search" id="gapSearch" placeholder="Filter capabilities (identity, push, Orbit, F1, U17…)" aria-label="Filter capabilities">
+      <span class="count" id="gapCount"></span>
+    </div>
+    <div class="tablebox"><table id="gapTable"><thead><tr><th>Capability</th><th>React today</th><th>Production needs</th><th>Flows</th><th>Findings</th></tr></thead><tbody></tbody></table></div>
+    <h3 style="margin-top:16px">Set-up order (dependencies first)</h3>
+    <ol id="steps" style="padding-left: 20px; max-width: 90ch"></ol>
+  </section>
+
+  <section class="block" id="matrix">
+    <details><summary>Per-flow verdict matrix (45 reports)</summary>
+      <p class="note">match = same as TST · partial = present but different in a detail · missing = not in React · differs = different by a recorded decision · mock-only = UI present, server side is a mock · n/a = out of scope by decision or dead in the model · unclear = evidence not enough. Stale = rows that rest on TST code that changed in the TST publish of 2026-10-27 (strong in brackets: removed file or changed cited lines); the verdict was made on the code of 2026-10-13.</p>
+      <div class="tablebox"><table id="matrixTable"><thead><tr><th>Group</th><th>Flow</th><th>Rows</th><th>match</th><th>partial</th><th>missing</th><th>differs</th><th>mock-only</th><th>n/a</th><th>unclear</th><th>Findings B/M/m/i</th><th>Stale (strong)</th></tr></thead><tbody></tbody></table></div>
+    </details>
+  </section>
+
+  <section class="block" id="open">
+    <h2>Open points</h2>
+    <ul id="openList"></ul>
+    <details><summary>Rows still unclear</summary>
+      <div class="tablebox"><table id="unclearTable"><thead><tr><th>Flow</th><th>Row</th><th>Element</th><th>Question</th></tr></thead><tbody></tbody></table></div>
+    </details>
+  </section>
+
+  <footer><p id="footerText"></p></footer>
+</main>
+
+<script type="application/json" id="data">/*__DATA__*/</script>
+<script>
+(function () {
+  var D = JSON.parse(document.getElementById('data').textContent);
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c]; }); };
+  var md = function (s) { return esc(s).replace(/`([^`]+)`/g, '<code>$1</code>').replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>'); };
+  var GROUPS = { G1: 'Core: login, PIN, home, menu, profile, notifications', G2: 'Directory', G3: 'Content: bookmarks, notes, calendar, contact, share, messages', G4: 'Legacy events: Orbit, LDM, Assemble', G5: 'Not built by decision', X: 'Shared blocks, actions and libraries' };
+  var V = ['match', 'partial', 'missing', 'differs', 'mock-only', 'n/a', 'unclear'];
+  var VC = { 'match': 'var(--v-match)', 'partial': 'var(--v-partial)', 'missing': 'var(--v-missing)', 'differs': 'var(--v-differs)', 'mock-only': 'var(--v-mock)', 'n/a': 'var(--v-na)', 'unclear': 'var(--v-unclear)' };
+  var rows = D.matrix.filter(function (r) { return !/total/.test(r.Flow || ''); });
+  var flowOf = function (r) { return (r.Flow || '').replace(/\[([^\]]+)\]\([^)]*\)/, '$1'); };
+  var byFlow = {}; rows.forEach(function (r) { byFlow[flowOf(r)] = r; });
+  var total = D.matrix.filter(function (r) { return /total/.test(r.Flow || ''); })[0] || {};
+  var findings = D.findings || [];
+  var cnt = function (sev) { return findings.filter(function (f) { return (f.Severity || '').toLowerCase() === sev; }).length; };
+  var isFixed = function (f) { return /^(fixed|built)/i.test(f.Status || ''); };
+  var statusKind = function (f) { var st = f.Status || ''; return /^(fixed|built)/i.test(st) ? 'fixed' : /withdrawn/i.test(st) ? 'withdrawn' : /^no fix/i.test(st) ? 'kept' : /^open/i.test(st) ? 'open' : ''; };
+  var cntKind = function (sev, kind) { return findings.filter(function (f) { return (f.Severity || '').toLowerCase() === sev && statusKind(f) === kind; }).length; };
+  var cntFixed = function (sev) { return findings.filter(function (f) { return (f.Severity || '').toLowerCase() === sev && isFixed(f); }).length; };
+  var fixedDate = (findings.filter(isFixed).map(function (f) { return (f.Status.match(/\d{4}-\d{2}-\d{2}/) || [''])[0]; }).sort().pop()) || '';
+  var modulesTotal = D.contract_modules.reduce(function (a, m) { return a + (parseInt(m.Endpoints, 10) || 0); }, 0);
+
+  document.getElementById('meta').textContent = 'Source of truth: the TST compiled code · checklist: the DEV model through the MCP · 45 reports, data of ' + D.generated + ' (branch clarify-screens)';
+  var tiles = [['64', 'screens built in React', 'good'], [Number(total.Rows || 0).toLocaleString('en'), 'checklist rows compared', ''], [cnt('blocker'), cntKind('blocker', 'fixed') ? 'blockers · ' + cntKind('blocker', 'fixed') + ' built' : 'blockers', cntKind('blocker', 'fixed') === cnt('blocker') ? 'good' : 'crit'], [cnt('major'), cntKind('major', 'fixed') ? 'major findings · ' + cntKind('major', 'fixed') + ' built' : 'major findings', cntKind('major', 'fixed') + cntKind('major', 'withdrawn') === cnt('major') ? 'good' : 'warn'], [cnt('minor'), cntFixed('minor') ? 'minor findings · ' + cntFixed('minor') + ' fixed in code on ' + fixedDate : 'minor findings', 'accent'], [D.build_items.length, 'items decided "build now"', 'accent'], [modulesTotal, 'backend endpoints to implement', '']];
+  document.getElementById('tiles').innerHTML = tiles.map(function (t) { return '<div class="tile ' + t[2] + '"><b>' + esc(t[0]) + '</b><span>' + esc(t[1]) + '</span></div>'; }).join('');
+  var sum = V.map(function (v) { return parseInt(total[v], 10) || 0; }); var all = sum.reduce(function (a, b) { return a + b; }, 0) || 1;
+  document.getElementById('vbar').innerHTML = V.map(function (v, i) { return '<span style="width:' + (100 * sum[i] / all) + '%;background:' + VC[v] + '" title="' + v + ' ' + sum[i] + '"></span>'; }).join('');
+  document.getElementById('legend').innerHTML = V.map(function (v, i) { return '<span><i style="background:' + VC[v] + '"></i>' + v + ' ' + sum[i].toLocaleString('en') + '</span>'; }).join('');
+  var pct = Math.round(100 * sum[0] / all);
+  document.getElementById('lead').innerHTML = md(pct + '% of the compared rows behave as on TST. The rest is where this page looks: ' + sum[2] + ' rows missing, ' + sum[1] + ' partial, ' + sum[4] + ' mock-only (the UI calls a server that does not exist yet), ' + sum[3] + ' different by a recorded decision. ' + (cntKind('blocker', 'fixed') === cnt('blocker') && cntKind('major', 'fixed') + cntKind('major', 'withdrawn') === cnt('major') ? 'The three blockers (the signed-out Contact Us form, the Orbit HostSurvey wizard, five MilestoneDetail types) and the ' + cnt('major') + ' major findings were built from the TST compiled code in the build wave of 2026-10-27/28 (migration/clarify/builds; one major withdrawn, TST has the control); the user answered the 13 build decisions on 2026-10-28 (pending-decisions.md).' : 'Three blockers stop a user flow: the signed-out Contact Us form, the Orbit HostSurvey wizard and five MilestoneDetail types.') + (cntFixed('minor') ? ' On ' + fixedDate + ' the React code was changed for ' + cntFixed('minor') + ' of the ' + cnt('minor') + ' minor findings. ' + cntKind('minor', 'withdrawn') + ' were withdrawn after a second read of the TST code, ' + cntKind('minor', 'kept') + ' kept by a recorded decision, ' + cntKind('minor', 'open') + ' open (waiting for a decision).' : ''));
+
+  // decisions index: flow -> list of {id, question, answer}
+  var decByFlow = {}; (D.decisions || []).forEach(function (d) { (decByFlow[d.flow] = decByFlow[d.flow] || []).push(d); });
+  var decisionFor = function (flow, fid) {
+    var ds = decByFlow[flow] || []; var rx = new RegExp('\\b' + fid + '\\b');
+    var hit = ds.filter(function (d) { return rx.test(d.question || '') || rx.test(d.answer || ''); })[0];
+    if (!hit) return null;
+    var a = hit.answer || ''; var low = a.toLowerCase();
+    var kind = /build|port|wire|fix|set document|store|show the exception|reset|follow tst|remove/.test(low) ? 'build' : /keep|accept|record/.test(low) ? 'keep' : 'other';
+    return { id: hit.id, text: a.split(' — ')[0], kind: kind };
+  };
+  var sevActive = { blocker: true, major: true, minor: true, info: false }; var showFixed = true; var isSettled = function (f) { var k = statusKind(f); return k === 'fixed' || k === 'withdrawn'; };
+  var renderGroups = function () {
+    var q = (document.getElementById('findSearch').value || '').toLowerCase();
+    var html = ''; var shown = 0;
+    Object.keys(GROUPS).forEach(function (g) {
+      var flows = rows.filter(function (r) { return r.Group === g; }).map(flowOf);
+      var cards = '';
+      flows.forEach(function (fl) {
+        var fs = findings.filter(function (f) { var s = (f.Severity || '').toLowerCase(); return f.Flow === fl && sevActive[s] && (showFixed || !isSettled(f)) && (!q || (fl + ' ' + f.Element + ' ' + f.Finding).toLowerCase().indexOf(q) >= 0); });
+        if (!fs.length) return;
+        shown += fs.length;
+        var r = byFlow[fl] || {}; var tot = V.reduce(function (a, v) { return a + (parseInt(r[v], 10) || 0); }, 0) || 1;
+        var top = fs.some(function (f) { return /blocker/i.test(f.Severity); }) ? 'blocker' : fs.some(function (f) { return /major/i.test(f.Severity); }) ? 'major' : 'minor';
+        cards += '<article class="card ' + top + '"><header><h3 class="mono">' + esc(fl) + '</h3><span class="count">' + esc(r.Rows || '') + ' rows · missing ' + esc(r.missing || 0) + ' · partial ' + esc(r.partial || 0) + '</span></header>';
+        cards += '<div class="mini">' + V.map(function (v) { return '<span style="width:' + (100 * (parseInt(r[v], 10) || 0) / tot) + '%;background:' + VC[v] + '"></span>'; }).join('') + '</div><ul>';
+        fs.forEach(function (f) {
+          var s = (f.Severity || '').toLowerCase(); var d = decisionFor(fl, f.Id);
+          cards += '<li' + (isSettled(f) ? ' class="fixed"' : '') + '><i class="sev ' + s + '"></i><b>' + esc(f.Id) + '</b> ' + (statusKind(f) === 'fixed' ? '<span class="chip good">' + esc(f.Status.split(' (')[0]) + '</span> ' : statusKind(f) === 'withdrawn' ? '<span class="chip muted" title="' + esc(f.Status) + '">withdrawn · TST re-read</span> ' : statusKind(f) === 'kept' ? '<span class="chip muted" title="' + esc(f.Status) + '">kept by decision</span> ' : statusKind(f) === 'open' ? '<span class="chip warn" title="' + esc(f.Status) + '">open</span> ' : '') + md(f.Element) + ' — ' + md(f.Finding);
+          if (d) cards += '<span class="dec"><span class="chip ' + (d.kind === 'build' ? 'warn' : d.kind === 'keep' ? 'muted' : 'accent') + '">' + esc(d.id) + (d.kind === 'build' ? ' · build' : d.kind === 'keep' ? ' · recorded' : '') + '</span> ' + md(d.text) + '</span>';
+          cards += '</li>';
+        });
+        cards += '</ul></article>';
+      });
+      if (cards) html += '<div class="group"><h3>' + esc(g) + ' · ' + esc(GROUPS[g]) + '</h3><div class="cards">' + cards + '</div></div>';
+    });
+    document.getElementById('groups').innerHTML = html || '<p class="note">No finding matches the filter.</p>';
+    document.getElementById('findCount').textContent = shown + ' / ' + findings.length + ' findings';
+  };
+  Array.prototype.forEach.call(document.querySelectorAll('[data-sev]'), function (b) { b.addEventListener('click', function () { var k = b.getAttribute('data-sev'); sevActive[k] = !sevActive[k]; b.setAttribute('aria-pressed', String(sevActive[k])); renderGroups(); }); });
+  document.getElementById('findSearch').addEventListener('input', renderGroups);
+  document.getElementById('fixedToggle').addEventListener('click', function () { showFixed = !showFixed; this.setAttribute('aria-pressed', String(showFixed)); renderGroups(); });
+  renderGroups();
+
+  // FE work
+  var feSets = { build: D.build_items, keep: D.keep_items, check: D.check_items }; var feActive = { build: true, keep: false, check: false };
+  var tb = function (id) { return document.querySelector('#' + id + ' tbody'); };
+  var renderFe = function () {
+    var out = []; Object.keys(feSets).forEach(function (k) { if (feActive[k]) feSets[k].forEach(function (r) { out.push([k, r]); }); });
+    tb('feTable').innerHTML = out.map(function (x) { var r = x[1]; var k = Object.keys(r); var cls = x[0] === 'build' ? 'warn' : x[0] === 'keep' ? 'muted' : 'accent'; return '<tr><td class="mono">' + esc(r[k[0]]) + '</td><td><span class="chip ' + cls + '">' + esc(r[k[1]]) + '</span></td><td>' + md(r[k[2]]) + '</td></tr>'; }).join('');
+    document.getElementById('feCount').textContent = out.length + ' items';
+  };
+  Array.prototype.forEach.call(document.querySelectorAll('[data-fe]'), function (b) { b.addEventListener('click', function () { var k = b.getAttribute('data-fe'); feActive[k] = !feActive[k]; b.setAttribute('aria-pressed', String(feActive[k])); renderFe(); }); });
+  renderFe();
+
+  // infra gaps
+  document.getElementById('infraLead').innerHTML = md('The app runs on mock data today. For production it needs an identity provider with a BFF session, ' + modulesTotal + ' backend endpoints over ' + D.contract_modules.length + ' modules of the contract, a per-user flag endpoint, signed image URLs and static hosting under `/UBTConnect/`. The table lists every capability with what React has today and what production needs.');
+  var gapRows = D.gaps.map(function (r) { var k = Object.keys(r); return k.map(function (x) { return r[x]; }); });
+  var renderGaps = function () {
+    var q = (document.getElementById('gapSearch').value || '').toLowerCase();
+    var out = gapRows.filter(function (c) { return !q || c.join(' ').toLowerCase().indexOf(q) >= 0; });
+    tb('gapTable').innerHTML = out.map(function (c) { var f = (c[6] || '').trim(); var fcls = /blocker/i.test(f) ? 'crit' : /F\d/.test(f) ? 'warn' : 'muted'; return '<tr><td class="k">' + md(c[0]) + '</td><td>' + md(c[2]) + '</td><td>' + md(c[3]) + '</td><td class="mono">' + md(c[4]) + '</td><td><span class="chip ' + fcls + '">' + md(f || '-') + '</span></td></tr>'; }).join('');
+    document.getElementById('gapCount').textContent = out.length + ' / ' + gapRows.length + ' capabilities';
+  };
+  document.getElementById('gapSearch').addEventListener('input', renderGaps); renderGaps();
+  document.getElementById('steps').innerHTML = D.setup_order.map(function (s) { return '<li>' + md(s) + '</li>'; }).join('');
+
+  // matrix
+  tb('matrixTable').innerHTML = D.matrix.map(function (r) { return '<tr><td>' + esc(r.Group) + '</td><td class="mono">' + md(flowOf(r)) + '</td><td class="mono">' + esc(r.Rows) + '</td>' + V.map(function (v) { return '<td>' + esc(r[v]) + '</td>'; }).join('') + '<td class="mono">' + esc(r['Findings (B/M/m/i)']) + '</td><td class="mono">' + esc(r['Stale (strong)'] || '') + '</td></tr>'; }).join('');
+  // open
+  document.getElementById('openList').innerHTML = D.open_items.map(function (s) { return '<li>' + md(s) + '</li>'; }).join('');
+  tb('unclearTable').innerHTML = D.unclear.map(function (r) { var k = Object.keys(r); return '<tr><td class="mono">' + esc(r[k[0]]) + '</td><td class="mono">' + esc(r[k[1]]) + '</td><td>' + md(r[k[2]]) + '</td><td>' + md(r[k[3]]) + '</td></tr>'; }).join('');
+  document.getElementById('footerText').innerHTML = md('Sources: `migration/clarify/INDEX.md`, `infra-gaps.md`, `architecture-current.md`, `decisions.md` on branch `clarify-screens`. Every item traces back to a checklist row or a `file:line` in the code. The Vietnamese companion page "Infra & FE readiness" holds the C4 diagrams and the full backend contract.');
+})();
+</script>

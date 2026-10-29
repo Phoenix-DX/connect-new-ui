@@ -1,7 +1,7 @@
 # Coverage for CountryList
 
 - UI states captured: default, loading, offline
-- Runtime captures: 1 file(s), 9 call(s)
+- Runtime captures: 1 file(s), 10 call(s)
 - Masked text nodes: 75, user images removed: 0
 - Fetch failures during snapshot: 0
 
@@ -44,6 +44,7 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [ ] `scripts/OutSystemsUI_2_23.OutSystemsUI.js`
 
 ## Data/server actions declared in the screen and its blocks
+- [x] `DataActionGetCommunityStatistics` (UBTConnect.Directory_Locality.CountryList.mvc.js)
 - [x] `DataActionGetCountriesStatistics` (UBTConnect.Directory_Locality.CountryList.mvc.js)
 - [x] `DataActionFetchCount` (UBTConnect.Home.FeedBlock_CommunityPopulation.mvc.js)
 - [x] `DataActionGetCacheInfo` (UBTConnect_Utils.CacheControl.CacheControl_UserInfo.mvc.js)

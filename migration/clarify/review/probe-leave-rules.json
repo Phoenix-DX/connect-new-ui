@@ -1,0 +1,51 @@
+{
+ "ranAt": "2026-10-28T10:09:22.416Z",
+ "site": "UBTConnect TST",
+ "account": "the test account of site_auth (not named)",
+ "steps": {
+  "kept": {
+   "viewName": "Directory_Locality.BrowseCountries",
+   "outOfContext": false,
+   "disposed": false,
+   "hasHandler": true
+  },
+  "controlBeforeLeave": {
+   "activeViewName": "Directory_Locality.BrowseCountries",
+   "outOfContext": false,
+   "disposed": false,
+   "path": "/UBTConnect/BrowseCountries"
+  },
+  "leave": {
+   "thrown": "RedirectOccurredException"
+  },
+  "atOnce": {
+   "activeViewName": "Directory_Locality.BrowseCountries",
+   "outOfContext": false,
+   "disposed": false,
+   "path": "/UBTConnect/BrowseCountries"
+  },
+  "after150ms": {
+   "activeViewName": "Directory_Locality.BrowseCountries",
+   "outOfContext": false,
+   "disposed": false,
+   "path": "/UBTConnect/BrowseCountries"
+  },
+  "afterTransition": {
+   "activeViewName": "App_Menu.Menu",
+   "outOfContext": true,
+   "disposed": true,
+   "path": "/UBTConnect/Menu"
+  },
+  "r4Navigate": {
+   "thrown": "OutOfContextException",
+   "message": ""
+  },
+  "r4PathAfter": "/UBTConnect/Menu",
+  "r3OwnAction": {
+   "thrown": "ControllerDisposedException",
+   "message": "Invalid call of the 'Handler_StatisticsList_Clicked' client action of the 'Directory_Locality.BrowseCountries' since the latter is not currently active. This is"
+  },
+  "r3PathAfter": "/UBTConnect/Menu"
+ },
+ "blocked": []
+}

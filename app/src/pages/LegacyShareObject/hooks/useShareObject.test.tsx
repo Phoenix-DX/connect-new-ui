@@ -179,7 +179,7 @@ describe('useShareObject', () => {
     expect(result.current.state.isLoading).toBe(false);
   });
 
-  it('W23: after the unmount, the started OnReady calls once and writes no state', async () => {
+  it('R2: after the unmount, the started OnReady calls its server action once and writes no state', async () => {
     const card = pending<HouseholdShareCard>(vi.mocked(fetchHouseholdShareCard));
     const { unmount } = renderFlows(household(), true);
     await settle();
@@ -192,7 +192,7 @@ describe('useShareObject', () => {
     expect(raiseToFlowHandler).not.toHaveBeenCalled();
   });
 
-  it('W23: an exception after the unmount still goes to the flow handler, once, without a state write', async () => {
+  it('R2: a server action exception after the unmount still goes to the flow handler, once, without a state write', async () => {
     const card = pending<HouseholdShareCard>(vi.mocked(fetchHouseholdShareCard));
     const { unmount } = renderFlows(household(), true);
     await settle();

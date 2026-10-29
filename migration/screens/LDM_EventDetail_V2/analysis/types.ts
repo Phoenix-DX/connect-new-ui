@@ -1,5 +1,26 @@
 // Generated from captured response shapes. Long Integer / Decimal travel as strings.
 
+export interface EmptyListItem {
+  Id: string /* Long Integer as string */;
+  Note: string /* "" in capture */;
+  DateCreatedUtc: string /* "1900-01-01..." = no value */;
+  DateEditedUtc: string /* "1900-01-01..." = no value */;
+}
+
+export interface Note_Item_List {
+  List: unknown[] /* empty in capture */;
+  EmptyListItem: EmptyListItem;
+}
+
+export interface Notes {
+  Total: number /* 0 in capture */;
+  Note_Item_List: Note_Item_List;
+}
+
+export interface FetchEventNotesResponse {
+  Notes: Notes;
+}
+
 export interface Out_CoordinatorDetails {
   GetCoordinatorDetailsResponse: GetCoordinatorDetailsResponse;
 }
@@ -85,20 +106,6 @@ export interface GuestsItem {
   HomePhone: string /* "" in capture */;
   HouseholderSignedImagePath: string /* "" in capture */;
   HouseholderFirstName: string;
-}
-
-export interface EmptyListItem {
-  Type: string /* Long Integer as string */;
-  Memberid: string /* Long Integer as string */;
-  Name: string /* "" in capture */;
-  Notes: string /* "" in capture */;
-  Category: string /* "" in capture */;
-  Eventid: string /* Long Integer as string */;
-  Eventguestid: string /* Long Integer as string */;
-  FullName: string /* "" in capture */;
-  CdnBucket: string /* "" in capture */;
-  CdnPath: string /* "" in capture */;
-  SignedUrl: string /* "" in capture */;
 }
 
 export interface Mobility {

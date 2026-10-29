@@ -1,0 +1,81 @@
+{
+ "flow": "Directory_Search",
+ "screens": [
+  "Search"
+ ],
+ "ownBlocks": [
+  "ScreenBlock_Search",
+  "SearchResult_Section",
+  "SearchResults_Recent",
+  "Search_BirthdayOptions"
+ ],
+ "usedBlocks": [
+  "App_IconBadge",
+  "Block_PINUnlock",
+  "Block_PINUnlock_ContentWrapper",
+  "BottomBarContent",
+  "BottomBarMenu",
+  "CacheControl_UserInfo_Wrapper",
+  "CommonUI_InsideLayout",
+  "FilterSheet",
+  "FilterSheet_Icon",
+  "FilterSheet_OptionChoice_Item",
+  "FilterSheet_OptionList_Item",
+  "HandleOnResumeOpenLink",
+  "OfflineDataSyncEvents",
+  "Policy_Checker",
+  "ScreenBlock_Search",
+  "SearchResult_Section",
+  "Search_BirthdayOptions",
+  "SectionSeparator",
+  "UnsupportedVersion",
+  "UnsupportedVersion_Browser",
+  "UnsupportedVersion_Native",
+  "UnsupportedVersion_WebView",
+  "UnsupportedVersion_Wrapper",
+  "WelcomeToConnect"
+ ],
+ "referencedBlocks": [
+  "Columns_Two",
+  "CustomContainer",
+  "CustomText",
+  "Gallery",
+  "HorizontalTagList",
+  "Icon",
+  "IconText",
+  "Input",
+  "Layout_DetailPage",
+  "SearchResult_Item",
+  "SkeletonSection",
+  "UBT_LazyImage"
+ ],
+ "clientActions": [
+  "App_CommonFilter_CheckCountry",
+  "App_CommonFilter_DefineOptionNames",
+  "Directory_Updates_RefreshBottomBarCount",
+  "ExitApplicationForWebViewUpdate",
+  "GetURLFromEventDataURL",
+  "GetUserInformation_Wrapper_Assign",
+  "Get_IsUnsupportedSystem",
+  "Get_IsUnsupportedVersion",
+  "OfflineDataSync",
+  "OfflineDataSyncConfiguration",
+  "OpenGooglePlay_Chrome",
+  "OpenGooglePlay_UBTConnect",
+  "OpenGooglePlay_WebView",
+  "ScrollTop",
+  "SetResumeLoginLink",
+  "Try_GetIsSupportedVersion",
+  "Upgrade_UBTConnect",
+  "Upgrade_WebView",
+  "ValidateSearchPhoneNumber"
+ ],
+ "serverActions": [
+  "Connect_Search",
+  "Get_SearchResultsVisibilityStatus",
+  "Get_UI_UpdateItems_UnreadCount_All",
+  "ListAppend",
+  "ListFilter"
+ ],
+ "externalSites": []
+}

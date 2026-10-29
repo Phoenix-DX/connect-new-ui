@@ -1,7 +1,6 @@
 import { fetchGuestArrangements } from '@/api/event';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
-import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { useFlowState, type IsAlive } from '@/platform/navigation';
+import { useFlowState } from '@/platform/navigation';
 import { checkDirectoryAccess } from '@/lib/orbit/actions';
 import { DirectoryAPIFilter } from '@/lib/orbit/staticEntities';
 import { getContactHelpdeskSubject_Milestone, onApplicationEvent_ViewHousehold } from './guestArrangementsActions';
@@ -39,28 +38,24 @@ export interface GuestArrangementsFlows {
 /** The state and the flows of the guest arrangements. The state comes from useFlowState and the view cache keeps it.
     - OnReady runs before the first paint, as in the old port (decision W28, `beforePaint`): the skeleton of
       RefreshData is in the first frame. It runs once per block, also in StrictMode.
-    - Decision W23: `isAlive` guards the state writes only. OnReady has no app-level side effect after its call: after
-      an unmount the call ends without a state write, and a failure still goes to the flow handler. OnHandle_ClickedMember
-      runs to its end after an unmount (the event NavigateTo_HouseholdDetail and the application event, or the upgrade
-      popup), as in the old port. */
+    - Flow scope (item 8): GetGuestArrangements is a data action (R1, `flow.fetch`; GuestArrangements.js:1550): after
+      the unmount its answer and its failure are dropped (no state write, no raise). CheckDirectoryAccess is a module
+      action that calls a server action (R2): its flow goes on after the unmount. NavigateTo_HouseholdDetail is an own
+      action of the block (R3, `flow.own`; GuestArrangements.js:1644): after the unmount it stops the flow, so neither
+      the event nor OnApplicationEvent_ViewHousehold runs. The navigation of the parent from a left screen is blocked by
+      the platform (R4). Without access, App_Subscription_ShowUpgradePopUp (a module action) still opens. */
 export function useGuestArrangements(
   inputs: GuestArrangementsBlockInputs,
   events: GuestArrangementsEvents,
 ): GuestArrangementsFlows {
-  const {
-    state,
-    dispatch,
-    latest,
-    parameters,
-    events: eventsRef,
-  } = useFlowState({
+  const { state, dispatch, latest, parameters, flow } = useFlowState({
     viewName: 'Orbit_ScreenBlocks.ScreenBlock_GuestArrangements',
     reducer: guestArrangementsReducer,
     initial: INITIAL_GUEST_ARRANGEMENTS_STATE,
     parameters: inputs,
     events,
     // The flow is defined below; the hook calls the one of the newest render.
-    onReady: (isAlive, restored) => onReady(isAlive, restored),
+    onReady: (_flow, restored) => onReady(restored),
     beforePaint: true,
   });
 
@@ -68,20 +63,27 @@ export function useGuestArrangements(
       IsFetchingData True, then GetGuestArrangements with the block variables of that moment, then
       OnAfterFetch_GetGuestArrangements. A failure rejects (useFlowState sends it to the flow handler); the skeleton
       stays. */
-  const onReady = async (isAlive: IsAlive, restored: boolean): Promise<void> => {
+  const onReady = async (restored: boolean): Promise<void> => {
     if (restored) return;
     dispatch({ type: 'fetchStarted' });
-    const result = await fetchGuestArrangements(guestArrangementsCallInputs(latest.current, parameters.current));
-    if (isAlive()) dispatch({ type: 'guestArrangementsFetched', result });
+    const result = await flow.fetch(
+      fetchGuestArrangements(guestArrangementsCallInputs(latest.current, parameters.current)),
+    ); // R1
+    dispatch({ type: 'guestArrangementsFetched', result });
   };
 
-  /** OnHandle_ClickedMember(HouseholdId), with Type = DirectoryAPIFilter.Member: CheckDirectoryAccess; with access the
-      event NavigateTo_HouseholdDetail, then OnApplicationEvent_ViewHousehold; without it the upgrade popup
+  /** NavigateTo_HouseholdDetail(HouseholdId), an own action of the block (R3): the event NavigateTo_HouseholdDetail. */
+  const navigateToHouseholdDetail = flow.own((householdId: string) => {
+    flow.events.onNavigateToHouseholdDetail(householdId);
+  });
+
+  /** OnHandle_ClickedMember(HouseholdId), with Type = DirectoryAPIFilter.Member: CheckDirectoryAccess; with access
+      NavigateTo_HouseholdDetail, then OnApplicationEvent_ViewHousehold; without it the upgrade popup
       (App_Subscription_ShowUpgradePopUp). */
   const clickedMember = async (householdId: string): Promise<void> => {
-    const hasAccess = await checkDirectoryAccess(householdId, DirectoryAPIFilter.Member);
+    const hasAccess = await checkDirectoryAccess(householdId, DirectoryAPIFilter.Member); // R2
     if (hasAccess) {
-      eventsRef.current.onNavigateToHouseholdDetail(householdId);
+      navigateToHouseholdDetail(householdId); // R3: after the unmount the flow stops here
       onApplicationEvent_ViewHousehold(householdId, parameters.current.In_MilestoneId, parameters.current.In_EventId);
     } else {
       await showUpgradePopUp();
@@ -94,7 +96,7 @@ export function useGuestArrangements(
   const contactHelpdesk = () => {
     const p = parameters.current;
     const eventDetails = latest.current.guestArrangementsData.EventDetails;
-    eventsRef.current.onContactHelpdesk(
+    flow.events.onContactHelpdesk(
       getContactHelpdeskSubject_Milestone(
         p.In_OrbitMilestoneTypeId,
         p.In_PreloadEventName,
@@ -109,7 +111,7 @@ export function useGuestArrangements(
   return {
     state,
     onClickedMember: (householdId) => {
-      clickedMember(householdId).catch(raiseToFlowHandler);
+      flow.run(() => clickedMember(householdId));
     },
     onContactHelpdesk: contactHelpdesk,
   };

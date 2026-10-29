@@ -1,0 +1,25 @@
+{
+ "flow": "Calendar_Events",
+ "screens": [],
+ "ownBlocks": [
+  "CacheControl_CalendarEvents",
+  "Calendar_EventCard",
+  "Calendar_NoEvents",
+  "EventListItem",
+  "EventListNew"
+ ],
+ "usedBlocks": [],
+ "referencedBlocks": [
+  "CacheControl",
+  "CustomContainer",
+  "EventCard"
+ ],
+ "clientActions": [
+  "Get_CalendarEventSourceConfiguration",
+  "Get_FilteredCacheKeyByDateAndEventSources"
+ ],
+ "serverActions": [
+  "GetEventsByCacheKeys"
+ ],
+ "externalSites": []
+}

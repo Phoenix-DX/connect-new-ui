@@ -25,8 +25,8 @@ export interface SortSheetProps {
   noLabel: string;
   /** Event SheetInitialized(SheetId). */
   onSheetInitialized?: (sheetId: string) => void;
-  /** Event ApplySort(SortBy_Title). */
-  onApplySort?: () => void;
+  /** Event ApplySort, with the applied choice (OptionControl: Choice Yes = newest first). */
+  onApplySort?: (selectedChoiceId: string) => void;
 }
 
 const buttonOptions = (type: string) => ({
@@ -52,7 +52,7 @@ export function SortSheet({ id, yesLabel, noLabel, onSheetInitialized, onApplySo
   const apply = (value: string) => {
     setLastApplied(value);
     bottomSheetClose(sheetId.current);
-    onApplySort?.();
+    onApplySort?.(value);
   };
   return (
     <OSBlock name="App_CommonBlocks_Filter.SortSheet" id={id}>
@@ -151,13 +151,13 @@ export function SortSheet({ id, yesLabel, noLabel, onSheetInitialized, onApplySo
 export interface Notifications_SortSheetProps {
   id: string;
   onSheetInitialized?: (sheetId: string) => void;
-  /** Event ApplyFilters. */
-  onApplyFilters?: () => void;
+  /** Event ApplyFilters(IsNewestToOldest). */
+  onApplyFilters?: (isNewestToOldest: boolean) => void;
 }
 
 /** UBTConnect.App_Notifications.Notifications_SortSheet (p:…Notifications_SortSheet.mvc.js): SortSheet with an empty
     start filter and HasSorting (Newest to Oldest / Oldest to Newest, order 1); ApplySort → FilterSheetApplyFilters →
-    ApplyFilters (controller :287-336). The choice itself is not passed on (no output). */
+    ApplyFilters(IsNewestToOldest = the applied choice is Yes; TST publish of 2026-10-27, controller :287-310). */
 export function Notifications_SortSheet({ id, onSheetInitialized, onApplyFilters }: Notifications_SortSheetProps) {
   return (
     <OSBlock name="App_Notifications.Notifications_SortSheet" id={id}>
@@ -166,7 +166,7 @@ export function Notifications_SortSheet({ id, onSheetInitialized, onApplyFilters
         yesLabel="Newest to Oldest"
         noLabel="Oldest to Newest"
         onSheetInitialized={onSheetInitialized}
-        onApplySort={onApplyFilters}
+        onApplySort={(choiceId) => onApplyFilters?.(choiceId === Choice.Yes)}
       />
     </OSBlock>
   );

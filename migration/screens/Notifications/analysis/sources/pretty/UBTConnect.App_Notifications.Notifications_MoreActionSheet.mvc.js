@@ -145,32 +145,32 @@ define("UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc$view", ["
                         controller.handleError(ex);
                     },
                     markAllAsRead$Action: function() {
-                        var eventHandlerContext = callContext.clone();
-                        return OS.Flow.tryFinally(function() {
-                            var varBag = {};
-                            controller.pushDebuggerContext(eventHandlerContext);
+                        return Promise.resolve().then(function() {
+                            var eventHandlerContext = callContext.clone();
+                            return OS.Flow.tryFinally(function() {
+                                var varBag = {};
+                                controller.pushDebuggerContext(eventHandlerContext);
 
-                            OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "App_CommonBlocks_Filter/MoreActionSheet MarkAllAsRead");
-                            controller.handler_MarkAllAsRead$Action(controller.callContext(eventHandlerContext));
-                        }, function() {
-                            controller.popDebuggerContext(eventHandlerContext);
-                        });
-
-                        ;
+                                OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "App_CommonBlocks_Filter/MoreActionSheet MarkAllAsRead");
+                                return controller.handler_MarkAllAsRead$Action(controller.callContext(eventHandlerContext));
+                            }, function() {
+                                controller.popDebuggerContext(eventHandlerContext);
+                            });
+                        });;
                     },
                     deleteAllNotification$Action: function() {
-                        var eventHandlerContext = callContext.clone();
-                        return OS.Flow.tryFinally(function() {
-                            var varBag = {};
-                            controller.pushDebuggerContext(eventHandlerContext);
+                        return Promise.resolve().then(function() {
+                            var eventHandlerContext = callContext.clone();
+                            return OS.Flow.tryFinally(function() {
+                                var varBag = {};
+                                controller.pushDebuggerContext(eventHandlerContext);
 
-                            OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "App_CommonBlocks_Filter/MoreActionSheet DeleteAllNotification");
-                            controller.handler_DeleteAllNotification$Action(controller.callContext(eventHandlerContext));
-                        }, function() {
-                            controller.popDebuggerContext(eventHandlerContext);
-                        });
-
-                        ;
+                                OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "App_CommonBlocks_Filter/MoreActionSheet DeleteAllNotification");
+                                return controller.handler_DeleteAllNotification$Action(controller.callContext(eventHandlerContext));
+                            }, function() {
+                                controller.popDebuggerContext(eventHandlerContext);
+                            });
+                        });;
                     },
                     loaded$Action: function(showSubscriptionOnClickIn) {
                         return Promise.resolve().then(function() {
@@ -261,17 +261,24 @@ define("UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc$controlle
             controller.ensureControllerAlive("Handler_DeleteAllNotification");
             callContext = controller.callContext(callContext);
             varBag.callContext = callContext;
-            try {
-                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:w2q+dvXj9UapLeZK5yPydQ:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.XYfj+uqdx06idU3WidZ8Wg/ClientActions.w2q+dvXj9UapLeZK5yPydQ:qCwgDG+CENqR2XaWPwPUkw", "UBTConnect", "Handler_DeleteAllNotification", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:LA7bpyrDIkWAcB_YMMgn4A", callContext.id);
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:N5JXo59pLUmLdAEs9hG26A", callContext.id);
-            } catch (ex) {
-                OutSystemsDebugger.handleException(ex, callContext.id);
-                throw ex;
-            } finally {
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:w2q+dvXj9UapLeZK5yPydQ:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.XYfj+uqdx06idU3WidZ8Wg/ClientActions.w2q+dvXj9UapLeZK5yPydQ:DrIXsjC3zq4mReoUQMEDFA", "UBTConnect", "Handler_DeleteAllNotification", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:LA7bpyrDIkWAcB_YMMgn4A", callContext.id);
+            return OS.Flow.executeAsyncFlow(function() {
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:fahRDTwotUeQmhedj0prFA", callContext.id);
+                // Trigger Event: DeleteAll
+                return controller.deleteAll$Action(callContext).then(function() {
+                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:N5JXo59pLUmLdAEs9hG26A", callContext.id);
+                });
+            }).then(function(res) {
                 OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:w2q+dvXj9UapLeZK5yPydQ", callContext.id);
-            }
+                return res;
 
+            }).catch(function(ex) {
+                OutSystemsDebugger.handleException(ex, callContext.id);
+                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:w2q+dvXj9UapLeZK5yPydQ", callContext.id);
+                throw ex;
+
+            });
         };
         Controller.prototype._handler_FilterSheetLoaded$Action = function(showSubscriptionOnClickIn, callContext) {
             var varBag = {};
@@ -353,17 +360,24 @@ define("UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc$controlle
             controller.ensureControllerAlive("Handler_MarkAllAsRead");
             callContext = controller.callContext(callContext);
             varBag.callContext = callContext;
-            try {
-                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:sgYE3G_CKUaZmvA03D5moA:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.XYfj+uqdx06idU3WidZ8Wg/ClientActions.sgYE3G_CKUaZmvA03D5moA:v0n9YIK9av++F0hNqXyB8Q", "UBTConnect", "Handler_MarkAllAsRead", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:LthvqlHNB0ujS4FQSRGZ1Q", callContext.id);
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Wfm+N3lqTkehcVfbc7WcYg", callContext.id);
-            } catch (ex) {
-                OutSystemsDebugger.handleException(ex, callContext.id);
-                throw ex;
-            } finally {
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:sgYE3G_CKUaZmvA03D5moA:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.XYfj+uqdx06idU3WidZ8Wg/ClientActions.sgYE3G_CKUaZmvA03D5moA:DQOJGYn56NNBTVSirSKyyA", "UBTConnect", "Handler_MarkAllAsRead", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:LthvqlHNB0ujS4FQSRGZ1Q", callContext.id);
+            return OS.Flow.executeAsyncFlow(function() {
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:4tl93HavU02XfoBpXSofVA", callContext.id);
+                // Trigger Event: MarkAllAsRead
+                return controller.markAllAsRead$Action(callContext).then(function() {
+                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Wfm+N3lqTkehcVfbc7WcYg", callContext.id);
+                });
+            }).then(function(res) {
                 OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:sgYE3G_CKUaZmvA03D5moA", callContext.id);
-            }
+                return res;
 
+            }).catch(function(ex) {
+                OutSystemsDebugger.handleException(ex, callContext.id);
+                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:sgYE3G_CKUaZmvA03D5moA", callContext.id);
+                throw ex;
+
+            });
         };
 
         Controller.prototype.handler_DeleteAllNotification$Action = function(callContext) {
@@ -386,6 +400,9 @@ define("UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc$controlle
             return controller.safeExecuteClientAction(controller._handler_MarkAllAsRead$Action, callContext);
 
         };
+        Controller.prototype.deleteAll$Action = function() {
+            return Promise.resolve();
+        };
         Controller.prototype.applyFilters$Action = function() {
             return Promise.resolve();
         };
@@ -395,12 +412,15 @@ define("UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc$controlle
         Controller.prototype.sheetInitialized$Action = function() {
             return Promise.resolve();
         };
+        Controller.prototype.markAllAsRead$Action = function() {
+            return Promise.resolve();
+        };
 
         // Event Handler Actions
         Controller.prototype.pushDebuggerContext = function(callContext) {
             var varBag = {};
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:jD6cc912jEmdKmf5_8Sipg:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg:C0dHS3xzkGhxAA9p12FDtg", "UBTConnect", "App_Notifications", "NRFlows.WebFlow", callContext.id, varBag);
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:XYfj+uqdx06idU3WidZ8Wg:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.XYfj+uqdx06idU3WidZ8Wg:lPoNO6KWm1DlDJ4vP4FkgA", "UBTConnect", "Notifications_MoreActionSheet", "NRNodes.WebBlock", callContext.id, varBag);
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:jD6cc912jEmdKmf5_8Sipg:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg:sMKFKooX6A1nm6D_Lsn4Wg", "UBTConnect", "App_Notifications", "NRFlows.WebFlow", callContext.id, varBag);
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:XYfj+uqdx06idU3WidZ8Wg:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.XYfj+uqdx06idU3WidZ8Wg:2AFa74kD1beJlwtiltvDHg", "UBTConnect", "Notifications_MoreActionSheet", "NRNodes.WebBlock", callContext.id, varBag);
         };
         Controller.prototype.popDebuggerContext = function(callContext) {
             OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:XYfj+uqdx06idU3WidZ8Wg", callContext.id);

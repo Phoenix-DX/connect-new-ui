@@ -8,6 +8,7 @@ import { MOCK_USER_ID, mockUserInformation } from '@/platform/session/mockUser';
 import { registerPin } from '@/platform/session/pin';
 import { getClientVar, getShellState, setClientVar, setSignedInUser } from '@/platform/session/session';
 import { getSessionStatus } from '@/platform/session/machine';
+import { getFeedbackMessage, resetFeedbackMessages } from '@/platform/feedback/feedbackStore';
 import { getSetting, getSettings, setSettings } from '@/platform/settings';
 import { flagValue } from '@/platform/flags';
 import {
@@ -185,6 +186,29 @@ test('a failing app start is logged and the app is still ready', async () => {
   expect(calledActions()).toEqual(['ActionAppManager_SynchAppContext']);
   expect(getShellState().appReady).toBe(true);
   expect(error).toHaveBeenCalled();
+  // a system exception: OnApplicationReady's AllExceptions handler does not take it (UC:15398-15417), so no message
+  await new Promise((resolve) => setTimeout(resolve, 20));
+  expect(getFeedbackMessage()).toBeNull();
+});
+
+test('a non-system app-start failure is logged, then shows the exception message (_shared F3, C3)', async () => {
+  const error = vi.spyOn(console, 'error').mockImplementation(() => undefined);
+  resetFeedbackMessages();
+  // ServerException (not a system exception): ScreenController_RaiseError(message) → App_Common
+  // ShowExceptionMessage(message, False) (UC:15398-15417, JSU:3900)
+  server.use(
+    http.post('/api/UBT_AppManager/ActionAppManager_SynchAppContext', () =>
+      HttpResponse.json({ error: 'The app context could not be read', exception: 'ServerException' }, { status: 500 }),
+    ),
+  );
+  await startApp();
+  expect(calledActions()).toEqual(['ActionAppManager_SynchAppContext']);
+  expect(getShellState().appReady).toBe(true);
+  expect(error).toHaveBeenCalled();
+  await vi.waitFor(() => {
+    expect(getFeedbackMessage()?.message).toBe('The app context could not be read.');
+  });
+  expect(getSessionStatus()).toEqual({ status: 'signedOut' });
 });
 
 test('every call failing (HTTP 500 = CommunicationException, OutSystems.js:3): the signed-in start still sets the sync flags', async () => {
@@ -358,7 +382,7 @@ describe('the named steps of the app start (plan v2 §3.2)', () => {
       expect(calledActions()).toEqual([]);
       expect(flagValue('C2NewNotifications')).toBe(true); // override
       expect(flagValue('C2EnableCarousel')).toBe(true); // default on
-      expect(flagValue('C2NewBookmarks')).toBe(false); // default off
+      expect(flagValue('C2NewBookmarks')).toBe(true); // default on (TST since 2026-10-21; drift wave H-Q2 a)
     } finally {
       setFlags({});
     }

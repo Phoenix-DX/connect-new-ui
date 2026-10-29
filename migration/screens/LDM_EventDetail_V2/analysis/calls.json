@@ -3,10 +3,21 @@
  "calls": [
   {
    "module": "Connect2_OrbitMobile_MUI",
+   "action": "DataActionFetchEventNotes",
+   "path": "/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionFetchEventNotes",
+   "phase": "load",
+   "ts": 2446,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "Connect2_OrbitMobile_MUI",
    "action": "DataActionGetCoordinatorDetails",
    "path": "/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionGetCoordinatorDetails",
    "phase": "load",
-   "ts": 982,
+   "ts": 2446,
    "status": 200,
    "kind": "data",
    "inputNames": null,
@@ -17,7 +28,7 @@
    "action": "DataActionGetEventByEventId",
    "path": "/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionGetEventByEventId",
    "phase": "load",
-   "ts": 983,
+   "ts": 2446,
    "status": 200,
    "kind": "data",
    "inputNames": null,

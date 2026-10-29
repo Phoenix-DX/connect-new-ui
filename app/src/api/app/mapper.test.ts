@@ -132,6 +132,7 @@ describe('app mapper', () => {
       ItemId: '42438',
       DateCreatedUtc: '2026-07-21T10:05:00',
       DateEditedUtc: '2026-07-22T08:30:00',
+      NotesTotalCount: '0',
     };
     const orbit = orbitStaticEntities();
     const wire: SyncInfoMainWire = {

@@ -24,7 +24,7 @@
   "auto": "loading",
   "htmlClass": "",
   "bodyClass": "phone portrait orbit-theme osx is-ltr",
-  "bodyStyle": "--header-size-content: 128.625px; --footer-height: 46.875px; --viewport-height: 844px;",
+  "bodyStyle": "--header-size-content: 128.625px; --footer-height: 56px; --viewport-height: 844px;",
   "dpr": 1
  },
  "offline": {
@@ -36,6 +36,32 @@
   "steps": [],
   "scenario": "error",
   "auto": "offline",
+  "htmlClass": "",
+  "bodyClass": "phone portrait orbit-theme osx is-ltr",
+  "bodyStyle": "--header-size-content: 128.625px; --footer-height: 56px; --viewport-height: 844px;",
+  "dpr": 1
+ },
+ "popup-filters-closed": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/OrbitLanding",
+  "steps": [
+   {
+    "click": ".orbit-landing-filters.justify-content-flex-start",
+    "waitMs": 1500,
+    "label": "popup-filters"
+   },
+   {
+    "click": "#b1-Popup_Filters .orbit-filters-popup-exit .fa-times",
+    "waitMs": 1200,
+    "label": "popup-filters-closed"
+   }
+  ],
+  "scenario": "real",
+  "auto": null,
+  "phase": "popup-filters-closed",
   "htmlClass": "",
   "bodyClass": "phone portrait orbit-theme osx is-ltr",
   "bodyStyle": "--header-size-content: 128.625px; --footer-height: 56px; --viewport-height: 844px;",
@@ -69,6 +95,16 @@
   "flags": {},
   "route": "/UBTConnect/OrbitLanding",
   "steps": [
+   {
+    "click": ".orbit-landing-filters.justify-content-flex-start",
+    "waitMs": 1500,
+    "label": "popup-filters"
+   },
+   {
+    "click": "#b1-Popup_Filters .orbit-filters-popup-exit .fa-times",
+    "waitMs": 1200,
+    "label": "popup-filters-closed"
+   },
    {
     "click": ".orbit-landing-filters.justify-content-flex-end",
     "waitMs": 1500,

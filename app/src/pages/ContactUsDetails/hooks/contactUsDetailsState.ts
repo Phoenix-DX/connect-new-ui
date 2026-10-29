@@ -40,7 +40,7 @@ export interface ContactUsDetailsState {
   countryPhone: string;
   /** [isSubmiting] SendContactUsMessage runs. */
   isSubmiting: boolean;
-  /** [Rate_SelectedRate] Set by ContactUs_Rate, which is not built (NotCaptured, Q2 → A): it stays 0. */
+  /** [Rate_SelectedRate] Set by ContactUs_RateRateSelected (the RateSelected event of ContactUs_Rate). */
   selectedRate: number;
   /** [Rate_UserWantToBeContacted] The "contacted about my feedback" check box. */
   userWantToBeContacted: boolean;
@@ -48,9 +48,22 @@ export interface ContactUsDetailsState {
   callPopupData: CallPopupData;
   /** The outputs of DataAction_GetLocalityTimezone. */
   timezone: LocalityTimezone;
-  /** [DataAction_GetCountriesNames.Countries] The list of Dropdown_Country, signed out (not built, Q1 → A). */
+  /** [DataAction_GetCountriesNames.Countries] The list of Dropdown_Country, signed out. */
   countries: CountryName[];
+  /** [LocalCacheControl_UserInformation] The user record that CacheControl_UserInfo_WrapperResult keeps. The screen
+      sends it with DataAction_GetLocalityTimezone, whose server reads In_LocalityId from it. */
+  localCacheControl_UserInformation: ContactUsUserInformation;
 }
+
+/** UBTConnect BooleanDirectory_UserCurrentRecord: the signed-in user (null: the default record, before the cache
+    answers) and isFetched. */
+export interface ContactUsUserInformation {
+  user: Directory_UserCurrent | null;
+  isFetched: boolean;
+}
+
+/** The signed-out text fields of ContactUsForm, each edited by an Input widget. */
+export type ContactUsInputField = 'FullName' | 'Email' | 'PhoneNumber' | 'Locality';
 
 /** The changes of the state, in the order of the assignments of the screen actions. */
 export type ContactUsDetailsAction =
@@ -62,6 +75,12 @@ export type ContactUsDetailsAction =
   | { type: 'timezoneFetched'; timezone: LocalityTimezone }
   /** The message changed, then OnChange_FormInput. */
   | { type: 'messageChanged'; message: string; contactSubjectId: string }
+  /** The variable of a signed-out input or of Dropdown_Country changed (model.createVariable). */
+  | { type: 'formFieldSet'; field: keyof ContactUsForm; value: string }
+  /** OnChange_FormInput (also the last step of OnChange_Email and OnChange_PhoneNumber). */
+  | { type: 'formInputChanged'; contactSubjectId: string }
+  /** ContactUs_RateRateSelected(Rate): Rate_SelectedRate = Rate, then OnChange_FormInput. */
+  | { type: 'rateSelected'; rate: number; contactSubjectId: string }
   /** OnClick_SubmitForm: every field trimmed, isSubmiting True. */
   | { type: 'submitStarted' }
   /** OnClick_SubmitForm: IsFormFilled False, after the validations. */
@@ -238,6 +257,7 @@ export function initialContactUsDetailsState(
     callPopupData: emptyCallPopupData(),
     timezone: { timezoneName: '', timezoneOffset: 0 },
     countries: [],
+    localCacheControl_UserInformation: { user: null, isFetched: false },
   };
 }
 
@@ -258,14 +278,20 @@ export function countriesCallInputs(
 
 /** The screen variables that DataAction_GetLocalityTimezone sends, after CacheControl_UserInfo_WrapperResult has
     assigned the user information: the form flags and isLoadingMainData are False and CallPopupData is the default
-    record, as the flow sends them. */
+    record, as the flow sends them. ContactUsForm (the user's details), Description, MessagePrompt and
+    LocalCacheControl_UserInformation (the user record, isFetched True) go too, as in the recorded TST call; the server
+    reads In_LocalityId from the record (decision App_Menu_ContactUs Q4 (a)). */
 export function localityTimezoneCallInputs(
   state: ContactUsDetailsState,
   inputs: ContactUsDetailsInputs,
 ): ContactUsCallInputs {
+  const { user, isFetched } = state.localCacheControl_UserInformation;
   return {
+    ContactUsForm: state.contactUsForm,
     IsFormFilled: false,
     IsAnyFilled: false,
+    Description: state.description,
+    MessagePrompt: state.messagePrompt,
     isLogged: state.isLogged,
     CountryPhone: state.countryPhone,
     isSubmiting: false,
@@ -273,6 +299,7 @@ export function localityTimezoneCallInputs(
     Rate_ShowRate: state.showRate,
     Rate_UserWantToBeContacted: state.userWantToBeContacted,
     CallPopupData: emptyCallPopupData(),
+    ...(user ? { LocalCacheControl_UserInformation: { Directory_UserCurrent: user, isFetched } } : {}),
     isLoadingMainData: false,
     IgnorePolices: state.ignorePolices,
     In_ContactSubjectId: inputs.In_ContactSubjectId,
@@ -298,10 +325,12 @@ export function contactUsDetailsReducer(
     case 'countriesFetched':
       return { ...state, countries: action.countries };
     case 'userInformationFetched': {
-      // isLoadingMainData False; the form gets the user's name, email, country, locality and home number.
+      // LocalCacheControl_UserInformation = the user, isFetched True; isLoadingMainData False; the form gets the
+      // user's name, email, country, locality and home number.
       const geography = action.user.Directory_UserCurrent_Geography;
       return {
         ...state,
+        localCacheControl_UserInformation: { user: action.user, isFetched: true },
         isLoadingMainData: false,
         contactUsForm: {
           ...state.contactUsForm,
@@ -331,6 +360,26 @@ export function contactUsDetailsReducer(
       const contactUsForm = { ...state.contactUsForm, Message: action.message };
       const filled = onChange_FormInput(state.isLogged, contactUsForm, action.contactSubjectId, state.selectedRate);
       return { ...state, contactUsForm, isFormFilled: filled.isFormFilled, isAnyFilled: filled.isAnyFilled };
+    }
+    case 'formFieldSet':
+      return { ...state, contactUsForm: { ...state.contactUsForm, [action.field]: action.value } };
+    case 'formInputChanged': {
+      const filled = onChange_FormInput(
+        state.isLogged,
+        state.contactUsForm,
+        action.contactSubjectId,
+        state.selectedRate,
+      );
+      return { ...state, isFormFilled: filled.isFormFilled, isAnyFilled: filled.isAnyFilled };
+    }
+    case 'rateSelected': {
+      const filled = onChange_FormInput(state.isLogged, state.contactUsForm, action.contactSubjectId, action.rate);
+      return {
+        ...state,
+        selectedRate: action.rate,
+        isFormFilled: filled.isFormFilled,
+        isAnyFilled: filled.isAnyFilled,
+      };
     }
     case 'submitStarted':
       return { ...state, contactUsForm: trimContactUsForm(state.contactUsForm), isSubmiting: true };

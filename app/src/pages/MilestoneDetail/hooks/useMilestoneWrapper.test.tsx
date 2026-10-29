@@ -2,6 +2,7 @@ import { act, render, renderHook } from '@testing-library/react';
 import { StrictMode, type ReactNode } from 'react';
 import { MemoryRouter } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { ControllerDisposedException } from '@/legacy/os/os-exceptions';
 import { fetchGmpMilestoneHost, type GmpMilestoneHost } from '@/api/event';
 import type { MilestoneDetailInputs } from '@/pages/MilestoneDetail/inputs';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
@@ -166,13 +167,13 @@ describe('useMilestoneWrapper', () => {
     const error = new Error('Request failed with status 500');
     call.reject(error);
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(result.current.body).toEqual({ kind: 'skeleton' });
   });
 });
 
-describe('useMilestoneWrapper after an unmount and in StrictMode (decision W23)', () => {
-  it('makes the call once and writes no state when the answer comes after the unmount', async () => {
+describe('useMilestoneWrapper after an unmount and in StrictMode (flow scope, item 8)', () => {
+  it('R1: unmount while GetGmpMilestoneHost is pending: one call, no state write, nothing raised', async () => {
     const call = pendingCall();
     const { unmount } = renderFlows();
     unmount();
@@ -181,10 +182,13 @@ describe('useMilestoneWrapper after an unmount and in StrictMode (decision W23)'
     await settle();
     expect(fetchGmpMilestoneHost).toHaveBeenCalledTimes(1);
     expect(milestoneWrapperReducer).not.toHaveBeenCalled();
-    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    // Only the ignorable ControllerDisposedException reaches the flow handler, which drops it (R1).
+    expect(vi.mocked(raiseToFlowHandler).mock.calls.every(([e]) => e instanceof ControllerDisposedException)).toBe(
+      true,
+    );
   });
 
-  it('sends a failure after the unmount to the flow handler, as the old port', async () => {
+  it('R1: unmount while GetGmpMilestoneHost is pending: its failure reaches no handler and writes no state', async () => {
     const call = pendingCall();
     const { unmount } = renderFlows();
     unmount();
@@ -192,7 +196,8 @@ describe('useMilestoneWrapper after an unmount and in StrictMode (decision W23)'
     const error = new Error('Request failed with status 500');
     call.reject(error);
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).not.toHaveBeenCalledWith(error, expect.anything());
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(expect.any(ControllerDisposedException), expect.anything());
     expect(milestoneWrapperReducer).not.toHaveBeenCalled();
   });
 

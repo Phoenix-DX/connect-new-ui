@@ -41,7 +41,7 @@ import type {
 /* The MSW mocks of the test setup: the ContactFlow screens and the shared ContactByEmailForm (each sent e-mail goes to
    an in-memory collection), EmailContact (the recipients of the Orbit world), EmailTarget and LDM_Email_V2 (the LDM
    world), ContactUsDetails (the recorded time zone, an empty country list, the sent messages), MessageDetail and
-   MessageList (19 fictional messages in the collection MessageList.messages, 16 unread), the shell (the recorded unread
+   MessageList (22 fictional messages in the collection MessageList.messages, 2 unread), the shell (the recorded unread
    count: 0 public, 6 private), Directory_EntityDetailsActions (the directory cast) and Connect2_LegacyShared (the
    contacts of the hosted Orbit guests). */
 const sent = (name: string) => collection(name, () => [], 'Id');
@@ -252,8 +252,10 @@ describe('message repository: Contact Us', () => {
     ]);
   });
 
-  it('fetchCountryNames answers the countries (the mock: none)', async () => {
-    await expect(fetchCountryNames(contactUsInputs)).resolves.toEqual([]);
+  it('fetchCountryNames answers the countries (the mock: eight countries, by name)', async () => {
+    const countries = await fetchCountryNames(contactUsInputs);
+    expect(countries).toHaveLength(8);
+    expect(countries[0]).toEqual({ code: 'AR', name: 'Argentina' });
     expect(window.__osCalls).toEqual([
       expect.objectContaining({ owner: 'ContactUsDetails', action: 'DataActionDataAction_GetCountriesNames' }),
     ]);
@@ -360,10 +362,10 @@ describe('message repository: message list', () => {
   it('fetchMessages sends the block variables and answers the messages, newest first', async () => {
     const bodies = recordBodies('Connect2_LegacyShared/ScreenBlock_MessageList/DataActionGetMessages');
     const result = await fetchMessages(listVariables(), emptyList, false);
-    expect(result.messages).toHaveLength(19);
-    expect(result.messages[0]).toMatchObject({ id: '81019', title: 'Test Noti 56', isRead: false });
+    expect(result.messages).toHaveLength(20);
+    expect(result.messages[0]).toMatchObject({ id: '81022', title: 'Test Noti 2', isRead: true });
     expect(result.hasUnreadMessages).toBe(true);
-    expect(result.countUnreadMessages).toBe(16);
+    expect(result.countUnreadMessages).toBe(2);
     expect(bodies[0]).toMatchObject({
       TotalPrivate: '0',
       TotalPublic: '0',
@@ -391,7 +393,7 @@ describe('message repository: message list', () => {
     await expect(markMessageAsClear('81018', listVariables())).resolves.toEqual({
       hasUnreadMessages: true,
       isHaveMessage: true,
-      isRead: false,
+      isRead: true,
     });
     const markInputs = [
       'DeviceHardwareId',

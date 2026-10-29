@@ -1,0 +1,41 @@
+{
+ "flow": "App_CommonBlocks_Filter",
+ "screens": [],
+ "ownBlocks": [
+  "FilterSheet",
+  "FilterSheet_Icon",
+  "FilterSheet_Icon_Label",
+  "FilterSheet_OptionChoice_Item",
+  "FilterSheet_OptionList_Item",
+  "MoreActionSheet",
+  "SortSheet"
+ ],
+ "usedBlocks": [
+  "CacheControl_UserInfo_Wrapper",
+  "FilterSheet_OptionChoice_Item",
+  "FilterSheet_OptionList_Item",
+  "Notifications_ConfirmDialog"
+ ],
+ "referencedBlocks": [
+  "BackNavigationHandler",
+  "BottomSheet",
+  "Button",
+  "CacheControl_AllCountries",
+  "CacheControl_AllLocalities",
+  "Columns_Two",
+  "CustomContainer",
+  "CustomText",
+  "Icon",
+  "IconText",
+  "Input",
+  "SelectionOption_List",
+  "SkeletonSection"
+ ],
+ "clientActions": [
+  "App_CommonFilter_CheckCountry",
+  "App_CommonFilter_DefineOptionNames",
+  "GetUserInformation_Wrapper_Assign"
+ ],
+ "serverActions": [],
+ "externalSites": []
+}

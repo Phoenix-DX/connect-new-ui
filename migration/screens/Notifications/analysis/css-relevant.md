@@ -4,14 +4,15 @@ Load order of stylesheets (keep this order in the build):
 
 1. `/UBTConnect/css/_Basic.css`
 2. `/UBTConnect/css/OutSystemsReactWidgets.css`
-3. `/UBTConnect/css/UBT_AppManager.PIN.PinCode.css`
-4. `/UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css`
-5. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css`
-6. `/UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css`
-7. `/UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css`
-8. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect.css`
-9. `/UBTConnect/css/UBTConnect.App_Notifications.Notifications.css`
-10. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css`
+3. `/UBTConnect/css/UBTConnect.App_Notifications.NotificationsList.css`
+4. `/UBTConnect/css/UBT_AppManager.PIN.PinCode.css`
+5. `/UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css`
+6. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css`
+7. `/UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css`
+8. `/UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css`
+9. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect.css`
+10. `/UBTConnect/css/UBTConnect.App_Notifications.Notifications.css`
+11. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css`
 
 Rules below are those whose selector contains a class used on the captured page, grouped by the block that owns the element. Full source: `styles/bundle.css`.
 
@@ -585,6 +586,11 @@ html[data-uieditorversion^="1"] .placeholder-empty:empty {  }
 .ph:empty, .placeholder-empty:empty { display:none; }
 list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .placeholder-empty > .OSBlockWidget, .osui-tabs__content > .ph > .list.list-group, .osui-tabs__content > .placeholder-empty > .list.list-group { display:contents; }
 ```
+### .search-placeholder-ellipsis  (2 rules)
+```css
+.search-placeholder-ellipsis input:placeholder-shown, input.search-placeholder-ellipsis:placeholder-shown { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.search-placeholder-ellipsis input::placeholder, input.search-placeholder-ellipsis::placeholder { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+```
 ## BasePatterns.CustomContainer
 
 ### .background-cyan-lightest  (1 rule)
@@ -831,7 +837,7 @@ only-child > .columns-item:not(:last-child), .phone .columns.gutter-xs.phone-bre
 ```
 ## App_Notifications.NotificationsListBreakpoints
 
-### .list-group  (25 rules)
+### .list-group  (26 rules)
 ```css
 .list.list-group { overflow:hidden; position:relative; }
 .list.list-group > [data-block*=AnimatedLabel]:first-child .animated-label { margin-top:var(--space-s); }
@@ -851,16 +857,63 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 .list.list-group.overflow-horizontal { overflow-x: auto; }
 .ubt-tag-list.list.list-group { display: flex; overflow-x: scroll; -ms-overflow-style: none; /* Internet Explorer 10+ */ scrollbar-width: none; /* Firefox */ }
 .ubt-tag-list.list.list-group::-webkit-scrollbar { display: none; /* Safari and Chrome */ }
+.list.list-group.recent-search-list { display: flex; gap: var(--space-s); overflow: hidden; overflow-x: auto; /* beats the theme's overflow: hidden */ }
 .Household_GalleryCard-list.list.list-group { display: flex; justify-content: flex-start; overflow-x: scroll; -ms-overflow-style: none; /* Internet Explorer 10+ */ scrollbar-width: none; /* Firefox */ }
 .Household_GalleryCard-list.list.list-group::-webkit-scrollbar { display: none; /* Safari and Chrome */ }
 .calendar-list.list.list-group { display: flex; flex-direction: row; overflow-x: auto !important; scroll-snap-type: x mandatory; /* scroll-behavior: smooth;*/ scroll-snap-points-x: repeat(100vw); -webkit-overflow-scrolling: touch; /* border-bottom: 1px solid var(--color-neutral-11);*/ background-color: white; }
 .calendar-list.list.list-group.calendar-list--day-view { /* border-bottom:0*/ }
 .tag-list .list.list-group { display: flex; flex-direction:row; overflow: hidden; }
 .tag-list.recent-search .list.list-group { flex-wrap: wrap; }
-.list.list-group.updates-list { overflow: visible; }
 ```
 ## App_Notifications.NotificationsList
 
+### .ListItemContainer  (1 rule)
+```css
+.ListItemContainer .list-item { padding: 0px !important; border-bottom: 0px; }
+```
+### .list-item  (15 rules)
+```css
+[data-list-item] .list-item { width: 50%; }
+.list-item { display: block; }
+.ListItemContainer .list-item { padding: 0px !important; border-bottom: 0px; }
+.list-item { border-bottom:var(--border-size-s) solid var(--border-color-neutral-4, var(--color-neutral-4)); overflow:hidden; padding:var(--space-m); position:relative; }
+.list-item:last-of-type { border-bottom:none; }
+.list-item.list-item-no-click-effect .scale-animation { background:transparent !important; opacity:0 !important; }
+.list-item .scale-animation { -webkit-animation:list-item-scale-animation 1500ms; animation:list-item-scale-animation 1500ms; background-color:rgba(0, 0, 0, 0.1); border-radius:100px; display:block; height:10px; left:50%; pointer-events:none; position:absolute; top:50%; width:10px; will-change:transform; z-index:var(--layer-global-screen); }
+.list .list-item { background-color:var(--background-color-neutral-0, var(--color-neutral-0)); }
+.layout-native .list-item { padding:var(--space-base); }
+.desktop .list .list-item:hover:not(.list-item-no-hover):not(.list-item-selected) { background-color:var(--background-color-neutral-2, var(--color-neutral-2)); }
+s-high-contrast.desktop .list .list-item:hover, .os-high-contrast.desktop .list .list-item-selected, .os-high-contrast.tablet.landscape .list .list-item:hover, .os-high-contrast.tablet.landscape .list .list-item-selected { position:relative; }
+t .list-item:hover:before, .os-high-contrast.desktop .list .list-item-selected:before, .os-high-contrast.tablet.landscape .list .list-item:hover:before, .os-high-contrast.tablet.landscape .list .list-item-selected:before { border:var(--border-size-s) solid var(--border-color-focus-outer, var(--color-focus-outer)); border-right-width:0; border-left-width:var(--border-size-l); bottom:0; content:""; display:block; left:0; pointer-events:none; position:absolute; right:0; top:0; }
+.split-screen-wrapper .split-left .list-item { cursor:pointer; }
+.has-accessible-features .split-left .list-item:focus { -webkit-box-shadow:none; box-shadow:none; }
+.has-accessible-features .split-left .list-item:focus:before { border:3px solid var(--border-color-focus-outer, var(--color-focus-outer)); bottom:0; content:""; left:0; position:absolute; right:0; top:0; }
+```
+### .list-item-container  (2 rules)
+```css
+[data-list-item] .list-item-container { display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; width: 200%; }
+[data-list-item] .list-item-container.list-item-animating { transition: all .5s ease; }
+```
+### .list-item-float-left  (2 rules)
+```css
+[data-list-item] .list-item-float-left { float: left; -webkit-box-pack: start; -webkit-justify-content: flex-start; -ms-flex-pack: start; justify-content: flex-start; }
+.is-rtl [data-list-item] .list-item-float-left { float:right; }
+```
+### .list-item-left-actions  (4 rules)
+```css
+[data-list-item] .list-item-animating .list-item-left-actions, [data-list-item] .list-item-animating .list-item-right-actions { width: 0; transition: all .5s ease; }
+[data-list-item] .list-item-left-actions, [data-list-item] .list-item-right-actions { width: 0; transition: none; }
+[data-list-item] .list-item-left-actions, [data-list-item] .list-item-right-actions { display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; }
+[data-list-item] .list-item-full-swipe .list-item-right-actions [data-list-item-action]:not(:last-child), [data-list-item] .list-item-full-swipe .list-item-left-actions [data-list-item-action]:not(:first-child) { -webkit-box-flex:0; -webkit-flex:0; -ms-flex:0; flex:0; }
+```
+### .list-item-right-actions  (5 rules)
+```css
+[data-list-item] .list-item-animating .list-item-left-actions, [data-list-item] .list-item-animating .list-item-right-actions { width: 0; transition: all .5s ease; }
+[data-list-item] .list-item-left-actions, [data-list-item] .list-item-right-actions { width: 0; transition: none; }
+[data-list-item] .list-item-left-actions, [data-list-item] .list-item-right-actions { display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; }
+[data-list-item] .list-item-right-actions { -webkit-box-pack: end; -webkit-justify-content: flex-end; -ms-flex-pack: end; justify-content: flex-end; }
+[data-list-item] .list-item-full-swipe .list-item-right-actions [data-list-item-action]:not(:last-child), [data-list-item] .list-item-full-swipe .list-item-left-actions [data-list-item-action]:not(:first-child) { -webkit-box-flex:0; -webkit-flex:0; -ms-flex:0; flex:0; }
+```
 ### .updates-list  (1 rule)
 ```css
 .list.list-group.updates-list { overflow: visible; }
@@ -944,6 +997,44 @@ ld > .columns-item:not(:last-child), .tablet .columns.gutter-none.tablet-break-m
 .icon-badge div:first-child:empty {  }
 .layout-native .bottom-bar-wrapper .icon-badge .icon { font-size:inherit; }
 .icon-badge { display: inherit; }
+```
+## (page)
+
+### .active-screen  (7 rules)
+```css
+.active-screen .osui-sidebar--is-open { opacity:1; -webkit-transform:none; -ms-transform:none; transform:none; -webkit-transition:-webkit-transform 330ms ease-out; transition:-webkit-transform 330ms ease-out; transition:transform 330ms ease-out; transition:transform 330ms ease-out, -webkit-transform 330ms ease-out; will-change:transform; }
+.active-screen .osui-sidebar--is-open.osui-sidebar--has-overlay::before { opacity:1; pointer-events:initial; }
+.os-high-contrast .active-screen .osui-sidebar--is-open { border-left:var(--border-size-m) solid var(--border-color-focus-outer, var(--color-focus-outer)); border-right:var(--border-size-m) solid var(--border-color-focus-outer, var(--color-focus-outer)); }
+.active-screen.screen-container .sidebar.sidebar-open { -webkit-transform:none; -ms-transform:none; transform:none; -webkit-transition:all 330ms ease-out; transition:all 330ms ease-out; will-change:transform; }
+keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section *::after, .ubt-skeleton-section input, .ubt-skeleton-section .osui-dropdown-search .vscomp-ele-wrapper, .ubt-skeleton-section .ubt-icon img { visibility: hidden; transition-property: visibility; transition-duration: 0ms; }
+.active-screen:has(.ubt-pincode.connect-pin-screen.ubt-pin-overlay) .osui-bottom-sheet { z-index: 0; }
+body:has(.slide-from-left-leave:not(.active-screen)) .popup-backdrop { z-index: 1000; }
+```
+### .osx  (3 rules)
+```css
+.osx.tablet .layout-top:not(.menu-visible) .header-navigation, .osx.phone .layout-top:not(.menu-visible) .header-navigation { pointer-events:none; }
+.osx .vscomp-search-container .vscomp-search-clear, .ios .vscomp-search-container .vscomp-search-clear { line-height:1.1; }
+accordion .osui-tabs__header__indicator, .osx.chrome .section-expandable .osui-tabs__header__indicator, .osx.edge .osui-accordion .osui-tabs__header__indicator, .osx.edge .section-expandable .osui-tabs__header__indicator { -webkit-perspective:1000px; perspective:1000px; }
+```
+### .portrait  (5 rules)
+```css
+.tablet.portrait .layout-side.layout-native.aside-expandable .main .header { z-index:var(--layer-global-navigation); }
+.android.portrait .app-menu-content { padding-top:max(var(--status-bar-height, 0px), var(--safe-area-inset-top, 0px)); }
+.is-rtl:not(.portrait) .layout-side.layout-native.aside-visible .app-menu-content { right:0; }
+.phone.ios.portrait .layout-native .floating-actions-wrapper { margin-bottom:var(--os-safe-area-bottom); }
+.phone.portrait .osui-dropdown-serverside--at-content .osui-dropdown-serverside__balloon-container { --ballon-top-margin-value:calc(var(--header-size) + var(--header-size-content) + 5vw); }
+```
+### .screen-container  (9 rules)
+```css
+.screen-container { overflow-y: auto; height: 100vh; }
+html, body, #reactContainer, #transitionContainer, .screen-container { height:100%; }
+.screen-container { overflow-x:hidden; overflow-y:auto; }
+.active-screen.screen-container .sidebar.sidebar-open { -webkit-transform:none; -ms-transform:none; transform:none; -webkit-transition:all 330ms ease-out; transition:all 330ms ease-out; will-change:transform; }
+.fade-leave.screen-container { position:fixed; top:0; width:100%; z-index:var(--layer-global-negative); }
+keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section *::after, .ubt-skeleton-section input, .ubt-skeleton-section .osui-dropdown-search .vscomp-ele-wrapper, .ubt-skeleton-section .ubt-icon img { visibility: hidden; transition-property: visibility; transition-duration: 0ms; }
+.screen-container.slide-from-right-enter-active ~ .dx-bottom-bar-slider, .screen-container.slide-from-left-enter-active ~ .dx-bottom-bar-slider { z-index: 1000; }
+.screen-container .layout.ubt-layout-home.ubt-profile-screen { --header-size: 50px; }
+.screen-container:has(.ubt-layout-home, .ubt-layout-main.layout-sticky-title, .ubt-layout-main, .ubt-layout-detail):has(.osui-bottom-sheet.osui-bottom-sheet--is-open) { overflow: hidden; touch-action: none; }
 ```
 ## Layouts.Layout_LoginFlow
 
@@ -1143,7 +1234,7 @@ ottom-sheet--is-active .osui-bottom-sheet__content .osui-datepicker, .osui-botto
 .osui-bottom-sheet__content *:has(.connect-share-sheet__fill-parent-end) { flex: 1; }
 .connect-share-sheet .osui-bottom-sheet__content .connect-share-sheet__results { flex: 1 1 auto; min-height: 0; overflow-y: auto; }
 ```
-### .osui-bottom-sheet__header  (9 rules)
+### .osui-bottom-sheet__header  (10 rules)
 ```css
 .osui-bottom-sheet--has-handler .osui-bottom-sheet__header::before { background:var(--background-color-neutral-5, var(--color-neutral-5)); border-radius:100px; content:""; height:4px; left:50%; position:absolute; top:var(--space-base); -webkit-transform:translateX(-50%); -ms-transform:translateX(-50%); transform:translateX(-50%); width:40px; }
 .osui-bottom-sheet__header { position:relative; }
@@ -1154,6 +1245,7 @@ ottom-sheet--is-active .osui-bottom-sheet__content .osui-datepicker, .osui-botto
 /* disabling due to issues with Sharings. .ubt-bottom-sheet.custom-padding .osui-bottom-sheet__header, .ubt-bottom-sheet.osui-bottom-sheet { --osui-bottom-sheet-layer: 103; }
 .ubt-bottom-sheet.custom-padding.ubt-bottom-sheet--handler-preview .osui-bottom-sheet__header, .ubt-bottom-sheet.osui-bottom-sheet.ubt-bottom-sheet--handler-preview { /*ensure the bottom bar stays on top of this*/ --osui-bottom-sheet-layer: 1006; }
 .connect-share-sheet .osui-bottom-sheet__header__top-bar::before, .connect-share-sheet .osui-bottom-sheet__header::after { display: none; }
+.moreActionContainer .osui-bottom-sheet__header::after { height: 20px; }
 ```
 ### .osui-bottom-sheet__header__top-bar  (9 rules)
 ```css
@@ -1259,47 +1351,15 @@ ottom-sheet--is-active .osui-bottom-sheet__content .osui-datepicker, .osui-botto
 ```css
 .ubt-button__content { display:contents; }
 ```
-## (page)
+## App_CommonBlocks_Filter.MoreActionSheet
 
-### .active-screen  (7 rules)
+### .moreActionContainer  (1 rule)
 ```css
-.active-screen .osui-sidebar--is-open { opacity:1; -webkit-transform:none; -ms-transform:none; transform:none; -webkit-transition:-webkit-transform 330ms ease-out; transition:-webkit-transform 330ms ease-out; transition:transform 330ms ease-out; transition:transform 330ms ease-out, -webkit-transform 330ms ease-out; will-change:transform; }
-.active-screen .osui-sidebar--is-open.osui-sidebar--has-overlay::before { opacity:1; pointer-events:initial; }
-.os-high-contrast .active-screen .osui-sidebar--is-open { border-left:var(--border-size-m) solid var(--border-color-focus-outer, var(--color-focus-outer)); border-right:var(--border-size-m) solid var(--border-color-focus-outer, var(--color-focus-outer)); }
-.active-screen.screen-container .sidebar.sidebar-open { -webkit-transform:none; -ms-transform:none; transform:none; -webkit-transition:all 330ms ease-out; transition:all 330ms ease-out; will-change:transform; }
-keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section *::after, .ubt-skeleton-section input, .ubt-skeleton-section .osui-dropdown-search .vscomp-ele-wrapper, .ubt-skeleton-section .ubt-icon img { visibility: hidden; transition-property: visibility; transition-duration: 0ms; }
-.active-screen:has(.ubt-pincode.connect-pin-screen.ubt-pin-overlay) .osui-bottom-sheet { z-index: 0; }
-body:has(.slide-from-left-leave:not(.active-screen)) .popup-backdrop { z-index: 1000; }
-```
-### .osx  (3 rules)
-```css
-.osx.tablet .layout-top:not(.menu-visible) .header-navigation, .osx.phone .layout-top:not(.menu-visible) .header-navigation { pointer-events:none; }
-.osx .vscomp-search-container .vscomp-search-clear, .ios .vscomp-search-container .vscomp-search-clear { line-height:1.1; }
-accordion .osui-tabs__header__indicator, .osx.chrome .section-expandable .osui-tabs__header__indicator, .osx.edge .osui-accordion .osui-tabs__header__indicator, .osx.edge .section-expandable .osui-tabs__header__indicator { -webkit-perspective:1000px; perspective:1000px; }
-```
-### .portrait  (5 rules)
-```css
-.tablet.portrait .layout-side.layout-native.aside-expandable .main .header { z-index:var(--layer-global-navigation); }
-.android.portrait .app-menu-content { padding-top:max(var(--status-bar-height, 0px), var(--safe-area-inset-top, 0px)); }
-.is-rtl:not(.portrait) .layout-side.layout-native.aside-visible .app-menu-content { right:0; }
-.phone.ios.portrait .layout-native .floating-actions-wrapper { margin-bottom:var(--os-safe-area-bottom); }
-.phone.portrait .osui-dropdown-serverside--at-content .osui-dropdown-serverside__balloon-container { --ballon-top-margin-value:calc(var(--header-size) + var(--header-size-content) + 5vw); }
-```
-### .screen-container  (9 rules)
-```css
-.screen-container { overflow-y: auto; height: 100vh; }
-html, body, #reactContainer, #transitionContainer, .screen-container { height:100%; }
-.screen-container { overflow-x:hidden; overflow-y:auto; }
-.active-screen.screen-container .sidebar.sidebar-open { -webkit-transform:none; -ms-transform:none; transform:none; -webkit-transition:all 330ms ease-out; transition:all 330ms ease-out; will-change:transform; }
-.fade-leave.screen-container { position:fixed; top:0; width:100%; z-index:var(--layer-global-negative); }
-keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section *::after, .ubt-skeleton-section input, .ubt-skeleton-section .osui-dropdown-search .vscomp-ele-wrapper, .ubt-skeleton-section .ubt-icon img { visibility: hidden; transition-property: visibility; transition-duration: 0ms; }
-.screen-container.slide-from-right-enter-active ~ .dx-bottom-bar-slider, .screen-container.slide-from-left-enter-active ~ .dx-bottom-bar-slider { z-index: 1000; }
-.screen-container .layout.ubt-layout-home.ubt-profile-screen { --header-size: 50px; }
-.screen-container:has(.ubt-layout-home, .ubt-layout-main.layout-sticky-title, .ubt-layout-main, .ubt-layout-detail):has(.osui-bottom-sheet.osui-bottom-sheet--is-open) { overflow: hidden; touch-action: none; }
+.moreActionContainer .osui-bottom-sheet__header::after { height: 20px; }
 ```
 ## Generic utility classes (too many rules to list; see bundle.css)
 
-`.btn` (61), `.columns` (82), `.columns-item` (71), `.form-control` (75), `.header` (51), `.layout` (53), `.layout-native` (241), `.layout-side` (89), `.list` (93), `.phone` (235)
+`.btn` (61), `.columns` (82), `.columns-item` (71), `.form-control` (79), `.header` (51), `.layout` (53), `.layout-native` (241), `.layout-side` (89), `.list` (94), `.phone` (235)
 
 ## Design tokens referenced by the rules above
 

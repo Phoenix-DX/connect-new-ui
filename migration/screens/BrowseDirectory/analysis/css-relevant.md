@@ -475,7 +475,7 @@ ld > .columns-item:not(:last-child), .tablet .columns.gutter-base.tablet-break-m
 -child > .columns-item:not(:last-child), .phone .columns.gutter-base.phone-break-middle:only-child > .columns-item:not(:last-child), .phone .columns.gutter-base.phone-break-all:only-child > .columns-item:not(:last-child) { margin-bottom:var(--space-base); }
 .columns.ubt-columns.gutter-base { gap: var(--space-base) }
 ```
-### .list-group  (24 rules)
+### .list-group  (25 rules)
 ```css
 .list.list-group { overflow:hidden; position:relative; }
 .list.list-group > [data-block*=AnimatedLabel]:first-child .animated-label { margin-top:var(--space-s); }
@@ -495,6 +495,7 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 .list.list-group.overflow-horizontal { overflow-x: auto; }
 .ubt-tag-list.list.list-group { display: flex; overflow-x: scroll; -ms-overflow-style: none; /* Internet Explorer 10+ */ scrollbar-width: none; /* Firefox */ }
 .ubt-tag-list.list.list-group::-webkit-scrollbar { display: none; /* Safari and Chrome */ }
+.list.list-group.recent-search-list { display: flex; gap: var(--space-s); overflow: hidden; overflow-x: auto; /* beats the theme's overflow: hidden */ }
 .Household_GalleryCard-list.list.list-group { display: flex; justify-content: flex-start; overflow-x: scroll; -ms-overflow-style: none; /* Internet Explorer 10+ */ scrollbar-width: none; /* Firefox */ }
 .Household_GalleryCard-list.list.list-group::-webkit-scrollbar { display: none; /* Safari and Chrome */ }
 .calendar-list.list.list-group { display: flex; flex-direction: row; overflow-x: auto !important; scroll-snap-type: x mandatory; /* scroll-behavior: smooth;*/ scroll-snap-points-x: repeat(100vw); -webkit-overflow-scrolling: touch; /* border-bottom: 1px solid var(--color-neutral-11);*/ background-color: white; }
@@ -905,6 +906,11 @@ html[data-uieditorversion^="1"] .placeholder-empty:empty {  }
 .ph:empty, .placeholder-empty:empty { display:none; }
 list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .placeholder-empty > .OSBlockWidget, .osui-tabs__content > .ph > .list.list-group, .osui-tabs__content > .placeholder-empty > .list.list-group { display:contents; }
 ```
+### .search-placeholder-ellipsis  (2 rules)
+```css
+.search-placeholder-ellipsis input:placeholder-shown, input.search-placeholder-ellipsis:placeholder-shown { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.search-placeholder-ellipsis input::placeholder, input.search-placeholder-ellipsis::placeholder { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+```
 ## ConnectPatterns.SkeletonSection
 
 ### .list--gap-s  (5 rules)
@@ -1158,7 +1164,7 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 ```
 ## Generic utility classes (too many rules to list; see bundle.css)
 
-`.active` (44), `.columns` (82), `.columns-item` (71), `.form-control` (75), `.header` (51), `.layout` (53), `.layout-native` (241), `.layout-side` (89), `.list` (92), `.phone` (235)
+`.active` (44), `.columns` (82), `.columns-item` (71), `.form-control` (79), `.header` (51), `.layout` (53), `.layout-native` (241), `.layout-side` (89), `.list` (93), `.phone` (235)
 
 ## Design tokens referenced by the rules above
 

@@ -6,14 +6,15 @@ Load order of stylesheets (keep this order in the build):
 2. `/UBTConnect/css/OutSystemsReactWidgets.css`
 3. `/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css`
 4. `/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Note_Item.css`
-5. `/UBTConnect/css/UBTConnect.Directory_Caroussel.EntitiesCarousel.css`
-6. `/UBTConnect/css/UBT_AppManager.PIN.PinCode.css`
-7. `/UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css`
-8. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css`
-9. `/UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css`
-10. `/UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css`
-11. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect.css`
-12. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css`
+5. `/UBTConnect/css/UBTConnect_Utils.CW_Notes.NotesSheet.css`
+6. `/UBTConnect/css/UBTConnect.Directory_Caroussel.EntitiesCarousel.css`
+7. `/UBTConnect/css/UBT_AppManager.PIN.PinCode.css`
+8. `/UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css`
+9. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css`
+10. `/UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css`
+11. `/UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css`
+12. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect.css`
+13. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css`
 
 Rules below are those whose selector contains a class used on the captured page, grouped by the block that owns the element. Full source: `styles/bundle.css`.
 
@@ -302,10 +303,6 @@ tive .header-right, .ubt-layout-main.layout-native .header-right, .phone .ubt-la
 ```css
 .connect-icon-call:before { content: "\f08b"; }
 ```
-### .connect-icon-check  (1 rule)
-```css
-.connect-icon-check:before { content: "\f087"; }
-```
 ### .connect-icon-chevron_right  (1 rule)
 ```css
 .connect-icon-chevron_right:before { content: "\f07d"; }
@@ -480,7 +477,7 @@ input.OSFillParent.calendar-input { display:none; }
 ```css
 .splide:not(.is-overflow) .splide__pagination { display:none; }
 ```
-### .list-group  (24 rules)
+### .list-group  (25 rules)
 ```css
 .list.list-group { overflow:hidden; position:relative; }
 .list.list-group > [data-block*=AnimatedLabel]:first-child .animated-label { margin-top:var(--space-s); }
@@ -500,6 +497,7 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 .list.list-group.overflow-horizontal { overflow-x: auto; }
 .ubt-tag-list.list.list-group { display: flex; overflow-x: scroll; -ms-overflow-style: none; /* Internet Explorer 10+ */ scrollbar-width: none; /* Firefox */ }
 .ubt-tag-list.list.list-group::-webkit-scrollbar { display: none; /* Safari and Chrome */ }
+.list.list-group.recent-search-list { display: flex; gap: var(--space-s); overflow: hidden; overflow-x: auto; /* beats the theme's overflow: hidden */ }
 .Household_GalleryCard-list.list.list-group { display: flex; justify-content: flex-start; overflow-x: scroll; -ms-overflow-style: none; /* Internet Explorer 10+ */ scrollbar-width: none; /* Firefox */ }
 .Household_GalleryCard-list.list.list-group::-webkit-scrollbar { display: none; /* Safari and Chrome */ }
 .calendar-list.list.list-group { display: flex; flex-direction: row; overflow-x: auto !important; scroll-snap-type: x mandatory; /* scroll-behavior: smooth;*/ scroll-snap-points-x: repeat(100vw); -webkit-overflow-scrolling: touch; /* border-bottom: 1px solid var(--color-neutral-11);*/ background-color: white; }
@@ -507,7 +505,7 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 .tag-list .list.list-group { display: flex; flex-direction:row; overflow: hidden; }
 .tag-list.recent-search .list.list-group { flex-wrap: wrap; }
 ```
-### .osui-carousel  (18 rules)
+### .osui-carousel  (17 rules)
 ```css
 .osui-carousel { --osui-carousel-track-width:100%; --osui-carousel-pagination-margin:30px; }
 .osui-carousel .splide__arrow { background-color:var(--background-color-neutral-0, var(--color-neutral-0)); -webkit-box-shadow:var(--shadow-xs); box-shadow:var(--shadow-xs); height:40px; opacity:1; -webkit-transition:opacity 150ms linear; transition:opacity 150ms linear; width:40px; will-change:opacity; z-index:var(--layer-local-tier-1); }
@@ -526,7 +524,6 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 rea-content.horizontal-scroll .osui-carousel .list.list-group, .scrollable-area-content.vertical-scroll .osui-deprecated.carousel .list.list-group, .scrollable-area-content.vertical-scroll .osui-carousel .list.list-group { overflow-x:initial; overflow-y:initial; }
 .photobook-carousel .osui-carousel .splide .photobook-carousel-foreground-image img { object-position: center center; object-fit: contain; }
 .photobook-carousel .osui-carousel .splide .photobook-carousel-background-image img { object-position: center center; object-fit: cover; }
-.ubt-services-carousel .osui-carousel .splide img { -o-object-fit:uset; object-fit:unset; }
 ```
 ### .osui-carousel__content  (3 rules)
 ```css
@@ -539,7 +536,7 @@ rea-content.horizontal-scroll .osui-carousel .list.list-group, .scrollable-area-
 .osui-carousel__track { max-width:100%; width:var(--osui-carousel-track-width); z-index:var(--layer-global-screen); }
 .osui-carousel__track {  }
 ```
-### .splide  (20 rules)
+### .splide  (19 rules)
 ```css
 .splide.is-initialized:not(.is-active) .splide__list { display:block; }
 .splide:not(.is-overflow) .splide__pagination { display:none; }
@@ -560,7 +557,6 @@ rea-content.horizontal-scroll .osui-carousel .list.list-group, .scrollable-area-
 .is-rtl .splide.splide--rtl { direction:rtl; }
 .photobook-carousel .osui-carousel .splide .photobook-carousel-foreground-image img { object-position: center center; object-fit: contain; }
 .photobook-carousel .osui-carousel .splide .photobook-carousel-background-image img { object-position: center center; object-fit: cover; }
-.ubt-services-carousel .osui-carousel .splide img { -o-object-fit:uset; object-fit:unset; }
 ```
 ### .splide--draggable  (1 rule)
 ```css
@@ -898,12 +894,6 @@ rea-content.horizontal-scroll .osui-carousel .list.list-group, .scrollable-area-
 .ubt-image-card__background-image img { height: 100%; width: 100%; object-fit: cover; object-position: center center; }
 .ubt-image-card__background-image .ubt-unavailable-image img { height: 36px; width:36px; }
 ```
-### .ubt-image-card__bookmarked  (3 rules)
-```css
-.ubt-icon, .ubt-image-card__bookmarked:before, .ubt-statistics-item__bookmarked:before, .ubt-locality-contact-item__bookmarked:before { /* Use !important to prevent extensions from overriding this font. */ font-family: "connect-icon" !important; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-.ubt-image-card__bookmarked:before { content: "\f087"; background-color: var(--color-primary); width: var(--ubt-icon-size); height: var(--ubt-icon-size); position: absolute; right: 0; color: var(--color-neutral-0); display: flex; justify-content: center; align-items: center; border: var(--border-size-s) solid var(--color-primary); border-bottom-left-radius: var(--border-radius-medium); }
-.ubt-image-card__bookmarked.bookmark--rounded:before { border-top-right-radius: var(--border-radius-large); }
-```
 ### .ubt-image-card__content  (1 rule)
 ```css
 .ubt-image-card__content { margin-top: max(calc(var(--avatar-image-size) + var(--_avatar-image-margin-top)), 0px) }
@@ -1173,6 +1163,41 @@ html[data-uieditorversion^="1"] .placeholder-empty:empty {  }
 .ph:empty, .placeholder-empty:empty { display:none; }
 list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .placeholder-empty > .OSBlockWidget, .osui-tabs__content > .ph > .list.list-group, .osui-tabs__content > .placeholder-empty > .list.list-group { display:contents; }
 ```
+## OutSystemsUIOverrides.IconBadge
+
+### .icon-badge  (7 rules)
+```css
+.icon-badge { display:inline-block; position:relative; }
+.icon-badge .badge { left:45%; position:absolute; top:0; border-radius:var(--border-radius-rounded); font-size:var(--font-size-xs); height:18px; min-width:18px; padding:var(--space-none) var(--space-xs); -webkit-transform:translateY(-40%); -ms-transform:translateY(-40%); transform:translateY(-40%); white-space:nowrap; }
+.icon-badge .badge [data-expression] { white-space:nowrap; }
+.icon-badge .icon { font-size:var(--font-size-h4); }
+.icon-badge div:first-child:empty {  }
+.layout-native .bottom-bar-wrapper .icon-badge .icon { font-size:inherit; }
+.icon-badge { display: inherit; }
+```
+## OutSystemsUIOverrides.Badge
+
+### .background-red  (1 rule)
+```css
+.background-red { background-color:var(--background-color-red, var(--color-red)); }
+```
+### .badge  (9 rules)
+```css
+.badge { -webkit-box-align:center; -ms-flex-align:center; align-items:center; color:var(--text-color-neutral-0, var(--color-neutral-0)); display:-webkit-inline-box; display:-ms-inline-flexbox; display:inline-flex; font-weight:var(--font-semi-bold); height:32px; -webkit-box-pack:center; -ms-flex-pack:center; justify-content:center; line-height:1; min-width:32px; }
+.badge.background-neutral-0 { color:var(--text-color-primary, var(--color-primary)); }
+.badge.background-neutral-1, .badge.background-neutral-2, .badge.background-neutral-3, .badge.background-neutral-4 { color:var(--text-color-neutral-9, var(--color-neutral-9)); }
+.badge.background-transparent { color:var(--text-color-primary, var(--color-primary)); }
+.badge span { width:auto; }
+.icon-badge .badge { left:45%; position:absolute; top:0; border-radius:var(--border-radius-rounded); font-size:var(--font-size-xs); height:18px; min-width:18px; padding:var(--space-none) var(--space-xs); -webkit-transform:translateY(-40%); -ms-transform:translateY(-40%); transform:translateY(-40%); white-space:nowrap; }
+.icon-badge .badge [data-expression] { white-space:nowrap; }
+an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section .ubt-icon:not(.ignore-loading), .ubt-skeleton-section .form > div, .ubt-skeleton-section .osui-dropdown-search, .ubt-skeleton-section .badge { background: var(--ubt-background-skeleton-light); animation: var(--ubt-skeleton-animation); border-color: var(--ubt-background-skeleton-light) }
+.bottom-bar-wrapper .badge { top: 20%; }
+```
+### .ubt-badge  (2 rules)
+```css
+.ubt-badge.badge-xs { font-size: var(--font-size-xxs); height: 16px; min-width: 16px; width: 16px; }
+.OSBlockWidget:has(> .ubt-badge) { display: flex; }
+```
 ## (page)
 
 ### .active-screen  (7 rules)
@@ -1246,41 +1271,6 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 .screen-container.slide-from-right-enter-active ~ .dx-bottom-bar-slider, .screen-container.slide-from-left-enter-active ~ .dx-bottom-bar-slider { z-index: 1000; }
 .screen-container .layout.ubt-layout-home.ubt-profile-screen { --header-size: 50px; }
 .screen-container:has(.ubt-layout-home, .ubt-layout-main.layout-sticky-title, .ubt-layout-main, .ubt-layout-detail):has(.osui-bottom-sheet.osui-bottom-sheet--is-open) { overflow: hidden; touch-action: none; }
-```
-## OutSystemsUIOverrides.IconBadge
-
-### .icon-badge  (7 rules)
-```css
-.icon-badge { display:inline-block; position:relative; }
-.icon-badge .badge { left:45%; position:absolute; top:0; border-radius:var(--border-radius-rounded); font-size:var(--font-size-xs); height:18px; min-width:18px; padding:var(--space-none) var(--space-xs); -webkit-transform:translateY(-40%); -ms-transform:translateY(-40%); transform:translateY(-40%); white-space:nowrap; }
-.icon-badge .badge [data-expression] { white-space:nowrap; }
-.icon-badge .icon { font-size:var(--font-size-h4); }
-.icon-badge div:first-child:empty {  }
-.layout-native .bottom-bar-wrapper .icon-badge .icon { font-size:inherit; }
-.icon-badge { display: inherit; }
-```
-## OutSystemsUIOverrides.Badge
-
-### .background-red  (1 rule)
-```css
-.background-red { background-color:var(--background-color-red, var(--color-red)); }
-```
-### .badge  (9 rules)
-```css
-.badge { -webkit-box-align:center; -ms-flex-align:center; align-items:center; color:var(--text-color-neutral-0, var(--color-neutral-0)); display:-webkit-inline-box; display:-ms-inline-flexbox; display:inline-flex; font-weight:var(--font-semi-bold); height:32px; -webkit-box-pack:center; -ms-flex-pack:center; justify-content:center; line-height:1; min-width:32px; }
-.badge.background-neutral-0 { color:var(--text-color-primary, var(--color-primary)); }
-.badge.background-neutral-1, .badge.background-neutral-2, .badge.background-neutral-3, .badge.background-neutral-4 { color:var(--text-color-neutral-9, var(--color-neutral-9)); }
-.badge.background-transparent { color:var(--text-color-primary, var(--color-primary)); }
-.badge span { width:auto; }
-.icon-badge .badge { left:45%; position:absolute; top:0; border-radius:var(--border-radius-rounded); font-size:var(--font-size-xs); height:18px; min-width:18px; padding:var(--space-none) var(--space-xs); -webkit-transform:translateY(-40%); -ms-transform:translateY(-40%); transform:translateY(-40%); white-space:nowrap; }
-.icon-badge .badge [data-expression] { white-space:nowrap; }
-an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section .ubt-icon:not(.ignore-loading), .ubt-skeleton-section .form > div, .ubt-skeleton-section .osui-dropdown-search, .ubt-skeleton-section .badge { background: var(--ubt-background-skeleton-light); animation: var(--ubt-skeleton-animation); border-color: var(--ubt-background-skeleton-light) }
-.bottom-bar-wrapper .badge { top: 20%; }
-```
-### .ubt-badge  (2 rules)
-```css
-.ubt-badge.badge-xs { font-size: var(--font-size-xxs); height: 16px; min-width: 16px; width: 16px; }
-.OSBlockWidget:has(> .ubt-badge) { display: flex; }
 ```
 ## Layouts.Layout_LoginFlow
 
@@ -1396,7 +1386,7 @@ an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section 
 ```
 ## Generic utility classes (too many rules to list; see bundle.css)
 
-`.columns` (82), `.columns-item` (71), `.header` (51), `.layout` (55), `.layout-native` (241), `.layout-side` (89), `.list` (92), `.phone` (235)
+`.columns` (82), `.columns-item` (71), `.header` (51), `.layout` (55), `.layout-native` (241), `.layout-side` (89), `.list` (93), `.phone` (235)
 
 ## Design tokens referenced by the rules above
 

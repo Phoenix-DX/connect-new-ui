@@ -10,16 +10,18 @@ import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter'
 import { signIn, signOut, signedOutRemotely } from '@/platform/session/auth';
 import { getSessionStatus, subscribeSessionStatus } from '@/platform/session/machine';
 import { registerPin } from '@/platform/session/pin';
-import { getClientVar, getShellState, readPin } from '@/platform/session/session';
+import { getClientVar, getShellState, readPin, setClientVar } from '@/platform/session/session';
 import { calledActions, freshPage } from '@/test/testSupport';
 import {
   CommunicationException,
   InvalidLoginException,
   NotRegisteredException,
   SecurityException,
+  SystemException,
   UserException,
   raiseToFlowHandler,
 } from './exceptions';
+import { IgnorableSystemException, ViewHasChangedException } from './os-exceptions';
 
 /* The App_Common flow handler (raiseToFlowHandler), App_Common OnException in
    migration/shell/sources/UBTConnect.App_Common.controller.js (ACF): the SecurityException branch (ACF:61-89, G1) and
@@ -48,8 +50,20 @@ beforeEach(async () => {
 });
 
 afterEach(() => {
+  vi.unstubAllGlobals();
   window.history.replaceState(null, '', '/');
 });
+
+/** The window location: the error page is a full window change (navigateToErrorPage → changeWindowLocation, P1). */
+function stubLocation(): { assign: ReturnType<typeof vi.fn> } {
+  const location = { assign: vi.fn() };
+  vi.stubGlobal('location', location);
+  return location;
+}
+
+/** A sessionStorage value of the error page, in the runtime format ("$OS_UBTConnect$<key>", JSON; W38048). */
+const storedForErrorPage = (key: string): unknown =>
+  JSON.parse(sessionStorage.getItem(`$OS_UBTConnect$${key}`) ?? 'null');
 
 /** A signed-in device with a local PIN; the calls of the sign-in are cleared. */
 async function signedInDevice(): Promise<void> {
@@ -211,5 +225,142 @@ describe('other exceptions keep their branches', () => {
     expect(getShellState()).toMatchObject({ signedIn: true });
     expect(signedOutRemotely).not.toHaveBeenCalled();
     expect(pageRedirect).not.toHaveBeenCalled();
+  });
+});
+
+describe('UBTConnect.BubbleCommunicationException, the first branch (ACF:31-44, App_Common F1)', () => {
+  const bubbled = (message: string) => new UserException(message, 'UBTConnect.BubbleCommunicationException');
+
+  test('online: ShowCommunicationExceptionMessage ("Service Interruption"), not the raw message of the request', async () => {
+    await signedInDevice();
+    act(() => {
+      raiseToFlowHandler(bubbled('Request failed with status 503'));
+    });
+    const toast = getFeedbackMessage()?.message ?? '';
+    expect(toast).toContain("<div class='feedback-message--title'>Service Interruption</div>");
+    expect(toast).not.toContain('Request failed with status 503');
+    expect(getShellState()).toMatchObject({ signedIn: true });
+    expect(signedOutRemotely).not.toHaveBeenCalled();
+    expect(pageRedirect).not.toHaveBeenCalled();
+  });
+
+  test('offline: the "No internet connection" message of ShowCommunicationExceptionMessage (UC:16085-16101)', () => {
+    setClientVar('UBTConnect.App_NetworkStatus_IsOnline_IsPersistent', false);
+    act(() => {
+      raiseToFlowHandler(bubbled('Request failed with status 503'));
+    });
+    expect(getFeedbackMessage()?.message).toBe(
+      'No internet connection. Please check your network settings and try again.',
+    );
+  });
+
+  test('UBTConnect.BubbleGenericException keeps the AllExceptions branch: ShowExceptionMessage(message, False)', async () => {
+    act(() => {
+      raiseToFlowHandler(new UserException('The order could not be saved', 'UBTConnect.BubbleGenericException'));
+    });
+    await vi.waitFor(() => {
+      expect(getFeedbackMessage()?.message).toBe('The order could not be saved.');
+    });
+  });
+});
+
+/* Item 2 (migration/clarify/review/item2-fetch-errors.md E4–E6, design approved by the user 2026-10-28):
+   App_Common OnException in the compiled order. MCP (DEV) OnException of App_Common has the same nodes. */
+describe('the ignore step comes first (ACF:24-26, OS.ErrorHandling.ignoreError; D1)', () => {
+  test('an IgnorableSystemException, such as ViewHasChangedException, shows nothing and opens no error page', () => {
+    const location = stubLocation();
+    act(() => {
+      raiseToFlowHandler(new ViewHasChangedException());
+      raiseToFlowHandler(new IgnorableSystemException('ignored'));
+    });
+    expect(getFeedbackMessage()).toBeNull();
+    expect(location.assign).not.toHaveBeenCalled();
+  });
+});
+
+describe('AllExceptions: the "NoteCommunicationError" test (ACF:98-110; D3)', () => {
+  test('a message that contains "NoteCommunicationError" shows ShowCommunicationExceptionMessage', () => {
+    act(() => {
+      // NotesSheet Handler_OnSubmitNote raises it for a CommunicationException (E8)
+      raiseToFlowHandler(new UserException('NoteCommunicationError', 'UBTConnect_Utils.CommunicationError'));
+    });
+    expect(getFeedbackMessage()?.message).toContain("<div class='feedback-message--title'>Service Interruption</div>");
+  });
+
+  test('the test is case sensitive (Index, ignoreCase False): another message keeps ShowExceptionMessage', async () => {
+    act(() => {
+      raiseToFlowHandler(new UserException('The notecommunicationerror text'));
+    });
+    await vi.waitFor(() => {
+      expect(getFeedbackMessage()?.message).toBe('The notecommunicationerror text.');
+    });
+  });
+});
+
+describe('a system exception that is not ignorable (ACF:119 `throw ex`, runtime navigateToErrorPage; D1 (b))', () => {
+  test('no message: the log, the three sessionStorage keys, then the page _error.html (P1, P7)', () => {
+    const error = vi.spyOn(console, 'error').mockImplementation(() => undefined);
+    const location = stubLocation();
+    const exception = new SystemException('The system is unavailable');
+    act(() => {
+      raiseToFlowHandler(exception);
+    });
+    expect(getFeedbackMessage()).toBeNull();
+    expect(storedForErrorPage('ErrorPageMessage')).toBe('');
+    expect(storedForErrorPage('ErrorPageExtraMessage')).toBe('');
+    expect(storedForErrorPage('ErrorPageExceptionInfo')).toEqual({
+      name: exception.name,
+      message: 'The system is unavailable',
+    });
+    expect(location.assign).toHaveBeenCalledExactlyOnceWith('/UBTConnect/_error.html');
+    expect(error).toHaveBeenCalled();
+    error.mockRestore();
+  });
+});
+
+/* R6 (item8-w23-errorpage.md §1): navigateToErrorPage returns when the context is out of context (ErrorHandling
+   W322831, `isValidContext`). The flow scope of the screen or block gives the context (item 8 §3.3). */
+describe('9. the error page opens only from an active flow scope (R6)', () => {
+  const inactive = { active: () => false };
+  const active = { active: () => true };
+
+  test('a system exception of a left screen: the log only, no sessionStorage keys, no location.assign', () => {
+    const error = vi.spyOn(console, 'error').mockImplementation(() => undefined);
+    const location = stubLocation();
+    act(() => {
+      raiseToFlowHandler(new SystemException('The system is unavailable'), inactive);
+    });
+    expect(location.assign).not.toHaveBeenCalled();
+    expect(sessionStorage.getItem('$OS_UBTConnect$ErrorPageExceptionInfo')).toBeNull();
+    expect(getFeedbackMessage()).toBeNull();
+    expect(error).toHaveBeenCalledWith(expect.stringContaining('out of context'), expect.anything());
+  });
+
+  test('an active scope or no scope: the three sessionStorage keys and location.assign of _error.html', () => {
+    vi.spyOn(console, 'error').mockImplementation(() => undefined);
+    const location = stubLocation();
+    act(() => {
+      raiseToFlowHandler(new SystemException('The system is unavailable'), active);
+    });
+    expect(location.assign).toHaveBeenLastCalledWith('/UBTConnect/_error.html');
+    expect(storedForErrorPage('ErrorPageMessage')).toBe('');
+    expect(storedForErrorPage('ErrorPageExtraMessage')).toBe('');
+    expect(storedForErrorPage('ErrorPageExceptionInfo')).toMatchObject({ message: 'The system is unavailable' });
+
+    act(() => {
+      raiseToFlowHandler(new SystemException('The database is unavailable'));
+    });
+    expect(location.assign).toHaveBeenCalledTimes(2);
+    expect(location.assign).toHaveBeenLastCalledWith('/UBTConnect/_error.html');
+    expect(storedForErrorPage('ErrorPageExceptionInfo')).toMatchObject({ message: 'The database is unavailable' });
+  });
+
+  test('the other branches do not check the scope: a user exception of a left screen still shows its toast (R5)', async () => {
+    act(() => {
+      raiseToFlowHandler(new UserException('The note could not be saved'), inactive);
+    });
+    await vi.waitFor(() => {
+      expect(getFeedbackMessage()?.message).toBe('The note could not be saved.');
+    });
   });
 });

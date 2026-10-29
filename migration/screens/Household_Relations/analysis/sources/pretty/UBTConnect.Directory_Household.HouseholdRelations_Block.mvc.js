@@ -68,6 +68,9 @@ define("UBTConnect.Directory_Household.HouseholdRelations_Block.mvc$model", ["Ou
                 }, true, UBTConnectModel.UI_HouseholdMemberList),
                 this.attr("ParentHouseholdId", "parentHouseholdIdOut", "ParentHouseholdId", true, false, OS.DataTypes.DataTypes.Text, function() {
                     return "";
+                }, true),
+                this.attr("IsMemberDeceased", "isMemberDeceasedOut", "IsMemberDeceased", true, false, OS.DataTypes.DataTypes.Boolean, function() {
+                    return false;
                 }, true)
             ].concat(_super.attributesToDeclare.call(this));
         };
@@ -507,7 +510,8 @@ define("UBTConnect.Directory_Household.HouseholdRelations_Block.mvc$view", ["Out
                                                             }();
                                                         }),
                                                         IconId: UBTConnectModel.staticEntities.uBT_Icons2.tooltip,
-                                                        IsDisabled: false,
+                                                        IsDisabled: model.variables.get_MemberDetailsDataAct.isMemberDeceasedOut,
+                                                        _isDisabledInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr),
                                                         ButtonText: "Notes",
                                                         IconText_SpacingSize: UBTConnectModel.staticEntities.uBT_Size.small
                                                     },
@@ -516,18 +520,18 @@ define("UBTConnect.Directory_Household.HouseholdRelations_Block.mvc$view", ["Out
                                                             controller.handleError(ex);
                                                         },
                                                         buttonOnClick$Action: function() {
-                                                            var eventHandlerContext = callContext.clone();
-                                                            return OS.Flow.tryFinally(function() {
-                                                                var varBag = {};
-                                                                controller.pushDebuggerContext(eventHandlerContext);
+                                                            return Promise.resolve().then(function() {
+                                                                var eventHandlerContext = callContext.clone();
+                                                                return OS.Flow.tryFinally(function() {
+                                                                    var varBag = {};
+                                                                    controller.pushDebuggerContext(eventHandlerContext);
 
-                                                                OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "CW_Common/Button buttonOnClick");
-                                                                controller.handler_AddNotes$Action(controller.callContext(eventHandlerContext));
-                                                            }, function() {
-                                                                controller.popDebuggerContext(eventHandlerContext);
-                                                            });
-
-                                                            ;
+                                                                    OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "CW_Common/Button buttonOnClick");
+                                                                    return controller.handler_AddNotes$Action(controller.callContext(eventHandlerContext));
+                                                                }, function() {
+                                                                    controller.popDebuggerContext(eventHandlerContext);
+                                                                });
+                                                            });;
                                                         }
                                                     },
                                                     _validationProps: {
@@ -590,15 +594,15 @@ define("UBTConnect.Directory_Household.HouseholdRelations_Block.mvc$view", ["Out
                                                 })];
                                             })
                                         },
-                                        _dependencies: []
+                                        _dependencies: [asPrimitiveValue(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.isMemberDeceasedOut)]
                                     })];
                                 })
                             },
-                            _dependencies: []
+                            _dependencies: [asPrimitiveValue(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.isMemberDeceasedOut)]
                         })];
                     })
                 },
-                _dependencies: [asPrimitiveValue(model.variables.get_MemberDetailsDataAct.memberNameOut), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables._memberIdInDataFetchStatus), asPrimitiveValue(model.variables.memberIdIn)]
+                _dependencies: [asPrimitiveValue(model.variables.get_MemberDetailsDataAct.isMemberDeceasedOut), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.memberNameOut), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables._memberIdInDataFetchStatus), asPrimitiveValue(model.variables.memberIdIn)]
             }), React.createElement(UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, {
                 inputs: {
                     In_IsLoading: model.variables.isLoadingVar
@@ -1511,7 +1515,7 @@ define("UBTConnect.Directory_Household.HouseholdRelations_Block.mvc$view", ["Out
                 return [React.createElement(UBTConnect_Utils_CW_Notes_NotesSheet_mvc_view, {
                     inputs: {
                         In_NoteCategoryId: UBTConnectModel.staticEntities.noteCategory2.member,
-                        In_ItemId: model.variables.memberIdIn,
+                        In_ItemId: OS.BuiltinFunctions.longIntegerToText(model.variables.memberIdIn),
                         _in_ItemIdInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables._memberIdInDataFetchStatus),
                         In_Notes: model.variables.fetchNotesDataAct.notesOut,
                         _in_NotesInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.fetchNotesDataAct.dataFetchStatusAttr),
@@ -1662,9 +1666,9 @@ define("UBTConnect.Directory_Household.HouseholdRelations_Block.mvc$controller",
                 var varBag = {};
                 controller.pushDebuggerContext(callContext);
 
-                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:rSQDWkk4D0eHQZMEvY8MWw:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw/NodesShownInESpaceTree.03nCiumGkkWi6gqhWUEGzA/DataActions.rSQDWkk4D0eHQZMEvY8MWw:EmQIb5oTnqPCKdvZ2qasnQ", "UBTConnect", "Get_MemberDetails", "NRFlows.DataScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:rSQDWkk4D0eHQZMEvY8MWw:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw/NodesShownInESpaceTree.03nCiumGkkWi6gqhWUEGzA/DataActions.rSQDWkk4D0eHQZMEvY8MWw:qA_R8_+e5jzz2L7GE2Turg", "UBTConnect", "Get_MemberDetails", "NRFlows.DataScreenActionFlow", callContext.id, varBag);
                 OutSystemsDebugger.setThreadStartName(callContext.id, "Directory_Household/HouseholdRelations_Block/Get_MemberDetails");
-                return controller.callDataAction("DataActionGet_MemberDetails", "screenservices/UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionGet_MemberDetails", "zCE_0ILZjwx9hLwAmgf7vQ", function(b) {
+                return controller.callDataAction("DataActionGet_MemberDetails", "screenservices/UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionGet_MemberDetails", "1EncAAdPlQ4CugvrXXpVfQ", function(b) {
                     model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr = b;
                 }, function(json) {
                     model.variables.get_MemberDetailsDataAct.replaceWith(OS.DataConversion.ServerDataConverter.from(json, model.variables.get_MemberDetailsDataAct.constructor));
@@ -1924,20 +1928,29 @@ define("UBTConnect.Directory_Household.HouseholdRelations_Block.mvc$controller",
             controller.ensureControllerAlive("Handler_AddNotes");
             callContext = controller.callContext(callContext);
             varBag.callContext = callContext;
-            try {
-                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:NgNWbN6TY0qIeewHgHRzKg:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw/NodesShownInESpaceTree.03nCiumGkkWi6gqhWUEGzA/ClientActions.NgNWbN6TY0qIeewHgHRzKg:RdiQnWF0weluUSpYmPqtaA", "UBTConnect", "Handler_AddNotes", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:_hZ5CB3WqEeDWJySz_2oGg", callContext.id);
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:3Ols7rRInkGvvIRf_dxr1g", callContext.id);
-                // ShowNotesSheet = True
-                model.variables.showNotesSheetVar = true;
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:pDKK14mFi0eVDm5JNGVFCg", callContext.id);
-            } catch (ex) {
-                OutSystemsDebugger.handleException(ex, callContext.id);
-                throw ex;
-            } finally {
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:NgNWbN6TY0qIeewHgHRzKg:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw/NodesShownInESpaceTree.03nCiumGkkWi6gqhWUEGzA/ClientActions.NgNWbN6TY0qIeewHgHRzKg:PhNaLyGoX7IT_2US6iskcw", "UBTConnect", "Handler_AddNotes", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:_hZ5CB3WqEeDWJySz_2oGg", callContext.id);
+            return OS.Flow.executeAsyncFlow(function() {
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:CrToLEkgFkiKnW4vzDA+8A", callContext.id);
+                // Refresh Query: FetchNotes
+                var result = controller.fetchNotes$DataActRefresh(callContext);
+                model.flush();
+                return result.then(function() {
+                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:3Ols7rRInkGvvIRf_dxr1g", callContext.id);
+                    // ShowNotesSheet = True
+                    model.variables.showNotesSheetVar = true;
+                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:pDKK14mFi0eVDm5JNGVFCg", callContext.id);
+                });
+            }).then(function(res) {
                 OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:NgNWbN6TY0qIeewHgHRzKg", callContext.id);
-            }
+                return res;
 
+            }).catch(function(ex) {
+                OutSystemsDebugger.handleException(ex, callContext.id);
+                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:NgNWbN6TY0qIeewHgHRzKg", callContext.id);
+                throw ex;
+
+            });
         };
         Controller.prototype._handler_OnNotesSheetClosed$Action = function(callContext) {
             var varBag = {};
@@ -2297,7 +2310,7 @@ define("UBTConnect.Directory_Household.HouseholdRelations_Block.mvc$controller",
         Controller.prototype.pushDebuggerContext = function(callContext) {
             var varBag = {};
             OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:UzAQerKaHEuDhnx4QUJtIw:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw:t9nDzAZAuYZJViBgLBCv_w", "UBTConnect", "Directory_Household", "NRFlows.WebFlow", callContext.id, varBag);
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:03nCiumGkkWi6gqhWUEGzA:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw/NodesShownInESpaceTree.03nCiumGkkWi6gqhWUEGzA:yQ4i9GgHQNBKxPhg_Yj0Eg", "UBTConnect", "HouseholdRelations_Block", "NRNodes.WebBlock", callContext.id, varBag);
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:03nCiumGkkWi6gqhWUEGzA:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw/NodesShownInESpaceTree.03nCiumGkkWi6gqhWUEGzA:bPCfSsLenivnUGXsxainhw", "UBTConnect", "HouseholdRelations_Block", "NRNodes.WebBlock", callContext.id, varBag);
         };
         Controller.prototype.popDebuggerContext = function(callContext) {
             OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:03nCiumGkkWi6gqhWUEGzA", callContext.id);

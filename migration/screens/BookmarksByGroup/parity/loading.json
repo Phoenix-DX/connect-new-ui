@@ -1,18 +1,21 @@
 {
  "state": "loading",
- "route": "/UBTConnect/BookmarksByGroup?BookmarkGroup=Contacts",
+ "route": "/UBTConnect/BookmarksByGroup?BookmarkGroup=Contacts&mocksession=unlocked",
  "mock": "loading",
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "3a3327e655ee36433f87",
+ "fingerprint": "5038be5cabf468071099",
  "options": {
   "text": true,
   "style": true,
   "pixel": true,
   "calls": true,
+  "visibleOnly": false,
   "full": true,
-  "replay": "builder"
+  "replay": "builder",
+  "skipKinds": [],
+  "selfRef": false
  },
  "replay": {
   "mode": "builder",
@@ -24,40 +27,78 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-23T06:45:29.918Z",
- "counts": {},
+ "at": "2026-10-29T06:49:55.487Z",
+ "counts": {
+  "structure": 4,
+  "style": 1,
+  "pixel": 2
+ },
  "exemptionsUsed": {
-  "ignoreSubtrees": 3,
-  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 45,
-  "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
-  "CAPTURE-LOADING-FETCH-TIMEOUT-BOOKMARKSBYGROUP-PIXEL-F7B": 1
+  "ignoreSubtrees": 1,
+  "CAPTURE-LOADING-BODYCLASS": 1
  },
  "pixel": {
-  "ratio": 0.10575,
-  "maxCell": 1,
+  "ratio": 0.05728,
+  "maxCell": 0.2381,
   "maxCellRatio": 0.03,
-  "diffPixels": 31893,
-  "comparedPixels": 301584,
+  "diffPixels": 2324,
+  "comparedPixels": 40570,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
    390,
-   844
+   1250
   ],
   "buildSize": [
    390,
    844
   ],
-  "masks": 5,
+  "masks": 1,
   "hotspots": [
-   "80,0 (1600px)",
-   "280,0 (1600px)",
-   "320,0 (1600px)",
-   "240,0 (1579px)",
-   "40,0 (1578px)"
+   "120,0 (381px)",
+   "80,0 (380px)",
+   "40,0 (359px)",
+   "0,0 (326px)",
+   "160,0 (283px)"
   ],
   "diffPng": "migration/screens/BookmarksByGroup/parity/loading.diff.png"
  },
  "calls": null,
- "diffs": []
+ "diffs": [
+  {
+   "kind": "structure",
+   "path": "div#reactContainer",
+   "detail": "tag div → body"
+  },
+  {
+   "kind": "style",
+   "path": "div#reactContainer",
+   "detail": "margin-top 0px → 8px; margin-right 0px → 8px; margin-bottom 0px → 8px; margin-left 0px → 8px"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > h1",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > h2",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > h3",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "pixel",
+   "path": "screenshot",
+   "detail": "page height 1250 → 844"
+  },
+  {
+   "kind": "pixel",
+   "path": "screenshot",
+   "detail": "5.73% pixels differ (max 0.20%), worst 40px tile 23.8% (max 3.0%), hotspots 120,0 (381px); 80,0 (380px); 40,0 (359px); 0,0 (326px); 160,0 (283px); see migration/screens/BookmarksByGroup/parity/loading.diff.png"
+  }
+ ]
 }

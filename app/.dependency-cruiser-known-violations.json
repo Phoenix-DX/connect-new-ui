@@ -1266,28 +1266,6 @@
   },
   {
     "type": "dependency",
-    "from": "src/components/layout/LegacyLayout/LegacyLayout.tsx",
-    "to": "src/legacy/os/bodyTheme.ts",
-    "unresolvedTo": "@/legacy/os/bodyTheme",
-    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
-    "rule": {
-      "severity": "error",
-      "name": "rule-9-legacy-os-importers"
-    }
-  },
-  {
-    "type": "dependency",
-    "from": "src/components/layout/OrbitLayout/OrbitLayout.tsx",
-    "to": "src/legacy/os/bodyTheme.ts",
-    "unresolvedTo": "@/legacy/os/bodyTheme",
-    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
-    "rule": {
-      "severity": "error",
-      "name": "rule-9-legacy-os-importers"
-    }
-  },
-  {
-    "type": "dependency",
     "from": "src/components/note/NotesSheet/NotesSheet.tsx",
     "to": "src/legacy/os/exceptions.ts",
     "unresolvedTo": "@/legacy/os/exceptions",
@@ -1420,17 +1398,6 @@
   },
   {
     "type": "dependency",
-    "from": "src/pages/BookmarksByGroup/hooks/useBookmarkGroup.ts",
-    "to": "src/legacy/os/exceptions.ts",
-    "unresolvedTo": "@/legacy/os/exceptions",
-    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
-    "rule": {
-      "severity": "error",
-      "name": "rule-9-legacy-os-importers"
-    }
-  },
-  {
-    "type": "dependency",
     "from": "src/pages/ConnectShare/hooks/connectShareActions.ts",
     "to": "src/legacy/os/exceptions.ts",
     "unresolvedTo": "@/legacy/os/exceptions",
@@ -1497,29 +1464,7 @@
   },
   {
     "type": "dependency",
-    "from": "src/pages/MyBookmarks/hooks/useMyBookmarks.ts",
-    "to": "src/legacy/os/exceptions.ts",
-    "unresolvedTo": "@/legacy/os/exceptions",
-    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
-    "rule": {
-      "severity": "error",
-      "name": "rule-9-legacy-os-importers"
-    }
-  },
-  {
-    "type": "dependency",
     "from": "src/pages/Notifications/hooks/useNotifications.ts",
-    "to": "src/legacy/os/exceptions.ts",
-    "unresolvedTo": "@/legacy/os/exceptions",
-    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
-    "rule": {
-      "severity": "error",
-      "name": "rule-9-legacy-os-importers"
-    }
-  },
-  {
-    "type": "dependency",
-    "from": "src/pages/OrbitAdminEventDetail/hooks/useAdminEventDetail.ts",
     "to": "src/legacy/os/exceptions.ts",
     "unresolvedTo": "@/legacy/os/exceptions",
     "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],

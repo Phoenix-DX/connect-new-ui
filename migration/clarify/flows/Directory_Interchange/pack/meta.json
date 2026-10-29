@@ -1,0 +1,33 @@
+{
+ "flow": "Directory_Interchange",
+ "screens": [],
+ "ownBlocks": [
+  "Directory_Interchange_StatisticsList"
+ ],
+ "usedBlocks": [
+  "Directory_EmptyState",
+  "Directory_EntityDetailsActions"
+ ],
+ "referencedBlocks": [
+  "CustomContainer",
+  "SkeletonSection",
+  "Statistics_ListItem"
+ ],
+ "clientActions": [
+  "GetBookmarkCategoryId_ByEntityTypeId",
+  "GetNameAndSurname_ByFullName",
+  "GetShareType_FromEntity",
+  "ToggleBookmarkItem_C2"
+ ],
+ "serverActions": [
+  "AddBookmark2",
+  "DeleteBookmarkByBookmarkId2",
+  "GetHouseholdDetails",
+  "GetNotesByItemId",
+  "GetSubdivisionLocation_BySubdivisionId",
+  "Get_Core_LocalityTimezone",
+  "Get_OneSchoolGlobalDetails",
+  "Member_ContactDetails_Service"
+ ],
+ "externalSites": []
+}

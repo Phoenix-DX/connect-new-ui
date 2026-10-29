@@ -20,8 +20,14 @@ export const toShareDetails = (w: ShareDetailsWire): ShareDetails => {
 
 /* ---- LegacyShareObject: ScreenBlock_ShareObject and ProfileList (Connect2_LegacyShared Share_UI) ---- */
 
-import { osList } from '@/lib/os-wire';
-import type { AvailableUser, AvailableUsers, ShareObjectCallInputs, ShareObjectResult } from './types';
+import { osDate, osList } from '@/lib/os-wire';
+import type {
+  AvailableUser,
+  AvailableUsers,
+  SharedObjectDetail,
+  ShareObjectCallInputs,
+  ShareObjectResult,
+} from './types';
 
 /** The outputs of ScreenDataSetGetShareObjectTypeById (the aggregate of ScreenBlock_ShareObject), as the contract
     describes them. */
@@ -75,3 +81,101 @@ export const toShareObjectResult = (wire: ShareObjectWire): ShareObjectResult =>
   isAllowed: wire.IsAllowed,
   shareId: wire.ShareId,
 });
+
+/* ---- MessageDetail: Share_UI.ShareObjectDetail_ExtendedShare ---- */
+
+import type { ActionInputs } from '@/api/client/callAction';
+import type { ShareableUpdateItem, SharedObjectDetailVariables } from './types';
+
+/** The outputs of DataActionGetShare of ShareObjectDetail_ExtendedShare. */
+type SharedObjectDetailWire = ActionOutputs<
+  PathOf<'Connect2_LegacyShared', 'ShareObjectDetail_ExtendedShare/DataActionGetShare'>
+>;
+
+/** DataActionGetShare: the share, its item and its type, with null for the null dates. */
+export const toSharedObjectDetail = (w: SharedObjectDetailWire): SharedObjectDetail => {
+  const item = w.GetShareByIdResponse.Details.ShareItem;
+  return {
+    objectId: w.GetShareByIdResponse.ObjectId,
+    senderId: w.GetShareByIdResponse.Details.Sender.Id,
+    shareItem: {
+      id: item.Id,
+      canAccess: item.CanAccess,
+      isDeceased: item.Extension.IsDeceased,
+      householderId: item.HouseholderId,
+      type: item.Type,
+      title: item.Title,
+      subtitle: item.Subtitle,
+      label: item.Label,
+      dateTime: osDate(item.DateTime),
+      genderId: item.GenderId,
+      parentsName: item.ParentsName,
+      birthType: item.BirthType,
+      localityName: item.LocalityName,
+      countryName: item.CountryName,
+      photoSignedPath: item.Photo.SignedPath,
+      isVisible: item.IsVisible,
+    },
+    shareObjectTypeId: w.ShareObjectType.Id,
+    shareObjectTypeLabel: w.ShareObjectType.Label,
+    isShareAvailable: w.IsShareAvailable,
+    updateDate: osDate(w.UpdateDate),
+  };
+};
+
+/** The variables of ShareObjectDetail_ExtendedShare as OutSystems sends them with DataActionGetShare. */
+type SharedObjectDetailVariablesWire = ActionInputs<
+  PathOf<'Connect2_LegacyShared', 'ShareObjectDetail_ExtendedShare/DataActionGetShare'>
+>;
+
+/** ShareableUpdateItem at OnInitialize: the UI_UpdateItem defaults. A Long Integer is "0", the Date the null date. */
+export const emptyShareableUpdateItem = (): ShareableUpdateItem => ({
+  updateItemId: '0',
+  updateItemTypeId: '',
+  name: '',
+  date: null,
+  genderId: '',
+  locationString: '',
+  isRead: false,
+  hasAccess: false,
+  hasShare: false,
+  householdId: '0',
+  parentsNames: '',
+  birthType: '',
+  memberId: '',
+});
+
+/** The block variables of DataActionGetShare (screenData.variables), with their OutSystems names. A record sends every
+    attribute: a missing one gets its default. A Long Integer goes as text ("0" for NullIdentifier), a null Date as
+    NullDate. The _<input>InDataFetchStatus integers stay out, as in the contract. */
+export const toSharedObjectDetailVariablesWire = (v: SharedObjectDetailVariables): SharedObjectDetailVariablesWire => {
+  const o = v.shareableObject;
+  const u = v.shareableUpdateItem;
+  return {
+    ShareId: v.shareId,
+    HasAccessToDeceasedHousehold: v.hasAccessToDeceasedHousehold,
+    ShareableObject_Generic: {
+      ConnectEntityTypeId: o.ConnectEntityTypeId ?? '',
+      Id: o.Id ?? '',
+      Location: o.Location ?? '',
+      SignedURL: o.SignedURL ?? '',
+      Subtitle: o.Subtitle ?? '',
+      Title: o.Title ?? '',
+    },
+    ShareableUpdateItem: {
+      UpdateItemId: osLong(u.updateItemId) ?? '0',
+      UpdateItemTypeId: u.updateItemTypeId,
+      Name: u.name,
+      Date: u.date ?? NULL_DATE,
+      GenderId: u.genderId,
+      LocationString: u.locationString,
+      IsRead: u.isRead,
+      HasAccess: u.hasAccess,
+      HasShare: u.hasShare,
+      HouseholdId: osLong(u.householdId) ?? '0',
+      ParentsNames: u.parentsNames,
+      BirthType: u.birthType,
+      MemberId: u.memberId,
+    },
+  };
+};

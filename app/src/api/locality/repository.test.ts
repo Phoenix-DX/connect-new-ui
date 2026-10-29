@@ -94,7 +94,10 @@ describe('locality repository: screen and block data actions', () => {
         inputNames: ['HasLocalityData', 'In_DefaultDateRangeInMonths', 'In_HasLoaded', 'In_IsShowing', 'IsShowFilters'],
       }),
     );
-    expect(localities).toEqual(eventLocalities());
+    expect(localities).toEqual([
+      { IdAsText: 'AllLocalities', Name: 'All Localities', IsSelected: true },
+      ...eventLocalities(),
+    ]);
   });
 
   it('fetchLocalityDetails calls DataActionGet_LocalityDetails with the screen variables', async () => {
@@ -250,7 +253,12 @@ describe('locality repository: screen and block data actions', () => {
       }),
     );
     expect(all.LocalityList.List.length).toBeGreaterThan(0);
-    expect(all.LocalityList.List[0]).toEqual({ LocalityId: '1', Name: 'Zürich', CountryCode: 'ch' });
+    expect(all.LocalityList.List[0]).toEqual({
+      LocalityId: '1',
+      Name: 'Zürich',
+      CountryName: 'Switzerland',
+      CountryCode: 'ch',
+    });
   });
 });
 
@@ -305,7 +313,7 @@ describe('locality repository: OneSchoolGlobalDetails', () => {
     expect(window.__osCalls).toEqual([
       expect.objectContaining({
         module: 'UBTConnect',
-        owner: 'OneSchoolGlobalDetails',
+        owner: 'OneSchoolGlobalDetails_Block',
         action: 'DataActionGetOneSchoolGlobalDetails',
         inputNames: [
           'In_OneSchoolGlobalId',

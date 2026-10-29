@@ -4,6 +4,7 @@ import { memoryDatabase, type LocalDatabase } from './database';
 import {
   CONNECTSEARCH_RECENTCLICKEDRESULTS,
   CONNECTSEARCH_RECENTSEARCHTERM,
+  deleteConnectSearch_RecentClickedResults,
   get_RecentClickedResults,
   get_RecentSearchTerms,
   recentSearchSchemas,
@@ -55,4 +56,31 @@ test('like is case-insensitive and treats % and _ as wildcards (OutSystems.js:8)
   expect(await get_RecentSearchTerms('', 'ab', '')).toHaveLength(0);
   expect(await get_RecentSearchTerms('', 'A_B', '')).toHaveLength(1);
   expect(await get_RecentSearchTerms('', 'alpha%beta', '')).toHaveLength(1);
+});
+
+const household = (id: string, name: string) => ({
+  id,
+  type: 'Household',
+  householderId: id,
+  name,
+  additionalInformation: 'Household',
+  location: 'Bahia Blanca',
+  latitude: '0',
+  longitude: '0',
+});
+
+test('Get_RecentClickedResults reads 100 rows at start and 5 on a refresh (ScreenBlock_Search.mvc.js:1864, 2753)', async () => {
+  const names = ['Vitale', 'Rojas', 'Okafor', 'Lindqvist', 'Moreau', 'Tanaka', 'Haddad'];
+  for (const [i, name] of names.entries()) await saveRecentClickedResult('', household(String(7400 + i), name), 10);
+  expect(await get_RecentClickedResults('', '', 'All')).toHaveLength(7);
+  expect(await get_RecentClickedResults('', '', 'All', 5)).toHaveLength(5);
+});
+
+test('DeleteConnectSearch_RecentClickedResults deletes the row; a missing Id changes nothing', async () => {
+  await saveRecentClickedResult('', household('7400', 'Vitale'), 10);
+  const [row] = await get_RecentClickedResults('', '', 'All');
+  await deleteConnectSearch_RecentClickedResults('999');
+  expect(await get_RecentClickedResults('', '', 'All')).toHaveLength(1);
+  await deleteConnectSearch_RecentClickedResults(row?.Id ?? '');
+  expect(await get_RecentClickedResults('', '', 'All')).toHaveLength(0);
 });

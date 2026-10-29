@@ -17,8 +17,8 @@ export interface EntityDetailsActionsContainerProps {
   enableOptions?: ActionsMenuEnableOptions;
   /** useViewDetails: adds "View details" for households, supper meetings and schools. */
   useViewDetails?: boolean;
-  /** EntityExtraDataJSON: only sent with the data actions. */
-  entityExtraDataJSON?: string;
+  /** In_LocalityId (Text, default ""): with an interchange, the notes item id is "<In_LocalityId>:<EntityId>". */
+  inLocalityId?: string;
   /** Event ViewDetails_OnClick. */
   onViewDetailsOnClick?: () => void;
   /** Event OnChange_Bookmark(IsBookmarked). */

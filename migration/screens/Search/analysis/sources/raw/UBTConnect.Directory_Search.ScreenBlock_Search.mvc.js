@@ -1,4 +1,4 @@
-define("UBTConnect.Directory_Search.ScreenBlock_Search.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnectLibrary.model", "Connect_CommonEntities_DB.model", "Connect_Search_CS.model", "UBTConnect.controller", "UBTJavaScriptUtils.controller", "UBTConnect.entities", "UBTConnect_Utils.controller", "NavigationHandler.controller", "UBTConnect_Utils.model", "UBTConnectLibrary.Layouts.Layout_DetailPage.mvc$model", "UBTConnectLibrary.ConnectPatterns.Input.mvc$model", "UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon.mvc$model", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$model", "UBTConnectLibrary.ConnectPatterns.HorizontalTagList.mvc$model", "UBTConnect.App_Common_Blocks.SectionSeparator.mvc$model", "UBTConnectLibrary.BasePatterns.Columns_Two.mvc$model", "UBTConnectLibrary.BasePatterns.CustomText.mvc$model", "OutSystemsUI_2_23.Adaptive.Gallery.mvc$model", "UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc$model", "UBTConnectLibrary.ConnectPatterns.IconText.mvc$model", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$model", "UBTConnect.Directory_Search.Search_BirthdayOptions.mvc$model", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$model", "UBTConnect.Directory_Search.SearchResult_Section.mvc$model", "UBTConnect.App_Common.BottomBarMenu.mvc$model", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$model", "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc$model", "UBTConnectLibrary.model$TagRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$TagList", "UBTConnectLibrary.model$SearchInputRec", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnect.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$InlineIconRec", "UBTConnectLibrary.model$LazyImageSizeRec", "Connect_CommonEntities_DB.model$Connect_SearchBirthdayOptionsRec", "UBTConnect.referencesHealth$Connect_CommonEntities_DB", "UBTConnect.model$Connect_SearchBirthdayOptionsList", "Connect_Search_CS.model$SearchResultRec", "UBTConnect.referencesHealth$Connect_Search_CS", "UBTConnect.model$SearchResultList", "UBTConnect.model$Filter_CommonRec", "UBTConnect.model$Filter_Common_OptionsRec", "UBTConnect.model$Filter_Common_Options_ChoiceRec", "UBTConnect.model$Filter_Common_Options_ListRec", "UBTConnect.model$Filter_Common_Control_ListList", "UBTConnectLibrary.model$SelectionOption_ItemRec", "UBTConnect.model$SelectionOption_ItemList", "UBTConnect.model$Filter_Common_Control_ChoiceList", "UBTConnect.controller$ValidateSearchPhoneNumber", "UBTJavaScriptUtils.controller$FeedbackMessage_AutoClose", "UBTConnect.referencesHealth$UBTJavaScriptUtils", "UBTConnect.model$ConnectSearch_RecentSearchTermRecord", "UBTConnect.model$ConnectSearch_RecentSearchTermRecordList", "UBTConnect.model$ConnectSearch_RecentSearchTermRec", "UBTConnect_Utils.controller$GetHasCarouselEnabled", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.model$ConnectSearch_RecentClickedResultsRecord", "NavigationHandler.controller$SetPreloadObject", "UBTConnect.referencesHealth$NavigationHandler", "UBTConnect_Utils.controller$App_Subscription_ShowUpgradePopUp", "UBTConnect.model$LongIntegerBooleanRecordList", "UBTConnect.model$ConnectSearch_RecentClickedResultsRecordList", "UBTConnect.model$SwipeActionLongIntegerRecordList", "UBTConnect.model$CarouselPreloadedHouseholdsRec", "UBTConnect.model$ConnectSearch_RecentClickedResultsRec", "UBTConnect_Utils.controller$Connect_OutSystems_PermissionCheck", "UBTConnect_Utils.model$SearchCategory_ItemRec", "UBTConnect.model$SearchCategory_ItemList", "UBTConnect_Utils.controller$SearchCategory_GetList", "UBTConnect.model$Connect_SearchBirthdayOptionsRecordList"], function (OutSystems, UBTConnectModel, UBTConnectLibraryModel, Connect_CommonEntities_DBModel, Connect_Search_CSModel, UBTConnectController, UBTJavaScriptUtilsController, UBTConnectEntities, UBTConnect_UtilsController, NavigationHandlerController, UBTConnect_UtilsModel, UBTConnectLibrary_Layouts_Layout_DetailPage_mvcModel, UBTConnectLibrary_ConnectPatterns_Input_mvcModel, UBTConnect_App_CommonBlocks_Filter_FilterSheet_Icon_mvcModel, UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel, UBTConnectLibrary_ConnectPatterns_HorizontalTagList_mvcModel, UBTConnect_App_Common_Blocks_SectionSeparator_mvcModel, UBTConnectLibrary_BasePatterns_Columns_Two_mvcModel, UBTConnectLibrary_BasePatterns_CustomText_mvcModel, OutSystemsUI_2_23_Adaptive_Gallery_mvcModel, UBTConnect_Utils_CW_Image_UBT_LazyImage_mvcModel, UBTConnectLibrary_ConnectPatterns_IconText_mvcModel, UBTConnectLibrary_ConnectPatterns_Icon_mvcModel, UBTConnect_Directory_Search_Search_BirthdayOptions_mvcModel, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel, UBTConnect_Directory_Search_SearchResult_Section_mvcModel, UBTConnect_App_Common_BottomBarMenu_mvcModel, UBTConnect_App_Common_CommonUI_InsideLayout_mvcModel, UBTConnect_App_CommonBlocks_Filter_FilterSheet_mvcModel) {
+define("UBTConnect.Directory_Search.ScreenBlock_Search.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnectLibrary.model", "Connect_CommonEntities_DB.model", "Connect_Search_CS.model", "UBTConnect.controller", "UBTJavaScriptUtils.controller", "UBTConnect.entities", "UBTConnect_Utils.controller", "NavigationHandler.controller", "UBTConnect_Utils.model", "UBTConnectLibrary.Layouts.Layout_DetailPage.mvc$model", "UBTConnectLibrary.ConnectPatterns.Input.mvc$model", "UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon.mvc$model", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$model", "UBTConnectLibrary.ConnectPatterns.HorizontalTagList.mvc$model", "UBTConnect.App_Common_Blocks.SectionSeparator.mvc$model", "UBTConnectLibrary.BasePatterns.Columns_Two.mvc$model", "UBTConnectLibrary.BasePatterns.CustomText.mvc$model", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$model", "UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc$model", "UBTConnectLibrary.ConnectPatterns.IconText.mvc$model", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$model", "UBTConnect.Directory_Search.Search_BirthdayOptions.mvc$model", "UBTConnect.Directory_Search.SearchResult_Section.mvc$model", "UBTConnect.App_Common.BottomBarMenu.mvc$model", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$model", "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc$model", "UBTConnectLibrary.model$TagRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$TagList", "UBTConnect.model$ConnectSearch_RecentClickedResultsList", "UBTConnectLibrary.model$SearchInputRec", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnect.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$InlineIconRec", "UBTConnectLibrary.model$LazyImageSizeRec", "Connect_CommonEntities_DB.model$Connect_SearchBirthdayOptionsRec", "UBTConnect.referencesHealth$Connect_CommonEntities_DB", "UBTConnect.model$Connect_SearchBirthdayOptionsList", "Connect_Search_CS.model$SearchResultRec", "UBTConnect.referencesHealth$Connect_Search_CS", "UBTConnect.model$SearchResultList", "UBTConnect.model$Filter_CommonRec", "UBTConnect.model$Filter_Common_OptionsRec", "UBTConnect.model$Filter_Common_Options_ChoiceRec", "UBTConnect.model$Filter_Common_Options_ListRec", "UBTConnect.model$Filter_Common_Control_ListList", "UBTConnectLibrary.model$SelectionOption_ItemRec", "UBTConnect.model$SelectionOption_ItemList", "UBTConnect.model$Filter_Common_Control_ChoiceList", "UBTConnect.controller$ValidateSearchPhoneNumber", "UBTJavaScriptUtils.controller$FeedbackMessage_AutoClose", "UBTConnect.referencesHealth$UBTJavaScriptUtils", "UBTConnect.model$ConnectSearch_RecentClickedResultsRecordList", "UBTConnect.model$ConnectSearch_RecentClickedResultsRec", "UBTConnect.model$ConnectSearch_RecentSearchTermRecord", "UBTConnect.model$ConnectSearch_RecentSearchTermRecordList", "UBTConnect.model$ConnectSearch_RecentSearchTermRec", "UBTConnect_Utils.controller$GetHasCarouselEnabled", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.model$ConnectSearch_RecentClickedResultsRecord", "NavigationHandler.controller$SetPreloadObject", "UBTConnect.referencesHealth$NavigationHandler", "UBTConnect_Utils.controller$App_Subscription_ShowUpgradePopUp", "UBTConnect.model$LongIntegerBooleanRecordList", "UBTConnect.model$SwipeActionLongIntegerRecordList", "UBTConnect.model$CarouselPreloadedHouseholdsRec", "UBTConnect_Utils.controller$Connect_OutSystems_PermissionCheck", "UBTConnect_Utils.model$SearchCategory_ItemRec", "UBTConnect.model$SearchCategory_ItemList", "UBTConnect_Utils.controller$SearchCategory_GetList", "UBTConnect.model$Connect_SearchBirthdayOptionsRecordList"], function (OutSystems, UBTConnectModel, UBTConnectLibraryModel, Connect_CommonEntities_DBModel, Connect_Search_CSModel, UBTConnectController, UBTJavaScriptUtilsController, UBTConnectEntities, UBTConnect_UtilsController, NavigationHandlerController, UBTConnect_UtilsModel, UBTConnectLibrary_Layouts_Layout_DetailPage_mvcModel, UBTConnectLibrary_ConnectPatterns_Input_mvcModel, UBTConnect_App_CommonBlocks_Filter_FilterSheet_Icon_mvcModel, UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel, UBTConnectLibrary_ConnectPatterns_HorizontalTagList_mvcModel, UBTConnect_App_Common_Blocks_SectionSeparator_mvcModel, UBTConnectLibrary_BasePatterns_Columns_Two_mvcModel, UBTConnectLibrary_BasePatterns_CustomText_mvcModel, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel, UBTConnect_Utils_CW_Image_UBT_LazyImage_mvcModel, UBTConnectLibrary_ConnectPatterns_IconText_mvcModel, UBTConnectLibrary_ConnectPatterns_Icon_mvcModel, UBTConnect_Directory_Search_Search_BirthdayOptions_mvcModel, UBTConnect_Directory_Search_SearchResult_Section_mvcModel, UBTConnect_App_Common_BottomBarMenu_mvcModel, UBTConnect_App_Common_CommonUI_InsideLayout_mvcModel, UBTConnect_App_CommonBlocks_Filter_FilterSheet_mvcModel) {
 var OS = OutSystems.Internal;
 var Get_RecentClickedResultsAggrRec = (function (_super) {
 __extends(Get_RecentClickedResultsAggrRec, _super);
@@ -28,6 +28,24 @@ Get_SearchBirthdayOptionsAggrRec.init();
 return Get_SearchBirthdayOptionsAggrRec;
 })(OS.Model.AggregateRecord);
 
+var Get_FilteredRecentClickedResultsDataActRec = (function (_super) {
+__extends(Get_FilteredRecentClickedResultsDataActRec, _super);
+function Get_FilteredRecentClickedResultsDataActRec(defaults) {
+_super.apply(this, arguments);
+}
+Get_FilteredRecentClickedResultsDataActRec.attributesToDeclare = function () {
+return [
+this.attr("Out_RecentClickedResults", "out_RecentClickedResultsOut", "Out_RecentClickedResults", true, false, OS.DataTypes.DataTypes.RecordList, function () {
+return OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.ConnectSearch_RecentClickedResultsList());
+}, true, UBTConnectModel.ConnectSearch_RecentClickedResultsList), 
+this.attr("Out_IdsToRemove", "out_IdsToRemoveOut", "Out_IdsToRemove", true, false, OS.DataTypes.DataTypes.RecordList, function () {
+return OS.DataTypes.ImmutableBase.getData(new OS.DataTypes.LongIntegerList());
+}, true, OS.DataTypes.LongIntegerList)
+].concat(_super.attributesToDeclare.call(this));
+};
+Get_FilteredRecentClickedResultsDataActRec.init();
+return Get_FilteredRecentClickedResultsDataActRec;
+})(OS.Model.DataSourceRecord);
 var FetchSearchResultsDataActRec = (function (_super) {
 __extends(FetchSearchResultsDataActRec, _super);
 function FetchSearchResultsDataActRec(defaults) {
@@ -105,6 +123,12 @@ return false;
 this.attr("BottomSheetId_Filter_ShowSubscriptionOnClick", "bottomSheetId_Filter_ShowSubscriptionOnClickVar", "BottomSheetId_Filter_ShowSubscriptionOnClick", true, false, OS.DataTypes.DataTypes.Boolean, function () {
 return false;
 }, false), 
+this.attr("RecentClickedResults", "recentClickedResultsVar", "RecentClickedResults", true, false, OS.DataTypes.DataTypes.RecordList, function () {
+return OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.ConnectSearch_RecentClickedResultsList());
+}, false, UBTConnectModel.ConnectSearch_RecentClickedResultsList), 
+this.attr("RecentClickedResults_Skeleton", "recentClickedResults_SkeletonVar", "RecentClickedResults_Skeleton", true, false, OS.DataTypes.DataTypes.RecordList, function () {
+return OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.ConnectSearch_RecentClickedResultsList());
+}, false, UBTConnectModel.ConnectSearch_RecentClickedResultsList), 
 this.attr("In_IsInScreenSearch", "in_IsInScreenSearchIn", "In_IsInScreenSearch", true, false, OS.DataTypes.DataTypes.Boolean, function () {
 return false;
 }, false), 
@@ -132,6 +156,9 @@ return OS.DataTypes.ImmutableBase.getData(new Get_RecentSearchTermsAggrRec());
 this.attr("Get_SearchBirthdayOptions", "get_SearchBirthdayOptionsAggr", "get_SearchBirthdayOptionsAggr", true, true, OS.DataTypes.DataTypes.Record, function () {
 return OS.DataTypes.ImmutableBase.getData(new Get_SearchBirthdayOptionsAggrRec());
 }, true, Get_SearchBirthdayOptionsAggrRec), 
+this.attr("Get_FilteredRecentClickedResults", "get_FilteredRecentClickedResultsDataAct", "get_FilteredRecentClickedResultsDataAct", true, true, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Get_FilteredRecentClickedResultsDataActRec());
+}, true, Get_FilteredRecentClickedResultsDataActRec), 
 this.attr("FetchSearchResults", "fetchSearchResultsDataAct", "fetchSearchResultsDataAct", true, true, OS.DataTypes.DataTypes.Record, function () {
 return OS.DataTypes.ImmutableBase.getData(new FetchSearchResultsDataActRec());
 }, true, FetchSearchResultsDataActRec)
@@ -168,7 +195,7 @@ enumerable: true,
 configurable: true,
 get: function () {
 if((Model._hasValidationWidgetsValue === undefined)) {
-Model._hasValidationWidgetsValue = (((((((((((((((((UBTConnectLibrary_Layouts_Layout_DetailPage_mvcModel.hasValidationWidgets || UBTConnectLibrary_ConnectPatterns_Input_mvcModel.hasValidationWidgets) || UBTConnect_App_CommonBlocks_Filter_FilterSheet_Icon_mvcModel.hasValidationWidgets) || UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_HorizontalTagList_mvcModel.hasValidationWidgets) || UBTConnect_App_Common_Blocks_SectionSeparator_mvcModel.hasValidationWidgets) || UBTConnectLibrary_BasePatterns_Columns_Two_mvcModel.hasValidationWidgets) || UBTConnectLibrary_BasePatterns_CustomText_mvcModel.hasValidationWidgets) || OutSystemsUI_2_23_Adaptive_Gallery_mvcModel.hasValidationWidgets) || UBTConnect_Utils_CW_Image_UBT_LazyImage_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_IconText_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_Icon_mvcModel.hasValidationWidgets) || UBTConnect_Directory_Search_Search_BirthdayOptions_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel.hasValidationWidgets) || UBTConnect_Directory_Search_SearchResult_Section_mvcModel.hasValidationWidgets) || UBTConnect_App_Common_BottomBarMenu_mvcModel.hasValidationWidgets) || UBTConnect_App_Common_CommonUI_InsideLayout_mvcModel.hasValidationWidgets) || UBTConnect_App_CommonBlocks_Filter_FilterSheet_mvcModel.hasValidationWidgets);
+Model._hasValidationWidgetsValue = ((((((((((((((((UBTConnectLibrary_Layouts_Layout_DetailPage_mvcModel.hasValidationWidgets || UBTConnectLibrary_ConnectPatterns_Input_mvcModel.hasValidationWidgets) || UBTConnect_App_CommonBlocks_Filter_FilterSheet_Icon_mvcModel.hasValidationWidgets) || UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_HorizontalTagList_mvcModel.hasValidationWidgets) || UBTConnect_App_Common_Blocks_SectionSeparator_mvcModel.hasValidationWidgets) || UBTConnectLibrary_BasePatterns_Columns_Two_mvcModel.hasValidationWidgets) || UBTConnectLibrary_BasePatterns_CustomText_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel.hasValidationWidgets) || UBTConnect_Utils_CW_Image_UBT_LazyImage_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_IconText_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_Icon_mvcModel.hasValidationWidgets) || UBTConnect_Directory_Search_Search_BirthdayOptions_mvcModel.hasValidationWidgets) || UBTConnect_Directory_Search_SearchResult_Section_mvcModel.hasValidationWidgets) || UBTConnect_App_Common_BottomBarMenu_mvcModel.hasValidationWidgets) || UBTConnect_App_Common_CommonUI_InsideLayout_mvcModel.hasValidationWidgets) || UBTConnect_App_CommonBlocks_Filter_FilterSheet_mvcModel.hasValidationWidgets);
 }
 
 return Model._hasValidationWidgetsValue;
@@ -205,7 +232,7 @@ return Model;
 })(OS.Model.BaseViewModel);
 return new OS.Model.ModelFactory(Model, "Directory_Search.ScreenBlock_Search");
 });
-define("UBTConnect.Directory_Search.ScreenBlock_Search.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnectLibrary.model", "Connect_CommonEntities_DB.model", "Connect_Search_CS.model", "UBTJavaScriptUtils.controller", "UBTConnect.entities", "UBTConnect_Utils.controller", "NavigationHandler.controller", "UBTConnect_Utils.model", "react", "OutSystems/ReactView/Main", "UBTConnect.Directory_Search.ScreenBlock_Search.mvc$model", "UBTConnect.Directory_Search.ScreenBlock_Search.mvc$controller", "UBTConnect.clientVariables", "UBTConnectLibrary.Layouts.Layout_DetailPage.mvc$view", "OutSystems/ReactWidgets/Main", "UBTConnectLibrary.ConnectPatterns.Input.mvc$view", "UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon.mvc$view", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$view", "UBTConnectLibrary.ConnectPatterns.HorizontalTagList.mvc$view", "UBTConnect.App_Common_Blocks.SectionSeparator.mvc$view", "UBTConnectLibrary.BasePatterns.Columns_Two.mvc$view", "UBTConnectLibrary.BasePatterns.CustomText.mvc$view", "OutSystemsUI_2_23.Adaptive.Gallery.mvc$view", "UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc$view", "UBTConnectLibrary.ConnectPatterns.IconText.mvc$view", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$view", "UBTConnect.Directory_Search.Search_BirthdayOptions.mvc$view", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$view", "UBTConnect.Directory_Search.SearchResult_Section.mvc$view", "UBTConnect.App_Common.BottomBarMenu.mvc$view", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$view", "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc$view", "UBTConnectLibrary.model$TagRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$TagList", "UBTConnectLibrary.model$SearchInputRec", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnect.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$InlineIconRec", "UBTConnectLibrary.model$LazyImageSizeRec", "Connect_CommonEntities_DB.model$Connect_SearchBirthdayOptionsRec", "UBTConnect.referencesHealth$Connect_CommonEntities_DB", "UBTConnect.model$Connect_SearchBirthdayOptionsList", "Connect_Search_CS.model$SearchResultRec", "UBTConnect.referencesHealth$Connect_Search_CS", "UBTConnect.model$SearchResultList", "UBTConnect.model$Filter_CommonRec", "UBTConnect.model$Filter_Common_OptionsRec", "UBTConnect.model$Filter_Common_Options_ChoiceRec", "UBTConnect.model$Filter_Common_Options_ListRec", "UBTConnect.model$Filter_Common_Control_ListList", "UBTConnectLibrary.model$SelectionOption_ItemRec", "UBTConnect.model$SelectionOption_ItemList", "UBTConnect.model$Filter_Common_Control_ChoiceList", "UBTConnect.controller$ValidateSearchPhoneNumber", "UBTJavaScriptUtils.controller$FeedbackMessage_AutoClose", "UBTConnect.referencesHealth$UBTJavaScriptUtils", "UBTConnect.model$ConnectSearch_RecentSearchTermRecord", "UBTConnect.model$ConnectSearch_RecentSearchTermRecordList", "UBTConnect.model$ConnectSearch_RecentSearchTermRec", "UBTConnect_Utils.controller$GetHasCarouselEnabled", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.model$ConnectSearch_RecentClickedResultsRecord", "NavigationHandler.controller$SetPreloadObject", "UBTConnect.referencesHealth$NavigationHandler", "UBTConnect_Utils.controller$App_Subscription_ShowUpgradePopUp", "UBTConnect.model$LongIntegerBooleanRecordList", "UBTConnect.model$ConnectSearch_RecentClickedResultsRecordList", "UBTConnect.model$SwipeActionLongIntegerRecordList", "UBTConnect.model$CarouselPreloadedHouseholdsRec", "UBTConnect.model$ConnectSearch_RecentClickedResultsRec", "UBTConnect_Utils.controller$Connect_OutSystems_PermissionCheck", "UBTConnect_Utils.model$SearchCategory_ItemRec", "UBTConnect.model$SearchCategory_ItemList", "UBTConnect_Utils.controller$SearchCategory_GetList", "UBTConnect.model$Connect_SearchBirthdayOptionsRecordList"], function (OutSystems, UBTConnectModel, UBTConnectController, UBTConnectLibraryModel, Connect_CommonEntities_DBModel, Connect_Search_CSModel, UBTJavaScriptUtilsController, UBTConnectEntities, UBTConnect_UtilsController, NavigationHandlerController, UBTConnect_UtilsModel, React, OSView, UBTConnect_Directory_Search_ScreenBlock_Search_mvc_model, UBTConnect_Directory_Search_ScreenBlock_Search_mvc_controller, UBTConnectClientVariables, UBTConnectLibrary_Layouts_Layout_DetailPage_mvc_view, OSWidgets, UBTConnectLibrary_ConnectPatterns_Input_mvc_view, UBTConnect_App_CommonBlocks_Filter_FilterSheet_Icon_mvc_view, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnectLibrary_ConnectPatterns_HorizontalTagList_mvc_view, UBTConnect_App_Common_Blocks_SectionSeparator_mvc_view, UBTConnectLibrary_BasePatterns_Columns_Two_mvc_view, UBTConnectLibrary_BasePatterns_CustomText_mvc_view, OutSystemsUI_2_23_Adaptive_Gallery_mvc_view, UBTConnect_Utils_CW_Image_UBT_LazyImage_mvc_view, UBTConnectLibrary_ConnectPatterns_IconText_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnect_Directory_Search_Search_BirthdayOptions_mvc_view, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, UBTConnect_Directory_Search_SearchResult_Section_mvc_view, UBTConnect_App_Common_BottomBarMenu_mvc_view, UBTConnect_App_Common_CommonUI_InsideLayout_mvc_view, UBTConnect_App_CommonBlocks_Filter_FilterSheet_mvc_view) {
+define("UBTConnect.Directory_Search.ScreenBlock_Search.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnectLibrary.model", "Connect_CommonEntities_DB.model", "Connect_Search_CS.model", "UBTJavaScriptUtils.controller", "UBTConnect.entities", "UBTConnect_Utils.controller", "NavigationHandler.controller", "UBTConnect_Utils.model", "react", "OutSystems/ReactView/Main", "UBTConnect.Directory_Search.ScreenBlock_Search.mvc$model", "UBTConnect.Directory_Search.ScreenBlock_Search.mvc$controller", "UBTConnect.clientVariables", "UBTConnectLibrary.Layouts.Layout_DetailPage.mvc$view", "OutSystems/ReactWidgets/Main", "UBTConnectLibrary.ConnectPatterns.Input.mvc$view", "UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon.mvc$view", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$view", "UBTConnectLibrary.ConnectPatterns.HorizontalTagList.mvc$view", "UBTConnect.App_Common_Blocks.SectionSeparator.mvc$view", "UBTConnectLibrary.BasePatterns.Columns_Two.mvc$view", "UBTConnectLibrary.BasePatterns.CustomText.mvc$view", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$view", "UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc$view", "UBTConnectLibrary.ConnectPatterns.IconText.mvc$view", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$view", "UBTConnect.Directory_Search.Search_BirthdayOptions.mvc$view", "UBTConnect.Directory_Search.SearchResult_Section.mvc$view", "UBTConnect.App_Common.BottomBarMenu.mvc$view", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$view", "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc$view", "UBTConnectLibrary.model$TagRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$TagList", "UBTConnect.model$ConnectSearch_RecentClickedResultsList", "UBTConnectLibrary.model$SearchInputRec", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnect.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$InlineIconRec", "UBTConnectLibrary.model$LazyImageSizeRec", "Connect_CommonEntities_DB.model$Connect_SearchBirthdayOptionsRec", "UBTConnect.referencesHealth$Connect_CommonEntities_DB", "UBTConnect.model$Connect_SearchBirthdayOptionsList", "Connect_Search_CS.model$SearchResultRec", "UBTConnect.referencesHealth$Connect_Search_CS", "UBTConnect.model$SearchResultList", "UBTConnect.model$Filter_CommonRec", "UBTConnect.model$Filter_Common_OptionsRec", "UBTConnect.model$Filter_Common_Options_ChoiceRec", "UBTConnect.model$Filter_Common_Options_ListRec", "UBTConnect.model$Filter_Common_Control_ListList", "UBTConnectLibrary.model$SelectionOption_ItemRec", "UBTConnect.model$SelectionOption_ItemList", "UBTConnect.model$Filter_Common_Control_ChoiceList", "UBTConnect.controller$ValidateSearchPhoneNumber", "UBTJavaScriptUtils.controller$FeedbackMessage_AutoClose", "UBTConnect.referencesHealth$UBTJavaScriptUtils", "UBTConnect.model$ConnectSearch_RecentClickedResultsRecordList", "UBTConnect.model$ConnectSearch_RecentClickedResultsRec", "UBTConnect.model$ConnectSearch_RecentSearchTermRecord", "UBTConnect.model$ConnectSearch_RecentSearchTermRecordList", "UBTConnect.model$ConnectSearch_RecentSearchTermRec", "UBTConnect_Utils.controller$GetHasCarouselEnabled", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.model$ConnectSearch_RecentClickedResultsRecord", "NavigationHandler.controller$SetPreloadObject", "UBTConnect.referencesHealth$NavigationHandler", "UBTConnect_Utils.controller$App_Subscription_ShowUpgradePopUp", "UBTConnect.model$LongIntegerBooleanRecordList", "UBTConnect.model$SwipeActionLongIntegerRecordList", "UBTConnect.model$CarouselPreloadedHouseholdsRec", "UBTConnect_Utils.controller$Connect_OutSystems_PermissionCheck", "UBTConnect_Utils.model$SearchCategory_ItemRec", "UBTConnect.model$SearchCategory_ItemList", "UBTConnect_Utils.controller$SearchCategory_GetList", "UBTConnect.model$Connect_SearchBirthdayOptionsRecordList"], function (OutSystems, UBTConnectModel, UBTConnectController, UBTConnectLibraryModel, Connect_CommonEntities_DBModel, Connect_Search_CSModel, UBTJavaScriptUtilsController, UBTConnectEntities, UBTConnect_UtilsController, NavigationHandlerController, UBTConnect_UtilsModel, React, OSView, UBTConnect_Directory_Search_ScreenBlock_Search_mvc_model, UBTConnect_Directory_Search_ScreenBlock_Search_mvc_controller, UBTConnectClientVariables, UBTConnectLibrary_Layouts_Layout_DetailPage_mvc_view, OSWidgets, UBTConnectLibrary_ConnectPatterns_Input_mvc_view, UBTConnect_App_CommonBlocks_Filter_FilterSheet_Icon_mvc_view, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnectLibrary_ConnectPatterns_HorizontalTagList_mvc_view, UBTConnect_App_Common_Blocks_SectionSeparator_mvc_view, UBTConnectLibrary_BasePatterns_Columns_Two_mvc_view, UBTConnectLibrary_BasePatterns_CustomText_mvc_view, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, UBTConnect_Utils_CW_Image_UBT_LazyImage_mvc_view, UBTConnectLibrary_ConnectPatterns_IconText_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnect_Directory_Search_Search_BirthdayOptions_mvc_view, UBTConnect_Directory_Search_SearchResult_Section_mvc_view, UBTConnect_App_Common_BottomBarMenu_mvc_view, UBTConnect_App_Common_CommonUI_InsideLayout_mvc_view, UBTConnect_App_CommonBlocks_Filter_FilterSheet_mvc_view) {
     var OS = OutSystems.Internal;
 var PlaceholderContent = OSView.Widget.PlaceholderContent;
 var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
@@ -237,7 +264,7 @@ var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
             return [];
         };
         View.getBlocks = function() {
-            return [UBTConnectLibrary_Layouts_Layout_DetailPage_mvc_view, UBTConnectLibrary_ConnectPatterns_Input_mvc_view, UBTConnect_App_CommonBlocks_Filter_FilterSheet_Icon_mvc_view, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnectLibrary_ConnectPatterns_HorizontalTagList_mvc_view, UBTConnect_App_Common_Blocks_SectionSeparator_mvc_view, UBTConnectLibrary_BasePatterns_Columns_Two_mvc_view, UBTConnectLibrary_BasePatterns_CustomText_mvc_view, OutSystemsUI_2_23_Adaptive_Gallery_mvc_view, UBTConnect_Utils_CW_Image_UBT_LazyImage_mvc_view, UBTConnectLibrary_ConnectPatterns_IconText_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnect_Directory_Search_Search_BirthdayOptions_mvc_view, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, UBTConnect_Directory_Search_SearchResult_Section_mvc_view, UBTConnect_App_Common_BottomBarMenu_mvc_view, UBTConnect_App_Common_CommonUI_InsideLayout_mvc_view, UBTConnect_App_CommonBlocks_Filter_FilterSheet_mvc_view];
+            return [UBTConnectLibrary_Layouts_Layout_DetailPage_mvc_view, UBTConnectLibrary_ConnectPatterns_Input_mvc_view, UBTConnect_App_CommonBlocks_Filter_FilterSheet_Icon_mvc_view, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnectLibrary_ConnectPatterns_HorizontalTagList_mvc_view, UBTConnect_App_Common_Blocks_SectionSeparator_mvc_view, UBTConnectLibrary_BasePatterns_Columns_Two_mvc_view, UBTConnectLibrary_BasePatterns_CustomText_mvc_view, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, UBTConnect_Utils_CW_Image_UBT_LazyImage_mvc_view, UBTConnectLibrary_ConnectPatterns_IconText_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnect_Directory_Search_Search_BirthdayOptions_mvc_view, UBTConnect_Directory_Search_SearchResult_Section_mvc_view, UBTConnect_App_Common_BottomBarMenu_mvc_view, UBTConnect_App_Common_CommonUI_InsideLayout_mvc_view, UBTConnect_App_CommonBlocks_Filter_FilterSheet_mvc_view];
         };
         Object.defineProperty(View.prototype, "modelFactory", {
             get: function () {
@@ -495,7 +522,7 @@ alias: "6"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
-}), $if(((!(model.variables.get_RecentClickedResultsAggr.listOut.isEmpty) || !(model.variables.get_RecentSearchTermsAggr.listOut.isEmpty)) && !((model.variables.isBirthdaySearchEnabledVar && model.variables.isBirthdayKeyWordVar))), false, this, function () {
+}), $if(((!(model.variables.get_FilteredRecentClickedResultsDataAct.out_RecentClickedResultsOut.isEmpty) || !(model.variables.get_RecentSearchTermsAggr.listOut.isEmpty)) && !((model.variables.isBirthdaySearchEnabledVar && model.variables.isBirthdayKeyWordVar))), false, this, function () {
 return [React.createElement(UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, {
 inputs: {
 Options: model.getCachedValue(idService.getId("RecentSearch.Options"), function () {
@@ -527,7 +554,7 @@ alias: "7"
 _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
 content: new PlaceholderContent(function () {
-return [$if((!(model.variables.get_RecentClickedResultsAggr.listOut.isEmpty) || !(model.variables.get_RecentSearchTermsAggr.listOut.isEmpty)), false, this, function () {
+return [$if((!(model.variables.get_FilteredRecentClickedResultsDataAct.out_RecentClickedResultsOut.isEmpty) || !(model.variables.get_RecentSearchTermsAggr.listOut.isEmpty)), false, this, function () {
 return [React.createElement(UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, {
 inputs: {
 Options: model.getCachedValue(idService.getId("SsA1tf+iFE+IhjIejX9THg.Options"), function () {
@@ -607,7 +634,7 @@ _dependencies: []
 })];
 }),
 right: new PlaceholderContent(function () {
-return [$if((!(model.variables.get_RecentClickedResultsAggr.listOut.isEmpty) || !(model.variables.get_RecentSearchTermsAggr.listOut.isEmpty)), false, this, function () {
+return [$if((!(model.variables.get_FilteredRecentClickedResultsDataAct.out_RecentClickedResultsOut.isEmpty) || !(model.variables.get_RecentSearchTermsAggr.listOut.isEmpty)), false, this, function () {
 return [React.createElement(OSWidgets.Container, {
 align: /*Default*/ 0,
 animate: false,
@@ -669,11 +696,11 @@ return [];
 })];
 })
 },
-_dependencies: [asPrimitiveValue(model.variables.get_RecentSearchTermsAggr.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_RecentClickedResultsAggr.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_RecentSearchTermsAggr.listOut.isEmpty), asPrimitiveValue(model.variables.get_RecentClickedResultsAggr.listOut.isEmpty)]
+_dependencies: [asPrimitiveValue(model.variables.get_RecentSearchTermsAggr.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_FilteredRecentClickedResultsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_RecentSearchTermsAggr.listOut.isEmpty), asPrimitiveValue(model.variables.get_FilteredRecentClickedResultsDataAct.out_RecentClickedResultsOut.isEmpty)]
 })];
 })
 },
-_dependencies: [asPrimitiveValue(model.variables.get_RecentSearchTermsAggr.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_RecentClickedResultsAggr.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_RecentSearchTermsAggr.listOut.isEmpty), asPrimitiveValue(model.variables.get_RecentClickedResultsAggr.listOut.isEmpty)]
+_dependencies: [asPrimitiveValue(model.variables.get_RecentSearchTermsAggr.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_FilteredRecentClickedResultsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_RecentSearchTermsAggr.listOut.isEmpty), asPrimitiveValue(model.variables.get_FilteredRecentClickedResultsDataAct.out_RecentClickedResultsOut.isEmpty)]
 }), React.createElement(UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, {
 inputs: {
 Options: model.getCachedValue(idService.getId("Recent_SearchResults.Options"), function () {
@@ -704,12 +731,9 @@ alias: "12"
 _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
 content: new PlaceholderContent(function () {
-return [React.createElement(OutSystemsUI_2_23_Adaptive_Gallery_mvc_view, {
+return [React.createElement(UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, {
 inputs: {
-RowItemsPhone: 5,
-RowItemsTablet: 5,
-ItemsGap: UBTConnectModel.staticEntities.space.extraSmall,
-RowItemsDesktop: 5
+In_IsLoading: !(model.variables.get_FilteredRecentClickedResultsDataAct.isDataFetchedAttr)
 },
 events: {
 _handleError: function (ex) {
@@ -726,7 +750,7 @@ alias: "13"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
-content: new PlaceholderContent(function () {
+placeholder_LoadingSection: new PlaceholderContent(function () {
 return [React.createElement(OSWidgets.List, {
 animateItems: false,
 extendedProperties: {
@@ -736,15 +760,14 @@ gridProperties: {
 classes: "OSFillParent"
 },
 mode: /*Default*/ 0,
-source: model.variables.get_RecentClickedResultsAggr.listOut,
-style: "list list-group",
+source: model.variables.recentClickedResultsVar,
+style: "list list-group recent-search-list",
 tag: "div",
 _idProps: {
 service: idService,
 uuid: "14"
 },
 _widgetRecordProvider: widgetsRecordProvider,
-source_dataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_RecentClickedResultsAggr.dataFetchStatusAttr),
 placeholders: {
 content: new IteratorPlaceholderContent(function (idService, callContext) {
 return [React.createElement(OSWidgets.Container, {
@@ -759,15 +782,15 @@ var varBag = {};
 controller.pushDebuggerContext(eventHandlerContext);
 
 OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "Directory_Search/ScreenBlock_Search/Container onclick");
-return controller.event_SectionOnItemClick$Action(OS.DataConversion.JSConversions.typeConvertRecord(model.variables.get_RecentClickedResultsAggr.listOut.getCurrent(callContext.iterationContext), new Connect_Search_CSModel.SearchResultRec(), function (source, target) {
-target.idAttr = source.connectSearch_RecentClickedResultsAttr.entityIdAttr;
-target.householderIdAttr = source.connectSearch_RecentClickedResultsAttr.householderIdAttr;
-target.nameAttr = source.connectSearch_RecentClickedResultsAttr.nameAttr;
-target.additionalInformationAttr = source.connectSearch_RecentClickedResultsAttr.additionalInformationAttr;
-target.locationAttr = source.connectSearch_RecentClickedResultsAttr.locationAttr;
-target.typeAttr = source.connectSearch_RecentClickedResultsAttr.entityTypeAttr;
-target.latitudeAttr = source.connectSearch_RecentClickedResultsAttr.latitudeAttr;
-target.longitudeAttr = source.connectSearch_RecentClickedResultsAttr.longitudeAttr;
+return controller.event_SectionOnItemClick$Action(OS.DataConversion.JSConversions.typeConvertRecord(model.variables.recentClickedResultsVar.getCurrent(callContext.iterationContext), new Connect_Search_CSModel.SearchResultRec(), function (source, target) {
+target.idAttr = source.entityIdAttr;
+target.householderIdAttr = source.householderIdAttr;
+target.nameAttr = source.nameAttr;
+target.additionalInformationAttr = source.additionalInformationAttr;
+target.locationAttr = source.locationAttr;
+target.typeAttr = source.entityTypeAttr;
+target.latitudeAttr = source.latitudeAttr;
+target.longitudeAttr = source.longitudeAttr;
 return target;
 }), true, controller.callContext(eventHandlerContext));
 }, function () {
@@ -780,32 +803,30 @@ controller.popDebuggerContext(eventHandlerContext);
 extendedProperties: {
 style: "text-align: center;"
 },
-style: "overflow-wrap-anywhere",
+style: "recent-search-item overflow-wrap-anywhere",
 visible: true,
 _idProps: {
 service: idService,
 uuid: "15"
 },
 _widgetRecordProvider: widgetsRecordProvider,
-_dependencies: [asPrimitiveValue(model.variables.get_RecentClickedResultsAggr.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_RecentClickedResultsAggr.listOut.getCurrent(callContext.iterationContext).connectSearch_RecentClickedResultsAttr.nameAttr), asPrimitiveValue(model.variables.get_RecentClickedResultsAggr.listOut.getCurrent(callContext.iterationContext).connectSearch_RecentClickedResultsAttr.entityTypeAttr), asPrimitiveValue(model.variables.get_RecentClickedResultsAggr.listOut.getCurrent(callContext.iterationContext).connectSearch_RecentClickedResultsAttr.entityIdAttr)]
+_dependencies: [asPrimitiveValue(model.variables.get_FilteredRecentClickedResultsDataAct.isDataFetchedAttr), asPrimitiveValue(model.variables.recentClickedResultsVar.getCurrent(callContext.iterationContext).nameAttr), asPrimitiveValue(model.variables.recentClickedResultsVar.getCurrent(callContext.iterationContext).entityTypeAttr), asPrimitiveValue(model.variables.recentClickedResultsVar.getCurrent(callContext.iterationContext).entityIdAttr)]
 }, React.createElement(UBTConnect_Utils_CW_Image_UBT_LazyImage_mvc_view, {
 inputs: {
-EntityId: model.variables.get_RecentClickedResultsAggr.listOut.getCurrent(callContext.iterationContext).connectSearch_RecentClickedResultsAttr.entityIdAttr,
-_entityIdInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_RecentClickedResultsAggr.dataFetchStatusAttr),
-ImageSize: model.getCachedValue(idService.getId("zSm8ceGi00uBgXsDF7LBXw.ImageSize"), function () {
+EntityId: model.variables.recentClickedResultsVar.getCurrent(callContext.iterationContext).entityIdAttr,
+In_BorderRadius: UBTConnectModel.staticEntities.uBT_Shape.soft,
+ImageSize: model.getCachedValue(idService.getId("TWyq99qHDkWkoTFEL9860w.ImageSize"), function () {
 return function () {
 var rec = new UBTConnectLibraryModel.LazyImageSizeRec();
 rec.heightAttr = UBTConnectModel.staticEntities.uBT_ImageSize.extraSmall_32;
-rec.widthAttr = (((model.variables.get_RecentClickedResultsAggr.listOut.getCurrent(callContext.iterationContext).connectSearch_RecentClickedResultsAttr.entityTypeAttr === UBTConnectModel.staticEntities.connect_Entity.member)) ? (UBTConnectModel.staticEntities.uBT_ImageSize.square) : (OS.BuiltinFunctions.nullTextIdentifier()));
+rec.widthAttr = (((model.variables.recentClickedResultsVar.getCurrent(callContext.iterationContext).entityTypeAttr === UBTConnectModel.staticEntities.connect_Entity.member)) ? (UBTConnectModel.staticEntities.uBT_ImageSize.square) : (OS.BuiltinFunctions.nullTextIdentifier()));
 return rec;
 }();
 }, function () {
-return model.variables.get_RecentClickedResultsAggr.listOut.getCurrent(callContext.iterationContext).connectSearch_RecentClickedResultsAttr.entityTypeAttr;
+return model.variables.recentClickedResultsVar.getCurrent(callContext.iterationContext).entityTypeAttr;
 }),
-_imageSizeInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_RecentClickedResultsAggr.dataFetchStatusAttr),
-EntityType: model.variables.get_RecentClickedResultsAggr.listOut.getCurrent(callContext.iterationContext).connectSearch_RecentClickedResultsAttr.entityTypeAttr,
-_entityTypeInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_RecentClickedResultsAggr.dataFetchStatusAttr),
-In_BorderRadius: UBTConnectModel.staticEntities.uBT_Shape.soft
+EntityType: model.variables.recentClickedResultsVar.getCurrent(callContext.iterationContext).entityTypeAttr,
+In_ForceLoadingState: !(model.variables.get_FilteredRecentClickedResultsDataAct.isDataFetchedAttr)
 },
 events: {
 _handleError: function (ex) {
@@ -824,7 +845,8 @@ _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
 }), React.createElement(UBTConnectLibrary_BasePatterns_CustomText_mvc_view, {
 inputs: {
-In_TextOptions: model.getCachedValue(idService.getId("JAA7n73smkOBK6F4UNahaA.In_TextOptions"), function () {
+In_Text: model.variables.recentClickedResultsVar.getCurrent(callContext.iterationContext).nameAttr,
+In_TextOptions: model.getCachedValue(idService.getId("6K0OGXz7mUSeKvIt42mMJA.In_TextOptions"), function () {
 return function () {
 var rec = new UBTConnectLibraryModel.TextOptionsRec();
 rec.colorAttr = UBTConnectModel.staticEntities.uBT_Color.neutral10;
@@ -832,9 +854,7 @@ rec.fontSizeAttr = UBTConnectModel.staticEntities.uBT_FontSize.extraSmall;
 rec.fontWeightAttr = UBTConnectModel.staticEntities.uBT_FontWeight.semiBold;
 return rec;
 }();
-}),
-In_Text: model.variables.get_RecentClickedResultsAggr.listOut.getCurrent(callContext.iterationContext).connectSearch_RecentClickedResultsAttr.nameAttr,
-_in_TextInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_RecentClickedResultsAggr.dataFetchStatusAttr)
+})
 },
 events: {
 _handleError: function (ex) {
@@ -854,15 +874,15 @@ _dependencies: []
 }))];
 }, callContext, idService, "1")
 },
-_dependencies: [asPrimitiveValue(model.variables.get_RecentClickedResultsAggr.dataFetchStatusAttr)]
+_dependencies: [asPrimitiveValue(model.variables.get_FilteredRecentClickedResultsDataAct.isDataFetchedAttr)]
 })];
 })
 },
-_dependencies: [asPrimitiveValue(model.variables.get_RecentClickedResultsAggr.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_RecentClickedResultsAggr.listOut)]
+_dependencies: [asPrimitiveValue(model.variables.get_FilteredRecentClickedResultsDataAct.isDataFetchedAttr), asPrimitiveValue(model.variables.recentClickedResultsVar)]
 })];
 })
 },
-_dependencies: [asPrimitiveValue(model.variables.get_RecentClickedResultsAggr.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_RecentClickedResultsAggr.listOut)]
+_dependencies: [asPrimitiveValue(model.variables.recentClickedResultsVar), asPrimitiveValue(model.variables.get_FilteredRecentClickedResultsDataAct.isDataFetchedAttr)]
 }), React.createElement(OSWidgets.List, {
 animateItems: true,
 gridProperties: {
@@ -957,6 +977,7 @@ var rec = new UBTConnectLibraryModel.TextOptionsRec();
 rec.colorAttr = UBTConnectModel.staticEntities.uBT_Color.neutral9;
 rec.fontSizeAttr = UBTConnectModel.staticEntities.uBT_FontSize.extraSmall;
 rec.fontWeightAttr = UBTConnectModel.staticEntities.uBT_FontWeight.regular;
+rec.isOverflowEllipsisAttr = true;
 return rec;
 }();
 }),
@@ -1113,7 +1134,7 @@ _dependencies: []
 })];
 })
 },
-_dependencies: [asPrimitiveValue(model.variables.hasSearchedVar), asPrimitiveValue(model.variables.get_RecentSearchTermsAggr.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_RecentClickedResultsAggr.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_RecentSearchTermsAggr.listOut), asPrimitiveValue(model.variables.get_RecentClickedResultsAggr.listOut)]
+_dependencies: [asPrimitiveValue(model.variables.hasSearchedVar), asPrimitiveValue(model.variables.recentClickedResultsVar), asPrimitiveValue(model.variables.get_RecentSearchTermsAggr.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_FilteredRecentClickedResultsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_RecentSearchTermsAggr.listOut), asPrimitiveValue(model.variables.get_FilteredRecentClickedResultsDataAct.isDataFetchedAttr), asPrimitiveValue(model.variables.get_FilteredRecentClickedResultsDataAct.out_RecentClickedResultsOut.isEmpty)]
 })];
 }, function () {
 return [];
@@ -1701,7 +1722,7 @@ _dependencies: []
 })];
 })
 },
-_dependencies: [asPrimitiveValue(model.variables.in_IsInScreenSearchIn), asPrimitiveValue(model.variables.hasPeopleVar), asPrimitiveValue(model.variables.hasHouseholdsVar), asPrimitiveValue(model.variables.fetchSearchResultsDataAct.peopleOut), asPrimitiveValue(model.variables.fetchSearchResultsDataAct.householdsOut), asPrimitiveValue(model.variables.fetchSearchResultsDataAct.placesOut), asPrimitiveValue(model.variables.selectedCategoryVar), asPrimitiveValue(model.variables.hasPlacesVar), asPrimitiveValue(model.variables.isLoadingVar), asPrimitiveValue(model.variables.get_SearchBirthdayOptionsAggr.listOut), asPrimitiveValue(model.variables._in_IsInScreenSearchInDataFetchStatus), asPrimitiveValue(model.variables.fetchSearchResultsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_SearchBirthdayOptionsAggr.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_RecentSearchTermsAggr.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_RecentClickedResultsAggr.dataFetchStatusAttr), asPrimitiveValue(model.variables.isBirthdayKeyWordVar), asPrimitiveValue(model.variables.isBirthdaySearchEnabledVar), asPrimitiveValue(model.variables.get_RecentSearchTermsAggr.listOut), asPrimitiveValue(model.variables.get_RecentClickedResultsAggr.listOut), asPrimitiveValue(model.variables.searchKey_LastSearchedVar), asPrimitiveValue(model.variables.hasSearchedVar), asPrimitiveValue(model.variables.tagListVar), asPrimitiveValue(model.variables.bottomSheetId_FilterVar), asPrimitiveValue(model.variables.hasFiltersAppliedVar), asPrimitiveValue(model.variables.bottomSheetId_Filter_IsLoadedVar), asPrimitiveValue(model.variables.bottomSheetId_Filter_ShowSubscriptionOnClickVar), asPrimitiveValue(model.variables.searchKey_CurrentVar)]
+_dependencies: [asPrimitiveValue(model.variables.in_IsInScreenSearchIn), asPrimitiveValue(model.variables.hasPeopleVar), asPrimitiveValue(model.variables.hasHouseholdsVar), asPrimitiveValue(model.variables.fetchSearchResultsDataAct.peopleOut), asPrimitiveValue(model.variables.fetchSearchResultsDataAct.householdsOut), asPrimitiveValue(model.variables.fetchSearchResultsDataAct.placesOut), asPrimitiveValue(model.variables.selectedCategoryVar), asPrimitiveValue(model.variables.hasPlacesVar), asPrimitiveValue(model.variables.isLoadingVar), asPrimitiveValue(model.variables.get_SearchBirthdayOptionsAggr.listOut), asPrimitiveValue(model.variables.recentClickedResultsVar), asPrimitiveValue(model.variables._in_IsInScreenSearchInDataFetchStatus), asPrimitiveValue(model.variables.fetchSearchResultsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_SearchBirthdayOptionsAggr.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_RecentSearchTermsAggr.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_FilteredRecentClickedResultsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.isBirthdayKeyWordVar), asPrimitiveValue(model.variables.isBirthdaySearchEnabledVar), asPrimitiveValue(model.variables.get_RecentSearchTermsAggr.listOut), asPrimitiveValue(model.variables.get_FilteredRecentClickedResultsDataAct.isDataFetchedAttr), asPrimitiveValue(model.variables.get_FilteredRecentClickedResultsDataAct.out_RecentClickedResultsOut.isEmpty), asPrimitiveValue(model.variables.searchKey_LastSearchedVar), asPrimitiveValue(model.variables.hasSearchedVar), asPrimitiveValue(model.variables.tagListVar), asPrimitiveValue(model.variables.bottomSheetId_FilterVar), asPrimitiveValue(model.variables.hasFiltersAppliedVar), asPrimitiveValue(model.variables.bottomSheetId_Filter_IsLoadedVar), asPrimitiveValue(model.variables.bottomSheetId_Filter_ShowSubscriptionOnClickVar), asPrimitiveValue(model.variables.searchKey_CurrentVar)]
 }), $if(false, false, this, function () {
 return [];
 }, function () {
@@ -1801,7 +1822,7 @@ _dependencies: []
 	
     return View;
 });
-define("UBTConnect.Directory_Search.ScreenBlock_Search.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnectLibrary.model", "Connect_CommonEntities_DB.model", "Connect_Search_CS.model", "UBTJavaScriptUtils.controller", "UBTConnect.entities", "UBTConnect_Utils.controller", "NavigationHandler.controller", "UBTConnect_Utils.model", "UBTConnect.languageResources", "UBTConnect.clientVariables", "UBTConnect.Directory_Search.ScreenBlock_Search.mvc$debugger", "UBTConnectLibrary.model$TagRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$TagList", "UBTConnectLibrary.model$SearchInputRec", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnect.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$InlineIconRec", "UBTConnectLibrary.model$LazyImageSizeRec", "Connect_CommonEntities_DB.model$Connect_SearchBirthdayOptionsRec", "UBTConnect.referencesHealth$Connect_CommonEntities_DB", "UBTConnect.model$Connect_SearchBirthdayOptionsList", "Connect_Search_CS.model$SearchResultRec", "UBTConnect.referencesHealth$Connect_Search_CS", "UBTConnect.model$SearchResultList", "UBTConnect.model$Filter_CommonRec", "UBTConnect.model$Filter_Common_OptionsRec", "UBTConnect.model$Filter_Common_Options_ChoiceRec", "UBTConnect.model$Filter_Common_Options_ListRec", "UBTConnect.model$Filter_Common_Control_ListList", "UBTConnectLibrary.model$SelectionOption_ItemRec", "UBTConnect.model$SelectionOption_ItemList", "UBTConnect.model$Filter_Common_Control_ChoiceList", "UBTConnect.controller$ValidateSearchPhoneNumber", "UBTJavaScriptUtils.controller$FeedbackMessage_AutoClose", "UBTConnect.referencesHealth$UBTJavaScriptUtils", "UBTConnect.model$ConnectSearch_RecentSearchTermRecord", "UBTConnect.model$ConnectSearch_RecentSearchTermRecordList", "UBTConnect.model$ConnectSearch_RecentSearchTermRec", "UBTConnect_Utils.controller$GetHasCarouselEnabled", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.model$ConnectSearch_RecentClickedResultsRecord", "NavigationHandler.controller$SetPreloadObject", "UBTConnect.referencesHealth$NavigationHandler", "UBTConnect_Utils.controller$App_Subscription_ShowUpgradePopUp", "UBTConnect.model$LongIntegerBooleanRecordList", "UBTConnect.model$ConnectSearch_RecentClickedResultsRecordList", "UBTConnect.model$SwipeActionLongIntegerRecordList", "UBTConnect.model$CarouselPreloadedHouseholdsRec", "UBTConnect.model$ConnectSearch_RecentClickedResultsRec", "UBTConnect_Utils.controller$Connect_OutSystems_PermissionCheck", "UBTConnect_Utils.model$SearchCategory_ItemRec", "UBTConnect.model$SearchCategory_ItemList", "UBTConnect_Utils.controller$SearchCategory_GetList", "UBTConnect.model$Connect_SearchBirthdayOptionsRecordList"], function (OutSystems, UBTConnectModel, UBTConnectController, UBTConnectLibraryModel, Connect_CommonEntities_DBModel, Connect_Search_CSModel, UBTJavaScriptUtilsController, UBTConnectEntities, UBTConnect_UtilsController, NavigationHandlerController, UBTConnect_UtilsModel, UBTConnectLanguageResources, UBTConnectClientVariables, UBTConnect_Directory_Search_ScreenBlock_Search_mvc_Debugger) {
+define("UBTConnect.Directory_Search.ScreenBlock_Search.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnectLibrary.model", "Connect_CommonEntities_DB.model", "Connect_Search_CS.model", "UBTJavaScriptUtils.controller", "UBTConnect.entities", "UBTConnect_Utils.controller", "NavigationHandler.controller", "UBTConnect_Utils.model", "UBTConnect.languageResources", "UBTConnect.clientVariables", "UBTConnect.Directory_Search.ScreenBlock_Search.mvc$debugger", "UBTConnectLibrary.model$TagRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$TagList", "UBTConnect.model$ConnectSearch_RecentClickedResultsList", "UBTConnectLibrary.model$SearchInputRec", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnect.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$InlineIconRec", "UBTConnectLibrary.model$LazyImageSizeRec", "Connect_CommonEntities_DB.model$Connect_SearchBirthdayOptionsRec", "UBTConnect.referencesHealth$Connect_CommonEntities_DB", "UBTConnect.model$Connect_SearchBirthdayOptionsList", "Connect_Search_CS.model$SearchResultRec", "UBTConnect.referencesHealth$Connect_Search_CS", "UBTConnect.model$SearchResultList", "UBTConnect.model$Filter_CommonRec", "UBTConnect.model$Filter_Common_OptionsRec", "UBTConnect.model$Filter_Common_Options_ChoiceRec", "UBTConnect.model$Filter_Common_Options_ListRec", "UBTConnect.model$Filter_Common_Control_ListList", "UBTConnectLibrary.model$SelectionOption_ItemRec", "UBTConnect.model$SelectionOption_ItemList", "UBTConnect.model$Filter_Common_Control_ChoiceList", "UBTConnect.controller$ValidateSearchPhoneNumber", "UBTJavaScriptUtils.controller$FeedbackMessage_AutoClose", "UBTConnect.referencesHealth$UBTJavaScriptUtils", "UBTConnect.model$ConnectSearch_RecentClickedResultsRecordList", "UBTConnect.model$ConnectSearch_RecentClickedResultsRec", "UBTConnect.model$ConnectSearch_RecentSearchTermRecord", "UBTConnect.model$ConnectSearch_RecentSearchTermRecordList", "UBTConnect.model$ConnectSearch_RecentSearchTermRec", "UBTConnect_Utils.controller$GetHasCarouselEnabled", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.model$ConnectSearch_RecentClickedResultsRecord", "NavigationHandler.controller$SetPreloadObject", "UBTConnect.referencesHealth$NavigationHandler", "UBTConnect_Utils.controller$App_Subscription_ShowUpgradePopUp", "UBTConnect.model$LongIntegerBooleanRecordList", "UBTConnect.model$SwipeActionLongIntegerRecordList", "UBTConnect.model$CarouselPreloadedHouseholdsRec", "UBTConnect_Utils.controller$Connect_OutSystems_PermissionCheck", "UBTConnect_Utils.model$SearchCategory_ItemRec", "UBTConnect.model$SearchCategory_ItemList", "UBTConnect_Utils.controller$SearchCategory_GetList", "UBTConnect.model$Connect_SearchBirthdayOptionsRecordList"], function (OutSystems, UBTConnectModel, UBTConnectController, UBTConnectLibraryModel, Connect_CommonEntities_DBModel, Connect_Search_CSModel, UBTJavaScriptUtilsController, UBTConnectEntities, UBTConnect_UtilsController, NavigationHandlerController, UBTConnect_UtilsModel, UBTConnectLanguageResources, UBTConnectClientVariables, UBTConnect_Directory_Search_ScreenBlock_Search_mvc_Debugger) {
 var OS = OutSystems.Internal;
 var Controller = (function (_super) {
 __extends(Controller, _super);
@@ -1813,12 +1834,14 @@ this.dataFetchDependenciesOriginal = {
 get_RecentClickedResults$AggrRefresh: 0,
 get_RecentSearchTerms$AggrRefresh: 0,
 get_SearchBirthdayOptions$AggrRefresh: -1,
+get_FilteredRecentClickedResults$DataActRefresh: -1,
 fetchSearchResults$DataActRefresh: -1
 };
 this.dataFetchDependentsGraph = {
 get_RecentClickedResults$AggrRefresh: [],
 get_RecentSearchTerms$AggrRefresh: [],
 get_SearchBirthdayOptions$AggrRefresh: [],
+get_FilteredRecentClickedResults$DataActRefresh: [],
 fetchSearchResults$DataActRefresh: []
 };
 this.shouldSendClientVarsToDataSources = false;
@@ -1841,7 +1864,7 @@ count: OS.DataTypes.LongInteger.defaultValue
 };
 var countArgsList = new OS.Entities.QueryArgumentsList();
 if(!(maxRecords)) {
-maxRecords = 5;
+maxRecords = 100;
 }
 
 var qpinUserId = OS.BuiltinFunctions.getUserId();
@@ -1858,7 +1881,7 @@ var argsList = new OS.Entities.QueryArgumentsList();
 
 selectSql += "SELECT ";
 if (optimizeSelect) {
-selectSql += "NULL o0, NULL o1, \"ENConnectSearch_RecentClickedResults\".\"EntityId\" o2, \"ENConnectSearch_RecentClickedResults\".\"EntityType\" o3, \"ENConnectSearch_RecentClickedResults\".\"HouseholderId\" o4, \"ENConnectSearch_RecentClickedResults\".\"Name\" o5, \"ENConnectSearch_RecentClickedResults\".\"AdditionalInformation\" o6, \"ENConnectSearch_RecentClickedResults\".\"Location\" o7, NULL o8, \"ENConnectSearch_RecentClickedResults\".\"Latitude\" o9, \"ENConnectSearch_RecentClickedResults\".\"Longitude\" o10, NULL o11";
+selectSql += "\"ENConnectSearch_RecentClickedResults\".\"Id\" o0, NULL o1, \"ENConnectSearch_RecentClickedResults\".\"EntityId\" o2, \"ENConnectSearch_RecentClickedResults\".\"EntityType\" o3, \"ENConnectSearch_RecentClickedResults\".\"HouseholderId\" o4, \"ENConnectSearch_RecentClickedResults\".\"Name\" o5, \"ENConnectSearch_RecentClickedResults\".\"AdditionalInformation\" o6, \"ENConnectSearch_RecentClickedResults\".\"Location\" o7, NULL o8, \"ENConnectSearch_RecentClickedResults\".\"Latitude\" o9, \"ENConnectSearch_RecentClickedResults\".\"Longitude\" o10, NULL o11";
 } else {
 selectSql += "\"ENConnectSearch_RecentClickedResults\".\"Id\" o0, \"ENConnectSearch_RecentClickedResults\".\"UserId\" o1, \"ENConnectSearch_RecentClickedResults\".\"EntityId\" o2, \"ENConnectSearch_RecentClickedResults\".\"EntityType\" o3, \"ENConnectSearch_RecentClickedResults\".\"HouseholderId\" o4, \"ENConnectSearch_RecentClickedResults\".\"Name\" o5, \"ENConnectSearch_RecentClickedResults\".\"AdditionalInformation\" o6, \"ENConnectSearch_RecentClickedResults\".\"Location\" o7, \"ENConnectSearch_RecentClickedResults\".\"SearchedOn\" o8, \"ENConnectSearch_RecentClickedResults\".\"Latitude\" o9, \"ENConnectSearch_RecentClickedResults\".\"Longitude\" o10, \"ENConnectSearch_RecentClickedResults\".\"SearchTargetId\" o11";
 }
@@ -1965,7 +1988,7 @@ return result;
 } else {
 executeQuery = function () {
 if(!(maxRecords)) {
-maxRecords = 5;
+maxRecords = 100;
 }
 
 return new Promise(function (resolve, reject) {
@@ -1984,11 +2007,14 @@ return OS.Flow.tryFinally(function () {
 var varBag = {};
 controller.pushDebuggerContext(callContext);
 
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:DeZJDfgKcE6pJvVbVSIATw:/NRWebFlows.SL8K4QWPmUuYK_Un+Uh_LA/NodesShownInESpaceTree.BgyAyR5gyUCviAR8VhUs+Q/ScreenDataSets.DeZJDfgKcE6pJvVbVSIATw:U4gLxUWOD60uWLOYl4ZmjA", "UBTConnect", "Get_RecentClickedResults", "NRNodes.WebScreenDataSet", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:DeZJDfgKcE6pJvVbVSIATw:/NRWebFlows.SL8K4QWPmUuYK_Un+Uh_LA/NodesShownInESpaceTree.BgyAyR5gyUCviAR8VhUs+Q/ScreenDataSets.DeZJDfgKcE6pJvVbVSIATw:rMeqdMccxA72plkotN6gHg", "UBTConnect", "Get_RecentClickedResults", "NRNodes.WebScreenDataSet", callContext.id, varBag);
 OutSystemsDebugger.setThreadStartName(callContext.id, "Directory_Search/ScreenBlock_Search/Get_RecentClickedResults");
 return controller.executeScreenClientAggregate(executeQuery, function () {
 return model.variables.get_RecentClickedResultsAggr;
 }, function () {
+OutSystemsDebugger.setThreadStartName(callContext.id, "Directory_Search/ScreenBlock_Search/Get_RecentClickedResults On After Fetch");
+return controller._get_RecentClickedResultsOnAfterFetch$Action(controller.callContext(callContext));
+
 });
 
 }, function () {
@@ -2135,6 +2161,30 @@ controller.popDebuggerContext(callContext);
 
 });
 };
+Controller.prototype.get_FilteredRecentClickedResults$DataActRefresh = function (callContext) {
+var model = this.model;
+var controller = this.controller;
+var callContext = controller.callContext(callContext);
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(callContext);
+
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:tnpjFXaQ0EWWjRd19g7W+Q:/NRWebFlows.SL8K4QWPmUuYK_Un+Uh_LA/NodesShownInESpaceTree.BgyAyR5gyUCviAR8VhUs+Q/DataActions.tnpjFXaQ0EWWjRd19g7W+Q:Cmo_9XC6E7PK_zX13UC30g", "UBTConnect", "Get_FilteredRecentClickedResults", "NRFlows.DataScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.setThreadStartName(callContext.id, "Directory_Search/ScreenBlock_Search/Get_FilteredRecentClickedResults");
+return controller.callDataAction("DataActionGet_FilteredRecentClickedResults", "screenservices/UBTConnect/Directory_Search/ScreenBlock_Search/DataActionGet_FilteredRecentClickedResults", "ShX9FlSynnhWpswD55wYfQ", function (b) {
+model.variables.get_FilteredRecentClickedResultsDataAct.dataFetchStatusAttr = b;
+}, function (json) {
+model.variables.get_FilteredRecentClickedResultsDataAct.replaceWith(OS.DataConversion.ServerDataConverter.from(json, model.variables.get_FilteredRecentClickedResultsDataAct.constructor));
+}, undefined, OutSystemsDebugger.getRequestHeaders(callContext.id), function (json, headers) {
+OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
+}, callContext, undefined, false);
+
+}, function () {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:tnpjFXaQ0EWWjRd19g7W+Q", callContext.id);
+controller.popDebuggerContext(callContext);
+
+});
+};
 Controller.prototype.fetchSearchResults$DataActRefresh = function (callContext) {
 var model = this.model;
 var controller = this.controller;
@@ -2143,9 +2193,9 @@ return OS.Flow.tryFinally(function () {
 var varBag = {};
 controller.pushDebuggerContext(callContext);
 
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:HOiixtSk00CGVQHreJKGVQ:/NRWebFlows.SL8K4QWPmUuYK_Un+Uh_LA/NodesShownInESpaceTree.BgyAyR5gyUCviAR8VhUs+Q/DataActions.HOiixtSk00CGVQHreJKGVQ:eoFuUIdYWZZzepUIlQyYGg", "UBTConnect", "FetchSearchResults", "NRFlows.DataScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:HOiixtSk00CGVQHreJKGVQ:/NRWebFlows.SL8K4QWPmUuYK_Un+Uh_LA/NodesShownInESpaceTree.BgyAyR5gyUCviAR8VhUs+Q/DataActions.HOiixtSk00CGVQHreJKGVQ:Aio_iLuY03KMPKoBH7Scvg", "UBTConnect", "FetchSearchResults", "NRFlows.DataScreenActionFlow", callContext.id, varBag);
 OutSystemsDebugger.setThreadStartName(callContext.id, "Directory_Search/ScreenBlock_Search/FetchSearchResults");
-return controller.callDataAction("DataActionFetchSearchResults", "screenservices/UBTConnect/Directory_Search/ScreenBlock_Search/DataActionFetchSearchResults", "3SjtlIqCco4R9BDQfHv3xg", function (b) {
+return controller.callDataAction("DataActionFetchSearchResults", "screenservices/UBTConnect/Directory_Search/ScreenBlock_Search/DataActionFetchSearchResults", "6ASqh9u5_Vx88uwuCc6p3g", function (b) {
 model.variables.fetchSearchResultsDataAct.dataFetchStatusAttr = b;
 }, function (json) {
 model.variables.fetchSearchResultsDataAct.replaceWith(OS.DataConversion.ServerDataConverter.from(json, model.variables.fetchSearchResultsDataAct.constructor));
@@ -2164,7 +2214,7 @@ controller.popDebuggerContext(callContext);
 });
 };
 
-Controller.prototype.dataFetchActionNames = ["get_RecentClickedResults$AggrRefresh", "get_RecentSearchTerms$AggrRefresh", "get_SearchBirthdayOptions$AggrRefresh", "fetchSearchResults$DataActRefresh"];
+Controller.prototype.dataFetchActionNames = ["get_RecentClickedResults$AggrRefresh", "get_RecentSearchTerms$AggrRefresh", "get_SearchBirthdayOptions$AggrRefresh", "get_FilteredRecentClickedResults$DataActRefresh", "fetchSearchResults$DataActRefresh"];
 // Client Actions
 Controller.prototype._inputEvent_Submit$Action = function (event_SubmittedStringIn, callContext) {
 var varBag = {};
@@ -2306,6 +2356,74 @@ defaultValue: function () {
 return "";
 }
 }]);
+Controller.prototype._get_RecentClickedResultsOnAfterFetch$Action = function (callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("Get_RecentClickedResultsOnAfterFetch");
+callContext = controller.callContext(callContext);
+varBag.callContext = callContext;
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:7nCeJcfnjEWjEGrwaXrAfQ:/NRWebFlows.SL8K4QWPmUuYK_Un+Uh_LA/NodesShownInESpaceTree.BgyAyR5gyUCviAR8VhUs+Q/ClientActions.7nCeJcfnjEWjEGrwaXrAfQ:3R6ArPpxMKRE4b5ceA95yg", "UBTConnect", "Get_RecentClickedResultsOnAfterFetch", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:VRrZfJkrqESiBTdU_73c7g", callContext.id);
+return OS.Flow.executeAsyncFlow(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:ZtqDrPM4zkifumLiHG6Bag", callContext.id);
+// RecentClickedResults = Get_RecentClickedResults.List
+model.variables.recentClickedResultsVar = OS.DataConversion.JSConversions.typeConvertRecordList(model.variables.get_RecentClickedResultsAggr.listOut, new UBTConnectModel.ConnectSearch_RecentClickedResultsList(), function (source, target) {
+target = source.connectSearch_RecentClickedResultsAttr;
+return target;
+});
+return OS.Flow.executeSequence(function () {
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:iiH+N5BV2EaqIsuYT2gNmQ", callContext.id) && model.variables.get_FilteredRecentClickedResultsDataAct.isDataFetchedAttr)) {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:JKaITFepTUmLUnxEMBQOAw", callContext.id);
+} else {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:gZVVItT8_UuhtY9giIejJg", callContext.id);
+// Refresh Query: Get_FilteredRecentClickedResults
+var result = controller.get_FilteredRecentClickedResults$DataActRefresh(callContext);
+model.flush();
+return result.then(function () {
+// Foreach Get_FilteredRecentClickedResults.Out_IdsToRemove
+callContext.iterationContext.registerIterationStart(model.variables.get_FilteredRecentClickedResultsDataAct.out_IdsToRemoveOut);
+}).then(function () {
+return OS.Flow.tryFinally(function () {
+var out_IdsToRemoveIterator = callContext.iterationContext.getIterator(model.variables.get_FilteredRecentClickedResultsDataAct.out_IdsToRemoveOut);
+var out_IdsToRemoveIndex = 0;
+return OS.Flow.whileAsync(function () {
+return (OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:oE0bK4eEKUy+0g7f8shwJg", callContext.id) && (out_IdsToRemoveIndex < model.variables.get_FilteredRecentClickedResultsDataAct.out_IdsToRemoveOut.length));
+}, function () {
+out_IdsToRemoveIterator.currentRowNumber = out_IdsToRemoveIndex;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:9apwhDE0eECMmwV26nLTKg", callContext.id);
+// Execute Action: DeleteConnectSearch_RecentClickedResults
+model.flush();
+return UBTConnectModel.entities.ConnectSearch_RecentClickedResults.delete(model.variables.recentClickedResultsVar.getCurrent(callContext.iterationContext).idAttr, callContext).then(function () {
+out_IdsToRemoveIndex++;
+});
+});
+}, function () {
+callContext.iterationContext.registerIterationEnd(model.variables.get_FilteredRecentClickedResultsDataAct.out_IdsToRemoveOut);
+});
+}).then(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:TkuRHPlQT0qWQyKzz0nkgw", callContext.id);
+// RecentClickedResults = Get_FilteredRecentClickedResults.Out_RecentClickedResults
+model.variables.recentClickedResultsVar = model.variables.get_FilteredRecentClickedResultsDataAct.out_RecentClickedResultsOut;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:v13d_jLk9Ey54EIkCMKcNg", callContext.id);
+});
+}
+
+});
+}).then(function (res) {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:7nCeJcfnjEWjEGrwaXrAfQ", callContext.id);
+return res;
+
+}).catch(function (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:7nCeJcfnjEWjEGrwaXrAfQ", callContext.id);
+throw ex;
+
+});
+};
 Controller.prototype._action_RefreshSearch$Action = function (callContext) {
 var varBag = {};
 var model = this.model;
@@ -2328,7 +2446,7 @@ varBag.bubbleCommunicationExceptionVar = bubbleCommunicationExceptionVar;
 varBag.allExceptionsVar = allExceptionsVar;
 varBag.createOrUpdateConnectSearch_RecentSearchTermVar = createOrUpdateConnectSearch_RecentSearchTermVar;
 varBag.checkIfSearchtermAlreadyExistVar = checkIfSearchtermAlreadyExistVar;
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:1NmcMRW6uEKdRSgjbWherg:/NRWebFlows.SL8K4QWPmUuYK_Un+Uh_LA/NodesShownInESpaceTree.BgyAyR5gyUCviAR8VhUs+Q/ClientActions.1NmcMRW6uEKdRSgjbWherg:k+YSC1XGIPd3zWpsJyx8SA", "UBTConnect", "Action_RefreshSearch", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:1NmcMRW6uEKdRSgjbWherg:/NRWebFlows.SL8K4QWPmUuYK_Un+Uh_LA/NodesShownInESpaceTree.BgyAyR5gyUCviAR8VhUs+Q/ClientActions.1NmcMRW6uEKdRSgjbWherg:3lTPKG8wbmPeui4ocRtoAw", "UBTConnect", "Action_RefreshSearch", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:PlsmPKwnG0uJl+rpEDRjcw", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 // Has Search Term
@@ -3983,6 +4101,11 @@ var controller = this.controller;
 return controller.safeExecuteClientAction(controller._event_FilterBottomSheet_tInitialized$Action, callContext, sheetIdIn);
 
 };
+Controller.prototype.get_RecentClickedResultsOnAfterFetch$Action = function (callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._get_RecentClickedResultsOnAfterFetch$Action, callContext);
+
+};
 Controller.prototype.action_RefreshSearch$Action = function (callContext) {
 var controller = this.controller;
 return controller.safeExecuteClientAction(controller._action_RefreshSearch$Action, callContext);
@@ -4056,7 +4179,7 @@ return Promise.resolve();
 Controller.prototype.pushDebuggerContext = function (callContext) {
 var varBag = {};
 OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:SL8K4QWPmUuYK_Un+Uh_LA:/NRWebFlows.SL8K4QWPmUuYK_Un+Uh_LA:3Wo_76LXOCU7x0L+1+Cyxw", "UBTConnect", "Directory_Search", "NRFlows.WebFlow", callContext.id, varBag);
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:BgyAyR5gyUCviAR8VhUs+Q:/NRWebFlows.SL8K4QWPmUuYK_Un+Uh_LA/NodesShownInESpaceTree.BgyAyR5gyUCviAR8VhUs+Q:UwJiVZZqMA0JFpBuNysQmA", "UBTConnect", "ScreenBlock_Search", "NRNodes.WebBlock", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:BgyAyR5gyUCviAR8VhUs+Q:/NRWebFlows.SL8K4QWPmUuYK_Un+Uh_LA/NodesShownInESpaceTree.BgyAyR5gyUCviAR8VhUs+Q:hdQ1OgIQtwWFxuM1pdpQIQ", "UBTConnect", "ScreenBlock_Search", "NRNodes.WebBlock", callContext.id, varBag);
 };
 Controller.prototype.popDebuggerContext = function (callContext) {
 OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:BgyAyR5gyUCviAR8VhUs+Q", callContext.id);
@@ -4396,6 +4519,16 @@ return varBag.model.variables.bottomSheetId_Filter_ShowSubscriptionOnClickVar;
 },
 dataType: OS.DataTypes.DataTypes.Boolean
 },
+"MhltswtU0Ui7MZUOthIRgA": {
+getter: function (varBag, idService) {
+return varBag.model.variables.recentClickedResultsVar;
+}
+},
+"iK_C7+ZXIEew_FxXv67okw": {
+getter: function (varBag, idService) {
+return varBag.model.variables.recentClickedResults_SkeletonVar;
+}
+},
 "1ZUkDVgLUkiwMMUzQxWVzA": {
 getter: function (varBag, idService) {
 return varBag.model.variables.in_IsInScreenSearchIn;
@@ -4413,6 +4546,11 @@ getter: function (varBag, idService) {
 return varBag.model.variables.in_SearchTargetIdIn;
 },
 dataType: OS.DataTypes.DataTypes.Text
+},
+"tnpjFXaQ0EWWjRd19g7W+Q": {
+getter: function (varBag, idService) {
+return varBag.model.variables.get_FilteredRecentClickedResultsDataAct;
+}
 },
 "HOiixtSk00CGVQHreJKGVQ": {
 getter: function (varBag, idService) {
@@ -4539,10 +4677,10 @@ return model.widgets.get(idService.getId("Content"));
 })(varBag.model, idService);
 }
 },
-"XrkYjYNKgEuIsZZWkR2few": {
+"htBp8es3+EiwNj4EGC2RHQ": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
-return model.widgets.get(idService.getId("Content"));
+return model.widgets.get(idService.getId("Placeholder_LoadingSection"));
 })(varBag.model, idService);
 }
 },

@@ -550,7 +550,7 @@ button.OSFillParent { display:-webkit-inline-box; display:-ms-inline-flexbox; di
 .carousel .carousel-container-content .grid-gallery .OSFillParent { display:inherit; }
 input.OSFillParent.calendar-input { display:none; }
 ```
-### .list-group  (24 rules)
+### .list-group  (25 rules)
 ```css
 .list.list-group { overflow:hidden; position:relative; }
 .list.list-group > [data-block*=AnimatedLabel]:first-child .animated-label { margin-top:var(--space-s); }
@@ -570,6 +570,7 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 .list.list-group.overflow-horizontal { overflow-x: auto; }
 .ubt-tag-list.list.list-group { display: flex; overflow-x: scroll; -ms-overflow-style: none; /* Internet Explorer 10+ */ scrollbar-width: none; /* Firefox */ }
 .ubt-tag-list.list.list-group::-webkit-scrollbar { display: none; /* Safari and Chrome */ }
+.list.list-group.recent-search-list { display: flex; gap: var(--space-s); overflow: hidden; overflow-x: auto; /* beats the theme's overflow: hidden */ }
 .Household_GalleryCard-list.list.list-group { display: flex; justify-content: flex-start; overflow-x: scroll; -ms-overflow-style: none; /* Internet Explorer 10+ */ scrollbar-width: none; /* Firefox */ }
 .Household_GalleryCard-list.list.list-group::-webkit-scrollbar { display: none; /* Safari and Chrome */ }
 .calendar-list.list.list-group { display: flex; flex-direction: row; overflow-x: auto !important; scroll-snap-type: x mandatory; /* scroll-behavior: smooth;*/ scroll-snap-points-x: repeat(100vw); -webkit-overflow-scrolling: touch; /* border-bottom: 1px solid var(--color-neutral-11);*/ background-color: white; }
@@ -653,10 +654,6 @@ an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section 
 ```
 ## BasePatterns.CustomContainer
 
-### .background-blue-non-standard  (1 rule)
-```css
-.background-blue-non-standard { background-color: var(--color-blue-non-standard); }
-```
 ### .background-cyan-lightest  (1 rule)
 ```css
 .background-cyan-lightest { background-color:var(--background-color-cyan-lightest, var(--color-cyan-lightest)); }
@@ -667,6 +664,17 @@ an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section 
 .avatar.background-neutral-0 { color:var(--text-color-primary, var(--color-primary)); }
 .badge.background-neutral-0 { color:var(--text-color-primary, var(--color-primary)); }
 .background-neutral-0 { background-color:var(--background-color-neutral-0, var(--color-neutral-0)); }
+```
+### .background-neutral-3  (4 rules)
+```css
+.tag.background-neutral-1, .tag.background-neutral-2, .tag.background-neutral-3, .tag.background-neutral-4 { color:var(--text-color-neutral-9, var(--color-neutral-9)); }
+.avatar.background-neutral-1, .avatar.background-neutral-2, .avatar.background-neutral-3, .avatar.background-neutral-4 { color:var(--text-color-neutral-9, var(--color-neutral-9)); }
+.badge.background-neutral-1, .badge.background-neutral-2, .badge.background-neutral-3, .badge.background-neutral-4 { color:var(--text-color-neutral-9, var(--color-neutral-9)); }
+.background-neutral-3 { background-color:var(--background-color-neutral-3, var(--color-neutral-3)); }
+```
+### .background-pink-non-standard  (1 rule)
+```css
+.background-pink-non-standard { background-color: var(--color-pink-non-standard); }
 ```
 ### .background-primary-gradient-radial  (2 rules)
 ```css
@@ -801,9 +809,8 @@ an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section 
 .ubt-icon-button > [data-block]:has(.ubt-icon-button__text-container:empty) { display: none; }
 .connect-share-sheet .ubt-icon-button__text-container { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
 ```
-### .ubt-services-carousel  (5 rules)
+### .ubt-services-carousel  (4 rules)
 ```css
-.ubt-services-carousel .osui-carousel .splide img { -o-object-fit:uset; object-fit:unset; }
 .ubt-services-carousel { /*Preload items in order to prevent flicker*/ --gallery-desktop-items: 3; --gallery-list-desktop-items: 3; --gallery-tablet-items: 3; --gallery-list-tablet-items: 3; --gallery-phone-items: 3; --gallery-list-phone-items: 3; --gallery-gap: var(--space-base); }
 .ubt-services-carousel .splide__pagination li { display: inline-flex; margin: var(--space-none) calc(var(--space-xs) / 2); justify-content: center; align-items: center; }
 .ubt-services-carousel .splide__pagination__page { width: 10px; height: 10px; background-color: var(--color-neutral-3); border: var(--border-size-s) solid var(--color-neutral-5); opacity: 1; margin: 0; background: none; }
@@ -817,6 +824,11 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 ```
 ## ConnectPatterns.StaticInput
 
+### .search-placeholder-ellipsis  (2 rules)
+```css
+.search-placeholder-ellipsis input:placeholder-shown, input.search-placeholder-ellipsis:placeholder-shown { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.search-placeholder-ellipsis input::placeholder, input.search-placeholder-ellipsis::placeholder { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+```
 ### .ubt-static-input  (1 rule)
 ```css
 .ubt-static-input { background-color: var(--color-neutral-1); border: var(--border-size-s) solid var(--color-neutral-5); border-radius: var(--border-radius-rounded); color: var(--color-neutral-7); min-height: 37px; height: 37px; padding: 0 var(--space-base); display: flex; align-items: center; justify-content: flex-start; column-gap: var(--space-base); }
@@ -845,6 +857,10 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 ### .font-size-xs  (1 rule)
 ```css
 .font-size-xs { font-size:var(--font-size-xs); }
+```
+### .italic  (1 rule)
+```css
+.italic { font-style:italic; }
 ```
 ### .margin-left-s  (2 rules)
 ```css
@@ -896,7 +912,7 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 .splide.is-initialized:not(.is-active) .splide__list { display:block; }
 .splide.is-initialized, .splide.is-rendered { visibility:visible; }
 ```
-### .osui-carousel  (18 rules)
+### .osui-carousel  (17 rules)
 ```css
 .osui-carousel { --osui-carousel-track-width:100%; --osui-carousel-pagination-margin:30px; }
 .osui-carousel .splide__arrow { background-color:var(--background-color-neutral-0, var(--color-neutral-0)); -webkit-box-shadow:var(--shadow-xs); box-shadow:var(--shadow-xs); height:40px; opacity:1; -webkit-transition:opacity 150ms linear; transition:opacity 150ms linear; width:40px; will-change:opacity; z-index:var(--layer-local-tier-1); }
@@ -915,7 +931,6 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 rea-content.horizontal-scroll .osui-carousel .list.list-group, .scrollable-area-content.vertical-scroll .osui-deprecated.carousel .list.list-group, .scrollable-area-content.vertical-scroll .osui-carousel .list.list-group { overflow-x:initial; overflow-y:initial; }
 .photobook-carousel .osui-carousel .splide .photobook-carousel-foreground-image img { object-position: center center; object-fit: contain; }
 .photobook-carousel .osui-carousel .splide .photobook-carousel-background-image img { object-position: center center; object-fit: cover; }
-.ubt-services-carousel .osui-carousel .splide img { -o-object-fit:uset; object-fit:unset; }
 ```
 ### .osui-carousel--has-pagination  (4 rules)
 ```css
@@ -935,7 +950,7 @@ rea-content.horizontal-scroll .osui-carousel .list.list-group, .scrollable-area-
 .osui-carousel__track { max-width:100%; width:var(--osui-carousel-track-width); z-index:var(--layer-global-screen); }
 .osui-carousel__track {  }
 ```
-### .splide  (20 rules)
+### .splide  (19 rules)
 ```css
 .splide.is-initialized:not(.is-active) .splide__list { display:block; }
 .splide:not(.is-overflow) .splide__pagination { display:none; }
@@ -956,7 +971,6 @@ rea-content.horizontal-scroll .osui-carousel .list.list-group, .scrollable-area-
 .is-rtl .splide.splide--rtl { direction:rtl; }
 .photobook-carousel .osui-carousel .splide .photobook-carousel-foreground-image img { object-position: center center; object-fit: contain; }
 .photobook-carousel .osui-carousel .splide .photobook-carousel-background-image img { object-position: center center; object-fit: cover; }
-.ubt-services-carousel .osui-carousel .splide img { -o-object-fit:uset; object-fit:unset; }
 ```
 ### .splide--draggable  (1 rule)
 ```css
@@ -1249,7 +1263,7 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 ```
 ## Generic utility classes (too many rules to list; see bundle.css)
 
-`.active` (44), `.columns` (82), `.columns-item` (71), `.header` (51), `.layout` (53), `.layout-native` (241), `.layout-side` (89), `.list` (92), `.phone` (235)
+`.active` (44), `.columns` (82), `.columns-item` (71), `.header` (51), `.layout` (53), `.layout-native` (241), `.layout-side` (89), `.list` (93), `.phone` (235)
 
 ## Design tokens referenced by the rules above
 
@@ -1267,7 +1281,6 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 - `--color-background-body`: `#f3f6f8` (in `@charset "UTF-8";    :root`); `var(--color-neutral-0)` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-blue-dark`: `#1667ad` (in `@charset "UTF-8";    :root`); `#112CBA` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-blue-lightest`: `#e8f2fa` (in `@charset "UTF-8";    :root`); `#E1E5FF` (in `:root, .connect-legacy-compatibily-containter`)
-- `--color-blue-non-standard`: `#6ca0dc` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-cyan`: `#0d8091` (in `@charset "UTF-8";    :root`); `#4EAEC2` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-cyan-dark`: `#0b6d7b` (in `@charset "UTF-8";    :root`); `#00819C` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-cyan-darker`: `#095a66` (in `@charset "UTF-8";    :root`); `#005668` (in `:root, .connect-legacy-compatibily-containter`)
@@ -1290,6 +1303,7 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 - `--color-peach-dark`: `#FF6F61` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-peach-darker`: `#BB4338` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-peach-lightest`: `#FFF0EF` (in `:root, .connect-legacy-compatibily-containter`)
+- `--color-pink-non-standard`: `#f8b9d4` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-primary`: `#1068eb` (in `@charset "UTF-8";    :root`); `var(--color-cyan-dark)` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-primary-gradient-linear`: `linear-gradient(90deg, var(--color-primary) 0%, var(--color-cyan) 100%)` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-primary-gradient-radial`: `radial-gradient(63.8% 63.8% at 62.5% 55.47%, var(--color-cyan) 17.79%, var(--color-cyan-dark) 100%)` (in `:root, .connect-legacy-compatibily-containter`)

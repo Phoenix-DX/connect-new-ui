@@ -362,7 +362,7 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `DataActionGetHelperDetails` (200) at 1727 ms
+- 1. `DataActionGetHelperDetails` (200) at 1631 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

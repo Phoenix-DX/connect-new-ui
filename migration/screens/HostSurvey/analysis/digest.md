@@ -468,7 +468,7 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `DataActionGetHostSurvey` (200) at 2861 ms
+- 1. `DataActionGetHostSurvey` (200) at 2078 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

@@ -33,7 +33,7 @@ export interface ProfileListState {
 }
 
 /** An assignment of one or more variables. */
-export type ProfileListPatch = Partial<ProfileListState>;
+type ProfileListPatch = Partial<ProfileListState>;
 
 /** MaxRecords: the default value of the block variable. */
 export const MAX_RECORDS = 50;

@@ -113,11 +113,26 @@ describe('milestoneWrapperState', () => {
       ).toEqual({ kind: 'failed' });
     });
 
-    it('marks the meal and the other accommodation blocks as not captured, and shows nothing for other types', () => {
-      for (const type of ['meal-guest', 'meal-host', 'meal-helper', 'accommodation-guest', 'accommodation-helper']) {
+    it('dispatches the meal and the other accommodation types to their blocks, and shows nothing for other types', () => {
+      const blocks = {
+        'meal-guest': 'mealGuest',
+        'meal-host': 'mealHost',
+        'meal-helper': 'mealHelper',
+        'accommodation-guest': 'accommodationGuest',
+        'accommodation-helper': 'accommodationHelper',
+      };
+      for (const [type, block] of Object.entries(blocks)) {
         expect(milestoneWrapperBody(state(), { ...INPUTS, In_OrbitMilestoneTypeId: type })).toEqual({
-          kind: 'notCaptured',
-          milestoneTypeId: type,
+          kind: 'milestoneBlock',
+          block,
+          inputs: {
+            In_OrbitMilestoneTypeId: type,
+            In_MilestoneId: INPUTS.In_MilestoneId,
+            In_PreloadEventName: INPUTS.In_EventName,
+            In_PreloadMilestoneName: INPUTS.In_MilestoneName,
+            In_HostId: INPUTS.In_HostId,
+            In_EventId: INPUTS.In_EventId,
+          },
         });
       }
       expect(milestoneWrapperBody(state(), { ...INPUTS, In_OrbitMilestoneTypeId: 'meeting-host' })).toEqual({

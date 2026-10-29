@@ -67,13 +67,14 @@ flowchart TB
     S3["DataActionGetFeedConfig<br/>data action / aggregate, observed"]
     S4["DataActionGetAvailableMembers<br/>data action / aggregate, declared, not observed"]
     S5["DataActionGetRecentlyShared<br/>data action / aggregate, declared, not observed"]
-    S6["ActionAppManager_SynchAppContext<br/>observed"]
-    S7["ActionAppManager_AfterInitialize<br/>observed"]
-    S8["ActionSync_Info_GetMain<br/>observed"]
-    S9["ActionGetUserInformation<br/>observed"]
-    S10["ActionGetNumberUnreadMessages<br/>observed"]
-    S11["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
-    S12["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
+    S6["DataActionGetCommunityStatistics<br/>data action / aggregate, observed"]
+    S7["ActionAppManager_SynchAppContext<br/>observed"]
+    S8["ActionAppManager_AfterInitialize<br/>observed"]
+    S9["ActionSync_Info_GetMain<br/>observed"]
+    S10["ActionGetUserInformation<br/>observed"]
+    S11["ActionGetNumberUnreadMessages<br/>observed"]
+    S12["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
+    S13["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
   end
   Backend["Backend<br/>not visible from the browser"]
   B10 --> S0
@@ -82,13 +83,14 @@ flowchart TB
   B20 --> S3
   Content -.-> S4
   Content -.-> S5
-  Content -.-> S6
+  Content --> S6
   Content -.-> S7
   Content -.-> S8
   Content -.-> S9
   Content -.-> S10
   Content -.-> S11
   Content -.-> S12
+  Content -.-> S13
   S0 -.-> Backend
   classDef unknown stroke-dasharray: 5 4;
   class S4,S5,Backend unknown;
@@ -125,6 +127,8 @@ sequenceDiagram
   S->>API: DataActionGetRecentlyShared
   API-->>S: TODO outputs
   S->>S: onAfterFetch_GetRecentlyShared
+  S->>API: DataActionGetCommunityStatistics
+  API-->>S: Out_CommunityStatistics
   S->>API: ServiceAPIFetchData_CacheableMapEntities
   Note over S,API: observed in capture, trigger unverified (TODO)
   API-->>S: TODO outputs

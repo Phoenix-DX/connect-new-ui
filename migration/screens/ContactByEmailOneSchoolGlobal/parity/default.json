@@ -5,14 +5,17 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "b1fb3dc58e7849079199",
+ "fingerprint": "50888cf677807e3f4a05",
  "options": {
   "text": true,
   "style": true,
   "pixel": true,
   "calls": true,
+  "visibleOnly": false,
   "full": true,
-  "replay": "builder"
+  "replay": "builder",
+  "skipKinds": [],
+  "selfRef": false
  },
  "replay": {
   "mode": "builder",
@@ -24,21 +27,17 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-21T04:49:39.238Z",
+ "at": "2026-10-29T15:58:42.024Z",
  "counts": {},
  "exemptionsUsed": {
-  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 1,
-  "CAPTURE-TEXTAREA-ROWS-CONTACTBYEMAIL": 11,
-  "CAPTURE-TEXTAREA-ROWS-CONTACTBYEMAIL-GRID": 1,
-  "CAPTURE-TEXTAREA-ROWS-CONTACTBYEMAIL-PSEUDO": 1,
-  "CAPTURE-TEXTAREA-ROWS-CONTACTBYEMAIL-PIXEL": 1
+  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 1
  },
  "pixel": {
-  "ratio": 0.00912,
-  "maxCell": 0.2569,
+  "ratio": 0,
+  "maxCell": 0,
   "maxCellRatio": 0.03,
-  "diffPixels": 2991,
-  "comparedPixels": 327951,
+  "diffPixels": 0,
+  "comparedPixels": 328289,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -50,13 +49,7 @@
    844
   ],
   "masks": 2,
-  "hotspots": [
-   "40,280 (411px)",
-   "80,320 (398px)",
-   "40,320 (381px)",
-   "0,280 (285px)",
-   "0,320 (186px)"
-  ],
+  "hotspots": [],
   "diffPng": "migration/screens/ContactByEmailOneSchoolGlobal/parity/default.diff.png"
  },
  "calls": {

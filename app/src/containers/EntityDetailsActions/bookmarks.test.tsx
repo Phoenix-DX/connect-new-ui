@@ -98,9 +98,9 @@ describe('bookmark server actions (CR-W4A-1)', () => {
   });
 });
 
-/* The block's Handle_Bookmark (Directory_EntityDetailsActions.mvc.js:1388-1514) with the wired server actions; the menu
-   reads Local_isBookmarked_C2 only while C2NewBookmarks is on (mvc.js:379-384). */
-describe('Directory_EntityDetailsActions Bookmark / Unmark (CR-W4A-1)', () => {
+/* The block's OnReady bookmark lookup and Handle_Bookmark (TST code of 2026-10-27, Directory_EntityDetailsActions.mvc.js
+   :1400-1470, :1864-1887): the C2 store only, with no flag; the menu reads Local_isBookmarked (:375-376). */
+describe('Directory_EntityDetailsActions Bookmark / Unmark (CR-W4A-1, drift wave H-Q2 a)', () => {
   const wrap = (ui: ReactNode) => (
     <QueryClientProvider client={new QueryClient({ defaultOptions: { queries: { retry: false } } })}>
       <MemoryRouter>{ui}</MemoryRouter>
@@ -130,8 +130,7 @@ describe('Directory_EntityDetailsActions Bookmark / Unmark (CR-W4A-1)', () => {
     vi.restoreAllMocks();
   });
 
-  it('C2NewBookmarks on: Bookmark adds (local row, message, Unmark), Unmark removes', async () => {
-    setFlag('C2NewBookmarks', 'true');
+  it('Bookmark adds (category of the entity type, local row, message, Unmark), Unmark removes', async () => {
     const show = vi.spyOn(feedback, 'showFeedbackMessage');
     const onChange = vi.fn();
     household('201', onChange);
@@ -157,22 +156,15 @@ describe('Directory_EntityDetailsActions Bookmark / Unmark (CR-W4A-1)', () => {
     expect(show).toHaveBeenLastCalledWith('Removed from your Bookmarks', feedback.PLATFORM_MESSAGE_TYPE.success);
   });
 
-  it('C2NewBookmarks off (TST), B4: AddBookmark2 gets an empty category, no local row, the label stays Bookmark', async () => {
-    const show = vi.spyOn(feedback, 'showFeedbackMessage');
+  it('OnReady reads the C2 local bookmark whatever the value of C2NewBookmarks', async () => {
+    await toggleBookmarkItem_C2('202', BookmarkCategory.Household, false, server());
+    setFlag('C2NewBookmarks', 'false');
     const onChange = vi.fn();
     household('202', onChange);
     await waitFor(() => {
-      expect(onChange).toHaveBeenCalledWith(false);
+      expect(onChange).toHaveBeenCalledWith(true);
     });
-
-    fireEvent.click(await screen.findByText('Bookmark'));
-    await waitFor(() => {
-      expect(onChange).toHaveBeenLastCalledWith(true);
-    });
-    expect(bookmarksCollection().where((r) => r.ItemId === '202')).toMatchObject([{ BookmarkCategoryId: '' }]);
-    expect((await getLocalBookmarkByObjectId('202')).Id).toBe('0');
-    expect(show).toHaveBeenLastCalledWith('Added to your Bookmarks', feedback.PLATFORM_MESSAGE_TYPE.success);
-    expect(screen.getByText('Bookmark')).toBeInTheDocument();
-    expect(screen.queryByText('Unmark')).toBeNull();
+    expect(await screen.findByText('Unmark')).toBeInTheDocument();
+    expect(screen.queryByText('Bookmark')).toBeNull();
   });
 });

@@ -114,4 +114,11 @@ describe('Input', () => {
     expect(input()).toHaveValue('');
     expect(input()).toHaveClass('form-control', 'x-extra', 'OSFillParent');
   });
+
+  it('Input_Search.Style starts with search-placeholder-ellipsis (live TST block, Bookmarks Q4 (a), user 2026-10-29)', () => {
+    render(<Input inExtendedClasses="x-extra" />);
+    expect(screen.getByRole('searchbox').className).toBe(
+      'search-placeholder-ellipsis form-control x-extra border-radius-soft OSFillParent',
+    );
+  });
 });

@@ -23,10 +23,12 @@ export interface Notifications_ActionProps {
   bottomSheetId?: string;
   isLoaded?: boolean;
   showSubscriptionOnClick?: boolean;
+  /** Event OnlyShowUnread(OnlyShowUnread): Switch_IsOnlyShowUnReadOnChange (TST publish of 2026-10-27). */
+  onOnlyShowUnread?: (onlyShowUnread: boolean) => void;
 }
 
 /** UBTConnect.App_Notifications.Notifications_Action (p:…Notifications_Action.mvc.js view :180-534): Sort row (tune
-    icon, "Sort", expand_more) and the "Only show unread" switch (local variable IsOnlyShowUnRead, no action), each in a
+    icon, "Sort", expand_more) and the "Only show unread" switch (IsOnlyShowUnRead; OnChange raises OnlyShowUnread), each in a
     SkeletonSection loading while not isLoaded, with the red filter dot when HaveFiltersApplied. IconClick
     (controller :554-610): isLoaded → ShowSubscriptionOnClick ? App_Subscription_ShowUpgradePopUp : BottomSheetOpen. */
 export function Notifications_Action({
@@ -35,6 +37,7 @@ export function Notifications_Action({
   bottomSheetId = '',
   isLoaded = false,
   showSubscriptionOnClick = false,
+  onOnlyShowUnread,
 }: Notifications_ActionProps) {
   const [isOnlyShowUnRead, setIsOnlyShowUnRead] = useState(false);
   const iconClick = () => {
@@ -102,6 +105,7 @@ export function Notifications_Action({
                     type="checkbox"
                     onChange={(e) => {
                       setIsOnlyShowUnRead(e.target.checked);
+                      onOnlyShowUnread?.(e.target.checked);
                     }}
                   />
                 </span>

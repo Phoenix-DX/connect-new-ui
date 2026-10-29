@@ -209,14 +209,23 @@ export function eventCalendarRecord(e: LdmEvent, today: Date = new Date()): Even
   };
 }
 
-/** Out_PastEvents: one group per month, newest first. */
+/** HostFullName of a meal whose host allocation is not published: a server value (no literal in the TST sources), a
+    system text, not person data. */
+const LDM_ALLOCATION_PENDING = 'Allocation Pending';
+/** The meals of the timeline: the TST capture of 2026-10-29 shows three past events (drift wave, events R3). */
+const TIMELINE_EVENT_COUNT = 3;
+
+/** Out_PastEvents: one group per month, newest first. As the TST capture of 2026-10-29 (LDM_MyEvents_V2
+    dom/default.html): the three newest meals, each with HostFullName "Allocation Pending" (EventCard_Info_V2 shows it
+    as the NameLocation of an event with a host). */
 export function pastEventGroups(today: Date = new Date()): TimelineEventGroup_V2Wire[] {
   const groups: TimelineEventGroup_V2Wire[] = [];
-  for (const e of LDM_PAST_EVENTS) {
+  for (const e of LDM_PAST_EVENTS.slice(0, TIMELINE_EVENT_COUNT)) {
+    const record = { ...eventCalendarRecord(e, today), HostFullName: LDM_ALLOCATION_PENDING };
     const label = ldmMonthLabel(ldmEventDay(e, today));
     const last = groups[groups.length - 1];
-    if (last && last.CurrentMonthDate === label) last.EventsCalendar.List.push(eventCalendarRecord(e, today));
-    else groups.push({ CurrentMonthDate: label, EventsCalendar: { List: [eventCalendarRecord(e, today)] } });
+    if (last && last.CurrentMonthDate === label) last.EventsCalendar.List.push(record);
+    else groups.push({ CurrentMonthDate: label, EventsCalendar: { List: [record] } });
   }
   return groups;
 }

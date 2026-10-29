@@ -1047,12 +1047,18 @@ html[data-uieditorversion^="1"] .placeholder-empty:empty {  }
 .ph:empty, .placeholder-empty:empty { display:none; }
 list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .placeholder-empty > .OSBlockWidget, .osui-tabs__content > .ph > .list.list-group, .osui-tabs__content > .placeholder-empty > .list.list-group { display:contents; }
 ```
+### .search-placeholder-ellipsis  (2 rules)
+```css
+.search-placeholder-ellipsis input:placeholder-shown, input.search-placeholder-ellipsis:placeholder-shown { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.search-placeholder-ellipsis input::placeholder, input.search-placeholder-ellipsis::placeholder { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+```
 ## ConnectPatterns.Icon
 
-### .connect-icon-close  (3 rules)
+### .connect-icon-close  (4 rules)
 ```css
 .connect-icon-close:before { content: "\f07c"; }
 .connect-icon-close:before { content: "\e900"; }
+.ubt-icon.connect-icon-close:before { content: "\f07c"; }
 .connect-share-sheet--legacy .connect-icon-close:before { content: "\f07c"; }
 ```
 ### .connect-icon-contacts  (1 rule)
@@ -1104,7 +1110,7 @@ an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section 
 ```css
 .text-transparent { color: transparent; }
 ```
-### .ubt-icon  (32 rules)
+### .ubt-icon  (34 rules)
 ```css
 [data-button].btn.ubt-pincode__button-fingerprint .ubt-icon { font-size: calc(var(--ubt-pincode-buttons-size) - 10px); }
 .ubt-icon, .ubt-image-card__bookmarked:before, .ubt-statistics-item__bookmarked:before, .ubt-locality-contact-item__bookmarked:before { /* Use !important to prevent extensions from overriding this font. */ font-family: "connect-icon" !important; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
@@ -1331,7 +1337,7 @@ ottom-sheet--is-active .osui-bottom-sheet__content .osui-datepicker, .osui-botto
 .connect-share-sheet .osui-bottom-sheet__content .connect-share-sheet__results { flex: 1 1 auto; min-height: 0; overflow-y: auto; }
 .orbit-theme .orbit-host-survey .osui-bottom-sheet.orbit-host-survey-helper-sheet .osui-bottom-sheet__content { padding: 0; }
 ```
-### .osui-bottom-sheet__header  (11 rules)
+### .osui-bottom-sheet__header  (12 rules)
 ```css
 .osui-bottom-sheet--has-handler .osui-bottom-sheet__header::before { background:var(--background-color-neutral-5, var(--color-neutral-5)); border-radius:100px; content:""; height:4px; left:50%; position:absolute; top:var(--space-base); -webkit-transform:translateX(-50%); -ms-transform:translateX(-50%); transform:translateX(-50%); width:40px; }
 .osui-bottom-sheet__header { position:relative; }
@@ -1342,6 +1348,7 @@ ottom-sheet--is-active .osui-bottom-sheet__content .osui-datepicker, .osui-botto
 /* disabling due to issues with Sharings. .ubt-bottom-sheet.custom-padding .osui-bottom-sheet__header, .ubt-bottom-sheet.osui-bottom-sheet { --osui-bottom-sheet-layer: 103; }
 .ubt-bottom-sheet.custom-padding.ubt-bottom-sheet--handler-preview .osui-bottom-sheet__header, .ubt-bottom-sheet.osui-bottom-sheet.ubt-bottom-sheet--handler-preview { /*ensure the bottom bar stays on top of this*/ --osui-bottom-sheet-layer: 1006; }
 .connect-share-sheet .osui-bottom-sheet__header__top-bar::before, .connect-share-sheet .osui-bottom-sheet__header::after { display: none; }
+.moreActionContainer .osui-bottom-sheet__header::after { height: 20px; }
 .orbit-theme .orbit-host-survey .osui-bottom-sheet.orbit-host-survey-helper-sheet .osui-bottom-sheet__header { background-color: var(--color-primary-orbit); }
 .orbit-theme .orbit-host-survey .osui-bottom-sheet.orbit-host-survey-helper-sheet .osui-bottom-sheet__header label { color: var(--color-neutral-0); font-size: var(--font-size-base); }
 ```
@@ -1609,7 +1616,7 @@ ibility) .screen-container.active-screen:not([class*=-enter]) + .screen-containe
 ```
 ## Generic utility classes (too many rules to list; see bundle.css)
 
-`.backwards-compatibility` (1747), `.btn` (126), `.columns` (82), `.columns-item` (71), `.dx-confirmation-dialog` (47), `.form-control` (84), `.header` (99), `.layout` (53), `.layout-native` (278), `.layout-side` (91), `.list` (128), `.list-group` (51), `.phone` (273)
+`.backwards-compatibility` (1747), `.btn` (126), `.columns` (82), `.columns-item` (71), `.dx-confirmation-dialog` (47), `.form-control` (88), `.header` (99), `.layout` (53), `.layout-native` (278), `.layout-side` (91), `.list` (129), `.list-group` (52), `.phone` (273)
 
 ## Design tokens referenced by the rules above
 

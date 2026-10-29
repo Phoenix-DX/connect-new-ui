@@ -32,6 +32,8 @@ export {
   fetchMessages,
   fetchMessageTemplateParameters,
   fetchNumberUnreadMessages,
+  getOrbitHostSurveyNotificationParameters,
+  getOrbitNotificationParameters,
   markMessageAsClear,
   markMessageAsRead,
   sendContactEmail,
@@ -41,5 +43,6 @@ export {
   sendContactUsMessage,
   sendEventContactEmail,
   sendUserContactEmail,
+  storeAdaptiveCardResponses,
 } from './repository';
 export type * from './types';

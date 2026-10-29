@@ -54,7 +54,7 @@ export const INITIAL_LOCALITY_HOUSEHOLD_LIST: LocalityHouseholdListState = {
 };
 
 /** GetLocalityHouseholds answered, or OnAfterFetch_GetLocalityHouseholds_Bookmarks set the bookmarks of its rows. */
-export type LocalityHouseholdListAction = { type: 'householdsFetched'; list: LocalityHousehold[] };
+type LocalityHouseholdListAction = { type: 'householdsFetched'; list: LocalityHousehold[] };
 
 export const localityHouseholdListReducer = (
   _state: LocalityHouseholdListState,
@@ -90,7 +90,7 @@ export const INITIAL_LOCALITY_SUBDIVISIONS: LocalitySubdivisionsState = {
   out_Subdivision_Card_List: [],
 };
 
-export type LocalitySubdivisionsAction =
+type LocalitySubdivisionsAction =
   /** OnReady: ten skeleton cards (GetSkeletonList_UI_SubdivisionCard). */
   | { type: 'skeletonShown' }
   /** Get_Subdivision_List answered; OnAfterFetch: the first time ListClear and IsLoading False, then ListAppendAll. */
@@ -185,7 +185,7 @@ export const withStatisticIcons = (list: Interchange[]): Interchange[] =>
     },
   }));
 
-export type LocalityInterchangeAction =
+type LocalityInterchangeAction =
   /** OnReady: three loading records appended (LoadingItems 3). */
   | { type: 'loadingShown' }
   /** GetInterchangesByLocalityId answered (the list with its statistic icons). */
@@ -230,7 +230,7 @@ export const INITIAL_LOCALITY_ONESCHOOL_GLOBAL: LocalityOneSchoolGlobalState = {
   out_OneSchoolGlobal_List: [],
 };
 
-export type LocalityOneSchoolGlobalAction =
+type LocalityOneSchoolGlobalAction =
   /** OnReady: three skeleton cards (GetSkeletonList_UI_OneSchoolGlobal_ListCard). */
   | { type: 'skeletonShown' }
   /** Get_OneSchoolGlobal_List answered; OnAfterFetch: the first time ListClear and IsLoading False, then

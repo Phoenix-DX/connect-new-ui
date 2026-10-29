@@ -1,0 +1,5 @@
+{
+ "by": "user",
+ "reason": "Not capturable with the test account (2026-10-29): no admin events on TST (OrbitAdminLanding shows NoInformation_Orbit). Build from the compiled code and MCP with meaningful fictional mocks, as OrbitAdminEventDetail (user decision I10-3 (a), 2026-10-29).",
+ "at": "2026-10-29T08:31:54"
+}

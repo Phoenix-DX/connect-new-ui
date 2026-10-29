@@ -45,8 +45,8 @@ flowchart TB
     S3["ActionAppManager_AfterInitialize<br/>observed"]
     S4["ActionSync_Info_GetMain<br/>observed"]
     S5["ActionGetNumberUnreadMessages<br/>observed"]
-    S6["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
-    S7["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
+    S6["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
+    S7["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
   end
   Backend["Backend<br/>not visible from the browser"]
   Content -.-> S0
@@ -76,10 +76,10 @@ sequenceDiagram
   else back from history (view restored)
     S->>S: TODO keep cached data?
   end
-  S->>API: ServiceAPIFetchData_CacheableHouseholds
+  S->>API: ServiceAPIFetchData_CacheableMapEntities
   Note over S,API: observed in capture, trigger unverified (TODO)
   API-->>S: TODO outputs
-  S->>API: ServiceAPIFetchData_CacheableMapEntities
+  S->>API: ServiceAPIFetchData_CacheableHouseholds
   Note over S,API: observed in capture, trigger unverified (TODO)
   API-->>S: TODO outputs
   alt success

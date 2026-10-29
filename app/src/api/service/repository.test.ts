@@ -65,7 +65,7 @@ describe('service repository', () => {
         MainElementClass: 'ubt-services-carousel',
         Local_ServicesPerPage: { List: [{ PageNumber: 1, ServiceItem: { List: Array(5).fill(emptyItem) } }] },
         ExternalAppPopUp_Id: '',
-        Local_ExternalApp_PopUpInfo: { AppName: '', PackageName: '', IconId: '' },
+        Local_ExternalApp_PopUpInfo: { AppName: '', PackageName: '', IconId: '', URL: '' },
         ItemPerPage: 6,
         ForceAddService: false,
       },

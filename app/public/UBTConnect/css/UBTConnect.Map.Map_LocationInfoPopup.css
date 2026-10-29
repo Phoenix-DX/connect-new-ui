@@ -1,0 +1,3 @@
+﻿.popup-backdrop:has( > .map-location-info-popup) {
+    z-index: var(--osui-bottom-sheet-layer)
+}

@@ -154,6 +154,7 @@ export default function EventDetail() {
         id={BLOCK_ID}
         inEventName={inEventName}
         inFromNotification={inputs.In_FromNotification}
+        inEventId={inEventId}
         hasOrbitHostSurvey={hasOrbitHostSurvey}
         hasOrbitEventBooklet={hasOrbitEventBooklet}
         state={detail.state}

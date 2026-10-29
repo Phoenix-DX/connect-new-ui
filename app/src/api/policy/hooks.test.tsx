@@ -1,5 +1,5 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { renderHook, waitFor } from '@testing-library/react';
+import { QueryClient, QueryClientProvider, onlineManager } from '@tanstack/react-query';
+import { act, renderHook, waitFor } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { recordBodies } from '@/test/testSupport';
@@ -7,8 +7,9 @@ import { usePendingPoliciesQuery } from './hooks';
 import { policyKeys } from './keys';
 import type { PendingPoliciesInputs } from './types';
 
+// The Connect_Applications identifiers are the TST GUID texts (pages/AcceptPendingPolicies/staticEntities.ts).
 const inputs: PendingPoliciesInputs = {
-  policyApplications: ['Connect_Applications.Connect'],
+  policyApplications: ['65d96f75-9f71-42aa-8447-fd622aa09e7e'],
   country: 'NZ',
   contentBlockId: '',
 };
@@ -27,6 +28,7 @@ beforeEach(() => {
 });
 afterEach(() => {
   sessionStorage.clear();
+  onlineManager.setOnline(true);
 });
 
 describe('policy query keys', () => {
@@ -79,6 +81,35 @@ describe('usePendingPoliciesQuery', () => {
     await waitFor(() => {
       expect(result.current.isError).toBe(true);
     });
+    expect(calls()).toEqual(['DataActionGetPendingPolicies']);
+  });
+
+  it('does not fetch again when the network comes back (App_Policies F2)', async () => {
+    const { result } = renderHook(() => usePendingPoliciesQuery(inputs, () => false), {
+      wrapper: providerOf(new QueryClient()),
+    });
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBe(true);
+    });
+    act(() => {
+      onlineManager.setOnline(false);
+    });
+    act(() => {
+      onlineManager.setOnline(true);
+    });
+    await new Promise((resolve) => setTimeout(resolve, 20));
+    expect(calls()).toEqual(['DataActionGetPendingPolicies']);
+  });
+
+  it('makes the call when the browser is offline, as OutSystems does (App_Policies F2)', async () => {
+    onlineManager.setOnline(false);
+    const { result } = renderHook(() => usePendingPoliciesQuery(inputs, () => false), {
+      wrapper: providerOf(new QueryClient()),
+    });
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBe(true);
+    });
+    expect(result.current.fetchStatus).toBe('idle');
     expect(calls()).toEqual(['DataActionGetPendingPolicies']);
   });
 });

@@ -114,6 +114,7 @@ App_Cache.CacheControl_UserInfo_Wrapper
 | In_ExtendedClass | input | Text | `""` |
 | In_EnableAccessibilityFeatures | input | Boolean | `false` |
 | In_InitializeNavigationHandler | input | Boolean | `true` |
+| In_IsHideTitle | input | Boolean | `false` |
 - Lifecycle handlers: Ready, Destroy
 - Client actions / event handlers: `onClick_BackNavigation`, `setScrollEvents`, `onDestroy`, `skipToContentOnClick`, `onReady`, `onReadyEvent`
 - navigateBack calls: 1
@@ -192,8 +193,8 @@ App_Cache.CacheControl_UserInfo_Wrapper
 | CurrentLength | local | Integer | `0` |
 | In_InputId | input | Text | `""` |
 | In_InitialLength | input | Integer | `0` |
-- Lifecycle handlers: Initialize, Ready
-- Client actions / event handlers: `onInitialize`, `onReady`, `setCurrentLength`
+- Lifecycle handlers: Initialize, Ready, ParametersChanged
+- Client actions / event handlers: `onInitialize`, `onParametersChanged`, `onReady`, `setCurrentLength`
 - JavaScript nodes: `UBTConnectLibrary.ConnectPatterns.InputCounter.mvc$controller.OnReady.LimitMaxLenthJS`
 - Static entities / flags: `uBT_Color.neutral7`, `uBT_FontSize.doubleExtraSmall`, `uBT_FontWeight.semiBold`
 - Candidate static strings: `SetCurrentLength`
@@ -549,14 +550,14 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 2322 ms
-- 2. `DataActionGetCacheInfo` (200) at 4440 ms
-- 3. `DataActionDataAction_GetLocalityTimezone` (200) at 4719 ms
-- 4. `ActionAppManager_AfterInitialize` (200) at 6414 ms
-- 5. `ActionSync_Info_GetMain` (200) at 7019 ms
-- 6. `ActionGetNumberUnreadMessages` (200) at 7288 ms
-- 7. `ServiceAPIFetchData_CacheableHouseholds` (200) at 8048 ms
-- 8. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8096 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 2511 ms
+- 2. `DataActionGetCacheInfo` (200) at 4705 ms
+- 3. `DataActionDataAction_GetLocalityTimezone` (200) at 4973 ms
+- 4. `ActionAppManager_AfterInitialize` (200) at 5206 ms
+- 5. `ActionSync_Info_GetMain` (200) at 5668 ms
+- 6. `ActionGetNumberUnreadMessages` (200) at 5958 ms
+- 7. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8003 ms
+- 8. `ServiceAPIFetchData_CacheableHouseholds` (200) at 10358 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

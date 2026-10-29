@@ -6,7 +6,7 @@ import { fetchShareDetails, type ShareDetails } from '@/api/share';
 import { ServerException } from '@/legacy/os/os-exceptions';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { replaceOnUpcomingNavigation } from '@/platform/navigation';
+import { replaceOnUpcomingNavigation, TransitionAnimation } from '@/platform/navigation';
 import { getUserInformation } from '@/platform/session/userInfo';
 import { connectShareReducer } from './connectShareState';
 import { useConnectShare, type ConnectShareView } from './useConnectShare';
@@ -72,6 +72,14 @@ const advance = (ms: number) =>
   act(async () => {
     await vi.advanceTimersByTimeAsync(ms);
   });
+/** Each raise to the flow handler: the error, and whether it carried a flow scope (the `flow` of useFlowState). */
+const raisedWithScope = () =>
+  vi
+    .mocked(raiseToFlowHandler)
+    .mock.calls.map(([error, scope]) => [
+      error,
+      typeof (scope as { alive?: unknown } | undefined)?.alive === 'function',
+    ]);
 /** A promise that the test resolves or rejects. */
 function deferred<T>() {
   let resolve: (value: T) => void = () => undefined;
@@ -108,11 +116,30 @@ describe('useConnectShare', () => {
     });
     expect(replaceOnUpcomingNavigation).toHaveBeenCalledTimes(1);
     expect(spy.navigate).toHaveBeenCalledTimes(1);
-    expect(spy.navigate).toHaveBeenCalledWith('/UBTConnect/HouseholdDetails', { HouseholdId: '42438' });
+    expect(spy.navigate).toHaveBeenCalledWith(
+      '/UBTConnect/HouseholdDetails',
+      { HouseholdId: '42438' },
+      { transition: TransitionAnimation.None },
+    );
     expect(vi.mocked(replaceOnUpcomingNavigation).mock.invocationCallOrder[0]).toBeLessThan(
       spy.navigate.mock.invocationCallOrder[0] ?? 0,
     );
   });
+
+  it.each([
+    ['OneSchool Global', '/UBTConnect/OneSchoolGlobalDetails'],
+    ['Feed', '/UBTConnect/FeedItemDetail'],
+    ['Supper Meeting', '/UBTConnect/SupperMeeting_Details'],
+  ])(
+    'Action_Redirect opens a %s share with TransitionAnimation.None (ConnectShare.mvc.js:461-485)',
+    async (type, path) => {
+      vi.mocked(fetchShareDetails).mockResolvedValue(share({ shareObjectTypeId: type }));
+      renderFlows('abc');
+      await settle();
+      expect(spy.navigate).toHaveBeenCalledTimes(1);
+      expect(spy.navigate).toHaveBeenCalledWith(path, expect.anything(), { transition: TransitionAnimation.None });
+    },
+  );
 
   it('a type that Action_Redirect does not route sets IsRedirect False, so the share detail shows', async () => {
     vi.mocked(fetchShareDetails).mockResolvedValue(share({ shareObjectTypeId: 'Locality', objectId: '1001' }));
@@ -144,6 +171,17 @@ describe('useConnectShare', () => {
     expect(spy.navigate).not.toHaveBeenCalled();
   });
 
+  it('a failed upgrade popup of the alert timer goes to the flow handler with the flow scope (flow.run)', async () => {
+    vi.useFakeTimers();
+    const failure = new Error('popup failed');
+    vi.mocked(fetchShareDetails).mockResolvedValue(NO_ACCESS);
+    vi.mocked(showUpgradePopUp).mockRejectedValueOnce(failure);
+    renderFlows();
+    await advance(1000);
+    expect(showUpgradePopUp).toHaveBeenCalledTimes(1);
+    expect(raisedWithScope()).toEqual([[failure, true]]);
+  });
+
   it('an unavailable share shows its message and no popup', async () => {
     vi.useFakeTimers();
     vi.mocked(fetchShareDetails).mockResolvedValue(share({ isShareAvailable: false }));
@@ -164,19 +202,19 @@ describe('useConnectShare', () => {
     expect(raiseToFlowHandler).not.toHaveBeenCalled();
   });
 
-  it('a failed audit goes to the flow handler, and the screen renders with the first variables', async () => {
+  it('a failed audit goes to the flow handler with the flow scope, and the screen renders with the first variables', async () => {
     const failure = new ServerException('Request failed with an error');
     vi.mocked(fetchShareDetails).mockRejectedValue(new ServerException('Share not found'));
     vi.mocked(getUserInformation).mockRejectedValue(failure);
     const { result } = renderFlows();
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(failure);
+    expect(raisedWithScope()).toEqual([[failure, true]]);
     expect(result.current.isInitialized).toBe(true);
     expect(result.current.state.statusMessage).toBe('');
   });
 });
 
-describe('useConnectShare after an unmount and in StrictMode (decision W23)', () => {
+describe('useConnectShare after an unmount and in StrictMode (flow scope, item 8)', () => {
   it('a Get_ShareDetails that fails after the unmount still runs the audit once and writes no state', async () => {
     vi.useFakeTimers();
     const pending = deferred<ShareDetails>();
@@ -194,7 +232,7 @@ describe('useConnectShare after an unmount and in StrictMode (decision W23)', ()
     expect(spy.navigate).not.toHaveBeenCalled();
   });
 
-  it('a share that answers after the unmount starts no alert timer and no redirect', async () => {
+  it('R3: a share that answers after the unmount starts no alert timer and no redirect', async () => {
     vi.useFakeTimers();
     const pending = deferred<ShareDetails>();
     vi.mocked(fetchShareDetails).mockReturnValue(pending.promise);

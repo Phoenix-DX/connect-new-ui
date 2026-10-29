@@ -6,6 +6,7 @@ import { OrbitErrorScreen } from '@/components/orbit/OrbitErrorScreen';
 import { EventDetailSubSection } from '@/components/orbit/EventDetailSubSection';
 import type { ContactByPhonePopupData, UI_ContactByMessage_WrapperData } from '@/lib/ubtConnectUtils/structures';
 import { EventCard_V2, type HouseholdClick } from './EventCard_V2';
+import { SwipeEvents } from './SwipeEvents';
 
 export interface MyTimeline_V2Props {
   id?: string;
@@ -24,6 +25,8 @@ export interface MyTimeline_V2Props {
   onScrollEnding: () => unknown;
   /** Event TryAgain. */
   onTryAgain: () => void;
+  /** Event EventsSwipeUp: SwipeEventSwipeUp, a swipe up on the empty timeline (MT :738-760). */
+  onEventsSwipeUp: () => unknown;
 }
 
 /** The timeline (analysis/sources/pretty/Connect2_OrbitMobile_MUI.LDM_Blocks_V2.MyTimeline_V2.mvc.js view :200-420).
@@ -32,7 +35,7 @@ export interface MyTimeline_V2Props {
     (List_PastEvents: one `past-event-cont` per month, its CurrentMonthDate and List_PastEventsData of EventCard_V2)
     when there are past events; a card is expandable when its event has guests. Without events: NetworkWarning on a
     fetch error, else nothing while fetching, else ErrorScreen "LDMs events not available." (+ "Please try a different
-    filter" while filtering) with SwipeEvents (SwipeUp: not ported, the swipe gesture of the web is out of scope).
+    filter" while filtering) with SwipeEvents on the ErrorScreen (MT :651-690: SwipeUp raises EventsSwipeUp).
     The list-updating loader shows while fetching without a fetch error. Both lists raise ScrollEnding.
     @origin Connect2_OrbitMobile_MUI.LDM_Blocks_V2.MyTimeline_V2 */
 export function MyTimeline_V2({
@@ -49,6 +52,7 @@ export function MyTimeline_V2({
   onClickMessage,
   onScrollEnding,
   onTryAgain,
+  onEventsSwipeUp,
 }: MyTimeline_V2Props) {
   const card = (e: EventCalendar, cardScope: string, cardId: string) => (
     <EventCard_V2
@@ -128,12 +132,17 @@ export function MyTimeline_V2({
       ) : inHasFetchError ? (
         <NetworkWarning id={`${scope}-$b5`} onTryAgain={onTryAgain} />
       ) : inIsFetchingMyTimeline ? null : (
-        <OrbitErrorScreen
-          id={`${scope}-ErrorScreen`}
-          inErrorMessage={
-            inIsFiltering ? 'LDMs events not available.\r\nPlease try a different filter' : 'LDMs events not available.'
-          }
-        />
+        <>
+          <OrbitErrorScreen
+            id={`${scope}-ErrorScreen`}
+            inErrorMessage={
+              inIsFiltering
+                ? 'LDMs events not available.\r\nPlease try a different filter'
+                : 'LDMs events not available.'
+            }
+          />
+          <SwipeEvents id={`${scope}-$b7`} widgetId={`${scope}-ErrorScreen`} onSwipeUp={onEventsSwipeUp} />
+        </>
       )}
       {inIsFetchingMyTimeline && !inHasFetchError ? (
         <div className="list-updating-cont" data-container="" id={`${scope}-LoadingCont`}>

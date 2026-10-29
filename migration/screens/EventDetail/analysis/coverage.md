@@ -1,7 +1,7 @@
 # Coverage for EventDetail
 
 - UI states captured: default, loading, offline
-- Runtime captures: 1 file(s), 5 call(s)
+- Runtime captures: 1 file(s), 6 call(s)
 - Masked text nodes: 11, user images removed: 0
 - Fetch failures during snapshot: 0
 
@@ -10,11 +10,12 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 
 - [ ] `App_Common.UnsupportedVersion_Wrapper`
 - [ ] `App_Policies.Policy_Checker`
-- [ ] `BasePatterns.Columns_Two`
-- [ ] `BasePatterns.CustomContainer`
-- [ ] `BasePatterns.CustomText`
+- [ ] `CW_Notes.NoteListActions`
 - [ ] `CacheControl.CacheControl_Policies`
-- [ ] `ConnectPatterns.Icon`
+- [ ] `ConnectPatterns.AddNote`
+- [ ] `ConnectPatterns.BottomSheet`
+- [ ] `ConnectPatterns.HighlightSearch`
+- [ ] `ConnectPatterns.IconSVG`
 - [ ] `ConnectPatterns.SkeletonSection`
 - [ ] `Fingerprint.FingerprintScanner`
 - [ ] `NavigationHandler.PreventBackNavigation`
@@ -52,7 +53,9 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [x] `DataActionGet_EventDetails` (Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js)
 - [x] `DataActionGet_HostSurveyStatus` (Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js)
 - [x] `DataActionGet_HasQRCode` (Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js)
+- [x] `DataActionFetchEventNotes` (Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js)
 - [x] `DataActionGet_HasDocuments` (Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js)
+- [ ] `AddNote` (UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js)
 
 ## Module-level server actions (called from client actions; check which ones this screen uses)
 - [ ] `AddBookmark` (UBTConnect.controller.js)
@@ -84,12 +87,12 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [ ] `GetTimezoneInformation` (Connect2_LegacyShared.controller.js)
 - [ ] `GetUserInformation` (Connect2_LegacyShared.controller.js)
 - [ ] `GetUserLocalitiesForCountryCodeWithGPS` (Connect2_LegacyShared.controller.js)
+- [ ] `CS_CreateShareProfileLink` (UBTConnect_Utils.controller.js)
+- [ ] `Get_RuntimeVersion` (UBTConnect_Utils.controller.js)
+- [ ] `GetSignedImagesInBulk` (UBTConnect_Utils.controller.js)
+- [ ] `GetUserInformation` (UBTConnect_Utils.controller.js)
 - [ ] `AppManager_AfterInitialize` (UBT_AppManager.controller.js)
 - [ ] `AppManager_ChangeDevice` (UBT_AppManager.controller.js)
 - [ ] `AppManager_Login` (UBT_AppManager.controller.js)
 - [ ] `AppManager_Logout` (UBT_AppManager.controller.js)
 - [ ] `AppManager_SynchAppContext` (UBT_AppManager.controller.js)
-- [ ] `CS_CreateShareProfileLink` (UBTConnect_Utils.controller.js)
-- [ ] `Get_RuntimeVersion` (UBTConnect_Utils.controller.js)
-- [ ] `GetSignedImagesInBulk` (UBTConnect_Utils.controller.js)
-- [ ] `GetUserInformation` (UBTConnect_Utils.controller.js)

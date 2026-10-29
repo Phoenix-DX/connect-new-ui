@@ -36,7 +36,6 @@ const variables: NotificationsVariables = {
   isHeaderScrolled: false,
   isToggleSearch: false,
   currentSearchString: '',
-  badgeNumber: 0,
   selectedHistorySearch: '',
   deviceHardwareId: '',
   filter_MessageTypePrivate: true,
@@ -50,6 +49,8 @@ const variables: NotificationsVariables = {
   selectedFilter_MessageTypePrivate: true,
   selectedFilter_MessageTypePublic: true,
   moreAction_BottomSheetId: '',
+  local_OnlyShowUnread: false,
+  readCount: 0,
 };
 
 const allMessages: NotificationReadFilter = {
@@ -100,19 +101,28 @@ describe('notification repository: the screen Notifications', () => {
       }),
     ]);
     expect(bodies).toEqual([toNotificationsVariablesWire(variables)]);
-    expect(list.items).toHaveLength(19);
-    const first = list.items[0];
+    expect(list.items).toHaveLength(68);
+    const first = list.items.find((i) => i.id === '910019');
     expect(first && Object.keys(first).sort()).toEqual(['dateTimeCreated', 'id', 'isRead', 'profileIconURL', 'title']);
     expect(first).toMatchObject({
       id: '910019',
       title: 'Test Noti 56',
-      isRead: false,
+      isRead: true,
       profileIconURL: '/UBT_CW/img/UBT_CW.directory_entity_logo.png',
     });
-    expect(first?.dateTimeCreated).toMatch(/^\d{4}-\d{2}-\d{2}T10:50:25$/);
-    expect(list.items.filter((n) => !n.isRead)).toHaveLength(16);
-    expect(list.hasUnreadMessages).toBe(true);
-    expect(list.unreadNotificationsCount).toBe(16);
+    expect(first?.dateTimeCreated).toMatch(/^\d{4}-\d{2}-\d{2}T10:50:23$/);
+    // The TST capture of 2026-10-29: 2 unread notifications.
+    expect(list.items.filter((n) => !n.isRead)).toHaveLength(2);
+    // DEV Get_UI_Notifications never assigns HasUnreadMessages (MCP, 2026-10-29): False.
+    expect(list.hasUnreadMessages).toBe(false);
+    expect(list.unreadNotificationsCount).toBe(2);
+  });
+
+  it('fetchNotifications with Local_OnlyShowUnread: the unread rows, and no count (MCP on DEV, 2026-10-29)', async () => {
+    const list = await fetchNotifications({ ...variables, local_OnlyShowUnread: true });
+    expect(list.items).toHaveLength(2);
+    expect(list.items.every((n) => !n.isRead)).toBe(true);
+    expect(list.unreadNotificationsCount).toBe(0);
   });
 
   it('fetchNotifications sends only the screen variables of a caller model', async () => {
@@ -125,8 +135,11 @@ describe('notification repository: the screen Notifications', () => {
 
 describe('notification repository: the wrappers of Connect2_LegacyShared', () => {
   it('markNotificationOpened calls Wrapper_NotificationOpened with the message and answers IsRetracted', async () => {
-    expect(unreadIds()).toContain('81019');
-    await expect(markNotificationOpened('81019')).resolves.toBe(false);
+    // The MessageList capture of 2026-10-29 has 2 unread messages (the MessageList mock); the first one is opened.
+    const before = unreadIds();
+    expect(before).toHaveLength(2);
+    const id = String(before[0]);
+    await expect(markNotificationOpened(id)).resolves.toBe(false);
     expect(window.__osCalls).toEqual([
       expect.objectContaining({
         module: 'Connect2_LegacyShared',
@@ -135,13 +148,14 @@ describe('notification repository: the wrappers of Connect2_LegacyShared', () =>
         inputNames: ['MessageInstanceId'],
       }),
     ]);
-    expect(unreadIds()).not.toContain('81019');
-    expect(unreadIds()).toHaveLength(15);
+    expect(unreadIds()).not.toContain(id);
+    expect(unreadIds()).toHaveLength(1);
   });
 
   it('markAllNotificationsAsRead sends the filter of the message list and answers TotalChange', async () => {
     const bodies = recordBodies('Connect2_LegacyShared/ActionWrapper_MarkAllAsReadNotifications');
-    await expect(markAllNotificationsAsRead(allMessages)).resolves.toBe(15);
+    // The MessageList capture of 2026-10-29 has 2 unread messages; the test above opened one (the store is shared).
+    await expect(markAllNotificationsAsRead(allMessages)).resolves.toBe(1);
     await expect(markAllNotificationsAsRead(allMessages)).resolves.toBe(0);
     expect(window.__osCalls).toEqual([
       expect.objectContaining({

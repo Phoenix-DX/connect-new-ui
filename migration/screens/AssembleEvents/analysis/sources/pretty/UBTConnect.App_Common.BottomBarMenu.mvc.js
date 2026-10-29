@@ -1,4 +1,4 @@
-define("UBTConnect.App_Common.BottomBarMenu.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect_Utils.model", "UBTConnectLibrary.model", "UBTConnect_Utils.controller", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "UBTConnect.controller", "UBTConnectLibrary.controller", "UBTConnect.App_Common.BottomBarContent.mvc$model", "OutSystemsUI_2_23.Navigation.BottomBarItem.mvc$model", "UBTConnect.App_Common_Blocks.App_IconBadge.mvc$model", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$model", "UBTConnectLibrary.BasePatterns.CustomText.mvc$model", "UBTConnect_Utils.model$BottomBar_ItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.model$BottomBar_ItemList", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$InlineIconRec", "UBTConnect_Utils.controller$BottomBar_GetList", "OutSystemsUI_2_23.model$ErrorMessageRec", "UBTConnect.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.controller$SetBottomBarActiveElement", "UBTConnect.controller$Directory_Updates_RefreshBottomBarCount", "UBTConnectLibrary.controller$BottomBarSlider_ForceRefresh", "UBTConnect_Utils.controller$Connect_LaunchDarkly_PermissionCheck", "UBTConnect_Utils.controller$GetHasNewBookmarks", "UBTConnect.controller$ScrollTop", "UBTConnect_Utils.controller$GetHasC1DirectoryView"], function(OutSystems, UBTConnectModel, UBTConnect_UtilsModel, UBTConnectLibraryModel, UBTConnect_UtilsController, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, UBTConnectController, UBTConnectLibraryController, UBTConnect_App_Common_BottomBarContent_mvcModel, OutSystemsUI_2_23_Navigation_BottomBarItem_mvcModel, UBTConnect_App_Common_Blocks_App_IconBadge_mvcModel, UBTConnectLibrary_ConnectPatterns_Icon_mvcModel, UBTConnectLibrary_BasePatterns_CustomText_mvcModel) {
+define("UBTConnect.App_Common.BottomBarMenu.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect_Utils.model", "UBTConnectLibrary.model", "UBTConnect_Utils.controller", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "UBTConnect.controller", "UBTConnectLibrary.controller", "UBTConnect.App_Common.BottomBarContent.mvc$model", "OutSystemsUI_2_23.Navigation.BottomBarItem.mvc$model", "UBTConnect.App_Common_Blocks.App_IconBadge.mvc$model", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$model", "UBTConnectLibrary.BasePatterns.CustomText.mvc$model", "UBTConnect_Utils.model$BottomBar_ItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.model$BottomBar_ItemList", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$InlineIconRec", "UBTConnect_Utils.controller$BottomBar_GetList", "OutSystemsUI_2_23.model$ErrorMessageRec", "UBTConnect.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.controller$SetBottomBarActiveElement", "UBTConnect.controller$Directory_Updates_RefreshBottomBarCount", "UBTConnectLibrary.controller$BottomBarSlider_ForceRefresh", "UBTConnect.controller$ScrollTop", "UBTConnect_Utils.controller$GetHasC1DirectoryView"], function(OutSystems, UBTConnectModel, UBTConnect_UtilsModel, UBTConnectLibraryModel, UBTConnect_UtilsController, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, UBTConnectController, UBTConnectLibraryController, UBTConnect_App_Common_BottomBarContent_mvcModel, OutSystemsUI_2_23_Navigation_BottomBarItem_mvcModel, UBTConnect_App_Common_Blocks_App_IconBadge_mvcModel, UBTConnectLibrary_ConnectPatterns_Icon_mvcModel, UBTConnectLibrary_BasePatterns_CustomText_mvcModel) {
     var OS = OutSystems.Internal;
 
 
@@ -120,7 +120,7 @@ define("UBTConnect.App_Common.BottomBarMenu.mvc$model", ["OutSystems/ClientRunti
     })(OS.Model.BaseViewModel);
     return new OS.Model.ModelFactory(Model, "App_Common.BottomBarMenu");
 });
-define("UBTConnect.App_Common.BottomBarMenu.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnect_Utils.model", "UBTConnectLibrary.model", "UBTConnect_Utils.controller", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "UBTConnectLibrary.controller", "react", "OutSystems/ReactView/Main", "UBTConnect.App_Common.BottomBarMenu.mvc$model", "UBTConnect.App_Common.BottomBarMenu.mvc$controller", "UBTConnect.clientVariables", "UBTConnect.App_Common.BottomBarContent.mvc$view", "OutSystems/ReactWidgets/Main", "OutSystemsUI_2_23.Navigation.BottomBarItem.mvc$view", "UBTConnect.App_Common_Blocks.App_IconBadge.mvc$view", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$view", "UBTConnectLibrary.BasePatterns.CustomText.mvc$view", "UBTConnect_Utils.model$BottomBar_ItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.model$BottomBar_ItemList", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$InlineIconRec", "UBTConnect_Utils.controller$BottomBar_GetList", "OutSystemsUI_2_23.model$ErrorMessageRec", "UBTConnect.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.controller$SetBottomBarActiveElement", "UBTConnect.controller$Directory_Updates_RefreshBottomBarCount", "UBTConnectLibrary.controller$BottomBarSlider_ForceRefresh", "UBTConnect_Utils.controller$Connect_LaunchDarkly_PermissionCheck", "UBTConnect_Utils.controller$GetHasNewBookmarks", "UBTConnect.controller$ScrollTop", "UBTConnect_Utils.controller$GetHasC1DirectoryView"], function(OutSystems, UBTConnectModel, UBTConnectController, UBTConnect_UtilsModel, UBTConnectLibraryModel, UBTConnect_UtilsController, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, UBTConnectLibraryController, React, OSView, UBTConnect_App_Common_BottomBarMenu_mvc_model, UBTConnect_App_Common_BottomBarMenu_mvc_controller, UBTConnectClientVariables, UBTConnect_App_Common_BottomBarContent_mvc_view, OSWidgets, OutSystemsUI_2_23_Navigation_BottomBarItem_mvc_view, UBTConnect_App_Common_Blocks_App_IconBadge_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnectLibrary_BasePatterns_CustomText_mvc_view) {
+define("UBTConnect.App_Common.BottomBarMenu.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnect_Utils.model", "UBTConnectLibrary.model", "UBTConnect_Utils.controller", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "UBTConnectLibrary.controller", "react", "OutSystems/ReactView/Main", "UBTConnect.App_Common.BottomBarMenu.mvc$model", "UBTConnect.App_Common.BottomBarMenu.mvc$controller", "UBTConnect.clientVariables", "UBTConnect.App_Common.BottomBarContent.mvc$view", "OutSystems/ReactWidgets/Main", "OutSystemsUI_2_23.Navigation.BottomBarItem.mvc$view", "UBTConnect.App_Common_Blocks.App_IconBadge.mvc$view", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$view", "UBTConnectLibrary.BasePatterns.CustomText.mvc$view", "UBTConnect_Utils.model$BottomBar_ItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.model$BottomBar_ItemList", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$InlineIconRec", "UBTConnect_Utils.controller$BottomBar_GetList", "OutSystemsUI_2_23.model$ErrorMessageRec", "UBTConnect.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.controller$SetBottomBarActiveElement", "UBTConnect.controller$Directory_Updates_RefreshBottomBarCount", "UBTConnectLibrary.controller$BottomBarSlider_ForceRefresh", "UBTConnect.controller$ScrollTop", "UBTConnect_Utils.controller$GetHasC1DirectoryView"], function(OutSystems, UBTConnectModel, UBTConnectController, UBTConnect_UtilsModel, UBTConnectLibraryModel, UBTConnect_UtilsController, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, UBTConnectLibraryController, React, OSView, UBTConnect_App_Common_BottomBarMenu_mvc_model, UBTConnect_App_Common_BottomBarMenu_mvc_controller, UBTConnectClientVariables, UBTConnect_App_Common_BottomBarContent_mvc_view, OSWidgets, OutSystemsUI_2_23_Navigation_BottomBarItem_mvc_view, UBTConnect_App_Common_Blocks_App_IconBadge_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnectLibrary_BasePatterns_CustomText_mvc_view) {
     var OS = OutSystems.Internal;
     var PlaceholderContent = OSView.Widget.PlaceholderContent;
     var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
@@ -424,7 +424,7 @@ define("UBTConnect.App_Common.BottomBarMenu.mvc$view", ["OutSystems/ClientRuntim
 
     return View;
 });
-define("UBTConnect.App_Common.BottomBarMenu.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnect_Utils.model", "UBTConnectLibrary.model", "UBTConnect_Utils.controller", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "UBTConnectLibrary.controller", "UBTConnect.languageResources", "UBTConnect.clientVariables", "UBTConnect.App_Common.BottomBarMenu.mvc$debugger", "UBTConnect.App_Common.BottomBarMenu.mvc$controller.OnParametersChanged.Delayed_BottomBarSlider_ForceRefreshJS", "UBTConnect_Utils.model$BottomBar_ItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.model$BottomBar_ItemList", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$InlineIconRec", "UBTConnect_Utils.controller$BottomBar_GetList", "OutSystemsUI_2_23.model$ErrorMessageRec", "UBTConnect.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.controller$SetBottomBarActiveElement", "UBTConnect.controller$Directory_Updates_RefreshBottomBarCount", "UBTConnectLibrary.controller$BottomBarSlider_ForceRefresh", "UBTConnect_Utils.controller$Connect_LaunchDarkly_PermissionCheck", "UBTConnect_Utils.controller$GetHasNewBookmarks", "UBTConnect.controller$ScrollTop", "UBTConnect_Utils.controller$GetHasC1DirectoryView"], function(OutSystems, UBTConnectModel, UBTConnectController, UBTConnect_UtilsModel, UBTConnectLibraryModel, UBTConnect_UtilsController, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, UBTConnectLibraryController, UBTConnectLanguageResources, UBTConnectClientVariables, UBTConnect_App_Common_BottomBarMenu_mvc_Debugger, UBTConnect_App_Common_BottomBarMenu_mvc_controller_OnParametersChanged_Delayed_BottomBarSlider_ForceRefreshJS) {
+define("UBTConnect.App_Common.BottomBarMenu.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnect_Utils.model", "UBTConnectLibrary.model", "UBTConnect_Utils.controller", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "UBTConnectLibrary.controller", "UBTConnect.languageResources", "UBTConnect.clientVariables", "UBTConnect.App_Common.BottomBarMenu.mvc$debugger", "UBTConnect.App_Common.BottomBarMenu.mvc$controller.OnParametersChanged.Delayed_BottomBarSlider_ForceRefreshJS", "UBTConnect_Utils.model$BottomBar_ItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.model$BottomBar_ItemList", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$InlineIconRec", "UBTConnect_Utils.controller$BottomBar_GetList", "OutSystemsUI_2_23.model$ErrorMessageRec", "UBTConnect.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.controller$SetBottomBarActiveElement", "UBTConnect.controller$Directory_Updates_RefreshBottomBarCount", "UBTConnectLibrary.controller$BottomBarSlider_ForceRefresh", "UBTConnect.controller$ScrollTop", "UBTConnect_Utils.controller$GetHasC1DirectoryView"], function(OutSystems, UBTConnectModel, UBTConnectController, UBTConnect_UtilsModel, UBTConnectLibraryModel, UBTConnect_UtilsController, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, UBTConnectLibraryController, UBTConnectLanguageResources, UBTConnectClientVariables, UBTConnect_App_Common_BottomBarMenu_mvc_Debugger, UBTConnect_App_Common_BottomBarMenu_mvc_controller_OnParametersChanged_Delayed_BottomBarSlider_ForceRefreshJS) {
     var OS = OutSystems.Internal;
     var Controller = (function(_super) {
         __extends(Controller, _super);
@@ -576,15 +576,9 @@ define("UBTConnect.App_Common.BottomBarMenu.mvc$controller", ["OutSystems/Client
             callContext = controller.callContext(callContext);
             var vars = new OS.DataTypes.VariableHolder(new(controller.constructor.getVariableGroupType("UBTConnect.App_Common.BottomBarMenu.Event_BottomBar_Clicked$vars"))());
             vars.value.in_ItemInLocal = in_ItemIn;
-            var connect_LaunchDarkly_PermissionCheckVar = new OS.DataTypes.VariableHolder();
-            var getHasNewBookmarksVar = new OS.DataTypes.VariableHolder();
-            var getHasNewBookmarks2Var = new OS.DataTypes.VariableHolder();
             varBag.callContext = callContext;
             varBag.vars = vars;
-            varBag.connect_LaunchDarkly_PermissionCheckVar = connect_LaunchDarkly_PermissionCheckVar;
-            varBag.getHasNewBookmarksVar = getHasNewBookmarksVar;
-            varBag.getHasNewBookmarks2Var = getHasNewBookmarks2Var;
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:v9TK9hdJG0WBGTLw5RGZ5A:/NRWebFlows.0eZ+W3SSVk+CJcw1X48PQA/NodesShownInESpaceTree.dSzNMjNIS0mNfvatsj3j0A/ClientActions.v9TK9hdJG0WBGTLw5RGZ5A:OMOxaTBoJVNcRuY67l1HTQ", "UBTConnect", "Event_BottomBar_Clicked", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:v9TK9hdJG0WBGTLw5RGZ5A:/NRWebFlows.0eZ+W3SSVk+CJcw1X48PQA/NodesShownInESpaceTree.dSzNMjNIS0mNfvatsj3j0A/ClientActions.v9TK9hdJG0WBGTLw5RGZ5A:Tahhvd2qZz7Tx8I+EEncEQ", "UBTConnect", "Event_BottomBar_Clicked", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
             OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:IA6+TdAtrEOjt8ol2HSCLA", callContext.id);
             return OS.Flow.executeAsyncFlow(function() {
                 return OS.Flow.executeSequence(function() {
@@ -631,42 +625,9 @@ define("UBTConnect.App_Common.BottomBarMenu.mvc$controller", ["OutSystems/Client
                                             } else {
                                                 return OS.Flow.executeSequence(function() {
                                                     if ((vars.value.in_ItemInLocal === UBTConnectModel.staticEntities.connect_BottomBar_Items.bookmarks)) {
-                                                        OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:175oDfVuA0igX8opMMSzuA", callContext.id);
-                                                        // Execute Action: Connect_LaunchDarkly_PermissionCheck
-                                                        connect_LaunchDarkly_PermissionCheckVar.value = UBTConnect_UtilsController.default.connect_LaunchDarkly_PermissionCheck$Action(UBTConnectModel.staticEntities.launchDarkly_FF.mobileDirectoryBookmarkNote, callContext);
-
-                                                        if ((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:VzpFOfWjlECiRdIQFKk_Aw", callContext.id) && connect_LaunchDarkly_PermissionCheckVar.value.hasAccessOut)) {
-                                                            OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:8ryn9X8LFU2zRQMjlvnKRQ", callContext.id);
-                                                            // Execute Action: GetHasNewBookmarks2
-                                                            getHasNewBookmarks2Var.value = UBTConnect_UtilsController.default.getHasNewBookmarks$Action(callContext);
-
-                                                            if ((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:yCS+X0n6r06TB93qYZZ8QA", callContext.id) && getHasNewBookmarks2Var.value.out_HasNewBookmarksOut)) {
-                                                                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:uNxNvugLd0KvP42ZJRnW6w", callContext.id);
-                                                                // Destination: /UBTConnect/Bookmarks
-                                                                return OS.Flow.returnAsync(OS.Navigation.navigateTo(OS.Navigation.generateScreenURL("/UBTConnect/Bookmarks", {}), OS.Transitions.createTransition(OS.Transitions.TransitionAnimation.Default), callContext, true));
-                                                            } else {
-                                                                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:0OPNhIfwYU2KVOAu2mSQ6g", callContext.id);
-                                                                // Destination: /UBTConnect/New_MyBookmarks
-                                                                return OS.Flow.returnAsync(OS.Navigation.navigateTo(OS.Navigation.generateScreenURL("/UBTConnect/New_MyBookmarks", {}), OS.Transitions.createTransition(OS.Transitions.TransitionAnimation.Default), callContext, true));
-                                                            }
-
-                                                        } else {
-                                                            OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:NQg0FKjbyEulTN2mSkpwbQ", callContext.id);
-                                                            // Execute Action: GetHasNewBookmarks
-                                                            getHasNewBookmarksVar.value = UBTConnect_UtilsController.default.getHasNewBookmarks$Action(callContext);
-
-                                                            if ((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:PAcRQwjpb0m8PKfPjqcABg", callContext.id) && getHasNewBookmarksVar.value.out_HasNewBookmarksOut)) {
-                                                                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:0gaGmO7wYUKAeiU7G5RPDg", callContext.id);
-                                                                // Destination: /UBTConnect/Bookmarks
-                                                                return OS.Flow.returnAsync(OS.Navigation.navigateTo(OS.Navigation.generateScreenURL("/UBTConnect/Bookmarks", {}), OS.Transitions.createTransition(OS.Transitions.TransitionAnimation.Default), callContext, true));
-                                                            } else {
-                                                                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:ycCp5_SZSEmIbTvRX_mwyw", callContext.id);
-                                                                // Destination: /UBTConnect/MyBookmarks
-                                                                return OS.Flow.returnAsync(OS.Navigation.navigateTo(OS.Navigation.generateScreenURL("/UBTConnect/MyBookmarks", {}), OS.Transitions.createTransition(OS.Transitions.TransitionAnimation.Default), callContext, true));
-                                                            }
-
-                                                        }
-
+                                                        OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:uNxNvugLd0KvP42ZJRnW6w", callContext.id);
+                                                        // Destination: /UBTConnect/Bookmarks
+                                                        return OS.Flow.returnAsync(OS.Navigation.navigateTo(OS.Navigation.generateScreenURL("/UBTConnect/Bookmarks", {}), OS.Transitions.createTransition(OS.Transitions.TransitionAnimation.Default), callContext, true));
                                                     } else {
                                                         return OS.Flow.executeSequence(function() {
                                                             if ((vars.value.in_ItemInLocal === UBTConnectModel.staticEntities.connect_BottomBar_Items.menu)) {
@@ -746,7 +707,7 @@ define("UBTConnect.App_Common.BottomBarMenu.mvc$controller", ["OutSystems/Client
         Controller.prototype.pushDebuggerContext = function(callContext) {
             var varBag = {};
             OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:0eZ+W3SSVk+CJcw1X48PQA:/NRWebFlows.0eZ+W3SSVk+CJcw1X48PQA:mJCG955vpb2MtUitKU2aNA", "UBTConnect", "App_Common", "NRFlows.WebFlow", callContext.id, varBag);
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:dSzNMjNIS0mNfvatsj3j0A:/NRWebFlows.0eZ+W3SSVk+CJcw1X48PQA/NodesShownInESpaceTree.dSzNMjNIS0mNfvatsj3j0A:skCU2NAz9+z0C6sN1i+koA", "UBTConnect", "BottomBarMenu", "NRNodes.WebBlock", callContext.id, varBag);
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:dSzNMjNIS0mNfvatsj3j0A:/NRWebFlows.0eZ+W3SSVk+CJcw1X48PQA/NodesShownInESpaceTree.dSzNMjNIS0mNfvatsj3j0A:9581XvOWaR5tomapxN2MUA", "UBTConnect", "BottomBarMenu", "NRNodes.WebBlock", callContext.id, varBag);
         };
         Controller.prototype.popDebuggerContext = function(callContext) {
             OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:dSzNMjNIS0mNfvatsj3j0A", callContext.id);
@@ -867,21 +828,6 @@ define("UBTConnect.App_Common.BottomBarMenu.mvc$debugger", ["exports", "OutSyste
                 return varBag.vars.value.in_ItemInLocal;
             },
             dataType: OS.DataTypes.DataTypes.Text
-        },
-        "175oDfVuA0igX8opMMSzuA": {
-            getter: function(varBag, idService) {
-                return varBag.connect_LaunchDarkly_PermissionCheckVar.value;
-            }
-        },
-        "NQg0FKjbyEulTN2mSkpwbQ": {
-            getter: function(varBag, idService) {
-                return varBag.getHasNewBookmarksVar.value;
-            }
-        },
-        "8ryn9X8LFU2zRQMjlvnKRQ": {
-            getter: function(varBag, idService) {
-                return varBag.getHasNewBookmarks2Var.value;
-            }
         },
         "WGXwu6a3fEGJ5lwbgkmGfQ": {
             getter: function(varBag, idService) {

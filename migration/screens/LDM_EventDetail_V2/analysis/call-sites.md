@@ -4,6 +4,9 @@ For every service call: the chains of code that lead to it, from a root (user ev
 
 ## Observed in the capture (this screen)
 
+### `Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionFetchEventNotes`
+- `ScreenBlock_EventDetail_V2 fetch at start` → `ScreenBlock_EventDetail_V2.DataActionFetchEventNotes`
+
 ### `Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionGetCoordinatorDetails`
 - `ScreenBlock_EventDetail_V2.OnParametersChanged` → `ScreenBlock_EventDetail_V2.onParametersChanged` → `ScreenBlock_EventDetail_V2.DataActionGetCoordinatorDetails`
 - `ScreenBlock_EventDetail_V2 fetch at start` → `ScreenBlock_EventDetail_V2.DataActionGetCoordinatorDetails`
@@ -18,11 +21,18 @@ For every service call: the chains of code that lead to it, from a root (user ev
 ### `Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/ActionGetHouseholdCoordinates`
 - `onClick in EventDetail_HostCard` → `event address of EventDetail_HostCard` → `ScreenBlock_EventDetail_V2.onHandle_HostCardAddress` → `server GetHouseholdCoordinates`
 
+### `UBTConnect_Utils/CW_Notes/NotesSheet/ServiceAPIAddNote`
+- `NotesSheet.handler_OnSubmitNote` → `server AddNote`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
+
 ### `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All`
 - `BottomBarMenu.OnReady` → `BottomBarMenu.onReady` → `UBTConnect.directory_Updates_RefreshBottomBarCount` → `server Get_UI_UpdateItems_UnreadCount_All`
 
 ### `Connect2_LegacyShared/ActionGetAllApplicationEvents`
 - `HandleImageLoadError.applicationEvent_ImageError` → `Connect2_LegacyShared.zOnApplicationEvent_Wrapper` → `Connect2_LegacyShared.getAppEventName` → `Connect2_LegacyShared.cacheLocalApplicationEvents` → `server GetAllApplicationEvents`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
+- `ItemNotesSection.handler_OnShareToOthers` → `UBTConnect_Utils.shareEntity_ByURL` → `Connect2_LegacyShared.auditShareEvent` → `Connect2_LegacyShared.zOnApplicationEvent_Wrapper` → `Connect2_LegacyShared.getAppEventName` → `Connect2_LegacyShared.cacheLocalApplicationEvents` → `server GetAllApplicationEvents`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
+
+### `UBTConnect_Utils/ActionCS_CreateShareProfileLink`
+- `ItemNotesSection.handler_OnShareToOthers` → `UBTConnect_Utils.shareEntity_ByURL` → `server CS_CreateShareProfileLink`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 
 ### `UBT_AppManager/ActionAppManager_SynchAppContext`
 - `HandleImageLoadError.applicationEvent_ImageError` → `Connect2_LegacyShared.zOnApplicationEvent_Wrapper` → `UBT_AppManager.azureInsights_CreateCustomEvent` → `UBT_AppManager.appManager_CheckAppContext` → `UBT_AppManager.appManager_GetConfiguration` → `UBT_AppManager.appManager_SynchAppContext` → `UBT_AppManager.appManager_SynchAppContextInternal` → `server AppManager_SynchAppContext`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)

@@ -5,10 +5,14 @@ Run by route.py finish; run it yourself while building.
 
   python3 consistency_check.py --screen <S> [--app-dir app] [--migration-dir migration]
 
+The route's code is app/src/pages/<S>/ (page template, app/docs/guides/page-template.md). Folder imports (pages,
+api, components, containers, platform, legacy) are checked by `npm run arch` (dependency-cruiser), which route.py ready
+runs; requiredIfCalls and allowedImportRoots were dropped (user, 2026-10-29, I10-5 a).
+
 Checks
-  files      required files exist (stack.json rules.requiredFiles; requiredIfCalls when the route has calls)
-  imports    packages only from the allow-list; relative imports only inside the route's folder or the allowed roots
-             (src/shared, src/shell, src/lib, ...); never another route's folder
+  files      required files exist in app/src/pages/<S>/ (stack.json rules.requiredFiles; "{screen}" is replaced by the
+             route name, so "{screen}Page.tsx" means app/src/pages/<S>/<S>Page.tsx)
+  imports    packages only from the allow-list (relative and "@/" imports are left to npm run arch)
   forbidden  rules.forbidden patterns (raw fetch, browser storage, route CSS, inline visual styles, raw HTML, wire shapes in
              components, debug output), each with its id and reason. NO-INLINE-COLOR allows an inline style whose every
              declaration appears in an inline style attribute of the captured DOM (analysis/dom/*.raw.html): OutSystems
@@ -111,6 +115,16 @@ def inline_style_problems(src, rel, captured):
     return probs
 
 
+def page_root(app_dir, screen):
+    """The route's own code in the page-template layout: app/src/pages/<S>/."""
+    return os.path.join(app_dir, "src", "pages", screen)
+
+
+def required_files(rules, screen):
+    """rules.requiredFiles with the "{screen}" placeholder replaced by the route name."""
+    return [f.replace("{screen}", screen) for f in rules.get("requiredFiles", [])]
+
+
 def check(screen, app_dir, mig_dir):
     from stack import cmd_check, all_patterns  # noqa: E402
     st_path = os.path.join(mig_dir, "stack.json")
@@ -119,45 +133,30 @@ def check(screen, app_dir, mig_dir):
     st = json.load(open(st_path, encoding="utf-8"))
     rules = st["rules"]
     allowed_pkgs = set(st["dependencies"]) | set(st["devDependencies"])
-    root = os.path.join(app_dir, "src", "screens", screen)
+    root = page_root(app_dir, screen)
     probs = []
     if not os.path.isdir(root):
         return [f"{root} does not exist"]
     files = [p for p in glob.glob(os.path.join(root, "**", "*"), recursive=True) if os.path.isfile(p)]
     code = [p for p in files if p.endswith((".ts", ".tsx", ".js", ".jsx"))]
     names = {os.path.relpath(p, root) for p in files}
-    for f in rules["requiredFiles"]:
+    for f in required_files(rules, screen):
         if f not in names:
             probs.append(f"[files] {f} missing")
-    has_calls = False
-    facts = os.path.join(mig_dir, "screens", screen, "analysis", "facts.json")
-    if os.path.exists(facts):
-        has_calls = any(c.get("scope") == "this screen" for c in json.load(open(facts, encoding="utf-8")).get("calls", []))
-    if has_calls:
-        for f in rules["requiredIfCalls"]:
-            if f not in names:
-                probs.append(f"[files] {f} missing (the route has server calls)")
-    src_root = os.path.abspath(os.path.join(app_dir, "src"))
     captured = None
-    roots = [os.path.abspath(os.path.join(app_dir, r)) for r in rules["allowedImportRoots"]]
     for p in code:
         rel = os.path.relpath(p, root)
         src = strip_comments(open(p, encoding="utf-8", errors="ignore").read())
         for spec in IMPORT_RE.findall(src):
-            if spec.startswith("."):
-                target = os.path.abspath(os.path.join(os.path.dirname(p), spec))
-            elif spec.startswith("@/") or spec.startswith("src/"):
-                target = os.path.abspath(os.path.join(src_root, spec.split("/", 1)[1]))
-            else:
-                if pkg_name(spec) not in allowed_pkgs and not spec.startswith(("react/", "react-dom/", "msw/")):
-                    probs.append(f"[imports] {rel}: package '{pkg_name(spec)}' is not in the allow-list")
-                continue
-            inside = target.startswith(os.path.abspath(root) + os.sep) or target == os.path.abspath(root)
-            if not inside and not any(target == r or target.startswith(r + os.sep) for r in roots):
-                probs.append(f"[imports] {rel}: '{spec}' reaches outside the route and the allowed roots")
+            if spec.startswith((".", "@/", "src/")):
+                continue   # folder imports: npm run arch (dependency-cruiser) checks them
+            if pkg_name(spec) not in allowed_pkgs and not spec.startswith(("react/", "react-dom/", "msw/")):
+                probs.append(f"[imports] {rel}: package '{pkg_name(spec)}' is not in the allow-list")
         lines = src.split("\n")
+        # tests and stories are not route code: the forbidden rules skip them (user, 2026-10-29, I10-9 a)
+        is_test = re.search(r"\.(test|spec|stories)\.[jt]sx?$", p) is not None
         for f in rules["forbidden"]:
-            if not file_matches(f.get("files", "*"), os.path.basename(p)):
+            if is_test or not file_matches(f.get("files", "*"), os.path.basename(p)):
                 continue
             if f["id"] == "NO-INLINE-COLOR":
                 if captured is None:

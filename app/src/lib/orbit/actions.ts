@@ -312,6 +312,7 @@ export type ApplicationEvent_LDM =
   | 'MyTimelineEventClicked'
   | 'MyTimelineHouseholdClicked'
   | 'MyTimelineApplyFilter'
+  | 'MyTimelineClearFilter'
   | 'ContactEventOrganiser';
 
 /** AddAuditRequestAPIEvent / AddAuditClickedEvent / AddAuditEventDetailEvent / AddAuditEventFilterEvent (C:119-514):
@@ -328,3 +329,73 @@ export const getCurrentTimeInMill = (): number => Date.now();
     EventDetail_ListItem (:793-802) and ScreenBlock_EventDetail_V2 (OnHandle_ContactHost_Message / _Call, :2707-2720):
     the locality without a bracketed part. */
 export const getLocalityName = (locality: string): string => locality.replace(/\s*\([^)]*\)/, '');
+
+/* ---- Orbit admin scan flow: OrbitAdminEventDetail and OrbitAdminMilestoneDetail (auto decision O2, 2026-10-29) ---- */
+
+/** QRCodeInformationRec (Connect2_OrbitMobile_MUI; JSON names "eventid", "id", "milestoneid"). */
+interface QRCodeInformation {
+  EventId: string;
+  MemberId: string;
+  MilestoneId: string;
+}
+
+/** A Long Integer read from JSON (a number or a numeric text). Any other value fails, as the runtime's converter does. */
+function jsonLongInteger(value: unknown, name: string): string {
+  if (value === undefined || value === null) return '0';
+  const text = typeof value === 'number' ? String(Math.trunc(value)) : typeof value === 'string' ? value.trim() : '';
+  if (!/^-?\d+$/.test(text)) throw new Error(`Failed to deserialize JSON to QRCodeInformation: ${name}`);
+  return String(BigInt(text));
+}
+
+/** JSONDeserialize_QRCodeInformation of the lowercased scanned text in OnHandle_ScanCode of ScreenBlock_AdminEventDetail
+    and of ScreenBlock_AdminMilestoneDetail (.mvc.js:1224-1232). As the OutSystems JSON deserializer: an empty text
+    gives the default record, an invalid one throws "Failed to deserialize JSON to …". */
+export function deserializeQRCodeInformation(codeScanned: string): QRCodeInformation {
+  const text = codeScanned.toLowerCase();
+  if (text === '') return { EventId: '0', MemberId: '0', MilestoneId: '' };
+  let data: unknown;
+  try {
+    data = JSON.parse(text);
+  } catch (e) {
+    throw new Error(`Failed to deserialize JSON to QRCodeInformation: ${e instanceof Error ? e.message : ''}`, {
+      cause: e,
+    });
+  }
+  const record = typeof data === 'object' && data !== null ? (data as Record<string, unknown>) : {};
+  const milestoneId = record.milestoneid;
+  return {
+    EventId: jsonLongInteger(record.eventid, 'eventid'),
+    MemberId: jsonLongInteger(record.id, 'id'),
+    MilestoneId:
+      typeof milestoneId === 'string'
+        ? milestoneId
+        : typeof milestoneId === 'number' || typeof milestoneId === 'boolean'
+          ? String(milestoneId)
+          : '',
+  };
+}
+
+/** GetFormattedLocalDateTime(In_DateTime, In_IncludeTime, In_IncludeWeekDay, In_AbbreviateWeekDay,
+    In_SeparateByCommas, In_ReplaceSunday) (C:3036-3110, JS node C:3171-3189; Popup_QRCodeScan of
+    OrbitAdminEventDetail and Popup_QRCodeScan_Milestone of OrbitAdminMilestoneDetail): like GetFormattedDateTime but on the
+    local parts of the date: [weekday + " "] + day + " " + 3-letter month (TF.getMonthName, TF:48-51) + " " + year
+    [+ " h:mm AM"]. */
+export function getFormattedLocalDateTime(
+  inDateTime: Date,
+  inIncludeTime: boolean,
+  inIncludeWeekDay: boolean,
+  inAbbreviateWeekDay: boolean,
+  inSeparateByCommas: boolean,
+  inReplaceSunday: boolean,
+): string {
+  const weekDay = inIncludeWeekDay
+    ? `${timeFormatGetWeekDay(inDateTime.getDay(), inAbbreviateWeekDay, false, inSeparateByCommas, inReplaceSunday)} `
+    : '';
+  const hours = inDateTime.getHours();
+  const minutes = inDateTime.getMinutes();
+  const time = inIncludeTime
+    ? ` ${hours === 0 ? 12 : hours <= 12 ? hours : hours - 12}:${minutes <= 9 ? `0${minutes}` : minutes}${hours <= 11 ? ' AM' : ' PM'}`
+    : '';
+  const month = (MONTH_NAMES[inDateTime.getMonth()] ?? '').substring(0, 3);
+  return `${weekDay}${inDateTime.getDate()} ${month} ${inDateTime.getFullYear()}${time}`;
+}

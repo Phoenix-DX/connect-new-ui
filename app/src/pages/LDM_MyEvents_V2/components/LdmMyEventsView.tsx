@@ -41,6 +41,9 @@ export function LdmMyEventsView({
   onPhoneCall,
   onMessage,
   onTryAgain,
+  onSwipeUp,
+  onMyTimelineFilter,
+  onResetFilters,
   onContactByPhoneClose,
   onContactByMessageClose,
   onContactByMessageEmail,
@@ -76,6 +79,8 @@ export function LdmMyEventsView({
                 inHasLoaded={!state.isFetchingMyTimeline}
                 inIsShowing
                 inDefaultDateRangeInMonths={DEFAULT_DATE_RANGE_IN_MONTHS}
+                onFilter={onMyTimelineFilter}
+                onResetFilters={onResetFilters}
               />
             </div>
             <i
@@ -101,6 +106,7 @@ export function LdmMyEventsView({
               onClickMessage={onMessage}
               onScrollEnding={onScrollEnding}
               onTryAgain={onTryAgain}
+              onEventsSwipeUp={onSwipeUp}
             />
             <DialogAccessRestrictedActionLegacy id={`${scope}-FreeSubscriptionAlert`} scope={`${scope}-b12`} />
             <ContactPopupByPhone

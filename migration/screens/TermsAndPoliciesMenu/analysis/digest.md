@@ -81,6 +81,7 @@ CacheControl.CacheControl_Policies
 | In_ExtendedClass | input | Text | `""` |
 | In_EnableAccessibilityFeatures | input | Boolean | `false` |
 | In_InitializeNavigationHandler | input | Boolean | `true` |
+| In_IsHideTitle | input | Boolean | `false` |
 - Lifecycle handlers: Ready, Destroy
 - Client actions / event handlers: `onClick_BackNavigation`, `setScrollEvents`, `onDestroy`, `skipToContentOnClick`, `onReady`, `onReadyEvent`
 - navigateBack calls: 1
@@ -401,14 +402,14 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 2732 ms
-- 2. `DataActionGetCacheInfo` (200) at 3820 ms
-- 3. `ActionAppManager_AfterInitialize` (200) at 5624 ms
-- 4. `ActionSync_Info_GetMain` (200) at 6159 ms
-- 5. `ActionGetUserInformation` (200) at 6484 ms
-- 6. `ActionGetNumberUnreadMessages` (200) at 6736 ms
-- 7. `ServiceAPIFetchData_CacheableHouseholds` (200) at 7566 ms
-- 8. `ServiceAPIFetchData_CacheableMapEntities` (200) at 7755 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 2849 ms
+- 2. `DataActionGetCacheInfo` (200) at 3911 ms
+- 3. `ActionAppManager_AfterInitialize` (200) at 6074 ms
+- 4. `ActionSync_Info_GetMain` (200) at 6518 ms
+- 5. `ActionGetUserInformation` (200) at 6850 ms
+- 6. `ActionGetNumberUnreadMessages` (200) at 7153 ms
+- 7. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8694 ms
+- 8. `ServiceAPIFetchData_CacheableHouseholds` (200) at 12723 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

@@ -192,6 +192,7 @@ Layouts.Layout_DetailPage
 | In_ExtendedClass | input | Text | `""` |
 | In_EnableAccessibilityFeatures | input | Boolean | `false` |
 | In_InitializeNavigationHandler | input | Boolean | `true` |
+| In_IsHideTitle | input | Boolean | `false` |
 - Lifecycle handlers: Ready, Destroy
 - Client actions / event handlers: `onClick_BackNavigation`, `setScrollEvents`, `onDestroy`, `skipToContentOnClick`, `onReady`, `onReadyEvent`
 - navigateBack calls: 1
@@ -331,8 +332,8 @@ Layouts.Layout_DetailPage
 | variable | kind | type | default |
 |---|---|---|---|
 | In_IconId | input | Text | `""` |
-- Static entities / flags: `uBT_Icons.sVG_OneSchoolGlobal`, `uBT_Icons.sVG_PinLock`, `uBT_Icons.sVG_PinHouse`, `uBT_Icons.sVG_PinMember`, `uBT_Icons.sVG_PinOneSchool`, `uBT_Icons.sVG_HR100`, `uBT_Icons.sVG_ElGusto`, `uBT_Icons.sVG_CommunityTradelink`, `uBT_Icons.sVG_PinLocality`, `uBT_Icons.sVG_PinCountry`
-- Images: `img/UBTConnectLibrary.OneSchoolGlobal.svg`, `img/UBTConnectLibrary.Pin_Lock.svg`, `img/UBTConnectLibrary.Pin_House.svg`, `img/UBTConnectLibrary.Pin_Member.svg`, `img/UBTConnectLibrary.Pin_OneSchool.svg`, `img/UBTConnectLibrary.HR100.svg`, `img/UBTConnectLibrary.ElGusto.svg`, `img/UBTConnectLibrary.CommunityTradelink.svg`, `img/UBTConnectLibrary.Pin_Locality.svg`, `img/UBTConnectLibrary.Pin_Country.svg`
+- Static entities / flags: `uBT_Icons.sVG_OneSchoolGlobal`, `uBT_Icons.sVG_PinLock`, `uBT_Icons.sVG_PinHouse`, `uBT_Icons.sVG_PinMember`, `uBT_Icons.sVG_PinOneSchool`, `uBT_Icons.sVG_HR100`, `uBT_Icons.sVG_ElGusto`, `uBT_Icons.sVG_CommunityTradelink`, `uBT_Icons.sVG_PinLocality`, `uBT_Icons.sVG_PinCountry`, `uBT_Icons.sVG_CommunityHouseholds`, `uBT_Icons.sVG_CommunityLocalities`, `uBT_Icons.sVG_CommunityCountries`, `uBT_Icons.sVG_CommunityMembers`
+- Images: `img/UBTConnectLibrary.OneSchoolGlobal.svg`, `img/UBTConnectLibrary.Pin_Lock.svg`, `img/UBTConnectLibrary.Pin_House.svg`, `img/UBTConnectLibrary.Pin_Member.svg`, `img/UBTConnectLibrary.Pin_OneSchool.svg`, `img/UBTConnectLibrary.HR100.svg`, `img/UBTConnectLibrary.ElGusto.svg`, `img/UBTConnectLibrary.CommunityTradelink.svg`, `img/UBTConnectLibrary.Pin_Locality.svg`, `img/UBTConnectLibrary.Pin_Country.svg`, `img/UBTConnectLibrary.CommunityHouseholds.svg`, `img/UBTConnectLibrary.CommunityLocalities.svg`, `img/UBTConnectLibrary.CommunityCountries.svg`, `img/UBTConnectLibrary.CommunityMembers.svg`
 
 ## `UBTConnectLibrary.ConnectPatterns.FixedFooter.mvc.js`
 | variable | kind | type | default |
@@ -387,11 +388,11 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 2. `DataActionGetServices` (200) at 2866 ms
-- 4. `ActionSync_Info_GetMain` (200) at 6771 ms
-- 5. `ActionGetUserInformation` (200) at 7100 ms
-- 7. `ServiceAPIFetchData_CacheableHouseholds` (200) at 8618 ms
-- 8. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8625 ms
+- 3. `DataActionGetServices` (200) at 11867 ms
+- 4. `ActionSync_Info_GetMain` (200) at 19631 ms
+- 5. `ActionGetUserInformation` (200) at 20011 ms
+- 7. `ServiceAPIFetchData_CacheableMapEntities` (200) at 20571 ms
+- 8. `ServiceAPIFetchData_CacheableHouseholds` (200) at 24695 ms
 - plus 3 call(s) outside this screen, listed in calls.md
 
 ## Not yet captured (see coverage.md)

@@ -1,18 +1,21 @@
 {
  "state": "default",
- "route": "/UBTConnect/BookmarksByGroup?BookmarkGroup=Contacts",
+ "route": "/UBTConnect/BookmarksByGroup?BookmarkGroup=Contacts&mocksession=unlocked",
  "mock": "real",
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "eb2a5c63c40ccdb1b765",
+ "fingerprint": "09d52afcd42bf6b969de",
  "options": {
   "text": true,
   "style": true,
   "pixel": true,
   "calls": true,
+  "visibleOnly": false,
   "full": true,
-  "replay": "builder"
+  "replay": "builder",
+  "skipKinds": [],
+  "selfRef": false
  },
  "replay": {
   "mode": "builder",
@@ -24,38 +27,38 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-23T06:45:27.139Z",
- "counts": {},
- "exemptionsUsed": {
-  "CAPTURE-MASKED-PHOTO-BOOKMARKSBYGROUP": 12,
-  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 45,
-  "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
-  "ignoreSubtrees": 1,
-  "SLIDER-APPEAR-TIMING": 1
+ "at": "2026-10-29T06:49:53.066Z",
+ "counts": {
+  "structure": 5,
+  "style": 1,
+  "class": 1,
+  "pixel": 2,
+  "call": 3
  },
+ "exemptionsUsed": {},
  "pixel": {
-  "ratio": 0.00059,
-  "maxCell": 0.025,
+  "ratio": 0.4359,
+  "maxCell": 1,
   "maxCellRatio": 0.03,
-  "diffPixels": 160,
-  "comparedPixels": 272969,
+  "diffPixels": 286113,
+  "comparedPixels": 656370,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
    390,
-   844
+   1683
   ],
   "buildSize": [
    390,
    844
   ],
-  "masks": 27,
+  "masks": 0,
   "hotspots": [
-   "40,120 (40px)",
-   "40,600 (40px)",
-   "80,120 (16px)",
-   "80,600 (16px)",
-   "0,120 (14px)"
+   "40,200 (1600px)",
+   "80,200 (1600px)",
+   "120,200 (1600px)",
+   "160,200 (1600px)",
+   "40,240 (1600px)"
   ],
   "diffPng": "migration/screens/BookmarksByGroup/parity/default.diff.png"
  },
@@ -64,7 +67,68 @@
    "load"
   ],
   "expected": 8,
-  "actual": 8
+  "actual": 0
  },
- "diffs": []
+ "diffs": [
+  {
+   "kind": "structure",
+   "path": "div#reactContainer",
+   "detail": "tag div → body"
+  },
+  {
+   "kind": "style",
+   "path": "div#reactContainer",
+   "detail": "margin-top 0px → 8px; margin-right 0px → 8px; margin-bottom 0px → 8px; margin-left 0px → 8px"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > h1",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > h2",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > h3",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "class",
+   "path": "body",
+   "detail": "missing .connect-theme .is-ltr .phone .portrait (device classes: src/shell/device.ts)"
+  },
+  {
+   "kind": "pixel",
+   "path": "screenshot",
+   "detail": "page height 1683 → 844"
+  },
+  {
+   "kind": "pixel",
+   "path": "screenshot",
+   "detail": "43.59% pixels differ (max 0.20%), worst 40px tile 100.0% (max 3.0%), hotspots 40,200 (1600px); 80,200 (1600px); 120,200 (1600px); 160,200 (1600px); 40,240 (1600px); see migration/screens/BookmarksByGroup/parity/default.diff.png"
+  },
+  {
+   "kind": "call",
+   "path": "calls:load",
+   "detail": "data action DataActionGetAllBookmarksByGroup not called"
+  },
+  {
+   "kind": "call",
+   "path": "calls:load",
+   "detail": "ActionGetUserInformation called 0× in build, 1× in capture (order-free call)"
+  },
+  {
+   "kind": "call",
+   "path": "calls:load",
+   "detail": "server actions ActionAppManager_SynchAppContext → ActionAppManager_AfterInitialize → ActionSync_Info_GetMain → ActionGetNumberUnreadMessages → {ServiceAPIFetchData_CacheableHouseholds + ServiceAPIFetchData_CacheableMapEntities} → build (none) → (none) → (none) → (none) → {}"
+  }
+ ]
 }

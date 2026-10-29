@@ -18,6 +18,7 @@ import {
   UBT_Size,
 } from '@/lib/ubtConnectLibrary/staticEntities';
 import type { SelectionOption_Item } from '@/lib/ubtConnectLibrary/structures';
+import { jSUtils_String_RemoveAccents } from '@/lib/jsUtils';
 import { Choice } from '@/lib/ubtConnect/staticEntities';
 import type { Filter_Common_Control_List } from './types';
 
@@ -39,20 +40,18 @@ export interface FilterOptionListProps {
   onShowUpgradePopUp?: () => void | Promise<void>;
 }
 
-/** JSUtils_String_RemoveAccents: its JavaScript is in no captured source (README, question); the text is kept as is. */
-const removeAccents = (text: string) => text;
-
-/** Action_DefineOptions (controller): with a search text, the In_Options whose DisplayText contains it (Index, ignore
-    case, after RemoveAccents); otherwise "All <Title>" (AddAllOptions) then In_Options. Each option is selected when
-    SelectedIds has its Id. */
+/** Action_DefineOptions (controller, FilterSheet_OptionList_Item.mvc.js:704-739): with a search text, the In_Options
+    whose DisplayText contains it (Index, ignore case), both sides through JSUtils_String_RemoveAccents
+    (UBTJavaScriptUtils.controller.js:3078-3084, so "Sao" finds "São Paulo"); otherwise "All <Title>" (AddAllOptions)
+    then In_Options. Each option is selected when SelectedIds has its Id. */
 function defineOptions(list: Filter_Common_Control_List, search: string): SelectionOption_Item[] {
   const options = list.In_Options ?? [];
   const selectedIds = list.SelectedIds ?? [];
   let result: SelectionOption_Item[];
   if (search !== '') {
-    const needle = removeAccents(search).toLowerCase();
+    const needle = jSUtils_String_RemoveAccents(search).toLowerCase();
     result = options.filter((p) =>
-      removeAccents(p.DisplayText ?? '')
+      jSUtils_String_RemoveAccents(p.DisplayText ?? '')
         .toLowerCase()
         .includes(needle),
     );

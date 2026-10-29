@@ -9,7 +9,8 @@ import { useAcceptPendingPolicies } from './hooks/useAcceptPendingPolicies';
 import { usePendingPoliciesForm } from './hooks/usePendingPoliciesForm';
 import { Connect_Applications } from './staticEntities';
 
-/** PolicyApplications input of the block: Connect, Directory, Orbit (SCR view, cached list). */
+/** PolicyApplications input of the block: TextToIdentifier of Connect_Applications Connect, Directory, Orbit (the TST
+    GUID texts; AcceptPendingPolicies.mvc.js:374-386, cached list). */
 const POLICY_APPLICATIONS = [Connect_Applications.Connect, Connect_Applications.Directory, Connect_Applications.Orbit];
 
 /** @origin UBTConnect.App_Policies.AcceptPendingPolicies

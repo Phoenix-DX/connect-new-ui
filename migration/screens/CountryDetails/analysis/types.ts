@@ -50,6 +50,21 @@ export interface AppManager_SynchAppContextResponse {
   FirebaseRealTimeDB_Token: string;
 }
 
+export interface CountryListItem {
+  CountryName: string;
+  CountryCode: string;
+  Latitude: string /* Decimal as string */;
+  Longitude: string /* Decimal as string */;
+}
+
+export interface CacheControl_Response {
+  CountryList: CountryListItem[] /* wire: { List: [...] } */;
+}
+
+export interface GetCacheInfoResponse {
+  CacheControl_Response: CacheControl_Response;
+}
+
 export interface Statistics {
   Title: string;
   Subtitle: string /* "" in capture */;
@@ -80,21 +95,6 @@ export interface Out_LocalitiesStatisticsItem {
 export interface GetLocalityStatisticsResponse {
   Out_LocalitiesStatistics: Out_LocalitiesStatisticsItem[] /* wire: { List: [...] } */;
   CountryName: string;
-}
-
-export interface CountryListItem {
-  CountryName: string;
-  CountryCode: string;
-  Latitude: string /* Decimal as string */;
-  Longitude: string /* Decimal as string */;
-}
-
-export interface CacheControl_Response {
-  CountryList: CountryListItem[] /* wire: { List: [...] } */;
-}
-
-export interface GetCacheInfoResponse {
-  CacheControl_Response: CacheControl_Response;
 }
 
 export interface ResultsItem {
@@ -244,18 +244,24 @@ export interface LocalBookmarkItem {
   Note: string /* "" in capture */;
 }
 
+export interface LocalBookmarksC2Item {
+  Id: string /* Long Integer as string */;
+  UserId: number;
+  BookmarkId: string /* Long Integer as string */;
+  BookmarkCategoryId: string;
+  ItemId: string /* Long Integer as string */;
+  CreatedAtDateUtc: string /* ISO DateTime */;
+}
+
 export interface EmptyListItem {
   Id: string /* Long Integer as string */;
   UserId: number /* 0 in capture */;
-  BookmarkId: string /* Long Integer as string */;
-  BookmarkCategoryId: string /* "" in capture */;
-  ItemId: string /* Long Integer as string */;
-  CreatedAtDateUtc: string /* "1900-01-01..." = no value */;
-}
-
-export interface LocalBookmarksC2 {
-  List: unknown[] /* empty in capture */;
-  EmptyListItem: EmptyListItem;
+  NoteId: string /* Long Integer as string */;
+  NoteCategoryId: string /* "" in capture */;
+  ItemId: string /* "" in capture */;
+  DateCreatedUtc: string /* "1900-01-01..." = no value */;
+  DateEditedUtc: string /* "1900-01-01..." = no value */;
+  NotesTotalCount: string /* Long Integer as string */;
 }
 
 export interface LocalNotes {
@@ -265,7 +271,7 @@ export interface LocalNotes {
 
 export interface LocalEntities_App {
   LocalBookmark: LocalBookmarkItem[] /* wire: { List: [...] } */;
-  LocalBookmarksC2: LocalBookmarksC2;
+  LocalBookmarksC2: LocalBookmarksC2Item[] /* wire: { List: [...] } */;
   LocalNotes: LocalNotes;
 }
 
@@ -353,7 +359,7 @@ export interface Options {
 export interface Marker {
   Id: string /* Long Integer as string */;
   Type: string;
-  ExtraData: string /* "" in capture */;
+  ExtraData: string;
   Latlng: Latlng;
   Options: Options;
 }
@@ -389,6 +395,54 @@ export interface MarkerWithWindow {
   Popup: Popup;
 }
 
+export interface Localities_MarkersItem {
+  MarkerWithWindow: MarkerWithWindow;
+  IsLocked: boolean;
+}
+
+export interface Localities_GeoJSON {
+  List: unknown[] /* empty in capture */;
+  EmptyListItem: EmptyListItem;
+}
+
+export interface PathOptions {
+  stroke: boolean;
+  color: string;
+  weight: number;
+  opacity: string /* Decimal as string */;
+  lineCap: string;
+  lineJoin: string;
+  dashArray: string /* Long Integer as string */;
+  dashOffset: string /* "" in capture */;
+  fill: boolean;
+  fillColor: string;
+  fillOpacity: string /* Decimal as string */;
+  fillRule: string /* "" in capture */;
+  bubblingMouseEvents: boolean;
+  className: string /* "" in capture */;
+  interactive: boolean;
+  pane: string /* "" in capture */;
+  attribution: string /* "" in capture */;
+}
+
+export interface GeoJSONFeatureList {
+  FeatureJSON: string;
+  Id: string;
+  Type: string;
+  ExtraData: string /* "" in capture */;
+  PathOptions: PathOptions;
+}
+
+export interface Countries_GeoJSONItem {
+  GeoJSONFeatureList: GeoJSONFeatureList;
+  IsLocked: boolean;
+}
+
+export interface Countries_MarkersItem {
+  MarkerWithWindow: MarkerWithWindow;
+  IsLocked: boolean;
+}
+
 export interface MapExploreItem {
   Name: string;
   Address: string;
@@ -398,6 +452,21 @@ export interface MapExploreItem {
   PhotoURL2: string /* "" in capture */;
   Type: string;
   Id: string /* Long Integer as string */;
+  DisplayHouseholdName: boolean;
+  DisplayAddress: boolean;
+}
+
+export interface GlobalLocations_MarkersItem {
+  MarkerWithWindow: MarkerWithWindow;
+  MapExploreItem: MapExploreItem;
+}
+
+export interface ServiceAPIFetchData_CacheableMapEntitiesResponse {
+  Localities_Markers: Localities_MarkersItem[] /* wire: { List: [...] } */;
+  Localities_GeoJSON: Localities_GeoJSON;
+  Countries_GeoJSON: Countries_GeoJSONItem[] /* wire: { List: [...] } */;
+  Countries_Markers: Countries_MarkersItem[] /* wire: { List: [...] } */;
+  GlobalLocations_Markers: GlobalLocations_MarkersItem[] /* wire: { List: [...] } */;
 }
 
 export interface Household_MarkersItem {
@@ -407,8 +476,4 @@ export interface Household_MarkersItem {
 
 export interface ServiceAPIFetchData_CacheableHouseholdsResponse {
   Household_Markers: Household_MarkersItem[] /* wire: { List: [...] } */;
-}
-
-export interface ServiceAPIFetchData_CacheableMapEntitiesResponse {
-
 }

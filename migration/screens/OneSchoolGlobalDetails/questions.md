@@ -40,3 +40,15 @@ Managed by route.py. Facts may be answered by the OutSystems MCP; decisions and 
 - Evidence: route-spec.md, parity reports, feedback.md
 - Options: confirm | change (say what)
 - Answer (user, 2026-10-16T06:59:05): confirm (auto-confirmed: user instruction 2026-10-15 16:59)
+
+## Q7 [decision] Directory_EntityDetailsActions TST change (answered)
+- Question: Both routes (details default and offline; carousel default and offline): TST 2026-10-29 calls DataActionFetchNotes on load and renders no CW_Notes.NotesSheet; React renders NotesSheet and makes no FetchNotes call. Probably also linked: html .popup-disable-scroll (TST default/offline, React only in carousel loading). This is the shared container containers/EntityDetailsActions, outside this route's files. Port the TST change?
+- Evidence: migration/screens/OneSchoolGlobalDetails/parity/default.json and offline.json (NotesSheet extra in build; call: DataActionFetchNotes not called); OneSchoolGlobalCarousel/parity/default.json, loading.json (html class); the earlier details capture of 2026-10-14 had no FetchNotes call
+- Options: a) read the TST compiled Directory_EntityDetailsActions of the 2026-10-27 publish and port the change in the container, then re-run parity of every route that uses it | b) keep the old behaviour until a full re-capture (recommended: a)
+- Answer (user, 2026-10-29T12:13:33): Deferred (user scope decision, 2026-10-29, option (a)): this wave closes items 9 and 10; this TST drift of a shared block goes to the separate drift wave (re-capture of all routes, triage per shared block).
+
+## Q8 [decision] ComingSoon inline icon (answered)
+- Question: TST UBTConnectLibrary ComingSoon now gives its CustomText an InlineIcon (calendar, medium_20, neutral0): IconInline_Internal 24x18 with an Icon. The React components/ui/ComingSoon has no icon. Shared component, outside this route's files; other routes have older captures.
+- Evidence: migration/screens/OneSchoolGlobalDetails/analysis/sources/pretty/UBTConnectLibrary.ConnectPatterns.ComingSoon.mvc.js:192-203; analysis/dom/default.html id b3-b24-b2-b2-$b1 (connect-icon-calendar text-neutral-0 icon-medium padding-right-xs inline-block); parity default/offline of both routes (Icon missing in build)
+- Options: a) port the icon in components/ui/ComingSoon and re-run parity of the routes that use it (re-capture those with older captures) | b) keep the old form until a full re-capture (recommended: a)
+- Answer (user, 2026-10-29T12:13:33): Deferred (user scope decision, 2026-10-29, option (a)): this wave closes items 9 and 10; this TST drift of a shared block goes to the separate drift wave (re-capture of all routes, triage per shared block).

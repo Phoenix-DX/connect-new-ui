@@ -503,6 +503,21 @@ _validationProps: {
 validationService: validationService
 },
 enabled: true,
+onChange: function () {
+return Promise.resolve().then(function () {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "App_Notifications/Notifications_Action/Switch_IsOnlyShowUnRead OnChange");
+return controller.switch_IsOnlyShowUnReadOnChange$Action(controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+});
+;
+},
 style: "switch",
 variable: model.createVariable(OS.DataTypes.DataTypes.Boolean, model.variables.isOnlyShowUnReadVar, function (value) {
 model.variables.isOnlyShowUnReadVar = value;
@@ -549,6 +564,35 @@ this.shouldSendClientVarsToDataSources = false;
 
 Controller.prototype.dataFetchActionNames = [];
 // Client Actions
+Controller.prototype._switch_IsOnlyShowUnReadOnChange$Action = function (callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("Switch_IsOnlyShowUnReadOnChange");
+callContext = controller.callContext(callContext);
+varBag.callContext = callContext;
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:NxjMQeg4bkyHbZHNIMPDeg:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.GXj19dftHUWJ27tmruXUkg/ClientActions.NxjMQeg4bkyHbZHNIMPDeg:Lqcmlld2skv+y6poArZ8Bw", "UBTConnect", "Switch_IsOnlyShowUnReadOnChange", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:7IxkB3O4B06UIN4pfeBiMA", callContext.id);
+return OS.Flow.executeAsyncFlow(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Kcs26omCUkGSewE4rALTJw", callContext.id);
+// Trigger Event: OnlyShowUnread
+return controller.onlyShowUnread$Action(model.variables.isOnlyShowUnReadVar, callContext).then(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:euIhXFkcyU+rgkkfUFTkNg", callContext.id);
+});
+}).then(function (res) {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:NxjMQeg4bkyHbZHNIMPDeg", callContext.id);
+return res;
+
+}).catch(function (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:NxjMQeg4bkyHbZHNIMPDeg", callContext.id);
+throw ex;
+
+});
+};
 Controller.prototype._iconClick$Action = function (callContext) {
 var varBag = {};
 var model = this.model;
@@ -600,17 +644,25 @@ throw ex;
 });
 };
 
+Controller.prototype.switch_IsOnlyShowUnReadOnChange$Action = function (callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._switch_IsOnlyShowUnReadOnChange$Action, callContext);
+
+};
 Controller.prototype.iconClick$Action = function (callContext) {
 var controller = this.controller;
 return controller.safeExecuteClientAction(controller._iconClick$Action, callContext);
 
 };
+Controller.prototype.onlyShowUnread$Action = function () {
+return Promise.resolve();
+};
 
 // Event Handler Actions
 Controller.prototype.pushDebuggerContext = function (callContext) {
 var varBag = {};
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:jD6cc912jEmdKmf5_8Sipg:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg:C0dHS3xzkGhxAA9p12FDtg", "UBTConnect", "App_Notifications", "NRFlows.WebFlow", callContext.id, varBag);
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:GXj19dftHUWJ27tmruXUkg:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.GXj19dftHUWJ27tmruXUkg:wzvlVf8ivpQ+kHP4AuRdkw", "UBTConnect", "Notifications_Action", "NRNodes.WebBlock", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:jD6cc912jEmdKmf5_8Sipg:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg:sMKFKooX6A1nm6D_Lsn4Wg", "UBTConnect", "App_Notifications", "NRFlows.WebFlow", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:GXj19dftHUWJ27tmruXUkg:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.GXj19dftHUWJ27tmruXUkg:v1xq4NASuxg9ZAToa4mY1g", "UBTConnect", "Notifications_Action", "NRNodes.WebBlock", callContext.id, varBag);
 };
 Controller.prototype.popDebuggerContext = function (callContext) {
 OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:GXj19dftHUWJ27tmruXUkg", callContext.id);

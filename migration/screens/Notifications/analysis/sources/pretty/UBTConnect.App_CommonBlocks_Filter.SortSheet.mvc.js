@@ -1716,7 +1716,7 @@ define("UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc$controller", ["OutSyste
             controller.ensureControllerAlive("OnClick_Apply");
             callContext = controller.callContext(callContext);
             varBag.callContext = callContext;
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:yIYTq7+1q0Squ36NgZQ7Pg:/NRWebFlows.Jpw6vcM30keGIepdkjtS7A/NodesShownInESpaceTree.F_VfQkvSFEiuMP_AqJb8Ag/ClientActions.yIYTq7+1q0Squ36NgZQ7Pg:4I4n3XY2DCdtp1mVnJR2yQ", "UBTConnect", "OnClick_Apply", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:yIYTq7+1q0Squ36NgZQ7Pg:/NRWebFlows.Jpw6vcM30keGIepdkjtS7A/NodesShownInESpaceTree.F_VfQkvSFEiuMP_AqJb8Ag/ClientActions.yIYTq7+1q0Squ36NgZQ7Pg:E_lr7CPeJ9XPZEPmHPUQtg", "UBTConnect", "OnClick_Apply", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
             OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:rtMNyU6Ka0iRTlDxyykVLw", callContext.id);
             return OS.Flow.executeAsyncFlow(function() {
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:CaOsyizVakGbPkb3kLLavA", callContext.id);
@@ -1727,7 +1727,7 @@ define("UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc$controller", ["OutSyste
                 controller._action_CloseSheet$Action(callContext);
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:E9TcFkCtJEGeXrFn0+nk6Q", callContext.id);
                 // Trigger Event: ApplySort
-                return controller.applySort$Action(model.variables.sortBy_TitleVar, callContext).then(function() {
+                return controller.applySort$Action(model.variables.sortBy_TitleVar, model.variables.optionControlVar, callContext).then(function() {
                     OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:xn35hQ3xLUa2Ts34DZCLsg", callContext.id);
                 });
             }).then(function(res) {
@@ -2362,7 +2362,7 @@ define("UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc$controller", ["OutSyste
         Controller.prototype.pushDebuggerContext = function(callContext) {
             var varBag = {};
             OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:Jpw6vcM30keGIepdkjtS7A:/NRWebFlows.Jpw6vcM30keGIepdkjtS7A:aO+UykmPPS6VEpIYdNjDCA", "UBTConnect", "App_CommonBlocks_Filter", "NRFlows.WebFlow", callContext.id, varBag);
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:F_VfQkvSFEiuMP_AqJb8Ag:/NRWebFlows.Jpw6vcM30keGIepdkjtS7A/NodesShownInESpaceTree.F_VfQkvSFEiuMP_AqJb8Ag:tsAfBZcZlHJuQ7noRJ6m9Q", "UBTConnect", "SortSheet", "NRNodes.WebBlock", callContext.id, varBag);
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:F_VfQkvSFEiuMP_AqJb8Ag:/NRWebFlows.Jpw6vcM30keGIepdkjtS7A/NodesShownInESpaceTree.F_VfQkvSFEiuMP_AqJb8Ag:BZochUg2UGrcCr66wi37DA", "UBTConnect", "SortSheet", "NRNodes.WebBlock", callContext.id, varBag);
         };
         Controller.prototype.popDebuggerContext = function(callContext) {
             OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:F_VfQkvSFEiuMP_AqJb8Ag", callContext.id);

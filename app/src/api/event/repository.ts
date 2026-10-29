@@ -1,4 +1,5 @@
 import { callAction } from '@/api/client/callAction';
+import type { Notes } from '@/lib/ubtConnectLibrary/structures';
 import {
   toAccommodationHostDocument,
   toAccommodationHostResult,
@@ -16,6 +17,7 @@ import {
   toEventByEventIdData,
   toEventDetailsResult,
   toEventDocuments,
+  toEventNotes,
   toEventQRCodeData,
   toEventQRCodeStatus,
   toEventsByMemberIdResult,
@@ -24,9 +26,11 @@ import {
   toHasDocuments,
   toHelperData,
   toHostSurveyInputs,
+  toSurveyHelperMembers,
+  toSurveyHelpersInputs,
+  toPostHostSurveyInputs,
   toHostSurveyResult,
   toHostSurveyStatus,
-  toMilestoneScanFF,
   toMyTimelineData,
   toMyTimelineInputs,
   toScanEventQRCodeInputs,
@@ -65,8 +69,11 @@ import type {
   GuestArrangementsResult,
   HelperData,
   HelperDetailsCallInputs,
+  HostSurvey,
   HostSurveyCallInputs,
   HostSurveyResult,
+  HostSurveyHelperMember,
+  SurveyHelpersCallInputs,
   LdmEventCallInputs,
   MyTimelineCallInputs,
   MyTimelineData,
@@ -141,6 +148,12 @@ export async function fetchHasDocuments(inputs: EventDetailCallInputs): Promise<
 /** DataActionGet_HasQRCode of ScreenBlock_EventDetail: whether the member has a QR code and was scanned. */
 export async function fetchHasQRCode(inputs: EventDetailCallInputs): Promise<EventQRCodeStatus> {
   return toEventQRCodeStatus(await callAction(ORBIT, 'ScreenBlock_EventDetail/DataActionGet_HasQRCode', inputs));
+}
+
+/** DataActionFetchEventNotes of ScreenBlock_EventDetail, fetched at start: the notes of the event
+    (ScreenBlock_EventDetail.mvc.js:1780-1798). */
+export async function fetchEventNotes(inputs: EventDetailCallInputs): Promise<Notes> {
+  return toEventNotes(await callAction(ORBIT, 'ScreenBlock_EventDetail/DataActionFetchEventNotes', inputs));
 }
 
 /* ---- Orbit event booklet (ScreenBlock_EventBooklet) ---- */
@@ -223,6 +236,19 @@ export async function fetchHostSurvey(inputs: HostSurveyCallInputs): Promise<Hos
   );
 }
 
+/** PostHostSurvey (server action of ScreenBlock_HostSurvey, a write) with the HostSurvey variable → Response. The
+    block calls it on Submit (status Confirmed) and on the draft save of ReturnBack (status Sent). */
+export async function postHostSurvey(survey: HostSurvey): Promise<boolean> {
+  return (await callAction(ORBIT, 'ActionPostHostSurvey', toPostHostSurveyInputs(survey))).Response;
+}
+
+/** DataActionGetSurveyHelpers of HostSurvey_AddHelper: one page of the members that match the helper search. */
+export async function fetchSurveyHelpers(inputs: SurveyHelpersCallInputs): Promise<HostSurveyHelperMember[]> {
+  return toSurveyHelperMembers(
+    await callAction(ORBIT, 'HostSurvey_AddHelper/DataActionGetSurveyHelpers', toSurveyHelpersInputs(inputs)),
+  );
+}
+
 /* ---- Orbit transport, documents and QR code ---- */
 
 /** DataActionGet_TransportDetail of ScreenBlock_TransportDetail: the transport of a milestone. */
@@ -247,11 +273,6 @@ export async function fetchEventQRCode(inputs: EventQRCodeCallInputs): Promise<E
 /** DataActionGet_AdminEventsList of ScreenBlock_AdminLanding: the events of the admin. */
 export async function fetchAdminEvents(inputs: AdminEventsCallInputs): Promise<AdminEventItem[]> {
   return toAdminEventItems(await callAction(ORBIT, 'ScreenBlock_AdminLanding/DataActionGet_AdminEventsList', inputs));
-}
-
-/** GetMilestoneScanFF (server action of the screen OrbitAdminLanding, UBTConnect): IsScanPerMilestone. No inputs. */
-export async function fetchMilestoneScanFF(): Promise<boolean> {
-  return toMilestoneScanFF(await callAction('UBTConnect', 'ActionGetMilestoneScanFF', {}));
 }
 
 /** DataActionGet_EventInformation of ScreenBlock_AdminEventDetail: HasQRCode and the event type. */
@@ -283,6 +304,12 @@ export async function fetchEventByEventId(inputs: LdmEventCallInputs): Promise<E
   return toEventByEventIdData(
     await callAction(ORBIT, 'ScreenBlock_EventDetail_V2/DataActionGetEventByEventId', inputs),
   );
+}
+
+/** DataActionFetchEventNotes of ScreenBlock_EventDetail_V2, fetched at start: the notes of the meal
+    (ScreenBlock_EventDetail_V2.mvc.js:1449-1467). */
+export async function fetchLdmEventNotes(inputs: LdmEventCallInputs): Promise<Notes> {
+  return toEventNotes(await callAction(ORBIT, 'ScreenBlock_EventDetail_V2/DataActionFetchEventNotes', inputs));
 }
 
 /** DataActionGetCoordinatorDetails of ScreenBlock_EventDetail_V2: the coordinator of the meal. */

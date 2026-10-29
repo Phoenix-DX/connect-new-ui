@@ -1,11 +1,11 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { renderHook, waitFor } from '@testing-library/react';
+import { QueryClient, QueryClientProvider, onlineManager } from '@tanstack/react-query';
+import { act, renderHook, waitFor } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { useFeedUpdatesQuery } from './hooks';
 import { updateKeys } from './keys';
 
-/** A client with the library defaults (retry 3, gcTime 5 minutes), so the tests see the options of the hook. */
+/** A client with the library defaults (retry 3), so the tests see the options of the hook. */
 function providerOf(client: QueryClient) {
   return function Provider({ children }: { children: ReactNode }) {
     return <QueryClientProvider client={client}>{children}</QueryClientProvider>;
@@ -28,7 +28,7 @@ describe('update query keys', () => {
 });
 
 describe('useFeedUpdatesQuery', () => {
-  it('fetches on each mount and keeps the items in the cache between two mounts', async () => {
+  it('fetches on each mount and forgets the items when the block closes (Home Q1)', async () => {
     const client = new QueryClient();
     const first = renderHook(() => useFeedUpdatesQuery(), { wrapper: providerOf(client) });
     await waitFor(() => {
@@ -36,16 +36,33 @@ describe('useFeedUpdatesQuery', () => {
     });
     expect(first.result.current.data?.map((i) => i.updateItemId)).toEqual(['9101', '9102', '9103']);
     first.unmount();
-    expect(client.getQueryData(updateKeys.feed())).toHaveLength(3);
+    await waitFor(() => {
+      expect(client.getQueryCache().find({ queryKey: updateKeys.feed() })).toBeUndefined();
+    });
 
     const second = renderHook(() => useFeedUpdatesQuery(), { wrapper: providerOf(client) });
-    expect(second.result.current.data).toHaveLength(3);
+    expect(second.result.current.isPending).toBe(true);
     await waitFor(() => {
-      expect(calls()).toEqual(['DataActionFetchUpdates', 'DataActionFetchUpdates']);
+      expect(second.result.current.isSuccess).toBe(true);
     });
+    expect(calls()).toEqual(['DataActionFetchUpdates', 'DataActionFetchUpdates']);
+    client.clear();
+  });
+
+  it('does not fetch again when the network comes back (Home Q1)', async () => {
+    const client = new QueryClient();
+    const { result } = renderHook(() => useFeedUpdatesQuery(), { wrapper: providerOf(client) });
     await waitFor(() => {
-      expect(second.result.current.isFetching).toBe(false);
+      expect(result.current.isSuccess).toBe(true);
     });
+    act(() => {
+      onlineManager.setOnline(false);
+    });
+    act(() => {
+      onlineManager.setOnline(true);
+    });
+    await new Promise((resolve) => setTimeout(resolve, 20));
+    expect(calls()).toEqual(['DataActionFetchUpdates']);
     client.clear();
   });
 

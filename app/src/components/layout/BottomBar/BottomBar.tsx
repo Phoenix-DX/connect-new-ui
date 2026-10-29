@@ -12,12 +12,7 @@ import { BottomBarItem } from '@/components/ui/BottomBarItem';
 import { CustomText } from '@/components/ui/CustomText';
 import { Icon } from '@/components/ui/Icon';
 import { bottomBarSlider_ForceRefresh } from '@/lib/ubtConnectLibrary/actions';
-import {
-  bottomBar_GetList,
-  connect_LaunchDarkly_PermissionCheck,
-  getHasC1DirectoryView,
-  getHasNewBookmarks,
-} from '@/lib/ubtConnectUtils/actions';
+import { bottomBar_GetList, getHasC1DirectoryView } from '@/lib/ubtConnectUtils/actions';
 import { Connect_BottomBar_Items } from '@/lib/ubtConnectUtils/staticEntities';
 import { BottomBarIconBadge } from '@/components/layout/BottomBarIconBadge';
 import { BottomBarContent } from '@/components/layout/BottomBarContent';
@@ -107,9 +102,8 @@ export function BottomBar({
     } else if (inItem === I.Updates) {
       navigate(`${BASE}/Updates_SingleList`);
     } else if (inItem === I.Bookmarks) {
-      const hasBookmarkNote = connect_LaunchDarkly_PermissionCheck('mobileDirectoryBookmarkNote');
-      const otherwise = hasBookmarkNote ? 'New_MyBookmarks' : 'MyBookmarks';
-      navigate(`${BASE}/${getHasNewBookmarks() ? 'Bookmarks' : otherwise}`);
+      // TST publish of 2026-10-27: Bookmarks with no condition (BottomBarMenu.mvc.js:623-626); MyBookmarks retired
+      navigate(`${BASE}/Bookmarks`);
     } else if (inItem === I.Menu) {
       navigate(`${BASE}/Menu`);
     } else {

@@ -264,6 +264,30 @@ OutSystemsDebugger.pop("lAQ0zS6tEEyl6BBIK9yo1A:0FN9FVwTXEWmfKs7j7zLAQ", callCont
 }
 
 };
+Controller.prototype._onParametersChanged$Action = function (callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("OnParametersChanged");
+callContext = controller.callContext(callContext);
+varBag.callContext = callContext;
+try {OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:jiwd5LuYikik6MlXxlq7Sw:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g/NodesShownInESpaceTree.cBducvcq+U2ftGMx8ZL60g/ClientActions.jiwd5LuYikik6MlXxlq7Sw:51bEc2RIeZoUoMbBldlUKg", "UBTConnectLibrary", "OnParametersChanged", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:ZQltzc6HnE2E91ldTs8OxQ", callContext.id);
+OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:njW3fmsoUkSWXhW4SQMZ+w", callContext.id);
+// Execute Action: SetCurrentLength
+controller._setCurrentLength$Action(model.variables.in_InitialLengthIn, callContext);
+OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:i2_gtYx1BEeCY70s5AvTww", callContext.id);
+} catch (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+throw ex;
+} finally {
+OutSystemsDebugger.pop("lAQ0zS6tEEyl6BBIK9yo1A:jiwd5LuYikik6MlXxlq7Sw", callContext.id);
+}
+
+};
 Controller.prototype._onReady$Action = function (callContext) {
 var varBag = {};
 var model = this.model;
@@ -354,6 +378,11 @@ var controller = this.controller;
 return controller.safeExecuteClientAction(controller._onInitialize$Action, callContext);
 
 };
+Controller.prototype.onParametersChanged$Action = function (callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._onParametersChanged$Action, callContext);
+
+};
 Controller.prototype.onReady$Action = function (callContext) {
 var controller = this.controller;
 return controller.safeExecuteClientAction(controller._onReady$Action, callContext);
@@ -368,8 +397,8 @@ return controller.safeExecuteClientAction(controller._setCurrentLength$Action, c
 // Event Handler Actions
 Controller.prototype.pushDebuggerContext = function (callContext) {
 var varBag = {};
-OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:GRnUlqBGNE26Hxr_Ah3_7g:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g:3o_94888UGa0qaomZFOpnQ", "UBTConnectLibrary", "ConnectPatterns", "NRFlows.WebFlow", callContext.id, varBag);
-OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:cBducvcq+U2ftGMx8ZL60g:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g/NodesShownInESpaceTree.cBducvcq+U2ftGMx8ZL60g:geoZmLNKFISyM+0aLDr54g", "UBTConnectLibrary", "InputCounter", "NRNodes.WebBlock", callContext.id, varBag);
+OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:GRnUlqBGNE26Hxr_Ah3_7g:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g:Y06DhYqVkffzqTnycnKUGw", "UBTConnectLibrary", "ConnectPatterns", "NRFlows.WebFlow", callContext.id, varBag);
+OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:cBducvcq+U2ftGMx8ZL60g:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g/NodesShownInESpaceTree.cBducvcq+U2ftGMx8ZL60g:hT1u0h3wLe9TZMW5zmfeDw", "UBTConnectLibrary", "InputCounter", "NRNodes.WebBlock", callContext.id, varBag);
 };
 Controller.prototype.popDebuggerContext = function (callContext) {
 OutSystemsDebugger.pop("lAQ0zS6tEEyl6BBIK9yo1A:cBducvcq+U2ftGMx8ZL60g", callContext.id);
@@ -413,7 +442,24 @@ controller.popDebuggerContext(callContext);
 };
 Controller.prototype.onRenderEventHandler = null;
 Controller.prototype.onDestroyEventHandler = null;
-Controller.prototype.onParametersChangedEventHandler = null;
+Controller.prototype.onParametersChangedEventHandler = function (callContext) {
+var controller = this.controller;
+var model = this.model;
+var idService = this.idService;
+
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(callContext);
+
+OutSystemsDebugger.setThreadStartName(callContext.id, "ConnectPatterns/InputCounter On Parameters Changed");
+return controller.onParametersChanged$Action(callContext);
+
+}, function () {
+controller.popDebuggerContext(callContext);
+
+});
+
+};
 Controller.prototype.handleError = function (ex) {
 return controller.handleError(ex);
 };

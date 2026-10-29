@@ -53,13 +53,10 @@ export const localityLabelOf = (localityName: string, countryName: string): stri
 
 /** The default values, the inputs, then ScreenEvent_OnInitialize: LocalityLabel = PreloadedLocalityLabel when it is
     empty; TagsList = GetSample_FilterTags(IsUserLocality) when it is empty (IsUserLocality defaults to True). */
-export function initialLocalityDetailsState(
-  inputs: LocalityDetailsInputs,
-  hasLocalityContacts: boolean,
-): LocalityDetailsState {
+export function initialLocalityDetailsState(inputs: LocalityDetailsInputs): LocalityDetailsState {
   const isUserLocality = true;
   return {
-    tagsList: getSample_FilterTags(isUserLocality, hasLocalityContacts),
+    tagsList: getSample_FilterTags(isUserLocality),
     headerIsScrolled: false,
     tagsList_SelectedTag: '',
     logged_User: { householdId: '0', localityId: '0' },
@@ -79,7 +76,6 @@ export function initializeScreen(
   state: LocalityDetailsState,
   loggedUser: LoggedUser,
   userLocalityLabel: string,
-  hasLocalityContacts: boolean,
 ): LocalityDetailsState {
   const ownLocality = state.localityId === '0';
   const localityId = ownLocality ? loggedUser.localityId : state.localityId;
@@ -90,7 +86,7 @@ export function initializeScreen(
     localityId,
     localityLabel: ownLocality ? userLocalityLabel : state.localityLabel,
     isUserLocality,
-    tagsList: getSample_FilterTags(isUserLocality, hasLocalityContacts),
+    tagsList: getSample_FilterTags(isUserLocality),
     tagsList_SelectedTag: LocalityMenu.Households,
     isScreenInitialized: true,
   };
@@ -108,9 +104,9 @@ export const localityDetailsCallInputs = (state: LocalityDetailsState): Locality
   PreloadedLocalityLabel: state.preloadedLocalityLabel,
 });
 
-export type LocalityDetailsAction =
+type LocalityDetailsAction =
   /** Action_InitializeScreen (see initializeScreen). */
-  | { type: 'screenInitialized'; loggedUser: LoggedUser; userLocalityLabel: string; hasLocalityContacts: boolean }
+  | { type: 'screenInitialized'; loggedUser: LoggedUser; userLocalityLabel: string }
   /** Get_LocalityDetails answered; OnAfterFetch_Get_LocalityDetails: SetLocalityLabel. */
   | { type: 'detailsFetched'; localityDetails: LocalityDetails }
   /** Get_LocalityDetails failed. */
@@ -126,7 +122,7 @@ export function localityDetailsReducer(
 ): LocalityDetailsState {
   switch (action.type) {
     case 'screenInitialized':
-      return initializeScreen(state, action.loggedUser, action.userLocalityLabel, action.hasLocalityContacts);
+      return initializeScreen(state, action.loggedUser, action.userLocalityLabel);
     case 'detailsFetched': {
       const { localityDetails } = action;
       return {

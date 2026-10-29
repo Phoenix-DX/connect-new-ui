@@ -56,7 +56,10 @@ export function followGuardRedirect(redirect: GuardRedirect, pathname: string): 
 
 /** Applies the guard at each route change after the app start. Both redirects navigate with the Default transition:
     App_Common OnException → Login (ACF:81-84), and the TST captures of Login and PINUnlock reached this way end with
-    `slide-from-right-enter-done` on the screen container (F18). */
+    `slide-from-right-enter-done` on the screen container (F18). The Login redirect replaces the entry (N8, item 9 B6):
+    App_Common navigates while the screen's permission check holds the navigation callbacks, and
+    CheckPermissionsNavigationCallbacks.goTo calls `this.replace` (R281345). The PINUnlock redirect keeps the push: no
+    TST fact gives it the same callbacks. */
 export function RouteGuard() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -68,7 +71,10 @@ export function RouteGuard() {
     const redirect = guardRedirect(getSessionStatus().status, routeMetaOf(pathname), !pinChecked.current);
     pinChecked.current = true;
     if (redirect !== null) {
-      void navigate(followGuardRedirect(redirect, pathname), { state: transitionState(DEFAULT_TRANSITION) });
+      void navigate(followGuardRedirect(redirect, pathname), {
+        replace: redirect === 'login',
+        state: transitionState(DEFAULT_TRANSITION),
+      });
     }
   }, [appReady, pathname, navigate]);
 

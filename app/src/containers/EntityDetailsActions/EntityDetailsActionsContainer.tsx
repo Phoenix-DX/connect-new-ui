@@ -1,8 +1,10 @@
 /** @origin UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions */
 // @os-block UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions
+import type { ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSPopupWidget } from '@/components/ui/os/OSPopup';
+import { child, scopeOf } from '@/components/ui/os/blockIds';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { ActionsMenu } from '@/components/ui/ActionsMenu';
 import { Skeleton } from '@/components/ui/Skeleton';
@@ -16,10 +18,29 @@ import { CONTACT_POPUP_DATA_DEFAULT } from './entityDetailsActionsState';
 import type { EntityDetailsActionsContainerProps } from './types';
 import { useEntityDetailsActions } from './useEntityDetailsActions';
 
-/** Entity actions (UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js, HouseholdCarousel copy):
-    SkeletonSection (loading while not isLoaded or bookmarks / notes not synched, unless the fetch failed) with the
-    ActionsMenu, then ContactByMessage_Wrapper, ContactPopup_ByPhone, SharePopup, the extended-share popup (ShareSheet,
-    only with C2ExtendedShare and HasShare) and NotesSheet. README lists what is not ported. */
+/** The body portal of an OSWidgets.Popup with the style "popup-dialog connect-share-portal" (the runtime Popup's
+    portal-class > backdrop > dialog > content), as TST renders it. */
+function ConnectSharePortal({ children }: { children: ReactNode }) {
+  return createPortal(
+    <div className="portal-class" style={{ display: 'inline' }}>
+      <div>
+        <div className="popup-backdrop" data-popup-backdrop="">
+          <div aria-modal="true" className="popup-dialog popup-dialog connect-share-portal" data-popup="" role="dialog">
+            <div className="popup-content">{children}</div>
+          </div>
+        </div>
+      </div>
+    </div>,
+    document.body,
+  );
+}
+
+/** Entity actions (TST code of 2026-10-27: migration/screens/HouseholdDetails/analysis/sources/pretty/
+    UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js): SkeletonSection (loading while not
+    isLoaded or bookmarks / notes not synched, unless the fetch failed) with the ActionsMenu, then
+    ContactByMessage_Wrapper, ContactPopup_ByPhone, SharePopup, the extended-share popup (ShareSheet, only with
+    C2ExtendedShare and HasShare) and the NotesSheet in an always-shown popup (:927-1000). README lists what is not
+    ported. */
 export function EntityDetailsActionsContainer(props: EntityDetailsActionsContainerProps) {
   const { id } = props;
   const {
@@ -36,15 +57,14 @@ export function EntityDetailsActionsContainer(props: EntityDetailsActionsContain
     isLoaded,
     isLoading,
     isBookmarked,
-    isBookmarked_C2,
-    hasNewBookmarks,
     hasExtendedShare,
     details,
     contact,
     overrideImageURL,
     shareSheetImageURL,
-    notes,
-    setNotes,
+    entityNotes,
+    setEntityNotes,
+    noteItemId,
     showEmailPopUp,
     showCallPopUp,
     setShowCallPopUp,
@@ -67,9 +87,9 @@ export function EntityDetailsActionsContainer(props: EntityDetailsActionsContain
           inShowLabels={showIconLabels}
           inActionsEnableOptions={localEnableOptions}
           inActionsMenuOptions={{
-            // view mvc.js:379-384: Local_isBookmarked unless GetHasNewBookmarks, then Local_isBookmarked_C2
-            HasBookmark: (options.HasBookmark ?? false) && (!hasNewBookmarks ? !isBookmarked : !isBookmarked_C2),
-            HasUnbookmark: (options.HasBookmark ?? false) && (!hasNewBookmarks ? isBookmarked : isBookmarked_C2),
+            // view mvc.js:375-376: Local_isBookmarked only
+            HasBookmark: (options.HasBookmark ?? false) && !isBookmarked,
+            HasUnbookmark: (options.HasBookmark ?? false) && isBookmarked,
             HasNotes: options.HasNotes ?? false,
             HasGift: options.HasGift ?? false,
             HasShare: options.HasShare ?? false,
@@ -144,66 +164,58 @@ export function EntityDetailsActionsContainer(props: EntityDetailsActionsContain
           setShowSharePopup(false);
         }}
       />
-      {hasExtendedShare &&
-        (options.HasShare ?? false) &&
-        createPortal(
-          <div className="portal-class" style={{ display: 'inline' }}>
-            <div>
-              <div className="popup-backdrop" data-popup-backdrop="">
-                <div
-                  aria-modal="true"
-                  className="popup-dialog popup-dialog connect-share-portal"
-                  data-popup=""
-                  role="dialog"
-                >
-                  <div className="popup-content">
-                    <ShareSheetContainer
-                      inIsOpen={showSharePopup}
-                      inShareObjectTypeId={shareType}
-                      inShareableObjectId={entityId}
-                      onEventClosedShareSheet={() => {
-                        setShowSharePopup(false);
-                      }}
-                    >
-                      <ShareableObject
-                        inShareableObject={{
-                          ConnectEntityTypeId: entityType,
-                          Id: entityId,
-                          SignedURL: shareSheetImageURL,
-                          Title: details?.EntityName ?? '',
-                          Subtitle: details?.EntitySubtitle ?? '',
-                          Location: `${details?.LocalityName ?? ''}, ${details?.CountryName ?? ''}`,
-                        }}
-                      />
-                    </ShareSheetContainer>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>,
-          document.body,
-        )}
-      {/* The share Popup widget (ShowPopup True, mvc.js:827-831): aria-hidden on #reactContainer and the
-          popup-disable-scroll html class while it is in the view. */}
+      {/* The NotesSheet Popup (ShowPopup True, mvc.js:927-934) is in the view from the first render, so its body portal
+          comes before the share portal, which TST mounts after OnReady (dom/default.html of HouseholdDetails). */}
+      <ConnectSharePortal>
+        <NotesSheet
+          id={id === undefined ? undefined : child(scopeOf(id), 8)}
+          inItemId={noteItemId}
+          inNotes={entityNotes}
+          inIsOpen={showNotesSheet}
+          inNoteCategoryId={noteCategoryId}
+          onOnNotesChanged={(newNotes) => {
+            // Handler_OnSheetNotesChanged: EntityNotes = New_Notes
+            setEntityNotes(newNotes);
+          }}
+          onOnNoteDeleted={(noteId) => {
+            // Handler_OnNoteDeleted: EntityNotes without the deleted note
+            setEntityNotes((n) => {
+              const list = (n.Note_Item_List ?? []).filter((item) => item.Id !== noteId);
+              return { ...n, Note_Item_List: list, Total: list.length };
+            });
+          }}
+          onOnNoteSheetClosed={() => {
+            setShowNotesSheet(false);
+          }}
+        />
+      </ConnectSharePortal>
+      {hasExtendedShare && (options.HasShare ?? false) && (
+        <ConnectSharePortal>
+          <ShareSheetContainer
+            inIsOpen={showSharePopup}
+            inShareObjectTypeId={shareType}
+            inShareableObjectId={entityId}
+            onEventClosedShareSheet={() => {
+              setShowSharePopup(false);
+            }}
+          >
+            <ShareableObject
+              inShareableObject={{
+                ConnectEntityTypeId: entityType,
+                Id: entityId,
+                SignedURL: shareSheetImageURL,
+                Title: details?.EntityName ?? '',
+                Subtitle: details?.EntitySubtitle ?? '',
+                Location: `${details?.LocalityName ?? ''}, ${details?.CountryName ?? ''}`,
+              }}
+            />
+          </ShareSheetContainer>
+        </ConnectSharePortal>
+      )}
+      {/* The share Popup widget (ShowPopup True, mvc.js:827-831), then the notes Popup widget (always): aria-hidden on
+          #reactContainer and the popup-disable-scroll html class while they are in the view. */}
       {hasExtendedShare && (options.HasShare ?? false) && <OSPopupWidget showPopup />}
-      <NotesSheet
-        inNotes={notes}
-        inItemId={entityId}
-        inNoteCategoryId={noteCategoryId}
-        inIsOpen={showNotesSheet}
-        onOnNotesChanged={(newNotes) => {
-          setNotes(newNotes);
-        }}
-        onOnNoteDeleted={(noteId) => {
-          setNotes((n) => {
-            const list = (n.Note_Item_List ?? []).filter((item) => item.Id !== noteId);
-            return { ...n, Note_Item_List: list, Total: list.length };
-          });
-        }}
-        onOnNoteSheetClosed={() => {
-          setShowNotesSheet(false);
-        }}
-      />
+      <OSPopupWidget showPopup />
     </OSBlock>
   );
 }

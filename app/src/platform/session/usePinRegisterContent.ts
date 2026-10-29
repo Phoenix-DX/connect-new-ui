@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { feedbackMessageAutoClose } from '@/platform/feedback';
 import { replaceOnUpcomingNavigation, TransitionAnimation, useOsNavigate } from '@/platform/navigation';
 import { APP_ID, PATHS } from '@/platform/navigation/paths';
 import { useScreenController_NavigateToPage } from '@/lib/jsUtils';
+import { appManager_GetCachedUserInfo } from './cachedUserInfo';
 import { getResumeLoginLink } from './resume';
 import { getClientVar, setClientVar } from './session';
 import { usePinCodeRegister, type PinCodeRegisterFlow } from './usePinCodeRegister';
-import { getUserInformation } from './userInfo';
 
 /** The input parameters of Block_PINRegister_ContentWrapper that the flows read. */
 export interface PinRegisterContentOptions {
@@ -20,12 +20,14 @@ export interface PinRegisterContentOptions {
 
 /** What PinRegisterContent renders and the SetPin handler of its keypad. */
 export interface PinRegisterContentFlow extends PinCodeRegisterFlow {
-  /** UserName: FirstName + " " + LastName of the cached user info; empty without EnableName or before it is read. */
+  /** UserName: FirstName + " " + LastName of the cached user info; empty without EnableName or while the block is not
+      enabled. */
   userName: string;
 }
 
 /** The flows of Block_PINRegister_ContentWrapper (PINRegister and PINChange) around the flows of Pincode_Register.
-    - OnInitialize: with EnableName, UserName = FirstName + " " + LastName of the cached user info.
+    - OnInitialize (:559-580): with EnableName, UserName = FirstName + " " + LastName of AppManager_GetCachedUserInfo,
+      the synchronous read of the local AppManager record (no server call).
     - PinRegistrationError → FeedbackMessage_AutoClose(error).
     - PinRegistrationSuccess: ReplaceOnUpcomingNavigation; from the menu → "Your PIN has been changed." (success) and
       Menu (SlideFromRight); else IsNavigateToHomeOnBack = True and the resume link (GetResumeLoginLink), else LastURL,
@@ -39,7 +41,6 @@ export function usePinRegisterContent({
 }: PinRegisterContentOptions = {}): PinRegisterContentFlow {
   const navigate = useOsNavigate();
   const screenController_NavigateToPage = useScreenController_NavigateToPage();
-  const [userName, setUserName] = useState('');
 
   const onPinRegistrationSuccess = () => {
     replaceOnUpcomingNavigation();
@@ -84,15 +85,14 @@ export function usePinRegisterContent({
   // Pincode_Register is the inner block: its OnInitialize runs before the OnInitialize below, as in the original.
   const pinCode = usePinCodeRegister({ onPinRegistrationSuccess, onPinRegistrationError }, enabled);
 
-  useEffect(() => {
-    if (!enabled || !enableName) return;
-    getUserInformation().then(
-      (info) => {
-        setUserName(`${info.Directory_UserCurrent.FirstName} ${info.Directory_UserCurrent.LastName}`);
-      },
-      () => undefined, // no cached user: the name stays empty, as AppManager_GetCachedUserInfo returns an empty record
-    );
-  }, [enabled, enableName]);
+  // OnInitialize runs once, when the block is on the screen (enabled), before its first render: the name is read
+  // during the render, not in an effect. An empty record gives " ".
+  const [initialized, setInitialized] = useState(enabled);
+  const [userName, setUserName] = useState(() => (enabled && enableName ? cachedUserName() : ''));
+  if (enabled && !initialized) {
+    setInitialized(true);
+    if (enableName) setUserName(cachedUserName());
+  }
 
   return {
     userName,
@@ -100,4 +100,10 @@ export function usePinRegisterContent({
     onSetPin: pinCode.onSetPin,
     onBeforeSetPin: pinCode.onBeforeSetPin,
   };
+}
+
+/** UserName = AppManager_GetCachedUserInfo.UserInformation.FirstName + " " + ...LastName (:578-579). */
+function cachedUserName(): string {
+  const info = appManager_GetCachedUserInfo();
+  return info.FirstName + ' ' + info.LastName;
 }

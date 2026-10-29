@@ -10,9 +10,16 @@ import {
   type SiblingRelations,
 } from '@/api/household';
 import { DataFetchStatus } from '@/components/ui/os/OSList';
-import { CommunicationException, ViewHasChangedException } from '@/legacy/os/os-exceptions';
+import {
+  CommunicationException,
+  ControllerDisposedException,
+  IgnorableSystemException,
+  OutOfContextException,
+  ViewHasChangedException,
+} from '@/legacy/os/os-exceptions';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
+import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
 import { MOCK_USER_ID, mockUserInformation } from '@/platform/session/mockUser';
 import { setSignedInUser } from '@/platform/session/session';
 import { getUserInformation } from '@/platform/session/userInfo';
@@ -47,10 +54,18 @@ vi.mock('@/platform/feedback/flowErrors', async (importOriginal) => ({
   raiseToFlowHandler: vi.fn(),
 }));
 const navigate = vi.hoisted(() => vi.fn());
-vi.mock('@/platform/navigation', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/platform/navigation')>()),
-  useOsNavigate: () => navigate,
-}));
+/** On: the hook gets the platform navigation with its R4 check (the tests of a screen that the user left). */
+const platformNavigation = vi.hoisted(() => ({ on: false }));
+vi.mock('@/platform/navigation', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/platform/navigation')>();
+  return {
+    ...actual,
+    useOsNavigate: () => {
+      const platform = actual.useOsNavigate();
+      return platformNavigation.on ? platform : navigate;
+    },
+  };
+});
 /** A back navigation that the view cache restores (wasCurrentViewRestoredFromCache), read by useFlowState. */
 const viewCache = vi.hoisted(() => ({ restored: false }));
 vi.mock('@/platform/navigation/hooks', async (importOriginal) => ({
@@ -212,7 +227,7 @@ describe('useHouseholdRelations', () => {
     const { result } = renderFlows();
     await settle();
     expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(result.current.isMemberDetailsLoading).toBe(false);
     expect(result.current.formerSpousesFetchStatus).toBe(DataFetchStatus.Error);
     expect(result.current.isLoading).toBe(true);
@@ -284,12 +299,22 @@ describe('useHouseholdRelations', () => {
   });
 });
 
-describe('useHouseholdRelations after an unmount and in StrictMode (decision W23)', () => {
-  /* W23: `isAlive` guards the state writes. The next steps of these flows are client actions of the block
-     (Action_Refresh_Get_MemberDetails, OnAfterFetch_Get_MemberDetails, Actions_DefineLoading), which OutSystems
-     refuses on a disposed block (ensureControllerAlive). So, as in the old port, no call and no event follow an
-     unmount; a failure still goes to the flow handler. */
-  it('after an unmount during GetUserInformation_Wrapper: no call, no state write', async () => {
+describe('useHouseholdRelations after an unmount and in StrictMode (flow scope, item 8)', () => {
+  /* The data actions Get_MemberDetails and Get_ParentHouseholdDetails are R1 (flow.fetch): after the unmount their
+     answer and their failure are dropped, and the OnAfterFetch steps (the event, the sibling refresh,
+     Actions_DefineLoading) do not run. Action_Refresh_Get_MemberDetails after GetUserInformation_Wrapper is an own
+     action of the block (R3). */
+  const raisedErrors = () =>
+    vi
+      .mocked(raiseToFlowHandler)
+      .mock.calls.map(([error]) => error)
+      .filter((error) => !(error instanceof IgnorableSystemException));
+  afterEach(() => {
+    platformNavigation.on = false;
+    resetNavigation();
+  });
+
+  it('R3: after an unmount during GetUserInformation_Wrapper, Action_Refresh_Get_MemberDetails (flow.own) stops: no call, no state write', async () => {
     const user = pending<ReturnType<typeof userWithDisplayAge>>();
     vi.mocked(getUserInformation).mockReturnValue(user.promise);
     const { unmount } = renderFlows();
@@ -299,6 +324,13 @@ describe('useHouseholdRelations after an unmount and in StrictMode (decision W23
     await settle();
     expect(fetchMemberRelations).not.toHaveBeenCalled();
     expect(householdRelationsReducer).not.toHaveBeenCalled();
+    // The own action throws ControllerDisposedException (ensureControllerAlive); the handler ignores it.
+    const isFlowScope = (scope: unknown) => typeof (scope as { alive?: unknown } | undefined)?.alive === 'function';
+    const raised = vi
+      .mocked(raiseToFlowHandler)
+      .mock.calls.map(([error, scope]) => [error instanceof ControllerDisposedException, isFlowScope(scope)]);
+    expect(raised).toEqual([[true, true]]);
+    expect(raisedErrors()).toEqual([]);
   });
 
   it('after an unmount during Get_MemberDetails: no event, no sibling call, no state write', async () => {
@@ -314,25 +346,23 @@ describe('useHouseholdRelations after an unmount and in StrictMode (decision W23
     expect(events.onRelationsDetailsFetched).not.toHaveBeenCalled();
     expect(fetchSiblingRelations).not.toHaveBeenCalled();
     expect(householdRelationsReducer).not.toHaveBeenCalled();
-    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 
-  it('after an unmount during Get_MemberDetails, a failure still goes to the flow handler once', async () => {
+  it('R1: after an unmount during Get_MemberDetails, its failure reaches no handler and writes no state', async () => {
     const answer = pending<MemberRelations>();
     vi.mocked(fetchMemberRelations).mockReturnValue(answer.promise);
     const { unmount } = renderFlows();
     await settle();
     unmount();
     vi.mocked(householdRelationsReducer).mockClear();
-    const error = new CommunicationException('The connection has timed out');
-    answer.reject(error);
+    answer.reject(new CommunicationException('The connection has timed out'));
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raisedErrors()).toEqual([]);
     expect(householdRelationsReducer).not.toHaveBeenCalled();
   });
 
-  it('after an unmount during Get_ParentHouseholdDetails: no state write', async () => {
+  it('R1: after an unmount during Get_ParentHouseholdDetails: no state write; a failure reaches no handler', async () => {
     const answer = pending<SiblingRelations>();
     vi.mocked(fetchSiblingRelations).mockReturnValue(answer.promise);
     const { unmount } = renderFlows();
@@ -340,16 +370,57 @@ describe('useHouseholdRelations after an unmount and in StrictMode (decision W23
     expect(events.onRelationsDetailsFetched).toHaveBeenCalledTimes(1);
     unmount();
     vi.mocked(householdRelationsReducer).mockClear();
-    answer.resolve(siblingRelations);
+    answer.reject(new CommunicationException('The connection has timed out'));
     await settle();
     expect(householdRelationsReducer).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R2: HasAccessToRegion (a module action) answers after the unmount: the upgrade popup still shows', async () => {
+    const { result, unmount } = renderFlows();
+    await settle();
+    const access = pending<boolean>();
+    vi.mocked(hasAccessToRegion).mockReturnValueOnce(access.promise);
+    act(() => {
+      result.current.onClickMember(memberRelations.Mother);
+    });
+    unmount();
+    access.resolve(false);
+    await settle();
+    expect(showUpgradePopUp).toHaveBeenCalledTimes(1);
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R4: OnClick_Member whose HasAccessToRegion answers after the user left: no navigation, the flow stops', async () => {
+    platformNavigation.on = true;
+    const screen: { current: HouseholdRelationsFlows | null } = { current: null };
+    function Screen() {
+      screen.current = useHouseholdRelations(inputs, events);
+      return null;
+    }
+    const { router, at } = renderRoutes(
+      { '/UBTConnect/Household_Relations': <Screen />, '/UBTConnect/Updates': <p>Updates</p> },
+      '/UBTConnect/Household_Relations',
+    );
+    await settle();
+    const access = pending<boolean>();
+    vi.mocked(hasAccessToRegion).mockReturnValueOnce(access.promise);
+    act(() => {
+      screen.current?.onClickMember(memberRelations.Father);
+    });
+    await act(() => router.navigate('/UBTConnect/Updates'));
+    access.resolve(true);
+    await settle();
+    expect(at()).toBe('/UBTConnect/Updates');
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(expect.any(OutOfContextException), expect.anything());
+    expect(raisedErrors()).toEqual([]);
   });
 
   it('in StrictMode: one Get_MemberDetails, one Get_ParentHouseholdDetails and one event', async () => {
     const result = renderStrict();
     await settle();
-    // StrictMode ran OnReady twice; the first run stops at its liveness check after GetUserInformation_Wrapper.
-    expect(getUserInformation).toHaveBeenCalledTimes(2);
+    // useFlowState runs OnReady once in StrictMode (item 8, flow scope).
+    expect(getUserInformation).toHaveBeenCalledTimes(1);
     expect(fetchMemberRelations).toHaveBeenCalledTimes(1);
     expect(fetchSiblingRelations).toHaveBeenCalledTimes(1);
     expect(events.onRelationsDetailsFetched).toHaveBeenCalledTimes(1);

@@ -4,6 +4,7 @@ import { MemoryRouter, type Location } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { CountryWithMapPosition } from '@/api/country';
 import { UserException } from '@/legacy/os/exceptions';
+import { IgnorableSystemException } from '@/legacy/os/os-exceptions';
 import { confirmAction, showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { createBackEvent } from '@/platform/navigation/backQueue';
@@ -93,6 +94,8 @@ const settle = () =>
 const location: Location = { pathname: '/UBTConnect/HomeFeed', search: '', hash: '', state: null, key: 'k' };
 const backEvent = () => createBackEvent(location, false, () => undefined);
 const raised = () => vi.mocked(raiseToFlowHandler).mock.calls.map(([error]) => error);
+/** The errors that reached the flow handler, without the ignorable ones (the handler drops them: R3). */
+const raisedErrors = () => raised().filter((error) => !(error instanceof IgnorableSystemException));
 
 let events: AssembleFilterEvents;
 const renderFlows = (strict = false) =>
@@ -241,6 +244,7 @@ describe('useAssembleFilter', () => {
     await settle();
     expect(showUpgradePopUp).toHaveBeenCalledTimes(1);
     expect(raised()).toEqual([error]);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
   });
 
   it('back while the localities show: the country list again, PreventNavigation, the content scrolls to the top', async () => {
@@ -284,7 +288,7 @@ describe('useAssembleFilter', () => {
     content.remove();
   });
 
-  it('W23: after the unmount, the started OnReady makes its calls once and writes no state', async () => {
+  it('R3: unmount while GetCacheableUserInfo is pending: FetchCountries does not start; no state write, no raise', async () => {
     const userInfo = pending<ReturnType<typeof legacyUserInfo>>(vi.mocked(getCacheableUserInfo));
     let renders = 0;
     const { unmount } = renderHook(
@@ -301,13 +305,14 @@ describe('useAssembleFilter', () => {
     userInfo.resolve(legacyUserInfo());
     await settle();
     expect(getCacheableUserInfo).toHaveBeenCalledTimes(1);
-    expect(getCacheableRegionSubscribedCountries).toHaveBeenCalledTimes(1);
+    expect(getUserInformation).not.toHaveBeenCalled();
+    expect(getCacheableRegionSubscribedCountries).not.toHaveBeenCalled();
     expect(assembleFilterReducer).not.toHaveBeenCalled();
     expect(renders).toBe(rendersAtUnmount);
-    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 
-  it('W23: an exception after the unmount still goes to the flow handler, once, without a state write', async () => {
+  it('GetCacheableRegionSubscribedCountries (a module action) fails after the unmount: a user exception still goes to the flow handler with the scope, without a state write', async () => {
     const countries = pending<CountryWithMapPosition[]>(vi.mocked(getCacheableRegionSubscribedCountries));
     const { unmount } = renderFlows(true);
     await settle();
@@ -317,10 +322,11 @@ describe('useAssembleFilter', () => {
     countries.reject(error);
     await settle();
     expect(raised()).toEqual([error]);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(assembleFilterReducer).not.toHaveBeenCalled();
   });
 
-  it('W23: a country click that ends after the unmount still opens ConfirmAction once, and writes no state', async () => {
+  it('HasAccessToRegion (a module action) answers after the unmount: ConfirmAction still opens once; an access writes no state', async () => {
     const { result, unmount } = renderFlows(true);
     await settle();
     const noAccess = pending<boolean>(vi.mocked(hasAccessToRegion));
@@ -339,5 +345,19 @@ describe('useAssembleFilter', () => {
     expect(confirmAction).toHaveBeenCalledTimes(1);
     expect(confirmAction).toHaveBeenCalledWith('b2-FreeSubscriptionAlert');
     expect(assembleFilterReducer).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('a failed country click goes to the flow handler with the flow scope', async () => {
+    const error = new Error('No user information');
+    vi.mocked(hasAccessToRegion).mockRejectedValueOnce(error);
+    const { result } = renderFlows();
+    await settle();
+    act(() => {
+      result.current.onCountryClicked('GB');
+    });
+    await settle();
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
+    expect(confirmAction).not.toHaveBeenCalled();
   });
 });

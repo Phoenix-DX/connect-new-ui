@@ -10,6 +10,10 @@ import {
   CarouselHouseholdDetails,
   type CarouselHouseholdDetailsSlot,
 } from '@/components/directory/CarouselHouseholdDetails';
+import {
+  CarouselOneSchoolGlobalDetails,
+  type CarouselOneSchoolGlobalDetailsSlot,
+} from '@/components/directory/CarouselOneSchoolGlobalDetails';
 import { get_IsInsideRenderBuffer } from '@/lib/ubtConnect/actions';
 import { Connect_Entity } from '@/lib/ubtConnect/staticEntities';
 
@@ -39,6 +43,9 @@ export interface EntitiesCarouselElementProps {
   /** SupperMeeting_DetailsBlock of a supper meeting slide (EntitiesCarouse_lSupperMeetingDetails): the page renders
       the supper meeting details container with the slot inputs. */
   renderSupperMeetingDetails?: (slot: CarouselSupperMeetingDetailsSlot) => ReactNode;
+  /** OneSchoolGlobalDetails_Block of a OneSchool Global slide (EntitiesCarousel_OneSchoolGlobal): the page renders the
+      school details container with the slot inputs. */
+  renderOneSchoolGlobalDetails?: (slot: CarouselOneSchoolGlobalDetailsSlot) => ReactNode;
 }
 
 /** One slide of EntitiesCarousel (p:UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc.js): rendered only
@@ -56,6 +63,7 @@ export function EntitiesCarouselElement({
   onEventSetHeader,
   renderHouseholdDetails,
   renderSupperMeetingDetails,
+  renderOneSchoolGlobalDetails,
 }: EntitiesCarouselElementProps) {
   const prefix = id?.replace('$', '');
   const childId = (name: string) => (prefix === undefined ? undefined : `${prefix}-${name}`);
@@ -78,6 +86,15 @@ export function EntitiesCarouselElement({
     <OSBlock name="Directory_Caroussel.EntitiesCarousel_Element" id={id}>
       {nextIsRender && (
         <div className="" data-container="">
+          {/* TST (2026-10-27) adds the OneSchool Global branch first, alias 1: the TST aliases of the two branches below
+              move to 2-5. The elements get no instance id here (EntitiesCarousel README), so no rendered id changes. */}
+          {inConnectEntityTypeId === Connect_Entity.OneSchoolGlobal && (
+            <CarouselOneSchoolGlobalDetails
+              id={childId('$b1')}
+              inEntityId={inEntityId}
+              renderOneSchoolGlobalDetails={renderOneSchoolGlobalDetails}
+            />
+          )}
           {inConnectEntityTypeId === Connect_Entity.SupperMeetings_aka_Subdivisions && (
             <CarouselSupperMeetingDetails
               id={childId('$b1')}

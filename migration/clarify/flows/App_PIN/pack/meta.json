@@ -1,0 +1,58 @@
+{
+ "flow": "App_PIN",
+ "screens": [
+  "PINChange",
+  "PINRegister",
+  "PINUnlock"
+ ],
+ "ownBlocks": [
+  "Block_PINRegister_ContentWrapper",
+  "Block_PINUnlock",
+  "Block_PINUnlock_ContentWrapper"
+ ],
+ "usedBlocks": [
+  "Block_PINRegister_ContentWrapper",
+  "Block_PINUnlock",
+  "Block_PINUnlock_ContentWrapper",
+  "CommonUI_InsideLayout",
+  "HandleOnResumeOpenLink",
+  "OfflineDataSyncEvents",
+  "Policy_Checker",
+  "UnsupportedVersion",
+  "UnsupportedVersion_Browser",
+  "UnsupportedVersion_Native",
+  "UnsupportedVersion_WebView",
+  "UnsupportedVersion_Wrapper",
+  "WelcomeToConnect"
+ ],
+ "referencedBlocks": [
+  "CacheControl_Policies",
+  "Columns_Two",
+  "CustomContainer",
+  "CustomText",
+  "Icon",
+  "IconText",
+  "Layout_LoginFlow",
+  "PinUnlock_MobileWrapper",
+  "Pincode_Register",
+  "SkeletonSection"
+ ],
+ "clientActions": [
+  "ExitApplicationForWebViewUpdate",
+  "GetResumeLoginLink",
+  "GetURLFromEventDataURL",
+  "Get_IsUnsupportedSystem",
+  "Get_IsUnsupportedVersion",
+  "OfflineDataSync",
+  "OfflineDataSyncConfiguration",
+  "OpenGooglePlay_Chrome",
+  "OpenGooglePlay_UBTConnect",
+  "OpenGooglePlay_WebView",
+  "SetResumeLoginLink",
+  "Try_GetIsSupportedVersion",
+  "Upgrade_UBTConnect",
+  "Upgrade_WebView"
+ ],
+ "serverActions": [],
+ "externalSites": []
+}

@@ -51,7 +51,10 @@ const SURVEY: HostSurvey = {
 };
 
 const withSteps = (steps: LocalHostSurveyStep[], patch: Partial<HostSurveyState> = {}): HostSurveyState => ({
-  ...hostSurveyReducer({ ...INITIAL_HOST_SURVEY_STATE, isFetchingData: true }, { type: 'surveyStepsRead', steps }),
+  ...hostSurveyReducer(
+    { ...INITIAL_HOST_SURVEY_STATE, isFetchingData: true },
+    { type: 'surveyStepsRead', steps, helperRoles: [] },
+  ),
   ...patch,
 });
 
@@ -67,9 +70,11 @@ describe('hostSurveyState', () => {
     expect(INITIAL_HOST_SURVEY_STATE.hostSurvey.SurveyInfo.HostProfileSurveyStatus).toBe('');
   });
 
-  it('OnReady sets IsFetchingData before the call', () => {
+  it('OnReady resets StepProperties to BlankStepProperties and sets IsFetchingData before the call', () => {
+    const blank = { IsEdit: true, TrySave: false, HasData: false };
     expect(hostSurveyReducer(INITIAL_HOST_SURVEY_STATE, { type: 'fetchStarted' })).toEqual({
       ...INITIAL_HOST_SURVEY_STATE,
+      stepProperties: { Accommodation: blank, Meals: blank, Helpers: blank, Vehicles: blank },
       isFetchingData: true,
     });
   });
@@ -113,7 +118,7 @@ describe('hostSurveyState', () => {
 
   it('a failed answer (HasError) stops the skeleton and keeps the rest', () => {
     const fetching = hostSurveyReducer(INITIAL_HOST_SURVEY_STATE, { type: 'fetchStarted' });
-    expect(hostSurveyReducer(fetching, { type: 'fetchFailed' })).toEqual(INITIAL_HOST_SURVEY_STATE);
+    expect(hostSurveyReducer(fetching, { type: 'fetchFailed' })).toEqual({ ...fetching, isFetchingData: false });
   });
 
   it('keeps the survey of the answer; the skeleton stays until the steps are read', () => {
@@ -163,15 +168,21 @@ describe('hostSurveyState', () => {
   it('the Edit link selects the step with its row number; an unknown step changes nothing', () => {
     const state = withSteps([NAVIGATION, ACCOMMODATION, SUMMARY]);
     expect(
-      hostSurveyReducer(state, { type: 'stepSelected', hostSurveyStepId: HostSurveyStep.summary }).currentStep,
+      hostSurveyReducer(state, { type: 'stepSelected', hostSurveyStepId: HostSurveyStep.summary, helperRoles: [] })
+        .currentStep,
     ).toEqual({ step: SUMMARY, rowNumber: 2 });
-    expect(hostSurveyReducer(state, { type: 'stepSelected', hostSurveyStepId: HostSurveyStep.vehicle })).toBe(state);
+    expect(
+      hostSurveyReducer(state, { type: 'stepSelected', hostSurveyStepId: HostSurveyStep.vehicle, helperRoles: [] }),
+    ).toBe(state);
   });
 
   it('a confirmed survey stays on its step', () => {
     const state = withSteps([SUMMARY, ACCOMMODATION], { isConfirmedSurvey: true });
-    expect(hostSurveyReducer(state, { type: 'stepSelected', hostSurveyStepId: HostSurveyStep.accommodation })).toBe(
-      state,
-    );
+    const selected = hostSurveyReducer(state, {
+      type: 'stepSelected',
+      hostSurveyStepId: HostSurveyStep.accommodation,
+      helperRoles: [],
+    });
+    expect(selected).toBe(state);
   });
 });

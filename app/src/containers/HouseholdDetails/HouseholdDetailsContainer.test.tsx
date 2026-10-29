@@ -80,12 +80,13 @@ describe('HouseholdDetails_Block', () => {
     });
   });
 
-  it('Photos tag: gallery title, timeline and Coming soon, Photobook link, members hidden (not captured)', async () => {
+  it('Photos tag: gallery title, timeline, no Coming soon (gallery flag on), Photobook link, members hidden (not captured)', async () => {
     const { container } = render(<V5 isEnabled />);
     await waitFor(() => expect(tag('Photos')).toBeInTheDocument());
     fireEvent.click(tag('Photos'));
     await waitFor(() => expect(screen.getByText('Household gallery')).toBeInTheDocument());
-    expect(container.querySelector('[data-block="ConnectPatterns.ComingSoon"]')).not.toBeNull();
+    // mobileDirectoryHouseholdGallery default on, as TST (probe of 2026-10-29): no Coming Soon box (mvc.js:1298-1301)
+    expect(container.querySelector('[data-block="ConnectPatterns.ComingSoon"]')).toBeNull();
     expect(
       container.querySelector('[data-block="Directory_Household_Blocks.HouseholdDetails_TimelinePhoto_List"]'),
     ).not.toBeNull();

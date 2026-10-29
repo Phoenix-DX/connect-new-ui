@@ -41,17 +41,12 @@ The mappers drop only fields that no code in `src` reads. The local-entity recor
 
 The shared record types (for example `EventInfo`, `Milestone_Screen`, `MemberInformation`, `AssembleEventSummary`) are defined in `event/types.ts`. The `structures.ts` files of Connect2_Assemble_MUI and Connect2_OrbitMobile_MUI re-export them. The 8 local copies of the null-date helper are one helper. The 25 hooks have no caller yet; the flows call the repository functions. They set `staleTime: 0`, `gcTime: 0` and no retry by default.
 
-`bookmark/` has the same files. It holds 9 calls.
+`bookmark/` has no hooks. `repository.ts` holds 4 calls:
 
-- DataActionGetAllBookmarksByGroup (BookmarksByGroup) and DataActionGetGroupSummaries (MyBookmarks)
-- GetBookmarkById and New_GetBookmarkById (one function: the client action picks the second when the bookmark has a note)
-- DeleteBookmarkByBookmarkId and New_UpdateBookmarkNote (Connect2_MyBookmarks_MUI)
 - AddBookmark and DeleteBookmarkByBookmarkId (Connect2_Assemble_MUI)
 - ServiceAPIAddBookmark2 and ServiceAPIDeleteBookmarkByBookmarkId2 (UBTConnect).
 
-The hook of BookmarksByGroup (`pages/BookmarksByGroup/hooks/useBookmarkGroup.ts`) calls `fetchBookmarkGroup`, `fetchBookmarkById`, `deleteBookmark` and `updateBookmarkNote` directly; its `api.ts` is deleted. The hook of MyBookmarks (`pages/MyBookmarks/hooks/useMyBookmarks.ts`) calls `fetchBookmarkGroupSummaries` and `fetchBookmarkById` directly; its `api.ts` and `types.ts` are deleted. `lib/assemble/actions.ts` and `lib/ubtConnect/actions.ts` call the repository functions.
-
-The `Bookmark` type has `dateCreatedUtc`, the sort key of the `MyBookmarks` memory cache. The barrel exports the mapper `toBookmark` (`pages/BookmarksByGroup/hooks/bookmarkGroupActions.ts` imports it for `fromCacheRecord`). `AssembleBookmarkAdded`, `C2BookmarkAdded` and `BookmarkDeleted` keep the OutSystems names. The two hooks (`useBookmarkGroupQuery`, `useBookmarkGroupSummariesQuery`) have no caller yet; they set `staleTime: 0`, `gcTime: 0` and `retry: false`.
+`lib/assemble/actions.ts` and `lib/ubtConnect/actions.ts` call these functions. `bookmarkCards.ts` holds the calls of the screen Bookmarks (`fetchBookmarkCards`, `fetchBookmarkPills`; interim form, decision I10-6). `keys.ts` holds the `MyBookmarks` memory-cache entry (`bookmarkCache`). The calls, mappers, types and hooks of the blocks of Connect2_MyBookmarks_MUI (BookmarksByGroup, MyBookmarks) are deleted with these routes (TST removed them; user decision 2026-10-28). `AssembleBookmarkAdded`, `C2BookmarkAdded` and `BookmarkDeleted` keep the OutSystems names.
 
 `note/` has the same files. It holds 6 calls.
 
@@ -110,7 +105,7 @@ The queries of `feed/` and the count query of `member/` set `staleTime: 0`, `gcT
 
 `household/` also holds the OrbitLanding call DataActionGet_HouseholdMembers (`fetchOrbitHouseholdMembers`, called by `useOrbitLanding`). The old `api.ts` and `types.ts` of OrbitLanding are deleted. The types are `OrbitHouseholdMembersCallInputs` and `OrbitHouseholdMember`. The flow calls the repository function.
 
-`event/` also holds the two OrbitAdminLanding calls: Get_AdminEventsList (`fetchAdminEvents`, called by `useAdminLanding`) and ActionGetMilestoneScanFF (`fetchMilestoneScanFF`, called by `useNavigateToEventDetail`). The old `api.ts` and `types.ts` of OrbitAdminLanding are deleted. The hooks call the repository functions.
+`event/` also holds the OrbitAdminLanding call Get_AdminEventsList (`fetchAdminEvents`, called by `useAdminLanding`); ActionGetMilestoneScanFF was removed on 2026-10-27 (TST has no such call, decision Legacy_OrbitAdminFlow Q1). `event/milestoneBlocks.ts` holds the data actions of the five MilestoneDetail blocks (2026-10-27). The old `api.ts` and `types.ts` of OrbitAdminLanding are deleted. The hooks call the repository functions.
 
 `image/` has `keys.ts` (the memory-cache entries `imageCache`) and, since P6-G5-B-OrbitAdminEventDetail, `repository.ts` and the barrel `index.ts`. It holds one call: GetCacheableSignedImageURL of Connect2_LegacyShared (`ActionGetSignedImagesInBulk`, `fetchLegacySignedImageURL`). The domain is chosen by the data that it owns (decision W8): the signed image URLs. The hooks `useAdminEventDetail` (OrbitAdminEventDetail) and `useAccommodationHost` (MilestoneDetail), `useHelperDetails` (HelpersDetail), `useGenerateQrCode` (QRCodeGenerate) and the page `GuestArrangementsPage` (GuestArrangements) call it.
 

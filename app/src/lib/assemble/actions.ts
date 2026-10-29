@@ -32,16 +32,6 @@ const NULL_DATE_TIME = '1900-01-01T00:00:00';
 /** "Lord's Day" on a Sunday, else the day name (controller.js:345, :410). */
 const dayLabel = (dateTime: string) => (dayOfWeek(dateTime) === 0 ? "Lord's Day" : formatDateTime(dateTime, 'dddd'));
 
-/** GetAssembleEventSummaryDateTimeString(MeetingDateTime, IsAllDAy) (controller.js:328-393, :345): "On " when all day,
-    else "h:mm tt on ", then the day label, then ", d MMMM yyyy". */
-export function getAssembleEventSummaryDateTimeString(meetingDateTime = NULL_DATE_TIME, isAllDay = false): string {
-  return (
-    (isAllDay ? 'On ' : formatDateTime(meetingDateTime, 'h:mm tt on ')) +
-    dayLabel(meetingDateTime) +
-    formatDateTime(meetingDateTime, ', d MMMM yyyy')
-  );
-}
-
 /** GetAssembleEventSummaryHeaderLabel(AssembleEventSummary) (controller.js:394-450, :410): the event type title, " - ",
     then the day label of DateTime. */
 export function getAssembleEventSummaryHeaderLabel(summary: AssembleEventSummary = {}): string {

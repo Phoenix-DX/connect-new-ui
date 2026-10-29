@@ -111,6 +111,8 @@ export function getClasses_Text(textOptions: TextOptions = {}): string {
   if (textOptions.FontSize) classes = formatClasses(classes, `font-size-${textOptions.FontSize}`);
   if (textOptions.IsItalic) classes = formatClasses(classes, 'italic');
   if (textOptions.IsUnderlined) classes = formatClasses(classes, 'text-underline');
+  // Live TST of 2026-10-27 (UBTConnectLibrary.controller.js:4859-4867, FormatClasses6).
+  if (textOptions.IsOverflowEllipsis) classes = formatClasses(classes, 'ubt-custom-text-ellipsis');
   return classes;
 }
 
@@ -561,6 +563,33 @@ export function getRelativeTimeTag(createdDateTimeUtc: string, editedDateTimeUtc
   return formatRelativeTime(isEdited ? edited : created, now) + (isEdited ? ' · Edited' : '');
 }
 
+/** The units of timeAgo, largest first (seconds per unit). */
+const TIME_AGO_UNITS: readonly (readonly [string, number])[] = [
+  ['year', 31536000],
+  ['month', 2592000],
+  ['week', 604800],
+  ['day', 86400],
+  ['hour', 3600],
+  ['minute', 60],
+  ['second', 1],
+];
+
+/** PreetyFormatDate(In_Date) → PrettyDate (UBTConnectLibrary.controller.js:7952-8072; JavaScript1 node timeAgo
+    :8028-8067): "just now" for a date in the future or less than a second ago, else "<n> <unit>[s] ago" with the
+    largest unit (year 365 days, month 30 days, week, day, hour, minute, second) that gives n >= 1. The DateTime input
+    reaches the node as a JS Date, so the number and text branches of timeAgo and its "Invalid date input" error are
+    not reachable; here the date is read as the app's DateTimes (osDateTime: an empty or invalid text is NullDate).
+    `now` is the browser clock (Date.now()). */
+export function preetyFormatDate(in_Date: string, now = new Date()): string {
+  const seconds = Math.floor((now.getTime() - parseOsDate(in_Date).getTime()) / 1000);
+  if (seconds < 0) return 'just now';
+  for (const [label, unitSeconds] of TIME_AGO_UNITS) {
+    const value = Math.floor(seconds / unitSeconds);
+    if (value >= 1) return `${String(value)} ${label}${value > 1 ? 's' : ''} ago`;
+  }
+  return 'just now';
+}
+
 /* ---- Wave 3C (SelectionOption_List) ---- */
 const FLAG_IMAGES: Record<string, string> = {
   ar: 'img/UBTConnectLibrary.ar.png',
@@ -913,4 +942,15 @@ export function getLookupConcepts(in_IsLowercase: boolean): LookupConcepts {
     Distance: item('Distance', 'Distaces', I.Explore, C.YellowDark),
     SupperMeeting: item('Supper Meeting', 'Supper Meetings', I.HouseFill, C.Orange),
   };
+}
+
+/** FormatDateForAssembleMeetings(DateTime, IsAllDay) (UBTConnectLibrary.controller.js, TST publish of 2026-10-29, copy
+    in migration/screens/AssembleEvents/analysis/sources/raw/): "On " when all day, else "h:mm tt on ", then "Lord's
+    Day" on a Sunday or the day name, then ", d MMMM yyyy". Out: DateTimeString. It replaces Connect2_Assemble_MUI
+    GetAssembleEventSummaryDateTimeString (removed in that publish, same expression). */
+export function formatDateForAssembleMeetings(dateTime = '1900-01-01T00:00:00', isAllDay = false): string {
+  const dayLabel = dayOfWeek(dateTime) === 0 ? "Lord's Day" : formatDateTime(dateTime, 'dddd');
+  return (
+    (isAllDay ? 'On ' : formatDateTime(dateTime, 'h:mm tt on ')) + dayLabel + formatDateTime(dateTime, ', d MMMM yyyy')
+  );
 }

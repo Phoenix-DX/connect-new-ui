@@ -1,0 +1,41 @@
+{
+ "flow": "Legacy_OrbitQRCodeFlow",
+ "screens": [
+  "QRCodeGenerate"
+ ],
+ "ownBlocks": [],
+ "usedBlocks": [
+  "Block_PINUnlock",
+  "Block_PINUnlock_ContentWrapper",
+  "CommonUI_InsideLayout",
+  "HandleOnResumeOpenLink",
+  "OfflineDataSyncEvents",
+  "Policy_Checker",
+  "UnsupportedVersion",
+  "UnsupportedVersion_Browser",
+  "UnsupportedVersion_Native",
+  "UnsupportedVersion_WebView",
+  "UnsupportedVersion_Wrapper",
+  "WelcomeToConnect"
+ ],
+ "referencedBlocks": [
+  "ScreenBlock_GenerateQRCode"
+ ],
+ "clientActions": [
+  "ExitApplicationForWebViewUpdate",
+  "GetURLFromEventDataURL",
+  "Get_IsUnsupportedSystem",
+  "Get_IsUnsupportedVersion",
+  "OfflineDataSync",
+  "OfflineDataSyncConfiguration",
+  "OpenGooglePlay_Chrome",
+  "OpenGooglePlay_UBTConnect",
+  "OpenGooglePlay_WebView",
+  "SetResumeLoginLink",
+  "Try_GetIsSupportedVersion",
+  "Upgrade_UBTConnect",
+  "Upgrade_WebView"
+ ],
+ "serverActions": [],
+ "externalSites": []
+}

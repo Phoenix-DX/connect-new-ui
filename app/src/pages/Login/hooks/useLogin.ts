@@ -1,15 +1,15 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useScreenValidationService } from '@/components/ui/os/OSValidation';
-import { delayedMessageShow, showExceptionMessage } from '@/platform/feedback';
+import { delayedMessageShow, feedbackMessageAutoClose, showExceptionMessage } from '@/platform/feedback';
 import { useWasRestoredFromCache } from '@/platform/navigation';
-import { signOut, useSignIn } from '@/platform/session/auth';
+import { resetPassword, signOut, useSignIn } from '@/platform/session/auth';
 import { setAppCallback } from '@/platform/session/resume';
 import { get_IsUnsupportedSystem } from '@/lib/ubtConnect/unsupportedVersion';
 import type { LoginInputs } from '@/pages/Login/inputs';
 
-/** AppManager_JSUtils_CustomEvents.DeviceAwareness_InvalidDevice: only compared with CallbackType, never written, so its
-    identifier value is not known (opaque constant; shared static-entity convention). */
-const DeviceAwareness_InvalidDevice = 'AppManager_JSUtils_CustomEvents.DeviceAwareness_InvalidDevice';
+/** AppManager_JSUtils_CustomEvents.DeviceAwareness_InvalidDevice, compared with CallbackType by OnReady: the TST value
+    (migration/knowledge/static-entities-tst.json `UBTConnect.appManager_JSUtils_CustomEvents.deviceAwareness_InvalidDevice`). */
+const DeviceAwareness_InvalidDevice = 'DeviceAwareness_InvalidDevice';
 
 /** What the Login page renders and the handlers of its two buttons. */
 export interface LoginFlows {
@@ -21,8 +21,8 @@ export interface LoginFlows {
   isResettingPassword: boolean;
   /** "Login with UBT One": the built-in validation, then Login(IsResetPassword = False). */
   onLogin: () => void;
-  /** "Forgot Password?": the built-in validation, then Login(IsResetPassword = True), which does nothing in the mock
-      phase (Q1). */
+  /** "Forgot Password?": the built-in validation, then Login(IsResetPassword = True): the reset-password policy of the
+      identity provider, then the success toast of the IdP_OnResetPassword callback (user decision 2026-10-27). */
   onForgotPassword: () => void;
 }
 
@@ -54,6 +54,34 @@ export function useLogin(inputs: LoginInputs): LoginFlows {
     }
     setIsExecutingLogin(false);
     setIsResettingPassword(false);
+  };
+  // Login, IsResetPassword True (Login.mvc.js:719-730): IsResettingPassword, then AppManager_Login(True,
+  // ConfirmationDialog_ResetPassword) → the reset-password policy; the dialog id serves the device-awareness pop-up only
+  // (not built, Q3). The callback IdP_OnResetPassword (Login.mvc.js:838-868): both flags False, then
+  // FeedbackMessage_AutoClose(MessageTitle, Message, Success, True, "", 0, False). The AllExceptions handler of Login
+  // (Login.mvc.js:735-745) resets both flags, as for the sign-in.
+  const forgotPassword = async () => {
+    setIsResettingPassword(true);
+    let callback;
+    try {
+      callback = await resetPassword();
+    } catch (error) {
+      setIsExecutingLogin(false);
+      setIsResettingPassword(false);
+      await showExceptionMessage(error instanceof Error ? error.message : String(error), false);
+      return;
+    }
+    setIsExecutingLogin(false);
+    setIsResettingPassword(false);
+    feedbackMessageAutoClose({
+      title: callback.messageTitle,
+      message: callback.message,
+      messageType: 'success',
+      encodedHtml: true,
+      extendedClass: '',
+      delayMs: 0,
+      useDebounce: false,
+    });
   };
   const loginRef = useRef(login);
   useLayoutEffect(() => {
@@ -96,6 +124,7 @@ export function useLogin(inputs: LoginInputs): LoginFlows {
     },
     onForgotPassword: () => {
       validation.validate('');
+      void forgotPassword();
     },
   };
 }

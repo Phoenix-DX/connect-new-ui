@@ -1,11 +1,8 @@
 {
- "OrbitLanding": [
-  "default 19927 KB, 38 blocks, masked 9",
-  "step popup-filters",
-  "step popup-filters-closed",
-  "step popup-sort FAILED: page.click: Timeout 10000ms exceeded.",
-  "runtime 9 calls, 3 phase mark(s)",
-  "auto loading (3 call(s) held)",
+ "AssembleEvents": [
+  "default 18987 KB, 54 blocks, masked 51",
+  "runtime 11 calls, 0 phase mark(s)",
+  "auto loading (4 call(s) held)",
   "auto offline",
   "analyzed"
  ]

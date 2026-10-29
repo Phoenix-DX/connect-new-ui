@@ -1,18 +1,21 @@
 {
  "state": "offline",
- "route": "/UBTConnect/BookmarksByGroup?BookmarkGroup=Contacts",
+ "route": "/UBTConnect/BookmarksByGroup?BookmarkGroup=Contacts&mocksession=unlocked",
  "mock": "error",
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "c9baff666965fd683e58",
+ "fingerprint": "8d7244500c446bcd1586",
  "options": {
   "text": true,
   "style": true,
   "pixel": true,
   "calls": true,
+  "visibleOnly": false,
   "full": true,
-  "replay": "builder"
+  "replay": "builder",
+  "skipKinds": [],
+  "selfRef": false
  },
  "replay": {
   "mode": "builder",
@@ -24,37 +27,82 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-23T06:45:33.670Z",
- "counts": {},
+ "at": "2026-10-29T06:49:58.401Z",
+ "counts": {
+  "structure": 5,
+  "style": 1,
+  "pixel": 2
+ },
  "exemptionsUsed": {
-  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 45,
-  "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
-  "ignoreSubtrees": 1,
-  "SLIDER-APPEAR-TIMING": 1
+  "CAPTURE-LOADING-BODYCLASS": 1
  },
  "pixel": {
-  "ratio": 0.00006,
-  "maxCell": 0.0069,
+  "ratio": 0.52928,
+  "maxCell": 1,
   "maxCellRatio": 0.03,
-  "diffPixels": 20,
-  "comparedPixels": 314162,
+  "diffPixels": 258025,
+  "comparedPixels": 487500,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
    390,
-   844
+   1250
   ],
   "buildSize": [
    390,
    844
   ],
-  "masks": 4,
+  "masks": 0,
   "hotspots": [
-   "200,800 (11px)",
-   "200,760 (9px)"
+   "40,520 (1600px)",
+   "80,520 (1600px)",
+   "120,520 (1600px)",
+   "160,520 (1600px)",
+   "200,520 (1600px)"
   ],
   "diffPng": "migration/screens/BookmarksByGroup/parity/offline.diff.png"
  },
  "calls": null,
- "diffs": []
+ "diffs": [
+  {
+   "kind": "structure",
+   "path": "div#reactContainer",
+   "detail": "tag div → body"
+  },
+  {
+   "kind": "style",
+   "path": "div#reactContainer",
+   "detail": "margin-top 0px → 8px; margin-right 0px → 8px; margin-bottom 0px → 8px; margin-left 0px → 8px"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > h1",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > h2",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > h3",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "pixel",
+   "path": "screenshot",
+   "detail": "page height 1250 → 844"
+  },
+  {
+   "kind": "pixel",
+   "path": "screenshot",
+   "detail": "52.93% pixels differ (max 0.20%), worst 40px tile 100.0% (max 3.0%), hotspots 40,520 (1600px); 80,520 (1600px); 120,520 (1600px); 160,520 (1600px); 200,520 (1600px); see migration/screens/BookmarksByGroup/parity/offline.diff.png"
+  }
+ ]
 }

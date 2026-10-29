@@ -1,4 +1,4 @@
-define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$model", ["OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.controller", "UBTConnect_Utils.controller", "Connect2_OrbitMobile_BL.model", "Connect2_OrbitMobile_IS.model", "UBTConnect_Utils.model", "MemoryClientCache.model", "Connect2_OrbitMobile_MUI.entities", "Connect2_LegacyShared.Layout_OrbitTheme.Layout_Orbit.mvc$model", "Connect2_LegacyShared.Layout.MenuIcon__UpdatedOSUI.mvc$model", "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_PillItem.mvc$model", "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Accordion_Orbit.mvc$model", "OutSystemsUI_2_23.Content.DEPRECATED_AccordionItem.mvc$model", "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostAllocation_List.mvc$model", "Connect2_OrbitMobile_MUI.Orbit_Blocks.EventDateSelection.mvc$model", "Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Milestone.mvc$model", "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.NoInformation_Orbit.mvc$model", "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Skeleton_Loading.mvc$model", "Connect2_OrbitMobile_MUI.Orbit_Blocks.ContactHelpdesk_Footer.mvc$model", "Connect2_OrbitMobile_MUI.controller$GetFormattedDateTime", "UBTConnect_Utils.controller$GetHasOrbitEventBooklet", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$UBTConnect_Utils", "UBTConnect_Utils.controller$GetHasOrbitHostSurvey", "UBTConnect_Utils.controller$IsListVirtualizationDisabled", "Connect2_OrbitMobile_BL.model$GetEventDetailScreenRec", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_BL", "Connect2_OrbitMobile_BL.model$DateFilterRec", "Connect2_OrbitMobile_BL.model$Milestone_ScreenRec", "Connect2_OrbitMobile_MUI.model$Milestone_ScreenList", "Connect2_OrbitMobile_MUI.model$LongIntegerLongIntegerLongIntegerRecord", "Connect2_OrbitMobile_BL.model$OrbitMilestoneTypeRec", "Connect2_OrbitMobile_IS.model$MilestoneInfoRec", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_IS", "Connect2_OrbitMobile_BL.model$DayFilterRec", "Connect2_OrbitMobile_MUI.model$DayFilterList", "Connect2_OrbitMobile_MUI.controller$GetHostAllocation", "Connect2_OrbitMobile_MUI.model$AuditPayload_GenerateQRCodeRec", "Connect2_OrbitMobile_MUI.controller$OnApplicationEvent_GenerateQRCode", "UBTConnect_Utils.model$CacheControl_UserInformationRec", "MemoryClientCache.model$MemoryCacheResultRec", "Connect2_OrbitMobile_MUI.referencesHealth$MemoryClientCache", "UBTConnect_Utils.controller$Cache_UserInfo_Get", "Connect2_OrbitMobile_MUI.controller$GetContactHelpdeskSubject_Event", "Connect2_OrbitMobile_MUI.controller$FilterMilestonesByDateGroup", "Connect2_OrbitMobile_IS.model$HostSurveyRec", "Connect2_OrbitMobile_MUI.model$LocalSurveyStatusRecordList", "Connect2_OrbitMobile_MUI.model$LocalSurveyStatusRec"], function(OutSystems, Connect2_OrbitMobile_MUIModel, Connect2_OrbitMobile_MUIController, UBTConnect_UtilsController, Connect2_OrbitMobile_BLModel, Connect2_OrbitMobile_ISModel, UBTConnect_UtilsModel, MemoryClientCacheModel, Connect2_OrbitMobile_MUIEntities, Connect2_LegacyShared_Layout_OrbitTheme_Layout_Orbit_mvcModel, Connect2_LegacyShared_Layout_MenuIcon__UpdatedOSUI_mvcModel, Connect2_OrbitMobile_MUI_Orbit_Blocks_HostSurvey_PillItem_mvcModel, Connect2_OrbitMobile_MUI_Orbit_Generic_Blocks_Accordion_Orbit_mvcModel, OutSystemsUI_2_23_Content_DEPRECATED_AccordionItem_mvcModel, Connect2_OrbitMobile_MUI_Orbit_Blocks_HostAllocation_List_mvcModel, Connect2_OrbitMobile_MUI_Orbit_Blocks_EventDateSelection_mvcModel, Connect2_OrbitMobile_MUI_Orbit_Blocks_Card_Milestone_mvcModel, Connect2_OrbitMobile_MUI_Orbit_Generic_Blocks_NoInformation_Orbit_mvcModel, Connect2_OrbitMobile_MUI_Orbit_Generic_Blocks_Skeleton_Loading_mvcModel, Connect2_OrbitMobile_MUI_Orbit_Blocks_ContactHelpdesk_Footer_mvcModel) {
+define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$model", ["OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.controller", "UBTConnect_Utils.controller", "Connect2_OrbitMobile_BL.model", "UBTConnectLibrary.model", "UBTConnect_Utils.model", "Connect2_OrbitMobile_IS.model", "MemoryClientCache.model", "Connect2_OrbitMobile_MUI.entities", "Connect2_LegacyShared.Layout_OrbitTheme.Layout_Orbit.mvc$model", "Connect2_LegacyShared.Layout.MenuIcon__UpdatedOSUI.mvc$model", "UBTConnect_Utils.CW_Notes.ItemNotesSection.mvc$model", "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_PillItem.mvc$model", "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Accordion_Orbit.mvc$model", "OutSystemsUI_2_23.Content.DEPRECATED_AccordionItem.mvc$model", "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostAllocation_List.mvc$model", "Connect2_OrbitMobile_MUI.Orbit_Blocks.EventDateSelection.mvc$model", "Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Milestone.mvc$model", "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.NoInformation_Orbit.mvc$model", "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Skeleton_Loading.mvc$model", "Connect2_OrbitMobile_MUI.Orbit_Blocks.ContactHelpdesk_Footer.mvc$model", "Connect2_OrbitMobile_MUI.controller$GetFormattedDateTime", "UBTConnect_Utils.controller$GetHasOrbitEventBooklet", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$UBTConnect_Utils", "UBTConnect_Utils.controller$GetHasOrbitHostSurvey", "UBTConnect_Utils.controller$IsListVirtualizationDisabled", "Connect2_OrbitMobile_BL.model$GetEventDetailScreenRec", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_BL", "Connect2_OrbitMobile_BL.model$DateFilterRec", "Connect2_OrbitMobile_BL.model$Milestone_ScreenRec", "Connect2_OrbitMobile_MUI.model$Milestone_ScreenList", "Connect2_OrbitMobile_MUI.model$LongIntegerLongIntegerLongIntegerRecord", "UBTConnectLibrary.model$NotesRec", "Connect2_OrbitMobile_MUI.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$Note_ItemRec", "Connect2_OrbitMobile_MUI.model$Note_ItemList", "UBTConnect_Utils.model$ContactPopupDataRec", "UBTConnectLibrary.model$ActionBarOptionsRec", "Connect2_OrbitMobile_BL.model$OrbitMilestoneTypeRec", "Connect2_OrbitMobile_IS.model$MilestoneInfoRec", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_IS", "Connect2_OrbitMobile_BL.model$DayFilterRec", "Connect2_OrbitMobile_MUI.model$DayFilterList", "Connect2_OrbitMobile_MUI.controller$GetHostAllocation", "Connect2_OrbitMobile_MUI.model$AuditPayload_GenerateQRCodeRec", "Connect2_OrbitMobile_MUI.controller$OnApplicationEvent_GenerateQRCode", "UBTConnect_Utils.model$CacheControl_UserInformationRec", "MemoryClientCache.model$MemoryCacheResultRec", "Connect2_OrbitMobile_MUI.referencesHealth$MemoryClientCache", "UBTConnect_Utils.controller$Cache_UserInfo_Get", "Connect2_OrbitMobile_MUI.controller$GetContactHelpdeskSubject_Event", "Connect2_OrbitMobile_MUI.controller$FilterMilestonesByDateGroup", "Connect2_OrbitMobile_IS.model$HostSurveyRec", "Connect2_OrbitMobile_MUI.model$LocalSurveyStatusRecordList", "Connect2_OrbitMobile_MUI.model$LocalSurveyStatusRec"], function(OutSystems, Connect2_OrbitMobile_MUIModel, Connect2_OrbitMobile_MUIController, UBTConnect_UtilsController, Connect2_OrbitMobile_BLModel, UBTConnectLibraryModel, UBTConnect_UtilsModel, Connect2_OrbitMobile_ISModel, MemoryClientCacheModel, Connect2_OrbitMobile_MUIEntities, Connect2_LegacyShared_Layout_OrbitTheme_Layout_Orbit_mvcModel, Connect2_LegacyShared_Layout_MenuIcon__UpdatedOSUI_mvcModel, UBTConnect_Utils_CW_Notes_ItemNotesSection_mvcModel, Connect2_OrbitMobile_MUI_Orbit_Blocks_HostSurvey_PillItem_mvcModel, Connect2_OrbitMobile_MUI_Orbit_Generic_Blocks_Accordion_Orbit_mvcModel, OutSystemsUI_2_23_Content_DEPRECATED_AccordionItem_mvcModel, Connect2_OrbitMobile_MUI_Orbit_Blocks_HostAllocation_List_mvcModel, Connect2_OrbitMobile_MUI_Orbit_Blocks_EventDateSelection_mvcModel, Connect2_OrbitMobile_MUI_Orbit_Blocks_Card_Milestone_mvcModel, Connect2_OrbitMobile_MUI_Orbit_Generic_Blocks_NoInformation_Orbit_mvcModel, Connect2_OrbitMobile_MUI_Orbit_Generic_Blocks_Skeleton_Loading_mvcModel, Connect2_OrbitMobile_MUI_Orbit_Blocks_ContactHelpdesk_Footer_mvcModel) {
     var OS = OutSystems.Internal;
     var GetLocalSurveyStatusByJSONNameAggrRec = (function(_super) {
         __extends(GetLocalSurveyStatusByJSONNameAggrRec, _super);
@@ -73,6 +73,27 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
         Get_HasQRCodeDataActRec.init();
         return Get_HasQRCodeDataActRec;
     })(OS.Model.DataSourceRecord);
+    var FetchEventNotesDataActRec = (function(_super) {
+        __extends(FetchEventNotesDataActRec, _super);
+
+        function FetchEventNotesDataActRec(defaults) {
+            _super.apply(this, arguments);
+        }
+        FetchEventNotesDataActRec.attributesToDeclare = function() {
+            return [
+                this.attr("Notes", "notesOut", "Notes", true, false, OS.DataTypes.DataTypes.Record, function() {
+                    return OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec());
+                }, true, UBTConnectLibraryModel.NotesRec)
+            ].concat(_super.attributesToDeclare.call(this));
+        };
+        FetchEventNotesDataActRec.fromStructure = function(str) {
+            return new FetchEventNotesDataActRec(new FetchEventNotesDataActRec.RecordClass({
+                notesOut: OS.DataTypes.ImmutableBase.getData(str)
+            }));
+        };
+        FetchEventNotesDataActRec.init();
+        return FetchEventNotesDataActRec;
+    })(OS.Model.DataSourceRecord);
     var Get_HasDocumentsDataActRec = (function(_super) {
         __extends(Get_HasDocumentsDataActRec, _super);
 
@@ -130,6 +151,9 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                 this.attr("UserInformation", "userInformationVar", "UserInformation", true, false, OS.DataTypes.DataTypes.Record, function() {
                     return OS.DataTypes.ImmutableBase.getData(new Connect2_OrbitMobile_MUIModel.LongIntegerLongIntegerLongIntegerRecord());
                 }, false, Connect2_OrbitMobile_MUIModel.LongIntegerLongIntegerLongIntegerRecord),
+                this.attr("EventNotes", "eventNotesVar", "EventNotes", true, false, OS.DataTypes.DataTypes.Record, function() {
+                    return OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec());
+                }, false, UBTConnectLibraryModel.NotesRec),
                 this.attr("In_MemberId", "in_MemberIdIn", "In_MemberId", true, false, OS.DataTypes.DataTypes.LongInteger, function() {
                     return OS.DataTypes.LongInteger.defaultValue;
                 }, false),
@@ -166,6 +190,9 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                 this.attr("Get_HasQRCode", "get_HasQRCodeDataAct", "get_HasQRCodeDataAct", true, true, OS.DataTypes.DataTypes.Record, function() {
                     return OS.DataTypes.ImmutableBase.getData(new Get_HasQRCodeDataActRec());
                 }, true, Get_HasQRCodeDataActRec),
+                this.attr("FetchEventNotes", "fetchEventNotesDataAct", "fetchEventNotesDataAct", true, true, OS.DataTypes.DataTypes.Record, function() {
+                    return OS.DataTypes.ImmutableBase.getData(new FetchEventNotesDataActRec());
+                }, true, FetchEventNotesDataActRec),
                 this.attr("Get_HasDocuments", "get_HasDocumentsDataAct", "get_HasDocumentsDataAct", true, true, OS.DataTypes.DataTypes.Record, function() {
                     return OS.DataTypes.ImmutableBase.getData(new Get_HasDocumentsDataActRec());
                 }, true, Get_HasDocumentsDataActRec)
@@ -204,7 +231,7 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
             configurable: true,
             get: function() {
                 if ((Model._hasValidationWidgetsValue === undefined)) {
-                    Model._hasValidationWidgetsValue = ((((((((((Connect2_LegacyShared_Layout_OrbitTheme_Layout_Orbit_mvcModel.hasValidationWidgets || Connect2_LegacyShared_Layout_MenuIcon__UpdatedOSUI_mvcModel.hasValidationWidgets) || Connect2_OrbitMobile_MUI_Orbit_Blocks_HostSurvey_PillItem_mvcModel.hasValidationWidgets) || Connect2_OrbitMobile_MUI_Orbit_Generic_Blocks_Accordion_Orbit_mvcModel.hasValidationWidgets) || OutSystemsUI_2_23_Content_DEPRECATED_AccordionItem_mvcModel.hasValidationWidgets) || Connect2_OrbitMobile_MUI_Orbit_Blocks_HostAllocation_List_mvcModel.hasValidationWidgets) || Connect2_OrbitMobile_MUI_Orbit_Blocks_EventDateSelection_mvcModel.hasValidationWidgets) || Connect2_OrbitMobile_MUI_Orbit_Blocks_Card_Milestone_mvcModel.hasValidationWidgets) || Connect2_OrbitMobile_MUI_Orbit_Generic_Blocks_NoInformation_Orbit_mvcModel.hasValidationWidgets) || Connect2_OrbitMobile_MUI_Orbit_Generic_Blocks_Skeleton_Loading_mvcModel.hasValidationWidgets) || Connect2_OrbitMobile_MUI_Orbit_Blocks_ContactHelpdesk_Footer_mvcModel.hasValidationWidgets);
+                    Model._hasValidationWidgetsValue = (((((((((((Connect2_LegacyShared_Layout_OrbitTheme_Layout_Orbit_mvcModel.hasValidationWidgets || Connect2_LegacyShared_Layout_MenuIcon__UpdatedOSUI_mvcModel.hasValidationWidgets) || UBTConnect_Utils_CW_Notes_ItemNotesSection_mvcModel.hasValidationWidgets) || Connect2_OrbitMobile_MUI_Orbit_Blocks_HostSurvey_PillItem_mvcModel.hasValidationWidgets) || Connect2_OrbitMobile_MUI_Orbit_Generic_Blocks_Accordion_Orbit_mvcModel.hasValidationWidgets) || OutSystemsUI_2_23_Content_DEPRECATED_AccordionItem_mvcModel.hasValidationWidgets) || Connect2_OrbitMobile_MUI_Orbit_Blocks_HostAllocation_List_mvcModel.hasValidationWidgets) || Connect2_OrbitMobile_MUI_Orbit_Blocks_EventDateSelection_mvcModel.hasValidationWidgets) || Connect2_OrbitMobile_MUI_Orbit_Blocks_Card_Milestone_mvcModel.hasValidationWidgets) || Connect2_OrbitMobile_MUI_Orbit_Generic_Blocks_NoInformation_Orbit_mvcModel.hasValidationWidgets) || Connect2_OrbitMobile_MUI_Orbit_Generic_Blocks_Skeleton_Loading_mvcModel.hasValidationWidgets) || Connect2_OrbitMobile_MUI_Orbit_Blocks_ContactHelpdesk_Footer_mvcModel.hasValidationWidgets);
                 }
 
                 return Model._hasValidationWidgetsValue;
@@ -249,7 +276,7 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
     })(OS.Model.BaseViewModel);
     return new OS.Model.ModelFactory(Model, "Orbit_ScreenBlocks.ScreenBlock_EventDetail");
 });
-define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$view", ["OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.controller", "UBTConnect_Utils.controller", "Connect2_OrbitMobile_BL.model", "Connect2_OrbitMobile_IS.model", "UBTConnect_Utils.model", "MemoryClientCache.model", "Connect2_OrbitMobile_MUI.entities", "react", "OutSystems/ReactView/Main", "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$model", "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$controller", "Connect2_OrbitMobile_MUI.clientVariables", "Connect2_LegacyShared.Layout_OrbitTheme.Layout_Orbit.mvc$view", "OutSystems/ReactWidgets/Main", "Connect2_LegacyShared.Layout.MenuIcon__UpdatedOSUI.mvc$view", "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_PillItem.mvc$view", "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Accordion_Orbit.mvc$view", "OutSystemsUI_2_23.Content.DEPRECATED_AccordionItem.mvc$view", "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostAllocation_List.mvc$view", "Connect2_OrbitMobile_MUI.Orbit_Blocks.EventDateSelection.mvc$view", "Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Milestone.mvc$view", "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.NoInformation_Orbit.mvc$view", "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Skeleton_Loading.mvc$view", "Connect2_OrbitMobile_MUI.Orbit_Blocks.ContactHelpdesk_Footer.mvc$view", "Connect2_OrbitMobile_MUI.controller$GetFormattedDateTime", "UBTConnect_Utils.controller$GetHasOrbitEventBooklet", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$UBTConnect_Utils", "UBTConnect_Utils.controller$GetHasOrbitHostSurvey", "UBTConnect_Utils.controller$IsListVirtualizationDisabled", "Connect2_OrbitMobile_BL.model$GetEventDetailScreenRec", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_BL", "Connect2_OrbitMobile_BL.model$DateFilterRec", "Connect2_OrbitMobile_BL.model$Milestone_ScreenRec", "Connect2_OrbitMobile_MUI.model$Milestone_ScreenList", "Connect2_OrbitMobile_MUI.model$LongIntegerLongIntegerLongIntegerRecord", "Connect2_OrbitMobile_BL.model$OrbitMilestoneTypeRec", "Connect2_OrbitMobile_IS.model$MilestoneInfoRec", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_IS", "Connect2_OrbitMobile_BL.model$DayFilterRec", "Connect2_OrbitMobile_MUI.model$DayFilterList", "Connect2_OrbitMobile_MUI.controller$GetHostAllocation", "Connect2_OrbitMobile_MUI.model$AuditPayload_GenerateQRCodeRec", "Connect2_OrbitMobile_MUI.controller$OnApplicationEvent_GenerateQRCode", "UBTConnect_Utils.model$CacheControl_UserInformationRec", "MemoryClientCache.model$MemoryCacheResultRec", "Connect2_OrbitMobile_MUI.referencesHealth$MemoryClientCache", "UBTConnect_Utils.controller$Cache_UserInfo_Get", "Connect2_OrbitMobile_MUI.controller$GetContactHelpdeskSubject_Event", "Connect2_OrbitMobile_MUI.controller$FilterMilestonesByDateGroup", "Connect2_OrbitMobile_IS.model$HostSurveyRec", "Connect2_OrbitMobile_MUI.model$LocalSurveyStatusRecordList", "Connect2_OrbitMobile_MUI.model$LocalSurveyStatusRec"], function(OutSystems, Connect2_OrbitMobile_MUIModel, Connect2_OrbitMobile_MUIController, UBTConnect_UtilsController, Connect2_OrbitMobile_BLModel, Connect2_OrbitMobile_ISModel, UBTConnect_UtilsModel, MemoryClientCacheModel, Connect2_OrbitMobile_MUIEntities, React, OSView, Connect2_OrbitMobile_MUI_Orbit_ScreenBlocks_ScreenBlock_EventDetail_mvc_model, Connect2_OrbitMobile_MUI_Orbit_ScreenBlocks_ScreenBlock_EventDetail_mvc_controller, Connect2_OrbitMobile_MUIClientVariables, Connect2_LegacyShared_Layout_OrbitTheme_Layout_Orbit_mvc_view, OSWidgets, Connect2_LegacyShared_Layout_MenuIcon__UpdatedOSUI_mvc_view, Connect2_OrbitMobile_MUI_Orbit_Blocks_HostSurvey_PillItem_mvc_view, Connect2_OrbitMobile_MUI_Orbit_Generic_Blocks_Accordion_Orbit_mvc_view, OutSystemsUI_2_23_Content_DEPRECATED_AccordionItem_mvc_view, Connect2_OrbitMobile_MUI_Orbit_Blocks_HostAllocation_List_mvc_view, Connect2_OrbitMobile_MUI_Orbit_Blocks_EventDateSelection_mvc_view, Connect2_OrbitMobile_MUI_Orbit_Blocks_Card_Milestone_mvc_view, Connect2_OrbitMobile_MUI_Orbit_Generic_Blocks_NoInformation_Orbit_mvc_view, Connect2_OrbitMobile_MUI_Orbit_Generic_Blocks_Skeleton_Loading_mvc_view, Connect2_OrbitMobile_MUI_Orbit_Blocks_ContactHelpdesk_Footer_mvc_view) {
+define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$view", ["OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.controller", "UBTConnect_Utils.controller", "Connect2_OrbitMobile_BL.model", "UBTConnectLibrary.model", "UBTConnect_Utils.model", "Connect2_OrbitMobile_IS.model", "MemoryClientCache.model", "Connect2_OrbitMobile_MUI.entities", "react", "OutSystems/ReactView/Main", "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$model", "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$controller", "Connect2_OrbitMobile_MUI.clientVariables", "Connect2_LegacyShared.Layout_OrbitTheme.Layout_Orbit.mvc$view", "OutSystems/ReactWidgets/Main", "Connect2_LegacyShared.Layout.MenuIcon__UpdatedOSUI.mvc$view", "UBTConnect_Utils.CW_Notes.ItemNotesSection.mvc$view", "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_PillItem.mvc$view", "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Accordion_Orbit.mvc$view", "OutSystemsUI_2_23.Content.DEPRECATED_AccordionItem.mvc$view", "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostAllocation_List.mvc$view", "Connect2_OrbitMobile_MUI.Orbit_Blocks.EventDateSelection.mvc$view", "Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Milestone.mvc$view", "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.NoInformation_Orbit.mvc$view", "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Skeleton_Loading.mvc$view", "Connect2_OrbitMobile_MUI.Orbit_Blocks.ContactHelpdesk_Footer.mvc$view", "Connect2_OrbitMobile_MUI.controller$GetFormattedDateTime", "UBTConnect_Utils.controller$GetHasOrbitEventBooklet", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$UBTConnect_Utils", "UBTConnect_Utils.controller$GetHasOrbitHostSurvey", "UBTConnect_Utils.controller$IsListVirtualizationDisabled", "Connect2_OrbitMobile_BL.model$GetEventDetailScreenRec", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_BL", "Connect2_OrbitMobile_BL.model$DateFilterRec", "Connect2_OrbitMobile_BL.model$Milestone_ScreenRec", "Connect2_OrbitMobile_MUI.model$Milestone_ScreenList", "Connect2_OrbitMobile_MUI.model$LongIntegerLongIntegerLongIntegerRecord", "UBTConnectLibrary.model$NotesRec", "Connect2_OrbitMobile_MUI.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$Note_ItemRec", "Connect2_OrbitMobile_MUI.model$Note_ItemList", "UBTConnect_Utils.model$ContactPopupDataRec", "UBTConnectLibrary.model$ActionBarOptionsRec", "Connect2_OrbitMobile_BL.model$OrbitMilestoneTypeRec", "Connect2_OrbitMobile_IS.model$MilestoneInfoRec", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_IS", "Connect2_OrbitMobile_BL.model$DayFilterRec", "Connect2_OrbitMobile_MUI.model$DayFilterList", "Connect2_OrbitMobile_MUI.controller$GetHostAllocation", "Connect2_OrbitMobile_MUI.model$AuditPayload_GenerateQRCodeRec", "Connect2_OrbitMobile_MUI.controller$OnApplicationEvent_GenerateQRCode", "UBTConnect_Utils.model$CacheControl_UserInformationRec", "MemoryClientCache.model$MemoryCacheResultRec", "Connect2_OrbitMobile_MUI.referencesHealth$MemoryClientCache", "UBTConnect_Utils.controller$Cache_UserInfo_Get", "Connect2_OrbitMobile_MUI.controller$GetContactHelpdeskSubject_Event", "Connect2_OrbitMobile_MUI.controller$FilterMilestonesByDateGroup", "Connect2_OrbitMobile_IS.model$HostSurveyRec", "Connect2_OrbitMobile_MUI.model$LocalSurveyStatusRecordList", "Connect2_OrbitMobile_MUI.model$LocalSurveyStatusRec"], function(OutSystems, Connect2_OrbitMobile_MUIModel, Connect2_OrbitMobile_MUIController, UBTConnect_UtilsController, Connect2_OrbitMobile_BLModel, UBTConnectLibraryModel, UBTConnect_UtilsModel, Connect2_OrbitMobile_ISModel, MemoryClientCacheModel, Connect2_OrbitMobile_MUIEntities, React, OSView, Connect2_OrbitMobile_MUI_Orbit_ScreenBlocks_ScreenBlock_EventDetail_mvc_model, Connect2_OrbitMobile_MUI_Orbit_ScreenBlocks_ScreenBlock_EventDetail_mvc_controller, Connect2_OrbitMobile_MUIClientVariables, Connect2_LegacyShared_Layout_OrbitTheme_Layout_Orbit_mvc_view, OSWidgets, Connect2_LegacyShared_Layout_MenuIcon__UpdatedOSUI_mvc_view, UBTConnect_Utils_CW_Notes_ItemNotesSection_mvc_view, Connect2_OrbitMobile_MUI_Orbit_Blocks_HostSurvey_PillItem_mvc_view, Connect2_OrbitMobile_MUI_Orbit_Generic_Blocks_Accordion_Orbit_mvc_view, OutSystemsUI_2_23_Content_DEPRECATED_AccordionItem_mvc_view, Connect2_OrbitMobile_MUI_Orbit_Blocks_HostAllocation_List_mvc_view, Connect2_OrbitMobile_MUI_Orbit_Blocks_EventDateSelection_mvc_view, Connect2_OrbitMobile_MUI_Orbit_Blocks_Card_Milestone_mvc_view, Connect2_OrbitMobile_MUI_Orbit_Generic_Blocks_NoInformation_Orbit_mvc_view, Connect2_OrbitMobile_MUI_Orbit_Generic_Blocks_Skeleton_Loading_mvc_view, Connect2_OrbitMobile_MUI_Orbit_Blocks_ContactHelpdesk_Footer_mvc_view) {
     var OS = OutSystems.Internal;
     var PlaceholderContent = OSView.Widget.PlaceholderContent;
     var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
@@ -276,13 +303,13 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
         };
         View.displayName = "Orbit_ScreenBlocks.ScreenBlock_EventDetail";
         View.getCssDependencies = function() {
-            return ["css/OutSystemsReactWidgets.css"];
+            return ["css/OutSystemsReactWidgets.css", "css/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.css"];
         };
         View.getJsDependencies = function() {
             return ["scripts/Connect2_OrbitMobile_MUI.TimeFormat.js"];
         };
         View.getBlocks = function() {
-            return [Connect2_LegacyShared_Layout_OrbitTheme_Layout_Orbit_mvc_view, Connect2_LegacyShared_Layout_MenuIcon__UpdatedOSUI_mvc_view, Connect2_OrbitMobile_MUI_Orbit_Blocks_HostSurvey_PillItem_mvc_view, Connect2_OrbitMobile_MUI_Orbit_Generic_Blocks_Accordion_Orbit_mvc_view, OutSystemsUI_2_23_Content_DEPRECATED_AccordionItem_mvc_view, Connect2_OrbitMobile_MUI_Orbit_Blocks_HostAllocation_List_mvc_view, Connect2_OrbitMobile_MUI_Orbit_Blocks_EventDateSelection_mvc_view, Connect2_OrbitMobile_MUI_Orbit_Blocks_Card_Milestone_mvc_view, Connect2_OrbitMobile_MUI_Orbit_Generic_Blocks_NoInformation_Orbit_mvc_view, Connect2_OrbitMobile_MUI_Orbit_Generic_Blocks_Skeleton_Loading_mvc_view, Connect2_OrbitMobile_MUI_Orbit_Blocks_ContactHelpdesk_Footer_mvc_view];
+            return [Connect2_LegacyShared_Layout_OrbitTheme_Layout_Orbit_mvc_view, Connect2_LegacyShared_Layout_MenuIcon__UpdatedOSUI_mvc_view, UBTConnect_Utils_CW_Notes_ItemNotesSection_mvc_view, Connect2_OrbitMobile_MUI_Orbit_Blocks_HostSurvey_PillItem_mvc_view, Connect2_OrbitMobile_MUI_Orbit_Generic_Blocks_Accordion_Orbit_mvc_view, OutSystemsUI_2_23_Content_DEPRECATED_AccordionItem_mvc_view, Connect2_OrbitMobile_MUI_Orbit_Blocks_HostAllocation_List_mvc_view, Connect2_OrbitMobile_MUI_Orbit_Blocks_EventDateSelection_mvc_view, Connect2_OrbitMobile_MUI_Orbit_Blocks_Card_Milestone_mvc_view, Connect2_OrbitMobile_MUI_Orbit_Generic_Blocks_NoInformation_Orbit_mvc_view, Connect2_OrbitMobile_MUI_Orbit_Generic_Blocks_Skeleton_Loading_mvc_view, Connect2_OrbitMobile_MUI_Orbit_Blocks_ContactHelpdesk_Footer_mvc_view];
         };
         Object.defineProperty(View.prototype, "modelFactory", {
             get: function() {
@@ -774,7 +801,77 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                                         uuid: "30"
                                     },
                                     _widgetRecordProvider: widgetsRecordProvider
-                                })))), $if((model.variables.eventDetailsVar.eventTypeAttr === Connect2_OrbitMobile_MUIModel.staticEntities.orbitEventType.eventHost), false, this, function() {
+                                }))), React.createElement(OSWidgets.Container, {
+                                    align: /*Default*/ 0,
+                                    animate: false,
+                                    style: "orbit-event-notes",
+                                    visible: true,
+                                    _idProps: {
+                                        service: idService,
+                                        uuid: "31"
+                                    },
+                                    _widgetRecordProvider: widgetsRecordProvider
+                                }, React.createElement(UBTConnect_Utils_CW_Notes_ItemNotesSection_mvc_view, {
+                                    inputs: {
+                                        ActionBarOptions: model.getCachedValue(idService.getId("+9JHcQ_b2kun0Y2A0woXnA.ActionBarOptions"), function() {
+                                            return function() {
+                                                var rec = new UBTConnectLibraryModel.ActionBarOptionsRec();
+                                                rec.showAddNoteAttr = true;
+                                                rec.isAddNoteEnabledAttr = true;
+                                                return rec;
+                                            }();
+                                        }),
+                                        In_NoteCategoryId: model.getCachedValue(idService.getId("+9JHcQ_b2kun0Y2A0woXnA.In_NoteCategoryId"), function() {
+                                            return OS.BuiltinFunctions.textToIdentifier("Orbit Event");
+                                        }),
+                                        In_ItemId: OS.BuiltinFunctions.longIntegerToText(model.variables.in_EventIdIn),
+                                        _in_ItemIdInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables._in_EventIdInDataFetchStatus),
+                                        In_Notes: model.variables.eventNotesVar
+                                    },
+                                    events: {
+                                        _handleError: function(ex) {
+                                            controller.handleError(ex);
+                                        },
+                                        on_NoteDeleted$Action: function(noteIdIn, wasLastNoteIn) {
+                                            var eventHandlerContext = callContext.clone();
+                                            return OS.Flow.tryFinally(function() {
+                                                var varBag = {};
+                                                controller.pushDebuggerContext(eventHandlerContext);
+
+                                                OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "CW_Notes/ItemNotesSection On_NoteDeleted");
+                                                controller.handler_OnNoteDeleted$Action(noteIdIn, controller.callContext(eventHandlerContext));
+                                            }, function() {
+                                                controller.popDebuggerContext(eventHandlerContext);
+                                            });
+
+                                            ;
+                                        },
+                                        on_NotesChanged$Action: function(new_NotesIn) {
+                                            var eventHandlerContext = callContext.clone();
+                                            return OS.Flow.tryFinally(function() {
+                                                var varBag = {};
+                                                controller.pushDebuggerContext(eventHandlerContext);
+
+                                                OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "CW_Notes/ItemNotesSection On_NotesChanged");
+                                                controller.handler_OnNotesChanged$Action(new_NotesIn, controller.callContext(eventHandlerContext));
+                                            }, function() {
+                                                controller.popDebuggerContext(eventHandlerContext);
+                                            });
+
+                                            ;
+                                        }
+                                    },
+                                    _validationProps: {
+                                        validationService: validationService
+                                    },
+                                    _idProps: {
+                                        service: idService,
+                                        uuid: "32",
+                                        alias: "3"
+                                    },
+                                    _widgetRecordProvider: widgetsRecordProvider,
+                                    _dependencies: []
+                                }))), $if((model.variables.eventDetailsVar.eventTypeAttr === Connect2_OrbitMobile_MUIModel.staticEntities.orbitEventType.eventHost), false, this, function() {
                                     return [$if(!(model.variables.getLocalSurveyStatusByJSONNameAggr.listOut.isEmpty), false, this, function() {
                                         return [$if(OutSystemsDebugger.handleFunctionCall(function() {
                                             return UBTConnect_UtilsController.default.getHasOrbitHostSurvey$Action(callContext).hasOrbitHostSurveyOut;
@@ -787,7 +884,7 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                                                     visible: true,
                                                     _idProps: {
                                                         service: idService,
-                                                        uuid: "31"
+                                                        uuid: "33"
                                                     },
                                                     _widgetRecordProvider: widgetsRecordProvider
                                                 }, React.createElement(OSWidgets.Container, {
@@ -813,7 +910,7 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                                                     visible: true,
                                                     _idProps: {
                                                         service: idService,
-                                                        uuid: "32"
+                                                        uuid: "34"
                                                     },
                                                     _widgetRecordProvider: widgetsRecordProvider
                                                 }, React.createElement(OSWidgets.Expression, {
@@ -825,7 +922,7 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                                                     }),
                                                     _idProps: {
                                                         service: idService,
-                                                        uuid: "33"
+                                                        uuid: "35"
                                                     },
                                                     _widgetRecordProvider: widgetsRecordProvider,
                                                     value_dataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.getLocalSurveyStatusByJSONNameAggr.dataFetchStatusAttr)
@@ -836,7 +933,7 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                                                     visible: true,
                                                     _idProps: {
                                                         service: idService,
-                                                        uuid: "34"
+                                                        uuid: "36"
                                                     },
                                                     _widgetRecordProvider: widgetsRecordProvider
                                                 })), React.createElement(Connect2_OrbitMobile_MUI_Orbit_Blocks_HostSurvey_PillItem_mvc_view, {
@@ -867,8 +964,8 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                                                     },
                                                     _idProps: {
                                                         service: idService,
-                                                        uuid: "35",
-                                                        alias: "3"
+                                                        uuid: "37",
+                                                        alias: "4"
                                                     },
                                                     _widgetRecordProvider: widgetsRecordProvider,
                                                     _dependencies: []
@@ -881,7 +978,7 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                                                     visible: true,
                                                     _idProps: {
                                                         service: idService,
-                                                        uuid: "36"
+                                                        uuid: "38"
                                                     },
                                                     _widgetRecordProvider: widgetsRecordProvider
                                                 }, React.createElement(OSWidgets.Expression, {
@@ -889,7 +986,7 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                                                     value: "Host Survey",
                                                     _idProps: {
                                                         service: idService,
-                                                        uuid: "37"
+                                                        uuid: "39"
                                                     },
                                                     _widgetRecordProvider: widgetsRecordProvider
                                                 }), React.createElement(OSWidgets.Container, {
@@ -899,14 +996,14 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                                                     visible: true,
                                                     _idProps: {
                                                         service: idService,
-                                                        uuid: "38"
+                                                        uuid: "40"
                                                     },
                                                     _widgetRecordProvider: widgetsRecordProvider
                                                 }, React.createElement(OSWidgets.Expression, {
                                                     value: model.variables.getLocalSurveyStatusByJSONNameAggr.listOut.getCurrent(callContext.iterationContext).localSurveyStatusAttr.labelAttr,
                                                     _idProps: {
                                                         service: idService,
-                                                        uuid: "39"
+                                                        uuid: "41"
                                                     },
                                                     _widgetRecordProvider: widgetsRecordProvider,
                                                     value_dataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.getLocalSurveyStatusByJSONNameAggr.dataFetchStatusAttr)
@@ -920,7 +1017,7 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                                                 visible: true,
                                                 _idProps: {
                                                     service: idService,
-                                                    uuid: "40"
+                                                    uuid: "42"
                                                 },
                                                 _widgetRecordProvider: widgetsRecordProvider
                                             }, React.createElement(OSWidgets.Expression, {
@@ -928,7 +1025,7 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                                                 value: "Host Survey",
                                                 _idProps: {
                                                     service: idService,
-                                                    uuid: "41"
+                                                    uuid: "43"
                                                 },
                                                 _widgetRecordProvider: widgetsRecordProvider
                                             }), React.createElement(OSWidgets.Container, {
@@ -938,14 +1035,14 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                                                 visible: true,
                                                 _idProps: {
                                                     service: idService,
-                                                    uuid: "42"
+                                                    uuid: "44"
                                                 },
                                                 _widgetRecordProvider: widgetsRecordProvider
                                             }, React.createElement(OSWidgets.Expression, {
                                                 value: model.variables.getLocalSurveyStatusByJSONNameAggr.listOut.getCurrent(callContext.iterationContext).localSurveyStatusAttr.labelAttr,
                                                 _idProps: {
                                                     service: idService,
-                                                    uuid: "43"
+                                                    uuid: "45"
                                                 },
                                                 _widgetRecordProvider: widgetsRecordProvider,
                                                 value_dataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.getLocalSurveyStatusByJSONNameAggr.dataFetchStatusAttr)
@@ -972,8 +1069,8 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                                             },
                                             _idProps: {
                                                 service: idService,
-                                                uuid: "44",
-                                                alias: "4"
+                                                uuid: "46",
+                                                alias: "5"
                                             },
                                             _widgetRecordProvider: widgetsRecordProvider,
                                             placeholders: {
@@ -994,8 +1091,8 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                                                         },
                                                         _idProps: {
                                                             service: idService,
-                                                            uuid: "45",
-                                                            alias: "5"
+                                                            uuid: "47",
+                                                            alias: "6"
                                                         },
                                                         _widgetRecordProvider: widgetsRecordProvider,
                                                         placeholders: {
@@ -1004,7 +1101,7 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                                                                     value: "Host Allocation",
                                                                     _idProps: {
                                                                         service: idService,
-                                                                        uuid: "46"
+                                                                        uuid: "48"
                                                                     },
                                                                     _widgetRecordProvider: widgetsRecordProvider
                                                                 })];
@@ -1052,8 +1149,8 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                                                                     },
                                                                     _idProps: {
                                                                         service: idService,
-                                                                        uuid: "47",
-                                                                        alias: "6"
+                                                                        uuid: "49",
+                                                                        alias: "7"
                                                                     },
                                                                     _widgetRecordProvider: widgetsRecordProvider,
                                                                     _dependencies: []
@@ -1075,14 +1172,14 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                                         visible: true,
                                         _idProps: {
                                             service: idService,
-                                            uuid: "48"
+                                            uuid: "50"
                                         },
                                         _widgetRecordProvider: widgetsRecordProvider
                                     }, React.createElement(OSWidgets.Expression, {
                                         value: "Itinerary",
                                         _idProps: {
                                             service: idService,
-                                            uuid: "49"
+                                            uuid: "51"
                                         },
                                         _widgetRecordProvider: widgetsRecordProvider
                                     })), React.createElement(Connect2_OrbitMobile_MUI_Orbit_Blocks_EventDateSelection_mvc_view, {
@@ -1113,8 +1210,8 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                                         },
                                         _idProps: {
                                             service: idService,
-                                            uuid: "50",
-                                            alias: "7"
+                                            uuid: "52",
+                                            alias: "8"
                                         },
                                         _widgetRecordProvider: widgetsRecordProvider,
                                         _dependencies: []
@@ -1136,7 +1233,7 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                                         tag: "div",
                                         _idProps: {
                                             service: idService,
-                                            uuid: "51"
+                                            uuid: "53"
                                         },
                                         _widgetRecordProvider: widgetsRecordProvider,
                                         placeholders: {
@@ -1148,7 +1245,7 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                                                     visible: true,
                                                     _idProps: {
                                                         service: idService,
-                                                        uuid: "52"
+                                                        uuid: "54"
                                                     },
                                                     _widgetRecordProvider: widgetsRecordProvider,
                                                     _dependencies: [asPrimitiveValue(model.variables.eventDetailsVar.milestonesAttr.getCurrent(callContext.iterationContext)), asPrimitiveValue(model.variables.eventDetailsVar.mealsAttr)]
@@ -1184,8 +1281,8 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                                                     },
                                                     _idProps: {
                                                         service: idService,
-                                                        uuid: "53",
-                                                        alias: "8"
+                                                        uuid: "55",
+                                                        alias: "9"
                                                     },
                                                     _widgetRecordProvider: widgetsRecordProvider,
                                                     _dependencies: []
@@ -1211,8 +1308,8 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                                                 },
                                                 _idProps: {
                                                     service: idService,
-                                                    uuid: "54",
-                                                    alias: "9"
+                                                    uuid: "56",
+                                                    alias: "10"
                                                 },
                                                 _widgetRecordProvider: widgetsRecordProvider,
                                                 placeholders: {
@@ -1233,8 +1330,8 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                                                             },
                                                             _idProps: {
                                                                 service: idService,
-                                                                uuid: "55",
-                                                                alias: "10"
+                                                                uuid: "57",
+                                                                alias: "11"
                                                             },
                                                             _widgetRecordProvider: widgetsRecordProvider,
                                                             placeholders: {
@@ -1243,7 +1340,7 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                                                                         value: "Host Allocation",
                                                                         _idProps: {
                                                                             service: idService,
-                                                                            uuid: "56"
+                                                                            uuid: "58"
                                                                         },
                                                                         _widgetRecordProvider: widgetsRecordProvider
                                                                     })];
@@ -1291,8 +1388,8 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                                                                         },
                                                                         _idProps: {
                                                                             service: idService,
-                                                                            uuid: "57",
-                                                                            alias: "11"
+                                                                            uuid: "59",
+                                                                            alias: "12"
                                                                         },
                                                                         _widgetRecordProvider: widgetsRecordProvider,
                                                                         _dependencies: []
@@ -1313,7 +1410,7 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                                                 visible: true,
                                                 _idProps: {
                                                     service: idService,
-                                                    uuid: "58"
+                                                    uuid: "60"
                                                 },
                                                 _widgetRecordProvider: widgetsRecordProvider
                                             }), React.createElement(Connect2_OrbitMobile_MUI_Orbit_Generic_Blocks_NoInformation_Orbit_mvc_view, {
@@ -1342,8 +1439,8 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                                                 },
                                                 _idProps: {
                                                     service: idService,
-                                                    uuid: "59",
-                                                    alias: "12"
+                                                    uuid: "61",
+                                                    alias: "13"
                                                 },
                                                 _widgetRecordProvider: widgetsRecordProvider,
                                                 _dependencies: []
@@ -1381,8 +1478,8 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                                         },
                                         _idProps: {
                                             service: idService,
-                                            uuid: "60",
-                                            alias: "13"
+                                            uuid: "62",
+                                            alias: "14"
                                         },
                                         _widgetRecordProvider: widgetsRecordProvider,
                                         _dependencies: []
@@ -1406,8 +1503,8 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                                 },
                                 _idProps: {
                                     service: idService,
-                                    uuid: "61",
-                                    alias: "14"
+                                    uuid: "63",
+                                    alias: "15"
                                 },
                                 _widgetRecordProvider: widgetsRecordProvider,
                                 _dependencies: []
@@ -1442,8 +1539,8 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                                 },
                                 _idProps: {
                                     service: idService,
-                                    uuid: "62",
-                                    alias: "15"
+                                    uuid: "64",
+                                    alias: "16"
                                 },
                                 _widgetRecordProvider: widgetsRecordProvider,
                                 _dependencies: []
@@ -1471,7 +1568,7 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
 
     return View;
 });
-define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$controller", ["OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.controller", "UBTConnect_Utils.controller", "Connect2_OrbitMobile_BL.model", "Connect2_OrbitMobile_IS.model", "UBTConnect_Utils.model", "MemoryClientCache.model", "Connect2_OrbitMobile_MUI.entities", "Connect2_OrbitMobile_MUI.languageResources", "Connect2_OrbitMobile_MUI.clientVariables", "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$debugger", "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$controller.OnReady.WasCurrentViewRestoredFromCacheJS", "Connect2_OrbitMobile_MUI.controller$GetFormattedDateTime", "UBTConnect_Utils.controller$GetHasOrbitEventBooklet", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$UBTConnect_Utils", "UBTConnect_Utils.controller$GetHasOrbitHostSurvey", "UBTConnect_Utils.controller$IsListVirtualizationDisabled", "Connect2_OrbitMobile_BL.model$GetEventDetailScreenRec", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_BL", "Connect2_OrbitMobile_BL.model$DateFilterRec", "Connect2_OrbitMobile_BL.model$Milestone_ScreenRec", "Connect2_OrbitMobile_MUI.model$Milestone_ScreenList", "Connect2_OrbitMobile_MUI.model$LongIntegerLongIntegerLongIntegerRecord", "Connect2_OrbitMobile_BL.model$OrbitMilestoneTypeRec", "Connect2_OrbitMobile_IS.model$MilestoneInfoRec", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_IS", "Connect2_OrbitMobile_BL.model$DayFilterRec", "Connect2_OrbitMobile_MUI.model$DayFilterList", "Connect2_OrbitMobile_MUI.controller$GetHostAllocation", "Connect2_OrbitMobile_MUI.model$AuditPayload_GenerateQRCodeRec", "Connect2_OrbitMobile_MUI.controller$OnApplicationEvent_GenerateQRCode", "UBTConnect_Utils.model$CacheControl_UserInformationRec", "MemoryClientCache.model$MemoryCacheResultRec", "Connect2_OrbitMobile_MUI.referencesHealth$MemoryClientCache", "UBTConnect_Utils.controller$Cache_UserInfo_Get", "Connect2_OrbitMobile_MUI.controller$GetContactHelpdeskSubject_Event", "Connect2_OrbitMobile_MUI.controller$FilterMilestonesByDateGroup", "Connect2_OrbitMobile_IS.model$HostSurveyRec", "Connect2_OrbitMobile_MUI.model$LocalSurveyStatusRecordList", "Connect2_OrbitMobile_MUI.model$LocalSurveyStatusRec"], function(OutSystems, Connect2_OrbitMobile_MUIModel, Connect2_OrbitMobile_MUIController, UBTConnect_UtilsController, Connect2_OrbitMobile_BLModel, Connect2_OrbitMobile_ISModel, UBTConnect_UtilsModel, MemoryClientCacheModel, Connect2_OrbitMobile_MUIEntities, Connect2_OrbitMobile_MUILanguageResources, Connect2_OrbitMobile_MUIClientVariables, Connect2_OrbitMobile_MUI_Orbit_ScreenBlocks_ScreenBlock_EventDetail_mvc_Debugger, Connect2_OrbitMobile_MUI_Orbit_ScreenBlocks_ScreenBlock_EventDetail_mvc_controller_OnReady_WasCurrentViewRestoredFromCacheJS) {
+define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$controller", ["OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.controller", "UBTConnect_Utils.controller", "Connect2_OrbitMobile_BL.model", "UBTConnectLibrary.model", "UBTConnect_Utils.model", "Connect2_OrbitMobile_IS.model", "MemoryClientCache.model", "Connect2_OrbitMobile_MUI.entities", "Connect2_OrbitMobile_MUI.languageResources", "Connect2_OrbitMobile_MUI.clientVariables", "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$debugger", "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$controller.OnReady.WasCurrentViewRestoredFromCacheJS", "Connect2_OrbitMobile_MUI.controller$GetFormattedDateTime", "UBTConnect_Utils.controller$GetHasOrbitEventBooklet", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$UBTConnect_Utils", "UBTConnect_Utils.controller$GetHasOrbitHostSurvey", "UBTConnect_Utils.controller$IsListVirtualizationDisabled", "Connect2_OrbitMobile_BL.model$GetEventDetailScreenRec", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_BL", "Connect2_OrbitMobile_BL.model$DateFilterRec", "Connect2_OrbitMobile_BL.model$Milestone_ScreenRec", "Connect2_OrbitMobile_MUI.model$Milestone_ScreenList", "Connect2_OrbitMobile_MUI.model$LongIntegerLongIntegerLongIntegerRecord", "UBTConnectLibrary.model$NotesRec", "Connect2_OrbitMobile_MUI.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$Note_ItemRec", "Connect2_OrbitMobile_MUI.model$Note_ItemList", "UBTConnect_Utils.model$ContactPopupDataRec", "UBTConnectLibrary.model$ActionBarOptionsRec", "Connect2_OrbitMobile_BL.model$OrbitMilestoneTypeRec", "Connect2_OrbitMobile_IS.model$MilestoneInfoRec", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_IS", "Connect2_OrbitMobile_BL.model$DayFilterRec", "Connect2_OrbitMobile_MUI.model$DayFilterList", "Connect2_OrbitMobile_MUI.controller$GetHostAllocation", "Connect2_OrbitMobile_MUI.model$AuditPayload_GenerateQRCodeRec", "Connect2_OrbitMobile_MUI.controller$OnApplicationEvent_GenerateQRCode", "UBTConnect_Utils.model$CacheControl_UserInformationRec", "MemoryClientCache.model$MemoryCacheResultRec", "Connect2_OrbitMobile_MUI.referencesHealth$MemoryClientCache", "UBTConnect_Utils.controller$Cache_UserInfo_Get", "Connect2_OrbitMobile_MUI.controller$GetContactHelpdeskSubject_Event", "Connect2_OrbitMobile_MUI.controller$FilterMilestonesByDateGroup", "Connect2_OrbitMobile_IS.model$HostSurveyRec", "Connect2_OrbitMobile_MUI.model$LocalSurveyStatusRecordList", "Connect2_OrbitMobile_MUI.model$LocalSurveyStatusRec"], function(OutSystems, Connect2_OrbitMobile_MUIModel, Connect2_OrbitMobile_MUIController, UBTConnect_UtilsController, Connect2_OrbitMobile_BLModel, UBTConnectLibraryModel, UBTConnect_UtilsModel, Connect2_OrbitMobile_ISModel, MemoryClientCacheModel, Connect2_OrbitMobile_MUIEntities, Connect2_OrbitMobile_MUILanguageResources, Connect2_OrbitMobile_MUIClientVariables, Connect2_OrbitMobile_MUI_Orbit_ScreenBlocks_ScreenBlock_EventDetail_mvc_Debugger, Connect2_OrbitMobile_MUI_Orbit_ScreenBlocks_ScreenBlock_EventDetail_mvc_controller_OnReady_WasCurrentViewRestoredFromCacheJS) {
     var OS = OutSystems.Internal;
     var Controller = (function(_super) {
         __extends(Controller, _super);
@@ -1485,6 +1582,7 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                 get_EventDetails$DataActRefresh: -1,
                 get_HostSurveyStatus$DataActRefresh: -1,
                 get_HasQRCode$DataActRefresh: -1,
+                fetchEventNotes$DataActRefresh: 0,
                 get_HasDocuments$DataActRefresh: -1
             };
             this.dataFetchDependentsGraph = {
@@ -1492,6 +1590,7 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                 get_EventDetails$DataActRefresh: [],
                 get_HostSurveyStatus$DataActRefresh: ["getLocalSurveyStatusByJSONName$AggrRefresh"],
                 get_HasQRCode$DataActRefresh: [],
+                fetchEventNotes$DataActRefresh: [],
                 get_HasDocuments$DataActRefresh: []
             };
             this.shouldSendClientVarsToDataSources = false;
@@ -1678,6 +1777,34 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
 
             });
         };
+        Controller.prototype.fetchEventNotes$DataActRefresh = function(callContext) {
+            var model = this.model;
+            var controller = this.controller;
+            var callContext = controller.callContext(callContext);
+            return OS.Flow.tryFinally(function() {
+                var varBag = {};
+                controller.pushDebuggerContext(callContext);
+
+                OutSystemsDebugger.push("rMzmm49Sw0CsKZc1bJZ9DQ:DIWy0SAHKkGlZfzLbHtqHw:/NRWebFlows.YqF_ecsKt0e5VFTRsjye5A/NodesShownInESpaceTree.QOPhlst_AkeQOZd_maLNhg/DataActions.DIWy0SAHKkGlZfzLbHtqHw:Wm_ZTTRc5W71HGNaoJuOfw", "Connect2_OrbitMobile_MUI", "FetchEventNotes", "NRFlows.DataScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.setThreadStartName(callContext.id, "Orbit_ScreenBlocks/ScreenBlock_EventDetail/FetchEventNotes");
+                return controller.callDataAction("DataActionFetchEventNotes", "screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionFetchEventNotes", "G1tns8n_hOecA9jdno6OJw", function(b) {
+                    model.variables.fetchEventNotesDataAct.dataFetchStatusAttr = b;
+                }, function(json) {
+                    model.variables.fetchEventNotesDataAct.replaceWith(OS.DataConversion.ServerDataConverter.from(json, model.variables.fetchEventNotesDataAct.constructor));
+                }, undefined, OutSystemsDebugger.getRequestHeaders(callContext.id), function(json, headers) {
+                    OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
+                }, callContext, undefined, false).then(function() {
+                    OutSystemsDebugger.setThreadStartName(callContext.id, "Orbit_ScreenBlocks/ScreenBlock_EventDetail/FetchEventNotes On After Fetch");
+                    controller._onAfterFetch_FetchEventNotes$Action(controller.callContext(callContext));
+
+                });
+
+            }, function() {
+                OutSystemsDebugger.pop("rMzmm49Sw0CsKZc1bJZ9DQ:DIWy0SAHKkGlZfzLbHtqHw", callContext.id);
+                controller.popDebuggerContext(callContext);
+
+            });
+        };
         Controller.prototype.get_HasDocuments$DataActRefresh = function(callContext) {
             var model = this.model;
             var controller = this.controller;
@@ -1707,8 +1834,102 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
             });
         };
 
-        Controller.prototype.dataFetchActionNames = ["getLocalSurveyStatusByJSONName$AggrRefresh", "get_EventDetails$DataActRefresh", "get_HostSurveyStatus$DataActRefresh", "get_HasQRCode$DataActRefresh", "get_HasDocuments$DataActRefresh"];
+        Controller.prototype.dataFetchActionNames = ["getLocalSurveyStatusByJSONName$AggrRefresh", "get_EventDetails$DataActRefresh", "get_HostSurveyStatus$DataActRefresh", "get_HasQRCode$DataActRefresh", "fetchEventNotes$DataActRefresh", "get_HasDocuments$DataActRefresh"];
         // Client Actions
+        Controller.prototype._onAfterFetch_FetchEventNotes$Action = function(callContext) {
+            var varBag = {};
+            var model = this.model;
+            var controller = this.controller;
+            var idService = this.idService;
+            varBag.model = model;
+            varBag.idService = idService;
+            controller.ensureControllerAlive("OnAfterFetch_FetchEventNotes");
+            callContext = controller.callContext(callContext);
+            varBag.callContext = callContext;
+            try {
+                OutSystemsDebugger.push("rMzmm49Sw0CsKZc1bJZ9DQ:CP36BV0OgUiSfqU2FXxbTg:/NRWebFlows.YqF_ecsKt0e5VFTRsjye5A/NodesShownInESpaceTree.QOPhlst_AkeQOZd_maLNhg/ClientActions.CP36BV0OgUiSfqU2FXxbTg:eO7NpodoFKPJcJLqZRCD+Q", "Connect2_OrbitMobile_MUI", "OnAfterFetch_FetchEventNotes", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.handleBreakpoint("rMzmm49Sw0CsKZc1bJZ9DQ:GNfPKzkUPkmBU87JH7NI8A", callContext.id);
+                OutSystemsDebugger.handleBreakpoint("rMzmm49Sw0CsKZc1bJZ9DQ:9M_x8W1iMEaTxfmPSPxKCQ", callContext.id);
+                // EventNotes = FetchEventNotes.Notes
+                model.variables.eventNotesVar = model.variables.fetchEventNotesDataAct.notesOut;
+                OutSystemsDebugger.handleBreakpoint("rMzmm49Sw0CsKZc1bJZ9DQ:UH0M3ExHz0S3Xjm_lEmp+g", callContext.id);
+            } catch (ex) {
+                OutSystemsDebugger.handleException(ex, callContext.id);
+                throw ex;
+            } finally {
+                OutSystemsDebugger.pop("rMzmm49Sw0CsKZc1bJZ9DQ:CP36BV0OgUiSfqU2FXxbTg", callContext.id);
+            }
+
+        };
+        Controller.prototype._handler_OnNoteDeleted$Action = function(noteIdIn, callContext) {
+            var varBag = {};
+            var model = this.model;
+            var controller = this.controller;
+            var idService = this.idService;
+            varBag.model = model;
+            varBag.idService = idService;
+            controller.ensureControllerAlive("Handler_OnNoteDeleted");
+            callContext = controller.callContext(callContext);
+            var vars = new OS.DataTypes.VariableHolder(new(controller.constructor.getVariableGroupType("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.Handler_OnNoteDeleted$vars"))());
+            vars.value.noteIdInLocal = noteIdIn;
+            varBag.callContext = callContext;
+            varBag.vars = vars;
+            try {
+                OutSystemsDebugger.push("rMzmm49Sw0CsKZc1bJZ9DQ:LhAEHlHNmEi5ZKJfVB58xw:/NRWebFlows.YqF_ecsKt0e5VFTRsjye5A/NodesShownInESpaceTree.QOPhlst_AkeQOZd_maLNhg/ClientActions.LhAEHlHNmEi5ZKJfVB58xw:bms93FEOjph4YAhhxQaVRQ", "Connect2_OrbitMobile_MUI", "Handler_OnNoteDeleted", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.handleBreakpoint("rMzmm49Sw0CsKZc1bJZ9DQ:GIK15sCxRUyNo4cKvvwq7g", callContext.id);
+                // Foreach EventNotes.Note_Item_List
+                callContext.iterationContext.registerIterationStart(model.variables.eventNotesVar.note_Item_ListAttr);
+                try {
+                    var note_Item_ListIterator = callContext.iterationContext.getIterator(model.variables.eventNotesVar.note_Item_ListAttr);
+                    var note_Item_ListIndex = 0;
+                    while ((OutSystemsDebugger.handleBreakpoint("rMzmm49Sw0CsKZc1bJZ9DQ:yHBC5FLE0kuyJfvD5tqX0w", callContext.id) && (note_Item_ListIndex < model.variables.eventNotesVar.note_Item_ListAttr.length))) {
+                        note_Item_ListIterator.currentRowNumber = note_Item_ListIndex;
+                        if ((OutSystemsDebugger.handleBreakpoint("rMzmm49Sw0CsKZc1bJZ9DQ:Ijkr0rtgakaFdzCSf61Y8w", callContext.id) && !(model.variables.eventNotesVar.note_Item_ListAttr.getItem(note_Item_ListIndex.valueOf()).idAttr.equals(vars.value.noteIdInLocal)))) {
+                            OutSystemsDebugger.handleBreakpoint("rMzmm49Sw0CsKZc1bJZ9DQ:KYj6IYGf5kyK7mb5EJoPfA", callContext.id);
+                            // Execute Action: ListAppend
+                            OS.SystemActions.listAppend(vars.value.updatedNotesVar.note_Item_ListAttr, model.variables.eventNotesVar.note_Item_ListAttr.getItem(note_Item_ListIndex.valueOf()), callContext);
+                        }
+
+                        note_Item_ListIndex++;
+                    }
+
+                } finally {
+                    callContext.iterationContext.registerIterationEnd(model.variables.eventNotesVar.note_Item_ListAttr);
+                }
+
+                OutSystemsDebugger.handleBreakpoint("rMzmm49Sw0CsKZc1bJZ9DQ:uWhPkd3WVkOqclAcokVwkQ", callContext.id);
+                // UpdatedNotes.Total = UpdatedNotes.Note_Item_List.Length
+                vars.value.updatedNotesVar.totalAttr = vars.value.updatedNotesVar.note_Item_ListAttr.length;
+                OutSystemsDebugger.handleBreakpoint("rMzmm49Sw0CsKZc1bJZ9DQ:uWhPkd3WVkOqclAcokVwkQ", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
+                // EventNotes = UpdatedNotes
+                model.variables.eventNotesVar = vars.value.updatedNotesVar;
+                OutSystemsDebugger.handleBreakpoint("rMzmm49Sw0CsKZc1bJZ9DQ:OuFdrDnY+kavoJulVdjkSA", callContext.id);
+            } catch (ex) {
+                OutSystemsDebugger.handleException(ex, callContext.id);
+                throw ex;
+            } finally {
+                OutSystemsDebugger.pop("rMzmm49Sw0CsKZc1bJZ9DQ:LhAEHlHNmEi5ZKJfVB58xw", callContext.id);
+            }
+
+        };
+        Controller.registerVariableGroupType("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.Handler_OnNoteDeleted$vars", [{
+            name: "NoteId",
+            attrName: "noteIdInLocal",
+            mandatory: true,
+            dataType: OS.DataTypes.DataTypes.LongInteger,
+            defaultValue: function() {
+                return OS.DataTypes.LongInteger.defaultValue;
+            }
+        }, {
+            name: "UpdatedNotes",
+            attrName: "updatedNotesVar",
+            mandatory: false,
+            dataType: OS.DataTypes.DataTypes.Record,
+            defaultValue: function() {
+                return new UBTConnectLibraryModel.NotesRec();
+            },
+            complexType: UBTConnectLibraryModel.NotesRec
+        }]);
         Controller.prototype._onAfterFetch_GetLocalSurveyStatus$Action = function(callContext) {
             var varBag = {};
             var model = this.model;
@@ -2226,6 +2447,44 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
 
             });
         };
+        Controller.prototype._handler_OnNotesChanged$Action = function(new_NotesIn, callContext) {
+            var varBag = {};
+            var model = this.model;
+            var controller = this.controller;
+            var idService = this.idService;
+            varBag.model = model;
+            varBag.idService = idService;
+            controller.ensureControllerAlive("Handler_OnNotesChanged");
+            callContext = controller.callContext(callContext);
+            var vars = new OS.DataTypes.VariableHolder(new(controller.constructor.getVariableGroupType("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.Handler_OnNotesChanged$vars"))());
+            vars.value.new_NotesInLocal = new_NotesIn.clone();
+            varBag.callContext = callContext;
+            varBag.vars = vars;
+            try {
+                OutSystemsDebugger.push("rMzmm49Sw0CsKZc1bJZ9DQ:BGG5uCQ8mUmYGKRu7A0sjw:/NRWebFlows.YqF_ecsKt0e5VFTRsjye5A/NodesShownInESpaceTree.QOPhlst_AkeQOZd_maLNhg/ClientActions.BGG5uCQ8mUmYGKRu7A0sjw:T5PS8WxwC8PGOpb4e4Ksrw", "Connect2_OrbitMobile_MUI", "Handler_OnNotesChanged", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.handleBreakpoint("rMzmm49Sw0CsKZc1bJZ9DQ:YECPEckHY0SRDg4hmwQnfA", callContext.id);
+                OutSystemsDebugger.handleBreakpoint("rMzmm49Sw0CsKZc1bJZ9DQ:U4LE5x+WHEu7SKlFOqNcYw", callContext.id);
+                // EventNotes = New_Notes
+                model.variables.eventNotesVar = vars.value.new_NotesInLocal;
+                OutSystemsDebugger.handleBreakpoint("rMzmm49Sw0CsKZc1bJZ9DQ:MjwbpulUO0mm11m9E8U4jQ", callContext.id);
+            } catch (ex) {
+                OutSystemsDebugger.handleException(ex, callContext.id);
+                throw ex;
+            } finally {
+                OutSystemsDebugger.pop("rMzmm49Sw0CsKZc1bJZ9DQ:BGG5uCQ8mUmYGKRu7A0sjw", callContext.id);
+            }
+
+        };
+        Controller.registerVariableGroupType("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.Handler_OnNotesChanged$vars", [{
+            name: "New_Notes",
+            attrName: "new_NotesInLocal",
+            mandatory: true,
+            dataType: OS.DataTypes.DataTypes.Record,
+            defaultValue: function() {
+                return new UBTConnectLibraryModel.NotesRec();
+            },
+            complexType: UBTConnectLibraryModel.NotesRec
+        }]);
         Controller.prototype._onHandle_ContactHelpdesk$Action = function(callContext) {
             var varBag = {};
             var model = this.model;
@@ -2500,6 +2759,16 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
             }
         }]);
 
+        Controller.prototype.onAfterFetch_FetchEventNotes$Action = function(callContext) {
+            var controller = this.controller;
+            return controller.safeExecuteClientAction(controller._onAfterFetch_FetchEventNotes$Action, callContext);
+
+        };
+        Controller.prototype.handler_OnNoteDeleted$Action = function(noteIdIn, callContext) {
+            var controller = this.controller;
+            return controller.safeExecuteClientAction(controller._handler_OnNoteDeleted$Action, callContext, noteIdIn);
+
+        };
         Controller.prototype.onAfterFetch_GetLocalSurveyStatus$Action = function(callContext) {
             var controller = this.controller;
             return controller.safeExecuteClientAction(controller._onAfterFetch_GetLocalSurveyStatus$Action, callContext);
@@ -2548,6 +2817,11 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
         Controller.prototype.onClick_ViewEventBooklet$Action = function(callContext) {
             var controller = this.controller;
             return controller.safeExecuteClientAction(controller._onClick_ViewEventBooklet$Action, callContext);
+
+        };
+        Controller.prototype.handler_OnNotesChanged$Action = function(new_NotesIn, callContext) {
+            var controller = this.controller;
+            return controller.safeExecuteClientAction(controller._handler_OnNotesChanged$Action, callContext, new_NotesIn);
 
         };
         Controller.prototype.onHandle_ContactHelpdesk$Action = function(callContext) {
@@ -2604,7 +2878,7 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
         Controller.prototype.pushDebuggerContext = function(callContext) {
             var varBag = {};
             OutSystemsDebugger.push("rMzmm49Sw0CsKZc1bJZ9DQ:YqF_ecsKt0e5VFTRsjye5A:/NRWebFlows.YqF_ecsKt0e5VFTRsjye5A:QgY6d2StgdXP5HfjADqGwg", "Connect2_OrbitMobile_MUI", "Orbit_ScreenBlocks", "NRFlows.WebFlow", callContext.id, varBag);
-            OutSystemsDebugger.push("rMzmm49Sw0CsKZc1bJZ9DQ:QOPhlst_AkeQOZd_maLNhg:/NRWebFlows.YqF_ecsKt0e5VFTRsjye5A/NodesShownInESpaceTree.QOPhlst_AkeQOZd_maLNhg:YBlFUWvL7CHN0tOjFFGlAg", "Connect2_OrbitMobile_MUI", "ScreenBlock_EventDetail", "NRNodes.WebBlock", callContext.id, varBag);
+            OutSystemsDebugger.push("rMzmm49Sw0CsKZc1bJZ9DQ:QOPhlst_AkeQOZd_maLNhg:/NRWebFlows.YqF_ecsKt0e5VFTRsjye5A/NodesShownInESpaceTree.QOPhlst_AkeQOZd_maLNhg:TS3Aw544b5CfGaugEDxMKw", "Connect2_OrbitMobile_MUI", "ScreenBlock_EventDetail", "NRNodes.WebBlock", callContext.id, varBag);
         };
         Controller.prototype.popDebuggerContext = function(callContext) {
             OutSystemsDebugger.pop("rMzmm49Sw0CsKZc1bJZ9DQ:QOPhlst_AkeQOZd_maLNhg", callContext.id);
@@ -2652,6 +2926,17 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
 define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$debugger", ["exports", "OutSystems/ClientRuntime/Debugger", "OutSystems/ClientRuntime/Main"], function(exports, Debugger, OutSystems) {
     var OS = OutSystems.Internal;
     var metaInfo = {
+        "nLrg1X6EfESvd3bUpB6IFw": {
+            getter: function(varBag, idService) {
+                return varBag.vars.value.updatedNotesVar;
+            }
+        },
+        "SckA8nK7xEi3tBWCzWJ3sQ": {
+            getter: function(varBag, idService) {
+                return varBag.vars.value.noteIdInLocal;
+            },
+            dataType: OS.DataTypes.DataTypes.LongInteger
+        },
         "OtKjoArvyU2e09ZArlBkcQ": {
             getter: function(varBag, idService) {
                 return varBag.getHostAllocationVar.value;
@@ -2705,6 +2990,11 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
         "q9ypFMMoF0aVv9ebf7HlGg": {
             getter: function(varBag, idService) {
                 return varBag.cache_UserInfo_GetVar.value;
+            }
+        },
+        "qJcH7ctfnEypvn7B7plTNQ": {
+            getter: function(varBag, idService) {
+                return varBag.vars.value.new_NotesInLocal;
             }
         },
         "Vb2SBKDZSU6gHH3MD6XV1Q": {
@@ -2795,6 +3085,11 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
                 return varBag.model.variables.userInformationVar;
             }
         },
+        "hF2WFojxgE+suoBw5EXg4w": {
+            getter: function(varBag, idService) {
+                return varBag.model.variables.eventNotesVar;
+            }
+        },
         "+ylaayBD2kaC4mYkVeXYRA": {
             getter: function(varBag, idService) {
                 return varBag.model.variables.in_MemberIdIn;
@@ -2832,6 +3127,11 @@ define("Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$
         "8YcStQVbG0eGpTwHolXinA": {
             getter: function(varBag, idService) {
                 return varBag.model.variables.get_HasQRCodeDataAct;
+            }
+        },
+        "DIWy0SAHKkGlZfzLbHtqHw": {
+            getter: function(varBag, idService) {
+                return varBag.model.variables.fetchEventNotesDataAct;
             }
         },
         "i0T51HZ3K02DCDS1We0Kog": {

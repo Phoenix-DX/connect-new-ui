@@ -14,8 +14,9 @@ import { ApplicationEvents_Directory_EmailHousehold } from './hooks/householdEma
 /* The page with the flows of its block (useHouseholdEmail) in the app frame on a memory router. Fictional data. */
 const PATH = '/UBTConnect/EmailTarget';
 const HOME = '/UBTConnect/HomeFeed';
+const NEXT = '/UBTConnect/Profile';
 const ACTION = 'Connect2_LegacyShared/ActionUserContactUser';
-const routes = { [HOME]: <p>HomeFeed screen</p>, [PATH]: <EmailTarget /> };
+const routes = { [HOME]: <p>HomeFeed screen</p>, [PATH]: <EmailTarget />, [NEXT]: <p>Profile screen</p> };
 
 const query = (inputs: Record<string, string>) => `${PATH}?${new URLSearchParams(inputs).toString()}`;
 const LDM_HOST = query({
@@ -168,6 +169,24 @@ describe('EmailTarget page', () => {
     });
     expect(at()).toBe(LDM_HOST);
     expect(screen.getByText('Are you sure you want to discard the changes?')).toBeInTheDocument();
+  });
+
+  it('a view restored from the cache starts with an empty subject and message, and no change (OnReady)', async () => {
+    const { router, at } = await open(LDM_HOST);
+    expect(subjectInput().value).toBe('Supper meeting on Sunday');
+    await act(() => router.navigate(NEXT));
+    expect(await screen.findByText('Profile screen')).toBeInTheDocument();
+
+    await act(() => router.navigate(-1));
+    expect(at()).toBe(LDM_HOST);
+    expect(subjectInput().value).toBe('');
+    expect(messageInput().value).toBe('');
+    // IsChange False: the back arrow goes to the previous screen at once.
+    await act(async () => {
+      document.getElementById('b1-$b2')?.querySelector<HTMLElement>('.menu-back')?.click();
+      await new Promise((resolve) => setTimeout(resolve, 50));
+    });
+    expect(at()).toBe(HOME);
   });
 
   it('no change: the back arrow goes to the previous screen at once', async () => {

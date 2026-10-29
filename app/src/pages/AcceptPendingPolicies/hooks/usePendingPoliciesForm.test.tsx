@@ -1,4 +1,4 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { act, renderHook, waitFor } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -8,27 +8,33 @@ import { isCommunicationException, raiseToFlowHandler } from '@/platform/feedbac
 import { freshPage, recordBodies } from '@/test/testSupport';
 import { server } from '@/test/setup';
 import { usePendingPoliciesForm, type PendingPoliciesFormEvents } from './usePendingPoliciesForm';
+import { testQueryClient } from '@/platform/navigation/testRouter';
 
 /* The flows of Policy_Custom_AcceptPendingPolicies against the MSW mocks of the page (two fictional Connect policies,
    7001 and 7002; ActionAcceptPolicies removes the accepted ids, so the test that accepts runs last). The flow handler
    is replaced by a spy. */
-vi.mock('@/platform/feedback/flowErrors', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/platform/feedback/flowErrors')>()),
+// The flow handler itself: the hook and the query-cache subscription (flowErrors.ts) both call it.
+vi.mock('@/legacy/os/exceptions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/legacy/os/exceptions')>()),
   raiseToFlowHandler: vi.fn(),
 }));
 
 const inputs: PendingPoliciesInputs = {
-  policyApplications: ['Connect_Applications.Connect', 'Connect_Applications.Directory', 'Connect_Applications.Orbit'],
+  policyApplications: [
+    '65d96f75-9f71-42aa-8447-fd622aa09e7e',
+    'd8997dfa-7ae3-4eb1-bb48-0a14e151034a',
+    '4b033840-c133-4f0d-beb9-4c3659a9bc28',
+  ],
   country: 'NZ',
   contentBlockId: 'b1-Main',
 };
 
-function renderForm(events: PendingPoliciesFormEvents = {}) {
-  const client = new QueryClient();
+function renderForm(events: PendingPoliciesFormEvents = {}, formInputs: PendingPoliciesInputs = inputs) {
+  const client = testQueryClient();
   const wrapper = ({ children }: { children: ReactNode }) => (
     <QueryClientProvider client={client}>{children}</QueryClientProvider>
   );
-  return renderHook(() => usePendingPoliciesForm(inputs, events), { wrapper });
+  return renderHook(() => usePendingPoliciesForm(formInputs, events), { wrapper });
 }
 const calls = () => (window.__osCalls ?? []).map((c) => c.action);
 
@@ -57,6 +63,13 @@ describe('usePendingPoliciesForm (Policy_Custom_AcceptPendingPolicies)', () => {
     });
     expect(result.current.isAllSelected).toBe(false);
     expect(calls()).toEqual(['DataActionGetPendingPolicies']);
+  });
+
+  it('the mock reads PolicyApplications: without the Connect GUID no policy is pending', async () => {
+    const { result } = renderForm({}, { ...inputs, policyApplications: inputs.policyApplications.slice(1) });
+    await waitFor(() => {
+      expect(result.current.rows).toEqual([]);
+    });
   });
 
   it('IsAllSelected follows the row checkboxes, and "I agree to all" sets every row', async () => {

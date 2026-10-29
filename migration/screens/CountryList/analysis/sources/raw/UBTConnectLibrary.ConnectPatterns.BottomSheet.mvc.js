@@ -95,6 +95,12 @@ return false;
 }, false), 
 this.attr("_isHideContentWhenClosedInDataFetchStatus", "_isHideContentWhenClosedInDataFetchStatus", "_isHideContentWhenClosedInDataFetchStatus", true, false, OS.DataTypes.DataTypes.Integer, function () {
 return /*Fetched*/ 1;
+}, false), 
+this.attr("In_TouchActionNoneFix", "in_TouchActionNoneFixIn", "In_TouchActionNoneFix", true, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
+}, false), 
+this.attr("_in_TouchActionNoneFixInDataFetchStatus", "_in_TouchActionNoneFixInDataFetchStatus", "_in_TouchActionNoneFixInDataFetchStatus", true, false, OS.DataTypes.DataTypes.Integer, function () {
+return /*Fetched*/ 1;
 }, false)
 ].concat(_super.attributesToDeclare.call(this));
 };
@@ -237,6 +243,14 @@ if("IsHideContentWhenClosed" in inputs) {
 this.variables.isHideContentWhenClosedIn = inputs.IsHideContentWhenClosed;
 if("_isHideContentWhenClosedInDataFetchStatus" in inputs) {
 this.variables._isHideContentWhenClosedInDataFetchStatus = inputs._isHideContentWhenClosedInDataFetchStatus;
+}
+
+}
+
+if("In_TouchActionNoneFix" in inputs) {
+this.variables.in_TouchActionNoneFixIn = inputs.In_TouchActionNoneFix;
+if("_in_TouchActionNoneFixInDataFetchStatus" in inputs) {
+this.variables._in_TouchActionNoneFixInDataFetchStatus = inputs._in_TouchActionNoneFixInDataFetchStatus;
 }
 
 }
@@ -651,7 +665,7 @@ _widgetRecordProvider: widgetsRecordProvider
 	
     return View;
 });
-define("UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnectLibrary.controller", "UBTJavaScriptUtils.controller", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "UBTConnectLibrary.languageResources", "UBTConnectLibrary.clientVariables", "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$debugger", "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.OnReady.CloseOnClickJS", "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.OnReady.AddTransitionListenerJS", "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.MaybeHideContentWhenClosed.DelaySetHideWhenClosedJS", "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.BottomSheet_InternalInitialized.JavaScript1JS", "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.RemoveInert.RemoveInertJS", "UBTConnectLibrary.controller$FormatClasses", "UBTConnectLibrary.controller$GetClass_BackgroundColor", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.controller$GetSpacingOptions", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnectLibrary.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$InlineIconRec", "UBTJavaScriptUtils.controller$JSUtils_SetStyleProperty", "UBTConnectLibrary.referencesHealth", "UBTConnectLibrary.referencesHealth$UBTJavaScriptUtils", "OutSystemsUI_2_23.model$ErrorMessageRec", "UBTConnectLibrary.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.controller$BottomSheetClose", "OutSystemsUI_2_23.controller$BottomSheetOpen"], function (OutSystems, UBTConnectLibraryModel, UBTConnectLibraryController, UBTJavaScriptUtilsController, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, UBTConnectLibraryLanguageResources, UBTConnectLibraryClientVariables, UBTConnectLibrary_ConnectPatterns_BottomSheet_mvc_Debugger, UBTConnectLibrary_ConnectPatterns_BottomSheet_mvc_controller_OnReady_CloseOnClickJS, UBTConnectLibrary_ConnectPatterns_BottomSheet_mvc_controller_OnReady_AddTransitionListenerJS, UBTConnectLibrary_ConnectPatterns_BottomSheet_mvc_controller_MaybeHideContentWhenClosed_DelaySetHideWhenClosedJS, UBTConnectLibrary_ConnectPatterns_BottomSheet_mvc_controller_BottomSheet_InternalInitialized_JavaScript1JS, UBTConnectLibrary_ConnectPatterns_BottomSheet_mvc_controller_RemoveInert_RemoveInertJS) {
+define("UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnectLibrary.controller", "UBTJavaScriptUtils.controller", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "UBTConnectLibrary.languageResources", "UBTConnectLibrary.clientVariables", "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$debugger", "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.OnReady.CloseOnClickJS", "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.OnReady.AddTransitionListenerJS", "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.MaybeHideContentWhenClosed.DelaySetHideWhenClosedJS", "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.BottomSheet_InternalInitialized.JavaScript2JS", "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.BottomSheet_InternalInitialized.JavaScript1JS", "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.RemoveInert.RemoveInertJS", "UBTConnectLibrary.controller$FormatClasses", "UBTConnectLibrary.controller$GetClass_BackgroundColor", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.controller$GetSpacingOptions", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnectLibrary.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$InlineIconRec", "UBTJavaScriptUtils.controller$JSUtils_SetStyleProperty", "UBTConnectLibrary.referencesHealth", "UBTConnectLibrary.referencesHealth$UBTJavaScriptUtils", "OutSystemsUI_2_23.model$ErrorMessageRec", "UBTConnectLibrary.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.controller$BottomSheetClose", "OutSystemsUI_2_23.controller$BottomSheetOpen"], function (OutSystems, UBTConnectLibraryModel, UBTConnectLibraryController, UBTJavaScriptUtilsController, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, UBTConnectLibraryLanguageResources, UBTConnectLibraryClientVariables, UBTConnectLibrary_ConnectPatterns_BottomSheet_mvc_Debugger, UBTConnectLibrary_ConnectPatterns_BottomSheet_mvc_controller_OnReady_CloseOnClickJS, UBTConnectLibrary_ConnectPatterns_BottomSheet_mvc_controller_OnReady_AddTransitionListenerJS, UBTConnectLibrary_ConnectPatterns_BottomSheet_mvc_controller_MaybeHideContentWhenClosed_DelaySetHideWhenClosedJS, UBTConnectLibrary_ConnectPatterns_BottomSheet_mvc_controller_BottomSheet_InternalInitialized_JavaScript2JS, UBTConnectLibrary_ConnectPatterns_BottomSheet_mvc_controller_BottomSheet_InternalInitialized_JavaScript1JS, UBTConnectLibrary_ConnectPatterns_BottomSheet_mvc_controller_RemoveInert_RemoveInertJS) {
 var OS = OutSystems.Internal;
 var Controller = (function (_super) {
 __extends(Controller, _super);
@@ -924,10 +938,11 @@ var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariab
 vars.value.bottomSheetIdInLocal = bottomSheetIdIn;
 varBag.callContext = callContext;
 varBag.vars = vars;
-OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:kwnZ7oTr2E6ct3XtRtNlqA:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g/NodesShownInESpaceTree.13ADIsP8vkScKl+VpTVmCA/ClientActions.kwnZ7oTr2E6ct3XtRtNlqA:jm21OSjQvZhlWy7pdQgITw", "UBTConnectLibrary", "BottomSheet_InternalInitialized", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:kwnZ7oTr2E6ct3XtRtNlqA:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g/NodesShownInESpaceTree.13ADIsP8vkScKl+VpTVmCA/ClientActions.kwnZ7oTr2E6ct3XtRtNlqA:2isbvzFvAOkbiF33eooMmQ", "UBTConnectLibrary", "BottomSheet_InternalInitialized", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:kQb0DNcsmU+xy23CwULbtQ", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 if((OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:SBTY90fgKk+PX3ZDIgLK5w", callContext.id) && model.variables.showHeaderIn)) {
+if((OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:1tCqK81S30KYCk2Ce_Jo4w", callContext.id) && model.variables.in_TouchActionNoneFixIn)) {
 OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:7pUJue+6kkWKR7JooTgsiA", callContext.id);
 controller.safeExecuteJSNode(UBTConnectLibrary_ConnectPatterns_BottomSheet_mvc_controller_BottomSheet_InternalInitialized_JavaScript1JS, "JavaScript1", "BottomSheet_InternalInitialized", {
 Id: OS.DataConversion.JSNodeParamConverter.to(vars.value.bottomSheetIdInLocal, OS.DataTypes.DataTypes.Text)
@@ -935,6 +950,16 @@ Id: OS.DataConversion.JSNodeParamConverter.to(vars.value.bottomSheetIdInLocal, O
 }, {
 BottomSheetOpen: OutSystemsUI_2_23Controller.default.getClientActionProxies(controller).bottomSheetOpen$Action
 }, {});
+} else {
+OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:Jwspkuk+OU2uL_3mjCEfmQ", callContext.id);
+controller.safeExecuteJSNode(UBTConnectLibrary_ConnectPatterns_BottomSheet_mvc_controller_BottomSheet_InternalInitialized_JavaScript2JS, "JavaScript2", "BottomSheet_InternalInitialized", {
+Id: OS.DataConversion.JSNodeParamConverter.to(vars.value.bottomSheetIdInLocal, OS.DataTypes.DataTypes.Text)
+}, function ($parameters) {
+}, {
+BottomSheetOpen: OutSystemsUI_2_23Controller.default.getClientActionProxies(controller).bottomSheetOpen$Action
+}, {});
+}
+
 }
 
 OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:cjl4joJ88UGBgKObL1iApA", callContext.id);
@@ -1040,8 +1065,8 @@ return Promise.resolve();
 // Event Handler Actions
 Controller.prototype.pushDebuggerContext = function (callContext) {
 var varBag = {};
-OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:GRnUlqBGNE26Hxr_Ah3_7g:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g:3o_94888UGa0qaomZFOpnQ", "UBTConnectLibrary", "ConnectPatterns", "NRFlows.WebFlow", callContext.id, varBag);
-OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:13ADIsP8vkScKl+VpTVmCA:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g/NodesShownInESpaceTree.13ADIsP8vkScKl+VpTVmCA:ul1suuI+70_kiKST8Sqs0w", "UBTConnectLibrary", "BottomSheet", "NRNodes.WebBlock", callContext.id, varBag);
+OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:GRnUlqBGNE26Hxr_Ah3_7g:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g:Y06DhYqVkffzqTnycnKUGw", "UBTConnectLibrary", "ConnectPatterns", "NRFlows.WebFlow", callContext.id, varBag);
+OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:13ADIsP8vkScKl+VpTVmCA:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g/NodesShownInESpaceTree.13ADIsP8vkScKl+VpTVmCA:Z0Pr0JWnVFlvX2isWJ4+yg", "UBTConnectLibrary", "BottomSheet", "NRNodes.WebBlock", callContext.id, varBag);
 };
 Controller.prototype.popDebuggerContext = function (callContext) {
 OutSystemsDebugger.pop("lAQ0zS6tEEyl6BBIK9yo1A:13ADIsP8vkScKl+VpTVmCA", callContext.id);
@@ -1120,9 +1145,9 @@ if(sheetElement) {
 }
 };
 });
-define("UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.BottomSheet_InternalInitialized.JavaScript1JS", [], function () {
+define("UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.BottomSheet_InternalInitialized.JavaScript2JS", [], function () {
 return function ($parameters, $actions, $roles, $public) {
-(function () {
+dragHandler = function () {
     var containerId = $parameters.Id;
     var container = document.getElementById(containerId);
     if (!container) return;
@@ -1194,7 +1219,109 @@ return function ($parameters, $actions, $roles, $public) {
     handle.addEventListener('pointermove', onPointerMove, { passive: false });
     handle.addEventListener('pointerup', onPointerUp, { passive: true });
     handle.addEventListener('pointercancel', onPointerUp, { passive: true });
-})();
+};
+dragHandler();
+};
+});
+define("UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.BottomSheet_InternalInitialized.JavaScript1JS", [], function () {
+return function ($parameters, $actions, $roles, $public) {
+dragHandler = function () {
+    var containerId = $parameters.Id;
+    var container = document.getElementById(containerId);
+    if (!container) return;
+
+    var sheet = container.querySelector('.osui-bottom-sheet');
+    var handle = sheet && sheet.querySelector('.osui-bottom-sheet__header');
+    if (!sheet || !handle) return;
+
+    if (handle.dataset.dragToOpenBound === 'true') return;
+    handle.dataset.dragToOpenBound = 'true';
+
+    var DRAG_THRESHOLD_PX = 60;       // min upward distance to count as "open"
+    var SWIPE_SPEED_THRESHOLD = 0.3;  // px/ms — matches OutSystemsUI's own swipe speed constant
+
+    var startY = 0, startTime = 0, lastY = 0, dragging = false, closedOffset = 0, activePointerId = null;
+
+    function isOpen() {
+        return sheet.classList.contains('osui-bottom-sheet--is-open');
+    }
+
+    // touch-action must already be correct BEFORE touchdown to be honored by the
+    // compositor, so track it off open/closed state transitions, not per-gesture.
+    // Only 'none' while closed (so an open-drag beats native scroll); default while
+    // open, so a dismiss-swipe (handled entirely by the native component, which never
+    // calls preventDefault) never starts on a 'none' element with nothing resolving it.
+    function syncTouchAction() {
+        handle.style.touchAction = isOpen() ? '' : 'none';
+    }
+    syncTouchAction();
+    new MutationObserver(syncTouchAction).observe(sheet, { attributes: true, attributeFilter: ['class'] });
+
+    function currentTranslateY(el) {
+        var t = getComputedStyle(el).transform;
+        if (!t || t === 'none') return 0;
+        return new DOMMatrixReadOnly(t).m42;
+    }
+
+    function onPointerMove(evt) {
+        if (!dragging || evt.pointerId !== activePointerId) return;
+        var deltaY = evt.clientY - startY;
+        lastY = evt.clientY;
+
+        if (deltaY > 0) deltaY = 0; // ignore downward drag while closed
+        var next = Math.max(0, closedOffset + deltaY);
+
+        evt.preventDefault();
+        sheet.style.transform = 'translateY(' + next + 'px)';
+    }
+
+    function endDrag(evt) {
+        if (!dragging) return;
+        dragging = false;
+        sheet.style.transition = '';
+
+        // Only ever attached for the lifetime of one drag — remove them as soon as it ends.
+        handle.removeEventListener('pointermove', onPointerMove);
+        handle.removeEventListener('pointerup', endDrag);
+        handle.removeEventListener('pointercancel', endDrag);
+
+        if (evt && typeof evt.pointerId === 'number') {
+            try { handle.releasePointerCapture(evt.pointerId); } catch (e) { /* already released */ }
+        }
+
+        var totalDelta = lastY - startY; // negative = moved up
+        var speed = Math.abs(totalDelta) / (performance.now() - startTime);
+        var shouldOpen = (-totalDelta > DRAG_THRESHOLD_PX) || (totalDelta < 0 && speed > SWIPE_SPEED_THRESHOLD);
+
+        sheet.style.transform = ''; // hand position back to CSS classes either way
+        activePointerId = null;
+
+        if (shouldOpen) {
+            $actions.BottomSheetOpen(containerId);
+        }
+    }
+
+    function onPointerDown(evt) {
+        if (isOpen() || dragging) return; // let the native handler own the open->close drag
+
+        dragging = true;
+        activePointerId = evt.pointerId;
+        startY = lastY = evt.clientY;
+        startTime = performance.now();
+        closedOffset = currentTranslateY(sheet);
+        sheet.style.transition = 'none';
+        handle.setPointerCapture(evt.pointerId);
+
+        // Non-passive dispatch is only paid for the duration of this actual drag,
+        // not for every touch interaction with the header for the component's lifetime.
+        handle.addEventListener('pointermove', onPointerMove, { passive: false });
+        handle.addEventListener('pointerup', endDrag, { passive: true });
+        handle.addEventListener('pointercancel', endDrag, { passive: true });
+    }
+
+    handle.addEventListener('pointerdown', onPointerDown, { passive: true });
+};
+dragHandler();
 };
 });
 define("UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.RemoveInert.RemoveInertJS", [], function () {
@@ -1254,6 +1381,11 @@ getter: function (varBag, idService) {
 return varBag.vars.value.bottomSheetIdInLocal;
 },
 dataType: OS.DataTypes.DataTypes.Text
+},
+"Jwspkuk+OU2uL_3mjCEfmQ": {
+getter: function (varBag, idService) {
+return varBag.javaScript2JSResult.value;
+}
 },
 "7pUJue+6kkWKR7JooTgsiA": {
 getter: function (varBag, idService) {
@@ -1357,6 +1489,12 @@ dataType: OS.DataTypes.DataTypes.Boolean
 "s4j3FRAC_0azQTxmGij5Gw": {
 getter: function (varBag, idService) {
 return varBag.model.variables.isHideContentWhenClosedIn;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"1j6JZ94wzEWfHelqCQn+dQ": {
+getter: function (varBag, idService) {
+return varBag.model.variables.in_TouchActionNoneFixIn;
 },
 dataType: OS.DataTypes.DataTypes.Boolean
 },

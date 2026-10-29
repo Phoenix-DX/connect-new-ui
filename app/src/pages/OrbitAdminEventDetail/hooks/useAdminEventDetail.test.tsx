@@ -11,6 +11,7 @@ import {
 import { fetchLegacySignedImageURL } from '@/api/image';
 import { fetchMember, type Member } from '@/api/member';
 import { CommunicationException, UserException } from '@/legacy/os/exceptions';
+import { IgnorableSystemException } from '@/legacy/os/os-exceptions';
 import { checkBarcodePlugin, scanBarcode, SCANNER_CLOSED_BY_USER } from '@/platform/device/barcodePlugin';
 import { showFeedbackMessage } from '@/platform/feedback';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
@@ -433,7 +434,40 @@ describe('useAdminEventDetail', () => {
     expect(result.current.state.isProcessingData).toBe(false);
   });
 
-  it('W23: after the unmount, OnReady makes its call once and writes no state', async () => {
+  it('a "failed to deserialize json" message in another case also shows the OrbitErrorMessage popup (EB:1150)', async () => {
+    vi.mocked(fetchMember).mockRejectedValueOnce(new UserException('failed to DESERIALIZE json to MemberRecord'));
+    const { result } = await fetched();
+    scanned(qrCode('7315', '9101'));
+    act(() => {
+      result.current.onScanQrCodeClicked();
+    });
+    await settle();
+    expect(result.current.state.scanError).toEqual({
+      IsShowErrorMessage: true,
+      Message: 'Unable to read QR code, please try again.',
+    });
+    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    expect(result.current.state.isProcessingData).toBe(false);
+  });
+
+  it('a click flow sends its failure to the flow handler with the flow scope', async () => {
+    const error = new CommunicationException('offline');
+    vi.mocked(checkBarcodePlugin).mockRejectedValueOnce(error);
+    const { result } = await fetched();
+    act(() => {
+      result.current.onScanQrCodeClicked();
+    });
+    await settle();
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
+  });
+});
+
+/** The errors that reached the flow handler, without the ignorable ones (the handler drops them: R1, R3). */
+const raisedErrors = () => raised().filter((error) => !(error instanceof IgnorableSystemException));
+const auditIds = () => audit().map((e) => (e as { EventId: string }).EventId);
+
+describe('useAdminEventDetail after an unmount (flow scope, item 8)', () => {
+  it('R1: unmount while Get_EventInformation is pending: the answer writes no state and raises nothing', async () => {
     const answer = pending(vi.mocked(fetchAdminEventInformation));
     let renders = 0;
     const { unmount } = renderHook(
@@ -452,23 +486,75 @@ describe('useAdminEventDetail', () => {
     expect(fetchAdminEventInformation).toHaveBeenCalledTimes(1);
     expect(adminEventDetailReducer).not.toHaveBeenCalled();
     expect(renders).toBe(rendersAtUnmount);
-    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 
-  it('W23: an exception of OnReady after the unmount still goes to the flow handler, once', async () => {
+  it('R1: unmount while Get_EventInformation is pending: its failure reaches no handler and writes no state', async () => {
     const answer = pending(vi.mocked(fetchAdminEventInformation));
     const { unmount } = renderHook(() => useAdminEventDetail(INPUTS), { wrapper: strictWrapper });
     await settle();
     unmount();
     vi.mocked(adminEventDetailReducer).mockClear();
-    const error = new CommunicationException('offline');
-    answer.reject(error);
+    answer.reject(new CommunicationException('offline'));
     await settle();
-    expect(raised()).toEqual([error]);
+    expect(raisedErrors()).toEqual([]);
     expect(adminEventDetailReducer).not.toHaveBeenCalled();
   });
 
-  it('W23: a scan that is pending at the unmount still checks in and raises QRCodeScanned once, without a state write', async () => {
+  it('R3: a scan that ends after the unmount stops at OnHandle_ScanCode: no member read, no check-in, no message', async () => {
+    const { result, unmount } = await fetched();
+    const scan = pending(vi.mocked(scanBarcode));
+    act(() => {
+      result.current.onScanQrCodeClicked();
+    });
+    await settle();
+    unmount();
+    vi.mocked(adminEventDetailReducer).mockClear();
+    scan.resolve({ Success: true, ScanResult: { Text: qrCode('7315', '9101'), Format: 1 }, Error: NO_ERROR });
+    await settle();
+    expect(fetchMember).not.toHaveBeenCalled();
+    expect(fetchScanEventQRCode).not.toHaveBeenCalled();
+    expect(showFeedbackMessage).not.toHaveBeenCalled();
+    expect(auditIds()).toEqual([ApplicationEvents_Orbit.LaunchQRCodeScanner]);
+    expect(adminEventDetailReducer).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R3: a code that cannot be processed after the unmount shows no message (OnHandle_ScanCode stops)', async () => {
+    const { result, unmount } = await fetched();
+    const scan = pending(vi.mocked(scanBarcode));
+    act(() => {
+      result.current.onScanQrCodeClicked();
+    });
+    await settle();
+    unmount();
+    scan.resolve({ Success: true, ScanResult: { Text: '{"eventid":0}', Format: 1 }, Error: NO_ERROR });
+    await settle();
+    expect(showFeedbackMessage).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R2 then R3: unmount while GetMemberByMemberId is pending: the check-in still goes out, the flow stops at OnToggle_PopupQRCode', async () => {
+    const { result, unmount } = await fetched(strictWrapper);
+    const member = pending(vi.mocked(fetchMember));
+    scanned(qrCode('7315', '9101'));
+    act(() => {
+      result.current.onScanQrCodeClicked();
+    });
+    await settle();
+    expect(fetchMember).toHaveBeenCalledWith('9101');
+    unmount();
+    vi.mocked(adminEventDetailReducer).mockClear();
+    member.resolve(MEMBER);
+    await settle();
+    expect(fetchLegacySignedImageURL).toHaveBeenCalledTimes(1);
+    expect(fetchScanEventQRCode).toHaveBeenCalledTimes(1);
+    expect(auditIds()).toEqual([ApplicationEvents_Orbit.LaunchQRCodeScanner]);
+    expect(adminEventDetailReducer).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R2 then R3: unmount while the check-in is pending: no result popup, no QRCodeScanned event, no state write', async () => {
     const { result, unmount } = await fetched(strictWrapper);
     const answer = pending(vi.mocked(fetchScanEventQRCode));
     scanned(qrCode('7315', '9101'));
@@ -482,20 +568,11 @@ describe('useAdminEventDetail', () => {
     answer.resolve(CHECK_IN);
     await settle();
     expect(adminEventDetailReducer).not.toHaveBeenCalled();
-    expect(fetchScanEventQRCode).toHaveBeenCalledTimes(1);
-    expect(audit().map((e) => (e as { EventId: string }).EventId)).toEqual([
-      ApplicationEvents_Orbit.LaunchQRCodeScanner,
-      ApplicationEvents_Orbit.QRCodeScanned,
-    ]);
-    expect(JSON.parse((audit()[1] as { Payload: string }).Payload)).toMatchObject({
-      ScannedMemberId: '9101',
-      ScannedMemberName: 'Lucía Herrera',
-      ScannedMemberRole: 'Guest',
-    });
-    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    expect(auditIds()).toEqual([ApplicationEvents_Orbit.LaunchQRCodeScanner]);
+    expect(raisedErrors()).toEqual([]);
   });
 
-  it('W23: a code that cannot be processed after the unmount still shows its message, once', async () => {
+  it('R2 and R5: a scan that fails after the unmount still shows the scanner message, without a state write', async () => {
     const { result, unmount } = await fetched();
     const scan = pending(vi.mocked(scanBarcode));
     act(() => {
@@ -504,9 +581,15 @@ describe('useAdminEventDetail', () => {
     await settle();
     unmount();
     vi.mocked(adminEventDetailReducer).mockClear();
-    scan.resolve({ Success: true, ScanResult: { Text: '{"eventid":0}', Format: 1 }, Error: NO_ERROR });
+    scan.resolve({
+      Success: false,
+      ScanResult: { Text: '', Format: 0 },
+      Error: { ErrorCode: 'OS-PLUG-BARC-0007', ErrorMessage: 'Camera access denied.' },
+    });
     await settle();
     expect(showFeedbackMessage).toHaveBeenCalledTimes(1);
+    expect(showFeedbackMessage).toHaveBeenCalledWith('Camera access denied.', expect.any(Number));
     expect(adminEventDetailReducer).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 });

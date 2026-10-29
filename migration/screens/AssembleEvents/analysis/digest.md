@@ -506,9 +506,9 @@ ConnectPatterns.BottomSheet
 | isRootPage | input | Boolean | `false` |
 - Lifecycle handlers: Initialize, Ready, ParametersChanged
 - Client actions / event handlers: `onInitialize`, `onReady`, `onParametersChanged`, `event_BottomBar_Clicked`, `bottomBar_Clicked`
-- Navigation: `/UBTConnect/HomeFeed`(); `/UBTConnect/CountryList`(); `/UBTConnect/Locality_Details`(); `/UBTConnect/Updates_SingleList`(); `/UBTConnect/Bookmarks`(); `/UBTConnect/New_MyBookmarks`(); `/UBTConnect/MyBookmarks`(); `/UBTConnect/Menu`()
+- Navigation: `/UBTConnect/HomeFeed`(); `/UBTConnect/CountryList`(); `/UBTConnect/Locality_Details`(); `/UBTConnect/Updates_SingleList`(); `/UBTConnect/Bookmarks`(); `/UBTConnect/Menu`()
 - JavaScript nodes: `UBTConnect.App_Common.BottomBarMenu.mvc$controller.OnParametersChanged.Delayed_BottomBarSlider_ForceRefreshJS`
-- Static entities / flags: `connect_BottomBar_Items.updates`, `uBT_Color.primary`, `uBT_Color.neutral6`, `uBT_IconsSize.base_24`, `uBT_FontSize.extraSmall`, `connect_BottomBar_Items.bookmarks`, `connect_BottomBar_Items.home`, `connect_BottomBar_Items.directory`, `launchDarkly_FF.mobileDirectoryBookmarkNote`, `connect_BottomBar_Items.menu`
+- Static entities / flags: `connect_BottomBar_Items.updates`, `uBT_Color.primary`, `uBT_Color.neutral6`, `uBT_IconsSize.base_24`, `uBT_FontSize.extraSmall`, `connect_BottomBar_Items.bookmarks`, `connect_BottomBar_Items.home`, `connect_BottomBar_Items.directory`, `connect_BottomBar_Items.menu`
 - Client variables: getDirectory_Updates_UnreadCount
 
 ## `OutSystemsUI_2_23.Navigation.BottomBarItem.mvc.js`
@@ -598,9 +598,10 @@ ConnectPatterns.BottomSheet
 | ShowBackButton | input | Boolean | `false` |
 | IsNotInertWhenClosed | input | Boolean | `false` |
 | IsHideContentWhenClosed | input | Boolean | `false` |
+| In_TouchActionNoneFix | input | Boolean | `false` |
 - Lifecycle handlers: Ready
 - Client actions / event handlers: `bottomSheet_InternalOnToggle`, `onReady`, `maybeHideContentWhenClosed`, `setHideContentWhenClosed`, `closeOnClick`, `bottomSheet_InternalInitialized`, `removeInert`, `initialized`, `onClose`, `onToggle`, `onBack`
-- JavaScript nodes: `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.OnReady.CloseOnClickJS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.OnReady.AddTransitionListenerJS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.MaybeHideContentWhenClosed.DelaySetHideWhenClosedJS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.BottomSheet_InternalInitialized.JavaScript1JS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.RemoveInert.RemoveInertJS`
+- JavaScript nodes: `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.OnReady.CloseOnClickJS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.OnReady.AddTransitionListenerJS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.MaybeHideContentWhenClosed.DelaySetHideWhenClosedJS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.BottomSheet_InternalInitialized.JavaScript2JS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.BottomSheet_InternalInitialized.JavaScript1JS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.RemoveInert.RemoveInertJS`
 - Static entities / flags: `shape.rounded`, `uBT_ColumnBehaviour.expandMiddle`, `uBT_Size.none`, `uBT_VerticalAlign.center`, `uBT_Icons.arrowLeftAlt`, `uBT_Color.neutral9`, `uBT_Color.transparent`, `uBT_IconSize.medium_20`, `uBT_Icons.close`, `uBT_Color.neutral10`, `uBT_FontSize.small`, `uBT_FontWeight.semiBold`
 - Candidate static strings: `RemoveInert` | `SetHideContentWhenClosed`
 
@@ -665,17 +666,17 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 2974 ms
-- 2. `ActionGetUserInformation` (200) at 4324 ms
-- 3. `ActionGetUserInformation` (200) at 4633 ms
-- 4. `ActionGetCountriesBySubscription` (200) at 4919 ms
-- 5. `ActionAppManager_AfterInitialize` (200) at 5492 ms
-- 6. `DataActionGetAssembleEventTypes` (200) at 6254 ms
-- 7. `ActionSync_Info_GetMain` (200) at 6365 ms
-- 8. `DataActionGetAssembleMeetingSummaryList` (200) at 6366 ms
-- 9. `ActionGetNumberUnreadMessages` (200) at 6643 ms
-- 10. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8344 ms
-- 11. `ServiceAPIFetchData_CacheableHouseholds` (200) at 11172 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 3998 ms
+- 2. `ActionGetUserInformation` (200) at 5955 ms
+- 3. `ActionGetUserInformation` (200) at 6402 ms
+- 4. `DataActionGetAssembleEventTypes` (200) at 6475 ms
+- 5. `ActionGetCountriesBySubscription` (200) at 6752 ms
+- 6. `ActionAppManager_AfterInitialize` (200) at 7771 ms
+- 7. `DataActionGetAssembleMeetingSummaryList` (200) at 7850 ms
+- 8. `ActionSync_Info_GetMain` (200) at 8337 ms
+- 9. `ActionGetNumberUnreadMessages` (200) at 8629 ms
+- 10. `ServiceAPIFetchData_CacheableMapEntities` (200) at 10731 ms
+- 11. `ServiceAPIFetchData_CacheableHouseholds` (200) at 13214 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

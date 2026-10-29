@@ -25,7 +25,7 @@ export interface ShareObjectState {
 }
 
 /** An assignment of one or more variables. */
-export type ShareObjectPatch = Partial<ShareObjectState>;
+type ShareObjectPatch = Partial<ShareObjectState>;
 
 /** The default record of CommunityBusiness. */
 export const EMPTY_COMMUNITY_BUSINESS: CommunityBusinessShareCard = {

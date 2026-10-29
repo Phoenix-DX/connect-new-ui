@@ -355,6 +355,13 @@ export class CarouselProvider implements CarouselProviderApi {
     this.config.startingPosition = index;
   }
 
+  /** `_eventOnResize` taken out of the GlobalListenerManager WindowResize handlers (UBTConnect
+      RemoveCarouselOnResizeHandler): a resize no longer redefines the carousel width; a pending debounce does not run it. */
+  removeOnResizeHandler(): void {
+    window.clearTimeout(this.resizeDebounce);
+    window.removeEventListener('resize', this.onWindowResize);
+  }
+
   /** dispose (OSUI:18357-18368) and unsetCallbacks (:18309-18314). */
   dispose(): void {
     window.clearTimeout(this.rebindId);

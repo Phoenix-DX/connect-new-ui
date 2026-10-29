@@ -51,6 +51,7 @@ export function PersonalInformationSection({ personal, onChange, onShowAgeChange
         id="Input_Username"
         type="text"
         enabled={false}
+        maxLength={50}
         value={personal.Username}
         onChange={(v) => {
           onChange({ Username: v });
@@ -61,6 +62,7 @@ export function PersonalInformationSection({ personal, onChange, onShowAgeChange
         id="Input_Email"
         type="email"
         enabled
+        maxLength={50}
         value={personal.Email}
         onChange={(v) => {
           onChange({ Email: v });

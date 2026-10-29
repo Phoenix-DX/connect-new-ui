@@ -9,8 +9,8 @@ export interface Locality_InterchangeProps {
   inInterchangeLocalityId?: string;
 }
 
-/** The Interchange tag: Directory_Interchange_StatisticsList (subtitle shown, loading = fetch error or not fetched) of
-    GetInterchangesByLocalityId. The flows are in useLocalityInterchange.
+/** The Interchange tag: Directory_Interchange_StatisticsList (subtitle shown, loading = fetch error or not fetched,
+    In_InterchangeLocalityId given down: TST publish of 2026-10-29) of GetInterchangesByLocalityId. The flows are in useLocalityInterchange.
     @origin UBTConnect.Directory_Locality.Locality_Interchange */
 export function Locality_Interchange({ id, inInterchangeLocalityId = '0' }: Locality_InterchangeProps) {
   const { interchangeList, isLoading, onNavigateToLocality } = useLocalityInterchange(inInterchangeLocalityId);
@@ -20,6 +20,7 @@ export function Locality_Interchange({ id, inInterchangeLocalityId = '0' }: Loca
       <Directory_Interchange_StatisticsList
         id={`${b}-$b1`}
         inShowSubtitle
+        inInterchangeLocalityId={inInterchangeLocalityId}
         inIsLoading={isLoading}
         inInterchangeList={interchangeList}
         onEventNavigateToLocality={onNavigateToLocality}

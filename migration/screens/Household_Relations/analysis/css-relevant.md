@@ -6,13 +6,14 @@ Load order of stylesheets (keep this order in the build):
 2. `/UBTConnect/css/OutSystemsReactWidgets.css`
 3. `/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css`
 4. `/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Note_Item.css`
-5. `/UBTConnect/css/UBT_AppManager.PIN.PinCode.css`
-6. `/UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css`
-7. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css`
-8. `/UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css`
-9. `/UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css`
-10. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect.css`
-11. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css`
+5. `/UBTConnect/css/UBTConnect_Utils.CW_Notes.NotesSheet.css`
+6. `/UBTConnect/css/UBT_AppManager.PIN.PinCode.css`
+7. `/UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css`
+8. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css`
+9. `/UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css`
+10. `/UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css`
+11. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect.css`
+12. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css`
 
 Rules below are those whose selector contains a class used on the captured page, grouped by the block that owns the element. Full source: `styles/bundle.css`.
 
@@ -472,7 +473,7 @@ input.OSFillParent.calendar-input { display:none; }
 .list--gap-s > div { padding-bottom: var(--space-s); }
 .list--gap-s > .OSBlockWidget { display: block; }
 ```
-### .list-group  (24 rules)
+### .list-group  (25 rules)
 ```css
 .list.list-group { overflow:hidden; position:relative; }
 .list.list-group > [data-block*=AnimatedLabel]:first-child .animated-label { margin-top:var(--space-s); }
@@ -492,6 +493,7 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 .list.list-group.overflow-horizontal { overflow-x: auto; }
 .ubt-tag-list.list.list-group { display: flex; overflow-x: scroll; -ms-overflow-style: none; /* Internet Explorer 10+ */ scrollbar-width: none; /* Firefox */ }
 .ubt-tag-list.list.list-group::-webkit-scrollbar { display: none; /* Safari and Chrome */ }
+.list.list-group.recent-search-list { display: flex; gap: var(--space-s); overflow: hidden; overflow-x: auto; /* beats the theme's overflow: hidden */ }
 .Household_GalleryCard-list.list.list-group { display: flex; justify-content: flex-start; overflow-x: scroll; -ms-overflow-style: none; /* Internet Explorer 10+ */ scrollbar-width: none; /* Firefox */ }
 .Household_GalleryCard-list.list.list-group::-webkit-scrollbar { display: none; /* Safari and Chrome */ }
 .calendar-list.list.list-group { display: flex; flex-direction: row; overflow-x: auto !important; scroll-snap-type: x mandatory; /* scroll-behavior: smooth;*/ scroll-snap-points-x: repeat(100vw); -webkit-overflow-scrolling: touch; /* border-bottom: 1px solid var(--color-neutral-11);*/ background-color: white; }
@@ -966,7 +968,7 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 ```
 ## Generic utility classes (too many rules to list; see bundle.css)
 
-`.btn` (61), `.columns` (82), `.columns-item` (71), `.header` (51), `.layout` (53), `.layout-native` (241), `.layout-side` (89), `.list` (92), `.phone` (235)
+`.btn` (61), `.columns` (82), `.columns-item` (71), `.header` (51), `.layout` (53), `.layout-native` (241), `.layout-side` (89), `.list` (93), `.phone` (235)
 
 ## Design tokens referenced by the rules above
 

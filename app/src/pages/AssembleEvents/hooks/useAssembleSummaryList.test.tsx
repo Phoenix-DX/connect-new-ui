@@ -9,6 +9,7 @@ import {
   type AssembleEventTypeItem,
   type AssembleMeeting,
 } from '@/api/event';
+import { IgnorableSystemException } from '@/legacy/os/os-exceptions';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { clearPreloadObject, getPreloadObject } from '@/platform/navigation/preload';
 import { assembleSummaryListReducer, MAX_RECORDS } from './assembleSummaryListState';
@@ -75,6 +76,12 @@ const settle = () =>
     await new Promise((resolve) => setTimeout(resolve, 0));
   });
 const queries = () => vi.mocked(fetchAssembleMeetings).mock.calls.map(([query]) => query);
+/** The errors that reached the flow handler, without the ignorable ones (the handler drops them: R1, R3). */
+const raisedErrors = () =>
+  vi
+    .mocked(raiseToFlowHandler)
+    .mock.calls.map(([error]) => error)
+    .filter((error) => !(error instanceof IgnorableSystemException));
 const callOrder = () =>
   [
     ...vi.mocked(fetchAssembleEventTypes).mock.invocationCallOrder.map((n) => [n, 'types'] as const),
@@ -142,22 +149,60 @@ describe('useAssembleSummaryList', () => {
     expect(result.current.eventList).toHaveLength(MAX_RECORDS);
   });
 
-  it('W23: an unmount while OnReady waits for the user skips the state writes; both calls and the error still run', async () => {
+  it('R3: unmount while OnReady waits for the user: neither refresh starts; no state write, no raise', async () => {
     const userHall = pending<UserSubdivision>(vi.mocked(fetchUserSubdivision));
-    const error = new Error('Service Interruption');
-    vi.mocked(fetchAssembleEventTypes).mockRejectedValueOnce(error);
     const { unmount } = renderFlows();
     await settle();
     unmount();
-    const writes = vi.mocked(assembleSummaryListReducer).mock.calls.length;
+    vi.mocked(assembleSummaryListReducer).mockClear();
     userHall.resolve(USER_HALL);
     await settle();
-    expect(fetchAssembleEventTypes).toHaveBeenCalledTimes(1);
-    expect(queries()).toHaveLength(1);
-    expect(queries()[0]?.LocalSubdivisionId).toBe('1210');
-    expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
-    expect(vi.mocked(assembleSummaryListReducer).mock.calls).toHaveLength(writes);
+    expect(fetchAssembleEventTypes).not.toHaveBeenCalled();
+    expect(fetchAssembleMeetings).not.toHaveBeenCalled();
+    expect(assembleSummaryListReducer).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R1: unmount while both data actions are pending: their answers write no state and raise nothing', async () => {
+    const types = pending<AssembleEventTypeItem[]>(vi.mocked(fetchAssembleEventTypes));
+    const meetings = pending<AssembleMeeting[]>(vi.mocked(fetchAssembleMeetings));
+    const { unmount } = renderFlows('9202');
+    await settle();
+    unmount();
+    vi.mocked(assembleSummaryListReducer).mockClear();
+    types.resolve(TYPES);
+    meetings.resolve(page(MAX_RECORDS));
+    await settle();
+    expect(assembleSummaryListReducer).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R1: unmount while both data actions are pending: their failures reach no handler and write no state', async () => {
+    const types = pending<AssembleEventTypeItem[]>(vi.mocked(fetchAssembleEventTypes));
+    const meetings = pending<AssembleMeeting[]>(vi.mocked(fetchAssembleMeetings));
+    const { unmount } = renderFlows('9202');
+    await settle();
+    unmount();
+    vi.mocked(assembleSummaryListReducer).mockClear();
+    types.reject(new Error('types'));
+    meetings.reject(new Error('meetings'));
+    await settle();
+    expect(assembleSummaryListReducer).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R1: unmount while the next page loads: its failure reaches no handler', async () => {
+    const { result, unmount } = renderFlows();
+    await settle();
+    const next = pending<AssembleMeeting[]>(vi.mocked(fetchAssembleMeetings));
+    act(() => {
+      result.current.onScrollEnding();
+    });
+    unmount();
+    next.reject(new Error('Service Interruption'));
+    await settle();
+    expect(queries()).toHaveLength(2);
+    expect(raisedErrors()).toEqual([]);
   });
 
   it('a failed call goes to the flow handler: the meeting types, then the meetings (the skeleton stays)', async () => {
@@ -168,6 +213,7 @@ describe('useAssembleSummaryList', () => {
     const { result } = renderFlows();
     await settle();
     expect(vi.mocked(raiseToFlowHandler).mock.calls.map(([e]) => e)).toEqual([typesError, meetingsError]);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(meetingsError, expect.anything());
     expect(result.current).toMatchObject({ isSummaryFetched: false, isHeaderLoading: true });
     expect(result.current.filter.AssembleEventType).toEqual([]);
   });

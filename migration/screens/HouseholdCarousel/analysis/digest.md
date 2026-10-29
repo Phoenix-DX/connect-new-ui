@@ -121,7 +121,6 @@ Layouts.Layout_DetailPage
                       CW_CTA_PopUps.ContactPopup
                     CW_CTA_PopUps.SharePopup
                       CW_CTA_PopUps.ContactPopup
-                    CW_Notes.NotesSheet
               Directory_Household_Blocks.HouseholdDetails_Members_Block
                 ConnectPatterns.SkeletonSection
                   BasePatterns.CustomContainer
@@ -167,7 +166,6 @@ Layouts.Layout_DetailPage
                                         CW_CTA_PopUps.ContactPopup
                                       CW_CTA_PopUps.SharePopup
                                         CW_CTA_PopUps.ContactPopup
-                                      CW_Notes.NotesSheet
                                     BasePatterns.CustomContainer
                                       ConnectPatterns.Icon
                             ConnectCorePatterns.Member_ListItem
@@ -206,7 +204,6 @@ Layouts.Layout_DetailPage
                                         CW_CTA_PopUps.ContactPopup
                                       CW_CTA_PopUps.SharePopup
                                         CW_CTA_PopUps.ContactPopup
-                                      CW_Notes.NotesSheet
                                     BasePatterns.CustomContainer
                                       ConnectPatterns.Icon
                             ConnectCorePatterns.Member_ListItem
@@ -358,7 +355,6 @@ Layouts.Layout_DetailPage
                       CW_CTA_PopUps.ContactPopup
                     CW_CTA_PopUps.SharePopup
                       CW_CTA_PopUps.ContactPopup
-                    CW_Notes.NotesSheet
               Directory_Household_Blocks.HouseholdDetails_Members_Block
                 ConnectPatterns.SkeletonSection
                   BasePatterns.CustomContainer
@@ -398,7 +394,6 @@ Layouts.Layout_DetailPage
                                         CW_CTA_PopUps.ContactPopup
                                       CW_CTA_PopUps.SharePopup
                                         CW_CTA_PopUps.ContactPopup
-                                      CW_Notes.NotesSheet
                                     BasePatterns.CustomContainer
                                       ConnectPatterns.Icon
                             ConnectCorePatterns.Member_ListItem
@@ -437,7 +432,6 @@ Layouts.Layout_DetailPage
                                         CW_CTA_PopUps.ContactPopup
                                       CW_CTA_PopUps.SharePopup
                                         CW_CTA_PopUps.ContactPopup
-                                      CW_Notes.NotesSheet
                                     BasePatterns.CustomContainer
                                       ConnectPatterns.Icon
                             ConnectCorePatterns.Member_ListItem
@@ -581,7 +575,6 @@ Layouts.Layout_DetailPage
                       CW_CTA_PopUps.ContactPopup
                     CW_CTA_PopUps.SharePopup
                       CW_CTA_PopUps.ContactPopup
-                    CW_Notes.NotesSheet
               Directory_Household_Blocks.HouseholdDetails_Members_Block
                 ConnectPatterns.SkeletonSection
                   BasePatterns.CustomContainer
@@ -627,7 +620,6 @@ Layouts.Layout_DetailPage
                                         CW_CTA_PopUps.ContactPopup
                                       CW_CTA_PopUps.SharePopup
                                         CW_CTA_PopUps.ContactPopup
-                                      CW_Notes.NotesSheet
                                     BasePatterns.CustomContainer
                                       ConnectPatterns.Icon
                             ConnectCorePatterns.Member_ListItem
@@ -666,7 +658,6 @@ Layouts.Layout_DetailPage
                                         CW_CTA_PopUps.ContactPopup
                                       CW_CTA_PopUps.SharePopup
                                         CW_CTA_PopUps.ContactPopup
-                                      CW_Notes.NotesSheet
                                     BasePatterns.CustomContainer
                                       ConnectPatterns.Icon
                             ConnectCorePatterns.Member_ListItem
@@ -834,7 +825,6 @@ Layouts.Layout_DetailPage
                       CW_CTA_PopUps.ContactPopup
                     CW_CTA_PopUps.SharePopup
                       CW_CTA_PopUps.ContactPopup
-                    CW_Notes.NotesSheet
               Directory_Household_Blocks.HouseholdDetails_Members_Block
                 ConnectPatterns.SkeletonSection
                   BasePatterns.CustomContainer
@@ -880,7 +870,6 @@ Layouts.Layout_DetailPage
                                         CW_CTA_PopUps.ContactPopup
                                       CW_CTA_PopUps.SharePopup
                                         CW_CTA_PopUps.ContactPopup
-                                      CW_Notes.NotesSheet
                                     BasePatterns.CustomContainer
                                       ConnectPatterns.Icon
                             ConnectCorePatterns.Member_ListItem
@@ -919,7 +908,6 @@ Layouts.Layout_DetailPage
                                         CW_CTA_PopUps.ContactPopup
                                       CW_CTA_PopUps.SharePopup
                                         CW_CTA_PopUps.ContactPopup
-                                      CW_Notes.NotesSheet
                                     BasePatterns.CustomContainer
                                       ConnectPatterns.Icon
                             ConnectCorePatterns.Member_ListItem
@@ -1044,10 +1032,22 @@ Layouts.Layout_DetailPage
       EventfulDeeplinksPlugin.DeeplinkHandlerCentral
     Utility.HandleImageLoadError
     NavigationHandler.BackNavigationHandler
+CW_Notes.NotesSheet
 CW_Share.ShareSheet
+CW_Notes.NotesSheet
 CW_Share.ShareSheet
+CW_Notes.NotesSheet
 CW_Share.ShareSheet
+CW_Notes.NotesSheet
 CW_Share.ShareSheet
+CW_Notes.NotesSheet
+CW_Notes.NotesSheet
+CW_Notes.NotesSheet
+CW_Notes.NotesSheet
+CW_Notes.NotesSheet
+CW_Notes.NotesSheet
+CW_Notes.NotesSheet
+CW_Notes.NotesSheet
 ```
 
 # Part 1: screen and rendered blocks (spec these in detail)
@@ -1076,6 +1076,7 @@ CW_Share.ShareSheet
 | In_ExtendedClass | input | Text | `""` |
 | In_EnableAccessibilityFeatures | input | Boolean | `false` |
 | In_InitializeNavigationHandler | input | Boolean | `true` |
+| In_IsHideTitle | input | Boolean | `false` |
 - Lifecycle handlers: Ready, Destroy
 - Client actions / event handlers: `onClick_BackNavigation`, `setScrollEvents`, `onDestroy`, `skipToContentOnClick`, `onReady`, `onReadyEvent`
 - navigateBack calls: 1
@@ -1126,7 +1127,7 @@ CW_Share.ShareSheet
 | In_ConnectEntityTypeId | input | Text | `""` |
 - Lifecycle handlers: Initialize
 - Client actions / event handlers: `handler_SetHeaderList`, `handler_EntitiesCarousel_Moved`, `screenEvent_OnInitialize`, `handler_EntitiesCarousel_Initialized`, `action_UpdateCarouselInternalPosition`, `handler_EntitiesCarousel_Move`, `event_SetHeader`, `event_Moved`
-- JavaScript nodes: `UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc$controller.Handler_EntitiesCarousel_Initialized.GetSplideCallbacksJS`, `UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc$controller.Action_UpdateCarouselInternalPosition.SetInternalPositionJS`
+- JavaScript nodes: `UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc$controller.Handler_EntitiesCarousel_Initialized.GetSplideCallbacksJS`, `UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc$controller.Handler_EntitiesCarousel_Initialized.RemoveCarouselOnResizeHandlerJS`, `UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc$controller.Action_UpdateCarouselInternalPosition.SetInternalPositionJS`
 - Static entities / flags: `carouselNavigation.none`, `booleanTypes.false`, `booleanTypes.true`
 - Candidate static strings: `Handler_EntitiesCarousel_Moved` | `Handler_EntitiesCarousel_Move`
 
@@ -1161,7 +1162,7 @@ CW_Share.ShareSheet
 | In_RenderBuffer | input | Integer | `0` |
 - Lifecycle handlers: Ready, ParametersChanged
 - Client actions / event handlers: `screenEvent_OnReady`, `screenEvent_OnParametersChanged`, `event_SetHeader`
-- Static entities / flags: `connect_Entity.supperMeetings_aka_Subdivisions`, `connect_Entity.household`
+- Static entities / flags: `connect_Entity.oneSchoolGlobal`, `connect_Entity.supperMeetings_aka_Subdivisions`, `connect_Entity.household`
 
 ## `UBTConnect.Directory_Caroussel.EntitiesCarousel_HouseholdDetails.mvc.js`
 | variable | kind | type | default |
@@ -1206,7 +1207,7 @@ CW_Share.ShareSheet
 - Navigation: `/UBTConnect/Household_Relations`(HouseholdId, MemberId); `/UBTConnect/Photobook`(In_HouseholdId, In_LocalityId); `/UBTConnect/HouseholdDetails`(HouseholdId); `/UBTConnect/Profile`(); `/UBTConnect/SupperMeeting_Details`(In_SubdivsionId); `/UBTConnect/Locality_Details`(PreloadedLocalityLabel, LocalityId)
 - JavaScript nodes: `UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller.ScreenEvent_OnReady.RefreshesJS`, `UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller.ScreenEvent_OnReady.CheckRestoredJS`, `UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller.ScreenEvent_OnParametersChanged.RefreshesJS`
 - Feedback messages: `"Photobook is currently unavailable for this household. Please try again later.", /*Info*/ 0)`
-- Static entities / flags: `uBT_ImageCardType.detail`, `uBT_ImageSize.maxWidth_100vw`, `connect_Entity.household`, `uBT_Display.flex`, `uBT_AlignItems.center`, `uBT_JustifyContent.spaceBetween`, `uBT_FlexDirection.row`, `uBT_Size.small`, `uBT_Size.extraSmall`, `uBT_Color.info`, `uBT_FontSize.small`, `uBT_FontWeight.regular`, `uBT_Icons2.lock`, `uBT_IconsSize.nonStandard_16`, `uBT_ColumnBehaviour.reduceFirst`, `uBT_Color.neutral10`, `uBT_Color.neutral8`, `uBT_Icons2.homePIn`, `uBT_Color.primary`, `uBT_Icons2.cottage`, `uBT_Color.neutral3`, `uBT_Shape.large`, `uBT_Color.neutral7`, `uBT_FontSize.base`, `uBT_FontWeight.semiBold`, `uBT_Color.neutral0`, `uBT_Size.base`, `uBT_Color.neutral9`, `uBT_ColumnBehaviour.reduceLast`, `uBT_Icons2.bookClosed`
+- Static entities / flags: `uBT_ImageCardType.detail`, `uBT_ImageSize.maxWidth_100vw`, `connect_Entity.household`, `uBT_Display.flex`, `uBT_AlignItems.center`, `uBT_JustifyContent.spaceBetween`, `uBT_FlexDirection.row`, `uBT_Size.small`, `uBT_Size.extraSmall`, `uBT_Color.info`, `uBT_FontSize.small`, `uBT_FontWeight.regular`, `uBT_Icons2.lock`, `uBT_IconsSize.nonStandard_16`, `uBT_ColumnBehaviour.reduceFirst`, `uBT_Color.neutral10`, `uBT_Color.neutral8`, `uBT_Icons2.homePIn`, `uBT_Color.primary`, `uBT_Icons2.cottage`, `launchDarkly_FF.mobileDirectoryHouseholdGallery`, `uBT_Color.neutral3`, `uBT_Shape.large`, `uBT_Color.neutral7`, `uBT_FontSize.base`, `uBT_FontWeight.semiBold`, `uBT_Color.neutral0`, `uBT_Size.base`, `uBT_Color.neutral9`, `uBT_ColumnBehaviour.reduceLast`
 - Candidate static strings: `Refresh_GetHouseholdDetail` | `Refresh_GetHouseholdCoordinates`
 
 ## `UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen.mvc.js`
@@ -1261,6 +1262,7 @@ CW_Share.ShareSheet
 | In_BorderRadius | input | Text | `""` |
 | In_HighRes | input | Boolean | `false` |
 | HasErrorMessage | input | Boolean | `false` |
+| In_ForceLoadingState | input | Boolean | `false` |
 - Lifecycle handlers: Initialize, Ready, ParametersChanged
 - Client actions / event handlers: `onInitialize`, `onReady`, `setLocalEntityId`, `onParametersChanged`
 - Static entities / flags: `uBT_Shape.circle`, `connect_Entity.member`, `uBT_Color.cyanLightest`, `uBT_Color.cyanDarker`, `uBT_Size.none`, `uBT_Shape.none`, `uBT_Size.base`, `uBT_FontSize.display`, `uBT_ImageSize.extraSmall_32`, `uBT_FontSize.extraSmall`, `uBT_IconSize.medium_20`, `uBT_ImageSize.small_40`, `uBT_FontSize.small`, `uBT_IconSize.base_24`, `uBT_ImageSize.base_52`, `uBT_FontSize.base`, `uBT_IconSize.nonStandard_32`, `uBT_ImageSize.medium_60`, `uBT_FontSize.heading6`, `uBT_IconSize.display_36`, `uBT_ImageSize.large_65`, `uBT_FontSize.heading4`, `uBT_ImageSize.extraLarge_100`, `uBT_FontSize.heading2`, `uBT_IconSize.nonStandard_64`, `uBT_ImageSize.doubleExtraLarge_176`, `uBT_IconSize.nonStandard_108`, `uBT_ImageSize.fullHeight_100_Percent`, `uBT_ImageSize.maxHeight_100vh`, `uBT_ImageSize.fullWidth_100_Percent`
@@ -1281,6 +1283,7 @@ CW_Share.ShareSheet
 | In_BorderOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ImageBorderOptionsRec())` |
 | HasErrorMessage | input | Boolean | `false` |
 | ExtendedClass | input | Text | `""` |
+| In_ForceLoadingState | input | Boolean | `false` |
 - Lifecycle handlers: Initialize, Ready, Destroy, ParametersChanged
 - Client actions / event handlers: `actionDefineHasImage`, `onParametersChanged`, `onLoad`, `onReady`, `onError`, `onInitialize`, `onDestroy`
 - JavaScript nodes: `UBTConnectLibrary.ConnectPatterns.LazyImage.mvc$controller.OnReady.SetupOnLoadJS`, `UBTConnectLibrary.ConnectPatterns.LazyImage.mvc$controller.OnInitialize.IsViewRestoredFromCacheJS`, `UBTConnectLibrary.ConnectPatterns.LazyImage.mvc$controller.OnDestroy.JavaScript1JS`
@@ -1461,10 +1464,7 @@ CW_Share.ShareSheet
 | EntityName | output | Text | `""` |
 | Notes | output | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec())` |
 | Local_isBookmarked | local | Boolean | `false` |
-| Local_isBookmarked_C2 | local | Boolean | `false` |
-| Local_BookmarkType | local | Text | `""` |
-| Local_BookmarkTypeId_C2 | local | Text | `""` |
-| Local_BookmarkGroup | local | Text | `""` |
+| Local_BookmarkTypeId | local | Text | `""` |
 | Local_In_ActionsMenuOptions | local | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ActionsMenuOptionsRec())` |
 | isLoaded | local | Boolean | `false` |
 | Local_ShareType | local | Text | `""` |
@@ -1476,22 +1476,24 @@ CW_Share.ShareSheet
 | ShowIconLabels | local | Boolean | `true` |
 | ShareSheet_OverwriteImageURL | local | Text | `""` |
 | NoteCategoryId | local | Text | `""` |
+| EntityNotes | local | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec())` |
+| FetchNoteId | local | Text | `""` |
 | IsEnabled | input | Boolean | `true` |
 | EntityType | input | Text | `""` |
 | EntityId | input | LongInteger | `OS.DataTypes.LongInteger.defaultValue` |
 | ContactPopUp_OverrideOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnect_UtilsModel.ContactPopUp_OverrideOptionsRec())` |
 | EnableOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ActionsMenuEnableOptionsRec())` |
 | useViewDetails | input | Boolean | `false` |
-| EntityExtraDataJSON | input | Text | `""` |
+| In_LocalityId | input | Text | `""` |
 | FetchContactDetails | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new FetchContactDetailsDataActRec())` |
 | FetchNotes | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new FetchNotesDataActRec())` |
 - Data actions: `DataActionFetchContactDetails` → `screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails`, `DataActionFetchNotes` → `screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchNotes`
 - Lifecycle handlers: Ready, ParametersChanged
-- Client actions / event handlers: `handler_OnNotesSheetClosed`, `handleFetchError`, `onParametersChanged`, `action_AsyncRefresh_ContactDetails`, `handler_OnNotesChanged`, `handle_Share_Others`, `handler_AddNotes`, `handle_Bookmark`, `action_ApplyPopUpOverrides`, `handler_OnNoteDeleted`, `handle_Mail_Page`, `onReady`, `action_UpdateContactDetails`, `handle_Mail`, `handle_Share`, `handle_Call`, `handle_Share_Connect`, `action_RefreshFetchNotes`, `handle_ClosedShareSheet`, `onAfterFetch_FetchContactDetails`, `viewDetails_OnClick`, `onChange_Bookmark`, `event_MenuEdit`
+- Client actions / event handlers: `handler_OnNotesSheetClosed`, `handleFetchError`, `onParametersChanged`, `action_AsyncRefresh_ContactDetails`, `handler_OnSheetNotesChanged`, `handle_Share_Others`, `handler_AddNotesOnClick`, `handle_Bookmark`, `action_ApplyPopUpOverrides`, `handler_OnNoteDeleted`, `handle_Mail_Page`, `onReady`, `action_UpdateContactDetails`, `handle_Mail`, `handle_Share`, `onAfterFetch_FetchNotes`, `handle_Call`, `handle_Share_Connect`, `action_RefreshFetchNotes`, `handle_ClosedShareSheet`, `onAfterFetch_FetchContactDetails`, `viewDetails_OnClick`, `onChange_Bookmark`, `event_MenuEdit`
 - Navigation: `/UBTConnect/ContactByEmailMember`(In_ContactName, In_ContactSurname, In_EmailTo, In_ContactLocality, In_EntityType, In_EntityId, In_ContactCountry, In_AvatarURL); `/UBTConnect/ContactByEmailOneSchoolGlobal`(In_ContactName, In_EmailTo); `/UBTConnect/LegacyShareObject`(In_ShareObjectTypeId, In_ObjectId)
 - JavaScript nodes: `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Handle_Mail_Page.YieldJS`, `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.OnReady.CheckRestoredJS`, `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Action_UpdateContactDetails.AsynRefreshJS`, `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Handle_Share_Connect.YieldJS`
 - Exceptions handled: NotRegisteredException, CommunicationException, UserException
-- Static entities / flags: `uBT_SystemExceptionTypes.notRegisteredException`, `connect_Entity.oneSchoolGlobal`, `connect_Entity.member`, `connect_Entity.locality`, `connect_Entity.household`, `connect_Entity.interchange`, `connect_Entity.supperMeetings_aka_Subdivisions`
+- Static entities / flags: `connect_Entity.interchange`, `uBT_SystemExceptionTypes.notRegisteredException`, `connect_Entity.oneSchoolGlobal`, `connect_Entity.member`, `connect_Entity.locality`, `connect_Entity.household`, `connect_Entity.supperMeetings_aka_Subdivisions`
 - Client variables: getBookmarks_IsSynched, getNotes_IsSynched
 - Images: `img/UBTConnectLibrary.OneSchoolGlobal.svg`
 - Candidate static strings: `Action_AsyncRefresh_ContactDetails`
@@ -1590,25 +1592,6 @@ CW_Share.ShareSheet
 - Lifecycle handlers: Initialize, ParametersChanged
 - Client actions / event handlers: `action_SetSharePopupButtons`, `onClick_CallButton`, `screeenEvent_OnParametersChanged`, `screenEvent_OnInitialize`, `event_ShareToOthers`, `event_ShareToConnect`, `event_Cancel`
 - Static entities / flags: `uBT_ImageSize.extraLarge_100`, `uBT_Icons.share`, `connect_Entity.member`, `connect_Entity.oneSchoolGlobal`, `connect_Entity.household`, `connect_Entity.feedItem`
-
-## `UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js`
-| variable | kind | type | default |
-|---|---|---|---|
-| BottomSheetId | local | Text | `""` |
-| IsEditing | local | Boolean | `false` |
-| IsSheetOpen | local | Boolean | `false` |
-| In_IsOpen | input | Boolean | `false` |
-| ExtendedClasses | input | Text | `""` |
-| In_ItemId | input | LongInteger | `OS.DataTypes.LongInteger.defaultValue` |
-| In_NoteCategoryId | input | Text | `""` |
-| In_Notes | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec())` |
-- Server actions: `AddNote` → `screenservices/UBTConnect_Utils/CW_Notes/NotesSheet/ServiceAPIAddNote`
-- Lifecycle handlers: ParametersChanged
-- Client actions / event handlers: `handler_OnAddNoteRequested`, `backNavigationHandlerBackNavigation`, `bottomSheet_Initialized`, `onParametersChanged`, `handler_OnEditingStateChanged`, `handler_OnSaveEditNote`, `action_SetBottomSheetOpen`, `on_NotesChanged`, `on_NoteSheet_Closed`, `on_NoteDeleted`
-- JavaScript nodes: `UBTConnect_Utils.CW_Notes.NotesSheet.mvc$controller.OnParametersChanged.DelaySetIsOpenJS`
-- Exceptions handled: UserException
-- Static entities / flags: `noteActionType.add`
-- Candidate static strings: `Action_SetBottomSheetOpen`
 
 ## `UBTConnect.Directory_Household_Blocks.HouseholdDetails_Members_Block.mvc.js`
 | variable | kind | type | default |
@@ -1711,9 +1694,9 @@ CW_Share.ShareSheet
 | isRootPage | input | Boolean | `false` |
 - Lifecycle handlers: Initialize, Ready, ParametersChanged
 - Client actions / event handlers: `onInitialize`, `onReady`, `onParametersChanged`, `event_BottomBar_Clicked`, `bottomBar_Clicked`
-- Navigation: `/UBTConnect/HomeFeed`(); `/UBTConnect/CountryList`(); `/UBTConnect/Locality_Details`(); `/UBTConnect/Updates_SingleList`(); `/UBTConnect/Bookmarks`(); `/UBTConnect/New_MyBookmarks`(); `/UBTConnect/MyBookmarks`(); `/UBTConnect/Menu`()
+- Navigation: `/UBTConnect/HomeFeed`(); `/UBTConnect/CountryList`(); `/UBTConnect/Locality_Details`(); `/UBTConnect/Updates_SingleList`(); `/UBTConnect/Bookmarks`(); `/UBTConnect/Menu`()
 - JavaScript nodes: `UBTConnect.App_Common.BottomBarMenu.mvc$controller.OnParametersChanged.Delayed_BottomBarSlider_ForceRefreshJS`
-- Static entities / flags: `connect_BottomBar_Items.updates`, `uBT_Color.primary`, `uBT_Color.neutral6`, `uBT_IconsSize.base_24`, `uBT_FontSize.extraSmall`, `connect_BottomBar_Items.bookmarks`, `connect_BottomBar_Items.home`, `connect_BottomBar_Items.directory`, `launchDarkly_FF.mobileDirectoryBookmarkNote`, `connect_BottomBar_Items.menu`
+- Static entities / flags: `connect_BottomBar_Items.updates`, `uBT_Color.primary`, `uBT_Color.neutral6`, `uBT_IconsSize.base_24`, `uBT_FontSize.extraSmall`, `connect_BottomBar_Items.bookmarks`, `connect_BottomBar_Items.home`, `connect_BottomBar_Items.directory`, `connect_BottomBar_Items.menu`
 - Client variables: getDirectory_Updates_UnreadCount
 
 ## `OutSystemsUI_2_23.Navigation.BottomBarItem.mvc.js`
@@ -1954,6 +1937,27 @@ CW_Share.ShareSheet
 - JavaScript nodes: `NavigationHandler.NavigationHandler.BackNavigationHandler.mvc$controller.OnDestroy.DestroyJS`, `NavigationHandler.NavigationHandler.BackNavigationHandler.mvc$controller.OnInitialize.AddBackNavigationHandlerJS`
 - Candidate static strings: `TriggerBackNavigation`
 
+## `UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| BottomSheetId | local | Text | `""` |
+| IsEditing | local | Boolean | `false` |
+| IsSheetOpen | local | Boolean | `false` |
+| NoteText | local | Text | `""` |
+| IsSubmittingNote | local | Boolean | `false` |
+| In_IsOpen | input | Boolean | `false` |
+| ExtendedClasses | input | Text | `""` |
+| In_ItemId | input | Text | `""` |
+| In_NoteCategoryId | input | Text | `""` |
+| In_Notes | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec())` |
+- Server actions: `AddNote` → `screenservices/UBTConnect_Utils/CW_Notes/NotesSheet/ServiceAPIAddNote`
+- Lifecycle handlers: ParametersChanged
+- Client actions / event handlers: `handler_OnSubmitNote`, `backNavigationHandlerBackNavigation`, `bottomSheetOnToggle`, `bottomSheet_Initialized`, `onParametersChanged`, `handler_OnEditingStateChanged`, `handler_OnSaveEditNote`, `action_SetBottomSheetOpen`, `handler_OnNoteSheet_Closed`, `on_NotesChanged`, `on_NoteSheet_Closed`, `on_NoteDeleted`
+- JavaScript nodes: `UBTConnect_Utils.CW_Notes.NotesSheet.mvc$controller.OnParametersChanged.DelaySetIsOpenJS`
+- Exceptions handled: CommunicationException, UserException
+- Static entities / flags: `noteActionType.add`
+- Candidate static strings: `Action_SetBottomSheetOpen`
+
 ## `UBTConnect_Utils.CW_Share.ShareSheet.mvc.js`
 | variable | kind | type | default |
 |---|---|---|---|
@@ -1992,8 +1996,8 @@ CW_Share.ShareSheet
 - Lifecycle handlers: Initialize, ParametersChanged
 - Client actions / event handlers: `onAfterFetch_GetAvailableMembers`, `screenEvent_OnParametersChanged`, `handler_SelectedListItemOnClick`, `handler_OnClickExternalOption`, `onAfterFetch_GetRecentlyShared`, `handler_SearchOnFocus`, `action_SetExternalShareOptions`, `handler_OnClickRecentMember`, `action_CreateSkeletonList`, `action_ScrollTop`, `handler_InputEventClearString`, `handler_BottomSheetOnToggle`, `handler_InputEventSubmit`, `action_ResetLocalVariables`, `handler_SearchResultItemOnSelect`, `handler_OnClickSend`, `action_SubmitShare`, `action_ResetAndCloseSheetState`, `screenEvent_OnInitialize`, `handler_OnBack`, `handler_SearchResultItemOnClick`, `handler_BottomSheetInitialized`, `action_SetLocalIsOpen`, `event_ClosedShareSheet`
 - JavaScript nodes: `UBTConnect_Utils.CW_Share.ShareSheet.mvc$controller.ScreenEvent_OnParametersChanged.DelaySetIsOpenJS`, `UBTConnect_Utils.CW_Share.ShareSheet.mvc$controller.Handler_OnClickExternalOption.ExternalShareWithDelayJS`, `UBTConnect_Utils.CW_Share.ShareSheet.mvc$controller.Action_ScrollTop.ScrollToTopJS`
-- Feedback messages: `(model.variables.in_ShareObjectTypeIdIn + " has been shared."), /*Info*/ 0)` | `"Share failed. Please try again.", /*Error*/ 3)`
-- Exceptions handled: NotRegisteredException
+- Feedback messages: `(vars.value.submitMessageVar + " has been shared."), /*Info*/ 0)` | `"Share failed. Please try again.", /*Error*/ 3)`
+- Exceptions handled: NotRegisteredException, UserException, CommunicationException
 - Static entities / flags: `uBT_ImageSize.small_40`, `uBT_ImageSize.base_52`, `uBT_AvatarSize.small_40`, `uBT_Color.neutral2`, `uBT_Size.none`, `uBT_Color.neutral0`, `uBT_Size.base`, `uBT_Size.small`, `uBT_Shape.medium`, `uBT_Color.neutral5`, `uBT_Shape.large`, `shape.rounded`, `uBT_FontSize.doubleExtraSmall`, `uBT_Color.primary`, `uBT_Color.transparent`, `connect_Entity.member`, `uBT_ImageSize.square`, `uBT_AvatarSize.smallBase_48`, `uBT_IconSize.base_24`, `uBT_Display.flex`, `uBT_FlexDirection.column`, `uBT_Icons.removeFill`, `uBT_IconSize.small_12`, `uBT_Icons.search`, `uBT_FontSize.small`, `uBT_Color.neutral7`, `uBT_Icons.lock`, `uBT_Icons.checkboxFill`, `uBT_Icons.checkboxOutlineBlank`, `uBT_ButtonSize.small`
 - Candidate static strings: `Action_SetLocalIsOpen`
 
@@ -2003,33 +2007,37 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `DataActionGetHousehold` (200) at 2693 ms
-- 2. `DataActionGetHousehold` (200) at 2724 ms
-- 3. `DataActionFetchContactDetails` (200) at 2725 ms
-- 4. `DataActionGetHousehold` (200) at 2763 ms
-- 5. `DataActionFetchContactDetails` (200) at 2764 ms
-- 6. `DataActionGetHousehold` (200) at 2780 ms
-- 7. `DataActionFetchContactDetails` (200) at 2792 ms
-- 8. `DataActionFetchContactDetails` (200) at 2794 ms
-- 9. `DataActionGetHousehold_Coordinates` (200) at 2795 ms
-- 10. `DataActionGetHousehold_Coordinates` (200) at 2799 ms
-- 11. `DataActionGetHousehold_Coordinates` (200) at 2839 ms
-- 12. `DataActionGetHousehold_Coordinates` (200) at 2873 ms
-- 13. `DataActionFetchContactDetails` (200) at 2984 ms
-- 14. `ActionGetSignedImagesInBulk` (200) at 2992 ms
-- 15. `ActionGetSignedImagesInBulk` (200) at 3068 ms
-- 16. `DataActionFetchContactDetails` (200) at 3069 ms
-- 17. `DataActionFetchContactDetails` (200) at 3091 ms
-- 18. `DataActionFetchContactDetails` (200) at 3097 ms
-- 19. `ActionGetSignedImagesInBulk` (200) at 3491 ms
-- 20. `DataActionFetchContactDetails` (200) at 4644 ms
-- 21. `DataActionFetchContactDetails` (200) at 4647 ms
-- 22. `DataActionFetchContactDetails` (200) at 4660 ms
-- 23. `DataActionFetchContactDetails` (200) at 4684 ms
-- 24. `DataActionFetchContactDetails` (200) at 4724 ms
-- 25. `DataActionFetchContactDetails` (200) at 4727 ms
-- 26. `DataActionFetchContactDetails` (200) at 4818 ms
-- 27. `DataActionFetchContactDetails` (200) at 5332 ms
+- 1. `DataActionGetHousehold` (200) at 2977 ms
+- 2. `DataActionGetHousehold_Coordinates` (200) at 2990 ms
+- 3. `DataActionGetHousehold` (200) at 3010 ms
+- 4. `DataActionFetchContactDetails` (200) at 3011 ms
+- 5. `DataActionGetHousehold` (200) at 3032 ms
+- 6. `DataActionGetHousehold_Coordinates` (200) at 3032 ms
+- 7. `DataActionGetHousehold_Coordinates` (200) at 3047 ms
+- 8. `DataActionFetchContactDetails` (200) at 3047 ms
+- 9. `DataActionFetchContactDetails` (200) at 3047 ms
+- 10. `DataActionGetHousehold_Coordinates` (200) at 3048 ms
+- 11. `DataActionGetHousehold` (200) at 3071 ms
+- 12. `DataActionFetchContactDetails` (200) at 3084 ms
+- 13. `DataActionFetchNotes` (200) at 3141 ms
+- 14. `DataActionFetchNotes` (200) at 3189 ms
+- 15. `DataActionFetchNotes` (200) at 3258 ms
+- 16. `DataActionFetchNotes` (200) at 3301 ms
+- 17. `ActionGetSignedImagesInBulk` (200) at 3351 ms
+- 18. `DataActionFetchContactDetails` (200) at 3363 ms
+- 19. `DataActionFetchContactDetails` (200) at 3391 ms
+- 20. `DataActionFetchContactDetails` (200) at 3399 ms
+- 21. `DataActionFetchContactDetails` (200) at 3400 ms
+- 22. `ActionGetSignedImagesInBulk` (200) at 3424 ms
+- 23. `DataActionFetchContactDetails` (200) at 3436 ms
+- 24. `DataActionFetchContactDetails` (200) at 3505 ms
+- 25. `DataActionFetchContactDetails` (200) at 3527 ms
+- 26. `DataActionFetchContactDetails` (200) at 3564 ms
+- 27. `DataActionFetchContactDetails` (200) at 3574 ms
+- 28. `DataActionFetchContactDetails` (200) at 3577 ms
+- 29. `DataActionFetchContactDetails` (200) at 3578 ms
+- 30. `DataActionFetchContactDetails` (200) at 3609 ms
+- 31. `ActionGetSignedImagesInBulk` (200) at 3787 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`
@@ -2050,6 +2058,7 @@ These come from referenced blocks or from earlier captures. Use them to describe
 - `ConnectPatterns.IconSVG`
 - `ConnectPatterns.Input`
 - `Directory_Caroussel.EntitiesCarouse_lSupperMeetingDetails`
+- `Directory_Caroussel.EntitiesCarousel_OneSchoolGlobal`
 - `Directory_Household_Blocks.HouseholdDetails_TimelinePhoto_List`
 - `Fingerprint.FingerprintScanner`
 - `NavigationHandler.PreventBackNavigation`

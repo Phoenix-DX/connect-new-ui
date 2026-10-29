@@ -6,13 +6,14 @@ Load order of stylesheets (keep this order in the build):
 2. `/UBTConnect/css/OutSystemsReactWidgets.css`
 3. `/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css`
 4. `/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Note_Item.css`
-5. `/UBTConnect/css/UBT_AppManager.PIN.PinCode.css`
-6. `/UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css`
-7. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css`
-8. `/UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css`
-9. `/UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css`
-10. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect.css`
-11. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css`
+5. `/UBTConnect/css/UBTConnect_Utils.CW_Notes.NotesSheet.css`
+6. `/UBTConnect/css/UBT_AppManager.PIN.PinCode.css`
+7. `/UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css`
+8. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css`
+9. `/UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css`
+10. `/UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css`
+11. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect.css`
+12. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css`
 
 Rules below are those whose selector contains a class used on the captured page, grouped by the block that owns the element. Full source: `styles/bundle.css`.
 
@@ -301,6 +302,10 @@ tive .header-right, .ubt-layout-main.layout-native .header-right, .phone .ubt-la
 ```css
 .connect-icon-bookmark:before { content: "\f093"; }
 ```
+### .connect-icon-calendar  (1 rule)
+```css
+.connect-icon-calendar:before { content: "\f08e"; }
+```
 ### .connect-icon-call  (1 rule)
 ```css
 .connect-icon-call:before { content: "\f08b"; }
@@ -357,6 +362,10 @@ tive .header-right, .ubt-layout-main.layout-native .header-right, .phone .ubt-la
 ```css
 .icon-base { --ubt-icon-size: var(--ubt-icon-size-base); }
 ```
+### .icon-medium  (1 rule)
+```css
+.icon-medium { --ubt-icon-size: var(--ubt-icon-size-medium); }
+```
 ### .icon-non-standard-16  (1 rule)
 ```css
 .icon-non-standard-16 { --ubt-icon-size: var(--ubt-icon-size-non-standard-16); }
@@ -385,6 +394,10 @@ an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section 
 ### .text-inherit  (1 rule)
 ```css
 .text-inherit { color: inherit; }
+```
+### .text-neutral-0  (1 rule)
+```css
+.text-neutral-0 { color:var(--text-color-neutral-0, var(--color-neutral-0)); }
 ```
 ### .text-neutral-6  (1 rule)
 ```css
@@ -579,7 +592,7 @@ input.OSFillParent.calendar-input { display:none; }
 ```css
 .justify-content-space-between { -webkit-box-pack:justify; -ms-flex-pack:justify; justify-content:space-between; }
 ```
-### .list-group  (24 rules)
+### .list-group  (25 rules)
 ```css
 .list.list-group { overflow:hidden; position:relative; }
 .list.list-group > [data-block*=AnimatedLabel]:first-child .animated-label { margin-top:var(--space-s); }
@@ -599,6 +612,7 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 .list.list-group.overflow-horizontal { overflow-x: auto; }
 .ubt-tag-list.list.list-group { display: flex; overflow-x: scroll; -ms-overflow-style: none; /* Internet Explorer 10+ */ scrollbar-width: none; /* Firefox */ }
 .ubt-tag-list.list.list-group::-webkit-scrollbar { display: none; /* Safari and Chrome */ }
+.list.list-group.recent-search-list { display: flex; gap: var(--space-s); overflow: hidden; overflow-x: auto; /* beats the theme's overflow: hidden */ }
 .Household_GalleryCard-list.list.list-group { display: flex; justify-content: flex-start; overflow-x: scroll; -ms-overflow-style: none; /* Internet Explorer 10+ */ scrollbar-width: none; /* Firefox */ }
 .Household_GalleryCard-list.list.list-group::-webkit-scrollbar { display: none; /* Safari and Chrome */ }
 .calendar-list.list.list-group { display: flex; flex-direction: row; overflow-x: auto !important; scroll-snap-type: x mandatory; /* scroll-behavior: smooth;*/ scroll-snap-points-x: repeat(100vw); -webkit-overflow-scrolling: touch; /* border-bottom: 1px solid var(--color-neutral-11);*/ background-color: white; }
@@ -1139,7 +1153,7 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 ```
 ## Generic utility classes (too many rules to list; see bundle.css)
 
-`.columns` (82), `.columns-item` (71), `.header` (51), `.layout` (53), `.layout-native` (241), `.layout-side` (89), `.list` (92), `.phone` (235)
+`.columns` (82), `.columns-item` (71), `.header` (51), `.layout` (53), `.layout-native` (241), `.layout-side` (89), `.list` (93), `.phone` (235)
 
 ## Design tokens referenced by the rules above
 
@@ -1254,6 +1268,7 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 - `--ubt-button-icon-size`: `var(--ubt-icon-size-small)` (in `.ubt-button--xs`); `var(--ubt-icon-size-medium)` (in `.ubt-button--s`); `var(--ubt-icon-size-base)` (in `.ubt-button--m`)
 - `--ubt-icon-size`: `var(--ubt-icon-size-base)` (in `:root`); `var(--ubt-icon-size-base)` (in `.ubt-avatar-image-base, .ubt-lazy-image-base, .ubt-lazy-image--width-base`); `var(--ubt-icon-size-non-standard-32)` (in `.ubt-avatar-image.ubt-lazy-image.ubt-lazy-image-base`); `var(--ubt-icon-size-medium)` (in `.ubt-avatar-image-xxs, .ubt-lazy-image-xxs`)
 - `--ubt-icon-size-base`: `24px` (in `:root`)
+- `--ubt-icon-size-medium`: `20px` (in `:root`)
 - `--ubt-icon-size-non-standard-16`: `16px` (in `:root`)
 - `--ubt-icon-size-non-standard-32`: `32px` (in `:root`)
 - `--ubt-layout-login-padding`: `var(--ubt-pincode-padding, var(--ubt-layout-login-padding-top) var(--space-base) var(--space-l) var(--space-base))` (in `:root`)

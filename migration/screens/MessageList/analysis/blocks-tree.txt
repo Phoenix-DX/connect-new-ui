@@ -24,6 +24,7 @@ MyNotifications.ScreenBlock_MessageList
         MyNotifications.MessageListItem
         MyNotifications.MessageListItem
         MyNotifications.MessageListItem
+        MyNotifications.MessageListItem
       Reusable.Spinner
       Reusable.Spinner
       NavigationHandler.BackNavigationHandler

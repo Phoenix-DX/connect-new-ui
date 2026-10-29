@@ -9,7 +9,7 @@ import { Type_ContactSubject } from '@/pages/ContactUsDetails/staticEntities';
 import { feedbackMessageAutoClose } from '@/platform/feedback';
 import { confirmAction } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { useNavigateBack } from '@/platform/navigation';
+import { useFlowScope, useNavigateBack } from '@/platform/navigation';
 import { pinCheck } from '@/platform/session/pin';
 import { currentUserId } from '@/platform/session/session';
 import { preventNavigation, type NavigationEvent } from '@/lib/navigationEvent';
@@ -23,6 +23,7 @@ import {
   jSUtils_String_CheckNumbers,
   localityTimezoneCallInputs,
   type ContactUsDetailsAction,
+  type ContactUsInputField,
   type ContactUsDetailsState,
 } from './contactUsDetailsState';
 
@@ -42,6 +43,15 @@ interface ContactUsDetailsFlows {
   onUserInformation: (userInformation: Directory_UserCurrent) => void;
   /** The OnChange of TextArea_Message, with the new message. */
   onMessageChange: (message: string) => void;
+  /** A signed-out input changed: the variable, then OnChange_FormInput (Full Name, Locality), OnChange_Email or
+      OnChange_PhoneNumber. */
+  onFieldChange: (field: ContactUsInputField, value: string) => void;
+  /** The variable setter of Dropdown_Country. */
+  onCountryVariableChange: (code: string) => void;
+  /** The OnChange of Dropdown_Country: OnChange_FormInput. */
+  onCountryChange: () => void;
+  /** ContactUs_RateRateSelected(Rate). */
+  onRateSelected: (rate: number) => void;
   /** OnClick_UserWantToBeContacted. */
   onWantToBeContactedToggle: () => void;
   /** OnClick_SupportTeam. */
@@ -74,33 +84,72 @@ export function useContactUsDetails(inputs: ContactUsDetailsInputs): ContactUsDe
     dispatchToView(action);
   }, []);
 
+  /* Flow scope (item 8, user 2026-10-28, item8-S5a.md Q1 (a)): DataAction_GetCountriesNames and
+     DataAction_GetLocalityTimezone are data actions (IDataAction on the MCP, R1, `flow.fetch`). After the unmount
+     their answer and their failure are dropped: no state write, no raise. A failure while the screen lives goes to
+     the flow handler with the flow scope (`flow.run`, R6). */
+  const flow = useFlowScope();
+
   // ScreenEvent_OnReady: signed out, refresh DataAction_GetCountriesNames.
   const onReadyDone = useRef(false);
   useEffect(() => {
     if (onReadyDone.current) return;
     onReadyDone.current = true;
     if (latest.current.isLogged) return;
-    fetchCountryNames(countriesCallInputs(latest.current, inputs))
-      .then((countries) => {
-        dispatch({ type: 'countriesFetched', countries });
-      })
-      .catch(raiseToFlowHandler);
-  }, [dispatch, inputs]);
+    flow.run(async () => {
+      const countries = await flow.fetch(fetchCountryNames(countriesCallInputs(latest.current, inputs))); // R1
+      dispatch({ type: 'countriesFetched', countries });
+    });
+  }, [dispatch, flow, inputs]);
 
   // CacheControl_UserInfo_WrapperResult(UserInformation), then the refresh of DataAction_GetLocalityTimezone.
   const userInformationResult = async (userInformation: Directory_UserCurrent) => {
     dispatch({ type: 'userInformationFetched', user: userInformation });
-    const timezone = await fetchLocalityTimezone(localityTimezoneCallInputs(latest.current, inputs));
+    const timezone = await flow.fetch(fetchLocalityTimezone(localityTimezoneCallInputs(latest.current, inputs))); // R1
     dispatch({ type: 'timezoneFetched', timezone });
   };
 
   const onUserInformation = (userInformation: Directory_UserCurrent) => {
-    userInformationResult(userInformation).catch(raiseToFlowHandler);
+    flow.run(() => userInformationResult(userInformation));
   };
 
   const onMessageChange = (message: string) => {
     try {
       dispatch({ type: 'messageChanged', message, contactSubjectId: inputs.In_ContactSubjectId });
+    } catch (error) {
+      raiseToFlowHandler(error);
+    }
+  };
+
+  /* OnChange_Email / OnChange_PhoneNumber: the widget Valid True and ValidationMessage "", then OnChange_FormInput.
+     Input_FullName and Input_Locality run OnChange_FormInput only. */
+  const onFieldChange = (field: ContactUsInputField, value: string) => {
+    try {
+      dispatch({ type: 'formFieldSet', field, value });
+      if (field === 'Email') validation.setWidgetValidity('Input_Email', true, '');
+      if (field === 'PhoneNumber') validation.setWidgetValidity('Input_PhoneNumber', true, '');
+      dispatch({ type: 'formInputChanged', contactSubjectId: inputs.In_ContactSubjectId });
+    } catch (error) {
+      raiseToFlowHandler(error);
+    }
+  };
+
+  const onCountryVariableChange = (code: string) => {
+    dispatch({ type: 'formFieldSet', field: 'Country', value: code });
+  };
+
+  const onCountryChange = () => {
+    try {
+      dispatch({ type: 'formInputChanged', contactSubjectId: inputs.In_ContactSubjectId });
+    } catch (error) {
+      raiseToFlowHandler(error);
+    }
+  };
+
+  // ContactUs_RateRateSelected(Rate): Rate_SelectedRate = Rate, then OnChange_FormInput.
+  const onRateSelected = (rate: number) => {
+    try {
+      dispatch({ type: 'rateSelected', rate, contactSubjectId: inputs.In_ContactSubjectId });
     } catch (error) {
       raiseToFlowHandler(error);
     }
@@ -199,6 +248,10 @@ export function useContactUsDetails(inputs: ContactUsDetailsInputs): ContactUsDe
     isFeedbackSubject: inputs.In_ContactSubjectId === Type_ContactSubject.GeneralSuggestionsFeedbackRating,
     onUserInformation,
     onMessageChange,
+    onFieldChange,
+    onCountryVariableChange,
+    onCountryChange,
+    onRateSelected,
     onWantToBeContactedToggle,
     onSupportTeam,
     onCallPopupClose,

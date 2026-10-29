@@ -36,6 +36,13 @@ describe('LazyImage', () => {
     expect(container.querySelector('.ubt-lazy-image--no-image')).toHaveTextContent('AB');
   });
 
+  it('In_ForceLoadingState keeps the fallback and hides the image after the load (live TST)', () => {
+    const { container } = render(<LazyImage imageURL={url} inForceLoadingState fallbackOptions={{ Initials: 'AB' }} />);
+    fireEvent.load(image(container));
+    expect(container.querySelector('.ubt-lazy-image')).toHaveClass('hidden');
+    expect(container.querySelector('.ubt-lazy-image--no-image')).toHaveTextContent('AB');
+  });
+
   it('renders InlineSVG for an SVG fallback, and loads a new ImageURL', () => {
     const { container, rerender } = render(<LazyImage fallbackOptions={{ SVG: '<svg></svg>' }} />);
     expect(container.querySelector('[data-block="Utilities.InlineSVG"]')).not.toBeNull();

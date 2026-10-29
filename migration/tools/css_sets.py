@@ -41,6 +41,7 @@ BASIC = "_Basic.css"
 DEFAULT_SCREEN = "HomeFeed"
 
 MARKER = re.compile(r"/\* ==== /UBTConnect/css/([^ ]+\.css) ==== \*/")
+CSS_DIR = "app/public/UBTConnect/css"
 CSS_FN = re.compile(r"View\.getCssDependencies\s*=\s*function\s*\(\)\s*\{\s*return\s*\[([^\]]*)\]")
 BLOCKS_FN = re.compile(r"View\.getBlocks\s*=\s*function\s*\(\)\s*\{\s*return\s*\[([^\]]*)\]")
 VIEW_DEFINE = re.compile(r'define\("([^"]+)\.mvc\$view",\s*\[([^\]]*)\]')
@@ -161,6 +162,27 @@ def main():
         for pair in before_pairs(order):
             seen_pairs.setdefault(pair, []).append(s)
     conflicts = sorted({tuple(sorted(p)) for p in seen_pairs if (p[1], p[0]) in seen_pairs})
+
+    def selectors(name):
+        """The selectors of a stylesheet of app/public/UBTConnect/css (comments and @-rule heads removed)."""
+        try:
+            text = open(os.path.join(CSS_DIR, name), encoding="utf-8-sig").read()
+        except OSError:
+            return None
+        text = re.sub(r"/\*.*?\*/", "", text, flags=re.S)
+        sels = set()
+        for head in re.findall(r"([^{}]+)\{", text):
+            head = head.strip()
+            if head.startswith("@"):
+                continue
+            sels.update(x.strip() for x in head.split(",") if x.strip())
+        return sels
+
+    def independent(a, b):
+        """Two sheets with no shared selector: their relative order cannot change a computed style (drift wave,
+        2026-10-29: KebabButton_BookmarkNotes.css / PinCode.css came in both orders from the TST captures)."""
+        sa, sb = selectors(a), selectors(b)
+        return sa is not None and sb is not None and not (sa & sb)
     accepted = []
     for a, b in conflicts:
         bad = []
@@ -171,9 +193,9 @@ def main():
                     bad.append(s)
         ab, ba = sorted(seen_pairs[(a, b)]), sorted(seen_pairs[(b, a)])
         line = f"{a} / {b}: before in {', '.join(ab)}; after in {', '.join(ba)}"
-        if bad:
+        if bad and not independent(a, b):
             fail("canonical-order conflict not explained by the compiled block order (" + ", ".join(bad) + "): " + line)
-        accepted.append(line)
+        accepted.append(line + ("; independent sheets (no shared selector), order cannot matter" if bad else ""))
     constraints = {p for p in seen_pairs if (p[1], p[0]) not in seen_pairs}
 
     # compiled closure vs capture, for the record (a mismatch means the closure rule misses something)

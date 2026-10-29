@@ -82,7 +82,7 @@ describe('share repository (LegacyShareObject)', () => {
     expect(await fetchShareObjectTypeLabel({ ...inputs, ShareObjectTypeId: '' })).toBe('');
   });
 
-  it('fetchAvailableUsers sends the ProfileList variables and gives the Label and the users', async () => {
+  it('fetchAvailableUsers sends the ProfileList variables and gives the Label (empty for a search) and the users', async () => {
     const bodies = recordBodies('Connect2_LegacyShared/ProfileList/DataActionGetAvailableUsers');
     const inputs = {
       SearchFilter: 'alice',
@@ -93,19 +93,18 @@ describe('share repository (LegacyShareObject)', () => {
     };
     const users = await fetchAvailableUsers(inputs);
     expect(bodies).toEqual([inputs]);
-    expect(users).toEqual({
-      label: 'Contacts list',
-      items: [
-        {
-          id: '990101',
-          fullName: 'Alice Thornton',
-          localityName: 'Las Cruces',
-          countryName: 'United States',
-          photo: { bucket: '', path: '', type: '', signedPath: '' },
-        },
-      ],
+    // a search answers Label "" (read-only TST probe of 2026-10-29, M-Q4 b); the empty search "Locality Members"
+    expect(users.label).toBe('');
+    expect(users.items).toHaveLength(1);
+    expect(users.items[0]).toEqual({
+      id: '990187',
+      fullName: 'Alice Whitfield',
+      localityName: 'Granite Falls',
+      countryName: 'United States',
+      photo: { bucket: '', path: '', type: '', signedPath: '' },
     });
     expect((await fetchAvailableUsers({ ...inputs, SearchFilter: 'nobody' })).items).toEqual([]);
+    expect((await fetchAvailableUsers({ ...inputs, SearchFilter: '' })).label).toBe('Locality Members');
   });
 
   it('shareObject sends ActionShareObject with In_UpdateType "" and the null date', async () => {

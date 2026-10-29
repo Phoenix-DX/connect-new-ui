@@ -14,7 +14,9 @@ import type { EventBookletAction, EventBookletState } from './eventBookletTypes'
 
 /** The data flows of the event booklet block: the Refresh* actions with their OnAfterFetch_* tails, and the view and
     pagination resets. They read the newest variables (`vars`) and assign through `write`; useEventBooklet.ts gives
-    them both. It is named as a hook (it calls none) so that the React compiler lets the view hook pass the ref-reading
+    them both, and `fetch` (the flow scope's `flow.fetch`, R1): after the unmount a data action or the local aggregate
+    drops its answer and its failure, so the OnAfterFetch_* tail does not run (EventBooklet.js:2006, :2034, :2062,
+    :2138). It is named as a hook (it calls none) so that the React compiler lets the view hook pass the ref-reading
     functions.
     @origin Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_EventBooklet.ScreenBlock_EventBooklet */
 
@@ -26,6 +28,7 @@ export function useEventBookletDataFlows(
   vars: () => EventBookletState,
   parameters: { current: EventBookletInputs },
   asUnknownError: (e: unknown) => never,
+  fetch: <T>(call: Promise<T>) => Promise<T>,
 ) {
   /** The block variables that the three data actions send. */
   const callInputs = (): EventBookletCallInputs => {
@@ -65,9 +68,9 @@ export function useEventBookletDataFlows(
   };
 
   /** Refresh of the client aggregate GetLocalHelperRoles (Max. Records 20, no sort): the shell's LocalHelperRole rows,
-      then OnAfterFetch_GetLocalHelperRoles (LocalHelperRoles = the list; finished fetching). */
+      then OnAfterFetch_GetLocalHelperRoles (LocalHelperRoles = the list; finished fetching). A screen aggregate (R1). */
   const refreshGetLocalHelperRoles = async () => {
-    await Promise.resolve();
+    await fetch(Promise.resolve());
     const list = getLocalHelperRoles(HELPER_ROLES_MAX_RECORDS);
     write({ type: 'localHelperRolesFetched', list });
     write({ type: 'fetchingFinished' });
@@ -113,7 +116,7 @@ export function useEventBookletDataFlows(
   const refreshEventFilters = async () => {
     write({ type: 'fetchingDataSet', isFetchingData: true });
     try {
-      const response = await fetchEventBookletFilters(callInputs());
+      const response = await fetch(fetchEventBookletFilters(callInputs())); // R1
       write({ type: 'eventFiltersFetched', response });
       await onAfterFetchGetEventBookletFilters();
     } catch (e) {
@@ -125,7 +128,7 @@ export function useEventBookletDataFlows(
   const refreshEventGuests = async () => {
     write({ type: 'fetchingDataSet', isFetchingData: true });
     try {
-      const response: EventBookletMember[] = await fetchEventBookletGuests(callInputs());
+      const response: EventBookletMember[] = await fetch(fetchEventBookletGuests(callInputs())); // R1
       write({ type: 'eventGuestsFetched', response });
       onAfterFetchGetEventBookletGuests();
     } catch (e) {
@@ -137,7 +140,7 @@ export function useEventBookletDataFlows(
   const refreshEventHelpers = async () => {
     write({ type: 'fetchingDataSet', isFetchingData: true });
     try {
-      const response: EventBookletMember[] = await fetchEventBookletHelpers(callInputs());
+      const response: EventBookletMember[] = await fetch(fetchEventBookletHelpers(callInputs())); // R1
       write({ type: 'eventHelpersFetched', response });
       onAfterFetchGetEventBookletHelpers();
     } catch (e) {

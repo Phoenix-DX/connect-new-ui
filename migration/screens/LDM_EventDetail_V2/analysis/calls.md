@@ -2,14 +2,47 @@
 
 | # | t (ms) | call | status | scope | path |
 |---|---|---|---|---|---|
-| 1 | 1297 | `DataActionGetCoordinatorDetails` | 200 | this screen | `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionGetCoordinatorDetails` |
-| 2 | 1320 | `DataActionGetEventByEventId` | 200 | this screen | `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionGetEventByEventId` |
+| 1 | 2795 | `DataActionFetchEventNotes` | 200 | this screen | `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionFetchEventNotes` |
+| 2 | 2816 | `DataActionGetCoordinatorDetails` | 200 | this screen | `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionGetCoordinatorDetails` |
+| 3 | 3210 | `DataActionGetEventByEventId` | 200 | this screen | `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionGetEventByEventId` |
+
+## DataActionFetchEventNotes
+- Scope: this screen
+- Path: `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionFetchEventNotes`
+- Server action input parameters: (none)
+- Screen variables sent with the call (OutSystems sends these automatically; React does not need to): `IsFetching`, `MinBannerHeight`, `SquarePhotoPx`, `HasInformation`, `MaxPhotoWidth`, `MaxPhotoHeight`, `ContactByPhoneData`, `ContactByMessagePopupData`, `ContactByMessagePopupData_IsCoordinator`, `EventNotes`, `EventHostId`, `_eventHostIdInDataFetchStatus`, `EventId`, `_eventIdInDataFetchStatus`
+- Other request keys: (none)
+- Response type: `FetchEventNotesResponse` (see types.ts)
+```json
+{
+ "versionInfo": {
+  "hasModuleVersionChanged": false,
+  "hasApiVersionChanged": false
+ },
+ "data": {
+  "Notes": {
+   "Total": "number (0)",
+   "Note_Item_List": {
+    "List": [
+     "(empty array)"
+    ],
+    "EmptyListItem": {
+     "Id": "numeric string",
+     "Note": "string (EMPTY)",
+     "DateCreatedUtc": "date (1900 default)",
+     "DateEditedUtc": "date (1900 default)"
+    }
+   }
+  }
+ }
+}
+```
 
 ## DataActionGetCoordinatorDetails
 - Scope: this screen
 - Path: `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionGetCoordinatorDetails`
 - Server action input parameters: (none)
-- Screen variables sent with the call (OutSystems sends these automatically; React does not need to): `IsFetching`, `MinBannerHeight`, `SquarePhotoPx`, `HasInformation`, `MaxPhotoWidth`, `MaxPhotoHeight`, `ContactByPhoneData`, `ContactByMessagePopupData`, `ContactByMessagePopupData_IsCoordinator`, `EventHostId`, `_eventHostIdInDataFetchStatus`, `EventId`, `_eventIdInDataFetchStatus`
+- Screen variables sent with the call (OutSystems sends these automatically; React does not need to): `IsFetching`, `MinBannerHeight`, `SquarePhotoPx`, `HasInformation`, `MaxPhotoWidth`, `MaxPhotoHeight`, `ContactByPhoneData`, `ContactByMessagePopupData`, `ContactByMessagePopupData_IsCoordinator`, `EventNotes`, `EventHostId`, `_eventHostIdInDataFetchStatus`, `EventId`, `_eventIdInDataFetchStatus`
 - Other request keys: (none)
 - Response type: `GetCoordinatorDetailsResponse` (see types.ts)
 ```json
@@ -49,7 +82,7 @@
 - Scope: this screen
 - Path: `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionGetEventByEventId`
 - Server action input parameters: (none)
-- Screen variables sent with the call (OutSystems sends these automatically; React does not need to): `IsFetching`, `MinBannerHeight`, `SquarePhotoPx`, `HasInformation`, `MaxPhotoWidth`, `MaxPhotoHeight`, `ContactByPhoneData`, `ContactByMessagePopupData`, `ContactByMessagePopupData_IsCoordinator`, `EventHostId`, `_eventHostIdInDataFetchStatus`, `EventId`, `_eventIdInDataFetchStatus`
+- Screen variables sent with the call (OutSystems sends these automatically; React does not need to): `IsFetching`, `MinBannerHeight`, `SquarePhotoPx`, `HasInformation`, `MaxPhotoWidth`, `MaxPhotoHeight`, `ContactByPhoneData`, `ContactByMessagePopupData`, `ContactByMessagePopupData_IsCoordinator`, `EventNotes`, `EventHostId`, `_eventHostIdInDataFetchStatus`, `EventId`, `_eventIdInDataFetchStatus`
 - Other request keys: (none)
 - Response type: `GetEventByEventIdResponse` (see types.ts)
 ```json
@@ -208,20 +241,49 @@
 | `fetch /UBTConnect/LDM_MyEvents_V2` | 1 |
 | `script /UBTConnect/scripts/UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_Blocks.EventsDetail_Content.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Section.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_SpecialNeeds_ListItem.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Banner.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_Blocks.EventsDetail_Content.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_ListItem.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Banner.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_SpecialNeeds_ListItem.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.ItemNotesSection.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectCorePatterns.ItemCard_ActionBar.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.NoteListActions.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js` | 1 |
+| `script /UBTConnect/scripts/SocialSharingPlugin.controller.js` | 1 |
+| `script /UBTConnect/scripts/Connect_Notes_CS.model.js` | 1 |
+| `script /UBTConnect/scripts/SocialSharingPlugin.referencesHealth.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.AddNote.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc.js` | 1 |
+| `script /UBTConnect/scripts/SocialSharingPlugin.model.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Note_Item_List.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.Columns_Three.mvc.js` | 1 |
+| `script /UBTConnect/scripts/OutSystemsUI_2_23.Interaction.BottomSheet.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Note_Item.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Popup.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.TextEllipsis.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.TextArea_WithCounter.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton_IconPrimary.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.InputCounter.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectCorePatterns.ContextMenu.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton_WithLabel.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.ContextMenu_Item.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.PopupMenu.mvc.js` | 1 |
+| `link /UBTConnect/css/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.css` | 1 |
+| `link /UBTConnect/css/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css` | 1 |
+| `link /UBTConnect/css/UBTConnect_Utils.CW_Notes.NotesSheet.css` | 1 |
+| `link /UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Note_Item.css` | 1 |
 | `img /UBTConnect/img/Connect2_OrbitMobile_MUI.no_events.png` | 1 |
-| `img https://d23bplak01dwmt.cloudfront.net/3/US/326/hall_765.jpg` | 2 |
-| `xmlhttprequest https://australiaeast-0.in.applicationinsights.azure.com/v2/track` | 6 |
+| `xmlhttprequest https://australiaeast-0.in.applicationinsights.azure.com/v2/track` | 13 |
 | `xmlhttprequest /UBTConnect/moduleservices/moduleversioninfo` | 1 |
 | `fetch /UBTConnect/LDM_EventDetail_V2` | 1 |
 | `fetch /UBTConnect/moduleservices/moduleinfo` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc.js` | 1 |
+| `img https://d23bplak01dwmt.cloudfront.net/3/US/326/hall_765.jpg` | 1 |
 | `fetch /UBTConnect/scripts/Connect2_LegacyShared.Layout.Layout.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/Connect2_LegacyShared.Layout.BaseLayout_UpdatedOSUI.mvc.js` | 1 |
@@ -230,6 +292,16 @@
 | `fetch /UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Banner.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/Connect2_LegacyShared.Reusable.Person_Contact_Options.mvc.js` | 1 |
+| `fetch /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.ItemNotesSection.mvc.js` | 1 |
+| `fetch /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.CustomContainer.mvc.js` | 1 |
+| `fetch /UBTConnect/scripts/UBTConnectLibrary.ConnectCorePatterns.ItemCard_ActionBar.mvc.js` | 1 |
+| `fetch /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.IconText.mvc.js` | 1 |
+| `fetch /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.Columns_Two.mvc.js` | 1 |
+| `fetch /UBTConnect/scripts/OutSystemsUI_2_23.Adaptive.Columns2.mvc.js` | 1 |
+| `fetch /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Icon.mvc.js` | 1 |
+| `fetch /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.CustomText.mvc.js` | 1 |
+| `fetch /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.IconInline_Internal.mvc.js` | 1 |
+| `fetch /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper.mvc.js` | 1 |
@@ -237,9 +309,6 @@
 | `fetch /UBTConnect/scripts/UBTConnect.App_Common.BottomBarMenu.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect.App_Common.BottomBarContent.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/OutSystemsUI_2_23.Navigation.BottomBarItem.mvc.js` | 1 |
-| `fetch /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Icon.mvc.js` | 1 |
-| `fetch /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.CustomText.mvc.js` | 1 |
-| `fetch /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.IconInline_Internal.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect.App_Common_Blocks.App_IconBadge.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnectLibrary.OutSystemsUIOverrides.IconBadge.mvc.js` | 1 |
@@ -261,12 +330,12 @@
 | `fetch /UBTConnect/scripts/UBT_AppManager.PIN.Pincode_Unlock.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBT_AppManager.PIN.InactivityTimer.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect.Legacy_Share.HandleOnResumeOpenLink.mvc.js` | 1 |
+| `fetch /UBTConnect/status/network-ping.txt` | 2 |
 | `fetch /UBTConnect/scripts/Connect2_AndroidAppLinksPlugin.AndroidAppLinks.AndroidAppLinkOnResumeHandler.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/EventfulDeeplinksPlugin.EventfulDeeplinksPlugin.DeeplinkHandlerCentral.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/Connect2_LegacyShared.Utility.HandleImageLoadError.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/NavigationHandler.NavigationHandler.BackNavigationHandler.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect.controller.js` | 1 |
-| `fetch /UBTConnect/status/network-ping.txt` | 2 |
 | `fetch /UBTConnect/scripts/UBTConnect.model.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect.languageResources.js` | 1 |
 | `fetch /UBTConnect/scripts/Connect2_OrbitMobile_MUI.controller.js` | 1 |
@@ -281,12 +350,12 @@
 | `fetch /UBTConnect/scripts/UBTConnect_Utils.controller.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect_Utils.model.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect_Utils.languageResources.js` | 1 |
-| `fetch /UBTConnect/scripts/OutSystemsUI_2_23.controller.js` | 1 |
-| `fetch /UBTConnect/scripts/OutSystemsUI_2_23.model.js` | 1 |
-| `fetch /UBTConnect/scripts/OutSystemsUI_2_23.languageResources.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnectLibrary.controller.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnectLibrary.model.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnectLibrary.languageResources.js` | 1 |
+| `fetch /UBTConnect/scripts/OutSystemsUI_2_23.controller.js` | 1 |
+| `fetch /UBTConnect/scripts/OutSystemsUI_2_23.model.js` | 1 |
+| `fetch /UBTConnect/scripts/OutSystemsUI_2_23.languageResources.js` | 1 |
 | `fetch /UBTConnect/scripts/UBT_AppManager_Mobile.controller.js` | 1 |
 | `fetch /UBTConnect/scripts/UBT_AppManager_Mobile.model.js` | 1 |
 | `fetch /UBTConnect/scripts/UBT_AppManager_Mobile.languageResources.js` | 1 |
@@ -301,6 +370,10 @@
 | `fetch /UBTConnect/scripts/EventfulDeeplinksPlugin.languageResources.js` | 1 |
 | `fetch /UBTConnect/css/_Basic.css` | 1 |
 | `fetch /UBTConnect/css/OutSystemsReactWidgets.css` | 1 |
+| `fetch /UBTConnect/css/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css` | 1 |
+| `fetch /UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Note_Item.css` | 1 |
+| `fetch /UBTConnect/css/UBTConnect_Utils.CW_Notes.NotesSheet.css` | 1 |
+| `fetch /UBTConnect/css/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.css` | 1 |
 | `fetch /UBTConnect/css/UBT_AppManager.PIN.PinCode.css` | 1 |
 | `fetch /UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css` | 1 |
 | `fetch /UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css` | 1 |

@@ -32,8 +32,16 @@ OutSystems: `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions` Â
 
   When the call fails, the block disables every action. It raises the error to the flow handler.
 
-- `DataActionFetchNotes` (`api.ts`) runs before the notes sheet opens (Handler_AddNotes). It also runs in OnReady, after
-  the lookup of the new bookmarks.
+- `DataActionFetchNotes` (`api.ts`) runs in OnReady, after the bookmark lookup, and before the notes sheet opens
+  (Handler_AddNotesOnClick), through Action_RefreshFetchNotes. OnAfterFetch_FetchNotes sets EntityNotes, the In_Notes of
+  the sheet. TST also computes FetchNoteId (Notes_InterchangeId_ComposeId for an interchange); the contract inputs do
+  not list it, so the call does not send it.
+- **NotesSheet popup** (TST code of 2026-10-27, mvc.js:927-1000): the sheet is in an OSWidgets.Popup with ShowPopup True
+  and the style `popup-dialog connect-share-portal`. Each block instance has its own `<body>` portal, before the share
+  portal. The Popup widget (`OSPopupWidget`) puts `popup-disable-scroll` on `<html>` and `aria-hidden` on
+  `#reactContainer` while the block is in the view, on every detail page (user decision H-Q1 a, 2026-10-29).
+- **In_LocalityId** (Text, default ""): the In_ItemId of the sheet is `<In_LocalityId>:<EntityId>` for an interchange
+  with a locality, else the EntityId. No caller sets it in the TST code of 2026-10-27.
 - `mocks.ts` has a mock for each of the two calls. Both mocks are fictional. Nobody recorded them. The contact details
   are neutral. The notes come from the in-memory notes collection.
 
@@ -43,42 +51,23 @@ OutSystems: `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions` Â
 | ------- | ------------------------- | ----------------------------------------- |
 | v1      | HouseholdCarousel/default | menu in a skeleton section, popups closed |
 
-## Bookmarks (CR-W4A-1)
+## Bookmarks (CR-W4A-1; C2 only since the drift wave, user decision H-Q2 a, 2026-10-29)
 
-- **OnReady** (controller mvc.js:1658-1946):
-  - The share-type If (:1861-1869, no else) and the bookmarks step (:1871-1929) are consecutive. The compiled flow
-    confirms this.
-  - The bookmarks step runs with HasBookmark / HasUnbookmark. The flag C2NewBookmarks selects the branch.
-    - C2NewBookmarks off (TST): the block runs GetBookmarkType_FromEntity and Connect2_LegacyShared
-      Get_LocalBookmarkByObjectId. Then it sets Local_isBookmarked.
-    - C2NewBookmarks on: the block runs GetBookmarkCategoryId_ByEntityTypeId and UBTConnect_Bookmarks_MCS
-      GetLocalBookmarkByObjectId. Then it sets Local_isBookmarked_C2 and runs Action_RefreshFetchNotes.
-  - Both branches raise OnChange_Bookmark.
-  - Then the block sets isLoaded to true when one of these conditions is true (:1932-1933):
-    - isFetchContacts is false.
-    - The contact fetch is done.
-    - The contact fetch failed.
-
-    The model default of isLoaded is False.
-
-  - Local copies: `src/platform/storage/localEntities` (`localBookmarks.ts`). The shell synchronizes them at app start
-    [src/platform/bootstrap/startup.ts:158-159].
-- **Handle_Bookmark** (:1388-1514): the user clicks Bookmark or Unbookmark in the menu
-  [Directory_EntityDetailsActions.tsx, `handleBookmark`].
-  1. The block always runs ToggleBookmarkItem_C2 (UBTConnect `lib/actions.ts`).
-  2. The block flips Local_isBookmarked_C2.
-  3. The block raises OnChange_Bookmark(Local_isBookmarked_C2).
-
-  With C2NewBookmarks off, the menu keeps reading Local_isBookmarked (view :379-384). So the label does not change after
-  a click, as compiled.
-
-- **Server calls**:
-  - The API contract has the calls ServiceAPIAddBookmark2 and ServiceAPIDeleteBookmarkByBookmarkId2
-    (`migration/contract/extra-actions.json`). `bookmarkServerActions` calls them through the repository of `api/bookmark`.
-  - Their fictional mocks (`mocks.ts`) change the in-memory `bookmarksCollection`. The collection is empty at the start,
-    as in the Sync_Info_GetMain mock.
-  - With C2NewBookmarks off, AddBookmark2 gets an empty category (known original bug B4).
-  - Tests: `bookmarks.test.tsx`.
+- **OnReady** (TST code of 2026-10-27, mvc.js:1864-1887): with HasBookmark / HasUnbookmark the block runs
+  GetBookmarkCategoryId_ByEntityTypeId (Local_BookmarkTypeId) and UBTConnect_Bookmarks_MCS GetLocalBookmarkByObjectId,
+  sets Local_isBookmarked, raises OnChange_Bookmark and runs Action_RefreshFetchNotes. TST removed the GetHasNewBookmarks
+  branch (the legacy store, Local_isBookmarked_C2, Local_BookmarkType, Local_BookmarkGroup).
+  - Then the block sets isLoaded to true when isFetchContacts is false, or the contact fetch is done or failed.
+  - Local copies: `src/platform/storage/localEntities` (`localBookmarks.ts`). The shell synchronizes them at app start.
+- **Handle_Bookmark** (:1400-1470): ToggleBookmarkItem_C2(EntityId, Local_BookmarkTypeId, Local_isBookmarked), then
+  Local_isBookmarked flips and the block raises OnChange_Bookmark(Local_isBookmarked). The menu reads Local_isBookmarked
+  (view :375-376), so the label follows the click. The known original bug B4 (empty category while the flag was off) is
+  gone from the TST code.
+- **Server calls**: ServiceAPIAddBookmark2 and ServiceAPIDeleteBookmarkByBookmarkId2 (`bookmarkServerActions`). Their
+  fictional mocks (`mocks.ts`) change the in-memory `bookmarksCollection`. It is empty at the start, except school 1430
+  in scenario `captured` (OneSchoolGlobalCarousel). The Sync_Info_GetMain mock and the `unlocked` test session copy it to
+  the device (LocalBookmarksC2).
+- Tests: `bookmarks.test.tsx`, `mocks.test.ts`.
 
 ## Not ported / not settled
 

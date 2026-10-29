@@ -166,9 +166,13 @@ define("UBTConnect.Notes.Notes_FilterSheet.mvc$view", ["OutSystems/ClientRuntime
                     In_StartFilter: model.getCachedValue(idService.getId("y+EX9_o6f0SqCUqjLH07lw.In_StartFilter"), function() {
                         return function() {
                             var rec = new UBTConnectModel.Filter_CommonRec();
+                            rec.sort_ByNewestAttr = model.variables.in_FilterNotesIn.sortByNewestAttr;
                             return rec;
                         }();
+                    }, function() {
+                        return model.variables.in_FilterNotesIn.sortByNewestAttr;
                     }),
+                    _in_StartFilterInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables._in_FilterNotesInDataFetchStatus),
                     In_Options: model.getCachedValue(idService.getId("y+EX9_o6f0SqCUqjLH07lw.In_Options"), function() {
                         return function() {
                             var rec = new UBTConnectModel.Filter_Common_OptionsRec();
@@ -270,6 +274,31 @@ define("UBTConnect.Notes.Notes_FilterSheet.mvc$controller", ["OutSystems/ClientR
 
         Controller.prototype.dataFetchActionNames = [];
         // Client Actions
+        Controller.prototype._onParametersChanged$Action = function(callContext) {
+            var varBag = {};
+            var model = this.model;
+            var controller = this.controller;
+            var idService = this.idService;
+            varBag.model = model;
+            varBag.idService = idService;
+            controller.ensureControllerAlive("OnParametersChanged");
+            callContext = controller.callContext(callContext);
+            varBag.callContext = callContext;
+            try {
+                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:80kMEGhGLUqmNN5JfRhfng:/NRWebFlows.2DlYrQQBWkK7ftgdGmwqyg/NodesShownInESpaceTree.YN_r6gLKS0uSINGYDZEd_Q/ClientActions.80kMEGhGLUqmNN5JfRhfng:xHtHMjBARac1PGWkF8Xh5A", "UBTConnect", "OnParametersChanged", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:SLVnGNTTS0+v4pN8EbzYkg", callContext.id);
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:AZfr4vGOq0CEXEE1u_a59g", callContext.id);
+                // Execute Action: Initialize_FilterYearOptions
+                controller._initialize_FilterYearOptions$Action(callContext);
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Aoj2ijXP7UW3A++AL+Li4g", callContext.id);
+            } catch (ex) {
+                OutSystemsDebugger.handleException(ex, callContext.id);
+                throw ex;
+            } finally {
+                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:80kMEGhGLUqmNN5JfRhfng", callContext.id);
+            }
+
+        };
         Controller.prototype._initialize_FilterYearOptions$Action = function(callContext) {
             var varBag = {};
             var model = this.model;
@@ -283,8 +312,11 @@ define("UBTConnect.Notes.Notes_FilterSheet.mvc$controller", ["OutSystems/ClientR
             varBag.callContext = callContext;
             varBag.vars = vars;
             try {
-                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:LzuNFjkhGEeSm41pgzIBLQ:/NRWebFlows.2DlYrQQBWkK7ftgdGmwqyg/NodesShownInESpaceTree.YN_r6gLKS0uSINGYDZEd_Q/ClientActions.LzuNFjkhGEeSm41pgzIBLQ:PbzShZr3eA0W4kSr2rzxWQ", "UBTConnect", "Initialize_FilterYearOptions", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:LzuNFjkhGEeSm41pgzIBLQ:/NRWebFlows.2DlYrQQBWkK7ftgdGmwqyg/NodesShownInESpaceTree.YN_r6gLKS0uSINGYDZEd_Q/ClientActions.LzuNFjkhGEeSm41pgzIBLQ:N0q2ByDr5Ya4hRkmSEKUcw", "UBTConnect", "Initialize_FilterYearOptions", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:EQ01vJNb3ECaQFhkqAZfIw", callContext.id);
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:sgG3_fAe+UuTQZMr9keUVA", callContext.id);
+                // SelectedYears = In_FilterNotes.Years
+                vars.value.selectedYearsVar = model.variables.in_FilterNotesIn.yearsAttr;
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:8u8zYTS8y0KywB3Qms7CnA", callContext.id);
                 // Execute Action: ListClearYear_Extra_Option_FlatList
                 OS.SystemActions.listClear(vars.value.filter_year_listVar.in_OptionsAttr, callContext);
@@ -295,12 +327,36 @@ define("UBTConnect.Notes.Notes_FilterSheet.mvc$controller", ["OutSystems/ClientR
                     var in_YearsOptionsIndex = 0;
                     while ((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:qGwld_H7nEG+yeIzgRPAQw", callContext.id) && (in_YearsOptionsIndex < model.variables.in_YearsOptionsIn.length))) {
                         in_YearsOptionsIterator.currentRowNumber = in_YearsOptionsIndex;
+                        OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:OcHf6BAWMkyHbxmLizNQ1A", callContext.id);
+                        // IsYearSelected = False
+                        vars.value.isYearSelectedVar = false;
+                        // Foreach SelectedYears
+                        callContext.iterationContext.registerIterationStart(vars.value.selectedYearsVar);
+                        try {
+                            var selectedYearsIterator = callContext.iterationContext.getIterator(vars.value.selectedYearsVar);
+                            var selectedYearsIndex = 0;
+                            while ((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:ljpn6CuV1k+9wujSaWF8RA", callContext.id) && (selectedYearsIndex < vars.value.selectedYearsVar.length))) {
+                                selectedYearsIterator.currentRowNumber = selectedYearsIndex;
+                                if ((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:vnXogzUA7EqikToViV0pRA", callContext.id) && (vars.value.selectedYearsVar.getItem(selectedYearsIndex.valueOf()) === model.variables.in_YearsOptionsIn.getItem(in_YearsOptionsIndex.valueOf())))) {
+                                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:jBC5Jydhp0mwsrY0wN2tpA", callContext.id);
+                                    // IsYearSelected = True
+                                    vars.value.isYearSelectedVar = true;
+                                }
+
+                                selectedYearsIndex++;
+                            }
+
+                        } finally {
+                            callContext.iterationContext.registerIterationEnd(vars.value.selectedYearsVar);
+                        }
+
                         OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:36LB6bdAHEev3WGokyPMVw", callContext.id);
                         // Execute Action: ListAppend_YearsOptions
                         OS.SystemActions.listAppend(vars.value.filter_year_listVar.in_OptionsAttr, function() {
                             var rec = new UBTConnectLibraryModel.SelectionOption_ItemRec();
                             rec.idAttr = model.variables.in_YearsOptionsIn.getItem(in_YearsOptionsIndex.valueOf());
                             rec.displayTextAttr = model.variables.in_YearsOptionsIn.getItem(in_YearsOptionsIndex.valueOf());
+                            rec.isSelectedAttr = vars.value.isYearSelectedVar;
                             rec.isEnabledAttr = true;
                             return rec;
                         }(), callContext);
@@ -317,6 +373,15 @@ define("UBTConnect.Notes.Notes_FilterSheet.mvc$controller", ["OutSystems/ClientR
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:yW9k5uv2kk6bTa7QlW4nzg", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
                 // Filter_year_list.Order = 1
                 vars.value.filter_year_listVar.orderAttr = 1;
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:yW9k5uv2kk6bTa7QlW4nzg", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "3");
+                // Filter_year_list.SelectedIds = In_FilterNotes.Years
+                vars.value.filter_year_listVar.selectedIdsAttr = model.variables.in_FilterNotesIn.yearsAttr;
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:yW9k5uv2kk6bTa7QlW4nzg", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "4");
+                // Filter_year_list.SelectedNames = In_FilterNotes.Years
+                vars.value.filter_year_listVar.selectedNamesAttr = model.variables.in_FilterNotesIn.yearsAttr;
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:0oXolEN6iEmYlQ7uelzXzw", callContext.id);
+                // Execute Action: ListClearYears
+                OS.SystemActions.listClear(model.variables.years_Extra_Option_FlatListVar, callContext);
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:mu7bsHdOJEmNXl3flbK45Q", callContext.id);
                 // Execute Action: ListAppend
                 OS.SystemActions.listAppend(model.variables.years_Extra_Option_FlatListVar, vars.value.filter_year_listVar, callContext);
@@ -338,6 +403,23 @@ define("UBTConnect.Notes.Notes_FilterSheet.mvc$controller", ["OutSystems/ClientR
                 return new UBTConnectModel.Filter_Common_Control_ListRec();
             },
             complexType: UBTConnectModel.Filter_Common_Control_ListRec
+        }, {
+            name: "SelectedYears",
+            attrName: "selectedYearsVar",
+            mandatory: false,
+            dataType: OS.DataTypes.DataTypes.RecordList,
+            defaultValue: function() {
+                return new OS.DataTypes.TextList();
+            },
+            complexType: OS.DataTypes.TextList
+        }, {
+            name: "IsYearSelected",
+            attrName: "isYearSelectedVar",
+            mandatory: false,
+            dataType: OS.DataTypes.DataTypes.Boolean,
+            defaultValue: function() {
+                return false;
+            }
         }]);
         Controller.prototype._onInitialize$Action = function(callContext) {
             var varBag = {};
@@ -469,6 +551,11 @@ define("UBTConnect.Notes.Notes_FilterSheet.mvc$controller", ["OutSystems/ClientR
             complexType: Connect_Notes_CSModel.Notes_FilterRec
         }]);
 
+        Controller.prototype.onParametersChanged$Action = function(callContext) {
+            var controller = this.controller;
+            return controller.safeExecuteClientAction(controller._onParametersChanged$Action, callContext);
+
+        };
         Controller.prototype.initialize_FilterYearOptions$Action = function(callContext) {
             var controller = this.controller;
             return controller.safeExecuteClientAction(controller._initialize_FilterYearOptions$Action, callContext);
@@ -498,7 +585,7 @@ define("UBTConnect.Notes.Notes_FilterSheet.mvc$controller", ["OutSystems/ClientR
         Controller.prototype.pushDebuggerContext = function(callContext) {
             var varBag = {};
             OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:2DlYrQQBWkK7ftgdGmwqyg:/NRWebFlows.2DlYrQQBWkK7ftgdGmwqyg:H6BPPYIIY_GDy0FJgaUDiA", "UBTConnect", "Notes", "NRFlows.WebFlow", callContext.id, varBag);
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:YN_r6gLKS0uSINGYDZEd_Q:/NRWebFlows.2DlYrQQBWkK7ftgdGmwqyg/NodesShownInESpaceTree.YN_r6gLKS0uSINGYDZEd_Q:Iru1rKH79ImPQr7n3MjDHQ", "UBTConnect", "Notes_FilterSheet", "NRNodes.WebBlock", callContext.id, varBag);
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:YN_r6gLKS0uSINGYDZEd_Q:/NRWebFlows.2DlYrQQBWkK7ftgdGmwqyg/NodesShownInESpaceTree.YN_r6gLKS0uSINGYDZEd_Q:xEMl6dvDGfr2PnPMtHzVsg", "UBTConnect", "Notes_FilterSheet", "NRNodes.WebBlock", callContext.id, varBag);
         };
         Controller.prototype.popDebuggerContext = function(callContext) {
             OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:YN_r6gLKS0uSINGYDZEd_Q", callContext.id);
@@ -525,7 +612,24 @@ define("UBTConnect.Notes.Notes_FilterSheet.mvc$controller", ["OutSystems/ClientR
         Controller.prototype.onReadyEventHandler = null;
         Controller.prototype.onRenderEventHandler = null;
         Controller.prototype.onDestroyEventHandler = null;
-        Controller.prototype.onParametersChangedEventHandler = null;
+        Controller.prototype.onParametersChangedEventHandler = function(callContext) {
+            var controller = this.controller;
+            var model = this.model;
+            var idService = this.idService;
+
+            return OS.Flow.tryFinally(function() {
+                var varBag = {};
+                controller.pushDebuggerContext(callContext);
+
+                OutSystemsDebugger.setThreadStartName(callContext.id, "Notes/Notes_FilterSheet On Parameters Changed");
+                return controller.onParametersChanged$Action(callContext);
+
+            }, function() {
+                controller.popDebuggerContext(callContext);
+
+            });
+
+        };
         Controller.prototype.handleError = function(ex) {
             return controller.handleError(ex);
         };
@@ -545,6 +649,17 @@ define("UBTConnect.Notes.Notes_FilterSheet.mvc$debugger", ["exports", "OutSystem
             getter: function(varBag, idService) {
                 return varBag.vars.value.filter_year_listVar;
             }
+        },
+        "9chn1Zc1nUOWRN+JUjkt4Q": {
+            getter: function(varBag, idService) {
+                return varBag.vars.value.selectedYearsVar;
+            }
+        },
+        "PgLkZ0BiJ0GSh5DqJDdWnw": {
+            getter: function(varBag, idService) {
+                return varBag.vars.value.isYearSelectedVar;
+            },
+            dataType: OS.DataTypes.DataTypes.Boolean
         },
         "Z6yd8KUr202Jaz1yoGw6Qw": {
             getter: function(varBag, idService) {

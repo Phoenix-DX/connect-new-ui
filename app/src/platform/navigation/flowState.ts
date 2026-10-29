@@ -1,12 +1,14 @@
 import { useCallback, useEffect, useLayoutEffect, useReducer, useRef } from 'react';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
+import { useFlowScope, type FlowScope } from './flowScope';
 import { useViewState, useWasRestoredFromCache } from './hooks';
 
 /* The standard state of a flow hook (docs/guides/page-template.md): the state of a screen or block, its OnReady and
    OnParametersChanged flows, in one hook, so that the pages do not copy the refs and effects. */
 
-/** Tells a running flow whether it is still current. It turns false when the same trigger runs again, or when the
-    screen or block unmounts: the flow then stops before it assigns anything. */
+/** Tells a running OnParametersChanged flow whether it is still current. It turns false when the screen or block
+    unmounts, and also when the same trigger runs again: the older run then stops before it assigns anything (item 8
+    §6, point 5 (a), user 2026-10-28). OnReady gets the flow scope instead (`flow.alive`). */
 export type IsAlive = () => boolean;
 
 /** The options of {@link useFlowState}. The OutSystems order is kept: OnInitialize (`initial`), the first render,
@@ -27,17 +29,16 @@ export interface FlowStateOptions<S, A, P, E = undefined> {
   parameters: P;
   /** The event handlers that the parent gives (the block events). The flows call the newest ones through `events`. */
   events?: E;
-  /** OnReady. It runs once, after the first render. `restored` is true when the view cache restored the view (a back
-      navigation), false on a new visit. */
-  onReady?: (isAlive: IsAlive, restored: boolean) => Promise<void>;
+  /** OnReady. It runs once per instance, after the first render, also in StrictMode (dev). `flow` is the flow scope
+      of the instance, the same object as the `flow` that the hook returns (`flow.alive()` is true until the unmount).
+      `restored` is true when the view cache restored the view (a back navigation), false on a new visit. */
+  onReady?: (flow: FlowScope<E>, restored: boolean) => Promise<void>;
   /** Runs `onReady` before the first paint (decision W28). Set it when the old port of the screen or block ran OnReady
       in a `useLayoutEffect`. The hook reads it at the mount only; `onParametersChanged` does not change.
-      - Off (the default): `onReady` runs in a passive effect, after the paint. StrictMode (dev) runs it twice: the
-        first run's `isAlive` turns false at once.
-      - On: `onReady` runs once, in a layout effect. A state write at its start renders before the screen paints, so
-        the first frame does not show the state before OnReady. StrictMode (dev) runs it once.
-      - On: `isAlive` is true until the unmount (it guards the state writes only, decision W23). `restored` and the
-        flow handler are the same as in the default; a rejection goes to the flow handler, also after the unmount. */
+      - Off (the default): `onReady` runs in a passive effect, after the paint.
+      - On: `onReady` runs in a layout effect. A state write at its start renders before the screen paints, so the
+        first frame does not show the state before OnReady.
+      Both modes run it once (item 8 §2.3), and send a rejection to the flow handler with the flow scope. */
   beforePaint?: boolean;
   /** OnParametersChanged. It runs after a render in which the parameters key changed, never after the first render. */
   onParametersChanged?: (isAlive: IsAlive) => Promise<void>;
@@ -47,7 +48,8 @@ export interface FlowStateOptions<S, A, P, E = undefined> {
 export interface FlowState<S, A, P, E = undefined> {
   /** The rendered state. */
   state: S;
-  /** Applies the action to `latest` at once, keeps the result for the view cache, and renders it. */
+  /** Applies the action to `latest` at once, keeps the result for the view cache, and renders it. A no-op after the
+      unmount: TST drops the answer of a disposed screen or block (R1, item 8 §2.3). */
   dispatch: (action: A) => void;
   /** The newest state, which the flows read: OutSystems assigns a variable at once, before the next render. */
   latest: { readonly current: S };
@@ -55,12 +57,16 @@ export interface FlowState<S, A, P, E = undefined> {
   parameters: { readonly current: P };
   /** The newest event handlers, which the flows call. */
   events: { readonly current: E };
+  /** The flow scope of the instance (flowScope.ts): `flow.fetch`, `flow.own`, `flow.events`, `flow.run`,
+      `flow.runAwaited`. OnReady gets the same object. */
+  flow: FlowScope<E>;
 }
 
 /**
  * The state and the flows of a flow hook. The rendered state comes from `reducer`; `dispatch` also updates `latest`
  * at once and saves the state for the view cache, so a back navigation to the view restores it (`useViewState`).
- * The hook calls the flows of the newest render, and sends a rejection to the flow handler (`raiseToFlowHandler`).
+ * The hook calls the flows of the newest render, and sends a rejection to the flow handler (`raiseToFlowHandler`)
+ * with the flow scope, so that a left screen opens no error page (R6).
  */
 export function useFlowState<S, A, P, E = undefined>({
   viewName,
@@ -73,6 +79,8 @@ export function useFlowState<S, A, P, E = undefined>({
   beforePaint = false,
   onParametersChanged,
 }: FlowStateOptions<S, A, P, E>): FlowState<S, A, P, E> {
+  // Without the `events` option, E is `undefined` (its default), and so is the value.
+  const flow = useFlowScope(events as E);
   const restoredFromCache = useWasRestoredFromCache();
   const [saved, setSaved] = useViewState<S>(viewName, initial);
   const [state, dispatchToView] = useReducer(reducer, saved, (s: S) =>
@@ -81,11 +89,12 @@ export function useFlowState<S, A, P, E = undefined>({
   const latest = useRef(state);
   const dispatch = useCallback(
     (action: A) => {
+      if (!flow.alive()) return;
       latest.current = reducer(latest.current, action);
       setSaved(latest.current);
       dispatchToView(action);
     },
-    [reducer, setSaved],
+    [reducer, setSaved, flow],
   );
 
   const parametersRef = useRef(parameters);
@@ -101,40 +110,40 @@ export function useFlowState<S, A, P, E = undefined>({
   const restoredRef = useRef(restoredFromCache);
   // The mode is fixed at the mount: one of the two effects below runs OnReady.
   const beforePaintRef = useRef(beforePaint);
+  // OnReady once per instance: StrictMode (dev) runs the mount effects again on the same instance, with its refs kept
+  // (item 8 §2.3). The scope's `alive` is true again after that second run.
   const readyStarted = useRef(false);
-  const readyAlive = useRef(false);
   useLayoutEffect(() => {
-    if (!beforePaintRef.current) return undefined;
-    // StrictMode (dev) runs this effect again on the same view: the second run only turns the liveness check on again.
-    readyAlive.current = true;
-    if (!readyStarted.current) {
-      readyStarted.current = true;
-      flowsRef.current.onReady?.(() => readyAlive.current, restoredRef.current).catch(raiseToFlowHandler);
-    }
-    return () => {
-      readyAlive.current = false;
-    };
-  }, []);
+    if (!beforePaintRef.current || readyStarted.current) return;
+    readyStarted.current = true;
+    flowsRef.current.onReady?.(flow, restoredRef.current).catch((e: unknown) => {
+      raiseToFlowHandler(e, flow);
+    });
+  }, [flow]);
   useEffect(() => {
-    if (beforePaintRef.current) return undefined;
-    let alive = true;
-    flowsRef.current.onReady?.(() => alive, restoredRef.current).catch(raiseToFlowHandler);
-    return () => {
-      alive = false;
-    };
-  }, []);
+    if (beforePaintRef.current || readyStarted.current) return;
+    readyStarted.current = true;
+    flowsRef.current.onReady?.(flow, restoredRef.current).catch((e: unknown) => {
+      raiseToFlowHandler(e, flow);
+    });
+  }, [flow]);
 
   const parametersKey = JSON.stringify(parameters);
   const parametersKeyRef = useRef(parametersKey);
   useEffect(() => {
     if (parametersKeyRef.current === parametersKey) return undefined;
     parametersKeyRef.current = parametersKey;
+    // `isAlive` of OnParametersChanged turns false at the next run too (item 8 §6, point 5 (a): kept).
     let alive = true;
-    flowsRef.current.onParametersChanged?.(() => alive).catch(raiseToFlowHandler);
+    flowsRef.current
+      .onParametersChanged?.(() => alive)
+      .catch((e: unknown) => {
+        raiseToFlowHandler(e, flow);
+      });
     return () => {
       alive = false;
     };
-  }, [parametersKey]);
+  }, [parametersKey, flow]);
 
-  return { state, dispatch, latest, parameters: parametersRef, events: eventsRef };
+  return { state, dispatch, latest, parameters: parametersRef, events: eventsRef, flow };
 }

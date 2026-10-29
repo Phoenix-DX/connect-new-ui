@@ -29,6 +29,18 @@ describe('UBT_LazyImage', () => {
     expectToMatchCapture(container.firstElementChild, captures['./__captures__/v2.html'] ?? '');
   });
 
+  it('In_ForceLoadingState is passed to LazyImage (UBT_LazyImage.mvc.js:308): the image stays hidden after its load', () => {
+    const url = 'https://images.example/fenwick-household.jpg';
+    const { container, rerender } = render(<EntityLazyImage imageURL={url} inForceLoadingState />);
+    const img = container.querySelector('img');
+    if (!img) throw new Error('no image');
+    fireEvent.load(img);
+    expect(container.querySelector('.ubt-lazy-image')).toHaveClass('hidden');
+    rerender(<EntityLazyImage imageURL={url} />);
+    fireEvent.load(img);
+    expect(container.querySelector('.ubt-lazy-image')).not.toHaveClass('hidden');
+  });
+
   it('member without image: avatar classes, circle border, person icon sized from the height', () => {
     const { container } = render(
       <EntityLazyImage

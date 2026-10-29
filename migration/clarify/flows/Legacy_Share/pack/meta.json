@@ -1,0 +1,56 @@
+{
+ "flow": "Legacy_Share",
+ "screens": [
+  "ConnectShare",
+  "LegacyShareObject"
+ ],
+ "ownBlocks": [
+  "HandleOnResumeOpenLink"
+ ],
+ "usedBlocks": [
+  "Block_PINUnlock",
+  "Block_PINUnlock_ContentWrapper",
+  "CommonUI_InsideLayout",
+  "HandleOnResumeOpenLink",
+  "OfflineDataSyncEvents",
+  "Policy_Checker",
+  "UnsupportedVersion",
+  "UnsupportedVersion_Browser",
+  "UnsupportedVersion_Native",
+  "UnsupportedVersion_WebView",
+  "UnsupportedVersion_Wrapper",
+  "WelcomeToConnect"
+ ],
+ "referencedBlocks": [
+  "AndroidAppLinkOnResumeHandler",
+  "DeeplinkHandlerCentral",
+  "Dialog_AccessRestrictedAction",
+  "Dialog_AccessRestrictedAction_Legacy",
+  "ScreenBlock_ShareDetail",
+  "ScreenBlock_ShareObject"
+ ],
+ "clientActions": [
+  "AuditShareViewEvent",
+  "ExitApplicationForWebViewUpdate",
+  "GetShareAttributes",
+  "GetURLFromEventDataURL",
+  "GetUserInformation_Wrapper",
+  "GetUserInformation_Wrapper_Assign",
+  "Get_IsUnsupportedSystem",
+  "Get_IsUnsupportedVersion",
+  "OfflineDataSync",
+  "OfflineDataSyncConfiguration",
+  "OnInitializeSharingScreen",
+  "OpenGooglePlay_Chrome",
+  "OpenGooglePlay_UBTConnect",
+  "OpenGooglePlay_WebView",
+  "SetResumeLoginLink",
+  "Try_GetIsSupportedVersion",
+  "Upgrade_UBTConnect",
+  "Upgrade_WebView"
+ ],
+ "serverActions": [
+  "Get_ShareDetails"
+ ],
+ "externalSites": []
+}

@@ -1,0 +1,12 @@
+{
+ "finishedAt": "2026-10-29T15:06:53",
+ "files": {
+  "src/pages/PassportScan/PassportScan.test.tsx": "cf22aa9131af70a7",
+  "src/pages/PassportScan/PassportScanPage.tsx": "edb17a7777e7acc3",
+  "src/pages/PassportScan/camera.ts": "b1229e3cc14d883e",
+  "src/pages/PassportScan/components/ScreenBlock_PassportScan.tsx": "f2cea7ba5bbd3abf",
+  "src/pages/PassportScan/hooks/usePassportScan.ts": "c3d8b0a147dbe36e",
+  "src/pages/PassportScan/inputs.ts": "e9c43f25a5440579",
+  "src/pages/PassportScan/mocks.ts": "1ad4cd0ae84df335"
+ }
+}

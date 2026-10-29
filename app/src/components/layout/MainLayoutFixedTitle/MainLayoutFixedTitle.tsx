@@ -1,16 +1,11 @@
 /** @origin UBTConnectLibrary.Layouts.Layout_MainPages_FixedTitle */
 // @os-block UBTConnectLibrary.Layouts.Layout_MainPages_FixedTitle
-import { useEffect, useId, useLayoutEffect, useRef, type ReactNode } from 'react';
+import { useId, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { LayoutRuntimeTop } from '@/components/layout/LayoutRuntimeTop';
+import { useMainFixedScrollEvents } from '@/components/layout/useMainFixedScrollEvents';
 import { PullToRefresh } from '@/components/ui/PullToRefresh';
 import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
-import {
-  clearScrollTimeout,
-  removeScrollEvents,
-  setMainFixedScroll,
-  setScrollShadow,
-} from '@/lib/ubtConnectLibrary/actions';
 import { UBT_ColumnBehaviour, UBT_Size, UBT_VerticalAlign } from '@/lib/ubtConnectLibrary/staticEntities';
 
 export interface MainLayoutFixedTitleProps {
@@ -75,20 +70,7 @@ export function MainLayoutFixedTitle({
   onOnHeaderScrolled,
 }: MainLayoutFixedTitleProps) {
   const fallback = useId().replace(/[^a-zA-Z0-9]/g, '');
-  const onHeaderScrolled = useRef(onOnHeaderScrolled);
-  useLayoutEffect(() => {
-    onHeaderScrolled.current = onOnHeaderScrolled;
-  });
-  useEffect(() => {
-    const main = setMainFixedScroll((isHeaderScrolled) => {
-      onHeaderScrolled.current?.(isHeaderScrolled);
-    });
-    const shadow = setScrollShadow();
-    return () => {
-      removeScrollEvents(main.Out_Element, main.Out_ScrollEvent, shadow.Out_ScrollEvent);
-      clearScrollTimeout(shadow.Out_Timeout);
-    };
-  }, []);
+  useMainFixedScrollEvents(onOnHeaderScrolled);
   const prefix = id?.replace('$', '') ?? `layout${fallback}`;
   return (
     <OSBlock name="Layouts.Layout_MainPages_FixedTitle" id={id}>

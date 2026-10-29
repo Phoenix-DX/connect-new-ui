@@ -1,8 +1,8 @@
 # Coverage for LDM_MyEvents_V2
 
 - UI states captured: default, loading, offline
-- Runtime captures: 1 file(s), 9 call(s)
-- Masked text nodes: 26, user images removed: 0
+- Runtime captures: 1 file(s), 10 call(s)
+- Masked text nodes: 13, user images removed: 0
 - Fetch failures during snapshot: 0
 
 ## Blocks referenced in code but not rendered in any captured state

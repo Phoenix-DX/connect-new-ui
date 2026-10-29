@@ -68,15 +68,11 @@ Layouts.Layout_HomePage
           Adaptive.Columns2
             BasePatterns.CustomText
               ConnectPatterns.IconInline_Internal
-      BasePatterns.CustomText
-        ConnectPatterns.IconInline_Internal
       BasePatterns.CustomContainer
         BasePatterns.Columns_Two
           Adaptive.Columns2
             BasePatterns.CustomText
               ConnectPatterns.IconInline_Internal
-      BasePatterns.CustomText
-        ConnectPatterns.IconInline_Internal
   ConnectPatterns.FixedFooter
     BasePatterns.CustomContainer
       BasePatterns.Columns_Two
@@ -242,7 +238,6 @@ App_Profile.Profile_HouseholdPreview
                   CW_CTA_PopUps.ContactPopup
                 CW_CTA_PopUps.SharePopup
                   CW_CTA_PopUps.ContactPopup
-                CW_Notes.NotesSheet
           Directory_Household_Blocks.HouseholdDetails_Members_Block
             ConnectPatterns.SkeletonSection
               BasePatterns.CustomContainer
@@ -288,7 +283,6 @@ App_Profile.Profile_HouseholdPreview
                                     CW_CTA_PopUps.ContactPopup
                                   CW_CTA_PopUps.SharePopup
                                     CW_CTA_PopUps.ContactPopup
-                                  CW_Notes.NotesSheet
                                 BasePatterns.CustomContainer
                                   ConnectPatterns.Icon
                         ConnectCorePatterns.Member_ListItem
@@ -327,7 +321,6 @@ App_Profile.Profile_HouseholdPreview
                                     CW_CTA_PopUps.ContactPopup
                                   CW_CTA_PopUps.SharePopup
                                     CW_CTA_PopUps.ContactPopup
-                                  CW_Notes.NotesSheet
                                 BasePatterns.CustomContainer
                                   ConnectPatterns.Icon
                         ConnectCorePatterns.Member_ListItem
@@ -343,24 +336,32 @@ App_Profile.Profile_HouseholdPreview
                               BasePatterns.CustomText
                                 ConnectPatterns.IconInline_Internal
                               BasePatterns.CustomContainer
-                                Directory_CommonBlocks.Directory_EntityDetailsActions
-                                  ConnectPatterns.SkeletonSection
-                                    ConnectCorePatterns.ActionsMenu
+                        ConnectCorePatterns.Member_ListItem
+                          BasePatterns.Columns_Three
+                            Adaptive.Columns3
+                              CW_Image.UBT_LazyImage
+                                ConnectPatterns.SkeletonSection
+                                  ConnectPatterns.LazyImage
+                                    ConnectPatterns.SkeletonSection
                                       BasePatterns.CustomContainer
-                                        ConnectPatterns.CircleButton_IconPrimary
-                                          ConnectPatterns.CircleButton_WithLabel
-                                            ConnectPatterns.CircleButton
-                                              BasePatterns.CustomContainer
-                                                ConnectPatterns.Icon
-                                            BasePatterns.CustomContainer
-                                  CW_CTA_PopUps.ContactByMessage_Wrapper
-                                    CW_CTA_PopUps.ContactPopup_ByMessage
-                                      CW_CTA_PopUps.ContactPopup
-                                  CW_CTA_PopUps.ContactPopup_ByPhone
-                                    CW_CTA_PopUps.ContactPopup
-                                  CW_CTA_PopUps.SharePopup
-                                    CW_CTA_PopUps.ContactPopup
-                                  CW_Notes.NotesSheet
+                              BasePatterns.CustomText
+                                ConnectPatterns.IconInline_Internal
+                              BasePatterns.CustomText
+                                ConnectPatterns.IconInline_Internal
+                              BasePatterns.CustomContainer
+                        ConnectCorePatterns.Member_ListItem
+                          BasePatterns.Columns_Three
+                            Adaptive.Columns3
+                              CW_Image.UBT_LazyImage
+                                ConnectPatterns.SkeletonSection
+                                  ConnectPatterns.LazyImage
+                                    ConnectPatterns.SkeletonSection
+                                      BasePatterns.CustomContainer
+                              BasePatterns.CustomText
+                                ConnectPatterns.IconInline_Internal
+                              BasePatterns.CustomText
+                                ConnectPatterns.IconInline_Internal
+                              BasePatterns.CustomContainer
               SubLayout.SubLayout_DirectoryDetailScreen_Section
                 BasePatterns.CustomContainer
                   Layouts.SubLayout_Section
@@ -368,4 +369,7 @@ App_Profile.Profile_HouseholdPreview
         CW_Share.ShareSheet
 App_Common_Blocks_PopupDialogs.Dialog_CustomChoice
   ConfirmationDialogs.ActionConfirmationDialog
+CW_Notes.NotesSheet
 CW_Share.ShareSheet
+CW_Notes.NotesSheet
+CW_Notes.NotesSheet

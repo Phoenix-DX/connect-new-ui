@@ -2,7 +2,7 @@ import { fetchHousehold, fetchHouseholdCoordinates, type Household, type Househo
 import { cardContent, isDeceasedOrAncestry } from '@/components/household';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
-import { isViewHasChangedException, raiseToFlowHandler } from '@/platform/feedback/flowErrors';
+import { isViewHasChangedException } from '@/platform/feedback/flowErrors';
 import { useFlagOn } from '@/platform/flags/flags';
 import { useFlowState, useOsNavigate, type IsAlive } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
@@ -41,11 +41,17 @@ export interface HouseholdDetailsParameters {
 export interface HouseholdDetailsFlags {
   hasPhotobookAccess: boolean;
   hasExtendedShare: boolean;
+  /** LD check mobileDirectoryHouseholdGallery (live TST of 2026-10-27): on hides the Coming Soon box of Photos. */
+  hasHouseholdGallery: boolean;
 }
 
-/** Reads the two flags of the household details. */
+/** Reads the three flags of the household details. */
 export function useHouseholdDetailsFlags(): HouseholdDetailsFlags {
-  return { hasPhotobookAccess: useFlagOn('mobilePhotobook'), hasExtendedShare: useFlagOn('C2ExtendedShare') };
+  return {
+    hasPhotobookAccess: useFlagOn('mobilePhotobook'),
+    hasExtendedShare: useFlagOn('C2ExtendedShare'),
+    hasHouseholdGallery: useFlagOn('mobileDirectoryHouseholdGallery'),
+  };
 }
 
 export interface HouseholdDetailsEvents {
@@ -58,27 +64,31 @@ export interface HouseholdDetailsEvents {
     the skeleton household, IsSkeletonOnly = the input, and the refresh of both data actions; then the two tags.
     OnParametersChanged: with a preview, its age visibility and GetHousehold; then, when In_IsSkeletonOnly turned
     false, the refresh of both data actions. The state and the triggers of both flows come from useFlowState: the
-    flows read `latest`, `parameters` and `eventsRef`, as OutSystems assigns variables at once. */
+    flows read `latest`, `parameters` and `flow.events`, as OutSystems assigns variables at once.
+    Flow scope (item 8): GetHousehold and GetHousehold_Coordinates are data actions (R1, `flow.fetch`): after the
+    unmount their answer and their failure are dropped, so OnAfterFetch_GetHouseholdDetail, the event and the rest of
+    OnParametersChanged do not run. Handler_OnClickNavigateTomarriedChildren_Household is an own action of the block
+    (R3, `flow.own`, HouseholdDetails_Block.js:1745-1750). The "Refreshes" node of OnInitialize, after
+    GetUserInformation_Wrapper, calls own actions too (R3, `flow.own`, :2677-2680, 2733; S1a Q2 (a), user
+    2026-10-28). HasAccessToRegion and the upgrade popup are module
+    actions: they run after leaving. The `isAlive` checks that stay guard a superseded OnParametersChanged run
+    (item 8 §6, point 5 (a)). */
 export function useHouseholdDetails(
   inputs: HouseholdDetailsParameters,
   flags: HouseholdDetailsFlags,
   events: HouseholdDetailsEvents = {},
 ) {
   const { householdId, isEnabled } = inputs;
-  const {
-    state,
-    dispatch,
-    latest,
-    parameters,
-    events: eventsRef,
-  } = useFlowState({
+  const { state, dispatch, latest, parameters, flow } = useFlowState({
     viewName: `Directory_Household.HouseholdDetails_Block#${householdId}`,
     reducer: householdDetailsReducer,
     initial: INITIAL_HOUSEHOLD_DETAILS_STATE,
     parameters: inputs,
     events,
     // The flows are defined below; the hook calls the ones of the newest render.
-    onReady: (isAlive, restored) => onInitialize(isAlive, restored),
+    // OnReady gets the `flow` that this call returns. `scope.alive` goes to the refresh helpers, whose `isAlive`
+    // checks are for a superseded OnParametersChanged run.
+    onReady: (scope, restored) => onInitialize(scope.alive, restored),
     onParametersChanged: (isAlive) => onParametersChanged(isAlive),
   });
   const navigate = useOsNavigate();
@@ -103,16 +113,16 @@ export function useHouseholdDetails(
     dispatch({ type: 'householdFetchStarted' });
     let fetched: Household;
     try {
-      fetched = await fetchHousehold(callInputs());
+      fetched = await flow.fetch(fetchHousehold(callInputs())); // R1
     } catch (error) {
       if (isAlive() && !isViewHasChangedException(error)) dispatch({ type: 'householdFetchFailed' });
       throw error;
     }
-    if (!isAlive()) return;
+    if (!isAlive()) return; // a superseded OnParametersChanged run
     const household = handlePreviewData(fetched, parameters.current.preview);
     const content = cardContent(household.Household);
     dispatch({ type: 'householdFetched', household });
-    eventsRef.current.onHouseholdDataFetched?.(
+    flow.events.onHouseholdDataFetched?.(
       content.LocalityName ?? '',
       content.CountryName ?? '',
       isDeceasedOrAncestry(content),
@@ -120,19 +130,22 @@ export function useHouseholdDetails(
   };
   /** GetHousehold_Coordinates refresh. */
   const refreshCoordinates = async (isAlive: IsAlive) => {
-    const coordinates = await fetchHouseholdCoordinates(callInputs());
+    const coordinates = await flow.fetch(fetchHouseholdCoordinates(callInputs())); // R1
     if (isAlive()) dispatch({ type: 'coordinatesFetched', coordinates });
   };
-  /** The "Refreshes" node: both refreshes, not awaited. */
-  const refreshes = (isAlive: IsAlive) => {
-    refreshHousehold(isAlive).catch(raiseToFlowHandler);
-    refreshCoordinates(isAlive).catch(raiseToFlowHandler);
-  };
+  /** The "Refreshes" node: both refreshes, not awaited. Refresh_GetHouseholdDetail and
+      Refresh_GetHouseholdDetail_Coordinates are own actions of the block (R3, ensureControllerAlive,
+      HouseholdDetails_Block.js:2326+, 2512+): after the unmount the call throws ControllerDisposedException, so the
+      flow that calls it stops there and the handler ignores the exception. */
+  const refreshes = flow.own((isAlive: IsAlive) => {
+    flow.run(() => refreshHousehold(isAlive));
+    flow.run(() => refreshCoordinates(isAlive));
+  });
 
-  /** OnInitialize (OnReady). */
+  /** OnInitialize (OnReady). After the unmount, GetUserInformation_Wrapper (a module action) still answers; the
+      variable writes then do nothing and the "Refreshes" node (R3) stops the flow. */
   const onInitialize = async (isAlive: IsAlive, restored: boolean) => {
-    const userInformation = await getUserInformation(); // GetUserInformation_Wrapper, after the app start's step
-    if (!isAlive()) return;
+    const userInformation = await getUserInformation(); // GetUserInformation_Wrapper, a module action: not wrapped
     // The shell wrapper returns the cached record: its Directory_UserCurrent is the action's UserInformation output.
     const displayAge = userInformation.Directory_UserCurrent.Directory_UserCurrent_Visibility.DisplayAge;
     // CheckRestored (FromHistory is commented out): a restored view with the same age visibility keeps its data.
@@ -213,18 +226,19 @@ export function useHouseholdDetails(
   const onMemberClick = (memberId: string) => {
     if (isEnabled) navigate(`/${APP_ID}/Household_Relations`, { HouseholdId: householdId, MemberId: memberId });
   };
-  /** Handler_OnClickNavigateTomarriedChildren_Household: HouseholdDetails of the child's household when enabled. */
-  const onNonMemberHouseholdClick = (nonMemberHouseholdId: string) => {
+  /** Handler_OnClickNavigateTomarriedChildren_Household: HouseholdDetails of the child's household when enabled. The
+      handler of Event_NonMemberOnClick, an own action of the block (R3): after the unmount it does not run. */
+  const onNonMemberHouseholdClick = flow.own((nonMemberHouseholdId: string) => {
     if (isEnabled) navigate(`/${APP_ID}/HouseholdDetails`, { HouseholdId: nonMemberHouseholdId });
-  };
-  /** Handler_NonMemberOnClick of the member list: HasAccessToRegion, then the child's household or the upgrade
-      popup. */
+  });
+  /** Handler_NonMemberOnClick of the member list: HasAccessToRegion (a module action), then the child's household or
+      the upgrade popup (a module action: it runs after leaving, Members.js:900-902). */
   const onNonMemberClick = (member: UI_HouseholdMember) => {
     const open = async (localityName: string, countryName: string, nonMemberHouseholdId: string) => {
       if (await hasAccessToRegion(localityName, countryName)) onNonMemberHouseholdClick(nonMemberHouseholdId);
       else await showUpgradePopUp();
     };
-    void open(member.LocalityName ?? '', member.CountryName ?? '', member.HouseholdId ?? '0');
+    flow.run(() => open(member.LocalityName ?? '', member.CountryName ?? '', member.HouseholdId ?? '0'));
   };
   /** Directory_EntityDetailsActions OnChange_Bookmark. */
   const onBookmarkChange = (isBookmarked: boolean) => {

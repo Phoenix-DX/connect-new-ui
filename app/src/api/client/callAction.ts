@@ -55,10 +55,12 @@ export const SERVER_REQUEST_TIMEOUT: Readonly<Record<ContractModule, number>> = 
   Connect2_LegacyShared: 10, // o:Connect2_LegacyShared.controller.js:7976
   Connect2_OrbitMobile_MUI: 10, // s:EventDetail raw/Connect2_OrbitMobile_MUI.controller.js:8742
   Connect2_MyBookmarks_MUI: 10, // s:BookmarksByGroup pretty/Connect2_MyBookmarks_MUI.controller.js:276
+  OrbitPassportScanC2: 10, // o:OrbitPassportScanC2.controller.js:161
   UBTConnect: 20, // s:BookmarksByGroup raw/UBTConnect.controller.js:18597
   UBTConnect_EmbedFeed: 10, // s:HomeFeed pretty/UBTConnect_EmbedFeed.controller.js:161
   UBTConnect_EmbedMyEntertaining: 10, // o:UBTConnect_EmbedMyEntertaining.controller.js:11
   UBTConnect_Notes_MCS: 10, // o:UBTConnect_Notes_MCS.controller.js:883
+  UBTConnect_Bookmarks_MCS: 10, // o:UBTConnect_Bookmarks_MCS.controller.js:1218
   UBTConnect_Utils: 10, // s:BookmarksByGroup pretty/UBTConnect_Utils.controller.js:5552
   UBT_AppManager: 10, // s:BookmarksByGroup raw/UBT_AppManager.controller.js:8579
 };

@@ -47,3 +47,21 @@ export async function shareObject(inputs: ShareObjectCallInputs): Promise<ShareO
     await callAction('Connect2_LegacyShared', 'ActionShareObject', toShareObjectInputs(inputs)),
   );
 }
+
+/* ---- MessageDetail: Share_UI.ShareObjectDetail_ExtendedShare (Connect2_LegacyShared) ---- */
+
+import { toSharedObjectDetail, toSharedObjectDetailVariablesWire } from './mapper';
+import type { SharedObjectDetail, SharedObjectDetailVariables } from './types';
+
+/** DataActionGetShare of ShareObjectDetail_ExtendedShare: the share of the block's ShareId. The block fetches it at
+    start and on each change of its inputs (OnParametersChanged). The call sends every block variable, as OutSystems
+    does; the server reads only the two inputs. */
+export async function fetchSharedObjectDetail(variables: SharedObjectDetailVariables): Promise<SharedObjectDetail> {
+  return toSharedObjectDetail(
+    await callAction(
+      'Connect2_LegacyShared',
+      'ShareObjectDetail_ExtendedShare/DataActionGetShare',
+      toSharedObjectDetailVariablesWire(variables),
+    ),
+  );
+}

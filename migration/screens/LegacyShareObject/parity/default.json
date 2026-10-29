@@ -5,26 +5,29 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "11f0454d852824ab3176",
+ "fingerprint": "e2adb59a8323c7eb7da1",
  "options": {
   "text": true,
   "style": true,
   "pixel": true,
   "calls": true,
+  "visibleOnly": false,
   "full": true,
-  "replay": "builder"
+  "replay": "builder",
+  "skipKinds": [],
+  "selfRef": false
  },
  "replay": {
   "mode": "builder",
-  "elements": 151,
-  "texts": 17,
+  "elements": 1033,
+  "texts": 115,
   "comments": 0,
   "dropped": 0,
   "endTagMismatch": 0,
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-21T04:52:09.414Z",
+ "at": "2026-10-29T16:01:13.889Z",
  "counts": {},
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-MENUICON-BACK": 2,
@@ -32,11 +35,11 @@
   "ignoreSubtrees": 1
  },
  "pixel": {
-  "ratio": 0.00014,
+  "ratio": 0.00015,
   "maxCell": 0.0169,
   "maxCellRatio": 0.03,
   "diffPixels": 43,
-  "comparedPixels": 313033,
+  "comparedPixels": 296083,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -47,7 +50,7 @@
    390,
    844
   ],
-  "masks": 8,
+  "masks": 105,
   "hotspots": [
    "80,120 (27px)",
    "80,80 (16px)"

@@ -38,6 +38,12 @@ describe('mockAuth: the mock identity provider (decisions D3(a), U4)', () => {
     await expect(mockAuth.getSession()).resolves.toEqual({ userId: MOCK_USER_ID });
   });
 
+  test('resetPassword: no reset-password page; the policy ends at once, signed out, no call', async () => {
+    await mockAuth.resetPassword('/UBTConnect/Login');
+    expect(getShellState().signedIn).toBe(false);
+    expect(calledActions()).toEqual([]);
+  });
+
   test('signOut: no server call (spec 10); the sign-out flow ends the session itself', async () => {
     setSignedInUser(MOCK_USER_ID);
     await mockAuth.signOut();

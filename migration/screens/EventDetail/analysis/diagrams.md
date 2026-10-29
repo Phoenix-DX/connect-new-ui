@@ -16,14 +16,18 @@ flowchart TB
       B2["LayoutRuntime_NavigationHandler.LayoutRuntime_Top<br/>NavigationHandler<br/>lifecycle"]
       B3["Layout.BaseLayout_UpdatedOSUI<br/>Connect2_LegacyShared<br/>lifecycle"]
       B4["Layout.MenuIcon__UpdatedOSUI<br/>Connect2_LegacyShared<br/>lifecycle"]
-      B5["Content.DEPRECATED_Accordion<br/>OutSystemsUI_2_23<br/>lifecycle"]
-      B6["Content.DEPRECATED_AccordionItem<br/>OutSystemsUI_2_23<br/>lifecycle"]
-      B7["Orbit_Blocks.HostAllocation_HelperItem<br/>Connect2_OrbitMobile_MUI<br/>lifecycle"]
-      B8["Orbit_Blocks.EventDateSelection<br/>Connect2_OrbitMobile_MUI<br/>lifecycle"]
-      B9["Orbit_Blocks.Card_Milestone<br/>Connect2_OrbitMobile_MUI<br/>lifecycle"]
+      B5["CW_Notes.ItemNotesSection<br/>UBTConnect_Utils<br/>lifecycle"]
+      B6["BasePatterns.CustomContainer<br/>UBTConnectLibrary<br/>lifecycle"]
+      B7["BasePatterns.Columns_Two<br/>UBTConnectLibrary<br/>lifecycle"]
+      B8["CW_Notes.NotesSheet<br/>UBTConnect_Utils<br/>lifecycle"]
+      B9["Content.DEPRECATED_Accordion<br/>OutSystemsUI_2_23<br/>lifecycle"]
+      B10["Content.DEPRECATED_AccordionItem<br/>OutSystemsUI_2_23<br/>lifecycle"]
+      B11["Orbit_Blocks.HostAllocation_HelperItem<br/>Connect2_OrbitMobile_MUI<br/>lifecycle"]
+      B12["Orbit_Blocks.EventDateSelection<br/>Connect2_OrbitMobile_MUI<br/>lifecycle"]
+      B13["Orbit_Blocks.Card_Milestone<br/>Connect2_OrbitMobile_MUI<br/>lifecycle"]
     end
     Infra["App infrastructure blocks (20)<br/>render nothing visible"]
-    Cache["View cache / preload<br/>IsRestoredFromCacheJS, WasCurrentViewRestoredFromCacheJS"]
+    Cache["View cache / preload<br/>CheckRestoredJS, IsRestoredFromCacheJS, WasCurrentViewRestoredFromCacheJS"]
     Vars["Client variables read<br/>App_PIN_BiometricEnabled, App_Policies_HasPolicyToAccept, IsNavigateToHomeOnBack, PIN_IsLocked, PIN_SessionInactivity_Use"]
     Shell --> Content
   end
@@ -32,15 +36,17 @@ flowchart TB
     S0["DataActionGet_EventDetails<br/>data action / aggregate, observed"]
     S1["DataActionGet_HostSurveyStatus<br/>data action / aggregate, observed"]
     S2["DataActionGet_HasQRCode<br/>data action / aggregate, observed"]
-    S3["DataActionGet_HasDocuments<br/>data action / aggregate, observed"]
-    S4["ActionGetAllApplicationEvents<br/>observed"]
+    S3["DataActionFetchEventNotes<br/>data action / aggregate, observed"]
+    S4["DataActionGet_HasDocuments<br/>data action / aggregate, observed"]
+    S5["ActionGetAllApplicationEvents<br/>observed"]
   end
   Backend["Backend<br/>not visible from the browser"]
   B0 --> S0
   B0 --> S1
   B0 --> S2
   B0 --> S3
-  Content -.-> S4
+  B0 --> S4
+  Content -.-> S5
   S0 -.-> Backend
   classDef unknown stroke-dasharray: 5 4;
   class Backend unknown;
@@ -69,10 +75,17 @@ sequenceDiagram
   S->>API: DataActionGet_HasQRCode
   API-->>S: Response_HasQRCode, Response_HasScanned
   S->>S: onAfterFetch_Get_HasQRCode
+  S->>API: DataActionFetchEventNotes
+  API-->>S: Notes
+  S->>S: onAfterFetch_FetchEventNotes
   S->>API: DataActionGet_HasDocuments
   API-->>S: Response_HasDocuments
   S->>S: OnReady
-  S-->>U: TODO render states (spec section 8)
+  alt success
+    S-->>U: TODO render states (spec section 8)
+  else CommunicationException / UserException
+    S-->>U: TODO error UI and messages (spec section 11)
+  end
 ```
 
 ### Action: ActionGetAllApplicationEvents
@@ -85,6 +98,7 @@ sequenceDiagram
   U->>S: TODO user event
   Note over S: chain stops at HandleImageLoadError.applicationEvent_ImageError (see call-sites.md)
   Note over S: via HandleImageLoadError.applicationEvent_ImageError → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents
+  Note over S: 1 other caller chain(s) in call-sites.md
   S->>API: ActionGetAllApplicationEvents(TODO inputs)
   API-->>S: TODO outputs
   alt TODO branch

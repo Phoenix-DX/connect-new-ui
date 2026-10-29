@@ -2,7 +2,7 @@
 
 - Path: `/UBTConnect/MyEntertaining`
 - Viewport at capture: {'width': 390, 'height': 844, 'dpr': 1}
-- body class: `phone portrait osx is-ltr`; body style: `--header-size-content: 0px; --footer-height: 0px; --viewport-height: 844px;`
+- body class: `phone portrait osx is-ltr`; body style: `--footer-height: 0px; --viewport-height: 844px;`
 - PWA: manifest `/UBTConnect/moduleservices/pwa/manifest`, service workers []
 - Screen file: `UBTConnect.Calendar.MyEntertaining.mvc.js`
 
@@ -31,7 +31,6 @@ App_Common.CommonUI_InsideLayout
 Calendar.MyEntertaining_Embedded
   Layouts.Layout_DetailPage
     LayoutRuntime_NavigationHandler.LayoutRuntime_Top
-    ConnectPatterns.Icon
     Blocks.Embedded_MyEntertaining
     App_Common.CommonUI_InsideLayout
       App_Common.OfflineDataSyncEvents
@@ -61,6 +60,8 @@ Calendar.MyEntertaining_Embedded
 | variable | kind | type | default |
 |---|---|---|---|
 | MyCalendarEventSourceId | input | Text | `""` |
+- Client actions / event handlers: `handle_NavBack`
+- navigateBack calls: 1
 
 ## `UBTConnect.App_Common.CommonUI_InsideLayout.mvc.js`
 | variable | kind | type | default |
@@ -268,7 +269,7 @@ Calendar.MyEntertaining_Embedded
 | PreloadedSource | local | Text | `""` |
 | In_InitialEventSouceId | input | Text | `""` |
 - Lifecycle handlers: Initialize
-- Client actions / event handlers: `onInitialize`, `handle_OpenMap`, `handle_Error`
+- Client actions / event handlers: `onInitialize`, `handle_OpenMap`, `handle_Error`, `handle_NavBack`, `onNavBack`
 - Static entities / flags: `type_MyCalendarEventSource.orbit`, `type_MyCalendarEventSource.lDM`, `type_MyCalendarEventSource.assemble`, `type_MyCalendarEventSource.userCreated`, `uBT_MessageType.info`
 - Client variables: getEmbedd_B2CTenant
 
@@ -283,6 +284,7 @@ Calendar.MyEntertaining_Embedded
 | In_ExtendedClass | input | Text | `""` |
 | In_EnableAccessibilityFeatures | input | Boolean | `false` |
 | In_InitializeNavigationHandler | input | Boolean | `true` |
+| In_IsHideTitle | input | Boolean | `false` |
 - Lifecycle handlers: Ready, Destroy
 - Client actions / event handlers: `onClick_BackNavigation`, `setScrollEvents`, `onDestroy`, `skipToContentOnClick`, `onReady`, `onReadyEvent`
 - navigateBack calls: 1
@@ -297,18 +299,6 @@ Calendar.MyEntertaining_Embedded
 - Client actions / event handlers: `onInitialize`, `onDestroy`
 - JavaScript nodes: `NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top.mvc$controller.OnInitialize.InitializeQueueJS`, `NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top.mvc$controller.OnDestroy.ExecuteDestroyCallbackJS`
 
-## `UBTConnectLibrary.ConnectPatterns.Icon.mvc.js`
-| variable | kind | type | default |
-|---|---|---|---|
-| MainContainerClass | local | Text | `"ubt-icon"` |
-| In_IconId | input | Text | `""` |
-| In_ColorId | input | Text | `UBTConnectLibraryModel.staticEntities.uBT_Color.neutral9` |
-| In_SizeId | input | Text | `""` |
-| In_Visible | input | Boolean | `true` |
-| In_ExtendedClasses | input | Text | `""` |
-- Client actions / event handlers: `click`
-- Static entities / flags: `uBT_Color.neutral9`
-
 ## `UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc.js`
 | variable | kind | type | default |
 |---|---|---|---|
@@ -321,6 +311,7 @@ Calendar.MyEntertaining_Embedded
 | RefreshIntervalId | local | Object | `null` |
 | LoadingList | local | RecordList | `OS.DataTypes.ImmutableBase.getData(new OS.DataTypes.TextList())` |
 | MaxLoadingItems | local | Integer | `5` |
+| ResumeListener | local | Object | `null` |
 | View | input | Text | `"timeline"` |
 | Theme | input | Text | `"light"` |
 | Sources | input | Text | `""` |
@@ -329,10 +320,10 @@ Calendar.MyEntertaining_Embedded
 - Data actions: `DataActionGetEntertainingConfig` → `screenservices/UBTConnect_EmbedMyEntertaining/Blocks/Embedded_MyEntertaining/DataActionGetEntertainingConfig`
 - Server actions: `AppManager_Get_UserIdToken` → `screenservices/UBTConnect_EmbedMyEntertaining/Blocks/Embedded_MyEntertaining/ActionAppManager_Get_UserIdToken`
 - Lifecycle handlers: Initialize, Destroy, ParametersChanged
-- Client actions / event handlers: `screenEvent_OnParametersChanged`, `screenEvent_OnDestroy`, `screenEvent_OnInitialize`, `action_SetRefreshInterval`, `action_SetSources`, `action_OnComplete`, `action_OnReady`, `action_OnOpenMap`, `action_SetMessageListener`, `action_OnAuthenticated`, `onAfterFetch_GetEntertainingConfig`, `action_OnError`, `action_RefreshToken`, `onReady`, `onAuthenticated`, `onOpenMap`, `onComplete`, `onError`
-- JavaScript nodes: `UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$controller.ScreenEvent_OnDestroy.CleanupCalendarJS`, `UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$controller.Action_SetSources.ApplySourcesJS`, `UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$controller.OnAfterFetch_GetEntertainingConfig.InitializeCalendarJS`, `UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$controller.Action_RefreshToken.RefreshEmbedTokenJS`
+- Client actions / event handlers: `screenEvent_OnParametersChanged`, `screenEvent_OnDestroy`, `screenEvent_OnInitialize`, `action_SetRefreshInterval`, `action_SetSources`, `action_OnComplete`, `action_SetToken`, `action_SetResumeListener`, `action_OnReady`, `action_OnOpenMap`, `action_SetMessageListener`, `action_OnNavBack`, `action_OnAuthenticated`, `onAfterFetch_GetEntertainingConfig`, `action_OnError`, `action_RefreshToken`, `onReady`, `onNavBack`, `onAuthenticated`, `onOpenMap`, `onComplete`, `onError`
+- JavaScript nodes: `UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$controller.ScreenEvent_OnDestroy.CleanupCalendarJS`, `UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$controller.Action_SetSources.ApplySourcesJS`, `UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$controller.Action_SetToken.SetEntertainingTokenJS`, `UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$controller.OnAfterFetch_GetEntertainingConfig.InitializeCalendarJS`, `UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc$controller.Action_RefreshToken.RefreshEmbedTokenJS`
 - Static entities / flags: `uBT_Color.neutral0`, `uBT_Size.base`, `uBT_Shape.soft`, `uBT_Icons.widgetsFill`, `uBT_FontSize.display`, `uBT_ImageSize.fullWidth_100_Percent`, `uBT_Size.doubleExtraLarge`
-- Candidate static strings: `Action_OnReady` | `Action_OnAuthenticated` | `Action_OnComplete` | `Action_OnError` | `Action_OnOpenMap` | `Action_SetMessageListener` | `Action_RefreshToken` | `Action_SetRefreshInterval`
+- Candidate static strings: `Action_OnReady` | `Action_OnAuthenticated` | `Action_OnComplete` | `Action_OnError` | `Action_OnNavBack` | `Action_OnOpenMap` | `Action_SetMessageListener` | `Action_RefreshToken` | `Action_SetRefreshInterval` | `Action_SetResumeListener`
 
 # Part 2: sources of blocks NOT rendered in the captured states
 
@@ -340,14 +331,14 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 3183 ms
-- 2. `DataActionGetEntertainingConfig` (200) at 4494 ms
-- 3. `ActionAppManager_AfterInitialize` (200) at 11031 ms
-- 4. `ActionSync_Info_GetMain` (200) at 11549 ms
-- 5. `ActionGetUserInformation` (200) at 11883 ms
-- 6. `ActionGetNumberUnreadMessages` (200) at 12150 ms
-- 7. `ServiceAPIFetchData_CacheableHouseholds` (200) at 12940 ms
-- 8. `ServiceAPIFetchData_CacheableMapEntities` (200) at 13086 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 2890 ms
+- 2. `DataActionGetEntertainingConfig` (200) at 3994 ms
+- 3. `ActionAppManager_AfterInitialize` (200) at 6125 ms
+- 4. `ActionSync_Info_GetMain` (200) at 6562 ms
+- 5. `ActionGetUserInformation` (200) at 6931 ms
+- 6. `ActionGetNumberUnreadMessages` (200) at 7197 ms
+- 7. `ServiceAPIFetchData_CacheableMapEntities` (200) at 9763 ms
+- 8. `ServiceAPIFetchData_CacheableHouseholds` (200) at 11647 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`
@@ -356,7 +347,7 @@ These come from referenced blocks or from earlier captures. Use them to describe
 - `BasePatterns.CustomContainer`
 - `BasePatterns.CustomText`
 - `CacheControl.CacheControl_Policies`
-- `ConnectPatterns.IconSVG`
+- `ConnectPatterns.Icon`
 - `ConnectPatterns.LazyImage`
 - `ConnectPatterns.SkeletonSection`
 - `Fingerprint.FingerprintScanner`

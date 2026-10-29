@@ -1,0 +1,40 @@
+{
+ "flow": "ContactFlow",
+ "screens": [
+  "ContactByEmailContacts",
+  "ContactByEmailLDMCoordinator",
+  "ContactByEmailMember",
+  "ContactByEmailOneSchoolGlobal",
+  "ContactByEmailOrbitHelpdesk",
+  "ContactByEmailOrbitHost"
+ ],
+ "ownBlocks": [
+  "ContactByEmailForm"
+ ],
+ "usedBlocks": [
+  "ContactByEmailForm",
+  "Dialog_Navigation"
+ ],
+ "referencedBlocks": [
+  "Button",
+  "ButtonLoading",
+  "Columns_Three",
+  "CustomContainer",
+  "CustomText",
+  "DynamicTextArea",
+  "FixedFooter",
+  "Icon",
+  "IconText",
+  "InputCounter",
+  "Layout_DetailPage",
+  "TextArea_WithCounter",
+  "UBT_LazyImage"
+ ],
+ "clientActions": [],
+ "serverActions": [
+  "SendContactEmail",
+  "SendContactLDMCoordinatorEmail",
+  "SendContactMemberEmail"
+ ],
+ "externalSites": []
+}

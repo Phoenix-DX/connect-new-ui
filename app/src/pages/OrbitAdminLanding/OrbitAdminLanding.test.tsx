@@ -24,7 +24,6 @@ const routes = {
   [HOME]: <p>HomeFeed screen</p>,
   [PATH]: <OrbitAdminLanding />,
   '/UBTConnect/OrbitAdminEventDetail': <p>OrbitAdminEventDetail screen</p>,
-  '/UBTConnect/OrbitAdminMilestones': <p>OrbitAdminMilestones screen</p>,
 };
 
 /** Opens the page after HomeFeed, so a back navigation has a previous screen. */
@@ -109,6 +108,7 @@ describe('OrbitAdminLanding page', () => {
       In_EventEndDate: new Date(first.EndEventDate).toISOString(),
       In_EventTypeFriendly: first.TypeFriendly,
     });
+    // The card click calls GetMilestoneScanFF (TST publish of 2026-10-27): false, as the live TST value.
     expect(count(SCAN_FF)).toBe(1);
     const auditEvent = () =>
       info.mock.calls.find(([message]) => message === 'ApplicationEvent')?.[1] as
@@ -135,17 +135,6 @@ describe('OrbitAdminLanding page', () => {
     expect(count(FETCH)).toBe(1);
   });
 
-  it('IsScanPerMilestone True: a card opens OrbitAdminMilestones with the EventId', async () => {
-    sessionStorage.setItem('mock:mock', 'scanpermilestone');
-    const { at } = await open();
-    await loaded();
-    clickCard(1);
-    const second = orbitAdminEvents()[1];
-    await waitFor(() => {
-      expect(at()).toBe(`/UBTConnect/OrbitAdminMilestones?EventId=${second?.EventId ?? ''}`);
-    });
-  });
-
   it('an admin without events sees NoInformation_Orbit', async () => {
     sessionStorage.setItem('mock:mock', 'noadminevents');
     await open();
@@ -165,32 +154,6 @@ describe('OrbitAdminLanding page', () => {
     });
     expect(skeleton()).not.toBeNull();
     expect(cards()).toHaveLength(0);
-    expect(count(FETCH)).toBe(1);
-  });
-
-  it('W23: a card click before a back navigation still opens the event once, after GetMilestoneScanFF answers', async () => {
-    const info = vi.spyOn(log, 'info');
-    const { at, router } = await open();
-    await loaded();
-    // GetMilestoneScanFF answers after the back navigation.
-    sessionStorage.setItem('mock:latency', '300');
-    clickCard(0);
-    await act(() => router.navigate(-1));
-    await waitFor(
-      () => {
-        expect(at()).toBe(HOME);
-      },
-      { interval: 5 },
-    );
-    expect(document.getElementById('$b1')).toBeNull();
-    expect(count(SCAN_FF)).toBe(1);
-    await waitFor(() => {
-      expect(at().startsWith('/UBTConnect/OrbitAdminEventDetail?In_EventId=')).toBe(true);
-    });
-    expect(count(SCAN_FF)).toBe(1);
-    await waitFor(() => {
-      expect(info.mock.calls.filter(([message]) => message === 'ApplicationEvent')).toHaveLength(1);
-    });
     expect(count(FETCH)).toBe(1);
   });
 });

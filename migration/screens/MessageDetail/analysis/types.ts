@@ -77,7 +77,7 @@ export interface MessageTemplate {
   MessageTemplatePriorityId: number;
   MessageInfoTypeId: number;
   AdaptiveCardJSONId: string /* Long Integer as string */;
-  SentAs: number;
+  SentAs: number /* 0 in capture */;
   SavedTemplateId: string /* Long Integer as string */;
   MessageSendToTypeId: number /* 0 in capture */;
   MessageApplicationTargetId: number /* 0 in capture */;
@@ -88,9 +88,9 @@ export interface MessageTemplate {
 }
 
 export interface MessageSenderTarget {
-  Id: number;
-  Name: string;
-  ProfileIconURL: string;
+  Id: number /* 0 in capture */;
+  Name: string /* "" in capture */;
+  ProfileIconURL: string /* "" in capture */;
   Order: number /* 0 in capture */;
   Is_Active: boolean;
   NotificationIcon: string /* "" in capture */;
@@ -163,6 +163,18 @@ export interface GetMessageInstanceResponse {
   IsRetracted: boolean;
   IsCleared: boolean;
   PlaceholderDelimiters: PlaceholderDelimiters;
+}
+
+export interface ResultsItem {
+  Id: string /* Long Integer as string */;
+  Type: string;
+  Size: string;
+  SignedURL: string;
+  Error: string /* "" in capture */;
+}
+
+export interface GetSignedImagesInBulkResponse {
+  Results: ResultsItem[] /* wire: { List: [...] } */;
 }
 
 export interface AppManager_AfterInitializeResponse {
@@ -300,18 +312,24 @@ export interface LocalBookmarkItem {
   Note: string /* "" in capture */;
 }
 
+export interface LocalBookmarksC2Item {
+  Id: string /* Long Integer as string */;
+  UserId: number;
+  BookmarkId: string /* Long Integer as string */;
+  BookmarkCategoryId: string;
+  ItemId: string /* Long Integer as string */;
+  CreatedAtDateUtc: string /* ISO DateTime */;
+}
+
 export interface EmptyListItem {
   Id: string /* Long Integer as string */;
   UserId: number /* 0 in capture */;
-  BookmarkId: string /* Long Integer as string */;
-  BookmarkCategoryId: string /* "" in capture */;
-  ItemId: string /* Long Integer as string */;
-  CreatedAtDateUtc: string /* "1900-01-01..." = no value */;
-}
-
-export interface LocalBookmarksC2 {
-  List: unknown[] /* empty in capture */;
-  EmptyListItem: EmptyListItem;
+  NoteId: string /* Long Integer as string */;
+  NoteCategoryId: string /* "" in capture */;
+  ItemId: string /* "" in capture */;
+  DateCreatedUtc: string /* "1900-01-01..." = no value */;
+  DateEditedUtc: string /* "1900-01-01..." = no value */;
+  NotesTotalCount: string /* Long Integer as string */;
 }
 
 export interface LocalNotes {
@@ -321,7 +339,7 @@ export interface LocalNotes {
 
 export interface LocalEntities_App {
   LocalBookmark: LocalBookmarkItem[] /* wire: { List: [...] } */;
-  LocalBookmarksC2: LocalBookmarksC2;
+  LocalBookmarksC2: LocalBookmarksC2Item[] /* wire: { List: [...] } */;
   LocalNotes: LocalNotes;
 }
 
@@ -355,6 +373,8 @@ export interface Directory_UserCurrent_Geography {
   Country_Email: string;
   Country_Phone: string;
   Country_LocalityCount: string /* Long Integer as string */;
+  MainHall_Latitude: string /* Decimal as string */;
+  MainHall_Longitude: string /* Decimal as string */;
 }
 
 export interface SubscribedCountriesItem {
@@ -392,8 +412,8 @@ export interface AddressItemsListItem {
 export interface Address {
   AddressItemsList: AddressItemsListItem[] /* wire: { List: [...] } */;
   FormattedAddress: string;
-  Lat: string /* Long Integer as string */;
-  Long: string /* Long Integer as string */;
+  Lat: string /* Decimal as string */;
+  Long: string /* Decimal as string */;
 }
 
 export interface Directory_UserCurrent_Member {
@@ -408,15 +428,15 @@ export interface Directory_UserCurrent_Member {
 export interface Directory_UserCurrent {
   Id: string;
   UserName: string;
-  Email: string;
+  Email: string /* "" in capture */;
   AccountEmail: string;
   FirstName: string;
   LastName: string;
   FullName: string;
   MemberID: string /* Long Integer as string */;
   AccountNumber: string;
-  HomeNumber: string;
-  MobileNumber: string;
+  HomeNumber: string /* "" in capture */;
+  MobileNumber: string /* "" in capture */;
   WorkNumber: string /* "" in capture */;
   Directory_UserCurrent_Visibility: Directory_UserCurrent_Visibility;
   Directory_UserCurrent_Geography: Directory_UserCurrent_Geography;
@@ -436,10 +456,6 @@ export interface GetUserInformationResponse {
 export interface GetNumberUnreadMessagesResponse {
   NumberPublicUnreadMessages: string /* Long Integer as string */;
   NumberPrivateUnreadMessages: string /* Long Integer as string */;
-}
-
-export interface ServiceAPIFetchData_CacheableMapEntitiesResponse {
-
 }
 
 export interface Latlng {
@@ -508,7 +524,7 @@ export interface Options {
 export interface Marker {
   Id: string /* Long Integer as string */;
   Type: string;
-  ExtraData: string /* "" in capture */;
+  ExtraData: string;
   Latlng: Latlng;
   Options: Options;
 }
@@ -544,6 +560,54 @@ export interface MarkerWithWindow {
   Popup: Popup;
 }
 
+export interface Localities_MarkersItem {
+  MarkerWithWindow: MarkerWithWindow;
+  IsLocked: boolean;
+}
+
+export interface Localities_GeoJSON {
+  List: unknown[] /* empty in capture */;
+  EmptyListItem: EmptyListItem;
+}
+
+export interface PathOptions {
+  stroke: boolean;
+  color: string;
+  weight: number;
+  opacity: string /* Decimal as string */;
+  lineCap: string;
+  lineJoin: string;
+  dashArray: string /* Long Integer as string */;
+  dashOffset: string /* "" in capture */;
+  fill: boolean;
+  fillColor: string;
+  fillOpacity: string /* Decimal as string */;
+  fillRule: string /* "" in capture */;
+  bubblingMouseEvents: boolean;
+  className: string /* "" in capture */;
+  interactive: boolean;
+  pane: string /* "" in capture */;
+  attribution: string /* "" in capture */;
+}
+
+export interface GeoJSONFeatureList {
+  FeatureJSON: string;
+  Id: string;
+  Type: string;
+  ExtraData: string /* "" in capture */;
+  PathOptions: PathOptions;
+}
+
+export interface Countries_GeoJSONItem {
+  GeoJSONFeatureList: GeoJSONFeatureList;
+  IsLocked: boolean;
+}
+
+export interface Countries_MarkersItem {
+  MarkerWithWindow: MarkerWithWindow;
+  IsLocked: boolean;
+}
+
 export interface MapExploreItem {
   Name: string;
   Address: string;
@@ -553,6 +617,21 @@ export interface MapExploreItem {
   PhotoURL2: string /* "" in capture */;
   Type: string;
   Id: string /* Long Integer as string */;
+  DisplayHouseholdName: boolean;
+  DisplayAddress: boolean;
+}
+
+export interface GlobalLocations_MarkersItem {
+  MarkerWithWindow: MarkerWithWindow;
+  MapExploreItem: MapExploreItem;
+}
+
+export interface ServiceAPIFetchData_CacheableMapEntitiesResponse {
+  Localities_Markers: Localities_MarkersItem[] /* wire: { List: [...] } */;
+  Localities_GeoJSON: Localities_GeoJSON;
+  Countries_GeoJSON: Countries_GeoJSONItem[] /* wire: { List: [...] } */;
+  Countries_Markers: Countries_MarkersItem[] /* wire: { List: [...] } */;
+  GlobalLocations_Markers: GlobalLocations_MarkersItem[] /* wire: { List: [...] } */;
 }
 
 export interface Household_MarkersItem {

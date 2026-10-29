@@ -40,16 +40,6 @@ const allowed = (rel) =>
 // Registry keys that have no reader yet. Frozen and shrink-only: the check fails when a key gains a reader or leaves the
 // registry (delete the row), and for any other key without a reader. Each row has a reason, an owner, an exit condition.
 const UNREAD_ALLOWED = {
-  mobileAssemble: {
-    reason: 'reader pending: MessageDetail Assemble/Sharing parts not built (Q1, NotCaptured)',
-    owner: 'MessageDetail port',
-    exit: 'remove when the Assemble/Sharing parts are built',
-  },
-  mobileDirectoryUpdateFeedDeceasedProfile: {
-    reason: 'reader pending: MessageDetail Assemble/Sharing parts not built (Q1, NotCaptured)',
-    owner: 'MessageDetail port',
-    exit: 'remove when the Assemble/Sharing parts are built',
-  },
   getHasOrbitEventBooklet: {
     reason: 'alias of mobileOrbitEventBooklet (read in EventDetail)',
     owner: 'flag registry owner',
@@ -71,7 +61,6 @@ const OUTSIDE_OWNED = {
   // owner F35 (OutSystems helper wrappers over flagValue)
   'lib/ubtConnectUtils/actions.ts': [
     'C2NewNotifications',
-    'C2NewBookmarks',
     'C2EnableC1DirectoryView',
     'C2ExtendedShare',
     'C2EnableFeed',

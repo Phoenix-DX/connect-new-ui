@@ -16,6 +16,7 @@ import type {
   MessageListCallInputs,
   MessageParameter,
   MessagesList,
+  OrbitHostSurveyNotificationParameters,
   MessagesResult,
   OrbitContactEmail,
   SendContactUsMessageResult,
@@ -203,6 +204,11 @@ export const toMessageInstanceResult = (wire: MessageInstanceWire): MessageInsta
     },
     isRetracted: wire.IsRetracted,
     isCleared: wire.IsCleared,
+    placeholderDelimiters: {
+      placeholder: wire.PlaceholderDelimiters.Delimiters.Delimiter_Placeholder,
+      function: wire.PlaceholderDelimiters.Delimiters.Delimiter_Function,
+      parameter: wire.PlaceholderDelimiters.Delimiters.Delimiter_Parameter,
+    },
   };
 };
 
@@ -218,9 +224,40 @@ export const toMessageTemplateParametersInputs = (
 /** The parameters of the aggregate: List, unwrapped, with the name id and the value. */
 export const toMessageParameters = (wire: MessageTemplateParametersWire): MessageParameter[] =>
   osList(wire.List).map((row) => ({
+    id: row.MessageParameter.Id,
+    messageTemplateId: row.MessageParameter.MessageTemplateId,
     parameterNameId: row.MessageParameter.ParameterNameId,
     parameterValue: row.MessageParameter.ParameterValue,
+    tenantId: row.MessageParameter.Tenant_Id,
   }));
+
+/** ListOfMessageParameters of Get_OrbitNotificationParameters and Get_OrbitHostSurveyNotificationParameters: the
+    parameters as the Comms_CS MessageParameter records (typeConvertRecordList of the aggregate list). */
+export const toListOfMessageParameters = (parameters: MessageParameter[]) =>
+  wireList(
+    parameters.map((p) => ({
+      Id: p.id,
+      MessageTemplateId: p.messageTemplateId,
+      ParameterNameId: p.parameterNameId,
+      ParameterValue: p.parameterValue,
+      Tenant_Id: p.tenantId,
+    })),
+  );
+
+/** The outputs of Get_OrbitHostSurveyNotificationParameters. */
+type OrbitHostSurveyNotificationParametersWire = ActionOutputs<
+  LegacySharedPath<'ActionGet_OrbitHostSurveyNotificationParameters'>
+>;
+
+/** Get_OrbitHostSurveyNotificationParameters: the dates as null for the null date. */
+export const toOrbitHostSurveyNotificationParameters = (
+  w: OrbitHostSurveyNotificationParametersWire,
+): OrbitHostSurveyNotificationParameters => ({
+  orbitEventId: w.OrbitEventId,
+  orbitEventName: w.OrbitEventName,
+  orbitStartDate: osDate(w.OrbitStartDate),
+  orbitEndDate: osDate(w.OrbitEndDate),
+});
 
 /* ---- Message list ---- */
 

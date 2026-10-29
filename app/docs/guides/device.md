@@ -56,3 +56,34 @@ test pattern of Chrome. The cross closes it.
 
 Tests: `src/platform/device/*.test.ts` (branches, result mapping, close, CSS, switch), `src/vendor/barcodeplugin/index.test.ts`
 (the vendored bytes are those of TST).
+
+## Camera (CameraPlugin TakePhoto, PassportScan Q2 (a))
+
+| File                                     | What                                                                                                  |
+| ---------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `src/platform/device/cameraPlugin.ts`    | the adapter: `checkCameraPlugin()`, `takePhoto(input)`, records, static entities, error codes         |
+| `src/platform/device/webCamera.ts`       | the TST web camera (`Camera.js`, `CameraStream.js`, `NativeCamera.js`, `Errors.js`), ported 1:1 to TS |
+| `src/platform/device/cameraPluginCss.ts` | LoadCSSJS: the camera stylesheet, `<style title="camera-plugin-css">`, added once                     |
+
+The TST camera scripts are small classes, so they are ported to TypeScript, not vendored. Every build uses the web
+camera; there is no mock camera. Flow, as in the original:
+
+- **CheckCameraPlugin**: with Cordova, `OS-PLUG-CAMR-0018` "The plugin is not available" (no native plugin). Without
+  `navigator.mediaDevices`, `OS-PLUG-CAMR-0004`. Otherwise the action adds the CSS and answers `IsAvailable`, `IsPWA`.
+- **TakePhoto**: a negative Width or Height gives `OS-PLUG-CAMR-0030`. On a desktop (or with AllowMultiplePhotos) the
+  camera view hides `#reactContainer` and appends `div#camera-interface.camera-wrapper` to `<body>`: a `<canvas>`, the
+  `<video>` of `getUserMedia({ facingMode, aspectRatio: exact window ratio })` and, when the video loads, one white
+  round button `#camera-white-button`. The click draws the video on the canvas and returns
+  `MediaResult.Thumbnail` (base64, JPEG or PNG at Quality / 100). On a phone or tablet a hidden
+  `<input type="file" accept="image/*" capture>` opens the camera of the device.
+- Errors: no camera, permission denied or a refused constraint give `OS-PLUG-CAMR-0003`; no `getUserMedia` gives
+  `OS-PLUG-CAMR-0004`; on a phone, no file `0002` and not an image `0001`.
+- The view has no cancel or switch button. The back button of the browser closes it (the view pushes a history entry
+  when it opens), and the action then never resolves, as in the original.
+- AllowEdit (the image editor) and the native branch are not ported.
+
+To check without a camera, use Chrome with `--use-fake-ui-for-media-stream --use-fake-device-for-media-stream` on
+`/UBTConnect/PassportScan?LoginMemberId=…&TargetId=…`, then Scan passport in the fake portal.
+
+Tests: `src/platform/device/cameraPlugin.test.ts` (mocked `navigator.mediaDevices`: picture, permission denied, no
+device, no API, back button, phone input, file errors).

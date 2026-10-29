@@ -320,6 +320,14 @@ Review markers: the `<NotCaptured>` frames (pink, "Not captured: …") are off b
   - Pushing drops the forward entries. Replacing drops the replaced one. HomeFeed and Login clear everything.
   - Screens only need stable query keys, `useViewState` for variables that the original keeps, and
     `useWasRestoredFromCache()` where the original tests it.
+  - The `useViewState` setter updates the saved value at once: a value set in the same tick as the navigation is
+    saved, as after ScreenModel_Flush in the original (Updates_SingleList Handler_OnClickUpdateItem).
+- **Scroll anchors (NavigationHandler).** `src/platform/navigation/scrollAnchors.ts`: `navigationStorage`
+  (`window.dx.Navigation.Storage`), `rememberFocusedScrollAnchor` (the tapped row of a list, `NH:1613-1626`) and
+  `getFocusedScrollAnchorOnBack` (the "dx-entering-scroll-anchor" a FocusScrollAnchorOnBack block stores,
+  `NH:485-495`). The original's List restore patch with both anchors (`NH:1050-1126`) is not ported; the view cache
+  restores the scroll offsets. Updates_SingleList keeps its own CaptureScrollPosition and ScrollFix nodes in `pages/Updates_SingleList/actions.ts`
+  (localStorage `scrollAnchorId`, `scrollAnchorDelta`).
 
 - **Navigation guard (`dx-before-navigation`).** `src/platform/navigation/navigationGate.ts` (`shouldBlockNavigation`) runs
   as the blocker of the router before every navigation.
@@ -385,21 +393,39 @@ not import `platform/`. `src/app/dialogs.ts` (`connectDialogs()`, called by `mai
   - `showExceptionMessage` maps the server texts of the compiled action (timeouts and failed requests → communication
     message).
   - `forceLogout` → `signedOutRemotely()` (same end state as `signOut()`), then a full page load of `\UBTConnect\Login`.
-  - The app start does not toast yet: App_Common toasts a `ScreenController_RaiseError` only if a plain `Error` is not
-    "system" (open).
+  - A failed app start is logged. A non-system exception then goes, as `new Error(message)`, to `raiseToFlowHandler`,
+    which shows `showExceptionMessage(message, false)` (ScreenController_RaiseError, UC:15398-15417; decision C3, user
+    2026-10-27). A system exception is only logged.
   - Server calls raise the OutSystems exceptions of `src/legacy/os/os-exceptions.ts` (see `api-and-mocks.md`).
   - A ported Handle Error tests them with `src/legacy/os/exceptions.ts`: `isUserException(e[, '<Module>.<Name>'])`,
     `isCommunicationException(e)`, `isInstanceOf(e, SecurityException)`, AllExceptions = `!isSystemException(e)`.
-  - An unhandled exception goes to `raiseToFlowHandler(e)`, in the order of App_Common:
+  - An unhandled exception goes to `raiseToFlowHandler(e)`, in the order of App_Common (the MCP shows the same nodes):
+    - an `IgnorableSystemException` (such as `ViewHasChangedException`) is ignored first (ACF:24-26);
+    - communication message for the user exception `UBTConnect.BubbleCommunicationException` (ACF:31-44), which
+      `raiseBubbledToFlowHandler` makes from a `CommunicationException`;
     - communication message for a `CommunicationException`;
     - `SecurityException` (and its subtypes `InvalidLoginException`, `NotRegisteredException`): signed in →
       `showExceptionMessage(message, true)`, that is, the forced-logout path above; anonymous → `osNavigateTo` to
       `/UBTConnect/Login?In_IsFromInvalidPermissions=True` after `setAppCallbackCurrentLocation()`;
-    - every other error: `showExceptionMessage(message, false)`.
+    - every other error that is not a system exception: a message with "NoteCommunicationError" (case sensitive,
+      ACF:98) → communication message; else `showExceptionMessage(message, false)`;
+    - a system exception: TST raises it again and the runtime opens `_error.html`. The clone does the same:
+      `showErrorPage` (`platform/feedback/errorPage.ts`) logs the error, writes the three sessionStorage keys of the
+      runtime (`$OS_UBTConnect$ErrorPageMessage`, `…ErrorPageExtraMessage`, `…ErrorPageExceptionInfo`) and loads the
+      static page `public/UBTConnect/_error.html` with `location.assign`. That page is outside the React tree: the
+      markup and styles of TST `_error.html`, one inline script (default message, RELOAD, after 2 s the app root
+      `/UBTConnect/`). It is a file, so the dev server, the demo hosts and the service worker serve it as a file,
+      not the app shell. Only an active flow scope, or no scope, opens it (R6). Item 8 S0b, user 2026-10-28.
+  - A failed fetch of a screen or block data action that is a query goes to the flow handler once per failure: one
+    subscription on the query cache, `installQueryErrorsToFlowHandler` of `src/platform/feedback/flowErrors.ts`
+    (runtime: model flush, then handleError). It skips a cancelled fetch, a query with `meta.errorFlow: 'caller'`, and
+    a query that no mounted screen uses (TST shows no message for a screen the user left, E9).
+    Evidence: `migration/clarify/review/item2-fetch-errors.md`, `item2-solution.md`.
   - Try it by hand with `?mock=security` on ContactUsDetails (signed in and signed out).
 - **Network (U11).**
   - `online`/`offline` events and `navigator.onLine` at start set `App_NetworkStatus_IsOnline_IsPersistent`. The variable
-    only picks the communication text.
+    and `navigator.onLine` at the moment of the error pick the communication text: both true → "Service Interruption"
+    (CheckIsOnlineNow, TST publish of 2026-10-27).
   - NetworkDetection is ported 1:1 (PWA-2, `src/platform/feedback/networkDetection.ts`). It pings the TST file
     `status/network-ping.txt` (served at its TST path in every build, never cached). It runs the online / offline
     callbacks on a transition. See `pwa.md`.

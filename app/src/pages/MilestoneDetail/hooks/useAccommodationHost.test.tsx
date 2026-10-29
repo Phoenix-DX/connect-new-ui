@@ -9,6 +9,7 @@ import {
   type AccommodationHostResult,
 } from '@/api/event';
 import { fetchLegacySignedImageURL } from '@/api/image';
+import { IgnorableSystemException } from '@/legacy/os/os-exceptions';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { addLogSink, type LogEntry } from '@/platform/log/log';
@@ -139,6 +140,13 @@ function deferred<T>() {
   };
 }
 
+/** The errors that reached the flow handler, without the ignorable ones (the handler drops them: R1, R3). */
+const raisedErrors = () =>
+  vi
+    .mocked(raiseToFlowHandler)
+    .mock.calls.map(([error]) => error)
+    .filter((error) => !(error instanceof IgnorableSystemException));
+
 let logs: LogEntry[] = [];
 let removeSink: () => void = () => undefined;
 
@@ -261,7 +269,7 @@ describe('useAccommodationHost: OnReady', () => {
     vi.mocked(fetchAccommodationHost).mockRejectedValue(error);
     const { result } = renderFlows();
     await flush();
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(fetchAccommodationHostDocument).not.toHaveBeenCalled();
     expect(result.current.isFetchingData).toBe(true);
   });
@@ -467,8 +475,8 @@ describe('useAccommodationHost: events', () => {
   });
 });
 
-describe('useAccommodationHost after an unmount and in StrictMode (decision W23)', () => {
-  it('still asks for the document once when GetAccommodationHost answers after the unmount, and writes no state', async () => {
+describe('useAccommodationHost after an unmount and in StrictMode (flow scope, item 8)', () => {
+  it('R1: unmount while GetAccommodationHost is pending: no Get_Document call, no state write, nothing raised', async () => {
     const host = deferred<AccommodationHostResult>();
     vi.mocked(fetchAccommodationHost).mockReturnValue(host.promise);
     const { unmount } = renderFlows();
@@ -477,13 +485,26 @@ describe('useAccommodationHost after an unmount and in StrictMode (decision W23)
     host.resolve(RESULT);
     await flush();
     expect(fetchAccommodationHost).toHaveBeenCalledTimes(1);
-    expect(fetchAccommodationHostDocument).toHaveBeenCalledTimes(1);
-    expect(fetchAccommodationHostDocument).toHaveBeenCalledWith(CALL_INPUTS);
+    expect(fetchAccommodationHostDocument).not.toHaveBeenCalled();
     expect(accommodationHostReducer).not.toHaveBeenCalled();
-    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 
-  it('opens the household and logs ViewHousehold once when the access check answers after the unmount', async () => {
+  it('R1: unmount while Get_Document is pending: its failure reaches no handler and writes no state', async () => {
+    const document = deferred<AccommodationHostDocument>();
+    vi.mocked(fetchAccommodationHostDocument).mockReturnValue(document.promise);
+    const { unmount } = renderFlows();
+    await flush();
+    expect(fetchAccommodationHostDocument).toHaveBeenCalledWith(CALL_INPUTS);
+    unmount();
+    vi.mocked(accommodationHostReducer).mockClear();
+    document.reject(new Error('Request failed with status 500'));
+    await flush();
+    expect(accommodationHostReducer).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R2 + R3: CheckDirectoryAccess answers after the unmount: no NavigateTo_HouseholdDetail, no ViewHousehold', async () => {
     const access = deferred<boolean>();
     vi.mocked(checkDirectoryAccess).mockReturnValue(access.promise);
     const { result, unmount, handlers } = renderFlows();
@@ -494,11 +515,28 @@ describe('useAccommodationHost after an unmount and in StrictMode (decision W23)
     unmount();
     access.resolve(true);
     await flush();
-    expect(handlers.onNavigateToHouseholdDetail).toHaveBeenCalledTimes(1);
-    expect(logs).toHaveLength(1);
+    expect(handlers.onNavigateToHouseholdDetail).not.toHaveBeenCalled();
+    expect(logs).toHaveLength(0);
+    expect(raisedErrors()).toEqual([]);
   });
 
-  it('makes the contact calls of the popup once and writes no state when they answer after the unmount', async () => {
+  it('R2: CheckDirectoryAccess without access answers after the unmount: the upgrade popup still shows', async () => {
+    const access = deferred<boolean>();
+    vi.mocked(checkDirectoryAccess).mockReturnValue(access.promise);
+    const { result, unmount, handlers } = renderFlows();
+    await flush();
+    act(() => {
+      result.current.onClickedMember('880100');
+    });
+    unmount();
+    access.resolve(false);
+    await flush();
+    expect(showUpgradePopUp).toHaveBeenCalledTimes(1);
+    expect(handlers.onNavigateToHouseholdDetail).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('module actions: the contact calls of the popup run once after the unmount and write no state (as TST)', async () => {
     const contacts = deferred<Awaited<ReturnType<typeof getCacheableMemberContactList>>>();
     vi.mocked(getCacheableMemberContactList).mockReturnValue(contacts.promise);
     vi.mocked(getCacheableTimezoneInfo).mockResolvedValue({

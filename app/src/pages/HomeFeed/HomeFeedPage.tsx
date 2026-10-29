@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback } from 'react';
 import { useCommunityPopulationQuery } from '@/api/member';
 import type { UpdateItem } from '@/api/update';
 import { DialogExitConfirmation, useOsNavigate, useViewState } from '@/platform/navigation';
@@ -25,6 +25,7 @@ import { FeedBlock_Updates } from './components/FeedBlock_Updates';
 import { Section_FeedWrapper } from './components/Section_FeedWrapper';
 import { useFeedServices } from './hooks/useFeedServices';
 import { useFeedUpdates, type FeedUpdatesEvents } from './hooks/useFeedUpdates';
+import { useHomeFeedReady } from './hooks/useHomeFeedReady';
 
 /** OutSystems NullDate() as it travels on the wire: the In_UpdateDate of ShareSheet when nothing is shared. */
 const NULL_DATE = '1900-01-01';
@@ -85,17 +86,8 @@ export default function HomeFeed() {
   const [shareableObjectId, setShareableObjectId] = useViewState('ShareableObjectId', '');
   const [shareObjectTypeId, setShareObjectTypeId] = useViewState('ShareObjectTypeId', '');
   const [shareableFeedItem, setShareableFeedItem] = useViewState<UI_ShareableObject_Generic>('ShareableFeedItem', {});
-  // IsScreenInitialized: False in OnInitialize, True in OnReady.
-  const [isScreenInitialized, setIsScreenInitialized] = useState(false);
-  useEffect(() => {
-    let alive = true;
-    void Promise.resolve().then(() => {
-      if (alive) setIsScreenInitialized(true);
-    });
-    return () => {
-      alive = false;
-    };
-  }, []);
+  // ScreenEvent_OnReady: IsScreenInitialized (False in OnInitialize, True in OnReady) and GetCommunityStatistics.
+  const isScreenInitialized = useHomeFeedReady();
 
   // Handler_NoUpdates
   const onNoUpdates = useCallback(() => {

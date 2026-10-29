@@ -19,7 +19,7 @@ export interface MessageDetailState {
 }
 
 /** The changes of the state. */
-export type MessageDetailAction =
+type MessageDetailAction =
   /** GetMessageInstanceByIdOnAfterFetch, first node: MessageInstanceId = Message.MessageInstance.Id. */
   | { type: 'messageInstanceFetched'; message: MessageDetail }
   /** GetMessageTemplateParametersOnAfterFetch: the parameters; for Assemble, ShowAssembleAction. */
@@ -72,6 +72,14 @@ export function messageDetailReducer(state: MessageDetailState, action: MessageD
   }
 }
 
+/** The text of the ViewOrbitEvent button: "View Event" for Orbit, else "Go to Host Survey". */
+export const orbitButtonText = (senderTargetId: number): string =>
+  senderTargetId === MessageSenderTarget.Orbit ? 'View Event' : 'Go to Host Survey';
+
+/** OS TextToLongInteger: the integer of the text, 0 when it is not an integer. */
+export const textToLongInteger = (text: string): string =>
+  /^\s*-?\d+\s*$/.test(text) ? String(BigInt(text.trim())) : '0';
+
 /** The Orbit sender targets: Orbit and OrbitHostSurvey. */
 export const isOrbitKind = (senderTargetId: number): boolean =>
   senderTargetId === MessageSenderTarget.Orbit || senderTargetId === MessageSenderTarget.OrbitHostSurvey;
@@ -84,26 +92,46 @@ export const needsTemplateParameters = (message: MessageDetail): boolean =>
 
 /** What GetMessageInstanceByIdOnAfterFetch does after it assigns the message:
     - `retracted`: IsRetracted, MessageRetractedFlow;
-    - `noAccess`: no message (signed in) or a private message of another user, the "no access" message;
+    - `noAccess`: no message, signed in: the "no access" message, then back to the list;
     - `login`: no message or a private message, signed out, NavigateTo_Login;
     - `cleared`: IsCleared, the "not available" message;
-    - `open`: the message shows. */
+    - `open`: the message shows.
+    A private message of another user is `cleared` or `open`: see {@link isPrivateMessageOfAnotherUser}. */
 export type MessageAccess = 'retracted' | 'noAccess' | 'login' | 'cleared' | 'open';
 
-/** The access decisions of GetMessageInstanceByIdOnAfterFetch, in their order. `userId` is GetUserId (null when
-    signed out). */
-export function messageAccess(result: MessageInstanceResult, signedIn: boolean, userId: string | null): MessageAccess {
+/** The access decisions of GetMessageInstanceByIdOnAfterFetch, in their order. */
+export function messageAccess(result: MessageInstanceResult, signedIn: boolean): MessageAccess {
   if (result.isRetracted) return 'retracted';
   if (result.message.messageInstanceId === null) return signedIn ? 'noAccess' : 'login';
-  if (result.message.messageTemplateTypeId === MessageType.Private) {
-    if (!signedIn) return 'login';
-    if (result.message.messageInstanceUserId !== Number(userId)) return 'noAccess';
-  }
+  if (result.message.messageTemplateTypeId === MessageType.Private && !signedIn) return 'login';
   if (result.isCleared) return 'cleared';
   return 'open';
 }
 
+/** "Is Private?" for a signed-in user (SBMD:976-1011): a private message of another user. TST runs the "no access"
+    message and then a loop break (do-while False), not a navigation: the flow goes on with the IsCleared check, and
+    the message shows (decision Q4 (a); app/docs/known-original-bugs.md). */
+export function isPrivateMessageOfAnotherUser(
+  result: MessageInstanceResult,
+  signedIn: boolean,
+  userId: string | null,
+): boolean {
+  return (
+    signedIn &&
+    result.message.messageTemplateTypeId === MessageType.Private &&
+    result.message.messageInstanceUserId !== Number(userId)
+  );
+}
+
 /** The feedback messages of the block. */
+export const MESSAGE_NO_ORBIT_ACCESS =
+  "You don't have access to Orbit. Please contact the Orbit Helpdesk if you have any questions.";
+export const MESSAGE_NO_HOST_SURVEY_ACCESS =
+  "You don't have access to Orbit Host Survey. Please contact the Orbit Helpdesk if you have any questions.";
+export const MESSAGE_NO_ASSEMBLE_ACCESS = "You don't have access to Assemble.";
+export const MESSAGE_EVENT_NOT_ACCESSIBLE = 'Event is not accessible';
+export const MESSAGE_FORM_THANKS = 'Thanks for filling out our form!';
+export const MESSAGE_CHECK_CONNECTION = 'Please check your internet connection!';
 export const MESSAGE_NOT_AVAILABLE = 'Sorry, this message is not available anymore.';
 export const MESSAGE_NO_ACCESS = "You don't have access to that message";
 export const MESSAGE_INVALID_ID = 'Invalid message detail id.';

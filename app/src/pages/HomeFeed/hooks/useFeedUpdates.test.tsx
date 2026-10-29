@@ -6,6 +6,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { UpdateItem } from '@/api/update';
 import { getFeedbackMessage, resetFeedbackMessages } from '@/platform/feedback/feedbackStore';
 import { clearPreloadObject, getPreloadObject } from '@/platform/navigation/preload';
+import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
 import { calledActions, freshPage } from '@/test/testSupport';
 import { useFeedUpdates, type FeedUpdatesEvents, type FeedUpdatesFlags, type FeedUpdatesView } from './useFeedUpdates';
 
@@ -38,7 +39,9 @@ beforeEach(() => {
 });
 afterEach(() => {
   sessionStorage.clear();
+  resetNavigation();
 });
+const BAR_COUNT = 'ServiceAPIGet_UI_UpdateItems_UnreadCount_All';
 
 describe('FeedBlock_Updates flows (useFeedUpdates)', () => {
   it('shows three loading rows in the skeleton until FetchUpdates answers, then the items', async () => {
@@ -111,25 +114,43 @@ describe('FeedBlock_Updates flows (useFeedUpdates)', () => {
     expect(result.current.at.pathname).toBe('/UBTConnect/HomeFeed');
   });
 
-  it('mark as read and mark as unread call the service action, then change the read state of the item', async () => {
+  it('mark as read and mark as unread call the service action, change the read state, then refresh the bottom bar count (N2)', async () => {
     const { result } = await loaded();
     const item = first(result.current.flow);
     act(() => {
       result.current.flow.onMarkAsRead(item);
     });
     await waitFor(() => {
-      expect(first(result.current.flow).isRead).toBe(true);
+      expect(calledActions()).toHaveLength(3);
     });
+    expect(first(result.current.flow).isRead).toBe(true);
     act(() => {
       result.current.flow.onMarkAsUnread(item);
     });
     await waitFor(() => {
-      expect(first(result.current.flow).isRead).toBe(false);
+      expect(calledActions()).toHaveLength(5);
     });
+    expect(first(result.current.flow).isRead).toBe(false);
+    // Event_MarkAsRead :801-820 and Event_MarkAsUnread :751-770: Directory_Updates_RefreshBottomBarCount(True).
     expect(calledActions().slice(1)).toEqual([
       'ServiceAPIAction_UI_UpdateItem_MarkAsRead',
+      BAR_COUNT,
       'ServiceAPIAction_UI_UpdateItem_MarkAsUnread',
+      BAR_COUNT,
     ]);
+  });
+
+  it('R2: the block closes while MarkAsRead runs: the bottom bar count still refreshes (a module action)', async () => {
+    const { result, unmount } = await loaded();
+    sessionStorage.setItem('mock:latency', '30');
+    act(() => {
+      result.current.flow.onMarkAsRead(first(result.current.flow));
+    });
+    unmount();
+    await waitFor(() => {
+      expect(calledActions()).toContain(BAR_COUNT);
+    });
+    expect(calledActions().slice(1)).toEqual(['ServiceAPIAction_UI_UpdateItem_MarkAsRead', BAR_COUNT]);
   });
 
   it('share raises Event_Share only with GetHasExtendedShare; send gift shows "Send gift"', async () => {
@@ -152,7 +173,7 @@ describe('FeedBlock_Updates flows (useFeedUpdates)', () => {
     expect(getFeedbackMessage()?.message).toBe('Send gift');
   });
 
-  it('W23: when the block closes while MarkAsRead runs, HouseholdCarousel still opens, once', async () => {
+  it('R2: when only the block closes while MarkAsRead runs (HomeFeed stays active), HouseholdCarousel opens, once', async () => {
     const queryClient = new QueryClient();
     const latest: { flow: FeedUpdatesView | null; hide: (() => void) | null } = { flow: null, hide: null };
     function Block() {
@@ -193,5 +214,32 @@ describe('FeedBlock_Updates flows (useFeedUpdates)', () => {
     await new Promise((resolve) => setTimeout(resolve, 50));
     expect(navigations.filter((p) => p === '/UBTConnect/HouseholdCarousel')).toHaveLength(1);
     expect(calledActions().filter((a) => a === 'ServiceAPIAction_UI_UpdateItem_MarkAsRead')).toHaveLength(1);
+  });
+
+  it('R4: the user leaves HomeFeed while MarkAsRead runs: no navigation to HouseholdCarousel, no message', async () => {
+    const latest: { flow: FeedUpdatesView | null } = { flow: null };
+    function Block() {
+      latest.flow = useFeedUpdates({}, FLAGS);
+      return null;
+    }
+    const { router, at } = renderRoutes(
+      { '/UBTConnect/HomeFeed': <Block />, '/UBTConnect/Menu': <p>Menu</p> },
+      '/UBTConnect/HomeFeed',
+    );
+    await waitFor(() => {
+      expect(latest.flow?.hasData).toBe(true);
+    });
+    const flow = latest.flow as FeedUpdatesView;
+    sessionStorage.setItem('mock:latency', '30');
+    act(() => {
+      flow.onItemClick(first(flow));
+    });
+    await act(() => router.navigate('/UBTConnect/Menu'));
+    await waitFor(() => {
+      expect(calledActions()).toContain('ServiceAPIAction_UI_UpdateItem_MarkAsRead');
+    });
+    await new Promise((resolve) => setTimeout(resolve, 80));
+    expect(at()).toBe('/UBTConnect/Menu');
+    expect(getFeedbackMessage()).toBeFalsy();
   });
 });

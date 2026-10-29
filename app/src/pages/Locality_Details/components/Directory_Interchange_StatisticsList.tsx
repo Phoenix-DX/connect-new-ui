@@ -16,6 +16,9 @@ export interface Directory_Interchange_StatisticsListProps {
   inShowSubtitle?: boolean;
   inHighlightWords?: string;
   inInterchangeList?: readonly Interchange[];
+  /** In_InterchangeLocalityId (Text, default ""): the locality of the list, given as In_LocalityId to the actions menu
+      (the notes item id of an interchange is "<In_InterchangeLocalityId>:<InterchangeLocalityId>"). */
+  inInterchangeLocalityId?: string;
   /** Event Event_NavigateToLocality(LocalityId, CountryName). */
   onEventNavigateToLocality?: (localityId: string, countryName: string) => void;
 }
@@ -25,7 +28,8 @@ const EMPTY: Interchange[] = [];
 /** The statistics list of interchange localities: CustomContainer (Neutral0, padding y Small x Base) with a
     SkeletonSection (In_IsLoading) around the List ("list list-group list--gap-s") of Statistics_ListItem (actions
     menu; "ubt-statistics-item__bookmarked" when bookmarked) whose ActionsMenu is Directory_EntityDetailsActions
-    (Interchange, bookmark and notes, popup name = the statistics title), then Directory_EmptyState (Interchange,
+    (Interchange, bookmark and notes, popup name = the statistics title, In_LocalityId = In_InterchangeLocalityId:
+    survey mvc.js:317-342, TST publish of 2026-10-29), then Directory_EmptyState (Interchange,
     "in this locality") for an empty list not loading.
     Handler_Clicked: nothing while loading, else Event_NavigateToLocality(InterchangeLocalityId, CountryName).
     @origin UBTConnect.Directory_Interchange.Directory_Interchange_StatisticsList */
@@ -35,6 +39,7 @@ export function Directory_Interchange_StatisticsList({
   inShowSubtitle = false,
   inHighlightWords = '',
   inInterchangeList = EMPTY,
+  inInterchangeLocalityId = '',
   onEventNavigateToLocality,
 }: Directory_Interchange_StatisticsListProps) {
   const handlerClicked = (item: Interchange) => {
@@ -77,6 +82,7 @@ export function Directory_Interchange_StatisticsList({
                       id={`${row}-$b4`}
                       entityType={Connect_Entity.Interchange}
                       entityId={item.interchangeLocalityId}
+                      inLocalityId={inInterchangeLocalityId}
                       isEnabled
                       enableOptions={{ EnableBookmark: true, EnableNotes: true }}
                       contactPopUpOverrideOptions={{ Name: item.interchangeStatistics.Title ?? '' }}

@@ -1,16 +1,14 @@
-import { useRef } from 'react';
-import { fetchCountryListStatistics, type CountrySummary } from '@/api/country';
+import { fetchCountryListCommunityStatistics, fetchCountryListStatistics, type CountrySummary } from '@/api/country';
 import {
   exceptionMessage,
   isCommunicationException,
   isInstanceOf,
   isSystemException,
   NotRegisteredException,
-  raiseToFlowHandler,
   UserException,
 } from '@/legacy/os/exceptions';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
-import { useFlowState, useOsNavigate, type IsAlive } from '@/platform/navigation';
+import { useFlowState, useOsNavigate } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
 import { bottomSheetOpen } from '@/components/ui/lib/actions';
 import type { Directory_UserCurrent } from '@/platform/session/UserInfoCache/types';
@@ -22,7 +20,6 @@ import {
   INITIAL_COUNTRY_LIST_STATE,
   longIntegerTextOf,
   userGeographyOf,
-  type CountryListPatch,
   type CountryListState,
 } from './countryListState';
 
@@ -50,55 +47,46 @@ export interface CountryListFlows {
 
 /** The flows of the screen CountryList (the screen controller).
     - OnReady: a back navigation that the view cache restored with the data fetched does nothing; otherwise
-      Action_RefreshData. GetCountriesStatistics is refresh-only.
+      JavaScript1 starts Action_RefreshData_CommunityStatistics (GetCommunityStatistics, not awaited, no widget reads
+      it; live TST of 2026-10-27), then Action_RefreshData. Both data actions are refresh-only.
     - Action_RefreshData: 10 skeleton rows, the refresh of GetCountriesStatistics, then
       OnAfterFetch_GetCountriesStatistics (every row's AvatarURL = GetFlagURLByCountryCode(CountryCode)). The exception
       handlers clear the list and bubble the error up (BubbleCommunicationException, BubbleGenericException);
       NotRegistered and system exceptions go up as they are.
-    - Decision W23: after an unmount, a started flow skips its state writes only. Its error still goes to the flow
-      handler.
+    - Flow scope (item 8): GetCountriesStatistics is a data action (R1, `flow.fetch`). After the unmount its answer
+      and its failure are dropped: `flow.fetch` throws ControllerDisposedException, a system exception, which the
+      handlers pass on unchanged and the flow handler ignores (on TST the catch block is inside the dropped chain,
+      CountryList.js:1450-1490). HasAccessToRegion and the upgrade popup are module actions: they run after leaving.
+      The navigation from a left screen does not happen (R4, useOsNavigate).
     @origin UBTConnect.Directory_Locality.CountryList */
 export function useCountryList(): CountryListFlows {
   const navigate = useOsNavigate();
-  /* OnReady runs once per screen. StrictMode (dev) runs the mount effect again on the same screen: the second call
-     only replaces the liveness check, so the first flow writes the state while the screen is there. */
-  const readyStarted = useRef(false);
-  const newestReadyRun = useRef<IsAlive>(() => true);
   const {
     state,
     dispatch: set,
     latest,
+    flow,
   } = useFlowState({
     viewName: 'Directory_Locality.CountryList',
     reducer: countryListReducer,
     initial: INITIAL_COUNTRY_LIST_STATE,
     parameters: null,
-    onReady: (isAlive, restored) => {
-      newestReadyRun.current = isAlive;
-      if (readyStarted.current) return Promise.resolve();
-      readyStarted.current = true;
-      return onReady(restored);
-    },
+    onReady: (_flow, restored) => onReady(restored),
   });
-
-  /** A state write of the OnReady flow, skipped after the unmount (W23). */
-  const write = (patch: CountryListPatch) => {
-    if (newestReadyRun.current()) set(patch);
-  };
 
   /** Action_RefreshData. */
   const refreshData = async () => {
-    write({ countries: getSkeletonList_UI_CountryStatistics(10) });
+    set({ countries: getSkeletonList_UI_CountryStatistics(10) });
     try {
       let rows: CountrySummary[];
       try {
-        rows = await fetchCountryListStatistics();
+        rows = await flow.fetch(fetchCountryListStatistics()); // R1
       } catch (e) {
-        write({ fetchStatus: 'error', hasFetchError: true });
+        set({ fetchStatus: 'error', hasFetchError: true });
         throw e;
       }
       // The fetch, then OnAfterFetch_GetCountriesStatistics.
-      write({
+      set({
         countries: rows.map((c) => ({ ...c, avatarURL: getFlagURLByCountryCode(c.countryCode) })),
         fetchStatus: 'ok',
         isDataFetched: true,
@@ -106,21 +94,29 @@ export function useCountryList(): CountryListFlows {
       });
     } catch (e) {
       if (isCommunicationException(e)) {
-        write({ countries: [] }); // ListClear2
+        set({ countries: [] }); // ListClear2
         throw new UserException(exceptionMessage(e), 'UBTConnect.BubbleCommunicationException');
       }
       if (isInstanceOf(e, NotRegisteredException)) throw e; // Raise Error: NotRegistered
       if (!isSystemException(e)) {
-        write({ countries: [] }); // ListClear
+        set({ countries: [] }); // ListClear
         throw new UserException(exceptionMessage(e), 'UBTConnect.BubbleGenericException');
       }
       throw e;
     }
   };
 
-  /** ScreenEvent_OnReady. useFlowState sends a rejection to the flow handler. */
+  /** Action_RefreshData_CommunityStatistics: the refresh of GetCommunityStatistics (R1). No widget reads the answer. */
+  const refreshCommunityStatistics = async () => {
+    await flow.fetch(fetchCountryListCommunityStatistics());
+  };
+
+  /** ScreenEvent_OnReady. useFlowState sends a rejection to the flow handler. JavaScript1 (live TST of 2026-10-27,
+      CountryList.mvc.js:1312-1318, 1831-1835) calls Action_RefreshData_CommunityStatistics and does not wait for it:
+      its error goes to the flow handler on its own (`flow.run`). */
   const onReady = async (restored: boolean) => {
     if (restored && latest.current.isDataFetched) return;
+    flow.run(refreshCommunityStatistics);
     await refreshData();
   };
 
@@ -128,9 +124,10 @@ export function useCountryList(): CountryListFlows {
       App_Subscription_ShowUpgradePopUp. */
   const statisticsClicked = async (eventId: string) => {
     if (eventId === '') return;
-    const hasAccess = await hasAccessToRegion(longIntegerTextOf(eventId), eventId);
-    if (hasAccess) navigate(`/${APP_ID}/CountryDetails`, { CountryCode: eventId });
-    else await showUpgradePopUp();
+    const hasAccess = await hasAccessToRegion(longIntegerTextOf(eventId), eventId); // module action: not wrapped
+    if (hasAccess)
+      navigate(`/${APP_ID}/CountryDetails`, { CountryCode: eventId }); // R4 in useOsNavigate
+    else await showUpgradePopUp(); // module action: runs after leaving, as on TST
   };
 
   return {
@@ -154,7 +151,7 @@ export function useCountryList(): CountryListFlows {
       bottomSheetOpen(latest.current.bottomSheetId);
     },
     onCountryClicked: (countryCode) => {
-      statisticsClicked(countryCode).catch(raiseToFlowHandler);
+      flow.run(() => statisticsClicked(countryCode));
     },
     onUserInfo: (user) => {
       set({ user: userGeographyOf(user) });

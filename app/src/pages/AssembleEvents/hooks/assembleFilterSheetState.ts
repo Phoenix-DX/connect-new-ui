@@ -13,7 +13,7 @@ export const SHEET_TITLE_LOCALITIES = 'Filter by Locality';
 export const NULL_SUBDIVISION_ID = '0';
 
 /** The variables of the sheet. Long Integers stay text. */
-export interface AssembleFilterSheetState {
+interface AssembleFilterSheetState {
   /** ScreenTitle. */
   screenTitle: string;
   /** CountryDetailList: the countries of the user's subscription region. */
@@ -37,7 +37,7 @@ export interface AssembleFilterSheetState {
 }
 
 /** An assignment of one or more variables of the sheet. */
-export type AssembleFilterSheetPatch = Partial<AssembleFilterSheetState>;
+type AssembleFilterSheetPatch = Partial<AssembleFilterSheetState>;
 
 /** The defaults (the sheet has no OnInitialize). */
 export const INITIAL_FILTER_SHEET_STATE: AssembleFilterSheetState = {

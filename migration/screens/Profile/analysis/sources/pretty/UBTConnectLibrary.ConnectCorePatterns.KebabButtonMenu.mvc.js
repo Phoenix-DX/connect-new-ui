@@ -18,6 +18,12 @@ define("UBTConnectLibrary.ConnectCorePatterns.KebabButtonMenu.mvc$model", ["OutS
                 }, false),
                 this.attr("_isEnableInDataFetchStatus", "_isEnableInDataFetchStatus", "_isEnableInDataFetchStatus", true, false, OS.DataTypes.DataTypes.Integer, function() {
                     return /*Fetched*/ 1;
+                }, false),
+                this.attr("In_DisableShare", "in_DisableShareIn", "In_DisableShare", true, false, OS.DataTypes.DataTypes.Boolean, function() {
+                    return false;
+                }, false),
+                this.attr("_in_DisableShareInDataFetchStatus", "_in_DisableShareInDataFetchStatus", "_in_DisableShareInDataFetchStatus", true, false, OS.DataTypes.DataTypes.Integer, function() {
+                    return /*Fetched*/ 1;
                 }, false)
             ].concat(_super.attributesToDeclare.call(this));
         };
@@ -66,6 +72,14 @@ define("UBTConnectLibrary.ConnectCorePatterns.KebabButtonMenu.mvc$model", ["OutS
                 this.variables.isEnableIn = inputs.isEnable;
                 if ("_isEnableInDataFetchStatus" in inputs) {
                     this.variables._isEnableInDataFetchStatus = inputs._isEnableInDataFetchStatus;
+                }
+
+            }
+
+            if ("In_DisableShare" in inputs) {
+                this.variables.in_DisableShareIn = inputs.In_DisableShare;
+                if ("_in_DisableShareInDataFetchStatus" in inputs) {
+                    this.variables._in_DisableShareInDataFetchStatus = inputs._in_DisableShareInDataFetchStatus;
                 }
 
             }
@@ -173,7 +187,7 @@ define("UBTConnectLibrary.ConnectCorePatterns.KebabButtonMenu.mvc$view", ["OutSy
                                         var rec = new UBTConnectLibraryModel.ContextMenuOptionsRec();
                                         rec.hasSendGiftAttr = false;
                                         rec.hasMarkAsReadAttr = false;
-                                        rec.hasShareAttr = true;
+                                        rec.hasShareAttr = !(model.variables.in_DisableShareIn);
                                         rec.editAttr = function() {
                                             var rec = new UBTConnectLibraryModel.TextBooleanRecord();
                                             rec.hasEditAttr = true;
@@ -182,7 +196,10 @@ define("UBTConnectLibrary.ConnectCorePatterns.KebabButtonMenu.mvc$view", ["OutSy
                                         }();
                                         return rec;
                                     }();
+                                }, function() {
+                                    return model.variables.in_DisableShareIn;
                                 }),
+                                _in_ContextMenuOptionsInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables._in_DisableShareInDataFetchStatus),
                                 isEnabled: model.variables.isEnableIn,
                                 _isEnabledInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables._isEnableInDataFetchStatus)
                             },
@@ -232,7 +249,7 @@ define("UBTConnectLibrary.ConnectCorePatterns.KebabButtonMenu.mvc$view", ["OutSy
                         })];
                     })
                 },
-                _dependencies: [asPrimitiveValue(model.variables._isEnableInDataFetchStatus), asPrimitiveValue(model.variables.isEnableIn)]
+                _dependencies: [asPrimitiveValue(model.variables.isEnableIn), asPrimitiveValue(model.variables._isEnableInDataFetchStatus), asPrimitiveValue(model.variables._in_DisableShareInDataFetchStatus), asPrimitiveValue(model.variables.in_DisableShareIn)]
             }));
         };
         return View;
@@ -271,7 +288,7 @@ define("UBTConnectLibrary.ConnectCorePatterns.KebabButtonMenu.mvc$controller", [
         Controller.prototype.pushDebuggerContext = function(callContext) {
             var varBag = {};
             OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:7WP6eMpZLUWcKuZ3c_pmbg:/NRWebFlows.7WP6eMpZLUWcKuZ3c_pmbg:oyDD4nRcBfstlKKpUR3Bug", "UBTConnectLibrary", "ConnectCorePatterns", "NRFlows.WebFlow", callContext.id, varBag);
-            OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:4wLhWrx+MkK9GlHuC3mzvg:/NRWebFlows.7WP6eMpZLUWcKuZ3c_pmbg/NodesShownInESpaceTree.4wLhWrx+MkK9GlHuC3mzvg:dGtWCPExmKLQdQGQU8rWtg", "UBTConnectLibrary", "KebabButtonMenu", "NRNodes.WebBlock", callContext.id, varBag);
+            OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:4wLhWrx+MkK9GlHuC3mzvg:/NRWebFlows.7WP6eMpZLUWcKuZ3c_pmbg/NodesShownInESpaceTree.4wLhWrx+MkK9GlHuC3mzvg:U4RRBtpEcmivDBe1kYAXYQ", "UBTConnectLibrary", "KebabButtonMenu", "NRNodes.WebBlock", callContext.id, varBag);
         };
         Controller.prototype.popDebuggerContext = function(callContext) {
             OutSystemsDebugger.pop("lAQ0zS6tEEyl6BBIK9yo1A:4wLhWrx+MkK9GlHuC3mzvg", callContext.id);
@@ -306,6 +323,12 @@ define("UBTConnectLibrary.ConnectCorePatterns.KebabButtonMenu.mvc$debugger", ["e
         "GDTmrS4WOEec7yfcTAZKSA": {
             getter: function(varBag, idService) {
                 return varBag.model.variables.isEnableIn;
+            },
+            dataType: OS.DataTypes.DataTypes.Boolean
+        },
+        "vVmQw6nFlE2TdQrh7Ibkhg": {
+            getter: function(varBag, idService) {
+                return varBag.model.variables.in_DisableShareIn;
             },
             dataType: OS.DataTypes.DataTypes.Boolean
         },

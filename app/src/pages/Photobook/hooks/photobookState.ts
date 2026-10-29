@@ -38,3 +38,17 @@ export function photobookReducer(state: PhotobookState, action: PhotobookAction)
     isLoading: false,
   };
 }
+
+/** What Carousel_OnSlideMoved does after it sets the position (Photobook_Carousel.mvc.js:1225-1250). "Is Replaying?"
+    (IsReplaying and CurrentPosition = 0, :1227): IsReplaying = False, then StartAutoplay. Else "Is last position?"
+    (CurrentPosition + 1 = In_Households.Length) and "Is Autoplay?": StopAutoplay. */
+export function slideMovedStep(
+  isReplaying: boolean,
+  currentPosition: number,
+  householdCount: number,
+  isAutoplayEnabled: boolean,
+): 'startAutoplay' | 'stopAutoplay' | 'none' {
+  if (isReplaying && currentPosition === 0) return 'startAutoplay';
+  if (currentPosition + 1 === householdCount && isAutoplayEnabled) return 'stopAutoplay';
+  return 'none';
+}

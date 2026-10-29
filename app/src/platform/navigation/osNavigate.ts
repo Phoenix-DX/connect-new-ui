@@ -1,7 +1,8 @@
-import { useCallback } from 'react';
-import { useNavigate, type NavigateFunction } from 'react-router';
+import { useCallback, useLayoutEffect, useRef } from 'react';
+import { useLocation, useNavigate, type Location, type NavigateFunction } from 'react-router';
+import { OutOfContextException } from '@/legacy/os/os-exceptions';
 import { parseOsDate } from '@/lib/osDateTime';
-import { currentEntry } from './historyStack';
+import { currentEntry, isCurrentEntry } from './historyStack';
 import {
   createTransition,
   DEFAULT_TRANSITION,
@@ -88,24 +89,65 @@ export function setNavigationRedirect(next: NavigationRedirect | null): void {
   redirect = next;
 }
 
+/** Tells whether a path shows a screen of the app: the "screen URLs of the home module" of TST's
+    urlBelongsToCurrentApplication (W229508). AppFrame gives app/screens.ts showsScreen to NavigationHost. */
+export type ScreenCheck = (location: Pick<Location, 'pathname'>) => boolean;
+
+/* None when no NavigationHost has the route table (a block rendered alone in a test): every path goes to the router. */
+let isScreen: ScreenCheck | null = null;
+
+export function setScreenCheck(next: ScreenCheck | null): void {
+  isScreen = next;
+}
+
 /** A navigation of useOsNavigate and osNavigateTo through the router's `navigate`. */
 function goTo(navigate: NavigateFunction, path: string, params?: OsParams, options?: OsNavigateOptions): void {
   const target = redirect === null ? { path, params } : redirect({ path, params: params ?? {} });
+  /* D3 of item 9 (item9-solution.md §4.3): TST's navigateTo sends a URL that matches no screen URL to
+     changeWindowLocation, a full page load (N14: W224400, W229508, W224025). The server then answers with its 404 page
+     (P6). Nothing else changes: TST throws RedirectOccurredException and leaves the document. */
+  if (isScreen !== null && !isScreen({ pathname: target.path.split(/[?#]/, 1)[0] ?? '' })) {
+    window.location.assign(screenUrl(target.path, target.params));
+    return;
+  }
   const replace = options?.replace === true || isReplacePending();
   const transition = createTransition(options?.transition, DEFAULT_TRANSITION) ?? DEFAULT_TRANSITION;
   void navigate(screenUrl(target.path, target.params), { replace, state: transitionState(transition) });
 }
 
+/** The context of the calling screen (item 8 §2.1): true while its history entry is the one the router shows. The
+    `useLocation().key` of a screen is frozen per entry, also while the screen leaves (ScreenTransitionGroup); the
+    check reads the newest key of the instance at each call. Without a NavigationHost (no entry), always true. */
+export function useIsCurrentEntry(): () => boolean {
+  const { key } = useLocation();
+  const keyRef = useRef(key);
+  useLayoutEffect(() => {
+    keyRef.current = key;
+  });
+  return useCallback(() => isCurrentEntry(keyRef.current), []);
+}
+
+/** R4 of item 8: a navigation from a screen that is not the active one throws OutOfContextException and does not
+    navigate (Navigation module: navigateTo → validateContext W221750; isOutOfContext W518580). It is an
+    IgnorableSystemException: the flow handler and the top-level filter (platform/feedback/ignorableErrors.ts) ignore
+    it, so the flow stops and nothing shows. */
+function validateContext(isCurrent: () => boolean): void {
+  if (!isCurrent()) throw new OutOfContextException();
+}
+
 /** Navigates to an original screen path with its parameters, after the flag redirects of the route table. The history
     entry carries its transition (BaseNavigationCallbacks.goTo: location state `{ transition }`), read by the screen
-    transition and reversed by a back navigation from it. */
+    transition and reversed by a back navigation from it. Throws OutOfContextException from a screen that the user
+    left (R4, validateContext). */
 export function useOsNavigate(): OsNavigate {
   const navigate = useNavigate();
+  const isCurrent = useIsCurrentEntry();
   return useCallback(
     (path, params, options) => {
+      validateContext(isCurrent);
       goTo(navigate, path, params, options);
     },
-    [navigate],
+    [navigate, isCurrent],
   );
 }
 
@@ -131,16 +173,19 @@ export function osNavigateTo(path: string, params?: OsParams, options?: OsNaviga
 /** The shell's back action: a history back, which runs the back-navigation queue like the device back button.
     Without a transition (compiled `navigateBack(null)`) the screen transition reverses the one the screen being left
     was entered with; with one (`navigateBack(createTransition(X))`) that one is used (BaseNavigationCallbacks.goBack
-    sets Root.transitionOverride). Call it with no argument from event handlers (`onClick={() => { back(); }}`). */
+    sets Root.transitionOverride). Call it with no argument from event handlers (`onClick={() => { back(); }}`).
+    Throws OutOfContextException from a screen that the user left (R4, validateContext). */
 export function useNavigateBack(): (transition?: TransitionAnimation) => void {
   const navigate = useNavigate();
+  const isCurrent = useIsCurrentEntry();
   return useCallback(
     (transition?: TransitionAnimation) => {
+      validateContext(isCurrent);
       const name = createTransition(transition, null);
       if (name !== null) setTransitionOverride(name);
       void navigate(-1);
     },
-    [navigate],
+    [navigate, isCurrent],
   );
 }
 

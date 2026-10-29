@@ -27,4 +27,6 @@ export const FLAG_OS_NAMES = {
   C2EnableSearchByBirthday: 'outSystems_FF.c2EnableSearchByBirthday',
   // not in flags.generated.json: migration/flags.json key, checked directly in UBTConnect.controller.js (Locality_Details)
   mobileDirectoryLocalityContacts: 'launchDarkly_FF.mobileDirectoryLocalityContacts',
+  // not in flags.generated.json: checked directly in HouseholdDetails_Block (live TST of 2026-10-27, mvc.js:1298-1301)
+  mobileDirectoryHouseholdGallery: 'launchDarkly_FF.mobileDirectoryHouseholdGallery',
 } as const satisfies Record<FlagKey, string>;

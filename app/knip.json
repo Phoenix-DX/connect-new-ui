@@ -4,7 +4,7 @@
   "project": ["src/**/*.{ts,tsx}", "build/**/*.{ts,mjs}"],
   "ignoreDependencies": ["ts-morph"],
   "ignoreBinaries": ["python3"],
-  "ignore": [".storybook/withFlags.ts", "src/components/ui/DropdownSearch/index.ts"],
+  "ignore": [".storybook/withFlags.ts"],
   "ignoreIssues": {
     "src/api/schema.d.ts": ["exports", "types"],
     "src/app/*.generated.ts": ["exports", "types"],

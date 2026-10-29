@@ -1,9 +1,16 @@
 import type { Milestone_Screen } from '@/api/event';
-import { fetchEventDetails, fetchHasDocuments, fetchHasQRCode, fetchHostSurveyStatus } from '@/api/event';
+import {
+  fetchEventDetails,
+  fetchEventNotes,
+  fetchHasDocuments,
+  fetchHasQRCode,
+  fetchHostSurveyStatus,
+} from '@/api/event';
+import type { Notes } from '@/lib/ubtConnectLibrary/structures';
 import type { EventDetailInputs } from '@/pages/EventDetail/inputs';
 import { showFeedbackMessage } from '@/platform/feedback';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { useFlowState, type IsAlive } from '@/platform/navigation';
+import { useFlowState } from '@/platform/navigation';
 import { getUserInformation } from '@/platform/session/userInfo';
 import { getLocalSurveyStatusByJSONName } from '@/platform/storage/localEntities';
 import { getContactHelpdeskSubject_Event, onApplicationEvent_GenerateQRCode } from './eventDetailActions';
@@ -14,7 +21,6 @@ import {
   INITIAL_EVENT_DETAIL_STATE,
   isEventHost,
   mayOpenHostSurvey,
-  type EventDetailAction,
   type EventDetailState,
 } from './eventDetailState';
 
@@ -84,6 +90,10 @@ export interface EventDetailHandlers {
   onHandleContactHelpdesk: () => void;
   /** OnHandle_ClickedDate (EventDateSelection ClickedDate). */
   onHandleClickedDate: (milestoneTimeTypeId: string, selectedDate: string, position: number) => void;
+  /** Handler_OnNotesChanged (ItemNotesSection On_NotesChanged): EventNotes = New_Notes. */
+  onHandleNotesChanged: (notes: Notes) => void;
+  /** Handler_OnNoteDeleted (ItemNotesSection On_NoteDeleted; WasLastNote is not read). */
+  onHandleNoteDeleted: (noteId: string) => void;
 }
 
 /** What the view reads: the block state and the handlers. */
@@ -94,20 +104,18 @@ export interface EventDetailFlows {
 
 /** The state and the flows of the event detail. The state comes from useFlowState and the view cache keeps it.
     OnReady runs before the first paint, once (decision W28: the old block ran it in a layout effect).
-    Decision W23: OnReady runs to its end, as in the old port. After an unmount it still makes its calls (with the
-    variables that it would have sent) and sends a failure to the flow handler; only its state writes stop. */
+    Flow scope (item 8): Get_EventDetails, Get_HostSurveyStatus, Get_HasDocuments and Get_HasQRCode are data actions
+    (R1, `flow.fetch`; ScreenBlock_EventDetail.js:1713, :1741, :1769, :1825): after the unmount OnReady stops at the
+    answer of the pending one; the next calls do not start, and a failure reaches no handler. Cache_UserInfo_Get is a
+    module action (R2): it runs to its end. In OnHandle_ViewHelpers, NavigateTo_Helpers is an own action of the block
+    (R3, `flow.own`; ScreenBlock_EventDetail.js:2359): after the unmount it stops the flow. The navigation of the parent
+    from a left screen is blocked by the platform (R4). */
 export function useEventDetail(
   inputs: EventDetailInputs,
   flags: EventDetailFlags,
   events: EventDetailEvents,
 ): EventDetailFlows {
-  const {
-    state,
-    dispatch,
-    latest,
-    parameters,
-    events: eventsRef,
-  } = useFlowState({
+  const { state, dispatch, latest, parameters, flow } = useFlowState({
     viewName: 'Orbit_ScreenBlocks.ScreenBlock_EventDetail',
     reducer: eventDetailReducer,
     initial: INITIAL_EVENT_DETAIL_STATE,
@@ -115,28 +123,36 @@ export function useEventDetail(
     events,
     beforePaint: true,
     // The flow is defined below; the hook calls the one of the newest render.
-    onReady: (isAlive, restored) => onReady(isAlive, restored),
+    onReady: (_flow, restored) => onReady(restored),
   });
 
   /** OnReady. A view restored from the cache does nothing (pattern P-BACK). Otherwise IsFetchingData True (before the
       first paint), Get_EventDetails, the cached user ids, Get_HostSurveyStatus for a host event (then the local survey
       status), Get_HasDocuments, Get_HasQRCode when the selected day has milestones, then IsFetchingData False. A
-      failure rejects, and useFlowState sends it to the flow handler. `isAlive` is true until the unmount. */
-  const onReady = async (isAlive: IsAlive, restored: boolean): Promise<void> => {
+      failure rejects, and useFlowState sends it to the flow handler. Each call sends the block variables of that
+      moment (`latest`). */
+  const onReady = async (restored: boolean): Promise<void> => {
     if (restored) return;
-    /* The flow keeps its own copy of the state: the next calls send its variables, also after an unmount, when the
-       state writes stop. No other flow writes the state while OnReady runs (the skeleton hides the controls). */
-    let model = latest.current;
-    const write = (action: EventDetailAction) => {
-      model = eventDetailReducer(model, action);
-      if (isAlive()) dispatch(action);
-    };
-    const variables = () => eventDetailCallInputs(model, parameters.current);
+    const variables = () => eventDetailCallInputs(latest.current, parameters.current);
 
-    write({ type: 'fetchStarted' });
-    write({ type: 'eventDetailsFetched', result: await fetchEventDetails(variables()) });
-    const user = (await getUserInformation()).Directory_UserCurrent;
-    write({
+    // FetchEventNotes is fetched at start (dependency 0, ScreenBlock_EventDetail.mvc.js:1580-1595): it starts with
+    // OnReady and OnReady does not wait for it (captured before Get_EventDetails, calls.md #2).
+    // OnAfterFetch_FetchEventNotes: EventNotes = FetchEventNotes.Notes. A failed fetch at start keeps the default
+    // EventNotes and goes to the flow handler, as TST (executeDataFetchAction: flush, then the block handleError;
+    // item2-fetch-errors.md E1, E3; WP6 Q2 (a), user 2026-10-29).
+    flow
+      .fetch(fetchEventNotes(variables())) // R1
+      .then((notes) => {
+        dispatch({ type: 'eventNotesSet', notes });
+      })
+      .catch((e: unknown) => {
+        raiseToFlowHandler(e, flow); // EventNotes keeps its default (Total 0, no notes)
+      });
+
+    dispatch({ type: 'fetchStarted' });
+    dispatch({ type: 'eventDetailsFetched', result: await flow.fetch(fetchEventDetails(variables())) }); // R1
+    const user = (await getUserInformation()).Directory_UserCurrent; // R2: Cache_UserInfo_Get
+    dispatch({
       type: 'userInformationRead',
       userInformation: {
         userMemberId: user.MemberID,
@@ -144,18 +160,34 @@ export function useEventDetail(
         spouseMemberId: user.Directory_UserCurrent_Member.SpouseId,
       },
     });
-    if (isEventHost(model)) {
-      const statusId = await fetchHostSurveyStatus(variables());
-      write({ type: 'hostSurveyStatusFetched', statusId });
+    if (isEventHost(latest.current)) {
+      const statusId = await flow.fetch(fetchHostSurveyStatus(variables())); // R1
+      dispatch({ type: 'hostSurveyStatusFetched', statusId });
       if (statusId !== '') {
-        write({ type: 'localSurveyStatusRead', localSurveyStatus: getLocalSurveyStatusByJSONName(statusId) });
+        dispatch({ type: 'localSurveyStatusRead', localSurveyStatus: getLocalSurveyStatusByJSONName(statusId) });
       }
     }
-    write({ type: 'hasDocumentsFetched', hasDocuments: await fetchHasDocuments(variables()) });
-    if (model.eventDetails.Milestones.length > 0) {
-      write({ type: 'qrCodeFetched', status: await fetchHasQRCode(variables()) });
+    dispatch({ type: 'hasDocumentsFetched', hasDocuments: await flow.fetch(fetchHasDocuments(variables())) }); // R1
+    if (latest.current.eventDetails.Milestones.length > 0) {
+      dispatch({ type: 'qrCodeFetched', status: await flow.fetch(fetchHasQRCode(variables())) }); // R1
     }
-    write({ type: 'fetchEnded' });
+    dispatch({ type: 'fetchEnded' });
+  };
+
+  /** NavigateTo_Helpers(EventId, HostId, PreloadEventName, PreloadMilestoneName), an own action of the block (R3): the
+      event NavigateTo_Helpers. */
+  const navigateToHelpers = flow.own(
+    (eventId: string, hostId: string, preloadEventName: string, preloadMilestoneName: string) => {
+      flow.events.onNavigateToHelpers(eventId, hostId, preloadEventName, preloadMilestoneName);
+    },
+  );
+
+  /** OnHandle_ViewHelpers: Cache_UserInfo_Get, then NavigateTo_Helpers(In_EventId, HouseholderId, In_EventName,
+      PreloadMilestoneName). */
+  const viewHelpers = async (preloadMilestoneName: string): Promise<void> => {
+    const user = (await getUserInformation()).Directory_UserCurrent; // R2: Cache_UserInfo_Get
+    const { In_EventId, In_EventName } = parameters.current;
+    navigateToHelpers(In_EventId, user.Directory_UserCurrent_Member.HouseholderId, In_EventName, preloadMilestoneName);
   };
 
   const handlers: EventDetailHandlers = {
@@ -164,17 +196,17 @@ export function useEventDetail(
       const s = latest.current;
       if (s.hasScanned) return;
       const e = s.eventDetails;
-      eventsRef.current.onNavigateToGenerateQRCode(e.EventStartDate, e.EventEndDate, e.Location);
+      flow.events.onNavigateToGenerateQRCode(e.EventStartDate, e.EventEndDate, e.Location);
       onApplicationEvent_GenerateQRCode(parameters.current.In_MemberId, parameters.current.In_EventId);
     },
     onClickOpenDocuments: () => {
       const e = latest.current.eventDetails;
-      eventsRef.current.onNavigateToViewDocuments(e.EventStartDate, e.EventEndDate, e.Location);
+      flow.events.onNavigateToViewDocuments(e.EventStartDate, e.EventEndDate, e.Location);
     },
     onClickViewEventBooklet: () => {
       // GetHasOrbitEventBooklet: NavigateTo_EventBooklet, else an Info message.
       if (flags.hasOrbitEventBooklet) {
-        eventsRef.current.onNavigateToEventBooklet();
+        flow.events.onNavigateToEventBooklet();
         return;
       }
       showFeedbackMessage(
@@ -189,7 +221,7 @@ export function useEventDetail(
         showFeedbackMessage('Only Householder is able to edit the survey.', 3);
         return;
       }
-      eventsRef.current.onNavigateToHostSurvey(
+      flow.events.onNavigateToHostSurvey(
         s.userInformation.householderId,
         s.eventDetails.EventStartDate,
         s.eventDetails.EventEndDate,
@@ -199,7 +231,7 @@ export function useEventDetail(
       const target = clickedMilestoneTarget(milestone);
       if (target === null) return;
       if (target.kind === 'transport') {
-        eventsRef.current.onNavigateToTransportDetail(
+        flow.events.onNavigateToTransportDetail(
           target.milestoneId,
           target.typeId,
           target.milestoneName,
@@ -207,7 +239,7 @@ export function useEventDetail(
         );
         return;
       }
-      eventsRef.current.onNavigateToMilestoneDetail(
+      flow.events.onNavigateToMilestoneDetail(
         target.milestoneId,
         parameters.current.In_EventName,
         target.milestoneName,
@@ -216,7 +248,7 @@ export function useEventDetail(
       );
     },
     onHandleHostAllocationView: (milestoneId, typeId, milestoneName, hostId) => {
-      eventsRef.current.onNavigateToMilestoneDetail(
+      flow.events.onNavigateToMilestoneDetail(
         milestoneId,
         parameters.current.In_EventName,
         milestoneName,
@@ -225,33 +257,24 @@ export function useEventDetail(
       );
     },
     onHandleViewHelpers: (preloadMilestoneName) => {
-      // Cache_UserInfo_Get, then NavigateTo_Helpers(In_EventId, HouseholderId, In_EventName, PreloadMilestoneName).
-      // An event flow without state writes: it runs to its end after an unmount (W23).
-      void (async () => {
-        try {
-          const user = (await getUserInformation()).Directory_UserCurrent;
-          const { In_EventId, In_EventName } = parameters.current;
-          eventsRef.current.onNavigateToHelpers(
-            In_EventId,
-            user.Directory_UserCurrent_Member.HouseholderId,
-            In_EventName,
-            preloadMilestoneName,
-          );
-        } catch (e) {
-          raiseToFlowHandler(e);
-        }
-      })();
+      flow.run(() => viewHelpers(preloadMilestoneName));
     },
     onHandleContactHelpdesk: () => {
       const e = latest.current.eventDetails;
       const eventName = parameters.current.In_EventName;
-      eventsRef.current.onNavigateToContactHelpdesk(
+      flow.events.onNavigateToContactHelpdesk(
         getContactHelpdeskSubject_Event(eventName, e.EventStartDate, e.EventEndDate, e.Location),
         eventName,
       );
     },
     onHandleClickedDate: (milestoneTimeTypeId, selectedDate, position) => {
       dispatch({ type: 'dateClicked', milestoneTimeTypeId, selectedDate, position });
+    },
+    onHandleNotesChanged: (notes) => {
+      dispatch({ type: 'eventNotesSet', notes });
+    },
+    onHandleNoteDeleted: (noteId) => {
+      dispatch({ type: 'noteDeleted', noteId });
     },
   };
 

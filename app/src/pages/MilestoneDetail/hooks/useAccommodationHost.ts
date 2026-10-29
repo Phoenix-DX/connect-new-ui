@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import {
   fetchAccommodationHost,
   fetchAccommodationHostDocument,
@@ -11,7 +10,7 @@ import { feedbackMessageAutoClose } from '@/platform/feedback';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
 import { isUserException, raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { log } from '@/platform/log/log';
-import { useFlowState, type IsAlive } from '@/platform/navigation';
+import { useFlowState } from '@/platform/navigation';
 import { useHandleDownload } from '@/platform/device/handleDownload';
 import { getCacheableMemberContactList, getCacheableTimezoneInfo } from '@/lib/legacyShared/actions';
 import { addExtensionToFile, checkDirectoryAccess } from '@/lib/orbit/actions';
@@ -23,7 +22,6 @@ import {
   getContactHelpdeskSubject_Milestone,
   hasAccommodationHostData,
   INITIAL_ACCOMMODATION_HOST_STATE,
-  type AccommodationHostAction,
   type AccommodationHostInputs,
   type ContactPopupData,
 } from './accommodationHostState';
@@ -106,62 +104,47 @@ function onApplicationEvent_CallMember(milestoneId: string, eventId: string): vo
       OnReady does nothing when WasCurrentViewRestoredFromCache is True. A restored view whose saved state does not
       have the data (no saved state for the block, or the user left before OnReady ended) runs OnReady as a new
       visit. The view name of the block is its own, so the restored state is always the state of this block.
-    - Decision W23: a flow that started runs to its end after the unmount (its calls, the navigation and the
-      application event); only its state writes stop (`isAlive`). */
+    - Flow scope (item 8): GetAccommodationHost and Get_Document are data actions (R1, `flow.fetch`): after the
+      unmount OnReady stops at the answer (no Get_Document call after a late GetAccommodationHost) and raises nothing.
+      CheckDirectoryAccess (a server action, R2) answers after leaving: the upgrade popup still shows, but
+      NavigateTo_HouseholdDetail is an own action of the block (R3, `flow.own`), so the event and the ViewHousehold
+      application event after it stop. The cache module actions of the call popup run, and their state writes are
+      dropped (`dispatch`). */
 export function useAccommodationHost(
   inputs: AccommodationHostInputs,
   events: AccommodationHostEvents,
 ): AccommodationHostFlows {
-  /* The liveness check of OnReady (true until the unmount with `beforePaint`), kept for the flows that the events of
-     the block start. */
-  const readyIsAlive = useRef<IsAlive>(() => true);
-  const {
-    state,
-    dispatch,
-    latest,
-    parameters,
-    events: eventsRef,
-  } = useFlowState({
+  const { state, dispatch, latest, parameters, flow } = useFlowState({
     viewName: 'Orbit_ScreenBlocks.ScreenBlock_AccommodationHost',
     reducer: accommodationHostReducer,
     initial: INITIAL_ACCOMMODATION_HOST_STATE,
     parameters: inputs,
     events,
     // The flow is defined below; the hook calls the one of the newest render.
-    onReady: (isAlive, restored) => {
-      readyIsAlive.current = isAlive;
-      return onReady(isAlive, restored);
-    },
+    onReady: (_flow, restored) => onReady(restored),
     // The old port ran OnReady in a layout effect: the first frame is the skeleton.
     beforePaint: true,
   });
-
-  /** The block is still there: true until the unmount. */
-  const isAlive: IsAlive = () => readyIsAlive.current();
 
   /** The block variables that both data actions send, as they are now. */
   const callInputs = (): AccommodationHostCallInputs => accommodationHostCallInputs(latest.current, parameters.current);
 
   /** OnReady. A view restored from the cache with its data does nothing (see above). */
-  const onReady = async (isReadyAlive: IsAlive, restored: boolean) => {
+  const onReady = async (restored: boolean) => {
     if (restored && hasAccommodationHostData(latest.current)) return;
     dispatch({ type: 'fetchStarted' });
     // RefreshData → OnAfterFetch_GetAccommodationHost
-    const result = await fetchAccommodationHost(callInputs());
-    if (isReadyAlive()) dispatch({ type: 'accommodationHostFetched', result });
+    const result = await flow.fetch(fetchAccommodationHost(callInputs())); // R1
+    dispatch({ type: 'accommodationHostFetched', result });
     // RefreshDocumentData → Get_DocumentOnAfterFetch
-    const document = await fetchAccommodationHostDocument(callInputs());
-    if (!isReadyAlive()) return;
+    const document = await flow.fetch(fetchAccommodationHostDocument(callInputs())); // R1
     dispatch({ type: 'documentFetched', document });
     dispatch({ type: 'fetchFinished' });
   };
 
-  /** A state write of a flow that an event started, skipped after the unmount (W23). */
-  const write = (action: AccommodationHostAction) => {
-    if (isAlive()) dispatch(action);
-  };
+  /** A state write of the call popup (a no-op after the unmount). */
   const popup = (patch: Partial<ContactPopupData>) => {
-    write({ type: 'contactPopupChanged', patch });
+    dispatch({ type: 'contactPopupChanged', patch });
   };
 
   /** OnClick_OpenDocument: nothing while IsLoadingDocument; else IsLoadingDocument True and
@@ -184,7 +167,7 @@ export function useAccommodationHost(
     } catch (e) {
       if (isUserException(e, 'Connect2_OrbitMobile_MUI.UnknownError'))
         dispatch({ type: 'documentLoadingChanged', isLoadingDocument: false });
-      raiseToFlowHandler(e);
+      raiseToFlowHandler(e, flow);
     }
   };
 
@@ -214,7 +197,7 @@ export function useAccommodationHost(
   const onClickGuestArrangements = (memberId: string, hasGuestArrangements: boolean) => {
     if (!hasGuestArrangements) return;
     const p = parameters.current;
-    eventsRef.current.onNavigateToGuestArrangements(
+    flow.events.onNavigateToGuestArrangements(
       memberId,
       p.In_OrbitMilestoneTypeId,
       latest.current.accommodationData.MilestoneTitle,
@@ -225,24 +208,25 @@ export function useAccommodationHost(
   /** OnHandle_ClickedMember(HouseholdId, Type = DirectoryAPIFilter.Member): CheckDirectoryAccess
       (server GetDirectoryAccess, CR-MilestoneDetail-1); with access NavigateTo_HouseholdDetail, then
       OnApplicationEvent_ViewHousehold; without it App_Subscription_ShowUpgradePopUp. */
+  /** NavigateTo_HouseholdDetail(HouseholdId), an own action of the block (R3: it stops after the unmount). */
+  const navigateToHouseholdDetail = flow.own((householdId: string) => {
+    flow.events.onNavigateToHouseholdDetail(householdId);
+  });
+  const clickedMember = async (householdId: string) => {
+    const hasAccess = await checkDirectoryAccess(householdId, DirectoryAPIFilter.Member); // R2: not wrapped
+    if (hasAccess) {
+      navigateToHouseholdDetail(householdId);
+      onApplicationEvent_ViewHousehold(
+        householdId,
+        parameters.current.In_MilestoneId,
+        latest.current.accommodationData.EventDetails.Id,
+      );
+    } else {
+      await showUpgradePopUp(); // module action: runs after leaving, as on TST
+    }
+  };
   const onClickedMember = (householdId: string) => {
-    void (async () => {
-      try {
-        const hasAccess = await checkDirectoryAccess(householdId, DirectoryAPIFilter.Member);
-        if (hasAccess) {
-          eventsRef.current.onNavigateToHouseholdDetail(householdId);
-          onApplicationEvent_ViewHousehold(
-            householdId,
-            parameters.current.In_MilestoneId,
-            latest.current.accommodationData.EventDetails.Id,
-          );
-        } else {
-          await showUpgradePopUp();
-        }
-      } catch (e) {
-        raiseToFlowHandler(e);
-      }
-    })();
+    flow.run(() => clickedMember(householdId));
   };
 
   /** BuildMemberCallData(Phone, SignedPhotoURL, LocalityId, MemberId, CallName): the popup opens
@@ -263,7 +247,7 @@ export function useAccommodationHost(
     const contacts = await getCacheableMemberContactList([memberId]);
     const first = contacts[0];
     if (first === undefined) {
-      write({ type: 'contactPhoneSet', phone });
+      dispatch({ type: 'contactPhoneSet', phone });
       popup({ IsLoading: false });
       const tz = await getCacheableTimezoneInfo(localityId);
       popup({
@@ -278,7 +262,7 @@ export function useAccommodationHost(
           ImageURL: await fetchLegacySignedImageURL(memberId, DirectoryAPIFilter.Member, ImageSigningSize.Small),
         });
       }
-      write({
+      dispatch({
         type: 'memberContactFetched',
         phones: {
           MobilePhone: first.MobilePhoneNumber,
@@ -306,7 +290,7 @@ export function useAccommodationHost(
     signedPhotoURL: string,
   ) => {
     if (phoneNumber === '') return;
-    void buildMemberCallData(phoneNumber, signedPhotoURL, localityId, memberId, callName).catch(raiseToFlowHandler);
+    flow.run(() => buildMemberCallData(phoneNumber, signedPhotoURL, localityId, memberId, callName));
   };
 
   /** OnHandle_ContactByPhone_Cancel: ShowPopup False. */
@@ -327,7 +311,7 @@ export function useAccommodationHost(
   const onContactHelpdesk = () => {
     const a = latest.current.accommodationData;
     const p = parameters.current;
-    eventsRef.current.onNavigateToContactHelpdesk(
+    flow.events.onNavigateToContactHelpdesk(
       getContactHelpdeskSubject_Milestone(
         p.In_OrbitMilestoneTypeId,
         p.In_PreloadEventName,

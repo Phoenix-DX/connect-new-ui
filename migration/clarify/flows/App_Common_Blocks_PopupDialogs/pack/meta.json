@@ -1,0 +1,22 @@
+{
+ "flow": "App_Common_Blocks_PopupDialogs",
+ "screens": [],
+ "ownBlocks": [
+  "Dialog_CustomChoice",
+  "Dialog_ExitConfirmation",
+  "Dialog_Information",
+  "Dialog_Information_NonNavigation",
+  "Dialog_Navigation"
+ ],
+ "usedBlocks": [],
+ "referencedBlocks": [
+  "ActionConfirmationDialog",
+  "Button",
+  "CustomContainer",
+  "ExitConfirmationDialog",
+  "NavigationConfirmationDialog"
+ ],
+ "clientActions": [],
+ "serverActions": [],
+ "externalSites": []
+}

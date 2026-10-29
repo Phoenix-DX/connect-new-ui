@@ -1,0 +1,58 @@
+{
+ "flow": "Legacy_LDMEventsFlow",
+ "screens": [
+  "EmailTarget",
+  "LDM_Email",
+  "LDM_EventDetail",
+  "LDM_MyEvents"
+ ],
+ "ownBlocks": [],
+ "usedBlocks": [
+  "App_IconBadge",
+  "Block_PINUnlock",
+  "Block_PINUnlock_ContentWrapper",
+  "BottomBarContent",
+  "BottomBarMenu",
+  "CommonUI_InsideLayout",
+  "HandleOnResumeOpenLink",
+  "OfflineDataSyncEvents",
+  "Policy_Checker",
+  "UnsupportedVersion",
+  "UnsupportedVersion_Browser",
+  "UnsupportedVersion_Native",
+  "UnsupportedVersion_WebView",
+  "UnsupportedVersion_Wrapper",
+  "WelcomeToConnect"
+ ],
+ "referencedBlocks": [
+  "ScreenBlock_EventDetail",
+  "ScreenBlock_Event_Email",
+  "ScreenBlock_Household_Email",
+  "ScreenBlock_MyEvents"
+ ],
+ "clientActions": [
+  "Directory_Updates_RefreshBottomBarCount",
+  "ExitApplicationForWebViewUpdate",
+  "GetNameAndSurname_ByFullName",
+  "GetURLFromEventDataURL",
+  "Get_IsUnsupportedSystem",
+  "Get_IsUnsupportedVersion",
+  "OfflineDataSync",
+  "OfflineDataSyncConfiguration",
+  "OpenGooglePlay_Chrome",
+  "OpenGooglePlay_UBTConnect",
+  "OpenGooglePlay_WebView",
+  "ScrollTop",
+  "SetResumeLoginLink",
+  "Try_GetIsSupportedVersion",
+  "Upgrade_UBTConnect",
+  "Upgrade_WebView"
+ ],
+ "serverActions": [
+  "Get_UI_UpdateItems_UnreadCount_All"
+ ],
+ "externalSites": [
+  "AndroidMaps",
+  "WebMaps"
+ ]
+}

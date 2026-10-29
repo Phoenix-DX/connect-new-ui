@@ -38,7 +38,11 @@ describe('AcceptPendingPolicies page', () => {
     expect(bodies[bodies.length - 1]).toEqual(
       expect.objectContaining({
         PolicyApplications: {
-          List: ['Connect_Applications.Connect', 'Connect_Applications.Directory', 'Connect_Applications.Orbit'],
+          List: [
+            '65d96f75-9f71-42aa-8447-fd622aa09e7e',
+            'd8997dfa-7ae3-4eb1-bb48-0a14e151034a',
+            '4b033840-c133-4f0d-beb9-4c3659a9bc28',
+          ],
         },
         IsAllSelected: false,
       }),

@@ -27,7 +27,7 @@ const row = (profileId: string, isShared: boolean): ShareProfile => ({
   cdn: NO_PHOTO,
   isShared,
 });
-const answer = (...items: AvailableUser[]): AvailableUsers => ({ label: 'Contacts list', items });
+const answer = (...items: AvailableUser[]): AvailableUsers => ({ label: 'Locality Members', items });
 
 describe('profileListState', () => {
   it('the request sends the block variables of the time, with MaxRecords 50', () => {

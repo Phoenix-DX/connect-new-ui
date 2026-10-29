@@ -1,6 +1,27 @@
-define("UBTConnect.Home.HomeFeed.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "Connect_Updates_CS.model", "Connect2_Sharing_CS.model", "UBTConnectLibrary.model", "UBTConnect_Utils.controller", "UBTConnectLibrary.Layouts.Layout_HomePage.mvc$model", "UBTConnect.App_Common.AppLogo_White.mvc$model", "UBTConnect.App_Common_Blocks.App_NotificationIcon.mvc$model", "UBTConnect.Home.Section_FeedWrapper.mvc$model", "UBTConnect.Home.FeedBlock_Services.mvc$model", "UBTConnect.Home.FeedBlock_CommunityPopulation.mvc$model", "UBTConnect.Home.FeedBlock_Updates.mvc$model", "UBTConnect.Home.Feed_Embeded.mvc$model", "UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_ExitConfirmation.mvc$model", "UBTConnect.App_Common.BottomBarMenu.mvc$model", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$model", "UBTConnect_Utils.CW_Share.ShareSheet.mvc$model", "UBTConnectLibrary.ConnectCorePatterns.Update_ListItem.mvc$model", "UBTConnect_Utils.CW_Share.ShareableObject_Generic.mvc$model", "Connect_Updates_CS.model$UI_UpdateItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Updates_CS", "Connect2_Sharing_CS.model$UI_ShareableObject_GenericRec", "UBTConnect.referencesHealth$Connect2_Sharing_CS", "UBTConnect.model$TextGender2IdentifierRecordList", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect_Utils.controller$TestDownload", "UBTConnect.referencesHealth$UBTConnect_Utils"], function(OutSystems, UBTConnectModel, Connect_Updates_CSModel, Connect2_Sharing_CSModel, UBTConnectLibraryModel, UBTConnect_UtilsController, UBTConnectLibrary_Layouts_Layout_HomePage_mvcModel, UBTConnect_App_Common_AppLogo_White_mvcModel, UBTConnect_App_Common_Blocks_App_NotificationIcon_mvcModel, UBTConnect_Home_Section_FeedWrapper_mvcModel, UBTConnect_Home_FeedBlock_Services_mvcModel, UBTConnect_Home_FeedBlock_CommunityPopulation_mvcModel, UBTConnect_Home_FeedBlock_Updates_mvcModel, UBTConnect_Home_Feed_Embeded_mvcModel, UBTConnect_App_Common_Blocks_PopupDialogs_Dialog_ExitConfirmation_mvcModel, UBTConnect_App_Common_BottomBarMenu_mvcModel, UBTConnect_App_Common_CommonUI_InsideLayout_mvcModel, UBTConnect_Utils_CW_Share_ShareSheet_mvcModel, UBTConnectLibrary_ConnectCorePatterns_Update_ListItem_mvcModel, UBTConnect_Utils_CW_Share_ShareableObject_Generic_mvcModel) {
+define("UBTConnect.Home.HomeFeed.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "Connect_Updates_CS.model", "Connect2_Sharing_CS.model", "UBTConnectLibrary.model", "Connect_Geography_CS.model", "UBTConnectLibrary.Layouts.Layout_HomePage.mvc$model", "UBTConnect.App_Common.AppLogo_White.mvc$model", "UBTConnect.App_Common_Blocks.App_NotificationIcon.mvc$model", "UBTConnect.Home.Section_FeedWrapper.mvc$model", "UBTConnect.Home.FeedBlock_Services.mvc$model", "UBTConnect.Home.FeedBlock_CommunityPopulation.mvc$model", "UBTConnect.Home.FeedBlock_Updates.mvc$model", "UBTConnect.Home.Feed_Embeded.mvc$model", "UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_ExitConfirmation.mvc$model", "UBTConnect.App_Common.BottomBarMenu.mvc$model", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$model", "UBTConnect_Utils.CW_Share.ShareSheet.mvc$model", "UBTConnectLibrary.ConnectCorePatterns.Update_ListItem.mvc$model", "UBTConnect_Utils.CW_Share.ShareableObject_Generic.mvc$model", "Connect_Updates_CS.model$UI_UpdateItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Updates_CS", "Connect2_Sharing_CS.model$UI_ShareableObject_GenericRec", "UBTConnect.referencesHealth$Connect2_Sharing_CS", "UBTConnect.model$TextGender2IdentifierRecordList", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "Connect_Geography_CS.model$UI_CommunityStatisticsRec", "UBTConnect.referencesHealth$Connect_Geography_CS"], function(OutSystems, UBTConnectModel, Connect_Updates_CSModel, Connect2_Sharing_CSModel, UBTConnectLibraryModel, Connect_Geography_CSModel, UBTConnectLibrary_Layouts_Layout_HomePage_mvcModel, UBTConnect_App_Common_AppLogo_White_mvcModel, UBTConnect_App_Common_Blocks_App_NotificationIcon_mvcModel, UBTConnect_Home_Section_FeedWrapper_mvcModel, UBTConnect_Home_FeedBlock_Services_mvcModel, UBTConnect_Home_FeedBlock_CommunityPopulation_mvcModel, UBTConnect_Home_FeedBlock_Updates_mvcModel, UBTConnect_Home_Feed_Embeded_mvcModel, UBTConnect_App_Common_Blocks_PopupDialogs_Dialog_ExitConfirmation_mvcModel, UBTConnect_App_Common_BottomBarMenu_mvcModel, UBTConnect_App_Common_CommonUI_InsideLayout_mvcModel, UBTConnect_Utils_CW_Share_ShareSheet_mvcModel, UBTConnectLibrary_ConnectCorePatterns_Update_ListItem_mvcModel, UBTConnect_Utils_CW_Share_ShareableObject_Generic_mvcModel) {
     var OS = OutSystems.Internal;
 
+    var GetCommunityStatisticsDataActRec = (function(_super) {
+        __extends(GetCommunityStatisticsDataActRec, _super);
+
+        function GetCommunityStatisticsDataActRec(defaults) {
+            _super.apply(this, arguments);
+        }
+        GetCommunityStatisticsDataActRec.attributesToDeclare = function() {
+            return [
+                this.attr("Out_CommunityStatistics", "out_CommunityStatisticsOut", "Out_CommunityStatistics", true, false, OS.DataTypes.DataTypes.Record, function() {
+                    return OS.DataTypes.ImmutableBase.getData(new Connect_Geography_CSModel.UI_CommunityStatisticsRec());
+                }, true, Connect_Geography_CSModel.UI_CommunityStatisticsRec)
+            ].concat(_super.attributesToDeclare.call(this));
+        };
+        GetCommunityStatisticsDataActRec.fromStructure = function(str) {
+            return new GetCommunityStatisticsDataActRec(new GetCommunityStatisticsDataActRec.RecordClass({
+                out_CommunityStatisticsOut: OS.DataTypes.ImmutableBase.getData(str)
+            }));
+        };
+        GetCommunityStatisticsDataActRec.init();
+        return GetCommunityStatisticsDataActRec;
+    })(OS.Model.DataSourceRecord);
 
     var VariablesRecord = (function(_super) {
         __extends(VariablesRecord, _super);
@@ -30,7 +51,10 @@ define("UBTConnect.Home.HomeFeed.mvc$model", ["OutSystems/ClientRuntime/Main", "
                 }, false),
                 this.attr("ShareableFeedItem", "shareableFeedItemVar", "ShareableFeedItem", true, false, OS.DataTypes.DataTypes.Record, function() {
                     return OS.DataTypes.ImmutableBase.getData(new Connect2_Sharing_CSModel.UI_ShareableObject_GenericRec());
-                }, false, Connect2_Sharing_CSModel.UI_ShareableObject_GenericRec)
+                }, false, Connect2_Sharing_CSModel.UI_ShareableObject_GenericRec),
+                this.attr("GetCommunityStatistics", "getCommunityStatisticsDataAct", "getCommunityStatisticsDataAct", true, true, OS.DataTypes.DataTypes.Record, function() {
+                    return OS.DataTypes.ImmutableBase.getData(new GetCommunityStatisticsDataActRec());
+                }, true, GetCommunityStatisticsDataActRec)
             ].concat(_super.attributesToDeclare.call(this));
         };
         VariablesRecord.init();
@@ -78,7 +102,7 @@ define("UBTConnect.Home.HomeFeed.mvc$model", ["OutSystems/ClientRuntime/Main", "
     })(OS.Model.BaseViewModel);
     return new OS.Model.ModelFactory(Model, "Home.HomeFeed");
 });
-define("UBTConnect.Home.HomeFeed.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "Connect_Updates_CS.model", "Connect2_Sharing_CS.model", "UBTConnectLibrary.model", "UBTConnect_Utils.controller", "react", "OutSystems/ReactView/Main", "UBTConnect.Home.HomeFeed.mvc$model", "UBTConnect.Home.HomeFeed.mvc$controller", "UBTConnect.clientVariables", "UBTConnectLibrary.Layouts.Layout_HomePage.mvc$view", "OutSystems/ReactWidgets/Main", "UBTConnect.App_Common.AppLogo_White.mvc$view", "UBTConnect.App_Common_Blocks.App_NotificationIcon.mvc$view", "UBTConnect.Home.Section_FeedWrapper.mvc$view", "UBTConnect.Home.FeedBlock_Services.mvc$view", "UBTConnect.Home.FeedBlock_CommunityPopulation.mvc$view", "UBTConnect.Home.FeedBlock_Updates.mvc$view", "UBTConnect.Home.Feed_Embeded.mvc$view", "UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_ExitConfirmation.mvc$view", "UBTConnect.App_Common.BottomBarMenu.mvc$view", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$view", "UBTConnect_Utils.CW_Share.ShareSheet.mvc$view", "UBTConnectLibrary.ConnectCorePatterns.Update_ListItem.mvc$view", "UBTConnect_Utils.CW_Share.ShareableObject_Generic.mvc$view", "Connect_Updates_CS.model$UI_UpdateItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Updates_CS", "Connect2_Sharing_CS.model$UI_ShareableObject_GenericRec", "UBTConnect.referencesHealth$Connect2_Sharing_CS", "UBTConnect.model$TextGender2IdentifierRecordList", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect_Utils.controller$TestDownload", "UBTConnect.referencesHealth$UBTConnect_Utils"], function(OutSystems, UBTConnectModel, UBTConnectController, Connect_Updates_CSModel, Connect2_Sharing_CSModel, UBTConnectLibraryModel, UBTConnect_UtilsController, React, OSView, UBTConnect_Home_HomeFeed_mvc_model, UBTConnect_Home_HomeFeed_mvc_controller, UBTConnectClientVariables, UBTConnectLibrary_Layouts_Layout_HomePage_mvc_view, OSWidgets, UBTConnect_App_Common_AppLogo_White_mvc_view, UBTConnect_App_Common_Blocks_App_NotificationIcon_mvc_view, UBTConnect_Home_Section_FeedWrapper_mvc_view, UBTConnect_Home_FeedBlock_Services_mvc_view, UBTConnect_Home_FeedBlock_CommunityPopulation_mvc_view, UBTConnect_Home_FeedBlock_Updates_mvc_view, UBTConnect_Home_Feed_Embeded_mvc_view, UBTConnect_App_Common_Blocks_PopupDialogs_Dialog_ExitConfirmation_mvc_view, UBTConnect_App_Common_BottomBarMenu_mvc_view, UBTConnect_App_Common_CommonUI_InsideLayout_mvc_view, UBTConnect_Utils_CW_Share_ShareSheet_mvc_view, UBTConnectLibrary_ConnectCorePatterns_Update_ListItem_mvc_view, UBTConnect_Utils_CW_Share_ShareableObject_Generic_mvc_view) {
+define("UBTConnect.Home.HomeFeed.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "Connect_Updates_CS.model", "Connect2_Sharing_CS.model", "UBTConnectLibrary.model", "Connect_Geography_CS.model", "react", "OutSystems/ReactView/Main", "UBTConnect.Home.HomeFeed.mvc$model", "UBTConnect.Home.HomeFeed.mvc$controller", "UBTConnect.clientVariables", "UBTConnectLibrary.Layouts.Layout_HomePage.mvc$view", "OutSystems/ReactWidgets/Main", "UBTConnect.App_Common.AppLogo_White.mvc$view", "UBTConnect.App_Common_Blocks.App_NotificationIcon.mvc$view", "UBTConnect.Home.Section_FeedWrapper.mvc$view", "UBTConnect.Home.FeedBlock_Services.mvc$view", "UBTConnect.Home.FeedBlock_CommunityPopulation.mvc$view", "UBTConnect.Home.FeedBlock_Updates.mvc$view", "UBTConnect.Home.Feed_Embeded.mvc$view", "UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_ExitConfirmation.mvc$view", "UBTConnect.App_Common.BottomBarMenu.mvc$view", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$view", "UBTConnect_Utils.CW_Share.ShareSheet.mvc$view", "UBTConnectLibrary.ConnectCorePatterns.Update_ListItem.mvc$view", "UBTConnect_Utils.CW_Share.ShareableObject_Generic.mvc$view", "Connect_Updates_CS.model$UI_UpdateItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Updates_CS", "Connect2_Sharing_CS.model$UI_ShareableObject_GenericRec", "UBTConnect.referencesHealth$Connect2_Sharing_CS", "UBTConnect.model$TextGender2IdentifierRecordList", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "Connect_Geography_CS.model$UI_CommunityStatisticsRec", "UBTConnect.referencesHealth$Connect_Geography_CS"], function(OutSystems, UBTConnectModel, UBTConnectController, Connect_Updates_CSModel, Connect2_Sharing_CSModel, UBTConnectLibraryModel, Connect_Geography_CSModel, React, OSView, UBTConnect_Home_HomeFeed_mvc_model, UBTConnect_Home_HomeFeed_mvc_controller, UBTConnectClientVariables, UBTConnectLibrary_Layouts_Layout_HomePage_mvc_view, OSWidgets, UBTConnect_App_Common_AppLogo_White_mvc_view, UBTConnect_App_Common_Blocks_App_NotificationIcon_mvc_view, UBTConnect_Home_Section_FeedWrapper_mvc_view, UBTConnect_Home_FeedBlock_Services_mvc_view, UBTConnect_Home_FeedBlock_CommunityPopulation_mvc_view, UBTConnect_Home_FeedBlock_Updates_mvc_view, UBTConnect_Home_Feed_Embeded_mvc_view, UBTConnect_App_Common_Blocks_PopupDialogs_Dialog_ExitConfirmation_mvc_view, UBTConnect_App_Common_BottomBarMenu_mvc_view, UBTConnect_App_Common_CommonUI_InsideLayout_mvc_view, UBTConnect_Utils_CW_Share_ShareSheet_mvc_view, UBTConnectLibrary_ConnectCorePatterns_Update_ListItem_mvc_view, UBTConnect_Utils_CW_Share_ShareableObject_Generic_mvc_view) {
     var OS = OutSystems.Internal;
     var PlaceholderContent = OSView.Widget.PlaceholderContent;
     var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
@@ -269,49 +293,53 @@ define("UBTConnect.Home.HomeFeed.mvc$view", ["OutSystems/ClientRuntime/Main", "U
                                 })
                             },
                             _dependencies: []
-                        }), React.createElement(UBTConnect_Home_Section_FeedWrapper_mvc_view, {
-                            inputs: {
-                                ShowHeader: false,
-                                isTransparentBackground: true,
-                                showViewAll: false
-                            },
-                            events: {
-                                _handleError: function(ex) {
-                                    controller.handleError(ex);
-                                }
-                            },
-                            _validationProps: {
-                                validationService: validationService
-                            },
-                            _idProps: {
-                                service: idService,
-                                name: "Section_CommunityPopulation",
-                                alias: "6"
-                            },
-                            _widgetRecordProvider: widgetsRecordProvider,
-                            placeholders: {
-                                content: new PlaceholderContent(function() {
-                                    return [React.createElement(UBTConnect_Home_FeedBlock_CommunityPopulation_mvc_view, {
-                                        inputs: {},
-                                        events: {
-                                            _handleError: function(ex) {
-                                                controller.handleError(ex);
-                                            }
-                                        },
-                                        _validationProps: {
-                                            validationService: validationService
-                                        },
-                                        _idProps: {
-                                            service: idService,
-                                            uuid: "6",
-                                            alias: "7"
-                                        },
-                                        _widgetRecordProvider: widgetsRecordProvider,
-                                        _dependencies: []
-                                    })];
-                                })
-                            },
-                            _dependencies: []
+                        }), $if(true, false, this, function() {
+                            return [React.createElement(UBTConnect_Home_Section_FeedWrapper_mvc_view, {
+                                inputs: {
+                                    isTransparentBackground: true,
+                                    showViewAll: false,
+                                    ShowHeader: false
+                                },
+                                events: {
+                                    _handleError: function(ex) {
+                                        controller.handleError(ex);
+                                    }
+                                },
+                                _validationProps: {
+                                    validationService: validationService
+                                },
+                                _idProps: {
+                                    service: idService,
+                                    name: "Section_CommunityPopulation",
+                                    alias: "6"
+                                },
+                                _widgetRecordProvider: widgetsRecordProvider,
+                                placeholders: {
+                                    content: new PlaceholderContent(function() {
+                                        return [React.createElement(UBTConnect_Home_FeedBlock_CommunityPopulation_mvc_view, {
+                                            inputs: {},
+                                            events: {
+                                                _handleError: function(ex) {
+                                                    controller.handleError(ex);
+                                                }
+                                            },
+                                            _validationProps: {
+                                                validationService: validationService
+                                            },
+                                            _idProps: {
+                                                service: idService,
+                                                uuid: "6",
+                                                alias: "7"
+                                            },
+                                            _widgetRecordProvider: widgetsRecordProvider,
+                                            _dependencies: []
+                                        })];
+                                    })
+                                },
+                                _dependencies: []
+                            })];
+                        }, function() {
+                            return [];
                         }), $if(model.variables.hasUpdatesVar, false, this, function() {
                             return [React.createElement(UBTConnect_Home_Section_FeedWrapper_mvc_view, {
                                 inputs: {
@@ -502,129 +530,133 @@ define("UBTConnect.Home.HomeFeed.mvc$view", ["OutSystems/ClientRuntime/Main", "U
                     })
                 },
                 _dependencies: [asPrimitiveValue(model.variables.isScreenInitializedVar), asPrimitiveValue(model.variables.hasUpdatesVar)]
-            }), React.createElement(UBTConnect_Utils_CW_Share_ShareSheet_mvc_view, {
-                inputs: {
-                    In_ShareObjectTypeId: model.variables.shareObjectTypeIdVar,
-                    In_ShareableObjectId: model.variables.shareableObjectIdVar,
-                    In_UpdateType: model.getCachedValue(idService.getId("49JCnVcUmUm13gAu2QEnyw.In_UpdateType"), function() {
-                        return (((model.variables.shareObjectTypeIdVar === UBTConnectModel.staticEntities.type_ShareObject.update)) ? (model.variables.shareableUpdateItemVar.updateItemTypeIdAttr) : (""));
-                    }, function() {
-                        return model.variables.shareObjectTypeIdVar;
-                    }, function() {
-                        return model.variables.shareableUpdateItemVar.updateItemTypeIdAttr;
-                    }),
-                    In_UpdateDate: model.getCachedValue(idService.getId("49JCnVcUmUm13gAu2QEnyw.In_UpdateDate"), function() {
-                        return (((model.variables.shareObjectTypeIdVar === UBTConnectModel.staticEntities.type_ShareObject.update)) ? (model.variables.shareableUpdateItemVar.dateAttr) : (OS.BuiltinFunctions.nullDate()));
-                    }, function() {
-                        return model.variables.shareObjectTypeIdVar;
-                    }, function() {
-                        return model.variables.shareableUpdateItemVar.dateAttr;
-                    }),
-                    In_IsOpen: model.variables.isShareOpenVar
-                },
-                events: {
-                    _handleError: function(ex) {
-                        controller.handleError(ex);
+            }), $if(true, false, this, function() {
+                return [React.createElement(UBTConnect_Utils_CW_Share_ShareSheet_mvc_view, {
+                    inputs: {
+                        In_ShareableObjectId: model.variables.shareableObjectIdVar,
+                        In_IsOpen: model.variables.isShareOpenVar,
+                        In_ShareObjectTypeId: model.variables.shareObjectTypeIdVar,
+                        In_UpdateType: model.getCachedValue(idService.getId("IfjjxIap1kGsyOYrYcaLDg.In_UpdateType"), function() {
+                            return (((model.variables.shareObjectTypeIdVar === UBTConnectModel.staticEntities.type_ShareObject.update)) ? (model.variables.shareableUpdateItemVar.updateItemTypeIdAttr) : (""));
+                        }, function() {
+                            return model.variables.shareObjectTypeIdVar;
+                        }, function() {
+                            return model.variables.shareableUpdateItemVar.updateItemTypeIdAttr;
+                        }),
+                        In_UpdateDate: model.getCachedValue(idService.getId("IfjjxIap1kGsyOYrYcaLDg.In_UpdateDate"), function() {
+                            return (((model.variables.shareObjectTypeIdVar === UBTConnectModel.staticEntities.type_ShareObject.update)) ? (model.variables.shareableUpdateItemVar.dateAttr) : (OS.BuiltinFunctions.nullDate()));
+                        }, function() {
+                            return model.variables.shareObjectTypeIdVar;
+                        }, function() {
+                            return model.variables.shareableUpdateItemVar.dateAttr;
+                        })
                     },
-                    event_ClosedShareSheet$Action: function() {
-                        var eventHandlerContext = callContext.clone();
-                        return OS.Flow.tryFinally(function() {
-                            var varBag = {};
-                            controller.pushDebuggerContext(eventHandlerContext);
+                    events: {
+                        _handleError: function(ex) {
+                            controller.handleError(ex);
+                        },
+                        event_ClosedShareSheet$Action: function() {
+                            var eventHandlerContext = callContext.clone();
+                            return OS.Flow.tryFinally(function() {
+                                var varBag = {};
+                                controller.pushDebuggerContext(eventHandlerContext);
 
-                            OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "CW_Share/ShareSheet Event_ClosedShareSheet");
-                            controller.handler_CloseShareSheet$Action(controller.callContext(eventHandlerContext));
-                        }, function() {
-                            controller.popDebuggerContext(eventHandlerContext);
-                        });
+                                OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "CW_Share/ShareSheet Event_ClosedShareSheet");
+                                controller.handler_CloseShareSheet$Action(controller.callContext(eventHandlerContext));
+                            }, function() {
+                                controller.popDebuggerContext(eventHandlerContext);
+                            });
 
-                        ;
-                    }
-                },
-                _validationProps: {
-                    validationService: validationService
-                },
-                _idProps: {
-                    service: idService,
-                    uuid: "13",
-                    alias: "14"
-                },
-                _widgetRecordProvider: widgetsRecordProvider,
-                placeholders: {
-                    placeholder_ShareableObject: new PlaceholderContent(function() {
-                        return [$if((model.variables.shareObjectTypeIdVar === UBTConnectModel.staticEntities.type_ShareObject.update), false, this, function() {
-                            return [React.createElement(UBTConnectLibrary_ConnectCorePatterns_Update_ListItem_mvc_view, {
-                                inputs: {
-                                    HasBorderBottom: false,
-                                    ShowImage: false,
-                                    In_Date: model.variables.shareableUpdateItemVar.dateAttr,
-                                    In_BirthType: model.variables.shareableUpdateItemVar.birthTypeAttr,
-                                    In_Location: model.variables.shareableUpdateItemVar.locationStringAttr,
-                                    IsEnabled: false,
-                                    In_InitialsList: model.getCachedValue(idService.getId("KULam_PvIEW1VFHqdKTBaw.In_InitialsList"), function() {
-                                        return function() {
-                                            var list = new UBTConnectModel.TextGender2IdentifierRecordList();
-                                            list.pushAll([function() {
-                                                var rec = new UBTConnectModel.TextGender2IdentifierRecord();
-                                                rec.genderAttr = model.variables.shareableUpdateItemVar.genderIdAttr;
-                                                return rec;
-                                            }()]);
-                                            return list;
-                                        }();
-                                    }, function() {
-                                        return model.variables.shareableUpdateItemVar.genderIdAttr;
-                                    }),
-                                    IgnoreReadBackground: true,
-                                    In_Name: model.variables.shareableUpdateItemVar.nameAttr,
-                                    In_IsRead: false,
-                                    In_Type_UpdateFeedItem: model.variables.shareableUpdateItemVar.updateItemTypeIdAttr,
-                                    In_ParentsNames: model.variables.shareableUpdateItemVar.parentsNamesAttr
-                                },
-                                events: {
-                                    _handleError: function(ex) {
-                                        controller.handleError(ex);
-                                    }
-                                },
-                                _validationProps: {
-                                    validationService: validationService
-                                },
-                                _idProps: {
-                                    service: idService,
-                                    uuid: "14",
-                                    alias: "15"
-                                },
-                                _widgetRecordProvider: widgetsRecordProvider,
-                                _dependencies: []
+                            ;
+                        }
+                    },
+                    _validationProps: {
+                        validationService: validationService
+                    },
+                    _idProps: {
+                        service: idService,
+                        uuid: "13",
+                        alias: "14"
+                    },
+                    _widgetRecordProvider: widgetsRecordProvider,
+                    placeholders: {
+                        placeholder_ShareableObject: new PlaceholderContent(function() {
+                            return [$if((model.variables.shareObjectTypeIdVar === UBTConnectModel.staticEntities.type_ShareObject.update), false, this, function() {
+                                return [React.createElement(UBTConnectLibrary_ConnectCorePatterns_Update_ListItem_mvc_view, {
+                                    inputs: {
+                                        In_ParentsNames: model.variables.shareableUpdateItemVar.parentsNamesAttr,
+                                        IsEnabled: false,
+                                        In_InitialsList: model.getCachedValue(idService.getId("0wwUavVylECnt88YQ0dtVQ.In_InitialsList"), function() {
+                                            return function() {
+                                                var list = new UBTConnectModel.TextGender2IdentifierRecordList();
+                                                list.pushAll([function() {
+                                                    var rec = new UBTConnectModel.TextGender2IdentifierRecord();
+                                                    rec.genderAttr = model.variables.shareableUpdateItemVar.genderIdAttr;
+                                                    return rec;
+                                                }()]);
+                                                return list;
+                                            }();
+                                        }, function() {
+                                            return model.variables.shareableUpdateItemVar.genderIdAttr;
+                                        }),
+                                        In_Type_UpdateFeedItem: model.variables.shareableUpdateItemVar.updateItemTypeIdAttr,
+                                        HasBorderBottom: false,
+                                        In_BirthType: model.variables.shareableUpdateItemVar.birthTypeAttr,
+                                        ShowImage: false,
+                                        IgnoreReadBackground: true,
+                                        In_Name: model.variables.shareableUpdateItemVar.nameAttr,
+                                        In_IsRead: false,
+                                        In_Location: model.variables.shareableUpdateItemVar.locationStringAttr,
+                                        In_Date: model.variables.shareableUpdateItemVar.dateAttr
+                                    },
+                                    events: {
+                                        _handleError: function(ex) {
+                                            controller.handleError(ex);
+                                        }
+                                    },
+                                    _validationProps: {
+                                        validationService: validationService
+                                    },
+                                    _idProps: {
+                                        service: idService,
+                                        uuid: "14",
+                                        alias: "15"
+                                    },
+                                    _widgetRecordProvider: widgetsRecordProvider,
+                                    _dependencies: []
+                                })];
+                            }, function() {
+                                return [];
+                            }), $if((model.variables.shareObjectTypeIdVar === UBTConnectModel.staticEntities.type_ShareObject.feed), false, this, function() {
+                                return [React.createElement(UBTConnect_Utils_CW_Share_ShareableObject_Generic_mvc_view, {
+                                    inputs: {
+                                        In_ShareableObject: model.variables.shareableFeedItemVar
+                                    },
+                                    events: {
+                                        _handleError: function(ex) {
+                                            controller.handleError(ex);
+                                        }
+                                    },
+                                    _validationProps: {
+                                        validationService: validationService
+                                    },
+                                    _idProps: {
+                                        service: idService,
+                                        uuid: "15",
+                                        alias: "16"
+                                    },
+                                    _widgetRecordProvider: widgetsRecordProvider,
+                                    _dependencies: []
+                                })];
+                            }, function() {
+                                return [];
                             })];
-                        }, function() {
-                            return [];
-                        }), $if((model.variables.shareObjectTypeIdVar === UBTConnectModel.staticEntities.type_ShareObject.feed), false, this, function() {
-                            return [React.createElement(UBTConnect_Utils_CW_Share_ShareableObject_Generic_mvc_view, {
-                                inputs: {
-                                    In_ShareableObject: model.variables.shareableFeedItemVar
-                                },
-                                events: {
-                                    _handleError: function(ex) {
-                                        controller.handleError(ex);
-                                    }
-                                },
-                                _validationProps: {
-                                    validationService: validationService
-                                },
-                                _idProps: {
-                                    service: idService,
-                                    uuid: "15",
-                                    alias: "16"
-                                },
-                                _widgetRecordProvider: widgetsRecordProvider,
-                                _dependencies: []
-                            })];
-                        }, function() {
-                            return [];
-                        })];
-                    })
-                },
-                _dependencies: [asPrimitiveValue(model.variables.shareableFeedItemVar), asPrimitiveValue(model.variables.shareableUpdateItemVar.parentsNamesAttr), asPrimitiveValue(model.variables.shareableUpdateItemVar.updateItemTypeIdAttr), asPrimitiveValue(model.variables.shareableUpdateItemVar.nameAttr), asPrimitiveValue(model.variables.shareableUpdateItemVar.genderIdAttr), asPrimitiveValue(model.variables.shareableUpdateItemVar.locationStringAttr), asPrimitiveValue(model.variables.shareableUpdateItemVar.birthTypeAttr), asPrimitiveValue(model.variables.shareableUpdateItemVar.dateAttr), asPrimitiveValue(model.variables.shareObjectTypeIdVar)]
+                        })
+                    },
+                    _dependencies: [asPrimitiveValue(model.variables.shareableFeedItemVar), asPrimitiveValue(model.variables.shareableUpdateItemVar.dateAttr), asPrimitiveValue(model.variables.shareableUpdateItemVar.locationStringAttr), asPrimitiveValue(model.variables.shareableUpdateItemVar.nameAttr), asPrimitiveValue(model.variables.shareableUpdateItemVar.birthTypeAttr), asPrimitiveValue(model.variables.shareableUpdateItemVar.updateItemTypeIdAttr), asPrimitiveValue(model.variables.shareableUpdateItemVar.genderIdAttr), asPrimitiveValue(model.variables.shareableUpdateItemVar.parentsNamesAttr), asPrimitiveValue(model.variables.shareObjectTypeIdVar)]
+                })];
+            }, function() {
+                return [];
             }));
         };
         return View;
@@ -632,7 +664,7 @@ define("UBTConnect.Home.HomeFeed.mvc$view", ["OutSystems/ClientRuntime/Main", "U
 
     return View;
 });
-define("UBTConnect.Home.HomeFeed.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "Connect_Updates_CS.model", "Connect2_Sharing_CS.model", "UBTConnectLibrary.model", "UBTConnect_Utils.controller", "UBTConnect.languageResources", "UBTConnect.clientVariables", "UBTConnect.Home.HomeFeed.mvc$debugger", "UBTConnect.Home.controller", "Connect_Updates_CS.model$UI_UpdateItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Updates_CS", "Connect2_Sharing_CS.model$UI_ShareableObject_GenericRec", "UBTConnect.referencesHealth$Connect2_Sharing_CS", "UBTConnect.model$TextGender2IdentifierRecordList", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect_Utils.controller$TestDownload", "UBTConnect.referencesHealth$UBTConnect_Utils"], function(OutSystems, UBTConnectModel, UBTConnectController, Connect_Updates_CSModel, Connect2_Sharing_CSModel, UBTConnectLibraryModel, UBTConnect_UtilsController, UBTConnectLanguageResources, UBTConnectClientVariables, UBTConnect_Home_HomeFeed_mvc_Debugger, _flow_UBTConnect_HomeController) {
+define("UBTConnect.Home.HomeFeed.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "Connect_Updates_CS.model", "Connect2_Sharing_CS.model", "UBTConnectLibrary.model", "Connect_Geography_CS.model", "UBTConnect.languageResources", "UBTConnect.clientVariables", "UBTConnect.Home.HomeFeed.mvc$debugger", "UBTConnect.Home.controller", "UBTConnect.Home.HomeFeed.mvc$controller.ScreenEvent_OnReady.IsRestoredFromCacheJS", "Connect_Updates_CS.model$UI_UpdateItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Updates_CS", "Connect2_Sharing_CS.model$UI_ShareableObject_GenericRec", "UBTConnect.referencesHealth$Connect2_Sharing_CS", "UBTConnect.model$TextGender2IdentifierRecordList", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "Connect_Geography_CS.model$UI_CommunityStatisticsRec", "UBTConnect.referencesHealth$Connect_Geography_CS"], function(OutSystems, UBTConnectModel, UBTConnectController, Connect_Updates_CSModel, Connect2_Sharing_CSModel, UBTConnectLibraryModel, Connect_Geography_CSModel, UBTConnectLanguageResources, UBTConnectClientVariables, UBTConnect_Home_HomeFeed_mvc_Debugger, _flow_UBTConnect_HomeController, UBTConnect_Home_HomeFeed_mvc_controller_ScreenEvent_OnReady_IsRestoredFromCacheJS) {
     var OS = OutSystems.Internal;
     var Controller = (function(_super) {
         __extends(Controller, _super);
@@ -641,15 +673,43 @@ define("UBTConnect.Home.HomeFeed.mvc$controller", ["OutSystems/ClientRuntime/Mai
             _super.apply(this, arguments);
             var controller = this.controller;
             this.clientActionProxies = {};
-            this.dataFetchDependenciesOriginal = {};
-            this.dataFetchDependentsGraph = {};
+            this.dataFetchDependenciesOriginal = {
+                getCommunityStatistics$DataActRefresh: -1
+            };
+            this.dataFetchDependentsGraph = {
+                getCommunityStatistics$DataActRefresh: []
+            };
             this.shouldSendClientVarsToDataSources = false;
         }
         // Server Actions
 
         // Aggregates and Data Actions
+        Controller.prototype.getCommunityStatistics$DataActRefresh = function(callContext) {
+            var model = this.model;
+            var controller = this.controller;
+            var callContext = controller.callContext(callContext);
+            return OS.Flow.tryFinally(function() {
+                var varBag = {};
+                controller.pushDebuggerContext(callContext);
 
-        Controller.prototype.dataFetchActionNames = [];
+                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:uGyhekOyn0K9JQ+e6CmvRQ:/NRWebFlows.9o650LFgPEKO3jEzGxssNw/NodesShownInESpaceTree.Dqq8_XA8Bku0HJ104S2EwQ/DataActions.uGyhekOyn0K9JQ+e6CmvRQ:Z2d8qE124PPvKmgjGS9MPg", "UBTConnect", "GetCommunityStatistics", "NRFlows.DataScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.setThreadStartName(callContext.id, "Home/HomeFeed/GetCommunityStatistics");
+                return controller.callDataAction("DataActionGetCommunityStatistics", "screenservices/UBTConnect/Home/HomeFeed/DataActionGetCommunityStatistics", "WEbiZcexFuzyELbRsdqeIw", function(b) {
+                    model.variables.getCommunityStatisticsDataAct.dataFetchStatusAttr = b;
+                }, function(json) {
+                    model.variables.getCommunityStatisticsDataAct.replaceWith(OS.DataConversion.ServerDataConverter.from(json, model.variables.getCommunityStatisticsDataAct.constructor));
+                }, undefined, OutSystemsDebugger.getRequestHeaders(callContext.id), function(json, headers) {
+                    OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
+                }, callContext, undefined, false);
+
+            }, function() {
+                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:uGyhekOyn0K9JQ+e6CmvRQ", callContext.id);
+                controller.popDebuggerContext(callContext);
+
+            });
+        };
+
+        Controller.prototype.dataFetchActionNames = ["getCommunityStatistics$DataActRefresh"];
         // Client Actions
         Controller.prototype._section_UpdatesOnClick_ViewAll$Action = function(callContext) {
             var varBag = {};
@@ -674,36 +734,6 @@ define("UBTConnect.Home.HomeFeed.mvc$controller", ["OutSystems/ClientRuntime/Mai
                 OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:J2ucU+Rov0CVjaXyJ1DCZQ", callContext.id);
             }
 
-        };
-        Controller.prototype._buttonOnClick$Action = function(callContext) {
-            var varBag = {};
-            var model = this.model;
-            var controller = this.controller;
-            var idService = this.idService;
-            varBag.model = model;
-            varBag.idService = idService;
-            controller.ensureControllerAlive("ButtonOnClick");
-            callContext = controller.callContext(callContext);
-            varBag.callContext = callContext;
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:lIeWdenPx0+qeQveMYDJ1g:/NRWebFlows.9o650LFgPEKO3jEzGxssNw/NodesShownInESpaceTree.Dqq8_XA8Bku0HJ104S2EwQ/ClientActions.lIeWdenPx0+qeQveMYDJ1g:DVoUCp65VE3UWBp_7XFrnw", "UBTConnect", "ButtonOnClick", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
-            OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:uqvyEOIK3UazWkC5X+AuwA", callContext.id);
-            return OS.Flow.executeAsyncFlow(function() {
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Q_6pvaFaGUeX+ytwzGzJVA", callContext.id);
-                // Execute Action: TestDownload
-                model.flush();
-                return UBTConnect_UtilsController.default.testDownload$Action(callContext).then(function() {
-                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:YBUKm4GMWkKGG+GDOf92gQ", callContext.id);
-                });
-            }).then(function(res) {
-                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:lIeWdenPx0+qeQveMYDJ1g", callContext.id);
-                return res;
-
-            }).catch(function(ex) {
-                OutSystemsDebugger.handleException(ex, callContext.id);
-                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:lIeWdenPx0+qeQveMYDJ1g", callContext.id);
-                throw ex;
-
-            });
         };
         Controller.prototype._onClick_Search$Action = function(callContext) {
             var varBag = {};
@@ -738,22 +768,57 @@ define("UBTConnect.Home.HomeFeed.mvc$controller", ["OutSystems/ClientRuntime/Mai
             varBag.idService = idService;
             controller.ensureControllerAlive("ScreenEvent_OnReady");
             callContext = controller.callContext(callContext);
+            var isRestoredFromCacheJSResult = new OS.DataTypes.VariableHolder();
             varBag.callContext = callContext;
-            try {
-                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:P99Ir5dx1ES3M7OoJI7fqA:/NRWebFlows.9o650LFgPEKO3jEzGxssNw/NodesShownInESpaceTree.Dqq8_XA8Bku0HJ104S2EwQ/ClientActions.P99Ir5dx1ES3M7OoJI7fqA:3z5SH2wXKc2HAJjJ0ZUynA", "UBTConnect", "ScreenEvent_OnReady", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:gRlZgZt7REWAC_eFboKIBQ", callContext.id);
+            varBag.isRestoredFromCacheJSResult = isRestoredFromCacheJSResult;
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:P99Ir5dx1ES3M7OoJI7fqA:/NRWebFlows.9o650LFgPEKO3jEzGxssNw/NodesShownInESpaceTree.Dqq8_XA8Bku0HJ104S2EwQ/ClientActions.P99Ir5dx1ES3M7OoJI7fqA:5WulWHief__rGlGIdOkHbA", "UBTConnect", "ScreenEvent_OnReady", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:gRlZgZt7REWAC_eFboKIBQ", callContext.id);
+            return OS.Flow.executeAsyncFlow(function() {
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:rm2m7KRYS0u2prlndCoeXA", callContext.id);
                 // IsScreenInitialized = True
                 model.variables.isScreenInitializedVar = true;
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:SDeOKv49DkODlnIm1zaOGg", callContext.id);
-            } catch (ex) {
-                OutSystemsDebugger.handleException(ex, callContext.id);
-                throw ex;
-            } finally {
-                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:P99Ir5dx1ES3M7OoJI7fqA", callContext.id);
-            }
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:IbrHHe43LEmfYh0UhTLj8g", callContext.id);
+                isRestoredFromCacheJSResult.value = controller.safeExecuteJSNode(UBTConnect_Home_HomeFeed_mvc_controller_ScreenEvent_OnReady_IsRestoredFromCacheJS, "IsRestoredFromCache", "ScreenEvent_OnReady", {
+                    IsRestoredFromCache: OS.DataConversion.JSNodeParamConverter.to(false, OS.DataTypes.DataTypes.Boolean)
+                }, function($parameters) {
+                    var jsNodeResult = new(controller.constructor.getVariableGroupType("UBTConnect.Home.HomeFeed.ScreenEvent_OnReady$isRestoredFromCacheJSResult"))();
+                    jsNodeResult.isRestoredFromCacheOut = OS.DataConversion.JSNodeParamConverter.from($parameters.IsRestoredFromCache, OS.DataTypes.DataTypes.Boolean);
+                    return jsNodeResult;
+                }, {}, {});
+                return OS.Flow.executeSequence(function() {
+                    if ((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:8_y8YuzPSEWU1ZgPqlRTXQ", callContext.id) && isRestoredFromCacheJSResult.value.isRestoredFromCacheOut)) {
+                        OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:v0IB0FswQ0uOMA4df9M8Zw", callContext.id);
+                    } else {
+                        OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:fb4OdNH+r0arv8jOHW+CHw", callContext.id);
+                        // Refresh Query: GetCommunityStatistics
+                        var result = controller.getCommunityStatistics$DataActRefresh(callContext);
+                        model.flush();
+                        return result.then(function() {
+                            OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:SDeOKv49DkODlnIm1zaOGg", callContext.id);
+                        });
+                    }
 
+                });
+            }).then(function(res) {
+                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:P99Ir5dx1ES3M7OoJI7fqA", callContext.id);
+                return res;
+
+            }).catch(function(ex) {
+                OutSystemsDebugger.handleException(ex, callContext.id);
+                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:P99Ir5dx1ES3M7OoJI7fqA", callContext.id);
+                throw ex;
+
+            });
         };
+        Controller.registerVariableGroupType("UBTConnect.Home.HomeFeed.ScreenEvent_OnReady$isRestoredFromCacheJSResult", [{
+            name: "IsRestoredFromCache",
+            attrName: "isRestoredFromCacheOut",
+            mandatory: true,
+            dataType: OS.DataTypes.DataTypes.Boolean,
+            defaultValue: function() {
+                return false;
+            }
+        }]);
         Controller.prototype._handler_NoUpdates$Action = function(callContext) {
             var varBag = {};
             var model = this.model;
@@ -973,11 +1038,6 @@ define("UBTConnect.Home.HomeFeed.mvc$controller", ["OutSystems/ClientRuntime/Mai
             return controller.safeExecuteClientAction(controller._section_UpdatesOnClick_ViewAll$Action, callContext);
 
         };
-        Controller.prototype.buttonOnClick$Action = function(callContext) {
-            var controller = this.controller;
-            return controller.safeExecuteClientAction(controller._buttonOnClick$Action, callContext);
-
-        };
         Controller.prototype.onClick_Search$Action = function(callContext) {
             var controller = this.controller;
             return controller.safeExecuteClientAction(controller._onClick_Search$Action, callContext);
@@ -1018,7 +1078,7 @@ define("UBTConnect.Home.HomeFeed.mvc$controller", ["OutSystems/ClientRuntime/Mai
         Controller.prototype.pushDebuggerContext = function(callContext) {
             var varBag = {};
             OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:9o650LFgPEKO3jEzGxssNw:/NRWebFlows.9o650LFgPEKO3jEzGxssNw:9fwzOG+yQfV_SOU4v_xngw", "UBTConnect", "Home", "NRFlows.WebFlow", callContext.id, varBag);
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:Dqq8_XA8Bku0HJ104S2EwQ:/NRWebFlows.9o650LFgPEKO3jEzGxssNw/NodesShownInESpaceTree.Dqq8_XA8Bku0HJ104S2EwQ:cjy9yFFsE55lxNGe5wrcwA", "UBTConnect", "HomeFeed", "NRNodes.WebScreen", callContext.id, varBag);
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:Dqq8_XA8Bku0HJ104S2EwQ:/NRWebFlows.9o650LFgPEKO3jEzGxssNw/NodesShownInESpaceTree.Dqq8_XA8Bku0HJ104S2EwQ:yXyF3TSw3BMBV9_Wa8StWg", "UBTConnect", "HomeFeed", "NRNodes.WebScreen", callContext.id, varBag);
         };
         Controller.prototype.popDebuggerContext = function(callContext) {
             OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:Dqq8_XA8Bku0HJ104S2EwQ", callContext.id);
@@ -1076,10 +1136,20 @@ define("UBTConnect.Home.HomeFeed.mvc$controller", ["OutSystems/ClientRuntime/Mai
     })(OS.Controller.BaseViewController);
     return new OS.Controller.ControllerFactory(Controller, UBTConnectLanguageResources);
 });
+define("UBTConnect.Home.HomeFeed.mvc$controller.ScreenEvent_OnReady.IsRestoredFromCacheJS", [], function() {
+    return function($parameters, $actions, $roles, $public) {
+        $parameters.IsRestoredFromCache = $public.View.wasCurrentViewRestoredFromCache()
+    };
+});
 
 define("UBTConnect.Home.HomeFeed.mvc$debugger", ["exports", "OutSystems/ClientRuntime/Debugger", "OutSystems/ClientRuntime/Main"], function(exports, Debugger, OutSystems) {
     var OS = OutSystems.Internal;
     var metaInfo = {
+        "IbrHHe43LEmfYh0UhTLj8g": {
+            getter: function(varBag, idService) {
+                return varBag.isRestoredFromCacheJSResult.value;
+            }
+        },
         "0m1IE6lH+UC20e4BZuFO+Q": {
             getter: function(varBag, idService) {
                 return varBag.vars.value.event_ShareIdInLocal;
@@ -1155,6 +1225,11 @@ define("UBTConnect.Home.HomeFeed.mvc$debugger", ["exports", "OutSystems/ClientRu
                 return varBag.model.variables.shareableFeedItemVar;
             }
         },
+        "uGyhekOyn0K9JQ+e6CmvRQ": {
+            getter: function(varBag, idService) {
+                return varBag.model.variables.getCommunityStatisticsDataAct;
+            }
+        },
         "6kq11cXJK0aHrzcBRQlQOw": {
             getter: function(varBag, idService) {
                 return (function(model, idService) {
@@ -1197,14 +1272,14 @@ define("UBTConnect.Home.HomeFeed.mvc$debugger", ["exports", "OutSystems/ClientRu
                 })(varBag.model, idService);
             }
         },
-        "aGc5tD8BUkeD8+GMOhHgCw": {
+        "KKxV81ewoUKrJCKwdHIAPg": {
             getter: function(varBag, idService) {
                 return (function(model, idService) {
                     return model.widgets.get(idService.getId("Section_CommunityPopulation"));
                 })(varBag.model, idService);
             }
         },
-        "Uh0bcZXQDUugAljPgLKLxw": {
+        "60RtR872xEmvgFglnwz2hQ": {
             getter: function(varBag, idService) {
                 return (function(model, idService) {
                     return model.widgets.get(idService.getId("Content"));
@@ -1239,7 +1314,14 @@ define("UBTConnect.Home.HomeFeed.mvc$debugger", ["exports", "OutSystems/ClientRu
                 })(varBag.model, idService);
             }
         },
-        "YntbBDLKpE2zhNdNuPn0LA": {
+        "JoYxvk5TJU24TQ+M7FSZ+Q": {
+            getter: function(varBag, idService) {
+                return (function(model, idService) {
+                    return model.widgets.get(idService.getId("HideInServiceStudio"));
+                })(varBag.model, idService);
+            }
+        },
+        "aEq1zfW6NkKAv2644qk5rw": {
             getter: function(varBag, idService) {
                 return (function(model, idService) {
                     return model.widgets.get(idService.getId("Placeholder_ShareableObject"));

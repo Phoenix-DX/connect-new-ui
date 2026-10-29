@@ -1,0 +1,21 @@
+{
+ "ranAt": "2026-10-28T05:33:01.026Z",
+ "site": "UBTConnect TST",
+ "account": "the test account of site_auth (not named)",
+ "steps": [],
+ "blocksOnLanding": [
+  "Orbit_ScreenBlocks.ScreenBlock_OrbitLanding",
+  "Layout_OrbitTheme.Layout_Orbit",
+  "Orbit_Blocks.Household_Members_Selection",
+  "Orbit_Generic_Blocks.NoInformation_Orbit",
+  "App_Common.OfflineDataSyncEvents",
+  "EventfulDeeplinksPlugin.DeeplinkHandlerCentral"
+ ],
+ "landing": {
+  "at": "/UBTConnect/OrbitLanding",
+  "cards": 0,
+  "hostSurveyLinks": 0
+ },
+ "error": "locator.click: Timeout 15000ms exceeded.",
+ "blocked": []
+}

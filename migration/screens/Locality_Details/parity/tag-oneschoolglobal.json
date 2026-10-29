@@ -5,26 +5,29 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 3,
- "fingerprint": "20c43e3e6aa2069a7e17",
+ "fingerprint": "3b1caec69f2a8d6a0a22",
  "options": {
   "text": true,
   "style": true,
   "pixel": true,
   "calls": true,
+  "visibleOnly": false,
   "full": true,
-  "replay": "builder"
+  "replay": "builder",
+  "skipKinds": [],
+  "selfRef": false
  },
  "replay": {
   "mode": "builder",
-  "elements": 529,
-  "texts": 39,
+  "elements": 545,
+  "texts": 40,
   "comments": 0,
   "dropped": 0,
   "endTagMismatch": 0,
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-21T04:52:54.353Z",
+ "at": "2026-10-29T16:01:57.794Z",
  "counts": {},
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
@@ -38,7 +41,7 @@
   "maxCell": 0.0056,
   "maxCellRatio": 0.03,
   "diffPixels": 17,
-  "comparedPixels": 118755,
+  "comparedPixels": 118887,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -63,8 +66,8 @@
    "tag-interchange",
    "tag-oneschoolglobal"
   ],
-  "expected": 41,
-  "actual": 69
+  "expected": 40,
+  "actual": 74
  },
  "diffs": []
 }

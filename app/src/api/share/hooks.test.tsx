@@ -85,7 +85,8 @@ describe('useAvailableUsersQuery', () => {
     await waitFor(() => {
       expect(result.current.isSuccess).toBe(true);
     });
-    expect(result.current.data?.items.map((u) => u.fullName)).toEqual(['Alice Thornton']);
+    expect(result.current.data?.items).toHaveLength(50);
+    expect(result.current.data?.items[0]?.fullName).toBe('Robert Callahan');
     rerender({ requestId: 1 });
     expect(result.current.isPlaceholderData).toBe(true);
     await waitFor(() => {

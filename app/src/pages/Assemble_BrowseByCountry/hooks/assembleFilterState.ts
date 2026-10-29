@@ -37,7 +37,7 @@ export interface AssembleFilterState {
 }
 
 /** An assignment of one or more variables. */
-export type AssembleFilterPatch = Partial<AssembleFilterState>;
+type AssembleFilterPatch = Partial<AssembleFilterState>;
 
 /** The variables after OnInitialize (the block has no OnInitialize: the defaults). */
 export const INITIAL_ASSEMBLE_FILTER_STATE: AssembleFilterState = {

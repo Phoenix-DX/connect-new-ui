@@ -1,14 +1,11 @@
-import { useRef } from 'react';
 import { fetchBrowseCountriesStatistics } from '@/api/country';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
-import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { useFlowState, useOsNavigate, type IsAlive } from '@/platform/navigation';
+import { useFlowState, useOsNavigate } from '@/platform/navigation';
 import { hasAccessToRegion } from '@/lib/ubtConnect/actions';
 import { textToLongInteger } from '@/lib/ubtConnectUtils/actions';
 import {
   browseCountriesReducer,
   INITIAL_BROWSE_COUNTRIES_STATE,
-  type BrowseCountriesAction,
   type BrowseCountriesState,
 } from './browseCountriesState';
 
@@ -29,39 +26,26 @@ export interface BrowseCountriesFlows {
     - Handler_StatisticsList_Clicked(Event_Id): Event_Id <> NullTextIdentifier → HasAccessToRegion(
       LongIntegerToText(TextToLongInteger(Event_Id)), Event_Id); access → BrowseDirectory(CountryCode = Event_Id), no
       access → App_Subscription_ShowUpgradePopUp (not captured, built as compiled).
-    Decision W23: a flow that started runs to its end; after an unmount only its state writes stop.
+    Flow scope (item 8): GetCountriesStatistics is a data action (R1, `flow.fetch`): after the unmount its answer and
+    its failure are dropped. HasAccessToRegion and the upgrade popup are module actions: they run after leaving. The
+    navigation from a left screen does not happen (R4, useOsNavigate).
     @origin UBTConnect.Directory_Locality.BrowseCountries */
 export function useBrowseCountries(): BrowseCountriesFlows {
   const navigate = useOsNavigate();
-  /* OnReady runs once per screen. StrictMode (dev) runs the mount effect again on the same screen: the second call
-     only replaces the liveness check, so the first flow writes the state while the screen is there and calls
-     GetCountriesStatistics once. */
-  const readyStarted = useRef(false);
-  const newestReadyRun = useRef<IsAlive>(() => true);
-  const { state, dispatch, latest } = useFlowState({
+  const { state, dispatch, latest, flow } = useFlowState({
     viewName: 'Directory_Locality.BrowseCountries',
     reducer: browseCountriesReducer,
     initial: INITIAL_BROWSE_COUNTRIES_STATE,
     parameters: null,
     // The flows are defined below; the hook calls the ones of the newest render.
-    onReady: (isAlive, restored) => {
-      newestReadyRun.current = isAlive;
-      if (readyStarted.current) return Promise.resolve();
-      readyStarted.current = true;
-      return onReady(restored);
-    },
+    onReady: (_flow, restored) => onReady(restored),
   });
-
-  /** A state write of a flow, skipped after the unmount (W23). */
-  const write = (action: BrowseCountriesAction) => {
-    if (newestReadyRun.current()) dispatch(action);
-  };
 
   /** Action_RefreshData. */
   const refreshData = async () => {
-    write({ type: 'refreshStarted' });
-    const countries = await fetchBrowseCountriesStatistics();
-    write({ type: 'countriesStatisticsFetched', countries });
+    dispatch({ type: 'refreshStarted' });
+    const countries = await flow.fetch(fetchBrowseCountriesStatistics()); // R1
+    dispatch({ type: 'countriesStatisticsFetched', countries });
   };
 
   /** OnReady. */
@@ -73,18 +57,18 @@ export function useBrowseCountries(): BrowseCountriesFlows {
   /** Handler_StatisticsList_Clicked(Event_Id). */
   const statisticsListClicked = async (eventId: string) => {
     if (eventId === '') return;
-    const hasAccess = await hasAccessToRegion(textToLongInteger(eventId), eventId);
+    const hasAccess = await hasAccessToRegion(textToLongInteger(eventId), eventId); // module action: not wrapped
     if (hasAccess) {
-      navigate('/UBTConnect/BrowseDirectory', { CountryCode: eventId });
+      navigate('/UBTConnect/BrowseDirectory', { CountryCode: eventId }); // R4 in useOsNavigate
       return;
     }
-    await showUpgradePopUp();
+    await showUpgradePopUp(); // module action: runs after leaving, as on TST
   };
 
   return {
     state,
     onStatisticsListClicked: (eventId) => {
-      statisticsListClicked(eventId).catch(raiseToFlowHandler);
+      flow.run(() => statisticsListClicked(eventId));
     },
   };
 }

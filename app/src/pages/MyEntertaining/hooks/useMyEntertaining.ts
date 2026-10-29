@@ -12,7 +12,7 @@ export interface MyEntertainingFlow {
   b2CTenant: string;
   /** Handle_Error (event OnError). */
   onError: (message: string) => void;
-  /** Handle_OpenMap (event OnOpenMap; the label is not used). */
+  /** Handle_OpenMap(Lat, Lng) (event OnOpenMap; live TST of 2026-10-27: no Label input). */
   onOpenMap: (lat: string, lng: string) => void;
 }
 

@@ -1,23 +1,25 @@
-import { fetchMilestoneScanFF } from '@/api/event';
+import { getMilestoneScanFF } from '@/api/event';
 import { APP_ID } from '@/platform/navigation/paths';
 import { useOsNavigate, type OsParams } from '@/platform/navigation';
 import type { EventDetailTarget } from './adminLandingState';
 
 /** OnHandle_NavigateToEventDetail of the screen OrbitAdminLanding: the handler of the block event
-    NavigateTo_EventDetail. GetMilestoneScanFF (a server action without inputs), then OrbitAdminMilestones(EventId)
-    when IsScanPerMilestone, else OrbitAdminEventDetail with the event's id, start date, location, name, end date and
-    friendly type (the parameter names and order of the original).
-    Decision W23: the flow has no state; after an unmount it still navigates.
+    NavigateTo_EventDetail. It calls the server action GetMilestoneScanFF (module Connect2_OrbitMobile_BL; TST publish
+    of 2026-10-27, live survey OrbitAdminLanding.mvc.js:218-227, 242-290; N1, user 2026-10-28). True: OrbitAdminMilestones
+    with the event's id. False (the live TST value, probe 2026-10-28): OrbitAdminEventDetail with the event's id, start
+    date, location, name, end date and friendly type (the parameter names and order of the original).
+    Flow scope (item 8): GetMilestoneScanFF is a server action (R2, no wrap). A navigation from a screen that the user
+    left does not happen (R4, useOsNavigate throws OutOfContextException).
     @origin UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding */
 export function useNavigateToEventDetail(): (target: EventDetailTarget) => Promise<void> {
   const navigate = useOsNavigate();
   return async (target) => {
-    const isScanPerMilestone = await fetchMilestoneScanFF();
+    const isScanPerMilestone = await getMilestoneScanFF(); // R2
     if (isScanPerMilestone) {
       navigate(`/${APP_ID}/OrbitAdminMilestones`, { EventId: target.eventId });
-      return;
+    } else {
+      navigate(`/${APP_ID}/OrbitAdminEventDetail`, orbitAdminEventDetailParams(target));
     }
-    navigate(`/${APP_ID}/OrbitAdminEventDetail`, orbitAdminEventDetailParams(target));
   };
 }
 

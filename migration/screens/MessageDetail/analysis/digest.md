@@ -2,7 +2,7 @@
 
 - Path: `/UBTConnect/MessageDetail`
 - Viewport at capture: {'width': 390, 'height': 844, 'dpr': 1}
-- body class: `phone portrait connect-theme osx is-ltr`; body style: `--header-size-content: 0px; --footer-height: 56px; --viewport-height: 844px;`
+- body class: `phone portrait connect-theme osx is-ltr`; body style: `--header-size-content: 0px; --footer-height: 46.875px; --viewport-height: 844px;`
 - PWA: manifest `/UBTConnect/moduleservices/pwa/manifest`, service workers []
 - Screen file: `UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js`
 
@@ -193,9 +193,9 @@ MyNotifications.ScreenBlock_MessageDetail
 | isRootPage | input | Boolean | `false` |
 - Lifecycle handlers: Initialize, Ready, ParametersChanged
 - Client actions / event handlers: `onInitialize`, `onReady`, `onParametersChanged`, `event_BottomBar_Clicked`, `bottomBar_Clicked`
-- Navigation: `/UBTConnect/HomeFeed`(); `/UBTConnect/CountryList`(); `/UBTConnect/Locality_Details`(); `/UBTConnect/Updates_SingleList`(); `/UBTConnect/Bookmarks`(); `/UBTConnect/New_MyBookmarks`(); `/UBTConnect/MyBookmarks`(); `/UBTConnect/Menu`()
+- Navigation: `/UBTConnect/HomeFeed`(); `/UBTConnect/CountryList`(); `/UBTConnect/Locality_Details`(); `/UBTConnect/Updates_SingleList`(); `/UBTConnect/Bookmarks`(); `/UBTConnect/Menu`()
 - JavaScript nodes: `UBTConnect.App_Common.BottomBarMenu.mvc$controller.OnParametersChanged.Delayed_BottomBarSlider_ForceRefreshJS`
-- Static entities / flags: `connect_BottomBar_Items.updates`, `uBT_Color.primary`, `uBT_Color.neutral6`, `uBT_IconsSize.base_24`, `uBT_FontSize.extraSmall`, `connect_BottomBar_Items.bookmarks`, `connect_BottomBar_Items.home`, `connect_BottomBar_Items.directory`, `launchDarkly_FF.mobileDirectoryBookmarkNote`, `connect_BottomBar_Items.menu`
+- Static entities / flags: `connect_BottomBar_Items.updates`, `uBT_Color.primary`, `uBT_Color.neutral6`, `uBT_IconsSize.base_24`, `uBT_FontSize.extraSmall`, `connect_BottomBar_Items.bookmarks`, `connect_BottomBar_Items.home`, `connect_BottomBar_Items.directory`, `connect_BottomBar_Items.menu`
 - Client variables: getDirectory_Updates_UnreadCount
 
 ## `OutSystemsUI_2_23.Navigation.BottomBarItem.mvc.js`
@@ -484,14 +484,15 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 2783 ms
-- 2. `DataActionGetMessageInstance` (200) at 4159 ms
-- 3. `ActionAppManager_AfterInitialize` (200) at 6201 ms
-- 4. `ActionSync_Info_GetMain` (200) at 6725 ms
-- 5. `ActionGetUserInformation` (200) at 7074 ms
-- 6. `ActionGetNumberUnreadMessages` (200) at 7325 ms
-- 7. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8161 ms
-- 8. `ServiceAPIFetchData_CacheableHouseholds` (200) at 8699 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 3500 ms
+- 2. `DataActionGetMessageInstance` (200) at 4571 ms
+- 3. `ActionGetSignedImagesInBulk` (200) at 4875 ms
+- 4. `ActionAppManager_AfterInitialize` (200) at 6654 ms
+- 5. `ActionSync_Info_GetMain` (200) at 7187 ms
+- 6. `ActionGetUserInformation` (200) at 7515 ms
+- 7. `ActionGetNumberUnreadMessages` (200) at 7771 ms
+- 8. `ServiceAPIFetchData_CacheableMapEntities` (200) at 10404 ms
+- 9. `ServiceAPIFetchData_CacheableHouseholds` (200) at 13190 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

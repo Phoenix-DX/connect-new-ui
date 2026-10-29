@@ -1,0 +1,60 @@
+{
+ "flow": "Legacy_AssembleFlow",
+ "screens": [
+  "Assemble_BrowseByCountry",
+  "AssembleDetail",
+  "AssembleEvents"
+ ],
+ "ownBlocks": [],
+ "usedBlocks": [
+  "App_IconBadge",
+  "Block_PINUnlock",
+  "Block_PINUnlock_ContentWrapper",
+  "BottomBarContent",
+  "BottomBarMenu",
+  "CommonUI_InsideLayout",
+  "HandleOnResumeOpenLink",
+  "OfflineDataSyncEvents",
+  "Policy_Checker",
+  "UnsupportedVersion",
+  "UnsupportedVersion_Browser",
+  "UnsupportedVersion_Native",
+  "UnsupportedVersion_WebView",
+  "UnsupportedVersion_Wrapper",
+  "WelcomeToConnect"
+ ],
+ "referencedBlocks": [
+  "Assemble_FilterSheet",
+  "BottomSheet",
+  "ItemCard_ActionBar",
+  "NoteListActions",
+  "NotesSheet",
+  "ScreenBlock_AssembleDetail",
+  "ScreenBlock_AssembleEvents",
+  "ScreenBlock_Assemble_Filter",
+  "ShareSheet"
+ ],
+ "clientActions": [
+  "Directory_Updates_RefreshBottomBarCount",
+  "ExitApplicationForWebViewUpdate",
+  "GetNameAndSurname_ByFullName",
+  "GetURLFromEventDataURL",
+  "Get_IsUnsupportedSystem",
+  "Get_IsUnsupportedVersion",
+  "OfflineDataSync",
+  "OfflineDataSyncConfiguration",
+  "OpenGooglePlay_Chrome",
+  "OpenGooglePlay_UBTConnect",
+  "OpenGooglePlay_WebView",
+  "ScrollTop",
+  "SetResumeLoginLink",
+  "Try_GetIsSupportedVersion",
+  "Upgrade_UBTConnect",
+  "Upgrade_WebView"
+ ],
+ "serverActions": [
+  "GetNotesByItemId",
+  "Get_UI_UpdateItems_UnreadCount_All"
+ ],
+ "externalSites": []
+}

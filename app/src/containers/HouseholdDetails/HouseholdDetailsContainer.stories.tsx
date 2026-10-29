@@ -1,11 +1,10 @@
 import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter } from 'react-router';
-import { synchBookmarks } from '@/platform/storage/localEntities/localBookmarks';
+import { synchBookmarksC2 } from '@/platform/storage/localEntities/localBookmarks';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { currentUserId, isSignedIn, setClientVar, setSignedInUser } from '@/platform/session/session';
-import { getBookmarkType_FromEntity } from '@/lib/ubtConnect/actions';
-import { Connect_Entity } from '@/lib/ubtConnect/staticEntities';
+import { BookmarkCategory } from '@/lib/ubtConnect/staticEntities';
 import { HouseholdDetailsContainer, type HouseholdDetailsContainerProps } from './HouseholdDetailsContainer';
 import { useHouseholdDetailsFlags } from './hooks/useHouseholdDetails';
 import { HOUSEHOLD_DETAILS_ID, PROFILE_HOUSEHOLD_ID } from './mockData';
@@ -31,20 +30,17 @@ const providers: Decorator = (Story) => {
   );
 };
 
-/** The HouseholdDetails household is bookmarked in the capture (`ubt-image-card__bookmarked`): a local bookmark of the
-    signed-in user (legacy bookmarks, C2NewBookmarks off on TST). */
+/** The HouseholdDetails household is bookmarked in the capture (`ubt-image-card__bookmarked`): a C2 local bookmark of
+    the signed-in user (the only bookmark store of the block on TST since the code of 2026-10-27; drift wave H-Q2 (a)). */
 async function seedHouseholdBookmark() {
-  const { BookmarkType, BookmarkGroup } = getBookmarkType_FromEntity(Connect_Entity.Household);
-  await synchBookmarks([
+  await synchBookmarksC2([
     {
       Id: '1',
       UserId: Number(currentUserId() ?? 0),
       BookmarkId: '1',
-      ObjectType: BookmarkType,
-      ObjectId: HOUSEHOLD_DETAILS_ID,
-      Group: BookmarkGroup,
-      DateCreatedUtc: '1900-01-01T00:00:00Z',
-      Note: '',
+      BookmarkCategoryId: BookmarkCategory.Household,
+      ItemId: HOUSEHOLD_DETAILS_ID,
+      CreatedAtDateUtc: '1900-01-01T00:00:00Z',
     },
   ]);
 }

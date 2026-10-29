@@ -146,6 +146,7 @@ define("UBTConnect.Calendar.MyEntertaining_Embedded.mvc$view", ["OutSystems/Clie
 
             return React.createElement("div", this.getRootNodeProperties(), React.createElement(UBTConnectLibrary_Layouts_Layout_DetailPage_mvc_view, {
                 inputs: {
+                    In_IsHideTitle: true,
                     In_IsPrimaryColor: true
                 },
                 events: {
@@ -163,9 +164,7 @@ define("UBTConnect.Calendar.MyEntertaining_Embedded.mvc$view", ["OutSystems/Clie
                 },
                 _widgetRecordProvider: widgetsRecordProvider,
                 placeholders: {
-                    placeholder_Header_Title: new PlaceholderContent(function() {
-                        return ["My Entertaining"];
-                    }),
+                    placeholder_Header_Title: PlaceholderContent.Empty,
                     placeholder_Header_Right: PlaceholderContent.Empty,
                     headerContent: PlaceholderContent.Empty,
                     content: new PlaceholderContent(function() {
@@ -192,6 +191,20 @@ define("UBTConnect.Calendar.MyEntertaining_Embedded.mvc$view", ["OutSystems/Clie
 
                                     ;
                                 },
+                                onNavBack$Action: function() {
+                                    return Promise.resolve().then(function() {
+                                        var eventHandlerContext = callContext.clone();
+                                        return OS.Flow.tryFinally(function() {
+                                            var varBag = {};
+                                            controller.pushDebuggerContext(eventHandlerContext);
+
+                                            OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "Blocks2/Embedded_MyEntertaining OnNavBack");
+                                            return controller.handle_NavBack$Action(controller.callContext(eventHandlerContext));
+                                        }, function() {
+                                            controller.popDebuggerContext(eventHandlerContext);
+                                        });
+                                    });;
+                                },
                                 onOpenMap$Action: function(latIn, lngIn, labelIn) {
                                     var eventHandlerContext = callContext.clone();
                                     return OS.Flow.tryFinally(function() {
@@ -199,7 +212,7 @@ define("UBTConnect.Calendar.MyEntertaining_Embedded.mvc$view", ["OutSystems/Clie
                                         controller.pushDebuggerContext(eventHandlerContext);
 
                                         OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "Blocks2/Embedded_MyEntertaining OnOpenMap");
-                                        controller.handle_OpenMap$Action(latIn, lngIn, labelIn, controller.callContext(eventHandlerContext));
+                                        controller.handle_OpenMap$Action(latIn, lngIn, controller.callContext(eventHandlerContext));
                                     }, function() {
                                         controller.popDebuggerContext(eventHandlerContext);
                                     });
@@ -322,7 +335,7 @@ define("UBTConnect.Calendar.MyEntertaining_Embedded.mvc$controller", ["OutSystem
             }
 
         };
-        Controller.prototype._handle_OpenMap$Action = function(latIn, lngIn, labelIn, callContext) {
+        Controller.prototype._handle_OpenMap$Action = function(latIn, lngIn, callContext) {
             var varBag = {};
             var model = this.model;
             var controller = this.controller;
@@ -334,11 +347,10 @@ define("UBTConnect.Calendar.MyEntertaining_Embedded.mvc$controller", ["OutSystem
             var vars = new OS.DataTypes.VariableHolder(new(controller.constructor.getVariableGroupType("UBTConnect.Calendar.MyEntertaining_Embedded.Handle_OpenMap$vars"))());
             vars.value.latInLocal = latIn;
             vars.value.lngInLocal = lngIn;
-            vars.value.labelInLocal = labelIn;
             varBag.callContext = callContext;
             varBag.vars = vars;
             try {
-                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:OiBQcoM4_0yQin2rZQ_bGA:/NRWebFlows.FzAHH4EQ0kOcszHAaF2leA/NodesShownInESpaceTree.mfdgb9zZD06H67FaALfLeA/ClientActions.OiBQcoM4_0yQin2rZQ_bGA:B9BzpVpxQDV3SZVcnYQ7TQ", "UBTConnect", "Handle_OpenMap", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:OiBQcoM4_0yQin2rZQ_bGA:/NRWebFlows.FzAHH4EQ0kOcszHAaF2leA/NodesShownInESpaceTree.mfdgb9zZD06H67FaALfLeA/ClientActions.OiBQcoM4_0yQin2rZQ_bGA:yJY8LqDlgq9X0zjkk7bSIg", "UBTConnect", "Handle_OpenMap", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:35W7OU2fcUmUQoO0fr1v2w", callContext.id);
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:z9xo8+XARUWnO49awbXS3Q", callContext.id);
                 // Execute Action: OpenInApp_OpenExternalLink
@@ -363,14 +375,6 @@ define("UBTConnect.Calendar.MyEntertaining_Embedded.mvc$controller", ["OutSystem
         }, {
             name: "Lng",
             attrName: "lngInLocal",
-            mandatory: true,
-            dataType: OS.DataTypes.DataTypes.Text,
-            defaultValue: function() {
-                return "";
-            }
-        }, {
-            name: "Label",
-            attrName: "labelInLocal",
             mandatory: true,
             dataType: OS.DataTypes.DataTypes.Text,
             defaultValue: function() {
@@ -414,15 +418,44 @@ define("UBTConnect.Calendar.MyEntertaining_Embedded.mvc$controller", ["OutSystem
                 return "";
             }
         }]);
+        Controller.prototype._handle_NavBack$Action = function(callContext) {
+            var varBag = {};
+            var model = this.model;
+            var controller = this.controller;
+            var idService = this.idService;
+            varBag.model = model;
+            varBag.idService = idService;
+            controller.ensureControllerAlive("Handle_NavBack");
+            callContext = controller.callContext(callContext);
+            varBag.callContext = callContext;
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:Rchgo_unM06RmE1QGwSq4Q:/NRWebFlows.FzAHH4EQ0kOcszHAaF2leA/NodesShownInESpaceTree.mfdgb9zZD06H67FaALfLeA/ClientActions.Rchgo_unM06RmE1QGwSq4Q:44MpelrzaDaCHvm3NF7OkQ", "UBTConnect", "Handle_NavBack", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Xp9JW8qurEWEEKmWo_HIeA", callContext.id);
+            return OS.Flow.executeAsyncFlow(function() {
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:mt6PDKb2FUqUzAOossMPsA", callContext.id);
+                // Trigger Event: OnNavBack
+                return controller.onNavBack$Action(callContext).then(function() {
+                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:dZKfuatWxUecLesmzAeOjQ", callContext.id);
+                });
+            }).then(function(res) {
+                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:Rchgo_unM06RmE1QGwSq4Q", callContext.id);
+                return res;
+
+            }).catch(function(ex) {
+                OutSystemsDebugger.handleException(ex, callContext.id);
+                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:Rchgo_unM06RmE1QGwSq4Q", callContext.id);
+                throw ex;
+
+            });
+        };
 
         Controller.prototype.onInitialize$Action = function(callContext) {
             var controller = this.controller;
             return controller.safeExecuteClientAction(controller._onInitialize$Action, callContext);
 
         };
-        Controller.prototype.handle_OpenMap$Action = function(latIn, lngIn, labelIn, callContext) {
+        Controller.prototype.handle_OpenMap$Action = function(latIn, lngIn, callContext) {
             var controller = this.controller;
-            return controller.safeExecuteClientAction(controller._handle_OpenMap$Action, callContext, latIn, lngIn, labelIn);
+            return controller.safeExecuteClientAction(controller._handle_OpenMap$Action, callContext, latIn, lngIn);
 
         };
         Controller.prototype.handle_Error$Action = function(messageIn, callContext) {
@@ -430,12 +463,20 @@ define("UBTConnect.Calendar.MyEntertaining_Embedded.mvc$controller", ["OutSystem
             return controller.safeExecuteClientAction(controller._handle_Error$Action, callContext, messageIn);
 
         };
+        Controller.prototype.handle_NavBack$Action = function(callContext) {
+            var controller = this.controller;
+            return controller.safeExecuteClientAction(controller._handle_NavBack$Action, callContext);
+
+        };
+        Controller.prototype.onNavBack$Action = function() {
+            return Promise.resolve();
+        };
 
         // Event Handler Actions
         Controller.prototype.pushDebuggerContext = function(callContext) {
             var varBag = {};
             OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:FzAHH4EQ0kOcszHAaF2leA:/NRWebFlows.FzAHH4EQ0kOcszHAaF2leA:bxsuxVZ1+m7B3f0Wz9IOSw", "UBTConnect", "Calendar", "NRFlows.WebFlow", callContext.id, varBag);
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:mfdgb9zZD06H67FaALfLeA:/NRWebFlows.FzAHH4EQ0kOcszHAaF2leA/NodesShownInESpaceTree.mfdgb9zZD06H67FaALfLeA:rse0bOgpxXJ_9ZRoN4OTlA", "UBTConnect", "MyEntertaining_Embedded", "NRNodes.WebBlock", callContext.id, varBag);
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:mfdgb9zZD06H67FaALfLeA:/NRWebFlows.FzAHH4EQ0kOcszHAaF2leA/NodesShownInESpaceTree.mfdgb9zZD06H67FaALfLeA:j2ONNvxgFpHFUhKSRVf4ig", "UBTConnect", "MyEntertaining_Embedded", "NRNodes.WebBlock", callContext.id, varBag);
         };
         Controller.prototype.popDebuggerContext = function(callContext) {
             OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:mfdgb9zZD06H67FaALfLeA", callContext.id);
@@ -487,12 +528,6 @@ define("UBTConnect.Calendar.MyEntertaining_Embedded.mvc$debugger", ["exports", "
         "PapVeyJ3eEqF3UtwRtagmw": {
             getter: function(varBag, idService) {
                 return varBag.vars.value.lngInLocal;
-            },
-            dataType: OS.DataTypes.DataTypes.Text
-        },
-        "Zd8uMg1sxkyMUiZB9Dcvdg": {
-            getter: function(varBag, idService) {
-                return varBag.vars.value.labelInLocal;
             },
             dataType: OS.DataTypes.DataTypes.Text
         },

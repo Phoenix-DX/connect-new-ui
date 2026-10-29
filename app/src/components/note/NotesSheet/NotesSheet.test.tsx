@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 import { MemoryRouter } from 'react-router';
 import { http, HttpResponse } from 'msw';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { exceptionMessage, isUserException, raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { getFeedbackMessage, resetFeedbackMessages } from '@/platform/feedback/feedbackStore';
 import {
   get_LocalNoteByNoteId,
@@ -77,6 +77,11 @@ describe('NotesSheet', () => {
     await waitFor(() => {
       expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
     });
+    // CommunicationException → the UserException UBTConnect_Utils.CommunicationError (TST code of 2026-10-27)
+    const raised = vi.mocked(raiseToFlowHandler).mock.calls[0]?.[0];
+    expect(isUserException(raised)).toBe(true);
+    expect(exceptionMessage(raised)).toBe('NoteCommunicationError');
+    expect(document.querySelector('.notes-sheet-footer [data-block="ConnectPatterns.AddNote"]')).not.toBeNull();
     expect(getFeedbackMessage()).toBeNull();
   });
 

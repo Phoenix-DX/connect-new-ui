@@ -42,6 +42,13 @@ describe('Menu client actions', () => {
     });
     expect(byId.get('Log out')).toMatchObject({ IconRightText: '', IconRightLoading: false, IsLoading: false });
   });
+
+  it('OnInitialize of a restored view: the cached user record stays, MenuOptionList is built again', () => {
+    const state = initialMenuState({ user: householder, isFetched: true });
+    expect(state.user).toBe(householder);
+    expect(state.isFetched).toBe(true);
+    expect(state.menuOptionList).toEqual(toMenuOptionList(menu_GetList()));
+  });
 });
 
 describe('Menu reducer', () => {

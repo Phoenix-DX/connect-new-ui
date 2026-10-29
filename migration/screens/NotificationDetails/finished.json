@@ -1,0 +1,9 @@
+{
+ "finishedAt": "2026-10-29T15:06:49",
+ "files": {
+  "src/pages/NotificationDetails/NotificationDetails.test.tsx": "5fafdb0c664b71b6",
+  "src/pages/NotificationDetails/NotificationDetailsPage.tsx": "06721267f5fee400",
+  "src/pages/NotificationDetails/inputs.ts": "413c18e8de2a2683",
+  "src/pages/NotificationDetails/mocks.ts": "6e8c63ae4ef61d18"
+ }
+}

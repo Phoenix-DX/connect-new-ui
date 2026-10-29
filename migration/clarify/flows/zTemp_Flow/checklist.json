@@ -1,0 +1,43 @@
+{
+ "flow": "zTemp_Flow",
+ "date": "2026-10-27",
+ "status": "draft",
+ "rows": [
+  {
+   "id": "zTemp_Flow-001",
+   "verdict": "n/a",
+   "verified": "pack",
+   "react": "-",
+   "screen": "ShareObject",
+   "area": "identity",
+   "element": "screen ShareObject",
+   "os": "not built; placeholder 'Comming soon' blank slate",
+   "evidence": "migration/board.md:87 | ShareObject | skip | V3d D2 skip:variant (user, 2026-10-14)",
+   "note": "Skipped: branch 2; revisit if mobileDirectoryBookmarkNote true and C2NewBookmarks false; TST has false and true"
+  },
+  {
+   "id": "zTemp_Flow-002",
+   "verdict": "n/a",
+   "verified": "pack",
+   "react": "-",
+   "screen": "TestOpenShare",
+   "area": "identity",
+   "element": "screen TestOpenShare",
+   "os": "not built; button that launches an Android intent",
+   "evidence": "migration/board.md:88 | TestOpenShare | skip | V7 skip:dead (user, 2026-10-14)",
+   "note": "Skipped: test screen in the zTemp flow"
+  },
+  {
+   "id": "zTemp_Flow-003",
+   "verdict": "n/a",
+   "verified": "pack",
+   "react": "-",
+   "screen": "TestOpenShare",
+   "area": "logic",
+   "element": "LaunchWithData (client action, Outlook SEND intent)",
+   "os": "client action called by ButtonOnClick",
+   "evidence": "migration/clarify/flows/zTemp_Flow/pack/screens.md (TestOpenShare screen actions)",
+   "note": "needed for a build; plugin name not in the pack"
+  }
+ ]
+}

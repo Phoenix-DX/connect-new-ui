@@ -1216,7 +1216,7 @@ define("UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc$controller", ["O
         Controller.prototype.pushDebuggerContext = function(callContext) {
             var varBag = {};
             OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:EX+5lW+DhkWARS3JFzv5Fg:/NRWebFlows.EX+5lW+DhkWARS3JFzv5Fg:690FmsHMfqq40rgnVL78Cg", "UBTConnect", "Legacy_MyNotificationsFlow", "NRFlows.WebFlow", callContext.id, varBag);
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:YSyv3ThxHk+xN9cJdyQzSw:/NRWebFlows.EX+5lW+DhkWARS3JFzv5Fg/NodesShownInESpaceTree.YSyv3ThxHk+xN9cJdyQzSw:wC5vAIYKhClbajwEUVM6bw", "UBTConnect", "MessageDetail", "NRNodes.WebScreen", callContext.id, varBag);
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:YSyv3ThxHk+xN9cJdyQzSw:/NRWebFlows.EX+5lW+DhkWARS3JFzv5Fg/NodesShownInESpaceTree.YSyv3ThxHk+xN9cJdyQzSw:ZZ6UreRgQlXd_croSdYChw", "UBTConnect", "MessageDetail", "NRNodes.WebScreen", callContext.id, varBag);
         };
         Controller.prototype.popDebuggerContext = function(callContext) {
             OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:YSyv3ThxHk+xN9cJdyQzSw", callContext.id);

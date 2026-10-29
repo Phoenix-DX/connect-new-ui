@@ -4,6 +4,7 @@ import { MemoryRouter } from 'react-router';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { fetchHelperDetails, type HelperData } from '@/api/event';
 import { fetchLegacySignedImageURL } from '@/api/image';
+import { ControllerDisposedException, IgnorableSystemException } from '@/legacy/os/os-exceptions';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { getCacheableMemberContactList, getCacheableTimezoneInfo } from '@/lib/legacyShared/actions';
@@ -119,6 +120,7 @@ beforeEach(() => {
   vi.clearAllMocks();
   viewCache.restored = false;
   vi.mocked(fetchHelperDetails).mockResolvedValue(helperData);
+  vi.mocked(checkDirectoryAccess).mockResolvedValue(true);
   vi.mocked(getCacheableMemberContactList).mockResolvedValue([contact()]);
   vi.mocked(getCacheableTimezoneInfo).mockResolvedValue({
     CountryName: 'Argentina',
@@ -176,13 +178,20 @@ describe('useHelperDetails: OnReady', () => {
     const { result } = renderFlows();
     await settle();
     expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(result.current).toMatchObject({ isFetchingData: true, isDataFetched: false });
   });
 });
 
-describe('useHelperDetails: decision W23 (unmount while a flow runs)', () => {
-  it('OnReady: the call runs once and no state changes after the unmount', async () => {
+/** The errors that reach the flow handler, without the ignorable ones (ControllerDisposedException of a left block). */
+const raisedErrors = () =>
+  vi
+    .mocked(raiseToFlowHandler)
+    .mock.calls.map(([error]) => error)
+    .filter((error) => !(error instanceof IgnorableSystemException));
+
+describe('useHelperDetails: flow scope, item 8 (unmount while a flow runs)', () => {
+  it('R1: unmount while GetHelperDetails is pending: the call runs once, no state write, no raise', async () => {
     const answer = pending<HelperData>();
     vi.mocked(fetchHelperDetails).mockReturnValue(answer.promise);
     const { unmount } = renderFlows();
@@ -194,17 +203,19 @@ describe('useHelperDetails: decision W23 (unmount while a flow runs)', () => {
     expect(vi.mocked(helperDetailsReducer).mock.calls.length).toBe(writes);
   });
 
-  it('OnReady: a failure after the unmount still goes to the flow handler, once', async () => {
+  it('R1: unmount while GetHelperDetails is pending: its failure reaches no handler', async () => {
     const answer = pending<HelperData>();
     vi.mocked(fetchHelperDetails).mockReturnValue(answer.promise);
     const { unmount } = renderFlows();
     unmount();
+    const writes = vi.mocked(helperDetailsReducer).mock.calls.length;
     answer.reject(new Error('Service Interruption'));
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
+    expect(raisedErrors()).toEqual([]);
+    expect(vi.mocked(helperDetailsReducer).mock.calls.length).toBe(writes);
   });
 
-  it('OnHandle_ClickedMember: the navigation and the application event still run once', async () => {
+  it('R2 then R3: unmount while CheckDirectoryAccess is pending: no navigation event, no application event', async () => {
     const access = pending<boolean>();
     vi.mocked(checkDirectoryAccess).mockReturnValue(access.promise);
     const { result, unmount } = renderFlows();
@@ -216,13 +227,33 @@ describe('useHelperDetails: decision W23 (unmount while a flow runs)', () => {
     const writes = vi.mocked(helperDetailsReducer).mock.calls.length;
     access.resolve(true);
     await settle();
-    expect(events.onNavigateToHouseholdDetail).toHaveBeenCalledTimes(1);
-    expect(events.onNavigateToHouseholdDetail).toHaveBeenCalledWith('91010');
-    expect(onApplicationEvent_ViewHousehold).toHaveBeenCalledTimes(1);
+    expect(checkDirectoryAccess).toHaveBeenCalledTimes(1);
+    expect(events.onNavigateToHouseholdDetail).not.toHaveBeenCalled();
+    expect(onApplicationEvent_ViewHousehold).not.toHaveBeenCalled();
     expect(vi.mocked(helperDetailsReducer).mock.calls.length).toBe(writes);
+    // The own action NavigateTo_HouseholdDetail ends the flow with an ignorable exception.
+    expect(vi.mocked(raiseToFlowHandler).mock.calls.map(([error]) => error)).toEqual([
+      expect.any(ControllerDisposedException),
+    ]);
+    expect(raisedErrors()).toEqual([]);
   });
 
-  it('BuildMemberCallData: the calls run to the end and no state changes after the unmount', async () => {
+  it('R2: unmount while CheckDirectoryAccess is pending, without access: the upgrade popup still opens', async () => {
+    const access = pending<boolean>();
+    vi.mocked(checkDirectoryAccess).mockReturnValue(access.promise);
+    const { result, unmount } = renderFlows();
+    await settle();
+    act(() => {
+      result.current.onClickedMember('91010');
+    });
+    unmount();
+    access.resolve(false);
+    await settle();
+    expect(showUpgradePopUp).toHaveBeenCalledTimes(1);
+    expect(events.onNavigateToHouseholdDetail).not.toHaveBeenCalled();
+  });
+
+  it('R2: BuildMemberCallData: the module actions run to the end and no state changes after the unmount', async () => {
     const contacts = pending<MemberContactWithTimezone[]>();
     vi.mocked(getCacheableMemberContactList).mockReturnValue(contacts.promise);
     const { result, unmount } = renderFlows();
@@ -359,7 +390,7 @@ describe('useHelperDetails: member cards', () => {
       result.current.onClickedMemberPhone('+54 223 555 0101', 'Lucía Suárez', '5101', '91011', '');
     });
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
   });
 });
 

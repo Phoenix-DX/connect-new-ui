@@ -1,11 +1,18 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import type { EntertainingConfigInputs } from '@/api/entertaining';
-import { log } from '@/platform/log/log';
+import { getFeedbackMessage, resetFeedbackMessages, subscribeFeedback } from '@/platform/feedback/feedbackStore';
+import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { calledActions, freshPage, recordBodies } from '@/test/testSupport';
 import { useEntertainingCalendar } from './useEntertainingCalendar';
+import { testQueryClient } from '@/platform/navigation/testRouter';
+
+vi.mock('@/platform/feedback/flowErrors', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/platform/feedback/flowErrors')>()),
+  raiseToFlowHandler: vi.fn(),
+}));
 
 /* The calls of Embedded_MyEntertaining with the MSW mocks of the test setup (pages/MyEntertaining/mocks.ts: the app's
    own origin as BaseURL, no token, an empty ID token). */
@@ -13,12 +20,13 @@ const CONFIG = 'UBTConnect_EmbedMyEntertaining/Embedded_MyEntertaining/DataActio
 const INPUTS: EntertainingConfigInputs = { View: 'timeline', Theme: 'light', Sources: 'ldm', B2CTenant: 'tenant-a' };
 
 function wrapper({ children }: { children: ReactNode }) {
-  return <QueryClientProvider client={new QueryClient()}>{children}</QueryClientProvider>;
+  return <QueryClientProvider client={testQueryClient()}>{children}</QueryClientProvider>;
 }
 
 describe('useEntertainingCalendar', () => {
   beforeEach(() => {
     freshPage();
+    vi.mocked(raiseToFlowHandler).mockClear();
   });
 
   it('fetches GetEntertainingConfig once with the four block inputs and gives the configuration', async () => {
@@ -53,12 +61,21 @@ describe('useEntertainingCalendar', () => {
     expect(calledActions()).toEqual(['Embedded_MyEntertaining/DataActionGetEntertainingConfig']);
   });
 
-  it('a failed GetEntertainingConfig is not retried and gives no configuration', async () => {
+  it('a failed GetEntertainingConfig is not retried, gives no configuration and goes once to the flow handler (F1)', async () => {
     sessionStorage.setItem('mock:mock', 'error');
-    const { result } = renderHook(() => useEntertainingCalendar(INPUTS), { wrapper });
+    resetFeedbackMessages();
+    const shown: string[] = [];
+    const stop = subscribeFeedback(() => shown.push(getFeedbackMessage()?.message ?? ''));
+    const { result, rerender } = renderHook(() => useEntertainingCalendar(INPUTS), { wrapper });
     await new Promise((resolve) => setTimeout(resolve, 50));
+    rerender();
+    stop();
     expect(result.current.config).toBeUndefined();
     expect(calledActions()).toEqual(['Embedded_MyEntertaining/DataActionGetEntertainingConfig']);
+    // The runtime calls handleError (OutSystems.js:17); App_Common shows ShowCommunicationExceptionMessage (Q1 (a)).
+    expect(shown).toHaveLength(1);
+    expect(shown[0]).toContain("<div class='feedback-message--title'>Service Interruption</div>");
+    expect(raiseToFlowHandler).not.toHaveBeenCalled(); // the refreshToken path only
   });
 
   it('refreshToken: AppManager_Get_UserIdToken with EspaceName "", then the token goes to the SDK', async () => {
@@ -73,14 +90,12 @@ describe('useEntertainingCalendar', () => {
     });
   });
 
-  it('refreshToken: a failure is logged as a warning and the SDK keeps its token', async () => {
-    const warn = vi.spyOn(log, 'warn').mockImplementation(() => undefined);
+  it('refreshToken: a failure goes to the flow handler (Calendar Q2) and the SDK keeps its token', async () => {
     const { result } = renderHook(() => useEntertainingCalendar(INPUTS), { wrapper });
     sessionStorage.setItem('mock:mock', 'error');
     const apply = vi.fn();
     await result.current.refreshToken(apply);
     expect(apply).not.toHaveBeenCalled();
-    expect(warn).toHaveBeenCalledTimes(1);
-    expect(warn.mock.calls[0]?.[0]).toBe('AppManager_Get_UserIdToken failed');
+    expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
   });
 });

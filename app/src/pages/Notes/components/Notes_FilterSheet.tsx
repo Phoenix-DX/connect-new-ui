@@ -1,8 +1,9 @@
 /** @origin UBTConnect.Notes.Notes_FilterSheet */
-import { useState } from 'react';
+import { useMemo } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { FilterSheetContainer } from '@/containers/FilterSheet';
 import type {
+  Filter_Common,
   Filter_Common_Control_Choice,
   Filter_Common_Control_List,
   Filter_Common_Options,
@@ -22,18 +23,22 @@ export interface Notes_FilterSheetProps {
 
 const FILTER_BY_YEAR_TITLE = 'Filter by year';
 
-/** Initialize_FilterYearOptions (OnInitialize, Notes_FilterSheet.mvc.js controller): one flat list "Filter by year",
-    Order 1, with one enabled option per In_YearsOptions value. */
-const initialize_FilterYearOptions = (years: string[]): Filter_Common_Control_List[] => [
+/** Initialize_FilterYearOptions (OnInitialize and OnParametersChanged, Notes_FilterSheet.mvc.js:277-386, TST
+    2026-10-29): one flat list "Filter by year", Order 1, with one enabled option per In_YearsOptions value, selected
+    when In_FilterNotes.Years has it; SelectedIds and SelectedNames = In_FilterNotes.Years. */
+const initialize_FilterYearOptions = (years: string[], selectedYears: string[]): Filter_Common_Control_List[] => [
   {
-    In_Options: years.map((y) => ({ Id: y, DisplayText: y, isEnabled: true })),
+    In_Options: years.map((y) => ({ Id: y, DisplayText: y, isSelected: selectedYears.includes(y), isEnabled: true })),
     Title: FILTER_BY_YEAR_TITLE,
     Order: 1,
+    SelectedIds: selectedYears,
+    SelectedNames: selectedYears,
   },
 ];
 
-/** The notes filter sheet (Notes_FilterSheet.mvc.js): FilterSheet with sorting ("Newest to Oldest" / "Oldest to
-    Newest", Order 1) and the year flat list built at initialize. Handler_FilterSheetApplyFilters: Filter_Notes =
+/** The notes filter sheet (Notes_FilterSheet.mvc.js): FilterSheet with In_StartFilter.Sort_ByNewest =
+    In_FilterNotes.SortByNewest (view :166-175), sorting ("Newest to Oldest" / "Oldest to Newest", Order 1) and the year
+    flat list, built again when the inputs change (OnParametersChanged). Handler_FilterSheetApplyFilters: Filter_Notes =
     In_FilterNotes; Years = OptionFlatList_Control.Current.SelectedIds; SortByNewest = the SelectedChoiceId of the choice
     titled SortBy_Title; then ApplyFilters(Filter_Notes, HasFitlerApplied). */
 export function Notes_FilterSheet({
@@ -45,11 +50,16 @@ export function Notes_FilterSheet({
   onApplyFilters,
 }: Notes_FilterSheetProps) {
   const p = scopeOf(id);
-  const [options] = useState<Filter_Common_Options>(() => ({
-    HasSorting: { Enable: true, YesLabel: 'Newest to Oldest', NoLabel: 'Oldest to Newest', Order: 1 },
-    Extra_OptionFlatLists: initialize_FilterYearOptions(inYearsOptions),
-  }));
-  const [startFilter] = useState({});
+  const selectedYears = inFilterNotes.years;
+  const options = useMemo<Filter_Common_Options>(
+    () => ({
+      HasSorting: { Enable: true, YesLabel: 'Newest to Oldest', NoLabel: 'Oldest to Newest', Order: 1 },
+      Extra_OptionFlatLists: initialize_FilterYearOptions(inYearsOptions, selectedYears),
+    }),
+    [inYearsOptions, selectedYears],
+  );
+  const sortByNewest = inFilterNotes.sortByNewest;
+  const startFilter = useMemo<Filter_Common>(() => ({ Sort_ByNewest: sortByNewest }), [sortByNewest]);
   const handler_FilterSheetApplyFilters = (
     optionChoices: Filter_Common_Control_Choice[],
     sortByTitle: string,

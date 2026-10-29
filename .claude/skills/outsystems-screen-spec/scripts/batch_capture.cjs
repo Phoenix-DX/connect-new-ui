@@ -108,15 +108,20 @@ async function settleAuth(page, url, sc, defaults) {
   return false;
 }
 
-/* via: open the source screen (unlocking if needed), optional pre clicks, then click into this screen. */
+/* via: open the source screen (unlocking if needed), optional pre clicks, then click into this screen.
+   beforeClick (runtime restart, or the hold/abort handler of the loading and offline states) runs only once the click
+   target is visible: the source screen of a pre click (e.g. EventDetail) still loads the target (its milestone cards)
+   after the pre click, and with its calls held or aborted the target never showed (drift wave E-Q6, 2026-10-29). */
 async function openVia(page, sc, defaults, base, url, beforeClick, settle) {
   const fromUrl = new URL(sc.via.from, base).toString();
   await page.goto(fromUrl, { waitUntil: 'domcontentloaded', timeout: 60000 });
   await waitReady(page, {}, defaults).catch(() => {});
   if (settle && !sc.auth && await settleAuth(page, fromUrl, sc, defaults)) await waitReady(page, {}, defaults).catch(() => {});
   for (const sel of sc.via.pre || []) { await page.locator(sel).first().click({ timeout: 15000 }); await sleep(2000); }
+  const clickTarget = page.locator(sc.via.click).nth(sc.via.nth || 0);
+  await clickTarget.waitFor({ state: 'visible', timeout: 30000 });
   if (beforeClick) await beforeClick();
-  await page.locator(sc.via.click).nth(sc.via.nth || 0).click({ timeout: 15000 });
+  await clickTarget.click({ timeout: 15000 });
   const target = new URL(url).pathname;
   await page.waitForURL(u => new URL(u).pathname === target, { timeout: 30000 });
 }
@@ -431,4 +436,5 @@ async function main() {
   console.log(fs.readFileSync(__filename, 'utf8').split('*/')[0]);
 }
 
-main().catch(e => { console.error(e.message); process.exit(1); });
+module.exports = { openVia };   // batch_capture.test.cjs
+if (require.main === module) main().catch(e => { console.error(e.message); process.exit(1); });

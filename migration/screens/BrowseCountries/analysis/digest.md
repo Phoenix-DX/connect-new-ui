@@ -585,6 +585,7 @@ Layouts.Layout_DetailPage
 | In_ExtendedClass | input | Text | `""` |
 | In_EnableAccessibilityFeatures | input | Boolean | `false` |
 | In_InitializeNavigationHandler | input | Boolean | `true` |
+| In_IsHideTitle | input | Boolean | `false` |
 - Lifecycle handlers: Ready, Destroy
 - Client actions / event handlers: `onClick_BackNavigation`, `setScrollEvents`, `onDestroy`, `skipToContentOnClick`, `onReady`, `onReadyEvent`
 - navigateBack calls: 1
@@ -732,9 +733,9 @@ Layouts.Layout_DetailPage
 | isRootPage | input | Boolean | `false` |
 - Lifecycle handlers: Initialize, Ready, ParametersChanged
 - Client actions / event handlers: `onInitialize`, `onReady`, `onParametersChanged`, `event_BottomBar_Clicked`, `bottomBar_Clicked`
-- Navigation: `/UBTConnect/HomeFeed`(); `/UBTConnect/CountryList`(); `/UBTConnect/Locality_Details`(); `/UBTConnect/Updates_SingleList`(); `/UBTConnect/Bookmarks`(); `/UBTConnect/New_MyBookmarks`(); `/UBTConnect/MyBookmarks`(); `/UBTConnect/Menu`()
+- Navigation: `/UBTConnect/HomeFeed`(); `/UBTConnect/CountryList`(); `/UBTConnect/Locality_Details`(); `/UBTConnect/Updates_SingleList`(); `/UBTConnect/Bookmarks`(); `/UBTConnect/Menu`()
 - JavaScript nodes: `UBTConnect.App_Common.BottomBarMenu.mvc$controller.OnParametersChanged.Delayed_BottomBarSlider_ForceRefreshJS`
-- Static entities / flags: `connect_BottomBar_Items.updates`, `uBT_Color.primary`, `uBT_Color.neutral6`, `uBT_IconsSize.base_24`, `uBT_FontSize.extraSmall`, `connect_BottomBar_Items.bookmarks`, `connect_BottomBar_Items.home`, `connect_BottomBar_Items.directory`, `launchDarkly_FF.mobileDirectoryBookmarkNote`, `connect_BottomBar_Items.menu`
+- Static entities / flags: `connect_BottomBar_Items.updates`, `uBT_Color.primary`, `uBT_Color.neutral6`, `uBT_IconsSize.base_24`, `uBT_FontSize.extraSmall`, `connect_BottomBar_Items.bookmarks`, `connect_BottomBar_Items.home`, `connect_BottomBar_Items.directory`, `connect_BottomBar_Items.menu`
 - Client variables: getDirectory_Updates_UnreadCount
 
 ## `OutSystemsUI_2_23.Navigation.BottomBarItem.mvc.js`
@@ -981,14 +982,14 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 3132 ms
-- 2. `DataActionGetCountriesStatistics` (200) at 4208 ms
-- 3. `ActionAppManager_AfterInitialize` (200) at 6373 ms
-- 4. `ActionSync_Info_GetMain` (200) at 6896 ms
-- 5. `ActionGetUserInformation` (200) at 7274 ms
-- 6. `ActionGetNumberUnreadMessages` (200) at 7584 ms
-- 7. `ServiceAPIFetchData_CacheableHouseholds` (200) at 8335 ms
-- 8. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8380 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 2751 ms
+- 2. `DataActionGetCountriesStatistics` (200) at 3672 ms
+- 3. `ActionAppManager_AfterInitialize` (200) at 5417 ms
+- 4. `ActionSync_Info_GetMain` (200) at 5904 ms
+- 5. `ActionGetUserInformation` (200) at 6299 ms
+- 6. `ActionGetNumberUnreadMessages` (200) at 6587 ms
+- 7. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8657 ms
+- 8. `ServiceAPIFetchData_CacheableHouseholds` (200) at 10665 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

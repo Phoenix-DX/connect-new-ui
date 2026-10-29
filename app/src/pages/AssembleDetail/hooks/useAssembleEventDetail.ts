@@ -1,13 +1,11 @@
-import { useRef } from 'react';
 import { fetchAssembleEvent } from '@/api/event';
-import { useFlowState, type IsAlive } from '@/platform/navigation';
+import { useFlowState } from '@/platform/navigation';
 import { getIANATimezone, showUnknownErrorMessage } from '@/pages/AssembleDetail/components/actions';
 import type { AssembleDetailInputs } from '@/pages/AssembleDetail/inputs';
 import {
   assembleEventDetailReducer,
   initialAssembleEventDetailState,
   withMeetingDateTime,
-  type AssembleEventDetailPatch,
   type AssembleEventDetailState,
 } from './assembleEventDetailState';
 
@@ -31,62 +29,49 @@ export interface AssembleEventDetailEvents {
       ShowUnknownErrorMessage shows the service interruption message; otherwise the meeting with its DateTime
       (withMeetingDateTime), UpdateTitle(the meeting type title) and IsDataFetched True. The block never raises
       EventNotFound. A failure goes to the flow handler.
-    - Decision W23: after the unmount, the flow skips its state writes and UpdateTitle (a write of the parent's title)
-      only; the service interruption message still shows. */
+    Flow scope (item 8): GetAssembleEvent is a data action (R1, AssembleEventDetail.js:806, `flow.fetch`): after the
+    unmount its answer and its failure are dropped, so GetAssembleEvent_OnAfterFetch (:922) does not run: no service
+    interruption message (:933-934), no UpdateTitle, no state write, no raise. UpdateTitle goes through `flow.events`
+    (R3). */
 export function useAssembleEventDetail(
   blockId: string,
   inputs: AssembleEventDetailParameters,
   events: AssembleEventDetailEvents,
 ): AssembleEventDetailState {
-  const readyStarted = useRef(false);
-  const newestReadyRun = useRef<IsAlive>(() => true);
-  const {
-    state,
-    dispatch,
-    latest,
-    parameters,
-    events: eventsRef,
-  } = useFlowState({
+  const { state, dispatch, latest, parameters, flow } = useFlowState({
     viewName: `Assemble.AssembleEventDetail#${blockId.replace(/\$/g, '')}`,
     reducer: assembleEventDetailReducer,
     initial: initialAssembleEventDetailState(getIANATimezone()),
     parameters: inputs,
     events,
     // The flow is defined below; the hook calls the one of the newest render.
-    onReady: (isAlive, restored) => {
-      newestReadyRun.current = isAlive;
-      if (readyStarted.current) return Promise.resolve();
-      readyStarted.current = true;
-      return onReady(restored);
-    },
+    onReady: (_flow, restored) => onReady(restored),
   });
-
-  /** A state write after an await, skipped after the unmount (W23). */
-  const write = (patch: AssembleEventDetailPatch) => {
-    if (newestReadyRun.current()) dispatch(patch);
-  };
 
   async function onReady(restored: boolean) {
     if (restored && latest.current.getAssembleEvent !== null) return;
     const { SeriesId, EventId, Start } = parameters.current;
     const { deviceTimezone, isDataFetched } = latest.current;
-    const result = await fetchAssembleEvent({
-      SeriesId,
-      EventId,
-      Start,
-      DeviceTimezone: deviceTimezone,
-      IsDataFetched: isDataFetched,
-    });
+    // R1
+    const result = await flow.fetch(
+      fetchAssembleEvent({
+        SeriesId,
+        EventId,
+        Start,
+        DeviceTimezone: deviceTimezone,
+        IsDataFetched: isDataFetched,
+      }),
+    );
     const summary = result.AssembleEvent.AssembleEventSummary;
     if (summary.IsUnavailable) {
-      write({ getAssembleEvent: result });
+      dispatch({ getAssembleEvent: result });
       // ShowUnknownErrorMessage(GetUnavailableEventErrorMessage, GetUnavailableEventErrorMessage): it ignores both.
       showUnknownErrorMessage();
       return;
     }
-    write({ getAssembleEvent: withMeetingDateTime(result, parameters.current.Start) });
-    if (newestReadyRun.current()) eventsRef.current.onUpdateTitle(summary.AssembleEventType?.Title ?? '');
-    write({ isDataFetched: true });
+    dispatch({ getAssembleEvent: withMeetingDateTime(result, parameters.current.Start) });
+    flow.events.onUpdateTitle(summary.AssembleEventType?.Title ?? '');
+    dispatch({ isDataFetched: true });
   }
 
   return state;

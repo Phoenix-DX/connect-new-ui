@@ -4,6 +4,7 @@ import { getFeedbackMessage, resetFeedbackMessages } from '@/platform/feedback/f
 import { log } from '@/platform/log/log';
 import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
 import { calledActions, freshPage, recordBodies, setFlags } from '@/test/testSupport';
+import { onApplicationEvent_ContactHelpdesk, onApplicationEvent_EmailHost } from './actions';
 import EmailContact from './EmailContactPage';
 
 /* The page against the MSW mocks of SendContactEmail (mocks.ts): event 7301 of the fictional Orbit world has a
@@ -13,6 +14,15 @@ vi.mock('@/platform/navigation', async (original) => ({
   ...(await original<typeof import('@/platform/navigation')>()),
   useNavigateBack: () => spy.back,
 }));
+
+vi.mock('./actions', async (original) => {
+  const actual = await original<typeof import('./actions')>();
+  return {
+    ...actual,
+    onApplicationEvent_ContactHelpdesk: vi.fn(actual.onApplicationEvent_ContactHelpdesk),
+    onApplicationEvent_EmailHost: vi.fn(actual.onApplicationEvent_EmailHost),
+  };
+});
 
 const PATH = '/UBTConnect/EmailContact';
 const SEND = 'Connect2_OrbitMobile_MUI/ActionSendContactEmail';
@@ -80,6 +90,13 @@ describe('EmailContact page', () => {
       expect(getFeedbackMessage()).toMatchObject({ message: 'Your email has been sent.', type: 1 });
     });
     expect(info).toHaveBeenCalledWith('ApplicationEvent', { Event: 'ContactHelpdesk', EventId: '7301' });
+    // AuditPayload_ContactHelpdesk is built after Empty Vars (ScreenBlock_ContactForm.mvc.js:1286-1316): empty texts.
+    expect(onApplicationEvent_ContactHelpdesk).toHaveBeenCalledWith({
+      EventId: '7301',
+      EventTitle: 'Weekend Bible Conferences - Bahia and Azul',
+      Subject: '',
+      Message: '',
+    });
   });
 
   it('host: the subject and the message are required; the e-mail goes to the host', async () => {
@@ -113,6 +130,15 @@ describe('EmailContact page', () => {
       Event: 'EmailHost',
       MilestoneId: '7301-1',
       EventId: '7301',
+    });
+    // AuditPayload_EmailHost is built after Empty Vars (ScreenBlock_ContactForm.mvc.js:1286-1333): empty texts.
+    expect(onApplicationEvent_EmailHost).toHaveBeenCalledWith({
+      MilestoneId: '7301-1',
+      EventId: '7301',
+      EventTitle: '',
+      HostName: 'Mr Hugo & Mrs María Vitale',
+      Subject: '',
+      Message: '',
     });
   });
 

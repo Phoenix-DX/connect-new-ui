@@ -11,7 +11,7 @@ import { calledActions, freshPage, recordBodies } from '@/test/testSupport';
 import MessageList from './MessageListPage';
 
 /* The page with the flows of its block (useMessageList) in the app frame on a memory router, on the page mocks
-   (19 fictional messages, 16 unread). The mocks keep the read and cleared marks in memory: each test puts the rows
+   (22 fictional messages, 20 on the first page, 2 unread). The mocks keep the read and cleared marks in memory: each test puts the rows
    back. */
 const PATH = '/UBTConnect/MessageList';
 const HOME = '/UBTConnect/HomeFeed';
@@ -55,14 +55,14 @@ afterEach(() => {
 });
 
 describe('MessageList page', () => {
-  it('signed in: OnReady runs GetMessages once; 19 rows, 16 unread, the unread count; bottom bar and common UI', async () => {
+  it('signed in: OnReady runs GetMessages once; 20 rows, 2 unread, the unread count; bottom bar and common UI', async () => {
     const bodies = recordBodies(GET_MESSAGES);
     const { container } = await open();
-    expect(rows(container)).toHaveLength(19);
-    expect(container.querySelectorAll('.background-blue-lightest')).toHaveLength(16);
-    expect(titles(container)[0]).toBe('Test Noti 56');
+    expect(rows(container)).toHaveLength(20);
+    expect(container.querySelectorAll('.background-blue-lightest')).toHaveLength(2);
+    expect(titles(container)[0]).toBe('Test Noti 2');
     expect(screen.getByText('Mark All as Read')).toBeInTheDocument();
-    expect(getClientVar('Connect2_LegacyShared.UnreadNotificationsNumber')).toBe(16);
+    expect(getClientVar('Connect2_LegacyShared.UnreadNotificationsNumber')).toBe(2);
     expect(getMessagesCalls()).toBe(1);
     expect(bodies[0]).toMatchObject({
       ShowWarning: true,
@@ -103,12 +103,24 @@ describe('MessageList page', () => {
     expect(bodies.at(-1)).toMatchObject({ OrderByIsAscending: true, SelectedFilter_OrderASC: true, ShowFilters: true });
   });
 
+  it('Close_Filter_Icon runs ToggleShowFilters: the unsaved filters are reverted and the filters close', async () => {
+    const { container } = await open();
+    fireEvent.click(byId('b1-Filter_Icon'));
+    fireEvent.click(byId('b1-b13-OldToNew_Checkbox'));
+    expect((byId('b1-b13-OldToNew_Checkbox') as HTMLInputElement).checked).toBe(true);
+    fireEvent.click(byId('b1-Close_Filter_Icon'));
+    expect(rows(container)).toHaveLength(20);
+    fireEvent.click(byId('b1-Filter_Icon'));
+    expect((byId('b1-b13-NewToOld_Checkbox') as HTMLInputElement).checked).toBe(true);
+    expect((byId('b1-b13-OldToNew_Checkbox') as HTMLInputElement).checked).toBe(false);
+  });
+
   it('a back navigation with the filters open closes them and stays on the page', async () => {
     const { router, at, container } = await open();
     fireEvent.click(byId('b1-Filter_Icon'));
     await act(() => router.navigate(-1));
     expect(at()).toBe(PATH);
-    expect(rows(container)).toHaveLength(19);
+    expect(rows(container)).toHaveLength(20);
     await act(() => router.navigate(-1));
     expect(at()).toBe(HOME);
   });
@@ -131,9 +143,9 @@ describe('MessageList page', () => {
     const { container, at } = await open();
     fireEvent.click(rows(container)[2] as Element);
     await waitFor(() => {
-      expect(at()).toBe(`${DETAIL}?MessageInstanceId=81017`);
+      expect(at()).toBe(`${DETAIL}?MessageInstanceId=81020`);
     });
-    expect(bodies[0]).toMatchObject({ CurrentMessageInstanceId: '81017' });
+    expect(bodies[0]).toMatchObject({ CurrentMessageInstanceId: '81020' });
   });
 
   it('a message that no longer exists: the info message and a GetMessages refresh, no navigation', async () => {
@@ -157,7 +169,7 @@ describe('MessageList page', () => {
     expect(rows(container)).toHaveLength(0);
     expect(byId('b1-LoadingMarkAllRead').querySelector('.list-updating-cont')).not.toBeNull();
     await waitFor(() => {
-      expect(rows(container)).toHaveLength(19);
+      expect(rows(container)).toHaveLength(20);
     });
     expect(container.querySelectorAll('.background-blue-lightest')).toHaveLength(0);
     expect(screen.queryByText('Mark All as Read')).toBeNull();

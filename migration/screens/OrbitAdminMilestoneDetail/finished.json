@@ -1,0 +1,18 @@
+{
+ "finishedAt": "2026-10-29T15:06:58",
+ "files": {
+  "src/pages/OrbitAdminMilestoneDetail/OrbitAdminMilestoneDetail.test.tsx": "64daf2f95c5de629",
+  "src/pages/OrbitAdminMilestoneDetail/OrbitAdminMilestoneDetailPage.tsx": "fa5039febab19b35",
+  "src/pages/OrbitAdminMilestoneDetail/components/AdminMilestoneDetailView.test.tsx": "d141be9577afd474",
+  "src/pages/OrbitAdminMilestoneDetail/components/AdminMilestoneDetailView.tsx": "95d229418a5defa1",
+  "src/pages/OrbitAdminMilestoneDetail/components/Popup_QRCodeScan_Milestone.tsx": "9e6bd143d881ac3c",
+  "src/pages/OrbitAdminMilestoneDetail/hooks/adminMilestoneDetailActions.test.ts": "48ac0dce0c638a64",
+  "src/pages/OrbitAdminMilestoneDetail/hooks/adminMilestoneDetailActions.ts": "42616d57128e596d",
+  "src/pages/OrbitAdminMilestoneDetail/hooks/adminMilestoneDetailState.ts": "43b5d64e2ed91aba",
+  "src/pages/OrbitAdminMilestoneDetail/hooks/useAdminMilestoneDetail.ts": "71fb0050bfb85fa3",
+  "src/pages/OrbitAdminMilestoneDetail/inputs.ts": "83bde6458cc5ddfd",
+  "src/pages/OrbitAdminMilestoneDetail/mocks.test.ts": "4a4c7fe5b7edb89e",
+  "src/pages/OrbitAdminMilestoneDetail/mocks.ts": "6999ee1e3bda88e3",
+  "src/pages/OrbitAdminMilestoneDetail/staticEntities.ts": "ff0a49a743f8113b"
+ }
+}

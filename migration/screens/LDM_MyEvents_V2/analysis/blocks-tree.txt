@@ -21,16 +21,6 @@ LDM_ScreenBlocks_V2.ScreenBlock_MyEvents_V2
               LDM_Blocks_V2.EventCard_Info_V2
               LDM_Blocks.EventCard_Guests
                 Widgets.OverlappingImages
-          LDM_Blocks_V2.EventCard_V2
-            LDM_Blocks.EventCard_Box
-              LDM_Blocks_V2.EventCard_Info_V2
-              LDM_Blocks.EventCard_Guests
-                Widgets.OverlappingImages
-          LDM_Blocks_V2.EventCard_V2
-            LDM_Blocks.EventCard_Box
-              LDM_Blocks_V2.EventCard_Info_V2
-              LDM_Blocks.EventCard_Guests
-                Widgets.OverlappingImages
       CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy
         CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction
           ConfirmationDialogs.ActionConfirmationDialog

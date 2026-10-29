@@ -109,7 +109,7 @@ describe('update repository', () => {
     ]);
     expect(items.map((i) => i.updateItemId)).toEqual(['9101', '9102', '9103']);
     expect(items[0]).toEqual(
-      expect.objectContaining({ name: 'James Hargreaves', date: '2026-10-08', householdId: '8101', isRead: false }),
+      expect.objectContaining({ name: 'Penelope Ashworth', date: '2026-10-28', householdId: '8101', isRead: false }),
     );
   });
 
@@ -124,8 +124,8 @@ describe('update repository', () => {
       }),
     ]);
     expect(list.items).toHaveLength(88);
-    expect(list.unreadCount).toBe(84);
-    expect(list.items[0]).toEqual(expect.objectContaining({ updateItemId: '980100', name: 'James Hargreaves' }));
+    expect(list.unreadCount).toBe(85);
+    expect(list.items[0]).toEqual(expect.objectContaining({ updateItemId: '980100', name: 'Penelope Ashworth' }));
     expect(list.items[0]?.date).toMatch(/^\d{4}-\d{2}-\d{2}$/);
   });
 

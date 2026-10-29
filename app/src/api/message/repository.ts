@@ -10,7 +10,9 @@ import {
   toMemberContacts,
   toMessageClearResult,
   toMessageExists,
+  toListOfMessageParameters,
   toMessageInstanceResult,
+  toOrbitHostSurveyNotificationParameters,
   toMessageListInputs,
   toMessageParameters,
   toMessagesResult,
@@ -36,6 +38,9 @@ import type {
   MessageInstanceResult,
   MessageListCallInputs,
   MessageParameter,
+  OrbitHostSurveyNotificationParameters,
+  OrbitNotificationParameters,
+  StoreAdaptiveCardResponsesInputs,
   MessagesList,
   MessagesResult,
   OrbitContactEmail,
@@ -158,6 +163,41 @@ export async function fetchMessageTemplateParameters(inputs: MessageDetailCallIn
       toMessageTemplateParametersInputs(inputs),
     ),
   );
+}
+
+/** Get_OrbitNotificationParameters (server action of ScreenBlock_MessageDetail, OnClick_ViewOrbitEvent): the Orbit
+    event and milestone of the message parameters. */
+export async function getOrbitNotificationParameters(
+  parameters: MessageParameter[],
+): Promise<OrbitNotificationParameters> {
+  const w = await callAction(LEGACY_SHARED, 'ActionGet_OrbitNotificationParameters', {
+    ListOfMessageParameters: toListOfMessageParameters(parameters),
+  });
+  return { orbitMilestoneId: w.OrbitMilestoneId, orbitEventId: w.OrbitEventId, orbitEventName: w.OrbitEventName };
+}
+
+/** Get_OrbitHostSurveyNotificationParameters (server action of ScreenBlock_MessageDetail, OnClick_ViewOrbitEvent): the
+    Orbit event and its dates of the message parameters. */
+export async function getOrbitHostSurveyNotificationParameters(
+  parameters: MessageParameter[],
+): Promise<OrbitHostSurveyNotificationParameters> {
+  return toOrbitHostSurveyNotificationParameters(
+    await callAction(LEGACY_SHARED, 'ActionGet_OrbitHostSurveyNotificationParameters', {
+      ListOfMessageParameters: toListOfMessageParameters(parameters),
+    }),
+  );
+}
+
+/** StoreAdaptiveCardResponses (server action of ScreenBlock_MessageDetail, AdaptiveCardViewerOnExecuteAction): stores
+    the submit of an adaptive card. No outputs. */
+export async function storeAdaptiveCardResponses(inputs: StoreAdaptiveCardResponsesInputs): Promise<void> {
+  await callAction(LEGACY_SHARED, 'ActionStoreAdaptiveCardResponses', {
+    DeviceHardwareId: inputs.deviceHardwareId,
+    AdaptiveCardPayloadJSON: inputs.adaptiveCardPayloadJSON,
+    ActionTaken: inputs.actionTaken,
+    FormDataJSON: inputs.formDataJSON,
+    MessageInstanceId: inputs.messageInstanceId,
+  });
 }
 
 /* ---- Message list (ScreenBlock_MessageList) ---- */

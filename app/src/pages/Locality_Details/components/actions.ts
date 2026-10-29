@@ -1,5 +1,5 @@
 import type { OneSchoolCard, SubdivisionCard } from '@/api/locality';
-import { get_LocalBookmarkByObjectId } from '@/platform/storage/localEntities';
+import { getLocalBookmarkByObjectId, get_LocalBookmarkByObjectId } from '@/platform/storage/localEntities';
 import { currDateTime, formatDateTime } from '@/lib/osDateTime';
 import { getConnectWeekdayLabel_ByDate, getLookupConcepts } from '@/lib/ubtConnectLibrary/actions';
 import type { LookupItem, Tag } from '@/lib/ubtConnectLibrary/structures';
@@ -17,15 +17,13 @@ const tag = (text: string, isSelected: boolean): Tag => ({
 });
 
 /** GetSample_FilterTags(ShowMyHouseholdTag): Households (selected), My Household when ShowMyHouseholdTag, Supper
-    Meetings, Interchange, OneSchool Global, then Locality Contacts when Connect_LaunchDarkly_PermissionCheck(
-    mobileDirectoryLocalityContacts) has access (flag still undecided: Q2, off by default). The page reads the flag
-    and gives it as `hasLocalityContacts`. */
-export function getSample_FilterTags(showMyHouseholdTag: boolean, hasLocalityContacts: boolean): Tag[] {
+    Meetings, Interchange, OneSchool Global, Locality Contacts. The live TST code of 2026-10-27 adds Locality Contacts
+    with no permission check (UBTConnect.controller.js, Tag_LocalityContacts; drift H-Q4 a). */
+export function getSample_FilterTags(showMyHouseholdTag: boolean): Tag[] {
   const tags = [tag(LocalityMenu.Households, true)];
   if (showMyHouseholdTag) tags.push(tag(LocalityMenu.MyHousehold, false));
   tags.push(tag(LocalityMenu.Subdivsion, false), tag(LocalityMenu.Interchange, false));
-  tags.push(tag(LocalityMenu.OneSchoolGlobal, false));
-  if (hasLocalityContacts) tags.push(tag(LocalityMenu.LocalityContacts, false));
+  tags.push(tag(LocalityMenu.OneSchoolGlobal, false), tag(LocalityMenu.LocalityContacts, false));
   return tags;
 }
 
@@ -49,6 +47,14 @@ export function getLocalityCurrentTimeLabel(in_UTCOffsetSeconds: number, in_Loca
     (legacy Connect2_LegacyShared.LocalBookmark through the shell adapter). */
 export async function getLocal_Bookmark(objectType: string, objectId: string): Promise<boolean> {
   const bookmark = await get_LocalBookmarkByObjectId(objectType, objectId);
+  return bookmark.Id !== '' && bookmark.Id !== '0';
+}
+
+/** GetLocal_Bookmark_C2(ObjectType, ObjectId) (UC:9270-9310): IsBookmarked = GetLocalBookmarkByObjectId_C2(ObjectId)
+    .LocalBookmark.Id <> NullIdentifier (the C2 UBTConnect_Bookmarks_MCS.LocalBookmark). ObjectType is an input that
+    the flow does not read. */
+export async function getLocal_Bookmark_C2(_objectType: string, objectId: string): Promise<boolean> {
+  const bookmark = await getLocalBookmarkByObjectId(objectId);
   return bookmark.Id !== '' && bookmark.Id !== '0';
 }
 

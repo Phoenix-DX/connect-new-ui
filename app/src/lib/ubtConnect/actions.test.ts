@@ -16,6 +16,7 @@ import {
   getBookmarkCategoryId_ByEntityTypeId,
   getBookmarkType_FromEntity,
   getNameAndSurname_ByFullName,
+  getShareType_FromEntity,
   set_InitialClientVariables,
   toggleBookmarkItem_C2,
   get_LookupSection,
@@ -23,6 +24,8 @@ import {
   getSkeletonList_UI_HouseholdMembers,
   getSkeletonList_UI_SubdivisionHousehold,
   isStringEquals,
+  notes_InterchangeId_ComposeId,
+  notes_InterchangeId_ExtractId,
 } from './actions';
 import { Type_CarouselItemSwipeAction } from './staticEntities';
 import {
@@ -145,6 +148,26 @@ describe('bookmarks (CR-W4A-1)', () => {
   });
 });
 
+describe('GetShareType_FromEntity (UC:11102-11223, BR-UBTCON-244)', () => {
+  it('maps each entity type; a Household stays Household whatever In_IsMyHousehold is', () => {
+    expect(getShareType_FromEntity('Locality')).toBe('Locality');
+    expect(getShareType_FromEntity('Interchange')).toBe('Locality');
+    expect(getShareType_FromEntity('Household', false)).toBe('Household');
+    expect(getShareType_FromEntity('Household', true)).toBe('Household');
+    expect(getShareType_FromEntity('Supper Meetings')).toBe('Supper Meeting');
+    expect(getShareType_FromEntity('OneSchool Global')).toBe('OneSchool Global');
+    expect(getShareType_FromEntity('Feed Item', true)).toBe('Feed');
+  });
+
+  it('In_IsMyHousehold gives My Household only after no entity case matched; Member always raises', () => {
+    expect(getShareType_FromEntity('Country', true)).toBe('My Household');
+    expect(getShareType_FromEntity('', true)).toBe('My Household');
+    expect(() => getShareType_FromEntity('Country', false)).toThrow('Share not available');
+    expect(() => getShareType_FromEntity('Member', false)).toThrow('Share not available');
+    expect(() => getShareType_FromEntity('Member', true)).toThrow('Share not available');
+  });
+});
+
 describe('GetNameAndSurname_ByFullName (JSUtils_String_Split)', () => {
   it('splits on spaces: surname = last part, name = the earlier parts each after a space', () => {
     expect(getNameAndSurname_ByFullName('Ana Maria Lopez')).toEqual({ Out_Name: ' Ana Maria', Out_Surname: 'Lopez' });
@@ -217,5 +240,28 @@ describe('directory map screens actions', () => {
     expect(click.defaultPrevented).toBe(true);
     expect(onClick).toHaveBeenCalledWith('42');
     expect(directory_BrowseByCountry_TooltipBuilder({ Marker: { Id: '1' } }, onClick).textContent).toBe('');
+  });
+});
+
+/* Notes_InterchangeId_ComposeId and Notes_InterchangeId_ExtractId (UBTConnect.controller.js, TST publish of
+   2026-10-29, copy in migration/screens/Notes/analysis/sources/raw/). Fictional ids. */
+describe('Notes_InterchangeId_ComposeId / Notes_InterchangeId_ExtractId', () => {
+  it('ComposeId: "<LocalityId>:<InterchangeLocalityId>", or the interchange id alone', () => {
+    expect(notes_InterchangeId_ComposeId('252', '5')).toBe('252:5');
+    expect(notes_InterchangeId_ComposeId('', '5')).toBe('5');
+  });
+
+  it('ExtractId: no ":" (one part) gives LocalityId = the id; else part 0 and part 1', () => {
+    expect(notes_InterchangeId_ExtractId('')).toEqual({ LocalityId: '', InterchangeLocalityId: '' });
+    expect(notes_InterchangeId_ExtractId('5')).toEqual({ LocalityId: '5', InterchangeLocalityId: '' });
+    expect(notes_InterchangeId_ExtractId('252:5')).toEqual({ LocalityId: '252', InterchangeLocalityId: '5' });
+    expect(notes_InterchangeId_ExtractId('252:5:9')).toEqual({ LocalityId: '252', InterchangeLocalityId: '5' });
+  });
+
+  it('ExtractId reverses ComposeId', () => {
+    expect(notes_InterchangeId_ExtractId(notes_InterchangeId_ComposeId('252', '5'))).toEqual({
+      LocalityId: '252',
+      InterchangeLocalityId: '5',
+    });
   });
 });

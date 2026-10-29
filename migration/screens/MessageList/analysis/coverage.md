@@ -1,8 +1,8 @@
 # Coverage for MessageList
 
-- UI states captured: default, loading, offline
+- UI states captured: default, filter, loading, offline, search
 - Runtime captures: 1 file(s), 9 call(s)
-- Masked text nodes: 33, user images removed: 9
+- Masked text nodes: 32, user images removed: 12
 - Fetch failures during snapshot: 0
 
 ## Blocks referenced in code but not rendered in any captured state

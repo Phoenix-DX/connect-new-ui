@@ -1,8 +1,7 @@
 import { useRef } from 'react';
 import type { AssembleAttendeeGuest, AssembleAttendeeSubdivision } from '@/api/event';
 import { confirmAction } from '@/platform/feedback/dialogs/confirmAction';
-import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { setPreloadObject, useFlowState } from '@/platform/navigation';
+import { rememberFocusedScrollAnchor, setPreloadObject, useFlowState } from '@/platform/navigation';
 import { getLocalBookmarksByObjectType } from '@/platform/storage/localEntities';
 import { toggleBookmarkItem } from '@/lib/assemble/actions';
 import { MyBookmarks_Group, MyBookmarks_ObjectType } from '@/lib/assemble/staticEntities';
@@ -17,10 +16,8 @@ import {
   initialAttendeeSubdivisionState,
   SHARE_OBJECT_HOUSEHOLD,
   withLocalBookmarks,
-  type AttendeeSubdivisionAction,
   type AttendeeSubdivisionState,
 } from './attendeeSubdivisionState';
-import { useIsAlive, useReadyOnce } from './blockLifecycle';
 
 /** The flows of the block AssembleEventDetail_AttendeeSubdivision: OnReady, the hall header, the household click, the
     bookmark and share options of the context menu, and the share sheet. The component
@@ -71,66 +68,73 @@ export interface AttendeeSubdivisionFlows {
       GetCacheableSubdivision_V2 (no saved state for the block, or the user left before the answer), it calls as on a
       new visit. Then, also on a restored view, Set_SelectedAssembleAttendeeListBookmarks
       (GetLocalBookmarksByObjectType(Contact), a local read). A failure goes to the flow handler.
-    - The household click: MaybeDisplaySubscriptionPopup(CountryCode, LocalityId); no popup → SetPreloadObject(the
-      rows' ids) and NavigateTo_HouseholdCarousel(row number, id).
+    - The household click: MaybeDisplaySubscriptionPopup(CountryCode, LocalityId); no popup →
+      RememberFocusedScrollAnchor(List_SubdivisionHousehold, row number, Id) (AssembleEventDetail_AttendeeSubdivision.js
+      :747, port gap N4), SetPreloadObject(the rows' ids) and NavigateTo_HouseholdCarousel(row number, id).
     - The bookmark: the popup check; a row that is not bookmarked → ConfirmAction(Bookmark_Note), confirmed →
       Trim(BookmarkNote); then ToggleBookmarkItem(row IsBookmarked, Contact, row Id, Contacts, BookmarkNote)
       (CR-AssembleDetail-2), the row's IsBookmarked = not IsItemBookmarked and BookmarkNote = "". A failure goes to the
       flow handler.
     - Share to Connect: the popup check; C2ExtendedShare → the household share sheet opens, else
       NavigateTo_ShareObject(Household, id, False).
-    - The handlers read the variables of the render in which the user clicked, as the old port. The household click
-      and share to Connect send no failure to the flow handler (as the old port).
-    - Decision W23: after the unmount, a started flow skips its state writes only; the calls, the dialogs, the preload
-      object and the navigation still run. */
+    - The handlers read the variables of the render in which the user clicked, as the old port.
+    Flow scope (item 8): GetCacheableSubdivision_V2, MaybeDisplaySubscriptionPopup, ConfirmAction, ToggleBookmarkItem,
+    RememberFocusedScrollAnchor and SetPreloadObject are module actions (R2, AssembleEventDetail_AttendeeSubdivision.js
+    :846, :738, :964, :980, :747, :756): they run after the unmount. Set_SelectedAssembleAttendeeListBookmarks is an
+    own action of the block (R3, `flow.own`, ensureControllerAlive :1153): OnReady stops there after the unmount. The
+    events NavigateTo_HouseholdCarousel and NavigateTo_ShareObject go through `flow.events` (R3): their screen
+    handlers start with ensureControllerAlive (screen_AssembleDetail.js:716, :644). A state write after the unmount is
+    dropped (`dispatch`). A failure of the household click, the bookmark or share to Connect goes to the flow handler
+    with the flow scope (`flow.run`, R6): MaybeDisplaySubscriptionPopup rethrows to its caller
+    (AssembleEventDetail_AttendeeSubdivision.js:770-773; S3a Q1 (a), user 2026-10-28). */
 export function useAttendeeSubdivision(
   blockId: string,
   subdivision: AssembleAttendeeSubdivision,
   flags: AttendeeSubdivisionFlags,
-  { onNavigateToShareObject, onNavigateToHouseholdCarousel }: AttendeeSubdivisionEvents,
+  events: AttendeeSubdivisionEvents,
 ): AttendeeSubdivisionFlows {
   const scope = blockId.replace(/\$/g, '');
   const bookmarkNoteId = `${scope}-Bookmark_Note`;
-  const isAlive = useIsAlive();
-  const readyOnce = useReadyOnce();
-  const { state, dispatch, latest } = useFlowState({
+  const { state, dispatch, latest, flow } = useFlowState({
     viewName: `Assemble.AssembleEventDetail_AttendeeSubdivision#${scope}`,
     reducer: attendeeSubdivisionReducer,
     initial: initialAttendeeSubdivisionState(subdivision),
     parameters: { subdivision },
+    events,
     // The flow is defined below; the hook calls the one of the newest render.
-    onReady: (_isAlive, restored) => readyOnce(() => onReady(restored)),
+    onReady: (_flow, restored) => onReady(restored),
     onParametersChanged,
   });
   const bookmarkNote = useRef('');
 
-  /** A state write after an await, skipped after the unmount (W23). */
-  const write = (action: AttendeeSubdivisionAction) => {
-    if (isAlive()) dispatch(action);
-  };
+  /** Set_SelectedAssembleAttendeeListBookmarks: GetLocalBookmarksByObjectType(Contact) (a module action), then the
+      IsBookmarked of each row of the newest rows, read after the answer as TST (:1167-1180). An own action of the
+      block (R3). `isAlive` guards a superseded OnParametersChanged run (item 8 §6, point 5 (a)). */
+  const setSelectedAssembleAttendeeListBookmarks = flow.own(async (isAlive: () => boolean = flow.alive) => {
+    const bookmarks = await getLocalBookmarksByObjectType(MyBookmarks_ObjectType.Contact);
+    if (isAlive()) dispatch({ type: 'set', patch: { rows: withLocalBookmarks(latest.current.rows, bookmarks) } });
+  });
 
   /** OnParametersChanged: Set_SelectedAssembleAttendeeListBookmarks only. The rows stay as they are (no copy of the
       new input, no reload); only IsBookmarked is read again from the local bookmarks. Safe to run more than once. */
-  async function onParametersChanged(isAlive: () => boolean) {
-    const bookmarks = await getLocalBookmarksByObjectType(MyBookmarks_ObjectType.Contact);
-    if (isAlive()) write({ type: 'set', patch: { rows: withLocalBookmarks(latest.current.rows, bookmarks) } });
+  function onParametersChanged(isAlive: () => boolean): Promise<void> {
+    return setSelectedAssembleAttendeeListBookmarks(isAlive);
   }
 
-  async function onReady(restored: boolean) {
-    let list = latest.current.rows;
+  async function onReady(restored: boolean): Promise<void> {
     if (!restored || !hasHallHouseholds(latest.current)) {
       const info = await getCacheableSubdivision_V2(subdivision.Id);
-      list = householdRowsOf(info);
-      write({ type: 'set', patch: { rows: list, ...hallLocationOf(info) } });
+      dispatch({ type: 'set', patch: { rows: householdRowsOf(info), ...hallLocationOf(info) } });
     }
-    const bookmarks = await getLocalBookmarksByObjectType(MyBookmarks_ObjectType.Contact);
-    write({ type: 'set', patch: { rows: withLocalBookmarks(list, bookmarks) } });
+    await setSelectedAssembleAttendeeListBookmarks();
   }
 
   const onClickHousehold = async (row: AssembleAttendeeGuest, index: number) => {
     if (await maybeDisplaySubscriptionPopup(state.countryCode, state.localityId)) return;
+    // N4: RememberFocusedScrollAnchor(List_SubdivisionHousehold, CurrentRowNumber, LongIntegerToText(Current.Id)).
+    rememberFocusedScrollAnchor(`${scope}-List_SubdivisionHousehold`, index, row.Id);
     setPreloadObject(state.rows.map((r) => r.Id));
-    onNavigateToHouseholdCarousel(index, row.Id);
+    flow.events.onNavigateToHouseholdCarousel(index, row.Id); // R3
   };
 
   const onClickBookmarkButton = async (row: AssembleAttendeeGuest, index: number, isItemBookmarked: boolean) => {
@@ -143,19 +147,19 @@ export function useAttendeeSubdivision(
       MyBookmarks_Group.Contacts,
       bookmarkNote.current,
     );
-    write({ type: 'rowBookmarked', index, isBookmarked: !isItemBookmarked });
+    dispatch({ type: 'rowBookmarked', index, isBookmarked: !isItemBookmarked });
     bookmarkNote.current = '';
   };
 
   const onClickShareConnect = async (row: AssembleAttendeeGuest) => {
     if (await maybeDisplaySubscriptionPopup(state.countryCode, state.localityId)) return;
     if (flags.hasExtendedShare) {
-      write({
+      dispatch({
         type: 'set',
         patch: { shareableObjectId: row.Id, shareable: householdShareable(row), isShareOpen: true },
       });
     } else {
-      onNavigateToShareObject(SHARE_OBJECT_HOUSEHOLD, row.Id, false);
+      flow.events.onNavigateToShareObject(SHARE_OBJECT_HOUSEHOLD, row.Id, false); // R3
     }
   };
 
@@ -164,11 +168,15 @@ export function useAttendeeSubdivision(
     onToggleSelected: () => {
       dispatch({ type: 'selectionToggled' });
     },
-    onClickHousehold: (row, index) => void onClickHousehold(row, index),
-    onClickBookmarkButton: (row, index, isItemBookmarked) => {
-      onClickBookmarkButton(row, index, isItemBookmarked).catch(raiseToFlowHandler);
+    onClickHousehold: (row, index) => {
+      flow.run(() => onClickHousehold(row, index));
     },
-    onClickShareConnect: (row) => void onClickShareConnect(row),
+    onClickBookmarkButton: (row, index, isItemBookmarked) => {
+      flow.run(() => onClickBookmarkButton(row, index, isItemBookmarked));
+    },
+    onClickShareConnect: (row) => {
+      flow.run(() => onClickShareConnect(row));
+    },
     onSaveNote: (note) => {
       bookmarkNote.current = note;
     },

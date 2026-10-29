@@ -24,7 +24,7 @@ export interface SupperMeetingDetailsState {
   households: SupperMeetingHouseholdsState;
 }
 
-export type SupperMeetingDetailsAction =
+type SupperMeetingDetailsAction =
   /** DataActionGetSubdivision answered. */
   | { type: 'subdivisionFetched'; subdivision: UI_Screen_SubdivisionDetails }
   /** DataActionGetSubdivisionHouseholds answered. */

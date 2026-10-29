@@ -1,7 +1,7 @@
 import { fetchEventQRCode } from '@/api/event';
 import { fetchLegacySignedImageURL } from '@/api/image';
 import type { QRCodeGenerateInputs } from '@/pages/QRCodeGenerate/inputs';
-import { useFlowState, useOsNavigate, type IsAlive } from '@/platform/navigation';
+import { useFlowState, useOsNavigate } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
 import { DirectoryAPIFilter, ImageSigningSize } from '@/lib/orbit/staticEntities';
@@ -35,52 +35,58 @@ export interface GenerateQrCodeFlows {
     - RefreshData: IsFetchingData True; UserName and UserLocation from AppManager_GetCachedUserInfo; UserSignedURL =
       GetCacheableSignedImageURL(MemberId, Member, Medium); the refresh of Get_EventQRCode with the block variables,
       then OnAfterFetch (QRCodeData = Response); IsFetchingData False. A failure goes to the flow handler.
-    - Decision W23: after an unmount, a started flow skips its state writes only. Its calls still run, with the
-      variables that the flow assigned, and its error still goes to the flow handler.
+    - Flow scope (item 8): GetCacheableSignedImageURL is a module action (R2): it answers also after the unmount,
+      and the refresh of Get_EventQRCode then still goes out with the variables that the flow assigned
+      (ScreenBlock_GenerateQRCode.js:784, :792). Get_EventQRCode is a data action (R1, `flow.fetch`, :643): after the
+      unmount its answer and its failure are dropped. A failure of the module action goes to the flow handler, with
+      the scope.
     - OnHandle_ContactHelpdesk: NavigateTo_ContactHelpdesk(GetContactHelpdeskSubject_Event(In_EventName,
       In_EventStartDate, In_EventEndDate, In_EventLocation), In_EventName). The screen navigates to
       ContactByEmailOrbitHelpdesk without an Orbit access check, as compiled.
     @origin Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_QRCode.ScreenBlock_GenerateQRCode */
 export function useGenerateQrCode(inputs: QRCodeGenerateInputs): GenerateQrCodeFlows {
   const navigate = useOsNavigate();
-  const { state, dispatch, latest, parameters } = useFlowState({
+  const { state, dispatch, latest, parameters, flow } = useFlowState({
     viewName: 'Orbit_ScreenBlocks_QRCode.ScreenBlock_GenerateQRCode',
     reducer: generateQrCodeReducer,
     initial: INITIAL_GENERATE_QR_CODE_STATE,
     parameters: inputs,
     beforePaint: true,
-    onReady: (isAlive, restored) => onReady(isAlive, restored),
+    // The flows are defined below; the hook calls the ones of the newest render.
+    onReady: (_flow, restored) => onReady(restored),
   });
   const qrCodeImageURL = useBinaryImageURL(state.qrCodeData.QRCodeAsBinary);
 
   /** RefreshData. */
-  const refreshData = async (isAlive: IsAlive) => {
-    /* The flow's own copy of the variables, which the data action reads, also after an unmount. The state gets the
-       same assignments while the screen is mounted (W23). */
+  const refreshData = async () => {
+    /* The flow's own copy of the variables, which the data action reads: the module action before it runs also after
+       the unmount (R2), when `dispatch` no longer writes the state. While the screen is mounted, the state gets the
+       same assignments. */
     let variables = latest.current;
     const assign = (patch: GenerateQrCodePatch) => {
       variables = { ...variables, ...patch };
-      if (isAlive()) dispatch(patch);
+      dispatch(patch);
     };
     assign({ isFetchingData: true });
     const user = appManager_GetCachedUserInfo();
     assign(userVariablesOf(user));
     assign({
+      // module action: not wrapped (R2)
       userSignedURL: await fetchLegacySignedImageURL(
         memberPhotoIdOf(user.MemberId),
         DirectoryAPIFilter.Member,
         ImageSigningSize.Medium,
       ),
     });
-    const data = await fetchEventQRCode(eventQRCodeCallInputs(variables, parameters.current));
+    const data = await flow.fetch(fetchEventQRCode(eventQRCodeCallInputs(variables, parameters.current))); // R1
     assign(afterFetchOf(data));
     assign({ isFetchingData: false });
   };
 
   /** OnReady. useFlowState sends a rejection to the flow handler. */
-  const onReady = async (isAlive: IsAlive, restored: boolean) => {
+  const onReady = async (restored: boolean) => {
     if (restored) return;
-    await refreshData(isAlive);
+    await refreshData();
   };
 
   return {

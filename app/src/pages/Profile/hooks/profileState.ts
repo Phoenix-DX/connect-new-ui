@@ -1,3 +1,4 @@
+import type { LocalityListItem, SubdivisionListItem } from '@/api/locality';
 import type { MemberAccountForm } from '@/api/member';
 import { osList, wireList } from '@/lib/os-wire';
 import type { Directory_UserCurrent } from '@/platform/session/UserInfoCache/types';
@@ -10,8 +11,21 @@ import type { Directory_UserCurrent } from '@/platform/session/UserInfoCache/typ
 export type AccountForm = MemberAccountForm;
 type PersonalInformation = AccountForm['AccountForm_PersonalInformation'];
 type ContactInformation = AccountForm['AccountForm_ContactInformation'];
+type AddressInformation = AccountForm['AccountForm_AddressInformation'];
 /** Custom_Address_Item (APIDomain_Directory_IS). */
-type AddressItem = AccountForm['AccountForm_AddressInformation']['Custom_Address_ItemList']['List'][number];
+export type AddressItem = AddressInformation['Custom_Address_ItemList']['List'][number];
+
+/** LocalCacheControl_AllLocalities: the response of CacheControl_AllLocalities (its LocalityList) and isFetched. */
+export interface LocalCacheControlAllLocalities {
+  localityList: LocalityListItem[];
+  isFetched: boolean;
+}
+
+/** LocalCacheControl_AllSubdivions: the response of CacheControl_AllSubdivisions (its SubdivionsList) and isFetched. */
+export interface LocalCacheControlAllSubdivisions {
+  subdivionsList: SubdivisionListItem[];
+  isFetched: boolean;
+}
 
 /** The screen variables that the view reads. The OutSystems name of each variable is in brackets. They are not kept
     in the view cache. */
@@ -38,6 +52,12 @@ export interface ProfileState {
   previewBottomSheetId: string;
   /** [CurrentCountryCode] The input of GetCountryInfo. */
   currentCountryCode: string;
+  /** [LocalCacheControl_AllLocalities] The options of LocalityDropdown; isFetched ends the address skeleton. */
+  localCacheControlAllLocalities: LocalCacheControlAllLocalities;
+  /** [LocalCacheControl_AllSubdivions] All the subdivisions; isFetched ends the address skeleton. */
+  localCacheControlAllSubdivisions: LocalCacheControlAllSubdivisions;
+  /** [SubdivisionFilteredList] The subdivisions of the selected locality: the options of SubdivisionDropdown. */
+  subdivisionFilteredList: SubdivisionListItem[];
 }
 
 /** The changes of the state. Each one assigns the values that the flow gives, as the screen action does. */
@@ -62,7 +82,15 @@ type ProfileAction =
   /** OnReadyEvent of the layout: MainContainerId. */
   | { type: 'mainContainerReady'; id: string }
   /** OnInitialized of Profile_HouseholdPreview: PreviewHousehold_BottomSheetId. */
-  | { type: 'previewSheetInitialized'; id: string };
+  | { type: 'previewSheetInitialized'; id: string }
+  /** CacheControl_AllLocalitiesResult: the sorted localities, isFetched True. */
+  | { type: 'allLocalitiesFetched'; localityList: LocalityListItem[] }
+  /** CacheControl_AllSubdivisionsResult: the subdivisions, isFetched True, then Action_RefreshSubdivionList. */
+  | { type: 'allSubdivisionsFetched'; subdivionsList: SubdivisionListItem[] }
+  /** OnChange_LocalityDropdown: LocalityId, SubdivionId "", Action_RefreshSubdivionList, then OnChange_Fields. */
+  | { type: 'localityChanged'; localityId: string }
+  /** OnChange_SubdivionDropdown: SubdivionId, then OnChange_Fields. */
+  | { type: 'subdivisionChanged'; subdivisionId: string };
 
 /** Default UI_AccountForm record (Connect_Household_CS defaults: "" / False / empty list). */
 export const EMPTY_ACCOUNT_FORM: AccountForm = {
@@ -97,6 +125,9 @@ export function initialProfileState(): ProfileState {
     mainContainerId: '',
     previewBottomSheetId: '',
     currentCountryCode: '',
+    localCacheControlAllLocalities: { localityList: [], isFetched: false },
+    localCacheControlAllSubdivisions: { subdivionsList: [], isFetched: false },
+    subdivisionFilteredList: [],
   };
 }
 
@@ -162,6 +193,62 @@ export function withContact(form: AccountForm, patch: Partial<ContactInformation
   return { ...form, AccountForm_ContactInformation: { ...form.AccountForm_ContactInformation, ...patch } };
 }
 
+/** The form with some attributes of AccountForm_AddressInformation assigned. */
+export function withAddress(form: AccountForm, patch: Partial<AddressInformation>): AccountForm {
+  return { ...form, AccountForm_AddressInformation: { ...form.AccountForm_AddressInformation, ...patch } };
+}
+
+/** The form with the Value of one address item assigned (the AddressInput variable of that row). */
+export function withAddressItemValue(form: AccountForm, index: number, value: string): AccountForm {
+  const items = osList(form.AccountForm_AddressInformation.Custom_Address_ItemList).map((item, i) =>
+    i === index ? { ...item, Value: value } : item,
+  );
+  return withAddress(form, { Custom_Address_ItemList: wireList(items) });
+}
+
+/** CacheControl_AllLocalitiesResult, ListSort: by CountryName + " " + Name, ascending (OutSystems List.sort compares
+    texts with localeCompare and keeps the order of equal keys, OutSystems.js DataTypes). */
+export function sortLocalities(localityList: readonly LocalityListItem[]): LocalityListItem[] {
+  const key = (l: LocalityListItem) => `${l.CountryName} ${l.Name}`;
+  return [...localityList].sort((a, b) => key(a).localeCompare(key(b)));
+}
+
+/** Action_RefreshSubdivionList (Profile.mvc.js:2932-2965): no locality → SubdivisionFilteredList empty and
+    SubdivionId ""; a locality and the subdivisions fetched → the subdivisions of that locality (ListFilter); else no
+    change (null). */
+export function action_RefreshSubdivionList(
+  accountForm: AccountForm,
+  subdivisions: LocalCacheControlAllSubdivisions,
+): { accountForm: AccountForm; subdivisionFilteredList: SubdivisionListItem[] } | null {
+  const localityId = accountForm.AccountForm_AddressInformation.LocalityId;
+  if (localityId === '')
+    return { accountForm: withAddress(accountForm, { SubdivionId: '' }), subdivisionFilteredList: [] };
+  if (subdivisions.isFetched)
+    return {
+      accountForm,
+      subdivisionFilteredList: subdivisions.subdivionsList.filter((s) => s.LocalityId === localityId),
+    };
+  return null;
+}
+
+/** OnClick_Save, householder: for each address item, IsValid = not (Required and Value = "") (Profile.mvc.js:3572-3592). */
+export function withAddressItemsChecked(form: AccountForm): AccountForm {
+  const items = osList(form.AccountForm_AddressInformation.Custom_Address_ItemList).map((item) => ({
+    ...item,
+    IsValid: !(item.Required && item.Value === ''),
+  }));
+  return withAddress(form, { Custom_Address_ItemList: wireList(items) });
+}
+
+/** Action_RefreshSubdivionList on the state: the form and the filtered list it gives, or the same values. */
+function refreshSubdivisionList(
+  accountForm: AccountForm,
+  subdivisions: LocalCacheControlAllSubdivisions,
+  current: SubdivisionListItem[],
+): { accountForm: AccountForm; subdivisionFilteredList: SubdivisionListItem[] } {
+  return action_RefreshSubdivionList(accountForm, subdivisions) ?? { accountForm, subdivisionFilteredList: current };
+}
+
 /** Action_FormatAddress: AddressFormat with "\r\n" replaced by " ", then every "[Address<NumberRef>]" replaced by
     that item's Value (OutSystems Replace: every occurrence). */
 export function action_FormatAddress(addressFormat: string, accountForm: AccountForm): string {
@@ -199,14 +286,21 @@ export function profileReducer(state: ProfileState, action: ProfileAction): Prof
   switch (action.type) {
     case 'userInformationFetched': {
       const result = fromUserInformation(action.user, action.current);
+      // Action_RefreshSubdivionList runs after AccountFormOriginal and AccountForm_ViewPreview were assigned.
+      const refreshed = refreshSubdivisionList(
+        result.accountForm,
+        state.localCacheControlAllSubdivisions,
+        state.subdivisionFilteredList,
+      );
       return assign(state, {
         user: action.user,
-        accountForm: result.accountForm,
+        accountForm: refreshed.accountForm,
         accountFormOriginal: result.accountForm,
         isHouseholder: result.isHouseholder,
         currentCountryCode: result.currentCountryCode,
         isSpouse: result.isSpouse,
         accountFormViewPreview: result.accountForm,
+        subdivisionFilteredList: refreshed.subdivisionFilteredList,
       });
     }
     case 'fieldsChanged':
@@ -230,5 +324,35 @@ export function profileReducer(state: ProfileState, action: ProfileAction): Prof
       return assign(state, { mainContainerId: action.id });
     case 'previewSheetInitialized':
       return assign(state, { previewBottomSheetId: action.id });
+    case 'allLocalitiesFetched':
+      return assign(state, {
+        localCacheControlAllLocalities: { localityList: sortLocalities(action.localityList), isFetched: true },
+      });
+    case 'allSubdivisionsFetched': {
+      const subdivisions = { subdivionsList: action.subdivionsList, isFetched: true };
+      const refreshed = refreshSubdivisionList(state.accountForm, subdivisions, state.subdivisionFilteredList);
+      return assign(state, {
+        localCacheControlAllSubdivisions: subdivisions,
+        accountForm: refreshed.accountForm,
+        subdivisionFilteredList: refreshed.subdivisionFilteredList,
+      });
+    }
+    case 'localityChanged': {
+      const next = withAddress(state.accountForm, { LocalityId: action.localityId, SubdivionId: '' });
+      const refreshed = refreshSubdivisionList(
+        next,
+        state.localCacheControlAllSubdivisions,
+        state.subdivisionFilteredList,
+      );
+      return assign(state, {
+        accountForm: refreshed.accountForm,
+        subdivisionFilteredList: refreshed.subdivisionFilteredList,
+        hasChanges: !sameRecord(refreshed.accountForm, state.accountFormOriginal),
+      });
+    }
+    case 'subdivisionChanged': {
+      const next = withAddress(state.accountForm, { SubdivionId: action.subdivisionId });
+      return assign(state, { accountForm: next, hasChanges: !sameRecord(next, state.accountFormOriginal) });
+    }
   }
 }

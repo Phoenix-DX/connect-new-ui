@@ -1,23 +1,23 @@
-﻿define("UBTConnect_Notes_MCS.controller$CreateOrUpdate_LocalNote", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Notes_MCS.model", "UBTConnect_Notes_MCS.controller", "UBTConnect_Notes_MCS.entities", "UBTConnect_Notes_MCS.model$LocalNoteRecord", "UBTConnect_Notes_MCS.model$LocalNoteRec", "UBTConnect_Notes_MCS.model$LocalNoteRecordList"], function (exports, OutSystems, UBTConnect_Notes_MCSModel, UBTConnect_Notes_MCSController, UBTConnect_Notes_MCSEntities) {
+﻿define("UBTConnect_Notes_MCS.controller$Create_LocalNote", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Notes_MCS.model", "UBTConnect_Notes_MCS.controller", "UBTConnect_Notes_MCS.entities", "UBTConnect_Notes_MCS.model$LocalNoteRecord", "UBTConnect_Notes_MCS.model$LocalNoteRec", "UBTConnect_Notes_MCS.model$LocalNoteRecordList"], function (exports, OutSystems, UBTConnect_Notes_MCSModel, UBTConnect_Notes_MCSController, UBTConnect_Notes_MCSEntities) {
 var OS = OutSystems.Internal;
-UBTConnect_Notes_MCSController.default.createOrUpdate_LocalNote$Action = function (in_NoteIdIn, in_NoteCategoryIdIn, in_ItemIdIn, in_DateCreatedUtcIn, in_DateEditedUtcIn, callContext) {
+UBTConnect_Notes_MCSController.default.create_LocalNote$Action = function (in_NoteIdIn, in_NoteCategoryIdIn, in_ItemIdIn, in_DateCreatedUtcIn, in_DateEditedUtcIn, callContext) {
 var varBag = {};
 callContext = controller.callContext(callContext);
-var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect_Notes_MCS.CreateOrUpdate_LocalNote$vars"))());
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect_Notes_MCS.Create_LocalNote$vars"))());
 vars.value.in_NoteIdInLocal = in_NoteIdIn;
 vars.value.in_NoteCategoryIdInLocal = in_NoteCategoryIdIn;
 vars.value.in_ItemIdInLocal = in_ItemIdIn;
 vars.value.in_DateCreatedUtcInLocal = in_DateCreatedUtcIn;
 vars.value.in_DateEditedUtcInLocal = in_DateEditedUtcIn;
-var createLocalNoteVar = new OS.DataTypes.VariableHolder();
+var createOrUpdateLocalNoteVar = new OS.DataTypes.VariableHolder();
 var getLocalNotesByNoteIdVar = new OS.DataTypes.VariableHolder(new (OS.Controller.BaseController.getAggregateOutputType(UBTConnect_Notes_MCSModel.LocalNoteRecordList))());
-var outVars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect_Notes_MCS.CreateOrUpdate_LocalNote$outVars"))());
+var outVars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect_Notes_MCS.Create_LocalNote$outVars"))());
 varBag.callContext = callContext;
 varBag.vars = vars;
-varBag.createLocalNoteVar = createLocalNoteVar;
+varBag.createOrUpdateLocalNoteVar = createOrUpdateLocalNoteVar;
 varBag.getLocalNotesByNoteIdVar = getLocalNotesByNoteIdVar;
 varBag.outVars = outVars;
-OutSystemsDebugger.push("dIpz47XNREaC3+EImM4KrQ:JBIp9qwuZ0+5a6Vb0nZVJg:/ClientActionFlows.JBIp9qwuZ0+5a6Vb0nZVJg:dWflMNL95r0H8iszGmQnYQ", "UBTConnect_Notes_MCS", "CreateOrUpdate_LocalNote", "NRFlows.ClientActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("dIpz47XNREaC3+EImM4KrQ:JBIp9qwuZ0+5a6Vb0nZVJg:/ClientActionFlows.JBIp9qwuZ0+5a6Vb0nZVJg:MX0wvrR21aVqSAOLlrWjSQ", "UBTConnect_Notes_MCS", "Create_LocalNote", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:fxg52AufO0idFMVajbpKKA", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 return OS.Flow.executeSequence(function () {
@@ -41,7 +41,8 @@ maxRecords = 0;
 }
 
 var qpinUserId = OS.BuiltinFunctions.getUserId();
-var qploNoteId = vars.value.in_NoteIdInLocal;
+var qpstItemId = vars.value.in_ItemIdInLocal;
+var qpstNoteCategoryId = vars.value.in_NoteCategoryIdInLocal;
 
 var optimizeSelect = false;
 var selectSql = "";
@@ -52,9 +53,9 @@ var argsList = new OS.Entities.QueryArgumentsList();
 
 selectSql += "SELECT ";
 if (optimizeSelect) {
-selectSql += "\"ENLocalNote\".\"Id\" o0, \"ENLocalNote\".\"UserId\" o1, \"ENLocalNote\".\"NoteId\" o2, NULL o3, NULL o4, NULL o5, NULL o6";
+selectSql += "\"ENLocalNote\".\"Id\" o0, NULL o1, NULL o2, NULL o3, NULL o4, \"ENLocalNote\".\"DateCreatedUtc\" o5, NULL o6, \"ENLocalNote\".\"NotesTotalCount\" o7";
 } else {
-selectSql += "\"ENLocalNote\".\"Id\" o0, \"ENLocalNote\".\"UserId\" o1, \"ENLocalNote\".\"NoteId\" o2, \"ENLocalNote\".\"NoteCategoryId\" o3, \"ENLocalNote\".\"ItemId\" o4, \"ENLocalNote\".\"DateCreatedUtc\" o5, \"ENLocalNote\".\"DateEditedUtc\" o6";
+selectSql += "\"ENLocalNote\".\"Id\" o0, \"ENLocalNote\".\"UserId\" o1, \"ENLocalNote\".\"NoteId\" o2, \"ENLocalNote\".\"NoteCategoryId\" o3, \"ENLocalNote\".\"ItemId\" o4, \"ENLocalNote\".\"DateCreatedUtc\" o5, \"ENLocalNote\".\"DateEditedUtc\" o6, \"ENLocalNote\".\"NotesTotalCount\" o7";
 }
 fromAndWhereSql += " FROM \"MAIN\".\"OSUSR_18u_LocalNote\" \"ENLocalNote\"";
 fromAndWhereSql += " WHERE ";
@@ -64,8 +65,15 @@ argsList.add("qpinUserId", /*INTEGER*/ 3, qpinUserId);
 } else {
 fromAndWhereSql += "(\"ENLocalNote\".\"UserId\" IS NULL)";
 }
-fromAndWhereSql += " AND (\"ENLocalNote\".\"NoteId\" = CAST(:qploNoteId AS INTEGER))";
-argsList.add("qploNoteId", /*LONGINTEGER*/ 4, qploNoteId);
+fromAndWhereSql += " AND ";
+if (((qpstNoteCategoryId.trim()) !== (""))) {
+fromAndWhereSql += "((\"ENLocalNote\".\"NoteCategoryId\" = :qpstNoteCategoryId) AND (\"ENLocalNote\".\"NoteCategoryId\" IS NOT NULL))";
+argsList.add("qpstNoteCategoryId", /*TEXT*/ 0, qpstNoteCategoryId);
+} else {
+fromAndWhereSql += "(\"ENLocalNote\".\"NoteCategoryId\" IS NULL)";
+}
+fromAndWhereSql += " AND (\"ENLocalNote\".\"ItemId\" = :qpstItemId)";
+argsList.add("qpstItemId", /*TEXT*/ 0, qpstItemId);
 if (maxRecords > 0) {
 orderBySql += " LIMIT ";
 orderBySql += maxRecords;
@@ -96,7 +104,7 @@ maxRecords = 0;
 
 return new Promise(function (resolve, reject) {
 require(["UBTConnect_Notes_MCS.aggregates.IDB"], function (UBTConnect_Notes_MCSAggregates_IDB) {
-return UBTConnect_Notes_MCSAggregates_IDB.executeCreateOrUpdateLocalNote$ClientAction$getLocalNotesByNoteIdAggr(OS.BuiltinFunctions.getUserId(), vars.value.in_NoteIdInLocal, maxRecords).then(function (result) {
+return UBTConnect_Notes_MCSAggregates_IDB.executeCreateLocalNote$ClientAction$getLocalNotesByNoteIdAggr(OS.BuiltinFunctions.getUserId(), vars.value.in_ItemIdInLocal, vars.value.in_NoteCategoryIdInLocal, maxRecords).then(function (result) {
 resolve(result);
 }).catch(function (e) {
 reject(e);
@@ -111,59 +119,31 @@ return getLocalNotesByNoteIdVar.value;
 });
 };
 return getLocalNotesByNoteIdAggr().then(function () {
-// Exists?
-return OS.Flow.executeSequence(function () {
-if((OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:clLVuHhVRkqvXy01Xdwrrg", callContext.id) && !(getLocalNotesByNoteIdVar.value.listOut.isEmpty))) {
-OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:rA4L9_Zchkq53V55De52Dw", callContext.id);
-// Execute Action: UpdateLocalNote
-return UBTConnect_Notes_MCSModel.entities.LocalNote.update(function () {
+OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:SLdpH_2yTU+Zqo4hQFE9bA", callContext.id);
+// Execute Action: CreateOrUpdateLocalNote
+return UBTConnect_Notes_MCSModel.entities.LocalNote.createOrUpdate(function () {
 var rec = new UBTConnect_Notes_MCSModel.LocalNoteRecord();
 rec.localNoteAttr = function () {
 var rec = new UBTConnect_Notes_MCSModel.LocalNoteRec();
 rec.idAttr = getLocalNotesByNoteIdVar.value.listOut.getCurrent(callContext.iterationContext).localNoteAttr.idAttr;
-rec.userIdAttr = getLocalNotesByNoteIdVar.value.listOut.getCurrent(callContext.iterationContext).localNoteAttr.userIdAttr;
-rec.noteIdAttr = getLocalNotesByNoteIdVar.value.listOut.getCurrent(callContext.iterationContext).localNoteAttr.noteIdAttr;
-rec.noteCategoryIdAttr = vars.value.in_NoteCategoryIdInLocal;
-rec.itemIdAttr = vars.value.in_ItemIdInLocal;
-rec.dateCreatedUtcAttr = vars.value.in_DateCreatedUtcInLocal;
-rec.dateEditedUtcAttr = vars.value.in_DateEditedUtcInLocal;
-return rec;
-}();
-return rec;
-}(), callContext).then(function () {
-OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:zVI4m_xSCU6AxabSL9s7Fw", callContext.id);
-// LocalNoteId = GetLocalNotesByNoteId.List.Current.LocalNote.Id
-outVars.value.localNoteIdOut = getLocalNotesByNoteIdVar.value.listOut.getCurrent(callContext.iterationContext).localNoteAttr.idAttr;
-OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:QJcLvsd8GEihoOc+RU87rw", callContext.id);
-});
-} else {
-OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:SLdpH_2yTU+Zqo4hQFE9bA", callContext.id);
-// Execute Action: CreateLocalNote
-return UBTConnect_Notes_MCSModel.entities.LocalNote.create(function () {
-var rec = new UBTConnect_Notes_MCSModel.LocalNoteRecord();
-rec.localNoteAttr = function () {
-var rec = new UBTConnect_Notes_MCSModel.LocalNoteRec();
-rec.idAttr = OS.BuiltinFunctions.integerToLongInteger(OS.BuiltinFunctions.nullIdentifier());
 rec.userIdAttr = OS.BuiltinFunctions.getUserId();
 rec.noteIdAttr = vars.value.in_NoteIdInLocal;
 rec.noteCategoryIdAttr = vars.value.in_NoteCategoryIdInLocal;
 rec.itemIdAttr = vars.value.in_ItemIdInLocal;
-rec.dateCreatedUtcAttr = vars.value.in_DateCreatedUtcInLocal;
+rec.dateCreatedUtcAttr = ((getLocalNotesByNoteIdVar.value.listOut.isEmpty) ? (vars.value.in_DateCreatedUtcInLocal) : (getLocalNotesByNoteIdVar.value.listOut.getCurrent(callContext.iterationContext).localNoteAttr.dateCreatedUtcAttr));
 rec.dateEditedUtcAttr = vars.value.in_DateEditedUtcInLocal;
+rec.notesTotalCountAttr = getLocalNotesByNoteIdVar.value.listOut.getCurrent(callContext.iterationContext).localNoteAttr.notesTotalCountAttr.add(OS.BuiltinFunctions.integerToLongInteger(1));
 return rec;
 }();
 return rec;
 }(), callContext).then(function (value) {
-createLocalNoteVar.value = value;
+createOrUpdateLocalNoteVar.value = value;
+});
 }).then(function () {
 OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:515Yy0Q22k+aaAduhlUFxA", callContext.id);
-// LocalNoteId = CreateLocalNote.Id
-outVars.value.localNoteIdOut = createLocalNoteVar.value.idOut;
+// LocalNoteId = CreateOrUpdateLocalNote.Id
+outVars.value.localNoteIdOut = createOrUpdateLocalNoteVar.value.idOut;
 OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:rG3X04T4OEKcKwi02WQ33A", callContext.id);
-});
-}
-
-});
 });
 }
 
@@ -182,7 +162,7 @@ throw ex;
 });
 };
 var controller = UBTConnect_Notes_MCSController.default;
-UBTConnect_Notes_MCSController.default.constructor.registerVariableGroupType("UBTConnect_Notes_MCS.CreateOrUpdate_LocalNote$vars", [{
+UBTConnect_Notes_MCSController.default.constructor.registerVariableGroupType("UBTConnect_Notes_MCS.Create_LocalNote$vars", [{
 name: "In_NoteId",
 attrName: "in_NoteIdInLocal",
 mandatory: true,
@@ -223,7 +203,7 @@ defaultValue: function () {
 return OS.DataTypes.DateTime.defaultValue;
 }
 }]);
-UBTConnect_Notes_MCSController.default.constructor.registerVariableGroupType("UBTConnect_Notes_MCS.CreateOrUpdate_LocalNote$outVars", [{
+UBTConnect_Notes_MCSController.default.constructor.registerVariableGroupType("UBTConnect_Notes_MCS.Create_LocalNote$outVars", [{
 name: "LocalNoteId",
 attrName: "localNoteIdOut",
 mandatory: false,
@@ -232,13 +212,13 @@ defaultValue: function () {
 return OS.DataTypes.LongInteger.defaultValue;
 }
 }]);
-UBTConnect_Notes_MCSController.default.clientActionProxies.createOrUpdate_LocalNote$Action = function (in_NoteIdIn, in_NoteCategoryIdIn, in_ItemIdIn, in_DateCreatedUtcIn, in_DateEditedUtcIn) {
+UBTConnect_Notes_MCSController.default.clientActionProxies.create_LocalNote$Action = function (in_NoteIdIn, in_NoteCategoryIdIn, in_ItemIdIn, in_DateCreatedUtcIn, in_DateEditedUtcIn) {
 in_NoteIdIn = (in_NoteIdIn === undefined) ? OS.DataTypes.LongInteger.defaultValue : in_NoteIdIn;
 in_NoteCategoryIdIn = (in_NoteCategoryIdIn === undefined) ? "" : in_NoteCategoryIdIn;
 in_ItemIdIn = (in_ItemIdIn === undefined) ? "" : in_ItemIdIn;
 in_DateCreatedUtcIn = (in_DateCreatedUtcIn === undefined) ? OS.DataTypes.DateTime.defaultValue : in_DateCreatedUtcIn;
 in_DateEditedUtcIn = (in_DateEditedUtcIn === undefined) ? OS.DataTypes.DateTime.defaultValue : in_DateEditedUtcIn;
-return controller.executeActionInsideJSNode(UBTConnect_Notes_MCSController.default.createOrUpdate_LocalNote$Action.bind(controller, OS.DataConversion.JSNodeParamConverter.from(in_NoteIdIn, OS.DataTypes.DataTypes.LongInteger), in_NoteCategoryIdIn, OS.DataConversion.JSNodeParamConverter.from(in_ItemIdIn, OS.DataTypes.DataTypes.Text), OS.DataConversion.JSNodeParamConverter.from(in_DateCreatedUtcIn, OS.DataTypes.DataTypes.DateTime), OS.DataConversion.JSNodeParamConverter.from(in_DateEditedUtcIn, OS.DataTypes.DataTypes.DateTime)), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
+return controller.executeActionInsideJSNode(UBTConnect_Notes_MCSController.default.create_LocalNote$Action.bind(controller, OS.DataConversion.JSNodeParamConverter.from(in_NoteIdIn, OS.DataTypes.DataTypes.LongInteger), in_NoteCategoryIdIn, OS.DataConversion.JSNodeParamConverter.from(in_ItemIdIn, OS.DataTypes.DataTypes.Text), OS.DataConversion.JSNodeParamConverter.from(in_DateCreatedUtcIn, OS.DataTypes.DataTypes.DateTime), OS.DataConversion.JSNodeParamConverter.from(in_DateEditedUtcIn, OS.DataTypes.DataTypes.DateTime)), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
 return {
 LocalNoteId: OS.DataConversion.JSNodeParamConverter.to(actionResults.localNoteIdOut, OS.DataTypes.DataTypes.LongInteger)
 };
@@ -246,105 +226,208 @@ LocalNoteId: OS.DataConversion.JSNodeParamConverter.to(actionResults.localNoteId
 };
 });
 
-define("UBTConnect_Notes_MCS.controller$Delete_LocalNoteById", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Notes_MCS.model", "UBTConnect_Notes_MCS.controller", "UBTConnect_Notes_MCS.entities", "UBTConnect_Notes_MCS.model$LocalNoteRec"], function (exports, OutSystems, UBTConnect_Notes_MCSModel, UBTConnect_Notes_MCSController, UBTConnect_Notes_MCSEntities) {
+define("UBTConnect_Notes_MCS.controller$Delete_LocalNote", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Notes_MCS.model", "UBTConnect_Notes_MCS.controller", "UBTConnect_Notes_MCS.entities", "UBTConnect_Notes_MCS.model$LocalNoteRecord", "UBTConnect_Notes_MCS.model$LocalNoteRec", "UBTConnect_Notes_MCS.model$LocalNoteRecordList"], function (exports, OutSystems, UBTConnect_Notes_MCSModel, UBTConnect_Notes_MCSController, UBTConnect_Notes_MCSEntities) {
 var OS = OutSystems.Internal;
-UBTConnect_Notes_MCSController.default.delete_LocalNoteById$Action = function (localNoteIdIn, callContext) {
+UBTConnect_Notes_MCSController.default.delete_LocalNote$Action = function (in_NoteCategoryIdIn, in_ItemIdIn, in_DateEditedUtcIn, callContext) {
 var varBag = {};
 callContext = controller.callContext(callContext);
-var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect_Notes_MCS.Delete_LocalNoteById$vars"))());
-vars.value.localNoteIdInLocal = localNoteIdIn;
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect_Notes_MCS.Delete_LocalNote$vars"))());
+vars.value.in_NoteCategoryIdInLocal = in_NoteCategoryIdIn;
+vars.value.in_ItemIdInLocal = in_ItemIdIn;
+vars.value.in_DateEditedUtcInLocal = in_DateEditedUtcIn;
+var getLocalNotesByNoteIdVar = new OS.DataTypes.VariableHolder(new (OS.Controller.BaseController.getAggregateOutputType(UBTConnect_Notes_MCSModel.LocalNoteRecordList))());
 varBag.callContext = callContext;
 varBag.vars = vars;
-OutSystemsDebugger.push("dIpz47XNREaC3+EImM4KrQ:imzk8DNww0SRzsqlBJOm_A:/ClientActionFlows.imzk8DNww0SRzsqlBJOm_A:MY3jjzY3LdauPRAGHejdBQ", "UBTConnect_Notes_MCS", "Delete_LocalNoteById", "NRFlows.ClientActionFlow", callContext.id, varBag);
-OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:8r16BelRvUqERbSLapyC0w", callContext.id);
+varBag.getLocalNotesByNoteIdVar = getLocalNotesByNoteIdVar;
+OutSystemsDebugger.push("dIpz47XNREaC3+EImM4KrQ:oWC9Xs6uOkmjS0Douuqhpw:/ClientActionFlows.oWC9Xs6uOkmjS0Douuqhpw:DmEC8PgidPwQGamH3kgphQ", "UBTConnect_Notes_MCS", "Delete_LocalNote", "NRFlows.ClientActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:5e_f4U6W6UmEbHU7QPWPZw", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
-OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:sDhTvySeN0SRw3UsDkENiQ", callContext.id);
+return OS.Flow.executeSequence(function () {
+if((OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:Y5Q4wH2mIUSHM+vYMxdpJQ", callContext.id) && (vars.value.in_NoteCategoryIdInLocal === OS.BuiltinFunctions.nullTextIdentifier()))) {
+OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:cGpG6JZXyE2QfBGp3Fy8jA", callContext.id);
+} else {
+OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:sudkVpKEYki1UkYNFxTCpg", callContext.id);
+// Aggregate: GetLocalNotesByNoteId
+var getLocalNotesByNoteIdAggr = function (maxRecords) {
+var executeQuery = null;
+if(OS.NativeHelper.isRunningOnNative()) {
+executeQuery = function () {
+var targetListType = UBTConnect_Notes_MCSModel.LocalNoteRecordList;
+var result = {
+list: null,
+count: OS.DataTypes.LongInteger.defaultValue
+};
+var countArgsList = new OS.Entities.QueryArgumentsList();
+if(!(maxRecords)) {
+maxRecords = 0;
+}
+
+var qpinUserId = OS.BuiltinFunctions.getUserId();
+var qpstItemId = vars.value.in_ItemIdInLocal;
+var qpstNoteCategoryId = vars.value.in_NoteCategoryIdInLocal;
+
+var optimizeSelect = false;
+var selectSql = "";
+var fromAndWhereSql = "";
+var groupByAndHavingSql = "";
+var orderBySql = "";
+var argsList = new OS.Entities.QueryArgumentsList();
+
+selectSql += "SELECT ";
+if (optimizeSelect) {
+selectSql += "\"ENLocalNote\".\"Id\" o0, \"ENLocalNote\".\"UserId\" o1, \"ENLocalNote\".\"NoteId\" o2, \"ENLocalNote\".\"NoteCategoryId\" o3, \"ENLocalNote\".\"ItemId\" o4, \"ENLocalNote\".\"DateCreatedUtc\" o5, NULL o6, \"ENLocalNote\".\"NotesTotalCount\" o7";
+} else {
+selectSql += "\"ENLocalNote\".\"Id\" o0, \"ENLocalNote\".\"UserId\" o1, \"ENLocalNote\".\"NoteId\" o2, \"ENLocalNote\".\"NoteCategoryId\" o3, \"ENLocalNote\".\"ItemId\" o4, \"ENLocalNote\".\"DateCreatedUtc\" o5, \"ENLocalNote\".\"DateEditedUtc\" o6, \"ENLocalNote\".\"NotesTotalCount\" o7";
+}
+fromAndWhereSql += " FROM \"MAIN\".\"OSUSR_18u_LocalNote\" \"ENLocalNote\"";
+fromAndWhereSql += " WHERE ";
+if (qpinUserId != 0) {
+fromAndWhereSql += "((\"ENLocalNote\".\"UserId\" = :qpinUserId) AND (\"ENLocalNote\".\"UserId\" IS NOT NULL))";
+argsList.add("qpinUserId", /*INTEGER*/ 3, qpinUserId);
+} else {
+fromAndWhereSql += "(\"ENLocalNote\".\"UserId\" IS NULL)";
+}
+fromAndWhereSql += " AND ";
+if (((qpstNoteCategoryId.trim()) !== (""))) {
+fromAndWhereSql += "((\"ENLocalNote\".\"NoteCategoryId\" = :qpstNoteCategoryId) AND (\"ENLocalNote\".\"NoteCategoryId\" IS NOT NULL))";
+argsList.add("qpstNoteCategoryId", /*TEXT*/ 0, qpstNoteCategoryId);
+} else {
+fromAndWhereSql += "(\"ENLocalNote\".\"NoteCategoryId\" IS NULL)";
+}
+fromAndWhereSql += " AND (\"ENLocalNote\".\"ItemId\" = :qpstItemId)";
+argsList.add("qpstItemId", /*TEXT*/ 0, qpstItemId);
+if (maxRecords > 0) {
+orderBySql += " LIMIT ";
+orderBySql += maxRecords;
+}
+var sql = selectSql + fromAndWhereSql + groupByAndHavingSql + orderBySql;
+
+return OS.Entities.webSQLStorageInstance.executeQuery(sql, UBTConnect_Notes_MCSModel.LocalNoteRecordList, function (rec, r) {
+var indexRef = {
+value: 0
+};
+var attrOrder = [
+"localNoteAttr",
+];
+return OS.DataConversion.LocalStorageConverter.from(r, targetListType.getItemType(), indexRef, attrOrder);
+
+}, argsList).then(function (resultList) {
+result.list = resultList;
+}).then(function () {
+}).then(function () {
+return result;
+});
+};
+} else {
+executeQuery = function () {
+if(!(maxRecords)) {
+maxRecords = 0;
+}
+
+return new Promise(function (resolve, reject) {
+require(["UBTConnect_Notes_MCS.aggregates.IDB"], function (UBTConnect_Notes_MCSAggregates_IDB) {
+return UBTConnect_Notes_MCSAggregates_IDB.executeDeleteLocalNote$ClientAction$getLocalNotesByNoteIdAggr(OS.BuiltinFunctions.getUserId(), vars.value.in_ItemIdInLocal, vars.value.in_NoteCategoryIdInLocal, maxRecords).then(function (result) {
+resolve(result);
+}).catch(function (e) {
+reject(e);
+});
+});
+});
+};
+}
+
+return controller.executeClientAggregate(executeQuery, function () {
+return getLocalNotesByNoteIdVar.value;
+});
+};
+return getLocalNotesByNoteIdAggr().then(function () {
+// Exists?
+return OS.Flow.executeSequence(function () {
+if((OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:fZS3911otEOShckcgAZe6w", callContext.id) && !(getLocalNotesByNoteIdVar.value.listOut.isEmpty))) {
+return OS.Flow.executeSequence(function () {
+if((OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:opHfU7eA0Ua958WW+VcWVw", callContext.id) && getLocalNotesByNoteIdVar.value.listOut.getCurrent(callContext.iterationContext).localNoteAttr.notesTotalCountAttr.lte(OS.BuiltinFunctions.integerToLongInteger(1)))) {
+OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:nm6vhpe48ECn5mI1W4vxMA", callContext.id);
 // Execute Action: DeleteLocalNote
-return UBTConnect_Notes_MCSModel.entities.LocalNote.delete(vars.value.localNoteIdInLocal, callContext).then(function () {
-OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:ZjPqDUv3gEe0YVJBH9CX5Q", callContext.id);
+return UBTConnect_Notes_MCSModel.entities.LocalNote.delete(getLocalNotesByNoteIdVar.value.listOut.getCurrent(callContext.iterationContext).localNoteAttr.idAttr, callContext).then(function () {
+OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:ICmaoJZ5dk+tp2vjTc5w5g", callContext.id);
+});
+} else {
+OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:+Af2aIaUpUmr+0h91sUTTA", callContext.id);
+// Execute Action: UpdateLocalNote
+return UBTConnect_Notes_MCSModel.entities.LocalNote.update(function () {
+var rec = new UBTConnect_Notes_MCSModel.LocalNoteRecord();
+rec.localNoteAttr = function () {
+var rec = new UBTConnect_Notes_MCSModel.LocalNoteRec();
+rec.idAttr = getLocalNotesByNoteIdVar.value.listOut.getCurrent(callContext.iterationContext).localNoteAttr.idAttr;
+rec.userIdAttr = getLocalNotesByNoteIdVar.value.listOut.getCurrent(callContext.iterationContext).localNoteAttr.userIdAttr;
+rec.noteIdAttr = getLocalNotesByNoteIdVar.value.listOut.getCurrent(callContext.iterationContext).localNoteAttr.noteIdAttr;
+rec.noteCategoryIdAttr = getLocalNotesByNoteIdVar.value.listOut.getCurrent(callContext.iterationContext).localNoteAttr.noteCategoryIdAttr;
+rec.itemIdAttr = getLocalNotesByNoteIdVar.value.listOut.getCurrent(callContext.iterationContext).localNoteAttr.itemIdAttr;
+rec.dateCreatedUtcAttr = getLocalNotesByNoteIdVar.value.listOut.getCurrent(callContext.iterationContext).localNoteAttr.dateCreatedUtcAttr;
+rec.dateEditedUtcAttr = vars.value.in_DateEditedUtcInLocal;
+rec.notesTotalCountAttr = getLocalNotesByNoteIdVar.value.listOut.getCurrent(callContext.iterationContext).localNoteAttr.notesTotalCountAttr.sub(OS.BuiltinFunctions.integerToLongInteger(1));
+return rec;
+}();
+return rec;
+}(), callContext).then(function () {
+OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:cOeOoY61UU+_5JrBMPLGiw", callContext.id);
+});
+}
+
+});
+} else {
+OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:aVnL_v+Vgk+Ozzq6gzDPJQ", callContext.id);
+}
+
+});
+});
+}
+
 });
 }).then(function () {
 return ;
 }).then(function (res) {
-OutSystemsDebugger.pop("dIpz47XNREaC3+EImM4KrQ:imzk8DNww0SRzsqlBJOm_A", callContext.id);
+OutSystemsDebugger.pop("dIpz47XNREaC3+EImM4KrQ:oWC9Xs6uOkmjS0Douuqhpw", callContext.id);
 return res;
 
 }).catch(function (ex) {
 OutSystemsDebugger.handleException(ex, callContext.id);
-OutSystemsDebugger.pop("dIpz47XNREaC3+EImM4KrQ:imzk8DNww0SRzsqlBJOm_A", callContext.id);
+OutSystemsDebugger.pop("dIpz47XNREaC3+EImM4KrQ:oWC9Xs6uOkmjS0Douuqhpw", callContext.id);
 throw ex;
 
 });
 };
 var controller = UBTConnect_Notes_MCSController.default;
-UBTConnect_Notes_MCSController.default.constructor.registerVariableGroupType("UBTConnect_Notes_MCS.Delete_LocalNoteById$vars", [{
-name: "LocalNoteId",
-attrName: "localNoteIdInLocal",
+UBTConnect_Notes_MCSController.default.constructor.registerVariableGroupType("UBTConnect_Notes_MCS.Delete_LocalNote$vars", [{
+name: "In_NoteCategoryId",
+attrName: "in_NoteCategoryIdInLocal",
 mandatory: true,
-dataType: OS.DataTypes.DataTypes.LongInteger,
+dataType: OS.DataTypes.DataTypes.Text,
 defaultValue: function () {
-return OS.DataTypes.LongInteger.defaultValue;
+return "";
+}
+}, {
+name: "In_ItemId",
+attrName: "in_ItemIdInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Text,
+defaultValue: function () {
+return "";
+}
+}, {
+name: "In_DateEditedUtc",
+attrName: "in_DateEditedUtcInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.DateTime,
+defaultValue: function () {
+return OS.DataTypes.DateTime.defaultValue;
 }
 }]);
-UBTConnect_Notes_MCSController.default.clientActionProxies.delete_LocalNoteById$Action = function (localNoteIdIn) {
-localNoteIdIn = (localNoteIdIn === undefined) ? OS.DataTypes.LongInteger.defaultValue : localNoteIdIn;
-return controller.executeActionInsideJSNode(UBTConnect_Notes_MCSController.default.delete_LocalNoteById$Action.bind(controller, localNoteIdIn), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
-return {};
-});
-};
-});
-
-define("UBTConnect_Notes_MCS.controller$Delete_LocalNoteByNoteId", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Notes_MCS.model", "UBTConnect_Notes_MCS.controller", "UBTConnect_Notes_MCS.controller$Delete_LocalNoteById", "UBTConnect_Notes_MCS.model$LocalNoteRec", "UBTConnect_Notes_MCS.controller$Get_LocalNoteByNoteId"], function (exports, OutSystems, UBTConnect_Notes_MCSModel, UBTConnect_Notes_MCSController) {
-var OS = OutSystems.Internal;
-UBTConnect_Notes_MCSController.default.delete_LocalNoteByNoteId$Action = function (noteIdIn, callContext) {
-var varBag = {};
-callContext = controller.callContext(callContext);
-var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect_Notes_MCS.Delete_LocalNoteByNoteId$vars"))());
-vars.value.noteIdInLocal = noteIdIn;
-var get_LocalNoteByNoteIdVar = new OS.DataTypes.VariableHolder();
-varBag.callContext = callContext;
-varBag.vars = vars;
-varBag.get_LocalNoteByNoteIdVar = get_LocalNoteByNoteIdVar;
-OutSystemsDebugger.push("dIpz47XNREaC3+EImM4KrQ:okgY+PJ_SkiVxbPc8UR7Ng:/ClientActionFlows.okgY+PJ_SkiVxbPc8UR7Ng:LGA25udfEdtCCYQMvspSRA", "UBTConnect_Notes_MCS", "Delete_LocalNoteByNoteId", "NRFlows.ClientActionFlow", callContext.id, varBag);
-OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:pLvucykZ4kKcy8eAfYGzNA", callContext.id);
-return OS.Flow.executeAsyncFlow(function () {
-OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:zBrNwXsWpUCgIa3z_9WKXA", callContext.id);
-// Execute Action: Get_LocalNoteByNoteId
-return UBTConnect_Notes_MCSController.default.get_LocalNoteByNoteId$Action(vars.value.noteIdInLocal, callContext).then(function (value) {
-get_LocalNoteByNoteIdVar.value = value;
-}).then(function () {
-OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:5UcBqJWXJUakQSduxnvwgA", callContext.id);
-// Execute Action: Delete_LocalNoteById
-return UBTConnect_Notes_MCSController.default.delete_LocalNoteById$Action(get_LocalNoteByNoteIdVar.value.localNoteOut.idAttr, callContext);
-}).then(function () {
-OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:BH1XUBKtqkuAuahIflxBAg", callContext.id);
-});
-}).then(function () {
-return ;
-}).then(function (res) {
-OutSystemsDebugger.pop("dIpz47XNREaC3+EImM4KrQ:okgY+PJ_SkiVxbPc8UR7Ng", callContext.id);
-return res;
-
-}).catch(function (ex) {
-OutSystemsDebugger.handleException(ex, callContext.id);
-OutSystemsDebugger.pop("dIpz47XNREaC3+EImM4KrQ:okgY+PJ_SkiVxbPc8UR7Ng", callContext.id);
-throw ex;
-
-});
-};
-var controller = UBTConnect_Notes_MCSController.default;
-UBTConnect_Notes_MCSController.default.constructor.registerVariableGroupType("UBTConnect_Notes_MCS.Delete_LocalNoteByNoteId$vars", [{
-name: "NoteId",
-attrName: "noteIdInLocal",
-mandatory: true,
-dataType: OS.DataTypes.DataTypes.LongInteger,
-defaultValue: function () {
-return OS.DataTypes.LongInteger.defaultValue;
-}
-}]);
-UBTConnect_Notes_MCSController.default.clientActionProxies.delete_LocalNoteByNoteId$Action = function (noteIdIn) {
-noteIdIn = (noteIdIn === undefined) ? OS.DataTypes.LongInteger.defaultValue : noteIdIn;
-return controller.executeActionInsideJSNode(UBTConnect_Notes_MCSController.default.delete_LocalNoteByNoteId$Action.bind(controller, OS.DataConversion.JSNodeParamConverter.from(noteIdIn, OS.DataTypes.DataTypes.LongInteger)), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
+UBTConnect_Notes_MCSController.default.clientActionProxies.delete_LocalNote$Action = function (in_NoteCategoryIdIn, in_ItemIdIn, in_DateEditedUtcIn) {
+in_NoteCategoryIdIn = (in_NoteCategoryIdIn === undefined) ? "" : in_NoteCategoryIdIn;
+in_ItemIdIn = (in_ItemIdIn === undefined) ? "" : in_ItemIdIn;
+in_DateEditedUtcIn = (in_DateEditedUtcIn === undefined) ? OS.DataTypes.DateTime.defaultValue : in_DateEditedUtcIn;
+return controller.executeActionInsideJSNode(UBTConnect_Notes_MCSController.default.delete_LocalNote$Action.bind(controller, in_NoteCategoryIdIn, OS.DataConversion.JSNodeParamConverter.from(in_ItemIdIn, OS.DataTypes.DataTypes.Text), OS.DataConversion.JSNodeParamConverter.from(in_DateEditedUtcIn, OS.DataTypes.DataTypes.DateTime)), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
 return {};
 });
 };
@@ -363,7 +446,7 @@ varBag.callContext = callContext;
 varBag.vars = vars;
 varBag.getLocalNotesByNoteIdVar = getLocalNotesByNoteIdVar;
 varBag.outVars = outVars;
-OutSystemsDebugger.push("dIpz47XNREaC3+EImM4KrQ:OjubQbudY0OcHzLRoAjMNQ:/ClientActionFlows.OjubQbudY0OcHzLRoAjMNQ:iAFJqvsK3Trz0+KvGegH1Q", "UBTConnect_Notes_MCS", "Get_LocalNoteByNoteId", "NRFlows.ClientActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("dIpz47XNREaC3+EImM4KrQ:OjubQbudY0OcHzLRoAjMNQ:/ClientActionFlows.OjubQbudY0OcHzLRoAjMNQ:nPcQwrhXx0JdEYFdT1C1yw", "UBTConnect_Notes_MCS", "Get_LocalNoteByNoteId", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:9Dw010joNEeG3S9JY2mf5w", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:FEzOOF5NCU2aHJLGHOf_wg", callContext.id);
@@ -394,9 +477,9 @@ var argsList = new OS.Entities.QueryArgumentsList();
 
 selectSql += "SELECT ";
 if (optimizeSelect) {
-selectSql += "\"ENLocalNote\".\"Id\" o0, \"ENLocalNote\".\"UserId\" o1, \"ENLocalNote\".\"NoteId\" o2, \"ENLocalNote\".\"NoteCategoryId\" o3, \"ENLocalNote\".\"ItemId\" o4, \"ENLocalNote\".\"DateCreatedUtc\" o5, \"ENLocalNote\".\"DateEditedUtc\" o6";
+selectSql += "\"ENLocalNote\".\"Id\" o0, \"ENLocalNote\".\"UserId\" o1, \"ENLocalNote\".\"NoteId\" o2, \"ENLocalNote\".\"NoteCategoryId\" o3, \"ENLocalNote\".\"ItemId\" o4, \"ENLocalNote\".\"DateCreatedUtc\" o5, \"ENLocalNote\".\"DateEditedUtc\" o6, \"ENLocalNote\".\"NotesTotalCount\" o7";
 } else {
-selectSql += "\"ENLocalNote\".\"Id\" o0, \"ENLocalNote\".\"UserId\" o1, \"ENLocalNote\".\"NoteId\" o2, \"ENLocalNote\".\"NoteCategoryId\" o3, \"ENLocalNote\".\"ItemId\" o4, \"ENLocalNote\".\"DateCreatedUtc\" o5, \"ENLocalNote\".\"DateEditedUtc\" o6";
+selectSql += "\"ENLocalNote\".\"Id\" o0, \"ENLocalNote\".\"UserId\" o1, \"ENLocalNote\".\"NoteId\" o2, \"ENLocalNote\".\"NoteCategoryId\" o3, \"ENLocalNote\".\"ItemId\" o4, \"ENLocalNote\".\"DateCreatedUtc\" o5, \"ENLocalNote\".\"DateEditedUtc\" o6, \"ENLocalNote\".\"NotesTotalCount\" o7";
 }
 fromAndWhereSql += " FROM \"MAIN\".\"OSUSR_18u_LocalNote\" \"ENLocalNote\"";
 fromAndWhereSql += " WHERE ";
@@ -511,7 +594,7 @@ var outVars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVar
 varBag.callContext = callContext;
 varBag.getLocalNotesByUserIdVar = getLocalNotesByUserIdVar;
 varBag.outVars = outVars;
-OutSystemsDebugger.push("dIpz47XNREaC3+EImM4KrQ:VxdnHdSuYEaiZY8A7OLgOQ:/ClientActionFlows.VxdnHdSuYEaiZY8A7OLgOQ:xBczw2dxooRv+6PC9VnxOA", "UBTConnect_Notes_MCS", "Get_Note_DynamicFilter_YearOptions", "NRFlows.ClientActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("dIpz47XNREaC3+EImM4KrQ:VxdnHdSuYEaiZY8A7OLgOQ:/ClientActionFlows.VxdnHdSuYEaiZY8A7OLgOQ:2UP1xCLu5FbU_MM0+v1bGg", "UBTConnect_Notes_MCS", "Get_Note_DynamicFilter_YearOptions", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:mEG+JoAVq0u1FeqoG+s_JA", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:YXKE_O4QbE6E2wiL9NSEug", callContext.id);
@@ -640,19 +723,19 @@ Years: actionResults.yearsOut
 };
 });
 
-define("UBTConnect_Notes_MCS.controller$Get_Note_DynamicPills", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Notes_MCS.model", "UBTConnect_Notes_MCS.controller", "UBTConnect_Notes_MCS.entities", "UBTConnect_Notes_MCS.model$DynamicPillList", "UBTConnect_Notes_MCS.controller$ServerAction.Get_NotePills_ByNoteCategoryIds", "UBTConnect_Notes_MCS.model$NoteCategoryIdentifierRecordList", "UBTConnect_Notes_MCS.model$LocalNoteRec"], function (exports, OutSystems, UBTConnect_Notes_MCSModel, UBTConnect_Notes_MCSController, UBTConnect_Notes_MCSEntities) {
+define("UBTConnect_Notes_MCS.controller$Get_Note_DynamicPills", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Notes_MCS.model", "UBTConnect_Notes_MCS.controller", "UBTConnect_Notes_MCS.entities", "UBTConnect_Notes_MCS.model$DynamicPillList", "UBTConnect_Notes_MCS.controller$ServerAction.Get_NotePills_ByNoteCategoryIds", "UBTConnect_Notes_MCS.model$LongIntegerNoteCategoryIdentifierRecordList", "UBTConnect_Notes_MCS.model$LocalNoteRec"], function (exports, OutSystems, UBTConnect_Notes_MCSModel, UBTConnect_Notes_MCSController, UBTConnect_Notes_MCSEntities) {
 var OS = OutSystems.Internal;
 UBTConnect_Notes_MCSController.default.get_Note_DynamicPills$Action = function (callContext) {
 var varBag = {};
 callContext = controller.callContext(callContext);
 var get_NotePills_ByNoteCategoryIdsVar = new OS.DataTypes.VariableHolder();
-var getLocalNotesCategoryIds_ByUserIdVar = new OS.DataTypes.VariableHolder(new (OS.Controller.BaseController.getAggregateOutputType(UBTConnect_Notes_MCSModel.NoteCategoryIdentifierRecordList))());
+var getLocalNotesCategoryIds_ByUserIdVar = new OS.DataTypes.VariableHolder(new (OS.Controller.BaseController.getAggregateOutputType(UBTConnect_Notes_MCSModel.LongIntegerNoteCategoryIdentifierRecordList))());
 var outVars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect_Notes_MCS.Get_Note_DynamicPills$outVars"))());
 varBag.callContext = callContext;
 varBag.get_NotePills_ByNoteCategoryIdsVar = get_NotePills_ByNoteCategoryIdsVar;
 varBag.getLocalNotesCategoryIds_ByUserIdVar = getLocalNotesCategoryIds_ByUserIdVar;
 varBag.outVars = outVars;
-OutSystemsDebugger.push("dIpz47XNREaC3+EImM4KrQ:yDn5Kp3Ff0ScZeedsCGM7g:/ClientActionFlows.yDn5Kp3Ff0ScZeedsCGM7g:X5TKrTVv_YP3SelOYHas7w", "UBTConnect_Notes_MCS", "Get_Note_DynamicPills", "NRFlows.ClientActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("dIpz47XNREaC3+EImM4KrQ:yDn5Kp3Ff0ScZeedsCGM7g:/ClientActionFlows.yDn5Kp3Ff0ScZeedsCGM7g:VF3Ezo6Iy5AXxV7Ao0rNzQ", "UBTConnect_Notes_MCS", "Get_Note_DynamicPills", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:G_c84UudIU29H67rjmBJQA", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:hlDFgg58mk2BMrH2HmDDog", callContext.id);
@@ -661,7 +744,7 @@ var getLocalNotesCategoryIds_ByUserIdAggr = function (maxRecords) {
 var executeQuery = null;
 if(OS.NativeHelper.isRunningOnNative()) {
 executeQuery = function () {
-var targetListType = UBTConnect_Notes_MCSModel.NoteCategoryIdentifierRecordList;
+var targetListType = UBTConnect_Notes_MCSModel.LongIntegerNoteCategoryIdentifierRecordList;
 var result = {
 list: null,
 count: OS.DataTypes.LongInteger.defaultValue
@@ -682,9 +765,9 @@ var argsList = new OS.Entities.QueryArgumentsList();
 
 selectSql += "SELECT ";
 if (optimizeSelect) {
-selectSql += "\"ENLocalNote\".\"NoteCategoryId\" \"NoteCategoryId\"";
+selectSql += "\"ENLocalNote\".\"NoteCategoryId\" \"NoteCategoryId\", Sum(\"ENLocalNote\".\"NotesTotalCount\") \"NotesTotalCountSum\"";
 } else {
-selectSql += "\"ENLocalNote\".\"NoteCategoryId\" \"NoteCategoryId\"";
+selectSql += "\"ENLocalNote\".\"NoteCategoryId\" \"NoteCategoryId\", Sum(\"ENLocalNote\".\"NotesTotalCount\") \"NotesTotalCountSum\"";
 }
 fromAndWhereSql += " FROM \"MAIN\".\"OSUSR_18u_LocalNote\" \"ENLocalNote\"";
 fromAndWhereSql += " WHERE ";
@@ -696,18 +779,24 @@ fromAndWhereSql += "(\"ENLocalNote\".\"UserId\" IS NULL)";
 }
 fromAndWhereSql += " AND (\"ENLocalNote\".\"NoteCategoryId\" IS NOT NULL)";
 groupByAndHavingSql += " GROUP BY \"ENLocalNote\".\"NoteCategoryId\"";
+orderBySql += " ORDER BY ";
+var orderByColumns = [];
+orderByColumns.push("\"NotesTotalCountSum\" DESC ");
+orderByColumns.push("\"NoteCategoryId\" ASC ");
+orderBySql += OS.Entities.webSQLStorageInstance.getOrderByColumnsWithoutDuplicates(orderByColumns);
 if (maxRecords > 0) {
 orderBySql += " LIMIT ";
 orderBySql += maxRecords;
 }
 var sql = selectSql + fromAndWhereSql + groupByAndHavingSql + orderBySql;
 
-return OS.Entities.webSQLStorageInstance.executeQuery(sql, UBTConnect_Notes_MCSModel.NoteCategoryIdentifierRecordList, function (rec, r) {
+return OS.Entities.webSQLStorageInstance.executeQuery(sql, UBTConnect_Notes_MCSModel.LongIntegerNoteCategoryIdentifierRecordList, function (rec, r) {
 var indexRef = {
 value: 0
 };
 var attrOrder = [
 "noteCategoryIdAttr",
+"notesTotalCountSumAttr",
 ];
 return OS.DataConversion.LocalStorageConverter.from(r, targetListType.getItemType(), indexRef, attrOrder);
 
@@ -844,6 +933,218 @@ return {};
 };
 });
 
+define("UBTConnect_Notes_MCS.controller$Update_LocalNote", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Notes_MCS.model", "UBTConnect_Notes_MCS.controller", "UBTConnect_Notes_MCS.entities", "UBTConnect_Notes_MCS.model$LocalNoteRecord", "UBTConnect_Notes_MCS.model$LocalNoteRec", "UBTConnect_Notes_MCS.model$LocalNoteRecordList"], function (exports, OutSystems, UBTConnect_Notes_MCSModel, UBTConnect_Notes_MCSController, UBTConnect_Notes_MCSEntities) {
+var OS = OutSystems.Internal;
+UBTConnect_Notes_MCSController.default.update_LocalNote$Action = function (in_NoteCategoryIdIn, in_ItemIdIn, in_DateEditedUtcIn, callContext) {
+var varBag = {};
+callContext = controller.callContext(callContext);
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect_Notes_MCS.Update_LocalNote$vars"))());
+vars.value.in_NoteCategoryIdInLocal = in_NoteCategoryIdIn;
+vars.value.in_ItemIdInLocal = in_ItemIdIn;
+vars.value.in_DateEditedUtcInLocal = in_DateEditedUtcIn;
+var getLocalNotesByNoteIdVar = new OS.DataTypes.VariableHolder(new (OS.Controller.BaseController.getAggregateOutputType(UBTConnect_Notes_MCSModel.LocalNoteRecordList))());
+var outVars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect_Notes_MCS.Update_LocalNote$outVars"))());
+varBag.callContext = callContext;
+varBag.vars = vars;
+varBag.getLocalNotesByNoteIdVar = getLocalNotesByNoteIdVar;
+varBag.outVars = outVars;
+OutSystemsDebugger.push("dIpz47XNREaC3+EImM4KrQ:E6P+D_dCHk+_UitdxnQUNw:/ClientActionFlows.E6P+D_dCHk+_UitdxnQUNw:V80yn5CyTR+ym3LJqBtxuw", "UBTConnect_Notes_MCS", "Update_LocalNote", "NRFlows.ClientActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:ljjsHKjOGUCpXPaulKx3iA", callContext.id);
+return OS.Flow.executeAsyncFlow(function () {
+return OS.Flow.executeSequence(function () {
+if((OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:CCiqrnCHykSDXfbI_W0C9Q", callContext.id) && (vars.value.in_NoteCategoryIdInLocal === OS.BuiltinFunctions.nullTextIdentifier()))) {
+OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:lwqIBuOyn0eZnLHDFgQ5MA", callContext.id);
+} else {
+OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:VRtcZZEhy0ugBEJADLAugw", callContext.id);
+// Aggregate: GetLocalNotesByNoteId
+var getLocalNotesByNoteIdAggr = function (maxRecords) {
+var executeQuery = null;
+if(OS.NativeHelper.isRunningOnNative()) {
+executeQuery = function () {
+var targetListType = UBTConnect_Notes_MCSModel.LocalNoteRecordList;
+var result = {
+list: null,
+count: OS.DataTypes.LongInteger.defaultValue
+};
+var countArgsList = new OS.Entities.QueryArgumentsList();
+if(!(maxRecords)) {
+maxRecords = 0;
+}
+
+var qpinUserId = OS.BuiltinFunctions.getUserId();
+var qpstItemId = vars.value.in_ItemIdInLocal;
+var qpstNoteCategoryId = vars.value.in_NoteCategoryIdInLocal;
+
+var optimizeSelect = false;
+var selectSql = "";
+var fromAndWhereSql = "";
+var groupByAndHavingSql = "";
+var orderBySql = "";
+var argsList = new OS.Entities.QueryArgumentsList();
+
+selectSql += "SELECT ";
+if (optimizeSelect) {
+selectSql += "\"ENLocalNote\".\"Id\" o0, \"ENLocalNote\".\"UserId\" o1, \"ENLocalNote\".\"NoteId\" o2, \"ENLocalNote\".\"NoteCategoryId\" o3, \"ENLocalNote\".\"ItemId\" o4, \"ENLocalNote\".\"DateCreatedUtc\" o5, NULL o6, \"ENLocalNote\".\"NotesTotalCount\" o7";
+} else {
+selectSql += "\"ENLocalNote\".\"Id\" o0, \"ENLocalNote\".\"UserId\" o1, \"ENLocalNote\".\"NoteId\" o2, \"ENLocalNote\".\"NoteCategoryId\" o3, \"ENLocalNote\".\"ItemId\" o4, \"ENLocalNote\".\"DateCreatedUtc\" o5, \"ENLocalNote\".\"DateEditedUtc\" o6, \"ENLocalNote\".\"NotesTotalCount\" o7";
+}
+fromAndWhereSql += " FROM \"MAIN\".\"OSUSR_18u_LocalNote\" \"ENLocalNote\"";
+fromAndWhereSql += " WHERE ";
+if (qpinUserId != 0) {
+fromAndWhereSql += "((\"ENLocalNote\".\"UserId\" = :qpinUserId) AND (\"ENLocalNote\".\"UserId\" IS NOT NULL))";
+argsList.add("qpinUserId", /*INTEGER*/ 3, qpinUserId);
+} else {
+fromAndWhereSql += "(\"ENLocalNote\".\"UserId\" IS NULL)";
+}
+fromAndWhereSql += " AND ";
+if (((qpstNoteCategoryId.trim()) !== (""))) {
+fromAndWhereSql += "((\"ENLocalNote\".\"NoteCategoryId\" = :qpstNoteCategoryId) AND (\"ENLocalNote\".\"NoteCategoryId\" IS NOT NULL))";
+argsList.add("qpstNoteCategoryId", /*TEXT*/ 0, qpstNoteCategoryId);
+} else {
+fromAndWhereSql += "(\"ENLocalNote\".\"NoteCategoryId\" IS NULL)";
+}
+fromAndWhereSql += " AND (\"ENLocalNote\".\"ItemId\" = :qpstItemId)";
+argsList.add("qpstItemId", /*TEXT*/ 0, qpstItemId);
+if (maxRecords > 0) {
+orderBySql += " LIMIT ";
+orderBySql += maxRecords;
+}
+var sql = selectSql + fromAndWhereSql + groupByAndHavingSql + orderBySql;
+
+return OS.Entities.webSQLStorageInstance.executeQuery(sql, UBTConnect_Notes_MCSModel.LocalNoteRecordList, function (rec, r) {
+var indexRef = {
+value: 0
+};
+var attrOrder = [
+"localNoteAttr",
+];
+return OS.DataConversion.LocalStorageConverter.from(r, targetListType.getItemType(), indexRef, attrOrder);
+
+}, argsList).then(function (resultList) {
+result.list = resultList;
+}).then(function () {
+}).then(function () {
+return result;
+});
+};
+} else {
+executeQuery = function () {
+if(!(maxRecords)) {
+maxRecords = 0;
+}
+
+return new Promise(function (resolve, reject) {
+require(["UBTConnect_Notes_MCS.aggregates.IDB"], function (UBTConnect_Notes_MCSAggregates_IDB) {
+return UBTConnect_Notes_MCSAggregates_IDB.executeUpdateLocalNote$ClientAction$getLocalNotesByNoteIdAggr(OS.BuiltinFunctions.getUserId(), vars.value.in_ItemIdInLocal, vars.value.in_NoteCategoryIdInLocal, maxRecords).then(function (result) {
+resolve(result);
+}).catch(function (e) {
+reject(e);
+});
+});
+});
+};
+}
+
+return controller.executeClientAggregate(executeQuery, function () {
+return getLocalNotesByNoteIdVar.value;
+});
+};
+return getLocalNotesByNoteIdAggr().then(function () {
+// Exists?
+return OS.Flow.executeSequence(function () {
+if((OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:CQRzJKQGdkKLQor9wF+wLQ", callContext.id) && !(getLocalNotesByNoteIdVar.value.listOut.isEmpty))) {
+OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:dmvh2BvluUeUWdljHmYB3g", callContext.id);
+// Execute Action: UpdateLocalNote
+return UBTConnect_Notes_MCSModel.entities.LocalNote.update(function () {
+var rec = new UBTConnect_Notes_MCSModel.LocalNoteRecord();
+rec.localNoteAttr = function () {
+var rec = new UBTConnect_Notes_MCSModel.LocalNoteRec();
+rec.idAttr = getLocalNotesByNoteIdVar.value.listOut.getCurrent(callContext.iterationContext).localNoteAttr.idAttr;
+rec.userIdAttr = getLocalNotesByNoteIdVar.value.listOut.getCurrent(callContext.iterationContext).localNoteAttr.userIdAttr;
+rec.noteIdAttr = getLocalNotesByNoteIdVar.value.listOut.getCurrent(callContext.iterationContext).localNoteAttr.noteIdAttr;
+rec.noteCategoryIdAttr = getLocalNotesByNoteIdVar.value.listOut.getCurrent(callContext.iterationContext).localNoteAttr.noteCategoryIdAttr;
+rec.itemIdAttr = getLocalNotesByNoteIdVar.value.listOut.getCurrent(callContext.iterationContext).localNoteAttr.itemIdAttr;
+rec.dateCreatedUtcAttr = getLocalNotesByNoteIdVar.value.listOut.getCurrent(callContext.iterationContext).localNoteAttr.dateCreatedUtcAttr;
+rec.dateEditedUtcAttr = vars.value.in_DateEditedUtcInLocal;
+rec.notesTotalCountAttr = getLocalNotesByNoteIdVar.value.listOut.getCurrent(callContext.iterationContext).localNoteAttr.notesTotalCountAttr;
+return rec;
+}();
+return rec;
+}(), callContext).then(function () {
+OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:BOjhMVg+akGa8_gQmUMUwg", callContext.id);
+// LocalNoteId = GetLocalNotesByNoteId.List.Current.LocalNote.Id
+outVars.value.localNoteIdOut = getLocalNotesByNoteIdVar.value.listOut.getCurrent(callContext.iterationContext).localNoteAttr.idAttr;
+OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:f7GPV4YuMUy15xy9EtmlPQ", callContext.id);
+});
+} else {
+OutSystemsDebugger.handleBreakpoint("dIpz47XNREaC3+EImM4KrQ:f_FaTlEDXUGJ1WQ9t0WWmA", callContext.id);
+}
+
+});
+});
+}
+
+});
+}).then(function () {
+return outVars.value;
+}).then(function (res) {
+OutSystemsDebugger.pop("dIpz47XNREaC3+EImM4KrQ:E6P+D_dCHk+_UitdxnQUNw", callContext.id);
+return res;
+
+}).catch(function (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+OutSystemsDebugger.pop("dIpz47XNREaC3+EImM4KrQ:E6P+D_dCHk+_UitdxnQUNw", callContext.id);
+throw ex;
+
+});
+};
+var controller = UBTConnect_Notes_MCSController.default;
+UBTConnect_Notes_MCSController.default.constructor.registerVariableGroupType("UBTConnect_Notes_MCS.Update_LocalNote$vars", [{
+name: "In_NoteCategoryId",
+attrName: "in_NoteCategoryIdInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Text,
+defaultValue: function () {
+return "";
+}
+}, {
+name: "In_ItemId",
+attrName: "in_ItemIdInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Text,
+defaultValue: function () {
+return "";
+}
+}, {
+name: "In_DateEditedUtc",
+attrName: "in_DateEditedUtcInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.DateTime,
+defaultValue: function () {
+return OS.DataTypes.DateTime.defaultValue;
+}
+}]);
+UBTConnect_Notes_MCSController.default.constructor.registerVariableGroupType("UBTConnect_Notes_MCS.Update_LocalNote$outVars", [{
+name: "LocalNoteId",
+attrName: "localNoteIdOut",
+mandatory: false,
+dataType: OS.DataTypes.DataTypes.LongInteger,
+defaultValue: function () {
+return OS.DataTypes.LongInteger.defaultValue;
+}
+}]);
+UBTConnect_Notes_MCSController.default.clientActionProxies.update_LocalNote$Action = function (in_NoteCategoryIdIn, in_ItemIdIn, in_DateEditedUtcIn) {
+in_NoteCategoryIdIn = (in_NoteCategoryIdIn === undefined) ? "" : in_NoteCategoryIdIn;
+in_ItemIdIn = (in_ItemIdIn === undefined) ? "" : in_ItemIdIn;
+in_DateEditedUtcIn = (in_DateEditedUtcIn === undefined) ? OS.DataTypes.DateTime.defaultValue : in_DateEditedUtcIn;
+return controller.executeActionInsideJSNode(UBTConnect_Notes_MCSController.default.update_LocalNote$Action.bind(controller, in_NoteCategoryIdIn, OS.DataConversion.JSNodeParamConverter.from(in_ItemIdIn, OS.DataTypes.DataTypes.Text), OS.DataConversion.JSNodeParamConverter.from(in_DateEditedUtcIn, OS.DataTypes.DataTypes.DateTime)), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
+return {
+LocalNoteId: OS.DataConversion.JSNodeParamConverter.to(actionResults.localNoteIdOut, OS.DataTypes.DataTypes.LongInteger)
+};
+});
+};
+});
+
 define("UBTConnect_Notes_MCS.controller$ServerAction.Get_NotePills_ByNoteCategoryIds", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Notes_MCS.model", "UBTConnect_Notes_MCS.controller", "UBTConnect_Notes_MCS.model$DynamicPillList"], function (exports, OutSystems, UBTConnect_Notes_MCSModel, UBTConnect_Notes_MCSController) {
 var OS = OutSystems.Internal;
 UBTConnect_Notes_MCSController.default.get_NotePills_ByNoteCategoryIds$ServerAction = function (in_NoteCategoryIdsIn, callContext) {
@@ -905,6 +1206,35 @@ UBTConnect_Notes_MCSController.default = new Controller(null, "UBTConnect_Notes_
 define("UBTConnect_Notes_MCS.controller$debugger", ["exports", "OutSystems/ClientRuntime/Debugger", "OutSystems/ClientRuntime/Main"], function (exports, Debugger, OutSystems) {
 var OS = OutSystems.Internal;
 var metaInfo = {
+"SSUzYCj8VU2Bab4pJARDrg": {
+getter: function (varBag, idService) {
+return varBag.vars.value.in_NoteCategoryIdInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
+"dcBOCWYO7ESZig8e8BRKyA": {
+getter: function (varBag, idService) {
+return varBag.vars.value.in_ItemIdInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
+"6Gr0Ps95tUCeu7IGq6Grxg": {
+getter: function (varBag, idService) {
+return varBag.vars.value.in_DateEditedUtcInLocal;
+},
+dataType: OS.DataTypes.DataTypes.DateTime
+},
+"GZ+N0EphZEO1itp8VirTXA": {
+getter: function (varBag, idService) {
+return varBag.outVars.value.localNoteIdOut;
+},
+dataType: OS.DataTypes.DataTypes.LongInteger
+},
+"VRtcZZEhy0ugBEJADLAugw": {
+getter: function (varBag, idService) {
+return varBag.getLocalNotesByNoteIdVar.value;
+}
+},
 "3cwF9NIrVUaIKpxb3fvJLw": {
 getter: function (varBag, idService) {
 return varBag.outVars.value.yearsOut;
@@ -946,16 +1276,33 @@ getter: function (varBag, idService) {
 return varBag.getLocalNotesByNoteIdVar.value;
 }
 },
+"pgwxhAjl3kGA+9_zm0jr8Q": {
+getter: function (varBag, idService) {
+return varBag.vars.value.in_NoteCategoryIdInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
+"sERsGlVUkE+wZi71xfCTRw": {
+getter: function (varBag, idService) {
+return varBag.vars.value.in_ItemIdInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
+"bJBysPlwK0usZQD6hkBApA": {
+getter: function (varBag, idService) {
+return varBag.vars.value.in_DateEditedUtcInLocal;
+},
+dataType: OS.DataTypes.DataTypes.DateTime
+},
+"sudkVpKEYki1UkYNFxTCpg": {
+getter: function (varBag, idService) {
+return varBag.getLocalNotesByNoteIdVar.value;
+}
+},
 "I0T3b9TTbk68Kld7GG6TyA": {
 getter: function (varBag, idService) {
 return varBag.vars.value.in_NotesInLocal;
 }
-},
-"+Rxi+KYocUSDR8+0iLPeGQ": {
-getter: function (varBag, idService) {
-return varBag.vars.value.localNoteIdInLocal;
-},
-dataType: OS.DataTypes.DataTypes.LongInteger
 },
 "DiRUDrqxUkCIRrHBPGfDig": {
 getter: function (varBag, idService) {
@@ -995,23 +1342,12 @@ dataType: OS.DataTypes.DataTypes.LongInteger
 },
 "SLdpH_2yTU+Zqo4hQFE9bA": {
 getter: function (varBag, idService) {
-return varBag.createLocalNoteVar.value;
+return varBag.createOrUpdateLocalNoteVar.value;
 }
 },
 "8Nuf97WvwkWKZktDVayM9w": {
 getter: function (varBag, idService) {
 return varBag.getLocalNotesByNoteIdVar.value;
-}
-},
-"o9nDKV9XbkW7k2oOvLJLdQ": {
-getter: function (varBag, idService) {
-return varBag.vars.value.noteIdInLocal;
-},
-dataType: OS.DataTypes.DataTypes.LongInteger
-},
-"zBrNwXsWpUCgIa3z_9WKXA": {
-getter: function (varBag, idService) {
-return varBag.get_LocalNoteByNoteIdVar.value;
 }
 }
 };

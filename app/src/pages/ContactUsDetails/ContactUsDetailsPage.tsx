@@ -34,6 +34,10 @@ export default function ContactUsDetails() {
     isFeedbackSubject,
     onUserInformation,
     onMessageChange,
+    onFieldChange,
+    onCountryVariableChange,
+    onCountryChange,
+    onRateSelected,
     onWantToBeContactedToggle,
     onSupportTeam,
     onCallPopupClose,
@@ -56,12 +60,18 @@ export default function ContactUsDetails() {
           isLogged={state.isLogged}
           isFeedbackSubject={isFeedbackSubject}
           showRate={state.showRate}
+          selectedRate={state.selectedRate}
           isLoading={state.isLoadingMainData}
           isSubmiting={state.isSubmiting}
-          message={state.contactUsForm.Message}
+          form={state.contactUsForm}
+          countries={state.countries}
           messagePrompt={state.messagePrompt}
           wantToBeContacted={state.userWantToBeContacted}
           onMessageChange={onMessageChange}
+          onFieldChange={onFieldChange}
+          onCountryVariableChange={onCountryVariableChange}
+          onCountryChange={onCountryChange}
+          onRateSelected={onRateSelected}
           onWantToBeContactedToggle={onWantToBeContactedToggle}
         />
       </div>

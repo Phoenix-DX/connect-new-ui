@@ -8,14 +8,17 @@ import { pageRedirect } from './pageRedirect';
    app-shell.spec.md section 6; knowledge/shell-facts.md U10). Texts are the compiled ones, raw `\r\n` and `<br>` included. */
 
 const HIGH_TRAFFIC_TITLE = 'Service Interruption';
-/** UC:16096 (shown as HTML because of the title: the line breaks collapse) */
+/** UC:16118 (shown as HTML because of the title: the line breaks collapse) */
 const HIGH_TRAFFIC_TEXT =
   'We’re currently experiencing unusually high traffic, which may affect access to some services.\r\n\r\nOur team is working to restore full functionality as quickly as possible.\r\n\r\nThank you for your patience and understanding.';
 const NO_INTERNET_TEXT = 'No internet connection. Please check your network settings and try again.';
 
-/** ShowCommunicationExceptionMessage (UC:16085-16101): no delay, no debounce. */
+/** ShowCommunicationExceptionMessage (UC:16097-16158; MCP client action of the same name): no delay, no debounce. The
+    JS node CheckIsOnlineNow reads `navigator.onLine` at the moment of the error, because the stored flag can lag
+    behind (TST publish of 2026-10-27; item 2 D2): the high-traffic message needs both. */
 export function showCommunicationExceptionMessage(): void {
-  if (getClientVar('UBTConnect.App_NetworkStatus_IsOnline_IsPersistent')) {
+  const isOnlineNow = navigator.onLine;
+  if (getClientVar('UBTConnect.App_NetworkStatus_IsOnline_IsPersistent') && isOnlineNow) {
     feedbackMessageAutoClose({ title: HIGH_TRAFFIC_TITLE, message: HIGH_TRAFFIC_TEXT, messageType: 'info' });
   } else {
     feedbackMessageAutoClose({ message: NO_INTERNET_TEXT, messageType: 'error' });
@@ -30,7 +33,7 @@ interface Display {
   forceLogout?: boolean;
 }
 
-/** Index(ExceptionMessage, text) <> -1, case sensitive (UC:16136-16440) */
+/** Index(ExceptionMessage, text) <> -1, case sensitive (UC:16160-16464) */
 type Rule = [matches: (message: string) => boolean, display: Display | 'communication'];
 const has = (text: string) => (message: string) => message.includes(text);
 const is =
@@ -38,7 +41,7 @@ const is =
   (message: string) =>
     texts.includes(message);
 
-/** The branches of ShowExceptionMessage in their order (UC:16186-16440). */
+/** The branches of ShowExceptionMessage in their order (UC:16210-16464). */
 const RULES: readonly Rule[] = [
   [
     is('Authorization has been denied for this request.'),
@@ -98,16 +101,16 @@ const RULES: readonly Rule[] = [
 ];
 
 /**
- * ShowExceptionMessage(ExceptionMessage, ForceLogout) (UC:16136-16531): maps server texts to a toast (defaults: the
+ * ShowExceptionMessage(ExceptionMessage, ForceLogout) (UC:16160-16555): maps server texts to a toast (defaults: the
  * message itself, no title, Error, debounce on), 500 ms later for the HasTimeout branches; with ForceLogout:
- * Connect_Logout, then a full page load of `\UBTConnect\Login` (UC:16444-16452).
+ * Connect_Logout, then a full page load of `\UBTConnect\Login` (UC:16468-16476).
  */
 export async function showExceptionMessage(exceptionMessage: string, forceLogout = false): Promise<void> {
-  if (exceptionMessage === 'No role validation found') return; // UC:16140-16142
+  if (exceptionMessage === 'No role validation found') return; // UC:16164-16166
   const rule = RULES.find(([matches]) => matches(exceptionMessage));
   const display = rule?.[1] ?? {};
   if (display === 'communication') {
-    showCommunicationExceptionMessage(); // UC:16353-16356
+    showCommunicationExceptionMessage(); // UC:16377-16380
     return;
   }
   feedbackMessageAutoClose({

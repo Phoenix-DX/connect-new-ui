@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { DaySelectorList } from '@/components/orbit/DaySelectorList';
-import { FooterWithActions } from '@/pages/EventBooklet/components/FooterWithActions';
+import { FooterWithActions } from '@/components/orbit/FooterWithActions';
 import { styleFromCssText } from '@/lib/cssText';
 import { DropdownTags } from '@/components/ui/DropdownTags';
 import { dropdownClear, dropdownClearValidation, dropdownTogglePopup } from '@/components/ui/lib/actions';

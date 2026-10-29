@@ -47,6 +47,30 @@ export async function signIn(): Promise<string> {
   return callback !== '' ? callback : PATHS.home;
 }
 
+/** AppManager_Callback of a completed reset-password policy (AppManager_HandleCallback, AM:2389-2394): the Login
+    screen shows its Message as a success toast (Login.mvc.js:865-868). */
+interface ResetPasswordCallback {
+  callbackType: 'IdP_OnResetPassword';
+  messageTitle: string;
+  message: string;
+}
+
+/** AppManager_HandleCallback, "UserResettedPassword?" branch (AM:2391-2393). */
+const RESET_PASSWORD_MESSAGE = 'Your password has been successfully changed. Please log in using your new password.';
+
+/** "Forgot Password?": Login(IsResetPassword = True) → AppManager_Login(True, …) starts the reset-password policy of
+    the identity provider (the mock provider: ends at once). The callback IdP_OnResetPassword runs the Login screen's
+    AppManager_Callback handler up to its branches (Login.mvc.js:838-850): Connect_SetLoggedContext(IsFromLogin = True)
+    and TriggerOfflineDataSync, which do nothing without a signed-in user, then ReplaceOnUpcomingNavigation (no
+    navigation follows). The user stays signed out and stays on Login with the success toast (the caller shows it). */
+export async function resetPassword(): Promise<ResetPasswordCallback> {
+  const provider = authProvider();
+  if (provider === null) throw new Error('Reset password is not available: no identity provider is configured.');
+  await provider.resetPassword(currentLocation());
+  await postLogin();
+  return { callbackType: 'IdP_OnResetPassword', messageTitle: '', message: RESET_PASSWORD_MESSAGE };
+}
+
 /** signIn, then navigate replacing the Login entry (ReplaceOnUpcomingNavigation before the destination), with the
     Default transition the Login flow's navigations use (Login sources: every navigateTo passes Default, F18). */
 export function useSignIn(): () => Promise<void> {

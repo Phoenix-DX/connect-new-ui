@@ -56,6 +56,8 @@ export function ContactInformationSection({
         id="HomeNumber2"
         type="tel"
         enabled={isHouseholder}
+        maxLength={15}
+        autoComplete="off"
         value={contact.HomeNumber}
         onChange={(v) => {
           onChange({ HomeNumber: v });
@@ -83,6 +85,8 @@ export function ContactInformationSection({
         id="Input_MobileNumber"
         type="tel"
         enabled
+        maxLength={15}
+        autoComplete="off"
         value={contact.MobileNumber}
         onChange={(v) => {
           onChange({ MobileNumber: v });
@@ -118,6 +122,8 @@ export function ContactInformationSection({
         id="Input_WorkNumber"
         type="tel"
         enabled
+        maxLength={15}
+        autoComplete="off"
         value={contact.WorkNumber}
         onChange={(v) => {
           onChange({ WorkNumber: v });

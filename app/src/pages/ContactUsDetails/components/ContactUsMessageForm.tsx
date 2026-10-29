@@ -1,34 +1,51 @@
-import { OSForm, UnbuiltValidationWidget } from '@/components/ui/os/OSValidation';
+import type { ContactUsForm, CountryName } from '@/api/message';
+import { ContactUs_Rate } from '@/components/contact/ContactUs_Rate';
+import { OSDropdownCustom } from '@/components/ui/os/OSDropdownCustom';
+import { OSForm } from '@/components/ui/os/OSValidation';
 import { DirectoryDetailSection } from '@/components/layout/DirectoryDetailSection';
 import { UBT_Icons2_Local } from '@/pages/ContactUsDetails/staticEntities';
-import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { Icon } from '@/components/ui/Icon';
 import { IconText } from '@/components/ui/IconText';
 import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { TextAreaWithCounter } from '@/components/ui/TextAreaWithCounter';
+import { ContactUsFormInput } from './ContactUsFormInput';
+import type { ContactUsInputField } from '@/pages/ContactUsDetails/hooks/contactUsDetailsState';
 import { MessageTextArea } from './MessageTextArea';
 
 export interface ContactUsMessageFormProps {
-  /** isLogged: only the message is asked; signed out, the other fields are not built (NotCaptured, Q1 → A). */
+  /** isLogged: only the message is asked; signed out, the five other fields show first. */
   isLogged: boolean;
   /** The subject is "General Suggestions, Feedback & Rating": the title asks for suggestions and feedback. */
   isFeedbackSubject: boolean;
-  /** Rate_ShowRate: the rate (not built, Q2 → A) and the "contacted about my feedback" check box show. */
+  /** Rate_ShowRate: the rate (ContactUs_Rate) and the "contacted about my feedback" check box show. */
   showRate: boolean;
+  /** Rate_SelectedRate: the SelectedRate input of ContactUs_Rate. */
+  selectedRate: number;
   /** isLoadingMainData: the form is a skeleton. */
   isLoading: boolean;
   /** isSubmiting: the message is disabled. */
   isSubmiting: boolean;
-  /** ContactUsForm.Message. */
-  message: string;
+  /** ContactUsForm: the variables of the inputs, the dropdown and the message. */
+  form: ContactUsForm;
+  /** DataAction_GetCountriesNames.Countries: the list of Dropdown_Country. */
+  countries: CountryName[];
   /** MessagePrompt: the placeholder of the message. */
   messagePrompt: string;
   /** Rate_UserWantToBeContacted: the check box is checked. */
   wantToBeContacted: boolean;
   /** The message changed. */
   onMessageChange: (message: string) => void;
+  /** A signed-out input changed: its variable, then its OnChange action (OnChange_FormInput, OnChange_Email or
+      OnChange_PhoneNumber). */
+  onFieldChange: (field: ContactUsInputField, value: string) => void;
+  /** The variable setter of Dropdown_Country (ContactUsForm.Country = the Code). */
+  onCountryVariableChange: (code: string) => void;
+  /** The OnChange of Dropdown_Country: OnChange_FormInput. */
+  onCountryChange: () => void;
+  /** ContactUs_RateRateSelected(Rate). */
+  onRateSelected: (rate: number) => void;
   /** The "contacted about my feedback" check box. */
   onWantToBeContactedToggle: () => void;
 }
@@ -42,26 +59,66 @@ const REQUIRED_OPTIONS = {
   TextOptions: { FontSize: UBT_FontSize.Small, FontWeight: UBT_FontWeight.SemiBold, IsItalic: true },
 };
 
-/** The message section of ContactUsDetails: the rate (not built), the title, and Form_ContactUs in a skeleton section
-    with the Message text area and its counter and, for the feedback subject, the "contacted about my feedback" check
-    box. Signed out, the title is "All fields are required." and the other fields are not built.
+/** The signed-out fields (TST `ContactUsDetails.mvc.js:712-1030`), in this order, each in a Container with its
+    mandatory Label: Full Name, Email, Phone Number (Input, MaxLength 50), Country (Dropdown, Empty Value "Select Your
+    Country") and Locality (Input, MaxLength 50). */
+const SIGNED_OUT_INPUTS: Record<
+  ContactUsInputField,
+  { id: string; label: string; type: 'text' | 'email' | 'tel'; placeholder: string }
+> = {
+  FullName: { id: 'Input_FullName', label: 'Full Name', type: 'text', placeholder: 'Enter Full Name' },
+  Email: { id: 'Input_Email', label: 'Email', type: 'email', placeholder: 'Enter Your Email Address' },
+  PhoneNumber: { id: 'Input_PhoneNumber', label: 'Phone Number', type: 'tel', placeholder: 'Enter Phone Number' },
+  Locality: { id: 'Input_Locality', label: 'Locality', type: 'text', placeholder: 'Enter Your Locality' },
+};
+
+/** The message section of ContactUsDetails: the rate (ContactUs_Rate, signed in on the feedback subject), the title,
+    and Form_ContactUs in a skeleton section. Signed out, the title is "All fields are required." and the form starts
+    with the five fields of the sender. Then the Message text area and its counter and, with the rate, the "contacted
+    about my feedback" check box.
     @origin UBTConnect.App_Menu_ContactUs.ContactUsDetails */
 export function ContactUsMessageForm({
   isLogged,
   isFeedbackSubject,
   showRate,
+  selectedRate,
   isLoading,
   isSubmiting,
-  message,
+  form,
+  countries,
   messagePrompt,
   wantToBeContacted,
   onMessageChange,
+  onFieldChange,
+  onCountryVariableChange,
+  onCountryChange,
+  onRateSelected,
   onWantToBeContactedToggle,
 }: ContactUsMessageFormProps) {
+  const input = (field: ContactUsInputField) => {
+    const config = SIGNED_OUT_INPUTS[field];
+    return (
+      <div data-container="">
+        <label className="mandatory OSFillParent" data-label="" htmlFor={config.id}>
+          {config.label}
+        </label>
+        <ContactUsFormInput
+          id={config.id}
+          type={config.type}
+          placeholder={config.placeholder}
+          value={form[field]}
+          enabled={!isSubmiting}
+          onChange={(value) => {
+            onFieldChange(field, value);
+          }}
+        />
+      </div>
+    );
+  };
   return (
     <DirectoryDetailSection id="$b7" inTitle="">
       {showRate && (
-        <NotCaptured name="App_Menu_ContactUs.ContactUs_Rate (SelectedRate, isEnabled = not isSubmiting; Q2 → A)" />
+        <ContactUs_Rate id="$b8" selectedRate={selectedRate} isEnabled={!isSubmiting} onRateSelected={onRateSelected} />
       )}
       {isLogged ? (
         <CustomContainer id="$b9" options={TITLE_OPTIONS}>
@@ -78,15 +135,34 @@ export function ContactUsMessageForm({
         <OSForm id="Form_ContactUs" style="form OSFillParent">
           {!isLogged && (
             <>
-              <NotCaptured name="ContactUsDetails signed-out fields: Full Name, Email, Phone Number, Country (Select Your Country), Locality (Q1 → A)" />
-              {/* Their widgets register in Form_ContactUs as the original's do, so the Valid that OnClick_SubmitForm
-                  assigns counts in Form_ContactUs.Valid. No validation runs on this screen (its sources have no
-                  validateWidget call), so their own validate is never used. */}
-              <UnbuiltValidationWidget id="Input_FullName" />
-              <UnbuiltValidationWidget id="Input_Email" />
-              <UnbuiltValidationWidget id="Input_PhoneNumber" />
-              <UnbuiltValidationWidget id="Dropdown_Country" />
-              <UnbuiltValidationWidget id="Input_Locality" />
+              {input('FullName')}
+              {input('Email')}
+              {input('PhoneNumber')}
+              <div data-container="">
+                <label className="mandatory OSFillParent" data-label="" htmlFor="Dropdown_Country">
+                  Country
+                </label>
+                {/* Dropdown_Country (TST ContactUsDetails.mvc.js:897-969): Values = Code, each row a Container with
+                    the country Name; a validation widget of Form_ContactUs (F3). */}
+                <OSDropdownCustom<CountryName>
+                  id="Dropdown_Country"
+                  style="dropdown"
+                  emptyValue="Select Your Country"
+                  mandatory
+                  enabled={!isSubmiting}
+                  list={countries}
+                  getValue={(country) => country.code}
+                  renderRow={(country) => (
+                    <div data-container="">
+                      <span data-expression="">{country.name}</span>
+                    </div>
+                  )}
+                  value={form.Country}
+                  onValueChange={onCountryVariableChange}
+                  onChange={onCountryChange}
+                />
+              </div>
+              {input('Locality')}
             </>
           )}
           <div data-container="">
@@ -97,7 +173,7 @@ export function ContactUsMessageForm({
               <MessageTextArea
                 disabled={isSubmiting}
                 placeholder={messagePrompt}
-                value={message}
+                value={form.Message}
                 onChange={onMessageChange}
               />
             </TextAreaWithCounter>

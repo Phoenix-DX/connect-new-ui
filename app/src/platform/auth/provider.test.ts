@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 import { startApp } from '@/platform/bootstrap/appStartSteps';
-import { signIn, signOut } from '@/platform/session/auth';
+import { resetPassword, signIn, signOut } from '@/platform/session/auth';
 import { getSessionStatus } from '@/platform/session/machine';
 import { currentUserId, getShellState, setSignedInUser } from '@/platform/session/session';
 import type { AuthProvider } from './provider';
@@ -28,6 +28,10 @@ function recordingProvider(): AuthProvider {
     },
     signOut() {
       record('signOut');
+      return Promise.resolve();
+    },
+    resetPassword(returnTo) {
+      record(`resetPassword ${returnTo}`);
       return Promise.resolve();
     },
     getSession() {
@@ -71,6 +75,18 @@ describe('signIn and signOut use the provider of the build (plan v2 §3.2)', () 
     expect(double.calls).toEqual(['signOut (needPinRegister)']);
     expect(getSessionStatus()).toEqual({ status: 'signedOut' });
     expect(calledActions()).toEqual(['ActionAppManager_SynchAppContext']);
+  });
+
+  test('resetPassword: the provider runs its reset-password policy; the session stays signed out; the callback carries the TST message', async () => {
+    const callback = await resetPassword();
+    expect(double.calls).toEqual(['resetPassword / (signedOut)']);
+    expect(getSessionStatus()).toEqual({ status: 'signedOut' });
+    expect(callback).toEqual({
+      callbackType: 'IdP_OnResetPassword',
+      messageTitle: '',
+      message: 'Your password has been successfully changed. Please log in using your new password.',
+    });
+    expect(calledActions()).toEqual([]);
   });
 
   test('no provider (a production build until bffAuth exists): sign-in fails before any change; sign-out still works', async () => {

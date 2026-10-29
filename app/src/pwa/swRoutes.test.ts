@@ -41,6 +41,8 @@ describe('service worker routes (caching table 3a)', () => {
     expect(isAppNavigation(url('/UBTConnect/HomeFeed?mock=empty'), 'GET', ORIGIN)).toBe(true);
     expect(isAppNavigation(url('/'), 'GET', ORIGIN)).toBe(true);
     expect(isAppNavigation(url('/UBTConnect/img/UBTConnect.AppLogo.png'), 'GET', ORIGIN)).toBe(false);
+    // the static error page (public/UBTConnect/_error.html, item 8 S0b) is a file: never answered with the app shell
+    expect(isAppNavigation(url('/UBTConnect/_error.html'), 'GET', ORIGIN)).toBe(false);
     expect(isAppNavigation(url('/UBT_AppManager/Callback'), 'GET', ORIGIN)).toBe(false);
     expect(isAppNavigation(url('/bff/login'), 'GET', ORIGIN)).toBe(false);
     expect(isAppNavigation(url('/api/UBTConnect/X'), 'POST', ORIGIN)).toBe(false);

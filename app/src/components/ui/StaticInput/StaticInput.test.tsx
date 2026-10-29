@@ -14,7 +14,8 @@ describe('StaticInput', () => {
     const { container } = render(<StaticInput inExtendedClasses="x-extra" onClickInput={onClickInput} />);
     const input = container.querySelector('.ubt-static-input');
     if (!input) throw new Error('input not rendered');
-    expect(input).toHaveClass('x-extra');
+    // Live TST style (Bookmarks Q4 (a), user 2026-10-29): "search-placeholder-ellipsis ubt-static-input " + In_ExtendedClasses.
+    expect(input.className).toBe('search-placeholder-ellipsis ubt-static-input x-extra');
     fireEvent.click(input);
     expect(onClickInput).toHaveBeenCalledTimes(1);
   });

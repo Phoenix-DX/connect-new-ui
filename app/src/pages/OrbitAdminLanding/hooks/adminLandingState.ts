@@ -22,7 +22,7 @@ export interface AdminLandingState {
 }
 
 /** An assignment of one or more variables. */
-export type AdminLandingPatch = Partial<AdminLandingState>;
+type AdminLandingPatch = Partial<AdminLandingState>;
 
 /** The variables after OnInitialize (the block has no OnInitialize: the defaults). */
 export const INITIAL_ADMIN_LANDING_STATE: AdminLandingState = {

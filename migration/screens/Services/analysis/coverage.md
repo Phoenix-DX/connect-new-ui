@@ -11,6 +11,10 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [ ] `ConnectPatterns.HighlightSearch`
 
 ## Images referenced in code
+- [ ] `img/UBTConnectLibrary.CommunityCountries.svg`
+- [ ] `img/UBTConnectLibrary.CommunityHouseholds.svg`
+- [ ] `img/UBTConnectLibrary.CommunityLocalities.svg`
+- [ ] `img/UBTConnectLibrary.CommunityMembers.svg`
 - [x] `img/UBTConnectLibrary.CommunityTradelink.svg`
 - [x] `img/UBTConnectLibrary.ElGusto.svg`
 - [x] `img/UBTConnectLibrary.HR100.svg`

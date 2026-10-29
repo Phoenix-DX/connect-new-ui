@@ -1,14 +1,11 @@
 import { fetchOneSchoolCards, type LocalityTimezone, type OneSchoolCard } from '@/api/locality';
-import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { useFlowState } from '@/platform/navigation';
 import {
   INITIAL_LOCALITY_ONESCHOOL_GLOBAL,
   localityOneSchoolGlobalReducer,
   oneSchoolListCallInputs,
   type ListRow,
-  type LocalityOneSchoolGlobalAction,
 } from './localityBlocksState';
-import { useReadyOnce } from './readyOnce';
 
 /** The inputs of Locality_OneSchoolGlobal. */
 export interface LocalityOneSchoolGlobalParameters {
@@ -34,31 +31,27 @@ export interface LocalityOneSchoolGlobalFlows {
       (GetSkeletonList_UI_OneSchoolGlobal_ListCard) and the refresh of Get_OneSchoolGlobal_List.
     - OnAfterFetch_Get_OneSchoolGlobal_List: the first time ListClear and IsLoading False, then ListAppendAll.
     - Handler_OnScrollEnding: fetched and a full page → StartIndex += Offset and the refresh.
+    Flow scope (item 8): Get_OneSchoolGlobal_List is a data action (R1, Locality_OneSchoolGlobal.js:338): after an
+    unmount its answer and its failure are dropped, from OnReady and from Handler_OnScrollEnding.
     @origin UBTConnect.Directory_Locality.Locality_OneSchoolGlobal */
 export function useLocalityOneSchoolGlobal(inputs: LocalityOneSchoolGlobalParameters): LocalityOneSchoolGlobalFlows {
-  const ready = useReadyOnce();
-  const { state, dispatch, latest, parameters } = useFlowState({
+  const { state, dispatch, latest, parameters, flow } = useFlowState({
     viewName: 'Locality_OneSchoolGlobal',
     reducer: localityOneSchoolGlobalReducer,
     initial: INITIAL_LOCALITY_ONESCHOOL_GLOBAL,
     parameters: inputs,
-    onReady: (isAlive, restored) => ready.once(isAlive, () => onReady(restored)),
+    onReady: (_flow, restored) => onReady(restored),
   });
-
-  /** A state write of OnReady, skipped after the unmount (W23). */
-  const write = (action: LocalityOneSchoolGlobalAction) => {
-    if (ready.isAlive()) dispatch(action);
-  };
 
   /** Refresh Get_OneSchoolGlobal_List, then OnAfterFetch_Get_OneSchoolGlobal_List. */
   const refresh = async () => {
-    const cards = await fetchOneSchoolCards(oneSchoolListCallInputs(latest.current, parameters.current));
-    write({ type: 'schoolsFetched', cards });
+    const cards = await flow.fetch(fetchOneSchoolCards(oneSchoolListCallInputs(latest.current, parameters.current))); // R1
+    dispatch({ type: 'schoolsFetched', cards });
   };
 
   async function onReady(restored: boolean) {
     if (restored && latest.current.isDataFetched) return;
-    write({ type: 'skeletonShown' });
+    dispatch({ type: 'skeletonShown' });
     await refresh();
   }
 
@@ -73,6 +66,7 @@ export function useLocalityOneSchoolGlobal(inputs: LocalityOneSchoolGlobalParame
   return {
     schools: state.out_OneSchoolGlobal_List2,
     isLoading: state.get_OneSchoolGlobal_List_IsLoading,
-    onScrollEnding: () => onScrollEnding().catch(raiseToFlowHandler),
+    // The list waits for the promise; the error goes to the flow handler with the flow scope.
+    onScrollEnding: () => flow.runAwaited(onScrollEnding),
   };
 }

@@ -6,7 +6,7 @@
    "action": "DataActionGetHelperDetails",
    "path": "/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_HelperDetails/DataActionGetHelperDetails",
    "phase": "load",
-   "ts": 1437,
+   "ts": 1272,
    "status": 200,
    "kind": "data",
    "inputNames": null,

@@ -1,11 +1,14 @@
 import { callAction } from '@/api/client/callAction';
 import {
+  toMessageListItemWire,
   toNotificationDateRangeRecords,
   toNotificationList,
   toNotificationReadFilterWire,
   toNotificationsVariablesWire,
 } from './mapper';
+import { wireList } from '@/lib/os-wire';
 import type {
+  NotificationItem,
   NotificationDateRangeRecord,
   NotificationList,
   NotificationReadFilter,
@@ -40,6 +43,30 @@ export async function fetchNotifications(variables: NotificationsVariables): Pro
       toNotificationsVariablesWire(variables),
     ),
   );
+}
+
+/* The server actions of the screen Notifications and of its block NotificationsList (TST publish of 2026-10-27:
+   Notifications.mvc.js:1272-1310, NotificationsList.mvc.js:580-598). They change the read state or delete messages:
+   the mocks answer them from the mock store. */
+
+/** The server action ToggleRead(MessageInstanceId, IsRead) of NotificationsList: sets the read state. No output. */
+export async function toggleNotificationRead(messageInstanceId: string, isRead: boolean): Promise<void> {
+  await callAction('UBTConnect', 'ActionToggleRead', { MessageInstanceId: messageInstanceId, IsRead: isRead });
+}
+
+/** The service action Delete_Notifications(Messages) of UBTConnect (Notifications and NotificationsList): deletes the
+    messages of the list. No output. */
+export async function deleteNotifications(messages: NotificationItem[]): Promise<void> {
+  await callAction('UBTConnect', 'ServiceAPIDelete_Notifications', {
+    Messages: wireList(messages.map(toMessageListItemWire)),
+  });
+}
+
+/** The server action MarkAllAsReadNotifications(IsPublic, IsPrivate, DeviceHardwareId, SearchTerm) of the screen
+    Notifications: marks all the messages of the filter as read. Answers TotalChange. */
+export async function markAllAsReadNotifications(filter: NotificationReadFilter): Promise<number> {
+  return (await callAction('UBTConnect', 'ActionMarkAllAsReadNotifications', toNotificationReadFilterWire(filter)))
+    .TotalChange;
 }
 
 /** The server action Wrapper_NotificationOpened(MessageInstanceId) of Connect2_LegacyShared (ScreenBlock_MessageDetail):

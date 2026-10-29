@@ -50,12 +50,14 @@ Confirmed by the user (Phase 4). Changing anything here is an ADR.
 | Leaflet | npm package leaflet 1.9.4 + leaflet.markercluster 1.5.3 |
 | ReactiveHtmlSanitizer | npm package dompurify 3 configured with the module's allow lists |
 | SortableJS | npm package sortablejs 1.15.7 |
+| AdaptiveCards (Connect2_LegacyShared) | npm package adaptivecards 2.5.0, the version of the TST bundle (decision PD7, user, 2026-10-28) |
 
 ## Pinned dependencies
 | Package | Version |
 |---|---|
 | @splidejs/splide | 4.1.3 |
 | @tanstack/react-query | 5.101.4 |
+| adaptivecards | 2.5.0 |
 | dompurify | 3.4.17 |
 | gsap | 3.13.0 |
 | leaflet | 1.9.4 |
@@ -125,6 +127,7 @@ Confirmed by the user (Phase 4). Changing anything here is an ADR.
 | ADR-14 | Production service worker served at TST's worker URL /UBTConnect/pwaServiceWorker.js (cutover handover) | accepted | 2026-10-17 |
 | ADR-15 | Target front-end architecture (refactor-plan-v2) | accepted | 2026-10-22 |
 | ADR-16 | Remove noUiSlider and wNumb | accepted | 2026-10-24 |
+| ADR-17 | Vendor the TST Orbit Passport loader (OrbitPassportScanC2.PassportScan.js) for PassportScan | accepted | 2026-10-29 |
 
 ### ADR-1: Target platform: web / PWA only (no store app)
 
@@ -266,3 +269,9 @@ Confirmed by the user (Phase 4). Changing anything here is an ADR.
 - Context: Step F29 (commit 9b88da40) deleted the unused RangeSlider pattern and uninstalled the packages nouislider and wnumb. ADR-3 had allowed both for the RangeSlider pattern.
 - Decision: Remove nouislider and wnumb from the allowed dependencies and remove the osui:RangeSlider item. ADR-3 stays as the record of the earlier decision (user, 2026-10-24).
 - Consequences: ContactUsDetails does not use a range slider library. A new use of a range slider needs a new ADR and a version check.
+
+### ADR-17: Vendor the TST Orbit Passport loader (OrbitPassportScanC2.PassportScan.js) for PassportScan
+
+- Context: PassportScan Q1 (a) (user, 2026-10-29): vendor the TST loader. The original block `OrbitPassportScanC2.PassportScan.ScreenBlock_PassportScan` loads `OrbitPassportScanC2.PassportScan.js` as its JS dependency and calls `window.OrbitPassport.embed` from its JS nodes. The loader puts the portal page in an iframe and talks to it with `postMessage`. Rule: libraries the original ships keep the TST version.
+- Decision: Vendor the TST file unchanged in `src/vendor/orbitpassport/` (byte-identical copy, version 1.0.0, as ADR-5, ADR-7 and ADR-11), behind a typed adapter (`src/vendor/orbitpassport/index.ts`). `SOURCE.md` of that folder records the URL, size and sha256. Upgrades follow TST.
+- Consequences: The vendored file is third-party code with no npm updates. The file states no license: confirm it with the Orbit Passport portal owner before production. The portal origin must allow the iframe of the app host.

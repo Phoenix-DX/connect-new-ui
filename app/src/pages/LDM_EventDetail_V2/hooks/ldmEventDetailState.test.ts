@@ -109,6 +109,7 @@ describe('the contact popups', () => {
       Phone: h.MobilePhone,
       ContactPopupData: {
         ImageURL: h.SignedURL,
+        EntityTypeId: 'Household',
         Name: 'Rubén & Marta Castillo',
         Locality: 'Bahia Blanca',
         TimezoneName: 'ART',
@@ -127,9 +128,14 @@ describe('the contact popups', () => {
     expect(hostPhoneCallData(without).ContactPopupData).toEqual(hostContactPopupData(without));
   });
 
+  it('the phone popup of the host has EntityTypeId Connect_Entity2.Household (ED :2354)', () => {
+    expect(hostPhoneCallData(host()).ContactPopupData?.EntityTypeId).toBe('Household');
+  });
+
   it('keeps the record defaults without a host', () => {
     expect(hostContactPopupData(undefined)).toEqual({
       ImageURL: '',
+      EntityTypeId: 'Household',
       Name: '',
       Locality: '',
       TimezoneName: '',
@@ -147,6 +153,7 @@ describe('the contact popups', () => {
       IsComboEmailAndPhone: true,
       ContactPopupData: {
         ImageURL: '/img/ldm-logo.svg',
+        EntityTypeId: 'Household',
         IsAvatarImage: false,
         ActionName: 'Contact',
         Name: 'Gustavo Ríos',

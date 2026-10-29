@@ -42,12 +42,8 @@ export async function get_ConnectVersionDetails(): Promise<ConnectVersionDetails
    read through platform/flags (flagValue of the flag registry). */
 /** GetHasNewNotifications: OutSystems_FF C2NewNotifications (D11: bell → Notifications when on, MessageList when off). */
 export const getHasNewNotifications = (): boolean => flagValue('C2NewNotifications');
-/** GetHasNewBookmarks: OutSystems_FF C2NewBookmarks. */
-export const getHasNewBookmarks = (): boolean => flagValue('C2NewBookmarks');
 /** GetHasC1DirectoryView: OutSystems_FF C2EnableC1DirectoryView. */
 export const getHasC1DirectoryView = (): boolean => flagValue('C2EnableC1DirectoryView');
-/** Connect_LaunchDarkly_PermissionCheck(LaunchDarkly_FF record).HasAccess, for the records with a decided flag. */
-export const connect_LaunchDarkly_PermissionCheck = (flag: 'mobileDirectoryBookmarkNote'): boolean => flagValue(flag);
 
 /** BottomBar_GetList (:153-245): the bottom bar items. The useMapsItems branch (Explore, Bookmarked and, for a
     householder, Settings) has identifiers no capture shows: the caller renders it as NotCaptured, so this returns
@@ -151,8 +147,11 @@ export async function cache_SignedImageURL_Get(entityId: string, type: string, s
 /** GetHasFeedEnabled: OutSystems_FF C2EnableFeed (migration/knowledge/feature-flag-helpers.md; TST: true). */
 export const getHasFeedEnabled = (): boolean => flagValue('C2EnableFeed');
 
-/** OutSystems Index(Text, Search, 0, False, True) <> -1: Search found anywhere in Text, ignoring case. */
-const containsIgnoreCase = (text: string, search: string) => text.toLowerCase().includes(search.toLowerCase());
+/** OutSystems Index(Text, Search, 0, False, True) <> -1: Search found anywhere in Text, ignoring case (a built-in
+    expression, not a module action). Also the "Failed to deserialize JSON" check of OnHandle_ScanCode in
+    ScreenBlock_AdminEventDetail (.mvc.js:1150) and ScreenBlock_AdminMilestoneDetail (SB :1420). */
+export const containsIgnoreCase = (text: string, search: string): boolean =>
+  text.toLowerCase().includes(search.toLowerCase());
 
 /**
  * OpenInApp_OpenExternalLink(Url, InNewTab = False) (UBTConnect_Utils.controller.js:4491-4538, copy in

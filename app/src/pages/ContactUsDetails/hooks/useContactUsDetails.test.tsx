@@ -13,8 +13,14 @@ import { MOCK_USER_ID, mockDirectoryUser } from '@/platform/session/mockUser';
 import { pinCheck } from '@/platform/session/pin';
 import { setSignedInUser } from '@/platform/session/session';
 import type { NavigationEvent } from '@/lib/navigationEvent';
-import { emptyCallPopupData } from './contactUsDetailsState';
+import { IgnorableSystemException } from '@/legacy/os/os-exceptions';
+import { contactUsDetailsReducer, emptyCallPopupData } from './contactUsDetailsState';
 import { useContactUsDetails } from './useContactUsDetails';
+
+vi.mock('./contactUsDetailsState', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('./contactUsDetailsState')>();
+  return { ...actual, contactUsDetailsReducer: vi.fn(actual.contactUsDetailsReducer) };
+});
 
 const navigateBack = vi.fn();
 
@@ -57,6 +63,8 @@ const user = mockDirectoryUser({ policies: false, expired: false, householder: t
 const wrapper = ({ children }: { children: ReactNode }) => <MemoryRouter>{children}</MemoryRouter>;
 const renderFlows = (screenInputs: ContactUsDetailsInputs = inputs) =>
   renderHook(() => useContactUsDetails(screenInputs), { wrapper });
+/** The second argument of a raise: the flow scope of the screen. */
+const FLOW_SCOPE: unknown = expect.objectContaining({ alive: expect.any(Function) as unknown });
 /** Lets the flows that started finish (their awaits resolve before the next task). */
 const settle = () =>
   act(async () => {
@@ -110,7 +118,16 @@ describe('useContactUsDetails', () => {
     expect(result.current.state.isLoadingMainData).toBe(false);
     expect(result.current.state.contactUsForm.Country).toBe('Argentina');
     expect(fetchLocalityTimezone).toHaveBeenCalledWith(
-      expect.objectContaining({ isLogged: true, CountryPhone: '+54 11 555 0100', CallPopupData: emptyCallPopupData() }),
+      expect.objectContaining({
+        isLogged: true,
+        CountryPhone: '+54 11 555 0100',
+        CallPopupData: emptyCallPopupData(),
+        // F3: the user record goes with the call; the server reads In_LocalityId from it.
+        LocalCacheControl_UserInformation: { Directory_UserCurrent: user, isFetched: true },
+        ContactUsForm: result.current.state.contactUsForm,
+        Description: result.current.state.description,
+        MessagePrompt: result.current.state.messagePrompt,
+      }),
     );
     await settle();
     expect(result.current.state.timezone).toEqual({ timezoneName: 'ART', timezoneOffset: -180 });
@@ -128,7 +145,16 @@ describe('useContactUsDetails', () => {
       result.current.onUserInformation(user);
     });
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(vi.mocked(raiseToFlowHandler).mock.calls).toEqual([[error, FLOW_SCOPE]]);
+  });
+
+  it('a failed countries call (signed out) goes to the flow handler with the flow scope', async () => {
+    setSignedInUser(null);
+    const error = new Error('down');
+    vi.mocked(fetchCountryNames).mockRejectedValueOnce(error);
+    renderFlows();
+    await settle();
+    expect(vi.mocked(raiseToFlowHandler).mock.calls).toEqual([[error, FLOW_SCOPE]]);
   });
 
   it('the Support Team link opens the call popup; Cancel closes it', async () => {
@@ -267,10 +293,133 @@ describe('useContactUsDetails', () => {
     expect(result.current.state.isSubmiting).toBe(false);
   });
 
+  it('Send signed out: valid fields send the form; OnChange_Email clears the message of Input_Email', async () => {
+    setSignedInUser(null);
+    const { result } = renderFlows();
+    const { validation } = result.current;
+    validation.register({ id: 'Form_ContactUs', isValidationAggregator: true });
+    for (const id of ['Input_FullName', 'Input_Email', 'Input_PhoneNumber']) {
+      validation.register({ id, validationParentId: 'Form_ContactUs' });
+    }
+    act(() => {
+      result.current.onFieldChange('FullName', 'Lucia Ferreyra');
+      result.current.onFieldChange('Email', 'not an e-mail');
+      result.current.onFieldChange('PhoneNumber', '+54 291 555 0142');
+      result.current.onCountryVariableChange('AR');
+      result.current.onCountryChange();
+      result.current.onFieldChange('Locality', 'Bahia Blanca');
+      result.current.onMessageChange('I cannot sign in.');
+    });
+    expect(result.current.state.isFormFilled).toBe(true);
+    act(() => {
+      result.current.onSend();
+    });
+    await settle();
+    expect(sendContactUsMessage).not.toHaveBeenCalled();
+    expect(validation.getWidgetRecord('Input_Email')).toEqual({
+      validAttr: false,
+      validationMessageAttr: 'Invalid email!',
+    });
+    act(() => {
+      result.current.onFieldChange('Email', 'lucia.ferreyra@example.com');
+    });
+    expect(validation.getWidgetRecord('Input_Email')).toEqual({ validAttr: true, validationMessageAttr: '' });
+    act(() => {
+      result.current.onSend();
+    });
+    await settle();
+    expect(sendContactUsMessage).toHaveBeenCalledWith(
+      {
+        FullName: 'Lucia Ferreyra',
+        Email: 'lucia.ferreyra@example.com',
+        PhoneNumber: '+54 291 555 0142',
+        Country: 'AR',
+        Locality: 'Bahia Blanca',
+        Message: 'I cannot sign in.',
+      },
+      inputs.In_ContactSubjectId,
+      0,
+      false,
+    );
+  });
+
+  it('the rate of the feedback subject enables Send and goes with the message (BR-UBTCON-968, 970)', async () => {
+    const { result } = renderFlows(feedbackInputs);
+    act(() => {
+      result.current.onUserInformation(user);
+    });
+    await settle();
+    act(() => {
+      result.current.onRateSelected(9);
+    });
+    expect(result.current.state).toMatchObject({ selectedRate: 9, isFormFilled: true, isAnyFilled: false });
+    act(() => {
+      result.current.onSend();
+    });
+    await settle();
+    expect(sendContactUsMessage).toHaveBeenCalledWith(
+      expect.objectContaining({ Message: '' }),
+      feedbackInputs.In_ContactSubjectId,
+      9,
+      false,
+    );
+  });
+
   it('the leave confirmation prevents the back navigation', () => {
     const { result } = renderFlows();
     const event = new Event('navigation', { cancelable: true }) as NavigationEvent;
     result.current.onBackNavigation(event);
     expect(event.defaultPrevented).toBe(true);
+  });
+});
+
+/** A call that the test answers. */
+function deferred<T>() {
+  let resolve: (value: T) => void = () => undefined;
+  let reject: (error: unknown) => void = () => undefined;
+  const promise = new Promise<T>((res, rej) => {
+    resolve = res;
+    reject = rej;
+  });
+  return { promise, resolve, reject };
+}
+/** The errors that reached the flow handler, without the ignorable ones (the handler drops them: R1). */
+const raisedErrors = () =>
+  vi
+    .mocked(raiseToFlowHandler)
+    .mock.calls.map(([error]) => error)
+    .filter((error) => !(error instanceof IgnorableSystemException));
+
+/* Flow scope (item 8, item8-S5a.md Q1 (a)): DataAction_GetLocalityTimezone and DataAction_GetCountriesNames are data
+   actions (IDataAction on the MCP, R1). After the unmount their answer and their failure are dropped. */
+describe('useContactUsDetails after an unmount (flow scope, item 8)', () => {
+  it('R1: unmount while DataAction_GetLocalityTimezone is pending: no state write, no raise', async () => {
+    const call = deferred<Awaited<ReturnType<typeof fetchLocalityTimezone>>>();
+    vi.mocked(fetchLocalityTimezone).mockReturnValueOnce(call.promise);
+    const { result, unmount } = renderFlows();
+    act(() => {
+      result.current.onUserInformation(user);
+    });
+    unmount();
+    vi.mocked(contactUsDetailsReducer).mockClear();
+    call.resolve({ timezoneName: 'ART', timezoneOffset: -180 });
+    await settle();
+    expect(contactUsDetailsReducer).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R1: signed out, unmount while DataAction_GetCountriesNames is pending: no state write; its failure is dropped', async () => {
+    setSignedInUser(null);
+    const call = deferred<Awaited<ReturnType<typeof fetchCountryNames>>>();
+    vi.mocked(fetchCountryNames).mockReturnValueOnce(call.promise);
+    const { unmount } = renderFlows();
+    await settle();
+    expect(fetchCountryNames).toHaveBeenCalledTimes(1);
+    unmount();
+    vi.mocked(contactUsDetailsReducer).mockClear();
+    call.reject(new Error('down'));
+    await settle();
+    expect(contactUsDetailsReducer).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 });

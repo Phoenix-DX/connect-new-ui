@@ -4,7 +4,7 @@ import type { ViewDocumentsInputs } from '@/pages/ViewDocuments/inputs';
 import { feedbackMessageAutoClose, PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { log } from '@/platform/log/log';
-import { useFlowState, useOsNavigate, type IsAlive } from '@/platform/navigation';
+import { useFlowState, useOsNavigate } from '@/platform/navigation';
 import { useHandleDownload, type FileDownloadResult, type FileTransferError } from '@/platform/device/handleDownload';
 import { addExtensionToFile } from '@/lib/orbit/actions';
 import { openInApp_TryOpenFileInApp } from '@/lib/ubtConnectUtils/actions';
@@ -15,7 +15,6 @@ import {
   INITIAL_VIEW_DOCUMENTS_STATE,
   viewDocumentsReducer,
   withDocumentViewed,
-  type ViewDocumentsPatch,
   type ViewDocumentsState,
 } from './viewDocumentsState';
 
@@ -52,12 +51,13 @@ function feedbackMessageAfterTransition(message: string, messageType: number): v
       restored keeps its variables, without a call. Otherwise IsFetchingData True, RefreshDocumentData (the refresh of
       DataActionGetEventDocuments, which sends the block variables of the moment it starts), then IsFetchingData False.
       A failure keeps the skeleton and goes to the flow handler.
-    - Decision W23: after an unmount, the started flow skips its state writes only. Its call runs to its end, and its
-      error still goes to the flow handler.
+    - Flow scope (item 8): GetEventDocuments is a data action (R1, `flow.fetch`): after the unmount its answer and its
+      failure are dropped (no state write, no flow handler).
     - OnClick_Document: nothing while a document opens; else IsLoadingDocument True and OpenInApp_TryOpenFileInApp
       (name with the PDF extension, URL, "orbit-documents", PDF). Not in the app (always in the browser: the document
       opens in a new tab, decision U18): Action_OpenDoc(name), IsLoadingDocument False. An UnknownError resets
-      IsLoadingDocument and is raised again.
+      IsLoadingDocument and is raised again. Every error of the synchronous call goes to the flow handler with the
+      flow scope (R6, item 8 S4b D6).
     - The HandleDownload events (only a FileTransfer download in the app raises them, never in the browser):
       OnDownloadComplete runs OpenDocumentFromLocalPath (FileViewerPlugin, Cordova only: logged), then
       Action_OpenDoc(Name); OnDownloadError resets IsLoadingDocument and shows the plugin's message
@@ -77,27 +77,26 @@ export function useViewDocuments(
     dispatch: set,
     latest,
     parameters,
+    flow,
   } = useFlowState({
     viewName: 'Orbit_ScreenBlocks_Documents.ScreenBlock_ViewDocuments',
     reducer: viewDocumentsReducer,
     initial: INITIAL_VIEW_DOCUMENTS_STATE,
     parameters: inputs,
     beforePaint: true,
-    onReady: (isAlive, restored) => onReady(isAlive, restored),
+    onReady: (_flow, restored) => onReady(restored),
   });
 
   /** OnReady. useFlowState sends a rejection to the flow handler. */
-  const onReady = async (isAlive: IsAlive, restored: boolean) => {
+  const onReady = async (restored: boolean) => {
     if (restored) return;
-    /** A state write of the OnReady flow, skipped after the unmount (W23). */
-    const write = (patch: ViewDocumentsPatch) => {
-      if (isAlive()) set(patch);
-    };
-    write({ isFetchingData: true });
+    set({ isFetchingData: true });
     // RefreshDocumentData, then OnAfterFetch_GetEventDocuments.
-    const eventDocuments = await fetchEventDocuments(eventDocumentsCallInputs(latest.current, parameters.current));
-    write({ isDataFetched: true, hasResponseDocuments: eventDocuments.length > 0, eventDocuments });
-    write({ isFetchingData: false });
+    const eventDocuments = await flow.fetch(
+      fetchEventDocuments(eventDocumentsCallInputs(latest.current, parameters.current)), // R1
+    );
+    set({ isDataFetched: true, hasResponseDocuments: eventDocuments.length > 0, eventDocuments });
+    set({ isFetchingData: false });
   };
 
   /** Action_OpenDoc(DocName): IsLoadingDocument False; the matching document becomes viewed. */
@@ -123,7 +122,7 @@ export function useViewDocuments(
       }
     } catch (e) {
       if (isUserException(e, 'Connect2_OrbitMobile_MUI.UnknownError')) set({ isLoadingDocument: false });
-      raiseToFlowHandler(e);
+      raiseToFlowHandler(e, flow); // R6: the flow handler checks the context of the screen
     }
   };
 

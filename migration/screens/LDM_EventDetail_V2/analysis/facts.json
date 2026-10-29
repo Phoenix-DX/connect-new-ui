@@ -2,7 +2,7 @@
  "screen": "LDM_EventDetail_V2",
  "env": {
   "path": "/UBTConnect/LDM_EventDetail_V2",
-  "collectedAt": "2026-10-15T23:35:24.869Z",
+  "collectedAt": "2026-10-29T09:28:54.925Z",
   "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.37 Safari/537.36",
   "viewport": {
    "width": 390,
@@ -470,7 +470,7 @@
  },
  "report": {
   "maskedTexts": 4,
-  "keptTexts": 9,
+  "keptTexts": 10,
   "removedUserImages": 1,
   "failed": []
  },
@@ -484,6 +484,16 @@
   "LDM_Blocks.EventDetail_Banner",
   "LDM_Blocks.EventDetail_HostCard",
   "Reusable.Person_Contact_Options",
+  "CW_Notes.ItemNotesSection",
+  "BasePatterns.CustomContainer",
+  "ConnectCorePatterns.ItemCard_ActionBar",
+  "ConnectPatterns.IconText",
+  "BasePatterns.Columns_Two",
+  "Adaptive.Columns2",
+  "ConnectPatterns.Icon",
+  "BasePatterns.CustomText",
+  "ConnectPatterns.IconInline_Internal",
+  "CW_Notes.NotesSheet",
   "CW_CTA_PopUps.ContactPopup_ByPhone",
   "CW_CTA_PopUps.ContactPopup",
   "CW_CTA_PopUps.ContactByMessage_Wrapper",
@@ -491,9 +501,6 @@
   "App_Common.BottomBarMenu",
   "App_Common.BottomBarContent",
   "Navigation.BottomBarItem",
-  "ConnectPatterns.Icon",
-  "BasePatterns.CustomText",
-  "ConnectPatterns.IconInline_Internal",
   "App_Common_Blocks.App_IconBadge",
   "ConnectPatterns.SkeletonSection",
   "OutSystemsUIOverrides.IconBadge",
@@ -662,6 +669,12 @@
      "default": "\"\""
     },
     {
+     "name": "Notes",
+     "kind": "output",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec())"
+    },
+    {
      "name": "EventResponse",
      "kind": "output",
      "type": "Record",
@@ -728,6 +741,12 @@
      "default": "false"
     },
     {
+     "name": "EventNotes",
+     "kind": "local",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec())"
+    },
+    {
      "name": "EventHostId",
      "kind": "input",
      "type": "LongInteger",
@@ -746,6 +765,12 @@
      "default": "OS.DataTypes.ImmutableBase.getData(new GetCoordinatorDetailsDataActRec())"
     },
     {
+     "name": "FetchEventNotes",
+     "kind": "attribute",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new FetchEventNotesDataActRec())"
+    },
+    {
      "name": "GetEventByEventId",
      "kind": "attribute",
      "type": "Record",
@@ -756,6 +781,10 @@
     {
      "name": "DataActionGetCoordinatorDetails",
      "url": "screenservices/Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionGetCoordinatorDetails"
+    },
+    {
+     "name": "DataActionFetchEventNotes",
+     "url": "screenservices/Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionFetchEventNotes"
     },
     {
      "name": "DataActionGetEventByEventId",
@@ -783,11 +812,14 @@
     "onHandle_SetContainerHeight",
     "onHandle_ContactByMessage_Cancel",
     "onHandle_ContactByMessage_ClickedEmail",
+    "handler_OnNotesChanged",
+    "onAfterFetch_FetchEventNotes",
     "onHandle_ContactByPhone_Call",
     "onReady",
     "toggle_IsFetching",
     "onHandle_HostCardAddress",
     "onHandle_ContactHost_Call",
+    "handlerOn_NoteDeleted",
     "onHandle_HostInformation",
     "onHandle_ContactOrganiser",
     "navigateTo_WebMaps",
@@ -1279,6 +1311,24 @@
      "kind": "input",
      "type": "Email",
      "default": "\"\""
+    },
+    {
+     "name": "EventId",
+     "kind": "input",
+     "type": "LongInteger",
+     "default": "OS.DataTypes.LongInteger.defaultValue"
+    },
+    {
+     "name": "EventNotes",
+     "kind": "input",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec())"
+    },
+    {
+     "name": "EventHostId",
+     "kind": "input",
+     "type": "LongInteger",
+     "default": "OS.DataTypes.LongInteger.defaultValue"
     }
    ],
    "dataActions": [],
@@ -1289,15 +1339,19 @@
    "clientActions": [
     "address",
     "hostInformation",
+    "handlerOn_NoteDeleted",
     "callPhone",
-    "navigateToEmail_Household"
+    "navigateToEmail_Household",
+    "handlerOn_NotesChanged"
    ],
    "lifecycle": [],
    "referencedBlocks": [
-    "Connect2_LegacyShared.Reusable.Person_Contact_Options"
+    "Connect2_LegacyShared.Reusable.Person_Contact_Options",
+    "UBTConnect_Utils.CW_Notes.ItemNotesSection"
    ],
    "cssDependencies": [
-    "css/OutSystemsReactWidgets.css"
+    "css/OutSystemsReactWidgets.css",
+    "css/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.css"
    ],
    "images": [],
    "feedbackMessages": [],
@@ -1359,6 +1413,737 @@
    "staticEntities": [],
    "clientVariables": [],
    "candidateStrings": []
+  },
+  "UBTConnect_Utils.CW_Notes.ItemNotesSection.mvc.js": {
+   "file": "UBTConnect_Utils.CW_Notes.ItemNotesSection.mvc.js",
+   "displayName": [
+    "CW_Notes.ItemNotesSection"
+   ],
+   "variables": [
+    {
+     "name": "IsAddNote",
+     "kind": "local",
+     "type": "Boolean",
+     "default": "false"
+    },
+    {
+     "name": "ShareContactData",
+     "kind": "local",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnect_UtilsModel.ContactPopupDataRec())"
+    },
+    {
+     "name": "ShareObjectTypeId",
+     "kind": "local",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
+     "name": "In_ItemId",
+     "kind": "input",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
+     "name": "In_EntityType",
+     "kind": "input",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
+     "name": "In_NoteCategoryId",
+     "kind": "input",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
+     "name": "In_Notes",
+     "kind": "input",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec())"
+    },
+    {
+     "name": "In_IsBookmarked",
+     "kind": "input",
+     "type": "Boolean",
+     "default": "false"
+    },
+    {
+     "name": "In_ContactPopupData",
+     "kind": "input",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnect_UtilsModel.ContactPopupDataRec())"
+    },
+    {
+     "name": "useViewDetails",
+     "kind": "input",
+     "type": "Boolean",
+     "default": "false"
+    },
+    {
+     "name": "ActionBarOptions",
+     "kind": "input",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ActionBarOptionsRec())"
+    }
+   ],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [
+    "handler_OnNoteDeleted",
+    "handler_OnSharedCancel",
+    "handler_OnNoteSheetClosed",
+    "handler_OnShareToOthers",
+    "handler_OnSaveEditNote",
+    "handler_OnShowAllNotesRequested",
+    "handler_OnAddNoteClicked",
+    "onReady",
+    "handler_OnShareClicked",
+    "handler_OnSheetNotesChanged",
+    "on_UnbookmarkClicked",
+    "on_BookmarkClicked",
+    "on_NoteDeleted",
+    "on_NotesChanged"
+   ],
+   "lifecycle": [
+    "Ready"
+   ],
+   "referencedBlocks": [
+    "UBTConnectLibrary.BasePatterns.CustomContainer",
+    "UBTConnect_Utils.CW_Notes.NoteListActions",
+    "UBTConnectLibrary.ConnectCorePatterns.ItemCard_ActionBar",
+    "UBTConnect_Utils.CW_Notes.NotesSheet"
+   ],
+   "cssDependencies": [
+    "css/OutSystemsReactWidgets.css"
+   ],
+   "images": [],
+   "feedbackMessages": [],
+   "exceptions": [],
+   "jsNodes": [
+    "UBTConnect_Utils.CW_Notes.ItemNotesSection.mvc$controller.OnReady.CheckRestoredJS"
+   ],
+   "staticEntities": [
+    "uBT_Size.small",
+    "uBT_Color.neutral2"
+   ],
+   "clientVariables": [],
+   "candidateStrings": []
+  },
+  "UBTConnectLibrary.BasePatterns.CustomContainer.mvc.js": {
+   "file": "UBTConnectLibrary.BasePatterns.CustomContainer.mvc.js",
+   "displayName": [
+    "BasePatterns.CustomContainer"
+   ],
+   "variables": [
+    {
+     "name": "MainContainerClass",
+     "kind": "local",
+     "type": "Text",
+     "default": "\"ubt-custom-container\""
+    },
+    {
+     "name": "ExtendedClasses",
+     "kind": "input",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
+     "name": "Options",
+     "kind": "input",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ContainerOptionsRec())"
+    }
+   ],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [
+    "onReady",
+    "onParametersChanged",
+    "clicked"
+   ],
+   "lifecycle": [
+    "Ready",
+    "ParametersChanged"
+   ],
+   "referencedBlocks": [],
+   "cssDependencies": [
+    "css/OutSystemsReactWidgets.css"
+   ],
+   "images": [],
+   "feedbackMessages": [],
+   "exceptions": [],
+   "jsNodes": [],
+   "staticEntities": [],
+   "clientVariables": [],
+   "candidateStrings": []
+  },
+  "UBTConnectLibrary.ConnectCorePatterns.ItemCard_ActionBar.mvc.js": {
+   "file": "UBTConnectLibrary.ConnectCorePatterns.ItemCard_ActionBar.mvc.js",
+   "displayName": [
+    "ConnectCorePatterns.ItemCard_ActionBar"
+   ],
+   "variables": [
+    {
+     "name": "MainContainerClass",
+     "kind": "local",
+     "type": "Text",
+     "default": "\"ubt-action-bar\""
+    },
+    {
+     "name": "ActionBarOptions",
+     "kind": "input",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ActionBarOptionsRec())"
+    }
+   ],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [
+    "onClickAddNote",
+    "onClickUnbookmark",
+    "onClickShare"
+   ],
+   "lifecycle": [],
+   "referencedBlocks": [
+    "UBTConnectLibrary.BasePatterns.CustomContainer",
+    "UBTConnectLibrary.ConnectPatterns.IconText",
+    "UBTConnectLibrary.ConnectPatterns.Icon"
+   ],
+   "cssDependencies": [
+    "css/OutSystemsReactWidgets.css"
+   ],
+   "images": [],
+   "feedbackMessages": [],
+   "exceptions": [],
+   "jsNodes": [],
+   "staticEntities": [
+    "uBT_Display.flex",
+    "uBT_JustifyContent.flexStart",
+    "uBT_Size.extraSmall",
+    "uBT_Color.primary",
+    "uBT_FontSize.doubleExtraSmall",
+    "uBT_FontWeight.semiBold",
+    "uBT_Icons.check",
+    "uBT_IconSize.nonStandard_18",
+    "uBT_Color.neutral7",
+    "uBT_Icons.borderColor",
+    "uBT_Icons.share"
+   ],
+   "clientVariables": [],
+   "candidateStrings": []
+  },
+  "UBTConnectLibrary.ConnectPatterns.IconText.mvc.js": {
+   "file": "UBTConnectLibrary.ConnectPatterns.IconText.mvc.js",
+   "displayName": [
+    "ConnectPatterns.IconText"
+   ],
+   "variables": [
+    {
+     "name": "IsIconOnRight",
+     "kind": "input",
+     "type": "Boolean",
+     "default": "false"
+    },
+    {
+     "name": "Text",
+     "kind": "input",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
+     "name": "TextOptions",
+     "kind": "input",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())"
+    },
+    {
+     "name": "SpacingSize",
+     "kind": "input",
+     "type": "Text",
+     "default": "UBTConnectLibraryModel.staticEntities.uBT_Size.extraSmall"
+    },
+    {
+     "name": "ExtendedClasses",
+     "kind": "input",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
+     "name": "SubtextOptions",
+     "kind": "input",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())"
+    },
+    {
+     "name": "In_Subtext",
+     "kind": "input",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
+     "name": "In_JustifyText",
+     "kind": "input",
+     "type": "Boolean",
+     "default": "false"
+    }
+   ],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [
+    "clicked"
+   ],
+   "lifecycle": [],
+   "referencedBlocks": [
+    "UBTConnectLibrary.BasePatterns.Columns_Two",
+    "UBTConnectLibrary.BasePatterns.CustomText"
+   ],
+   "cssDependencies": [
+    "css/OutSystemsReactWidgets.css"
+   ],
+   "images": [],
+   "feedbackMessages": [],
+   "exceptions": [],
+   "jsNodes": [],
+   "staticEntities": [
+    "uBT_Size.extraSmall",
+    "uBT_ColumnBehaviour.reduceFirst",
+    "uBT_ColumnBehaviour.reduceLast",
+    "uBT_VerticalAlign.center",
+    "uBT_FlexDirection.rowReverse"
+   ],
+   "clientVariables": [],
+   "candidateStrings": []
+  },
+  "UBTConnectLibrary.BasePatterns.Columns_Two.mvc.js": {
+   "file": "UBTConnectLibrary.BasePatterns.Columns_Two.mvc.js",
+   "displayName": [
+    "BasePatterns.Columns_Two"
+   ],
+   "variables": [
+    {
+     "name": "MainContainerClass",
+     "kind": "local",
+     "type": "Text",
+     "default": "\"ubt-columns\""
+    },
+    {
+     "name": "ColumnOptions",
+     "kind": "input",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ColumnOptionsRec())"
+    },
+    {
+     "name": "ExtendedClasses",
+     "kind": "input",
+     "type": "Text",
+     "default": "\"\""
+    }
+   ],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [
+    "onReady"
+   ],
+   "lifecycle": [
+    "Ready"
+   ],
+   "referencedBlocks": [
+    "OutSystemsUI_2_23.Adaptive.Columns2"
+   ],
+   "cssDependencies": [
+    "css/OutSystemsReactWidgets.css"
+   ],
+   "images": [],
+   "feedbackMessages": [],
+   "exceptions": [],
+   "jsNodes": [],
+   "staticEntities": [],
+   "clientVariables": [],
+   "candidateStrings": []
+  },
+  "OutSystemsUI_2_23.Adaptive.Columns2.mvc.js": {
+   "file": "OutSystemsUI_2_23.Adaptive.Columns2.mvc.js",
+   "displayName": [
+    "Adaptive.Columns2"
+   ],
+   "variables": [
+    {
+     "name": "GutterSize",
+     "kind": "input",
+     "type": "Text",
+     "default": "OutSystemsUI_2_23Model.staticEntities.gutterSize.base"
+    },
+    {
+     "name": "TabletBehavior",
+     "kind": "input",
+     "type": "Text",
+     "default": "OutSystemsUI_2_23Model.staticEntities.breakColumns.none"
+    },
+    {
+     "name": "PhoneBehavior",
+     "kind": "input",
+     "type": "Text",
+     "default": "OutSystemsUI_2_23Model.staticEntities.breakColumns.none"
+    },
+    {
+     "name": "ExtendedClass",
+     "kind": "input",
+     "type": "Text",
+     "default": "\"\""
+    }
+   ],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [],
+   "lifecycle": [],
+   "referencedBlocks": [],
+   "cssDependencies": [
+    "css/OutSystemsReactWidgets.css"
+   ],
+   "images": [],
+   "feedbackMessages": [],
+   "exceptions": [],
+   "jsNodes": [],
+   "staticEntities": [
+    "gutterSize.base",
+    "breakColumns.none"
+   ],
+   "clientVariables": [],
+   "candidateStrings": []
+  },
+  "UBTConnectLibrary.ConnectPatterns.Icon.mvc.js": {
+   "file": "UBTConnectLibrary.ConnectPatterns.Icon.mvc.js",
+   "displayName": [
+    "ConnectPatterns.Icon"
+   ],
+   "variables": [
+    {
+     "name": "MainContainerClass",
+     "kind": "local",
+     "type": "Text",
+     "default": "\"ubt-icon\""
+    },
+    {
+     "name": "In_IconId",
+     "kind": "input",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
+     "name": "In_ColorId",
+     "kind": "input",
+     "type": "Text",
+     "default": "UBTConnectLibraryModel.staticEntities.uBT_Color.neutral9"
+    },
+    {
+     "name": "In_SizeId",
+     "kind": "input",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
+     "name": "In_Visible",
+     "kind": "input",
+     "type": "Boolean",
+     "default": "true"
+    },
+    {
+     "name": "In_ExtendedClasses",
+     "kind": "input",
+     "type": "Text",
+     "default": "\"\""
+    }
+   ],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [
+    "click"
+   ],
+   "lifecycle": [],
+   "referencedBlocks": [
+    "UBTConnectLibrary.ConnectPatterns.IconSVG"
+   ],
+   "cssDependencies": [
+    "css/OutSystemsReactWidgets.css"
+   ],
+   "images": [],
+   "feedbackMessages": [],
+   "exceptions": [],
+   "jsNodes": [],
+   "staticEntities": [
+    "uBT_Color.neutral9"
+   ],
+   "clientVariables": [],
+   "candidateStrings": []
+  },
+  "UBTConnectLibrary.BasePatterns.CustomText.mvc.js": {
+   "file": "UBTConnectLibrary.BasePatterns.CustomText.mvc.js",
+   "displayName": [
+    "BasePatterns.CustomText"
+   ],
+   "variables": [
+    {
+     "name": "In_Text",
+     "kind": "input",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
+     "name": "In_TextOptions",
+     "kind": "input",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())"
+    },
+    {
+     "name": "In_PaddingOptions",
+     "kind": "input",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.SpacingOptionsRec())"
+    },
+    {
+     "name": "In_HighlightWords",
+     "kind": "input",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
+     "name": "In_HighlightOptions",
+     "kind": "input",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())"
+    },
+    {
+     "name": "ExtendedClasses",
+     "kind": "input",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
+     "name": "FitContent",
+     "kind": "input",
+     "type": "Boolean",
+     "default": "false"
+    },
+    {
+     "name": "InJustifyText",
+     "kind": "input",
+     "type": "Boolean",
+     "default": "false"
+    },
+    {
+     "name": "NoWrap",
+     "kind": "input",
+     "type": "Boolean",
+     "default": "false"
+    },
+    {
+     "name": "InlineIcon",
+     "kind": "input",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.InlineIconRec())"
+    }
+   ],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [
+    "clicked"
+   ],
+   "lifecycle": [],
+   "referencedBlocks": [
+    "UBTConnectLibrary.ConnectPatterns.HighlightSearch",
+    "UBTConnectLibrary.ConnectPatterns.IconInline_Internal"
+   ],
+   "cssDependencies": [
+    "css/OutSystemsReactWidgets.css"
+   ],
+   "images": [],
+   "feedbackMessages": [],
+   "exceptions": [],
+   "jsNodes": [],
+   "staticEntities": [],
+   "clientVariables": [],
+   "candidateStrings": []
+  },
+  "UBTConnectLibrary.ConnectPatterns.IconInline_Internal.mvc.js": {
+   "file": "UBTConnectLibrary.ConnectPatterns.IconInline_Internal.mvc.js",
+   "displayName": [
+    "ConnectPatterns.IconInline_Internal"
+   ],
+   "variables": [
+    {
+     "name": "InlineIcon",
+     "kind": "input",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.InlineIconRec())"
+    }
+   ],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [],
+   "lifecycle": [],
+   "referencedBlocks": [
+    "UBTConnectLibrary.ConnectPatterns.Icon"
+   ],
+   "cssDependencies": [
+    "css/OutSystemsReactWidgets.css"
+   ],
+   "images": [],
+   "feedbackMessages": [],
+   "exceptions": [],
+   "jsNodes": [],
+   "staticEntities": [],
+   "clientVariables": [],
+   "candidateStrings": []
+  },
+  "UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js": {
+   "file": "UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js",
+   "displayName": [
+    "CW_Notes.NotesSheet"
+   ],
+   "variables": [
+    {
+     "name": "BottomSheetId",
+     "kind": "local",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
+     "name": "IsEditing",
+     "kind": "local",
+     "type": "Boolean",
+     "default": "false"
+    },
+    {
+     "name": "IsSheetOpen",
+     "kind": "local",
+     "type": "Boolean",
+     "default": "false"
+    },
+    {
+     "name": "NoteText",
+     "kind": "local",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
+     "name": "IsSubmittingNote",
+     "kind": "local",
+     "type": "Boolean",
+     "default": "false"
+    },
+    {
+     "name": "In_IsOpen",
+     "kind": "input",
+     "type": "Boolean",
+     "default": "false"
+    },
+    {
+     "name": "ExtendedClasses",
+     "kind": "input",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
+     "name": "In_ItemId",
+     "kind": "input",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
+     "name": "In_NoteCategoryId",
+     "kind": "input",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
+     "name": "In_Notes",
+     "kind": "input",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec())"
+    }
+   ],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [
+    {
+     "name": "AddNote",
+     "url": "screenservices/UBTConnect_Utils/CW_Notes/NotesSheet/ServiceAPIAddNote"
+    }
+   ],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [
+    "handler_OnSubmitNote",
+    "backNavigationHandlerBackNavigation",
+    "bottomSheetOnToggle",
+    "bottomSheet_Initialized",
+    "onParametersChanged",
+    "handler_OnEditingStateChanged",
+    "handler_OnSaveEditNote",
+    "action_SetBottomSheetOpen",
+    "handler_OnNoteSheet_Closed",
+    "on_NotesChanged",
+    "on_NoteSheet_Closed",
+    "on_NoteDeleted"
+   ],
+   "lifecycle": [
+    "ParametersChanged"
+   ],
+   "referencedBlocks": [
+    "UBTConnectLibrary.ConnectPatterns.BottomSheet",
+    "UBTConnect_Utils.CW_Notes.NoteListActions",
+    "UBTConnectLibrary.BasePatterns.CustomContainer",
+    "UBTConnectLibrary.ConnectPatterns.AddNote",
+    "NavigationHandler.NavigationHandler.BackNavigationHandler"
+   ],
+   "cssDependencies": [
+    "css/OutSystemsReactWidgets.css",
+    "css/UBTConnect_Utils.CW_Notes.NotesSheet.css"
+   ],
+   "images": [],
+   "feedbackMessages": [],
+   "exceptions": [
+    "CommunicationException",
+    "UserException"
+   ],
+   "jsNodes": [
+    "UBTConnect_Utils.CW_Notes.NotesSheet.mvc$controller.OnParametersChanged.DelaySetIsOpenJS"
+   ],
+   "staticEntities": [
+    "noteActionType.add"
+   ],
+   "clientVariables": [],
+   "candidateStrings": [
+    "Action_SetBottomSheetOpen"
+   ]
   },
   "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone.mvc.js": {
    "file": "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone.mvc.js",
@@ -1730,14 +2515,6 @@
      "params": []
     },
     {
-     "to": "/UBTConnect/New_MyBookmarks",
-     "params": []
-    },
-    {
-     "to": "/UBTConnect/MyBookmarks",
-     "params": []
-    },
-    {
      "to": "/UBTConnect/Menu",
      "params": []
     }
@@ -1780,7 +2557,6 @@
     "connect_BottomBar_Items.bookmarks",
     "connect_BottomBar_Items.home",
     "connect_BottomBar_Items.directory",
-    "launchDarkly_FF.mobileDirectoryBookmarkNote",
     "connect_BottomBar_Items.menu"
    ],
    "clientVariables": [
@@ -1834,199 +2610,6 @@
    "clientActions": [],
    "lifecycle": [],
    "referencedBlocks": [],
-   "cssDependencies": [
-    "css/OutSystemsReactWidgets.css"
-   ],
-   "images": [],
-   "feedbackMessages": [],
-   "exceptions": [],
-   "jsNodes": [],
-   "staticEntities": [],
-   "clientVariables": [],
-   "candidateStrings": []
-  },
-  "UBTConnectLibrary.ConnectPatterns.Icon.mvc.js": {
-   "file": "UBTConnectLibrary.ConnectPatterns.Icon.mvc.js",
-   "displayName": [
-    "ConnectPatterns.Icon"
-   ],
-   "variables": [
-    {
-     "name": "MainContainerClass",
-     "kind": "local",
-     "type": "Text",
-     "default": "\"ubt-icon\""
-    },
-    {
-     "name": "In_IconId",
-     "kind": "input",
-     "type": "Text",
-     "default": "\"\""
-    },
-    {
-     "name": "In_ColorId",
-     "kind": "input",
-     "type": "Text",
-     "default": "UBTConnectLibraryModel.staticEntities.uBT_Color.neutral9"
-    },
-    {
-     "name": "In_SizeId",
-     "kind": "input",
-     "type": "Text",
-     "default": "\"\""
-    },
-    {
-     "name": "In_Visible",
-     "kind": "input",
-     "type": "Boolean",
-     "default": "true"
-    },
-    {
-     "name": "In_ExtendedClasses",
-     "kind": "input",
-     "type": "Text",
-     "default": "\"\""
-    }
-   ],
-   "dataActions": [],
-   "aggregates": [],
-   "serverActions": [],
-   "navigation": [],
-   "navigateBack": 0,
-   "clientActions": [
-    "click"
-   ],
-   "lifecycle": [],
-   "referencedBlocks": [
-    "UBTConnectLibrary.ConnectPatterns.IconSVG"
-   ],
-   "cssDependencies": [
-    "css/OutSystemsReactWidgets.css"
-   ],
-   "images": [],
-   "feedbackMessages": [],
-   "exceptions": [],
-   "jsNodes": [],
-   "staticEntities": [
-    "uBT_Color.neutral9"
-   ],
-   "clientVariables": [],
-   "candidateStrings": []
-  },
-  "UBTConnectLibrary.BasePatterns.CustomText.mvc.js": {
-   "file": "UBTConnectLibrary.BasePatterns.CustomText.mvc.js",
-   "displayName": [
-    "BasePatterns.CustomText"
-   ],
-   "variables": [
-    {
-     "name": "In_Text",
-     "kind": "input",
-     "type": "Text",
-     "default": "\"\""
-    },
-    {
-     "name": "In_TextOptions",
-     "kind": "input",
-     "type": "Record",
-     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())"
-    },
-    {
-     "name": "In_PaddingOptions",
-     "kind": "input",
-     "type": "Record",
-     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.SpacingOptionsRec())"
-    },
-    {
-     "name": "In_HighlightWords",
-     "kind": "input",
-     "type": "Text",
-     "default": "\"\""
-    },
-    {
-     "name": "In_HighlightOptions",
-     "kind": "input",
-     "type": "Record",
-     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())"
-    },
-    {
-     "name": "ExtendedClasses",
-     "kind": "input",
-     "type": "Text",
-     "default": "\"\""
-    },
-    {
-     "name": "FitContent",
-     "kind": "input",
-     "type": "Boolean",
-     "default": "false"
-    },
-    {
-     "name": "InJustifyText",
-     "kind": "input",
-     "type": "Boolean",
-     "default": "false"
-    },
-    {
-     "name": "NoWrap",
-     "kind": "input",
-     "type": "Boolean",
-     "default": "false"
-    },
-    {
-     "name": "InlineIcon",
-     "kind": "input",
-     "type": "Record",
-     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.InlineIconRec())"
-    }
-   ],
-   "dataActions": [],
-   "aggregates": [],
-   "serverActions": [],
-   "navigation": [],
-   "navigateBack": 0,
-   "clientActions": [
-    "clicked"
-   ],
-   "lifecycle": [],
-   "referencedBlocks": [
-    "UBTConnectLibrary.ConnectPatterns.HighlightSearch",
-    "UBTConnectLibrary.ConnectPatterns.IconInline_Internal"
-   ],
-   "cssDependencies": [
-    "css/OutSystemsReactWidgets.css"
-   ],
-   "images": [],
-   "feedbackMessages": [],
-   "exceptions": [],
-   "jsNodes": [],
-   "staticEntities": [],
-   "clientVariables": [],
-   "candidateStrings": []
-  },
-  "UBTConnectLibrary.ConnectPatterns.IconInline_Internal.mvc.js": {
-   "file": "UBTConnectLibrary.ConnectPatterns.IconInline_Internal.mvc.js",
-   "displayName": [
-    "ConnectPatterns.IconInline_Internal"
-   ],
-   "variables": [
-    {
-     "name": "InlineIcon",
-     "kind": "input",
-     "type": "Record",
-     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.InlineIconRec())"
-    }
-   ],
-   "dataActions": [],
-   "aggregates": [],
-   "serverActions": [],
-   "navigation": [],
-   "navigateBack": 0,
-   "clientActions": [],
-   "lifecycle": [],
-   "referencedBlocks": [
-    "UBTConnectLibrary.ConnectPatterns.Icon"
-   ],
    "cssDependencies": [
     "css/OutSystemsReactWidgets.css"
    ],
@@ -3635,6 +4218,7 @@
     "UBTConnect.controller$OpenGooglePlay_WebView.OpenGooglePlayJS",
     "UBTConnect.controller$ScrollTop.ScrollTopJS",
     "UBTConnect.controller$SetResumeLoginLink.JavaScript1JS",
+    "UBTConnect.controller$ShowCommunicationExceptionMessage.CheckIsOnlineNowJS",
     "UBTConnect.controller$TextListAppend_Function.JS_AppendJS",
     "UBTConnect.controller$UnlockOrientationLandscapeIfNeeded.IsLandscapeJS",
     "UBTConnect.controller$UnlockOrientationLandscapeIfNeeded.MaybeRemoveLandscapeJS",
@@ -3740,7 +4324,7 @@
     "noteCategory2.member",
     "bookmarkCategory.locality",
     "noteCategory2.locality",
-    "bookmarkCategory.oneSchoolGlobal",
+    "bookmarkCategory.oneSchoolGlobal2",
     "noteCategory2.oneSchoolGlobal",
     "bookmarkCategory.feedItem",
     "noteCategory2.feedItem",
@@ -3761,18 +4345,10 @@
     "connect_Entity.locality",
     "connect_Entity.oneSchoolGlobal",
     "connect_Entity.feedItem",
-    "myBookmarks_ObjectType.locality",
-    "myBookmarks_Group.locations",
-    "myBookmarks_ObjectType.contact",
-    "myBookmarks_Group.contacts",
-    "myBookmarks_ObjectType.subdivision",
-    "myBookmarks_ObjectType.oneSchoolGlobal",
-    "myBookmarks_Group.entities",
     "calendarView.month",
     "calendarView.week",
     "calendarView.day",
     "recurrenceRangeType.endDate",
-    "launchDarkly_FF.mobileDirectoryLocalityContacts",
     "type_ShareObject.locality",
     "type_ShareObject.household",
     "type_ShareObject.supperMeeting",
@@ -4254,19 +4830,26 @@
     "type_ExternalShareOption.outlook",
     "type_ShareObject.myHousehold",
     "type_ShareObject.household",
-    "type_ShareObject.locality",
-    "connect_Entity.locality",
     "connect_Entity.household",
-    "type_ShareObject.supperMeeting",
+    "noteCategory.household",
     "connect_Entity.supperMeetings_aka_Subdivisions",
-    "type_ShareObject.oneSchoolGlobal",
-    "connect_Entity.oneSchoolGlobal",
-    "type_ShareObject.feed",
-    "connect_Entity.feedItem",
+    "noteCategory.supperMeeting",
+    "connect_Entity.interchange",
+    "noteCategory.interchange",
     "connect_Entity.member",
+    "noteCategory.member",
+    "connect_Entity.locality",
+    "noteCategory.locality",
+    "connect_Entity.oneSchoolGlobal",
+    "noteCategory.oneSchoolGlobal",
+    "connect_Entity.feedItem",
+    "noteCategory.feedItem",
+    "type_ShareObject.locality",
+    "type_ShareObject.supperMeeting",
+    "type_ShareObject.oneSchoolGlobal",
+    "type_ShareObject.feed",
     "uBT_Icons.personFill",
     "uBT_Icons.homePIn",
-    "connect_Entity.interchange",
     "uBT_Icons.partnerExchange",
     "uBT_Icons.houseFill",
     "uBT_Icons.schoolFill",
@@ -4323,6 +4906,196 @@
    "clientVariables": [
     "getApp_SubscriptionPopUp",
     "getUniqueCacheKey"
+   ],
+   "candidateStrings": []
+  },
+  "UBTConnectLibrary.controller.js": {
+   "file": "UBTConnectLibrary.controller.js",
+   "displayName": [],
+   "variables": [],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [],
+   "lifecycle": [],
+   "referencedBlocks": [],
+   "cssDependencies": [],
+   "images": [
+    "img/UBTConnectLibrary.ar.png",
+    "img/UBT_CW.au.png",
+    "img/UBT_CW.bb.png",
+    "img/UBT_CW.ca.png",
+    "img/UBT_CW.dk.png",
+    "img/UBT_CW.fr.png",
+    "img/UBT_CW.de.png",
+    "img/UBT_CW.ie.png",
+    "img/UBT_CW.it.png",
+    "img/UBT_CW.jm.png",
+    "img/UBT_CW.nl.png",
+    "img/UBT_CW.nz.png",
+    "img/UBT_CW.vc.png",
+    "img/UBT_CW.se.png",
+    "img/UBT_CW.ch.png",
+    "img/UBT_CW.tt.png",
+    "img/UBT_CW.UK.png",
+    "img/UBT_CW.us.png"
+   ],
+   "feedbackMessages": [],
+   "exceptions": [],
+   "jsNodes": [
+    "UBTConnectLibrary.controller$BlurInput.BlurElementJS",
+    "UBTConnectLibrary.controller$BottomBarSlider_ForceRefresh.JavaScript1JS",
+    "UBTConnectLibrary.controller$BottomSheet_AnchorsInitialize.JavaScript1JS",
+    "UBTConnectLibrary.controller$BottomSheet_SetDragEnabled.SetDragEnabledJS",
+    "UBTConnectLibrary.controller$CheckForEnterKeyPress.CheckForEnterKeyJS",
+    "UBTConnectLibrary.controller$ClearTimeout.ClearTimeoutJS",
+    "UBTConnectLibrary.controller$FocusOnInput.FocusOnInputJS",
+    "UBTConnectLibrary.controller$GetRelativeTimeTag.JavaScript1JS",
+    "UBTConnectLibrary.controller$GetTargetTimeLabel.CalculateTargetDateTimeJS",
+    "UBTConnectLibrary.controller$Initialize_SvgScroll.JavaScript1JS",
+    "UBTConnectLibrary.controller$IsEmailValid.ValidateEmailJS",
+    "UBTConnectLibrary.controller$IsPhoneNumberValid.CheckFormatPhoneNumberJS",
+    "UBTConnectLibrary.controller$OnApplicationReady_BottomBarSlider.InitializeJS",
+    "UBTConnectLibrary.controller$OnApplicationReady_MobileKeyboardVisible.HandleMobileKeyboardVisibilityJS",
+    "UBTConnectLibrary.controller$PreetyFormatDate.JavaScript1JS",
+    "UBTConnectLibrary.controller$RemoveRegexSpecialCharacters.RemoveRegexSpecialCharactersJS",
+    "UBTConnectLibrary.controller$RemoveScrollEvents.RemoveScrollEventsJS",
+    "UBTConnectLibrary.controller$ResetSvgFlags.ResetSvgVariablesJS",
+    "UBTConnectLibrary.controller$SetHomeScroll.SetHomeScrollEventsJS",
+    "UBTConnectLibrary.controller$SetLocalVariable_ColumnSize.SetStyleJS",
+    "UBTConnectLibrary.controller$SetMainFixedScroll.SetMainFixedScrollEventsJS",
+    "UBTConnectLibrary.controller$SetMainScroll.SetMainScrollEventsJS",
+    "UBTConnectLibrary.controller$SetScrollShadow.SetShadowScrollEventsJS",
+    "UBTConnectLibrary.controller$SetStyle.SetStyleJS",
+    "UBTConnectLibrary.controller$SetSvgScroll.SetScrollEventsJS",
+    "UBTConnectLibrary.controller$StopPropagationHelper_Check.JavaScript1JS"
+   ],
+   "staticEntities": [
+    "uBT_Size.none",
+    "gutterSize.none",
+    "uBT_Size.extraSmall",
+    "gutterSize.extraSmall",
+    "uBT_Size.small",
+    "gutterSize.small",
+    "uBT_Size.base",
+    "gutterSize.base",
+    "uBT_Size.medium",
+    "gutterSize.medium",
+    "uBT_Size.large",
+    "gutterSize.large",
+    "uBT_Size.extraLarge",
+    "gutterSize.extraLarge",
+    "uBT_Size.doubleExtraLarge",
+    "gutterSize.xXLarge",
+    "uBT_VerticalAlign.top",
+    "uBT_VerticalAlign.center",
+    "uBT_VerticalAlign.bottom",
+    "connect_UpdateTypeId.marriage",
+    "uBT_Color.yellowLightest",
+    "connect_UpdateTypeId.birth",
+    "gender.mALE",
+    "uBT_Color.blueNonStandard",
+    "uBT_Color.pinkNonStandard",
+    "uBT_Color.neutral3",
+    "gender.fEMALE",
+    "uBT_Icons.home",
+    "uBT_Color.yellowDark",
+    "uBT_Color.neutral0",
+    "uBT_Color.neutral7",
+    "uBT_Color.primary",
+    "uBT_Color.secondary",
+    "uBT_Color.tertiary",
+    "uBT_Color.cyan",
+    "uBT_Color.purple",
+    "uBT_Color.peach",
+    "uBT_Color.blue",
+    "uBT_Color.green",
+    "uBT_Color.yellow",
+    "uBT_Color.red",
+    "uBT_Color.transparent",
+    "uBT_Color.neutral1",
+    "uBT_Color.neutral2",
+    "uBT_Color.neutral4",
+    "uBT_Color.neutral5",
+    "uBT_Color.neutral6",
+    "uBT_Color.neutral8",
+    "uBT_Color.neutral9",
+    "uBT_Color.neutral10",
+    "uBT_Color.info",
+    "uBT_Color.warning",
+    "uBT_Color.success",
+    "uBT_Color.error",
+    "uBT_Color.orange",
+    "uBT_Color.lime",
+    "uBT_Color.teal",
+    "uBT_Color.indigo",
+    "uBT_Color.violet",
+    "uBT_Color.grape",
+    "uBT_Color.pink",
+    "uBT_ColumnBehaviour.reduceFirst",
+    "uBT_ColumnBehaviour.reduceMiddle",
+    "uBT_ColumnBehaviour.reduceLast",
+    "uBT_ColumnBehaviour.expandMiddle",
+    "uBT_Shadow.none",
+    "uBT_Shadow.extraSmall",
+    "uBT_Shadow.small",
+    "uBT_Shadow.medium",
+    "uBT_Shadow.large",
+    "uBT_Shadow.extraLarge",
+    "uBT_Shadow.s2",
+    "uBT_Shape.none",
+    "uBT_Shape.soft",
+    "uBT_Shape.rounded",
+    "uBT_Shape.circle",
+    "uBT_Color.cyanLightest",
+    "uBT_ImageCardType.detail",
+    "uBT_Shape.large",
+    "uBT_BackgroundImageSize.intrinsicHeight_2_To_3",
+    "uBT_ImageCardType.gallery",
+    "uBT_ImageSize.maxWidth_100vw",
+    "uBT_ColumnWidth.fill",
+    "uBT_Display.flex",
+    "uBT_Display.inlineFlex",
+    "uBT_ImageSize.square",
+    "uBT_ImageSize.fullHeight_100_Percent",
+    "uBT_ImageSize.fullWidth_100_Percent",
+    "uBT_ImageSize.auto",
+    "uBT_BackgroundImageSize.intrinsicWidth_3_To_2",
+    "uBT_ButtonSize.extraSmall",
+    "uBT_ImageSize.halfWidth_50vw",
+    "uBT_ImageSize.thirdWidth_33vw",
+    "uBT_ImageSize.quarterWidth_25vw",
+    "uBT_Icons.bookmark",
+    "uBT_Icons.check",
+    "uBT_Icons.tooltip",
+    "uBT_Icons.gifting",
+    "uBT_Icons.share",
+    "uBT_Icons.call",
+    "uBT_Icons.letter",
+    "uBT_Icons.arrowOutward",
+    "uBT_Icons.personFill",
+    "uBT_Icons.household",
+    "uBT_Icons.girl",
+    "uBT_Color.pinkNonStandardDarker",
+    "uBT_Icons.boy",
+    "uBT_Color.blueNonStandarDarker",
+    "uBT_Icons.locationOnFill",
+    "uBT_Icons.explore",
+    "uBT_Icons.houseFill",
+    "uBT_ImageCardType.list",
+    "uBT_ImageCardType.sublist",
+    "uBT_ImageCardType.listWithImages",
+    "uBT_FontSize.base",
+    "uBT_FontWeight.semiBold",
+    "uBT_FontSize.doubleExtraSmall"
+   ],
+   "clientVariables": [
+    "getSVG_DefaultHeight",
+    "getSVG_DefaultWidth",
+    "getSVG_DefaultCurvePoint",
+    "getSVG_DefaultBreakPoint"
    ],
    "candidateStrings": []
   },
@@ -4782,195 +5555,6 @@
    "clientVariables": [],
    "candidateStrings": []
   },
-  "UBTConnectLibrary.controller.js": {
-   "file": "UBTConnectLibrary.controller.js",
-   "displayName": [],
-   "variables": [],
-   "dataActions": [],
-   "aggregates": [],
-   "serverActions": [],
-   "navigation": [],
-   "navigateBack": 0,
-   "clientActions": [],
-   "lifecycle": [],
-   "referencedBlocks": [],
-   "cssDependencies": [],
-   "images": [
-    "img/UBTConnectLibrary.ar.png",
-    "img/UBT_CW.au.png",
-    "img/UBT_CW.bb.png",
-    "img/UBT_CW.ca.png",
-    "img/UBT_CW.dk.png",
-    "img/UBT_CW.fr.png",
-    "img/UBT_CW.de.png",
-    "img/UBT_CW.ie.png",
-    "img/UBT_CW.it.png",
-    "img/UBT_CW.jm.png",
-    "img/UBT_CW.nl.png",
-    "img/UBT_CW.nz.png",
-    "img/UBT_CW.vc.png",
-    "img/UBT_CW.se.png",
-    "img/UBT_CW.ch.png",
-    "img/UBT_CW.tt.png",
-    "img/UBT_CW.UK.png",
-    "img/UBT_CW.us.png"
-   ],
-   "feedbackMessages": [],
-   "exceptions": [],
-   "jsNodes": [
-    "UBTConnectLibrary.controller$BlurInput.BlurElementJS",
-    "UBTConnectLibrary.controller$BottomBarSlider_ForceRefresh.JavaScript1JS",
-    "UBTConnectLibrary.controller$BottomSheet_AnchorsInitialize.JavaScript1JS",
-    "UBTConnectLibrary.controller$BottomSheet_SetDragEnabled.SetDragEnabledJS",
-    "UBTConnectLibrary.controller$CheckForEnterKeyPress.CheckForEnterKeyJS",
-    "UBTConnectLibrary.controller$ClearTimeout.ClearTimeoutJS",
-    "UBTConnectLibrary.controller$FocusOnInput.FocusOnInputJS",
-    "UBTConnectLibrary.controller$GetRelativeTimeTag.JavaScript1JS",
-    "UBTConnectLibrary.controller$GetTargetTimeLabel.CalculateTargetDateTimeJS",
-    "UBTConnectLibrary.controller$Initialize_SvgScroll.JavaScript1JS",
-    "UBTConnectLibrary.controller$IsEmailValid.ValidateEmailJS",
-    "UBTConnectLibrary.controller$IsPhoneNumberValid.CheckFormatPhoneNumberJS",
-    "UBTConnectLibrary.controller$OnApplicationReady_BottomBarSlider.InitializeJS",
-    "UBTConnectLibrary.controller$OnApplicationReady_MobileKeyboardVisible.HandleMobileKeyboardVisibilityJS",
-    "UBTConnectLibrary.controller$RemoveRegexSpecialCharacters.RemoveRegexSpecialCharactersJS",
-    "UBTConnectLibrary.controller$RemoveScrollEvents.RemoveScrollEventsJS",
-    "UBTConnectLibrary.controller$ResetSvgFlags.ResetSvgVariablesJS",
-    "UBTConnectLibrary.controller$SetHomeScroll.SetHomeScrollEventsJS",
-    "UBTConnectLibrary.controller$SetLocalVariable_ColumnSize.SetStyleJS",
-    "UBTConnectLibrary.controller$SetMainFixedScroll.SetMainFixedScrollEventsJS",
-    "UBTConnectLibrary.controller$SetMainScroll.SetMainScrollEventsJS",
-    "UBTConnectLibrary.controller$SetScrollShadow.SetShadowScrollEventsJS",
-    "UBTConnectLibrary.controller$SetStyle.SetStyleJS",
-    "UBTConnectLibrary.controller$SetSvgScroll.SetScrollEventsJS",
-    "UBTConnectLibrary.controller$StopPropagationHelper_Check.JavaScript1JS"
-   ],
-   "staticEntities": [
-    "uBT_Size.none",
-    "gutterSize.none",
-    "uBT_Size.extraSmall",
-    "gutterSize.extraSmall",
-    "uBT_Size.small",
-    "gutterSize.small",
-    "uBT_Size.base",
-    "gutterSize.base",
-    "uBT_Size.medium",
-    "gutterSize.medium",
-    "uBT_Size.large",
-    "gutterSize.large",
-    "uBT_Size.extraLarge",
-    "gutterSize.extraLarge",
-    "uBT_Size.doubleExtraLarge",
-    "gutterSize.xXLarge",
-    "uBT_VerticalAlign.top",
-    "uBT_VerticalAlign.center",
-    "uBT_VerticalAlign.bottom",
-    "connect_UpdateTypeId.marriage",
-    "uBT_Color.yellowLightest",
-    "connect_UpdateTypeId.birth",
-    "gender.mALE",
-    "uBT_Color.blueNonStandard",
-    "uBT_Color.pinkNonStandard",
-    "uBT_Color.neutral3",
-    "gender.fEMALE",
-    "uBT_Icons.home",
-    "uBT_Color.yellowDark",
-    "uBT_Color.neutral0",
-    "uBT_Color.neutral7",
-    "uBT_Color.primary",
-    "uBT_Color.secondary",
-    "uBT_Color.tertiary",
-    "uBT_Color.cyan",
-    "uBT_Color.purple",
-    "uBT_Color.peach",
-    "uBT_Color.blue",
-    "uBT_Color.green",
-    "uBT_Color.yellow",
-    "uBT_Color.red",
-    "uBT_Color.transparent",
-    "uBT_Color.neutral1",
-    "uBT_Color.neutral2",
-    "uBT_Color.neutral4",
-    "uBT_Color.neutral5",
-    "uBT_Color.neutral6",
-    "uBT_Color.neutral8",
-    "uBT_Color.neutral9",
-    "uBT_Color.neutral10",
-    "uBT_Color.info",
-    "uBT_Color.warning",
-    "uBT_Color.success",
-    "uBT_Color.error",
-    "uBT_Color.orange",
-    "uBT_Color.lime",
-    "uBT_Color.teal",
-    "uBT_Color.indigo",
-    "uBT_Color.violet",
-    "uBT_Color.grape",
-    "uBT_Color.pink",
-    "uBT_ColumnBehaviour.reduceFirst",
-    "uBT_ColumnBehaviour.reduceMiddle",
-    "uBT_ColumnBehaviour.reduceLast",
-    "uBT_ColumnBehaviour.expandMiddle",
-    "uBT_Shadow.none",
-    "uBT_Shadow.extraSmall",
-    "uBT_Shadow.small",
-    "uBT_Shadow.medium",
-    "uBT_Shadow.large",
-    "uBT_Shadow.extraLarge",
-    "uBT_Shadow.s2",
-    "uBT_Shape.none",
-    "uBT_Shape.soft",
-    "uBT_Shape.rounded",
-    "uBT_Shape.circle",
-    "uBT_Color.cyanLightest",
-    "uBT_ImageCardType.detail",
-    "uBT_Shape.large",
-    "uBT_BackgroundImageSize.intrinsicHeight_2_To_3",
-    "uBT_ImageCardType.gallery",
-    "uBT_ImageSize.maxWidth_100vw",
-    "uBT_ColumnWidth.fill",
-    "uBT_Display.flex",
-    "uBT_Display.inlineFlex",
-    "uBT_ImageSize.square",
-    "uBT_ImageSize.fullHeight_100_Percent",
-    "uBT_ImageSize.fullWidth_100_Percent",
-    "uBT_ImageSize.auto",
-    "uBT_BackgroundImageSize.intrinsicWidth_3_To_2",
-    "uBT_ButtonSize.extraSmall",
-    "uBT_ImageSize.halfWidth_50vw",
-    "uBT_ImageSize.thirdWidth_33vw",
-    "uBT_ImageSize.quarterWidth_25vw",
-    "uBT_Icons.bookmark",
-    "uBT_Icons.check",
-    "uBT_Icons.tooltip",
-    "uBT_Icons.gifting",
-    "uBT_Icons.share",
-    "uBT_Icons.call",
-    "uBT_Icons.letter",
-    "uBT_Icons.arrowOutward",
-    "uBT_Icons.personFill",
-    "uBT_Icons.household",
-    "uBT_Icons.girl",
-    "uBT_Color.pinkNonStandardDarker",
-    "uBT_Icons.boy",
-    "uBT_Color.blueNonStandarDarker",
-    "uBT_Icons.locationOnFill",
-    "uBT_Icons.explore",
-    "uBT_Icons.houseFill",
-    "uBT_ImageCardType.list",
-    "uBT_ImageCardType.sublist",
-    "uBT_ImageCardType.listWithImages",
-    "uBT_FontSize.base",
-    "uBT_FontWeight.semiBold",
-    "uBT_FontSize.doubleExtraSmall"
-   ],
-   "clientVariables": [
-    "getSVG_DefaultHeight",
-    "getSVG_DefaultWidth",
-    "getSVG_DefaultCurvePoint",
-    "getSVG_DefaultBreakPoint"
-   ],
-   "candidateStrings": []
-  },
   "UBT_AppManager_Mobile.controller.js": {
    "file": "UBT_AppManager_Mobile.controller.js",
    "displayName": [],
@@ -5306,6 +5890,16 @@
   "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Banner.mvc.js",
   "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.mvc.js",
   "Connect2_LegacyShared.Reusable.Person_Contact_Options.mvc.js",
+  "UBTConnect_Utils.CW_Notes.ItemNotesSection.mvc.js",
+  "UBTConnectLibrary.BasePatterns.CustomContainer.mvc.js",
+  "UBTConnectLibrary.ConnectCorePatterns.ItemCard_ActionBar.mvc.js",
+  "UBTConnectLibrary.ConnectPatterns.IconText.mvc.js",
+  "UBTConnectLibrary.BasePatterns.Columns_Two.mvc.js",
+  "OutSystemsUI_2_23.Adaptive.Columns2.mvc.js",
+  "UBTConnectLibrary.ConnectPatterns.Icon.mvc.js",
+  "UBTConnectLibrary.BasePatterns.CustomText.mvc.js",
+  "UBTConnectLibrary.ConnectPatterns.IconInline_Internal.mvc.js",
+  "UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js",
   "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone.mvc.js",
   "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup.mvc.js",
   "UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper.mvc.js",
@@ -5313,9 +5907,6 @@
   "UBTConnect.App_Common.BottomBarMenu.mvc.js",
   "UBTConnect.App_Common.BottomBarContent.mvc.js",
   "OutSystemsUI_2_23.Navigation.BottomBarItem.mvc.js",
-  "UBTConnectLibrary.ConnectPatterns.Icon.mvc.js",
-  "UBTConnectLibrary.BasePatterns.CustomText.mvc.js",
-  "UBTConnectLibrary.ConnectPatterns.IconInline_Internal.mvc.js",
   "UBTConnect.App_Common_Blocks.App_IconBadge.mvc.js",
   "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc.js",
   "UBTConnectLibrary.OutSystemsUIOverrides.IconBadge.mvc.js",
@@ -5346,14 +5937,14 @@
  "blocksReferencedNotRendered": [
   "App_Common.UnsupportedVersion_Wrapper",
   "App_Policies.Policy_Checker",
-  "BasePatterns.Columns_Two",
-  "BasePatterns.CustomContainer",
   "CW_Image.UBT_LazyImage",
+  "CW_Notes.NoteListActions",
   "CacheControl.CacheControl_Policies",
+  "ConnectPatterns.AddNote",
+  "ConnectPatterns.BottomSheet",
   "ConnectPatterns.Button",
   "ConnectPatterns.HighlightSearch",
   "ConnectPatterns.IconSVG",
-  "ConnectPatterns.IconText",
   "ConnectPatterns.LazyImage",
   "Fingerprint.FingerprintScanner",
   "LDM_Blocks.EventDetail_ListItem",
@@ -5466,6 +6057,10 @@
  "cssOrder": [
   "/UBTConnect/css/_Basic.css",
   "/UBTConnect/css/OutSystemsReactWidgets.css",
+  "/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css",
+  "/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Note_Item.css",
+  "/UBTConnect/css/UBTConnect_Utils.CW_Notes.NotesSheet.css",
+  "/UBTConnect/css/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.css",
   "/UBTConnect/css/UBT_AppManager.PIN.PinCode.css",
   "/UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css",
   "/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css",
@@ -5484,15 +6079,23 @@
  "calls": [
   {
    "order": 1,
-   "t": 1297,
+   "t": 2795,
+   "action": "DataActionFetchEventNotes",
+   "path": "/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionFetchEventNotes",
+   "status": 200,
+   "scope": "this screen"
+  },
+  {
+   "order": 2,
+   "t": 2816,
    "action": "DataActionGetCoordinatorDetails",
    "path": "/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionGetCoordinatorDetails",
    "status": 200,
    "scope": "this screen"
   },
   {
-   "order": 2,
-   "t": 1320,
+   "order": 3,
+   "t": 3210,
    "action": "DataActionGetEventByEventId",
    "path": "/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionGetEventByEventId",
    "status": 200,
@@ -5513,7 +6116,7 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.mvc.js",
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Section.mvc.js",
    "count": 1
   },
   {
@@ -5521,11 +6124,11 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Section.mvc.js",
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_ListItem.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_SpecialNeeds_ListItem.mvc.js",
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.mvc.js",
    "count": 1
   },
   {
@@ -5533,7 +6136,123 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_ListItem.mvc.js",
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_SpecialNeeds_ListItem.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.ItemNotesSection.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectCorePatterns.ItemCard_ActionBar.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.NoteListActions.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/SocialSharingPlugin.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect_Notes_CS.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/SocialSharingPlugin.referencesHealth.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.AddNote.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/SocialSharingPlugin.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Note_Item_List.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.Columns_Three.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Interaction.BottomSheet.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Note_Item.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Popup.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.TextEllipsis.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.TextArea_WithCounter.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton_IconPrimary.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.InputCounter.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectCorePatterns.ContextMenu.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton_WithLabel.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.ContextMenu_Item.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.PopupMenu.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "link /UBTConnect/css/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.css",
+   "count": 1
+  },
+  {
+   "request": "link /UBTConnect/css/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css",
+   "count": 1
+  },
+  {
+   "request": "link /UBTConnect/css/UBTConnect_Utils.CW_Notes.NotesSheet.css",
+   "count": 1
+  },
+  {
+   "request": "link /UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Note_Item.css",
    "count": 1
   },
   {
@@ -5541,12 +6260,8 @@
    "count": 1
   },
   {
-   "request": "img https://d23bplak01dwmt.cloudfront.net/3/US/326/hall_765.jpg",
-   "count": 2
-  },
-  {
    "request": "xmlhttprequest https://australiaeast-0.in.applicationinsights.azure.com/v2/track",
-   "count": 6
+   "count": 13
   },
   {
    "request": "xmlhttprequest /UBTConnect/moduleservices/moduleversioninfo",
@@ -5566,6 +6281,10 @@
   },
   {
    "request": "fetch /UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "img https://d23bplak01dwmt.cloudfront.net/3/US/326/hall_765.jpg",
    "count": 1
   },
   {
@@ -5601,6 +6320,46 @@
    "count": 1
   },
   {
+   "request": "fetch /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.ItemNotesSection.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.CustomContainer.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/UBTConnectLibrary.ConnectCorePatterns.ItemCard_ActionBar.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.IconText.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.Columns_Two.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/OutSystemsUI_2_23.Adaptive.Columns2.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Icon.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.CustomText.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.IconInline_Internal.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js",
+   "count": 1
+  },
+  {
    "request": "fetch /UBTConnect/scripts/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone.mvc.js",
    "count": 1
   },
@@ -5626,18 +6385,6 @@
   },
   {
    "request": "fetch /UBTConnect/scripts/OutSystemsUI_2_23.Navigation.BottomBarItem.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "fetch /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Icon.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "fetch /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.CustomText.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "fetch /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.IconInline_Internal.mvc.js",
    "count": 1
   },
   {
@@ -5725,6 +6472,10 @@
    "count": 1
   },
   {
+   "request": "fetch /UBTConnect/status/network-ping.txt",
+   "count": 2
+  },
+  {
    "request": "fetch /UBTConnect/scripts/Connect2_AndroidAppLinksPlugin.AndroidAppLinks.AndroidAppLinkOnResumeHandler.mvc.js",
    "count": 1
   },
@@ -5743,10 +6494,6 @@
   {
    "request": "fetch /UBTConnect/scripts/UBTConnect.controller.js",
    "count": 1
-  },
-  {
-   "request": "fetch /UBTConnect/status/network-ping.txt",
-   "count": 2
   },
   {
    "request": "fetch /UBTConnect/scripts/UBTConnect.model.js",
@@ -5805,18 +6552,6 @@
    "count": 1
   },
   {
-   "request": "fetch /UBTConnect/scripts/OutSystemsUI_2_23.controller.js",
-   "count": 1
-  },
-  {
-   "request": "fetch /UBTConnect/scripts/OutSystemsUI_2_23.model.js",
-   "count": 1
-  },
-  {
-   "request": "fetch /UBTConnect/scripts/OutSystemsUI_2_23.languageResources.js",
-   "count": 1
-  },
-  {
    "request": "fetch /UBTConnect/scripts/UBTConnectLibrary.controller.js",
    "count": 1
   },
@@ -5826,6 +6561,18 @@
   },
   {
    "request": "fetch /UBTConnect/scripts/UBTConnectLibrary.languageResources.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/OutSystemsUI_2_23.controller.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/OutSystemsUI_2_23.model.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/OutSystemsUI_2_23.languageResources.js",
    "count": 1
   },
   {
@@ -5882,6 +6629,22 @@
   },
   {
    "request": "fetch /UBTConnect/css/OutSystemsReactWidgets.css",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/css/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Note_Item.css",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/css/UBTConnect_Utils.CW_Notes.NotesSheet.css",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/css/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.css",
    "count": 1
   },
   {
@@ -6366,6 +7129,12 @@
   },
   {
    "file": "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc.js",
+   "name": "DataActionFetchEventNotes",
+   "url": "screenservices/Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionFetchEventNotes",
+   "observed": true
+  },
+  {
+   "file": "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc.js",
    "name": "DataActionGetEventByEventId",
    "url": "screenservices/Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionGetEventByEventId",
    "observed": true
@@ -6374,6 +7143,12 @@
    "file": "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc.js",
    "name": "GetHouseholdCoordinates",
    "url": "screenservices/Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/ActionGetHouseholdCoordinates",
+   "observed": false
+  },
+  {
+   "file": "UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js",
+   "name": "AddNote",
+   "url": "screenservices/UBTConnect_Utils/CW_Notes/NotesSheet/ServiceAPIAddNote",
    "observed": false
   },
   {
@@ -6606,6 +7381,22 @@
   }
  ],
  "callSites": {
+  "Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionFetchEventNotes": {
+   "observed": true,
+   "defined": true,
+   "chains": [
+    [
+     "ScreenBlock_EventDetail_V2 fetch at start",
+     "ScreenBlock_EventDetail_V2.DataActionFetchEventNotes"
+    ]
+   ],
+   "rootKinds": [
+    "lifecycle"
+   ],
+   "rootLabels": [
+    "ScreenBlock_EventDetail_V2 fetch at start"
+   ]
+  },
   "Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionGetCoordinatorDetails": {
    "observed": true,
    "defined": true,
@@ -6674,6 +7465,22 @@
     "onClick in EventDetail_HostCard"
    ]
   },
+  "UBTConnect_Utils/CW_Notes/NotesSheet/ServiceAPIAddNote": {
+   "observed": false,
+   "defined": true,
+   "chains": [
+    [
+     "NotesSheet.handler_OnSubmitNote",
+     "server AddNote"
+    ]
+   ],
+   "rootKinds": [
+    "client action"
+   ],
+   "rootLabels": [
+    "NotesSheet.handler_OnSubmitNote"
+   ]
+  },
   "UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All": {
    "observed": false,
    "defined": true,
@@ -6702,13 +7509,40 @@
      "Connect2_LegacyShared.getAppEventName",
      "Connect2_LegacyShared.cacheLocalApplicationEvents",
      "server GetAllApplicationEvents"
+    ],
+    [
+     "ItemNotesSection.handler_OnShareToOthers",
+     "UBTConnect_Utils.shareEntity_ByURL",
+     "Connect2_LegacyShared.auditShareEvent",
+     "Connect2_LegacyShared.zOnApplicationEvent_Wrapper",
+     "Connect2_LegacyShared.getAppEventName",
+     "Connect2_LegacyShared.cacheLocalApplicationEvents",
+     "server GetAllApplicationEvents"
     ]
    ],
    "rootKinds": [
     "client action"
    ],
    "rootLabels": [
-    "HandleImageLoadError.applicationEvent_ImageError"
+    "HandleImageLoadError.applicationEvent_ImageError",
+    "ItemNotesSection.handler_OnShareToOthers"
+   ]
+  },
+  "UBTConnect_Utils/ActionCS_CreateShareProfileLink": {
+   "observed": false,
+   "defined": true,
+   "chains": [
+    [
+     "ItemNotesSection.handler_OnShareToOthers",
+     "UBTConnect_Utils.shareEntity_ByURL",
+     "server CS_CreateShareProfileLink"
+    ]
+   ],
+   "rootKinds": [
+    "client action"
+   ],
+   "rootLabels": [
+    "ItemNotesSection.handler_OnShareToOthers"
    ]
   },
   "UBT_AppManager/ActionAppManager_SynchAppContext": {
@@ -6764,6 +7598,7 @@
   "NavigationHandler.controller.js",
   "NavigationHandler.languageResources.js",
   "NavigationHandler.model.js",
+  "OutSystemsUI_2_23.Adaptive.Columns2.mvc.js",
   "OutSystemsUI_2_23.Navigation.BottomBarItem.mvc.js",
   "OutSystemsUI_2_23.Private.NetworkStatusChanged.mvc.js",
   "OutSystemsUI_2_23.Private.OfflineDataSyncCore.mvc.js",
@@ -6783,9 +7618,13 @@
   "UBTConnect.controller.js",
   "UBTConnect.languageResources.js",
   "UBTConnect.model.js",
+  "UBTConnectLibrary.BasePatterns.Columns_Two.mvc.js",
+  "UBTConnectLibrary.BasePatterns.CustomContainer.mvc.js",
   "UBTConnectLibrary.BasePatterns.CustomText.mvc.js",
+  "UBTConnectLibrary.ConnectCorePatterns.ItemCard_ActionBar.mvc.js",
   "UBTConnectLibrary.ConnectPatterns.Icon.mvc.js",
   "UBTConnectLibrary.ConnectPatterns.IconInline_Internal.mvc.js",
+  "UBTConnectLibrary.ConnectPatterns.IconText.mvc.js",
   "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc.js",
   "UBTConnectLibrary.Layouts.Layout_LoginFlow.mvc.js",
   "UBTConnectLibrary.Layouts.SVG_Background_Custom.mvc.js",
@@ -6801,6 +7640,8 @@
   "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup.mvc.js",
   "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByMessage.mvc.js",
   "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone.mvc.js",
+  "UBTConnect_Utils.CW_Notes.ItemNotesSection.mvc.js",
+  "UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js",
   "UBTConnect_Utils.controller.js",
   "UBTConnect_Utils.languageResources.js",
   "UBTConnect_Utils.model.js",
@@ -6815,8 +7656,8 @@
   "UBT_AppManager_Mobile.model.js"
  ],
  "diagrams": {
-  "architectureNodes": 15,
-  "serverNodes": 2,
+  "architectureNodes": 19,
+  "serverNodes": 3,
   "actionSequences": 0
  },
  "security": {

@@ -1,8 +1,8 @@
 # Coverage for MessageDetail
 
 - UI states captured: default, loading, offline
-- Runtime captures: 1 file(s), 8 call(s)
-- Masked text nodes: 2, user images removed: 0
+- Runtime captures: 1 file(s), 9 call(s)
+- Masked text nodes: 3, user images removed: 1
 - Fetch failures during snapshot: 0
 
 ## Blocks referenced in code but not rendered in any captured state
@@ -88,5 +88,5 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [x] `AppManager_SynchAppContext` (UBT_AppManager.controller.js)
 - [ ] `CS_CreateShareProfileLink` (UBTConnect_Utils.controller.js)
 - [ ] `Get_RuntimeVersion` (UBTConnect_Utils.controller.js)
-- [ ] `GetSignedImagesInBulk` (UBTConnect_Utils.controller.js)
+- [x] `GetSignedImagesInBulk` (UBTConnect_Utils.controller.js)
 - [x] `GetUserInformation` (UBTConnect_Utils.controller.js)

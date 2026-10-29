@@ -6,7 +6,7 @@
    "action": "DataActionGetHostSurvey",
    "path": "/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks_HostSurvey/ScreenBlock_HostSurvey/DataActionGetHostSurvey",
    "phase": "load",
-   "ts": 2441,
+   "ts": 1489,
    "status": 200,
    "kind": "data",
    "inputNames": null,

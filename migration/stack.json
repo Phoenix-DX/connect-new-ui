@@ -665,7 +665,8 @@
   "workbox-precaching": "7.4.1",
   "workbox-routing": "7.4.1",
   "workbox-strategies": "7.4.1",
-  "workbox-expiration": "7.4.1"
+  "workbox-expiration": "7.4.1",
+  "adaptivecards": "2.5.0"
  },
  "devDependencies": {
   "@types/react": "19.2.18",
@@ -705,27 +706,14 @@
  },
  "rules": {
   "requiredFiles": [
-   "index.tsx"
-  ],
-  "requiredIfCalls": [
-   "api.ts",
-   "mocks.ts",
-   "types.ts"
-  ],
-  "allowedImportRoots": [
-   "src/shared",
-   "src/shell",
-   "src/lib",
-   "src/components",
-   "src/mocks",
-   "src/vendor"
+   "{screen}Page.tsx"
   ],
   "forbidden": [
    {
     "id": "NO-RAW-FETCH",
-    "regex": "\\bfetch\\s*\\(|\\baxios\\b|XMLHttpRequest",
+    "regex": "(?<![.\\w])fetch\\s*\\(|\\baxios\\b|XMLHttpRequest",
     "files": "*",
-    "why": "server calls only through callAction in api.ts"
+    "why": "server calls only through the repositories of src/api (flow.fetch wraps them, R1)"
    },
    {
     "id": "NO-BROWSER-STORAGE",
@@ -766,7 +754,10 @@
    }
   ],
   "_changes": [
-   "2026-10-15 orchestrator (auto mode): src/vendor allowed as import root per ADR-7; NO-WIRE-IN-COMPONENTS excludes UBT_ImageCardType.List"
+   "2026-10-15 orchestrator (auto mode): src/vendor allowed as import root per ADR-7; NO-WIRE-IN-COMPONENTS excludes UBT_ImageCardType.List",
+   "2026-10-29 user (I10-5 a): requiredIfCalls and allowedImportRoots dropped after the refactor; imports are checked by npm run arch; requiredFiles is {screen}Page.tsx",
+   "2026-10-29 orchestrator: adaptivecards 2.5.0 added to the allow-list; the user accepted it on 2026-10-28 (decision PD7, app/docs/reference/stack.md:53, app/package.json)",
+   "2026-10-29 user (I10-9 a): the forbidden rules skip *.test.*, *.spec.* and *.stories.* files; NO-RAW-FETCH no longer matches flow.fetch( (regex (?<![.\\w])fetch\\s*\\()"
   ]
  },
  "adr": [

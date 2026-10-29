@@ -1,82 +1,86 @@
 import type { RequestHandler } from 'msw';
-import type { ActionOutputs, PathOf } from '@/api/client/callAction';
+import { osList, wireList } from '@/lib/os-wire';
 import { contractHandler } from '@/mocks/contract';
+import { OLDER_THAN_30_DAYS, notificationRows, type MessageListItemRow } from '@/mocks/fictional/notifications';
 import { recordedHandler } from '@/mocks/fixtures';
-import { currDateTime } from '@/lib/osDateTime';
-import { wireList } from '@/lib/os-wire';
-
-/** The wire shape of a notification (Connect2_Notification_CS.MessageListItem), as the contract types it. */
-type MessageListItemWire = ActionOutputs<
-  PathOf<'UBTConnect', 'Notifications/DataActionFetchNotifications'>
->['UI_NotificationItemList']['List'][number];
+import { scenario } from '@/mocks/scenario';
+import { statefulHandler } from '@/mocks/store';
 
 /* DataActionGetDateRanges: the recorded fixture (UBTConnect/DataActionGetDateRanges/01-e1d555a6.json, re-recorded
    read-only with the static-entity ids kept: Today, Last 7 Days, Last 30 Days, Older; Q1, user 2026-10-15). The answer
    does not depend on the inputs and the recorded CurrentBreakpoint.SectionName is anonymised, so matchInputs is off.
-   DataActionFetchNotifications: never recorded: 19 notifications with the captured count, read state, avatar kind and
-   age (days before the capture day 2026-10-14 at the captured time), so the date groups (9 "Last 30 Days", 10 "Older")
-   and the elapsed labels stay as captured on any day. Titles: the TST test labels the capture shows unmasked (test data,
-   not person data; Q3, user 2026-10-15); the masked ones are meaningful fictional texts with the captured word
-   lengths, the same as the MessageList mock's titles (mock-fixtures.md, user 2026-10-16).
-   Avatar URLs are the TST app logos served at /UBT_CW/img (not person photos; Q2, CR-Notifications-1 applied). */
-const ENTITY_LOGO = '/UBT_CW/img/UBT_CW.directory_entity_logo.png';
-const ASSEMBLE_LOGO = '/UBT_CW/img/UBT_CW.logo_assemble.svg';
+   DataActionFetchNotifications: never recorded: the 68 notifications of the collection in
+   src/mocks/fictional/notifications.ts (captured count, read state, avatar kind and age; the reasons are there). The
+   server logic (MCP on DEV, 2026-10-29, migration/clarify/review/mcp-session-2026-10-29.md, drift wave rows; the TST
+   server code is not visible): the data action calls Get_UI_Notifications (Connect2_Notification_CS: MaxRecords rows,
+   Title or Summary LIKE the trimmed SelectedHistorySearch, private and/or public messages, ORDER BY DateTimeCreated
+   ASC when OrderByIsAscending, else DESC). With Local_OnlyShowUnread it keeps the rows with `not IsRead` and assigns
+   no other output, so HasUnreadMessages is False and UnreadNotificationsCount 0 (Notifications.mvc.js OnAfterFetch:
+   ShowMarkAll and ReadCount follow that count). Without it, UnreadNotificationsCount = the unread private and public
+   messages; Get_UI_Notifications never assigns HasUnreadMessages (its node is disabled), so it is False. The mock rows
+   have no message type: both types off (`0=1 OR 0=1`) answers no row, any other choice all rows.
+   The server actions change the collection (P-MUTATION), so a later fetch shows the change:
+   - ActionMarkAsRead (Handler_NotificationDetail, Notifications.mvc.js:2983-3003): IsRead True. No output.
+   - ActionToggleRead (NotificationsList Handler_ToggleRead, NotificationsList.mvc.js:580-589): IsRead = the input.
+   - ActionMarkAllAsReadNotifications (Handler_MoreActionSheetMarkAllAsRead, Notifications.mvc.js:2611-2662): every
+     row IsRead True; TotalChange = the rows that changed. The inputs (message types, device, search term) do not
+     narrow the mock list.
+   - ServiceAPIDelete_Notifications (Handler_DeleteNotification of NotificationsList, Handler_MoreActionSheetDeleteAll):
+     removes the rows of Messages by Id (DEV Delete_Notifications: MarkAsClear(Messages.Current.Id) per row; it reads
+     no other field). No output. */
 
-/* [days before today, time, title, avatar, read] */
-const ROWS: [number, string, string, string, boolean][] = [
-  [15, '10:50:25', 'Test Noti 56', ENTITY_LOGO, false],
-  [16, '17:01:05', 'Winter assembly hall catering schedule availability questionnaire', ASSEMBLE_LOGO, false],
-  [16, '16:00:54', 'Spring assembly hall cleaning workdays availability questionnaire', ASSEMBLE_LOGO, false],
-  [16, '15:15:54', 'Summer assembly hall security marshals availability questionnaire', ASSEMBLE_LOGO, false],
-  [16, '13:15:31', 'Annual hall roof workdays volunteering opportunities', ASSEMBLE_LOGO, false],
-  [21, '16:30:42', 'Save draft 02:50', '', false],
-  [21, '16:20:41', 'Thanks Jo', '', false],
-  [22, '11:01:01', 'Monthly announcement for all', '', false],
-  [22, '10:46:19', 'Dinner for ten', '', false],
-  [43, '17:18:48', 'Family camp next month with entertainment', '', false],
-  [43, '16:24:42', 'School fete this month with entertainment', '', false],
-  [43, '11:49:45', 'Garden club open house with entertainment', '', false],
-  [55, '09:28:50', 'Notification 6', '', false],
-  [55, '09:23:09', 'Notification 4', ENTITY_LOGO, false],
-  [55, '09:18:34', 'Notification 3', ENTITY_LOGO, false],
-  [55, '09:16:38', 'Notification 1', ENTITY_LOGO, false],
-  [64, '08:27:54', 'Camp is booked out', '', true],
-  [82, '16:45:10', 'Conference dates moved', ASSEMBLE_LOGO, true],
-  [97, '10:30:52', 'Heatwave risk for all', ENTITY_LOGO, true],
-];
-
-function created(daysAgo: number, time: string): string {
-  const [h = 0, m = 0, s = 0] = time.split(':').map(Number);
-  const d = new Date();
-  d.setDate(d.getDate() - daysAgo);
-  d.setHours(h, m, s, 0);
-  return currDateTime(d);
-}
-
-const notifications = (): MessageListItemWire[] =>
-  ROWS.map(([daysAgo, time, title, icon, read], i) => ({
-    CreatedByUserId: 0,
-    DateTimeCreated: created(daysAgo, time),
-    Id: String(910019 - i),
-    IsClear: false,
-    IsRead: read,
-    MessageInfoTypeId: 0,
-    MessageSenderTargetName: '',
-    MessageTemplatePriorityId: 0,
-    MessageTemplateTypeId: 0,
-    ProfileIconURL: icon,
-    Summary: '',
-    Title: title,
+/* Scenario `olderread` (?mock=olderread): every notification older than 30 days is read, so the "Older" section has
+   no unread item and its Notifications_Header shows no Badge (If_HasBadge, BR-UBTCON-981). The default keeps the
+   read state of the collection. */
+const notifications = (olderRead: boolean): MessageListItemRow[] =>
+  (notificationRows().all() as unknown as MessageListItemRow[]).map((n) => ({
+    ...n,
+    IsRead: n.IsRead || (olderRead && OLDER_THAN_30_DAYS.has(n.Id)),
   }));
 
 export const handlers: RequestHandler[] = [
   recordedHandler('UBTConnect', 'Notifications/DataActionGetDateRanges', { matchInputs: false }),
-  contractHandler('UBTConnect', 'Notifications/DataActionFetchNotifications', () => {
-    const list = notifications();
+  contractHandler('UBTConnect', 'Notifications/DataActionFetchNotifications', (inputs) => {
+    const all = notifications(scenario() === 'olderread');
+    const search = (inputs.SelectedHistorySearch ?? '').trim().toLowerCase();
+    const typed = inputs.Filter_MessageTypePrivate === true || inputs.Filter_MessageTypePublic === true;
+    const found = all.filter(
+      (n) => typed && (n.Title.toLowerCase().includes(search) || n.Summary.toLowerCase().includes(search)),
+    );
+    const messages = inputs.OrderByIsAscending === true ? [...found].reverse() : found;
+    if (inputs.Local_OnlyShowUnread === true)
+      return {
+        UI_NotificationItemList: wireList(messages.filter((n) => !n.IsRead)),
+        HasUnreadMessages: false,
+        UnreadNotificationsCount: '0',
+      };
     return {
-      UI_NotificationItemList: wireList(list),
-      HasUnreadMessages: list.some((n) => !n.IsRead),
-      UnreadNotificationsCount: String(list.filter((n) => !n.IsRead).length),
+      UI_NotificationItemList: wireList(messages),
+      HasUnreadMessages: false,
+      UnreadNotificationsCount: String(all.filter((n) => !n.IsRead).length),
     };
+  }),
+  statefulHandler('UBTConnect', 'ActionMarkAsRead', ({ MessageInstanceId }) => {
+    const rows = notificationRows();
+    const row = rows.get(MessageInstanceId);
+    if (row) rows.upsert({ ...row, IsRead: true });
+    return {};
+  }),
+  statefulHandler('UBTConnect', 'ActionToggleRead', ({ MessageInstanceId, IsRead }) => {
+    const rows = notificationRows();
+    const row = rows.get(MessageInstanceId);
+    if (row) rows.upsert({ ...row, IsRead: IsRead === true });
+    return {};
+  }),
+  statefulHandler('UBTConnect', 'ActionMarkAllAsReadNotifications', () => {
+    const rows = notificationRows();
+    const unread = rows.where((r) => r.IsRead !== true);
+    for (const row of unread) rows.upsert({ ...row, IsRead: true });
+    return { TotalChange: unread.length };
+  }),
+  statefulHandler('UBTConnect', 'ServiceAPIDelete_Notifications', ({ Messages }) => {
+    const rows = notificationRows();
+    for (const m of osList(Messages as { List: { Id: string }[] })) rows.remove(m.Id);
+    return {};
   }),
 ];

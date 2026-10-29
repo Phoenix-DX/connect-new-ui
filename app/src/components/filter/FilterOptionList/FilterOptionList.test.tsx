@@ -63,4 +63,36 @@ describe('FilterSheet_OptionList_Item', () => {
     vi.useRealTimers();
     expect(getByText('No results found for ‘zzz’')).toBeInTheDocument();
   });
+
+  it('the search ignores the accents of DisplayText and of the search text (Action_DefineOptions)', async () => {
+    vi.useFakeTimers();
+    const { queryByText, container } = render(
+      <FilterOptionList
+        filterCommonControlList={{
+          ...list,
+          In_Options: [
+            { Id: 'BR', DisplayText: 'São Paulo', CountryCode: 'BR' },
+            { Id: 'NZ', DisplayText: 'Auckland', CountryCode: 'NZ' },
+            { Id: 'FR', DisplayText: 'Orléans', CountryCode: 'FR' },
+          ],
+        }}
+      />,
+    );
+    const input = container.querySelector('input') as HTMLInputElement;
+    fireEvent.input(input, { target: { value: 'sao' } });
+    fireEvent.change(input, { target: { value: 'sao' } });
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(400);
+    });
+    expect(queryByText('São Paulo')).toBeInTheDocument();
+    expect(queryByText('Auckland')).not.toBeInTheDocument();
+    fireEvent.input(input, { target: { value: 'ORLÉ' } });
+    fireEvent.change(input, { target: { value: 'ORLÉ' } });
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(400);
+    });
+    vi.useRealTimers();
+    expect(queryByText('Orléans')).toBeInTheDocument();
+    expect(queryByText('São Paulo')).not.toBeInTheDocument();
+  });
 });

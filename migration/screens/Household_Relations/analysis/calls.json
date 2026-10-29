@@ -6,7 +6,7 @@
    "action": "ActionAppManager_SynchAppContext",
    "path": "/UBTConnect/screenservices/UBT_AppManager/ActionAppManager_SynchAppContext",
    "phase": "load",
-   "ts": 2873,
+   "ts": 3023,
    "status": 200,
    "kind": "server",
    "inputNames": [
@@ -16,26 +16,26 @@
   },
   {
    "module": "UBTConnect_Utils",
+   "action": "ActionGetUserInformation",
+   "path": "/UBTConnect/screenservices/UBTConnect_Utils/ActionGetUserInformation",
+   "phase": "load",
+   "ts": 4790,
+   "status": 200,
+   "kind": "server",
+   "inputNames": [],
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect_Utils",
    "action": "ActionGetSignedImagesInBulk",
    "path": "/UBTConnect/screenservices/UBTConnect_Utils/ActionGetSignedImagesInBulk",
    "phase": "load",
-   "ts": 4418,
+   "ts": 4793,
    "status": 200,
    "kind": "server",
    "inputNames": [
     "BulkSignedImagesParameters"
    ],
-   "scope": "this screen"
-  },
-  {
-   "module": "UBTConnect_Utils",
-   "action": "ActionGetUserInformation",
-   "path": "/UBTConnect/screenservices/UBTConnect_Utils/ActionGetUserInformation",
-   "phase": "load",
-   "ts": 4414,
-   "status": 200,
-   "kind": "server",
-   "inputNames": [],
    "scope": "this screen"
   },
   {
@@ -43,18 +43,7 @@
    "action": "DataActionGet_MemberDetails",
    "path": "/UBTConnect/screenservices/UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionGet_MemberDetails",
    "phase": "load",
-   "ts": 4716,
-   "status": 200,
-   "kind": "data",
-   "inputNames": null,
-   "scope": "this screen"
-  },
-  {
-   "module": "UBTConnect",
-   "action": "DataActionGet_ParentHouseholdDetails",
-   "path": "/UBTConnect/screenservices/UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionGet_ParentHouseholdDetails",
-   "phase": "load",
-   "ts": 4995,
+   "ts": 5098,
    "status": 200,
    "kind": "data",
    "inputNames": null,
@@ -65,7 +54,7 @@
    "action": "ActionGetSignedImagesInBulk",
    "path": "/UBTConnect/screenservices/UBTConnect_Utils/ActionGetSignedImagesInBulk",
    "phase": "load",
-   "ts": 4996,
+   "ts": 5372,
    "status": 200,
    "kind": "server",
    "inputNames": [
@@ -74,11 +63,22 @@
    "scope": "this screen"
   },
   {
+   "module": "UBTConnect",
+   "action": "DataActionGet_ParentHouseholdDetails",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionGet_ParentHouseholdDetails",
+   "phase": "load",
+   "ts": 5372,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
    "module": "UBTConnect_Utils",
    "action": "ActionGetSignedImagesInBulk",
    "path": "/UBTConnect/screenservices/UBTConnect_Utils/ActionGetSignedImagesInBulk",
    "phase": "load",
-   "ts": 5318,
+   "ts": 5700,
    "status": 200,
    "kind": "server",
    "inputNames": [
@@ -91,7 +91,7 @@
    "action": "ActionAppManager_AfterInitialize",
    "path": "/UBTConnect/screenservices/UBT_AppManager/ActionAppManager_AfterInitialize",
    "phase": "load",
-   "ts": 5723,
+   "ts": 6406,
    "status": 200,
    "kind": "server",
    "inputNames": [
@@ -106,7 +106,7 @@
    "action": "ActionSync_Info_GetMain",
    "path": "/UBTConnect/screenservices/UBTConnect/ActionSync_Info_GetMain",
    "phase": "load",
-   "ts": 5962,
+   "ts": 6645,
    "status": 200,
    "kind": "server",
    "inputNames": [
@@ -119,7 +119,7 @@
    "action": "ActionGetNumberUnreadMessages",
    "path": "/UBTConnect/screenservices/Connect2_LegacyShared/ActionGetNumberUnreadMessages",
    "phase": "load",
-   "ts": 6771,
+   "ts": 7106,
    "status": 200,
    "kind": "server",
    "inputNames": [
@@ -129,10 +129,10 @@
   },
   {
    "module": "UBTConnect",
-   "action": "ServiceAPIFetchData_CacheableHouseholds",
-   "path": "/UBTConnect/screenservices/UBTConnect/ServiceAPIFetchData_CacheableHouseholds",
+   "action": "ServiceAPIFetchData_CacheableMapEntities",
+   "path": "/UBTConnect/screenservices/UBTConnect/ServiceAPIFetchData_CacheableMapEntities",
    "phase": "load",
-   "ts": 7039,
+   "ts": 7354,
    "status": 200,
    "kind": "server",
    "inputNames": [],
@@ -140,10 +140,10 @@
   },
   {
    "module": "UBTConnect",
-   "action": "ServiceAPIFetchData_CacheableMapEntities",
-   "path": "/UBTConnect/screenservices/UBTConnect/ServiceAPIFetchData_CacheableMapEntities",
+   "action": "ServiceAPIFetchData_CacheableHouseholds",
+   "path": "/UBTConnect/screenservices/UBTConnect/ServiceAPIFetchData_CacheableHouseholds",
    "phase": "load",
-   "ts": 7039,
+   "ts": 7354,
    "status": 200,
    "kind": "server",
    "inputNames": [],

@@ -1,6 +1,7 @@
 import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import { delay, http, HttpResponse } from 'msw';
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { getFeedbackMessage, resetFeedbackMessages } from '@/platform/feedback/feedbackStore';
 import { usePreloadObject } from '@/platform/navigation/preload';
 import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
@@ -9,7 +10,7 @@ import { server } from '@/test/setup';
 import { calledActions, freshPage, recordBodies, setFlags } from '@/test/testSupport';
 import LDM_MyEvents_V2 from './LDM_MyEvents_V2Page';
 
-/* The page with the flows of the block and the MSW mocks of the route (the five past LDM meals of the fictional
+/* The page with the flows of the block and the MSW mocks of the route (the three past LDM meals of the fictional
    household 42438, src/mocks/fictional/ldm.ts), in the app frame on a memory router. */
 const PATH = '/UBTConnect/LDM_MyEvents_V2';
 const HOME = '/UBTConnect/HomeFeed';
@@ -41,12 +42,12 @@ const click = (element: Element | undefined | null) => {
   fireEvent.click(element);
 };
 
-/** Opens the page after HomeFeed, so a back navigation has a previous screen, and waits for the five cards. */
+/** Opens the page after HomeFeed, so a back navigation has a previous screen, and waits for the three cards. */
 async function open() {
   const view = renderRoutes(routes, HOME);
   await act(() => view.router.navigate(PATH));
   await waitFor(() => {
-    expect(cards()).toHaveLength(5);
+    expect(cards()).toHaveLength(3);
   });
   return view;
 }
@@ -63,13 +64,13 @@ afterEach(() => {
 });
 
 describe('LDM_MyEvents_V2 page', () => {
-  it('shows the five past meals by month, after one call of each data action', async () => {
+  it('shows the three past meals by month, after one call of each data action', async () => {
     const timeline = recordBodies(`Connect2_OrbitMobile_MUI/${GET_TIMELINE}`);
     await open();
     expect(screen.getByText('My Timeline')).toBeInTheDocument();
     expect(screen.getByText('Past Events')).toBeInTheDocument();
     expect(screen.queryByText(/^Upcoming/)).toBeNull();
-    expect(document.querySelectorAll('.past-event-cont')).toHaveLength(5);
+    expect(document.querySelectorAll('.past-event-cont')).toHaveLength(3);
     expect(screen.getByText('18 Guests')).toBeInTheDocument();
     // The filter icon is active after the load; the loader is gone.
     expect(document.querySelector('.fa-filter')?.classList.contains('text-neutral-6')).toBe(false);
@@ -124,7 +125,7 @@ describe('LDM_MyEvents_V2 page', () => {
   it('without the carousel, a guest household opens HouseholdDetails', async () => {
     setFlags({ C2EnableCarousel: false });
     const view = await open();
-    click(guestToggles()[3]);
+    click(guestToggles()[0]);
     click(guestRowArrows()[0]);
     await screen.findByText('HouseholdDetails screen');
     expect(view.at()).toBe('/UBTConnect/HouseholdDetails?HouseholdId=42438');
@@ -145,6 +146,23 @@ describe('LDM_MyEvents_V2 page', () => {
       In_ContactLocality: 'Bahia Blanca',
       In_EmailTo: 'jorge.perez@example.com',
     });
+  });
+
+  it('offline, the email of a guest shows the network message and opens no popup (EG :867)', async () => {
+    await open();
+    click(guestToggles()[1]);
+    resetFeedbackMessages();
+    const onLine = vi.spyOn(navigator, 'onLine', 'get').mockReturnValue(false);
+    try {
+      click(document.querySelector('[data-block="Reusable.Person_Contact_Options"] .fa-envelope'));
+      expect(getFeedbackMessage()).toMatchObject({
+        message: 'Please check your network connection and try again',
+        type: 0,
+      });
+      expect([...document.querySelectorAll('span, div, a, button')].some((e) => e.textContent === 'Email')).toBe(false);
+    } finally {
+      onLine.mockRestore();
+    }
   });
 
   it('the My calendar flag opens MyEntertaining with the LDM event source', async () => {
@@ -168,7 +186,7 @@ describe('LDM_MyEvents_V2 page', () => {
     expect(document.querySelector('.list-updating')).toBeNull();
     fireEvent.click(screen.getByText('Try again'));
     await waitFor(() => {
-      expect(cards()).toHaveLength(5);
+      expect(cards()).toHaveLength(3);
     });
     expect(timelineCalls()).toHaveLength(2);
   });
@@ -182,9 +200,97 @@ describe('LDM_MyEvents_V2 page', () => {
     await screen.findByText('LDM_EventDetail_V2 screen');
     await act(() => view.router.navigate(-1));
     await waitFor(() => {
-      expect(cards()).toHaveLength(5);
+      expect(cards()).toHaveLength(3);
     });
     expect(timelineCalls()).toHaveLength(1);
     expect(screen.queryByText('Mobile')).toBeNull();
+  });
+});
+
+describe('LDM_MyEvents_V2 timeline filter (decision Q1)', () => {
+  const popup = () => document.querySelector('[data-block="LDM_Blocks.MyTimeline_Filters"]');
+  /** Clicks the filter icon after the timeline load: while the timeline fetches (In_HasLoaded False), the icon is the
+      greyed one without a click handler (MyEvents_MyTimelineFilterButton.mvc.js view :206-245). */
+  async function openFilters() {
+    await waitFor(() => {
+      expect(calledActions().filter((a) => a === GET_LOCALITIES)).toHaveLength(1);
+      expect(document.querySelector('.fa-filter')?.classList.contains('text-neutral-6')).toBe(false);
+    });
+    click(document.querySelector('.fa-filter'));
+    await waitFor(() => {
+      expect(popup()).not.toBeNull();
+    });
+  }
+
+  it('shows the dates, "All Localities" and every locality of the filter', async () => {
+    await open();
+    await openFilters();
+    expect(screen.getByText('Date Range')).toBeInTheDocument();
+    expect(document.querySelectorAll('.past-event-date-input')).toHaveLength(2);
+    expect(document.querySelector('.past-event-filter-locality-input-text')?.textContent).toBe('All Localities');
+    click(document.querySelector('.past-event-filter-locality-input'));
+    const rows = [...document.querySelectorAll('.past-event-filter-list-item')].map((r) => r.textContent);
+    expect(rows[0]).toBe('All Localities');
+    expect(rows).toContain('Rosario');
+    expect(document.querySelectorAll('.past-event-filter-list-item .fa-check-square')).toHaveLength(1);
+  });
+
+  it('Filter with one locality: the popup closes and the timeline shows the meals of that locality', async () => {
+    const timeline = recordBodies(`Connect2_OrbitMobile_MUI/${GET_TIMELINE}`);
+    await open();
+    await openFilters();
+    click(document.querySelector('.past-event-filter-locality-input'));
+    click([...document.querySelectorAll('.past-event-filter-list-item')].find((r) => r.textContent === 'Rosario'));
+    click(screen.getByText('Select'));
+    expect(document.querySelector('.past-event-filter-locality-input-text')?.textContent).toBe('Rosario');
+    click(screen.getByText('Filter'));
+    await waitFor(() => {
+      expect(cards()).toHaveLength(0);
+    });
+    expect(popup()).toBeNull();
+    expect(document.querySelector('.my-events-popup-aura')).not.toBeNull();
+    expect(timeline.at(-1)).toEqual(
+      expect.objectContaining({
+        IsFiltering: true,
+        PastEventFilters: expect.objectContaining({
+          Localities: { List: [expect.objectContaining({ Name: 'Rosario', IsSelected: true })] },
+        }) as unknown,
+      }),
+    );
+  });
+
+  it('Clear, then the times icon: ResetFilters fetches every meal again', async () => {
+    await open();
+    /* Rosario has no meal of the timeline (WP2-Q4): the Filter clears the list at once, so the empty list does not
+       mark the end of the fetch. The filtered answer comes late (then falls through to the route mock), and the
+       second openFilters must wait for the active filter icon. */
+    server.use(
+      http.post(
+        `/api/Connect2_OrbitMobile_MUI/${GET_TIMELINE}`,
+        async () => {
+          await delay(150);
+        },
+        { once: true },
+      ),
+    );
+    await openFilters();
+    click(document.querySelector('.past-event-filter-locality-input'));
+    click([...document.querySelectorAll('.past-event-filter-list-item')].find((r) => r.textContent === 'Rosario'));
+    click(screen.getByText('Select'));
+    click(screen.getByText('Filter'));
+    await waitFor(() => {
+      expect(cards()).toHaveLength(0);
+    });
+    await openFilters();
+    expect(document.querySelector('.past-event-filter-locality-input-text')?.textContent).toBe('Rosario');
+    click(screen.getByText('Clear'));
+    expect(document.querySelector('.past-event-filter-locality-input-text')?.textContent).toBe('All Localities');
+    click(document.querySelector('.past-event-filter-exit .fa-times'));
+    await waitFor(() => {
+      expect(cards()).toHaveLength(3);
+    });
+    expect(popup()).toBeNull();
+    expect(document.querySelector('.my-events-popup-aura')).toBeNull();
+    expect(timelineCalls()).toHaveLength(3);
   });
 });

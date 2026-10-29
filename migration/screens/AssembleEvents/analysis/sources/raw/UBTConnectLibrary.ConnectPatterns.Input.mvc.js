@@ -339,7 +339,7 @@ controller.popDebuggerContext(eventHandlerContext);
 },
 prompt: model.variables.in_OptionsIn.searchPromptAttr,
 style: model.getCachedValue(idService.getId("Input_Search.Style"), function () {
-return (("form-control " + model.variables.in_ExtendedClassesIn) + ((((model.variables.in_OptionsIn.borderRadiusAttr) !== (OS.BuiltinFunctions.nullTextIdentifier()))) ? ((" border-radius-" + model.variables.in_OptionsIn.borderRadiusAttr)) : ("")));
+return (("search-placeholder-ellipsis form-control " + model.variables.in_ExtendedClassesIn) + ((((model.variables.in_OptionsIn.borderRadiusAttr) !== (OS.BuiltinFunctions.nullTextIdentifier()))) ? ((" border-radius-" + model.variables.in_OptionsIn.borderRadiusAttr)) : ("")));
 }, function () {
 return model.variables.in_ExtendedClassesIn;
 }, function () {
@@ -784,8 +784,8 @@ return Promise.resolve();
 // Event Handler Actions
 Controller.prototype.pushDebuggerContext = function (callContext) {
 var varBag = {};
-OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:GRnUlqBGNE26Hxr_Ah3_7g:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g:HQrHi0+5qbWvCjIx1QgARg", "UBTConnectLibrary", "ConnectPatterns", "NRFlows.WebFlow", callContext.id, varBag);
-OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:_MpweN4tNkWriTkPFxlVbA:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g/NodesShownInESpaceTree._MpweN4tNkWriTkPFxlVbA:B1WJp77AJv5OC9LWvc4YfQ", "UBTConnectLibrary", "Input", "NRNodes.WebBlock", callContext.id, varBag);
+OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:GRnUlqBGNE26Hxr_Ah3_7g:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g:Y06DhYqVkffzqTnycnKUGw", "UBTConnectLibrary", "ConnectPatterns", "NRFlows.WebFlow", callContext.id, varBag);
+OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:_MpweN4tNkWriTkPFxlVbA:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g/NodesShownInESpaceTree._MpweN4tNkWriTkPFxlVbA:pHZ2oZLkyFJVqJYZbsR8Kw", "UBTConnectLibrary", "Input", "NRNodes.WebBlock", callContext.id, varBag);
 };
 Controller.prototype.popDebuggerContext = function (callContext) {
 OutSystemsDebugger.pop("lAQ0zS6tEEyl6BBIK9yo1A:_MpweN4tNkWriTkPFxlVbA", callContext.id);

@@ -1,0 +1,43 @@
+{
+ "flow": "Directory_CommonBlocks",
+ "screens": [],
+ "ownBlocks": [
+  "Directory_CommunityNumbers",
+  "Directory_CommunityNumbers__Number",
+  "Directory_EmptyState",
+  "Directory_EntityDetailsActions"
+ ],
+ "usedBlocks": [
+  "Directory_CommunityNumbers__Number"
+ ],
+ "referencedBlocks": [
+  "ActionsMenu",
+  "ContactByMessage_Wrapper",
+  "ContactPopup_ByPhone",
+  "CustomContainer",
+  "EmptyList",
+  "Icon",
+  "NotesSheet",
+  "SharePopup",
+  "ShareSheet",
+  "ShareableObject_Generic",
+  "SkeletonSection"
+ ],
+ "clientActions": [
+  "GetBookmarkCategoryId_ByEntityTypeId",
+  "GetNameAndSurname_ByFullName",
+  "GetShareType_FromEntity",
+  "ToggleBookmarkItem_C2"
+ ],
+ "serverActions": [
+  "AddBookmark2",
+  "DeleteBookmarkByBookmarkId2",
+  "GetHouseholdDetails",
+  "GetNotesByItemId",
+  "GetSubdivisionLocation_BySubdivisionId",
+  "Get_Core_LocalityTimezone",
+  "Get_OneSchoolGlobalDetails",
+  "Member_ContactDetails_Service"
+ ],
+ "externalSites": []
+}

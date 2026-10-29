@@ -1,4 +1,4 @@
-define("UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect_Utils.controller", "UBTConnectLibrary.model", "UBTConnect_Utils.model", "Connect2_Sharing_CS.model", "UBTJavaScriptUtils.controller", "UBTConnect.controller", "Connect2_LegacyShared.model", "Connect2_LegacyShared.controller", "UBTConnect_Bookmarks_MCS.model", "UBTConnect_Bookmarks_MCS.controller", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$model", "UBTConnectLibrary.ConnectCorePatterns.ActionsMenu.mvc$model", "UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper.mvc$model", "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone.mvc$model", "UBTConnect_Utils.CW_CTA_PopUps.SharePopup.mvc$model", "UBTConnect_Utils.CW_Share.ShareSheet.mvc$model", "UBTConnect_Utils.CW_Share.ShareableObject_Generic.mvc$model", "UBTConnect_Utils.CW_Notes.NotesSheet.mvc$model", "UBTConnect_Utils.controller$GetHasNewBookmarks", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect_Utils.controller$GetHasExtendedShare", "UBTConnectLibrary.model$ActionsMenuOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect_Utils.model$ContactPopUp_OverrideOptionsRec", "UBTConnectLibrary.model$ActionsMenuEnableOptionsRec", "UBTConnect_Utils.model$UI_ContactByMessage_WrapperDataRec", "UBTConnect_Utils.model$ContactPopupDataRec", "UBTConnect_Utils.model$ContactByPhonePopupDataRec", "Connect2_Sharing_CS.model$UI_ShareableObject_GenericRec", "UBTConnect.referencesHealth$Connect2_Sharing_CS", "UBTConnectLibrary.model$NotesRec", "UBTConnectLibrary.model$Note_ItemRec", "UBTConnect.model$Note_ItemList", "UBTJavaScriptUtils.controller$ScreenController_RaiseError", "UBTConnect.referencesHealth$UBTJavaScriptUtils", "UBTJavaScriptUtils.controller$ScreenController_RaiseTypedException", "UBTJavaScriptUtils.controller$ScreenController_RaiseCommunicationError", "UBTConnect_Utils.controller$ShareEntity_ByURL", "UBTConnect.controller$ToggleBookmarkItem_C2", "UBTConnect.controller$ToggleBookmarkItem", "UBTConnect.controller$GetNameAndSurname_ByFullName", "Connect2_LegacyShared.model$LocalBookmarkRec", "UBTConnect.referencesHealth$Connect2_LegacyShared", "Connect2_LegacyShared.controller$Get_LocalBookmarkByObjectId", "UBTConnect.controller$GetBookmarkType_FromEntity", "UBTConnect_Bookmarks_MCS.model$LocalBookmarkRec", "UBTConnect.referencesHealth$UBTConnect_Bookmarks_MCS", "UBTConnect_Bookmarks_MCS.controller$GetLocalBookmarkByObjectId", "UBTConnect.controller$GetBookmarkCategoryId_ByEntityTypeId", "UBTConnect.controller$GetShareType_FromEntity", "UBTConnect.controller$Get_NoteCategoryId_ByEntityTypeId"], function (OutSystems, UBTConnectModel, UBTConnect_UtilsController, UBTConnectLibraryModel, UBTConnect_UtilsModel, Connect2_Sharing_CSModel, UBTJavaScriptUtilsController, UBTConnectController, Connect2_LegacySharedModel, Connect2_LegacySharedController, UBTConnect_Bookmarks_MCSModel, UBTConnect_Bookmarks_MCSController, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel, UBTConnectLibrary_ConnectCorePatterns_ActionsMenu_mvcModel, UBTConnect_Utils_CW_CTA_PopUps_ContactByMessage_Wrapper_mvcModel, UBTConnect_Utils_CW_CTA_PopUps_ContactPopup_ByPhone_mvcModel, UBTConnect_Utils_CW_CTA_PopUps_SharePopup_mvcModel, UBTConnect_Utils_CW_Share_ShareSheet_mvcModel, UBTConnect_Utils_CW_Share_ShareableObject_Generic_mvcModel, UBTConnect_Utils_CW_Notes_NotesSheet_mvcModel) {
+define("UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect_Utils.controller", "UBTConnectLibrary.model", "UBTConnect_Utils.model", "Connect2_Sharing_CS.model", "UBTJavaScriptUtils.controller", "UBTConnect.controller", "UBTConnect_Bookmarks_MCS.model", "UBTConnect_Bookmarks_MCS.controller", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$model", "UBTConnectLibrary.ConnectCorePatterns.ActionsMenu.mvc$model", "UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper.mvc$model", "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone.mvc$model", "UBTConnect_Utils.CW_CTA_PopUps.SharePopup.mvc$model", "UBTConnect_Utils.CW_Share.ShareSheet.mvc$model", "UBTConnect_Utils.CW_Share.ShareableObject_Generic.mvc$model", "UBTConnect_Utils.CW_Notes.NotesSheet.mvc$model", "UBTConnect_Utils.controller$GetHasExtendedShare", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnectLibrary.model$ActionsMenuOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$NotesRec", "UBTConnect_Utils.model$ContactPopUp_OverrideOptionsRec", "UBTConnectLibrary.model$ActionsMenuEnableOptionsRec", "UBTConnect_Utils.model$UI_ContactByMessage_WrapperDataRec", "UBTConnect_Utils.model$ContactPopupDataRec", "UBTConnect_Utils.model$ContactByPhonePopupDataRec", "Connect2_Sharing_CS.model$UI_ShareableObject_GenericRec", "UBTConnect.referencesHealth$Connect2_Sharing_CS", "UBTConnectLibrary.model$Note_ItemRec", "UBTConnect.model$Note_ItemList", "UBTJavaScriptUtils.controller$ScreenController_RaiseError", "UBTConnect.referencesHealth$UBTJavaScriptUtils", "UBTJavaScriptUtils.controller$ScreenController_RaiseTypedException", "UBTJavaScriptUtils.controller$ScreenController_RaiseCommunicationError", "UBTConnect_Utils.controller$ShareEntity_ByURL", "UBTConnect.controller$ToggleBookmarkItem_C2", "UBTConnect.controller$GetNameAndSurname_ByFullName", "UBTConnect_Bookmarks_MCS.model$LocalBookmarkRec", "UBTConnect.referencesHealth$UBTConnect_Bookmarks_MCS", "UBTConnect_Bookmarks_MCS.controller$GetLocalBookmarkByObjectId", "UBTConnect.controller$GetBookmarkCategoryId_ByEntityTypeId", "UBTConnect.controller$GetShareType_FromEntity", "UBTConnect.controller$Get_NoteCategoryId_ByEntityTypeId", "UBTConnect.controller$Notes_InterchangeId_ComposeId"], function (OutSystems, UBTConnectModel, UBTConnect_UtilsController, UBTConnectLibraryModel, UBTConnect_UtilsModel, Connect2_Sharing_CSModel, UBTJavaScriptUtilsController, UBTConnectController, UBTConnect_Bookmarks_MCSModel, UBTConnect_Bookmarks_MCSController, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel, UBTConnectLibrary_ConnectCorePatterns_ActionsMenu_mvcModel, UBTConnect_Utils_CW_CTA_PopUps_ContactByMessage_Wrapper_mvcModel, UBTConnect_Utils_CW_CTA_PopUps_ContactPopup_ByPhone_mvcModel, UBTConnect_Utils_CW_CTA_PopUps_SharePopup_mvcModel, UBTConnect_Utils_CW_Share_ShareSheet_mvcModel, UBTConnect_Utils_CW_Share_ShareableObject_Generic_mvcModel, UBTConnect_Utils_CW_Notes_NotesSheet_mvcModel) {
 var OS = OutSystems.Internal;
 
 var FetchContactDetailsDataActRec = (function (_super) {
@@ -77,16 +77,7 @@ return [
 this.attr("Local_isBookmarked", "local_isBookmarkedVar", "Local_isBookmarked", true, false, OS.DataTypes.DataTypes.Boolean, function () {
 return false;
 }, false), 
-this.attr("Local_isBookmarked_C2", "local_isBookmarked_C2Var", "Local_isBookmarked_C2", true, false, OS.DataTypes.DataTypes.Boolean, function () {
-return false;
-}, false), 
-this.attr("Local_BookmarkType", "local_BookmarkTypeVar", "Local_BookmarkType", true, false, OS.DataTypes.DataTypes.Text, function () {
-return "";
-}, false), 
-this.attr("Local_BookmarkTypeId_C2", "local_BookmarkTypeId_C2Var", "Local_BookmarkTypeId_C2", true, false, OS.DataTypes.DataTypes.Text, function () {
-return "";
-}, false), 
-this.attr("Local_BookmarkGroup", "local_BookmarkGroupVar", "Local_BookmarkGroup", true, false, OS.DataTypes.DataTypes.Text, function () {
+this.attr("Local_BookmarkTypeId", "local_BookmarkTypeIdVar", "Local_BookmarkTypeId", true, false, OS.DataTypes.DataTypes.Text, function () {
 return "";
 }, false), 
 this.attr("Local_In_ActionsMenuOptions", "local_In_ActionsMenuOptionsVar", "Local_In_ActionsMenuOptions", true, false, OS.DataTypes.DataTypes.Record, function () {
@@ -120,6 +111,12 @@ this.attr("ShareSheet_OverwriteImageURL", "shareSheet_OverwriteImageURLVar", "Sh
 return "";
 }, false), 
 this.attr("NoteCategoryId", "noteCategoryIdVar", "NoteCategoryId", true, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, false), 
+this.attr("EntityNotes", "entityNotesVar", "EntityNotes", true, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec());
+}, false, UBTConnectLibraryModel.NotesRec), 
+this.attr("FetchNoteId", "fetchNoteIdVar", "FetchNoteId", true, false, OS.DataTypes.DataTypes.Text, function () {
 return "";
 }, false), 
 this.attr("IsEnabled", "isEnabledIn", "IsEnabled", true, false, OS.DataTypes.DataTypes.Boolean, function () {
@@ -158,10 +155,10 @@ return false;
 this.attr("_useViewDetailsInDataFetchStatus", "_useViewDetailsInDataFetchStatus", "_useViewDetailsInDataFetchStatus", true, false, OS.DataTypes.DataTypes.Integer, function () {
 return /*Fetched*/ 1;
 }, false), 
-this.attr("EntityExtraDataJSON", "entityExtraDataJSONIn", "EntityExtraDataJSON", true, false, OS.DataTypes.DataTypes.Text, function () {
+this.attr("In_LocalityId", "in_LocalityIdIn", "In_LocalityId", true, false, OS.DataTypes.DataTypes.Text, function () {
 return "";
 }, false), 
-this.attr("_entityExtraDataJSONInDataFetchStatus", "_entityExtraDataJSONInDataFetchStatus", "_entityExtraDataJSONInDataFetchStatus", true, false, OS.DataTypes.DataTypes.Integer, function () {
+this.attr("_in_LocalityIdInDataFetchStatus", "_in_LocalityIdInDataFetchStatus", "_in_LocalityIdInDataFetchStatus", true, false, OS.DataTypes.DataTypes.Integer, function () {
 return /*Fetched*/ 1;
 }, false), 
 this.attr("FetchContactDetails", "fetchContactDetailsDataAct", "fetchContactDetailsDataAct", true, true, OS.DataTypes.DataTypes.Record, function () {
@@ -259,10 +256,10 @@ this.variables._useViewDetailsInDataFetchStatus = inputs._useViewDetailsInDataFe
 
 }
 
-if("EntityExtraDataJSON" in inputs) {
-this.variables.entityExtraDataJSONIn = inputs.EntityExtraDataJSON;
-if("_entityExtraDataJSONInDataFetchStatus" in inputs) {
-this.variables._entityExtraDataJSONInDataFetchStatus = inputs._entityExtraDataJSONInDataFetchStatus;
+if("In_LocalityId" in inputs) {
+this.variables.in_LocalityIdIn = inputs.In_LocalityId;
+if("_in_LocalityIdInDataFetchStatus" in inputs) {
+this.variables._in_LocalityIdInDataFetchStatus = inputs._in_LocalityIdInDataFetchStatus;
 }
 
 }
@@ -272,7 +269,7 @@ return Model;
 })(OS.Model.BaseViewModel);
 return new OS.Model.ModelFactory(Model, "Directory_CommonBlocks.Directory_EntityDetailsActions");
 });
-define("UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnect_Utils.controller", "UBTConnectLibrary.model", "UBTConnect_Utils.model", "Connect2_Sharing_CS.model", "UBTJavaScriptUtils.controller", "Connect2_LegacyShared.model", "Connect2_LegacyShared.controller", "UBTConnect_Bookmarks_MCS.model", "UBTConnect_Bookmarks_MCS.controller", "react", "OutSystems/ReactView/Main", "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$model", "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller", "UBTConnect.clientVariables", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$view", "OutSystems/ReactWidgets/Main", "UBTConnectLibrary.ConnectCorePatterns.ActionsMenu.mvc$view", "UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper.mvc$view", "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone.mvc$view", "UBTConnect_Utils.CW_CTA_PopUps.SharePopup.mvc$view", "UBTConnect_Utils.CW_Share.ShareSheet.mvc$view", "UBTConnect_Utils.CW_Share.ShareableObject_Generic.mvc$view", "UBTConnect_Utils.CW_Notes.NotesSheet.mvc$view", "UBTConnect_Utils.controller$GetHasNewBookmarks", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect_Utils.controller$GetHasExtendedShare", "UBTConnectLibrary.model$ActionsMenuOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect_Utils.model$ContactPopUp_OverrideOptionsRec", "UBTConnectLibrary.model$ActionsMenuEnableOptionsRec", "UBTConnect_Utils.model$UI_ContactByMessage_WrapperDataRec", "UBTConnect_Utils.model$ContactPopupDataRec", "UBTConnect_Utils.model$ContactByPhonePopupDataRec", "Connect2_Sharing_CS.model$UI_ShareableObject_GenericRec", "UBTConnect.referencesHealth$Connect2_Sharing_CS", "UBTConnectLibrary.model$NotesRec", "UBTConnectLibrary.model$Note_ItemRec", "UBTConnect.model$Note_ItemList", "UBTJavaScriptUtils.controller$ScreenController_RaiseError", "UBTConnect.referencesHealth$UBTJavaScriptUtils", "UBTJavaScriptUtils.controller$ScreenController_RaiseTypedException", "UBTJavaScriptUtils.controller$ScreenController_RaiseCommunicationError", "UBTConnect_Utils.controller$ShareEntity_ByURL", "UBTConnect.controller$ToggleBookmarkItem_C2", "UBTConnect.controller$ToggleBookmarkItem", "UBTConnect.controller$GetNameAndSurname_ByFullName", "Connect2_LegacyShared.model$LocalBookmarkRec", "UBTConnect.referencesHealth$Connect2_LegacyShared", "Connect2_LegacyShared.controller$Get_LocalBookmarkByObjectId", "UBTConnect.controller$GetBookmarkType_FromEntity", "UBTConnect_Bookmarks_MCS.model$LocalBookmarkRec", "UBTConnect.referencesHealth$UBTConnect_Bookmarks_MCS", "UBTConnect_Bookmarks_MCS.controller$GetLocalBookmarkByObjectId", "UBTConnect.controller$GetBookmarkCategoryId_ByEntityTypeId", "UBTConnect.controller$GetShareType_FromEntity", "UBTConnect.controller$Get_NoteCategoryId_ByEntityTypeId"], function (OutSystems, UBTConnectModel, UBTConnectController, UBTConnect_UtilsController, UBTConnectLibraryModel, UBTConnect_UtilsModel, Connect2_Sharing_CSModel, UBTJavaScriptUtilsController, Connect2_LegacySharedModel, Connect2_LegacySharedController, UBTConnect_Bookmarks_MCSModel, UBTConnect_Bookmarks_MCSController, React, OSView, UBTConnect_Directory_CommonBlocks_Directory_EntityDetailsActions_mvc_model, UBTConnect_Directory_CommonBlocks_Directory_EntityDetailsActions_mvc_controller, UBTConnectClientVariables, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, OSWidgets, UBTConnectLibrary_ConnectCorePatterns_ActionsMenu_mvc_view, UBTConnect_Utils_CW_CTA_PopUps_ContactByMessage_Wrapper_mvc_view, UBTConnect_Utils_CW_CTA_PopUps_ContactPopup_ByPhone_mvc_view, UBTConnect_Utils_CW_CTA_PopUps_SharePopup_mvc_view, UBTConnect_Utils_CW_Share_ShareSheet_mvc_view, UBTConnect_Utils_CW_Share_ShareableObject_Generic_mvc_view, UBTConnect_Utils_CW_Notes_NotesSheet_mvc_view) {
+define("UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnect_Utils.controller", "UBTConnectLibrary.model", "UBTConnect_Utils.model", "Connect2_Sharing_CS.model", "UBTJavaScriptUtils.controller", "UBTConnect_Bookmarks_MCS.model", "UBTConnect_Bookmarks_MCS.controller", "react", "OutSystems/ReactView/Main", "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$model", "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller", "UBTConnect.clientVariables", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$view", "OutSystems/ReactWidgets/Main", "UBTConnectLibrary.ConnectCorePatterns.ActionsMenu.mvc$view", "UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper.mvc$view", "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone.mvc$view", "UBTConnect_Utils.CW_CTA_PopUps.SharePopup.mvc$view", "UBTConnect_Utils.CW_Share.ShareSheet.mvc$view", "UBTConnect_Utils.CW_Share.ShareableObject_Generic.mvc$view", "UBTConnect_Utils.CW_Notes.NotesSheet.mvc$view", "UBTConnect_Utils.controller$GetHasExtendedShare", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnectLibrary.model$ActionsMenuOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$NotesRec", "UBTConnect_Utils.model$ContactPopUp_OverrideOptionsRec", "UBTConnectLibrary.model$ActionsMenuEnableOptionsRec", "UBTConnect_Utils.model$UI_ContactByMessage_WrapperDataRec", "UBTConnect_Utils.model$ContactPopupDataRec", "UBTConnect_Utils.model$ContactByPhonePopupDataRec", "Connect2_Sharing_CS.model$UI_ShareableObject_GenericRec", "UBTConnect.referencesHealth$Connect2_Sharing_CS", "UBTConnectLibrary.model$Note_ItemRec", "UBTConnect.model$Note_ItemList", "UBTJavaScriptUtils.controller$ScreenController_RaiseError", "UBTConnect.referencesHealth$UBTJavaScriptUtils", "UBTJavaScriptUtils.controller$ScreenController_RaiseTypedException", "UBTJavaScriptUtils.controller$ScreenController_RaiseCommunicationError", "UBTConnect_Utils.controller$ShareEntity_ByURL", "UBTConnect.controller$ToggleBookmarkItem_C2", "UBTConnect.controller$GetNameAndSurname_ByFullName", "UBTConnect_Bookmarks_MCS.model$LocalBookmarkRec", "UBTConnect.referencesHealth$UBTConnect_Bookmarks_MCS", "UBTConnect_Bookmarks_MCS.controller$GetLocalBookmarkByObjectId", "UBTConnect.controller$GetBookmarkCategoryId_ByEntityTypeId", "UBTConnect.controller$GetShareType_FromEntity", "UBTConnect.controller$Get_NoteCategoryId_ByEntityTypeId", "UBTConnect.controller$Notes_InterchangeId_ComposeId"], function (OutSystems, UBTConnectModel, UBTConnectController, UBTConnect_UtilsController, UBTConnectLibraryModel, UBTConnect_UtilsModel, Connect2_Sharing_CSModel, UBTJavaScriptUtilsController, UBTConnect_Bookmarks_MCSModel, UBTConnect_Bookmarks_MCSController, React, OSView, UBTConnect_Directory_CommonBlocks_Directory_EntityDetailsActions_mvc_model, UBTConnect_Directory_CommonBlocks_Directory_EntityDetailsActions_mvc_controller, UBTConnectClientVariables, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, OSWidgets, UBTConnectLibrary_ConnectCorePatterns_ActionsMenu_mvc_view, UBTConnect_Utils_CW_CTA_PopUps_ContactByMessage_Wrapper_mvc_view, UBTConnect_Utils_CW_CTA_PopUps_ContactPopup_ByPhone_mvc_view, UBTConnect_Utils_CW_CTA_PopUps_SharePopup_mvc_view, UBTConnect_Utils_CW_Share_ShareSheet_mvc_view, UBTConnect_Utils_CW_Share_ShareableObject_Generic_mvc_view, UBTConnect_Utils_CW_Notes_NotesSheet_mvc_view) {
     var OS = OutSystems.Internal;
 var PlaceholderContent = OSView.Widget.PlaceholderContent;
 var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
@@ -370,12 +367,8 @@ _in_ActionsEnableOptionsInDataFetchStatus: OS.Model.calculateDataFetchStatus(mod
 In_ActionsMenuOptions: model.getCachedValue(idService.getId("6MKRTYwotESbnmBfOAh6zQ.In_ActionsMenuOptions"), function () {
 return function () {
 var rec = new UBTConnectLibraryModel.ActionsMenuOptionsRec();
-rec.hasBookmarkAttr = (model.variables.local_In_ActionsMenuOptionsVar.hasBookmarkAttr && ((!(OutSystemsDebugger.handleFunctionCall(function () {
-return UBTConnect_UtilsController.default.getHasNewBookmarks$Action(callContext).out_HasNewBookmarksOut;
-}, OS.DataTypes.DataTypes.Boolean, callContext.id))) ? (!(model.variables.local_isBookmarkedVar)) : (!(model.variables.local_isBookmarked_C2Var))));
-rec.hasUnbookmarkAttr = (model.variables.local_In_ActionsMenuOptionsVar.hasBookmarkAttr && ((!(OutSystemsDebugger.handleFunctionCall(function () {
-return UBTConnect_UtilsController.default.getHasNewBookmarks$Action(callContext).out_HasNewBookmarksOut;
-}, OS.DataTypes.DataTypes.Boolean, callContext.id))) ? (model.variables.local_isBookmarkedVar) : (model.variables.local_isBookmarked_C2Var)));
+rec.hasBookmarkAttr = (model.variables.local_In_ActionsMenuOptionsVar.hasBookmarkAttr && !(model.variables.local_isBookmarkedVar));
+rec.hasUnbookmarkAttr = (model.variables.local_In_ActionsMenuOptionsVar.hasBookmarkAttr && model.variables.local_isBookmarkedVar);
 rec.hasNotesAttr = model.variables.local_In_ActionsMenuOptionsVar.hasNotesAttr;
 rec.hasGiftAttr = model.variables.local_In_ActionsMenuOptionsVar.hasGiftAttr;
 rec.hasShareAttr = model.variables.local_In_ActionsMenuOptionsVar.hasShareAttr;
@@ -388,8 +381,6 @@ return rec;
 return model.variables.local_In_ActionsMenuOptionsVar.hasBookmarkAttr;
 }, function () {
 return model.variables.local_isBookmarkedVar;
-}, function () {
-return model.variables.local_isBookmarked_C2Var;
 }, function () {
 return model.variables.local_In_ActionsMenuOptionsVar.hasNotesAttr;
 }, function () {
@@ -488,7 +479,7 @@ var varBag = {};
 controller.pushDebuggerContext(eventHandlerContext);
 
 OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectCorePatterns/ActionsMenu Event_Click_Notes");
-return controller.handler_AddNotes$Action(controller.callContext(eventHandlerContext));
+return controller.handler_AddNotesOnClick$Action(controller.callContext(eventHandlerContext));
 }, function () {
 controller.popDebuggerContext(eventHandlerContext);
 });
@@ -523,7 +514,7 @@ _dependencies: []
 })];
 })
 },
-_dependencies: [asPrimitiveValue(model.variables.local_isBookmarked_C2Var), asPrimitiveValue(model.variables.local_isBookmarkedVar), asPrimitiveValue(model.variables.local_In_ActionsMenuOptionsVar.hasViewDetailsAttr), asPrimitiveValue(model.variables.local_In_ActionsMenuOptionsVar.hasEmailAttr), asPrimitiveValue(model.variables.local_In_ActionsMenuOptionsVar.hasCallAttr), asPrimitiveValue(model.variables.local_In_ActionsMenuOptionsVar.hasShareAttr), asPrimitiveValue(model.variables.local_In_ActionsMenuOptionsVar.hasGiftAttr), asPrimitiveValue(model.variables.local_In_ActionsMenuOptionsVar.hasNotesAttr), asPrimitiveValue(model.variables.local_In_ActionsMenuOptionsVar.hasBookmarkAttr), asPrimitiveValue(model.variables.enableOptionsIn), asPrimitiveValue(model.variables.showIconLabelsVar), asPrimitiveValue(model.variables._enableOptionsInDataFetchStatus), asPrimitiveValue(model.variables._isEnabledInDataFetchStatus), asPrimitiveValue(model.variables.isEnabledIn)]
+_dependencies: [asPrimitiveValue(model.variables.local_isBookmarkedVar), asPrimitiveValue(model.variables.local_In_ActionsMenuOptionsVar.hasViewDetailsAttr), asPrimitiveValue(model.variables.local_In_ActionsMenuOptionsVar.hasEmailAttr), asPrimitiveValue(model.variables.local_In_ActionsMenuOptionsVar.hasCallAttr), asPrimitiveValue(model.variables.local_In_ActionsMenuOptionsVar.hasShareAttr), asPrimitiveValue(model.variables.local_In_ActionsMenuOptionsVar.hasGiftAttr), asPrimitiveValue(model.variables.local_In_ActionsMenuOptionsVar.hasNotesAttr), asPrimitiveValue(model.variables.local_In_ActionsMenuOptionsVar.hasBookmarkAttr), asPrimitiveValue(model.variables.enableOptionsIn), asPrimitiveValue(model.variables.showIconLabelsVar), asPrimitiveValue(model.variables._enableOptionsInDataFetchStatus), asPrimitiveValue(model.variables._isEnabledInDataFetchStatus), asPrimitiveValue(model.variables.isEnabledIn)]
 }), React.createElement(UBTConnect_Utils_CW_CTA_PopUps_ContactByMessage_Wrapper_mvc_view, {
 inputs: {
 In_ContactPopupData: model.getCachedValue(idService.getId("8wBcfYl7mU2A7nOuWh3qEg.In_ContactPopupData"), function () {
@@ -933,14 +924,29 @@ return [];
 }), $if(false, false, this, function () {
 return [];
 }, function () {
-return [React.createElement(UBTConnect_Utils_CW_Notes_NotesSheet_mvc_view, {
+return [React.createElement(OSWidgets.Popup, {
+showPopup: true,
+style: "popup-dialog connect-share-portal",
+_idProps: {
+service: idService,
+uuid: "8"
+},
+_widgetRecordProvider: widgetsRecordProvider
+}, React.createElement(UBTConnect_Utils_CW_Notes_NotesSheet_mvc_view, {
 inputs: {
-In_Notes: model.variables.fetchNotesDataAct.notesOut,
-_in_NotesInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.fetchNotesDataAct.dataFetchStatusAttr),
-In_ItemId: model.variables.entityIdIn,
-_in_ItemIdInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables._entityIdInDataFetchStatus),
-In_NoteCategoryId: model.variables.noteCategoryIdVar,
-In_IsOpen: model.variables.showNotesSheetVar
+In_ItemId: model.getCachedValue(idService.getId("s0w6J4sQh0mzmhvpkb_jkA.In_ItemId"), function () {
+return ((((model.variables.entityTypeIn === UBTConnectModel.staticEntities.connect_Entity.interchange) && ((model.variables.in_LocalityIdIn) !== ("")))) ? (((model.variables.in_LocalityIdIn + ":") + OS.BuiltinFunctions.longIntegerToText(model.variables.entityIdIn))) : (OS.BuiltinFunctions.longIntegerToText(model.variables.entityIdIn)));
+}, function () {
+return model.variables.entityTypeIn;
+}, function () {
+return model.variables.in_LocalityIdIn;
+}, function () {
+return model.variables.entityIdIn;
+}),
+_in_ItemIdInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables._entityTypeInDataFetchStatus, model.variables._in_LocalityIdInDataFetchStatus, model.variables._entityIdInDataFetchStatus),
+In_Notes: model.variables.entityNotesVar,
+In_IsOpen: model.variables.showNotesSheetVar,
+In_NoteCategoryId: model.variables.noteCategoryIdVar
 },
 events: {
 _handleError: function (ex) {
@@ -953,7 +959,7 @@ var varBag = {};
 controller.pushDebuggerContext(eventHandlerContext);
 
 OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "CW_Notes/NotesSheet On_NotesChanged");
-controller.handler_OnNotesChanged$Action(new_NotesIn, controller.callContext(eventHandlerContext));
+controller.handler_OnSheetNotesChanged$Action(new_NotesIn, controller.callContext(eventHandlerContext));
 }, function () {
 controller.popDebuggerContext(eventHandlerContext);
 });
@@ -994,12 +1000,12 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "8",
+uuid: "9",
 alias: "8"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
-})];
+}))];
 }));
         };
         return View;
@@ -1007,7 +1013,7 @@ _dependencies: []
 	
     return View;
 });
-define("UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnect_Utils.controller", "UBTConnectLibrary.model", "UBTConnect_Utils.model", "Connect2_Sharing_CS.model", "UBTJavaScriptUtils.controller", "Connect2_LegacyShared.model", "Connect2_LegacyShared.controller", "UBTConnect_Bookmarks_MCS.model", "UBTConnect_Bookmarks_MCS.controller", "UBTConnect.languageResources", "UBTConnect.clientVariables", "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$debugger", "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Handle_Mail_Page.YieldJS", "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.OnReady.CheckRestoredJS", "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Action_UpdateContactDetails.AsynRefreshJS", "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Handle_Share_Connect.YieldJS", "UBTConnect_Utils.controller$GetHasNewBookmarks", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect_Utils.controller$GetHasExtendedShare", "UBTConnectLibrary.model$ActionsMenuOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect_Utils.model$ContactPopUp_OverrideOptionsRec", "UBTConnectLibrary.model$ActionsMenuEnableOptionsRec", "UBTConnect_Utils.model$UI_ContactByMessage_WrapperDataRec", "UBTConnect_Utils.model$ContactPopupDataRec", "UBTConnect_Utils.model$ContactByPhonePopupDataRec", "Connect2_Sharing_CS.model$UI_ShareableObject_GenericRec", "UBTConnect.referencesHealth$Connect2_Sharing_CS", "UBTConnectLibrary.model$NotesRec", "UBTConnectLibrary.model$Note_ItemRec", "UBTConnect.model$Note_ItemList", "UBTJavaScriptUtils.controller$ScreenController_RaiseError", "UBTConnect.referencesHealth$UBTJavaScriptUtils", "UBTJavaScriptUtils.controller$ScreenController_RaiseTypedException", "UBTJavaScriptUtils.controller$ScreenController_RaiseCommunicationError", "UBTConnect_Utils.controller$ShareEntity_ByURL", "UBTConnect.controller$ToggleBookmarkItem_C2", "UBTConnect.controller$ToggleBookmarkItem", "UBTConnect.controller$GetNameAndSurname_ByFullName", "Connect2_LegacyShared.model$LocalBookmarkRec", "UBTConnect.referencesHealth$Connect2_LegacyShared", "Connect2_LegacyShared.controller$Get_LocalBookmarkByObjectId", "UBTConnect.controller$GetBookmarkType_FromEntity", "UBTConnect_Bookmarks_MCS.model$LocalBookmarkRec", "UBTConnect.referencesHealth$UBTConnect_Bookmarks_MCS", "UBTConnect_Bookmarks_MCS.controller$GetLocalBookmarkByObjectId", "UBTConnect.controller$GetBookmarkCategoryId_ByEntityTypeId", "UBTConnect.controller$GetShareType_FromEntity", "UBTConnect.controller$Get_NoteCategoryId_ByEntityTypeId"], function (OutSystems, UBTConnectModel, UBTConnectController, UBTConnect_UtilsController, UBTConnectLibraryModel, UBTConnect_UtilsModel, Connect2_Sharing_CSModel, UBTJavaScriptUtilsController, Connect2_LegacySharedModel, Connect2_LegacySharedController, UBTConnect_Bookmarks_MCSModel, UBTConnect_Bookmarks_MCSController, UBTConnectLanguageResources, UBTConnectClientVariables, UBTConnect_Directory_CommonBlocks_Directory_EntityDetailsActions_mvc_Debugger, UBTConnect_Directory_CommonBlocks_Directory_EntityDetailsActions_mvc_controller_Handle_Mail_Page_YieldJS, UBTConnect_Directory_CommonBlocks_Directory_EntityDetailsActions_mvc_controller_OnReady_CheckRestoredJS, UBTConnect_Directory_CommonBlocks_Directory_EntityDetailsActions_mvc_controller_Action_UpdateContactDetails_AsynRefreshJS, UBTConnect_Directory_CommonBlocks_Directory_EntityDetailsActions_mvc_controller_Handle_Share_Connect_YieldJS) {
+define("UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnect_Utils.controller", "UBTConnectLibrary.model", "UBTConnect_Utils.model", "Connect2_Sharing_CS.model", "UBTJavaScriptUtils.controller", "UBTConnect_Bookmarks_MCS.model", "UBTConnect_Bookmarks_MCS.controller", "UBTConnect.languageResources", "UBTConnect.clientVariables", "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$debugger", "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Handle_Mail_Page.YieldJS", "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.OnReady.CheckRestoredJS", "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Action_UpdateContactDetails.AsynRefreshJS", "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Handle_Share_Connect.YieldJS", "UBTConnect_Utils.controller$GetHasExtendedShare", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnectLibrary.model$ActionsMenuOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$NotesRec", "UBTConnect_Utils.model$ContactPopUp_OverrideOptionsRec", "UBTConnectLibrary.model$ActionsMenuEnableOptionsRec", "UBTConnect_Utils.model$UI_ContactByMessage_WrapperDataRec", "UBTConnect_Utils.model$ContactPopupDataRec", "UBTConnect_Utils.model$ContactByPhonePopupDataRec", "Connect2_Sharing_CS.model$UI_ShareableObject_GenericRec", "UBTConnect.referencesHealth$Connect2_Sharing_CS", "UBTConnectLibrary.model$Note_ItemRec", "UBTConnect.model$Note_ItemList", "UBTJavaScriptUtils.controller$ScreenController_RaiseError", "UBTConnect.referencesHealth$UBTJavaScriptUtils", "UBTJavaScriptUtils.controller$ScreenController_RaiseTypedException", "UBTJavaScriptUtils.controller$ScreenController_RaiseCommunicationError", "UBTConnect_Utils.controller$ShareEntity_ByURL", "UBTConnect.controller$ToggleBookmarkItem_C2", "UBTConnect.controller$GetNameAndSurname_ByFullName", "UBTConnect_Bookmarks_MCS.model$LocalBookmarkRec", "UBTConnect.referencesHealth$UBTConnect_Bookmarks_MCS", "UBTConnect_Bookmarks_MCS.controller$GetLocalBookmarkByObjectId", "UBTConnect.controller$GetBookmarkCategoryId_ByEntityTypeId", "UBTConnect.controller$GetShareType_FromEntity", "UBTConnect.controller$Get_NoteCategoryId_ByEntityTypeId", "UBTConnect.controller$Notes_InterchangeId_ComposeId"], function (OutSystems, UBTConnectModel, UBTConnectController, UBTConnect_UtilsController, UBTConnectLibraryModel, UBTConnect_UtilsModel, Connect2_Sharing_CSModel, UBTJavaScriptUtilsController, UBTConnect_Bookmarks_MCSModel, UBTConnect_Bookmarks_MCSController, UBTConnectLanguageResources, UBTConnectClientVariables, UBTConnect_Directory_CommonBlocks_Directory_EntityDetailsActions_mvc_Debugger, UBTConnect_Directory_CommonBlocks_Directory_EntityDetailsActions_mvc_controller_Handle_Mail_Page_YieldJS, UBTConnect_Directory_CommonBlocks_Directory_EntityDetailsActions_mvc_controller_OnReady_CheckRestoredJS, UBTConnect_Directory_CommonBlocks_Directory_EntityDetailsActions_mvc_controller_Action_UpdateContactDetails_AsynRefreshJS, UBTConnect_Directory_CommonBlocks_Directory_EntityDetailsActions_mvc_controller_Handle_Share_Connect_YieldJS) {
 var OS = OutSystems.Internal;
 var Controller = (function (_super) {
 __extends(Controller, _super);
@@ -1072,7 +1078,7 @@ return OS.Flow.tryFinally(function () {
 var varBag = {};
 controller.pushDebuggerContext(callContext);
 
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:HZUOaXkmDkGeR+c_sO83xg:/NRWebFlows.jGNlo9EW9U24MVecsZ_9tQ/NodesShownInESpaceTree.fJ0qEtiFx0e19F0VJxsZLQ/DataActions.HZUOaXkmDkGeR+c_sO83xg:wDdWd3Ec+ExZKGlDDoirOg", "UBTConnect", "FetchNotes", "NRFlows.DataScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:HZUOaXkmDkGeR+c_sO83xg:/NRWebFlows.jGNlo9EW9U24MVecsZ_9tQ/NodesShownInESpaceTree.fJ0qEtiFx0e19F0VJxsZLQ/DataActions.HZUOaXkmDkGeR+c_sO83xg:ON9uVgPrm7f+_K9DwSVxaw", "UBTConnect", "FetchNotes", "NRFlows.DataScreenActionFlow", callContext.id, varBag);
 OutSystemsDebugger.setThreadStartName(callContext.id, "Directory_CommonBlocks/Directory_EntityDetailsActions/FetchNotes");
 return controller.callDataAction("DataActionFetchNotes", "screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchNotes", "WH122zjVJs_kThBXLU+R_g", function (b) {
 model.variables.fetchNotesDataAct.dataFetchStatusAttr = b;
@@ -1080,7 +1086,11 @@ model.variables.fetchNotesDataAct.dataFetchStatusAttr = b;
 model.variables.fetchNotesDataAct.replaceWith(OS.DataConversion.ServerDataConverter.from(json, model.variables.fetchNotesDataAct.constructor));
 }, undefined, OutSystemsDebugger.getRequestHeaders(callContext.id), function (json, headers) {
 OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
-}, callContext, undefined, false);
+}, callContext, undefined, false).then(function () {
+OutSystemsDebugger.setThreadStartName(callContext.id, "Directory_CommonBlocks/Directory_EntityDetailsActions/FetchNotes On After Fetch");
+controller._onAfterFetch_FetchNotes$Action(controller.callContext(callContext));
+
+});
 
 }, function () {
 OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:HZUOaXkmDkGeR+c_sO83xg", callContext.id);
@@ -1278,24 +1288,24 @@ throw ex;
 
 });
 };
-Controller.prototype._handler_OnNotesChanged$Action = function (new_NotesIn, callContext) {
+Controller.prototype._handler_OnSheetNotesChanged$Action = function (new_NotesIn, callContext) {
 var varBag = {};
 var model = this.model;
 var controller = this.controller;
 var idService = this.idService;
 varBag.model = model;
 varBag.idService = idService;
-controller.ensureControllerAlive("Handler_OnNotesChanged");
+controller.ensureControllerAlive("Handler_OnSheetNotesChanged");
 callContext = controller.callContext(callContext);
-var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.Handler_OnNotesChanged$vars"))());
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.Handler_OnSheetNotesChanged$vars"))());
 vars.value.new_NotesInLocal = new_NotesIn.clone();
 varBag.callContext = callContext;
 varBag.vars = vars;
-try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:cZ6COB1V4EC_fISuYPgV5g:/NRWebFlows.jGNlo9EW9U24MVecsZ_9tQ/NodesShownInESpaceTree.fJ0qEtiFx0e19F0VJxsZLQ/ClientActions.cZ6COB1V4EC_fISuYPgV5g:nFujXd4w3Zy3HiE7uB6yFA", "UBTConnect", "Handler_OnNotesChanged", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:cZ6COB1V4EC_fISuYPgV5g:/NRWebFlows.jGNlo9EW9U24MVecsZ_9tQ/NodesShownInESpaceTree.fJ0qEtiFx0e19F0VJxsZLQ/ClientActions.cZ6COB1V4EC_fISuYPgV5g:s06mI2VLE3sNAdSBar5whA", "UBTConnect", "Handler_OnSheetNotesChanged", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:LisNz5e9RUufw5bReBGU9Q", callContext.id);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:OL3HeJl7_U2tmF0kNQ3jZg", callContext.id);
-// FetchNotes.Notes = New_Notes
-model.variables.fetchNotesDataAct.notesOut = vars.value.new_NotesInLocal;
+// EntityNotes = New_Notes
+model.variables.entityNotesVar = vars.value.new_NotesInLocal;
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:DITzjkSWk0ynzL6r9AdMxA", callContext.id);
 } catch (ex) {
 OutSystemsDebugger.handleException(ex, callContext.id);
@@ -1305,7 +1315,7 @@ OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:cZ6COB1V4EC_fISuYPgV5g", callCont
 }
 
 };
-Controller.registerVariableGroupType("UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.Handler_OnNotesChanged$vars", [{
+Controller.registerVariableGroupType("UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.Handler_OnSheetNotesChanged$vars", [{
 name: "New_Notes",
 attrName: "new_NotesInLocal",
 mandatory: true,
@@ -1348,17 +1358,17 @@ throw ex;
 
 });
 };
-Controller.prototype._handler_AddNotes$Action = function (callContext) {
+Controller.prototype._handler_AddNotesOnClick$Action = function (callContext) {
 var varBag = {};
 var model = this.model;
 var controller = this.controller;
 var idService = this.idService;
 varBag.model = model;
 varBag.idService = idService;
-controller.ensureControllerAlive("Handler_AddNotes");
+controller.ensureControllerAlive("Handler_AddNotesOnClick");
 callContext = controller.callContext(callContext);
 varBag.callContext = callContext;
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:_SBrSYy3FU+584s3XFVvNQ:/NRWebFlows.jGNlo9EW9U24MVecsZ_9tQ/NodesShownInESpaceTree.fJ0qEtiFx0e19F0VJxsZLQ/ClientActions._SBrSYy3FU+584s3XFVvNQ:wpTP4I1ujii4zSyzyZ93EQ", "UBTConnect", "Handler_AddNotes", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:_SBrSYy3FU+584s3XFVvNQ:/NRWebFlows.jGNlo9EW9U24MVecsZ_9tQ/NodesShownInESpaceTree.fJ0qEtiFx0e19F0VJxsZLQ/ClientActions._SBrSYy3FU+584s3XFVvNQ:9duGc1Y4WLO_i3TDfscs7w", "UBTConnect", "Handler_AddNotesOnClick", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:3FENyeggh0GHIiYw32lrAQ", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:qPV5Y6nDQUagz_lWiDBlDA", callContext.id);
@@ -1392,61 +1402,31 @@ callContext = controller.callContext(callContext);
 var allExceptionsVar = new OS.DataTypes.VariableHolder(new OS.DataTypes.ErrorHandlerOutputType());
 var notRegisteredVar = new OS.DataTypes.VariableHolder(new OS.DataTypes.ErrorHandlerOutputType());
 var communicationExceptionVar = new OS.DataTypes.VariableHolder(new OS.DataTypes.ErrorHandlerOutputType());
-var toggleBookmarkItem_C2Var = new OS.DataTypes.VariableHolder();
-var toggleBookmarkItemVar = new OS.DataTypes.VariableHolder();
 varBag.callContext = callContext;
 varBag.allExceptionsVar = allExceptionsVar;
 varBag.notRegisteredVar = notRegisteredVar;
 varBag.communicationExceptionVar = communicationExceptionVar;
-varBag.toggleBookmarkItem_C2Var = toggleBookmarkItem_C2Var;
-varBag.toggleBookmarkItemVar = toggleBookmarkItemVar;
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:IfyyVGjW6US7kYYIg7xrAA:/NRWebFlows.jGNlo9EW9U24MVecsZ_9tQ/NodesShownInESpaceTree.fJ0qEtiFx0e19F0VJxsZLQ/ClientActions.IfyyVGjW6US7kYYIg7xrAA:va+5NqdYDWV7GY0BIFVrmA", "UBTConnect", "Handle_Bookmark", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:IfyyVGjW6US7kYYIg7xrAA:/NRWebFlows.jGNlo9EW9U24MVecsZ_9tQ/NodesShownInESpaceTree.fJ0qEtiFx0e19F0VJxsZLQ/ClientActions.IfyyVGjW6US7kYYIg7xrAA:TiksPe7_R1UlX1lQzC2LdQ", "UBTConnect", "Handle_Bookmark", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:SMX07VYIwkCVzf8HL3abgw", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:+yloMj4X8kSrRpONVz5zHg", callContext.id);
 // isLoaded = False
 model.variables.isLoadedVar = false;
-return OS.Flow.executeSequence(function () {
-if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:0kNgXjHeLEGjKhhMYzF6fg", callContext.id) && true)) {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:nigsJ8Hvx06rWWiZIdFZTg", callContext.id);
 // Execute Action: ToggleBookmarkItem_C2
 model.flush();
-return UBTConnectController.default.toggleBookmarkItem_C2$Action(model.variables.entityIdIn, model.variables.local_BookmarkTypeId_C2Var, model.variables.local_isBookmarked_C2Var, callContext).then(function (value) {
-toggleBookmarkItem_C2Var.value = value;
-}).then(function () {
+return UBTConnectController.default.toggleBookmarkItem_C2$Action(OS.BuiltinFunctions.longIntegerToText(model.variables.entityIdIn), model.variables.local_BookmarkTypeIdVar, model.variables.local_isBookmarkedVar, callContext).then(function () {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:02qoZUjXYkKjYABASwF8ww", callContext.id);
-// Local_isBookmarked_C2 = notLocal_isBookmarked_C2
-model.variables.local_isBookmarked_C2Var = !(model.variables.local_isBookmarked_C2Var);
+// Local_isBookmarked = notLocal_isBookmarked
+model.variables.local_isBookmarkedVar = !(model.variables.local_isBookmarkedVar);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:02qoZUjXYkKjYABASwF8ww", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
 // isLoaded = True
 model.variables.isLoadedVar = true;
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:EWXGm5ofOUimVD_ob0OHcw", callContext.id);
 // Trigger Event: OnChange_Bookmark2
-return controller.onChange_Bookmark$Action(model.variables.local_isBookmarked_C2Var, callContext);
-}).then(function () {
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:QiUeax2G50G+vfP8htH7vA", callContext.id);
-});
-} else {
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:wGUDr9PtsU2UNkkuX+Qfxw", callContext.id);
-// Execute Action: ToggleBookmarkItem
-model.flush();
-return UBTConnectController.default.toggleBookmarkItem$Action(model.variables.local_isBookmarkedVar, model.variables.local_BookmarkTypeVar, model.variables.entityIdIn, model.variables.local_BookmarkGroupVar, "", callContext).then(function (value) {
-toggleBookmarkItemVar.value = value;
-}).then(function () {
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:uOSm6j+wQUWNzhpwGmD23A", callContext.id);
-// Local_isBookmarked = notLocal_isBookmarked
-model.variables.local_isBookmarkedVar = !(model.variables.local_isBookmarkedVar);
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:uOSm6j+wQUWNzhpwGmD23A", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
-// isLoaded = True
-model.variables.isLoadedVar = true;
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:6DVGlfKd0UCAdEXQWB+2vA", callContext.id);
-// Trigger Event: OnChange_Bookmark
 return controller.onChange_Bookmark$Action(model.variables.local_isBookmarkedVar, callContext);
 }).then(function () {
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:eNJAkVIMOEqKzJjMfXzjHQ", callContext.id);
-});
-}
-
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:QiUeax2G50G+vfP8htH7vA", callContext.id);
 });
 }).catch(function (ex) {
 OS.Logger.trace("Directory_EntityDetailsActions.Handle_Bookmark", OS.Exceptions.getMessage(ex), ex.name);
@@ -1562,30 +1542,36 @@ controller.ensureControllerAlive("Handler_OnNoteDeleted");
 callContext = controller.callContext(callContext);
 var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.Handler_OnNoteDeleted$vars"))());
 vars.value.noteIdInLocal = noteIdIn;
-var listIndexOfVar = new OS.DataTypes.VariableHolder();
 varBag.callContext = callContext;
 varBag.vars = vars;
-varBag.listIndexOfVar = listIndexOfVar;
-try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:J78hdTLq0ke+Gxnsz7iKrA:/NRWebFlows.jGNlo9EW9U24MVecsZ_9tQ/NodesShownInESpaceTree.fJ0qEtiFx0e19F0VJxsZLQ/ClientActions.J78hdTLq0ke+Gxnsz7iKrA:hpW+pRMfW1KsnrFvmkf0Ug", "UBTConnect", "Handler_OnNoteDeleted", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:J78hdTLq0ke+Gxnsz7iKrA:/NRWebFlows.jGNlo9EW9U24MVecsZ_9tQ/NodesShownInESpaceTree.fJ0qEtiFx0e19F0VJxsZLQ/ClientActions.J78hdTLq0ke+Gxnsz7iKrA:bk1xVExWYItHeNILqVvXsg", "UBTConnect", "Handler_OnNoteDeleted", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:vBvySdf9N02BmhdHwEh32A", callContext.id);
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:s8vdHI5VHUmZOC2y4WME8A", callContext.id);
-// Execute Action: ListIndexOf
-listIndexOfVar.value = OS.SystemActions.listIndexOf(model.variables.fetchNotesDataAct.notesOut.note_Item_ListAttr, function (p) {
-return p.idAttr.equals(vars.value.noteIdInLocal);
-}, callContext);
-
-if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:yS2r6F6p6kCl8isVoSalVw", callContext.id) && ((listIndexOfVar.value.positionOut) !== (-1)))) {
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:bAcxUmYX0E6H+ek1jEj69w", callContext.id);
-// Execute Action: ListRemove
-OS.SystemActions.listRemove(model.variables.fetchNotesDataAct.notesOut.note_Item_ListAttr, listIndexOfVar.value.positionOut, callContext);
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:bm25O9Q_0k+03qwDYCKlNA", callContext.id);
-// FetchNotes.Notes.Total = FetchNotes.Notes.Note_Item_List.Length
-model.variables.fetchNotesDataAct.notesOut.totalAttr = model.variables.fetchNotesDataAct.notesOut.note_Item_ListAttr.length;
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:IXELNeDa5ESGFBv8LIOL0Q", callContext.id);
-} else {
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Hug6kCETp0yqagglv80Wtw", callContext.id);
+// Foreach EntityNotes.Note_Item_List
+callContext.iterationContext.registerIterationStart(model.variables.entityNotesVar.note_Item_ListAttr);
+try {var note_Item_ListIterator = callContext.iterationContext.getIterator(model.variables.entityNotesVar.note_Item_ListAttr);
+var note_Item_ListIndex = 0;
+while ((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:TP4J_dhpTESWKkKjjOE6sw", callContext.id) && (note_Item_ListIndex < model.variables.entityNotesVar.note_Item_ListAttr.length))) {
+note_Item_ListIterator.currentRowNumber = note_Item_ListIndex;
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:VlqTq42L+02ZoaPodhaXLg", callContext.id) && !(model.variables.entityNotesVar.note_Item_ListAttr.getItem(note_Item_ListIndex.valueOf()).idAttr.equals(vars.value.noteIdInLocal)))) {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:4fDEcz+BwUiLdlDBGPYwzw", callContext.id);
+// Execute Action: ListAppend
+OS.SystemActions.listAppend(vars.value.updatedNotesVar.note_Item_ListAttr, model.variables.entityNotesVar.note_Item_ListAttr.getItem(note_Item_ListIndex.valueOf()), callContext);
 }
 
+note_Item_ListIndex++;
+}
+
+} finally {
+callContext.iterationContext.registerIterationEnd(model.variables.entityNotesVar.note_Item_ListAttr);
+}
+
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:bm25O9Q_0k+03qwDYCKlNA", callContext.id);
+// UpdatedNotes.Total = UpdatedNotes.Note_Item_List.Length
+vars.value.updatedNotesVar.totalAttr = vars.value.updatedNotesVar.note_Item_ListAttr.length;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:bm25O9Q_0k+03qwDYCKlNA", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
+// EntityNotes = UpdatedNotes
+model.variables.entityNotesVar = vars.value.updatedNotesVar;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:IXELNeDa5ESGFBv8LIOL0Q", callContext.id);
 } catch (ex) {
 OutSystemsDebugger.handleException(ex, callContext.id);
 throw ex;
@@ -1602,6 +1588,15 @@ dataType: OS.DataTypes.DataTypes.LongInteger,
 defaultValue: function () {
 return OS.DataTypes.LongInteger.defaultValue;
 }
+}, {
+name: "UpdatedNotes",
+attrName: "updatedNotesVar",
+mandatory: false,
+dataType: OS.DataTypes.DataTypes.Record,
+defaultValue: function () {
+return new UBTConnectLibraryModel.NotesRec();
+},
+complexType: UBTConnectLibraryModel.NotesRec
 }]);
 Controller.prototype._handle_Mail_Page$Action = function (callContext) {
 var varBag = {};
@@ -1658,20 +1653,16 @@ varBag.model = model;
 varBag.idService = idService;
 controller.ensureControllerAlive("OnReady");
 callContext = controller.callContext(callContext);
-var get_LocalBookmarkByObjectIdVar = new OS.DataTypes.VariableHolder();
-var getBookmarkType_FromEntityVar = new OS.DataTypes.VariableHolder();
 var getLocalBookmarkByObjectId_C2Var = new OS.DataTypes.VariableHolder();
 var getBookmarkCategoryId_ByEntityTypeIdVar = new OS.DataTypes.VariableHolder();
 var getShareType_FromEntityVar = new OS.DataTypes.VariableHolder();
 var checkRestoredJSResult = new OS.DataTypes.VariableHolder();
 varBag.callContext = callContext;
-varBag.get_LocalBookmarkByObjectIdVar = get_LocalBookmarkByObjectIdVar;
-varBag.getBookmarkType_FromEntityVar = getBookmarkType_FromEntityVar;
 varBag.getLocalBookmarkByObjectId_C2Var = getLocalBookmarkByObjectId_C2Var;
 varBag.getBookmarkCategoryId_ByEntityTypeIdVar = getBookmarkCategoryId_ByEntityTypeIdVar;
 varBag.getShareType_FromEntityVar = getShareType_FromEntityVar;
 varBag.checkRestoredJSResult = checkRestoredJSResult;
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:LpxxpMZjO0W736oa9hF6nw:/NRWebFlows.jGNlo9EW9U24MVecsZ_9tQ/NodesShownInESpaceTree.fJ0qEtiFx0e19F0VJxsZLQ/ClientActions.LpxxpMZjO0W736oa9hF6nw:o6gKKgoLTbEzUmR4dlU9tg", "UBTConnect", "OnReady", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:LpxxpMZjO0W736oa9hF6nw:/NRWebFlows.jGNlo9EW9U24MVecsZ_9tQ/NodesShownInESpaceTree.fJ0qEtiFx0e19F0VJxsZLQ/ClientActions.LpxxpMZjO0W736oa9hF6nw:w23MbB+ov23v4EzIWJEYgQ", "UBTConnect", "OnReady", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:PIaNJvvI70a5VyAW0I9kmQ", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:ampTSmy_gUCwX3cl7+Cmzg", callContext.id);
@@ -1864,60 +1855,29 @@ model.variables.local_ShareTypeVar = getShareType_FromEntityVar.value.shareTypeO
 
 return OS.Flow.executeSequence(function () {
 if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Aan2Hrn3akatTrCVF1nlwQ", callContext.id) && (model.variables.local_In_ActionsMenuOptionsVar.hasBookmarkAttr || model.variables.local_In_ActionsMenuOptionsVar.hasUnbookmarkAttr))) {
-return OS.Flow.executeSequence(function () {
-if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:2TLnfSs9p0OjVa9tZ+bjzg", callContext.id) && OutSystemsDebugger.handleFunctionCall(function () {
-return UBTConnect_UtilsController.default.getHasNewBookmarks$Action(callContext).out_HasNewBookmarksOut;
-}, OS.DataTypes.DataTypes.Boolean, callContext.id))) {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:8OtJcRa9_Eia6TT14JldFQ", callContext.id);
 // Execute Action: GetBookmarkCategoryId_ByEntityTypeId
 getBookmarkCategoryId_ByEntityTypeIdVar.value = UBTConnectController.default.getBookmarkCategoryId_ByEntityTypeId$Action(model.variables.entityTypeIn, callContext);
 
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:PidAnK9m9UW7E96hmIfX4g", callContext.id);
-// Local_BookmarkTypeId_C2 = GetBookmarkCategoryId_ByEntityTypeId.BookmarkType
-model.variables.local_BookmarkTypeId_C2Var = getBookmarkCategoryId_ByEntityTypeIdVar.value.bookmarkTypeOut;
+// Local_BookmarkTypeId = GetBookmarkCategoryId_ByEntityTypeId.BookmarkType
+model.variables.local_BookmarkTypeIdVar = getBookmarkCategoryId_ByEntityTypeIdVar.value.bookmarkTypeOut;
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:8+vWUvQSkkOD0OwONf957g", callContext.id);
 // Execute Action: GetLocalBookmarkByObjectId_C2
 model.flush();
-return UBTConnect_Bookmarks_MCSController.default.getLocalBookmarkByObjectId$Action(model.variables.entityIdIn, callContext).then(function (value) {
+return UBTConnect_Bookmarks_MCSController.default.getLocalBookmarkByObjectId$Action(OS.BuiltinFunctions.longIntegerToText(model.variables.entityIdIn), callContext).then(function (value) {
 getLocalBookmarkByObjectId_C2Var.value = value;
 }).then(function () {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:NxOhKGaADEOacv0gom7uUA", callContext.id);
-// Local_isBookmarked_C2 = GetLocalBookmarkByObjectId_C2.LocalBookmark.Id <> NullIdentifier
-model.variables.local_isBookmarked_C2Var = !(getLocalBookmarkByObjectId_C2Var.value.localBookmarkOut.idAttr.equals(OS.BuiltinFunctions.integerToLongInteger(OS.BuiltinFunctions.nullIdentifier())));
+// Local_isBookmarked = GetLocalBookmarkByObjectId_C2.LocalBookmark.Id <> NullIdentifier
+model.variables.local_isBookmarkedVar = !(getLocalBookmarkByObjectId_C2Var.value.localBookmarkOut.idAttr.equals(OS.BuiltinFunctions.integerToLongInteger(OS.BuiltinFunctions.nullIdentifier())));
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:xrhCKLMkekiW3Ejl8JLosg", callContext.id);
 // Trigger Event: OnChange_Bookmark2
-return controller.onChange_Bookmark$Action(model.variables.local_isBookmarked_C2Var, callContext);
+return controller.onChange_Bookmark$Action(model.variables.local_isBookmarkedVar, callContext);
 }).then(function () {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:PZDdSYTtPEWaazGXcB9eiA", callContext.id);
 // Execute Action: Action_RefreshFetchNotes
 return controller._action_RefreshFetchNotes$Action(callContext);
-});
-} else {
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:sDgyGi5vqkOkWlgB5KKlDw", callContext.id);
-// Execute Action: GetBookmarkType_FromEntity
-getBookmarkType_FromEntityVar.value = UBTConnectController.default.getBookmarkType_FromEntity$Action(model.variables.entityTypeIn, callContext);
-
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:2VQhgLTNR0GtzoHk_uv0tw", callContext.id);
-// Local_BookmarkType = GetBookmarkType_FromEntity.BookmarkType
-model.variables.local_BookmarkTypeVar = getBookmarkType_FromEntityVar.value.bookmarkTypeOut;
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:2VQhgLTNR0GtzoHk_uv0tw", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
-// Local_BookmarkGroup = GetBookmarkType_FromEntity.BookmarkGroup
-model.variables.local_BookmarkGroupVar = getBookmarkType_FromEntityVar.value.bookmarkGroupOut;
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:rgPuDBrUJU+UKkkoQXg5rg", callContext.id);
-// Execute Action: Get_LocalBookmarkByObjectId
-model.flush();
-return Connect2_LegacySharedController.default.get_LocalBookmarkByObjectId$Action(model.variables.local_BookmarkTypeVar, model.variables.entityIdIn, callContext).then(function (value) {
-get_LocalBookmarkByObjectIdVar.value = value;
-}).then(function () {
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:eQVmu9hOUEmzPoU8eZtDtQ", callContext.id);
-// Local_isBookmarked = Get_LocalBookmarkByObjectId.LocalBookmark.Id <> NullIdentifier
-model.variables.local_isBookmarkedVar = !(get_LocalBookmarkByObjectIdVar.value.localBookmarkOut.idAttr.equals(OS.BuiltinFunctions.integerToLongInteger(OS.BuiltinFunctions.nullIdentifier())));
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:BH4Us9DHGUuazEp6iWFGsQ", callContext.id);
-// Trigger Event: OnChange_Bookmark
-return controller.onChange_Bookmark$Action(model.variables.local_isBookmarkedVar, callContext);
-});
-}
-
 });
 }
 
@@ -2079,6 +2039,30 @@ defaultValue: function () {
 return false;
 }
 }]);
+Controller.prototype._onAfterFetch_FetchNotes$Action = function (callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("OnAfterFetch_FetchNotes");
+callContext = controller.callContext(callContext);
+varBag.callContext = callContext;
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:IIxYyHAOhkamgmlMm9JwOQ:/NRWebFlows.jGNlo9EW9U24MVecsZ_9tQ/NodesShownInESpaceTree.fJ0qEtiFx0e19F0VJxsZLQ/ClientActions.IIxYyHAOhkamgmlMm9JwOQ:VZG4yUIUMiTo_IFAVRRf6g", "UBTConnect", "OnAfterFetch_FetchNotes", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:V6hQSjaFlk+CYfGk+WDG8Q", callContext.id);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:u8Y_d7Q64kCKDKtBrMJWaA", callContext.id);
+// EntityNotes = FetchNotes.Notes
+model.variables.entityNotesVar = model.variables.fetchNotesDataAct.notesOut;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:IGziaPXMiUidISNZ_6fAbg", callContext.id);
+} catch (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+throw ex;
+} finally {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:IIxYyHAOhkamgmlMm9JwOQ", callContext.id);
+}
+
+};
 Controller.prototype._handle_Call$Action = function (isOpenIn, callContext) {
 var varBag = {};
 var model = this.model;
@@ -2162,13 +2146,18 @@ varBag.idService = idService;
 controller.ensureControllerAlive("Action_RefreshFetchNotes");
 callContext = controller.callContext(callContext);
 varBag.callContext = callContext;
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:GDFh3RW_Yk2PBPW7aIesJA:/NRWebFlows.jGNlo9EW9U24MVecsZ_9tQ/NodesShownInESpaceTree.fJ0qEtiFx0e19F0VJxsZLQ/ClientActions.GDFh3RW_Yk2PBPW7aIesJA:+wgoDJ9XI2JlhQ0QaLi2Fg", "UBTConnect", "Action_RefreshFetchNotes", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:GDFh3RW_Yk2PBPW7aIesJA:/NRWebFlows.jGNlo9EW9U24MVecsZ_9tQ/NodesShownInESpaceTree.fJ0qEtiFx0e19F0VJxsZLQ/ClientActions.GDFh3RW_Yk2PBPW7aIesJA:T7UTLDd0FZLgOGT9xL5thg", "UBTConnect", "Action_RefreshFetchNotes", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:j922wa0q2UySVyag8InBLw", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 return OS.Flow.executeSequence(function () {
 if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:NxK+YqDLeEysf_dnYhdriA", callContext.id) && model.variables.entityIdIn.equals(OS.BuiltinFunctions.integerToLongInteger(OS.BuiltinFunctions.nullIdentifier())))) {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:rMV_ma7b_EmLWutQmDlm_g", callContext.id);
 } else {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:4sEVvKxJnUiZlH1F0+JPCA", callContext.id);
+// FetchNoteId = If
+model.variables.fetchNoteIdVar = (((model.variables.entityTypeIn === UBTConnectModel.staticEntities.connect_Entity.interchange)) ? (OutSystemsDebugger.handleFunctionCall(function () {
+return UBTConnectController.default.notes_InterchangeId_ComposeId$Action(model.variables.in_LocalityIdIn, OS.BuiltinFunctions.longIntegerToText(model.variables.entityIdIn), callContext).noteInterchangeIdOut;
+}, OS.DataTypes.DataTypes.Text, callContext.id)) : (OS.BuiltinFunctions.longIntegerToText(model.variables.entityIdIn)));
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:JUSl+IeAwE2fLPLMues10g", callContext.id);
 // Refresh Query: FetchNotes
 var result = controller.fetchNotes$DataActRefresh(callContext);
@@ -2268,9 +2257,9 @@ var controller = this.controller;
 return controller.safeExecuteClientAction(controller._action_AsyncRefresh_ContactDetails$Action, callContext);
 
 };
-Controller.prototype.handler_OnNotesChanged$Action = function (new_NotesIn, callContext) {
+Controller.prototype.handler_OnSheetNotesChanged$Action = function (new_NotesIn, callContext) {
 var controller = this.controller;
-return controller.safeExecuteClientAction(controller._handler_OnNotesChanged$Action, callContext, new_NotesIn);
+return controller.safeExecuteClientAction(controller._handler_OnSheetNotesChanged$Action, callContext, new_NotesIn);
 
 };
 Controller.prototype.handle_Share_Others$Action = function (callContext) {
@@ -2278,9 +2267,9 @@ var controller = this.controller;
 return controller.safeExecuteClientAction(controller._handle_Share_Others$Action, callContext);
 
 };
-Controller.prototype.handler_AddNotes$Action = function (callContext) {
+Controller.prototype.handler_AddNotesOnClick$Action = function (callContext) {
 var controller = this.controller;
-return controller.safeExecuteClientAction(controller._handler_AddNotes$Action, callContext);
+return controller.safeExecuteClientAction(controller._handler_AddNotesOnClick$Action, callContext);
 
 };
 Controller.prototype.handle_Bookmark$Action = function (callContext) {
@@ -2323,6 +2312,11 @@ var controller = this.controller;
 return controller.safeExecuteClientAction(controller._handle_Share$Action, callContext, isOpenIn);
 
 };
+Controller.prototype.onAfterFetch_FetchNotes$Action = function (callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._onAfterFetch_FetchNotes$Action, callContext);
+
+};
 Controller.prototype.handle_Call$Action = function (isOpenIn, callContext) {
 var controller = this.controller;
 return controller.safeExecuteClientAction(controller._handle_Call$Action, callContext, isOpenIn);
@@ -2361,8 +2355,8 @@ return Promise.resolve();
 // Event Handler Actions
 Controller.prototype.pushDebuggerContext = function (callContext) {
 var varBag = {};
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:jGNlo9EW9U24MVecsZ_9tQ:/NRWebFlows.jGNlo9EW9U24MVecsZ_9tQ:xsHySUveOqDsgwhujHByfw", "UBTConnect", "Directory_CommonBlocks", "NRFlows.WebFlow", callContext.id, varBag);
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:fJ0qEtiFx0e19F0VJxsZLQ:/NRWebFlows.jGNlo9EW9U24MVecsZ_9tQ/NodesShownInESpaceTree.fJ0qEtiFx0e19F0VJxsZLQ:6n7rZxzV6Ibsx81UmRnhng", "UBTConnect", "Directory_EntityDetailsActions", "NRNodes.WebBlock", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:jGNlo9EW9U24MVecsZ_9tQ:/NRWebFlows.jGNlo9EW9U24MVecsZ_9tQ:rc_AvpAI2laOpbdC1taVaA", "UBTConnect", "Directory_CommonBlocks", "NRFlows.WebFlow", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:fJ0qEtiFx0e19F0VJxsZLQ:/NRWebFlows.jGNlo9EW9U24MVecsZ_9tQ/NodesShownInESpaceTree.fJ0qEtiFx0e19F0VJxsZLQ:LgDa5iPUFntW85ej4Zm4Lg", "UBTConnect", "Directory_EntityDetailsActions", "NRNodes.WebBlock", callContext.id, varBag);
 };
 Controller.prototype.popDebuggerContext = function (callContext) {
 OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:fJ0qEtiFx0e19F0VJxsZLQ", callContext.id);
@@ -2483,14 +2477,9 @@ getter: function (varBag, idService) {
 return varBag.communicationExceptionVar.value;
 }
 },
-"nigsJ8Hvx06rWWiZIdFZTg": {
+"lN9gr9vIJ0OE9a4rSgsWaw": {
 getter: function (varBag, idService) {
-return varBag.toggleBookmarkItem_C2Var.value;
-}
-},
-"wGUDr9PtsU2UNkkuX+Qfxw": {
-getter: function (varBag, idService) {
-return varBag.toggleBookmarkItemVar.value;
+return varBag.vars.value.updatedNotesVar;
 }
 },
 "uS9AjVHs6Ee3Lu2BQAFUYA": {
@@ -2498,11 +2487,6 @@ getter: function (varBag, idService) {
 return varBag.vars.value.noteIdInLocal;
 },
 dataType: OS.DataTypes.DataTypes.LongInteger
-},
-"s8vdHI5VHUmZOC2y4WME8A": {
-getter: function (varBag, idService) {
-return varBag.listIndexOfVar.value;
-}
 },
 "AROoQI1F_kekE1Ji280jNg": {
 getter: function (varBag, idService) {
@@ -2512,16 +2496,6 @@ return varBag.getNameAndSurname_ByFullNameVar.value;
 "QzlW5VhRN0mtIgkryR6xWg": {
 getter: function (varBag, idService) {
 return varBag.yieldJSResult.value;
-}
-},
-"rgPuDBrUJU+UKkkoQXg5rg": {
-getter: function (varBag, idService) {
-return varBag.get_LocalBookmarkByObjectIdVar.value;
-}
-},
-"sDgyGi5vqkOkWlgB5KKlDw": {
-getter: function (varBag, idService) {
-return varBag.getBookmarkType_FromEntityVar.value;
 }
 },
 "8+vWUvQSkkOD0OwONf957g": {
@@ -2572,33 +2546,15 @@ getter: function (varBag, idService) {
 return varBag.yieldJSResult.value;
 }
 },
-"5+I2AKuj7E6enV4IvxK2RA": {
+"1+6JXwp7skexijEEArl4Bg": {
 getter: function (varBag, idService) {
 return varBag.model.variables.local_isBookmarkedVar;
 },
 dataType: OS.DataTypes.DataTypes.Boolean
 },
-"1+6JXwp7skexijEEArl4Bg": {
-getter: function (varBag, idService) {
-return varBag.model.variables.local_isBookmarked_C2Var;
-},
-dataType: OS.DataTypes.DataTypes.Boolean
-},
-"3IDb4TwmYEO8JFI0CiyiFQ": {
-getter: function (varBag, idService) {
-return varBag.model.variables.local_BookmarkTypeVar;
-},
-dataType: OS.DataTypes.DataTypes.Text
-},
 "ardvkbeDakWLihsrcxkAmw": {
 getter: function (varBag, idService) {
-return varBag.model.variables.local_BookmarkTypeId_C2Var;
-},
-dataType: OS.DataTypes.DataTypes.Text
-},
-"jUuYmxl71kOx8GZB8ab2ig": {
-getter: function (varBag, idService) {
-return varBag.model.variables.local_BookmarkGroupVar;
+return varBag.model.variables.local_BookmarkTypeIdVar;
 },
 dataType: OS.DataTypes.DataTypes.Text
 },
@@ -2667,6 +2623,17 @@ return varBag.model.variables.noteCategoryIdVar;
 },
 dataType: OS.DataTypes.DataTypes.Text
 },
+"mO2cR53LbEe479IN+LKL4w": {
+getter: function (varBag, idService) {
+return varBag.model.variables.entityNotesVar;
+}
+},
+"H+CjU_UKt0+vABNaErf62w": {
+getter: function (varBag, idService) {
+return varBag.model.variables.fetchNoteIdVar;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
 "1adN6H007k2lVRZeQqVdeg": {
 getter: function (varBag, idService) {
 return varBag.model.variables.isEnabledIn;
@@ -2701,9 +2668,9 @@ return varBag.model.variables.useViewDetailsIn;
 },
 dataType: OS.DataTypes.DataTypes.Boolean
 },
-"rxHTaZz5Y0WLsOqCUsBe8w": {
+"dMB6PZa0S0iDJhCb3ZE10A": {
 getter: function (varBag, idService) {
-return varBag.model.variables.entityExtraDataJSONIn;
+return varBag.model.variables.in_LocalityIdIn;
 },
 dataType: OS.DataTypes.DataTypes.Text
 },

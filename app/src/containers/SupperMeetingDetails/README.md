@@ -39,16 +39,16 @@ once, and the household list gets the same id.
   DataActionGetSubdivision (In_SubdivsionId), both started at once, in the call order of the port before the refactor
   (the child block first).
 - A failed GetSubdivision keeps the skeleton (IsDataFetched stays False). A failed GetSubdivisionHouseholds sets the
-  Error status (`list-error`) and keeps the skeleton rows. Neither failure goes to the flow handler.
+  Error status (`list-error`) and keeps the skeleton rows. Each failure then goes once to `raiseToFlowHandler`, as the
+  block's handleError does in TST (Directory_SupperMeetings F1, Q1 (a), user 2026-10-27).
 - OnClick_NavigateToHousehold (Event_OnClick_Household of the household list): with the flag, SetPreloadObject (the
   CarouselHouseholdItem of every listed household) and HouseholdCarousel(In_StartingHouseholdId); otherwise
   HouseholdDetails(HouseholdId).
 - A view that the view cache restores (a back navigation) starts from its saved state, with no skeleton. OnReady skips
   a data action when the view is restored and the saved state has its data (`households.isDataFetched`,
   `isDataFetched`). With no saved data, OnReady runs as on a new visit (user decision F22-26, 2026-10-24).
-- Decision W23: OnReady runs once per mount (a once-guard for StrictMode). After an unmount, a started flow skips its
-  state writes only; its calls already ran. `hooks/useSupperMeetingDetails.test.tsx` covers it.
-
-## Not settled
-
-- A failed fetch: the OutSystems runtime also hands the exception to the block's handleError; the port does not.
+- Flow scope (item 8): `useFlowState` runs OnReady once per mount, also in StrictMode. Both data actions are R1
+  (`flow.fetch`): after an unmount, their answer and their failure are dropped, and the block writes no state.
+  `hooks/useSupperMeetingDetails.test.tsx` covers it. A failure after an unmount raises nothing: TST shows no message
+  for a block the user left (E9, read-only probe `migration/clarify/tools/probe_fetch_errors.cjs --late`; user
+  2026-10-28).

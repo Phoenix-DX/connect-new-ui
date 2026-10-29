@@ -5,14 +5,17 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "7e4bb7c74c69f3eed51d",
+ "fingerprint": "e248b3cd8da6ed8fd91b",
  "options": {
   "text": true,
   "style": true,
   "pixel": true,
   "calls": true,
+  "visibleOnly": false,
   "full": true,
-  "replay": "builder"
+  "replay": "builder",
+  "skipKinds": [],
+  "selfRef": false
  },
  "replay": {
   "mode": "builder",
@@ -24,17 +27,17 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-21T04:55:33.042Z",
+ "at": "2026-10-29T16:05:01.646Z",
  "counts": {},
  "exemptionsUsed": {
-  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 1
+  "ignoreSubtrees": 1
  },
  "pixel": {
   "ratio": 0,
   "maxCell": 0,
   "maxCellRatio": 0.03,
   "diffPixels": 0,
-  "comparedPixels": 329160,
+  "comparedPixels": 0,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -45,7 +48,7 @@
    390,
    844
   ],
-  "masks": 0,
+  "masks": 3,
   "hotspots": [],
   "diffPng": "migration/screens/PINBiometricsMenu/parity/loading.diff.png"
  },

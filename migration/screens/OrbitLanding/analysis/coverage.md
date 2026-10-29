@@ -1,6 +1,6 @@
 # Coverage for OrbitLanding
 
-- UI states captured: default, loading, offline, popup-filters-closed, popup-filters
+- UI states captured: default, loading, offline, popup-filters-closed, popup-filters, popup-sort
 - Runtime captures: 1 file(s), 9 call(s)
 - Masked text nodes: 9, user images removed: 0
 - Fetch failures during snapshot: 0

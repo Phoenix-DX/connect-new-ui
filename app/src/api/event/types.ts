@@ -623,6 +623,30 @@ export interface HostSurveyResult {
   HasError: boolean;
 }
 
+/* ---- Orbit helper search of the host survey (HostSurvey_AddHelper) ---- */
+
+type SurveyHelpersPath = OrbitPath<'HostSurvey_AddHelper/DataActionGetSurveyHelpers'>;
+/** HostSurvey_HelperMember: a member that the helper search found (IsSelected is set by the block). */
+export type HostSurveyHelperMember = ActionOutputs<SurveyHelpersPath>['Response']['HelperMembers']['List'][number];
+
+/** The variables of HostSurvey_AddHelper that DataActionGetSurveyHelpers sends (screenData.variables): the simple
+    variables, the event and the members already added. The list variables (Helpers, SurveyHelpersData,
+    In_HelperRoles, In_HelperStatus) are not sent; the contract makes every variable optional. */
+export interface SurveyHelpersCallInputs {
+  SearchTerm: string;
+  IsFetchingData: boolean;
+  IsNotValidInput: boolean;
+  LastSearchedTerm: string;
+  IsTyping: boolean;
+  MaxHelpers: number;
+  PageNumber: number;
+  IsNewSearch: boolean;
+  In_TrySave: boolean;
+  In_EventId: string;
+  /** In_AlreadyAddedHelpers: the MemberIds (Long Integer as text). */
+  In_AlreadyAddedHelpers: readonly string[];
+}
+
 /* ---- Orbit accommodation and milestone wrapper (ScreenBlock_AccommodationHost, ScreenBlock_MilestoneWrapper) ---- */
 
 /** The variables of ScreenBlock_AccommodationHost that its two data actions send. */

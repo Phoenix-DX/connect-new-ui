@@ -80,6 +80,7 @@ Rules are pure functions in `src/pwa/swRoutes.ts` (unit-tested); a request no ru
 | Original images `/UBTConnect/img/*`, `/UBT_CW/img/*`, `/os-assets/*`  | cache-first, 30 days, 300 entries; HTML answers (SPA fallback) never cached |
 | `POST /api/...`, `/bff/*`, `/UBT_AppManager/*`                        | never (network only, the SW does not answer)                                |
 | `/UBTConnect/status/network-ping.txt`                                 | network-only, `cache: "no-store"`, never precached (phase 2)                |
+| Error page `/UBTConnect/_error.html` (a file, not a screen route)     | not a navigation route (`isAppNavigation`); precache (production and demo)  |
 | Signed URLs (`sig`, `se`, `token`, `X-Amz-Signature`…), other origins | never                                                                       |
 | Demo only                                                             | precache of every file (mock data chunk, images, mock Feed CMS)             |
 
@@ -221,6 +222,38 @@ What the first reports point at (findings, nothing changed):
 - HomeFeed's layout shift;
 - `/favicon.ico` answered 404 (fixed 2026-10-17: `index.html` now has the original's `shortcut icon` link to
   `/UBTConnect/favicon.png`, the result of OutSystems UI AddFavicon).
+
+## Unknown paths
+
+TST's server answers HTTP 404 for a path under `/UBTConnect/` that no screen has. The page title and text are
+"404 - File or directory not found.", and the app does not load (item 9 D4; P7 in
+`migration/clarify/review/item9-render-route-errors.md` §7). A later navigation to such a path is a full page load
+(D3, `goTo` in `src/platform/navigation/osNavigate.ts`), so the server gives the same answer.
+
+| Server                                 | Rule                                                            | Status                                  |
+| -------------------------------------- | --------------------------------------------------------------- | --------------------------------------- |
+| Dev server and `vite preview`          | `build/unknownPaths.ts` answers HTTP 404 with the TST page text | Built (decision 3 (a), user 2026-10-29) |
+| Production host (BFF or static host)   | The host answers HTTP 404 with the same conditions              | Production phase. Not built             |
+| Demo build (`serve.mjs`, static hosts) | SPA fallback: the app loads, and the `*` route renders nothing  | No change                               |
+
+The 404 rule applies to a GET when all these conditions are true:
+
+1. The path starts with `/UBTConnect/`.
+2. The last segment of the path has no file extension. So `_error.html`, stylesheets and images pass.
+3. The path is not a runtime endpoint (`/UBTConnect/moduleservices/`, `/UBTConnect/screenservices/`).
+4. No screen has the path (`screenOf`, `src/platform/navigation/paths.ts`).
+
+For the production host (later):
+
+- Take the screen paths from `src/app/routes.generated.ts`. The build can write them to a file for the host.
+- Compare the paths without case and without a trailing `/`, as `screenOf` does.
+- Online, the app service worker sends a navigation to the network first, so the 404 of the host shows
+  (`src/sw/sw.ts`).
+- Offline, the precached `index.html` answers, and `UnknownPath` renders nothing. TST's worker sends an unknown path
+  to the server (N15). A stricter `isAppNavigation` (`src/pwa/swRoutes.ts`) waits for the production phase (decision
+  6 (a)).
+
+The PWA e2e has the case "first load of a path that no screen has" on the production build (`vite preview`).
 
 ## Demo build
 

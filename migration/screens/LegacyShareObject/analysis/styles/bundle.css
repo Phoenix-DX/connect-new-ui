@@ -20631,6 +20631,9 @@ body{
 .connect-icon-calendar_busy_fill:before {content: "\f0b9";}
 .connect-icon-calendar_busy:before {content: "\f0ba";}
 .connect-icon-remove-fill:before {content: "\f0bf";}
+.connect-icon-Arrow-up1:before {content: "\f0c2";}
+.connect-icon-Arrow-down:before {content: "\f0c1";}
+
 
 /* === 2. Resets === */
 
@@ -23963,6 +23966,7 @@ h6,
     /*  2.41. Bookmark Note Item  */
     /*  2.42. Horizontal_Filter_TagList*/
     /*  2.43. ItemCard_ActionBar*/
+    /* 2.44.  Note_Item*/
     
 
 /* === 3. Layout Patterns === */
@@ -24014,6 +24018,8 @@ h6,
     --ubt-icon-size-non-standard-64: 64px;
     --ubt-icon-size-non-standard-108: 108px;
     --ubt-icon-size: var(--ubt-icon-size-base);
+    --ubt-icon-size-non-standard-40: 40px;
+    --ubt-icon-size-extra-small: 10px;
     
 }
 
@@ -24673,6 +24679,15 @@ But keeping the gap between columns - For reversed scenario */
     word-break: keep-all;
 }
 
+.ubt-custom-text-ellipsis span{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+}
+
+
+
     /*  2.10. Icon  */
 
 
@@ -24727,6 +24742,14 @@ But keeping the gap between columns - For reversed scenario */
 
 .icon-non-standard-108{
      --ubt-icon-size: var(--ubt-icon-size-non-standard-108);
+}
+
+.icon-non-standard-40{
+     --ubt-icon-size: var(--ubt-icon-size-non-standard-40);
+}
+
+.icon-extra-small{
+     --ubt-icon-size: var(--ubt-icon-size-extra-small);
 }
 
     /*  2.11. Card Item  */
@@ -25009,6 +25032,20 @@ But keeping the gap between columns - For reversed scenario */
     align-items: center;
     justify-content: flex-start;
     column-gap: var(--space-base);
+}
+
+.search-placeholder-ellipsis input:placeholder-shown,
+input.search-placeholder-ellipsis:placeholder-shown {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search-placeholder-ellipsis input::placeholder,
+input.search-placeholder-ellipsis::placeholder {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
     /*  2.16. Sub-Header - Home Page  */
@@ -26000,6 +26037,28 @@ But keeping the gap between columns - For reversed scenario */
     gap: var(--space-m);
 }
 
+
+ /* 2.44.  Note_Item*/
+
+ /* Note edit field: auto-growing textarea  */
+.form-control.note-autogrow[data-textarea] {
+    resize: none;
+    overflow-y: hidden;
+}
+
+/* Note fields: visible thin scrollbar when the text goes past 6 lines */
+.form-control.note-autogrow[data-textarea]::-webkit-scrollbar {
+    display: block;
+    width: 4px;
+}
+.form-control.note-autogrow[data-textarea]::-webkit-scrollbar-thumb {
+    background-color: var(--color-neutral-6);
+    border-radius: 4px;
+}
+.form-control.note-autogrow[data-textarea]::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
 /* === 3. Layout Patterns === */
 
     /*  3.1. Layout - Main Pages  */
@@ -26532,6 +26591,22 @@ body.ptr-reset .ubt-layout-home .main {
 .mainpage-upgrade-container .header-top-content {
     width: 100%;
 }
+
+/* ==================================================
+   COMING SOON
+   ================================================== */
+
+.comingsoon-card {
+    display: flex;
+    padding: var(--Spacing---space-s, 8px);
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    align-self: stretch;
+    border-radius: var(--Radius---border-radius-l, 16px);
+    border: 1px solid var(--primitive-Neutral---color-neutral-3, #E9ECEF);
+    background: var(--primitive-Neutral---color-neutral-0, #FFF);
+}
 /* ==== /UBTConnect/css/Connect2_LegacyShared.UBTConnect.css ==== */
 
 /* === 0. Root === */
@@ -26553,6 +26628,8 @@ body.ptr-reset .ubt-layout-home .main {
         /*  1.7.4. Photobook Bottom Sheet  */
     /*  1.8. Updates  */
     /*  1.9. HomePage  */
+    /*  1.10. Search Screen */
+    /*  1.11. Notification Screen */
 
 /* === 2. General === */
     /*  2.1. Bottom bar  */
@@ -26964,9 +27041,43 @@ div:has(div > div.ubt-icon.header-filter-enabled) {
 
 /*  1.9. HomePage  */
 
-.ubt-services-carousel .osui-carousel .splide img {
-    -o-object-fit:uset;
-     object-fit:unset;
+.list.list-group.recent-search-list {
+  display: flex;
+  gap: var(--space-s);
+  overflow: hidden;
+  overflow-x: auto;      /* beats the theme's overflow: hidden */
+}
+
+.recent-search-list > .recent-search-item {
+  flex: 0 0 auto;            /* content width, no grow, no shrink */
+  max-width: 100px;
+ 
+}
+
+.recent-search-item span {
+  width: 100%;
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+    
+}
+
+
+.recent-search-item span {
+  width: 100%;
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
 }
 
 /* === 2. General === */
@@ -28517,6 +28628,31 @@ therefore the final listed last element on the list will not be considered the l
 
 .subscription-pop-up [data-popup-backdrop] {
     z-index: 1005;
+}
+
+/*  1.11. Notification Screen */
+
+.notifications-delete_BTN {
+    background: var(--color-red-dark) !important;
+    border-radius: var(--Radius---border-radius-m, 8px) !important;
+    border: var(--border-size-s) solid var(--color-red-dark);
+}
+
+.notifications-cancel_BTN {
+    border-radius: var(--Radius---border-radius-m, 8px) !important;
+    border: var(--Size---border-size-s, 1px) solid var(--color-cyan-dark);
+}
+
+.list-itemNotifications-Delete-action-primary {
+    background-color: var(--color-red-dark);
+}
+
+.list-itemNotifications-Read-action-primary {
+    background-color: var(--color-cyan-lighter);
+}
+
+.moreActionContainer .osui-bottom-sheet__header::after {
+  height: 20px;
 }
 /* ==== /UBTConnect/css/Connect2_LegacyShared.UBTMobileTheme_UpdatedOSUI.css ==== */
 
@@ -38967,6 +39103,7 @@ html.is-safari body {
 .orbit-icon-baggage:before { content: "\e948"; }
 .orbit-icon-filter:before { content: "\e949"; }
 .orbit-icon-search:before { content: "\e950"; }
+.orbit-icon-passport:before { content: "\e951"; }
 
 
     /*  $1.2. Orbit Color Classes  */
@@ -41972,6 +42109,16 @@ input[type="date"].past-event-date-input, input[type="date"]:empty.past-event-da
     border-bottom: 3px solid var(--color-neutral-3);
 }
 
+    /*  $4.30. Orbit Landing Passport  */
+
+.orbit-landing-passport-cont {
+    background-color: var(--color-neutral-0);
+    color: var(--orbit-primary-6);
+    padding: var(--space-m);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
 
 /*==========  $4. Specific Classes - Orbit | END |  ==========*/
 
@@ -42192,6 +42339,12 @@ input[type="date"].past-event-date-input, input[type="date"]:empty.past-event-da
 .connect-icon-close:before {
   content: "\e900";
 }
+
+/* New UBT icons use the connect-icon font: keep the UBTConnect close code */
+.ubt-icon.connect-icon-close:before {
+    content: "\f07c";
+}
+
 .connect-icon-info_outline:before {
   content: "\e901";
 }
@@ -42231,6 +42384,12 @@ input[type="date"].past-event-date-input, input[type="date"]:empty.past-event-da
 .connect-icon-edit:before {
   content: "\e90d";
 }
+
+/* New UBT icons use the connect-icon font: keep the UBTConnect pencil code */
+.ubt-icon.connect-icon-edit:before {
+  content: "\f06e";
+}
+
 .connect-icon-trash:before {
   content: "\e90e";
 }

@@ -6,6 +6,7 @@ import { userEvent } from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
+import type { FlowScope } from './flowScope';
 import { useFlowState, type FlowState, type IsAlive } from './flowState';
 import { useOsNavigate } from './osNavigate';
 import { renderRoutes, resetNavigation } from './testRouter';
@@ -14,6 +15,12 @@ vi.mock('@/platform/feedback/flowErrors', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/platform/feedback/flowErrors')>()),
   raiseToFlowHandler: vi.fn(),
 }));
+
+/** The flow scope that useFlowState gives the flow handler with a rejection (R6, item 8). */
+const A_SCOPE: unknown = expect.objectContaining({
+  alive: expect.any(Function) as unknown,
+  active: expect.any(Function) as unknown,
+});
 
 interface Counter {
   count: number;
@@ -234,13 +241,67 @@ describe('useFlowState OnParametersChanged', () => {
     rerender({ id: 'B' });
 
     await vi.waitFor(() => {
-      expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+      expect(raiseToFlowHandler).toHaveBeenCalledWith(error, A_SCOPE);
     });
   });
 });
 
+describe('useFlowState dispatch after the unmount', () => {
+  test('8. is a no-op: latest and the saved view keep the state of the leave moment', async () => {
+    const left: { dispatch?: (action: CounterAction) => void; latest?: { readonly current: Counter } } = {};
+    function LeavingScreen() {
+      const go = useOsNavigate();
+      const { state, dispatch, latest } = useFlowState({
+        viewName: 'Counter',
+        reducer: counterReducer,
+        initial: INITIAL,
+        parameters: {},
+      });
+      left.dispatch = dispatch;
+      left.latest = latest;
+      return (
+        <div>
+          <button
+            type="button"
+            onClick={() => {
+              dispatch({ type: 'add', by: 1 });
+            }}
+          >
+            count: {state.count}
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              go('/UBTConnect/Detail');
+            }}
+          >
+            open detail
+          </button>
+        </div>
+      );
+    }
+    const { router } = renderRoutes(
+      { '/UBTConnect/Counter': <LeavingScreen />, '/UBTConnect/Detail': <p>detail</p> },
+      '/UBTConnect/Counter',
+    );
+    await userEvent.click(screen.getByText('count: 0'));
+    await userEvent.click(screen.getByText('count: 1'));
+    await userEvent.click(screen.getByText('open detail'));
+    expect(await screen.findByText('detail')).toBeInTheDocument();
+    const { dispatch, latest } = left;
+
+    act(() => {
+      dispatch?.({ type: 'add', by: 5 }); // a late answer of the left screen (R1: TST drops it)
+    });
+
+    expect(latest?.current).toEqual({ count: 2 });
+    await act(() => router.navigate(-1));
+    expect(screen.getByText('count: 2')).toBeInTheDocument();
+  });
+});
+
 describe('useFlowState OnReady', () => {
-  type ReadyFlow = (isAlive: IsAlive, restored: boolean) => Promise<void>;
+  type ReadyFlow = (flow: FlowScope, restored: boolean) => Promise<void>;
 
   function ReadyScreen({ id, onReady }: { id: string; onReady: ReadyFlow }) {
     useFlowState({ viewName: 'Counter', reducer: counterReducer, initial: INITIAL, parameters: { id }, onReady });
@@ -249,8 +310,8 @@ describe('useFlowState OnReady', () => {
 
   test('runs once, after the first render', () => {
     const seen: string[] = [];
-    const onReady = (isAlive: IsAlive, restored: boolean) => {
-      seen.push(`ready: ${document.body.textContent}, alive ${String(isAlive())}, restored ${String(restored)}`);
+    const onReady = (flow: FlowScope, restored: boolean) => {
+      seen.push(`ready: ${document.body.textContent}, alive ${String(flow.alive())}, restored ${String(restored)}`);
       return Promise.resolve();
     };
     const { rerender } = render(<ReadyScreen id="A" onReady={onReady} />, { wrapper: inRouter });
@@ -261,21 +322,22 @@ describe('useFlowState OnReady', () => {
     expect(seen).toHaveLength(1);
   });
 
-  test('isAlive turns false on unmount', () => {
-    let isAlive: IsAlive = () => true;
+  /* S5 (item 8 §6, point 4 (a)): OnReady gets the flow scope of the instance in place of `isAlive`. */
+  test('OnReady gets the flow scope of the instance; flow.alive() turns false on unmount', () => {
+    const ready: { current: FlowScope | null } = { current: null };
     const { unmount } = render(
       <ReadyScreen
         id="A"
-        onReady={(alive) => {
-          isAlive = alive;
+        onReady={(flow) => {
+          ready.current = flow;
           return Promise.resolve();
         }}
       />,
       { wrapper: inRouter },
     );
-    expect(isAlive()).toBe(true);
+    expect(ready.current?.alive()).toBe(true);
     unmount();
-    expect(isAlive()).toBe(false);
+    expect(ready.current?.alive()).toBe(false);
   });
 
   test('restored is true after a back-navigation remount, false on a new visit', async () => {
@@ -287,7 +349,7 @@ describe('useFlowState OnReady', () => {
         reducer: counterReducer,
         initial: INITIAL,
         parameters: {},
-        onReady: (_isAlive, restored) => {
+        onReady: (_flow, restored) => {
           restoredValues.push(restored);
           return Promise.resolve();
         },
@@ -361,7 +423,7 @@ describe('useFlowState OnReady', () => {
     render(<ReadyScreen id="A" onReady={() => Promise.reject(error)} />, { wrapper: inRouter });
 
     await vi.waitFor(() => {
-      expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+      expect(raiseToFlowHandler).toHaveBeenCalledWith(error, A_SCOPE);
     });
   });
 });
@@ -371,16 +433,18 @@ describe.each([
   { beforePaint: false, mode: 'after the paint (default)' },
   { beforePaint: true, mode: 'before the paint' },
 ])('useFlowState OnReady $mode', ({ beforePaint }) => {
-  type ReadyFlow = (isAlive: IsAlive, restored: boolean, dispatch: (action: CounterAction) => void) => Promise<void>;
+  type ReadyFlow = (flow: FlowScope, restored: boolean, dispatch: (action: CounterAction) => void) => Promise<void>;
 
   function ModeScreen({
     onReady,
     reducer = counterReducer,
     log,
+    scope,
   }: {
     onReady: ReadyFlow;
     reducer?: (state: Counter, action: CounterAction) => Counter;
     log?: string[];
+    scope?: { current: FlowScope | null };
   }) {
     const flow: FlowState<Counter, CounterAction, object> = useFlowState({
       viewName: 'Counter',
@@ -388,8 +452,9 @@ describe.each([
       initial: INITIAL,
       parameters: {},
       beforePaint,
-      onReady: (isAlive, restored) => onReady(isAlive, restored, flow.dispatch),
+      onReady: (scope, restored) => onReady(scope, restored, flow.dispatch),
     });
+    if (scope) scope.current = flow.flow;
     const { state } = flow;
     return (
       <>
@@ -408,7 +473,7 @@ describe.each([
   }
 
   /** OnReady writes the state at its start, then waits for an answer that never comes. */
-  const loadingFlow: ReadyFlow = (_isAlive, _restored, dispatch) => {
+  const loadingFlow: ReadyFlow = (_flow, _restored, dispatch) => {
     dispatch({ type: 'add', by: 1 });
     return new Promise<void>(() => undefined);
   };
@@ -459,30 +524,35 @@ describe.each([
     expect(log).toEqual(beforePaint ? ['ready', 'passive effect'] : ['passive effect', 'ready']);
   });
 
-  test('StrictMode runs OnReady twice after the paint, once before the paint', () => {
-    const checks: IsAlive[] = [];
+  /* Item 8 §2.3: the once-guard is in useFlowState, in both modes. */
+  test('7. StrictMode runs OnReady once; flow.alive() stays true through the remount, false after the unmount', () => {
+    const ready: FlowScope[] = [];
+    const scope: { current: FlowScope | null } = { current: null };
     const { unmount } = render(
       <StrictMode>
         <MemoryRouter>
           <ModeScreen
-            onReady={(isAlive) => {
-              checks.push(isAlive);
+            scope={scope}
+            onReady={(flow) => {
+              ready.push(flow);
               return Promise.resolve();
             }}
           />
         </MemoryRouter>
       </StrictMode>,
     );
-    // After the paint, the first run's isAlive turns false when StrictMode runs the effect again.
-    expect(checks.map((check) => check())).toEqual(beforePaint ? [true] : [false, true]);
+    expect(ready.map((flow) => flow.alive())).toEqual([true]);
+    // The scope that OnReady gets is the `flow` that useFlowState returns.
+    expect(ready[0]).toBe(scope.current);
 
     unmount();
-    expect(checks.map((check) => check())).toEqual(beforePaint ? [false] : [false, false]);
+    expect(ready.map((flow) => flow.alive())).toEqual([false]);
   });
 
-  /* Decision W23: after the unmount, the flow runs to its end (its side effects run once); only its state writes
-     stop. A rejection still goes to the flow handler. */
-  test('an unmount while OnReady is pending stops the state writes, not the flow', async () => {
+  /* Item 8 (design A, user 2026-10-28) in place of decision W23: an await that is not wrapped (a server action, R2)
+     goes on after the unmount, `dispatch` is then a no-op, and a rejection goes to the flow handler with the scope
+     (no error page out of context, R6). */
+  test('an unmount while OnReady is pending: an unwrapped await goes on, dispatch is a no-op, the raise has the scope', async () => {
     const reducer = vi.fn(counterReducer);
     const sideEffect = vi.fn();
     let answer: () => void = () => undefined;
@@ -493,11 +563,11 @@ describe.each([
     const { unmount } = render(
       <ModeScreen
         reducer={reducer}
-        onReady={async (isAlive, _restored, dispatch) => {
+        onReady={async (_flow, _restored, dispatch) => {
           dispatch({ type: 'add', by: 1 });
           await answered;
           sideEffect();
-          if (isAlive()) dispatch({ type: 'add', by: 10 });
+          dispatch({ type: 'add', by: 10 });
           throw error;
         }}
       />,
@@ -515,7 +585,7 @@ describe.each([
     expect(sideEffect).toHaveBeenCalledTimes(1);
     expect(reducer).toHaveBeenCalledTimes(writes);
     await vi.waitFor(() => {
-      expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+      expect(raiseToFlowHandler).toHaveBeenCalledWith(error, A_SCOPE);
     });
     expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
   });
@@ -530,7 +600,7 @@ describe.each([
         initial: INITIAL,
         parameters: {},
         beforePaint,
-        onReady: (_isAlive, restored) => {
+        onReady: (_flow, restored) => {
           restoredValues.push(restored);
           return Promise.resolve();
         },

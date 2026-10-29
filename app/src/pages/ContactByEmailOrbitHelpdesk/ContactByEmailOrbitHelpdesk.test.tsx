@@ -5,7 +5,7 @@ import { MemoryRouter, Route, Routes } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { addLogSink, type LogEntry } from '@/platform/log/log';
 import type { ContactEmailFormProps } from '@/components/contact/ContactEmailForm';
-import { ApplicationEvents_Orbit_ContactHelpdesk } from './actions';
+import { ApplicationEvents_Orbit_ContactHelpdesk, onApplicationEvent_ContactHelpdesk } from './actions';
 import ContactByEmailOrbitHelpdesk from './ContactByEmailOrbitHelpdeskPage';
 
 /* The submit flow was not captured (write blocked, CLAUDE.md rule 6): tested from the compiled Handler_SubmitForm.
@@ -31,6 +31,10 @@ vi.mock('@/components/contact/ContactEmailForm', async () => {
       );
     },
   };
+});
+vi.mock('./actions', async (original) => {
+  const actual = await original<typeof import('./actions')>();
+  return { ...actual, onApplicationEvent_ContactHelpdesk: vi.fn(actual.onApplicationEvent_ContactHelpdesk) };
 });
 vi.mock('@/api/message', async (original) => ({
   ...(await original<typeof import('@/api/message')>()),
@@ -130,6 +134,13 @@ describe('ContactByEmailOrbitHelpdesk (ContactByEmailOrbitHelpdesk.mvc.js)', () 
         MilestoneName: 'Arrival',
         FormattedDateTime: '12 Nov 2026, 09:30',
       },
+    });
+    // The full AuditPayload_ContactHelpdesk (:564-570, ContactFlow Q1); the log keeps the event id only (U17).
+    expect(onApplicationEvent_ContactHelpdesk).toHaveBeenCalledWith({
+      EventId: '4821',
+      EventTitle: 'Harbour Lights Assembly',
+      Subject: 'Question about Harbour Lights',
+      Message: 'We arrive at 10:15.',
     });
     expect(entries.map((e) => [e.message, e.data])).toEqual([
       ['ApplicationEvent', { EventId: ApplicationEvents_Orbit_ContactHelpdesk, OrbitEventId: '4821' }],

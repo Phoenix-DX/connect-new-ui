@@ -9,9 +9,46 @@ import { setSignedInUser } from '@/platform/session/session';
 import { freshPage, recordBodies } from '@/test/testSupport';
 import { expectToMatchCapture } from '@/test/dom';
 import { csCreateShareProfileLink } from '@/api/share';
+import { Connect_Entity } from '@/lib/ubtConnectUtils/staticEntities';
+import { contractHandler } from '@/mocks/contract';
+import { navigateToUpgrade, showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
+import { server } from '@/test/setup';
 import { delaySetIsOpen, scrollToTop, shareSheet_IsSharing } from './jsNodes';
 import { ShareSheetContainer } from './ShareSheetContainer';
 import * as stories from './ShareSheetContainer.stories';
+
+vi.mock('@/platform/feedback/dialogs/subscription', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/platform/feedback/dialogs/subscription')>();
+  return {
+    ...actual,
+    showUpgradePopUp: vi.fn(actual.showUpgradePopUp),
+    navigateToUpgrade: vi.fn(() => Promise.resolve()),
+  };
+});
+
+/** GetRecentlyShared answers one disabled (fictional) member: RecordDisabled True. */
+const disabledRecentMember = () => {
+  server.use(
+    contractHandler('UBTConnect_Utils', 'ShareSheet/DataActionGetRecentlyShared', () => ({
+      Out_SearchResultItemList: {
+        List: [
+          {
+            Id: '9301',
+            HouseholderId: '9401',
+            Name: 'Rosalind Ashcombe',
+            AdditionalInformation: '',
+            Location: 'Tamworth, Australia',
+            Type: Connect_Entity.Member,
+            RecordDisabled: true,
+            Score: '0',
+            Latitude: '0',
+            Longitude: '0',
+          },
+        ],
+      },
+    })),
+  );
+};
 
 const captures = import.meta.glob<string>('./__captures__/*.html', { query: '?raw', import: 'default', eager: true });
 
@@ -123,6 +160,33 @@ describe('ShareSheet', () => {
     });
     await waitFor(() => {
       expect(onClosed).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  it('a click on a disabled recent member runs App_Subscription_ShowUpgradePopUp and shares nothing (TST :2588-2592)', async () => {
+    disabledRecentMember();
+    const shares = recordBodies('UBTConnect_Utils/ActionCS_ShareObject');
+    const onClosed = vi.fn();
+    await openSheet({ onEventClosedShareSheet: onClosed });
+    await act(async () => {
+      fireEvent.click(await screen.findByText('Rosalind Ashcombe'));
+    });
+    await waitFor(() => {
+      expect(showUpgradePopUp).toHaveBeenCalledTimes(1);
+    });
+    expect(shares).toHaveLength(0);
+    expect(onClosed).not.toHaveBeenCalled();
+  });
+
+  it('search step: "Subscription upgrade needed" of a disabled member runs App_Subscription_NavigateToUpgrade', async () => {
+    disabledRecentMember();
+    const { container } = await openSheet();
+    const dummy = container.querySelector('.connect-share-sheet__search input');
+    if (!dummy) throw new Error('no search input');
+    fireEvent.focus(dummy);
+    fireEvent.click(await screen.findByText('Subscription upgrade needed'));
+    await waitFor(() => {
+      expect(navigateToUpgrade).toHaveBeenCalledTimes(1);
     });
   });
 

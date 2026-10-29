@@ -8,8 +8,10 @@ import { feedbackMessageAutoClose } from '@/platform/feedback';
 import { confirmAction } from '@/platform/feedback/dialogs';
 import { mockDirectoryUser, mockUserInformation } from '@/platform/session/mockUser';
 import { getUserInformation } from '@/platform/session/userInfo';
-import { bottomSheetOpen } from '@/components/ui/lib/actions';
+import { bottomSheetOpen, dropdownClearValidation, dropdownNotValid } from '@/components/ui/lib/actions';
 import { jSUtils_CopyToClipboard } from '@/lib/jsUtils';
+import { osList, wireList } from '@/lib/os-wire';
+import { dropdownSearch_ForceResizeOnOpen } from '@/pages/Profile/actions';
 import { useProfile } from './useProfile';
 
 vi.mock('@/api/member', async (importOriginal) => ({
@@ -43,7 +45,10 @@ vi.mock('@/platform/session/userInfo', async (importOriginal) => ({
 vi.mock('@/components/ui/lib/actions', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/components/ui/lib/actions')>()),
   bottomSheetOpen: vi.fn(),
+  dropdownClearValidation: vi.fn(() => true),
+  dropdownNotValid: vi.fn(() => true),
 }));
+vi.mock('@/pages/Profile/actions', () => ({ dropdownSearch_ForceResizeOnOpen: vi.fn() }));
 vi.mock('@/lib/jsUtils', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/lib/jsUtils')>()),
   jSUtils_CopyToClipboard: vi.fn(() => Promise.resolve()),
@@ -208,5 +213,166 @@ describe('useProfile', () => {
     expect(
       isUserException(vi.mocked(raiseToFlowHandler).mock.lastCall?.[0], 'UBTConnect.BubbleCommunicationException'),
     ).toBe(true);
+  });
+
+  it('OnReady runs DropdownSearch_ForceResizeOnOpen once (Profile.mvc.js:3967-3968)', () => {
+    const { rerender } = renderHook(() => useProfile());
+    rerender();
+    expect(dropdownSearch_ForceResizeOnOpen).toHaveBeenCalledTimes(1);
+  });
+});
+
+/* The address section of the householder (App_Profile F1, Profile.mvc.js:2883-3290, 3543-3592). */
+describe('useProfile, householder address', () => {
+  const addressItem = (NumberRef: number, Value: string, Required: boolean) => ({
+    NumberRef,
+    Label: `Line ${String(NumberRef)}`,
+    Value,
+    Required,
+    Visible: true,
+    IsValid: true,
+  });
+  const householder = (() => {
+    const u = mockDirectoryUser({ ...toggles, householder: true });
+    return {
+      ...u,
+      Directory_UserCurrent_Member: {
+        ...u.Directory_UserCurrent_Member,
+        Address: {
+          ...u.Directory_UserCurrent_Member.Address,
+          AddressItemsList: wireList([addressItem(1, '120 Las Margaritas', true), addressItem(2, '', false)]),
+        },
+      },
+    };
+  })();
+  const subdivisions = [
+    {
+      SubdivisionId: '2820',
+      SubdivisionName: 'Zapiola (Main Meeting Room)',
+      LocalityId: '585',
+      LocalityName: 'Bahia Blanca',
+    },
+    { SubdivisionId: '9202', SubdivisionName: 'Patagonia', LocalityId: '585', LocalityName: 'Bahia Blanca' },
+    { SubdivisionId: '9241', SubdivisionName: 'Palermo', LocalityId: '924', LocalityName: 'Buenos Aires' },
+  ];
+
+  function renderHouseholder() {
+    const view = renderHook(() => useProfile());
+    act(() => {
+      view.result.current.onUserInformation(householder);
+    });
+    act(() => {
+      view.result.current.onAllLocalities({
+        LocalityList: {
+          List: [
+            { LocalityId: '924', Name: 'Buenos Aires', CountryName: 'Argentina', CountryCode: 'AR' },
+            { LocalityId: '585', Name: 'Bahia Blanca', CountryName: 'Argentina', CountryCode: 'AR' },
+          ],
+        },
+      });
+      view.result.current.onAllSubdivisions({ SubdivionsList: { List: subdivisions } });
+    });
+    return view;
+  }
+
+  it('the cache results fill the sorted localities and the subdivisions of the user locality', () => {
+    const { result } = renderHouseholder();
+    const { state } = result.current;
+    expect(state.localCacheControlAllLocalities.isFetched).toBe(true);
+    expect(state.localCacheControlAllLocalities.localityList.map((l) => l.Name)).toEqual([
+      'Bahia Blanca',
+      'Buenos Aires',
+    ]);
+    expect(state.localCacheControlAllSubdivisions.isFetched).toBe(true);
+    expect(state.subdivisionFilteredList.map((s) => s.SubdivisionId)).toEqual(['2820', '9202']);
+  });
+
+  it('a locality choice clears the subdivision, narrows the list and sets HasChanges; a subdivision choice sets it', () => {
+    const { result } = renderHouseholder();
+    act(() => {
+      result.current.onLocalityChange([{ Value: '924', Label: 'Buenos Aires, Argentina' }]);
+    });
+    expect(result.current.state.accountForm.AccountForm_AddressInformation).toMatchObject({
+      LocalityId: '924',
+      SubdivionId: '',
+    });
+    expect(result.current.state.subdivisionFilteredList.map((s) => s.SubdivisionId)).toEqual(['9241']);
+    expect(result.current.state.hasChanges).toBe(true);
+    act(() => {
+      result.current.onSubdivisionChange([{ Value: '9241', Label: 'Palermo' }]);
+    });
+    expect(result.current.state.accountForm.AccountForm_AddressInformation.SubdivionId).toBe('9241');
+    expect(result.current.state.hasChanges).toBe(true);
+  });
+
+  it('an address input sets the Value of its row and HasChanges', () => {
+    const { result } = renderHouseholder();
+    act(() => {
+      result.current.onAddressItemChange(1, 'Floor 2');
+    });
+    const items = osList(result.current.state.accountForm.AccountForm_AddressInformation.Custom_Address_ItemList);
+    expect(items.map((i) => i.Value)).toEqual(['120 Las Margaritas', 'Floor 2']);
+    expect(result.current.state.hasChanges).toBe(true);
+  });
+
+  it('Save clears the dropdown validations (LocalityDropdown and the container Subdivion) and sends a full address', async () => {
+    const { result } = renderHouseholder();
+    act(() => {
+      result.current.onAddressItemChange(1, 'Floor 2');
+    });
+    act(() => {
+      result.current.onSave();
+    });
+    await settle();
+    expect(vi.mocked(dropdownClearValidation).mock.calls).toEqual([['LocalityDropdown'], ['Subdivion']]);
+    expect(dropdownNotValid).not.toHaveBeenCalled();
+    expect(editMemberDetails).toHaveBeenCalledTimes(1);
+  });
+
+  it('Save without a subdivision marks SubdivisionDropdown not valid and an empty required line IsValid False', async () => {
+    const { result } = renderHouseholder();
+    act(() => {
+      result.current.onLocalityChange([{ Value: '924', Label: 'Buenos Aires, Argentina' }]);
+    });
+    act(() => {
+      result.current.onAddressItemChange(0, '');
+    });
+    act(() => {
+      result.current.onSave();
+    });
+    await settle();
+    expect(dropdownNotValid).toHaveBeenCalledTimes(1);
+    expect(dropdownNotValid).toHaveBeenCalledWith('SubdivisionDropdown', 'This field is required.');
+    expect(editMemberDetails).not.toHaveBeenCalled();
+    const items = osList(result.current.state.accountForm.AccountForm_AddressInformation.Custom_Address_ItemList);
+    expect(items.map((i) => i.IsValid)).toEqual([false, true]);
+    expect(result.current.state.hasChanges).toBe(false);
+  });
+
+  it('Save without a locality marks LocalityDropdown and SubdivisionDropdown not valid', async () => {
+    const { result } = renderHouseholder();
+    act(() => {
+      result.current.onLocalityChange([]);
+    });
+    expect(result.current.state.subdivisionFilteredList).toEqual([]);
+    act(() => {
+      result.current.onSave();
+    });
+    await settle();
+    expect(vi.mocked(dropdownNotValid).mock.calls).toEqual([
+      ['LocalityDropdown', 'This field is required.'],
+      ['SubdivisionDropdown', 'This field is required.'],
+    ]);
+    expect(editMemberDetails).not.toHaveBeenCalled();
+  });
+
+  it('a member who is not the householder gets none of the address checks', async () => {
+    const { result } = renderProfile();
+    act(() => {
+      result.current.onSave();
+    });
+    await settle();
+    expect(dropdownClearValidation).not.toHaveBeenCalled();
+    expect(dropdownNotValid).not.toHaveBeenCalled();
   });
 });

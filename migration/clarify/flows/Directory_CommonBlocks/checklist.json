@@ -1,0 +1,3217 @@
+{
+ "flow": "Directory_CommonBlocks",
+ "date": "2026-10-27",
+ "status": "draft",
+ "rows": [
+  {
+   "id": "Directory_CommonBlocks-001",
+   "screen": "Directory_CommunityNumbers",
+   "area": "ui",
+   "element": "block Directory_CommunityNumbers (used by CountryList, HomeFeed)",
+   "os": "public=False; stylesheet; inputs In_IsLoading (mandatory), In_CommunityStatistics (mandatory)",
+   "react": "not found (searched: CommunityNumbers, CommunityStatistics, COMMUNITY BY THE NUMBERS, No change today, directory-numbers-card, In_MembersCount)",
+   "evidence": "tst_source.py: no file matches Directory_CommunityNumbers",
+   "tst": "absent (tst_source.py: no file matches Directory_CommunityNumbers)",
+   "verdict": "n/a",
+   "note": "DEV only: no TST file. The CountryList and HomeFeed reports treat the card as DEV only. React has no card. See section 6.1.",
+   "verified": "pack"
+  },
+  {
+   "id": "Directory_CommonBlocks-002",
+   "screen": "Directory_CommunityNumbers",
+   "area": "logic",
+   "element": "local variable Local_CommunityStatistics: UI_CommunityStatistics",
+   "os": "assigned in OnReady and OnParametersChanged",
+   "react": "not found (searched: CommunityNumbers, CommunityStatistics, COMMUNITY BY THE NUMBERS, No change today, directory-numbers-card, In_MembersCount)",
+   "evidence": "tst_source.py: no file matches Directory_CommunityNumbers",
+   "tst": "absent (tst_source.py: no file matches Directory_CommunityNumbers)",
+   "verdict": "n/a",
+   "note": "DEV only: no TST file. The CountryList and HomeFeed reports treat the card as DEV only. React has no card. See section 6.1.",
+   "verified": "pack"
+  },
+  {
+   "id": "Directory_CommonBlocks-003",
+   "screen": "Directory_CommunityNumbers",
+   "area": "logic",
+   "element": "OnReady: If In_IsLoading -> assign all 5 counters of Local_CommunityStatistics = 1000",
+   "os": "skeleton placeholder numbers",
+   "react": "not found (searched: CommunityNumbers, CommunityStatistics, COMMUNITY BY THE NUMBERS, No change today, directory-numbers-card, In_MembersCount)",
+   "evidence": "tst_source.py: no file matches Directory_CommunityNumbers",
+   "tst": "absent (tst_source.py: no file matches Directory_CommunityNumbers)",
+   "verdict": "n/a",
+   "note": "DEV only: no TST file. The CountryList and HomeFeed reports treat the card as DEV only. React has no card. See section 6.1.",
+   "verified": "pack"
+  },
+  {
+   "id": "Directory_CommonBlocks-004",
+   "screen": "Directory_CommunityNumbers",
+   "area": "logic",
+   "element": "OnReady: else -> end",
+   "os": "no assignment",
+   "react": "not found (searched: CommunityNumbers, CommunityStatistics, COMMUNITY BY THE NUMBERS, No change today, directory-numbers-card, In_MembersCount)",
+   "evidence": "tst_source.py: no file matches Directory_CommunityNumbers",
+   "tst": "absent (tst_source.py: no file matches Directory_CommunityNumbers)",
+   "verdict": "n/a",
+   "note": "DEV only: no TST file. The CountryList and HomeFeed reports treat the card as DEV only. React has no card. See section 6.1.",
+   "verified": "pack"
+  },
+  {
+   "id": "Directory_CommonBlocks-005",
+   "screen": "Directory_CommunityNumbers",
+   "area": "ui",
+   "element": "OnParametersChanged: If In_IsLoading -> end",
+   "os": "keeps the local record",
+   "react": "not found (searched: CommunityNumbers, CommunityStatistics, COMMUNITY BY THE NUMBERS, No change today, directory-numbers-card, In_MembersCount)",
+   "evidence": "tst_source.py: no file matches Directory_CommunityNumbers",
+   "tst": "absent (tst_source.py: no file matches Directory_CommunityNumbers)",
+   "verdict": "n/a",
+   "note": "DEV only: no TST file. The CountryList and HomeFeed reports treat the card as DEV only. React has no card. See section 6.1.",
+   "verified": "pack"
+  },
+  {
+   "id": "Directory_CommonBlocks-006",
+   "screen": "Directory_CommunityNumbers",
+   "area": "ui",
+   "element": "OnParametersChanged: else -> Local_CommunityStatistics = In_CommunityStatistics",
+   "os": "copy of the input",
+   "react": "not found (searched: CommunityNumbers, CommunityStatistics, COMMUNITY BY THE NUMBERS, No change today, directory-numbers-card, In_MembersCount)",
+   "evidence": "tst_source.py: no file matches Directory_CommunityNumbers",
+   "tst": "absent (tst_source.py: no file matches Directory_CommunityNumbers)",
+   "verdict": "n/a",
+   "note": "DEV only: no TST file. The CountryList and HomeFeed reports treat the card as DEV only. React has no card. See section 6.1.",
+   "verified": "pack"
+  },
+  {
+   "id": "Directory_CommonBlocks-007",
+   "screen": "Directory_CommunityNumbers",
+   "area": "ui",
+   "element": "widget SkeletonSection In_IsLoading=In_IsLoading wrapping the card (container directory-numbers-card)",
+   "os": "skeleton",
+   "react": "not found (searched: CommunityNumbers, CommunityStatistics, COMMUNITY BY THE NUMBERS, No change today, directory-numbers-card, In_MembersCount)",
+   "evidence": "tst_source.py: no file matches Directory_CommunityNumbers",
+   "tst": "absent (tst_source.py: no file matches Directory_CommunityNumbers)",
+   "verdict": "n/a",
+   "note": "DEV only: no TST file. The CountryList and HomeFeed reports treat the card as DEV only. React has no card. See section 6.1.",
+   "verified": "pack"
+  },
+  {
+   "id": "Directory_CommonBlocks-008",
+   "screen": "Directory_CommunityNumbers",
+   "area": "ui",
+   "element": "text \"COMMUNITY BY THE NUMBERS\" in CustomContainer (PeachDark, ExtraSmall)",
+   "os": "heading",
+   "react": "not found (searched: CommunityNumbers, CommunityStatistics, COMMUNITY BY THE NUMBERS, No change today, directory-numbers-card, In_MembersCount)",
+   "evidence": "tst_source.py: no file matches Directory_CommunityNumbers",
+   "tst": "absent (tst_source.py: no file matches Directory_CommunityNumbers)",
+   "verdict": "n/a",
+   "note": "DEV only: no TST file. The CountryList and HomeFeed reports treat the card as DEV only. React has no card. See section 6.1.",
+   "verified": "pack"
+  },
+  {
+   "id": "Directory_CommonBlocks-009",
+   "screen": "Directory_CommunityNumbers",
+   "area": "ui",
+   "element": "Icon SVG_CommunityMembers 40 + members count FormatCurrency(In_MembersCount,\"\",0,\"\",\",\") (CyanDarker, Heading1, SemiBold)",
+   "os": "left column",
+   "react": "not found (searched: CommunityNumbers, CommunityStatistics, COMMUNITY BY THE NUMBERS, No change today, directory-numbers-card, In_MembersCount)",
+   "evidence": "tst_source.py: no file matches Directory_CommunityNumbers",
+   "tst": "absent (tst_source.py: no file matches Directory_CommunityNumbers)",
+   "verdict": "n/a",
+   "note": "DEV only: no TST file. The CountryList and HomeFeed reports treat the card as DEV only. React has no card. See section 6.1.",
+   "verified": "pack"
+  },
+  {
+   "id": "Directory_CommonBlocks-010",
+   "screen": "Directory_CommunityNumbers",
+   "area": "ui",
+   "element": "If In_Change <> 0 -> If In_Change > 0: Icon ArrowUp GreenDark 10, else Icon ArrowDown RedDark 10",
+   "os": "variation arrow",
+   "react": "not found (searched: CommunityNumbers, CommunityStatistics, COMMUNITY BY THE NUMBERS, No change today, directory-numbers-card, In_MembersCount)",
+   "evidence": "tst_source.py: no file matches Directory_CommunityNumbers",
+   "tst": "absent (tst_source.py: no file matches Directory_CommunityNumbers)",
+   "verdict": "n/a",
+   "note": "DEV only: no TST file. The CountryList and HomeFeed reports treat the card as DEV only. React has no card. See section 6.1.",
+   "verified": "pack"
+  },
+  {
+   "id": "Directory_CommonBlocks-011",
+   "screen": "Directory_CommunityNumbers",
+   "area": "ui",
+   "element": "Change text If(In_Change>0,\"+\",\"-\") + FormatCurrency(In_Change,...) coloured GreenDark / RedDark, DoubleExtraSmall",
+   "os": "variation value",
+   "react": "not found (searched: CommunityNumbers, CommunityStatistics, COMMUNITY BY THE NUMBERS, No change today, directory-numbers-card, In_MembersCount)",
+   "evidence": "tst_source.py: no file matches Directory_CommunityNumbers",
+   "tst": "absent (tst_source.py: no file matches Directory_CommunityNumbers)",
+   "verdict": "n/a",
+   "note": "DEV only: no TST file. The CountryList and HomeFeed reports treat the card as DEV only. React has no card. See section 6.1.",
+   "verified": "pack"
+  },
+  {
+   "id": "Directory_CommonBlocks-012",
+   "screen": "Directory_CommunityNumbers",
+   "area": "ui",
+   "element": "Label expr If(In_Change <> 0,\"Today\",\"No change today\") (Neutral7, DoubleExtraSmall)",
+   "os": "variation label",
+   "react": "not found (searched: CommunityNumbers, CommunityStatistics, COMMUNITY BY THE NUMBERS, No change today, directory-numbers-card, In_MembersCount)",
+   "evidence": "tst_source.py: no file matches Directory_CommunityNumbers",
+   "tst": "absent (tst_source.py: no file matches Directory_CommunityNumbers)",
+   "verdict": "n/a",
+   "note": "DEV only: no TST file. The CountryList and HomeFeed reports treat the card as DEV only. React has no card. See section 6.1.",
+   "verified": "pack"
+  },
+  {
+   "id": "Directory_CommonBlocks-013",
+   "screen": "Directory_CommunityNumbers",
+   "area": "ui",
+   "element": "3 x Directory_CommunityNumbers__Number: Households (HideBorder=True, SVG_CommunityHouseholds), Localities (SVG_CommunityLocalities), Countries (SVG_CommunityCountries)",
+   "os": "right column; numbers from In_HouseholdCount, In_LocalitiesCount, In_CountriesCount",
+   "react": "not found (searched: CommunityNumbers, CommunityStatistics, COMMUNITY BY THE NUMBERS, No change today, directory-numbers-card, In_MembersCount)",
+   "evidence": "tst_source.py: no file matches Directory_CommunityNumbers",
+   "tst": "absent (tst_source.py: no file matches Directory_CommunityNumbers)",
+   "verdict": "n/a",
+   "note": "DEV only: no TST file. The CountryList and HomeFeed reports treat the card as DEV only. React has no card. See section 6.1.",
+   "verified": "pack"
+  },
+  {
+   "id": "Directory_CommonBlocks-014",
+   "screen": "Directory_CommunityNumbers__Number",
+   "area": "ui",
+   "element": "block Directory_CommunityNumbers__Number (used by Directory_CommunityNumbers)",
+   "os": "inputs In_Number (mandatory), In_Label (mandatory), In_Icon (mandatory), In_HideBorder",
+   "react": "not found (searched: Directory_CommunityNumbers__Number, directory-numbers-card__number, FormatCurrency)",
+   "evidence": "tst_source.py: no file matches Directory_CommunityNumbers",
+   "tst": "absent (tst_source.py: no file matches Directory_CommunityNumbers)",
+   "verdict": "n/a",
+   "note": "DEV only: no TST file. The CountryList and HomeFeed reports treat the card as DEV only. React has no card. See section 6.1.",
+   "verified": "pack"
+  },
+  {
+   "id": "Directory_CommonBlocks-015",
+   "screen": "Directory_CommunityNumbers__Number",
+   "area": "ui",
+   "element": "container style \"directory-numbers-card__number \" + If(In_HideBorder,\" \",\"directory-numbers-card__number--border-top\")",
+   "os": "border class switch",
+   "react": "not found (searched: Directory_CommunityNumbers__Number, directory-numbers-card__number, FormatCurrency)",
+   "evidence": "tst_source.py: no file matches Directory_CommunityNumbers",
+   "tst": "absent (tst_source.py: no file matches Directory_CommunityNumbers)",
+   "verdict": "n/a",
+   "note": "DEV only: no TST file. The CountryList and HomeFeed reports treat the card as DEV only. React has no card. See section 6.1.",
+   "verified": "pack"
+  },
+  {
+   "id": "Directory_CommonBlocks-016",
+   "screen": "Directory_CommunityNumbers__Number",
+   "area": "ui",
+   "element": "Icon In_IconId=In_Icon size Base_24; number FormatCurrency(In_Number,\"\",0,\"\",\",\") CyanDarker Base SemiBold; label In_Label Neutral7 ExtraSmall",
+   "os": "content",
+   "react": "not found (searched: Directory_CommunityNumbers__Number, directory-numbers-card__number, FormatCurrency)",
+   "evidence": "tst_source.py: no file matches Directory_CommunityNumbers",
+   "tst": "absent (tst_source.py: no file matches Directory_CommunityNumbers)",
+   "verdict": "n/a",
+   "note": "DEV only: no TST file. The CountryList and HomeFeed reports treat the card as DEV only. React has no card. See section 6.1.",
+   "verified": "pack"
+  },
+  {
+   "id": "Directory_CommonBlocks-017",
+   "screen": "Directory_EmptyState",
+   "area": "identity",
+   "element": "block Directory_EmptyState (used by Directory_Interchange_StatisticsList, Household_GalleryCard_List, Locality_Households_HouseholdList, Locality_OneSchoolGlobal, Locality_Subdivisions)",
+   "os": "public=False; no events, no local variables",
+   "react": "app/src/components/directory/DirectoryEmptyState/DirectoryEmptyState.tsx:19-22 DirectoryEmptyState; OSBlock Directory_CommonBlocks.Directory_EmptyState",
+   "evidence": "app/src/components/directory/DirectoryEmptyState/DirectoryEmptyState.tsx:19-22",
+   "tst": "present (es.js)",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack"
+  },
+  {
+   "id": "Directory_CommonBlocks-018",
+   "screen": "Directory_EmptyState",
+   "area": "data",
+   "element": "input EntityTypeId: Connect_Entity Identifier (mandatory)",
+   "os": "mandatory",
+   "react": "app/src/components/directory/DirectoryEmptyState/DirectoryEmptyState.tsx:19 entityTypeId = ''",
+   "evidence": "app/src/components/directory/DirectoryEmptyState/DirectoryEmptyState.tsx:19",
+   "tst": "present (es.js model)",
+   "verdict": "match",
+   "note": "React defaults to empty string; OutSystems marks it mandatory.",
+   "verified": "pack"
+  },
+  {
+   "id": "Directory_CommonBlocks-019",
+   "screen": "Directory_EmptyState",
+   "area": "data",
+   "element": "input Location: Text = \"found nearby\"",
+   "os": "default \"found nearby\"",
+   "react": "app/src/components/directory/DirectoryEmptyState/DirectoryEmptyState.tsx:19 location = 'found nearby'",
+   "evidence": "app/src/components/directory/DirectoryEmptyState/DirectoryEmptyState.tsx:19",
+   "tst": "present (es.js:19 Location input)",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack"
+  },
+  {
+   "id": "Directory_CommonBlocks-020",
+   "screen": "Directory_EmptyState",
+   "area": "ui",
+   "element": "EmptyList IconId=GetEntityType_Icon(EntityTypeId)",
+   "os": "icon from the entity type",
+   "react": "app/src/components/directory/DirectoryEmptyState/DirectoryEmptyState.tsx:24 iconId={getEntityType_Icon(entityTypeId)}",
+   "evidence": "app/src/components/directory/DirectoryEmptyState/DirectoryEmptyState.tsx:24",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack"
+  },
+  {
+   "id": "Directory_CommonBlocks-021",
+   "screen": "Directory_EmptyState",
+   "area": "logic",
+   "element": "TitlePlaceholder: \"No \"+If(EntityTypeId=Interchange,ToLower(EntityTypeId)+\"s\",EntityTypeId)+\" \"+Location",
+   "os": "If with 2 branches (Interchange lower plural / other raw)",
+   "react": "app/src/components/directory/DirectoryEmptyState/DirectoryEmptyState.tsx:25-27 `No ${isInterchange ? `${entityTypeId.toLowerCase()}s` : entityTypeId} ${location}`",
+   "evidence": "app/src/components/directory/DirectoryEmptyState/DirectoryEmptyState.tsx:25-27",
+   "tst": "present (es.js:184)",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack"
+  },
+  {
+   "id": "Directory_CommonBlocks-022",
+   "screen": "Directory_EmptyState",
+   "area": "logic",
+   "element": "TextPlaceholder: \"There doesn't seem to be any \"+ToLower(EntityTypeId)+If(EntityTypeId=Interchange,\"s\",\"\")+\" in\"",
+   "os": "If appends \"s\" for Interchange",
+   "react": "app/src/components/directory/DirectoryEmptyState/DirectoryEmptyState.tsx:30 `There doesn't seem to be any ${entityTypeId.toLowerCase()}${isInterchange ? 's' : ''} in`",
+   "evidence": "app/src/components/directory/DirectoryEmptyState/DirectoryEmptyState.tsx:30",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack"
+  },
+  {
+   "id": "Directory_CommonBlocks-023",
+   "screen": "Directory_EmptyState",
+   "area": "strings",
+   "element": "container expr \"this locality.\"",
+   "os": "fixed text",
+   "react": "app/src/components/directory/DirectoryEmptyState/DirectoryEmptyState.tsx:31-33",
+   "evidence": "app/src/components/directory/DirectoryEmptyState/DirectoryEmptyState.tsx:32",
+   "tst": "present (es.js:221)",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack"
+  },
+  {
+   "id": "Directory_CommonBlocks-024",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "identity",
+   "element": "block Directory_EntityDetailsActions (used by 8 blocks)",
+   "os": "public=False; 6 inputs, 3 events, 14 local variables, OnReady + OnParametersChanged",
+   "react": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:19-23 EntityDetailsActionsContainer + app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:33 useEntityDetailsActions",
+   "evidence": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:23",
+   "tst": "present (eda.js)",
+   "verdict": "match",
+   "note": "Port is a container with a hook; README app/src/containers/EntityDetailsActions/README.md lists what is not ported.",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-025",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "input IsEnabled: Boolean = True",
+   "os": "default True",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:34 isEnabled = true",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:34",
+   "tst": "present (eda.js:126)",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-026",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "input EntityType: Connect_Entity Identifier (mandatory)",
+   "os": "mandatory",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:35 entityType = ''",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:35",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-027",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "input EntityId: Long Integer (mandatory)",
+   "os": "mandatory",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:36 entityId = '0'",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:36",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-028",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "input ContactPopUp_OverrideOptions",
+   "os": "record",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:37 contactPopUpOverrideOptions = {}",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:37",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-029",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "input EnableOptions: ActionsMenuEnableOptions",
+   "os": "record",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:38,54-57 enableOptions = ACTIONS_MENU_ENABLE_OPTIONS_DEFAULT merged into localEnableOptions",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:38",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-030",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "input useViewDetails: Boolean",
+   "os": "Boolean",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:39 useViewDetails = false",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:39",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-031",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "event ViewDetails_OnClick",
+   "os": "event",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:41 onViewDetailsOnClick; app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:85 onEventClickViewDetails",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:41",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-032",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "event OnChange_Bookmark(isBookmarked mandatory)",
+   "os": "event",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:42 onOnChangeBookmark; called at :156,173,285",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:42",
+   "tst": "present (eda.js:1426 Trigger Event OnChange_Bookmark2 / OnChange_Bookmark)",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-033",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "actions",
+   "element": "event Event_MenuEdit",
+   "os": "event, no argument",
+   "react": "not found (searched: Event_MenuEdit, onEventMenuEdit, MenuEdit under app/src/containers/EntityDetailsActions)",
+   "evidence": "TST Directory_EntityDetailsActions.mvc.js:2357 (event declared, never triggered)",
+   "tst": "-",
+   "verdict": "n/a",
+   "note": "dead in the model: no node of the block triggers Event_MenuEdit.",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (lines-same)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-034",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "input EntityExtraDataJSON (React only)",
+   "os": "not in the DEV pack",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:40 entityExtraDataJSON = \"\"; app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:99 sent as EntityExtraDataJSON in the data action inputs",
+   "evidence": "TST eda.js:161, 262-263, 2706; useEntityDetailsActions.ts:40,99",
+   "tst": "-",
+   "verdict": "match",
+   "note": "DEV and TST differ: TST has the input EntityExtraDataJSON and sends it to the data action (eda.js:2706). React follows TST. See section 6.1.",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-035",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "local variable Local_isBookmarked: Boolean",
+   "os": "block local variable",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:68 isBookmarked (legacy) and :69 isBookmarked_C2",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:68",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-036",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "local variable Local_BookmarkTypeId: BookmarkCategory Identifier",
+   "os": "block local variable",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:71 bookmarkTypeId_C2 (+ :70 bookmarkType, :72 bookmarkGroup legacy)",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:71",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-037",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "local variable Local_In_ActionsMenuOptions: ActionsMenuOptions",
+   "os": "block local variable",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:46 options, app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:193-197 HasCall/HasEmail update",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:46",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-038",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "local variable isLoaded: Boolean",
+   "os": "block local variable",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:50 isLoaded=false",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:50",
+   "tst": "present (eda.js:1410 isLoaded assignments)",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-039",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "local variable Local_ShareType: Type_ShareObject Identifier",
+   "os": "block local variable",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:49 shareType (from onReadyInit app/src/containers/EntityDetailsActions/entityDetailsActionsState.ts:83)",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:49",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-040",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "local variable ShowCallPopUp",
+   "os": "block local variable",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:62",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:62",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-041",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "local variable ShowEmailPopUp",
+   "os": "block local variable",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:63",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:63",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-042",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "local variable ShowSharePopup",
+   "os": "block local variable",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:64",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:64",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-043",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "local variable ShowNotesSheet",
+   "os": "block local variable",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:65",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:65",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-044",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "local variable isFetchContacts: Boolean",
+   "os": "block local variable",
+   "react": "app/src/containers/EntityDetailsActions/entityDetailsActionsState.ts:81-82 isFetchContacts (call or email or share)",
+   "evidence": "app/src/containers/EntityDetailsActions/entityDetailsActionsState.ts:81-82",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-045",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "local variable ShowIconLabels: Boolean = True",
+   "os": "block local variable",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:47 showIconLabels = onReady.labels (app/src/containers/EntityDetailsActions/entityDetailsActionsState.ts:75 default true, Member false)",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:47",
+   "tst": "present (eda.js:117)",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-046",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "local variable ShareSheet_OverwriteImageURL: Text",
+   "os": "block local variable",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:82 shareSheetImageURL",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:82",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-047",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "local variable NoteCategoryId: NoteCategory2 Identifier",
+   "os": "block local variable",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:48 noteCategoryId (app/src/containers/EntityDetailsActions/entityDetailsActionsState.ts:77)",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:48",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-048",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "local variable EntityNotes: Notes",
+   "os": "block local variable",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:61 notes",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:61",
+   "tst": "-",
+   "verdict": "match",
+   "note": "Judge: TST has no EntityNotes variable: NotesSheet In_Notes = FetchNotes.Notes (eda.js:938). The React notes state stands for it.",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-049",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "TST local variables not in the DEV pack",
+   "os": "TST controller uses Local_isBookmarked_C2, Local_BookmarkTypeId_C2, Local_BookmarkType, Local_BookmarkGroup (eda.js:1410-1470)",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:66-72 keeps all five (legacy + C2)",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:66-72",
+   "tst": "present",
+   "verdict": "match",
+   "note": "DEV pack has only Local_isBookmarked and Local_BookmarkTypeId; TST differs (DEV != TST). Judge: React keeps the C2 and legacy variables, as TST (eda.js:1410-1470).",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-050",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "data action FetchContactDetails fetch=OnDemand; outputs ContactPopupData, Phone, MobilePhone, HomePhone, WorkPhone, Email, CountryName, LocalityId, LocalityName, EntitySubtitle, EntityName",
+   "os": "refreshed only by Action_AsyncRefresh_ContactDetails",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:184-220 effect calls fetchContactDetails(variablesRef.current()); api.ts:11 -> api/message fetchEntityContactDetails; repository api/message/repository.ts:220-224",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:187",
+   "tst": "present (DataAction in eda.js not read)",
+   "verdict": "match",
+   "note": "The switch below runs on the server in React (one contract call). Mock: app/src/containers/EntityDetailsActions/mocks.ts:144-183 (fictional, never recorded).",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-051",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "FetchContactDetails switch case Member",
+   "os": "Member_ContactDetails_Service(MemberId=EntityId), set ContactPopupData, phones, Email, then Get_Core_LocalityTimezone(LocalityId) -> TimezoneName, TimezoneOffset",
+   "react": "not found (searched: per-type switch, Member_ContactDetails_Service, Get_Core_LocalityTimezone, GetSubdivisionLocation_BySubdivisionId, Get_OneSchoolGlobalDetails)",
+   "evidence": "containers/EntityDetailsActions/mocks.ts:144-183",
+   "tst": "-",
+   "verdict": "mock-only",
+   "note": "Server side. Production needs DataActionFetchContactDetails with the per-type switch: Member_ContactDetails_Service, Get_OneSchoolGlobalDetails, GetSubdivisionLocation_BySubdivisionId, GetHouseholdDetails, Get_Core_LocalityTimezone.",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-052",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "FetchContactDetails switch case OneSchoolGlobal",
+   "os": "Get_OneSchoolGlobalDetails(CommunityBusinessId=EntityId), Name=Trim(...), Phone, Email, then Get_Core_LocalityTimezone",
+   "react": "not found (searched: per-type switch, Member_ContactDetails_Service, Get_Core_LocalityTimezone, GetSubdivisionLocation_BySubdivisionId, Get_OneSchoolGlobalDetails)",
+   "evidence": "containers/EntityDetailsActions/mocks.ts:144-183",
+   "tst": "-",
+   "verdict": "mock-only",
+   "note": "Server side. Production needs DataActionFetchContactDetails with the per-type switch: Member_ContactDetails_Service, Get_OneSchoolGlobalDetails, GetSubdivisionLocation_BySubdivisionId, GetHouseholdDetails, Get_Core_LocalityTimezone.",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-053",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "FetchContactDetails switch case SupperMeetings_aka_Subdivisions",
+   "os": "GetSubdivisionLocation_BySubdivisionId(In_SubdivisionId=EntityId) -> CountryName, LocalityName, EntityName, then Get_Core_LocalityTimezone",
+   "react": "not found (searched: per-type switch, Member_ContactDetails_Service, Get_Core_LocalityTimezone, GetSubdivisionLocation_BySubdivisionId, Get_OneSchoolGlobalDetails)",
+   "evidence": "containers/EntityDetailsActions/mocks.ts:144-183",
+   "tst": "-",
+   "verdict": "mock-only",
+   "note": "Server side. Production needs DataActionFetchContactDetails with the per-type switch: Member_ContactDetails_Service, Get_OneSchoolGlobalDetails, GetSubdivisionLocation_BySubdivisionId, GetHouseholdDetails, Get_Core_LocalityTimezone.",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-054",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "FetchContactDetails switch case Household",
+   "os": "GetHouseholdDetails(HouseholdId=TextToInteger(EntityId), User_AgeVisibility=False) -> Name, Locality, CountryName, LocalityId, then Get_Core_LocalityTimezone",
+   "react": "not found (searched: per-type switch, Member_ContactDetails_Service, Get_Core_LocalityTimezone, GetSubdivisionLocation_BySubdivisionId, Get_OneSchoolGlobalDetails)",
+   "evidence": "containers/EntityDetailsActions/mocks.ts:144-183",
+   "tst": "-",
+   "verdict": "mock-only",
+   "note": "Server side. Production needs DataActionFetchContactDetails with the per-type switch: Member_ContactDetails_Service, Get_OneSchoolGlobalDetails, GetSubdivisionLocation_BySubdivisionId, GetHouseholdDetails, Get_Core_LocalityTimezone.",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-055",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "FetchContactDetails switch case otherwise",
+   "os": "end (no fetch)",
+   "react": "not found (searched: per-type switch, Member_ContactDetails_Service, Get_Core_LocalityTimezone, GetSubdivisionLocation_BySubdivisionId, Get_OneSchoolGlobalDetails)",
+   "evidence": "containers/EntityDetailsActions/mocks.ts:144-183",
+   "tst": "-",
+   "verdict": "mock-only",
+   "note": "Server side. Production needs DataActionFetchContactDetails with the per-type switch: Member_ContactDetails_Service, Get_OneSchoolGlobalDetails, GetSubdivisionLocation_BySubdivisionId, GetHouseholdDetails, Get_Core_LocalityTimezone.",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-056",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "data action FetchNotes fetch=OnDemand: call-server GetNotesByItemId(ItemId=EntityId, NoteCategoryId) -> Notes",
+   "os": "refreshed by Action_RefreshFetchNotes",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:157-165,305 fetchNotes(variablesRef.current()); api/note/repository.ts:44-47 DataActionFetchNotes",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:159,305",
+   "tst": "-",
+   "verdict": "match",
+   "note": "Mock: app/src/containers/EntityDetailsActions/mocks.ts:185.",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-057",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "OnAfterFetch_FetchNotes: EntityNotes = FetchNotes.Notes",
+   "os": "assign",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:158 setNotes(await fetchNotes(...)); :305",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:158,305",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-058",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "OnAfterFetch_FetchContactDetails: call Action_ApplyPopUpOverrides",
+   "os": "runs after the fetch",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:73-88 derived on render (overridesApplied, details, contact)",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:77-88",
+   "tst": "-",
+   "verdict": "match",
+   "note": "React derives the overrides instead of calling an action.",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-059",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "OnAfterFetch_FetchContactDetails: HasCall = any of Phone/MobilePhone/HomePhone/WorkPhone <> \"\"",
+   "os": "assign",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:195 HasCall: out.Phone !== '' || out.MobilePhone !== '' || out.HomePhone !== '' || out.WorkPhone !== ''",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:195",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-060",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "OnAfterFetch_FetchContactDetails: HasEmail = MobilePhone <> \"\" or Email <> \"\"",
+   "os": "assign",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:196 HasEmail: out.MobilePhone !== '' || out.Email !== ''",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:196",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-061",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "OnAfterFetch_FetchContactDetails: isLoaded = True",
+   "os": "assign",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:198 setIsLoaded(true)",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:198",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-062",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "server action AddBookmark2 (Connect_Bookmarks_CS)",
+   "os": "ref-service; inputs/outputs in data.md",
+   "react": "app/src/api/bookmark/repository.ts:108; mock: app/src/mocks/modules/Connect2_MyBookmarks_MUI/mocks.ts:39",
+   "evidence": "app/src/api/bookmark/repository.ts:108",
+   "tst": "-",
+   "verdict": "mock-only",
+   "note": "Production needs the ref-service in module Connect_Bookmarks_CS.",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-063",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "server action DeleteBookmarkByBookmarkId2 (Connect_Bookmarks_CS)",
+   "os": "ref-service; inputs/outputs in data.md",
+   "react": "app/src/api/bookmark/repository.ts:119; mock: app/src/containers/EntityDetailsActions/mocks.ts:45-49 (app.md: none found)",
+   "evidence": "app/src/api/bookmark/repository.ts:119",
+   "tst": "-",
+   "verdict": "mock-only",
+   "note": "Production needs the ref-service in module Connect_Bookmarks_CS.",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-064",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "server action GetHouseholdDetails (Connect_Household_CS)",
+   "os": "ref-service; inputs/outputs in data.md",
+   "react": "app/src/api/household/repository.ts:135-138 (Connect2_LegacyShared ServiceAPIGetHouseholdDetails); mock: app/src/not listed in app.md (no mock handler found)",
+   "evidence": "app/src/api/household/repository.ts:135-138",
+   "tst": "-",
+   "verdict": "mock-only",
+   "note": "Production needs the ref-service in module Connect_Household_CS.",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-065",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "server action GetNotesByItemId (Connect_Notes_CS)",
+   "os": "ref-service inside a data action",
+   "react": "not found (searched: GetNotesByItemId under app/src (app.md: 0 hits, no mock handler))",
+   "evidence": "containers/EntityDetailsActions/mocks.ts:150,185 (whole data action mock)",
+   "tst": "-",
+   "verdict": "mock-only",
+   "note": "Covered by the whole-data-action mock (mocks.ts:150 FetchContactDetails, :185 FetchNotes).",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-066",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "server action GetSubdivisionLocation_BySubdivisionId (Connect_Subdivision_CS)",
+   "os": "ref-service inside a data action",
+   "react": "not found (searched: GetSubdivisionLocation_BySubdivisionId under app/src (app.md: 0 hits, no mock handler))",
+   "evidence": "containers/EntityDetailsActions/mocks.ts:150,185 (whole data action mock)",
+   "tst": "-",
+   "verdict": "mock-only",
+   "note": "Covered by the whole-data-action mock (mocks.ts:150 FetchContactDetails, :185 FetchNotes).",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-067",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "server action Get_Core_LocalityTimezone (Connect_Geography_CS)",
+   "os": "ref-service inside a data action",
+   "react": "not found (searched: Get_Core_LocalityTimezone under app/src (app.md: 0 hits, no mock handler))",
+   "evidence": "containers/EntityDetailsActions/mocks.ts:150,185 (whole data action mock)",
+   "tst": "-",
+   "verdict": "mock-only",
+   "note": "Covered by the whole-data-action mock (mocks.ts:150 FetchContactDetails, :185 FetchNotes).",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-068",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "server action Get_OneSchoolGlobalDetails (Connect_CommunityBusiness_CS)",
+   "os": "ref-service inside a data action",
+   "react": "not found (searched: Get_OneSchoolGlobalDetails under app/src (app.md: 0 hits, no mock handler))",
+   "evidence": "containers/EntityDetailsActions/mocks.ts:150,185 (whole data action mock)",
+   "tst": "-",
+   "verdict": "mock-only",
+   "note": "Covered by the whole-data-action mock (mocks.ts:150 FetchContactDetails, :185 FetchNotes).",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-069",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "server action Member_ContactDetails_Service (Connect_Household_CS)",
+   "os": "ref-service inside a data action",
+   "react": "not found (searched: Member_ContactDetails_Service under app/src (app.md: 0 hits, no mock handler))",
+   "evidence": "containers/EntityDetailsActions/mocks.ts:150,185 (whole data action mock)",
+   "tst": "-",
+   "verdict": "mock-only",
+   "note": "Covered by the whole-data-action mock (mocks.ts:150 FetchContactDetails, :185 FetchNotes).",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-070",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "shared client action GetBookmarkCategoryId_ByEntityTypeId",
+   "os": "signature only in the pack",
+   "react": "app/src/lib/ubtConnect/actions.ts:212-",
+   "evidence": "app/src/lib/ubtConnect/actions.ts:212-",
+   "tst": "present (called in eda.js)",
+   "verdict": "n/a",
+   "note": "owned by the _shared unit (_shared-010, _shared-013, _shared-015, _shared-047), see its report.",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-071",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "shared client action GetNameAndSurname_ByFullName",
+   "os": "signature only in the pack",
+   "react": "app/src/lib/ubtConnect/actions.ts:198",
+   "evidence": "app/src/lib/ubtConnect/actions.ts:198",
+   "tst": "present (called in eda.js)",
+   "verdict": "n/a",
+   "note": "owned by the _shared unit (_shared-010, _shared-013, _shared-015, _shared-047), see its report.",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-072",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "shared client action GetShareType_FromEntity",
+   "os": "signature only in the pack",
+   "react": "app/src/lib/ubtConnect/actions.ts:177",
+   "evidence": "app/src/lib/ubtConnect/actions.ts:177",
+   "tst": "present (called in eda.js)",
+   "verdict": "n/a",
+   "note": "owned by the _shared unit (_shared-010, _shared-013, _shared-015, _shared-047), see its report.",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-073",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "shared client action ToggleBookmarkItem_C2",
+   "os": "signature only in the pack",
+   "react": "app/src/lib/ubtConnect/actions.ts:249",
+   "evidence": "app/src/lib/ubtConnect/actions.ts:249",
+   "tst": "present (called in eda.js)",
+   "verdict": "n/a",
+   "note": "owned by the _shared unit (_shared-010, _shared-013, _shared-015, _shared-047), see its report.",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-074",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "client variable Client.Bookmarks_IsSynched (read)",
+   "os": "part of Skeleton In_IsLoading: (not isLoaded or not Bookmarks_IsSynched or not Notes_IsSynched) and not FetchContactDetails.HasFetchError",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:244,246 useClientVar('UBTConnect.Bookmarks_IsSynched'); isLoading = (!isLoaded || !bookmarksIsSynched || !notesIsSynched) && !hasFetchError",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:244-246",
+   "tst": "present (eda.js:346)",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-075",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "data",
+   "element": "client variable Client.Notes_IsSynched (read)",
+   "os": "same expression",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:245 useClientVar('UBTConnect.Notes_IsSynched')",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:245",
+   "tst": "present (eda.js:346)",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-076",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "OnReady: javascript CheckRestored (FromCache = wasCurrentViewRestoredFromCache); If FromCache or FromHistory -> end",
+   "os": "skips the set-up when the view is restored",
+   "react": "app/src/containers/EntityDetailsActions/entityDetailsActionsState.ts:72-73 comment: \"CheckRestored (view restored from cache) is not ported: it always runs\"",
+   "evidence": "app/src/containers/EntityDetailsActions/entityDetailsActionsState.ts:72-73",
+   "tst": "present (eda.js:1679, 2430-2432)",
+   "verdict": "match",
+   "note": "Fixed 2026-10-27 (fixes/E-directory.md). TST OnReady runs CheckRestored and ends when the view comes from cache or history (eda.js:1679, 2430-2432). React always runs the set-up (entityDetailsActionsState.ts:72-73). On Back it fetches again and shows the skeleton. app-shell.spec.md:237 (U19) plans a view cache helper per P-BACK; no decision names this block.",
+   "verified": "live",
+   "severity": "minor",
+   "finding": "F1",
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-077",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "OnReady: NoteCategoryId = Get_NoteCategoryId_ByEntityTypeId(EntityType)",
+   "os": "assign",
+   "react": "app/src/containers/EntityDetailsActions/entityDetailsActionsState.ts:77 result.noteCategoryId = get_NoteCategoryId_ByEntityTypeId(entityType)",
+   "evidence": "app/src/containers/EntityDetailsActions/entityDetailsActionsState.ts:77",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-078",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "OnReady switch case Member",
+   "os": "HasBookmark/Unbookmark/Notes/Gift/Share=False, HasCall=True, HasEmail=True, ShowIconLabels=False",
+   "react": "app/src/containers/EntityDetailsActions/entityDetailsActionsState.ts:34-46 (labels false)",
+   "evidence": "app/src/containers/EntityDetailsActions/entityDetailsActionsState.ts:34-46",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-079",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "OnReady switch case Locality",
+   "os": "raise InvalidAction \"Invalid option\"",
+   "react": "app/src/containers/EntityDetailsActions/entityDetailsActionsState.ts:55-59 default branch: Locality -> UserException \"Invalid option\", UBTConnect.InvalidAction",
+   "evidence": "app/src/containers/EntityDetailsActions/entityDetailsActionsState.ts:55-59",
+   "tst": "present (eda.js:1728 Invalid option, :1837 Bookmarks not available)",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-080",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "OnReady switch case Household",
+   "os": "Bookmark, Unbookmark, Notes, Gift, Share=True; Call, Email=False; HasViewDetails=useViewDetails",
+   "react": "app/src/containers/EntityDetailsActions/entityDetailsActionsState.ts:47-48 all(false,false,true,true) + HasViewDetails",
+   "evidence": "app/src/containers/EntityDetailsActions/entityDetailsActionsState.ts:47-48",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-081",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "OnReady switch case Interchange",
+   "os": "Bookmark, Unbookmark, Notes=True; Gift, Share, Call, Email=False",
+   "react": "app/src/containers/EntityDetailsActions/entityDetailsActionsState.ts:49-50 all(false,false,false,false)",
+   "evidence": "app/src/containers/EntityDetailsActions/entityDetailsActionsState.ts:49-50",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-082",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "OnReady switch case SupperMeetings_aka_Subdivisions",
+   "os": "Bookmark, Unbookmark, Notes, Share=True; Gift, Call, Email=False; HasViewDetails=useViewDetails",
+   "react": "app/src/containers/EntityDetailsActions/entityDetailsActionsState.ts:51-52",
+   "evidence": "app/src/containers/EntityDetailsActions/entityDetailsActionsState.ts:51-52",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-083",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "OnReady switch case OneSchoolGlobal",
+   "os": "Bookmark, Unbookmark, Notes, Share, Call, Email=True; Gift=False; HasViewDetails=useViewDetails",
+   "react": "app/src/containers/EntityDetailsActions/entityDetailsActionsState.ts:53-54",
+   "evidence": "app/src/containers/EntityDetailsActions/entityDetailsActionsState.ts:53-54",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-084",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "OnReady switch case otherwise",
+   "os": "raise InvalidAction \"Bookmarks not available\"",
+   "react": "app/src/containers/EntityDetailsActions/entityDetailsActionsState.ts:55-59 default branch (non-Locality) -> \"Bookmarks not available\"",
+   "evidence": "app/src/containers/EntityDetailsActions/entityDetailsActionsState.ts:55-59",
+   "tst": "present (eda.js:1728 Invalid option, :1837 Bookmarks not available)",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-085",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "OnReady: isFetchContacts = HasCall or HasEmail or HasShare",
+   "os": "assign",
+   "react": "app/src/containers/EntityDetailsActions/entityDetailsActionsState.ts:81-82",
+   "evidence": "app/src/containers/EntityDetailsActions/entityDetailsActionsState.ts:81-82",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-086",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "OnReady: call Action_UpdateContactDetails",
+   "os": "nothing without EntityId; with isFetchContacts the async refresh",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:184-220 effect on [entityId, isFetchContacts]: returns when entityId === '0' or !isFetchContacts",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:185",
+   "tst": "present (eda.js:1854)",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-087",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "OnReady: If HasShare -> GetShareType_FromEntity(EntityType, IsMyHousehold=False) -> Local_ShareType",
+   "os": "If without else",
+   "react": "app/src/containers/EntityDetailsActions/entityDetailsActionsState.ts:83 if (menu.options.HasShare === true) result.shareType = getShareType_FromEntity(entityType, false)",
+   "evidence": "app/src/containers/EntityDetailsActions/entityDetailsActionsState.ts:83",
+   "tst": "present (eda.js:1858)",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-088",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "OnReady: If HasBookmark or HasUnbookmark -> GetBookmarkCategoryId_ByEntityTypeId, GetLocalBookmarkByObjectId_C2, Local_isBookmarked=Id<>NullIdentifier, trigger OnChange_Bookmark, Action_RefreshFetchNotes",
+   "os": "bookmarks step",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:148-165 bookmarksStep (C2 branch behind getHasNewBookmarks())",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:148-165",
+   "tst": "present (eda.js:1870-1893)",
+   "verdict": "match",
+   "note": "TST has an If GetHasNewBookmarks: true -> C2 (GetBookmarkCategoryId..., GetLocalBookmarkByObjectId_C2), else legacy GetBookmarkType_FromEntity + Get_LocalBookmarkByObjectId (eda.js:1898,1908). DEV pack shows C2 only. React has both (:166-174). Judge: getHasNewBookmarks is true on TST (flag-values-tst.json:8), so the C2 path runs. CR-W4A-1 covers the local bookmarks.",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-089",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "OnReady: isLoaded = not isFetchContacts or FetchContactDetails.IsDataFetched or HasFetchError",
+   "os": "assign at end of both paths",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:176-178 setIsLoaded(!onReady.isFetchContacts || fetchStatusRef.current !== 'none')",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:177",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-090",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "OnReady: else path (no bookmark option) -> [M3] isLoaded assignment",
+   "os": "merge",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:149 early return when neither HasBookmark nor HasUnbookmark: setIsLoaded not set in that path? see :176-178 (then() only after bookmarksStep, also on early return)",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:149,176",
+   "tst": "-",
+   "verdict": "match",
+   "note": "Early return resolves the promise, so the then() runs and sets isLoaded.",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-091",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "OnParametersChanged: call Action_UpdateContactDetails",
+   "os": "re-fetch on new parameters",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:184-220 effect re-runs on [entityId, onReady.isFetchContacts] only",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:220",
+   "tst": "-",
+   "verdict": "match",
+   "note": "Fixed 2026-10-27 (fixes/E-directory.md). TST OnParametersChanged calls Action_UpdateContactDetails on every input change (eda.js:1157-1166). React fetches again only when entityId or isFetchContacts changes (useEntityDetailsActions.ts:220).",
+   "verified": "live",
+   "severity": "minor",
+   "finding": "F2",
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-092",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "Action_UpdateContactDetails: If EntityId = NullIdentifier -> end",
+   "os": "guard",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:185 entityId === '0'",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:185",
+   "tst": "present (eda.js:1171)",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-093",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "Action_UpdateContactDetails: If isFetchContacts -> javascript AsynRefresh() -> $actions.Action_AsyncRefresh_ContactDetails()",
+   "os": "true branch",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:187 fetchContactDetails(...) in effect",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:187",
+   "tst": "present (eda.js:1979, 2436)",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-094",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "Action_UpdateContactDetails: else -> call Action_ApplyPopUpOverrides",
+   "os": "false branch",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:77 overridesApplied = entityId !== '0' && (!isFetchContacts || fetchStatus === 'done')",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:77",
+   "tst": "present (eda.js:1986)",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-095",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "Action_ApplyPopUpOverrides: If EntityType = OneSchoolGlobal -> ShareSheet_OverwriteImageURL=Override.ImageURL; Override.ImageURL=Images.OneSchoolGlobal.URL",
+   "os": "true branch",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:76-82 isOneSchoolGlobal; overrideImageURL = osImage('img/UBTConnectLibrary.OneSchoolGlobal.svg'); shareSheetImageURL = override ImageURL",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:76-82",
+   "tst": "present (eda.js:2231)",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-096",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "Action_ApplyPopUpOverrides: FetchContactDetails.ContactPopupData.ImageURL = Override.ImageURL (both branches)",
+   "os": "assign",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:88 contact = { ...details.ContactPopupData, ImageURL: overrideImageURL }",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:88",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-097",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "Action_ApplyPopUpOverrides: If Override.Name <> \"\" -> ContactPopupData.Name and EntityName = Override.Name",
+   "os": "true branch",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:83-87 overrideName !== '' ? {...fetched, EntityName, ContactPopupData: {..., Name: overrideName}}",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:84-87",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-098",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "Action_ApplyPopUpOverrides: else -> end",
+   "os": "false branch: names unchanged",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:87 : fetched",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:87",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-099",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "Action_AsyncRefresh_ContactDetails: refresh data FetchContactDetails",
+   "os": "refresh",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:187 fetchContactDetails(...)",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:187",
+   "tst": "present (eda.js:2436 AsynRefreshJS)",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-100",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "Action_AsyncRefresh_ContactDetails on exception All Exceptions (log=True)",
+   "os": "HandleFetchError, ScreenController_RaiseError(Message)",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:200-215 one error handler: HandleFetchError equivalent then raiseToFlowHandler(error)",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:200-215",
+   "tst": "present (eda.js:1257-1260)",
+   "verdict": "match",
+   "note": "React sends every error to raiseToFlowHandler; the exception kind is not split in the effect (check legacy/os/exceptions.ts). Judge: React raiseToFlowHandler (legacy/os/exceptions.ts:69-81) stands for ScreenController_RaiseError and ScreenController_RaiseCommunicationError (eda.js:1204-1268).",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-101",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "Action_AsyncRefresh_ContactDetails on exception Communication Exception (log=True)",
+   "os": "HandleFetchError as HandleFetchError2, ScreenController_RaiseCommunicationError(Message)",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:200-215 same handler; no separate communication-error call",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:200-215",
+   "tst": "present (eda.js:1236-1239)",
+   "verdict": "match",
+   "note": "React sends every error to raiseToFlowHandler; the exception kind is not split in the effect (check legacy/os/exceptions.ts). Judge: React raiseToFlowHandler (legacy/os/exceptions.ts:69-81) stands for ScreenController_RaiseError and ScreenController_RaiseCommunicationError (eda.js:1204-1268).",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-102",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "Action_AsyncRefresh_ContactDetails on exception Not Registered (log=True)",
+   "os": "ScreenController_RaiseTypedException(NotRegisteredException, Message)",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:200-215 same handler; no typed NotRegistered branch",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:200-215",
+   "tst": "present (eda.js:1218)",
+   "verdict": "match",
+   "note": "Fixed 2026-10-27 (fixes/E-directory.md). TST NotRegistered raises the typed exception without HandleFetchError (eda.js:1204-1222). TST also re-raises a system exception without HandleFetchError (AllExceptions: if not isSystem). React runs HandleFetchError for every error, then raiseToFlowHandler (useEntityDetailsActions.ts:200-215).",
+   "verified": "live",
+   "severity": "minor",
+   "finding": "F3",
+   "fixed": "2026-10-27",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-103",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "Action_AsyncRefresh_ContactDetails: [DISABLED] raise BubbleGenericException / BubbleCommunicationException / Not Registered",
+   "os": "dead in the model",
+   "react": "React must not implement",
+   "evidence": "DEV pack: [DISABLED] raise nodes of Action_AsyncRefresh_ContactDetails",
+   "tst": "-",
+   "verdict": "n/a",
+   "note": "dead in the model",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-104",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "HandleFetchError: EnableOptions.Enable{Bookmark,Notes,Gift,Share,Call,Email} = False",
+   "os": "six assigns",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:205-213 setLocalEnableOptions(... EnableBookmark/Notes/Gift/Share/Call/Email false)",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:205-213",
+   "tst": "present (eda.js:1257)",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-105",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "Action_RefreshFetchNotes: If EntityId = NullIdentifier -> end, else refresh data FetchNotes",
+   "os": "guard + refresh",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:157 if (id !== '0') setNotes(await fetchNotes(...)); :305",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:157,305",
+   "tst": "present (eda.js:1366,1893)",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-106",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "actions",
+   "element": "Handle_Bookmark: isLoaded = False",
+   "os": "assign",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:279 setIsLoaded(false)",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:279",
+   "tst": "present (eda.js:1410)",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-107",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "actions",
+   "element": "Handle_Bookmark: call ToggleBookmarkItem_C2(In_BookmarkType=Local_BookmarkTypeId, In_ItemId=EntityId, IsBookmarked_C2=Local_isBookmarked)",
+   "os": "server call",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:281 await toggleBookmarkItem_C2(entityId, bookmarkTypeId_C2, isBookmarked_C2, server)",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:281",
+   "tst": "present (eda.js:1413; legacy else ToggleBookmarkItem :1432)",
+   "verdict": "match",
+   "note": "TST If condition ends with \"&& true\", so the legacy ToggleBookmarkItem branch is dead on TST (eda.js:1410). DEV pack has only the C2 call. Judge: TST eda.js:1410 If ends with && true, so the C2 call always runs (known bug B4, app/docs/known-original-bugs.md:12).",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-108",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "actions",
+   "element": "Handle_Bookmark: Local_isBookmarked = not Local_isBookmarked; isLoaded = True",
+   "os": "assign",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:282-284 bookmarked = !isBookmarked_C2; setIsBookmarked_C2; setIsLoaded(true)",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:282-284",
+   "tst": "present (eda.js:1418-1424)",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-109",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "actions",
+   "element": "Handle_Bookmark: trigger event OnChange_Bookmark(isBookmarked=Local_isBookmarked)",
+   "os": "event",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:285 onOnChangeBookmark?.(bookmarked)",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:285",
+   "tst": "present (eda.js:1426)",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-110",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "actions",
+   "element": "Handle_Bookmark exception All Exceptions: isLoaded=True; raise BubbleGenericException(message)",
+   "os": "handler",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:292-295 !isSystemException -> setIsLoaded(true); UserException(..., 'UBTConnect.BubbleGenericException')",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:292-295",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-111",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "actions",
+   "element": "Handle_Bookmark exception Communication Exception: isLoaded=True; raise BubbleCommunicationException(message)",
+   "os": "handler",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:288-291 isCommunicationException -> setIsLoaded(true); UserException(..., 'UBTConnect.BubbleCommunicationException')",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:288-291",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-112",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "actions",
+   "element": "Handle_Bookmark exception Not Registered: raise Not Registered(message)",
+   "os": "handler, isLoaded not reset",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:287 isInstanceOf(ex, NotRegisteredException) -> new NotRegisteredException",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:287",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-113",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "actions",
+   "element": "Handle_Bookmark: system exception not matched",
+   "os": "not in pack",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:296 throw ex",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:296",
+   "tst": "-",
+   "verdict": "match",
+   "note": "React rethrows a SystemException without resetting isLoaded; the pack has no such path. Judge: TST Handle_Bookmark also re-raises a system exception (AllExceptions handler: if not isSystem, else throw; eda.js:1383-1500). React matches.",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-114",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "actions",
+   "element": "ActionsMenu on Event_Click_Bookmark / Event_Click_Unbookmark -> Handle_Bookmark",
+   "os": "two events, one handler",
+   "react": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:80-81 onEventClickBookmark/Unbookmark={onClickBookmark}; app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:300-302",
+   "evidence": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:80-81",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-115",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "actions",
+   "element": "Handle_Call(isOpen) on Event_Click_Call (True) and ContactPopup_ByPhone Event_Cancel (False)",
+   "os": "ShowCallPopUp = isOpen",
+   "react": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:86-88 setShowCallPopUp(true); :116-118 setShowCallPopUp(false)",
+   "evidence": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:86-88,116-118",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-116",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "actions",
+   "element": "Handle_Mail(isOpen): If EntityType = OneSchoolGlobal -> navigate ContactByEmailOneSchoolGlobal(In_ContactName=ContactPopupData.Name, In_EmailTo=Email), transition Inherited",
+   "os": "true branch",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:250-254 navigate('/UBTConnect/ContactByEmailOneSchoolGlobal', {In_ContactName, In_EmailTo})",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:250-254",
+   "tst": "present (eda.js:2018-2019)",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-117",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "actions",
+   "element": "Handle_Mail(isOpen): else ShowEmailPopUp = isOpen",
+   "os": "false branch",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:256 setShowEmailPopUp(isOpen)",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:256",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-118",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "actions",
+   "element": "Handle_Mail_Page: GetNameAndSurname_ByFullName(In_FullName=ContactPopupData.Name); javascript Yield(); navigate ContactByEmailMember with 8 arguments",
+   "os": "sequence of 3 nodes",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:260-271 getNameAndSurname_ByFullName(contact.Name); navigate('/UBTConnect/ContactByEmailMember', {...8 In_ args}); no Yield",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:260-271",
+   "tst": "present (eda.js:1623-1631, 2423 Yield)",
+   "verdict": "match",
+   "note": "React has no Yield() step. In_ContactCountry uses details.CountryName (DEV: FetchContactDetails.CountryName). DEV pack has an unreachable DISABLED assign ShowEmailPopUp=False. Judge: Yield() lets the popup close before the navigation. React navigates at once. No visible difference.",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-119",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "actions",
+   "element": "ContactByMessage_Wrapper on Event_Cancel -> Handle_Mail(False); on Event_Email -> Handle_Mail_Page",
+   "os": "2 events",
+   "react": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:103-106",
+   "evidence": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:103-106",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-120",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "actions",
+   "element": "ContactByMessage_Wrapper arg In_ContactPopupData={Email: FetchContactDetails.Email, Phone: FetchContactDetails.MobilePhone, ContactPopupData:{...}}",
+   "os": "record (pack text cut at \"IsAvatar…\")",
+   "react": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:98-102",
+   "evidence": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:98-102",
+   "tst": "-",
+   "verdict": "match",
+   "note": "Pack gap: argument text is cut in blocks.md. Judge: TST eda.js:529-555: Email, Phone = MobilePhone, ContactPopupData with ShowPopup = ShowEmailPopUp. React matches.",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-121",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "actions",
+   "element": "Handle_Share(isOpen) on Event_Click_Share (True), SharePopup Event_Cancel (False)",
+   "os": "ShowSharePopup = isOpen",
+   "react": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:82-84 setShowSharePopup(true); :143-145 setShowSharePopup(false)",
+   "evidence": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:82-84,143-145",
+   "tst": "present (eda.js:2133)",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-122",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "actions",
+   "element": "Handle_Share_Connect: Handle_Share(False); Yield(); navigate LegacyShareObject(In_ObjectId=EntityId, In_ShareObjectTypeId=Local_ShareType)",
+   "os": "sequence",
+   "react": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:135-138 setShowSharePopup(false); navigate('/UBTConnect/LegacyShareObject', {In_ShareObjectTypeId: shareType, In_ObjectId: entityId})",
+   "evidence": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:135-138",
+   "tst": "present (eda.js:2136-2140)",
+   "verdict": "n/a",
+   "note": "flag off on TST: getHasExtendedShare is true (flag-values-tst.json:21). SharePopup does not show, so its events do not run.",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-123",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "actions",
+   "element": "Handle_Share_Others: Handle_Share(False); call ShareEntity_ByURL(In_ShareableObjectId=EntityId, In_ShareTypeId=Local_ShareType)",
+   "os": "close, then share by URL",
+   "react": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:139-142 setShowSharePopup(false); comment \"ShareEntity_ByURL (not ported, README)\"",
+   "evidence": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:139-142",
+   "tst": "present (eda.js:1336 Execute Action ShareEntity_ByURL)",
+   "verdict": "n/a",
+   "note": "flag off on TST: getHasExtendedShare is true (flag-values-tst.json:21), so SharePopup does not show. The ShareEntity_ByURL option is native only (migration/knowledge/audit-a1-empty-handlers.md:64).",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-124",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "actions",
+   "element": "Handle_ClosedShareSheet (ShareSheet Event_ClosedShareSheet): ShowSharePopup = False",
+   "os": "assign",
+   "react": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:164-166",
+   "evidence": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:164-166",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-125",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "actions",
+   "element": "Handler_AddNotesOnClick: Action_RefreshFetchNotes; ShowNotesSheet = True",
+   "os": "2 steps",
+   "react": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:304-307 handlerAddNotes",
+   "evidence": "app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:304-307",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-126",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "actions",
+   "element": "Handler_OnNotesSheetClosed: ShowNotesSheet = False",
+   "os": "assign",
+   "react": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:203-205",
+   "evidence": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:203-205",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-127",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "actions",
+   "element": "Handler_OnSheetNotesChanged(New_Notes): EntityNotes = New_Notes",
+   "os": "assign",
+   "react": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:194-196 setNotes(newNotes)",
+   "evidence": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:194-196",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-128",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "actions",
+   "element": "Handler_OnNoteDeleted(NoteId): for each EntityNotes.Note_Item_List append items with Id <> NoteId to UpdatedNotes; Total = Length; EntityNotes = UpdatedNotes",
+   "os": "loop + If with two branches",
+   "react": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:197-201 filter(item.Id !== noteId); Total: list.length",
+   "evidence": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:197-201",
+   "tst": "present (eda.js:1573 ListIndexOf, :1580 ListRemove)",
+   "verdict": "match",
+   "note": "DEV and TST differ: TST removes the note from FetchNotes.Notes with ListIndexOf and ListRemove, then sets Total = Length (eda.js:1566-1583). React filters its notes state and sets Total. Same result for unique ids. See section 6.1.",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-129",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "ui",
+   "element": "SkeletonSection In_IsLoading=(not isLoaded or not Bookmarks_IsSynched or not Notes_IsSynched) and not FetchContactDetails.HasFetchError",
+   "os": "skeleton around the menu",
+   "react": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:64 <Skeleton isLoading={isLoading}>; app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:246",
+   "evidence": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:64",
+   "tst": "present (eda.js:346)",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-130",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "ui",
+   "element": "ActionsMenu args In_ActionsEnableOptions=EnableOptions, InShowLabels=ShowIconLabels, IsEnabled=IsEnabled",
+   "os": "args",
+   "react": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:65-68",
+   "evidence": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:65-68",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-131",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "ui",
+   "element": "ActionsMenu In_ActionsMenuOptions: HasBookmark = Local.HasBookmark and not Local_isBookmarked; HasUnbookmark = HasBookmark and Local_isBookmarked; HasNotes... (cut in pack)",
+   "os": "record",
+   "react": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:69-79 (legacy isBookmarked unless hasNewBookmarks, then isBookmarked_C2)",
+   "evidence": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:71-72",
+   "tst": "present (eda.js:375-378 GetHasNewBookmarks)",
+   "verdict": "match",
+   "note": "Pack text cut at \"HasNotes: Local_In_ActionsMenuOptions…\". TST view reads GetHasNewBookmarks (eda.js:375,378).",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-132",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "actions",
+   "element": "ActionsMenu on Event_Click_Call -> Handle_Call(True)",
+   "os": "event wiring",
+   "react": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:86-88",
+   "evidence": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:86-88",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-133",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "actions",
+   "element": "ActionsMenu on Event_Click_ViewDetails -> ViewDetails_OnClick",
+   "os": "event wiring",
+   "react": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:85",
+   "evidence": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:85",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-134",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "actions",
+   "element": "ActionsMenu on Event_Click_Share -> Handle_Share(True)",
+   "os": "event wiring",
+   "react": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:82-84",
+   "evidence": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:82-84",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-135",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "actions",
+   "element": "ActionsMenu on Event_Click_Email -> Handle_Mail(True)",
+   "os": "event wiring",
+   "react": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:92-94",
+   "evidence": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:92-94",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-136",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "actions",
+   "element": "ActionsMenu on Event_Click_Notes -> Handler_AddNotesOnClick",
+   "os": "event wiring",
+   "react": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:89-91",
+   "evidence": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:89-91",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-137",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "ui",
+   "element": "ContactPopup_ByPhone arg In_CallPopupData (cut in pack), on Event_Cancel -> Handle_Call(False)",
+   "os": "block instance",
+   "react": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:108-119",
+   "evidence": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:108-119",
+   "tst": "-",
+   "verdict": "match",
+   "note": "Pack gap: argument text is cut. Judge: TST eda.js:635-668: ContactPopupData with ShowPopup = ShowCallPopUp and TitleTerminator, and the four phones. React matches.",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-138",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "ui",
+   "element": "SharePopup arg In_ContactPopupData={ImageURL, EntityTypeId, EntityId, ActionName:\"Share\", Name, Locality:\"\", TimezoneName:\"\", ...} (cut)",
+   "os": "block instance",
+   "react": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:120-134 (ShowPopup: showSharePopup && !hasExtendedShare, :131)",
+   "evidence": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:120-134",
+   "tst": "-",
+   "verdict": "n/a",
+   "note": "flag off on TST: getHasExtendedShare is true (flag-values-tst.json:21). React renders SharePopup only without extended share (EntityDetailsActionsContainer.tsx:131).",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-139",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "If GetHasExtendedShare() and Local_In_ActionsMenuOptions.HasShare -> popup (popup-dialog connect-share-portal) with ShareSheet",
+   "os": "condition",
+   "react": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:147-148 hasExtendedShare && (options.HasShare ?? false) && createPortal(...)",
+   "evidence": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:147-185",
+   "tst": "present (eda.js:748,829,843)",
+   "verdict": "match",
+   "note": "Judge: getHasExtendedShare is true on TST (flag-values-tst.json:21): this popup is the live share path.",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-140",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "ui",
+   "element": "ShareSheet args In_IsOpen=GetHasExtendedShare() and ShowSharePopup, In_ShareableObjectId=EntityId, In_ShareObjectTypeId=Local_ShareType",
+   "os": "args",
+   "react": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:160-163 inIsOpen={showSharePopup} ...",
+   "evidence": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:160-163",
+   "tst": "-",
+   "verdict": "match",
+   "note": "React passes showSharePopup without the hasExtendedShare factor; the render is already guarded by hasExtendedShare at :147.",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-141",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "ui",
+   "element": "ShareableObject_Generic In_ShareableObject={ConnectEntityTypeId, Id, SignedURL=ShareSheet_OverwriteImageURL, Title=EntityName, Subtitle=EntitySubtitle, Location=...} (cut)",
+   "os": "placeholder content",
+   "react": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:168-177 Location `${LocalityName}, ${CountryName}`",
+   "evidence": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:168-177",
+   "tst": "-",
+   "verdict": "match",
+   "note": "Pack text cut at \"Location: FetchContactDe…\"; the separator \", \" is React-only until checked in TST. Judge: TST eda.js:891 Location = LocalityName + ', ' + CountryName. React matches.",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-142",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "If False #HideInServiceStudio_BottomSheet -> (empty) else popup with NotesSheet",
+   "os": "[DEAD BRANCH] constant condition; the else branch always runs",
+   "react": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:189-206 NotesSheet is always rendered",
+   "evidence": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:189",
+   "tst": "present (eda.js:2738 HideInServiceStudio_BottomSheet)",
+   "verdict": "n/a",
+   "note": "dead in the model (If False, true branch). The else branch is live, and React renders NotesSheet (EntityDetailsActionsContainer.tsx:189).",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-143",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "ui",
+   "element": "NotesSheet args In_IsOpen=ShowNotesSheet, In_ItemId=EntityId, In_NoteCategoryId, In_Notes=EntityNotes",
+   "os": "args",
+   "react": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:189-193",
+   "evidence": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:189-193",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-144",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "actions",
+   "element": "NotesSheet events On_NoteSheet_Closed, On_NoteDeleted(NoteId), On_NotesChanged(New_Notes)",
+   "os": "3 events",
+   "react": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:194-205",
+   "evidence": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:194-205",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-145",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "ui",
+   "element": "popup wrapper for NotesSheet: style \"popup-dialog connect-share-portal\"",
+   "os": "popup show=True",
+   "react": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:189 NotesSheet rendered without the popup wrapper shown in DEV",
+   "evidence": "app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:189",
+   "tst": "-",
+   "verdict": "match",
+   "note": "DEV and TST differ: TST has no popup wrapper around NotesSheet. The only popup-dialog connect-share-portal is the ShareSheet popup (eda.js:832). React follows TST. See section 6.1.",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-146",
+   "screen": "(strings)",
+   "area": "strings",
+   "element": "\"Bookmarks not available\", \"Invalid option\"",
+   "os": "OnReady exception messages",
+   "react": "app/src/containers/EntityDetailsActions/entityDetailsActionsState.ts:57",
+   "evidence": "app/src/containers/EntityDetailsActions/entityDetailsActionsState.ts:57",
+   "tst": "present (eda.js:1728,1837)",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack"
+  },
+  {
+   "id": "Directory_CommonBlocks-147",
+   "screen": "(strings)",
+   "area": "strings",
+   "element": "\"Share not available\"",
+   "os": "GetShareType_FromEntity message",
+   "react": "app/src/lib/ubtConnect/actions.ts:194",
+   "evidence": "app/src/lib/ubtConnect/actions.ts:194",
+   "tst": "-",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack"
+  },
+  {
+   "id": "Directory_CommonBlocks-148",
+   "screen": "(strings)",
+   "area": "strings",
+   "element": "\"found nearby\", \"There doesn't seem to be any\", \"this locality.\"",
+   "os": "Directory_EmptyState",
+   "react": "app/src/components/directory/DirectoryEmptyState/DirectoryEmptyState.tsx:19,30,32",
+   "evidence": "app/src/components/directory/DirectoryEmptyState/DirectoryEmptyState.tsx:19-32",
+   "tst": "present (es.js)",
+   "verdict": "match",
+   "note": "",
+   "verified": "pack"
+  },
+  {
+   "id": "Directory_CommonBlocks-149",
+   "screen": "(strings)",
+   "area": "strings",
+   "element": "\"No change today\"",
+   "os": "Directory_CommunityNumbers",
+   "react": "not found (searched: No change today)",
+   "evidence": "tst_source.py: no file matches Directory_CommunityNumbers",
+   "tst": "absent (tst_source.py: no file matches Directory_CommunityNumbers)",
+   "verdict": "n/a",
+   "note": "DEV only: no TST file. The CountryList and HomeFeed reports treat the card as DEV only. React has no card. See section 6.1.",
+   "verified": "pack"
+  },
+  {
+   "id": "Directory_CommonBlocks-150",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "logic",
+   "element": "OnReady legacy bookmark path (If GetHasNewBookmarks false: GetBookmarkType_FromEntity, Get_LocalBookmarkByObjectId)",
+   "os": "TST only; not in the DEV pack",
+   "react": "useEntityDetailsActions.ts:166-174 legacy branch",
+   "evidence": "TST eda.js:1870, 1898, 1908; migration/knowledge/flag-values-tst.json:8",
+   "verdict": "n/a",
+   "note": "flag off on TST: getHasNewBookmarks is true, so the legacy branch does not run. React builds it; not judged. See section 6.1.",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  },
+  {
+   "id": "Directory_CommonBlocks-151",
+   "screen": "Directory_EntityDetailsActions",
+   "area": "actions",
+   "element": "Handle_Bookmark legacy else branch (ToggleBookmarkItem)",
+   "os": "TST only; the If condition ends with && true",
+   "react": "no legacy toggle in handleBookmark (useEntityDetailsActions.ts:278-297)",
+   "evidence": "TST eda.js:1410, 1432; app/docs/known-original-bugs.md:12 (B4)",
+   "verdict": "n/a",
+   "note": "dead in the model: the If is constant true on TST.",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "screen"
+    ],
+    "files": [
+     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js (screen)"
+    ]
+   }
+  }
+ ]
+}

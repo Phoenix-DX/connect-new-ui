@@ -41,6 +41,7 @@ function renderView(
     onSearchClear: vi.fn(),
     onSearch: vi.fn(),
     onFilter: vi.fn(),
+    onToggleShowFilters: vi.fn(),
     onNavigateToLogin: vi.fn(),
     onDismissWarning: vi.fn(),
     onSwipeEventsClear: vi.fn(() => Promise.resolve()),
@@ -170,6 +171,10 @@ describe('MessageListView', () => {
     fireEvent.click(byId('b1-Close_Filter_Icon') as Element);
     expect(handlers.onResetFilters).toHaveBeenCalledTimes(1);
     expect(handlers.onApplyFilters).toHaveBeenCalledTimes(1);
+    // Close_Filter_Icon raises ToggleShowFilters, not OnClick_CloseSearchAndFilter (ScreenBlock_MessageList.mvc.js:566-588).
+    expect(handlers.onToggleShowFilters).toHaveBeenCalledTimes(1);
+    expect(handlers.onCloseSearchAndFilter).not.toHaveBeenCalled();
+    fireEvent.click(byId('b1-Close_Search_Icon') as Element);
     expect(handlers.onCloseSearchAndFilter).toHaveBeenCalledTimes(1);
   });
 

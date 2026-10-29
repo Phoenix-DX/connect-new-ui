@@ -4,19 +4,23 @@ Load order of stylesheets (keep this order in the build):
 
 1. `/UBTConnect/css/_Basic.css`
 2. `/UBTConnect/css/OutSystemsReactWidgets.css`
-3. `/UBTConnect/css/UBT_AppManager.PIN.PinCode.css`
-4. `/UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css`
-5. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css`
-6. `/UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css`
-7. `/UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css`
-8. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect.css`
-9. `/UBTConnect/css/Connect2_LegacyShared.UBTMobileTheme_UpdatedOSUI.css`
-10. `/UBTConnect/css/Connect2_LegacyShared.ConnectMobileCommonTheme.css`
-11. `/UBTConnect/css/Connect2_LegacyShared.OrbitTheme.css`
-12. `/UBTConnect/css/Connect2_LegacyShared.AssembleTheme.css`
-13. `/UBTConnect/css/Connect2_LegacyShared.ConnectMobile.css`
-14. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect_LegacyChain.css`
-15. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css`
+3. `/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css`
+4. `/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Note_Item.css`
+5. `/UBTConnect/css/UBTConnect_Utils.CW_Notes.NotesSheet.css`
+6. `/UBTConnect/css/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.css`
+7. `/UBTConnect/css/UBT_AppManager.PIN.PinCode.css`
+8. `/UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css`
+9. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css`
+10. `/UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css`
+11. `/UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css`
+12. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect.css`
+13. `/UBTConnect/css/Connect2_LegacyShared.UBTMobileTheme_UpdatedOSUI.css`
+14. `/UBTConnect/css/Connect2_LegacyShared.ConnectMobileCommonTheme.css`
+15. `/UBTConnect/css/Connect2_LegacyShared.OrbitTheme.css`
+16. `/UBTConnect/css/Connect2_LegacyShared.AssembleTheme.css`
+17. `/UBTConnect/css/Connect2_LegacyShared.ConnectMobile.css`
+18. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect_LegacyChain.css`
+19. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css`
 
 Rules below are those whose selector contains a class used on the captured page, grouped by the block that owns the element. Full source: `styles/bundle.css`.
 
@@ -624,6 +628,10 @@ dialog.popup-dialog.dx-confirmation-dialog .dx-dialog-footer .btn.btn-primary:ho
 ```css
 .fa-group:before,.fa-users:before { content:"\f0c0" }
 ```
+### .ldm-notes  (1 rule)
+```css
+.ldm-notes { padding: 16px; }
+```
 ## Reusable.Person_Contact_Options
 
 ### .block-household-person-options  (16 rules)
@@ -652,6 +660,170 @@ dialog.popup-dialog.dx-confirmation-dialog .dx-dialog-footer .btn.btn-primary:ho
 ### .fa-phone  (1 rule)
 ```css
 .fa-phone:before { content:"\f095" }
+```
+## BasePatterns.CustomContainer
+
+### .border-color-neutral-2  (1 rule)
+```css
+.border-color-neutral-2 { border-color: var(--color-neutral-2); --border-color: var(--color-neutral-2); }
+```
+### .border-top-s  (2 rules)
+```css
+.border-top-s:not(.columns), .border-top-s.columns > .columns-item:not(:last-child) { border-top:var(--border-size-s) solid currentColor; }
+.border-top-s:not(.columns), .border-top-s.columns > .columns-item:not(:last-child) { border-top: var(--border-size-s) solid var(--border-color, currentColor); }
+```
+### .justify-content-flex-start  (1 rule)
+```css
+.justify-content-flex-start { -webkit-box-pack:start; -ms-flex-pack:start; justify-content:flex-start; }
+```
+### .padding-y-s  (1 rule)
+```css
+.padding-y-s { padding-bottom:var(--space-s); padding-top:var(--space-s); }
+```
+### .ubt-action-bar  (1 rule)
+```css
+.ubt-action-bar { gap: var(--space-m); }
+```
+### .ubt-custom-container  (1 rule)
+```css
+.OSBlockWidget:has(> .inline-block), .OSBlockWidget:has(> .OSBlockWidget > .ubt-custom-container.inline-block) { display: inline-block; width: fit-content; }
+```
+## Adaptive.Columns2
+
+### .columns2  (2 rules)
+```css
+tem, .phone .columns.columns-medium-left.phone-break-middle > .columns-item, .phone .columns.columns-small-right.phone-break-middle > .columns-item, .phone .columns.columns-medium-right.phone-break-middle > .columns-item { -webkit-box-flex:0; -ms-flex:none; flex:none; width:100%; }
+tablet .columns.columns-medium-left.tablet-break-middle > .columns-item, .tablet .columns.columns-small-right.tablet-break-middle > .columns-item, .tablet .columns.columns-medium-right.tablet-break-middle > .columns-item { -webkit-box-flex:0; -ms-flex:none; flex:none; width:100%; }
+```
+### .gutter-xs  (5 rules)
+```css
+.columns.gutter-xs { margin-left:calc(-1 * var(--space-xs) / 2); margin-right:calc(-1 * var(--space-xs) / 2); }
+.columns.gutter-xs > .columns-item { margin-bottom:var(--space-xs); padding:var(--space-none) calc(var(--space-xs) / 2); }
+-child > .columns-item:not(:last-child), .tablet .columns.gutter-xs.tablet-break-middle:only-child > .columns-item:not(:last-child), .tablet .columns.gutter-xs.tablet-break-all:only-child > .columns-item:not(:last-child) { margin-bottom:var(--space-xs); }
+only-child > .columns-item:not(:last-child), .phone .columns.gutter-xs.phone-break-middle:only-child > .columns-item:not(:last-child), .phone .columns.gutter-xs.phone-break-all:only-child > .columns-item:not(:last-child) { margin-bottom:var(--space-xs); }
+.columns.ubt-columns.gutter-xs { gap: var(--space-xs) }
+```
+### .ubt-columns  (19 rules)
+```css
+> .columns-item:nth-child(2), .ubt-columns.ubt-columns-expand-middle.ubt-columns--three-columns > .columns-item:nth-child(1), .ubt-columns.ubt-columns-expand-middle.ubt-columns--three-columns > .columns-item:nth-child(3) { flex: 0; min-width: max-content; }
+.ubt-columns.ubt-columns-same-size.ubt-columns--two-columns > .columns-item { flex: 1; }
+.ubt-columns.ubt-columns--reverse { flex-direction: row-reverse; }
+.ubt-columns.ubt-columns--reverse.ubt-columns-reduce-first > .columns-item:nth-child(2), .ubt-columns.ubt-columns--reverse.ubt-columns-reduce-last.ubt-columns--two-columns > .columns-item:nth-child(1) { flex: 0; }
+.columns .ubt-columns.ubt-columns-same-size.ubt-columns--three-columns > .columns-item, .columns .ubt-columns.ubt-columns-same-size.ubt-columns--tow-columns > .columns-item { flex: 1; }
+.ubt-columns:not(.ubt-columns--reverse) > .columns-item:first-child { padding-left: 0px; }
+.ubt-columns:not(.ubt-columns--reverse) > .columns-item:last-child { padding-right: 0px; }
+.ubt-columns.columns { margin-left: 0px; margin-right: 0px; }
+.ubt-columns.ubt-columns--reverse .columns-item:first-child { padding-right: 0px; }
+.ubt-columns.ubt-columns--reverse .columns-item:last-child { padding-left: 0px; }
+.columns.ubt-columns > .columns-item { margin-bottom: unset; padding: unset; }
+.columns.ubt-columns.gutter-none { gap: var(--space-none); }
+.columns.ubt-columns.gutter-xs { gap: var(--space-xs) }
+.columns.ubt-columns.gutter-s { gap: var(--space-s) }
+.columns.ubt-columns.gutter-base { gap: var(--space-base) }
+.columns.ubt-columns.gutter-m { gap: var(--space-m) }
+.columns.ubt-columns.gutter-l { gap: var(--space-l) }
+.columns.ubt-columns.gutter-xl { gap: var(--space-xl) }
+.columns.ubt-columns.gutter-xxl { gap: var(--space-xxl) }
+```
+### .ubt-columns--two-columns  (3 rules)
+```css
+> .columns-item:nth-child(2), .ubt-columns.ubt-columns-expand-middle.ubt-columns--three-columns > .columns-item:nth-child(1), .ubt-columns.ubt-columns-expand-middle.ubt-columns--three-columns > .columns-item:nth-child(3) { flex: 0; min-width: max-content; }
+.ubt-columns.ubt-columns-same-size.ubt-columns--two-columns > .columns-item { flex: 1; }
+.ubt-columns.ubt-columns--reverse.ubt-columns-reduce-first > .columns-item:nth-child(2), .ubt-columns.ubt-columns--reverse.ubt-columns-reduce-last.ubt-columns--two-columns > .columns-item:nth-child(1) { flex: 0; }
+```
+### .ubt-columns-reduce-first  (2 rules)
+```css
+> .columns-item:nth-child(2), .ubt-columns.ubt-columns-expand-middle.ubt-columns--three-columns > .columns-item:nth-child(1), .ubt-columns.ubt-columns-expand-middle.ubt-columns--three-columns > .columns-item:nth-child(3) { flex: 0; min-width: max-content; }
+.ubt-columns.ubt-columns--reverse.ubt-columns-reduce-first > .columns-item:nth-child(2), .ubt-columns.ubt-columns--reverse.ubt-columns-reduce-last.ubt-columns--two-columns > .columns-item:nth-child(1) { flex: 0; }
+```
+## ConnectPatterns.Icon
+
+### .connect-icon-border_color  (1 rule)
+```css
+.connect-icon-border_color:before { content: "\f091"; }
+```
+### .connect-icon-contacts  (1 rule)
+```css
+.connect-icon-contacts:before { content: "\f04c"; }
+```
+### .connect-icon-home  (1 rule)
+```css
+.connect-icon-home:before { content: "\f052"; }
+```
+### .connect-icon-list_alt  (1 rule)
+```css
+.connect-icon-list_alt:before { content: "\f041"; }
+```
+### .connect-icon-union  (1 rule)
+```css
+.connect-icon-union:before { content: "\f00c"; }
+```
+### .connect-icon-widgets  (1 rule)
+```css
+.connect-icon-widgets:before { content: "\f001"; }
+```
+### .icon-base  (1 rule)
+```css
+.icon-base { --ubt-icon-size: var(--ubt-icon-size-base); }
+```
+### .icon-non-standard-18  (1 rule)
+```css
+.icon-non-standard-18 { --ubt-icon-size: var(--ubt-icon-size-non-standard-18); }
+```
+### .ignore-loading  (2 rules)
+```css
+.ubt-skeleton-section .ubt-icon:not(.ignore-loading) { border-radius: var(--border-radius-medium); color: transparent; }
+an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section .ubt-icon:not(.ignore-loading), .ubt-skeleton-section .form > div, .ubt-skeleton-section .osui-dropdown-search, .ubt-skeleton-section .badge { background: var(--ubt-background-skeleton-light); animation: var(--ubt-skeleton-animation); border-color: var(--ubt-background-skeleton-light) }
+```
+### .text-neutral-6  (1 rule)
+```css
+.text-neutral-6 { color:var(--text-color-neutral-6, var(--color-neutral-6)); }
+```
+### .text-neutral-7  (1 rule)
+```css
+.text-neutral-7 { color:var(--text-color-neutral-7, var(--color-neutral-7)); }
+```
+### .ubt-icon  (34 rules)
+```css
+[data-button].btn.ubt-pincode__button-fingerprint .ubt-icon { font-size: calc(var(--ubt-pincode-buttons-size) - 10px); }
+.ubt-icon, .ubt-image-card__bookmarked:before, .ubt-statistics-item__bookmarked:before, .ubt-locality-contact-item__bookmarked:before { /* Use !important to prevent extensions from overriding this font. */ font-family: "connect-icon" !important; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+/* .ubt-lazy-image--no-image .ubt-icon { font-size: inherit; }
+.ubt-expandable-section.expanded .ubt-expandable-section--title-icon .icon, .ubt-expandable-section.expanded .ubt-expandable-section--title-icon .ubt-icon { transform: rotate(180deg); }
+.ubt-icon-button__badge:has(.ubt-icon) { position: absolute; top: 14.645%; right: 14.645%; transform: translate(50%, -50%); }
+.ubt-icon-button__badge:not(:has(.ubt-icon)) { display: none; }
+.ubt-icon { display: grid; align-content: center; justify-content: center; font-size: var(--ubt-icon-size); }
+.ubt-icon img { width: var(--ubt-icon-size); height: var(--ubt-icon-size); }
+*/ .ubt-button .ubt-icon { font-size: var(--ubt-button-icon-size); color: inherit; }
+.ubt-skeleton-section .ubt-icon:not(.ignore-loading) { border-radius: var(--border-radius-medium); color: transparent; }
+an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section .ubt-icon:not(.ignore-loading), .ubt-skeleton-section .form > div, .ubt-skeleton-section .osui-dropdown-search, .ubt-skeleton-section .badge { background: var(--ubt-background-skeleton-light); animation: var(--ubt-skeleton-animation); border-color: var(--ubt-background-skeleton-light) }
+keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section *::after, .ubt-skeleton-section input, .ubt-skeleton-section .osui-dropdown-search .vscomp-ele-wrapper, .ubt-skeleton-section .ubt-icon img { visibility: hidden; transition-property: visibility; transition-duration: 0ms; }
+.login-button .ubt-icon { color: inherit; }
+div:has(div > div.ubt-icon.header-filter-enabled) { position: relative; }
+.directory-locality.ubt-icon { --ubt-icon-size: 18px; }
+[class^="icon-"]:not(.ubt-icon), [class*=" icon-"]:not(.ubt-icon) { /* use !important to prevent issues with browser extensions that change fonts */ font-family: 'material-design-icons' !important; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+[class^="icon-locality-tabs"]:not(.ubt-icon), [class*=" icon-locality-tabs"]:not(.ubt-icon) { /* use !important to prevent issues with browser extensions that change fonts */ font-family: 'locality-tabs' !important; speak: never; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+[class^="icon-my-update-feed"]:not(.ubt-icon), [class*=" icon-my-update-feed"]:not(.ubt-icon) { /* use !important to prevent issues with browser extensions that change fonts */ font-family: 'my-update-feed' !important; speak: never; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+[class^="icon-directory-"]:not(.ubt-icon), [class*=" icon-directory-"]:not(.ubt-icon) { /* use !important to prevent issues with browser extensions that change fonts */ font-family: 'icon-directory' !important; speak: never; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+[class^="icon-ch-"]:not(.ubt-icon), [class*=" icon-ch-"]:not(.ubt-icon) { /* use !important to prevent issues with browser extensions that change fonts */ font-family: 'communityHub' !important; speak: never; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+[class^="photobook-icon-"]:not(.ubt-icon), [class*=" photobook-icon-"]:not(.ubt-icon) { /* use !important to prevent issues with browser extensions that change fonts */ font-family: 'photobook-icon-set' !important; speak: never; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+[class^="application-icon-"]:not(.ubt-icon), [class*=" application-icon-"]:not(.ubt-icon) { /* use !important to prevent issues with browser extensions that change fonts */ font-family: 'application-icon' !important; speak: never; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+[class^="trove-icon-"]:not(.ubt-icon), [class*=" trove-icon-"]:not(.ubt-icon) { /* use !important to prevent issues with browser extensions that change fonts */ font-family: 'trove-icon' !important; speak: never; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+[class^="trove-mobile-icon-"]:not(.ubt-icon), [class*=" trove-mobile-icon-"]:not(.ubt-icon) { /* use !important to prevent issues with browser extensions that change fonts */ font-family: 'trove-mobile-icon' !important; speak: never; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+[class^="icon-setting-"]:not(.ubt-icon), [class*=" icon-setting-"]:not(.ubt-icon) { /* use !important to prevent issues with browser extensions that change fonts */ font-family: 'AccountSetting-Icons' !important; speak: never; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+```
+## BasePatterns.CustomText
+
+### .font-semi-bold  (1 rule)
+```css
+.font-semi-bold { font-weight:var(--font-semi-bold); }
+```
+### .font-size-xs  (1 rule)
+```css
+.font-size-xs { font-size:var(--font-size-xs); }
+```
+### .font-size-xxs  (1 rule)
+```css
+.font-size-xxs { font-size: var(--font-size-xxs); }
 ```
 ## App_Common.BottomBarContent
 
@@ -733,75 +905,6 @@ ds-compatibility) .bottom-bar > a:active .bottom-bar-item-text, :where(.backward
 html[data-uieditorversion^="1"] .placeholder-empty:empty {  }
 .ph:empty, .placeholder-empty:empty { display:none; }
 list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .placeholder-empty > .OSBlockWidget, .osui-tabs__content > .ph > .list.list-group, .osui-tabs__content > .placeholder-empty > .list.list-group { display:contents; }
-```
-## ConnectPatterns.Icon
-
-### .connect-icon-contacts  (1 rule)
-```css
-.connect-icon-contacts:before { content: "\f04c"; }
-```
-### .connect-icon-home  (1 rule)
-```css
-.connect-icon-home:before { content: "\f052"; }
-```
-### .connect-icon-list_alt  (1 rule)
-```css
-.connect-icon-list_alt:before { content: "\f041"; }
-```
-### .connect-icon-union  (1 rule)
-```css
-.connect-icon-union:before { content: "\f00c"; }
-```
-### .connect-icon-widgets  (1 rule)
-```css
-.connect-icon-widgets:before { content: "\f001"; }
-```
-### .icon-base  (1 rule)
-```css
-.icon-base { --ubt-icon-size: var(--ubt-icon-size-base); }
-```
-### .ignore-loading  (2 rules)
-```css
-.ubt-skeleton-section .ubt-icon:not(.ignore-loading) { border-radius: var(--border-radius-medium); color: transparent; }
-an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section .ubt-icon:not(.ignore-loading), .ubt-skeleton-section .form > div, .ubt-skeleton-section .osui-dropdown-search, .ubt-skeleton-section .badge { background: var(--ubt-background-skeleton-light); animation: var(--ubt-skeleton-animation); border-color: var(--ubt-background-skeleton-light) }
-```
-### .text-neutral-6  (1 rule)
-```css
-.text-neutral-6 { color:var(--text-color-neutral-6, var(--color-neutral-6)); }
-```
-### .ubt-icon  (32 rules)
-```css
-[data-button].btn.ubt-pincode__button-fingerprint .ubt-icon { font-size: calc(var(--ubt-pincode-buttons-size) - 10px); }
-.ubt-icon, .ubt-image-card__bookmarked:before, .ubt-statistics-item__bookmarked:before, .ubt-locality-contact-item__bookmarked:before { /* Use !important to prevent extensions from overriding this font. */ font-family: "connect-icon" !important; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-/* .ubt-lazy-image--no-image .ubt-icon { font-size: inherit; }
-.ubt-expandable-section.expanded .ubt-expandable-section--title-icon .icon, .ubt-expandable-section.expanded .ubt-expandable-section--title-icon .ubt-icon { transform: rotate(180deg); }
-.ubt-icon-button__badge:has(.ubt-icon) { position: absolute; top: 14.645%; right: 14.645%; transform: translate(50%, -50%); }
-.ubt-icon-button__badge:not(:has(.ubt-icon)) { display: none; }
-.ubt-icon { display: grid; align-content: center; justify-content: center; font-size: var(--ubt-icon-size); }
-.ubt-icon img { width: var(--ubt-icon-size); height: var(--ubt-icon-size); }
-*/ .ubt-button .ubt-icon { font-size: var(--ubt-button-icon-size); color: inherit; }
-.ubt-skeleton-section .ubt-icon:not(.ignore-loading) { border-radius: var(--border-radius-medium); color: transparent; }
-an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section .ubt-icon:not(.ignore-loading), .ubt-skeleton-section .form > div, .ubt-skeleton-section .osui-dropdown-search, .ubt-skeleton-section .badge { background: var(--ubt-background-skeleton-light); animation: var(--ubt-skeleton-animation); border-color: var(--ubt-background-skeleton-light) }
-keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section *::after, .ubt-skeleton-section input, .ubt-skeleton-section .osui-dropdown-search .vscomp-ele-wrapper, .ubt-skeleton-section .ubt-icon img { visibility: hidden; transition-property: visibility; transition-duration: 0ms; }
-.login-button .ubt-icon { color: inherit; }
-div:has(div > div.ubt-icon.header-filter-enabled) { position: relative; }
-.directory-locality.ubt-icon { --ubt-icon-size: 18px; }
-[class^="icon-"]:not(.ubt-icon), [class*=" icon-"]:not(.ubt-icon) { /* use !important to prevent issues with browser extensions that change fonts */ font-family: 'material-design-icons' !important; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-[class^="icon-locality-tabs"]:not(.ubt-icon), [class*=" icon-locality-tabs"]:not(.ubt-icon) { /* use !important to prevent issues with browser extensions that change fonts */ font-family: 'locality-tabs' !important; speak: never; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-[class^="icon-my-update-feed"]:not(.ubt-icon), [class*=" icon-my-update-feed"]:not(.ubt-icon) { /* use !important to prevent issues with browser extensions that change fonts */ font-family: 'my-update-feed' !important; speak: never; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-[class^="icon-directory-"]:not(.ubt-icon), [class*=" icon-directory-"]:not(.ubt-icon) { /* use !important to prevent issues with browser extensions that change fonts */ font-family: 'icon-directory' !important; speak: never; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-[class^="icon-ch-"]:not(.ubt-icon), [class*=" icon-ch-"]:not(.ubt-icon) { /* use !important to prevent issues with browser extensions that change fonts */ font-family: 'communityHub' !important; speak: never; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-[class^="photobook-icon-"]:not(.ubt-icon), [class*=" photobook-icon-"]:not(.ubt-icon) { /* use !important to prevent issues with browser extensions that change fonts */ font-family: 'photobook-icon-set' !important; speak: never; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-[class^="application-icon-"]:not(.ubt-icon), [class*=" application-icon-"]:not(.ubt-icon) { /* use !important to prevent issues with browser extensions that change fonts */ font-family: 'application-icon' !important; speak: never; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-[class^="trove-icon-"]:not(.ubt-icon), [class*=" trove-icon-"]:not(.ubt-icon) { /* use !important to prevent issues with browser extensions that change fonts */ font-family: 'trove-icon' !important; speak: never; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-[class^="trove-mobile-icon-"]:not(.ubt-icon), [class*=" trove-mobile-icon-"]:not(.ubt-icon) { /* use !important to prevent issues with browser extensions that change fonts */ font-family: 'trove-mobile-icon' !important; speak: never; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-[class^="icon-setting-"]:not(.ubt-icon), [class*=" icon-setting-"]:not(.ubt-icon) { /* use !important to prevent issues with browser extensions that change fonts */ font-family: 'AccountSetting-Icons' !important; speak: never; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-```
-## BasePatterns.CustomText
-
-### .font-size-xs  (1 rule)
-```css
-.font-size-xs { font-size:var(--font-size-xs); }
 ```
 ## OutSystemsUIOverrides.IconBadge
 
@@ -1016,13 +1119,14 @@ ibility) .screen-container.active-screen:not([class*=-enter]) + .screen-containe
 ```
 ## Generic utility classes (too many rules to list; see bundle.css)
 
-`.backwards-compatibility` (1747), `.btn` (126), `.dx-confirmation-dialog` (47), `.header` (99), `.layout` (53), `.layout-native` (278), `.layout-side` (91), `.list` (128), `.list-group` (51), `.phone` (273)
+`.backwards-compatibility` (1747), `.btn` (126), `.columns` (82), `.columns-item` (71), `.dx-confirmation-dialog` (47), `.header` (99), `.layout` (53), `.layout-native` (278), `.layout-side` (91), `.list` (129), `.list-group` (52), `.phone` (273)
 
 ## Design tokens referenced by the rules above
 
 - `--background-color-button`: `var(--color-primary)` (in `.connect-theme`); `var(--color-secondary)` (in `.media-hub-theme`); `var(--orbit-primary-7)` (in `.orbit-theme`)
 - `--background-color-content`: `white` (in `.connect-theme`); `var(--color-primary-light)` (in `.media-hub-theme`); `white` (in `.orbit-theme`)
 - `--background-color-header`: `var(--color-primary)` (in `.connect-theme`); `var(--color-primary-light)` (in `.media-hub-theme`); `var(--color-primary-orbit)` (in `.orbit-theme`)
+- `--border-color`: `var(--border-color-neutral-5, var(--color-neutral-5))` (in `.vscomp-dropbox`); `var(--color-primary)` (in `.border-color-primary`); `var(--color-secondary)` (in `.border-color-secondary`); `var(--color-tertiary)` (in `.border-color-tertiary`)
 - `--border-radius-circle`: `100%` (in `@charset "UTF-8";    :root`); `100%` (in `.ignore-backwards-compatibility-content`)
 - `--border-radius-large`: `16px` (in `:root, .connect-legacy-compatibily-containter`)
 - `--border-radius-medium`: `8px` (in `:root, .connect-legacy-compatibily-containter`)
@@ -1044,6 +1148,7 @@ ibility) .screen-container.active-screen:not([class*=-enter]) + .screen-containe
 - `--color-green-lightest`: `#ebf7ed` (in `@charset "UTF-8";    :root`); `#EAF3EB` (in `:root, .connect-legacy-compatibily-containter`); `#ebf7ed` (in `.ignore-backwards-compatibility-content`)
 - `--color-neutral-0`: `#ffffff` (in `@charset "UTF-8";    :root`); `#ffffff` (in `:root`); `#ffffff` (in `.ignore-backwards-compatibility-content`); `#ffffff` (in `.ignore-backwards-compatibility-content`)
 - `--color-neutral-10`: `#101213` (in `@charset "UTF-8";    :root`); `#101213` (in `:root`); `#101213` (in `.ignore-backwards-compatibility-content`)
+- `--color-neutral-2`: `#f1f3f5` (in `@charset "UTF-8";    :root`); `#f1f3f5` (in `:root`); `#f1f3f5` (in `.ignore-backwards-compatibility-content`); `#E9EBED` (in `.ignore-backwards-compatibility-content`)
 - `--color-neutral-3`: `#e9ecef` (in `@charset "UTF-8";    :root`); `#e9ecef` (in `:root`); `#e9ecef` (in `.ignore-backwards-compatibility-content`); `#D8DCDE` (in `.ignore-backwards-compatibility-content`)
 - `--color-neutral-4`: `#dee2e6` (in `@charset "UTF-8";    :root`); `#dee2e6` (in `:root`); `#dee2e6` (in `.ignore-backwards-compatibility-content`); `#C2C8CC` (in `.ignore-backwards-compatibility-content`)
 - `--color-neutral-5`: `#ced4da` (in `@charset "UTF-8";    :root`); `#ced4da` (in `:root`); `#ced4da` (in `.ignore-backwards-compatibility-content`); `#87929D` (in `.ignore-backwards-compatibility-content`)
@@ -1113,12 +1218,14 @@ ibility) .screen-container.active-screen:not([class*=-enter]) + .screen-containe
 - `--space-s`: `8px` (in `@charset "UTF-8";    :root`); `8px` (in `:root, .connect-legacy-compatibily-containter--spacing`); `5px` (in `:root :where(.backwards-compatibility)`); `8px` (in `.ignore-backwards-compatibility-content`)
 - `--space-xl`: `40px` (in `@charset "UTF-8";    :root`); `40px` (in `:root, .connect-legacy-compatibily-containter--spacing`); `25px` (in `:root :where(.backwards-compatibility)`); `40px` (in `.ignore-backwards-compatibility-content`)
 - `--space-xs`: `4px` (in `@charset "UTF-8";    :root`); `4px` (in `:root, .connect-legacy-compatibily-containter--spacing`); `3px` (in `:root :where(.backwards-compatibility)`); `4px` (in `.ignore-backwards-compatibility-content`)
+- `--space-xxl`: `48px` (in `@charset "UTF-8";    :root`); `48px` (in `:root, .connect-legacy-compatibily-containter--spacing`); `30px` (in `:root :where(.backwards-compatibility)`); `48px` (in `.ignore-backwards-compatibility-content`)
 - `--status-bar-height`: `0px` (in `.ignore-backwards-compatibility-content`)
 - `--ubt-background-skeleton-light`: `var(--color-neutral-3)` (in `:root`)
 - `--ubt-button-height-s`: `40px` (in `:root`)
 - `--ubt-button-icon-size`: `var(--ubt-icon-size-small)` (in `.ubt-button--xs`); `var(--ubt-icon-size-medium)` (in `.ubt-button--s`); `var(--ubt-icon-size-base)` (in `.ubt-button--m`)
 - `--ubt-icon-size`: `var(--ubt-icon-size-base)` (in `:root`); `var(--ubt-icon-size-base)` (in `.ubt-avatar-image-base, .ubt-lazy-image-base, .ubt-lazy-image--width-base`); `var(--ubt-icon-size-non-standard-32)` (in `.ubt-avatar-image.ubt-lazy-image.ubt-lazy-image-base`); `var(--ubt-icon-size-medium)` (in `.ubt-avatar-image-xxs, .ubt-lazy-image-xxs`)
 - `--ubt-icon-size-base`: `24px` (in `:root`)
+- `--ubt-icon-size-non-standard-18`: `18px` (in `:root`)
 - `--ubt-layout-login-padding`: `var(--ubt-pincode-padding, var(--ubt-layout-login-padding-top) var(--space-base) var(--space-l) var(--space-base))` (in `:root`)
 - `--ubt-login-screen-padding-top`: `calc(var(--ubt-layout-login-padding-top) + 80px)` (in `:root`)
 - `--ubt-login-svg-min-height`: `732px` (in `:root`)

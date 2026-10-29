@@ -21,7 +21,7 @@ export interface HouseholdDetailsContainerProps {
   /** OutSystems instance id of the block. */
   id?: string;
   source: HouseholdDetailsSource;
-  /** The two flags of the household details (the caller reads them with useHouseholdDetailsFlags). */
+  /** The flags of the household details (the caller reads them with useHouseholdDetailsFlags). */
   flags: HouseholdDetailsFlags;
   /** isEnabled (default true): false in the Profile preview (every link and action disabled). */
   isEnabled?: boolean;
@@ -129,6 +129,7 @@ export function HouseholdDetailsContainer({
       isSkeletonOnly={state.isSkeletonOnly}
       hidePhotobookActions={state.hidePhotobookActions}
       timelineImages={state.timelineImages}
+      hasHouseholdGallery={flags.hasHouseholdGallery}
       carouselTag={carouselTag}
       entityActions={entityActions}
       renderMemberActions={renderMemberActions}

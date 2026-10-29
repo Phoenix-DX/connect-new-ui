@@ -53,6 +53,20 @@ describe('ProfileDetailsForm', () => {
     expect(input('Input_MobileNumber')).toHaveAttribute('type', 'tel');
   });
 
+  it('limits the e-mail and the username to 50 characters and the phone inputs to 15, with autocomplete off (Profile.mvc.js:993, 1065, 1843-1851, 2020-2028, 2241-2249)', () => {
+    const { input } = renderForm({ isHouseholder: true, showContactSwitches: true });
+    expect(input('Input_Username')).toHaveAttribute('maxlength', '50');
+    expect(input('Input_Email')).toHaveAttribute('maxlength', '50');
+    expect(input('Input_Email')).not.toHaveAttribute('autocomplete');
+    for (const id of ['HomeNumber2', 'Input_MobileNumber', 'Input_WorkNumber']) {
+      expect(input(id)).toHaveAttribute('maxlength', '15');
+      expect(input(id)).toHaveAttribute('autocomplete', 'off');
+    }
+    // MaxLength 0 on the identification inputs: no attribute.
+    expect(input('Input_ContactBaseId')).not.toHaveAttribute('maxlength');
+    expect(input('Input_UBTAccountNumber')).not.toHaveAttribute('maxlength');
+  });
+
   it('a member who is not the householder nor the spouse gets no switches, no address and a read-only home number', () => {
     const { input } = renderForm();
     expect(input('HomeNumber2')).toBeDisabled();

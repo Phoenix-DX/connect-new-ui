@@ -5,12 +5,14 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   fetchEventDetails,
   fetchHasDocuments,
+  fetchEventNotes,
   fetchHasQRCode,
   fetchHostSurveyStatus,
   type EventDetailCallInputs,
   type EventDetailsResult,
   type Milestone_Screen,
 } from '@/api/event';
+import { ControllerDisposedException, IgnorableSystemException } from '@/legacy/os/os-exceptions';
 import type { EventDetailInputs } from '@/pages/EventDetail/inputs';
 import { SurveyStatus } from '@/pages/EventDetail/staticEntities';
 import { showFeedbackMessage } from '@/platform/feedback';
@@ -33,6 +35,7 @@ vi.mock('@/api/event', async (importOriginal) => ({
   fetchHostSurveyStatus: vi.fn(),
   fetchHasDocuments: vi.fn(),
   fetchHasQRCode: vi.fn(),
+  fetchEventNotes: vi.fn(),
 }));
 vi.mock('@/platform/session/userInfo', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/platform/session/userInfo')>()),
@@ -182,6 +185,7 @@ const renderFlows = (hasOrbitEventBooklet = true) =>
 const settle = () => act(() => new Promise((resolve) => setTimeout(resolve, 0)));
 
 beforeEach(() => {
+  vi.mocked(fetchEventNotes).mockResolvedValue({ Total: 0, Note_Item_List: [] });
   vi.clearAllMocks();
   calls.length = 0;
   sentVariables.clear();
@@ -271,13 +275,30 @@ describe('useEventDetail OnReady', () => {
     const { result } = renderFlows();
     await settle();
     expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(failure);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(failure, expect.anything());
     expect(result.current.state.isFetchingData).toBe(true);
     expect(getUserInformation).not.toHaveBeenCalled();
   });
+
+  it('a FetchEventNotes failure keeps the default notes and goes to the flow handler (E1, WP6 Q2 a)', async () => {
+    const failure = new Error('down');
+    vi.mocked(fetchEventNotes).mockRejectedValueOnce(failure);
+    renderFlows();
+    await settle();
+    expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(failure, expect.anything());
+    expect(fetchEventDetails).toHaveBeenCalledTimes(1);
+  });
 });
 
-describe('useEventDetail after an unmount and in StrictMode (decision W23)', () => {
+/** The errors that reach the flow handler, without the ignorable ones (ControllerDisposedException of a left block). */
+const raisedErrors = () =>
+  vi
+    .mocked(raiseToFlowHandler)
+    .mock.calls.map(([error]) => error)
+    .filter((error) => !(error instanceof IgnorableSystemException));
+
+describe('useEventDetail after an unmount and in StrictMode (flow scope, item 8)', () => {
   /** Get_EventDetails answers only when the test resolves it. */
   function pendingEventDetails() {
     let resolve: (value: EventDetailsResult) => void = () => undefined;
@@ -299,46 +320,69 @@ describe('useEventDetail after an unmount and in StrictMode (decision W23)', () 
     };
   }
 
-  it('still makes the next calls once, with the same variables, without a state write', async () => {
+  it('R1: unmount while Get_EventDetails is pending: no next call, no state write, no raise', async () => {
     const pending = pendingEventDetails();
     const { unmount } = renderFlows();
     unmount();
     vi.mocked(eventDetailReducer).mockClear();
     pending.answerNow();
     await settle();
-    expect(calls).toEqual([
-      'Get_EventDetails',
-      'Cache_UserInfo_Get',
-      'Get_HostSurveyStatus',
-      'Get_HasDocuments',
-      'Get_HasQRCode',
-    ]);
-    expect(firstSent('Get_HasQRCode')).toMatchObject({
-      HasDocuments: true,
-      UserInformation: { UserMemberId: '990001', HouseholderId: '990001', SpouseMemberId: '990002' },
-    });
-    // The flow computes its own copy of the state with the reducer: one call per action. A state write (dispatch)
-    // would call the reducer again for each action, so exactly one call each means that no state write was made.
-    const calledActions = vi.mocked(eventDetailReducer).mock.calls.map(([, action]) => action.type);
-    expect(calledActions).toEqual([
-      'eventDetailsFetched',
-      'userInformationRead',
-      'hostSurveyStatusFetched',
-      'localSurveyStatusRead',
-      'hasDocumentsFetched',
-      'qrCodeFetched',
-      'fetchEnded',
-    ]);
-    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    expect(calls).toEqual(['Get_EventDetails']);
+    expect(eventDetailReducer).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 
-  it('still sends a failure to the flow handler once', async () => {
+  it('R1: unmount while Get_EventDetails is pending: its failure reaches no handler', async () => {
     const pending = pendingEventDetails();
     const { unmount } = renderFlows();
     unmount();
     pending.failNow(new Error('Service Interruption'));
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
+    expect(raisedErrors()).toEqual([]);
+    expect(calls).toEqual(['Get_EventDetails']);
+  });
+
+  it('R1: unmount while Get_HasDocuments is pending: Get_HasQRCode does not start, no state write', async () => {
+    let answerDocuments: (hasDocuments: boolean) => void = () => undefined;
+    vi.mocked(fetchHasDocuments).mockImplementation((v) => {
+      record('Get_HasDocuments')(v);
+      return new Promise((resolve) => {
+        answerDocuments = resolve;
+      });
+    });
+    const { unmount } = renderFlows();
+    await settle();
+    unmount();
+    vi.mocked(eventDetailReducer).mockClear();
+    answerDocuments(true);
+    await settle();
+    expect(calls).toEqual(['Get_EventDetails', 'Cache_UserInfo_Get', 'Get_HostSurveyStatus', 'Get_HasDocuments']);
+    expect(eventDetailReducer).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R2 then R3: unmount while Cache_UserInfo_Get of OnHandle_ViewHelpers is pending: no NavigateTo_Helpers', async () => {
+    const { result, unmount } = renderFlows();
+    await settle();
+    let answerUser: (value: ReturnType<typeof user>) => void = () => undefined;
+    vi.mocked(getUserInformation).mockImplementation(
+      () =>
+        new Promise((resolve) => {
+          answerUser = resolve;
+        }),
+    );
+    act(() => {
+      result.current.handlers.onHandleViewHelpers('Helper');
+    });
+    unmount();
+    answerUser(user('990005'));
+    await settle();
+    expect(events.onNavigateToHelpers).not.toHaveBeenCalled();
+    // The own action NavigateTo_Helpers ends the flow with an ignorable exception.
+    expect(vi.mocked(raiseToFlowHandler).mock.calls.map(([error]) => error)).toEqual([
+      expect.any(ControllerDisposedException),
+    ]);
+    expect(raisedErrors()).toEqual([]);
   });
 
   it('dispatches each action while the screen is there', async () => {
@@ -347,8 +391,8 @@ describe('useEventDetail after an unmount and in StrictMode (decision W23)', () 
     const fetchEnded = vi
       .mocked(eventDetailReducer)
       .mock.calls.filter(([, action]) => action.type === 'fetchEnded').length;
-    // The flow's own copy, the newest state of useFlowState and the rendered state of React.
-    expect(fetchEnded).toBeGreaterThanOrEqual(3);
+    // The newest state of useFlowState and the rendered state of React.
+    expect(fetchEnded).toBeGreaterThanOrEqual(2);
   });
 
   it('runs OnReady before the first paint (decision W28)', () => {
@@ -377,8 +421,8 @@ describe('useEventDetail after an unmount and in StrictMode (decision W23)', () 
     );
     expect(seen).toHaveLength(1);
     expect(seen[0]?.calls).toBe(1);
-    // The flow's own copy and the dispatch (newest state) apply the action before the witness runs.
-    expect(seen[0]?.fetchStarted).toBeGreaterThanOrEqual(2);
+    // The dispatch (newest state) applies the action before the witness runs.
+    expect(seen[0]?.fetchStarted).toBeGreaterThanOrEqual(1);
   });
 
   it('runs OnReady once in StrictMode and still loads the event', async () => {

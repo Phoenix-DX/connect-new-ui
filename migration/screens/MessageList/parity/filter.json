@@ -5,14 +5,17 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 1,
- "fingerprint": "1684ddcba1d304ac167d",
+ "fingerprint": "6c2a2c53886e42e5b05a",
  "options": {
   "text": true,
   "style": true,
   "pixel": true,
   "calls": true,
+  "visibleOnly": false,
   "full": true,
-  "replay": "builder"
+  "replay": "builder",
+  "skipKinds": [],
+  "selfRef": false
  },
  "replay": {
   "mode": "builder",
@@ -24,7 +27,7 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-21T04:53:41.565Z",
+ "at": "2026-10-29T16:02:43.688Z",
  "counts": {},
  "exemptionsUsed": {
   "PULL-TO-REFRESH-FADEIN-PHASE": 1,
@@ -35,10 +38,10 @@
   "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1
  },
  "pixel": {
-  "ratio": 0.00027,
-  "maxCell": 0.0106,
+  "ratio": 0.00023,
+  "maxCell": 0.0206,
   "maxCellRatio": 0.03,
-  "diffPixels": 88,
+  "diffPixels": 75,
   "comparedPixels": 327313,
   "maxRatio": 0.002,
   "threshold": 0.1,
@@ -52,11 +55,10 @@
   ],
   "masks": 3,
   "hotspots": [
-   "200,240 (17px)",
-   "280,280 (17px)",
-   "200,280 (15px)",
+   "280,280 (33px)",
+   "280,240 (22px)",
    "200,800 (11px)",
-   "280,240 (9px)"
+   "200,760 (9px)"
   ],
   "diffPng": "migration/screens/MessageList/parity/filter.diff.png"
  },

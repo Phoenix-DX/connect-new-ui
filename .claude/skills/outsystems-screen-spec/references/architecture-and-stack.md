@@ -37,7 +37,7 @@ Consistency across dozens of routes built by different agents at different times
 A pattern (`migration/patterns/P-<ID>.md`) states how this app does one recurring thing: when it applies, the rules, and a reference implementation. Seeds at init: server data (P-DATA), mocks (P-MOCKS), route inputs and navigation (P-PARAMS), states (P-STATES), lists (P-LIST), forms (P-FORM), dialogs/sheets/toasts (P-DIALOG), back navigation and view cache (P-BACK), OutSystems UI patterns as shared components (P-OSUI), feature flags through the flag store (P-FLAGS), mutations that keep state in the mock store (P-MUTATION), the same calls in the same phases as the capture (P-CALLS). The stack also has a `viewports` item (which viewports are captured and parity-checked) and one `osui:<Pattern>` item per OutSystems UI pattern with behaviour to reproduce (provider library or hand-written).
 
 - Route specs list the patterns they follow under "Patterns used"; `consistency_check.py` rejects ids that do not exist or are not accepted.
-- Reference: after the first route using a pattern finishes (review confirmed by the user), ask the user whether that route's files become the reference: `stack.py pattern reference <ID> --route <S> --files app/src/screens/<S>/api.ts,...`. The pattern file then points every later route to working, confirmed code. Prefer the simplest route that shows the pattern completely.
+- Reference: after the first route using a pattern finishes (review confirmed by the user), ask the user whether that route's files become the reference: `stack.py pattern reference <ID> --route <S> --files app/src/pages/<S>/<S>Page.tsx,app/src/api/<domain>/repository.ts,...`. The pattern file then points every later route to working, confirmed code. Prefer the simplest route that shows the pattern completely.
 - `stack.py check` fingerprints reference files; if a reference changes, the user re-confirms it.
 - New need not covered by any pattern: a decision question to the user. If accepted, `stack.py pattern new` (proposed) and `pattern accept --by user`. Never invent a local way of doing something another route will also need.
 
@@ -54,8 +54,8 @@ The foundation owner applies it (package.json, lockfile, shared code), runs `sta
 ## 5. Consistency rules
 
 `consistency_check.py --screen <S>` (part of `route.py finish`) checks, from `stack.json`:
-- required files (`index.tsx`; `api.ts`, `mocks.ts`, `types.ts` when the route has calls),
-- imports: packages only from the allow-list; relative imports only inside the route or into `src/shared`, `src/shell`, `src/lib`, `src/components`, `src/mocks`; never into another route,
+- required files (`{screen}Page.tsx` in `app/src/pages/<S>/`),
+- imports: packages only from the allow-list; layer and cross-page imports are checked by `npm --prefix app run arch` (run by the build gate),
 - forbidden patterns with ids and reasons: direct `fetch`/axios, browser storage, route CSS, inline visual styles (unless every declaration is in a captured `style` attribute of the route), raw HTML, wire shapes in components, debug output,
 - `package.json` equals the pinned allow-list,
 - "Patterns used" ids exist and are accepted.

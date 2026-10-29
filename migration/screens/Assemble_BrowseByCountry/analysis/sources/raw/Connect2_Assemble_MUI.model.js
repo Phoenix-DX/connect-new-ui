@@ -196,6 +196,19 @@ return MyBookmarks_ObjectTypeList;
 Connect2_Assemble_MUIModel.MyBookmarks_ObjectTypeList = MyBookmarks_ObjectTypeList;
 
 });
+define("Connect2_Assemble_MUI.model$ActionBarOptionsList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "Connect2_Assemble_MUI.model", "UBTConnectLibrary.model$ActionBarOptionsRec", "Connect2_Assemble_MUI.referencesHealth", "Connect2_Assemble_MUI.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, Connect2_Assemble_MUIModel) {
+var OS = OutSystems.Internal;
+var ActionBarOptionsList = (function (_super) {
+__extends(ActionBarOptionsList, _super);
+function ActionBarOptionsList(defaults) {
+_super.apply(this, arguments);
+}
+ActionBarOptionsList.itemType = UBTConnectLibraryModel.ActionBarOptionsRec;
+return ActionBarOptionsList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_Assemble_MUIModel.ActionBarOptionsList = ActionBarOptionsList;
+
+});
 define("Connect2_Assemble_MUI.model$", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_Assemble_MUI.model"], function (exports, OutSystems, Connect2_Assemble_MUIModel) {
 var OS = OutSystems.Internal;
 var TextList = (function (_super) {
@@ -1243,6 +1256,46 @@ MemberRecordList.itemType = Connect2_Assemble_MUIModel.MemberRecord;
 return MemberRecordList;
 })(OS.DataTypes.GenericRecordList);
 Connect2_Assemble_MUIModel.MemberRecordList = MemberRecordList;
+
+});
+define("Connect2_Assemble_MUI.model$ActionBarOptionsRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "Connect2_Assemble_MUI.model", "UBTConnectLibrary.model$ActionBarOptionsRec", "Connect2_Assemble_MUI.referencesHealth", "Connect2_Assemble_MUI.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, Connect2_Assemble_MUIModel) {
+var OS = OutSystems.Internal;
+var ActionBarOptionsRecord = (function (_super) {
+__extends(ActionBarOptionsRecord, _super);
+function ActionBarOptionsRecord(defaults) {
+_super.apply(this, arguments);
+}
+ActionBarOptionsRecord.attributesToDeclare = function () {
+return [
+this.attr("ActionBarOptions", "actionBarOptionsAttr", "ActionBarOptions", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ActionBarOptionsRec());
+}, true, UBTConnectLibraryModel.ActionBarOptionsRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+ActionBarOptionsRecord.fromStructure = function (str) {
+return new ActionBarOptionsRecord(new ActionBarOptionsRecord.RecordClass({
+actionBarOptionsAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+ActionBarOptionsRecord._isAnonymousRecord = true;
+ActionBarOptionsRecord.UniqueId = "e6dab178-52e1-ec4a-1946-c48270768708";
+ActionBarOptionsRecord.init();
+return ActionBarOptionsRecord;
+})(OS.DataTypes.GenericRecord);
+Connect2_Assemble_MUIModel.ActionBarOptionsRecord = ActionBarOptionsRecord;
+
+});
+define("Connect2_Assemble_MUI.model$ActionBarOptionsRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_Assemble_MUI.model", "Connect2_Assemble_MUI.model$ActionBarOptionsRecord"], function (exports, OutSystems, Connect2_Assemble_MUIModel) {
+var OS = OutSystems.Internal;
+var ActionBarOptionsRecordList = (function (_super) {
+__extends(ActionBarOptionsRecordList, _super);
+function ActionBarOptionsRecordList(defaults) {
+_super.apply(this, arguments);
+}
+ActionBarOptionsRecordList.itemType = Connect2_Assemble_MUIModel.ActionBarOptionsRecord;
+return ActionBarOptionsRecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_Assemble_MUIModel.ActionBarOptionsRecordList = ActionBarOptionsRecordList;
 
 });
 define("Connect2_Assemble_MUI.model$LocalityDetailsBooleanRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_Assemble_MUI.model", "Connect2_Assemble_MUI.model$LocalityDetailsBooleanRecord"], function (exports, OutSystems, Connect2_Assemble_MUIModel) {

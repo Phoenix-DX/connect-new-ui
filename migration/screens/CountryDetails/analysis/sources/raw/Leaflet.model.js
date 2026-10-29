@@ -726,6 +726,29 @@ return MapVisibleBoundariesRec;
 LeafletModel.MapVisibleBoundariesRec = MapVisibleBoundariesRec;
 
 });
+define("Leaflet.model$Map_GeoJSON_PointMatchRec", ["exports", "OutSystems/ClientRuntime/Main", "Leaflet.model"], function (exports, OutSystems, LeafletModel) {
+var OS = OutSystems.Internal;
+var Map_GeoJSON_PointMatchRec = (function (_super) {
+__extends(Map_GeoJSON_PointMatchRec, _super);
+function Map_GeoJSON_PointMatchRec(defaults) {
+_super.apply(this, arguments);
+}
+Map_GeoJSON_PointMatchRec.attributesToDeclare = function () {
+return [
+this.attr("Id", "idAttr", "Id", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("Type", "typeAttr", "Type", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true)
+].concat(_super.attributesToDeclare.call(this));
+};
+Map_GeoJSON_PointMatchRec.init();
+return Map_GeoJSON_PointMatchRec;
+})(OS.DataTypes.GenericRecord);
+LeafletModel.Map_GeoJSON_PointMatchRec = Map_GeoJSON_PointMatchRec;
+
+});
 define("Leaflet.model$ZoomControlOptionsRec", ["exports", "OutSystems/ClientRuntime/Main", "Leaflet.model"], function (exports, OutSystems, LeafletModel) {
 var OS = OutSystems.Internal;
 var ZoomControlOptionsRec = (function (_super) {
@@ -1023,6 +1046,19 @@ MarkerOptionsList.itemType = LeafletModel.MarkerOptionsRec;
 return MarkerOptionsList;
 })(OS.DataTypes.GenericRecordList);
 LeafletModel.MarkerOptionsList = MarkerOptionsList;
+
+});
+define("Leaflet.model$Map_GeoJSON_PointMatchList", ["exports", "OutSystems/ClientRuntime/Main", "Leaflet.model", "Leaflet.model$Map_GeoJSON_PointMatchRec"], function (exports, OutSystems, LeafletModel) {
+var OS = OutSystems.Internal;
+var Map_GeoJSON_PointMatchList = (function (_super) {
+__extends(Map_GeoJSON_PointMatchList, _super);
+function Map_GeoJSON_PointMatchList(defaults) {
+_super.apply(this, arguments);
+}
+Map_GeoJSON_PointMatchList.itemType = LeafletModel.Map_GeoJSON_PointMatchRec;
+return Map_GeoJSON_PointMatchList;
+})(OS.DataTypes.GenericRecordList);
+LeafletModel.Map_GeoJSON_PointMatchList = Map_GeoJSON_PointMatchList;
 
 });
 define("Leaflet.model$ZoomControlOptionsList", ["exports", "OutSystems/ClientRuntime/Main", "Leaflet.model", "Leaflet.model$ZoomControlOptionsRec"], function (exports, OutSystems, LeafletModel) {
@@ -1641,6 +1677,46 @@ PathOptionsList.itemType = LeafletModel.PathOptionsRec;
 return PathOptionsList;
 })(OS.DataTypes.GenericRecordList);
 LeafletModel.PathOptionsList = PathOptionsList;
+
+});
+define("Leaflet.model$Map_GeoJSON_PointMatchRecord", ["exports", "OutSystems/ClientRuntime/Main", "Leaflet.model", "Leaflet.model$Map_GeoJSON_PointMatchRec"], function (exports, OutSystems, LeafletModel) {
+var OS = OutSystems.Internal;
+var Map_GeoJSON_PointMatchRecord = (function (_super) {
+__extends(Map_GeoJSON_PointMatchRecord, _super);
+function Map_GeoJSON_PointMatchRecord(defaults) {
+_super.apply(this, arguments);
+}
+Map_GeoJSON_PointMatchRecord.attributesToDeclare = function () {
+return [
+this.attr("Map_GeoJSON_PointMatch", "map_GeoJSON_PointMatchAttr", "Map_GeoJSON_PointMatch", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new LeafletModel.Map_GeoJSON_PointMatchRec());
+}, true, LeafletModel.Map_GeoJSON_PointMatchRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+Map_GeoJSON_PointMatchRecord.fromStructure = function (str) {
+return new Map_GeoJSON_PointMatchRecord(new Map_GeoJSON_PointMatchRecord.RecordClass({
+map_GeoJSON_PointMatchAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+Map_GeoJSON_PointMatchRecord._isAnonymousRecord = true;
+Map_GeoJSON_PointMatchRecord.UniqueId = "ec495aba-4541-ec72-69af-96c485c82fb0";
+Map_GeoJSON_PointMatchRecord.init();
+return Map_GeoJSON_PointMatchRecord;
+})(OS.DataTypes.GenericRecord);
+LeafletModel.Map_GeoJSON_PointMatchRecord = Map_GeoJSON_PointMatchRecord;
+
+});
+define("Leaflet.model$Map_GeoJSON_PointMatchRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Leaflet.model", "Leaflet.model$Map_GeoJSON_PointMatchRecord"], function (exports, OutSystems, LeafletModel) {
+var OS = OutSystems.Internal;
+var Map_GeoJSON_PointMatchRecordList = (function (_super) {
+__extends(Map_GeoJSON_PointMatchRecordList, _super);
+function Map_GeoJSON_PointMatchRecordList(defaults) {
+_super.apply(this, arguments);
+}
+Map_GeoJSON_PointMatchRecordList.itemType = LeafletModel.Map_GeoJSON_PointMatchRecord;
+return Map_GeoJSON_PointMatchRecordList;
+})(OS.DataTypes.GenericRecordList);
+LeafletModel.Map_GeoJSON_PointMatchRecordList = Map_GeoJSON_PointMatchRecordList;
 
 });
 define("Leaflet.model$MarkerRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Leaflet.model", "Leaflet.model$MarkerRecord"], function (exports, OutSystems, LeafletModel) {

@@ -1,7 +1,7 @@
 import type { KeyboardEvent } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { UpgradeSubscriptionDialog } from '@/pages/LegacyShareObject/components/UpgradeSubscriptionDialog';
+import { FreeSubscriptionActionDialog } from '@/containers/FreeSubscriptionActionDialog';
 import type { ProfileListResults, ShareProfile } from '@/pages/LegacyShareObject/hooks/profileListState';
 import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { ResultListType } from '@/lib/legacyShared/staticEntities';
@@ -166,7 +166,7 @@ export function ProfileList({
           </div>
         )}
         {resultsArea}
-        <UpgradeSubscriptionDialog id={`${scope}-FreeSubscriptionAlert`} />
+        <FreeSubscriptionActionDialog id={`${scope}-FreeSubscriptionAlert`} />
       </div>
     </OSBlock>
   );

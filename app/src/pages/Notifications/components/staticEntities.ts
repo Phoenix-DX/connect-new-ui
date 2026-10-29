@@ -1,12 +1,14 @@
 /** TST values (migration/knowledge/static-entities-tst.json) the shared constants do not list yet, written as classes
-    the way the shared blocks write them: UBTConnect.uBT_Icons2 moreVertical / search / expandMore / mail / delete,
-    UBTConnect.uBT_Color redDark / error (captured `background-red-dark`, `text-error`). */
+    the way the shared blocks write them: UBTConnect.uBT_Icons2 moreVertical / search / expandMore / mail / delete /
+    calendarBusyFill, UBTConnect.uBT_Color redDark / error (captured `background-red-dark`, `text-error`). */
 export const UBT_Icons2_Notifications = {
   MoreVertical: 'connect-icon-more_vertical',
   Search: 'connect-icon-search',
   ExpandMore: 'connect-icon-expand_more',
   Mail: 'connect-icon-mail',
   Delete: 'connect-icon-delete',
+  /** Notifications_NoItemsFound (UBTConnect.uBT_Icons2 calendarBusyFill, static-entities-tst.json). */
+  CalendarBusyFill: 'connect-icon-calendar_busy_fill',
 } as const;
 export const UBT_Color_RedDark = 'red-dark';
 export const UBT_Color_Error = 'error';

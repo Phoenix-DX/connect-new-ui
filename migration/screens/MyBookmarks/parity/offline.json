@@ -5,14 +5,17 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "11ccedd280a551799116",
+ "fingerprint": "74d7b2833bbf60500e37",
  "options": {
   "text": true,
   "style": true,
   "pixel": true,
   "calls": true,
+  "visibleOnly": false,
   "full": true,
-  "replay": "builder"
+  "replay": "builder",
+  "skipKinds": [],
+  "selfRef": false
  },
  "replay": {
   "mode": "builder",
@@ -24,39 +27,82 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-21T04:54:09.531Z",
- "counts": {},
+ "at": "2026-10-29T06:55:11.311Z",
+ "counts": {
+  "structure": 5,
+  "style": 1,
+  "pixel": 2
+ },
  "exemptionsUsed": {
-  "CAPTURE-ANIMATE-PHASE-MYBOOKMARKS-NETWORKWARNING-POSITION": 1,
-  "CAPTURE-ANIMATE-PHASE-MYBOOKMARKS-NETWORKWARNING": 1,
-  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 45,
-  "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
-  "ignoreSubtrees": 1,
-  "SLIDER-APPEAR-TIMING": 1
+  "CAPTURE-LOADING-BODYCLASS": 1
  },
  "pixel": {
-  "ratio": 0.00006,
-  "maxCell": 0.0069,
+  "ratio": 0.60845,
+  "maxCell": 1,
   "maxCellRatio": 0.03,
-  "diffPixels": 20,
-  "comparedPixels": 328978,
+  "diffPixels": 253195,
+  "comparedPixels": 416130,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
    390,
-   844
+   1067
   ],
   "buildSize": [
    390,
    844
   ],
-  "masks": 2,
+  "masks": 0,
   "hotspots": [
-   "200,800 (11px)",
-   "200,760 (9px)"
+   "40,320 (1600px)",
+   "80,320 (1600px)",
+   "120,320 (1600px)",
+   "160,320 (1600px)",
+   "200,320 (1600px)"
   ],
   "diffPng": "migration/screens/MyBookmarks/parity/offline.diff.png"
  },
  "calls": null,
- "diffs": []
+ "diffs": [
+  {
+   "kind": "structure",
+   "path": "div#reactContainer",
+   "detail": "tag div → body"
+  },
+  {
+   "kind": "style",
+   "path": "div#reactContainer",
+   "detail": "margin-top 0px → 8px; margin-right 0px → 8px; margin-bottom 0px → 8px; margin-left 0px → 8px"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > h1",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > h2",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > h3",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "pixel",
+   "path": "screenshot",
+   "detail": "page height 1067 → 844"
+  },
+  {
+   "kind": "pixel",
+   "path": "screenshot",
+   "detail": "60.85% pixels differ (max 0.20%), worst 40px tile 100.0% (max 3.0%), hotspots 40,320 (1600px); 80,320 (1600px); 120,320 (1600px); 160,320 (1600px); 200,320 (1600px); see migration/screens/MyBookmarks/parity/offline.diff.png"
+  }
+ ]
 }

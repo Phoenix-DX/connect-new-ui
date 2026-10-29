@@ -1165,7 +1165,7 @@ define("Connect2_LegacyShared.Share_UI.ScreenBlock_ShareObject.mvc$controller", 
         Controller.prototype.pushDebuggerContext = function(callContext) {
             var varBag = {};
             OutSystemsDebugger.push("DjcSN7X3Kkyt49iAAhnv1A:lZepHxCQC0OwqtkQndml+Q:/NRWebFlows.lZepHxCQC0OwqtkQndml+Q:pv7815SkwH5QyvCi55ul5Q", "Connect2_LegacyShared", "Share_UI", "NRFlows.WebFlow", callContext.id, varBag);
-            OutSystemsDebugger.push("DjcSN7X3Kkyt49iAAhnv1A:yfFgw3mN4EG5gmWEqURUAA:/NRWebFlows.lZepHxCQC0OwqtkQndml+Q/NodesShownInESpaceTree.yfFgw3mN4EG5gmWEqURUAA:_5IemV11NbmDyXx3Ynf17g", "Connect2_LegacyShared", "ScreenBlock_ShareObject", "NRNodes.WebBlock", callContext.id, varBag);
+            OutSystemsDebugger.push("DjcSN7X3Kkyt49iAAhnv1A:yfFgw3mN4EG5gmWEqURUAA:/NRWebFlows.lZepHxCQC0OwqtkQndml+Q/NodesShownInESpaceTree.yfFgw3mN4EG5gmWEqURUAA:QCOVpHB3+Z0Ha86+S7h0wA", "Connect2_LegacyShared", "ScreenBlock_ShareObject", "NRNodes.WebBlock", callContext.id, varBag);
         };
         Controller.prototype.popDebuggerContext = function(callContext) {
             OutSystemsDebugger.pop("DjcSN7X3Kkyt49iAAhnv1A:yfFgw3mN4EG5gmWEqURUAA", callContext.id);

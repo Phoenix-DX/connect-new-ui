@@ -98,9 +98,11 @@ export const Type_ShareObject = {
 export const Type_CarouselItemSwipeAction = { UpdatesCarousel_SetIsRead: 'UpdatesCarousel_SetIsRead' } as const;
 
 /* ---- Wave 3C (FilterSheet family) ---- */
-/** Choice: only compared, stored in SelectedIds / SelectedChoiceId and handed back to the screens (ApplyFilters,
-    OnChange), never rendered: opaque constants. Screens must use these. */
-export const Choice = { None: 'Choice.None', Yes: 'Choice.Yes', No: 'Choice.No' } as const;
+/** Choice: stored in SelectedIds / SelectedChoiceId, handed back to the screens (ApplyFilters, OnChange) and sent to
+    the server (Notes_Filter.SortByNewest, Filter_ReadOnly, Sort_ByNewest). TST identifiers
+    (static-entities-tst.json `UBTConnect.choice`; capture Notes-110 sends SortByNewest "Yes"; decision PD2, user,
+    2026-10-28). Screens must use these. */
+export const Choice = { None: 'None', Yes: 'Yes', No: 'No' } as const;
 /** Connect_Subscription_Plan: compared with Directory_UserCurrent_Subscription.SubscriptionType. Global: the value the
     Menu capture shows for the test account (mock user, src/shell/mockUser.ts). Free: not captured, not settled
     (FilterSheet README). */

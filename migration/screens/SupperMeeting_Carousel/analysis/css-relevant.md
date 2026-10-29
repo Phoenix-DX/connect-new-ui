@@ -6,14 +6,15 @@ Load order of stylesheets (keep this order in the build):
 2. `/UBTConnect/css/OutSystemsReactWidgets.css`
 3. `/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css`
 4. `/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Note_Item.css`
-5. `/UBTConnect/css/UBTConnect.Directory_Caroussel.EntitiesCarousel.css`
-6. `/UBTConnect/css/UBT_AppManager.PIN.PinCode.css`
-7. `/UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css`
-8. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css`
-9. `/UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css`
-10. `/UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css`
-11. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect.css`
-12. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css`
+5. `/UBTConnect/css/UBTConnect_Utils.CW_Notes.NotesSheet.css`
+6. `/UBTConnect/css/UBTConnect.Directory_Caroussel.EntitiesCarousel.css`
+7. `/UBTConnect/css/UBT_AppManager.PIN.PinCode.css`
+8. `/UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css`
+9. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css`
+10. `/UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css`
+11. `/UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css`
+12. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect.css`
+13. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css`
 
 Rules below are those whose selector contains a class used on the captured page, grouped by the block that owns the element. Full source: `styles/bundle.css`.
 
@@ -461,7 +462,7 @@ input.OSFillParent.calendar-input { display:none; }
 ```css
 .splide:not(.is-overflow) .splide__pagination { display:none; }
 ```
-### .list-group  (24 rules)
+### .list-group  (25 rules)
 ```css
 .list.list-group { overflow:hidden; position:relative; }
 .list.list-group > [data-block*=AnimatedLabel]:first-child .animated-label { margin-top:var(--space-s); }
@@ -481,6 +482,7 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 .list.list-group.overflow-horizontal { overflow-x: auto; }
 .ubt-tag-list.list.list-group { display: flex; overflow-x: scroll; -ms-overflow-style: none; /* Internet Explorer 10+ */ scrollbar-width: none; /* Firefox */ }
 .ubt-tag-list.list.list-group::-webkit-scrollbar { display: none; /* Safari and Chrome */ }
+.list.list-group.recent-search-list { display: flex; gap: var(--space-s); overflow: hidden; overflow-x: auto; /* beats the theme's overflow: hidden */ }
 .Household_GalleryCard-list.list.list-group { display: flex; justify-content: flex-start; overflow-x: scroll; -ms-overflow-style: none; /* Internet Explorer 10+ */ scrollbar-width: none; /* Firefox */ }
 .Household_GalleryCard-list.list.list-group::-webkit-scrollbar { display: none; /* Safari and Chrome */ }
 .calendar-list.list.list-group { display: flex; flex-direction: row; overflow-x: auto !important; scroll-snap-type: x mandatory; /* scroll-behavior: smooth;*/ scroll-snap-points-x: repeat(100vw); -webkit-overflow-scrolling: touch; /* border-bottom: 1px solid var(--color-neutral-11);*/ background-color: white; }
@@ -488,7 +490,7 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 .tag-list .list.list-group { display: flex; flex-direction:row; overflow: hidden; }
 .tag-list.recent-search .list.list-group { flex-wrap: wrap; }
 ```
-### .osui-carousel  (18 rules)
+### .osui-carousel  (17 rules)
 ```css
 .osui-carousel { --osui-carousel-track-width:100%; --osui-carousel-pagination-margin:30px; }
 .osui-carousel .splide__arrow { background-color:var(--background-color-neutral-0, var(--color-neutral-0)); -webkit-box-shadow:var(--shadow-xs); box-shadow:var(--shadow-xs); height:40px; opacity:1; -webkit-transition:opacity 150ms linear; transition:opacity 150ms linear; width:40px; will-change:opacity; z-index:var(--layer-local-tier-1); }
@@ -507,7 +509,6 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 rea-content.horizontal-scroll .osui-carousel .list.list-group, .scrollable-area-content.vertical-scroll .osui-deprecated.carousel .list.list-group, .scrollable-area-content.vertical-scroll .osui-carousel .list.list-group { overflow-x:initial; overflow-y:initial; }
 .photobook-carousel .osui-carousel .splide .photobook-carousel-foreground-image img { object-position: center center; object-fit: contain; }
 .photobook-carousel .osui-carousel .splide .photobook-carousel-background-image img { object-position: center center; object-fit: cover; }
-.ubt-services-carousel .osui-carousel .splide img { -o-object-fit:uset; object-fit:unset; }
 ```
 ### .osui-carousel__content  (3 rules)
 ```css
@@ -520,7 +521,7 @@ rea-content.horizontal-scroll .osui-carousel .list.list-group, .scrollable-area-
 .osui-carousel__track { max-width:100%; width:var(--osui-carousel-track-width); z-index:var(--layer-global-screen); }
 .osui-carousel__track {  }
 ```
-### .splide  (20 rules)
+### .splide  (19 rules)
 ```css
 .splide.is-initialized:not(.is-active) .splide__list { display:block; }
 .splide:not(.is-overflow) .splide__pagination { display:none; }
@@ -541,7 +542,6 @@ rea-content.horizontal-scroll .osui-carousel .list.list-group, .scrollable-area-
 .is-rtl .splide.splide--rtl { direction:rtl; }
 .photobook-carousel .osui-carousel .splide .photobook-carousel-foreground-image img { object-position: center center; object-fit: contain; }
 .photobook-carousel .osui-carousel .splide .photobook-carousel-background-image img { object-position: center center; object-fit: cover; }
-.ubt-services-carousel .osui-carousel .splide img { -o-object-fit:uset; object-fit:unset; }
 ```
 ### .splide--draggable  (1 rule)
 ```css
@@ -1196,7 +1196,7 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 ```
 ## Generic utility classes (too many rules to list; see bundle.css)
 
-`.columns` (82), `.columns-item` (71), `.header` (51), `.layout` (55), `.layout-native` (241), `.layout-side` (89), `.list` (92), `.phone` (235)
+`.columns` (82), `.columns-item` (71), `.header` (51), `.layout` (55), `.layout-native` (241), `.layout-side` (89), `.list` (93), `.phone` (235)
 
 ## Design tokens referenced by the rules above
 

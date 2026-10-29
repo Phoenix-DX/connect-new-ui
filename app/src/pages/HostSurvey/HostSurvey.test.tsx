@@ -196,4 +196,29 @@ describe('HostSurvey page', () => {
       expect(navigations).toEqual([EVENT]);
     });
   });
+
+  it('a survey still to answer (event 7303): the navigation step, then Next from the accommodation step', async () => {
+    await open('?In_EventId=7303&In_MemberId=48211');
+    expect(document.body.textContent).toContain('Continue Host Survey');
+    const headers = () =>
+      [...document.querySelectorAll('[data-block="Orbit_Blocks.HostSurvey_StepHeader"] .text-neutral-8 .bold')].map(
+        (e) => e.textContent,
+      );
+    expect(headers()).toEqual(['Step 1 of 4', 'Step 2 of 4', 'Step 3 of 4', 'Step 4 of 4']);
+    expect(document.querySelector('.orbit-footer-with-buttons-btn-left')?.textContent).toBe('Close');
+    expect(document.querySelector('.orbit-footer-with-buttons-btn-right')?.textContent).toBe('Submit');
+    // The chevron of the accommodation step: NavigateTo_Step(Accommodation).
+    fireEvent.click(document.querySelector('.orbit-icon-arrow')?.parentElement as Element);
+    await waitFor(() => {
+      expect(document.querySelector('.orbit-host-survey-accommodation')).not.toBeNull();
+    });
+    expect(headers()).toEqual(['Step 1 of 4']);
+    expect(document.querySelectorAll('[data-block="Orbit_Blocks.HostSurvey_AccommodationItem"]')).toHaveLength(2);
+    expect(document.querySelector('.orbit-footer-with-buttons-btn-right')?.textContent).toBe('Next');
+    fireEvent.click(document.querySelector('.orbit-footer-with-buttons-btn-right') as Element);
+    await waitFor(() => {
+      expect(document.querySelector('.orbit-host-survey-meal')).not.toBeNull();
+    });
+    expect(headers()).toEqual(['Step 2 of 4']);
+  });
 });

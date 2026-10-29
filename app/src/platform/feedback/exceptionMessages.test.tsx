@@ -44,6 +44,14 @@ test('communication message: online → info "Service Interruption"; offline →
   expect(text()?.textContent).toBe('No internet connection. Please check your network settings and try again.');
 });
 
+test('communication message: the client variable says online, navigator.onLine says offline → "No internet connection…" (CheckIsOnlineNow, UC:16110-16124; item 2 D2)', () => {
+  const onLine = vi.spyOn(navigator, 'onLine', 'get').mockReturnValue(false);
+  act(showCommunicationExceptionMessage);
+  expect(shown()).toHaveClass('feedback-message-error');
+  expect(text()?.textContent).toBe('No internet connection. Please check your network settings and try again.');
+  onLine.mockRestore();
+});
+
 test('server texts are mapped to title and message', async () => {
   await show('Error executing query: timeout in SQL');
   expect(text()?.innerHTML).toBe(

@@ -19,6 +19,7 @@ const routes = {
   [HOME]: <p>HomeFeed screen</p>,
   '/UBTConnect/HouseholdDetails': <p>HouseholdDetails screen</p>,
   '/UBTConnect/ContactByEmailOrbitHelpdesk': <p>Helpdesk screen</p>,
+  '/UBTConnect/ContactByEmailOrbitHost': <p>Host e-mail screen</p>,
   [PATH]: <MilestoneDetail />,
 };
 const query = (patch: Record<string, string> = {}) =>
@@ -211,5 +212,106 @@ describe('MilestoneDetail page', () => {
       expect(document.body.textContent).toContain('This Event could not be found.');
     });
     expect(calls(GET_HOST)).toBe(0);
+  });
+});
+
+describe('MilestoneDetail page: the five other milestone blocks (decision Q3)', () => {
+  const blockQuery = (type: string, milestoneId: string, name: string) =>
+    query({ In_OrbitMilestoneTypeId: type, In_MilestoneId: milestoneId, In_MilestoneName: name });
+  const blockOf = (name: string) => document.querySelector(`[data-block="Orbit_ScreenBlocks.${name}"]`);
+
+  it('MealGuest: the host, the helpers and the guests of the meal, after the data action and the captions', async () => {
+    await open(blockQuery('meal-guest', '7301-21', 'Lunch'));
+    await waitFor(() => {
+      expect(blockOf('ScreenBlock_MealGuest')?.textContent).toContain('Your Host');
+    });
+    const text = blockOf('ScreenBlock_MealGuest')?.textContent ?? '';
+    expect(text).toContain('Fernández');
+    expect(text).toContain('Ricardo & Lucía');
+    expect(text).toContain('Avenida Mitre 1260, Azul, Buenos Aires');
+    expect(text).toContain('Helper/s');
+    expect(text).toContain('Guest/s');
+    expect(document.getElementById('b1-$b1')?.getAttribute('data-block')).toBe(
+      'Orbit_ScreenBlocks.ScreenBlock_MealGuest',
+    );
+    // HouseholdCaptions (the children line of the caption) goes to SanitizedHtml ($b3 of HostInformation).
+    await waitFor(() => {
+      expect(document.getElementById('b1-b1-b4-$b3')).not.toBeNull();
+    });
+    expect(calls('ScreenBlock_MealGuest/DataActionGetMealGuest')).toBe(1);
+    expect(calls('ScreenBlock_MealGuest/DataActionGetCaptions')).toBe(1);
+  });
+
+  it('e-mails the host: ContactByMessage, then ContactByEmailOrbitHost with the surname of the contact name', async () => {
+    const view = await open(blockQuery('meal-guest', '7301-21', 'Lunch'));
+    await waitFor(() => {
+      expect(document.querySelector('.orbit-contact-widget')).not.toBeNull();
+    });
+    const [, mailButton] = [...document.querySelectorAll('.orbit-contact-widget-button')];
+    fireEvent.click(mailButton as Element);
+    await waitFor(() => {
+      expect(document.body.textContent).toContain('Email');
+    });
+    const email = [...document.querySelectorAll('*')].find(
+      (e) => e.childElementCount === 0 && e.textContent === 'Email',
+    );
+    fireEvent.click(email as Element);
+    await waitFor(() => {
+      expect(view.at()).toMatch(/^\/UBTConnect\/ContactByEmailOrbitHost\?/);
+    });
+    const params = new URLSearchParams(view.at().split('?')[1]);
+    expect(Object.fromEntries(params)).toEqual(
+      expect.objectContaining({
+        In_HostName: 'Ricardo & Lucía Fernández',
+        In_Surname: 'Fernández',
+        In_EntityType: 'Member',
+        In_EntityId: '990002',
+        In_HostEmail: 'fernandez.family@example.com',
+        In_ContactLocality: 'Azul',
+        In_ContactCountry: 'Argentina',
+        In_MilestoneTitle: 'Lunch',
+        In_EventName: EVENT,
+      }),
+    );
+  });
+
+  it('MealHost: the allocated guests, the special needs, the helpers and the guests', async () => {
+    await open(blockQuery('meal-host', '7301-22', 'Lunch'));
+    await waitFor(() => {
+      expect(blockOf('ScreenBlock_MealHost')?.textContent).toContain('Allocated: ');
+    });
+    const text = blockOf('ScreenBlock_MealHost')?.textContent ?? '';
+    expect(text).toContain('Special Need/s');
+    expect(text).toContain('Gluten free');
+    expect(text).toContain('Catering/s');
+    expect(text).toContain('Guest/s');
+    expect(text).not.toContain('Your Host');
+    expect(calls('DataActionGetCaptions')).toBe(0);
+  });
+
+  it('MealHelper, AccommodationGuest and AccommodationHelper show the host and their lists', async () => {
+    await open(blockQuery('meal-helper', '7301-23', 'Dinner'));
+    await waitFor(() => {
+      expect(blockOf('ScreenBlock_MealHelper')?.textContent).toContain('Peanuts and tree nuts');
+    });
+    await open(blockQuery('accommodation-guest', '7301-24', 'Accommodation'));
+    await waitFor(() => {
+      expect(blockOf('ScreenBlock_AccommodationGuest')?.textContent).toContain('Your Host');
+    });
+    expect(blockOf('ScreenBlock_AccommodationGuest')?.textContent).toContain('Guest/s');
+    await open(blockQuery('accommodation-helper', '7301-25', 'Accommodation'));
+    await waitFor(() => {
+      expect(blockOf('ScreenBlock_AccommodationHelper')?.textContent).toContain('Room: ');
+    });
+    expect(blockOf('ScreenBlock_AccommodationHelper')?.textContent).toContain('Midday Meal: Fernández household');
+  });
+
+  it('an event that is not in the world: "still being organised"', async () => {
+    await open(query({ In_OrbitMilestoneTypeId: 'accommodation-guest', In_EventId: '9999' }));
+    await waitFor(() => {
+      expect(blockOf('ScreenBlock_AccommodationGuest')?.textContent).toContain(
+        'This accommodation milestone is still being organised.',
+      );
+    });
   });
 });

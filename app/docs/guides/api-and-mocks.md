@@ -52,6 +52,12 @@ In a mock, throw the exception from the answer: `contractHandler(..., () => rais
 or `throw new SecurityException('…')`. The handler sends the error answer with HTTP 500.
 `?mock=error` answers HTTP 500 without an exception, that is, a `CommunicationException`.
 
+**Failed queries.** A failed fetch of a query goes to the flow handler through the query-cache subscription
+(`platform/feedback/flowErrors.ts`), once per failed fetch, while a mounted screen uses the query. The `meta` of a
+query (`QueryMeta`, `src/api/client/queryClient.ts`) has two fields: `errorLog` (a warning logged with the error, for
+the blocks that logged) and `errorFlow: 'caller'` (a flow awaits the fetch and handles the error; the cache reads of
+`cache.ts` and `pages/MessageList` use it).
+
 **Request timeout.** Like the runtime (`getEffectiveTimeoutForServerCall`, `OutSystems.js:17`), every call times out
 after a delay. The delay is the Server Request Timeout of the module that makes the call, that is, the `<Module>` in the path of the call.
 

@@ -1,6 +1,7 @@
 import { callAction } from '@/api/client/callAction';
 import {
   toAllLocalities,
+  toAllSubdivisions,
   toBulkSubdivisionsInputs,
   toCommunityBusinessShareCard,
   toEventFilterLocalities,
@@ -25,6 +26,8 @@ import {
 import type {
   AllLocalities,
   AllLocalitiesCallInputs,
+  AllSubdivisions,
+  AllSubdivisionsCallInputs,
   CommunityBusinessShareCard,
   EventFilterLocality,
   EventLocalitiesCallInputs,
@@ -155,6 +158,14 @@ export async function fetchAllLocalities(inputs: AllLocalitiesCallInputs): Promi
   );
 }
 
+/** DataActionGetCacheInfo of CacheControl_AllSubdivisions (UBTConnect_Utils): the list of all subdivisions. The block
+    calls it on a miss of the memory cache. */
+export async function fetchAllSubdivisions(inputs: AllSubdivisionsCallInputs): Promise<AllSubdivisions> {
+  return toAllSubdivisions(
+    await callAction('UBTConnect_Utils', 'CacheControl_AllSubdivisions/DataActionGetCacheInfo', inputs),
+  );
+}
+
 /** GetLocalityInformation (server action of Connect2_LegacyShared): a locality with its lists. GetCacheableLocality
     calls it on a miss of the memory cache. */
 export async function fetchLocalityInformation(localityId: string): Promise<LocalityInformation> {
@@ -181,7 +192,7 @@ export async function fetchOneSchoolGlobalDetails(
   return toOneSchoolGlobalDetails(
     await callAction(
       'UBTConnect',
-      'OneSchoolGlobalDetails/DataActionGetOneSchoolGlobalDetails',
+      'OneSchoolGlobalDetails_Block/DataActionGetOneSchoolGlobalDetails',
       toOneSchoolGlobalDetailsInputs(inputs),
     ),
   );

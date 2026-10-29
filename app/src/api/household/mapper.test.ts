@@ -297,6 +297,7 @@ describe('household mapper of the relations (HouseholdRelations_Block)', () => {
   it('toMemberRelations keeps the fields that the relations UI reads and unwraps the previous spouses', () => {
     const relations = toMemberRelations({
       MemberName: 'Ada Harlow',
+      IsMemberDeceased: false,
       FamilyName: 'The Harlows',
       Father: father,
       Mother: memberWire({ Id: '32', HouseholdId: '7010', Title: 'Ruth Lane', IsDeceased: true }),

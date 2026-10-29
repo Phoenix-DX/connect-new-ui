@@ -6,7 +6,7 @@
    "action": "ActionAppManager_SynchAppContext",
    "path": "/UBTConnect/screenservices/UBT_AppManager/ActionAppManager_SynchAppContext",
    "phase": "load",
-   "ts": 2380,
+   "ts": 4742,
    "status": 200,
    "kind": "server",
    "inputNames": [
@@ -19,7 +19,7 @@
    "action": "ActionSync_Info_GetMain",
    "path": "/UBTConnect/screenservices/UBTConnect/ActionSync_Info_GetMain",
    "phase": "load",
-   "ts": 3184,
+   "ts": 5569,
    "status": 200,
    "kind": "server",
    "inputNames": [
@@ -32,7 +32,7 @@
    "action": "ActionGet_RuntimeVersion",
    "path": "/UBTConnect/screenservices/UBTConnect_Utils/ActionGet_RuntimeVersion",
    "phase": "load",
-   "ts": 10951,
+   "ts": 13474,
    "status": 200,
    "kind": "server",
    "inputNames": [],

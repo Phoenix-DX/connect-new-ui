@@ -47,7 +47,12 @@ The block uses these calls (`src/api/share/shareSheet.ts` and `src/api/member/`,
   - The user clicks Send. The call uses the HouseholderIds of the selected members.
   - The user clicks a recently shared member.
   - After the call, the block resets the state and closes the sheet. Then it shows "<Type> has been shared."
-  - When the call fails, the block shows "Share failed. Please try again."
+    ("Household profile has been shared." for a household, TST publish of 2026-10-29).
+  - Errors: NotRegistered goes to the flow handler; the user exception CommunicationError and a CommunicationException
+    go to the flow handler as the user exception CommunicationError; any other non-system error shows "Share failed.
+    Please try again."
+  - When the call fails with NotRegistered or a system exception, the error goes to the flow handler. Any other
+    failure shows "Share failed. Please try again."
 - ActionCS_CreateShareProfileLink (`cs_CreateShareProfileLink`).
 
 Mocks:
@@ -60,9 +65,16 @@ Mocks:
 Selection and loading:
 
 - The user can select at most 50 members. When the user tries to select more, the block shows "You can select up to 50
-  recipients only."
+  recipients only." with FeedbackMessage_AutoClose: the message closes by itself.
 - The list of the selected members shows above the results.
 - While a list loads, the block shows a skeleton of five "Loading Name" rows.
+
+Subscription:
+
+- A click on a disabled recently shared member runs App_Subscription_ShowUpgradePopUp (`showUpgradePopUp` of
+  `platform/feedback/dialogs`). It opens the Access Restricted dialog that the current screen stored, else nothing.
+- "Subscription upgrade needed" of a SearchResult_Item runs App_Subscription_NavigateToUpgrade (`navigateToUpgrade`).
+  The sheet gives it to the block as `onClickUpgradeSubscription`.
 
 ## Captured variants (1; 1 tested)
 
@@ -71,7 +83,7 @@ Selection and loading:
 | v1      | BookmarksByGroup/default | closed: empty root |
 
 The story `Open` (no capture) shows the first step. Tests with `it` cover these cases: loading, lists, search, selection,
-Send, recent-member share and the link action.
+Send, recent-member share, the two subscription clicks and the link action.
 
 ## Not captured / not settled
 
@@ -82,10 +94,7 @@ Send, recent-member share and the link action.
   - In the original app, a click on an option (Handler_OnClickExternalOption) calls CS_CreateShareProfileLink
     (ported in `src/api/share/shareSheet.ts`). Then it runs the ExternalShare client action (native share / clipboard).
   - The React app does not port the ExternalShare client action.
-- A click on a disabled recently shared member opens App_Subscription_ShowUpgradePopUp. The React app does not port it, so
-  the click has no effect.
-- FeedbackMessage_AutoClose (50-recipient limit) shows as a plain error message. The React app does not port the auto-close.
-- IsSubmitting and the NotRegistered re-raise of Action_SubmitShare have no visible effect here.
+- IsSubmitting of Action_SubmitShare disables Send while CS_ShareObject runs (TST publish of 2026-10-29, P2-Q1 a).
 - The captures do not contain the List widget attributes (`animateItems`, `disable-virtualization`). The block renders
   only `data-list`.
 - These static values come from the original CSS: `connect-icon-lock`, `connect-icon-checkbox_fill`,

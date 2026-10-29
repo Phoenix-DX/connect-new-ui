@@ -1,6 +1,6 @@
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { markCarouselUpdateItemAsRead } from '@/api/update';
-import { setPreloadObject, usePreloadObject, useViewState } from '@/platform/navigation';
+import { setPreloadObject, useFlowScope, usePreloadObject, useViewState } from '@/platform/navigation';
 import { Type_CarouselItemSwipeAction } from '@/lib/ubtConnect/staticEntities';
 import type { EntitiesCarousel_Item } from '@/lib/ubtConnect/structures';
 import { mockPreload, type HouseholdCarouselInputs } from '@/pages/HouseholdCarousel/inputs';
@@ -42,8 +42,10 @@ export interface HouseholdCarouselView {
     - Handler_EventMoved: when the item of the new slide has the swipe action UpdatesCarousel_SetIsRead,
       Directory_Updates_CarouselSwipeAction (UpdateItem_MarkAsRead, unread count - 1), then the swipe action of the
       item is cleared and the update is added to SwippedItems once.
-    - After the screen unmounts, a swipe action that already started still marks the update as read and lowers the
-      unread count, but it writes no screen variable (decision W23).
+    - Flow scope (item 8): Directory_Updates_CarouselSwipeAction is a module action (R2): after the screen unmounts, a
+      swipe action that already started still marks the update as read and lowers the unread count, as on TST
+      (HouseholdCarousel.js:533). The screen variables that follow are not written (`flow.alive()`). The handler runs
+      with `flow.run` (R6): a failure goes to the flow handler with the flow scope (S1a Q1 (a), user 2026-10-28).
     @origin UBTConnect.Directory_Household.HouseholdCarousel */
 export function useHouseholdCarousel({ In_StartingHouseholdId }: HouseholdCarouselInputs): HouseholdCarouselView {
   const preloadObject = usePreloadObject();
@@ -59,15 +61,7 @@ export function useHouseholdCarousel({ In_StartingHouseholdId }: HouseholdCarous
   const entitiesCarouselItems = isEmpty(storedPreload) ? initial.items : storedItems;
   const startingPosition = isEmpty(storedPreload) ? initial.position : storedPosition;
 
-  /* True after the unmount. A layout effect, so the flag is false again before the passive effects when StrictMode
-     mounts twice. */
-  const unmounted = useRef(false);
-  useLayoutEffect(() => {
-    unmounted.current = false;
-    return () => {
-      unmounted.current = true;
-    };
-  }, []);
+  const flow = useFlowScope();
 
   const handlerEventMoved = async (itemIndex: number) => {
     const swipeAction = householdPreload.CarouselHouseholdItem[itemIndex]?.SwipeAction;
@@ -77,8 +71,8 @@ export function useHouseholdCarousel({ In_StartingHouseholdId }: HouseholdCarous
     const swippedItemId = await directory_Updates_CarouselSwipeAction(
       swipeAction?.Parameters ?? '',
       markCarouselUpdateItemAsRead,
-    );
-    if (unmounted.current) return;
+    ); // a module action (R2): not wrapped
+    if (!flow.alive()) return; // the screen variables of a left screen: not written to the view cache
     setHouseholdPreload((p) => clearSwipeAction(isEmpty(p) ? initial.preload : p, itemIndex));
     if (swippedItemId !== '') setSwippedItems((list) => appendSwippedItem(list, swippedItemId, itemIndex));
   };
@@ -89,7 +83,9 @@ export function useHouseholdCarousel({ In_StartingHouseholdId }: HouseholdCarous
     startingPosition,
     hasSwippedItems: swippedItems.length > 0,
     onSetHeader: setHouseholdHeader,
-    onEventMoved: (itemIndex) => void handlerEventMoved(itemIndex),
+    onEventMoved: (itemIndex) => {
+      flow.run(() => handlerEventMoved(itemIndex));
+    },
     onBackNavigation: () => {
       setPreloadObject(swippedItems);
     },

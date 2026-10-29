@@ -666,6 +666,7 @@ In_Options: model.getCachedValue(idService.getId("Block_SearchInput.In_Options")
 return function () {
 var rec = new UBTConnectLibraryModel.SearchInputRec();
 rec.isEnabledAttr = (model.variables.getLocalityStatisticsDataAct.out_LocalitiesStatisticsOut.length > 1);
+rec.initalStringAttr = model.variables.searchStringVar;
 rec.searchPromptAttr = "Search locality";
 rec.debounce_DelayMSAttr = 200;
 rec.borderRadiusAttr = UBTConnectModel.staticEntities.shape.rounded;
@@ -673,6 +674,8 @@ return rec;
 }();
 }, function () {
 return model.variables.getLocalityStatisticsDataAct.out_LocalitiesStatisticsOut.length;
+}, function () {
+return model.variables.searchStringVar;
 }),
 _in_OptionsInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.getLocalityStatisticsDataAct.dataFetchStatusAttr)
 },
@@ -736,7 +739,7 @@ _dependencies: []
 })];
 })
 },
-_dependencies: [asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.out_LocalitiesStatisticsOut.length)]
+_dependencies: [asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.searchStringVar), asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.out_LocalitiesStatisticsOut.length)]
 }), React.createElement(UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, {
 inputs: {
 Options: model.getCachedValue(idService.getId("Legend.Options"), function () {
@@ -1220,7 +1223,7 @@ service: idService,
 uuid: "34"
 },
 _widgetRecordProvider: widgetsRecordProvider,
-_dependencies: [asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.out_LocalitiesStatisticsOut.getCurrent(callContext.iterationContext).mainHallSubdivisionIdAttr), asPrimitiveValue(model.variables.local_ListVar.getCurrent(callContext.iterationContext))]
+_dependencies: [asPrimitiveValue(model.variables.local_ListVar.getCurrent(callContext.iterationContext))]
 }, React.createElement(UBTConnect_Directory_Locality_Statistics_TypedItem_mvc_view, {
 inputs: {
 In_HasImage: true,
@@ -1234,8 +1237,7 @@ return target;
 return model.variables.local_ListVar.getCurrent(callContext.iterationContext);
 }),
 In_ImageEntityTypeId: UBTConnectModel.staticEntities.connect_Entity.supperMeetings_aka_Subdivisions,
-In_ImageEntityId: OS.BuiltinFunctions.longIntegerToText(model.variables.getLocalityStatisticsDataAct.out_LocalitiesStatisticsOut.getCurrent(callContext.iterationContext).mainHallSubdivisionIdAttr),
-_in_ImageEntityIdInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.getLocalityStatisticsDataAct.dataFetchStatusAttr)
+In_ImageEntityId: OS.BuiltinFunctions.longIntegerToText(model.variables.local_ListVar.getCurrent(callContext.iterationContext).mainHallSubdivisionIdAttr)
 },
 events: {
 _handleError: function (ex) {
@@ -1255,17 +1257,17 @@ _dependencies: []
 }))];
 }, callContext, idService, "1")
 },
-_dependencies: [asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.out_LocalitiesStatisticsOut.getCurrent(callContext.iterationContext).mainHallSubdivisionIdAttr)]
+_dependencies: []
 })];
 })];
 })];
 })
 },
-_dependencies: [asPrimitiveValue(model.variables.searchStringVar), asPrimitiveValue(model.variables.local_ListVar), asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.hasFetchErrorAttr), asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.isDataFetchedAttr), asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.out_LocalitiesStatisticsOut.getCurrent(callContext.iterationContext).mainHallSubdivisionIdAttr), asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.out_LocalitiesStatisticsOut.length)]
+_dependencies: [asPrimitiveValue(model.variables.local_ListVar), asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.searchStringVar), asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.hasFetchErrorAttr), asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.isDataFetchedAttr), asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.out_LocalitiesStatisticsOut.length)]
 })];
 })
 },
-_dependencies: [asPrimitiveValue(model.variables.searchStringVar), asPrimitiveValue(model.variables.local_ListVar), asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.markersListVar), asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.out_LocalitiesStatisticsOut.getCurrent(callContext.iterationContext).mainHallSubdivisionIdAttr), asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.out_LocalitiesStatisticsOut.length), asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.hasFetchErrorAttr), asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.isDataFetchedAttr), asPrimitiveValue(model.variables.centerVar)]
+_dependencies: [asPrimitiveValue(model.variables.local_ListVar), asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.searchStringVar), asPrimitiveValue(model.variables.markersListVar), asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.out_LocalitiesStatisticsOut.length), asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.hasFetchErrorAttr), asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.isDataFetchedAttr), asPrimitiveValue(model.variables.centerVar)]
 })];
 }),
 bottom: new PlaceholderContent(function () {
@@ -1311,7 +1313,7 @@ _dependencies: []
 })];
 })
 },
-_dependencies: [asPrimitiveValue(model.variables.searchStringVar), asPrimitiveValue(model.variables.local_ListVar), asPrimitiveValue(model.variables.markersListVar), asPrimitiveValue(model.variables.centerVar), asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.out_LocalitiesStatisticsOut.getCurrent(callContext.iterationContext).mainHallSubdivisionIdAttr), asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.out_LocalitiesStatisticsOut.length), asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.hasFetchErrorAttr), asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.isDataFetchedAttr), asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.countryNameOut)]
+_dependencies: [asPrimitiveValue(model.variables.local_ListVar), asPrimitiveValue(model.variables.searchStringVar), asPrimitiveValue(model.variables.markersListVar), asPrimitiveValue(model.variables.centerVar), asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.out_LocalitiesStatisticsOut.length), asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.hasFetchErrorAttr), asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.isDataFetchedAttr), asPrimitiveValue(model.variables.getLocalityStatisticsDataAct.countryNameOut)]
 }), $if(false, false, this, function () {
 return [];
 }, function () {
@@ -2674,7 +2676,7 @@ return controller.safeExecuteClientAction(controller._screenEvent_OnInitialize$A
 Controller.prototype.pushDebuggerContext = function (callContext) {
 var varBag = {};
 OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:BmZ1TBE6pkiXu8fkupJ8UQ:/NRWebFlows.BmZ1TBE6pkiXu8fkupJ8UQ:FwAkjRuoCVCfL_Y3sNenPQ", "UBTConnect", "Directory_Locality", "NRFlows.WebFlow", callContext.id, varBag);
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:ic_m+EUSkES938K80SXJXQ:/NRWebFlows.BmZ1TBE6pkiXu8fkupJ8UQ/NodesShownInESpaceTree.ic_m+EUSkES938K80SXJXQ:mG_Go9qU4KoMbVjCF5VRvw", "UBTConnect", "CountryDetails", "NRNodes.WebScreen", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:ic_m+EUSkES938K80SXJXQ:/NRWebFlows.BmZ1TBE6pkiXu8fkupJ8UQ/NodesShownInESpaceTree.ic_m+EUSkES938K80SXJXQ:XDB3cXyr1drQAeFjpyL0oA", "UBTConnect", "CountryDetails", "NRNodes.WebScreen", callContext.id, varBag);
 };
 Controller.prototype.popDebuggerContext = function (callContext) {
 OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:ic_m+EUSkES938K80SXJXQ", callContext.id);

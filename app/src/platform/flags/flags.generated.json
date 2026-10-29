@@ -23,44 +23,7 @@
    ],
    "branches": "default-only",
    "routes": [
-    "AssembleDetail",
-    "AssembleEvents",
-    "Bookmarks",
-    "BookmarksByGroup",
-    "BrowseCountries",
-    "BrowseDirectory",
-    "CommunityBusinessDetails",
-    "CountryDetails",
-    "CountryList",
-    "EmailContact",
-    "EmailTarget",
-    "HomeFeed",
-    "HouseholdCarousel",
-    "HouseholdDetails",
-    "Household_Relations",
-    "InvalidPermissions",
-    "LDM_Email",
-    "LDM_Email_V2",
-    "LDM_EventDetail",
-    "LDM_EventDetail_V2",
-    "LDM_MyEvents",
-    "LDM_MyEvents_V2",
-    "Locality_Details",
-    "Map",
-    "Menu",
-    "MessageDetail",
-    "MessageList",
-    "MyBookmarks",
-    "New_BookmarksByGroup",
-    "New_MyBookmarks",
-    "Notes",
-    "Notifications",
-    "OneSchoolGlobalDetails",
-    "OrbitAdminEventDetail",
-    "OrbitAdminLanding",
-    "OrbitLanding",
-    "Search",
-    "Updates_SingleList"
+    "AssembleDetail"
    ],
    "decision": "default-only: TST value off (user, 2026-10-14)"
   },
@@ -76,7 +39,6 @@
     "AssembleDetail",
     "AssembleEvents",
     "Bookmarks",
-    "BookmarksByGroup",
     "BrowseCountries",
     "BrowseDirectory",
     "CommunityBusinessDetails",
@@ -100,14 +62,15 @@
     "Menu",
     "MessageDetail",
     "MessageList",
-    "MyBookmarks",
-    "New_BookmarksByGroup",
-    "New_MyBookmarks",
     "Notes",
+    "NotificationDetails",
     "Notifications",
+    "OneSchoolGlobalCarousel",
     "OneSchoolGlobalDetails",
     "OrbitAdminEventDetail",
     "OrbitAdminLanding",
+    "OrbitAdminMilestoneDetail",
+    "OrbitAdminMilestones",
     "OrbitLanding",
     "Search",
     "Updates_SingleList"
@@ -124,7 +87,6 @@
    "branches": "default-only",
    "routes": [
     "AssembleDetail",
-    "BookmarksByGroup",
     "HomeFeed",
     "HouseholdCarousel",
     "LDM_EventDetail",
@@ -133,7 +95,7 @@
     "LDM_MyEvents_V2",
     "Locality_Details",
     "Map",
-    "MyBookmarks",
+    "OneSchoolGlobalCarousel",
     "Photobook",
     "Search",
     "SupperMeeting_Carousel",
@@ -178,7 +140,6 @@
    "branches": "default-only",
    "routes": [
     "AssembleDetail",
-    "BookmarksByGroup",
     "FeedItemDetail",
     "HomeFeed",
     "HouseholdCarousel",
@@ -186,7 +147,7 @@
     "Locality_Details",
     "Map",
     "MessageDetail",
-    "New_BookmarksByGroup",
+    "OneSchoolGlobalCarousel",
     "OneSchoolGlobalDetails",
     "Profile",
     "SupperMeeting_Carousel",
@@ -212,7 +173,7 @@
   },
   "C2EnableMaps": {
    "source": "action:getHasMapsEnabled",
-   "default": "off",
+   "default": "on",
    "values": [
     "on",
     "off"
@@ -221,60 +182,20 @@
    "routes": [
     "Locality_Details"
    ],
-   "decision": "default-only: TST value off (user, 2026-10-14)"
+   "decision": "user decision H-Q3 (a), 2026-10-29: on as TST (the 2026-10-29 capture of Locality_Details shows the header explore icon, placeholder_Header_Input_Icon If GetHasMapsEnabled; the probe of 2026-10-14 gave false); the icon opens the not-migrated Map route like other not-built targets until a Maps screen is in scope. Drift wave WP8 (migration/clarify/builds/drift-WP4.md)."
   },
   "C2NewBookmarks": {
    "source": "action:getHasNewBookmarks",
-   "default": "off",
+   "default": "on",
    "values": [
     "on",
     "off"
    ],
    "branches": "default-only",
    "routes": [
-    "AssembleDetail",
-    "AssembleEvents",
-    "Bookmarks",
-    "BookmarksByGroup",
-    "BrowseCountries",
-    "BrowseDirectory",
-    "CommunityBusinessDetails",
-    "CountryDetails",
-    "CountryList",
-    "EmailContact",
-    "EmailTarget",
-    "HomeFeed",
-    "HouseholdCarousel",
-    "HouseholdDetails",
-    "Household_Relations",
-    "InvalidPermissions",
-    "LDM_Email",
-    "LDM_Email_V2",
-    "LDM_EventDetail",
-    "LDM_EventDetail_V2",
-    "LDM_MyEvents",
-    "LDM_MyEvents_V2",
-    "Locality_Details",
-    "Map",
-    "Menu",
-    "MessageDetail",
-    "MessageList",
-    "MyBookmarks",
-    "New_BookmarksByGroup",
-    "New_MyBookmarks",
-    "Notes",
-    "Notifications",
-    "OneSchoolGlobalDetails",
-    "OrbitAdminEventDetail",
-    "OrbitAdminLanding",
-    "OrbitLanding",
-    "Profile",
-    "Search",
-    "SupperMeeting_Carousel",
-    "SupperMeeting_Details",
-    "Updates_SingleList"
+    "Locality_Details"
    ],
-   "decision": "default-only: TST value off (user, 2026-10-14)"
+   "decision": "user decision H-Q2 (a), 2026-10-29: on as TST since 2026-10-21 (migration/knowledge/flag-values-tst.json changes[0]); TST removed the GetHasNewBookmarks branch from Directory_EntityDetailsActions (C2 bookmarks only, new mvc.js:375-376, :1864-1887); the reader left is Locality_Households_HouseholdList (GetLocal_Bookmark_C2). Drift wave WP4/WP8 (migration/clarify/builds/drift-WP4.md)."
   },
   "C2NewLDM": {
    "source": "action:getHasNewLDM",
@@ -370,6 +291,7 @@
     "HouseholdCarousel",
     "HouseholdDetails",
     "Locality_Details",
+    "OneSchoolGlobalCarousel",
     "Profile",
     "SupperMeeting_Carousel"
    ],
@@ -384,11 +306,27 @@
    ],
    "branches": "default-only",
    "routes": [
-    "AssembleDetail",
-    "BookmarksByGroup",
-    "New_BookmarksByGroup"
+    "AssembleDetail"
    ],
    "decision": "default-only: TST value off (user, 2026-10-14)"
+  },
+  "mobileDirectoryHouseholdGallery": {
+   "source": "launchDarkly_FF.mobileDirectoryHouseholdGallery",
+   "default": "on",
+   "values": [
+    "on",
+    "off"
+   ],
+   "branches": "default-only",
+   "routes": [
+    "HouseholdCarousel",
+    "HouseholdDetails",
+    "Locality_Details",
+    "OneSchoolGlobalCarousel",
+    "Profile",
+    "SupperMeeting_Carousel"
+   ],
+   "decision": "user decision (a) 'probe then record', drift wave round 2, 2026-10-29: on as TST (read-only probe migration/tools/flag_probe.cjs, 2026-10-29: true). HouseholdDetails_Block.mvc.js:1298-1301: on hides the Coming Soon box of the Photos tag. The off branch stays in the code with unit tests (HouseholdDetailsView.test.tsx); same record shape as getHasMapsEnabled (H-Q3). migration/clarify/review/drift-decisions-2026-10-29.md"
   },
   "mobileOrbitEventBooklet": {
    "source": "launchDarkly_FF.mobileOrbitEventBooklet",
@@ -410,6 +348,7 @@
    ],
    "branches": "default-only",
    "routes": [
+    "OneSchoolGlobalCarousel",
     "OneSchoolGlobalDetails"
    ],
    "decision": "default-only: TST value on (user, 2026-10-14)"

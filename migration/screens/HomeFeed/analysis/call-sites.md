@@ -11,6 +11,10 @@ For every service call: the chains of code that lead to it, from a root (user ev
 ### `UBTConnect_EmbedFeed/Blocks/Embedded_FeedCMS/DataActionGetFeedConfig`
 - `Embedded_FeedCMS fetch at start` → `Embedded_FeedCMS.DataActionGetFeedConfig`
 
+### `UBTConnect/Home/HomeFeed/DataActionGetCommunityStatistics`
+- `HomeFeed.OnReady` → `HomeFeed.screenEvent_OnReady` → `HomeFeed.DataActionGetCommunityStatistics`
+- `HomeFeed fetch at start` → `HomeFeed.DataActionGetCommunityStatistics`
+
 ### `UBTConnect/Home/FeedBlock_Updates/DataActionFetchUpdates`
 - `FeedBlock_Updates fetch at start` → `FeedBlock_Updates.DataActionFetchUpdates`
 
@@ -67,6 +71,8 @@ For every service call: the chains of code that lead to it, from a root (user ev
 
 ### `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All`
 - `BottomBarMenu.OnReady` → `BottomBarMenu.onReady` → `UBTConnect.directory_Updates_RefreshBottomBarCount` → `server Get_UI_UpdateItems_UnreadCount_All`
+- `onClick in ContextMenu` → `event event_MarkAsRead of ContextMenu` → `event event_MarkAsRead of Update_ListItem` → `FeedBlock_Updates.event_MarkAsRead` → `UBTConnect.directory_Updates_RefreshBottomBarCount` → `server Get_UI_UpdateItems_UnreadCount_All`
+- `onClick in ContextMenu` → `event event_MarkAsUnread of ContextMenu` → `event event_MarkAsUnread of Update_ListItem` → `FeedBlock_Updates.event_MarkAsUnread` → `UBTConnect.directory_Updates_RefreshBottomBarCount` → `server Get_UI_UpdateItems_UnreadCount_All`
 
 ### `UBTConnect_Utils/ActionCS_CreateShareProfileLink`
 - `event event_Clicked of ContactPopup` → `SharePopup.onClick_CallButton` → `event event_ShareToOthers of SharePopup` → `Feed_Embeded.handle_Share_Others` → `UBTConnect_Utils.shareEntity_ByURL` → `server CS_CreateShareProfileLink`

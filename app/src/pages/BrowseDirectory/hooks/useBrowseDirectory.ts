@@ -4,7 +4,7 @@ import type { DirectoryMapProps } from '@/components/directory/DirectoryMap';
 import type { BrowseDirectoryInputs } from '@/pages/BrowseDirectory/inputs';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { useFlowState, useOsNavigate, type IsAlive } from '@/platform/navigation';
+import { useFlowState, useOsNavigate } from '@/platform/navigation';
 import {
   map_FitBoundsAuto,
   map_InvalidateSize,
@@ -17,7 +17,6 @@ import {
   browseDirectoryReducer,
   INITIAL_BROWSE_DIRECTORY_STATE,
   localityLabelOf,
-  type BrowseDirectoryAction,
   type BrowseDirectoryState,
 } from './browseDirectoryState';
 
@@ -42,46 +41,33 @@ export interface BrowseDirectoryFlows {
   onMarkerClicked: NonNullable<DirectoryMapProps['onOnMarkerClicked']>;
   /** Handler_StatisticsList_Clicked: the Event_Clicked of StatisticsList, and the link of a map popup. */
   onStatisticsListClicked: (localityId: string) => void;
-  /** StatisticsListOnParametersChhanged: the OnParametersChangedEv event of StatisticsList. */
+  /** StatisticsListOnParametersChhanged: the OnParametersChangedEv event of StatisticsList (Map_InvalidateSize). */
   onStatisticsListParametersChanged: () => void;
 }
 
 /** The state and the flows of the screen. The state comes from useFlowState and the view cache keeps it.
-    Decision W23: a flow that started runs to its end. After an unmount, only its state writes stop (`isAlive`). The
-    navigation and the upgrade popup of Handler_StatisticsList_Clicked still run. */
+    Flow scope (item 8): GetLocalityStatistics is a data action (R1, `flow.fetch`): after the unmount its answer and
+    its failure are dropped. Action_InvalidateMapSize is an own screen action (R3, `flow.own`): the timer of
+    OnInitialized does nothing after the unmount (BrowseDirectory.js:961). HasAccessToRegion and the upgrade popup are
+    module actions: they run after leaving. The navigation from a left screen does not happen (R4, useOsNavigate). */
 export function useBrowseDirectory(inputs: BrowseDirectoryInputs): BrowseDirectoryFlows {
   const navigate = useOsNavigate();
-  /* OnReady runs once per screen. StrictMode (dev) runs the mount effect again on the same screen: the second call
-     only replaces the liveness check, so the first flow writes the state while the screen is there and calls
-     GetLocalityStatistics once. */
-  const readyStarted = useRef(false);
-  const newestReadyRun = useRef<IsAlive>(() => true);
   /** Local_MapId: set by Handler_LeafletMapOnInitialized. */
   const localMapId = useRef('');
-  const { state, dispatch, latest, parameters } = useFlowState({
+  const { state, dispatch, latest, parameters, flow } = useFlowState({
     viewName: 'Directory_Locality.BrowseDirectory',
     reducer: browseDirectoryReducer,
     initial: INITIAL_BROWSE_DIRECTORY_STATE,
     parameters: inputs,
     // The flows are defined below; the hook calls the ones of the newest render.
-    onReady: (isAlive, restored) => {
-      newestReadyRun.current = isAlive;
-      if (readyStarted.current) return Promise.resolve();
-      readyStarted.current = true;
-      return onReady(restored);
-    },
+    onReady: (_flow, restored) => onReady(restored),
   });
-
-  /** A state write of a flow, skipped after the unmount (W23). */
-  const write = (action: BrowseDirectoryAction) => {
-    if (newestReadyRun.current()) dispatch(action);
-  };
 
   /** Action_RefreshData: the skeleton list (10 rows), then the data action and its OnAfterFetch. */
   const refreshData = async () => {
-    write({ type: 'refreshStarted' });
-    const data = await fetchLocalityCardList(parameters.current.CountryCode);
-    write({ type: 'localityStatisticsFetched', data });
+    dispatch({ type: 'refreshStarted' });
+    const data = await flow.fetch(fetchLocalityCardList(parameters.current.CountryCode)); // R1
+    dispatch({ type: 'localityStatisticsFetched', data });
   };
 
   /** ScreenEvent_OnReady: a view that the view cache restored with its data fetched keeps it; otherwise
@@ -91,22 +77,25 @@ export function useBrowseDirectory(inputs: BrowseDirectoryInputs): BrowseDirecto
     await refreshData();
   };
 
-  /** Action_InvalidateMapSize: nothing before the map exists; else Map_InvalidateSize and Map_FitBoundsAuto. */
-  const invalidateMapSize = () => {
+  /** Action_InvalidateMapSize: nothing before the map exists; else Map_InvalidateSize and Map_FitBoundsAuto. An own
+      action of the screen (R3): after the unmount a call throws ControllerDisposedException. */
+  const invalidateMapSize = flow.own(() => {
     if (localMapId.current === '') return;
     map_InvalidateSize(localMapId.current);
     map_FitBoundsAuto(localMapId.current);
-  };
+  });
 
   /** Handler_StatisticsList_Clicked: an empty id does nothing. Without access to the region, the upgrade popup;
       else Locality_Details with the locality and its label. */
   const statisticsListClicked = async (eventId: string) => {
     if (eventId === '') return;
+    // A module action: not wrapped.
     const hasAccess = await hasAccessToRegion(asLongText(eventId), parameters.current.CountryCode);
     if (!hasAccess) {
-      await showUpgradePopUp();
+      await showUpgradePopUp(); // module action: runs after leaving, as on TST
       return;
     }
+    // R4 in useOsNavigate.
     navigate('/UBTConnect/Locality_Details', {
       LocalityId: asLongText(eventId),
       PreloadedLocalityLabel: localityLabelOf(latest.current, eventId),
@@ -130,7 +119,7 @@ export function useBrowseDirectory(inputs: BrowseDirectoryInputs): BrowseDirecto
         try {
           invalidateMapSize();
         } catch (error) {
-          raiseToFlowHandler(error);
+          raiseToFlowHandler(error, flow);
         }
       }, 0);
     },
@@ -138,7 +127,7 @@ export function useBrowseDirectory(inputs: BrowseDirectoryInputs): BrowseDirecto
     onSetCallbacks: (mapId) => {
       map_SetPopupBindingCallback(mapId, (marker) =>
         directory_BrowseByCountry_TooltipBuilder(marker, (id) => {
-          clickedRef.current(id).catch(raiseToFlowHandler);
+          flow.run(() => clickedRef.current(id));
         }),
       );
     },
@@ -147,13 +136,15 @@ export function useBrowseDirectory(inputs: BrowseDirectoryInputs): BrowseDirecto
       map_Marker_OpenPopUp(args[6]);
     },
     onStatisticsListClicked: (localityId) => {
-      statisticsListClicked(localityId).catch(raiseToFlowHandler);
+      flow.run(() => statisticsListClicked(localityId));
     },
+    // StatisticsListOnParametersChhanged (BrowseDirectory.mvc.js:1025-1040): Map_InvalidateSize only, once the map
+    // exists (no Map_FitBoundsAuto, unlike Action_InvalidateMapSize).
     onStatisticsListParametersChanged: () => {
       try {
-        invalidateMapSize();
+        if (localMapId.current !== '') map_InvalidateSize(localMapId.current);
       } catch (error) {
-        raiseToFlowHandler(error);
+        raiseToFlowHandler(error, flow);
       }
     },
   };

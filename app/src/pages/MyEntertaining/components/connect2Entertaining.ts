@@ -34,6 +34,8 @@ export interface EmbedInitOptions {
   onComplete: (data?: EmbedCompleteData) => void;
   onResize: (height: number) => void;
   onError: (error?: EmbedErrorData) => void;
+  /** The calendar asks to go back (live TST of 2026-10-27, InitializeCalendarJS :1442-1444). */
+  onNavBack: () => void;
 }
 
 /** The SDK calls the block makes. */
@@ -50,10 +52,12 @@ export interface Connect2EntertainingEmbed {
 const MOCK_PAGE = `${import.meta.env.BASE_URL}mock-embeds/my-entertaining.html`;
 
 let current: HTMLIFrameElement | null = null;
+let removeNavBackListener: (() => void) | undefined;
 
 /** Stand-in (Q1 A): one iframe with the mock page in the container (query view, theme, sources of the init options);
     onReady then onComplete (no status, no total) once it has loaded. No authentication, no errors; setSources posts
-    `sources:set` to the mock page, token refresh is ignored. */
+    `sources:set` to the mock page, token refresh is ignored. The mock page's back control posts `embed:nav-back`: the
+    stand-in calls onNavBack, as the real calendar does from its own back (drift-WP3 Q5). */
 const standIn: Connect2EntertainingEmbed = {
   init(options) {
     const container = document.getElementById(options.containerId);
@@ -70,11 +74,26 @@ const standIn: Connect2EntertainingEmbed = {
     );
     const query = new URLSearchParams({ view: options.view, theme: options.theme, sources: options.sources ?? '' });
     iframe.src = `${MOCK_PAGE}?${query.toString()}`;
+    const onMessage = (event: MessageEvent) => {
+      if (current !== iframe || event.source !== iframe.contentWindow || event.origin !== window.location.origin)
+        return;
+      const data: unknown = event.data;
+      if (typeof data === 'object' && data !== null && 'type' in data && data.type === 'embed:nav-back') {
+        options.onNavBack();
+      }
+    };
+    removeNavBackListener?.();
+    window.addEventListener('message', onMessage);
+    removeNavBackListener = () => {
+      window.removeEventListener('message', onMessage);
+    };
     container.appendChild(iframe);
     current = iframe;
   },
   isConfigured: () => current !== null,
   destroy() {
+    removeNavBackListener?.();
+    removeNavBackListener = undefined;
     current?.remove();
     current = null;
   },
@@ -96,3 +115,14 @@ export function requireEmbed(baseURL: string): Promise<Connect2EntertainingEmbed
 
 /** `window.Connect2Entertaining` of the JS nodes: the SDK once its script has been required, else undefined. */
 export const loadedEmbed = (): Connect2EntertainingEmbed | undefined => loaded;
+
+let entertainingToken = '';
+
+/** Action_SetToken → SetEntertainingTokenJS (live TST of 2026-10-27, Embedded_MyEntertaining.mvc.js:785-814,
+    :1385-1389): TST keeps the token on `window.__ubtEntertainingToken`; here it stays in this module. */
+export function setEntertainingToken(token: string): void {
+  entertainingToken = token;
+}
+
+/** getIdToken of InitializeCalendarJS: the token of the last Action_SetToken. */
+export const getEntertainingToken = (): string => entertainingToken;

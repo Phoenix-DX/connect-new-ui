@@ -496,7 +496,7 @@ return controller.safeExecuteClientAction(controller._handler_NavigateTo_B2CCall
 Controller.prototype.pushDebuggerContext = function (callContext) {
 var varBag = {};
 OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:EX+5lW+DhkWARS3JFzv5Fg:/NRWebFlows.EX+5lW+DhkWARS3JFzv5Fg:690FmsHMfqq40rgnVL78Cg", "UBTConnect", "Legacy_MyNotificationsFlow", "NRFlows.WebFlow", callContext.id, varBag);
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:XHTu9JgVzEuBaLHeZps07g:/NRWebFlows.EX+5lW+DhkWARS3JFzv5Fg/NodesShownInESpaceTree.XHTu9JgVzEuBaLHeZps07g:EsyQ0Vdr01x5eoguU_oC1g", "UBTConnect", "MessageList", "NRNodes.WebScreen", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:XHTu9JgVzEuBaLHeZps07g:/NRWebFlows.EX+5lW+DhkWARS3JFzv5Fg/NodesShownInESpaceTree.XHTu9JgVzEuBaLHeZps07g:k4C2gJOJiVQo6lW2MUARQg", "UBTConnect", "MessageList", "NRNodes.WebScreen", callContext.id, varBag);
 };
 Controller.prototype.popDebuggerContext = function (callContext) {
 OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:XHTu9JgVzEuBaLHeZps07g", callContext.id);

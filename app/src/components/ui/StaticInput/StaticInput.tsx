@@ -8,24 +8,25 @@ import { TextEllipsis } from '@/components/ui/TextEllipsis';
 export interface StaticInputProps {
   /** OutSystems instance id of the block. */
   id?: string;
-  /** Prompt text; default "Search for households. entities, news". */
+  /** Prompt text; default "Search for households, members or places." (live TST, StaticInput.mvc.js S:13-14). */
   inPrompt?: string;
   inExtendedClasses?: string;
   /** Event Click_Input. */
   onClickInput?: () => void;
 }
 
-/** A search box look-alike that only raises Click_Input (the caller opens the real search). */
+/** A search box look-alike that only raises Click_Input (the caller opens the real search). Container style of the
+    live TST block (StaticInput.mvc.js :173, extracted 2026-10-29; Bookmarks Q4 (a)). */
 export function StaticInput({
   id,
-  inPrompt = 'Search for households. entities, news',
+  inPrompt = 'Search for households, members or places.',
   inExtendedClasses = '',
   onClickInput,
 }: StaticInputProps) {
   return (
     <OSBlock name="ConnectPatterns.StaticInput" id={id}>
       <div
-        className={`ubt-static-input ${inExtendedClasses}`}
+        className={`search-placeholder-ellipsis ubt-static-input ${inExtendedClasses}`}
         data-container=""
         style={{ cursor: 'pointer' }}
         onClick={onClickInput}

@@ -1,21 +1,18 @@
 import { useEffect, useRef, useState } from 'react';
 import type { ConnectShareInputs } from '@/pages/ConnectShare/inputs';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
-import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import {
   replaceOnUpcomingNavigation,
   TransitionAnimation,
   useFlowState,
   useNavigateBack,
   useOsNavigate,
-  type IsAlive,
 } from '@/platform/navigation';
 import { onInitializeSharingScreen } from './connectShareActions';
 import {
   connectShareReducer,
   INITIAL_CONNECT_SHARE_STATE,
   shareRedirectTarget,
-  type ConnectShareAction,
   type ConnectShareState,
 } from './connectShareState';
 
@@ -40,49 +37,44 @@ export interface ConnectShareView {
       DelayedShowFreeSubscriptionAlertJS: after 1 s, Action_SetShowFreeSubscriptionAlert(its ShowFreeSubscriptionAlert).
       An exception goes to the flow handler.
     - ScreenEvent_OnReady, once after the first render of the view: IsRedirect → Action_Redirect.
-    - Decision W23: after an unmount, the flow that started runs to its end (the audit call of
-      OnInitializeSharingScreen included) and writes no state. As in the old port, the 1 s timer is not started after the
-      unmount and stops with the screen, and OnReady does not run.
+    - Flow scope (item 8): OnInitializeSharingScreen is a module client action (no disposal check): after an unmount
+      its flow runs to its end (the audit call included) and writes no state. The 1 s timer is not started after the
+      unmount and stops with the screen. On TST the timer starts, but Action_SetShowFreeSubscriptionAlert stops at its
+      ensureControllerAlive (R3, ConnectShare.js:366): the same outcome, no pop-up. OnReady does not run after the
+      unmount (Action_Redirect has the same check, :447). useFlowState gives the once-guard of OnInitialize, the
+      no-op state write after the unmount and the flow scope; the popup runs with `flow.run` (S2b Q1 (a), user
+      2026-10-28).
     @origin UBTConnect.Legacy_Share.ConnectShare */
 export function useConnectShare(inputs: ConnectShareInputs): ConnectShareView {
   const navigate = useOsNavigate();
   const navigateBack = useNavigateBack();
   const [isInitialized, setInitialized] = useState(false);
-  /* OnInitialize runs once per screen. StrictMode (dev) runs the mount effect again on the same screen: the second call
-     only replaces the liveness check, so the first flow writes the state while the screen is there and calls
-     Get_ShareDetails once. */
-  const initializeStarted = useRef(false);
-  const newestRun = useRef<IsAlive>(() => true);
   const alertTimer = useRef<number | undefined>(undefined);
-  const { state, dispatch, latest, parameters } = useFlowState({
+  /* useFlowState runs OnInitialize once per screen, also in StrictMode, and sends its exception to the flow handler
+     with the flow scope. `dispatch` does nothing after the unmount. */
+  const { state, dispatch, latest, parameters, flow } = useFlowState({
     viewName: 'Legacy_Share.ConnectShare',
     reducer: connectShareReducer,
     initial: INITIAL_CONNECT_SHARE_STATE,
     parameters: inputs,
     // The flows are defined below; the hook calls the ones of the newest render.
-    onReady: (isAlive, restored) => {
-      newestRun.current = isAlive;
-      if (initializeStarted.current) return Promise.resolve();
-      initializeStarted.current = true;
-      return onInitialize(restored)
-        .catch(raiseToFlowHandler)
-        .finally(() => {
-          if (newestRun.current()) setInitialized(true);
-        });
+    onReady: async (scope, restored) => {
+      try {
+        await onInitialize(restored);
+      } finally {
+        // The view of the screen exists once OnInitialize ends, also after an exception.
+        if (scope.alive()) setInitialized(true);
+      }
     },
   });
 
-  /** A state write of a flow, skipped after the unmount (W23). */
-  const write = (action: ConnectShareAction) => {
-    if (newestRun.current()) dispatch(action);
-  };
-
   /** Action_SetShowFreeSubscriptionAlert(In_ShowFreeSubscriptionAlert): when True, ShowFreeSubscriptionAlert = True and
-      App_Subscription_ShowUpgradePopUp (it opens "SubscriptionDenied"). */
+      App_Subscription_ShowUpgradePopUp (it opens "SubscriptionDenied"). A failure of the popup goes to the flow
+      handler with the flow scope (`flow.run`). */
   const setShowFreeSubscriptionAlert = (show: boolean) => {
     if (!show) return;
     dispatch({ type: 'freeSubscriptionAlertShown' });
-    showUpgradePopUp().catch(raiseToFlowHandler);
+    flow.run(showUpgradePopUp);
   };
 
   /** ScreenEvent_OnInitialize (see above). */
@@ -92,9 +84,9 @@ export function useConnectShare(inputs: ConnectShareInputs): ConnectShareView {
       if (statusMessage === '' && !showFreeSubscriptionAlert) navigateBack(TransitionAnimation.None);
       return;
     }
-    const out = await onInitializeSharingScreen(parameters.current.ShareId);
-    write({ type: 'sharingScreenInitialized', result: out });
-    if (out.isRedirect || !newestRun.current()) return;
+    const out = await onInitializeSharingScreen(parameters.current.ShareId); // a module client action (R2)
+    dispatch({ type: 'sharingScreenInitialized', result: out });
+    if (out.isRedirect || !flow.alive()) return;
     alertTimer.current = window.setTimeout(() => {
       setShowFreeSubscriptionAlert(out.showFreeSubscriptionAlert);
     }, FREE_SUBSCRIPTION_ALERT_DELAY_MS);
@@ -119,7 +111,8 @@ export function useConnectShare(inputs: ConnectShareInputs): ConnectShareView {
     replaceOnUpcomingNavigation();
     const target = shareRedirectTarget(redirect.shareObjectTypeId, redirect.attributesId);
     if (target === null) dispatch({ type: 'redirectCancelled' });
-    else navigate(target.path, target.params);
+    // the four destinations open with TransitionAnimation.None (ConnectShare.mvc.js:461-485)
+    else navigate(target.path, target.params, { transition: TransitionAnimation.None });
   }, [isInitialized, latest, navigate, dispatch]);
 
   return { isInitialized, state };

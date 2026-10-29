@@ -1,6 +1,10 @@
-import { act, screen, waitFor } from '@testing-library/react';
+import { useLayoutEffect } from 'react';
+import { act, renderHook, screen, waitFor } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
-import { beforeEach, describe, expect, test, vi } from 'vitest';
+import { MemoryRouter, useLocation } from 'react-router';
+import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
+import { OutOfContextException } from '@/legacy/os/os-exceptions';
+import { useFlowState } from './flowState';
 import {
   dateTimeParam,
   generateScreenURL,
@@ -8,10 +12,13 @@ import {
   replaceOnUpcomingNavigation,
   resetReplaceOnUpcomingNavigation,
   screenUrl,
+  useNavigateBack,
   useOsNavigate,
   type NavigationTarget,
   type OsParams,
+  type ScreenCheck,
 } from './osNavigate';
+import { screenOf } from './paths';
 import { DEFAULT_TRANSITION, TransitionAnimation, transitionState } from './screenTransition';
 import { renderRoutes, resetNavigation } from './testRouter';
 
@@ -190,5 +197,206 @@ describe('dateTimeParam (ServerDataConverter.asString(DateTime), AssembleEvents 
     expect(screenUrl('/UBTConnect/AssembleDetail', { Start: start, EventId: 'e1', SeriesId: 's1' })).toBe(
       `/UBTConnect/AssembleDetail?Start=${start.replaceAll(':', '%3A')}&EventId=e1&SeriesId=s1`,
     );
+  });
+});
+
+/* R4 (item8-w23-errorpage.md §1): a navigation from a flow of a screen that is no longer active throws
+   OutOfContextException (navigateTo → validateContext, Navigation module W221750; isOutOfContext W518580). */
+describe('the context check of a navigation (R4, item 8 §2.4)', () => {
+  const from: { go?: ReturnType<typeof useOsNavigate>; back?: ReturnType<typeof useNavigateBack> } = {};
+  function ScreenA() {
+    const go = useOsNavigate();
+    const back = useNavigateBack();
+    useLayoutEffect(() => {
+      from.go = go;
+      from.back = back;
+    });
+    return <p>screen A</p>;
+  }
+  const screens = {
+    '/UBTConnect/A': <ScreenA />,
+    '/UBTConnect/B': <p>screen B</p>,
+    '/UBTConnect/C': <p>screen C</p>,
+  };
+
+  test('5. from the current entry the route changes; from a left entry: OutOfContextException, no route change', async () => {
+    const { at } = renderRoutes(screens, '/UBTConnect/A');
+    const { go, back } = from;
+
+    act(() => {
+      go?.('/UBTConnect/B');
+    });
+    expect(await screen.findByText('screen B')).toBeInTheDocument();
+
+    expect(() => {
+      go?.('/UBTConnect/C');
+    }).toThrow(OutOfContextException);
+    expect(() => {
+      back?.();
+    }).toThrow(OutOfContextException);
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 0));
+    });
+    expect(at()).toBe('/UBTConnect/B');
+    expect(screen.getByText('screen B')).toBeInTheDocument();
+  });
+
+  test('5. without a NavigationHost (no entry), the navigation goes through', async () => {
+    const { result } = renderHook(() => ({ go: useOsNavigate(), location: useLocation() }), {
+      wrapper: ({ children }) => <MemoryRouter initialEntries={['/UBTConnect/A']}>{children}</MemoryRouter>,
+    });
+    const { go } = result.current;
+
+    act(() => {
+      go('/UBTConnect/B');
+    });
+    await waitFor(() => {
+      expect(result.current.location.pathname).toBe('/UBTConnect/B');
+    });
+    act(() => {
+      go('/UBTConnect/C'); // the first function, after the location changed
+    });
+    await waitFor(() => {
+      expect(result.current.location.pathname).toBe('/UBTConnect/C');
+    });
+  });
+
+  /* Risk 1 of the design: NavigationHost records the entry in a layout effect, and a beforePaint OnReady runs in a
+     layout effect too. */
+  test.each([{ beforePaint: true }, { beforePaint: false }])(
+    '6. an OnReady (beforePaint $beforePaint) that navigates at once on the first screen goes through',
+    async ({ beforePaint }) => {
+      function Redirecting() {
+        const go = useOsNavigate();
+        useFlowState({
+          viewName: 'Redirecting',
+          reducer: (state: null) => state,
+          initial: null,
+          parameters: {},
+          beforePaint,
+          onReady: () => {
+            go('/UBTConnect/B', {}, { replace: true });
+            return Promise.resolve();
+          },
+        });
+        return <p>redirecting</p>;
+      }
+      const { at } = renderRoutes(
+        { '/UBTConnect/R': <Redirecting />, '/UBTConnect/B': <p>screen B</p> },
+        '/UBTConnect/R',
+      );
+
+      expect(await screen.findByText('screen B')).toBeInTheDocument();
+      expect(at()).toBe('/UBTConnect/B');
+    },
+  );
+});
+
+/* D3 of item 9 (migration/clarify/review/item9-solution.md §4.3): TST's navigateTo treats a URL that matches no screen
+   URL of the home module as external and changes the window location (N14: urlBelongsToCurrentApplication W229508,
+   changeWindowLocation W224025). Observed P6: a full page load, then the server page "404 - File or directory not
+   found.". The route table comes from the NavigationHost (AppFrame: app/screens.ts showsScreen). */
+describe('a path that no screen has: a full page load (D3; N14, P6)', () => {
+  const isScreen: ScreenCheck = ({ pathname }) => screenOf(pathname) !== null;
+  let location: { href: string; assign: ReturnType<typeof vi.fn> };
+
+  beforeEach(() => {
+    location = { href: 'http://localhost:3000/UBTConnect/HomeFeed', assign: vi.fn() };
+    vi.stubGlobal('location', location);
+  });
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  const appRoutes = {
+    '/UBTConnect/HomeFeed': (
+      <>
+        <button type="button" onClick={replaceOnUpcomingNavigation}>
+          mark replace
+        </button>
+        <Go to="/UBTConnect/NoSuchScreen" params={{ a: 1 }} />
+        <Go to="/UBTConnect/OldScreen" />
+        <Go to="/UBTConnect/Menu?From=Home" />
+        <Go to="/UBTConnect/Menu" />
+      </>
+    ),
+    '/UBTConnect/Menu': <p>menu</p>,
+  };
+
+  test('useOsNavigate: location.assign(screen URL); the router location, the history and the replace mark stay', async () => {
+    const { router, at } = renderRoutes(appRoutes, '/UBTConnect/HomeFeed', undefined, undefined, isScreen);
+    await userEvent.click(screen.getByText('mark replace'));
+    await userEvent.click(screen.getByText('go /UBTConnect/NoSuchScreen'));
+    expect(location.assign).toHaveBeenCalledExactlyOnceWith('/UBTConnect/NoSuchScreen?a=1');
+    expect(at()).toBe('/UBTConnect/HomeFeed');
+    expect(router.state.historyAction).toBe('POP'); // the first entry: no push, no replace
+
+    // a known path: the router navigates, no full page load; the replace mark was not used by the unknown path
+    await userEvent.click(screen.getByText('go /UBTConnect/Menu'));
+    expect(at()).toBe('/UBTConnect/Menu');
+    expect(router.state.historyAction).toBe('REPLACE');
+    expect(location.assign).toHaveBeenCalledOnce();
+  });
+
+  test('a query in the path does not make a screen path unknown', async () => {
+    const { at } = renderRoutes(appRoutes, '/UBTConnect/HomeFeed', undefined, undefined, isScreen);
+    await userEvent.click(screen.getByText('go /UBTConnect/Menu?From=Home'));
+    expect(at()).toBe('/UBTConnect/Menu?From=Home');
+    expect(location.assign).not.toHaveBeenCalled();
+  });
+
+  test('osNavigateTo through the host navigate does the same', async () => {
+    const { at } = renderRoutes(appRoutes, '/UBTConnect/HomeFeed', undefined, undefined, isScreen);
+    act(() => {
+      osNavigateTo('/UBTConnect/NoSuchScreen', { a: 1 }, { transition: TransitionAnimation.Default });
+    });
+    expect(location.assign).toHaveBeenCalledExactlyOnceWith('/UBTConnect/NoSuchScreen?a=1');
+    act(() => {
+      osNavigateTo('/UBTConnect/Menu');
+    });
+    await waitFor(() => {
+      expect(at()).toBe('/UBTConnect/Menu');
+    });
+    expect(location.assign).toHaveBeenCalledOnce();
+  });
+
+  test('the flag redirect runs first: a redirected target that is a screen navigates in the router', async () => {
+    const redirect = (target: NavigationTarget): NavigationTarget =>
+      target.path === '/UBTConnect/OldScreen' ? { path: '/UBTConnect/Menu', params: target.params } : target;
+    const { at } = renderRoutes(appRoutes, '/UBTConnect/HomeFeed', undefined, redirect, isScreen);
+    await userEvent.click(screen.getByText('go /UBTConnect/OldScreen'));
+    expect(at()).toBe('/UBTConnect/Menu');
+    expect(location.assign).not.toHaveBeenCalled();
+  });
+
+  test('the R4 check comes first: from a left screen, OutOfContextException and no full page load', async () => {
+    let go: ReturnType<typeof useOsNavigate> | undefined;
+    function Home() {
+      const navigate = useOsNavigate();
+      useLayoutEffect(() => {
+        go = navigate;
+      });
+      return <p>home</p>;
+    }
+    const screens = { '/UBTConnect/HomeFeed': <Home />, '/UBTConnect/Menu': <p>menu</p> };
+    renderRoutes(screens, '/UBTConnect/HomeFeed', undefined, undefined, isScreen);
+    const fromHome = go;
+    act(() => {
+      fromHome?.('/UBTConnect/Menu');
+    });
+    expect(await screen.findByText('menu')).toBeInTheDocument();
+    expect(() => {
+      fromHome?.('/UBTConnect/NoSuchScreen');
+    }).toThrow(OutOfContextException);
+    expect(location.assign).not.toHaveBeenCalled();
+  });
+
+  test('without the route table (a block rendered alone): the router gets every path, as before', async () => {
+    vi.spyOn(console, 'warn').mockImplementation(() => undefined); // React Router: no route matches
+    const { at } = renderRoutes(appRoutes, '/UBTConnect/HomeFeed');
+    await userEvent.click(screen.getByText('go /UBTConnect/NoSuchScreen'));
+    expect(at()).toBe('/UBTConnect/NoSuchScreen?a=1');
+    expect(location.assign).not.toHaveBeenCalled();
   });
 });

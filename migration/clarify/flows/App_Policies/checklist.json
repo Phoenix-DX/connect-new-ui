@@ -1,0 +1,1111 @@
+{
+ "flow": "App_Policies",
+ "date": "2026-10-27",
+ "status": "draft",
+ "rows": [
+  {
+   "id": "App_Policies-001",
+   "screen": "AcceptPendingPolicies",
+   "area": "identity",
+   "element": "roles Registered, UBTOne_User",
+   "os": "A signed-in user opens the screen; the TST controller checks Registered (`checkRegistered`)",
+   "react": "MEMBER_ROUTE (member, enforce): the screen is not in ROUTE_META",
+   "evidence": "app/src/app/routes.ts:39-57; TST UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:801-802",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-002",
+   "screen": "AcceptPendingPolicies",
+   "area": "identity",
+   "element": "input parameters",
+   "os": "none (URL structure QueryString)",
+   "react": "route inputs []",
+   "evidence": "app/src/app/routes.generated.ts:6",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-003",
+   "screen": "AcceptPendingPolicies",
+   "area": "identity",
+   "element": "local useOverlay (Boolean, True)",
+   "os": "passed to Layout_LoginFlow In_HasOverlay",
+   "react": "useState(true)",
+   "evidence": "app/src/pages/AcceptPendingPolicies/hooks/useAcceptPendingPolicies.ts:32; TST UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:13",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-004",
+   "screen": "AcceptPendingPolicies",
+   "area": "identity",
+   "element": "local UserCountry (Text) and OnInitialize",
+   "os": "OnInitialize: UserCountry = AppManager_GetCachedUserInfo.UserInformation.CountryCode",
+   "react": "lazy useState(() => appManager_GetCachedUserInfo().CountryCode): set once, before the first render",
+   "evidence": "app/src/pages/AcceptPendingPolicies/hooks/useAcceptPendingPolicies.ts:33-34; TST UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:623-628; migration/change-requests/CR-AcceptPendingPolicies-2.md",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-005",
+   "screen": "AcceptPendingPolicies",
+   "area": "identity",
+   "element": "local MainContainer (Text, \"\")",
+   "os": "the id of the layout Main container after OnReady; input ContentBlockId of the block",
+   "react": "useState('') and a ref for DefineHeight",
+   "evidence": "app/src/pages/AcceptPendingPolicies/hooks/useAcceptPendingPolicies.ts:35-36; TST UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:19",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-006",
+   "screen": "AcceptPendingPolicies",
+   "area": "identity",
+   "element": "lifecycle",
+   "os": "OnInitialize only; no OnReady, OnRender, OnDestroy or OnParametersChanged",
+   "react": "no lifecycle effect besides the lazy state of the UserCountry row",
+   "evidence": "app/src/pages/AcceptPendingPolicies/hooks/useAcceptPendingPolicies.ts:31-37; TST UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:776-797",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-007",
+   "screen": "AcceptPendingPolicies",
+   "area": "data",
+   "element": "data actions and aggregates of the screen",
+   "os": "none (the block owns GetPendingPolicies)",
+   "react": "none in the screen hook",
+   "evidence": "pack/screens.md AcceptPendingPolicies; TST UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:511 (dataFetchActionNames = [])",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-008",
+   "screen": "AcceptPendingPolicies",
+   "area": "data",
+   "element": "AppManager_GetCachedUserInfo (UBT_AppManager)",
+   "os": "JSON of the client variable AppManager_UserExtended into AppManager_CachedUserInfoRec",
+   "react": "appManager_GetCachedUserInfo(): the same JSON read; a missing field keeps its default",
+   "evidence": "app/src/platform/session/cachedUserInfo.ts:36-52; migration/change-requests/CR-AcceptPendingPolicies-2.md (Resolution)",
+   "verdict": "match",
+   "note": "In mock builds the mock identity fills the empty name fields. CountryCode comes from the stored record.",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-009",
+   "screen": "AcceptPendingPolicies",
+   "area": "ui",
+   "element": "Layout_LoginFlow In_ExtendedClass, In_HasOverlay",
+   "os": "In_ExtendedClass = \"ubt-policies\", In_HasOverlay = useOverlay",
+   "react": "LoginLayout inExtendedClass=\"ubt-policies\" inHasOverlay={useOverlay}",
+   "evidence": "app/src/pages/AcceptPendingPolicies/AcceptPendingPoliciesPage.tsx:28-31; TST UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:136-139",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-010",
+   "screen": "AcceptPendingPolicies",
+   "area": "ui",
+   "element": "Layout_LoginFlow events",
+   "os": "OnReady → Layout_LoginFlowOnReady(MainContainerId); OnPathCalculated → DefineHeight",
+   "react": "onOnReady={screen.onLayoutReady}; onOnPathCalculated={screen.defineHeight}",
+   "evidence": "app/src/pages/AcceptPendingPolicies/AcceptPendingPoliciesPage.tsx:32-33; TST UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:144-167",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-011",
+   "screen": "AcceptPendingPolicies",
+   "area": "ui",
+   "element": "Placeholder_Header",
+   "os": "empty",
+   "react": "no placeholderHeader",
+   "evidence": "app/src/pages/AcceptPendingPolicies/AcceptPendingPoliciesPage.tsx:28-60; TST UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:184",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-012",
+   "screen": "AcceptPendingPolicies",
+   "area": "ui",
+   "element": "container Content",
+   "os": "class ubt-policies--content, extended style \"text-align: center;\"",
+   "react": "div#Content.ubt-policies--content with style textAlign center",
+   "evidence": "app/src/pages/AcceptPendingPolicies/AcceptPendingPoliciesPage.tsx:36; TST UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:185-197",
+   "verdict": "match",
+   "note": "The pack shows the class only. The TST view also has the extended style.",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-013",
+   "screen": "AcceptPendingPolicies",
+   "area": "ui",
+   "element": "header: container ubt-policies--header, CustomContainer and CustomText \"Welcome to\"",
+   "os": "CustomContainer PaddingSize Bottom Small; CustomText Neutral0, Heading3, SemiBold",
+   "react": "PoliciesHeader: the same container, options and text",
+   "evidence": "app/src/pages/AcceptPendingPolicies/components/PoliciesHeader/PoliciesHeader.tsx:23-34; TST UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:199-252",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-014",
+   "screen": "AcceptPendingPolicies",
+   "area": "ui",
+   "element": "image ConnectLogoWhite",
+   "os": "static image img/UBTConnect.ConnectLogoWhite.svg, style login-screen__connect-logo, grid class ThemeGrid_MarginGutter",
+   "react": "img with both classes; src = osImage('img/UBTConnect.ConnectLogoWhite.svg')",
+   "evidence": "app/src/pages/AcceptPendingPolicies/components/PoliciesHeader/PoliciesHeader.tsx:35; app/src/pages/AcceptPendingPolicies/AcceptPendingPoliciesPage.tsx:37; TST UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:271-281",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-015",
+   "screen": "AcceptPendingPolicies",
+   "area": "ui",
+   "element": "CustomContainer with two CustomText",
+   "os": "PaddingSize Top Base, Bottom Medium; \"Connect and Directory\" and \"Terms and Conditions & Privacy Policy\" in Neutral0, Base, SemiBold",
+   "react": "the same container and two texts",
+   "evidence": "app/src/pages/AcceptPendingPolicies/components/PoliciesHeader/PoliciesHeader.tsx:36-39; TST UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:282-354",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-016",
+   "screen": "AcceptPendingPolicies",
+   "area": "ui",
+   "element": "Policy_Custom_AcceptPendingPolicies inputs",
+   "os": "ContentBlockId = MainContainer, Country = UserCountry, PolicyApplications = TextToIdentifier of Connect_Applications Connect, Directory, Orbit (TST values: GUID texts)",
+   "react": "contentBlockId and country as TST; policyApplications = the names 'Connect_Applications.Connect', '.Directory', '.Orbit'",
+   "evidence": "app/src/pages/AcceptPendingPolicies/AcceptPendingPoliciesPage.tsx:12-13, 22-25; app/src/pages/AcceptPendingPolicies/staticEntities.ts:14-20; TST UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:374-386; migration/knowledge/static-entities-tst.json:2809 (UBTConnect.connect_Applications)",
+   "verdict": "match",
+   "severity": "major",
+   "finding": "F1",
+   "note": "Built 2026-10-27 (builds/B5-lists.md). The mock ignores the value, so the demo shows no difference.",
+   "verified": "code",
+   "fixed": "2026-10-27"
+  },
+  {
+   "id": "App_Policies-017",
+   "screen": "AcceptPendingPolicies",
+   "area": "ui",
+   "element": "block events",
+   "os": "AcceptedAll → AcceptPendingPoliciesAcceptedAll; NetworkError → AcceptPendingPoliciesNetworkError",
+   "react": "onAcceptedAll: screen.acceptedAll; onNetworkError: showCommunicationExceptionMessage",
+   "evidence": "app/src/pages/AcceptPendingPolicies/AcceptPendingPoliciesPage.tsx:22-25; TST UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:391-420",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-018",
+   "screen": "AcceptPendingPolicies",
+   "area": "ui",
+   "element": "BackNavigationHandler (NavigationHandler)",
+   "os": "no Priority argument (default 0); BackNavigation → BackNavigationHandlerBackNavigation",
+   "react": "BackNavigationHandler with the default priority 0 and onBackNavigation",
+   "evidence": "app/src/pages/AcceptPendingPolicies/AcceptPendingPoliciesPage.tsx:51-56; app/src/platform/navigation/BackNavigationHandler/BackNavigationHandler.tsx:19; TST UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:431-446; TST NavigationHandler.NavigationHandler.BackNavigationHandler.mvc.js:16-17",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-019",
+   "screen": "AcceptPendingPolicies",
+   "area": "ui",
+   "element": "Placeholder_CommonUI_Inside_Layout",
+   "os": "CommonUI_InsideLayout(In_IgnorePolicy = True)",
+   "react": "CommonUiLayout inIgnorePolicy; the lock screen and the other parts stay",
+   "evidence": "app/src/pages/AcceptPendingPolicies/AcceptPendingPoliciesPage.tsx:59; TST UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:464-468",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-020",
+   "screen": "AcceptPendingPolicies",
+   "area": "ui",
+   "element": "screen stylesheet",
+   "os": "getCssDependencies includes css/UBTConnect.App_Policies.AcceptPendingPolicies.css",
+   "react": "ROUTE_CSS of AcceptPendingPolicies loads the original file",
+   "evidence": "app/src/app/routes.css.generated.ts:12-22; migration/change-requests/CR-AcceptPendingPolicies-1.md",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-021",
+   "screen": "AcceptPendingPolicies",
+   "area": "actions",
+   "element": "DefineHeight",
+   "os": "If MainContainer <> \"\": GetSVGMetric, then JSUtils_SetStyleProperty(MainContainer, \"--current-svg-height\", DecimalToText(HeightWithoutCurve) + \"px\")",
+   "react": "getSVGMetric, then jSUtils_SetStyleProperty(ref, '--current-svg-height', String(HeightWithoutCurve) + 'px'); no If node",
+   "evidence": "app/src/pages/AcceptPendingPolicies/hooks/useAcceptPendingPolicies.ts:39-47; TST UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:527-534",
+   "verdict": "match",
+   "note": "With MainContainer = '' the call getElementById('') finds no element, so React also sets nothing. String() of a number and DecimalToText of a Decimal can differ in the last digits; no visible effect.",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-022",
+   "screen": "AcceptPendingPolicies",
+   "area": "actions",
+   "element": "Layout_LoginFlowOnReady(MainContainerId)",
+   "os": "MainContainer = MainContainerId, then DefineHeight",
+   "react": "onLayoutReady: ref and state = mainId, then defineHeight",
+   "evidence": "app/src/pages/AcceptPendingPolicies/hooks/useAcceptPendingPolicies.ts:49-53; TST UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:712-714",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-023",
+   "screen": "AcceptPendingPolicies",
+   "area": "actions",
+   "element": "AcceptPendingPoliciesAcceptedAll: Cache_UserInfo_Get",
+   "os": "Cache_UserInfo_Get (UBTConnect_Utils): the user-info cache entry; GetUserInformation on a miss",
+   "react": "getUserInformation(): GetUserInformation_Wrapper. It also runs GetUserInformation_Wrapper_Assign (App_Policies_HasPolicyToAccept = the cached HasPoliciesToAccept) and waits for the app-start step",
+   "evidence": "app/src/pages/AcceptPendingPolicies/hooks/useAcceptPendingPolicies.ts:58-59; app/src/platform/session/userInfo.ts:30-46; TST UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:656; TST UBTConnect.controller.js:13631-13660; BR-C2UTL-141",
+   "verdict": "partial",
+   "severity": "info",
+   "finding": "F5",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
+  },
+  {
+   "id": "App_Policies-024",
+   "screen": "AcceptPendingPolicies",
+   "area": "actions",
+   "element": "AcceptedAll: HasPoliciesToAccept = False and PutCacheableObject",
+   "os": "record.HasPoliciesToAccept = False; PutCacheableObject(DirectoryUser, Get_MemoryCacheKey_UniqueKey.Key, ToObject(record), 7200)",
+   "react": "putCacheableObject(memberCache.userInfo(key), { ...info, HasPoliciesToAccept: false }); TTL 7200",
+   "evidence": "app/src/pages/AcceptPendingPolicies/hooks/useAcceptPendingPolicies.ts:60-63; app/src/api/member/keys.ts:26; app/src/api/client/cache.ts:89-92; TST UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:663-669",
+   "verdict": "match",
+   "note": "React names the cache type 'Connect_CacheType.DirectoryUser' (TST value \"DirectoryUser\"). The name only keys the client cache, and the reader uses the same name.",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-025",
+   "screen": "AcceptPendingPolicies",
+   "area": "actions",
+   "element": "AcceptedAll: Get_MemoryCacheKey_UniqueKey (UBTConnect_Utils)",
+   "os": "the Key output of the action; its logic is not in the dump",
+   "react": "the client variable UBTConnect_Utils.UniqueCacheKey",
+   "evidence": "migration/runtime-sources/UBTConnect_Utils.controller.js:2383-2384; app/src/pages/AcceptPendingPolicies/hooks/useAcceptPendingPolicies.ts:60; app/src/platform/session/session.ts:207-208",
+   "verdict": "match",
+   "question": "Q1: Behaviour of Get_MemoryCacheKey_UniqueKey in module UBTConnect_Utils: not in the dump, no KB page. Is Key equal to Client.UniqueCacheKey, the key that Cache_UserInfo_Get reads (BR-C2UTL-141)?",
+   "verified": "live",
+   "note": "App_Policies Q1 (a), settled from the TST file: Get_MemoryCacheKey_UniqueKey returns Key = UniqueCacheKey (getUniqueCacheKey(), UBTConnect_Utils.controller.js:2383-2384). React uses UBTConnect_Utils.UniqueCacheKey for the write and the read (BR-C2UTL-141).",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect_Utils.controller.js (lines-same)"
+    ]
+   }
+  },
+  {
+   "id": "App_Policies-026",
+   "screen": "AcceptPendingPolicies",
+   "area": "actions",
+   "element": "AcceptedAll: Client.App_Policies_HasPolicyToAccept = False",
+   "os": "assign",
+   "react": "clientVar.hasPolicyToAccept.set(false)",
+   "evidence": "app/src/pages/AcceptPendingPolicies/hooks/useAcceptPendingPolicies.ts:64; TST UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:673",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-027",
+   "screen": "AcceptPendingPolicies",
+   "area": "actions",
+   "element": "AcceptedAll: ReplaceOnUpcomingNavigation, AllowUpcomingNavigation, (Previous Screen)",
+   "os": "the two calls, then navigateBack(null): transition UseHistory",
+   "react": "replaceOnUpcomingNavigation(), allowUpcomingNavigation(), navigateBack() with the history transition",
+   "evidence": "app/src/pages/AcceptPendingPolicies/hooks/useAcceptPendingPolicies.ts:65-67; app/src/platform/navigation/osNavigate.ts:62-64, 135-145; app/src/platform/navigation/navigationGate.ts:30-32, 103-105; TST UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:675-682",
+   "verdict": "match",
+   "note": "In both apps AllowUpcomingNavigation makes the back navigation skip the BackNavigationHandler of the screen.",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-028",
+   "screen": "AcceptPendingPolicies",
+   "area": "actions",
+   "element": "AcceptedAll: exceptions",
+   "os": "safeExecuteClientAction sends an exception (for example a CommunicationException on a cache miss) to the screen handleError → App_Policies → App_Common, which shows the message",
+   "react": "no catch: continueOnClick awaits onAcceptedAll outside its try, and the 5-second timer calls it with void; the rejection stays unhandled and no message shows",
+   "evidence": "app/src/pages/AcceptPendingPolicies/hooks/useAcceptPendingPolicies.ts:58-68; app/src/pages/AcceptPendingPolicies/hooks/usePendingPoliciesForm.ts:84-87, 129; app/src/pages/AcceptPendingPolicies/AcceptPendingPoliciesPage.tsx:45-47; TST UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:798-799; migration/runtime-sources/OutSystems.js (safeExecuteClientAction: tryCatchFinally → handleError); app/src/api/client/cache.ts:105-112 (a failed miss rejects the readers)",
+   "verdict": "match",
+   "severity": "minor",
+   "finding": "F3",
+   "verified": "live",
+   "fixed": "2026-10-27",
+   "note": "Fixed 2026-10-27 (fixes/C-errors.md)."
+  },
+  {
+   "id": "App_Policies-029",
+   "screen": "AcceptPendingPolicies",
+   "area": "actions",
+   "element": "AcceptedAll: disabled nodes",
+   "os": "[DISABLED] NavigateToDeeplink, RedirectToURL(App_Policies_RedirectURL), HomeFeed",
+   "react": "not implemented",
+   "evidence": "pack/screens.md AcceptPendingPolicies; BR-UBTCON-946",
+   "verdict": "n/a",
+   "note": "dead in the model",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-030",
+   "screen": "AcceptPendingPolicies",
+   "area": "actions",
+   "element": "AcceptPendingPoliciesNetworkError",
+   "os": "ShowCommunicationExceptionMessage, then End",
+   "react": "showCommunicationExceptionMessage",
+   "evidence": "app/src/pages/AcceptPendingPolicies/AcceptPendingPoliciesPage.tsx:24; TST UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:597",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-031",
+   "screen": "AcceptPendingPolicies",
+   "area": "actions",
+   "element": "BackNavigationHandlerBackNavigation",
+   "os": "PreventNavigation(BackNavigationEvent)",
+   "react": "event.preventDefault(); the queue stops, so the CommonUI handler (priority -10000) does not run",
+   "evidence": "app/src/pages/AcceptPendingPolicies/AcceptPendingPoliciesPage.tsx:53-55; app/src/platform/navigation/backQueue.ts:55-77; TST UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:564",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-032",
+   "screen": "AcceptPendingPolicies",
+   "area": "actions",
+   "element": "unreachable end nodes (5 screen actions)",
+   "os": "not connected",
+   "react": "not implemented",
+   "evidence": "pack/screens.md AcceptPendingPolicies",
+   "verdict": "n/a",
+   "note": "dead in the model",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-033",
+   "screen": "AcceptPendingPolicies",
+   "area": "logic",
+   "element": "BR-UBTCON-946",
+   "os": "acceptance clears the flag in the cache and on the device and returns to the previous screen; Back is blocked",
+   "react": "the rows of PutCacheableObject, the flag, the navigation and BackNavigationHandlerBackNavigation",
+   "evidence": "app/src/pages/AcceptPendingPolicies/hooks/useAcceptPendingPolicies.ts:58-68; app/src/pages/AcceptPendingPolicies/AcceptPendingPoliciesPage.tsx:51-56; BR-UBTCON-946",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-034",
+   "screen": "AcceptPendingPolicies",
+   "area": "logic",
+   "element": "Client.App_Policies_HasPolicyToAccept (read and written; default False)",
+   "os": "read by CommonUI_InsideLayout and Policy_Checker; written False here",
+   "react": "default false; read by CommonUiLayout and PolicyChecker",
+   "evidence": "app/src/platform/session/clientVars.ts:16; pack/data.md",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-035",
+   "screen": "AcceptPendingPolicies",
+   "area": "logic",
+   "element": "handleError of the screen (App_Policies flow)",
+   "os": "the flow handler logs and delegates to App_Common",
+   "react": "raiseToFlowHandler: the App_Common handler (the block calls it for its own errors)",
+   "evidence": "app/src/legacy/os/exceptions.ts:69-84; TST UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:798-799; migration/shell/sources/UBTConnect.App_Policies.controller.js:12-16; migration/knowledge/shell-facts.md:61",
+   "verdict": "match",
+   "note": "The report of App_Common checks the branches of the App_Common handler.",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-036",
+   "screen": "AcceptPendingPolicies",
+   "area": "strings",
+   "element": "screen strings (3)",
+   "os": "\"Welcome to\", \"Connect and Directory\", \"Terms and Conditions & Privacy Policy\"",
+   "react": "the same 3 texts",
+   "evidence": "app/src/pages/AcceptPendingPolicies/components/PoliciesHeader/PoliciesHeader.tsx:27, 37-38; TST UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:242, 326, 354",
+   "verdict": "match",
+   "note": "The pack prints a line break after \"Connect and Directory\"; the TST text has none.",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-037",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "identity",
+   "element": "input parameters",
+   "os": "PolicyApplications (PolicyApplication Identifier List, mandatory), Country (Text), ContentBlockId (Text, mandatory)",
+   "react": "PendingPoliciesInputs: policyApplications, country, contentBlockId",
+   "evidence": "app/src/api/policy/types.ts:20-24; TST UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:36-53",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-038",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "identity",
+   "element": "events",
+   "os": "AcceptedAll (mandatory), NetworkError",
+   "react": "onAcceptedAll, onNetworkError",
+   "evidence": "app/src/pages/AcceptPendingPolicies/hooks/usePendingPoliciesForm.ts:12-17, 72-75",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-039",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "identity",
+   "element": "local IsAllSelected (Boolean, False)",
+   "os": "the select-all state and the Continue gate",
+   "react": "useState(false)",
+   "evidence": "app/src/pages/AcceptPendingPolicies/hooks/usePendingPoliciesForm.ts:51-55; TST UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:33-35",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-040",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "identity",
+   "element": "lifecycle OnParametersChanged",
+   "os": "Refresh Query GetPendingPolicies when an input changes",
+   "react": "the inputs are the query key: a new value fetches again",
+   "evidence": "app/src/api/policy/hooks.ts:13-19; app/src/api/policy/keys.ts:8; TST UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:797-811, 1333",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-041",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "data",
+   "element": "GetPendingPolicies: fetch moment",
+   "os": "At Start",
+   "react": "useQuery on mount",
+   "evidence": "app/src/api/policy/hooks.ts:14-19; TST UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:768",
+   "verdict": "match",
+   "note": "The screen sets ContentBlockId after the layout OnReady, and OnParametersChanged then refreshes the list. React makes the same second call (CR-AcceptPendingPolicies-2, headless check: two request bodies).",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-042",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "data",
+   "element": "DataActionGetPendingPolicies request",
+   "os": "callDataAction with the block variables",
+   "react": "callAction('UBTConnect', 'Policy_Custom_AcceptPendingPolicies/DataActionGetPendingPolicies', { PolicyApplications, Country, ContentBlockId, IsAllSelected })",
+   "evidence": "app/src/api/policy/repository.ts:12-24; TST UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:749",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-043",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "data",
+   "element": "result of each fetch",
+   "os": "replaceWith: a new list with IsSelected from the server; IsDataFetched stays True while a refresh runs; IsAllSelected keeps its value",
+   "react": "setList on each new dataUpdatedAt; keepPreviousData keeps the rows while a refresh runs; isAllSelected keeps its value",
+   "evidence": "app/src/pages/AcceptPendingPolicies/hooks/usePendingPoliciesForm.ts:58-62; app/src/api/policy/hooks.ts:17; app/src/api/policy/mapper.ts:15-27; TST UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:752",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-044",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "data",
+   "element": "failed fetch",
+   "os": "handleError → App_Policies → App_Common; no retry",
+   "react": "handleFlowError (raiseToFlowHandler) once per failed fetch; retry false",
+   "evidence": "app/src/pages/AcceptPendingPolicies/hooks/usePendingPoliciesForm.ts:66-70; app/src/api/policy/hooks.ts:18",
+   "verdict": "match",
+   "verified": "tst",
+   "note": "Item 2 (2026-10-28; migration/clarify/review/item2-fetch-errors.md, item2-solution.md): The own copy of the raise is removed (D13): the query-cache subscription raises once per failed fetch.",
+   "fixed": "2026-10-28",
+   "rechecked": "2026-10-28"
+  },
+  {
+   "id": "App_Policies-045",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "data",
+   "element": "network events",
+   "os": "no fetch on reconnect; while offline the call runs and fails (CommunicationException → message)",
+   "react": "the query keeps the TanStack defaults refetchOnReconnect true and networkMode 'online'. An offline-then-online event fetches again and clears every tick, but isAllSelected keeps its value. While TanStack counts the browser offline, a fetch waits and no message shows",
+   "evidence": "app/src/api/policy/hooks.ts:13-19; app/src/api/client/queryClient.ts:17; app/src/api/member/hooks.ts:51; app/src/api/feed/hooks.ts:21; app/src/api/client/cache.ts:14",
+   "verdict": "match",
+   "severity": "minor",
+   "finding": "F2",
+   "note": "Fixed 2026-10-27 (fixes/C-errors.md). User 2026-10-27 (F2 a): keep networkMode always. Fixed 2026-10-27 (fixes/C-errors.md). After the reset, Continue can stay enabled with no row ticked, and AcceptPolicies then gets an empty list.",
+   "verified": "live",
+   "fixed": "2026-10-27"
+  },
+  {
+   "id": "App_Policies-046",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "data",
+   "element": "server side of DataActionGetPendingPolicies",
+   "os": "GetPoliciesToAccept(Country, PolicyApplications), then ListAppend of { PolicyInformation, Url: GetPublishedPolicyContentUrl(Id) } per policy",
+   "react": "the mock answers two fictional Connect policies and ignores the inputs",
+   "evidence": "app/src/pages/AcceptPendingPolicies/mocks.ts:50-67",
+   "verdict": "mock-only",
+   "note": "Production needs the data action DataActionGetPendingPolicies of Policy_Custom_AcceptPendingPolicies (UBTConnect), with ApplicationPolicies GetPoliciesToAccept and GetPublishedPolicyContentUrl.",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-047",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "data",
+   "element": "GetPendingPoliciesOnAfterFetch",
+   "os": "after each fetch: Empty → JavaScript Wait(5) → AcceptedAll",
+   "react": "one effect per fetched list: empty → setTimeout 5000 → onAcceptedAll; the timers stop when the block unmounts",
+   "evidence": "app/src/pages/AcceptPendingPolicies/hooks/usePendingPoliciesForm.ts:77-95; TST UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:1048-1070, 1401-1405; BR-UBTCON-944",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-048",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "ui",
+   "element": "If GetPendingPolicies.IsDataFetched, else container list-updating",
+   "os": "until the first fetch ends: container list-updating",
+   "react": "rows undefined → div.list-updating",
+   "evidence": "app/src/pages/AcceptPendingPolicies/components/PendingPoliciesForm/PendingPoliciesForm.tsx:73-74; TST UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:195, 694",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-049",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "ui",
+   "element": "If not Policies.Empty, else the message container",
+   "os": "container background-blue-lighter text-align-center padding-x-l padding-y-l: \"You have accepted all required policies.\", br, \"No more policies available to accept.\"",
+   "react": "the same container, texts and br",
+   "evidence": "app/src/pages/AcceptPendingPolicies/components/PendingPoliciesForm/PendingPoliciesForm.tsx:75-82; TST UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:196, 683-688",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-050",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "ui",
+   "element": "Columns_Two",
+   "os": "ColumnBehaviour ReduceLast, FlexDirection Column, ExtendedClasses \"ubt-policies--columns\"",
+   "react": "ColumnsTwo with the same options",
+   "evidence": "app/src/pages/AcceptPendingPolicies/components/PendingPoliciesForm/PendingPoliciesForm.tsx:86-89; TST UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:197-207",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-051",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "ui",
+   "element": "List, source GetPendingPolicies.Policies",
+   "os": "List widget: style \"list list-group ubt-policies--list\" + OSFillParent, animateItems True, source_dataFetchStatus of the data action",
+   "react": "a hand-written div with the same classes and data-list, not the shared OSList; no ' list-loading' or ' list-error' class while a fetch runs or fails",
+   "evidence": "app/src/pages/AcceptPendingPolicies/components/PendingPoliciesForm/PendingPoliciesForm.tsx:91; app/src/components/ui/os/OSList/OSList.tsx:60-64, 221; TST UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:224-236",
+   "verdict": "partial",
+   "severity": "info",
+   "finding": "F6",
+   "note": "No CSS rule in app/public or app/src uses list-loading or list-error (grep: 0 hits), so nothing visible changes.",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-052",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "ui",
+   "element": "row: container display-flex margin-y-xl, If Current.IsSelected",
+   "os": "Icon Checkbox or CheckboxOutlineBlank, Neutral0; Click → ToggleCheckBox",
+   "react": "one Icon whose icon follows isSelected; onClick → onToggle(index)",
+   "evidence": "app/src/pages/AcceptPendingPolicies/components/PendingPoliciesForm/PendingPoliciesForm.tsx:64-70, 93-96; TST UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:245-300",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-053",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "ui",
+   "element": "row text: container margin-left-xs white-space-nowrap, CustomText",
+   "os": "\"I agree to the \" + ApplicationName + \" - \"; FitContent; Neutral0, Small, Regular",
+   "react": "the same text and options",
+   "evidence": "app/src/pages/AcceptPendingPolicies/components/PendingPoliciesForm/PendingPoliciesForm.tsx:97-102; TST UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:328-350",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-054",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "ui",
+   "element": "row link: CustomText PolicyTypeName",
+   "os": "FitContent; Neutral0, Small, SemiBold, IsUnderlined; Clicked → OnClickPolicy",
+   "react": "the same options; onClicked → onPolicyClick(policy)",
+   "evidence": "app/src/pages/AcceptPendingPolicies/components/PendingPoliciesForm/PendingPoliciesForm.tsx:103-115; TST UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:352-385",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-055",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "ui",
+   "element": "Right placeholder: If Policies.Length > 1",
+   "os": "container ubt-policies--agree-to-all > Separator (defaults) > container display-flex padding-top-xl > If IsAllSelected Icon Checkbox or CheckboxOutlineBlank (Click → ToggleSelectAllCheckBox) > container margin-left-xs > CustomText \"I agree to all\" (FitContent, Small, Regular)",
+   "react": "rows.length > 1 → the same structure",
+   "evidence": "app/src/pages/AcceptPendingPolicies/components/PendingPoliciesForm/PendingPoliciesForm.tsx:121-137; TST UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:418-560",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-056",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "ui",
+   "element": "FixedFooter",
+   "os": "useBottomBar False, ExpectedFooterHeight \"calc(2 * var(--space-base) + var(--ubt-button-height-m))\", ContentContainerId = ContentBlockId",
+   "react": "the same three inputs",
+   "evidence": "app/src/pages/AcceptPendingPolicies/components/PendingPoliciesForm/PendingPoliciesForm.tsx:140-145; TST UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:576-578",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-057",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "ui",
+   "element": "CustomContainer of the footer",
+   "os": "Background Neutral0, PaddingSize General Base, ShadowId ExtraSmallTop",
+   "react": "the same options",
+   "evidence": "app/src/pages/AcceptPendingPolicies/components/PendingPoliciesForm/PendingPoliciesForm.tsx:146-153; TST UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:604-612",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-058",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "ui",
+   "element": "Button (UBTConnect_Utils CW_Common)",
+   "os": "ButtonText \"Continue\", IsDisabled = not IsAllSelected; buttonOnClick → ContinueOnClick",
+   "react": "ActionButton buttonText=\"Continue\", isDisabled={!isAllSelected}, onButtonOnClick → continueOnClick",
+   "evidence": "app/src/pages/AcceptPendingPolicies/components/PendingPoliciesForm/PendingPoliciesForm.tsx:154-159; app/src/pages/AcceptPendingPolicies/AcceptPendingPoliciesPage.tsx:45-47; TST UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:635-636",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-059",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "actions",
+   "element": "ToggleCheckBox and SelectCheckboxOnChange",
+   "os": "Current.IsSelected = not Current.IsSelected; IsAllSelected = ListAll(IsSelected)",
+   "react": "the row flips; isAllSelected = every(isSelected)",
+   "evidence": "app/src/pages/AcceptPendingPolicies/hooks/usePendingPoliciesForm.ts:101-107; TST UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:828-845, 1090-1112",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-060",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "actions",
+   "element": "ToggleSelectAllCheckBox and SelectAllCheckboxOnChange",
+   "os": "IsAllSelected = not IsAllSelected; every row IsSelected = IsAllSelected",
+   "react": "the same two steps",
+   "evidence": "app/src/pages/AcceptPendingPolicies/hooks/usePendingPoliciesForm.ts:109-115; TST UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:770-786, 1229-1249",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-061",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "actions",
+   "element": "ContinueOnClick: normal path",
+   "os": "ListFilter(IsSelected) → GetDeviceInfo → AcceptPolicies(Policies = the ids, DeviceDetails = UniqueId, Platform, Manufacturer, Model) → AcceptedAll",
+   "react": "filter → getDeviceInfo → acceptPolicies(ids, device), ClientIP '' → onAcceptedAll",
+   "evidence": "app/src/pages/AcceptPendingPolicies/hooks/usePendingPoliciesForm.ts:119-130; app/src/api/policy/mapper.ts:30-42; TST UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:855-925",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-062",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "actions",
+   "element": "ContinueOnClick: exceptions",
+   "os": "CommunicationException → NetworkError; any other exception goes up to the flow handler",
+   "react": "isCommunicationException → onNetworkError; else handleFlowError",
+   "evidence": "app/src/pages/AcceptPendingPolicies/hooks/usePendingPoliciesForm.ts:122-128; TST UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:930-945",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-063",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "actions",
+   "element": "GetDeviceInfo, web branch: UniqueId",
+   "os": "UniqueId = localStorage[\"UUID\"], or a new crypto.randomUUID() that it stores there: one id per browser",
+   "react": "a randomUUID in a module variable: a new id on each page load",
+   "evidence": "app/src/pages/AcceptPendingPolicies/actions.ts:50-66; TST UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:1385-1387; BR-UBTCON-943; migration/clarify/answers.json App_Policies:Q2",
+   "verdict": "match",
+   "severity": "minor",
+   "finding": "F4",
+   "question": "Q2: Keep the device id in memory, or store it in localStorage[\"UUID\"] as TST does? The code cites \"AGENTS rule 16, Q4\"; no ADR, CR, U decision or board row names it.",
+   "verified": "live",
+   "note": "Fixed 2026-10-27 (fixes/C-errors.md). user decision 2026-10-27, App_Policies Q2 (a): store the device id in localStorage[\"UUID\"] as TST does (Policy_Custom_AcceptPendingPolicies.mvc.js:1385-1387). React keeps a new randomUUID per page load (actions.ts:50-66): the store is missing. Finding F4 stands. | user decision 2026-10-27 C4: store the id in localStorage[\"UUID\"] as TST (F4, build)",
+   "fixed": "2026-10-27"
+  },
+  {
+   "id": "App_Policies-064",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "actions",
+   "element": "GetDeviceInfo, web branch: Platform and the other outputs",
+   "os": "Platform \"PWA\" in standalone display mode, else \"Web\"; UserAgent; AppVersion and NetworkConnectionType are not sent",
+   "react": "the same Platform rule; Manufacturer and Model stay \"\"",
+   "evidence": "app/src/pages/AcceptPendingPolicies/actions.ts:55-63; TST UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:1377-1383",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-065",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "actions",
+   "element": "GetDeviceInfo, native branch",
+   "os": "window.device (Cordova) gives uuid, manufacturer, model and platform",
+   "react": "not built",
+   "evidence": "app/src/pages/AcceptPendingPolicies/actions.ts:53-54; TST UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:1367-1376; ADR-1 (user, 2026-10-14), app/docs/reference/stack.md:129-133",
+   "verdict": "differs",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-066",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "actions",
+   "element": "server side of ActionAcceptPolicies",
+   "os": "ApplicationPolicies AcceptPolicies(Policies, DeviceDetails); no output read",
+   "react": "the mock removes the accepted ids from its collection",
+   "evidence": "app/src/pages/AcceptPendingPolicies/mocks.ts:68-71; app/src/api/policy/repository.ts:26-30; migration/board.md:9 (\"AcceptPolicies (write) mocked\", user, 2026-10-14)",
+   "verdict": "mock-only",
+   "note": "Production needs the server action ActionAcceptPolicies of Policy_Custom_AcceptPendingPolicies (UBTConnect), which calls ApplicationPolicies AcceptPolicies.",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-067",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "actions",
+   "element": "OnClickPolicy, web",
+   "os": "CanOpenApplicationPolicyDirectlyViaUrl (ApplicationPolicies_CW): CanOpenDirectly = not window.cordova, True in a browser → JSUtils_PageOpenInNewTab(Current.Url)",
+   "react": "jSUtils_PageOpenInNewTab(policy.url) on every click",
+   "evidence": "app/src/pages/AcceptPendingPolicies/hooks/usePendingPoliciesForm.ts:132-137; app/src/lib/jsUtils.ts:55-57; TST UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:1122-1149; migration/shell/sources/ApplicationPolicies_CW.controller.js (IsWebJS); migration/knowledge/pwa-file-plugins.md:1-6",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-068",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "actions",
+   "element": "DetailsOnClick (native branch of OnClickPolicy)",
+   "os": "Get_PolicsyIsLoading: loading → End; else OpenApplicationPolicy(Url, Filename, ContentType), Set_PolicsyIsLoading(False), HasFoundNetworkError → NetworkError",
+   "react": "not built",
+   "evidence": "app/src/pages/AcceptPendingPolicies/hooks/usePendingPoliciesForm.ts:132-134; TST UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:1167-1210; ADR-1, app/docs/reference/stack.md:129-133; decision U18 (user, 2026-10-14), migration/app-shell.spec.md:350, 385",
+   "verdict": "differs",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-069",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "actions",
+   "element": "unreachable end nodes (9 block actions)",
+   "os": "not connected",
+   "react": "not implemented",
+   "evidence": "pack/blocks.md Policy_Custom_AcceptPendingPolicies",
+   "verdict": "n/a",
+   "note": "dead in the model",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-070",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "validations",
+   "element": "BR-UBTCON-941: the Continue gate",
+   "os": "IsDisabled = not IsAllSelected",
+   "react": "isDisabled={!isAllSelected}",
+   "evidence": "app/src/pages/AcceptPendingPolicies/components/PendingPoliciesForm/PendingPoliciesForm.tsx:156; BR-UBTCON-941",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-071",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "validations",
+   "element": "ContinueOnClick: completeness",
+   "os": "no check at submit: it sends ListFilter(IsSelected)",
+   "react": "no check at submit: it sends the selected ids",
+   "evidence": "app/src/pages/AcceptPendingPolicies/hooks/usePendingPoliciesForm.ts:120; BR-UBTCON-941 (test hooks)",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-072",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "logic",
+   "element": "BR-UBTCON-942",
+   "os": "\"I agree to all\" only when Length > 1; row text \"I agree to the <application> - <policy type>\"; ListAll after each tick",
+   "react": "rows.length > 1; the same text; every() after each tick",
+   "evidence": "app/src/pages/AcceptPendingPolicies/components/PendingPoliciesForm/PendingPoliciesForm.tsx:100, 122; app/src/pages/AcceptPendingPolicies/hooks/usePendingPoliciesForm.ts:101-115; BR-UBTCON-942",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-073",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "logic",
+   "element": "BR-UBTCON-943",
+   "os": "the ticked ids and four device details; the result is not read; then AcceptedAll",
+   "react": "the same call and order; no output read",
+   "evidence": "app/src/pages/AcceptPendingPolicies/hooks/usePendingPoliciesForm.ts:119-130; BR-UBTCON-943",
+   "verdict": "match",
+   "note": "The storage of UniqueId is a separate row (F4).",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-074",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "logic",
+   "element": "BR-UBTCON-944",
+   "os": "fetch for the user country and the Connect, Directory and Orbit applications; empty → wait 5 s → AcceptedAll",
+   "react": "the country and the 5-second wait as TST; the application ids are names (F1)",
+   "evidence": "app/src/pages/AcceptPendingPolicies/AcceptPendingPoliciesPage.tsx:12-13; app/src/pages/AcceptPendingPolicies/hooks/usePendingPoliciesForm.ts:77-95; BR-UBTCON-944",
+   "verdict": "match",
+   "severity": "major",
+   "finding": "F1",
+   "verified": "code",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B5-lists.md)."
+  },
+  {
+   "id": "App_Policies-075",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "logic",
+   "element": "BR-UBTCON-945",
+   "os": "a new tab when CanOpenDirectly, else the policy viewer, which ignores a tap while a policy loads",
+   "react": "a new tab, the web value of CanOpenDirectly; the viewer branch is the DetailsOnClick row",
+   "evidence": "app/src/pages/AcceptPendingPolicies/hooks/usePendingPoliciesForm.ts:132-137; BR-UBTCON-945",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-076",
+   "screen": "Policy_Custom_AcceptPendingPolicies",
+   "area": "strings",
+   "element": "block strings (6)",
+   "os": "\"I agree to the \", \" - \", \"I agree to all\", \"Continue\", \"You have accepted all required policies.\", \"No more policies available to accept.\"",
+   "react": "the same 6 texts",
+   "evidence": "app/src/pages/AcceptPendingPolicies/components/PendingPoliciesForm/PendingPoliciesForm.tsx:78-80, 100, 133, 157; TST UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:338, 550, 636, 688",
+   "verdict": "match",
+   "note": "The pack lists only the first two; the TST view has all six.",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-077",
+   "screen": "Policy_Checker",
+   "area": "identity",
+   "element": "block definition",
+   "os": "not public; no inputs, events or local variables; empty widget tree",
+   "react": "PolicyChecker: an empty OSBlock",
+   "evidence": "app/src/platform/session/PolicyChecker/PolicyChecker.tsx:17-29; TST UBTConnect.App_Policies.Policy_Checker.mvc.js:121",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-078",
+   "screen": "Policy_Checker",
+   "area": "ui",
+   "element": "placement in CommonUI_InsideLayout",
+   "os": "If not In_IgnorePolicy and Client.App_Policies_HasPolicyToAccept → Policy_Checker",
+   "react": "`!inIgnorePolicy && hasPolicyToAccept && <PolicyChecker>`",
+   "evidence": "app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx:53, 75; ../App_Common/pack/blocks.md:184-185; BR-UBTCON-311",
+   "verdict": "match",
+   "note": "The report of App_Common checks the other parts of CommonUI_InsideLayout.",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-079",
+   "screen": "Policy_Checker",
+   "area": "actions",
+   "element": "OnInitialize, flag True",
+   "os": "ResetReplaceOnUpcomingNavigation, then AcceptPendingPolicies (transition Default)",
+   "react": "resetReplaceOnUpcomingNavigation(), then navigate('/UBTConnect/AcceptPendingPolicies') with the default transition",
+   "evidence": "app/src/platform/session/PolicyChecker/PolicyChecker.tsx:20-27; TST UBTConnect.App_Policies.Policy_Checker.mvc.js:158-164",
+   "verdict": "match",
+   "note": "React runs the check in an effect after the first render; OnInitialize runs before it.",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-080",
+   "screen": "Policy_Checker",
+   "area": "actions",
+   "element": "OnInitialize, flag False",
+   "os": "End",
+   "react": "no navigation",
+   "evidence": "app/src/platform/session/PolicyChecker/PolicyChecker.tsx:23",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-081",
+   "screen": "Policy_Checker",
+   "area": "actions",
+   "element": "[DISABLED] GetCurrentLocationURL and App_Policies_RedirectURL = CurrentLocation",
+   "os": "disabled nodes",
+   "react": "not implemented",
+   "evidence": "pack/blocks.md Policy_Checker; BR-UBTCON-940",
+   "verdict": "n/a",
+   "note": "dead in the model",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-082",
+   "screen": "Policy_Checker",
+   "area": "logic",
+   "element": "BR-UBTCON-940",
+   "os": "while the flag is True, every screen whose layout does not opt out goes to AcceptPendingPolicies",
+   "react": "the placement row and the OnInitialize rows",
+   "evidence": "app/src/platform/session/PolicyChecker/PolicyChecker.tsx:20-27; app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx:75; BR-UBTCON-940",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-083",
+   "screen": "Policy_Checker",
+   "area": "logic",
+   "element": "Client.App_Policies_RedirectURL",
+   "os": "read and written only by disabled nodes",
+   "react": "no such client variable (grep: 0 hits in app/src)",
+   "evidence": "pack/data.md; pack/screens.md; pack/blocks.md",
+   "verdict": "n/a",
+   "note": "dead in the model",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-084",
+   "screen": "-",
+   "area": "logic",
+   "element": "GetSVGMetric (own action of the flow; BR-UBTCON-514)",
+   "os": "JavaScript: height of `.ubt-header-svg svg path`, the largest V and Q values; early return without the path or its d; HeightWithoutCurve = HeightPx * MaxV / MaxQ",
+   "react": "the same parse and formula; without the path or its d every output is 0",
+   "evidence": "app/src/pages/AcceptPendingPolicies/actions.ts:8-39; TST UBTConnect.controller.js:13439-13470, 13528-13570; BR-UBTCON-514",
+   "verdict": "match",
+   "note": "Without a V or Q value React uses 0. TST converts the null JavaScript outputs; the runtime conversion and the Decimal division by 0 are not captured.",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
+  },
+  {
+   "id": "App_Policies-085",
+   "screen": "-",
+   "area": "logic",
+   "element": "ShowCommunicationExceptionMessage (own action of the flow; BR-UBTCON-213)",
+   "os": "TST: App_NetworkStatus_IsOnline_IsPersistent → \"Service Interruption\" (Info, with title); else \"No internet connection…\" (Error)",
+   "react": "the same condition and messages",
+   "evidence": "app/src/platform/feedback/exceptionMessages.ts:16-23; TST UBTConnect.controller.js:16104-16117; BR-UBTCON-213",
+   "verdict": "match",
+   "note": "DEV adds a live navigator.onLine check (section 6.1).",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "strong",
+    "by": [
+     "lines"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines)"
+    ]
+   }
+  },
+  {
+   "id": "App_Policies-086",
+   "screen": "-",
+   "area": "actions",
+   "element": "FeedbackMessage_AutoClose calls of ShowCommunicationExceptionMessage",
+   "os": "(Title, Message, Type, True, \"\", 0, False) for both messages",
+   "react": "title or '', encodedHtml true, extendedClass '', delayMs 0, useDebounce false",
+   "evidence": "app/src/platform/feedback/exceptionMessages.ts:17-23; app/src/platform/feedback/feedbackMessageAutoClose.ts:76-86; TST UBTConnect.controller.js:16112-16116",
+   "verdict": "match",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
+  },
+  {
+   "id": "App_Policies-087",
+   "screen": "-",
+   "area": "logic",
+   "element": "Client.App_NetworkStatus_IsOnline_IsPersistent (read; default True)",
+   "os": "read by ShowCommunicationExceptionMessage",
+   "react": "default true",
+   "evidence": "app/src/platform/session/clientVars.ts:28; pack/data.md",
+   "verdict": "match",
+   "note": "The report of App_Common checks the writers.",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-088",
+   "screen": "-",
+   "area": "logic",
+   "element": "NavigationHandler: AllowUpcomingNavigation, ReplaceOnUpcomingNavigation, ResetReplaceOnUpcomingNavigation, PreventNavigation",
+   "os": "skip the handlers once; replace the entry on the next navigation; clear that; stop the back navigation",
+   "react": "allowUpcomingNavigation, replaceOnUpcomingNavigation, resetReplaceOnUpcomingNavigation, event.preventDefault()",
+   "evidence": "app/src/platform/navigation/navigationGate.ts:30-32, 103-105; app/src/platform/navigation/osNavigate.ts:62-68; app/src/platform/navigation/backQueue.ts:55-77",
+   "verdict": "match",
+   "note": "The report of App_PIN also checks the first two (row 130).",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-089",
+   "screen": "-",
+   "area": "logic",
+   "element": "UBTJavaScriptUtils: JSUtils_SetStyleProperty, JSUtils_PageOpenInNewTab",
+   "os": "getElementById(Id)?.style.setProperty(name, value); window.open(URL, '_blank')",
+   "react": "the same two statements",
+   "evidence": "app/src/lib/jsUtils.ts:8-10, 55-57; migration/shell/sources/UBTJavaScriptUtils.controller.js (JavaScript1JS of both actions)",
+   "verdict": "match",
+   "verified": "pack"
+  },
+  {
+   "id": "App_Policies-090",
+   "screen": "-",
+   "area": "strings",
+   "element": "strings of ShowCommunicationExceptionMessage (3)",
+   "os": "\"Service Interruption\", the high-traffic text, \"No internet connection. Please check your network settings and try again.\"",
+   "react": "the same texts (the full TST text, with \\r\\n)",
+   "evidence": "app/src/platform/feedback/exceptionMessages.ts:10-14; TST UBTConnect.controller.js:16112-16116",
+   "verdict": "match",
+   "verified": "pack",
+   "stale": {
+    "since": "2026-10-27",
+    "level": "weak",
+    "by": [
+     "lines-same"
+    ],
+    "files": [
+     "UBTConnect.controller.js (lines-same)"
+    ]
+   }
+  }
+ ]
+}

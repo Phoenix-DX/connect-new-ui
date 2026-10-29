@@ -58,6 +58,8 @@ export interface HouseholdDetailsViewProps {
   isEnabled: boolean;
   /** Shows the kebab menu (edit, share) and the share sheet. */
   showKebabMenu: boolean;
+  /** LD check mobileDirectoryHouseholdGallery (registry default on, as TST): on hides the Coming Soon box of the Photos tag. */
+  hasHouseholdGallery?: boolean;
   /** Hides the call-to-action section on the About tag. */
   hideActions: boolean;
   /** The household, its members and its visibility. */
@@ -120,6 +122,7 @@ export function HouseholdDetailsView({
   entityActions,
   renderMemberActions,
   shareSheet,
+  hasHouseholdGallery = false,
   onTagsChanged,
   onEdit,
   onShare,
@@ -176,7 +179,11 @@ export function HouseholdDetailsView({
                   />
                 )}
                 {selectedTag === HOUSEHOLD_TAG_PHOTOS && (
-                  <HouseholdTimelinePhotos images={timelineImages} onDateSelected={onTimelineDateSelected} />
+                  <HouseholdTimelinePhotos
+                    images={timelineImages}
+                    hasHouseholdGallery={hasHouseholdGallery}
+                    onDateSelected={onTimelineDateSelected}
+                  />
                 )}
               </>
             }

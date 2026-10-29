@@ -55,6 +55,10 @@ export interface BulkCacheEntryOptions extends CacheEntryOptions {
   maxBulkSize: number;
 }
 
+/** A cache read gives its promise to the reader, whose flow handles a failure (GetCacheableObject rejects the readers
+    that wait): the flow-handler subscription leaves these queries alone (QueryMeta.errorFlow, item 2). */
+const CALLER_HANDLES_ERRORS = { errorFlow: 'caller' } as const;
+
 /** The query key of the entry (type, key) of the current session. */
 export const cacheQueryKey = (type: string, key: string): CacheQueryKey => [CACHE_ROOT, sessionEpoch, type, key];
 
@@ -115,6 +119,7 @@ export function getCacheableObject<T>(entry: CacheEntryOptions, onMiss: () => Pr
   return queryClient
     .fetchQuery({
       ...options,
+      meta: CALLER_HANDLES_ERRORS,
       queryFn: async (): Promise<CachedObject> => {
         const value: unknown = await onMiss();
         return { value, ttlSeconds: value ? ttlSeconds : 0 };
@@ -185,6 +190,7 @@ export function getCacheableObjectInBulk<T>(
   return queryClient
     .fetchQuery({
       ...options,
+      meta: CALLER_HANDLES_ERRORS,
       queryFn: () =>
         new Promise<CachedObject>((resolve) => {
           let queue = bulkQueues.get(type);

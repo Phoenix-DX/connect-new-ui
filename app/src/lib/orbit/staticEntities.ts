@@ -47,9 +47,9 @@ export const OrbitColorShade = {
 } as const;
 
 /** OrbitMilestoneType (Text identifier; static-entities-tst.json `Connect2_OrbitMobile_MUI.orbitMilestoneType`, TST
-    moduleinfo entity 3cdbee62…): the Id of a milestone type. The six Admin* records are referenced by the compiled code
-    (Connect2_OrbitMobile_MUI.model.js:18429-18530) but their record GUIDs are not in the TST moduleinfo, so on TST they
-    resolve to `undefined` and no Id ever equals them (kept as `undefined` to stay 1:1). */
+    moduleinfo entity 3cdbee62…): the Id of a milestone type. The live TST moduleinfo (version 15682) now holds the six
+    Admin* records (decision Q2 (a) 2026-10-29 and (c) 2026-10-28: the live TST code wins). AdminMeal keeps the
+    moduleinfo value `meeting-meal`, as the file lists it. */
 export const OrbitMilestoneType = {
   AccommodationGuest: 'accommodation-guest',
   AccommodationHelper: 'accommodation-helper',
@@ -67,12 +67,12 @@ export const OrbitMilestoneType = {
   MeetingHost: 'meeting-host',
   Train: 'transport-train',
   Vehicle: 'transport-vehicle',
-  AdminMeeting: undefined,
-  AdminMeal: undefined,
-  AdminMealAtHall: undefined,
-  AdminAccommodation: undefined,
-  AdminTransportVehicle: undefined,
-  AdminBreak: undefined,
+  AdminMeeting: 'meeting-admin',
+  AdminMeal: 'meeting-meal',
+  AdminMealAtHall: 'meal-at-hall-admin',
+  AdminAccommodation: 'accommodation-admin',
+  AdminTransportVehicle: 'transport-vehicle-admin',
+  AdminBreak: 'break-admin',
 } as const satisfies Record<string, string | undefined>;
 
 /** OrbitCardColor (Text identifier; static-entities-tst.json `Connect2_OrbitMobile_MUI.orbitCardColor`): the main

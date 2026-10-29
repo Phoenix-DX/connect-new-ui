@@ -30,8 +30,8 @@ IsOverrideMainColorVar, IsSetUpMeals, the events.
 
 ## Not settled / original behaviour
 
-- Admin milestone types (AdminMeeting…AdminBreak) are compiled but missing from the TST moduleinfo: their identifiers are
-  `undefined` on TST and the admin branch never renders. Its time row class lacks a space
+- Admin milestone types (AdminMeeting…AdminBreak) have identifiers in the live TST moduleinfo (version 15682), so the
+  admin branch renders (description, date, times). Its time row class lacks a space
   (`orbit-card-content-infomargin-top-m`, kept).
 - OnHandle_ClickedMilestone compares MilestoneId (not the type Id) with AccommodationHotel, so hotel cards raise
   ClickedMilestone (known-original-bugs.md B8).

@@ -49,12 +49,13 @@ flowchart TB
     S0["DataActionGetMessageInstance<br/>data action / aggregate, observed"]
     S1["ScreenDataSetGetMessageTemplateParametersByMessageTemplateId<br/>data action / aggregate, declared, not observed"]
     S2["ActionAppManager_SynchAppContext<br/>observed"]
-    S3["ActionAppManager_AfterInitialize<br/>observed"]
-    S4["ActionSync_Info_GetMain<br/>observed"]
-    S5["ActionGetUserInformation<br/>observed"]
-    S6["ActionGetNumberUnreadMessages<br/>observed"]
-    S7["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
-    S8["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
+    S3["ActionGetSignedImagesInBulk<br/>observed"]
+    S4["ActionAppManager_AfterInitialize<br/>observed"]
+    S5["ActionSync_Info_GetMain<br/>observed"]
+    S6["ActionGetUserInformation<br/>observed"]
+    S7["ActionGetNumberUnreadMessages<br/>observed"]
+    S8["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
+    S9["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
   end
   Backend["Backend<br/>not visible from the browser"]
   B0 --> S0
@@ -66,6 +67,7 @@ flowchart TB
   Content -.-> S6
   Content -.-> S7
   Content -.-> S8
+  Content -.-> S9
   S0 -.-> Backend
   classDef unknown stroke-dasharray: 5 4;
   class S1,Backend unknown;
@@ -115,6 +117,25 @@ sequenceDiagram
   Note over S: chain stops at HandleImageLoadError.applicationEvent_ImageError (see call-sites.md)
   Note over S: via HandleImageLoadError.applicationEvent_ImageError → … → UBT_AppManager.appManager_SynchAppContextInternal → server AppManager_SynchAppContext
   S->>API: ActionAppManager_SynchAppContext(TODO inputs)
+  API-->>S: TODO outputs
+  alt TODO branch
+    S-->>U: TODO
+  else TODO branch
+    S-->>U: TODO
+  end
+```
+
+### Action: ActionGetSignedImagesInBulk
+```mermaid
+%% DRAFT: trigger from call-sites.md; replace TODOs with the result handling of the calling action
+sequenceDiagram
+  actor U as User
+  participant S as MyNotifications.ScreenBlock_MessageDetail
+  participant API as screenservices
+  U->>S: TODO user event
+  Note over S: chain stops at UBTConnect_Utils.cache_SignedImageURL_GetCallback (see call-sites.md)
+  Note over S: via UBTConnect_Utils.cache_SignedImageURL_GetCallback → server GetSignedImagesInBulk
+  S->>API: ActionGetSignedImagesInBulk(TODO inputs)
   API-->>S: TODO outputs
   alt TODO branch
     S-->>U: TODO

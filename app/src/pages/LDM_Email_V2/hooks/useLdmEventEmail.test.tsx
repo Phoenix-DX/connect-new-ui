@@ -3,9 +3,11 @@ import { Profiler, StrictMode, type ReactNode } from 'react';
 import { MemoryRouter } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { fetchEventEmailCoordinator, sendEventContactEmail, type EventEmailCoordinatorData } from '@/api/message';
+import { IgnorableSystemException, OutOfContextException } from '@/legacy/os/os-exceptions';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { allowUpcomingNavigation } from '@/platform/navigation';
+import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
 import type { AppManager_CachedUserInfoRec } from '@/platform/session/types';
 import { preventNavigation } from '@/lib/navigationEvent';
@@ -46,11 +48,19 @@ vi.mock('@/platform/feedback', async (importOriginal) => ({
   showFeedbackMessage: vi.fn(),
 }));
 const { navigateBack } = vi.hoisted(() => ({ navigateBack: vi.fn() }));
-vi.mock('@/platform/navigation', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/platform/navigation')>()),
-  allowUpcomingNavigation: vi.fn(),
-  useNavigateBack: () => navigateBack,
-}));
+/** On: the hook gets the platform back navigation with its R4 check (the tests of a screen that the user left). */
+const platformNavigation = vi.hoisted(() => ({ on: false }));
+vi.mock('@/platform/navigation', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/platform/navigation')>();
+  return {
+    ...actual,
+    allowUpcomingNavigation: vi.fn(),
+    useNavigateBack: () => {
+      const platform = actual.useNavigateBack();
+      return platformNavigation.on ? platform : navigateBack;
+    },
+  };
+});
 vi.mock('@/lib/navigationEvent', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/lib/navigationEvent')>()),
   preventNavigation: vi.fn(),
@@ -132,6 +142,12 @@ function deferred<T>() {
   });
   return { promise, resolve, reject };
 }
+/** The errors that reached the flow handler, without the ignorable ones (the handler drops them: R1, R3, R4). */
+const raisedErrors = () =>
+  vi
+    .mocked(raiseToFlowHandler)
+    .mock.calls.map(([error]) => error)
+    .filter((error) => !(error instanceof IgnorableSystemException));
 const messageArea = () => document.querySelector('#b1-TextArea_Message') as HTMLTextAreaElement;
 const typeMessage = (text: string) => {
   fireEvent.change(messageArea(), { target: { value: text } });
@@ -151,6 +167,8 @@ describe('useLdmEventEmail', () => {
   });
   afterEach(() => {
     vi.clearAllMocks();
+    platformNavigation.on = false;
+    resetNavigation();
   });
 
   it('OnReady: GetCoordinatorDetails with the block inputs, then the form with the sender and the subject', async () => {
@@ -183,7 +201,7 @@ describe('useLdmEventEmail', () => {
     vi.mocked(fetchEventEmailCoordinator).mockRejectedValueOnce(error);
     renderBlock();
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(document.querySelector('[id="b1-$b5"]')).not.toBeNull();
     fireEvent.click(screen.getByRole('button', { name: /try again/i }));
     await settle();
@@ -283,7 +301,7 @@ describe('useLdmEventEmail', () => {
     expect(container).toBeTruthy();
   });
 
-  it('W23: after the unmount, OnReady writes no state; GetCoordinatorDetails runs once', async () => {
+  it('R1: unmount while GetCoordinatorDetails is pending: no UserInfo, no state write, nothing raised', async () => {
     const answer = deferred<EventEmailCoordinatorData>();
     vi.mocked(fetchEventEmailCoordinator).mockReturnValue(answer.promise);
     const { unmount } = renderBlock({ strict: true });
@@ -294,12 +312,13 @@ describe('useLdmEventEmail', () => {
     answer.resolve(COORDINATOR);
     await settle();
     expect(fetchEventEmailCoordinator).toHaveBeenCalledTimes(1);
+    expect(appManager_GetCachedUserInfo).not.toHaveBeenCalled();
     expect(ldmEventEmailReducer).not.toHaveBeenCalled();
     expect(renders).toBe(rendersAtUnmount);
-    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 
-  it('W23: a failure after the unmount writes no state and still reaches the flow handler once', async () => {
+  it('R1: unmount while GetCoordinatorDetails is pending: its failure writes no state and reaches no handler', async () => {
     const answer = deferred<EventEmailCoordinatorData>();
     vi.mocked(fetchEventEmailCoordinator).mockReturnValue(answer.promise);
     const { unmount } = renderBlock({ strict: true });
@@ -310,20 +329,36 @@ describe('useLdmEventEmail', () => {
     answer.reject(error);
     await settle();
     expect(ldmEventEmailReducer).not.toHaveBeenCalled();
-    expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raisedErrors()).toEqual([]);
   });
 
-  it('W23: a send that ends after the unmount still runs its events, message and navigation once', async () => {
+  it('R1: unmount while TryAgain fetches: its failure reaches no handler', async () => {
+    vi.mocked(fetchEventEmailCoordinator).mockRejectedValueOnce(new Error('down'));
+    const { unmount } = renderBlock();
+    await settle();
+    vi.mocked(raiseToFlowHandler).mockClear();
+    const answer = deferred<EventEmailCoordinatorData>();
+    vi.mocked(fetchEventEmailCoordinator).mockReturnValue(answer.promise);
+    fireEvent.click(screen.getByRole('button', { name: /try again/i }));
+    unmount();
+    answer.reject(new Error('down again'));
+    await settle();
+    expect(fetchEventEmailCoordinator).toHaveBeenCalledTimes(2);
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R2 + R4: EventContact answers after the user left: the events, the message and AllowUpcomingNavigation run; no back navigation', async () => {
+    platformNavigation.on = true;
     const sent = deferred<undefined>();
     vi.mocked(sendEventContactEmail).mockReturnValue(sent.promise);
-    const { unmount } = renderBlock({ strict: true });
+    const { router, at } = renderRoutes(
+      { '/UBTConnect/LDM_Email_V2': <Block inputs={INPUTS} />, '/UBTConnect/Updates': <p>Updates</p> },
+      '/UBTConnect/LDM_Email_V2',
+    );
     await settle();
     typeMessage('We bring dessert.');
     await submit();
-    unmount();
-    const rendersAtUnmount = renders;
-    vi.mocked(ldmEventEmailReducer).mockClear();
+    await act(() => router.navigate('/UBTConnect/Updates'));
     sent.resolve(undefined);
     await settle();
     expect(sendEventContactEmail).toHaveBeenCalledTimes(1);
@@ -331,8 +366,8 @@ describe('useLdmEventEmail', () => {
     expect(zOnApplicationEvent_Wrapper).toHaveBeenCalledTimes(1);
     expect(scheduleFeedbackMessageAfterTransition).toHaveBeenCalledTimes(1);
     expect(allowUpcomingNavigation).toHaveBeenCalledTimes(1);
-    expect(navigateBack).toHaveBeenCalledTimes(1);
-    expect(ldmEventEmailReducer).not.toHaveBeenCalled();
-    expect(renders).toBe(rendersAtUnmount);
+    expect(at()).toBe('/UBTConnect/Updates');
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(expect.any(OutOfContextException), expect.anything());
+    expect(raisedErrors()).toEqual([]);
   });
 });

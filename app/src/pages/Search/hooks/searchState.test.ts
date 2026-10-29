@@ -5,11 +5,14 @@ import {
   NO_RESULTS,
   initialTagList,
   isBirthdayKeyWord,
+  loadingRow,
   recentAsResult,
+  recentClickedIdsDeleted,
   searchReducer,
   selectedCategoryOf,
   showsCategory,
   validateSearchPhoneNumber,
+  withLoadingRows,
 } from './searchState';
 
 const result = (id: string, type: string): SearchResult => ({
@@ -136,5 +139,63 @@ describe('searchReducer', () => {
       hasFiltersApplied: true,
     });
     expect([filtered.selectedCountryIds, filtered.hasFiltersApplied]).toEqual([['AR'], true]);
+  });
+
+  it('loadingRow: "Loading Name", "Name", "Loading Location", Type Household; the other attributes at their defaults', () => {
+    expect(loadingRow()).toEqual({
+      id: '',
+      householderId: '',
+      name: 'Loading Name',
+      additionalInformation: 'Name',
+      location: 'Loading Location',
+      type: 'Household',
+      latitude: '',
+      longitude: '',
+      recordDisabled: false,
+    });
+  });
+
+  // Action_RefreshSearch (ScreenBlock_Search.mvc.js:2475-2533): LoadingList appended to each list in scope.
+  it('withLoadingRows: three rows per list in scope of All or the own category; People rows have Type Member', () => {
+    const types = (r: SearchResult[]) => r.map((x) => x.type);
+    const all = withLoadingRows(NO_RESULTS, 'All');
+    expect([types(all.places), types(all.households), types(all.people)]).toEqual([
+      ['Household', 'Household', 'Household'],
+      ['Household', 'Household', 'Household'],
+      ['Member', 'Member', 'Member'],
+    ]);
+    expect(all.people.map((x) => x.name)).toEqual(['Loading Name', 'Loading Name', 'Loading Name']);
+    const people = withLoadingRows(NO_RESULTS, 'People');
+    expect([people.places.length, people.households.length, people.people.length]).toEqual([0, 0, 3]);
+    const places = withLoadingRows(NO_RESULTS, 'Places');
+    expect([places.places.length, places.households.length, places.people.length]).toEqual([3, 0, 0]);
+    const households = withLoadingRows(NO_RESULTS, 'Households');
+    expect([households.places.length, households.households.length, households.people.length]).toEqual([0, 3, 0]);
+    // A null SelectedCategory is not All: no rows (the Places section still shows while loading).
+    expect(withLoadingRows(NO_RESULTS, '')).toEqual(NO_RESULTS);
+    // ListAppendAll appends after the rows already in the list.
+    const kept = withLoadingRows({ ...NO_RESULTS, people: [result('7302', 'Member')] }, 'All');
+    expect(kept.people.map((x) => x.id)).toEqual(['7302', '', '', '']);
+  });
+
+  it('searchStarted after resultsCleared fills the lists of SelectedCategory with the loading rows', () => {
+    const state = searchReducer(
+      { ...INITIAL_SEARCH_STATE, selectedCategory: 'Households', searchKeyCurrent: 'Rojas' },
+      { type: 'resultsCleared' },
+    );
+    const started = searchReducer(state, { type: 'searchStarted', searchKey: 'Rojas' });
+    expect(started.results).toEqual(withLoadingRows(NO_RESULTS, 'Households'));
+    expect(started.results.households).toHaveLength(3);
+  });
+});
+
+describe('recentClickedIdsDeleted (ScreenBlock_Search.mvc.js:2382-2395, known original bug B22)', () => {
+  it('deletes RecentClickedResults.Current, the first row, once per id to remove, not the ids themselves', () => {
+    expect(recentClickedIdsDeleted([{ Id: '40' }, { Id: '31' }, { Id: '32' }], ['31', '32'])).toEqual(['40', '40']);
+  });
+
+  it('deletes nothing without ids to remove; an empty list gives its empty item, Id 0', () => {
+    expect(recentClickedIdsDeleted([{ Id: '40' }], [])).toEqual([]);
+    expect(recentClickedIdsDeleted([], ['31'])).toEqual(['0']);
   });
 });

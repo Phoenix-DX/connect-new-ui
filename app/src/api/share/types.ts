@@ -1,3 +1,4 @@
+import type { ActionInputs, PathOf } from '@/api/client/callAction';
 import type { LongId } from '@/lib/os-wire';
 
 /* Domain types of the shared items (Connect2_Sharing): the share that a share link opens. The wire types stay in
@@ -96,4 +97,83 @@ export interface ShareSheetVariables {
 export interface ShareProfileLink {
   shareId: string;
   url: string;
+}
+
+/* ---- MessageDetail: Share_UI.ShareObjectDetail_ExtendedShare (Connect2_LegacyShared) ---- */
+
+/** GetShare.GetShareByIdResponse.Details.ShareItem: the fields that ShareObjectDetail_ExtendedShare reads. */
+export interface SharedObjectItem {
+  id: string;
+  canAccess: boolean;
+  /** Extension.IsDeceased. */
+  isDeceased: boolean;
+  householderId: string;
+  type: string;
+  title: string;
+  subtitle: string;
+  label: string;
+  dateTime: string | null;
+  genderId: string;
+  parentsName: string;
+  birthType: string;
+  localityName: string;
+  countryName: string;
+  /** Photo.SignedPath. */
+  photoSignedPath: string;
+  isVisible: boolean;
+}
+
+/** The outputs of DataActionGetShare of ShareObjectDetail_ExtendedShare that the block reads. */
+export interface SharedObjectDetail {
+  /** GetShareByIdResponse.ObjectId. */
+  objectId: string;
+  /** GetShareByIdResponse.Details.Sender.Id. */
+  senderId: string;
+  shareItem: SharedObjectItem;
+  /** ShareObjectType.Id: the Text identifier of Type_ShareObject. */
+  shareObjectTypeId: string;
+  /** ShareObjectType.Label. */
+  shareObjectTypeLabel: string;
+  isShareAvailable: boolean;
+  /** UpdateDate (Date); null for the null date. */
+  updateDate: string | null;
+}
+
+/** Connect_Updates_CS UI_UpdateItem: the local ShareableUpdateItem of the block. The view reads 7 fields; GetShare
+    sends all 13. */
+export interface ShareableUpdateItem {
+  /** Long Integer, as text; "0" is NullIdentifier. */
+  updateItemId: LongId;
+  updateItemTypeId: string;
+  name: string;
+  /** Date "yyyy-MM-dd"; null for the null date. */
+  date: string | null;
+  genderId: string;
+  locationString: string;
+  isRead: boolean;
+  hasAccess: boolean;
+  hasShare: boolean;
+  /** Long Integer, as text; "0" is the default. */
+  householdId: LongId;
+  parentsNames: string;
+  birthType: string;
+  memberId: string;
+}
+
+/** Connect2_Sharing_CS UI_ShareableObject_Generic: the local ShareableObject_Generic of the block. A missing field is
+    the record default (""). */
+export type ShareableObject = Partial<
+  NonNullable<
+    ActionInputs<
+      PathOf<'Connect2_LegacyShared', 'ShareObjectDetail_ExtendedShare/DataActionGetShare'>
+    >['ShareableObject_Generic']
+  >
+>;
+
+/** The block variables that DataActionGetShare sends (screenData.variables): the two inputs and the two locals. */
+export interface SharedObjectDetailVariables {
+  shareId: string;
+  hasAccessToDeceasedHousehold: boolean;
+  shareableObject: ShareableObject;
+  shareableUpdateItem: ShareableUpdateItem;
 }

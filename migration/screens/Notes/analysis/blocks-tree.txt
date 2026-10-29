@@ -29,10 +29,28 @@ Layouts.Layout_MainPages_FixedTitle
         ConnectPatterns.SkeletonSection
           ConnectPatterns.TagToggle
             BasePatterns.CustomContainer
+          ConnectPatterns.TagToggle
+            BasePatterns.CustomContainer
+          ConnectPatterns.TagToggle
+            BasePatterns.CustomContainer
+          ConnectPatterns.TagToggle
+            BasePatterns.CustomContainer
+          ConnectPatterns.TagToggle
+            BasePatterns.CustomContainer
+          ConnectPatterns.TagToggle
+            BasePatterns.CustomContainer
+          ConnectPatterns.TagToggle
+            BasePatterns.CustomContainer
+          ConnectPatterns.TagToggle
+            BasePatterns.CustomContainer
+          ConnectPatterns.TagToggle
+            BasePatterns.CustomContainer
+          ConnectPatterns.TagToggle
+            BasePatterns.CustomContainer
   Notes.NoteCard_List
     BasePatterns.CustomContainer
       ConnectPatterns.SkeletonSection
-        ConnectPatterns.EmptyList
+        ConnectPatterns.EmptyListBorderless
           BasePatterns.CustomContainer
             ConnectPatterns.CircleButton
               BasePatterns.CustomContainer
@@ -123,6 +141,24 @@ Notes.Notes_FilterSheet
               BasePatterns.CustomText
                 ConnectPatterns.IconInline_Internal
             ConnectPatterns.SelectionOption_List
+              BasePatterns.CustomContainer
+                BasePatterns.Columns_Two
+                  Adaptive.Columns2
+                    BasePatterns.CustomText
+                      ConnectPatterns.IconInline_Internal
+                    ConnectPatterns.Icon
+              BasePatterns.CustomContainer
+                BasePatterns.Columns_Two
+                  Adaptive.Columns2
+                    BasePatterns.CustomText
+                      ConnectPatterns.IconInline_Internal
+                    ConnectPatterns.Icon
+              BasePatterns.CustomContainer
+                BasePatterns.Columns_Two
+                  Adaptive.Columns2
+                    BasePatterns.CustomText
+                      ConnectPatterns.IconInline_Internal
+                    ConnectPatterns.Icon
         BasePatterns.CustomContainer
           BasePatterns.Columns_Two
             Adaptive.Columns2

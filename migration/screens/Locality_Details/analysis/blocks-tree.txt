@@ -7,6 +7,7 @@ Layouts.Layout_MainPages
       ConnectPatterns.StaticInput
         ConnectPatterns.Icon
         ConnectPatterns.TextEllipsis
+      ConnectPatterns.Icon
   Layouts.SubHeader_MainPages
     BasePatterns.Columns_Two
       Adaptive.Columns2
@@ -24,6 +25,8 @@ Layouts.Layout_MainPages
   BasePatterns.CustomContainer
     ConnectPatterns.SkeletonSection
       ConnectPatterns.HorizontalTagList
+        ConnectPatterns.TagToggle
+          BasePatterns.CustomContainer
         ConnectPatterns.TagToggle
           BasePatterns.CustomContainer
         ConnectPatterns.TagToggle

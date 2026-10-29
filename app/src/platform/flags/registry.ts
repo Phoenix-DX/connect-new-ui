@@ -10,7 +10,13 @@
      needs removeBy.
    - routes: the routes that read the flag (flags.generated.json "routes").
    mobileDirectoryLocalityContacts is not in flags.generated.json: its decision is a route decision (Locality_Details Q2,
-   default-only off, 2026-10-15), and Locality_Details reads it. */
+   default-only off, 2026-10-15), and Locality_Details reads it. mobileDirectoryHouseholdGallery (live TST of
+   2026-10-27, HouseholdDetails_Block.mvc.js:1298-1301): default on as TST (read-only probe of 2026-10-29; user
+   decision (a), drift wave round 2).
+   The routes follow `flags.py export` of 2026-10-29 (the full scan of the live survey; user decision (a)): names that
+   share a key give one flag with the routes of all, retired routes are left out. The TST bottom bar of 2026-10-27
+   reads neither C2NewBookmarks nor mobileDirectoryBookmarkNote, so their routes shrank to the screens that still read
+   them. */
 
 export type FlagKind = 'release' | 'permission' | 'ops';
 
@@ -25,12 +31,11 @@ export interface FlagDefinition {
   routes: readonly string[];
 }
 
-/** The routes of the directory that read the directory flags (flags.generated.json). */
+/** The routes that read C2EnableC1DirectoryView, the Directory tab of the bottom bar (flags.generated.json). */
 const DIRECTORY_ROUTES = [
   'AssembleDetail',
   'AssembleEvents',
   'Bookmarks',
-  'BookmarksByGroup',
   'BrowseCountries',
   'BrowseDirectory',
   'CommunityBusinessDetails',
@@ -54,14 +59,15 @@ const DIRECTORY_ROUTES = [
   'Menu',
   'MessageDetail',
   'MessageList',
-  'MyBookmarks',
-  'New_BookmarksByGroup',
-  'New_MyBookmarks',
   'Notes',
+  'NotificationDetails',
   'Notifications',
+  'OneSchoolGlobalCarousel',
   'OneSchoolGlobalDetails',
   'OrbitAdminEventDetail',
   'OrbitAdminLanding',
+  'OrbitAdminMilestoneDetail',
+  'OrbitAdminMilestones',
   'OrbitLanding',
   'Search',
   'Updates_SingleList',
@@ -85,7 +91,7 @@ export const FLAGS = {
     ...UNSET,
     source: 'server',
     default: false,
-    routes: DIRECTORY_ROUTES,
+    routes: ['AssembleDetail'],
   },
   C2EnableC1DirectoryView: {
     description:
@@ -105,7 +111,6 @@ export const FLAGS = {
     default: true,
     routes: [
       'AssembleDetail',
-      'BookmarksByGroup',
       'HomeFeed',
       'HouseholdCarousel',
       'LDM_EventDetail',
@@ -114,7 +119,7 @@ export const FLAGS = {
       'LDM_MyEvents_V2',
       'Locality_Details',
       'Map',
-      'MyBookmarks',
+      'OneSchoolGlobalCarousel',
       'Photobook',
       'Search',
       'SupperMeeting_Carousel',
@@ -145,7 +150,6 @@ export const FLAGS = {
     default: true,
     routes: [
       'AssembleDetail',
-      'BookmarksByGroup',
       'FeedItemDetail',
       'HomeFeed',
       'HouseholdCarousel',
@@ -153,7 +157,7 @@ export const FLAGS = {
       'Locality_Details',
       'Map',
       'MessageDetail',
-      'New_BookmarksByGroup',
+      'OneSchoolGlobalCarousel',
       'OneSchoolGlobalDetails',
       'Profile',
       'SupperMeeting_Carousel',
@@ -169,20 +173,22 @@ export const FLAGS = {
     routes: ['FeedItemDetail', 'HomeFeed', 'MessageDetail'],
   },
   C2EnableMaps: {
-    description: 'Maps (GetHasMapsEnabled), read by Locality_Details.',
+    description:
+      'Maps (GetHasMapsEnabled), read by Locality_Details: the explore icon of the header search. On as TST (H-Q3 a, ' +
+      '2026-10-29); the icon opens the not-migrated Map route.',
     ...UNSET,
     source: 'server',
-    default: false,
+    default: true,
     routes: ['Locality_Details'],
   },
   C2NewBookmarks: {
     description:
-      'New bookmarks (GetHasNewBookmarks): the Bookmarks tab opens Bookmarks when on (D2), and the C2 local bookmarks ' +
-      'are used.',
+      'New bookmarks (GetHasNewBookmarks): Locality_Households_HouseholdList reads the C2 local bookmarks when on. On as ' +
+      'TST since 2026-10-21 (H-Q2 a, 2026-10-29); Directory_EntityDetailsActions no longer reads it (C2 only).',
     ...UNSET,
     source: 'server',
-    default: false,
-    routes: [...DIRECTORY_ROUTES, 'Profile', 'SupperMeeting_Carousel', 'SupperMeeting_Details'],
+    default: true,
+    routes: ['Locality_Details'],
   },
   C2NewLDM: {
     description:
@@ -236,14 +242,21 @@ export const FLAGS = {
     ...UNSET,
     source: 'server',
     default: true,
-    routes: ['HouseholdCarousel', 'HouseholdDetails', 'Locality_Details', 'Profile', 'SupperMeeting_Carousel'],
+    routes: [
+      'HouseholdCarousel',
+      'HouseholdDetails',
+      'Locality_Details',
+      'OneSchoolGlobalCarousel',
+      'Profile',
+      'SupperMeeting_Carousel',
+    ],
   },
   WalletAccess: {
     description: 'Wallet access (GetHasWalletAccess, a constant False in OutSystems).',
     ...UNSET,
     source: 'build',
     default: false,
-    routes: ['AssembleDetail', 'BookmarksByGroup', 'New_BookmarksByGroup'],
+    routes: ['AssembleDetail'],
   },
   mobileOrbitEventBooklet: {
     description: 'The Orbit event booklet entry of EventDetail.',
@@ -257,7 +270,7 @@ export const FLAGS = {
     ...UNSET,
     source: 'server',
     default: true,
-    routes: ['OneSchoolGlobalDetails'],
+    routes: ['OneSchoolGlobalCarousel', 'OneSchoolGlobalDetails'],
   },
   C2EnableSearchByBirthday: {
     description: 'Search by birthday in Search.',
@@ -272,5 +285,19 @@ export const FLAGS = {
     source: 'server',
     default: false,
     routes: ['Locality_Details'],
+  },
+  mobileDirectoryHouseholdGallery: {
+    description: 'Hides the Coming Soon box of the household Photos tag (HouseholdDetails_Block).',
+    ...UNSET,
+    source: 'server',
+    default: true,
+    routes: [
+      'HouseholdCarousel',
+      'HouseholdDetails',
+      'Locality_Details',
+      'OneSchoolGlobalCarousel',
+      'Profile',
+      'SupperMeeting_Carousel',
+    ],
   },
 } as const satisfies Readonly<Record<string, FlagDefinition>>;

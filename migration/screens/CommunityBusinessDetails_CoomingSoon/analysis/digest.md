@@ -75,7 +75,7 @@ Layouts.Layout_MainPages
 ## `UBTConnectLibrary.ConnectPatterns.StaticInput.mvc.js`
 | variable | kind | type | default |
 |---|---|---|---|
-| In_Prompt | input | Text | `"Search for households. entities, news"` |
+| In_Prompt | input | Text | `"Search for households, members or places."` |
 | In_ExtendedClasses | input | Text | `""` |
 - Client actions / event handlers: `click_Input`
 - Static entities / flags: `uBT_Color.inherit`, `uBT_Icons.search`, `uBT_IconSize.medium_20`
@@ -111,9 +111,9 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 3. `ActionSync_Info_GetMain` (200) at 5323 ms
-- 6. `ServiceAPIFetchData_CacheableHouseholds` (200) at 6878 ms
-- 7. `ServiceAPIFetchData_CacheableMapEntities` (200) at 7317 ms
+- 3. `ActionSync_Info_GetMain` (200) at 6184 ms
+- 6. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8969 ms
+- 7. `ServiceAPIFetchData_CacheableHouseholds` (200) at 12214 ms
 - plus 4 call(s) outside this screen, listed in calls.md
 
 ## Not yet captured (see coverage.md)

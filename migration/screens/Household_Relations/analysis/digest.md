@@ -2,7 +2,7 @@
 
 - Path: `/UBTConnect/Household_Relations`
 - Viewport at capture: {'width': 390, 'height': 844, 'dpr': 1}
-- body class: `phone portrait osx is-ltr`; body style: `--header-size-content: 0px; --footer-height: 42px; --viewport-height: 844px;`
+- body class: `phone portrait osx is-ltr`; body style: `--header-size-content: 0px; --footer-height: 56px; --viewport-height: 844px;`
 - PWA: manifest `/UBTConnect/moduleservices/pwa/manifest`, service workers []
 - Screen file: `UBTConnect.Directory_Household.Household_Relations.mvc.js`
 
@@ -227,6 +227,7 @@ Layouts.Layout_DetailPage
 | In_ExtendedClass | input | Text | `""` |
 | In_EnableAccessibilityFeatures | input | Boolean | `false` |
 | In_InitializeNavigationHandler | input | Boolean | `true` |
+| In_IsHideTitle | input | Boolean | `false` |
 - Lifecycle handlers: Ready, Destroy
 - Client actions / event handlers: `onClick_BackNavigation`, `setScrollEvents`, `onDestroy`, `skipToContentOnClick`, `onReady`, `onReadyEvent`
 - navigateBack calls: 1
@@ -284,6 +285,7 @@ Layouts.Layout_DetailPage
 | Mother | output | Record | `OS.DataTypes.ImmutableBase.getData(new Connect_Household_CSModel.UI_HouseholdMemberRec())` |
 | FormerSpouses | output | RecordList | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.UI_HouseholdMemberList())` |
 | ParentHouseholdId | output | Text | `""` |
+| IsMemberDeceased | output | Boolean | `false` |
 | UserAge_Visibility | local | Boolean | `false` |
 | isLoading | local | Boolean | `true` |
 | ShowNotesSheet | local | Boolean | `false` |
@@ -340,6 +342,7 @@ Layouts.Layout_DetailPage
 | In_BorderRadius | input | Text | `""` |
 | In_HighRes | input | Boolean | `false` |
 | HasErrorMessage | input | Boolean | `false` |
+| In_ForceLoadingState | input | Boolean | `false` |
 - Lifecycle handlers: Initialize, Ready, ParametersChanged
 - Client actions / event handlers: `onInitialize`, `onReady`, `setLocalEntityId`, `onParametersChanged`
 - Static entities / flags: `uBT_Shape.circle`, `connect_Entity.member`, `uBT_Color.cyanLightest`, `uBT_Color.cyanDarker`, `uBT_Size.none`, `uBT_Shape.none`, `uBT_Size.base`, `uBT_FontSize.display`, `uBT_ImageSize.extraSmall_32`, `uBT_FontSize.extraSmall`, `uBT_IconSize.medium_20`, `uBT_ImageSize.small_40`, `uBT_FontSize.small`, `uBT_IconSize.base_24`, `uBT_ImageSize.base_52`, `uBT_FontSize.base`, `uBT_IconSize.nonStandard_32`, `uBT_ImageSize.medium_60`, `uBT_FontSize.heading6`, `uBT_IconSize.display_36`, `uBT_ImageSize.large_65`, `uBT_FontSize.heading4`, `uBT_ImageSize.extraLarge_100`, `uBT_FontSize.heading2`, `uBT_IconSize.nonStandard_64`, `uBT_ImageSize.doubleExtraLarge_176`, `uBT_IconSize.nonStandard_108`, `uBT_ImageSize.fullHeight_100_Percent`, `uBT_ImageSize.maxHeight_100vh`, `uBT_ImageSize.fullWidth_100_Percent`
@@ -360,6 +363,7 @@ Layouts.Layout_DetailPage
 | In_BorderOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ImageBorderOptionsRec())` |
 | HasErrorMessage | input | Boolean | `false` |
 | ExtendedClass | input | Text | `""` |
+| In_ForceLoadingState | input | Boolean | `false` |
 - Lifecycle handlers: Initialize, Ready, Destroy, ParametersChanged
 - Client actions / event handlers: `actionDefineHasImage`, `onParametersChanged`, `onLoad`, `onReady`, `onError`, `onInitialize`, `onDestroy`
 - JavaScript nodes: `UBTConnectLibrary.ConnectPatterns.LazyImage.mvc$controller.OnReady.SetupOnLoadJS`, `UBTConnectLibrary.ConnectPatterns.LazyImage.mvc$controller.OnInitialize.IsViewRestoredFromCacheJS`, `UBTConnectLibrary.ConnectPatterns.LazyImage.mvc$controller.OnDestroy.JavaScript1JS`
@@ -501,16 +505,18 @@ Layouts.Layout_DetailPage
 | BottomSheetId | local | Text | `""` |
 | IsEditing | local | Boolean | `false` |
 | IsSheetOpen | local | Boolean | `false` |
+| NoteText | local | Text | `""` |
+| IsSubmittingNote | local | Boolean | `false` |
 | In_IsOpen | input | Boolean | `false` |
 | ExtendedClasses | input | Text | `""` |
-| In_ItemId | input | LongInteger | `OS.DataTypes.LongInteger.defaultValue` |
+| In_ItemId | input | Text | `""` |
 | In_NoteCategoryId | input | Text | `""` |
 | In_Notes | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec())` |
 - Server actions: `AddNote` → `screenservices/UBTConnect_Utils/CW_Notes/NotesSheet/ServiceAPIAddNote`
 - Lifecycle handlers: ParametersChanged
-- Client actions / event handlers: `handler_OnAddNoteRequested`, `backNavigationHandlerBackNavigation`, `bottomSheet_Initialized`, `onParametersChanged`, `handler_OnEditingStateChanged`, `handler_OnSaveEditNote`, `action_SetBottomSheetOpen`, `on_NotesChanged`, `on_NoteSheet_Closed`, `on_NoteDeleted`
+- Client actions / event handlers: `handler_OnSubmitNote`, `backNavigationHandlerBackNavigation`, `bottomSheetOnToggle`, `bottomSheet_Initialized`, `onParametersChanged`, `handler_OnEditingStateChanged`, `handler_OnSaveEditNote`, `action_SetBottomSheetOpen`, `handler_OnNoteSheet_Closed`, `on_NotesChanged`, `on_NoteSheet_Closed`, `on_NoteDeleted`
 - JavaScript nodes: `UBTConnect_Utils.CW_Notes.NotesSheet.mvc$controller.OnParametersChanged.DelaySetIsOpenJS`
-- Exceptions handled: UserException
+- Exceptions handled: CommunicationException, UserException
 - Static entities / flags: `noteActionType.add`
 - Candidate static strings: `Action_SetBottomSheetOpen`
 
@@ -525,9 +531,9 @@ Layouts.Layout_DetailPage
 | isRootPage | input | Boolean | `false` |
 - Lifecycle handlers: Initialize, Ready, ParametersChanged
 - Client actions / event handlers: `onInitialize`, `onReady`, `onParametersChanged`, `event_BottomBar_Clicked`, `bottomBar_Clicked`
-- Navigation: `/UBTConnect/HomeFeed`(); `/UBTConnect/CountryList`(); `/UBTConnect/Locality_Details`(); `/UBTConnect/Updates_SingleList`(); `/UBTConnect/Bookmarks`(); `/UBTConnect/New_MyBookmarks`(); `/UBTConnect/MyBookmarks`(); `/UBTConnect/Menu`()
+- Navigation: `/UBTConnect/HomeFeed`(); `/UBTConnect/CountryList`(); `/UBTConnect/Locality_Details`(); `/UBTConnect/Updates_SingleList`(); `/UBTConnect/Bookmarks`(); `/UBTConnect/Menu`()
 - JavaScript nodes: `UBTConnect.App_Common.BottomBarMenu.mvc$controller.OnParametersChanged.Delayed_BottomBarSlider_ForceRefreshJS`
-- Static entities / flags: `connect_BottomBar_Items.updates`, `uBT_Color.primary`, `uBT_Color.neutral6`, `uBT_IconsSize.base_24`, `uBT_FontSize.extraSmall`, `connect_BottomBar_Items.bookmarks`, `connect_BottomBar_Items.home`, `connect_BottomBar_Items.directory`, `launchDarkly_FF.mobileDirectoryBookmarkNote`, `connect_BottomBar_Items.menu`
+- Static entities / flags: `connect_BottomBar_Items.updates`, `uBT_Color.primary`, `uBT_Color.neutral6`, `uBT_IconsSize.base_24`, `uBT_FontSize.extraSmall`, `connect_BottomBar_Items.bookmarks`, `connect_BottomBar_Items.home`, `connect_BottomBar_Items.directory`, `connect_BottomBar_Items.menu`
 - Client variables: getDirectory_Updates_UnreadCount
 
 ## `OutSystemsUI_2_23.Navigation.BottomBarItem.mvc.js`
@@ -774,18 +780,18 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 3311 ms
-- 2. `ActionGetSignedImagesInBulk` (200) at 4704 ms
-- 3. `ActionGetUserInformation` (200) at 4716 ms
-- 4. `DataActionGet_MemberDetails` (200) at 4996 ms
-- 5. `DataActionGet_ParentHouseholdDetails` (200) at 5318 ms
-- 6. `ActionGetSignedImagesInBulk` (200) at 5453 ms
-- 7. `ActionGetSignedImagesInBulk` (200) at 5701 ms
-- 8. `ActionAppManager_AfterInitialize` (200) at 5962 ms
-- 9. `ActionSync_Info_GetMain` (200) at 6745 ms
-- 10. `ActionGetNumberUnreadMessages` (200) at 7039 ms
-- 11. `ServiceAPIFetchData_CacheableHouseholds` (200) at 7951 ms
-- 12. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8028 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 3264 ms
+- 2. `ActionGetUserInformation` (200) at 5098 ms
+- 3. `ActionGetSignedImagesInBulk` (200) at 5201 ms
+- 4. `DataActionGet_MemberDetails` (200) at 5372 ms
+- 5. `ActionGetSignedImagesInBulk` (200) at 5669 ms
+- 6. `DataActionGet_ParentHouseholdDetails` (200) at 5701 ms
+- 7. `ActionGetSignedImagesInBulk` (200) at 6002 ms
+- 8. `ActionAppManager_AfterInitialize` (200) at 6645 ms
+- 9. `ActionSync_Info_GetMain` (200) at 7081 ms
+- 10. `ActionGetNumberUnreadMessages` (200) at 7355 ms
+- 11. `ServiceAPIFetchData_CacheableMapEntities` (200) at 9309 ms
+- 12. `ServiceAPIFetchData_CacheableHouseholds` (200) at 11412 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

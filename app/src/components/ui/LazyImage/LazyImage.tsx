@@ -21,6 +21,9 @@ export interface LazyImageProps {
   inBorderOptions?: ImageBorderOptions;
   hasErrorMessage?: boolean;
   extendedClass?: string;
+  /** In_ForceLoadingState: the fallback stays and the image stays hidden (default false; live TST of 2026-10-27,
+      LazyImage.mvc.js:73-75, 283, 365). */
+  inForceLoadingState?: boolean;
 }
 
 const MAIN_CONTAINER_CLASS = 'ubt-lazy-image';
@@ -50,6 +53,7 @@ export function LazyImage({
   inBorderOptions = {},
   hasErrorMessage = false,
   extendedClass = '',
+  inForceLoadingState = false,
 }: LazyImageProps) {
   // OnInitialize (isLoading = not IsViewRestoredFromCache) is overwritten by OnReady before the first paint, so the state
   // starts as OnReady leaves it. OnParametersChanged: a new ImageURL (<> Local_ImageURL) runs OnReady again.
@@ -65,7 +69,7 @@ export function LazyImage({
     setState((s) => ({ ...s, hasImage: imageURL !== '' && !s.isError, isLoading: false, isError: true }));
   };
 
-  const showFallback = !hasImage || isLoading || isError;
+  const showFallback = !hasImage || isLoading || isError || inForceLoadingState;
   const radius = inBorderOptions.BorderRadius ?? UBT_Shape.Circle;
   const fontColor = fallbackOptions.FontColor ?? '';
   const initials = fallbackOptions.Initials ?? '';

@@ -160,7 +160,7 @@ describe('service mapper', () => {
         List: [{ PageNumber: 1, ServiceItem: { List: [{ Id: '', IconId: '', Name: '', Order: 0 }] } }],
       },
       ExternalAppPopUp_Id: '',
-      Local_ExternalApp_PopUpInfo: { AppName: '', PackageName: '', IconId: '' },
+      Local_ExternalApp_PopUpInfo: { AppName: '', PackageName: '', IconId: '', URL: '' },
       ItemPerPage: 6,
       ForceAddService: false,
     });

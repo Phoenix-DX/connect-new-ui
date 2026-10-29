@@ -5,26 +5,29 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "fb29211b92ce32c469aa",
+ "fingerprint": "472688e6677d8b60379b",
  "options": {
   "text": true,
   "style": true,
   "pixel": true,
   "calls": true,
+  "visibleOnly": false,
   "full": true,
-  "replay": "builder"
+  "replay": "builder",
+  "skipKinds": [],
+  "selfRef": false
  },
  "replay": {
   "mode": "builder",
-  "elements": 483,
-  "texts": 56,
+  "elements": 497,
+  "texts": 58,
   "comments": 0,
   "dropped": 0,
   "endTagMismatch": 0,
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-21T04:53:36.499Z",
+ "at": "2026-10-29T16:02:38.869Z",
  "counts": {},
  "exemptionsUsed": {
   "PULL-TO-REFRESH-FADEIN-PHASE": 1,
@@ -33,11 +36,11 @@
   "ignoreSubtrees": 1
  },
  "pixel": {
-  "ratio": 0.00006,
-  "maxCell": 0.0056,
+  "ratio": 0.00007,
+  "maxCell": 0.0069,
   "maxCellRatio": 0.03,
-  "diffPixels": 16,
-  "comparedPixels": 259529,
+  "diffPixels": 20,
+  "comparedPixels": 272231,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -48,10 +51,10 @@
    390,
    844
   ],
-  "masks": 43,
+  "masks": 45,
   "hotspots": [
-   "200,760 (9px)",
-   "200,800 (7px)"
+   "200,800 (11px)",
+   "200,760 (9px)"
   ],
   "diffPng": "migration/screens/MessageList/parity/default.diff.png"
  },

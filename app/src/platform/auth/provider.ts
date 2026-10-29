@@ -9,6 +9,10 @@ export interface AuthProvider {
   completeSignIn(): Promise<{ userId: string }>;
   /** Ends the session at the provider: the server logout of AppManager_Logout. */
   signOut(): Promise<void>;
+  /** Starts the reset-password policy of the provider (AppManager_Login with IsResetPassword True, AM:2487). A
+      provider with a reset-password page leaves the app here and comes back to `returnTo`; the callback of a completed
+      reset is IdP_OnResetPassword (platform/session/auth.ts resetPassword). */
+  resetPassword(returnTo: string): Promise<void>;
   /** The session that the provider keeps, or null when signed out. */
   getSession(): Promise<{ userId: string } | null>;
 }

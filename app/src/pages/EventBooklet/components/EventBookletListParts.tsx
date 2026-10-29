@@ -3,7 +3,7 @@ import type { EventBookletMember, EventBookletSelectedFilters } from '@/api/even
 import { HostSurveyPill } from '@/components/orbit/HostSurveyPill';
 import { OrbitSkeleton } from '@/components/orbit/OrbitSkeleton';
 import { OSList } from '@/components/ui/os/OSList';
-import { OrbitNoResults } from '@/pages/EventBooklet/components/OrbitNoResults';
+import { OrbitNoResults } from '@/components/orbit/OrbitNoResults';
 import type { BookletMembersByLocality } from '@/pages/EventBooklet/types';
 import { OrbitSkeletonLoading } from '@/lib/orbit/staticEntities';
 import { EventBooklet_ListHeader } from './EventBooklet_ListHeader';

@@ -2,13 +2,13 @@
 
 OutSystems: `UBTConnectLibrary.ConnectPatterns.StaticInput` · pack `migration/blocks/UBTConnectLibrary.ConnectPatterns.StaticInput.md`
 
-| Input              | Type | Prop                | Default                                   |
-| ------------------ | ---- | ------------------- | ----------------------------------------- |
-| In_Prompt          | Text | `inPrompt`          | `'Search for households. entities, news'` |
-| In_ExtendedClasses | Text | `inExtendedClasses` | `''`                                      |
+| Input              | Type | Prop                | Default                                       |
+| ------------------ | ---- | ------------------- | --------------------------------------------- |
+| In_Prompt          | Text | `inPrompt`          | `'Search for households, members or places.'` |
+| In_ExtendedClasses | Text | `inExtendedClasses` | `''`                                          |
 
 Events: `Click_Input` → `onClickInput`. Placeholders: none. Child blocks: `Icon` (Search, Inherit, Medium_20),
-`TextEllipsis` (In_Prompt). Container class `"ubt-static-input " + In_ExtendedClasses` (trailing space kept).
+`TextEllipsis` (In_Prompt). Container class `"search-placeholder-ellipsis ubt-static-input " + In_ExtendedClasses` (live TST) (trailing space kept).
 
 ## Captured variants (1 in the pack + 2 whole; 3 tested)
 

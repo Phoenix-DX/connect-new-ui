@@ -10,10 +10,11 @@ import {
   householdName,
   type CastHousehold,
 } from '@/mocks/fictional/directory';
+import { scenario } from '@/mocks/scenario';
 import { collection } from '@/mocks/store';
 import { sampleHouseholds } from '@/containers/HouseholdDetails/mockData';
 import { notesCollection } from '@/containers/NoteListActions/mocks';
-import { Connect_Entity } from '@/lib/ubtConnect/staticEntities';
+import { BookmarkCategory, Connect_Entity } from '@/lib/ubtConnect/staticEntities';
 
 /* The C2 bookmark writes of UBTConnect ToggleBookmarkItem_C2 (UBTConnect.controller.js:17105-17280, copy in
    migration/screens/BookmarksByGroup/analysis/sources/raw/), called by this block's Handle_Bookmark: AddBookmark2
@@ -21,9 +22,9 @@ import { Connect_Entity } from '@/lib/ubtConnect/staticEntities';
    the in-memory bookmarks collection of the mock user (P-MUTATION), never the real server. A row is a
    Connect_Bookmarks_CS UI_Bookmark_Added (Id, BookmarkCategoryId, ItemId, DateCreatedUtc); the device keeps its copy in
    the local entity UBTConnect_Bookmarks_MCS.LocalBookmark (src/shell/localEntities/localBookmarks.ts, BookmarkId = the
-   row's Id). The mock user has no C2 bookmarks at start: empty seed, as the Sync_Info_GetMain mock sends an empty
-   LocalBookmarksC2 list to SynchBookmarksC2 (its legacy LocalBookmark list is the shared legacy collection, src/shell/mocks.ts;
-   UC:1135-1143), and a reload starts again from that seed. */
+   row's Id). The mock user has no C2 bookmarks at start (empty seed), except school 1430 in scenario `captured`
+   (seedCapturedBookmark, below). The Sync_Info_GetMain mock sends this collection as LocalBookmarksC2 to
+   SynchBookmarksC2 (platform/bootstrap/mocks.ts, UC:1135-1143), and a reload starts again from that seed. */
 export type BookmarkRow = { Id: string; BookmarkCategoryId: string; ItemId: string; DateCreatedUtc: string };
 export const bookmarksCollection = () => collection('Connect_Bookmarks_CS.bookmarks', () => [], 'Id');
 
@@ -42,8 +43,9 @@ const addBookmark2 = contractHandler('UBTConnect', 'ServiceAPIAddBookmark2', ({ 
   return { Success: true, Bookmark_Added: { ...row } };
 });
 
-/** DeleteBookmarkByBookmarkId2 (fictional): removes the row; Success tells whether it existed (as the notes delete
-    mock, UBTConnect_Utils/NoteListActions/mocks.ts). */
+/** DeleteBookmarkByBookmarkId2 (fictional): removes the row; Success and WasFound (an output of the live TST action,
+    contract regeneration of I10-6) tell whether it existed (as the notes delete mock,
+    UBTConnect_Utils/NoteListActions/mocks.ts). */
 const deleteBookmarkByBookmarkId2 = contractHandler(
   'UBTConnect',
   'ServiceAPIDeleteBookmarkByBookmarkId2',
@@ -51,7 +53,7 @@ const deleteBookmarkByBookmarkId2 = contractHandler(
     const bookmarks = bookmarksCollection();
     const wasFound = bookmarks.get(BookmarkId) !== undefined;
     bookmarks.remove(BookmarkId);
-    return { Success: wasFound };
+    return { Success: wasFound, WasFound: wasFound };
   },
 );
 
@@ -75,6 +77,37 @@ const entityKey = (type: string, id: string) => `${type}:${id}`;
 export function markContactOnly(entityType: string, entityId: string, only: 'Call' | 'Email'): void {
   contactOnly.set(entityKey(entityType, entityId), only);
 }
+
+/* Scenario `captured` (OneSchoolGlobalCarousel Q4 (a), user 2026-10-29; parity of the carousel's default state runs
+   with it, migration/capture-plan.json): the capture of school 1430 (OneSchoolGlobalCarousel analysis/dom/default.html)
+   shows the actions menu with no Call and no Email (FetchContactDetails answered no phone, mobile or email) and
+   "Unmark" and the bookmarked card (the device's C2 LocalBookmark held the school: GetLocalBookmarkByObjectId_C2, the
+   only bookmark store of the block on TST since the code of 2026-10-27; drift wave H-Q2 (a), user 2026-10-29). Only
+   that school and that scenario; every other scenario keeps the fictional channels and no entity bookmark. */
+const CAPTURED_SCHOOL_ID = '1430';
+const isCapturedSchool = (entityType: string, entityId: string) =>
+  scenario() === 'captured' && entityType === Connect_Entity.OneSchoolGlobal && entityId === CAPTURED_SCHOOL_ID;
+
+/** Scenario `captured`: adds the C2 bookmark of school 1430 (BookmarkCategory.OneSchoolGlobal, the category that
+    GetBookmarkCategoryId_ByEntityTypeId gives the OneSchool Global entity type; a constant, so that the mocks load no
+    value of lib/ubtConnect/actions before the tests' vi.mock calls) to the mock user's C2 bookmarks, once. The app start syncs that list to the
+    device copy (Sync_Info_GetMain LocalBookmarksC2, and the `unlocked` test session), which the block reads. Called
+    when the mocks load, before the app starts. */
+export function seedCapturedBookmark(): void {
+  if (scenario() !== 'captured') return;
+  const categoryId = BookmarkCategory.OneSchoolGlobal;
+  const held = bookmarksCollection().where(
+    (r) => r.ItemId === CAPTURED_SCHOOL_ID && r.BookmarkCategoryId === categoryId,
+  );
+  if (held.length === 0)
+    bookmarksCollection().upsert({
+      Id: '',
+      BookmarkCategoryId: categoryId,
+      ItemId: CAPTURED_SCHOOL_ID,
+      DateCreatedUtc: '2026-10-21T09:14:52',
+    });
+}
+seedCapturedBookmark();
 
 /** Who an entity is in the directory cast (src/mocks/fictional/directory.ts): a school or locality of locality 252,
     a household by id, a member by the member ids of the HouseholdDetails_Block mocks, else the Vitale householder.
@@ -120,10 +153,10 @@ function castContact(entityType: string, entityId: string) {
   };
 }
 
-/** The fictional phone numbers (555 range) and email (example.com) of an entity (all empty for the types above; one
-    channel for `markContactOnly`). */
-function contactChannels(entityType: string, entityId: string) {
-  if (ENTITY_TYPES_WITHOUT_CONTACT.includes(entityType))
+/** The fictional phone numbers (555 range) and email (example.com) of an entity (all empty for the types above and
+    for the captured school of scenario `captured`; one channel for `markContactOnly`). */
+export function contactChannels(entityType: string, entityId: string) {
+  if (ENTITY_TYPES_WITHOUT_CONTACT.includes(entityType) || isCapturedSchool(entityType, entityId))
     return { Phone: '', MobilePhone: '', HomePhone: '', WorkPhone: '', Email: '' };
   const { first, surname } = castContact(entityType, entityId);
   const email = exampleEmail(first, surname);

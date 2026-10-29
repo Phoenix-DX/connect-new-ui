@@ -31,7 +31,7 @@ export default function ContactByEmailLDMCoordinator() {
       content={
         <ContactEmailForm id="$b2" {...config.form} {...submit}>
           <ContactHeaderCard
-            imageSrc={inputs.In_AvatarURL || undefined}
+            imageSrc={inputs.In_AvatarURL}
             title={inputs.In_ContactName}
             subtitle="LDM Event Coordinator"
           />

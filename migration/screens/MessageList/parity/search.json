@@ -5,41 +5,42 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 3,
- "fingerprint": "a125d4a7ab915da24df6",
+ "fingerprint": "f2b6e2e4a28836c15ead",
  "options": {
   "text": true,
   "style": true,
   "pixel": true,
   "calls": true,
+  "visibleOnly": false,
   "full": true,
-  "replay": "builder"
+  "replay": "builder",
+  "skipKinds": [],
+  "selfRef": false
  },
  "replay": {
   "mode": "builder",
-  "elements": 485,
-  "texts": 55,
+  "elements": 499,
+  "texts": 57,
   "comments": 0,
   "dropped": 0,
   "endTagMismatch": 0,
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-21T04:53:55.166Z",
+ "at": "2026-10-29T16:02:56.622Z",
  "counts": {},
  "exemptionsUsed": {
   "ignoreSubtrees": 2,
   "PULL-TO-REFRESH-FADEIN-PHASE": 1,
-  "CAPTURE-DATA-DRIFT-MESSAGELIST-READ": 10,
-  "CAPTURE-DATA-DRIFT-MESSAGELIST-READ-BG": 10,
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 45,
   "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1
  },
  "pixel": {
-  "ratio": 0.00122,
+  "ratio": 0.00118,
   "maxCell": 0.025,
   "maxCellRatio": 0.03,
-  "diffPixels": 300,
-  "comparedPixels": 245129,
+  "diffPixels": 304,
+  "comparedPixels": 257831,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -50,7 +51,7 @@
    390,
    844
   ],
-  "masks": 44,
+  "masks": 46,
   "hotspots": [
    "80,40 (40px)",
    "120,40 (40px)",

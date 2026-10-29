@@ -42,16 +42,28 @@ export interface NoteCardSourceHeader {
   label: string;
 }
 
-/** Connect_Notes_CS UI_Note_CardItem, with its NoteCardContent flattened. Id is text; ItemId is a Long Integer, as
-    text. */
+/** Connect_Notes_CS UI_Note_CardItem, with its NoteCardContent flattened. Id and ItemId are text; ItemId2 is a Long
+    Integer, as text (the household of a Member card); HasDetailAccess: the user may open the item (TST 2026-10-29). */
 export interface NoteCardItem {
   id: string;
   itemId: string;
+  itemId2: string;
   noteCategoryId: string;
+  hasDetailAccess: boolean;
   title: string;
   subtitle: string;
   sourceHeader: NoteCardSourceHeader;
   notes: NoteList;
+  /** NoteCardContent channel fields (TST 2026-10-29, capture calls.md): the channel row of ItemCard_WithNotes. The
+      mapper gives the record defaults when the server omits them: "" for the name and the logo, NullDate for
+      PublishedAt, a DateTime (auto decision C3, 2026-10-29). */
+  channelName: string;
+  channelLogo: string;
+  publishedAt: string;
+  /** NoteCardContent EventStartDate and EventEndDate (DateTime, TST publish of 2026-10-29): the event time row of
+      ItemCard_WithNotes; the mapper gives NullDate when the server omits them. */
+  eventStartDate?: string;
+  eventEndDate?: string;
 }
 
 /** Connect_Notes_CS Notes_Filter: NoteCategoryId and SortByNewest are identifiers ("" = none). */

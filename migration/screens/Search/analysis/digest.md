@@ -322,6 +322,8 @@ Directory_Search.ScreenBlock_Search
 ## `UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js`
 | variable | kind | type | default |
 |---|---|---|---|
+| Out_RecentClickedResults | output | RecordList | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.ConnectSearch_RecentClickedResultsList())` |
+| Out_IdsToRemove | output | RecordList | `OS.DataTypes.ImmutableBase.getData(new OS.DataTypes.LongIntegerList())` |
 | Households | output | RecordList | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.SearchResultList())` |
 | People | output | RecordList | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.SearchResultList())` |
 | Places | output | RecordList | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.SearchResultList())` |
@@ -341,20 +343,23 @@ Directory_Search.ScreenBlock_Search
 | isBirthdaySearchEnabled | local | Boolean | `false` |
 | BottomSheetId_Filter_IsLoaded | local | Boolean | `false` |
 | BottomSheetId_Filter_ShowSubscriptionOnClick | local | Boolean | `false` |
+| RecentClickedResults | local | RecordList | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.ConnectSearch_RecentClickedResultsList())` |
+| RecentClickedResults_Skeleton | local | RecordList | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.ConnectSearch_RecentClickedResultsList())` |
 | In_IsInScreenSearch | input | Boolean | `false` |
 | In_IsEventNavigation | input | Boolean | `false` |
 | In_SearchTargetId | input | Text | `UBTConnectModel.staticEntities.type_SearchTarget.global` |
 | Get_RecentClickedResults | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new Get_RecentClickedResultsAggrRec())` |
 | Get_RecentSearchTerms | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new Get_RecentSearchTermsAggrRec())` |
 | Get_SearchBirthdayOptions | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new Get_SearchBirthdayOptionsAggrRec())` |
+| Get_FilteredRecentClickedResults | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new Get_FilteredRecentClickedResultsDataActRec())` |
 | FetchSearchResults | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new FetchSearchResultsDataActRec())` |
-- Data actions: `DataActionFetchSearchResults` → `screenservices/UBTConnect/Directory_Search/ScreenBlock_Search/DataActionFetchSearchResults`
+- Data actions: `DataActionGet_FilteredRecentClickedResults` → `screenservices/UBTConnect/Directory_Search/ScreenBlock_Search/DataActionGet_FilteredRecentClickedResults`, `DataActionFetchSearchResults` → `screenservices/UBTConnect/Directory_Search/ScreenBlock_Search/DataActionFetchSearchResults`
 - Aggregates: `ScreenDataSetGet_SearchBirthdayOptions` → `screenservices/UBTConnect/Directory_Search/ScreenBlock_Search/ScreenDataSetGet_SearchBirthdayOptions`
 - Lifecycle handlers: Initialize, Ready
-- Client actions / event handlers: `inputEvent_Submit`, `onClick_RecentSearchTerm`, `event_FilterBottomSheet_tInitialized`, `action_RefreshSearch`, `action_ClearResults`, `event_SectionOnItemClick`, `screenEvent_OnReady`, `screenEvent_OnInitialize`, `inputEvent_ClearString`, `onClick_RecentSearch_RemoveAll`, `event_ApplyFilters`, `handler_FilterSheetLoaded`, `onClick_RecentSearchTerm_Remove`, `inputEvent_OnChange`, `onAfterFetch_FetchSearchResults`, `event_HorizontalTagListChanged`, `event_SearchResultClick`
+- Client actions / event handlers: `inputEvent_Submit`, `onClick_RecentSearchTerm`, `event_FilterBottomSheet_tInitialized`, `get_RecentClickedResultsOnAfterFetch`, `action_RefreshSearch`, `action_ClearResults`, `event_SectionOnItemClick`, `screenEvent_OnReady`, `screenEvent_OnInitialize`, `inputEvent_ClearString`, `onClick_RecentSearch_RemoveAll`, `event_ApplyFilters`, `handler_FilterSheetLoaded`, `onClick_RecentSearchTerm_Remove`, `inputEvent_OnChange`, `onAfterFetch_FetchSearchResults`, `event_HorizontalTagListChanged`, `event_SearchResultClick`
 - Navigation: `/UBTConnect/Locality_Details`(LocalityId); `/UBTConnect/HouseholdCarousel`(In_StartingHouseholdId); `/UBTConnect/HouseholdDetails`(HouseholdId)
 - Exceptions handled: NotRegisteredException, UserException
-- Static entities / flags: `connect_SearchCategories.all`, `type_SearchTarget.global`, `shape.rounded`, `uBT_Color.neutral0`, `uBT_Size.small`, `uBT_Size.base`, `uBT_Color.neutral9`, `uBT_FontSize.small`, `uBT_FontWeight.semiBold`, `uBT_Color.primary`, `space.extraSmall`, `uBT_ImageSize.extraSmall_32`, `connect_Entity.member`, `uBT_ImageSize.square`, `uBT_Shape.soft`, `uBT_Color.neutral10`, `uBT_FontSize.extraSmall`, `uBT_Color.neutral3`, `uBT_ColumnBehaviour.reduceLast`, `uBT_VerticalAlign.center`, `uBT_FontWeight.regular`, `uBT_IconsSize.base_24`, `uBT_Icons2.history`, `uBT_Icons2.close`, `uBT_Color.neutral7`, `connect_SearchCategories.places`, `connect_SearchCategories.households`, `connect_SearchCategories.people`, `uBT_FontSize.base`, `connect_Entity.household`
+- Static entities / flags: `connect_SearchCategories.all`, `type_SearchTarget.global`, `shape.rounded`, `uBT_Color.neutral0`, `uBT_Size.small`, `uBT_Size.base`, `uBT_Color.neutral9`, `uBT_FontSize.small`, `uBT_FontWeight.semiBold`, `uBT_Color.primary`, `uBT_Shape.soft`, `uBT_ImageSize.extraSmall_32`, `connect_Entity.member`, `uBT_ImageSize.square`, `uBT_Color.neutral10`, `uBT_FontSize.extraSmall`, `uBT_Color.neutral3`, `uBT_ColumnBehaviour.reduceLast`, `uBT_VerticalAlign.center`, `uBT_FontWeight.regular`, `uBT_IconsSize.base_24`, `uBT_Icons2.history`, `uBT_Icons2.close`, `uBT_Color.neutral7`, `connect_SearchCategories.places`, `connect_SearchCategories.households`, `connect_SearchCategories.people`, `uBT_FontSize.base`, `connect_Entity.household`, `connect_Entity.locality`
 - Client variables: getSearch_RecenctClickedResultsLimit
 
 ## `UBTConnectLibrary.Layouts.Layout_DetailPage.mvc.js`
@@ -368,6 +373,7 @@ Directory_Search.ScreenBlock_Search
 | In_ExtendedClass | input | Text | `""` |
 | In_EnableAccessibilityFeatures | input | Boolean | `false` |
 | In_InitializeNavigationHandler | input | Boolean | `true` |
+| In_IsHideTitle | input | Boolean | `false` |
 - Lifecycle handlers: Ready, Destroy
 - Client actions / event handlers: `onClick_BackNavigation`, `setScrollEvents`, `onDestroy`, `skipToContentOnClick`, `onReady`, `onReadyEvent`
 - navigateBack calls: 1
@@ -476,9 +482,9 @@ Directory_Search.ScreenBlock_Search
 | isRootPage | input | Boolean | `false` |
 - Lifecycle handlers: Initialize, Ready, ParametersChanged
 - Client actions / event handlers: `onInitialize`, `onReady`, `onParametersChanged`, `event_BottomBar_Clicked`, `bottomBar_Clicked`
-- Navigation: `/UBTConnect/HomeFeed`(); `/UBTConnect/CountryList`(); `/UBTConnect/Locality_Details`(); `/UBTConnect/Updates_SingleList`(); `/UBTConnect/Bookmarks`(); `/UBTConnect/New_MyBookmarks`(); `/UBTConnect/MyBookmarks`(); `/UBTConnect/Menu`()
+- Navigation: `/UBTConnect/HomeFeed`(); `/UBTConnect/CountryList`(); `/UBTConnect/Locality_Details`(); `/UBTConnect/Updates_SingleList`(); `/UBTConnect/Bookmarks`(); `/UBTConnect/Menu`()
 - JavaScript nodes: `UBTConnect.App_Common.BottomBarMenu.mvc$controller.OnParametersChanged.Delayed_BottomBarSlider_ForceRefreshJS`
-- Static entities / flags: `connect_BottomBar_Items.updates`, `uBT_Color.primary`, `uBT_Color.neutral6`, `uBT_IconsSize.base_24`, `uBT_FontSize.extraSmall`, `connect_BottomBar_Items.bookmarks`, `connect_BottomBar_Items.home`, `connect_BottomBar_Items.directory`, `launchDarkly_FF.mobileDirectoryBookmarkNote`, `connect_BottomBar_Items.menu`
+- Static entities / flags: `connect_BottomBar_Items.updates`, `uBT_Color.primary`, `uBT_Color.neutral6`, `uBT_IconsSize.base_24`, `uBT_FontSize.extraSmall`, `connect_BottomBar_Items.bookmarks`, `connect_BottomBar_Items.home`, `connect_BottomBar_Items.directory`, `connect_BottomBar_Items.menu`
 - Client variables: getDirectory_Updates_UnreadCount
 
 ## `OutSystemsUI_2_23.Navigation.BottomBarItem.mvc.js`
@@ -785,9 +791,10 @@ Directory_Search.ScreenBlock_Search
 | ShowBackButton | input | Boolean | `false` |
 | IsNotInertWhenClosed | input | Boolean | `false` |
 | IsHideContentWhenClosed | input | Boolean | `false` |
+| In_TouchActionNoneFix | input | Boolean | `false` |
 - Lifecycle handlers: Ready
 - Client actions / event handlers: `bottomSheet_InternalOnToggle`, `onReady`, `maybeHideContentWhenClosed`, `setHideContentWhenClosed`, `closeOnClick`, `bottomSheet_InternalInitialized`, `removeInert`, `initialized`, `onClose`, `onToggle`, `onBack`
-- JavaScript nodes: `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.OnReady.CloseOnClickJS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.OnReady.AddTransitionListenerJS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.MaybeHideContentWhenClosed.DelaySetHideWhenClosedJS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.BottomSheet_InternalInitialized.JavaScript1JS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.RemoveInert.RemoveInertJS`
+- JavaScript nodes: `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.OnReady.CloseOnClickJS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.OnReady.AddTransitionListenerJS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.MaybeHideContentWhenClosed.DelaySetHideWhenClosedJS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.BottomSheet_InternalInitialized.JavaScript2JS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.BottomSheet_InternalInitialized.JavaScript1JS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.RemoveInert.RemoveInertJS`
 - Static entities / flags: `shape.rounded`, `uBT_ColumnBehaviour.expandMiddle`, `uBT_Size.none`, `uBT_VerticalAlign.center`, `uBT_Icons.arrowLeftAlt`, `uBT_Color.neutral9`, `uBT_Color.transparent`, `uBT_IconSize.medium_20`, `uBT_Icons.close`, `uBT_Color.neutral10`, `uBT_FontSize.small`, `uBT_FontWeight.semiBold`
 - Candidate static strings: `RemoveInert` | `SetHideContentWhenClosed`
 
@@ -895,6 +902,7 @@ Directory_Search.ScreenBlock_Search
 | In_BorderOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ImageBorderOptionsRec())` |
 | HasErrorMessage | input | Boolean | `false` |
 | ExtendedClass | input | Text | `""` |
+| In_ForceLoadingState | input | Boolean | `false` |
 - Lifecycle handlers: Initialize, Ready, Destroy, ParametersChanged
 - Client actions / event handlers: `actionDefineHasImage`, `onParametersChanged`, `onLoad`, `onReady`, `onError`, `onInitialize`, `onDestroy`
 - JavaScript nodes: `UBTConnectLibrary.ConnectPatterns.LazyImage.mvc$controller.OnReady.SetupOnLoadJS`, `UBTConnectLibrary.ConnectPatterns.LazyImage.mvc$controller.OnInitialize.IsViewRestoredFromCacheJS`, `UBTConnectLibrary.ConnectPatterns.LazyImage.mvc$controller.OnDestroy.JavaScript1JS`
@@ -954,18 +962,18 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 3493 ms
-- 2. `ScreenDataSetGet_SearchBirthdayOptions` (200) at 4763 ms
-- 3. `DataActionGetCacheInfo` (200) at 4791 ms
-- 4. `DataActionGetCacheInfo` (200) at 4860 ms
-- 5. `ActionAppManager_AfterInitialize` (200) at 6442 ms
-- 6. `ActionSync_Info_GetMain` (200) at 7051 ms
-- 7. `ActionGetNumberUnreadMessages` (200) at 7408 ms
-- 8. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8427 ms
-- 9. `ServiceAPIFetchData_CacheableHouseholds` (200) at 8781 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 2805 ms
+- 2. `ScreenDataSetGet_SearchBirthdayOptions` (200) at 3729 ms
+- 3. `DataActionGetCacheInfo` (200) at 3752 ms
+- 4. `DataActionGetCacheInfo` (200) at 3830 ms
+- 5. `DataActionGet_FilteredRecentClickedResults` (200) at 4005 ms
+- 6. `ActionAppManager_AfterInitialize` (200) at 6715 ms
+- 7. `ActionSync_Info_GetMain` (200) at 7207 ms
+- 8. `ActionGetNumberUnreadMessages` (200) at 7500 ms
+- 9. `ServiceAPIFetchData_CacheableMapEntities` (200) at 10298 ms
+- 10. `ServiceAPIFetchData_CacheableHouseholds` (200) at 13066 ms
 
 ## Not yet captured (see coverage.md)
-- `Adaptive.Gallery`
 - `App_Common.UnsupportedVersion_Wrapper`
 - `App_CommonBlocks_Filter.FilterSheet_OptionChoice_Item`
 - `App_Policies.Policy_Checker`

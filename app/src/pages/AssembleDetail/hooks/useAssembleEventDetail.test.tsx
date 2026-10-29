@@ -3,6 +3,7 @@ import { StrictMode, type ReactNode } from 'react';
 import { MemoryRouter } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { fetchAssembleEvent, type AssembleEventResult } from '@/api/event';
+import { IgnorableSystemException } from '@/legacy/os/os-exceptions';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { showUnknownErrorMessage } from '@/pages/AssembleDetail/components/actions';
 import { assembleEventDetailReducer } from './assembleEventDetailState';
@@ -48,20 +49,31 @@ const meeting = (summary: Partial<AssembleEventResult['AssembleEvent']['Assemble
     },
   }) satisfies AssembleEventResult;
 
-/** An answer that the test gives later. */
+/** An answer or a failure that the test gives later. */
 function pending() {
   let resolve: (value: AssembleEventResult) => void = () => undefined;
+  let reject: (error: Error) => void = () => undefined;
   vi.mocked(fetchAssembleEvent).mockReturnValueOnce(
-    new Promise<AssembleEventResult>((res) => {
+    new Promise<AssembleEventResult>((res, rej) => {
       resolve = res;
+      reject = rej;
     }),
   );
   return {
     resolve: (value: AssembleEventResult) => {
       resolve(value);
     },
+    reject: (error: Error) => {
+      reject(error);
+    },
   };
 }
+/** The errors that reached the flow handler, without the ignorable ones (the handler drops them: R1). */
+const raisedErrors = () =>
+  vi
+    .mocked(raiseToFlowHandler)
+    .mock.calls.map(([error]) => error)
+    .filter((error) => !(error instanceof IgnorableSystemException));
 
 const wrapper = ({ children }: { children: ReactNode }) => <MemoryRouter>{children}</MemoryRouter>;
 const strictWrapper = ({ children }: { children: ReactNode }) => (
@@ -139,11 +151,11 @@ describe('useAssembleEventDetail', () => {
     vi.mocked(fetchAssembleEvent).mockRejectedValueOnce(error);
     const { result } = renderFlows();
     await settle();
-    expect(vi.mocked(raiseToFlowHandler).mock.calls).toEqual([[error]]);
+    expect(vi.mocked(raiseToFlowHandler).mock.calls.map(([raised]) => raised)).toEqual([error]);
     expect(result.current.getAssembleEvent).toBeNull();
   });
 
-  it('W23: an unavailable meeting that answers after the unmount shows the message once and writes no state', async () => {
+  it('R1: unmount while GetAssembleEvent is pending: an unavailable meeting shows no message and writes no state', async () => {
     const answer = pending();
     let renders = 0;
     const { unmount } = renderHook(
@@ -160,12 +172,14 @@ describe('useAssembleEventDetail', () => {
     answer.resolve(meeting({ IsUnavailable: true }));
     await settle();
     expect(fetchAssembleEvent).toHaveBeenCalledTimes(1);
-    expect(showUnknownErrorMessage).toHaveBeenCalledTimes(1);
+    // GetAssembleEvent_OnAfterFetch holds the message (AssembleEventDetail.js:933-934); it does not run (R1).
+    expect(showUnknownErrorMessage).not.toHaveBeenCalled();
     expect(assembleEventDetailReducer).not.toHaveBeenCalled();
     expect(renders).toBe(rendersAtUnmount);
+    expect(raisedErrors()).toEqual([]);
   });
 
-  it('W23: a meeting that answers after the unmount raises no UpdateTitle and writes no state', async () => {
+  it('R1: unmount while GetAssembleEvent is pending: a meeting raises no UpdateTitle and writes no state', async () => {
     const answer = pending();
     const { unmount } = renderFlows(true);
     await settle();
@@ -175,6 +189,19 @@ describe('useAssembleEventDetail', () => {
     await settle();
     expect(events.onUpdateTitle).not.toHaveBeenCalled();
     expect(assembleEventDetailReducer).not.toHaveBeenCalled();
-    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R1: unmount while GetAssembleEvent is pending: its failure reaches no handler and writes no state', async () => {
+    const answer = pending();
+    const { unmount } = renderFlows();
+    await settle();
+    unmount();
+    vi.mocked(assembleEventDetailReducer).mockClear();
+    answer.reject(new Error('Request failed with status 500'));
+    await settle();
+    expect(raisedErrors()).toEqual([]);
+    expect(assembleEventDetailReducer).not.toHaveBeenCalled();
+    expect(showUnknownErrorMessage).not.toHaveBeenCalled();
   });
 });

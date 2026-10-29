@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import { describe, expect, it, vi } from 'vitest';
 import type { MilestoneWrapperBody } from '@/pages/MilestoneDetail/hooks/milestoneWrapperState';
-import { MilestoneWrapperView, type AccommodationHostSlot } from './MilestoneWrapperView';
+import { MilestoneWrapperView, type AccommodationHostSlot, type MilestoneBlockSlot } from './MilestoneWrapperView';
 
 /* The view of ScreenBlock_MilestoneWrapper from props. Fictional event. */
 const HOST_INPUTS = {
@@ -22,6 +22,13 @@ function setup(body: MilestoneWrapperBody, eventName = 'Spring Youth Weekend - T
       {slot.commonUIElements}
     </div>
   ));
+  const renderMilestoneBlock = vi.fn((slot: MilestoneBlockSlot) => (
+    <div data-testid="block">
+      {slot.id}
+      {slot.menu}
+      {slot.commonUIElements}
+    </div>
+  ));
   const view = render(
     <MemoryRouter>
       <MilestoneWrapperView
@@ -29,11 +36,13 @@ function setup(body: MilestoneWrapperBody, eventName = 'Spring Youth Weekend - T
         body={body}
         eventName={eventName}
         commonUIElementsAccomodationHost={<span>common UI</span>}
+        commonUIElements={{ mealGuest: <span>guest UI</span>, mealHost: <span>host UI</span> }}
         renderAccommodationHost={renderAccommodationHost}
+        renderMilestoneBlock={renderMilestoneBlock}
       />
     </MemoryRouter>,
   );
-  return { ...view, renderAccommodationHost };
+  return { ...view, renderAccommodationHost, renderMilestoneBlock };
 }
 
 const block = () => document.querySelector('[data-block="Orbit_ScreenBlocks.ScreenBlock_MilestoneWrapper"]');
@@ -64,10 +73,32 @@ describe('MilestoneWrapperView', () => {
     expect(document.getElementById('b1-CommonUI_Elements_AccomodationHost')?.textContent).toBe('common UI');
   });
 
-  it('marks a block that was not captured, and shows nothing for other types', () => {
-    const { unmount } = setup({ kind: 'notCaptured', milestoneTypeId: 'meal-guest' });
-    expect(block()?.textContent).toContain('meal-guest');
+  it('renders the meal and the other accommodation blocks with their instance ids and placeholders', () => {
+    const inputs = { ...HOST_INPUTS, In_OrbitMilestoneTypeId: 'meal-guest' };
+    const { renderMilestoneBlock, unmount } = setup({ kind: 'milestoneBlock', block: 'mealGuest', inputs });
+    expect(renderMilestoneBlock).toHaveBeenCalledWith(
+      expect.objectContaining({ block: 'mealGuest', id: 'b1-$b1', inputs }),
+    );
+    expect(document.getElementById('b1-Menu_MealGuest')).not.toBeNull();
+    expect(document.getElementById('b1-CommonUI_Elements_MealGuest')?.textContent).toBe('guest UI');
     unmount();
+    const ids = {
+      mealHost: 'b1-$b2',
+      mealHelper: 'b1-$b3',
+      accommodationGuest: 'b1-$b4',
+      accommodationHelper: 'b1-$b6',
+    };
+    for (const [block, id] of Object.entries(ids)) {
+      const view = setup({ kind: 'milestoneBlock', block: block as MilestoneBlockSlot['block'], inputs });
+      expect(view.renderMilestoneBlock).toHaveBeenCalledWith(expect.objectContaining({ id }));
+      view.unmount();
+    }
+    // MealHelper and AccommodationHelper get empty placeholders.
+    setup({ kind: 'milestoneBlock', block: 'mealHelper', inputs });
+    expect(screen.getByTestId('block').textContent).toBe('b1-$b3');
+  });
+
+  it('shows nothing for other types', () => {
     setup({ kind: 'none' });
     expect(block()?.textContent).toBe('');
   });

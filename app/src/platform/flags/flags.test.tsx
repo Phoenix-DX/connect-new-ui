@@ -31,19 +31,19 @@ describe('resolveFlags (plan v2 §3.1)', () => {
     const defaults = defaultFlags();
     const resolved = resolveFlags(
       defaults,
-      { C2NewBookmarks: true, C2EnableCarousel: false, ...({ NoSuchFlag: true } as object) },
+      { C2NewBookmarks: false, C2EnableCarousel: false, ...({ NoSuchFlag: true } as object) },
       { C2EnableCarousel: true, C2NewNotifications: true },
     );
-    expect(resolved.C2NewBookmarks).toBe(true); // server over default
+    expect(resolved.C2NewBookmarks).toBe(false); // server over default
     expect(resolved.C2EnableCarousel).toBe(true); // override over server
     expect(resolved.C2NewNotifications).toBe(true); // override over default
-    expect(resolved.C2EnableMaps).toBe(false); // default
+    expect(resolved.C2EnableMaps).toBe(true); // default
     expect(Object.keys(resolved)).toEqual(FLAG_KEYS);
   });
 
   test('the defaults are the decided values', () => {
     expect(flagValue('C2NewNotifications')).toBe(false);
-    expect(flagValue('C2NewBookmarks')).toBe(false);
+    expect(flagValue('C2NewBookmarks')).toBe(true);
     expect(flagValue('C2EnableCarousel')).toBe(true);
     expect(flagValue('C2ExtendedShare')).toBe(true);
     expect(flagValue('WalletAccess')).toBe(false);

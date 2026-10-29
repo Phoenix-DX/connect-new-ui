@@ -36,6 +36,19 @@ export async function fetchCountryListStatistics(): Promise<CountrySummary[]> {
   return toCountrySummaries(await callAction('UBTConnect', 'CountryList/DataActionGetCountriesStatistics', {}));
 }
 
+/** DataActionGetCommunityStatistics of CountryList (live TST of 2026-10-27, CountryList.mvc.js:1191-1210): the community
+    counts (Connect_Geography_CS.UI_CommunityStatistics). The screen only refreshes it; no widget reads the answer, so
+    the function returns nothing. The call sends no input. */
+export async function fetchCountryListCommunityStatistics(): Promise<void> {
+  await callAction('UBTConnect', 'CountryList/DataActionGetCommunityStatistics', {});
+}
+
+/** DataActionGetCommunityStatistics of HomeFeed (live TST of 2026-10-27, HomeFeed.mvc.js:690-712): as the one of
+    CountryList. */
+export async function fetchHomeFeedCommunityStatistics(): Promise<void> {
+  await callAction('UBTConnect', 'HomeFeed/DataActionGetCommunityStatistics', {});
+}
+
 /** DataActionGetLocalityStatistics of CountryDetails: the localities of a country with their counts, and the country
     name. The inputs are the screen variables that the screen sets before a fetch. */
 export async function fetchCountryLocalityStatistics(

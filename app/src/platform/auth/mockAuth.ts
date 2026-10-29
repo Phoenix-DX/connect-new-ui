@@ -24,6 +24,10 @@ export const mockAuth: AuthProvider = {
   /** The server logout of AppManager_Logout: no call (app-shell spec 10). */
   signOut: () => Promise.resolve(),
 
+  /** No reset-password page: the policy ends at once as a completed reset (user decision 2026-10-27, App_Common Q1:
+      Forgot Password as on TST). The session stays signed out, as after the real policy. */
+  resetPassword: () => Promise.resolve(),
+
   /** The stored session user. */
   getSession() {
     const userId = currentUserId();

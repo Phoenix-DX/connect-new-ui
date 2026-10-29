@@ -56,10 +56,10 @@ async function open(query = QUERY) {
 
 const byId = (id: string) => document.getElementById(id);
 const cards = () => [...document.querySelectorAll('[data-block="Orbit_Blocks.Card_Milestone"]')];
-const days = () => [...document.querySelectorAll('#b1-\\$b7 .event-date-selector')];
+const days = () => [...document.querySelectorAll('#b1-\\$b8 .event-date-selector')];
 const loaded = () =>
   waitFor(() => {
-    expect(byId('b1-$b15')).not.toBeNull();
+    expect(byId('b1-$b16')).not.toBeNull();
   });
 
 beforeEach(async () => {
@@ -79,17 +79,18 @@ afterEach(() => {
 describe('EventDetail page', () => {
   it('shows the skeleton, then the event of the hosting household with its first day', async () => {
     await open();
-    expect(byId('b1-$b14')?.getAttribute('data-block')).toBe('Orbit_Generic_Blocks.Skeleton_Loading');
+    expect(byId('b1-$b15')?.getAttribute('data-block')).toBe('Orbit_Generic_Blocks.Skeleton_Loading');
     await loaded();
-    expect(byId('b1-$b14')).toBeNull();
+    expect(byId('b1-$b15')).toBeNull();
     expect(document.querySelector('.orbit-header-center')?.textContent).toContain('Weekend Conferences');
     expect(document.body.textContent).toContain('Weekend Conference Program');
-    expect(byId('b1-$b4')?.getAttribute('data-block')).toBe('Orbit_Generic_Blocks.Accordion_Orbit');
+    expect(byId('b1-$b5')?.getAttribute('data-block')).toBe('Orbit_Generic_Blocks.Accordion_Orbit');
     expect(days()).toHaveLength(3);
     expect(cards()).toHaveLength(2);
     expect(byId('b1-CommonUI_Elements')).not.toBeNull();
     expect(byId('$b2')).not.toBeNull();
     expect(calledActions().filter((a) => a.startsWith(BLOCK))).toEqual([
+      `${BLOCK}/DataActionFetchEventNotes`,
       GET_EVENT,
       `${BLOCK}/DataActionGet_HostSurveyStatus`,
       `${BLOCK}/DataActionGet_HasDocuments`,
@@ -120,7 +121,7 @@ describe('EventDetail page', () => {
   it('opens the Orbit helpdesk email with the subject of the event, and back restores the view without a call', async () => {
     const { at } = await open();
     await loaded();
-    fireEvent.click(byId('b1-$b15')?.querySelector('.contact-helpdesk-footer') as Element);
+    fireEvent.click(byId('b1-$b16')?.querySelector('.contact-helpdesk-footer') as Element);
     await waitFor(() => {
       expect(at()).toContain('/UBTConnect/ContactByEmailOrbitHelpdesk?');
     });
@@ -131,8 +132,8 @@ describe('EventDetail page', () => {
     await waitFor(() => {
       expect(at()).toBe(`${PATH}${QUERY}`);
     });
-    expect(byId('b1-$b15')).not.toBeNull();
-    expect(byId('b1-$b14')).toBeNull();
+    expect(byId('b1-$b16')).not.toBeNull();
+    expect(byId('b1-$b15')).toBeNull();
     expect(
       calledActions()
         .slice(callsBefore)
@@ -144,7 +145,7 @@ describe('EventDetail page', () => {
     setFlags({ mobileOrbitAccess: false });
     const { at } = await open();
     await loaded();
-    fireEvent.click(byId('b1-$b15')?.querySelector('.contact-helpdesk-footer') as Element);
+    fireEvent.click(byId('b1-$b16')?.querySelector('.contact-helpdesk-footer') as Element);
     await waitFor(() => {
       expect(at()).toBe(HOME);
     });
@@ -158,7 +159,7 @@ describe('EventDetail page', () => {
   it('opens MilestoneDetail from the host allocation with the ids of the row', async () => {
     const { at } = await open();
     await loaded();
-    fireEvent.click(document.querySelector('#b1-\\$b6 .host-allocation-list-item-right') as Element);
+    fireEvent.click(document.querySelector('#b1-\\$b7 .host-allocation-list-item-right') as Element);
     await waitFor(() => {
       expect(at()).toContain('/UBTConnect/MilestoneDetail?');
     });
@@ -169,9 +170,9 @@ describe('EventDetail page', () => {
   it('shows "no longer available" for an event of another member from a notification', async () => {
     await open('?In_MemberId=990099&In_EventId=7301&In_FromNotification=True');
     await waitFor(() => {
-      expect(byId('b1-$b13')?.textContent).toBe('The Event is no longer available for you.');
+      expect(byId('b1-$b14')?.textContent).toBe('The Event is no longer available for you.');
     });
-    expect(byId('b1-$b15')).toBeNull();
+    expect(byId('b1-$b16')).toBeNull();
   });
 
   it('keeps the skeleton when Get_EventDetails fails', async () => {
@@ -181,7 +182,7 @@ describe('EventDetail page', () => {
       expect(calledActions()).toContain(GET_EVENT);
     });
     await act(() => new Promise((resolve) => setTimeout(resolve, 50)));
-    expect(byId('b1-$b14')).not.toBeNull();
+    expect(byId('b1-$b15')).not.toBeNull();
     expect(calledActions()).not.toContain(`${BLOCK}/DataActionGet_HasDocuments`);
   });
 });

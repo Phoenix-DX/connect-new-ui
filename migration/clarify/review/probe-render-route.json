@@ -1,0 +1,991 @@
+{
+ "ranAt": "2026-10-28T17:06:16.715Z",
+ "site": "UBTConnect TST",
+ "account": "the test account of site_auth (not named)",
+ "screen": "/UBTConnect/BrowseCountries",
+ "serviceWorkers": "block",
+ "logPostsAborted": 82,
+ "u4": {
+  "tree": {
+   "views": [
+    {
+     "i": 0,
+     "kind": "screen",
+     "name": "Directory_Locality.BrowseCountries",
+     "parent": -1,
+     "children": 1,
+     "textLength": 1371
+    },
+    {
+     "i": 1,
+     "kind": "block",
+     "name": "Layouts.Layout_DetailPage",
+     "parent": 0,
+     "children": 5,
+     "textLength": 1371
+    },
+    {
+     "i": 2,
+     "kind": "block",
+     "name": "App_Common.CommonUI_InsideLayout",
+     "parent": 1,
+     "children": 6,
+     "textLength": 0
+    },
+    {
+     "i": 3,
+     "kind": "block",
+     "name": "NavigationHandler.BackNavigationHandler",
+     "parent": 2,
+     "children": 0,
+     "textLength": 0
+    },
+    {
+     "i": 4,
+     "kind": "block",
+     "name": "Utility.HandleImageLoadError",
+     "parent": 2,
+     "children": 0,
+     "textLength": 0
+    },
+    {
+     "i": 5,
+     "kind": "block",
+     "name": "Legacy_Share.HandleOnResumeOpenLink",
+     "parent": 2,
+     "children": 2,
+     "textLength": 0
+    },
+    {
+     "i": 6,
+     "kind": "block",
+     "name": "EventfulDeeplinksPlugin.DeeplinkHandlerCentral",
+     "parent": 5,
+     "children": 0,
+     "textLength": 0
+    },
+    {
+     "i": 7,
+     "kind": "block",
+     "name": "AndroidAppLinks.AndroidAppLinkOnResumeHandler",
+     "parent": 5,
+     "children": 0,
+     "textLength": 0
+    },
+    {
+     "i": 8,
+     "kind": "block",
+     "name": "CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction",
+     "parent": 2,
+     "children": 1,
+     "textLength": 0
+    },
+    {
+     "i": 9,
+     "kind": "block",
+     "name": "ConfirmationDialogs.ActionConfirmationDialog",
+     "parent": 8,
+     "children": 0,
+     "textLength": 0
+    },
+    {
+     "i": 10,
+     "kind": "block",
+     "name": "App_PIN.Block_PINUnlock",
+     "parent": 2,
+     "children": 1,
+     "textLength": 0
+    },
+    {
+     "i": 11,
+     "kind": "block",
+     "name": "Layouts.Layout_LoginFlow",
+     "parent": 10,
+     "children": 2,
+     "textLength": 0
+    },
+    {
+     "i": 12,
+     "kind": "block",
+     "name": "App_PIN.Block_PINUnlock_ContentWrapper",
+     "parent": 11,
+     "children": 1,
+     "textLength": 0
+    },
+    {
+     "i": 13,
+     "kind": "block",
+     "name": "Fingerprint.PinUnlock_MobileWrapper",
+     "parent": 12,
+     "children": 1,
+     "textLength": 0
+    },
+    {
+     "i": 14,
+     "kind": "block",
+     "name": "PIN.Pincode_Unlock",
+     "parent": 13,
+     "children": 1,
+     "textLength": 0
+    },
+    {
+     "i": 15,
+     "kind": "block",
+     "name": "PIN.InactivityTimer",
+     "parent": 14,
+     "children": 0,
+     "textLength": 0
+    },
+    {
+     "i": 16,
+     "kind": "block",
+     "name": "Layouts.SVG_Background_LoginWrapper",
+     "parent": 11,
+     "children": 1,
+     "textLength": 0
+    },
+    {
+     "i": 17,
+     "kind": "block",
+     "name": "Layouts.SVG_Background_Custom",
+     "parent": 16,
+     "children": 1,
+     "textLength": 0
+    },
+    {
+     "i": 18,
+     "kind": "block",
+     "name": "Utilities.InlineSVG",
+     "parent": 17,
+     "children": 0,
+     "textLength": 0
+    },
+    {
+     "i": 19,
+     "kind": "block",
+     "name": "App_Common.OfflineDataSyncEvents",
+     "parent": 2,
+     "children": 1,
+     "textLength": 0
+    },
+    {
+     "i": 20,
+     "kind": "block",
+     "name": "Private.OfflineDataSyncCore",
+     "parent": 19,
+     "children": 1,
+     "textLength": 0
+    },
+    {
+     "i": 21,
+     "kind": "block",
+     "name": "Private.NetworkStatusChanged",
+     "parent": 20,
+     "children": 0,
+     "textLength": 0
+    },
+    {
+     "i": 22,
+     "kind": "block",
+     "name": "App_Common.BottomBarMenu",
+     "parent": 1,
+     "children": 1,
+     "textLength": 40
+    },
+    {
+     "i": 23,
+     "kind": "block",
+     "name": "App_Common.BottomBarContent",
+     "parent": 22,
+     "children": 5,
+     "textLength": 40
+    },
+    {
+     "i": 24,
+     "kind": "block",
+     "name": "Navigation.BottomBarItem",
+     "parent": 23,
+     "children": 2,
+     "textLength": 4
+    },
+    {
+     "i": 25,
+     "kind": "block",
+     "name": "BasePatterns.CustomText",
+     "parent": 24,
+     "children": 1,
+     "textLength": 4
+    },
+    {
+     "i": 26,
+     "kind": "block",
+     "name": "ConnectPatterns.IconInline_Internal",
+     "parent": 25,
+     "children": 0,
+     "textLength": 0
+    },
+    {
+     "i": 27,
+     "kind": "block",
+     "name": "ConnectPatterns.Icon",
+     "parent": 24,
+     "children": 0,
+     "textLength": 0
+    },
+    {
+     "i": 28,
+     "kind": "block",
+     "name": "Navigation.BottomBarItem",
+     "parent": 23,
+     "children": 2,
+     "textLength": 9
+    },
+    {
+     "i": 29,
+     "kind": "block",
+     "name": "BasePatterns.CustomText",
+     "parent": 28,
+     "children": 1,
+     "textLength": 9
+    },
+    {
+     "i": 30,
+     "kind": "block",
+     "name": "ConnectPatterns.IconInline_Internal",
+     "parent": 29,
+     "children": 0,
+     "textLength": 0
+    },
+    {
+     "i": 31,
+     "kind": "block",
+     "name": "ConnectPatterns.Icon",
+     "parent": 28,
+     "children": 0,
+     "textLength": 0
+    },
+    {
+     "i": 32,
+     "kind": "block",
+     "name": "Navigation.BottomBarItem",
+     "parent": 23,
+     "children": 2,
+     "textLength": 10
+    },
+    {
+     "i": 33,
+     "kind": "block",
+     "name": "BasePatterns.CustomText",
+     "parent": 32,
+     "children": 1,
+     "textLength": 7
+    },
+    {
+     "i": 34,
+     "kind": "block",
+     "name": "ConnectPatterns.IconInline_Internal",
+     "parent": 33,
+     "children": 0,
+     "textLength": 0
+    },
+    {
+     "i": 35,
+     "kind": "block",
+     "name": "App_Common_Blocks.App_IconBadge",
+     "parent": 32,
+     "children": 1,
+     "textLength": 2
+    },
+    {
+     "i": 36,
+     "kind": "block",
+     "name": "ConnectPatterns.SkeletonSection",
+     "parent": 35,
+     "children": 1,
+     "textLength": 2
+    },
+    {
+     "i": 37,
+     "kind": "block",
+     "name": "OutSystemsUIOverrides.IconBadge",
+     "parent": 36,
+     "children": 2,
+     "textLength": 2
+    },
+    {
+     "i": 38,
+     "kind": "block",
+     "name": "OutSystemsUIOverrides.Badge",
+     "parent": 37,
+     "children": 0,
+     "textLength": 2
+    },
+    {
+     "i": 39,
+     "kind": "block",
+     "name": "ConnectPatterns.Icon",
+     "parent": 37,
+     "children": 0,
+     "textLength": 0
+    },
+    {
+     "i": 40,
+     "kind": "block",
+     "name": "Navigation.BottomBarItem",
+     "parent": 23,
+     "children": 2,
+     "textLength": 9
+    },
+    {
+     "i": 41,
+     "kind": "block",
+     "name": "BasePatterns.CustomText",
+     "parent": 40,
+     "children": 1,
+     "textLength": 9
+    },
+    {
+     "i": 42,
+     "kind": "block",
+     "name": "ConnectPatterns.IconInline_Internal",
+     "parent": 41,
+     "children": 0,
+     "textLength": 0
+    },
+    {
+     "i": 43,
+     "kind": "block",
+     "name": "ConnectPatterns.Icon",
+     "parent": 40,
+     "children": 0,
+     "textLength": 0
+    },
+    {
+     "i": 44,
+     "kind": "block",
+     "name": "Navigation.BottomBarItem",
+     "parent": 23,
+     "children": 2,
+     "textLength": 4
+    },
+    {
+     "i": 45,
+     "kind": "block",
+     "name": "BasePatterns.CustomText",
+     "parent": 44,
+     "children": 1,
+     "textLength": 4
+    },
+    {
+     "i": 46,
+     "kind": "block",
+     "name": "ConnectPatterns.IconInline_Internal",
+     "parent": 45,
+     "children": 0,
+     "textLength": 0
+    },
+    {
+     "i": 47,
+     "kind": "block",
+     "name": "ConnectPatterns.Icon",
+     "parent": 44,
+     "children": 0,
+     "textLength": 0
+    },
+    {
+     "i": 48,
+     "kind": "block",
+     "name": "Directory_Locality.StatisticsList",
+     "parent": 1,
+     "children": 1,
+     "textLength": 1312
+    },
+    {
+     "i": 49,
+     "kind": "block",
+     "name": "BasePatterns.CustomContainer",
+     "parent": 48,
+     "children": 2,
+     "textLength": 1312
+    },
+    {
+     "i": 50,
+     "kind": "block",
+     "name": "ConnectPatterns.SkeletonSection",
+     "parent": 49,
+     "children": 17,
+     "textLength": 1312
+    },
+    {
+     "i": 51,
+     "kind": "block",
+     "name": "ConnectCorePatterns.Statistics_ListItem",
+     "parent": 50,
+     "children": 1,
+     "textLength": 88
+    },
+    {
+     "i": 52,
+     "kind": "block",
+     "name": "BasePatterns.CustomContainer",
+     "parent": 51,
+     "children": 1,
+     "textLength": 88
+    },
+    {
+     "i": 53,
+     "kind": "block",
+     "name": "BasePatterns.Columns_Two",
+     "parent": 52,
+     "children": 1,
+     "textLength": 88
+    },
+    {
+     "i": 54,
+     "kind": "block",
+     "name": "Adaptive.Columns2",
+     "parent": 53,
+     "children": 12,
+     "textLength": 88
+    },
+    {
+     "i": 55,
+     "kind": "block",
+     "name": "ConnectPatterns.AvatarImage",
+     "parent": 54,
+     "children": 1,
+     "textLength": 0
+    },
+    {
+     "i": 56,
+     "kind": "block",
+     "name": "BasePatterns.CustomContainer",
+     "parent": 55,
+     "children": 0,
+     "textLength": 0
+    },
+    {
+     "i": 57,
+     "kind": "block",
+     "name": "BasePatterns.CustomText",
+     "parent": 54,
+     "children": 1,
+     "textLength": 5
+    },
+    {
+     "i": 58,
+     "kind": "block",
+     "name": "ConnectPatterns.IconInline_Internal",
+     "parent": 57,
+     "children": 0,
+     "textLength": 0
+    },
+    {
+     "i": 59,
+     "kind": "block",
+     "name": "BasePatterns.CustomText",
+     "parent": 54,
+     "children": 1,
+     "textLength": 7
+    }
+   ],
+   "viewCount": 551,
+   "boundaryCount": 552,
+   "rootBoundaries": 1,
+   "targets": {
+    "screen": 0,
+    "outer": 1,
+    "inner": 51
+   }
+  },
+  "blockChild": {
+   "act": {
+    "target": "block:ConnectCorePatterns.Statistics_ListItem",
+    "parentChain": [
+     "block:ConnectPatterns.SkeletonSection",
+     "block:BasePatterns.CustomContainer",
+     "block:Directory_Locality.StatisticsList",
+     "block:Layouts.Layout_DetailPage",
+     "screen:Directory_Locality.BrowseCountries"
+    ],
+    "mode": "child",
+    "message": "Probe U4 inner child",
+    "before": {
+     "targetText": 88,
+     "parentText": 1312,
+     "bodyText": 1371
+    },
+    "thrownToCaller": null,
+    "caughtBy": [
+     "boundary of block:ConnectCorePatterns.Statistics_ListItem"
+    ]
+   },
+   "at300ms": {
+    "path": "/UBTConnect/BrowseCountries",
+    "title": "BrowseCountries",
+    "activeScreen": "Directory_Locality.BrowseCountries",
+    "bodyTextLength": 1304,
+    "toastsAdded": [
+     {
+      "class": "feedback-message-wrapper",
+      "text": "Probe U4 inner child."
+     },
+     {
+      "class": "feedback-message feedback-message-error feedback-message-autoclose",
+      "text": "Probe U4 inner child."
+     },
+     {
+      "class": "feedback-message-text",
+      "text": "Probe U4 inner child."
+     }
+    ],
+    "feedbackVisible": [],
+    "rejections": [],
+    "windowErrors": [],
+    "target": {
+     "domConnected": false,
+     "textLength": 0,
+     "visible": false
+    },
+    "parent": {
+     "name": "block:ConnectPatterns.SkeletonSection",
+     "domConnected": true,
+     "textLength": 1223,
+     "visible": true
+    },
+    "screen": {
+     "domConnected": true,
+     "textLength": 1282,
+     "visible": true
+    },
+    "toastBoxes": [
+     {
+      "visible": true,
+      "top": 0,
+      "height": 56,
+      "opacity": "1",
+      "text": "Probe U4 inner child."
+     }
+    ],
+    "headerTexts": [
+     "Browse by country"
+    ]
+   },
+   "after4s": {
+    "path": "/UBTConnect/BrowseCountries",
+    "title": "BrowseCountries",
+    "activeScreen": "Directory_Locality.BrowseCountries",
+    "bodyTextLength": 1304,
+    "toastsAdded": [
+     {
+      "class": "feedback-message-wrapper",
+      "text": "Probe U4 inner child."
+     },
+     {
+      "class": "feedback-message feedback-message-error feedback-message-autoclose",
+      "text": "Probe U4 inner child."
+     },
+     {
+      "class": "feedback-message-text",
+      "text": "Probe U4 inner child."
+     }
+    ],
+    "feedbackVisible": [],
+    "rejections": [],
+    "windowErrors": [],
+    "target": {
+     "domConnected": false,
+     "textLength": 0,
+     "visible": false
+    },
+    "parent": {
+     "name": "block:ConnectPatterns.SkeletonSection",
+     "domConnected": true,
+     "textLength": 1223,
+     "visible": true
+    },
+    "screen": {
+     "domConnected": true,
+     "textLength": 1282,
+     "visible": true
+    },
+    "toastBoxes": [
+     {
+      "visible": true,
+      "top": 0,
+      "height": 56,
+      "opacity": "1",
+      "text": "Probe U4 inner child."
+     }
+    ],
+    "headerTexts": [
+     "Browse by country"
+    ]
+   },
+   "consoleErrors": [
+    "console: Error: Probe U4 inner child",
+    "console: [2026-10-28T17:07:54.725Z]: Probe U4 inner child ",
+    "console: Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+   ]
+  },
+  "blockOwn": {
+   "act": {
+    "target": "block:ConnectCorePatterns.Statistics_ListItem",
+    "parentChain": [
+     "block:ConnectPatterns.SkeletonSection",
+     "block:BasePatterns.CustomContainer",
+     "block:Directory_Locality.StatisticsList",
+     "block:Layouts.Layout_DetailPage",
+     "screen:Directory_Locality.BrowseCountries"
+    ],
+    "mode": "own",
+    "message": "Probe U4 inner own",
+    "before": {
+     "targetText": 88,
+     "parentText": 1312,
+     "bodyText": 1371
+    },
+    "thrownToCaller": null,
+    "caughtBy": [
+     "boundary of block:ConnectPatterns.SkeletonSection"
+    ]
+   },
+   "at300ms": {
+    "path": "/UBTConnect/BrowseCountries",
+    "title": "BrowseCountries",
+    "activeScreen": "Directory_Locality.BrowseCountries",
+    "bodyTextLength": 78,
+    "toastsAdded": [
+     {
+      "class": "feedback-message-wrapper",
+      "text": "Probe U4 inner own."
+     },
+     {
+      "class": "feedback-message feedback-message-error feedback-message-autoclose",
+      "text": "Probe U4 inner own."
+     },
+     {
+      "class": "feedback-message-text",
+      "text": "Probe U4 inner own."
+     }
+    ],
+    "feedbackVisible": [],
+    "rejections": [],
+    "windowErrors": [],
+    "target": {
+     "domConnected": false,
+     "textLength": 0,
+     "visible": false
+    },
+    "parent": {
+     "name": "block:ConnectPatterns.SkeletonSection",
+     "domConnected": false,
+     "textLength": 0,
+     "visible": false
+    },
+    "screen": {
+     "domConnected": true,
+     "textLength": 58,
+     "visible": true
+    },
+    "toastBoxes": [
+     {
+      "visible": true,
+      "top": 0,
+      "height": 56,
+      "opacity": "1",
+      "text": "Probe U4 inner own."
+     }
+    ],
+    "headerTexts": [
+     "Browse by country"
+    ]
+   },
+   "after4s": {
+    "path": "/UBTConnect/BrowseCountries",
+    "title": "BrowseCountries",
+    "activeScreen": "Directory_Locality.BrowseCountries",
+    "bodyTextLength": 78,
+    "toastsAdded": [
+     {
+      "class": "feedback-message-wrapper",
+      "text": "Probe U4 inner own."
+     },
+     {
+      "class": "feedback-message feedback-message-error feedback-message-autoclose",
+      "text": "Probe U4 inner own."
+     },
+     {
+      "class": "feedback-message-text",
+      "text": "Probe U4 inner own."
+     }
+    ],
+    "feedbackVisible": [],
+    "rejections": [],
+    "windowErrors": [],
+    "target": {
+     "domConnected": false,
+     "textLength": 0,
+     "visible": false
+    },
+    "parent": {
+     "name": "block:ConnectPatterns.SkeletonSection",
+     "domConnected": false,
+     "textLength": 0,
+     "visible": false
+    },
+    "screen": {
+     "domConnected": true,
+     "textLength": 58,
+     "visible": true
+    },
+    "toastBoxes": [
+     {
+      "visible": true,
+      "top": 0,
+      "height": 56,
+      "opacity": "1",
+      "text": "Probe U4 inner own."
+     }
+    ],
+    "headerTexts": [
+     "Browse by country"
+    ]
+   },
+   "consoleErrors": [
+    "console: Error: Probe U4 inner own",
+    "console: [2026-10-28T17:08:11.923Z]: Probe U4 inner own ",
+    "console: Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+   ]
+  },
+  "outerBlockOwn": {
+   "act": {
+    "target": "block:Layouts.Layout_DetailPage",
+    "parentChain": [
+     "screen:Directory_Locality.BrowseCountries"
+    ],
+    "mode": "own",
+    "message": "Probe U4 outer own",
+    "before": {
+     "targetText": 1371,
+     "parentText": 1371,
+     "bodyText": 1371
+    },
+    "thrownToCaller": null,
+    "caughtBy": [
+     "boundary of screen:Directory_Locality.BrowseCountries"
+    ]
+   },
+   "at300ms": {
+    "path": "/UBTConnect/BrowseCountries",
+    "title": "BrowseCountries",
+    "activeScreen": "Directory_Locality.BrowseCountries",
+    "bodyTextLength": 19,
+    "toastsAdded": [
+     {
+      "class": "feedback-message-wrapper",
+      "text": "Probe U4 outer own."
+     },
+     {
+      "class": "feedback-message feedback-message-error feedback-message-autoclose",
+      "text": "Probe U4 outer own."
+     },
+     {
+      "class": "feedback-message-text",
+      "text": "Probe U4 outer own."
+     }
+    ],
+    "feedbackVisible": [],
+    "rejections": [],
+    "windowErrors": [],
+    "target": {
+     "domConnected": false,
+     "textLength": 0,
+     "visible": false
+    },
+    "parent": {
+     "name": "screen:Directory_Locality.BrowseCountries",
+     "domConnected": false,
+     "textLength": 0,
+     "visible": false
+    },
+    "screen": {
+     "domConnected": false,
+     "textLength": 0,
+     "visible": false
+    },
+    "toastBoxes": [
+     {
+      "visible": true,
+      "top": 0,
+      "height": 56,
+      "opacity": "1",
+      "text": "Probe U4 outer own."
+     }
+    ],
+    "headerTexts": []
+   },
+   "after4s": {
+    "path": "/UBTConnect/BrowseCountries",
+    "title": "BrowseCountries",
+    "activeScreen": "Directory_Locality.BrowseCountries",
+    "bodyTextLength": 19,
+    "toastsAdded": [
+     {
+      "class": "feedback-message-wrapper",
+      "text": "Probe U4 outer own."
+     },
+     {
+      "class": "feedback-message feedback-message-error feedback-message-autoclose",
+      "text": "Probe U4 outer own."
+     },
+     {
+      "class": "feedback-message-text",
+      "text": "Probe U4 outer own."
+     }
+    ],
+    "feedbackVisible": [],
+    "rejections": [],
+    "windowErrors": [],
+    "target": {
+     "domConnected": false,
+     "textLength": 0,
+     "visible": false
+    },
+    "parent": {
+     "name": "screen:Directory_Locality.BrowseCountries",
+     "domConnected": false,
+     "textLength": 0,
+     "visible": false
+    },
+    "screen": {
+     "domConnected": false,
+     "textLength": 0,
+     "visible": false
+    },
+    "toastBoxes": [
+     {
+      "visible": true,
+      "top": 0,
+      "height": 56,
+      "opacity": "1",
+      "text": "Probe U4 outer own."
+     }
+    ],
+    "headerTexts": []
+   },
+   "consoleErrors": [
+    "console: Error: Probe U4 outer own",
+    "console: [2026-10-28T17:08:29.082Z]: Probe U4 outer own ",
+    "console: Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector"
+   ]
+  },
+  "screenOwn": {
+   "act": {
+    "target": "screen:Directory_Locality.BrowseCountries",
+    "parentChain": [],
+    "mode": "own",
+    "message": "Probe U4 screen own",
+    "before": {
+     "targetText": 1371,
+     "parentText": null,
+     "bodyText": 1371
+    },
+    "thrownToCaller": null,
+    "caughtBy": [
+     "root boundary (Router)"
+    ]
+   },
+   "at300ms": {
+    "path": "/UBTConnect/_error.html",
+    "title": "",
+    "activeScreen": "no runtime",
+    "bodyTextLength": 0,
+    "toastsAdded": [],
+    "feedbackVisible": [],
+    "rejections": [],
+    "windowErrors": [],
+    "errorPageText": "",
+    "toastBoxes": [],
+    "headerTexts": []
+   },
+   "after4s": {
+    "path": "/UBTConnect/_error.html",
+    "title": "",
+    "activeScreen": null,
+    "bodyTextLength": 50,
+    "toastsAdded": [],
+    "feedbackVisible": [],
+    "rejections": [],
+    "windowErrors": [],
+    "errorPageText": "There was an error processing your request. RELOAD",
+    "toastBoxes": [],
+    "headerTexts": []
+   },
+   "consoleErrors": [
+    "console: Error: Probe U4 screen own",
+    "console: [2026-10-28T17:08:46.253Z]: Probe U4 screen own ",
+    "console: Failed to load resource: net::ERR_BLOCKED_BY_CLIENT.Inspector",
+    "console: Probe U4 screen own",
+    "console: ErrorScreen [2026-10-28T17:08:46.902Z]: [ErrorScreen] Probe U4 screen own "
+   ]
+  }
+ },
+ "u5": {
+  "laterNav": {
+   "call": {
+    "checks": {
+     "allowInterAppNavigationWhenAppIsRoot": true,
+     "unknown": {
+      "url": "/UBTConnect/NoSuchScreen",
+      "isInternal": false
+     },
+     "known": {
+      "url": "/UBTConnect/BrowseDirectory",
+      "isInternal": true
+     }
+    },
+    "thrown": "RedirectOccurredException"
+   },
+   "after4s": {
+    "path": "/UBTConnect/NoSuchScreen",
+    "title": "404 - File or directory not found.",
+    "activeScreen": "no runtime",
+    "bodyTextLength": 158,
+    "toastsAdded": [],
+    "feedbackVisible": [],
+    "rejections": [],
+    "windowErrors": [],
+    "toastBoxes": [],
+    "headerTexts": [
+     "Server Error"
+    ]
+   },
+   "consoleErrors": [
+    "console: Failed to load resource: the server responded with a status of 404 ()"
+   ]
+  },
+  "firstLoad": {
+   "status": 404,
+   "at1s": {
+    "path": "/UBTConnect/ThisScreenDoesNotExist",
+    "title": "404 - File or directory not found.",
+    "appRuntime": false,
+    "splash": false,
+    "text": "Server Error 404 - File or directory not found. The resource you are looking for might have been removed, had its name changed, or is temporarily unavailable."
+   },
+   "after6s": {
+    "path": "/UBTConnect/ThisScreenDoesNotExist",
+    "title": "404 - File or directory not found.",
+    "appRuntime": false,
+    "splash": false,
+    "text": "Server Error 404 - File or directory not found. The resource you are looking for might have been removed, had its name changed, or is temporarily unavailable."
+   },
+   "consoleErrors": [
+    "console: Failed to load resource: the server responded with a status of 404 ()"
+   ]
+  }
+ },
+ "u7": "not probed: it needs a screen whose role check fails for a signed-in user (U6 open), and the logout of the SecurityException branch is a server call that the guard blocks",
+ "blocked": []
+}

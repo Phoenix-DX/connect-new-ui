@@ -1,6 +1,6 @@
 import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { getFeedbackMessage, resetFeedbackMessages } from '@/platform/feedback/feedbackStore';
+import { getFeedbackMessage, resetFeedbackMessages, subscribeFeedback } from '@/platform/feedback/feedbackStore';
 import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { setSignedInUser } from '@/platform/session/session';
@@ -81,14 +81,24 @@ describe('Services page', () => {
     expect(document.getElementById('SuggestionList')).toBeNull();
   });
 
-  it('shows the empty lists with the error class when GetServices fails', async () => {
+  it('a failed GetServices shows the empty lists with the error class and the communication message (F2)', async () => {
     sessionStorage.setItem('mock:mock', 'error');
+    const shown: string[] = [];
+    const stop = subscribeFeedback(() => shown.push(getFeedbackMessage()?.message ?? ''));
     renderRoutes(routes, PATH);
     await waitFor(() => {
       expect(document.getElementById('FavouriteList')?.className).toBe('list list-group list-error OSFillParent');
     });
     expect(document.querySelector('.ubt-skeleton-section')).toBeNull();
     expect(rowLabels('FavouriteList')).toEqual([]);
+    // The runtime calls handleError once per failed fetch; App_Common shows ShowCommunicationExceptionMessage.
+    await waitFor(() => {
+      expect(getFeedbackMessage()?.message).toContain(
+        "<div class='feedback-message--title'>Service Interruption</div>",
+      );
+    });
+    stop();
+    expect(shown).toHaveLength(1);
   });
 
   it('the remove icon moves a favourite to the top of the suggestions; mandatory favourites have none', async () => {
@@ -107,7 +117,7 @@ describe('Services page', () => {
     expect(getFeedbackMessage()).toBeNull();
   });
 
-  it('a failed save keeps the skeleton and the loading button, as the original', async () => {
+  it('a failed save (CommunicationException): isLoading False, then BubbleCommunicationException (F1, Q2 (a))', async () => {
     await open();
     fireEvent.click(icon('l2-37_0-$b26'));
     sessionStorage.setItem('mock:mock', 'error');
@@ -121,9 +131,10 @@ describe('Services page', () => {
       'Services/DataActionGetServices',
       'ServiceAPIService_ConnectServices_ChangeOrder_Bulk',
     ]);
-    expect(document.querySelector('.ubt-skeleton-section')).not.toBeNull();
-    expect(saveButton()).toBeDisabled();
-    expect(getFeedbackMessage()?.message).not.toBe('Your changes were saved.');
+    // Services.mvc.js:1333-1347: isLoading = False, then the App_Common handler shows the communication message.
+    expect(document.querySelector('.ubt-skeleton-section')).toBeNull();
+    expect(saveButton()).toBeEnabled();
+    expect(getFeedbackMessage()?.message).toContain("<div class='feedback-message--title'>Service Interruption</div>");
   });
 
   it('the back arrow goes to the previous screen', async () => {

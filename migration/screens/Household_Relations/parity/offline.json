@@ -5,26 +5,29 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "9868051be2ed3fff197a",
+ "fingerprint": "f9ba58c904f5f6a07e78",
  "options": {
   "text": true,
   "style": true,
   "pixel": true,
   "calls": true,
+  "visibleOnly": false,
   "full": true,
-  "replay": "builder"
+  "replay": "builder",
+  "skipKinds": [],
+  "selfRef": false
  },
  "replay": {
   "mode": "builder",
-  "elements": 406,
-  "texts": 25,
+  "elements": 412,
+  "texts": 27,
   "comments": 0,
   "dropped": 0,
   "endTagMismatch": 0,
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-21T04:51:44.548Z",
+ "at": "2026-10-29T16:00:48.154Z",
  "counts": {},
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,

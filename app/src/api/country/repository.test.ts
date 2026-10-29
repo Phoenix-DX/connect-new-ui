@@ -3,9 +3,11 @@ import {
   fetchAllCountries,
   fetchBrowseCountriesStatistics,
   fetchCountryInfo,
+  fetchCountryListCommunityStatistics,
   fetchCountryListStatistics,
   fetchCountryLocalities,
   fetchCountryLocalityStatistics,
+  fetchHomeFeedCommunityStatistics,
   fetchRegionSubscribedCountries,
 } from './repository';
 import type { AllCountriesCallInputs, LocalityStatisticsCallInputs } from './types';
@@ -24,6 +26,25 @@ afterEach(() => {
 });
 
 describe('country repository', () => {
+  it('the two DataActionGetCommunityStatistics calls go to their screen with no input', async () => {
+    await fetchCountryListCommunityStatistics();
+    await fetchHomeFeedCommunityStatistics();
+    expect(window.__osCalls).toEqual([
+      expect.objectContaining({
+        module: 'UBTConnect',
+        owner: 'CountryList',
+        action: 'DataActionGetCommunityStatistics',
+        inputNames: [],
+      }),
+      expect.objectContaining({
+        module: 'UBTConnect',
+        owner: 'HomeFeed',
+        action: 'DataActionGetCommunityStatistics',
+        inputNames: [],
+      }),
+    ]);
+  });
+
   it('fetchBrowseCountriesStatistics calls DataActionGetCountriesStatistics of BrowseCountries with no input', async () => {
     const countries = await fetchBrowseCountriesStatistics();
     expect(window.__osCalls).toEqual([

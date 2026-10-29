@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Orbit Passport (local demo portal)</title>
+    <!--
+      Local stand-in of the external Orbit Passport portal for the PassportScan demo (user decision I10-2 (a),
+      2026-10-29). The loader (src/vendor/orbitpassport) opens it at <BaseURL>/passport = orbit-passport.html#/passport.
+      It speaks the loader's postMessage protocol with the parent page only (same origin):
+        portal -> host: webview:ready, passport:requestCamera, passport:saved, passport:error, webview:close,
+                        auth:expired, auth:requestRefresh
+        host -> portal: auth:token, auth:refresh, auth:expired, camera:image, gallery:image, ocr:result, ocr:error,
+                        navigation:back
+      All data is fictional. No network. Left out of production builds with the other mock embeds (build/mockFree.ts).
+    -->
+    <style>
+      :root { color-scheme: light; font-family: Arial, Helvetica, sans-serif; }
+      * { box-sizing: border-box; }
+      body { margin: 0; background: #f3f5f8; color: #1c2430; }
+      header { display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: #203a5c; color: #fff; }
+      header h1 { flex: 1; margin: 0; font-size: 18px; font-weight: 600; }
+      header button { border: 0; background: transparent; color: #fff; font-size: 22px; line-height: 1; cursor: pointer; }
+      main { padding: 16px; }
+      .card { background: #fff; border-radius: 12px; padding: 16px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+      .muted { color: #5a6470; font-size: 13px; }
+      .row { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid #eef1f4; font-size: 14px; }
+      .row:last-child { border-bottom: 0; }
+      .row span:first-child { color: #5a6470; }
+      .primary, .secondary { width: 100%; padding: 12px; border-radius: 8px; font-size: 15px; cursor: pointer; margin-top: 8px; }
+      .primary { border: 0; background: #2f6fd6; color: #fff; }
+      .secondary { border: 1px solid #c9d2dc; background: #fff; color: #1c2430; }
+      label { display: block; font-size: 12px; color: #5a6470; margin-top: 10px; }
+      input { width: 100%; padding: 10px; border: 1px solid #c9d2dc; border-radius: 6px; font-size: 15px; }
+      img { width: 100%; border-radius: 8px; border: 1px solid #c9d2dc; }
+      .banner { padding: 10px 12px; border-radius: 8px; margin-bottom: 12px; font-size: 14px; }
+      .banner.error { background: #fdecec; color: #8a1f1f; }
+      .banner.info { background: #e8f1fd; color: #1d4b8f; }
+      .center { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; gap: 12px; }
+      .spinner { width: 36px; height: 36px; border: 4px solid #c9d2dc; border-top-color: #2f6fd6; border-radius: 50%; animation: spin 1s linear infinite; }
+      @keyframes spin { to { transform: rotate(360deg); } }
+      .demo { border: 1px dashed #9aa8b6; background: transparent; box-shadow: none; }
+      .demo button { font-size: 13px; padding: 8px; }
+      [hidden] { display: none !important; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1 id="title">Passport details</h1>
+      <button id="close" type="button" aria-label="Close">&times;</button>
+    </header>
+    <main>
+      <div id="banner" class="banner" hidden></div>
+
+      <section id="loading" class="center">
+        <div class="spinner" aria-hidden="true"></div>
+        <div class="muted">Signing in to Orbit Passport…</div>
+      </section>
+
+      <section id="details" hidden>
+        <div class="card">
+          <div class="muted" id="member"></div>
+          <div id="empty">
+            <p>No passport is on file for this member yet.</p>
+            <p class="muted">Scan the photo page of the passport. The details are read from the picture, and you can
+              check them before you save.</p>
+          </div>
+          <div id="saved" hidden></div>
+        </div>
+        <button id="scan" class="primary" type="button">Scan passport</button>
+      </section>
+
+      <section id="waiting" class="center" hidden>
+        <div class="spinner" aria-hidden="true"></div>
+        <div class="muted">Waiting for the camera…</div>
+        <button id="cancelScan" class="secondary" type="button">Cancel</button>
+      </section>
+
+      <section id="review" hidden>
+        <div class="card">
+          <img id="photo" alt="Scanned passport photo page" />
+          <label for="f-surname">Surname</label><input id="f-surname" />
+          <label for="f-given">Given names</label><input id="f-given" />
+          <label for="f-nationality">Nationality</label><input id="f-nationality" />
+          <label for="f-number">Passport number</label><input id="f-number" />
+          <label for="f-birth">Date of birth</label><input id="f-birth" />
+          <label for="f-expiry">Date of expiry</label><input id="f-expiry" />
+        </div>
+        <button id="save" class="primary" type="button">Save passport</button>
+        <button id="retake" class="secondary" type="button">Scan again</button>
+      </section>
+
+      <section id="expired" class="center" hidden>
+        <p>Your session has ended.</p>
+        <p class="muted">Waiting for the app to sign you in again…</p>
+      </section>
+
+      <div class="card demo" id="demo" hidden>
+        <div class="muted">Demo controls (local portal only)</div>
+        <button id="demoError" class="secondary" type="button">Send an error to the app</button>
+        <button id="demoExpired" class="secondary" type="button">End the portal session</button>
+        <button id="demoRefresh" class="secondary" type="button">Ask the app for a new token</button>
+      </div>
+    </main>
+    <script>
+      (function () {
+        'use strict';
+        // Fictional passport (same person as src/mocks/fictional/passport.ts). Not real data.
+        var PASSPORT = {
+          surname: 'HARTLEY', given: 'CLARA JUNE', nationality: 'AUSTRALIAN', number: 'PA4821937',
+          birth: '14 MAR 1986', expiry: '02 SEP 2029'
+        };
+        var host = window.location.origin;
+        var signedIn = false;
+        var savedPassport = null;
+        var view = 'loading';
+        var $ = function (id) { return document.getElementById(id); };
+
+        function send(message) { window.parent.postMessage(message, host); }
+
+        function show(next) {
+          view = next;
+          ['loading', 'details', 'waiting', 'review', 'expired'].forEach(function (id) { $(id).hidden = id !== next; });
+          $('demo').hidden = !signedIn || next === 'expired';
+          $('title').textContent = next === 'review' ? 'Check passport details' : 'Passport details';
+        }
+
+        function banner(kind, text) {
+          var el = $('banner');
+          el.className = 'banner ' + kind;
+          el.textContent = text || '';
+          el.hidden = !text;
+        }
+
+        function renderSaved() {
+          if (!savedPassport) return;
+          $('empty').hidden = true;
+          var el = $('saved');
+          el.hidden = false;
+          el.innerHTML = '';
+          [['Surname', savedPassport.surname], ['Given names', savedPassport.given],
+           ['Nationality', savedPassport.nationality], ['Passport number', savedPassport.number],
+           ['Date of birth', savedPassport.birth], ['Date of expiry', savedPassport.expiry]].forEach(function (pair) {
+            var row = document.createElement('div');
+            row.className = 'row';
+            var a = document.createElement('span'); a.textContent = pair[0];
+            var b = document.createElement('span'); b.textContent = pair[1];
+            row.appendChild(a); row.appendChild(b); el.appendChild(row);
+          });
+          $('scan').textContent = 'Scan a new passport';
+        }
+
+        function review(src) {
+          banner('info', 'The details below were read from the picture. Check them, then save.');
+          $('photo').src = src;
+          $('f-surname').value = PASSPORT.surname; $('f-given').value = PASSPORT.given;
+          $('f-nationality').value = PASSPORT.nationality; $('f-number').value = PASSPORT.number;
+          $('f-birth').value = PASSPORT.birth; $('f-expiry').value = PASSPORT.expiry;
+          show('review');
+        }
+
+        function onToken(data) {
+          signedIn = true;
+          var target = data.memberId ? 'member ' + data.memberId : 'the signed-in member';
+          $('member').textContent = 'Household passport for ' + target + ' (demo account, fictional data)';
+          banner('', '');
+          show('details');
+          renderSaved();
+        }
+
+        window.addEventListener('message', function (event) {
+          if (event.origin !== host || event.source !== window.parent) return;
+          var data = event.data || {};
+          switch (data.type) {
+            case 'auth:token': onToken(data); break;
+            case 'auth:refresh': if (view === 'expired' || !signedIn) onToken(data); break;
+            case 'auth:expired': show('expired'); break;
+            case 'camera:image':
+            case 'gallery:image':
+              if (view === 'waiting') review('data:' + (data.mimeType || 'image/jpeg') + ';base64,' + data.base64Image);
+              break;
+            case 'ocr:result': if (view === 'waiting') review(''); break;
+            case 'ocr:error':
+              if (view === 'waiting') { show('details'); banner('error', 'No picture: ' + (data.error || 'the scan did not complete') + '. Try again.'); }
+              break;
+            case 'navigation:back':
+              if (view === 'review' || view === 'waiting') { banner('', ''); show('details'); }
+              else send({ type: 'webview:close' });
+              break;
+          }
+        });
+
+        $('close').addEventListener('click', function () { send({ type: 'webview:close' }); });
+        $('scan').addEventListener('click', function () { banner('', ''); show('waiting'); send({ type: 'passport:requestCamera' }); });
+        $('cancelScan').addEventListener('click', function () { show('details'); });
+        $('retake').addEventListener('click', function () { banner('', ''); show('waiting'); send({ type: 'passport:requestCamera' }); });
+        $('save').addEventListener('click', function () {
+          savedPassport = {
+            surname: $('f-surname').value, given: $('f-given').value, nationality: $('f-nationality').value,
+            number: $('f-number').value, birth: $('f-birth').value, expiry: $('f-expiry').value
+          };
+          banner('', '');
+          show('details');
+          renderSaved();
+          send({ type: 'passport:saved', passportId: 'demo-' + Date.now().toString(36) });
+        });
+        $('demoError').addEventListener('click', function () {
+          send({ type: 'passport:error', error: 'The passport service is not available right now. Try again later.' });
+        });
+        $('demoExpired').addEventListener('click', function () { show('expired'); send({ type: 'auth:expired' }); });
+        $('demoRefresh').addEventListener('click', function () { send({ type: 'auth:requestRefresh' }); });
+
+        show('loading');
+        if (window.parent !== window) send({ type: 'webview:ready' });
+        else banner('info', 'This page is the local demo of the Orbit Passport portal. Open it from the app.');
+      })();
+    </script>
+  </body>
+</html>

@@ -516,6 +516,9 @@ return "";
 }, true), 
 this.attr("IconId", "iconIdAttr", "IconId", false, false, OS.DataTypes.DataTypes.Text, function () {
 return "";
+}, true), 
+this.attr("URL", "uRLAttr", "URL", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
 }, true)
 ].concat(_super.attributesToDeclare.call(this));
 };
@@ -536,6 +539,19 @@ MyBookmarks_ObjectTypeList.itemType = Connect2_MyBookmarks_ISModel.MyBookmarks_O
 return MyBookmarks_ObjectTypeList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnect_UtilsModel.MyBookmarks_ObjectTypeList = MyBookmarks_ObjectTypeList;
+
+});
+define("UBTConnect_Utils.model$ActionBarOptionsList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect_Utils.model", "UBTConnectLibrary.model$ActionBarOptionsRec", "UBTConnect_Utils.referencesHealth", "UBTConnect_Utils.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnect_UtilsModel) {
+var OS = OutSystems.Internal;
+var ActionBarOptionsList = (function (_super) {
+__extends(ActionBarOptionsList, _super);
+function ActionBarOptionsList(defaults) {
+_super.apply(this, arguments);
+}
+ActionBarOptionsList.itemType = UBTConnectLibraryModel.ActionBarOptionsRec;
+return ActionBarOptionsList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnect_UtilsModel.ActionBarOptionsList = ActionBarOptionsList;
 
 });
 define("UBTConnect_Utils.model$", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Utils.model"], function (exports, OutSystems, UBTConnect_UtilsModel) {
@@ -2120,17 +2136,44 @@ return LauncherParametersRecord;
 UBTConnect_UtilsModel.LauncherParametersRecord = LauncherParametersRecord;
 
 });
-define("UBTConnect_Utils.model$Note_ItemList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect_Utils.model", "UBTConnectLibrary.model$Note_ItemRec", "UBTConnect_Utils.referencesHealth", "UBTConnect_Utils.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnect_UtilsModel) {
+define("UBTConnect_Utils.model$ActionBarOptionsRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect_Utils.model", "UBTConnectLibrary.model$ActionBarOptionsRec", "UBTConnect_Utils.referencesHealth", "UBTConnect_Utils.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnect_UtilsModel) {
 var OS = OutSystems.Internal;
-var Note_ItemList = (function (_super) {
-__extends(Note_ItemList, _super);
-function Note_ItemList(defaults) {
+var ActionBarOptionsRecord = (function (_super) {
+__extends(ActionBarOptionsRecord, _super);
+function ActionBarOptionsRecord(defaults) {
 _super.apply(this, arguments);
 }
-Note_ItemList.itemType = UBTConnectLibraryModel.Note_ItemRec;
-return Note_ItemList;
+ActionBarOptionsRecord.attributesToDeclare = function () {
+return [
+this.attr("ActionBarOptions", "actionBarOptionsAttr", "ActionBarOptions", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ActionBarOptionsRec());
+}, true, UBTConnectLibraryModel.ActionBarOptionsRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+ActionBarOptionsRecord.fromStructure = function (str) {
+return new ActionBarOptionsRecord(new ActionBarOptionsRecord.RecordClass({
+actionBarOptionsAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+ActionBarOptionsRecord._isAnonymousRecord = true;
+ActionBarOptionsRecord.UniqueId = "e6dab178-52e1-ec4a-1946-c48270768708";
+ActionBarOptionsRecord.init();
+return ActionBarOptionsRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnect_UtilsModel.ActionBarOptionsRecord = ActionBarOptionsRecord;
+
+});
+define("UBTConnect_Utils.model$ActionBarOptionsRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Utils.model", "UBTConnect_Utils.model$ActionBarOptionsRecord"], function (exports, OutSystems, UBTConnect_UtilsModel) {
+var OS = OutSystems.Internal;
+var ActionBarOptionsRecordList = (function (_super) {
+__extends(ActionBarOptionsRecordList, _super);
+function ActionBarOptionsRecordList(defaults) {
+_super.apply(this, arguments);
+}
+ActionBarOptionsRecordList.itemType = UBTConnect_UtilsModel.ActionBarOptionsRecord;
+return ActionBarOptionsRecordList;
 })(OS.DataTypes.GenericRecordList);
-UBTConnect_UtilsModel.Note_ItemList = Note_ItemList;
+UBTConnect_UtilsModel.ActionBarOptionsRecordList = ActionBarOptionsRecordList;
 
 });
 define("UBTConnect_Utils.model$ImagesParametersRec", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Utils.model"], function (exports, OutSystems, UBTConnect_UtilsModel) {
@@ -2318,6 +2361,19 @@ return BackgroundOptionsList;
 UBTConnect_UtilsModel.BackgroundOptionsList = BackgroundOptionsList;
 
 });
+define("UBTConnect_Utils.model$Note_ItemList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect_Utils.model", "UBTConnectLibrary.model$Note_ItemRec", "UBTConnect_Utils.referencesHealth", "UBTConnect_Utils.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnect_UtilsModel) {
+var OS = OutSystems.Internal;
+var Note_ItemList = (function (_super) {
+__extends(Note_ItemList, _super);
+function Note_ItemList(defaults) {
+_super.apply(this, arguments);
+}
+Note_ItemList.itemType = UBTConnectLibraryModel.Note_ItemRec;
+return Note_ItemList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnect_UtilsModel.Note_ItemList = Note_ItemList;
+
+});
 define("UBTConnect_Utils.model$UI_Bookmark_Card_ContentRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Bookmarks_CS.model", "UBTConnect_Utils.model", "Connect_Bookmarks_CS.model$UI_Bookmark_Card_ContentRec", "UBTConnect_Utils.referencesHealth", "UBTConnect_Utils.referencesHealth$Connect_Bookmarks_CS"], function (exports, OutSystems, Connect_Bookmarks_CSModel, UBTConnect_UtilsModel) {
 var OS = OutSystems.Internal;
 var UI_Bookmark_Card_ContentRecord = (function (_super) {
@@ -2356,33 +2412,6 @@ UI_Bookmark_Card_ContentRecordList.itemType = UBTConnect_UtilsModel.UI_Bookmark_
 return UI_Bookmark_Card_ContentRecordList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnect_UtilsModel.UI_Bookmark_Card_ContentRecordList = UI_Bookmark_Card_ContentRecordList;
-
-});
-define("UBTConnect_Utils.model$UI_Bookmark_CardItemRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Bookmarks_CS.model", "UBTConnect_Utils.model", "Connect_Bookmarks_CS.model$UI_Bookmark_CardItemRec", "UBTConnect_Utils.referencesHealth", "UBTConnect_Utils.referencesHealth$Connect_Bookmarks_CS"], function (exports, OutSystems, Connect_Bookmarks_CSModel, UBTConnect_UtilsModel) {
-var OS = OutSystems.Internal;
-var UI_Bookmark_CardItemRecord = (function (_super) {
-__extends(UI_Bookmark_CardItemRecord, _super);
-function UI_Bookmark_CardItemRecord(defaults) {
-_super.apply(this, arguments);
-}
-UI_Bookmark_CardItemRecord.attributesToDeclare = function () {
-return [
-this.attr("UI_Bookmark_CardItem", "uI_Bookmark_CardItemAttr", "UI_Bookmark_CardItem", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new Connect_Bookmarks_CSModel.UI_Bookmark_CardItemRec());
-}, true, Connect_Bookmarks_CSModel.UI_Bookmark_CardItemRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-UI_Bookmark_CardItemRecord.fromStructure = function (str) {
-return new UI_Bookmark_CardItemRecord(new UI_Bookmark_CardItemRecord.RecordClass({
-uI_Bookmark_CardItemAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-UI_Bookmark_CardItemRecord._isAnonymousRecord = true;
-UI_Bookmark_CardItemRecord.UniqueId = "2af1f63f-9cc0-5ef8-1ab0-c823aaef0fe0";
-UI_Bookmark_CardItemRecord.init();
-return UI_Bookmark_CardItemRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnect_UtilsModel.UI_Bookmark_CardItemRecord = UI_Bookmark_CardItemRecord;
 
 });
 define("UBTConnect_Utils.model$AndroidOptionsRecord", ["exports", "OutSystems/ClientRuntime/Main", "InAppBrowserPlugin.model", "UBTConnect_Utils.model", "InAppBrowserPlugin.model$AndroidOptionsRec", "UBTConnect_Utils.referencesHealth", "UBTConnect_Utils.referencesHealth$InAppBrowserPlugin"], function (exports, OutSystems, InAppBrowserPluginModel, UBTConnect_UtilsModel) {
@@ -4791,6 +4820,19 @@ return CDN4Record;
 UBTConnect_UtilsModel.CDN4Record = CDN4Record;
 
 });
+define("UBTConnect_Utils.model$ActionsMenuEnableOptionsList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect_Utils.model", "UBTConnectLibrary.model$ActionsMenuEnableOptionsRec", "UBTConnect_Utils.referencesHealth", "UBTConnect_Utils.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnect_UtilsModel) {
+var OS = OutSystems.Internal;
+var ActionsMenuEnableOptionsList = (function (_super) {
+__extends(ActionsMenuEnableOptionsList, _super);
+function ActionsMenuEnableOptionsList(defaults) {
+_super.apply(this, arguments);
+}
+ActionsMenuEnableOptionsList.itemType = UBTConnectLibraryModel.ActionsMenuEnableOptionsRec;
+return ActionsMenuEnableOptionsList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnect_UtilsModel.ActionsMenuEnableOptionsList = ActionsMenuEnableOptionsList;
+
+});
 define("UBTConnect_Utils.model$Directory_CoordinatesList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect_Utils.model", "APIDomain_Directory_IS.model$Directory_CoordinatesRec", "UBTConnect_Utils.referencesHealth", "UBTConnect_Utils.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnect_UtilsModel) {
 var OS = OutSystems.Internal;
 var Directory_CoordinatesList = (function (_super) {
@@ -4815,6 +4857,33 @@ UBT_VisibilityList.itemType = UBTConnectLibraryModel.UBT_VisibilityRec;
 return UBT_VisibilityList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnect_UtilsModel.UBT_VisibilityList = UBT_VisibilityList;
+
+});
+define("UBTConnect_Utils.model$ActionsMenuOptionsRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect_Utils.model", "UBTConnectLibrary.model$ActionsMenuOptionsRec", "UBTConnect_Utils.referencesHealth", "UBTConnect_Utils.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnect_UtilsModel) {
+var OS = OutSystems.Internal;
+var ActionsMenuOptionsRecord = (function (_super) {
+__extends(ActionsMenuOptionsRecord, _super);
+function ActionsMenuOptionsRecord(defaults) {
+_super.apply(this, arguments);
+}
+ActionsMenuOptionsRecord.attributesToDeclare = function () {
+return [
+this.attr("ActionsMenuOptions", "actionsMenuOptionsAttr", "ActionsMenuOptions", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ActionsMenuOptionsRec());
+}, true, UBTConnectLibraryModel.ActionsMenuOptionsRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+ActionsMenuOptionsRecord.fromStructure = function (str) {
+return new ActionsMenuOptionsRecord(new ActionsMenuOptionsRecord.RecordClass({
+actionsMenuOptionsAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+ActionsMenuOptionsRecord._isAnonymousRecord = true;
+ActionsMenuOptionsRecord.UniqueId = "6e1fc01f-5ce9-a5aa-34e8-00543b0e34e2";
+ActionsMenuOptionsRecord.init();
+return ActionsMenuOptionsRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnect_UtilsModel.ActionsMenuOptionsRecord = ActionsMenuOptionsRecord;
 
 });
 define("UBTConnect_Utils.model$LazyImageList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Utils.model", "UBTConnect_Utils.model$LazyImageRec"], function (exports, OutSystems, UBTConnect_UtilsModel) {
@@ -5562,6 +5631,19 @@ return UserRecordList;
 UBTConnect_UtilsModel.UserRecordList = UserRecordList;
 
 });
+define("UBTConnect_Utils.model$ActionsMenuOptionsList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect_Utils.model", "UBTConnectLibrary.model$ActionsMenuOptionsRec", "UBTConnect_Utils.referencesHealth", "UBTConnect_Utils.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnect_UtilsModel) {
+var OS = OutSystems.Internal;
+var ActionsMenuOptionsList = (function (_super) {
+__extends(ActionsMenuOptionsList, _super);
+function ActionsMenuOptionsList(defaults) {
+_super.apply(this, arguments);
+}
+ActionsMenuOptionsList.itemType = UBTConnectLibraryModel.ActionsMenuOptionsRec;
+return ActionsMenuOptionsList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnect_UtilsModel.ActionsMenuOptionsList = ActionsMenuOptionsList;
+
+});
 define("UBTConnect_Utils.model$LazyImageSizeList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect_Utils.model", "UBTConnectLibrary.model$LazyImageSizeRec", "UBTConnect_Utils.referencesHealth", "UBTConnect_Utils.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnect_UtilsModel) {
 var OS = OutSystems.Internal;
 var LazyImageSizeList = (function (_super) {
@@ -5959,46 +6041,6 @@ return DisplayOptionsList;
 UBTConnect_UtilsModel.DisplayOptionsList = DisplayOptionsList;
 
 });
-define("UBTConnect_Utils.model$BookmarkCategoryRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Bookmarks_MCS.model", "UBTConnect_Utils.model", "UBTConnect_Bookmarks_MCS.model$BookmarkCategoryRec", "UBTConnect_Utils.referencesHealth", "UBTConnect_Utils.referencesHealth$UBTConnect_Bookmarks_MCS"], function (exports, OutSystems, UBTConnect_Bookmarks_MCSModel, UBTConnect_UtilsModel) {
-var OS = OutSystems.Internal;
-var BookmarkCategoryRecord = (function (_super) {
-__extends(BookmarkCategoryRecord, _super);
-function BookmarkCategoryRecord(defaults) {
-_super.apply(this, arguments);
-}
-BookmarkCategoryRecord.attributesToDeclare = function () {
-return [
-this.attr("BookmarkCategory", "bookmarkCategoryAttr", "BookmarkCategory", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new UBTConnect_Bookmarks_MCSModel.BookmarkCategoryRec());
-}, true, UBTConnect_Bookmarks_MCSModel.BookmarkCategoryRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-BookmarkCategoryRecord.fromStructure = function (str) {
-return new BookmarkCategoryRecord(new BookmarkCategoryRecord.RecordClass({
-bookmarkCategoryAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-BookmarkCategoryRecord._isAnonymousRecord = true;
-BookmarkCategoryRecord.UniqueId = "e1d3e578-732f-563e-48ac-b3823f9c1c1f";
-BookmarkCategoryRecord.init();
-return BookmarkCategoryRecord;
-})(OS.DataTypes.GenericRecord);
-UBTConnect_UtilsModel.BookmarkCategoryRecord = BookmarkCategoryRecord;
-
-});
-define("UBTConnect_Utils.model$BookmarkCategoryRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Utils.model", "UBTConnect_Utils.model$BookmarkCategoryRecord"], function (exports, OutSystems, UBTConnect_UtilsModel) {
-var OS = OutSystems.Internal;
-var BookmarkCategoryRecordList = (function (_super) {
-__extends(BookmarkCategoryRecordList, _super);
-function BookmarkCategoryRecordList(defaults) {
-_super.apply(this, arguments);
-}
-BookmarkCategoryRecordList.itemType = UBTConnect_UtilsModel.BookmarkCategoryRecord;
-return BookmarkCategoryRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnect_UtilsModel.BookmarkCategoryRecordList = BookmarkCategoryRecordList;
-
-});
 define("UBTConnect_Utils.model$UBT_SizeList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect_Utils.model", "UBTConnectLibrary.model$UBT_SizeRec", "UBTConnect_Utils.referencesHealth", "UBTConnect_Utils.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnect_UtilsModel) {
 var OS = OutSystems.Internal;
 var UBT_SizeList = (function (_super) {
@@ -6330,6 +6372,46 @@ return Directory_UserCurrent_VisibilityList;
 UBTConnect_UtilsModel.Directory_UserCurrent_VisibilityList = Directory_UserCurrent_VisibilityList;
 
 });
+define("UBTConnect_Utils.model$ActionsMenuEnableOptionsRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect_Utils.model", "UBTConnectLibrary.model$ActionsMenuEnableOptionsRec", "UBTConnect_Utils.referencesHealth", "UBTConnect_Utils.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnect_UtilsModel) {
+var OS = OutSystems.Internal;
+var ActionsMenuEnableOptionsRecord = (function (_super) {
+__extends(ActionsMenuEnableOptionsRecord, _super);
+function ActionsMenuEnableOptionsRecord(defaults) {
+_super.apply(this, arguments);
+}
+ActionsMenuEnableOptionsRecord.attributesToDeclare = function () {
+return [
+this.attr("ActionsMenuEnableOptions", "actionsMenuEnableOptionsAttr", "ActionsMenuEnableOptions", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ActionsMenuEnableOptionsRec());
+}, true, UBTConnectLibraryModel.ActionsMenuEnableOptionsRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+ActionsMenuEnableOptionsRecord.fromStructure = function (str) {
+return new ActionsMenuEnableOptionsRecord(new ActionsMenuEnableOptionsRecord.RecordClass({
+actionsMenuEnableOptionsAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+ActionsMenuEnableOptionsRecord._isAnonymousRecord = true;
+ActionsMenuEnableOptionsRecord.UniqueId = "f9b93a40-fc47-12f4-c337-862f1fa983ce";
+ActionsMenuEnableOptionsRecord.init();
+return ActionsMenuEnableOptionsRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnect_UtilsModel.ActionsMenuEnableOptionsRecord = ActionsMenuEnableOptionsRecord;
+
+});
+define("UBTConnect_Utils.model$ActionsMenuEnableOptionsRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Utils.model", "UBTConnect_Utils.model$ActionsMenuEnableOptionsRecord"], function (exports, OutSystems, UBTConnect_UtilsModel) {
+var OS = OutSystems.Internal;
+var ActionsMenuEnableOptionsRecordList = (function (_super) {
+__extends(ActionsMenuEnableOptionsRecordList, _super);
+function ActionsMenuEnableOptionsRecordList(defaults) {
+_super.apply(this, arguments);
+}
+ActionsMenuEnableOptionsRecordList.itemType = UBTConnect_UtilsModel.ActionsMenuEnableOptionsRecord;
+return ActionsMenuEnableOptionsRecordList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnect_UtilsModel.ActionsMenuEnableOptionsRecordList = ActionsMenuEnableOptionsRecordList;
+
+});
 define("UBTConnect_Utils.model$CacheControl_UserInformationList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Utils.model", "UBTConnect_Utils.model$CacheControl_UserInformationRec"], function (exports, OutSystems, UBTConnect_UtilsModel) {
 var OS = OutSystems.Internal;
 var CacheControl_UserInformationList = (function (_super) {
@@ -6394,6 +6476,19 @@ ExternalAppPackageNameRecord.init();
 return ExternalAppPackageNameRecord;
 })(OS.DataTypes.GenericRecord);
 UBTConnect_UtilsModel.ExternalAppPackageNameRecord = ExternalAppPackageNameRecord;
+
+});
+define("UBTConnect_Utils.model$ActionsMenuOptionsRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Utils.model", "UBTConnect_Utils.model$ActionsMenuOptionsRecord"], function (exports, OutSystems, UBTConnect_UtilsModel) {
+var OS = OutSystems.Internal;
+var ActionsMenuOptionsRecordList = (function (_super) {
+__extends(ActionsMenuOptionsRecordList, _super);
+function ActionsMenuOptionsRecordList(defaults) {
+_super.apply(this, arguments);
+}
+ActionsMenuOptionsRecordList.itemType = UBTConnect_UtilsModel.ActionsMenuOptionsRecord;
+return ActionsMenuOptionsRecordList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnect_UtilsModel.ActionsMenuOptionsRecordList = ActionsMenuOptionsRecordList;
 
 });
 define("UBTConnect_Utils.model$Connect_Subscription_PlanRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect_CommonEntities_DB.model", "UBTConnect_Utils.model", "Connect_CommonEntities_DB.model$Connect_Subscription_PlanRec", "UBTConnect_Utils.referencesHealth", "UBTConnect_Utils.referencesHealth$Connect_CommonEntities_DB"], function (exports, OutSystems, Connect_CommonEntities_DBModel, UBTConnect_UtilsModel) {
@@ -7346,19 +7441,6 @@ return Connect_Subscription_RegionList;
 UBTConnect_UtilsModel.Connect_Subscription_RegionList = Connect_Subscription_RegionList;
 
 });
-define("UBTConnect_Utils.model$BookmarkCategoryList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Bookmarks_MCS.model", "UBTConnect_Utils.model", "UBTConnect_Bookmarks_MCS.model$BookmarkCategoryRec", "UBTConnect_Utils.referencesHealth", "UBTConnect_Utils.referencesHealth$UBTConnect_Bookmarks_MCS"], function (exports, OutSystems, UBTConnect_Bookmarks_MCSModel, UBTConnect_UtilsModel) {
-var OS = OutSystems.Internal;
-var BookmarkCategoryList = (function (_super) {
-__extends(BookmarkCategoryList, _super);
-function BookmarkCategoryList(defaults) {
-_super.apply(this, arguments);
-}
-BookmarkCategoryList.itemType = UBTConnect_Bookmarks_MCSModel.BookmarkCategoryRec;
-return BookmarkCategoryList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnect_UtilsModel.BookmarkCategoryList = BookmarkCategoryList;
-
-});
 define("UBTConnect_Utils.model$SizeOptionsRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Utils.model", "UBTConnect_Utils.model$SizeOptionsRecord"], function (exports, OutSystems, UBTConnect_UtilsModel) {
 var OS = OutSystems.Internal;
 var SizeOptionsRecordList = (function (_super) {
@@ -7727,19 +7809,6 @@ return UBT_IconSizeRecordList;
 UBTConnect_UtilsModel.UBT_IconSizeRecordList = UBT_IconSizeRecordList;
 
 });
-define("UBTConnect_Utils.model$UI_Bookmark_CardItemRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Utils.model", "UBTConnect_Utils.model$UI_Bookmark_CardItemRecord"], function (exports, OutSystems, UBTConnect_UtilsModel) {
-var OS = OutSystems.Internal;
-var UI_Bookmark_CardItemRecordList = (function (_super) {
-__extends(UI_Bookmark_CardItemRecordList, _super);
-function UI_Bookmark_CardItemRecordList(defaults) {
-_super.apply(this, arguments);
-}
-UI_Bookmark_CardItemRecordList.itemType = UBTConnect_UtilsModel.UI_Bookmark_CardItemRecord;
-return UI_Bookmark_CardItemRecordList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnect_UtilsModel.UI_Bookmark_CardItemRecordList = UI_Bookmark_CardItemRecordList;
-
-});
 define("UBTConnect_Utils.model$UBT_Size_ImageWidthList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect_Utils.model", "UBTConnectLibrary.model$UBT_Size_ImageWidthRec", "UBTConnect_Utils.referencesHealth", "UBTConnect_Utils.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnect_UtilsModel) {
 var OS = OutSystems.Internal;
 var UBT_Size_ImageWidthList = (function (_super) {
@@ -7934,19 +8003,6 @@ UBT_VerticalAlignList.itemType = UBTConnectLibraryModel.UBT_VerticalAlignRec;
 return UBT_VerticalAlignList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnect_UtilsModel.UBT_VerticalAlignList = UBT_VerticalAlignList;
-
-});
-define("UBTConnect_Utils.model$UI_Bookmark_CardItemList", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Bookmarks_CS.model", "UBTConnect_Utils.model", "Connect_Bookmarks_CS.model$UI_Bookmark_CardItemRec", "UBTConnect_Utils.referencesHealth", "UBTConnect_Utils.referencesHealth$Connect_Bookmarks_CS"], function (exports, OutSystems, Connect_Bookmarks_CSModel, UBTConnect_UtilsModel) {
-var OS = OutSystems.Internal;
-var UI_Bookmark_CardItemList = (function (_super) {
-__extends(UI_Bookmark_CardItemList, _super);
-function UI_Bookmark_CardItemList(defaults) {
-_super.apply(this, arguments);
-}
-UI_Bookmark_CardItemList.itemType = Connect_Bookmarks_CSModel.UI_Bookmark_CardItemRec;
-return UI_Bookmark_CardItemList;
-})(OS.DataTypes.GenericRecordList);
-UBTConnect_UtilsModel.UI_Bookmark_CardItemList = UI_Bookmark_CardItemList;
 
 });
 define("UBTConnect_Utils.model$NotesRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Utils.model", "UBTConnect_Utils.model$NotesRecord"], function (exports, OutSystems, UBTConnect_UtilsModel) {
@@ -9436,6 +9492,12 @@ return getUBT_IconSizeRecord("71843981-3f48-434e-9d09-0d92f60a2591");
 }
 });
 
+Object.defineProperty(UBTConnect_UtilsModel.staticEntities.uBT_IconSize, "extraSmall_10", {
+get: function () {
+return getUBT_IconSizeRecord("7adb5a43-441f-4ffb-a1ca-ed8abf3dfd88");
+}
+});
+
 Object.defineProperty(UBTConnect_UtilsModel.staticEntities.uBT_IconSize, "nonStandard_64", {
 get: function () {
 return getUBT_IconSizeRecord("8512eb1f-1008-4d7c-b0a2-265a6aafacd0");
@@ -9457,6 +9519,12 @@ return getUBT_IconSizeRecord("98d3467e-0017-4aa1-981f-929b030caf06");
 Object.defineProperty(UBTConnect_UtilsModel.staticEntities.uBT_IconSize, "nonStandard_108", {
 get: function () {
 return getUBT_IconSizeRecord("9b36044e-87d6-4e9f-a8c0-6664a6a827d0");
+}
+});
+
+Object.defineProperty(UBTConnect_UtilsModel.staticEntities.uBT_IconSize, "nonStandard_40", {
+get: function () {
+return getUBT_IconSizeRecord("c2e3aa72-9dd6-4972-a40c-78d0acde17ff");
 }
 });
 
@@ -9550,6 +9618,12 @@ return getUBT_IconsRecord("01fd0b0c-e174-41e1-b88b-9df6517c95ce");
 }
 });
 
+Object.defineProperty(UBTConnect_UtilsModel.staticEntities.uBT_Icons, "sVG_CommunityCountries", {
+get: function () {
+return getUBT_IconsRecord("023e6a1c-c170-4b43-8324-297e10e0e896");
+}
+});
+
 Object.defineProperty(UBTConnect_UtilsModel.staticEntities.uBT_Icons, "group", {
 get: function () {
 return getUBT_IconsRecord("038a4fe0-799e-494a-ab3c-211c23271654");
@@ -9571,6 +9645,12 @@ return getUBT_IconsRecord("051f2c2a-d1ce-42f4-b09b-bd094bca02f8");
 Object.defineProperty(UBTConnect_UtilsModel.staticEntities.uBT_Icons, "add", {
 get: function () {
 return getUBT_IconsRecord("0714fea8-7dea-4bcf-8671-f26dfb688cc0");
+}
+});
+
+Object.defineProperty(UBTConnect_UtilsModel.staticEntities.uBT_Icons, "sVG_CommunityMembers", {
+get: function () {
+return getUBT_IconsRecord("07cd8dc1-ba67-43c5-8b4a-98ff341f6944");
 }
 });
 
@@ -10240,6 +10320,12 @@ return getUBT_IconsRecord("7e770565-6756-489c-861a-03aa64a06828");
 }
 });
 
+Object.defineProperty(UBTConnect_UtilsModel.staticEntities.uBT_Icons, "arrowDown", {
+get: function () {
+return getUBT_IconsRecord("82678915-1fde-4af5-b771-5962b251de3e");
+}
+});
+
 Object.defineProperty(UBTConnect_UtilsModel.staticEntities.uBT_Icons, "videocam", {
 get: function () {
 return getUBT_IconsRecord("8346d388-9271-49fa-9b2c-5a38911088a4");
@@ -10396,6 +10482,12 @@ return getUBT_IconsRecord("adfcacc5-456f-4a69-84ed-970b9327d191");
 }
 });
 
+Object.defineProperty(UBTConnect_UtilsModel.staticEntities.uBT_Icons, "sVG_CommunityHouseholds", {
+get: function () {
+return getUBT_IconsRecord("b2215bc2-e092-417f-87f8-cb12b3a2b672");
+}
+});
+
 Object.defineProperty(UBTConnect_UtilsModel.staticEntities.uBT_Icons, "attachFile", {
 get: function () {
 return getUBT_IconsRecord("b27013a5-8612-4010-a849-44a7ff7cb50b");
@@ -10510,6 +10602,12 @@ return getUBT_IconsRecord("c483fbf3-95c0-4401-8b6f-8543ee7c35d5");
 }
 });
 
+Object.defineProperty(UBTConnect_UtilsModel.staticEntities.uBT_Icons, "arrowUp", {
+get: function () {
+return getUBT_IconsRecord("c60b1b20-beb3-434e-98b8-70bf14ecb947");
+}
+});
+
 Object.defineProperty(UBTConnect_UtilsModel.staticEntities.uBT_Icons, "checkCircle", {
 get: function () {
 return getUBT_IconsRecord("c60ed7fb-f4a1-4ba3-a1f1-e5db4b751804");
@@ -10573,6 +10671,12 @@ return getUBT_IconsRecord("d08478ad-9e1a-4c88-9dba-78eaea3cb291");
 Object.defineProperty(UBTConnect_UtilsModel.staticEntities.uBT_Icons, "school", {
 get: function () {
 return getUBT_IconsRecord("d15b6b62-6b8c-45d8-b8e4-142d44c83ec9");
+}
+});
+
+Object.defineProperty(UBTConnect_UtilsModel.staticEntities.uBT_Icons, "sVG_CommunityLocalities", {
+get: function () {
+return getUBT_IconsRecord("d2063973-e843-4517-a3fc-1a0a56fb1876");
 }
 });
 
@@ -11372,9 +11476,21 @@ return getLaunchDarkly_FFRecord("3da821c6-6cc9-473b-9291-11e94a69f532");
 }
 });
 
+Object.defineProperty(UBTConnect_UtilsModel.staticEntities.launchDarkly_FF, "mobileDirectoryHouseholdGallery", {
+get: function () {
+return getLaunchDarkly_FFRecord("4ab53042-7c90-44b2-8df8-324120f19c21");
+}
+});
+
 Object.defineProperty(UBTConnect_UtilsModel.staticEntities.launchDarkly_FF, "mobileOrbitAccess", {
 get: function () {
 return getLaunchDarkly_FFRecord("4bde037a-0800-47eb-92d9-e95aab8d74e4");
+}
+});
+
+Object.defineProperty(UBTConnect_UtilsModel.staticEntities.launchDarkly_FF, "mobileDirectoryLocalityContacts", {
+get: function () {
+return getLaunchDarkly_FFRecord("57339520-be2f-49e2-aa81-f58ddfef5537");
 }
 });
 
@@ -11825,88 +11941,6 @@ return getNoteCategoryRecord("a68357cd-5e1d-4cc8-b579-a32dfa0976a2");
 Object.defineProperty(UBTConnect_UtilsModel.staticEntities.noteCategory, "oneSchoolGlobal", {
 get: function () {
 return getNoteCategoryRecord("b835d35f-fbbb-4e59-9421-1b5110af8a5a");
-}
-});
-
-UBTConnect_UtilsModel.staticEntities.bookmarkCategory = {};
-var getBookmarkCategoryRecord = function (record) {
-return OS.ApplicationInfo.getModules()["edb98778-90f1-4e97-9def-fc0d37a768a3"].staticEntities["8eb461ea-41a0-46c2-b1dd-4d8f74a29b3b"][record];
-};
-Object.defineProperty(UBTConnect_UtilsModel.staticEntities.bookmarkCategory, "localityContact", {
-get: function () {
-return getBookmarkCategoryRecord("04304879-c111-49f5-aa22-a7a688a6609c");
-}
-});
-
-Object.defineProperty(UBTConnect_UtilsModel.staticEntities.bookmarkCategory, "assembleEvent", {
-get: function () {
-return getBookmarkCategoryRecord("119d70ef-ff0c-4456-8866-94f73c053714");
-}
-});
-
-Object.defineProperty(UBTConnect_UtilsModel.staticEntities.bookmarkCategory, "supperMeeting", {
-get: function () {
-return getBookmarkCategoryRecord("49355017-2b1c-41e5-a429-3d2219034457");
-}
-});
-
-Object.defineProperty(UBTConnect_UtilsModel.staticEntities.bookmarkCategory, "feedItem", {
-get: function () {
-return getBookmarkCategoryRecord("5642d96f-6259-4c64-88ea-bf3c3aee6b39");
-}
-});
-
-Object.defineProperty(UBTConnect_UtilsModel.staticEntities.bookmarkCategory, "member", {
-get: function () {
-return getBookmarkCategoryRecord("76d6523e-e548-481b-8c52-8d125dadef86");
-}
-});
-
-Object.defineProperty(UBTConnect_UtilsModel.staticEntities.bookmarkCategory, "orbitEvent", {
-get: function () {
-return getBookmarkCategoryRecord("770c6f2d-4343-4368-8ff9-c7c35d960779");
-}
-});
-
-Object.defineProperty(UBTConnect_UtilsModel.staticEntities.bookmarkCategory, "household", {
-get: function () {
-return getBookmarkCategoryRecord("80fe68c3-c7ec-4c75-b041-7eeb9416daf8");
-}
-});
-
-Object.defineProperty(UBTConnect_UtilsModel.staticEntities.bookmarkCategory, "personalEvent", {
-get: function () {
-return getBookmarkCategoryRecord("889d590c-4fae-41ef-9273-0a1eff8e4dd0");
-}
-});
-
-Object.defineProperty(UBTConnect_UtilsModel.staticEntities.bookmarkCategory, "locality", {
-get: function () {
-return getBookmarkCategoryRecord("a348818a-fa35-4bff-a34e-178519d83bf7");
-}
-});
-
-Object.defineProperty(UBTConnect_UtilsModel.staticEntities.bookmarkCategory, "lDMEvent", {
-get: function () {
-return getBookmarkCategoryRecord("c0c23dcd-8b34-4ea0-b850-0f773da376b3");
-}
-});
-
-Object.defineProperty(UBTConnect_UtilsModel.staticEntities.bookmarkCategory, "update", {
-get: function () {
-return getBookmarkCategoryRecord("d6e17b52-a77d-48c1-9198-b4eab4db6972");
-}
-});
-
-Object.defineProperty(UBTConnect_UtilsModel.staticEntities.bookmarkCategory, "interchange", {
-get: function () {
-return getBookmarkCategoryRecord("d824fe40-c000-47ee-8361-5c0a281dd640");
-}
-});
-
-Object.defineProperty(UBTConnect_UtilsModel.staticEntities.bookmarkCategory, "oneSchoolGlobal", {
-get: function () {
-return getBookmarkCategoryRecord("e3054760-7ac9-4429-afe2-a499783f232e");
 }
 });
 

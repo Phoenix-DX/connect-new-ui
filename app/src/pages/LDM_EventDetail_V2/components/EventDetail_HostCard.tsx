@@ -2,6 +2,13 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { styleFromCssText } from '@/lib/cssText';
 import { PersonContactOptions } from '@/components/contact/PersonContactOptions';
 import { flipHouseholdName } from '@/lib/legacyShared/actions';
+import { ItemNotesSection } from '@/containers/ItemNotesSection';
+import type { Notes } from '@/lib/ubtConnectLibrary/structures';
+
+/** ItemNotesSection of the host card (EventDetail_HostCard.mvc.js:700-760): category TextToIdentifier("LDM Event"),
+    ActionBarOptions ShowAddNote and IsAddNoteEnabled True (the action bar reads only ShowAddNote). */
+const NOTE_CATEGORY_LDM_EVENT = 'LDM Event';
+const NOTES_ACTIONS = { showUnbookmark: false, showAddNote: true, showShare: false };
 
 export interface EventDetail_HostCardProps {
   id: string;
@@ -25,6 +32,14 @@ export interface EventDetail_HostCardProps {
   onCallPhone: () => void;
   /** Event Address. */
   onAddress: () => void;
+  /** EventNotes: In_Notes of ItemNotesSection. */
+  eventNotes: Notes;
+  /** In_ItemId of ItemNotesSection: EventHostId + ":" + EventId. */
+  notesItemId: string;
+  /** Event HandlerOn_NotesChanged(New_Notes). */
+  onNotesChanged: (notes: Notes) => void;
+  /** Event HandlerOn_NoteDeleted(NoteId, WasLastNote); the screen block reads only NoteId. */
+  onNoteDeleted: (noteId: string) => void;
 }
 
 /** Host card of the LDM event detail, shown to a guest (analysis/sources/pretty/Connect2_OrbitMobile_MUI.LDM_Blocks
@@ -32,7 +47,9 @@ export interface EventDetail_HostCardProps {
     published: the host photo (an assigned host with a photo) or the blank `fa-users` box, "Host" and the host name
     ("Your Host" when empty, "Host Allocation Pending" when not assigned), Person_Contact_Options (Phone, Email) and the
     angle-right (visible when HouseholdDisplay); a click on the host or the arrow raises HostInformation. An assigned
-    host also shows the address and the "Directions" button (both raise Address). No controller logic of its own.
+    host also shows the address and the "Directions" button (both raise Address). Last, always, the "ldm-notes"
+    container with ItemNotesSection $b2 (TST 2026-10-27): its On_NotesChanged and On_NoteDeleted raise
+    HandlerOn_NotesChanged and HandlerOn_NoteDeleted. No controller logic of its own.
     @origin Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard */
 export function EventDetail_HostCard({
   id,
@@ -51,6 +68,10 @@ export function EventDetail_HostCard({
   onNavigateToEmailHousehold,
   onCallPhone,
   onAddress,
+  eventNotes,
+  notesItemId,
+  onNotesChanged,
+  onNoteDeleted,
 }: EventDetail_HostCardProps) {
   const w = `${String(maxPhotoWidth)}px`;
   const h = `${String(maxPhotoHeight)}px`;
@@ -147,6 +168,19 @@ export function EventDetail_HostCard({
             </div>
           </div>
         ) : null}
+        <div className="ldm-notes" data-container="">
+          <ItemNotesSection
+            id={`${scope}-$b2`}
+            inNoteCategoryId={NOTE_CATEGORY_LDM_EVENT}
+            actionBarOptions={NOTES_ACTIONS}
+            inItemId={notesItemId}
+            inNotes={eventNotes}
+            onOnNotesChanged={onNotesChanged}
+            onOnNoteDeleted={(noteId) => {
+              onNoteDeleted(noteId);
+            }}
+          />
+        </div>
       </div>
     </OSBlock>
   );

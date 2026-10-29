@@ -1,4 +1,4 @@
-define("UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnect.Directory_Caroussel.EntitiesCarouse_lSupperMeetingDetails.mvc$model", "UBTConnect.Directory_Caroussel.CarouselTag.mvc$model", "UBTConnect.Directory_Caroussel.EntitiesCarousel_HouseholdDetails.mvc$model", "UBTConnect.controller$Get_IsInsideRenderBuffer"], function (OutSystems, UBTConnectModel, UBTConnectController, UBTConnect_Directory_Caroussel_EntitiesCarouse_lSupperMeetingDetails_mvcModel, UBTConnect_Directory_Caroussel_CarouselTag_mvcModel, UBTConnect_Directory_Caroussel_EntitiesCarousel_HouseholdDetails_mvcModel) {
+define("UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnect.Directory_Caroussel.EntitiesCarousel_OneSchoolGlobal.mvc$model", "UBTConnect.Directory_Caroussel.CarouselTag.mvc$model", "UBTConnect.Directory_Caroussel.EntitiesCarouse_lSupperMeetingDetails.mvc$model", "UBTConnect.Directory_Caroussel.EntitiesCarousel_HouseholdDetails.mvc$model", "UBTConnect.controller$Get_IsInsideRenderBuffer"], function (OutSystems, UBTConnectModel, UBTConnectController, UBTConnect_Directory_Caroussel_EntitiesCarousel_OneSchoolGlobal_mvcModel, UBTConnect_Directory_Caroussel_CarouselTag_mvcModel, UBTConnect_Directory_Caroussel_EntitiesCarouse_lSupperMeetingDetails_mvcModel, UBTConnect_Directory_Caroussel_EntitiesCarousel_HouseholdDetails_mvcModel) {
 var OS = OutSystems.Internal;
 
 
@@ -96,7 +96,7 @@ enumerable: true,
 configurable: true,
 get: function () {
 if((Model._hasValidationWidgetsValue === undefined)) {
-Model._hasValidationWidgetsValue = ((UBTConnect_Directory_Caroussel_EntitiesCarouse_lSupperMeetingDetails_mvcModel.hasValidationWidgets || UBTConnect_Directory_Caroussel_CarouselTag_mvcModel.hasValidationWidgets) || UBTConnect_Directory_Caroussel_EntitiesCarousel_HouseholdDetails_mvcModel.hasValidationWidgets);
+Model._hasValidationWidgetsValue = (((UBTConnect_Directory_Caroussel_EntitiesCarousel_OneSchoolGlobal_mvcModel.hasValidationWidgets || UBTConnect_Directory_Caroussel_CarouselTag_mvcModel.hasValidationWidgets) || UBTConnect_Directory_Caroussel_EntitiesCarouse_lSupperMeetingDetails_mvcModel.hasValidationWidgets) || UBTConnect_Directory_Caroussel_EntitiesCarousel_HouseholdDetails_mvcModel.hasValidationWidgets);
 }
 
 return Model._hasValidationWidgetsValue;
@@ -165,7 +165,7 @@ return Model;
 })(OS.Model.BaseViewModel);
 return new OS.Model.ModelFactory(Model, "Directory_Caroussel.EntitiesCarousel_Element");
 });
-define("UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "react", "OutSystems/ReactView/Main", "UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc$model", "UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc$controller", "UBTConnect.clientVariables", "OutSystems/ReactWidgets/Main", "UBTConnect.Directory_Caroussel.EntitiesCarouse_lSupperMeetingDetails.mvc$view", "UBTConnect.Directory_Caroussel.CarouselTag.mvc$view", "UBTConnect.Directory_Caroussel.EntitiesCarousel_HouseholdDetails.mvc$view", "UBTConnect.controller$Get_IsInsideRenderBuffer"], function (OutSystems, UBTConnectModel, UBTConnectController, React, OSView, UBTConnect_Directory_Caroussel_EntitiesCarousel_Element_mvc_model, UBTConnect_Directory_Caroussel_EntitiesCarousel_Element_mvc_controller, UBTConnectClientVariables, OSWidgets, UBTConnect_Directory_Caroussel_EntitiesCarouse_lSupperMeetingDetails_mvc_view, UBTConnect_Directory_Caroussel_CarouselTag_mvc_view, UBTConnect_Directory_Caroussel_EntitiesCarousel_HouseholdDetails_mvc_view) {
+define("UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "react", "OutSystems/ReactView/Main", "UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc$model", "UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc$controller", "UBTConnect.clientVariables", "OutSystems/ReactWidgets/Main", "UBTConnect.Directory_Caroussel.EntitiesCarousel_OneSchoolGlobal.mvc$view", "UBTConnect.Directory_Caroussel.EntitiesCarouse_lSupperMeetingDetails.mvc$view", "UBTConnect.Directory_Caroussel.CarouselTag.mvc$view", "UBTConnect.Directory_Caroussel.EntitiesCarousel_HouseholdDetails.mvc$view", "UBTConnect.controller$Get_IsInsideRenderBuffer"], function (OutSystems, UBTConnectModel, UBTConnectController, React, OSView, UBTConnect_Directory_Caroussel_EntitiesCarousel_Element_mvc_model, UBTConnect_Directory_Caroussel_EntitiesCarousel_Element_mvc_controller, UBTConnectClientVariables, OSWidgets, UBTConnect_Directory_Caroussel_EntitiesCarousel_OneSchoolGlobal_mvc_view, UBTConnect_Directory_Caroussel_EntitiesCarouse_lSupperMeetingDetails_mvc_view, UBTConnect_Directory_Caroussel_CarouselTag_mvc_view, UBTConnect_Directory_Caroussel_EntitiesCarousel_HouseholdDetails_mvc_view) {
     var OS = OutSystems.Internal;
 var PlaceholderContent = OSView.Widget.PlaceholderContent;
 var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
@@ -197,7 +197,7 @@ var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
             return [];
         };
         View.getBlocks = function() {
-            return [UBTConnect_Directory_Caroussel_EntitiesCarouse_lSupperMeetingDetails_mvc_view, UBTConnect_Directory_Caroussel_CarouselTag_mvc_view, UBTConnect_Directory_Caroussel_EntitiesCarousel_HouseholdDetails_mvc_view];
+            return [UBTConnect_Directory_Caroussel_EntitiesCarousel_OneSchoolGlobal_mvc_view, UBTConnect_Directory_Caroussel_EntitiesCarouse_lSupperMeetingDetails_mvc_view, UBTConnect_Directory_Caroussel_CarouselTag_mvc_view, UBTConnect_Directory_Caroussel_EntitiesCarousel_HouseholdDetails_mvc_view];
         };
         Object.defineProperty(View.prototype, "modelFactory", {
             get: function () {
@@ -244,7 +244,31 @@ service: idService,
 uuid: "0"
 },
 _widgetRecordProvider: widgetsRecordProvider
-}, $if((model.variables.in_ConnectEntityTypeIdIn === UBTConnectModel.staticEntities.connect_Entity.supperMeetings_aka_Subdivisions), false, this, function () {
+}, $if((model.variables.in_ConnectEntityTypeIdIn === UBTConnectModel.staticEntities.connect_Entity.oneSchoolGlobal), false, this, function () {
+return [React.createElement(UBTConnect_Directory_Caroussel_EntitiesCarousel_OneSchoolGlobal_mvc_view, {
+inputs: {
+In_EntityId: model.variables.in_EntityIdIn,
+_in_EntityIdInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables._in_EntityIdInDataFetchStatus)
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+uuid: "1",
+alias: "1"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+_dependencies: []
+})];
+}, function () {
+return [];
+}), $if((model.variables.in_ConnectEntityTypeIdIn === UBTConnectModel.staticEntities.connect_Entity.supperMeetings_aka_Subdivisions), false, this, function () {
 return [React.createElement(UBTConnect_Directory_Caroussel_EntitiesCarouse_lSupperMeetingDetails_mvc_view, {
 inputs: {
 In_SubdivisionId: model.variables.in_EntityIdIn,
@@ -260,8 +284,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "1",
-alias: "1"
+uuid: "2",
+alias: "2"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
@@ -283,8 +307,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "2",
-alias: "2"
+uuid: "3",
+alias: "3"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
@@ -326,8 +350,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "3",
-alias: "3"
+uuid: "4",
+alias: "4"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
@@ -349,8 +373,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "4",
-alias: "4"
+uuid: "5",
+alias: "5"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
@@ -481,8 +505,8 @@ return Promise.resolve();
 // Event Handler Actions
 Controller.prototype.pushDebuggerContext = function (callContext) {
 var varBag = {};
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:3kpgKiDrmECLIcldYvdd+A:/NRWebFlows.3kpgKiDrmECLIcldYvdd+A:uGYi+UeKE4QciHgKGLa3sw", "UBTConnect", "Directory_Caroussel", "NRFlows.WebFlow", callContext.id, varBag);
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:vSKr98W4AU+yPD8PsfbrrQ:/NRWebFlows.3kpgKiDrmECLIcldYvdd+A/NodesShownInESpaceTree.vSKr98W4AU+yPD8PsfbrrQ:y_Drd40jYAsvBLVecaa1jQ", "UBTConnect", "EntitiesCarousel_Element", "NRNodes.WebBlock", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:3kpgKiDrmECLIcldYvdd+A:/NRWebFlows.3kpgKiDrmECLIcldYvdd+A:GUqi42j5JzeF3DYtR7PIbA", "UBTConnect", "Directory_Caroussel", "NRFlows.WebFlow", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:vSKr98W4AU+yPD8PsfbrrQ:/NRWebFlows.3kpgKiDrmECLIcldYvdd+A/NodesShownInESpaceTree.vSKr98W4AU+yPD8PsfbrrQ:UWSYLUyliCIm+1WUZK6z8w", "UBTConnect", "EntitiesCarousel_Element", "NRNodes.WebBlock", callContext.id, varBag);
 };
 Controller.prototype.popDebuggerContext = function (callContext) {
 OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:vSKr98W4AU+yPD8PsfbrrQ", callContext.id);
@@ -618,6 +642,13 @@ getter: function (varBag, idService) {
 return varBag.model.variables.in_RenderBufferIn;
 },
 dataType: OS.DataTypes.DataTypes.Integer
+},
+"ZobXqEyazk6UJDpfJLYWNQ": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("IsOneSchoolGlobal"));
+})(varBag.model, idService);
+}
 },
 "zTC6o0gQFUuk13s9J_PTww": {
 getter: function (varBag, idService) {

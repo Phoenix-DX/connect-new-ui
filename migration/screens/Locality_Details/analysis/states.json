@@ -41,27 +41,6 @@
   "bodyStyle": "--header-size-content: 107px; --footer-height: 56px; --viewport-height: 844px;",
   "dpr": 1
  },
- "tag-suppermeetings": {
-  "viewport": "390x844",
-  "viewportName": "phone",
-  "variant": null,
-  "flags": {},
-  "route": "/UBTConnect/Locality_Details?LocalityId=252&PreloadedLocalityLabel=Bahia%20Blanca%2C%20Argentina",
-  "steps": [
-   {
-    "click": "[data-block='ConnectPatterns.TagToggle'] >> nth=1",
-    "waitMs": 3000,
-    "label": "tag-suppermeetings"
-   }
-  ],
-  "scenario": "real",
-  "auto": null,
-  "phase": "tag-suppermeetings",
-  "htmlClass": "",
-  "bodyClass": "phone portrait osx is-ltr",
-  "bodyStyle": "--header-size-content: 107px; --footer-height: 56px; --viewport-height: 844px;",
-  "dpr": 1
- },
  "tag-interchange": {
   "viewport": "390x844",
   "viewportName": "phone",
@@ -83,7 +62,7 @@
   "scenario": "real",
   "auto": null,
   "phase": "tag-interchange",
-  "htmlClass": "",
+  "htmlClass": "popup-disable-scroll",
   "bodyClass": "phone portrait osx is-ltr",
   "bodyStyle": "--header-size-content: 107px; --footer-height: 56px; --viewport-height: 844px;",
   "dpr": 1
@@ -115,6 +94,27 @@
   "auto": null,
   "phase": "tag-oneschoolglobal",
   "htmlClass": "popup-disable-scroll",
+  "bodyClass": "phone portrait osx is-ltr",
+  "bodyStyle": "--header-size-content: 107px; --footer-height: 56px; --viewport-height: 844px;",
+  "dpr": 1
+ },
+ "tag-suppermeetings": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/Locality_Details?LocalityId=252&PreloadedLocalityLabel=Bahia%20Blanca%2C%20Argentina",
+  "steps": [
+   {
+    "click": "[data-block='ConnectPatterns.TagToggle'] >> nth=1",
+    "waitMs": 3000,
+    "label": "tag-suppermeetings"
+   }
+  ],
+  "scenario": "real",
+  "auto": null,
+  "phase": "tag-suppermeetings",
+  "htmlClass": "",
   "bodyClass": "phone portrait osx is-ltr",
   "bodyStyle": "--header-size-content: 107px; --footer-height: 56px; --viewport-height: 844px;",
   "dpr": 1

@@ -62,7 +62,6 @@ export interface NotificationsVariables {
   isHeaderScrolled: boolean;
   isToggleSearch: boolean;
   currentSearchString: string;
-  badgeNumber: number;
   selectedHistorySearch: string;
   deviceHardwareId: string;
   filter_MessageTypePrivate: boolean;
@@ -76,6 +75,10 @@ export interface NotificationsVariables {
   selectedFilter_MessageTypePrivate: boolean;
   selectedFilter_MessageTypePublic: boolean;
   moreAction_BottomSheetId: string;
+  /** The "Only show unread" switch (Handler_OnlyShowUnread). The data action reads it on the server. */
+  local_OnlyShowUnread: boolean;
+  /** The unread count of the header Badge (OnAfterFetch_FetchNotifications, Handler_UpdateReadCount). */
+  readCount: number;
 }
 
 /** A record of the static entity Updates_DateRanges of UBTConnect: Id (the identifier, as text) and Order. */
@@ -93,7 +96,8 @@ export interface NotificationList {
 
 /* ---- The notification wrappers of Connect2_LegacyShared ---- */
 
-/** The inputs of the server action Wrapper_MarkAllAsReadNotifications: the message types (public, private), the
+/** The inputs of the server action Wrapper_MarkAllAsReadNotifications (and of MarkAllAsReadNotifications of the
+    screen Notifications, the same four inputs): the message types (public, private), the
     device and the search term of the message list. */
 export interface NotificationReadFilter {
   isPublic: boolean;

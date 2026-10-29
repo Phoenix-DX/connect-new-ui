@@ -4,6 +4,7 @@ import { MemoryRouter } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { markCarouselUpdateItemAsRead } from '@/api/update';
 import { LOCALITY_HOUSEHOLDS } from '@/mocks/fictional/directory';
+import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { getPreloadObject, setPreloadObject } from '@/platform/navigation';
 import { resetNavigation } from '@/platform/navigation/testRouter';
 import { getClientVar, setClientVar } from '@/platform/session/session';
@@ -16,6 +17,10 @@ import { useHouseholdCarousel } from './useHouseholdCarousel';
 vi.mock('@/api/update', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/api/update')>()),
   markCarouselUpdateItemAsRead: vi.fn(() => Promise.resolve()),
+}));
+vi.mock('@/platform/feedback/flowErrors', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/platform/feedback/flowErrors')>()),
+  raiseToFlowHandler: vi.fn(),
 }));
 const { setCached } = vi.hoisted(() => ({ setCached: vi.fn() }));
 vi.mock('@/platform/navigation', async (importOriginal) => {
@@ -122,8 +127,8 @@ describe('useHouseholdCarousel', () => {
   });
 });
 
-describe('useHouseholdCarousel after an unmount (decision W23)', () => {
-  it('a started swipe action still marks the update read and lowers the count once, and writes no variable', async () => {
+describe('useHouseholdCarousel after an unmount (flow scope, item 8)', () => {
+  it('R2: a started swipe action (a module action) still marks the update read and lowers the count once, and writes no variable', async () => {
     let answer: () => void = () => undefined;
     vi.mocked(markCarouselUpdateItemAsRead).mockImplementationOnce(
       () =>
@@ -152,5 +157,24 @@ describe('useHouseholdCarousel after an unmount (decision W23)', () => {
     expect(getClientVar(UNREAD)).toBe(4);
     expect(setCached).not.toHaveBeenCalled();
     expect(renders).toBe(rendersAtUnmount);
+  });
+
+  it('R6: a failed swipe action goes to the flow handler with the flow scope (flow.run) and writes no variable', async () => {
+    const failure = new Error('UpdateItem_MarkAsRead failed');
+    vi.mocked(markCarouselUpdateItemAsRead).mockRejectedValueOnce(failure);
+    vi.mocked(raiseToFlowHandler).mockClear();
+    setPreloadObject(PRELOAD);
+    const { result } = renderHook(() => useHouseholdCarousel({ In_StartingHouseholdId: '91001' }), { wrapper });
+    setCached.mockClear();
+    act(() => {
+      result.current.onEventMoved(1);
+    });
+    await settle();
+    // The second argument is the flow scope of useFlowScope (`alive` is a function).
+    const isFlowScope = (scope: unknown) => typeof (scope as { alive?: unknown } | undefined)?.alive === 'function';
+    const raised = vi.mocked(raiseToFlowHandler).mock.calls.map(([error, scope]) => [error, isFlowScope(scope)]);
+    expect(raised).toEqual([[failure, true]]);
+    expect(getClientVar(UNREAD)).toBe(5);
+    expect(setCached).not.toHaveBeenCalled();
   });
 });

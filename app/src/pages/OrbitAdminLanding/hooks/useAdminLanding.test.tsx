@@ -4,6 +4,7 @@ import { MemoryRouter } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { fetchAdminEvents, type AdminEventItem } from '@/api/event';
 import { CommunicationException } from '@/legacy/os/exceptions';
+import { IgnorableSystemException } from '@/legacy/os/os-exceptions';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
 import { adminLandingReducer } from './adminLandingState';
@@ -258,7 +259,24 @@ describe('useAdminLanding', () => {
     expect(onApplicationEvent_ClickEvent).not.toHaveBeenCalled();
   });
 
-  it('W23: after the unmount, the started OnReady makes its call once and writes no state', async () => {
+  it('a card click sends its failure to the flow handler with the flow scope', async () => {
+    const error = new CommunicationException('offline');
+    const events: AdminLandingEvents = { onNavigateToEventDetail: vi.fn(() => Promise.reject(error)) };
+    const { result } = renderHook(() => useAdminLanding(events), { wrapper });
+    await settle();
+    act(() => {
+      result.current.onEventCardClicked({ EventId: '7302' }, 'Youth Day');
+    });
+    await settle();
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
+  });
+});
+
+/** The errors that reached the flow handler, without the ignorable ones (the handler drops them: R1). */
+const raisedErrors = () => raised().filter((error) => !(error instanceof IgnorableSystemException));
+
+describe('useAdminLanding after an unmount (flow scope, item 8)', () => {
+  it('R1: unmount while Get_AdminEventsList is pending: the answer writes no state and raises nothing', async () => {
     const answer = pendingEvents();
     let renders = 0;
     const { unmount } = renderHook(
@@ -277,23 +295,22 @@ describe('useAdminLanding', () => {
     expect(fetchAdminEvents).toHaveBeenCalledTimes(1);
     expect(adminLandingReducer).not.toHaveBeenCalled();
     expect(renders).toBe(rendersAtUnmount);
-    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 
-  it('W23: an error after the unmount still goes to the flow handler, once, without a state write', async () => {
+  it('R1: unmount while Get_AdminEventsList is pending: its failure reaches no handler and writes no state', async () => {
     const answer = pendingEvents();
     const { unmount } = renderHook(() => useAdminLanding(noEvents()), { wrapper: strictWrapper });
     await settle();
     unmount();
     vi.mocked(adminLandingReducer).mockClear();
-    const error = new CommunicationException('offline');
-    answer.reject(error);
+    answer.reject(new CommunicationException('offline'));
     await settle();
-    expect(raised()).toEqual([error]);
+    expect(raisedErrors()).toEqual([]);
     expect(adminLandingReducer).not.toHaveBeenCalled();
   });
 
-  it('W23: a card click that started before the unmount still records its audit event, once', async () => {
+  it('R2: a card click whose event ends after the unmount still records OnApplicationEvent_ClickEvent (module action), once', async () => {
     const navigation = pendingNavigation();
     const { result, unmount } = renderHook(() => useAdminLanding(navigation.events), { wrapper: strictWrapper });
     await settle();

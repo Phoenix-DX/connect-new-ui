@@ -2,7 +2,7 @@
 // @os-block Connect2_LegacyShared.Layout.Layout
 import { useEffect, useLayoutEffect, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { setThemeClassToBody } from '@/legacy/os/bodyTheme';
+import { setLayoutTheme } from '@/components/layout/layoutTheme';
 import { LayoutRuntimeTop } from '@/components/layout/LayoutRuntimeTop';
 import { BaseLayout } from '@/components/layout/BaseLayout';
 import { iOSMetaTags, iOSPreventSwipe } from '@/lib/legacyShared/actions';
@@ -40,7 +40,7 @@ export interface LegacyLayoutProps {
     BaseLayout_UpdatedOSUI inside `backwards-compatibility connect-theme`, with ExtendedClass "connect-theme " +
     ExtendedClasses and each placeholder in its own container (HeaderRight `display-flex align-items-center`; the
     HeaderSearch placeholder stays empty). OnInitialize (controller :415) sets the Connect theme class on the body
-    (shell/bodyTheme.ts); OnReady (:384-389) runs IOSMetaTags and IOSPreventSwipe (OutSystems UI LayoutReady is not
+    (platform/theme/bodyTheme.ts through layoutTheme.ts); OnReady (:384-389) runs IOSMetaTags and IOSPreventSwipe (OutSystems UI LayoutReady is not
     ported). */
 export function LegacyLayout({
   id,
@@ -61,7 +61,7 @@ export function LegacyLayout({
   const prefix = id?.replace('$', '');
   const child = (alias: string) => (prefix === undefined ? undefined : `${prefix}-${alias}`);
   useLayoutEffect(() => {
-    setThemeClassToBody(ThemeClass.Connect);
+    setLayoutTheme(ThemeClass.Connect);
   }, []);
   useEffect(() => {
     iOSMetaTags();

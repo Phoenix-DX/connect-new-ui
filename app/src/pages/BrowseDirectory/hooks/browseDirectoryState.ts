@@ -25,7 +25,7 @@ export interface BrowseDirectoryState {
 }
 
 /** The changes of the state. */
-export type BrowseDirectoryAction =
+type BrowseDirectoryAction =
   /** Action_RefreshData, first node: Out_LocalitiesStatistics = GetSkeletonList_UI_LocalityStatistics(10). */
   | { type: 'refreshStarted' }
   /** The answer of DataActionGetLocalityStatistics, then OnAfterFetch_GetLocalityStatistics. */

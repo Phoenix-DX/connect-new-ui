@@ -45,6 +45,8 @@ export interface CarouselProviderApi {
   toggleDrag: (hasDrag: boolean) => void;
   /** The provider's StartingPosition config (`_configs.StartingPosition`), read by the next redraw. */
   setStartingPosition: (index: number) => void;
+  /** Removes the window resize handler that build added (`_eventOnResize`). */
+  removeOnResizeHandler: () => void;
 }
 
 const carousels = new Map<string, CarouselProviderApi>();
@@ -176,6 +178,13 @@ export function carouselGoTo(widgetId: string, index: number): boolean {
   });
 }
 
+/** RemoveCarouselOnResizeHandler(CarouselId): the JS node of UBTConnect EntitiesCarousel Handler_EntitiesCarousel_Initialized
+    (live TST of 2026-10-27, EntitiesCarousel.mvc.js RemoveCarouselOnResizeHandlerJS): GetCarouselItemById, then
+    GlobalListenerManager removeHandler(WindowResize, `_eventOnResize`). An unknown carousel: nothing. */
+export function removeCarouselOnResizeHandler(widgetId: string): void {
+  carousels.get(widgetId)?.removeOnResizeHandler();
+}
+
 /** CarouselToggleDrag(WidgetId, HasDrag) (controller raw :4085, CarouselAPI.ToggleDrag OSUI:13437-13447): enables or
     disables dragging the slides (Splide `drag` option). Returns Success. */
 export function carouselToggleDrag(widgetId: string, hasDrag: boolean): boolean {
@@ -287,6 +296,14 @@ export function dropdownClear(widgetId: string, silentOnChangedEvent = true): bo
 export function dropdownClearValidation(widgetId: string): boolean {
   return dropdownApiResponse(widgetId, (pattern) => {
     pattern.validation(true, '');
+  });
+}
+
+/** DropdownNotValid(WidgetId, ValidationMessage) (CT:8857-8962, ValidationDropdownJS CT:8963-8967 →
+    DropdownAPI.SetValidation(WidgetId, false, ValidationMessage)): adds the not-valid state and its error message. */
+export function dropdownNotValid(widgetId: string, validationMessage: string): boolean {
+  return dropdownApiResponse(widgetId, (pattern) => {
+    pattern.validation(false, validationMessage);
   });
 }
 

@@ -38,6 +38,10 @@ export interface SearchResultItemProps {
   inLocationTopPadding?: string;
   /** Event OnClick(SearchResult). */
   onOnClick?: (searchResult: SearchResult) => void;
+  /** OnClick_UpgradeSubscription (SearchResult_Item.mvc.js:702-735): App_Subscription_NavigateToUpgrade
+      (platform/feedback/dialogs), given by the caller, because components/ does not import platform/. The click on
+      "Subscription upgrade needed" runs it. */
+  onClickUpgradeSubscription?: () => void;
   /** Placeholder Placeholder_Actions. */
   children?: ReactNode;
 }
@@ -67,6 +71,7 @@ export function SearchResultItem({
   inTitleFontSize = UBT_FontSize.ExtraSmall,
   inLocationTopPadding = UBT_Size.Small,
   onOnClick,
+  onClickUpgradeSubscription,
   children,
 }: SearchResultItemProps) {
   // OnInitialize runs once (no OnParametersChanged handler).
@@ -114,10 +119,11 @@ export function SearchResultItem({
                     }}
                   />
                   {inShowSubscriptionWarning ? (
-                    /* Click: App_Subscription_NavigateToUpgrade (not ported, see README). */
+                    /* The Clicked event of IconText (SearchResult_Item.mvc.js:440-466): OnClick_UpgradeSubscription. */
                     <IconText
                       textOptions={{ Color: UBT_Color.BlueDark, FontSize: UBT_FontSize.ExtraSmall }}
                       text="Subscription upgrade needed"
+                      onClicked={onClickUpgradeSubscription}
                     >
                       <Icon
                         inColorId={UBT_Color.BlueDark}

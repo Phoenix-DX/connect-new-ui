@@ -2,9 +2,16 @@ import { composeStories } from '@storybook/react-vite';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { supperMeetingName, VITALE } from '@/mocks/fictional/directory';
+import { KebabButtonMenu } from '@/components/ui/KebabButtonMenu';
 import * as stories from './HouseholdDetailsView.stories';
 
 const { Default, Loading, Offline, Preview } = composeStories(stories);
+
+/* The real KebabButtonMenu, spied on for its inputs. */
+vi.mock('@/components/ui/KebabButtonMenu', async (importOriginal) => {
+  const real = await importOriginal<typeof import('@/components/ui/KebabButtonMenu')>();
+  return { ...real, KebabButtonMenu: vi.fn(real.KebabButtonMenu) };
+});
 
 const block = (container: HTMLElement, name: string) => container.querySelectorAll(`[data-block="${name}"]`);
 /** The detail card is inside a loading skeleton section. */
@@ -46,6 +53,22 @@ describe('HouseholdDetailsView', () => {
     expect(block(container, 'ConnectCorePatterns.KebabButtonMenu')).toHaveLength(1);
     expect(block(container, 'CW_Share.ShareSheet')).toHaveLength(1);
     expect(block(container, 'ConnectCorePatterns.Member_ListItem')).toHaveLength(3);
+  });
+
+  it('KebabButtonMenu In_DisableShare = not GetHousehold.IsVisible (live TST, HouseholdDetails_Block.mvc.js:560)', () => {
+    const household = Preview.args.household;
+    if (!household) throw new Error('no household');
+    render(<Preview />);
+    expect(vi.mocked(KebabButtonMenu).mock.lastCall?.[0].inDisableShare).toBe(false);
+    render(<Preview household={{ ...household, isVisible: false }} />);
+    expect(vi.mocked(KebabButtonMenu).mock.lastCall?.[0].inDisableShare).toBe(true);
+  });
+
+  it('Photos tag: the Coming Soon box only while mobileDirectoryHouseholdGallery is off (live TST, :1298-1301)', () => {
+    const { container, rerender } = render(<Default selectedTag="Photos" />);
+    expect(block(container, 'ConnectPatterns.ComingSoon')).toHaveLength(1);
+    rerender(<Default selectedTag="Photos" hasHouseholdGallery />);
+    expect(block(container, 'ConnectPatterns.ComingSoon')).toHaveLength(0);
   });
 
   it('hides the members off the About tag and when skeleton only; hides the actions on request', () => {

@@ -5,6 +5,7 @@ import { allowUpcomingNavigation, replaceOnUpcomingNavigation, useNavigateBack }
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
 import { clientVar } from '@/platform/session/session';
 import { getUserInformation } from '@/platform/session/userInfo';
+import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { jSUtils_SetStyleProperty } from '@/lib/jsUtils';
 import { getSVGMetric } from '@/pages/AcceptPendingPolicies/actions';
 
@@ -54,17 +55,23 @@ export function useAcceptPendingPolicies(): AcceptPendingPoliciesState {
 
   // AcceptPendingPoliciesAcceptedAll: Cache_UserInfo_Get; HasPoliciesToAccept = False; PutCacheableObject(DirectoryUser,
   // Get_MemoryCacheKey_UniqueKey, user info, 7200); App_Policies_HasPolicyToAccept = False; ReplaceOnUpcomingNavigation;
-  // AllowUpcomingNavigation; PreviousScreen.
+  // AllowUpcomingNavigation; PreviousScreen. The screen action runs through safeExecuteClientAction
+  // (AcceptPendingPolicies.mvc.js:798-799, OutSystems.js): an exception (for example a CommunicationException of a
+  // cache miss) goes to the screen handleError, then App_Policies and App_Common show the message (App_Policies F3).
   const acceptedAll = async () => {
-    const info = await getUserInformation();
-    putCacheableObject(memberCache.userInfo(clientVar.uniqueCacheKey.get()), {
-      ...info,
-      HasPoliciesToAccept: false,
-    });
-    clientVar.hasPolicyToAccept.set(false);
-    replaceOnUpcomingNavigation();
-    allowUpcomingNavigation();
-    navigateBack();
+    try {
+      const info = await getUserInformation();
+      putCacheableObject(memberCache.userInfo(clientVar.uniqueCacheKey.get()), {
+        ...info,
+        HasPoliciesToAccept: false,
+      });
+      clientVar.hasPolicyToAccept.set(false);
+      replaceOnUpcomingNavigation();
+      allowUpcomingNavigation();
+      navigateBack();
+    } catch (error) {
+      raiseToFlowHandler(error);
+    }
   };
 
   return { useOverlay, userCountry, mainContainer, defineHeight, onLayoutReady, acceptedAll };

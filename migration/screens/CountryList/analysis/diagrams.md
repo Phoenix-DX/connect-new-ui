@@ -49,24 +49,26 @@ flowchart TB
     direction LR
     S0["DataActionFetchCount<br/>data action / aggregate, observed"]
     S1["DataActionGetCacheInfo<br/>data action / aggregate, observed"]
-    S2["DataActionGetCountriesStatistics<br/>data action / aggregate, observed"]
-    S3["ActionAppManager_SynchAppContext<br/>observed"]
-    S4["ActionAppManager_AfterInitialize<br/>observed"]
-    S5["ActionSync_Info_GetMain<br/>observed"]
-    S6["ActionGetNumberUnreadMessages<br/>observed"]
-    S7["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
+    S2["DataActionGetCommunityStatistics<br/>data action / aggregate, observed"]
+    S3["DataActionGetCountriesStatistics<br/>data action / aggregate, observed"]
+    S4["ActionAppManager_SynchAppContext<br/>observed"]
+    S5["ActionAppManager_AfterInitialize<br/>observed"]
+    S6["ActionSync_Info_GetMain<br/>observed"]
+    S7["ActionGetNumberUnreadMessages<br/>observed"]
     S8["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
+    S9["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
   end
   Backend["Backend<br/>not visible from the browser"]
   B7 --> S0
   Content --> S1
   Content --> S2
-  Content -.-> S3
+  Content --> S3
   Content -.-> S4
   Content -.-> S5
   Content -.-> S6
   Content -.-> S7
   Content -.-> S8
+  Content -.-> S9
   S0 -.-> Backend
   classDef unknown stroke-dasharray: 5 4;
   class Backend unknown;
@@ -90,13 +92,15 @@ sequenceDiagram
   API-->>S: UI_MembersStatistics
   S->>API: DataActionGetCacheInfo
   API-->>S: CacheControl_Response, TTL
+  S->>API: DataActionGetCommunityStatistics
+  API-->>S: Out_CommunityStatistics
   S->>API: DataActionGetCountriesStatistics
   API-->>S: Out_CountriesStatistics
   S->>S: onAfterFetch_GetCountriesStatistics
-  S->>API: ServiceAPIFetchData_CacheableHouseholds
+  S->>API: ServiceAPIFetchData_CacheableMapEntities
   Note over S,API: observed in capture, trigger unverified (TODO)
   API-->>S: TODO outputs
-  S->>API: ServiceAPIFetchData_CacheableMapEntities
+  S->>API: ServiceAPIFetchData_CacheableHouseholds
   Note over S,API: observed in capture, trigger unverified (TODO)
   API-->>S: TODO outputs
   alt success

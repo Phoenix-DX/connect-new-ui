@@ -21,7 +21,8 @@ SelectionOption_List.
 | ------- | ---------------------- |
 | v1      | CountryDetails/default |
 
-## Not settled (question)
+## Search
 
-- JSUtils_String_RemoveAccents (UBTJavaScriptUtils): its JavaScript is in no captured source. The search compares the
-  texts as they are, with no accent removal, until the source is available.
+- Action_DefineOptions (FilterSheet_OptionList_Item.mvc.js:721-739) passes DisplayText and the search text through
+  JSUtils_String_RemoveAccents (UBTJavaScriptUtils.controller.js:3078-3084, ported in `lib/jsUtils.ts`). The compare
+  ignores case, so a search for "Sao" finds "São Paulo".

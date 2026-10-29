@@ -2,7 +2,7 @@
 
 - Path: `/UBTConnect/OneSchoolGlobalDetails`
 - Viewport at capture: {'width': 390, 'height': 844, 'dpr': 1}
-- body class: `phone portrait osx is-ltr`; body style: `--header-size-content: 0px; --footer-height: 56px; --viewport-height: 844px;`
+- body class: `phone portrait osx is-ltr`; body style: `--header-size-content: 0px; --footer-height: 42px; --viewport-height: 844px;`
 - PWA: manifest `/UBTConnect/moduleservices/pwa/manifest`, service workers []
 - Screen file: `UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js`
 
@@ -13,116 +13,118 @@ Layouts.Layout_DetailPage
   ConnectPatterns.Icon
   BasePatterns.CustomText
     ConnectPatterns.IconInline_Internal
-  SubLayout.SubLayout_DirectoryDetailScreen
-    ConnectPatterns.SkeletonSection
-      ConnectCorePatterns.ImageCard_LazyLoading
-        BasePatterns.CustomContainer
+  Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block
+    SubLayout.SubLayout_DirectoryDetailScreen
+      ConnectPatterns.SkeletonSection
+        ConnectCorePatterns.ImageCard_LazyLoading
           BasePatterns.CustomContainer
-            CW_Image.UBT_LazyImage
-              ConnectPatterns.SkeletonSection
-                ConnectPatterns.LazyImage
-                  ConnectPatterns.SkeletonSection
-                    BasePatterns.CustomContainer
-          BasePatterns.CustomContainer
-            ConnectPatterns.ImageCard__Content
-              BasePatterns.CustomText
-                ConnectPatterns.IconInline_Internal
-              BasePatterns.CustomText
-                ConnectPatterns.IconInline_Internal
+            BasePatterns.CustomContainer
+              CW_Image.UBT_LazyImage
+                ConnectPatterns.SkeletonSection
+                  ConnectPatterns.LazyImage
+                    ConnectPatterns.SkeletonSection
+                      BasePatterns.CustomContainer
+            BasePatterns.CustomContainer
+              ConnectPatterns.ImageCard__Content
+                BasePatterns.CustomText
+                  ConnectPatterns.IconInline_Internal
+                BasePatterns.CustomText
+                  ConnectPatterns.IconInline_Internal
+                BasePatterns.CustomContainer
+                  CW_CTA_PopUps.AddressPopup_Wrapper
+                    BasePatterns.CustomText
+                      ConnectPatterns.IconInline_Internal
+                        ConnectPatterns.Icon
+                    CW_CTA_PopUps.AddressPopup
+                      CW_CTA_PopUps.ContactPopup
+                  App_Common_Blocks.External_Link
+                    ConnectPatterns.IconText
+                      BasePatterns.Columns_Two
+                        Adaptive.Columns2
+                          ConnectPatterns.Icon
+                          BasePatterns.CustomText
+                            ConnectPatterns.IconInline_Internal
+      BasePatterns.CustomContainer
+        Directory_CommonBlocks.Directory_EntityDetailsActions
+          ConnectPatterns.SkeletonSection
+            ConnectCorePatterns.ActionsMenu
               BasePatterns.CustomContainer
-                CW_CTA_PopUps.AddressPopup_Wrapper
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-                      ConnectPatterns.Icon
-                  CW_CTA_PopUps.AddressPopup
-                    CW_CTA_PopUps.ContactPopup
-                App_Common_Blocks.External_Link
+                ConnectPatterns.CircleButton_IconPrimary
+                  ConnectPatterns.CircleButton_WithLabel
+                    ConnectPatterns.CircleButton
+                      BasePatterns.CustomContainer
+                        ConnectPatterns.Icon
+                    BasePatterns.CustomContainer
+                      BasePatterns.CustomText
+                        ConnectPatterns.IconInline_Internal
+                ConnectPatterns.CircleButton_IconPrimary
+                  ConnectPatterns.CircleButton_WithLabel
+                    ConnectPatterns.CircleButton
+                      BasePatterns.CustomContainer
+                        ConnectPatterns.Icon
+                    BasePatterns.CustomContainer
+                      BasePatterns.CustomText
+                        ConnectPatterns.IconInline_Internal
+                ConnectPatterns.CircleButton_IconPrimary
+                  ConnectPatterns.CircleButton_WithLabel
+                    ConnectPatterns.CircleButton
+                      BasePatterns.CustomContainer
+                        ConnectPatterns.Icon
+                    BasePatterns.CustomContainer
+                      BasePatterns.CustomText
+                        ConnectPatterns.IconInline_Internal
+                ConnectPatterns.CircleButton_IconPrimary
+                  ConnectPatterns.CircleButton_WithLabel
+                    ConnectPatterns.CircleButton
+                      BasePatterns.CustomContainer
+                        ConnectPatterns.Icon
+                    BasePatterns.CustomContainer
+                      BasePatterns.CustomText
+                        ConnectPatterns.IconInline_Internal
+                ConnectPatterns.CircleButton_IconPrimary
+                  ConnectPatterns.CircleButton_WithLabel
+                    ConnectPatterns.CircleButton
+                      BasePatterns.CustomContainer
+                        ConnectPatterns.Icon
+                    BasePatterns.CustomContainer
+                      BasePatterns.CustomText
+                        ConnectPatterns.IconInline_Internal
+          CW_CTA_PopUps.ContactByMessage_Wrapper
+            CW_CTA_PopUps.ContactPopup_ByMessage
+              CW_CTA_PopUps.ContactPopup
+          CW_CTA_PopUps.ContactPopup_ByPhone
+            CW_CTA_PopUps.ContactPopup
+          CW_CTA_PopUps.SharePopup
+            CW_CTA_PopUps.ContactPopup
+      ConnectPatterns.SkeletonSection
+        BasePatterns.CustomContainer
+          ConnectPatterns.ExpandableSection
+            BasePatterns.CustomContainer
+              BasePatterns.Columns_Two
+                Adaptive.Columns2
                   ConnectPatterns.IconText
                     BasePatterns.Columns_Two
                       Adaptive.Columns2
                         ConnectPatterns.Icon
                         BasePatterns.CustomText
                           ConnectPatterns.IconInline_Internal
-    BasePatterns.CustomContainer
-      Directory_CommonBlocks.Directory_EntityDetailsActions
-        ConnectPatterns.SkeletonSection
-          ConnectCorePatterns.ActionsMenu
+                  ConnectPatterns.Icon
             BasePatterns.CustomContainer
-              ConnectPatterns.CircleButton_IconPrimary
-                ConnectPatterns.CircleButton_WithLabel
-                  ConnectPatterns.CircleButton
-                    BasePatterns.CustomContainer
-                      ConnectPatterns.Icon
+              BasePatterns.CustomContainer
+                ConnectPatterns.ComingSoon
                   BasePatterns.CustomContainer
                     BasePatterns.CustomText
                       ConnectPatterns.IconInline_Internal
-              ConnectPatterns.CircleButton_IconPrimary
-                ConnectPatterns.CircleButton_WithLabel
-                  ConnectPatterns.CircleButton
-                    BasePatterns.CustomContainer
-                      ConnectPatterns.Icon
-                  BasePatterns.CustomContainer
-                    BasePatterns.CustomText
-                      ConnectPatterns.IconInline_Internal
-              ConnectPatterns.CircleButton_IconPrimary
-                ConnectPatterns.CircleButton_WithLabel
-                  ConnectPatterns.CircleButton
-                    BasePatterns.CustomContainer
-                      ConnectPatterns.Icon
-                  BasePatterns.CustomContainer
-                    BasePatterns.CustomText
-                      ConnectPatterns.IconInline_Internal
-              ConnectPatterns.CircleButton_IconPrimary
-                ConnectPatterns.CircleButton_WithLabel
-                  ConnectPatterns.CircleButton
-                    BasePatterns.CustomContainer
-                      ConnectPatterns.Icon
-                  BasePatterns.CustomContainer
-                    BasePatterns.CustomText
-                      ConnectPatterns.IconInline_Internal
-              ConnectPatterns.CircleButton_IconPrimary
-                ConnectPatterns.CircleButton_WithLabel
-                  ConnectPatterns.CircleButton
-                    BasePatterns.CustomContainer
-                      ConnectPatterns.Icon
-                  BasePatterns.CustomContainer
-                    BasePatterns.CustomText
-                      ConnectPatterns.IconInline_Internal
-        CW_CTA_PopUps.ContactByMessage_Wrapper
-          CW_CTA_PopUps.ContactPopup_ByMessage
-            CW_CTA_PopUps.ContactPopup
-        CW_CTA_PopUps.ContactPopup_ByPhone
-          CW_CTA_PopUps.ContactPopup
-        CW_CTA_PopUps.SharePopup
-          CW_CTA_PopUps.ContactPopup
-        CW_Notes.NotesSheet
-    ConnectPatterns.SkeletonSection
-      BasePatterns.CustomContainer
-        ConnectPatterns.ExpandableSection
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Two
-              Adaptive.Columns2
-                ConnectPatterns.IconText
-                  BasePatterns.Columns_Two
-                    Adaptive.Columns2
-                      ConnectPatterns.Icon
-                      BasePatterns.CustomText
-                        ConnectPatterns.IconInline_Internal
-                ConnectPatterns.Icon
-          BasePatterns.CustomContainer
-            BasePatterns.CustomContainer
-              ConnectPatterns.ComingSoon
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-      BasePatterns.CustomContainer
+                        ConnectPatterns.Icon
         BasePatterns.CustomContainer
-      BasePatterns.CustomContainer
+          BasePatterns.CustomContainer
         BasePatterns.CustomContainer
-          ConnectPatterns.ComingSoon
-            BasePatterns.CustomContainer
-              BasePatterns.CustomText
-                ConnectPatterns.IconInline_Internal
+          BasePatterns.CustomContainer
+            ConnectPatterns.ComingSoon
+              BasePatterns.CustomContainer
+                BasePatterns.CustomText
+                  ConnectPatterns.IconInline_Internal
+                    ConnectPatterns.Icon
   App_Common.BottomBarMenu
     App_Common.BottomBarContent
       Navigation.BottomBarItem
@@ -169,6 +171,7 @@ Layouts.Layout_DetailPage
       EventfulDeeplinksPlugin.DeeplinkHandlerCentral
     Utility.HandleImageLoadError
     NavigationHandler.BackNavigationHandler
+CW_Notes.NotesSheet
 CW_Share.ShareSheet
 ```
 
@@ -177,20 +180,11 @@ CW_Share.ShareSheet
 ## `UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js`
 | variable | kind | type | default |
 |---|---|---|---|
-| Out_OneSchoolGlobal | output | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.TextLocalityNameLocalityIdRecordListUI_OneSchoolGlobal_DetailCard` |
-| HouseholdCoordinates | output | Record | `OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.Directory_CoordinatesRec())` |
-| UI_Timezone | output | Record | `OS.DataTypes.ImmutableBase.getData(new Connect_Geography_CSModel.UI_LocalityTimezoneRec())` |
-| LookupSections | local | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.LookupSectionsRec())` |
-| Selected_OneschoolGlobal_SubsectionId | local | Text | `""` |
-| Type_OneschoolGlobal_SubsectionId | local | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.Type_OneschoolGlobal_SubsectionRec())` |
-| LocalIsBookmarked | local | Boolean | `false` |
+| IsRestoredFromCache | local | Boolean | `false` |
 | In_OneSchoolGlobalId | input | LongInteger | `OS.DataTypes.LongInteger.defaultValue` |
-| GetOneSchoolGlobalDetails | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new GetOneSchoolGlobalDetailsDataActRec())` |
-- Data actions: `DataActionGetOneSchoolGlobalDetails` → `screenservices/UBTConnect/Directory_OneSchoolGlobal/OneSchoolGlobalDetails/DataActionGetOneSchoolGlobalDetails`
-- Lifecycle handlers: Initialize, Ready
-- Client actions / event handlers: `screenEvent_OnInitialize`, `screenEvent_OnReady`, `directory_EntityDetailsActionsOnChange_Bookmark`
-- JavaScript nodes: `UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc$controller.ScreenEvent_OnInitialize.IsViewRestoredFromCacheJS`, `UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc$controller.ScreenEvent_OnReady.IsViewRestoredFromCacheJS`
-- Static entities / flags: `uBT_ImageCardType.detail`, `uBT_ImageSize.maxWidth_100vw`, `connect_Entity.oneSchoolGlobal`, `uBT_Color.neutral8`, `uBT_FontSize.small`, `uBT_FontWeight.semiBold`, `uBT_Color.neutral7`, `uBT_FontSize.extraSmall`, `uBT_FontWeight.regular`, `uBT_Size.extraSmall`, `uBT_Color.cyanDarker`, `uBT_Color.neutral0`, `uBT_Size.base`, `launchDarkly_FF.mobileStudentInformation`, `uBT_Size.small`, `uBT_IconsSize.base_24`, `uBT_Color.neutral3`, `uBT_Shape.large`, `uBT_FontSize.base`
+- Lifecycle handlers: Initialize
+- Client actions / event handlers: `screenEvent_OnInitialize`
+- JavaScript nodes: `UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc$controller.ScreenEvent_OnInitialize.IsViewRestoredFromCacheJS`
 
 ## `UBTConnectLibrary.Layouts.Layout_DetailPage.mvc.js`
 | variable | kind | type | default |
@@ -203,6 +197,7 @@ CW_Share.ShareSheet
 | In_ExtendedClass | input | Text | `""` |
 | In_EnableAccessibilityFeatures | input | Boolean | `false` |
 | In_InitializeNavigationHandler | input | Boolean | `true` |
+| In_IsHideTitle | input | Boolean | `false` |
 - Lifecycle handlers: Ready, Destroy
 - Client actions / event handlers: `onClick_BackNavigation`, `setScrollEvents`, `onDestroy`, `skipToContentOnClick`, `onReady`, `onReadyEvent`
 - navigateBack calls: 1
@@ -248,6 +243,24 @@ CW_Share.ShareSheet
 | variable | kind | type | default |
 |---|---|---|---|
 | InlineIcon | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.InlineIconRec())` |
+
+## `UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| Out_OneSchoolGlobal | output | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.TextLocalityNameLocalityIdRecordListUI_OneSchoolGlobal_DetailCard` |
+| HouseholdCoordinates | output | Record | `OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.Directory_CoordinatesRec())` |
+| UI_Timezone | output | Record | `OS.DataTypes.ImmutableBase.getData(new Connect_Geography_CSModel.UI_LocalityTimezoneRec())` |
+| LookupSections | local | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.LookupSectionsRec())` |
+| Selected_OneschoolGlobal_SubsectionId | local | Text | `""` |
+| Type_OneschoolGlobal_SubsectionId | local | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.Type_OneschoolGlobal_SubsectionRec())` |
+| LocalIsBookmarked | local | Boolean | `false` |
+| In_OneSchoolGlobalId | input | LongInteger | `OS.DataTypes.LongInteger.defaultValue` |
+| IsRestoredFromCache | input | Boolean | `false` |
+| GetOneSchoolGlobalDetails | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new GetOneSchoolGlobalDetailsDataActRec())` |
+- Data actions: `DataActionGetOneSchoolGlobalDetails` → `screenservices/UBTConnect/Directory_OneSchoolGlobal/OneSchoolGlobalDetails_Block/DataActionGetOneSchoolGlobalDetails`
+- Lifecycle handlers: Initialize, Ready, ParametersChanged
+- Client actions / event handlers: `onReady`, `directory_EntityDetailsActionsOnChange_Bookmark`, `onInitialize`, `onParametersChanged`
+- Static entities / flags: `uBT_ImageCardType.detail`, `uBT_ImageSize.maxWidth_100vw`, `connect_Entity.oneSchoolGlobal`, `uBT_Color.neutral8`, `uBT_FontSize.small`, `uBT_FontWeight.semiBold`, `uBT_Color.neutral7`, `uBT_FontSize.extraSmall`, `uBT_FontWeight.regular`, `uBT_Size.extraSmall`, `uBT_Color.cyanDarker`, `uBT_Color.neutral0`, `uBT_Size.base`, `launchDarkly_FF.mobileStudentInformation`, `uBT_Size.small`, `uBT_IconsSize.base_24`, `uBT_Color.neutral3`, `uBT_Shape.large`, `uBT_FontSize.base`
 
 ## `UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen.mvc.js`
 | variable | kind | type | default |
@@ -311,6 +324,7 @@ CW_Share.ShareSheet
 | In_BorderRadius | input | Text | `""` |
 | In_HighRes | input | Boolean | `false` |
 | HasErrorMessage | input | Boolean | `false` |
+| In_ForceLoadingState | input | Boolean | `false` |
 - Lifecycle handlers: Initialize, Ready, ParametersChanged
 - Client actions / event handlers: `onInitialize`, `onReady`, `setLocalEntityId`, `onParametersChanged`
 - Static entities / flags: `uBT_Shape.circle`, `connect_Entity.member`, `uBT_Color.cyanLightest`, `uBT_Color.cyanDarker`, `uBT_Size.none`, `uBT_Shape.none`, `uBT_Size.base`, `uBT_FontSize.display`, `uBT_ImageSize.extraSmall_32`, `uBT_FontSize.extraSmall`, `uBT_IconSize.medium_20`, `uBT_ImageSize.small_40`, `uBT_FontSize.small`, `uBT_IconSize.base_24`, `uBT_ImageSize.base_52`, `uBT_FontSize.base`, `uBT_IconSize.nonStandard_32`, `uBT_ImageSize.medium_60`, `uBT_FontSize.heading6`, `uBT_IconSize.display_36`, `uBT_ImageSize.large_65`, `uBT_FontSize.heading4`, `uBT_ImageSize.extraLarge_100`, `uBT_FontSize.heading2`, `uBT_IconSize.nonStandard_64`, `uBT_ImageSize.doubleExtraLarge_176`, `uBT_IconSize.nonStandard_108`, `uBT_ImageSize.fullHeight_100_Percent`, `uBT_ImageSize.maxHeight_100vh`, `uBT_ImageSize.fullWidth_100_Percent`
@@ -331,6 +345,7 @@ CW_Share.ShareSheet
 | In_BorderOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ImageBorderOptionsRec())` |
 | HasErrorMessage | input | Boolean | `false` |
 | ExtendedClass | input | Text | `""` |
+| In_ForceLoadingState | input | Boolean | `false` |
 - Lifecycle handlers: Initialize, Ready, Destroy, ParametersChanged
 - Client actions / event handlers: `actionDefineHasImage`, `onParametersChanged`, `onLoad`, `onReady`, `onError`, `onInitialize`, `onDestroy`
 - JavaScript nodes: `UBTConnectLibrary.ConnectPatterns.LazyImage.mvc$controller.OnReady.SetupOnLoadJS`, `UBTConnectLibrary.ConnectPatterns.LazyImage.mvc$controller.OnInitialize.IsViewRestoredFromCacheJS`, `UBTConnectLibrary.ConnectPatterns.LazyImage.mvc$controller.OnDestroy.JavaScript1JS`
@@ -447,10 +462,7 @@ CW_Share.ShareSheet
 | EntityName | output | Text | `""` |
 | Notes | output | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec())` |
 | Local_isBookmarked | local | Boolean | `false` |
-| Local_isBookmarked_C2 | local | Boolean | `false` |
-| Local_BookmarkType | local | Text | `""` |
-| Local_BookmarkTypeId_C2 | local | Text | `""` |
-| Local_BookmarkGroup | local | Text | `""` |
+| Local_BookmarkTypeId | local | Text | `""` |
 | Local_In_ActionsMenuOptions | local | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ActionsMenuOptionsRec())` |
 | isLoaded | local | Boolean | `false` |
 | Local_ShareType | local | Text | `""` |
@@ -462,22 +474,24 @@ CW_Share.ShareSheet
 | ShowIconLabels | local | Boolean | `true` |
 | ShareSheet_OverwriteImageURL | local | Text | `""` |
 | NoteCategoryId | local | Text | `""` |
+| EntityNotes | local | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec())` |
+| FetchNoteId | local | Text | `""` |
 | IsEnabled | input | Boolean | `true` |
 | EntityType | input | Text | `""` |
 | EntityId | input | LongInteger | `OS.DataTypes.LongInteger.defaultValue` |
 | ContactPopUp_OverrideOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnect_UtilsModel.ContactPopUp_OverrideOptionsRec())` |
 | EnableOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ActionsMenuEnableOptionsRec())` |
 | useViewDetails | input | Boolean | `false` |
-| EntityExtraDataJSON | input | Text | `""` |
+| In_LocalityId | input | Text | `""` |
 | FetchContactDetails | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new FetchContactDetailsDataActRec())` |
 | FetchNotes | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new FetchNotesDataActRec())` |
 - Data actions: `DataActionFetchContactDetails` → `screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails`, `DataActionFetchNotes` → `screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchNotes`
 - Lifecycle handlers: Ready, ParametersChanged
-- Client actions / event handlers: `handler_OnNotesSheetClosed`, `handleFetchError`, `onParametersChanged`, `action_AsyncRefresh_ContactDetails`, `handler_OnNotesChanged`, `handle_Share_Others`, `handler_AddNotes`, `handle_Bookmark`, `action_ApplyPopUpOverrides`, `handler_OnNoteDeleted`, `handle_Mail_Page`, `onReady`, `action_UpdateContactDetails`, `handle_Mail`, `handle_Share`, `handle_Call`, `handle_Share_Connect`, `action_RefreshFetchNotes`, `handle_ClosedShareSheet`, `onAfterFetch_FetchContactDetails`, `viewDetails_OnClick`, `onChange_Bookmark`, `event_MenuEdit`
+- Client actions / event handlers: `handler_OnNotesSheetClosed`, `handleFetchError`, `onParametersChanged`, `action_AsyncRefresh_ContactDetails`, `handler_OnSheetNotesChanged`, `handle_Share_Others`, `handler_AddNotesOnClick`, `handle_Bookmark`, `action_ApplyPopUpOverrides`, `handler_OnNoteDeleted`, `handle_Mail_Page`, `onReady`, `action_UpdateContactDetails`, `handle_Mail`, `handle_Share`, `onAfterFetch_FetchNotes`, `handle_Call`, `handle_Share_Connect`, `action_RefreshFetchNotes`, `handle_ClosedShareSheet`, `onAfterFetch_FetchContactDetails`, `viewDetails_OnClick`, `onChange_Bookmark`, `event_MenuEdit`
 - Navigation: `/UBTConnect/ContactByEmailMember`(In_ContactName, In_ContactSurname, In_EmailTo, In_ContactLocality, In_EntityType, In_EntityId, In_ContactCountry, In_AvatarURL); `/UBTConnect/ContactByEmailOneSchoolGlobal`(In_ContactName, In_EmailTo); `/UBTConnect/LegacyShareObject`(In_ShareObjectTypeId, In_ObjectId)
 - JavaScript nodes: `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Handle_Mail_Page.YieldJS`, `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.OnReady.CheckRestoredJS`, `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Action_UpdateContactDetails.AsynRefreshJS`, `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Handle_Share_Connect.YieldJS`
 - Exceptions handled: NotRegisteredException, CommunicationException, UserException
-- Static entities / flags: `uBT_SystemExceptionTypes.notRegisteredException`, `connect_Entity.oneSchoolGlobal`, `connect_Entity.member`, `connect_Entity.locality`, `connect_Entity.household`, `connect_Entity.interchange`, `connect_Entity.supperMeetings_aka_Subdivisions`
+- Static entities / flags: `connect_Entity.interchange`, `uBT_SystemExceptionTypes.notRegisteredException`, `connect_Entity.oneSchoolGlobal`, `connect_Entity.member`, `connect_Entity.locality`, `connect_Entity.household`, `connect_Entity.supperMeetings_aka_Subdivisions`
 - Client variables: getBookmarks_IsSynched, getNotes_IsSynched
 - Images: `img/UBTConnectLibrary.OneSchoolGlobal.svg`
 - Candidate static strings: `Action_AsyncRefresh_ContactDetails`
@@ -577,25 +591,6 @@ CW_Share.ShareSheet
 - Client actions / event handlers: `action_SetSharePopupButtons`, `onClick_CallButton`, `screeenEvent_OnParametersChanged`, `screenEvent_OnInitialize`, `event_ShareToOthers`, `event_ShareToConnect`, `event_Cancel`
 - Static entities / flags: `uBT_ImageSize.extraLarge_100`, `uBT_Icons.share`, `connect_Entity.member`, `connect_Entity.oneSchoolGlobal`, `connect_Entity.household`, `connect_Entity.feedItem`
 
-## `UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js`
-| variable | kind | type | default |
-|---|---|---|---|
-| BottomSheetId | local | Text | `""` |
-| IsEditing | local | Boolean | `false` |
-| IsSheetOpen | local | Boolean | `false` |
-| In_IsOpen | input | Boolean | `false` |
-| ExtendedClasses | input | Text | `""` |
-| In_ItemId | input | LongInteger | `OS.DataTypes.LongInteger.defaultValue` |
-| In_NoteCategoryId | input | Text | `""` |
-| In_Notes | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec())` |
-- Server actions: `AddNote` → `screenservices/UBTConnect_Utils/CW_Notes/NotesSheet/ServiceAPIAddNote`
-- Lifecycle handlers: ParametersChanged
-- Client actions / event handlers: `handler_OnAddNoteRequested`, `backNavigationHandlerBackNavigation`, `bottomSheet_Initialized`, `onParametersChanged`, `handler_OnEditingStateChanged`, `handler_OnSaveEditNote`, `action_SetBottomSheetOpen`, `on_NotesChanged`, `on_NoteSheet_Closed`, `on_NoteDeleted`
-- JavaScript nodes: `UBTConnect_Utils.CW_Notes.NotesSheet.mvc$controller.OnParametersChanged.DelaySetIsOpenJS`
-- Exceptions handled: UserException
-- Static entities / flags: `noteActionType.add`
-- Candidate static strings: `Action_SetBottomSheetOpen`
-
 ## `UBTConnectLibrary.ConnectPatterns.ExpandableSection.mvc.js`
 | variable | kind | type | default |
 |---|---|---|---|
@@ -612,7 +607,7 @@ CW_Share.ShareSheet
 |---|---|---|---|
 | MainContainerClass | local | Text | `"ubt-coming-soon"` |
 | In_TextOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())` |
-- Static entities / flags: `uBT_Size.base`
+- Static entities / flags: `uBT_Size.base`, `uBT_Icons.calendar`, `uBT_IconSize.medium_20`, `uBT_Color.neutral0`
 
 ## `UBTConnect.App_Common.BottomBarMenu.mvc.js`
 | variable | kind | type | default |
@@ -625,9 +620,9 @@ CW_Share.ShareSheet
 | isRootPage | input | Boolean | `false` |
 - Lifecycle handlers: Initialize, Ready, ParametersChanged
 - Client actions / event handlers: `onInitialize`, `onReady`, `onParametersChanged`, `event_BottomBar_Clicked`, `bottomBar_Clicked`
-- Navigation: `/UBTConnect/HomeFeed`(); `/UBTConnect/CountryList`(); `/UBTConnect/Locality_Details`(); `/UBTConnect/Updates_SingleList`(); `/UBTConnect/Bookmarks`(); `/UBTConnect/New_MyBookmarks`(); `/UBTConnect/MyBookmarks`(); `/UBTConnect/Menu`()
+- Navigation: `/UBTConnect/HomeFeed`(); `/UBTConnect/CountryList`(); `/UBTConnect/Locality_Details`(); `/UBTConnect/Updates_SingleList`(); `/UBTConnect/Bookmarks`(); `/UBTConnect/Menu`()
 - JavaScript nodes: `UBTConnect.App_Common.BottomBarMenu.mvc$controller.OnParametersChanged.Delayed_BottomBarSlider_ForceRefreshJS`
-- Static entities / flags: `connect_BottomBar_Items.updates`, `uBT_Color.primary`, `uBT_Color.neutral6`, `uBT_IconsSize.base_24`, `uBT_FontSize.extraSmall`, `connect_BottomBar_Items.bookmarks`, `connect_BottomBar_Items.home`, `connect_BottomBar_Items.directory`, `launchDarkly_FF.mobileDirectoryBookmarkNote`, `connect_BottomBar_Items.menu`
+- Static entities / flags: `connect_BottomBar_Items.updates`, `uBT_Color.primary`, `uBT_Color.neutral6`, `uBT_IconsSize.base_24`, `uBT_FontSize.extraSmall`, `connect_BottomBar_Items.bookmarks`, `connect_BottomBar_Items.home`, `connect_BottomBar_Items.directory`, `connect_BottomBar_Items.menu`
 - Client variables: getDirectory_Updates_UnreadCount
 
 ## `OutSystemsUI_2_23.Navigation.BottomBarItem.mvc.js`
@@ -868,6 +863,27 @@ CW_Share.ShareSheet
 - JavaScript nodes: `NavigationHandler.NavigationHandler.BackNavigationHandler.mvc$controller.OnDestroy.DestroyJS`, `NavigationHandler.NavigationHandler.BackNavigationHandler.mvc$controller.OnInitialize.AddBackNavigationHandlerJS`
 - Candidate static strings: `TriggerBackNavigation`
 
+## `UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| BottomSheetId | local | Text | `""` |
+| IsEditing | local | Boolean | `false` |
+| IsSheetOpen | local | Boolean | `false` |
+| NoteText | local | Text | `""` |
+| IsSubmittingNote | local | Boolean | `false` |
+| In_IsOpen | input | Boolean | `false` |
+| ExtendedClasses | input | Text | `""` |
+| In_ItemId | input | Text | `""` |
+| In_NoteCategoryId | input | Text | `""` |
+| In_Notes | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec())` |
+- Server actions: `AddNote` → `screenservices/UBTConnect_Utils/CW_Notes/NotesSheet/ServiceAPIAddNote`
+- Lifecycle handlers: ParametersChanged
+- Client actions / event handlers: `handler_OnSubmitNote`, `backNavigationHandlerBackNavigation`, `bottomSheetOnToggle`, `bottomSheet_Initialized`, `onParametersChanged`, `handler_OnEditingStateChanged`, `handler_OnSaveEditNote`, `action_SetBottomSheetOpen`, `handler_OnNoteSheet_Closed`, `on_NotesChanged`, `on_NoteSheet_Closed`, `on_NoteDeleted`
+- JavaScript nodes: `UBTConnect_Utils.CW_Notes.NotesSheet.mvc$controller.OnParametersChanged.DelaySetIsOpenJS`
+- Exceptions handled: CommunicationException, UserException
+- Static entities / flags: `noteActionType.add`
+- Candidate static strings: `Action_SetBottomSheetOpen`
+
 ## `UBTConnect_Utils.CW_Share.ShareSheet.mvc.js`
 | variable | kind | type | default |
 |---|---|---|---|
@@ -906,8 +922,8 @@ CW_Share.ShareSheet
 - Lifecycle handlers: Initialize, ParametersChanged
 - Client actions / event handlers: `onAfterFetch_GetAvailableMembers`, `screenEvent_OnParametersChanged`, `handler_SelectedListItemOnClick`, `handler_OnClickExternalOption`, `onAfterFetch_GetRecentlyShared`, `handler_SearchOnFocus`, `action_SetExternalShareOptions`, `handler_OnClickRecentMember`, `action_CreateSkeletonList`, `action_ScrollTop`, `handler_InputEventClearString`, `handler_BottomSheetOnToggle`, `handler_InputEventSubmit`, `action_ResetLocalVariables`, `handler_SearchResultItemOnSelect`, `handler_OnClickSend`, `action_SubmitShare`, `action_ResetAndCloseSheetState`, `screenEvent_OnInitialize`, `handler_OnBack`, `handler_SearchResultItemOnClick`, `handler_BottomSheetInitialized`, `action_SetLocalIsOpen`, `event_ClosedShareSheet`
 - JavaScript nodes: `UBTConnect_Utils.CW_Share.ShareSheet.mvc$controller.ScreenEvent_OnParametersChanged.DelaySetIsOpenJS`, `UBTConnect_Utils.CW_Share.ShareSheet.mvc$controller.Handler_OnClickExternalOption.ExternalShareWithDelayJS`, `UBTConnect_Utils.CW_Share.ShareSheet.mvc$controller.Action_ScrollTop.ScrollToTopJS`
-- Feedback messages: `(model.variables.in_ShareObjectTypeIdIn + " has been shared."), /*Info*/ 0)` | `"Share failed. Please try again.", /*Error*/ 3)`
-- Exceptions handled: NotRegisteredException
+- Feedback messages: `(vars.value.submitMessageVar + " has been shared."), /*Info*/ 0)` | `"Share failed. Please try again.", /*Error*/ 3)`
+- Exceptions handled: NotRegisteredException, UserException, CommunicationException
 - Static entities / flags: `uBT_ImageSize.small_40`, `uBT_ImageSize.base_52`, `uBT_AvatarSize.small_40`, `uBT_Color.neutral2`, `uBT_Size.none`, `uBT_Color.neutral0`, `uBT_Size.base`, `uBT_Size.small`, `uBT_Shape.medium`, `uBT_Color.neutral5`, `uBT_Shape.large`, `shape.rounded`, `uBT_FontSize.doubleExtraSmall`, `uBT_Color.primary`, `uBT_Color.transparent`, `connect_Entity.member`, `uBT_ImageSize.square`, `uBT_AvatarSize.smallBase_48`, `uBT_IconSize.base_24`, `uBT_Display.flex`, `uBT_FlexDirection.column`, `uBT_Icons.removeFill`, `uBT_IconSize.small_12`, `uBT_Icons.search`, `uBT_FontSize.small`, `uBT_Color.neutral7`, `uBT_Icons.lock`, `uBT_Icons.checkboxFill`, `uBT_Icons.checkboxOutlineBlank`, `uBT_ButtonSize.small`
 - Candidate static strings: `Action_SetLocalIsOpen`
 
@@ -917,17 +933,18 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 2116 ms
-- 2. `DataActionGetOneSchoolGlobalDetails` (200) at 4674 ms
-- 3. `DataActionFetchContactDetails` (200) at 4676 ms
-- 4. `DataActionFetchContactDetails` (200) at 4680 ms
-- 5. `DataActionFetchContactDetails` (200) at 4988 ms
-- 6. `ActionAppManager_AfterInitialize` (200) at 5230 ms
-- 7. `ActionSync_Info_GetMain` (200) at 5917 ms
-- 8. `ActionGetUserInformation` (200) at 6261 ms
-- 9. `ActionGetNumberUnreadMessages` (200) at 6532 ms
-- 10. `ServiceAPIFetchData_CacheableHouseholds` (200) at 7268 ms
-- 11. `ServiceAPIFetchData_CacheableMapEntities` (200) at 7368 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 2900 ms
+- 2. `ActionAppManager_AfterInitialize` (200) at 5154 ms
+- 3. `DataActionFetchContactDetails` (200) at 5479 ms
+- 4. `DataActionFetchContactDetails` (200) at 5481 ms
+- 5. `DataActionGetOneSchoolGlobalDetails` (200) at 5503 ms
+- 6. `ActionSync_Info_GetMain` (200) at 5614 ms
+- 7. `DataActionFetchNotes` (200) at 5664 ms
+- 8. `DataActionFetchContactDetails` (200) at 5814 ms
+- 9. `ActionGetUserInformation` (200) at 5928 ms
+- 10. `ActionGetNumberUnreadMessages` (200) at 6192 ms
+- 11. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8671 ms
+- 12. `ServiceAPIFetchData_CacheableHouseholds` (200) at 11055 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

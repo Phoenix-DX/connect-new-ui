@@ -86,6 +86,12 @@ return false;
 }, false), 
 this.attr("_hasErrorMessageInDataFetchStatus", "_hasErrorMessageInDataFetchStatus", "_hasErrorMessageInDataFetchStatus", true, false, OS.DataTypes.DataTypes.Integer, function () {
 return /*Fetched*/ 1;
+}, false), 
+this.attr("In_ForceLoadingState", "in_ForceLoadingStateIn", "In_ForceLoadingState", true, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
+}, false), 
+this.attr("_in_ForceLoadingStateInDataFetchStatus", "_in_ForceLoadingStateInDataFetchStatus", "_in_ForceLoadingStateInDataFetchStatus", true, false, OS.DataTypes.DataTypes.Integer, function () {
+return /*Fetched*/ 1;
 }, false)
 ].concat(_super.attributesToDeclare.call(this));
 };
@@ -192,6 +198,14 @@ this.variables._hasErrorMessageInDataFetchStatus = inputs._hasErrorMessageInData
 
 }
 
+if("In_ForceLoadingState" in inputs) {
+this.variables.in_ForceLoadingStateIn = inputs.In_ForceLoadingState;
+if("_in_ForceLoadingStateInDataFetchStatus" in inputs) {
+this.variables._in_ForceLoadingStateInDataFetchStatus = inputs._in_ForceLoadingStateInDataFetchStatus;
+}
+
+}
+
 };
 return Model;
 })(OS.Model.BaseViewModel);
@@ -287,6 +301,8 @@ placeholders: {
 placeholder_LoadingSection: new PlaceholderContent(function () {
 return [React.createElement(UBTConnectLibrary_ConnectPatterns_LazyImage_mvc_view, {
 inputs: {
+In_ForceLoadingState: model.variables.in_ForceLoadingStateIn,
+_in_ForceLoadingStateInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables._in_ForceLoadingStateInDataFetchStatus),
 ImageURL: model.variables.localImageURLVar,
 FallbackPadding: model.variables.localFallbackPaddingVar,
 In_ImageSize: model.getCachedValue(idService.getId("jAphmcVMs0KdCwYUvGRxsg.In_ImageSize"), function () {
@@ -347,7 +363,7 @@ _dependencies: []
 })];
 })
 },
-_dependencies: [asPrimitiveValue(model.variables.extendedClassIn), asPrimitiveValue(model.variables.entityTypeIn), asPrimitiveValue(model.variables.localFallbackoptionsVar), asPrimitiveValue(model.variables.localBorderSizeIdVar), asPrimitiveValue(model.variables.localBorderColorIdVar), asPrimitiveValue(model.variables.localBorderRadiusVar), asPrimitiveValue(model.variables.hasErrorMessageIn), asPrimitiveValue(model.variables._extendedClassInDataFetchStatus), asPrimitiveValue(model.variables._entityTypeInDataFetchStatus), asPrimitiveValue(model.variables._hasErrorMessageInDataFetchStatus), asPrimitiveValue(model.variables._imageSizeInDataFetchStatus), asPrimitiveValue(model.variables.imageSizeIn.widthAttr), asPrimitiveValue(model.variables.imageSizeIn.heightAttr), asPrimitiveValue(model.variables.localFallbackPaddingVar), asPrimitiveValue(model.variables.localImageURLVar)]
+_dependencies: [asPrimitiveValue(model.variables.extendedClassIn), asPrimitiveValue(model.variables.entityTypeIn), asPrimitiveValue(model.variables.localFallbackoptionsVar), asPrimitiveValue(model.variables.localBorderSizeIdVar), asPrimitiveValue(model.variables.localBorderColorIdVar), asPrimitiveValue(model.variables.localBorderRadiusVar), asPrimitiveValue(model.variables.hasErrorMessageIn), asPrimitiveValue(model.variables.imageSizeIn.widthAttr), asPrimitiveValue(model.variables.imageSizeIn.heightAttr), asPrimitiveValue(model.variables.localFallbackPaddingVar), asPrimitiveValue(model.variables.localImageURLVar), asPrimitiveValue(model.variables._extendedClassInDataFetchStatus), asPrimitiveValue(model.variables._entityTypeInDataFetchStatus), asPrimitiveValue(model.variables._hasErrorMessageInDataFetchStatus), asPrimitiveValue(model.variables._imageSizeInDataFetchStatus), asPrimitiveValue(model.variables._in_ForceLoadingStateInDataFetchStatus), asPrimitiveValue(model.variables.in_ForceLoadingStateIn)]
 }));
         };
         return View;
@@ -872,7 +888,7 @@ return controller.safeExecuteClientAction(controller._onParametersChanged$Action
 Controller.prototype.pushDebuggerContext = function (callContext) {
 var varBag = {};
 OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:c4TUUTDcd0OByIhYz8oDyw:/NRWebFlows.c4TUUTDcd0OByIhYz8oDyw:Ub72qwAB8vI9fSZPWMJBzg", "UBTConnect_Utils", "CW_Image", "NRFlows.WebFlow", callContext.id, varBag);
-OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:mJtA5K35k0arh8Img1TV_w:/NRWebFlows.c4TUUTDcd0OByIhYz8oDyw/NodesShownInESpaceTree.mJtA5K35k0arh8Img1TV_w:wh5rd2K61WGy1iEJ17ko2A", "UBTConnect_Utils", "UBT_LazyImage", "NRNodes.WebBlock", callContext.id, varBag);
+OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:mJtA5K35k0arh8Img1TV_w:/NRWebFlows.c4TUUTDcd0OByIhYz8oDyw/NodesShownInESpaceTree.mJtA5K35k0arh8Img1TV_w:hHfKV5jOiAxpyC0OKFwKEQ", "UBTConnect_Utils", "UBT_LazyImage", "NRNodes.WebBlock", callContext.id, varBag);
 };
 Controller.prototype.popDebuggerContext = function (callContext) {
 OutSystemsDebugger.pop("_OwvmJqPz0GyaZBFX4uPyQ:mJtA5K35k0arh8Img1TV_w", callContext.id);
@@ -1067,6 +1083,12 @@ dataType: OS.DataTypes.DataTypes.Boolean
 "y2Q+Lb4jZU+diljDQzUbzw": {
 getter: function (varBag, idService) {
 return varBag.model.variables.hasErrorMessageIn;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"5TxiSvu8GkKPQcGTK1ORnA": {
+getter: function (varBag, idService) {
+return varBag.model.variables.in_ForceLoadingStateIn;
 },
 dataType: OS.DataTypes.DataTypes.Boolean
 },

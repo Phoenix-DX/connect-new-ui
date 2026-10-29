@@ -86,7 +86,6 @@ Layouts.Layout_DetailPage
                     CW_CTA_PopUps.ContactPopup
                   CW_CTA_PopUps.SharePopup
                     CW_CTA_PopUps.ContactPopup
-                  CW_Notes.NotesSheet
       Directory_SupperMeetings.SupperMeeting_HouseholdList
         Directory_Household_Blocks.Household_GalleryCard_List
           ConnectPatterns.SkeletonSection
@@ -249,4 +248,5 @@ Layouts.Layout_DetailPage
       EventfulDeeplinksPlugin.DeeplinkHandlerCentral
     Utility.HandleImageLoadError
     NavigationHandler.BackNavigationHandler
+CW_Notes.NotesSheet
 CW_Share.ShareSheet

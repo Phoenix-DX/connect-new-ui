@@ -35,7 +35,7 @@ export interface CountryListState {
 }
 
 /** An assignment of one or more variables. */
-export type CountryListPatch = Partial<CountryListState>;
+type CountryListPatch = Partial<CountryListState>;
 
 /** LocalCacheControl_UserInformation before CacheControl_UserInfo_Wrapper answers. */
 export const NO_USER_GEOGRAPHY: UserGeography = {

@@ -154,17 +154,55 @@ export interface MessageDetail {
   createdByMemberId: LongId;
 }
 
+/** GetMessageInstance.PlaceholderDelimiters.Delimiters: the delimiters that BuildAssembleNotificationContent passes to
+    PlaceholderLib SetTextPlaceholdersValue. */
+export interface PlaceholderDelimiters {
+  placeholder: string;
+  function: string;
+  parameter: string;
+}
+
 /** The outputs of GetMessageInstance that the block reads. */
 export interface MessageInstanceResult {
   message: MessageDetail;
   isRetracted: boolean;
   isCleared: boolean;
+  placeholderDelimiters: PlaceholderDelimiters;
 }
 
-/** A row of GetMessageTemplateParametersByMessageTemplateId (MessageParameter). */
+/** A row of GetMessageTemplateParametersByMessageTemplateId (MessageParameter). The block reads the name id and the
+    value; the other fields travel back to the server in Get_OrbitNotificationParameters and
+    Get_OrbitHostSurveyNotificationParameters (ListOfMessageParameters). */
 export interface MessageParameter {
+  id: LongId;
+  messageTemplateId: LongId;
   parameterNameId: number;
   parameterValue: string;
+  tenantId: number;
+}
+
+/** The outputs of Get_OrbitNotificationParameters ("" when a value is missing). */
+export interface OrbitNotificationParameters {
+  orbitMilestoneId: string;
+  orbitEventId: string;
+  orbitEventName: string;
+}
+
+/** The outputs of Get_OrbitHostSurveyNotificationParameters (null for the null date). */
+export interface OrbitHostSurveyNotificationParameters {
+  orbitEventId: string;
+  orbitEventName: string;
+  orbitStartDate: string | null;
+  orbitEndDate: string | null;
+}
+
+/** The inputs of StoreAdaptiveCardResponses (the card submit of ScreenBlock_MessageDetail). */
+export interface StoreAdaptiveCardResponsesInputs {
+  deviceHardwareId: string;
+  adaptiveCardPayloadJSON: string;
+  actionTaken: string;
+  formDataJSON: string;
+  messageInstanceId: LongId;
 }
 
 /* ---- Message list (Connect2_LegacyShared ScreenBlock_MessageList) ---- */

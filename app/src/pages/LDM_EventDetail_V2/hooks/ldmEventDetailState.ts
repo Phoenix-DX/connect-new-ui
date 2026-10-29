@@ -1,8 +1,11 @@
+import { NO_NOTES } from '@/containers/ItemNotesSection/notes';
+import type { Notes } from '@/lib/ubtConnectLibrary/structures';
 import type { CoordinatorDetails, CoordinatorDetailsData, LdmEventDetail, LdmEventHost } from '@/api/event';
 import type { HouseholdCoordinates } from '@/api/household';
 import { flipHouseholdName } from '@/lib/legacyShared/actions';
 import { getLocalityName } from '@/lib/orbit/actions';
 import { cleanAddressForMaps } from '@/lib/ubtConnectUtils/actions';
+import { Connect_Entity } from '@/lib/ubtConnectUtils/staticEntities';
 import type {
   ContactByPhonePopupData,
   ContactPopupData,
@@ -33,13 +36,16 @@ export interface LdmEventDetailState {
   hasEventFetchError: boolean;
   /** GetCoordinatorDetails outputs; null until fetched (Out_HasContent defaults to True). */
   coordinator: CoordinatorDetailsData | null;
+  /** EventNotes: the notes of the host card (OnAfterFetch_FetchEventNotes, Handler_OnNotesChanged,
+      HandlerOn_NoteDeleted). */
+  eventNotes: Notes;
   /** True after the first assignment. The view cache keeps the block variables from then on: a view that the user
       left before it starts again from OnInitialize on a back navigation, and OnReady fetches again. */
   isSaved: boolean;
 }
 
 /** A change of the block variables: the assigned variables. */
-export type LdmEventDetailPatch = Partial<Omit<LdmEventDetailState, 'isSaved'>>;
+type LdmEventDetailPatch = Partial<Omit<LdmEventDetailState, 'isSaved'>>;
 
 /** SquarePhotoPx, MaxPhotoWidth, MaxPhotoHeight and MinBannerHeight defaults. */
 export const SQUARE_PHOTO_PX = 45;
@@ -55,6 +61,7 @@ export const INITIAL_LDM_EVENT_DETAIL_STATE: LdmEventDetailState = {
   contactByPhoneData: {},
   contactByMessageData: {},
   contactByMessageIsCoordinator: false,
+  eventNotes: NO_NOTES,
   event: null,
   hasEventFetchError: false,
   coordinator: null,
@@ -101,10 +108,12 @@ export const isCoordinatorAvailable = (state: LdmEventDetailState): boolean => s
 export const hasSpecialNeeds = (needs: LdmEventDetail['SpecialNeeds']): boolean =>
   needs.Mobility.length > 0 || needs.Diet.length > 0 || needs.Other.length > 0;
 
-/** The contact popup data of the host (OnHandle_ContactHost_Message and OnHandle_ContactHost_Call). */
+/** The contact popup data of the host (OnHandle_ContactHost_Message and OnHandle_ContactHost_Call). Both set
+    EntityTypeId = Connect_Entity2.Household (ScreenBlock_EventDetail_V2 :1828, :2354). */
 export function hostContactPopupData(host: LdmEventHost | undefined): ContactPopupData {
   return {
     ImageURL: host?.SignedURL ?? '',
+    EntityTypeId: Connect_Entity.Household,
     Name: flipHouseholdName(host?.HouseholderName ?? ''),
     Locality: getLocalityName(host?.EventLocalityName ?? ''),
     TimezoneName: host?.Timezone.TimezoneLabel ?? '',
@@ -135,7 +144,7 @@ export function hostPhoneCallData(host: LdmEventHost | undefined): ContactByPhon
 }
 
 /** OnHandle_ContactOrganiser: the coordinator in the message popup (combined email and phone, the LDM logo as the
-    image, "Contact" as the action). */
+    image, "Contact" as the action, EntityTypeId = Connect_Entity2.Household as TST sets it, :2485). */
 export function organiserMessageData(
   coordinator: CoordinatorDetails | undefined,
   logoURL: string,
@@ -146,6 +155,7 @@ export function organiserMessageData(
     IsComboEmailAndPhone: true,
     ContactPopupData: {
       ImageURL: logoURL,
+      EntityTypeId: Connect_Entity.Household,
       IsAvatarImage: false,
       ActionName: 'Contact',
       Name: coordinator?.CoordinatorName ?? '',

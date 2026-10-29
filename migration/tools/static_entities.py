@@ -3,7 +3,8 @@
 
 Values: migration/runtime-sources/moduleinfo.json (GET /UBTConnect/moduleservices/moduleinfo on TST, read-only,
 user-approved 2026-10-15) → data.modules[<espaceKey>].staticEntities[<entityKey>][<recordKey>] = value.
-Names: the compiled <Module>.model.js files (screen captures' sources/raw and migration/contract/sources/raw):
+Names: the compiled <Module>.model.js files; the first copy found wins, in this order: migration/runtime-sources (live
+TST copies since the source switch of 2026-10-28), the screen captures' sources/raw, migration/contract/sources/raw:
   <M>Model.staticEntities.<entity> = {}; var get<E>Record = function (record) {
     return <M>Model.module.staticEntities["<entityKey>"][record]; };
   Object.defineProperty(<M>Model.staticEntities.<entity>, "<record>", { get: ... get<E>Record("<recordKey>") ... });
@@ -21,7 +22,8 @@ for mod in info["data"]["modules"].values():
     for ek, recs in (mod.get("staticEntities") or {}).items():
         values.setdefault(ek, {}).update(recs)
 files = {}
-for p in glob.glob("migration/screens/*/analysis/sources/raw/*.model.js") + glob.glob("migration/contract/sources/raw/*.model.js"):
+for p in (sorted(glob.glob("migration/runtime-sources/*.model.js")) + glob.glob("migration/screens/*/analysis/sources/raw/*.model.js")
+          + glob.glob("migration/contract/sources/raw/*.model.js")):
     files.setdefault(os.path.basename(p), p)
 out = {}
 # own entities: return <M>Model.module.staticEntities["<ek>"][record]; referenced ones (another producer module):

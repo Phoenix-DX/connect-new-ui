@@ -11,24 +11,25 @@ import OneSchoolGlobalDetails from './OneSchoolGlobalDetailsPage';
    the MSW mocks: the recorded school card with the cast name of school 1430, "OneSchool Alem", and one business link. */
 const PATH = '/UBTConnect/OneSchoolGlobalDetails';
 const HOME = '/UBTConnect/HomeFeed';
-const GET_DETAILS = 'OneSchoolGlobalDetails/DataActionGetOneSchoolGlobalDetails';
+const GET_DETAILS = 'OneSchoolGlobalDetails_Block/DataActionGetOneSchoolGlobalDetails';
 const routes = {
   [HOME]: <p>HomeFeed screen</p>,
   [PATH]: <OneSchoolGlobalDetails />,
 };
 
-/** The skeleton of the detail card ($b4) and of the content ($b15); the photo and the actions menu have their own. */
+/** The skeleton of the detail card (b3-$b2) and of the content (b3-$b13) inside OneSchoolGlobalDetails_Block ($b3);
+    the photo and the actions menu have their own. */
 const isSkeleton = () =>
-  ['$b4', '$b15'].some((id) =>
+  ['b3-$b2', 'b3-$b13'].some((id) =>
     document.getElementById(id)?.firstElementChild?.classList.contains('ubt-skeleton-section'),
   );
-const cardTitle = () => document.getElementById('$b7')?.querySelector('.image-card-content__title')?.textContent;
+const cardTitle = () => document.getElementById('b3-$b5')?.querySelector('.image-card-content__title')?.textContent;
 /** The business link list and its fetch-status class. */
 const linkList = () => document.querySelector('.school-address + .list, .margin-top-s + .list');
 const listStatus = () =>
   ['list-loading', 'list-error'].filter((name) => linkList()?.classList.contains(name)).join(' ') || 'none';
 const detailsCalls = () => calledActions().filter((action) => action === GET_DETAILS);
-const button = (id: string) => document.getElementById(id);
+const button = (id: string) => document.getElementById(`b3-${id}`);
 
 /** Opens the page after HomeFeed and waits for the school. */
 async function open(search = '?In_OneSchoolGlobalId=1430') {
@@ -59,6 +60,11 @@ describe('OneSchoolGlobalDetails page', () => {
     const layout = container.querySelector('[data-block="Layouts.Layout_DetailPage"]');
     expect(layout?.id).toBe('$b1');
     expect(layout?.querySelector('.header-title')?.textContent).toBe('OneSchool Global');
+    // TST 2026-10-27: the content is OneSchoolGlobalDetails_Block ($b3) with the block's own aliases.
+    const block = container.querySelector('[data-block="Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block"]');
+    expect(block?.id).toBe('$b3');
+    expect(block?.firstElementChild?.id).toBe('b3-$b1');
+    expect(block?.firstElementChild?.getAttribute('data-block')).toBe('SubLayout.SubLayout_DirectoryDetailScreen');
     expect(cardTitle()).toBe('OneSchool Alem');
     expect(container.textContent).toContain('Educating Students From:');
     expect(container.textContent).toContain('Bahia Blanca');
@@ -68,8 +74,8 @@ describe('OneSchoolGlobalDetails page', () => {
     expect(container.textContent).toContain('Show student numbers');
     expect(button('ButtonGroupItem1')?.getAttribute('aria-checked')).toBe('true');
     expect(button('ButtonGroupItem2')?.getAttribute('aria-checked')).toBe('false');
-    expect(container.querySelector('[data-block="App_Common.BottomBarMenu"]')?.id).toBe('$b27');
-    expect(container.querySelector('[data-block="App_Common.CommonUI_InsideLayout"]')?.id).toBe('$b28');
+    expect(container.querySelector('[data-block="App_Common.BottomBarMenu"]')?.id).toBe('$b4');
+    expect(container.querySelector('[data-block="App_Common.CommonUI_InsideLayout"]')?.id).toBe('$b5');
     expect(detailsCalls()).toHaveLength(1);
   });
 

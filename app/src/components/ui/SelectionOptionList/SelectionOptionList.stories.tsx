@@ -11,7 +11,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const countries: SelectionOption_Item[] = [
-  { Id: 'Choice.None', DisplayText: 'All Countries', isSelected: true },
+  { Id: 'None', DisplayText: 'All Countries', isSelected: true },
   ...['AR', 'AU', 'CA', 'CH', 'DE', 'DK', 'FR', 'IE', 'IT', 'JM', 'NL', 'NZ', 'SE', 'TT', 'UK', 'US', 'VC'].map(
     (code) => ({
       Id: code,
@@ -31,8 +31,8 @@ export const V1: Story = { args: { selectionOptionItemList: countries.slice(1), 
 export const V2: Story = {
   args: {
     selectionOptionItemList: [
-      { Id: 'Choice.Yes', DisplayText: 'Newest', isSelected: true },
-      { Id: 'Choice.No', DisplayText: 'Oldest' },
+      { Id: 'Yes', DisplayText: 'Newest', isSelected: true },
+      { Id: 'No', DisplayText: 'Oldest' },
     ],
     ...style,
   },

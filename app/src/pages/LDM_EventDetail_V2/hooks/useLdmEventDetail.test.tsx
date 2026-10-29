@@ -5,22 +5,31 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   fetchCoordinatorDetails,
   fetchEventByEventId,
+  fetchLdmEventNotes,
   type CoordinatorDetailsData,
   type EventByEventIdData,
   type LdmEventDetail,
 } from '@/api/event';
 import { fetchHouseholdCoordinatesById } from '@/api/household';
 import { UserException } from '@/legacy/os/exceptions';
+import { IgnorableSystemException } from '@/legacy/os/os-exceptions';
 import { coordinatorDetails, eventCalendarDetail, ldmEventById } from '@/mocks/fictional/ldm';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { addAuditEvent_LDM } from '@/lib/orbit/actions';
+import { isFreeSubscriptionPlan, isRegionalSubscriptionPlan } from '@/pages/LDM_EventDetail_V2/components/actions';
+import { clearPreloadObject, getPreloadObject } from '@/platform/navigation/preload';
 import { INITIAL_LDM_EVENT_DETAIL_STATE, ldmEventDetailReducer, type LdmEventDetailState } from './ldmEventDetailState';
 import { useLdmEventDetail, type LdmEventDetailEvents } from './useLdmEventDetail';
 
 /* The flows of ScreenBlock_EventDetail_V2, with the calls, the reducer, the audit events, the dialogs, the feedback
    and the flow handler replaced by spies. The meals are the fictional LDM meals of src/mocks/fictional/ldm.ts. */
+vi.mock('@/pages/LDM_EventDetail_V2/components/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/pages/LDM_EventDetail_V2/components/actions')>()),
+  isFreeSubscriptionPlan: vi.fn(() => Promise.resolve(false)),
+  isRegionalSubscriptionPlan: vi.fn(() => Promise.resolve(false)),
+}));
 vi.mock('./ldmEventDetailState', async (importOriginal) => {
   const actual = await importOriginal<typeof import('./ldmEventDetailState')>();
   return { ...actual, ldmEventDetailReducer: vi.fn(actual.ldmEventDetailReducer) };
@@ -29,6 +38,7 @@ vi.mock('@/api/event', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/api/event')>()),
   fetchCoordinatorDetails: vi.fn(),
   fetchEventByEventId: vi.fn(),
+  fetchLdmEventNotes: vi.fn(),
 }));
 vi.mock('@/api/household', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/api/household')>()),
@@ -129,6 +139,12 @@ function deferred<T>() {
     },
   };
 }
+/** The errors that reached the flow handler, without the ignorable ones (the handler drops them: R1, R3). */
+const raisedErrors = () =>
+  vi
+    .mocked(raiseToFlowHandler)
+    .mock.calls.map(([error]) => error)
+    .filter((error) => !(error instanceof IgnorableSystemException));
 const reducerCalls = () => vi.mocked(ldmEventDetailReducer).mock.calls.length;
 const auditNames = () => vi.mocked(addAuditEvent_LDM).mock.calls.map(([name]) => name);
 /** The first audit event is AddAuditRequestAPIEvent(RequestAPI_EventDetail) with the request time in ms. */
@@ -152,6 +168,7 @@ beforeEach(() => {
   viewCache.saved = undefined;
   vi.mocked(fetchEventByEventId).mockResolvedValue(eventAnswer('70342'));
   vi.mocked(fetchCoordinatorDetails).mockResolvedValue(coordinatorAnswer('70342'));
+  vi.mocked(fetchLdmEventNotes).mockResolvedValue({ Total: 0, Note_Item_List: [] });
   vi.mocked(fetchHouseholdCoordinatesById).mockResolvedValue({
     Latitude: '-38.7180',
     Longitude: '-62.2650',
@@ -199,17 +216,29 @@ describe('useLdmEventDetail: fetch at start and OnReady', () => {
     await settle();
     expect(result.current.state).toMatchObject({ isFetching: true, hasEventFetchError: true });
     expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(addAuditEvent_LDM).not.toHaveBeenCalled();
   });
 
-  it('a GetCoordinatorDetails failure keeps its defaults and does not reach the flow handler', async () => {
-    vi.mocked(fetchCoordinatorDetails).mockRejectedValueOnce(new Error('down'));
+  it('a GetCoordinatorDetails failure keeps its defaults and goes to the flow handler (E1, WP6 Q2 a)', async () => {
+    const failure = new Error('down');
+    vi.mocked(fetchCoordinatorDetails).mockRejectedValueOnce(failure);
     const { result } = renderFlows();
     await settle();
     expect(result.current.state.coordinator).toBeNull();
     expect(result.current.state.hasInformation).toBe(true);
-    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(failure, expect.anything());
+  });
+
+  it('a FetchEventNotes failure keeps the default notes and goes to the flow handler (E1, WP6 Q2 a)', async () => {
+    const failure = new Error('down');
+    vi.mocked(fetchLdmEventNotes).mockRejectedValueOnce(failure);
+    const { result } = renderFlows();
+    await settle();
+    expect(result.current.state.eventNotes).toEqual({ Total: 0, Note_Item_List: [] });
+    expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(failure, expect.anything());
   });
 
   it('StrictMode: each call and the audit event run once and the state is written', async () => {
@@ -266,7 +295,7 @@ describe('useLdmEventDetail: fetch at start and OnReady', () => {
     expect(addAuditEvent_LDM).not.toHaveBeenCalled();
   });
 
-  it('F40: left after the coordinator answer and before the event, back: fetches again, one audit event in total', async () => {
+  it('F40: left after the coordinator answer and before the event, back: fetches again, no RequestAPI audit event (R1)', async () => {
     const event = deferred<EventByEventIdData>();
     const coordinator = deferred<CoordinatorDetailsData>();
     vi.mocked(fetchEventByEventId).mockReturnValueOnce(event.promise);
@@ -279,11 +308,10 @@ describe('useLdmEventDetail: fetch at start and OnReady', () => {
     const saved = forward.result.current.state;
     expect(saved).toMatchObject({ isSaved: true, isFetching: true, event: null });
     forward.unmount();
-    // The forward flow sends its audit event after the unmount (W23).
+    // Flow scope (item 8), R1: the forward flow stops at the answer after the unmount, without its audit event.
     event.resolve(eventAnswer('70342'));
     await settle();
-    expect(addAuditEvent_LDM).toHaveBeenCalledTimes(1);
-    expectRequestAudit();
+    expect(addAuditEvent_LDM).not.toHaveBeenCalled();
 
     viewCache.restored = true;
     viewCache.saved = saved;
@@ -300,7 +328,8 @@ describe('useLdmEventDetail: fetch at start and OnReady', () => {
       event: eventAnswer('70342').eventResponse,
       coordinator: coordinatorAnswer('70342'),
     });
-    expect(addAuditEvent_LDM).toHaveBeenCalledTimes(1);
+    // The restored re-run sends no audit event (F40); TST does nothing on a restored view (ED :2007-2008).
+    expect(addAuditEvent_LDM).not.toHaveBeenCalled();
   });
 
   it('F40: a restored view after a failed GetEventByEventId fetches again, without the audit event', async () => {
@@ -321,13 +350,13 @@ describe('useLdmEventDetail: fetch at start and OnReady', () => {
     const { result } = renderFlows();
     await settle();
     expect(result.current.state).toMatchObject({ isFetching: true, hasEventFetchError: true });
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(addAuditEvent_LDM).not.toHaveBeenCalled();
   });
 });
 
-describe('useLdmEventDetail: decision W23 (unmount while the flow runs)', () => {
-  it('a success after the unmount still sends the audit event once and writes no state', async () => {
+describe('useLdmEventDetail after an unmount (flow scope, item 8)', () => {
+  it('R1: unmount while GetEventByEventId is pending: no RequestAPI audit event, no state write, nothing raised', async () => {
     const event = deferred<EventByEventIdData>();
     const coordinator = deferred<CoordinatorDetailsData>();
     vi.mocked(fetchEventByEventId).mockReturnValueOnce(event.promise);
@@ -339,12 +368,12 @@ describe('useLdmEventDetail: decision W23 (unmount while the flow runs)', () => 
     coordinator.resolve(coordinatorAnswer('70342'));
     event.resolve(eventAnswer('70342'));
     await settle();
-    expect(addAuditEvent_LDM).toHaveBeenCalledTimes(1);
-    expectRequestAudit();
+    expect(addAuditEvent_LDM).not.toHaveBeenCalled();
     expect(reducerCalls()).toBe(writes);
+    expect(raisedErrors()).toEqual([]);
   });
 
-  it('a failure after the unmount still goes to the flow handler once and writes no state', async () => {
+  it('R1: unmount while GetEventByEventId is pending: its failure reaches no handler and writes no state', async () => {
     const event = deferred<EventByEventIdData>();
     vi.mocked(fetchEventByEventId).mockReturnValueOnce(event.promise);
     const { unmount } = renderFlows();
@@ -354,12 +383,11 @@ describe('useLdmEventDetail: decision W23 (unmount while the flow runs)', () => 
     const error = new Error('down');
     event.reject(error);
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raisedErrors()).toEqual([]);
     expect(reducerCalls()).toBe(writes);
   });
 
-  it('the directions started before the unmount still send the audit event and open the maps', async () => {
+  it('R2 + R3: GetHouseholdCoordinates answers after the unmount: the audit event runs, NavigateTo_WebMaps does not', async () => {
     const { result, unmount } = await loaded();
     const coordinates = deferred<{ Latitude: string; Longitude: string; UseCoordinates: boolean }>();
     vi.mocked(fetchHouseholdCoordinatesById).mockReturnValueOnce(coordinates.promise);
@@ -370,7 +398,28 @@ describe('useLdmEventDetail: decision W23 (unmount while the flow runs)', () => 
     coordinates.resolve({ Latitude: '-38.7180', Longitude: '-62.2650', UseCoordinates: true });
     await settle();
     expect(auditNames()).toEqual(['RequestAPI_EventDetail', 'MyTimelineGoogleMapsDirections']);
-    expect(events.onNavigateToWebMaps).toHaveBeenCalledTimes(1);
+    expect(events.onNavigateToWebMaps).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R3: the subscription checks answer after the unmount: the audit event runs; no carousel preload, no NavigateTo_HouseholdCarousel', async () => {
+    const { result, unmount } = await loaded();
+    const [, second] = eventAnswer('70342').eventResponse.Guests;
+    if (!second) throw new Error('no guest');
+    const isFree = deferred<boolean>();
+    vi.mocked(isFreeSubscriptionPlan).mockReturnValueOnce(isFree.promise);
+    clearPreloadObject();
+    act(() => {
+      result.current.onGuestClicked(second, true, 1);
+    });
+    unmount();
+    isFree.resolve(false);
+    await settle();
+    expect(isRegionalSubscriptionPlan).toHaveBeenCalledTimes(1);
+    expect(auditNames()).toEqual(['RequestAPI_EventDetail', 'GuestClickedOtherGuestHousehold']);
+    expect(getPreloadObject()).toBeNull();
+    expect(events.onNavigateToHouseholdCarousel).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 });
 
@@ -471,7 +520,7 @@ describe('useLdmEventDetail: the events of the view', () => {
     const [, second] = guests;
     if (!second) throw new Error('no guest');
     await act(async () => {
-      result.current.onGuestClicked(second, true);
+      result.current.onGuestClicked(second, true, 1);
       await Promise.resolve();
     });
     expect(addAuditEvent_LDM).toHaveBeenLastCalledWith('GuestClickedOtherGuestHousehold', {
@@ -483,12 +532,47 @@ describe('useLdmEventDetail: the events of the view', () => {
     );
   });
 
+  it('F1: CarouselFilteredEventResults preloads the displayed guests; a free or regional plan leaves out the disabled ones', async () => {
+    const { result } = await loaded();
+    const guests = eventAnswer('70342').eventResponse.Guests;
+    const [first, second, third] = guests;
+    if (!first || !second || !third) throw new Error('no guest');
+    const ids = (preload: unknown) =>
+      (preload as { PreloadedCarouselItems: { Id: string }[] }).PreloadedCarouselItems.map((p) => p.Id);
+    clearPreloadObject();
+    await act(async () => {
+      result.current.onGuestClicked(second, true, 1);
+      await Promise.resolve();
+    });
+    expect(isFreeSubscriptionPlan).toHaveBeenCalledTimes(1);
+    expect(isRegionalSubscriptionPlan).toHaveBeenCalledTimes(1);
+    expect(getPreloadObject()).toEqual(expect.objectContaining({ IsPreloaded: true }));
+    expect(ids(getPreloadObject())).toEqual(guests.map((g) => g.HouseholderID));
+    vi.mocked(isRegionalSubscriptionPlan).mockResolvedValueOnce(true);
+    clearPreloadObject();
+    const reloaded = await loaded('70342', (d) => {
+      d.Guests = d.Guests.map((g, i) =>
+        i === 0 ? { ...g, RecordDisabled: true } : i === 2 ? { ...g, HouseholdDisplay: false } : g,
+      );
+    });
+    await act(async () => {
+      reloaded.result.current.onGuestClicked(second, true, 1);
+      await Promise.resolve();
+    });
+    expect(ids(getPreloadObject())).toEqual(guests.filter((_, i) => i !== 0 && i !== 2).map((g) => g.HouseholderID));
+    expect(events.onNavigateToHouseholdCarousel).toHaveBeenLastCalledWith(
+      second.HouseholderID,
+      guests.map((g) => g.HouseholderID),
+    );
+    clearPreloadObject();
+  });
+
   it('the host clicks a guest household: the HostClickedGuestHousehold audit event', async () => {
     const { result } = await loaded('70388');
     const [first] = eventAnswer('70388').eventResponse.Guests;
     if (!first) throw new Error('no guest');
     await act(async () => {
-      result.current.onGuestClicked(first, true);
+      result.current.onGuestClicked(first, true, 0);
       await Promise.resolve();
     });
     expect(addAuditEvent_LDM).toHaveBeenLastCalledWith('HostClickedGuestHousehold', {
@@ -501,12 +585,12 @@ describe('useLdmEventDetail: the events of the view', () => {
     const [first] = eventAnswer('70342').eventResponse.Guests;
     if (!first) throw new Error('no guest');
     await act(async () => {
-      result.current.onGuestClicked({ ...first, RecordDisabled: true }, true);
+      result.current.onGuestClicked({ ...first, RecordDisabled: true }, true, 0);
       await Promise.resolve();
     });
     expect(showUpgradePopUp).toHaveBeenCalledTimes(1);
     await act(async () => {
-      result.current.onGuestClicked(first, false);
+      result.current.onGuestClicked(first, false, 0);
       await Promise.resolve();
     });
     expect(events.onNavigateToHouseholdCarousel).not.toHaveBeenCalled();

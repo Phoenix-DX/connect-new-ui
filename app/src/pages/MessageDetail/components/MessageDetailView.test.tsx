@@ -1,5 +1,6 @@
-import { beforeEach, describe, expect, it } from 'vitest';
-import type { MessageDetail } from '@/api/message';
+import { cleanup, fireEvent } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import type { MessageDetail, MessageParameter } from '@/api/message';
 import { MessageInfoType, MessageSenderTarget, MessageType } from '@/pages/MessageDetail/staticEntities';
 import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
 import { freshPage } from '@/test/testSupport';
@@ -104,35 +105,75 @@ describe('MessageDetailView', () => {
     expect(title(renderView({ message: fromUser }).container)).toBe('Mara Lindqvist');
   });
 
-  it('shows the Orbit action button placeholder and no icon border for an Orbit message', () => {
+  const parameter = (parameterNameId: number, parameterValue: string): MessageParameter => ({
+    id: parameterValue,
+    messageTemplateId: '31',
+    parameterNameId,
+    parameterValue,
+    tenantId: 1,
+  });
+
+  it('shows ViewOrbitEvent "View Event" for an Orbit message with parameters, and no icon border (SBMD:600-640)', () => {
     const orbit = message({ sentAs: MessageSenderTarget.Orbit, senderTargetId: MessageSenderTarget.Orbit });
-    const { container } = renderView({ message: orbit });
-    expect(document.getElementById('b1-b4-Placeholder_ActionButton')).not.toBeNull();
-    expect(notCaptured(container)).toContain('Q1: button ViewOrbitEvent "View Event" / "Go to Host Survey"');
+    const onClickViewOrbitEvent = vi.fn();
+    const { container } = renderView({ message: orbit, parameters: [parameter(2, '7301')], onClickViewOrbitEvent });
+    const button = document.getElementById('b1-ViewOrbitEvent');
+    expect(button?.className).toBe('btn btn-primary full-width ignore-cap');
+    expect(button?.textContent).toBe('View Event');
+    expect(button?.parentElement?.id).toBe('b1-b4-Placeholder_ActionButton');
+    fireEvent.click(button as HTMLElement);
+    expect(onClickViewOrbitEvent).toHaveBeenCalledWith(MessageSenderTarget.Orbit);
     expect(container.querySelector('.notification-detail-icon-badge')?.className).toBe(
       'notification-detail-icon-badge no-border',
     );
   });
 
-  it('shows the Assemble action button placeholder for an Assemble message', () => {
-    const assemble = message({ sentAs: MessageSenderTarget.Assemble, senderTargetId: MessageSenderTarget.Assemble });
-    const { container } = renderView({ message: assemble });
-    expect(notCaptured(container)).toContain(
-      'Q1: button ViewAssembleEvent "View Meeting" and the Assemble content (BuildAssembleNotificationContent)',
-    );
+  it('shows "Go to Host Survey" for a host survey message; no button before the parameters or without any', () => {
+    const survey = message({ sentAs: 20, senderTargetId: MessageSenderTarget.OrbitHostSurvey });
+    renderView({ message: survey, parameters: [parameter(2, '7301')] });
+    expect(document.getElementById('b1-ViewOrbitEvent')?.textContent).toBe('Go to Host Survey');
+    cleanup();
+    renderView({ message: survey, parameters: null });
+    expect(document.getElementById('b1-ViewOrbitEvent')).toBeNull();
+    cleanup();
+    renderView({ message: survey, parameters: [] });
+    expect(document.getElementById('b1-ViewOrbitEvent')).toBeNull();
   });
 
-  it('shows the MessageDetails placeholder instead of the content for a Sharing message', () => {
-    const { container } = renderView({ message: message({ messageInfoTypeId: MessageInfoType.Sharing }) });
-    expect(document.getElementById('b1-b4-MessageDetails')).not.toBeNull();
-    expect(notCaptured(container)).toContain(
-      'Q1: Share_UI.ShareObjectDetail / ShareObjectDetail_ExtendedShare (b1-$b5, b1-$b6)',
-    );
+  it('shows ViewAssembleEvent "View Meeting" with GetHasAssemble, the parameters and ShowAssembleAction (SBMD:566-598)', () => {
+    const assemble = message({ sentAs: MessageSenderTarget.Assemble, senderTargetId: MessageSenderTarget.Assemble });
+    const onClickViewAssembleEvent = vi.fn();
+    renderView({
+      message: assemble,
+      parameters: [],
+      showAssembleAction: true,
+      hasAssemble: true,
+      onClickViewAssembleEvent,
+    });
+    const button = document.getElementById('b1-ViewAssembleEvent');
+    expect(button?.textContent).toBe('View Meeting');
+    fireEvent.click(button as HTMLElement);
+    expect(onClickViewAssembleEvent).toHaveBeenCalledWith(MessageSenderTarget.Assemble);
+    cleanup();
+    renderView({ message: assemble, parameters: [], showAssembleAction: false, hasAssemble: true });
+    expect(document.getElementById('b1-ViewAssembleEvent')).toBeNull();
+    cleanup();
+    renderView({ message: assemble, parameters: [], showAssembleAction: true, hasAssemble: false });
+    expect(document.getElementById('b1-ViewAssembleEvent')).toBeNull();
+  });
+
+  it('shows the Share_UI block in the MessageDetails placeholder instead of the content for a Sharing message', () => {
+    const { container } = renderView({
+      message: message({ messageInfoTypeId: MessageInfoType.Sharing }),
+      shareObjectDetail: <p>shared household</p>,
+    });
+    expect(document.getElementById('b1-b4-MessageDetails')?.textContent).toBe('shared household');
+    expect(notCaptured(container)).toEqual([]);
     expect(container.querySelector('.notification-detail-content')).toBeNull();
   });
 
   it('marks an urgent message', () => {
-    const { container } = renderView({ message: message({ messageTemplatePriorityId: 2 }) });
-    expect(notCaptured(container)).toContain('Urgent icon (b1-b4-Message_List_Item_Icon)');
+    renderView({ message: message({ messageTemplatePriorityId: 2 }) });
+    expect(document.getElementById('b1-b4-Message_List_Item_Icon')?.className).toContain('fa-exclamation');
   });
 });

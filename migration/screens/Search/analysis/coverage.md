@@ -1,14 +1,13 @@
 # Coverage for Search
 
 - UI states captured: default, loading, offline
-- Runtime captures: 1 file(s), 9 call(s)
+- Runtime captures: 1 file(s), 10 call(s)
 - Masked text nodes: 15, user images removed: 0
 - Fetch failures during snapshot: 0
 
 ## Blocks referenced in code but not rendered in any captured state
 Each one is a UI state (loading, empty, error, popup...) that still needs a capture, or a branch that never runs for this user.
 
-- [ ] `Adaptive.Gallery`
 - [ ] `App_Common.UnsupportedVersion_Wrapper`
 - [ ] `App_CommonBlocks_Filter.FilterSheet_OptionChoice_Item`
 - [ ] `App_Policies.Policy_Checker`
@@ -49,6 +48,7 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [ ] `scripts/OutSystemsUI_2_23.OutSystemsUI.js`
 
 ## Data/server actions declared in the screen and its blocks
+- [x] `DataActionGet_FilteredRecentClickedResults` (UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js)
 - [ ] `DataActionFetchSearchResults` (UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js)
 - [x] `ScreenDataSetGet_SearchBirthdayOptions` (UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js)
 - [x] `DataActionGetCacheInfo` (UBTConnect_Utils.CacheControl.CacheControl_AllCountries.mvc.js)

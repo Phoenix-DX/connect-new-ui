@@ -1,0 +1,69 @@
+{
+ "flow": "App_Menu",
+ "screens": [
+  "Menu",
+  "PINBiometricsMenu",
+  "TermsAndPoliciesMenu"
+ ],
+ "ownBlocks": [
+  "Menu_List"
+ ],
+ "usedBlocks": [
+  "App_IconBadge",
+  "Block_PINUnlock",
+  "Block_PINUnlock_ContentWrapper",
+  "BottomBarContent",
+  "BottomBarMenu",
+  "CacheControl_UserInfo_Wrapper",
+  "CommonUI_InsideLayout",
+  "Dialog_CustomChoice",
+  "HandleOnResumeOpenLink",
+  "Menu_List",
+  "OfflineDataSyncEvents",
+  "Policy_Checker",
+  "SectionSeparator",
+  "UnsupportedVersion",
+  "UnsupportedVersion_Browser",
+  "UnsupportedVersion_Native",
+  "UnsupportedVersion_WebView",
+  "UnsupportedVersion_Wrapper",
+  "Version",
+  "WelcomeToConnect"
+ ],
+ "referencedBlocks": [
+  "CacheControl_Policies",
+  "Columns_Three",
+  "Columns_Two",
+  "CustomContainer",
+  "CustomText",
+  "Icon",
+  "IconText",
+  "Layout_DetailPage",
+  "SkeletonSection",
+  "UBT_LazyImage"
+ ],
+ "clientActions": [
+  "Connect_Logout",
+  "Directory_Updates_RefreshBottomBarCount",
+  "ExitApplicationForWebViewUpdate",
+  "GetURLFromEventDataURL",
+  "GetUserInformation_Wrapper_Assign",
+  "Get_IsUnsupportedSystem",
+  "Get_IsUnsupportedVersion",
+  "OfflineDataSync",
+  "OfflineDataSyncConfiguration",
+  "OpenGooglePlay_Chrome",
+  "OpenGooglePlay_UBTConnect",
+  "OpenGooglePlay_WebView",
+  "ScrollTop",
+  "SetResumeLoginLink",
+  "Try_GetIsSupportedVersion",
+  "Upgrade_UBTConnect",
+  "Upgrade_WebView"
+ ],
+ "serverActions": [
+  "Get_UI_UpdateItems_UnreadCount_All",
+  "RequestPhotoUpdate"
+ ],
+ "externalSites": []
+}

@@ -13,23 +13,23 @@ flowchart TB
       direction LR
       B0["Layouts.Layout_DetailPage<br/>UBTConnectLibrary<br/>lifecycle"]
       B1["LayoutRuntime_NavigationHandler.LayoutRuntime_Top<br/>NavigationHandler<br/>lifecycle"]
-      B2["SubLayout.SubLayout_DirectoryDetailScreen<br/>UBTConnect<br/>markup"]
-      B3["ConnectPatterns.SkeletonSection<br/>UBTConnectLibrary<br/>lifecycle"]
-      B4["ConnectCorePatterns.ImageCard_LazyLoading<br/>UBTConnectLibrary<br/>lifecycle"]
-      B5["BasePatterns.CustomContainer<br/>UBTConnectLibrary<br/>lifecycle"]
-      B6["CW_Image.UBT_LazyImage<br/>UBTConnect_Utils<br/>lifecycle"]
-      B7["ConnectPatterns.LazyImage<br/>UBTConnectLibrary<br/>lifecycle"]
-      B8["CW_CTA_PopUps.AddressPopup_Wrapper<br/>UBTConnect_Utils<br/>lifecycle"]
-      B9["CW_CTA_PopUps.AddressPopup<br/>UBTConnect_Utils<br/>lifecycle"]
-      B10["CW_CTA_PopUps.ContactPopup<br/>UBTConnect_Utils<br/>lifecycle"]
-      B11["BasePatterns.Columns_Two<br/>UBTConnectLibrary<br/>lifecycle"]
-      B12["Directory_CommonBlocks.Directory_EntityDetailsActions<br/>UBTConnect<br/>fetch, navigation, lifecycle"]
-      B13["ConnectCorePatterns.ActionsMenu<br/>UBTConnectLibrary<br/>lifecycle"]
-      B14["CW_CTA_PopUps.ContactByMessage_Wrapper<br/>UBTConnect_Utils<br/>lifecycle"]
-      B15["CW_CTA_PopUps.ContactPopup_ByMessage<br/>UBTConnect_Utils<br/>lifecycle"]
-      B16["CW_CTA_PopUps.ContactPopup_ByPhone<br/>UBTConnect_Utils<br/>lifecycle"]
-      B17["CW_CTA_PopUps.SharePopup<br/>UBTConnect_Utils<br/>lifecycle"]
-      B18["CW_Notes.NotesSheet<br/>UBTConnect_Utils<br/>lifecycle"]
+      B2["Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block<br/>UBTConnect<br/>fetch, lifecycle"]
+      B3["SubLayout.SubLayout_DirectoryDetailScreen<br/>UBTConnect<br/>markup"]
+      B4["ConnectPatterns.SkeletonSection<br/>UBTConnectLibrary<br/>lifecycle"]
+      B5["ConnectCorePatterns.ImageCard_LazyLoading<br/>UBTConnectLibrary<br/>lifecycle"]
+      B6["BasePatterns.CustomContainer<br/>UBTConnectLibrary<br/>lifecycle"]
+      B7["CW_Image.UBT_LazyImage<br/>UBTConnect_Utils<br/>lifecycle"]
+      B8["ConnectPatterns.LazyImage<br/>UBTConnectLibrary<br/>lifecycle"]
+      B9["CW_CTA_PopUps.AddressPopup_Wrapper<br/>UBTConnect_Utils<br/>lifecycle"]
+      B10["CW_CTA_PopUps.AddressPopup<br/>UBTConnect_Utils<br/>lifecycle"]
+      B11["CW_CTA_PopUps.ContactPopup<br/>UBTConnect_Utils<br/>lifecycle"]
+      B12["BasePatterns.Columns_Two<br/>UBTConnectLibrary<br/>lifecycle"]
+      B13["Directory_CommonBlocks.Directory_EntityDetailsActions<br/>UBTConnect<br/>fetch, navigation, lifecycle"]
+      B14["ConnectCorePatterns.ActionsMenu<br/>UBTConnectLibrary<br/>lifecycle"]
+      B15["CW_CTA_PopUps.ContactByMessage_Wrapper<br/>UBTConnect_Utils<br/>lifecycle"]
+      B16["CW_CTA_PopUps.ContactPopup_ByMessage<br/>UBTConnect_Utils<br/>lifecycle"]
+      B17["CW_CTA_PopUps.ContactPopup_ByPhone<br/>UBTConnect_Utils<br/>lifecycle"]
+      B18["CW_CTA_PopUps.SharePopup<br/>UBTConnect_Utils<br/>lifecycle"]
       B19["ConnectPatterns.ExpandableSection<br/>UBTConnectLibrary<br/>lifecycle"]
       B20["App_Common.BottomBarMenu<br/>UBTConnect<br/>navigation, lifecycle"]
       B21["App_Common.BottomBarContent<br/>UBTConnect<br/>markup"]
@@ -52,32 +52,32 @@ flowchart TB
       B38["Utility.HandleImageLoadError<br/>Connect2_LegacyShared<br/>lifecycle"]
       B39["NavigationHandler.BackNavigationHandler<br/>NavigationHandler<br/>lifecycle"]
     end
-    Infra["App infrastructure blocks (1)<br/>render nothing visible"]
+    Infra["App infrastructure blocks (2)<br/>render nothing visible"]
     Cache["View cache / preload<br/>CheckRestoredJS, IsRestoredFromCacheJS, IsViewRestoredFromCacheJS"]
     Vars["Client variables read<br/>App_PIN_BiometricEnabled, App_Policies_HasPolicyToAccept, Bookmarks_IsSynched, Directory_Updates_UnreadCount, IsNavigateToHomeOnBack …"]
     Shell --> Content
   end
   subgraph Server["OutSystems server · screenservices"]
     direction LR
-    S0["DataActionFetchContactDetails<br/>data action / aggregate, observed"]
-    S1["DataActionFetchNotes<br/>data action / aggregate, declared, not observed"]
-    S2["DataActionGetAvailableMembers<br/>data action / aggregate, declared, not observed"]
-    S3["DataActionGetRecentlyShared<br/>data action / aggregate, declared, not observed"]
-    S4["DataActionGetOneSchoolGlobalDetails<br/>data action / aggregate, observed"]
+    S0["DataActionGetOneSchoolGlobalDetails<br/>data action / aggregate, observed"]
+    S1["DataActionFetchContactDetails<br/>data action / aggregate, observed"]
+    S2["DataActionFetchNotes<br/>data action / aggregate, observed"]
+    S3["DataActionGetAvailableMembers<br/>data action / aggregate, declared, not observed"]
+    S4["DataActionGetRecentlyShared<br/>data action / aggregate, declared, not observed"]
     S5["ActionAppManager_SynchAppContext<br/>observed"]
     S6["ActionAppManager_AfterInitialize<br/>observed"]
     S7["ActionSync_Info_GetMain<br/>observed"]
     S8["ActionGetUserInformation<br/>observed"]
     S9["ActionGetNumberUnreadMessages<br/>observed"]
-    S10["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
-    S11["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
+    S10["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
+    S11["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
   end
   Backend["Backend<br/>not visible from the browser"]
-  B12 --> S0
-  B12 -.-> S1
-  Content -.-> S2
+  B2 --> S0
+  B13 --> S1
+  B13 --> S2
   Content -.-> S3
-  Content --> S4
+  Content -.-> S4
   Content -.-> S5
   Content -.-> S6
   Content -.-> S7
@@ -87,7 +87,7 @@ flowchart TB
   Content -.-> S11
   S0 -.-> Backend
   classDef unknown stroke-dasharray: 5 4;
-  class S1,S2,S3,Backend unknown;
+  class S3,S4,Backend unknown;
 ```
 
 ## Sequence: enter the screen (draft)
@@ -96,31 +96,33 @@ flowchart TB
 sequenceDiagram
   autonumber
   actor U as User
-  participant S as Directory_CommonBlocks.Directory_EntityDetailsActions
+  participant S as Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block
   participant API as screenservices
   U->>S: open /UBTConnect/OneSchoolGlobalDetails
+  S->>S: OnInitialize
   alt fresh entry
     S->>S: TODO initial state (e.g. clear lists, spinner)
   else back from history (view restored)
     S->>S: TODO keep cached data?
   end
+  S->>API: DataActionGetOneSchoolGlobalDetails
+  API-->>S: Out_OneSchoolGlobal, HouseholdCoordinates, UI_Timezone
   S->>API: DataActionFetchContactDetails
   API-->>S: ContactPopupData, Phone, MobilePhone, HomePhone, WorkPhone
   S->>S: onAfterFetch_FetchContactDetails
   S->>API: DataActionFetchNotes
-  API-->>S: TODO outputs
+  API-->>S: Notes
+  S->>S: onAfterFetch_FetchNotes
   S->>API: DataActionGetAvailableMembers
   API-->>S: TODO outputs
   S->>S: onAfterFetch_GetAvailableMembers
   S->>API: DataActionGetRecentlyShared
   API-->>S: TODO outputs
   S->>S: onAfterFetch_GetRecentlyShared
-  S->>API: DataActionGetOneSchoolGlobalDetails
-  API-->>S: Out_OneSchoolGlobal, HouseholdCoordinates, UI_Timezone
-  S->>API: ServiceAPIFetchData_CacheableHouseholds
+  S->>API: ServiceAPIFetchData_CacheableMapEntities
   Note over S,API: observed in capture, trigger unverified (TODO)
   API-->>S: TODO outputs
-  S->>API: ServiceAPIFetchData_CacheableMapEntities
+  S->>API: ServiceAPIFetchData_CacheableHouseholds
   Note over S,API: observed in capture, trigger unverified (TODO)
   API-->>S: TODO outputs
   S->>S: OnReady
@@ -136,7 +138,7 @@ sequenceDiagram
 %% DRAFT: trigger from call-sites.md; replace TODOs with the result handling of the calling action
 sequenceDiagram
   actor U as User
-  participant S as Directory_CommonBlocks.Directory_EntityDetailsActions
+  participant S as Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block
   participant API as screenservices
   U->>S: TODO user event
   Note over S: chain stops at HandleImageLoadError.applicationEvent_ImageError (see call-sites.md)
@@ -155,7 +157,7 @@ sequenceDiagram
 %% DRAFT: trigger from call-sites.md; replace TODOs with the result handling of the calling action
 sequenceDiagram
   actor U as User
-  participant S as Directory_CommonBlocks.Directory_EntityDetailsActions
+  participant S as Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block
   participant API as screenservices
   U->>S: TODO user event
   Note over S: chain stops at UBT_AppManager.appManager_OnAppReady_Web (see call-sites.md)
@@ -175,7 +177,7 @@ sequenceDiagram
 %% DRAFT: trigger from call-sites.md; replace TODOs with the result handling of the calling action
 sequenceDiagram
   actor U as User
-  participant S as Directory_CommonBlocks.Directory_EntityDetailsActions
+  participant S as Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block
   participant API as screenservices
   U->>S: TODO user event
   Note over S: chain stops at UBTConnect.onApplicationReady (see call-sites.md)
@@ -195,7 +197,7 @@ sequenceDiagram
 %% DRAFT: trigger from call-sites.md; replace TODOs with the result handling of the calling action
 sequenceDiagram
   actor U as User
-  participant S as Directory_CommonBlocks.Directory_EntityDetailsActions
+  participant S as Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block
   participant API as screenservices
   U->>S: TODO user event
   Note over S: chain stops at UBTConnect_Utils.cache_UserInfo_GetCallback (see call-sites.md)
@@ -214,7 +216,7 @@ sequenceDiagram
 %% DRAFT: trigger from call-sites.md; replace TODOs with the result handling of the calling action
 sequenceDiagram
   actor U as User
-  participant S as Directory_CommonBlocks.Directory_EntityDetailsActions
+  participant S as Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block
   participant API as screenservices
   U->>S: TODO user event
   Note over S: chain stops at UBTConnect.onApplicationReady (see call-sites.md)
