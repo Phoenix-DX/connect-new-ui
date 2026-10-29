@@ -60,23 +60,23 @@ describe('LegacyShareObject', () => {
     });
     expect(container.querySelector('[id="b1-Household_List_Item"] .loading-item')).toBeNull();
     await waitFor(() => {
-      expect(shareIcons(container)).toHaveLength(1);
+      expect(shareIcons(container)).toHaveLength(50);
     });
-    expect(container.querySelector('#b1-b8-l1-39_0-b3-Contents')?.textContent).toBe('Alice Thornton');
-    expect(text(container, 'b1-b8-l1-39_0-Household_Tag')).toBe('Las Cruces, United States');
-    expect(container.querySelector('.share-with-input .text-bold')?.textContent).toBe('Contacts list');
+    expect(container.querySelector('#b1-b8-l1-39_0-b3-Contents')?.textContent).toBe('Robert Callahan');
+    expect(text(container, 'b1-b8-l1-39_0-Household_Tag')).toBe('Granite Falls, United States');
+    expect(container.querySelector('.share-with-input .text-bold')?.textContent).toBe('Locality Members');
   });
 
   it('the search: Enter highlights the words, no result shows the message, a share marks the row', async () => {
     const { container, open } = renderScreen('In_ShareObjectTypeId=Household&In_ObjectId=42438');
     await open();
     await waitFor(() => {
-      expect(shareIcons(container)).toHaveLength(1);
+      expect(shareIcons(container)).toHaveLength(50);
     });
-    fireEvent.change(searchInput(container), { target: { value: 'thorn' } });
+    fireEvent.change(searchInput(container), { target: { value: 'hutch' } });
     fireEvent.keyUp(searchInput(container), { key: 'Enter' });
     await waitFor(() => {
-      expect(container.querySelector('#b1-b8-l1-39_0-b3-Contents mark')?.textContent).toBe('Thorn');
+      expect(container.querySelector('#b1-b8-l1-39_0-b3-Contents mark')?.textContent).toBe('Hutch');
     });
     fireEvent.change(searchInput(container), { target: { value: 'Ngaio' } });
     fireEvent.keyUp(searchInput(container), { key: 'Enter' });
@@ -85,13 +85,13 @@ describe('LegacyShareObject', () => {
     });
     fireEvent.change(searchInput(container), { target: { value: '' } });
     await waitFor(() => {
-      expect(shareIcons(container)).toHaveLength(1);
+      expect(shareIcons(container)).toHaveLength(50);
     });
     fireEvent.click(shareIcons(container)[0] as Element);
     await waitFor(() => {
       expect(container.querySelector('.fa-check-circle')).not.toBeNull();
     });
-    expect(shareIcons(container)).toHaveLength(0);
+    expect(shareIcons(container)).toHaveLength(49);
   });
 
   it('a share that is not allowed opens the SubscriptionDenied dialog', async () => {
@@ -99,7 +99,7 @@ describe('LegacyShareObject', () => {
     const { container, open } = renderScreen('In_ShareObjectTypeId=Household&In_ObjectId=42438');
     await open();
     await waitFor(() => {
-      expect(shareIcons(container)).toHaveLength(1);
+      expect(shareIcons(container)).toHaveLength(50);
     });
     expect(container.querySelector('[id="SubscriptionDenied-b1-$b1"]')).toBeNull();
     fireEvent.click(shareIcons(container)[0] as Element);
@@ -186,7 +186,7 @@ describe('LegacyShareObject', () => {
     const { container, open, router } = renderScreen('In_ShareObjectTypeId=Household&In_ObjectId=42438');
     await open();
     await waitFor(() => {
-      expect(shareIcons(container)).toHaveLength(1);
+      expect(shareIcons(container)).toHaveLength(50);
     });
     fireEvent.change(searchInput(container), { target: { value: 'alice' } });
     sessionStorage.setItem('mock:latency', '200'); // the answers come after the first render

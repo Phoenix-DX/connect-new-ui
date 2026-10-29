@@ -50,30 +50,135 @@ export interface AppManager_SynchAppContextResponse {
   FirebaseRealTimeDB_Token: string;
 }
 
-export interface AppManager_AfterInitializeResponse {
-  isNotRegistered: boolean;
+export interface MessagePriority {
+  Id: number /* 0 in capture */;
+  Label: string /* "" in capture */;
+  Order: number /* 0 in capture */;
+  Is_Active: boolean;
 }
 
-export interface MessagesItem {
+export interface MessageContent {
   Id: string /* Long Integer as string */;
-  MessageTemplateTypeId: number;
+  MessageContent: string;
+}
+
+export interface MessageTemplate {
+  Id: string /* Long Integer as string */;
+  IsAdaptiveCard: boolean;
   Title: string;
   Summary: string /* "" in capture */;
-  DateTimeCreated: string /* ISO DateTime */;
+  MessageContentId: string /* Long Integer as string */;
+  CreatedByUser: number /* 0 in capture */;
+  CreatedDate: string /* "1900-01-01..." = no value */;
+  LastUpdated: string /* "1900-01-01..." = no value */;
+  UpdatedBy: number /* 0 in capture */;
+  MessageTemplateStatusId: number /* 0 in capture */;
+  MessageTemplateTypeId: number;
   MessageTemplatePriorityId: number;
-  ProfileIconURL: string /* "" in capture */;
-  IsClear: boolean;
-  IsRead: boolean;
-  CreatedByUserId: number;
-  CreatedByMemberId: string /* Long Integer as string */;
   MessageInfoTypeId: number;
-  MessageSenderTargetName: string;
+  AdaptiveCardJSONId: string /* Long Integer as string */;
+  SentAs: number /* 0 in capture */;
+  SavedTemplateId: string /* Long Integer as string */;
+  MessageSendToTypeId: number /* 0 in capture */;
+  MessageApplicationTargetId: number /* 0 in capture */;
+  RecalledBy: number /* 0 in capture */;
+  IsPushNotificationOnly: boolean;
+  HideTitleOnPushNotification: boolean;
+  HideBodyOnPushNotification: boolean;
 }
 
-export interface GetMessagesResponse {
-  Messages: MessagesItem[] /* wire: { List: [...] } */;
-  HasUnreadMessages: boolean;
-  CountUnreadMessages: string /* Long Integer as string */;
+export interface MessageSenderTarget {
+  Id: number /* 0 in capture */;
+  Name: string /* "" in capture */;
+  ProfileIconURL: string /* "" in capture */;
+  Order: number /* 0 in capture */;
+  Is_Active: boolean;
+  NotificationIcon: string /* "" in capture */;
+  NotificationHeading: string /* "" in capture */;
+}
+
+export interface MessageInstance {
+  Id: string /* Long Integer as string */;
+  MessageTemplateId: string /* Long Integer as string */;
+  UserId: number;
+  DeviceHardwareId: string /* "" in capture */;
+  IsSent: boolean;
+  IsReceived: boolean;
+  IsRead: boolean;
+  IsReplied: boolean;
+  IsClear: boolean;
+  DateTimeCreated: string /* ISO DateTime */;
+  NotificationUUID: string /* "" in capture */;
+  SendAttemptCount: number /* 0 in capture */;
+  LastSendAttemptDateTime: string /* "1900-01-01..." = no value */;
+  NextSendAttemptDateTime: string /* "1900-01-01..." = no value */;
+  CheckForReceiptCount: number /* 0 in capture */;
+  LastCheckForReceiptDateTime: string /* "1900-01-01..." = no value */;
+  NextCheckForReceiptDateTime: string /* "1900-01-01..." = no value */;
+  SentToWebDevice: boolean;
+  MessageError: string /* "" in capture */;
+}
+
+export interface AdaptiveCardJSON {
+  Id: string /* Long Integer as string */;
+  AdaptiveCardContent: string /* "" in capture */;
+}
+
+export interface User {
+  Id: number /* 0 in capture */;
+  Name: string;
+  Username: string /* "" in capture */;
+  Password: string /* "" in capture */;
+  Email: string /* "" in capture */;
+  MobilePhone: string /* "" in capture */;
+  External_Id: string /* "" in capture */;
+  Creation_Date: string /* "1900-01-01..." = no value */;
+  Last_Login: string /* "1900-01-01..." = no value */;
+  Is_Active: boolean;
+}
+
+export interface Message {
+  MessagePriority: MessagePriority;
+  MessageContent: MessageContent;
+  MessageTemplate: MessageTemplate;
+  MessageSenderTarget: MessageSenderTarget;
+  MessageInstance: MessageInstance;
+  AdaptiveCardJSON: AdaptiveCardJSON;
+  User: User;
+  CreatedByMemberId: string /* Long Integer as string */;
+}
+
+export interface Delimiters {
+  Delimiter_Function: string /* "" in capture */;
+  Delimiter_Parameter: string /* "" in capture */;
+  Delimiter_Placeholder: string /* "" in capture */;
+}
+
+export interface PlaceholderDelimiters {
+  Delimiters: Delimiters;
+}
+
+export interface GetMessageInstanceResponse {
+  Message: Message;
+  IsRetracted: boolean;
+  IsCleared: boolean;
+  PlaceholderDelimiters: PlaceholderDelimiters;
+}
+
+export interface ResultsItem {
+  Id: string /* Long Integer as string */;
+  Type: string;
+  Size: string;
+  SignedURL: string;
+  Error: string /* "" in capture */;
+}
+
+export interface GetSignedImagesInBulkResponse {
+  Results: ResultsItem[] /* wire: { List: [...] } */;
+}
+
+export interface AppManager_AfterInitializeResponse {
+  isNotRegistered: boolean;
 }
 
 export interface OrbitEventTypesItem {
@@ -249,18 +354,6 @@ export interface Sync_Info_GetMainResponse {
   MyEntertainingBaseURL: string;
   FeedBaseURL: string;
   B2CTenant: string;
-}
-
-export interface ResultsItem {
-  Id: string /* Long Integer as string */;
-  Type: string;
-  Size: string;
-  SignedURL: string;
-  Error: string /* "" in capture */;
-}
-
-export interface GetSignedImagesInBulkResponse {
-  Results: ResultsItem[] /* wire: { List: [...] } */;
 }
 
 export interface Directory_UserCurrent_Visibility {
@@ -548,119 +641,4 @@ export interface Household_MarkersItem {
 
 export interface ServiceAPIFetchData_CacheableHouseholdsResponse {
   Household_Markers: Household_MarkersItem[] /* wire: { List: [...] } */;
-}
-
-export interface MessagePriority {
-  Id: number /* 0 in capture */;
-  Label: string /* "" in capture */;
-  Order: number /* 0 in capture */;
-  Is_Active: boolean;
-}
-
-export interface MessageContent {
-  Id: string /* Long Integer as string */;
-  MessageContent: string;
-}
-
-export interface MessageTemplate {
-  Id: string /* Long Integer as string */;
-  IsAdaptiveCard: boolean;
-  Title: string;
-  Summary: string /* "" in capture */;
-  MessageContentId: string /* Long Integer as string */;
-  CreatedByUser: number /* 0 in capture */;
-  CreatedDate: string /* "1900-01-01..." = no value */;
-  LastUpdated: string /* "1900-01-01..." = no value */;
-  UpdatedBy: number /* 0 in capture */;
-  MessageTemplateStatusId: number /* 0 in capture */;
-  MessageTemplateTypeId: number;
-  MessageTemplatePriorityId: number;
-  MessageInfoTypeId: number;
-  AdaptiveCardJSONId: string /* Long Integer as string */;
-  SentAs: number;
-  SavedTemplateId: string /* Long Integer as string */;
-  MessageSendToTypeId: number /* 0 in capture */;
-  MessageApplicationTargetId: number /* 0 in capture */;
-  RecalledBy: number /* 0 in capture */;
-  IsPushNotificationOnly: boolean;
-  HideTitleOnPushNotification: boolean;
-  HideBodyOnPushNotification: boolean;
-}
-
-export interface MessageSenderTarget {
-  Id: number;
-  Name: string;
-  ProfileIconURL: string;
-  Order: number /* 0 in capture */;
-  Is_Active: boolean;
-  NotificationIcon: string /* "" in capture */;
-  NotificationHeading: string /* "" in capture */;
-}
-
-export interface MessageInstance {
-  Id: string /* Long Integer as string */;
-  MessageTemplateId: string /* Long Integer as string */;
-  UserId: number;
-  DeviceHardwareId: string /* "" in capture */;
-  IsSent: boolean;
-  IsReceived: boolean;
-  IsRead: boolean;
-  IsReplied: boolean;
-  IsClear: boolean;
-  DateTimeCreated: string /* ISO DateTime */;
-  NotificationUUID: string /* "" in capture */;
-  SendAttemptCount: number /* 0 in capture */;
-  LastSendAttemptDateTime: string /* "1900-01-01..." = no value */;
-  NextSendAttemptDateTime: string /* "1900-01-01..." = no value */;
-  CheckForReceiptCount: number /* 0 in capture */;
-  LastCheckForReceiptDateTime: string /* "1900-01-01..." = no value */;
-  NextCheckForReceiptDateTime: string /* "1900-01-01..." = no value */;
-  SentToWebDevice: boolean;
-  MessageError: string /* "" in capture */;
-}
-
-export interface AdaptiveCardJSON {
-  Id: string /* Long Integer as string */;
-  AdaptiveCardContent: string /* "" in capture */;
-}
-
-export interface User {
-  Id: number /* 0 in capture */;
-  Name: string;
-  Username: string /* "" in capture */;
-  Password: string /* "" in capture */;
-  Email: string /* "" in capture */;
-  MobilePhone: string /* "" in capture */;
-  External_Id: string /* "" in capture */;
-  Creation_Date: string /* "1900-01-01..." = no value */;
-  Last_Login: string /* "1900-01-01..." = no value */;
-  Is_Active: boolean;
-}
-
-export interface Message {
-  MessagePriority: MessagePriority;
-  MessageContent: MessageContent;
-  MessageTemplate: MessageTemplate;
-  MessageSenderTarget: MessageSenderTarget;
-  MessageInstance: MessageInstance;
-  AdaptiveCardJSON: AdaptiveCardJSON;
-  User: User;
-  CreatedByMemberId: string /* Long Integer as string */;
-}
-
-export interface Delimiters {
-  Delimiter_Function: string /* "" in capture */;
-  Delimiter_Parameter: string /* "" in capture */;
-  Delimiter_Placeholder: string /* "" in capture */;
-}
-
-export interface PlaceholderDelimiters {
-  Delimiters: Delimiters;
-}
-
-export interface GetMessageInstanceResponse {
-  Message: Message;
-  IsRetracted: boolean;
-  IsCleared: boolean;
-  PlaceholderDelimiters: PlaceholderDelimiters;
 }

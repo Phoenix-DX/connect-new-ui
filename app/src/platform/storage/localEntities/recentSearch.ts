@@ -174,13 +174,16 @@ export async function get_RecentSearchTerms(
     .slice(0, 10);
 }
 
-/** Get_RecentClickedResults (S:1830-1990, max 5): the user's clicked results of this target in the selected category
-    (All, or Households/People/Places → Household/Member/Locality, S:1869-1926) whose Name, AdditionalInformation or
-    Location contains SearchKey_Current (S:1927), newest first. */
+/** Get_RecentClickedResults (S:1849-2020 of the capture of 2026-10-29): the user's clicked results of this target in the
+    selected category (All, or Households/People/Places → Household/Member/Locality) whose Name, AdditionalInformation
+    or Location contains SearchKey_Current, newest first, at most MaxRecords: 100 when the block fetches it at start
+    (S:1864, S:1987), 5 when a flow refreshes it (S:2753, S:3734, S:3954, S:4051). The rows keep their Id (S:1881):
+    Get_RecentClickedResultsOnAfterFetch deletes by it. */
 export async function get_RecentClickedResults(
   searchTargetId: string,
   searchKeyCurrent: string,
   selectedCategory: string,
+  maxRecords = 100,
 ): Promise<ConnectSearch_RecentClickedResults[]> {
   const inCategory = (type: string) =>
     selectedCategory === 'All' ||
@@ -199,7 +202,7 @@ export async function get_RecentClickedResults(
         sameText(r.SearchTargetId, searchTargetId),
     )
     .sort(bySearchedOnDesc)
-    .slice(0, 5);
+    .slice(0, maxRecords);
 }
 
 /** Action_RefreshSearch (S:2340-2445): CheckIfSearchtermAlreadyExist (Trim(SearchedTerm) = Trim(SearchKey_Current),
@@ -268,6 +271,12 @@ export async function getAllSearchRecentClickedResultsByUserId(
 /** OnClick_RecentSearchTerm_Remove (S:3774-3792): DeleteConnectSearch_RecentSearchTerm of the row. */
 export function deleteConnectSearch_RecentSearchTerm(id: string): Promise<void> {
   return entities.delete(CONNECTSEARCH_RECENTSEARCHTERM, id);
+}
+
+/** DeleteConnectSearch_RecentClickedResults (S:2395, in Get_RecentClickedResultsOnAfterFetch): delete the row with this
+    Id; nothing happens when it is missing. */
+export function deleteConnectSearch_RecentClickedResults(id: string): Promise<void> {
+  return entities.delete(CONNECTSEARCH_RECENTCLICKEDRESULTS, id);
 }
 
 /** OnClick_RecentSearch_RemoveAll (S:3359-3615): delete the user's terms, then clicked results, of this target. */

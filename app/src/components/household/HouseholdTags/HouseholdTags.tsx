@@ -71,7 +71,8 @@ export function HouseholdTags({
         </div>
         {showKebabMenu && (
           <div data-container="">
-            <KebabButtonMenu isEnable={isEnabled} onEdit={onEdit} onShare={onShare} />
+            {/* In_DisableShare = not GetHousehold.IsVisible (live TST of 2026-10-27, HouseholdDetails_Block.mvc.js:560). */}
+            <KebabButtonMenu isEnable={isEnabled} inDisableShare={!isVisible} onEdit={onEdit} onShare={onShare} />
           </div>
         )}
       </CustomContainer>

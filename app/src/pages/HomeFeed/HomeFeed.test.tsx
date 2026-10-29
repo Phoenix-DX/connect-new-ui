@@ -39,7 +39,7 @@ describe('HomeFeed page', () => {
   it('shows the services card and the latest updates from their data actions', async () => {
     await open();
     await waitFor(() => {
-      expect(byId('b9-l1-89_0-$b3')?.textContent).toContain('James Hargreaves');
+      expect(byId('b9-l1-89_0-$b3')?.textContent).toContain('Penelope Ashworth');
     });
     expect(byId('Section_Updates')).not.toBeNull();
     expect(calledActions()).toEqual(

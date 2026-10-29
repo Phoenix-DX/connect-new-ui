@@ -17,15 +17,13 @@ const tag = (text: string, isSelected: boolean): Tag => ({
 });
 
 /** GetSample_FilterTags(ShowMyHouseholdTag): Households (selected), My Household when ShowMyHouseholdTag, Supper
-    Meetings, Interchange, OneSchool Global, then Locality Contacts when Connect_LaunchDarkly_PermissionCheck(
-    mobileDirectoryLocalityContacts) has access (flag still undecided: Q2, off by default). The page reads the flag
-    and gives it as `hasLocalityContacts`. */
-export function getSample_FilterTags(showMyHouseholdTag: boolean, hasLocalityContacts: boolean): Tag[] {
+    Meetings, Interchange, OneSchool Global, Locality Contacts. The live TST code of 2026-10-27 adds Locality Contacts
+    with no permission check (UBTConnect.controller.js, Tag_LocalityContacts; drift H-Q4 a). */
+export function getSample_FilterTags(showMyHouseholdTag: boolean): Tag[] {
   const tags = [tag(LocalityMenu.Households, true)];
   if (showMyHouseholdTag) tags.push(tag(LocalityMenu.MyHousehold, false));
   tags.push(tag(LocalityMenu.Subdivsion, false), tag(LocalityMenu.Interchange, false));
-  tags.push(tag(LocalityMenu.OneSchoolGlobal, false));
-  if (hasLocalityContacts) tags.push(tag(LocalityMenu.LocalityContacts, false));
+  tags.push(tag(LocalityMenu.OneSchoolGlobal, false), tag(LocalityMenu.LocalityContacts, false));
   return tags;
 }
 

@@ -42,8 +42,6 @@ export async function get_ConnectVersionDetails(): Promise<ConnectVersionDetails
    read through platform/flags (flagValue of the flag registry). */
 /** GetHasNewNotifications: OutSystems_FF C2NewNotifications (D11: bell → Notifications when on, MessageList when off). */
 export const getHasNewNotifications = (): boolean => flagValue('C2NewNotifications');
-/** GetHasNewBookmarks: OutSystems_FF C2NewBookmarks. */
-export const getHasNewBookmarks = (): boolean => flagValue('C2NewBookmarks');
 /** GetHasC1DirectoryView: OutSystems_FF C2EnableC1DirectoryView. */
 export const getHasC1DirectoryView = (): boolean => flagValue('C2EnableC1DirectoryView');
 

@@ -174,11 +174,11 @@
 
 @font-face {
   font-family: 'orbit-icon';
-  src:  url('../orbit-icon.eot?YhEKvoyn8wcKxhXsd7iMEw');
-  src:  url('../orbit-icon.eot?YhEKvoyn8wcKxhXsd7iMEw') format('embedded-opentype'),
-    url('../orbit-icon.ttf?FtkwVHIihZ8cTwVHmrIoqg') format('truetype'),
-    url('../orbit-icon.woff?FGGCie2FwIjVm4dRH4Rdjw') format('woff'),
-    url('../orbit-icon.svg?tOZCmg4FN67ztvDjm1DlBg') format('svg');
+  src:  url('../orbit-icon.eot?q7fnMwhWgVGEsSGYNjcWIQ');
+  src:  url('../orbit-icon.eot?q7fnMwhWgVGEsSGYNjcWIQ') format('embedded-opentype'),
+    url('../orbit-icon.ttf?a9iQ8vkb1CDdcInCpDwK5g') format('truetype'),
+    url('../orbit-icon.woff?6ycFnQELBsJHJvcrRMU7sw') format('woff'),
+    url('../orbit-icon.svg?zcg3dE3c2nFyeI7Ua4gccQ') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -260,6 +260,7 @@
 .orbit-icon-baggage:before { content: "\e948"; }
 .orbit-icon-filter:before { content: "\e949"; }
 .orbit-icon-search:before { content: "\e950"; }
+.orbit-icon-passport:before { content: "\e951"; }
 
 
     /*  $1.2. Orbit Color Classes  */
@@ -3265,6 +3266,16 @@ input[type="date"].past-event-date-input, input[type="date"]:empty.past-event-da
     border-bottom: 3px solid var(--color-neutral-3);
 }
 
+    /*  $4.30. Orbit Landing Passport  */
+
+.orbit-landing-passport-cont {
+    background-color: var(--color-neutral-0);
+    color: var(--orbit-primary-6);
+    padding: var(--space-m);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
 
 /*==========  $4. Specific Classes - Orbit | END |  ==========*/
 

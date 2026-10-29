@@ -12,7 +12,7 @@ div[data-block="Blocks.Embedded_MyEntertaining"] > div {
 
 div[data-block="Blocks.Embedded_MyEntertaining"] iframe {
     width: 100%;
-    min-height: calc(100vh - var(--header-size, 0px));
+    min-height: 100vh;
     border: none;
     display: block;
 }

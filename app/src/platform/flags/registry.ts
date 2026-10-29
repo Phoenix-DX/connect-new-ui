@@ -10,7 +10,9 @@
      needs removeBy.
    - routes: the routes that read the flag (flags.generated.json "routes").
    mobileDirectoryLocalityContacts is not in flags.generated.json: its decision is a route decision (Locality_Details Q2,
-   default-only off, 2026-10-15), and Locality_Details reads it. */
+   default-only off, 2026-10-15), and Locality_Details reads it. mobileDirectoryHouseholdGallery (live TST of
+   2026-10-27, HouseholdDetails_Block.mvc.js:1298-1301) is not in flags.generated.json either: default off as the
+   drift wave applied it (drift-WP3 Q4); its flag decision is open (drift-FU.md). */
 
 export type FlagKind = 'release' | 'permission' | 'ops';
 
@@ -161,19 +163,21 @@ export const FLAGS = {
     routes: ['FeedItemDetail', 'HomeFeed', 'MessageDetail'],
   },
   C2EnableMaps: {
-    description: 'Maps (GetHasMapsEnabled), read by Locality_Details.',
+    description:
+      'Maps (GetHasMapsEnabled), read by Locality_Details: the explore icon of the header search. On as TST (H-Q3 a, ' +
+      '2026-10-29); the icon opens the not-migrated Map route.',
     ...UNSET,
     source: 'server',
-    default: false,
+    default: true,
     routes: ['Locality_Details'],
   },
   C2NewBookmarks: {
     description:
-      'New bookmarks (GetHasNewBookmarks): the Bookmarks tab opens Bookmarks when on (D2), and the C2 local bookmarks ' +
-      'are used.',
+      'New bookmarks (GetHasNewBookmarks): Locality_Households_HouseholdList reads the C2 local bookmarks when on. On as ' +
+      'TST since 2026-10-21 (H-Q2 a, 2026-10-29); Directory_EntityDetailsActions no longer reads it (C2 only).',
     ...UNSET,
     source: 'server',
-    default: false,
+    default: true,
     routes: [...DIRECTORY_ROUTES, 'Profile', 'SupperMeeting_Carousel', 'SupperMeeting_Details'],
   },
   C2NewLDM: {
@@ -264,5 +268,12 @@ export const FLAGS = {
     source: 'server',
     default: false,
     routes: ['Locality_Details'],
+  },
+  mobileDirectoryHouseholdGallery: {
+    description: 'Hides the Coming Soon box of the household Photos tag (HouseholdDetails_Block).',
+    ...UNSET,
+    source: 'server',
+    default: false,
+    routes: ['HouseholdDetails', 'HouseholdCarousel', 'Locality_Details', 'Profile'],
   },
 } as const satisfies Readonly<Record<string, FlagDefinition>>;

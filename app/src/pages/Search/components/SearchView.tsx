@@ -41,6 +41,8 @@ export function SearchView({
   isBirthdaySearchEnabled,
   birthdayOptions,
   recentClicked,
+  filteredRecentClicked,
+  isFilteredRecentClickedFetched,
   recentTerms,
   onChange,
   onSubmit,
@@ -71,7 +73,8 @@ export function SearchView({
   } = state;
   const changedSinceSearch = searchKeyCurrent !== searchKeyLastSearched;
   const showsBirthdayOptions = isBirthdaySearchEnabled && isBirthdayKeyWord;
-  const hasRecent = recentClicked.length > 0 || recentTerms.length > 0;
+  // S:530 (capture of 2026-10-29): the server rows of Get_FilteredRecentClickedResults or the recent terms.
+  const hasRecent = filteredRecentClicked.length > 0 || recentTerms.length > 0;
 
   return (
     <OSBlock name="Directory_Search.ScreenBlock_Search" id={id}>
@@ -132,6 +135,8 @@ export function SearchView({
                   <RecentSearch
                     hasSearched={hasSearched}
                     recentClicked={recentClicked}
+                    filteredRecentClicked={filteredRecentClicked}
+                    isRecentClickedLoading={!isFilteredRecentClickedFetched}
                     recentTerms={recentTerms}
                     onRemoveAll={onRecentSearchRemoveAll}
                     onRecentResultClick={onRecentResultClick}

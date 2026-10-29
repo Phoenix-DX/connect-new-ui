@@ -1,5 +1,12 @@
 import type { Milestone_Screen } from '@/api/event';
-import { fetchEventDetails, fetchHasDocuments, fetchHasQRCode, fetchHostSurveyStatus } from '@/api/event';
+import {
+  fetchEventDetails,
+  fetchEventNotes,
+  fetchHasDocuments,
+  fetchHasQRCode,
+  fetchHostSurveyStatus,
+} from '@/api/event';
+import type { Notes } from '@/lib/ubtConnectLibrary/structures';
 import type { EventDetailInputs } from '@/pages/EventDetail/inputs';
 import { showFeedbackMessage } from '@/platform/feedback';
 import { useFlowState } from '@/platform/navigation';
@@ -82,6 +89,10 @@ export interface EventDetailHandlers {
   onHandleContactHelpdesk: () => void;
   /** OnHandle_ClickedDate (EventDateSelection ClickedDate). */
   onHandleClickedDate: (milestoneTimeTypeId: string, selectedDate: string, position: number) => void;
+  /** Handler_OnNotesChanged (ItemNotesSection On_NotesChanged): EventNotes = New_Notes. */
+  onHandleNotesChanged: (notes: Notes) => void;
+  /** Handler_OnNoteDeleted (ItemNotesSection On_NoteDeleted; WasLastNote is not read). */
+  onHandleNoteDeleted: (noteId: string) => void;
 }
 
 /** What the view reads: the block state and the handlers. */
@@ -122,6 +133,19 @@ export function useEventDetail(
   const onReady = async (restored: boolean): Promise<void> => {
     if (restored) return;
     const variables = () => eventDetailCallInputs(latest.current, parameters.current);
+
+    // FetchEventNotes is fetched at start (dependency 0, ScreenBlock_EventDetail.mvc.js:1580-1595): it starts with
+    // OnReady and OnReady does not wait for it (captured before Get_EventDetails, calls.md #2).
+    // OnAfterFetch_FetchEventNotes: EventNotes = FetchEventNotes.Notes. A failure keeps the default EventNotes, as
+    // the fetch at start of GetCoordinatorDetails in LDM_EventDetail_V2.
+    flow
+      .fetch(fetchEventNotes(variables())) // R1
+      .then((notes) => {
+        dispatch({ type: 'eventNotesSet', notes });
+      })
+      .catch(() => {
+        // EventNotes keeps its default (Total 0, no notes).
+      });
 
     dispatch({ type: 'fetchStarted' });
     dispatch({ type: 'eventDetailsFetched', result: await flow.fetch(fetchEventDetails(variables())) }); // R1
@@ -243,6 +267,12 @@ export function useEventDetail(
     },
     onHandleClickedDate: (milestoneTimeTypeId, selectedDate, position) => {
       dispatch({ type: 'dateClicked', milestoneTimeTypeId, selectedDate, position });
+    },
+    onHandleNotesChanged: (notes) => {
+      dispatch({ type: 'eventNotesSet', notes });
+    },
+    onHandleNoteDeleted: (noteId) => {
+      dispatch({ type: 'noteDeleted', noteId });
     },
   };
 

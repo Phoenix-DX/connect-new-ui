@@ -14,7 +14,8 @@
          stand-in SDK, app/src/screens/MyEntertaining/components/connect2Entertaining.ts); sources is a comma list of
          orbit, ldm, assemble, personal (Type_MyCalendarEventSource → PreloadedSource), '' = all. Messages to the parent
          (only shapes the compiled block reads, Embedded_MyEntertaining.mvc.js InitializeCalendarJS): `events:loaded`
-         with failedSources [] once rendered, `embed:open-map` {lat, lng, label} from the Map buttons. From the parent:
+         with failedSources [] once rendered, `embed:open-map` {lat, lng, label} from the Map buttons; to the stand-in
+         SDK: `embed:nav-back` from the Back control (the stand-in calls the SDK onNavBack, drift-WP3 Q5). From the parent:
          `sources:set` {sources} (the stand-in SDK's setSources). Fictional addresses; coordinates are Bahía Blanca
          neighbourhoods, not homes. */
       :root {
@@ -55,6 +56,16 @@
       main {
         min-height: 100vh;
         padding: 12px 16px 24px;
+      }
+      .back {
+        border: 0;
+        background: none;
+        color: var(--primary);
+        font: inherit;
+        font-weight: 600;
+        cursor: pointer;
+        padding: 4px 0;
+        margin: 0 0 6px;
       }
       .summary {
         margin: 0 0 10px;
@@ -225,6 +236,7 @@
   </head>
   <body>
     <main aria-label="My Entertaining (mock)">
+      <button type="button" class="back" id="back">&#8249; Back</button>
       <p class="summary" id="summary"></p>
       <div class="filters" id="filters" role="group" aria-label="Calendars"></div>
       <div id="timeline"></div>
@@ -434,6 +446,10 @@
           });
           if (!shown.length) timeline.appendChild(el('p', 'empty', 'Nothing planned in this calendar yet.'));
         }
+
+        document.getElementById('back').addEventListener('click', function () {
+          post({ type: 'embed:nav-back' });
+        });
 
         window.addEventListener('message', function (event) {
           if (event.source !== window.parent || !event.data || event.data.type !== 'sources:set') return;

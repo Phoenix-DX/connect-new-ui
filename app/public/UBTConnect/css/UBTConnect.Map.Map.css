@@ -67,6 +67,10 @@
     padding: 0;
 }
 
+.ubt-map-sheet.osui-sidebar:after{
+    display: none
+}
+
 
 .ubt-map-sheet--show-footer{
     height: calc(100vh - var(--footer-height));
@@ -160,4 +164,12 @@
     40% { transform: scale(1); }
 }
 
-/*manual change to force update*/
+
+.ubt-map-sheet-see-more-header {
+    position: sticky; 
+    top: calc( -1 * var(--space-base));
+    background: var(--color-neutral-0);
+    z-index: 1;
+}
+
+

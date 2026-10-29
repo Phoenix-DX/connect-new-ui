@@ -12,7 +12,7 @@ describe('SubLayout_HomePageSearch', () => {
   it('a click on the input raises Clicked_Search', () => {
     const onClickedSearch = vi.fn();
     render(<HomeSearchSection onClickedSearch={onClickedSearch} />);
-    fireEvent.click(screen.getByText('Search for households. entities, news'));
+    fireEvent.click(screen.getByText('Search for households, members or places.'));
     expect(onClickedSearch).toHaveBeenCalled();
   });
 });

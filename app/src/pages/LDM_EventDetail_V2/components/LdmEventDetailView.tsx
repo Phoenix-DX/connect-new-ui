@@ -145,6 +145,10 @@ function EventContent({
             onNavigateToEmailHousehold={flows.onContactHostMessage}
             onCallPhone={flows.onContactHostCall}
             onAddress={flows.onHostAddress}
+            eventNotes={flows.state.eventNotes}
+            notesItemId={flows.notesItemId}
+            onNotesChanged={flows.onNotesChanged}
+            onNoteDeleted={flows.onNoteDeleted}
           />
         ) : null
       }

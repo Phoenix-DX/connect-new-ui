@@ -686,25 +686,25 @@
         },
         {
          "Name": "Brethren",
-         "Value": "109",
+         "Value": "113",
          "IconColorId": "",
          "IconId": ""
         },
         {
          "Name": "Households",
-         "Value": "33",
+         "Value": "34",
          "IconColorId": "",
          "IconId": ""
         },
         {
          "Name": "Brothers",
-         "Value": "58",
+         "Value": "61",
          "IconColorId": "",
          "IconId": ""
         },
         {
          "Name": "Sisters",
-         "Value": "51",
+         "Value": "52",
          "IconColorId": "",
          "IconId": ""
         }

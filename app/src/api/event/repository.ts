@@ -1,4 +1,5 @@
 import { callAction } from '@/api/client/callAction';
+import type { Notes } from '@/lib/ubtConnectLibrary/structures';
 import {
   toAccommodationHostDocument,
   toAccommodationHostResult,
@@ -16,6 +17,7 @@ import {
   toEventByEventIdData,
   toEventDetailsResult,
   toEventDocuments,
+  toEventNotes,
   toEventQRCodeData,
   toEventQRCodeStatus,
   toEventsByMemberIdResult,
@@ -146,6 +148,12 @@ export async function fetchHasDocuments(inputs: EventDetailCallInputs): Promise<
 /** DataActionGet_HasQRCode of ScreenBlock_EventDetail: whether the member has a QR code and was scanned. */
 export async function fetchHasQRCode(inputs: EventDetailCallInputs): Promise<EventQRCodeStatus> {
   return toEventQRCodeStatus(await callAction(ORBIT, 'ScreenBlock_EventDetail/DataActionGet_HasQRCode', inputs));
+}
+
+/** DataActionFetchEventNotes of ScreenBlock_EventDetail, fetched at start: the notes of the event
+    (ScreenBlock_EventDetail.mvc.js:1780-1798). */
+export async function fetchEventNotes(inputs: EventDetailCallInputs): Promise<Notes> {
+  return toEventNotes(await callAction(ORBIT, 'ScreenBlock_EventDetail/DataActionFetchEventNotes', inputs));
 }
 
 /* ---- Orbit event booklet (ScreenBlock_EventBooklet) ---- */
@@ -296,6 +304,12 @@ export async function fetchEventByEventId(inputs: LdmEventCallInputs): Promise<E
   return toEventByEventIdData(
     await callAction(ORBIT, 'ScreenBlock_EventDetail_V2/DataActionGetEventByEventId', inputs),
   );
+}
+
+/** DataActionFetchEventNotes of ScreenBlock_EventDetail_V2, fetched at start: the notes of the meal
+    (ScreenBlock_EventDetail_V2.mvc.js:1449-1467). */
+export async function fetchLdmEventNotes(inputs: LdmEventCallInputs): Promise<Notes> {
+  return toEventNotes(await callAction(ORBIT, 'ScreenBlock_EventDetail_V2/DataActionFetchEventNotes', inputs));
 }
 
 /** DataActionGetCoordinatorDetails of ScreenBlock_EventDetail_V2: the coordinator of the meal. */

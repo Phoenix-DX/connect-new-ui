@@ -1,16 +1,9 @@
 {
- "HostSurvey": [
-  "default 20113 KB, 33 blocks, masked 26",
-  "runtime 4 calls, 0 phase mark(s)",
-  "auto loading FAILED: locator.click: Timeout 15000ms exceeded.",
-  "auto offline FAILED: locator.click: Timeout 15000ms exceeded.",
-  "analyzed"
- ],
- "MilestoneDetail": [
-  "default 20248 KB, 36 blocks, masked 41",
-  "runtime 6 calls, 0 phase mark(s)",
-  "auto loading FAILED: locator.click: Timeout 15000ms exceeded.",
-  "auto offline FAILED: locator.click: Timeout 15000ms exceeded.",
+ "AssembleEvents": [
+  "default 18987 KB, 54 blocks, masked 51",
+  "runtime 11 calls, 0 phase mark(s)",
+  "auto loading (4 call(s) held)",
+  "auto offline",
   "analyzed"
  ]
 }

@@ -5,6 +5,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   fetchEventDetails,
   fetchHasDocuments,
+  fetchEventNotes,
   fetchHasQRCode,
   fetchHostSurveyStatus,
   type EventDetailCallInputs,
@@ -34,6 +35,7 @@ vi.mock('@/api/event', async (importOriginal) => ({
   fetchHostSurveyStatus: vi.fn(),
   fetchHasDocuments: vi.fn(),
   fetchHasQRCode: vi.fn(),
+  fetchEventNotes: vi.fn(),
 }));
 vi.mock('@/platform/session/userInfo', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/platform/session/userInfo')>()),
@@ -183,6 +185,7 @@ const renderFlows = (hasOrbitEventBooklet = true) =>
 const settle = () => act(() => new Promise((resolve) => setTimeout(resolve, 0)));
 
 beforeEach(() => {
+  vi.mocked(fetchEventNotes).mockResolvedValue({ Total: 0, Note_Item_List: [] });
   vi.clearAllMocks();
   calls.length = 0;
   sentVariables.clear();

@@ -22,6 +22,9 @@ export interface EntityLazyImageProps {
   inBorderRadius?: string;
   inHighRes?: boolean;
   hasErrorMessage?: boolean;
+  /** In_ForceLoadingState (live TST of 2026-10-27, UBT_LazyImage.mvc.js:91-93, default False): passed to LazyImage
+      (:308), which then shows its fallback and hides the image. */
+  inForceLoadingState?: boolean;
 }
 
 export function EntityLazyImage({
@@ -34,6 +37,7 @@ export function EntityLazyImage({
   inBorderRadius = '',
   inHighRes = false,
   hasErrorMessage = false,
+  inForceLoadingState = false,
 }: EntityLazyImageProps) {
   /* OnInitialize (once, and again from OnParametersChanged when EntityId changes), then OnReady (:719-785):
      SetLocalEntityId; LocalImageURL = ImageURL; without a URL, a valid entity (EntityId not "" / "0", a type) and an
@@ -48,6 +52,7 @@ export function EntityLazyImage({
     inBorderRadius,
     inHighRes,
     hasErrorMessage,
+    inForceLoadingState,
   ]);
   const readyStart = (locals: ReturnType<typeof onInitialize>) => {
     const needsSignedUrl =
@@ -94,6 +99,7 @@ export function EntityLazyImage({
       <Skeleton isLoading={!isFetched}>
         <LazyImage
           imageURL={localImageURL}
+          inForceLoadingState={inForceLoadingState}
           fallbackPadding={locals.fallbackPadding}
           inImageSize={{ Height: imageSize.Height ?? '', Width: imageSize.Width ?? '' }}
           hasErrorMessage={hasErrorMessage}

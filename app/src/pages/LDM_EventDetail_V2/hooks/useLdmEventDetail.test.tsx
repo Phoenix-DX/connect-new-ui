@@ -5,6 +5,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   fetchCoordinatorDetails,
   fetchEventByEventId,
+  fetchLdmEventNotes,
   type CoordinatorDetailsData,
   type EventByEventIdData,
   type LdmEventDetail,
@@ -37,6 +38,7 @@ vi.mock('@/api/event', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/api/event')>()),
   fetchCoordinatorDetails: vi.fn(),
   fetchEventByEventId: vi.fn(),
+  fetchLdmEventNotes: vi.fn(),
 }));
 vi.mock('@/api/household', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/api/household')>()),
@@ -166,6 +168,7 @@ beforeEach(() => {
   viewCache.saved = undefined;
   vi.mocked(fetchEventByEventId).mockResolvedValue(eventAnswer('70342'));
   vi.mocked(fetchCoordinatorDetails).mockResolvedValue(coordinatorAnswer('70342'));
+  vi.mocked(fetchLdmEventNotes).mockResolvedValue({ Total: 0, Note_Item_List: [] });
   vi.mocked(fetchHouseholdCoordinatesById).mockResolvedValue({
     Latitude: '-38.7180',
     Longitude: '-62.2650',

@@ -111,6 +111,8 @@ export function getClasses_Text(textOptions: TextOptions = {}): string {
   if (textOptions.FontSize) classes = formatClasses(classes, `font-size-${textOptions.FontSize}`);
   if (textOptions.IsItalic) classes = formatClasses(classes, 'italic');
   if (textOptions.IsUnderlined) classes = formatClasses(classes, 'text-underline');
+  // Live TST of 2026-10-27 (UBTConnectLibrary.controller.js:4859-4867, FormatClasses6).
+  if (textOptions.IsOverflowEllipsis) classes = formatClasses(classes, 'ubt-custom-text-ellipsis');
   return classes;
 }
 

@@ -1,3 +1,5 @@
+import { NO_NOTES } from '@/containers/ItemNotesSection/notes';
+import type { Notes } from '@/lib/ubtConnectLibrary/structures';
 import type { CoordinatorDetails, CoordinatorDetailsData, LdmEventDetail, LdmEventHost } from '@/api/event';
 import type { HouseholdCoordinates } from '@/api/household';
 import { flipHouseholdName } from '@/lib/legacyShared/actions';
@@ -34,6 +36,9 @@ export interface LdmEventDetailState {
   hasEventFetchError: boolean;
   /** GetCoordinatorDetails outputs; null until fetched (Out_HasContent defaults to True). */
   coordinator: CoordinatorDetailsData | null;
+  /** EventNotes: the notes of the host card (OnAfterFetch_FetchEventNotes, Handler_OnNotesChanged,
+      HandlerOn_NoteDeleted). */
+  eventNotes: Notes;
   /** True after the first assignment. The view cache keeps the block variables from then on: a view that the user
       left before it starts again from OnInitialize on a back navigation, and OnReady fetches again. */
   isSaved: boolean;
@@ -56,6 +61,7 @@ export const INITIAL_LDM_EVENT_DETAIL_STATE: LdmEventDetailState = {
   contactByPhoneData: {},
   contactByMessageData: {},
   contactByMessageIsCoordinator: false,
+  eventNotes: NO_NOTES,
   event: null,
   hasEventFetchError: false,
   coordinator: null,

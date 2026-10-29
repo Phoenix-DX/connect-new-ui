@@ -10,7 +10,7 @@
   "getHasNewNotifications": false,
   "getHasCarouselEnabled": true,
   "getHasC1DirectoryView": true,
-  "getHasMapsEnabled": false,
+  "getHasMapsEnabled": true,
   "getHasPhotobookAccess": true,
   "getHasOrbitAccess": true,
   "getHasOrbitEventBooklet": true,
@@ -25,7 +25,8 @@
   "getHasHiddenMembersAccess": true,
   "outSystems_FF.c2EnableSearchByBirthday": true,
   "launchDarkly_FF.mobileStudentInformation": true,
-  "Mobile-Directory-list-virtualization": true
+  "Mobile-Directory-list-virtualization": true,
+  "launchDarkly_FF.mobileDirectoryHouseholdGallery": true
  },
  "callsDuringProbe": [],
  "changes": [
@@ -41,7 +42,12 @@
    "at": "2026-10-27",
    "key": "Mobile-Directory-list-virtualization",
    "value": true,
-   "source": "read-only capture on OrbitAdminLanding (migration/clarify/review/captures.md \u00a74): PermissionList item of ActionAppManager_SynchAppContext; IsListVirtualizationDisabled returns true"
+   "source": "read-only capture on OrbitAdminLanding (migration/clarify/review/captures.md §4): PermissionList item of ActionAppManager_SynchAppContext; IsListVirtualizationDisabled returns true"
+  },
+  {
+   "at": "2026-10-29",
+   "by": "read-only probe migration/tools/flag_probe.cjs",
+   "note": "getHasMapsEnabled false -> true; launchDarkly_FF.mobileDirectoryHouseholdGallery newly probed: true. Other values unchanged."
   }
  ]
 }

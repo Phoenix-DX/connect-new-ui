@@ -2,7 +2,7 @@ import { act, renderHook } from '@testing-library/react';
 import { StrictMode, type ReactNode } from 'react';
 import { MemoryRouter } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { fetchCountryListStatistics, type CountrySummary } from '@/api/country';
+import { fetchCountryListCommunityStatistics, fetchCountryListStatistics, type CountrySummary } from '@/api/country';
 import { CommunicationException, NotRegisteredException, UserException } from '@/legacy/os/exceptions';
 import { IgnorableSystemException, OutOfContextException } from '@/legacy/os/os-exceptions';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
@@ -20,6 +20,7 @@ vi.mock('./countryListState', async (importOriginal) => {
 vi.mock('@/api/country', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/api/country')>()),
   fetchCountryListStatistics: vi.fn(),
+  fetchCountryListCommunityStatistics: vi.fn(() => Promise.resolve()),
 }));
 /* useFlowState sends a rejected OnReady to this flow handler. */
 vi.mock('@/platform/feedback/flowErrors', async (importOriginal) => ({
@@ -93,6 +94,23 @@ afterEach(() => {
 });
 
 describe('useCountryList', () => {
+  it('OnReady starts GetCommunityStatistics once without waiting for it, and GetCountriesStatistics (live TST)', async () => {
+    vi.mocked(fetchCountryListCommunityStatistics).mockReturnValueOnce(new Promise(() => undefined));
+    const { result } = renderHook(() => useCountryList(), { wrapper: strictWrapper });
+    await settle();
+    expect(fetchCountryListCommunityStatistics).toHaveBeenCalledTimes(1);
+    expect(fetchCountryListStatistics).toHaveBeenCalledTimes(1);
+    expect(result.current.state.isDataFetched).toBe(true);
+  });
+
+  it('a failed GetCommunityStatistics goes to the flow handler; the countries still come', async () => {
+    vi.mocked(fetchCountryListCommunityStatistics).mockRejectedValueOnce(new CommunicationException('offline'));
+    const { result } = renderHook(() => useCountryList(), { wrapper });
+    await settle();
+    expect(raised()).toEqual([expect.objectContaining({ message: 'offline' })]);
+    expect(result.current.state.countries).toHaveLength(2);
+  });
+
   it('OnReady: 10 skeleton rows, then the countries with their flag images; fetched', async () => {
     const answer = pendingCountries();
     const { result } = renderHook(() => useCountryList(), { wrapper });

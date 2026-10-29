@@ -61,7 +61,6 @@ const OUTSIDE_OWNED = {
   // owner F35 (OutSystems helper wrappers over flagValue)
   'lib/ubtConnectUtils/actions.ts': [
     'C2NewNotifications',
-    'C2NewBookmarks',
     'C2EnableC1DirectoryView',
     'C2ExtendedShare',
     'C2EnableFeed',

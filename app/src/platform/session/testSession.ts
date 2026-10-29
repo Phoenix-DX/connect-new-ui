@@ -97,8 +97,8 @@ async function seedCapturedTabClientVars(): Promise<void> {
 }
 
 /* The same tab also kept the device's local entities of those runs (client entities persist, as the client variables
-   do). Directory_EntityDetailsActions OnReady (Get_LocalBookmarkByObjectId) and Locality_Households_HouseholdList
-   OnAfterFetch (GetLocal_Bookmark) read the local bookmarks while this app start's Sync_Info_GetMain has not answered yet
+   do). Directory_EntityDetailsActions OnReady (GetLocalBookmarkByObjectId_C2) and Locality_Households_HouseholdList
+   OnAfterFetch (GetLocal_Bookmark_C2 with C2NewBookmarks on, else GetLocal_Bookmark) read the local bookmarks while this app start's Sync_Info_GetMain has not answered yet
    (appStartSteps.ts waits for the first screen), so the captures show the bookmarks the earlier runs synced: the
    bookmarks of the Sync_Info_GetMain mock (CR-HouseholdDetails-2 §2, CR-Locality_Details-1). The app start then replaces them with
    the same rows (SynchBookmarks).
@@ -107,8 +107,11 @@ async function seedCapturedTabClientVars(): Promise<void> {
    loading and offline states, HelpersDetail "Helper (Host)"; CR-HelpersDetail-1). Seeded with SyncAllOrbitStaticEntities
    of the Sync_Info_GetMain mock's OrbitStaticEntities, as an earlier app start ran it. */
 async function seedCapturedTabLocalEntities(): Promise<void> {
-  const [{ mockLocalBookmarks, orbitStaticEntities }, { synchBookmarks, syncAllOrbitStaticEntities }] =
-    await Promise.all([import('@/platform/bootstrap/mocks'), import('@/platform/storage/localEntities')]);
+  const [
+    { mockLocalBookmarks, mockLocalBookmarksC2, orbitStaticEntities },
+    { synchBookmarks, synchBookmarksC2, syncAllOrbitStaticEntities },
+  ] = await Promise.all([import('@/platform/bootstrap/mocks'), import('@/platform/storage/localEntities')]);
   await synchBookmarks(mockLocalBookmarks());
+  await synchBookmarksC2(mockLocalBookmarksC2());
   await syncAllOrbitStaticEntities(orbitStaticEntities());
 }

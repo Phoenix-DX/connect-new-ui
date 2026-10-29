@@ -7,6 +7,7 @@ import {
   isBirthdayKeyWord,
   loadingRow,
   recentAsResult,
+  recentClickedIdsDeleted,
   searchReducer,
   selectedCategoryOf,
   showsCategory,
@@ -185,5 +186,16 @@ describe('searchReducer', () => {
     const started = searchReducer(state, { type: 'searchStarted', searchKey: 'Rojas' });
     expect(started.results).toEqual(withLoadingRows(NO_RESULTS, 'Households'));
     expect(started.results.households).toHaveLength(3);
+  });
+});
+
+describe('recentClickedIdsDeleted (ScreenBlock_Search.mvc.js:2382-2395, known original bug B22)', () => {
+  it('deletes RecentClickedResults.Current, the first row, once per id to remove, not the ids themselves', () => {
+    expect(recentClickedIdsDeleted([{ Id: '40' }, { Id: '31' }, { Id: '32' }], ['31', '32'])).toEqual(['40', '40']);
+  });
+
+  it('deletes nothing without ids to remove; an empty list gives its empty item, Id 0', () => {
+    expect(recentClickedIdsDeleted([{ Id: '40' }], [])).toEqual([]);
+    expect(recentClickedIdsDeleted([], ['31'])).toEqual(['0']);
   });
 });

@@ -1,6 +1,14 @@
 import type { ActionInputs, ActionOutputs, PathOf } from '@/api/client/callAction';
 import { osList, wireList } from '@/lib/os-wire';
-import type { SearchBirthdayOption, SearchResult, SearchResults, SearchTag, SearchVariables } from './types';
+import type {
+  FilteredRecentClickedResults,
+  RecentClickedResultRow,
+  SearchBirthdayOption,
+  SearchResult,
+  SearchResults,
+  SearchTag,
+  SearchVariables,
+} from './types';
 
 /* Wire types from the contract (src/api/openapi.yaml), through the callAction types. */
 type FetchSearchResultsPath = PathOf<'UBTConnect', 'ScreenBlock_Search/DataActionFetchSearchResults'>;
@@ -83,4 +91,53 @@ export const toFetchSearchResultsInputs = (
   In_IsInScreenSearch: false,
   In_IsEventNavigation: false,
   In_SearchTargetId: v.inSearchTargetId,
+});
+
+type GetFilteredRecentClickedResultsPath = PathOf<
+  'UBTConnect',
+  'ScreenBlock_Search/DataActionGet_FilteredRecentClickedResults'
+>;
+/** DataActionGet_FilteredRecentClickedResults inputs: the block variables OutSystems sends (screenData.variables). */
+type GetFilteredRecentClickedResultsInputsWire = ActionInputs<GetFilteredRecentClickedResultsPath>;
+/** Output of DataActionGet_FilteredRecentClickedResults. */
+type GetFilteredRecentClickedResultsWire = ActionOutputs<GetFilteredRecentClickedResultsPath>;
+/** UBTConnect.ConnectSearch_RecentClickedResults. */
+type RecentClickedResultWire = GetFilteredRecentClickedResultsWire['Out_RecentClickedResults']['List'][number];
+
+/** One recent clicked result: the record keeps the fields of the client entity. */
+const toRecentClickedResultRow = (w: RecentClickedResultWire): RecentClickedResultRow => ({
+  Id: w.Id,
+  UserId: w.UserId,
+  EntityId: w.EntityId,
+  EntityType: w.EntityType,
+  HouseholderId: w.HouseholderId,
+  Name: w.Name,
+  AdditionalInformation: w.AdditionalInformation,
+  Location: w.Location,
+  SearchedOn: w.SearchedOn,
+  Latitude: w.Latitude,
+  Longitude: w.Longitude,
+  SearchTargetId: w.SearchTargetId,
+});
+
+/** The rows to show and the ids to delete, in the server order. A LongInteger can come as a number: kept as text. */
+export const toFilteredRecentClickedResults = (
+  w: GetFilteredRecentClickedResultsWire,
+): FilteredRecentClickedResults => ({
+  recentClickedResults: osList(w.Out_RecentClickedResults).map(toRecentClickedResultRow),
+  idsToRemove: osList(w.Out_IdsToRemove).map((id) => String(id)),
+});
+
+/** The inputs of DataActionGet_FilteredRecentClickedResults: the block variables of DataActionFetchSearchResults and
+    the lists RecentClickedResults (the server reads it) and RecentClickedResults_Skeleton (the block never sets it:
+    empty). */
+export const toGetFilteredRecentClickedResultsInputs = (
+  v: SearchVariables,
+  tagList: SearchTag[],
+  isLoading: boolean,
+  recentClickedResults: RecentClickedResultRow[],
+): GetFilteredRecentClickedResultsInputsWire => ({
+  ...toFetchSearchResultsInputs(v, tagList, isLoading),
+  RecentClickedResults: wireList(recentClickedResults),
+  RecentClickedResults_Skeleton: wireList<RecentClickedResultRow>([]),
 });

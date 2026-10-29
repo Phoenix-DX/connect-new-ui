@@ -551,11 +551,11 @@
    },
    "decision": {
     "status": "decided",
-    "value": "default-only: TST value off (user, 2026-10-14)",
+    "value": "user decision H-Q3 (a), 2026-10-29: on as TST (the 2026-10-29 capture of Locality_Details shows the header explore icon, placeholder_Header_Input_Icon If GetHasMapsEnabled; the probe of 2026-10-14 gave false); the icon opens the not-migrated Map route like other not-built targets until a Maps screen is in scope. Drift wave WP8 (migration/clarify/builds/drift-WP4.md).",
     "by": "user",
-    "at": "2026-10-14T12:31:36",
+    "at": "2026-10-29T17:28:10",
     "key": "C2EnableMaps",
-    "default": "off",
+    "default": "on",
     "values": [
      "on",
      "off"
@@ -634,11 +634,11 @@
    },
    "decision": {
     "status": "decided",
-    "value": "auto-accepted (user instruction 2026-10-29, window 7; Fable H1 with the premise corrected): TST value true since 2026-10-21 (migration/knowledge/flag-values-tst.json). The bottom bar no longer reads it on TST (BottomBarMenu.mvc.js:623-626 opens Bookmarks with no condition; React BottomBar the same since 2026-10-29; MyBookmarks/BookmarksByGroup retired, user 2026-10-28). Readers left: Directory_EntityDetailsActions (React containers/EntityDetailsActions/useEntityDetailsActions.ts:168, 286) and Locality_Households_HouseholdList. The branch choice for these readers goes to the drift wave with the EntityDetailsActions block (OneSchoolGlobalDetails Q7, decision I10-12); until then React keeps the default value off.",
+    "value": "user decision H-Q2 (a), 2026-10-29: on as TST since 2026-10-21 (migration/knowledge/flag-values-tst.json changes[0]); TST removed the GetHasNewBookmarks branch from Directory_EntityDetailsActions (C2 bookmarks only, new mvc.js:375-376, :1864-1887); the reader left is Locality_Households_HouseholdList (GetLocal_Bookmark_C2). Drift wave WP4/WP8 (migration/clarify/builds/drift-WP4.md).",
     "by": "user",
-    "at": "2026-10-29T14:29:20",
+    "at": "2026-10-29T17:28:09",
     "key": "C2NewBookmarks",
-    "default": "off",
+    "default": "on",
     "values": [
      "on",
      "off"

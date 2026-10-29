@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "64b0e523b36434474e3f",
+ "fingerprint": "1ff50e291c0d327d2c56",
  "options": {
   "text": true,
   "style": true,
@@ -27,24 +27,19 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-29T09:54:51.438Z",
- "counts": {
-  "text": 1,
-  "layout": 1,
-  "structure": 49,
-  "pixel": 1
- },
+ "at": "2026-10-29T12:41:24.575Z",
+ "counts": {},
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-MENUICON-BACK": 2,
   "CAPTURE-MASKED-IMAGE-LEGACYSHAREOBJECT": 7,
   "ignoreSubtrees": 1
  },
  "pixel": {
-  "ratio": 0.07233,
-  "maxCell": 0.9994,
+  "ratio": 0.00015,
+  "maxCell": 0.0169,
   "maxCellRatio": 0.03,
-  "diffPixels": 22772,
-  "comparedPixels": 314853,
+  "diffPixels": 43,
+  "comparedPixels": 296083,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -55,13 +50,10 @@
    390,
    844
   ],
-  "masks": 7,
+  "masks": 105,
   "hotspots": [
-   "40,440 (1599px)",
-   "40,560 (1590px)",
-   "40,680 (1564px)",
-   "40,800 (1484px)",
-   "40,760 (1084px)"
+   "80,120 (27px)",
+   "80,80 (16px)"
   ],
   "diffPng": "migration/screens/LegacyShareObject/parity/default.diff.png"
  },
@@ -72,266 +64,5 @@
   "expected": 11,
   "actual": 11
  },
- "diffs": [
-  {
-   "kind": "text",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.margin-top-base.text-bold > span",
-   "detail": "\"Locality Members\" → \"Contacts list\""
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.margin-top-base.text-bold > span",
-   "detail": "127×19 → 89×19"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Share_UI.ScreenBlock_ShareObject] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.padding > div.margin-top-base > div#b1-$b8.OSBlockWidget[Share_UI.ProfileList] > div.share-with-input > div.OSFillParent.list.list-group > div.border-neutral-4.border-radius-soft.margin-bottom-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "pixel",
-   "path": "screenshot",
-   "detail": "7.23% pixels differ (max 0.20%), worst 40px tile 99.9% (max 3.0%), hotspots 40,440 (1599px); 40,560 (1590px); 40,680 (1564px); 40,800 (1484px); 40,760 (1084px); see migration/screens/LegacyShareObject/parity/default.diff.png"
-  }
- ]
+ "diffs": []
 }

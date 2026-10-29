@@ -200,7 +200,7 @@
   },
   "C2EnableMaps": {
    "source": "action:getHasMapsEnabled",
-   "default": "off",
+   "default": "on",
    "values": [
     "on",
     "off"
@@ -209,11 +209,11 @@
    "routes": [
     "Locality_Details"
    ],
-   "decision": "default-only: TST value off (user, 2026-10-14)"
+   "decision": "user decision H-Q3 (a), 2026-10-29: on as TST (the 2026-10-29 capture of Locality_Details shows the header explore icon, placeholder_Header_Input_Icon If GetHasMapsEnabled; the probe of 2026-10-14 gave false); the icon opens the not-migrated Map route like other not-built targets until a Maps screen is in scope. Drift wave WP8 (migration/clarify/builds/drift-WP4.md)."
   },
   "C2NewBookmarks": {
    "source": "action:getHasNewBookmarks",
-   "default": "off",
+   "default": "on",
    "values": [
     "on",
     "off"
@@ -258,7 +258,7 @@
     "SupperMeeting_Details",
     "Updates_SingleList"
    ],
-   "decision": "default-only: TST value off (user, 2026-10-14)"
+   "decision": "user decision H-Q2 (a), 2026-10-29: on as TST since 2026-10-21 (migration/knowledge/flag-values-tst.json changes[0]); TST removed the GetHasNewBookmarks branch from Directory_EntityDetailsActions (C2 bookmarks only, new mvc.js:375-376, :1864-1887); the reader left is Locality_Households_HouseholdList (GetLocal_Bookmark_C2). Drift wave WP4/WP8 (migration/clarify/builds/drift-WP4.md)."
   },
   "C2NewLDM": {
    "source": "action:getHasNewLDM",

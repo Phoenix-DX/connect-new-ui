@@ -1,3 +1,4 @@
+import type { Notes } from '@/lib/ubtConnectLibrary/structures';
 import type { ActionInputs, ActionOutputs, PathOf } from '@/api/client/callAction';
 import { osDate, osList, osNumber, wireList } from '@/lib/os-wire';
 import type {
@@ -792,4 +793,21 @@ export const toMyTimelineData = (wire: MyTimelineWire): MyTimelineData => ({
     EventsCalendar: osList(g.EventsCalendar).map(toEventCalendar),
   })),
   upcomingEvents: osList(wire.Out_UpcomingEvents).map(toEventCalendar),
+});
+
+/** DataActionFetchEventNotes of ScreenBlock_EventDetail; ScreenBlock_EventDetail_V2 answers the same record. */
+type EventNotesWire = ActionOutputs<
+  PathOf<'Connect2_OrbitMobile_MUI', 'ScreenBlock_EventDetail/DataActionFetchEventNotes'>
+>;
+
+/** FetchEventNotes.Notes (UBTConnectLibrary Notes) with the list unwrapped: what OnAfterFetch_FetchEventNotes assigns
+    to EventNotes. */
+export const toEventNotes = (wire: EventNotesWire): Notes => ({
+  Total: wire.Notes.Total,
+  Note_Item_List: osList(wire.Notes.Note_Item_List).map((n) => ({
+    Id: n.Id,
+    Note: n.Note,
+    DateCreatedUtc: n.DateCreatedUtc,
+    DateEditedUtc: n.DateEditedUtc,
+  })),
 });

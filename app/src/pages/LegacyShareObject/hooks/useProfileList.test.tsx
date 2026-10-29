@@ -35,9 +35,9 @@ vi.mock('@/platform/feedback/flowErrors', async (importOriginal) => ({
 }));
 
 /* The flows of ProfileList. GetAvailableUsers comes from the MSW mocks of the test setup (pages/LegacyShareObject/
-   mocks.ts: Label "Contacts list", one fictional user, Alice Thornton, filtered by the search words); ShareObject, the
+   mocks.ts: Label "Locality Members", 50 fictional locality members, filtered by the search words); ShareObject, the
    cached user, the feedback message and the flow handler are spies. */
-const ALICE = '990101';
+const FIRST_MEMBER = '990101';
 const ALLOWED: ShareObjectResult = { isAllowed: true, isSuccess: true, message: '', shareId: '501' };
 
 /** An answer that the test gives later. */
@@ -124,16 +124,15 @@ describe('useProfileList', () => {
     expect(bodies).toEqual([
       { SearchFilter: '', ShareObjectId: '42438', ShareObjectTypeId: 'Household', MaxRecords: 50, HasSearched: false },
     ]);
-    expect(result.current.label).toBe('Contacts list');
-    expect(result.current.shareProfiles).toEqual([
-      {
-        profileId: ALICE,
-        name: 'Alice Thornton',
-        description: 'Las Cruces, United States',
-        cdn: { bucket: '', path: '', type: '', signedPath: '' },
-        isShared: false,
-      },
-    ]);
+    expect(result.current.label).toBe('Locality Members');
+    expect(result.current.shareProfiles).toHaveLength(50);
+    expect(result.current.shareProfiles[0]).toEqual({
+      profileId: FIRST_MEMBER,
+      name: 'Robert Callahan',
+      description: 'Granite Falls, United States',
+      cdn: { bucket: '', path: '', type: '', signedPath: '' },
+      isShared: false,
+    });
   });
 
   it('Enter searches with the filter and blurs; clearing the filter after a search fetches all again', async () => {
@@ -199,7 +198,7 @@ describe('useProfileList', () => {
       expect(flows.results).toBe('list');
     });
     act(() => {
-      result.current.onShare(ALICE);
+      result.current.onShare(FIRST_MEMBER);
     });
     await until(result, (flows) => {
       expect(flows.shareProfiles[0]?.isShared).toBe(true);
@@ -208,7 +207,7 @@ describe('useProfileList', () => {
       shareObjectTypeId: 'Household',
       sharedObjectId: '42438',
       sharingProfileName: 'Kai Andersen',
-      targetCBUserId: ALICE,
+      targetCBUserId: FIRST_MEMBER,
     });
     expect(showFeedbackMessage).not.toHaveBeenCalled();
     expect(events.onSubscriptionDenied).not.toHaveBeenCalled();
@@ -221,7 +220,7 @@ describe('useProfileList', () => {
       expect(flows.results).toBe('list');
     });
     act(() => {
-      result.current.onShare(ALICE);
+      result.current.onShare(FIRST_MEMBER);
     });
     await settle();
     expect(result.current.shareProfiles[0]?.isShared).toBe(false);
@@ -241,7 +240,7 @@ describe('useProfileList', () => {
       expect(flows.results).toBe('list');
     });
     act(() => {
-      result.current.onShare(ALICE);
+      result.current.onShare(FIRST_MEMBER);
     });
     await settle();
     expect(showFeedbackMessage).toHaveBeenCalledExactlyOnceWith('The share failed', PLATFORM_MESSAGE_TYPE.error);
@@ -264,7 +263,7 @@ describe('useProfileList', () => {
     });
     const refused = pending<ShareObjectResult>(vi.mocked(shareObject));
     act(() => {
-      result.current.onShare(ALICE);
+      result.current.onShare(FIRST_MEMBER);
     });
     unmount();
     vi.mocked(profileListReducer).mockClear();
@@ -286,7 +285,7 @@ describe('useProfileList', () => {
     });
     const failed = pending<ShareObjectResult>(vi.mocked(shareObject));
     act(() => {
-      result.current.onShare(ALICE);
+      result.current.onShare(FIRST_MEMBER);
     });
     unmount();
     vi.mocked(profileListReducer).mockClear();

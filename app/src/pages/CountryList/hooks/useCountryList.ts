@@ -1,4 +1,4 @@
-import { fetchCountryListStatistics, type CountrySummary } from '@/api/country';
+import { fetchCountryListCommunityStatistics, fetchCountryListStatistics, type CountrySummary } from '@/api/country';
 import {
   exceptionMessage,
   isCommunicationException,
@@ -47,7 +47,8 @@ export interface CountryListFlows {
 
 /** The flows of the screen CountryList (the screen controller).
     - OnReady: a back navigation that the view cache restored with the data fetched does nothing; otherwise
-      Action_RefreshData. GetCountriesStatistics is refresh-only.
+      JavaScript1 starts Action_RefreshData_CommunityStatistics (GetCommunityStatistics, not awaited, no widget reads
+      it; live TST of 2026-10-27), then Action_RefreshData. Both data actions are refresh-only.
     - Action_RefreshData: 10 skeleton rows, the refresh of GetCountriesStatistics, then
       OnAfterFetch_GetCountriesStatistics (every row's AvatarURL = GetFlagURLByCountryCode(CountryCode)). The exception
       handlers clear the list and bubble the error up (BubbleCommunicationException, BubbleGenericException);
@@ -105,9 +106,17 @@ export function useCountryList(): CountryListFlows {
     }
   };
 
-  /** ScreenEvent_OnReady. useFlowState sends a rejection to the flow handler. */
+  /** Action_RefreshData_CommunityStatistics: the refresh of GetCommunityStatistics (R1). No widget reads the answer. */
+  const refreshCommunityStatistics = async () => {
+    await flow.fetch(fetchCountryListCommunityStatistics());
+  };
+
+  /** ScreenEvent_OnReady. useFlowState sends a rejection to the flow handler. JavaScript1 (live TST of 2026-10-27,
+      CountryList.mvc.js:1312-1318, 1831-1835) calls Action_RefreshData_CommunityStatistics and does not wait for it:
+      its error goes to the flow handler on its own (`flow.run`). */
   const onReady = async (restored: boolean) => {
     if (restored && latest.current.isDataFetched) return;
+    flow.run(refreshCommunityStatistics);
     await refreshData();
   };
 

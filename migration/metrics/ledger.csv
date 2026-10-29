@@ -1110,3 +1110,19 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-29,clarify-item10,review,154037,review-fable,fable,"window 7 review of 5 routes: 3 confirm, 2 change; H1/H2; 28 calls"
 2026-10-29,OrbitAdminMilestoneDetail,fix,85851,build-opus,opus,"review round 1 fixes: lookup by MilestoneRef, admin type Name/Type per MCP row 7; 30 calls"
 2026-10-29,clarify-item10,review,75845,review-fable,fable,"window 7 review round 2 Orbit admin: detail confirm, list mock flag (row 23); 16 calls"
+2026-10-29,clarify-drift,analyze,161557,triage-events-opus,opus,"drift triage events: 77 diffs, 7 rows (A2 B1 C4) + capture gap G1; 56 calls"
+2026-10-29,clarify-drift,analyze,198483,triage-messages-opus,opus,"drift triage messages: 236 diffs, 10 rows (A3 B4 C2 D1); 61 calls"
+2026-10-29,clarify-drift,analyze,189895,triage-directory-opus,opus,"drift triage directory: 667 diffs, 6 rows (A3 B2 C1); 54 calls"
+2026-10-29,clarify-drift,analyze,226036,triage-household-opus,opus,"drift triage household: 1004 diffs, 11 rows (A7 B1 C3); 52 calls"
+2026-10-29,clarify-drift,fix,107164,wp9-opus,opus,"WP9: footer shadow timing proven to be mock latency, 3 tests, no code change; 42 calls"
+2026-10-29,Notifications,fix,340317,wp5-opus,opus,"WP5 Notifications rework: behaviour ported, style 340 left, 8 tests red; 81 calls"
+2026-10-29,EventDetail,fix,298457,wp6-opus,opus,"WP6 ItemNotesSection (EventDetail, LDM_EventDetail_V2), contract V2 action added; 87 calls"
+2026-10-29,Search,fix,261181,wp7-opus,opus,"WP7 Search recent clicked results rework, B22; 80 calls"
+2026-10-29,clarify-drift,fix,300362,wp3-opus,opus,WP3 small TST changes: 6/7 routes clean; 100 calls
+2026-10-29,clarify-drift,fix,273048,wp4-opus,opus,"WP4+WP8 EntityDetailsActions NotesSheet popup, C2 bookmarks, flags on, bootstrap import fix; 106 calls"
+2026-10-29,clarify-drift,fix,289258,wp2-opus,opus,WP2 mock data to TST + member scenario; 69 calls
+2026-10-29,Notifications,fix,53245,wp5-opus,opus,"WP5 follow-up: cursor pointer, 4 mock titles, tests 50/50; parity clean; 29 calls"
+2026-10-29,clarify-drift,fix,229920,fu-opus,opus,drift follow-ups 1-9; 95 calls
+2026-10-29,clarify-drift,fix,336036,wp1-opus,opus,"WP1 capture path fix, 5 re-captures, exemptions (17 changed, 4 new); ~80 calls (two runs: network stop at 48 calls, then 28)"
+2026-10-29,clarify-drift,analyze,201935,publish2-opus,opus,"publish 2 diff: 38/50 identified, 4 gap groups G1-G4, wave ports verified; 56 calls"
+2026-10-29,clarify-drift,fix,83208,ldmtest-opus,opus,LDM timeline filter test race fixed (wait for the active filter icon); 22 calls

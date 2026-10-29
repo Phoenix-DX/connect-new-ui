@@ -168,6 +168,10 @@ export const UBT_Icons = {
   Gifting: 'connect-icon-gifting',
   Call: 'connect-icon-call',
   ArrowOutward: 'connect-icon-arrow_outward',
+  /** TST values (static-entities-tst.json `UBTConnectLibrary.uBT_Icons` calendar, calendarFill): the ComingSoon inline
+      icon (captured `connect-icon-calendar`, OneSchoolGlobalDetails dom) and the ComingSoon_V2 circle button. */
+  Calendar: 'connect-icon-calendar',
+  CalendarFill: 'connect-icon-calendar_fill',
 } as const;
 
 /** "ubt-columns-" + Id: captured `ubt-columns-reduce-first` / `ubt-columns-reduce-last` (IconText, BrowseDirectory and

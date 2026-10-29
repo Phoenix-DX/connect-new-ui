@@ -179,14 +179,15 @@ describe('useNotifications', () => {
     expect(fetchNotifications).toHaveBeenCalledTimes(1);
   });
 
-  it('Handler_ApplyFilters scrolls to the top and refreshes the list', async () => {
+  it('Handler_ApplyFilters sets the order and refreshes the list (no ScrollTop since the 2026-10-27 publish)', async () => {
     const { result } = renderFlows();
     await settle();
     act(() => {
-      result.current.onApplyFilters();
+      result.current.onApplyFilters(false);
     });
-    expect(scrollTop).toHaveBeenCalledTimes(1);
+    expect(scrollTop).not.toHaveBeenCalled();
     expect(result.current.state.isLoading).toBe(true);
+    expect(result.current.state.orderByIsAscending).toBe(true);
     await settle();
     expect(fetchNotifications).toHaveBeenCalledTimes(2);
     expect(result.current.state.isLoading).toBe(false);

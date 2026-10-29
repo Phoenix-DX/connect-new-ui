@@ -414,15 +414,6 @@ export interface GetAssembleEventTypesResponse {
   AssembleEventTypeList: AssembleEventTypeListItem[] /* wire: { List: [...] } */;
 }
 
-export interface AssembleSummaryMeetingList {
-  List: unknown[] /* empty in capture */;
-  EmptyListItem: EmptyListItem;
-}
-
-export interface GetAssembleMeetingSummaryListResponse {
-  AssembleSummaryMeetingList: AssembleSummaryMeetingList;
-}
-
 export interface CountriesItem {
   Code: string;
   Name: string;
@@ -442,6 +433,15 @@ export interface GetCountriesBySubscriptionResponse {
 
 export interface AppManager_AfterInitializeResponse {
   isNotRegistered: boolean;
+}
+
+export interface AssembleSummaryMeetingList {
+  List: unknown[] /* empty in capture */;
+  EmptyListItem: EmptyListItem;
+}
+
+export interface GetAssembleMeetingSummaryListResponse {
+  AssembleSummaryMeetingList: AssembleSummaryMeetingList;
 }
 
 export interface OrbitEventTypesItem {

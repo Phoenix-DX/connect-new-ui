@@ -120,9 +120,9 @@
   },
   {
    "id": "CAPTURE-VIA-USERINFO-HOUSEHOLDCAROUSEL",
-   "idRegex": "^b3-l1-115[24]_\\d-b2-b3-\\$b1$",
+   "idRegex": "^b3-l1-\\d+_\\d-b2-b4-\\$b1$",
    "states": "^(loading|offline)$",
-   "reason": "The loading and offline states were captured via Locality_Details (states.json `via`), so on TST the app start had finished and the user-info cache was filled: HouseholdDetails_Block's OnReady passed GetUserInformation_Wrapper (mvc.js:2700-2710), set the skeleton household ('Example & Example', About/Photos tags appended after OnReady, mvc.js:2216-2240) and started GetHousehold, which then timed out / failed (0 members, list-error). Parity opens the route by URL under the never-answering / failing mock scenario, so the clone's app-start GetUserInformation is pending or failed and the block waits before OnReady's skeleton, as the original does when opened directly (TST HouseholdDetails loading/offline: 'Household gallery', no tags; that route's parity is 0 for the same block). Every difference inside the four slides' HouseholdDetails_Block (14 structure per slide: 5 skeleton Member_ListItem, 2 TagToggle, Block_Subtitle, AddressSection, SeeMoreSection, Directory_EntityDetailsActions and its margin, hero skeleton; texts 'Example & Example'/'Actions' vs 'Household gallery'/'Photobook'; VisibleAboutTab; bookmark state) follows from that path difference. Masked in DOM and pixel comparison for these two states only; the default state compares the block in full.",
+   "reason": "The loading and offline states were captured via Locality_Details (states.json `via`), so on TST the app start had finished and the user-info cache was filled: HouseholdDetails_Block's OnReady passed GetUserInformation_Wrapper (mvc.js:2700-2710), set the skeleton household ('Example & Example', About/Photos tags appended after OnReady, mvc.js:2216-2240) and started GetHousehold, which then timed out / failed (0 members, list-error). Parity opens the route by URL under the never-answering / failing mock scenario, so the clone's app-start GetUserInformation is pending or failed and the block waits before OnReady's skeleton, as the original does when opened directly (TST HouseholdDetails loading/offline: 'Household gallery', no tags; that route's parity is 0 for the same block). Every difference inside the four slides' HouseholdDetails_Block (14 structure per slide: 5 skeleton Member_ListItem, 2 TagToggle, Block_Subtitle, AddressSection, SeeMoreSection, Directory_EntityDetailsActions and its margin, hero skeleton; texts 'Example & Example'/'Actions' vs 'Household gallery'/'Photobook'; VisibleAboutTab; bookmark state) follows from that path difference. Masked in DOM and pixel comparison for these two states only; the default state compares the block in full. Ids updated 2026-10-29 (drift wave H-Q5 a): TST added EntitiesCarousel_OneSchoolGlobal before the other carousel blocks, so the block indexes after it moved by one, and the list key is a runtime record key (now \\d+); drift-triage-household.md R8-R10.",
    "evidence": "migration/screens/HouseholdCarousel/analysis/states.json (loading/offline via /UBTConnect/Locality_Details); migration/screens/HouseholdCarousel/parity/loading.json, offline.json (structure 56 = 14 x 4 slides, all under b3-l1-1152_N-b2-b3-$b1 / b3-l1-1154_N-b2-b3-$b1); UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js:2202-2240, :2700-2710; app/src/shell/userInfo.ts getUserInformation; migration/screens/HouseholdDetails/analysis/dom/loading.html:146"
   },
   {
@@ -526,8 +526,8 @@
     "position"
    ],
    "states": "^default$",
-   "pathRegex": "(div#b3-b3-LazyImage_Placeholder|div#b3-b9-b1-l1-89_\\d+-b5-b1-LazyImage_Placeholder)\\.ubt-image-card--lazy-image-placeholder( > .*)?$",
-   "reason": "The subdivision photo and the 11 household photos were masked by the capture (data-masked-src=\"user-image\", src removed; TST rendered 390x260 and 195x130): the replayed reference shows broken images (390x26, 195x24), the clone the mock landscape placeholder. auto-accepted in the user's auto mode 2026-10-15",
+   "pathRegex": "(div#b3-b3-LazyImage_Placeholder|div#b3-b9-b1-l1-\\d+_\\d+-b5-b1-LazyImage_Placeholder)\\.ubt-image-card--lazy-image-placeholder( > .*)?$",
+   "reason": "The subdivision photo and the 11 household photos were masked by the capture (data-masked-src=\"user-image\", src removed; TST rendered 390x260 and 195x130): the replayed reference shows broken images (390x26, 195x24), the clone the mock landscape placeholder. auto-accepted in the user's auto mode 2026-10-15 Ids updated 2026-10-29 (drift wave H-Q5 a): TST added EntitiesCarousel_OneSchoolGlobal before the other carousel blocks, so the block indexes after it moved by one, and the list key is a runtime record key (now \\d+); drift-triage-household.md R8-R10.",
    "evidence": "migration/screens/SupperMeeting_Details/analysis/dom/default.html:63, :468 (data-rendered-size); parity/default.json; parity/default.expected.png"
   },
   {
@@ -571,8 +571,8 @@
     "position"
    ],
    "states": "^default$",
-   "pathRegex": "div#b3-l1-1164_\\d-b2-b1-b1-(b3|b9-b1-l1-\\d+_\\d+-b5-b1)-LazyImage_Placeholder\\.ubt-image-card--lazy-image-placeholder( > .*)?$",
-   "reason": "Same artifact as CAPTURE-MASKED-IMAGE-SUPPERMEETING on the carousel slides: the subdivision photo and the household photos were masked by the capture (data-masked-src=\"user-image\", src removed; TST rendered 390x260 and 195x130), so the replayed reference shows broken images (390x26, 195x24) while the clone shows the mock placeholder. auto-accepted in the user's auto mode 2026-10-15",
+   "pathRegex": "div#b3-l1-\\d+_\\d-b2-b2-b1-(b3|b9-b1-l1-\\d+_\\d+-b5-b1)-LazyImage_Placeholder\\.ubt-image-card--lazy-image-placeholder( > .*)?$",
+   "reason": "Same artifact as CAPTURE-MASKED-IMAGE-SUPPERMEETING on the carousel slides: the subdivision photo and the household photos were masked by the capture (data-masked-src=\"user-image\", src removed; TST rendered 390x260 and 195x130), so the replayed reference shows broken images (390x26, 195x24) while the clone shows the mock placeholder. auto-accepted in the user's auto mode 2026-10-15 Ids updated 2026-10-29 (drift wave H-Q5 a): TST added EntitiesCarousel_OneSchoolGlobal before the other carousel blocks, so the block indexes after it moved by one, and the list key is a runtime record key (now \\d+); drift-triage-household.md R8-R10.",
    "evidence": "migration/screens/SupperMeeting_Carousel/analysis/dom/default.html (24 data-masked-src=\"user-image\", data-rendered-size=\"390x260\"); parity/default.json (layout 390×26 → 390×260 under b3-l1-1164_0-b2-b1-b1-b3-LazyImage_Placeholder, 195×24 → 195×130 under …-b9-b1-l1-1258_N-b5-b1-LazyImage_Placeholder)"
   },
   {
@@ -584,8 +584,8 @@
     "grid-template-rows"
    ],
    "states": "^default$",
-   "pathRegex": "\\[Adaptive\\.Gallery\\] > div#b3-l1-1164_0-b2-b1-b1-b9-b1-b4-Content\\.osui-gallery( > div\\.OSFillParent\\.list\\.list-group)?$",
-   "reason": "Follows from CAPTURE-MASKED-IMAGE-SMCAROUSEL on slide 1 only (11 households in capture and mock): the gallery rows are sized by the masked 24 px broken images (rows 178 px) while the clone shows the 130 px placeholder (rows 193 px). Slides 2 and 3 are left reported until CR-SupperMeeting_Carousel-1 gives them their captured counts. auto-accepted in the user's auto mode 2026-10-15 Correction (F6, 2026-10-15): the remaining row-height difference comes from masked text, not masked images: two 30-character subtitles wrap with the clone's neutral letters but not with the capture's bullets (glyph widths).",
+   "pathRegex": "\\[Adaptive\\.Gallery\\] > div#b3-l1-\\d+_0-b2-b2-b1-b9-b1-b4-Content\\.osui-gallery( > div\\.OSFillParent\\.list\\.list-group)?$",
+   "reason": "Follows from CAPTURE-MASKED-IMAGE-SMCAROUSEL on slide 1 only (11 households in capture and mock): the gallery rows are sized by the masked 24 px broken images (rows 178 px) while the clone shows the 130 px placeholder (rows 193 px). Slides 2 and 3 are left reported until CR-SupperMeeting_Carousel-1 gives them their captured counts. auto-accepted in the user's auto mode 2026-10-15 Correction (F6, 2026-10-15): the remaining row-height difference comes from masked text, not masked images: two 30-character subtitles wrap with the clone's neutral letters but not with the capture's bullets (glyph widths). Ids updated 2026-10-29 (drift wave H-Q5 a): TST added EntitiesCarousel_OneSchoolGlobal before the other carousel blocks, so the block indexes after it moved by one, and the list key is a runtime record key (now \\d+); drift-triage-household.md R8-R10 (same id change; this rule matched no row in the 2026-10-29 report).",
    "evidence": "migration/screens/SupperMeeting_Carousel/parity/default.json (grid-template-rows 1148px → 1238px; 178px ×6 → 193px ×6 on b3-l1-1164_0-b2-b1-b1-b9-b1-b4-Content)"
   },
   {
@@ -597,8 +597,8 @@
     "left"
    ],
    "states": "^default$",
-   "pathRegex": "div#b3-l1-1164_\\d-b2-b1-b1-b3-Placeholder_ImageTag\\.absolute-bottom-right\\.padding-s\\.position-absolute$",
-   "reason": "The CarouselTag text was masked by the capture ('• • •' for '1 / 3'), so the right-aligned tag placeholder of the reference is a third of a pixel wider than the clone's (left 337.688px → 337.344px). auto-accepted in the user's auto mode 2026-10-15",
+   "pathRegex": "div#b3-l1-\\d+_\\d-b2-b2-b1-b3-Placeholder_ImageTag\\.absolute-bottom-right\\.padding-s\\.position-absolute$",
+   "reason": "The CarouselTag text was masked by the capture ('• • •' for '1 / 3'), so the right-aligned tag placeholder of the reference is a third of a pixel wider than the clone's (left 337.688px → 337.344px). auto-accepted in the user's auto mode 2026-10-15 Ids updated 2026-10-29 (drift wave H-Q5 a): TST added EntitiesCarousel_OneSchoolGlobal before the other carousel blocks, so the block indexes after it moved by one, and the list key is a runtime record key (now \\d+); drift-triage-household.md R8-R10.",
    "evidence": "migration/screens/SupperMeeting_Carousel/analysis/dom/default.html:90-92 (masked tag text); parity/default.json (left 337.688px → 337.344px on b3-l1-1164_0-b2-b1-b1-b3-Placeholder_ImageTag)"
   },
   {
@@ -613,8 +613,8 @@
     "structure"
    ],
    "states": "^default$",
-   "pathRegex": "^(?!.*#b3-l1-1164_[12]-b2-b1-b1-(\\$b[89]|b[89]-)).*#b3-l1-1164_[12]-b2-b1-b1-(\\$b[2-7]|b[2-7]-)",
-   "reason": "Off-screen slides 2 and 3 were snapshotted while SupperMeeting_DetailsBlock still showed GetSkeleton_UI_SubdivisionDetails (ubt-skeleton-section, 'Subdivision Name Example', counts 10) although their household lists had loaded; the clone shows the loaded card. Limited to the card and actions sections b2-b7 of slides 2-3 (actions menu b8 and household list b9 stay reported). SupperMeeting_Carousel Q2 answered by code (timing artifact: EntitiesCarousel_Element.mvc.js:240-307, SupperMeeting_DetailsBlock.mvc.js:188,302,660-680); auto-accepted (user instruction 2026-10-15 16:59)",
+   "pathRegex": "^(?!.*#b3-l1-\\d+_[12]-b2-b2-b1-(\\$b[89]|b[89]-)).*#b3-l1-\\d+_[12]-b2-b2-b1-(\\$b[2-7]|b[2-7]-)",
+   "reason": "Off-screen slides 2 and 3 were snapshotted while SupperMeeting_DetailsBlock still showed GetSkeleton_UI_SubdivisionDetails (ubt-skeleton-section, 'Subdivision Name Example', counts 10) although their household lists had loaded; the clone shows the loaded card. Limited to the card and actions sections b2-b7 of slides 2-3 (actions menu b8 and household list b9 stay reported). SupperMeeting_Carousel Q2 answered by code (timing artifact: EntitiesCarousel_Element.mvc.js:240-307, SupperMeeting_DetailsBlock.mvc.js:188,302,660-680); auto-accepted (user instruction 2026-10-15 16:59) Ids updated 2026-10-29 (drift wave H-Q5 a): TST added EntitiesCarousel_OneSchoolGlobal before the other carousel blocks, so the block indexes after it moved by one, and the list key is a runtime record key (now \\d+); drift-triage-household.md R8-R10 (same id change; this rule matched no row in the 2026-10-29 report).",
    "evidence": "migration/screens/SupperMeeting_Carousel/analysis/dom/default.html (ubt-skeleton-section on b3-l1-1164_1/2-b2-b1-b1-b2/b6-Placeholder_LoadingSection only); SupperMeeting_DetailsBlock.mvc.js:188,302,660-680; parity/default.json (slides 1164_1/2, sections b2-b7)"
   },
   {
@@ -680,9 +680,20 @@
     "pseudo"
    ],
    "states": "^default$",
-   "pathRegex": "#b3-l1-1164_[12]-b2-b1-b1-(\\$b8|b8-)",
-   "reason": "Follows from SupperMeeting_Carousel Q2 (answered by code: the default capture caught off-screen slides 2-3 mid-load). Their Directory_EntityDetailsActions (b8) was still in its loading look (grey circles, hidden icons) while its own FetchContactDetails answers were arriving; slide 1, loaded, matches. Limited to style/pseudo of b8 on slides 2-3. Auto-accepted (user instruction 2026-10-15 16:59)",
+   "pathRegex": "#b3-l1-\\d+_[12]-b2-b2-b1-(\\$b8|b8-)",
+   "reason": "Follows from SupperMeeting_Carousel Q2 (answered by code: the default capture caught off-screen slides 2-3 mid-load). Their Directory_EntityDetailsActions (b8) was still in its loading look (grey circles, hidden icons) while its own FetchContactDetails answers were arriving; slide 1, loaded, matches. Limited to style/pseudo of b8 on slides 2-3. Auto-accepted (user instruction 2026-10-15 16:59) Ids updated 2026-10-29 (drift wave H-Q5 a): TST added EntitiesCarousel_OneSchoolGlobal before the other carousel blocks, so the block indexes after it moved by one, and the list key is a runtime record key (now \\d+); drift-triage-household.md R8-R10.",
    "evidence": "migration/screens/SupperMeeting_Carousel/parity/default.json (style 52 / pseudo 6, all under #b3-l1-1164_1|2-b2-b1-b1-b8); analysis/calls.md #4-#15 (FetchContactDetails answers until 5769 ms); CAPTURE-OFFSCREEN-SLIDE-SKELETON-SMCAROUSEL"
+  },
+  {
+   "id": "CAPTURE-OFFSCREEN-SLIDE-ACTIONS-SKELETON-CLASS-SMCAROUSEL",
+   "kinds": [
+    "class"
+   ],
+   "states": "^default$",
+   "pathRegex": "#b3-l1-\\d+_[12]-b2-b2-b1-(\\$b8|b8-)",
+   "detailRegex": "ubt-skeleton-section",
+   "reason": "Same capture timing as CAPTURE-OFFSCREEN-SLIDE-ACTIONS-SKELETON-SMCAROUSEL: in the re-capture of 2026-10-29 the actions block (b8) of off-screen slide 3 was still in its loading look, so its SkeletonSection kept class ubt-skeleton-section; the loaded clone has none. Limited to that class on b8 of slides 2-3. Drift wave WP1 Q2 (a), applied as reversible and listed to the user (2026-10-29).",
+   "evidence": "migration/clarify/builds/drift-WP1.md (Q2); migration/screens/SupperMeeting_Carousel/parity/default.json"
   },
   {
    "id": "PHOTOBOOK-MASKED-PHOTO-BACKGROUND-LAYOUT",
@@ -802,6 +813,30 @@
    "reason": "Timing artifact: the html popup-disable-scroll class at capture time depends on the order of OutSystems model flushes (client-variable flush vs local-storage query flush), not on the screen. Scoped to this route (routeRegex). Auto-accepted (user instruction 2026-10-15 16:59)",
    "evidence": "usePopupWidget re-applies disableScroll on every client-variable change as every OS controller does (OutSystems.js:530153 fireInitialize subscribes clientVariablesHandler; :527146 generation++ + scheduleFlush). TST's final html class then depends on whether an EntityDetailsActions model flush (local IDB queries, OnReady) lands after the last client-variable flush; in the mock app local entities resolve in microtasks. TST itself is inconsistent across routes/states: states.json htmlClass default ''/loading 'popup-disable-scroll' on OneSchoolGlobalDetails, but default 'popup-disable-scroll'/loading '' on SupperMeeting_Carousel. See migration/screens/SupperMeeting_Details/analysis/states.json and parity/<state>.json.",
    "routeRegex": "/UBTConnect/SupperMeeting_Details\\b"
+  },
+  {
+   "id": "CAPTURE-POPUP-SCROLL-CLASS-FLUSH-ORDER-DIRECTORY-ACTIONS",
+   "routeRegex": "^/UBTConnect/(Profile|OneSchoolGlobalCarousel|HouseholdCarousel)(\\?|$)",
+   "kinds": [
+    "class"
+   ],
+   "states": "^default$",
+   "pathRegex": "^html$",
+   "detailRegex": "popup-disable-scroll",
+   "reason": "Same timing artifact as CAPTURE-POPUP-SCROLL-CLASS-FLUSH-ORDER-SUPPERMEETING_DETAILS, with the same popup order: since the TST change of Directory_EntityDetailsActions (NotesSheet inside an OSWidgets.Popup with ShowPopup True, drift-triage-household.md R1), every instance of the block renders an open NotesSheet popup followed by a closed ShareSheet popup (TST DOM portals in this order on all three routes), and the html class at capture time depends on which of the two re-renders last after the last model flush. Kept as a sibling rule so that SupperMeeting_Details keeps its loading-only scope. Drift wave WP4 Q2 (b then a, coordinator 2026-10-29).",
+   "evidence": "analysis/dom/default.raw.html of Profile (portals NotesSheet, ShareSheet, NotesSheet, NotesSheet), OneSchoolGlobalCarousel (NotesSheet, ShareSheet) and HouseholdCarousel (NotesSheet/ShareSheet pairs of 4 slides, then NotesSheets); SupperMeeting_Details loading has the same pair (NotesSheet, ShareSheet); parity/default.json of the three routes (1 class row: missing .popup-disable-scroll); components/ui/os/OSPopup/usePopupWidget.ts:36-58"
+  },
+  {
+   "id": "CAPTURE-POPUP-SCROLL-CLASS-FLUSH-ORDER-DIRECTORY-ACTIONS-OSGCAROUSEL-OFFLINE",
+   "routeRegex": "^/UBTConnect/OneSchoolGlobalCarousel(\\?|$)",
+   "kinds": [
+    "class"
+   ],
+   "states": "^offline$",
+   "pathRegex": "^html$",
+   "detailRegex": "popup-disable-scroll",
+   "reason": "Same flush-order artifact as CAPTURE-POPUP-SCROLL-CLASS-FLUSH-ORDER-DIRECTORY-ACTIONS (open NotesSheet popup, then closed ShareSheet popup of Directory_EntityDetailsActions), seen in the offline state of this route only. Drift wave WP1 Q3 (b), applied as reversible and listed to the user (2026-10-29).",
+   "evidence": "migration/clarify/builds/drift-WP1.md (Q3)"
   },
   {
    "id": "CAPTURE-POPUP-SCROLL-CLASS-FLUSH-ORDER-SUPPERMEETING_CAROUSEL",
@@ -1103,8 +1138,8 @@
     "position"
    ],
    "states": "^default$",
-   "pathRegex": "div#b3-l1-1152_\\d-b2-b3-b1-b3-LazyImage_Placeholder\\.ubt-image-card--lazy-image-placeholder( > .*)?$",
-   "reason": "The household photo of every rendered slide was masked by the capture (data-masked-src=\"user-image\", src removed, TST rendered size 390x259 on all four slides); the replayed reference shows a 26 px broken image, the clone the 260 px neutral placeholder (Q-W2C-1). Same artifact as CAPTURE-MASKED-IMAGE-HOUSEHOLDDETAILS (same block, carousel instance ids).",
+   "pathRegex": "div#b3-l1-\\d+_\\d-b2-b4-b1-b3-LazyImage_Placeholder\\.ubt-image-card--lazy-image-placeholder( > .*)?$",
+   "reason": "The household photo of every rendered slide was masked by the capture (data-masked-src=\"user-image\", src removed, TST rendered size 390x259 on all four slides); the replayed reference shows a 26 px broken image, the clone the 260 px neutral placeholder (Q-W2C-1). Same artifact as CAPTURE-MASKED-IMAGE-HOUSEHOLDDETAILS (same block, carousel instance ids). Ids updated 2026-10-29 (drift wave H-Q5 a): TST added EntitiesCarousel_OneSchoolGlobal before the other carousel blocks, so the block indexes after it moved by one, and the list key is a runtime record key (now \\d+); drift-triage-household.md R8-R10.",
    "evidence": "migration/screens/HouseholdCarousel/analysis/dom/default.html (img b3-l1-1152_0..3-b2-b3-b1-b4-b2-Image: data-masked-src=\"user-image\", data-rendered-size=\"390x259\"); migration/screens/HouseholdCarousel/parity/default.json (40 layout diffs, 10 per slide, all 390x26 -> 390x260 under LazyImage_Placeholder)",
    "routeRegex": "^/UBTConnect/HouseholdCarousel(\\?|$)"
   },
@@ -1163,8 +1198,8 @@
    ],
    "states": "^tag-(suppermeetings|oneschoolglobal)$",
    "routeRegex": "^/UBTConnect/Locality_Details",
-   "pathRegex": "div#(b19-l1-3598_\\d+-b4|b21-b3-l1-3709_\\d+-b2)-LazyImage_Placeholder\\.ubt-image-card--lazy-image-placeholder( > .*)?$",
-   "reason": "Same as CAPTURE-MASKED-IMAGE-LOCALITYDETAILS (default): the supper meeting and school photos were masked by the capture (data-masked-src=\"user-image\", src removed, TST rendered 390x260 / 390x292), so the replayed reference shows a 26 px broken image while the clone shows the 390x260 neutral placeholder (Q-W2C-1). 20 diffs in tag-suppermeetings (cards l1-3598_10, _11), 22 in tag-oneschoolglobal (l1-3709_3, _4); the third supper meeting (no photo on TST) matches. Auto-accepted in the user's auto mode 2026-10-15",
+   "pathRegex": "div#(b19-l1-\\d+_\\d+-b4|b21-b3-l1-\\d+_\\d+-b2)-LazyImage_Placeholder\\.ubt-image-card--lazy-image-placeholder( > .*)?$",
+   "reason": "Same as CAPTURE-MASKED-IMAGE-LOCALITYDETAILS (default): the supper meeting and school photos were masked by the capture (data-masked-src=\"user-image\", src removed, TST rendered 390x260 / 390x292), so the replayed reference shows a 26 px broken image while the clone shows the 390x260 neutral placeholder (Q-W2C-1). 20 diffs in tag-suppermeetings (cards l1-3598_10, _11), 22 in tag-oneschoolglobal (l1-3709_3, _4); the third supper meeting (no photo on TST) matches. Auto-accepted in the user's auto mode 2026-10-15 Ids updated 2026-10-29 (drift wave H-Q5 a): TST added EntitiesCarousel_OneSchoolGlobal before the other carousel blocks, so the block indexes after it moved by one, and the list key is a runtime record key (now \\d+); drift-triage-household.md R8-R10.",
    "evidence": "migration/screens/Locality_Details/analysis/dom/tag-suppermeetings.html:226-228, tag-oneschoolglobal.html (img data-masked-src); parity/tag-suppermeetings.json, parity/tag-oneschoolglobal.json"
   },
   {
@@ -1209,9 +1244,9 @@
    ],
    "states": "^popup-(filters|sort)$",
    "pathRegex": "^screenshot$",
-   "detailRegex": "^[4-7]\\.\\d\\d% pixels differ .*migration/screens/OrbitLanding/parity/popup-(filters|sort)\\.diff\\.png$",
-   "reason": "Pixel-only difference of the two popup states (DOM, classes, attributes, styles, layout and calls equal): (1) the TST popup top is the GetPopupMeasurements value read at OnReady on TST (.header offsetHeight 204), while the clone, like the replayed TST DOM, has a 174 px header, so the dialog is 30 px higher; (2) the replayed reference draws both radios unchecked because the capture does not serialize the checked property, while the platform RadioButton checks the selected one (aria-activedescendant matches). Q4 = A, auto-accepted in the user's auto mode 2026-10-15.",
-   "evidence": "dom/popup-filters.raw.html, dom/popup-sort.raw.html (top: 204px); ScreenBlock_OrbitLanding.mvc.js :2200-2214; parity/popup-filters.diff.png, parity/popup-sort.diff.png; OutSystemsReactWidgets.js RadioButton (checked: isSelected); OrbitLanding Q4"
+   "detailRegex": "^([4-7]|0)\\.\\d\\d% pixels differ .*migration/screens/OrbitLanding/parity/popup-(filters|sort)\\.diff\\.png$",
+   "reason": "Pixel-only difference of the two popup states (DOM, classes, attributes, styles, layout and calls equal): (1) the TST popup top is the GetPopupMeasurements value read at OnReady on TST (.header offsetHeight 204), while the clone, like the replayed TST DOM, has a 174 px header, so the dialog is 30 px higher; (2) the replayed reference draws both radios unchecked because the capture does not serialize the checked property, while the platform RadioButton checks the selected one (aria-activedescendant matches). Q4 = A, auto-accepted in the user's auto mode 2026-10-15. Re-capture of 2026-10-29 (drift wave E-Q5 a: popup-sort after the filters popup is closed with its close icon): popup-sort differs by 0.06% (worst tile 8.1%) at the two radios only (the checked property, point 2), so the bound also takes 0.xx%; popup-filters and popup-filters-closed are clean.",
+   "evidence": "dom/popup-filters.raw.html, dom/popup-sort.raw.html (top: 204px); ScreenBlock_OrbitLanding.mvc.js :2200-2214; parity/popup-filters.diff.png, parity/popup-sort.diff.png; OutSystemsReactWidgets.js RadioButton (checked: isSelected); OrbitLanding Q4; parity/popup-sort.diff.png of 2026-10-29 (radio circles only)"
   },
   {
    "id": "CALL-IMAGE-ERROR-APPEVENTS-EVENTDETAIL",
@@ -1248,9 +1283,24 @@
     "background-position"
    ],
    "states": "^(loading|offline)$",
-   "pathRegex": "div#b1-\\$b14\\.OSBlockWidget\\[Orbit_Generic_Blocks\\.Skeleton_Loading\\]( > .+)?$",
-   "reason": "The skeleton shimmer animation runs; its background-position at snapshot time depends on timing (49.98% vs 64.15%). Capture timing artifact; auto-accepted in the user's auto mode 2026-10-15",
+   "pathRegex": "div#b1-\\$b\\d+\\.OSBlockWidget\\[Orbit_Generic_Blocks\\.Skeleton_Loading\\]( > .+)?$",
+   "reason": "The skeleton shimmer animation runs; its background-position at snapshot time depends on timing (49.98% vs 64.15%). Capture timing artifact; auto-accepted in the user's auto mode 2026-10-15 Ids updated 2026-10-29 (drift wave E-Q3 a): the Skeleton_Loading block index moved with the new ItemNotesSection (b1-$b14 → b1-$b15), so it is b1-$b\\d+.",
    "evidence": "migration/screens/EventDetail/parity/loading.json, offline.json (style background-position on .orbit-skeleton-loading-item)"
+  },
+  {
+   "id": "CAPTURE-SKELETON-SHIMMER-PHASE-ORBIT-VIA-OFFLINE",
+   "routeRegex": "^/UBTConnect/(MilestoneDetail|HostSurvey)(\\?|$)",
+   "kinds": [
+    "style"
+   ],
+   "props": [
+    "background-position"
+   ],
+   "states": "^offline$",
+   "pathRegex": "\\[Orbit_Generic_Blocks\\.Skeleton_Loading\\]( > div\\.orbit-skeleton-loading-cont)?( > div#b2-b36-List_SkeletonLoadingDouble\\.OSFillParent\\.list\\.list-group)? > div\\.orbit-skeleton-item-height-[\\w.-]*orbit-skeleton-loading-item[\\w.-]*$",
+   "detailRegex": "^background-position ",
+   "reason": "The skeleton shimmer animation runs; its background-position at snapshot time depends on timing (54.8% vs 64.1%). Same capture timing artifact as CAPTURE-SKELETON-SHIMMER-PHASE-EVENTDETAIL and ORBITLANDING-SKELETON-SHIMMER-PHASE-OFFLINE, on the offline states captured for the first time on 2026-10-29 (drift wave E-Q6: capture path fixed, user 2026-10-29).",
+   "evidence": "migration/screens/MilestoneDetail/parity/offline.json (8 rows: 5 in .orbit-skeleton-loading-cont, 3 direct children of b1-b5-$b16), migration/screens/HostSurvey/parity/offline.json (7 rows) of 2026-10-29: background-position only, same markup and classes"
   },
   {
    "id": "DATA-GUEST-PHOTO-LDM-MYEVENTS-V2",
@@ -1363,10 +1413,22 @@
     "layout",
     "position"
    ],
-   "states": "^default$",
+   "states": "^(default|offline)$",
    "pathRegex": "header#b1-b5-b1-b2-Header\\.header\\.orbit-detail > div\\.header-top > div\\.display-flex\\.header-content > div\\.align-items-center\\.display-flex\\.full-width > (div#b1-b5-b1-b2-HeaderLeft\\.header-left( > .+)?|h1\\.header-title\\.text-align-center|div#b1-b5-b1-b2-HeaderRight\\.header-right)$",
-   "reason": "MenuIcon__UpdatedOSUI with MenuAction Auto shows the back arrow when there is a screen to go back to: the state was captured via OrbitLanding → EventDetail (states.json via), parity opens the route by URL with no previous screen, so the clone shows no back arrow (missing .back, 41x38 → 20x0) and the title / header-right shift by its width. Same artifact as VIA-BACK-MENUICON-EVENTDETAIL. Capture artifact; auto-accepted in the user's auto mode 2026-10-15",
+   "reason": "MenuIcon__UpdatedOSUI with MenuAction Auto shows the back arrow when there is a screen to go back to: the state was captured via OrbitLanding → EventDetail (states.json via), parity opens the route by URL with no previous screen, so the clone shows no back arrow (missing .back, 41x38 → 20x0) and the title / header-right shift by its width. Same artifact as VIA-BACK-MENUICON-EVENTDETAIL. Capture artifact; auto-accepted in the user's auto mode 2026-10-15 Offline added 2026-10-29 (drift wave E-Q6): the loading and offline states are now captured through the same via path; offline shows the same back arrow and header shift (loading is clean).",
    "evidence": "migration/screens/MilestoneDetail/analysis/states.json (via /UBTConnect/OrbitLanding); diagnostic parity run with the cloneQuery (class missing .back, HeaderLeft 41×38 → 20×0, h1 offset 56,10 → 35,0, HeaderRight 26×0 → 37×0)"
+  },
+  {
+   "id": "VIA-BACK-CONTENT-HEIGHT-ORBIT-OFFLINE",
+   "routeRegex": "^/UBTConnect/(MilestoneDetail|HostSurvey)(\\?|$)",
+   "kinds": [
+    "layout"
+   ],
+   "states": "^offline$",
+   "pathRegex": "div#(b1-b5-b1|b2-b1)-b2-ContentWrapper\\.content\\.orbit-detail(\\.orbit-host-survey)?( > div#(b1-b5-b1|b2-b1)-b2-MainContentWrapper\\.ThemeGrid_Container\\.main-content)?$",
+   "detailRegex": "^390×7[4-7]\\d → 390×7[4-7]\\d$",
+   "reason": "Follows from VIA-BACK-MENUICON-MILESTONEDETAIL / -HOSTSURVEY and CAPTURE-VIA-MASK-SHIFT-*: the offline state was captured through the via path (back arrow shown) with a masked header title, so the header height differs and the content wrapper below fills the rest of the 844 px viewport with 15-16 px less or more (758 → 742, 768 → 753). Offline states captured for the first time on 2026-10-29 (drift wave E-Q6, user 2026-10-29).",
+   "evidence": "migration/screens/MilestoneDetail/parity/offline.json, migration/screens/HostSurvey/parity/offline.json of 2026-10-29; MilestoneDetail parity/offline.diff.png (back arrow, header title, rows shifted)"
   },
   {
    "id": "CAPTURE-MASKED-ROOM-INFO-MILESTONEDETAIL",
@@ -1375,10 +1437,22 @@
     "position"
    ],
    "states": "^default$",
-   "pathRegex": "div#b1-b5-l5-142864_\\d-b8-Content > div\\.room-info-cont > div\\.flex-center-vertical\\.flex-direction-row\\.justify-content-(center|flex-end) > i\\.fa\\.fa-1x\\.fa-flag$",
+   "pathRegex": "div#b1-b5-l5-\\d+_\\d-b8-Content > div\\.room-info-cont > div\\.flex-center-vertical\\.flex-direction-row\\.justify-content-(center|flex-end) > i\\.fa\\.fa-1x\\.fa-flag$",
    "detailRegex": "^offset in parent (2[6-9]|3[0-9]),[2-4] → (2[6-9]|3[0-9]),[2-4]$|^offset in parent (8[8-9]|9[0-6]),[2-4] → (8[8-9]|9[0-6]),[2-4]$",
-   "reason": "The room type and beds texts were masked by the capture (\"••••••\", \"•\"; only room 6's \"Male\" is plain): the fictional texts of the same length (Couple / Female, 1 / 2, mocks/fictional/orbit.ts ORBIT_HOSTED_ROOMS) are narrower than the bullets, so the centred and right-aligned icons sit a few px off (36 → 27/28, 94 → 91). Room 6 (plain \"Male\") matches. Text-mask capture artifact; auto-accepted in the user's auto mode 2026-10-15",
+   "reason": "The room type and beds texts were masked by the capture (\"••••••\", \"•\"; only room 6's \"Male\" is plain): the fictional texts of the same length (Couple / Female, 1 / 2, mocks/fictional/orbit.ts ORBIT_HOSTED_ROOMS) are narrower than the bullets, so the centred and right-aligned icons sit a few px off (36 → 27/28, 94 → 91). Room 6 (plain \"Male\") matches. Text-mask capture artifact; auto-accepted in the user's auto mode 2026-10-15 Ids updated 2026-10-29 (drift wave E-Q3 a): l5-142864 is the runtime record key of the capture session (146053 on 2026-10-29), so it is l5-\\d+.",
    "evidence": "diagnostic parity run with the cloneQuery: 11 position diffs on room-info-cont icons of rooms 1-6, none on room 6's centred icon; dom/default.html room info spans"
+  },
+  {
+   "id": "CAPTURE-RUNTIME-LIST-KEY-ARIA-CONTROLS-MILESTONEDETAIL",
+   "routeRegex": "^/UBTConnect/MilestoneDetail(\\?|$)",
+   "kinds": [
+    "attr"
+   ],
+   "states": "^default$",
+   "pathRegex": "div#b1-b5-l5-\\d+_\\d+-b8-SectionItem(\\.[\\w-]+)* > div#b1-b5-l5-\\d+_\\d+-b8-TitleWrapper\\.section-expandable-title$",
+   "detailRegex": "^aria-controls: b1-b5-l5-\\d+_\\d+-b8-Content → b1-b5-l5-\\d+_\\d+-b8-Content$",
+   "reason": "The accordion title of each room (Content.DEPRECATED_AccordionItem in AccommodationHost) names its content by id in aria-controls; the l5-<n> part is the OutSystems runtime record key of the capture session (142864 earlier, 146053 on 2026-10-29; TST code unchanged), which the clone keeps as a constant. Only the key may differ: the same room index and the same -b8-Content target. Drift wave E-Q4 a (user 2026-10-29); a later tool fix may normalize runtime list keys in parity_check.cjs (E-Q4, option c).",
+   "evidence": "migration/screens/MilestoneDetail/parity/default.json of 2026-10-29 (6 attr rows, b1-b5-l5-146053_N → b1-b5-l5-142864_N); pages/MilestoneDetail/components/AccommodationHostView.tsx:166, :239; migration/clarify/review/drift-triage-events.md R5"
   },
   {
    "id": "CAPTURE-VIA-MASK-SHIFT-MILESTONEDETAIL-PIXELS",
@@ -1386,10 +1460,10 @@
    "kinds": [
     "pixel"
    ],
-   "states": "^default$",
+   "states": "^(default|offline)$",
    "pathRegex": "^screenshot$",
-   "detailRegex": "^[0-6]\\.\\d\\d% pixels differ .*parity/default\\.diff\\.png$",
-   "reason": "Screenshot differences that follow from the capture artifacts above: the missing back arrow (the header row is 38 px high with it) moves the whole content up, and the masked header / room texts. DOM counts are otherwise 0, calls 0. Bounded to < 7%. Capture artifact; auto-accepted in the user's auto mode 2026-10-15",
+   "detailRegex": "^[0-6]\\.\\d\\d% pixels differ .*parity/(default|offline)\\.diff\\.png$",
+   "reason": "Screenshot differences that follow from the capture artifacts above: the missing back arrow (the header row is 38 px high with it) moves the whole content up, and the masked header / room texts. DOM counts are otherwise 0, calls 0. Bounded to < 7%. Capture artifact; auto-accepted in the user's auto mode 2026-10-15 Offline added 2026-10-29 (drift wave E-Q6): the loading and offline states are now captured through the same via path; offline shows the same back arrow and header shift (loading is clean).",
    "evidence": "diagnostic parity run with the cloneQuery: 6.21% pixels, hotspots y 80 (header); diff image shows every row shifted by the header height difference"
   },
   {
@@ -1501,9 +1575,9 @@
    ],
    "states": "^default$",
    "routeRegex": "^/UBTConnect/AssembleEvents(\\?|$)",
-   "pathRegex": "div#Assemble_FilterSheet_Instance\\.OSBlockWidget\\[Assemble\\.Assemble_FilterSheet\\] > .* > div#b5-b2-l1-95_\\d+-ListItem1\\.list-item > div\\.OSInline\\.landing-country-list-item( > .+)?$",
+   "pathRegex": "div#Assemble_FilterSheet_Instance\\.OSBlockWidget\\[Assemble\\.Assemble_FilterSheet\\] > .* > div#b5-b2-l1-\\d+_\\d+-ListItem1\\.list-item > div\\.OSInline\\.landing-country-list-item( > .+)?$",
    "detailRegex": "^(\\d+(\\.\\d+)?×\\d+(\\.\\d+)? → \\d+(\\.\\d+)?×\\d+(\\.\\d+)?|offset in parent -?\\d+(\\.\\d+)?,-?\\d+(\\.\\d+)? → -?\\d+(\\.\\d+)?,-?\\d+(\\.\\d+)?|margin-left \\d+(\\.\\d+)?px → \\d+(\\.\\d+)?px)$",
-   "reason": "Masked text, not a build defect: the bottom sheet is a screen-level sibling of the Layout, outside .backwards-compatibility, so ':where(.backwards-compatibility) .landing-country-list-item {display:inline-flex; width:100%}' (Connect2_LegacyShared.ConnectMobileCommonTheme.css) does not apply and each row is an inline-block sized by its text, on TST as in the clone (same markup and CSS). The capture masked the member/household/locality counts with '•' glyphs, narrower than digits, so the reference rows are narrower (width30/width5 90 px vs 115 px, icon margins in %). Replacing the clone's counts with the captured masked strings gives exactly the reference geometry (row 0: 89.8 px, offset 118; row 1: 129.4 px, offset 98). On Assemble_BrowseByCountry the same block sits inside .backwards-compatibility (full-width inline-flex rows), so masking does not move it. Text diffs are 0. auto-accepted in the user's auto mode 2026-10-15",
+   "reason": "Masked text, not a build defect: the bottom sheet is a screen-level sibling of the Layout, outside .backwards-compatibility, so ':where(.backwards-compatibility) .landing-country-list-item {display:inline-flex; width:100%}' (Connect2_LegacyShared.ConnectMobileCommonTheme.css) does not apply and each row is an inline-block sized by its text, on TST as in the clone (same markup and CSS). The capture masked the member/household/locality counts with '•' glyphs, narrower than digits, so the reference rows are narrower (width30/width5 90 px vs 115 px, icon margins in %). Replacing the clone's counts with the captured masked strings gives exactly the reference geometry (row 0: 89.8 px, offset 118; row 1: 129.4 px, offset 98). On Assemble_BrowseByCountry the same block sits inside .backwards-compatibility (full-width inline-flex rows), so masking does not move it. Text diffs are 0. auto-accepted in the user's auto mode 2026-10-15 Ids updated 2026-10-29 (drift wave D-Q3 a then b): the re-capture of 2026-10-29 has the same 89 row differences under the runtime list key l1-97 (was l1-95; DOM, classes and CSS equal, drift-triage-directory.md row 6), so the key is l1-\\d+.",
    "evidence": "migration/screens/AssembleEvents/parity/default.json (89 diffs, all under div#b5-b2-l1-95_N-ListItem1 > .landing-country-list-item); migration/screens/AssembleEvents/analysis/css-relevant.md:1497-1499; Playwright check on the dev server 2026-10-16: computed display inline-block, closest('.backwards-compatibility') null; after setting the captured masked counts, width30 115→89.84 px and offset 106→118 (row 0), 157.2→129.4 px and 84→98 (row 1)"
   },
   {
@@ -1524,11 +1598,11 @@
    "kinds": [
     "pixel"
    ],
-   "states": "^default$",
+   "states": "^(default|offline)$",
    "routeRegex": "^/UBTConnect/HostSurvey(\\?|$)",
    "pathRegex": "^screenshot$",
-   "detailRegex": "^[0-9]\\.\\d\\d% pixels differ .*migration/screens/HostSurvey/parity/default\\.diff\\.png$",
-   "reason": "Reached via OrbitLanding → EventDetail on TST: the masked header title fits on one line while the fictional title wraps to two, and the back arrow is missing when parity opens the URL, so everything below the header sits 15 px lower. Same artifact as CAPTURE-VIA-MASK-SHIFT-EVENTDETAIL/HELPERSDETAIL-PIXELS; DOM kinds are all 0. Bounded below 10%. Auto-accepted (user instruction 2026-10-16 night)",
+   "detailRegex": "^[0-9]\\.\\d\\d% pixels differ .*migration/screens/HostSurvey/parity/(default|offline)\\.diff\\.png$",
+   "reason": "Reached via OrbitLanding → EventDetail on TST: the masked header title fits on one line while the fictional title wraps to two, and the back arrow is missing when parity opens the URL, so everything below the header sits 15 px lower. Same artifact as CAPTURE-VIA-MASK-SHIFT-EVENTDETAIL/HELPERSDETAIL-PIXELS; DOM kinds are all 0. Bounded below 10%. Auto-accepted (user instruction 2026-10-16 night) Offline added 2026-10-29 (drift wave E-Q6): first capture of the offline state through the same via path; same header shift plus the skeleton shimmer phase (CAPTURE-SKELETON-SHIMMER-PHASE-ORBIT-VIA-OFFLINE).",
    "evidence": "F14 report: HostSurvey default pixel 9.26%, all DOM kinds 0"
   },
   {
@@ -1551,9 +1625,9 @@
     "layout",
     "position"
    ],
-   "pathRegex": "div#b1-b7-b1-l1-\\d+_\\d+-\\$b1\\.OSBlockWidget\\[Orbit_Generic_Blocks\\.DaySelector\\] > div\\.event-date-selector(\\.[\\w-]+)* > div#b1-b7-b1-l1-\\d+_\\d+-b1-Placeholder_Digit( > span)?$",
+   "pathRegex": "div#b1-b\\d+-b1-l1-\\d+_\\d+-\\$b1\\.OSBlockWidget\\[Orbit_Generic_Blocks\\.DaySelector\\] > div\\.event-date-selector(\\.[\\w-]+)* > div#b1-b\\d+-b1-l1-\\d+_\\d+-b1-Placeholder_Digit( > span)?$",
    "states": "^default$",
-   "reason": "The day digits of the conference days: the capture shows TST's real days of event 7301 (23, 24, 25), the mock world builds the meetings on the first Friday at least a week after today (src/mocks/fictional/orbit.ts meetingsFriday), so the digits and the width of the digit box follow the run date (the clone matched only for runs between 2026-10-10 and 2026-10-16). Weekdays stay Friday to Sunday. Mock artifact; auto-accepted in the user's auto mode 2026-10-16 evening (until 2026-10-17 morning)",
+   "reason": "The day digits of the conference days: the capture shows TST's real days of event 7301 (23, 24, 25), the mock world builds the meetings on the first Friday at least a week after today (src/mocks/fictional/orbit.ts meetingsFriday), so the digits and the width of the digit box follow the run date (the clone matched only for runs between 2026-10-10 and 2026-10-16). Weekdays stay Friday to Sunday. Mock artifact; auto-accepted in the user's auto mode 2026-10-16 evening (until 2026-10-17 morning) Ids updated 2026-10-29 (drift wave E-Q3 a): the DaySelector block index moved with the new ItemNotesSection (b1-b7 → b1-b8), so it is b1-b\\d+.",
    "evidence": "migration/screens/EventDetail/parity/default.json (2026-10-17 sweep: text \"23\"→\"30\", \"24\"→\"31\", \"25\"→\"1\", Placeholder_Digit 18×23 → 9×23); app/src/mocks/fictional/orbit.ts:561-569"
   },
   {
@@ -1567,6 +1641,18 @@
    "detailRegex": "^aria-activedescendant: b\\d+-l\\d+-\\d+_\\d+-(?:[^ ]+-)?(ButtonGroupItem\\d+) → [^ ]+-\\1$",
    "reason": "The OSUI ButtonGroup of Directory_EntityDetailsActions names its active item in aria-activedescendant by the item's runtime id. On TST the slide's ids carry the OutSystems runtime list key of the carousel list (b3-l1-146060_0-…); the React build gives its own id prefix. The value differs only in that prefix: the referenced item is the same ButtonGroupItem (the detail regex requires the same item name on both sides). Only this attribute, on this ButtonGroup, on this route. User decision OneSchoolGlobalCarousel Q5 (a), 2026-10-29.",
    "evidence": "migration/screens/OneSchoolGlobalCarousel/parity/default.json and offline.json before this rule (attr 'aria-activedescendant: b3-l1-146060_0-b2-b1-b1-ButtonGroupItem1 → osg_r_3_-ButtonGroupItem1' on div#b3-l1-146060_0-b2-b1-b1-ButtonGroup1); migration/screens/OneSchoolGlobalCarousel/analysis/dom/default.html; OneSchoolGlobalCarousel Q5"
+  },
+  {
+   "id": "CAPTURE-MASKED-PILL-TEXT-NOTES-WIDTH",
+   "kinds": [
+    "pixel"
+   ],
+   "states": "^default$",
+   "pathRegex": "^screenshot$",
+   "routeRegex": "/UBTConnect/Notes\\b",
+   "detailRegex": "^0\\.[0-4]\\d% pixels differ .*hotspots 3[2-6]0,1[26]0.*migration/screens/Notes/parity/default\\.diff\\.png$",
+   "reason": "The capture masks pill texts with bullets (a masked pill of 5 characters), whose width differs from the real label, so the clipped fourth pill at the right edge of the horizontal pill row (x 320-360, y 120-160) shows a different slice. The React labels equal the TST labels read by the probe of 2026-10-28 (migration/clarify/review/probe-new-screens.json, notes.lines: All, Assemble, Feeds, Households, …). DOM, text and positions are equal. Drift wave (2026-10-29), applied as reversible and listed to the user.",
+   "evidence": "migration/screens/Notes/parity/default.json (pixel 0.11%, hotspots 320,160 / 320,120 / 360,160); migration/clarify/builds/drift-WP9.md"
   }
  ],
  "ignoreClasses": [

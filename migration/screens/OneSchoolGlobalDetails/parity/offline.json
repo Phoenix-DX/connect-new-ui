@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "be9b88c4e7a29da5ffea",
+ "fingerprint": "d84aebd5344ace943b18",
  "options": {
   "text": true,
   "style": true,
@@ -27,15 +27,11 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-29T09:57:20.971Z",
- "counts": {
-  "structure": 3,
-  "position": 4,
-  "layout": 2
- },
+ "at": "2026-10-29T12:44:14.344Z",
+ "counts": {},
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
-  "CAPTURE-SKELETON-SHIMMER-PHASE": 17,
+  "CAPTURE-SKELETON-SHIMMER-PHASE": 19,
   "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
   "ignoreSubtrees": 1
  },
@@ -63,51 +59,5 @@
   "diffPng": "migration/screens/OneSchoolGlobalDetails/parity/offline.diff.png"
  },
  "calls": null,
- "diffs": [
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block] > div#b3-$b1.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen] > div.directory-detail-screen > div#b3-b1-Placeholder_CallToAction > div#b3-$b11.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b11-Content.background-neutral-0.padding-base.ubt-custom-container > div#b3-$b12.OSBlockWidget[Directory_CommonBlocks.Directory_EntityDetailsActions] > div.OSBlockWidget[CW_Notes.NotesSheet]",
-   "detail": "extra in build"
-  },
-  {
-   "kind": "position",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block] > div#b3-$b1.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen] > div.directory-detail-screen > div#b3-b1-Placeholder_Content > div#b3-$b13.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b3-b13-Placeholder_LoadingSection.ubt-skeleton-section > div#b3-Block_StudentNumbers.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b14-Content.background-neutral-0.ubt-custom-container > div#b3-$b15.OSBlockWidget[ConnectPatterns.ExpandableSection] > div.closed.ubt-expandable-section > div.ubt-expandable-section--content > div#b3-b15-$b4.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b15-b4-Content.padding-x-base.padding-y-s.ubt-custom-container > div#b3-b15-Content.ubt-expandable-section--content > div#b3-$b18.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b18-Content.border-color-neutral-3.border-radius-large.border-s > div#b3-ComingSoon.OSBlockWidget[ConnectPatterns.ComingSoon] > div#b3-b19-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b19-b1-Content.padding-base.ubt-coming-soon.ubt-custom-container > div#b3-b19-$b2.OSBlockWidget[BasePatterns.CustomText] > div.font-semi-bold.font-size-base.text-align-center > div#b3-b19-b2-$b2.OSBlockWidget[ConnectPatterns.IconInline_Internal]",
-   "detail": "offset in parent 99,4 → 111,3"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block] > div#b3-$b1.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen] > div.directory-detail-screen > div#b3-b1-Placeholder_Content > div#b3-$b13.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b3-b13-Placeholder_LoadingSection.ubt-skeleton-section > div#b3-Block_StudentNumbers.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b14-Content.background-neutral-0.ubt-custom-container > div#b3-$b15.OSBlockWidget[ConnectPatterns.ExpandableSection] > div.closed.ubt-expandable-section > div.ubt-expandable-section--content > div#b3-b15-$b4.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b15-b4-Content.padding-x-base.padding-y-s.ubt-custom-container > div#b3-b15-Content.ubt-expandable-section--content > div#b3-$b18.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b18-Content.border-color-neutral-3.border-radius-large.border-s > div#b3-ComingSoon.OSBlockWidget[ConnectPatterns.ComingSoon] > div#b3-b19-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b19-b1-Content.padding-base.ubt-coming-soon.ubt-custom-container > div#b3-b19-$b2.OSBlockWidget[BasePatterns.CustomText] > div.font-semi-bold.font-size-base.text-align-center > div#b3-b19-b2-$b2.OSBlockWidget[ConnectPatterns.IconInline_Internal]",
-   "detail": "24×18 → 0×18"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block] > div#b3-$b1.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen] > div.directory-detail-screen > div#b3-b1-Placeholder_Content > div#b3-$b13.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b3-b13-Placeholder_LoadingSection.ubt-skeleton-section > div#b3-Block_StudentNumbers.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b14-Content.background-neutral-0.ubt-custom-container > div#b3-$b15.OSBlockWidget[ConnectPatterns.ExpandableSection] > div.closed.ubt-expandable-section > div.ubt-expandable-section--content > div#b3-b15-$b4.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b15-b4-Content.padding-x-base.padding-y-s.ubt-custom-container > div#b3-b15-Content.ubt-expandable-section--content > div#b3-$b18.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b18-Content.border-color-neutral-3.border-radius-large.border-s > div#b3-ComingSoon.OSBlockWidget[ConnectPatterns.ComingSoon] > div#b3-b19-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b19-b1-Content.padding-base.ubt-coming-soon.ubt-custom-container > div#b3-b19-$b2.OSBlockWidget[BasePatterns.CustomText] > div.font-semi-bold.font-size-base.text-align-center > div#b3-b19-b2-$b2.OSBlockWidget[ConnectPatterns.IconInline_Internal] > div#b3-b19-b2-b2-$b1.OSBlockWidget[ConnectPatterns.Icon]",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "position",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block] > div#b3-$b1.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen] > div.directory-detail-screen > div#b3-b1-Placeholder_Content > div#b3-$b13.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b3-b13-Placeholder_LoadingSection.ubt-skeleton-section > div#b3-Block_StudentNumbers.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b14-Content.background-neutral-0.ubt-custom-container > div#b3-$b15.OSBlockWidget[ConnectPatterns.ExpandableSection] > div.closed.ubt-expandable-section > div.ubt-expandable-section--content > div#b3-b15-$b4.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b15-b4-Content.padding-x-base.padding-y-s.ubt-custom-container > div#b3-b15-Content.ubt-expandable-section--content > div#b3-$b18.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b18-Content.border-color-neutral-3.border-radius-large.border-s > div#b3-ComingSoon.OSBlockWidget[ConnectPatterns.ComingSoon] > div#b3-b19-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b19-b1-Content.padding-base.ubt-coming-soon.ubt-custom-container > div#b3-b19-$b2.OSBlockWidget[BasePatterns.CustomText] > div.font-semi-bold.font-size-base.text-align-center > span",
-   "detail": "offset in parent 123,4 → 111,3"
-  },
-  {
-   "kind": "position",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block] > div#b3-$b1.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen] > div.directory-detail-screen > div#b3-b1-Placeholder_Content > div#b3-$b13.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b3-b13-Placeholder_LoadingSection.ubt-skeleton-section > div#b3-$b22.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b22-Content.background-neutral-0.ubt-custom-container > div#b3-$b23.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b23-Content.border-color-neutral-3.border-radius-large.border-s > div#b3-ComingSoon4.OSBlockWidget[ConnectPatterns.ComingSoon] > div#b3-b24-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b24-b1-Content.padding-base.ubt-coming-soon.ubt-custom-container > div#b3-b24-$b2.OSBlockWidget[BasePatterns.CustomText] > div.font-semi-bold.font-size-base.text-align-center > div#b3-b24-b2-$b2.OSBlockWidget[ConnectPatterns.IconInline_Internal]",
-   "detail": "offset in parent 99,4 → 111,3"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block] > div#b3-$b1.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen] > div.directory-detail-screen > div#b3-b1-Placeholder_Content > div#b3-$b13.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b3-b13-Placeholder_LoadingSection.ubt-skeleton-section > div#b3-$b22.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b22-Content.background-neutral-0.ubt-custom-container > div#b3-$b23.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b23-Content.border-color-neutral-3.border-radius-large.border-s > div#b3-ComingSoon4.OSBlockWidget[ConnectPatterns.ComingSoon] > div#b3-b24-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b24-b1-Content.padding-base.ubt-coming-soon.ubt-custom-container > div#b3-b24-$b2.OSBlockWidget[BasePatterns.CustomText] > div.font-semi-bold.font-size-base.text-align-center > div#b3-b24-b2-$b2.OSBlockWidget[ConnectPatterns.IconInline_Internal]",
-   "detail": "24×18 → 0×18"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block] > div#b3-$b1.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen] > div.directory-detail-screen > div#b3-b1-Placeholder_Content > div#b3-$b13.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b3-b13-Placeholder_LoadingSection.ubt-skeleton-section > div#b3-$b22.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b22-Content.background-neutral-0.ubt-custom-container > div#b3-$b23.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b23-Content.border-color-neutral-3.border-radius-large.border-s > div#b3-ComingSoon4.OSBlockWidget[ConnectPatterns.ComingSoon] > div#b3-b24-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b24-b1-Content.padding-base.ubt-coming-soon.ubt-custom-container > div#b3-b24-$b2.OSBlockWidget[BasePatterns.CustomText] > div.font-semi-bold.font-size-base.text-align-center > div#b3-b24-b2-$b2.OSBlockWidget[ConnectPatterns.IconInline_Internal] > div#b3-b24-b2-b2-$b1.OSBlockWidget[ConnectPatterns.Icon]",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "position",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block] > div#b3-$b1.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen] > div.directory-detail-screen > div#b3-b1-Placeholder_Content > div#b3-$b13.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b3-b13-Placeholder_LoadingSection.ubt-skeleton-section > div#b3-$b22.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b22-Content.background-neutral-0.ubt-custom-container > div#b3-$b23.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b23-Content.border-color-neutral-3.border-radius-large.border-s > div#b3-ComingSoon4.OSBlockWidget[ConnectPatterns.ComingSoon] > div#b3-b24-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b24-b1-Content.padding-base.ubt-coming-soon.ubt-custom-container > div#b3-b24-$b2.OSBlockWidget[BasePatterns.CustomText] > div.font-semi-bold.font-size-base.text-align-center > span",
-   "detail": "offset in parent 123,4 → 111,3"
-  }
- ]
+ "diffs": []
 }

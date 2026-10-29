@@ -1083,6 +1083,70 @@ div.feedback-message-warning {
     background-color: #384142;
 }
 
+/* ==== /UBTConnect/css/Connect2_LegacyShared.Widgets.AdaptiveCardViewer.css ==== */
+[type="radio"] {
+    border: initial;
+    padding: initial;
+    appearance: radio;
+}
+
+[type="checkbox"] {
+    border: initial;
+    padding: initial;
+    appearance: radio;
+}
+
+[type="menulist"] {
+    margin: initial;
+    -webkit-appearance: menulist;
+    -moz-appearance: menulist;
+    appearance: menulist;
+}
+
+.ac-actionSet{
+    flex-direction: column !important;
+    justify-content: center !important;
+}
+
+button.ac-pushButton.style-default {
+    margin: var(--space-s) 0;
+    width: 100%;
+    background-color: var(--color-neutral-2);
+    border: 1px solid var(--color-primary);
+    border-radius: 4px;
+    color: var(--color-primary);
+    font-size: 0.8em;
+    padding: var(--space-xs);
+    /*font-weight: bold;*/
+}
+
+button.ac-pushButton.style-default.primary {
+    color: var(--color-neutral-0 );
+    background-color: var(--color-primary);
+}
+/* ==== /UBTConnect/css/UBTConnect_EmbedFeed.Blocks.Embedded_FeedCMS.css ==== */
+div[data-block="Blocks.Embedded_FeedCMS"] > div.display-none {
+    display: none;
+}
+
+div[data-block="Blocks.Embedded_FeedCMS"] {
+    display: block;
+}
+
+div[data-block="Blocks.Embedded_FeedCMS"] > div {
+    display: block;
+}
+
+div[data-block="Blocks.Embedded_FeedCMS"] iframe {
+    width: 100%;
+    min-height: calc(100vh - var(--header-size, 0px));
+    border: none;
+    display: block
+}
+
+.scroll-locked iframe {
+  pointer-events: none;
+}
 /* ==== /UBTConnect/css/UBT_AppManager.PIN.PinCode.css ==== */
 :root {
     --ubt-pincode-buttons-size: 64px;

@@ -39,9 +39,9 @@ describe('Updates_SingleList mock: GetUpdateItems', () => {
 
   it('the status: None all, No unread, Yes read, another value no row (BR-C2SVC-327)', () => {
     expect(getUpdateItems(rows(), { ...NO_FILTER, Filter_ReadOnly: '' })).toHaveLength(88);
-    expect(getUpdateItems(rows(), { ...NO_FILTER, Filter_ReadOnly: Choice.No })).toHaveLength(84);
+    expect(getUpdateItems(rows(), { ...NO_FILTER, Filter_ReadOnly: Choice.No })).toHaveLength(85);
     const read = getUpdateItems(rows(), { ...NO_FILTER, Filter_ReadOnly: Choice.Yes });
-    expect(read).toHaveLength(4);
+    expect(read).toHaveLength(3);
     expect(read.every((r) => r.IsRead)).toBe(true);
     expect(getUpdateItems(rows(), { ...NO_FILTER, Filter_ReadOnly: 'Other' })).toEqual([]);
   });
@@ -83,7 +83,7 @@ describe('Updates_SingleList mock: DataActionFetchUpdates', () => {
       return ((await response.json()) as { data: { UI_UpdateItemList: { List: Rows }; UnreadCount: number } }).data;
     };
     const read = await call({ ...NO_FILTER, Filter_ReadOnly: Choice.Yes });
-    expect(read.UI_UpdateItemList.List).toHaveLength(4);
+    expect(read.UI_UpdateItemList.List).toHaveLength(3);
     expect(read.UnreadCount).toBe(0);
     const unread = await call({ ...NO_FILTER, Filter_UpdateTypeId: 'Birth', Filter_ReadOnly: Choice.No });
     expect(unread.UnreadCount).toBe(unread.UI_UpdateItemList.List.length);

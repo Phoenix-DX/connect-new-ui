@@ -10,6 +10,8 @@ export interface DetailLayoutProps {
   id?: string;
   /** The title is on the left (default: centred). */
   alignTitleLeft?: boolean;
+  /** In_IsHideTitle: no header at all (default false; live TST of 2026-10-27, Layout_DetailPage.mvc.js:51-56, 304). */
+  hideTitle?: boolean;
   /** Primary-coloured header (`ubt-layout-detail--primary`, default true). */
   isPrimaryColor?: boolean;
   /** Extra classes of the wrapper. */
@@ -43,6 +45,7 @@ export interface DetailLayoutProps {
 export function DetailLayout({
   id,
   alignTitleLeft = false,
+  hideTitle = false,
   isPrimaryColor = true,
   extendedClass = '',
   enableAccessibilityFeatures = false,
@@ -94,26 +97,30 @@ export function DetailLayout({
           Skip to Content (Press Enter)
         </a>
         <div className="main" data-container="">
-          <header className="header" role="banner">
-            <div className="header-top" data-container="">
-              <div className="header-content" data-container="">
-                <div className="ubt-layout-detail__left" data-container="">
-                  <Icon
-                    id={`${prefix}-$b2`}
-                    inIconId={UBT_Icons.ArrowLeftAlt}
-                    inColorId={UBT_Color.Inherit}
-                    inSizeId={UBT_IconSize.Base_24}
-                    onClick={onBack}
-                  />
-                  <div className={`header-title${alignTitleLeft ? ' text-align-left' : ' text-align-center'} OSInline`}>
-                    {headerTitle}
+          {!hideTitle && (
+            <header className="header" role="banner">
+              <div className="header-top" data-container="">
+                <div className="header-content" data-container="">
+                  <div className="ubt-layout-detail__left" data-container="">
+                    <Icon
+                      id={`${prefix}-$b2`}
+                      inIconId={UBT_Icons.ArrowLeftAlt}
+                      inColorId={UBT_Color.Inherit}
+                      inSizeId={UBT_IconSize.Base_24}
+                      onClick={onBack}
+                    />
+                    <div
+                      className={`header-title${alignTitleLeft ? ' text-align-left' : ' text-align-center'} OSInline`}
+                    >
+                      {headerTitle}
+                    </div>
                   </div>
+                  <div className="header-right">{headerRight}</div>
                 </div>
-                <div className="header-right">{headerRight}</div>
               </div>
-            </div>
-            <div className="header-top-content ph">{headerContent}</div>
-          </header>
+              <div className="header-top-content ph">{headerContent}</div>
+            </header>
+          )}
           <div className="content" data-container="">
             <div className="main-content ThemeGrid_Container" data-container="" role="main">
               <div className="content-middle">{content}</div>

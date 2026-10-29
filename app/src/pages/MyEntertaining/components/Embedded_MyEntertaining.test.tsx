@@ -112,6 +112,66 @@ describe('Embedded_MyEntertaining', () => {
     expect(onOpenMap).not.toHaveBeenCalled();
   });
 
+  it('Action_SetToken keeps the configuration token for getIdToken; the SDK onNavBack raises OnNavBack', async () => {
+    const init = vi.spyOn(await requireEmbed(config.baseURL), 'init');
+    const onNavBack = vi.fn();
+    const { container } = render(
+      <Embedded_MyEntertaining id="$b2" config={{ ...config, token: 'config-token' }} onOnNavBack={onNavBack} />,
+    );
+    await loadCalendar(container);
+    const options = init.mock.calls[0]?.[0];
+    expect(options?.getIdToken()).toBe('config-token');
+    act(() => {
+      options?.onNavBack();
+    });
+    expect(onNavBack).toHaveBeenCalledTimes(1);
+    init.mockRestore();
+  });
+
+  it("stand-in: the mock calendar's back control (embed:nav-back from its iframe) is the SDK onNavBack", async () => {
+    const onNavBack = vi.fn();
+    const navBack = (source: Window | null) =>
+      new MessageEvent('message', { origin: window.location.origin, source, data: { type: 'embed:nav-back' } });
+    const { container, unmount } = render(<Embedded_MyEntertaining id="$b2" config={config} onOnNavBack={onNavBack} />);
+    const iframe = await loadCalendar(container);
+    const calendar = iframe.contentWindow;
+    act(() => {
+      window.dispatchEvent(navBack(window));
+      window.dispatchEvent(navBack(calendar));
+    });
+    expect(onNavBack).toHaveBeenCalledTimes(1);
+    unmount();
+    window.dispatchEvent(navBack(calendar));
+    expect(onNavBack).toHaveBeenCalledTimes(1);
+  });
+
+  it('ResumeListener: a visible page refreshes the token (SetToken, then the SDK); OnDestroy removes it', async () => {
+    const embed = await requireEmbed(config.baseURL);
+    const refreshToken = vi.spyOn(embed, 'refreshToken');
+    const init = vi.spyOn(embed, 'init');
+    const onRefreshToken = vi.fn((apply: (idToken: string) => void) => {
+      apply('id-token-2');
+      return Promise.resolve();
+    });
+    const { container, unmount } = render(
+      <Embedded_MyEntertaining id="$b2" config={config} onRefreshToken={onRefreshToken} />,
+    );
+    await loadCalendar(container);
+    act(() => {
+      document.dispatchEvent(new Event('visibilitychange'));
+    });
+    expect(onRefreshToken).toHaveBeenCalledTimes(1);
+    expect(refreshToken).toHaveBeenCalledWith('id-token-2');
+    expect(init.mock.calls[0]?.[0].getIdToken()).toBe('id-token-2');
+    unmount();
+    act(() => {
+      document.dispatchEvent(new Event('resume'));
+    });
+    expect(onRefreshToken).toHaveBeenCalledTimes(1);
+    init.mockRestore();
+    refreshToken.mockRestore();
+  });
+
   it('a token that comes after the block closed goes nowhere (no configured SDK)', async () => {
     const refreshToken = vi.spyOn(await requireEmbed(config.baseURL), 'refreshToken');
     let apply: ((idToken: string) => void) | undefined;

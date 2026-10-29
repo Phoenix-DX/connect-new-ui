@@ -17,10 +17,23 @@ type UpdateItemWire = ActionOutputs<
      update items collection (src/mocks/modules/UBTConnect/Directory_Updates/mocks.ts).
    - MarkAsRead / MarkAsUnread: writes, never recorded; they change IsRead in the collection (P-MUTATION), so the next
      fetch (and Updates screens reading this collection) show it.
+   - DataActionGetCommunityStatistics (live TST of 2026-10-27; OnReady, useHomeFeedReady): the captured answer, every
+     count 0 (HomeFeed analysis/calls.md). No widget reads it.
    Scenarios: real, empty (FetchUpdates empty → Section_Updates hidden), error, loading. */
+
+const NO_COMMUNITY_STATISTICS = {
+  Out_CommunityStatistics: {
+    In_HouseholdCount: 0,
+    In_LocalitiesCount: 0,
+    In_CountriesCount: 0,
+    In_MembersCount: 0,
+    In_Change: 0,
+  },
+};
 
 export const handlers: RequestHandler[] = [
   recordedHandler('UBTConnect', 'FeedBlock_Services/DataActionGetServices'),
+  contractHandler('UBTConnect', 'HomeFeed/DataActionGetCommunityStatistics', () => NO_COMMUNITY_STATISTICS),
   contractHandler('UBTConnect', 'FeedBlock_Updates/DataActionFetchUpdates', () => ({
     UI_UpdateItemList: { List: updateItems.all() as unknown as UpdateItemWire[] },
   })),

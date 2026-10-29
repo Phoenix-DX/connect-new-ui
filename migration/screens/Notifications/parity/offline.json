@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "76745bed60a1d27a39d7",
+ "fingerprint": "0d764bfe35994c3f7285",
  "options": {
   "text": true,
   "style": true,
@@ -27,10 +27,8 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-29T09:57:10.681Z",
- "counts": {
-  "structure": 2
- },
+ "at": "2026-10-29T12:44:03.991Z",
+ "counts": {},
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
   "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
@@ -60,16 +58,5 @@
   "diffPng": "migration/screens/Notifications/parity/offline.diff.png"
  },
  "calls": null,
- "diffs": [
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b22.OSBlockWidget[App_Notifications.Notifications_MoreActionSheet] > div#b22-$b1.OSBlockWidget[App_CommonBlocks_Filter.MoreActionSheet] > div.moreActionContainer",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b22.OSBlockWidget[App_Notifications.Notifications_MoreActionSheet] > div#b22-$b1.OSBlockWidget[App_CommonBlocks_Filter.MoreActionSheet] > div#b21-b1-$b1.OSBlockWidget[ConnectPatterns.BottomSheet]",
-   "detail": "extra in build"
-  }
- ]
+ "diffs": []
 }

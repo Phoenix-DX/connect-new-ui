@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "1ecf1c491359ec768fe6",
+ "fingerprint": "001c52a956ce55334033",
  "options": {
   "text": true,
   "style": true,
@@ -27,7 +27,7 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-29T09:55:51.730Z",
+ "at": "2026-10-29T12:42:24.999Z",
  "counts": {},
  "exemptionsUsed": {
   "ignoreSubtrees": 2,

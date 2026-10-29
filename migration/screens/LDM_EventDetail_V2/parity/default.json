@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "20cfa6b59aee7cabe3c8",
+ "fingerprint": "ccfc4699b90482a82884",
  "options": {
   "text": true,
   "style": true,
@@ -27,13 +27,8 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-29T09:54:31.674Z",
- "counts": {
-  "layout": 3,
-  "structure": 1,
-  "pixel": 1,
-  "call": 1
- },
+ "at": "2026-10-29T12:41:03.599Z",
+ "counts": {},
  "exemptionsUsed": {
   "CAPTURE-MASKED-TEXT-LDM-EVENTDETAIL-V2-BANNER": 1,
   "CAPTURE-LINK-HREF-CURSOR-LDM-EVENTDETAIL-V2": 6,
@@ -42,10 +37,10 @@
   "ignoreSubtrees": 1
  },
  "pixel": {
-  "ratio": 0.01816,
-  "maxCell": 0.2581,
+  "ratio": 0.00008,
+  "maxCell": 0.0069,
   "maxCellRatio": 0.03,
-  "diffPixels": 4452,
+  "diffPixels": 20,
   "comparedPixels": 245118,
   "maxRatio": 0.002,
   "threshold": 0.1,
@@ -59,11 +54,8 @@
   ],
   "masks": 6,
   "hotspots": [
-   "0,360 (413px)",
-   "40,360 (302px)",
-   "0,320 (286px)",
-   "40,320 (226px)",
-   "360,360 (210px)"
+   "200,800 (11px)",
+   "200,760 (9px)"
   ],
   "diffPng": "migration/screens/LDM_EventDetail_V2/parity/default.diff.png"
  },
@@ -72,7 +64,7 @@
    "load"
   ],
   "expected": 3,
-  "actual": 9,
+  "actual": 10,
   "viaAppStartSkipped": [
    "ActionAppManager_AfterInitialize",
    "ActionAppManager_SynchAppContext",
@@ -83,36 +75,5 @@
    "ServiceAPIFetchData_CacheableMapEntities"
   ]
  },
- "diffs": [
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-$b3.OSBlockWidget[LDM_Blocks.EventsDetail_Content] > div.event-details-content > div.event-details-content-top > div#b1-b3-GuestView_Placeholder.event-detail-content-guestview",
-   "detail": "380×94 → 380×65"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-$b3.OSBlockWidget[LDM_Blocks.EventsDetail_Content] > div.event-details-content > div.event-details-content-top > div#b1-b3-GuestView_Placeholder.event-detail-content-guestview > div#b1-$b5.OSBlockWidget[LDM_Blocks.EventDetail_HostCard]",
-   "detail": "380×94 → 380×65"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-$b3.OSBlockWidget[LDM_Blocks.EventsDetail_Content] > div.event-details-content > div.event-details-content-top > div#b1-b3-GuestView_Placeholder.event-detail-content-guestview > div#b1-$b5.OSBlockWidget[LDM_Blocks.EventDetail_HostCard] > div.event-detail-hostcard",
-   "detail": "380×94 → 380×65"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-$b3.OSBlockWidget[LDM_Blocks.EventsDetail_Content] > div.event-details-content > div.event-details-content-top > div#b1-b3-GuestView_Placeholder.event-detail-content-guestview > div#b1-$b5.OSBlockWidget[LDM_Blocks.EventDetail_HostCard] > div.event-detail-hostcard > div.ldm-notes",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "pixel",
-   "path": "screenshot",
-   "detail": "1.82% pixels differ (max 0.20%), worst 40px tile 25.8% (max 3.0%), hotspots 0,360 (413px); 40,360 (302px); 0,320 (286px); 40,320 (226px); 360,360 (210px); see migration/screens/LDM_EventDetail_V2/parity/default.diff.png"
-  },
-  {
-   "kind": "call",
-   "path": "calls:load",
-   "detail": "data action DataActionFetchEventNotes not called"
-  }
- ]
+ "diffs": []
 }

@@ -93,17 +93,14 @@ describe('share repository (LegacyShareObject)', () => {
     };
     const users = await fetchAvailableUsers(inputs);
     expect(bodies).toEqual([inputs]);
-    expect(users).toEqual({
-      label: 'Contacts list',
-      items: [
-        {
-          id: '990101',
-          fullName: 'Alice Thornton',
-          localityName: 'Las Cruces',
-          countryName: 'United States',
-          photo: { bucket: '', path: '', type: '', signedPath: '' },
-        },
-      ],
+    expect(users.label).toBe('Locality Members');
+    expect(users.items).toHaveLength(1);
+    expect(users.items[0]).toEqual({
+      id: '990187',
+      fullName: 'Alice Whitfield',
+      localityName: 'Granite Falls',
+      countryName: 'United States',
+      photo: { bucket: '', path: '', type: '', signedPath: '' },
     });
     expect((await fetchAvailableUsers({ ...inputs, SearchFilter: 'nobody' })).items).toEqual([]);
   });

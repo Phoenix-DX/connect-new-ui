@@ -18,9 +18,6 @@ import {
 
 /** The feature flags that the flows read. The page reads them (rule 4) and gives them here. */
 export interface LocalityDetailsFlags {
-  /** mobileDirectoryLocalityContacts (the permission check of GetSample_FilterTags, Q2, off by default): the Locality
-      Contacts tag. */
-  hasLocalityContacts: boolean;
   /** C2EnableC1DirectoryView (GetHasC1DirectoryView): the locality label opens CountryDetails, else BrowseDirectory. */
   hasC1DirectoryView: boolean;
 }
@@ -62,7 +59,7 @@ export interface LocalityDetailsFlows {
 export function useLocalityDetails(inputs: LocalityDetailsInputs, flags: LocalityDetailsFlags): LocalityDetailsFlows {
   const navigate = useOsNavigate();
   // OnInitialize: the record of a new visit (a restored view starts from its saved state instead).
-  const [initial] = useState(() => initialLocalityDetailsState(inputs, flags.hasLocalityContacts));
+  const [initial] = useState(() => initialLocalityDetailsState(inputs));
   const { state, dispatch, latest, flow } = useFlowState({
     viewName: 'Directory_Locality.Locality_Details',
     reducer: localityDetailsReducer,
@@ -104,11 +101,10 @@ export function useLocalityDetails(inputs: LocalityDetailsInputs, flags: Localit
       // only in that case (initializeScreen).
       const userLocalityLabel =
         latest.current.localityId === '0' ? setLocalityLabel(geography.Locality_Name, geography.Country_Name) : '';
-      const { hasLocalityContacts } = flags;
       // The flow keeps its own copy of the variables: Get_LocalityDetails sends them. After an unmount `dispatch` is a
       // no-op, and the request still starts with the initialized variables (R1: only its answer is dropped).
-      variables = initializeScreen(latest.current, loggedUser, userLocalityLabel, hasLocalityContacts);
-      dispatch({ type: 'screenInitialized', loggedUser, userLocalityLabel, hasLocalityContacts });
+      variables = initializeScreen(latest.current, loggedUser, userLocalityLabel);
+      dispatch({ type: 'screenInitialized', loggedUser, userLocalityLabel });
     }
     await refreshLocalityDetails(variables);
   }

@@ -12,7 +12,7 @@ import {
   UBT_Shape,
   UBT_Size,
 } from '@/lib/ubtConnectLibrary/staticEntities';
-import { loadedEmbed, requireEmbed } from './connect2Entertaining';
+import { getEntertainingToken, loadedEmbed, requireEmbed, setEntertainingToken } from './connect2Entertaining';
 
 /** The defaults of the inputs View and Theme. */
 export const EMBEDDED_MY_ENTERTAINING_DEFAULTS = { view: 'timeline', theme: 'light' } as const;
@@ -47,10 +47,14 @@ export interface Embedded_MyEntertainingProps {
   onOnError?: (message: string) => void;
   /** Event OnOpenMap(Lat, Lng, Label). */
   onOnOpenMap?: (lat: string, lng: string, label: string) => void;
+  /** Event OnNavBack: the SDK's onNavBack (Action_OnNavBack; live TST of 2026-10-27). */
+  onOnNavBack?: () => void;
 }
 
-/** RefreshEmbedTokenJS: the new token goes to the SDK when it is configured. */
+/** Action_SetToken(IdToken) (SetEntertainingTokenJS), then RefreshEmbedTokenJS: the new token goes to the SDK when it
+    is configured (Action_RefreshToken; live TST of 2026-10-27, Embedded_MyEntertaining.mvc.js:1150-1175). */
 function applyIdToken(idToken: string): void {
+  setEntertainingToken(idToken);
   const embed = loadedEmbed();
   if (embed?.isConfigured()) embed.refreshToken(idToken);
 }
@@ -60,9 +64,10 @@ function applyIdToken(idToken: string): void {
     connect2Entertaining.ts), hidden under a skeleton list while isLoading. Props only: the caller fetches the
     configuration and the token.
     - OnInitialize builds the loading items.
-    - With the configuration (OnAfterFetch of GetEntertainingConfig) the SDK script is required and InitializeCalendar
-      runs: it configures the SDK, listens to the `embed:open-map` messages of the calendar origin, and refreshes the
-      token every 10 minutes.
+    - With the configuration (OnAfterFetch of GetEntertainingConfig) the SDK script is required, Action_SetToken keeps
+      the token (the SDK's getIdToken reads it) and InitializeCalendar runs: it configures the SDK (its onNavBack raises
+      OnNavBack), listens to the `embed:open-map` messages of the calendar origin, and refreshes the token every 10
+      minutes and when the app comes back (ResumeListener: `resume`, `visibilitychange`). Live TST of 2026-10-27.
     - The SDK's onComplete ends the loading (Action_OnComplete) and raises OnComplete.
     - OnParametersChanged applies the sources (ApplySourcesJS).
     - OnDestroy runs CleanupCalendar. */
@@ -79,6 +84,7 @@ export function Embedded_MyEntertaining({
   onOnComplete,
   onOnError,
   onOnOpenMap,
+  onOnNavBack,
 }: Embedded_MyEntertainingProps) {
   const prefix = id?.replace('$', '');
   const fallbackId = useId();
@@ -88,12 +94,12 @@ export function Embedded_MyEntertaining({
   const [loadingList] = useState(() => Array.from({ length: MAX_LOADING_ITEMS }, (_, i) => `Loading ${String(i + 1)}`));
   const latest = useRef({
     inputs: { view, theme, sources, b2CTenant },
-    events: { onRefreshToken, onOnReady, onOnAuthenticated, onOnComplete, onOnError, onOnOpenMap },
+    events: { onRefreshToken, onOnReady, onOnAuthenticated, onOnComplete, onOnError, onOnOpenMap, onOnNavBack },
   });
   useLayoutEffect(() => {
     latest.current = {
       inputs: { view, theme, sources, b2CTenant },
-      events: { onRefreshToken, onOnReady, onOnAuthenticated, onOnComplete, onOnError, onOnOpenMap },
+      events: { onRefreshToken, onOnReady, onOnAuthenticated, onOnComplete, onOnError, onOnOpenMap, onOnNavBack },
     };
   });
 
@@ -103,9 +109,18 @@ export function Embedded_MyEntertaining({
     let alive = true;
     let messageListener: ((event: MessageEvent) => void) | null = null;
     let refreshIntervalId: number | null = null;
+    let resumeListener: (() => void) | null = null;
+    /** Action_RefreshToken: the caller gets a new ID token. Action_SetToken and RefreshEmbedTokenJS run only while the
+        block lives (after OnDestroy, the ensureControllerAlive of Action_SetToken stops them). */
+    const refreshToken = () => {
+      void latest.current.events.onRefreshToken?.((idToken) => {
+        if (alive) applyIdToken(idToken);
+      });
+    };
     void requireEmbed(config.baseURL).then((embed) => {
       if (!alive) return;
       if (embed.isConfigured()) embed.destroy();
+      setEntertainingToken(config.token); // Action_SetToken(GetEntertainingConfig.Token), then InitializeCalendar
       const inputs = latest.current.inputs;
       embed.init({
         baseUrl: config.baseURL,
@@ -115,7 +130,7 @@ export function Embedded_MyEntertaining({
         height: '100%',
         autoResize: false,
         sources: inputs.sources || null,
-        getIdToken: () => config.token,
+        getIdToken: getEntertainingToken, // window.__ubtEntertainingToken of SetEntertainingTokenJS
         b2cTenants: inputs.b2CTenant,
         b2cClientIds: config.b2CClientId,
         b2cPolicy: config.b2CPolicy,
@@ -136,6 +151,9 @@ export function Embedded_MyEntertaining({
         onError: (error) => {
           if (alive) latest.current.events.onOnError?.(error?.message || error?.type || 'Unknown error');
         },
+        onNavBack: () => {
+          if (alive) latest.current.events.onOnNavBack?.(); // Action_OnNavBack: Trigger Event OnNavBack
+        },
       });
       const baseUrl = config.baseURL;
       messageListener = (event: MessageEvent) => {
@@ -151,14 +169,24 @@ export function Embedded_MyEntertaining({
         }
       };
       window.addEventListener('message', messageListener);
-      refreshIntervalId = window.setInterval(() => {
-        void latest.current.events.onRefreshToken?.(applyIdToken);
-      }, REFRESH_INTERVAL_MS);
+      refreshIntervalId = window.setInterval(refreshToken, REFRESH_INTERVAL_MS);
+      // ResumeListener (Action_SetResumeListener): the app comes back (Cordova `resume`, a visible page): RefreshToken.
+      const onResume = () => {
+        if (document.hidden) return;
+        refreshToken();
+      };
+      document.addEventListener('resume', onResume, false);
+      document.addEventListener('visibilitychange', onResume);
+      resumeListener = onResume;
     });
     return () => {
       alive = false;
       if (messageListener) window.removeEventListener('message', messageListener);
       if (refreshIntervalId !== null) window.clearInterval(refreshIntervalId);
+      if (resumeListener) {
+        document.removeEventListener('resume', resumeListener);
+        document.removeEventListener('visibilitychange', resumeListener);
+      }
       const embed = loadedEmbed();
       if (embed?.isConfigured()) embed.destroy();
     };

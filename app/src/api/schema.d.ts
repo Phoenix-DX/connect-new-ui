@@ -1160,6 +1160,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/Connect2_OrbitMobile_MUI/ScreenBlock_EventDetail_V2/DataActionFetchEventNotes": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Data action DataActionFetchEventNotes (Connect2_OrbitMobile_MUI, LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2) */
+        post: operations["Connect2_OrbitMobile_MUI.ScreenBlock_EventDetail_V2.DataActionFetchEventNotes"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/Connect2_OrbitMobile_MUI/ScreenBlock_EventDetail_V2/DataActionGetCoordinatorDetails": {
         parameters: {
             query?: never;
@@ -6437,6 +6454,26 @@ export interface components {
                 EmptyListItem?: components["schemas"]["Connect2_OrbitMobile_IS__EventBookletMembers"];
                 List: components["schemas"]["Connect2_OrbitMobile_IS__EventBookletMembers"][];
             };
+        };
+        /** @description Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter. */
+        Connect2_OrbitMobile_MUI__ScreenBlock_EventDetail_V2__DataActionFetchEventNotes__Input: {
+            ContactByMessagePopupData?: components["schemas"]["Connect2_OrbitMobile_MUI__UI_ContactByMessage_WrapperDataTextRecord"];
+            ContactByMessagePopupData_IsCoordinator?: boolean;
+            ContactByPhoneData?: components["schemas"]["UBTConnect_Utils__ContactByPhonePopupData"];
+            EventHostId?: string;
+            EventId?: string;
+            EventNotes?: components["schemas"]["UBTConnectLibrary__Notes"];
+            HasInformation?: boolean;
+            IsFetching?: boolean;
+            MaxPhotoHeight?: number;
+            MaxPhotoWidth?: number;
+            MinBannerHeight?: number;
+            SquarePhotoPx?: number;
+        } & {
+            [key: string]: unknown;
+        };
+        Connect2_OrbitMobile_MUI__ScreenBlock_EventDetail_V2__DataActionFetchEventNotes__Output: {
+            Notes: components["schemas"]["UBTConnectLibrary__Notes"];
         };
         /** @description Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter. */
         Connect2_OrbitMobile_MUI__ScreenBlock_EventDetail_V2__DataActionGetCoordinatorDetails__Input: {
@@ -12128,6 +12165,41 @@ export interface operations {
                 content: {
                     "application/json": {
                         data: components["schemas"]["Connect2_OrbitMobile_MUI__ScreenBlock_EventDetail__DataActionGet_HostSurveyStatus__Output"];
+                    };
+                };
+            };
+            /** @description Error. */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    "Connect2_OrbitMobile_MUI.ScreenBlock_EventDetail_V2.DataActionFetchEventNotes": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Connect2_OrbitMobile_MUI__ScreenBlock_EventDetail_V2__DataActionFetchEventNotes__Input"];
+            };
+        };
+        responses: {
+            /** @description The action outputs. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["Connect2_OrbitMobile_MUI__ScreenBlock_EventDetail_V2__DataActionFetchEventNotes__Output"];
                     };
                 };
             };

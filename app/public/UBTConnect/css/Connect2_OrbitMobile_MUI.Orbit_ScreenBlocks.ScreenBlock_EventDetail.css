@@ -1,0 +1,8 @@
+﻿/*these classes are here becuase they are to modify components in legacy where 
+the main classes from C2 don't apply or get overwritten padding-base for instance is reflected as 10px
+instead of 16px. Once this is moved to C2 these classes should disappear.*/
+
+.orbit-event-notes {
+    margin-top: 24px;
+    margin-bottom: 24px;
+}

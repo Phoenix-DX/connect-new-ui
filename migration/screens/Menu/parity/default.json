@@ -1,11 +1,11 @@
 {
  "state": "default",
  "route": "/UBTConnect/Menu?mocksession=unlocked",
- "mock": "householder",
+ "mock": "member",
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "dad6a5af454a5422bedb",
+ "fingerprint": "923caf8a22795542c329",
  "options": {
   "text": true,
   "style": true,
@@ -27,14 +27,8 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-29T09:55:55.597Z",
- "counts": {
-  "layout": 6,
-  "structure": 1,
-  "class": 2,
-  "pseudo": 2,
-  "text": 2
- },
+ "at": "2026-10-29T12:42:28.914Z",
+ "counts": {},
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
   "CAPTURE-MASKED-TEXT-VERSION-MENU": 1,
@@ -44,10 +38,10 @@
   "CAPTURE-MASKED-AVATAR-MENU-SHIFT": 1
  },
  "pixel": {
-  "ratio": 0.01453,
-  "maxCell": 0.1462,
+  "ratio": 0.01078,
+  "maxCell": 0.1025,
   "maxCellRatio": 0.03,
-  "diffPixels": 4706,
+  "diffPixels": 3491,
   "comparedPixels": 323958,
   "maxRatio": 0.002,
   "threshold": 0.1,
@@ -61,11 +55,11 @@
   ],
   "masks": 5,
   "hotspots": [
-   "40,240 (234px)",
-   "120,240 (216px)",
-   "40,280 (194px)",
-   "80,240 (193px)",
-   "80,280 (181px)"
+   "160,200 (164px)",
+   "80,200 (160px)",
+   "80,240 (156px)",
+   "80,120 (154px)",
+   "80,160 (151px)"
   ],
   "diffPng": "migration/screens/Menu/parity/default.diff.png"
  },
@@ -76,71 +70,5 @@
   "expected": 8,
   "actual": 8
  },
- "diffs": [
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-Content.display-flex.flex-direction-column.full-height > div > div#$b10.OSBlockWidget[App_Menu.Menu_List]",
-   "detail": "390×209 → 390×250"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-Content.display-flex.flex-direction-column.full-height > div > div#$b10.OSBlockWidget[App_Menu.Menu_List] > div#b10-$b2.OSBlockWidget[BasePatterns.CustomContainer]",
-   "detail": "390×205 → 390×246"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-Content.display-flex.flex-direction-column.full-height > div > div#$b10.OSBlockWidget[App_Menu.Menu_List] > div#b10-$b2.OSBlockWidget[BasePatterns.CustomContainer] > div#b10-b2-Content.background-neutral-0.padding-x-base.ubt-custom-container",
-   "detail": "390×205 → 390×246"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-Content.display-flex.flex-direction-column.full-height > div > div#$b10.OSBlockWidget[App_Menu.Menu_List] > div#b10-$b2.OSBlockWidget[BasePatterns.CustomContainer] > div#b10-b2-Content.background-neutral-0.padding-x-base.ubt-custom-container > div.OSFillParent.list.list-group",
-   "detail": "358×205 → 358×246"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-Content.display-flex.flex-direction-column.full-height > div > div#$b10.OSBlockWidget[App_Menu.Menu_List] > div#b10-$b2.OSBlockWidget[BasePatterns.CustomContainer] > div#b10-b2-Content.background-neutral-0.padding-x-base.ubt-custom-container > div.OSFillParent.list.list-group > div.OSBlockWidget[ConnectPatterns.SkeletonSection]",
-   "detail": "extra in build"
-  },
-  {
-   "kind": "class",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-Content.display-flex.flex-direction-column.full-height > div > div#$b10.OSBlockWidget[App_Menu.Menu_List] > div#b10-$b2.OSBlockWidget[BasePatterns.CustomContainer] > div#b10-b2-Content.background-neutral-0.padding-x-base.ubt-custom-container > div.OSFillParent.list.list-group > div#b10-l1-36_4-$b4.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b10-l1-36_4-b4-Placeholder_LoadingSection > div#b10-l1-36_4-$b5.OSBlockWidget[BasePatterns.CustomContainer] > div#b10-l1-36_4-b5-Content.border-bottom-s.border-color-neutral-3.padding-s > div#b10-l1-36_4-$b6.OSBlockWidget[BasePatterns.Columns_Three] > div#b10-l1-36_4-b6-$b1.OSBlockWidget[Adaptive.Columns3] > div.align-items-center.columns.columns3 > div#b10-l1-36_4-b6-b1-Column1.columns-item > div#b10-l1-36_4-b6-Left.ubt-columns--column.ubt-columns--left > div#b10-l1-36_4-$b7.OSBlockWidget[ConnectPatterns.Icon] > div.connect-icon-book_open.icon-base.text-neutral-9",
-   "detail": "missing .connect-icon-book_open extra .connect-icon-image_gallery"
-  },
-  {
-   "kind": "pseudo",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-Content.display-flex.flex-direction-column.full-height > div > div#$b10.OSBlockWidget[App_Menu.Menu_List] > div#b10-$b2.OSBlockWidget[BasePatterns.CustomContainer] > div#b10-b2-Content.background-neutral-0.padding-x-base.ubt-custom-container > div.OSFillParent.list.list-group > div#b10-l1-36_4-$b4.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b10-l1-36_4-b4-Placeholder_LoadingSection > div#b10-l1-36_4-$b5.OSBlockWidget[BasePatterns.CustomContainer] > div#b10-l1-36_4-b5-Content.border-bottom-s.border-color-neutral-3.padding-s > div#b10-l1-36_4-$b6.OSBlockWidget[BasePatterns.Columns_Three] > div#b10-l1-36_4-b6-$b1.OSBlockWidget[Adaptive.Columns3] > div.align-items-center.columns.columns3 > div#b10-l1-36_4-b6-b1-Column1.columns-item > div#b10-l1-36_4-b6-Left.ubt-columns--column.ubt-columns--left > div#b10-l1-36_4-$b7.OSBlockWidget[ConnectPatterns.Icon] > div.connect-icon-book_open.icon-base.text-neutral-9",
-   "detail": "::before content \"\" → \"\""
-  },
-  {
-   "kind": "text",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-Content.display-flex.flex-direction-column.full-height > div > div#$b10.OSBlockWidget[App_Menu.Menu_List] > div#b10-$b2.OSBlockWidget[BasePatterns.CustomContainer] > div#b10-b2-Content.background-neutral-0.padding-x-base.ubt-custom-container > div.OSFillParent.list.list-group > div#b10-l1-36_4-$b4.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b10-l1-36_4-b4-Placeholder_LoadingSection > div#b10-l1-36_4-$b5.OSBlockWidget[BasePatterns.CustomContainer] > div#b10-l1-36_4-b5-Content.border-bottom-s.border-color-neutral-3.padding-s > div#b10-l1-36_4-$b6.OSBlockWidget[BasePatterns.Columns_Three] > div#b10-l1-36_4-b6-$b1.OSBlockWidget[Adaptive.Columns3] > div.align-items-center.columns.columns3 > div#b10-l1-36_4-b6-b1-Column2.columns-item > div#b10-l1-36_4-b6-Middle.ubt-columns--column.ubt-columns--middle > div#b10-l1-36_4-$b8.OSBlockWidget[BasePatterns.CustomText] > div.font-regular.font-size-xs.text-neutral-9 > span",
-   "detail": "\"Terms & Policies\" → \"Request Photo Update\""
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-Content.display-flex.flex-direction-column.full-height > div > div#$b10.OSBlockWidget[App_Menu.Menu_List] > div#b10-$b2.OSBlockWidget[BasePatterns.CustomContainer] > div#b10-b2-Content.background-neutral-0.padding-x-base.ubt-custom-container > div.OSFillParent.list.list-group > div#b10-l1-36_4-$b4.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b10-l1-36_4-b4-Placeholder_LoadingSection > div#b10-l1-36_4-$b5.OSBlockWidget[BasePatterns.CustomContainer] > div#b10-l1-36_4-b5-Content.border-bottom-s.border-color-neutral-3.padding-s > div#b10-l1-36_4-$b6.OSBlockWidget[BasePatterns.Columns_Three] > div#b10-l1-36_4-b6-$b1.OSBlockWidget[Adaptive.Columns3] > div.align-items-center.columns.columns3 > div#b10-l1-36_4-b6-b1-Column2.columns-item > div#b10-l1-36_4-b6-Middle.ubt-columns--column.ubt-columns--middle > div#b10-l1-36_4-$b8.OSBlockWidget[BasePatterns.CustomText] > div.font-regular.font-size-xs.text-neutral-9 > span",
-   "detail": "93×15 → 127×15"
-  },
-  {
-   "kind": "class",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-Content.display-flex.flex-direction-column.full-height > div > div#$b10.OSBlockWidget[App_Menu.Menu_List] > div#b10-$b2.OSBlockWidget[BasePatterns.CustomContainer] > div#b10-b2-Content.background-neutral-0.padding-x-base.ubt-custom-container > div.OSFillParent.list.list-group > div#b10-l1-36_5-$b4.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b10-l1-36_5-b4-Placeholder_LoadingSection > div#b10-l1-36_5-$b5.OSBlockWidget[BasePatterns.CustomContainer] > div#b10-l1-36_5-b5-Content.border-bottom-s.border-color-neutral-3.padding-s > div#b10-l1-36_5-$b6.OSBlockWidget[BasePatterns.Columns_Three] > div#b10-l1-36_5-b6-$b1.OSBlockWidget[Adaptive.Columns3] > div.align-items-center.columns.columns3 > div#b10-l1-36_5-b6-b1-Column1.columns-item > div#b10-l1-36_5-b6-Left.ubt-columns--column.ubt-columns--left > div#b10-l1-36_5-$b7.OSBlockWidget[ConnectPatterns.Icon] > div.connect-icon-logout.icon-base.text-neutral-9",
-   "detail": "missing .connect-icon-logout extra .connect-icon-book_open"
-  },
-  {
-   "kind": "pseudo",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-Content.display-flex.flex-direction-column.full-height > div > div#$b10.OSBlockWidget[App_Menu.Menu_List] > div#b10-$b2.OSBlockWidget[BasePatterns.CustomContainer] > div#b10-b2-Content.background-neutral-0.padding-x-base.ubt-custom-container > div.OSFillParent.list.list-group > div#b10-l1-36_5-$b4.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b10-l1-36_5-b4-Placeholder_LoadingSection > div#b10-l1-36_5-$b5.OSBlockWidget[BasePatterns.CustomContainer] > div#b10-l1-36_5-b5-Content.border-bottom-s.border-color-neutral-3.padding-s > div#b10-l1-36_5-$b6.OSBlockWidget[BasePatterns.Columns_Three] > div#b10-l1-36_5-b6-$b1.OSBlockWidget[Adaptive.Columns3] > div.align-items-center.columns.columns3 > div#b10-l1-36_5-b6-b1-Column1.columns-item > div#b10-l1-36_5-b6-Left.ubt-columns--column.ubt-columns--left > div#b10-l1-36_5-$b7.OSBlockWidget[ConnectPatterns.Icon] > div.connect-icon-logout.icon-base.text-neutral-9",
-   "detail": "::before content \"\" → \"\""
-  },
-  {
-   "kind": "text",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-Content.display-flex.flex-direction-column.full-height > div > div#$b10.OSBlockWidget[App_Menu.Menu_List] > div#b10-$b2.OSBlockWidget[BasePatterns.CustomContainer] > div#b10-b2-Content.background-neutral-0.padding-x-base.ubt-custom-container > div.OSFillParent.list.list-group > div#b10-l1-36_5-$b4.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b10-l1-36_5-b4-Placeholder_LoadingSection > div#b10-l1-36_5-$b5.OSBlockWidget[BasePatterns.CustomContainer] > div#b10-l1-36_5-b5-Content.border-bottom-s.border-color-neutral-3.padding-s > div#b10-l1-36_5-$b6.OSBlockWidget[BasePatterns.Columns_Three] > div#b10-l1-36_5-b6-$b1.OSBlockWidget[Adaptive.Columns3] > div.align-items-center.columns.columns3 > div#b10-l1-36_5-b6-b1-Column2.columns-item > div#b10-l1-36_5-b6-Middle.ubt-columns--column.ubt-columns--middle > div#b10-l1-36_5-$b8.OSBlockWidget[BasePatterns.CustomText] > div.font-regular.font-size-xs.text-neutral-9 > span",
-   "detail": "\"Log out\" → \"Terms & Policies\""
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-Content.display-flex.flex-direction-column.full-height > div > div#$b10.OSBlockWidget[App_Menu.Menu_List] > div#b10-$b2.OSBlockWidget[BasePatterns.CustomContainer] > div#b10-b2-Content.background-neutral-0.padding-x-base.ubt-custom-container > div.OSFillParent.list.list-group > div#b10-l1-36_5-$b4.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b10-l1-36_5-b4-Placeholder_LoadingSection > div#b10-l1-36_5-$b5.OSBlockWidget[BasePatterns.CustomContainer] > div#b10-l1-36_5-b5-Content.border-bottom-s.border-color-neutral-3.padding-s > div#b10-l1-36_5-$b6.OSBlockWidget[BasePatterns.Columns_Three] > div#b10-l1-36_5-b6-$b1.OSBlockWidget[Adaptive.Columns3] > div.align-items-center.columns.columns3 > div#b10-l1-36_5-b6-b1-Column2.columns-item > div#b10-l1-36_5-b6-Middle.ubt-columns--column.ubt-columns--middle > div#b10-l1-36_5-$b8.OSBlockWidget[BasePatterns.CustomText] > div.font-regular.font-size-xs.text-neutral-9 > span",
-   "detail": "43×15 → 93×15"
-  }
- ]
+ "diffs": []
 }

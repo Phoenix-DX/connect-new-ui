@@ -33,12 +33,12 @@ afterEach(() => {
 describe('Notifications → NotificationDetails', () => {
   it('an unread notification: MarkAsRead with its id, then NotificationDetails', async () => {
     const { router } = renderRoutes(routes, PATH);
-    fireEvent.click(await itemOf('Test Noti 56'));
+    fireEvent.click(await itemOf('test'));
     expect(await screen.findByText('NotificationDetails screen')).toBeInTheDocument();
     expect(markAsReadCalls()).toHaveLength(1);
     expect(markAsReadCalls()[0]?.inputNames).toEqual(['MessageInstanceId']);
     expect(markAsReadCalls()[0]?.phase).not.toBeUndefined();
-    expect(router.state.location.search).toBe('?MessageInstanceId=910019');
+    expect(router.state.location.search).toBe('?MessageInstanceId=910021');
   });
 
   it('a read notification: no MarkAsRead, then NotificationDetails', async () => {

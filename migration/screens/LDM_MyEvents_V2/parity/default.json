@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "32212e8ce5f7f32dd286",
+ "fingerprint": "197bdf4428d5bbd3ee4f",
  "options": {
   "text": true,
   "style": true,
@@ -27,24 +27,20 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-29T09:54:41.633Z",
- "counts": {
-  "structure": 2,
-  "layout": 6,
-  "text": 3,
-  "pixel": 1
- },
+ "at": "2026-10-29T12:41:14.583Z",
+ "counts": {},
  "exemptionsUsed": {
   "DATA-GUEST-PHOTO-LDM-MYEVENTS-V2": 8,
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 45,
   "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
-  "ignoreSubtrees": 1
+  "ignoreSubtrees": 1,
+  "DATA-GUEST-PHOTO-LDM-MYEVENTS-V2-PIXEL": 1
  },
  "pixel": {
-  "ratio": 0.01722,
+  "ratio": 0.00643,
   "maxCell": 0.3269,
   "maxCellRatio": 0.03,
-  "diffPixels": 5023,
+  "diffPixels": 1874,
   "comparedPixels": 291627,
   "maxRatio": 0.002,
   "threshold": 0.1,
@@ -61,8 +57,8 @@
    "320,280 (523px)",
    "320,520 (446px)",
    "280,520 (367px)",
-   "80,480 (298px)",
-   "120,480 (276px)"
+   "280,560 (155px)",
+   "320,560 (153px)"
   ],
   "diffPng": "migration/screens/LDM_MyEvents_V2/parity/default.diff.png"
  },
@@ -73,66 +69,5 @@
   "expected": 10,
   "actual": 9
  },
- "diffs": [
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBlocks_V2.ScreenBlock_MyEvents_V2] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-MyTimeline_V2.OSBlockWidget[LDM_Blocks_V2.MyTimeline_V2] > div#b1-b9-MinHeight_Enforcer.timeline-ldm-height > div#b1-b9-SubSection_MyTimeline.OSBlockWidget[LDM_Blocks.EventDetail_SubSection] > div.event-detail-subsection > div#b1-b9-b3-SubSection_Placeholder.event-detail-subsection-placeholder > div#b1-b9-List_PastEvents.OSFillParent.list.list-group > div.past-event-cont",
-   "detail": "extra in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBlocks_V2.ScreenBlock_MyEvents_V2] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-MyTimeline_V2.OSBlockWidget[LDM_Blocks_V2.MyTimeline_V2] > div#b1-b9-MinHeight_Enforcer.timeline-ldm-height > div#b1-b9-SubSection_MyTimeline.OSBlockWidget[LDM_Blocks.EventDetail_SubSection] > div.event-detail-subsection > div#b1-b9-b3-SubSection_Placeholder.event-detail-subsection-placeholder > div#b1-b9-List_PastEvents.OSFillParent.list.list-group > div.past-event-cont",
-   "detail": "extra in build"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBlocks_V2.ScreenBlock_MyEvents_V2] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-MyTimeline_V2.OSBlockWidget[LDM_Blocks_V2.MyTimeline_V2] > div#b1-b9-MinHeight_Enforcer.timeline-ldm-height > div#b1-b9-SubSection_MyTimeline.OSBlockWidget[LDM_Blocks.EventDetail_SubSection] > div.event-detail-subsection > div#b1-b9-b3-SubSection_Placeholder.event-detail-subsection-placeholder > div#b1-b9-List_PastEvents.OSFillParent.list.list-group > div.past-event-cont > div#b1-b9-l3-73_0-List_PastEventsData.OSFillParent.list.list-group > div#b1-b9-l3-73_0-l3-97_0-ListItem_PastEvents.OSBlockWidget[LDM_Blocks_V2.EventCard_V2] > div#b1-b9-l3-73_0-l3-97_0-b4-$b1.OSBlockWidget[LDM_Blocks.EventCard_Box] > div.event-card-box > div#b1-b9-l3-73_0-l3-97_0-b4-b1-CardContents > div#b1-b9-l3-73_0-l3-97_0-b4-$b2.OSBlockWidget[LDM_Blocks_V2.EventCard_Info_V2] > div.event-card-info-cont > div.event-card-info-item > div#b1-b9-l3-73_0-l3-97_0-b4-b2-NameLocation.event-card-info-item-name-location > div",
-   "detail": "133×23 → 165×23"
-  },
-  {
-   "kind": "text",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBlocks_V2.ScreenBlock_MyEvents_V2] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-MyTimeline_V2.OSBlockWidget[LDM_Blocks_V2.MyTimeline_V2] > div#b1-b9-MinHeight_Enforcer.timeline-ldm-height > div#b1-b9-SubSection_MyTimeline.OSBlockWidget[LDM_Blocks.EventDetail_SubSection] > div.event-detail-subsection > div#b1-b9-b3-SubSection_Placeholder.event-detail-subsection-placeholder > div#b1-b9-List_PastEvents.OSFillParent.list.list-group > div.past-event-cont > div#b1-b9-l3-73_0-List_PastEventsData.OSFillParent.list.list-group > div#b1-b9-l3-73_0-l3-97_0-ListItem_PastEvents.OSBlockWidget[LDM_Blocks_V2.EventCard_V2] > div#b1-b9-l3-73_0-l3-97_0-b4-$b1.OSBlockWidget[LDM_Blocks.EventCard_Box] > div.event-card-box > div#b1-b9-l3-73_0-l3-97_0-b4-b1-CardContents > div#b1-b9-l3-73_0-l3-97_0-b4-$b2.OSBlockWidget[LDM_Blocks_V2.EventCard_Info_V2] > div.event-card-info-cont > div.event-card-info-item > div#b1-b9-l3-73_0-l3-97_0-b4-b2-NameLocation.event-card-info-item-name-location > div > span",
-   "detail": "\"Allocation Pending\" → \"Medina, Darío & Lorena\""
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBlocks_V2.ScreenBlock_MyEvents_V2] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-MyTimeline_V2.OSBlockWidget[LDM_Blocks_V2.MyTimeline_V2] > div#b1-b9-MinHeight_Enforcer.timeline-ldm-height > div#b1-b9-SubSection_MyTimeline.OSBlockWidget[LDM_Blocks.EventDetail_SubSection] > div.event-detail-subsection > div#b1-b9-b3-SubSection_Placeholder.event-detail-subsection-placeholder > div#b1-b9-List_PastEvents.OSFillParent.list.list-group > div.past-event-cont > div#b1-b9-l3-73_0-List_PastEventsData.OSFillParent.list.list-group > div#b1-b9-l3-73_0-l3-97_0-ListItem_PastEvents.OSBlockWidget[LDM_Blocks_V2.EventCard_V2] > div#b1-b9-l3-73_0-l3-97_0-b4-$b1.OSBlockWidget[LDM_Blocks.EventCard_Box] > div.event-card-box > div#b1-b9-l3-73_0-l3-97_0-b4-b1-CardContents > div#b1-b9-l3-73_0-l3-97_0-b4-$b2.OSBlockWidget[LDM_Blocks_V2.EventCard_Info_V2] > div.event-card-info-cont > div.event-card-info-item > div#b1-b9-l3-73_0-l3-97_0-b4-b2-NameLocation.event-card-info-item-name-location > div > span",
-   "detail": "133×19 → 165×19"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBlocks_V2.ScreenBlock_MyEvents_V2] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-MyTimeline_V2.OSBlockWidget[LDM_Blocks_V2.MyTimeline_V2] > div#b1-b9-MinHeight_Enforcer.timeline-ldm-height > div#b1-b9-SubSection_MyTimeline.OSBlockWidget[LDM_Blocks.EventDetail_SubSection] > div.event-detail-subsection > div#b1-b9-b3-SubSection_Placeholder.event-detail-subsection-placeholder > div#b1-b9-List_PastEvents.OSFillParent.list.list-group > div.past-event-cont > div#b1-b9-l3-73_1-List_PastEventsData.OSFillParent.list.list-group > div#b1-b9-l3-73_1-l3-99_0-ListItem_PastEvents.OSBlockWidget[LDM_Blocks_V2.EventCard_V2] > div#b1-b9-l3-73_1-l3-99_0-b4-$b1.OSBlockWidget[LDM_Blocks.EventCard_Box] > div.event-card-box > div#b1-b9-l3-73_1-l3-99_0-b4-b1-CardContents > div#b1-b9-l3-73_1-l3-99_0-b4-$b2.OSBlockWidget[LDM_Blocks_V2.EventCard_Info_V2] > div.event-card-info-cont > div.event-card-info-item > div#b1-b9-l3-73_1-l3-99_0-b4-b2-NameLocation.event-card-info-item-name-location > div",
-   "detail": "133×23 → 160×23"
-  },
-  {
-   "kind": "text",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBlocks_V2.ScreenBlock_MyEvents_V2] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-MyTimeline_V2.OSBlockWidget[LDM_Blocks_V2.MyTimeline_V2] > div#b1-b9-MinHeight_Enforcer.timeline-ldm-height > div#b1-b9-SubSection_MyTimeline.OSBlockWidget[LDM_Blocks.EventDetail_SubSection] > div.event-detail-subsection > div#b1-b9-b3-SubSection_Placeholder.event-detail-subsection-placeholder > div#b1-b9-List_PastEvents.OSFillParent.list.list-group > div.past-event-cont > div#b1-b9-l3-73_1-List_PastEventsData.OSFillParent.list.list-group > div#b1-b9-l3-73_1-l3-99_0-ListItem_PastEvents.OSBlockWidget[LDM_Blocks_V2.EventCard_V2] > div#b1-b9-l3-73_1-l3-99_0-b4-$b1.OSBlockWidget[LDM_Blocks.EventCard_Box] > div.event-card-box > div#b1-b9-l3-73_1-l3-99_0-b4-b1-CardContents > div#b1-b9-l3-73_1-l3-99_0-b4-$b2.OSBlockWidget[LDM_Blocks_V2.EventCard_Info_V2] > div.event-card-info-cont > div.event-card-info-item > div#b1-b9-l3-73_1-l3-99_0-b4-b2-NameLocation.event-card-info-item-name-location > div > span",
-   "detail": "\"Allocation Pending\" → \"Vitale, Julián & Fiorella\""
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBlocks_V2.ScreenBlock_MyEvents_V2] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-MyTimeline_V2.OSBlockWidget[LDM_Blocks_V2.MyTimeline_V2] > div#b1-b9-MinHeight_Enforcer.timeline-ldm-height > div#b1-b9-SubSection_MyTimeline.OSBlockWidget[LDM_Blocks.EventDetail_SubSection] > div.event-detail-subsection > div#b1-b9-b3-SubSection_Placeholder.event-detail-subsection-placeholder > div#b1-b9-List_PastEvents.OSFillParent.list.list-group > div.past-event-cont > div#b1-b9-l3-73_1-List_PastEventsData.OSFillParent.list.list-group > div#b1-b9-l3-73_1-l3-99_0-ListItem_PastEvents.OSBlockWidget[LDM_Blocks_V2.EventCard_V2] > div#b1-b9-l3-73_1-l3-99_0-b4-$b1.OSBlockWidget[LDM_Blocks.EventCard_Box] > div.event-card-box > div#b1-b9-l3-73_1-l3-99_0-b4-b1-CardContents > div#b1-b9-l3-73_1-l3-99_0-b4-$b2.OSBlockWidget[LDM_Blocks_V2.EventCard_Info_V2] > div.event-card-info-cont > div.event-card-info-item > div#b1-b9-l3-73_1-l3-99_0-b4-b2-NameLocation.event-card-info-item-name-location > div > span",
-   "detail": "133×19 → 160×19"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBlocks_V2.ScreenBlock_MyEvents_V2] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-MyTimeline_V2.OSBlockWidget[LDM_Blocks_V2.MyTimeline_V2] > div#b1-b9-MinHeight_Enforcer.timeline-ldm-height > div#b1-b9-SubSection_MyTimeline.OSBlockWidget[LDM_Blocks.EventDetail_SubSection] > div.event-detail-subsection > div#b1-b9-b3-SubSection_Placeholder.event-detail-subsection-placeholder > div#b1-b9-List_PastEvents.OSFillParent.list.list-group > div.past-event-cont > div#b1-b9-l3-73_2-List_PastEventsData.OSFillParent.list.list-group > div#b1-b9-l3-73_2-l3-101_0-ListItem_PastEvents.OSBlockWidget[LDM_Blocks_V2.EventCard_V2] > div#b1-b9-l3-73_2-l3-101_0-b4-$b1.OSBlockWidget[LDM_Blocks.EventCard_Box] > div.event-card-box > div#b1-b9-l3-73_2-l3-101_0-b4-b1-CardContents > div#b1-b9-l3-73_2-l3-101_0-b4-$b2.OSBlockWidget[LDM_Blocks_V2.EventCard_Info_V2] > div.event-card-info-cont > div.event-card-info-item > div#b1-b9-l3-73_2-l3-101_0-b4-b2-NameLocation.event-card-info-item-name-location > div",
-   "detail": "133×23 → 154×23"
-  },
-  {
-   "kind": "text",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBlocks_V2.ScreenBlock_MyEvents_V2] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-MyTimeline_V2.OSBlockWidget[LDM_Blocks_V2.MyTimeline_V2] > div#b1-b9-MinHeight_Enforcer.timeline-ldm-height > div#b1-b9-SubSection_MyTimeline.OSBlockWidget[LDM_Blocks.EventDetail_SubSection] > div.event-detail-subsection > div#b1-b9-b3-SubSection_Placeholder.event-detail-subsection-placeholder > div#b1-b9-List_PastEvents.OSFillParent.list.list-group > div.past-event-cont > div#b1-b9-l3-73_2-List_PastEventsData.OSFillParent.list.list-group > div#b1-b9-l3-73_2-l3-101_0-ListItem_PastEvents.OSBlockWidget[LDM_Blocks_V2.EventCard_V2] > div#b1-b9-l3-73_2-l3-101_0-b4-$b1.OSBlockWidget[LDM_Blocks.EventCard_Box] > div.event-card-box > div#b1-b9-l3-73_2-l3-101_0-b4-b1-CardContents > div#b1-b9-l3-73_2-l3-101_0-b4-$b2.OSBlockWidget[LDM_Blocks_V2.EventCard_Info_V2] > div.event-card-info-cont > div.event-card-info-item > div#b1-b9-l3-73_2-l3-101_0-b4-b2-NameLocation.event-card-info-item-name-location > div > span",
-   "detail": "\"Allocation Pending\" → \"Castillo, Néstor & Ana\""
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBlocks_V2.ScreenBlock_MyEvents_V2] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-MyTimeline_V2.OSBlockWidget[LDM_Blocks_V2.MyTimeline_V2] > div#b1-b9-MinHeight_Enforcer.timeline-ldm-height > div#b1-b9-SubSection_MyTimeline.OSBlockWidget[LDM_Blocks.EventDetail_SubSection] > div.event-detail-subsection > div#b1-b9-b3-SubSection_Placeholder.event-detail-subsection-placeholder > div#b1-b9-List_PastEvents.OSFillParent.list.list-group > div.past-event-cont > div#b1-b9-l3-73_2-List_PastEventsData.OSFillParent.list.list-group > div#b1-b9-l3-73_2-l3-101_0-ListItem_PastEvents.OSBlockWidget[LDM_Blocks_V2.EventCard_V2] > div#b1-b9-l3-73_2-l3-101_0-b4-$b1.OSBlockWidget[LDM_Blocks.EventCard_Box] > div.event-card-box > div#b1-b9-l3-73_2-l3-101_0-b4-b1-CardContents > div#b1-b9-l3-73_2-l3-101_0-b4-$b2.OSBlockWidget[LDM_Blocks_V2.EventCard_Info_V2] > div.event-card-info-cont > div.event-card-info-item > div#b1-b9-l3-73_2-l3-101_0-b4-b2-NameLocation.event-card-info-item-name-location > div > span",
-   "detail": "133×19 → 154×19"
-  },
-  {
-   "kind": "pixel",
-   "path": "screenshot",
-   "detail": "1.72% pixels differ (max 0.20%), worst 40px tile 32.7% (max 3.0%), hotspots 320,280 (523px); 320,520 (446px); 280,520 (367px); 80,480 (298px); 120,480 (276px); see migration/screens/LDM_MyEvents_V2/parity/default.diff.png"
-  }
- ]
+ "diffs": []
 }

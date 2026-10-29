@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import {
   fetchSearchResults,
+  getFilteredRecentClickedResults,
   useSearchBirthdayOptionsQuery,
   type SearchBirthdayOption,
   type SearchResult,
@@ -22,6 +23,7 @@ import { clientVar } from '@/platform/session/session';
 import {
   type ConnectSearch_RecentClickedResults,
   type ConnectSearch_RecentSearchTerm,
+  deleteConnectSearch_RecentClickedResults,
   deleteConnectSearch_RecentSearchTerm,
   getAllSearchRecentClickedResultsByUserId,
   get_RecentClickedResults,
@@ -36,6 +38,7 @@ import type { Tag } from '@/components/ui/HorizontalTagList';
 import {
   INITIAL_SEARCH_STATE,
   recentAsResult,
+  recentClickedIdsDeleted,
   searchReducer,
   validateSearchPhoneNumber,
   type SearchState,
@@ -92,8 +95,13 @@ export interface SearchFlows {
   isBirthdaySearchEnabled: boolean;
   /** Get_SearchBirthdayOptions (empty until fetched). */
   birthdayOptions: SearchBirthdayOption[];
-  /** Get_RecentClickedResults. */
+  /** [RecentClickedResults] Get_RecentClickedResults.List, then Get_FilteredRecentClickedResults.Out_RecentClickedResults. */
   recentClicked: ConnectSearch_RecentClickedResults[];
+  /** Get_FilteredRecentClickedResults.Out_RecentClickedResults (empty until fetched): the show condition of the recent
+      search. */
+  filteredRecentClicked: ConnectSearch_RecentClickedResults[];
+  /** Get_FilteredRecentClickedResults.IsDataFetched: until True, the recent clicked results have the skeleton look. */
+  isFilteredRecentClickedFetched: boolean;
   /** Get_RecentSearchTerms. */
   recentTerms: ConnectSearch_RecentSearchTerm[];
   /** InputEvent_OnChange. */
@@ -128,7 +136,9 @@ export interface SearchFlows {
     - OnReady: isBirthdaySearchEnabled = the C2EnableSearchByBirthday check; when True, Refresh
       Get_SearchBirthdayOptions.
     - Get_RecentClickedResults and Get_RecentSearchTerms: client-entity aggregates fetched at start and refreshed with
-      the variables of that moment (shell adapter, CR-Search-1).
+      the variables of that moment (shell adapter, CR-Search-1). Get_RecentClickedResults reads 100 rows at start and 5
+      on a refresh. Its On After Fetch sets RecentClickedResults; while Get_FilteredRecentClickedResults has no data, it
+      sends the rows to that data action, deletes local rows (known original bug B22) and shows the server rows.
     - Action_RefreshSearch: saves the term, clears the results, adds the loading rows of the sections in scope, then
       FetchSearchResults. A newer search makes the answer of an older one ignored.
     - Event_HorizontalTagListChanged: SelectedCategory and TagList, Get_RecentClickedResults with the new category,
@@ -190,11 +200,50 @@ export function useSearch(inputs: SearchInputs, flags: SearchFlags, events: Sear
     };
   };
 
-  const [recentClicked, setRecentClicked] = useState<ConnectSearch_RecentClickedResults[]>([]);
+  // [RecentClickedResults] (S:132): the flows read the newest value, the view renders it.
+  const [recentClicked, setRecentClickedView] = useState<ConnectSearch_RecentClickedResults[]>([]);
+  const recentClickedVar = useRef<ConnectSearch_RecentClickedResults[]>([]);
+  const setRecentClicked = (list: ConnectSearch_RecentClickedResults[]) => {
+    recentClickedVar.current = list;
+    setRecentClickedView(list);
+  };
+  // Get_FilteredRecentClickedResults (S:165; refresh -1: only Get_RecentClickedResultsOnAfterFetch refreshes it).
+  const [filteredRecentClicked, setFilteredRecentClicked] = useState({
+    isDataFetched: false,
+    list: [] as ConnectSearch_RecentClickedResults[],
+  });
+  const filteredIsDataFetched = useRef(false);
   const [recentTerms, setRecentTerms] = useState<ConnectSearch_RecentSearchTerm[]>([]);
+
+  // Get_RecentClickedResultsOnAfterFetch (S:2354-2421), after each fetch of Get_RecentClickedResults.
+  const recentClickedOnAfterFetch = async (list: ConnectSearch_RecentClickedResults[]) => {
+    setRecentClicked(list); // RecentClickedResults = Get_RecentClickedResults.List
+    if (filteredIsDataFetched.current) return; // Get_FilteredRecentClickedResults.IsDataFetched
+    // Refresh Get_FilteredRecentClickedResults (R1): the block variables, with RecentClickedResults.
+    const filtered = await flow.fetch(
+      getFilteredRecentClickedResults(variables(), latest.current.tagList, latest.current.isLoading, list),
+    );
+    filteredIsDataFetched.current = true;
+    setFilteredRecentClicked({ isDataFetched: true, list: filtered.recentClickedResults });
+    // Foreach Out_IdsToRemove: DeleteConnectSearch_RecentClickedResults(RecentClickedResults.Current.Id), bug B22.
+    for (const id of recentClickedIdsDeleted(recentClickedVar.current, filtered.idsToRemove))
+      await deleteConnectSearch_RecentClickedResults(id);
+    setRecentClicked(filtered.recentClickedResults); // RecentClickedResults = Out_RecentClickedResults
+  };
+  // A fetch of the aggregate runs its On After Fetch; a failure goes to the flow handler.
+  const afterRecentClickedFetch = (list: ConnectSearch_RecentClickedResults[]) => {
+    flow.run(() => recentClickedOnAfterFetch(list));
+  };
+  // The fetch at start calls the handler of the newest render.
+  const afterRecentClickedFetchRef = useRef(afterRecentClickedFetch);
+  useLayoutEffect(() => {
+    afterRecentClickedFetchRef.current = afterRecentClickedFetch;
+  });
+
   const refreshRecent = (key: string, lastSearched: string, category: string) => {
     const target = parameters.current.inSearchTargetId;
-    void get_RecentClickedResults(target, key, category).then(setRecentClicked);
+    // Refresh Get_RecentClickedResults with MaxRecords 5 (S:2753, S:3734, S:3954).
+    void get_RecentClickedResults(target, key, category, 5).then(afterRecentClickedFetch);
     void get_RecentSearchTerms(target, key, lastSearched).then(setRecentTerms);
   };
   // The recent lists at start, with the variables of the first render (a restored view has its saved ones).
@@ -206,8 +255,9 @@ export function useSearch(inputs: SearchInputs, flags: SearchFlags, events: Sear
   useEffect(() => {
     const { key, lastSearched, category } = initialRecent.current;
     let alive = true;
+    // At start Get_RecentClickedResults has MaxRecords 100 (S:1864).
     void get_RecentClickedResults(inSearchTargetId, key, category).then((list) => {
-      if (alive) setRecentClicked(list);
+      if (alive) afterRecentClickedFetchRef.current(list);
     });
     void get_RecentSearchTerms(inSearchTargetId, key, lastSearched).then((list) => {
       if (alive) setRecentTerms(list);
@@ -219,10 +269,13 @@ export function useSearch(inputs: SearchInputs, flags: SearchFlags, events: Sear
 
   // Action_ClearResults: refresh the recent lists, clear the three lists, HasSearched False. An own action (R3,
   // Search.js:2754).
-  const clearResults = flow.own((key: string, lastSearched: string, category: string) => {
+  // flow.own(f) is ensureControllerAlive, then f: the check alone, so that the action can read the refs of its flows.
+  const ensureClearResultsAlive = flow.own(() => undefined);
+  const clearResults = (key: string, lastSearched: string, category: string) => {
+    ensureClearResultsAlive();
     refreshRecent(key, lastSearched, category);
     dispatch({ type: 'resultsCleared' });
-  });
+  };
 
   // Action_RefreshSearch.
   const refreshSearch = async (next: SearchVariables, tags: Tag[]) => {
@@ -306,17 +359,17 @@ export function useSearch(inputs: SearchInputs, flags: SearchFlags, events: Sear
     dispatch({ type: 'searchKeysCleared' });
     clearResults('', '', latest.current.selectedCategory);
   };
-  // Event_HorizontalTagListChanged (ScreenBlock_Search.mvc.js:3929-3937): SelectedCategory and TagList, Refresh
-  // Get_RecentClickedResults (max 5) with the new category, then Action_RefreshSearch. The refresh also runs when the
+  // Event_HorizontalTagListChanged (ScreenBlock_Search.mvc.js:4019, capture of 2026-10-29): SelectedCategory and
+  // TagList, Refresh Get_RecentClickedResults with MaxRecords 5 (S:4051) and the new category, its On After Fetch, then
+  // Action_RefreshSearch. The refresh also runs when the
   // term is blank, before the first search. Get_RecentClickedResults is a screen aggregate on TST (R1, Search.js:1856).
   const onTagListChanged = async (tagList: Tag[]) => {
     dispatch({ type: 'tagListChanged', tagList });
     const { searchKeyCurrent, selectedCategory } = latest.current;
-    setRecentClicked(
-      await flow.fetch(
-        get_RecentClickedResults(parameters.current.inSearchTargetId, searchKeyCurrent, selectedCategory),
-      ),
+    const list = await flow.fetch(
+      get_RecentClickedResults(parameters.current.inSearchTargetId, searchKeyCurrent, selectedCategory, 5),
     );
+    await recentClickedOnAfterFetch(list);
     await refreshSearch(variables({ selectedCategory }), tagList);
   };
 
@@ -367,6 +420,8 @@ export function useSearch(inputs: SearchInputs, flags: SearchFlags, events: Sear
     isBirthdaySearchEnabled,
     birthdayOptions: birthdayOptions.data ?? [],
     recentClicked,
+    filteredRecentClicked: filteredRecentClicked.list,
+    isFilteredRecentClickedFetched: filteredRecentClicked.isDataFetched,
     recentTerms,
     onChange,
     onSubmit,

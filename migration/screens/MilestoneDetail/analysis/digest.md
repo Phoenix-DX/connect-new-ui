@@ -484,10 +484,9 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 4. `DataActionGetAccommodationHost` (200) at 4038 ms
-- 5. `DataActionGet_Document` (200) at 4336 ms
-- 6. `ActionGetSignedImagesInBulk` (200) at 4906 ms
-- plus 3 call(s) outside this screen, listed in calls.md
+- 1. `DataActionGetAccommodationHost` (200) at 2457 ms
+- 2. `DataActionGet_Document` (200) at 2881 ms
+- 3. `ActionGetSignedImagesInBulk` (200) at 8162 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

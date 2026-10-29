@@ -8,7 +8,7 @@ import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
 import { Icon } from '@/components/ui/Icon';
 import { IconText } from '@/components/ui/IconText';
-import { Gallery } from '@/components/ui/Gallery';
+import { Skeleton } from '@/components/ui/Skeleton';
 import {
   UBT_Color,
   UBT_ColumnBehaviour,
@@ -21,13 +21,18 @@ import {
   UBT_VerticalAlign,
 } from '@/lib/ubtConnectLibrary/staticEntities';
 import { Connect_Entity } from '@/lib/ubtConnectUtils/staticEntities';
-import { Space_ExtraSmall, UBT_Icons2_Search } from './staticEntities';
+import { UBT_Icons2_Search } from './staticEntities';
 
 export interface RecentSearchProps {
   /** [HasSearched] Chooses the text shown without recent rows. */
   hasSearched: boolean;
-  /** Get_RecentClickedResults. */
+  /** [RecentClickedResults] The rows of the recent clicked results list. */
   recentClicked: ConnectSearch_RecentClickedResults[];
+  /** Get_FilteredRecentClickedResults.Out_RecentClickedResults: with the recent terms, the show condition of the
+      header, the lists and "Clear all" (S:562, S:642). */
+  filteredRecentClicked: ConnectSearch_RecentClickedResults[];
+  /** Not Get_FilteredRecentClickedResults.IsDataFetched: the recent clicked results have the skeleton look (S:740). */
+  isRecentClickedLoading: boolean;
   /** Get_RecentSearchTerms. */
   recentTerms: ConnectSearch_RecentSearchTerm[];
   /** "Clear all": OnClick_RecentSearch_RemoveAll. */
@@ -46,20 +51,23 @@ const textNeutral9 = (fontSize: string, fontWeight: string) => ({
   FontWeight: fontWeight,
 });
 
-/** The "Recent search" container of the search block, never captured (both lists are empty in every
-    capture): a header with "Clear all", a gallery of the recent clicked results and the list of the recent terms; the
-    getting-started text when both lists are empty.
+/** The "Recent search" container of the search block, never captured with rows (both lists are empty in every
+    capture): a header with "Clear all", the horizontal list of the recent clicked results in a skeleton section and
+    the list of the recent terms; the getting-started text when both lists are empty. S = ScreenBlock_Search.mvc.js of
+    the capture of 2026-10-29.
     @origin UBTConnect.Directory_Search.ScreenBlock_Search */
 export function RecentSearch({
   hasSearched,
   recentClicked,
+  filteredRecentClicked,
+  isRecentClickedLoading,
   recentTerms,
   onRemoveAll,
   onRecentResultClick,
   onRecentSearchTerm,
   onRecentSearchTermRemove,
 }: RecentSearchProps) {
-  const hasRecent = recentClicked.length > 0 || recentTerms.length > 0;
+  const hasRecent = filteredRecentClicked.length > 0 || recentTerms.length > 0;
   return (
     <CustomContainer
       id="b1-RecentSearch"
@@ -91,9 +99,11 @@ export function RecentSearch({
             />
           </CustomContainer>
           <CustomContainer id="b1-Recent_SearchResults" options={{ PaddingSize: { VerticalSizeId: UBT_Size.Small } }}>
-            <Gallery rowItemsPhone={5} rowItemsTablet={5} rowItemsDesktop={5} itemsGap={Space_ExtraSmall}>
+            {/* S:738-886: a SkeletonSection (alias 13), loading until Get_FilteredRecentClickedResults has data, around
+                the list of RecentClickedResults; the theme lays it out as one scrolling row. */}
+            <Skeleton id="b1-$b13" isLoading={isRecentClickedLoading}>
               <div
-                className="list list-group OSFillParent"
+                className="list list-group recent-search-list OSFillParent"
                 data-animation-disabled=""
                 data-list=""
                 data-virtualization-disabled=""
@@ -102,7 +112,7 @@ export function RecentSearch({
                   <div
                     key={r.Id}
                     data-container=""
-                    className="overflow-wrap-anywhere"
+                    className="recent-search-item overflow-wrap-anywhere"
                     style={{ textAlign: 'center' }}
                     onClick={() => {
                       onRecentResultClick(r);
@@ -111,12 +121,14 @@ export function RecentSearch({
                     <EntityLazyImage
                       entityId={r.EntityId}
                       entityType={r.EntityType}
-                      // ScreenBlock_Search.mvc.js:800-803: Width Square for a Member, else NullTextIdentifier.
+                      // S:822-829: Width Square for a Member, else NullTextIdentifier.
                       imageSize={{
                         Height: UBT_ImageSize.ExtraSmall_32,
                         Width: r.EntityType === Connect_Entity.Member ? UBT_ImageSize.Square : '',
                       }}
                       inBorderRadius={UBT_Shape.Soft}
+                      // S:832: In_ForceLoadingState = not Get_FilteredRecentClickedResults.IsDataFetched.
+                      inForceLoadingState={isRecentClickedLoading}
                     />
                     <CustomText
                       inTextOptions={{
@@ -129,7 +141,7 @@ export function RecentSearch({
                   </div>
                 ))}
               </div>
-            </Gallery>
+            </Skeleton>
           </CustomContainer>
           <div id="b1-Recent_SearchTerms" className="list list-group OSFillParent" data-list="">
             {recentTerms.map((t) => (
@@ -148,7 +160,11 @@ export function RecentSearch({
                   left={
                     <IconText
                       text={t.SearchedTerm}
-                      textOptions={textNeutral9(UBT_FontSize.ExtraSmall, UBT_FontWeight.Regular)}
+                      // S:979-983: IsOverflowEllipsis = True (class ubt-custom-text-ellipsis).
+                      textOptions={{
+                        ...textNeutral9(UBT_FontSize.ExtraSmall, UBT_FontWeight.Regular),
+                        IsOverflowEllipsis: true,
+                      }}
                       spacingSize={UBT_Size.Small}
                       onClicked={() => {
                         onRecentSearchTerm(t.SearchedTerm);

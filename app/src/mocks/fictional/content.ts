@@ -4,6 +4,11 @@
 
 /** Senders of the user-sent messages (MessageList / MessageDetail rows without a ProfileIconURL), by member id. */
 const MESSAGE_SENDERS: Record<string, string> = {
+  // The senders of the three newest MessageList rows of the TST capture of 2026-10-29 (drift wave); 900122 keeps the
+  // captured name length of MessageDetail ("••••• ••••").
+  '900120': 'Helen Ashworth',
+  '900121': 'Daniel Morley',
+  '900122': 'Clara Hunt',
   '900103': 'Eleanor Whitfield',
   '900107': 'Samuel Prescott',
   '900108': 'Margaret Holloway',

@@ -11,6 +11,7 @@ type UpdateItemWire = ActionOutputs<
 const item = (
   id: string,
   type: string,
+  gender: 'Gender.FEMALE' | 'Gender.MALE',
   name: string,
   date: string,
   location: string,
@@ -24,7 +25,7 @@ const item = (
   MemberId: memberId,
   Name: name,
   Date: date,
-  GenderId: 'Gender.MALE',
+  GenderId: gender,
   LocationString: location,
   ParentsNames: parentsNames,
   BirthType: '',
@@ -34,9 +35,10 @@ const item = (
 });
 
 /* The update items that HomeFeed's FetchUpdates reads (HomeFeed.updateItems). Person data, never recorded
-   (mock-fixtures.md): three fictional unread items with the captured types (Birth, Marriage, Marriage), HasAccess True;
-   meaningful fictional names, real places and the birth's parents, with the captured word lengths (the first rows of
-   the Updates_SingleList mock; mock-fixtures.md). HomeFeed's MarkAsRead / MarkAsUnread and the handler below change
+   (mock-fixtures.md): three fictional unread items with the types, genders and days of the TST capture of 2026-10-29
+   (HomeFeed dom/default.html: Birth of a girl, Taken, Marriage), HasAccess True; meaningful fictional names, real
+   places and the birth's parents, with the captured word lengths (the first rows of the Updates_SingleList mock;
+   mock-fixtures.md). HomeFeed's MarkAsRead / MarkAsUnread and the handler below change
    IsRead (P-MUTATION). The collection lives here, not in the HomeFeed mocks, because shared code does not import
    screens (P3-1). */
 export const updateItems = collection(
@@ -45,15 +47,25 @@ export const updateItems = collection(
     item(
       '9101',
       'Birth',
-      'James Hargreaves',
-      '2026-10-08',
-      'Geelong, Australia',
+      'Gender.FEMALE',
+      'Penelope Ashworth',
+      '2026-10-28',
+      'Toowoomba, Australia',
       '8101',
       '7101',
-      'Thomas & Sophie Hargreaves',
+      'Jonathan & Clara Ashworth',
     ),
-    item('9102', 'Marriage', 'Michael & Hannah Booth', '2026-10-03', 'Brisbane, Australia', '8102', '7102'),
-    item('9103', 'Marriage', 'Oscar & Emma Hughes', '2026-09-26', 'Bendigo, Australia', '8103', '7103'),
+    item('9102', 'Taken', 'Gender.MALE', 'Peter Graham', '2026-10-28', 'Bulawayo, Zimbabwe', '8102', '7102'),
+    item(
+      '9103',
+      'Marriage',
+      'Gender.MALE',
+      'Joshua & Emily Caldwell',
+      '2026-10-27',
+      'Warwick, Australia',
+      '8103',
+      '7103',
+    ),
   ],
   'UpdateItemId',
 );

@@ -43,6 +43,21 @@ interface DetailSeed {
 
 const seed = (): Record<string, unknown>[] => [
   {
+    // The message of the TST capture of 2026-10-29 (drift wave WP1 Q1): sent by a user (no ProfileIconURL: the sender
+    // photo and name come from the user mocks), the generic TST test label as title and body, already read, the date
+    // with a 4-character time ("••• •••••••••• •••• ••").
+    Id: '5982748',
+    Title: 'Test Noti 2',
+    DateTimeCreated: '2026-10-28T09:40:00',
+    IsRead: true,
+    IsClear: false,
+    ProfileIconURL: '',
+    CreatedByMemberId: '900122',
+    MessageTemplateTypeId: 2,
+    MessageTemplatePriorityId: 1,
+    MessageInfoTypeId: 1,
+  },
+  {
     Id: '5965247',
     Title: 'Test Noti 56',
     DateTimeCreated: '2026-10-14T10:20:00',

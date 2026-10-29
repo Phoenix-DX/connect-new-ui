@@ -8,7 +8,7 @@ import { TextEllipsis } from '@/components/ui/TextEllipsis';
 export interface StaticInputProps {
   /** OutSystems instance id of the block. */
   id?: string;
-  /** Prompt text; default "Search for households. entities, news". */
+  /** Prompt text; default "Search for households, members or places." (live TST, StaticInput.mvc.js S:13-14). */
   inPrompt?: string;
   inExtendedClasses?: string;
   /** Event Click_Input. */
@@ -19,7 +19,7 @@ export interface StaticInputProps {
     live TST block (StaticInput.mvc.js :173, extracted 2026-10-29; Bookmarks Q4 (a)). */
 export function StaticInput({
   id,
-  inPrompt = 'Search for households. entities, news',
+  inPrompt = 'Search for households, members or places.',
   inExtendedClasses = '',
   onClickInput,
 }: StaticInputProps) {

@@ -2,7 +2,7 @@
  "screen": "HostSurvey",
  "env": {
   "path": "/UBTConnect/HostSurvey",
-  "collectedAt": "2026-10-29T09:46:18.628Z",
+  "collectedAt": "2026-10-29T10:50:53.667Z",
   "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.37 Safari/537.36",
   "viewport": {
    "width": 390,
@@ -513,7 +513,9 @@
   "Orbit_Generic_Blocks.Orbit_ConfirmationPopUp_New"
  ],
  "states": [
-  "default"
+  "default",
+  "loading",
+  "offline"
  ],
  "js": {
   "UBTConnect.Legacy_OrbitEventsFlow.HostSurvey.mvc.js": {
@@ -4741,31 +4743,7 @@
  "calls": [
   {
    "order": 1,
-   "t": 454,
-   "action": "DataActionGet_HostSurveyStatus",
-   "path": "/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_HostSurveyStatus",
-   "status": 200,
-   "scope": "other (after navigating away, or app shell)"
-  },
-  {
-   "order": 2,
-   "t": 974,
-   "action": "DataActionGet_HasDocuments",
-   "path": "/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_HasDocuments",
-   "status": 200,
-   "scope": "other (after navigating away, or app shell)"
-  },
-  {
-   "order": 3,
-   "t": 1272,
-   "action": "DataActionGet_HasQRCode",
-   "path": "/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_HasQRCode",
-   "status": 200,
-   "scope": "other (after navigating away, or app shell)"
-  },
-  {
-   "order": 4,
-   "t": 3106,
+   "t": 2078,
    "action": "DataActionGetHostSurvey",
    "path": "/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks_HostSurvey/ScreenBlock_HostSurvey/DataActionGetHostSurvey",
    "status": 200,
@@ -4774,36 +4752,8 @@
  ],
  "otherRequests": [
   {
-   "request": "fetch /UBTConnect/OrbitLanding",
+   "request": "fetch /UBTConnect/EventDetail",
    "count": 1
-  },
-  {
-   "request": "link /UBTConnect/css/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.css",
-   "count": 1
-  },
-  {
-   "request": "link /UBTConnect/css/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css",
-   "count": 1
-  },
-  {
-   "request": "link /UBTConnect/css/UBTConnect_Utils.CW_Notes.NotesSheet.css",
-   "count": 1
-  },
-  {
-   "request": "link /UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Note_Item.css",
-   "count": 1
-  },
-  {
-   "request": "xmlhttprequest https://australiaeast-0.in.applicationinsights.azure.com/v2/track",
-   "count": 3
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.aggregates.IDB.js",
-   "count": 1
-  },
-  {
-   "request": "xmlhttprequest /UBTConnect/moduleservices/moduleversioninfo",
-   "count": 2
   },
   {
    "request": "script /UBTConnect/scripts/UBTConnect.Legacy_OrbitEventsFlow.HostSurvey.mvc.js",
@@ -4814,27 +4764,7 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_TopMessage.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_Item.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.InputWithMaxChar.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AdminNotes.mvc.js",
-   "count": 1
-  },
-  {
    "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_NavigationItem.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_MealPills.mvc.js",
    "count": 1
   },
   {
@@ -4842,27 +4772,15 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_VehiclePills.mvc.js",
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AdminNotes.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AccommodationPills.mvc.js",
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_MealPills.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Content.Accordion.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_MealItem.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Content.AccordionItem.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Orbit_FooterWithActions.mvc.js",
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.InputWithMaxChar.mvc.js",
    "count": 1
   },
   {
@@ -4870,11 +4788,19 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Orbit_ConfirmationPopUp_New.mvc.js",
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_VehiclePills.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_HelperPills.mvc.js",
+   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Content.AccordionItem.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AccommodationPills.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_MealItem.mvc.js",
    "count": 1
   },
   {
@@ -4882,7 +4808,27 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AccommodationItem.mvc.js",
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Orbit_ConfirmationPopUp_New.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Content.Accordion.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_HelperPills.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_Item.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_TopMessage.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Orbit_FooterWithActions.mvc.js",
    "count": 1
   },
   {
@@ -4890,11 +4836,19 @@
    "count": 1
   },
   {
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AccommodationItem.mvc.js",
+   "count": 1
+  },
+  {
    "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_MemberInformation_Survey.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Content.Tooltip.mvc.js",
+   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Interaction.InputWithIcon.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_LegacyShared.Reusable.InputCounter.mvc.js",
    "count": 1
   },
   {
@@ -4906,15 +4860,11 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/Connect2_LegacyShared.Reusable.InputCounter.mvc.js",
-   "count": 1
-  },
-  {
    "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Adaptive.Gallery.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Interaction.InputWithIcon.mvc.js",
+   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Content.Tooltip.mvc.js",
    "count": 1
   },
   {
@@ -4926,15 +4876,23 @@
    "count": 1
   },
   {
-   "request": "link /UBTConnect/css/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AccommodationItem.css",
-   "count": 1
-  },
-  {
    "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.FloatingUICore.js",
    "count": 1
   },
   {
+   "request": "link /UBTConnect/css/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AccommodationItem.css",
+   "count": 1
+  },
+  {
    "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.FloatingUIDom.js",
+   "count": 1
+  },
+  {
+   "request": "xmlhttprequest https://australiaeast-0.in.applicationinsights.azure.com/v2/track",
+   "count": 1
+  },
+  {
+   "request": "xmlhttprequest /UBTConnect/moduleservices/moduleversioninfo",
    "count": 1
   },
   {
@@ -5038,6 +4996,10 @@
    "count": 1
   },
   {
+   "request": "fetch /UBTConnect/status/network-ping.txt",
+   "count": 2
+  },
+  {
    "request": "fetch /UBTConnect/scripts/NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top.mvc.js",
    "count": 1
   },
@@ -5084,10 +5046,6 @@
   {
    "request": "fetch /UBTConnect/scripts/UBTConnect.controller.js",
    "count": 1
-  },
-  {
-   "request": "fetch /UBTConnect/status/network-ping.txt",
-   "count": 2
   },
   {
    "request": "fetch /UBTConnect/scripts/UBTConnect.model.js",

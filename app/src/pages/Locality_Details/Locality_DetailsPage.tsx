@@ -5,7 +5,7 @@ import { useFlagOn } from '@/platform/flags/flags';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
-import { ComingSoon } from '@/components/ui/ComingSoon';
+import { ComingSoon_V2 } from '@/components/ui/ComingSoon_V2';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { HorizontalTagList } from '@/components/ui/HorizontalTagList';
 import { Icon } from '@/components/ui/Icon';
@@ -55,8 +55,9 @@ function Locality_DetailsScreen() {
   const hasCarouselEnabled = useFlagOn('C2EnableCarousel'); // GetHasCarouselEnabled
   const hasNewBookmarks = useFlagOn('C2NewBookmarks'); // GetHasNewBookmarks: the GetLocal_Bookmark_C2 branch (decided off)
   const householdDetailsFlags = useHouseholdDetailsFlags();
+  // The LD check of the Locality Contacts section: it decides which branch (and block id) shows ComingSoon_V2.
+  const hasLocalityContactsCheck = useFlagOn('mobileDirectoryLocalityContacts');
   const flags = {
-    hasLocalityContacts: useFlagOn('mobileDirectoryLocalityContacts'), // GetSample_FilterTags (Q2)
     hasC1DirectoryView: useFlagOn('C2EnableC1DirectoryView'), // GetHasC1DirectoryView
   };
   const {
@@ -212,15 +213,18 @@ function Locality_DetailsScreen() {
               onEventOnClick={onNavigateToOneSchoolGlobalDetails}
             />
           )}
+          {/* Live TST of 2026-10-27 (Locality_Details.mvc.js:986-1063): the LD check mobileDirectoryLocalityContacts adds a
+              hidden Locality_LocalityContacts block (not built: drift H-Q4 a); both branches show ComingSoon_V2 in a
+              "margin-top-s  margin-x-base" container (ComingSoon_V2 from the TST manifest, drift-FU item 2). */}
           {selected === LocalityMenu.LocalityContacts && (
-            <NotCaptured name="Locality Contacts tab (Q1, Q2)">
-              <ComingSoon id={b(22)} />
-            </NotCaptured>
+            <div className="margin-top-s  margin-x-base" data-container="">
+              <ComingSoon_V2 id={hasLocalityContactsCheck ? b(23) : b(24)} />
+            </div>
           )}
         </>
       }
-      bottom={<BottomBar id={b(23)} activeItem={Connect_BottomBar_Items.Directory} />}
-      placeholderCommonUIInsideLayout={<CommonUiLayout id={b(24)} />}
+      bottom={<BottomBar id={b(25)} activeItem={Connect_BottomBar_Items.Directory} />}
+      placeholderCommonUIInsideLayout={<CommonUiLayout id={b(26)} />}
     />
   );
 }

@@ -41,11 +41,17 @@ export interface HouseholdDetailsParameters {
 export interface HouseholdDetailsFlags {
   hasPhotobookAccess: boolean;
   hasExtendedShare: boolean;
+  /** LD check mobileDirectoryHouseholdGallery (live TST of 2026-10-27): on hides the Coming Soon box of Photos. */
+  hasHouseholdGallery: boolean;
 }
 
-/** Reads the two flags of the household details. */
+/** Reads the three flags of the household details. */
 export function useHouseholdDetailsFlags(): HouseholdDetailsFlags {
-  return { hasPhotobookAccess: useFlagOn('mobilePhotobook'), hasExtendedShare: useFlagOn('C2ExtendedShare') };
+  return {
+    hasPhotobookAccess: useFlagOn('mobilePhotobook'),
+    hasExtendedShare: useFlagOn('C2ExtendedShare'),
+    hasHouseholdGallery: useFlagOn('mobileDirectoryHouseholdGallery'),
+  };
 }
 
 export interface HouseholdDetailsEvents {

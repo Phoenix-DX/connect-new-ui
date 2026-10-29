@@ -1,11 +1,11 @@
 {
  "state": "default",
- "route": "/UBTConnect/MessageDetail?MessageInstanceId=5965247&mocksession=unlocked",
+ "route": "/UBTConnect/MessageDetail?MessageInstanceId=5982748&mocksession=unlocked",
  "mock": "real",
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "32261d821c2dcca5971f",
+ "fingerprint": "4a6ddc27623d7f44e630",
  "options": {
   "text": true,
   "style": true,
@@ -19,27 +19,28 @@
  },
  "replay": {
   "mode": "builder",
-  "elements": 497,
-  "texts": 58,
+  "elements": 171,
+  "texts": 20,
   "comments": 0,
   "dropped": 0,
   "endTagMismatch": 0,
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-29T09:56:05.513Z",
- "counts": {
-  "structure": 2,
-  "pixel": 1,
-  "call": 2
+ "at": "2026-10-29T12:42:39.014Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "CAPTURE-LINK-HREF-CURSOR-MENUICON-BACK": 2,
+  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 45,
+  "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
+  "ignoreSubtrees": 1
  },
- "exemptionsUsed": {},
  "pixel": {
-  "ratio": 0.07895,
-  "maxCell": 0.35,
+  "ratio": 0.00006,
+  "maxCell": 0.0069,
   "maxCellRatio": 0.03,
-  "diffPixels": 25987,
-  "comparedPixels": 329160,
+  "diffPixels": 20,
+  "comparedPixels": 323305,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -50,13 +51,10 @@
    390,
    844
   ],
-  "masks": 0,
+  "masks": 5,
   "hotspots": [
-   "40,640 (560px)",
-   "40,440 (546px)",
-   "40,560 (534px)",
-   "0,440 (457px)",
-   "40,520 (431px)"
+   "200,800 (11px)",
+   "200,760 (9px)"
   ],
   "diffPng": "migration/screens/MessageDetail/parity/default.diff.png"
  },
@@ -65,33 +63,7 @@
    "load"
   ],
   "expected": 9,
-  "actual": 8
+  "actual": 9
  },
- "diffs": [
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[MyNotifications.ScreenBlock_MessageList]",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[MyNotifications.ScreenBlock_MessageDetail]",
-   "detail": "extra in build"
-  },
-  {
-   "kind": "pixel",
-   "path": "screenshot",
-   "detail": "7.89% pixels differ (max 0.20%), worst 40px tile 35.0% (max 3.0%), hotspots 40,640 (560px); 40,440 (546px); 40,560 (534px); 0,440 (457px); 40,520 (431px); see migration/screens/MessageDetail/parity/default.diff.png"
-  },
-  {
-   "kind": "call",
-   "path": "calls:load",
-   "detail": "data action DataActionGetMessages not called"
-  },
-  {
-   "kind": "call",
-   "path": "calls:load",
-   "detail": "ActionGetSignedImagesInBulk called 0× in build, 1× in capture (order-free call)"
-  }
- ]
+ "diffs": []
 }

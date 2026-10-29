@@ -20,6 +20,7 @@ export {
   type ConnectSearch_RecentSearchTerm,
   CONNECTSEARCH_RECENTCLICKEDRESULTS,
   CONNECTSEARCH_RECENTSEARCHTERM,
+  deleteConnectSearch_RecentClickedResults,
   deleteConnectSearch_RecentSearchTerm,
   getAllSearchRecentClickedResultsByUserId,
   get_RecentClickedResults,
@@ -126,4 +127,4 @@ export {
 } from './orbitStaticEntities';
 export { clearAllLocalEntities } from './clearLocalEntities';
 export { memoryDatabase, type LocalDatabase } from './database';
-export { DATABASE_NAME, LOCAL_NOTE, METADATA_TABLE } from './entities';
+export { DATABASE_NAME, LOCAL_NOTE, METADATA_TABLE, entityService } from './entities';

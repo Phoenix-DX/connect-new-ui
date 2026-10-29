@@ -9,6 +9,8 @@ import type {
 import type { EventDetailInputs } from '@/pages/EventDetail/inputs';
 import { OrbitEventType, SurveyStatus } from '@/pages/EventDetail/staticEntities';
 import type { LocalSurveyStatus } from '@/platform/storage/localEntities';
+import { NO_NOTES, notesWithoutNote } from '@/containers/ItemNotesSection/notes';
+import type { Notes } from '@/lib/ubtConnectLibrary/structures';
 import { MilestoneTimeType, OrbitMilestoneType } from '@/lib/orbit/staticEntities';
 import { filterMilestonesByDateGroup, getHostAllocation } from './eventDetailActions';
 
@@ -49,6 +51,9 @@ export interface EventDetailState {
   hostSurveyStatusId: string;
   /** GetLocalSurveyStatusByJSONName.List. */
   localSurveyStatus: LocalSurveyStatus[];
+  /** EventNotes: In_Notes of ItemNotesSection (OnAfterFetch_FetchEventNotes, Handler_OnNotesChanged,
+      Handler_OnNoteDeleted). */
+  eventNotes: Notes;
 }
 
 const EMPTY_EVENT: EventDetailScreen = {
@@ -88,6 +93,7 @@ export const INITIAL_EVENT_DETAIL_STATE: EventDetailState = {
   isEventDetailsFetched: false,
   hostSurveyStatusId: '',
   localSurveyStatus: [],
+  eventNotes: NO_NOTES,
 };
 
 /** The state changes of the flows and of the handlers. */
@@ -109,7 +115,12 @@ type EventDetailAction =
   /** OnReady: IsFetchingData = False at the end. */
   | { type: 'fetchEnded' }
   /** OnHandle_ClickedDate. */
-  | { type: 'dateClicked'; milestoneTimeTypeId: string; selectedDate: string; position: number };
+  | { type: 'dateClicked'; milestoneTimeTypeId: string; selectedDate: string; position: number }
+  /** OnAfterFetch_FetchEventNotes (EventNotes = FetchEventNotes.Notes) and Handler_OnNotesChanged (EventNotes =
+      New_Notes). */
+  | { type: 'eventNotesSet'; notes: Notes }
+  /** Handler_OnNoteDeleted: EventNotes without the note. */
+  | { type: 'noteDeleted'; noteId: string };
 
 /** OnAfterFetch_Get_EventDetails: EventDetails, DateFilters and IsEventUnavailable. With milestones, EventDetails keeps
     the milestones of the selected day (ListFilter IsSelected, then FilterMilestonesByDateGroup DAY), or without days
@@ -189,6 +200,10 @@ export function eventDetailReducer(state: EventDetailState, action: EventDetailA
       return { ...state, isFetchingData: false };
     case 'dateClicked':
       return clickDate(state, action.milestoneTimeTypeId, action.selectedDate, action.position);
+    case 'eventNotesSet':
+      return { ...state, eventNotes: action.notes };
+    case 'noteDeleted':
+      return { ...state, eventNotes: notesWithoutNote(state.eventNotes, action.noteId) };
   }
 }
 

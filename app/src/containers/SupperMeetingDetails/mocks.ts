@@ -1,6 +1,7 @@
 import type { RequestHandler } from 'msw';
+import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 import { contractHandler } from '@/mocks/contract';
-import { recordedHandler } from '@/mocks/fixtures';
+import { fixtureData } from '@/mocks/fixtures';
 import { householdsOfSupperMeeting } from '@/mocks/fictional/directory';
 import { subdivisionHousehold } from '@/components/household/HouseholdGalleryCardList/mockData';
 
@@ -8,7 +9,11 @@ import { subdivisionHousehold } from '@/components/household/HouseholdGalleryCar
    DataActionGetSubdivision and DataActionGetSubdivisionHouseholds, answered here. Scenarios: `real`, `loading` (never
    answers: skeletons) and `error` (calls fail: skeletons stay).
 
-   DataActionGetSubdivision: recorded (non-person: a supper meeting card), answered for any In_SubdivsionId.
+   DataActionGetSubdivision: recorded (non-person: a supper meeting card), answered for any In_SubdivsionId, except the
+   2nd and 3rd supper meetings of the SupperMeeting_Carousel mock preload, which get their own fictional cards with the
+   counts of the TST capture of 2026-10-29 (drift wave, household R7; dom/default.html slides 2 and 3): 9202
+   "Patagonia", 29 brethren (15 brothers, 14 sisters), 7 households; 9203 "Ingeniero White", 19 brethren (10 brothers,
+   9 sisters), 5 households. Names and addresses keep the captured word lengths.
 
    DataActionGetSubdivisionHouseholds: never recorded (x-mock-source fictional; households are person data): the
    households of the supper meeting in the directory cast (src/mocks/fictional/directory.ts), whose names, children and
@@ -22,8 +27,41 @@ import { subdivisionHousehold } from '@/components/household/HouseholdGalleryCar
    - any other id: the eleven of 1210 "Zapiola (Main Meeting Room)", households 3, 6, 7 and 11 without children
      (SupperMeeting_Details/default, dom/default.html `l1-89_2`, `_5`, `_6`, `_10`; CR-SupperMeeting_Details-1 §2), as
      the first slide of SupperMeeting_Carousel. */
+type SubdivisionOutput = ActionOutputs<PathOf<'UBTConnect', 'SupperMeeting_DetailsBlock/DataActionGetSubdivision'>>;
+
+/** The fictional supper meeting cards by SubdivisionId: name, brothers, sisters, households, address. */
+const SUBDIVISION_CARDS: Record<string, [string, number, number, number, string]> = {
+  '9202': ['Patagonia', 15, 14, 7, 'Pje. 1840 Vieytes Gorriti 22 Bahia Blanca Provincia de Buenos Aires B8000ABC'],
+  '9203': ['Ingeniero White', 10, 9, 5, 'Brandsen 64 Ingeniero Wte Bahia Blanca Buenos Aires B8103'],
+};
+
 export const handlers: RequestHandler[] = [
-  recordedHandler('UBTConnect', 'SupperMeeting_DetailsBlock/DataActionGetSubdivision', { matchInputs: false }),
+  contractHandler('UBTConnect', 'SupperMeeting_DetailsBlock/DataActionGetSubdivision', ({ In_SubdivsionId }) => {
+    const recorded = fixtureData(
+      'UBTConnect',
+      'SupperMeeting_DetailsBlock/DataActionGetSubdivision',
+    ) as SubdivisionOutput;
+    const id = String(In_SubdivsionId);
+    const card = SUBDIVISION_CARDS[id];
+    if (!card) return recorded;
+    const [Name, BrothersCount, SistersCount, HouseholdCount, Address] = card;
+    return {
+      Subdivision: {
+        ...recorded.Subdivision,
+        Subdivision_Card: {
+          SubdivisionId: id,
+          Subdivision_Card_Content: {
+            Name,
+            BretherenCount: BrothersCount + SistersCount,
+            HouseholdCount,
+            BrothersCount,
+            SistersCount,
+            Address,
+          },
+        },
+      },
+    };
+  }),
   contractHandler(
     'UBTConnect',
     'SupperMeeting_HouseholdList/DataActionGetSubdivisionHouseholds',

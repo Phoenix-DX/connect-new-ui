@@ -1,7 +1,7 @@
 # Coverage for HostSurvey
 
-- UI states captured: default
-- Runtime captures: 1 file(s), 4 call(s)
+- UI states captured: default, loading, offline
+- Runtime captures: 1 file(s), 1 call(s)
 - Masked text nodes: 26, user images removed: 0
 - Fetch failures during snapshot: 0
 

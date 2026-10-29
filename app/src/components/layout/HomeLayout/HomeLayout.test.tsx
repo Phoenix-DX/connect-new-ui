@@ -35,7 +35,7 @@ describe('Layout_HomePage', () => {
     );
     expect(container.querySelector('[data-block="Private.PullToRefresh"]')).not.toBeNull();
     expect(container.querySelector('#b1-ContentWrapper')).toHaveClass('content', 'background-neutral-0');
-    fireEvent.click(screen.getByText('Search for households. entities, news'));
+    fireEvent.click(screen.getByText('Search for households, members or places.'));
     expect(onSearch).toHaveBeenCalledTimes(1);
   });
 

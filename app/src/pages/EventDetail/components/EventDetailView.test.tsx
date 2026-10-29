@@ -73,6 +73,8 @@ const handlers = {
   onHandleViewHelpers: vi.fn(),
   onHandleContactHelpdesk: vi.fn(),
   onHandleClickedDate: vi.fn(),
+  onHandleNotesChanged: vi.fn(),
+  onHandleNoteDeleted: vi.fn(),
 };
 
 function renderView(props: Partial<EventDetailViewProps> = {}) {
@@ -83,6 +85,7 @@ function renderView(props: Partial<EventDetailViewProps> = {}) {
           id="$b1"
           inEventName=""
           inFromNotification={false}
+          inEventId="7301"
           hasOrbitHostSurvey
           hasOrbitEventBooklet
           state={loaded()}
@@ -112,9 +115,9 @@ describe('EventDetailView', () => {
       inEventName: 'Weekend Bible Conferences',
     });
     expect(blockOf('$b1')).toBe('Orbit_ScreenBlocks.ScreenBlock_EventDetail');
-    expect(blockOf('b1-$b14')).toBe('Orbit_Generic_Blocks.Skeleton_Loading');
+    expect(blockOf('b1-$b15')).toBe('Orbit_Generic_Blocks.Skeleton_Loading');
     expect(document.querySelector('.orbit-icon-paper-clip')).toBeNull();
-    expect(byId('b1-$b15')).toBeNull();
+    expect(byId('b1-$b16')).toBeNull();
     expect(document.querySelector('.orbit-header-center')?.textContent).toContain('Weekend Bible Conferences');
   });
 
@@ -127,12 +130,12 @@ describe('EventDetailView', () => {
       'Weekend Conference Program',
     ]);
     expect(document.querySelector('.orbit-host-survey-link-new')?.textContent).toBe('View Host Survey');
-    expect(blockOf('b1-$b3')).toBe('Orbit_Blocks.HostSurvey_PillItem');
-    expect(blockOf('b1-$b4')).toBe('Orbit_Generic_Blocks.Accordion_Orbit');
-    expect(blockOf('b1-$b7')).toBe('Orbit_Blocks.EventDateSelection');
+    expect(blockOf('b1-$b4')).toBe('Orbit_Blocks.HostSurvey_PillItem');
+    expect(blockOf('b1-$b5')).toBe('Orbit_Generic_Blocks.Accordion_Orbit');
+    expect(blockOf('b1-$b8')).toBe('Orbit_Blocks.EventDateSelection');
     expect(document.querySelectorAll('[data-block="Orbit_Blocks.Card_Milestone"]')).toHaveLength(2);
-    expect(blockOf('b1-l1-142797_1-$b8')).toBe('Orbit_Blocks.Card_Milestone');
-    expect(blockOf('b1-$b15')).toBe('Orbit_Blocks.ContactHelpdesk_Footer');
+    expect(blockOf('b1-l1-142797_1-$b9')).toBe('Orbit_Blocks.Card_Milestone');
+    expect(blockOf('b1-$b16')).toBe('Orbit_Blocks.ContactHelpdesk_Footer');
     expect(document.querySelector('.orbit-header-center')?.textContent).toContain(
       'Weekend Bible Conferences - Bahia and Azul',
     );
@@ -154,7 +157,7 @@ describe('EventDetailView', () => {
     renderView({ state: loaded({ localSurveyStatus: [sent] }) });
     const link = document.querySelector('.orbit-host-survey-link-new');
     expect(link?.textContent).toBe('Complete Host Survey');
-    expect(byId('b1-$b4')).toBeNull();
+    expect(byId('b1-$b5')).toBeNull();
     fireEvent.click(link as Element);
     expect(handlers.onClickNavigateToHostSurvey).toHaveBeenCalledTimes(1);
   });
@@ -210,9 +213,9 @@ describe('EventDetailView', () => {
 
   it('raises the clicks of the cards, the host allocation, the helpers and the footer', () => {
     renderView();
-    fireEvent.click(byId('b1-l1-142797_1-$b8')?.querySelector('.orbit-card-cont') as Element);
+    fireEvent.click(byId('b1-l1-142797_1-$b9')?.querySelector('.orbit-card-cont') as Element);
     expect(handlers.onHandleClickedMilestone).toHaveBeenCalledWith(meeting);
-    const views = document.querySelectorAll('#b1-\\$b6 .host-allocation-list-item-right');
+    const views = document.querySelectorAll('#b1-\\$b7 .host-allocation-list-item-right');
     expect(views).toHaveLength(2);
     fireEvent.click(views[0] as Element);
     expect(handlers.onHandleHostAllocationView).toHaveBeenCalledWith(
@@ -223,7 +226,7 @@ describe('EventDetailView', () => {
     );
     fireEvent.click(views[1] as Element);
     expect(handlers.onHandleViewHelpers).toHaveBeenCalledWith('Helper');
-    fireEvent.click(byId('b1-$b15')?.querySelector('.contact-helpdesk-footer') as Element);
+    fireEvent.click(byId('b1-$b16')?.querySelector('.contact-helpdesk-footer') as Element);
     expect(handlers.onHandleContactHelpdesk).toHaveBeenCalledTimes(1);
   });
 
@@ -231,30 +234,42 @@ describe('EventDetailView', () => {
     const empty = { eventDetails: { ...loaded().eventDetails, Milestones: [] }, responseMilestones: [] };
     renderView({ state: loaded({ ...empty, responseHelpers: false }) });
     expect(document.querySelector('.orbit-separator')).not.toBeNull();
-    expect(byId('b1-$b12')?.textContent).toBe(
+    expect(byId('b1-$b13')?.textContent).toBe(
       'Your itinerary will be available once it has been published by the event organiser.',
     );
-    expect(byId('b1-$b15')).toBeNull();
+    expect(byId('b1-$b16')).toBeNull();
   });
 
   it('shows the Host Allocation accordion without milestones for an event with helpers', () => {
     renderView({
       state: loaded({ eventDetails: { ...loaded().eventDetails, Milestones: [] }, responseMilestones: [] }),
     });
-    expect(blockOf('b1-$b9')).toBe('Orbit_Generic_Blocks.Accordion_Orbit');
-    expect(byId('b1-$b12')).toBeNull();
+    expect(blockOf('b1-$b10')).toBe('Orbit_Generic_Blocks.Accordion_Orbit');
+    expect(byId('b1-$b13')).toBeNull();
   });
 
   it('tells a member from a notification that the event is no longer available', () => {
     renderView({ inFromNotification: true, state: loaded({ isEventUnavailable: true }) });
-    expect(byId('b1-$b13')?.textContent).toBe('The Event is no longer available for you.');
-    expect(byId('b1-$b13')?.querySelector('.orbit-icon-circle-cross')).not.toBeNull();
+    expect(byId('b1-$b14')?.textContent).toBe('The Event is no longer available for you.');
+    expect(byId('b1-$b14')?.querySelector('.orbit-icon-circle-cross')).not.toBeNull();
   });
 
   it('shows the itinerary message for an unavailable event without a notification', () => {
     renderView({ state: loaded({ isEventUnavailable: true }) });
-    expect(byId('b1-$b13')?.textContent).toBe(
+    expect(byId('b1-$b14')?.textContent).toBe(
       'Your itinerary will be available once it has been published by the event organiser.',
     );
+  });
+});
+
+describe('EventDetailView notes (ItemNotesSection, TST 2026-10-27)', () => {
+  it('shows the notes section b1-$b3 as the last info row, without a preview when the event has no notes', () => {
+    renderView();
+    const section = byId('b1-$b3');
+    expect(section?.getAttribute('data-block')).toBe('CW_Notes.ItemNotesSection');
+    expect(section?.parentElement?.className).toBe('orbit-event-notes');
+    expect(section?.parentElement?.parentElement?.lastElementChild).toBe(section?.parentElement);
+    expect(byId('b1-b3-$b2')).toBeNull();
+    expect(byId('b1-b3-$b4')?.textContent).toContain('Add Note');
   });
 });

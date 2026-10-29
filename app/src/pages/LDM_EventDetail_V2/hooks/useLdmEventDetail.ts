@@ -1,4 +1,6 @@
-import { fetchCoordinatorDetails, fetchEventByEventId, type DetailGuestItem } from '@/api/event';
+import { fetchCoordinatorDetails, fetchEventByEventId, fetchLdmEventNotes, type DetailGuestItem } from '@/api/event';
+import { notesWithoutNote } from '@/containers/ItemNotesSection/notes';
+import type { Notes } from '@/lib/ubtConnectLibrary/structures';
 import { fetchHouseholdCoordinatesById } from '@/api/household';
 import { osImage } from '@/lib/os-assets';
 import { UserException, exceptionMessage, isSystemException } from '@/legacy/os/exceptions';
@@ -76,6 +78,12 @@ export interface LdmEventDetailFlows {
   onCloseContactByMessage: () => void;
   /** Email of ContactByMessage: OnHandle_ContactByMessage_ClickedEmail. */
   onContactByMessageEmail: () => void;
+  /** In_ItemId of the host card notes: EventHostId + ":" + EventId (EventDetail_HostCard.mvc.js:724). */
+  notesItemId: string;
+  /** HandlerOn_NotesChanged of EventDetail_HostCard: Handler_OnNotesChanged (EventNotes = New_Notes). */
+  onNotesChanged: (notes: Notes) => void;
+  /** HandlerOn_NoteDeleted of EventDetail_HostCard: HandlerOn_NoteDeleted (EventNotes without the note). */
+  onNoteDeleted: (noteId: string) => void;
 }
 
 /** The name under which the view cache keeps the block variables. */
@@ -115,6 +123,17 @@ export function useLdmEventDetail(inputs: LdmEventDetailInputs, events: LdmEvent
     // restored without data: call again (F40; OutSystems keeps the skeleton)
     if (restored && !latest.current.isFetching) return;
     const callInputs = parameters.current;
+    // FetchEventNotes is fetched at start too (ScreenBlock_EventDetail_V2.mvc.js:1385-1395, :1449-1467; captured
+    // first, calls.md #1). OnAfterFetch_FetchEventNotes: EventNotes = FetchEventNotes.Notes; a failure keeps the
+    // default EventNotes.
+    flow
+      .fetch(fetchLdmEventNotes(callInputs)) // R1
+      .then((eventNotes) => {
+        dispatch({ eventNotes });
+      })
+      .catch(() => {
+        // EventNotes keeps its default (Total 0, no notes).
+      });
     flow
       .fetch(fetchCoordinatorDetails(callInputs)) // R1
       .then((coordinator) => {
@@ -279,6 +298,15 @@ export function useLdmEventDetail(inputs: LdmEventDetailInputs, events: LdmEvent
       dispatch({ contactByPhoneData: closedPhonePopup(latest.current.contactByPhoneData) });
     },
     onCloseContactByMessage: closeContactByMessage,
+    notesItemId: `${inputs.EventHostId}:${inputs.EventId}`,
+    // Handler_OnNotesChanged: EventNotes = New_Notes.
+    onNotesChanged: (eventNotes) => {
+      dispatch({ eventNotes });
+    },
+    // HandlerOn_NoteDeleted (:2563-2614): EventNotes without the note.
+    onNoteDeleted: (noteId) => {
+      dispatch({ eventNotes: notesWithoutNote(latest.current.eventNotes, noteId) });
+    },
     // OnHandle_ContactByMessage_ClickedEmail: close the popup, then NavigateTo_ContactByEmail with the popup's data.
     onContactByMessageEmail: () => {
       const args = contactByEmailArgs(latest.current);

@@ -18,6 +18,13 @@ For every service call: the chains of code that lead to it, from a root (user ev
 - `AssembleSummary_List.refresh_GetAssembleEventTypes` → `AssembleSummary_List.DataActionGetAssembleEventTypes`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 - `AssembleSummary_List fetch at start` → `AssembleSummary_List.DataActionGetAssembleEventTypes`
 
+### `Connect2_LegacyShared/ActionGetCountriesBySubscription`
+- `Connect2_LegacyShared.getRegionSubscribedCountries` → `server GetCountriesBySubscription`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
+
+### `UBT_AppManager/ActionAppManager_AfterInitialize`
+- `UBT_AppManager.appManager_OnAppReady_Web` → `UBT_AppManager.appManager_InitializeWebComponents` → `UBT_AppManager.appManager_AfterInitialize` → `server AppManager_AfterInitialize`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
+- `UBTConnect.onApplicationReady` → `UBT_AppManager_Mobile.appManager_Mobile_OnAppReady` → `UBT_AppManager.appManager_InitializeWebComponents` → `UBT_AppManager.appManager_AfterInitialize` → `server AppManager_AfterInitialize`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
+
 ### `Connect2_Assemble_MUI/Assemble/AssembleSummary_List/DataActionGetAssembleMeetingSummaryList`
 - `AssembleSummary_List.list_AssembleSummaryCardsOnScrollEnding` → `AssembleSummary_List.DataActionGetAssembleMeetingSummaryList`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 - `onClick in HorizontalTags` → `HorizontalTags.onClick` → `event onClickTag of HorizontalTags` → `AssembleSummary_List.horizontalTagsOnClickTag` → `AssembleSummary_List.handler_ApplyFilters` → `AssembleSummary_List.refresh_EventList` → `AssembleSummary_List.DataActionGetAssembleMeetingSummaryList`
@@ -25,13 +32,6 @@ For every service call: the chains of code that lead to it, from a root (user ev
 - `onClick in AssembleSummary_List__Header` → `event clear of AssembleSummary_List__Header` → `AssembleSummary_List.handler_ClearFilters` → `AssembleSummary_List.refresh_EventList` → `AssembleSummary_List.DataActionGetAssembleMeetingSummaryList`
 - `AssembleSummary_List.refresh_GetAssembleMeetingSummaryList` → `AssembleSummary_List.DataActionGetAssembleMeetingSummaryList`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 - `AssembleSummary_List fetch at start` → `AssembleSummary_List.DataActionGetAssembleMeetingSummaryList`
-
-### `Connect2_LegacyShared/ActionGetCountriesBySubscription`
-- `Connect2_LegacyShared.getRegionSubscribedCountries` → `server GetCountriesBySubscription`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
-
-### `UBT_AppManager/ActionAppManager_AfterInitialize`
-- `UBT_AppManager.appManager_OnAppReady_Web` → `UBT_AppManager.appManager_InitializeWebComponents` → `UBT_AppManager.appManager_AfterInitialize` → `server AppManager_AfterInitialize`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
-- `UBTConnect.onApplicationReady` → `UBT_AppManager_Mobile.appManager_Mobile_OnAppReady` → `UBT_AppManager.appManager_InitializeWebComponents` → `UBT_AppManager.appManager_AfterInitialize` → `server AppManager_AfterInitialize`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 
 ### `UBTConnect/ActionSync_Info_GetMain`
 - `UBTConnect.onApplicationReady` → `UBTConnect.connect_SetLoggedContext` → `UBTConnect.sync_Info_Main` → `server Sync_Info_GetMain`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)

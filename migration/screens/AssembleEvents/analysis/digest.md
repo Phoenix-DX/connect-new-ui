@@ -666,17 +666,17 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 3742 ms
-- 2. `ActionGetUserInformation` (200) at 5401 ms
-- 3. `ActionGetUserInformation` (200) at 5723 ms
-- 4. `DataActionGetAssembleEventTypes` (200) at 5779 ms
-- 5. `DataActionGetAssembleMeetingSummaryList` (200) at 5864 ms
-- 6. `ActionGetCountriesBySubscription` (200) at 5996 ms
-- 7. `ActionAppManager_AfterInitialize` (200) at 6597 ms
-- 8. `ActionSync_Info_GetMain` (200) at 7126 ms
-- 9. `ActionGetNumberUnreadMessages` (200) at 7403 ms
-- 10. `ServiceAPIFetchData_CacheableMapEntities` (200) at 10080 ms
-- 11. `ServiceAPIFetchData_CacheableHouseholds` (200) at 12144 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 3998 ms
+- 2. `ActionGetUserInformation` (200) at 5955 ms
+- 3. `ActionGetUserInformation` (200) at 6402 ms
+- 4. `DataActionGetAssembleEventTypes` (200) at 6475 ms
+- 5. `ActionGetCountriesBySubscription` (200) at 6752 ms
+- 6. `ActionAppManager_AfterInitialize` (200) at 7771 ms
+- 7. `DataActionGetAssembleMeetingSummaryList` (200) at 7850 ms
+- 8. `ActionSync_Info_GetMain` (200) at 8337 ms
+- 9. `ActionGetNumberUnreadMessages` (200) at 8629 ms
+- 10. `ServiceAPIFetchData_CacheableMapEntities` (200) at 10731 ms
+- 11. `ServiceAPIFetchData_CacheableHouseholds` (200) at 13214 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

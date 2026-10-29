@@ -1,6 +1,7 @@
 /** @origin UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions */
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { osImage } from '@/lib/os-assets';
+import { wireList } from '@/lib/os-wire';
 import { NotRegisteredException, UserException, isInstanceOf } from '@/legacy/os/os-exceptions';
 import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { useOsNavigate } from '@/platform/navigation/osNavigate';
@@ -10,23 +11,27 @@ import {
   isSystemException,
   raiseToFlowHandler,
 } from '@/legacy/os/exceptions';
-import { get_LocalBookmarkByObjectId, getLocalBookmarkByObjectId } from '@/platform/storage/localEntities';
+import { getLocalBookmarkByObjectId } from '@/platform/storage/localEntities';
 import { useClientVar } from '@/platform/session/session';
 import { ACTIONS_MENU_ENABLE_OPTIONS_DEFAULT } from '@/lib/ubtConnectLibrary/actions';
 import type { ActionsMenuEnableOptions, ActionsMenuOptions, Notes } from '@/lib/ubtConnectLibrary/structures';
-import { getHasExtendedShare, getHasNewBookmarks } from '@/lib/ubtConnectUtils/actions';
+import { getHasExtendedShare } from '@/lib/ubtConnectUtils/actions';
 import type { ContactPopupData } from '@/lib/ubtConnectUtils/structures';
 import {
   bookmarkServerActions,
   getBookmarkCategoryId_ByEntityTypeId,
-  getBookmarkType_FromEntity,
   getNameAndSurname_ByFullName,
   toggleBookmarkItem_C2,
   type BookmarkServerActions,
 } from '@/lib/ubtConnect/actions';
 import { Connect_Entity } from '@/lib/ubtConnect/staticEntities';
 import { fetchContactDetails, fetchNotes, type EntityDetailsActionsVariables } from './api';
-import { CONTACT_POPUP_DATA_DEFAULT, onReadyInit, type ContactDetails } from './entityDetailsActionsState';
+import {
+  CONTACT_POPUP_DATA_DEFAULT,
+  notes_InterchangeId_ComposeId,
+  onReadyInit,
+  type ContactDetails,
+} from './entityDetailsActionsState';
 import type { EntityDetailsActionsContainerProps } from './types';
 
 /** The state, the effects and the handlers of the block (OnReady, OnParametersChanged, Handle_*); the view is
@@ -39,7 +44,7 @@ export function useEntityDetailsActions({
   contactPopUpOverrideOptions = {},
   enableOptions = ACTIONS_MENU_ENABLE_OPTIONS_DEFAULT,
   useViewDetails = false,
-  entityExtraDataJSON = '',
+  inLocalityId = '',
   onViewDetailsOnClick,
   onOnChangeBookmark,
 }: EntityDetailsActionsContainerProps) {
@@ -74,18 +79,16 @@ export function useEntityDetailsActions({
     'none',
   );
   const fetchStatusRef = useRef<'none' | 'done' | 'error'>(fetchStatus);
-  const [notes, setNotes] = useViewState<Notes>(`${scope}-FetchNotes`, {});
+  // EntityNotes (model): set by OnAfterFetch_FetchNotes, Handler_OnSheetNotesChanged and Handler_OnNoteDeleted.
+  const [entityNotes, setEntityNotes] = useViewState<Notes>(`${scope}-EntityNotes`, {});
   const [showCallPopUp, setShowCallPopUp] = useState(false);
   const [showEmailPopUp, setShowEmailPopUp] = useState(false);
   const [showSharePopup, setShowSharePopup] = useState(false);
   const [showNotesSheet, setShowNotesSheet] = useState(false);
-  // Local_isBookmarked (legacy bookmarks), Local_isBookmarked_C2, Local_BookmarkType, Local_BookmarkTypeId_C2,
-  // Local_BookmarkGroup (model, mvc.js:80-94)
+  // Local_isBookmarked and Local_BookmarkTypeId (model, mvc.js:80-85): the C2 bookmarks only (TST removed the legacy
+  // branch and Local_isBookmarked_C2 / Local_BookmarkType / Local_BookmarkGroup).
   const [isBookmarked, setIsBookmarked] = useViewState(`${scope}-Local_isBookmarked`, false);
-  const [isBookmarked_C2, setIsBookmarked_C2] = useViewState(`${scope}-Local_isBookmarked_C2`, false);
-  const [bookmarkType, setBookmarkType] = useViewState(`${scope}-Local_BookmarkType`, '');
-  const [bookmarkTypeId_C2, setBookmarkTypeId_C2] = useViewState(`${scope}-Local_BookmarkTypeId_C2`, '');
-  const [bookmarkGroup, setBookmarkGroup] = useViewState(`${scope}-Local_BookmarkGroup`, '');
+  const [bookmarkTypeId, setBookmarkTypeId] = useViewState(`${scope}-Local_BookmarkTypeId`, '');
   /* Action_ApplyPopUpOverrides (after the contact fetch, or directly when nothing is fetched): OneSchool Global keeps
      the override image for the share sheet and shows the OneSchoolGlobal image; a non-empty override Name replaces the
      popup name and EntityName. */
@@ -112,12 +115,8 @@ export function useEntityDetailsActions({
     ContactPopUp_OverrideOptions: { ImageURL: '', Name: '', ...contactPopUpOverrideOptions },
     EnableOptions: { ...ACTIONS_MENU_ENABLE_OPTIONS_DEFAULT, ...localEnableOptions },
     useViewDetails: useViewDetails,
-    EntityExtraDataJSON: entityExtraDataJSON,
     Local_isBookmarked: isBookmarked,
-    Local_isBookmarked_C2: isBookmarked_C2,
-    Local_BookmarkType: bookmarkType,
-    Local_BookmarkTypeId_C2: bookmarkTypeId_C2,
-    Local_BookmarkGroup: bookmarkGroup,
+    Local_BookmarkTypeId: bookmarkTypeId,
     Local_In_ActionsMenuOptions: {
       HasBookmark: false,
       HasUnbookmark: false,
@@ -139,6 +138,17 @@ export function useEntityDetailsActions({
     ShowIconLabels: showIconLabels,
     ShareSheet_OverwriteImageURL: shareSheetImageURL,
     NoteCategoryId: noteCategoryId,
+    EntityNotes: {
+      Total: entityNotes.Total ?? 0,
+      Note_Item_List: wireList(
+        (entityNotes.Note_Item_List ?? []).map((note) => ({
+          Id: note.Id ?? '0',
+          Note: note.Note ?? '',
+          DateCreatedUtc: note.DateCreatedUtc ?? '',
+          DateEditedUtc: note.DateEditedUtc ?? '',
+        })),
+      ),
+    },
   });
   const variablesRef = useRef(variables);
   const onChangeBookmarkRef = useRef(onOnChangeBookmark);
@@ -147,15 +157,27 @@ export function useEntityDetailsActions({
     onChangeBookmarkRef.current = onOnChangeBookmark;
   });
 
-  /** OnReady (controller mvc.js:1658-1946), after the menu set-up and share type of onReadyInit (an InvalidAction goes to
-      the flow handler). The share-type If (:1861-1869, no else) and the bookmarks step (:1871-1929) are consecutive.
-      Bookmarks step, with HasBookmark or HasUnbookmark: C2NewBookmarks on → GetBookmarkCategoryId_ByEntityTypeId,
-      GetLocalBookmarkByObjectId_C2 (UBTConnect_Bookmarks_MCS), Local_isBookmarked_C2 = Id <> NullIdentifier,
-      OnChange_Bookmark, Action_RefreshFetchNotes (FetchNotes when EntityId is set, :2163-2200); off (TST) →
-      GetBookmarkType_FromEntity, Get_LocalBookmarkByObjectId (Connect2_LegacyShared), Local_isBookmarked, OnChange_Bookmark.
-      Then isLoaded = not isFetchContacts or FetchContactDetails.IsDataFetched or HasFetchError (:1932-1933). Runs once,
-      as OnReady (OnParametersChanged only updates the contact details); a view restored from the cache ends before the
-      set-up (CheckRestored). */
+  /** Action_RefreshFetchNotes (mvc.js:2149-2190): nothing without EntityId; else FetchNotes (FetchNoteId =
+      Notes_InterchangeId_ComposeId(In_LocalityId, EntityId) for an interchange, else EntityId: a block variable that
+      the contract inputs do not list) and OnAfterFetch_FetchNotes (:2051-2070): EntityNotes = FetchNotes.Notes.
+      `overrides` are the variables set earlier in the same flow (the state is not committed yet). */
+  const refreshFetchNotes = async (overrides: Partial<EntityDetailsActionsVariables> = {}) => {
+    const current = variablesRef.current();
+    if ((current.EntityId ?? '0') === '0') return;
+    setEntityNotes(await fetchNotes({ ...current, ...overrides }));
+  };
+  const refreshFetchNotesRef = useRef(refreshFetchNotes);
+  useLayoutEffect(() => {
+    refreshFetchNotesRef.current = refreshFetchNotes;
+  });
+
+  /** OnReady (controller mvc.js:1700-1900), after the menu set-up and share type of onReadyInit (an InvalidAction goes to
+      the flow handler). With HasBookmark or HasUnbookmark (:1864-1887): GetBookmarkCategoryId_ByEntityTypeId
+      (Local_BookmarkTypeId), GetLocalBookmarkByObjectId_C2 (UBTConnect_Bookmarks_MCS), Local_isBookmarked = Id <>
+      NullIdentifier, OnChange_Bookmark, Action_RefreshFetchNotes. No flag: TST removed the GetHasNewBookmarks branch.
+      Then isLoaded = not isFetchContacts or FetchContactDetails.IsDataFetched or HasFetchError. Runs once, as OnReady
+      (OnParametersChanged only updates the contact details); a view restored from the cache ends before the set-up
+      (CheckRestored). */
   useEffect(() => {
     if (isRestoredFromCache) return;
     if (onReady.error !== undefined) {
@@ -165,31 +187,13 @@ export function useEntityDetailsActions({
     const { EntityType: type = '', EntityId: id = '0' } = variablesRef.current();
     const bookmarksStep = async () => {
       if (onReady.options.HasBookmark !== true && onReady.options.HasUnbookmark !== true) return;
-      if (getHasNewBookmarks()) {
-        const typeId = getBookmarkCategoryId_ByEntityTypeId(type);
-        setBookmarkTypeId_C2(typeId);
-        const local = await getLocalBookmarkByObjectId(id);
-        const bookmarked = local.Id !== '0';
-        setIsBookmarked_C2(bookmarked);
-        onChangeBookmarkRef.current?.(bookmarked);
-        if (id !== '0') {
-          setNotes(
-            await fetchNotes({
-              ...variablesRef.current(),
-              Local_BookmarkTypeId_C2: typeId,
-              Local_isBookmarked_C2: bookmarked,
-            }),
-          );
-        }
-      } else {
-        const legacy = getBookmarkType_FromEntity(type);
-        setBookmarkType(legacy.BookmarkType);
-        setBookmarkGroup(legacy.BookmarkGroup);
-        const local = await get_LocalBookmarkByObjectId(legacy.BookmarkType, id);
-        const bookmarked = local.Id !== '0';
-        setIsBookmarked(bookmarked);
-        onChangeBookmarkRef.current?.(bookmarked);
-      }
+      const typeId = getBookmarkCategoryId_ByEntityTypeId(type);
+      setBookmarkTypeId(typeId);
+      const local = await getLocalBookmarkByObjectId(id);
+      const bookmarked = local.Id !== '0';
+      setIsBookmarked(bookmarked);
+      onChangeBookmarkRef.current?.(bookmarked);
+      await refreshFetchNotesRef.current({ Local_BookmarkTypeId: typeId, Local_isBookmarked: bookmarked });
     };
     bookmarksStep().then(() => {
       setIsLoaded(!onReady.isFetchContacts || fetchStatusRef.current !== 'none');
@@ -207,7 +211,7 @@ export function useEntityDetailsActions({
     contactPopUpOverrideOptions,
     enableOptions,
     useViewDetails,
-    entityExtraDataJSON,
+    inLocalityId,
   ]);
   /** The parameters of a view restored from the cache: its OnReady makes no call (CheckRestored). */
   const restoredParametersKey = useRef(isRestoredFromCache ? parametersKey : null);
@@ -283,7 +287,12 @@ export function useEntityDetailsActions({
     CountryName: contact.CountryName ?? '',
   });
   const hasExtendedShare = getHasExtendedShare();
-  const hasNewBookmarks = getHasNewBookmarks();
+  /* The In_ItemId of the NotesSheet (view mvc.js:936-944): "<In_LocalityId>:<EntityId>" for an interchange with a
+     locality, else the EntityId as text. */
+  const noteItemId =
+    entityType === Connect_Entity.Interchange && inLocalityId !== ''
+      ? notes_InterchangeId_ComposeId(inLocalityId, entityId)
+      : entityId;
   // Client variables are reactive in OutSystems (a change re-renders every view that reads them): the sync started at
   // app open (shell/startup.ts) can end after FetchContactDetails.
   const bookmarksIsSynched = useClientVar('UBTConnect.Bookmarks_IsSynched');
@@ -315,17 +324,17 @@ export function useEntityDetailsActions({
       In_AvatarURL: contact.ImageURL ?? '',
     });
   };
-  /** Handle_Bookmark (Bookmark and Unbookmark of the menu; mvc.js:1388-1514): isLoaded False; always the C2 branch
-      (its If is `True`, :1415): ToggleBookmarkItem_C2(EntityId, Local_BookmarkTypeId_C2, Local_isBookmarked_C2), then
-      Local_isBookmarked_C2 flips, isLoaded True and OnChange_Bookmark(Local_isBookmarked_C2). Handlers: NotRegistered
-      raised again; CommunicationException → isLoaded True, BubbleCommunicationException; AllExceptions → isLoaded True,
-      BubbleGenericException. The menu reads Local_isBookmarked while C2NewBookmarks is off, as the view does. */
+  /** Handle_Bookmark (Bookmark and Unbookmark of the menu; mvc.js:1400-1470): isLoaded False;
+      ToggleBookmarkItem_C2(LongIntegerToText(EntityId), Local_BookmarkTypeId, Local_isBookmarked), then Local_isBookmarked
+      flips, isLoaded True and OnChange_Bookmark(Local_isBookmarked). Handlers: NotRegistered raised again;
+      CommunicationException → isLoaded True, BubbleCommunicationException; AllExceptions → isLoaded True,
+      BubbleGenericException. */
   const handleBookmark = async (server: BookmarkServerActions) => {
     setIsLoaded(false);
     try {
-      await toggleBookmarkItem_C2(entityId, bookmarkTypeId_C2, isBookmarked_C2, server);
-      const bookmarked = !isBookmarked_C2;
-      setIsBookmarked_C2(bookmarked);
+      await toggleBookmarkItem_C2(entityId, bookmarkTypeId, isBookmarked, server);
+      const bookmarked = !isBookmarked;
+      setIsBookmarked(bookmarked);
       setIsLoaded(true);
       onOnChangeBookmark?.(bookmarked);
     } catch (ex) {
@@ -345,9 +354,9 @@ export function useEntityDetailsActions({
   const onClickBookmark = () => {
     if (bookmarkServerActions) handleBookmark(bookmarkServerActions).catch(raiseToFlowHandler);
   };
-  /** Handler_AddNotes: Action_RefreshFetchNotes, then the notes sheet opens. */
+  /** Handler_AddNotesOnClick (mvc.js:1366-1395): Action_RefreshFetchNotes, then ShowNotesSheet = True. */
   const handlerAddNotes = async () => {
-    if (entityId !== '0') setNotes(await fetchNotes(variablesRef.current()));
+    await refreshFetchNotes();
     setShowNotesSheet(true);
   };
   return {
@@ -364,15 +373,14 @@ export function useEntityDetailsActions({
     isLoaded,
     isLoading,
     isBookmarked,
-    isBookmarked_C2,
-    hasNewBookmarks,
     hasExtendedShare,
     details,
     contact,
     overrideImageURL,
     shareSheetImageURL,
-    notes,
-    setNotes,
+    entityNotes,
+    setEntityNotes,
+    noteItemId,
     showEmailPopUp,
     showCallPopUp,
     setShowCallPopUp,

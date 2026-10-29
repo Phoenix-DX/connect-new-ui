@@ -15,6 +15,7 @@ import type { EventDetailHandlers } from '@/pages/EventDetail/hooks/useEventDeta
 import { MenuAction_Auto, OrbitEventType, SurveyStatus } from '@/pages/EventDetail/staticEntities';
 import { OrbitSkeletonLoading } from '@/lib/orbit/staticEntities';
 import { SectionExpandable } from '@/components/ui/legacy/SectionExpandable';
+import { ItemNotesSection } from '@/containers/ItemNotesSection';
 import { EventDateSelection } from './EventDateSelection';
 import { HostAllocation_List } from './HostAllocation_List';
 
@@ -23,6 +24,10 @@ import { HostAllocation_List } from './HostAllocation_List';
 
 const NO_ITINERARY = 'Your itinerary will be available once it has been published by the event organiser.';
 const NO_LONGER_AVAILABLE = 'The Event is no longer available for you.';
+/** ItemNotesSection of the event (ScreenBlock_EventDetail.mvc.js:805-860): category TextToIdentifier("Orbit Event"),
+    ActionBarOptions ShowAddNote and IsAddNoteEnabled True (the action bar reads only ShowAddNote). */
+const NOTE_CATEGORY_ORBIT_EVENT = 'Orbit Event';
+const EVENT_NOTES_ACTIONS = { showUnbookmark: false, showAddNote: true, showShare: false };
 
 export interface EventDetailViewProps extends EventDetailHandlers {
   /** OutSystems instance id of the block (`$b1`). */
@@ -31,6 +36,8 @@ export interface EventDetailViewProps extends EventDetailHandlers {
   inEventName: string;
   /** In_FromNotification: an unavailable event then shows "no longer available". */
   inFromNotification: boolean;
+  /** In_EventId: In_ItemId of the notes section (LongIntegerToText(In_EventId)). */
+  inEventId: string;
   /** GetHasOrbitHostSurvey (flag mobileOrbitHostSurvey): the host survey link and pill. */
   hasOrbitHostSurvey: boolean;
   /** GetHasOrbitEventBooklet (flag mobileOrbitEventBooklet): the "View Event Guest List" row. */
@@ -49,6 +56,7 @@ export function EventDetailView({
   id,
   inEventName,
   inFromNotification,
+  inEventId,
   hasOrbitHostSurvey,
   hasOrbitEventBooklet,
   state: s,
@@ -61,6 +69,8 @@ export function EventDetailView({
   onHandleViewHelpers,
   onHandleContactHelpdesk,
   onHandleClickedDate,
+  onHandleNotesChanged,
+  onHandleNoteDeleted,
 }: EventDetailViewProps) {
   const prefix = id.replace('$', '');
   const e = s.eventDetails;
@@ -120,7 +130,7 @@ export function EventDetailView({
           <i className="icon margin-left-m font-size-1-25em fa fa-angle-right fa-1x" data-icon="" />
         </div>
         <HostSurveyPill
-          id={`${prefix}-$b3`}
+          id={`${prefix}-$b4`}
           inIconClass={
             isSent ? 'orbit-icon-circle-warning color-orbit-orange-8' : 'orbit-icon-circle-check color-orbit-green-6'
           }
@@ -138,7 +148,7 @@ export function EventDetailView({
     );
 
   /** The accordion of a day with milestones: survey Confirmed. */
-  const dayAccordion: ReactNode = isConfirmed ? accordion('4', '5', '6') : null;
+  const dayAccordion: ReactNode = isConfirmed ? accordion('5', '6', '7') : null;
 
   const noInformation = (alias: string) => (
     <OrbitNoInformation
@@ -151,11 +161,11 @@ export function EventDetailView({
   /** Without milestones: once fetched, the accordion (helpers and Confirmed) or the separator and NoInformation. */
   const noMilestones: ReactNode = !(s.isEventDetailsFetched && !s.isFetchingData) ? null : s.responseHelpers &&
     isConfirmed ? (
-    accordion('9', '10', '11')
+    accordion('10', '11', '12')
   ) : (
     <>
       <div className="orbit-separator" data-container="" />
-      {noInformation('12')}
+      {noInformation('13')}
     </>
   );
 
@@ -217,14 +227,27 @@ export function EventDetailView({
           </div>
         </div>
       )}
+      <div className="orbit-event-notes" data-container="">
+        <ItemNotesSection
+          id={`${prefix}-$b3`}
+          actionBarOptions={EVENT_NOTES_ACTIONS}
+          inNoteCategoryId={NOTE_CATEGORY_ORBIT_EVENT}
+          inItemId={inEventId}
+          inNotes={s.eventNotes}
+          onOnNoteDeleted={(noteId) => {
+            onHandleNoteDeleted(noteId);
+          }}
+          onOnNotesChanged={onHandleNotesChanged}
+        />
+      </div>
     </div>
   );
 
   const content: ReactNode = s.isFetchingData ? (
-    <OrbitSkeleton id={`${prefix}-$b14`} inSkeletonLoadingId={OrbitSkeletonLoading.EventDetail} />
+    <OrbitSkeleton id={`${prefix}-$b15`} inSkeletonLoadingId={OrbitSkeletonLoading.EventDetail} />
   ) : s.isEventUnavailable ? (
     s.isEventDetailsFetched ? (
-      noInformation('13')
+      noInformation('14')
     ) : null
   ) : (
     <>
@@ -236,7 +259,7 @@ export function EventDetailView({
           <div className="padding-x-m padding-y-m bold color-orbit-primary-7 font-size-1-1em" data-container="">
             <span data-expression="">Itinerary</span>
           </div>
-          <EventDateSelection id={`${prefix}-$b7`} inDateList={s.dateFilters} onClickedDate={onHandleClickedDate} />
+          <EventDateSelection id={`${prefix}-$b8`} inDateList={s.dateFilters} onClickedDate={onHandleClickedDate} />
           <OSList
             className="list list-group orbit-card-list"
             animateItems
@@ -247,7 +270,7 @@ export function EventDetailView({
             {(p, i) => (
               <div className="orbit-card-list-cont" data-container="">
                 <MilestoneCard
-                  id={`${prefix}-l1-142797_${String(i)}-$b8`}
+                  id={`${prefix}-l1-142797_${String(i)}-$b9`}
                   inMilestoneSummary={p}
                   isOverrideMainColorVar=""
                   isSetUpMeals={!e.Meals}
@@ -308,7 +331,7 @@ export function EventDetailView({
         content={content}
         bottomBar={
           s.responseMilestones.length > 0 && !s.isFetchingData ? (
-            <ContactHelpdeskFooter id={`${prefix}-$b15`} onClick={onHandleContactHelpdesk} />
+            <ContactHelpdeskFooter id={`${prefix}-$b16`} onClick={onHandleContactHelpdesk} />
           ) : null
         }
         commonUIElements={<div id={`${prefix}-CommonUI_Elements`} />}

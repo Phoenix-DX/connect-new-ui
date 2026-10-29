@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "f236039fd9c6d281bcdf",
+ "fingerprint": "7cb92c94852b156e3a23",
  "options": {
   "text": true,
   "style": true,
@@ -27,10 +27,8 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-29T09:59:34.223Z",
- "counts": {
-  "structure": 3
- },
+ "at": "2026-10-29T12:46:32.857Z",
+ "counts": {},
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 1,
   "CAPTURE-SKELETON-SHIMMER-PHASE": 138,
@@ -58,21 +56,5 @@
   "diffPng": "migration/screens/SupperMeeting_Carousel/parity/offline.diff.png"
  },
  "calls": null,
- "diffs": [
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[Directory_Caroussel.EntitiesCarousel] > div#b3-EntitiesCarousel.OSBlockWidget[Interaction.Carousel] > div.osui-carousel.ubt-entities-carousel > div#splide01.is-active.is-initialized.is-overflow > div#b3-b1-CarouselItems.osui-carousel__content.splide__track.splide__track--draggable > div#splide01-list.OSFillParent.list.list-group > div#splide01-slide01.is-active.is-visible.splide__slide > div#b3-l1-146319_0-$b2.OSBlockWidget[Directory_Caroussel.EntitiesCarousel_Element] > div > div#b3-l1-146319_0-b2-$b2.OSBlockWidget[Directory_Caroussel.EntitiesCarouse_lSupperMeetingDetails] > div#b3-l1-146319_0-b2-b2-$b1.OSBlockWidget[Directory_SupperMeetings.SupperMeeting_DetailsBlock] > div#b3-l1-146319_0-b2-b2-b1-$b1.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen] > div.directory-detail-screen > div#b3-l1-146319_0-b2-b2-b1-b1-Placeholder_CallToAction > div#b3-l1-146319_0-b2-b2-b1-$b6.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b3-l1-146319_0-b2-b2-b1-b6-Placeholder_LoadingSection.ubt-skeleton-section > div > div#b3-l1-146319_0-b2-b2-b1-$b7.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen_Section] > div#b3-l1-146319_0-b2-b2-b1-b7-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-l1-146319_0-b2-b2-b1-b7-b1-Content.background-neutral-0.padding-bottom-s.padding-top-s > div#b3-l1-146319_0-b2-b2-b1-b7-$b2.OSBlockWidget[Layouts.SubLayout_Section] > div#b3-l1-146319_0-b2-b2-b1-b7-b2-SubLayout_Section.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-l1-146319_0-b2-b2-b1-b7-b2-b1-Content.margin-top-xs.ubt-custom-container.ubt-sub-layout-section > div#b3-l1-146319_0-b2-b2-b1-b7-b2-Content > div#b3-l1-146319_0-b2-b2-b1-b7-Placeholder_SectionContent > div#b3-l1-146319_0-b2-b2-b1-$b8.OSBlockWidget[Directory_CommonBlocks.Directory_EntityDetailsActions] > div.OSBlockWidget[CW_Notes.NotesSheet]",
-   "detail": "extra in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[Directory_Caroussel.EntitiesCarousel] > div#b3-EntitiesCarousel.OSBlockWidget[Interaction.Carousel] > div.osui-carousel.ubt-entities-carousel > div#splide01.is-active.is-initialized.is-overflow > div#b3-b1-CarouselItems.osui-carousel__content.splide__track.splide__track--draggable > div#splide01-list.OSFillParent.list.list-group > div#splide01-slide02.is-next.splide__slide > div#b3-l1-146319_1-$b2.OSBlockWidget[Directory_Caroussel.EntitiesCarousel_Element] > div > div#b3-l1-146319_1-b2-$b2.OSBlockWidget[Directory_Caroussel.EntitiesCarouse_lSupperMeetingDetails] > div#b3-l1-146319_1-b2-b2-$b1.OSBlockWidget[Directory_SupperMeetings.SupperMeeting_DetailsBlock] > div#b3-l1-146319_1-b2-b2-b1-$b1.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen] > div.directory-detail-screen > div#b3-l1-146319_1-b2-b2-b1-b1-Placeholder_CallToAction > div#b3-l1-146319_1-b2-b2-b1-$b6.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b3-l1-146319_1-b2-b2-b1-b6-Placeholder_LoadingSection.ubt-skeleton-section > div > div#b3-l1-146319_1-b2-b2-b1-$b7.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen_Section] > div#b3-l1-146319_1-b2-b2-b1-b7-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-l1-146319_1-b2-b2-b1-b7-b1-Content.background-neutral-0.padding-bottom-s.padding-top-s > div#b3-l1-146319_1-b2-b2-b1-b7-$b2.OSBlockWidget[Layouts.SubLayout_Section] > div#b3-l1-146319_1-b2-b2-b1-b7-b2-SubLayout_Section.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-l1-146319_1-b2-b2-b1-b7-b2-b1-Content.margin-top-xs.ubt-custom-container.ubt-sub-layout-section > div#b3-l1-146319_1-b2-b2-b1-b7-b2-Content > div#b3-l1-146319_1-b2-b2-b1-b7-Placeholder_SectionContent > div#b3-l1-146319_1-b2-b2-b1-$b8.OSBlockWidget[Directory_CommonBlocks.Directory_EntityDetailsActions] > div.OSBlockWidget[CW_Notes.NotesSheet]",
-   "detail": "extra in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[Directory_Caroussel.EntitiesCarousel] > div#b3-EntitiesCarousel.OSBlockWidget[Interaction.Carousel] > div.osui-carousel.ubt-entities-carousel > div#splide01.is-active.is-initialized.is-overflow > div#b3-b1-CarouselItems.osui-carousel__content.splide__track.splide__track--draggable > div#splide01-list.OSFillParent.list.list-group > div#splide01-slide03.splide__slide > div#b3-l1-146319_2-$b2.OSBlockWidget[Directory_Caroussel.EntitiesCarousel_Element] > div > div#b3-l1-146319_2-b2-$b2.OSBlockWidget[Directory_Caroussel.EntitiesCarouse_lSupperMeetingDetails] > div#b3-l1-146319_2-b2-b2-$b1.OSBlockWidget[Directory_SupperMeetings.SupperMeeting_DetailsBlock] > div#b3-l1-146319_2-b2-b2-b1-$b1.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen] > div.directory-detail-screen > div#b3-l1-146319_2-b2-b2-b1-b1-Placeholder_CallToAction > div#b3-l1-146319_2-b2-b2-b1-$b6.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b3-l1-146319_2-b2-b2-b1-b6-Placeholder_LoadingSection.ubt-skeleton-section > div > div#b3-l1-146319_2-b2-b2-b1-$b7.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen_Section] > div#b3-l1-146319_2-b2-b2-b1-b7-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-l1-146319_2-b2-b2-b1-b7-b1-Content.background-neutral-0.padding-bottom-s.padding-top-s > div#b3-l1-146319_2-b2-b2-b1-b7-$b2.OSBlockWidget[Layouts.SubLayout_Section] > div#b3-l1-146319_2-b2-b2-b1-b7-b2-SubLayout_Section.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-l1-146319_2-b2-b2-b1-b7-b2-b1-Content.margin-top-xs.ubt-custom-container.ubt-sub-layout-section > div#b3-l1-146319_2-b2-b2-b1-b7-b2-Content > div#b3-l1-146319_2-b2-b2-b1-b7-Placeholder_SectionContent > div#b3-l1-146319_2-b2-b2-b1-$b8.OSBlockWidget[Directory_CommonBlocks.Directory_EntityDetailsActions] > div.OSBlockWidget[CW_Notes.NotesSheet]",
-   "detail": "extra in build"
-  }
- ]
+ "diffs": []
 }

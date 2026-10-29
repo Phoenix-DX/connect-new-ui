@@ -49,7 +49,7 @@ export const ASSEMBLE_COUNTRIES: readonly AssembleCountry[] = [
   country('NZ', 'New Zealand', '3', [6284, 2107, 41], ['-40.9006', '174.886', 5]),
   country('VC', 'Saint Vincent', '1', [74, 27, 1], ['13.2528', '-61.1971', 10]),
   country('SE', 'Sweden', '2', [352, 118, 7], ['60.1282', '18.6435', 4]),
-  country('CH', 'Switzerland', '2', [102, 33, 4], ['46.8182', '8.2275', 7]),
+  country('CH', 'Switzerland', '2', [102, 34, 4], ['46.8182', '8.2275', 7]),
   country('TT', 'Trinidad', '1', [74, 20, 2], ['10.6918', '-61.2225', 9]),
   country('GB', 'United Kingdom', '2', [23560, 8742, 86], ['55.3781', '-3.436', 5]),
   country('US', 'United States', '1', [9871, 3405, 29], ['37.0902', '-95.7129', 3]),

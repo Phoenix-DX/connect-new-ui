@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "21013c0d8591bf33a880",
+ "fingerprint": "a231a76cf11488702568",
  "options": {
   "text": true,
   "style": true,
@@ -27,20 +27,19 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-29T09:56:50.866Z",
- "counts": {
-  "pixel": 1
- },
+ "at": "2026-10-29T12:48:08.157Z",
+ "counts": {},
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 54,
   "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
-  "ignoreSubtrees": 1
+  "ignoreSubtrees": 1,
+  "CAPTURE-MASKED-PILL-TEXT-NOTES-WIDTH": 1
  },
  "pixel": {
-  "ratio": 0.00581,
-  "maxCell": 0.1156,
+  "ratio": 0.00105,
+  "maxCell": 0.0625,
   "maxCellRatio": 0.03,
-  "diffPixels": 1905,
+  "diffPixels": 345,
   "comparedPixels": 327972,
   "maxRatio": 0.002,
   "threshold": 0.1,
@@ -54,11 +53,11 @@
   ],
   "masks": 7,
   "hotspots": [
-   "200,760 (185px)",
-   "0,760 (160px)",
-   "40,760 (160px)",
-   "80,760 (160px)",
-   "120,760 (160px)"
+   "320,160 (100px)",
+   "320,120 (84px)",
+   "360,160 (69px)",
+   "200,800 (35px)",
+   "360,120 (32px)"
   ],
   "diffPng": "migration/screens/Notes/parity/default.diff.png"
  },
@@ -69,11 +68,5 @@
   "expected": 8,
   "actual": 10
  },
- "diffs": [
-  {
-   "kind": "pixel",
-   "path": "screenshot",
-   "detail": "0.58% pixels differ (max 0.20%), worst 40px tile 11.6% (max 3.0%), hotspots 200,760 (185px); 0,760 (160px); 40,760 (160px); 80,760 (160px); 120,760 (160px); see migration/screens/Notes/parity/default.diff.png"
-  }
- ]
+ "diffs": []
 }

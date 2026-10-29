@@ -32,6 +32,8 @@ export interface TextOptions {
   FontWeight?: string;
   IsItalic?: boolean;
   IsUnderlined?: boolean;
+  /** Adds `ubt-custom-text-ellipsis` (live TST UBTConnectLibrary.model.js:728, TextOptions.IsOverflowEllipsis). */
+  IsOverflowEllipsis?: boolean;
 }
 
 export interface DisplayOptions {

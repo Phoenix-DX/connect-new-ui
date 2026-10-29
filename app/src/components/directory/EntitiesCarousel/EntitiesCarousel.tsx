@@ -5,6 +5,7 @@ import { OSList } from '@/components/ui/os/OSList';
 import { Carousel } from '@/components/ui/Carousel';
 import {
   carouselDisableOnRender,
+  removeCarouselOnResizeHandler,
   setSplideConfigs,
   setSplideEvent,
   unsetSplideEvent,
@@ -108,6 +109,8 @@ export function EntitiesCarousel({
     unsetSplideEvent(carouselWidgetId, 'resized');
     setSplideEvent(carouselWidgetId, 'moved', moved);
     if (BLOCK_VARIABLES.UseMoveHandler) setSplideEvent(carouselWidgetId, 'move', move);
+    // Live TST of 2026-10-27 (RemoveCarouselOnResizeHandlerJS, last node): no width redraw on a window resize.
+    removeCarouselOnResizeHandler(carouselWidgetId);
   };
 
   /** Handler_SetHeaderList (:402-465): appends {Event_Header, Event_Index} unless that index already has a header. */

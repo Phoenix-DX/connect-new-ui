@@ -1,8 +1,12 @@
 import { fetchBookmarkCards, fetchBookmarkPills, type BookmarksFilter } from '@/api/bookmark';
 import { setPreloadObject, useFlowState, useOsNavigate } from '@/platform/navigation';
 import { currentUserId } from '@/platform/session/session';
-import { LOCAL_BOOKMARK, localBookmarksDatabase, type LocalBookmark } from '@/platform/storage/localEntities';
-import { entityService } from '@/platform/storage/localEntities/entities';
+import {
+  LOCAL_BOOKMARK,
+  entityService,
+  localBookmarksDatabase,
+  type LocalBookmark,
+} from '@/platform/storage/localEntities';
 import { bookmarkServerActions, scrollTop, toggleBookmarkItem_C2 } from '@/lib/ubtConnect/actions';
 import type { Tag } from '@/lib/ubtConnectLibrary/structures';
 import {

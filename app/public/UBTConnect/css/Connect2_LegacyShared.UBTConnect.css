@@ -18,6 +18,8 @@
         /*  1.7.4. Photobook Bottom Sheet  */
     /*  1.8. Updates  */
     /*  1.9. HomePage  */
+    /*  1.10. Search Screen */
+    /*  1.11. Notification Screen */
 
 /* === 2. General === */
     /*  2.1. Bottom bar  */
@@ -429,9 +431,43 @@ div:has(div > div.ubt-icon.header-filter-enabled) {
 
 /*  1.9. HomePage  */
 
-.ubt-services-carousel .osui-carousel .splide img {
-    -o-object-fit:uset;
-     object-fit:unset;
+.list.list-group.recent-search-list {
+  display: flex;
+  gap: var(--space-s);
+  overflow: hidden;
+  overflow-x: auto;      /* beats the theme's overflow: hidden */
+}
+
+.recent-search-list > .recent-search-item {
+  flex: 0 0 auto;            /* content width, no grow, no shrink */
+  max-width: 100px;
+ 
+}
+
+.recent-search-item span {
+  width: 100%;
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+    
+}
+
+
+.recent-search-item span {
+  width: 100%;
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
 }
 
 /* === 2. General === */
@@ -1982,4 +2018,29 @@ therefore the final listed last element on the list will not be considered the l
 
 .subscription-pop-up [data-popup-backdrop] {
     z-index: 1005;
+}
+
+/*  1.11. Notification Screen */
+
+.notifications-delete_BTN {
+    background: var(--color-red-dark) !important;
+    border-radius: var(--Radius---border-radius-m, 8px) !important;
+    border: var(--border-size-s) solid var(--color-red-dark);
+}
+
+.notifications-cancel_BTN {
+    border-radius: var(--Radius---border-radius-m, 8px) !important;
+    border: var(--Size---border-size-s, 1px) solid var(--color-cyan-dark);
+}
+
+.list-itemNotifications-Delete-action-primary {
+    background-color: var(--color-red-dark);
+}
+
+.list-itemNotifications-Read-action-primary {
+    background-color: var(--color-cyan-lighter);
+}
+
+.moreActionContainer .osui-bottom-sheet__header::after {
+  height: 20px;
 }

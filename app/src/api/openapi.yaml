@@ -2336,6 +2336,42 @@ paths:
       x-os-phase: ['load']
       x-os-screens: ['EventDetail']
       x-review: 'inputs'
+  '/api/Connect2_OrbitMobile_MUI/ScreenBlock_EventDetail_V2/DataActionFetchEventNotes':
+    post:
+      operationId: 'Connect2_OrbitMobile_MUI.ScreenBlock_EventDetail_V2.DataActionFetchEventNotes'
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              '$ref': '#/components/schemas/Connect2_OrbitMobile_MUI__ScreenBlock_EventDetail_V2__DataActionFetchEventNotes__Input'
+        required: true
+      responses:
+        '200':
+          content:
+            'application/json':
+              schema:
+                properties:
+                  data:
+                    '$ref': '#/components/schemas/Connect2_OrbitMobile_MUI__ScreenBlock_EventDetail_V2__DataActionFetchEventNotes__Output'
+                required: ['data']
+                type: 'object'
+          description: 'The action outputs.'
+        default:
+          content:
+            'application/json':
+              schema: { '$ref': '#/components/schemas/Error' }
+          description: 'Error.'
+      summary: 'Data action DataActionFetchEventNotes (Connect2_OrbitMobile_MUI, LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2)'
+      tags: ['Connect2_OrbitMobile_MUI']
+      x-mock-source: 'fictional'
+      x-os-inputs: 'screen-variables'
+      x-os-kind: 'dataAction'
+      x-os-owner: 'LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2'
+      x-os-paths:
+        - 'screenservices/Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionFetchEventNotes'
+      x-os-phase: ['load']
+      x-os-screens: ['LDM_EventDetail_V2']
+      x-review: 'inputs'
   '/api/Connect2_OrbitMobile_MUI/ScreenBlock_EventDetail_V2/DataActionGetCoordinatorDetails':
     post:
       operationId: 'Connect2_OrbitMobile_MUI.ScreenBlock_EventDetail_V2.DataActionGetCoordinatorDetails'
@@ -12866,6 +12902,31 @@ components:
       required: ['Response']
       type: 'object'
       x-os-output-of: 'Connect2_OrbitMobile_MUI.ScreenBlock_EventBooklet.DataActionGet_EventBookletHelpers'
+    Connect2_OrbitMobile_MUI__ScreenBlock_EventDetail_V2__DataActionFetchEventNotes__Input:
+      additionalProperties: true
+      description: 'Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter.'
+      properties:
+        ContactByMessagePopupData:
+          '$ref': '#/components/schemas/Connect2_OrbitMobile_MUI__UI_ContactByMessage_WrapperDataTextRecord'
+        ContactByMessagePopupData_IsCoordinator: { type: 'boolean' }
+        ContactByPhoneData: { '$ref': '#/components/schemas/UBTConnect_Utils__ContactByPhonePopupData' }
+        EventHostId: { type: 'string', x-os-type: 'LongInteger' }
+        EventId: { type: 'string', x-os-type: 'LongInteger' }
+        EventNotes: { '$ref': '#/components/schemas/UBTConnectLibrary__Notes' }
+        HasInformation: { type: 'boolean' }
+        IsFetching: { type: 'boolean' }
+        MaxPhotoHeight: { type: 'integer' }
+        MaxPhotoWidth: { type: 'integer' }
+        MinBannerHeight: { type: 'integer' }
+        SquarePhotoPx: { type: 'integer' }
+      type: 'object'
+      x-os-input-of: 'Connect2_OrbitMobile_MUI.ScreenBlock_EventDetail_V2.DataActionFetchEventNotes'
+    Connect2_OrbitMobile_MUI__ScreenBlock_EventDetail_V2__DataActionFetchEventNotes__Output:
+      properties:
+        Notes: { '$ref': '#/components/schemas/UBTConnectLibrary__Notes' }
+      required: ['Notes']
+      type: 'object'
+      x-os-output-of: 'Connect2_OrbitMobile_MUI.ScreenBlock_EventDetail_V2.DataActionFetchEventNotes'
     Connect2_OrbitMobile_MUI__ScreenBlock_EventDetail_V2__DataActionGetCoordinatorDetails__Input:
       additionalProperties: true
       description: 'Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter.'

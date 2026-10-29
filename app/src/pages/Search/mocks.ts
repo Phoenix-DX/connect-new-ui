@@ -1,14 +1,16 @@
 import type { RequestHandler } from 'msw';
 import { contractHandler } from '@/mocks/contract';
 import { recordedHandler } from '@/mocks/fixtures';
-import { wireList } from '@/lib/os-wire';
+import { osList, wireList } from '@/lib/os-wire';
 import type { SearchResultWire } from '@/api/search';
 import { LOCALITY, LOCALITY_HOUSEHOLDS, householdName, type CastHousehold } from '@/mocks/fictional/directory';
 
 /* Get_SearchBirthdayOptions: recorded (fixture UBTConnect ScreenBlock_Search/ScreenDataSetGet_SearchBirthdayOptions).
    DataActionFetchSearchResults was never recorded (no captured search, Q2): fictional people and places of the
    directory cast, the same
-   answer for any term (the server-side matching is not known); scenario empty = no results, error = HTTP 500. */
+   answer for any term (the server-side matching is not known); scenario empty = no results, error = HTTP 500.
+   DataActionGet_FilteredRecentClickedResults was recorded only with no recent clicks (empty lists, Search default of
+   2026-10-29); the server filter is not known: the mock keeps every sent row and removes none. */
 const result = (
   id: string,
   type: string,
@@ -46,5 +48,9 @@ export const handlers: RequestHandler[] = [
     Households: wireList(HOUSEHOLDS),
     People: wireList(PEOPLE),
     Places: wireList(PLACES),
+  })),
+  contractHandler('UBTConnect', 'ScreenBlock_Search/DataActionGet_FilteredRecentClickedResults', (inputs) => ({
+    Out_RecentClickedResults: wireList(osList(inputs.RecentClickedResults)),
+    Out_IdsToRemove: wireList<string>([]),
   })),
 ];

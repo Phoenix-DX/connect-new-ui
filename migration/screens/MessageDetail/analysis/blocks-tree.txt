@@ -1,33 +1,11 @@
-MyNotifications.ScreenBlock_MessageList
+MyNotifications.ScreenBlock_MessageDetail
   Layout.Layout
     LayoutRuntime_NavigationHandler.LayoutRuntime_Top
     Layout.BaseLayout_UpdatedOSUI
-      Layout.MenuIcon__UpdatedOSUI
-      Private.PullToRefresh
-      MyNotifications.MessageListBlock
-        MyNotifications.MessageListItem
-        MyNotifications.MessageListItem
-        MyNotifications.MessageListItem
-        MyNotifications.MessageListItem
-        MyNotifications.MessageListItem
-        MyNotifications.MessageListItem
-        MyNotifications.MessageListItem
-        MyNotifications.MessageListItem
-        MyNotifications.MessageListItem
-        MyNotifications.MessageListItem
-        MyNotifications.MessageListItem
-        MyNotifications.MessageListItem
-        MyNotifications.MessageListItem
-        MyNotifications.MessageListItem
-        MyNotifications.MessageListItem
-        MyNotifications.MessageListItem
-        MyNotifications.MessageListItem
-        MyNotifications.MessageListItem
-        MyNotifications.MessageListItem
-        MyNotifications.MessageListItem
-      Reusable.Spinner
-      Reusable.Spinner
-      NavigationHandler.BackNavigationHandler
+      Layout.MenuIcon_Back
+      Widgets.NotificationDetailBlock
+        Content.Card
+          HtmlSanitizer.SanitizedHtml
       App_Common.BottomBarMenu
         App_Common.BottomBarContent
           Navigation.BottomBarItem
@@ -74,3 +52,4 @@ MyNotifications.ScreenBlock_MessageList
           EventfulDeeplinksPlugin.DeeplinkHandlerCentral
         Utility.HandleImageLoadError
         NavigationHandler.BackNavigationHandler
+      NavigationHandler.BackNavigationHandler

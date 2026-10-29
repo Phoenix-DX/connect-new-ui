@@ -37,7 +37,7 @@ vi.mock('@/platform/navigation', async (importOriginal) => ({
 /* The flows of the locality screen, with the calls and the navigation replaced by spies. The mock user lives in
    locality 585 ("Bahia Blanca, Argentina"); the route opens locality 252. Fictional data. */
 const inputs: LocalityDetailsInputs = { LocalityId: '252', PreloadedLocalityLabel: 'Bahia Blanca, Argentina' };
-const flags: LocalityDetailsFlags = { hasLocalityContacts: false, hasC1DirectoryView: true };
+const flags: LocalityDetailsFlags = { hasC1DirectoryView: true };
 const DETAILS: LocalityDetails = {
   ...NO_LOCALITY_DETAILS,
   bretherenCount: 54,

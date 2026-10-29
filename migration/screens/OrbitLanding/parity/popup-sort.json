@@ -4,8 +4,8 @@
  "mock": "real",
  "viewport": "390x844",
  "flags": {},
- "steps": 0,
- "fingerprint": "7aa1a60c7e58cfbb15a4",
+ "steps": 3,
+ "fingerprint": "276de447fbba8afaabb0",
  "options": {
   "text": true,
   "style": true,
@@ -27,23 +27,19 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-29T09:57:55.493Z",
- "counts": {
-  "attr": 1,
-  "class": 1,
-  "pseudo": 1,
-  "pixel": 1
- },
+ "at": "2026-10-29T12:44:53.387Z",
+ "counts": {},
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 45,
   "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
-  "ignoreSubtrees": 1
+  "ignoreSubtrees": 1,
+  "ORBITLANDING-POPUP-TOP-AND-RADIO-CHECKED": 1
  },
  "pixel": {
-  "ratio": 0.94143,
-  "maxCell": 1,
+  "ratio": 0.00058,
+  "maxCell": 0.0813,
   "maxCellRatio": 0.03,
-  "diffPixels": 286283,
+  "diffPixels": 176,
   "comparedPixels": 304093,
   "maxRatio": 0.002,
   "threshold": 0.1,
@@ -57,41 +53,20 @@
   ],
   "masks": 10,
   "hotspots": [
-   "0,0 (1600px)",
-   "40,0 (1600px)",
-   "80,0 (1600px)",
-   "120,0 (1600px)",
-   "160,0 (1600px)"
+   "320,280 (130px)",
+   "360,280 (46px)"
   ],
   "diffPng": "migration/screens/OrbitLanding/parity/popup-sort.diff.png"
  },
  "calls": {
   "phases": [
-   "load"
+   "load",
+   "popup-filters",
+   "popup-filters-closed",
+   "popup-sort"
   ],
   "expected": 9,
   "actual": 9
  },
- "diffs": [
-  {
-   "kind": "attr",
-   "path": "div#reactContainer",
-   "detail": "aria-hidden: true → ∅"
-  },
-  {
-   "kind": "class",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Orbit_ScreenBlocks.ScreenBlock_OrbitLanding] > div#b1-$b1.OSBlockWidget[Layout_OrbitTheme.Layout_Orbit] > div.backwards-compatibility.orbit-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.ios-bounce.layout > div.main.screen > header#b1-b1-b2-Header.header > div#b1-b1-b2-HeaderContent.header-content.header-top-content.ph > div#b1-b1-HeaderContent > div.orbit-landing-filters-cont > div.justify-content-flex-end.orbit-landing-filters > i.fa.fa-1x.fa-caret-up",
-   "detail": "missing .fa-caret-up extra .fa-caret-down"
-  },
-  {
-   "kind": "pseudo",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Orbit_ScreenBlocks.ScreenBlock_OrbitLanding] > div#b1-$b1.OSBlockWidget[Layout_OrbitTheme.Layout_Orbit] > div.backwards-compatibility.orbit-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.ios-bounce.layout > div.main.screen > header#b1-b1-b2-Header.header > div#b1-b1-b2-HeaderContent.header-content.header-top-content.ph > div#b1-b1-HeaderContent > div.orbit-landing-filters-cont > div.justify-content-flex-end.orbit-landing-filters > i.fa.fa-1x.fa-caret-up",
-   "detail": "::before content \"\" → \"\""
-  },
-  {
-   "kind": "pixel",
-   "path": "screenshot",
-   "detail": "94.14% pixels differ (max 0.20%), worst 40px tile 100.0% (max 3.0%), hotspots 0,0 (1600px); 40,0 (1600px); 80,0 (1600px); 120,0 (1600px); 160,0 (1600px); see migration/screens/OrbitLanding/parity/popup-sort.diff.png"
-  }
- ]
+ "diffs": []
 }

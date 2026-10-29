@@ -2,7 +2,8 @@
 // @os-block UBTConnect_Utils.CW_Notes.NotesSheet
 import { useEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { isUserException, raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { UserException, isCommunicationException, isUserException, raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { CustomContainer } from '@/components/ui/CustomContainer';
 import { createOrUpdate_LocalNote } from '@/platform/storage/localEntities';
 import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler';
 import { AddNote } from '@/components/note/AddNote';
@@ -22,7 +23,7 @@ export interface NotesSheetProps {
   inIsOpen?: boolean;
   /** ExtendedClasses of the BottomSheet. */
   extendedClasses?: string;
-  /** In_ItemId (Long Integer). */
+  /** In_ItemId (Text; an interchange note id is "<LocalityId>:<InterchangeLocalityId>"). */
   inItemId?: string;
   /** In_NoteCategoryId. */
   inNoteCategoryId?: string;
@@ -36,14 +37,16 @@ export interface NotesSheetProps {
   onOnNoteDeleted?: (noteId: string, isLastNoteDeleted: boolean) => Promise<void> | void;
 }
 
-/** The "Note" bottom sheet: the notes with edit / delete and the AddNote footer
-    (migration/screens/HouseholdCarousel/analysis/sources/pretty/UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js: view
-    :196-410, controller :416-944). */
+/** The "Note" bottom sheet: the notes with edit / delete and the AddNote footer in a `notes-sheet-footer` container
+    (TST code of 2026-10-27: migration/screens/HouseholdDetails/analysis/sources/pretty/
+    UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js; its stylesheet css/UBTConnect_Utils.CW_Notes.NotesSheet.css is linked
+    per route, app/routes.css.generated.ts). Not ported: the AddNote inputs In_Note / IsSubmitting (NoteText,
+    IsSubmittingNote), README. */
 export function NotesSheet({
   id,
   inIsOpen = false,
   extendedClasses = '',
-  inItemId = '0',
+  inItemId = '',
   inNoteCategoryId = '',
   inNotes = {},
   onOnNotesChanged,
@@ -93,8 +96,19 @@ export function NotesSheet({
     }
   };
 
-  // Handler_OnAddNoteRequested (:470-580). Handle Error: UserException only (:549-565): any other error goes up to the
-  // flow handler (Q-W3B-2).
+  // BottomSheetOnToggle (controller :720-740): IsSheetOpen = IsOpen; a close while In_IsOpen is True runs
+  // Handler_OnNoteSheet_Closed (IsEditing = False, On_NoteSheet_Closed).
+  const bottomSheetOnToggle = (isOpen: boolean) => {
+    setBottomSheetOpen(isOpen);
+    if (!isOpen && inIsOpen) {
+      setIsEditing(false);
+      onOnNoteSheetClosed?.();
+    }
+  };
+
+  // Handler_OnSubmitNote (controller :530-640). Handle Error: CommunicationException raises the UserException
+  // UBTConnect_Utils.CommunicationError ("NoteCommunicationError"); UserException shows the add error message; any
+  // other error goes up to the flow handler (Q-W3B-2).
   const addNoteRequested = async (note: string) => {
     try {
       const result = await addNote(inNoteCategoryId, inItemId, note);
@@ -119,6 +133,10 @@ export function NotesSheet({
         note_SendFeedbackMessages(NoteActionType.Add, false, false);
       }
     } catch (error) {
+      if (isCommunicationException(error)) {
+        raiseToFlowHandler(new UserException('NoteCommunicationError', 'UBTConnect_Utils.CommunicationError'));
+        return;
+      }
       if (!isUserException(error)) {
         raiseToFlowHandler(error);
         return;
@@ -135,7 +153,7 @@ export function NotesSheet({
           extendedClasses={extendedClasses}
           showHeader
           footerHeight="72px"
-          onOnClose={onOnNoteSheetClosed}
+          onOnToggle={bottomSheetOnToggle}
           onInitialized={onInitialized}
           content={
             <NoteListActionsContainer
@@ -151,7 +169,13 @@ export function NotesSheet({
               }}
             />
           }
-          footer={!isEditing && <AddNote onOnSubmitRequested={addNoteRequested} />}
+          footer={
+            !isEditing && (
+              <CustomContainer extendedClasses="notes-sheet-footer" options={{ Background: {} }}>
+                <AddNote onOnSubmitRequested={addNoteRequested} />
+              </CustomContainer>
+            )
+          }
         />
       )}
       {isSheetOpen && (

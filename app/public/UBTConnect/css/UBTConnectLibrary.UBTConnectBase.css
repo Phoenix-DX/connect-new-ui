@@ -394,8 +394,8 @@ body{
 
 @font-face {
     font-family: "connect-icon";
-    src: url("../fonts/connect-icon.ttf?tbuZOmGm6vXAX4hIr02Eog") format("truetype"),
-        url("../fonts/connect-icon.woff?gTFkf2syETDHMRt09buNwg") format("woff");
+    src: url("../fonts/connect-icon.ttf?HT_uwn+T2VKou8HgfRa7Ng") format("truetype"),
+        url("../fonts/connect-icon.woff?jalxyxpdQKM4kTZYDVDUYQ") format("woff");
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -609,6 +609,9 @@ body{
 .connect-icon-calendar_busy_fill:before {content: "\f0b9";}
 .connect-icon-calendar_busy:before {content: "\f0ba";}
 .connect-icon-remove-fill:before {content: "\f0bf";}
+.connect-icon-Arrow-up1:before {content: "\f0c2";}
+.connect-icon-Arrow-down:before {content: "\f0c1";}
+
 
 /* === 2. Resets === */
 

@@ -10,7 +10,7 @@ import { INITIAL_LOCALITY_HOUSEHOLD_LIST, localityHouseholdListReducer, withBook
 export interface LocalityHouseholdListFlags {
   /** C2EnableCarousel (GetHasCarouselEnabled): a card opens HouseholdCarousel. */
   hasCarouselEnabled: boolean;
-  /** C2NewBookmarks (GetHasNewBookmarks; decided default-only, off): on, IsBookmarked of each row comes from
+  /** C2NewBookmarks (GetHasNewBookmarks; default-only, on as TST, H-Q2 a 2026-10-29): on, IsBookmarked of each row comes from
       GetLocal_Bookmark_C2 (the C2 local bookmarks); off, from the legacy GetLocal_Bookmark. */
   hasNewBookmarks: boolean;
 }

@@ -1,5 +1,6 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
+  clearScrollTimeout,
   convertUbtSizeToGutterSize,
   formatStyles,
   getClasses_Border,
@@ -13,6 +14,8 @@ import {
   getStyle_Opacity,
   getStyle_SizeOptions,
   removeRegexSpecialCharacters,
+  removeScrollEvents,
+  setScrollShadow,
   sVGHeader_GetPath,
   onApplicationReady_BottomBarSlider,
   preetyFormatDate,
@@ -84,6 +87,10 @@ describe('UBTConnectLibrary actions', () => {
   it('text and container classes', () => {
     expect(getClasses_Text({ Color: 'primary', IsItalic: true, IsUnderlined: true })).toBe(
       'text-primary italic text-underline',
+    );
+    // IsOverflowEllipsis comes last (live TST UBTConnectLibrary.controller.js GetClasses_Text, FormatClasses6).
+    expect(getClasses_Text({ FontSize: 'xs', IsUnderlined: true, IsOverflowEllipsis: true })).toBe(
+      'font-size-xs text-underline ubt-custom-text-ellipsis',
     );
     expect(
       getClasses_Container({
@@ -160,5 +167,77 @@ describe('onApplicationReady_BottomBarSlider (UBTConnectLibrary.controller.js:78
     slider?.dispatchEvent(new Event('animationend'));
     expect(document.querySelector('.dx-bottom-bar-slider')).toBeNull();
     document.body.innerHTML = '';
+  });
+});
+
+/* SetScrollShadow (ScrollEvent.shadowScroll, migration/runtime-sources/UBTConnectLibrary.ScrollAnimations.js:151-205):
+   the first evaluation runs once, 200 ms after the layout calls it (SA:187-190), not at the first frame; after it, only
+   a scroll evaluates again. So a page that is taller than the screen at 200 ms (the loading cards) and shorter later
+   (the empty state) keeps the footer shadow, as on TST (drift WP9, Notes default). */
+describe('setScrollShadow (ScrollAnimations.js:151-205)', () => {
+  afterEach(() => {
+    vi.useRealTimers();
+    vi.unstubAllGlobals();
+    document.body.innerHTML = '';
+  });
+
+  function mountScreen(heights: { scroll: number }) {
+    const screen = document.body.appendChild(document.createElement('div'));
+    screen.className = 'active-screen screen-container';
+    screen.appendChild(document.createElement('div')).className = 'layout';
+    Object.defineProperty(screen, 'scrollHeight', { configurable: true, get: () => heights.scroll });
+    Object.defineProperty(screen, 'clientHeight', { configurable: true, value: 844 });
+    return screen;
+  }
+
+  it('evaluates once after 200 ms, then only on scroll', () => {
+    vi.useFakeTimers();
+    const frames: FrameRequestCallback[] = [];
+    vi.stubGlobal('requestAnimationFrame', (cb: FrameRequestCallback) => frames.push(cb));
+    const heights = { scroll: 1166 }; // loading cards: taller than the 844 px screen
+    const screen = mountScreen(heights);
+    const shadows = () => [
+      screen.style.getPropertyValue('--header-shadow-scroll'),
+      screen.style.getPropertyValue('--footer-shadow-scroll'),
+    ];
+
+    const out = setScrollShadow();
+    expect(out.Out_Element).toBe(screen);
+    expect(frames).toHaveLength(0); // no first-frame evaluation
+    vi.advanceTimersByTime(199);
+    expect(shadows()).toEqual(['', '']);
+    vi.advanceTimersByTime(1);
+    expect(shadows()).toEqual(['hidden', 'visible']);
+
+    // The data arrives (empty state): the page no longer scrolls, but nothing evaluates again without a scroll.
+    heights.scroll = 844;
+    vi.advanceTimersByTime(5000);
+    expect(shadows()).toEqual(['hidden', 'visible']);
+
+    screen.dispatchEvent(new Event('scroll'));
+    screen.dispatchEvent(new Event('scroll'));
+    expect(frames).toHaveLength(1); // debounced: one run per frame
+    for (const cb of frames.splice(0)) cb(0);
+    expect(shadows()).toEqual(['hidden', 'hidden']);
+
+    removeScrollEvents(out.Out_Element, out.Out_ScrollEvent);
+    screen.dispatchEvent(new Event('scroll'));
+    expect(frames).toHaveLength(0);
+  });
+
+  it('sets nothing when the layout is destroyed before 200 ms (ClearTimeout, SA:436-440)', () => {
+    vi.useFakeTimers();
+    const screen = mountScreen({ scroll: 844 });
+    const out = setScrollShadow();
+    vi.advanceTimersByTime(150);
+    clearScrollTimeout(out.Out_Timeout);
+    vi.advanceTimersByTime(1000);
+    expect(screen.style.getPropertyValue('--footer-shadow-scroll')).toBe('');
+  });
+
+  it('returns no outputs without a layout on the active screen', () => {
+    const screen = document.body.appendChild(document.createElement('div'));
+    screen.className = 'active-screen screen-container';
+    expect(setScrollShadow()).toEqual({});
   });
 });

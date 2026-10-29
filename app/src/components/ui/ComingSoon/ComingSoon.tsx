@@ -3,7 +3,7 @@
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
-import { UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
+import { UBT_Color, UBT_Icons, UBT_IconSize, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 import type { TextOptions } from '@/lib/ubtConnectLibrary/structures';
 
 export interface ComingSoonProps {
@@ -13,7 +13,8 @@ export interface ComingSoonProps {
 }
 
 /** "Coming Soon" box (p:UBTConnectLibrary.ConnectPatterns.ComingSoon.mvc.js:147-195): a padding-base CustomContainer
-    (border Size / Radius records empty) holding a centered CustomText with the caller's text options. */
+    (border Size / Radius records empty) holding a centered CustomText with the caller's text options and the inline
+    calendar icon (calendar, medium_20, neutral0; live TST of 2026-10-27, :192-203; OneSchoolGlobalDetails Q8 a). */
 export function ComingSoon({ id, inTextOptions = {} }: ComingSoonProps) {
   return (
     <OSBlock name="ConnectPatterns.ComingSoon" id={id}>
@@ -21,7 +22,16 @@ export function ComingSoon({ id, inTextOptions = {} }: ComingSoonProps) {
         extendedClasses="ubt-coming-soon"
         options={{ PaddingSize: { GeneralSizeId: UBT_Size.Base }, BorderOptions: { Size: {}, Radius: {} } }}
       >
-        <CustomText inTextOptions={inTextOptions} inText="Coming Soon" extendedClasses="text-align-center" />
+        <CustomText
+          inTextOptions={inTextOptions}
+          inText="Coming Soon"
+          extendedClasses="text-align-center"
+          inlineIcon={{
+            IconId: UBT_Icons.Calendar,
+            IconSizeId: UBT_IconSize.Medium_20,
+            IconColorId: UBT_Color.Neutral0,
+          }}
+        />
       </CustomContainer>
     </OSBlock>
   );

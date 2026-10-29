@@ -60,7 +60,7 @@ const INPUTS: HouseholdDetailsParameters = {
   isSkeletonOnly: false,
   hideActions: false,
 };
-const FLAGS = { hasPhotobookAccess: true, hasExtendedShare: false };
+const FLAGS = { hasPhotobookAccess: true, hasExtendedShare: false, hasHouseholdGallery: false };
 const HOUSEHOLD: Household = {
   Household: {
     HouseholdCard: {

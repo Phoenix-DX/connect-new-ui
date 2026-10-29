@@ -1,5 +1,11 @@
 import { useCallback, useEffect, useReducer, useRef } from 'react';
-import { fetchNotificationDateRanges, fetchNotifications, markNotificationAsRead } from '@/api/notification';
+import {
+  deleteNotifications,
+  fetchNotificationDateRanges,
+  fetchNotifications,
+  markAllAsReadNotifications,
+  markNotificationAsRead,
+} from '@/api/notification';
 import { UserException, exceptionMessage, isSystemException } from '@/legacy/os/exceptions';
 import { useFlowScope, useOsNavigate, useViewState } from '@/platform/navigation';
 import { directory_Updates_RefreshBottomBarCount, scrollTop } from '@/lib/ubtConnect/actions';
@@ -16,8 +22,9 @@ import {
   type NotificationsState,
 } from './notificationsState';
 
-/** The flows of the Notifications screen: OnReady (GetDateRanges, then FetchNotifications), RefreshNotifications, the
-    search input of the header, the kebab button, ApplyFilters of the two sheets, and the events that set a variable.
+/** The flows of the Notifications screen (TST publish of 2026-10-27): OnReady (GetDateRanges, then
+    FetchNotifications), RefreshNotifications, the search input of the header, the kebab button, ApplyFilters of the two
+    sheets, the only-unread switch, the read count, mark all as read, delete all, and the events that set a variable.
     @origin UBTConnect.App_Notifications.Notifications */
 
 /** The name under which the view cache keeps the cached variables. */
@@ -37,8 +44,17 @@ export interface NotificationsFlows {
   onChangeSearchInput: (text: string, inIsToggleSearch: boolean) => void;
   /** OnClick_KebabButton: opens Notifications_MoreActionSheet. */
   onKebab: () => void;
-  /** Handler_ApplyFilters: ApplyFilters of both sheets. */
-  onApplyFilters: () => void;
+  /** Handler_ApplyFilters(HasFiltersApplied, IsNewestToOldest): ApplyFilters of both sheets (the more-actions sheet
+      passes True). */
+  onApplyFilters: (isNewestToOldest: boolean) => void;
+  /** Handler_OnlyShowUnread: OnlyShowUnread of Notifications_Action. */
+  onOnlyShowUnread: (onlyShowUnread: boolean) => void;
+  /** Handler_UpdateReadCount: UpdateReadCount(AddToCount, IsDelete, IsRead) of NotificationsListBreakpoints. */
+  onUpdateReadCount: (addToCount: boolean, isDelete: boolean, isRead: boolean) => void;
+  /** Handler_MoreActionSheetMarkAllAsRead: MarkAllAsRead of Notifications_MoreActionSheet. */
+  onMarkAllAsRead: () => void;
+  /** Handler_MoreActionSheetDeleteAll: DeleteAll of Notifications_MoreActionSheet. */
+  onDeleteAll: () => void;
   /** SheetInitialized of Notifications_SortSheet. */
   onFilterSheetInitialized: (sheetId: string) => void;
   /** SheetInitialized of Notifications_MoreActionSheet. */
@@ -138,8 +154,7 @@ export function useNotifications(): NotificationsFlows {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  /* Handler_ApplyFilters and Handler_FilterSearchText after their assignments: ScrollTop, isLoading, then
-     RefreshNotifications. */
+  /* Handler_FilterSearchText after its assignments: ScrollTop, isLoading, then RefreshNotifications. */
   const scrollTopAndRefresh = () => {
     scrollTop('.active-screen', 'instant');
     dispatch({ type: 'loadingStarted' });
@@ -166,9 +181,48 @@ export function useNotifications(): NotificationsFlows {
     bottomSheetOpen(latest.current.moreAction_BottomSheetId);
   };
 
-  const onApplyFilters = () => {
-    dispatch({ type: 'filtersApplied' });
-    scrollTopAndRefresh();
+  /* Handler_ApplyFilters (Notifications.mvc.js:2781-2810): the assignments (isLoading True, OrderByIsAscending), then
+     RefreshNotifications; no ScrollTop in the TST publish of 2026-10-27. */
+  const onApplyFilters = (isNewestToOldest: boolean) => {
+    dispatch({ type: 'filtersApplied', isNewestToOldest });
+    flow.run(refreshNotifications);
+  };
+
+  // Handler_OnlyShowUnread (:1604-1630): Local_OnlyShowUnread, then FetchNotifications again (no isLoading).
+  const onOnlyShowUnread = (onlyShowUnread: boolean) => {
+    dispatch({ type: 'onlyShowUnreadSet', onlyShowUnread });
+    flow.run(refreshNotifications);
+  };
+
+  const onUpdateReadCount = (addToCount: boolean, _isDelete: boolean, isRead: boolean) => {
+    dispatch({ type: 'readCountUpdated', addToCount, isRead });
+  };
+
+  /* Handler_MoreActionSheetMarkAllAsRead (:2611-2662): isLoading, MarkAllAsReadNotifications (a server action: R2,
+     not wrapped) with the message types, the device and CurrentSearchString, SetBadgeCountsToZero, isLoading False,
+     the bottom bar count, then RefreshNotifications. */
+  const markAllAsRead = async () => {
+    dispatch({ type: 'loadingStarted' });
+    const v = latest.current;
+    await markAllAsReadNotifications({
+      isPublic: v.filter_MessageTypePublic,
+      isPrivate: v.filter_MessageTypePrivate,
+      deviceHardwareId: v.deviceHardwareId,
+      searchTerm: v.currentSearchString,
+    });
+    dispatch({ type: 'badgeCountsZeroed' });
+    dispatch({ type: 'loadingEnded' });
+    await directory_Updates_RefreshBottomBarCount(true);
+    await refreshNotifications();
+  };
+
+  /* Handler_MoreActionSheetDeleteAll (:2704-2743): isLoading, Delete_Notifications with the fetched list, isLoading
+     False, then RefreshNotifications. */
+  const deleteAll = async () => {
+    dispatch({ type: 'loadingStarted' });
+    await deleteNotifications(latest.current.items);
+    dispatch({ type: 'loadingEnded' });
+    await refreshNotifications();
   };
 
   const onHeaderScrolled = (isHeaderScrolled: boolean) => {
@@ -203,6 +257,14 @@ export function useNotifications(): NotificationsFlows {
     onChangeSearchInput,
     onKebab,
     onApplyFilters,
+    onOnlyShowUnread,
+    onUpdateReadCount,
+    onMarkAllAsRead: () => {
+      flow.run(markAllAsRead);
+    },
+    onDeleteAll: () => {
+      flow.run(deleteAll);
+    },
     onFilterSheetInitialized,
     onMoreActionSheetInitialized,
     onNotificationDetail,

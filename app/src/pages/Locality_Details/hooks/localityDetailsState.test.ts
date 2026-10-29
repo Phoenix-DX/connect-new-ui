@@ -25,7 +25,7 @@ const DETAILS: LocalityDetails = {
 
 describe('initialLocalityDetailsState', () => {
   it('starts with the inputs, the preloaded label and the tags of the user locality', () => {
-    const state = initialLocalityDetailsState(inputs, false);
+    const state = initialLocalityDetailsState(inputs);
     expect(state).toMatchObject({
       localityId: '252',
       localityLabel: 'Bahia Blanca, Argentina',
@@ -42,17 +42,18 @@ describe('initialLocalityDetailsState', () => {
       'Supper Meetings',
       'Interchange',
       'OneSchool Global',
+      'Locality Contacts',
     ]);
   });
 
-  it('adds the Locality Contacts tag when the permission check gives access', () => {
-    expect(tagNames(initialLocalityDetailsState(inputs, true).tagsList).at(-1)).toBe('Locality Contacts');
+  it('always adds the Locality Contacts tag last (live TST: no permission check)', () => {
+    expect(tagNames(initialLocalityDetailsState(inputs).tagsList).at(-1)).toBe('Locality Contacts');
   });
 });
 
 describe('initializeScreen', () => {
   it('keeps the locality of the route and drops My Household for another locality', () => {
-    const state = initializeScreen(initialLocalityDetailsState(inputs, false), user, 'Monte Hermoso, Argentina', false);
+    const state = initializeScreen(initialLocalityDetailsState(inputs), user, 'Monte Hermoso, Argentina');
     expect(state).toMatchObject({
       logged_User: user,
       localityId: '252',
@@ -61,28 +62,33 @@ describe('initializeScreen', () => {
       tagsList_SelectedTag: 'Households',
       isScreenInitialized: true,
     });
-    expect(tagNames(state.tagsList)).toEqual(['Households', 'Supper Meetings', 'Interchange', 'OneSchool Global']);
+    expect(tagNames(state.tagsList)).toEqual([
+      'Households',
+      'Supper Meetings',
+      'Interchange',
+      'OneSchool Global',
+      'Locality Contacts',
+    ]);
   });
 
   it('opens the locality of the user when the route has no LocalityId', () => {
-    const initial = initialLocalityDetailsState({ LocalityId: '0', PreloadedLocalityLabel: '' }, false);
-    const state = initializeScreen(initial, user, 'Bahia Blanca, Argentina', false);
+    const initial = initialLocalityDetailsState({ LocalityId: '0', PreloadedLocalityLabel: '' });
+    const state = initializeScreen(initial, user, 'Bahia Blanca, Argentina');
     expect(state).toMatchObject({ localityId: '585', localityLabel: 'Bahia Blanca, Argentina', isUserLocality: true });
     expect(tagNames(state.tagsList)).toContain('My Household');
   });
 });
 
 describe('localityDetailsReducer', () => {
-  const initial = initialLocalityDetailsState(inputs, false);
+  const initial = initialLocalityDetailsState(inputs);
 
   it('screenInitialized is initializeScreen', () => {
     const action = {
       type: 'screenInitialized',
       loggedUser: user,
       userLocalityLabel: 'x',
-      hasLocalityContacts: true,
     } as const;
-    expect(localityDetailsReducer(initial, action)).toEqual(initializeScreen(initial, user, 'x', true));
+    expect(localityDetailsReducer(initial, action)).toEqual(initializeScreen(initial, user, 'x'));
   });
 
   it('detailsFetched keeps the details and sets the label from the locality and the country', () => {
@@ -125,7 +131,7 @@ describe('localityDetailsReducer', () => {
 
 describe('localityDetailsCallInputs', () => {
   it('sends the screen variables with their OutSystems names', () => {
-    const state = initializeScreen(initialLocalityDetailsState(inputs, false), user, '', false);
+    const state = initializeScreen(initialLocalityDetailsState(inputs), user, '');
     expect(localityDetailsCallInputs(state)).toEqual({
       TagsList: state.tagsList,
       HeaderIsScrolled: false,

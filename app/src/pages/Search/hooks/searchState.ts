@@ -239,3 +239,17 @@ export function searchReducer(state: SearchState, action: SearchAction): SearchS
       return { ...state, isLoading: false };
   }
 }
+
+/** The Ids that the loop of Get_RecentClickedResultsOnAfterFetch deletes (ScreenBlock_Search.mvc.js:2382-2395 of the
+    capture of 2026-10-29): one DeleteConnectSearch_RecentClickedResults per item of Out_IdsToRemove, each with
+    RecentClickedResults.Current.Id. The loop runs on Out_IdsToRemove, not on RecentClickedResults, so Current is the
+    first row of RecentClickedResults (OutSystems.js List.getCurrent: row 0 when the list has no iterator), or the empty
+    list item (Id 0). Thus TST deletes the first local row, once per id to remove, and keeps the rows that the server
+    named: known original bug B22, kept 1:1 (drift D-Q1 (a), user, 2026-10-29). */
+export function recentClickedIdsDeleted(
+  recentClickedResults: readonly { Id: string }[],
+  idsToRemove: readonly string[],
+): string[] {
+  const currentId = recentClickedResults[0]?.Id ?? '0';
+  return idsToRemove.map(() => currentId);
+}

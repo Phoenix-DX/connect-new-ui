@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 2,
- "fingerprint": "045d1746faf387a2d6f0",
+ "fingerprint": "331b5d9a3192270824d1",
  "options": {
   "text": true,
   "style": true,
@@ -27,26 +27,19 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-29T09:55:21.932Z",
- "counts": {
-  "attr": 1,
-  "layout": 10,
-  "position": 1,
-  "structure": 2,
-  "class": 1,
-  "pixel": 1
- },
+ "at": "2026-10-29T12:41:55.153Z",
+ "counts": {},
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
   "ignoreSubtrees": 3,
   "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1
  },
  "pixel": {
-  "ratio": 0.00403,
-  "maxCell": 0.3719,
+  "ratio": 0.00025,
+  "maxCell": 0.0219,
   "maxCellRatio": 0.03,
-  "diffPixels": 1242,
-  "comparedPixels": 307900,
+  "diffPixels": 77,
+  "comparedPixels": 307924,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -59,11 +52,10 @@
   ],
   "masks": 9,
   "hotspots": [
-   "320,80 (595px)",
-   "320,40 (361px)",
-   "360,80 (92px)",
-   "280,80 (87px)",
-   "200,800 (35px)"
+   "200,800 (35px)",
+   "200,760 (25px)",
+   "160,120 (9px)",
+   "160,80 (8px)"
   ],
   "diffPng": "migration/screens/Locality_Details/parity/tag-interchange.diff.png"
  },
@@ -76,86 +68,5 @@
   "expected": 40,
   "actual": 65
  },
- "diffs": [
-  {
-   "kind": "attr",
-   "path": "div#reactContainer",
-   "detail": "aria-hidden: true → ∅"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > header#b1-Header.header > div.header-top > div.display-flex.flex-direction-column.header-content > div.ubt-layout-main__search > div#b1-$b3.OSBlockWidget[BasePatterns.Columns_Two] > div#b1-b3-$b1.OSBlockWidget[Adaptive.Columns2] > div.align-items-center.columns.columns2 > div#b1-b3-b1-Column1.columns-item",
-   "detail": "318×37 → 342×37"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > header#b1-Header.header > div.header-top > div.display-flex.flex-direction-column.header-content > div.ubt-layout-main__search > div#b1-$b3.OSBlockWidget[BasePatterns.Columns_Two] > div#b1-b3-$b1.OSBlockWidget[Adaptive.Columns2] > div.align-items-center.columns.columns2 > div#b1-b3-b1-Column1.columns-item > div#b1-b3-Left.ubt-columns--column.ubt-columns--left",
-   "detail": "318×37 → 342×37"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > header#b1-Header.header > div.header-top > div.display-flex.flex-direction-column.header-content > div.ubt-layout-main__search > div#b1-$b3.OSBlockWidget[BasePatterns.Columns_Two] > div#b1-b3-$b1.OSBlockWidget[Adaptive.Columns2] > div.align-items-center.columns.columns2 > div#b1-b3-b1-Column1.columns-item > div#b1-b3-Left.ubt-columns--column.ubt-columns--left > div#b1-Placeholder_Header_Input",
-   "detail": "318×37 → 342×37"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > header#b1-Header.header > div.header-top > div.display-flex.flex-direction-column.header-content > div.ubt-layout-main__search > div#b1-$b3.OSBlockWidget[BasePatterns.Columns_Two] > div#b1-b3-$b1.OSBlockWidget[Adaptive.Columns2] > div.align-items-center.columns.columns2 > div#b1-b3-b1-Column1.columns-item > div#b1-b3-Left.ubt-columns--column.ubt-columns--left > div#b1-Placeholder_Header_Input > div#$b2.OSBlockWidget[ConnectPatterns.StaticInput]",
-   "detail": "318×37 → 342×37"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > header#b1-Header.header > div.header-top > div.display-flex.flex-direction-column.header-content > div.ubt-layout-main__search > div#b1-$b3.OSBlockWidget[BasePatterns.Columns_Two] > div#b1-b3-$b1.OSBlockWidget[Adaptive.Columns2] > div.align-items-center.columns.columns2 > div#b1-b3-b1-Column1.columns-item > div#b1-b3-Left.ubt-columns--column.ubt-columns--left > div#b1-Placeholder_Header_Input > div#$b2.OSBlockWidget[ConnectPatterns.StaticInput] > div.search-placeholder-ellipsis.ubt-static-input",
-   "detail": "318×37 → 342×37"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > header#b1-Header.header > div.header-top > div.display-flex.flex-direction-column.header-content > div.ubt-layout-main__search > div#b1-$b3.OSBlockWidget[BasePatterns.Columns_Two] > div#b1-b3-$b1.OSBlockWidget[Adaptive.Columns2] > div.align-items-center.columns.columns2 > div#b1-b3-b1-Column1.columns-item > div#b1-b3-Left.ubt-columns--column.ubt-columns--left > div#b1-Placeholder_Header_Input > div#$b2.OSBlockWidget[ConnectPatterns.StaticInput] > div.search-placeholder-ellipsis.ubt-static-input > div#b2-$b2.OSBlockWidget[ConnectPatterns.TextEllipsis]",
-   "detail": "248×24 → 254×24"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > header#b1-Header.header > div.header-top > div.display-flex.flex-direction-column.header-content > div.ubt-layout-main__search > div#b1-$b3.OSBlockWidget[BasePatterns.Columns_Two] > div#b1-b3-$b1.OSBlockWidget[Adaptive.Columns2] > div.align-items-center.columns.columns2 > div#b1-b3-b1-Column1.columns-item > div#b1-b3-Left.ubt-columns--column.ubt-columns--left > div#b1-Placeholder_Header_Input > div#$b2.OSBlockWidget[ConnectPatterns.StaticInput] > div.search-placeholder-ellipsis.ubt-static-input > div#b2-$b2.OSBlockWidget[ConnectPatterns.TextEllipsis] > span.text-ellipsis.ubt-text-ellipsis",
-   "detail": "248×24 → 254×24"
-  },
-  {
-   "kind": "position",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > header#b1-Header.header > div.header-top > div.display-flex.flex-direction-column.header-content > div.ubt-layout-main__search > div#b1-$b3.OSBlockWidget[BasePatterns.Columns_Two] > div#b1-b3-$b1.OSBlockWidget[Adaptive.Columns2] > div.align-items-center.columns.columns2 > div#b1-b3-b1-Column2.columns-item",
-   "detail": "offset in parent 334,7 → 358,19"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > header#b1-Header.header > div.header-top > div.display-flex.flex-direction-column.header-content > div.ubt-layout-main__search > div#b1-$b3.OSBlockWidget[BasePatterns.Columns_Two] > div#b1-b3-$b1.OSBlockWidget[Adaptive.Columns2] > div.align-items-center.columns.columns2 > div#b1-b3-b1-Column2.columns-item",
-   "detail": "24×24 → 0×0"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > header#b1-Header.header > div.header-top > div.display-flex.flex-direction-column.header-content > div.ubt-layout-main__search > div#b1-$b3.OSBlockWidget[BasePatterns.Columns_Two] > div#b1-b3-$b1.OSBlockWidget[Adaptive.Columns2] > div.align-items-center.columns.columns2 > div#b1-b3-b1-Column2.columns-item > div#b1-b3-Right.ubt-columns--column.ubt-columns--right",
-   "detail": "24×24 → 0×0"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > header#b1-Header.header > div.header-top > div.display-flex.flex-direction-column.header-content > div.ubt-layout-main__search > div#b1-$b3.OSBlockWidget[BasePatterns.Columns_Two] > div#b1-b3-$b1.OSBlockWidget[Adaptive.Columns2] > div.align-items-center.columns.columns2 > div#b1-b3-b1-Column2.columns-item > div#b1-b3-Right.ubt-columns--column.ubt-columns--right > div#b1-Placeholder_Header_Input_Icon.header-right",
-   "detail": "24×24 → 0×0"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > header#b1-Header.header > div.header-top > div.display-flex.flex-direction-column.header-content > div.ubt-layout-main__search > div#b1-$b3.OSBlockWidget[BasePatterns.Columns_Two] > div#b1-b3-$b1.OSBlockWidget[Adaptive.Columns2] > div.align-items-center.columns.columns2 > div#b1-b3-b1-Column2.columns-item > div#b1-b3-Right.ubt-columns--column.ubt-columns--right > div#b1-Placeholder_Header_Input_Icon.header-right > div#$b3.OSBlockWidget[ConnectPatterns.Icon]",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b20.OSBlockWidget[Directory_Locality.Locality_Interchange] > div#b20-$b1.OSBlockWidget[Directory_Interchange.Directory_Interchange_StatisticsList] > div#b20-b1-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b20-b1-b1-Content.background-neutral-0.padding-x-base.padding-y-s > div#b20-b1-$b2.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b20-b1-b2-Placeholder_LoadingSection > div.OSFillParent.list.list--gap-s > div#b20-b1-l1-146390_0-$b3.OSBlockWidget[ConnectCorePatterns.Statistics_ListItem] > div#b20-b1-l1-146390_0-b3-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b20-b1-l1-146390_0-b3-b1-Content.background-neutral-0.border-color-neutral-3.border-radius-large > div#b20-b1-l1-146390_0-b3-DIV_Actions > div#b20-b1-l1-146390_0-b3-$b13.OSBlockWidget[BasePatterns.CustomContainer] > div#b20-b1-l1-146390_0-b3-b13-Content.border-color-neutral-3.border-top-s.margin-top-base > div#b20-b1-l1-146390_0-b3-ActionsMenu > div#b20-b1-l1-146390_0-$b4.OSBlockWidget[Directory_CommonBlocks.Directory_EntityDetailsActions] > div.OSBlockWidget[CW_Notes.NotesSheet]",
-   "detail": "extra in build"
-  },
-  {
-   "kind": "class",
-   "path": "html",
-   "detail": "missing .popup-disable-scroll (device classes: src/shell/device.ts)"
-  },
-  {
-   "kind": "pixel",
-   "path": "screenshot",
-   "detail": "0.40% pixels differ (max 0.20%), worst 40px tile 37.2% (max 3.0%), hotspots 320,80 (595px); 320,40 (361px); 360,80 (92px); 280,80 (87px); 200,800 (35px); see migration/screens/Locality_Details/parity/tag-interchange.diff.png"
-  }
- ]
+ "diffs": []
 }

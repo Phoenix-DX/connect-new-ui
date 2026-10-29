@@ -4,6 +4,17 @@ import { describe, expect, it, vi } from 'vitest';
 import { DetailLayout } from './DetailLayout';
 
 describe('DetailLayout', () => {
+  it('In_IsHideTitle: no header (no back arrow, no title); the content stays', () => {
+    const { container } = render(
+      <MemoryRouter>
+        <DetailLayout hideTitle headerTitle={<span>Title</span>} content={<p>Content</p>} onBack={vi.fn()} />
+      </MemoryRouter>,
+    );
+    expect(container.querySelector('header')).toBeNull();
+    expect(container.querySelector('.connect-icon-arrow_left_alt')).toBeNull();
+    expect(container.querySelector('.content-middle')?.textContent).toBe('Content');
+  });
+
   it('places the title, the content, the bottom bar and the CommonUI part; the back arrow calls onBack', () => {
     const onBack = vi.fn();
     const onReady = vi.fn();

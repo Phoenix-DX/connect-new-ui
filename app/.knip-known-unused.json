@@ -844,7 +844,6 @@
   "src/pages/Profile/components/PersonalInformationSection.tsx | type | PersonalInformationSectionProps",
   "src/pages/Profile/components/ProfileHeader.tsx | type | ProfileHeaderProps",
   "src/pages/Profile/components/ProfileHouseholdPreview.tsx | type | ProfileHouseholdPreviewProps",
-  "src/pages/Search/components/RecentSearch.tsx | type | RecentSearchProps",
   "src/pages/Search/components/SearchResult_Section.tsx | type | SearchResult_SectionProps",
   "src/pages/Search/components/SearchView.tsx | type | SearchViewProps",
   "src/pages/Search/components/Search_BirthdayOptions.tsx | type | Search_BirthdayOptionsProps",

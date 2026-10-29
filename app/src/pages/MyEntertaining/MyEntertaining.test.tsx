@@ -1,5 +1,5 @@
 import { QueryClientProvider } from '@tanstack/react-query';
-import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import { StrictMode } from 'react';
 import { MemoryRouter, Route, Routes } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -61,7 +61,7 @@ describe('MyEntertaining', () => {
     setClientVar('UBTConnect.Embedd_B2CTenant', '');
   });
 
-  it('renders CommonUI_InsideLayout and MyEntertaining_Embedded: the detail layout "My Entertaining" with the calendar', async () => {
+  it('renders CommonUI_InsideLayout and MyEntertaining_Embedded: the detail layout without header (In_IsHideTitle) with the calendar', async () => {
     const { container } = renderScreen('');
     expect(container.querySelector('[data-block="App_Common.CommonUI_InsideLayout"]')).toHaveAttribute('id', '$b1');
     expect(container.querySelector('[data-block="Calendar.MyEntertaining_Embedded"]')).toHaveAttribute('id', '$b2');
@@ -72,7 +72,7 @@ describe('MyEntertaining', () => {
       'b2-$b3',
     );
     expect(container.querySelector('.ubt-layout-detail--primary')).not.toBeNull();
-    expect(screen.getByText('My Entertaining')).toBeInTheDocument();
+    expect(container.querySelector('header')).toBeNull(); // In_IsHideTitle: no header, no title
     expect(skeletonItems(container)).toBe(5);
     await loadCalendar(container);
     await waitFor(() => {
@@ -216,7 +216,8 @@ describe('MyEntertaining in the app frame', () => {
     resetNavigation();
   });
 
-  it('the back arrow goes to the previous screen', async () => {
+  it("the calendar's onNavBack goes to the previous screen (Handle_NavBack, live TST)", async () => {
+    const init = vi.spyOn(await requireEmbed(''), 'init');
     const { router, at } = renderRoutes(
       {
         '/UBTConnect/HomeFeed': <p>HomeFeed screen</p>,
@@ -227,11 +228,17 @@ describe('MyEntertaining in the app frame', () => {
     );
     await act(() => router.navigate('/UBTConnect/LDM_MyEvents_V2'));
     await act(() => router.navigate(`${PATH}?MyCalendarEventSourceId=event-ldm`));
-    // The back arrow: the Icon block b2-b1-$b2 of the layout header.
-    const back = document.getElementById('b2-b1-$b2')?.firstElementChild;
-    if (back == null) throw new Error('back arrow not rendered');
-    fireEvent.click(back);
+    expect(document.querySelector('header')).toBeNull();
+    const options = await waitFor(() => {
+      const o = init.mock.calls[0]?.[0];
+      if (!o) throw new Error('calendar not initialized');
+      return o;
+    });
+    act(() => {
+      options.onNavBack();
+    });
     expect(await screen.findByText('LDM events screen')).toBeInTheDocument();
     expect(at()).toBe('/UBTConnect/LDM_MyEvents_V2');
+    init.mockRestore();
   });
 });

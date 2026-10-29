@@ -20,5 +20,4 @@ export const UBT_Icons2_Search = {
   Calendar: 'connect-icon-calendar',
   Close: 'connect-icon-close',
 } as const;
-export const Space_ExtraSmall = 'xs';
 export const UBT_FontWeight_Bold = 'bold';

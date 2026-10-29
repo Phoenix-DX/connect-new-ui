@@ -60,6 +60,13 @@ function menuOptionsOf(entityType: string, useViewDetails: boolean): { options: 
   }
 }
 
+/** UBTConnect Notes_InterchangeId_ComposeId(LocalityId, InterchangeLocalityId) (UBTConnect.controller.js, copy in
+    migration/screens/MilestoneDetail/analysis/sources/raw/): "<LocalityId>:<InterchangeLocalityId>" when LocalityId is
+    not empty, else InterchangeLocalityId. */
+export function notes_InterchangeId_ComposeId(localityId: string, interchangeLocalityId: string): string {
+  return localityId !== '' ? `${localityId}:${interchangeLocalityId}` : interchangeLocalityId;
+}
+
 interface OnReadyInit {
   options: ActionsMenuOptions;
   labels: boolean;

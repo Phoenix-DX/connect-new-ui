@@ -382,7 +382,7 @@ describe('the named steps of the app start (plan v2 §3.2)', () => {
       expect(calledActions()).toEqual([]);
       expect(flagValue('C2NewNotifications')).toBe(true); // override
       expect(flagValue('C2EnableCarousel')).toBe(true); // default on
-      expect(flagValue('C2NewBookmarks')).toBe(false); // default off
+      expect(flagValue('C2NewBookmarks')).toBe(true); // default on (TST since 2026-10-21; drift wave H-Q2 a)
     } finally {
       setFlags({});
     }

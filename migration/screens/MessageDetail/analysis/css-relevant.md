@@ -1,26 +1,28 @@
-# CSS relevant to MessageList
+# CSS relevant to MessageDetail
 
 Load order of stylesheets (keep this order in the build):
 
 1. `/UBTConnect/css/_Basic.css`
 2. `/UBTConnect/css/OutSystemsReactWidgets.css`
-3. `/UBTConnect/css/UBT_AppManager.PIN.PinCode.css`
-4. `/UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css`
-5. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css`
-6. `/UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css`
-7. `/UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css`
-8. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect.css`
-9. `/UBTConnect/css/Connect2_LegacyShared.UBTMobileTheme_UpdatedOSUI.css`
-10. `/UBTConnect/css/Connect2_LegacyShared.ConnectMobileCommonTheme.css`
-11. `/UBTConnect/css/Connect2_LegacyShared.OrbitTheme.css`
-12. `/UBTConnect/css/Connect2_LegacyShared.AssembleTheme.css`
-13. `/UBTConnect/css/Connect2_LegacyShared.ConnectMobile.css`
-14. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect_LegacyChain.css`
-15. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css`
+3. `/UBTConnect/css/Connect2_LegacyShared.Widgets.AdaptiveCardViewer.css`
+4. `/UBTConnect/css/UBTConnect_EmbedFeed.Blocks.Embedded_FeedCMS.css`
+5. `/UBTConnect/css/UBT_AppManager.PIN.PinCode.css`
+6. `/UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css`
+7. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css`
+8. `/UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css`
+9. `/UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css`
+10. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect.css`
+11. `/UBTConnect/css/Connect2_LegacyShared.UBTMobileTheme_UpdatedOSUI.css`
+12. `/UBTConnect/css/Connect2_LegacyShared.ConnectMobileCommonTheme.css`
+13. `/UBTConnect/css/Connect2_LegacyShared.OrbitTheme.css`
+14. `/UBTConnect/css/Connect2_LegacyShared.AssembleTheme.css`
+15. `/UBTConnect/css/Connect2_LegacyShared.ConnectMobile.css`
+16. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect_LegacyChain.css`
+17. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css`
 
 Rules below are those whose selector contains a class used on the captured page, grouped by the block that owns the element. Full source: `styles/bundle.css`.
 
-## MyNotifications.ScreenBlock_MessageList
+## MyNotifications.ScreenBlock_MessageDetail
 
 ### .OSBlockWidget  (23 rules)
 ```css
@@ -88,11 +90,6 @@ table.OSInline { display: inline-table; }
 .layout-native .main-content.ThemeGrid_Container { padding:var(--space-none); }
 .full-width-section .ThemeGrid_Container { padding:var(--space-none) var(--space-xl); }
 .ThemeGrid_Container { padding-left: 5%; padding-right: 5%; }
-```
-### .ThemeGrid_Width1  (2 rules)
-```css
-.ThemeGrid_Width1 { width: 6.5359477124183%; }
-th.ThemeGrid_Width1, td.ThemeGrid_Width1 { width: 8.49673202614379%; }
 ```
 ### .align-items-center  (1 rule)
 ```css
@@ -177,23 +174,6 @@ body.media-hub-theme , .media-hub-theme .content { background-color: var(--backg
 ```css
 .display-flex { display:-webkit-box; display:-ms-flexbox; display:flex; }
 :where(.backwards-compatibility) .display-flex > div.my-update-feed-dropdown-localities, :where(.backwards-compatibility) .my-update-feed-dropdown-localities > div:last-child { min-width: 0; flex: unset; }
-```
-### .fa  (6 rules)
-```css
-.fa { display:inline-block;font:normal normal normal 14px/1 FontAwesome;font-size:inherit;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale }
-.fa.fa-pull-left { margin-right:.3em }
-.fa.fa-pull-right { margin-left:.3em }
-.fa.pull-left { margin-right:.3em }
-.fa.pull-right { margin-left:.3em }
-:where(.backwards-compatibility) .back-icon-cont .fa { position: relative; top: -0.8px; }
-```
-### .fa-filter  (1 rule)
-```css
-.fa-filter:before { content:"\f0b0" }
-```
-### .fa-search  (1 rule)
-```css
-.fa-search:before { content:"\f002" }
 ```
 ### .footer  (12 rules)
 ```css
@@ -357,34 +337,6 @@ kit-search-cancel-button, :where(.backwards-compatibility) .header-top input[typ
 .mainpage-upgrade-container .header-top-content { width: 100%; }
 :where(.backwards-compatibility) .header .header-top-content { height:auto; }
 ```
-### .icon  (40 rules)
-```css
-.osui-dropdown-search-ss-preview .icon {  }
-.osui-dropdown-tags-ss-preview > .icon {  }
-.osui-dropdown-tags-ss-preview > div > .icon {  }
-.osui-dropdown-tags-ss-preview > div > .icon:before {  }
-.desktop .list .list-item-selected .list-item-content-right .icon, .tablet.landscape .list .list-item-selected .list-item-content-right .icon { color:var(--text-color-primary, var(--color-primary)); }
-.animated-label-text .icon { padding-right:var(--space-base); }
-.breadcrumbs-item .icon { color:var(--text-color-neutral-7, var(--color-neutral-7)); display:-webkit-inline-box; display:-ms-inline-flexbox; display:inline-flex; font-size:var(--font-size-xs); -webkit-box-pack:center; -ms-flex-pack:center; justify-content:center; margin:var(--space-none) var(--space-s); width:auto; }
-.is-rtl .pagination-button .icon { -webkit-transform:rotate(180deg); -ms-transform:rotate(180deg); transform:rotate(180deg); }
-.wizard-item-icon .icon { font-size:var(--font-size-xs); width:auto; }
-.icon-badge .icon { font-size:var(--font-size-h4); }
-.layout-native .bottom-bar-wrapper .icon-badge .icon { font-size:inherit; }
-.rating fieldset[disabled=true] .rating-item-filled .icon, .rating fieldset[disabled=true] .rating-item-half .icon { color:var(--text-color-neutral-6, var(--color-neutral-6)); }
-.rating fieldset[disabled=true] .rating-item-empty .icon { color:var(--text-color-neutral-4, var(--color-neutral-4)); }
-.has-accessible-features fieldset[disabled=true] .rating-item-filled .icon, .has-accessible-features fieldset[disabled=true] .rating-item-half .icon { color:var(--text-color-neutral-7, var(--color-neutral-7)); }
-.has-accessible-features fieldset[disabled=true] .rating-item-empty .icon { color:var(--text-color-neutral-5, var(--color-neutral-5)); }
-.ubt-expandable-section.expanded .ubt-expandable-section--title-icon .icon, .ubt-expandable-section.expanded .ubt-expandable-section--title-icon .ubt-icon { transform: rotate(180deg); }
-.tag-item .tag .icon { font-size: 0.7em; }
-:where(.backwards-compatibility) .btn .icon { padding: 0 5px; }
-:where(.backwards-compatibility) .icon.fa-33 { font-size: 1.33em; }
-:where(.backwards-compatibility) .card.warning-card > div:first-child > .icon { margin-right: var(--space-m); font-size: 2.3em; }
-:where(.backwards-compatibility) .icon.selected-icon { content: "."; color: white; align-self: center; }
-:where(.backwards-compatibility) .trove-menu .icon.menu-icon-browse { font-size: 1.2em; }
-:where(.backwards-compatibility) .media-hub-menu .icon.menu-icon-browse { font-size: 1.2em; }
-p-menu-links a .icon, :where(.backwards-compatibility) .media-hub-menu .version-container, :where(.backwards-compatibility) .media-hub-menu .common-menu-footer, :where(.backwards-compatibility) .media-hub-menu .menu-logo { color: var(--color-neutral-0); }
-compatibility) .media-hub-menu .app-menu-links a.active div, :where(.backwards-compatibility) .media-hub-menu .app-menu-links a.active span, :where(.backwards-compatibility) .media-hub-menu .app-menu-links a.active .icon { color: var(--color-secondary); }
-```
 ### .ios-bounce  (11 rules)
 ```css
 .ios .layout-native.ios-bounce:not(.hide-header-on-scroll) .main { display:grid; grid-template:auto 1fr auto/1fr; grid-template-areas:"header" "content" "footer"; max-height:var(--viewport-height, 100vh); width:100%; }
@@ -443,28 +395,13 @@ body.connect-theme , .connect-theme .content, .connect-theme.ios .layout-native.
 e-from-left-leave-active .content.browse-country-screen > .main-content::after, :where(.backwards-compatibility) .slide-from-right-leave.slide-from-right-leave-active .content.browse-country-screen > .main-content::after { opacity: 1; }
 :where(.backwards-compatibility) .month-calendar-wrapper.main-content { position: absolute; height: 100%; }
 ```
-### .margin-left-base  (2 rules)
-```css
-.margin-left-base { margin-left:var(--space-base); }
-.is-rtl .margin-left-base { margin-left:var(--space-none); margin-right:var(--space-base); }
-```
 ### .menu  (1 rule)
 ```css
 :where(.backwards-compatibility) .menu { z-index: var(--z-index-menu); }
 ```
-### .message-list  (3 rules)
+### .notification-detail-title-overflow  (1 rule)
 ```css
-:where(.backwards-compatibility) .message-list .swipe__message-list { font-size: 14px; color: #fff; }
-:where(.backwards-compatibility) .message-list .swipe__message-list-left.list-item-action { background: #0f76bb; }
-:where(.backwards-compatibility) .message-list .swipe__message-list-right.list-item-action { background: #50B8B3; }
-```
-### .padding-x-s  (1 rule)
-```css
-.padding-x-s { padding-left:var(--space-s); padding-right:var(--space-s); }
-```
-### .padding-y-s  (1 rule)
-```css
-.padding-y-s { padding-bottom:var(--space-s); padding-top:var(--space-s); }
+:where(.backwards-compatibility) .notification-detail-title-overflow { display: block; margin-left: var(--space-m); margin-right: var(--space-m); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 ```
 ### .ph  (2 rules)
 ```css
@@ -480,72 +417,7 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 .text-align-center { text-align:center; }
 :where(.backwards-compatibility) .text-align-center { text-align: center; }
 ```
-## Layout.MenuIcon__UpdatedOSUI
-
-### .app-menu-icon  (4 rules)
-```css
-.layout-native .app-menu-icon.back .menu-icon, .desktop .menu-icon, .tablet.landscape .layout-native.aside-visible .menu-icon, .app-menu-icon.back .menu-icon, .app-menu-icon:not(.back) .menu-back { display:none; }
-:where(.backwards-compatibility) .layout-native .app-menu-icon { padding: 0px var(--space-base); }
-:where(.backwards-compatibility) .layout-native .app-menu-icon.back { padding-top: 4px; }
-:where(.backwards-compatibility) .household-screen .header .app-menu-icon { padding-left: 0; }
-```
-### .fa-arrow-left  (1 rule)
-```css
-.fa-arrow-left:before { content:"\f060" }
-```
-### .menu-back  (3 rules)
-```css
-.menu-back { color:var(--text-color-neutral-8, var(--color-neutral-8)); }
-.layout-native .app-menu-icon.back .menu-icon, .desktop .menu-icon, .tablet.landscape .layout-native.aside-visible .menu-icon, .app-menu-icon.back .menu-icon, .app-menu-icon:not(.back) .menu-back { display:none; }
-:where(.backwards-compatibility) .header .menu-back { color: var(--color-neutral-0); font-size: 1.5em; }
-```
-## Private.PullToRefresh
-
-### .fa-angle-down  (1 rule)
-```css
-.fa-angle-down:before { content:"\f107" }
-```
-### .fa-spin  (1 rule)
-```css
-.fa-spin { -webkit-animation:fa-spin 2s infinite linear;animation:fa-spin 2s infinite linear }
-```
-### .fa-spinner  (1 rule)
-```css
-.fa-spinner:before { content:"\f110" }
-```
-### .genericon  (3 rules)
-```css
-.pull-to-refresh .genericon { -webkit-transition:all 0.25s ease; transition:all 0.25s ease; }
-.ptr-loading .pull-to-refresh .genericon, .ptr-reset .pull-to-refresh .genericon { display:none; }
-.ptr-refresh .pull-to-refresh .genericon { -webkit-transform:rotate(180deg); -ms-transform:rotate(180deg); transform:rotate(180deg); }
-```
-### .pull-to-refresh  (9 rules)
-```css
-.ios .layout-native.ios-bounce:not(.hide-header-on-scroll) .pull-to-refresh { top:calc(var(--header-size) + var(--header-size-content) + var(--os-safe-area-top)); }
-.pull-to-refresh { color:var(--text-color-neutral-6, var(--color-neutral-6)); font-size:var(--font-size-h3); left:0; padding:var(--space-s); position:absolute; text-align:center; width:100%; }
-.pull-to-refresh {  }
-.pull-to-refresh .genericon { -webkit-transition:all 0.25s ease; transition:all 0.25s ease; }
-.ptr-loading .content, .ptr-loading .pull-to-refresh, .ptr-reset .content, .ptr-reset .pull-to-refresh { -webkit-transition:all 0.25s ease; transition:all 0.25s ease; }
-.ptr-loading .pull-to-refresh .genericon, .ptr-reset .pull-to-refresh .genericon { display:none; }
-.ptr-refresh .pull-to-refresh .genericon { -webkit-transform:rotate(180deg); -ms-transform:rotate(180deg); transform:rotate(180deg); }
-ull-to-refresh, .slide-from-bottom-enter .layout-native .pull-to-refresh, .slide-from-bottom-leave .layout-native .pull-to-refresh, .fade-enter .layout-native .pull-to-refresh, .fade-leave .layout-native .pull-to-refresh { display:none; }
-:where(.backwards-compatibility) .pull-to-refresh { padding: 0; animation-duration: 1s; animation-name: fadein-pull-to-refresh; }
-```
-### .pull-to-refresh-loading  (2 rules)
-```css
-.pull-to-refresh-loading { display:none; text-align:center; }
-.ptr-loading .pull-to-refresh-loading { display:block; }
-```
-### .wcag-hide-text  (6 rules)
-```css
-.form .rating span.wcag-hide-text { position:absolute; }
-.chrome .osui-tabs .rating .wcag-hide-text, .edge .osui-tabs .rating .wcag-hide-text { margin:unset; }
-.form .osui-dropdown-serverside__balloon .wcag-hide-text { position:absolute; margin:-1px; }
-.wcag-hide-text { border:0; clip:rect(0 0 0 0); height:1px; margin:-1px; overflow:hidden; padding:0; position:absolute; white-space:nowrap; width:1px; }
-.wcag-hide-text {  }
-.wcag-hide-text.focus-trap-top, .wcag-hide-text.focus-trap-bottom { position:fixed; }
-```
-## MyNotifications.MessageListBlock
+## Layout.MenuIcon_Back
 
 ### .OSFillParent  (12 rules)
 ```css
@@ -562,10 +434,75 @@ button.OSFillParent { display:-webkit-inline-box; display:-ms-inline-flexbox; di
 .carousel .carousel-container-content .grid-gallery .OSFillParent { display:inherit; }
 input.OSFillParent.calendar-input { display:none; }
 ```
-### .background-blue-lightest  (2 rules)
+### .app-menu-back  (2 rules)
 ```css
-.background-blue-lightest { background-color:var(--background-color-blue-lightest, var(--color-blue-lightest)); }
-.list .list-item.background-blue-lightest { background-color: var(--color-blue-lightest) }
+:where(.backwards-compatibility) .header a.app-menu-back { /* color: var(--color-neutral-10); - Couldn't find where this was needed so implemented white. */ color: var(--color-neutral-0); }
+:where(.backwards-compatibility) .header .search-menu a.app-menu-back { color: var(--color-neutral-10); }
+```
+### .app-menu-icon  (4 rules)
+```css
+.layout-native .app-menu-icon.back .menu-icon, .desktop .menu-icon, .tablet.landscape .layout-native.aside-visible .menu-icon, .app-menu-icon.back .menu-icon, .app-menu-icon:not(.back) .menu-back { display:none; }
+:where(.backwards-compatibility) .layout-native .app-menu-icon { padding: 0px var(--space-base); }
+:where(.backwards-compatibility) .layout-native .app-menu-icon.back { padding-top: 4px; }
+:where(.backwards-compatibility) .household-screen .header .app-menu-icon { padding-left: 0; }
+```
+### .back  (2 rules)
+```css
+.layout-native .app-menu-icon.back .menu-icon, .desktop .menu-icon, .tablet.landscape .layout-native.aside-visible .menu-icon, .app-menu-icon.back .menu-icon, .app-menu-icon:not(.back) .menu-back { display:none; }
+:where(.backwards-compatibility) .layout-native .app-menu-icon.back { padding-top: 4px; }
+```
+### .fa  (6 rules)
+```css
+.fa { display:inline-block;font:normal normal normal 14px/1 FontAwesome;font-size:inherit;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale }
+.fa.fa-pull-left { margin-right:.3em }
+.fa.fa-pull-right { margin-left:.3em }
+.fa.pull-left { margin-right:.3em }
+.fa.pull-right { margin-left:.3em }
+:where(.backwards-compatibility) .back-icon-cont .fa { position: relative; top: -0.8px; }
+```
+### .fa-arrow-left  (1 rule)
+```css
+.fa-arrow-left:before { content:"\f060" }
+```
+### .icon  (40 rules)
+```css
+.osui-dropdown-search-ss-preview .icon {  }
+.osui-dropdown-tags-ss-preview > .icon {  }
+.osui-dropdown-tags-ss-preview > div > .icon {  }
+.osui-dropdown-tags-ss-preview > div > .icon:before {  }
+.desktop .list .list-item-selected .list-item-content-right .icon, .tablet.landscape .list .list-item-selected .list-item-content-right .icon { color:var(--text-color-primary, var(--color-primary)); }
+.animated-label-text .icon { padding-right:var(--space-base); }
+.breadcrumbs-item .icon { color:var(--text-color-neutral-7, var(--color-neutral-7)); display:-webkit-inline-box; display:-ms-inline-flexbox; display:inline-flex; font-size:var(--font-size-xs); -webkit-box-pack:center; -ms-flex-pack:center; justify-content:center; margin:var(--space-none) var(--space-s); width:auto; }
+.is-rtl .pagination-button .icon { -webkit-transform:rotate(180deg); -ms-transform:rotate(180deg); transform:rotate(180deg); }
+.wizard-item-icon .icon { font-size:var(--font-size-xs); width:auto; }
+.icon-badge .icon { font-size:var(--font-size-h4); }
+.layout-native .bottom-bar-wrapper .icon-badge .icon { font-size:inherit; }
+.rating fieldset[disabled=true] .rating-item-filled .icon, .rating fieldset[disabled=true] .rating-item-half .icon { color:var(--text-color-neutral-6, var(--color-neutral-6)); }
+.rating fieldset[disabled=true] .rating-item-empty .icon { color:var(--text-color-neutral-4, var(--color-neutral-4)); }
+.has-accessible-features fieldset[disabled=true] .rating-item-filled .icon, .has-accessible-features fieldset[disabled=true] .rating-item-half .icon { color:var(--text-color-neutral-7, var(--color-neutral-7)); }
+.has-accessible-features fieldset[disabled=true] .rating-item-empty .icon { color:var(--text-color-neutral-5, var(--color-neutral-5)); }
+.ubt-expandable-section.expanded .ubt-expandable-section--title-icon .icon, .ubt-expandable-section.expanded .ubt-expandable-section--title-icon .ubt-icon { transform: rotate(180deg); }
+.tag-item .tag .icon { font-size: 0.7em; }
+:where(.backwards-compatibility) .btn .icon { padding: 0 5px; }
+:where(.backwards-compatibility) .icon.fa-33 { font-size: 1.33em; }
+:where(.backwards-compatibility) .card.warning-card > div:first-child > .icon { margin-right: var(--space-m); font-size: 2.3em; }
+:where(.backwards-compatibility) .icon.selected-icon { content: "."; color: white; align-self: center; }
+:where(.backwards-compatibility) .trove-menu .icon.menu-icon-browse { font-size: 1.2em; }
+:where(.backwards-compatibility) .media-hub-menu .icon.menu-icon-browse { font-size: 1.2em; }
+p-menu-links a .icon, :where(.backwards-compatibility) .media-hub-menu .version-container, :where(.backwards-compatibility) .media-hub-menu .common-menu-footer, :where(.backwards-compatibility) .media-hub-menu .menu-logo { color: var(--color-neutral-0); }
+compatibility) .media-hub-menu .app-menu-links a.active div, :where(.backwards-compatibility) .media-hub-menu .app-menu-links a.active span, :where(.backwards-compatibility) .media-hub-menu .app-menu-links a.active .icon { color: var(--color-secondary); }
+```
+## Content.Card
+
+### .ThemeGrid_Width2  (2 rules)
+```css
+.ThemeGrid_Width2 { width: 15.0326797385621%; }
+th.ThemeGrid_Width2, td.ThemeGrid_Width2 { width: 16.9934640522876%; }
+```
+### .ThemeGrid_Width8  (2 rules)
+```css
+.ThemeGrid_Width8 { width: 66.0130718954248%; }
+th.ThemeGrid_Width8, td.ThemeGrid_Width8 { width: 67.9738562091503%; }
 ```
 ### .bold  (3 rules)
 ```css
@@ -573,98 +510,83 @@ input.OSFillParent.calendar-input { display:none; }
 :where(.backwards-compatibility) b, :where(.backwards-compatibility) strong, :where(.backwards-compatibility) .bold, :where(.backwards-compatibility) .text-bold { font-weight: bold; }
 .orbit-theme .orbit-host-survey label.bold { font-weight: var(--font-bold); }
 ```
-### .justify-content-flex-end  (1 rule)
+### .card  (32 rules)
 ```css
-.justify-content-flex-end { -webkit-box-pack:end; -ms-flex-pack:end; justify-content:flex-end; }
+.columns > .columns-item > .card { height:100%; }
+.osui-gallery > .list .card, .osui-gallery > .list .animate { height:100%; }
+.card { background-color:var(--background-color-neutral-0, var(--color-neutral-0)); border:var(--border-size-s) solid var(--border-color-neutral-4, var(--color-neutral-4)); border-radius:var(--border-radius-soft); padding:var(--space-m); }
+.layout-native .card { padding:var(--space-base); }
+.carousel [data-block*=Card] + [data-block*=Card] .card { margin-top:var(--space-none); }
+.dropdown-tag-preview .card { padding:var(--space-xs); }
+.grid-gallery > .list .card, .grid-gallery > .list .animate { height:100%; }
+.horizontal-scroll > .list > [data-block*=Card] + [data-block*=Card] .card { margin-top:var(--space-none); }
+.horizontal-scroll > [data-block*=Card] + [data-block*=Card] .card { margin-top:var(--space-none); }
+html[data-uieditorversion^="1"] .card-background-image .card {  }
+.fc-bootstrap .fc-popover.card { position: absolute; }
+:where(.backwards-compatibility) .layout-native .card, :where(.backwards-compatibility) .card { border: 0; border-radius: 4px; border-left: 4px solid transparent; }
+:where(.backwards-compatibility) .layout-native .card, :where(.backwards-compatibility) .card { padding: 0; }
+:where(.backwards-compatibility) .form.card > span div, :where(.backwards-compatibility) .form.card > div { margin-top: 20px; }
+:where(.backwards-compatibility) .card.warning-card { color: var(--color-neutral-0) !important; margin: var(--space-m); padding: var(--space-base); font-size: 0.9em; }
+:where(.backwards-compatibility) .card.warning-card > div:first-child { display: flex; justify-content: flex-start; align-items: center; }
+:where(.backwards-compatibility) .card.warning-card > div:first-child > .icon { margin-right: var(--space-m); font-size: 2.3em; }
+:where(.backwards-compatibility) .card.warning-card > div:last-child { display: flex; justify-content: flex-end; margin-top: var(--space-base); }
+:where(.backwards-compatibility) .card.warning-card > div:last-child .btn { color: inherit; border-color: inherit; padding: 5px 20px; min-height: initial; min-width: initial; }
+ere(.backwards-compatibility) .background-white textarea[data-textarea]:empty, :where(.backwards-compatibility) .form-control[data-input][disabled], :where(.backwards-compatibility) .form-control[data-textarea][disabled] { border: 1px solid var(--color-neutral-3); background: transparent; border-radius: var(--space-xs); }
+:where(.backwards-compatibility) .search-group .card { border-radius: 0; border: 0; }
+:where(.backwards-compatibility) .card.in-app-notification-card { position: fixed; top: 75px; left: 10px; right: 10px; z-index: 1; max-width: 600px; margin: auto; padding: 10px; text-align: left; background-color: #CFDAE5; color: black; }
+:where(.backwards-compatibility) .card.in-app-notification-card a:link, :where(.backwards-compatibility) .card.in-app-notification-card a:hover, :where(.backwards-compatibility) .card.in-app-notification-card a:focus { font-style: italic; text-decoration: underline; color: #0064c0; }
+:where(.backwards-compatibility) .screen-container.active-screen.-enter + .screen-container .card.in-app-notification-card { display: none; }
+:where(.backwards-compatibility) .card.warning-card { color: var(--color-neutral-0) !important; margin: var(--space-m); padding: var(--space-base); font-size: 0.9em; }
 ```
-### .list-item  (18 rules)
+### .card-content  (4 rules)
 ```css
-[data-list-item] .list-item { width: 50%; }
-.list-item { display: block; }
-.list-item { border-bottom:var(--border-size-s) solid var(--border-color-neutral-4, var(--color-neutral-4)); overflow:hidden; padding:var(--space-m); position:relative; }
-.list-item:last-of-type { border-bottom:none; }
-.list-item.list-item-no-click-effect .scale-animation { background:transparent !important; opacity:0 !important; }
-.list-item .scale-animation { -webkit-animation:list-item-scale-animation 1500ms; animation:list-item-scale-animation 1500ms; background-color:rgba(0, 0, 0, 0.1); border-radius:100px; display:block; height:10px; left:50%; pointer-events:none; position:absolute; top:50%; width:10px; will-change:transform; z-index:var(--layer-global-screen); }
-.list .list-item { background-color:var(--background-color-neutral-0, var(--color-neutral-0)); }
-.layout-native .list-item { padding:var(--space-base); }
-.desktop .list .list-item:hover:not(.list-item-no-hover):not(.list-item-selected) { background-color:var(--background-color-neutral-2, var(--color-neutral-2)); }
-s-high-contrast.desktop .list .list-item:hover, .os-high-contrast.desktop .list .list-item-selected, .os-high-contrast.tablet.landscape .list .list-item:hover, .os-high-contrast.tablet.landscape .list .list-item-selected { position:relative; }
-t .list-item:hover:before, .os-high-contrast.desktop .list .list-item-selected:before, .os-high-contrast.tablet.landscape .list .list-item:hover:before, .os-high-contrast.tablet.landscape .list .list-item-selected:before { border:var(--border-size-s) solid var(--border-color-focus-outer, var(--color-focus-outer)); border-right-width:0; border-left-width:var(--border-size-l); bottom:0; content:""; display:block; left:0; pointer-events:none; position:absolute; right:0; top:0; }
-.split-screen-wrapper .split-left .list-item { cursor:pointer; }
-.has-accessible-features .split-left .list-item:focus { -webkit-box-shadow:none; box-shadow:none; }
-.has-accessible-features .split-left .list-item:focus:before { border:3px solid var(--border-color-focus-outer, var(--color-focus-outer)); bottom:0; content:""; left:0; position:absolute; right:0; top:0; }
-:where(.backwards-compatibility) .layout-native .list-item { padding: var(--space-m); }
-:where(.backwards-compatibility) .list-item:last-of-type { border-bottom: 1px solid #cfd8dc; }
-:where(.backwards-compatibility) .layout-native .month-year-selector .list-item { border: none; padding-bottom: 5px; padding-left: 0px; padding-top: 10px; }
-.list .list-item.background-blue-lightest { background-color: var(--color-blue-lightest) }
+.card-content { -webkit-box-flex:1; -ms-flex:1; flex:1; padding:var(--space-m); }
+.layout-native .card-content { padding:var(--space-base); }
+.layout-native .card-content.padding-none { padding:var(--space-none); }
+:where(.backwards-compatibility) .layout-native .card-title, :where(.backwards-compatibility) .layout-native .card-content, :where(.backwards-compatibility) .layout-native .card-bottom { padding: 15px 15px 15px 11px; }
 ```
-### .list-item-container  (2 rules)
+### .heading3  (9 rules)
 ```css
-[data-list-item] .list-item-container { display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; width: 200%; }
-[data-list-item] .list-item-container.list-item-animating { transition: all .5s ease; }
+h1, .heading1, h2, .heading2, h3, .heading3, h4, .heading4, h5, .heading5, h6, .heading6, .font-size-display { font-weight:var(--font-semi-bold); line-height:1.25; margin:0; }
+h3, .heading3 { font-size:var(--font-size-h3); }
+.tablet h3, .tablet .heading3 { font-size:calc(var(--font-size-h3) - 2px); }
+.phone h3, .phone .heading3 { font-size:calc(var(--font-size-h3) - 4px); }
+h1, .heading1, h2, .heading2, h3, .heading3, h4, .heading4, h5, .heading5, h6, .heading6, .font-size-display { line-height: 1.5; }
+:where(.backwards-compatibility) .h3, :where(.backwards-compatibility) .heading3, .phone :where(.backwards-compatibility) h3, .phone :where(.backwards-compatibility) .h3, .phone :where(.backwards-compatibility) .heading3 { font-size: 18px; }
+ding4, :where(.backwards-compatibility) h5, :where(.backwards-compatibility) .heading5, :where(.backwards-compatibility) h6, :where(.backwards-compatibility) .heading6, :where(.backwards-compatibility) .font-size-display { line-height:1.43; }
+:where(.backwards-compatibility) .heading3.common-error-message-color { color: var(--color-primary); }
+:where(.backwards-compatibility) .policies .heading3 { letter-spacing: 0.8px }
 ```
-### .list-item-float-left  (2 rules)
+### .margin-top-base  (1 rule)
 ```css
-[data-list-item] .list-item-float-left { float: left; -webkit-box-pack: start; -webkit-justify-content: flex-start; -ms-flex-pack: start; justify-content: flex-start; }
-.is-rtl [data-list-item] .list-item-float-left { float:right; }
+.margin-top-base { margin-top:var(--space-base); }
 ```
-### .list-item-left-actions  (5 rules)
+### .notification-detail-content  (5 rules)
 ```css
-[data-list-item] .list-item-animating .list-item-left-actions, [data-list-item] .list-item-animating .list-item-right-actions { width: 0; transition: all .5s ease; }
-[data-list-item] .list-item-left-actions, [data-list-item] .list-item-right-actions { width: 0; transition: none; }
-[data-list-item] .list-item-left-actions, [data-list-item] .list-item-right-actions { display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; }
-[data-list-item] .list-item-full-swipe .list-item-right-actions [data-list-item-action]:not(:last-child), [data-list-item] .list-item-full-swipe .list-item-left-actions [data-list-item-action]:not(:first-child) { -webkit-box-flex:0; -webkit-flex:0; -ms-flex:0; flex:0; }
-:where(.backwards-compatibility) .list-item-left-actions .list-item-action { background: #0f76bb; }
+:where(.backwards-compatibility) .notification-detail-content table, :where(.backwards-compatibility) .policies-container table { width: 100%; border: 1px solid; border-collapse:collapse; }
+:where(.backwards-compatibility) .notification-detail-content table p, :where(.backwards-compatibility) .policies-container table p { margin-top: var(--space-base); margin-bottom: var(--space-base); }
+:where(.backwards-compatibility) .notification-detail-content table td, :where(.backwards-compatibility) .policies-container table td { border: 1px solid; display: table-cell; vertical-align:middle; }
+:where(.backwards-compatibility) .notification-detail-content ul ul ul, :where(.backwards-compatibility) .policies-container ul ul ul { list-style-type: square; }
+:where(.backwards-compatibility) .notification-detail-content ul ul, :where(.backwards-compatibility) .policies-container ul ul { list-style-type: circle; }
 ```
-### .list-item-right-actions  (6 rules)
+### .notification-detail-icon-badge  (2 rules)
 ```css
-[data-list-item] .list-item-animating .list-item-left-actions, [data-list-item] .list-item-animating .list-item-right-actions { width: 0; transition: all .5s ease; }
-[data-list-item] .list-item-left-actions, [data-list-item] .list-item-right-actions { width: 0; transition: none; }
-[data-list-item] .list-item-left-actions, [data-list-item] .list-item-right-actions { display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; }
-[data-list-item] .list-item-right-actions { -webkit-box-pack: end; -webkit-justify-content: flex-end; -ms-flex-pack: end; justify-content: flex-end; }
-[data-list-item] .list-item-full-swipe .list-item-right-actions [data-list-item-action]:not(:last-child), [data-list-item] .list-item-full-swipe .list-item-left-actions [data-list-item-action]:not(:first-child) { -webkit-box-flex:0; -webkit-flex:0; -ms-flex:0; flex:0; }
-:where(.backwards-compatibility) .list-item-right-actions .list-item-action { background: #50B8B3; }
+:where(.backwards-compatibility) .notification-detail-icon-badge { border: 3px solid #0c5e95; border-radius: 50%; margin-top: 5px; max-width: 55px; width: 55px; height: 55px; }
+:where(.backwards-compatibility) .notification-detail-icon-badge img { border-radius: 50%; aspect-ratio: 1; object-fit: cover; width: 100%; height: 100%; }
 ```
-### .text-primary-color  (2 rules)
+### .placeholder-empty  (3 rules)
 ```css
-:where(.backwards-compatibility) .tag.text-primary-color { background-color: var(--color-primary); border: 1px solid var(--color-primary); }
-:where(.backwards-compatibility) .text-primary-color { color: var(--color-primary); }
+html[data-uieditorversion^="1"] .placeholder-empty:empty {  }
+.ph:empty, .placeholder-empty:empty { display:none; }
+list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .placeholder-empty > .OSBlockWidget, .osui-tabs__content > .ph > .list.list-group, .osui-tabs__content > .placeholder-empty > .list.list-group { display:contents; }
 ```
-## MyNotifications.MessageListItem
-
-### .font-size-0-75em  (2 rules)
+### .text-note  (1 rule)
 ```css
-:where(.backwards-compatibility) .font-size-0-75em { font-size: 0.75em; }
-:where(.backwards-compatibility) .subdivision .font-size-0-75em > span { white-space: nowrap; font-size: 14px; color: #263238; }
+:where(.backwards-compatibility) .text-note { color: #a6a6a6; /*shade4*/ font-size: 10px; }
 ```
-### .justify-content-center  (1 rule)
+### .whitespace-normal  (1 rule)
 ```css
-.justify-content-center { -webkit-box-pack:center; -ms-flex-pack:center; justify-content:center; }
-```
-### .margin-right5  (1 rule)
-```css
-.margin-right5 { margin-right: 5px; }
-```
-### .notification-list-icon-badge  (1 rule)
-```css
-:where(.backwards-compatibility) .notification-list-icon-badge { width: 80%; border-radius: 50%; aspect-ratio: 1; object-fit: cover; }
-```
-### .text-ellipsis  (2 rules)
-```css
-.text-ellipsis { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-:where(.backwards-compatibility) .text-ellipsis > [data-expression] { white-space: inherit; }
-```
-### .text-neutral-6  (1 rule)
-```css
-.text-neutral-6 { color:var(--text-color-neutral-6, var(--color-neutral-6)); }
-```
-### .width15  (1 rule)
-```css
-:where(.backwards-compatibility) .width15 { min-width: 15%; max-width: 15%; width: 15%; }
-```
-### .width75  (1 rule)
-```css
-:where(.backwards-compatibility) .width75 { min-width: 75%; max-width: 75%; width: 75%; }
+:where(.backwards-compatibility) .whitespace-normal [data-expression], :where(.backwards-compatibility) .whitespace-normal span, :where(.backwards-compatibility) .whitespace-normal { white-space: normal; }
 ```
 ## App_Common.BottomBarContent
 
@@ -726,12 +648,6 @@ on, .bottom-bar-items > a.active .bottom-bar-item-icon, .orbit-theme .bottom-bar
 .backwards-compatibility) .bottom-bar .floating-actions-items a, :where(.backwards-compatibility) .bottom-bar .floating-actions-items a:link, :where(.backwards-compatibility) .bottom-bar .floating-actions-items a:visited { color: var(--color-primary); display: block; }
 ds-compatibility) .bottom-bar > a:active .bottom-bar-item-text, :where(.backwards-compatibility) .bottom-bar > a.active .bottom-bar-item-icon, :where(.backwards-compatibility) .bottom-bar > a:active .bottom-bar-item-icon { color: var(--color-primary); /*primary-color*/ }
 ```
-### .placeholder-empty  (3 rules)
-```css
-html[data-uieditorversion^="1"] .placeholder-empty:empty {  }
-.ph:empty, .placeholder-empty:empty { display:none; }
-list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .placeholder-empty > .OSBlockWidget, .osui-tabs__content > .ph > .list.list-group, .osui-tabs__content > .placeholder-empty > .list.list-group { display:contents; }
-```
 ## ConnectPatterns.Icon
 
 ### .connect-icon-contacts  (1 rule)
@@ -762,6 +678,10 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 ```css
 .ubt-skeleton-section .ubt-icon:not(.ignore-loading) { border-radius: var(--border-radius-medium); color: transparent; }
 an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section .ubt-icon:not(.ignore-loading), .ubt-skeleton-section .form > div, .ubt-skeleton-section .osui-dropdown-search, .ubt-skeleton-section .badge { background: var(--ubt-background-skeleton-light); animation: var(--ubt-skeleton-animation); border-color: var(--ubt-background-skeleton-light) }
+```
+### .text-neutral-6  (1 rule)
+```css
+.text-neutral-6 { color:var(--text-color-neutral-6, var(--color-neutral-6)); }
 ```
 ### .ubt-icon  (34 rules)
 ```css
@@ -1021,7 +941,7 @@ ibility) .screen-container.active-screen:not([class*=-enter]) + .screen-containe
 - `--border-radius-medium`: `8px` (in `:root, .connect-legacy-compatibily-containter`)
 - `--border-radius-none`: `0` (in `@charset "UTF-8";    :root`); `0` (in `.ignore-backwards-compatibility-content`)
 - `--border-radius-rounded`: `100px` (in `@charset "UTF-8";    :root`); `16px` (in `.osui-balloon`); `16px` (in `.osui-bottom-sheet`); `16px` (in `.osui-overflow-menu`)
-- `--border-size-l`: `3px` (in `@charset "UTF-8";    :root`); `3px` (in `.ignore-backwards-compatibility-content`)
+- `--border-radius-soft`: `4px` (in `@charset "UTF-8";    :root`); `4px` (in `.ignore-backwards-compatibility-content`)
 - `--border-size-m`: `2px` (in `@charset "UTF-8";    :root`); `2px` (in `.ignore-backwards-compatibility-content`)
 - `--border-size-s`: `1px` (in `@charset "UTF-8";    :root`); `1px` (in `.ignore-backwards-compatibility-content`)
 - `--bottom-bar-size`: `56px` (in `@charset "UTF-8";    :root`); `61px` (in `:root :where(.backwards-compatibility)`); `56px` (in `.ignore-backwards-compatibility-content`)
@@ -1038,7 +958,6 @@ ibility) .screen-container.active-screen:not([class*=-enter]) + .screen-containe
 - `--color-green-lightest`: `#ebf7ed` (in `@charset "UTF-8";    :root`); `#EAF3EB` (in `:root, .connect-legacy-compatibily-containter`); `#ebf7ed` (in `.ignore-backwards-compatibility-content`)
 - `--color-neutral-0`: `#ffffff` (in `@charset "UTF-8";    :root`); `#ffffff` (in `:root`); `#ffffff` (in `.ignore-backwards-compatibility-content`); `#ffffff` (in `.ignore-backwards-compatibility-content`)
 - `--color-neutral-10`: `#101213` (in `@charset "UTF-8";    :root`); `#101213` (in `:root`); `#101213` (in `.ignore-backwards-compatibility-content`)
-- `--color-neutral-2`: `#f1f3f5` (in `@charset "UTF-8";    :root`); `#f1f3f5` (in `:root`); `#f1f3f5` (in `.ignore-backwards-compatibility-content`); `#E9EBED` (in `.ignore-backwards-compatibility-content`)
 - `--color-neutral-3`: `#e9ecef` (in `@charset "UTF-8";    :root`); `#e9ecef` (in `:root`); `#e9ecef` (in `.ignore-backwards-compatibility-content`); `#D8DCDE` (in `.ignore-backwards-compatibility-content`)
 - `--color-neutral-4`: `#dee2e6` (in `@charset "UTF-8";    :root`); `#dee2e6` (in `:root`); `#dee2e6` (in `.ignore-backwards-compatibility-content`); `#C2C8CC` (in `.ignore-backwards-compatibility-content`)
 - `--color-neutral-5`: `#ced4da` (in `@charset "UTF-8";    :root`); `#ced4da` (in `:root`); `#ced4da` (in `.ignore-backwards-compatibility-content`); `#87929D` (in `.ignore-backwards-compatibility-content`)
@@ -1091,7 +1010,6 @@ ibility) .screen-container.active-screen:not([class*=-enter]) + .screen-containe
 - `--header-size-content`: `48px` (in `@charset "UTF-8";    :root`); `48px` (in `.ignore-backwards-compatibility-content`)
 - `--layer-global-navigation`: `calc(var(--layer-above) + var(--layer-global-elevated))` (in `@charset "UTF-8";    :root`)
 - `--layer-global-negative`: `-1` (in `@charset "UTF-8";    :root`)
-- `--layer-global-screen`: `0` (in `@charset "UTF-8";    :root`)
 - `--layer-local-tier-1`: `1` (in `@charset "UTF-8";    :root`)
 - `--loading-dot-size`: `10px` (in `:root`)
 - `--orbit-primary-6`: `#2857D8` (in `:root`); `var(--color-primary)` (in `:root`)
