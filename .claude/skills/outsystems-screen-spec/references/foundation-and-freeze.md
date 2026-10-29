@@ -19,7 +19,7 @@ UI consistency across screens comes from one implementation per shared thing (la
 
 1. Collect every captured state of the block across the screens that use it (catalog `blocks.md` lists them; their `analysis/dom/*.html`).
 2. Read the block's compiled source once (inputs, events, placeholders, render conditions).
-3. Build `app/src/shared/<Block>/` with props named after the block inputs, events after its events, placeholders as children/slots.
+3. Build `app/src/components/<domain>/<Block>/` (or `app/src/containers/<Block>/`) with props named after the block inputs, events after its events, placeholders as children/slots.
 4. Add the tag `@os-block <Module.Flow.Block>` in a comment of the component file (several tags if one component implements several blocks).
 5. Write a DOM snapshot test per captured state (render with the state's inputs, compare with the captured subtree using the same normalisation as the parity check).
 6. Note in the block's README which states were not captured.
@@ -30,7 +30,7 @@ UI consistency across screens comes from one implementation per shared thing (la
 
 ## 4. Freeze and change requests
 
-After the foundation phase, screen agents may not change `app/src/shell`, `app/src/shared`, `app/src/lib`, `os-legacy.css` or generated files. `scope_guard.py` enforces this before merge.
+After the foundation phase, screen agents may not change `app/src/platform`, `app/src/legacy`, `app/src/lib`, `app/src/styles`, `app/src/vendor`, `os-legacy.css` or generated files. `scope_guard.py` enforces this before merge.
 
 When a screen needs something there:
 1. Write `migration/change-requests/CR-<Screen>-<n>.md` from `assets/change-request-template.md`: block, the captured evidence (`dom/<state>.html` lines, expression in `sources/pretty`), the expected change, screens affected.

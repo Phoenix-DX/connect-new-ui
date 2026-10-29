@@ -13,7 +13,7 @@
 ## 1. The gate
 
 A route goes to review (`route.py ready`) and is finished (`route.py finish`) only when every captured state has a parity report that is:
-- **current**: made by `route.py parity`, stamped with a fingerprint of the route code, `src/shell`, `src/shared`, `src/lib`, `src/components`, `src/mocks` (fixtures included), `src/app`, `public/os-legacy.css`, `index.html`, the exemptions file, the captured reference of the state, its metadata and `calls.json`. Any change after the run makes the report stale;
+- **current**: made by `route.py parity`, stamped with a fingerprint of the route code (`src/pages/<S>`), `src/api`, `src/containers`, `src/components`, `src/platform`, `src/legacy`, `src/lib`, `src/mocks` (fixtures included), `src/app`, `src/styles`, `src/vendor`, `public/UBTConnect`, `index.html`, the exemptions file, the captured reference of the state, its metadata and `calls.json`. Any change after the run makes the report stale;
 - **full**: text, style, pixel and (when `calls.json` exists) call comparison all ran. `--no-text`, `--no-style`, `--no-pixel` exist for local debugging only; such reports never pass;
 - **clean**: zero unexempted differences.
 
@@ -93,4 +93,4 @@ The verifier reads the spec or pack, the parity reports and the diff images, run
 
 ## 8. Reading a report
 
-`[kind] path: detail`, e.g. `[class] div#reactContainer > …div.card: missing .card-active`. Fix the markup at that path. A `style`, `layout` or `position` difference with no `structure`/`class` difference at the same path usually means a missing wrapper above it, a missing body/html class, a missing inline style the capture has, or a stylesheet not loaded; rarely a CSS problem. Never fix it with new CSS. A `pixel` difference alone: open the diff image at the hotspots; it is usually a pseudo-element, a background image, an icon font or an image that did not load. A `call` difference is fixed in the route's logic (`api.ts`, event handlers), never by changing the mock to hide it.
+`[kind] path: detail`, e.g. `[class] div#reactContainer > …div.card: missing .card-active`. Fix the markup at that path. A `style`, `layout` or `position` difference with no `structure`/`class` difference at the same path usually means a missing wrapper above it, a missing body/html class, a missing inline style the capture has, or a stylesheet not loaded; rarely a CSS problem. Never fix it with new CSS. A `pixel` difference alone: open the diff image at the hotspots; it is usually a pseudo-element, a background image, an icon font or an image that did not load. A `call` difference is fixed in the route's logic (page hooks, `app/src/api/<domain>/`, event handlers), never by changing the mock to hide it.

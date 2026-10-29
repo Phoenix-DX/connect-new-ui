@@ -35,8 +35,8 @@ node scripts/batch_capture.cjs login --auto --storage .auth/state.json     # sig
 | 2 | Capture | script | `batch_capture.cjs` (+ browser MCP only for states a script cannot reach) | `screens/<S>/capture/`, `screens/<S>/analysis/` (raw DOM per state, `states.json`, `calls.json`) | coverage.md reviewed |
 | 3 | Catalog | script | `catalog.py`, `board.py tier`, `flags.py scan` | `catalog/` (blocks, OutSystems UI patterns, actions, foundation queue, tiers), `flags.md` | none |
 | 4 | Architecture and stack | agent proposes, **user confirms** | `stack.py` | `stack.json`, `architecture.md`, `patterns/` | every stack item and pattern confirmed by the user |
-| 5 | Foundation | one owner agent | shell spec, `scaffold_react_app.py --stack`, shared blocks | `app/src/shell`, `app/src/shared` with `@os-block` tags | foundation queue empty for the next wave; shared **frozen** |
-| 6 | Route loop | agent per route, user answers | `route.py`, `context_pack.py`, spec templates | `route-spec.md`, `questions.json`, `app/src/screens/<S>/` | no open question, spec complete |
+| 5 | Foundation | one owner agent | shell spec, `scaffold_react_app.py --stack`, shared blocks | `app/src/platform`, `app/src/components`, `app/src/containers` with `@os-block` tags | foundation queue empty for the next wave; shared **frozen** |
+| 6 | Route loop | agent per route, user answers | `route.py`, `context_pack.py`, spec templates | `route-spec.md`, `questions.json`, `app/src/pages/<S>/` | no open question, spec complete |
 | 7 | Parity | script, agent fixes | `route.py parity` (runs `parity_check.cjs` per state) + exemptions | `screens/<S>/parity/*.json` + `*.diff.png`, fingerprinted | every state: current, full, 0 unexempted differences; every call mocked |
 | 8 | Your test and finish | **user tests and confirms**, agent fixes feedback | `route.py ready / feedback / fixed / finish` | status `built` (finished), `finished.json` | the user answered the latest review `confirm` |
 
@@ -95,7 +95,7 @@ python3 scripts/flags.py scan --survey capture/survey-<App>.json --screens migra
 - `foundation-queue.md`: shared blocks remaining screens need that are not built. These are built in phase 5, never inside a screen task.
 - `actions.md`: every data/server action and the screens that use it. Ask the OutSystems MCP **once per action** and cache the answer in `migration/knowledge/actions/<Action>.md`; screen agents read the cache.
 - `flags.py scan` writes `migration/flags.md`: every feature flag, the routes it affects, and (later) what the OutSystems MCP said and what the user decided.
-- OutSystems UI pattern blocks (`OutSystemsUI.<Flow>.<Block>`, kept by `survey.js`; `survey/osui.md` lists them with the OutSystems UI version and the provider libraries in the manifest) are kind `osui`: built once in the foundation as `src/shared/osui/<Pattern>` (pattern P-OSUI) as soon as one remaining screen needs them, never per route.
+- OutSystems UI pattern blocks (`OutSystemsUI.<Flow>.<Block>`, kept by `survey.js`; `survey/osui.md` lists them with the OutSystems UI version and the provider libraries in the manifest) are kind `osui`: built once in the foundation as `src/components/ui/<Pattern>` (pattern P-OSUI) as soon as one remaining screen needs them, never per route.
 - `tiers.json`: **lite** (all shared blocks built, ≤3 blocks of its own, ≤2 server actions), **full** (anything heavier), **wait** (needs a block from the foundation queue).
 
 ## Phase 4: Architecture and tech stack (the user confirms)
@@ -119,7 +119,7 @@ Details: `references/architecture-and-stack.md`.
 
 ## Phase 5: Foundation, then freeze
 
-One owner builds the shell (`assets/app-shell-spec-template.md`, `scripts/scaffold_react_app.py --stack migration/stack.json`) following the confirmed stack and patterns, and every block in the foundation queue (OutSystems UI patterns included), each with a DOM snapshot test per captured state and an `@os-block` tag. Then shell and shared are **frozen**: screen agents may not edit `src/shell`, `src/shared`, `src/lib` or the legacy CSS. When a screen needs a change, it writes `migration/change-requests/CR-<n>.md` (`assets/change-request-template.md`), renders that part as `<NotCaptured>` and carries on. The foundation owner batches change requests, applies them, and re-runs parity on all built screens once per batch. Why: a shared fix made inside a screen task forces re-verification of every other screen that uses the block, so one screen's cost leaks into all of them. Details: `references/foundation-and-freeze.md`.
+One owner builds the shell (`assets/app-shell-spec-template.md`, `scripts/scaffold_react_app.py --stack migration/stack.json`) following the confirmed stack and patterns, and every block in the foundation queue (OutSystems UI patterns included), each with a DOM snapshot test per captured state and an `@os-block` tag. Then shell and shared are **frozen**: screen agents may not edit `src/platform`, `src/legacy`, `src/lib`, `src/styles`, `src/vendor` or the legacy CSS. When a screen needs a change, it writes `migration/change-requests/CR-<n>.md` (`assets/change-request-template.md`), renders that part as `<NotCaptured>` and carries on. The foundation owner batches change requests, applies them, and re-runs parity on all built screens once per batch. Why: a shared fix made inside a screen task forces re-verification of every other screen that uses the block, so one screen's cost leaks into all of them. Details: `references/foundation-and-freeze.md`.
 
 ## Phase 6: The route loop
 
@@ -132,7 +132,7 @@ python3 scripts/route.py start <S> --owner <you>      # refuses finished routes;
 python3 scripts/route.py step <S> capture             # batch_capture.cjs run --only <S> --analyze (skipped if capture/.complete)
 python3 scripts/route.py step <S> spec                # context_pack.py, then route-spec.md with every unclear point
 python3 scripts/route.py spec-done <S>                # record the spec + hashes of its inputs: a later reset keeps it
-python3 scripts/route.py step <S> build               # code in app/src/screens/<S>/
+python3 scripts/route.py step <S> build               # code in app/src/pages/<S>/
 python3 scripts/route.py step <S> parity
 python3 scripts/route.py parity <S> --app http://localhost:5173   # every captured state, fingerprinted reports
 python3 scripts/route.py ready <S>                    # build gates pass → status review: the USER tests now

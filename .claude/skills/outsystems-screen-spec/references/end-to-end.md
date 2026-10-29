@@ -27,8 +27,8 @@ Why gates instead of a loop per screen: in a per-screen loop, every screen pays 
 |---|---|---|---|
 | Person (product/tech owner) | scope decisions, exemptions, final review | board `ask` rows, parity reports, the running app | `board.py set decision=…`, `parity-exemptions.json`, status `verified` |
 | Orchestrator agent | runs scripts, dispatches tasks, keeps the board | `board.py show`, `catalog/`, ledger report | board statuses, ledger |
-| Foundation owner agent | shell, shared blocks, change requests | shell spec, `foundation-queue.md`, change requests | `app/src/shell`, `app/src/shared`, `os-legacy.css` |
-| Screen agent | one screen | `AGENTS.md`, its `pack.md` (+ spec for full tier) | `app/src/screens/<S>/`, `migration/screens/<S>/`, change requests |
+| Foundation owner agent | shell, shared blocks, change requests | shell spec, `foundation-queue.md`, change requests | `app/src/platform`, `app/src/components`, `app/src/containers`, `os-legacy.css` |
+| Screen agent | one screen | `AGENTS.md`, its `pack.md` (+ spec for full tier) | `app/src/pages/<S>/`, `migration/screens/<S>/`, change requests |
 | Verifier agent (full tier, or on unexplained diffs) | independent check against the capture | spec, pack, parity reports, the app | `notes.md` verification section |
 
 ## 3. Repository layout
@@ -91,7 +91,7 @@ Batch capture (orchestrator, after the plan is filled):
 > Run batch_capture for every `build` screen with status todo, with --analyze. Then list per screen the states coverage.md says are still missing, and which of them need the browser MCP.
 
 Foundation (foundation owner):
-> Read `migration/AGENTS.md`, `migration/shell/app-shell.spec.md` and `migration/catalog/foundation-queue.md`. Build the queued shared blocks in `app/src/shared/` in queue order, each with an `@os-block` tag and a DOM snapshot test per captured state of the screens that use it. Stop when the queue is empty; then re-run catalog.py and board.py tier.
+> Read `migration/AGENTS.md`, `migration/shell/app-shell.spec.md` and `migration/catalog/foundation-queue.md`. Build the queued shared blocks in `app/src/components/` or `app/src/containers/` in queue order, each with an `@os-block` tag and a DOM snapshot test per captured state of the screens that use it. Stop when the queue is empty; then re-run catalog.py and board.py tier.
 
 Run the route list (single agent, interactive):
 > Use the outsystems-screen-spec skill. Run `route.py plan` and show me the plan. Ask me all open questions first. Then take the routes in board order and run the route loop for each one (references/route-loop.md): skip finished routes, reset and rebuild interrupted or failed ones, write the route spec with every unclear point, ask the OutSystems MCP for facts and me for decisions, never guess, then mark it ready for my test and wait. I will test each route and either confirm or give feedback; fix my feedback in rounds, and finish a route only when I confirm.

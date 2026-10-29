@@ -1080,3 +1080,5 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-29,NotificationDetails,build,239297,build-opus,opus,"item 10 NotificationDetails spec+build+parity, entry in Notifications, layout move; 61 calls"
 2026-10-29,clarify-item10,other,176859,routepy-opus,opus,"route.py/scope_guard/consistency_check on the page layout (I10-1, I10-5), 18 tests, 72 calls"
 2026-10-29,clarify-item10,other,86598,tooling-sonnet,sonnet,"contract_gen source choice (I10-6) + migration/survey screen list and routes (I10-7), 20 calls"
+2026-10-29,clarify-item9,build,159668,build-9A-opus,opus,"item 9 B1-B3 RenderErrorBoundary, root error page, chunk load; 56 calls"
+2026-10-29,clarify-item10,other,57576,skilldocs-sonnet,sonnet,"I10-11 skill docs old paths, 20 edits in 7 files, 7 calls"
