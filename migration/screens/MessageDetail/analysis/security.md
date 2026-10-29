@@ -1,4 +1,4 @@
-# Security inventory: MessageDetail
+# Security inventory: MessageList
 
 Names and categories only; no values were captured. Inferences are marked as such and must be confirmed with the OutSystems MCP or the team.
 

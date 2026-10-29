@@ -18,28 +18,34 @@ flowchart TB
       B4["Layout.MenuIcon__UpdatedOSUI<br/>Connect2_LegacyShared<br/>lifecycle"]
       B5["LDM_Blocks.EventsDetail_Content<br/>Connect2_OrbitMobile_MUI<br/>lifecycle"]
       B6["LDM_Blocks.EventDetail_Banner<br/>Connect2_OrbitMobile_MUI<br/>lifecycle"]
-      B7["CW_CTA_PopUps.ContactPopup_ByPhone<br/>UBTConnect_Utils<br/>lifecycle"]
-      B8["CW_CTA_PopUps.ContactPopup<br/>UBTConnect_Utils<br/>lifecycle"]
-      B9["CW_CTA_PopUps.ContactByMessage_Wrapper<br/>UBTConnect_Utils<br/>lifecycle"]
-      B10["CW_CTA_PopUps.ContactPopup_ByMessage<br/>UBTConnect_Utils<br/>lifecycle"]
-      B11["App_Common.BottomBarMenu<br/>UBTConnect<br/>navigation, lifecycle"]
-      B12["App_Common.BottomBarContent<br/>UBTConnect<br/>markup"]
-      B13["Navigation.BottomBarItem<br/>OutSystemsUI_2_23<br/>markup"]
-      B14["ConnectPatterns.SkeletonSection<br/>UBTConnectLibrary<br/>lifecycle"]
+      B7["CW_Notes.ItemNotesSection<br/>UBTConnect_Utils<br/>lifecycle"]
+      B8["BasePatterns.CustomContainer<br/>UBTConnectLibrary<br/>lifecycle"]
+      B9["BasePatterns.Columns_Two<br/>UBTConnectLibrary<br/>lifecycle"]
+      B10["CW_Notes.NotesSheet<br/>UBTConnect_Utils<br/>lifecycle"]
+      B11["CW_CTA_PopUps.ContactPopup_ByPhone<br/>UBTConnect_Utils<br/>lifecycle"]
+      B12["CW_CTA_PopUps.ContactPopup<br/>UBTConnect_Utils<br/>lifecycle"]
+      B13["CW_CTA_PopUps.ContactByMessage_Wrapper<br/>UBTConnect_Utils<br/>lifecycle"]
+      B14["CW_CTA_PopUps.ContactPopup_ByMessage<br/>UBTConnect_Utils<br/>lifecycle"]
+      B15["App_Common.BottomBarMenu<br/>UBTConnect<br/>navigation, lifecycle"]
+      B16["App_Common.BottomBarContent<br/>UBTConnect<br/>markup"]
+      B17["Navigation.BottomBarItem<br/>OutSystemsUI_2_23<br/>markup"]
+      B18["ConnectPatterns.SkeletonSection<br/>UBTConnectLibrary<br/>lifecycle"]
     end
     Infra["App infrastructure blocks (20)<br/>render nothing visible"]
-    Cache["View cache / preload<br/>IsRestoredFromCacheJS, WasCurrentViewRestoredFromCacheJS"]
+    Cache["View cache / preload<br/>CheckRestoredJS, IsRestoredFromCacheJS, WasCurrentViewRestoredFromCacheJS"]
     Vars["Client variables read<br/>App_PIN_BiometricEnabled, App_Policies_HasPolicyToAccept, Directory_Updates_UnreadCount, IsNavigateToHomeOnBack, PIN_IsLocked …"]
     Shell --> Content
   end
   subgraph Server["OutSystems server · screenservices"]
     direction LR
     S0["DataActionGetCoordinatorDetails<br/>data action / aggregate, observed"]
-    S1["DataActionGetEventByEventId<br/>data action / aggregate, observed"]
+    S1["DataActionFetchEventNotes<br/>data action / aggregate, observed"]
+    S2["DataActionGetEventByEventId<br/>data action / aggregate, observed"]
   end
   Backend["Backend<br/>not visible from the browser"]
   B0 --> S0
   B0 --> S1
+  B0 --> S2
   S0 -.-> Backend
   classDef unknown stroke-dasharray: 5 4;
   class Backend unknown;
@@ -62,13 +68,16 @@ sequenceDiagram
   end
   S->>API: DataActionGetCoordinatorDetails
   API-->>S: Out_CoordinatorDetails, Out_HasContent, EventName
+  S->>API: DataActionFetchEventNotes
+  API-->>S: Notes
+  S->>S: onAfterFetch_FetchEventNotes
   S->>API: DataActionGetEventByEventId
   API-->>S: EventResponse, Out_HasContent
   S->>S: onAfterFetch_GetEventByEventId
   S->>S: OnReady
   alt success
     S-->>U: TODO render states (spec section 8)
-  else UserException
+  else CommunicationException / UserException
     S-->>U: TODO error UI and messages (spec section 11)
   end
 ```

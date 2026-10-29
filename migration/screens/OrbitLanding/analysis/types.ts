@@ -206,18 +206,24 @@ export interface LocalBookmarkItem {
   Note: string /* "" in capture */;
 }
 
+export interface LocalBookmarksC2Item {
+  Id: string /* Long Integer as string */;
+  UserId: number;
+  BookmarkId: string /* Long Integer as string */;
+  BookmarkCategoryId: string;
+  ItemId: string /* Long Integer as string */;
+  CreatedAtDateUtc: string /* ISO DateTime */;
+}
+
 export interface EmptyListItem {
   Id: string /* Long Integer as string */;
   UserId: number /* 0 in capture */;
-  BookmarkId: string /* Long Integer as string */;
-  BookmarkCategoryId: string /* "" in capture */;
-  ItemId: string /* Long Integer as string */;
-  CreatedAtDateUtc: string /* "1900-01-01..." = no value */;
-}
-
-export interface LocalBookmarksC2 {
-  List: unknown[] /* empty in capture */;
-  EmptyListItem: EmptyListItem;
+  NoteId: string /* Long Integer as string */;
+  NoteCategoryId: string /* "" in capture */;
+  ItemId: string /* "" in capture */;
+  DateCreatedUtc: string /* "1900-01-01..." = no value */;
+  DateEditedUtc: string /* "1900-01-01..." = no value */;
+  NotesTotalCount: string /* Long Integer as string */;
 }
 
 export interface LocalNotes {
@@ -227,7 +233,7 @@ export interface LocalNotes {
 
 export interface LocalEntities_App {
   LocalBookmark: LocalBookmarkItem[] /* wire: { List: [...] } */;
-  LocalBookmarksC2: LocalBookmarksC2;
+  LocalBookmarksC2: LocalBookmarksC2Item[] /* wire: { List: [...] } */;
   LocalNotes: LocalNotes;
 }
 
@@ -261,6 +267,8 @@ export interface Directory_UserCurrent_Geography {
   Country_Email: string;
   Country_Phone: string;
   Country_LocalityCount: string /* Long Integer as string */;
+  MainHall_Latitude: string /* Decimal as string */;
+  MainHall_Longitude: string /* Decimal as string */;
 }
 
 export interface SubscribedCountriesItem {
@@ -298,8 +306,8 @@ export interface AddressItemsListItem {
 export interface Address {
   AddressItemsList: AddressItemsListItem[] /* wire: { List: [...] } */;
   FormattedAddress: string;
-  Lat: string /* Long Integer as string */;
-  Long: string /* Long Integer as string */;
+  Lat: string /* Decimal as string */;
+  Long: string /* Decimal as string */;
 }
 
 export interface Directory_UserCurrent_Member {

@@ -632,18 +632,6 @@ t .list-item:hover:before, .os-high-contrast.desktop .list .list-item-selected:b
 ```
 ## MyNotifications.MessageListItem
 
-### .alert-text  (1 rule)
-```css
-:where(.backwards-compatibility) .alert-text { color: #e02020; }
-```
-### .fa-33  (1 rule)
-```css
-:where(.backwards-compatibility) .icon.fa-33 { font-size: 1.33em; }
-```
-### .fa-exclamation  (1 rule)
-```css
-.fa-exclamation:before { content:"\f12a" }
-```
 ### .font-size-0-75em  (2 rules)
 ```css
 :where(.backwards-compatibility) .font-size-0-75em { font-size: 0.75em; }
@@ -775,7 +763,7 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 .ubt-skeleton-section .ubt-icon:not(.ignore-loading) { border-radius: var(--border-radius-medium); color: transparent; }
 an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section .ubt-icon:not(.ignore-loading), .ubt-skeleton-section .form > div, .ubt-skeleton-section .osui-dropdown-search, .ubt-skeleton-section .badge { background: var(--ubt-background-skeleton-light); animation: var(--ubt-skeleton-animation); border-color: var(--ubt-background-skeleton-light) }
 ```
-### .ubt-icon  (32 rules)
+### .ubt-icon  (34 rules)
 ```css
 [data-button].btn.ubt-pincode__button-fingerprint .ubt-icon { font-size: calc(var(--ubt-pincode-buttons-size) - 10px); }
 .ubt-icon, .ubt-image-card__bookmarked:before, .ubt-statistics-item__bookmarked:before, .ubt-locality-contact-item__bookmarked:before { /* Use !important to prevent extensions from overriding this font. */ font-family: "connect-icon" !important; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
@@ -1022,7 +1010,7 @@ ibility) .screen-container.active-screen:not([class*=-enter]) + .screen-containe
 ```
 ## Generic utility classes (too many rules to list; see bundle.css)
 
-`.backwards-compatibility` (1747), `.dx-confirmation-dialog` (47), `.header` (99), `.layout` (53), `.layout-native` (278), `.layout-side` (91), `.list` (128), `.list-group` (51), `.phone` (273)
+`.backwards-compatibility` (1747), `.dx-confirmation-dialog` (47), `.header` (99), `.layout` (53), `.layout-native` (278), `.layout-side` (91), `.list` (129), `.list-group` (52), `.phone` (273)
 
 ## Design tokens referenced by the rules above
 

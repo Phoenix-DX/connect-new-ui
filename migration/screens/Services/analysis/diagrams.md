@@ -29,8 +29,8 @@ flowchart TB
     S0["DataActionGetServices<br/>data action / aggregate, observed"]
     S1["ActionSync_Info_GetMain<br/>observed"]
     S2["ActionGetUserInformation<br/>observed"]
-    S3["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
-    S4["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
+    S3["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
+    S4["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
   end
   Backend["Backend<br/>not visible from the browser"]
   Content --> S0
@@ -55,10 +55,10 @@ sequenceDiagram
   S->>API: DataActionGetServices
   API-->>S: AvailableServices, CurrentServices
   S->>S: onAfterFetch_GetServices
-  S->>API: ServiceAPIFetchData_CacheableHouseholds
+  S->>API: ServiceAPIFetchData_CacheableMapEntities
   Note over S,API: observed in capture, trigger unverified (TODO)
   API-->>S: TODO outputs
-  S->>API: ServiceAPIFetchData_CacheableMapEntities
+  S->>API: ServiceAPIFetchData_CacheableHouseholds
   Note over S,API: observed in capture, trigger unverified (TODO)
   API-->>S: TODO outputs
   S->>S: OnReady

@@ -1,7 +1,7 @@
 # Coverage for MilestoneDetail
 
 - UI states captured: default
-- Runtime captures: 1 file(s), 3 call(s)
+- Runtime captures: 1 file(s), 6 call(s)
 - Masked text nodes: 41, user images removed: 10
 - Fetch failures during snapshot: 0
 

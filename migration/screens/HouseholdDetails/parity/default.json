@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "7092382a6619f96e1c40",
+ "fingerprint": "765bc86f44fcd163d652",
  "options": {
   "text": true,
   "style": true,
@@ -19,7 +19,7 @@
  },
  "replay": {
   "mode": "builder",
-  "elements": 686,
+  "elements": 701,
   "texts": 44,
   "comments": 0,
   "dropped": 0,
@@ -27,8 +27,16 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-29T07:59:44.190Z",
- "counts": {},
+ "at": "2026-10-29T09:54:11.465Z",
+ "counts": {
+  "class": 3,
+  "pseudo": 2,
+  "structure": 3,
+  "position": 1,
+  "layout": 6,
+  "text": 1,
+  "call": 1
+ },
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
   "CAPTURE-MASKED-IMAGE-HOUSEHOLDDETAILS": 10,
@@ -37,10 +45,10 @@
   "CAPTURE-MASKED-AVATAR-HOUSEHOLDDETAILS-SHIFT": 1
  },
  "pixel": {
-  "ratio": 0.00175,
-  "maxCell": 0.07,
+  "ratio": 0.00394,
+  "maxCell": 0.0813,
   "maxCellRatio": 0.03,
-  "diffPixels": 323,
+  "diffPixels": 726,
   "comparedPixels": 184376,
   "maxRatio": 0.002,
   "threshold": 0.1,
@@ -54,11 +62,11 @@
   ],
   "masks": 24,
   "hotspots": [
+   "40,560 (130px)",
    "320,720 (112px)",
+   "0,560 (108px)",
    "240,720 (105px)",
-   "280,720 (46px)",
-   "200,800 (35px)",
-   "200,760 (25px)"
+   "40,520 (104px)"
   ],
   "diffPng": "migration/screens/HouseholdDetails/parity/default.diff.png"
  },
@@ -66,8 +74,94 @@
   "phases": [
    "load"
   ],
-  "expected": 15,
+  "expected": 16,
   "actual": 18
  },
- "diffs": []
+ "diffs": [
+  {
+   "kind": "class",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#DetailPage.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b2.OSBlockWidget[Directory_Household.HouseholdDetails_Block] > div#b2-DirectoryDetailScreenContent.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen] > div.directory-detail-screen > div#b2-b1-Placeholder_DetailCard > div#b2-$b2.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b2-b2-Placeholder_LoadingSection > div#b2-ImageCard_LazyLoading.OSBlockWidget[ConnectCorePatterns.ImageCard_LazyLoading] > div#b2-b3-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b3-b1-Content.background-neutral-0.font-semi-bold.font-size-base > div#b2-b3-ImageWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b3-b2-Content.align-items-flex-start.display-flex.justify-content-center",
+   "detail": "extra .ubt-image-card__bookmarked"
+  },
+  {
+   "kind": "pseudo",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#DetailPage.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b2.OSBlockWidget[Directory_Household.HouseholdDetails_Block] > div#b2-DirectoryDetailScreenContent.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen] > div.directory-detail-screen > div#b2-b1-Placeholder_DetailCard > div#b2-$b2.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b2-b2-Placeholder_LoadingSection > div#b2-ImageCard_LazyLoading.OSBlockWidget[ConnectCorePatterns.ImageCard_LazyLoading] > div#b2-b3-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b3-b1-Content.background-neutral-0.font-semi-bold.font-size-base > div#b2-b3-ImageWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b3-b2-Content.align-items-flex-start.display-flex.justify-content-center",
+   "detail": "::before extra in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#DetailPage.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b2.OSBlockWidget[Directory_Household.HouseholdDetails_Block] > div#b2-DirectoryDetailScreenContent.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen] > div.directory-detail-screen > div#b2-b1-Placeholder_CallToAction > div#b2-$b30.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b2-b30-Placeholder_LoadingSection > div#b2-Actions.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b31-Content.background-neutral-0.padding-bottom-base.padding-top-s > div#b2-$b33.OSBlockWidget[Directory_CommonBlocks.Directory_EntityDetailsActions] > div.OSBlockWidget[CW_Notes.NotesSheet]",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "class",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#DetailPage.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b2.OSBlockWidget[Directory_Household.HouseholdDetails_Block] > div#b2-DirectoryDetailScreenContent.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen] > div.directory-detail-screen > div#b2-b1-Placeholder_CallToAction > div#b2-$b30.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b2-b30-Placeholder_LoadingSection > div#b2-Actions.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b31-Content.background-neutral-0.padding-bottom-base.padding-top-s > div#b2-$b33.OSBlockWidget[Directory_CommonBlocks.Directory_EntityDetailsActions] > div#b2-b33-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b2-b33-b1-Placeholder_LoadingSection > div#b2-b33-$b2.OSBlockWidget[ConnectCorePatterns.ActionsMenu] > div#b2-b33-b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b33-b2-b1-Content.display-flex.justify-content-space-between.ubt-actions-menu > div#b2-b33-b2-$b2.OSBlockWidget[ConnectPatterns.CircleButton_IconPrimary] > div#b2-b33-b2-b2-$b1.OSBlockWidget[ConnectPatterns.CircleButton_WithLabel] > div.OSInline.inline-block.ubt-avatar-image-s > div#b2-b33-b2-b2-b1-$b1.OSBlockWidget[ConnectPatterns.CircleButton] > div.OSInline.inline-block.ubt-avatar-image-s > div#b2-b33-b2-b2-b1-b1-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b33-b2-b2-b1-b1-b1-Content.background-cyan-lightest.border-radius-circle.padding-s > div#b2-b33-b2-b2-b1-b1-Icon > div#b2-b33-b2-b2-b1-Icon > div#b2-b33-b2-b2-$b2.OSBlockWidget[ConnectPatterns.Icon] > div.connect-icon-bookmark.text-cyan-darker.ubt-icon",
+   "detail": "missing .connect-icon-bookmark extra .connect-icon-check"
+  },
+  {
+   "kind": "pseudo",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#DetailPage.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b2.OSBlockWidget[Directory_Household.HouseholdDetails_Block] > div#b2-DirectoryDetailScreenContent.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen] > div.directory-detail-screen > div#b2-b1-Placeholder_CallToAction > div#b2-$b30.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b2-b30-Placeholder_LoadingSection > div#b2-Actions.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b31-Content.background-neutral-0.padding-bottom-base.padding-top-s > div#b2-$b33.OSBlockWidget[Directory_CommonBlocks.Directory_EntityDetailsActions] > div#b2-b33-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b2-b33-b1-Placeholder_LoadingSection > div#b2-b33-$b2.OSBlockWidget[ConnectCorePatterns.ActionsMenu] > div#b2-b33-b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b33-b2-b1-Content.display-flex.justify-content-space-between.ubt-actions-menu > div#b2-b33-b2-$b2.OSBlockWidget[ConnectPatterns.CircleButton_IconPrimary] > div#b2-b33-b2-b2-$b1.OSBlockWidget[ConnectPatterns.CircleButton_WithLabel] > div.OSInline.inline-block.ubt-avatar-image-s > div#b2-b33-b2-b2-b1-$b1.OSBlockWidget[ConnectPatterns.CircleButton] > div.OSInline.inline-block.ubt-avatar-image-s > div#b2-b33-b2-b2-b1-b1-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b33-b2-b2-b1-b1-b1-Content.background-cyan-lightest.border-radius-circle.padding-s > div#b2-b33-b2-b2-b1-b1-Icon > div#b2-b33-b2-b2-b1-Icon > div#b2-b33-b2-b2-$b2.OSBlockWidget[ConnectPatterns.Icon] > div.connect-icon-bookmark.text-cyan-darker.ubt-icon",
+   "detail": "::before content \"\" → \"\""
+  },
+  {
+   "kind": "position",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#DetailPage.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b2.OSBlockWidget[Directory_Household.HouseholdDetails_Block] > div#b2-DirectoryDetailScreenContent.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen] > div.directory-detail-screen > div#b2-b1-Placeholder_CallToAction > div#b2-$b30.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b2-b30-Placeholder_LoadingSection > div#b2-Actions.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b31-Content.background-neutral-0.padding-bottom-base.padding-top-s > div#b2-$b33.OSBlockWidget[Directory_CommonBlocks.Directory_EntityDetailsActions] > div#b2-b33-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b2-b33-b1-Placeholder_LoadingSection > div#b2-b33-$b2.OSBlockWidget[ConnectCorePatterns.ActionsMenu] > div#b2-b33-b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b33-b2-b1-Content.display-flex.justify-content-space-between.ubt-actions-menu > div#b2-b33-b2-$b2.OSBlockWidget[ConnectPatterns.CircleButton_IconPrimary] > div#b2-b33-b2-b2-$b1.OSBlockWidget[ConnectPatterns.CircleButton_WithLabel] > div.OSInline.inline-block.ubt-avatar-image-s > div#b2-b33-b2-b2-b1-$b2.OSBlockWidget[BasePatterns.CustomContainer]",
+   "detail": "offset in parent 1,40 → 7,40"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#DetailPage.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b2.OSBlockWidget[Directory_Household.HouseholdDetails_Block] > div#b2-DirectoryDetailScreenContent.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen] > div.directory-detail-screen > div#b2-b1-Placeholder_CallToAction > div#b2-$b30.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b2-b30-Placeholder_LoadingSection > div#b2-Actions.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b31-Content.background-neutral-0.padding-bottom-base.padding-top-s > div#b2-$b33.OSBlockWidget[Directory_CommonBlocks.Directory_EntityDetailsActions] > div#b2-b33-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b2-b33-b1-Placeholder_LoadingSection > div#b2-b33-$b2.OSBlockWidget[ConnectCorePatterns.ActionsMenu] > div#b2-b33-b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b33-b2-b1-Content.display-flex.justify-content-space-between.ubt-actions-menu > div#b2-b33-b2-$b2.OSBlockWidget[ConnectPatterns.CircleButton_IconPrimary] > div#b2-b33-b2-b2-$b1.OSBlockWidget[ConnectPatterns.CircleButton_WithLabel] > div.OSInline.inline-block.ubt-avatar-image-s > div#b2-b33-b2-b2-b1-$b2.OSBlockWidget[BasePatterns.CustomContainer]",
+   "detail": "51×18 → 39×18"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#DetailPage.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b2.OSBlockWidget[Directory_Household.HouseholdDetails_Block] > div#b2-DirectoryDetailScreenContent.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen] > div.directory-detail-screen > div#b2-b1-Placeholder_CallToAction > div#b2-$b30.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b2-b30-Placeholder_LoadingSection > div#b2-Actions.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b31-Content.background-neutral-0.padding-bottom-base.padding-top-s > div#b2-$b33.OSBlockWidget[Directory_CommonBlocks.Directory_EntityDetailsActions] > div#b2-b33-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b2-b33-b1-Placeholder_LoadingSection > div#b2-b33-$b2.OSBlockWidget[ConnectCorePatterns.ActionsMenu] > div#b2-b33-b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b33-b2-b1-Content.display-flex.justify-content-space-between.ubt-actions-menu > div#b2-b33-b2-$b2.OSBlockWidget[ConnectPatterns.CircleButton_IconPrimary] > div#b2-b33-b2-b2-$b1.OSBlockWidget[ConnectPatterns.CircleButton_WithLabel] > div.OSInline.inline-block.ubt-avatar-image-s > div#b2-b33-b2-b2-b1-$b2.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b33-b2-b2-b1-b2-Content.margin-top-s.ubt-custom-container",
+   "detail": "51×10 → 39×10"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#DetailPage.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b2.OSBlockWidget[Directory_Household.HouseholdDetails_Block] > div#b2-DirectoryDetailScreenContent.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen] > div.directory-detail-screen > div#b2-b1-Placeholder_CallToAction > div#b2-$b30.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b2-b30-Placeholder_LoadingSection > div#b2-Actions.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b31-Content.background-neutral-0.padding-bottom-base.padding-top-s > div#b2-$b33.OSBlockWidget[Directory_CommonBlocks.Directory_EntityDetailsActions] > div#b2-b33-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b2-b33-b1-Placeholder_LoadingSection > div#b2-b33-$b2.OSBlockWidget[ConnectCorePatterns.ActionsMenu] > div#b2-b33-b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b33-b2-b1-Content.display-flex.justify-content-space-between.ubt-actions-menu > div#b2-b33-b2-$b2.OSBlockWidget[ConnectPatterns.CircleButton_IconPrimary] > div#b2-b33-b2-b2-$b1.OSBlockWidget[ConnectPatterns.CircleButton_WithLabel] > div.OSInline.inline-block.ubt-avatar-image-s > div#b2-b33-b2-b2-b1-$b2.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b33-b2-b2-b1-b2-Content.margin-top-s.ubt-custom-container > div#b2-b33-b2-b2-b1-Text.ubt-icon-button__text-container",
+   "detail": "51×10 → 39×10"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#DetailPage.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b2.OSBlockWidget[Directory_Household.HouseholdDetails_Block] > div#b2-DirectoryDetailScreenContent.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen] > div.directory-detail-screen > div#b2-b1-Placeholder_CallToAction > div#b2-$b30.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b2-b30-Placeholder_LoadingSection > div#b2-Actions.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b31-Content.background-neutral-0.padding-bottom-base.padding-top-s > div#b2-$b33.OSBlockWidget[Directory_CommonBlocks.Directory_EntityDetailsActions] > div#b2-b33-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b2-b33-b1-Placeholder_LoadingSection > div#b2-b33-$b2.OSBlockWidget[ConnectCorePatterns.ActionsMenu] > div#b2-b33-b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b33-b2-b1-Content.display-flex.justify-content-space-between.ubt-actions-menu > div#b2-b33-b2-$b2.OSBlockWidget[ConnectPatterns.CircleButton_IconPrimary] > div#b2-b33-b2-b2-$b1.OSBlockWidget[ConnectPatterns.CircleButton_WithLabel] > div.OSInline.inline-block.ubt-avatar-image-s > div#b2-b33-b2-b2-b1-$b2.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b33-b2-b2-b1-b2-Content.margin-top-s.ubt-custom-container > div#b2-b33-b2-b2-b1-Text.ubt-icon-button__text-container > div#b2-b33-b2-b2-$b3.OSBlockWidget[BasePatterns.CustomText]",
+   "detail": "51×10 → 39×10"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#DetailPage.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b2.OSBlockWidget[Directory_Household.HouseholdDetails_Block] > div#b2-DirectoryDetailScreenContent.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen] > div.directory-detail-screen > div#b2-b1-Placeholder_CallToAction > div#b2-$b30.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b2-b30-Placeholder_LoadingSection > div#b2-Actions.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b31-Content.background-neutral-0.padding-bottom-base.padding-top-s > div#b2-$b33.OSBlockWidget[Directory_CommonBlocks.Directory_EntityDetailsActions] > div#b2-b33-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b2-b33-b1-Placeholder_LoadingSection > div#b2-b33-$b2.OSBlockWidget[ConnectCorePatterns.ActionsMenu] > div#b2-b33-b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b33-b2-b1-Content.display-flex.justify-content-space-between.ubt-actions-menu > div#b2-b33-b2-$b2.OSBlockWidget[ConnectPatterns.CircleButton_IconPrimary] > div#b2-b33-b2-b2-$b1.OSBlockWidget[ConnectPatterns.CircleButton_WithLabel] > div.OSInline.inline-block.ubt-avatar-image-s > div#b2-b33-b2-b2-b1-$b2.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b33-b2-b2-b1-b2-Content.margin-top-s.ubt-custom-container > div#b2-b33-b2-b2-b1-Text.ubt-icon-button__text-container > div#b2-b33-b2-b2-$b3.OSBlockWidget[BasePatterns.CustomText] > div.font-semi-bold.font-size-xxs.text-neutral-10",
+   "detail": "51×10 → 39×10"
+  },
+  {
+   "kind": "text",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#DetailPage.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b2.OSBlockWidget[Directory_Household.HouseholdDetails_Block] > div#b2-DirectoryDetailScreenContent.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen] > div.directory-detail-screen > div#b2-b1-Placeholder_CallToAction > div#b2-$b30.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b2-b30-Placeholder_LoadingSection > div#b2-Actions.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b31-Content.background-neutral-0.padding-bottom-base.padding-top-s > div#b2-$b33.OSBlockWidget[Directory_CommonBlocks.Directory_EntityDetailsActions] > div#b2-b33-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b2-b33-b1-Placeholder_LoadingSection > div#b2-b33-$b2.OSBlockWidget[ConnectCorePatterns.ActionsMenu] > div#b2-b33-b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b33-b2-b1-Content.display-flex.justify-content-space-between.ubt-actions-menu > div#b2-b33-b2-$b2.OSBlockWidget[ConnectPatterns.CircleButton_IconPrimary] > div#b2-b33-b2-b2-$b1.OSBlockWidget[ConnectPatterns.CircleButton_WithLabel] > div.OSInline.inline-block.ubt-avatar-image-s > div#b2-b33-b2-b2-b1-$b2.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b33-b2-b2-b1-b2-Content.margin-top-s.ubt-custom-container > div#b2-b33-b2-b2-b1-Text.ubt-icon-button__text-container > div#b2-b33-b2-b2-$b3.OSBlockWidget[BasePatterns.CustomText] > div.font-semi-bold.font-size-xxs.text-neutral-10 > span",
+   "detail": "\"Bookmark\" → \"Unmark\""
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#DetailPage.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b2.OSBlockWidget[Directory_Household.HouseholdDetails_Block] > div#b2-DirectoryDetailScreenContent.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen] > div.directory-detail-screen > div#b2-b1-Placeholder_CallToAction > div#b2-$b30.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b2-b30-Placeholder_LoadingSection > div#b2-Actions.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b31-Content.background-neutral-0.padding-bottom-base.padding-top-s > div#b2-$b33.OSBlockWidget[Directory_CommonBlocks.Directory_EntityDetailsActions] > div#b2-b33-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b2-b33-b1-Placeholder_LoadingSection > div#b2-b33-$b2.OSBlockWidget[ConnectCorePatterns.ActionsMenu] > div#b2-b33-b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b33-b2-b1-Content.display-flex.justify-content-space-between.ubt-actions-menu > div#b2-b33-b2-$b2.OSBlockWidget[ConnectPatterns.CircleButton_IconPrimary] > div#b2-b33-b2-b2-$b1.OSBlockWidget[ConnectPatterns.CircleButton_WithLabel] > div.OSInline.inline-block.ubt-avatar-image-s > div#b2-b33-b2-b2-b1-$b2.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b33-b2-b2-b1-b2-Content.margin-top-s.ubt-custom-container > div#b2-b33-b2-b2-b1-Text.ubt-icon-button__text-container > div#b2-b33-b2-b2-$b3.OSBlockWidget[BasePatterns.CustomText] > div.font-semi-bold.font-size-xxs.text-neutral-10 > span",
+   "detail": "51×12 → 39×12"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#DetailPage.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b2.OSBlockWidget[Directory_Household.HouseholdDetails_Block] > div#b2-DirectoryDetailScreenContent.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen] > div.directory-detail-screen > div#b2-b1-Placeholder_Content > div#b2-VisibleAboutTab > div#b2-$b39.OSBlockWidget[Directory_Household_Blocks.HouseholdDetails_Members_Block] > div#b2-b39-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b2-b39-b1-Placeholder_LoadingSection > div#b2-b39-Household_Members.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b39-b2-Content.margin-bottom-xs.ubt-custom-container > div#b2-b39-Members.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen_Section] > div#b2-b39-b3-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b39-b3-b1-Content.background-neutral-0.padding-bottom-s.padding-top-s > div#b2-b39-b3-$b2.OSBlockWidget[Layouts.SubLayout_Section] > div#b2-b39-b3-b2-SubLayout_Section.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b39-b3-b2-b1-Content.margin-top-xs.ubt-custom-container.ubt-sub-layout-section > div#b2-b39-b3-b2-Content > div#b2-b39-b3-Placeholder_SectionContent > div.OSFillParent.list.list--gap-s > div#b2-b39-l1-117_0-ParentsAndChildren.OSBlockWidget[ConnectCorePatterns.Member_ListItem] > div#b2-b39-l1-117_0-b4-$b1.OSBlockWidget[BasePatterns.Columns_Three] > div#b2-b39-l1-117_0-b4-b1-$b1.OSBlockWidget[Adaptive.Columns3] > div.align-items-center.columns.columns3 > div#b2-b39-l1-117_0-b4-b1-b1-Column3.columns-item > div#b2-b39-l1-117_0-b4-b1-Right.ubt-columns--column.ubt-columns--right > div#b2-b39-l1-117_0-b4-Actions > div#b2-b39-l1-117_0-$b6.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b39-l1-117_0-b6-Content.display-flex.justify-content-space-between.ubt-custom-container > div#b2-b39-l1-117_0-$b7.OSBlockWidget[Directory_CommonBlocks.Directory_EntityDetailsActions] > div.OSBlockWidget[CW_Notes.NotesSheet]",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#DetailPage.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b2.OSBlockWidget[Directory_Household.HouseholdDetails_Block] > div#b2-DirectoryDetailScreenContent.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen] > div.directory-detail-screen > div#b2-b1-Placeholder_Content > div#b2-VisibleAboutTab > div#b2-$b39.OSBlockWidget[Directory_Household_Blocks.HouseholdDetails_Members_Block] > div#b2-b39-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b2-b39-b1-Placeholder_LoadingSection > div#b2-b39-Household_Members.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b39-b2-Content.margin-bottom-xs.ubt-custom-container > div#b2-b39-Members.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen_Section] > div#b2-b39-b3-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b39-b3-b1-Content.background-neutral-0.padding-bottom-s.padding-top-s > div#b2-b39-b3-$b2.OSBlockWidget[Layouts.SubLayout_Section] > div#b2-b39-b3-b2-SubLayout_Section.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b39-b3-b2-b1-Content.margin-top-xs.ubt-custom-container.ubt-sub-layout-section > div#b2-b39-b3-b2-Content > div#b2-b39-b3-Placeholder_SectionContent > div.OSFillParent.list.list--gap-s > div#b2-b39-l1-117_1-ParentsAndChildren.OSBlockWidget[ConnectCorePatterns.Member_ListItem] > div#b2-b39-l1-117_1-b4-$b1.OSBlockWidget[BasePatterns.Columns_Three] > div#b2-b39-l1-117_1-b4-b1-$b1.OSBlockWidget[Adaptive.Columns3] > div.align-items-center.columns.columns3 > div#b2-b39-l1-117_1-b4-b1-b1-Column3.columns-item > div#b2-b39-l1-117_1-b4-b1-Right.ubt-columns--column.ubt-columns--right > div#b2-b39-l1-117_1-b4-Actions > div#b2-b39-l1-117_1-$b6.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b39-l1-117_1-b6-Content.display-flex.justify-content-space-between.ubt-custom-container > div#b2-b39-l1-117_1-$b7.OSBlockWidget[Directory_CommonBlocks.Directory_EntityDetailsActions] > div.OSBlockWidget[CW_Notes.NotesSheet]",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "class",
+   "path": "html",
+   "detail": "missing .popup-disable-scroll (device classes: src/shell/device.ts)"
+  },
+  {
+   "kind": "call",
+   "path": "calls:load",
+   "detail": "data action DataActionFetchNotes not called"
+  }
+ ]
 }

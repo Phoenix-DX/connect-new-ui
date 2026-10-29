@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "e89f0f3c3a06821349a9",
+ "fingerprint": "9a5d9769780c494e056d",
  "options": {
   "text": true,
   "style": true,
@@ -19,26 +19,31 @@
  },
  "replay": {
   "mode": "builder",
-  "elements": 169,
-  "texts": 20,
+  "elements": 166,
+  "texts": 21,
   "comments": 0,
   "dropped": 0,
   "endTagMismatch": 0,
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-29T08:02:20.704Z",
- "counts": {},
+ "at": "2026-10-29T09:56:46.849Z",
+ "counts": {
+  "structure": 1,
+  "position": 1,
+  "layout": 3,
+  "pixel": 1
+ },
  "exemptionsUsed": {
   "ignoreSubtrees": 2,
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 1,
   "CAPTURE-SKELETON-SHIMMER-PHASE": 10
  },
  "pixel": {
-  "ratio": 0,
-  "maxCell": 0,
+  "ratio": 0.05835,
+  "maxCell": 1,
   "maxCellRatio": 0.03,
-  "diffPixels": 0,
+  "diffPixels": 19205,
   "comparedPixels": 329160,
   "maxRatio": 0.002,
   "threshold": 0.1,
@@ -51,9 +56,46 @@
    844
   ],
   "masks": 2,
-  "hotspots": [],
+  "hotspots": [
+   "40,0 (1600px)",
+   "80,0 (1600px)",
+   "280,0 (1600px)",
+   "320,0 (1600px)",
+   "120,0 (1576px)"
+  ],
   "diffPng": "migration/screens/MyEntertaining/parity/offline.diff.png"
  },
  "calls": null,
- "diffs": []
+ "diffs": [
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b2.OSBlockWidget[Calendar.MyEntertaining_Embedded] > div#b2-$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b2-b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > header.header",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "position",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b2.OSBlockWidget[Calendar.MyEntertaining_Embedded] > div#b2-$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b2-b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b2-b1-ContentWrapper.content",
+   "detail": "offset in parent 0,0 → 0,50"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b2.OSBlockWidget[Calendar.MyEntertaining_Embedded] > div#b2-$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b2-b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b2-b1-ContentWrapper.content",
+   "detail": "390×844 → 390×794"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b2.OSBlockWidget[Calendar.MyEntertaining_Embedded] > div#b2-$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b2-b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b2-b1-ContentWrapper.content > div#b2-b1-MainContentWrapper.ThemeGrid_Container.main-content",
+   "detail": "390×844 → 390×794"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b2.OSBlockWidget[Calendar.MyEntertaining_Embedded] > div#b2-$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b2-b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b2-b1-ContentWrapper.content > div#b2-b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b2-b1-Content.content-middle",
+   "detail": "390×844 → 390×794"
+  },
+  {
+   "kind": "pixel",
+   "path": "screenshot",
+   "detail": "5.83% pixels differ (max 0.20%), worst 40px tile 100.0% (max 3.0%), hotspots 40,0 (1600px); 80,0 (1600px); 280,0 (1600px); 320,0 (1600px); 120,0 (1576px); see migration/screens/MyEntertaining/parity/offline.diff.png"
+  }
+ ]
 }

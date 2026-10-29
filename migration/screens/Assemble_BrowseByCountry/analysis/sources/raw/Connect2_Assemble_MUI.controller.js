@@ -322,71 +322,6 @@ DateRange: actionResults.dateRangeOut
 };
 });
 
-define("Connect2_Assemble_MUI.controller$GetAssembleEventSummaryDateTimeString", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_Assemble_MUI.model", "Connect2_Assemble_MUI.controller"], function (exports, OutSystems, Connect2_Assemble_MUIModel, Connect2_Assemble_MUIController) {
-var OS = OutSystems.Internal;
-Connect2_Assemble_MUIController.default.getAssembleEventSummaryDateTimeString$Action = function (meetingDateTimeIn, isAllDAyIn, callContext) {
-var varBag = {};
-callContext = controller.callContext(callContext);
-var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("Connect2_Assemble_MUI.GetAssembleEventSummaryDateTimeString$vars"))());
-vars.value.meetingDateTimeInLocal = meetingDateTimeIn;
-vars.value.isAllDAyInLocal = isAllDAyIn;
-var outVars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("Connect2_Assemble_MUI.GetAssembleEventSummaryDateTimeString$outVars"))());
-varBag.callContext = callContext;
-varBag.vars = vars;
-varBag.outVars = outVars;
-try {OutSystemsDebugger.push("4YvUCWT53U+6BrZWsVWc3Q:7_XugEeTY0u6PffykLObDw:/ClientActionFlows.7_XugEeTY0u6PffykLObDw:kT+545gvW1BqSNW_Pt97pw", "Connect2_Assemble_MUI", "GetAssembleEventSummaryDateTimeString", "NRFlows.ClientActionFlow", callContext.id, varBag);
-OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:H5leqb53IEOnDKXIsP8+Cg", callContext.id);
-OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:IkWvmwE62kuQgsUlqQXwug", callContext.id);
-// DateTimeString = If + If + FormatDateTime
-outVars.value.dateTimeStringOut = ((((vars.value.isAllDAyInLocal) ? ("On ") : (OS.BuiltinFunctions.formatDateTime(vars.value.meetingDateTimeInLocal, "h:mm tt on "))) + (((OS.BuiltinFunctions.dayOfWeek(vars.value.meetingDateTimeInLocal) === 0)) ? ("Lord\'s Day") : (OS.BuiltinFunctions.formatDateTime(vars.value.meetingDateTimeInLocal, "dddd")))) + OS.BuiltinFunctions.formatDateTime(vars.value.meetingDateTimeInLocal, ", d MMMM yyyy"));
-OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:NNxuGr7HSU2qvEBGQkkvMA", callContext.id);
-return outVars.value;
-} catch (ex) {
-OutSystemsDebugger.handleException(ex, callContext.id);
-throw ex;
-} finally {
-OutSystemsDebugger.pop("4YvUCWT53U+6BrZWsVWc3Q:7_XugEeTY0u6PffykLObDw", callContext.id);
-}
-
-};
-var controller = Connect2_Assemble_MUIController.default;
-Connect2_Assemble_MUIController.default.constructor.registerVariableGroupType("Connect2_Assemble_MUI.GetAssembleEventSummaryDateTimeString$vars", [{
-name: "MeetingDateTime",
-attrName: "meetingDateTimeInLocal",
-mandatory: true,
-dataType: OS.DataTypes.DataTypes.DateTime,
-defaultValue: function () {
-return OS.DataTypes.DateTime.defaultValue;
-}
-}, {
-name: "IsAllDAy",
-attrName: "isAllDAyInLocal",
-mandatory: true,
-dataType: OS.DataTypes.DataTypes.Boolean,
-defaultValue: function () {
-return false;
-}
-}]);
-Connect2_Assemble_MUIController.default.constructor.registerVariableGroupType("Connect2_Assemble_MUI.GetAssembleEventSummaryDateTimeString$outVars", [{
-name: "DateTimeString",
-attrName: "dateTimeStringOut",
-mandatory: false,
-dataType: OS.DataTypes.DataTypes.Text,
-defaultValue: function () {
-return "";
-}
-}]);
-Connect2_Assemble_MUIController.default.clientActionProxies.getAssembleEventSummaryDateTimeString$Action = function (meetingDateTimeIn, isAllDAyIn) {
-meetingDateTimeIn = (meetingDateTimeIn === undefined) ? OS.DataTypes.DateTime.defaultValue : meetingDateTimeIn;
-isAllDAyIn = (isAllDAyIn === undefined) ? false : isAllDAyIn;
-return controller.executeActionInsideJSNode(Connect2_Assemble_MUIController.default.getAssembleEventSummaryDateTimeString$Action.bind(controller, OS.DataConversion.JSNodeParamConverter.from(meetingDateTimeIn, OS.DataTypes.DataTypes.DateTime), OS.DataConversion.JSNodeParamConverter.from(isAllDAyIn, OS.DataTypes.DataTypes.Boolean)), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
-return {
-DateTimeString: OS.DataConversion.JSNodeParamConverter.to(actionResults.dateTimeStringOut, OS.DataTypes.DataTypes.Text)
-};
-});
-};
-});
-
 define("Connect2_Assemble_MUI.controller$GetAssembleEventSummaryHeaderLabel", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_Assemble_MUI.model", "Connect2_Assemble_MUI.controller", "Connect2_Assemble_CS.model", "Connect2_Assemble_CS.model$AssembleEventSummaryRec", "Connect2_Assemble_MUI.referencesHealth", "Connect2_Assemble_MUI.referencesHealth$Connect2_Assemble_CS"], function (exports, OutSystems, Connect2_Assemble_MUIModel, Connect2_Assemble_MUIController, Connect2_Assemble_CSModel) {
 var OS = OutSystems.Internal;
 Connect2_Assemble_MUIController.default.getAssembleEventSummaryHeaderLabel$Action = function (assembleEventSummaryIn, callContext) {
@@ -1909,24 +1844,6 @@ return varBag.jSONSerialize2Var.value;
 getter: function (varBag, idService) {
 return varBag.jSONSerialize1Var.value;
 }
-},
-"MsPy0SLLfkCoQ_AchRHLJw": {
-getter: function (varBag, idService) {
-return varBag.vars.value.meetingDateTimeInLocal;
-},
-dataType: OS.DataTypes.DataTypes.DateTime
-},
-"IjbvLPDOCESOnTnHnlwI6g": {
-getter: function (varBag, idService) {
-return varBag.vars.value.isAllDAyInLocal;
-},
-dataType: OS.DataTypes.DataTypes.Boolean
-},
-"537A8e7drkCf77wfAKLyhg": {
-getter: function (varBag, idService) {
-return varBag.outVars.value.dateTimeStringOut;
-},
-dataType: OS.DataTypes.DataTypes.Text
 },
 "W1FsI7pEVketI9Rm5JP7jg": {
 getter: function (varBag, idService) {

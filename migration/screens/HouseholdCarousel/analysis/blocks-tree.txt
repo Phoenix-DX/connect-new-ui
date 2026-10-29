@@ -111,7 +111,6 @@ Layouts.Layout_DetailPage
                       CW_CTA_PopUps.ContactPopup
                     CW_CTA_PopUps.SharePopup
                       CW_CTA_PopUps.ContactPopup
-                    CW_Notes.NotesSheet
               Directory_Household_Blocks.HouseholdDetails_Members_Block
                 ConnectPatterns.SkeletonSection
                   BasePatterns.CustomContainer
@@ -157,7 +156,6 @@ Layouts.Layout_DetailPage
                                         CW_CTA_PopUps.ContactPopup
                                       CW_CTA_PopUps.SharePopup
                                         CW_CTA_PopUps.ContactPopup
-                                      CW_Notes.NotesSheet
                                     BasePatterns.CustomContainer
                                       ConnectPatterns.Icon
                             ConnectCorePatterns.Member_ListItem
@@ -196,7 +194,6 @@ Layouts.Layout_DetailPage
                                         CW_CTA_PopUps.ContactPopup
                                       CW_CTA_PopUps.SharePopup
                                         CW_CTA_PopUps.ContactPopup
-                                      CW_Notes.NotesSheet
                                     BasePatterns.CustomContainer
                                       ConnectPatterns.Icon
                             ConnectCorePatterns.Member_ListItem
@@ -348,7 +345,6 @@ Layouts.Layout_DetailPage
                       CW_CTA_PopUps.ContactPopup
                     CW_CTA_PopUps.SharePopup
                       CW_CTA_PopUps.ContactPopup
-                    CW_Notes.NotesSheet
               Directory_Household_Blocks.HouseholdDetails_Members_Block
                 ConnectPatterns.SkeletonSection
                   BasePatterns.CustomContainer
@@ -388,7 +384,6 @@ Layouts.Layout_DetailPage
                                         CW_CTA_PopUps.ContactPopup
                                       CW_CTA_PopUps.SharePopup
                                         CW_CTA_PopUps.ContactPopup
-                                      CW_Notes.NotesSheet
                                     BasePatterns.CustomContainer
                                       ConnectPatterns.Icon
                             ConnectCorePatterns.Member_ListItem
@@ -427,7 +422,6 @@ Layouts.Layout_DetailPage
                                         CW_CTA_PopUps.ContactPopup
                                       CW_CTA_PopUps.SharePopup
                                         CW_CTA_PopUps.ContactPopup
-                                      CW_Notes.NotesSheet
                                     BasePatterns.CustomContainer
                                       ConnectPatterns.Icon
                             ConnectCorePatterns.Member_ListItem
@@ -571,7 +565,6 @@ Layouts.Layout_DetailPage
                       CW_CTA_PopUps.ContactPopup
                     CW_CTA_PopUps.SharePopup
                       CW_CTA_PopUps.ContactPopup
-                    CW_Notes.NotesSheet
               Directory_Household_Blocks.HouseholdDetails_Members_Block
                 ConnectPatterns.SkeletonSection
                   BasePatterns.CustomContainer
@@ -617,7 +610,6 @@ Layouts.Layout_DetailPage
                                         CW_CTA_PopUps.ContactPopup
                                       CW_CTA_PopUps.SharePopup
                                         CW_CTA_PopUps.ContactPopup
-                                      CW_Notes.NotesSheet
                                     BasePatterns.CustomContainer
                                       ConnectPatterns.Icon
                             ConnectCorePatterns.Member_ListItem
@@ -656,7 +648,6 @@ Layouts.Layout_DetailPage
                                         CW_CTA_PopUps.ContactPopup
                                       CW_CTA_PopUps.SharePopup
                                         CW_CTA_PopUps.ContactPopup
-                                      CW_Notes.NotesSheet
                                     BasePatterns.CustomContainer
                                       ConnectPatterns.Icon
                             ConnectCorePatterns.Member_ListItem
@@ -824,7 +815,6 @@ Layouts.Layout_DetailPage
                       CW_CTA_PopUps.ContactPopup
                     CW_CTA_PopUps.SharePopup
                       CW_CTA_PopUps.ContactPopup
-                    CW_Notes.NotesSheet
               Directory_Household_Blocks.HouseholdDetails_Members_Block
                 ConnectPatterns.SkeletonSection
                   BasePatterns.CustomContainer
@@ -870,7 +860,6 @@ Layouts.Layout_DetailPage
                                         CW_CTA_PopUps.ContactPopup
                                       CW_CTA_PopUps.SharePopup
                                         CW_CTA_PopUps.ContactPopup
-                                      CW_Notes.NotesSheet
                                     BasePatterns.CustomContainer
                                       ConnectPatterns.Icon
                             ConnectCorePatterns.Member_ListItem
@@ -909,7 +898,6 @@ Layouts.Layout_DetailPage
                                         CW_CTA_PopUps.ContactPopup
                                       CW_CTA_PopUps.SharePopup
                                         CW_CTA_PopUps.ContactPopup
-                                      CW_Notes.NotesSheet
                                     BasePatterns.CustomContainer
                                       ConnectPatterns.Icon
                             ConnectCorePatterns.Member_ListItem
@@ -1034,7 +1022,19 @@ Layouts.Layout_DetailPage
       EventfulDeeplinksPlugin.DeeplinkHandlerCentral
     Utility.HandleImageLoadError
     NavigationHandler.BackNavigationHandler
+CW_Notes.NotesSheet
 CW_Share.ShareSheet
+CW_Notes.NotesSheet
 CW_Share.ShareSheet
+CW_Notes.NotesSheet
 CW_Share.ShareSheet
+CW_Notes.NotesSheet
 CW_Share.ShareSheet
+CW_Notes.NotesSheet
+CW_Notes.NotesSheet
+CW_Notes.NotesSheet
+CW_Notes.NotesSheet
+CW_Notes.NotesSheet
+CW_Notes.NotesSheet
+CW_Notes.NotesSheet
+CW_Notes.NotesSheet

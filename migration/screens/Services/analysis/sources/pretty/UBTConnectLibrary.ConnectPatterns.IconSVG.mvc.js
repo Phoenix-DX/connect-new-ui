@@ -256,6 +256,54 @@ define("UBTConnectLibrary.ConnectPatterns.IconSVG.mvc$view", ["OutSystems/Client
                 })];
             }, function() {
                 return [];
+            }), $if((model.variables.in_IconIdIn === UBTConnectLibraryModel.staticEntities.uBT_Icons.sVG_CommunityHouseholds), true, this, function() {
+                return [React.createElement(OSWidgets.Image, {
+                    image: OS.Navigation.VersionedURL.getVersionedUrl("img/UBTConnectLibrary.CommunityHouseholds.svg"),
+                    type: /*Static*/ 0,
+                    _idProps: {
+                        service: idService,
+                        uuid: "10"
+                    },
+                    _widgetRecordProvider: widgetsRecordProvider
+                })];
+            }, function() {
+                return [];
+            }), $if((model.variables.in_IconIdIn === UBTConnectLibraryModel.staticEntities.uBT_Icons.sVG_CommunityLocalities), true, this, function() {
+                return [React.createElement(OSWidgets.Image, {
+                    image: OS.Navigation.VersionedURL.getVersionedUrl("img/UBTConnectLibrary.CommunityLocalities.svg"),
+                    type: /*Static*/ 0,
+                    _idProps: {
+                        service: idService,
+                        uuid: "11"
+                    },
+                    _widgetRecordProvider: widgetsRecordProvider
+                })];
+            }, function() {
+                return [];
+            }), $if((model.variables.in_IconIdIn === UBTConnectLibraryModel.staticEntities.uBT_Icons.sVG_CommunityCountries), true, this, function() {
+                return [React.createElement(OSWidgets.Image, {
+                    image: OS.Navigation.VersionedURL.getVersionedUrl("img/UBTConnectLibrary.CommunityCountries.svg"),
+                    type: /*Static*/ 0,
+                    _idProps: {
+                        service: idService,
+                        uuid: "12"
+                    },
+                    _widgetRecordProvider: widgetsRecordProvider
+                })];
+            }, function() {
+                return [];
+            }), $if((model.variables.in_IconIdIn === UBTConnectLibraryModel.staticEntities.uBT_Icons.sVG_CommunityMembers), true, this, function() {
+                return [React.createElement(OSWidgets.Image, {
+                    image: OS.Navigation.VersionedURL.getVersionedUrl("img/UBTConnectLibrary.CommunityMembers.svg"),
+                    type: /*Static*/ 0,
+                    _idProps: {
+                        service: idService,
+                        uuid: "13"
+                    },
+                    _widgetRecordProvider: widgetsRecordProvider
+                })];
+            }, function() {
+                return [];
             }));
         };
         return View;
@@ -287,8 +335,8 @@ define("UBTConnectLibrary.ConnectPatterns.IconSVG.mvc$controller", ["OutSystems/
         // Event Handler Actions
         Controller.prototype.pushDebuggerContext = function(callContext) {
             var varBag = {};
-            OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:GRnUlqBGNE26Hxr_Ah3_7g:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g:3o_94888UGa0qaomZFOpnQ", "UBTConnectLibrary", "ConnectPatterns", "NRFlows.WebFlow", callContext.id, varBag);
-            OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:xNF4FKmFSUmN4m8n4FU34w:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g/NodesShownInESpaceTree.xNF4FKmFSUmN4m8n4FU34w:7qB_0t0DXZZTd9V0MFjgMA", "UBTConnectLibrary", "IconSVG", "NRNodes.WebBlock", callContext.id, varBag);
+            OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:GRnUlqBGNE26Hxr_Ah3_7g:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g:Y06DhYqVkffzqTnycnKUGw", "UBTConnectLibrary", "ConnectPatterns", "NRFlows.WebFlow", callContext.id, varBag);
+            OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:xNF4FKmFSUmN4m8n4FU34w:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g/NodesShownInESpaceTree.xNF4FKmFSUmN4m8n4FU34w:thIxJ5l9b2t4onjh3+gjLg", "UBTConnectLibrary", "IconSVG", "NRNodes.WebBlock", callContext.id, varBag);
         };
         Controller.prototype.popDebuggerContext = function(callContext) {
             OutSystemsDebugger.pop("lAQ0zS6tEEyl6BBIK9yo1A:xNF4FKmFSUmN4m8n4FU34w", callContext.id);
@@ -387,6 +435,34 @@ define("UBTConnectLibrary.ConnectPatterns.IconSVG.mvc$debugger", ["exports", "Ou
             getter: function(varBag, idService) {
                 return (function(model, idService) {
                     return model.widgets.get(idService.getId("SVG_PinCountry"));
+                })(varBag.model, idService);
+            }
+        },
+        "uAKrEY+JSE6QeV7LCCWjEg": {
+            getter: function(varBag, idService) {
+                return (function(model, idService) {
+                    return model.widgets.get(idService.getId("SVG_CommunityHouseholds"));
+                })(varBag.model, idService);
+            }
+        },
+        "M2tOsmILiUSKrSGGL44zTA": {
+            getter: function(varBag, idService) {
+                return (function(model, idService) {
+                    return model.widgets.get(idService.getId("SVG_CommunityLocalities"));
+                })(varBag.model, idService);
+            }
+        },
+        "rp4xDNgqPUaKL7wlmWiclg": {
+            getter: function(varBag, idService) {
+                return (function(model, idService) {
+                    return model.widgets.get(idService.getId("SVG_CommunityCountries"));
+                })(varBag.model, idService);
+            }
+        },
+        "QcTOWYVCJUOiI_hr92x8VA": {
+            getter: function(varBag, idService) {
+                return (function(model, idService) {
+                    return model.widgets.get(idService.getId("SVG_CommunityMembers"));
                 })(varBag.model, idService);
             }
         }

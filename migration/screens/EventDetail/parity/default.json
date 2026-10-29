@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "ec9c1f7c8792ba880eb2",
+ "fingerprint": "5e9035991f046080383b",
  "options": {
   "text": true,
   "style": true,
@@ -19,29 +19,35 @@
  },
  "replay": {
   "mode": "builder",
-  "elements": 206,
-  "texts": 38,
+  "elements": 232,
+  "texts": 39,
   "comments": 0,
   "dropped": 0,
   "endTagMismatch": 0,
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-29T07:58:54.783Z",
- "counts": {},
+ "at": "2026-10-29T09:53:22.286Z",
+ "counts": {
+  "structure": 1,
+  "attr": 1,
+  "position": 3,
+  "layout": 6,
+  "text": 3,
+  "pixel": 1,
+  "call": 1
+ },
  "exemptionsUsed": {
   "VIA-BACK-MENUICON-EVENTDETAIL": 15,
-  "MOCK-RELATIVE-DATES-EVENTDETAIL-DAYSELECTOR": 12,
   "ignoreSubtrees": 1,
-  "CAPTURE-VIA-MASK-SHIFT-EVENTDETAIL-PIXELS": 1,
   "CALL-IMAGE-ERROR-APPEVENTS-EVENTDETAIL": 1
  },
  "pixel": {
-  "ratio": 0.06602,
-  "maxCell": 0.5038,
+  "ratio": 0.08449,
+  "maxCell": 0.6,
   "maxCellRatio": 0.03,
-  "diffPixels": 18107,
-  "comparedPixels": 274277,
+  "diffPixels": 22861,
+  "comparedPixels": 270589,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -54,11 +60,11 @@
   ],
   "masks": 12,
   "hotspots": [
-   "320,240 (806px)",
-   "40,240 (582px)",
-   "80,240 (577px)",
-   "280,240 (576px)",
-   "120,240 (468px)"
+   "320,240 (960px)",
+   "80,280 (905px)",
+   "80,240 (899px)",
+   "120,280 (891px)",
+   "120,240 (890px)"
   ],
   "diffPng": "migration/screens/EventDetail/parity/default.diff.png"
  },
@@ -66,7 +72,7 @@
   "phases": [
    "load"
   ],
-  "expected": 5,
+  "expected": 6,
   "actual": 11,
   "viaAppStartSkipped": [
    "ActionAppManager_AfterInitialize",
@@ -78,5 +84,86 @@
    "ServiceAPIFetchData_CacheableMapEntities"
   ]
  },
- "diffs": []
+ "diffs": [
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Orbit_ScreenBlocks.ScreenBlock_EventDetail] > div#b1-$b1.OSBlockWidget[Layout_OrbitTheme.Layout_Orbit] > div.backwards-compatibility.orbit-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.ios-bounce.layout > div.main.screen > div#b1-b1-b2-ContentWrapper.content.orbit-detail.orbit-header-center > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.font-size-0-9em.padding-x-m.padding-y-m > div.orbit-event-notes",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "attr",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Orbit_ScreenBlocks.ScreenBlock_EventDetail] > div#b1-$b1.OSBlockWidget[Layout_OrbitTheme.Layout_Orbit] > div.backwards-compatibility.orbit-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.ios-bounce.layout > div.main.screen > div#b1-b1-b2-ContentWrapper.content.orbit-detail.orbit-header-center > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-$b5.OSBlockWidget[Orbit_Generic_Blocks.Accordion_Orbit] > div#b1-b5-$b1.OSBlockWidget[Content.DEPRECATED_Accordion] > div#b1-b5-b1-Content.accordion.orbit-accordion.orbit-accordion-colored-content > div#b1-b5-Content > div#b1-$b6.OSBlockWidget[Content.DEPRECATED_AccordionItem] > div#b1-b6-SectionItem.is--closed.orbit-accordion-item.osui-deprecated > div#b1-b6-TitleWrapper.section-expandable-title",
+   "detail": "aria-controls: b1-b6-Content → b1-b5-Content"
+  },
+  {
+   "kind": "position",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Orbit_ScreenBlocks.ScreenBlock_EventDetail] > div#b1-$b1.OSBlockWidget[Layout_OrbitTheme.Layout_Orbit] > div.backwards-compatibility.orbit-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.ios-bounce.layout > div.main.screen > div#b1-b1-b2-ContentWrapper.content.orbit-detail.orbit-header-center > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-$b8.OSBlockWidget[Orbit_Blocks.EventDateSelection] > div.event-date-selector-list-cont > div#b1-b8-$b1.OSBlockWidget[Orbit_Generic_Blocks.ListOfDaySelectors] > div.OSFillParent.event-date-selector-list.list > div.event-date-selector-cont > div#b1-b8-b1-l1-145978_0-$b1.OSBlockWidget[Orbit_Generic_Blocks.DaySelector] > div.event-date-selector.event-date-selector-day.event-date-selector-selected > div#b1-b8-b1-l1-145978_0-b1-Placeholder_Digit",
+   "detail": "offset in parent 9,7 → 14,6"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Orbit_ScreenBlocks.ScreenBlock_EventDetail] > div#b1-$b1.OSBlockWidget[Layout_OrbitTheme.Layout_Orbit] > div.backwards-compatibility.orbit-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.ios-bounce.layout > div.main.screen > div#b1-b1-b2-ContentWrapper.content.orbit-detail.orbit-header-center > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-$b8.OSBlockWidget[Orbit_Blocks.EventDateSelection] > div.event-date-selector-list-cont > div#b1-b8-$b1.OSBlockWidget[Orbit_Generic_Blocks.ListOfDaySelectors] > div.OSFillParent.event-date-selector-list.list > div.event-date-selector-cont > div#b1-b8-b1-l1-145978_0-$b1.OSBlockWidget[Orbit_Generic_Blocks.DaySelector] > div.event-date-selector.event-date-selector-day.event-date-selector-selected > div#b1-b8-b1-l1-145978_0-b1-Placeholder_Digit",
+   "detail": "18×23 → 9×23"
+  },
+  {
+   "kind": "text",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Orbit_ScreenBlocks.ScreenBlock_EventDetail] > div#b1-$b1.OSBlockWidget[Layout_OrbitTheme.Layout_Orbit] > div.backwards-compatibility.orbit-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.ios-bounce.layout > div.main.screen > div#b1-b1-b2-ContentWrapper.content.orbit-detail.orbit-header-center > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-$b8.OSBlockWidget[Orbit_Blocks.EventDateSelection] > div.event-date-selector-list-cont > div#b1-b8-$b1.OSBlockWidget[Orbit_Generic_Blocks.ListOfDaySelectors] > div.OSFillParent.event-date-selector-list.list > div.event-date-selector-cont > div#b1-b8-b1-l1-145978_0-$b1.OSBlockWidget[Orbit_Generic_Blocks.DaySelector] > div.event-date-selector.event-date-selector-day.event-date-selector-selected > div#b1-b8-b1-l1-145978_0-b1-Placeholder_Digit > span",
+   "detail": "\"23\" → \"6\""
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Orbit_ScreenBlocks.ScreenBlock_EventDetail] > div#b1-$b1.OSBlockWidget[Layout_OrbitTheme.Layout_Orbit] > div.backwards-compatibility.orbit-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.ios-bounce.layout > div.main.screen > div#b1-b1-b2-ContentWrapper.content.orbit-detail.orbit-header-center > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-$b8.OSBlockWidget[Orbit_Blocks.EventDateSelection] > div.event-date-selector-list-cont > div#b1-b8-$b1.OSBlockWidget[Orbit_Generic_Blocks.ListOfDaySelectors] > div.OSFillParent.event-date-selector-list.list > div.event-date-selector-cont > div#b1-b8-b1-l1-145978_0-$b1.OSBlockWidget[Orbit_Generic_Blocks.DaySelector] > div.event-date-selector.event-date-selector-day.event-date-selector-selected > div#b1-b8-b1-l1-145978_0-b1-Placeholder_Digit > span",
+   "detail": "18×19 → 9×19"
+  },
+  {
+   "kind": "position",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Orbit_ScreenBlocks.ScreenBlock_EventDetail] > div#b1-$b1.OSBlockWidget[Layout_OrbitTheme.Layout_Orbit] > div.backwards-compatibility.orbit-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.ios-bounce.layout > div.main.screen > div#b1-b1-b2-ContentWrapper.content.orbit-detail.orbit-header-center > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-$b8.OSBlockWidget[Orbit_Blocks.EventDateSelection] > div.event-date-selector-list-cont > div#b1-b8-$b1.OSBlockWidget[Orbit_Generic_Blocks.ListOfDaySelectors] > div.OSFillParent.event-date-selector-list.list > div.event-date-selector-cont > div#b1-b8-b1-l1-145978_1-$b1.OSBlockWidget[Orbit_Generic_Blocks.DaySelector] > div.event-date-selector.event-date-selector-day > div#b1-b8-b1-l1-145978_1-b1-Placeholder_Digit",
+   "detail": "offset in parent 9,7 → 14,6"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Orbit_ScreenBlocks.ScreenBlock_EventDetail] > div#b1-$b1.OSBlockWidget[Layout_OrbitTheme.Layout_Orbit] > div.backwards-compatibility.orbit-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.ios-bounce.layout > div.main.screen > div#b1-b1-b2-ContentWrapper.content.orbit-detail.orbit-header-center > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-$b8.OSBlockWidget[Orbit_Blocks.EventDateSelection] > div.event-date-selector-list-cont > div#b1-b8-$b1.OSBlockWidget[Orbit_Generic_Blocks.ListOfDaySelectors] > div.OSFillParent.event-date-selector-list.list > div.event-date-selector-cont > div#b1-b8-b1-l1-145978_1-$b1.OSBlockWidget[Orbit_Generic_Blocks.DaySelector] > div.event-date-selector.event-date-selector-day > div#b1-b8-b1-l1-145978_1-b1-Placeholder_Digit",
+   "detail": "18×23 → 9×23"
+  },
+  {
+   "kind": "text",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Orbit_ScreenBlocks.ScreenBlock_EventDetail] > div#b1-$b1.OSBlockWidget[Layout_OrbitTheme.Layout_Orbit] > div.backwards-compatibility.orbit-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.ios-bounce.layout > div.main.screen > div#b1-b1-b2-ContentWrapper.content.orbit-detail.orbit-header-center > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-$b8.OSBlockWidget[Orbit_Blocks.EventDateSelection] > div.event-date-selector-list-cont > div#b1-b8-$b1.OSBlockWidget[Orbit_Generic_Blocks.ListOfDaySelectors] > div.OSFillParent.event-date-selector-list.list > div.event-date-selector-cont > div#b1-b8-b1-l1-145978_1-$b1.OSBlockWidget[Orbit_Generic_Blocks.DaySelector] > div.event-date-selector.event-date-selector-day > div#b1-b8-b1-l1-145978_1-b1-Placeholder_Digit > span",
+   "detail": "\"24\" → \"7\""
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Orbit_ScreenBlocks.ScreenBlock_EventDetail] > div#b1-$b1.OSBlockWidget[Layout_OrbitTheme.Layout_Orbit] > div.backwards-compatibility.orbit-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.ios-bounce.layout > div.main.screen > div#b1-b1-b2-ContentWrapper.content.orbit-detail.orbit-header-center > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-$b8.OSBlockWidget[Orbit_Blocks.EventDateSelection] > div.event-date-selector-list-cont > div#b1-b8-$b1.OSBlockWidget[Orbit_Generic_Blocks.ListOfDaySelectors] > div.OSFillParent.event-date-selector-list.list > div.event-date-selector-cont > div#b1-b8-b1-l1-145978_1-$b1.OSBlockWidget[Orbit_Generic_Blocks.DaySelector] > div.event-date-selector.event-date-selector-day > div#b1-b8-b1-l1-145978_1-b1-Placeholder_Digit > span",
+   "detail": "18×19 → 9×19"
+  },
+  {
+   "kind": "position",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Orbit_ScreenBlocks.ScreenBlock_EventDetail] > div#b1-$b1.OSBlockWidget[Layout_OrbitTheme.Layout_Orbit] > div.backwards-compatibility.orbit-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.ios-bounce.layout > div.main.screen > div#b1-b1-b2-ContentWrapper.content.orbit-detail.orbit-header-center > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-$b8.OSBlockWidget[Orbit_Blocks.EventDateSelection] > div.event-date-selector-list-cont > div#b1-b8-$b1.OSBlockWidget[Orbit_Generic_Blocks.ListOfDaySelectors] > div.OSFillParent.event-date-selector-list.list > div.event-date-selector-cont > div#b1-b8-b1-l1-145978_2-$b1.OSBlockWidget[Orbit_Generic_Blocks.DaySelector] > div.event-date-selector.event-date-selector-day > div#b1-b8-b1-l1-145978_2-b1-Placeholder_Digit",
+   "detail": "offset in parent 9,7 → 14,6"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Orbit_ScreenBlocks.ScreenBlock_EventDetail] > div#b1-$b1.OSBlockWidget[Layout_OrbitTheme.Layout_Orbit] > div.backwards-compatibility.orbit-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.ios-bounce.layout > div.main.screen > div#b1-b1-b2-ContentWrapper.content.orbit-detail.orbit-header-center > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-$b8.OSBlockWidget[Orbit_Blocks.EventDateSelection] > div.event-date-selector-list-cont > div#b1-b8-$b1.OSBlockWidget[Orbit_Generic_Blocks.ListOfDaySelectors] > div.OSFillParent.event-date-selector-list.list > div.event-date-selector-cont > div#b1-b8-b1-l1-145978_2-$b1.OSBlockWidget[Orbit_Generic_Blocks.DaySelector] > div.event-date-selector.event-date-selector-day > div#b1-b8-b1-l1-145978_2-b1-Placeholder_Digit",
+   "detail": "18×23 → 9×23"
+  },
+  {
+   "kind": "text",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Orbit_ScreenBlocks.ScreenBlock_EventDetail] > div#b1-$b1.OSBlockWidget[Layout_OrbitTheme.Layout_Orbit] > div.backwards-compatibility.orbit-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.ios-bounce.layout > div.main.screen > div#b1-b1-b2-ContentWrapper.content.orbit-detail.orbit-header-center > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-$b8.OSBlockWidget[Orbit_Blocks.EventDateSelection] > div.event-date-selector-list-cont > div#b1-b8-$b1.OSBlockWidget[Orbit_Generic_Blocks.ListOfDaySelectors] > div.OSFillParent.event-date-selector-list.list > div.event-date-selector-cont > div#b1-b8-b1-l1-145978_2-$b1.OSBlockWidget[Orbit_Generic_Blocks.DaySelector] > div.event-date-selector.event-date-selector-day > div#b1-b8-b1-l1-145978_2-b1-Placeholder_Digit > span",
+   "detail": "\"25\" → \"8\""
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Orbit_ScreenBlocks.ScreenBlock_EventDetail] > div#b1-$b1.OSBlockWidget[Layout_OrbitTheme.Layout_Orbit] > div.backwards-compatibility.orbit-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.ios-bounce.layout > div.main.screen > div#b1-b1-b2-ContentWrapper.content.orbit-detail.orbit-header-center > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-$b8.OSBlockWidget[Orbit_Blocks.EventDateSelection] > div.event-date-selector-list-cont > div#b1-b8-$b1.OSBlockWidget[Orbit_Generic_Blocks.ListOfDaySelectors] > div.OSFillParent.event-date-selector-list.list > div.event-date-selector-cont > div#b1-b8-b1-l1-145978_2-$b1.OSBlockWidget[Orbit_Generic_Blocks.DaySelector] > div.event-date-selector.event-date-selector-day > div#b1-b8-b1-l1-145978_2-b1-Placeholder_Digit > span",
+   "detail": "18×19 → 9×19"
+  },
+  {
+   "kind": "pixel",
+   "path": "screenshot",
+   "detail": "8.45% pixels differ (max 0.20%), worst 40px tile 60.0% (max 3.0%), hotspots 320,240 (960px); 80,280 (905px); 80,240 (899px); 120,280 (891px); 120,240 (890px); see migration/screens/EventDetail/parity/default.diff.png"
+  },
+  {
+   "kind": "call",
+   "path": "calls:load",
+   "detail": "data action DataActionFetchEventNotes not called"
+  }
+ ]
 }

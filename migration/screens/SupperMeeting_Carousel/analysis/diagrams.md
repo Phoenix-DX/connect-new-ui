@@ -35,29 +35,28 @@ flowchart TB
       B21["CW_CTA_PopUps.ContactPopup_ByMessage<br/>UBTConnect_Utils<br/>lifecycle"]
       B22["CW_CTA_PopUps.ContactPopup_ByPhone<br/>UBTConnect_Utils<br/>lifecycle"]
       B23["CW_CTA_PopUps.SharePopup<br/>UBTConnect_Utils<br/>lifecycle"]
-      B24["CW_Notes.NotesSheet<br/>UBTConnect_Utils<br/>lifecycle"]
-      B25["Directory_SupperMeetings.SupperMeeting_HouseholdList<br/>UBTConnect<br/>fetch, lifecycle"]
-      B26["Adaptive.Gallery<br/>OutSystemsUI_2_23<br/>lifecycle"]
-      B27["Directory_Caroussel.EntitiesCarousel_HeaderGenerator<br/>UBTConnect<br/>lifecycle"]
-      B28["App_Common.CommonUI_InsideLayout<br/>UBTConnect<br/>navigation, lifecycle"]
-      B29["Private.OfflineDataSyncCore<br/>OutSystemsUI_2_23<br/>lifecycle"]
-      B30["Private.NetworkStatusChanged<br/>OutSystemsUI_2_23<br/>lifecycle"]
-      B31["App_PIN.Block_PINUnlock<br/>UBTConnect<br/>navigation, lifecycle"]
-      B32["Layouts.Layout_LoginFlow<br/>UBTConnectLibrary<br/>lifecycle"]
-      B33["Layouts.SVG_Background_LoginWrapper<br/>UBTConnectLibrary<br/>markup"]
-      B34["Layouts.SVG_Background_Custom<br/>UBTConnectLibrary<br/>lifecycle"]
-      B35["Utilities.InlineSVG<br/>OutSystemsUI_2_23<br/>lifecycle"]
-      B36["App_PIN.Block_PINUnlock_ContentWrapper<br/>UBTConnect<br/>navigation, lifecycle"]
-      B37["PIN.Pincode_Unlock<br/>UBT_AppManager<br/>lifecycle"]
-      B38["PIN.InactivityTimer<br/>UBT_AppManager<br/>lifecycle"]
-      B39["CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction<br/>UBTConnect_Utils<br/>lifecycle"]
-      B40["ConfirmationDialogs.ActionConfirmationDialog<br/>NavigationHandler<br/>lifecycle"]
-      B41["AndroidAppLinks.AndroidAppLinkOnResumeHandler<br/>Connect2_AndroidAppLinksPlugin<br/>lifecycle"]
-      B42["EventfulDeeplinksPlugin.DeeplinkHandlerCentral<br/>EventfulDeeplinksPlugin<br/>lifecycle"]
-      B43["Utility.HandleImageLoadError<br/>Connect2_LegacyShared<br/>lifecycle"]
-      B44["NavigationHandler.BackNavigationHandler<br/>NavigationHandler<br/>lifecycle"]
+      B24["Directory_SupperMeetings.SupperMeeting_HouseholdList<br/>UBTConnect<br/>fetch, lifecycle"]
+      B25["Adaptive.Gallery<br/>OutSystemsUI_2_23<br/>lifecycle"]
+      B26["Directory_Caroussel.EntitiesCarousel_HeaderGenerator<br/>UBTConnect<br/>lifecycle"]
+      B27["App_Common.CommonUI_InsideLayout<br/>UBTConnect<br/>navigation, lifecycle"]
+      B28["Private.OfflineDataSyncCore<br/>OutSystemsUI_2_23<br/>lifecycle"]
+      B29["Private.NetworkStatusChanged<br/>OutSystemsUI_2_23<br/>lifecycle"]
+      B30["App_PIN.Block_PINUnlock<br/>UBTConnect<br/>navigation, lifecycle"]
+      B31["Layouts.Layout_LoginFlow<br/>UBTConnectLibrary<br/>lifecycle"]
+      B32["Layouts.SVG_Background_LoginWrapper<br/>UBTConnectLibrary<br/>markup"]
+      B33["Layouts.SVG_Background_Custom<br/>UBTConnectLibrary<br/>lifecycle"]
+      B34["Utilities.InlineSVG<br/>OutSystemsUI_2_23<br/>lifecycle"]
+      B35["App_PIN.Block_PINUnlock_ContentWrapper<br/>UBTConnect<br/>navigation, lifecycle"]
+      B36["PIN.Pincode_Unlock<br/>UBT_AppManager<br/>lifecycle"]
+      B37["PIN.InactivityTimer<br/>UBT_AppManager<br/>lifecycle"]
+      B38["CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction<br/>UBTConnect_Utils<br/>lifecycle"]
+      B39["ConfirmationDialogs.ActionConfirmationDialog<br/>NavigationHandler<br/>lifecycle"]
+      B40["AndroidAppLinks.AndroidAppLinkOnResumeHandler<br/>Connect2_AndroidAppLinksPlugin<br/>lifecycle"]
+      B41["EventfulDeeplinksPlugin.DeeplinkHandlerCentral<br/>EventfulDeeplinksPlugin<br/>lifecycle"]
+      B42["Utility.HandleImageLoadError<br/>Connect2_LegacyShared<br/>lifecycle"]
+      B43["NavigationHandler.BackNavigationHandler<br/>NavigationHandler<br/>lifecycle"]
     end
-    Infra["App infrastructure blocks (1)<br/>render nothing visible"]
+    Infra["App infrastructure blocks (2)<br/>render nothing visible"]
     Cache["View cache / preload<br/>CheckRestoredJS, Get_IsViewRestoredFromCacheJS, IsRestoredFromCacheJS"]
     Vars["Client variables read<br/>App_PIN_BiometricEnabled, App_Policies_HasPolicyToAccept, Bookmarks_IsSynched, IsNavigateToHomeOnBack, Notes_IsSynched …"]
     Shell --> Content
@@ -66,7 +65,7 @@ flowchart TB
     direction LR
     S0["DataActionGetSubdivision<br/>data action / aggregate, observed"]
     S1["DataActionFetchContactDetails<br/>data action / aggregate, observed"]
-    S2["DataActionFetchNotes<br/>data action / aggregate, declared, not observed"]
+    S2["DataActionFetchNotes<br/>data action / aggregate, observed"]
     S3["DataActionGetSubdivisionHouseholds<br/>data action / aggregate, observed"]
     S4["DataActionGetAvailableMembers<br/>data action / aggregate, declared, not observed"]
     S5["DataActionGetRecentlyShared<br/>data action / aggregate, declared, not observed"]
@@ -75,14 +74,14 @@ flowchart TB
   Backend["Backend<br/>not visible from the browser"]
   B5 --> S0
   B18 --> S1
-  B18 -.-> S2
-  B25 --> S3
+  B18 --> S2
+  B24 --> S3
   Content -.-> S4
   Content -.-> S5
   Content -.-> S6
   S0 -.-> Backend
   classDef unknown stroke-dasharray: 5 4;
-  class S2,S4,S5,Backend unknown;
+  class S4,S5,Backend unknown;
 ```
 
 ## Sequence: enter the screen (draft)
@@ -105,7 +104,8 @@ sequenceDiagram
   API-->>S: ContactPopupData, Phone, MobilePhone, HomePhone, WorkPhone
   S->>S: onAfterFetch_FetchContactDetails
   S->>API: DataActionFetchNotes
-  API-->>S: TODO outputs
+  API-->>S: Notes
+  S->>S: onAfterFetch_FetchNotes
   S->>API: DataActionGetSubdivisionHouseholds
   API-->>S: Household_GalleryCard_List
   S->>API: DataActionGetAvailableMembers

@@ -41,6 +41,32 @@
   "bodyStyle": "--header-size-content: 128.625px; --footer-height: 56px; --viewport-height: 844px;",
   "dpr": 1
  },
+ "popup-filters-closed": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/OrbitLanding",
+  "steps": [
+   {
+    "click": ".orbit-landing-filters.justify-content-flex-start",
+    "waitMs": 1500,
+    "label": "popup-filters"
+   },
+   {
+    "click": ".popup-backdrop",
+    "waitMs": 1200,
+    "label": "popup-filters-closed"
+   }
+  ],
+  "scenario": "real",
+  "auto": null,
+  "phase": "popup-filters-closed",
+  "htmlClass": "popup-disable-scroll",
+  "bodyClass": "phone portrait orbit-theme osx is-ltr",
+  "bodyStyle": "--header-size-content: 128.625px; --footer-height: 56px; --viewport-height: 844px;",
+  "dpr": 1
+ },
  "popup-filters": {
   "viewport": "390x844",
   "viewportName": "phone",
@@ -57,27 +83,6 @@
   "scenario": "real",
   "auto": null,
   "phase": "popup-filters",
-  "htmlClass": "popup-disable-scroll",
-  "bodyClass": "phone portrait orbit-theme osx is-ltr",
-  "bodyStyle": "--header-size-content: 128.625px; --footer-height: 56px; --viewport-height: 844px;",
-  "dpr": 1
- },
- "popup-sort": {
-  "viewport": "390x844",
-  "viewportName": "phone",
-  "variant": null,
-  "flags": {},
-  "route": "/UBTConnect/OrbitLanding",
-  "steps": [
-   {
-    "click": ".orbit-landing-filters.justify-content-flex-end",
-    "waitMs": 1500,
-    "label": "popup-sort"
-   }
-  ],
-  "scenario": "real",
-  "auto": null,
-  "phase": "popup-sort",
   "htmlClass": "popup-disable-scroll",
   "bodyClass": "phone portrait orbit-theme osx is-ltr",
   "bodyStyle": "--header-size-content: 128.625px; --footer-height: 56px; --viewport-height: 844px;",

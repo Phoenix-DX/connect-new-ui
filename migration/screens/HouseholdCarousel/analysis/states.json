@@ -13,7 +13,7 @@
   "steps": [],
   "scenario": "real",
   "auto": null,
-  "htmlClass": "",
+  "htmlClass": "popup-disable-scroll",
   "bodyClass": "phone portrait osx is-ltr",
   "bodyStyle": "--header-size-content: 0px; --footer-height: 56px; --viewport-height: 844px;",
   "dpr": 1
@@ -32,7 +32,7 @@
   "steps": [],
   "scenario": "loading",
   "auto": "loading",
-  "htmlClass": "popup-disable-scroll",
+  "htmlClass": "",
   "bodyClass": "phone portrait osx is-ltr",
   "bodyStyle": "--header-size-content: 0px; --footer-height: 56px; --viewport-height: 844px;",
   "dpr": 1

@@ -50,13 +50,13 @@ flowchart TB
     S1["DataActionGetAvailableUsers<br/>data action / aggregate, observed"]
     S2["ActionAppManager_SynchAppContext<br/>observed"]
     S3["ActionGetUserInformation<br/>observed"]
-    S4["ServiceAPIGetHouseholdDetails<br/>observed"]
-    S5["ActionGetSignedImagesInBulk<br/>observed"]
+    S4["ActionGetSignedImagesInBulk<br/>observed"]
+    S5["ServiceAPIGetHouseholdDetails<br/>observed"]
     S6["ActionAppManager_AfterInitialize<br/>observed"]
     S7["ActionSync_Info_GetMain<br/>observed"]
     S8["ActionGetNumberUnreadMessages<br/>observed"]
-    S9["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
-    S10["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
+    S9["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
+    S10["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
   end
   Backend["Backend<br/>not visible from the browser"]
   B0 --> S0
@@ -97,10 +97,10 @@ sequenceDiagram
   S->>API: ServiceAPIGetHouseholdDetails
   Note over S,API: called from ScreenBlock_ShareObject.OnReady → ScreenBlock_ShareObject.onReady → server GetHouseholdDetails (call-sites.md)
   API-->>S: TODO outputs
-  S->>API: ServiceAPIFetchData_CacheableHouseholds
+  S->>API: ServiceAPIFetchData_CacheableMapEntities
   Note over S,API: observed in capture, trigger unverified (TODO)
   API-->>S: TODO outputs
-  S->>API: ServiceAPIFetchData_CacheableMapEntities
+  S->>API: ServiceAPIFetchData_CacheableHouseholds
   Note over S,API: observed in capture, trigger unverified (TODO)
   API-->>S: TODO outputs
   S->>S: OnReady

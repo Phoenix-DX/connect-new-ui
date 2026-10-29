@@ -12,7 +12,7 @@ flowchart TB
     subgraph Content["Rendered blocks"]
       direction LR
     end
-    Infra["App infrastructure blocks (25)<br/>render nothing visible"]
+    Infra["App infrastructure blocks (24)<br/>render nothing visible"]
     Cache["View cache / preload<br/>IsRestoredFromCacheJS"]
     Vars["Client variables read<br/>App_PIN_BiometricEnabled, App_Policies_HasPolicyToAccept, Embedd_B2CTenant, IsNavigateToHomeOnBack, PIN_IsLocked …"]
     Shell --> Content
@@ -25,8 +25,8 @@ flowchart TB
     S3["ActionSync_Info_GetMain<br/>observed"]
     S4["ActionGetUserInformation<br/>observed"]
     S5["ActionGetNumberUnreadMessages<br/>observed"]
-    S6["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
-    S7["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
+    S6["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
+    S7["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
   end
   Backend["Backend<br/>not visible from the browser"]
   Content --> S0
@@ -59,10 +59,10 @@ sequenceDiagram
   S->>API: DataActionGetEntertainingConfig
   API-->>S: Token, BaseURL, B2CClientId, B2CPolicy
   S->>S: onAfterFetch_GetEntertainingConfig
-  S->>API: ServiceAPIFetchData_CacheableHouseholds
+  S->>API: ServiceAPIFetchData_CacheableMapEntities
   Note over S,API: observed in capture, trigger unverified (TODO)
   API-->>S: TODO outputs
-  S->>API: ServiceAPIFetchData_CacheableMapEntities
+  S->>API: ServiceAPIFetchData_CacheableHouseholds
   Note over S,API: observed in capture, trigger unverified (TODO)
   API-->>S: TODO outputs
   S-->>U: TODO render states (spec section 8)

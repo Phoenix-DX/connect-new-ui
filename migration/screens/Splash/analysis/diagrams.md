@@ -28,8 +28,8 @@ flowchart TB
   subgraph Server["OutSystems server · screenservices"]
     direction LR
     S0["ActionSync_Info_GetMain<br/>observed"]
-    S1["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
-    S2["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
+    S1["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
+    S2["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
   end
   Backend["Backend<br/>not visible from the browser"]
   Content -.-> S0
@@ -49,10 +49,10 @@ sequenceDiagram
   participant S as App_Common.LayoutBlank
   participant API as screenservices
   U->>S: open /UBTConnect/Splash
-  S->>API: ServiceAPIFetchData_CacheableHouseholds
+  S->>API: ServiceAPIFetchData_CacheableMapEntities
   Note over S,API: observed in capture, trigger unverified (TODO)
   API-->>S: TODO outputs
-  S->>API: ServiceAPIFetchData_CacheableMapEntities
+  S->>API: ServiceAPIFetchData_CacheableHouseholds
   Note over S,API: observed in capture, trigger unverified (TODO)
   API-->>S: TODO outputs
   S->>S: OnReady

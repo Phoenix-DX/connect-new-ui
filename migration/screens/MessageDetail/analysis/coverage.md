@@ -1,8 +1,8 @@
-# Coverage for MessageDetail
+# Coverage for MessageList
 
 - UI states captured: default, loading, offline
-- Runtime captures: 1 file(s), 8 call(s)
-- Masked text nodes: 2, user images removed: 0
+- Runtime captures: 1 file(s), 10 call(s)
+- Masked text nodes: 32, user images removed: 12
 - Fetch failures during snapshot: 0
 
 ## Blocks referenced in code but not rendered in any captured state
@@ -16,17 +16,20 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [ ] `ConnectPatterns.HighlightSearch`
 - [ ] `ConnectPatterns.IconSVG`
 - [ ] `Fingerprint.FingerprintScanner`
-- [ ] `Home.Feed_Embeded`
+- [ ] `Interaction.Animate`
+- [ ] `Interaction.InputWithIcon`
+- [ ] `Layout.MenuIcon_Back`
+- [ ] `MyNotifications.MessageList_Filter`
+- [ ] `MyNotifications.MessageList_NoNotifications_Banner`
 - [ ] `NavigationHandler.PreventBackNavigation`
 - [ ] `PIN.PinCode`
-- [ ] `Private.PullToRefresh`
-- [ ] `Reusable.Spinner`
-- [ ] `Share_UI.ShareObjectDetail`
-- [ ] `Share_UI.ShareObjectDetail_ExtendedShare`
-- [ ] `Widgets.AdaptiveCardViewer`
+- [ ] `Reusable.MessageList_NoResults`
+- [ ] `Reusable.Warning_PrivateMessage`
+- [ ] `UtilityFlow.MessageSearchHistory`
 
 ## Images referenced in code
 - [ ] `img/Connect2_LegacyShared.User_rectangle.png`
+- [ ] `img/Connect2_LegacyShared.ubtlogo.png`
 - [ ] `img/UBTConnect.ConnectLogo.svg`
 - [ ] `img/UBTConnect.ConnectLogoWhite.svg`
 - [ ] `img/UBTConnectLibrary.ar.png`
@@ -51,12 +54,11 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [ ] `scripts/OutSystemsUI_2_23.OutSystemsUI.js`
 
 ## Data/server actions declared in the screen and its blocks
-- [x] `DataActionGetMessageInstance` (Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js)
-- [ ] `Wrapper_NotificationOpened` (Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js)
-- [ ] `Get_OrbitHostSurveyNotificationParameters` (Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js)
-- [ ] `Get_OrbitNotificationParameters` (Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js)
-- [ ] `StoreAdaptiveCardResponses` (Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js)
-- [ ] `ScreenDataSetGetMessageTemplateParametersByMessageTemplateId` (Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js)
+- [x] `DataActionGetMessages` (Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageList.mvc.js)
+- [ ] `DataActionGetMessageInstanceById2` (Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageList.mvc.js)
+- [ ] `Wrapper_MarkAllAsReadNotifications` (Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageList.mvc.js)
+- [ ] `MarkMessageAsRead` (Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageList.mvc.js)
+- [ ] `MarkMessageAsClear` (Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageList.mvc.js)
 
 ## Module-level server actions (called from client actions; check which ones this screen uses)
 - [ ] `AddBookmark` (UBTConnect.controller.js)
@@ -88,5 +90,5 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [x] `AppManager_SynchAppContext` (UBT_AppManager.controller.js)
 - [ ] `CS_CreateShareProfileLink` (UBTConnect_Utils.controller.js)
 - [ ] `Get_RuntimeVersion` (UBTConnect_Utils.controller.js)
-- [ ] `GetSignedImagesInBulk` (UBTConnect_Utils.controller.js)
+- [x] `GetSignedImagesInBulk` (UBTConnect_Utils.controller.js)
 - [x] `GetUserInformation` (UBTConnect_Utils.controller.js)

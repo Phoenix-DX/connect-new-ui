@@ -13,6 +13,18 @@ Orbit_ScreenBlocks.ScreenBlock_EventDetail
     LayoutRuntime_NavigationHandler.LayoutRuntime_Top
     Layout.BaseLayout_UpdatedOSUI
       Layout.MenuIcon__UpdatedOSUI
+      CW_Notes.ItemNotesSection
+        BasePatterns.CustomContainer
+          BasePatterns.CustomContainer
+            ConnectCorePatterns.ItemCard_ActionBar
+              BasePatterns.CustomContainer
+                ConnectPatterns.IconText
+                  BasePatterns.Columns_Two
+                    Adaptive.Columns2
+                      ConnectPatterns.Icon
+                      BasePatterns.CustomText
+                        ConnectPatterns.IconInline_Internal
+          CW_Notes.NotesSheet
       Orbit_Blocks.HostSurvey_PillItem
       Orbit_Generic_Blocks.Accordion_Orbit
         Content.DEPRECATED_Accordion
@@ -75,6 +87,7 @@ App_Common.CommonUI_InsideLayout
 | Response | output | Record | `OS.DataTypes.ImmutableBase.getData(new Connect2_OrbitMobile_ISModel.HostSurveyRec())` |
 | Response_HasQRCode | output | Boolean | `false` |
 | Response_HasScanned | output | Boolean | `false` |
+| Notes | output | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec())` |
 | Response_HasDocuments | output | Boolean | `false` |
 | EventDetails | local | Record | `OS.DataTypes.ImmutableBase.getData(new Connect2_OrbitMobile_BLModel.GetEventDetailScreenRec())` |
 | DateFilters | local | Record | `OS.DataTypes.ImmutableBase.getData(new Connect2_OrbitMobile_BLModel.DateFilterRec())` |
@@ -85,6 +98,7 @@ App_Common.CommonUI_InsideLayout
 | HasDocuments | local | Boolean | `false` |
 | IsEventUnavailable | local | Boolean | `false` |
 | UserInformation | local | Record | `OS.DataTypes.ImmutableBase.getData(new Connect2_OrbitMobile_MUIModel.LongIntegerLongIntegerLongIntegerRecord())` |
+| EventNotes | local | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec())` |
 | In_MemberId | input | LongInteger | `OS.DataTypes.LongInteger.defaultValue` |
 | In_EventId | input | LongInteger | `OS.DataTypes.LongInteger.defaultValue` |
 | In_EventName | input | Text | `""` |
@@ -93,10 +107,11 @@ App_Common.CommonUI_InsideLayout
 | Get_EventDetails | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new Get_EventDetailsDataActRec())` |
 | Get_HostSurveyStatus | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new Get_HostSurveyStatusDataActRec())` |
 | Get_HasQRCode | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new Get_HasQRCodeDataActRec())` |
+| FetchEventNotes | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new FetchEventNotesDataActRec())` |
 | Get_HasDocuments | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new Get_HasDocumentsDataActRec())` |
-- Data actions: `DataActionGet_EventDetails` → `screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_EventDetails`, `DataActionGet_HostSurveyStatus` → `screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_HostSurveyStatus`, `DataActionGet_HasQRCode` → `screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_HasQRCode`, `DataActionGet_HasDocuments` → `screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_HasDocuments`
+- Data actions: `DataActionGet_EventDetails` → `screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_EventDetails`, `DataActionGet_HostSurveyStatus` → `screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_HostSurveyStatus`, `DataActionGet_HasQRCode` → `screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_HasQRCode`, `DataActionFetchEventNotes` → `screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionFetchEventNotes`, `DataActionGet_HasDocuments` → `screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_HasDocuments`
 - Lifecycle handlers: Ready
-- Client actions / event handlers: `onAfterFetch_GetLocalSurveyStatus`, `onClick_GenerateQRCode`, `onReady`, `onAfterFetch_Get_HasQRCode`, `onHandle_HostAllocationView`, `onClick_NavigateToHostSurvey`, `onHandle_ClickedMilestone`, `onHandle_ViewHelpers`, `onClick_OpenDocuments`, `onClick_ViewEventBooklet`, `onHandle_ContactHelpdesk`, `onAfterFetch_Get_EventDetails`, `onAfterFetch_GetHasDocuments`, `onAfterFetch_Get_HostSurveyStatus`, `onHandle_ClickedDate`, `navigateTo_GenerateQRCode`, `navigateTo_HostSurvey`, `navigateTo_ContactHelpdesk`, `navigateTo_EventBooklet`, `navigateTo_MilestoneDetail`, `navigateTo_TransportDetail`, `navigateTo_Helpers`, `navigateTo_ViewDocuments`
+- Client actions / event handlers: `onAfterFetch_FetchEventNotes`, `handler_OnNoteDeleted`, `onAfterFetch_GetLocalSurveyStatus`, `onClick_GenerateQRCode`, `onReady`, `onAfterFetch_Get_HasQRCode`, `onHandle_HostAllocationView`, `onClick_NavigateToHostSurvey`, `onHandle_ClickedMilestone`, `onHandle_ViewHelpers`, `onClick_OpenDocuments`, `onClick_ViewEventBooklet`, `handler_OnNotesChanged`, `onHandle_ContactHelpdesk`, `onAfterFetch_Get_EventDetails`, `onAfterFetch_GetHasDocuments`, `onAfterFetch_Get_HostSurveyStatus`, `onHandle_ClickedDate`, `navigateTo_GenerateQRCode`, `navigateTo_HostSurvey`, `navigateTo_ContactHelpdesk`, `navigateTo_EventBooklet`, `navigateTo_MilestoneDetail`, `navigateTo_TransportDetail`, `navigateTo_Helpers`, `navigateTo_ViewDocuments`
 - JavaScript nodes: `Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc$controller.OnReady.WasCurrentViewRestoredFromCacheJS`
 - Feedback messages: `"Only Householder is able to edit the survey.", /*Error*/ 3)` | `"You don\'t have access to this feature. Please contact your event organiser for more information.", /*Info*/ 0)`
 - Static entities / flags: `menuAction.auto`, `orbitEventType.eventHost`, `orbitEventType.eventAdmin`, `surveyStatus.sent`, `surveyStatus.confirmed`, `orbitSkeletonLoading.eventDetail`, `orbitMilestoneType.mealGuest`, `orbitMilestoneType.mealHost`, `orbitMilestoneType.accommodationGuest`, `orbitMilestoneType.accommodationHost`, `orbitMilestoneType.mealHelper`, `orbitMilestoneType.accommodationHelper`, `milestoneTimeType.dAY`, `milestoneTimeType.bEFORE`, `milestoneTimeType.aFTER`
@@ -141,6 +156,127 @@ App_Common.CommonUI_InsideLayout
 - Client actions / event handlers: `onBack`, `onReady`, `onToggleMenu`
 - navigateBack calls: 1
 - Static entities / flags: `menuAction.back`, `menuAction.hidden`
+
+## `UBTConnect_Utils.CW_Notes.ItemNotesSection.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| IsAddNote | local | Boolean | `false` |
+| ShareContactData | local | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnect_UtilsModel.ContactPopupDataRec())` |
+| ShareObjectTypeId | local | Text | `""` |
+| In_ItemId | input | Text | `""` |
+| In_EntityType | input | Text | `""` |
+| In_NoteCategoryId | input | Text | `""` |
+| In_Notes | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec())` |
+| In_IsBookmarked | input | Boolean | `false` |
+| In_ContactPopupData | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnect_UtilsModel.ContactPopupDataRec())` |
+| useViewDetails | input | Boolean | `false` |
+| ActionBarOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ActionBarOptionsRec())` |
+- Lifecycle handlers: Ready
+- Client actions / event handlers: `handler_OnNoteDeleted`, `handler_OnSharedCancel`, `handler_OnNoteSheetClosed`, `handler_OnShareToOthers`, `handler_OnSaveEditNote`, `handler_OnShowAllNotesRequested`, `handler_OnAddNoteClicked`, `onReady`, `handler_OnShareClicked`, `handler_OnSheetNotesChanged`, `on_UnbookmarkClicked`, `on_BookmarkClicked`, `on_NoteDeleted`, `on_NotesChanged`
+- JavaScript nodes: `UBTConnect_Utils.CW_Notes.ItemNotesSection.mvc$controller.OnReady.CheckRestoredJS`
+- Static entities / flags: `uBT_Size.small`, `uBT_Color.neutral2`
+
+## `UBTConnectLibrary.BasePatterns.CustomContainer.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| MainContainerClass | local | Text | `"ubt-custom-container"` |
+| ExtendedClasses | input | Text | `""` |
+| Options | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ContainerOptionsRec())` |
+- Lifecycle handlers: Ready, ParametersChanged
+- Client actions / event handlers: `onReady`, `onParametersChanged`, `clicked`
+
+## `UBTConnectLibrary.ConnectCorePatterns.ItemCard_ActionBar.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| MainContainerClass | local | Text | `"ubt-action-bar"` |
+| ActionBarOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ActionBarOptionsRec())` |
+- Client actions / event handlers: `onClickAddNote`, `onClickUnbookmark`, `onClickShare`
+- Static entities / flags: `uBT_Display.flex`, `uBT_JustifyContent.flexStart`, `uBT_Size.extraSmall`, `uBT_Color.primary`, `uBT_FontSize.doubleExtraSmall`, `uBT_FontWeight.semiBold`, `uBT_Icons.check`, `uBT_IconSize.nonStandard_18`, `uBT_Color.neutral7`, `uBT_Icons.borderColor`, `uBT_Icons.share`
+
+## `UBTConnectLibrary.ConnectPatterns.IconText.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| IsIconOnRight | input | Boolean | `false` |
+| Text | input | Text | `""` |
+| TextOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())` |
+| SpacingSize | input | Text | `UBTConnectLibraryModel.staticEntities.uBT_Size.extraSmall` |
+| ExtendedClasses | input | Text | `""` |
+| SubtextOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())` |
+| In_Subtext | input | Text | `""` |
+| In_JustifyText | input | Boolean | `false` |
+- Client actions / event handlers: `clicked`
+- Static entities / flags: `uBT_Size.extraSmall`, `uBT_ColumnBehaviour.reduceFirst`, `uBT_ColumnBehaviour.reduceLast`, `uBT_VerticalAlign.center`, `uBT_FlexDirection.rowReverse`
+
+## `UBTConnectLibrary.BasePatterns.Columns_Two.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| MainContainerClass | local | Text | `"ubt-columns"` |
+| ColumnOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ColumnOptionsRec())` |
+| ExtendedClasses | input | Text | `""` |
+- Lifecycle handlers: Ready
+- Client actions / event handlers: `onReady`
+
+## `OutSystemsUI_2_23.Adaptive.Columns2.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| GutterSize | input | Text | `OutSystemsUI_2_23Model.staticEntities.gutterSize.base` |
+| TabletBehavior | input | Text | `OutSystemsUI_2_23Model.staticEntities.breakColumns.none` |
+| PhoneBehavior | input | Text | `OutSystemsUI_2_23Model.staticEntities.breakColumns.none` |
+| ExtendedClass | input | Text | `""` |
+- Static entities / flags: `gutterSize.base`, `breakColumns.none`
+
+## `UBTConnectLibrary.ConnectPatterns.Icon.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| MainContainerClass | local | Text | `"ubt-icon"` |
+| In_IconId | input | Text | `""` |
+| In_ColorId | input | Text | `UBTConnectLibraryModel.staticEntities.uBT_Color.neutral9` |
+| In_SizeId | input | Text | `""` |
+| In_Visible | input | Boolean | `true` |
+| In_ExtendedClasses | input | Text | `""` |
+- Client actions / event handlers: `click`
+- Static entities / flags: `uBT_Color.neutral9`
+
+## `UBTConnectLibrary.BasePatterns.CustomText.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| In_Text | input | Text | `""` |
+| In_TextOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())` |
+| In_PaddingOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.SpacingOptionsRec())` |
+| In_HighlightWords | input | Text | `""` |
+| In_HighlightOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())` |
+| ExtendedClasses | input | Text | `""` |
+| FitContent | input | Boolean | `false` |
+| InJustifyText | input | Boolean | `false` |
+| NoWrap | input | Boolean | `false` |
+| InlineIcon | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.InlineIconRec())` |
+- Client actions / event handlers: `clicked`
+
+## `UBTConnectLibrary.ConnectPatterns.IconInline_Internal.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| InlineIcon | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.InlineIconRec())` |
+
+## `UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| BottomSheetId | local | Text | `""` |
+| IsEditing | local | Boolean | `false` |
+| IsSheetOpen | local | Boolean | `false` |
+| NoteText | local | Text | `""` |
+| IsSubmittingNote | local | Boolean | `false` |
+| In_IsOpen | input | Boolean | `false` |
+| ExtendedClasses | input | Text | `""` |
+| In_ItemId | input | Text | `""` |
+| In_NoteCategoryId | input | Text | `""` |
+| In_Notes | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec())` |
+- Server actions: `AddNote` → `screenservices/UBTConnect_Utils/CW_Notes/NotesSheet/ServiceAPIAddNote`
+- Lifecycle handlers: ParametersChanged
+- Client actions / event handlers: `handler_OnSubmitNote`, `backNavigationHandlerBackNavigation`, `bottomSheetOnToggle`, `bottomSheet_Initialized`, `onParametersChanged`, `handler_OnEditingStateChanged`, `handler_OnSaveEditNote`, `action_SetBottomSheetOpen`, `handler_OnNoteSheet_Closed`, `on_NotesChanged`, `on_NoteSheet_Closed`, `on_NoteDeleted`
+- JavaScript nodes: `UBTConnect_Utils.CW_Notes.NotesSheet.mvc$controller.OnParametersChanged.DelaySetIsOpenJS`
+- Exceptions handled: CommunicationException, UserException
+- Static entities / flags: `noteActionType.add`
+- Candidate static strings: `Action_SetBottomSheetOpen`
 
 ## `Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_PillItem.mvc.js`
 | variable | kind | type | default |
@@ -458,20 +594,22 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionGetAllApplicationEvents` (200) at 542 ms
-- 2. `DataActionGet_EventDetails` (200) at 1775 ms
-- 3. `DataActionGet_HostSurveyStatus` (200) at 2065 ms
-- 4. `DataActionGet_HasDocuments` (200) at 2609 ms
-- 5. `DataActionGet_HasQRCode` (200) at 2906 ms
+- 1. `ActionGetAllApplicationEvents` (200) at 580 ms
+- 2. `DataActionFetchEventNotes` (200) at 2860 ms
+- 3. `DataActionGet_EventDetails` (200) at 2966 ms
+- 4. `DataActionGet_HostSurveyStatus` (200) at 3272 ms
+- 5. `DataActionGet_HasDocuments` (200) at 3810 ms
+- 6. `DataActionGet_HasQRCode` (200) at 4268 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`
 - `App_Policies.Policy_Checker`
-- `BasePatterns.Columns_Two`
-- `BasePatterns.CustomContainer`
-- `BasePatterns.CustomText`
+- `CW_Notes.NoteListActions`
 - `CacheControl.CacheControl_Policies`
-- `ConnectPatterns.Icon`
+- `ConnectPatterns.AddNote`
+- `ConnectPatterns.BottomSheet`
+- `ConnectPatterns.HighlightSearch`
+- `ConnectPatterns.IconSVG`
 - `ConnectPatterns.SkeletonSection`
 - `Fingerprint.FingerprintScanner`
 - `NavigationHandler.PreventBackNavigation`

@@ -8,11 +8,6 @@ For every service call: the chains of code that lead to it, from a root (user ev
 - `HandleImageLoadError.applicationEvent_ImageError` → `Connect2_LegacyShared.zOnApplicationEvent_Wrapper` → `UBT_AppManager.azureInsights_CreateCustomEvent` → `UBT_AppManager.appManager_CheckAppContext` → `UBT_AppManager.appManager_GetConfiguration` → `UBT_AppManager.appManager_SynchAppContext` → `UBT_AppManager.appManager_SynchAppContextInternal` → `server AppManager_SynchAppContext`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 - (5 chain(s) starting in blocks of other screens omitted)
 
-### `Connect2_OrbitMobile_MUI/LDM_Blocks_V2/MyEvents_MyTimelineFilterButton/DataActionGetEventLocalitiesForFilter`
-- `MyEvents_MyTimelineFilterButton.OnReady` → `MyEvents_MyTimelineFilterButton.onReady` → `MyEvents_MyTimelineFilterButton.onParametersChanged` → `MyEvents_MyTimelineFilterButton.getEventLocalitiesData` → `MyEvents_MyTimelineFilterButton.DataActionGetEventLocalitiesForFilter`
-- `MyEvents_MyTimelineFilterButton.OnParametersChanged` → `MyEvents_MyTimelineFilterButton.onParametersChanged` → `MyEvents_MyTimelineFilterButton.getEventLocalitiesData` → `MyEvents_MyTimelineFilterButton.DataActionGetEventLocalitiesForFilter`
-- `MyEvents_MyTimelineFilterButton fetch at start` → `MyEvents_MyTimelineFilterButton.DataActionGetEventLocalitiesForFilter`
-
 ### `Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_MyEvents_V2/DataActionGetEventsForMyTimeline`
 - `MyEvents_MyTimelineFilterButton.onHandle_Filter` → `event filter of MyEvents_MyTimelineFilterButton` → `ScreenBlock_MyEvents_V2.onHandle_MyTimelineFilter` → `ScreenBlock_MyEvents_V2.getMyTimelineData` → `ScreenBlock_MyEvents_V2.DataActionGetEventsForMyTimeline`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 - `MyEvents_MyTimelineFilterButton.onHandle_Close` → `event resetFilters of MyEvents_MyTimelineFilterButton` → `ScreenBlock_MyEvents_V2.onHandle_ResetFilters` → `ScreenBlock_MyEvents_V2.getMyTimelineData` → `ScreenBlock_MyEvents_V2.DataActionGetEventsForMyTimeline`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
@@ -20,6 +15,11 @@ For every service call: the chains of code that lead to it, from a root (user ev
 - `MyTimeline_V2.list_MyTimelineOnScrollEnding` → `event scrollEnding of MyTimeline_V2` → `ScreenBlock_MyEvents_V2.onScrollEnding_MyTimeline` → `ScreenBlock_MyEvents_V2.getMyTimelineData` → `ScreenBlock_MyEvents_V2.DataActionGetEventsForMyTimeline`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 - `event tryAgain of MyTimeline_V2` → `ScreenBlock_MyEvents_V2.getMyTimelineData` → `ScreenBlock_MyEvents_V2.DataActionGetEventsForMyTimeline`
 - `MyTimeline_V2.swipeEventSwipeUp` → `event eventsSwipeUp of MyTimeline_V2` → `ScreenBlock_MyEvents_V2.onHandle_SwipeUp` → `ScreenBlock_MyEvents_V2.DataActionGetEventsForMyTimeline`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
+
+### `Connect2_OrbitMobile_MUI/LDM_Blocks_V2/MyEvents_MyTimelineFilterButton/DataActionGetEventLocalitiesForFilter`
+- `MyEvents_MyTimelineFilterButton.OnReady` → `MyEvents_MyTimelineFilterButton.onReady` → `MyEvents_MyTimelineFilterButton.onParametersChanged` → `MyEvents_MyTimelineFilterButton.getEventLocalitiesData` → `MyEvents_MyTimelineFilterButton.DataActionGetEventLocalitiesForFilter`
+- `MyEvents_MyTimelineFilterButton.OnParametersChanged` → `MyEvents_MyTimelineFilterButton.onParametersChanged` → `MyEvents_MyTimelineFilterButton.getEventLocalitiesData` → `MyEvents_MyTimelineFilterButton.DataActionGetEventLocalitiesForFilter`
+- `MyEvents_MyTimelineFilterButton fetch at start` → `MyEvents_MyTimelineFilterButton.DataActionGetEventLocalitiesForFilter`
 
 ### `UBT_AppManager/ActionAppManager_AfterInitialize`
 - `UBT_AppManager.appManager_OnAppReady_Web` → `UBT_AppManager.appManager_InitializeWebComponents` → `UBT_AppManager.appManager_AfterInitialize` → `server AppManager_AfterInitialize`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)

@@ -50,6 +50,7 @@ Layouts.Layout_DetailPage
 | In_ExtendedClass | input | Text | `""` |
 | In_EnableAccessibilityFeatures | input | Boolean | `false` |
 | In_InitializeNavigationHandler | input | Boolean | `true` |
+| In_IsHideTitle | input | Boolean | `false` |
 - Lifecycle handlers: Ready, Destroy
 - Client actions / event handlers: `onClick_BackNavigation`, `setScrollEvents`, `onDestroy`, `skipToContentOnClick`, `onReady`, `onReadyEvent`
 - navigateBack calls: 1
@@ -146,9 +147,9 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 3. `ActionSync_Info_GetMain` (200) at 5721 ms
-- 6. `ServiceAPIFetchData_CacheableHouseholds` (200) at 6849 ms
-- 7. `ServiceAPIFetchData_CacheableMapEntities` (200) at 7152 ms
+- 3. `ActionSync_Info_GetMain` (200) at 5569 ms
+- 6. `ServiceAPIFetchData_CacheableMapEntities` (200) at 7937 ms
+- 7. `ServiceAPIFetchData_CacheableHouseholds` (200) at 10681 ms
 - plus 4 call(s) outside this screen, listed in calls.md
 
 ## Not yet captured (see coverage.md)

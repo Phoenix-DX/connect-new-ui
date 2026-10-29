@@ -14,7 +14,7 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [ ] `BasePatterns.CustomContainer`
 - [ ] `BasePatterns.CustomText`
 - [ ] `CacheControl.CacheControl_Policies`
-- [ ] `ConnectPatterns.IconSVG`
+- [ ] `ConnectPatterns.Icon`
 - [ ] `ConnectPatterns.LazyImage`
 - [ ] `ConnectPatterns.SkeletonSection`
 - [ ] `Fingerprint.FingerprintScanner`

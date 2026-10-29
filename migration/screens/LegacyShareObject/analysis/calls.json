@@ -6,7 +6,7 @@
    "action": "ActionAppManager_SynchAppContext",
    "path": "/UBTConnect/screenservices/UBT_AppManager/ActionAppManager_SynchAppContext",
    "phase": "load",
-   "ts": 2909,
+   "ts": 2599,
    "status": 200,
    "kind": "server",
    "inputNames": [
@@ -19,7 +19,7 @@
    "action": "ActionGetUserInformation",
    "path": "/UBTConnect/screenservices/UBTConnect_Utils/ActionGetUserInformation",
    "phase": "load",
-   "ts": 2909,
+   "ts": 2599,
    "status": 200,
    "kind": "server",
    "inputNames": [],
@@ -30,21 +30,23 @@
    "action": "ScreenDataSetGetShareObjectTypeById",
    "path": "/UBTConnect/screenservices/Connect2_LegacyShared/Share_UI/ScreenBlock_ShareObject/ScreenDataSetGetShareObjectTypeById",
    "phase": "load",
-   "ts": 4592,
+   "ts": 4225,
    "status": 200,
    "kind": "data",
    "inputNames": [],
    "scope": "this screen"
   },
   {
-   "module": "Connect2_LegacyShared",
-   "action": "DataActionGetAvailableUsers",
-   "path": "/UBTConnect/screenservices/Connect2_LegacyShared/Share_UI/ProfileList/DataActionGetAvailableUsers",
+   "module": "UBTConnect_Utils",
+   "action": "ActionGetSignedImagesInBulk",
+   "path": "/UBTConnect/screenservices/UBTConnect_Utils/ActionGetSignedImagesInBulk",
    "phase": "load",
-   "ts": 4593,
+   "ts": 4226,
    "status": 200,
-   "kind": "data",
-   "inputNames": null,
+   "kind": "server",
+   "inputNames": [
+    "BulkSignedImagesParameters"
+   ],
    "scope": "this screen"
   },
   {
@@ -52,7 +54,7 @@
    "action": "ServiceAPIGetHouseholdDetails",
    "path": "/UBTConnect/screenservices/Connect2_LegacyShared/Share_UI/ScreenBlock_ShareObject/ServiceAPIGetHouseholdDetails",
    "phase": "load",
-   "ts": 4593,
+   "ts": 4226,
    "status": 200,
    "kind": "server",
    "inputNames": [
@@ -63,16 +65,14 @@
    "scope": "this screen"
   },
   {
-   "module": "UBTConnect_Utils",
-   "action": "ActionGetSignedImagesInBulk",
-   "path": "/UBTConnect/screenservices/UBTConnect_Utils/ActionGetSignedImagesInBulk",
+   "module": "Connect2_LegacyShared",
+   "action": "DataActionGetAvailableUsers",
+   "path": "/UBTConnect/screenservices/Connect2_LegacyShared/Share_UI/ProfileList/DataActionGetAvailableUsers",
    "phase": "load",
-   "ts": 4593,
+   "ts": 4225,
    "status": 200,
-   "kind": "server",
-   "inputNames": [
-    "BulkSignedImagesParameters"
-   ],
+   "kind": "data",
+   "inputNames": null,
    "scope": "this screen"
   },
   {
@@ -80,7 +80,7 @@
    "action": "ActionAppManager_AfterInitialize",
    "path": "/UBTConnect/screenservices/UBT_AppManager/ActionAppManager_AfterInitialize",
    "phase": "load",
-   "ts": 5166,
+   "ts": 5554,
    "status": 200,
    "kind": "server",
    "inputNames": [
@@ -95,7 +95,7 @@
    "action": "ActionSync_Info_GetMain",
    "path": "/UBTConnect/screenservices/UBTConnect/ActionSync_Info_GetMain",
    "phase": "load",
-   "ts": 5407,
+   "ts": 5800,
    "status": 200,
    "kind": "server",
    "inputNames": [
@@ -108,7 +108,7 @@
    "action": "ActionGetNumberUnreadMessages",
    "path": "/UBTConnect/screenservices/Connect2_LegacyShared/ActionGetNumberUnreadMessages",
    "phase": "load",
-   "ts": 5971,
+   "ts": 6277,
    "status": 200,
    "kind": "server",
    "inputNames": [
@@ -118,10 +118,10 @@
   },
   {
    "module": "UBTConnect",
-   "action": "ServiceAPIFetchData_CacheableHouseholds",
-   "path": "/UBTConnect/screenservices/UBTConnect/ServiceAPIFetchData_CacheableHouseholds",
+   "action": "ServiceAPIFetchData_CacheableMapEntities",
+   "path": "/UBTConnect/screenservices/UBTConnect/ServiceAPIFetchData_CacheableMapEntities",
    "phase": "load",
-   "ts": 6223,
+   "ts": 6541,
    "status": 200,
    "kind": "server",
    "inputNames": [],
@@ -129,10 +129,10 @@
   },
   {
    "module": "UBTConnect",
-   "action": "ServiceAPIFetchData_CacheableMapEntities",
-   "path": "/UBTConnect/screenservices/UBTConnect/ServiceAPIFetchData_CacheableMapEntities",
+   "action": "ServiceAPIFetchData_CacheableHouseholds",
+   "path": "/UBTConnect/screenservices/UBTConnect/ServiceAPIFetchData_CacheableHouseholds",
    "phase": "load",
-   "ts": 6223,
+   "ts": 6541,
    "status": 200,
    "kind": "server",
    "inputNames": [],

@@ -468,7 +468,8 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `DataActionGetHostSurvey` (200) at 2861 ms
+- 4. `DataActionGetHostSurvey` (200) at 3106 ms
+- plus 3 call(s) outside this screen, listed in calls.md
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

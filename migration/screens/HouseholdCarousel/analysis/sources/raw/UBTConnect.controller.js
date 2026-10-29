@@ -3470,11 +3470,13 @@ UBTConnectController.default.get_Cacheable_MapEntities$Action = function (callCo
 var varBag = {};
 callContext = controller.callContext(callContext);
 var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.Get_Cacheable_MapEntities$vars"))());
+var allExceptionsVar = new OS.DataTypes.VariableHolder(new OS.DataTypes.ErrorHandlerOutputType());
 var fetchData_CacheableMapEntitiesVar = new OS.DataTypes.VariableHolder();
 varBag.callContext = callContext;
 varBag.vars = vars;
+varBag.allExceptionsVar = allExceptionsVar;
 varBag.fetchData_CacheableMapEntitiesVar = fetchData_CacheableMapEntitiesVar;
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:Bl5dODxWqkWp0cQmCtHAeQ:/ClientActionFlows.Bl5dODxWqkWp0cQmCtHAeQ:zb6_sZUzZn5Fpgq3E0ZoBA", "UBTConnect", "Get_Cacheable_MapEntities", "NRFlows.ClientActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:Bl5dODxWqkWp0cQmCtHAeQ:/ClientActionFlows.Bl5dODxWqkWp0cQmCtHAeQ:_9ufXCdK3uv+USte3IUUXg", "UBTConnect", "Get_Cacheable_MapEntities", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:kc8B3q8cD062zWyJX7VAyg", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:oc9pwZUCFEmk+GeuU2PXmg", callContext.id);
@@ -3499,6 +3501,22 @@ OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:a+u++KR3xEqrGrJw7WY6
 MemoryClientCacheController.default.putCacheableObject$Action(UBTConnectModel.staticEntities.cacheableMapObjects.localitiesGeoJSON, UBTConnectModel.staticEntities.cacheableMapObjects.localitiesGeoJSON, OS.BuiltinFunctions.toObject(fetchData_CacheableMapEntitiesVar.value.localities_GeoJSONOut), vars.value.timeToLiveVar, callContext);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:MhXnVgn4MUeg32Plz2NN0g", callContext.id);
 });
+}).catch(function (ex) {
+OS.Logger.trace("Get_Cacheable_MapEntities.Get_Cacheable_MapEntities", OS.Exceptions.getMessage(ex), ex.name);
+// Handle Error: AllExceptions
+if(!(OS.Exceptions.isSystem(ex))) {
+OS.Logger.error(null, ex);
+allExceptionsVar.value.exceptionMessageAttr = OS.Exceptions.getMessage(ex);
+OutSystemsDebugger.handleException(allExceptionsVar.value.exceptionMessageAttr, callContext.id);
+return OS.Flow.executeAsyncFlow(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:AYaKGIVobk+x44Kx7Y3PFA", callContext.id);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:xtQHmkcqsUi8YxazmXP+ig", callContext.id);
+return OS.Flow.returnAsync();
+
+});
+}
+
+throw ex;
 }).then(function () {
 return ;
 }).then(function (res) {
@@ -3535,11 +3553,13 @@ UBTConnectController.default.get_Cacheable_MapHouseholds$Action = function (call
 var varBag = {};
 callContext = controller.callContext(callContext);
 var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.Get_Cacheable_MapHouseholds$vars"))());
+var allExceptionsVar = new OS.DataTypes.VariableHolder(new OS.DataTypes.ErrorHandlerOutputType());
 var fetchData_CacheableHouseholdsVar = new OS.DataTypes.VariableHolder();
 varBag.callContext = callContext;
 varBag.vars = vars;
+varBag.allExceptionsVar = allExceptionsVar;
 varBag.fetchData_CacheableHouseholdsVar = fetchData_CacheableHouseholdsVar;
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:oNAeT6S_iUWxhItLn4a3xg:/ClientActionFlows.oNAeT6S_iUWxhItLn4a3xg:sOyHqlIZSuq3gy8BreXRCA", "UBTConnect", "Get_Cacheable_MapHouseholds", "NRFlows.ClientActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:oNAeT6S_iUWxhItLn4a3xg:/ClientActionFlows.oNAeT6S_iUWxhItLn4a3xg:VEWXApXLFZcZ6sQI_OdJxw", "UBTConnect", "Get_Cacheable_MapHouseholds", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:5HB9G4mlBka_FsKby7hFGg", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:BlKSi_7yVkuCq1725l1Hbg", callContext.id);
@@ -3567,6 +3587,22 @@ OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:oFkNsCZ6r0Cr1kXH7ut8
 MemoryClientCacheController.default.putCacheableObject$Action(UBTConnectModel.staticEntities.cacheableMapObjects.householdsExploreItems, UBTConnectModel.staticEntities.cacheableMapObjects.householdsExploreItems, OS.BuiltinFunctions.toObject(vars.value.mapExploreItemVar), 7200, callContext);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:ZeBDCZ+xCkyvp4Z+Gq0PBg", callContext.id);
 });
+}).catch(function (ex) {
+OS.Logger.trace("Get_Cacheable_MapHouseholds.Get_Cacheable_MapHouseholds", OS.Exceptions.getMessage(ex), ex.name);
+// Handle Error: AllExceptions
+if(!(OS.Exceptions.isSystem(ex))) {
+OS.Logger.error(null, ex);
+allExceptionsVar.value.exceptionMessageAttr = OS.Exceptions.getMessage(ex);
+OutSystemsDebugger.handleException(allExceptionsVar.value.exceptionMessageAttr, callContext.id);
+return OS.Flow.executeAsyncFlow(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:R+USq9h1jkCh34kVBsyvOw", callContext.id);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:dh3XpZmCFEaT5jhniZ2+8w", callContext.id);
+return OS.Flow.returnAsync();
+
+});
+}
+
+throw ex;
 }).then(function () {
 return ;
 }).then(function (res) {
@@ -4435,6 +4471,85 @@ in_CacheKeyIn = (in_CacheKeyIn === undefined) ? "" : in_CacheKeyIn;
 return controller.executeActionInsideJSNode(UBTConnectController.default.get_FilteredCacheKeyByDateAndEventSources$Action.bind(controller, in_MyCalendarEventSourceIdsIn, OS.DataConversion.JSNodeParamConverter.from(in_CacheKeyIn, OS.DataTypes.DataTypes.Text)), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
 return {
 Out_FilteredCacheKey: OS.DataConversion.JSNodeParamConverter.to(actionResults.out_FilteredCacheKeyOut, OS.DataTypes.DataTypes.Text)
+};
+});
+};
+});
+
+define("UBTConnect.controller$Get_FormattedDistance", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnect.clientVariables"], function (exports, OutSystems, UBTConnectModel, UBTConnectController, UBTConnectClientVariables) {
+var OS = OutSystems.Internal;
+UBTConnectController.default.get_FormattedDistance$Action = function (in_DistanceInKmIn, callContext) {
+var varBag = {};
+callContext = controller.callContext(callContext);
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.Get_FormattedDistance$vars"))());
+vars.value.in_DistanceInKmInLocal = in_DistanceInKmIn;
+var outVars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.Get_FormattedDistance$outVars"))());
+varBag.callContext = callContext;
+varBag.vars = vars;
+varBag.outVars = outVars;
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:0tLTDgAwzEyUQZxXNu_bQg:/ClientActionFlows.0tLTDgAwzEyUQZxXNu_bQg:1a8IcHxJXTRPeOPEPL1Okg", "UBTConnect", "Get_FormattedDistance", "NRFlows.ClientActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Ay78CRXi50qURy9JTfIFOA", callContext.id);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:9zPsD3Wm5ESVQbwM6OcWNQ", callContext.id);
+// DistanceInKm = TextToDecimal
+vars.value.distanceInKmVar = OS.BuiltinFunctions.textToDecimal(vars.value.in_DistanceInKmInLocal);
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:lu+axk62wkqO1ChlBQW7tA", callContext.id) && (vars.value.in_DistanceInKmInLocal === ""))) {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:L0TeyczBnkGK+vIi78Tr0Q", callContext.id);
+} else {
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:ql4xXi0SxkGhpUohLEakaA", callContext.id) && vars.value.distanceInKmVar.lt(OS.BuiltinFunctions.integerToDecimal(1)))) {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:qqsHCnaWFU+ykc0RR+yXGQ", callContext.id);
+// Out_FormattedDistance = DecimalToInteger + Chr + "m"
+outVars.value.out_FormattedDistanceOut = (((OS.BuiltinFunctions.decimalToInteger(vars.value.distanceInKmVar.times(OS.BuiltinFunctions.integerToDecimal(1000)))).toString() + OS.BuiltinFunctions.chr(160)) + "m");
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:kBs0TOHGh0uPVgirqkE6Rg", callContext.id);
+} else {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:q6EYm8iPu0q8BL3xZ05gyA", callContext.id);
+// Out_FormattedDistance = DistanceInKm + Chr + "Km"
+outVars.value.out_FormattedDistanceOut = ((OS.BuiltinFunctions.decimalToText(vars.value.distanceInKmVar) + OS.BuiltinFunctions.chr(160)) + "Km");
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:kBs0TOHGh0uPVgirqkE6Rg", callContext.id);
+}
+
+}
+
+return outVars.value;
+} catch (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+throw ex;
+} finally {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:0tLTDgAwzEyUQZxXNu_bQg", callContext.id);
+}
+
+};
+var controller = UBTConnectController.default;
+UBTConnectController.default.constructor.registerVariableGroupType("UBTConnect.Get_FormattedDistance$vars", [{
+name: "In_DistanceInKm",
+attrName: "in_DistanceInKmInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Text,
+defaultValue: function () {
+return "";
+}
+}, {
+name: "DistanceInKm",
+attrName: "distanceInKmVar",
+mandatory: false,
+dataType: OS.DataTypes.DataTypes.Decimal,
+defaultValue: function () {
+return OS.DataTypes.Decimal.defaultValue;
+}
+}]);
+UBTConnectController.default.constructor.registerVariableGroupType("UBTConnect.Get_FormattedDistance$outVars", [{
+name: "Out_FormattedDistance",
+attrName: "out_FormattedDistanceOut",
+mandatory: false,
+dataType: OS.DataTypes.DataTypes.Text,
+defaultValue: function () {
+return "";
+}
+}]);
+UBTConnectController.default.clientActionProxies.get_FormattedDistance$Action = function (in_DistanceInKmIn) {
+in_DistanceInKmIn = (in_DistanceInKmIn === undefined) ? "" : in_DistanceInKmIn;
+return controller.executeActionInsideJSNode(UBTConnectController.default.get_FormattedDistance$Action.bind(controller, OS.DataConversion.JSNodeParamConverter.from(in_DistanceInKmIn, OS.DataTypes.DataTypes.Text)), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
+return {
+Out_FormattedDistance: OS.DataConversion.JSNodeParamConverter.to(actionResults.out_FormattedDistanceOut, OS.DataTypes.DataTypes.Text)
 };
 });
 };
@@ -6249,7 +6364,7 @@ var outVars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVar
 varBag.callContext = callContext;
 varBag.vars = vars;
 varBag.outVars = outVars;
-try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:t5yJfj1oo0WVlic+0X+ksw:/ClientActionFlows.t5yJfj1oo0WVlic+0X+ksw:vm72yzue7VDGDTOcH7nGzA", "UBTConnect", "Get_NoteCategoryId_ByBookmarkCategoryId", "NRFlows.ClientActionFlow", callContext.id, varBag);
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:t5yJfj1oo0WVlic+0X+ksw:/ClientActionFlows.t5yJfj1oo0WVlic+0X+ksw:VwL02PUaca2v+lHHO3+xYQ", "UBTConnect", "Get_NoteCategoryId_ByBookmarkCategoryId", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:SJLfjkR_TUOBo_h_p3lGfA", callContext.id);
 if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:YFPUr0XifE2PDZefRKKFZw", callContext.id) && (vars.value.bookmarkCategoryIdInLocal === UBTConnectModel.staticEntities.bookmarkCategory.household))) {
 // Household Note
@@ -6286,7 +6401,7 @@ OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:R+GHwdocB0GaIwqFsbMa
 outVars.value.out_NoteCategoryIdOut = UBTConnectModel.staticEntities.noteCategory2.locality;
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:8zm7UTjhT0mPWGnJO8k4dQ", callContext.id);
 } else {
-if((vars.value.bookmarkCategoryIdInLocal === UBTConnectModel.staticEntities.bookmarkCategory.oneSchoolGlobal)) {
+if((vars.value.bookmarkCategoryIdInLocal === UBTConnectModel.staticEntities.bookmarkCategory.oneSchoolGlobal2)) {
 // OneSchool Global Note
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:xXYnjA+hbkiqD+1uTvvzbw", callContext.id);
 // Out_NoteCategoryId = OneSchoolGlobal
@@ -6510,6 +6625,76 @@ entityTypeIdIn = (entityTypeIdIn === undefined) ? "" : entityTypeIdIn;
 return controller.executeActionInsideJSNode(UBTConnectController.default.get_NoteCategoryId_ByEntityTypeId$Action.bind(controller, entityTypeIdIn), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
 return {
 Out_NoteCategoryId: actionResults.out_NoteCategoryIdOut
+};
+});
+};
+});
+
+define("UBTConnect.controller$Get_RecentYears", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnect.clientVariables"], function (exports, OutSystems, UBTConnectModel, UBTConnectController, UBTConnectClientVariables) {
+var OS = OutSystems.Internal;
+UBTConnectController.default.get_RecentYears$Action = function (in_NumberOfYearsIn, callContext) {
+var varBag = {};
+callContext = controller.callContext(callContext);
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.Get_RecentYears$vars"))());
+vars.value.in_NumberOfYearsInLocal = in_NumberOfYearsIn;
+var outVars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.Get_RecentYears$outVars"))());
+varBag.callContext = callContext;
+varBag.vars = vars;
+varBag.outVars = outVars;
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:ALrnpqWWv06+IXez_4miXw:/ClientActionFlows.ALrnpqWWv06+IXez_4miXw:DFlqshZWO9FtTYdxgXZp7Q", "UBTConnect", "Get_RecentYears", "NRFlows.ClientActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:vhvrdehFZk6a40C2wynr_A", callContext.id);
+while ((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:7DEIublfy0mLxCjrHB0mBg", callContext.id) && (vars.value.indexVar < vars.value.in_NumberOfYearsInLocal))) {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:XYM0NqTNykuqmbEK5D9Vag", callContext.id);
+// Execute Action: ListAppend
+OS.SystemActions.listAppend(outVars.value.out_YearsOut, OS.BuiltinFunctions.integerToText((OS.BuiltinFunctions.year(OS.BuiltinFunctions.currDate()) - vars.value.indexVar)), callContext);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:sQ+pJf7_nESQrf0NbOH6XA", callContext.id);
+// Index = Index + 1
+vars.value.indexVar = (vars.value.indexVar + 1);
+}
+
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:NVRwM19TaU+s4Ry8CZs6Yg", callContext.id);
+return outVars.value;
+} catch (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+throw ex;
+} finally {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:ALrnpqWWv06+IXez_4miXw", callContext.id);
+}
+
+};
+var controller = UBTConnectController.default;
+UBTConnectController.default.constructor.registerVariableGroupType("UBTConnect.Get_RecentYears$vars", [{
+name: "In_NumberOfYears",
+attrName: "in_NumberOfYearsInLocal",
+mandatory: false,
+dataType: OS.DataTypes.DataTypes.Integer,
+defaultValue: function () {
+return 3;
+}
+}, {
+name: "Index",
+attrName: "indexVar",
+mandatory: false,
+dataType: OS.DataTypes.DataTypes.Integer,
+defaultValue: function () {
+return 0;
+}
+}]);
+UBTConnectController.default.constructor.registerVariableGroupType("UBTConnect.Get_RecentYears$outVars", [{
+name: "Out_Years",
+attrName: "out_YearsOut",
+mandatory: false,
+dataType: OS.DataTypes.DataTypes.RecordList,
+defaultValue: function () {
+return new OS.DataTypes.TextList();
+},
+complexType: OS.DataTypes.TextList
+}]);
+UBTConnectController.default.clientActionProxies.get_RecentYears$Action = function (in_NumberOfYearsIn) {
+in_NumberOfYearsIn = (in_NumberOfYearsIn === undefined) ? 3 : in_NumberOfYearsIn;
+return controller.executeActionInsideJSNode(UBTConnectController.default.get_RecentYears$Action.bind(controller, OS.DataConversion.JSNodeParamConverter.from(in_NumberOfYearsIn, OS.DataTypes.DataTypes.Integer)), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
+return {
+Out_Years: actionResults.out_YearsOut
 };
 });
 };
@@ -7160,16 +7345,18 @@ var outVars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVar
 varBag.callContext = callContext;
 varBag.vars = vars;
 varBag.outVars = outVars;
-try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:mlMMxNn3CkSR1TbyAd0NRA:/ClientActionFlows.mlMMxNn3CkSR1TbyAd0NRA:c7VdflhxBG4JWurEoqrX4Q", "UBTConnect", "GetBookmarkCategoryId_ByEntityTypeId", "NRFlows.ClientActionFlow", callContext.id, varBag);
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:mlMMxNn3CkSR1TbyAd0NRA:/ClientActionFlows.mlMMxNn3CkSR1TbyAd0NRA:RrsOpYWf4zgNDn5r05gzGw", "UBTConnect", "GetBookmarkCategoryId_ByEntityTypeId", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:j0u8p9rdE0mPiHoFrz4Hsw", callContext.id);
 // Type
 if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:vr4UbR6kl0aJ83XyIV6hkg", callContext.id) && (vars.value.entityTypeInLocal === UBTConnectModel.staticEntities.connect_Entity.member))) {
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:XslWxQXbx02CLCe8DhxHiw", callContext.id);
-// Raise Error: InvalidAction
-throw new OS.Exceptions.Exceptions.UserException("UBTConnect.InvalidAction", "Bookmarks not available");
+// Member
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:XszF_SJjkEOjDOAhJbaPOQ", callContext.id);
+// BookmarkType = Member
+outVars.value.bookmarkTypeOut = UBTConnectModel.staticEntities.bookmarkCategory.member;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:IKDXPGfl+kSpbieFXv7LSA", callContext.id);
 } else {
 if((vars.value.entityTypeInLocal === UBTConnectModel.staticEntities.connect_Entity.locality)) {
-// Location
+// Locality
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:66dd+2VY3EyVuSdprWEKKA", callContext.id);
 // BookmarkType = Locality
 outVars.value.bookmarkTypeOut = UBTConnectModel.staticEntities.bookmarkCategory.locality;
@@ -7183,7 +7370,7 @@ outVars.value.bookmarkTypeOut = UBTConnectModel.staticEntities.bookmarkCategory.
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:IKDXPGfl+kSpbieFXv7LSA", callContext.id);
 } else {
 if((vars.value.entityTypeInLocal === UBTConnectModel.staticEntities.connect_Entity.interchange)) {
-// Location
+// Interchange
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:aydZVWH8T0SfsOla5DnjIQ", callContext.id);
 // BookmarkType = Interchange
 outVars.value.bookmarkTypeOut = UBTConnectModel.staticEntities.bookmarkCategory.interchange;
@@ -7199,21 +7386,13 @@ OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:IKDXPGfl+kSpbieFXv7L
 if((vars.value.entityTypeInLocal === UBTConnectModel.staticEntities.connect_Entity.oneSchoolGlobal)) {
 // School
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:oZ3W_rMB702y1+IyB7PAcw", callContext.id);
-// BookmarkType = OneSchoolGlobal
-outVars.value.bookmarkTypeOut = UBTConnectModel.staticEntities.bookmarkCategory.oneSchoolGlobal;
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:IKDXPGfl+kSpbieFXv7LSA", callContext.id);
-} else {
-if((vars.value.entityTypeInLocal === UBTConnectModel.staticEntities.connect_Entity.interchange)) {
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:XszF_SJjkEOjDOAhJbaPOQ", callContext.id);
-// BookmarkType = Interchange
-outVars.value.bookmarkTypeOut = UBTConnectModel.staticEntities.bookmarkCategory.interchange;
+// BookmarkType = OneSchoolGlobal2
+outVars.value.bookmarkTypeOut = UBTConnectModel.staticEntities.bookmarkCategory.oneSchoolGlobal2;
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:IKDXPGfl+kSpbieFXv7LSA", callContext.id);
 } else {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:BLTtB21pikulg5GGoCkv0g", callContext.id);
 // Raise Error: InvalidAction
 throw new OS.Exceptions.Exceptions.UserException("UBTConnect.InvalidAction", "Bookmarks not available");
-}
-
 }
 
 }
@@ -7264,41 +7443,34 @@ BookmarkType: actionResults.bookmarkTypeOut
 };
 });
 
-define("UBTConnect.controller$GetBookmarks_FilterYear", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnect_Bookmarks_MCS.controller", "UBTConnect.clientVariables", "UBTConnect_Bookmarks_MCS.controller$Get_LocalDynamicBookmarkYears", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Bookmarks_MCS"], function (exports, OutSystems, UBTConnectModel, UBTConnectController, UBTConnect_Bookmarks_MCSController, UBTConnectClientVariables) {
+define("UBTConnect.controller$GetBookmarks_FilterYear", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnect.clientVariables", "UBTConnect.controller$Get_RecentYears"], function (exports, OutSystems, UBTConnectModel, UBTConnectController, UBTConnectClientVariables) {
 var OS = OutSystems.Internal;
 UBTConnectController.default.getBookmarks_FilterYear$Action = function (callContext) {
 var varBag = {};
 callContext = controller.callContext(callContext);
-var get_LocalDynamicBookmarkYearsVar = new OS.DataTypes.VariableHolder();
+var get_RecentYearsVar = new OS.DataTypes.VariableHolder();
 var outVars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.GetBookmarks_FilterYear$outVars"))());
 varBag.callContext = callContext;
-varBag.get_LocalDynamicBookmarkYearsVar = get_LocalDynamicBookmarkYearsVar;
+varBag.get_RecentYearsVar = get_RecentYearsVar;
 varBag.outVars = outVars;
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:90sPgdQfWkysZPzjmF+wOg:/ClientActionFlows.90sPgdQfWkysZPzjmF+wOg:jEcyK46WUfEgZNcqO7SkfA", "UBTConnect", "GetBookmarks_FilterYear", "NRFlows.ClientActionFlow", callContext.id, varBag);
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:90sPgdQfWkysZPzjmF+wOg:/ClientActionFlows.90sPgdQfWkysZPzjmF+wOg:KXo1xuLFHmPMgIbVakPN_g", "UBTConnect", "GetBookmarks_FilterYear", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:x7ntizWnLk6G1CmtnDoU4Q", callContext.id);
-return OS.Flow.executeAsyncFlow(function () {
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:yAxuz5NSrkGpLDwCmySb6Q", callContext.id);
-// Execute Action: Get_LocalDynamicBookmarkYears
-return UBTConnect_Bookmarks_MCSController.default.get_LocalDynamicBookmarkYears$Action(callContext).then(function (value) {
-get_LocalDynamicBookmarkYearsVar.value = value;
-}).then(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:ryjhb+37MUefQBxfSV9g1g", callContext.id);
+// Execute Action: Get_RecentYears
+get_RecentYearsVar.value = UBTConnectController.default.get_RecentYears$Action(3, callContext);
+
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:ZiFFMoWUo0Ozg3w2U5gkFA", callContext.id);
-// Out_Years = Get_LocalDynamicBookmarkYears.Years
-outVars.value.out_YearsOut = get_LocalDynamicBookmarkYearsVar.value.yearsOut;
+// Out_Years = Get_RecentYears.Out_Years
+outVars.value.out_YearsOut = get_RecentYearsVar.value.out_YearsOut;
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:h+p5J0VWFEWXh0WjbHcC9g", callContext.id);
-});
-}).then(function () {
 return outVars.value;
-}).then(function (res) {
-OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:90sPgdQfWkysZPzjmF+wOg", callContext.id);
-return res;
-
-}).catch(function (ex) {
+} catch (ex) {
 OutSystemsDebugger.handleException(ex, callContext.id);
-OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:90sPgdQfWkysZPzjmF+wOg", callContext.id);
 throw ex;
+} finally {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:90sPgdQfWkysZPzjmF+wOg", callContext.id);
+}
 
-});
 };
 var controller = UBTConnectController.default;
 UBTConnectController.default.constructor.registerVariableGroupType("UBTConnect.GetBookmarks_FilterYear$outVars", [{
@@ -7322,15 +7494,18 @@ Out_Years: actionResults.out_YearsOut
 
 define("UBTConnect.controller$GetBookmarks_Pills", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnect_Bookmarks_MCS.model", "UBTConnect_Bookmarks_MCS.controller", "UBTConnectLibrary.model", "UBTConnect.clientVariables", "UBTConnect_Bookmarks_MCS.model$DynamicBookmark_PillRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Bookmarks_MCS", "UBTConnect.model$DynamicBookmark_PillList", "UBTConnect_Bookmarks_MCS.controller$Get_LocalDynamicBookmarkPills", "UBTConnectLibrary.model$TagRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$TagList"], function (exports, OutSystems, UBTConnectModel, UBTConnectController, UBTConnect_Bookmarks_MCSModel, UBTConnect_Bookmarks_MCSController, UBTConnectLibraryModel, UBTConnectClientVariables) {
 var OS = OutSystems.Internal;
-UBTConnectController.default.getBookmarks_Pills$Action = function (callContext) {
+UBTConnectController.default.getBookmarks_Pills$Action = function (in_SelectedPillIdIn, callContext) {
 var varBag = {};
 callContext = controller.callContext(callContext);
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.GetBookmarks_Pills$vars"))());
+vars.value.in_SelectedPillIdInLocal = in_SelectedPillIdIn;
 var get_LocalDynamicBookmarkPillsVar = new OS.DataTypes.VariableHolder();
 var outVars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.GetBookmarks_Pills$outVars"))());
 varBag.callContext = callContext;
+varBag.vars = vars;
 varBag.get_LocalDynamicBookmarkPillsVar = get_LocalDynamicBookmarkPillsVar;
 varBag.outVars = outVars;
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:+8JyHwNZ9kWepZuYy6tJBQ:/ClientActionFlows.+8JyHwNZ9kWepZuYy6tJBQ:aYMbcBoKBNeuvT2ZkuKKVQ", "UBTConnect", "GetBookmarks_Pills", "NRFlows.ClientActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:+8JyHwNZ9kWepZuYy6tJBQ:/ClientActionFlows.+8JyHwNZ9kWepZuYy6tJBQ:vsK9VjMb+98Ghla4nJ3xOQ", "UBTConnect", "GetBookmarks_Pills", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:lRQjUX2TTEak8BgTRJ5CgQ", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:cyH8ZMmryEyVGL_oQ8vT8A", callContext.id);
@@ -7339,7 +7514,7 @@ OS.SystemActions.listAppend(outVars.value.out_PillsOut, function () {
 var rec = new UBTConnectLibraryModel.TagRec();
 rec.textAttr = "All";
 rec.identifierAttr = OS.BuiltinFunctions.nullTextIdentifier();
-rec.isSelectedAttr = true;
+rec.isSelectedAttr = (vars.value.in_SelectedPillIdInLocal === "");
 rec.enabledAttr = true;
 return rec;
 }(), callContext);
@@ -7361,7 +7536,7 @@ OS.SystemActions.listAppend(outVars.value.out_PillsOut, function () {
 var rec = new UBTConnectLibraryModel.TagRec();
 rec.textAttr = get_LocalDynamicBookmarkPillsVar.value.out_DynamicBookmark_PillsOut.getItem(out_DynamicBookmark_PillsIndex.valueOf()).textAttr;
 rec.identifierAttr = get_LocalDynamicBookmarkPillsVar.value.out_DynamicBookmark_PillsOut.getItem(out_DynamicBookmark_PillsIndex.valueOf()).identifierAttr;
-rec.isSelectedAttr = false;
+rec.isSelectedAttr = (get_LocalDynamicBookmarkPillsVar.value.out_DynamicBookmark_PillsOut.getItem(out_DynamicBookmark_PillsIndex.valueOf()).identifierAttr === vars.value.in_SelectedPillIdInLocal);
 rec.enabledAttr = true;
 return rec;
 }(), callContext);
@@ -7388,6 +7563,15 @@ throw ex;
 });
 };
 var controller = UBTConnectController.default;
+UBTConnectController.default.constructor.registerVariableGroupType("UBTConnect.GetBookmarks_Pills$vars", [{
+name: "In_SelectedPillId",
+attrName: "in_SelectedPillIdInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Text,
+defaultValue: function () {
+return "";
+}
+}]);
 UBTConnectController.default.constructor.registerVariableGroupType("UBTConnect.GetBookmarks_Pills$outVars", [{
 name: "Out_Pills",
 attrName: "out_PillsOut",
@@ -7398,141 +7582,11 @@ return new UBTConnectModel.TagList();
 },
 complexType: UBTConnectModel.TagList
 }]);
-UBTConnectController.default.clientActionProxies.getBookmarks_Pills$Action = function () {
-return controller.executeActionInsideJSNode(UBTConnectController.default.getBookmarks_Pills$Action.bind(controller), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
+UBTConnectController.default.clientActionProxies.getBookmarks_Pills$Action = function (in_SelectedPillIdIn) {
+in_SelectedPillIdIn = (in_SelectedPillIdIn === undefined) ? "" : in_SelectedPillIdIn;
+return controller.executeActionInsideJSNode(UBTConnectController.default.getBookmarks_Pills$Action.bind(controller, OS.DataConversion.JSNodeParamConverter.from(in_SelectedPillIdIn, OS.DataTypes.DataTypes.Text)), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
 return {
 Out_Pills: actionResults.out_PillsOut
-};
-});
-};
-});
-
-define("UBTConnect.controller$GetBookmarkType_FromEntity", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnect.clientVariables"], function (exports, OutSystems, UBTConnectModel, UBTConnectController, UBTConnectClientVariables) {
-var OS = OutSystems.Internal;
-UBTConnectController.default.getBookmarkType_FromEntity$Action = function (entityTypeIn, callContext) {
-var varBag = {};
-callContext = controller.callContext(callContext);
-var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.GetBookmarkType_FromEntity$vars"))());
-vars.value.entityTypeInLocal = entityTypeIn;
-var outVars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.GetBookmarkType_FromEntity$outVars"))());
-varBag.callContext = callContext;
-varBag.vars = vars;
-varBag.outVars = outVars;
-try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:DQMLFcHfQ0yK+4aBTTebCQ:/ClientActionFlows.DQMLFcHfQ0yK+4aBTTebCQ:hr47faKtZbP2pSsd7h9xBQ", "UBTConnect", "GetBookmarkType_FromEntity", "NRFlows.ClientActionFlow", callContext.id, varBag);
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:iftIDBTIX0uyNJjs3mwrtg", callContext.id);
-// Type
-if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:ysm9OrRNz0irNofrN0i3Rg", callContext.id) && (vars.value.entityTypeInLocal === UBTConnectModel.staticEntities.connect_Entity.member))) {
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:6H4KhIxUZEyvGlAoSuOgTA", callContext.id);
-// Raise Error: InvalidAction
-throw new OS.Exceptions.Exceptions.UserException("UBTConnect.InvalidAction", "Bookmarks not available");
-} else {
-if((vars.value.entityTypeInLocal === UBTConnectModel.staticEntities.connect_Entity.locality)) {
-// Location
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:H9i1+il_YEiwLbIXt2A3UA", callContext.id);
-// BookmarkType = Locality
-outVars.value.bookmarkTypeOut = UBTConnectModel.staticEntities.myBookmarks_ObjectType.locality;
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:H9i1+il_YEiwLbIXt2A3UA", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
-// BookmarkGroup = Locations
-outVars.value.bookmarkGroupOut = UBTConnectModel.staticEntities.myBookmarks_Group.locations;
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:eg+C5W12dkC_pSTlnb6Ptg", callContext.id);
-} else {
-if((vars.value.entityTypeInLocal === UBTConnectModel.staticEntities.connect_Entity.household)) {
-// Household
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:V8lhbfLrOk+zGYmABLowOQ", callContext.id);
-// BookmarkType = Contact
-outVars.value.bookmarkTypeOut = UBTConnectModel.staticEntities.myBookmarks_ObjectType.contact;
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:V8lhbfLrOk+zGYmABLowOQ", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
-// BookmarkGroup = Contacts
-outVars.value.bookmarkGroupOut = UBTConnectModel.staticEntities.myBookmarks_Group.contacts;
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:eg+C5W12dkC_pSTlnb6Ptg", callContext.id);
-} else {
-if((vars.value.entityTypeInLocal === UBTConnectModel.staticEntities.connect_Entity.interchange)) {
-// Location
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:tg2DPq9k80qiirvDU2hGrQ", callContext.id);
-// BookmarkType = Locality
-outVars.value.bookmarkTypeOut = UBTConnectModel.staticEntities.myBookmarks_ObjectType.locality;
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:tg2DPq9k80qiirvDU2hGrQ", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
-// BookmarkGroup = Locations
-outVars.value.bookmarkGroupOut = UBTConnectModel.staticEntities.myBookmarks_Group.locations;
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:eg+C5W12dkC_pSTlnb6Ptg", callContext.id);
-} else {
-if((vars.value.entityTypeInLocal === UBTConnectModel.staticEntities.connect_Entity.supperMeetings_aka_Subdivisions)) {
-// Partner Exchange
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:4qhITclgYkiavNu3kYBrrw", callContext.id);
-// BookmarkType = Subdivision
-outVars.value.bookmarkTypeOut = UBTConnectModel.staticEntities.myBookmarks_ObjectType.subdivision;
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:4qhITclgYkiavNu3kYBrrw", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
-// BookmarkGroup = Locations
-outVars.value.bookmarkGroupOut = UBTConnectModel.staticEntities.myBookmarks_Group.locations;
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:eg+C5W12dkC_pSTlnb6Ptg", callContext.id);
-} else {
-if((vars.value.entityTypeInLocal === UBTConnectModel.staticEntities.connect_Entity.oneSchoolGlobal)) {
-// School
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:j2926k38FkGLc3Nz2B+jXA", callContext.id);
-// BookmarkType = OneSchoolGlobal
-outVars.value.bookmarkTypeOut = UBTConnectModel.staticEntities.myBookmarks_ObjectType.oneSchoolGlobal;
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:j2926k38FkGLc3Nz2B+jXA", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
-// BookmarkGroup = Entities
-outVars.value.bookmarkGroupOut = UBTConnectModel.staticEntities.myBookmarks_Group.entities;
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:eg+C5W12dkC_pSTlnb6Ptg", callContext.id);
-} else {
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:LsE1LWrC2kCsysmjTHlpAg", callContext.id);
-// Raise Error: InvalidAction
-throw new OS.Exceptions.Exceptions.UserException("UBTConnect.InvalidAction", "Bookmarks not available");
-}
-
-}
-
-}
-
-}
-
-}
-
-}
-
-return outVars.value;
-} catch (ex) {
-OutSystemsDebugger.handleException(ex, callContext.id);
-throw ex;
-} finally {
-OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:DQMLFcHfQ0yK+4aBTTebCQ", callContext.id);
-}
-
-};
-var controller = UBTConnectController.default;
-UBTConnectController.default.constructor.registerVariableGroupType("UBTConnect.GetBookmarkType_FromEntity$vars", [{
-name: "EntityType",
-attrName: "entityTypeInLocal",
-mandatory: true,
-dataType: OS.DataTypes.DataTypes.Text,
-defaultValue: function () {
-return "";
-}
-}]);
-UBTConnectController.default.constructor.registerVariableGroupType("UBTConnect.GetBookmarkType_FromEntity$outVars", [{
-name: "BookmarkType",
-attrName: "bookmarkTypeOut",
-mandatory: false,
-dataType: OS.DataTypes.DataTypes.Text,
-defaultValue: function () {
-return "";
-}
-}, {
-name: "BookmarkGroup",
-attrName: "bookmarkGroupOut",
-mandatory: false,
-dataType: OS.DataTypes.DataTypes.Text,
-defaultValue: function () {
-return "";
-}
-}]);
-UBTConnectController.default.clientActionProxies.getBookmarkType_FromEntity$Action = function (entityTypeIn) {
-entityTypeIn = (entityTypeIn === undefined) ? "" : entityTypeIn;
-return controller.executeActionInsideJSNode(UBTConnectController.default.getBookmarkType_FromEntity$Action.bind(controller, entityTypeIn), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
-return {
-BookmarkType: actionResults.bookmarkTypeOut,
-BookmarkGroup: actionResults.bookmarkGroupOut
 };
 });
 };
@@ -9285,7 +9339,7 @@ OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:v9CbLDp_D0+yim4JEOE6
 return OS.Flow.executeAsyncFlow(function () {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:WJgvvi2Ys0WO18sMCZgrkA", callContext.id);
 // Execute Action: GetLocalBookmarkByObjectId_C2
-return UBTConnect_Bookmarks_MCSController.default.getLocalBookmarkByObjectId$Action(vars.value.objectIdInLocal, callContext).then(function (value) {
+return UBTConnect_Bookmarks_MCSController.default.getLocalBookmarkByObjectId$Action(OS.BuiltinFunctions.longIntegerToText(vars.value.objectIdInLocal), callContext).then(function (value) {
 getLocalBookmarkByObjectId_C2Var.value = value;
 }).then(function () {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:L3hI1NcafkudoHPWDAXSfg", callContext.id);
@@ -10110,41 +10164,34 @@ Out_Name: OS.DataConversion.JSNodeParamConverter.to(actionResults.out_NameOut, O
 };
 });
 
-define("UBTConnect.controller$GetNotes_FilterYear", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnect_Notes_MCS.controller", "UBTConnect.clientVariables", "UBTConnect_Notes_MCS.controller$Get_Note_DynamicFilter_YearOptions", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Notes_MCS"], function (exports, OutSystems, UBTConnectModel, UBTConnectController, UBTConnect_Notes_MCSController, UBTConnectClientVariables) {
+define("UBTConnect.controller$GetNotes_FilterYear", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnect.clientVariables", "UBTConnect.controller$Get_RecentYears"], function (exports, OutSystems, UBTConnectModel, UBTConnectController, UBTConnectClientVariables) {
 var OS = OutSystems.Internal;
 UBTConnectController.default.getNotes_FilterYear$Action = function (callContext) {
 var varBag = {};
 callContext = controller.callContext(callContext);
-var get_Note_DynamicFilter_YearOptionsVar = new OS.DataTypes.VariableHolder();
+var get_RecentYearsVar = new OS.DataTypes.VariableHolder();
 var outVars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.GetNotes_FilterYear$outVars"))());
 varBag.callContext = callContext;
-varBag.get_Note_DynamicFilter_YearOptionsVar = get_Note_DynamicFilter_YearOptionsVar;
+varBag.get_RecentYearsVar = get_RecentYearsVar;
 varBag.outVars = outVars;
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:_iZYcNyenUid20YC_nm3+w:/ClientActionFlows._iZYcNyenUid20YC_nm3+w:pt27WB4jeDtcckgTcQU_0g", "UBTConnect", "GetNotes_FilterYear", "NRFlows.ClientActionFlow", callContext.id, varBag);
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:_iZYcNyenUid20YC_nm3+w:/ClientActionFlows._iZYcNyenUid20YC_nm3+w:KiN7L4rOQiBDs36cDmR9ow", "UBTConnect", "GetNotes_FilterYear", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:WXzBf5TYiEKMCuK_9_3FaQ", callContext.id);
-return OS.Flow.executeAsyncFlow(function () {
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:nYO_sL9N5EiuE+yYUTANQA", callContext.id);
-// Execute Action: Get_Note_DynamicFilter_YearOptions
-return UBTConnect_Notes_MCSController.default.get_Note_DynamicFilter_YearOptions$Action(callContext).then(function (value) {
-get_Note_DynamicFilter_YearOptionsVar.value = value;
-}).then(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:FQTaM88haE+KkeVma62H9A", callContext.id);
+// Execute Action: Get_RecentYears
+get_RecentYearsVar.value = UBTConnectController.default.get_RecentYears$Action(3, callContext);
+
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:arDL0dsokUqv6DhweVPY2g", callContext.id);
-// Years = Get_Note_DynamicFilter_YearOptions.Years
-outVars.value.yearsOut = get_Note_DynamicFilter_YearOptionsVar.value.yearsOut;
+// Years = Get_RecentYears.Out_Years
+outVars.value.yearsOut = get_RecentYearsVar.value.out_YearsOut;
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:5cQT3x7K7E60b4VKuLlv9g", callContext.id);
-});
-}).then(function () {
 return outVars.value;
-}).then(function (res) {
-OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:_iZYcNyenUid20YC_nm3+w", callContext.id);
-return res;
-
-}).catch(function (ex) {
+} catch (ex) {
 OutSystemsDebugger.handleException(ex, callContext.id);
-OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:_iZYcNyenUid20YC_nm3+w", callContext.id);
 throw ex;
+} finally {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:_iZYcNyenUid20YC_nm3+w", callContext.id);
+}
 
-});
 };
 var controller = UBTConnectController.default;
 UBTConnectController.default.constructor.registerVariableGroupType("UBTConnect.GetNotes_FilterYear$outVars", [{
@@ -10168,15 +10215,18 @@ Years: actionResults.yearsOut
 
 define("UBTConnect.controller$GetNotes_Pills", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnect_Notes_MCS.model", "UBTConnect_Notes_MCS.controller", "UBTConnectLibrary.model", "UBTConnect.clientVariables", "UBTConnect_Notes_MCS.model$DynamicPillRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Notes_MCS", "UBTConnect.model$DynamicPillList", "UBTConnect_Notes_MCS.controller$Get_Note_DynamicPills", "UBTConnectLibrary.model$TagRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$TagList"], function (exports, OutSystems, UBTConnectModel, UBTConnectController, UBTConnect_Notes_MCSModel, UBTConnect_Notes_MCSController, UBTConnectLibraryModel, UBTConnectClientVariables) {
 var OS = OutSystems.Internal;
-UBTConnectController.default.getNotes_Pills$Action = function (callContext) {
+UBTConnectController.default.getNotes_Pills$Action = function (in_SelectedPillIdIn, callContext) {
 var varBag = {};
 callContext = controller.callContext(callContext);
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.GetNotes_Pills$vars"))());
+vars.value.in_SelectedPillIdInLocal = in_SelectedPillIdIn;
 var get_Note_DynamicPillsVar = new OS.DataTypes.VariableHolder();
 var outVars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.GetNotes_Pills$outVars"))());
 varBag.callContext = callContext;
+varBag.vars = vars;
 varBag.get_Note_DynamicPillsVar = get_Note_DynamicPillsVar;
 varBag.outVars = outVars;
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:+xwGYqGux0aD0wruMH6AlA:/ClientActionFlows.+xwGYqGux0aD0wruMH6AlA:M15GV_qskK4zLTnqHi+LLA", "UBTConnect", "GetNotes_Pills", "NRFlows.ClientActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:+xwGYqGux0aD0wruMH6AlA:/ClientActionFlows.+xwGYqGux0aD0wruMH6AlA:uMoUZThucb3QlFtucWu_BA", "UBTConnect", "GetNotes_Pills", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:GM8CBN_YV0aTMuNMjEMnHw", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:trIUFMm3BUasaXHO8KAJrg", callContext.id);
@@ -10185,7 +10235,7 @@ OS.SystemActions.listAppend(outVars.value.out_PillsOut, function () {
 var rec = new UBTConnectLibraryModel.TagRec();
 rec.textAttr = "All";
 rec.identifierAttr = OS.BuiltinFunctions.nullTextIdentifier();
-rec.isSelectedAttr = true;
+rec.isSelectedAttr = (vars.value.in_SelectedPillIdInLocal === "");
 rec.enabledAttr = true;
 return rec;
 }(), callContext);
@@ -10207,7 +10257,7 @@ OS.SystemActions.listAppend(outVars.value.out_PillsOut, function () {
 var rec = new UBTConnectLibraryModel.TagRec();
 rec.textAttr = get_Note_DynamicPillsVar.value.out_NotePillsOut.getItem(out_NotePillsIndex.valueOf()).textAttr;
 rec.identifierAttr = get_Note_DynamicPillsVar.value.out_NotePillsOut.getItem(out_NotePillsIndex.valueOf()).identifierAttr;
-rec.isSelectedAttr = false;
+rec.isSelectedAttr = (get_Note_DynamicPillsVar.value.out_NotePillsOut.getItem(out_NotePillsIndex.valueOf()).identifierAttr === vars.value.in_SelectedPillIdInLocal);
 rec.enabledAttr = true;
 return rec;
 }(), callContext);
@@ -10234,6 +10284,15 @@ throw ex;
 });
 };
 var controller = UBTConnectController.default;
+UBTConnectController.default.constructor.registerVariableGroupType("UBTConnect.GetNotes_Pills$vars", [{
+name: "In_SelectedPillId",
+attrName: "in_SelectedPillIdInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Text,
+defaultValue: function () {
+return "";
+}
+}]);
 UBTConnectController.default.constructor.registerVariableGroupType("UBTConnect.GetNotes_Pills$outVars", [{
 name: "Out_Pills",
 attrName: "out_PillsOut",
@@ -10244,8 +10303,9 @@ return new UBTConnectModel.TagList();
 },
 complexType: UBTConnectModel.TagList
 }]);
-UBTConnectController.default.clientActionProxies.getNotes_Pills$Action = function () {
-return controller.executeActionInsideJSNode(UBTConnectController.default.getNotes_Pills$Action.bind(controller), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
+UBTConnectController.default.clientActionProxies.getNotes_Pills$Action = function (in_SelectedPillIdIn) {
+in_SelectedPillIdIn = (in_SelectedPillIdIn === undefined) ? "" : in_SelectedPillIdIn;
+return controller.executeActionInsideJSNode(UBTConnectController.default.getNotes_Pills$Action.bind(controller, OS.DataConversion.JSNodeParamConverter.from(in_SelectedPillIdIn, OS.DataTypes.DataTypes.Text)), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
 return {
 Out_Pills: actionResults.out_PillsOut
 };
@@ -10822,20 +10882,18 @@ if (window && window.applinks && window.applinks.resumeLoginLink) {
 };
 });
 
-define("UBTConnect.controller$GetSample_FilterTags", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnect_Utils.controller", "UBTConnectLibrary.model", "UBTConnect.clientVariables", "UBTConnect_Utils.controller$Connect_LaunchDarkly_PermissionCheck", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnectLibrary.model$TagRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$TagList", "UBTConnect.model$Entities_LocalityMenuOptionsRec"], function (exports, OutSystems, UBTConnectModel, UBTConnectController, UBTConnect_UtilsController, UBTConnectLibraryModel, UBTConnectClientVariables) {
+define("UBTConnect.controller$GetSample_FilterTags", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnectLibrary.model", "UBTConnect.clientVariables", "UBTConnectLibrary.model$TagRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$TagList", "UBTConnect.model$Entities_LocalityMenuOptionsRec"], function (exports, OutSystems, UBTConnectModel, UBTConnectController, UBTConnectLibraryModel, UBTConnectClientVariables) {
 var OS = OutSystems.Internal;
 UBTConnectController.default.getSample_FilterTags$Action = function (showMyHouseholdTagIn, callContext) {
 var varBag = {};
 callContext = controller.callContext(callContext);
 var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.GetSample_FilterTags$vars"))());
 vars.value.showMyHouseholdTagInLocal = showMyHouseholdTagIn;
-var connect_LaunchDarkly_PermissionCheckVar = new OS.DataTypes.VariableHolder();
 var outVars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.GetSample_FilterTags$outVars"))());
 varBag.callContext = callContext;
 varBag.vars = vars;
-varBag.connect_LaunchDarkly_PermissionCheckVar = connect_LaunchDarkly_PermissionCheckVar;
 varBag.outVars = outVars;
-try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:nXSvxwVS0kG5LJXL52BrZQ:/ClientActionFlows.nXSvxwVS0kG5LJXL52BrZQ:FBrV8YUwg5Rv9BuXQheEdA", "UBTConnect", "GetSample_FilterTags", "NRFlows.ClientActionFlow", callContext.id, varBag);
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:nXSvxwVS0kG5LJXL52BrZQ:/ClientActionFlows.nXSvxwVS0kG5LJXL52BrZQ:Nur5A16WlnA1aLEylWURGg", "UBTConnect", "GetSample_FilterTags", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:ZXmaCyEa90yekuEkgTMLfA", callContext.id);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:6NGA9yy92EORHUdBeNyXLg", callContext.id);
 // Execute Action: Tag_Households
@@ -10885,12 +10943,6 @@ rec.identifierAttr = vars.value.localityMenuVar.oneSchoolGlobalAttr;
 rec.isSelectedAttr = false;
 return rec;
 }(), callContext);
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:eOmp657+pUq4qUeqEzm0TQ", callContext.id);
-// Execute Action: Connect_LaunchDarkly_PermissionCheck
-connect_LaunchDarkly_PermissionCheckVar.value = UBTConnect_UtilsController.default.connect_LaunchDarkly_PermissionCheck$Action(UBTConnectModel.staticEntities.launchDarkly_FF.mobileDirectoryLocalityContacts, callContext);
-
-// Check if Connect_LaunchDarkly_PermissionCheck HasAccess
-if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:+DYPaFc+n0GgOBGVcfjqUQ", callContext.id) && (connect_LaunchDarkly_PermissionCheckVar.value.hasAccessOut === true))) {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:uvT0+bGkvUCKPi4rD+PbPg", callContext.id);
 // Execute Action: Tag_LocalityContacts
 OS.SystemActions.listAppend(outVars.value.tagToggleListOut, function () {
@@ -10901,10 +10953,6 @@ rec.isSelectedAttr = false;
 return rec;
 }(), callContext);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:n_XB5InS2E2NFZKtLRHRVQ", callContext.id);
-} else {
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:n_XB5InS2E2NFZKtLRHRVQ", callContext.id);
-}
-
 return outVars.value;
 } catch (ex) {
 OutSystemsDebugger.handleException(ex, callContext.id);
@@ -15073,6 +15121,152 @@ Out_DaysOfWeek: actionResults.out_DaysOfWeekOut
 };
 });
 
+define("UBTConnect.controller$Notes_InterchangeId_ComposeId", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnect.clientVariables"], function (exports, OutSystems, UBTConnectModel, UBTConnectController, UBTConnectClientVariables) {
+var OS = OutSystems.Internal;
+UBTConnectController.default.notes_InterchangeId_ComposeId$Action = function (localityIdIn, interchangeLocalityIdIn, callContext) {
+var varBag = {};
+callContext = controller.callContext(callContext);
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.Notes_InterchangeId_ComposeId$vars"))());
+vars.value.localityIdInLocal = localityIdIn;
+vars.value.interchangeLocalityIdInLocal = interchangeLocalityIdIn;
+var outVars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.Notes_InterchangeId_ComposeId$outVars"))());
+varBag.callContext = callContext;
+varBag.vars = vars;
+varBag.outVars = outVars;
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:JpEut7Sw6USBZOPC23F25A:/ClientActionFlows.JpEut7Sw6USBZOPC23F25A:49CGYeX2k8HKH97bny0mZg", "UBTConnect", "Notes_InterchangeId_ComposeId", "NRFlows.ClientActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:b9GbKaCYnEWFM8HgISEzlw", callContext.id);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:iNSKAYSHMUyCxr+BevY9IQ", callContext.id);
+// NoteInterchangeId = If
+outVars.value.noteInterchangeIdOut = ((((vars.value.localityIdInLocal) !== (""))) ? (((vars.value.localityIdInLocal + ":") + vars.value.interchangeLocalityIdInLocal)) : (vars.value.interchangeLocalityIdInLocal));
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:IVwmrtslhUaPx_mRs9sVfw", callContext.id);
+return outVars.value;
+} catch (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+throw ex;
+} finally {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:JpEut7Sw6USBZOPC23F25A", callContext.id);
+}
+
+};
+var controller = UBTConnectController.default;
+UBTConnectController.default.constructor.registerVariableGroupType("UBTConnect.Notes_InterchangeId_ComposeId$vars", [{
+name: "LocalityId",
+attrName: "localityIdInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Text,
+defaultValue: function () {
+return "";
+}
+}, {
+name: "InterchangeLocalityId",
+attrName: "interchangeLocalityIdInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Text,
+defaultValue: function () {
+return "";
+}
+}]);
+UBTConnectController.default.constructor.registerVariableGroupType("UBTConnect.Notes_InterchangeId_ComposeId$outVars", [{
+name: "NoteInterchangeId",
+attrName: "noteInterchangeIdOut",
+mandatory: false,
+dataType: OS.DataTypes.DataTypes.Text,
+defaultValue: function () {
+return "";
+}
+}]);
+UBTConnectController.default.clientActionProxies.notes_InterchangeId_ComposeId$Action = function (localityIdIn, interchangeLocalityIdIn) {
+localityIdIn = (localityIdIn === undefined) ? "" : localityIdIn;
+interchangeLocalityIdIn = (interchangeLocalityIdIn === undefined) ? "" : interchangeLocalityIdIn;
+return controller.executeActionInsideJSNode(UBTConnectController.default.notes_InterchangeId_ComposeId$Action.bind(controller, OS.DataConversion.JSNodeParamConverter.from(localityIdIn, OS.DataTypes.DataTypes.Text), OS.DataConversion.JSNodeParamConverter.from(interchangeLocalityIdIn, OS.DataTypes.DataTypes.Text)), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
+return {
+NoteInterchangeId: OS.DataConversion.JSNodeParamConverter.to(actionResults.noteInterchangeIdOut, OS.DataTypes.DataTypes.Text)
+};
+});
+};
+});
+
+define("UBTConnect.controller$Notes_InterchangeId_ExtractId", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTJavaScriptUtils.controller", "UBTConnect.clientVariables", "UBTJavaScriptUtils.controller$JSUtils_String_Split", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTJavaScriptUtils"], function (exports, OutSystems, UBTConnectModel, UBTConnectController, UBTJavaScriptUtilsController, UBTConnectClientVariables) {
+var OS = OutSystems.Internal;
+UBTConnectController.default.notes_InterchangeId_ExtractId$Action = function (noteInterchangeIdIn, callContext) {
+var varBag = {};
+callContext = controller.callContext(callContext);
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.Notes_InterchangeId_ExtractId$vars"))());
+vars.value.noteInterchangeIdInLocal = noteInterchangeIdIn;
+var jSUtils_String_SplitVar = new OS.DataTypes.VariableHolder();
+var outVars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.Notes_InterchangeId_ExtractId$outVars"))());
+varBag.callContext = callContext;
+varBag.vars = vars;
+varBag.jSUtils_String_SplitVar = jSUtils_String_SplitVar;
+varBag.outVars = outVars;
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:h2oOaGAqPESXP9HiaM9OOA:/ClientActionFlows.h2oOaGAqPESXP9HiaM9OOA:_ztutTv_fFi7vpMKy9OvCw", "UBTConnect", "Notes_InterchangeId_ExtractId", "NRFlows.ClientActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:we3L61BJlkKsSx+gYkJvmA", callContext.id);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:STzoLRD6yE+5fu8_R0fBEg", callContext.id);
+// Execute Action: JSUtils_String_Split
+jSUtils_String_SplitVar.value = UBTJavaScriptUtilsController.default.jSUtils_String_Split$Action(vars.value.noteInterchangeIdInLocal, ":", callContext);
+
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:yoTVMZa4Y0WEMfhRws2HUA", callContext.id) && (jSUtils_String_SplitVar.value.listOut.isEmpty || (jSUtils_String_SplitVar.value.listOut.length === 1)))) {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:w5IrmvbMQEmq4aKGhJHOqw", callContext.id);
+// LocalityId = NoteInterchangeId
+outVars.value.localityIdOut = vars.value.noteInterchangeIdInLocal;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:rIt6xE1pF0e7he_OnJaqmw", callContext.id);
+} else {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:hfJQoPV+MEeY__frtv6kyA", callContext.id);
+// LocalityId = JSUtils_String_Split.List[0]
+outVars.value.localityIdOut = jSUtils_String_SplitVar.value.listOut.getItem(0);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:hfJQoPV+MEeY__frtv6kyA", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
+// InterchangeLocalityId = JSUtils_String_Split.List[1]
+outVars.value.interchangeLocalityIdOut = jSUtils_String_SplitVar.value.listOut.getItem(1);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:ZwFeyicv8EK6672cqi0qyA", callContext.id);
+}
+
+return outVars.value;
+} catch (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+throw ex;
+} finally {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:h2oOaGAqPESXP9HiaM9OOA", callContext.id);
+}
+
+};
+var controller = UBTConnectController.default;
+UBTConnectController.default.constructor.registerVariableGroupType("UBTConnect.Notes_InterchangeId_ExtractId$vars", [{
+name: "NoteInterchangeId",
+attrName: "noteInterchangeIdInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Text,
+defaultValue: function () {
+return "";
+}
+}]);
+UBTConnectController.default.constructor.registerVariableGroupType("UBTConnect.Notes_InterchangeId_ExtractId$outVars", [{
+name: "LocalityId",
+attrName: "localityIdOut",
+mandatory: false,
+dataType: OS.DataTypes.DataTypes.Text,
+defaultValue: function () {
+return "";
+}
+}, {
+name: "InterchangeLocalityId",
+attrName: "interchangeLocalityIdOut",
+mandatory: false,
+dataType: OS.DataTypes.DataTypes.Text,
+defaultValue: function () {
+return "";
+}
+}]);
+UBTConnectController.default.clientActionProxies.notes_InterchangeId_ExtractId$Action = function (noteInterchangeIdIn) {
+noteInterchangeIdIn = (noteInterchangeIdIn === undefined) ? "" : noteInterchangeIdIn;
+return controller.executeActionInsideJSNode(UBTConnectController.default.notes_InterchangeId_ExtractId$Action.bind(controller, OS.DataConversion.JSNodeParamConverter.from(noteInterchangeIdIn, OS.DataTypes.DataTypes.Text)), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
+return {
+LocalityId: OS.DataConversion.JSNodeParamConverter.to(actionResults.localityIdOut, OS.DataTypes.DataTypes.Text),
+InterchangeLocalityId: OS.DataConversion.JSNodeParamConverter.to(actionResults.interchangeLocalityIdOut, OS.DataTypes.DataTypes.Text)
+};
+});
+};
+});
+
 define("UBTConnect.controller$NullTime", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnect.clientVariables"], function (exports, OutSystems, UBTConnectModel, UBTConnectController, UBTConnectClientVariables) {
 var OS = OutSystems.Internal;
 UBTConnectController.default.nullTime$Action = function (callContext) {
@@ -16082,15 +16276,25 @@ window.applinks.resumeLoginLink = $parameters.URL;
 };
 });
 
-define("UBTConnect.controller$ShowCommunicationExceptionMessage", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTJavaScriptUtils.controller", "UBTConnect.clientVariables", "UBTJavaScriptUtils.controller$FeedbackMessage_AutoClose", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTJavaScriptUtils"], function (exports, OutSystems, UBTConnectModel, UBTConnectController, UBTJavaScriptUtilsController, UBTConnectClientVariables) {
+define("UBTConnect.controller$ShowCommunicationExceptionMessage", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTJavaScriptUtils.controller", "UBTConnect.controller$ShowCommunicationExceptionMessage.CheckIsOnlineNowJS", "UBTConnect.clientVariables", "UBTJavaScriptUtils.controller$FeedbackMessage_AutoClose", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTJavaScriptUtils"], function (exports, OutSystems, UBTConnectModel, UBTConnectController, UBTJavaScriptUtilsController, UBTConnect_controller_ShowCommunicationExceptionMessage_CheckIsOnlineNowJS, UBTConnectClientVariables) {
 var OS = OutSystems.Internal;
 UBTConnectController.default.showCommunicationExceptionMessage$Action = function (callContext) {
 var varBag = {};
 callContext = controller.callContext(callContext);
+var checkIsOnlineNowJSResult = new OS.DataTypes.VariableHolder();
 varBag.callContext = callContext;
-try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:UwUDDXwmQ06L8My+5EbzTw:/ClientActionFlows.UwUDDXwmQ06L8My+5EbzTw:_sg7H5DzxEgfGs+Www2f+g", "UBTConnect", "ShowCommunicationExceptionMessage", "NRFlows.ClientActionFlow", callContext.id, varBag);
+varBag.checkIsOnlineNowJSResult = checkIsOnlineNowJSResult;
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:UwUDDXwmQ06L8My+5EbzTw:/ClientActionFlows.UwUDDXwmQ06L8My+5EbzTw:Vrh89GKy2IXVeRLTq8cbUQ", "UBTConnect", "ShowCommunicationExceptionMessage", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:OTw0NwiXsUaoZTih1VPSQA", callContext.id);
-if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:BZJitFQamkewGcsN89qtXQ", callContext.id) && UBTConnectClientVariables.getApp_NetworkStatus_IsOnline_IsPersistent())) {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:YCHvrRQuK0SPUoMzhQztRQ", callContext.id);
+checkIsOnlineNowJSResult.value = controller.safeExecuteJSNode(UBTConnect_controller_ShowCommunicationExceptionMessage_CheckIsOnlineNowJS, "CheckIsOnlineNow", "ShowCommunicationExceptionMessage", {
+IsOnlineNow: OS.DataConversion.JSNodeParamConverter.to(false, OS.DataTypes.DataTypes.Boolean)
+}, function ($parameters) {
+var jsNodeResult = new (controller.constructor.getVariableGroupType("UBTConnect.ShowCommunicationExceptionMessage$checkIsOnlineNowJSResult"))();
+jsNodeResult.isOnlineNowOut = OS.DataConversion.JSNodeParamConverter.from($parameters.IsOnlineNow, OS.DataTypes.DataTypes.Boolean);
+return jsNodeResult;
+}, {}, {});
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:BZJitFQamkewGcsN89qtXQ", callContext.id) && (UBTConnectClientVariables.getApp_NetworkStatus_IsOnline_IsPersistent() && checkIsOnlineNowJSResult.value.isOnlineNowOut))) {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Spt0Jb8NqUyBk6w55Yuj5g", callContext.id);
 // Execute Action: FeedbackMessage_AutoClose
 UBTJavaScriptUtilsController.default.feedbackMessage_AutoClose$Action("Service Interruption", "We’re currently experiencing unusually high traffic, which may affect access to some services.\r\n\r\nOur team is working to restore full functionality as quickly as possible.\r\n\r\nThank you for your patience and understanding.", UBTConnectModel.staticEntities.uBT_MessageType.info, true, "", 0, false, callContext);
@@ -16112,10 +16316,25 @@ OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:UwUDDXwmQ06L8My+5EbzTw", callCont
 
 };
 var controller = UBTConnectController.default;
+UBTConnectController.default.constructor.registerVariableGroupType("UBTConnect.ShowCommunicationExceptionMessage$checkIsOnlineNowJSResult", [{
+name: "IsOnlineNow",
+attrName: "isOnlineNowOut",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Boolean,
+defaultValue: function () {
+return false;
+}
+}]);
 UBTConnectController.default.clientActionProxies.showCommunicationExceptionMessage$Action = function () {
 return controller.executeActionInsideJSNode(UBTConnectController.default.showCommunicationExceptionMessage$Action.bind(controller), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
 return {};
 });
+};
+});
+define("UBTConnect.controller$ShowCommunicationExceptionMessage.CheckIsOnlineNowJS", [], function () {
+return function ($parameters, $actions, $roles, $public) {
+// Live check at the moment of the error; the stored flag can lag behind
+$parameters.IsOnlineNow = navigator.onLine;
 };
 });
 
@@ -17116,7 +17335,6 @@ var deleteBookmarkByBookmarkId2Var = new OS.DataTypes.VariableHolder();
 var addBookmark2Var = new OS.DataTypes.VariableHolder();
 var getLocalBookmarkByObjectId_C2Var = new OS.DataTypes.VariableHolder();
 var create_LocalBookmark_C2Var = new OS.DataTypes.VariableHolder();
-var outVars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.ToggleBookmarkItem_C2$outVars"))());
 varBag.callContext = callContext;
 varBag.vars = vars;
 varBag.allExceptionsVar = allExceptionsVar;
@@ -17124,8 +17342,7 @@ varBag.deleteBookmarkByBookmarkId2Var = deleteBookmarkByBookmarkId2Var;
 varBag.addBookmark2Var = addBookmark2Var;
 varBag.getLocalBookmarkByObjectId_C2Var = getLocalBookmarkByObjectId_C2Var;
 varBag.create_LocalBookmark_C2Var = create_LocalBookmark_C2Var;
-varBag.outVars = outVars;
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:NezM5TuFGkyBp+H0IWV2Og:/ClientActionFlows.NezM5TuFGkyBp+H0IWV2Og:FYCyf0nm94xc8u1o6fZC8w", "UBTConnect", "ToggleBookmarkItem_C2", "NRFlows.ClientActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:NezM5TuFGkyBp+H0IWV2Og:/ClientActionFlows.NezM5TuFGkyBp+H0IWV2Og:g58wV07vGLlXaKp+hBUmnw", "UBTConnect", "ToggleBookmarkItem_C2", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:YES6wRv4b0a009NK2rZUqw", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 // Is Bookmarked?
@@ -17162,9 +17379,12 @@ OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:iBLlrpo4lUytJQQA597_
 });
 });
 } else {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:GO8ZNdwXWkix8mCNFjC0hg", callContext.id);
+// Execute Action: LogMessage
+OS.SystemActions.logMessage(("In_BookmarkType " + vars.value.in_BookmarkTypeInLocal), "UBTConnect", callContext);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:ZK_slgyJXU+EpOar0ZPpBQ", callContext.id);
 // Execute Action: AddBookmark2
-return controller.addBookmark2$ServerAction(vars.value.in_BookmarkTypeInLocal, OS.BuiltinFunctions.longIntegerToText(vars.value.in_ItemIdInLocal), callContext).then(function (value) {
+return controller.addBookmark2$ServerAction(vars.value.in_BookmarkTypeInLocal, vars.value.in_ItemIdInLocal, callContext).then(function (value) {
 addBookmark2Var.value = value;
 }).then(function () {
 return OS.Flow.executeSequence(function () {
@@ -17204,14 +17424,14 @@ OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:sIUXgKFkxE676M8jxt2q
 // Execute Action: Bookmark_SendFeedbackMessage3
 UBTConnect_UtilsController.default.bookmark_SendFeedbackMessage$Action(!(vars.value.isBookmarked_C2InLocal), true, callContext);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:8eMfY5RbrUqGBYLt7I2HsQ", callContext.id);
-return OS.Flow.returnAsync(outVars.value);
+return OS.Flow.returnAsync();
 
 });
 }
 
 throw ex;
 }).then(function () {
-return outVars.value;
+return ;
 }).then(function (res) {
 OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:NezM5TuFGkyBp+H0IWV2Og", callContext.id);
 return res;
@@ -17228,9 +17448,9 @@ UBTConnectController.default.constructor.registerVariableGroupType("UBTConnect.T
 name: "In_ItemId",
 attrName: "in_ItemIdInLocal",
 mandatory: true,
-dataType: OS.DataTypes.DataTypes.LongInteger,
+dataType: OS.DataTypes.DataTypes.Text,
 defaultValue: function () {
-return OS.DataTypes.LongInteger.defaultValue;
+return "";
 }
 }, {
 name: "In_BookmarkType",
@@ -17249,32 +17469,12 @@ defaultValue: function () {
 return false;
 }
 }]);
-UBTConnectController.default.constructor.registerVariableGroupType("UBTConnect.ToggleBookmarkItem_C2$outVars", [{
-name: "Out_LocalBookmarkId",
-attrName: "out_LocalBookmarkIdOut",
-mandatory: false,
-dataType: OS.DataTypes.DataTypes.LongInteger,
-defaultValue: function () {
-return OS.DataTypes.LongInteger.defaultValue;
-}
-}, {
-name: "Out_CreatedBookmarkId",
-attrName: "out_CreatedBookmarkIdOut",
-mandatory: false,
-dataType: OS.DataTypes.DataTypes.LongInteger,
-defaultValue: function () {
-return OS.DataTypes.LongInteger.defaultValue;
-}
-}]);
 UBTConnectController.default.clientActionProxies.toggleBookmarkItem_C2$Action = function (in_ItemIdIn, in_BookmarkTypeIn, isBookmarked_C2In) {
-in_ItemIdIn = (in_ItemIdIn === undefined) ? OS.DataTypes.LongInteger.defaultValue : in_ItemIdIn;
+in_ItemIdIn = (in_ItemIdIn === undefined) ? "" : in_ItemIdIn;
 in_BookmarkTypeIn = (in_BookmarkTypeIn === undefined) ? "" : in_BookmarkTypeIn;
 isBookmarked_C2In = (isBookmarked_C2In === undefined) ? false : isBookmarked_C2In;
-return controller.executeActionInsideJSNode(UBTConnectController.default.toggleBookmarkItem_C2$Action.bind(controller, OS.DataConversion.JSNodeParamConverter.from(in_ItemIdIn, OS.DataTypes.DataTypes.LongInteger), in_BookmarkTypeIn, OS.DataConversion.JSNodeParamConverter.from(isBookmarked_C2In, OS.DataTypes.DataTypes.Boolean)), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
-return {
-Out_LocalBookmarkId: actionResults.out_LocalBookmarkIdOut,
-Out_CreatedBookmarkId: OS.DataConversion.JSNodeParamConverter.to(actionResults.out_CreatedBookmarkIdOut, OS.DataTypes.DataTypes.LongInteger)
-};
+return controller.executeActionInsideJSNode(UBTConnectController.default.toggleBookmarkItem_C2$Action.bind(controller, OS.DataConversion.JSNodeParamConverter.from(in_ItemIdIn, OS.DataTypes.DataTypes.Text), in_BookmarkTypeIn, OS.DataConversion.JSNodeParamConverter.from(isBookmarked_C2In, OS.DataTypes.DataTypes.Boolean)), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
+return {};
 });
 };
 });
@@ -18220,7 +18420,7 @@ ObjectId: OS.DataConversion.ServerDataConverter.to(objectIdIn, OS.DataTypes.Data
 Group: OS.DataConversion.ServerDataConverter.to(groupIn, OS.DataTypes.DataTypes.Text),
 Note: OS.DataConversion.ServerDataConverter.to(noteIn, OS.DataTypes.DataTypes.Text)
 };
-return controller.callServerAction("AddBookmark", "screenservices/UBTConnect/ActionAddBookmark", "UqZY5cR2PPpnf9N9Dw77mg", inputs, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function (json, headers) {
+return controller.callServerAction("AddBookmark", "screenservices/UBTConnect/ActionAddBookmark", "mrfM8Ha5e7AHsdSfSwxjRQ", inputs, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function (json, headers) {
 OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
 }, false).then(function (outputs) {
 var executeServerActionResult = new (controller.constructor.getVariableGroupType("UBTConnect$rssespaceconnect2_mybookmarks_bl_ActionAddBookmark"))();
@@ -18256,7 +18456,7 @@ var inputs = {
 In_BookmarkCategoryId: OS.DataConversion.ServerDataConverter.to(in_BookmarkCategoryIdIn, OS.DataTypes.DataTypes.Text),
 In_ItemId: OS.DataConversion.ServerDataConverter.to(in_ItemIdIn, OS.DataTypes.DataTypes.Text)
 };
-return controller.callServerAction("AddBookmark2", "screenservices/UBTConnect/ServiceAPIAddBookmark2", "h2wCgRdwdJDgUUIXZtjT_g", inputs, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function (json, headers) {
+return controller.callServerAction("AddBookmark2", "screenservices/UBTConnect/ServiceAPIAddBookmark2", "Kd5Fe7cVmV0jFDSe4nznvQ", inputs, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function (json, headers) {
 OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
 }, false).then(function (outputs) {
 var executeServerActionResult = new (controller.constructor.getVariableGroupType("UBTConnect$ServiceAPIAddBookmark2"))();
@@ -18316,11 +18516,12 @@ var controller = this.controller;
 var inputs = {
 BookmarkId: OS.DataConversion.ServerDataConverter.to(bookmarkIdIn, OS.DataTypes.DataTypes.LongInteger)
 };
-return controller.callServerAction("DeleteBookmarkByBookmarkId2", "screenservices/UBTConnect/ServiceAPIDeleteBookmarkByBookmarkId2", "qIzw_g3rvLY7iDOaS+i8mg", inputs, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function (json, headers) {
+return controller.callServerAction("DeleteBookmarkByBookmarkId2", "screenservices/UBTConnect/ServiceAPIDeleteBookmarkByBookmarkId2", "8lz57SQpYDeyudLGP7Pong", inputs, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function (json, headers) {
 OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
 }, false).then(function (outputs) {
 var executeServerActionResult = new (controller.constructor.getVariableGroupType("UBTConnect$ServiceAPIDeleteBookmarkByBookmarkId2"))();
 executeServerActionResult.successOut = OS.DataConversion.ServerDataConverter.from(outputs.Success, OS.DataTypes.DataTypes.Boolean);
+executeServerActionResult.wasFoundOut = OS.DataConversion.ServerDataConverter.from(outputs.WasFound, OS.DataTypes.DataTypes.Boolean);
 return executeServerActionResult;
 });
 };
@@ -18332,13 +18533,21 @@ dataType: OS.DataTypes.DataTypes.Boolean,
 defaultValue: function () {
 return false;
 }
+}, {
+name: "WasFound",
+attrName: "wasFoundOut",
+mandatory: false,
+dataType: OS.DataTypes.DataTypes.Boolean,
+defaultValue: function () {
+return false;
+}
 }]);
 });
 define("UBTConnect.controller$ServerAction.FetchData_CacheableHouseholds", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnect.model$MarkerWithWindowMapExploreItemRecordList"], function (exports, OutSystems, UBTConnectModel, UBTConnectController) {
 var OS = OutSystems.Internal;
 UBTConnectController.default.fetchData_CacheableHouseholds$ServerAction = function (callContext) {
 var controller = this.controller;
-return controller.callServerAction("FetchData_CacheableHouseholds", "screenservices/UBTConnect/ServiceAPIFetchData_CacheableHouseholds", "EFgoCB9jxpj_90DN1wwArQ", {}, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function (json, headers) {
+return controller.callServerAction("FetchData_CacheableHouseholds", "screenservices/UBTConnect/ServiceAPIFetchData_CacheableHouseholds", "zDWwFQdiAnbe1iMXeJV51g", {}, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function (json, headers) {
 OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
 }, false).then(function (outputs) {
 var executeServerActionResult = new (controller.constructor.getVariableGroupType("UBTConnect$ServiceAPIFetchData_CacheableHouseholds"))();
@@ -18361,7 +18570,7 @@ define("UBTConnect.controller$ServerAction.FetchData_CacheableMapEntities", ["ex
 var OS = OutSystems.Internal;
 UBTConnectController.default.fetchData_CacheableMapEntities$ServerAction = function (callContext) {
 var controller = this.controller;
-return controller.callServerAction("FetchData_CacheableMapEntities", "screenservices/UBTConnect/ServiceAPIFetchData_CacheableMapEntities", "Vfp+X33cU_HevUsnIh3s6g", {}, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function (json, headers) {
+return controller.callServerAction("FetchData_CacheableMapEntities", "screenservices/UBTConnect/ServiceAPIFetchData_CacheableMapEntities", "kUyeIcfXTKpLtoq+BR3GOg", {}, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function (json, headers) {
 OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
 }, false).then(function (outputs) {
 var executeServerActionResult = new (controller.constructor.getVariableGroupType("UBTConnect$ServiceAPIFetchData_CacheableMapEntities"))();
@@ -18504,7 +18713,7 @@ var controller = this.controller;
 var inputs = {
 isFromLogin: OS.DataConversion.ServerDataConverter.to(isFromLoginIn, OS.DataTypes.DataTypes.Boolean)
 };
-return controller.callServerAction("Sync_Info_GetMain", "screenservices/UBTConnect/ActionSync_Info_GetMain", "OOkXCoq0pv+PLq6yP5ew3Q", inputs, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function (json, headers) {
+return controller.callServerAction("Sync_Info_GetMain", "screenservices/UBTConnect/ActionSync_Info_GetMain", "Nb4YpWRgd0_7fGSBRyTsfQ", inputs, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function (json, headers) {
 OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
 }, false).then(function (outputs) {
 var executeServerActionResult = new (controller.constructor.getVariableGroupType("UBTConnect$ActionSync_Info_GetMain"))();
@@ -18593,7 +18802,12 @@ _super.apply(this, arguments);
 this.registerOnApplicationReadyHandler("UBTConnect.controller$OnApplicationReady", "onApplicationReady$Action");
 }
 Controller.prototype.clientActionProxies = {};
-Controller.prototype.roles = {};
+Controller.prototype.roles = {
+UBTOne_User: {
+roleKey: "bBmUQDCGwkGgPBe0HlB4Pw*X9Favli2EkiUymXABtRmvg",
+roleException: new OS.Exceptions.Exceptions.NotRegisteredException("UBT_Users_CS.NotUBTOne_User", "UBTOne_User role required")
+}
+};
 Controller.prototype.defaultTimeout = 20;
 Controller.prototype.getDefaultTimeout = function () {
 return UBTConnectController.default.defaultTimeout;
@@ -18775,6 +18989,11 @@ getter: function (varBag, idService) {
 return varBag.outVars.value.uI_SubdivisionCardContentOut;
 }
 },
+"YCHvrRQuK0SPUoMzhQztRQ": {
+getter: function (varBag, idService) {
+return varBag.checkIsOnlineNowJSResult.value;
+}
+},
 "xwI6xpc1Pk6wh2wQF1vWoQ": {
 getter: function (varBag, idService) {
 return varBag.vars.value.statisticItemNameInLocal;
@@ -18807,6 +19026,24 @@ dataType: OS.DataTypes.DataTypes.Boolean
 getter: function (varBag, idService) {
 return varBag.ancestryModeViewExistsJSResult.value;
 }
+},
+"22Ozh3t6qEGA4_F_95kDUQ": {
+getter: function (varBag, idService) {
+return varBag.vars.value.distanceInKmVar;
+},
+dataType: OS.DataTypes.DataTypes.Decimal
+},
+"sk_Niy_jDUqMJZ1xrTLMSQ": {
+getter: function (varBag, idService) {
+return varBag.vars.value.in_DistanceInKmInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
+"6Cw1euxy4UifVrld1g0BYg": {
+getter: function (varBag, idService) {
+return varBag.outVars.value.out_FormattedDistanceOut;
+},
+dataType: OS.DataTypes.DataTypes.Text
 },
 "lTGhTHTWmEGH_ruvy+evAw": {
 getter: function (varBag, idService) {
@@ -18921,24 +19158,6 @@ return varBag.jSONSerialize_RecurrenceVar.value;
 getter: function (varBag, idService) {
 return varBag.jSONSerialize_InitalRecurrenceVar.value;
 }
-},
-"rFCluorYuEyCNbsIBMw+Mw": {
-getter: function (varBag, idService) {
-return varBag.vars.value.entityTypeInLocal;
-},
-dataType: OS.DataTypes.DataTypes.Text
-},
-"U7CA9IX9G0qlwa34Bih_BA": {
-getter: function (varBag, idService) {
-return varBag.outVars.value.bookmarkTypeOut;
-},
-dataType: OS.DataTypes.DataTypes.Text
-},
-"hvxPpEbtdkKCUlqteZjTLg": {
-getter: function (varBag, idService) {
-return varBag.outVars.value.bookmarkGroupOut;
-},
-dataType: OS.DataTypes.DataTypes.Text
 },
 "_0DyoXcOxE+FBsxsiiLV0g": {
 getter: function (varBag, idService) {
@@ -19240,6 +19459,12 @@ dataType: OS.DataTypes.DataTypes.Integer
 getter: function (varBag, idService) {
 return varBag.setCurrentPositionJSResult.value;
 }
+},
+"EMqsmMXabE27+Q1zXSR1dw": {
+getter: function (varBag, idService) {
+return varBag.vars.value.in_SelectedPillIdInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Text
 },
 "_3q3DwNr4EC1cphjo5kI1g": {
 getter: function (varBag, idService) {
@@ -19594,6 +19819,11 @@ return varBag.vars.value.timeToLiveVar;
 },
 dataType: OS.DataTypes.DataTypes.Integer
 },
+"AYaKGIVobk+x44Kx7Y3PFA": {
+getter: function (varBag, idService) {
+return varBag.allExceptionsVar.value;
+}
+},
 "oc9pwZUCFEmk+GeuU2PXmg": {
 getter: function (varBag, idService) {
 return varBag.fetchData_CacheableMapEntitiesVar.value;
@@ -19797,6 +20027,11 @@ getter: function (varBag, idService) {
 return varBag.vars.value.markerWithWindowVar;
 }
 },
+"R+USq9h1jkCh34kVBsyvOw": {
+getter: function (varBag, idService) {
+return varBag.allExceptionsVar.value;
+}
+},
 "BlKSi_7yVkuCq1725l1Hbg": {
 getter: function (varBag, idService) {
 return varBag.fetchData_CacheableHouseholdsVar.value;
@@ -19959,6 +20194,12 @@ getter: function (varBag, idService) {
 return varBag.getSkeleton_UI_SubdivisionCardContentVar.value;
 }
 },
+"b6aScMhd40OcK+j691S4Lg": {
+getter: function (varBag, idService) {
+return varBag.vars.value.in_SelectedPillIdInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
 "ViCtyWkcAEG0cdl+uhizkw": {
 getter: function (varBag, idService) {
 return varBag.outVars.value.out_PillsOut;
@@ -19977,6 +20218,29 @@ return varBag.vars.value.in_UI_UpdateItemListInLocal;
 "jg6ySkFR50+L56aa+8ibeQ": {
 getter: function (varBag, idService) {
 return varBag.outVars.value.out_UI_UpdateItemListOut;
+}
+},
+"TRyKlp2t60CDN9kt+qfpvA": {
+getter: function (varBag, idService) {
+return varBag.vars.value.noteInterchangeIdInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
+"glFPuhf3JkykkSD8_SOaLg": {
+getter: function (varBag, idService) {
+return varBag.outVars.value.localityIdOut;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
+"aN28wu+0l0602njTOOSneg": {
+getter: function (varBag, idService) {
+return varBag.outVars.value.interchangeLocalityIdOut;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
+"STzoLRD6yE+5fu8_R0fBEg": {
+getter: function (varBag, idService) {
+return varBag.jSUtils_String_SplitVar.value;
 }
 },
 "+0MGNb3JzUqUt6vHQqdG8g": {
@@ -20197,9 +20461,9 @@ getter: function (varBag, idService) {
 return varBag.outVars.value.yearsOut;
 }
 },
-"nYO_sL9N5EiuE+yYUTANQA": {
+"FQTaM88haE+KkeVma62H9A": {
 getter: function (varBag, idService) {
-return varBag.get_Note_DynamicFilter_YearOptionsVar.value;
+return varBag.get_RecentYearsVar.value;
 }
 },
 "WazoDBNghkWk_Y_t5DLoOQ": {
@@ -20456,9 +20720,9 @@ getter: function (varBag, idService) {
 return varBag.outVars.value.out_YearsOut;
 }
 },
-"yAxuz5NSrkGpLDwCmySb6Q": {
+"ryjhb+37MUefQBxfSV9g1g": {
 getter: function (varBag, idService) {
-return varBag.get_LocalDynamicBookmarkYearsVar.value;
+return varBag.get_RecentYearsVar.value;
 }
 },
 "BRrSjJ9YBEWYcJJ0uDhW5A": {
@@ -20959,6 +21223,23 @@ getter: function (varBag, idService) {
 return varBag.outVars.value.uI_OneSchollGlobalCardOut;
 }
 },
+"2VUKbeTmIEqfyhUcbxch6A": {
+getter: function (varBag, idService) {
+return varBag.vars.value.indexVar;
+},
+dataType: OS.DataTypes.DataTypes.Integer
+},
+"PPQNOty4iEqNyxJ3LthGpg": {
+getter: function (varBag, idService) {
+return varBag.vars.value.in_NumberOfYearsInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Integer
+},
+"shLkM00FqUe1vS5WIo0T9w": {
+getter: function (varBag, idService) {
+return varBag.outVars.value.out_YearsOut;
+}
+},
 "WHQCvamUFEuYB1wwiTmhQg": {
 getter: function (varBag, idService) {
 return varBag.vars.value.isFromLoginInLocal;
@@ -21265,6 +21546,24 @@ return varBag.outVars.value.formattedOut;
 getter: function (varBag, idService) {
 return varBag.listFilterVar.value;
 }
+},
+"RPQjnoTfaECZ223K06MXFg": {
+getter: function (varBag, idService) {
+return varBag.vars.value.localityIdInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
+"dKqv2sSxHkekp_Gqh+X9hg": {
+getter: function (varBag, idService) {
+return varBag.vars.value.interchangeLocalityIdInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
+"7wFH5FR7GUKiRKKUnpqn1w": {
+getter: function (varBag, idService) {
+return varBag.outVars.value.noteInterchangeIdOut;
+},
+dataType: OS.DataTypes.DataTypes.Text
 },
 "i29iFFdKAk6wLJGILU3Fnw": {
 getter: function (varBag, idService) {
@@ -21605,11 +21904,6 @@ dataType: OS.DataTypes.DataTypes.Boolean
 "oLGpb4LlaUKO8tWNfot0jg": {
 getter: function (varBag, idService) {
 return varBag.outVars.value.tagToggleListOut;
-}
-},
-"eOmp657+pUq4qUeqEzm0TQ": {
-getter: function (varBag, idService) {
-return varBag.connect_LaunchDarkly_PermissionCheckVar.value;
 }
 },
 "xd2bfGmZakms5pYHgjAPWA": {
@@ -22022,7 +22316,7 @@ return varBag.getSkeleton_UI_CommunityBusinessContactCardContentVar.value;
 getter: function (varBag, idService) {
 return varBag.vars.value.in_ItemIdInLocal;
 },
-dataType: OS.DataTypes.DataTypes.LongInteger
+dataType: OS.DataTypes.DataTypes.Text
 },
 "ZsrVJUqTrUybe1AffCjCpw": {
 getter: function (varBag, idService) {
@@ -22035,18 +22329,6 @@ getter: function (varBag, idService) {
 return varBag.vars.value.isBookmarked_C2InLocal;
 },
 dataType: OS.DataTypes.DataTypes.Boolean
-},
-"dTJPT+XsdEOF6iTrT9ipcw": {
-getter: function (varBag, idService) {
-return varBag.outVars.value.out_LocalBookmarkIdOut;
-},
-dataType: OS.DataTypes.DataTypes.LongInteger
-},
-"ZgIC2pYGCEmJOYRUbWMafA": {
-getter: function (varBag, idService) {
-return varBag.outVars.value.out_CreatedBookmarkIdOut;
-},
-dataType: OS.DataTypes.DataTypes.LongInteger
 },
 "5kkSa533jUSmwVGR+WuY8Q": {
 getter: function (varBag, idService) {

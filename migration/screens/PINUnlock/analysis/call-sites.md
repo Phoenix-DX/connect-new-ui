@@ -23,11 +23,11 @@ For every service call: the chains of code that lead to it, from a root (user ev
 - `UBTConnect.onApplicationReady` → `UBTConnect.connect_SetLoggedContext` → `Connect2_LegacyShared.synchronizeNumberUnreadMessages` → `server GetNumberUnreadMessages`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 - `UBTConnect.fCM_NotificationCallback` → `Connect2_LegacyShared.synchronizeNumberUnreadMessages` → `server GetNumberUnreadMessages`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 
-### `UBTConnect/ServiceAPIFetchData_CacheableHouseholds`
-- `UBTConnect.get_Cacheable_MapHouseholds` → `server FetchData_CacheableHouseholds`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
-
 ### `UBTConnect/ServiceAPIFetchData_CacheableMapEntities`
 - `UBTConnect.get_Cacheable_MapEntities` → `server FetchData_CacheableMapEntities`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
+
+### `UBTConnect/ServiceAPIFetchData_CacheableHouseholds`
+- `UBTConnect.get_Cacheable_MapHouseholds` → `server FetchData_CacheableHouseholds`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 
 ### `UBTConnect_Utils/CacheControl/CacheControl_Policies/DataActionGetCacheInfo`
 - `CacheControl.OnInitialize` → `CacheControl.onInitialize` → `event onNonCacheHit of CacheControl` → `CacheControl_Policies.cacheControlOnNonCacheHit` → `CacheControl_Policies.DataActionGetCacheInfo`

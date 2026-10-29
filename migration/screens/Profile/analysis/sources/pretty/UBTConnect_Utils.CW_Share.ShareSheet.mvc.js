@@ -330,6 +330,7 @@ define("UBTConnect_Utils.CW_Share.ShareSheet.mvc$view", ["OutSystems/ClientRunti
                             return model.variables.in_IsLegacyIn;
                         }),
                         _extendedClassesInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables._in_IsLegacyInDataFetchStatus),
+                        IsNotInertWhenClosed: true,
                         FooterHeight: model.getCachedValue(idService.getId("BottomSheet.FooterHeight"), function() {
                             return ((model.variables.isSearchingVar) ? ("0px") : ("auto"));
                         }, function() {
@@ -347,7 +348,8 @@ define("UBTConnect_Utils.CW_Share.ShareSheet.mvc$view", ["OutSystems/ClientRunti
                                 rec.horizontalSizeIdAttr = UBTConnect_UtilsModel.staticEntities.uBT_Size.none;
                                 return rec;
                             }();
-                        })
+                        }),
+                        In_TouchActionNoneFix: true
                     },
                     events: {
                         _handleError: function(ex) {
@@ -1754,7 +1756,7 @@ define("UBTConnect_Utils.CW_Share.ShareSheet.mvc$view", ["OutSystems/ClientRunti
                                         return [$if(model.variables.isSearchStepVar, false, this, function() {
                                             return [React.createElement(UBTConnect_Utils_CW_Common_Button_mvc_view, {
                                                 inputs: {
-                                                    IsDisabled: model.variables.selectedMembersVar.isEmpty,
+                                                    IsDisabled: (model.variables.selectedMembersVar.isEmpty || model.variables.isSubmittingVar),
                                                     ButtonText: "Send",
                                                     ButtonOptions: model.getCachedValue(idService.getId("GOSsRYqWAEGHkqkn3aYrBQ.ButtonOptions"), function() {
                                                         return function() {
@@ -1840,7 +1842,7 @@ define("UBTConnect_Utils.CW_Share.ShareSheet.mvc$view", ["OutSystems/ClientRunti
                                         })];
                                     })
                                 },
-                                _dependencies: [asPrimitiveValue(model.variables.selectedMembersVar.isEmpty), asPrimitiveValue(model.variables.isSearchStepVar)]
+                                _dependencies: [asPrimitiveValue(model.variables.isSubmittingVar), asPrimitiveValue(model.variables.selectedMembersVar.isEmpty), asPrimitiveValue(model.variables.isSearchStepVar)]
                             })];
                         })
                     }
@@ -2016,9 +2018,9 @@ define("UBTConnect_Utils.CW_Share.ShareSheet.mvc$controller", ["OutSystems/Clien
                 var varBag = {};
                 controller.pushDebuggerContext(callContext);
 
-                OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:mZ9+Lok6eUSFTXV95N0rKA:/NRWebFlows.pDMoTWIiTkS1lgPdIBVaUg/NodesShownInESpaceTree.q6Blk2Tc2ECMgVxP4O8rcg/DataActions.mZ9+Lok6eUSFTXV95N0rKA:TDUFlbGM8o+t7uxJqHl86w", "UBTConnect_Utils", "GetAvailableMembers", "NRFlows.DataScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:mZ9+Lok6eUSFTXV95N0rKA:/NRWebFlows.pDMoTWIiTkS1lgPdIBVaUg/NodesShownInESpaceTree.q6Blk2Tc2ECMgVxP4O8rcg/DataActions.mZ9+Lok6eUSFTXV95N0rKA:J2WciuUucWRoLe_s904xrQ", "UBTConnect_Utils", "GetAvailableMembers", "NRFlows.DataScreenActionFlow", callContext.id, varBag);
                 OutSystemsDebugger.setThreadStartName(callContext.id, "CW_Share/ShareSheet/GetAvailableMembers");
-                return controller.callDataAction("DataActionGetAvailableMembers", "screenservices/UBTConnect_Utils/CW_Share/ShareSheet/DataActionGetAvailableMembers", "1scd0OLD4SPvDY2Hsx_LVQ", function(b) {
+                return controller.callDataAction("DataActionGetAvailableMembers", "screenservices/UBTConnect_Utils/CW_Share/ShareSheet/DataActionGetAvailableMembers", "hQVgKksvAHpvACGaMXLj3A", function(b) {
                     model.variables.getAvailableMembersDataAct.dataFetchStatusAttr = b;
                 }, function(json) {
                     model.variables.getAvailableMembersDataAct.replaceWith(OS.DataConversion.ServerDataConverter.from(json, model.variables.getAvailableMembersDataAct.constructor));
@@ -2044,9 +2046,9 @@ define("UBTConnect_Utils.CW_Share.ShareSheet.mvc$controller", ["OutSystems/Clien
                 var varBag = {};
                 controller.pushDebuggerContext(callContext);
 
-                OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:fL8udRtABEuUa_ZkgHakwg:/NRWebFlows.pDMoTWIiTkS1lgPdIBVaUg/NodesShownInESpaceTree.q6Blk2Tc2ECMgVxP4O8rcg/DataActions.fL8udRtABEuUa_ZkgHakwg:ieIv_Ne_FeV6rYT67DyJGA", "UBTConnect_Utils", "GetRecentlyShared", "NRFlows.DataScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:fL8udRtABEuUa_ZkgHakwg:/NRWebFlows.pDMoTWIiTkS1lgPdIBVaUg/NodesShownInESpaceTree.q6Blk2Tc2ECMgVxP4O8rcg/DataActions.fL8udRtABEuUa_ZkgHakwg:LiG4zvf1k6GS5wZFf26Hkw", "UBTConnect_Utils", "GetRecentlyShared", "NRFlows.DataScreenActionFlow", callContext.id, varBag);
                 OutSystemsDebugger.setThreadStartName(callContext.id, "CW_Share/ShareSheet/GetRecentlyShared");
-                return controller.callDataAction("DataActionGetRecentlyShared", "screenservices/UBTConnect_Utils/CW_Share/ShareSheet/DataActionGetRecentlyShared", "oz+K+NBbZUd7By6aGdXObg", function(b) {
+                return controller.callDataAction("DataActionGetRecentlyShared", "screenservices/UBTConnect_Utils/CW_Share/ShareSheet/DataActionGetRecentlyShared", "paMzPfFImfV0QamjA7rFzA", function(b) {
                     model.variables.getRecentlySharedDataAct.dataFetchStatusAttr = b;
                 }, function(json) {
                     model.variables.getRecentlySharedDataAct.replaceWith(OS.DataConversion.ServerDataConverter.from(json, model.variables.getRecentlySharedDataAct.constructor));
@@ -2080,7 +2082,7 @@ define("UBTConnect_Utils.CW_Share.ShareSheet.mvc$controller", ["OutSystems/Clien
             varBag.callContext = callContext;
             varBag.listIndexOfVar = listIndexOfVar;
             try {
-                OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:2HWWB9M2wkW1dLejUNhcqg:/NRWebFlows.pDMoTWIiTkS1lgPdIBVaUg/NodesShownInESpaceTree.q6Blk2Tc2ECMgVxP4O8rcg/ClientActions.2HWWB9M2wkW1dLejUNhcqg:5iTKl1t+QdNfYntvMTxUSg", "UBTConnect_Utils", "OnAfterFetch_GetAvailableMembers", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:2HWWB9M2wkW1dLejUNhcqg:/NRWebFlows.pDMoTWIiTkS1lgPdIBVaUg/NodesShownInESpaceTree.q6Blk2Tc2ECMgVxP4O8rcg/ClientActions.2HWWB9M2wkW1dLejUNhcqg:D0YbS6biod1aSXAsUmMzYw", "UBTConnect_Utils", "OnAfterFetch_GetAvailableMembers", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
                 OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:YQeJTpm3U0OT4hkhbUyknw", callContext.id);
                 OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:1u67A_R0Hk+CTX0v2Bhkdw", callContext.id);
                 // Execute Action: ListClear
@@ -2112,6 +2114,8 @@ define("UBTConnect_Utils.CW_Share.ShareSheet.mvc$controller", ["OutSystems/Clien
                             target.searchResultAttr.recordDisabledAttr = source.recordDisabledAttr;
                             target.searchResultAttr.latitudeAttr = source.latitudeAttr;
                             target.searchResultAttr.longitudeAttr = source.longitudeAttr;
+                            target.searchResultAttr.displayHouseholdNameAttr = source.displayHouseholdNameAttr;
+                            target.searchResultAttr.displayAddressAttr = source.displayAddressAttr;
                             return target;
                         }), callContext);
                         out_SearchResultItemListIndex++;
@@ -2312,7 +2316,7 @@ define("UBTConnect_Utils.CW_Share.ShareSheet.mvc$controller", ["OutSystems/Clien
             varBag.callContext = callContext;
             varBag.listIndexOfVar = listIndexOfVar;
             try {
-                OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:6hkkFOUC1UKqOzu+G7CN2g:/NRWebFlows.pDMoTWIiTkS1lgPdIBVaUg/NodesShownInESpaceTree.q6Blk2Tc2ECMgVxP4O8rcg/ClientActions.6hkkFOUC1UKqOzu+G7CN2g:RSULb8ZSRvgxCYvfZ_M7xA", "UBTConnect_Utils", "OnAfterFetch_GetRecentlyShared", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:6hkkFOUC1UKqOzu+G7CN2g:/NRWebFlows.pDMoTWIiTkS1lgPdIBVaUg/NodesShownInESpaceTree.q6Blk2Tc2ECMgVxP4O8rcg/ClientActions.6hkkFOUC1UKqOzu+G7CN2g:j1QwyeoBrqEM+jAUSf+qIw", "UBTConnect_Utils", "OnAfterFetch_GetRecentlyShared", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
                 OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:5cg0DTYBwUyXOyjFOq7C8Q", callContext.id);
                 OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:ZTRuUo5llUukFXSKDnT+Ig", callContext.id);
                 // Execute Action: ListClear
@@ -2345,6 +2349,8 @@ define("UBTConnect_Utils.CW_Share.ShareSheet.mvc$controller", ["OutSystems/Clien
                             target.searchResultAttr.recordDisabledAttr = source.recordDisabledAttr;
                             target.searchResultAttr.latitudeAttr = source.latitudeAttr;
                             target.searchResultAttr.longitudeAttr = source.longitudeAttr;
+                            target.searchResultAttr.displayHouseholdNameAttr = source.displayHouseholdNameAttr;
+                            target.searchResultAttr.displayAddressAttr = source.displayAddressAttr;
                             return target;
                         }), callContext);
                         out_SearchResultItemListIndex++;
@@ -2640,7 +2646,7 @@ define("UBTConnect_Utils.CW_Share.ShareSheet.mvc$controller", ["OutSystems/Clien
             varBag.callContext = callContext;
             varBag.vars = vars;
             try {
-                OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:VqUXOwVfVEGeuHRtA96l0g:/NRWebFlows.pDMoTWIiTkS1lgPdIBVaUg/NodesShownInESpaceTree.q6Blk2Tc2ECMgVxP4O8rcg/ClientActions.VqUXOwVfVEGeuHRtA96l0g:JGGWutIYQgWeDxBxvdeBGQ", "UBTConnect_Utils", "Action_CreateSkeletonList", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:VqUXOwVfVEGeuHRtA96l0g:/NRWebFlows.pDMoTWIiTkS1lgPdIBVaUg/NodesShownInESpaceTree.q6Blk2Tc2ECMgVxP4O8rcg/ClientActions.VqUXOwVfVEGeuHRtA96l0g:d__KcfiKW5WJO5k_xsUrqQ", "UBTConnect_Utils", "Action_CreateSkeletonList", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
                 OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:2HANc3o4jUWTsjgNCIIMzQ", callContext.id);
                 if ((OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:npEA4dKJR0ONRmOfTwQpeg", callContext.id) && model.variables.skeleton_SearchResultItemListVar.isEmpty)) {
                     while ((OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:Xl2vYUwRRUa+invWR_aTPQ", callContext.id) && (vars.value.indexVar < vars.value.numberOfSkeletonItemsVar))) {
@@ -2770,7 +2776,7 @@ define("UBTConnect_Utils.CW_Share.ShareSheet.mvc$controller", ["OutSystems/Clien
             vars.value.event_IsOpenInLocal = event_IsOpenIn;
             varBag.callContext = callContext;
             varBag.vars = vars;
-            OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:LEm6hILXskiUHbSHDx2ygw:/NRWebFlows.pDMoTWIiTkS1lgPdIBVaUg/NodesShownInESpaceTree.q6Blk2Tc2ECMgVxP4O8rcg/ClientActions.LEm6hILXskiUHbSHDx2ygw:bZYZTPG7lnbfKPRNNlzsbw", "UBTConnect_Utils", "Handler_BottomSheetOnToggle", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:LEm6hILXskiUHbSHDx2ygw:/NRWebFlows.pDMoTWIiTkS1lgPdIBVaUg/NodesShownInESpaceTree.q6Blk2Tc2ECMgVxP4O8rcg/ClientActions.LEm6hILXskiUHbSHDx2ygw:Tz3I0pJnaqy4ncCaeiktEQ", "UBTConnect_Utils", "Handler_BottomSheetOnToggle", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
             OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:vwumyJnfhkm1xrkCaUE5Sg", callContext.id);
             return OS.Flow.executeAsyncFlow(function() {
                 // Is close and
@@ -2779,7 +2785,7 @@ define("UBTConnect_Utils.CW_Share.ShareSheet.mvc$controller", ["OutSystems/Clien
                         OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:s_PNqs7jBkSyMiRqDEsilQ", callContext.id);
                         // Execute Action: Action_ResetAndCloseSheetState
                         return controller._action_ResetAndCloseSheetState$Action(callContext).then(function() {
-                            OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:DyEQAl0i9E2CpFvag84vFA", callContext.id);
+                            OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:HZ+4kLfidUqHXa1DnvwrPg", callContext.id);
                         });
                     } else {
                         OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:DyEQAl0i9E2CpFvag84vFA", callContext.id);
@@ -2925,7 +2931,7 @@ define("UBTConnect_Utils.CW_Share.ShareSheet.mvc$controller", ["OutSystems/Clien
             varBag.vars = vars;
             varBag.listIndexOfVar = listIndexOfVar;
             try {
-                OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:Khpps99FoEG9gDMBjPNXFA:/NRWebFlows.pDMoTWIiTkS1lgPdIBVaUg/NodesShownInESpaceTree.q6Blk2Tc2ECMgVxP4O8rcg/ClientActions.Khpps99FoEG9gDMBjPNXFA:RtLP8Xg_7IIVVpH60Q+71Q", "UBTConnect_Utils", "Handler_SearchResultItemOnSelect", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:Khpps99FoEG9gDMBjPNXFA:/NRWebFlows.pDMoTWIiTkS1lgPdIBVaUg/NodesShownInESpaceTree.q6Blk2Tc2ECMgVxP4O8rcg/ClientActions.Khpps99FoEG9gDMBjPNXFA:he6lmIG3JxbnlPXZLaCvmg", "UBTConnect_Utils", "Handler_SearchResultItemOnSelect", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
                 OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:pqOPSBm0rUOSHT4EMV7yEg", callContext.id);
                 if ((OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:xP9vzAuffke8oLXYYN1jNw", callContext.id) && (vars.value.in_IsSelectedInLocal && (model.variables.selectedMembersVar.length >= 50)))) {
                     OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:tiygFIn5+kyrI5ZUPsREvA", callContext.id);
@@ -2961,6 +2967,8 @@ define("UBTConnect_Utils.CW_Share.ShareSheet.mvc$controller", ["OutSystems/Clien
                                 target.searchResultAttr.recordDisabledAttr = source.recordDisabledAttr;
                                 target.searchResultAttr.latitudeAttr = source.latitudeAttr;
                                 target.searchResultAttr.longitudeAttr = source.longitudeAttr;
+                                target.searchResultAttr.displayHouseholdNameAttr = source.displayHouseholdNameAttr;
+                                target.searchResultAttr.displayAddressAttr = source.displayAddressAttr;
                                 return target;
                             }), callContext);
                             OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:Zbsyps4Wgkap2aVp4Wl4Cw", callContext.id);
@@ -3093,16 +3101,20 @@ define("UBTConnect_Utils.CW_Share.ShareSheet.mvc$controller", ["OutSystems/Clien
             var vars = new OS.DataTypes.VariableHolder(new(controller.constructor.getVariableGroupType("UBTConnect_Utils.CW_Share.ShareSheet.Action_SubmitShare$vars"))());
             vars.value.in_TargetMemberIdsInLocal = in_TargetMemberIdsIn.clone();
             var notRegisteredVar = new OS.DataTypes.VariableHolder(new OS.DataTypes.ErrorHandlerOutputType());
+            var communicationErrorVar = new OS.DataTypes.VariableHolder(new OS.DataTypes.ErrorHandlerOutputType());
             var allExceptionsVar = new OS.DataTypes.VariableHolder(new OS.DataTypes.ErrorHandlerOutputType());
+            var communicationExceptionVar = new OS.DataTypes.VariableHolder(new OS.DataTypes.ErrorHandlerOutputType());
             var cS_ShareObjectVar = new OS.DataTypes.VariableHolder();
             var cache_UserInfo_GetVar = new OS.DataTypes.VariableHolder();
             varBag.callContext = callContext;
             varBag.vars = vars;
             varBag.notRegisteredVar = notRegisteredVar;
+            varBag.communicationErrorVar = communicationErrorVar;
             varBag.allExceptionsVar = allExceptionsVar;
+            varBag.communicationExceptionVar = communicationExceptionVar;
             varBag.cS_ShareObjectVar = cS_ShareObjectVar;
             varBag.cache_UserInfo_GetVar = cache_UserInfo_GetVar;
-            OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:aiP22KFDJUy6b4ryG5EFKw:/NRWebFlows.pDMoTWIiTkS1lgPdIBVaUg/NodesShownInESpaceTree.q6Blk2Tc2ECMgVxP4O8rcg/ClientActions.aiP22KFDJUy6b4ryG5EFKw:uSVva_9Aj_zQG6BKittIBw", "UBTConnect_Utils", "Action_SubmitShare", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:aiP22KFDJUy6b4ryG5EFKw:/NRWebFlows.pDMoTWIiTkS1lgPdIBVaUg/NodesShownInESpaceTree.q6Blk2Tc2ECMgVxP4O8rcg/ClientActions.aiP22KFDJUy6b4ryG5EFKw:78fSOOQf9heVLXOpppFvKg", "UBTConnect_Utils", "Action_SubmitShare", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
             OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:trkqLr6Tuk6TNr4hsLix2Q", callContext.id);
             return OS.Flow.executeAsyncFlow(function() {
                 OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:ryvnq975JUOn9K+yeHGqGw", callContext.id);
@@ -3125,8 +3137,21 @@ define("UBTConnect_Utils.CW_Share.ShareSheet.mvc$controller", ["OutSystems/Clien
                     // Execute Action: Action_ResetAndCloseSheetState
                     return controller._action_ResetAndCloseSheetState$Action(callContext);
                 }).then(function() {
+                    OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:eD4Inccbj0arGq5Qz1bWDw", callContext.id);
+                    // SubmitMessage = In_ShareObjectTypeId
+                    vars.value.submitMessageVar = model.variables.in_ShareObjectTypeIdIn;
+                }).then(function() {
+                    if ((OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:ta6G1jiK_kO+td4SNDDqnQ", callContext.id) && (model.variables.in_ShareObjectTypeIdIn === UBTConnect_UtilsModel.staticEntities.type_ShareObject.household))) {
+                        OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:tgQF_3Co5UyeOIhXCZLruA", callContext.id);
+                        // SubmitMessage = SubmitMessage + " profile"
+                        vars.value.submitMessageVar = (vars.value.submitMessageVar + " profile");
+                    }
+
                     OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:b0jKCN1IREWDJjZEI+aLUQ", callContext.id);
-                    OS.FeedbackMessageService.showFeedbackMessage((model.variables.in_ShareObjectTypeIdIn + " has been shared."), /*Info*/ 0);
+                    OS.FeedbackMessageService.showFeedbackMessage((vars.value.submitMessageVar + " has been shared."), /*Info*/ 0);
+                    OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:qsBTgCFHdkG0kfuqCVwVOw", callContext.id);
+                    // IsSubmitting = False
+                    model.variables.isSubmittingVar = false;
                     OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:qltyS+WrCUGU_+KC19sAog", callContext.id);
                 });
             }).catch(function(ex) {
@@ -3138,9 +3163,44 @@ define("UBTConnect_Utils.CW_Share.ShareSheet.mvc$controller", ["OutSystems/Clien
                     OutSystemsDebugger.handleException(notRegisteredVar.value.exceptionMessageAttr, callContext.id);
                     return OS.Flow.executeAsyncFlow(function() {
                         OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:Dw5YV3V2wU+rEwSM+IJg8w", callContext.id);
+                        OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:Tz_bF6dv5UGsyQbuY+O+dQ", callContext.id);
+                        // IsSubmitting = False
+                        model.variables.isSubmittingVar = false;
                         OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:tBqf6HLdLkK8jBT7S6C20g", callContext.id);
                         // Raise Error: NotRegistered
                         throw new OS.Exceptions.Exceptions.NotRegisteredException("NotRegistered", notRegisteredVar.value.exceptionMessageAttr);
+                    });
+                }
+
+                // Handle Error: CommunicationError
+                if (OS.Exceptions.isInstanceOf(ex, OS.Exceptions.Exceptions.UserException, "UBTConnect_Utils.CommunicationError")) {
+                    OS.Logger.error(null, ex);
+                    communicationErrorVar.value.exceptionMessageAttr = OS.Exceptions.getMessage(ex);
+                    OutSystemsDebugger.handleException(communicationErrorVar.value.exceptionMessageAttr, callContext.id);
+                    return OS.Flow.executeAsyncFlow(function() {
+                        OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:OmbFz+dNHUOBtXXA6lkv7A", callContext.id);
+                        OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:uBZI+QUVukKw9PddnGzC3Q", callContext.id);
+                        // IsSubmitting = False
+                        model.variables.isSubmittingVar = false;
+                        OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:tRScu9_JuUCAQR_WeYDoEw", callContext.id);
+                        // Raise Error: CommunicationError
+                        throw new OS.Exceptions.Exceptions.UserException("UBTConnect_Utils.CommunicationError", communicationErrorVar.value.exceptionMessageAttr);
+                    });
+                }
+
+                // Handle Error: CommunicationException
+                if (OS.Exceptions.isInstanceOf(ex, OS.Exceptions.Exceptions.CommunicationException)) {
+                    OS.Logger.error(null, ex);
+                    communicationExceptionVar.value.exceptionMessageAttr = OS.Exceptions.getMessage(ex);
+                    OutSystemsDebugger.handleException(communicationExceptionVar.value.exceptionMessageAttr, callContext.id);
+                    return OS.Flow.executeAsyncFlow(function() {
+                        OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:dWJU2jNetkew_H_mJx+eEA", callContext.id);
+                        OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:YFaLO2YRTEixPBl_DyI6Gg", callContext.id);
+                        // IsSubmitting = False
+                        model.variables.isSubmittingVar = false;
+                        OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:0FhDlf_dN0e9_+FKht5CDA", callContext.id);
+                        // Raise Error: CommunicationError
+                        throw new OS.Exceptions.Exceptions.UserException("UBTConnect_Utils.CommunicationError", communicationExceptionVar.value.exceptionMessageAttr);
                     });
                 }
 
@@ -3153,6 +3213,9 @@ define("UBTConnect_Utils.CW_Share.ShareSheet.mvc$controller", ["OutSystems/Clien
                         OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:yRh42JVn1E22jPakJbGeUg", callContext.id);
                         OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:luWrr+ErHkasAR6rWa0Vog", callContext.id);
                         OS.FeedbackMessageService.showFeedbackMessage("Share failed. Please try again.", /*Error*/ 3);
+                        OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:tVCRTWngc0imFT73Md9eWQ", callContext.id);
+                        // IsSubmitting = False
+                        model.variables.isSubmittingVar = false;
                         OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:smeiDJbnd0SMKziCWYlFZw", callContext.id);
                         return OS.Flow.returnAsync();
 
@@ -3180,6 +3243,14 @@ define("UBTConnect_Utils.CW_Share.ShareSheet.mvc$controller", ["OutSystems/Clien
                 return new OS.DataTypes.TextList();
             },
             complexType: OS.DataTypes.TextList
+        }, {
+            name: "SubmitMessage",
+            attrName: "submitMessageVar",
+            mandatory: false,
+            dataType: OS.DataTypes.DataTypes.Text,
+            defaultValue: function() {
+                return "";
+            }
         }]);
         Controller.prototype._action_ResetAndCloseSheetState$Action = function(callContext) {
             var varBag = {};
@@ -3272,7 +3343,7 @@ define("UBTConnect_Utils.CW_Share.ShareSheet.mvc$controller", ["OutSystems/Clien
             controller.ensureControllerAlive("Handler_OnBack");
             callContext = controller.callContext(callContext);
             varBag.callContext = callContext;
-            OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:3Jwa5kdF3U6pWwQ8xd9peA:/NRWebFlows.pDMoTWIiTkS1lgPdIBVaUg/NodesShownInESpaceTree.q6Blk2Tc2ECMgVxP4O8rcg/ClientActions.3Jwa5kdF3U6pWwQ8xd9peA:dSj1W4iTqBFsLIfT8rTPBg", "UBTConnect_Utils", "Handler_OnBack", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:3Jwa5kdF3U6pWwQ8xd9peA:/NRWebFlows.pDMoTWIiTkS1lgPdIBVaUg/NodesShownInESpaceTree.q6Blk2Tc2ECMgVxP4O8rcg/ClientActions.3Jwa5kdF3U6pWwQ8xd9peA:+iMLL3Woq+6lQMYRDdnU0w", "UBTConnect_Utils", "Handler_OnBack", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
             OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:gFpNLwcdrEi3Cb+puwiMSg", callContext.id);
             return OS.Flow.executeAsyncFlow(function() {
                 return OS.Flow.executeSequence(function() {
@@ -3283,6 +3354,9 @@ define("UBTConnect_Utils.CW_Share.ShareSheet.mvc$controller", ["OutSystems/Clien
                         OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:_LJ1dvSc1kOIF+n6cTKlFA", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
                         // IsSearchStep = False
                         model.variables.isSearchStepVar = false;
+                        OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:_LJ1dvSc1kOIF+n6cTKlFA", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "3");
+                        // IsSearching = False
+                        model.variables.isSearchingVar = false;
                         OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:PWBc5iiEs0aFeCX5hZoMOg", callContext.id);
                         // Execute Action: Action_ScrollTop
                         controller._action_ScrollTop$Action(callContext);
@@ -3527,7 +3601,7 @@ define("UBTConnect_Utils.CW_Share.ShareSheet.mvc$controller", ["OutSystems/Clien
         Controller.prototype.pushDebuggerContext = function(callContext) {
             var varBag = {};
             OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:pDMoTWIiTkS1lgPdIBVaUg:/NRWebFlows.pDMoTWIiTkS1lgPdIBVaUg:HjSruKDLIyQt9ROE1cl6OA", "UBTConnect_Utils", "CW_Share", "NRFlows.WebFlow", callContext.id, varBag);
-            OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:q6Blk2Tc2ECMgVxP4O8rcg:/NRWebFlows.pDMoTWIiTkS1lgPdIBVaUg/NodesShownInESpaceTree.q6Blk2Tc2ECMgVxP4O8rcg:fNOtpPYuXSNetJWdLMLIOQ", "UBTConnect_Utils", "ShareSheet", "NRNodes.WebBlock", callContext.id, varBag);
+            OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:q6Blk2Tc2ECMgVxP4O8rcg:/NRWebFlows.pDMoTWIiTkS1lgPdIBVaUg/NodesShownInESpaceTree.q6Blk2Tc2ECMgVxP4O8rcg:cXg2X4fkmgVgaKizt_uXLg", "UBTConnect_Utils", "ShareSheet", "NRNodes.WebBlock", callContext.id, varBag);
         };
         Controller.prototype.popDebuggerContext = function(callContext) {
             OutSystemsDebugger.pop("_OwvmJqPz0GyaZBFX4uPyQ:q6Blk2Tc2ECMgVxP4O8rcg", callContext.id);
@@ -3761,6 +3835,12 @@ define("UBTConnect_Utils.CW_Share.ShareSheet.mvc$debugger", ["exports", "OutSyst
                 return varBag.listFilter_SelectedMembersVar.value;
             }
         },
+        "pGgayR7PQkW8ftLcuy24bg": {
+            getter: function(varBag, idService) {
+                return varBag.vars.value.submitMessageVar;
+            },
+            dataType: OS.DataTypes.DataTypes.Text
+        },
         "5JOAbFpejkS1xYarVaKWcw": {
             getter: function(varBag, idService) {
                 return varBag.vars.value.in_TargetMemberIdsInLocal;
@@ -3771,9 +3851,19 @@ define("UBTConnect_Utils.CW_Share.ShareSheet.mvc$debugger", ["exports", "OutSyst
                 return varBag.notRegisteredVar.value;
             }
         },
+        "OmbFz+dNHUOBtXXA6lkv7A": {
+            getter: function(varBag, idService) {
+                return varBag.communicationErrorVar.value;
+            }
+        },
         "yRh42JVn1E22jPakJbGeUg": {
             getter: function(varBag, idService) {
                 return varBag.allExceptionsVar.value;
+            }
+        },
+        "dWJU2jNetkew_H_mJx+eEA": {
+            getter: function(varBag, idService) {
+                return varBag.communicationExceptionVar.value;
             }
         },
         "sVLKbjlWykmNop_D+f5TmA": {

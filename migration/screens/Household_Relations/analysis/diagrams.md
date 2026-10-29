@@ -55,13 +55,13 @@ flowchart TB
     S1["DataActionFetchNotes<br/>data action / aggregate, declared, not observed"]
     S2["DataActionGet_MemberDetails<br/>data action / aggregate, observed"]
     S3["ActionAppManager_SynchAppContext<br/>observed"]
-    S4["ActionGetSignedImagesInBulk<br/>observed"]
-    S5["ActionGetUserInformation<br/>observed"]
+    S4["ActionGetUserInformation<br/>observed"]
+    S5["ActionGetSignedImagesInBulk<br/>observed"]
     S6["ActionAppManager_AfterInitialize<br/>observed"]
     S7["ActionSync_Info_GetMain<br/>observed"]
     S8["ActionGetNumberUnreadMessages<br/>observed"]
-    S9["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
-    S10["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
+    S9["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
+    S10["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
   end
   Backend["Backend<br/>not visible from the browser"]
   B2 --> S0
@@ -102,16 +102,16 @@ sequenceDiagram
   S->>API: DataActionGet_MemberDetails
   API-->>S: MemberName, FamilyName, Father, Mother, FormerSpouses
   S->>S: onAfterFetch_Get_MemberDetails
-  S->>API: ServiceAPIFetchData_CacheableHouseholds
+  S->>API: ServiceAPIFetchData_CacheableMapEntities
   Note over S,API: observed in capture, trigger unverified (TODO)
   API-->>S: TODO outputs
-  S->>API: ServiceAPIFetchData_CacheableMapEntities
+  S->>API: ServiceAPIFetchData_CacheableHouseholds
   Note over S,API: observed in capture, trigger unverified (TODO)
   API-->>S: TODO outputs
   S->>S: OnReady
   alt success
     S-->>U: TODO render states (spec section 8)
-  else NotRegisteredException / SecurityException / UserException
+  else CommunicationException / NotRegisteredException / SecurityException / UserException
     S-->>U: TODO error UI and messages (spec section 11)
   end
 ```
@@ -135,25 +135,6 @@ sequenceDiagram
   end
 ```
 
-### Action: ActionGetSignedImagesInBulk
-```mermaid
-%% DRAFT: trigger from call-sites.md; replace TODOs with the result handling of the calling action
-sequenceDiagram
-  actor U as User
-  participant S as Directory_Household.HouseholdRelations_Block
-  participant API as screenservices
-  U->>S: TODO user event
-  Note over S: chain stops at UBTConnect_Utils.cache_SignedImageURL_GetCallback (see call-sites.md)
-  Note over S: via UBTConnect_Utils.cache_SignedImageURL_GetCallback → server GetSignedImagesInBulk
-  S->>API: ActionGetSignedImagesInBulk(TODO inputs)
-  API-->>S: TODO outputs
-  alt TODO branch
-    S-->>U: TODO
-  else TODO branch
-    S-->>U: TODO
-  end
-```
-
 ### Action: ActionGetUserInformation
 ```mermaid
 %% DRAFT: trigger from call-sites.md; replace TODOs with the result handling of the calling action
@@ -165,6 +146,25 @@ sequenceDiagram
   Note over S: chain stops at UBTConnect_Utils.cache_UserInfo_GetCallback (see call-sites.md)
   Note over S: via UBTConnect_Utils.cache_UserInfo_GetCallback → server GetUserInformation
   S->>API: ActionGetUserInformation(TODO inputs)
+  API-->>S: TODO outputs
+  alt TODO branch
+    S-->>U: TODO
+  else TODO branch
+    S-->>U: TODO
+  end
+```
+
+### Action: ActionGetSignedImagesInBulk
+```mermaid
+%% DRAFT: trigger from call-sites.md; replace TODOs with the result handling of the calling action
+sequenceDiagram
+  actor U as User
+  participant S as Directory_Household.HouseholdRelations_Block
+  participant API as screenservices
+  U->>S: TODO user event
+  Note over S: chain stops at UBTConnect_Utils.cache_SignedImageURL_GetCallback (see call-sites.md)
+  Note over S: via UBTConnect_Utils.cache_SignedImageURL_GetCallback → server GetSignedImagesInBulk
+  S->>API: ActionGetSignedImagesInBulk(TODO inputs)
   API-->>S: TODO outputs
   alt TODO branch
     S-->>U: TODO

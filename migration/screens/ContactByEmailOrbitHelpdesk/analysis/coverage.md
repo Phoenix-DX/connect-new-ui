@@ -1,7 +1,7 @@
 # Coverage for ContactByEmailOrbitHelpdesk
 
 - UI states captured: default
-- Runtime captures: 1 file(s), 0 call(s)
+- Runtime captures: 1 file(s), 3 call(s)
 - Masked text nodes: 2, user images removed: 0
 - Fetch failures during snapshot: 0
 

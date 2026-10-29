@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "a3c4ba6c676953a6d8c0",
+ "fingerprint": "34ffd4b3025a9b280beb",
  "options": {
   "text": true,
   "style": true,
@@ -27,20 +27,17 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-29T07:57:55.428Z",
+ "at": "2026-10-29T09:52:23.789Z",
  "counts": {},
  "exemptionsUsed": {
-  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 1,
-  "CAPTURE-TEXTAREA-ROWS-CONTACTBYEMAIL": 5,
-  "CAPTURE-TEXTAREA-ROWS-CONTACTBYEMAIL-FOOTER": 1,
-  "CAPTURE-TEXTAREA-ROWS-CONTACTBYEMAIL-PIXEL": 1
+  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 1
  },
  "pixel": {
-  "ratio": 0.00228,
-  "maxCell": 0.025,
+  "ratio": 0,
+  "maxCell": 0,
   "maxCellRatio": 0.03,
-  "diffPixels": 746,
-  "comparedPixels": 327886,
+  "diffPixels": 0,
+  "comparedPixels": 328289,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -52,13 +49,7 @@
    844
   ],
   "masks": 2,
-  "hotspots": [
-   "40,280 (40px)",
-   "80,280 (40px)",
-   "120,280 (40px)",
-   "160,280 (40px)",
-   "200,280 (40px)"
-  ],
+  "hotspots": [],
   "diffPng": "migration/screens/ContactByEmailMember/parity/offline.diff.png"
  },
  "calls": null,

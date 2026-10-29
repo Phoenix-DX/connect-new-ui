@@ -2,7 +2,7 @@
 
 - Path: `/UBTConnect/LDM_MyEvents_V2`
 - Viewport at capture: {'width': 390, 'height': 844, 'dpr': 1}
-- body class: `phone portrait connect-theme osx is-ltr`; body style: `--header-size-content: 0px; --footer-height: 46.875px; --viewport-height: 844px;`
+- body class: `phone portrait connect-theme osx is-ltr`; body style: `--header-size-content: 0px; --footer-height: 56px; --viewport-height: 844px;`
 - PWA: manifest `/UBTConnect/moduleservices/pwa/manifest`, service workers []
 - Screen file: `UBTConnect.Legacy_LDMEventsFlow_V2.LDM_MyEvents_V2.mvc.js`
 
@@ -16,16 +16,6 @@ LDM_ScreenBlocks_V2.ScreenBlock_MyEvents_V2
       LDM_Blocks_V2.MyEvents_MyTimelineFilterButton
       LDM_Blocks_V2.MyTimeline_V2
         LDM_Blocks.EventDetail_SubSection
-          LDM_Blocks_V2.EventCard_V2
-            LDM_Blocks.EventCard_Box
-              LDM_Blocks_V2.EventCard_Info_V2
-              LDM_Blocks.EventCard_Guests
-                Widgets.OverlappingImages
-          LDM_Blocks_V2.EventCard_V2
-            LDM_Blocks.EventCard_Box
-              LDM_Blocks_V2.EventCard_Info_V2
-              LDM_Blocks.EventCard_Guests
-                Widgets.OverlappingImages
           LDM_Blocks_V2.EventCard_V2
             LDM_Blocks.EventCard_Box
               LDM_Blocks_V2.EventCard_Info_V2
@@ -340,9 +330,9 @@ App_Common.CommonUI_InsideLayout
 | isRootPage | input | Boolean | `false` |
 - Lifecycle handlers: Initialize, Ready, ParametersChanged
 - Client actions / event handlers: `onInitialize`, `onReady`, `onParametersChanged`, `event_BottomBar_Clicked`, `bottomBar_Clicked`
-- Navigation: `/UBTConnect/HomeFeed`(); `/UBTConnect/CountryList`(); `/UBTConnect/Locality_Details`(); `/UBTConnect/Updates_SingleList`(); `/UBTConnect/Bookmarks`(); `/UBTConnect/New_MyBookmarks`(); `/UBTConnect/MyBookmarks`(); `/UBTConnect/Menu`()
+- Navigation: `/UBTConnect/HomeFeed`(); `/UBTConnect/CountryList`(); `/UBTConnect/Locality_Details`(); `/UBTConnect/Updates_SingleList`(); `/UBTConnect/Bookmarks`(); `/UBTConnect/Menu`()
 - JavaScript nodes: `UBTConnect.App_Common.BottomBarMenu.mvc$controller.OnParametersChanged.Delayed_BottomBarSlider_ForceRefreshJS`
-- Static entities / flags: `connect_BottomBar_Items.updates`, `uBT_Color.primary`, `uBT_Color.neutral6`, `uBT_IconsSize.base_24`, `uBT_FontSize.extraSmall`, `connect_BottomBar_Items.bookmarks`, `connect_BottomBar_Items.home`, `connect_BottomBar_Items.directory`, `launchDarkly_FF.mobileDirectoryBookmarkNote`, `connect_BottomBar_Items.menu`
+- Static entities / flags: `connect_BottomBar_Items.updates`, `uBT_Color.primary`, `uBT_Color.neutral6`, `uBT_IconsSize.base_24`, `uBT_FontSize.extraSmall`, `connect_BottomBar_Items.bookmarks`, `connect_BottomBar_Items.home`, `connect_BottomBar_Items.directory`, `connect_BottomBar_Items.menu`
 - Client variables: getDirectory_Updates_UnreadCount
 
 ## `OutSystemsUI_2_23.Navigation.BottomBarItem.mvc.js`
@@ -612,15 +602,16 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 3143 ms
-- 2. `DataActionGetEventLocalitiesForFilter` (200) at 4525 ms
-- 3. `DataActionGetEventsForMyTimeline` (200) at 4590 ms
-- 4. `ActionAppManager_AfterInitialize` (200) at 5799 ms
-- 5. `ActionSync_Info_GetMain` (200) at 6306 ms
-- 6. `ActionGetUserInformation` (200) at 6656 ms
-- 7. `ActionGetNumberUnreadMessages` (200) at 6936 ms
-- 8. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8500 ms
-- 9. `ServiceAPIFetchData_CacheableHouseholds` (200) at 11586 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 2792 ms
+- 2. `DataActionGetEventsForMyTimeline` (200) at 4124 ms
+- 3. `DataActionGetEventLocalitiesForFilter` (200) at 4125 ms
+- 4. `DataActionGetEventLocalitiesForFilter` (200) at 4418 ms
+- 5. `ActionAppManager_AfterInitialize` (200) at 5445 ms
+- 6. `ActionSync_Info_GetMain` (200) at 5969 ms
+- 7. `ActionGetUserInformation` (200) at 6317 ms
+- 8. `ActionGetNumberUnreadMessages` (200) at 6597 ms
+- 9. `ServiceAPIFetchData_CacheableMapEntities` (200) at 9040 ms
+- 10. `ServiceAPIFetchData_CacheableHouseholds` (200) at 11414 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

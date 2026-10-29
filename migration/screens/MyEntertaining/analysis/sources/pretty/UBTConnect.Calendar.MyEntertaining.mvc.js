@@ -161,6 +161,20 @@ define("UBTConnect.Calendar.MyEntertaining.mvc$view", ["OutSystems/ClientRuntime
                 events: {
                     _handleError: function(ex) {
                         controller.handleError(ex);
+                    },
+                    onNavBack$Action: function() {
+                        var eventHandlerContext = callContext.clone();
+                        return OS.Flow.tryFinally(function() {
+                            var varBag = {};
+                            controller.pushDebuggerContext(eventHandlerContext);
+
+                            OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "Calendar/MyEntertaining_Embedded OnNavBack");
+                            controller.handle_NavBack$Action(controller.callContext(eventHandlerContext));
+                        }, function() {
+                            controller.popDebuggerContext(eventHandlerContext);
+                        });
+
+                        ;
                     }
                 },
                 _validationProps: {
@@ -199,13 +213,42 @@ define("UBTConnect.Calendar.MyEntertaining.mvc$controller", ["OutSystems/ClientR
 
         Controller.prototype.dataFetchActionNames = [];
         // Client Actions
+        Controller.prototype._handle_NavBack$Action = function(callContext) {
+            var varBag = {};
+            var model = this.model;
+            var controller = this.controller;
+            var idService = this.idService;
+            varBag.model = model;
+            varBag.idService = idService;
+            controller.ensureControllerAlive("Handle_NavBack");
+            callContext = controller.callContext(callContext);
+            varBag.callContext = callContext;
+            try {
+                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:dd1kuXThvkqABIO6K4qGyg:/NRWebFlows.FzAHH4EQ0kOcszHAaF2leA/NodesShownInESpaceTree.4p9jadBfjU+LmXYvzjIhUQ/ClientActions.dd1kuXThvkqABIO6K4qGyg:PaVbEJ5p1CG+ap9FEPXQvQ", "UBTConnect", "Handle_NavBack", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:FDkGKy+h90mOFpq90mticQ", callContext.id);
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:wznkpz5iBEelXG9tO54ZXA", callContext.id);
+                // Destination: (PreviousScreen)
+                return OS.Navigation.navigateBack(null, callContext, true);
+            } catch (ex) {
+                OutSystemsDebugger.handleException(ex, callContext.id);
+                throw ex;
+            } finally {
+                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:dd1kuXThvkqABIO6K4qGyg", callContext.id);
+            }
 
+        };
+
+        Controller.prototype.handle_NavBack$Action = function(callContext) {
+            var controller = this.controller;
+            return controller.safeExecuteClientAction(controller._handle_NavBack$Action, callContext);
+
+        };
 
         // Event Handler Actions
         Controller.prototype.pushDebuggerContext = function(callContext) {
             var varBag = {};
             OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:FzAHH4EQ0kOcszHAaF2leA:/NRWebFlows.FzAHH4EQ0kOcszHAaF2leA:bxsuxVZ1+m7B3f0Wz9IOSw", "UBTConnect", "Calendar", "NRFlows.WebFlow", callContext.id, varBag);
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:4p9jadBfjU+LmXYvzjIhUQ:/NRWebFlows.FzAHH4EQ0kOcszHAaF2leA/NodesShownInESpaceTree.4p9jadBfjU+LmXYvzjIhUQ:3Z_mVkdEdI+NPcbr9APBbg", "UBTConnect", "MyEntertaining", "NRNodes.WebScreen", callContext.id, varBag);
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:4p9jadBfjU+LmXYvzjIhUQ:/NRWebFlows.FzAHH4EQ0kOcszHAaF2leA/NodesShownInESpaceTree.4p9jadBfjU+LmXYvzjIhUQ:j3IZl5sRVWt9Rdi0bMAUGg", "UBTConnect", "MyEntertaining", "NRNodes.WebScreen", callContext.id, varBag);
         };
         Controller.prototype.popDebuggerContext = function(callContext) {
             OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:4p9jadBfjU+LmXYvzjIhUQ", callContext.id);

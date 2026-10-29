@@ -173,9 +173,9 @@ App_Common.CommonUI_InsideLayout
 | isRootPage | input | Boolean | `false` |
 - Lifecycle handlers: Initialize, Ready, ParametersChanged
 - Client actions / event handlers: `onInitialize`, `onReady`, `onParametersChanged`, `event_BottomBar_Clicked`, `bottomBar_Clicked`
-- Navigation: `/UBTConnect/HomeFeed`(); `/UBTConnect/CountryList`(); `/UBTConnect/Locality_Details`(); `/UBTConnect/Updates_SingleList`(); `/UBTConnect/Bookmarks`(); `/UBTConnect/New_MyBookmarks`(); `/UBTConnect/MyBookmarks`(); `/UBTConnect/Menu`()
+- Navigation: `/UBTConnect/HomeFeed`(); `/UBTConnect/CountryList`(); `/UBTConnect/Locality_Details`(); `/UBTConnect/Updates_SingleList`(); `/UBTConnect/Bookmarks`(); `/UBTConnect/Menu`()
 - JavaScript nodes: `UBTConnect.App_Common.BottomBarMenu.mvc$controller.OnParametersChanged.Delayed_BottomBarSlider_ForceRefreshJS`
-- Static entities / flags: `connect_BottomBar_Items.updates`, `uBT_Color.primary`, `uBT_Color.neutral6`, `uBT_IconsSize.base_24`, `uBT_FontSize.extraSmall`, `connect_BottomBar_Items.bookmarks`, `connect_BottomBar_Items.home`, `connect_BottomBar_Items.directory`, `launchDarkly_FF.mobileDirectoryBookmarkNote`, `connect_BottomBar_Items.menu`
+- Static entities / flags: `connect_BottomBar_Items.updates`, `uBT_Color.primary`, `uBT_Color.neutral6`, `uBT_IconsSize.base_24`, `uBT_FontSize.extraSmall`, `connect_BottomBar_Items.bookmarks`, `connect_BottomBar_Items.home`, `connect_BottomBar_Items.directory`, `connect_BottomBar_Items.menu`
 - Client variables: getDirectory_Updates_UnreadCount
 
 ## `OutSystemsUI_2_23.Navigation.BottomBarItem.mvc.js`
@@ -464,15 +464,15 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 3374 ms
-- 2. `DataActionGet_HouseholdMembers` (200) at 5271 ms
-- 3. `DataActionGet_EventsByMemberId` (200) at 5597 ms
-- 4. `ActionAppManager_AfterInitialize` (200) at 7819 ms
-- 5. `ActionSync_Info_GetMain` (200) at 8608 ms
-- 6. `ActionGetUserInformation` (200) at 8965 ms
-- 7. `ActionGetNumberUnreadMessages` (200) at 9235 ms
-- 8. `ServiceAPIFetchData_CacheableMapEntities` (200) at 10977 ms
-- 9. `ServiceAPIFetchData_CacheableHouseholds` (200) at 14074 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 2985 ms
+- 2. `DataActionGet_HouseholdMembers` (200) at 4273 ms
+- 3. `DataActionGet_EventsByMemberId` (200) at 4571 ms
+- 4. `ActionAppManager_AfterInitialize` (200) at 6462 ms
+- 5. `ActionSync_Info_GetMain` (200) at 6893 ms
+- 6. `ActionGetUserInformation` (200) at 7269 ms
+- 7. `ActionGetNumberUnreadMessages` (200) at 7549 ms
+- 8. `ServiceAPIFetchData_CacheableMapEntities` (200) at 9328 ms
+- 9. `ServiceAPIFetchData_CacheableHouseholds` (200) at 11594 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

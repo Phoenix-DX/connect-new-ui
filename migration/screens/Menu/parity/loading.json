@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "06218cac3e5b83958099",
+ "fingerprint": "6eaa7ee1c560fca41cc7",
  "options": {
   "text": true,
   "style": true,
@@ -19,7 +19,7 @@
  },
  "replay": {
   "mode": "builder",
-  "elements": 354,
+  "elements": 352,
   "texts": 26,
   "comments": 0,
   "dropped": 0,
@@ -27,7 +27,7 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-29T08:01:31.558Z",
+ "at": "2026-10-29T09:55:58.129Z",
  "counts": {},
  "exemptionsUsed": {
   "ignoreSubtrees": 1
@@ -48,7 +48,7 @@
    390,
    844
   ],
-  "masks": 4,
+  "masks": 3,
   "hotspots": [],
   "diffPng": "migration/screens/Menu/parity/loading.diff.png"
  },

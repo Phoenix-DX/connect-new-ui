@@ -260,6 +260,7 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 ## Captured calls
 - none
+- plus 3 call(s) outside this screen, listed in calls.md
 
 ## Not yet captured (see coverage.md)
 - `App_Common_Blocks_PopupDialogs.Dialog_Navigation`

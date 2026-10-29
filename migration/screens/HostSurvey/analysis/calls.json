@@ -3,10 +3,43 @@
  "calls": [
   {
    "module": "Connect2_OrbitMobile_MUI",
+   "action": "DataActionGet_HostSurveyStatus",
+   "path": "/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_HostSurveyStatus",
+   "phase": "load",
+   "ts": 143,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "other"
+  },
+  {
+   "module": "Connect2_OrbitMobile_MUI",
+   "action": "DataActionGet_HasDocuments",
+   "path": "/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_HasDocuments",
+   "phase": "load",
+   "ts": 696,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "other"
+  },
+  {
+   "module": "Connect2_OrbitMobile_MUI",
+   "action": "DataActionGet_HasQRCode",
+   "path": "/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_HasQRCode",
+   "phase": "load",
+   "ts": 974,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "other"
+  },
+  {
+   "module": "Connect2_OrbitMobile_MUI",
    "action": "DataActionGetHostSurvey",
    "path": "/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks_HostSurvey/ScreenBlock_HostSurvey/DataActionGetHostSurvey",
    "phase": "load",
-   "ts": 2441,
+   "ts": 2804,
    "status": 200,
    "kind": "data",
    "inputNames": null,

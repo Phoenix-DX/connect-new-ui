@@ -1,7 +1,7 @@
 # Coverage for LDM_EventDetail_V2
 
 - UI states captured: default, loading, offline
-- Runtime captures: 1 file(s), 2 call(s)
+- Runtime captures: 1 file(s), 3 call(s)
 - Masked text nodes: 4, user images removed: 1
 - Fetch failures during snapshot: 0
 
@@ -10,14 +10,14 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 
 - [ ] `App_Common.UnsupportedVersion_Wrapper`
 - [ ] `App_Policies.Policy_Checker`
-- [ ] `BasePatterns.Columns_Two`
-- [ ] `BasePatterns.CustomContainer`
 - [ ] `CW_Image.UBT_LazyImage`
+- [ ] `CW_Notes.NoteListActions`
 - [ ] `CacheControl.CacheControl_Policies`
+- [ ] `ConnectPatterns.AddNote`
+- [ ] `ConnectPatterns.BottomSheet`
 - [ ] `ConnectPatterns.Button`
 - [ ] `ConnectPatterns.HighlightSearch`
 - [ ] `ConnectPatterns.IconSVG`
-- [ ] `ConnectPatterns.IconText`
 - [ ] `ConnectPatterns.LazyImage`
 - [ ] `Fingerprint.FingerprintScanner`
 - [ ] `LDM_Blocks.EventDetail_ListItem`
@@ -57,8 +57,10 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 
 ## Data/server actions declared in the screen and its blocks
 - [x] `DataActionGetCoordinatorDetails` (Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc.js)
+- [x] `DataActionFetchEventNotes` (Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc.js)
 - [x] `DataActionGetEventByEventId` (Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc.js)
 - [ ] `GetHouseholdCoordinates` (Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc.js)
+- [ ] `AddNote` (UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js)
 
 ## Module-level server actions (called from client actions; check which ones this screen uses)
 - [ ] `AddBookmark` (UBTConnect.controller.js)

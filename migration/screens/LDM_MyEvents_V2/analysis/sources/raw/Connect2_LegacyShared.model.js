@@ -16023,6 +16023,12 @@ return getUBT_Icons2izeRecord("71843981-3f48-434e-9d09-0d92f60a2591");
 }
 });
 
+Object.defineProperty(Connect2_LegacySharedModel.staticEntities.uBT_Icons2ize, "extraSmall_10", {
+get: function () {
+return getUBT_Icons2izeRecord("7adb5a43-441f-4ffb-a1ca-ed8abf3dfd88");
+}
+});
+
 Object.defineProperty(Connect2_LegacySharedModel.staticEntities.uBT_Icons2ize, "nonStandard_64", {
 get: function () {
 return getUBT_Icons2izeRecord("8512eb1f-1008-4d7c-b0a2-265a6aafacd0");
@@ -16044,6 +16050,12 @@ return getUBT_Icons2izeRecord("98d3467e-0017-4aa1-981f-929b030caf06");
 Object.defineProperty(Connect2_LegacySharedModel.staticEntities.uBT_Icons2ize, "nonStandard_108", {
 get: function () {
 return getUBT_Icons2izeRecord("9b36044e-87d6-4e9f-a8c0-6664a6a827d0");
+}
+});
+
+Object.defineProperty(Connect2_LegacySharedModel.staticEntities.uBT_Icons2ize, "nonStandard_40", {
+get: function () {
+return getUBT_Icons2izeRecord("c2e3aa72-9dd6-4972-a40c-78d0acde17ff");
 }
 });
 
@@ -16103,6 +16115,12 @@ return getUBT_Icons2Record("01fd0b0c-e174-41e1-b88b-9df6517c95ce");
 }
 });
 
+Object.defineProperty(Connect2_LegacySharedModel.staticEntities.uBT_Icons2, "sVG_CommunityCountries", {
+get: function () {
+return getUBT_Icons2Record("023e6a1c-c170-4b43-8324-297e10e0e896");
+}
+});
+
 Object.defineProperty(Connect2_LegacySharedModel.staticEntities.uBT_Icons2, "group", {
 get: function () {
 return getUBT_Icons2Record("038a4fe0-799e-494a-ab3c-211c23271654");
@@ -16124,6 +16142,12 @@ return getUBT_Icons2Record("051f2c2a-d1ce-42f4-b09b-bd094bca02f8");
 Object.defineProperty(Connect2_LegacySharedModel.staticEntities.uBT_Icons2, "add", {
 get: function () {
 return getUBT_Icons2Record("0714fea8-7dea-4bcf-8671-f26dfb688cc0");
+}
+});
+
+Object.defineProperty(Connect2_LegacySharedModel.staticEntities.uBT_Icons2, "sVG_CommunityMembers", {
+get: function () {
+return getUBT_Icons2Record("07cd8dc1-ba67-43c5-8b4a-98ff341f6944");
 }
 });
 
@@ -16793,6 +16817,12 @@ return getUBT_Icons2Record("7e770565-6756-489c-861a-03aa64a06828");
 }
 });
 
+Object.defineProperty(Connect2_LegacySharedModel.staticEntities.uBT_Icons2, "arrowDown", {
+get: function () {
+return getUBT_Icons2Record("82678915-1fde-4af5-b771-5962b251de3e");
+}
+});
+
 Object.defineProperty(Connect2_LegacySharedModel.staticEntities.uBT_Icons2, "videocam", {
 get: function () {
 return getUBT_Icons2Record("8346d388-9271-49fa-9b2c-5a38911088a4");
@@ -16949,6 +16979,12 @@ return getUBT_Icons2Record("adfcacc5-456f-4a69-84ed-970b9327d191");
 }
 });
 
+Object.defineProperty(Connect2_LegacySharedModel.staticEntities.uBT_Icons2, "sVG_CommunityHouseholds", {
+get: function () {
+return getUBT_Icons2Record("b2215bc2-e092-417f-87f8-cb12b3a2b672");
+}
+});
+
 Object.defineProperty(Connect2_LegacySharedModel.staticEntities.uBT_Icons2, "attachFile", {
 get: function () {
 return getUBT_Icons2Record("b27013a5-8612-4010-a849-44a7ff7cb50b");
@@ -17063,6 +17099,12 @@ return getUBT_Icons2Record("c483fbf3-95c0-4401-8b6f-8543ee7c35d5");
 }
 });
 
+Object.defineProperty(Connect2_LegacySharedModel.staticEntities.uBT_Icons2, "arrowUp", {
+get: function () {
+return getUBT_Icons2Record("c60b1b20-beb3-434e-98b8-70bf14ecb947");
+}
+});
+
 Object.defineProperty(Connect2_LegacySharedModel.staticEntities.uBT_Icons2, "checkCircle", {
 get: function () {
 return getUBT_Icons2Record("c60ed7fb-f4a1-4ba3-a1f1-e5db4b751804");
@@ -17126,6 +17168,12 @@ return getUBT_Icons2Record("d08478ad-9e1a-4c88-9dba-78eaea3cb291");
 Object.defineProperty(Connect2_LegacySharedModel.staticEntities.uBT_Icons2, "school", {
 get: function () {
 return getUBT_Icons2Record("d15b6b62-6b8c-45d8-b8e4-142d44c83ec9");
+}
+});
+
+Object.defineProperty(Connect2_LegacySharedModel.staticEntities.uBT_Icons2, "sVG_CommunityLocalities", {
+get: function () {
+return getUBT_Icons2Record("d2063973-e843-4517-a3fc-1a0a56fb1876");
 }
 });
 

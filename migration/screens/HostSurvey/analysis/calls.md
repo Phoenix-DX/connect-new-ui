@@ -2,7 +2,10 @@
 
 | # | t (ms) | call | status | scope | path |
 |---|---|---|---|---|---|
-| 1 | 2861 | `DataActionGetHostSurvey` | 200 | this screen | `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks_HostSurvey/ScreenBlock_HostSurvey/DataActionGetHostSurvey` |
+| 1 | 454 | `DataActionGet_HostSurveyStatus` | 200 | other (after navigating away, or app shell) | `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_HostSurveyStatus` |
+| 2 | 974 | `DataActionGet_HasDocuments` | 200 | other (after navigating away, or app shell) | `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_HasDocuments` |
+| 3 | 1272 | `DataActionGet_HasQRCode` | 200 | other (after navigating away, or app shell) | `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_HasQRCode` |
+| 4 | 3106 | `DataActionGetHostSurvey` | 200 | this screen | `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks_HostSurvey/ScreenBlock_HostSurvey/DataActionGetHostSurvey` |
 
 ## DataActionGetHostSurvey
 - Scope: this screen
@@ -127,46 +130,111 @@
 }
 ```
 
+## DataActionGet_HostSurveyStatus
+- Scope: other (after navigating away, or app shell)
+- Path: `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_HostSurveyStatus`
+- Server action input parameters: (none)
+- Screen variables sent with the call (OutSystems sends these automatically; React does not need to): `EventDetails`, `DateFilters`, `IsFetchingData`, `HostAllocation`, `HasQRCode`, `HasScanned`, `HasDocuments`, `IsEventUnavailable`, `UserInformation`, `EventNotes`, `In_MemberId`, `_in_MemberIdInDataFetchStatus`, `In_EventId`, `_in_EventIdInDataFetchStatus`, `In_EventName`, `_in_EventNameInDataFetchStatus`, `In_FromNotification`, `_in_FromNotificationInDataFetchStatus`, `Get_HostSurveyStatus`
+- Other request keys: (none)
+- Response type: `Get_HostSurveyStatusResponse` (see types.ts)
+```json
+{
+ "versionInfo": {
+  "hasModuleVersionChanged": false,
+  "hasApiVersionChanged": false
+ },
+ "data": {
+  "Response": {
+   "Id": "string",
+   "Description": "string (EMPTY)"
+  }
+ }
+}
+```
+
+## DataActionGet_HasDocuments
+- Scope: other (after navigating away, or app shell)
+- Path: `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_HasDocuments`
+- Server action input parameters: (none)
+- Screen variables sent with the call (OutSystems sends these automatically; React does not need to): `EventDetails`, `DateFilters`, `IsFetchingData`, `HostAllocation`, `HasQRCode`, `HasScanned`, `HasDocuments`, `IsEventUnavailable`, `UserInformation`, `EventNotes`, `In_MemberId`, `_in_MemberIdInDataFetchStatus`, `In_EventId`, `_in_EventIdInDataFetchStatus`, `In_EventName`, `_in_EventNameInDataFetchStatus`, `In_FromNotification`, `_in_FromNotificationInDataFetchStatus`, `Get_HostSurveyStatus`
+- Other request keys: (none)
+- Response type: `Get_HasDocumentsResponse` (see types.ts)
+```json
+{
+ "versionInfo": {
+  "hasModuleVersionChanged": false,
+  "hasApiVersionChanged": false
+ },
+ "data": {
+  "Response_HasDocuments": "boolean"
+ }
+}
+```
+
+## DataActionGet_HasQRCode
+- Scope: other (after navigating away, or app shell)
+- Path: `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_HasQRCode`
+- Server action input parameters: (none)
+- Screen variables sent with the call (OutSystems sends these automatically; React does not need to): `EventDetails`, `DateFilters`, `IsFetchingData`, `HostAllocation`, `HasQRCode`, `HasScanned`, `HasDocuments`, `IsEventUnavailable`, `UserInformation`, `EventNotes`, `In_MemberId`, `_in_MemberIdInDataFetchStatus`, `In_EventId`, `_in_EventIdInDataFetchStatus`, `In_EventName`, `_in_EventNameInDataFetchStatus`, `In_FromNotification`, `_in_FromNotificationInDataFetchStatus`, `Get_HostSurveyStatus`
+- Other request keys: (none)
+- Response type: `Get_HasQRCodeResponse` (see types.ts)
+```json
+{
+ "versionInfo": {
+  "hasModuleVersionChanged": false,
+  "hasApiVersionChanged": false
+ },
+ "data": {
+  "Response_HasQRCode": "boolean",
+  "Response_HasScanned": "boolean"
+ }
+}
+```
+
 ## Other requests during capture (no bodies)
 | request | count |
 |---|---|
-| `fetch /UBTConnect/EventDetail` | 1 |
+| `fetch /UBTConnect/OrbitLanding` | 1 |
+| `link /UBTConnect/css/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.css` | 1 |
+| `link /UBTConnect/css/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css` | 1 |
+| `link /UBTConnect/css/UBTConnect_Utils.CW_Notes.NotesSheet.css` | 1 |
+| `link /UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Note_Item.css` | 1 |
+| `xmlhttprequest https://australiaeast-0.in.applicationinsights.azure.com/v2/track` | 3 |
+| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.aggregates.IDB.js` | 1 |
 | `xmlhttprequest /UBTConnect/moduleservices/moduleversioninfo` | 2 |
 | `script /UBTConnect/scripts/UBTConnect.Legacy_OrbitEventsFlow.HostSurvey.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_HostSurvey.ScreenBlock_HostSurvey.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_TopMessage.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_NavigationItem.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.InputWithMaxChar.mvc.js` | 1 |
-| `script /UBTConnect/scripts/OutSystemsUI_2_23.Content.Accordion.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_StepHeader.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Orbit_ConfirmationPopUp_New.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_VehiclePills.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_MealPills.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_HelperPills.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AdminNotes.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_HelperItem.mvc.js` | 1 |
-| `script /UBTConnect/scripts/OutSystemsUI_2_23.Content.AccordionItem.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AccommodationPills.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_MealItem.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_Item.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.InputWithMaxChar.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AdminNotes.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_NavigationItem.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_MealPills.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_StepHeader.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_VehiclePills.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AccommodationPills.mvc.js` | 1 |
+| `script /UBTConnect/scripts/OutSystemsUI_2_23.Content.Accordion.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_MealItem.mvc.js` | 1 |
+| `script /UBTConnect/scripts/OutSystemsUI_2_23.Content.AccordionItem.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Orbit_FooterWithActions.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_HelperItem.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Orbit_ConfirmationPopUp_New.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_HelperPills.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_VehicleItem.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AccommodationItem.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AddHelper.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_LegacyShared.Reusable.InputCounter.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_MemberInformation_Survey.mvc.js` | 1 |
 | `script /UBTConnect/scripts/OutSystemsUI_2_23.Content.Tooltip.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.NoResults.mvc.js` | 1 |
+| `script /UBTConnect/scripts/OutSystemsUI_2_23.Adaptive.Columns4.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_LegacyShared.Reusable.InputCounter.mvc.js` | 1 |
 | `script /UBTConnect/scripts/OutSystemsUI_2_23.Adaptive.Gallery.mvc.js` | 1 |
 | `script /UBTConnect/scripts/OutSystemsUI_2_23.Interaction.InputWithIcon.mvc.js` | 1 |
-| `script /UBTConnect/scripts/OutSystemsUI_2_23.Adaptive.Columns4.mvc.js` | 1 |
-| `script /UBTConnect/scripts/OutSystemsUI_2_23.Interaction.BottomSheet.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.NoResults.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_LegacyShared.Widgets.MultiResolutionImageLoader.mvc.js` | 1 |
 | `link /UBTConnect/css/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AdminNotes.css` | 1 |
 | `link /UBTConnect/css/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AccommodationItem.css` | 1 |
 | `script /UBTConnect/scripts/OutSystemsUI_2_23.FloatingUICore.js` | 1 |
 | `script /UBTConnect/scripts/OutSystemsUI_2_23.FloatingUIDom.js` | 1 |
-| `xmlhttprequest https://australiaeast-0.in.applicationinsights.azure.com/v2/track` | 1 |
 | `fetch /UBTConnect/HostSurvey` | 1 |
 | `fetch /UBTConnect/moduleservices/moduleinfo` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect.Legacy_OrbitEventsFlow.HostSurvey.mvc.js` | 1 |
@@ -198,13 +266,13 @@
 | `fetch /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_TopMessage.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/OutSystemsUI_2_23.Content.Accordion.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/OutSystemsUI_2_23.Content.AccordionItem.mvc.js` | 1 |
-| `fetch /UBTConnect/status/network-ping.txt` | 2 |
 | `fetch /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_Item.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AccommodationPills.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_PillItem.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_MealPills.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Orbit_ConfirmationPopUp_New.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect.controller.js` | 1 |
+| `fetch /UBTConnect/status/network-ping.txt` | 2 |
 | `fetch /UBTConnect/scripts/UBTConnect.model.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect.languageResources.js` | 1 |
 | `fetch /UBTConnect/scripts/OutSystemsUI_2_23.controller.js` | 1 |

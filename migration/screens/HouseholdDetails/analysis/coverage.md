@@ -1,7 +1,7 @@
 # Coverage for HouseholdDetails
 
 - UI states captured: default, loading, offline
-- Runtime captures: 1 file(s), 15 call(s)
+- Runtime captures: 1 file(s), 16 call(s)
 - Masked text nodes: 17, user images removed: 6
 - Fetch failures during snapshot: 0
 
@@ -62,7 +62,7 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [x] `DataActionGetHousehold_Coordinates` (UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js)
 - [x] `DataActionGetHousehold` (UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js)
 - [x] `DataActionFetchContactDetails` (UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js)
-- [ ] `DataActionFetchNotes` (UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js)
+- [x] `DataActionFetchNotes` (UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js)
 - [ ] `AddNote` (UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js)
 - [ ] `DataActionGetAvailableMembers` (UBTConnect_Utils.CW_Share.ShareSheet.mvc.js)
 - [ ] `DataActionGetRecentlyShared` (UBTConnect_Utils.CW_Share.ShareSheet.mvc.js)

@@ -47,6 +47,12 @@ return true;
 }, false), 
 this.attr("_in_InitializeNavigationHandlerInDataFetchStatus", "_in_InitializeNavigationHandlerInDataFetchStatus", "_in_InitializeNavigationHandlerInDataFetchStatus", true, false, OS.DataTypes.DataTypes.Integer, function () {
 return /*Fetched*/ 1;
+}, false), 
+this.attr("In_IsHideTitle", "in_IsHideTitleIn", "In_IsHideTitle", true, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
+}, false), 
+this.attr("_in_IsHideTitleInDataFetchStatus", "_in_IsHideTitleInDataFetchStatus", "_in_IsHideTitleInDataFetchStatus", true, false, OS.DataTypes.DataTypes.Integer, function () {
+return /*Fetched*/ 1;
 }, false)
 ].concat(_super.attributesToDeclare.call(this));
 };
@@ -125,6 +131,14 @@ if("In_InitializeNavigationHandler" in inputs) {
 this.variables.in_InitializeNavigationHandlerIn = inputs.In_InitializeNavigationHandler;
 if("_in_InitializeNavigationHandlerInDataFetchStatus" in inputs) {
 this.variables._in_InitializeNavigationHandlerInDataFetchStatus = inputs._in_InitializeNavigationHandlerInDataFetchStatus;
+}
+
+}
+
+if("In_IsHideTitle" in inputs) {
+this.variables.in_IsHideTitleIn = inputs.In_IsHideTitle;
+if("_in_IsHideTitleInDataFetchStatus" in inputs) {
+this.variables._in_IsHideTitleInDataFetchStatus = inputs._in_IsHideTitleInDataFetchStatus;
 }
 
 }
@@ -283,7 +297,10 @@ service: idService,
 uuid: "3"
 },
 _widgetRecordProvider: widgetsRecordProvider
-}, React.createElement(OSWidgets.AdvancedHtml, {
+}, $if(model.variables.in_IsHideTitleIn, false, this, function () {
+return [];
+}, function () {
+return [React.createElement(OSWidgets.AdvancedHtml, {
 extendedProperties: {
 role: "banner",
 className: "header"
@@ -394,7 +411,8 @@ service: idService,
 name: "HeaderContent"
 },
 _widgetRecordProvider: widgetsRecordProvider
-})), React.createElement(OSWidgets.Container, {
+}))];
+}), React.createElement(OSWidgets.Container, {
 align: /*Default*/ 0,
 animate: false,
 style: "content",
@@ -687,7 +705,7 @@ return Promise.resolve();
 Controller.prototype.pushDebuggerContext = function (callContext) {
 var varBag = {};
 OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:szBrd5WGsE6bcDfQ68RumQ:/NRWebFlows.szBrd5WGsE6bcDfQ68RumQ:LSOi3iQzjd8avvO2ZKIsMw", "UBTConnectLibrary", "Layouts", "NRFlows.WebFlow", callContext.id, varBag);
-OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:rZtkhfag2kOPgRW3ZluqUw:/NRWebFlows.szBrd5WGsE6bcDfQ68RumQ/NodesShownInESpaceTree.rZtkhfag2kOPgRW3ZluqUw:vClcaUXy0JnE4k2GJzn77Q", "UBTConnectLibrary", "Layout_DetailPage", "NRNodes.WebBlock", callContext.id, varBag);
+OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:rZtkhfag2kOPgRW3ZluqUw:/NRWebFlows.szBrd5WGsE6bcDfQ68RumQ/NodesShownInESpaceTree.rZtkhfag2kOPgRW3ZluqUw:_JzflNoGPvIIBrjBzQSOTg", "UBTConnectLibrary", "Layout_DetailPage", "NRNodes.WebBlock", callContext.id, varBag);
 };
 Controller.prototype.popDebuggerContext = function (callContext) {
 OutSystemsDebugger.pop("lAQ0zS6tEEyl6BBIK9yo1A:rZtkhfag2kOPgRW3ZluqUw", callContext.id);
@@ -816,6 +834,12 @@ return varBag.model.variables.in_InitializeNavigationHandlerIn;
 },
 dataType: OS.DataTypes.DataTypes.Boolean
 },
+"ooO1JWwLbkyOUp0UC5l+qg": {
+getter: function (varBag, idService) {
+return varBag.model.variables.in_IsHideTitleIn;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
 "ZTAjDCz2jkuL_x5f7r4qyg": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
@@ -823,28 +847,35 @@ return model.widgets.get(idService.getId("LayoutWrapper_Detail"));
 })(varBag.model, idService);
 }
 },
-"jFQvRtLCtEi6DvfpHz7H2A": {
+"XB38ZQ7gsEK_JK8cqeuhEw": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("In_IsHideTitle_IF"));
+})(varBag.model, idService);
+}
+},
+"cLHRw4UYx0CP7cNj2GAXWw": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("Header"));
 })(varBag.model, idService);
 }
 },
-"mDUKWaxQBU6V2a3eI3xcYA": {
+"TXhscKR8PkalhuGXWsrxrA": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("Placeholder_Header_Title"));
 })(varBag.model, idService);
 }
 },
-"luhcpFL7dUWZyKCTj8UbNw": {
+"BzRnG2q4cEmvnFdNXuxQWg": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("Placeholder_Header_Right"));
 })(varBag.model, idService);
 }
 },
-"eFNvWsKH5EW_0tV80AuYwA": {
+"l8PKfcUNBUy5SrCwH56HeA": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("HeaderContent"));

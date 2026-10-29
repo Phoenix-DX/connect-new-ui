@@ -68,6 +68,12 @@ return "";
 }, false), 
 this.attr("_extendedClassInDataFetchStatus", "_extendedClassInDataFetchStatus", "_extendedClassInDataFetchStatus", true, false, OS.DataTypes.DataTypes.Integer, function () {
 return /*Fetched*/ 1;
+}, false), 
+this.attr("In_ForceLoadingState", "in_ForceLoadingStateIn", "In_ForceLoadingState", true, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
+}, false), 
+this.attr("_in_ForceLoadingStateInDataFetchStatus", "_in_ForceLoadingStateInDataFetchStatus", "_in_ForceLoadingStateInDataFetchStatus", true, false, OS.DataTypes.DataTypes.Integer, function () {
+return /*Fetched*/ 1;
 }, false)
 ].concat(_super.attributesToDeclare.call(this));
 };
@@ -162,6 +168,14 @@ if("ExtendedClass" in inputs) {
 this.variables.extendedClassIn = inputs.ExtendedClass;
 if("_extendedClassInDataFetchStatus" in inputs) {
 this.variables._extendedClassInDataFetchStatus = inputs._extendedClassInDataFetchStatus;
+}
+
+}
+
+if("In_ForceLoadingState" in inputs) {
+this.variables.in_ForceLoadingStateIn = inputs.In_ForceLoadingState;
+if("_in_ForceLoadingStateInDataFetchStatus" in inputs) {
+this.variables._in_ForceLoadingStateInDataFetchStatus = inputs._in_ForceLoadingStateInDataFetchStatus;
 }
 
 }
@@ -262,7 +276,7 @@ placeholder_LoadingSection: new PlaceholderContent(function () {
 return [React.createElement(UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, {
 inputs: {
 ExtendedClasses: model.getCachedValue(idService.getId("U5DpCjmiyUuhwGah6krioA.ExtendedClasses"), function () {
-return (((((!(model.variables.local_HasImageVar) || model.variables.isLoadingVar) || model.variables.isErrorVar)) ? ("hidden ") : ("")) + OutSystemsDebugger.handleFunctionCall(function () {
+return ((((((!(model.variables.local_HasImageVar) || model.variables.isLoadingVar) || model.variables.in_ForceLoadingStateIn) || model.variables.isErrorVar)) ? ("hidden ") : ("")) + OutSystemsDebugger.handleFunctionCall(function () {
 return UBTConnectLibraryController.default.formatClasses$Action(OutSystemsDebugger.handleFunctionCall(function () {
 return UBTConnectLibraryController.default.formatClasses$Action(model.variables.mainContainerClassVar, model.variables.extendedClassIn, callContext).classesOutOut;
 }, OS.DataTypes.DataTypes.Text, callContext.id), OutSystemsDebugger.handleFunctionCall(function () {
@@ -274,6 +288,8 @@ return model.variables.local_HasImageVar;
 }, function () {
 return model.variables.isLoadingVar;
 }, function () {
+return model.variables.in_ForceLoadingStateIn;
+}, function () {
 return model.variables.isErrorVar;
 }, function () {
 return model.variables.mainContainerClassVar;
@@ -284,7 +300,7 @@ return model.variables.in_ImageSizeIn.heightAttr;
 }, function () {
 return model.variables.in_ImageSizeIn.widthAttr;
 }),
-_extendedClassesInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables._extendedClassInDataFetchStatus, model.variables._in_ImageSizeInDataFetchStatus),
+_extendedClassesInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables._in_ForceLoadingStateInDataFetchStatus, model.variables._extendedClassInDataFetchStatus, model.variables._in_ImageSizeInDataFetchStatus),
 Options: model.getCachedValue(idService.getId("U5DpCjmiyUuhwGah6krioA.Options"), function () {
 return function () {
 var rec = new UBTConnectLibraryModel.ContainerOptionsRec();
@@ -342,7 +358,7 @@ _widgetRecordProvider: widgetsRecordProvider
 })
 },
 _dependencies: [asPrimitiveValue(model.variables.local_ImageURLVar)]
-}), $if(((!(model.variables.local_HasImageVar) || model.variables.isLoadingVar) || model.variables.isErrorVar), false, this, function () {
+}), $if((((!(model.variables.local_HasImageVar) || model.variables.isLoadingVar) || model.variables.isErrorVar) || model.variables.in_ForceLoadingStateIn), false, this, function () {
 return [React.createElement(UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, {
 inputs: {
 Options: model.getCachedValue(idService.getId("TairbGoO6ESEf6vskhpOUA.Options"), function () {
@@ -540,7 +556,7 @@ return [];
 })];
 })
 },
-_dependencies: [asPrimitiveValue(model.variables.hasErrorMessageIn), asPrimitiveValue(model.variables.fallbackPaddingIn), asPrimitiveValue(model.variables.fallbackOptionsIn.messageAttr), asPrimitiveValue(model.variables.fallbackOptionsIn.iconSizeIdAttr), asPrimitiveValue(model.variables.fallbackOptionsIn.iconIdAttr), asPrimitiveValue(model.variables.fallbackOptionsIn.sVGAttr), asPrimitiveValue(model.variables.fallbackOptionsIn.initialsAttr), asPrimitiveValue(model.variables.fallbackOptionsIn.fontSizeAttr), asPrimitiveValue(model.variables.fallbackOptionsIn.fontColorAttr), asPrimitiveValue(model.variables.fallbackOptionsIn.borderSizeAttr), asPrimitiveValue(model.variables.fallbackOptionsIn.borderColorAttr), asPrimitiveValue(model.variables.fallbackOptionsIn.backgroundColorAttr), asPrimitiveValue(model.variables.local_ImageURLVar), asPrimitiveValue(model.variables.in_BorderOptionsIn.borderRadiusAttr), asPrimitiveValue(model.variables.in_BorderOptionsIn.borderSizeIdAttr), asPrimitiveValue(model.variables.in_BorderOptionsIn.borderColorIdAttr), asPrimitiveValue(model.variables._hasErrorMessageInDataFetchStatus), asPrimitiveValue(model.variables._fallbackPaddingInDataFetchStatus), asPrimitiveValue(model.variables._fallbackOptionsInDataFetchStatus), asPrimitiveValue(model.variables._in_BorderOptionsInDataFetchStatus), asPrimitiveValue(model.variables._in_ImageSizeInDataFetchStatus), asPrimitiveValue(model.variables._extendedClassInDataFetchStatus), asPrimitiveValue(model.variables.in_ImageSizeIn.widthAttr), asPrimitiveValue(model.variables.in_ImageSizeIn.heightAttr), asPrimitiveValue(model.variables.extendedClassIn), asPrimitiveValue(model.variables.mainContainerClassVar), asPrimitiveValue(model.variables.isErrorVar), asPrimitiveValue(model.variables.isLoadingVar), asPrimitiveValue(model.variables.local_HasImageVar)]
+_dependencies: [asPrimitiveValue(model.variables.hasErrorMessageIn), asPrimitiveValue(model.variables.fallbackPaddingIn), asPrimitiveValue(model.variables.fallbackOptionsIn.messageAttr), asPrimitiveValue(model.variables.fallbackOptionsIn.iconSizeIdAttr), asPrimitiveValue(model.variables.fallbackOptionsIn.iconIdAttr), asPrimitiveValue(model.variables.fallbackOptionsIn.sVGAttr), asPrimitiveValue(model.variables.fallbackOptionsIn.initialsAttr), asPrimitiveValue(model.variables.fallbackOptionsIn.fontSizeAttr), asPrimitiveValue(model.variables.fallbackOptionsIn.fontColorAttr), asPrimitiveValue(model.variables.fallbackOptionsIn.borderSizeAttr), asPrimitiveValue(model.variables.fallbackOptionsIn.borderColorAttr), asPrimitiveValue(model.variables.fallbackOptionsIn.backgroundColorAttr), asPrimitiveValue(model.variables.local_ImageURLVar), asPrimitiveValue(model.variables.in_BorderOptionsIn.borderRadiusAttr), asPrimitiveValue(model.variables.in_BorderOptionsIn.borderSizeIdAttr), asPrimitiveValue(model.variables.in_BorderOptionsIn.borderColorIdAttr), asPrimitiveValue(model.variables._hasErrorMessageInDataFetchStatus), asPrimitiveValue(model.variables._fallbackPaddingInDataFetchStatus), asPrimitiveValue(model.variables._fallbackOptionsInDataFetchStatus), asPrimitiveValue(model.variables._in_BorderOptionsInDataFetchStatus), asPrimitiveValue(model.variables._in_ImageSizeInDataFetchStatus), asPrimitiveValue(model.variables._extendedClassInDataFetchStatus), asPrimitiveValue(model.variables._in_ForceLoadingStateInDataFetchStatus), asPrimitiveValue(model.variables.in_ImageSizeIn.widthAttr), asPrimitiveValue(model.variables.in_ImageSizeIn.heightAttr), asPrimitiveValue(model.variables.extendedClassIn), asPrimitiveValue(model.variables.mainContainerClassVar), asPrimitiveValue(model.variables.isErrorVar), asPrimitiveValue(model.variables.in_ForceLoadingStateIn), asPrimitiveValue(model.variables.isLoadingVar), asPrimitiveValue(model.variables.local_HasImageVar)]
 }));
         };
         return View;
@@ -884,8 +900,8 @@ return controller.safeExecuteClientAction(controller._onDestroy$Action, callCont
 // Event Handler Actions
 Controller.prototype.pushDebuggerContext = function (callContext) {
 var varBag = {};
-OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:GRnUlqBGNE26Hxr_Ah3_7g:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g:3o_94888UGa0qaomZFOpnQ", "UBTConnectLibrary", "ConnectPatterns", "NRFlows.WebFlow", callContext.id, varBag);
-OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:28wRm77okkyJuLk95oMeUw:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g/NodesShownInESpaceTree.28wRm77okkyJuLk95oMeUw:HRSLURmyFXpI5B+2TaklIw", "UBTConnectLibrary", "LazyImage", "NRNodes.WebBlock", callContext.id, varBag);
+OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:GRnUlqBGNE26Hxr_Ah3_7g:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g:Y06DhYqVkffzqTnycnKUGw", "UBTConnectLibrary", "ConnectPatterns", "NRFlows.WebFlow", callContext.id, varBag);
+OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:28wRm77okkyJuLk95oMeUw:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g/NodesShownInESpaceTree.28wRm77okkyJuLk95oMeUw:+VRTueGjI_VGx_2cnVGFKA", "UBTConnectLibrary", "LazyImage", "NRNodes.WebBlock", callContext.id, varBag);
 };
 Controller.prototype.popDebuggerContext = function (callContext) {
 OutSystemsDebugger.pop("lAQ0zS6tEEyl6BBIK9yo1A:28wRm77okkyJuLk95oMeUw", callContext.id);
@@ -1142,6 +1158,12 @@ getter: function (varBag, idService) {
 return varBag.model.variables.extendedClassIn;
 },
 dataType: OS.DataTypes.DataTypes.Text
+},
+"dn91cMbzqk6c61k28RO8_g": {
+getter: function (varBag, idService) {
+return varBag.model.variables.in_ForceLoadingStateIn;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
 },
 "NCwTYQ3usk+4NijWtyCp7Q": {
 getter: function (varBag, idService) {

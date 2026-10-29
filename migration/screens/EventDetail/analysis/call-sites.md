@@ -6,7 +6,11 @@ For every service call: the chains of code that lead to it, from a root (user ev
 
 ### `Connect2_LegacyShared/ActionGetAllApplicationEvents`
 - `HandleImageLoadError.applicationEvent_ImageError` → `Connect2_LegacyShared.zOnApplicationEvent_Wrapper` → `Connect2_LegacyShared.getAppEventName` → `Connect2_LegacyShared.cacheLocalApplicationEvents` → `server GetAllApplicationEvents`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
-- (5 chain(s) starting in blocks of other screens omitted)
+- `ItemNotesSection.handler_OnShareToOthers` → `UBTConnect_Utils.shareEntity_ByURL` → `Connect2_LegacyShared.auditShareEvent` → `Connect2_LegacyShared.zOnApplicationEvent_Wrapper` → `Connect2_LegacyShared.getAppEventName` → `Connect2_LegacyShared.cacheLocalApplicationEvents` → `server GetAllApplicationEvents`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
+- (4 chain(s) starting in blocks of other screens omitted)
+
+### `Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionFetchEventNotes`
+- `ScreenBlock_EventDetail fetch at start` → `ScreenBlock_EventDetail.DataActionFetchEventNotes`
 
 ### `Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_EventDetails`
 - `ScreenBlock_EventDetail.OnReady` → `ScreenBlock_EventDetail.onReady` → `ScreenBlock_EventDetail.DataActionGet_EventDetails`
@@ -25,6 +29,12 @@ For every service call: the chains of code that lead to it, from a root (user ev
 - `ScreenBlock_EventDetail fetch at start` → `ScreenBlock_EventDetail.DataActionGet_HasQRCode`
 
 ## Declared and reachable from the rendered blocks, not observed
+
+### `UBTConnect_Utils/CW_Notes/NotesSheet/ServiceAPIAddNote`
+- `NotesSheet.handler_OnSubmitNote` → `server AddNote`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
+
+### `UBTConnect_Utils/ActionCS_CreateShareProfileLink`
+- `ItemNotesSection.handler_OnShareToOthers` → `UBTConnect_Utils.shareEntity_ByURL` → `server CS_CreateShareProfileLink`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 
 ### `UBT_AppManager/ActionAppManager_SynchAppContext`
 - `HandleImageLoadError.applicationEvent_ImageError` → `Connect2_LegacyShared.zOnApplicationEvent_Wrapper` → `UBT_AppManager.azureInsights_CreateCustomEvent` → `UBT_AppManager.appManager_CheckAppContext` → `UBT_AppManager.appManager_GetConfiguration` → `UBT_AppManager.appManager_SynchAppContext` → `UBT_AppManager.appManager_SynchAppContextInternal` → `server AppManager_SynchAppContext`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)

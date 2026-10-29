@@ -6,13 +6,14 @@ Load order of stylesheets (keep this order in the build):
 2. `/UBTConnect/css/OutSystemsReactWidgets.css`
 3. `/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css`
 4. `/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Note_Item.css`
-5. `/UBTConnect/css/UBT_AppManager.PIN.PinCode.css`
-6. `/UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css`
-7. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css`
-8. `/UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css`
-9. `/UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css`
-10. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect.css`
-11. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css`
+5. `/UBTConnect/css/UBTConnect_Utils.CW_Notes.NotesSheet.css`
+6. `/UBTConnect/css/UBT_AppManager.PIN.PinCode.css`
+7. `/UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css`
+8. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css`
+9. `/UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css`
+10. `/UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css`
+11. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect.css`
+12. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css`
 
 Rules below are those whose selector contains a class used on the captured page, grouped by the block that owns the element. Full source: `styles/bundle.css`.
 
@@ -300,13 +301,13 @@ tive .header-right, .ubt-layout-main.layout-native .header-right, .phone .ubt-la
 ```css
 .connect-icon-arrow_left_alt:before { content: "\f09e"; }
 ```
+### .connect-icon-bookmark  (1 rule)
+```css
+.connect-icon-bookmark:before { content: "\f093"; }
+```
 ### .connect-icon-call  (1 rule)
 ```css
 .connect-icon-call:before { content: "\f08b"; }
-```
-### .connect-icon-check  (1 rule)
-```css
-.connect-icon-check:before { content: "\f087"; }
 ```
 ### .connect-icon-chevron_right  (1 rule)
 ```css
@@ -576,7 +577,7 @@ input.OSFillParent.calendar-input { display:none; }
 .list--gap-s > div { padding-bottom: var(--space-s); }
 .list--gap-s > .OSBlockWidget { display: block; }
 ```
-### .list-group  (24 rules)
+### .list-group  (25 rules)
 ```css
 .list.list-group { overflow:hidden; position:relative; }
 .list.list-group > [data-block*=AnimatedLabel]:first-child .animated-label { margin-top:var(--space-s); }
@@ -596,6 +597,7 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 .list.list-group.overflow-horizontal { overflow-x: auto; }
 .ubt-tag-list.list.list-group { display: flex; overflow-x: scroll; -ms-overflow-style: none; /* Internet Explorer 10+ */ scrollbar-width: none; /* Firefox */ }
 .ubt-tag-list.list.list-group::-webkit-scrollbar { display: none; /* Safari and Chrome */ }
+.list.list-group.recent-search-list { display: flex; gap: var(--space-s); overflow: hidden; overflow-x: auto; /* beats the theme's overflow: hidden */ }
 .Household_GalleryCard-list.list.list-group { display: flex; justify-content: flex-start; overflow-x: scroll; -ms-overflow-style: none; /* Internet Explorer 10+ */ scrollbar-width: none; /* Firefox */ }
 .Household_GalleryCard-list.list.list-group::-webkit-scrollbar { display: none; /* Safari and Chrome */ }
 .calendar-list.list.list-group { display: flex; flex-direction: row; overflow-x: auto !important; scroll-snap-type: x mandatory; /* scroll-behavior: smooth;*/ scroll-snap-points-x: repeat(100vw); -webkit-overflow-scrolling: touch; /* border-bottom: 1px solid var(--color-neutral-11);*/ background-color: white; }
@@ -718,12 +720,6 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 .ubt-image-card__background-image { height: var(--_ubt-background-image-size); overflow: hidden; }
 .ubt-image-card__background-image img { height: 100%; width: 100%; object-fit: cover; object-position: center center; }
 .ubt-image-card__background-image .ubt-unavailable-image img { height: 36px; width:36px; }
-```
-### .ubt-image-card__bookmarked  (3 rules)
-```css
-.ubt-icon, .ubt-image-card__bookmarked:before, .ubt-statistics-item__bookmarked:before, .ubt-locality-contact-item__bookmarked:before { /* Use !important to prevent extensions from overriding this font. */ font-family: "connect-icon" !important; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-.ubt-image-card__bookmarked:before { content: "\f087"; background-color: var(--color-primary); width: var(--ubt-icon-size); height: var(--ubt-icon-size); position: absolute; right: 0; color: var(--color-neutral-0); display: flex; justify-content: center; align-items: center; border: var(--border-size-s) solid var(--color-primary); border-bottom-left-radius: var(--border-radius-medium); }
-.ubt-image-card__bookmarked.bookmark--rounded:before { border-top-right-radius: var(--border-radius-large); }
 ```
 ### .ubt-image-card__content  (1 rule)
 ```css
@@ -1199,7 +1195,7 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 ```
 ## Generic utility classes (too many rules to list; see bundle.css)
 
-`.columns` (82), `.columns-item` (71), `.header` (51), `.layout` (53), `.layout-native` (241), `.layout-side` (89), `.list` (92), `.phone` (235)
+`.columns` (82), `.columns-item` (71), `.header` (51), `.layout` (53), `.layout-native` (241), `.layout-side` (89), `.list` (93), `.phone` (235)
 
 ## Design tokens referenced by the rules above
 

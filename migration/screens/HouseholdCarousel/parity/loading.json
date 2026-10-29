@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "8b2702e9c4a1ed3bb1dc",
+ "fingerprint": "63d89fc206efcab71888",
  "options": {
   "text": true,
   "style": true,
@@ -19,7 +19,7 @@
  },
  "replay": {
   "mode": "builder",
-  "elements": 1396,
+  "elements": 2296,
   "texts": 90,
   "comments": 0,
   "dropped": 0,
@@ -27,10 +27,10 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-29T07:59:32.727Z",
+ "at": "2026-10-29T09:54:00.121Z",
  "counts": {},
  "exemptionsUsed": {
-  "CAPTURE-VIA-USERINFO-HOUSEHOLDCAROUSEL-POPUP": 2,
+  "CAPTURE-VIA-USERINFO-HOUSEHOLDCAROUSEL-POPUP": 1,
   "ignoreSubtrees": 1
  },
  "pixel": {
@@ -49,7 +49,7 @@
    390,
    844
   ],
-  "masks": 4,
+  "masks": 3,
   "hotspots": [],
   "diffPng": "migration/screens/HouseholdCarousel/parity/loading.diff.png"
  },

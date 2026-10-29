@@ -43,7 +43,7 @@ flowchart TB
     S1["DataActionGetHousehold_Coordinates<br/>data action / aggregate, observed"]
     S2["DataActionGetHousehold<br/>data action / aggregate, observed"]
     S3["DataActionFetchContactDetails<br/>data action / aggregate, observed"]
-    S4["DataActionFetchNotes<br/>data action / aggregate, declared, not observed"]
+    S4["DataActionFetchNotes<br/>data action / aggregate, observed"]
     S5["DataActionGetAvailableMembers<br/>data action / aggregate, declared, not observed"]
     S6["DataActionGetRecentlyShared<br/>data action / aggregate, declared, not observed"]
     S7["DataActionGetCountryInfo<br/>data action / aggregate, observed"]
@@ -52,15 +52,15 @@ flowchart TB
     S10["ActionGetSignedImagesInBulk<br/>observed"]
     S11["ActionSync_Info_GetMain<br/>observed"]
     S12["ActionGetNumberUnreadMessages<br/>observed"]
-    S13["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
-    S14["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
+    S13["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
+    S14["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
   end
   Backend["Backend<br/>not visible from the browser"]
   Content --> S0
   Content --> S1
   Content --> S2
   Content --> S3
-  Content -.-> S4
+  Content --> S4
   Content -.-> S5
   Content -.-> S6
   Content --> S7
@@ -73,7 +73,7 @@ flowchart TB
   Content -.-> S14
   S0 -.-> Backend
   classDef unknown stroke-dasharray: 5 4;
-  class S4,S5,S6,Backend unknown;
+  class S5,S6,Backend unknown;
 ```
 
 ## Sequence: enter the screen (draft)
@@ -101,7 +101,8 @@ sequenceDiagram
   API-->>S: ContactPopupData, Phone, MobilePhone, HomePhone, WorkPhone
   S->>S: onAfterFetch_FetchContactDetails
   S->>API: DataActionFetchNotes
-  API-->>S: TODO outputs
+  API-->>S: Notes
+  S->>S: onAfterFetch_FetchNotes
   S->>API: DataActionGetAvailableMembers
   API-->>S: TODO outputs
   S->>S: onAfterFetch_GetAvailableMembers
@@ -111,10 +112,10 @@ sequenceDiagram
   S->>API: DataActionGetCountryInfo
   API-->>S: AddressInfo2
   S->>S: onAfterFetch_GetCountryInfo
-  S->>API: ServiceAPIFetchData_CacheableHouseholds
+  S->>API: ServiceAPIFetchData_CacheableMapEntities
   Note over S,API: observed in capture, trigger unverified (TODO)
   API-->>S: TODO outputs
-  S->>API: ServiceAPIFetchData_CacheableMapEntities
+  S->>API: ServiceAPIFetchData_CacheableHouseholds
   Note over S,API: observed in capture, trigger unverified (TODO)
   API-->>S: TODO outputs
   S->>S: OnReady

@@ -2,7 +2,7 @@
  "screen": "SupperMeeting_Carousel",
  "env": {
   "path": "/UBTConnect/SupperMeeting_Carousel",
-  "collectedAt": "2026-10-14T05:13:00.399Z",
+  "collectedAt": "2026-10-29T08:52:15.488Z",
   "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.37 Safari/537.36",
   "viewport": {
    "width": 390,
@@ -469,9 +469,9 @@
   }
  },
  "report": {
-  "maskedTexts": 44,
-  "keptTexts": 32,
-  "removedUserImages": 24,
+  "maskedTexts": 48,
+  "keptTexts": 27,
+  "removedUserImages": 25,
   "failed": []
  },
  "blocksOnPage": [
@@ -515,7 +515,6 @@
   "CW_CTA_PopUps.ContactPopup_ByMessage",
   "CW_CTA_PopUps.ContactPopup_ByPhone",
   "CW_CTA_PopUps.SharePopup",
-  "CW_Notes.NotesSheet",
   "Directory_SupperMeetings.SupperMeeting_HouseholdList",
   "Directory_Household_Blocks.Household_GalleryCard_List",
   "Adaptive.Gallery",
@@ -541,6 +540,7 @@
   "EventfulDeeplinksPlugin.DeeplinkHandlerCentral",
   "Utility.HandleImageLoadError",
   "NavigationHandler.BackNavigationHandler",
+  "CW_Notes.NotesSheet",
   "CW_Share.ShareSheet"
  ],
  "states": [
@@ -668,6 +668,12 @@
      "kind": "input",
      "type": "Boolean",
      "default": "true"
+    },
+    {
+     "name": "In_IsHideTitle",
+     "kind": "input",
+     "type": "Boolean",
+     "default": "false"
     }
    ],
    "dataActions": [],
@@ -1033,6 +1039,7 @@
    "exceptions": [],
    "jsNodes": [
     "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc$controller.Handler_EntitiesCarousel_Initialized.GetSplideCallbacksJS",
+    "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc$controller.Handler_EntitiesCarousel_Initialized.RemoveCarouselOnResizeHandlerJS",
     "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc$controller.Action_UpdateCarouselInternalPosition.SetInternalPositionJS"
    ],
    "staticEntities": [
@@ -1224,6 +1231,7 @@
     "ParametersChanged"
    ],
    "referencedBlocks": [
+    "UBTConnect.Directory_Caroussel.EntitiesCarousel_OneSchoolGlobal",
     "UBTConnect.Directory_Caroussel.EntitiesCarouse_lSupperMeetingDetails",
     "UBTConnect.Directory_Caroussel.CarouselTag",
     "UBTConnect.Directory_Caroussel.EntitiesCarousel_HouseholdDetails"
@@ -1236,6 +1244,7 @@
    "exceptions": [],
    "jsNodes": [],
    "staticEntities": [
+    "connect_Entity.oneSchoolGlobal",
     "connect_Entity.supperMeetings_aka_Subdivisions",
     "connect_Entity.household"
    ],
@@ -1707,6 +1716,12 @@
      "kind": "input",
      "type": "Boolean",
      "default": "false"
+    },
+    {
+     "name": "In_ForceLoadingState",
+     "kind": "input",
+     "type": "Boolean",
+     "default": "false"
     }
    ],
    "dataActions": [],
@@ -1860,6 +1875,12 @@
      "kind": "input",
      "type": "Text",
      "default": "\"\""
+    },
+    {
+     "name": "In_ForceLoadingState",
+     "kind": "input",
+     "type": "Boolean",
+     "default": "false"
     }
    ],
    "dataActions": [],
@@ -2932,25 +2953,7 @@
      "default": "false"
     },
     {
-     "name": "Local_isBookmarked_C2",
-     "kind": "local",
-     "type": "Boolean",
-     "default": "false"
-    },
-    {
-     "name": "Local_BookmarkType",
-     "kind": "local",
-     "type": "Text",
-     "default": "\"\""
-    },
-    {
-     "name": "Local_BookmarkTypeId_C2",
-     "kind": "local",
-     "type": "Text",
-     "default": "\"\""
-    },
-    {
-     "name": "Local_BookmarkGroup",
+     "name": "Local_BookmarkTypeId",
      "kind": "local",
      "type": "Text",
      "default": "\"\""
@@ -3022,6 +3025,18 @@
      "default": "\"\""
     },
     {
+     "name": "EntityNotes",
+     "kind": "local",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec())"
+    },
+    {
+     "name": "FetchNoteId",
+     "kind": "local",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
      "name": "IsEnabled",
      "kind": "input",
      "type": "Boolean",
@@ -3058,7 +3073,7 @@
      "default": "false"
     },
     {
-     "name": "EntityExtraDataJSON",
+     "name": "In_LocalityId",
      "kind": "input",
      "type": "Text",
      "default": "\"\""
@@ -3123,9 +3138,9 @@
     "handleFetchError",
     "onParametersChanged",
     "action_AsyncRefresh_ContactDetails",
-    "handler_OnNotesChanged",
+    "handler_OnSheetNotesChanged",
     "handle_Share_Others",
-    "handler_AddNotes",
+    "handler_AddNotesOnClick",
     "handle_Bookmark",
     "action_ApplyPopUpOverrides",
     "handler_OnNoteDeleted",
@@ -3134,6 +3149,7 @@
     "action_UpdateContactDetails",
     "handle_Mail",
     "handle_Share",
+    "onAfterFetch_FetchNotes",
     "handle_Call",
     "handle_Share_Connect",
     "action_RefreshFetchNotes",
@@ -3176,12 +3192,12 @@
     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Handle_Share_Connect.YieldJS"
    ],
    "staticEntities": [
+    "connect_Entity.interchange",
     "uBT_SystemExceptionTypes.notRegisteredException",
     "connect_Entity.oneSchoolGlobal",
     "connect_Entity.member",
     "connect_Entity.locality",
     "connect_Entity.household",
-    "connect_Entity.interchange",
     "connect_Entity.supperMeetings_aka_Subdivisions"
    ],
    "clientVariables": [
@@ -3779,111 +3795,6 @@
    ],
    "clientVariables": [],
    "candidateStrings": []
-  },
-  "UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js": {
-   "file": "UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js",
-   "displayName": [
-    "CW_Notes.NotesSheet"
-   ],
-   "variables": [
-    {
-     "name": "BottomSheetId",
-     "kind": "local",
-     "type": "Text",
-     "default": "\"\""
-    },
-    {
-     "name": "IsEditing",
-     "kind": "local",
-     "type": "Boolean",
-     "default": "false"
-    },
-    {
-     "name": "IsSheetOpen",
-     "kind": "local",
-     "type": "Boolean",
-     "default": "false"
-    },
-    {
-     "name": "In_IsOpen",
-     "kind": "input",
-     "type": "Boolean",
-     "default": "false"
-    },
-    {
-     "name": "ExtendedClasses",
-     "kind": "input",
-     "type": "Text",
-     "default": "\"\""
-    },
-    {
-     "name": "In_ItemId",
-     "kind": "input",
-     "type": "LongInteger",
-     "default": "OS.DataTypes.LongInteger.defaultValue"
-    },
-    {
-     "name": "In_NoteCategoryId",
-     "kind": "input",
-     "type": "Text",
-     "default": "\"\""
-    },
-    {
-     "name": "In_Notes",
-     "kind": "input",
-     "type": "Record",
-     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec())"
-    }
-   ],
-   "dataActions": [],
-   "aggregates": [],
-   "serverActions": [
-    {
-     "name": "AddNote",
-     "url": "screenservices/UBTConnect_Utils/CW_Notes/NotesSheet/ServiceAPIAddNote"
-    }
-   ],
-   "navigation": [],
-   "navigateBack": 0,
-   "clientActions": [
-    "handler_OnAddNoteRequested",
-    "backNavigationHandlerBackNavigation",
-    "bottomSheet_Initialized",
-    "onParametersChanged",
-    "handler_OnEditingStateChanged",
-    "handler_OnSaveEditNote",
-    "action_SetBottomSheetOpen",
-    "on_NotesChanged",
-    "on_NoteSheet_Closed",
-    "on_NoteDeleted"
-   ],
-   "lifecycle": [
-    "ParametersChanged"
-   ],
-   "referencedBlocks": [
-    "UBTConnectLibrary.ConnectPatterns.BottomSheet",
-    "UBTConnect_Utils.CW_Notes.NoteListActions",
-    "UBTConnectLibrary.ConnectPatterns.AddNote",
-    "NavigationHandler.NavigationHandler.BackNavigationHandler"
-   ],
-   "cssDependencies": [
-    "css/OutSystemsReactWidgets.css"
-   ],
-   "images": [],
-   "feedbackMessages": [],
-   "exceptions": [
-    "UserException"
-   ],
-   "jsNodes": [
-    "UBTConnect_Utils.CW_Notes.NotesSheet.mvc$controller.OnParametersChanged.DelaySetIsOpenJS"
-   ],
-   "staticEntities": [
-    "noteActionType.add"
-   ],
-   "clientVariables": [],
-   "candidateStrings": [
-    "Action_SetBottomSheetOpen"
-   ]
   },
   "UBTConnect.Directory_SupperMeetings.SupperMeeting_HouseholdList.mvc.js": {
    "file": "UBTConnect.Directory_SupperMeetings.SupperMeeting_HouseholdList.mvc.js",
@@ -5401,6 +5312,128 @@
     "TriggerBackNavigation"
    ]
   },
+  "UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js": {
+   "file": "UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js",
+   "displayName": [
+    "CW_Notes.NotesSheet"
+   ],
+   "variables": [
+    {
+     "name": "BottomSheetId",
+     "kind": "local",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
+     "name": "IsEditing",
+     "kind": "local",
+     "type": "Boolean",
+     "default": "false"
+    },
+    {
+     "name": "IsSheetOpen",
+     "kind": "local",
+     "type": "Boolean",
+     "default": "false"
+    },
+    {
+     "name": "NoteText",
+     "kind": "local",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
+     "name": "IsSubmittingNote",
+     "kind": "local",
+     "type": "Boolean",
+     "default": "false"
+    },
+    {
+     "name": "In_IsOpen",
+     "kind": "input",
+     "type": "Boolean",
+     "default": "false"
+    },
+    {
+     "name": "ExtendedClasses",
+     "kind": "input",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
+     "name": "In_ItemId",
+     "kind": "input",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
+     "name": "In_NoteCategoryId",
+     "kind": "input",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
+     "name": "In_Notes",
+     "kind": "input",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec())"
+    }
+   ],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [
+    {
+     "name": "AddNote",
+     "url": "screenservices/UBTConnect_Utils/CW_Notes/NotesSheet/ServiceAPIAddNote"
+    }
+   ],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [
+    "handler_OnSubmitNote",
+    "backNavigationHandlerBackNavigation",
+    "bottomSheetOnToggle",
+    "bottomSheet_Initialized",
+    "onParametersChanged",
+    "handler_OnEditingStateChanged",
+    "handler_OnSaveEditNote",
+    "action_SetBottomSheetOpen",
+    "handler_OnNoteSheet_Closed",
+    "on_NotesChanged",
+    "on_NoteSheet_Closed",
+    "on_NoteDeleted"
+   ],
+   "lifecycle": [
+    "ParametersChanged"
+   ],
+   "referencedBlocks": [
+    "UBTConnectLibrary.ConnectPatterns.BottomSheet",
+    "UBTConnect_Utils.CW_Notes.NoteListActions",
+    "UBTConnectLibrary.BasePatterns.CustomContainer",
+    "UBTConnectLibrary.ConnectPatterns.AddNote",
+    "NavigationHandler.NavigationHandler.BackNavigationHandler"
+   ],
+   "cssDependencies": [
+    "css/OutSystemsReactWidgets.css",
+    "css/UBTConnect_Utils.CW_Notes.NotesSheet.css"
+   ],
+   "images": [],
+   "feedbackMessages": [],
+   "exceptions": [
+    "CommunicationException",
+    "UserException"
+   ],
+   "jsNodes": [
+    "UBTConnect_Utils.CW_Notes.NotesSheet.mvc$controller.OnParametersChanged.DelaySetIsOpenJS"
+   ],
+   "staticEntities": [
+    "noteActionType.add"
+   ],
+   "clientVariables": [],
+   "candidateStrings": [
+    "Action_SetBottomSheetOpen"
+   ]
+  },
   "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js": {
    "file": "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js",
    "displayName": [
@@ -5661,11 +5694,13 @@
    ],
    "images": [],
    "feedbackMessages": [
-    "(model.variables.in_ShareObjectTypeIdIn + \" has been shared.\"), /*Info*/ 0)",
+    "(vars.value.submitMessageVar + \" has been shared.\"), /*Info*/ 0)",
     "\"Share failed. Please try again.\", /*Error*/ 3)"
    ],
    "exceptions": [
-    "NotRegisteredException"
+    "NotRegisteredException",
+    "UserException",
+    "CommunicationException"
    ],
    "jsNodes": [
     "UBTConnect_Utils.CW_Share.ShareSheet.mvc$controller.ScreenEvent_OnParametersChanged.DelaySetIsOpenJS",
@@ -5713,7 +5748,8 @@
     "type_ExternalShareOption.signal",
     "uBT_Icons.signal",
     "type_ExternalShareOption.outlook",
-    "uBT_Icons.mail"
+    "uBT_Icons.mail",
+    "type_ShareObject.household"
    ],
    "clientVariables": [],
    "candidateStrings": [
@@ -5781,7 +5817,8 @@
     "\"Bookmark could not be removed. Please try again later.\", /*Info*/ 0)"
    ],
    "exceptions": [
-    "UserException"
+    "UserException",
+    "NotRegisteredException"
    ],
    "jsNodes": [
     "UBTConnect.controller$Carousel_SetCurrentPosition.SetCurrentPositionJS",
@@ -5808,6 +5845,7 @@
     "UBTConnect.controller$OpenGooglePlay_WebView.OpenGooglePlayJS",
     "UBTConnect.controller$ScrollTop.ScrollTopJS",
     "UBTConnect.controller$SetResumeLoginLink.JavaScript1JS",
+    "UBTConnect.controller$ShowCommunicationExceptionMessage.CheckIsOnlineNowJS",
     "UBTConnect.controller$TextListAppend_Function.JS_AppendJS",
     "UBTConnect.controller$UnlockOrientationLandscapeIfNeeded.IsLandscapeJS",
     "UBTConnect.controller$UnlockOrientationLandscapeIfNeeded.MaybeRemoveLandscapeJS",
@@ -5913,7 +5951,7 @@
     "noteCategory2.member",
     "bookmarkCategory.locality",
     "noteCategory2.locality",
-    "bookmarkCategory.oneSchoolGlobal",
+    "bookmarkCategory.oneSchoolGlobal2",
     "noteCategory2.oneSchoolGlobal",
     "bookmarkCategory.feedItem",
     "noteCategory2.feedItem",
@@ -5934,18 +5972,10 @@
     "connect_Entity.locality",
     "connect_Entity.oneSchoolGlobal",
     "connect_Entity.feedItem",
-    "myBookmarks_ObjectType.locality",
-    "myBookmarks_Group.locations",
-    "myBookmarks_ObjectType.contact",
-    "myBookmarks_Group.contacts",
-    "myBookmarks_ObjectType.subdivision",
-    "myBookmarks_ObjectType.oneSchoolGlobal",
-    "myBookmarks_Group.entities",
     "calendarView.month",
     "calendarView.week",
     "calendarView.day",
     "recurrenceRangeType.endDate",
-    "launchDarkly_FF.mobileDirectoryLocalityContacts",
     "type_ShareObject.locality",
     "type_ShareObject.household",
     "type_ShareObject.supperMeeting",
@@ -6059,6 +6089,7 @@
     "UBTConnectLibrary.controller$IsPhoneNumberValid.CheckFormatPhoneNumberJS",
     "UBTConnectLibrary.controller$OnApplicationReady_BottomBarSlider.InitializeJS",
     "UBTConnectLibrary.controller$OnApplicationReady_MobileKeyboardVisible.HandleMobileKeyboardVisibilityJS",
+    "UBTConnectLibrary.controller$PreetyFormatDate.JavaScript1JS",
     "UBTConnectLibrary.controller$RemoveRegexSpecialCharacters.RemoveRegexSpecialCharactersJS",
     "UBTConnectLibrary.controller$RemoveScrollEvents.RemoveScrollEventsJS",
     "UBTConnectLibrary.controller$ResetSvgFlags.ResetSvgVariablesJS",
@@ -6791,19 +6822,26 @@
     "type_ExternalShareOption.outlook",
     "type_ShareObject.myHousehold",
     "type_ShareObject.household",
-    "type_ShareObject.locality",
-    "connect_Entity.locality",
     "connect_Entity.household",
-    "type_ShareObject.supperMeeting",
+    "noteCategory.household",
     "connect_Entity.supperMeetings_aka_Subdivisions",
-    "type_ShareObject.oneSchoolGlobal",
-    "connect_Entity.oneSchoolGlobal",
-    "type_ShareObject.feed",
-    "connect_Entity.feedItem",
+    "noteCategory.supperMeeting",
+    "connect_Entity.interchange",
+    "noteCategory.interchange",
     "connect_Entity.member",
+    "noteCategory.member",
+    "connect_Entity.locality",
+    "noteCategory.locality",
+    "connect_Entity.oneSchoolGlobal",
+    "noteCategory.oneSchoolGlobal",
+    "connect_Entity.feedItem",
+    "noteCategory.feedItem",
+    "type_ShareObject.locality",
+    "type_ShareObject.supperMeeting",
+    "type_ShareObject.oneSchoolGlobal",
+    "type_ShareObject.feed",
     "uBT_Icons.personFill",
     "uBT_Icons.homePIn",
-    "connect_Entity.interchange",
     "uBT_Icons.partnerExchange",
     "uBT_Icons.houseFill",
     "uBT_Icons.schoolFill",
@@ -7385,7 +7423,6 @@
   "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByMessage.mvc.js",
   "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone.mvc.js",
   "UBTConnect_Utils.CW_CTA_PopUps.SharePopup.mvc.js",
-  "UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js",
   "UBTConnect.Directory_SupperMeetings.SupperMeeting_HouseholdList.mvc.js",
   "UBTConnect.Directory_Household_Blocks.Household_GalleryCard_List.mvc.js",
   "OutSystemsUI_2_23.Adaptive.Gallery.mvc.js",
@@ -7411,6 +7448,7 @@
   "EventfulDeeplinksPlugin.EventfulDeeplinksPlugin.DeeplinkHandlerCentral.mvc.js",
   "Connect2_LegacyShared.Utility.HandleImageLoadError.mvc.js",
   "NavigationHandler.NavigationHandler.BackNavigationHandler.mvc.js",
+  "UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js",
   "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js"
  ],
  "otherSourceFiles": [],
@@ -7432,6 +7470,7 @@
   "ConnectPatterns.IconSVG",
   "ConnectPatterns.Input",
   "Directory_Caroussel.EntitiesCarousel_HouseholdDetails",
+  "Directory_Caroussel.EntitiesCarousel_OneSchoolGlobal",
   "Directory_CommonBlocks.Directory_EmptyState",
   "Fingerprint.FingerprintScanner",
   "NavigationHandler.PreventBackNavigation",
@@ -7540,6 +7579,7 @@
   "/UBTConnect/css/OutSystemsReactWidgets.css",
   "/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css",
   "/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Note_Item.css",
+  "/UBTConnect/css/UBTConnect_Utils.CW_Notes.NotesSheet.css",
   "/UBTConnect/css/UBTConnect.Directory_Caroussel.EntitiesCarousel.css",
   "/UBTConnect/css/UBT_AppManager.PIN.PinCode.css",
   "/UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css",
@@ -7553,7 +7593,7 @@
  "calls": [
   {
    "order": 1,
-   "t": 2707,
+   "t": 2812,
    "action": "DataActionGetSubdivisionHouseholds",
    "path": "/UBTConnect/screenservices/UBTConnect/Directory_SupperMeetings/SupperMeeting_HouseholdList/DataActionGetSubdivisionHouseholds",
    "status": 200,
@@ -7561,7 +7601,7 @@
   },
   {
    "order": 2,
-   "t": 2736,
+   "t": 2831,
    "action": "DataActionGetSubdivisionHouseholds",
    "path": "/UBTConnect/screenservices/UBTConnect/Directory_SupperMeetings/SupperMeeting_HouseholdList/DataActionGetSubdivisionHouseholds",
    "status": 200,
@@ -7569,7 +7609,7 @@
   },
   {
    "order": 3,
-   "t": 2748,
+   "t": 2838,
    "action": "DataActionGetSubdivisionHouseholds",
    "path": "/UBTConnect/screenservices/UBTConnect/Directory_SupperMeetings/SupperMeeting_HouseholdList/DataActionGetSubdivisionHouseholds",
    "status": 200,
@@ -7577,15 +7617,15 @@
   },
   {
    "order": 4,
-   "t": 3056,
-   "action": "DataActionFetchContactDetails",
-   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
+   "t": 2898,
+   "action": "DataActionFetchNotes",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchNotes",
    "status": 200,
    "scope": "this screen"
   },
   {
    "order": 5,
-   "t": 3423,
+   "t": 2933,
    "action": "DataActionFetchContactDetails",
    "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
    "status": 200,
@@ -7593,31 +7633,31 @@
   },
   {
    "order": 6,
-   "t": 3839,
-   "action": "DataActionFetchContactDetails",
-   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
-   "status": 200,
-   "scope": "this screen"
-  },
-  {
-   "order": 7,
-   "t": 4069,
+   "t": 2969,
    "action": "DataActionGetSubdivision",
    "path": "/UBTConnect/screenservices/UBTConnect/Directory_SupperMeetings/SupperMeeting_DetailsBlock/DataActionGetSubdivision",
    "status": 200,
    "scope": "this screen"
   },
   {
+   "order": 7,
+   "t": 3001,
+   "action": "DataActionFetchNotes",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchNotes",
+   "status": 200,
+   "scope": "this screen"
+  },
+  {
    "order": 8,
-   "t": 4722,
-   "action": "DataActionFetchContactDetails",
-   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
+   "t": 3016,
+   "action": "DataActionFetchNotes",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchNotes",
    "status": 200,
    "scope": "this screen"
   },
   {
    "order": 9,
-   "t": 4726,
+   "t": 3019,
    "action": "DataActionFetchContactDetails",
    "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
    "status": 200,
@@ -7625,39 +7665,39 @@
   },
   {
    "order": 10,
-   "t": 5138,
-   "action": "DataActionGetSubdivision",
-   "path": "/UBTConnect/screenservices/UBTConnect/Directory_SupperMeetings/SupperMeeting_DetailsBlock/DataActionGetSubdivision",
+   "t": 3034,
+   "action": "DataActionFetchContactDetails",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
    "status": 200,
    "scope": "this screen"
   },
   {
    "order": 11,
-   "t": 5290,
-   "action": "DataActionFetchContactDetails",
-   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
-   "status": 200,
-   "scope": "this screen"
-  },
-  {
-   "order": 12,
-   "t": 5326,
+   "t": 3675,
    "action": "DataActionGetSubdivision",
    "path": "/UBTConnect/screenservices/UBTConnect/Directory_SupperMeetings/SupperMeeting_DetailsBlock/DataActionGetSubdivision",
    "status": 200,
    "scope": "this screen"
   },
   {
-   "order": 13,
-   "t": 5366,
+   "order": 12,
+   "t": 3688,
    "action": "DataActionFetchContactDetails",
    "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
    "status": 200,
    "scope": "this screen"
   },
   {
+   "order": 13,
+   "t": 3985,
+   "action": "ActionGetSignedImagesInBulk",
+   "path": "/UBTConnect/screenservices/UBTConnect_Utils/ActionGetSignedImagesInBulk",
+   "status": 200,
+   "scope": "this screen"
+  },
+  {
    "order": 14,
-   "t": 5555,
+   "t": 4429,
    "action": "DataActionFetchContactDetails",
    "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
    "status": 200,
@@ -7665,17 +7705,41 @@
   },
   {
    "order": 15,
-   "t": 5769,
+   "t": 4646,
+   "action": "DataActionGetSubdivision",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_SupperMeetings/SupperMeeting_DetailsBlock/DataActionGetSubdivision",
+   "status": 200,
+   "scope": "this screen"
+  },
+  {
+   "order": 16,
+   "t": 4772,
    "action": "DataActionFetchContactDetails",
    "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
    "status": 200,
    "scope": "this screen"
   },
   {
-   "order": 16,
-   "t": 7974,
-   "action": "ActionGetSignedImagesInBulk",
-   "path": "/UBTConnect/screenservices/UBTConnect_Utils/ActionGetSignedImagesInBulk",
+   "order": 17,
+   "t": 4901,
+   "action": "DataActionFetchContactDetails",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
+   "status": 200,
+   "scope": "this screen"
+  },
+  {
+   "order": 18,
+   "t": 4951,
+   "action": "DataActionFetchContactDetails",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
+   "status": 200,
+   "scope": "this screen"
+  },
+  {
+   "order": 19,
+   "t": 5136,
+   "action": "DataActionFetchContactDetails",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
    "status": 200,
    "scope": "this screen"
   }
@@ -7702,10 +7766,6 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Interaction.Carousel.mvc.js",
-   "count": 1
-  },
-  {
    "request": "script /UBTConnect/scripts/UBTConnect.Directory_Caroussel.EntitiesCarousel_HeaderGenerator.mvc.js",
    "count": 1
   },
@@ -7714,7 +7774,19 @@
    "count": 1
   },
   {
+   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Interaction.Carousel.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect.Directory_Caroussel.CarouselTag.mvc.js",
+   "count": 1
+  },
+  {
    "request": "script /UBTConnect/scripts/UBTConnect.Directory_Caroussel.EntitiesCarousel_HouseholdDetails.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect.Directory_Caroussel.EntitiesCarousel_OneSchoolGlobal.mvc.js",
    "count": 1
   },
   {
@@ -7722,8 +7794,8 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnect.Directory_Caroussel.CarouselTag.mvc.js",
-   "count": 1
+   "request": "xmlhttprequest https://australiaeast-0.in.applicationinsights.azure.com/v2/track",
+   "count": 3
   },
   {
    "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.TagContent.mvc.js",
@@ -7734,7 +7806,15 @@
    "count": 1
   },
   {
+   "request": "script /UBTConnect/scripts/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js",
+   "count": 1
+  },
+  {
    "request": "script /UBTConnect/scripts/UBTConnect.Directory_SupperMeetings.SupperMeeting_HouseholdList.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect_CommunityBusiness_CS.referencesHealth.js",
    "count": 1
   },
   {
@@ -7750,6 +7830,14 @@
    "count": 1
   },
   {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.ExpandableSection.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect.App_Common_Blocks.External_Link.mvc.js",
+   "count": 1
+  },
+  {
    "request": "link /UBTConnect/css/UBTConnect.Directory_Caroussel.EntitiesCarousel.css",
    "count": 1
   },
@@ -7758,27 +7846,7 @@
    "count": 1
   },
   {
-   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1210/42453/118993_720.jpg",
-   "count": 2
-  },
-  {
    "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1210/42438/131995_720.jpg",
-   "count": 2
-  },
-  {
-   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1210/42484/126827_720.jpg",
-   "count": 2
-  },
-  {
-   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1209/42492/113064_720.jpg",
-   "count": 2
-  },
-  {
-   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1210/42525/134052_720.jpg",
-   "count": 2
-  },
-  {
-   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1210/42493/126742_720.jpg",
    "count": 2
   },
   {
@@ -7786,7 +7854,7 @@
    "count": 2
   },
   {
-   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1210/42491/120457_720.jpg",
+   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1210/42453/118993_720.jpg",
    "count": 2
   },
   {
@@ -7794,7 +7862,27 @@
    "count": 2
   },
   {
+   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1210/42484/126827_720.jpg",
+   "count": 2
+  },
+  {
+   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1210/42491/120457_720.jpg",
+   "count": 2
+  },
+  {
+   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1209/42492/113064_720.jpg",
+   "count": 2
+  },
+  {
+   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1210/42493/126742_720.jpg",
+   "count": 2
+  },
+  {
    "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1210/42498/131806_720.jpg",
+   "count": 2
+  },
+  {
+   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1210/42525/134052_720.jpg",
    "count": 2
   },
   {
@@ -7802,23 +7890,7 @@
    "count": 2
   },
   {
-   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1209/42456/120548_720.jpg",
-   "count": 2
-  },
-  {
-   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/2533/42445/126704_720.jpg",
-   "count": 2
-  },
-  {
-   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/2533/42447/128160_720.jpg",
-   "count": 2
-  },
-  {
-   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1209/42478/124712_720.jpg",
-   "count": 2
-  },
-  {
-   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/2533/42523/126826_720.jpg",
+   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1209/42468/126705_720.jpg",
    "count": 2
   },
   {
@@ -7826,19 +7898,11 @@
    "count": 2
   },
   {
-   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1209/42468/126705_720.jpg",
-   "count": 2
-  },
-  {
-   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1209/42391/120713_720.jpg",
-   "count": 2
-  },
-  {
    "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1209/42480/93905_720.jpg",
    "count": 2
   },
   {
-   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1209/42520/133971_720.jpg",
+   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1209/42391/120713_720.jpg",
    "count": 2
   },
   {
@@ -7850,7 +7914,31 @@
    "count": 2
   },
   {
-   "request": "xmlhttprequest https://australiaeast-0.in.applicationinsights.azure.com/v2/track",
+   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1209/42520/133971_720.jpg",
+   "count": 2
+  },
+  {
+   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/2533/42445/126704_720.jpg",
+   "count": 2
+  },
+  {
+   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/2533/42447/128160_720.jpg",
+   "count": 2
+  },
+  {
+   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1209/42456/120548_720.jpg",
+   "count": 2
+  },
+  {
+   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1209/42478/124712_720.jpg",
+   "count": 2
+  },
+  {
+   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/2533/42523/126826_720.jpg",
+   "count": 2
+  },
+  {
+   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1209/hall_1433_720.jpg",
    "count": 2
   },
   {
@@ -7864,10 +7952,6 @@
   {
    "request": "fetch /UBTConnect/SupperMeeting_Carousel",
    "count": 2
-  },
-  {
-   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1209/hall_1433_720.jpg",
-   "count": 1
   },
   {
    "request": "fetch /UBTConnect/moduleservices/moduleinfo",
@@ -8006,6 +8090,10 @@
    "count": 1
   },
   {
+   "request": "fetch /UBTConnect/status/network-ping.txt",
+   "count": 1
+  },
+  {
    "request": "fetch /UBTConnect/scripts/UBTConnectLibrary.ConnectCorePatterns.ActionsMenu.mvc.js",
    "count": 1
   },
@@ -8038,10 +8126,6 @@
    "count": 1
   },
   {
-   "request": "fetch /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js",
-   "count": 1
-  },
-  {
    "request": "fetch /UBTConnect/scripts/UBTConnect.Directory_SupperMeetings.SupperMeeting_HouseholdList.mvc.js",
    "count": 1
   },
@@ -8059,10 +8143,6 @@
   },
   {
    "request": "fetch /UBTConnect/scripts/UBTConnect.Directory_Caroussel.EntitiesCarousel_HeaderGenerator.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "fetch /UBTConnect/status/network-ping.txt",
    "count": 1
   },
   {
@@ -8143,6 +8223,10 @@
   },
   {
    "request": "fetch /UBTConnect/scripts/NavigationHandler.NavigationHandler.BackNavigationHandler.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js",
    "count": 1
   },
   {
@@ -8286,6 +8370,10 @@
    "count": 1
   },
   {
+   "request": "fetch /UBTConnect/css/UBTConnect_Utils.CW_Notes.NotesSheet.css",
+   "count": 1
+  },
+  {
    "request": "fetch /UBTConnect/css/UBTConnect.Directory_Caroussel.EntitiesCarousel.css",
    "count": 1
   },
@@ -8318,11 +8406,11 @@
    "count": 1
   },
   {
-   "request": "img /UBTConnect/SupperMeeting_Carousel",
+   "request": "fetch /UBTConnect/fonts/fontawesome-webfont.woff2",
    "count": 1
   },
   {
-   "request": "fetch /UBTConnect/fonts/fontawesome-webfont.woff2",
+   "request": "img /UBTConnect/SupperMeeting_Carousel",
    "count": 1
   },
   {
@@ -8363,19 +8451,19 @@
    "file": "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js",
    "name": "DataActionFetchNotes",
    "url": "screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchNotes",
-   "observed": false
-  },
-  {
-   "file": "UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js",
-   "name": "AddNote",
-   "url": "screenservices/UBTConnect_Utils/CW_Notes/NotesSheet/ServiceAPIAddNote",
-   "observed": false
+   "observed": true
   },
   {
    "file": "UBTConnect.Directory_SupperMeetings.SupperMeeting_HouseholdList.mvc.js",
    "name": "DataActionGetSubdivisionHouseholds",
    "url": "screenservices/UBTConnect/Directory_SupperMeetings/SupperMeeting_HouseholdList/DataActionGetSubdivisionHouseholds",
    "observed": true
+  },
+  {
+   "file": "UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js",
+   "name": "AddNote",
+   "url": "screenservices/UBTConnect_Utils/CW_Notes/NotesSheet/ServiceAPIAddNote",
+   "observed": false
   },
   {
    "file": "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js",
@@ -8611,6 +8699,42 @@
     "SupperMeeting_HouseholdList fetch at start"
    ]
   },
+  "UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchNotes": {
+   "observed": true,
+   "defined": true,
+   "chains": [
+    [
+     "onClick in CircleButton_WithLabel",
+     "CircleButton_WithLabel.action_OnClick",
+     "event onClick of CircleButton_WithLabel",
+     "CircleButton_IconPrimary.circleButton_WithLabelOnClick",
+     "event onClick of CircleButton_IconPrimary",
+     "event event_Click_Notes of ActionsMenu",
+     "Directory_EntityDetailsActions.handler_AddNotesOnClick",
+     "Directory_EntityDetailsActions.action_RefreshFetchNotes",
+     "Directory_EntityDetailsActions.DataActionFetchNotes"
+    ],
+    [
+     "Directory_EntityDetailsActions.OnReady",
+     "Directory_EntityDetailsActions.onReady",
+     "Directory_EntityDetailsActions.action_RefreshFetchNotes",
+     "Directory_EntityDetailsActions.DataActionFetchNotes"
+    ],
+    [
+     "Directory_EntityDetailsActions fetch at start",
+     "Directory_EntityDetailsActions.DataActionFetchNotes"
+    ]
+   ],
+   "rootKinds": [
+    "lifecycle",
+    "ui event"
+   ],
+   "rootLabels": [
+    "onClick in CircleButton_WithLabel",
+    "Directory_EntityDetailsActions.OnReady",
+    "Directory_EntityDetailsActions fetch at start"
+   ]
+  },
   "UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails": {
    "observed": true,
    "defined": true,
@@ -8671,48 +8795,12 @@
     "UBTConnect_Utils.cache_SignedImageURL_GetCallback"
    ]
   },
-  "UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchNotes": {
-   "observed": false,
-   "defined": true,
-   "chains": [
-    [
-     "onClick in CircleButton_WithLabel",
-     "CircleButton_WithLabel.action_OnClick",
-     "event onClick of CircleButton_WithLabel",
-     "CircleButton_IconPrimary.circleButton_WithLabelOnClick",
-     "event onClick of CircleButton_IconPrimary",
-     "event event_Click_Notes of ActionsMenu",
-     "Directory_EntityDetailsActions.handler_AddNotes",
-     "Directory_EntityDetailsActions.action_RefreshFetchNotes",
-     "Directory_EntityDetailsActions.DataActionFetchNotes"
-    ],
-    [
-     "Directory_EntityDetailsActions.OnReady",
-     "Directory_EntityDetailsActions.onReady",
-     "Directory_EntityDetailsActions.action_RefreshFetchNotes",
-     "Directory_EntityDetailsActions.DataActionFetchNotes"
-    ],
-    [
-     "Directory_EntityDetailsActions fetch at start",
-     "Directory_EntityDetailsActions.DataActionFetchNotes"
-    ]
-   ],
-   "rootKinds": [
-    "lifecycle",
-    "ui event"
-   ],
-   "rootLabels": [
-    "onClick in CircleButton_WithLabel",
-    "Directory_EntityDetailsActions.OnReady",
-    "Directory_EntityDetailsActions fetch at start"
-   ]
-  },
   "UBTConnect_Utils/CW_Notes/NotesSheet/ServiceAPIAddNote": {
    "observed": false,
    "defined": true,
    "chains": [
     [
-     "NotesSheet.handler_OnAddNoteRequested",
+     "NotesSheet.handler_OnSubmitNote",
      "server AddNote"
     ]
    ],
@@ -8720,7 +8808,7 @@
     "client action"
    ],
    "rootLabels": [
-    "NotesSheet.handler_OnAddNoteRequested"
+    "NotesSheet.handler_OnSubmitNote"
    ]
   },
   "UBTConnect_Utils/CW_Share/ShareSheet/ActionCS_CreateShareProfileLink": {
@@ -8813,41 +8901,6 @@
     "ShareSheet fetch at start"
    ]
   },
-  "UBTConnect/ActionAddBookmark": {
-   "observed": false,
-   "defined": true,
-   "chains": [
-    [
-     "onClick in CircleButton_WithLabel",
-     "CircleButton_WithLabel.action_OnClick",
-     "event onClick of CircleButton_WithLabel",
-     "CircleButton_IconPrimary.circleButton_WithLabelOnClick",
-     "event onClick of CircleButton_IconPrimary",
-     "event event_Click_Bookmark of ActionsMenu",
-     "Directory_EntityDetailsActions.handle_Bookmark",
-     "UBTConnect.toggleBookmarkItem",
-     "server AddBookmark"
-    ],
-    [
-     "onClick in CircleButton_WithLabel",
-     "CircleButton_WithLabel.action_OnClick",
-     "event onClick of CircleButton_WithLabel",
-     "CircleButton_IconPrimary.circleButton_WithLabelOnClick",
-     "event onClick of CircleButton_IconPrimary",
-     "event event_Click_Unbookmark of ActionsMenu",
-     "Directory_EntityDetailsActions.handle_Bookmark",
-     "UBTConnect.toggleBookmarkItem",
-     "server AddBookmark"
-    ]
-   ],
-   "rootKinds": [
-    "ui event"
-   ],
-   "rootLabels": [
-    "onClick in CircleButton_WithLabel",
-    "onClick in CircleButton_WithLabel"
-   ]
-  },
   "UBTConnect/ServiceAPIAddBookmark2": {
    "observed": false,
    "defined": true,
@@ -8873,41 +8926,6 @@
      "Directory_EntityDetailsActions.handle_Bookmark",
      "UBTConnect.toggleBookmarkItem_C2",
      "server AddBookmark2"
-    ]
-   ],
-   "rootKinds": [
-    "ui event"
-   ],
-   "rootLabels": [
-    "onClick in CircleButton_WithLabel",
-    "onClick in CircleButton_WithLabel"
-   ]
-  },
-  "UBTConnect/ActionDeleteBookmarkByBookmarkId": {
-   "observed": false,
-   "defined": true,
-   "chains": [
-    [
-     "onClick in CircleButton_WithLabel",
-     "CircleButton_WithLabel.action_OnClick",
-     "event onClick of CircleButton_WithLabel",
-     "CircleButton_IconPrimary.circleButton_WithLabelOnClick",
-     "event onClick of CircleButton_IconPrimary",
-     "event event_Click_Bookmark of ActionsMenu",
-     "Directory_EntityDetailsActions.handle_Bookmark",
-     "UBTConnect.toggleBookmarkItem",
-     "server DeleteBookmarkByBookmarkId"
-    ],
-    [
-     "onClick in CircleButton_WithLabel",
-     "CircleButton_WithLabel.action_OnClick",
-     "event onClick of CircleButton_WithLabel",
-     "CircleButton_IconPrimary.circleButton_WithLabelOnClick",
-     "event onClick of CircleButton_IconPrimary",
-     "event event_Click_Unbookmark of ActionsMenu",
-     "Directory_EntityDetailsActions.handle_Bookmark",
-     "UBTConnect.toggleBookmarkItem",
-     "server DeleteBookmarkByBookmarkId"
     ]
    ],
    "rootKinds": [
@@ -9128,7 +9146,7 @@
   "UBT_AppManager_Mobile.model.js"
  ],
  "diagrams": {
-  "architectureNodes": 45,
+  "architectureNodes": 44,
   "serverNodes": 7,
   "actionSequences": 1
  },

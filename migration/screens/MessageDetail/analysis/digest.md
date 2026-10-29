@@ -1,21 +1,43 @@
-# Digest: MessageDetail
+# Digest: MessageList
 
-- Path: `/UBTConnect/MessageDetail`
+- Path: `/UBTConnect/MessageList`
 - Viewport at capture: {'width': 390, 'height': 844, 'dpr': 1}
 - body class: `phone portrait connect-theme osx is-ltr`; body style: `--header-size-content: 0px; --footer-height: 56px; --viewport-height: 844px;`
 - PWA: manifest `/UBTConnect/moduleservices/pwa/manifest`, service workers []
-- Screen file: `UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js`
+- Screen file: `UBTConnect.Legacy_MyNotificationsFlow.MessageList.mvc.js`
 
 ## Rendered block tree
 ```
-MyNotifications.ScreenBlock_MessageDetail
+MyNotifications.ScreenBlock_MessageList
   Layout.Layout
     LayoutRuntime_NavigationHandler.LayoutRuntime_Top
     Layout.BaseLayout_UpdatedOSUI
-      Layout.MenuIcon_Back
-      Widgets.NotificationDetailBlock
-        Content.Card
-          HtmlSanitizer.SanitizedHtml
+      Layout.MenuIcon__UpdatedOSUI
+      Private.PullToRefresh
+      MyNotifications.MessageListBlock
+        MyNotifications.MessageListItem
+        MyNotifications.MessageListItem
+        MyNotifications.MessageListItem
+        MyNotifications.MessageListItem
+        MyNotifications.MessageListItem
+        MyNotifications.MessageListItem
+        MyNotifications.MessageListItem
+        MyNotifications.MessageListItem
+        MyNotifications.MessageListItem
+        MyNotifications.MessageListItem
+        MyNotifications.MessageListItem
+        MyNotifications.MessageListItem
+        MyNotifications.MessageListItem
+        MyNotifications.MessageListItem
+        MyNotifications.MessageListItem
+        MyNotifications.MessageListItem
+        MyNotifications.MessageListItem
+        MyNotifications.MessageListItem
+        MyNotifications.MessageListItem
+        MyNotifications.MessageListItem
+      Reusable.Spinner
+      Reusable.Spinner
+      NavigationHandler.BackNavigationHandler
       App_Common.BottomBarMenu
         App_Common.BottomBarContent
           Navigation.BottomBarItem
@@ -62,50 +84,62 @@ MyNotifications.ScreenBlock_MessageDetail
           EventfulDeeplinksPlugin.DeeplinkHandlerCentral
         Utility.HandleImageLoadError
         NavigationHandler.BackNavigationHandler
-      NavigationHandler.BackNavigationHandler
 ```
 
 # Part 1: screen and rendered blocks (spec these in detail)
 
-## `UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js`
+## `UBTConnect.Legacy_MyNotificationsFlow.MessageList.mvc.js`
 | variable | kind | type | default |
 |---|---|---|---|
-| FeedItemId | local | Text | `""` |
-| MessageInstanceId | input | LongInteger | `OS.DataTypes.LongInteger.defaultValue` |
-| isOriginPushNotification | input | Boolean | `false` |
-| MessageTemplateId | input | LongInteger | `OS.DataTypes.LongInteger.defaultValue` |
-| HardwareId | input | Text | `""` |
-- Client actions / event handlers: `handler_AddAuditAndNavigateTo_EventEmail`, `handler_NavigateTo_Login`, `handler_NavigateTo_AssembleDetail`, `handler_NavigateTo_OrbitEventDetails`, `handler_NavigateTo_MessageList`, `handler_SetFeedItemId`, `handler_NavigateTo_OrbitMilestone`, `handler_NavigateTo_OrbitHostSurvey`, `handler_NavigateTo_ShareObjectDetail`, `handler_AddAuditAndNavigateTo_EventDetail`, `handler_BackNavigationHandlerBackNavigation`, `handler_SubscriptionDenied`
-- Navigation: `/UBTConnect/LDM_Email_V2`(In_EventId, EventHostId, In_IsContactOrganiser, In_IsMessageGuest); `/UBTConnect/LDM_Email`(In_EventId, In_IsMessageGuest, EventHostId, In_IsContactOrganiser); `/UBTConnect/Login`(); `/UBTConnect/AssembleDetail`(EventId, SeriesId, AssembleEventTypeTile); `/UBTConnect/EventDetail`(In_EventId, In_EventName, In_FromNotification, In_MemberId); `/UBTConnect/Notifications`(); `/UBTConnect/MessageList`(); `/UBTConnect/MilestoneDetail`(In_EventName, In_FromNotification, In_MilestoneId, In_EventId); `/UBTConnect/HostSurvey`(In_MemberId, In_EventId, In_EventStartDate, In_EventEndDate, In_EventName); `/UBTConnect/HouseholdDetails`(HouseholdId); `/UBTConnect/OneSchoolGlobalDetails`(In_OneSchoolGlobalId); `/UBTConnect/SupperMeeting_Details`(In_SubdivsionId); `/UBTConnect/FeedItemDetail`(FeedItemId); `/UBTConnect/LDM_EventDetail_V2`(EventId, EventHostId); `/UBTConnect/LDM_EventDetail`(EventHostId, EventId); `/UBTConnect/HomeFeed`()
-- JavaScript nodes: `UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc$controller.Handler_BackNavigationHandlerBackNavigation.CheckIfInvalidLocationJS`
-- Static entities / flags: `applicationEvents_LDM.notificationContactOrganiser`, `type_ShareObject.household`, `type_ShareObject.update`, `type_ShareObject.myHousehold`, `type_ShareObject.oneSchoolGlobal`, `type_ShareObject.supperMeeting`, `type_ShareObject.feed`, `applicationEvents_LDM.notificationViewEvent`
+| Trigger_PullToRefresh | local | Boolean | `false` |
+- Lifecycle handlers: Ready
+- Client actions / event handlers: `onReady`, `handler_NavigateTo_MessageDetail`, `layout_OnEventNotificationReceived`, `handler_NavigateTo_B2CLanding`, `handler_PullToRefreshTriggered`, `handler_NavigateTo_B2CCallback`
+- Navigation: `/UBTConnect/MessageDetail`(MessageInstanceId); `/UBTConnect/Login`()
 
-## `Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js`
+## `Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageList.mvc.js`
 | variable | kind | type | default |
 |---|---|---|---|
-| Message | output | Record | `OS.DataTypes.ImmutableBase.getData(new Connect2_LegacySharedModel.MessagePriorityMessageContentMessageTemplateMessageSen` |
-| IsRetracted | output | Boolean | `false` |
-| IsCleared | output | Boolean | `false` |
-| PlaceholderDelimiters | output | Record | `OS.DataTypes.ImmutableBase.getData(new Connect2_LegacySharedModel.Delimiter_FunctionDelimiter_ParameterDelimiter_Placeho` |
-| IsEntryScreen | local | Boolean | `false` |
-| IsLoading | local | Boolean | `true` |
-| ShowAssembleAction | local | Boolean | `false` |
-| MessageInstanceId | input | LongInteger | `OS.DataTypes.LongInteger.defaultValue` |
-| MessageTemplateId | input | LongInteger | `OS.DataTypes.LongInteger.defaultValue` |
-| HardwareId | input | Text | `""` |
-| isOriginPushNotification | input | Boolean | `false` |
-| GetMessageTemplateParametersByMessageTemplateId | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new GetMessageTemplateParametersByMessageTemplateIdAggrRec())` |
-| GetMessageInstance | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new GetMessageInstanceDataActRec())` |
-- Data actions: `DataActionGetMessageInstance` → `screenservices/Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageDetail/DataActionGetMessageInstance`
-- Aggregates: `ScreenDataSetGetMessageTemplateParametersByMessageTemplateId` → `screenservices/Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageDetail/ScreenDataSetGetMessageTemplateParametersByMessageTemplateId`
-- Server actions: `Wrapper_NotificationOpened` → `screenservices/Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageDetail/ActionWrapper_NotificationOpened`, `Get_OrbitHostSurveyNotificationParameters` → `screenservices/Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageDetail/ActionGet_OrbitHostSurveyNotificationParameters`, `Get_OrbitNotificationParameters` → `screenservices/Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageDetail/ActionGet_OrbitNotificationParameters`, `StoreAdaptiveCardResponses` → `screenservices/Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageDetail/ActionStoreAdaptiveCardResponses`
-- Lifecycle handlers: Initialize, Ready
-- Client actions / event handlers: `getMessageTemplateParametersOnAfterFetch`, `getMessageInstanceByIdOnAfterFetch`, `onClick_ViewOrbitEvent`, `messageRetractedFlow`, `onClick_ViewAssembleEvent`, `onInitialize`, `onReady`, `adaptiveCardViewerOnExecuteAction`, `navigateTo_OrbitHostSurvey`, `navigateTo_OrbitMilestone`, `setFeedItemId`, `navigateTo_MessageList`, `subscriptionDenied`, `navigateTo_OrbitEvent`, `addAuditAndNavigateTo_EventEmail`, `navigateTo_Login`, `addAuditAndNavigateTo_EventDetail`, `navigateTo_AssembleEvent`, `navigateTo_ObjectDetail`
-- JavaScript nodes: `Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc$controller.GetMessageInstanceByIdOnAfterFetch.WasCurrentViewRestoredFromCacheJS`, `Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc$controller.AdaptiveCardViewerOnExecuteAction.SubstringJS`
-- Feedback messages: `"You don\'t have access to Orbit Host Survey. Please contact the Orbit Helpdesk if you have any questions.", /*Error*/ 3)` | `"You don\'t have access to Orbit. Please contact the Orbit Helpdesk if you have any questions.", /*Error*/ 3)` | `"You don\'t have access to Assemble.", /*Error*/ 3)` | `"Invalid message detail id.", /*Error*/ 3)` | `"Event is not accessible", /*Info*/ 0)` | `"Thanks for filling out our form!", /*Info*/ 0)` | `"Please check your internet connection!", /*Info*/ 0)`
-- Exceptions handled: CommunicationException
-- Static entities / flags: `messageSenderTarget.lordsDayMeal`, `messageSenderTarget.orbit`, `messageSenderTarget.orbitHostSurvey`, `messageInfoType.sharing`, `messagePriority.urgent`, `messageSenderTarget.assemble`, `adaptiveCardsConfig.events`, `parameterName.assembleEventParentId`, `parameterName.assembleEventInstanceId`, `uBT_MessageType.error`, `messageType.private`, `messageInfoType.whatsNew`, `connect_Entity.member`, `imageSize.small`, `parameterName.assembleEventType`
-- Candidate static strings: `View Meeting`
+| Messages | output | RecordList | `OS.DataTypes.ImmutableBase.getData(new Connect2_LegacySharedModel.MessageListItemList())` |
+| HasUnreadMessages | output | Boolean | `false` |
+| CountUnreadMessages | output | LongInteger | `OS.DataTypes.LongInteger.defaultValue` |
+| Exist | output | Boolean | `false` |
+| ShowWarning | local | Boolean | `false` |
+| ShowFilters | local | Boolean | `false` |
+| ShowSearch | local | Boolean | `false` |
+| SearchMessageString | local | Text | `""` |
+| OrderByIsAscending | local | Boolean | `false` |
+| SelectedHistorySearch | local | Text | `""` |
+| DeviceHardwareId | local | Text | `""` |
+| MaxRecords | local | Integer | `20` |
+| isLoadMore | local | Boolean | `false` |
+| Filter_OrderASC | local | Boolean | `false` |
+| Filter_OrderDESC | local | Boolean | `false` |
+| Filter_MessageTypePrivate | local | Boolean | `true` |
+| Filter_MessageTypePublic | local | Boolean | `true` |
+| IsShowLoading | local | Boolean | `false` |
+| IsEmptyMessage | local | Boolean | `false` |
+| IsRefreshing | local | Boolean | `false` |
+| MessagesList | local | Record | `OS.DataTypes.ImmutableBase.getData(new Connect2_LegacySharedModel.LongIntegerBooleanMessageListItemListRecord())` |
+| HasUnread | local | Boolean | `false` |
+| WarningMessage | local | Text | `"To access your Private Messages, please login to the Connect App."` |
+| CurrentMessageInstanceId | local | LongInteger | `OS.DataTypes.LongInteger.defaultValue` |
+| ForceInitiateLoginFlowDateTime | local | DateTime | `OS.DataTypes.DateTime.defaultValue` |
+| TotalPrivate | local | LongInteger | `OS.DataTypes.LongInteger.defaultValue` |
+| TotalPublic | local | LongInteger | `OS.DataTypes.LongInteger.defaultValue` |
+| SelectedFilter_OrderASC | local | Boolean | `false` |
+| SelectedFilter_MessageTypePrivate | local | Boolean | `true` |
+| SelectedFilter_MessageTypePublic | local | Boolean | `true` |
+| Trigger_PullToRefresh | input | Boolean | `false` |
+| GetMessages | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new GetMessagesDataActRec())` |
+| GetMessageInstanceById2 | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new GetMessageInstanceById2DataActRec())` |
+- Data actions: `DataActionGetMessages` → `screenservices/Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageList/DataActionGetMessages`, `DataActionGetMessageInstanceById2` → `screenservices/Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageList/DataActionGetMessageInstanceById2`
+- Server actions: `Wrapper_MarkAllAsReadNotifications` → `screenservices/Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageList/ActionWrapper_MarkAllAsReadNotifications`, `MarkMessageAsRead` → `screenservices/Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageList/ActionMarkMessageAsRead`, `MarkMessageAsClear` → `screenservices/Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageList/ActionMarkMessageAsClear`
+- Lifecycle handlers: Initialize, Ready, ParametersChanged
+- Client actions / event handlers: `onInitialize`, `pullToRefresh`, `onClick_Search`, `b2C_SignInFlowControllerSignInCompleted`, `onReady`, `onHandle_SearchHistorySelectedItem`, `onClick_GoToMessageDetail`, `refreshMessages`, `onClick_ResetFilters`, `onParametersChanged`, `saveSetting`, `onScrollEnding`, `updateMessageClear`, `updateMessageRead`, `revertSelectedFiltersToPersistedValue`, `backNavigationHandler`, `onClick_MarkAllAsRead`, `onClickSearchClear`, `toggleShowSearch`, `initializeSetting`, `onChange_MessageSort`, `swipe_EventsRead`, `b2C_SignInFlowControllerResetPasswordCompleted`, `onClick_CloseSearchAndFilter`, `onClick_ApplyFilters`, `setSortVariable`, `dismiss_WarningMessage`, `b2C_SignInFlowControllerSignUpCompleted`, `toggleShowFilters`, `swipe_EventsClear`, `hideMessageClear`, `onKeyup_SearchMessages`, `onAfterFetch_GetMessages`, `onClick_Filter`, `handler_NavigateTo_Login`, `navigateTo_B2CLanding`, `navigateTo_MessageDetail`, `pullToRefreshTriggered`, `navigateTo_B2CCallback`
+- JavaScript nodes: `Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageList.mvc$controller.OnInitialize.FocusCursorJS`, `Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageList.mvc$controller.OnInitialize.WasCurrentViewRestoredFromCacheJS`, `Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageList.mvc$controller.OnClick_Search.FocusCursorJS`, `Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageList.mvc$controller.RefreshMessages.ScrollToTopJS`, `Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageList.mvc$controller.OnClickSearchClear.SetScrollToTopJS`, `Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageList.mvc$controller.OnClick_CloseSearchAndFilter.WasCurrentViewRestoredFromCacheJS`, `Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageList.mvc$controller.OnClick_CloseSearchAndFilter.FocusCursorJS`, `Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageList.mvc$controller.OnKeyup_SearchMessages.CheckForEnterKeyJS`
+- Feedback messages: `"This message is no longer available", /*Info*/ 0)` | `vars.value.successMessageInLocal, /*Success*/ 1)`
+- Static entities / flags: `menuAction.menu`, `recentSearchType.myNotifications`, `speed.fast`, `animationType.rightToLeft`, `messageType.private`, `messageType.public`
+- Candidate static strings: `OnHandle_SearchHistorySelectedItem`
 
 ## `Connect2_LegacyShared.Layout.Layout.mvc.js`
 | variable | kind | type | default |
@@ -139,48 +173,66 @@ MyNotifications.ScreenBlock_MessageDetail
 - Client actions / event handlers: `onDestroy`, `actionHandler_OnPullToRefreshTrigger`, `onReady`, `onPullToRefresh`
 - Static entities / flags: `sideMenuBehavior.overlay`
 
-## `Connect2_LegacyShared.Widgets.NotificationDetailBlock.mvc.js`
+## `Connect2_LegacyShared.Layout.MenuIcon__UpdatedOSUI.mvc.js`
 | variable | kind | type | default |
 |---|---|---|---|
-| Title | input | Text | `""` |
-| ProfileIconURL | input | Text | `""` |
-| Summary | input | Text | `""` |
-| IsUrgent | input | Boolean | `false` |
-| isAdaptiveCard | input | Boolean | `false` |
-| AdaptiveCardContent | input | Text | `""` |
-| MessageContent | input | Text | `""` |
-| DateTimeCreated | input | DateTime | `OS.DataTypes.DateTime.defaultValue` |
-| HostConfig | input | Record | `OS.DataTypes.ImmutableBase.getData(new Connect2_LegacySharedModel.HostConfigRec())` |
-| ShowDetailsPlaceholder | input | Boolean | `false` |
-| ForceNoIconBorder | input | Boolean | `false` |
-| HasActionButton | input | Boolean | `false` |
-- Lifecycle handlers: Ready
-- Client actions / event handlers: `adaptiveCardViewerOnExecuteAction`, `onReady`, `adaptiveCardEventExecuted`
-- JavaScript nodes: `Connect2_LegacyShared.Widgets.NotificationDetailBlock.mvc$controller.OnReady.OpenLinksInSystemBrowserJS`
-- Feedback messages: `"Please check your internet connection!", /*Info*/ 0)`
-- Exceptions handled: CommunicationException
-- Images: `img/Connect2_LegacyShared.User_rectangle.png`
-
-## `OutSystemsUI_2_23.Content.Card.mvc.js`
-| variable | kind | type | default |
-|---|---|---|---|
-| UsePadding | input | Boolean | `true` |
-| ExtendedClass | input | Text | `""` |
-
-## `ReactiveHtmlSanitizer.HtmlSanitizer.SanitizedHtml.mvc.js`
-| variable | kind | type | default |
-|---|---|---|---|
-| Value | input | Text | `""` |
-| ResetWhitelist | input | Boolean | `false` |
-| AllowedAttributes | input | Text | `""` |
-| DisallowedAttributes | input | Text | `""` |
-| AllowedTags | input | Text | `""` |
-| DisallowedTags | input | Text | `""` |
-| AllowedCssStyles | input | Text | `""` |
-| DisallowedCssStyles | input | Text | `""` |
+| IsRTL | local | Boolean | `false` |
+| MenuAction | input | Text | `""` |
 - Lifecycle handlers: Ready, ParametersChanged
-- Client actions / event handlers: `onParametersChanged`, `onReady`
-- JavaScript nodes: `ReactiveHtmlSanitizer.HtmlSanitizer.SanitizedHtml.mvc$controller.OnReady.PutHtmlInDomJS`, `ReactiveHtmlSanitizer.HtmlSanitizer.SanitizedHtml.mvc$controller.OnReady.HtmlSanitizer_setDefaultsJS`
+- Client actions / event handlers: `onBack`, `onReady`, `onToggleMenu`
+- navigateBack calls: 1
+- Static entities / flags: `menuAction.back`, `menuAction.hidden`
+
+## `OutSystemsUI_2_23.Private.PullToRefresh.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| IsFirstTimeUsed | local | Boolean | `false` |
+| IsRefreshing | local | Boolean | `false` |
+- Lifecycle handlers: Ready, Destroy
+- Client actions / event handlers: `triggerOnContentPull`, `onDestroy`, `onReady`, `updateStatus`, `onContentPull`
+- JavaScript nodes: `OutSystemsUI_2_23.Private.PullToRefresh.mvc$controller.OnDestroy.JsDestroyWebPullToRefreshJS`, `OutSystemsUI_2_23.Private.PullToRefresh.mvc$controller.OnReady.JsInitWebPullToRefreshJS`
+- Candidate static strings: `TriggerOnContentPull` | `UpdateStatus`
+
+## `Connect2_LegacyShared.MyNotifications.MessageListBlock.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| IsShowLoading | input | Boolean | `false` |
+| MessagesList | input | Record | `OS.DataTypes.ImmutableBase.getData(new Connect2_LegacySharedModel.LongIntegerBooleanMessageListItemListRecord())` |
+- Client actions / event handlers: `onScrollEnding`, `swipeEventsRead`, `markAllRead`, `onClick_GoToMessageDetail`, `swipeEventsClear`
+- Static entities / flags: `messagePriority.urgent`
+- Candidate static strings: `Clear` | `Mark as Read`
+
+## `Connect2_LegacyShared.MyNotifications.MessageListItem.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| UserPhotoURL | local | Text | `""` |
+| IsFetchingUserPhoto | local | Boolean | `false` |
+| Title | input | Text | `""` |
+| SentFromName | input | Text | `""` |
+| MessageDateTime | input | DateTime | `OS.DataTypes.DateTime.defaultValue` |
+| IsUrgent | input | Boolean | `false` |
+| IconURL | input | Text | `""` |
+| UserId | input | Integer | `0` |
+| MemberId | input | Text | `""` |
+- Lifecycle handlers: Ready
+- Client actions / event handlers: `onReady`
+- Static entities / flags: `connect_Entity.member`, `imageSize.small`
+- Images: `img/Connect2_LegacyShared.User_rectangle.png`, `img/Connect2_LegacyShared.ubtlogo.png`
+
+## `Connect2_LegacyShared.Reusable.Spinner.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| ShowLoader | input | Boolean | `false` |
+
+## `NavigationHandler.NavigationHandler.BackNavigationHandler.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| DestroyCallback | local | Object | `null` |
+| Priority | input | Integer | `0` |
+- Lifecycle handlers: Initialize, Destroy
+- Client actions / event handlers: `triggerBackNavigation`, `onDestroy`, `onInitialize`, `backNavigation`
+- JavaScript nodes: `NavigationHandler.NavigationHandler.BackNavigationHandler.mvc$controller.OnDestroy.DestroyJS`, `NavigationHandler.NavigationHandler.BackNavigationHandler.mvc$controller.OnInitialize.AddBackNavigationHandlerJS`
+- Candidate static strings: `TriggerBackNavigation`
 
 ## `UBTConnect.App_Common.BottomBarMenu.mvc.js`
 | variable | kind | type | default |
@@ -193,9 +245,9 @@ MyNotifications.ScreenBlock_MessageDetail
 | isRootPage | input | Boolean | `false` |
 - Lifecycle handlers: Initialize, Ready, ParametersChanged
 - Client actions / event handlers: `onInitialize`, `onReady`, `onParametersChanged`, `event_BottomBar_Clicked`, `bottomBar_Clicked`
-- Navigation: `/UBTConnect/HomeFeed`(); `/UBTConnect/CountryList`(); `/UBTConnect/Locality_Details`(); `/UBTConnect/Updates_SingleList`(); `/UBTConnect/Bookmarks`(); `/UBTConnect/New_MyBookmarks`(); `/UBTConnect/MyBookmarks`(); `/UBTConnect/Menu`()
+- Navigation: `/UBTConnect/HomeFeed`(); `/UBTConnect/CountryList`(); `/UBTConnect/Locality_Details`(); `/UBTConnect/Updates_SingleList`(); `/UBTConnect/Bookmarks`(); `/UBTConnect/Menu`()
 - JavaScript nodes: `UBTConnect.App_Common.BottomBarMenu.mvc$controller.OnParametersChanged.Delayed_BottomBarSlider_ForceRefreshJS`
-- Static entities / flags: `connect_BottomBar_Items.updates`, `uBT_Color.primary`, `uBT_Color.neutral6`, `uBT_IconsSize.base_24`, `uBT_FontSize.extraSmall`, `connect_BottomBar_Items.bookmarks`, `connect_BottomBar_Items.home`, `connect_BottomBar_Items.directory`, `launchDarkly_FF.mobileDirectoryBookmarkNote`, `connect_BottomBar_Items.menu`
+- Static entities / flags: `connect_BottomBar_Items.updates`, `uBT_Color.primary`, `uBT_Color.neutral6`, `uBT_IconsSize.base_24`, `uBT_FontSize.extraSmall`, `connect_BottomBar_Items.bookmarks`, `connect_BottomBar_Items.home`, `connect_BottomBar_Items.directory`, `connect_BottomBar_Items.menu`
 - Client variables: getDirectory_Updates_UnreadCount
 
 ## `OutSystemsUI_2_23.Navigation.BottomBarItem.mvc.js`
@@ -468,30 +520,22 @@ MyNotifications.ScreenBlock_MessageDetail
 - Images: `img/Connect2_LegacyShared.User_rectangle.png`
 - Candidate static strings: `ApplicationEvent_ImageError`
 
-## `NavigationHandler.NavigationHandler.BackNavigationHandler.mvc.js`
-| variable | kind | type | default |
-|---|---|---|---|
-| DestroyCallback | local | Object | `null` |
-| Priority | input | Integer | `0` |
-- Lifecycle handlers: Initialize, Destroy
-- Client actions / event handlers: `triggerBackNavigation`, `onDestroy`, `onInitialize`, `backNavigation`
-- JavaScript nodes: `NavigationHandler.NavigationHandler.BackNavigationHandler.mvc$controller.OnDestroy.DestroyJS`, `NavigationHandler.NavigationHandler.BackNavigationHandler.mvc$controller.OnInitialize.AddBackNavigationHandlerJS`
-- Candidate static strings: `TriggerBackNavigation`
-
 # Part 2: sources of blocks NOT rendered in the captured states
 
 These come from referenced blocks or from earlier captures. Use them to describe other states/branches (empty, error, alternative versions), marking them as not visually captured.
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 2783 ms
-- 2. `DataActionGetMessageInstance` (200) at 4159 ms
-- 3. `ActionAppManager_AfterInitialize` (200) at 6201 ms
-- 4. `ActionSync_Info_GetMain` (200) at 6725 ms
-- 5. `ActionGetUserInformation` (200) at 7074 ms
-- 6. `ActionGetNumberUnreadMessages` (200) at 7325 ms
-- 7. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8161 ms
-- 8. `ServiceAPIFetchData_CacheableHouseholds` (200) at 8699 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 2719 ms
+- 3. `ActionAppManager_AfterInitialize` (200) at 5472 ms
+- 4. `DataActionGetMessages` (200) at 5494 ms
+- 5. `ActionSync_Info_GetMain` (200) at 5928 ms
+- 6. `ActionGetSignedImagesInBulk` (200) at 5955 ms
+- 7. `ActionGetUserInformation` (200) at 6247 ms
+- 8. `ActionGetNumberUnreadMessages` (200) at 6492 ms
+- 9. `ServiceAPIFetchData_CacheableMapEntities` (200) at 9137 ms
+- 10. `ServiceAPIFetchData_CacheableHouseholds` (200) at 11869 ms
+- plus 1 call(s) outside this screen, listed in calls.md
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`
@@ -502,12 +546,14 @@ These come from referenced blocks or from earlier captures. Use them to describe
 - `ConnectPatterns.HighlightSearch`
 - `ConnectPatterns.IconSVG`
 - `Fingerprint.FingerprintScanner`
-- `Home.Feed_Embeded`
+- `Interaction.Animate`
+- `Interaction.InputWithIcon`
+- `Layout.MenuIcon_Back`
+- `MyNotifications.MessageList_Filter`
+- `MyNotifications.MessageList_NoNotifications_Banner`
 - `NavigationHandler.PreventBackNavigation`
 - `PIN.PinCode`
-- `Private.PullToRefresh`
-- `Reusable.Spinner`
-- `Share_UI.ShareObjectDetail`
-- `Share_UI.ShareObjectDetail_ExtendedShare`
-- `Widgets.AdaptiveCardViewer`
+- `Reusable.MessageList_NoResults`
+- `Reusable.Warning_PrivateMessage`
+- `UtilityFlow.MessageSearchHistory`
 

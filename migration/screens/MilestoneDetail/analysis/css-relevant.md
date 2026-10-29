@@ -1002,7 +1002,7 @@ ibility) .screen-container.active-screen:not([class*=-enter]) + .screen-containe
 ```
 ## Generic utility classes (too many rules to list; see bundle.css)
 
-`.backwards-compatibility` (1747), `.dx-confirmation-dialog` (47), `.header` (99), `.layout` (53), `.layout-native` (278), `.layout-side` (91), `.list` (128), `.list-group` (51), `.orbit-theme` (122), `.phone` (273), `.section-expandable` (51)
+`.backwards-compatibility` (1747), `.dx-confirmation-dialog` (47), `.header` (99), `.layout` (53), `.layout-native` (278), `.layout-side` (91), `.list` (129), `.list-group` (52), `.orbit-theme` (122), `.phone` (273), `.section-expandable` (51)
 
 ## Design tokens referenced by the rules above
 

@@ -2251,6 +2251,12 @@ return getUBT_IconsRecord("01fd0b0c-e174-41e1-b88b-9df6517c95ce");
 }
 });
 
+Object.defineProperty(UBTConnect_EmbedMyEntertainingModel.staticEntities.uBT_Icons, "sVG_CommunityCountries", {
+get: function () {
+return getUBT_IconsRecord("023e6a1c-c170-4b43-8324-297e10e0e896");
+}
+});
+
 Object.defineProperty(UBTConnect_EmbedMyEntertainingModel.staticEntities.uBT_Icons, "group", {
 get: function () {
 return getUBT_IconsRecord("038a4fe0-799e-494a-ab3c-211c23271654");
@@ -2272,6 +2278,12 @@ return getUBT_IconsRecord("051f2c2a-d1ce-42f4-b09b-bd094bca02f8");
 Object.defineProperty(UBTConnect_EmbedMyEntertainingModel.staticEntities.uBT_Icons, "add", {
 get: function () {
 return getUBT_IconsRecord("0714fea8-7dea-4bcf-8671-f26dfb688cc0");
+}
+});
+
+Object.defineProperty(UBTConnect_EmbedMyEntertainingModel.staticEntities.uBT_Icons, "sVG_CommunityMembers", {
+get: function () {
+return getUBT_IconsRecord("07cd8dc1-ba67-43c5-8b4a-98ff341f6944");
 }
 });
 
@@ -2941,6 +2953,12 @@ return getUBT_IconsRecord("7e770565-6756-489c-861a-03aa64a06828");
 }
 });
 
+Object.defineProperty(UBTConnect_EmbedMyEntertainingModel.staticEntities.uBT_Icons, "arrowDown", {
+get: function () {
+return getUBT_IconsRecord("82678915-1fde-4af5-b771-5962b251de3e");
+}
+});
+
 Object.defineProperty(UBTConnect_EmbedMyEntertainingModel.staticEntities.uBT_Icons, "videocam", {
 get: function () {
 return getUBT_IconsRecord("8346d388-9271-49fa-9b2c-5a38911088a4");
@@ -3097,6 +3115,12 @@ return getUBT_IconsRecord("adfcacc5-456f-4a69-84ed-970b9327d191");
 }
 });
 
+Object.defineProperty(UBTConnect_EmbedMyEntertainingModel.staticEntities.uBT_Icons, "sVG_CommunityHouseholds", {
+get: function () {
+return getUBT_IconsRecord("b2215bc2-e092-417f-87f8-cb12b3a2b672");
+}
+});
+
 Object.defineProperty(UBTConnect_EmbedMyEntertainingModel.staticEntities.uBT_Icons, "attachFile", {
 get: function () {
 return getUBT_IconsRecord("b27013a5-8612-4010-a849-44a7ff7cb50b");
@@ -3211,6 +3235,12 @@ return getUBT_IconsRecord("c483fbf3-95c0-4401-8b6f-8543ee7c35d5");
 }
 });
 
+Object.defineProperty(UBTConnect_EmbedMyEntertainingModel.staticEntities.uBT_Icons, "arrowUp", {
+get: function () {
+return getUBT_IconsRecord("c60b1b20-beb3-434e-98b8-70bf14ecb947");
+}
+});
+
 Object.defineProperty(UBTConnect_EmbedMyEntertainingModel.staticEntities.uBT_Icons, "checkCircle", {
 get: function () {
 return getUBT_IconsRecord("c60ed7fb-f4a1-4ba3-a1f1-e5db4b751804");
@@ -3274,6 +3304,12 @@ return getUBT_IconsRecord("d08478ad-9e1a-4c88-9dba-78eaea3cb291");
 Object.defineProperty(UBTConnect_EmbedMyEntertainingModel.staticEntities.uBT_Icons, "school", {
 get: function () {
 return getUBT_IconsRecord("d15b6b62-6b8c-45d8-b8e4-142d44c83ec9");
+}
+});
+
+Object.defineProperty(UBTConnect_EmbedMyEntertainingModel.staticEntities.uBT_Icons, "sVG_CommunityLocalities", {
+get: function () {
+return getUBT_IconsRecord("d2063973-e843-4517-a3fc-1a0a56fb1876");
 }
 });
 

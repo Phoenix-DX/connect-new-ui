@@ -34,11 +34,11 @@ For every service call: the chains of code that lead to it, from a root (user ev
 - `onClick in MessageListBlock` → `event markAllRead of MessageListBlock` → `ScreenBlock_MessageList.onClick_MarkAllAsRead` → `Connect2_LegacyShared.synchronizeNumberUnreadMessages` → `server GetNumberUnreadMessages`
 - (2 chain(s) starting in blocks of other screens omitted)
 
-### `UBTConnect/ServiceAPIFetchData_CacheableHouseholds`
-- `UBTConnect.get_Cacheable_MapHouseholds` → `server FetchData_CacheableHouseholds`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
-
 ### `UBTConnect/ServiceAPIFetchData_CacheableMapEntities`
 - `UBTConnect.get_Cacheable_MapEntities` → `server FetchData_CacheableMapEntities`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
+
+### `UBTConnect/ServiceAPIFetchData_CacheableHouseholds`
+- `UBTConnect.get_Cacheable_MapHouseholds` → `server FetchData_CacheableHouseholds`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 
 ## Declared and reachable from the rendered blocks, not observed
 

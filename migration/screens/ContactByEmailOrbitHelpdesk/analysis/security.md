@@ -3,8 +3,8 @@
 Names and categories only; no values were captured. Inferences are marked as such and must be confirmed with the OutSystems MCP or the team.
 
 ## Session and request authentication
-- Request header names on service calls: (not recorded: capture made with an older capture.js)
-- Response header names on service calls: (not recorded)
+- Request header names on service calls: `accept`, `content-type`, `outsystems-request-token`, `x-csrftoken`
+- Response header names on service calls: `cache-control`, `cf-cache-status`, `cf-ray`, `content-encoding`, `content-length`, `content-type`, `date`, `outsystems-locale`, `pragma`, `server`, `strict-transport-security`, `vary`, `x-content-type-options`
 - Cookie names visible to JavaScript: `ai_user`, `nr2Users`, `ai_session`
 - HttpOnly cookies are invisible to JavaScript by design. Check names and flags (HttpOnly, Secure, SameSite, expiry) manually in DevTools > Application > Cookies; never copy values.
 - OutSystems 11 Reactive normally authenticates screenservices calls with its session cookies plus a CSRF token header. Confirm against the header names above.

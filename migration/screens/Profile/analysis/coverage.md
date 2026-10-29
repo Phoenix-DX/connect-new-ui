@@ -1,8 +1,8 @@
 # Coverage for Profile
 
 - UI states captured: default, loading, offline
-- Runtime captures: 1 file(s), 26 call(s)
-- Masked text nodes: 12, user images removed: 5
+- Runtime captures: 1 file(s), 24 call(s)
+- Masked text nodes: 16, user images removed: 7
 - Fetch failures during snapshot: 0
 
 ## Blocks referenced in code but not rendered in any captured state
@@ -68,12 +68,12 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [x] `DataActionGetHousehold_Coordinates` (UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js)
 - [x] `DataActionGetHousehold` (UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js)
 - [x] `DataActionFetchContactDetails` (UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js)
-- [ ] `DataActionFetchNotes` (UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js)
-- [ ] `AddNote` (UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js)
+- [x] `DataActionFetchNotes` (UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js)
 - [ ] `DataActionGetAvailableMembers` (UBTConnect_Utils.CW_Share.ShareSheet.mvc.js)
 - [ ] `DataActionGetRecentlyShared` (UBTConnect_Utils.CW_Share.ShareSheet.mvc.js)
 - [ ] `CS_CreateShareProfileLink` (UBTConnect_Utils.CW_Share.ShareSheet.mvc.js)
 - [ ] `CS_ShareObject` (UBTConnect_Utils.CW_Share.ShareSheet.mvc.js)
+- [ ] `AddNote` (UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js)
 
 ## Module-level server actions (called from client actions; check which ones this screen uses)
 - [ ] `AddBookmark` (UBTConnect.controller.js)

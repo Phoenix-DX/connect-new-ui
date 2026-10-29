@@ -66,6 +66,7 @@ Layouts.Layout_DetailPage
 | In_ExtendedClass | input | Text | `""` |
 | In_EnableAccessibilityFeatures | input | Boolean | `false` |
 | In_InitializeNavigationHandler | input | Boolean | `true` |
+| In_IsHideTitle | input | Boolean | `false` |
 - Lifecycle handlers: Ready, Destroy
 - Client actions / event handlers: `onClick_BackNavigation`, `setScrollEvents`, `onDestroy`, `skipToContentOnClick`, `onReady`, `onReadyEvent`
 - navigateBack calls: 1
@@ -133,8 +134,8 @@ Layouts.Layout_DetailPage
 | CurrentLength | local | Integer | `0` |
 | In_InputId | input | Text | `""` |
 | In_InitialLength | input | Integer | `0` |
-- Lifecycle handlers: Initialize, Ready
-- Client actions / event handlers: `onInitialize`, `onReady`, `setCurrentLength`
+- Lifecycle handlers: Initialize, Ready, ParametersChanged
+- Client actions / event handlers: `onInitialize`, `onParametersChanged`, `onReady`, `setCurrentLength`
 - JavaScript nodes: `UBTConnectLibrary.ConnectPatterns.InputCounter.mvc$controller.OnReady.LimitMaxLenthJS`
 - Static entities / flags: `uBT_Color.neutral7`, `uBT_FontSize.doubleExtraSmall`, `uBT_FontWeight.semiBold`
 - Candidate static strings: `SetCurrentLength`
@@ -254,10 +255,10 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 3. `ActionSync_Info_GetMain` (200) at 4929 ms
-- 4. `ActionGetUserInformation` (200) at 5308 ms
-- 6. `ServiceAPIFetchData_CacheableMapEntities` (200) at 6500 ms
-- 7. `ServiceAPIFetchData_CacheableHouseholds` (200) at 6506 ms
+- 3. `ActionSync_Info_GetMain` (200) at 5961 ms
+- 4. `ActionGetUserInformation` (200) at 6297 ms
+- 6. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8948 ms
+- 7. `ServiceAPIFetchData_CacheableHouseholds` (200) at 11228 ms
 - plus 3 call(s) outside this screen, listed in calls.md
 
 ## Not yet captured (see coverage.md)

@@ -56,8 +56,8 @@ flowchart TB
     S4["ActionAppManager_AfterInitialize<br/>observed"]
     S5["ActionSync_Info_GetMain<br/>observed"]
     S6["ActionGetNumberUnreadMessages<br/>observed"]
-    S7["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
-    S8["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
+    S7["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
+    S8["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
   end
   Backend["Backend<br/>not visible from the browser"]
   Content --> S0
@@ -94,10 +94,10 @@ sequenceDiagram
   API-->>S: Out_TimezoneName, Out_TimezoneOffset
   S->>API: DataActionDataAction_GetCountriesNames
   API-->>S: TODO outputs
-  S->>API: ServiceAPIFetchData_CacheableHouseholds
+  S->>API: ServiceAPIFetchData_CacheableMapEntities
   Note over S,API: observed in capture, trigger unverified (TODO)
   API-->>S: TODO outputs
-  S->>API: ServiceAPIFetchData_CacheableMapEntities
+  S->>API: ServiceAPIFetchData_CacheableHouseholds
   Note over S,API: observed in capture, trigger unverified (TODO)
   API-->>S: TODO outputs
   S->>S: OnReady

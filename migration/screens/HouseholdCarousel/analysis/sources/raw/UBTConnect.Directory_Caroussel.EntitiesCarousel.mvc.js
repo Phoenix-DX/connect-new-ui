@@ -355,7 +355,7 @@ _dependencies: []
 	
     return View;
 });
-define("UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "UBTConnect.languageResources", "UBTConnect.clientVariables", "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc$debugger", "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc$controller.Handler_EntitiesCarousel_Initialized.GetSplideCallbacksJS", "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc$controller.Action_UpdateCarouselInternalPosition.SetInternalPositionJS", "UBTConnect.model$HeaderListList", "UBTConnect.model$EntitiesCarousel_ItemList", "OutSystemsUI_2_23.model$CarouselItemsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.model$CarouselOptionalConfigsRec", "UBTConnect.model$HeaderListRec", "OutSystemsUI_2_23.model$ErrorMessageRec", "OutSystemsUI_2_23.controller$SetSplideEvent", "OutSystemsUI_2_23.controller$CarouselDisableOnRender", "OutSystemsUI_2_23.model$SplideConfigsRec", "OutSystemsUI_2_23.controller$SetSplideConfigs", "OutSystemsUI_2_23.controller$UnsetSplideEvent"], function (OutSystems, UBTConnectModel, UBTConnectController, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, UBTConnectLanguageResources, UBTConnectClientVariables, UBTConnect_Directory_Caroussel_EntitiesCarousel_mvc_Debugger, UBTConnect_Directory_Caroussel_EntitiesCarousel_mvc_controller_Handler_EntitiesCarousel_Initialized_GetSplideCallbacksJS, UBTConnect_Directory_Caroussel_EntitiesCarousel_mvc_controller_Action_UpdateCarouselInternalPosition_SetInternalPositionJS) {
+define("UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "UBTConnect.languageResources", "UBTConnect.clientVariables", "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc$debugger", "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc$controller.Handler_EntitiesCarousel_Initialized.GetSplideCallbacksJS", "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc$controller.Handler_EntitiesCarousel_Initialized.RemoveCarouselOnResizeHandlerJS", "UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc$controller.Action_UpdateCarouselInternalPosition.SetInternalPositionJS", "UBTConnect.model$HeaderListList", "UBTConnect.model$EntitiesCarousel_ItemList", "OutSystemsUI_2_23.model$CarouselItemsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.model$CarouselOptionalConfigsRec", "UBTConnect.model$HeaderListRec", "OutSystemsUI_2_23.model$ErrorMessageRec", "OutSystemsUI_2_23.controller$SetSplideEvent", "OutSystemsUI_2_23.controller$CarouselDisableOnRender", "OutSystemsUI_2_23.model$SplideConfigsRec", "OutSystemsUI_2_23.controller$SetSplideConfigs", "OutSystemsUI_2_23.controller$UnsetSplideEvent"], function (OutSystems, UBTConnectModel, UBTConnectController, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, UBTConnectLanguageResources, UBTConnectClientVariables, UBTConnect_Directory_Caroussel_EntitiesCarousel_mvc_Debugger, UBTConnect_Directory_Caroussel_EntitiesCarousel_mvc_controller_Handler_EntitiesCarousel_Initialized_GetSplideCallbacksJS, UBTConnect_Directory_Caroussel_EntitiesCarousel_mvc_controller_Handler_EntitiesCarousel_Initialized_RemoveCarouselOnResizeHandlerJS, UBTConnect_Directory_Caroussel_EntitiesCarousel_mvc_controller_Action_UpdateCarouselInternalPosition_SetInternalPositionJS) {
 var OS = OutSystems.Internal;
 var Controller = (function (_super) {
 __extends(Controller, _super);
@@ -576,7 +576,7 @@ varBag.setSplideConfigsVar = setSplideConfigsVar;
 varBag.unsetSplideEventVar = unsetSplideEventVar;
 varBag.unsetSplideEvent2Var = unsetSplideEvent2Var;
 varBag.getSplideCallbacksJSResult = getSplideCallbacksJSResult;
-try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:a80Or81mxU2F_701b27Dxg:/NRWebFlows.3kpgKiDrmECLIcldYvdd+A/NodesShownInESpaceTree.L3B1sce_SEqhZtKwjgW+2w/ClientActions.a80Or81mxU2F_701b27Dxg:nmHiJheiHs9KCqTeiYwccw", "UBTConnect", "Handler_EntitiesCarousel_Initialized", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:a80Or81mxU2F_701b27Dxg:/NRWebFlows.3kpgKiDrmECLIcldYvdd+A/NodesShownInESpaceTree.L3B1sce_SEqhZtKwjgW+2w/ClientActions.a80Or81mxU2F_701b27Dxg:j+cweteQGJDqvuxeSfFOIg", "UBTConnect", "Handler_EntitiesCarousel_Initialized", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:JE8fc3XTSUa09NDhEOnHOQ", callContext.id);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:jtwmWWfCw0y8Q_XIz17Q5w", callContext.id);
 // Execute Action: CarouselDisableOnRender
@@ -627,11 +627,14 @@ OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:+1MvFlyQ8UuHOfruux5e
 // Execute Action: Move
 moveVar.value = OutSystemsUI_2_23Controller.default.setSplideEvent$Action(idService.getId("EntitiesCarousel"), "move", getSplideCallbacksJSResult.value.moveOut, callContext);
 
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Ix7DZAnynE+m4C6_WjyxbA", callContext.id);
-} else {
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Ix7DZAnynE+m4C6_WjyxbA", callContext.id);
 }
 
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:fcmKwtW+rk2pMMlziC0rxQ", callContext.id);
+controller.safeExecuteJSNode(UBTConnect_Directory_Caroussel_EntitiesCarousel_mvc_controller_Handler_EntitiesCarousel_Initialized_RemoveCarouselOnResizeHandlerJS, "RemoveCarouselOnResizeHandler", "Handler_EntitiesCarousel_Initialized", {
+CarouselId: OS.DataConversion.JSNodeParamConverter.to(idService.getId("EntitiesCarousel"), OS.DataTypes.DataTypes.Text)
+}, function ($parameters) {
+}, {}, {});
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Ix7DZAnynE+m4C6_WjyxbA", callContext.id);
 } catch (ex) {
 OutSystemsDebugger.handleException(ex, callContext.id);
 throw ex;
@@ -787,7 +790,7 @@ return Promise.resolve();
 // Event Handler Actions
 Controller.prototype.pushDebuggerContext = function (callContext) {
 var varBag = {};
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:3kpgKiDrmECLIcldYvdd+A:/NRWebFlows.3kpgKiDrmECLIcldYvdd+A:uGYi+UeKE4QciHgKGLa3sw", "UBTConnect", "Directory_Caroussel", "NRFlows.WebFlow", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:3kpgKiDrmECLIcldYvdd+A:/NRWebFlows.3kpgKiDrmECLIcldYvdd+A:GUqi42j5JzeF3DYtR7PIbA", "UBTConnect", "Directory_Caroussel", "NRFlows.WebFlow", callContext.id, varBag);
 OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:L3B1sce_SEqhZtKwjgW+2w:/NRWebFlows.3kpgKiDrmECLIcldYvdd+A/NodesShownInESpaceTree.L3B1sce_SEqhZtKwjgW+2w:dbzq6kdepdt7kYjcKo+bLQ", "UBTConnect", "EntitiesCarousel", "NRNodes.WebBlock", callContext.id, varBag);
 };
 Controller.prototype.popDebuggerContext = function (callContext) {
@@ -832,6 +835,17 @@ define("UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc$controller.Handler_E
 return function ($parameters, $actions, $roles, $public) {
 $parameters.Moved = $actions.Handler_EntitiesCarousel_Moved;
 $parameters.Move = $actions.Handler_EntitiesCarousel_Move;
+};
+});
+define("UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc$controller.Handler_EntitiesCarousel_Initialized.RemoveCarouselOnResizeHandlerJS", [], function () {
+return function ($parameters, $actions, $roles, $public) {
+var c = OutSystems.OSUI.Patterns.CarouselAPI.GetCarouselItemById($parameters.CarouselId);
+if (c && c._eventOnResize) {
+    OSFramework.OSUI.Event.DOMEvents.Listeners.GlobalListenerManager.Instance.removeHandler(
+        OSFramework.OSUI.Event.DOMEvents.Listeners.Type.WindowResize,
+        c._eventOnResize
+    );
+}
 };
 });
 define("UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc$controller.Action_UpdateCarouselInternalPosition.SetInternalPositionJS", [], function () {
@@ -914,6 +928,11 @@ return varBag.unsetSplideEvent2Var.value;
 "NGAVmWElSUCWSqJMoi678A": {
 getter: function (varBag, idService) {
 return varBag.getSplideCallbacksJSResult.value;
+}
+},
+"fcmKwtW+rk2pMMlziC0rxQ": {
+getter: function (varBag, idService) {
+return varBag.removeCarouselOnResizeHandlerJSResult.value;
 }
 },
 "llYQBUgQV0CxcBqpEZLuuA": {

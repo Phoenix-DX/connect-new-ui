@@ -1,4 +1,4 @@
-define("Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc$model", ["OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.controller", "UBTConnect_Utils.model", "Connect2_OrbitMobile_IS.model", "UBTConnect_Utils.controller", "Connect2_LegacyShared.controller", "OutSystemsUI_2_23.controller", "Connect2_AppLauncherPlugin.model", "Connect2_AppLauncherPlugin.controller", "APIDomain_Directory_IS.model", "CommonPlugin.controller", "Connect2_OrbitMobile_BL.model", "Connect2_LegacyShared.Layout.Layout.mvc$model", "Connect2_LegacyShared.Layout.MenuIcon__UpdatedOSUI.mvc$model", "Connect2_OrbitMobile_MUI.LDM_Blocks.EventsDetail_Content.mvc$model", "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Banner.mvc$model", "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.mvc$model", "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Section.mvc$model", "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_SubSection.mvc$model", "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_SpecialNeeds_ListItem.mvc$model", "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_ListItem.mvc$model", "Connect2_OrbitMobile_MUI.UtilityFlow.ErrorScreen.mvc$model", "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone.mvc$model", "UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper.mvc$model", "UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy.mvc$model", "Connect2_OrbitMobile_MUI.controller$FormatDateForEventBanner", "UBTConnect_Utils.model$ContactByPhonePopupDataRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$UBTConnect_Utils", "Connect2_OrbitMobile_MUI.model$UI_ContactByMessage_WrapperDataTextRecord", "Connect2_OrbitMobile_IS.model$DetailGuestItemRec", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_IS", "Connect2_OrbitMobile_IS.model$TimezoneRec", "UBTConnect_Utils.model$ContactPopupDataRec", "UBTConnect_Utils.model$UI_ContactByMessage_WrapperDataRec", "UBTConnect_Utils.controller$IsFreeSubscriptionPlan", "UBTConnect_Utils.controller$App_Subscription_ShowUpgradePopUp", "UBTConnect_Utils.controller$IsRegionalSubscriptionPlan", "Connect2_OrbitMobile_MUI.model$CalendarGuestItemExtList", "Connect2_OrbitMobile_MUI.model$HouseholdCarouselServerItemList", "Connect2_OrbitMobile_MUI.controller$CarouselFilteredEventResults", "Connect2_OrbitMobile_MUI.controller$AddAuditEventDetailEvent", "Connect2_OrbitMobile_IS.model$DetailGuestItem_V2Rec", "Connect2_OrbitMobile_MUI.model$DetailGuestItem_V2List", "Connect2_OrbitMobile_IS.model$GetTimezoneResponseRec", "Connect2_LegacyShared.controller$FlipHouseholdName", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_LegacyShared", "Connect2_OrbitMobile_MUI.controller$GetCurrentTimeInMill", "Connect2_OrbitMobile_MUI.controller$AddAuditRequestAPIEvent", "OutSystemsUI_2_23.controller$GetNetworkStatus", "Connect2_OrbitMobile_MUI.referencesHealth$OutSystemsUI_2_23", "Connect2_AppLauncherPlugin.model$LauncherParametersRec", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_AppLauncherPlugin", "Connect2_AppLauncherPlugin.model$LauncherReturnRec", "Connect2_AppLauncherPlugin.controller$LaunchWithData", "APIDomain_Directory_IS.model$Directory_CoordinatesRec", "Connect2_OrbitMobile_MUI.referencesHealth$APIDomain_Directory_IS", "Connect2_AppLauncherPlugin.controller$CheckAppLauncherPlugin", "CommonPlugin.controller$GetOperatingSystem", "Connect2_OrbitMobile_MUI.referencesHealth$CommonPlugin", "Connect2_LegacyShared.controller$CleanAddressForMaps", "Connect2_OrbitMobile_BL.model$HostDetailsRec", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_BL", "Connect2_OrbitMobile_IS.model$GetEventCalendarDetailResponse_V2Rec"], function(OutSystems, Connect2_OrbitMobile_MUIModel, Connect2_OrbitMobile_MUIController, UBTConnect_UtilsModel, Connect2_OrbitMobile_ISModel, UBTConnect_UtilsController, Connect2_LegacySharedController, OutSystemsUI_2_23Controller, Connect2_AppLauncherPluginModel, Connect2_AppLauncherPluginController, APIDomain_Directory_ISModel, CommonPluginController, Connect2_OrbitMobile_BLModel, Connect2_LegacyShared_Layout_Layout_mvcModel, Connect2_LegacyShared_Layout_MenuIcon__UpdatedOSUI_mvcModel, Connect2_OrbitMobile_MUI_LDM_Blocks_EventsDetail_Content_mvcModel, Connect2_OrbitMobile_MUI_LDM_Blocks_EventDetail_Banner_mvcModel, Connect2_OrbitMobile_MUI_LDM_Blocks_EventDetail_HostCard_mvcModel, Connect2_OrbitMobile_MUI_LDM_Blocks_EventDetail_Section_mvcModel, Connect2_OrbitMobile_MUI_LDM_Blocks_EventDetail_SubSection_mvcModel, Connect2_OrbitMobile_MUI_LDM_Blocks_EventDetail_SpecialNeeds_ListItem_mvcModel, Connect2_OrbitMobile_MUI_LDM_Blocks_EventDetail_ListItem_mvcModel, Connect2_OrbitMobile_MUI_UtilityFlow_ErrorScreen_mvcModel, UBTConnect_Utils_CW_CTA_PopUps_ContactPopup_ByPhone_mvcModel, UBTConnect_Utils_CW_CTA_PopUps_ContactByMessage_Wrapper_mvcModel, UBTConnect_Utils_CW_App_Common_Blocks_PopupDialogs_Dialog_AccessRestrictedAction_Legacy_mvcModel) {
+define("Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc$model", ["OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.controller", "UBTConnect_Utils.model", "UBTConnectLibrary.model", "Connect2_OrbitMobile_IS.model", "UBTConnect_Utils.controller", "Connect2_LegacyShared.controller", "OutSystemsUI_2_23.controller", "Connect2_AppLauncherPlugin.model", "Connect2_AppLauncherPlugin.controller", "APIDomain_Directory_IS.model", "CommonPlugin.controller", "Connect2_OrbitMobile_BL.model", "Connect2_LegacyShared.Layout.Layout.mvc$model", "Connect2_LegacyShared.Layout.MenuIcon__UpdatedOSUI.mvc$model", "Connect2_OrbitMobile_MUI.LDM_Blocks.EventsDetail_Content.mvc$model", "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Banner.mvc$model", "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.mvc$model", "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Section.mvc$model", "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_SubSection.mvc$model", "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_SpecialNeeds_ListItem.mvc$model", "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_ListItem.mvc$model", "Connect2_OrbitMobile_MUI.UtilityFlow.ErrorScreen.mvc$model", "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone.mvc$model", "UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper.mvc$model", "UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy.mvc$model", "Connect2_OrbitMobile_MUI.controller$FormatDateForEventBanner", "UBTConnect_Utils.model$ContactByPhonePopupDataRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$UBTConnect_Utils", "Connect2_OrbitMobile_MUI.model$UI_ContactByMessage_WrapperDataTextRecord", "UBTConnectLibrary.model$NotesRec", "Connect2_OrbitMobile_MUI.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$Note_ItemRec", "Connect2_OrbitMobile_MUI.model$Note_ItemList", "Connect2_OrbitMobile_IS.model$DetailGuestItemRec", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_IS", "Connect2_OrbitMobile_IS.model$TimezoneRec", "UBTConnect_Utils.model$ContactPopupDataRec", "UBTConnect_Utils.model$UI_ContactByMessage_WrapperDataRec", "UBTConnect_Utils.controller$IsFreeSubscriptionPlan", "UBTConnect_Utils.controller$App_Subscription_ShowUpgradePopUp", "UBTConnect_Utils.controller$IsRegionalSubscriptionPlan", "Connect2_OrbitMobile_MUI.model$CalendarGuestItemExtList", "Connect2_OrbitMobile_MUI.model$HouseholdCarouselServerItemList", "Connect2_OrbitMobile_MUI.controller$CarouselFilteredEventResults", "Connect2_OrbitMobile_MUI.controller$AddAuditEventDetailEvent", "Connect2_OrbitMobile_IS.model$DetailGuestItem_V2Rec", "Connect2_OrbitMobile_MUI.model$DetailGuestItem_V2List", "Connect2_OrbitMobile_IS.model$GetTimezoneResponseRec", "Connect2_LegacyShared.controller$FlipHouseholdName", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_LegacyShared", "Connect2_OrbitMobile_MUI.controller$GetCurrentTimeInMill", "Connect2_OrbitMobile_MUI.controller$AddAuditRequestAPIEvent", "OutSystemsUI_2_23.controller$GetNetworkStatus", "Connect2_OrbitMobile_MUI.referencesHealth$OutSystemsUI_2_23", "Connect2_AppLauncherPlugin.model$LauncherParametersRec", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_AppLauncherPlugin", "Connect2_AppLauncherPlugin.model$LauncherReturnRec", "Connect2_AppLauncherPlugin.controller$LaunchWithData", "APIDomain_Directory_IS.model$Directory_CoordinatesRec", "Connect2_OrbitMobile_MUI.referencesHealth$APIDomain_Directory_IS", "Connect2_AppLauncherPlugin.controller$CheckAppLauncherPlugin", "CommonPlugin.controller$GetOperatingSystem", "Connect2_OrbitMobile_MUI.referencesHealth$CommonPlugin", "Connect2_LegacyShared.controller$CleanAddressForMaps", "Connect2_OrbitMobile_BL.model$HostDetailsRec", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_BL", "Connect2_OrbitMobile_IS.model$GetEventCalendarDetailResponse_V2Rec"], function(OutSystems, Connect2_OrbitMobile_MUIModel, Connect2_OrbitMobile_MUIController, UBTConnect_UtilsModel, UBTConnectLibraryModel, Connect2_OrbitMobile_ISModel, UBTConnect_UtilsController, Connect2_LegacySharedController, OutSystemsUI_2_23Controller, Connect2_AppLauncherPluginModel, Connect2_AppLauncherPluginController, APIDomain_Directory_ISModel, CommonPluginController, Connect2_OrbitMobile_BLModel, Connect2_LegacyShared_Layout_Layout_mvcModel, Connect2_LegacyShared_Layout_MenuIcon__UpdatedOSUI_mvcModel, Connect2_OrbitMobile_MUI_LDM_Blocks_EventsDetail_Content_mvcModel, Connect2_OrbitMobile_MUI_LDM_Blocks_EventDetail_Banner_mvcModel, Connect2_OrbitMobile_MUI_LDM_Blocks_EventDetail_HostCard_mvcModel, Connect2_OrbitMobile_MUI_LDM_Blocks_EventDetail_Section_mvcModel, Connect2_OrbitMobile_MUI_LDM_Blocks_EventDetail_SubSection_mvcModel, Connect2_OrbitMobile_MUI_LDM_Blocks_EventDetail_SpecialNeeds_ListItem_mvcModel, Connect2_OrbitMobile_MUI_LDM_Blocks_EventDetail_ListItem_mvcModel, Connect2_OrbitMobile_MUI_UtilityFlow_ErrorScreen_mvcModel, UBTConnect_Utils_CW_CTA_PopUps_ContactPopup_ByPhone_mvcModel, UBTConnect_Utils_CW_CTA_PopUps_ContactByMessage_Wrapper_mvcModel, UBTConnect_Utils_CW_App_Common_Blocks_PopupDialogs_Dialog_AccessRestrictedAction_Legacy_mvcModel) {
     var OS = OutSystems.Internal;
 
     var GetCoordinatorDetailsDataActRec = (function(_super) {
@@ -22,6 +22,27 @@ define("Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.
         };
         GetCoordinatorDetailsDataActRec.init();
         return GetCoordinatorDetailsDataActRec;
+    })(OS.Model.DataSourceRecord);
+    var FetchEventNotesDataActRec = (function(_super) {
+        __extends(FetchEventNotesDataActRec, _super);
+
+        function FetchEventNotesDataActRec(defaults) {
+            _super.apply(this, arguments);
+        }
+        FetchEventNotesDataActRec.attributesToDeclare = function() {
+            return [
+                this.attr("Notes", "notesOut", "Notes", true, false, OS.DataTypes.DataTypes.Record, function() {
+                    return OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec());
+                }, true, UBTConnectLibraryModel.NotesRec)
+            ].concat(_super.attributesToDeclare.call(this));
+        };
+        FetchEventNotesDataActRec.fromStructure = function(str) {
+            return new FetchEventNotesDataActRec(new FetchEventNotesDataActRec.RecordClass({
+                notesOut: OS.DataTypes.ImmutableBase.getData(str)
+            }));
+        };
+        FetchEventNotesDataActRec.init();
+        return FetchEventNotesDataActRec;
     })(OS.Model.DataSourceRecord);
     var GetEventByEventIdDataActRec = (function(_super) {
         __extends(GetEventByEventIdDataActRec, _super);
@@ -78,6 +99,9 @@ define("Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.
                 this.attr("ContactByMessagePopupData_IsCoordinator", "contactByMessagePopupData_IsCoordinatorVar", "ContactByMessagePopupData_IsCoordinator", true, false, OS.DataTypes.DataTypes.Boolean, function() {
                     return false;
                 }, false),
+                this.attr("EventNotes", "eventNotesVar", "EventNotes", true, false, OS.DataTypes.DataTypes.Record, function() {
+                    return OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec());
+                }, false, UBTConnectLibraryModel.NotesRec),
                 this.attr("EventHostId", "eventHostIdIn", "EventHostId", true, false, OS.DataTypes.DataTypes.LongInteger, function() {
                     return OS.DataTypes.LongInteger.defaultValue;
                 }, false),
@@ -93,6 +117,9 @@ define("Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.
                 this.attr("GetCoordinatorDetails", "getCoordinatorDetailsDataAct", "getCoordinatorDetailsDataAct", true, true, OS.DataTypes.DataTypes.Record, function() {
                     return OS.DataTypes.ImmutableBase.getData(new GetCoordinatorDetailsDataActRec());
                 }, true, GetCoordinatorDetailsDataActRec),
+                this.attr("FetchEventNotes", "fetchEventNotesDataAct", "fetchEventNotesDataAct", true, true, OS.DataTypes.DataTypes.Record, function() {
+                    return OS.DataTypes.ImmutableBase.getData(new FetchEventNotesDataActRec());
+                }, true, FetchEventNotesDataActRec),
                 this.attr("GetEventByEventId", "getEventByEventIdDataAct", "getEventByEventIdDataAct", true, true, OS.DataTypes.DataTypes.Record, function() {
                     return OS.DataTypes.ImmutableBase.getData(new GetEventByEventIdDataActRec());
                 }, true, GetEventByEventIdDataActRec)
@@ -160,7 +187,7 @@ define("Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.
     })(OS.Model.BaseViewModel);
     return new OS.Model.ModelFactory(Model, "LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2");
 });
-define("Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc$view", ["OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.controller", "UBTConnect_Utils.model", "Connect2_OrbitMobile_IS.model", "UBTConnect_Utils.controller", "Connect2_LegacyShared.controller", "OutSystemsUI_2_23.controller", "Connect2_AppLauncherPlugin.model", "Connect2_AppLauncherPlugin.controller", "APIDomain_Directory_IS.model", "CommonPlugin.controller", "Connect2_OrbitMobile_BL.model", "react", "OutSystems/ReactView/Main", "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc$model", "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc$controller", "Connect2_OrbitMobile_MUI.clientVariables", "Connect2_LegacyShared.Layout.Layout.mvc$view", "OutSystems/ReactWidgets/Main", "Connect2_LegacyShared.Layout.MenuIcon__UpdatedOSUI.mvc$view", "Connect2_OrbitMobile_MUI.LDM_Blocks.EventsDetail_Content.mvc$view", "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Banner.mvc$view", "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.mvc$view", "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Section.mvc$view", "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_SubSection.mvc$view", "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_SpecialNeeds_ListItem.mvc$view", "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_ListItem.mvc$view", "Connect2_OrbitMobile_MUI.UtilityFlow.ErrorScreen.mvc$view", "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone.mvc$view", "UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper.mvc$view", "UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy.mvc$view", "Connect2_OrbitMobile_MUI.controller$FormatDateForEventBanner", "UBTConnect_Utils.model$ContactByPhonePopupDataRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$UBTConnect_Utils", "Connect2_OrbitMobile_MUI.model$UI_ContactByMessage_WrapperDataTextRecord", "Connect2_OrbitMobile_IS.model$DetailGuestItemRec", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_IS", "Connect2_OrbitMobile_IS.model$TimezoneRec", "UBTConnect_Utils.model$ContactPopupDataRec", "UBTConnect_Utils.model$UI_ContactByMessage_WrapperDataRec", "UBTConnect_Utils.controller$IsFreeSubscriptionPlan", "UBTConnect_Utils.controller$App_Subscription_ShowUpgradePopUp", "UBTConnect_Utils.controller$IsRegionalSubscriptionPlan", "Connect2_OrbitMobile_MUI.model$CalendarGuestItemExtList", "Connect2_OrbitMobile_MUI.model$HouseholdCarouselServerItemList", "Connect2_OrbitMobile_MUI.controller$CarouselFilteredEventResults", "Connect2_OrbitMobile_MUI.controller$AddAuditEventDetailEvent", "Connect2_OrbitMobile_IS.model$DetailGuestItem_V2Rec", "Connect2_OrbitMobile_MUI.model$DetailGuestItem_V2List", "Connect2_OrbitMobile_IS.model$GetTimezoneResponseRec", "Connect2_LegacyShared.controller$FlipHouseholdName", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_LegacyShared", "Connect2_OrbitMobile_MUI.controller$GetCurrentTimeInMill", "Connect2_OrbitMobile_MUI.controller$AddAuditRequestAPIEvent", "OutSystemsUI_2_23.controller$GetNetworkStatus", "Connect2_OrbitMobile_MUI.referencesHealth$OutSystemsUI_2_23", "Connect2_AppLauncherPlugin.model$LauncherParametersRec", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_AppLauncherPlugin", "Connect2_AppLauncherPlugin.model$LauncherReturnRec", "Connect2_AppLauncherPlugin.controller$LaunchWithData", "APIDomain_Directory_IS.model$Directory_CoordinatesRec", "Connect2_OrbitMobile_MUI.referencesHealth$APIDomain_Directory_IS", "Connect2_AppLauncherPlugin.controller$CheckAppLauncherPlugin", "CommonPlugin.controller$GetOperatingSystem", "Connect2_OrbitMobile_MUI.referencesHealth$CommonPlugin", "Connect2_LegacyShared.controller$CleanAddressForMaps", "Connect2_OrbitMobile_BL.model$HostDetailsRec", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_BL", "Connect2_OrbitMobile_IS.model$GetEventCalendarDetailResponse_V2Rec"], function(OutSystems, Connect2_OrbitMobile_MUIModel, Connect2_OrbitMobile_MUIController, UBTConnect_UtilsModel, Connect2_OrbitMobile_ISModel, UBTConnect_UtilsController, Connect2_LegacySharedController, OutSystemsUI_2_23Controller, Connect2_AppLauncherPluginModel, Connect2_AppLauncherPluginController, APIDomain_Directory_ISModel, CommonPluginController, Connect2_OrbitMobile_BLModel, React, OSView, Connect2_OrbitMobile_MUI_LDM_ScreenBlocks_V2_ScreenBlock_EventDetail_V2_mvc_model, Connect2_OrbitMobile_MUI_LDM_ScreenBlocks_V2_ScreenBlock_EventDetail_V2_mvc_controller, Connect2_OrbitMobile_MUIClientVariables, Connect2_LegacyShared_Layout_Layout_mvc_view, OSWidgets, Connect2_LegacyShared_Layout_MenuIcon__UpdatedOSUI_mvc_view, Connect2_OrbitMobile_MUI_LDM_Blocks_EventsDetail_Content_mvc_view, Connect2_OrbitMobile_MUI_LDM_Blocks_EventDetail_Banner_mvc_view, Connect2_OrbitMobile_MUI_LDM_Blocks_EventDetail_HostCard_mvc_view, Connect2_OrbitMobile_MUI_LDM_Blocks_EventDetail_Section_mvc_view, Connect2_OrbitMobile_MUI_LDM_Blocks_EventDetail_SubSection_mvc_view, Connect2_OrbitMobile_MUI_LDM_Blocks_EventDetail_SpecialNeeds_ListItem_mvc_view, Connect2_OrbitMobile_MUI_LDM_Blocks_EventDetail_ListItem_mvc_view, Connect2_OrbitMobile_MUI_UtilityFlow_ErrorScreen_mvc_view, UBTConnect_Utils_CW_CTA_PopUps_ContactPopup_ByPhone_mvc_view, UBTConnect_Utils_CW_CTA_PopUps_ContactByMessage_Wrapper_mvc_view, UBTConnect_Utils_CW_App_Common_Blocks_PopupDialogs_Dialog_AccessRestrictedAction_Legacy_mvc_view) {
+define("Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc$view", ["OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.controller", "UBTConnect_Utils.model", "UBTConnectLibrary.model", "Connect2_OrbitMobile_IS.model", "UBTConnect_Utils.controller", "Connect2_LegacyShared.controller", "OutSystemsUI_2_23.controller", "Connect2_AppLauncherPlugin.model", "Connect2_AppLauncherPlugin.controller", "APIDomain_Directory_IS.model", "CommonPlugin.controller", "Connect2_OrbitMobile_BL.model", "react", "OutSystems/ReactView/Main", "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc$model", "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc$controller", "Connect2_OrbitMobile_MUI.clientVariables", "Connect2_LegacyShared.Layout.Layout.mvc$view", "OutSystems/ReactWidgets/Main", "Connect2_LegacyShared.Layout.MenuIcon__UpdatedOSUI.mvc$view", "Connect2_OrbitMobile_MUI.LDM_Blocks.EventsDetail_Content.mvc$view", "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Banner.mvc$view", "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.mvc$view", "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Section.mvc$view", "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_SubSection.mvc$view", "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_SpecialNeeds_ListItem.mvc$view", "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_ListItem.mvc$view", "Connect2_OrbitMobile_MUI.UtilityFlow.ErrorScreen.mvc$view", "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone.mvc$view", "UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper.mvc$view", "UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy.mvc$view", "Connect2_OrbitMobile_MUI.controller$FormatDateForEventBanner", "UBTConnect_Utils.model$ContactByPhonePopupDataRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$UBTConnect_Utils", "Connect2_OrbitMobile_MUI.model$UI_ContactByMessage_WrapperDataTextRecord", "UBTConnectLibrary.model$NotesRec", "Connect2_OrbitMobile_MUI.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$Note_ItemRec", "Connect2_OrbitMobile_MUI.model$Note_ItemList", "Connect2_OrbitMobile_IS.model$DetailGuestItemRec", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_IS", "Connect2_OrbitMobile_IS.model$TimezoneRec", "UBTConnect_Utils.model$ContactPopupDataRec", "UBTConnect_Utils.model$UI_ContactByMessage_WrapperDataRec", "UBTConnect_Utils.controller$IsFreeSubscriptionPlan", "UBTConnect_Utils.controller$App_Subscription_ShowUpgradePopUp", "UBTConnect_Utils.controller$IsRegionalSubscriptionPlan", "Connect2_OrbitMobile_MUI.model$CalendarGuestItemExtList", "Connect2_OrbitMobile_MUI.model$HouseholdCarouselServerItemList", "Connect2_OrbitMobile_MUI.controller$CarouselFilteredEventResults", "Connect2_OrbitMobile_MUI.controller$AddAuditEventDetailEvent", "Connect2_OrbitMobile_IS.model$DetailGuestItem_V2Rec", "Connect2_OrbitMobile_MUI.model$DetailGuestItem_V2List", "Connect2_OrbitMobile_IS.model$GetTimezoneResponseRec", "Connect2_LegacyShared.controller$FlipHouseholdName", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_LegacyShared", "Connect2_OrbitMobile_MUI.controller$GetCurrentTimeInMill", "Connect2_OrbitMobile_MUI.controller$AddAuditRequestAPIEvent", "OutSystemsUI_2_23.controller$GetNetworkStatus", "Connect2_OrbitMobile_MUI.referencesHealth$OutSystemsUI_2_23", "Connect2_AppLauncherPlugin.model$LauncherParametersRec", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_AppLauncherPlugin", "Connect2_AppLauncherPlugin.model$LauncherReturnRec", "Connect2_AppLauncherPlugin.controller$LaunchWithData", "APIDomain_Directory_IS.model$Directory_CoordinatesRec", "Connect2_OrbitMobile_MUI.referencesHealth$APIDomain_Directory_IS", "Connect2_AppLauncherPlugin.controller$CheckAppLauncherPlugin", "CommonPlugin.controller$GetOperatingSystem", "Connect2_OrbitMobile_MUI.referencesHealth$CommonPlugin", "Connect2_LegacyShared.controller$CleanAddressForMaps", "Connect2_OrbitMobile_BL.model$HostDetailsRec", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_BL", "Connect2_OrbitMobile_IS.model$GetEventCalendarDetailResponse_V2Rec"], function(OutSystems, Connect2_OrbitMobile_MUIModel, Connect2_OrbitMobile_MUIController, UBTConnect_UtilsModel, UBTConnectLibraryModel, Connect2_OrbitMobile_ISModel, UBTConnect_UtilsController, Connect2_LegacySharedController, OutSystemsUI_2_23Controller, Connect2_AppLauncherPluginModel, Connect2_AppLauncherPluginController, APIDomain_Directory_ISModel, CommonPluginController, Connect2_OrbitMobile_BLModel, React, OSView, Connect2_OrbitMobile_MUI_LDM_ScreenBlocks_V2_ScreenBlock_EventDetail_V2_mvc_model, Connect2_OrbitMobile_MUI_LDM_ScreenBlocks_V2_ScreenBlock_EventDetail_V2_mvc_controller, Connect2_OrbitMobile_MUIClientVariables, Connect2_LegacyShared_Layout_Layout_mvc_view, OSWidgets, Connect2_LegacyShared_Layout_MenuIcon__UpdatedOSUI_mvc_view, Connect2_OrbitMobile_MUI_LDM_Blocks_EventsDetail_Content_mvc_view, Connect2_OrbitMobile_MUI_LDM_Blocks_EventDetail_Banner_mvc_view, Connect2_OrbitMobile_MUI_LDM_Blocks_EventDetail_HostCard_mvc_view, Connect2_OrbitMobile_MUI_LDM_Blocks_EventDetail_Section_mvc_view, Connect2_OrbitMobile_MUI_LDM_Blocks_EventDetail_SubSection_mvc_view, Connect2_OrbitMobile_MUI_LDM_Blocks_EventDetail_SpecialNeeds_ListItem_mvc_view, Connect2_OrbitMobile_MUI_LDM_Blocks_EventDetail_ListItem_mvc_view, Connect2_OrbitMobile_MUI_UtilityFlow_ErrorScreen_mvc_view, UBTConnect_Utils_CW_CTA_PopUps_ContactPopup_ByPhone_mvc_view, UBTConnect_Utils_CW_CTA_PopUps_ContactByMessage_Wrapper_mvc_view, UBTConnect_Utils_CW_App_Common_Blocks_PopupDialogs_Dialog_AccessRestrictedAction_Legacy_mvc_view) {
     var OS = OutSystems.Internal;
     var PlaceholderContent = OSView.Widget.PlaceholderContent;
     var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
@@ -420,19 +447,38 @@ define("Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.
                                                             In_Address: model.variables.getEventByEventIdDataAct.eventResponseOut.hostAttr.formattedAddressAttr,
                                                             _in_AddressInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.getEventByEventIdDataAct.dataFetchStatusAttr),
                                                             MaxPhotoHeight: model.variables.maxPhotoHeightVar,
+                                                            EventNotes: model.variables.eventNotesVar,
                                                             In_IsAssigned: model.variables.getEventByEventIdDataAct.eventResponseOut.hostAttr.isPublishedAttr,
                                                             _in_IsAssignedInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.getEventByEventIdDataAct.dataFetchStatusAttr),
                                                             In_HostName: model.variables.getEventByEventIdDataAct.eventResponseOut.hostAttr.householderNameAttr,
                                                             _in_HostNameInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.getEventByEventIdDataAct.dataFetchStatusAttr),
+                                                            EventHostId: model.variables.eventHostIdIn,
+                                                            _eventHostIdInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables._eventHostIdInDataFetchStatus),
                                                             MaxPhotoWidth: model.variables.maxPhotoWidthVar,
                                                             In_Phone: model.variables.getEventByEventIdDataAct.eventResponseOut.hostAttr.phoneAttr,
                                                             _in_PhoneInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.getEventByEventIdDataAct.dataFetchStatusAttr),
+                                                            EventId: model.variables.eventIdIn,
+                                                            _eventIdInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables._eventIdInDataFetchStatus),
                                                             HouseholdDisplay: model.variables.getEventByEventIdDataAct.eventResponseOut.hostAttr.householdDisplayAttr,
                                                             _householdDisplayInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.getEventByEventIdDataAct.dataFetchStatusAttr)
                                                         },
                                                         events: {
                                                             _handleError: function(ex) {
                                                                 controller.handleError(ex);
+                                                            },
+                                                            handlerOn_NoteDeleted$Action: function(noteIdIn, wasLastNoteIn) {
+                                                                var eventHandlerContext = callContext.clone();
+                                                                return OS.Flow.tryFinally(function() {
+                                                                    var varBag = {};
+                                                                    controller.pushDebuggerContext(eventHandlerContext);
+
+                                                                    OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "LDM_Blocks/EventDetail_HostCard HandlerOn_NoteDeleted");
+                                                                    controller.handlerOn_NoteDeleted$Action(noteIdIn, controller.callContext(eventHandlerContext));
+                                                                }, function() {
+                                                                    controller.popDebuggerContext(eventHandlerContext);
+                                                                });
+
+                                                                ;
                                                             },
                                                             hostInformation$Action: function(isHousholdDisplayedIn) {
                                                                 return Promise.resolve().then(function() {
@@ -447,6 +493,20 @@ define("Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.
                                                                         controller.popDebuggerContext(eventHandlerContext);
                                                                     });
                                                                 });;
+                                                            },
+                                                            handlerOn_NotesChanged$Action: function(new_NotesIn) {
+                                                                var eventHandlerContext = callContext.clone();
+                                                                return OS.Flow.tryFinally(function() {
+                                                                    var varBag = {};
+                                                                    controller.pushDebuggerContext(eventHandlerContext);
+
+                                                                    OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "LDM_Blocks/EventDetail_HostCard HandlerOn_NotesChanged");
+                                                                    controller.handler_OnNotesChanged$Action(new_NotesIn, controller.callContext(eventHandlerContext));
+                                                                }, function() {
+                                                                    controller.popDebuggerContext(eventHandlerContext);
+                                                                });
+
+                                                                ;
                                                             },
                                                             navigateToEmail_Household$Action: function(householdFirstNameIn, householdFullNameIn, emailIn) {
                                                                 var eventHandlerContext = callContext.clone();
@@ -1074,7 +1134,7 @@ define("Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.
                                                 })];
                                             })
                                         },
-                                        _dependencies: [asPrimitiveValue(model.variables.squarePhotoPxVar), asPrimitiveValue(model.variables.maxPhotoWidthVar), asPrimitiveValue(model.variables.maxPhotoHeightVar), asPrimitiveValue(model.variables.minBannerHeightVar), asPrimitiveValue(model.variables.getCoordinatorDetailsDataAct.out_HasContentOut), asPrimitiveValue(model.variables.getCoordinatorDetailsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.eventResponseOut.guestsAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.eventResponseOut.specialNeedsAttr.otherAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.eventResponseOut.specialNeedsAttr.dietAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.eventResponseOut.specialNeedsAttr.mobilityAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.eventResponseOut.hostAttr.householdDisplayAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.eventResponseOut.hostAttr.phoneAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.eventResponseOut.hostAttr.householderNameAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.eventResponseOut.hostAttr.isPublishedAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.eventResponseOut.hostAttr.formattedAddressAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.eventResponseOut.hostAttr.emailAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.eventResponseOut.hostAttr.signedURLAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.eventResponseOut.hostAttr.eventDateAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.eventResponseOut.hostAttr.hostingAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.eventResponseOut.hostAttr.childrenAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.eventResponseOut.hostAttr.adultsAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.eventResponseOut.hostAttr.eventLocalityNameAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.eventResponseOut.hostAttr.signedHallPhotoAttr)]
+                                        _dependencies: [asPrimitiveValue(model.variables.squarePhotoPxVar), asPrimitiveValue(model.variables.eventIdIn), asPrimitiveValue(model.variables.maxPhotoWidthVar), asPrimitiveValue(model.variables.eventHostIdIn), asPrimitiveValue(model.variables.eventNotesVar), asPrimitiveValue(model.variables.maxPhotoHeightVar), asPrimitiveValue(model.variables.minBannerHeightVar), asPrimitiveValue(model.variables.getCoordinatorDetailsDataAct.out_HasContentOut), asPrimitiveValue(model.variables._eventIdInDataFetchStatus), asPrimitiveValue(model.variables._eventHostIdInDataFetchStatus), asPrimitiveValue(model.variables.getCoordinatorDetailsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.eventResponseOut.guestsAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.eventResponseOut.specialNeedsAttr.otherAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.eventResponseOut.specialNeedsAttr.dietAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.eventResponseOut.specialNeedsAttr.mobilityAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.eventResponseOut.hostAttr.householdDisplayAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.eventResponseOut.hostAttr.phoneAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.eventResponseOut.hostAttr.householderNameAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.eventResponseOut.hostAttr.isPublishedAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.eventResponseOut.hostAttr.formattedAddressAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.eventResponseOut.hostAttr.emailAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.eventResponseOut.hostAttr.signedURLAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.eventResponseOut.hostAttr.eventDateAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.eventResponseOut.hostAttr.hostingAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.eventResponseOut.hostAttr.childrenAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.eventResponseOut.hostAttr.adultsAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.eventResponseOut.hostAttr.eventLocalityNameAttr), asPrimitiveValue(model.variables.getEventByEventIdDataAct.eventResponseOut.hostAttr.signedHallPhotoAttr)]
                                     })];
                                 }, function() {
                                     return [React.createElement(Connect2_OrbitMobile_MUI_UtilityFlow_ErrorScreen_mvc_view, {
@@ -1315,7 +1375,7 @@ define("Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.
 
     return View;
 });
-define("Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc$controller", ["OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.controller", "UBTConnect_Utils.model", "Connect2_OrbitMobile_IS.model", "UBTConnect_Utils.controller", "Connect2_LegacyShared.controller", "OutSystemsUI_2_23.controller", "Connect2_AppLauncherPlugin.model", "Connect2_AppLauncherPlugin.controller", "APIDomain_Directory_IS.model", "CommonPlugin.controller", "Connect2_OrbitMobile_BL.model", "Connect2_OrbitMobile_MUI.languageResources", "Connect2_OrbitMobile_MUI.clientVariables", "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc$debugger", "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc$controller.OnHandle_ContactHost_Message.GetLocalityNameJS", "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc$controller.OnReady.WasCurrentViewRestoredFromCacheJS", "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc$controller.OnHandle_ContactHost_Call.GetLocalityNameJS", "Connect2_OrbitMobile_MUI.controller$FormatDateForEventBanner", "UBTConnect_Utils.model$ContactByPhonePopupDataRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$UBTConnect_Utils", "Connect2_OrbitMobile_MUI.model$UI_ContactByMessage_WrapperDataTextRecord", "Connect2_OrbitMobile_IS.model$DetailGuestItemRec", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_IS", "Connect2_OrbitMobile_IS.model$TimezoneRec", "UBTConnect_Utils.model$ContactPopupDataRec", "UBTConnect_Utils.model$UI_ContactByMessage_WrapperDataRec", "UBTConnect_Utils.controller$IsFreeSubscriptionPlan", "UBTConnect_Utils.controller$App_Subscription_ShowUpgradePopUp", "UBTConnect_Utils.controller$IsRegionalSubscriptionPlan", "Connect2_OrbitMobile_MUI.model$CalendarGuestItemExtList", "Connect2_OrbitMobile_MUI.model$HouseholdCarouselServerItemList", "Connect2_OrbitMobile_MUI.controller$CarouselFilteredEventResults", "Connect2_OrbitMobile_MUI.controller$AddAuditEventDetailEvent", "Connect2_OrbitMobile_IS.model$DetailGuestItem_V2Rec", "Connect2_OrbitMobile_MUI.model$DetailGuestItem_V2List", "Connect2_OrbitMobile_IS.model$GetTimezoneResponseRec", "Connect2_LegacyShared.controller$FlipHouseholdName", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_LegacyShared", "Connect2_OrbitMobile_MUI.controller$GetCurrentTimeInMill", "Connect2_OrbitMobile_MUI.controller$AddAuditRequestAPIEvent", "OutSystemsUI_2_23.controller$GetNetworkStatus", "Connect2_OrbitMobile_MUI.referencesHealth$OutSystemsUI_2_23", "Connect2_AppLauncherPlugin.model$LauncherParametersRec", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_AppLauncherPlugin", "Connect2_AppLauncherPlugin.model$LauncherReturnRec", "Connect2_AppLauncherPlugin.controller$LaunchWithData", "APIDomain_Directory_IS.model$Directory_CoordinatesRec", "Connect2_OrbitMobile_MUI.referencesHealth$APIDomain_Directory_IS", "Connect2_AppLauncherPlugin.controller$CheckAppLauncherPlugin", "CommonPlugin.controller$GetOperatingSystem", "Connect2_OrbitMobile_MUI.referencesHealth$CommonPlugin", "Connect2_LegacyShared.controller$CleanAddressForMaps", "Connect2_OrbitMobile_BL.model$HostDetailsRec", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_BL", "Connect2_OrbitMobile_IS.model$GetEventCalendarDetailResponse_V2Rec"], function(OutSystems, Connect2_OrbitMobile_MUIModel, Connect2_OrbitMobile_MUIController, UBTConnect_UtilsModel, Connect2_OrbitMobile_ISModel, UBTConnect_UtilsController, Connect2_LegacySharedController, OutSystemsUI_2_23Controller, Connect2_AppLauncherPluginModel, Connect2_AppLauncherPluginController, APIDomain_Directory_ISModel, CommonPluginController, Connect2_OrbitMobile_BLModel, Connect2_OrbitMobile_MUILanguageResources, Connect2_OrbitMobile_MUIClientVariables, Connect2_OrbitMobile_MUI_LDM_ScreenBlocks_V2_ScreenBlock_EventDetail_V2_mvc_Debugger, Connect2_OrbitMobile_MUI_LDM_ScreenBlocks_V2_ScreenBlock_EventDetail_V2_mvc_controller_OnHandle_ContactHost_Message_GetLocalityNameJS, Connect2_OrbitMobile_MUI_LDM_ScreenBlocks_V2_ScreenBlock_EventDetail_V2_mvc_controller_OnReady_WasCurrentViewRestoredFromCacheJS, Connect2_OrbitMobile_MUI_LDM_ScreenBlocks_V2_ScreenBlock_EventDetail_V2_mvc_controller_OnHandle_ContactHost_Call_GetLocalityNameJS) {
+define("Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc$controller", ["OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "Connect2_OrbitMobile_MUI.controller", "UBTConnect_Utils.model", "UBTConnectLibrary.model", "Connect2_OrbitMobile_IS.model", "UBTConnect_Utils.controller", "Connect2_LegacyShared.controller", "OutSystemsUI_2_23.controller", "Connect2_AppLauncherPlugin.model", "Connect2_AppLauncherPlugin.controller", "APIDomain_Directory_IS.model", "CommonPlugin.controller", "Connect2_OrbitMobile_BL.model", "Connect2_OrbitMobile_MUI.languageResources", "Connect2_OrbitMobile_MUI.clientVariables", "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc$debugger", "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc$controller.OnHandle_ContactHost_Message.GetLocalityNameJS", "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc$controller.OnReady.WasCurrentViewRestoredFromCacheJS", "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc$controller.OnHandle_ContactHost_Call.GetLocalityNameJS", "Connect2_OrbitMobile_MUI.controller$FormatDateForEventBanner", "UBTConnect_Utils.model$ContactByPhonePopupDataRec", "Connect2_OrbitMobile_MUI.referencesHealth", "Connect2_OrbitMobile_MUI.referencesHealth$UBTConnect_Utils", "Connect2_OrbitMobile_MUI.model$UI_ContactByMessage_WrapperDataTextRecord", "UBTConnectLibrary.model$NotesRec", "Connect2_OrbitMobile_MUI.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$Note_ItemRec", "Connect2_OrbitMobile_MUI.model$Note_ItemList", "Connect2_OrbitMobile_IS.model$DetailGuestItemRec", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_IS", "Connect2_OrbitMobile_IS.model$TimezoneRec", "UBTConnect_Utils.model$ContactPopupDataRec", "UBTConnect_Utils.model$UI_ContactByMessage_WrapperDataRec", "UBTConnect_Utils.controller$IsFreeSubscriptionPlan", "UBTConnect_Utils.controller$App_Subscription_ShowUpgradePopUp", "UBTConnect_Utils.controller$IsRegionalSubscriptionPlan", "Connect2_OrbitMobile_MUI.model$CalendarGuestItemExtList", "Connect2_OrbitMobile_MUI.model$HouseholdCarouselServerItemList", "Connect2_OrbitMobile_MUI.controller$CarouselFilteredEventResults", "Connect2_OrbitMobile_MUI.controller$AddAuditEventDetailEvent", "Connect2_OrbitMobile_IS.model$DetailGuestItem_V2Rec", "Connect2_OrbitMobile_MUI.model$DetailGuestItem_V2List", "Connect2_OrbitMobile_IS.model$GetTimezoneResponseRec", "Connect2_LegacyShared.controller$FlipHouseholdName", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_LegacyShared", "Connect2_OrbitMobile_MUI.controller$GetCurrentTimeInMill", "Connect2_OrbitMobile_MUI.controller$AddAuditRequestAPIEvent", "OutSystemsUI_2_23.controller$GetNetworkStatus", "Connect2_OrbitMobile_MUI.referencesHealth$OutSystemsUI_2_23", "Connect2_AppLauncherPlugin.model$LauncherParametersRec", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_AppLauncherPlugin", "Connect2_AppLauncherPlugin.model$LauncherReturnRec", "Connect2_AppLauncherPlugin.controller$LaunchWithData", "APIDomain_Directory_IS.model$Directory_CoordinatesRec", "Connect2_OrbitMobile_MUI.referencesHealth$APIDomain_Directory_IS", "Connect2_AppLauncherPlugin.controller$CheckAppLauncherPlugin", "CommonPlugin.controller$GetOperatingSystem", "Connect2_OrbitMobile_MUI.referencesHealth$CommonPlugin", "Connect2_LegacyShared.controller$CleanAddressForMaps", "Connect2_OrbitMobile_BL.model$HostDetailsRec", "Connect2_OrbitMobile_MUI.referencesHealth$Connect2_OrbitMobile_BL", "Connect2_OrbitMobile_IS.model$GetEventCalendarDetailResponse_V2Rec"], function(OutSystems, Connect2_OrbitMobile_MUIModel, Connect2_OrbitMobile_MUIController, UBTConnect_UtilsModel, UBTConnectLibraryModel, Connect2_OrbitMobile_ISModel, UBTConnect_UtilsController, Connect2_LegacySharedController, OutSystemsUI_2_23Controller, Connect2_AppLauncherPluginModel, Connect2_AppLauncherPluginController, APIDomain_Directory_ISModel, CommonPluginController, Connect2_OrbitMobile_BLModel, Connect2_OrbitMobile_MUILanguageResources, Connect2_OrbitMobile_MUIClientVariables, Connect2_OrbitMobile_MUI_LDM_ScreenBlocks_V2_ScreenBlock_EventDetail_V2_mvc_Debugger, Connect2_OrbitMobile_MUI_LDM_ScreenBlocks_V2_ScreenBlock_EventDetail_V2_mvc_controller_OnHandle_ContactHost_Message_GetLocalityNameJS, Connect2_OrbitMobile_MUI_LDM_ScreenBlocks_V2_ScreenBlock_EventDetail_V2_mvc_controller_OnReady_WasCurrentViewRestoredFromCacheJS, Connect2_OrbitMobile_MUI_LDM_ScreenBlocks_V2_ScreenBlock_EventDetail_V2_mvc_controller_OnHandle_ContactHost_Call_GetLocalityNameJS) {
     var OS = OutSystems.Internal;
     var Controller = (function(_super) {
         __extends(Controller, _super);
@@ -1326,10 +1386,12 @@ define("Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.
             this.clientActionProxies = {};
             this.dataFetchDependenciesOriginal = {
                 getCoordinatorDetails$DataActRefresh: 0,
+                fetchEventNotes$DataActRefresh: 0,
                 getEventByEventId$DataActRefresh: -1
             };
             this.dataFetchDependentsGraph = {
                 getCoordinatorDetails$DataActRefresh: [],
+                fetchEventNotes$DataActRefresh: [],
                 getEventByEventId$DataActRefresh: []
             };
             this.shouldSendClientVarsToDataSources = false;
@@ -1384,6 +1446,34 @@ define("Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.
 
             });
         };
+        Controller.prototype.fetchEventNotes$DataActRefresh = function(callContext) {
+            var model = this.model;
+            var controller = this.controller;
+            var callContext = controller.callContext(callContext);
+            return OS.Flow.tryFinally(function() {
+                var varBag = {};
+                controller.pushDebuggerContext(callContext);
+
+                OutSystemsDebugger.push("rMzmm49Sw0CsKZc1bJZ9DQ:fbrJn6bfDkWpBtIFcvaLpg:/NRWebFlows.gsadKUxZz0+omagmDt0wFQ/NodesShownInESpaceTree.cEqSlcX980KfrNUGyVxUcg/DataActions.fbrJn6bfDkWpBtIFcvaLpg:5fw0m2W9pFRUaKXndOguKQ", "Connect2_OrbitMobile_MUI", "FetchEventNotes", "NRFlows.DataScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.setThreadStartName(callContext.id, "LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/FetchEventNotes");
+                return controller.callDataAction("DataActionFetchEventNotes", "screenservices/Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionFetchEventNotes", "G1tns8n_hOecA9jdno6OJw", function(b) {
+                    model.variables.fetchEventNotesDataAct.dataFetchStatusAttr = b;
+                }, function(json) {
+                    model.variables.fetchEventNotesDataAct.replaceWith(OS.DataConversion.ServerDataConverter.from(json, model.variables.fetchEventNotesDataAct.constructor));
+                }, undefined, OutSystemsDebugger.getRequestHeaders(callContext.id), function(json, headers) {
+                    OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
+                }, callContext, undefined, false).then(function() {
+                    OutSystemsDebugger.setThreadStartName(callContext.id, "LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/FetchEventNotes On After Fetch");
+                    controller._onAfterFetch_FetchEventNotes$Action(controller.callContext(callContext));
+
+                });
+
+            }, function() {
+                OutSystemsDebugger.pop("rMzmm49Sw0CsKZc1bJZ9DQ:fbrJn6bfDkWpBtIFcvaLpg", callContext.id);
+                controller.popDebuggerContext(callContext);
+
+            });
+        };
         Controller.prototype.getEventByEventId$DataActRefresh = function(callContext) {
             var model = this.model;
             var controller = this.controller;
@@ -1413,7 +1503,7 @@ define("Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.
             });
         };
 
-        Controller.prototype.dataFetchActionNames = ["getCoordinatorDetails$DataActRefresh", "getEventByEventId$DataActRefresh"];
+        Controller.prototype.dataFetchActionNames = ["getCoordinatorDetails$DataActRefresh", "fetchEventNotes$DataActRefresh", "getEventByEventId$DataActRefresh"];
         // Client Actions
         Controller.prototype._onInitialize$Action = function(callContext) {
             var varBag = {};
@@ -1961,6 +2051,69 @@ define("Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.
 
             });
         };
+        Controller.prototype._handler_OnNotesChanged$Action = function(new_NotesIn, callContext) {
+            var varBag = {};
+            var model = this.model;
+            var controller = this.controller;
+            var idService = this.idService;
+            varBag.model = model;
+            varBag.idService = idService;
+            controller.ensureControllerAlive("Handler_OnNotesChanged");
+            callContext = controller.callContext(callContext);
+            var vars = new OS.DataTypes.VariableHolder(new(controller.constructor.getVariableGroupType("Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.Handler_OnNotesChanged$vars"))());
+            vars.value.new_NotesInLocal = new_NotesIn.clone();
+            varBag.callContext = callContext;
+            varBag.vars = vars;
+            try {
+                OutSystemsDebugger.push("rMzmm49Sw0CsKZc1bJZ9DQ:tfMSey4xD0CEPFkvNSBDpg:/NRWebFlows.gsadKUxZz0+omagmDt0wFQ/NodesShownInESpaceTree.cEqSlcX980KfrNUGyVxUcg/ClientActions.tfMSey4xD0CEPFkvNSBDpg:4LJxesr63tFtH0v5mOo+TA", "Connect2_OrbitMobile_MUI", "Handler_OnNotesChanged", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.handleBreakpoint("rMzmm49Sw0CsKZc1bJZ9DQ:l2IS2m80QEytaujyPBUU7g", callContext.id);
+                OutSystemsDebugger.handleBreakpoint("rMzmm49Sw0CsKZc1bJZ9DQ:uA_SXkPCE0W+uoCqQyqWyw", callContext.id);
+                // EventNotes = New_Notes
+                model.variables.eventNotesVar = vars.value.new_NotesInLocal;
+                OutSystemsDebugger.handleBreakpoint("rMzmm49Sw0CsKZc1bJZ9DQ:CXD_MknZQ0qugelS39qPNg", callContext.id);
+            } catch (ex) {
+                OutSystemsDebugger.handleException(ex, callContext.id);
+                throw ex;
+            } finally {
+                OutSystemsDebugger.pop("rMzmm49Sw0CsKZc1bJZ9DQ:tfMSey4xD0CEPFkvNSBDpg", callContext.id);
+            }
+
+        };
+        Controller.registerVariableGroupType("Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.Handler_OnNotesChanged$vars", [{
+            name: "New_Notes",
+            attrName: "new_NotesInLocal",
+            mandatory: true,
+            dataType: OS.DataTypes.DataTypes.Record,
+            defaultValue: function() {
+                return new UBTConnectLibraryModel.NotesRec();
+            },
+            complexType: UBTConnectLibraryModel.NotesRec
+        }]);
+        Controller.prototype._onAfterFetch_FetchEventNotes$Action = function(callContext) {
+            var varBag = {};
+            var model = this.model;
+            var controller = this.controller;
+            var idService = this.idService;
+            varBag.model = model;
+            varBag.idService = idService;
+            controller.ensureControllerAlive("OnAfterFetch_FetchEventNotes");
+            callContext = controller.callContext(callContext);
+            varBag.callContext = callContext;
+            try {
+                OutSystemsDebugger.push("rMzmm49Sw0CsKZc1bJZ9DQ:kwA1p+LzC0KT8lxETAxEbg:/NRWebFlows.gsadKUxZz0+omagmDt0wFQ/NodesShownInESpaceTree.cEqSlcX980KfrNUGyVxUcg/ClientActions.kwA1p+LzC0KT8lxETAxEbg:ePkJcGdXLKEtta_kRHNZPQ", "Connect2_OrbitMobile_MUI", "OnAfterFetch_FetchEventNotes", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.handleBreakpoint("rMzmm49Sw0CsKZc1bJZ9DQ:xLB983eZ5E6g5rODXTuAmA", callContext.id);
+                OutSystemsDebugger.handleBreakpoint("rMzmm49Sw0CsKZc1bJZ9DQ:JxFifJE4LEaDUqI8R4u0EQ", callContext.id);
+                // EventNotes = FetchEventNotes.Notes
+                model.variables.eventNotesVar = model.variables.fetchEventNotesDataAct.notesOut;
+                OutSystemsDebugger.handleBreakpoint("rMzmm49Sw0CsKZc1bJZ9DQ:WuzReCpEtkG75g4LVbOf8Q", callContext.id);
+            } catch (ex) {
+                OutSystemsDebugger.handleException(ex, callContext.id);
+                throw ex;
+            } finally {
+                OutSystemsDebugger.pop("rMzmm49Sw0CsKZc1bJZ9DQ:kwA1p+LzC0KT8lxETAxEbg", callContext.id);
+            }
+
+        };
         Controller.prototype._onHandle_ContactByPhone_Call$Action = function(callContext) {
             var varBag = {};
             var model = this.model;
@@ -2407,6 +2560,75 @@ define("Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.
                 return "";
             }
         }]);
+        Controller.prototype._handlerOn_NoteDeleted$Action = function(noteIdIn, callContext) {
+            var varBag = {};
+            var model = this.model;
+            var controller = this.controller;
+            var idService = this.idService;
+            varBag.model = model;
+            varBag.idService = idService;
+            controller.ensureControllerAlive("HandlerOn_NoteDeleted");
+            callContext = controller.callContext(callContext);
+            var vars = new OS.DataTypes.VariableHolder(new(controller.constructor.getVariableGroupType("Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.HandlerOn_NoteDeleted$vars"))());
+            vars.value.noteIdInLocal = noteIdIn;
+            varBag.callContext = callContext;
+            varBag.vars = vars;
+            try {
+                OutSystemsDebugger.push("rMzmm49Sw0CsKZc1bJZ9DQ:MKcj5_45lkO9HPsvPjY7Zw:/NRWebFlows.gsadKUxZz0+omagmDt0wFQ/NodesShownInESpaceTree.cEqSlcX980KfrNUGyVxUcg/ClientActions.MKcj5_45lkO9HPsvPjY7Zw:YN8NEfC3s8+lVxCFBnaJpA", "Connect2_OrbitMobile_MUI", "HandlerOn_NoteDeleted", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.handleBreakpoint("rMzmm49Sw0CsKZc1bJZ9DQ:dTUtue6uR0KpHLilubMKnA", callContext.id);
+                // Foreach EventNotes.Note_Item_List
+                callContext.iterationContext.registerIterationStart(model.variables.eventNotesVar.note_Item_ListAttr);
+                try {
+                    var note_Item_ListIterator = callContext.iterationContext.getIterator(model.variables.eventNotesVar.note_Item_ListAttr);
+                    var note_Item_ListIndex = 0;
+                    while ((OutSystemsDebugger.handleBreakpoint("rMzmm49Sw0CsKZc1bJZ9DQ:cx0xTRKMXU6QulVte8r4jg", callContext.id) && (note_Item_ListIndex < model.variables.eventNotesVar.note_Item_ListAttr.length))) {
+                        note_Item_ListIterator.currentRowNumber = note_Item_ListIndex;
+                        if ((OutSystemsDebugger.handleBreakpoint("rMzmm49Sw0CsKZc1bJZ9DQ:PXdHJXIH+kS_DkYymcr__g", callContext.id) && !(model.variables.eventNotesVar.note_Item_ListAttr.getItem(note_Item_ListIndex.valueOf()).idAttr.equals(vars.value.noteIdInLocal)))) {
+                            OutSystemsDebugger.handleBreakpoint("rMzmm49Sw0CsKZc1bJZ9DQ:DWX6Mpny_ki13TlbOBY+zA", callContext.id);
+                            // Execute Action: ListAppend
+                            OS.SystemActions.listAppend(vars.value.updatedNotesVar.note_Item_ListAttr, model.variables.eventNotesVar.note_Item_ListAttr.getItem(note_Item_ListIndex.valueOf()), callContext);
+                        }
+
+                        note_Item_ListIndex++;
+                    }
+
+                } finally {
+                    callContext.iterationContext.registerIterationEnd(model.variables.eventNotesVar.note_Item_ListAttr);
+                }
+
+                OutSystemsDebugger.handleBreakpoint("rMzmm49Sw0CsKZc1bJZ9DQ:cJmDGKJmjkixqfjVzqKH3w", callContext.id);
+                // UpdatedNotes.Total = UpdatedNotes.Note_Item_List.Length
+                vars.value.updatedNotesVar.totalAttr = vars.value.updatedNotesVar.note_Item_ListAttr.length;
+                OutSystemsDebugger.handleBreakpoint("rMzmm49Sw0CsKZc1bJZ9DQ:cJmDGKJmjkixqfjVzqKH3w", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
+                // EventNotes = UpdatedNotes
+                model.variables.eventNotesVar = vars.value.updatedNotesVar;
+                OutSystemsDebugger.handleBreakpoint("rMzmm49Sw0CsKZc1bJZ9DQ:iB47EnIFd06J2n35wcXQjA", callContext.id);
+            } catch (ex) {
+                OutSystemsDebugger.handleException(ex, callContext.id);
+                throw ex;
+            } finally {
+                OutSystemsDebugger.pop("rMzmm49Sw0CsKZc1bJZ9DQ:MKcj5_45lkO9HPsvPjY7Zw", callContext.id);
+            }
+
+        };
+        Controller.registerVariableGroupType("Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.HandlerOn_NoteDeleted$vars", [{
+            name: "NoteId",
+            attrName: "noteIdInLocal",
+            mandatory: true,
+            dataType: OS.DataTypes.DataTypes.LongInteger,
+            defaultValue: function() {
+                return OS.DataTypes.LongInteger.defaultValue;
+            }
+        }, {
+            name: "UpdatedNotes",
+            attrName: "updatedNotesVar",
+            mandatory: false,
+            dataType: OS.DataTypes.DataTypes.Record,
+            defaultValue: function() {
+                return new UBTConnectLibraryModel.NotesRec();
+            },
+            complexType: UBTConnectLibraryModel.NotesRec
+        }]);
         Controller.prototype._onHandle_HostInformation$Action = function(isHousholdDisplayedIn, callContext) {
             var varBag = {};
             var model = this.model;
@@ -2576,6 +2798,16 @@ define("Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.
             return controller.safeExecuteClientAction(controller._onHandle_ContactByMessage_ClickedEmail$Action, callContext);
 
         };
+        Controller.prototype.handler_OnNotesChanged$Action = function(new_NotesIn, callContext) {
+            var controller = this.controller;
+            return controller.safeExecuteClientAction(controller._handler_OnNotesChanged$Action, callContext, new_NotesIn);
+
+        };
+        Controller.prototype.onAfterFetch_FetchEventNotes$Action = function(callContext) {
+            var controller = this.controller;
+            return controller.safeExecuteClientAction(controller._onAfterFetch_FetchEventNotes$Action, callContext);
+
+        };
         Controller.prototype.onHandle_ContactByPhone_Call$Action = function(callContext) {
             var controller = this.controller;
             return controller.safeExecuteClientAction(controller._onHandle_ContactByPhone_Call$Action, callContext);
@@ -2599,6 +2831,11 @@ define("Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.
         Controller.prototype.onHandle_ContactHost_Call$Action = function(callContext) {
             var controller = this.controller;
             return controller.safeExecuteClientAction(controller._onHandle_ContactHost_Call$Action, callContext);
+
+        };
+        Controller.prototype.handlerOn_NoteDeleted$Action = function(noteIdIn, callContext) {
+            var controller = this.controller;
+            return controller.safeExecuteClientAction(controller._handlerOn_NoteDeleted$Action, callContext, noteIdIn);
 
         };
         Controller.prototype.onHandle_HostInformation$Action = function(isHousholdDisplayedIn, callContext) {
@@ -2631,7 +2868,7 @@ define("Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.
         Controller.prototype.pushDebuggerContext = function(callContext) {
             var varBag = {};
             OutSystemsDebugger.push("rMzmm49Sw0CsKZc1bJZ9DQ:gsadKUxZz0+omagmDt0wFQ:/NRWebFlows.gsadKUxZz0+omagmDt0wFQ:TG3hGul8Bx_v2kAU82Nhuw", "Connect2_OrbitMobile_MUI", "LDM_ScreenBlocks_V2", "NRFlows.WebFlow", callContext.id, varBag);
-            OutSystemsDebugger.push("rMzmm49Sw0CsKZc1bJZ9DQ:cEqSlcX980KfrNUGyVxUcg:/NRWebFlows.gsadKUxZz0+omagmDt0wFQ/NodesShownInESpaceTree.cEqSlcX980KfrNUGyVxUcg:Errga4UKskuxl7yiISqJcg", "Connect2_OrbitMobile_MUI", "ScreenBlock_EventDetail_V2", "NRNodes.WebBlock", callContext.id, varBag);
+            OutSystemsDebugger.push("rMzmm49Sw0CsKZc1bJZ9DQ:cEqSlcX980KfrNUGyVxUcg:/NRWebFlows.gsadKUxZz0+omagmDt0wFQ/NodesShownInESpaceTree.cEqSlcX980KfrNUGyVxUcg:LpDJjoqtMgtfvAEnPXi07w", "Connect2_OrbitMobile_MUI", "ScreenBlock_EventDetail_V2", "NRNodes.WebBlock", callContext.id, varBag);
         };
         Controller.prototype.popDebuggerContext = function(callContext) {
             OutSystemsDebugger.pop("rMzmm49Sw0CsKZc1bJZ9DQ:cEqSlcX980KfrNUGyVxUcg", callContext.id);
@@ -2812,6 +3049,11 @@ define("Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.
             },
             dataType: OS.DataTypes.DataTypes.Integer
         },
+        "b1OfXd86ckWqpp_WMpX8eQ": {
+            getter: function(varBag, idService) {
+                return varBag.vars.value.new_NotesInLocal;
+            }
+        },
         "+CvNMeO+VUO3ZpXTFVXQOA": {
             getter: function(varBag, idService) {
                 return varBag.getCurrentTimeInMill_EndVar.value;
@@ -2904,6 +3146,17 @@ define("Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.
                 return varBag.getLocalityNameJSResult.value;
             }
         },
+        "IVUskHAwK0u7vP6r17zKFA": {
+            getter: function(varBag, idService) {
+                return varBag.vars.value.updatedNotesVar;
+            }
+        },
+        "C1FdIuC6xU6o55JkQ4UYYw": {
+            getter: function(varBag, idService) {
+                return varBag.vars.value.noteIdInLocal;
+            },
+            dataType: OS.DataTypes.DataTypes.LongInteger
+        },
         "ylLkLUG9RUCjSVqj89k2QQ": {
             getter: function(varBag, idService) {
                 return varBag.vars.value.isHousholdDisplayedInLocal;
@@ -2962,6 +3215,11 @@ define("Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.
             },
             dataType: OS.DataTypes.DataTypes.Boolean
         },
+        "sdjbUcfxK0aYkz5+U5d71A": {
+            getter: function(varBag, idService) {
+                return varBag.model.variables.eventNotesVar;
+            }
+        },
         "_B6p5XFcokezCMc6DoPICQ": {
             getter: function(varBag, idService) {
                 return varBag.model.variables.eventHostIdIn;
@@ -2977,6 +3235,11 @@ define("Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.
         "Fly0XvwOp0miEqM2xkQOxA": {
             getter: function(varBag, idService) {
                 return varBag.model.variables.getCoordinatorDetailsDataAct;
+            }
+        },
+        "fbrJn6bfDkWpBtIFcvaLpg": {
+            getter: function(varBag, idService) {
+                return varBag.model.variables.fetchEventNotesDataAct;
             }
         },
         "tJbD0ZFaJEKhR85dohlQyQ": {

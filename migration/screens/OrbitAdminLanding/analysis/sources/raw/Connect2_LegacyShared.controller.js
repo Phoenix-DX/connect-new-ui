@@ -7918,7 +7918,7 @@ define("Connect2_LegacyShared.controller$ServerAction.GetUserInformation", ["exp
 var OS = OutSystems.Internal;
 Connect2_LegacySharedController.default.getUserInformation$ServerAction = function (callContext) {
 var controller = this.controller;
-return controller.callServerAction("GetUserInformation", "screenservices/Connect2_LegacyShared/ActionGetUserInformation", "GN8x3RejglUHUc+WcngqLQ", {}, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function (json, headers) {
+return controller.callServerAction("GetUserInformation", "screenservices/Connect2_LegacyShared/ActionGetUserInformation", "4C7UvVIPVHNew+43F33fTg", {}, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function (json, headers) {
 OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
 }, false).then(function (outputs) {
 var executeServerActionResult = new (controller.constructor.getVariableGroupType("Connect2_LegacyShared$ActionGetUserInformation"))();

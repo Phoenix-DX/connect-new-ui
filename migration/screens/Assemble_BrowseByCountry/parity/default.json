@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "73960838c775c99487d2",
+ "fingerprint": "7a9431b33ee31944f3e0",
  "options": {
   "text": true,
   "style": true,
@@ -27,8 +27,10 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-29T07:56:59.314Z",
- "counts": {},
+ "at": "2026-10-29T09:51:28.037Z",
+ "counts": {
+  "text": 1
+ },
  "exemptionsUsed": {
   "ignoreSubtrees": 1
  },
@@ -59,5 +61,11 @@
   "expected": 9,
   "actual": 9
  },
- "diffs": []
+ "diffs": [
+  {
+   "kind": "text",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b2.OSBlockWidget[Assemble.ScreenBlock_Assemble_Filter] > div#b2-Layout.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b2-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b2-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b2-b1-b2-ContentWrapper.content > div#b2-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b2-b1-b2-Content.content-middle > div#b2-b1-Content > div#b2-$b4.OSBlockWidget[Directory.LocalityListDetail] > div > div.OSFillParent.list.list-group > div#b2-b4-l1-70_13-ListItem1.list-item > div.OSInline.landing-country-list-item > div.locality-details-container.width55 > div.OSInline.locality-info-container.width37-5 > span",
+   "detail": "\"34\" → \"33\""
+  }
+ ]
 }

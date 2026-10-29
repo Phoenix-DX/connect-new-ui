@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "9dfa3482ceb8eac2bf28",
+ "fingerprint": "3216f0b108844ed5c144",
  "options": {
   "text": true,
   "style": true,
@@ -27,21 +27,18 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-29T07:58:13.278Z",
+ "at": "2026-10-29T09:52:41.219Z",
  "counts": {},
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 1,
-  "CAPTURE-TEXTAREA-ROWS-CONTACTUSDETAILS": 5,
-  "CAPTURE-TEXTAREA-ROWS-CONTACTUSDETAILS-FOOTER": 1,
-  "ignoreSubtrees": 1,
-  "CAPTURE-TEXTAREA-ROWS-CONTACTUSDETAILS-PIXEL": 1
+  "ignoreSubtrees": 1
  },
  "pixel": {
-  "ratio": 0.00227,
-  "maxCell": 0.05,
+  "ratio": 0,
+  "maxCell": 0,
   "maxCellRatio": 0.03,
-  "diffPixels": 746,
-  "comparedPixels": 328406,
+  "diffPixels": 0,
+  "comparedPixels": 328744,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -53,13 +50,7 @@
    844
   ],
   "masks": 2,
-  "hotspots": [
-   "40,400 (80px)",
-   "80,400 (80px)",
-   "120,400 (80px)",
-   "160,400 (80px)",
-   "200,400 (80px)"
-  ],
+  "hotspots": [],
   "diffPng": "migration/screens/ContactUsDetails/parity/default.diff.png"
  },
  "calls": {

@@ -6,7 +6,7 @@
    "action": "ActionAppManager_SynchAppContext",
    "path": "/UBTConnect/screenservices/UBT_AppManager/ActionAppManager_SynchAppContext",
    "phase": "load",
-   "ts": 2564,
+   "ts": 2194,
    "status": 200,
    "kind": "server",
    "inputNames": [
@@ -15,22 +15,11 @@
    "scope": "other"
   },
   {
-   "module": "UBTConnect",
-   "action": "DataActionGetServices",
-   "path": "/UBTConnect/screenservices/UBTConnect/App_Services/Services/DataActionGetServices",
-   "phase": "load",
-   "ts": 2563,
-   "status": 200,
-   "kind": "data",
-   "inputNames": null,
-   "scope": "this screen"
-  },
-  {
    "module": "UBT_AppManager",
    "action": "ActionAppManager_AfterInitialize",
    "path": "/UBTConnect/screenservices/UBT_AppManager/ActionAppManager_AfterInitialize",
    "phase": "load",
-   "ts": 6006,
+   "ts": 4892,
    "status": 200,
    "kind": "server",
    "inputNames": [
@@ -42,10 +31,21 @@
   },
   {
    "module": "UBTConnect",
+   "action": "DataActionGetServices",
+   "path": "/UBTConnect/screenservices/UBTConnect/App_Services/Services/DataActionGetServices",
+   "phase": "load",
+   "ts": 2194,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
    "action": "ActionSync_Info_GetMain",
    "path": "/UBTConnect/screenservices/UBTConnect/ActionSync_Info_GetMain",
    "phase": "load",
-   "ts": 6251,
+   "ts": 5182,
    "status": 200,
    "kind": "server",
    "inputNames": [
@@ -58,7 +58,7 @@
    "action": "ActionGetUserInformation",
    "path": "/UBTConnect/screenservices/UBTConnect_Utils/ActionGetUserInformation",
    "phase": "load",
-   "ts": 6789,
+   "ts": 19646,
    "status": 200,
    "kind": "server",
    "inputNames": [],
@@ -69,7 +69,7 @@
    "action": "ActionGetNumberUnreadMessages",
    "path": "/UBTConnect/screenservices/Connect2_LegacyShared/ActionGetNumberUnreadMessages",
    "phase": "load",
-   "ts": 7120,
+   "ts": 20024,
    "status": 200,
    "kind": "server",
    "inputNames": [
@@ -79,10 +79,10 @@
   },
   {
    "module": "UBTConnect",
-   "action": "ServiceAPIFetchData_CacheableHouseholds",
-   "path": "/UBTConnect/screenservices/UBTConnect/ServiceAPIFetchData_CacheableHouseholds",
+   "action": "ServiceAPIFetchData_CacheableMapEntities",
+   "path": "/UBTConnect/screenservices/UBTConnect/ServiceAPIFetchData_CacheableMapEntities",
    "phase": "load",
-   "ts": 7365,
+   "ts": 20274,
    "status": 200,
    "kind": "server",
    "inputNames": [],
@@ -90,10 +90,10 @@
   },
   {
    "module": "UBTConnect",
-   "action": "ServiceAPIFetchData_CacheableMapEntities",
-   "path": "/UBTConnect/screenservices/UBTConnect/ServiceAPIFetchData_CacheableMapEntities",
+   "action": "ServiceAPIFetchData_CacheableHouseholds",
+   "path": "/UBTConnect/screenservices/UBTConnect/ServiceAPIFetchData_CacheableHouseholds",
    "phase": "load",
-   "ts": 7364,
+   "ts": 20274,
    "status": 200,
    "kind": "server",
    "inputNames": [],

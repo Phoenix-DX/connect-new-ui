@@ -969,6 +969,7 @@ ConnectPatterns.SkeletonSection
 | In_BorderRadius | input | Text | `""` |
 | In_HighRes | input | Boolean | `false` |
 | HasErrorMessage | input | Boolean | `false` |
+| In_ForceLoadingState | input | Boolean | `false` |
 - Lifecycle handlers: Initialize, Ready, ParametersChanged
 - Client actions / event handlers: `onInitialize`, `onReady`, `setLocalEntityId`, `onParametersChanged`
 - Static entities / flags: `uBT_Shape.circle`, `connect_Entity.member`, `uBT_Color.cyanLightest`, `uBT_Color.cyanDarker`, `uBT_Size.none`, `uBT_Shape.none`, `uBT_Size.base`, `uBT_FontSize.display`, `uBT_ImageSize.extraSmall_32`, `uBT_FontSize.extraSmall`, `uBT_IconSize.medium_20`, `uBT_ImageSize.small_40`, `uBT_FontSize.small`, `uBT_IconSize.base_24`, `uBT_ImageSize.base_52`, `uBT_FontSize.base`, `uBT_IconSize.nonStandard_32`, `uBT_ImageSize.medium_60`, `uBT_FontSize.heading6`, `uBT_IconSize.display_36`, `uBT_ImageSize.large_65`, `uBT_FontSize.heading4`, `uBT_ImageSize.extraLarge_100`, `uBT_FontSize.heading2`, `uBT_IconSize.nonStandard_64`, `uBT_ImageSize.doubleExtraLarge_176`, `uBT_IconSize.nonStandard_108`, `uBT_ImageSize.fullHeight_100_Percent`, `uBT_ImageSize.maxHeight_100vh`, `uBT_ImageSize.fullWidth_100_Percent`
@@ -989,6 +990,7 @@ ConnectPatterns.SkeletonSection
 | In_BorderOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ImageBorderOptionsRec())` |
 | HasErrorMessage | input | Boolean | `false` |
 | ExtendedClass | input | Text | `""` |
+| In_ForceLoadingState | input | Boolean | `false` |
 - Lifecycle handlers: Initialize, Ready, Destroy, ParametersChanged
 - Client actions / event handlers: `actionDefineHasImage`, `onParametersChanged`, `onLoad`, `onReady`, `onError`, `onInitialize`, `onDestroy`
 - JavaScript nodes: `UBTConnectLibrary.ConnectPatterns.LazyImage.mvc$controller.OnReady.SetupOnLoadJS`, `UBTConnectLibrary.ConnectPatterns.LazyImage.mvc$controller.OnInitialize.IsViewRestoredFromCacheJS`, `UBTConnectLibrary.ConnectPatterns.LazyImage.mvc$controller.OnDestroy.JavaScript1JS`
@@ -1159,16 +1161,16 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 2661 ms
-- 2. `DataActionGetLocalityHouseholdIds` (200) at 2668 ms
-- 3. `ActionGetSignedImagesInBulk` (200) at 3751 ms
-- 4. `ActionGetSignedImagesInBulk` (200) at 3755 ms
-- 5. `ActionAppManager_AfterInitialize` (200) at 6492 ms
-- 6. `ActionSync_Info_GetMain` (200) at 7012 ms
-- 7. `ActionGetUserInformation` (200) at 7444 ms
-- 8. `ActionGetNumberUnreadMessages` (200) at 7756 ms
-- 9. `ServiceAPIFetchData_CacheableHouseholds` (200) at 8527 ms
-- 10. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8618 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 3014 ms
+- 2. `DataActionGetLocalityHouseholdIds` (200) at 3026 ms
+- 3. `ActionGetSignedImagesInBulk` (200) at 4307 ms
+- 4. `ActionGetSignedImagesInBulk` (200) at 4439 ms
+- 5. `ActionAppManager_AfterInitialize` (200) at 6494 ms
+- 6. `ActionSync_Info_GetMain` (200) at 6911 ms
+- 7. `ActionGetUserInformation` (200) at 7256 ms
+- 8. `ActionGetNumberUnreadMessages` (200) at 7534 ms
+- 9. `ServiceAPIFetchData_CacheableMapEntities` (200) at 9712 ms
+- 10. `ServiceAPIFetchData_CacheableHouseholds` (200) at 12323 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`
