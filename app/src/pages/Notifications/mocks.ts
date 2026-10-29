@@ -11,17 +11,23 @@ import { statefulHandler } from '@/mocks/store';
    does not depend on the inputs and the recorded CurrentBreakpoint.SectionName is anonymised, so matchInputs is off.
    DataActionFetchNotifications: never recorded: the 68 notifications of the collection in
    src/mocks/fictional/notifications.ts (captured count, read state, avatar kind and age; the reasons are there). The
-   screen sends Local_OnlyShowUnread (Handler_OnlyShowUnread) and OrderByIsAscending (Handler_ApplyFilters,
-   IsNewestToOldest) and only refreshes the data action after it sets them: the mock answers the unread rows only, and
-   the oldest first, when they are True (the server code is not in the client sources: drift-WP5.md, question Q1).
+   server logic (MCP on DEV, 2026-10-29, migration/clarify/review/mcp-session-2026-10-29.md, drift wave rows; the TST
+   server code is not visible): the data action calls Get_UI_Notifications (Connect2_Notification_CS: MaxRecords rows,
+   Title or Summary LIKE the trimmed SelectedHistorySearch, private and/or public messages, ORDER BY DateTimeCreated
+   ASC when OrderByIsAscending, else DESC). With Local_OnlyShowUnread it keeps the rows with `not IsRead` and assigns
+   no other output, so HasUnreadMessages is False and UnreadNotificationsCount 0 (Notifications.mvc.js OnAfterFetch:
+   ShowMarkAll and ReadCount follow that count). Without it, UnreadNotificationsCount = the unread private and public
+   messages; Get_UI_Notifications never assigns HasUnreadMessages (its node is disabled), so it is False. The mock rows
+   have no message type: both types off (`0=1 OR 0=1`) answers no row, any other choice all rows.
    The server actions change the collection (P-MUTATION), so a later fetch shows the change:
    - ActionMarkAsRead (Handler_NotificationDetail, Notifications.mvc.js:2983-3003): IsRead True. No output.
    - ActionToggleRead (NotificationsList Handler_ToggleRead, NotificationsList.mvc.js:580-589): IsRead = the input.
    - ActionMarkAllAsReadNotifications (Handler_MoreActionSheetMarkAllAsRead, Notifications.mvc.js:2611-2662): every
      row IsRead True; TotalChange = the rows that changed. The inputs (message types, device, search term) do not
-     narrow the mock list (FetchNotifications does not filter by them either).
+     narrow the mock list.
    - ServiceAPIDelete_Notifications (Handler_DeleteNotification of NotificationsList, Handler_MoreActionSheetDeleteAll):
-     removes the rows of Messages by Id. No output. */
+     removes the rows of Messages by Id (DEV Delete_Notifications: MarkAsClear(Messages.Current.Id) per row; it reads
+     no other field). No output. */
 
 /* Scenario `olderread` (?mock=olderread): every notification older than 30 days is read, so the "Older" section has
    no unread item and its Notifications_Header shows no Badge (If_HasBadge, BR-UBTCON-981). The default keeps the
@@ -36,11 +42,21 @@ export const handlers: RequestHandler[] = [
   recordedHandler('UBTConnect', 'Notifications/DataActionGetDateRanges', { matchInputs: false }),
   contractHandler('UBTConnect', 'Notifications/DataActionFetchNotifications', (inputs) => {
     const all = notifications(scenario() === 'olderread');
-    const shown = inputs.Local_OnlyShowUnread === true ? all.filter((n) => !n.IsRead) : all;
-    const list = inputs.OrderByIsAscending === true ? [...shown].reverse() : shown;
+    const search = (inputs.SelectedHistorySearch ?? '').trim().toLowerCase();
+    const typed = inputs.Filter_MessageTypePrivate === true || inputs.Filter_MessageTypePublic === true;
+    const found = all.filter(
+      (n) => typed && (n.Title.toLowerCase().includes(search) || n.Summary.toLowerCase().includes(search)),
+    );
+    const messages = inputs.OrderByIsAscending === true ? [...found].reverse() : found;
+    if (inputs.Local_OnlyShowUnread === true)
+      return {
+        UI_NotificationItemList: wireList(messages.filter((n) => !n.IsRead)),
+        HasUnreadMessages: false,
+        UnreadNotificationsCount: '0',
+      };
     return {
-      UI_NotificationItemList: wireList(list),
-      HasUnreadMessages: all.some((n) => !n.IsRead),
+      UI_NotificationItemList: wireList(messages),
+      HasUnreadMessages: false,
       UnreadNotificationsCount: String(all.filter((n) => !n.IsRead).length),
     };
   }),

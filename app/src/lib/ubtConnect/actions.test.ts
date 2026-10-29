@@ -24,6 +24,8 @@ import {
   getSkeletonList_UI_HouseholdMembers,
   getSkeletonList_UI_SubdivisionHousehold,
   isStringEquals,
+  notes_InterchangeId_ComposeId,
+  notes_InterchangeId_ExtractId,
 } from './actions';
 import { Type_CarouselItemSwipeAction } from './staticEntities';
 import {
@@ -238,5 +240,28 @@ describe('directory map screens actions', () => {
     expect(click.defaultPrevented).toBe(true);
     expect(onClick).toHaveBeenCalledWith('42');
     expect(directory_BrowseByCountry_TooltipBuilder({ Marker: { Id: '1' } }, onClick).textContent).toBe('');
+  });
+});
+
+/* Notes_InterchangeId_ComposeId and Notes_InterchangeId_ExtractId (UBTConnect.controller.js, TST publish of
+   2026-10-29, copy in migration/screens/Notes/analysis/sources/raw/). Fictional ids. */
+describe('Notes_InterchangeId_ComposeId / Notes_InterchangeId_ExtractId', () => {
+  it('ComposeId: "<LocalityId>:<InterchangeLocalityId>", or the interchange id alone', () => {
+    expect(notes_InterchangeId_ComposeId('252', '5')).toBe('252:5');
+    expect(notes_InterchangeId_ComposeId('', '5')).toBe('5');
+  });
+
+  it('ExtractId: no ":" (one part) gives LocalityId = the id; else part 0 and part 1', () => {
+    expect(notes_InterchangeId_ExtractId('')).toEqual({ LocalityId: '', InterchangeLocalityId: '' });
+    expect(notes_InterchangeId_ExtractId('5')).toEqual({ LocalityId: '5', InterchangeLocalityId: '' });
+    expect(notes_InterchangeId_ExtractId('252:5')).toEqual({ LocalityId: '252', InterchangeLocalityId: '5' });
+    expect(notes_InterchangeId_ExtractId('252:5:9')).toEqual({ LocalityId: '252', InterchangeLocalityId: '5' });
+  });
+
+  it('ExtractId reverses ComposeId', () => {
+    expect(notes_InterchangeId_ExtractId(notes_InterchangeId_ComposeId('252', '5'))).toEqual({
+      LocalityId: '252',
+      InterchangeLocalityId: '5',
+    });
   });
 });

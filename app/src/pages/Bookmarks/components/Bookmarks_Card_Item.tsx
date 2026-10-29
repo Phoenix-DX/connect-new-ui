@@ -18,7 +18,8 @@ interface Bookmarks_Card_ItemProps {
 }
 
 /** One bookmark card (Bookmarks_Card_Item.mvc.js view :160-430): the card with notes (`containers/CardWithNotes`:
-    ItemCard_WithNotes with the source header, title, subtitle and total notes of Bookmark_Card_Content, the note
+    ItemCard_WithNotes with the source header, title, subtitle and total notes of Bookmark_Card_Content and the event
+    dates EventStartDate / EventEndDate of the card item (TST publish of 2026-10-29), the note
     preview and the NotesSheet), with ItemCardActions (Unmark and Add Note; ObjectId = ItemId, BookmarkType =
     BookmarkCategoryId). The block keeps its own copy of the card (`useCardNotes`): Handler_OnNotesChanged replaces its
     notes, Handler_OnNoteDeleted (:519-571) removes the note and sets Total to the length of the list. The note category

@@ -2,16 +2,27 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback/feedbackStore';
 import { feedbackMessageAutoClose } from '@/platform/feedback/feedbackMessageAutoClose';
-import { isNotRegisteredException, isSystemException, raiseToFlowHandler } from '@/platform/feedback/flowErrors';
+import {
+  UserException,
+  isCommunicationException,
+  isNotRegisteredException,
+  isSystemException,
+  isUserException,
+  raiseToFlowHandler,
+} from '@/platform/feedback/flowErrors';
 import { bottomSheetClose, bottomSheetOpen } from '@/components/ui/lib/actions';
 import type { SearchResult } from '@/lib/ubtConnectUtils/structures';
 import { useAvailableMembersQuery } from '@/api/member';
 import { csShareObject, useRecentlySharedQuery } from '@/api/share';
 import { navigateToUpgrade, showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
 import { getUserInformation } from '@/platform/session/userInfo';
+import { Type_ShareObject } from '@/lib/ubtConnect/staticEntities';
 import { delaySetIsOpen, scrollToTop, shareSheet_IsSharing } from './jsNodes';
 import { MAX_RECIPIENTS, RESET, SKELETON, type Locals } from './shareSheetState';
 import type { ShareSheetParams } from './types';
+
+/** The user exception UBTConnect_Utils.CommunicationError. */
+const COMMUNICATION_ERROR = 'UBTConnect_Utils.CommunicationError';
 
 /** The state, the effects and the handlers of the block (OnParametersChanged, Handler_*, Action_*); the view is
     ShareSheetContainer.tsx. */
@@ -122,22 +133,43 @@ export function useShareSheet({
   const searchResultItemList = isSearching ? (available.data ?? SKELETON) : recentFetched ? recentlyShared : SKELETON;
   const isSelected = (item: SearchResult) => selectedMembers.some((m) => m.Id === item.Id);
 
-  // Action_SubmitShare (:3084-3183): CS_ShareObject, then reset and close, then the confirmation. Handlers, in order:
-  // NotRegistered → raised again to the flow handler (:3127-3136); AllExceptions (not a system exception) → the
-  // message (:3138-3148); a system exception goes up to the flow handler too (:3152, safeExecuteClientAction).
+  const setIsSubmitting = (isSubmitting: boolean) => {
+    setLocals((current) => ({ ...current, isSubmitting }));
+  };
+  // Action_SubmitShare (survey ShareSheet.mvc.js:3090-3218, TST publish of 2026-10-29): Cache_UserInfo_Get,
+  // IsSubmitting = True, CS_ShareObject, reset and close, then the confirmation ("Household profile has been shared."
+  // for a household, else "<Type> has been shared.") and IsSubmitting = False. Handlers, in order, each with
+  // IsSubmitting = False: NotRegistered → raised again; CommunicationError (user exception) and CommunicationException
+  // → raised as the user exception CommunicationError with the same message; AllExceptions (not a system exception)
+  // → the message. A system exception goes up to the flow handler with IsSubmitting still True (`throw ex`).
   const submitShare = async (targetMemberIds: string[]) => {
     try {
       // Cache_UserInfo_Get (the user-info cache), then CS_ShareObject with the sharer's "FirstName LastName".
       const user = (await getUserInformation()).Directory_UserCurrent;
+      setIsSubmitting(true);
       await csShareObject(variables, `${user.FirstName} ${user.LastName}`, targetMemberIds);
       resetAndCloseSheetState();
-      showFeedbackMessage(`${inShareObjectTypeId} has been shared.`, PLATFORM_MESSAGE_TYPE.info);
+      const submitMessage =
+        inShareObjectTypeId === Type_ShareObject.Household ? `${inShareObjectTypeId} profile` : inShareObjectTypeId;
+      showFeedbackMessage(`${submitMessage} has been shared.`, PLATFORM_MESSAGE_TYPE.info);
+      setIsSubmitting(false);
     } catch (ex) {
-      if (isNotRegisteredException(ex) || isSystemException(ex)) {
+      if (isNotRegisteredException(ex)) {
+        setIsSubmitting(false);
+        raiseToFlowHandler(ex);
+        return;
+      }
+      if (isUserException(ex, COMMUNICATION_ERROR) || isCommunicationException(ex)) {
+        setIsSubmitting(false);
+        raiseToFlowHandler(new UserException(ex instanceof Error ? ex.message : '', COMMUNICATION_ERROR));
+        return;
+      }
+      if (isSystemException(ex)) {
         raiseToFlowHandler(ex);
         return;
       }
       showFeedbackMessage('Share failed. Please try again.', PLATFORM_MESSAGE_TYPE.error);
+      setIsSubmitting(false);
     }
   };
   // Handler_OnClickRecentMember (:2575-2629): a disabled record runs App_Subscription_ShowUpgradePopUp (:2588-2592; an
@@ -212,5 +244,6 @@ export function useShareSheet({
     onClickSelected,
     onClickSend,
     isSharing,
+    isSubmitting: locals.isSubmitting,
   };
 }

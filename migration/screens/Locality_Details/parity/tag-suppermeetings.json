@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 1,
- "fingerprint": "af2fbd17d6b5d12aea7d",
+ "fingerprint": "83fa0ab7801d16a48684",
  "options": {
   "text": true,
   "style": true,
@@ -27,7 +27,7 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-29T12:42:15.396Z",
+ "at": "2026-10-29T14:59:54.552Z",
  "counts": {},
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
@@ -41,7 +41,7 @@
   "maxCell": 0.0056,
   "maxCellRatio": 0.03,
   "diffPixels": 17,
-  "comparedPixels": 117443,
+  "comparedPixels": 117467,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [

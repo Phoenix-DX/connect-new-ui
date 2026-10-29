@@ -11,8 +11,9 @@
    - routes: the routes that read the flag (flags.generated.json "routes").
    mobileDirectoryLocalityContacts is not in flags.generated.json: its decision is a route decision (Locality_Details Q2,
    default-only off, 2026-10-15), and Locality_Details reads it. mobileDirectoryHouseholdGallery (live TST of
-   2026-10-27, HouseholdDetails_Block.mvc.js:1298-1301) is not in flags.generated.json either: default off as the
-   drift wave applied it (drift-WP3 Q4); its flag decision is open (drift-FU.md). */
+   2026-10-27, HouseholdDetails_Block.mvc.js:1298-1301): default on as TST (read-only probe of 2026-10-29; user
+   decision (a), drift wave round 2); flags.generated.json adds Locality_Details to the scanned routes, because that
+   screen embeds the block (migration/screens/Locality_Details/analysis/calls.md). */
 
 export type FlagKind = 'release' | 'permission' | 'ops';
 
@@ -273,7 +274,7 @@ export const FLAGS = {
     description: 'Hides the Coming Soon box of the household Photos tag (HouseholdDetails_Block).',
     ...UNSET,
     source: 'server',
-    default: false,
+    default: true,
     routes: ['HouseholdDetails', 'HouseholdCarousel', 'Locality_Details', 'Profile'],
   },
 } as const satisfies Readonly<Record<string, FlagDefinition>>;

@@ -1,0 +1,70 @@
+{
+ "state": "offline",
+ "route": "/UBTConnect/OneSchoolGlobalCarousel?In_StartingObjectId=1430&mocksession=unlocked",
+ "mock": "error",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "1975bfd73c45e3e8116d",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "visibleOnly": false,
+  "full": true,
+  "replay": "builder",
+  "skipKinds": [],
+  "selfRef": false
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 417,
+  "texts": 34,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-10-29T14:04:18.161Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
+  "DEVICE-BOOKMARK-STATE-OSGCAROUSEL-OFFLINE": 12,
+  "CAPTURE-SKELETON-SHIMMER-PHASE": 19,
+  "OSGCAROUSEL-ACTIVEDESCENDANT-LIST-KEY": 1,
+  "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
+  "ignoreSubtrees": 1,
+  "CAPTURE-POPUP-SCROLL-CLASS-FLUSH-ORDER-DIRECTORY-ACTIONS-OSGCAROUSEL-OFFLINE": 1,
+  "DEVICE-BOOKMARK-STATE-OSGCAROUSEL-OFFLINE-PIXEL": 1
+ },
+ "pixel": {
+  "ratio": 0.00343,
+  "maxCell": 0.4081,
+  "maxCellRatio": 0.03,
+  "diffPixels": 1113,
+  "comparedPixels": 324676,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 3,
+  "hotspots": [
+   "360,40 (653px)",
+   "40,480 (143px)",
+   "0,480 (117px)",
+   "40,440 (89px)",
+   "0,440 (51px)"
+  ],
+  "diffPng": "migration/screens/OneSchoolGlobalCarousel/parity/offline.diff.png"
+ },
+ "calls": null,
+ "diffs": []
+}

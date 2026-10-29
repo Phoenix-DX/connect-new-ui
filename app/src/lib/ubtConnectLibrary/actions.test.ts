@@ -241,3 +241,15 @@ describe('setScrollShadow (ScrollAnimations.js:151-205)', () => {
     expect(setScrollShadow()).toEqual({});
   });
 });
+
+import { formatDateForAssembleMeetings } from './actions';
+
+/* FormatDateForAssembleMeetings (UBTConnectLibrary.controller.js, TST publish of 2026-10-29; it replaces
+   Connect2_Assemble_MUI GetAssembleEventSummaryDateTimeString, same expression). */
+describe('FormatDateForAssembleMeetings', () => {
+  it('time or "On", Lord\'s Day on Sundays, then the date', () => {
+    // 2026-11-08 is a Sunday, 2026-11-10 a Tuesday
+    expect(formatDateForAssembleMeetings('2026-11-08T09:30:00', false)).toBe("9:30 AM on Lord's Day, 8 November 2026");
+    expect(formatDateForAssembleMeetings('2026-11-10T19:00:00', true)).toBe('On Tuesday, 10 November 2026');
+  });
+});

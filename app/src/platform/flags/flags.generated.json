@@ -372,6 +372,22 @@
    ],
    "decision": "default-only: TST value off (user, 2026-10-14)"
   },
+  "mobileDirectoryHouseholdGallery": {
+   "source": "launchDarkly_FF.mobileDirectoryHouseholdGallery",
+   "default": "on",
+   "values": [
+    "on",
+    "off"
+   ],
+   "branches": "default-only",
+   "routes": [
+    "HouseholdCarousel",
+    "HouseholdDetails",
+    "Locality_Details",
+    "Profile"
+   ],
+   "decision": "user decision (a) 'probe then record', drift wave round 2, 2026-10-29: on as TST (read-only probe migration/tools/flag_probe.cjs, 2026-10-29: true). HouseholdDetails_Block.mvc.js:1298-1301: on hides the Coming Soon box of the Photos tag. The off branch stays in the code with unit tests (HouseholdDetailsView.test.tsx); same record shape as getHasMapsEnabled (H-Q3). migration/clarify/review/drift-decisions-2026-10-29.md"
+  },
   "mobileOrbitEventBooklet": {
    "source": "launchDarkly_FF.mobileOrbitEventBooklet",
    "default": "on",

@@ -16,6 +16,21 @@ Q3 (user 2026-10-29): the TST captures come from the Bookmarks card of school 14
 P-PARAMS (route input, preload object), P-BACK (view cache of the variables, BackNavigationHandler), P-OSUI
 (Carousel through EntitiesCarousel), P-MOCKS (mock preload, `empty` scenario), P-STATES (loading, offline).
 
+## Feature flags
+The flags scan of 2026-10-29 (refreshed survey) gives 7 flags. They come from the blocks that the slides embed
+(OneSchoolGlobalDetails_Block, Directory_EntityDetailsActions, the bottom bar). This route reads none of them itself.
+Each flag keeps its decision (`migration/flags.md`):
+- `launchDarkly_FF.mobileStudentInformation`: default-only on (user, 2026-10-14). The student section of the slide
+  (container OneSchoolGlobalDetails).
+- `action:getHasExtendedShare` (C2ExtendedShare): default-only on (user, 2026-10-14).
+- `action:getHasNewBookmarks` (C2NewBookmarks): default-only on (user, H-Q2 (a), 2026-10-29). TST removed the branch
+  from Directory_EntityDetailsActions, so the block reads the C2 bookmarks only.
+- `launchDarkly_FF.mobileDirectoryBookmarkNote`: default-only off (user, 2026-10-14). The bottom bar reads it.
+- `action:getHasC1DirectoryView` (C2EnableC1DirectoryView): default-only on (user, 2026-10-14). The Directory tab of
+  the bottom bar reads it.
+- `action:connect_LaunchDarkly_PermissionCheck`, `clientVar:App_PIN_BiometricEnabled`: not flags (false positives;
+  user, 2026-10-14).
+
 ## Unclear points
 
 

@@ -28,6 +28,8 @@ describe('toBookmarkCardItem', () => {
       channelName: 'Westvale Gazette',
       channelLogo: '/img/westvale-gazette.svg',
       publishedAt: '2026-10-26T08:30:00',
+      eventStartDate: '1900-01-01T00:00:00',
+      eventEndDate: '1900-01-01T00:00:00',
       title: 'Harvest Fair at Westvale',
       subtitle: 'Photos from the weekend',
       sourceHeader: { iconId: '', imageURL: '', initials: 'W', label: 'Feed Item' },

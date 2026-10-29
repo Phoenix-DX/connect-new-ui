@@ -58,7 +58,7 @@ export interface HouseholdDetailsViewProps {
   isEnabled: boolean;
   /** Shows the kebab menu (edit, share) and the share sheet. */
   showKebabMenu: boolean;
-  /** LD check mobileDirectoryHouseholdGallery (default off): on hides the Coming Soon box of the Photos tag. */
+  /** LD check mobileDirectoryHouseholdGallery (registry default on, as TST): on hides the Coming Soon box of the Photos tag. */
   hasHouseholdGallery?: boolean;
   /** Hides the call-to-action section on the About tag. */
   hideActions: boolean;

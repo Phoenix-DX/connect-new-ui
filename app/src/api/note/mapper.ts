@@ -36,6 +36,9 @@ type NoteCardItemWireTst = NoteCardItemWire & {
     PublishedAt?: string;
     ChannelLogo?: string;
     ChannelName?: string;
+    /** TST publish of 2026-10-29 (NoteCard_Item gives them to ItemCard_WithNotes). */
+    EventStartDate?: string;
+    EventEndDate?: string;
   };
 };
 /** Connect_Notes_CS Notes_Filter as the server takes it. */
@@ -90,6 +93,8 @@ export const toNoteCardItem = (w: NoteCardItemWireTst): NoteCardItem => ({
   channelName: w.NoteCardContent.ChannelName ?? '',
   channelLogo: w.NoteCardContent.ChannelLogo ?? '',
   publishedAt: w.NoteCardContent.PublishedAt ?? NULL_DATE_TIME,
+  eventStartDate: w.NoteCardContent.EventStartDate ?? NULL_DATE_TIME,
+  eventEndDate: w.NoteCardContent.EventEndDate ?? NULL_DATE_TIME,
 });
 
 /** The cards of a page and the total. */

@@ -11,6 +11,8 @@ export interface Locals {
   isSearchStep: boolean;
   currentExternalShareIdOption: string;
   sharingRecentMemberId: string;
+  /** IsSubmitting: True while CS_ShareObject runs (Action_SubmitShare); it disables Send (survey mvc.js:1759). */
+  isSubmitting: boolean;
 }
 export const RESET: Locals = {
   searchTerm: '',
@@ -18,6 +20,7 @@ export const RESET: Locals = {
   isSearchStep: false,
   currentExternalShareIdOption: '',
   sharingRecentMemberId: '',
+  isSubmitting: false,
 };
 /** SearchPromt default (ShareSheet.mvc.js:80). */
 export const SEARCH_PROMPT = 'Search';

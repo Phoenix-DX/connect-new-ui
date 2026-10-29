@@ -40,6 +40,10 @@ export interface BookmarkCardItem {
   channelLogo: string;
   /** DateTime ("yyyy-MM-ddTHH:mm:ss"); NullDate when the card has no channel. */
   publishedAt: string;
+  /** EventStartDate and EventEndDate (DateTime) of UI_Bookmark_CardItem: the event time row of ItemCard_WithNotes
+      (TST publish of 2026-10-29); NullDate when the card is not an event. */
+  eventStartDate?: string;
+  eventEndDate?: string;
   title: string;
   subtitle: string;
   sourceHeader: { iconId: string; imageURL: string; initials: string; label: string };
@@ -81,6 +85,8 @@ export const toBookmarkCardItem = (w: BookmarkCardItemWire): BookmarkCardItem =>
     channelName: w.ChannelName ?? '',
     channelLogo: w.ChannelLogo ?? '',
     publishedAt: w.PublishedAt ?? NULL_DATE_TIME,
+    eventStartDate: w.EventStartDate ?? NULL_DATE_TIME,
+    eventEndDate: w.EventEndDate ?? NULL_DATE_TIME,
     title: c.Title,
     subtitle: c.Subtitle,
     sourceHeader: {

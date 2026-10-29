@@ -9,6 +9,7 @@ import {
 import type { Notes } from '@/lib/ubtConnectLibrary/structures';
 import type { EventDetailInputs } from '@/pages/EventDetail/inputs';
 import { showFeedbackMessage } from '@/platform/feedback';
+import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { useFlowState } from '@/platform/navigation';
 import { getUserInformation } from '@/platform/session/userInfo';
 import { getLocalSurveyStatusByJSONName } from '@/platform/storage/localEntities';
@@ -136,15 +137,16 @@ export function useEventDetail(
 
     // FetchEventNotes is fetched at start (dependency 0, ScreenBlock_EventDetail.mvc.js:1580-1595): it starts with
     // OnReady and OnReady does not wait for it (captured before Get_EventDetails, calls.md #2).
-    // OnAfterFetch_FetchEventNotes: EventNotes = FetchEventNotes.Notes. A failure keeps the default EventNotes, as
-    // the fetch at start of GetCoordinatorDetails in LDM_EventDetail_V2.
+    // OnAfterFetch_FetchEventNotes: EventNotes = FetchEventNotes.Notes. A failed fetch at start keeps the default
+    // EventNotes and goes to the flow handler, as TST (executeDataFetchAction: flush, then the block handleError;
+    // item2-fetch-errors.md E1, E3; WP6 Q2 (a), user 2026-10-29).
     flow
       .fetch(fetchEventNotes(variables())) // R1
       .then((notes) => {
         dispatch({ type: 'eventNotesSet', notes });
       })
-      .catch(() => {
-        // EventNotes keeps its default (Total 0, no notes).
+      .catch((e: unknown) => {
+        raiseToFlowHandler(e, flow); // EventNotes keeps its default (Total 0, no notes)
       });
 
     dispatch({ type: 'fetchStarted' });

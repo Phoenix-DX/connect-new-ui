@@ -279,6 +279,16 @@ describe('useEventDetail OnReady', () => {
     expect(result.current.state.isFetchingData).toBe(true);
     expect(getUserInformation).not.toHaveBeenCalled();
   });
+
+  it('a FetchEventNotes failure keeps the default notes and goes to the flow handler (E1, WP6 Q2 a)', async () => {
+    const failure = new Error('down');
+    vi.mocked(fetchEventNotes).mockRejectedValueOnce(failure);
+    renderFlows();
+    await settle();
+    expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(failure, expect.anything());
+    expect(fetchEventDetails).toHaveBeenCalledTimes(1);
+  });
 });
 
 /** The errors that reach the flow handler, without the ignorable ones (ControllerDisposedException of a left block). */

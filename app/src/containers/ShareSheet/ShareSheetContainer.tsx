@@ -52,6 +52,7 @@ export function ShareSheetContainer({
     onClickSelected,
     onClickSend,
     isSharing,
+    isSubmitting,
   } = useShareSheet({
     inIsOpen,
     inShareObjectTypeId,
@@ -141,7 +142,7 @@ export function ShareSheetContainer({
             >
               {isSearchStep ? (
                 <ActionButton
-                  isDisabled={selectedMembers.length === 0}
+                  isDisabled={selectedMembers.length === 0 || isSubmitting}
                   buttonText="Send"
                   buttonOptions={{ UBT_ButtonSizeId: UBT_ButtonSize.Small }}
                   onButtonOnClick={onClickSend}

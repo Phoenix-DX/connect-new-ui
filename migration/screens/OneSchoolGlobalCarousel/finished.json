@@ -1,0 +1,12 @@
+{
+ "finishedAt": "2026-10-29T21:51:30",
+ "files": {
+  "src/pages/OneSchoolGlobalCarousel/OneSchoolGlobalCarousel.test.tsx": "88834adf6a0d89e0",
+  "src/pages/OneSchoolGlobalCarousel/OneSchoolGlobalCarouselPage.tsx": "0f6896893f967eb6",
+  "src/pages/OneSchoolGlobalCarousel/hooks/oneSchoolGlobalCarouselActions.test.ts": "f956160760074c20",
+  "src/pages/OneSchoolGlobalCarousel/hooks/oneSchoolGlobalCarouselActions.ts": "e97a166168940030",
+  "src/pages/OneSchoolGlobalCarousel/hooks/useOneSchoolGlobalCarousel.ts": "4a6e149703a21877",
+  "src/pages/OneSchoolGlobalCarousel/inputs.ts": "fa82cb4b7905c1df",
+  "src/pages/OneSchoolGlobalCarousel/mocks.ts": "eae8958167501063"
+ }
+}

@@ -23,15 +23,11 @@ import {
   getNameAndSurname_ByFullName,
   toggleBookmarkItem_C2,
   type BookmarkServerActions,
+  notes_InterchangeId_ComposeId,
 } from '@/lib/ubtConnect/actions';
 import { Connect_Entity } from '@/lib/ubtConnect/staticEntities';
 import { fetchContactDetails, fetchNotes, type EntityDetailsActionsVariables } from './api';
-import {
-  CONTACT_POPUP_DATA_DEFAULT,
-  notes_InterchangeId_ComposeId,
-  onReadyInit,
-  type ContactDetails,
-} from './entityDetailsActionsState';
+import { CONTACT_POPUP_DATA_DEFAULT, onReadyInit, type ContactDetails } from './entityDetailsActionsState';
 import type { EntityDetailsActionsContainerProps } from './types';
 
 /** The state, the effects and the handlers of the block (OnReady, OnParametersChanged, Handle_*); the view is

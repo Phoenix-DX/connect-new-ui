@@ -89,10 +89,22 @@ logic gaps per group; the user decides the new questions.
 | Flag `mobileDirectoryHouseholdGallery` | (a) A read-only probe of the TST value, then record the flag decision with that value. |
 
 Probe result (2026-10-29, `migration/tools/flag_probe.cjs`, read-only, no service call): `launchDarkly_FF.mobileDirectoryHouseholdGallery`
-is **true** on TST; `getHasMapsEnabled` true (already on since WP4). To do after the commit: `flags.py scan` and
-`flags.py decide` (on, user decision (a) "probe then record"), registry default on, parity HouseholdDetails.
+is **true** on TST; `getHasMapsEnabled` true (already on since WP4). Recorded (2026-10-29): `flags.py scan` (the
+refreshed survey adds the flag), `flags.py decide` (default on, branches default-only, reference none, as
+getHasMapsEnabled), registry default on. `flags.generated.json` gets only this entry, with Locality_Details added to the
+scanned routes (that screen embeds HouseholdDetails_Block, `migration/screens/Locality_Details/analysis/calls.md`). A full
+`flags.py export` would also change the routes of 12 other flags (the scan of the refreshed survey); that sync is left
+open.
 
 Facts answered by the TST compiled code (2026-10-29): WP5 Q2, Handler_ToggleRead (`UBTConnect.App_Notifications.NotificationsList.mvc.js:626-654`,
 live survey of 2026-10-29): the server action ToggleRead gets the new state (`not IsRead` of the list row); the local row
 is toggled; the event UpdateReadCount gets `not` the toggled value, i.e. the state before the toggle. React does the
 same (`../builds/drift-WP5.md`). The other server facts wait for the MCP session (Service Studio had no open module).
+
+## MCP session and WP6 Q2 (2026-10-29 evening)
+
+Facts: `mcp-session-2026-10-29.md` rows 9-12. Notifications mock follows row 9 (only-unread answers no count; HasUnreadMessages
+False; search and type filters). WP5 Q3 (a) holds (Delete_Notifications reads only Id, row 10). LegacyShareObject (M-Q4,
+row 11) waits for Connect2_Sharing_CS (the grouping logic). User decision (2026-10-29), WP6 Q2: (a) the three fetches at
+start whose failure React dropped (FetchEventNotes of EventDetail and LDM_EventDetail_V2, GetCoordinatorDetails) send the
+failure to the flow handler and keep their defaults, as TST (E1, E3).

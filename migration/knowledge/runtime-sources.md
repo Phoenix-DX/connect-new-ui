@@ -130,3 +130,13 @@ Source switch (user decision (c), 2026-10-28): the live TST code of 2026-10-27 i
 | `UBTConnect.App_Notifications.NotificationsList.css`, `UBTConnect.Map.Map_LocationInfoPopup.css` (GET `/UBTConnect/css/…`, in the manifest; 2026-10-29) | 87 B, 101 B | Saved to `app/public/UBTConnect/css/`: the same `css_sets.py` re-run puts them in the CSS sets of Notifications/NotificationDetails and Map |
 | 11 stylesheets of `app/public/UBTConnect/css/` refreshed (GET `/UBTConnect/css/<file>?<hash>` from the manifest, 2026-10-29, drift wave): AssembleTheme, OrbitTheme, LegacyShared UBTConnect, HostSurvey_AccommodationItem, HostSurvey_AdminNotes, ScreenBlock_EventDetail, App_Notifications.Notifications, Map.Map, UBTConnectBase, UBTConnectLibrary, Embedded_MyEntertaining | see files | The copies of 2026-10-14 differed from the live TST files (publish of 2026-10-27). The other 45 stylesheets are equal to TST; `Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.css` is not in the manifest (text from the captured bundle, WP6) |
 | `UBTConnectLibrary.ConnectPatterns.ComingSoon_V2.mvc.js` (GET `/UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.ComingSoon_V2.mvc.js?_pryshf5STz2dS4q69HZtw`, in the manifest; 2026-10-29, drift follow-ups, drift-WP3 Q2) | 11 kB | The ComingSoon_V2 block (no capture has it): a `comingsoon-card` container with CircleButton_IconPrimary (calendarFill, neutral0 on cyanDark) and CustomText "Coming Soon" (padding top base; neutral9, base, semiBold). Ported as `app/src/components/ui/ComingSoon_V2` (Locality_Details, Locality Contacts tag) |
+
+## Static GET of 2026-10-29 13:15 UTC (publish 2, P2-Q3 a)
+
+- Standing approval (static read-only GET of TST manifest files). No sign-in, no service call.
+- Eight files of the new moduleinfo (`versionToken` `+2kUjg…`), URL = path + the new hash: `APIDomain_Directory_IS.model.js`,
+  `Connect_Bookmarks_CS.model.js`, `Connect_Bookmarks_CS.referencesHealth.js`, `Connect_Notes_CS.model.js`,
+  `Connect_Notes_CS.referencesHealth.js`, `Leaflet.Leaflet.LeafletMap.css`, `Leaflet.Leaflet.LeafletMap_Updated.css`,
+  `Connect2_LegacyShared.AssembleTheme.css`. All HTTP 200.
+- Kept in the session scratchpad only (not in the project). Result: `../clarify/review/publish2-diff.md` § "The unidentified manifest entries".
+

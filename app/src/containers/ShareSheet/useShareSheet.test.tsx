@@ -3,7 +3,8 @@ import { act, renderHook, waitFor } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import { MemoryRouter } from 'react-router';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { NotRegisteredException, UserException } from '@/legacy/os/os-exceptions';
+import { http, HttpResponse } from 'msw';
+import { NotRegisteredException, UserException, isInstanceOf } from '@/legacy/os/os-exceptions';
 import type { SearchResult } from '@/lib/ubtConnectUtils/structures';
 import { contractHandler } from '@/mocks/contract';
 import { resetFeedbackDebounce } from '@/platform/feedback/feedbackMessageAutoClose';
@@ -31,12 +32,12 @@ function wrapper({ children }: { children: ReactNode }) {
   );
 }
 
-const renderSheet = () =>
+const renderSheet = (inShareObjectTypeId = 'Household') =>
   renderHook(
     () =>
       useShareSheet({
         inIsOpen: false,
-        inShareObjectTypeId: 'Household',
+        inShareObjectTypeId,
         inShareableObjectId: '77',
         inUpdateType: '',
         inUpdateDate: '1900-01-01',
@@ -79,7 +80,7 @@ describe('Handler_SearchResultItemOnSelect: the 50-recipient limit (:2918-2928)'
   });
 });
 
-describe('Action_SubmitShare: the handlers (:3120-3152)', () => {
+describe('Action_SubmitShare: the handlers (survey ShareSheet.mvc.js:3138-3218, TST publish of 2026-10-29)', () => {
   it('NotRegistered goes to the flow handler, with no message of the block', async () => {
     server.use(
       contractHandler('UBTConnect_Utils', 'ActionCS_ShareObject', () => {
@@ -112,5 +113,92 @@ describe('Action_SubmitShare: the handlers (:3120-3152)', () => {
     });
     expect(getFeedbackMessage()?.type).toBe(PLATFORM_MESSAGE_TYPE.error);
     expect(raiseToFlowHandler).not.toHaveBeenCalled();
+  });
+
+  it('the user exception CommunicationError goes to the flow handler as CommunicationError (:3166-3179)', async () => {
+    server.use(
+      contractHandler('UBTConnect_Utils', 'ActionCS_ShareObject', () => {
+        throw new UserException('The connection was lost.', 'UBTConnect_Utils.CommunicationError');
+      }),
+    );
+    const { result } = renderSheet();
+    act(() => {
+      result.current.onClickSend();
+    });
+    await waitFor(() => {
+      expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
+    });
+    const raised = vi.mocked(raiseToFlowHandler).mock.calls[0]?.[0];
+    expect(isInstanceOf(raised, UserException, 'UBTConnect_Utils.CommunicationError')).toBe(true);
+    expect((raised as Error).message).toBe('The connection was lost.');
+    expect(getFeedbackMessage()).toBeNull();
+    expect(result.current.isSubmitting).toBe(false);
+  });
+
+  it('a CommunicationException goes to the flow handler as the user exception CommunicationError (:3181-3194)', async () => {
+    server.use(
+      http.post('/api/UBTConnect_Utils/ActionCS_ShareObject', () =>
+        HttpResponse.json({ error: 'mock error' }, { status: 500 }),
+      ),
+    );
+    const { result } = renderSheet();
+    act(() => {
+      result.current.onClickSend();
+    });
+    await waitFor(() => {
+      expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
+    });
+    const raised = vi.mocked(raiseToFlowHandler).mock.calls[0]?.[0];
+    expect(isInstanceOf(raised, UserException, 'UBTConnect_Utils.CommunicationError')).toBe(true);
+    expect((raised as Error).message).toBe('Request failed with status 500');
+    expect(getFeedbackMessage()).toBeNull();
+    expect(result.current.isSubmitting).toBe(false);
+  });
+});
+
+describe('Action_SubmitShare: IsSubmitting and the message (:3120-3150, Send IsDisabled :1759)', () => {
+  it('IsSubmitting is True while CS_ShareObject runs, then False', async () => {
+    let finish: () => void = () => undefined;
+    const answered = new Promise<void>((resolve) => {
+      finish = resolve;
+    });
+    server.use(
+      contractHandler('UBTConnect_Utils', 'ActionCS_ShareObject', async () => {
+        await answered;
+        throw new UserException('The share is not allowed.');
+      }),
+    );
+    const { result } = renderSheet();
+    expect(result.current.isSubmitting).toBe(false);
+    act(() => {
+      result.current.onClickSend();
+    });
+    await waitFor(() => {
+      expect(result.current.isSubmitting).toBe(true);
+    });
+    finish();
+    await waitFor(() => {
+      expect(result.current.isSubmitting).toBe(false);
+    });
+    expect(getFeedbackMessage()?.message).toBe('Share failed. Please try again.');
+  });
+
+  it('a household share says "Household profile has been shared."; other types "<Type> has been shared."', async () => {
+    const household = renderSheet('Household');
+    act(() => {
+      household.result.current.onClickSend();
+    });
+    await waitFor(() => {
+      expect(getFeedbackMessage()?.message).toBe('Household profile has been shared.');
+    });
+    resetFeedbackMessages();
+    const locality = renderSheet('Locality');
+    act(() => {
+      locality.result.current.onClickSend();
+    });
+    await waitFor(() => {
+      expect(getFeedbackMessage()?.message).toBe('Locality has been shared.');
+    });
+    expect(getFeedbackMessage()?.type).toBe(PLATFORM_MESSAGE_TYPE.info);
   });
 });

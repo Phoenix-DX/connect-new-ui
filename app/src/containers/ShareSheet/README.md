@@ -47,6 +47,10 @@ The block uses these calls (`src/api/share/shareSheet.ts` and `src/api/member/`,
   - The user clicks Send. The call uses the HouseholderIds of the selected members.
   - The user clicks a recently shared member.
   - After the call, the block resets the state and closes the sheet. Then it shows "<Type> has been shared."
+    ("Household profile has been shared." for a household, TST publish of 2026-10-29).
+  - Errors: NotRegistered goes to the flow handler; the user exception CommunicationError and a CommunicationException
+    go to the flow handler as the user exception CommunicationError; any other non-system error shows "Share failed.
+    Please try again."
   - When the call fails with NotRegistered or a system exception, the error goes to the flow handler. Any other
     failure shows "Share failed. Please try again."
 - ActionCS_CreateShareProfileLink (`cs_CreateShareProfileLink`).
@@ -90,7 +94,7 @@ Send, recent-member share, the two subscription clicks and the link action.
   - In the original app, a click on an option (Handler_OnClickExternalOption) calls CS_CreateShareProfileLink
     (ported in `src/api/share/shareSheet.ts`). Then it runs the ExternalShare client action (native share / clipboard).
   - The React app does not port the ExternalShare client action.
-- IsSubmitting of Action_SubmitShare has no visible effect here.
+- IsSubmitting of Action_SubmitShare disables Send while CS_ShareObject runs (TST publish of 2026-10-29, P2-Q1 a).
 - The captures do not contain the List widget attributes (`animateItems`, `disable-virtualization`). The block renders
   only `data-list`.
 - These static values come from the original CSS: `connect-icon-lock`, `connect-icon-checkbox_fill`,

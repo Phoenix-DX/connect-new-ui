@@ -1126,3 +1126,4 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-29,clarify-drift,fix,336036,wp1-opus,opus,"WP1 capture path fix, 5 re-captures, exemptions (17 changed, 4 new); ~80 calls (two runs: network stop at 48 calls, then 28)"
 2026-10-29,clarify-drift,analyze,201935,publish2-opus,opus,"publish 2 diff: 38/50 identified, 4 gap groups G1-G4, wave ports verified; 56 calls"
 2026-10-29,clarify-drift,fix,83208,ldmtest-opus,opus,LDM timeline filter test race fixed (wait for the active filter icon); 22 calls
+2026-10-29,drift-wave,fix,214644,general-purpose,opus,publish 2 gaps G1-G4; 90 tool calls; 7 routes parity clean

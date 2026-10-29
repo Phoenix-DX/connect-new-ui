@@ -50,6 +50,8 @@ No count went up. The Locality Contacts tag, the recent search rows and the gall
   `migration/flags.json` or `flags.generated.json`, like mobileDirectoryLocalityContacts. (a) You decide it with
   `flags.py decide` (default off); (b) keep it as a registry default only. Recommendation: a (the flag rule needs your
   confirmation).
+  Answered (user, 2026-10-29, round 2): (a) probe TST, then record it. The probe gave true: `flags.py decide` with
+  default on (branches default-only, reference none); registry default on (`../review/drift-decisions-2026-10-29.md`).
 - **FU-Q2 HouseholdDetails container V3 test.** (a) WP4 owner sets the story's bookmark seed to bookmarked for that
   story; (b) the test expects the new unbookmarked seed and the capture note says so. Recommendation: a (the capture
   shows a bookmarked card).

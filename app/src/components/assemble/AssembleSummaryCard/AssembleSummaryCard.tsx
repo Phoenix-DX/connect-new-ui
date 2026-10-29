@@ -7,11 +7,8 @@ import { ResultItemMedia } from '@/components/ui/ResultItemMedia';
 import { VirtualMeetingUrl, type MeetingInfoActions } from '@/components/assemble/VirtualMeetingUrl';
 import { AssembleSummaryCardHeader } from '@/components/assemble/AssembleSummaryCardHeader';
 import { AssembleSummaryCardRow } from '@/components/assemble/AssembleSummaryCardRow';
-import {
-  getAssembleEventSummaryDateTimeString,
-  getAssembleEventSummaryHeaderLabel,
-  getAssembleHostedAtComponents,
-} from '@/lib/assemble/actions';
+import { getAssembleEventSummaryHeaderLabel, getAssembleHostedAtComponents } from '@/lib/assemble/actions';
+import { formatDateForAssembleMeetings } from '@/lib/ubtConnectLibrary/actions';
 import { Position, ResultListType } from '@/lib/assemble/staticEntities';
 import type { AssembleEventSummary } from './types';
 
@@ -32,7 +29,7 @@ export interface AssembleSummaryCardProps extends MeetingInfoActions {
     - Placeholder_1 (not IsListItem): `margin-bottom-s` > header; Placeholder_2 (IsListItem): the header
       (GetAssembleEventSummaryHeaderLabel);
     - Placeholder_3: row with GetAssembleHostedAtComponents.SingleLine (`font-semi-bold text-neutral-6`, OSFillParent);
-    - Placeholder_4: clock row with GetAssembleEventSummaryDateTimeString; Placeholder_6: people row with the invitee
+    - Placeholder_4: clock row with UBTConnectLibrary FormatDateForAssembleMeetings (TST publish of 2026-10-29); Placeholder_6: people row with the invitee
       counts (or "Invitee numbers unavailable at the moment");
     - Placeholder_Right (IsListItem): NC_Result_Item__Image 73px round, reversed, `assemble-summary__card__header`;
     - Placeholder_Location: unless IsUnavailable, `padding-y-s border-top-s text-neutral-2 margin-top-s` with
@@ -108,7 +105,7 @@ export function AssembleSummaryCard({
             <AssembleSummaryCardRow
               placeholderIconLeft={<i className="icon connect-icon-time-clock fa fa-flag fa-1x" data-icon="" />}
               placeholderContent={
-                <span data-expression="">{getAssembleEventSummaryDateTimeString(s.DateTime, s.IsAllDay)}</span>
+                <span data-expression="">{formatDateForAssembleMeetings(s.DateTime, s.IsAllDay)}</span>
               }
             />
           }

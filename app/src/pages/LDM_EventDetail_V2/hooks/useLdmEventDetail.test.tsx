@@ -220,13 +220,25 @@ describe('useLdmEventDetail: fetch at start and OnReady', () => {
     expect(addAuditEvent_LDM).not.toHaveBeenCalled();
   });
 
-  it('a GetCoordinatorDetails failure keeps its defaults and does not reach the flow handler', async () => {
-    vi.mocked(fetchCoordinatorDetails).mockRejectedValueOnce(new Error('down'));
+  it('a GetCoordinatorDetails failure keeps its defaults and goes to the flow handler (E1, WP6 Q2 a)', async () => {
+    const failure = new Error('down');
+    vi.mocked(fetchCoordinatorDetails).mockRejectedValueOnce(failure);
     const { result } = renderFlows();
     await settle();
     expect(result.current.state.coordinator).toBeNull();
     expect(result.current.state.hasInformation).toBe(true);
-    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(failure, expect.anything());
+  });
+
+  it('a FetchEventNotes failure keeps the default notes and goes to the flow handler (E1, WP6 Q2 a)', async () => {
+    const failure = new Error('down');
+    vi.mocked(fetchLdmEventNotes).mockRejectedValueOnce(failure);
+    const { result } = renderFlows();
+    await settle();
+    expect(result.current.state.eventNotes).toEqual({ Total: 0, Note_Item_List: [] });
+    expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(failure, expect.anything());
   });
 
   it('StrictMode: each call and the audit event run once and the state is written', async () => {

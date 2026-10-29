@@ -943,3 +943,14 @@ export function getLookupConcepts(in_IsLowercase: boolean): LookupConcepts {
     SupperMeeting: item('Supper Meeting', 'Supper Meetings', I.HouseFill, C.Orange),
   };
 }
+
+/** FormatDateForAssembleMeetings(DateTime, IsAllDay) (UBTConnectLibrary.controller.js, TST publish of 2026-10-29, copy
+    in migration/screens/AssembleEvents/analysis/sources/raw/): "On " when all day, else "h:mm tt on ", then "Lord's
+    Day" on a Sunday or the day name, then ", d MMMM yyyy". Out: DateTimeString. It replaces Connect2_Assemble_MUI
+    GetAssembleEventSummaryDateTimeString (removed in that publish, same expression). */
+export function formatDateForAssembleMeetings(dateTime = '1900-01-01T00:00:00', isAllDay = false): string {
+  const dayLabel = dayOfWeek(dateTime) === 0 ? "Lord's Day" : formatDateTime(dateTime, 'dddd');
+  return (
+    (isAllDay ? 'On ' : formatDateTime(dateTime, 'h:mm tt on ')) + dayLabel + formatDateTime(dateTime, ', d MMMM yyyy')
+  );
+}

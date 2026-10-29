@@ -113,8 +113,16 @@ describe('notification repository: the screen Notifications', () => {
     expect(first?.dateTimeCreated).toMatch(/^\d{4}-\d{2}-\d{2}T10:50:23$/);
     // The TST capture of 2026-10-29: 2 unread notifications.
     expect(list.items.filter((n) => !n.isRead)).toHaveLength(2);
-    expect(list.hasUnreadMessages).toBe(true);
+    // DEV Get_UI_Notifications never assigns HasUnreadMessages (MCP, 2026-10-29): False.
+    expect(list.hasUnreadMessages).toBe(false);
     expect(list.unreadNotificationsCount).toBe(2);
+  });
+
+  it('fetchNotifications with Local_OnlyShowUnread: the unread rows, and no count (MCP on DEV, 2026-10-29)', async () => {
+    const list = await fetchNotifications({ ...variables, local_OnlyShowUnread: true });
+    expect(list.items).toHaveLength(2);
+    expect(list.items.every((n) => !n.isRead)).toBe(true);
+    expect(list.unreadNotificationsCount).toBe(0);
   });
 
   it('fetchNotifications sends only the screen variables of a caller model', async () => {

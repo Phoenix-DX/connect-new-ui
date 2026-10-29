@@ -135,7 +135,11 @@ describe('notesState', () => {
       path: '/UBTConnect/SupperMeeting_Details',
       inputs: { In_SubdivsionId: '3' },
     });
-    for (const other of ['Interchange', 'LDM Event', 'locality', 'Locality Contact', 'Orbit Event', 'Update', 'X'])
+    expect(noteCardTarget('252:5', '0', 'Interchange', context)).toEqual({
+      path: '/UBTConnect/Locality_Details',
+      inputs: { LocalityId: '252' },
+    });
+    for (const other of ['LDM Event', 'locality', 'Locality Contact', 'Orbit Event', 'Update', 'X'])
       expect(noteCardTarget('5', '0', other, context)).toBeNull();
   });
 

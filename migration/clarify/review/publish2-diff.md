@@ -137,3 +137,26 @@ not committed yet.
 
 Fix order: G4, G2, G3 (S), then G1 (M). Gate per change scope: unit tests, then parity for Bookmarks, Notes,
 Locality_Details, EventDetail, LDM_EventDetail_V2 and one share route.
+
+## The unidentified manifest entries (P2-Q3 a, 2026-10-29)
+
+Method: the saved new moduleinfo against `migration/runtime-sources/moduleinfo.json` (1302 → 1303 entries: 50 changed,
+1 added, 0 removed). The changed paths that the table above does not name are nine, not twelve. Copies compared: the
+2026-10-28 copies (`capture/runtime-sources-live-2026-10-28/`), the 2026-10-29 bundles and a static GET of the live
+files (`knowledge/runtime-sources.md`, 2026-10-29 13:15 UTC).
+
+| File | Change | React | Verdict |
+|---|---|---|---|
+| `Connect_Notes_CS.model.js` | `UI_Note_CardContent` has `EventStartDate` and `EventEndDate` (DateTime) | G1: `api/note` types and mapper | 1 (G1) |
+| `Connect_Bookmarks_CS.model.js` | `UI_Bookmark_CardItem` has `EventStartDate` and `EventEndDate` (DateTime) | G1: `api/bookmark/bookmarkCards.ts` | 1 (G1) |
+| `Connect_Notes_CS.referencesHealth.js`, `Connect_Bookmarks_CS.referencesHealth.js` | Module reference list only | - | 3 |
+| `APIDomain_Directory_IS.model.js` | Same records and attributes as the 2026-10-28 copy (new build only) | - | 3 |
+| `Connect2_LegacyShared.AssembleTheme.css`, `Leaflet.Leaflet.LeafletMap.css`, `Leaflet.Leaflet.LeafletMap_Updated.css` | Live file equal to `app/public/UBTConnect/css/` | - | 3 |
+| `Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.css` | 2026-10-29 bundle copy equal to `app/public/UBTConnect/css/` | - | 3 |
+
+No new gap. The two model changes are the data of G1 (`../builds/publish2-fix.md`).
+
+Found during the G3 port: `Action_SubmitShare` of the live ShareSheet shows "Household profile has been shared." for a
+household (`SubmitMessage + " profile"`, survey ShareSheet.mvc.js:3127-3140). The BookmarksByGroup copy (older) does not
+have it. React showed "Household has been shared."; ported with G3.
+

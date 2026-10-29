@@ -8,7 +8,6 @@ import { server } from '@/test/setup';
 import { testCapturedVariants } from '@/test/capturedVariants';
 import { Connect_Entity } from '@/lib/ubtConnect/staticEntities';
 import { EntityDetailsActionsContainer } from './EntityDetailsActionsContainer';
-import { notes_InterchangeId_ComposeId } from './entityDetailsActionsState';
 import * as stories from './EntityDetailsActionsContainer.stories';
 
 const captures = import.meta.glob<string>('./__captures__/*.html', { query: '?raw', import: 'default', eager: true });
@@ -114,10 +113,5 @@ describe('Directory_EntityDetailsActions', () => {
       server.events.removeListener('request:start', listener);
       main.remove();
     }
-  });
-
-  it('Notes_InterchangeId_ComposeId: "<LocalityId>:<InterchangeLocalityId>", or the interchange id alone', () => {
-    expect(notes_InterchangeId_ComposeId('252', '5')).toBe('252:5');
-    expect(notes_InterchangeId_ComposeId('', '5')).toBe('5');
   });
 });

@@ -22,3 +22,22 @@ describe('noteCardTarget, OneSchool Global card', () => {
     });
   });
 });
+
+/* Handler_OnClickNoteCardItem, Interchange card (live Notes.mvc.js:1618-1628, TST publish of 2026-10-29): the item id
+   of an interchange note is "<LocalityId>:<InterchangeLocalityId>" (Directory_EntityDetailsActions); the card opens
+   Locality_Details with LocalityId = TextToLongInteger(Notes_InterchangeId_ExtractId(ObjectId).LocalityId). */
+describe('noteCardTarget, Interchange card', () => {
+  it('opens Locality_Details of the locality part of the note item id', () => {
+    expect(noteCardTarget('252:5', '0', 'Interchange', { notesList: [] })).toEqual({
+      path: '/UBTConnect/Locality_Details',
+      inputs: { LocalityId: '252' },
+    });
+  });
+
+  it('an old note id without ":" opens Locality_Details of that id', () => {
+    expect(noteCardTarget('0252', '0', 'Interchange', { notesList: [] })).toEqual({
+      path: '/UBTConnect/Locality_Details',
+      inputs: { LocalityId: '252' },
+    });
+  });
+});

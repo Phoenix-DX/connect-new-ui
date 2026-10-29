@@ -1,4 +1,5 @@
 import type { NoteCardItem, NotePill, NotePillTag, NotesVariables } from '@/api/note';
+import { notes_InterchangeId_ExtractId } from '@/lib/ubtConnect/actions';
 import type { CarouselPreloadedHouseholds } from '@/lib/ubtConnect/structures';
 import type { Tag } from '@/lib/ubtConnectLibrary/structures';
 import { NoteCategory2 } from '@/pages/Notes/components/staticEntities';
@@ -125,9 +126,9 @@ const longIntegerText = (v: string): string => {
     Household cards of Notes_List with detail access), then HouseholdCarousel. Feed Item: FeedItemDetail. Assemble
     Event: AssembleDetail. Member: Household_Relations (MemberId = ObjectId, HouseholdId = ObjectId2). OneSchool
     Global: SetPreloadObject3(CarouselItemIds = the ItemIds of the OneSchool Global cards of Notes_List), then
-    OneSchoolGlobalCarousel. Supper Meeting: SupperMeeting_Details. Interchange opens Locality_Details with the
-    LocalityId of Notes_InterchangeId_ExtractId(ObjectId), a module action whose code this port does not have
-    (question Notes Q9): no screen yet. The other categories do nothing. */
+    OneSchoolGlobalCarousel. Supper Meeting: SupperMeeting_Details. Interchange (:1618-1628): Locality_Details with
+    LocalityId = TextToLongInteger(Notes_InterchangeId_ExtractId(ObjectId).LocalityId). The other categories do
+    nothing. */
 export function noteCardTarget(
   objectId: string,
   objectId2: string,
@@ -170,6 +171,11 @@ export function noteCardTarget(
       };
     case NoteCategory2.SupperMeeting:
       return { path: '/UBTConnect/SupperMeeting_Details', inputs: { In_SubdivsionId: longIntegerText(objectId) } };
+    case NoteCategory2.Interchange:
+      return {
+        path: '/UBTConnect/Locality_Details',
+        inputs: { LocalityId: longIntegerText(notes_InterchangeId_ExtractId(objectId).LocalityId) },
+      };
     default:
       return null;
   }

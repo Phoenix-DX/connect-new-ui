@@ -1,4 +1,4 @@
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { ItemCard_WithNotes } from './ItemCard_WithNotes';
 
@@ -114,5 +114,69 @@ describe('ItemCard_WithNotes', () => {
     if (!iconText) throw new Error('no IconText');
     fireEvent.click(iconText);
     expect(onOnClickTotalNotesIcon).toHaveBeenCalledTimes(1);
+  });
+});
+
+/* The event time row (TST publish of 2026-10-29, ItemCard_WithNotes.mvc.js:1035-1100): shown only when
+   In_EventStartDateTime and In_EventEndDateTime are not NullDate; CustomText with the clock icon (extra small),
+   neutral-7, extra small font; text FormatDateForAssembleMeetings(Start, IsAllDay), IsAllDay = Start at 00:00:00 and
+   DiffSeconds(Start, End) = 86400; a click raises OnClickItemCard. Fictional dates: 2026-11-08 is a Sunday. */
+describe('ItemCard_WithNotes, event time row', () => {
+  it('is not shown when one of the dates is NullDate', () => {
+    const { container, rerender } = render(<ItemCard_WithNotes id="$b1" />);
+    expect(container.querySelector('.connect-icon-clock')).toBeNull();
+    rerender(<ItemCard_WithNotes id="$b1" inEventStartDateTime="2026-11-10T19:30:00" />);
+    expect(container.querySelector('.connect-icon-clock')).toBeNull();
+    rerender(<ItemCard_WithNotes id="$b1" inEventEndDateTime="2026-11-10T21:00:00" />);
+    expect(container.querySelector('.connect-icon-clock')).toBeNull();
+    expect(screen.queryByText(/November 2026/)).toBeNull();
+  });
+
+  it('a timed event: "h:mm tt on <day>, d MMMM yyyy" with the clock icon', () => {
+    const { container } = render(
+      <ItemCard_WithNotes
+        id="$b1"
+        inEventStartDateTime="2026-11-10T19:30:00"
+        inEventEndDateTime="2026-11-10T21:00:00"
+      />,
+    );
+    expect(screen.getByText('7:30 PM on Tuesday, 10 November 2026')).toBeInTheDocument();
+    expect(container.querySelector('.connect-icon-clock.icon-extra-small')).not.toBeNull();
+  });
+
+  it('an all-day event (start at 00:00:00, end 86400 s later): "On Lord\'s Day, ..." on a Sunday', () => {
+    render(
+      <ItemCard_WithNotes
+        id="$b1"
+        inEventStartDateTime="2026-11-08T00:00:00"
+        inEventEndDateTime="2026-11-09T00:00:00"
+      />,
+    );
+    expect(screen.getByText("On Lord's Day, 8 November 2026")).toBeInTheDocument();
+  });
+
+  it('a start at 00:00:00 with another length is not all day', () => {
+    render(
+      <ItemCard_WithNotes
+        id="$b1"
+        inEventStartDateTime="2026-11-10T00:00:00"
+        inEventEndDateTime="2026-11-12T00:00:00"
+      />,
+    );
+    expect(screen.getByText('12:00 AM on Tuesday, 10 November 2026')).toBeInTheDocument();
+  });
+
+  it('a click on the row raises OnClickItemCard', () => {
+    const onOnClickItemCard = vi.fn();
+    render(
+      <ItemCard_WithNotes
+        id="$b1"
+        inEventStartDateTime="2026-11-10T19:30:00"
+        inEventEndDateTime="2026-11-10T21:00:00"
+        onOnClickItemCard={onOnClickItemCard}
+      />,
+    );
+    fireEvent.click(screen.getByText('7:30 PM on Tuesday, 10 November 2026'));
+    expect(onOnClickItemCard).toHaveBeenCalledTimes(1);
   });
 });

@@ -58,6 +58,8 @@ const fenwick: NoteCardItem = {
   channelName: '',
   channelLogo: '',
   publishedAt: '1900-01-01T00:00:00',
+  eventStartDate: '1900-01-01T00:00:00',
+  eventEndDate: '1900-01-01T00:00:00',
 };
 
 const variables = (fields: Partial<NotesVariables> = {}): NotesVariables => ({

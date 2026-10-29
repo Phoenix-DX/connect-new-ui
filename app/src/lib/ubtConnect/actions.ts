@@ -174,6 +174,26 @@ export function get_NoteCategoryId_ByEntityTypeId(entityTypeId: string): string 
   }
 }
 
+/** Notes_InterchangeId_ComposeId(LocalityId, InterchangeLocalityId) (UBTConnect.controller.js, TST publish of
+    2026-10-29, copy in migration/screens/Notes/analysis/sources/raw/): the note item id of an interchange,
+    "<LocalityId>:<InterchangeLocalityId>" when LocalityId is not empty, else InterchangeLocalityId. */
+export function notes_InterchangeId_ComposeId(localityId: string, interchangeLocalityId: string): string {
+  return localityId !== '' ? `${localityId}:${interchangeLocalityId}` : interchangeLocalityId;
+}
+
+/** Notes_InterchangeId_ExtractId(NoteInterchangeId) (UBTConnect.controller.js:15189-15260, TST publish of 2026-10-29,
+    copy in migration/screens/Notes/analysis/sources/raw/): JSUtils_String_Split(NoteInterchangeId, ":"); an empty list
+    or one part gives LocalityId = NoteInterchangeId (InterchangeLocalityId stays ""), else LocalityId = part 0 and
+    InterchangeLocalityId = part 1. */
+export function notes_InterchangeId_ExtractId(noteInterchangeId: string): {
+  LocalityId: string;
+  InterchangeLocalityId: string;
+} {
+  const list = jSUtils_String_Split(noteInterchangeId, ':');
+  if (list.length <= 1) return { LocalityId: noteInterchangeId, InterchangeLocalityId: '' };
+  return { LocalityId: list[0] ?? '', InterchangeLocalityId: list[1] ?? '' };
+}
+
 /** GetShareType_FromEntity(EntityType, In_IsMyHousehold) (TST UBTConnect.controller.js:11102-11223, BR-UBTCON-244), in
     the TST order: Member raises InvalidAction "Share not available" (:11115-11118); Locality and Interchange →
     Locality, Household → Household, Supper Meetings → Supper Meeting, OneSchool Global, Feed Item → Feed; after all

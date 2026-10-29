@@ -76,7 +76,7 @@ Complexity left on build rows not yet built: 0
 | New_BookmarksByGroup | `/UBTConnect/New_BookmarksByGroup` |  | 94 |  | skip | V3d · D2 · skip:variant · branch 2, revisit if LD mobileDirectoryBookmarkNote=true and C2NewBookmarks=false (user, 2026-10-14) | - |  |
 | New_MyBookmarks | `/UBTConnect/New_MyBookmarks` |  | 85 |  | skip | V3d · D2 · skip:variant · branch 2, revisit if LD mobileDirectoryBookmarkNote=true and C2NewBookmarks=false (user, 2026-10-14) | - |  |
 | NotificationDetails | `/UBTConnect/NotificationDetails` |  |  |  | build | TST deployed it 2026-10-27; build (user, 2026-10-28; migration/clarify/review/item10-new-screens.md) | built |  |
-| OneSchoolGlobalCarousel | `/UBTConnect/OneSchoolGlobalCarousel` |  |  |  | build | TST deployed it 2026-10-27; build (user, 2026-10-28; migration/clarify/review/item10-new-screens.md) | capture |  |
+| OneSchoolGlobalCarousel | `/UBTConnect/OneSchoolGlobalCarousel` |  |  |  | build | TST deployed it 2026-10-27; build (user, 2026-10-28; migration/clarify/review/item10-new-screens.md) | built |  |
 | OneSchoolGlobalEventDetail | `/UBTConnect/OneSchoolGlobalEventDetail` |  | 35 |  | skip | V7 · skip:dead · no way in, input unused; revisit if a link appears (user, 2026-10-14) | - |  |
 | OrbitAdminEventDetail | `/UBTConnect/OrbitAdminEventDetail` |  | 76 | lite | build | Orbit is not an embedded/separate app: its screens are UBTConnect screens (same SPA) using Connect2_OrbitMobile_MUI blocks; build (user, 2026-10-16) | built | route-orbit-admin |
 | OrbitAdminLanding | `/UBTConnect/OrbitAdminLanding` |  | 75 | lite | build | Orbit is not an embedded/separate app: its screens are UBTConnect screens (same SPA) using Connect2_OrbitMobile_MUI blocks; build (user, 2026-10-16) | built | route-orbit-admin |

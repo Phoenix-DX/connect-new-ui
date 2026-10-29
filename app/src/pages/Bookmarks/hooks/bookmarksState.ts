@@ -137,8 +137,8 @@ const idsOf = (list: BookmarkCardItem[], category: string) =>
 
 /** Handler_OnClickBookmarkCardItem(ObjectId, ObjectType):
     - OneSchool Global: PreloadedCarousel.CarouselItemIds = the item ids of the OneSchool Global cards of Bookmarks_List,
-      SetPreloadObject, then OneSchoolGlobalCarousel(In_StartingObjectId). The code tests the same type twice, so the
-      OneSchoolGlobalDetails branch never runs (item10-new-screens.md §6).
+      SetPreloadObject, then OneSchoolGlobalCarousel(In_StartingObjectId). The TST publish of 2026-10-29 removed the
+      second (never reached) OneSchoolGlobalDetails test; there is no direct detail link.
     - Supper Meeting: SupperMeeting_Details(In_SubdivsionId).
     - Household: HouseholdIdList.CarouselHouseholdItem = the household cards of Bookmarks_List, SetPreloadObject, then
       HouseholdCarousel(In_StartingHouseholdId) (its flag redirect opens HouseholdDetails when the carousel is off).

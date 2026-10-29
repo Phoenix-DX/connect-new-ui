@@ -24,7 +24,7 @@ import {
   UBT_VerticalAlign,
 } from '@/lib/ubtConnectLibrary/staticEntities';
 import type { AvatarImage as AvatarImageRec, TextOptions } from '@/lib/ubtConnectLibrary/structures';
-import { preetyFormatDate } from '@/lib/ubtConnectLibrary/actions';
+import { formatDateForAssembleMeetings, preetyFormatDate } from '@/lib/ubtConnectLibrary/actions';
 import { parseOsDate } from '@/lib/osDateTime';
 import { child, scopeOf } from '@/components/ui/os/blockIds';
 
@@ -34,6 +34,8 @@ const UBT_AlignItems_FlexEnd = 'align-items-flex-end';
 const UBT_AvatarSize_DoubleExtraSmall_20 = 'xxs';
 const UBT_FlexDirection_Row = 'flex-direction-row';
 const UBT_JustifyContent_SpaceBetween = 'justify-content-space-between';
+const UBT_Icons_Clock = 'connect-icon-clock';
+const UBT_IconSize_ExtraSmall_10 = 'icon-extra-small';
 
 interface ItemCard_WithNotesProps {
   id?: string;
@@ -48,6 +50,10 @@ interface ItemCard_WithNotesProps {
   inChannelLogo?: string;
   /** DateTime ("yyyy-MM-ddTHH:mm:ss"); the default is NullDate. */
   inPublishedAt?: string;
+  /** DateTime ("yyyy-MM-ddTHH:mm:ss"); the default is NullDate. With In_EventEndDateTime, the event time row. */
+  inEventStartDateTime?: string;
+  /** DateTime ("yyyy-MM-ddTHH:mm:ss"); the default is NullDate. */
+  inEventEndDateTime?: string;
   /** Placeholder Notes. */
   notes?: ReactNode;
   /** Placeholder Actions. */
@@ -62,6 +68,18 @@ const HIGHLIGHT: TextOptions = { Color: UBT_Color.Primary, FontWeight: UBT_FontW
 const NULL_DATE_TIME = '1900-01-01T00:00:00';
 const NULL_DATE = new Date(1900, 0, 1).getTime();
 
+/** The IsAllDay input of FormatDateForAssembleMeetings (mvc.js:1040): the start is at 00:00:00 and
+    DiffSeconds(Start, End) = 86400. */
+const isEventAllDay = (start: string, end: string): boolean => {
+  const s = parseOsDate(start);
+  return (
+    s.getHours() === 0 &&
+    s.getMinutes() === 0 &&
+    s.getSeconds() === 0 &&
+    (parseOsDate(end).getTime() - s.getTime()) / 1000 === 86400
+  );
+};
+
 /** In_TotalNotes as the IconText shows it: "" for 0, "9+" above 9, else the total (mvc.js:612-614). */
 const totalNotesLabel = (inTotalNotes: string): string => {
   const total = Number.parseInt(inTotalNotes, 10) || 0;
@@ -75,7 +93,10 @@ const totalNotesLabel = (inTotalNotes: string): string => {
     title highlight In_SearchString. Ids follow the TST widget aliases: $b12-$b15 are the channel row (:692-870, shown
     only with In_ChannelName, In_ChannelLogo and an In_PublishedAt other than NullDate), so the title container is
     $b16. The channel name and the published date also raise OnClickItemCard; the channel name highlights
-    In_SearchString. */
+    In_SearchString. The event time row $b19 (TST publish of 2026-10-29, mvc.js:1035-1100, If IsEventTimePresent):
+    only when In_EventStartDateTime and In_EventEndDateTime are not NullDate; CustomText with the clock icon (extra
+    small), neutral-7, extra small font, text FormatDateForAssembleMeetings(Start, IsAllDay); a click raises
+    OnClickItemCard. */
 export function ItemCard_WithNotes({
   id,
   inSearchString = '',
@@ -87,6 +108,8 @@ export function ItemCard_WithNotes({
   inChannelName = '',
   inChannelLogo = '',
   inPublishedAt = NULL_DATE_TIME,
+  inEventStartDateTime = NULL_DATE_TIME,
+  inEventEndDateTime = NULL_DATE_TIME,
   notes,
   actions,
   onOnClickItemCard,
@@ -252,6 +275,19 @@ export function ItemCard_WithNotes({
               onClicked={onOnClickItemCard}
             />
           </CustomContainer>
+          {parseOsDate(inEventStartDateTime).getTime() !== NULL_DATE &&
+            parseOsDate(inEventEndDateTime).getTime() !== NULL_DATE && (
+              <CustomText
+                id={child(p, 19)}
+                inText={formatDateForAssembleMeetings(
+                  inEventStartDateTime,
+                  isEventAllDay(inEventStartDateTime, inEventEndDateTime),
+                )}
+                inlineIcon={{ IconId: UBT_Icons_Clock, IconSizeId: UBT_IconSize_ExtraSmall_10 }}
+                inTextOptions={{ Color: UBT_Color.Neutral7, FontSize: UBT_FontSize.ExtraSmall }}
+                onClicked={onOnClickItemCard}
+              />
+            )}
         </CustomContainer>
         <CustomContainer id={child(p, 20)}>
           <div id={`${p}-Notes`}>{notes}</div>

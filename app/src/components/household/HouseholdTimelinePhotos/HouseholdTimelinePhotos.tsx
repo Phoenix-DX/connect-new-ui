@@ -8,7 +8,7 @@ export interface HouseholdTimelinePhotosProps {
   /** The timeline images of the household (the household details never fill them: the list is empty). */
   images: UI_HouseholdTimelineImages[];
   /** LD check mobileDirectoryHouseholdGallery (live TST of 2026-10-27, HouseholdDetails_Block.mvc.js:1298-1301): on
-      shows nothing after the list; off (default) shows the Coming Soon box. */
+      shows nothing after the list; off (or not given) shows the Coming Soon box. */
   hasHouseholdGallery?: boolean;
   /** The user selected the photo of a date. */
   onDateSelected: (date: string) => void;

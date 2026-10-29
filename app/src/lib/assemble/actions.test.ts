@@ -14,7 +14,6 @@ import {
 } from '@/platform/storage/localEntities';
 import { defaultActionGetLocalityInformation_Output } from '@/mocks/modules/Connect2_LegacyShared/mockDefaults';
 import {
-  getAssembleEventSummaryDateTimeString,
   getAssembleEventSummaryHeaderLabel,
   getAssembleHostedAtComponents,
   getLocalBookmarkedLocalityInformation,
@@ -24,14 +23,6 @@ import {
 } from './actions';
 
 describe('Connect2_Assemble_MUI actions', () => {
-  it('GetAssembleEventSummaryDateTimeString: time or "On", Lord\'s Day on Sundays, then the date', () => {
-    // 2026-11-08 is a Sunday, 2026-11-10 a Tuesday
-    expect(getAssembleEventSummaryDateTimeString('2026-11-08T09:30:00', false)).toBe(
-      "9:30 AM on Lord's Day, 8 November 2026",
-    );
-    expect(getAssembleEventSummaryDateTimeString('2026-11-10T19:00:00', true)).toBe('On Tuesday, 10 November 2026');
-  });
-
   it('GetAssembleEventSummaryHeaderLabel: type title and day label', () => {
     expect(
       getAssembleEventSummaryHeaderLabel({

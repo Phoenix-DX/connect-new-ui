@@ -60,6 +60,10 @@ export interface NoteCardItem {
   channelName: string;
   channelLogo: string;
   publishedAt: string;
+  /** NoteCardContent EventStartDate and EventEndDate (DateTime, TST publish of 2026-10-29): the event time row of
+      ItemCard_WithNotes; the mapper gives NullDate when the server omits them. */
+  eventStartDate?: string;
+  eventEndDate?: string;
 }
 
 /** Connect_Notes_CS Notes_Filter: NoteCategoryId and SortByNewest are identifiers ("" = none). */

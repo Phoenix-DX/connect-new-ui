@@ -11,6 +11,7 @@ import {
 } from '@/pages/LDM_EventDetail_V2/components/actions';
 import type { LdmEventDetailInputs } from '@/pages/LDM_EventDetail_V2/inputs';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
+import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { setPreloadObject, useFlowState } from '@/platform/navigation';
 import { addAuditEvent_LDM, getCurrentTimeInMill } from '@/lib/orbit/actions';
@@ -124,23 +125,24 @@ export function useLdmEventDetail(inputs: LdmEventDetailInputs, events: LdmEvent
     if (restored && !latest.current.isFetching) return;
     const callInputs = parameters.current;
     // FetchEventNotes is fetched at start too (ScreenBlock_EventDetail_V2.mvc.js:1385-1395, :1449-1467; captured
-    // first, calls.md #1). OnAfterFetch_FetchEventNotes: EventNotes = FetchEventNotes.Notes; a failure keeps the
-    // default EventNotes.
+    // first, calls.md #1). OnAfterFetch_FetchEventNotes: EventNotes = FetchEventNotes.Notes. A failed fetch at start
+    // keeps the defaults and goes to the flow handler, as TST (executeDataFetchAction: flush, then the block
+    // handleError; item2-fetch-errors.md E1, E3; WP6 Q2 (a), user 2026-10-29). The same for GetCoordinatorDetails.
     flow
       .fetch(fetchLdmEventNotes(callInputs)) // R1
       .then((eventNotes) => {
         dispatch({ eventNotes });
       })
-      .catch(() => {
-        // EventNotes keeps its default (Total 0, no notes).
+      .catch((e: unknown) => {
+        raiseToFlowHandler(e, flow); // EventNotes keeps its default (Total 0, no notes)
       });
     flow
       .fetch(fetchCoordinatorDetails(callInputs)) // R1
       .then((coordinator) => {
         dispatch({ coordinator });
       })
-      .catch(() => {
-        // GetCoordinatorDetails keeps its defaults (Out_HasContent True); the view does not read its fetch error.
+      .catch((e: unknown) => {
+        raiseToFlowHandler(e, flow); // GetCoordinatorDetails keeps its defaults (Out_HasContent True)
       });
     const start = getCurrentTimeInMill();
     try {

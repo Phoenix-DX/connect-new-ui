@@ -1653,6 +1653,33 @@
    "detailRegex": "^0\\.[0-4]\\d% pixels differ .*hotspots 3[2-6]0,1[26]0.*migration/screens/Notes/parity/default\\.diff\\.png$",
    "reason": "The capture masks pill texts with bullets (a masked pill of 5 characters), whose width differs from the real label, so the clipped fourth pill at the right edge of the horizontal pill row (x 320-360, y 120-160) shows a different slice. The React labels equal the TST labels read by the probe of 2026-10-28 (migration/clarify/review/probe-new-screens.json, notes.lines: All, Assemble, Feeds, Households, …). DOM, text and positions are equal. Drift wave (2026-10-29), applied as reversible and listed to the user.",
    "evidence": "migration/screens/Notes/parity/default.json (pixel 0.11%, hotspots 320,160 / 320,120 / 360,160); migration/clarify/builds/drift-WP9.md"
+  },
+  {
+   "id": "DEVICE-BOOKMARK-STATE-OSGCAROUSEL-OFFLINE",
+   "routeRegex": "^/UBTConnect/OneSchoolGlobalCarousel(\\?|$)",
+   "kinds": [
+    "class",
+    "pseudo",
+    "position",
+    "layout",
+    "text"
+   ],
+   "states": "^offline$",
+   "pathRegex": "#b3-l1-\\d+_0-b2-b1-b1-(b3-b2-Content|b12-b2-b3)",
+   "reason": "Device data, not code: the TST device held a C2 local bookmark of school 1430 when the offline state was captured (the carousel was opened from that Bookmarks card), so TST shows the bookmarked image card (ribbon) and 'Unmark'. The mock keeps no bookmark in its default scenario so that OneSchoolGlobalDetails (captured 'Bookmark') stays equal; with the 'captured' scenario this state gave 52 differences (measured 2026-10-29). React renders the bookmarked look correctly when the bookmark exists (default and loading states of this route, scenario 'captured', are clean). User decision (2026-10-29, round 2): (a) a narrow exemption for these rows of this route's offline state.",
+   "evidence": "migration/screens/OneSchoolGlobalCarousel/parity/offline.json; migration/clarify/builds/drift-WP1.md (WP4 Q1, measured 52 vs 14)"
+  },
+  {
+   "id": "DEVICE-BOOKMARK-STATE-OSGCAROUSEL-OFFLINE-PIXEL",
+   "routeRegex": "^/UBTConnect/OneSchoolGlobalCarousel(\\?|$)",
+   "kinds": [
+    "pixel"
+   ],
+   "states": "^offline$",
+   "pathRegex": "^screenshot$",
+   "detailRegex": "^0\\.[0-4]\\d% pixels differ .*hotspots 360,40 .*migration/screens/OneSchoolGlobalCarousel/parity/offline\\.diff\\.png$",
+   "reason": "Device data, not code: the TST device held a C2 local bookmark of school 1430 when the offline state was captured (the carousel was opened from that Bookmarks card), so TST shows the bookmarked image card (ribbon) and 'Unmark'. The mock keeps no bookmark in its default scenario so that OneSchoolGlobalDetails (captured 'Bookmark') stays equal; with the 'captured' scenario this state gave 52 differences (measured 2026-10-29). React renders the bookmarked look correctly when the bookmark exists (default and loading states of this route, scenario 'captured', are clean). User decision (2026-10-29, round 2): (a) a narrow exemption for these rows of this route's offline state. Pixel: the ribbon of the bookmarked image card (hotspot x 360, y 40) and the Unmark button.",
+   "evidence": "migration/screens/OneSchoolGlobalCarousel/parity/offline.json"
   }
  ],
  "ignoreClasses": [
