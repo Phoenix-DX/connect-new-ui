@@ -28,7 +28,8 @@ export interface SplashState {
     is prevented and kept. When the animation is complete: the initial client variables, the PIN check, the cold start
     link (kept as the resume login link while a PIN must be registered or unlocked, or nobody is signed in), the next
     navigation is allowed, then PINRegister or PINUnlock for a signed-in user who needs them, otherwise
-    ScreenController_NavigateToPage(cold start link, else LastURL, True) (Q3 answered A: as compiled).
+    ScreenController_NavigateToPage(cold start link, else LastURL, True) (Q3 answered A: as compiled). Each of these
+    navigations replaces the Splash entry, as the TST router does while the splash screen shows.
     @origin UBTConnect.App_Common.Splash */
 export function useSplash(): SplashState {
   const navigate = useOsNavigate();
@@ -69,13 +70,16 @@ export function useSplash(): SplashState {
     if (coldStartLinkUrl !== '' && (pin.needRegister || pin.needUnlock || !signedIn)) {
       setResumeLoginLink(coldStartLinkUrl);
     }
+    // While Splash shows, every navigation replaces its history entry: the router's goTo replaces when
+    // isShowingSplashScreen, and Splash is the module SplashScreen (OutSystemsReactView.js; MCP session row 14,
+    // user decision (a), 2026-10-29)
     if (signedIn) {
       if (pin.needRegister) {
-        navigate(PATHS.pinRegister);
+        navigate(PATHS.pinRegister, undefined, { replace: true });
         return;
       }
       if (pin.needUnlock) {
-        navigate(PATHS.pinUnlock);
+        navigate(PATHS.pinUnlock, undefined, { replace: true });
         return;
       }
     }

@@ -17,9 +17,9 @@ describe('OrbitAdminMilestoneDetail mocks: GetScanMilestoneQRCode outcomes', () 
     });
   });
 
-  it('a check-in keeps the API success; the outcome lookup always reads the AlreadyCheckedInForMilestone record', () => {
+  it('a check-in keeps the API success and assigns no QRCodeErrorTypeId (MCP DEV row 15)', () => {
     expect(scanOutcome('checkedIn')).toEqual({
-      QRCodeErrorTypeId: QRCodeErrorType.AlreadyCheckedInForMilestone,
+      QRCodeErrorTypeId: '',
       Success: true,
       ErrorMessage: '',
     });

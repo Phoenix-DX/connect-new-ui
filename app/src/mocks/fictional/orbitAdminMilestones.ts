@@ -53,7 +53,7 @@ const adminType = (
     MCP fact (DEV, Connect2_OrbitMobile_BL static entity OrbitMilestoneType, 2026-10-29; ids equal TST moduleinfo 15682):
     MainColorVar Green for all six, IsTransportMilestone False for all six (so the transport card has no departure and
     arrival rows), MainIcon per record (transport-vehicle-admin uses the meeting icon on TST). Auto decision row 23. */
-const ORBIT_ADMIN_MILESTONE_TYPES = {
+export const ORBIT_ADMIN_MILESTONE_TYPES = {
   adminMeeting: adminType('meeting-admin', 17, 'AdminMeeting', 'green', 'orbit-icon-meeting'),
   adminMeal: adminType('meeting-meal', 18, 'AdminMeal', 'green', 'orbit-icon-meal'),
   adminMealAtHall: adminType('meal-at-hall-admin', 19, 'AdminMealAtHall', 'green', 'orbit-icon-meal'),

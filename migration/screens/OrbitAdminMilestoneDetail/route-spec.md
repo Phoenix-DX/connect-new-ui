@@ -56,7 +56,7 @@ Popup_QRCodeScan_Milestone (PQM view :160-548): inputs ScanResult, MilestoneName
 ### Data
 | Call | Kind | Trigger | Inputs | Outputs used | Contract | Mock scenarios |
 |---|---|---|---|---|---|---|
-| ScreenBlock_AdminMilestoneDetail/DataActionGet_MilestoneInformation | data action, on demand (SB :851-878) | OnReady → RefreshData (SB :994-1027) | the block variables (seven inputs, IsFetchingData, IsProcessingData, QRCodePopupOpened, as OrbitAdminEventDetail) | HasQRCode, OrbitMilestoneType (OrbitMilestoneTypeRec, BL) | missing: interim form (I10-6) | real, noqrcode, empty, loading, error |
+| ScreenBlock_AdminMilestoneDetail/DataActionGet_MilestoneInformation | data action, on demand (SB :851-878) | OnReady → RefreshData (SB :994-1027) | the block variables (seven inputs, IsFetchingData, IsProcessingData, QRCodePopupOpened, as OrbitAdminEventDetail) | HasQRCode, OrbitMilestoneType (OrbitMilestoneTypeRec, BL) | missing: interim form (I10-6) | real, noqrcode, loading, error |
 | ActionGetMemberByMemberId | server action (SB :789-813) | OnHandle_ScanCode | MemberId | Response (Directory_MemberById) | in the contract (shared `api/member` fetchMember) | real |
 | GetCacheableSignedImageURL | Connect2_LegacyShared action | OnHandle_ScanCode | MemberId, Member, Small | URL | existing (`api/image`) | existing mock |
 | ActionGetScanMilestoneQRCode | server action (SB :814-850); it writes: it calls the Orbit API and creates a local record for some statuses (MCP, Q1) | OnHandle_ScanCode, same event (SB :1276-1302) | ScanClientId "ConnectMobile" (static entity scanClient.connectMobile, moduleinfo), ScannedQRCodeInfo {EventId, MilestoneId = In_MilestoneId, MilestoneType = MilestoneType.Id, ScannedUserInformation, ScannerAdminInfo (AdminMemberId = TextToLongIntegerValidate ? TextToLongInteger : 0, :1292)} | Response.UserRole, Seats, Tag, GuestRole, RowAllocation, SeatingPlanName, Status | missing: interim form; mocked only (never called on TST). Status texts: see "Server facts" | real (stateful check-in), notallocated |
@@ -93,6 +93,11 @@ Source: the OutSystems MCP (DEV), `migration/clarify/review/mcp-session-2026-10-
   gives `Success = False` and that text.
 - Any other API failure keeps the API response. `QRCodeErrorTypeId` is then the `AlreadyCheckedInForMilestone` record id,
   because the outcome lookup always reads that record. A failed local create gives `GenericError` and the create message.
+- An API success assigns no `QRCodeErrorTypeId` (""), and an API answer `AlreadyCheckedInForMilestone` assigns none
+  either (MCP row 15, 2026-10-29).
+- Get_MilestoneInformation does not read the milestone: `OrbitMilestoneType` is always the AdminMeeting record and
+  `HasQRCode` is `GetHasQRCode(In_EventId)`, the Orbit API flag of the event (MCP row 16, 2026-10-29). Scenario `empty`
+  is removed from the mock.
 - User messages: CheckedIn and CheckedInForOtherMilestone "Has Checked in"; GenericError "An error has occured"; Moved,
   NotAllocated and NotInvited empty. The mock (`pages/OrbitAdminMilestoneDetail/mocks.ts:45-48`) uses these texts.
 - The six admin milestone types have `Name` "Admin". `Type`: AdminMeeting `meeting-admin` (order 17), AdminMeal

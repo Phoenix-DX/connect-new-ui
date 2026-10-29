@@ -14,7 +14,9 @@ says about each flag and what the user decided. Output is the reference for flag
                               clone's flag store (useFlag); --reference capture (default for both): every non-default value
                               needs a captured flag variant (capture plan flagVariants), or route.py ready refuses the route;
                               --reference none: the user accepts that the other branch has no captured reference.
-  export --app app            write app/src/lib/flags.generated.json (key, default, values, branches, routes) for the clone
+  export --app app            write app/src/platform/flags/flags.generated.json (key, default, values, branches, routes) for
+                              the clone; names that share a key give one flag with the routes of all; retired routes
+                              (migration/screens/<S>/retired.json) are left out
   variants                    flagVariants skeleton for the capture plan, one per value to capture
   route  <S>                  flags of one route (used by context_pack.py and route.py gates)
   warn                        one line per route with flags, unanswered ones first
@@ -193,14 +195,27 @@ def decided(d):
             and f["decision"].get("branches", "default-only") != "none"}
 
 
+def retired_routes(migration_dir):
+    """Routes that the user retired (migration/screens/<S>/retired.json): the clone has no such route."""
+    return {os.path.basename(os.path.dirname(p)) for p in glob.glob(os.path.join(migration_dir, "screens", "*", "retired.json"))}
+
+
 def cmd_export(a):
     d = load(a)
     out = {"_note": "Written by flags.py export from the user's decisions. Do not edit.", "flags": {}}
+    retired = retired_routes(a.migration_dir)
     for n, f in sorted(decided(d).items()):
         dc = f["decision"]
-        out["flags"][dc.get("key") or n] = {"source": n, "default": dc.get("default", "on"), "values": dc.get("values", ["on", "off"]),
-                                             "branches": dc.get("branches", "default-only"), "routes": f.get("screens", []),
-                                             "decision": dc.get("value", "")}
+        key = dc.get("key") or n
+        routes = [r for r in f.get("screens", []) if r not in retired]
+        prev = out["flags"].get(key)
+        if prev:  # several OutSystems names share one key: the last name (sorted) stays the source, routes of all
+            if prev["default"] != dc.get("default", "on"):
+                print(f"warning: {key}: {prev['source']} default {prev['default']}, {n} default {dc.get('default', 'on')}")
+            routes = sorted(set(prev["routes"]) | set(routes))
+        out["flags"][key] = {"source": n, "default": dc.get("default", "on"), "values": dc.get("values", ["on", "off"]),
+                             "branches": dc.get("branches", "default-only"), "routes": routes,
+                             "decision": dc.get("value", "")}
     p = os.path.join(a.app, "src", "platform", "flags", "flags.generated.json")
     os.makedirs(os.path.dirname(p), exist_ok=True)
     json.dump(out, open(p, "w", encoding="utf-8"), indent=1, ensure_ascii=False)

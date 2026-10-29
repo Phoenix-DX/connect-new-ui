@@ -12,8 +12,11 @@
    mobileDirectoryLocalityContacts is not in flags.generated.json: its decision is a route decision (Locality_Details Q2,
    default-only off, 2026-10-15), and Locality_Details reads it. mobileDirectoryHouseholdGallery (live TST of
    2026-10-27, HouseholdDetails_Block.mvc.js:1298-1301): default on as TST (read-only probe of 2026-10-29; user
-   decision (a), drift wave round 2); flags.generated.json adds Locality_Details to the scanned routes, because that
-   screen embeds the block (migration/screens/Locality_Details/analysis/calls.md). */
+   decision (a), drift wave round 2).
+   The routes follow `flags.py export` of 2026-10-29 (the full scan of the live survey; user decision (a)): names that
+   share a key give one flag with the routes of all, retired routes are left out. The TST bottom bar of 2026-10-27
+   reads neither C2NewBookmarks nor mobileDirectoryBookmarkNote, so their routes shrank to the screens that still read
+   them. */
 
 export type FlagKind = 'release' | 'permission' | 'ops';
 
@@ -28,7 +31,7 @@ export interface FlagDefinition {
   routes: readonly string[];
 }
 
-/** The routes of the directory that read the directory flags (flags.generated.json). */
+/** The routes that read C2EnableC1DirectoryView, the Directory tab of the bottom bar (flags.generated.json). */
 const DIRECTORY_ROUTES = [
   'AssembleDetail',
   'AssembleEvents',
@@ -57,10 +60,14 @@ const DIRECTORY_ROUTES = [
   'MessageDetail',
   'MessageList',
   'Notes',
+  'NotificationDetails',
   'Notifications',
+  'OneSchoolGlobalCarousel',
   'OneSchoolGlobalDetails',
   'OrbitAdminEventDetail',
   'OrbitAdminLanding',
+  'OrbitAdminMilestoneDetail',
+  'OrbitAdminMilestones',
   'OrbitLanding',
   'Search',
   'Updates_SingleList',
@@ -84,7 +91,7 @@ export const FLAGS = {
     ...UNSET,
     source: 'server',
     default: false,
-    routes: DIRECTORY_ROUTES,
+    routes: ['AssembleDetail'],
   },
   C2EnableC1DirectoryView: {
     description:
@@ -112,6 +119,7 @@ export const FLAGS = {
       'LDM_MyEvents_V2',
       'Locality_Details',
       'Map',
+      'OneSchoolGlobalCarousel',
       'Photobook',
       'Search',
       'SupperMeeting_Carousel',
@@ -149,6 +157,7 @@ export const FLAGS = {
       'Locality_Details',
       'Map',
       'MessageDetail',
+      'OneSchoolGlobalCarousel',
       'OneSchoolGlobalDetails',
       'Profile',
       'SupperMeeting_Carousel',
@@ -179,7 +188,7 @@ export const FLAGS = {
     ...UNSET,
     source: 'server',
     default: true,
-    routes: [...DIRECTORY_ROUTES, 'Profile', 'SupperMeeting_Carousel', 'SupperMeeting_Details'],
+    routes: ['Locality_Details'],
   },
   C2NewLDM: {
     description:
@@ -233,7 +242,14 @@ export const FLAGS = {
     ...UNSET,
     source: 'server',
     default: true,
-    routes: ['HouseholdCarousel', 'HouseholdDetails', 'Locality_Details', 'Profile', 'SupperMeeting_Carousel'],
+    routes: [
+      'HouseholdCarousel',
+      'HouseholdDetails',
+      'Locality_Details',
+      'OneSchoolGlobalCarousel',
+      'Profile',
+      'SupperMeeting_Carousel',
+    ],
   },
   WalletAccess: {
     description: 'Wallet access (GetHasWalletAccess, a constant False in OutSystems).',
@@ -254,7 +270,7 @@ export const FLAGS = {
     ...UNSET,
     source: 'server',
     default: true,
-    routes: ['OneSchoolGlobalDetails'],
+    routes: ['OneSchoolGlobalCarousel', 'OneSchoolGlobalDetails'],
   },
   C2EnableSearchByBirthday: {
     description: 'Search by birthday in Search.',
@@ -275,6 +291,13 @@ export const FLAGS = {
     ...UNSET,
     source: 'server',
     default: true,
-    routes: ['HouseholdDetails', 'HouseholdCarousel', 'Locality_Details', 'Profile'],
+    routes: [
+      'HouseholdCarousel',
+      'HouseholdDetails',
+      'Locality_Details',
+      'OneSchoolGlobalCarousel',
+      'Profile',
+      'SupperMeeting_Carousel',
+    ],
   },
 } as const satisfies Readonly<Record<string, FlagDefinition>>;

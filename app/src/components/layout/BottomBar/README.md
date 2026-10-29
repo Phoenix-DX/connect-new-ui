@@ -32,10 +32,10 @@ BottomBarContent, BottomBarItem, App_IconBadge, Icon (Base_24) and CustomText (x
     For the other items, it scrolls `.active-screen` to the top.
   - Home: the app opens HomeFeed.
   - Directory: the app opens CountryList or Locality_Details. The flag C2EnableC1DirectoryView selects the screen
-    [BottomBarMenu.tsx, `getHasC1DirectoryView`].
+    [BottomBar.tsx, `getHasC1DirectoryView`].
   - Updates: the app opens Updates_SingleList.
-  - Bookmarks: the app opens Bookmarks, New_MyBookmarks or MyBookmarks. The flags C2NewBookmarks and
-    mobileDirectoryBookmarkNote select the screen.
+  - Bookmarks: the app opens Bookmarks, with no flag (TST publish of 2026-10-27, BottomBarMenu.mvc.js:623-626; the
+    flags C2NewBookmarks and mobileDirectoryBookmarkNote no longer select the screen; MyBookmarks is retired).
   - Menu: the app opens Menu.
   - Any other item: the block raises the event.
 

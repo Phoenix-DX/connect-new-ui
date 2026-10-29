@@ -111,3 +111,17 @@ failure to the flow handler and keep their defaults, as TST (E1, E3).
 User decision (2026-10-29), M-Q4: (b) a read-only TST probe of one search. Result (MCP session row 11c): a search
 answers Label "" and at most 50 rows; the LegacyShareObject mock follows it (parity of LegacyShareObject clean).
 
+User decisions (2026-10-29, late): the reversible rows (WP9-Q1, WP1-Q1 to Q3, FU 1-9, css_sets, the Notes pill rule)
+are confirmed (a). Notes Q10: (a) keep EmptyListBorderless as a preset of `components/ui/EmptyState` (the jscpd
+dedupe of auto decision 13); this replaces the page-local answer of Q10. Next work: (a) the open MCP facts.
+Correction: the `flags.py scan` of the afternoon ran without `--survey` and `--screens` (the options have no default),
+so routes without an analysis folder lost their flags. The scan ran again with both inputs; the flag route sync waits
+for the user (the corrected facts changed the question).
+
+User decisions (2026-10-29, late, after the corrected facts): flag route sync (a): `flags.py export` merges the
+routes of OutSystems names that share a key and leaves out retired routes; the registry routes follow the export (the
+TST bottom bar of 2026-10-27 reads neither C2NewBookmarks nor mobileDirectoryBookmarkNote); BottomBar README fixed.
+PINUnlock (a): Splash navigations replace the Splash entry, as the TST router (MCP session row 14). Orbit facts (rows
+15, 16): the mock success answers QRCodeErrorTypeId ""; Get_MilestoneInformation answers the AdminMeeting type and the
+event QR flag (scenario `empty` removed). U1 stays unclear, no impact (row 13).
+

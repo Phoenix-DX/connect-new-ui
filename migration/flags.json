@@ -5,42 +5,19 @@
     "flag check action"
    ],
    "files": [
-    "UBTConnect.App_Common.BottomBarMenu.mvc.js",
     "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js",
     "UBTConnect.Directory_Locality.Locality_Details.mvc.js",
     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js",
     "UBTConnect_Utils.controller.js"
    ],
    "screens": [
-    "AssembleEvents",
-    "Bookmarks",
-    "BookmarksByGroup",
-    "BrowseCountries",
-    "BrowseDirectory",
-    "CountryDetails",
-    "CountryList",
-    "HomeFeed",
     "HouseholdCarousel",
     "HouseholdDetails",
-    "Household_Relations",
-    "LDM_EventDetail_V2",
-    "LDM_MyEvents",
-    "LDM_MyEvents_V2",
     "Locality_Details",
-    "Menu",
-    "MessageDetail",
-    "MessageList",
-    "MyBookmarks",
-    "Notes",
-    "NotificationDetails",
-    "Notifications",
     "OneSchoolGlobalCarousel",
     "OneSchoolGlobalDetails",
-    "OrbitAdminLanding",
-    "OrbitLanding",
     "Profile",
-    "Search",
-    "Updates_SingleList"
+    "SupperMeeting_Carousel"
    ],
    "inControllers": [
     "UBTConnect_Utils.controller.js"
@@ -76,6 +53,7 @@
    "files": [
     "UBTConnect.Directory_Locality.BrowseCountries.mvc.js",
     "UBTConnect.Directory_Locality.CountryList.mvc.js",
+    "UBTConnect.Map.Map_PoIPreview.mvc.js",
     "UBTConnectLibrary.ConnectPatterns.SelectionOption_List.mvc.js"
    ],
    "screens": [
@@ -83,8 +61,12 @@
     "BrowseCountries",
     "CountryDetails",
     "CountryList",
+    "Map",
+    "MyCalendar",
     "Notes",
     "Notifications",
+    "Recurrence",
+    "Reminder",
     "Search",
     "Updates_SingleList"
    ],
@@ -153,10 +135,12 @@
     "flag check action"
    ],
    "files": [
+    "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_AttendeeSubdivision.mvc.js",
     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js",
     "Connect2_MyBookmarks_MUI.controller.js"
    ],
    "screens": [
+    "AssembleDetail",
     "BookmarksByGroup"
    ],
    "inControllers": [
@@ -195,21 +179,30 @@
     "UBTConnect.Directory_Locality.Locality_Details.mvc.js"
    ],
    "screens": [
+    "AssembleDetail",
     "AssembleEvents",
     "Bookmarks",
     "BookmarksByGroup",
     "BrowseCountries",
     "BrowseDirectory",
+    "CommunityBusinessDetails",
     "CountryDetails",
     "CountryList",
+    "EmailContact",
+    "EmailTarget",
     "HomeFeed",
     "HouseholdCarousel",
     "HouseholdDetails",
     "Household_Relations",
+    "InvalidPermissions",
+    "LDM_Email",
+    "LDM_Email_V2",
+    "LDM_EventDetail",
     "LDM_EventDetail_V2",
     "LDM_MyEvents",
     "LDM_MyEvents_V2",
     "Locality_Details",
+    "Map",
     "Menu",
     "MessageDetail",
     "MessageList",
@@ -219,14 +212,21 @@
     "Notifications",
     "OneSchoolGlobalCarousel",
     "OneSchoolGlobalDetails",
+    "OrbitAdminEventDetail",
     "OrbitAdminLanding",
+    "OrbitAdminMilestoneDetail",
+    "OrbitAdminMilestones",
     "OrbitLanding",
     "Search",
     "Updates_SingleList"
    ],
    "inControllers": [],
    "candidate": true,
-   "variantGroups": [],
+   "variantGroups": [
+    "ldm_email",
+    "ldm_eventdetail",
+    "ldm_myevents"
+   ],
    "mcp": {
     "status": "unavailable",
     "answer": "C2EnableC1DirectoryView: Directory tab opens CountryList (on) or Locality_Details",
@@ -255,11 +255,14 @@
    ],
    "files": [
     "UBTConnect.Directory_Locality.Locality_Households_HouseholdList.mvc.js",
+    "UBTConnect.Directory_Locality.Locality_Subdivisions.mvc.js",
     "UBTConnect.Directory_Photobook.Photobook.mvc.js",
     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js",
     "UBTConnect.Directory_SupperMeetings.SupperMeeting_DetailsBlock.mvc.js",
     "UBTConnect.Directory_Updates.Updates_SingleList.mvc.js",
     "UBTConnect.Home.FeedBlock_Updates.mvc.js",
+    "UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js",
+    "UBTConnect.Legacy_LDMEventsFlow.LDM_EventDetail.mvc.js",
     "UBTConnect.Legacy_LDMEventsFlow.LDM_MyEvents.mvc.js",
     "UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js",
     "UBTConnect.Legacy_LDMEventsFlow_V2.LDM_MyEvents_V2.mvc.js",
@@ -267,13 +270,18 @@
     "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js"
    ],
    "screens": [
+    "AssembleDetail",
     "BookmarksByGroup",
     "HomeFeed",
+    "HouseholdCarousel",
+    "LDM_EventDetail",
     "LDM_EventDetail_V2",
     "LDM_MyEvents",
     "LDM_MyEvents_V2",
     "Locality_Details",
+    "Map",
     "MyBookmarks",
+    "OneSchoolGlobalCarousel",
     "Photobook",
     "Search",
     "SupperMeeting_Carousel",
@@ -282,7 +290,10 @@
    ],
    "inControllers": [],
    "candidate": true,
-   "variantGroups": [],
+   "variantGroups": [
+    "ldm_eventdetail",
+    "ldm_myevents"
+   ],
    "mcp": {
     "status": "unavailable",
     "answer": "C2EnableCarousel: opens HouseholdCarousel instead of HouseholdDetails",
@@ -345,7 +356,9 @@
     "flag check action"
    ],
    "files": [
-    "Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js"
+    "Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js",
+    "Connect2_LegacyShared.Share_UI.ShareObjectDetail.mvc.js",
+    "Connect2_LegacyShared.Share_UI.ShareObjectDetail_ExtendedShare.mvc.js"
    ],
    "screens": [
     "MessageDetail"
@@ -380,7 +393,9 @@
     "flag check action"
    ],
    "files": [
+    "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_AttendeeSubdivision.mvc.js",
     "Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js",
+    "Connect2_LegacyShared.Share_UI.ShareObjectDetail.mvc.js",
     "Connect2_LegacyShared.Utility.ItemOptionsMenu.mvc.js",
     "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js",
     "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js",
@@ -391,10 +406,14 @@
     "UBTConnect_Utils.CW_CTA_PopUps.SharePopup.mvc.js"
    ],
    "screens": [
+    "AssembleDetail",
     "BookmarksByGroup",
+    "FeedItemDetail",
     "HomeFeed",
     "HouseholdCarousel",
     "HouseholdDetails",
+    "Locality_Details",
+    "Map",
     "MessageDetail",
     "OneSchoolGlobalCarousel",
     "OneSchoolGlobalDetails",
@@ -436,7 +455,9 @@
     "UBTConnect.Home.Feed_Embeded.mvc.js"
    ],
    "screens": [
-    "HomeFeed"
+    "FeedItemDetail",
+    "HomeFeed",
+    "MessageDetail"
    ],
    "inControllers": [],
    "candidate": true,
@@ -503,38 +524,10 @@
     "flag check action"
    ],
    "files": [
-    "UBTConnect.App_Common.BottomBarMenu.mvc.js",
     "UBTConnect.Directory_Locality.Locality_Households_HouseholdList.mvc.js"
    ],
    "screens": [
-    "AssembleEvents",
-    "Bookmarks",
-    "BookmarksByGroup",
-    "BrowseCountries",
-    "BrowseDirectory",
-    "CountryDetails",
-    "CountryList",
-    "HomeFeed",
-    "HouseholdCarousel",
-    "HouseholdDetails",
-    "Household_Relations",
-    "LDM_EventDetail_V2",
-    "LDM_MyEvents",
-    "LDM_MyEvents_V2",
-    "Locality_Details",
-    "Menu",
-    "MessageDetail",
-    "MessageList",
-    "MyBookmarks",
-    "Notes",
-    "NotificationDetails",
-    "Notifications",
-    "OneSchoolGlobalCarousel",
-    "OneSchoolGlobalDetails",
-    "OrbitAdminLanding",
-    "OrbitLanding",
-    "Search",
-    "Updates_SingleList"
+    "Locality_Details"
    ],
    "inControllers": [],
    "candidate": true,
@@ -566,6 +559,7 @@
     "flag check action"
    ],
    "files": [
+    "UBTConnect.Calendar.MyCalendar.mvc.js",
     "UBTConnect.Home.FeedBlock_Services.mvc.js",
     "UBTConnect.Legacy_LDMEventsFlow.LDM_MyEvents.mvc.js",
     "UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js"
@@ -573,11 +567,14 @@
    "screens": [
     "HomeFeed",
     "LDM_MyEvents",
-    "MessageDetail"
+    "MessageDetail",
+    "MyCalendar"
    ],
    "inControllers": [],
    "candidate": true,
-   "variantGroups": [],
+   "variantGroups": [
+    "ldm_myevents"
+   ],
    "mcp": {
     "status": "unavailable",
     "answer": "C2NewLDM: LDM V2 / V1 entry (LDM external)",
@@ -647,17 +644,25 @@
    ],
    "files": [
     "Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js",
+    "UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js",
     "UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js",
+    "UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js",
     "UBTConnect.Legacy_OrbitEventsFlow.HelpersDetail.mvc.js",
     "UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js",
-    "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js"
+    "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js",
+    "UBTConnect.Legacy_OrbitEventsFlow.TransportDetail.mvc.js",
+    "UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js"
    ],
    "screens": [
+    "EmailContact",
     "EventDetail",
+    "GuestArrangements",
     "HelpersDetail",
     "MessageDetail",
     "MilestoneDetail",
-    "OrbitLanding"
+    "OrbitLanding",
+    "TransportDetail",
+    "ViewDocuments"
    ],
    "inControllers": [],
    "candidate": true,
@@ -759,6 +764,33 @@
     "reference": "none"
    }
   },
+  "action:getHasPersonalEvents": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.Calendar.MyCalendar.mvc.js"
+   ],
+   "screens": [
+    "MyCalendar"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   }
+  },
   "action:getHasPhotobookAccess": {
    "kinds": [
     "flag check action"
@@ -769,7 +801,10 @@
    "screens": [
     "HouseholdCarousel",
     "HouseholdDetails",
-    "Profile"
+    "Locality_Details",
+    "OneSchoolGlobalCarousel",
+    "Profile",
+    "SupperMeeting_Carousel"
    ],
    "inControllers": [],
    "candidate": true,
@@ -804,6 +839,7 @@
     "Connect2_LegacyShared.Utility.ItemOptionsMenu.mvc.js"
    ],
    "screens": [
+    "AssembleDetail",
     "BookmarksByGroup"
    ],
    "inControllers": [],
@@ -831,17 +867,47 @@
     "reference": "none"
    }
   },
+  "action:get_ActiveGeoJsonFeatureId": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.Map.Map.mvc.js"
+   ],
+   "screens": [
+    "Map"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   }
+  },
   "action:map_GeoJSON_Feature_Add": {
    "kinds": [
     "flag check action"
    ],
    "files": [
     "Leaflet.Leaflet.LeafletMap.mvc.js",
+    "Leaflet.Leaflet.LeafletMap_Updated.mvc.js",
+    "UBTConnect.Map.Map.mvc.js",
     "UBTConnect.controller.js"
    ],
    "screens": [
     "BrowseDirectory",
-    "CountryDetails"
+    "CountryDetails",
+    "Map"
    ],
    "inControllers": [
     "UBTConnect.controller.js"
@@ -868,6 +934,60 @@
     ],
     "branches": "none",
     "reference": "none"
+   }
+  },
+  "action:map_GeoJSON_Feature_Remove": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.Map.Map.mvc.js"
+   ],
+   "screens": [
+    "Map"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   }
+  },
+  "action:map_GeoJSON_GetFeatureIdsAtPoint": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.Map.Map.mvc.js"
+   ],
+   "screens": [
+    "Map"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
    }
   },
   "action:refreshUpdatesAndFlags": {
@@ -917,59 +1037,88 @@
     "UBTConnect.controller.js"
    ],
    "screens": [
+    "AcceptPendingPolicies",
+    "AssembleDetail",
     "AssembleEvents",
     "Assemble_BrowseByCountry",
     "Bookmarks",
     "BookmarksByGroup",
     "BrowseCountries",
     "BrowseDirectory",
+    "CommunityBusinessDetails",
     "ConnectShare",
     "ContactUsDetails",
     "ContactUsMenu",
     "CountryDetails",
     "CountryList",
+    "EmailContact",
+    "EmailTarget",
+    "EventBooklet",
     "EventDetail",
+    "FeedItemDetail",
+    "GuestArrangements",
     "HelpersDetail",
     "HomeFeed",
     "HostSurvey",
     "HouseholdCarousel",
     "HouseholdDetails",
     "Household_Relations",
+    "LDM_Email",
+    "LDM_Email_V2",
+    "LDM_EventDetail",
     "LDM_EventDetail_V2",
     "LDM_MyEvents",
     "LDM_MyEvents_V2",
     "LegacyShareObject",
     "Locality_Details",
+    "Login",
+    "Map",
     "Menu",
     "MessageDetail",
     "MessageList",
     "MilestoneDetail",
     "MyBookmarks",
+    "MyCalendar",
     "MyEntertaining",
     "Notes",
     "NotificationDetails",
     "Notifications",
     "OneSchoolGlobalCarousel",
     "OneSchoolGlobalDetails",
+    "OrbitAdminEventDetail",
     "OrbitAdminLanding",
+    "OrbitAdminMilestoneDetail",
+    "OrbitAdminMilestones",
     "OrbitLanding",
     "PINBiometricsMenu",
     "PINChange",
     "PINRegister",
     "PINUnlock",
+    "PassportScan",
+    "PersonalEventDetails",
+    "PersonalEventForm",
     "Photobook",
     "Profile",
+    "QRCodeGenerate",
+    "Recurrence",
+    "Reminder",
     "Search",
     "SupperMeeting_Carousel",
     "SupperMeeting_Details",
     "TermsAndPoliciesMenu",
-    "Updates_SingleList"
+    "TransportDetail",
+    "Updates_SingleList",
+    "ViewDocuments"
    ],
    "inControllers": [
     "UBTConnect.controller.js"
    ],
    "candidate": true,
-   "variantGroups": [],
+   "variantGroups": [
+    "ldm_email",
+    "ldm_eventdetail",
+    "ldm_myevents"
+   ],
    "mcp": {
     "status": "unavailable",
     "answer": "not a feature flag: user setting for biometric unlock, kept in a client variable",
@@ -997,11 +1146,13 @@
     "key passed to map_GeoJSON_Feature_Add"
    ],
    "files": [
-    "Leaflet.Leaflet.LeafletMap.mvc.js"
+    "Leaflet.Leaflet.LeafletMap.mvc.js",
+    "Leaflet.Leaflet.LeafletMap_Updated.mvc.js"
    ],
    "screens": [
     "BrowseDirectory",
-    "CountryDetails"
+    "CountryDetails",
+    "Map"
    ],
    "inControllers": [],
    "candidate": true,
@@ -1060,39 +1211,9 @@
     "static entity record"
    ],
    "files": [
-    "UBTConnect.App_Common.BottomBarMenu.mvc.js",
     "UBTConnect_Utils.controller.js"
    ],
-   "screens": [
-    "AssembleEvents",
-    "Bookmarks",
-    "BookmarksByGroup",
-    "BrowseCountries",
-    "BrowseDirectory",
-    "CountryDetails",
-    "CountryList",
-    "HomeFeed",
-    "HouseholdCarousel",
-    "HouseholdDetails",
-    "Household_Relations",
-    "LDM_EventDetail_V2",
-    "LDM_MyEvents",
-    "LDM_MyEvents_V2",
-    "Locality_Details",
-    "Menu",
-    "MessageDetail",
-    "MessageList",
-    "MyBookmarks",
-    "Notes",
-    "NotificationDetails",
-    "Notifications",
-    "OneSchoolGlobalCarousel",
-    "OneSchoolGlobalDetails",
-    "OrbitAdminLanding",
-    "OrbitLanding",
-    "Search",
-    "Updates_SingleList"
-   ],
+   "screens": [],
    "inControllers": [
     "UBTConnect_Utils.controller.js"
    ],
@@ -1130,7 +1251,10 @@
    "screens": [
     "HouseholdCarousel",
     "HouseholdDetails",
-    "Profile"
+    "Locality_Details",
+    "OneSchoolGlobalCarousel",
+    "Profile",
+    "SupperMeeting_Carousel"
    ],
    "inControllers": [],
    "candidate": false,
@@ -1614,6 +1738,7 @@
     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js"
    ],
    "screens": [
+    "Map",
     "Search"
    ],
    "inControllers": [],
@@ -1758,15 +1883,29 @@
     "OutSystemsUI_2_23.Interaction.BottomSheet.mvc.js"
    ],
    "screens": [
+    "AssembleDetail",
     "AssembleEvents",
     "Bookmarks",
     "CountryDetails",
     "CountryList",
+    "FeedItemDetail",
+    "HomeFeed",
     "HostSurvey",
+    "HouseholdCarousel",
+    "HouseholdDetails",
+    "Household_Relations",
+    "Locality_Details",
+    "Map",
     "Notes",
     "Notifications",
+    "OneSchoolGlobalCarousel",
+    "OneSchoolGlobalDetails",
+    "PersonalEventForm",
+    "Photobook",
     "Profile",
     "Search",
+    "SupperMeeting_Carousel",
+    "SupperMeeting_Details",
     "Updates_SingleList"
    ],
    "inControllers": [],
@@ -2128,62 +2267,6 @@
    "variantGroups": [
     "ldm_myevents"
    ],
-   "mcp": {
-    "status": "open",
-    "answer": "",
-    "values": "",
-    "source": "",
-    "at": null
-   },
-   "decision": {
-    "status": "open",
-    "value": "",
-    "by": null,
-    "at": null
-   },
-   "gone": true
-  },
-  "action:getHasPersonalEvents": {
-   "kinds": [
-    "flag check action"
-   ],
-   "files": [
-    "UBTConnect.Calendar.MyCalendar.mvc.js"
-   ],
-   "screens": [
-    "MyCalendar"
-   ],
-   "inControllers": [],
-   "candidate": true,
-   "variantGroups": [],
-   "mcp": {
-    "status": "open",
-    "answer": "",
-    "values": "",
-    "source": "",
-    "at": null
-   },
-   "decision": {
-    "status": "open",
-    "value": "",
-    "by": null,
-    "at": null
-   },
-   "gone": true
-  },
-  "action:get_ActiveGeoJsonFeatureId": {
-   "kinds": [
-    "flag check action"
-   ],
-   "files": [
-    "UBTConnect.Map.Map.mvc.js"
-   ],
-   "screens": [
-    "Map"
-   ],
-   "inControllers": [],
-   "candidate": true,
-   "variantGroups": [],
    "mcp": {
     "status": "open",
     "answer": "",
@@ -2591,34 +2674,6 @@
     "ldm_myevents",
     "mybookmarks"
    ],
-   "mcp": {
-    "status": "open",
-    "answer": "",
-    "values": "",
-    "source": "",
-    "at": null
-   },
-   "decision": {
-    "status": "open",
-    "value": "",
-    "by": null,
-    "at": null
-   },
-   "gone": true
-  },
-  "action:map_GeoJSON_Feature_Remove": {
-   "kinds": [
-    "flag check action"
-   ],
-   "files": [
-    "UBTConnect.Map.Map.mvc.js"
-   ],
-   "screens": [
-    "Map"
-   ],
-   "inControllers": [],
-   "candidate": true,
-   "variantGroups": [],
    "mcp": {
     "status": "open",
     "answer": "",
@@ -3849,5 +3904,5 @@
    "gone": true
   }
  },
- "scannedAt": "2026-10-29T20:04:30"
+ "scannedAt": "2026-10-29T22:29:31"
 }
