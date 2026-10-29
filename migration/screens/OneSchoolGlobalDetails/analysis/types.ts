@@ -50,6 +50,44 @@ export interface AppManager_SynchAppContextResponse {
   FirebaseRealTimeDB_Token: string;
 }
 
+export interface AppManager_AfterInitializeResponse {
+  isNotRegistered: boolean;
+}
+
+export interface ContactPopupData {
+  ImageURL: string /* "" in capture */;
+  EntityTypeId: string;
+  EntityId: string /* Long Integer as string */;
+  IsAvatarImage: boolean;
+  ActionName: string /* "" in capture */;
+  Name: string;
+  Locality: string;
+  TimezoneName: string;
+  TimezoneOffset: number;
+  ShowPopup: boolean;
+  DisplayContactNumber: string /* Long Integer as string */;
+  IsFetchingTimezone: boolean;
+  IsLoading: boolean;
+  ShowTimezone: boolean;
+  ShowImage: boolean;
+  CountryName: string;
+  TitleTerminator: string;
+}
+
+export interface FetchContactDetailsResponse {
+  ContactPopupData: ContactPopupData;
+  Phone: string /* Long Integer as string */;
+  MobilePhone: string /* "" in capture */;
+  HomePhone: string /* "" in capture */;
+  WorkPhone: string /* "" in capture */;
+  Email: string;
+  CountryName: string;
+  LocalityId: string /* Long Integer as string */;
+  LocalityName: string;
+  EntitySubtitle: string /* "" in capture */;
+  EntityName: string;
+}
+
 export interface EmptyListItem {
   LocalityName: string /* "" in capture */;
   LocalityId: string /* Long Integer as string */;
@@ -110,44 +148,6 @@ export interface GetOneSchoolGlobalDetailsResponse {
   Out_OneSchoolGlobal: Out_OneSchoolGlobal;
   HouseholdCoordinates: HouseholdCoordinates;
   UI_Timezone: UI_Timezone;
-}
-
-export interface ContactPopupData {
-  ImageURL: string /* "" in capture */;
-  EntityTypeId: string;
-  EntityId: string /* Long Integer as string */;
-  IsAvatarImage: boolean;
-  ActionName: string /* "" in capture */;
-  Name: string;
-  Locality: string;
-  TimezoneName: string;
-  TimezoneOffset: number;
-  ShowPopup: boolean;
-  DisplayContactNumber: string /* Long Integer as string */;
-  IsFetchingTimezone: boolean;
-  IsLoading: boolean;
-  ShowTimezone: boolean;
-  ShowImage: boolean;
-  CountryName: string;
-  TitleTerminator: string;
-}
-
-export interface FetchContactDetailsResponse {
-  ContactPopupData: ContactPopupData;
-  Phone: string /* Long Integer as string */;
-  MobilePhone: string /* "" in capture */;
-  HomePhone: string /* "" in capture */;
-  WorkPhone: string /* "" in capture */;
-  Email: string;
-  CountryName: string;
-  LocalityId: string /* Long Integer as string */;
-  LocalityName: string;
-  EntitySubtitle: string /* "" in capture */;
-  EntityName: string;
-}
-
-export interface AppManager_AfterInitializeResponse {
-  isNotRegistered: boolean;
 }
 
 export interface OrbitEventTypesItem {
@@ -281,9 +281,13 @@ export interface LocalBookmarkItem {
   Note: string /* "" in capture */;
 }
 
-export interface LocalBookmarksC2 {
-  List: unknown[] /* empty in capture */;
-  EmptyListItem: EmptyListItem;
+export interface LocalBookmarksC2Item {
+  Id: string /* Long Integer as string */;
+  UserId: number;
+  BookmarkId: string /* Long Integer as string */;
+  BookmarkCategoryId: string;
+  ItemId: string /* Long Integer as string */;
+  CreatedAtDateUtc: string /* ISO DateTime */;
 }
 
 export interface LocalNotes {
@@ -293,7 +297,7 @@ export interface LocalNotes {
 
 export interface LocalEntities_App {
   LocalBookmark: LocalBookmarkItem[] /* wire: { List: [...] } */;
-  LocalBookmarksC2: LocalBookmarksC2;
+  LocalBookmarksC2: LocalBookmarksC2Item[] /* wire: { List: [...] } */;
   LocalNotes: LocalNotes;
 }
 
@@ -308,6 +312,20 @@ export interface Sync_Info_GetMainResponse {
   MyEntertainingBaseURL: string;
   FeedBaseURL: string;
   B2CTenant: string;
+}
+
+export interface Note_Item_List {
+  List: unknown[] /* empty in capture */;
+  EmptyListItem: EmptyListItem;
+}
+
+export interface Notes {
+  Total: number /* 0 in capture */;
+  Note_Item_List: Note_Item_List;
+}
+
+export interface FetchNotesResponse {
+  Notes: Notes;
 }
 
 export interface Directory_UserCurrent_Visibility {
@@ -327,6 +345,8 @@ export interface Directory_UserCurrent_Geography {
   Country_Email: string;
   Country_Phone: string;
   Country_LocalityCount: string /* Long Integer as string */;
+  MainHall_Latitude: string /* Decimal as string */;
+  MainHall_Longitude: string /* Decimal as string */;
 }
 
 export interface SubscribedCountriesItem {
@@ -364,8 +384,8 @@ export interface AddressItemsListItem {
 export interface Address {
   AddressItemsList: AddressItemsListItem[] /* wire: { List: [...] } */;
   FormattedAddress: string;
-  Lat: string /* Long Integer as string */;
-  Long: string /* Long Integer as string */;
+  Lat: string /* Decimal as string */;
+  Long: string /* Decimal as string */;
 }
 
 export interface Directory_UserCurrent_Member {
@@ -380,15 +400,15 @@ export interface Directory_UserCurrent_Member {
 export interface Directory_UserCurrent {
   Id: string;
   UserName: string;
-  Email: string;
+  Email: string /* "" in capture */;
   AccountEmail: string;
   FirstName: string;
   LastName: string;
   FullName: string;
   MemberID: string /* Long Integer as string */;
   AccountNumber: string;
-  HomeNumber: string;
-  MobileNumber: string;
+  HomeNumber: string /* "" in capture */;
+  MobileNumber: string /* "" in capture */;
   WorkNumber: string /* "" in capture */;
   Directory_UserCurrent_Visibility: Directory_UserCurrent_Visibility;
   Directory_UserCurrent_Geography: Directory_UserCurrent_Geography;
@@ -476,7 +496,7 @@ export interface Options {
 export interface Marker {
   Id: string /* Long Integer as string */;
   Type: string;
-  ExtraData: string /* "" in capture */;
+  ExtraData: string;
   Latlng: Latlng;
   Options: Options;
 }
@@ -512,6 +532,54 @@ export interface MarkerWithWindow {
   Popup: Popup;
 }
 
+export interface Localities_MarkersItem {
+  MarkerWithWindow: MarkerWithWindow;
+  IsLocked: boolean;
+}
+
+export interface Localities_GeoJSON {
+  List: unknown[] /* empty in capture */;
+  EmptyListItem: EmptyListItem;
+}
+
+export interface PathOptions {
+  stroke: boolean;
+  color: string;
+  weight: number;
+  opacity: string /* Decimal as string */;
+  lineCap: string;
+  lineJoin: string;
+  dashArray: string /* Long Integer as string */;
+  dashOffset: string /* "" in capture */;
+  fill: boolean;
+  fillColor: string;
+  fillOpacity: string /* Decimal as string */;
+  fillRule: string /* "" in capture */;
+  bubblingMouseEvents: boolean;
+  className: string /* "" in capture */;
+  interactive: boolean;
+  pane: string /* "" in capture */;
+  attribution: string /* "" in capture */;
+}
+
+export interface GeoJSONFeatureList {
+  FeatureJSON: string;
+  Id: string;
+  Type: string;
+  ExtraData: string /* "" in capture */;
+  PathOptions: PathOptions;
+}
+
+export interface Countries_GeoJSONItem {
+  GeoJSONFeatureList: GeoJSONFeatureList;
+  IsLocked: boolean;
+}
+
+export interface Countries_MarkersItem {
+  MarkerWithWindow: MarkerWithWindow;
+  IsLocked: boolean;
+}
+
 export interface MapExploreItem {
   Name: string;
   Address: string;
@@ -521,6 +589,21 @@ export interface MapExploreItem {
   PhotoURL2: string /* "" in capture */;
   Type: string;
   Id: string /* Long Integer as string */;
+  DisplayHouseholdName: boolean;
+  DisplayAddress: boolean;
+}
+
+export interface GlobalLocations_MarkersItem {
+  MarkerWithWindow: MarkerWithWindow;
+  MapExploreItem: MapExploreItem;
+}
+
+export interface ServiceAPIFetchData_CacheableMapEntitiesResponse {
+  Localities_Markers: Localities_MarkersItem[] /* wire: { List: [...] } */;
+  Localities_GeoJSON: Localities_GeoJSON;
+  Countries_GeoJSON: Countries_GeoJSONItem[] /* wire: { List: [...] } */;
+  Countries_Markers: Countries_MarkersItem[] /* wire: { List: [...] } */;
+  GlobalLocations_Markers: GlobalLocations_MarkersItem[] /* wire: { List: [...] } */;
 }
 
 export interface Household_MarkersItem {
@@ -530,8 +613,4 @@ export interface Household_MarkersItem {
 
 export interface ServiceAPIFetchData_CacheableHouseholdsResponse {
   Household_Markers: Household_MarkersItem[] /* wire: { List: [...] } */;
-}
-
-export interface ServiceAPIFetchData_CacheableMapEntitiesResponse {
-
 }

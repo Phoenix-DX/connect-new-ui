@@ -1,6 +1,6 @@
 # Routes of UBTConnect
 
-83 screens found in 640 compiled screen/block files. Static analysis of the compiled code; no user data.
+84 screens found in 641 compiled screen/block files. Static analysis of the compiled code; no user data.
 
 **Wave**: 1 = reached directly from the app shell (bottom bar, menu), 2 = one step further, blank = not reachable from the shell (start/deep-link/auth/unused).
 **Status** (maintained by people and agents): `todo` → `spec` → `built` → `verified`; `skip` with a reason when out of scope.
@@ -90,3 +90,8 @@
 |  | `/UBTConnect/ConnectShare` | ConnectShare | ShareId: Text | Connect2_LegacyShared.Share_UI.ScreenBlock_ShareDetail, UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy | 1 / 0 / 0 | 9 | - |  | 62 | no inbound link found: deep link, start screen, or unused | todo |
 |  | `/UBTConnect/CommunityBusinessDetails` | CommunityBusinessDetails | CommunityBusinessId: LongInteger | UBTConnectLibrary.Layouts.Layout_DetailPage, UBTConnect.App_Common.BottomBarMenu | 1 / 0 / 0 | 12 | - |  | 64 | no inbound link found: deep link, start screen, or unused | todo |
 |  | `/UBTConnect/TestOpenShare` | TestOpenShare | - | UBTConnectLibrary.Layouts.Layout_MainPages, UBTConnectLibrary.ConnectPatterns.StaticInput | 0 / 0 / 0 | 0 | - |  | 9 | system/auth screen: check scope; no inbound link found: deep link, start screen, or unused | todo |
+| 3 | `/UBTConnect/NotificationDetails` | NotificationDetails | MessageInstanceId: LongInteger | UBTConnectLibrary.Layouts.Layout_MainPages_Upgrade, UBTConnectLibrary.ConnectPatterns.CircleButton, UBTConnect.App_Common_Blocks.SectionSeparator | 2 / 0 / 0 | 10 | /UBTConnect/Notifications |  | 67 |  | todo |
+| 3 | `/UBTConnect/OneSchoolGlobalCarousel` | OneSchoolGlobalCarousel | In_StartingObjectId: LongInteger | UBTConnectLibrary.Layouts.Layout_DetailPage, UBTConnect.Directory_Caroussel.EntitiesCarousel, UBTConnect.App_Common.BottomBarMenu | 10 / 0 / 5 | 19 | /UBTConnect/Bookmarks, /UBTConnect/Notes |  | 171 |  | todo |
+| 3 | `/UBTConnect/OrbitAdminMilestones` | OrbitAdminMilestones | EventId: LongInteger | Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminMilestones, UBTConnect.App_Common.BottomBarMenu | 2 / 0 / 1 | 12 | /UBTConnect/OrbitAdminLanding |  | 75 |  | todo |
+| 3 | `/UBTConnect/PassportScan` | PassportScan | TargetId: LongInteger, LoginMemberId: LongInteger | OrbitPassportScanC2.PassportScan.ScreenBlock_PassportScan | 2 / 0 / 0 | 5 | /UBTConnect/OrbitLanding |  | 55 |  | todo |
+| 4 | `/UBTConnect/OrbitAdminMilestoneDetail` | OrbitAdminMilestoneDetail | In_EventId: LongInteger, In_MilestoneId: Text, In_MilestoneName: Text, In_MilestoneDate: DateTime, In_MilestoneDescription: Text, In_MilestoneStartDate: DateTime, In_MilestoneEndDate: DateTime | Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminMilestoneDetail, UBTConnect.App_Common.BottomBarMenu | 2 / 0 / 2 | 10 | /UBTConnect/OrbitAdminMilestones |  | 74 |  | todo |

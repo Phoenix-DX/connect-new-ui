@@ -15,15 +15,15 @@ import { prepareScreen, showsScreen } from './screens';
    StylesheetHost keeps the current screen's original stylesheets in <head> and holds the first render until they load.
    ScreenTransitionGroup renders the runtime's screen containers (`.active-screen.screen-container`, one per history
    entry while a screen transition runs: shell/navigation/ScreenTransitionGroup.tsx). RouteGuard applies the redirects
-   that follow the app start (route meta, routes.ts); NavigationHost gives the flag redirects of the route meta to
-   useOsNavigate. The flag panel is a review tool of dev and demo builds (FLAG_OVERRIDES_BUILT). */
+   that follow the app start (route meta, routes.ts); NavigationHost gives the flag redirects of the route meta and the screen
+   paths to useOsNavigate (a path that shows no screen is a full page load, item 9 D3). The flag panel is a review tool of dev and demo builds (FLAG_OVERRIDES_BUILT). */
 export function AppFrame() {
   return (
     <StylesheetHost>
       <div id="transitionContainer">
         <AppStart />
         <RouteGuard />
-        <NavigationHost redirect={flagRedirectTarget} />
+        <NavigationHost redirect={flagRedirectTarget} isScreen={showsScreen} />
         <ScreenTransitionGroup prepare={prepareScreen} isScreen={showsScreen} />
         <AppLockHost ignoresLockScreen={ignoresLockScreen} />
         <CommonUiHost />

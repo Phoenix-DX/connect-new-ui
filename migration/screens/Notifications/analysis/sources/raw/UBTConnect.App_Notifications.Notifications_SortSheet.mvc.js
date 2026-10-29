@@ -1,4 +1,4 @@
-define("UBTConnect.App_Notifications.Notifications_SortSheet.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnectLibrary.model", "UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc$model", "UBTConnect.model$Filter_Common_Control_ChoiceList", "UBTConnect.model$Filter_CommonRec", "UBTConnect.model$Filter_Common_OptionsRec", "UBTConnect.model$Filter_Common_Options_ChoiceRec", "UBTConnect.model$Filter_Common_Options_ListRec", "UBTConnect.model$Filter_Common_Control_ListList", "UBTConnectLibrary.model$SelectionOption_ItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$SelectionOption_ItemList"], function (OutSystems, UBTConnectModel, UBTConnectLibraryModel, UBTConnect_App_CommonBlocks_Filter_SortSheet_mvcModel) {
+define("UBTConnect.App_Notifications.Notifications_SortSheet.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnectLibrary.model", "UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc$model", "UBTConnect.model$Filter_Common_Control_ChoiceList", "UBTConnect.model$Filter_CommonRec", "UBTConnect.model$Filter_Common_OptionsRec", "UBTConnect.model$Filter_Common_Options_ChoiceRec", "UBTConnect.model$Filter_Common_Options_ListRec", "UBTConnect.model$Filter_Common_Control_ListList", "UBTConnectLibrary.model$SelectionOption_ItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$SelectionOption_ItemList", "UBTConnect.model$Filter_Common_Control_ListListFilter_Common_Control_ListListFilter_Common_Control_ChoiceListRecord"], function (OutSystems, UBTConnectModel, UBTConnectLibraryModel, UBTConnect_App_CommonBlocks_Filter_SortSheet_mvcModel) {
 var OS = OutSystems.Internal;
 
 
@@ -63,7 +63,7 @@ return Model;
 })(OS.Model.BaseViewModel);
 return new OS.Model.ModelFactory(Model, "App_Notifications.Notifications_SortSheet");
 });
-define("UBTConnect.App_Notifications.Notifications_SortSheet.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnectLibrary.model", "react", "OutSystems/ReactView/Main", "UBTConnect.App_Notifications.Notifications_SortSheet.mvc$model", "UBTConnect.App_Notifications.Notifications_SortSheet.mvc$controller", "UBTConnect.clientVariables", "UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc$view", "OutSystems/ReactWidgets/Main", "UBTConnect.model$Filter_Common_Control_ChoiceList", "UBTConnect.model$Filter_CommonRec", "UBTConnect.model$Filter_Common_OptionsRec", "UBTConnect.model$Filter_Common_Options_ChoiceRec", "UBTConnect.model$Filter_Common_Options_ListRec", "UBTConnect.model$Filter_Common_Control_ListList", "UBTConnectLibrary.model$SelectionOption_ItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$SelectionOption_ItemList"], function (OutSystems, UBTConnectModel, UBTConnectController, UBTConnectLibraryModel, React, OSView, UBTConnect_App_Notifications_Notifications_SortSheet_mvc_model, UBTConnect_App_Notifications_Notifications_SortSheet_mvc_controller, UBTConnectClientVariables, UBTConnect_App_CommonBlocks_Filter_SortSheet_mvc_view, OSWidgets) {
+define("UBTConnect.App_Notifications.Notifications_SortSheet.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnectLibrary.model", "react", "OutSystems/ReactView/Main", "UBTConnect.App_Notifications.Notifications_SortSheet.mvc$model", "UBTConnect.App_Notifications.Notifications_SortSheet.mvc$controller", "UBTConnect.clientVariables", "UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc$view", "OutSystems/ReactWidgets/Main", "UBTConnect.model$Filter_Common_Control_ChoiceList", "UBTConnect.model$Filter_CommonRec", "UBTConnect.model$Filter_Common_OptionsRec", "UBTConnect.model$Filter_Common_Options_ChoiceRec", "UBTConnect.model$Filter_Common_Options_ListRec", "UBTConnect.model$Filter_Common_Control_ListList", "UBTConnectLibrary.model$SelectionOption_ItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$SelectionOption_ItemList", "UBTConnect.model$Filter_Common_Control_ListListFilter_Common_Control_ListListFilter_Common_Control_ChoiceListRecord"], function (OutSystems, UBTConnectModel, UBTConnectController, UBTConnectLibraryModel, React, OSView, UBTConnect_App_Notifications_Notifications_SortSheet_mvc_model, UBTConnect_App_Notifications_Notifications_SortSheet_mvc_controller, UBTConnectClientVariables, UBTConnect_App_CommonBlocks_Filter_SortSheet_mvc_view, OSWidgets) {
     var OS = OutSystems.Internal;
 var PlaceholderContent = OSView.Widget.PlaceholderContent;
 var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
@@ -161,7 +161,7 @@ events: {
 _handleError: function (ex) {
 controller.handleError(ex);
 },
-applySort$Action: function (sortBy_TitleIn) {
+applySort$Action: function (sortBy_TitleIn, optionControlIn) {
 return Promise.resolve().then(function () {
 var eventHandlerContext = callContext.clone();
 return OS.Flow.tryFinally(function () {
@@ -169,7 +169,7 @@ var varBag = {};
 controller.pushDebuggerContext(eventHandlerContext);
 
 OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "App_CommonBlocks_Filter/SortSheet ApplySort");
-return controller.filterSheetApplyFilters$Action(controller.callContext(eventHandlerContext));
+return controller.filterSheetApplyFilters$Action(optionControlIn, controller.callContext(eventHandlerContext));
 }, function () {
 controller.popDebuggerContext(eventHandlerContext);
 });
@@ -223,7 +223,7 @@ _dependencies: []
 	
     return View;
 });
-define("UBTConnect.App_Notifications.Notifications_SortSheet.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnectLibrary.model", "UBTConnect.languageResources", "UBTConnect.clientVariables", "UBTConnect.App_Notifications.Notifications_SortSheet.mvc$debugger", "UBTConnect.model$Filter_Common_Control_ChoiceList", "UBTConnect.model$Filter_CommonRec", "UBTConnect.model$Filter_Common_OptionsRec", "UBTConnect.model$Filter_Common_Options_ChoiceRec", "UBTConnect.model$Filter_Common_Options_ListRec", "UBTConnect.model$Filter_Common_Control_ListList", "UBTConnectLibrary.model$SelectionOption_ItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$SelectionOption_ItemList"], function (OutSystems, UBTConnectModel, UBTConnectController, UBTConnectLibraryModel, UBTConnectLanguageResources, UBTConnectClientVariables, UBTConnect_App_Notifications_Notifications_SortSheet_mvc_Debugger) {
+define("UBTConnect.App_Notifications.Notifications_SortSheet.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnectLibrary.model", "UBTConnect.languageResources", "UBTConnect.clientVariables", "UBTConnect.App_Notifications.Notifications_SortSheet.mvc$debugger", "UBTConnect.model$Filter_Common_Control_ChoiceList", "UBTConnect.model$Filter_CommonRec", "UBTConnect.model$Filter_Common_OptionsRec", "UBTConnect.model$Filter_Common_Options_ChoiceRec", "UBTConnect.model$Filter_Common_Options_ListRec", "UBTConnect.model$Filter_Common_Control_ListList", "UBTConnectLibrary.model$SelectionOption_ItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$SelectionOption_ItemList", "UBTConnect.model$Filter_Common_Control_ListListFilter_Common_Control_ListListFilter_Common_Control_ChoiceListRecord"], function (OutSystems, UBTConnectModel, UBTConnectController, UBTConnectLibraryModel, UBTConnectLanguageResources, UBTConnectClientVariables, UBTConnect_App_Notifications_Notifications_SortSheet_mvc_Debugger) {
 var OS = OutSystems.Internal;
 var Controller = (function (_super) {
 __extends(Controller, _super);
@@ -282,7 +282,7 @@ defaultValue: function () {
 return false;
 }
 }]);
-Controller.prototype._filterSheetApplyFilters$Action = function (callContext) {
+Controller.prototype._filterSheetApplyFilters$Action = function (optionChoice_Control_OptionFlatList_Control_OptionIn, callContext) {
 var varBag = {};
 var model = this.model;
 var controller = this.controller;
@@ -291,13 +291,16 @@ varBag.model = model;
 varBag.idService = idService;
 controller.ensureControllerAlive("FilterSheetApplyFilters");
 callContext = controller.callContext(callContext);
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.App_Notifications.Notifications_SortSheet.FilterSheetApplyFilters$vars"))());
+vars.value.optionChoice_Control_OptionFlatList_Control_OptionInLocal = optionChoice_Control_OptionFlatList_Control_OptionIn.clone();
 varBag.callContext = callContext;
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:m6ysh8+IQ0ib2wuFMu6QpA:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.0un_lnjk+k6EbmCEslAI7A/ClientActions.m6ysh8+IQ0ib2wuFMu6QpA:VJ77wChzB8o7LjCBGRk5oA", "UBTConnect", "FilterSheetApplyFilters", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+varBag.vars = vars;
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:m6ysh8+IQ0ib2wuFMu6QpA:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.0un_lnjk+k6EbmCEslAI7A/ClientActions.m6ysh8+IQ0ib2wuFMu6QpA:9DqtYZFPVnc2acoI1skF4w", "UBTConnect", "FilterSheetApplyFilters", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:pKv3K65tWEyeAtrj6i+vOw", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:VxhkhGSsskemRW1dGZCB5A", callContext.id);
 // Trigger Event: ApplyFilters
-return controller.applyFilters$Action(callContext).then(function () {
+return controller.applyFilters$Action((vars.value.optionChoice_Control_OptionFlatList_Control_OptionInLocal.optionChoice_ControlAttr.getCurrent(callContext.iterationContext).selectedChoiceIdAttr === UBTConnectModel.staticEntities.choice.yes), callContext).then(function () {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Q0KLK7zT4UC7CklL6i8TIg", callContext.id);
 });
 }).then(function (res) {
@@ -311,15 +314,25 @@ throw ex;
 
 });
 };
+Controller.registerVariableGroupType("UBTConnect.App_Notifications.Notifications_SortSheet.FilterSheetApplyFilters$vars", [{
+name: "OptionChoice_Control_OptionFlatList_Control_Option",
+attrName: "optionChoice_Control_OptionFlatList_Control_OptionInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Record,
+defaultValue: function () {
+return new UBTConnectModel.Filter_Common_Control_ListListFilter_Common_Control_ListListFilter_Common_Control_ChoiceListRecord();
+},
+complexType: UBTConnectModel.Filter_Common_Control_ListListFilter_Common_Control_ListListFilter_Common_Control_ChoiceListRecord
+}]);
 
 Controller.prototype.handler_FilterSheetLoaded$Action = function (showSubscriptionOnClickIn, callContext) {
 var controller = this.controller;
 return controller.safeExecuteClientAction(controller._handler_FilterSheetLoaded$Action, callContext, showSubscriptionOnClickIn);
 
 };
-Controller.prototype.filterSheetApplyFilters$Action = function (callContext) {
+Controller.prototype.filterSheetApplyFilters$Action = function (optionChoice_Control_OptionFlatList_Control_OptionIn, callContext) {
 var controller = this.controller;
-return controller.safeExecuteClientAction(controller._filterSheetApplyFilters$Action, callContext);
+return controller.safeExecuteClientAction(controller._filterSheetApplyFilters$Action, callContext, optionChoice_Control_OptionFlatList_Control_OptionIn);
 
 };
 Controller.prototype.sheetInitialized$Action = function () {
@@ -335,8 +348,8 @@ return Promise.resolve();
 // Event Handler Actions
 Controller.prototype.pushDebuggerContext = function (callContext) {
 var varBag = {};
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:jD6cc912jEmdKmf5_8Sipg:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg:C0dHS3xzkGhxAA9p12FDtg", "UBTConnect", "App_Notifications", "NRFlows.WebFlow", callContext.id, varBag);
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:0un_lnjk+k6EbmCEslAI7A:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.0un_lnjk+k6EbmCEslAI7A:wX3iK9EWAhl5gRDA2wajQg", "UBTConnect", "Notifications_SortSheet", "NRNodes.WebBlock", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:jD6cc912jEmdKmf5_8Sipg:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg:sMKFKooX6A1nm6D_Lsn4Wg", "UBTConnect", "App_Notifications", "NRFlows.WebFlow", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:0un_lnjk+k6EbmCEslAI7A:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.0un_lnjk+k6EbmCEslAI7A:QazBWr39PLc_Nim70sUW+Q", "UBTConnect", "Notifications_SortSheet", "NRNodes.WebBlock", callContext.id, varBag);
 };
 Controller.prototype.popDebuggerContext = function (callContext) {
 OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:0un_lnjk+k6EbmCEslAI7A", callContext.id);
@@ -368,6 +381,11 @@ getter: function (varBag, idService) {
 return varBag.vars.value.showSubscriptionOnClickInLocal;
 },
 dataType: OS.DataTypes.DataTypes.Boolean
+},
+"JosEHWp12kC9TmWhMxD7cQ": {
+getter: function (varBag, idService) {
+return varBag.vars.value.optionChoice_Control_OptionFlatList_Control_OptionInLocal;
+}
 },
 "OgY_x_DVCky1knrMGhE0LQ": {
 getter: function (varBag, idService) {

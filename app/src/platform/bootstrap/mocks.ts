@@ -117,11 +117,13 @@ export const orbitStaticEntities = (): Schemas['Connect2_OrbitMobile_MUI__Static
 
 /** LocalEntities_App.LocalNotes (fictional): one row per note of the CW_Notes mock collection (`notesCollection`), so
     the note ids, categories and items SyncNotes stores at sign-in (UBTConnect.controller.js:1145) are the ones the notes
-    blocks show and change. The server's own LocalNote ids are unknown: Id = NoteId. */
+    blocks show and change. The server's own LocalNote ids are unknown: Id = NoteId. NotesTotalCount (live TST record,
+    contract regeneration of I10-6) keeps its default 0: no React code reads it. */
 const mockLocalNotes = (): LocalNoteWire[] =>
   notesCollection()
     .all()
     .map((note) => ({
+      NotesTotalCount: '0',
       Id: String(note.Id),
       UserId: Number(currentUserId() ?? 0),
       NoteId: String(note.Id),
@@ -133,9 +135,9 @@ const mockLocalNotes = (): LocalNoteWire[] =>
 type LocalNoteWire = components['schemas']['UBTConnect_Notes_MCS__LocalNote'];
 
 /** The legacy LocalBookmark rows of the mock user (Connect2_LegacyShared, read while C2NewBookmarks is off as on TST):
-    the device copy of the server's legacy bookmarks, i.e. of the shared collection that MyBookmarks, BookmarksByGroup and
-    GetBookmarkById read (src/mocks/modules/Connect2_MyBookmarks_MUI/mocks.ts, CR-MyBookmarks-2), so a delete there shows after
-    the next sync. Id = BookmarkId = the server row's Id (fictional). It holds the households bookmarked in the TST
+    the device copy of the server's legacy bookmarks, i.e. of the shared collection that the Connect2_Assemble_MUI and
+    Directory_EntityDetailsActions bookmark mocks write (src/mocks/modules/Connect2_MyBookmarks_MUI/mocks.ts,
+    CR-MyBookmarks-2), so a delete there shows after the next sync. Id = BookmarkId = the server row's Id (fictional). It holds the households bookmarked in the TST
     captures:
     - 42438, the household of the HouseholdDetails / HouseholdCarousel parity routes (`?HouseholdId=42438`,
       analysis/states.json): "Unmark", `ubt-image-card__bookmarked` (CR-HouseholdDetails-2 §2); it is also the first

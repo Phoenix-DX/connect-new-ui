@@ -1,0 +1,57 @@
+{
+ "state": "loading",
+ "route": "/UBTConnect/OneSchoolGlobalCarousel?In_StartingObjectId=1430&mocksession=unlocked",
+ "mock": "captured",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "aeec1a51ee969d203b7a",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "visibleOnly": false,
+  "full": true,
+  "replay": "builder",
+  "skipKinds": [],
+  "selfRef": false
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 411,
+  "texts": 32,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-10-29T07:19:28.507Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "ignoreSubtrees": 1
+ },
+ "pixel": {
+  "ratio": 0,
+  "maxCell": 0,
+  "maxCellRatio": 0.03,
+  "diffPixels": 0,
+  "comparedPixels": 0,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 4,
+  "hotspots": [],
+  "diffPng": "migration/screens/OneSchoolGlobalCarousel/parity/loading.diff.png"
+ },
+ "calls": null,
+ "diffs": []
+}

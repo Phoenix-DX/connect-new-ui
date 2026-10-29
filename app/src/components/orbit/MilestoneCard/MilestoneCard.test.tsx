@@ -92,12 +92,43 @@ describe('Card_Milestone', () => {
     expect(onClicked).toHaveBeenCalledTimes(1);
   });
 
-  it('admin and break types render no content on TST (admin identifiers are not in the TST moduleinfo)', () => {
+  it('break renders no content; an unknown type id is not an admin type', () => {
     for (const Id of ['break', 'admin-meeting']) {
       const { container, unmount } = render(
         <MilestoneCard inMilestoneSummary={{ ...MEETING, OrbitMilestoneType: { Id, MainColorVar: 'green' } }} />,
       );
       expect(container.querySelector('.orbit-card-content > div')?.childElementCount).toBe(0);
+      unmount();
+    }
+  });
+
+  it('admin types (live TST moduleinfo ids) render description, date and times', () => {
+    for (const Id of [
+      'meeting-admin',
+      'meeting-meal',
+      'meal-at-hall-admin',
+      'accommodation-admin',
+      'transport-vehicle-admin',
+      'break-admin',
+    ]) {
+      const milestone = {
+        ...MEETING,
+        OrbitMilestoneType: { Id, MainColorVar: 'green' },
+        MilestoneInfo: {
+          Description: 'Room set-up',
+          MilestoneStartDateTime: '2026-10-16T09:00:00Z',
+          MilestoneEndDateTime: '2026-10-16T10:30:00Z',
+        },
+      };
+      const { container, unmount } = render(<MilestoneCard inMilestoneSummary={milestone} />);
+      const rows = [
+        ...container.querySelectorAll('.orbit-card-content-info, [class="orbit-card-content-infomargin-top-m"]'),
+      ].map((el) => [el.className, el.textContent]);
+      expect(rows).toHaveLength(3);
+      expect(rows[0]).toEqual(['orbit-card-content-info', 'Room set-up']);
+      expect(rows[1]).toEqual(['orbit-card-content-info', '16 Oct 2026']);
+      expect(rows[2]?.[0]).toBe('orbit-card-content-infomargin-top-m');
+      expect(rows[2]?.[1]).toMatch(/^\d{1,2}:\d{2} [AP]M - \d{1,2}:\d{2} [AP]M$/);
       unmount();
     }
   });

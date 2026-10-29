@@ -25,6 +25,19 @@ export type NoteCardsWire = ActionOutputs<NoteCardsPath>;
 export type NotesVariablesWire = ActionInputs<NoteCardsPath>;
 /** Connect_Notes_CS UI_Note_CardItem as the server sends it. */
 export type NoteCardItemWire = NoteCardsWire['Out_Notes']['NoteCardItem_List']['List'][number];
+/** TST UI_Note_CardItem has fields that the contract does not list (Notes drift 2026-10-29; capture calls.md: ItemId2 a
+    Long Integer, HasDetailAccess a Boolean; in NoteCardContent PublishedAt a DateTime, ChannelLogo and ChannelName
+    texts, :132-134). The regenerated contract (I10-6, 2026-10-29) still takes the older record, so the type stays,
+    with the record defaults in toNoteCardItem. */
+type NoteCardItemWireTst = NoteCardItemWire & {
+  ItemId2?: string;
+  HasDetailAccess?: boolean;
+  NoteCardContent: NoteCardItemWire['NoteCardContent'] & {
+    PublishedAt?: string;
+    ChannelLogo?: string;
+    ChannelName?: string;
+  };
+};
 /** Connect_Notes_CS Notes_Filter as the server takes it. */
 export type NotesFilterWire = NonNullable<NotesVariablesWire['Notes_Filter']>;
 /** UBTConnectLibrary Notes as the server sends it. */
@@ -59,10 +72,12 @@ export const toNoteList = (w: NoteListWire): NoteList => ({
 });
 
 /** A note card, with its NoteCardContent flattened. */
-export const toNoteCardItem = (w: NoteCardItemWire): NoteCardItem => ({
+export const toNoteCardItem = (w: NoteCardItemWireTst): NoteCardItem => ({
   id: w.Id,
   itemId: w.ItemId,
+  itemId2: w.ItemId2 ?? '0',
   noteCategoryId: w.NoteCategoryId,
+  hasDetailAccess: w.HasDetailAccess ?? false,
   title: w.NoteCardContent.Title,
   subtitle: w.NoteCardContent.Subtitle,
   sourceHeader: {
@@ -72,6 +87,9 @@ export const toNoteCardItem = (w: NoteCardItemWire): NoteCardItem => ({
     label: w.NoteCardContent.SourceHeader.Label,
   },
   notes: toNoteList(w.NoteCardContent.Notes),
+  channelName: w.NoteCardContent.ChannelName ?? '',
+  channelLogo: w.NoteCardContent.ChannelLogo ?? '',
+  publishedAt: w.NoteCardContent.PublishedAt ?? NULL_DATE_TIME,
 });
 
 /** The cards of a page and the total. */

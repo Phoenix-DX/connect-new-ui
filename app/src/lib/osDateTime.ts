@@ -17,6 +17,10 @@ const MONTHS = [
 ];
 const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
+/** The OutSystems null Date (NullDate()) and null DateTime, as they travel on the wire and in the URL. */
+export const OS_NULL_DATE = '1900-01-01';
+export const OS_NULL_DATE_TIME = `${OS_NULL_DATE}T00:00:00`;
+
 /** Parses an OutSystems Date / DateTime value ("" or invalid = the OutSystems null date 1900-01-01). */
 export function parseOsDate(value: string): Date {
   const m = /^(\d{4})-(\d{2})-(\d{2})(?:[T ](\d{2}):(\d{2})(?::(\d{2}))?)?/.exec(value);

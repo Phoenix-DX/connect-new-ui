@@ -14,7 +14,9 @@ const endpointOf: Record<ContractModule, ActionPath> = {
   Connect2_LegacyShared: '/api/Connect2_LegacyShared/ActionGetNumberUnreadMessages',
   Connect2_MyBookmarks_MUI: '/api/Connect2_MyBookmarks_MUI/ActionGetBookmarkById',
   Connect2_OrbitMobile_MUI: '/api/Connect2_OrbitMobile_MUI/ActionEventContact',
+  OrbitPassportScanC2: '/api/OrbitPassportScanC2/ScreenBlock_PassportScan/DataActionGetConfigs',
   UBTConnect: '/api/UBTConnect/ActionGet_ShareDetails',
+  UBTConnect_Bookmarks_MCS: '/api/UBTConnect_Bookmarks_MCS/ActionGet_BookmarkPills_ByBookmarkCategoryIds',
   UBTConnect_EmbedFeed: '/api/UBTConnect_EmbedFeed/Embedded_FeedCMS/DataActionGetFeedConfig',
   UBTConnect_EmbedMyEntertaining: '/api/UBTConnect_EmbedMyEntertaining/ActionAppManager_Get_UserIdToken',
   UBTConnect_Notes_MCS: '/api/UBTConnect_Notes_MCS/ActionGet_NotePills_ByNoteCategoryIds',
@@ -47,14 +49,17 @@ afterEach(() => {
 
 /* Controller.prototype.defaultTimeout of each module's compiled controller (the sources cited in api.ts):
    Connect2_Assemble_MUI.controller.js:1745 = 10, Connect2_OrbitMobile_MUI.controller.js:8742 = 10,
-   UBTConnect.controller.js:18597 = 20, every other module 10. */
+   UBTConnect.controller.js:18597 = 20, every other module 10 (OrbitPassportScanC2.controller.js:161 and
+   UBTConnect_Bookmarks_MCS.controller.js:1218 too). */
 test('module timeouts are the compiled defaultTimeout: UBTConnect 20 s, every other module 10 s', () => {
   expect(SERVER_REQUEST_TIMEOUT).toEqual({
     Connect2_Assemble_MUI: 10,
     Connect2_LegacyShared: 10,
     Connect2_MyBookmarks_MUI: 10,
     Connect2_OrbitMobile_MUI: 10,
+    OrbitPassportScanC2: 10,
     UBTConnect: 20,
+    UBTConnect_Bookmarks_MCS: 10,
     UBTConnect_EmbedFeed: 10,
     UBTConnect_EmbedMyEntertaining: 10,
     UBTConnect_Notes_MCS: 10,

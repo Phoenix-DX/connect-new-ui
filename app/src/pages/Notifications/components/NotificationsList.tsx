@@ -12,17 +12,21 @@ export interface NotificationsListProps {
   inNotificationItemList: NotificationItem[];
   isLoading?: boolean;
   currentBreakpoint: NotificationBreakpoint;
+  /** Event NotificationDetail(MessageInstanceId, IsRead), raised by OnClick_NotificationDetail. */
+  onNotificationDetail?: (messageInstanceId: string, isRead: boolean) => void;
 }
 
 /** UBTConnect.App_Notifications.NotificationsList (p:…NotificationsList.mvc.js): OnInitialize keeps the items of the
     breakpoint's range (no OnParametersChanged: later input changes do not refilter, as compiled); List_Notifications
     with, per item, SkeletonSection (IsLoading) > "updates-list__list-item" (data-plus-date) > Notification_ListItem +
-    ScrollAnchor (Id). */
+    ScrollAnchor (Id). A click on the item raises NotificationDetail(Id, IsRead) (live TST copy, Container onClick →
+    OnClick_NotificationDetail, NotificationsList.mvc.js:329-341, 822-846). */
 export function NotificationsList({
   id,
   inNotificationItemList,
   isLoading = false,
   currentBreakpoint,
+  onNotificationDetail,
 }: NotificationsListProps) {
   const [items] = useState(() => itemsOfRange(inNotificationItemList, currentBreakpoint.dateRange));
   const p = id.replace(/-\$b2$/, '');
@@ -43,6 +47,9 @@ export function NotificationsList({
                 className="updates-list__list-item"
                 data-container=""
                 data-plus-date={dateTimeToText(item.dateTimeCreated)}
+                onClick={() => {
+                  onNotificationDetail?.(item.id, item.isRead);
+                }}
               >
                 <Notification_ListItem
                   id={`${r}-NotificationItem`}

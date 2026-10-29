@@ -193,7 +193,8 @@ export function Input({
                     aria-required={options.IsMandatory ? 'true' : 'false'}
                     autoComplete={options.EnableAutocompleteHTML ? 'on' : 'off'}
                     className={withNotValidClass(
-                      `form-control ${inExtendedClasses}` +
+                      // Input_Search.Style of the live TST block (Input.mvc.js :342, extracted 2026-10-29; Bookmarks Q4 (a)).
+                      `search-placeholder-ellipsis form-control ${inExtendedClasses}` +
                         (options.BorderRadius !== '' ? ` border-radius-${options.BorderRadius}` : '') +
                         ' OSFillParent',
                       record,

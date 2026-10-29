@@ -2416,7 +2416,7 @@ callContext = controller.callContext(callContext);
 var listIndexOfVar = new OS.DataTypes.VariableHolder();
 varBag.callContext = callContext;
 varBag.listIndexOfVar = listIndexOfVar;
-try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:G3r4nO7oLESFClGB3P0FTA:/NRWebFlows.Jpw6vcM30keGIepdkjtS7A/NodesShownInESpaceTree.puW55n9l7EKEPdI6ZSmT8A/ClientActions.G3r4nO7oLESFClGB3P0FTA:O9Q0jr7u8e9jQlEZcvqwkA", "UBTConnect", "Action_DefineOptionControl_Empty", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:G3r4nO7oLESFClGB3P0FTA:/NRWebFlows.Jpw6vcM30keGIepdkjtS7A/NodesShownInESpaceTree.puW55n9l7EKEPdI6ZSmT8A/ClientActions.G3r4nO7oLESFClGB3P0FTA:BAu0Dv6i_hlcph4QnkzhQg", "UBTConnect", "Action_DefineOptionControl_Empty", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:O4SDQ8yvP06b0mk6wlprTQ", callContext.id);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:GBiGgTiIUUGRWo4cy3zPjQ", callContext.id);
 // Empty_OptionControl = OptionControl
@@ -2457,6 +2457,41 @@ optionChoice_ControlIndex++;
 
 } finally {
 callContext.iterationContext.registerIterationEnd(model.variables.empty_OptionControlVar.optionChoice_ControlAttr);
+}
+
+// Foreach Empty_OptionControl.OptionFlatList_Control
+callContext.iterationContext.registerIterationStart(model.variables.empty_OptionControlVar.optionFlatList_ControlAttr);
+try {var optionFlatList_ControlIterator = callContext.iterationContext.getIterator(model.variables.empty_OptionControlVar.optionFlatList_ControlAttr);
+var optionFlatList_ControlIndex = 0;
+while ((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:bYWEGsQZ0USxWM3eOTR2dg", callContext.id) && (optionFlatList_ControlIndex < model.variables.empty_OptionControlVar.optionFlatList_ControlAttr.length))) {
+optionFlatList_ControlIterator.currentRowNumber = optionFlatList_ControlIndex;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:FP+ucI16T0SMdGVwrJQtjQ", callContext.id);
+// Execute Action: ListClear3
+OS.SystemActions.listClear(model.variables.empty_OptionControlVar.optionFlatList_ControlAttr.getItem(optionFlatList_ControlIndex.valueOf()).selectedIdsAttr, callContext);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:zttf3YwGg0OP7RqcOm6u9w", callContext.id);
+// Execute Action: ListClear4
+OS.SystemActions.listClear(model.variables.empty_OptionControlVar.optionFlatList_ControlAttr.getItem(optionFlatList_ControlIndex.valueOf()).selectedNamesAttr, callContext);
+// Foreach Empty_OptionControl.OptionFlatList_Control.Current.In_Options
+callContext.iterationContext.registerIterationStart(model.variables.empty_OptionControlVar.optionFlatList_ControlAttr.getItem(optionFlatList_ControlIndex.valueOf()).in_OptionsAttr);
+try {var in_Options1Iterator = callContext.iterationContext.getIterator(model.variables.empty_OptionControlVar.optionFlatList_ControlAttr.getItem(optionFlatList_ControlIndex.valueOf()).in_OptionsAttr);
+var in_Options1Index = 0;
+while ((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:N9DM+P8+cE2N0qiYUBSyGg", callContext.id) && (in_Options1Index < model.variables.empty_OptionControlVar.optionFlatList_ControlAttr.getItem(optionFlatList_ControlIndex.valueOf()).in_OptionsAttr.length))) {
+in_Options1Iterator.currentRowNumber = in_Options1Index;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:_6oL5sdlNEKo2YNnhowm4g", callContext.id);
+// Empty_OptionControl.OptionFlatList_Control.Current.In_Options.Current.isSelected = False
+model.variables.empty_OptionControlVar.optionFlatList_ControlAttr.getItem(optionFlatList_ControlIndex.valueOf()).in_OptionsAttr.getItem(in_Options1Index.valueOf()).isSelectedAttr = false;
+in_Options1Index++;
+}
+
+} finally {
+callContext.iterationContext.registerIterationEnd(model.variables.empty_OptionControlVar.optionFlatList_ControlAttr.getItem(optionFlatList_ControlIndex.valueOf()).in_OptionsAttr);
+}
+
+optionFlatList_ControlIndex++;
+}
+
+} finally {
+callContext.iterationContext.registerIterationEnd(model.variables.empty_OptionControlVar.optionFlatList_ControlAttr);
 }
 
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:hgTlhbxphUeG4s6EFtS+Xg", callContext.id);
@@ -3016,7 +3051,7 @@ return Promise.resolve();
 Controller.prototype.pushDebuggerContext = function (callContext) {
 var varBag = {};
 OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:Jpw6vcM30keGIepdkjtS7A:/NRWebFlows.Jpw6vcM30keGIepdkjtS7A:aO+UykmPPS6VEpIYdNjDCA", "UBTConnect", "App_CommonBlocks_Filter", "NRFlows.WebFlow", callContext.id, varBag);
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:puW55n9l7EKEPdI6ZSmT8A:/NRWebFlows.Jpw6vcM30keGIepdkjtS7A/NodesShownInESpaceTree.puW55n9l7EKEPdI6ZSmT8A:OOdgDgY5VQdOftgR2yRt2Q", "UBTConnect", "FilterSheet", "NRNodes.WebBlock", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:puW55n9l7EKEPdI6ZSmT8A:/NRWebFlows.Jpw6vcM30keGIepdkjtS7A/NodesShownInESpaceTree.puW55n9l7EKEPdI6ZSmT8A:84p0uxa7QqdVSnEBRF8ivQ", "UBTConnect", "FilterSheet", "NRNodes.WebBlock", callContext.id, varBag);
 };
 Controller.prototype.popDebuggerContext = function (callContext) {
 OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:puW55n9l7EKEPdI6ZSmT8A", callContext.id);

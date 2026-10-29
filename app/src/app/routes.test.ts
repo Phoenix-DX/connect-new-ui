@@ -61,8 +61,6 @@ describe('flag redirects (plan v2 §3.1 rule 2; knowledge/feature-flag-helpers.m
     );
     expect(Object.fromEntries(redirects)).toEqual({
       Notifications: { flag: 'C2NewNotifications', when: false, to: 'MessageList' },
-      Bookmarks: { flag: 'C2NewBookmarks', when: false, to: 'MyBookmarks' },
-      MyBookmarks: { flag: 'mobileDirectoryBookmarkNote', when: true, to: 'New_MyBookmarks' },
       LDM_MyEvents_V2: { flag: 'C2NewLDM', when: false, to: 'LDM_MyEvents' },
       HouseholdCarousel: {
         flag: 'C2EnableCarousel',
@@ -84,9 +82,9 @@ describe('flag redirects (plan v2 §3.1 rule 2; knowledge/feature-flag-helpers.m
     });
   });
 
-  test('with the decided defaults: Notifications → MessageList, Bookmarks → MyBookmarks; the others stay', () => {
+  test('with the decided defaults: Notifications → MessageList; the others stay (Bookmarks has no redirect)', () => {
     expect(go('/UBTConnect/Notifications')).toEqual({ path: '/UBTConnect/MessageList', params: {} });
-    expect(go('/UBTConnect/Bookmarks')).toEqual({ path: '/UBTConnect/MyBookmarks', params: {} });
+    expect(go('/UBTConnect/Bookmarks')).toEqual({ path: '/UBTConnect/Bookmarks', params: {} });
     expect(go('/UBTConnect/LDM_MyEvents_V2').path).toBe('/UBTConnect/LDM_MyEvents_V2');
     expect(go('/UBTConnect/HouseholdCarousel', { In_StartingHouseholdId: '42' })).toEqual({
       path: '/UBTConnect/HouseholdCarousel',
@@ -96,10 +94,10 @@ describe('flag redirects (plan v2 §3.1 rule 2; knowledge/feature-flag-helpers.m
     expect(go('/elsewhere')).toEqual({ path: '/elsewhere', params: {} });
   });
 
-  test('the other flag values: the other screen, with its input names; Bookmarks → MyBookmarks → New_MyBookmarks', () => {
+  test('the other flag values: the other screen, with its input names; Bookmarks stays for every flag', () => {
     setFlags({ C2NewNotifications: true, mobileDirectoryBookmarkNote: true, C2NewLDM: false, C2EnableCarousel: false });
     expect(go('/UBTConnect/Notifications').path).toBe('/UBTConnect/Notifications');
-    expect(go('/UBTConnect/Bookmarks').path).toBe('/UBTConnect/New_MyBookmarks');
+    expect(go('/UBTConnect/Bookmarks').path).toBe('/UBTConnect/Bookmarks');
     expect(go('/UBTConnect/LDM_MyEvents_V2').path).toBe('/UBTConnect/LDM_MyEvents');
     expect(go('/UBTConnect/HouseholdCarousel', { In_StartingHouseholdId: '42' })).toEqual({
       path: '/UBTConnect/HouseholdDetails',

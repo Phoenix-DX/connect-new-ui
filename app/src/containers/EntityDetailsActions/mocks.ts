@@ -10,10 +10,12 @@ import {
   householdName,
   type CastHousehold,
 } from '@/mocks/fictional/directory';
+import { addLegacyBookmark, legacyBookmarksCollection } from '@/mocks/modules/Connect2_MyBookmarks_MUI/mocks';
+import { scenario } from '@/mocks/scenario';
 import { collection } from '@/mocks/store';
 import { sampleHouseholds } from '@/containers/HouseholdDetails/mockData';
 import { notesCollection } from '@/containers/NoteListActions/mocks';
-import { Connect_Entity } from '@/lib/ubtConnect/staticEntities';
+import { Connect_Entity, MyBookmarks_Group, MyBookmarks_ObjectType } from '@/lib/ubtConnect/staticEntities';
 
 /* The C2 bookmark writes of UBTConnect ToggleBookmarkItem_C2 (UBTConnect.controller.js:17105-17280, copy in
    migration/screens/BookmarksByGroup/analysis/sources/raw/), called by this block's Handle_Bookmark: AddBookmark2
@@ -42,8 +44,9 @@ const addBookmark2 = contractHandler('UBTConnect', 'ServiceAPIAddBookmark2', ({ 
   return { Success: true, Bookmark_Added: { ...row } };
 });
 
-/** DeleteBookmarkByBookmarkId2 (fictional): removes the row; Success tells whether it existed (as the notes delete
-    mock, UBTConnect_Utils/NoteListActions/mocks.ts). */
+/** DeleteBookmarkByBookmarkId2 (fictional): removes the row; Success and WasFound (an output of the live TST action,
+    contract regeneration of I10-6) tell whether it existed (as the notes delete mock,
+    UBTConnect_Utils/NoteListActions/mocks.ts). */
 const deleteBookmarkByBookmarkId2 = contractHandler(
   'UBTConnect',
   'ServiceAPIDeleteBookmarkByBookmarkId2',
@@ -51,7 +54,7 @@ const deleteBookmarkByBookmarkId2 = contractHandler(
     const bookmarks = bookmarksCollection();
     const wasFound = bookmarks.get(BookmarkId) !== undefined;
     bookmarks.remove(BookmarkId);
-    return { Success: wasFound };
+    return { Success: wasFound, WasFound: wasFound };
   },
 );
 
@@ -75,6 +78,29 @@ const entityKey = (type: string, id: string) => `${type}:${id}`;
 export function markContactOnly(entityType: string, entityId: string, only: 'Call' | 'Email'): void {
   contactOnly.set(entityKey(entityType, entityId), only);
 }
+
+/* Scenario `captured` (OneSchoolGlobalCarousel Q4 (a), user 2026-10-29; parity of the carousel's default state runs
+   with it, migration/capture-plan.json): the capture of school 1430 (OneSchoolGlobalCarousel analysis/dom/default.html)
+   shows the actions menu with no Call and no Email (FetchContactDetails answered no phone, mobile or email) and
+   "Unmark" (the device's legacy LocalBookmark held the school: Get_LocalBookmarkByObjectId, C2NewBookmarks off on TST).
+   Only that school and that scenario; every other scenario keeps the fictional channels and no entity bookmark. */
+const CAPTURED_SCHOOL_ID = '1430';
+const isCapturedSchool = (entityType: string, entityId: string) =>
+  scenario() === 'captured' && entityType === Connect_Entity.OneSchoolGlobal && entityId === CAPTURED_SCHOOL_ID;
+
+/** Scenario `captured`: adds the legacy bookmark of school 1430 (group Entities, object type OneSchoolGlobal, as
+    GetBookmarkType_FromEntity maps the entity) to the mock user's legacy bookmarks, once. The app start syncs that list
+    to the device copy (Sync_Info_GetMain LocalBookmark, and the `unlocked` test session), which the block reads.
+    Called when the mocks load, before the app starts. */
+export function seedCapturedBookmark(): void {
+  if (scenario() !== 'captured') return;
+  const held = legacyBookmarksCollection().where(
+    (r) => r.ObjectType === MyBookmarks_ObjectType.OneSchoolGlobal && r.ObjectId === CAPTURED_SCHOOL_ID,
+  );
+  if (held.length === 0)
+    addLegacyBookmark(MyBookmarks_Group.Entities, MyBookmarks_ObjectType.OneSchoolGlobal, CAPTURED_SCHOOL_ID, '');
+}
+seedCapturedBookmark();
 
 /** Who an entity is in the directory cast (src/mocks/fictional/directory.ts): a school or locality of locality 252,
     a household by id, a member by the member ids of the HouseholdDetails_Block mocks, else the Vitale householder.
@@ -120,10 +146,10 @@ function castContact(entityType: string, entityId: string) {
   };
 }
 
-/** The fictional phone numbers (555 range) and email (example.com) of an entity (all empty for the types above; one
-    channel for `markContactOnly`). */
-function contactChannels(entityType: string, entityId: string) {
-  if (ENTITY_TYPES_WITHOUT_CONTACT.includes(entityType))
+/** The fictional phone numbers (555 range) and email (example.com) of an entity (all empty for the types above and
+    for the captured school of scenario `captured`; one channel for `markContactOnly`). */
+export function contactChannels(entityType: string, entityId: string) {
+  if (ENTITY_TYPES_WITHOUT_CONTACT.includes(entityType) || isCapturedSchool(entityType, entityId))
     return { Phone: '', MobilePhone: '', HomePhone: '', WorkPhone: '', Email: '' };
   const { first, surname } = castContact(entityType, entityId);
   const email = exampleEmail(first, surname);

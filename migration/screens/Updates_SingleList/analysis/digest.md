@@ -652,6 +652,150 @@ Layouts.Layout_MainPages_FixedTitle
     ScrollAnchors.ScrollAnchor
   ConnectPatterns.SkeletonSection
     Directory_Updates.SectionHeader
+    ConnectCorePatterns.Update_ListItem
+      BasePatterns.CustomContainer
+        BasePatterns.Columns_Two
+          Adaptive.Columns2
+            BasePatterns.CustomText
+              ConnectPatterns.IconInline_Internal
+            ConnectPatterns.IconText
+              BasePatterns.Columns_Two
+                Adaptive.Columns2
+                  ConnectPatterns.Icon
+                  BasePatterns.CustomText
+                    ConnectPatterns.IconInline_Internal
+            BasePatterns.Columns_Two
+              Adaptive.Columns2
+                ConnectPatterns.TagContent
+                  BasePatterns.CustomContainer
+                BasePatterns.CustomText
+                  ConnectPatterns.IconInline_Internal
+            ConnectCorePatterns.ContextMenu
+              ConnectPatterns.PopupMenu
+                ConnectPatterns.Icon
+    ScrollAnchors.ScrollAnchor
+  ConnectPatterns.SkeletonSection
+    Directory_Updates.SectionHeader
+    ConnectCorePatterns.Update_ListItem
+      BasePatterns.CustomContainer
+        BasePatterns.Columns_Two
+          Adaptive.Columns2
+            BasePatterns.CustomText
+              ConnectPatterns.IconInline_Internal
+            ConnectPatterns.IconText
+              BasePatterns.Columns_Two
+                Adaptive.Columns2
+                  ConnectPatterns.Icon
+                  BasePatterns.CustomText
+                    ConnectPatterns.IconInline_Internal
+            BasePatterns.Columns_Two
+              Adaptive.Columns2
+                ConnectPatterns.TagContent
+                  BasePatterns.CustomContainer
+                BasePatterns.CustomText
+                  ConnectPatterns.IconInline_Internal
+            ConnectCorePatterns.ContextMenu
+              ConnectPatterns.PopupMenu
+                ConnectPatterns.Icon
+    ScrollAnchors.ScrollAnchor
+  ConnectPatterns.SkeletonSection
+    Directory_Updates.SectionHeader
+    ConnectCorePatterns.Update_ListItem
+      BasePatterns.CustomContainer
+        BasePatterns.Columns_Two
+          Adaptive.Columns2
+            BasePatterns.CustomText
+              ConnectPatterns.IconInline_Internal
+            ConnectPatterns.IconText
+              BasePatterns.Columns_Two
+                Adaptive.Columns2
+                  ConnectPatterns.Icon
+                  BasePatterns.CustomText
+                    ConnectPatterns.IconInline_Internal
+            BasePatterns.Columns_Two
+              Adaptive.Columns2
+                ConnectPatterns.TagContent
+                  BasePatterns.CustomContainer
+                BasePatterns.CustomText
+                  ConnectPatterns.IconInline_Internal
+            ConnectCorePatterns.ContextMenu
+              ConnectPatterns.PopupMenu
+                ConnectPatterns.Icon
+    ScrollAnchors.ScrollAnchor
+  ConnectPatterns.SkeletonSection
+    Directory_Updates.SectionHeader
+    ConnectCorePatterns.Update_ListItem
+      BasePatterns.CustomContainer
+        BasePatterns.Columns_Two
+          Adaptive.Columns2
+            BasePatterns.CustomText
+              ConnectPatterns.IconInline_Internal
+            ConnectPatterns.IconText
+              BasePatterns.Columns_Two
+                Adaptive.Columns2
+                  ConnectPatterns.Icon
+                  BasePatterns.CustomText
+                    ConnectPatterns.IconInline_Internal
+            BasePatterns.Columns_Two
+              Adaptive.Columns2
+                ConnectPatterns.TagContent
+                  BasePatterns.CustomContainer
+                BasePatterns.CustomText
+                  ConnectPatterns.IconInline_Internal
+            ConnectCorePatterns.ContextMenu
+              ConnectPatterns.PopupMenu
+                ConnectPatterns.Icon
+    ScrollAnchors.ScrollAnchor
+  ConnectPatterns.SkeletonSection
+    Directory_Updates.SectionHeader
+    ConnectCorePatterns.Update_ListItem
+      BasePatterns.CustomContainer
+        BasePatterns.Columns_Two
+          Adaptive.Columns2
+            BasePatterns.CustomText
+              ConnectPatterns.IconInline_Internal
+            ConnectPatterns.IconText
+              BasePatterns.Columns_Two
+                Adaptive.Columns2
+                  ConnectPatterns.Icon
+                  BasePatterns.CustomText
+                    ConnectPatterns.IconInline_Internal
+            BasePatterns.Columns_Two
+              Adaptive.Columns2
+                ConnectPatterns.TagContent
+                  BasePatterns.CustomContainer
+                BasePatterns.CustomText
+                  ConnectPatterns.IconInline_Internal
+            ConnectCorePatterns.ContextMenu
+              ConnectPatterns.PopupMenu
+                ConnectPatterns.Icon
+    ScrollAnchors.ScrollAnchor
+  ConnectPatterns.SkeletonSection
+    Directory_Updates.SectionHeader
+    ConnectCorePatterns.Update_ListItem
+      BasePatterns.CustomContainer
+        BasePatterns.Columns_Two
+          Adaptive.Columns2
+            BasePatterns.CustomText
+              ConnectPatterns.IconInline_Internal
+            ConnectPatterns.IconText
+              BasePatterns.Columns_Two
+                Adaptive.Columns2
+                  ConnectPatterns.Icon
+                  BasePatterns.CustomText
+                    ConnectPatterns.IconInline_Internal
+            BasePatterns.Columns_Two
+              Adaptive.Columns2
+                ConnectPatterns.TagContent
+                  BasePatterns.CustomContainer
+                BasePatterns.CustomText
+                  ConnectPatterns.IconInline_Internal
+            ConnectCorePatterns.ContextMenu
+              ConnectPatterns.PopupMenu
+                ConnectPatterns.Icon
+    ScrollAnchors.ScrollAnchor
+  ConnectPatterns.SkeletonSection
+    Directory_Updates.SectionHeader
       Directory_Updates.UpdateItem_Header
         BasePatterns.CustomContainer
           BasePatterns.Columns_Two
@@ -663,150 +807,6 @@ Layouts.Layout_MainPages_FixedTitle
                       OutSystemsUIOverrides.Badge
                       BasePatterns.CustomText
                         ConnectPatterns.IconInline_Internal
-    ConnectCorePatterns.Update_ListItem
-      BasePatterns.CustomContainer
-        BasePatterns.Columns_Two
-          Adaptive.Columns2
-            BasePatterns.CustomText
-              ConnectPatterns.IconInline_Internal
-            ConnectPatterns.IconText
-              BasePatterns.Columns_Two
-                Adaptive.Columns2
-                  ConnectPatterns.Icon
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-            BasePatterns.Columns_Two
-              Adaptive.Columns2
-                ConnectPatterns.TagContent
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomText
-                  ConnectPatterns.IconInline_Internal
-            ConnectCorePatterns.ContextMenu
-              ConnectPatterns.PopupMenu
-                ConnectPatterns.Icon
-    ScrollAnchors.ScrollAnchor
-  ConnectPatterns.SkeletonSection
-    Directory_Updates.SectionHeader
-    ConnectCorePatterns.Update_ListItem
-      BasePatterns.CustomContainer
-        BasePatterns.Columns_Two
-          Adaptive.Columns2
-            BasePatterns.CustomText
-              ConnectPatterns.IconInline_Internal
-            ConnectPatterns.IconText
-              BasePatterns.Columns_Two
-                Adaptive.Columns2
-                  ConnectPatterns.Icon
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-            BasePatterns.Columns_Two
-              Adaptive.Columns2
-                ConnectPatterns.TagContent
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomText
-                  ConnectPatterns.IconInline_Internal
-            ConnectCorePatterns.ContextMenu
-              ConnectPatterns.PopupMenu
-                ConnectPatterns.Icon
-    ScrollAnchors.ScrollAnchor
-  ConnectPatterns.SkeletonSection
-    Directory_Updates.SectionHeader
-    ConnectCorePatterns.Update_ListItem
-      BasePatterns.CustomContainer
-        BasePatterns.Columns_Two
-          Adaptive.Columns2
-            BasePatterns.CustomText
-              ConnectPatterns.IconInline_Internal
-            ConnectPatterns.IconText
-              BasePatterns.Columns_Two
-                Adaptive.Columns2
-                  ConnectPatterns.Icon
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-            BasePatterns.Columns_Two
-              Adaptive.Columns2
-                ConnectPatterns.TagContent
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomText
-                  ConnectPatterns.IconInline_Internal
-            ConnectCorePatterns.ContextMenu
-              ConnectPatterns.PopupMenu
-                ConnectPatterns.Icon
-    ScrollAnchors.ScrollAnchor
-  ConnectPatterns.SkeletonSection
-    Directory_Updates.SectionHeader
-    ConnectCorePatterns.Update_ListItem
-      BasePatterns.CustomContainer
-        BasePatterns.Columns_Two
-          Adaptive.Columns2
-            BasePatterns.CustomText
-              ConnectPatterns.IconInline_Internal
-            ConnectPatterns.IconText
-              BasePatterns.Columns_Two
-                Adaptive.Columns2
-                  ConnectPatterns.Icon
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-            BasePatterns.Columns_Two
-              Adaptive.Columns2
-                ConnectPatterns.TagContent
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomText
-                  ConnectPatterns.IconInline_Internal
-            ConnectCorePatterns.ContextMenu
-              ConnectPatterns.PopupMenu
-                ConnectPatterns.Icon
-    ScrollAnchors.ScrollAnchor
-  ConnectPatterns.SkeletonSection
-    Directory_Updates.SectionHeader
-    ConnectCorePatterns.Update_ListItem
-      BasePatterns.CustomContainer
-        BasePatterns.Columns_Two
-          Adaptive.Columns2
-            BasePatterns.CustomText
-              ConnectPatterns.IconInline_Internal
-            ConnectPatterns.IconText
-              BasePatterns.Columns_Two
-                Adaptive.Columns2
-                  ConnectPatterns.Icon
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-            BasePatterns.Columns_Two
-              Adaptive.Columns2
-                ConnectPatterns.TagContent
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomText
-                  ConnectPatterns.IconInline_Internal
-            ConnectCorePatterns.ContextMenu
-              ConnectPatterns.PopupMenu
-                ConnectPatterns.Icon
-    ScrollAnchors.ScrollAnchor
-  ConnectPatterns.SkeletonSection
-    Directory_Updates.SectionHeader
-    ConnectCorePatterns.Update_ListItem
-      BasePatterns.CustomContainer
-        BasePatterns.Columns_Two
-          Adaptive.Columns2
-            BasePatterns.CustomText
-              ConnectPatterns.IconInline_Internal
-            ConnectPatterns.IconText
-              BasePatterns.Columns_Two
-                Adaptive.Columns2
-                  ConnectPatterns.Icon
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-            BasePatterns.Columns_Two
-              Adaptive.Columns2
-                ConnectPatterns.TagContent
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomText
-                  ConnectPatterns.IconInline_Internal
-            ConnectCorePatterns.ContextMenu
-              ConnectPatterns.PopupMenu
-                ConnectPatterns.Icon
-    ScrollAnchors.ScrollAnchor
-  ConnectPatterns.SkeletonSection
-    Directory_Updates.SectionHeader
     ConnectCorePatterns.Update_ListItem
       BasePatterns.CustomContainer
         BasePatterns.Columns_Two
@@ -2653,9 +2653,9 @@ CW_Share.ShareSheet
 | isRootPage | input | Boolean | `false` |
 - Lifecycle handlers: Initialize, Ready, ParametersChanged
 - Client actions / event handlers: `onInitialize`, `onReady`, `onParametersChanged`, `event_BottomBar_Clicked`, `bottomBar_Clicked`
-- Navigation: `/UBTConnect/HomeFeed`(); `/UBTConnect/CountryList`(); `/UBTConnect/Locality_Details`(); `/UBTConnect/Updates_SingleList`(); `/UBTConnect/Bookmarks`(); `/UBTConnect/New_MyBookmarks`(); `/UBTConnect/MyBookmarks`(); `/UBTConnect/Menu`()
+- Navigation: `/UBTConnect/HomeFeed`(); `/UBTConnect/CountryList`(); `/UBTConnect/Locality_Details`(); `/UBTConnect/Updates_SingleList`(); `/UBTConnect/Bookmarks`(); `/UBTConnect/Menu`()
 - JavaScript nodes: `UBTConnect.App_Common.BottomBarMenu.mvc$controller.OnParametersChanged.Delayed_BottomBarSlider_ForceRefreshJS`
-- Static entities / flags: `connect_BottomBar_Items.updates`, `uBT_Color.primary`, `uBT_Color.neutral6`, `uBT_IconsSize.base_24`, `uBT_FontSize.extraSmall`, `connect_BottomBar_Items.bookmarks`, `connect_BottomBar_Items.home`, `connect_BottomBar_Items.directory`, `launchDarkly_FF.mobileDirectoryBookmarkNote`, `connect_BottomBar_Items.menu`
+- Static entities / flags: `connect_BottomBar_Items.updates`, `uBT_Color.primary`, `uBT_Color.neutral6`, `uBT_IconsSize.base_24`, `uBT_FontSize.extraSmall`, `connect_BottomBar_Items.bookmarks`, `connect_BottomBar_Items.home`, `connect_BottomBar_Items.directory`, `connect_BottomBar_Items.menu`
 - Client variables: getDirectory_Updates_UnreadCount
 
 ## `OutSystemsUI_2_23.Navigation.BottomBarItem.mvc.js`
@@ -2919,9 +2919,10 @@ CW_Share.ShareSheet
 | ShowBackButton | input | Boolean | `false` |
 | IsNotInertWhenClosed | input | Boolean | `false` |
 | IsHideContentWhenClosed | input | Boolean | `false` |
+| In_TouchActionNoneFix | input | Boolean | `false` |
 - Lifecycle handlers: Ready
 - Client actions / event handlers: `bottomSheet_InternalOnToggle`, `onReady`, `maybeHideContentWhenClosed`, `setHideContentWhenClosed`, `closeOnClick`, `bottomSheet_InternalInitialized`, `removeInert`, `initialized`, `onClose`, `onToggle`, `onBack`
-- JavaScript nodes: `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.OnReady.CloseOnClickJS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.OnReady.AddTransitionListenerJS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.MaybeHideContentWhenClosed.DelaySetHideWhenClosedJS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.BottomSheet_InternalInitialized.JavaScript1JS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.RemoveInert.RemoveInertJS`
+- JavaScript nodes: `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.OnReady.CloseOnClickJS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.OnReady.AddTransitionListenerJS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.MaybeHideContentWhenClosed.DelaySetHideWhenClosedJS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.BottomSheet_InternalInitialized.JavaScript2JS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.BottomSheet_InternalInitialized.JavaScript1JS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.RemoveInert.RemoveInertJS`
 - Static entities / flags: `shape.rounded`, `uBT_ColumnBehaviour.expandMiddle`, `uBT_Size.none`, `uBT_VerticalAlign.center`, `uBT_Icons.arrowLeftAlt`, `uBT_Color.neutral9`, `uBT_Color.transparent`, `uBT_IconSize.medium_20`, `uBT_Icons.close`, `uBT_Color.neutral10`, `uBT_FontSize.small`, `uBT_FontWeight.semiBold`
 - Candidate static strings: `RemoveInert` | `SetHideContentWhenClosed`
 
@@ -3077,8 +3078,8 @@ CW_Share.ShareSheet
 - Lifecycle handlers: Initialize, ParametersChanged
 - Client actions / event handlers: `onAfterFetch_GetAvailableMembers`, `screenEvent_OnParametersChanged`, `handler_SelectedListItemOnClick`, `handler_OnClickExternalOption`, `onAfterFetch_GetRecentlyShared`, `handler_SearchOnFocus`, `action_SetExternalShareOptions`, `handler_OnClickRecentMember`, `action_CreateSkeletonList`, `action_ScrollTop`, `handler_InputEventClearString`, `handler_BottomSheetOnToggle`, `handler_InputEventSubmit`, `action_ResetLocalVariables`, `handler_SearchResultItemOnSelect`, `handler_OnClickSend`, `action_SubmitShare`, `action_ResetAndCloseSheetState`, `screenEvent_OnInitialize`, `handler_OnBack`, `handler_SearchResultItemOnClick`, `handler_BottomSheetInitialized`, `action_SetLocalIsOpen`, `event_ClosedShareSheet`
 - JavaScript nodes: `UBTConnect_Utils.CW_Share.ShareSheet.mvc$controller.ScreenEvent_OnParametersChanged.DelaySetIsOpenJS`, `UBTConnect_Utils.CW_Share.ShareSheet.mvc$controller.Handler_OnClickExternalOption.ExternalShareWithDelayJS`, `UBTConnect_Utils.CW_Share.ShareSheet.mvc$controller.Action_ScrollTop.ScrollToTopJS`
-- Feedback messages: `(model.variables.in_ShareObjectTypeIdIn + " has been shared."), /*Info*/ 0)` | `"Share failed. Please try again.", /*Error*/ 3)`
-- Exceptions handled: NotRegisteredException
+- Feedback messages: `(vars.value.submitMessageVar + " has been shared."), /*Info*/ 0)` | `"Share failed. Please try again.", /*Error*/ 3)`
+- Exceptions handled: NotRegisteredException, UserException, CommunicationException
 - Static entities / flags: `uBT_ImageSize.small_40`, `uBT_ImageSize.base_52`, `uBT_AvatarSize.small_40`, `uBT_Color.neutral2`, `uBT_Size.none`, `uBT_Color.neutral0`, `uBT_Size.base`, `uBT_Size.small`, `uBT_Shape.medium`, `uBT_Color.neutral5`, `uBT_Shape.large`, `shape.rounded`, `uBT_FontSize.doubleExtraSmall`, `uBT_Color.primary`, `uBT_Color.transparent`, `connect_Entity.member`, `uBT_ImageSize.square`, `uBT_AvatarSize.smallBase_48`, `uBT_IconSize.base_24`, `uBT_Display.flex`, `uBT_FlexDirection.column`, `uBT_Icons.removeFill`, `uBT_IconSize.small_12`, `uBT_Icons.search`, `uBT_FontSize.small`, `uBT_Color.neutral7`, `uBT_Icons.lock`, `uBT_Icons.checkboxFill`, `uBT_Icons.checkboxOutlineBlank`, `uBT_ButtonSize.small`
 - Candidate static strings: `Action_SetLocalIsOpen`
 
@@ -3088,18 +3089,18 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 3450 ms
-- 2. `DataActionGetDateRanges` (200) at 4525 ms
-- 3. `DataActionGetCacheInfo` (200) at 4596 ms
-- 4. `DataActionGetCacheInfo` (200) at 4605 ms
-- 5. `DataActionGetCacheInfo` (200) at 4636 ms
-- 6. `DataActionFetchUpdates` (200) at 5233 ms
-- 7. `ServiceAPIGet_UI_UpdateItems_UnreadCount_All` (200) at 5546 ms
-- 8. `ActionAppManager_AfterInitialize` (200) at 6487 ms
-- 9. `ActionSync_Info_GetMain` (200) at 7129 ms
-- 10. `ActionGetNumberUnreadMessages` (200) at 7494 ms
-- 11. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8358 ms
-- 12. `ServiceAPIFetchData_CacheableHouseholds` (200) at 8364 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 3225 ms
+- 2. `DataActionGetDateRanges` (200) at 4128 ms
+- 3. `DataActionGetCacheInfo` (200) at 4183 ms
+- 4. `DataActionGetCacheInfo` (200) at 4246 ms
+- 5. `DataActionGetCacheInfo` (200) at 4274 ms
+- 6. `DataActionFetchUpdates` (200) at 4660 ms
+- 7. `ServiceAPIGet_UI_UpdateItems_UnreadCount_All` (200) at 5142 ms
+- 8. `ActionAppManager_AfterInitialize` (200) at 6014 ms
+- 9. `ActionSync_Info_GetMain` (200) at 6519 ms
+- 10. `ActionGetNumberUnreadMessages` (200) at 6882 ms
+- 11. `ServiceAPIFetchData_CacheableMapEntities` (200) at 9904 ms
+- 12. `ServiceAPIFetchData_CacheableHouseholds` (200) at 13045 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

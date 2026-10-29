@@ -1,5 +1,5 @@
 import { useCallback, useLayoutEffect, useRef } from 'react';
-import { useLocation, useNavigate, type NavigateFunction } from 'react-router';
+import { useLocation, useNavigate, type Location, type NavigateFunction } from 'react-router';
 import { OutOfContextException } from '@/legacy/os/os-exceptions';
 import { parseOsDate } from '@/lib/osDateTime';
 import { currentEntry, isCurrentEntry } from './historyStack';
@@ -89,9 +89,27 @@ export function setNavigationRedirect(next: NavigationRedirect | null): void {
   redirect = next;
 }
 
+/** Tells whether a path shows a screen of the app: the "screen URLs of the home module" of TST's
+    urlBelongsToCurrentApplication (W229508). AppFrame gives app/screens.ts showsScreen to NavigationHost. */
+export type ScreenCheck = (location: Pick<Location, 'pathname'>) => boolean;
+
+/* None when no NavigationHost has the route table (a block rendered alone in a test): every path goes to the router. */
+let isScreen: ScreenCheck | null = null;
+
+export function setScreenCheck(next: ScreenCheck | null): void {
+  isScreen = next;
+}
+
 /** A navigation of useOsNavigate and osNavigateTo through the router's `navigate`. */
 function goTo(navigate: NavigateFunction, path: string, params?: OsParams, options?: OsNavigateOptions): void {
   const target = redirect === null ? { path, params } : redirect({ path, params: params ?? {} });
+  /* D3 of item 9 (item9-solution.md §4.3): TST's navigateTo sends a URL that matches no screen URL to
+     changeWindowLocation, a full page load (N14: W224400, W229508, W224025). The server then answers with its 404 page
+     (P6). Nothing else changes: TST throws RedirectOccurredException and leaves the document. */
+  if (isScreen !== null && !isScreen({ pathname: target.path.split(/[?#]/, 1)[0] ?? '' })) {
+    window.location.assign(screenUrl(target.path, target.params));
+    return;
+  }
   const replace = options?.replace === true || isReplacePending();
   const transition = createTransition(options?.transition, DEFAULT_TRANSITION) ?? DEFAULT_TRANSITION;
   void navigate(screenUrl(target.path, target.params), { replace, state: transitionState(transition) });

@@ -1,6 +1,5 @@
 import type { RequestHandler } from 'msw';
 import type { components } from '@/api/schema.d';
-import { contractHandler } from '@/mocks/contract';
 import { collection } from '@/mocks/store';
 import { MOCK_SIGNED_PHOTO_URL } from '@/components/ui/ResultItemImage/mocks';
 import {
@@ -14,14 +13,12 @@ import { MyBookmarks_Group, MyBookmarks_ObjectType } from '@/lib/ubtConnect/stat
 
 /* The mock user's legacy bookmarks (Connect2_MyBookmarks_IS BookmarkItem rows on the server), shared by every reader and
    writer of the legacy bookmarks (CR-MyBookmarks-2, CR-BookmarksByGroup-2; P-MUTATION):
-   - MyBookmarks DataActionGetGroupSummaries (screens/MyBookmarks/mocks.ts);
-   - BookmarksByGroup DataActionGetAllBookmarksByGroup (screens/BookmarksByGroup/mocks.ts);
    - Connect2_Assemble_MUI AddBookmark / DeleteBookmarkByBookmarkId (addLegacyBookmark below; mocks/modules/Connect2_Assemble_MUI/
      mocks.ts, CR-AssembleDetail-2);
-   - the module's server actions below: GetBookmarkById / New_GetBookmarkById (CR-MyBookmarks-1, CR-BookmarksByGroup-1),
-     DeleteBookmarkByBookmarkId and New_UpdateBookmarkNote;
    - the device copy the app start syncs: Sync_Info_GetMain LocalEntities_App.LocalBookmark (src/shell/mocks.ts
      mockLocalBookmarks, derived from this collection), read by Directory_EntityDetailsActions (Get_LocalBookmarkByObjectId).
+   Its readers MyBookmarks and BookmarksByGroup (with New_MyBookmarks and New_BookmarksByGroup) are retired: 404 on TST,
+   replaced by Bookmarks (board, user 2026-10-28). The seed below keeps their captured counts.
    Never recorded (bookmarks are person data, knowledge/mock-fixtures.md): fictional rows with the captured counts.
    - Contacts: the 7 households of the BookmarksByGroup capture (analysis/dom/default.html:66-462), in the captured order,
      which is also the order of MyBookmarks' first 4 (the masked titles of MyBookmarks dom/default.html:83-107 have the
@@ -200,31 +197,6 @@ export function addLegacyBookmark(
   return { ...added };
 }
 
-/** GetBookmarkById / New_GetBookmarkById (fictional; same inputs and outputs, Connect2_MyBookmarks_MUI.controller.js
-    ServerAction.GetBookmarkById / New_GetBookmarkById): the row, IsBookmarkFound True; an empty record and False when it
-    is gone (deleted from BookmarksByGroup, P-MUTATION). */
-const getBookmarkById = ({ BookmarkId }: { BookmarkId: string }) => {
-  const found = legacyBookmarksCollection().get(BookmarkId) as LegacyBookmarkItem | undefined;
-  return found
-    ? { GetBookmarkByIdResponse: { ...found }, IsBookmarkFound: true }
-    : { GetBookmarkByIdResponse: emptyLegacyBookmarkItem(), IsBookmarkFound: false };
-};
-
-export const handlers: RequestHandler[] = [
-  contractHandler('Connect2_MyBookmarks_MUI', 'ActionGetBookmarkById', getBookmarkById),
-  contractHandler('Connect2_MyBookmarks_MUI', 'ActionNew_GetBookmarkById', getBookmarkById),
-  /** DeleteBookmarkByBookmarkId (fictional, a write): removes the row; Success tells whether it existed. */
-  contractHandler('Connect2_MyBookmarks_MUI', 'ActionDeleteBookmarkByBookmarkId', ({ BookmarkId }) => {
-    const bookmarks = legacyBookmarksCollection();
-    const found = bookmarks.get(BookmarkId) !== undefined;
-    bookmarks.remove(BookmarkId);
-    return { Success: found };
-  }),
-  /** New_UpdateBookmarkNote (fictional, a write): sets the row's Note. */
-  contractHandler('Connect2_MyBookmarks_MUI', 'ActionNew_UpdateBookmarkNote', ({ BookmarkId, Note }) => {
-    const bookmarks = legacyBookmarksCollection();
-    const found = bookmarks.get(BookmarkId) !== undefined;
-    if (found) bookmarks.upsert({ Id: BookmarkId, Note });
-    return { Success: found };
-  }),
-];
+/* No handler: the module's server actions GetBookmarkById, New_GetBookmarkById, DeleteBookmarkByBookmarkId and
+   New_UpdateBookmarkNote served only the retired routes (auto decision G2, 2026-10-29). */
+export const handlers: RequestHandler[] = [];

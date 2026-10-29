@@ -1688,7 +1688,7 @@ varBag.callContext = callContext;
 varBag.vars = vars;
 varBag.map_GeoJSON_GetByIdVar = map_GeoJSON_GetByIdVar;
 varBag.map_GetObject_FromIdVar = map_GetObject_FromIdVar;
-try {OutSystemsDebugger.push("gSdMjyuovE6NKxHbjyoUZA:Z_vzICeL9kq1tF5gq8usGA:/ClientActionFlows.Z_vzICeL9kq1tF5gq8usGA:TP7P_LtygI7KdfallEsQag", "Leaflet", "Map_GeoJSON_FitBounds", "NRFlows.ClientActionFlow", callContext.id, varBag);
+try {OutSystemsDebugger.push("gSdMjyuovE6NKxHbjyoUZA:Z_vzICeL9kq1tF5gq8usGA:/ClientActionFlows.Z_vzICeL9kq1tF5gq8usGA:Di4iFqkbA97GXGacKbHbcw", "Leaflet", "Map_GeoJSON_FitBounds", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("gSdMjyuovE6NKxHbjyoUZA:Ouj9OpTuekKMdpiXjMXVig", callContext.id);
 OutSystemsDebugger.handleBreakpoint("gSdMjyuovE6NKxHbjyoUZA:tJTi85PxAE+11N7mGIcF4g", callContext.id);
 // Execute Action: Map_GetObject_FromId
@@ -1759,7 +1759,7 @@ if ($parameters.FeatureObject) {
             $parameters.MapObject.setView(northEast, 5);
         } else {
             $parameters.MapObject.fitBounds(bounds, {
-                padding: [80, 80],
+                padding: [20, 20],
                 animate: true,
                 duration: 1
             });
@@ -1865,6 +1865,201 @@ return function ($parameters, $actions, $roles, $public) {
 if($parameters.MapObject && $parameters.MapObject[$parameters.GeoJSONId]) {
     $parameters.Object = $parameters.MapObject[$parameters.GeoJSONId];
 }
+};
+});
+
+define("Leaflet.controller$Map_GeoJSON_GetFeatureIdsAtPoint", ["exports", "OutSystems/ClientRuntime/Main", "Leaflet.model", "Leaflet.controller", "Leaflet.controller$Map_GeoJSON_GetFeatureIdsAtPoint.PointInFeatureJS", "Leaflet.model$Map_GeoJSON_PointMatchList", "Leaflet.model$GeoJSONFeatureList", "Leaflet.model$Map_GeoJSON_PointMatchRec"], function (exports, OutSystems, LeafletModel, LeafletController, Leaflet_controller_Map_GeoJSON_GetFeatureIdsAtPoint_PointInFeatureJS) {
+var OS = OutSystems.Internal;
+LeafletController.default.map_GeoJSON_GetFeatureIdsAtPoint$Action = function (latitudeIn, longitudeIn, geoJSONFeaturesIn, callContext) {
+var varBag = {};
+callContext = controller.callContext(callContext);
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("Leaflet.Map_GeoJSON_GetFeatureIdsAtPoint$vars"))());
+vars.value.latitudeInLocal = latitudeIn;
+vars.value.longitudeInLocal = longitudeIn;
+vars.value.geoJSONFeaturesInLocal = geoJSONFeaturesIn.clone();
+var pointInFeatureJSResult = new OS.DataTypes.VariableHolder();
+var outVars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("Leaflet.Map_GeoJSON_GetFeatureIdsAtPoint$outVars"))());
+varBag.callContext = callContext;
+varBag.vars = vars;
+varBag.pointInFeatureJSResult = pointInFeatureJSResult;
+varBag.outVars = outVars;
+try {OutSystemsDebugger.push("gSdMjyuovE6NKxHbjyoUZA:8PgwuYu_Pk2GOJSqXsCccA:/ClientActionFlows.8PgwuYu_Pk2GOJSqXsCccA:Icr2v9cjxedTZRKxjvsAcw", "Leaflet", "Map_GeoJSON_GetFeatureIdsAtPoint", "NRFlows.ClientActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("gSdMjyuovE6NKxHbjyoUZA:OphIpnL0xU2BOSCELIA8AA", callContext.id);
+// Foreach GeoJSONFeatures
+callContext.iterationContext.registerIterationStart(vars.value.geoJSONFeaturesInLocal);
+try {var geoJSONFeaturesIterator = callContext.iterationContext.getIterator(vars.value.geoJSONFeaturesInLocal);
+var geoJSONFeaturesIndex = 0;
+while ((OutSystemsDebugger.handleBreakpoint("gSdMjyuovE6NKxHbjyoUZA:TVbtV0hlE0KP01mRS05agg", callContext.id) && (geoJSONFeaturesIndex < vars.value.geoJSONFeaturesInLocal.length))) {
+geoJSONFeaturesIterator.currentRowNumber = geoJSONFeaturesIndex;
+OutSystemsDebugger.handleBreakpoint("gSdMjyuovE6NKxHbjyoUZA:UVE8r+vFfEyvmx_oS6Qozw", callContext.id);
+pointInFeatureJSResult.value = controller.safeExecuteJSNode(Leaflet_controller_Map_GeoJSON_GetFeatureIdsAtPoint_PointInFeatureJS, "PointInFeature", "Map_GeoJSON_GetFeatureIdsAtPoint", {
+Latitude: OS.DataConversion.JSNodeParamConverter.to(vars.value.latitudeInLocal, OS.DataTypes.DataTypes.Decimal),
+Longitude: OS.DataConversion.JSNodeParamConverter.to(vars.value.longitudeInLocal, OS.DataTypes.DataTypes.Decimal),
+FeatureJSON: OS.DataConversion.JSNodeParamConverter.to(vars.value.geoJSONFeaturesInLocal.getItem(geoJSONFeaturesIndex.valueOf()).featureJSONAttr, OS.DataTypes.DataTypes.Text),
+IsMatch: OS.DataConversion.JSNodeParamConverter.to(false, OS.DataTypes.DataTypes.Boolean)
+}, function ($parameters) {
+var jsNodeResult = new (controller.constructor.getVariableGroupType("Leaflet.Map_GeoJSON_GetFeatureIdsAtPoint$pointInFeatureJSResult"))();
+jsNodeResult.isMatchOut = OS.DataConversion.JSNodeParamConverter.from($parameters.IsMatch, OS.DataTypes.DataTypes.Boolean);
+return jsNodeResult;
+}, {}, {});
+if((OutSystemsDebugger.handleBreakpoint("gSdMjyuovE6NKxHbjyoUZA:wguu1wpfGkydT5v4RB5ohQ", callContext.id) && pointInFeatureJSResult.value.isMatchOut)) {
+OutSystemsDebugger.handleBreakpoint("gSdMjyuovE6NKxHbjyoUZA:D39cxtfQoEeAjE4IdXOUxg", callContext.id);
+// Execute Action: ListAppend_Match
+OS.SystemActions.listAppend(vars.value.matchedFeaturesVar, function () {
+var rec = new LeafletModel.Map_GeoJSON_PointMatchRec();
+rec.idAttr = vars.value.geoJSONFeaturesInLocal.getItem(geoJSONFeaturesIndex.valueOf()).idAttr;
+rec.typeAttr = vars.value.geoJSONFeaturesInLocal.getItem(geoJSONFeaturesIndex.valueOf()).typeAttr;
+return rec;
+}(), callContext);
+}
+
+geoJSONFeaturesIndex++;
+}
+
+} finally {
+callContext.iterationContext.registerIterationEnd(vars.value.geoJSONFeaturesInLocal);
+}
+
+OutSystemsDebugger.handleBreakpoint("gSdMjyuovE6NKxHbjyoUZA:wyJsRgAE10O4qYSI_Eqk4Q", callContext.id);
+// Matches = MatchedFeatures
+outVars.value.matchesOut = vars.value.matchedFeaturesVar;
+OutSystemsDebugger.handleBreakpoint("gSdMjyuovE6NKxHbjyoUZA:Oby4BTx_lEm31nALaeArng", callContext.id);
+return outVars.value;
+} catch (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+throw ex;
+} finally {
+OutSystemsDebugger.pop("gSdMjyuovE6NKxHbjyoUZA:8PgwuYu_Pk2GOJSqXsCccA", callContext.id);
+}
+
+};
+var controller = LeafletController.default;
+LeafletController.default.constructor.registerVariableGroupType("Leaflet.Map_GeoJSON_GetFeatureIdsAtPoint$vars", [{
+name: "Latitude",
+attrName: "latitudeInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Decimal,
+defaultValue: function () {
+return OS.DataTypes.Decimal.defaultValue;
+}
+}, {
+name: "Longitude",
+attrName: "longitudeInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Decimal,
+defaultValue: function () {
+return OS.DataTypes.Decimal.defaultValue;
+}
+}, {
+name: "GeoJSONFeatures",
+attrName: "geoJSONFeaturesInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.RecordList,
+defaultValue: function () {
+return new LeafletModel.GeoJSONFeatureList();
+},
+complexType: LeafletModel.GeoJSONFeatureList
+}, {
+name: "MatchedFeatures",
+attrName: "matchedFeaturesVar",
+mandatory: false,
+dataType: OS.DataTypes.DataTypes.RecordList,
+defaultValue: function () {
+return new LeafletModel.Map_GeoJSON_PointMatchList();
+},
+complexType: LeafletModel.Map_GeoJSON_PointMatchList
+}]);
+LeafletController.default.constructor.registerVariableGroupType("Leaflet.Map_GeoJSON_GetFeatureIdsAtPoint$pointInFeatureJSResult", [{
+name: "IsMatch",
+attrName: "isMatchOut",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Boolean,
+defaultValue: function () {
+return false;
+}
+}]);
+LeafletController.default.constructor.registerVariableGroupType("Leaflet.Map_GeoJSON_GetFeatureIdsAtPoint$outVars", [{
+name: "Matches",
+attrName: "matchesOut",
+mandatory: false,
+dataType: OS.DataTypes.DataTypes.RecordList,
+defaultValue: function () {
+return new LeafletModel.Map_GeoJSON_PointMatchList();
+},
+complexType: LeafletModel.Map_GeoJSON_PointMatchList
+}]);
+LeafletController.default.clientActionProxies.map_GeoJSON_GetFeatureIdsAtPoint$Action = function (latitudeIn, longitudeIn, geoJSONFeaturesIn) {
+latitudeIn = (latitudeIn === undefined) ? OS.DataTypes.Decimal.defaultValue : latitudeIn;
+longitudeIn = (longitudeIn === undefined) ? OS.DataTypes.Decimal.defaultValue : longitudeIn;
+geoJSONFeaturesIn = (geoJSONFeaturesIn === undefined) ? new LeafletModel.GeoJSONFeatureList() : geoJSONFeaturesIn;
+return controller.executeActionInsideJSNode(LeafletController.default.map_GeoJSON_GetFeatureIdsAtPoint$Action.bind(controller, OS.DataConversion.JSNodeParamConverter.from(latitudeIn, OS.DataTypes.DataTypes.Decimal), OS.DataConversion.JSNodeParamConverter.from(longitudeIn, OS.DataTypes.DataTypes.Decimal), geoJSONFeaturesIn), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
+return {
+Matches: actionResults.matchesOut
+};
+});
+};
+});
+define("Leaflet.controller$Map_GeoJSON_GetFeatureIdsAtPoint.PointInFeatureJS", [], function () {
+return function ($parameters, $actions, $roles, $public) {
+function pointInRing(lat, lon, ring) {
+    var inside = false;
+    for (var i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+        var xi = ring[i][0], yi = ring[i][1];
+        var xj = ring[j][0], yj = ring[j][1];
+        var intersect = ((yi > lat) !== (yj > lat)) && (lon < (xj - xi) * (lat - yi) / (yj - yi) + xi);
+        if (intersect) inside = !inside;
+    }
+    return inside;
+}
+
+function pointInRings(lat, lon, rings) {
+    var inside = false;
+    for (var r = 0; r < rings.length; r++) {
+        if (pointInRing(lat, lon, rings[r])) inside = !inside;
+    }
+    return inside;
+}
+
+function ringBBoxContains(ring, lat, lon) {
+    var minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+    for (var i = 0; i < ring.length; i++) {
+        var x = ring[i][0], y = ring[i][1];
+        if (x < minX) minX = x;
+        if (x > maxX) maxX = x;
+        if (y < minY) minY = y;
+        if (y > maxY) maxY = y;
+    }
+    return lon >= minX && lon <= maxX && lat >= minY && lat <= maxY;
+}
+
+var lat = $parameters.Latitude;
+var lon = $parameters.Longitude;
+var raw = $parameters.FeatureJSON;
+var isMatch = false;
+
+if (raw) {
+    var parsed;
+    try { parsed = JSON.parse(raw); } catch (e) { parsed = null; }
+    var geometry = parsed && parsed.geometry;
+    if (geometry) {
+        var polygons = null;
+        if (geometry.type === "Polygon") {
+            polygons = [geometry.coordinates];
+        } else if (geometry.type === "MultiPolygon") {
+            polygons = geometry.coordinates;
+        }
+        if (polygons) {
+            for (var p = 0; p < polygons.length && !isMatch; p++) {
+                var rings = polygons[p];
+                if (rings && rings.length && ringBBoxContains(rings[0], lat, lon) && pointInRings(lat, lon, rings)) {
+                    isMatch = true;
+                }
+            }
+        }
+    }
+}
+
+$parameters.IsMatch = isMatch;
 };
 });
 
@@ -4871,7 +5066,7 @@ varBag.callContext = callContext;
 varBag.vars = vars;
 varBag.map_GetObject_FromIdVar = map_GetObject_FromIdVar;
 varBag.jSONSerialize_TileLayerVar = jSONSerialize_TileLayerVar;
-try {OutSystemsDebugger.push("gSdMjyuovE6NKxHbjyoUZA:W26xfI2_VEWKCb1w25NrAw:/ClientActionFlows.W26xfI2_VEWKCb1w25NrAw:CpP61gsp89tBOu9w6a9b0g", "Leaflet", "Map_SetTileLayer", "NRFlows.ClientActionFlow", callContext.id, varBag);
+try {OutSystemsDebugger.push("gSdMjyuovE6NKxHbjyoUZA:W26xfI2_VEWKCb1w25NrAw:/ClientActionFlows.W26xfI2_VEWKCb1w25NrAw:l2O54tva+dpUgLwS1o5VsA", "Leaflet", "Map_SetTileLayer", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("gSdMjyuovE6NKxHbjyoUZA:R8oCrseqG0mWrJ6ID7rDQg", callContext.id);
 OutSystemsDebugger.handleBreakpoint("gSdMjyuovE6NKxHbjyoUZA:QAIs4YS_m0+SM49TW6ls2Q", callContext.id);
 // JSON Serialize: JSONSerialize_TileLayer
@@ -4927,6 +5122,8 @@ define("Leaflet.controller$Map_SetTileLayer.Set_TileLayerJS", [], function () {
 return function ($parameters, $actions, $roles, $public) {
 if($parameters.Map) {
 let tileLayer = JSON.parse($parameters.TileLayer_Json);
+if (!tileLayer.options) { tileLayer.options = {}; }
+tileLayer.options.minNativeZoom = 2;
 if (!L.TileLayer.WithParentFallback) {
     L.TileLayer.WithParentFallback = L.TileLayer.extend({
         createTile: function (coords, done) {
@@ -6457,6 +6654,38 @@ dataType: OS.DataTypes.DataTypes.Object
 "7RsD2ZejC0CFAruh3qhfBQ": {
 getter: function (varBag, idService) {
 return varBag.javaScript1JSResult.value;
+}
+},
+"MMBePtGBb0uP71Jb2oITvw": {
+getter: function (varBag, idService) {
+return varBag.vars.value.matchedFeaturesVar;
+}
+},
+"n0SEPGC1K0mmYrQMKKKKqQ": {
+getter: function (varBag, idService) {
+return varBag.vars.value.latitudeInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Decimal
+},
+"udkl54auikWjHMgqa3J8hA": {
+getter: function (varBag, idService) {
+return varBag.vars.value.longitudeInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Decimal
+},
+"GoZmpfBPcEGIdiuHBAYPaA": {
+getter: function (varBag, idService) {
+return varBag.vars.value.geoJSONFeaturesInLocal;
+}
+},
+"myI3UYUpDESjct0_zHtrvA": {
+getter: function (varBag, idService) {
+return varBag.outVars.value.matchesOut;
+}
+},
+"UVE8r+vFfEyvmx_oS6Qozw": {
+getter: function (varBag, idService) {
+return varBag.pointInFeatureJSResult.value;
 }
 },
 "M+zFz9JbZEyZ9Z5DjH6vSg": {

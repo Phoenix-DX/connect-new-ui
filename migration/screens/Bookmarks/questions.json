@@ -18,5 +18,77 @@
   "answer": "a) Keep D2 as is (MyBookmarks) until the PROD value of C2NewBookmarks is known. Record the new TST value (true since 2026-10-21) in migration/knowledge/flag-values-tst.json. Journeys J33 and J34 need an account with C2NewBookmarks off (user, 2026-10-22).",
   "answeredBy": "user",
   "answeredAt": "2026-10-22T08:51:34"
+ },
+ {
+  "id": "Q2",
+  "kind": "decision",
+  "topic": "parity-scenario",
+  "question": "The TST capture of state default (2026-10-29) shows 3 bookmark cards (2 Household, 1 OneSchool Global, masked texts) and 9 pills, while capture-plan.json (I10-4) says the test account has no bookmarks and sets the empty mock scenario for parity. Which scenario should parity of state default use?",
+  "evidence": "migration/screens/Bookmarks/analysis/dom/default.html:274-889 (3 Bookmarks_Card_Item), :169-250 (9 pills); capture-plan.json Bookmarks _routeNote and scenarios.default=empty",
+  "mcp": "",
+  "options": [
+   "a) a 'captured' mock scenario with 3 cards of the captured kinds and text lengths; b) keep empty and exempt the card list; c) re-capture with an account that has no bookmarks"
+  ],
+  "recommend": "a",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-29T10:17:30",
+  "answer": "(a) (user, 2026-10-29): parity of state default uses a new mock scenario 'captured': 3 fictional cards of the captured kinds (2 Household, 1 OneSchool Global), the 9 pills, the captured text lengths. The default demo mock keeps the 7 fictional cards of several kinds.",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-29T10:26:59"
+ },
+ {
+  "id": "Q3",
+  "kind": "decision",
+  "topic": "itemcard-withnotes-tst-change",
+  "question": "ItemCard_WithNotes changed on TST after the Notes capture: the total-notes text is empty when the total is 0 (ItemCard_WithNotes.mvc.js pretty:645) and a container gets margin-top-s (:736, :915). The shared React block follows the older Notes capture, so Bookmarks offline differs (skeleton cards: text '' vs '0', margin-top-s, ~150 layout/position lines). Update the shared block to the new TST code?",
+  "evidence": "migration/screens/Bookmarks/analysis/sources/pretty/UBTConnectLibrary.ConnectPatterns.ItemCard_WithNotes.mvc.js:645,736,915; migration/screens/Bookmarks/parity/offline.json; migration/screens/Notes/analysis/dom/loading.html has no margin-top-s",
+  "mcp": "",
+  "options": [
+   "a) update components/note/ItemCardWithNotes to the TST code and re-capture Notes (TST wins); b) keep the block as Notes captured it and exempt the Bookmarks offline skeleton cards; c) a prop per caller (old/new behaviour)"
+  ],
+  "recommend": "a",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-29T10:27:54",
+  "answer": "(a) (user, 2026-10-29): update the shared block ItemCard_WithNotes to the current TST code (empty total-notes text when the total is 0; margin-top-s; ItemCard_WithNotes.mvc.js pretty:645, 736, 915), re-capture Notes on TST (read-only), re-run parity of Notes and Bookmarks.",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-29T10:38:14"
+ },
+ {
+  "id": "Q4",
+  "kind": "decision",
+  "topic": "shared-block-input",
+  "question": "The live TST Input block adds the class search-placeholder-ellipsis to the search input; the React Input (components/ui/Input) does not. It is the only difference left in Bookmarks default and offline (class 1 each, pixel 0). Update the shared Input?",
+  "evidence": "capture/survey-UBTConnect.json: ConnectPatterns.Input Input_Search.Style = 'search-placeholder-ellipsis form-control ' + In_ExtendedClasses + ...; ConnectPatterns.StaticInput style 'search-placeholder-ellipsis ubt-static-input '. Captures with the class: Bookmarks, Notes (2026-10-29). Captures without it (older): AssembleEvents, Assemble_BrowseByCountry, BrowseCountries, BrowseDirectory, CountryDetails, LegacyShareObject, MessageList, Notifications, Search, Updates_SingleList.",
+  "mcp": "",
+  "options": [
+   "a) update Input and StaticInput to the live TST now, then re-capture (read-only) and re-check the 10 routes with older captures; b) update Input and exempt the class on the 10 older captures until they are re-captured; c) keep the old Input and exempt the class on Bookmarks and Notes"
+  ],
+  "recommend": "a: TST is the source of truth; the class has no visible effect at the captured sizes (pixel 0), so the re-check is quick",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-29T11:01:30",
+  "answer": "(a) (user, 2026-10-29): update Input and StaticInput to the live TST code (class search-placeholder-ellipsis), re-capture the routes with older captures on TST (read-only) and re-run their parity.",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-29T11:06:54"
+ },
+ {
+  "id": "Q5",
+  "kind": "decision",
+  "topic": "shared-block-itemcard",
+  "question": "The live TST ItemCard_WithNotes has a channel row that the React block does not build: Columns_Two (margin-top-s) with LazyImage(In_ChannelLogo), CustomText(In_ChannelName) and PreetyFormatDate(In_PublishedAt), shown when ChannelName and ChannelLogo are not empty and PublishedAt is not null. Build it?",
+  "evidence": "sources/UBTConnectLibrary.ConnectPatterns.ItemCard_WithNotes.mvc.js:692-870 (aliases 12-15); Bookmarks_Card_Item.mvc.js:159,187,193 passes ChannelName, PublishedAt, ChannelLogo of the bookmark. No captured card has a channel (dom/default.html), so parity does not see it. No React port of UBTConnectLibrary PreetyFormatDate exists (grep app/src).",
+  "mcp": "",
+  "options": [
+   "a) build it now: port PreetyFormatDate to lib/, add the 3 inputs to ItemCard_WithNotes, pass them from Bookmarks_Card_Item, add a feed card with a channel to the demo mock; b) build it when a capture with a channel card exists; c) do not build it"
+  ],
+  "recommend": "a: it keeps the TST behaviour for bookmarked feed items; it is a small separate task (lib/ is outside this agent's scope)",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-29T11:01:30",
+  "answer": "(a) (user, 2026-10-29): build the channel row of ItemCard_WithNotes now (port PreetyFormatDate to lib/, the 3 inputs, a feed card in the demo mock); the user reviews it by eye.",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-29T11:06:54"
  }
 ]

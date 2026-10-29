@@ -18,10 +18,14 @@ type AdminOrbitEventsWire = Get_AdminEventsListWire['Response']['List'][number];
    analysis/calls.md § DataActionGet_AdminEventsList).
    - Get_AdminEventsList: the three events the signed-in admin scans QR codes at, in the captured row shape
      (GetAdminOrbitEvents_ScreenRec).
-   A card click makes no server call on TST (the DEV-only GetMilestoneScanFF is removed, Legacy_OrbitAdminFlow Q1).
+   - GetMilestoneScanFF: a card click calls it (TST publish of 2026-10-27, OrbitAdminLanding.mvc.js:218-227; the
+     server action of Connect2_OrbitMobile_BL, also called by OrbitAdminMilestones). IsScanPerMilestone false, the live
+     TST value (probe 2026-10-28): the card opens OrbitAdminEventDetail. True only in the scenario `scanpermilestone`
+     (OrbitAdminMilestones Q1): the card opens OrbitAdminMilestones, and a milestone card OrbitAdminMilestoneDetail.
    contractHandler: the answers are checked against the API contract at compile time.
    Scenarios: real (three admin events); noadminevents (TST's captured account: no admin event, NoInformation_Orbit;
-   Q1); empty; loading (never answers: skeleton); error (HTTP 500: the offline capture's Service Interruption). */
+   Q1); scanpermilestone (GetMilestoneScanFF true); empty; loading (never answers: skeleton); error (HTTP 500: the
+   offline capture's Service Interruption). */
 
 /** An admin event as a row of GetAdminOrbitEvents_Screen (AdminOrbitSummaryItemRec + OrbitEventTypeRec). */
 const adminEventRow = (e: OrbitAdminEvent): AdminOrbitEventsWire => ({
@@ -46,4 +50,7 @@ export const handlers: RequestHandler[] = [
   contractHandler('Connect2_OrbitMobile_MUI', 'ScreenBlock_AdminLanding/DataActionGet_AdminEventsList', () =>
     adminEventsListAnswer(),
   ),
+  contractHandler('UBTConnect', 'ActionGetMilestoneScanFF', () => ({
+    IsScanPerMilestone: scenario() === 'scanpermilestone',
+  })),
 ];

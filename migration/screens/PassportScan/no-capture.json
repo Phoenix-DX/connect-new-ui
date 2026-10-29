@@ -1,0 +1,5 @@
+{
+ "by": "user",
+ "reason": "Not reachable read-only with the test account (2026-10-29): 'View Passport details' does nothing (ScreenBlock_OrbitLanding.mvc.js:1989, probe_passport_entry.cjs), and the block embeds the external Orbit Passport portal in an iframe with the B2C id token. Build the host screen from the compiled code; the demo iframe opens a local fake portal page (user decision I10-2 (a), 2026-10-29).",
+ "at": "2026-10-29T08:31:54"
+}

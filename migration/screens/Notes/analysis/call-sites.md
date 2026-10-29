@@ -13,7 +13,7 @@ For every service call: the chains of code that lead to it, from a root (user ev
 - `onClick in Button` → `event event_OnClick of Button` → `FilterSheet.onClick_Apply` → `event applyFilters of FilterSheet` → `Notes_FilterSheet.handler_FilterSheetApplyFilters` → `event applyFilters of Notes_FilterSheet` → `Notes.handler_ApplyFilters` → `Notes.refresh_GetNotes` → `Notes.DataActionGetNotes`
 - `onClick in CustomContainer` → `event clicked of CustomContainer` → `TagToggle.customContainerClicked` → `event event_Click of TagToggle` → `Horizontal_Filter_TagList.tagToggleToggle` → `event changed of Horizontal_Filter_TagList` → `Notes.handler_OnClickPill` → `Notes.refresh_GetNotes` → `Notes.DataActionGetNotes`
 - `onClick in Icon` → `event click of Icon` → `Input.onClick_ClearString` → `event event_ClearString of Input` → `Notes.handler_SearchOnClear` → `Notes.refresh_GetNotes` → `Notes.DataActionGetNotes`
-- `Notes.handler_SearchOnSubmit` → `Notes.refresh_GetNotes` → `Notes.DataActionGetNotes`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
+- `onKeyUp in Input` → `Input.onKeyup` → `event event_Submit of Input` → `Notes.handler_SearchOnSubmit` → `Notes.refresh_GetNotes` → `Notes.DataActionGetNotes`
 - `NoteCard_List.noteCardList_OnScrollEnding` → `event onLoadMore of NoteCard_List` → `Notes.notes_CardListOnLoadMore` → `Notes.refresh_GetNotes` → `Notes.DataActionGetNotes`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 
 ### `UBT_AppManager/ActionAppManager_AfterInitialize`
@@ -31,11 +31,11 @@ For every service call: the chains of code that lead to it, from a root (user ev
 - `UBTConnect.onApplicationReady` → `UBTConnect.connect_SetLoggedContext` → `Connect2_LegacyShared.synchronizeNumberUnreadMessages` → `server GetNumberUnreadMessages`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 - `UBTConnect.fCM_NotificationCallback` → `Connect2_LegacyShared.synchronizeNumberUnreadMessages` → `server GetNumberUnreadMessages`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 
-### `UBTConnect/ServiceAPIFetchData_CacheableHouseholds`
-- `UBTConnect.get_Cacheable_MapHouseholds` → `server FetchData_CacheableHouseholds`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
-
 ### `UBTConnect/ServiceAPIFetchData_CacheableMapEntities`
 - `UBTConnect.get_Cacheable_MapEntities` → `server FetchData_CacheableMapEntities`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
+
+### `UBTConnect/ServiceAPIFetchData_CacheableHouseholds`
+- `UBTConnect.get_Cacheable_MapHouseholds` → `server FetchData_CacheableHouseholds`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 
 ## Declared and reachable from the rendered blocks, not observed
 

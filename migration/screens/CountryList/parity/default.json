@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "27958cd9d9f55dc9082a",
+ "fingerprint": "1b66b042c6db48f40a24",
  "options": {
   "text": true,
   "style": true,
@@ -27,20 +27,23 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-28T15:18:42.110Z",
- "counts": {},
+ "at": "2026-10-29T07:12:09.380Z",
+ "counts": {
+  "text": 3,
+  "call": 1
+ },
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 54,
-  "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 2,
   "ignoreSubtrees": 2,
+  "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
   "SLIDER-APPEAR-TIMING": 1
  },
  "pixel": {
-  "ratio": 0.00031,
+  "ratio": 0.00023,
   "maxCell": 0.0219,
   "maxCellRatio": 0.03,
-  "diffPixels": 81,
-  "comparedPixels": 260262,
+  "diffPixels": 60,
+  "comparedPixels": 260310,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -54,8 +57,7 @@
   "masks": 75,
   "hotspots": [
    "200,800 (35px)",
-   "200,760 (25px)",
-   "360,0 (21px)"
+   "200,760 (25px)"
   ],
   "diffPng": "migration/screens/CountryList/parity/default.diff.png"
  },
@@ -63,8 +65,29 @@
   "phases": [
    "load"
   ],
-  "expected": 9,
+  "expected": 10,
   "actual": 9
  },
- "diffs": []
+ "diffs": [
+  {
+   "kind": "text",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Content.OSBlockWidget[BasePatterns.CustomContainer] > div#b4-Content.padding-base.ubt-custom-container > div#$b23.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b23-Placeholder_LoadingSection > div.OSFillParent.list.list-group > div > div#l1-66_13-$b24.OSBlockWidget[Directory_Locality.Statistics_TypedItem] > div#l1-66_13-b24-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#l1-66_13-b24-b1-Content.background-neutral-0.border-color-neutral-4.border-radius-medium > div#l1-66_13-b24-$b2.OSBlockWidget[BasePatterns.Columns_Three] > div#l1-66_13-b24-b2-$b1.OSBlockWidget[Adaptive.Columns3] > div.align-items-center.columns.columns3 > div#l1-66_13-b24-b2-b1-Column2.columns-item > div#l1-66_13-b24-b2-Middle.ubt-columns--column.ubt-columns--middle > div#l1-66_13-b24-$b5.OSBlockWidget[Directory_Locality.Statistics_Icons] > div#l1-66_13-b24-b5-$b1.OSBlockWidget[BasePatterns.Columns_Three] > div#l1-66_13-b24-b5-b1-$b1.OSBlockWidget[Adaptive.Columns3] > div.columns.columns3.phone-break-none > div#l1-66_13-b24-b5-b1-b1-Column2.columns-item > div#l1-66_13-b24-b5-b1-Middle.ubt-columns--column.ubt-columns--middle > div#l1-66_13-b24-b5-Houses.OSBlockWidget[ConnectPatterns.IconText] > div#l1-66_13-b24-b5-b4-DIV_IconText > div#l1-66_13-b24-b5-b4-$b1.OSBlockWidget[BasePatterns.Columns_Two] > div#l1-66_13-b24-b5-b4-b1-$b1.OSBlockWidget[Adaptive.Columns2] > div.align-items-center.columns.columns2 > div#l1-66_13-b24-b5-b4-b1-b1-Column2.columns-item > div#l1-66_13-b24-b5-b4-b1-Right.ubt-columns--column.ubt-columns--right > div#l1-66_13-b24-b5-b4-$b2.OSBlockWidget[BasePatterns.CustomText] > div.font-size-s.text-neutral-7 > span",
+   "detail": "\"34\" → \"33\""
+  },
+  {
+   "kind": "text",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Content.OSBlockWidget[BasePatterns.CustomContainer] > div#b4-Content.padding-base.ubt-custom-container > div#$b23.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b23-Placeholder_LoadingSection > div.OSFillParent.list.list-group > div > div#l1-66_13-$b24.OSBlockWidget[Directory_Locality.Statistics_TypedItem] > div#l1-66_13-b24-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#l1-66_13-b24-b1-Content.background-neutral-0.border-color-neutral-4.border-radius-medium > div#l1-66_13-b24-$b2.OSBlockWidget[BasePatterns.Columns_Three] > div#l1-66_13-b24-b2-$b1.OSBlockWidget[Adaptive.Columns3] > div.align-items-center.columns.columns3 > div#l1-66_13-b24-b2-b1-Column2.columns-item > div#l1-66_13-b24-b2-Middle.ubt-columns--column.ubt-columns--middle > div#l1-66_13-b24-$b5.OSBlockWidget[Directory_Locality.Statistics_Icons] > div#l1-66_13-b24-b5-$b9.OSBlockWidget[BasePatterns.Columns_Three] > div#l1-66_13-b24-b5-b9-$b1.OSBlockWidget[Adaptive.Columns3] > div.columns.columns3.phone-break-none > div#l1-66_13-b24-b5-b9-b1-Column1.columns-item > div#l1-66_13-b24-b5-b9-Left.ubt-columns--column.ubt-columns--left > div#l1-66_13-b24-b5-Brothers.OSBlockWidget[ConnectPatterns.IconText] > div#l1-66_13-b24-b5-b10-DIV_IconText > div#l1-66_13-b24-b5-b10-$b1.OSBlockWidget[BasePatterns.Columns_Two] > div#l1-66_13-b24-b5-b10-b1-$b1.OSBlockWidget[Adaptive.Columns2] > div.align-items-center.columns.columns2 > div#l1-66_13-b24-b5-b10-b1-b1-Column2.columns-item > div#l1-66_13-b24-b5-b10-b1-Right.ubt-columns--column.ubt-columns--right > div#l1-66_13-b24-b5-b10-$b2.OSBlockWidget[BasePatterns.CustomText] > div.font-size-s.text-neutral-7 > span",
+   "detail": "\"61\" → \"58\""
+  },
+  {
+   "kind": "text",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Content.OSBlockWidget[BasePatterns.CustomContainer] > div#b4-Content.padding-base.ubt-custom-container > div#$b23.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b23-Placeholder_LoadingSection > div.OSFillParent.list.list-group > div > div#l1-66_13-$b24.OSBlockWidget[Directory_Locality.Statistics_TypedItem] > div#l1-66_13-b24-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#l1-66_13-b24-b1-Content.background-neutral-0.border-color-neutral-4.border-radius-medium > div#l1-66_13-b24-$b2.OSBlockWidget[BasePatterns.Columns_Three] > div#l1-66_13-b24-b2-$b1.OSBlockWidget[Adaptive.Columns3] > div.align-items-center.columns.columns3 > div#l1-66_13-b24-b2-b1-Column2.columns-item > div#l1-66_13-b24-b2-Middle.ubt-columns--column.ubt-columns--middle > div#l1-66_13-b24-$b5.OSBlockWidget[Directory_Locality.Statistics_Icons] > div#l1-66_13-b24-b5-$b9.OSBlockWidget[BasePatterns.Columns_Three] > div#l1-66_13-b24-b5-b9-$b1.OSBlockWidget[Adaptive.Columns3] > div.columns.columns3.phone-break-none > div#l1-66_13-b24-b5-b9-b1-Column2.columns-item > div#l1-66_13-b24-b5-b9-Middle.ubt-columns--column.ubt-columns--middle > div#l1-66_13-b24-b5-Sisters.OSBlockWidget[ConnectPatterns.IconText] > div#l1-66_13-b24-b5-b12-DIV_IconText > div#l1-66_13-b24-b5-b12-$b1.OSBlockWidget[BasePatterns.Columns_Two] > div#l1-66_13-b24-b5-b12-b1-$b1.OSBlockWidget[Adaptive.Columns2] > div.align-items-center.columns.columns2 > div#l1-66_13-b24-b5-b12-b1-b1-Column2.columns-item > div#l1-66_13-b24-b5-b12-b1-Right.ubt-columns--column.ubt-columns--right > div#l1-66_13-b24-b5-b12-$b2.OSBlockWidget[BasePatterns.CustomText] > div.font-size-s.text-neutral-7 > span",
+   "detail": "\"52\" → \"51\""
+  },
+  {
+   "kind": "call",
+   "path": "calls:load",
+   "detail": "data action DataActionGetCommunityStatistics not called"
+  }
+ ]
 }

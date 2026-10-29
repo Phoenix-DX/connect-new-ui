@@ -561,6 +561,33 @@ export function getRelativeTimeTag(createdDateTimeUtc: string, editedDateTimeUtc
   return formatRelativeTime(isEdited ? edited : created, now) + (isEdited ? ' · Edited' : '');
 }
 
+/** The units of timeAgo, largest first (seconds per unit). */
+const TIME_AGO_UNITS: readonly (readonly [string, number])[] = [
+  ['year', 31536000],
+  ['month', 2592000],
+  ['week', 604800],
+  ['day', 86400],
+  ['hour', 3600],
+  ['minute', 60],
+  ['second', 1],
+];
+
+/** PreetyFormatDate(In_Date) → PrettyDate (UBTConnectLibrary.controller.js:7952-8072; JavaScript1 node timeAgo
+    :8028-8067): "just now" for a date in the future or less than a second ago, else "<n> <unit>[s] ago" with the
+    largest unit (year 365 days, month 30 days, week, day, hour, minute, second) that gives n >= 1. The DateTime input
+    reaches the node as a JS Date, so the number and text branches of timeAgo and its "Invalid date input" error are
+    not reachable; here the date is read as the app's DateTimes (osDateTime: an empty or invalid text is NullDate).
+    `now` is the browser clock (Date.now()). */
+export function preetyFormatDate(in_Date: string, now = new Date()): string {
+  const seconds = Math.floor((now.getTime() - parseOsDate(in_Date).getTime()) / 1000);
+  if (seconds < 0) return 'just now';
+  for (const [label, unitSeconds] of TIME_AGO_UNITS) {
+    const value = Math.floor(seconds / unitSeconds);
+    if (value >= 1) return `${String(value)} ${label}${value > 1 ? 's' : ''} ago`;
+  }
+  return 'just now';
+}
+
 /* ---- Wave 3C (SelectionOption_List) ---- */
 const FLAG_IMAGES: Record<string, string> = {
   ar: 'img/UBTConnectLibrary.ar.png',

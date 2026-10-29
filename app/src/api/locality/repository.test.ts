@@ -313,7 +313,7 @@ describe('locality repository: OneSchoolGlobalDetails', () => {
     expect(window.__osCalls).toEqual([
       expect.objectContaining({
         module: 'UBTConnect',
-        owner: 'OneSchoolGlobalDetails',
+        owner: 'OneSchoolGlobalDetails_Block',
         action: 'DataActionGetOneSchoolGlobalDetails',
         inputNames: [
           'In_OneSchoolGlobalId',

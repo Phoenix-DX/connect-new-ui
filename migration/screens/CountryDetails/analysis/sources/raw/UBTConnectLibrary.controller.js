@@ -1337,6 +1337,71 @@ Out_FormattedTime: OS.DataConversion.JSNodeParamConverter.to(actionResults.out_F
 };
 });
 
+define("UBTConnectLibrary.controller$FormatDateForAssembleMeetings", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnectLibrary.controller", "UBTConnectLibrary.clientVariables"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnectLibraryController, UBTConnectLibraryClientVariables) {
+var OS = OutSystems.Internal;
+UBTConnectLibraryController.default.formatDateForAssembleMeetings$Action = function (meetingDateTimeIn, isAllDAyIn, callContext) {
+var varBag = {};
+callContext = controller.callContext(callContext);
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnectLibrary.FormatDateForAssembleMeetings$vars"))());
+vars.value.meetingDateTimeInLocal = meetingDateTimeIn;
+vars.value.isAllDAyInLocal = isAllDAyIn;
+var outVars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnectLibrary.FormatDateForAssembleMeetings$outVars"))());
+varBag.callContext = callContext;
+varBag.vars = vars;
+varBag.outVars = outVars;
+try {OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:XHLYj8rMnU2mLVXVCdRLfQ:/ClientActionFlows.XHLYj8rMnU2mLVXVCdRLfQ:YA8ebEK5ecu3ghDAxlf8sA", "UBTConnectLibrary", "FormatDateForAssembleMeetings", "NRFlows.ClientActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:O1lr0z50SEmfr5FNlCPrJA", callContext.id);
+OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:wJJ9bGzgf0eB0fHBxpBcMg", callContext.id);
+// DateTimeString = If + If + FormatDateTime
+outVars.value.dateTimeStringOut = ((((vars.value.isAllDAyInLocal) ? ("On ") : (OS.BuiltinFunctions.formatDateTime(vars.value.meetingDateTimeInLocal, "h:mm tt on "))) + (((OS.BuiltinFunctions.dayOfWeek(vars.value.meetingDateTimeInLocal) === 0)) ? ("Lord\'s Day") : (OS.BuiltinFunctions.formatDateTime(vars.value.meetingDateTimeInLocal, "dddd")))) + OS.BuiltinFunctions.formatDateTime(vars.value.meetingDateTimeInLocal, ", d MMMM yyyy"));
+OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:pYgz_QryEEalIgaIbQ99OQ", callContext.id);
+return outVars.value;
+} catch (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+throw ex;
+} finally {
+OutSystemsDebugger.pop("lAQ0zS6tEEyl6BBIK9yo1A:XHLYj8rMnU2mLVXVCdRLfQ", callContext.id);
+}
+
+};
+var controller = UBTConnectLibraryController.default;
+UBTConnectLibraryController.default.constructor.registerVariableGroupType("UBTConnectLibrary.FormatDateForAssembleMeetings$vars", [{
+name: "MeetingDateTime",
+attrName: "meetingDateTimeInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.DateTime,
+defaultValue: function () {
+return OS.DataTypes.DateTime.defaultValue;
+}
+}, {
+name: "IsAllDAy",
+attrName: "isAllDAyInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Boolean,
+defaultValue: function () {
+return false;
+}
+}]);
+UBTConnectLibraryController.default.constructor.registerVariableGroupType("UBTConnectLibrary.FormatDateForAssembleMeetings$outVars", [{
+name: "DateTimeString",
+attrName: "dateTimeStringOut",
+mandatory: false,
+dataType: OS.DataTypes.DataTypes.Text,
+defaultValue: function () {
+return "";
+}
+}]);
+UBTConnectLibraryController.default.clientActionProxies.formatDateForAssembleMeetings$Action = function (meetingDateTimeIn, isAllDAyIn) {
+meetingDateTimeIn = (meetingDateTimeIn === undefined) ? OS.DataTypes.DateTime.defaultValue : meetingDateTimeIn;
+isAllDAyIn = (isAllDAyIn === undefined) ? false : isAllDAyIn;
+return controller.executeActionInsideJSNode(UBTConnectLibraryController.default.formatDateForAssembleMeetings$Action.bind(controller, OS.DataConversion.JSNodeParamConverter.from(meetingDateTimeIn, OS.DataTypes.DataTypes.DateTime), OS.DataConversion.JSNodeParamConverter.from(isAllDAyIn, OS.DataTypes.DataTypes.Boolean)), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
+return {
+DateTimeString: OS.DataConversion.JSNodeParamConverter.to(actionResults.dateTimeStringOut, OS.DataTypes.DataTypes.Text)
+};
+});
+};
+});
+
 define("UBTConnectLibrary.controller$FormatStyles", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnectLibrary.controller", "UBTConnectLibrary.clientVariables"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnectLibraryController, UBTConnectLibraryClientVariables) {
 var OS = OutSystems.Internal;
 UBTConnectLibraryController.default.formatStyles$Action = function (originalStylesIn, newStylePropertyIn, newStyleValueIn, callContext) {
@@ -4787,6 +4852,7 @@ callContext = controller.callContext(callContext);
 var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnectLibrary.GetClasses_Text$vars"))());
 vars.value.textOptionsInLocal = textOptionsIn.clone();
 var formatClasses5Var = new OS.DataTypes.VariableHolder();
+var formatClasses6Var = new OS.DataTypes.VariableHolder();
 var formatClasses2Var = new OS.DataTypes.VariableHolder();
 var formatClassesVar = new OS.DataTypes.VariableHolder();
 var formatClasses3Var = new OS.DataTypes.VariableHolder();
@@ -4795,12 +4861,13 @@ var outVars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVar
 varBag.callContext = callContext;
 varBag.vars = vars;
 varBag.formatClasses5Var = formatClasses5Var;
+varBag.formatClasses6Var = formatClasses6Var;
 varBag.formatClasses2Var = formatClasses2Var;
 varBag.formatClassesVar = formatClassesVar;
 varBag.formatClasses3Var = formatClasses3Var;
 varBag.formatClasses4Var = formatClasses4Var;
 varBag.outVars = outVars;
-try {OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:pjiDGeXdyE2vUUE9wT43tA:/ClientActionFlows.pjiDGeXdyE2vUUE9wT43tA:3aV6ptEyKZBhX4mded6y5g", "UBTConnectLibrary", "GetClasses_Text", "NRFlows.ClientActionFlow", callContext.id, varBag);
+try {OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:pjiDGeXdyE2vUUE9wT43tA:/ClientActionFlows.pjiDGeXdyE2vUUE9wT43tA:lcHNghPThsLoMItL35Nrrw", "UBTConnectLibrary", "GetClasses_Text", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:EjWa8POzNUul94uFOFWxnw", callContext.id);
 if((OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:6kVYcgPKuka0VTKJg6MXXQ", callContext.id) && ((vars.value.textOptionsInLocal.colorAttr) !== (OS.BuiltinFunctions.nullTextIdentifier())))) {
 OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:COFUkiqmakGZ9dtqj1h0Ww", callContext.id);
@@ -4852,6 +4919,16 @@ formatClasses5Var.value = UBTConnectLibraryController.default.formatClasses$Acti
 OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:FKWuiFZp30mOrnnjwbTLBg", callContext.id);
 // Classes = FormatClasses5.ClassesOut
 outVars.value.classesOut = formatClasses5Var.value.classesOutOut;
+}
+
+if((OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:yHxAsxo6e0CFM88uUaporg", callContext.id) && vars.value.textOptionsInLocal.isOverflowEllipsisAttr)) {
+OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:olJMRwAA5Ey9cjnqOT097g", callContext.id);
+// Execute Action: FormatClasses6
+formatClasses6Var.value = UBTConnectLibraryController.default.formatClasses$Action(outVars.value.classesOut, "ubt-custom-text-ellipsis", callContext);
+
+OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:aN6tFVCmU0GC1UpVLC15Dg", callContext.id);
+// Classes = FormatClasses6.ClassesOut
+outVars.value.classesOut = formatClasses6Var.value.classesOutOut;
 OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:EQWZGd_6X02XreSKna_P1g", callContext.id);
 } else {
 OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:EQWZGd_6X02XreSKna_P1g", callContext.id);
@@ -7937,6 +8014,128 @@ if (window.cordova) {
 };
 });
 
+define("UBTConnectLibrary.controller$PreetyFormatDate", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnectLibrary.controller", "UBTConnectLibrary.controller$PreetyFormatDate.JavaScript1JS", "UBTConnectLibrary.clientVariables"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnectLibraryController, UBTConnectLibrary_controller_PreetyFormatDate_JavaScript1JS, UBTConnectLibraryClientVariables) {
+var OS = OutSystems.Internal;
+UBTConnectLibraryController.default.preetyFormatDate$Action = function (in_DateIn, callContext) {
+var varBag = {};
+callContext = controller.callContext(callContext);
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnectLibrary.PreetyFormatDate$vars"))());
+vars.value.in_DateInLocal = in_DateIn;
+var javaScript1JSResult = new OS.DataTypes.VariableHolder();
+var outVars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnectLibrary.PreetyFormatDate$outVars"))());
+varBag.callContext = callContext;
+varBag.vars = vars;
+varBag.javaScript1JSResult = javaScript1JSResult;
+varBag.outVars = outVars;
+try {OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:SeXuQdnW1U2eqiXzTVAMeQ:/ClientActionFlows.SeXuQdnW1U2eqiXzTVAMeQ:GFj3tQHUuisS7IFV6R7KwQ", "UBTConnectLibrary", "PreetyFormatDate", "NRFlows.ClientActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:UG1Mx7D230Oh1WodYdQKDw", callContext.id);
+OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:7EzCkhnIi0WCO9uxixq6cQ", callContext.id);
+javaScript1JSResult.value = controller.safeExecuteJSNode(UBTConnectLibrary_controller_PreetyFormatDate_JavaScript1JS, "JavaScript1", "PreetyFormatDate", {
+In_DateTime: OS.DataConversion.JSNodeParamConverter.to(vars.value.in_DateInLocal, OS.DataTypes.DataTypes.DateTime),
+Out1: OS.DataConversion.JSNodeParamConverter.to("", OS.DataTypes.DataTypes.Text)
+}, function ($parameters) {
+var jsNodeResult = new (controller.constructor.getVariableGroupType("UBTConnectLibrary.PreetyFormatDate$javaScript1JSResult"))();
+jsNodeResult.out1Out = OS.DataConversion.JSNodeParamConverter.from($parameters.Out1, OS.DataTypes.DataTypes.Text);
+return jsNodeResult;
+}, {}, {});
+OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:Q1yB_iVww0moD44tFQMK5w", callContext.id);
+// PrettyDate = JavaScript1.Out1
+outVars.value.prettyDateOut = javaScript1JSResult.value.out1Out;
+OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:yaynckm0LkqROO6i1+8s0w", callContext.id);
+return outVars.value;
+} catch (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+throw ex;
+} finally {
+OutSystemsDebugger.pop("lAQ0zS6tEEyl6BBIK9yo1A:SeXuQdnW1U2eqiXzTVAMeQ", callContext.id);
+}
+
+};
+var controller = UBTConnectLibraryController.default;
+UBTConnectLibraryController.default.constructor.registerVariableGroupType("UBTConnectLibrary.PreetyFormatDate$vars", [{
+name: "In_Date",
+attrName: "in_DateInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.DateTime,
+defaultValue: function () {
+return OS.DataTypes.DateTime.defaultValue;
+}
+}]);
+UBTConnectLibraryController.default.constructor.registerVariableGroupType("UBTConnectLibrary.PreetyFormatDate$javaScript1JSResult", [{
+name: "Out1",
+attrName: "out1Out",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Text,
+defaultValue: function () {
+return "";
+}
+}]);
+UBTConnectLibraryController.default.constructor.registerVariableGroupType("UBTConnectLibrary.PreetyFormatDate$outVars", [{
+name: "PrettyDate",
+attrName: "prettyDateOut",
+mandatory: false,
+dataType: OS.DataTypes.DataTypes.Text,
+defaultValue: function () {
+return "";
+}
+}]);
+UBTConnectLibraryController.default.clientActionProxies.preetyFormatDate$Action = function (in_DateIn) {
+in_DateIn = (in_DateIn === undefined) ? OS.DataTypes.DateTime.defaultValue : in_DateIn;
+return controller.executeActionInsideJSNode(UBTConnectLibraryController.default.preetyFormatDate$Action.bind(controller, OS.DataConversion.JSNodeParamConverter.from(in_DateIn, OS.DataTypes.DataTypes.DateTime)), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
+return {
+PrettyDate: OS.DataConversion.JSNodeParamConverter.to(actionResults.prettyDateOut, OS.DataTypes.DataTypes.Text)
+};
+});
+};
+});
+define("UBTConnectLibrary.controller$PreetyFormatDate.JavaScript1JS", [], function () {
+return function ($parameters, $actions, $roles, $public) {
+function timeAgo(input) {
+  let date;
+  if (input instanceof Date) {
+    date = input;
+  } else if (typeof input === "number") {
+    // Treat numbers below this threshold as seconds (epoch seconds), otherwise ms.
+    date = new Date(input < 1e12 ? input * 1000 : input);
+  } else {
+    date = new Date(input);
+  }
+
+  if (isNaN(date.getTime())) {
+    throw new Error("Invalid date input");
+  }
+
+  const seconds = Math.floor((Date.now() - date.getTime()) / 1000);
+
+  if (seconds < 0) {
+    return "just now";
+  }
+
+  const units = [
+    { label: "year", seconds: 31536000 },
+    { label: "month", seconds: 2592000 },
+    { label: "week", seconds: 604800 },
+    { label: "day", seconds: 86400 },
+    { label: "hour", seconds: 3600 },
+    { label: "minute", seconds: 60 },
+    { label: "second", seconds: 1 },
+  ];
+
+  for (const unit of units) {
+    const value = Math.floor(seconds / unit.seconds);
+    if (value >= 1) {
+      return `${value} ${unit.label}${value > 1 ? "s" : ""} ago`;
+    }
+  }
+
+  return "just now";
+}
+
+
+$parameters.Out1 = timeAgo($parameters.In_DateTime)
+};
+});
+
 define("UBTConnectLibrary.controller$RemoveRegexSpecialCharacters", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnectLibrary.controller", "UBTConnectLibrary.controller$RemoveRegexSpecialCharacters.RemoveRegexSpecialCharactersJS", "UBTConnectLibrary.clientVariables"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnectLibraryController, UBTConnectLibrary_controller_RemoveRegexSpecialCharacters_RemoveRegexSpecialCharactersJS, UBTConnectLibraryClientVariables) {
 var OS = OutSystems.Internal;
 UBTConnectLibraryController.default.removeRegexSpecialCharacters$Action = function (textIn, callContext) {
@@ -9424,6 +9623,11 @@ getter: function (varBag, idService) {
 return varBag.formatClasses5Var.value;
 }
 },
+"olJMRwAA5Ey9cjnqOT097g": {
+getter: function (varBag, idService) {
+return varBag.formatClasses6Var.value;
+}
+},
 "MRiBURCgGUOIaloAKXY6vg": {
 getter: function (varBag, idService) {
 return varBag.formatClasses2Var.value;
@@ -9674,6 +9878,23 @@ return varBag.javaScript1JSResult.value;
 "BUexh4hEQEOBqo1jUE2XFQ": {
 getter: function (varBag, idService) {
 return varBag.outVars.value.listOut;
+}
+},
+"4elxQzHUak2w7oBqJmBXxQ": {
+getter: function (varBag, idService) {
+return varBag.vars.value.in_DateInLocal;
+},
+dataType: OS.DataTypes.DataTypes.DateTime
+},
+"QJW6dX7IAUaE9WRXums6bg": {
+getter: function (varBag, idService) {
+return varBag.outVars.value.prettyDateOut;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
+"7EzCkhnIi0WCO9uxixq6cQ": {
+getter: function (varBag, idService) {
+return varBag.javaScript1JSResult.value;
 }
 },
 "g3OvzEfaOk+Wccvd6P2sQQ": {
@@ -10261,6 +10482,24 @@ dataType: OS.DataTypes.DataTypes.Text
 "kd73ELv0g0y3bPm48VHKZg": {
 getter: function (varBag, idService) {
 return varBag.outVars.value.out_FontColorOut;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
+"YC3BAen_6k+DQQbvgPs_6w": {
+getter: function (varBag, idService) {
+return varBag.vars.value.meetingDateTimeInLocal;
+},
+dataType: OS.DataTypes.DataTypes.DateTime
+},
+"y+9ZuC_GSEqTUg0GT4tfDA": {
+getter: function (varBag, idService) {
+return varBag.vars.value.isAllDAyInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"Q4IaIBUoLE+Do01ofKyWkg": {
+getter: function (varBag, idService) {
+return varBag.outVars.value.dateTimeStringOut;
 },
 dataType: OS.DataTypes.DataTypes.Text
 },

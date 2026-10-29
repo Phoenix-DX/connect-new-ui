@@ -1555,6 +1555,18 @@
    "states": "^default$",
    "reason": "The day digits of the conference days: the capture shows TST's real days of event 7301 (23, 24, 25), the mock world builds the meetings on the first Friday at least a week after today (src/mocks/fictional/orbit.ts meetingsFriday), so the digits and the width of the digit box follow the run date (the clone matched only for runs between 2026-10-10 and 2026-10-16). Weekdays stay Friday to Sunday. Mock artifact; auto-accepted in the user's auto mode 2026-10-16 evening (until 2026-10-17 morning)",
    "evidence": "migration/screens/EventDetail/parity/default.json (2026-10-17 sweep: text \"23\"→\"30\", \"24\"→\"31\", \"25\"→\"1\", Placeholder_Digit 18×23 → 9×23); app/src/mocks/fictional/orbit.ts:561-569"
+  },
+  {
+   "id": "OSGCAROUSEL-ACTIVEDESCENDANT-LIST-KEY",
+   "kinds": [
+    "attr"
+   ],
+   "states": "^(default|offline)$",
+   "routeRegex": "^/UBTConnect/OneSchoolGlobalCarousel(\\?|$)",
+   "pathRegex": "> div#b\\d+-l\\d+-\\d+_\\d+-[^ >]*ButtonGroup1\\.button-group(\\.ubt-skeleton-section__element)?$",
+   "detailRegex": "^aria-activedescendant: b\\d+-l\\d+-\\d+_\\d+-(?:[^ ]+-)?(ButtonGroupItem\\d+) → [^ ]+-\\1$",
+   "reason": "The OSUI ButtonGroup of Directory_EntityDetailsActions names its active item in aria-activedescendant by the item's runtime id. On TST the slide's ids carry the OutSystems runtime list key of the carousel list (b3-l1-146060_0-…); the React build gives its own id prefix. The value differs only in that prefix: the referenced item is the same ButtonGroupItem (the detail regex requires the same item name on both sides). Only this attribute, on this ButtonGroup, on this route. User decision OneSchoolGlobalCarousel Q5 (a), 2026-10-29.",
+   "evidence": "migration/screens/OneSchoolGlobalCarousel/parity/default.json and offline.json before this rule (attr 'aria-activedescendant: b3-l1-146060_0-b2-b1-b1-ButtonGroupItem1 → osg_r_3_-ButtonGroupItem1' on div#b3-l1-146060_0-b2-b1-b1-ButtonGroup1); migration/screens/OneSchoolGlobalCarousel/analysis/dom/default.html; OneSchoolGlobalCarousel Q5"
   }
  ],
  "ignoreClasses": [

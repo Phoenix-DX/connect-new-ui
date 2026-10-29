@@ -4,6 +4,7 @@ import { MemoryRouter } from 'react-router';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { OutOfContextException } from '@/legacy/os/os-exceptions';
 import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
+import { calledActions } from '@/test/testSupport';
 import type { EventDetailTarget } from './adminLandingState';
 import { orbitAdminEventDetailParams, useNavigateToEventDetail, wireDateTimeParam } from './useNavigateToEventDetail';
 
@@ -21,7 +22,8 @@ vi.mock('@/platform/navigation', async (importOriginal) => {
   };
 });
 
-/* OnHandle_NavigateToEventDetail of the screen, with the navigation replaced by a spy. The event is fictional. */
+/* OnHandle_NavigateToEventDetail of the screen, with the navigation replaced by a spy. GetMilestoneScanFF answers
+   from the MSW mock of the route (false, as TST; true in the scenario `scanpermilestone`). The event is fictional. */
 const TARGET: EventDetailTarget = {
   eventId: '7301',
   eventName: 'Weekend Bible Conferences',
@@ -35,13 +37,14 @@ const wrapper = ({ children }: { children: ReactNode }) => <MemoryRouter>{childr
 afterEach(() => {
   platformNavigation.on = false;
   resetNavigation();
+  sessionStorage.clear();
   vi.clearAllMocks();
 });
 
 /** OrbitAdminLanding with the handler in a ref, on the app's frame (NavigationHost) of a memory router. */
 function renderScreen() {
   platformNavigation.on = true;
-  const handler: { current: ((target: EventDetailTarget) => void) | null } = { current: null };
+  const handler: { current: ((target: EventDetailTarget) => Promise<void>) | null } = { current: null };
   function Screen() {
     handler.current = useNavigateToEventDetail();
     return null;
@@ -50,6 +53,7 @@ function renderScreen() {
     {
       '/UBTConnect/OrbitAdminLanding': <Screen />,
       '/UBTConnect/OrbitAdminEventDetail': <p>Event detail</p>,
+      '/UBTConnect/OrbitAdminMilestones': <p>Milestones</p>,
       '/UBTConnect/Updates': <p>Updates</p>,
     },
     '/UBTConnect/OrbitAdminLanding',
@@ -58,11 +62,10 @@ function renderScreen() {
 }
 
 describe('useNavigateToEventDetail', () => {
-  it('opens OrbitAdminEventDetail with the inputs in the order of the original, without a server call (TST)', () => {
+  it('GetMilestoneScanFF false (TST): opens OrbitAdminEventDetail with the inputs in the order of the original', async () => {
     const { result } = renderHook(() => useNavigateToEventDetail(), { wrapper });
-    act(() => {
-      result.current(TARGET);
-    });
+    await act(() => result.current(TARGET));
+    expect(calledActions().filter((a) => a === 'ActionGetMilestoneScanFF')).toHaveLength(1);
     expect(navigate).toHaveBeenCalledTimes(1);
     expect(navigate).toHaveBeenCalledWith('/UBTConnect/OrbitAdminEventDetail', {
       In_EventId: '7301',
@@ -83,6 +86,14 @@ describe('useNavigateToEventDetail', () => {
     ]);
   });
 
+  it('GetMilestoneScanFF true: opens OrbitAdminMilestones with the EventId only', async () => {
+    sessionStorage.setItem('mock:mock', 'scanpermilestone');
+    const { result } = renderHook(() => useNavigateToEventDetail(), { wrapper });
+    await act(() => result.current(TARGET));
+    expect(navigate).toHaveBeenCalledTimes(1);
+    expect(navigate).toHaveBeenCalledWith('/UBTConnect/OrbitAdminMilestones', { EventId: '7301' });
+  });
+
   it('the null DateTime and an empty one go in the URL as "1900-01-01T00:00:00"', () => {
     expect(wireDateTimeParam('')).toBe('1900-01-01T00:00:00');
     expect(wireDateTimeParam('1900-01-01T00:00:00Z')).toBe('1900-01-01T00:00:00');
@@ -95,10 +106,10 @@ describe('useNavigateToEventDetail', () => {
 });
 
 describe('useNavigateToEventDetail on a screen that the user left (flow scope, item 8)', () => {
-  it('on the screen that the router shows, the handler opens OrbitAdminEventDetail', () => {
+  it('on the screen that the router shows, the handler opens OrbitAdminEventDetail', async () => {
     const { handler, at } = renderScreen();
-    act(() => {
-      handler.current?.(TARGET);
+    await act(async () => {
+      await handler.current?.(TARGET);
     });
     expect(at()).toMatch(/^\/UBTConnect\/OrbitAdminEventDetail\?In_EventId=7301&/);
   });
@@ -106,9 +117,7 @@ describe('useNavigateToEventDetail on a screen that the user left (flow scope, i
   it('R4: after the user left the screen, the handler does not navigate: OutOfContextException', async () => {
     const { handler, router, at } = renderScreen();
     await act(() => router.navigate('/UBTConnect/Updates'));
-    expect(() => {
-      handler.current?.(TARGET);
-    }).toThrow(OutOfContextException);
+    await expect(handler.current?.(TARGET)).rejects.toThrow(OutOfContextException);
     expect(at()).toBe('/UBTConnect/Updates');
   });
 });

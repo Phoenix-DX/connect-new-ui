@@ -1,5 +1,6 @@
 /** @origin UBTConnectLibrary.ConnectPatterns.EmptyList */
 // @os-block UBTConnectLibrary.ConnectPatterns.EmptyList
+// @os-block UBTConnectLibrary.ConnectPatterns.EmptyListBorderless
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CircleButton } from '@/components/ui/CircleButton';
@@ -25,23 +26,31 @@ export interface EmptyStateProps {
   title?: ReactNode;
   /** Text below the title (placeholder TextPlaceholder). */
   text?: ReactNode;
+  /** The EmptyListBorderless block (UBTConnectLibrary.ConnectPatterns.EmptyListBorderless.mvc.js, TST 2026-10-29):
+      no border colour and size on the box, the icon in the primary colour in a cyan-lightest circle. */
+  borderless?: boolean;
 }
 
+const BORDER = {
+  Color: UBT_Color.Neutral3,
+  Size: { GeneralSizeId: UBT_Size.Small },
+  Radius: { GeneralSizeId: UBT_Shape.Large },
+};
+const NO_BORDER = { Radius: { GeneralSizeId: UBT_Shape.Large } };
+
 /** The empty state of a list or a search: a bordered, centred box with an icon in a primary circle, a title and a
-    text. The base of the empty states (presets: `components/directory/DirectoryEmptyState`). The other empty-state
-    blocks of the app (BlankSlate, ConnectBlankSlate, MessageListNoResults, OrbitNoInformation, OrbitNoResults,
-    NoBookmarks) have their own markup and stay separate components (`docs/refactor/duplicates.md`, group 3). */
-export function EmptyState({ id, iconId = '', title, text }: EmptyStateProps) {
+    text. The base of the empty states (presets: `EmptyListBorderless` below, `components/directory/DirectoryEmptyState`).
+    The other empty-state blocks of the app (BlankSlate, ConnectBlankSlate, MessageListNoResults, OrbitNoInformation,
+    OrbitNoResults, NoBookmarks) have their own markup and stay separate components (`docs/refactor/duplicates.md`,
+    group 3). */
+export function EmptyState({ id, iconId = '', title, text, borderless = false }: EmptyStateProps) {
+  const circleColor = borderless ? UBT_Color.CyanLightest : UBT_Color.Primary;
   return (
-    <OSBlock name="ConnectPatterns.EmptyList" id={id}>
+    <OSBlock name={borderless ? 'ConnectPatterns.EmptyListBorderless' : 'ConnectPatterns.EmptyList'} id={id}>
       <CustomContainer
         options={{
           PaddingSize: { GeneralSizeId: UBT_Size.Small },
-          BorderOptions: {
-            Color: UBT_Color.Neutral3,
-            Size: { GeneralSizeId: UBT_Size.Small },
-            Radius: { GeneralSizeId: UBT_Shape.Large },
-          },
+          BorderOptions: borderless ? NO_BORDER : BORDER,
           DisplayOptions: {
             Display: UBT_Display.Flex,
             AlignItems: UBT_AlignItems.Center,
@@ -53,9 +62,15 @@ export function EmptyState({ id, iconId = '', title, text }: EmptyStateProps) {
           <div className="text-align-center ubt-unavailable-image margin-bottom-base" data-container="">
             <CircleButton
               sizeId={UBT_AvatarSize.Small_40}
-              borderColorId={UBT_Color.Primary}
-              backgroundColorId={UBT_Color.Primary}
-              icon={<Icon inColorId={UBT_Color.Neutral0} inIconId={iconId} inSizeId={UBT_IconSize.Base_24} />}
+              borderColorId={circleColor}
+              backgroundColorId={circleColor}
+              icon={
+                <Icon
+                  inColorId={borderless ? UBT_Color.Primary : UBT_Color.Neutral0}
+                  inIconId={iconId}
+                  inSizeId={UBT_IconSize.Base_24}
+                />
+              }
             />
           </div>
           <div className="text-align-center" data-container="">
@@ -70,4 +85,10 @@ export function EmptyState({ id, iconId = '', title, text }: EmptyStateProps) {
       </CustomContainer>
     </OSBlock>
   );
+}
+
+/** @origin UBTConnectLibrary.ConnectPatterns.EmptyListBorderless — the EmptyState preset without a border (capture
+    Notes dom/default.html:272-325). First user: NoteCard_List ("No notes"). */
+export function EmptyListBorderless(props: Omit<EmptyStateProps, 'borderless'>) {
+  return <EmptyState {...props} borderless />;
 }

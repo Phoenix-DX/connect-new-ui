@@ -1,22 +1,4 @@
 <body class="phone portrait osx is-ltr" style="--header-size-content: 0px; --footer-height: 56px; --viewport-height: 844px;">
- <div class="feedback-message-wrapper" id="feedbackMessageContainer">
-  <div class="feedback-message feedback-message-info feedback-message-autoclose feedback-message-autoclose" role="alert" tabindex="0">
-   <i>
-   </i>
-   <div class="feedback-message-text">
-    <div class="feedback-message--title">
-     Service Interruption
-    </div>
-    <div class="feedback-message--body">
-     We’re currently experiencing unusually high traffic, which may affect access to some services.
-
-Our team is working to restore full functionality as quickly as possible.
-
-Thank you for your patience and understanding.
-    </div>
-   </div>
-  </div>
- </div>
  <div id="reactContainer">
   <div id="transitionContainer">
    <div class="active-screen screen-container" style="--footer-shadow-scroll: visible; --header-shadow-scroll: hidden;">
@@ -141,7 +123,7 @@ Thank you for your patience and understanding.
                         </div>
                         <div class="input-with-icon-input" id="b12-b3-Input">
                          <span class="input-search">
-                          <input aria-required="false" class="form-control border-radius-rounded OSFillParent" data-input="" id="b12-Input_Search" placeholder="Search locality" type="search"/>
+                          <input aria-required="false" class="search-placeholder-ellipsis form-control border-radius-rounded OSFillParent" data-input="" id="b12-Input_Search" maxlength="50" placeholder="Search locality" type="search"/>
                          </span>
                         </div>
                        </div>
@@ -186,7 +168,7 @@ Thank you for your patience and understanding.
                   <div class="ubt-custom-container padding-top-base" id="b17-Content" style="cursor: pointer;">
                    <div data-container="" style="text-align: right;">
                     <div class="OSBlockWidget" data-block="ConnectPatterns.SkeletonSection" id="$b18">
-                     <div class="" id="b18-Placeholder_LoadingSection">
+                     <div class="ubt-skeleton-section" id="b18-Placeholder_LoadingSection">
                       <div class="OSBlockWidget" data-block="BasePatterns.CustomText" id="$b19">
                        <div class="text-neutral-7 font-regular font-size-s text-justify" data-container="" style="cursor: pointer;">
                         <div class="OSBlockWidget" data-block="ConnectPatterns.IconInline_Internal" id="b19-$b2">
@@ -203,7 +185,750 @@ Thank you for your patience and understanding.
                  </div>
                 </div>
                </div>
-               <div class="list list-group OSFillParent" data-list="" style="position: relative;">
+               <div class="OSBlockWidget" data-block="ConnectPatterns.SkeletonSection" id="$b20">
+                <div class="ubt-skeleton-section" id="b20-Placeholder_LoadingSection">
+                 <div data-container="">
+                  <div class="OSBlockWidget" data-block="Directory_Locality.Statistics_TypedItem" id="$b21">
+                   <div class="OSBlockWidget" data-block="BasePatterns.CustomContainer" id="b21-$b1">
+                    <div class="ubt-custom-container background-neutral-0 border-s border-color-neutral-4 border-radius-medium padding-s margin-bottom-s" id="b21-b1-Content" style="cursor: pointer;">
+                     <div class="OSBlockWidget" data-block="BasePatterns.Columns_Three" id="b21-$b2">
+                      <div class="OSBlockWidget" data-block="Adaptive.Columns3" id="b21-b2-$b1">
+                       <div class="columns columns3 gutter-base tablet-break-none phone-break-none ubt-columns ubt-columns--three-columns ubt-columns-expand-middle align-items-center" data-container="">
+                        <div class="columns-item" id="b21-b2-b1-Column1">
+                         <div class="ubt-columns--left ubt-columns--column" id="b21-b2-Left" style="">
+                          <div class="OSBlockWidget" data-block="CW_Image.UBT_LazyImage" id="b21-$b3">
+                           <div class="OSBlockWidget" data-block="ConnectPatterns.SkeletonSection" id="b21-b3-$b1">
+                            <div class="" id="b21-b3-b1-Placeholder_LoadingSection">
+                             <div class="OSBlockWidget" data-block="ConnectPatterns.LazyImage" id="b21-b3-$b2">
+                              <div class="OSBlockWidget" data-block="ConnectPatterns.SkeletonSection" id="b21-b3-b2-$b1">
+                               <div class="" id="b21-b3-b2-b1-Placeholder_LoadingSection">
+                                <div class="OSBlockWidget" data-block="BasePatterns.CustomContainer" id="b21-b3-b2-$b2">
+                                 <div class="ubt-custom-container hidden ubt-lazy-image country-flag ubt-lazy-image-s ubt-lazy-image--width-square border-radius-circle" id="b21-b3-b2-b2-Content" style="cursor: pointer;">
+                                  <img data-image="" data-rendered-size="0x0" id="b21-b3-b2-Image" src="/UBTConnect/CountryDetails"/>
+                                 </div>
+                                </div>
+                                <div class="OSBlockWidget" data-block="BasePatterns.CustomContainer" id="b21-b3-b2-$b3">
+                                 <div class="ubt-custom-container ubt-lazy-image country-flag ubt-lazy-image-s ubt-lazy-image--width-square ubt-lazy-image--no-image ubt-skeleton-section__element background-cyan-lightest border-none border-radius-circle text-cyan-darker font-semi-bold font-size-s padding-base" id="b21-b3-b2-b3-Content" style="cursor: pointer;">
+                                  <div class="OSBlockWidget" data-block="ConnectPatterns.Icon" id="b21-b3-b2-$b5">
+                                   <div class="ubt-icon connect-icon-house_fill text-cyan-darker icon-base" data-container="" style="cursor: pointer;">
+                                   </div>
+                                  </div>
+                                 </div>
+                                </div>
+                               </div>
+                              </div>
+                             </div>
+                            </div>
+                           </div>
+                          </div>
+                         </div>
+                        </div>
+                        <div class="columns-item" id="b21-b2-b1-Column2">
+                         <div class="ubt-columns--middle ubt-columns--column" id="b21-b2-Middle" style="">
+                          <div class="OSBlockWidget" data-block="BasePatterns.CustomText" id="b21-$b4">
+                           <div class="font-semi-bold font-size-s" data-container="" style="cursor: pointer;">
+                            <div class="OSBlockWidget" data-block="ConnectPatterns.IconInline_Internal" id="b21-b4-$b2">
+                            </div>
+                            <span data-expression="" style="margin-left: 0px;">
+                             Loading Name
+                            </span>
+                           </div>
+                          </div>
+                          <div class="OSBlockWidget" data-block="Directory_Locality.Statistics_Icons" id="b21-$b5">
+                           <div class="OSBlockWidget" data-block="BasePatterns.Columns_Three" id="b21-b5-$b1">
+                            <div class="OSBlockWidget" data-block="Adaptive.Columns3" id="b21-b5-b1-$b1">
+                             <div class="columns columns3 tablet-break-none phone-break-none ubt-columns ubt-columns--three-columns ubt-columns-same-size" data-container="">
+                              <div class="columns-item" id="b21-b5-b1-b1-Column1">
+                               <div class="ubt-columns--left ubt-columns--column" id="b21-b5-b1-Left" style="">
+                                <div class="OSBlockWidget" data-block="ConnectPatterns.IconText" id="b21-b5-Members">
+                                 <div data-container="" id="b21-b5-b2-DIV_IconText" style="cursor: pointer;">
+                                  <div class="OSBlockWidget" data-block="BasePatterns.Columns_Two" id="b21-b5-b2-$b1">
+                                   <div class="OSBlockWidget" data-block="Adaptive.Columns2" id="b21-b5-b2-b1-$b1">
+                                    <div class="columns columns2 gutter-xs tablet-break-none phone-break-none ubt-columns ubt-columns--two-columns ubt-columns-reduce-first align-items-center" data-container="">
+                                     <div class="columns-item" id="b21-b5-b2-b1-b1-Column1">
+                                      <div class="ubt-columns--left ubt-columns--column" id="b21-b5-b2-b1-Left" style="">
+                                       <div id="b21-b5-b2-Icon">
+                                        <div class="OSBlockWidget" data-block="ConnectPatterns.Icon" id="b21-b5-$b3">
+                                         <div class="ubt-icon connect-icon-person-fill text-purple icon-non-standard-16" data-container="" style="cursor: pointer;">
+                                         </div>
+                                        </div>
+                                       </div>
+                                      </div>
+                                     </div>
+                                     <div class="columns-item" id="b21-b5-b2-b1-b1-Column2">
+                                      <div class="ubt-columns--right ubt-columns--column" id="b21-b5-b2-b1-Right" style="">
+                                       <div class="OSBlockWidget" data-block="BasePatterns.CustomText" id="b21-b5-b2-$b2">
+                                        <div class="text-neutral-7 font-size-s" data-container="" style="cursor: pointer;">
+                                         <div class="OSBlockWidget" data-block="ConnectPatterns.IconInline_Internal" id="b21-b5-b2-b2-$b2">
+                                         </div>
+                                         <span data-expression="" style="margin-left: 0px;">
+                                          •••
+                                         </span>
+                                        </div>
+                                       </div>
+                                      </div>
+                                     </div>
+                                    </div>
+                                   </div>
+                                  </div>
+                                 </div>
+                                </div>
+                               </div>
+                              </div>
+                              <div class="columns-item" id="b21-b5-b1-b1-Column2">
+                               <div class="ubt-columns--middle ubt-columns--column" id="b21-b5-b1-Middle" style="">
+                                <div class="OSBlockWidget" data-block="ConnectPatterns.IconText" id="b21-b5-Houses">
+                                 <div data-container="" id="b21-b5-b4-DIV_IconText" style="cursor: pointer;">
+                                  <div class="OSBlockWidget" data-block="BasePatterns.Columns_Two" id="b21-b5-b4-$b1">
+                                   <div class="OSBlockWidget" data-block="Adaptive.Columns2" id="b21-b5-b4-b1-$b1">
+                                    <div class="columns columns2 gutter-xs tablet-break-none phone-break-none ubt-columns ubt-columns--two-columns ubt-columns-reduce-first align-items-center" data-container="">
+                                     <div class="columns-item" id="b21-b5-b4-b1-b1-Column1">
+                                      <div class="ubt-columns--left ubt-columns--column" id="b21-b5-b4-b1-Left" style="">
+                                       <div id="b21-b5-b4-Icon">
+                                        <div class="OSBlockWidget" data-block="ConnectPatterns.Icon" id="b21-b5-$b5">
+                                         <div class="ubt-icon connect-icon-home text-primary icon-non-standard-16" data-container="" style="cursor: pointer;">
+                                         </div>
+                                        </div>
+                                       </div>
+                                      </div>
+                                     </div>
+                                     <div class="columns-item" id="b21-b5-b4-b1-b1-Column2">
+                                      <div class="ubt-columns--right ubt-columns--column" id="b21-b5-b4-b1-Right" style="">
+                                       <div class="OSBlockWidget" data-block="BasePatterns.CustomText" id="b21-b5-b4-$b2">
+                                        <div class="text-neutral-7 font-size-s" data-container="" style="cursor: pointer;">
+                                         <div class="OSBlockWidget" data-block="ConnectPatterns.IconInline_Internal" id="b21-b5-b4-b2-$b2">
+                                         </div>
+                                         <span data-expression="" style="margin-left: 0px;">
+                                          11
+                                         </span>
+                                        </div>
+                                       </div>
+                                      </div>
+                                     </div>
+                                    </div>
+                                   </div>
+                                  </div>
+                                 </div>
+                                </div>
+                               </div>
+                              </div>
+                              <div class="columns-item" id="b21-b5-b1-b1-Column3">
+                               <div class="ubt-columns--right ubt-columns--column" id="b21-b5-b1-Right" style="">
+                                <div class="OSBlockWidget" data-block="BasePatterns.CustomText" id="b21-b5-$b8">
+                                 <div class="text-neutral-7 font-size-s" data-container="" style="cursor: pointer;">
+                                  <div class="OSBlockWidget" data-block="ConnectPatterns.IconInline_Internal" id="b21-b5-b8-$b2">
+                                   <div class="OSBlockWidget" data-block="ConnectPatterns.Icon" id="b21-b5-b8-b2-$b1">
+                                    <div class="ubt-icon connect-icon-house_fill text-orange icon-non-standard-16 padding-right-xs inline-block" data-container="" style="cursor: pointer;">
+                                    </div>
+                                   </div>
+                                  </div>
+                                  <span data-expression="" style="margin-left: 0px;">
+                                   •••
+                                  </span>
+                                 </div>
+                                </div>
+                               </div>
+                              </div>
+                             </div>
+                            </div>
+                           </div>
+                           <div class="OSBlockWidget" data-block="BasePatterns.Columns_Three" id="b21-b5-$b9">
+                            <div class="OSBlockWidget" data-block="Adaptive.Columns3" id="b21-b5-b9-$b1">
+                             <div class="columns columns3 tablet-break-none phone-break-none ubt-columns ubt-columns--three-columns ubt-columns-same-size" data-container="">
+                              <div class="columns-item" id="b21-b5-b9-b1-Column1">
+                               <div class="ubt-columns--left ubt-columns--column" id="b21-b5-b9-Left" style="">
+                                <div class="OSBlockWidget" data-block="ConnectPatterns.IconText" id="b21-b5-Brothers">
+                                 <div data-container="" id="b21-b5-b10-DIV_IconText" style="cursor: pointer;">
+                                  <div class="OSBlockWidget" data-block="BasePatterns.Columns_Two" id="b21-b5-b10-$b1">
+                                   <div class="OSBlockWidget" data-block="Adaptive.Columns2" id="b21-b5-b10-b1-$b1">
+                                    <div class="columns columns2 gutter-xs tablet-break-none phone-break-none ubt-columns ubt-columns--two-columns ubt-columns-reduce-first align-items-center" data-container="">
+                                     <div class="columns-item" id="b21-b5-b10-b1-b1-Column1">
+                                      <div class="ubt-columns--left ubt-columns--column" id="b21-b5-b10-b1-Left" style="">
+                                       <div id="b21-b5-b10-Icon">
+                                        <div class="OSBlockWidget" data-block="ConnectPatterns.Icon" id="b21-b5-$b11">
+                                         <div class="ubt-icon connect-icon-boy text-blue-non-standard-darker icon-non-standard-16" data-container="" style="cursor: pointer;">
+                                         </div>
+                                        </div>
+                                       </div>
+                                      </div>
+                                     </div>
+                                     <div class="columns-item" id="b21-b5-b10-b1-b1-Column2">
+                                      <div class="ubt-columns--right ubt-columns--column" id="b21-b5-b10-b1-Right" style="">
+                                       <div class="OSBlockWidget" data-block="BasePatterns.CustomText" id="b21-b5-b10-$b2">
+                                        <div class="text-neutral-7 font-size-s" data-container="" style="cursor: pointer;">
+                                         <div class="OSBlockWidget" data-block="ConnectPatterns.IconInline_Internal" id="b21-b5-b10-b2-$b2">
+                                         </div>
+                                         <span data-expression="" style="margin-left: 0px;">
+                                          11
+                                         </span>
+                                        </div>
+                                       </div>
+                                      </div>
+                                     </div>
+                                    </div>
+                                   </div>
+                                  </div>
+                                 </div>
+                                </div>
+                               </div>
+                              </div>
+                              <div class="columns-item" id="b21-b5-b9-b1-Column2">
+                               <div class="ubt-columns--middle ubt-columns--column" id="b21-b5-b9-Middle" style="">
+                                <div class="OSBlockWidget" data-block="ConnectPatterns.IconText" id="b21-b5-Sisters">
+                                 <div data-container="" id="b21-b5-b12-DIV_IconText" style="cursor: pointer;">
+                                  <div class="OSBlockWidget" data-block="BasePatterns.Columns_Two" id="b21-b5-b12-$b1">
+                                   <div class="OSBlockWidget" data-block="Adaptive.Columns2" id="b21-b5-b12-b1-$b1">
+                                    <div class="columns columns2 gutter-xs tablet-break-none phone-break-none ubt-columns ubt-columns--two-columns ubt-columns-reduce-first align-items-center" data-container="">
+                                     <div class="columns-item" id="b21-b5-b12-b1-b1-Column1">
+                                      <div class="ubt-columns--left ubt-columns--column" id="b21-b5-b12-b1-Left" style="">
+                                       <div id="b21-b5-b12-Icon">
+                                        <div class="OSBlockWidget" data-block="ConnectPatterns.Icon" id="b21-b5-$b13">
+                                         <div class="ubt-icon connect-icon-girl text-pink-non-standard-darker icon-non-standard-16" data-container="" style="cursor: pointer;">
+                                         </div>
+                                        </div>
+                                       </div>
+                                      </div>
+                                     </div>
+                                     <div class="columns-item" id="b21-b5-b12-b1-b1-Column2">
+                                      <div class="ubt-columns--right ubt-columns--column" id="b21-b5-b12-b1-Right" style="">
+                                       <div class="OSBlockWidget" data-block="BasePatterns.CustomText" id="b21-b5-b12-$b2">
+                                        <div class="text-neutral-7 font-size-s" data-container="" style="cursor: pointer;">
+                                         <div class="OSBlockWidget" data-block="ConnectPatterns.IconInline_Internal" id="b21-b5-b12-b2-$b2">
+                                         </div>
+                                         <span data-expression="" style="margin-left: 0px;">
+                                          11
+                                         </span>
+                                        </div>
+                                       </div>
+                                      </div>
+                                     </div>
+                                    </div>
+                                   </div>
+                                  </div>
+                                 </div>
+                                </div>
+                               </div>
+                              </div>
+                              <div class="columns-item" id="b21-b5-b9-b1-Column3">
+                               <div class="ubt-columns--right ubt-columns--column" id="b21-b5-b9-Right" style="">
+                               </div>
+                              </div>
+                             </div>
+                            </div>
+                           </div>
+                          </div>
+                         </div>
+                        </div>
+                        <div class="columns-item" id="b21-b2-b1-Column3">
+                         <div class="ubt-columns--right ubt-columns--column" id="b21-b2-Right" style="">
+                          <div class="OSBlockWidget" data-block="ConnectPatterns.Icon" id="b21-$b6">
+                           <div class="ubt-icon connect-icon-chevron_right text-neutral-6" data-container="" style="cursor: pointer;">
+                           </div>
+                          </div>
+                         </div>
+                        </div>
+                       </div>
+                      </div>
+                     </div>
+                    </div>
+                   </div>
+                  </div>
+                 </div>
+                 <div data-container="">
+                  <div class="OSBlockWidget" data-block="Directory_Locality.Statistics_TypedItem" id="$b22">
+                   <div class="OSBlockWidget" data-block="BasePatterns.CustomContainer" id="b22-$b1">
+                    <div class="ubt-custom-container background-neutral-0 border-s border-color-neutral-4 border-radius-medium padding-s margin-bottom-s" id="b22-b1-Content" style="cursor: pointer;">
+                     <div class="OSBlockWidget" data-block="BasePatterns.Columns_Three" id="b22-$b2">
+                      <div class="OSBlockWidget" data-block="Adaptive.Columns3" id="b22-b2-$b1">
+                       <div class="columns columns3 gutter-base tablet-break-none phone-break-none ubt-columns ubt-columns--three-columns ubt-columns-expand-middle align-items-center" data-container="">
+                        <div class="columns-item" id="b22-b2-b1-Column1">
+                         <div class="ubt-columns--left ubt-columns--column" id="b22-b2-Left" style="">
+                          <div class="OSBlockWidget" data-block="CW_Image.UBT_LazyImage" id="b22-$b3">
+                           <div class="OSBlockWidget" data-block="ConnectPatterns.SkeletonSection" id="b22-b3-$b1">
+                            <div class="" id="b22-b3-b1-Placeholder_LoadingSection">
+                             <div class="OSBlockWidget" data-block="ConnectPatterns.LazyImage" id="b22-b3-$b2">
+                              <div class="OSBlockWidget" data-block="ConnectPatterns.SkeletonSection" id="b22-b3-b2-$b1">
+                               <div class="" id="b22-b3-b2-b1-Placeholder_LoadingSection">
+                                <div class="OSBlockWidget" data-block="BasePatterns.CustomContainer" id="b22-b3-b2-$b2">
+                                 <div class="ubt-custom-container hidden ubt-lazy-image country-flag ubt-lazy-image-s ubt-lazy-image--width-square border-radius-circle" id="b22-b3-b2-b2-Content" style="cursor: pointer;">
+                                  <img data-image="" data-rendered-size="0x0" id="b22-b3-b2-Image" src="/UBTConnect/CountryDetails"/>
+                                 </div>
+                                </div>
+                                <div class="OSBlockWidget" data-block="BasePatterns.CustomContainer" id="b22-b3-b2-$b3">
+                                 <div class="ubt-custom-container ubt-lazy-image country-flag ubt-lazy-image-s ubt-lazy-image--width-square ubt-lazy-image--no-image ubt-skeleton-section__element background-cyan-lightest border-none border-radius-circle text-cyan-darker font-semi-bold font-size-s padding-base" id="b22-b3-b2-b3-Content" style="cursor: pointer;">
+                                  <div class="OSBlockWidget" data-block="ConnectPatterns.Icon" id="b22-b3-b2-$b5">
+                                   <div class="ubt-icon connect-icon-house_fill text-cyan-darker icon-base" data-container="" style="cursor: pointer;">
+                                   </div>
+                                  </div>
+                                 </div>
+                                </div>
+                               </div>
+                              </div>
+                             </div>
+                            </div>
+                           </div>
+                          </div>
+                         </div>
+                        </div>
+                        <div class="columns-item" id="b22-b2-b1-Column2">
+                         <div class="ubt-columns--middle ubt-columns--column" id="b22-b2-Middle" style="">
+                          <div class="OSBlockWidget" data-block="BasePatterns.CustomText" id="b22-$b4">
+                           <div class="font-semi-bold font-size-s" data-container="" style="cursor: pointer;">
+                            <div class="OSBlockWidget" data-block="ConnectPatterns.IconInline_Internal" id="b22-b4-$b2">
+                            </div>
+                            <span data-expression="" style="margin-left: 0px;">
+                             Loading Name
+                            </span>
+                           </div>
+                          </div>
+                          <div class="OSBlockWidget" data-block="Directory_Locality.Statistics_Icons" id="b22-$b5">
+                           <div class="OSBlockWidget" data-block="BasePatterns.Columns_Three" id="b22-b5-$b1">
+                            <div class="OSBlockWidget" data-block="Adaptive.Columns3" id="b22-b5-b1-$b1">
+                             <div class="columns columns3 tablet-break-none phone-break-none ubt-columns ubt-columns--three-columns ubt-columns-same-size" data-container="">
+                              <div class="columns-item" id="b22-b5-b1-b1-Column1">
+                               <div class="ubt-columns--left ubt-columns--column" id="b22-b5-b1-Left" style="">
+                                <div class="OSBlockWidget" data-block="ConnectPatterns.IconText" id="b22-b5-Members">
+                                 <div data-container="" id="b22-b5-b2-DIV_IconText" style="cursor: pointer;">
+                                  <div class="OSBlockWidget" data-block="BasePatterns.Columns_Two" id="b22-b5-b2-$b1">
+                                   <div class="OSBlockWidget" data-block="Adaptive.Columns2" id="b22-b5-b2-b1-$b1">
+                                    <div class="columns columns2 gutter-xs tablet-break-none phone-break-none ubt-columns ubt-columns--two-columns ubt-columns-reduce-first align-items-center" data-container="">
+                                     <div class="columns-item" id="b22-b5-b2-b1-b1-Column1">
+                                      <div class="ubt-columns--left ubt-columns--column" id="b22-b5-b2-b1-Left" style="">
+                                       <div id="b22-b5-b2-Icon">
+                                        <div class="OSBlockWidget" data-block="ConnectPatterns.Icon" id="b22-b5-$b3">
+                                         <div class="ubt-icon connect-icon-person-fill text-purple icon-non-standard-16" data-container="" style="cursor: pointer;">
+                                         </div>
+                                        </div>
+                                       </div>
+                                      </div>
+                                     </div>
+                                     <div class="columns-item" id="b22-b5-b2-b1-b1-Column2">
+                                      <div class="ubt-columns--right ubt-columns--column" id="b22-b5-b2-b1-Right" style="">
+                                       <div class="OSBlockWidget" data-block="BasePatterns.CustomText" id="b22-b5-b2-$b2">
+                                        <div class="text-neutral-7 font-size-s" data-container="" style="cursor: pointer;">
+                                         <div class="OSBlockWidget" data-block="ConnectPatterns.IconInline_Internal" id="b22-b5-b2-b2-$b2">
+                                         </div>
+                                         <span data-expression="" style="margin-left: 0px;">
+                                          •••
+                                         </span>
+                                        </div>
+                                       </div>
+                                      </div>
+                                     </div>
+                                    </div>
+                                   </div>
+                                  </div>
+                                 </div>
+                                </div>
+                               </div>
+                              </div>
+                              <div class="columns-item" id="b22-b5-b1-b1-Column2">
+                               <div class="ubt-columns--middle ubt-columns--column" id="b22-b5-b1-Middle" style="">
+                                <div class="OSBlockWidget" data-block="ConnectPatterns.IconText" id="b22-b5-Houses">
+                                 <div data-container="" id="b22-b5-b4-DIV_IconText" style="cursor: pointer;">
+                                  <div class="OSBlockWidget" data-block="BasePatterns.Columns_Two" id="b22-b5-b4-$b1">
+                                   <div class="OSBlockWidget" data-block="Adaptive.Columns2" id="b22-b5-b4-b1-$b1">
+                                    <div class="columns columns2 gutter-xs tablet-break-none phone-break-none ubt-columns ubt-columns--two-columns ubt-columns-reduce-first align-items-center" data-container="">
+                                     <div class="columns-item" id="b22-b5-b4-b1-b1-Column1">
+                                      <div class="ubt-columns--left ubt-columns--column" id="b22-b5-b4-b1-Left" style="">
+                                       <div id="b22-b5-b4-Icon">
+                                        <div class="OSBlockWidget" data-block="ConnectPatterns.Icon" id="b22-b5-$b5">
+                                         <div class="ubt-icon connect-icon-home text-primary icon-non-standard-16" data-container="" style="cursor: pointer;">
+                                         </div>
+                                        </div>
+                                       </div>
+                                      </div>
+                                     </div>
+                                     <div class="columns-item" id="b22-b5-b4-b1-b1-Column2">
+                                      <div class="ubt-columns--right ubt-columns--column" id="b22-b5-b4-b1-Right" style="">
+                                       <div class="OSBlockWidget" data-block="BasePatterns.CustomText" id="b22-b5-b4-$b2">
+                                        <div class="text-neutral-7 font-size-s" data-container="" style="cursor: pointer;">
+                                         <div class="OSBlockWidget" data-block="ConnectPatterns.IconInline_Internal" id="b22-b5-b4-b2-$b2">
+                                         </div>
+                                         <span data-expression="" style="margin-left: 0px;">
+                                          11
+                                         </span>
+                                        </div>
+                                       </div>
+                                      </div>
+                                     </div>
+                                    </div>
+                                   </div>
+                                  </div>
+                                 </div>
+                                </div>
+                               </div>
+                              </div>
+                              <div class="columns-item" id="b22-b5-b1-b1-Column3">
+                               <div class="ubt-columns--right ubt-columns--column" id="b22-b5-b1-Right" style="">
+                                <div class="OSBlockWidget" data-block="BasePatterns.CustomText" id="b22-b5-$b8">
+                                 <div class="text-neutral-7 font-size-s" data-container="" style="cursor: pointer;">
+                                  <div class="OSBlockWidget" data-block="ConnectPatterns.IconInline_Internal" id="b22-b5-b8-$b2">
+                                   <div class="OSBlockWidget" data-block="ConnectPatterns.Icon" id="b22-b5-b8-b2-$b1">
+                                    <div class="ubt-icon connect-icon-house_fill text-orange icon-non-standard-16 padding-right-xs inline-block" data-container="" style="cursor: pointer;">
+                                    </div>
+                                   </div>
+                                  </div>
+                                  <span data-expression="" style="margin-left: 0px;">
+                                   •••
+                                  </span>
+                                 </div>
+                                </div>
+                               </div>
+                              </div>
+                             </div>
+                            </div>
+                           </div>
+                           <div class="OSBlockWidget" data-block="BasePatterns.Columns_Three" id="b22-b5-$b9">
+                            <div class="OSBlockWidget" data-block="Adaptive.Columns3" id="b22-b5-b9-$b1">
+                             <div class="columns columns3 tablet-break-none phone-break-none ubt-columns ubt-columns--three-columns ubt-columns-same-size" data-container="">
+                              <div class="columns-item" id="b22-b5-b9-b1-Column1">
+                               <div class="ubt-columns--left ubt-columns--column" id="b22-b5-b9-Left" style="">
+                                <div class="OSBlockWidget" data-block="ConnectPatterns.IconText" id="b22-b5-Brothers">
+                                 <div data-container="" id="b22-b5-b10-DIV_IconText" style="cursor: pointer;">
+                                  <div class="OSBlockWidget" data-block="BasePatterns.Columns_Two" id="b22-b5-b10-$b1">
+                                   <div class="OSBlockWidget" data-block="Adaptive.Columns2" id="b22-b5-b10-b1-$b1">
+                                    <div class="columns columns2 gutter-xs tablet-break-none phone-break-none ubt-columns ubt-columns--two-columns ubt-columns-reduce-first align-items-center" data-container="">
+                                     <div class="columns-item" id="b22-b5-b10-b1-b1-Column1">
+                                      <div class="ubt-columns--left ubt-columns--column" id="b22-b5-b10-b1-Left" style="">
+                                       <div id="b22-b5-b10-Icon">
+                                        <div class="OSBlockWidget" data-block="ConnectPatterns.Icon" id="b22-b5-$b11">
+                                         <div class="ubt-icon connect-icon-boy text-blue-non-standard-darker icon-non-standard-16" data-container="" style="cursor: pointer;">
+                                         </div>
+                                        </div>
+                                       </div>
+                                      </div>
+                                     </div>
+                                     <div class="columns-item" id="b22-b5-b10-b1-b1-Column2">
+                                      <div class="ubt-columns--right ubt-columns--column" id="b22-b5-b10-b1-Right" style="">
+                                       <div class="OSBlockWidget" data-block="BasePatterns.CustomText" id="b22-b5-b10-$b2">
+                                        <div class="text-neutral-7 font-size-s" data-container="" style="cursor: pointer;">
+                                         <div class="OSBlockWidget" data-block="ConnectPatterns.IconInline_Internal" id="b22-b5-b10-b2-$b2">
+                                         </div>
+                                         <span data-expression="" style="margin-left: 0px;">
+                                          11
+                                         </span>
+                                        </div>
+                                       </div>
+                                      </div>
+                                     </div>
+                                    </div>
+                                   </div>
+                                  </div>
+                                 </div>
+                                </div>
+                               </div>
+                              </div>
+                              <div class="columns-item" id="b22-b5-b9-b1-Column2">
+                               <div class="ubt-columns--middle ubt-columns--column" id="b22-b5-b9-Middle" style="">
+                                <div class="OSBlockWidget" data-block="ConnectPatterns.IconText" id="b22-b5-Sisters">
+                                 <div data-container="" id="b22-b5-b12-DIV_IconText" style="cursor: pointer;">
+                                  <div class="OSBlockWidget" data-block="BasePatterns.Columns_Two" id="b22-b5-b12-$b1">
+                                   <div class="OSBlockWidget" data-block="Adaptive.Columns2" id="b22-b5-b12-b1-$b1">
+                                    <div class="columns columns2 gutter-xs tablet-break-none phone-break-none ubt-columns ubt-columns--two-columns ubt-columns-reduce-first align-items-center" data-container="">
+                                     <div class="columns-item" id="b22-b5-b12-b1-b1-Column1">
+                                      <div class="ubt-columns--left ubt-columns--column" id="b22-b5-b12-b1-Left" style="">
+                                       <div id="b22-b5-b12-Icon">
+                                        <div class="OSBlockWidget" data-block="ConnectPatterns.Icon" id="b22-b5-$b13">
+                                         <div class="ubt-icon connect-icon-girl text-pink-non-standard-darker icon-non-standard-16" data-container="" style="cursor: pointer;">
+                                         </div>
+                                        </div>
+                                       </div>
+                                      </div>
+                                     </div>
+                                     <div class="columns-item" id="b22-b5-b12-b1-b1-Column2">
+                                      <div class="ubt-columns--right ubt-columns--column" id="b22-b5-b12-b1-Right" style="">
+                                       <div class="OSBlockWidget" data-block="BasePatterns.CustomText" id="b22-b5-b12-$b2">
+                                        <div class="text-neutral-7 font-size-s" data-container="" style="cursor: pointer;">
+                                         <div class="OSBlockWidget" data-block="ConnectPatterns.IconInline_Internal" id="b22-b5-b12-b2-$b2">
+                                         </div>
+                                         <span data-expression="" style="margin-left: 0px;">
+                                          11
+                                         </span>
+                                        </div>
+                                       </div>
+                                      </div>
+                                     </div>
+                                    </div>
+                                   </div>
+                                  </div>
+                                 </div>
+                                </div>
+                               </div>
+                              </div>
+                              <div class="columns-item" id="b22-b5-b9-b1-Column3">
+                               <div class="ubt-columns--right ubt-columns--column" id="b22-b5-b9-Right" style="">
+                               </div>
+                              </div>
+                             </div>
+                            </div>
+                           </div>
+                          </div>
+                         </div>
+                        </div>
+                        <div class="columns-item" id="b22-b2-b1-Column3">
+                         <div class="ubt-columns--right ubt-columns--column" id="b22-b2-Right" style="">
+                          <div class="OSBlockWidget" data-block="ConnectPatterns.Icon" id="b22-$b6">
+                           <div class="ubt-icon connect-icon-chevron_right text-neutral-6" data-container="" style="cursor: pointer;">
+                           </div>
+                          </div>
+                         </div>
+                        </div>
+                       </div>
+                      </div>
+                     </div>
+                    </div>
+                   </div>
+                  </div>
+                 </div>
+                 <div data-container="">
+                  <div class="OSBlockWidget" data-block="Directory_Locality.Statistics_TypedItem" id="$b23">
+                   <div class="OSBlockWidget" data-block="BasePatterns.CustomContainer" id="b23-$b1">
+                    <div class="ubt-custom-container background-neutral-0 border-s border-color-neutral-4 border-radius-medium padding-s margin-bottom-s" id="b23-b1-Content" style="cursor: pointer;">
+                     <div class="OSBlockWidget" data-block="BasePatterns.Columns_Three" id="b23-$b2">
+                      <div class="OSBlockWidget" data-block="Adaptive.Columns3" id="b23-b2-$b1">
+                       <div class="columns columns3 gutter-base tablet-break-none phone-break-none ubt-columns ubt-columns--three-columns ubt-columns-expand-middle align-items-center" data-container="">
+                        <div class="columns-item" id="b23-b2-b1-Column1">
+                         <div class="ubt-columns--left ubt-columns--column" id="b23-b2-Left" style="">
+                          <div class="OSBlockWidget" data-block="CW_Image.UBT_LazyImage" id="b23-$b3">
+                           <div class="OSBlockWidget" data-block="ConnectPatterns.SkeletonSection" id="b23-b3-$b1">
+                            <div class="" id="b23-b3-b1-Placeholder_LoadingSection">
+                             <div class="OSBlockWidget" data-block="ConnectPatterns.LazyImage" id="b23-b3-$b2">
+                              <div class="OSBlockWidget" data-block="ConnectPatterns.SkeletonSection" id="b23-b3-b2-$b1">
+                               <div class="" id="b23-b3-b2-b1-Placeholder_LoadingSection">
+                                <div class="OSBlockWidget" data-block="BasePatterns.CustomContainer" id="b23-b3-b2-$b2">
+                                 <div class="ubt-custom-container hidden ubt-lazy-image country-flag ubt-lazy-image-s ubt-lazy-image--width-square border-radius-circle" id="b23-b3-b2-b2-Content" style="cursor: pointer;">
+                                  <img data-image="" data-rendered-size="0x0" id="b23-b3-b2-Image" src="/UBTConnect/CountryDetails"/>
+                                 </div>
+                                </div>
+                                <div class="OSBlockWidget" data-block="BasePatterns.CustomContainer" id="b23-b3-b2-$b3">
+                                 <div class="ubt-custom-container ubt-lazy-image country-flag ubt-lazy-image-s ubt-lazy-image--width-square ubt-lazy-image--no-image ubt-skeleton-section__element background-cyan-lightest border-none border-radius-circle text-cyan-darker font-semi-bold font-size-s padding-base" id="b23-b3-b2-b3-Content" style="cursor: pointer;">
+                                  <div class="OSBlockWidget" data-block="ConnectPatterns.Icon" id="b23-b3-b2-$b5">
+                                   <div class="ubt-icon connect-icon-house_fill text-cyan-darker icon-base" data-container="" style="cursor: pointer;">
+                                   </div>
+                                  </div>
+                                 </div>
+                                </div>
+                               </div>
+                              </div>
+                             </div>
+                            </div>
+                           </div>
+                          </div>
+                         </div>
+                        </div>
+                        <div class="columns-item" id="b23-b2-b1-Column2">
+                         <div class="ubt-columns--middle ubt-columns--column" id="b23-b2-Middle" style="">
+                          <div class="OSBlockWidget" data-block="BasePatterns.CustomText" id="b23-$b4">
+                           <div class="font-semi-bold font-size-s" data-container="" style="cursor: pointer;">
+                            <div class="OSBlockWidget" data-block="ConnectPatterns.IconInline_Internal" id="b23-b4-$b2">
+                            </div>
+                            <span data-expression="" style="margin-left: 0px;">
+                             Loading Name
+                            </span>
+                           </div>
+                          </div>
+                          <div class="OSBlockWidget" data-block="Directory_Locality.Statistics_Icons" id="b23-$b5">
+                           <div class="OSBlockWidget" data-block="BasePatterns.Columns_Three" id="b23-b5-$b1">
+                            <div class="OSBlockWidget" data-block="Adaptive.Columns3" id="b23-b5-b1-$b1">
+                             <div class="columns columns3 tablet-break-none phone-break-none ubt-columns ubt-columns--three-columns ubt-columns-same-size" data-container="">
+                              <div class="columns-item" id="b23-b5-b1-b1-Column1">
+                               <div class="ubt-columns--left ubt-columns--column" id="b23-b5-b1-Left" style="">
+                                <div class="OSBlockWidget" data-block="ConnectPatterns.IconText" id="b23-b5-Members">
+                                 <div data-container="" id="b23-b5-b2-DIV_IconText" style="cursor: pointer;">
+                                  <div class="OSBlockWidget" data-block="BasePatterns.Columns_Two" id="b23-b5-b2-$b1">
+                                   <div class="OSBlockWidget" data-block="Adaptive.Columns2" id="b23-b5-b2-b1-$b1">
+                                    <div class="columns columns2 gutter-xs tablet-break-none phone-break-none ubt-columns ubt-columns--two-columns ubt-columns-reduce-first align-items-center" data-container="">
+                                     <div class="columns-item" id="b23-b5-b2-b1-b1-Column1">
+                                      <div class="ubt-columns--left ubt-columns--column" id="b23-b5-b2-b1-Left" style="">
+                                       <div id="b23-b5-b2-Icon">
+                                        <div class="OSBlockWidget" data-block="ConnectPatterns.Icon" id="b23-b5-$b3">
+                                         <div class="ubt-icon connect-icon-person-fill text-purple icon-non-standard-16" data-container="" style="cursor: pointer;">
+                                         </div>
+                                        </div>
+                                       </div>
+                                      </div>
+                                     </div>
+                                     <div class="columns-item" id="b23-b5-b2-b1-b1-Column2">
+                                      <div class="ubt-columns--right ubt-columns--column" id="b23-b5-b2-b1-Right" style="">
+                                       <div class="OSBlockWidget" data-block="BasePatterns.CustomText" id="b23-b5-b2-$b2">
+                                        <div class="text-neutral-7 font-size-s" data-container="" style="cursor: pointer;">
+                                         <div class="OSBlockWidget" data-block="ConnectPatterns.IconInline_Internal" id="b23-b5-b2-b2-$b2">
+                                         </div>
+                                         <span data-expression="" style="margin-left: 0px;">
+                                          •••
+                                         </span>
+                                        </div>
+                                       </div>
+                                      </div>
+                                     </div>
+                                    </div>
+                                   </div>
+                                  </div>
+                                 </div>
+                                </div>
+                               </div>
+                              </div>
+                              <div class="columns-item" id="b23-b5-b1-b1-Column2">
+                               <div class="ubt-columns--middle ubt-columns--column" id="b23-b5-b1-Middle" style="">
+                                <div class="OSBlockWidget" data-block="ConnectPatterns.IconText" id="b23-b5-Houses">
+                                 <div data-container="" id="b23-b5-b4-DIV_IconText" style="cursor: pointer;">
+                                  <div class="OSBlockWidget" data-block="BasePatterns.Columns_Two" id="b23-b5-b4-$b1">
+                                   <div class="OSBlockWidget" data-block="Adaptive.Columns2" id="b23-b5-b4-b1-$b1">
+                                    <div class="columns columns2 gutter-xs tablet-break-none phone-break-none ubt-columns ubt-columns--two-columns ubt-columns-reduce-first align-items-center" data-container="">
+                                     <div class="columns-item" id="b23-b5-b4-b1-b1-Column1">
+                                      <div class="ubt-columns--left ubt-columns--column" id="b23-b5-b4-b1-Left" style="">
+                                       <div id="b23-b5-b4-Icon">
+                                        <div class="OSBlockWidget" data-block="ConnectPatterns.Icon" id="b23-b5-$b5">
+                                         <div class="ubt-icon connect-icon-home text-primary icon-non-standard-16" data-container="" style="cursor: pointer;">
+                                         </div>
+                                        </div>
+                                       </div>
+                                      </div>
+                                     </div>
+                                     <div class="columns-item" id="b23-b5-b4-b1-b1-Column2">
+                                      <div class="ubt-columns--right ubt-columns--column" id="b23-b5-b4-b1-Right" style="">
+                                       <div class="OSBlockWidget" data-block="BasePatterns.CustomText" id="b23-b5-b4-$b2">
+                                        <div class="text-neutral-7 font-size-s" data-container="" style="cursor: pointer;">
+                                         <div class="OSBlockWidget" data-block="ConnectPatterns.IconInline_Internal" id="b23-b5-b4-b2-$b2">
+                                         </div>
+                                         <span data-expression="" style="margin-left: 0px;">
+                                          11
+                                         </span>
+                                        </div>
+                                       </div>
+                                      </div>
+                                     </div>
+                                    </div>
+                                   </div>
+                                  </div>
+                                 </div>
+                                </div>
+                               </div>
+                              </div>
+                              <div class="columns-item" id="b23-b5-b1-b1-Column3">
+                               <div class="ubt-columns--right ubt-columns--column" id="b23-b5-b1-Right" style="">
+                                <div class="OSBlockWidget" data-block="BasePatterns.CustomText" id="b23-b5-$b8">
+                                 <div class="text-neutral-7 font-size-s" data-container="" style="cursor: pointer;">
+                                  <div class="OSBlockWidget" data-block="ConnectPatterns.IconInline_Internal" id="b23-b5-b8-$b2">
+                                   <div class="OSBlockWidget" data-block="ConnectPatterns.Icon" id="b23-b5-b8-b2-$b1">
+                                    <div class="ubt-icon connect-icon-house_fill text-orange icon-non-standard-16 padding-right-xs inline-block" data-container="" style="cursor: pointer;">
+                                    </div>
+                                   </div>
+                                  </div>
+                                  <span data-expression="" style="margin-left: 0px;">
+                                   •••
+                                  </span>
+                                 </div>
+                                </div>
+                               </div>
+                              </div>
+                             </div>
+                            </div>
+                           </div>
+                           <div class="OSBlockWidget" data-block="BasePatterns.Columns_Three" id="b23-b5-$b9">
+                            <div class="OSBlockWidget" data-block="Adaptive.Columns3" id="b23-b5-b9-$b1">
+                             <div class="columns columns3 tablet-break-none phone-break-none ubt-columns ubt-columns--three-columns ubt-columns-same-size" data-container="">
+                              <div class="columns-item" id="b23-b5-b9-b1-Column1">
+                               <div class="ubt-columns--left ubt-columns--column" id="b23-b5-b9-Left" style="">
+                                <div class="OSBlockWidget" data-block="ConnectPatterns.IconText" id="b23-b5-Brothers">
+                                 <div data-container="" id="b23-b5-b10-DIV_IconText" style="cursor: pointer;">
+                                  <div class="OSBlockWidget" data-block="BasePatterns.Columns_Two" id="b23-b5-b10-$b1">
+                                   <div class="OSBlockWidget" data-block="Adaptive.Columns2" id="b23-b5-b10-b1-$b1">
+                                    <div class="columns columns2 gutter-xs tablet-break-none phone-break-none ubt-columns ubt-columns--two-columns ubt-columns-reduce-first align-items-center" data-container="">
+                                     <div class="columns-item" id="b23-b5-b10-b1-b1-Column1">
+                                      <div class="ubt-columns--left ubt-columns--column" id="b23-b5-b10-b1-Left" style="">
+                                       <div id="b23-b5-b10-Icon">
+                                        <div class="OSBlockWidget" data-block="ConnectPatterns.Icon" id="b23-b5-$b11">
+                                         <div class="ubt-icon connect-icon-boy text-blue-non-standard-darker icon-non-standard-16" data-container="" style="cursor: pointer;">
+                                         </div>
+                                        </div>
+                                       </div>
+                                      </div>
+                                     </div>
+                                     <div class="columns-item" id="b23-b5-b10-b1-b1-Column2">
+                                      <div class="ubt-columns--right ubt-columns--column" id="b23-b5-b10-b1-Right" style="">
+                                       <div class="OSBlockWidget" data-block="BasePatterns.CustomText" id="b23-b5-b10-$b2">
+                                        <div class="text-neutral-7 font-size-s" data-container="" style="cursor: pointer;">
+                                         <div class="OSBlockWidget" data-block="ConnectPatterns.IconInline_Internal" id="b23-b5-b10-b2-$b2">
+                                         </div>
+                                         <span data-expression="" style="margin-left: 0px;">
+                                          11
+                                         </span>
+                                        </div>
+                                       </div>
+                                      </div>
+                                     </div>
+                                    </div>
+                                   </div>
+                                  </div>
+                                 </div>
+                                </div>
+                               </div>
+                              </div>
+                              <div class="columns-item" id="b23-b5-b9-b1-Column2">
+                               <div class="ubt-columns--middle ubt-columns--column" id="b23-b5-b9-Middle" style="">
+                                <div class="OSBlockWidget" data-block="ConnectPatterns.IconText" id="b23-b5-Sisters">
+                                 <div data-container="" id="b23-b5-b12-DIV_IconText" style="cursor: pointer;">
+                                  <div class="OSBlockWidget" data-block="BasePatterns.Columns_Two" id="b23-b5-b12-$b1">
+                                   <div class="OSBlockWidget" data-block="Adaptive.Columns2" id="b23-b5-b12-b1-$b1">
+                                    <div class="columns columns2 gutter-xs tablet-break-none phone-break-none ubt-columns ubt-columns--two-columns ubt-columns-reduce-first align-items-center" data-container="">
+                                     <div class="columns-item" id="b23-b5-b12-b1-b1-Column1">
+                                      <div class="ubt-columns--left ubt-columns--column" id="b23-b5-b12-b1-Left" style="">
+                                       <div id="b23-b5-b12-Icon">
+                                        <div class="OSBlockWidget" data-block="ConnectPatterns.Icon" id="b23-b5-$b13">
+                                         <div class="ubt-icon connect-icon-girl text-pink-non-standard-darker icon-non-standard-16" data-container="" style="cursor: pointer;">
+                                         </div>
+                                        </div>
+                                       </div>
+                                      </div>
+                                     </div>
+                                     <div class="columns-item" id="b23-b5-b12-b1-b1-Column2">
+                                      <div class="ubt-columns--right ubt-columns--column" id="b23-b5-b12-b1-Right" style="">
+                                       <div class="OSBlockWidget" data-block="BasePatterns.CustomText" id="b23-b5-b12-$b2">
+                                        <div class="text-neutral-7 font-size-s" data-container="" style="cursor: pointer;">
+                                         <div class="OSBlockWidget" data-block="ConnectPatterns.IconInline_Internal" id="b23-b5-b12-b2-$b2">
+                                         </div>
+                                         <span data-expression="" style="margin-left: 0px;">
+                                          11
+                                         </span>
+                                        </div>
+                                       </div>
+                                      </div>
+                                     </div>
+                                    </div>
+                                   </div>
+                                  </div>
+                                 </div>
+                                </div>
+                               </div>
+                              </div>
+                              <div class="columns-item" id="b23-b5-b9-b1-Column3">
+                               <div class="ubt-columns--right ubt-columns--column" id="b23-b5-b9-Right" style="">
+                               </div>
+                              </div>
+                             </div>
+                            </div>
+                           </div>
+                          </div>
+                         </div>
+                        </div>
+                        <div class="columns-item" id="b23-b2-b1-Column3">
+                         <div class="ubt-columns--right ubt-columns--column" id="b23-b2-Right" style="">
+                          <div class="OSBlockWidget" data-block="ConnectPatterns.Icon" id="b23-$b6">
+                           <div class="ubt-icon connect-icon-chevron_right text-neutral-6" data-container="" style="cursor: pointer;">
+                           </div>
+                          </div>
+                         </div>
+                        </div>
+                       </div>
+                      </div>
+                     </div>
+                    </div>
+                   </div>
+                  </div>
+                 </div>
+                </div>
                </div>
               </div>
              </div>
@@ -782,10 +1507,6 @@ Thank you for your patience and understanding.
        </span>
       </div>
      </div>
-    </div>
-   </div>
-   <div class="dx-bottom-bar-slider dx-bottom-bar-slider-appear" style="--dx-bottom-bar-items: 5; --dx-bottom-bar-active-item: 1; --dx-bottom-bar-transition-duration: undefinedms;">
-    <div>
     </div>
    </div>
   </div>

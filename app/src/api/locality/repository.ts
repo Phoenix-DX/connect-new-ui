@@ -192,7 +192,7 @@ export async function fetchOneSchoolGlobalDetails(
   return toOneSchoolGlobalDetails(
     await callAction(
       'UBTConnect',
-      'OneSchoolGlobalDetails/DataActionGetOneSchoolGlobalDetails',
+      'OneSchoolGlobalDetails_Block/DataActionGetOneSchoolGlobalDetails',
       toOneSchoolGlobalDetailsInputs(inputs),
     ),
   );

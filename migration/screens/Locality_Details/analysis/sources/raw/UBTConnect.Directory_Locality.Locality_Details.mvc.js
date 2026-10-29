@@ -1,4 +1,4 @@
-define("UBTConnect.Directory_Locality.Locality_Details.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect_Utils.controller", "UBTConnect.controller", "UBTConnectLibrary.model", "Connect_Household_CS.model", "APIDomain_Directory_IS.model", "Connect_Geography_CS.model", "UBTConnectLibrary.controller", "UBTConnectLibrary.Layouts.Layout_MainPages.mvc$model", "UBTConnectLibrary.ConnectPatterns.StaticInput.mvc$model", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$model", "UBTConnectLibrary.Layouts.SubHeader_MainPages.mvc$model", "UBTConnectLibrary.BasePatterns.Columns_Two.mvc$model", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$model", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$model", "UBTConnect.Directory_Locality.Locality_DateTimeLabel.mvc$model", "UBTConnectLibrary.ConnectPatterns.HorizontalTagList.mvc$model", "UBTConnect.Directory_Locality.Locality_Households.mvc$model", "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$model", "UBTConnect.Directory_Locality.Locality_Subdivisions.mvc$model", "UBTConnect.Directory_Locality.Locality_Interchange.mvc$model", "UBTConnect.Directory_Locality.Locality_OneSchoolGlobal.mvc$model", "UBTConnectLibrary.ConnectPatterns.ComingSoon.mvc$model", "UBTConnect.App_Common.BottomBarMenu.mvc$model", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$model", "UBTConnect_Utils.controller$GetHasMapsEnabled", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.model$Entities_LocalityMenuOptionsRec", "UBTConnect.controller$GetLocalityMenu", "UBTConnectLibrary.model$TagRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$TagList", "UBTConnect.model$LongIntegerLongIntegerRecord", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnect.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnect.model$HouseholdPreviewStructureRec", "Connect_Household_CS.model$UI_AccountFormRec", "UBTConnect.referencesHealth$Connect_Household_CS", "Connect_Household_CS.model$UI_AccountForm_PersonalInformationRec", "UBTConnect.model$TextTextTextCustom_Address_ItemListRecord", "APIDomain_Directory_IS.model$Custom_Address_ItemRec", "UBTConnect.referencesHealth$APIDomain_Directory_IS", "UBTConnect.model$Custom_Address_ItemList", "Connect_Household_CS.model$UI_AccountForm_ContactInformationRec", "Connect_Household_CS.model$UI_AccountForm_IdentificationInformationRec", "Connect_Geography_CS.model$UI_LocalityTimezoneRec", "UBTConnect.referencesHealth$Connect_Geography_CS", "UBTConnect_Utils.controller$GetHasC1DirectoryView", "UBTConnect.controller$GetSample_FilterTags", "APIDomain_Directory_IS.model$Directory_UserCurrentRec", "UBTConnect.controller$GetUserInformation_Wrapper", "UBTConnectLibrary.controller$StopPropagationHelper_Check", "Connect_Geography_CS.model$UI_LocalityDetails_ForHouseholdRec"], function (OutSystems, UBTConnectModel, UBTConnect_UtilsController, UBTConnectController, UBTConnectLibraryModel, Connect_Household_CSModel, APIDomain_Directory_ISModel, Connect_Geography_CSModel, UBTConnectLibraryController, UBTConnectLibrary_Layouts_Layout_MainPages_mvcModel, UBTConnectLibrary_ConnectPatterns_StaticInput_mvcModel, UBTConnectLibrary_ConnectPatterns_Icon_mvcModel, UBTConnectLibrary_Layouts_SubHeader_MainPages_mvcModel, UBTConnectLibrary_BasePatterns_Columns_Two_mvcModel, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel, UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel, UBTConnect_Directory_Locality_Locality_DateTimeLabel_mvcModel, UBTConnectLibrary_ConnectPatterns_HorizontalTagList_mvcModel, UBTConnect_Directory_Locality_Locality_Households_mvcModel, UBTConnect_Directory_Household_HouseholdDetails_Block_mvcModel, UBTConnect_Directory_Locality_Locality_Subdivisions_mvcModel, UBTConnect_Directory_Locality_Locality_Interchange_mvcModel, UBTConnect_Directory_Locality_Locality_OneSchoolGlobal_mvcModel, UBTConnectLibrary_ConnectPatterns_ComingSoon_mvcModel, UBTConnect_App_Common_BottomBarMenu_mvcModel, UBTConnect_App_Common_CommonUI_InsideLayout_mvcModel) {
+define("UBTConnect.Directory_Locality.Locality_Details.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect_Utils.controller", "UBTConnect.controller", "UBTConnectLibrary.model", "Connect_Household_CS.model", "APIDomain_Directory_IS.model", "UBTConnectLibrary.controller", "Connect_Geography_CS.model", "UBTConnectLibrary.Layouts.Layout_MainPages.mvc$model", "UBTConnectLibrary.ConnectPatterns.StaticInput.mvc$model", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$model", "UBTConnectLibrary.Layouts.SubHeader_MainPages.mvc$model", "UBTConnectLibrary.BasePatterns.Columns_Two.mvc$model", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$model", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$model", "UBTConnect.Directory_Locality.Locality_DateTimeLabel.mvc$model", "UBTConnectLibrary.ConnectPatterns.HorizontalTagList.mvc$model", "UBTConnect.Directory_Locality.Locality_Households.mvc$model", "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$model", "UBTConnect.Directory_Locality.Locality_Subdivisions.mvc$model", "UBTConnect.Directory_Locality.Locality_Interchange.mvc$model", "UBTConnect.Directory_Locality.Locality_OneSchoolGlobal.mvc$model", "UBTConnect.Directory_Locality.Locality_LocalityContacts.mvc$model", "UBTConnectLibrary.ConnectPatterns.ComingSoon_V2.mvc$model", "UBTConnect.App_Common.BottomBarMenu.mvc$model", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$model", "UBTConnect_Utils.controller$GetHasMapsEnabled", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.model$Entities_LocalityMenuOptionsRec", "UBTConnect.controller$GetLocalityMenu", "UBTConnect_Utils.controller$Connect_LaunchDarkly_PermissionCheck", "UBTConnectLibrary.model$TagRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$TagList", "UBTConnect.model$LongIntegerLongIntegerRecord", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnect.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnect.model$HouseholdPreviewStructureRec", "Connect_Household_CS.model$UI_AccountFormRec", "UBTConnect.referencesHealth$Connect_Household_CS", "Connect_Household_CS.model$UI_AccountForm_PersonalInformationRec", "UBTConnect.model$TextTextTextCustom_Address_ItemListRecord", "APIDomain_Directory_IS.model$Custom_Address_ItemRec", "UBTConnect.referencesHealth$APIDomain_Directory_IS", "UBTConnect.model$Custom_Address_ItemList", "Connect_Household_CS.model$UI_AccountForm_ContactInformationRec", "Connect_Household_CS.model$UI_AccountForm_IdentificationInformationRec", "UBTConnect_Utils.controller$GetHasC1DirectoryView", "UBTConnect.controller$GetSample_FilterTags", "APIDomain_Directory_IS.model$Directory_UserCurrentRec", "UBTConnect.controller$GetUserInformation_Wrapper", "UBTConnectLibrary.controller$StopPropagationHelper_Check", "Connect_Geography_CS.model$UI_LocalityDetails_ForHouseholdRec", "UBTConnect.referencesHealth$Connect_Geography_CS"], function (OutSystems, UBTConnectModel, UBTConnect_UtilsController, UBTConnectController, UBTConnectLibraryModel, Connect_Household_CSModel, APIDomain_Directory_ISModel, UBTConnectLibraryController, Connect_Geography_CSModel, UBTConnectLibrary_Layouts_Layout_MainPages_mvcModel, UBTConnectLibrary_ConnectPatterns_StaticInput_mvcModel, UBTConnectLibrary_ConnectPatterns_Icon_mvcModel, UBTConnectLibrary_Layouts_SubHeader_MainPages_mvcModel, UBTConnectLibrary_BasePatterns_Columns_Two_mvcModel, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel, UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel, UBTConnect_Directory_Locality_Locality_DateTimeLabel_mvcModel, UBTConnectLibrary_ConnectPatterns_HorizontalTagList_mvcModel, UBTConnect_Directory_Locality_Locality_Households_mvcModel, UBTConnect_Directory_Household_HouseholdDetails_Block_mvcModel, UBTConnect_Directory_Locality_Locality_Subdivisions_mvcModel, UBTConnect_Directory_Locality_Locality_Interchange_mvcModel, UBTConnect_Directory_Locality_Locality_OneSchoolGlobal_mvcModel, UBTConnect_Directory_Locality_Locality_LocalityContacts_mvcModel, UBTConnectLibrary_ConnectPatterns_ComingSoon_V2_mvcModel, UBTConnect_App_Common_BottomBarMenu_mvcModel, UBTConnect_App_Common_CommonUI_InsideLayout_mvcModel) {
 var OS = OutSystems.Internal;
 
 var Get_LocalityDetailsDataActRec = (function (_super) {
@@ -98,7 +98,7 @@ enumerable: true,
 configurable: true,
 get: function () {
 if((Model._hasValidationWidgetsValue === undefined)) {
-Model._hasValidationWidgetsValue = ((((((((((((((((UBTConnectLibrary_Layouts_Layout_MainPages_mvcModel.hasValidationWidgets || UBTConnectLibrary_ConnectPatterns_StaticInput_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_Icon_mvcModel.hasValidationWidgets) || UBTConnectLibrary_Layouts_SubHeader_MainPages_mvcModel.hasValidationWidgets) || UBTConnectLibrary_BasePatterns_Columns_Two_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel.hasValidationWidgets) || UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel.hasValidationWidgets) || UBTConnect_Directory_Locality_Locality_DateTimeLabel_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_HorizontalTagList_mvcModel.hasValidationWidgets) || UBTConnect_Directory_Locality_Locality_Households_mvcModel.hasValidationWidgets) || UBTConnect_Directory_Household_HouseholdDetails_Block_mvcModel.hasValidationWidgets) || UBTConnect_Directory_Locality_Locality_Subdivisions_mvcModel.hasValidationWidgets) || UBTConnect_Directory_Locality_Locality_Interchange_mvcModel.hasValidationWidgets) || UBTConnect_Directory_Locality_Locality_OneSchoolGlobal_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_ComingSoon_mvcModel.hasValidationWidgets) || UBTConnect_App_Common_BottomBarMenu_mvcModel.hasValidationWidgets) || UBTConnect_App_Common_CommonUI_InsideLayout_mvcModel.hasValidationWidgets);
+Model._hasValidationWidgetsValue = (((((((((((((((((UBTConnectLibrary_Layouts_Layout_MainPages_mvcModel.hasValidationWidgets || UBTConnectLibrary_ConnectPatterns_StaticInput_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_Icon_mvcModel.hasValidationWidgets) || UBTConnectLibrary_Layouts_SubHeader_MainPages_mvcModel.hasValidationWidgets) || UBTConnectLibrary_BasePatterns_Columns_Two_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel.hasValidationWidgets) || UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel.hasValidationWidgets) || UBTConnect_Directory_Locality_Locality_DateTimeLabel_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_HorizontalTagList_mvcModel.hasValidationWidgets) || UBTConnect_Directory_Locality_Locality_Households_mvcModel.hasValidationWidgets) || UBTConnect_Directory_Household_HouseholdDetails_Block_mvcModel.hasValidationWidgets) || UBTConnect_Directory_Locality_Locality_Subdivisions_mvcModel.hasValidationWidgets) || UBTConnect_Directory_Locality_Locality_Interchange_mvcModel.hasValidationWidgets) || UBTConnect_Directory_Locality_Locality_OneSchoolGlobal_mvcModel.hasValidationWidgets) || UBTConnect_Directory_Locality_Locality_LocalityContacts_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_ComingSoon_V2_mvcModel.hasValidationWidgets) || UBTConnect_App_Common_BottomBarMenu_mvcModel.hasValidationWidgets) || UBTConnect_App_Common_CommonUI_InsideLayout_mvcModel.hasValidationWidgets);
 }
 
 return Model._hasValidationWidgetsValue;
@@ -119,7 +119,7 @@ return Model;
 })(OS.Model.BaseViewModel);
 return new OS.Model.ModelFactory(Model, "Directory_Locality.Locality_Details");
 });
-define("UBTConnect.Directory_Locality.Locality_Details.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnect_Utils.controller", "UBTConnectLibrary.model", "Connect_Household_CS.model", "APIDomain_Directory_IS.model", "Connect_Geography_CS.model", "UBTConnectLibrary.controller", "react", "OutSystems/ReactView/Main", "UBTConnect.Directory_Locality.Locality_Details.mvc$model", "UBTConnect.Directory_Locality.Locality_Details.mvc$controller", "UBTConnect.clientVariables", "UBTConnectLibrary.Layouts.Layout_MainPages.mvc$view", "OutSystems/ReactWidgets/Main", "UBTConnectLibrary.ConnectPatterns.StaticInput.mvc$view", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$view", "UBTConnectLibrary.Layouts.SubHeader_MainPages.mvc$view", "UBTConnectLibrary.BasePatterns.Columns_Two.mvc$view", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$view", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$view", "UBTConnect.Directory_Locality.Locality_DateTimeLabel.mvc$view", "UBTConnectLibrary.ConnectPatterns.HorizontalTagList.mvc$view", "UBTConnect.Directory_Locality.Locality_Households.mvc$view", "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$view", "UBTConnect.Directory_Locality.Locality_Subdivisions.mvc$view", "UBTConnect.Directory_Locality.Locality_Interchange.mvc$view", "UBTConnect.Directory_Locality.Locality_OneSchoolGlobal.mvc$view", "UBTConnectLibrary.ConnectPatterns.ComingSoon.mvc$view", "UBTConnect.App_Common.BottomBarMenu.mvc$view", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$view", "UBTConnect_Utils.controller$GetHasMapsEnabled", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.model$Entities_LocalityMenuOptionsRec", "UBTConnect.controller$GetLocalityMenu", "UBTConnectLibrary.model$TagRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$TagList", "UBTConnect.model$LongIntegerLongIntegerRecord", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnect.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnect.model$HouseholdPreviewStructureRec", "Connect_Household_CS.model$UI_AccountFormRec", "UBTConnect.referencesHealth$Connect_Household_CS", "Connect_Household_CS.model$UI_AccountForm_PersonalInformationRec", "UBTConnect.model$TextTextTextCustom_Address_ItemListRecord", "APIDomain_Directory_IS.model$Custom_Address_ItemRec", "UBTConnect.referencesHealth$APIDomain_Directory_IS", "UBTConnect.model$Custom_Address_ItemList", "Connect_Household_CS.model$UI_AccountForm_ContactInformationRec", "Connect_Household_CS.model$UI_AccountForm_IdentificationInformationRec", "Connect_Geography_CS.model$UI_LocalityTimezoneRec", "UBTConnect.referencesHealth$Connect_Geography_CS", "UBTConnect_Utils.controller$GetHasC1DirectoryView", "UBTConnect.controller$GetSample_FilterTags", "APIDomain_Directory_IS.model$Directory_UserCurrentRec", "UBTConnect.controller$GetUserInformation_Wrapper", "UBTConnectLibrary.controller$StopPropagationHelper_Check", "Connect_Geography_CS.model$UI_LocalityDetails_ForHouseholdRec"], function (OutSystems, UBTConnectModel, UBTConnectController, UBTConnect_UtilsController, UBTConnectLibraryModel, Connect_Household_CSModel, APIDomain_Directory_ISModel, Connect_Geography_CSModel, UBTConnectLibraryController, React, OSView, UBTConnect_Directory_Locality_Locality_Details_mvc_model, UBTConnect_Directory_Locality_Locality_Details_mvc_controller, UBTConnectClientVariables, UBTConnectLibrary_Layouts_Layout_MainPages_mvc_view, OSWidgets, UBTConnectLibrary_ConnectPatterns_StaticInput_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnectLibrary_Layouts_SubHeader_MainPages_mvc_view, UBTConnectLibrary_BasePatterns_Columns_Two_mvc_view, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnect_Directory_Locality_Locality_DateTimeLabel_mvc_view, UBTConnectLibrary_ConnectPatterns_HorizontalTagList_mvc_view, UBTConnect_Directory_Locality_Locality_Households_mvc_view, UBTConnect_Directory_Household_HouseholdDetails_Block_mvc_view, UBTConnect_Directory_Locality_Locality_Subdivisions_mvc_view, UBTConnect_Directory_Locality_Locality_Interchange_mvc_view, UBTConnect_Directory_Locality_Locality_OneSchoolGlobal_mvc_view, UBTConnectLibrary_ConnectPatterns_ComingSoon_mvc_view, UBTConnect_App_Common_BottomBarMenu_mvc_view, UBTConnect_App_Common_CommonUI_InsideLayout_mvc_view) {
+define("UBTConnect.Directory_Locality.Locality_Details.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnect_Utils.controller", "UBTConnectLibrary.model", "Connect_Household_CS.model", "APIDomain_Directory_IS.model", "UBTConnectLibrary.controller", "Connect_Geography_CS.model", "react", "OutSystems/ReactView/Main", "UBTConnect.Directory_Locality.Locality_Details.mvc$model", "UBTConnect.Directory_Locality.Locality_Details.mvc$controller", "UBTConnect.clientVariables", "UBTConnectLibrary.Layouts.Layout_MainPages.mvc$view", "OutSystems/ReactWidgets/Main", "UBTConnectLibrary.ConnectPatterns.StaticInput.mvc$view", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$view", "UBTConnectLibrary.Layouts.SubHeader_MainPages.mvc$view", "UBTConnectLibrary.BasePatterns.Columns_Two.mvc$view", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$view", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$view", "UBTConnect.Directory_Locality.Locality_DateTimeLabel.mvc$view", "UBTConnectLibrary.ConnectPatterns.HorizontalTagList.mvc$view", "UBTConnect.Directory_Locality.Locality_Households.mvc$view", "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$view", "UBTConnect.Directory_Locality.Locality_Subdivisions.mvc$view", "UBTConnect.Directory_Locality.Locality_Interchange.mvc$view", "UBTConnect.Directory_Locality.Locality_OneSchoolGlobal.mvc$view", "UBTConnect.Directory_Locality.Locality_LocalityContacts.mvc$view", "UBTConnectLibrary.ConnectPatterns.ComingSoon_V2.mvc$view", "UBTConnect.App_Common.BottomBarMenu.mvc$view", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$view", "UBTConnect_Utils.controller$GetHasMapsEnabled", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.model$Entities_LocalityMenuOptionsRec", "UBTConnect.controller$GetLocalityMenu", "UBTConnect_Utils.controller$Connect_LaunchDarkly_PermissionCheck", "UBTConnectLibrary.model$TagRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$TagList", "UBTConnect.model$LongIntegerLongIntegerRecord", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnect.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnect.model$HouseholdPreviewStructureRec", "Connect_Household_CS.model$UI_AccountFormRec", "UBTConnect.referencesHealth$Connect_Household_CS", "Connect_Household_CS.model$UI_AccountForm_PersonalInformationRec", "UBTConnect.model$TextTextTextCustom_Address_ItemListRecord", "APIDomain_Directory_IS.model$Custom_Address_ItemRec", "UBTConnect.referencesHealth$APIDomain_Directory_IS", "UBTConnect.model$Custom_Address_ItemList", "Connect_Household_CS.model$UI_AccountForm_ContactInformationRec", "Connect_Household_CS.model$UI_AccountForm_IdentificationInformationRec", "UBTConnect_Utils.controller$GetHasC1DirectoryView", "UBTConnect.controller$GetSample_FilterTags", "APIDomain_Directory_IS.model$Directory_UserCurrentRec", "UBTConnect.controller$GetUserInformation_Wrapper", "UBTConnectLibrary.controller$StopPropagationHelper_Check", "Connect_Geography_CS.model$UI_LocalityDetails_ForHouseholdRec", "UBTConnect.referencesHealth$Connect_Geography_CS"], function (OutSystems, UBTConnectModel, UBTConnectController, UBTConnect_UtilsController, UBTConnectLibraryModel, Connect_Household_CSModel, APIDomain_Directory_ISModel, UBTConnectLibraryController, Connect_Geography_CSModel, React, OSView, UBTConnect_Directory_Locality_Locality_Details_mvc_model, UBTConnect_Directory_Locality_Locality_Details_mvc_controller, UBTConnectClientVariables, UBTConnectLibrary_Layouts_Layout_MainPages_mvc_view, OSWidgets, UBTConnectLibrary_ConnectPatterns_StaticInput_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnectLibrary_Layouts_SubHeader_MainPages_mvc_view, UBTConnectLibrary_BasePatterns_Columns_Two_mvc_view, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnect_Directory_Locality_Locality_DateTimeLabel_mvc_view, UBTConnectLibrary_ConnectPatterns_HorizontalTagList_mvc_view, UBTConnect_Directory_Locality_Locality_Households_mvc_view, UBTConnect_Directory_Household_HouseholdDetails_Block_mvc_view, UBTConnect_Directory_Locality_Locality_Subdivisions_mvc_view, UBTConnect_Directory_Locality_Locality_Interchange_mvc_view, UBTConnect_Directory_Locality_Locality_OneSchoolGlobal_mvc_view, UBTConnect_Directory_Locality_Locality_LocalityContacts_mvc_view, UBTConnectLibrary_ConnectPatterns_ComingSoon_V2_mvc_view, UBTConnect_App_Common_BottomBarMenu_mvc_view, UBTConnect_App_Common_CommonUI_InsideLayout_mvc_view) {
     var OS = OutSystems.Internal;
 var PlaceholderContent = OSView.Widget.PlaceholderContent;
 var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
@@ -151,7 +151,7 @@ var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
             return [];
         };
         View.getBlocks = function() {
-            return [UBTConnectLibrary_Layouts_Layout_MainPages_mvc_view, UBTConnectLibrary_ConnectPatterns_StaticInput_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnectLibrary_Layouts_SubHeader_MainPages_mvc_view, UBTConnectLibrary_BasePatterns_Columns_Two_mvc_view, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnect_Directory_Locality_Locality_DateTimeLabel_mvc_view, UBTConnectLibrary_ConnectPatterns_HorizontalTagList_mvc_view, UBTConnect_Directory_Locality_Locality_Households_mvc_view, UBTConnect_Directory_Household_HouseholdDetails_Block_mvc_view, UBTConnect_Directory_Locality_Locality_Subdivisions_mvc_view, UBTConnect_Directory_Locality_Locality_Interchange_mvc_view, UBTConnect_Directory_Locality_Locality_OneSchoolGlobal_mvc_view, UBTConnectLibrary_ConnectPatterns_ComingSoon_mvc_view, UBTConnect_App_Common_BottomBarMenu_mvc_view, UBTConnect_App_Common_CommonUI_InsideLayout_mvc_view];
+            return [UBTConnectLibrary_Layouts_Layout_MainPages_mvc_view, UBTConnectLibrary_ConnectPatterns_StaticInput_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnectLibrary_Layouts_SubHeader_MainPages_mvc_view, UBTConnectLibrary_BasePatterns_Columns_Two_mvc_view, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnect_Directory_Locality_Locality_DateTimeLabel_mvc_view, UBTConnectLibrary_ConnectPatterns_HorizontalTagList_mvc_view, UBTConnect_Directory_Locality_Locality_Households_mvc_view, UBTConnect_Directory_Household_HouseholdDetails_Block_mvc_view, UBTConnect_Directory_Locality_Locality_Subdivisions_mvc_view, UBTConnect_Directory_Locality_Locality_Interchange_mvc_view, UBTConnect_Directory_Locality_Locality_OneSchoolGlobal_mvc_view, UBTConnect_Directory_Locality_Locality_LocalityContacts_mvc_view, UBTConnectLibrary_ConnectPatterns_ComingSoon_V2_mvc_view, UBTConnect_App_Common_BottomBarMenu_mvc_view, UBTConnect_App_Common_CommonUI_InsideLayout_mvc_view];
         };
         Object.defineProperty(View.prototype, "modelFactory", {
             get: function () {
@@ -930,8 +930,6 @@ return UBTConnectController.default.getLocalityMenu$Action(callContext).locality
 }, OS.DataTypes.DataTypes.Record, callContext.id).oneSchoolGlobalAttr), false, this, function () {
 return [React.createElement(UBTConnect_Directory_Locality_Locality_OneSchoolGlobal_mvc_view, {
 inputs: {
-In_LocalityTimezoneData: model.variables.get_LocalityDetailsDataAct.localityDetailsOut.uI_LocalityTimezoneAttr,
-_in_LocalityTimezoneDataInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_LocalityDetailsDataAct.dataFetchStatusAttr),
 In_LocalityId: model.variables.localityIdIn
 },
 events: {
@@ -983,8 +981,48 @@ return [];
 }), $if((model.variables.tagsList_SelectedTagVar === OutSystemsDebugger.handleFunctionCall(function () {
 return UBTConnectController.default.getLocalityMenu$Action(callContext).localityMenuOptionsOut;
 }, OS.DataTypes.DataTypes.Record, callContext.id).localityContactsAttr), false, this, function () {
-return [$if(true, false, this, function () {
-return [React.createElement(UBTConnectLibrary_ConnectPatterns_ComingSoon_mvc_view, {
+return [$if(OutSystemsDebugger.handleFunctionCall(function () {
+return UBTConnect_UtilsController.default.connect_LaunchDarkly_PermissionCheck$Action(UBTConnectModel.staticEntities.launchDarkly_FF.mobileDirectoryLocalityContacts, callContext).hasAccessOut;
+}, OS.DataTypes.DataTypes.Boolean, callContext.id), false, this, function () {
+return [React.createElement(OSWidgets.Container, {
+align: /*Default*/ 0,
+animate: false,
+visible: false,
+_idProps: {
+service: idService,
+name: "Hidden"
+},
+_widgetRecordProvider: widgetsRecordProvider
+}, React.createElement(UBTConnect_Directory_Locality_Locality_LocalityContacts_mvc_view, {
+inputs: {
+In_LocalityId: model.variables.localityIdIn
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+uuid: "29",
+alias: "22"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+_dependencies: []
+})), React.createElement(OSWidgets.Container, {
+align: /*Default*/ 0,
+animate: false,
+style: "margin-top-s  margin-x-base",
+visible: true,
+_idProps: {
+service: idService,
+uuid: "30"
+},
+_widgetRecordProvider: widgetsRecordProvider
+}, React.createElement(UBTConnectLibrary_ConnectPatterns_ComingSoon_V2_mvc_view, {
 inputs: {},
 events: {
 _handleError: function (ex) {
@@ -996,14 +1034,41 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "28",
-alias: "22"
+uuid: "31",
+alias: "23"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
-})];
+}))];
 }, function () {
-return [];
+return [React.createElement(OSWidgets.Container, {
+align: /*Default*/ 0,
+animate: false,
+style: "margin-top-s  margin-x-base",
+visible: true,
+_idProps: {
+service: idService,
+uuid: "32"
+},
+_widgetRecordProvider: widgetsRecordProvider
+}, React.createElement(UBTConnectLibrary_ConnectPatterns_ComingSoon_V2_mvc_view, {
+inputs: {},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+uuid: "33",
+alias: "24"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+_dependencies: []
+}))];
 })];
 }, function () {
 return [];
@@ -1024,8 +1089,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "29",
-alias: "23"
+uuid: "34",
+alias: "25"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
@@ -1044,15 +1109,15 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "30",
-alias: "24"
+uuid: "35",
+alias: "26"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
 })];
 })
 },
-_dependencies: [asPrimitiveValue(model.variables.tagsList_SelectedTagVar), asPrimitiveValue(model.variables.tagsListVar), asPrimitiveValue(model.variables.isScreenInitializedVar), asPrimitiveValue(model.variables.get_LocalityDetailsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_LocalityDetailsDataAct.hasFetchErrorAttr), asPrimitiveValue(model.variables.get_LocalityDetailsDataAct.localityDetailsOut.bretherenCountAttr), asPrimitiveValue(model.variables.get_LocalityDetailsDataAct.localityDetailsOut.householdCountAttr), asPrimitiveValue(model.variables.get_LocalityDetailsDataAct.localityDetailsOut.uI_LocalityTimezoneAttr), asPrimitiveValue(model.variables.get_LocalityDetailsDataAct.isDataFetchedAttr), asPrimitiveValue(model.variables.localityLabelVar), asPrimitiveValue(model.variables.logged_UserVar.householdIdAttr), asPrimitiveValue(model.variables.logged_UserVar.localityIdAttr), asPrimitiveValue(model.variables.localityIdIn), asPrimitiveValue(model.variables.headerIsScrolledVar)]
+_dependencies: [asPrimitiveValue(model.variables.tagsList_SelectedTagVar), asPrimitiveValue(model.variables.tagsListVar), asPrimitiveValue(model.variables.isScreenInitializedVar), asPrimitiveValue(model.variables.get_LocalityDetailsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_LocalityDetailsDataAct.hasFetchErrorAttr), asPrimitiveValue(model.variables.get_LocalityDetailsDataAct.localityDetailsOut.bretherenCountAttr), asPrimitiveValue(model.variables.get_LocalityDetailsDataAct.localityDetailsOut.householdCountAttr), asPrimitiveValue(model.variables.get_LocalityDetailsDataAct.localityDetailsOut.uI_LocalityTimezoneAttr.timezoneOffsetAttr), asPrimitiveValue(model.variables.get_LocalityDetailsDataAct.localityDetailsOut.uI_LocalityTimezoneAttr.timezoneNameAttr), asPrimitiveValue(model.variables.get_LocalityDetailsDataAct.isDataFetchedAttr), asPrimitiveValue(model.variables.localityLabelVar), asPrimitiveValue(model.variables.logged_UserVar.householdIdAttr), asPrimitiveValue(model.variables.logged_UserVar.localityIdAttr), asPrimitiveValue(model.variables.localityIdIn), asPrimitiveValue(model.variables.headerIsScrolledVar)]
 }));
         };
         return View;
@@ -1060,7 +1125,7 @@ _dependencies: [asPrimitiveValue(model.variables.tagsList_SelectedTagVar), asPri
 	
     return View;
 });
-define("UBTConnect.Directory_Locality.Locality_Details.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnect_Utils.controller", "UBTConnectLibrary.model", "Connect_Household_CS.model", "APIDomain_Directory_IS.model", "Connect_Geography_CS.model", "UBTConnectLibrary.controller", "UBTConnect.languageResources", "UBTConnect.clientVariables", "UBTConnect.Directory_Locality.Locality_Details.mvc$debugger", "UBTConnect.Directory_Locality.controller", "UBTConnect.Directory_Locality.Locality_Details.mvc$controller.Handler_HorizontalTagListChanged.ScrollTopJS", "UBTConnect_Utils.controller$GetHasMapsEnabled", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.model$Entities_LocalityMenuOptionsRec", "UBTConnect.controller$GetLocalityMenu", "UBTConnectLibrary.model$TagRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$TagList", "UBTConnect.model$LongIntegerLongIntegerRecord", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnect.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnect.model$HouseholdPreviewStructureRec", "Connect_Household_CS.model$UI_AccountFormRec", "UBTConnect.referencesHealth$Connect_Household_CS", "Connect_Household_CS.model$UI_AccountForm_PersonalInformationRec", "UBTConnect.model$TextTextTextCustom_Address_ItemListRecord", "APIDomain_Directory_IS.model$Custom_Address_ItemRec", "UBTConnect.referencesHealth$APIDomain_Directory_IS", "UBTConnect.model$Custom_Address_ItemList", "Connect_Household_CS.model$UI_AccountForm_ContactInformationRec", "Connect_Household_CS.model$UI_AccountForm_IdentificationInformationRec", "Connect_Geography_CS.model$UI_LocalityTimezoneRec", "UBTConnect.referencesHealth$Connect_Geography_CS", "UBTConnect_Utils.controller$GetHasC1DirectoryView", "UBTConnect.controller$GetSample_FilterTags", "APIDomain_Directory_IS.model$Directory_UserCurrentRec", "UBTConnect.controller$GetUserInformation_Wrapper", "UBTConnectLibrary.controller$StopPropagationHelper_Check", "Connect_Geography_CS.model$UI_LocalityDetails_ForHouseholdRec"], function (OutSystems, UBTConnectModel, UBTConnectController, UBTConnect_UtilsController, UBTConnectLibraryModel, Connect_Household_CSModel, APIDomain_Directory_ISModel, Connect_Geography_CSModel, UBTConnectLibraryController, UBTConnectLanguageResources, UBTConnectClientVariables, UBTConnect_Directory_Locality_Locality_Details_mvc_Debugger, _flow_UBTConnect_Directory_LocalityController, UBTConnect_Directory_Locality_Locality_Details_mvc_controller_Handler_HorizontalTagListChanged_ScrollTopJS) {
+define("UBTConnect.Directory_Locality.Locality_Details.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnect_Utils.controller", "UBTConnectLibrary.model", "Connect_Household_CS.model", "APIDomain_Directory_IS.model", "UBTConnectLibrary.controller", "Connect_Geography_CS.model", "UBTConnect.languageResources", "UBTConnect.clientVariables", "UBTConnect.Directory_Locality.Locality_Details.mvc$debugger", "UBTConnect.Directory_Locality.controller", "UBTConnect.Directory_Locality.Locality_Details.mvc$controller.Handler_HorizontalTagListChanged.ScrollTopJS", "UBTConnect_Utils.controller$GetHasMapsEnabled", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.model$Entities_LocalityMenuOptionsRec", "UBTConnect.controller$GetLocalityMenu", "UBTConnect_Utils.controller$Connect_LaunchDarkly_PermissionCheck", "UBTConnectLibrary.model$TagRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$TagList", "UBTConnect.model$LongIntegerLongIntegerRecord", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnect.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnect.model$HouseholdPreviewStructureRec", "Connect_Household_CS.model$UI_AccountFormRec", "UBTConnect.referencesHealth$Connect_Household_CS", "Connect_Household_CS.model$UI_AccountForm_PersonalInformationRec", "UBTConnect.model$TextTextTextCustom_Address_ItemListRecord", "APIDomain_Directory_IS.model$Custom_Address_ItemRec", "UBTConnect.referencesHealth$APIDomain_Directory_IS", "UBTConnect.model$Custom_Address_ItemList", "Connect_Household_CS.model$UI_AccountForm_ContactInformationRec", "Connect_Household_CS.model$UI_AccountForm_IdentificationInformationRec", "UBTConnect_Utils.controller$GetHasC1DirectoryView", "UBTConnect.controller$GetSample_FilterTags", "APIDomain_Directory_IS.model$Directory_UserCurrentRec", "UBTConnect.controller$GetUserInformation_Wrapper", "UBTConnectLibrary.controller$StopPropagationHelper_Check", "Connect_Geography_CS.model$UI_LocalityDetails_ForHouseholdRec", "UBTConnect.referencesHealth$Connect_Geography_CS"], function (OutSystems, UBTConnectModel, UBTConnectController, UBTConnect_UtilsController, UBTConnectLibraryModel, Connect_Household_CSModel, APIDomain_Directory_ISModel, UBTConnectLibraryController, Connect_Geography_CSModel, UBTConnectLanguageResources, UBTConnectClientVariables, UBTConnect_Directory_Locality_Locality_Details_mvc_Debugger, _flow_UBTConnect_Directory_LocalityController, UBTConnect_Directory_Locality_Locality_Details_mvc_controller_Handler_HorizontalTagListChanged_ScrollTopJS) {
 var OS = OutSystems.Internal;
 var Controller = (function (_super) {
 __extends(Controller, _super);
@@ -1536,7 +1601,7 @@ var stopPropagationHelper_CheckVar = new OS.DataTypes.VariableHolder();
 varBag.callContext = callContext;
 varBag.vars = vars;
 varBag.stopPropagationHelper_CheckVar = stopPropagationHelper_CheckVar;
-try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:q6oedff0Ik2xZOLWZzcfig:/NRWebFlows.BmZ1TBE6pkiXu8fkupJ8UQ/NodesShownInESpaceTree.HPErImJ3LEuq_Vcb4UR+hw/ClientActions.q6oedff0Ik2xZOLWZzcfig:FoGKqImoQZZXL6gctH6VKQ", "UBTConnect", "Handler_NavigateTo_OneschoolGlobalDetails", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:q6oedff0Ik2xZOLWZzcfig:/NRWebFlows.BmZ1TBE6pkiXu8fkupJ8UQ/NodesShownInESpaceTree.HPErImJ3LEuq_Vcb4UR+hw/ClientActions.q6oedff0Ik2xZOLWZzcfig:PDsqQsIG1twknBx30+ZUHA", "UBTConnect", "Handler_NavigateTo_OneschoolGlobalDetails", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:XbYV2uBT2E2iwK_Ae+6_yQ", callContext.id);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Guuyu2nrv0yxGXsSCIHr0g", callContext.id);
 // Execute Action: StopPropagationHelper_Check
@@ -1709,7 +1774,7 @@ return controller.safeExecuteClientAction(controller._handler_NavigateTo_Househo
 Controller.prototype.pushDebuggerContext = function (callContext) {
 var varBag = {};
 OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:BmZ1TBE6pkiXu8fkupJ8UQ:/NRWebFlows.BmZ1TBE6pkiXu8fkupJ8UQ:FwAkjRuoCVCfL_Y3sNenPQ", "UBTConnect", "Directory_Locality", "NRFlows.WebFlow", callContext.id, varBag);
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:HPErImJ3LEuq_Vcb4UR+hw:/NRWebFlows.BmZ1TBE6pkiXu8fkupJ8UQ/NodesShownInESpaceTree.HPErImJ3LEuq_Vcb4UR+hw:fBa9pCEFFgtTvc9A_koCEw", "UBTConnect", "Locality_Details", "NRNodes.WebScreen", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:HPErImJ3LEuq_Vcb4UR+hw:/NRWebFlows.BmZ1TBE6pkiXu8fkupJ8UQ/NodesShownInESpaceTree.HPErImJ3LEuq_Vcb4UR+hw:Y+zbJK_1w9OtXGBPBvnRXA", "UBTConnect", "Locality_Details", "NRNodes.WebScreen", callContext.id, varBag);
 };
 Controller.prototype.popDebuggerContext = function (callContext) {
 OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:HPErImJ3LEuq_Vcb4UR+hw", callContext.id);
@@ -2115,10 +2180,10 @@ return model.widgets.get(idService.getId("ShowLocalityContacts"));
 })(varBag.model, idService);
 }
 },
-"Zcmgv_qC6UeFB0Ck6FFfjA": {
+"qr90faxORk2tEZ7v5YQY_g": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
-return model.widgets.get(idService.getId("ComingSoon"));
+return model.widgets.get(idService.getId("Hidden"));
 })(varBag.model, idService);
 }
 },

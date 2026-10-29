@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
+  containsIgnoreCase,
   openInApp_TryOpenFileInApp,
   getOperatingSystem,
   openInApp_OpenApp,
@@ -81,5 +82,12 @@ describe('OpenInApp_TryOpenFileInApp, web branch (CR-MilestoneDetail-3)', () => 
 
   it('an empty file name makes the Get_FileExtension JS node throw, as the original', () => {
     expect(() => openInApp_TryOpenFileInApp('', 'https://example.com/x', 'f', 'pdf')).toThrow(TypeError);
+  });
+});
+
+describe('containsIgnoreCase (Orbit admin OnHandle_ScanCode: EB:1150, SB :1420)', () => {
+  it('finds the text in any case', () => {
+    expect(containsIgnoreCase('failed to DESERIALIZE json to X', 'Failed to deserialize JSON')).toBe(true);
+    expect(containsIgnoreCase('Member not found', 'Failed to deserialize JSON')).toBe(false);
   });
 });

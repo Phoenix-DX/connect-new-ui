@@ -15,7 +15,8 @@ export interface StaticInputProps {
   onClickInput?: () => void;
 }
 
-/** A search box look-alike that only raises Click_Input (the caller opens the real search). */
+/** A search box look-alike that only raises Click_Input (the caller opens the real search). Container style of the
+    live TST block (StaticInput.mvc.js :173, extracted 2026-10-29; Bookmarks Q4 (a)). */
 export function StaticInput({
   id,
   inPrompt = 'Search for households. entities, news',
@@ -25,7 +26,7 @@ export function StaticInput({
   return (
     <OSBlock name="ConnectPatterns.StaticInput" id={id}>
       <div
-        className={`ubt-static-input ${inExtendedClasses}`}
+        className={`search-placeholder-ellipsis ubt-static-input ${inExtendedClasses}`}
         data-container=""
         style={{ cursor: 'pointer' }}
         onClick={onClickInput}

@@ -137,6 +137,14 @@ input goes to `pages/<Route>/inputs.ts`, not to `api.ts`. A `types.ts` that hold
     `meta: { errorFlow: 'caller' }` on the query, or the message shows twice.
   - Tests render with `testQueryClient()` (`platform/navigation/testRouter.tsx`; `renderRoutes` uses it), which has the
     subscription. A test with `new QueryClient()` sees no message.
+- A render error goes to the boundary of the screen. `app/router.tsx` wraps each screen route in one
+  `RenderErrorBoundary` (`platform/feedback/RenderErrorBoundary.tsx`; item 9 D1, `item9-solution.md` §2.3). The
+  screen becomes empty, and the flow handler shows the toast, as on TST (P1 to P3).
+  - Do not add an error boundary to a page, a container or a component.
+  - `RenderErrorBoundary` is opt-in for a sub-tree that TST empties alone (one list item, P1). Ask the user first
+    (item 9 open point 1 (c)).
+  - Do not catch a render error to show a message. A render loop and an error outside the screens open the error page
+    (`showErrorPage`, D2).
 
 ## Container criterion
 

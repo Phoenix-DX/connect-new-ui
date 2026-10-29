@@ -217,7 +217,7 @@ export function MilestoneCard({
       </Info>,
     );
   }
-  // The Admin* identifiers are undefined on TST (see OrbitMilestoneType), so this branch never renders there.
+  // The Admin* identifiers are in the live TST moduleinfo (see OrbitMilestoneType), so this branch renders for them.
   const adminTypeIds: readonly (string | undefined)[] = [
     T.AdminMeeting,
     T.AdminMeal,

@@ -9,6 +9,8 @@ export interface NotificationsListBreakpointsProps {
   breakpoints: NotificationBreakpoint[];
   isLoading?: boolean;
   uiNotificationItemList: NotificationItem[];
+  /** Event NotificationDetail(MessageInstanceId, IsRead) of NotificationsList (NotificationsListBreakpoints.mvc.js:238). */
+  onNotificationDetail?: (messageInstanceId: string, isRead: boolean) => void;
 }
 
 /** UBTConnect.App_Notifications.NotificationsListBreakpoints (p:…NotificationsListBreakpoints.mvc.js view): one row per
@@ -18,6 +20,7 @@ export function NotificationsListBreakpoints({
   breakpoints,
   isLoading = false,
   uiNotificationItemList,
+  onNotificationDetail,
 }: NotificationsListBreakpointsProps) {
   const p = (id ?? '$b14').replace('$', '');
   return (
@@ -38,6 +41,7 @@ export function NotificationsListBreakpoints({
                 inNotificationItemList={uiNotificationItemList}
                 isLoading={isLoading}
                 currentBreakpoint={b}
+                onNotificationDetail={onNotificationDetail}
               />
             </div>
           );

@@ -108,8 +108,8 @@ describe('OrbitAdminLanding page', () => {
       In_EventEndDate: new Date(first.EndEventDate).toISOString(),
       In_EventTypeFriendly: first.TypeFriendly,
     });
-    // TST makes no server call on a card click (Legacy_OrbitAdminFlow Q1).
-    expect(count(SCAN_FF)).toBe(0);
+    // The card click calls GetMilestoneScanFF (TST publish of 2026-10-27): false, as the live TST value.
+    expect(count(SCAN_FF)).toBe(1);
     const auditEvent = () =>
       info.mock.calls.find(([message]) => message === 'ApplicationEvent')?.[1] as
         { EventId: string; Payload: string } | undefined;

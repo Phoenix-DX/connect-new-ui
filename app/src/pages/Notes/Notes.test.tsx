@@ -9,12 +9,14 @@ import { freshPage, recordBodies } from '@/test/testSupport';
 import Notes from './NotesPage';
 
 /* The page with its flows (useNotes) in the app frame on a memory router, with the MSW mocks of the test setup
-   (pages/Notes/mocks.ts: the cards of the notes mock collection, one fictional household with three notes; one pill
-   per local note category). The local notes copy is an in-memory database with two fictional categories. */
+   (pages/Notes/mocks.ts: the cards of the notes mock collection, one fictional household with three notes and two
+   OneSchool Global schools with one note each; one pill per local note category). The local notes copy is an
+   in-memory database with three fictional categories. */
 const PATH = '/UBTConnect/Notes';
 const routes = {
   [PATH]: <Notes />,
-  '/UBTConnect/HouseholdDetails': <p>HouseholdDetails screen</p>,
+  '/UBTConnect/HouseholdCarousel': <p>HouseholdCarousel screen</p>,
+  '/UBTConnect/OneSchoolGlobalCarousel': <p>OneSchoolGlobalCarousel screen</p>,
 };
 const NULL_DATE_TIME = '1900-01-01T00:00:00';
 const localNote = (id: string, noteCategoryId: string, itemId: string, dateCreatedUtc: string) => ({
@@ -44,6 +46,7 @@ beforeEach(async () => {
   await syncNotes([
     localNote('1', 'Household', '1', '2026-10-01T09:00:00'),
     localNote('2', 'Supper Meeting', '7', '2025-03-01T09:00:00'),
+    localNote('3', 'OneSchool Global', '1431', '2026-09-12T08:45:00'),
   ]);
 });
 afterEach(() => {
@@ -62,10 +65,26 @@ describe('Notes page', () => {
     expect(pill('Household')).toBeInTheDocument();
     expect(pill('Supper Meeting')).toBeInTheDocument();
     expect(screen.getByText('Filter')).toBeInTheDocument();
-    expect(container.querySelectorAll('[data-block="Notes.NoteCard_Item"]')).toHaveLength(1);
+    expect(pill('OneSchool Global')).toBeInTheDocument();
+    expect(screen.getByText('OneSchool Bahia Blanca')).toBeInTheDocument();
+    expect(screen.getByText('OneSchool Tandil')).toBeInTheDocument();
+    expect(container.querySelectorAll('[data-block="Notes.NoteCard_Item"]')).toHaveLength(3);
     expect(container.querySelector('[data-block="Notes.Notes_FilterSheet"]')?.id).toBe('$b11');
-    // One card only: the search input stays disabled (GetNotes.List.Length > 1).
-    expect(screen.getByPlaceholderText('Search')).toBeDisabled();
+    // Three cards: the search input is enabled (GetNotes.List.Length > 1).
+    expect(screen.getByPlaceholderText('Search')).toBeEnabled();
+  });
+
+  it('the OneSchool Global pill lists the two school cards; a card opens the carousel of the schools', async () => {
+    const { container, at } = renderRoutes(routes, PATH);
+    await screen.findByText('Fenwick Household');
+    fireEvent.click(pill('OneSchool Global'));
+    await waitFor(() => {
+      expect(screen.queryByText('Fenwick Household')).toBeNull();
+    });
+    expect(container.querySelectorAll('[data-block="Notes.NoteCard_Item"]')).toHaveLength(2);
+    fireEvent.click(screen.getByText('OneSchool Tandil'));
+    expect(await screen.findByText('OneSchoolGlobalCarousel screen')).toBeInTheDocument();
+    expect(at()).toBe('/UBTConnect/OneSchoolGlobalCarousel?In_StartingObjectId=1432');
   });
 
   it('a pill sends its category with DataActionGetNotes', async () => {
@@ -79,7 +98,7 @@ describe('Notes page', () => {
     await waitFor(() => {
       expect(bodies[1]).toMatchObject({ Notes_Filter: { NoteCategoryId: 'Supper Meeting' }, PageNumber: 1 });
     });
-    expect(await screen.findByText('No Notes found')).toBeInTheDocument();
+    expect(await screen.findByText('No note added yet')).toBeInTheDocument();
   });
 
   it('Apply filters with a year sends Notes_Filter.Years and SortByNewest; the mock keeps the notes of that year', async () => {
@@ -104,20 +123,20 @@ describe('Notes page', () => {
       PageNumber: 1,
     });
     // The fictional notes of Fenwick Household are all of 2026.
-    expect(await screen.findByText('No Notes found')).toBeInTheDocument();
+    expect(await screen.findByText('No note added yet')).toBeInTheDocument();
   });
 
-  it('a card of a household opens HouseholdDetails', async () => {
+  it('a card of a household opens HouseholdCarousel (TST 2026-10-29)', async () => {
     const { at } = renderRoutes(routes, PATH);
     fireEvent.click(await screen.findByText('Fenwick Household'));
-    expect(await screen.findByText('HouseholdDetails screen')).toBeInTheDocument();
-    expect(at()).toBe('/UBTConnect/HouseholdDetails?HouseholdId=1');
+    expect(await screen.findByText('HouseholdCarousel screen')).toBeInTheDocument();
+    expect(at()).toBe('/UBTConnect/HouseholdCarousel?In_StartingHouseholdId=1');
   });
 
-  it('the empty scenario shows "No Notes found"', async () => {
+  it('the empty scenario shows "No note added yet"', async () => {
     sessionStorage.setItem('mock:mock', 'empty');
     renderRoutes(routes, PATH);
-    expect(await screen.findByText('No Notes found')).toBeInTheDocument();
-    expect(screen.getByText('We were unable to find any Notes to')).toBeInTheDocument();
+    expect(await screen.findByText('No note added yet')).toBeInTheDocument();
+    expect(screen.getByText('Add note to content by tapping the Add Note')).toBeInTheDocument();
   });
 });

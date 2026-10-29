@@ -1,10 +1,80 @@
 {
- "OrbitLanding": [
-  "default 19927 KB, 38 blocks, masked 9",
-  "step popup-filters",
-  "step popup-filters-closed",
-  "step popup-sort FAILED: page.click: Timeout 10000ms exceeded.",
-  "runtime 9 calls, 3 phase mark(s)",
+ "HomeFeed": [
+  "default 16899 KB, 64 blocks, masked 12",
+  "runtime 12 calls, 0 phase mark(s)",
+  "auto loading (7 call(s) held)",
+  "auto offline",
+  "analyzed"
+ ],
+ "Notifications": [
+  "default 16887 KB, 57 blocks, masked 54",
+  "runtime 10 calls, 0 phase mark(s)",
+  "auto loading (3 call(s) held)",
+  "auto offline",
+  "analyzed"
+ ],
+ "Search": [
+  "default 16433 KB, 56 blocks, masked 15",
+  "runtime 10 calls, 0 phase mark(s)",
+  "auto loading (6 call(s) held)",
+  "auto offline",
+  "analyzed"
+ ],
+ "Updates_SingleList": [
+  "default 17332 KB, 65 blocks, masked 268",
+  "runtime 12 calls, 0 phase mark(s)",
+  "auto loading (6 call(s) held)",
+  "auto offline",
+  "analyzed"
+ ],
+ "BrowseCountries": [
+  "default 15665 KB, 40 blocks, masked 71",
+  "runtime 8 calls, 0 phase mark(s)",
+  "auto loading (3 call(s) held)",
+  "auto offline",
+  "analyzed"
+ ],
+ "BrowseDirectory": [
+  "default 16180 KB, 42 blocks, masked 9",
+  "runtime 8 calls, 0 phase mark(s)",
+  "auto loading (3 call(s) held)",
+  "auto offline",
+  "analyzed"
+ ],
+ "CommunityBusinessDetails_CoomingSoon": [
+  "default 11037 KB, 8 blocks, masked 0",
+  "runtime 7 calls, 0 phase mark(s)",
+  "auto loading (1 call(s) held)",
+  "auto offline",
+  "analyzed"
+ ],
+ "CountryDetails": [
+  "default 17025 KB, 57 blocks, masked 23",
+  "runtime 10 calls, 0 phase mark(s)",
+  "auto loading (5 call(s) held)",
+  "auto offline",
+  "analyzed"
+ ],
+ "CountryList": [
+  "default 16216 KB, 53 blocks, masked 75",
+  "runtime 10 calls, 0 phase mark(s)",
+  "auto loading (6 call(s) held)",
+  "auto offline",
+  "analyzed"
+ ],
+ "Locality_Details": [
+  "default 16099 KB, 51 blocks, masked 64",
+  "step tag-suppermeetings",
+  "step tag-interchange",
+  "step tag-oneschoolglobal",
+  "runtime 48 calls, 3 phase mark(s)",
+  "auto loading (3 call(s) held)",
+  "auto offline",
+  "analyzed"
+ ],
+ "AssembleEvents": [
+  "default 18987 KB, 54 blocks, masked 51",
+  "runtime 11 calls, 0 phase mark(s)",
   "auto loading (3 call(s) held)",
   "auto offline",
   "analyzed"

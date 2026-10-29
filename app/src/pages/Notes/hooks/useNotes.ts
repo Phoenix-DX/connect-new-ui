@@ -1,20 +1,20 @@
 import { useEffect, useRef } from 'react';
 import { fetchNoteCards, fetchNotePills, type NotePillTag, type NotesFilter } from '@/api/note';
-import { useFlowState, useOsNavigate } from '@/platform/navigation';
+import { setPreloadObject, useFlowState, useOsNavigate } from '@/platform/navigation';
 import { currentUserId } from '@/platform/session/session';
-import {
-  get_Note_DynamicFilter_YearOptions,
-  getLocalNotesCategoryIds_ByUserId,
-} from '@/platform/storage/localEntities';
+import { feedbackMessageAutoClose } from '@/platform/feedback/feedbackMessageAutoClose';
+import { getLocalNotesCategoryIds_ByUserId } from '@/platform/storage/localEntities';
 import { scrollTop } from '@/lib/ubtConnect/actions';
 import type { Tag } from '@/lib/ubtConnectLibrary/structures';
 import {
   canLoadMore,
+  getNotes_FilterYear,
   INITIAL_NOTES_STATE,
   noteCardTarget,
   notePillTags,
   notesReducer,
   selectedCategoryId,
+  unauthorizedObjectMessage,
   type NotesState,
 } from './notesState';
 
@@ -30,7 +30,7 @@ export interface NotesFlows {
   onSearchChange: (text: string) => void;
   /** Handler_SearchOnClear: the ClearString event of the search input. */
   onSearchClear: () => void;
-  /** The Submit event of the search input: Refresh_GetNotes. */
+  /** Handler_SearchOnSubmit (Notes.mvc.js:735-750): the Submit event of the search input, Refresh_GetNotes. */
   onSearchSubmit: () => void;
   /** Handler_OnClickPill(UpdatedTagList): the Changed event of the pills. */
   onClickPill: (updatedTagList: Tag[]) => void;
@@ -39,31 +39,34 @@ export interface NotesFlows {
   /** Notes_CardListOnLoadMore: the OnLoadMore event of NoteCard_List. The Promise settles when the action ends (after
       the page fetch), as the event handler of TST: the List waits for it. */
   onLoadMore: () => Promise<void>;
-  /** Handler_OnClickNoteCardItem(ObjectId, ObjectType): the OnClick_NoteCardItem event of NoteCard_List. */
-  onClickNoteCardItem: (objectId: string, objectType: string) => void;
+  /** Handler_OnClickNoteCardItem(ObjectId, ObjectId2, ObjectType, HasDetailAccess): the OnClick_NoteCardItem event of
+      NoteCard_List. */
+  onClickNoteCardItem: (objectId: string, objectId2: string, objectType: string, hasDetailAccess: boolean) => void;
   /** The SheetInilialized event of Notes_FilterSheet: Filter_BottomSheetId. */
   onFilterSheetInitialized: (sheetId: string) => void;
   /** The Loaded event of Notes_FilterSheet: BottomSheetId_Filter_IsLoaded, BottomSheetId_Filter_ShowSubscriptionOnClick. */
   onFilterSheetLoaded: (showSubscriptionOnClick: boolean) => void;
 }
 
-/** UBTConnect GetNotes_Pills: Get_Note_DynamicPills of UBTConnect_Notes_MCS (the user's distinct local note category
-    ids, GetLocalNotesCategoryIds_ByUserId, then the server action Get_NotePills_ByNoteCategoryIds), as filter pills. */
-async function getNotes_Pills(): Promise<NotePillTag[]> {
+/** UBTConnect GetNotes_Pills(In_SelectedPillId): Get_Note_DynamicPills of UBTConnect_Notes_MCS (the user's distinct
+    local note category ids, GetLocalNotesCategoryIds_ByUserId, then the server action Get_NotePills_ByNoteCategoryIds),
+    as filter pills with the selected category selected. */
+async function getNotes_Pills(selectedPillId: string): Promise<NotePillTag[]> {
   const noteCategoryIds = await getLocalNotesCategoryIds_ByUserId(Number(currentUserId() ?? 0));
-  return notePillTags(await fetchNotePills(noteCategoryIds));
+  return notePillTags(await fetchNotePills(noteCategoryIds), selectedPillId);
 }
 
 /** The flows of the screen Notes (the screen controller).
-    - OnInitialize: the default variables and the skeleton loaders (`INITIAL_NOTES_STATE`), then Years =
-      GetNotes_FilterYear (the year options of the local notes). The port keeps no variable on a back navigation, so a
-      view that the view cache restores starts from OnInitialize too.
+    - OnInitialize (TST 2026-10-29): the default variables, Notes_Loading and the skeleton loaders
+      (`INITIAL_NOTES_STATE`), then Years = GetNotes_FilterYear (Get_RecentYears(3), synchronous). The port keeps no
+      variable on a back navigation, so a view that the view cache restores starts from OnInitialize too.
     - OnReady (after OnInitialize, and only when the screen is still there): ResetPillsVallues, then Refresh_GetNotes.
     - Refresh_GetNotes: Notes_Loading, the refresh of DataActionGetNotes (refresh only; it sends every screen
       variable), then GetNotesOnAfterFetch: the first page replaces the list and the pills load (with a second
       ResetPillsVallues on the first fetch only); a next page is appended.
     - The pills, the search input, the filter sheet and the end of the list change the filter or the page, then refresh.
-    - A card of a Household, a OneSchool Global or a Supper Meeting opens its screen.
+    - A card opens the screen of its category (`noteCardTarget`); a card without detail access shows "This <category>
+      is no longer available." (Handler_OnClickUnauthorizedObject).
     A failed flow goes to the screen's flow handler, with the flow scope.
     Flow scope (item 8): DataActionGetNotes is a data action (R1, `flow.fetch`, Notes.js:676-684): after the unmount
     its answer and its failure are dropped, so GetNotesOnAfterFetch does not run. Refresh_GetNotes is an own action of
@@ -83,9 +86,10 @@ export function useNotes(): NotesFlows {
     onReady: () => onInitialize(),
   });
 
-  /** ResetPillsVallues: GetNotes_Pills (a module action: not wrapped), then Note_Pills = its Out_Pills. */
+  /** ResetPillsVallues: GetNotes_Pills(Notes_Filter.NoteCategoryId) (a module action: not wrapped), then Note_Pills =
+      its Out_Pills. */
   const resetPillsValues = async () => {
-    const notePills = await getNotes_Pills();
+    const notePills = await getNotes_Pills(latest.current.notesFilter.noteCategoryId);
     dispatch({ notePills });
   };
 
@@ -114,9 +118,9 @@ export function useNotes(): NotesFlows {
   });
 
   /** OnInitialize, after the skeleton loaders: Years = GetNotes_FilterYear. */
-  const onInitialize = async () => {
-    const years = await get_Note_DynamicFilter_YearOptions();
-    dispatch({ years, isInitialized: true });
+  const onInitialize = (): Promise<void> => {
+    dispatch({ years: getNotes_FilterYear(), isInitialized: true });
+    return Promise.resolve();
   };
 
   /* OnReady: ResetPillsVallues, then Refresh_GetNotes. It runs once, after the render in which OnInitialize ended, so
@@ -176,9 +180,24 @@ export function useNotes(): NotesFlows {
       dispatch({ pageNumber: latest.current.pageNumber + 1 });
       await flow.runAwaited(refreshGetNotes);
     },
-    onClickNoteCardItem: (objectId, objectType) => {
-      const target = noteCardTarget(objectId, objectType);
-      if (target) navigate(target.path, target.inputs); // R4 in useOsNavigate
+    onClickNoteCardItem: (objectId, objectId2, objectType, hasDetailAccess) => {
+      if (!hasDetailAccess) {
+        // Handler_OnClickUnauthorizedObject: FeedbackMessage_AutoClose("", message, Info, True, "", 0, False)
+        feedbackMessageAutoClose({
+          title: '',
+          message: unauthorizedObjectMessage(objectType, latest.current.notePills),
+          messageType: 'info',
+          encodedHtml: true,
+          extendedClass: '',
+          delayMs: 0,
+          useDebounce: false,
+        });
+        return;
+      }
+      const target = noteCardTarget(objectId, objectId2, objectType, latest.current);
+      if (!target) return;
+      if (target.preload) setPreloadObject(target.preload); // SetPreloadObject, SetPreloadObject3
+      navigate(target.path, target.inputs); // R4 in useOsNavigate
     },
     onFilterSheetInitialized: (filterBottomSheetId) => {
       dispatch({ filterBottomSheetId });

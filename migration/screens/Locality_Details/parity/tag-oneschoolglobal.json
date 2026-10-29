@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 3,
- "fingerprint": "36b304d05b31c70b910c",
+ "fingerprint": "fb21fb24c95d0497b9b9",
  "options": {
   "text": true,
   "style": true,
@@ -19,29 +19,33 @@
  },
  "replay": {
   "mode": "builder",
-  "elements": 529,
-  "texts": 39,
+  "elements": 545,
+  "texts": 40,
   "comments": 0,
   "dropped": 0,
   "endTagMismatch": 0,
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-28T15:21:19.474Z",
- "counts": {},
+ "at": "2026-10-29T07:14:32.922Z",
+ "counts": {
+  "layout": 32,
+  "position": 1,
+  "structure": 3,
+  "pixel": 1
+ },
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
   "ignoreSubtrees": 3,
-  "TAGS-MASKED-IMAGE-LOCALITYDETAILS": 22,
   "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
   "TAGS-SLIDER-APPEAR-TIMING": 1
  },
  "pixel": {
-  "ratio": 0.00014,
-  "maxCell": 0.0056,
+  "ratio": 0.00995,
+  "maxCell": 0.3719,
   "maxCellRatio": 0.03,
-  "diffPixels": 17,
-  "comparedPixels": 118779,
+  "diffPixels": 1183,
+  "comparedPixels": 118887,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -54,8 +58,11 @@
   ],
   "masks": 11,
   "hotspots": [
-   "160,120 (9px)",
-   "160,80 (8px)"
+   "320,80 (595px)",
+   "320,40 (361px)",
+   "360,80 (93px)",
+   "280,80 (87px)",
+   "360,40 (29px)"
   ],
   "diffPng": "migration/screens/Locality_Details/parity/tag-oneschoolglobal.diff.png"
  },
@@ -66,8 +73,194 @@
    "tag-interchange",
    "tag-oneschoolglobal"
   ],
-  "expected": 41,
+  "expected": 40,
   "actual": 69
  },
- "diffs": []
+ "diffs": [
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > header#b1-Header.header > div.header-top > div.display-flex.flex-direction-column.header-content > div.ubt-layout-main__search > div#b1-$b3.OSBlockWidget[BasePatterns.Columns_Two] > div#b1-b3-$b1.OSBlockWidget[Adaptive.Columns2] > div.align-items-center.columns.columns2 > div#b1-b3-b1-Column1.columns-item",
+   "detail": "318×37 → 342×37"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > header#b1-Header.header > div.header-top > div.display-flex.flex-direction-column.header-content > div.ubt-layout-main__search > div#b1-$b3.OSBlockWidget[BasePatterns.Columns_Two] > div#b1-b3-$b1.OSBlockWidget[Adaptive.Columns2] > div.align-items-center.columns.columns2 > div#b1-b3-b1-Column1.columns-item > div#b1-b3-Left.ubt-columns--column.ubt-columns--left",
+   "detail": "318×37 → 342×37"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > header#b1-Header.header > div.header-top > div.display-flex.flex-direction-column.header-content > div.ubt-layout-main__search > div#b1-$b3.OSBlockWidget[BasePatterns.Columns_Two] > div#b1-b3-$b1.OSBlockWidget[Adaptive.Columns2] > div.align-items-center.columns.columns2 > div#b1-b3-b1-Column1.columns-item > div#b1-b3-Left.ubt-columns--column.ubt-columns--left > div#b1-Placeholder_Header_Input",
+   "detail": "318×37 → 342×37"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > header#b1-Header.header > div.header-top > div.display-flex.flex-direction-column.header-content > div.ubt-layout-main__search > div#b1-$b3.OSBlockWidget[BasePatterns.Columns_Two] > div#b1-b3-$b1.OSBlockWidget[Adaptive.Columns2] > div.align-items-center.columns.columns2 > div#b1-b3-b1-Column1.columns-item > div#b1-b3-Left.ubt-columns--column.ubt-columns--left > div#b1-Placeholder_Header_Input > div#$b2.OSBlockWidget[ConnectPatterns.StaticInput]",
+   "detail": "318×37 → 342×37"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > header#b1-Header.header > div.header-top > div.display-flex.flex-direction-column.header-content > div.ubt-layout-main__search > div#b1-$b3.OSBlockWidget[BasePatterns.Columns_Two] > div#b1-b3-$b1.OSBlockWidget[Adaptive.Columns2] > div.align-items-center.columns.columns2 > div#b1-b3-b1-Column1.columns-item > div#b1-b3-Left.ubt-columns--column.ubt-columns--left > div#b1-Placeholder_Header_Input > div#$b2.OSBlockWidget[ConnectPatterns.StaticInput] > div.search-placeholder-ellipsis.ubt-static-input",
+   "detail": "318×37 → 342×37"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > header#b1-Header.header > div.header-top > div.display-flex.flex-direction-column.header-content > div.ubt-layout-main__search > div#b1-$b3.OSBlockWidget[BasePatterns.Columns_Two] > div#b1-b3-$b1.OSBlockWidget[Adaptive.Columns2] > div.align-items-center.columns.columns2 > div#b1-b3-b1-Column1.columns-item > div#b1-b3-Left.ubt-columns--column.ubt-columns--left > div#b1-Placeholder_Header_Input > div#$b2.OSBlockWidget[ConnectPatterns.StaticInput] > div.search-placeholder-ellipsis.ubt-static-input > div#b2-$b2.OSBlockWidget[ConnectPatterns.TextEllipsis]",
+   "detail": "248×24 → 254×24"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > header#b1-Header.header > div.header-top > div.display-flex.flex-direction-column.header-content > div.ubt-layout-main__search > div#b1-$b3.OSBlockWidget[BasePatterns.Columns_Two] > div#b1-b3-$b1.OSBlockWidget[Adaptive.Columns2] > div.align-items-center.columns.columns2 > div#b1-b3-b1-Column1.columns-item > div#b1-b3-Left.ubt-columns--column.ubt-columns--left > div#b1-Placeholder_Header_Input > div#$b2.OSBlockWidget[ConnectPatterns.StaticInput] > div.search-placeholder-ellipsis.ubt-static-input > div#b2-$b2.OSBlockWidget[ConnectPatterns.TextEllipsis] > span.text-ellipsis.ubt-text-ellipsis",
+   "detail": "248×24 → 254×24"
+  },
+  {
+   "kind": "position",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > header#b1-Header.header > div.header-top > div.display-flex.flex-direction-column.header-content > div.ubt-layout-main__search > div#b1-$b3.OSBlockWidget[BasePatterns.Columns_Two] > div#b1-b3-$b1.OSBlockWidget[Adaptive.Columns2] > div.align-items-center.columns.columns2 > div#b1-b3-b1-Column2.columns-item",
+   "detail": "offset in parent 334,7 → 358,19"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > header#b1-Header.header > div.header-top > div.display-flex.flex-direction-column.header-content > div.ubt-layout-main__search > div#b1-$b3.OSBlockWidget[BasePatterns.Columns_Two] > div#b1-b3-$b1.OSBlockWidget[Adaptive.Columns2] > div.align-items-center.columns.columns2 > div#b1-b3-b1-Column2.columns-item",
+   "detail": "24×24 → 0×0"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > header#b1-Header.header > div.header-top > div.display-flex.flex-direction-column.header-content > div.ubt-layout-main__search > div#b1-$b3.OSBlockWidget[BasePatterns.Columns_Two] > div#b1-b3-$b1.OSBlockWidget[Adaptive.Columns2] > div.align-items-center.columns.columns2 > div#b1-b3-b1-Column2.columns-item > div#b1-b3-Right.ubt-columns--column.ubt-columns--right",
+   "detail": "24×24 → 0×0"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > header#b1-Header.header > div.header-top > div.display-flex.flex-direction-column.header-content > div.ubt-layout-main__search > div#b1-$b3.OSBlockWidget[BasePatterns.Columns_Two] > div#b1-b3-$b1.OSBlockWidget[Adaptive.Columns2] > div.align-items-center.columns.columns2 > div#b1-b3-b1-Column2.columns-item > div#b1-b3-Right.ubt-columns--column.ubt-columns--right > div#b1-Placeholder_Header_Input_Icon.header-right",
+   "detail": "24×24 → 0×0"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > header#b1-Header.header > div.header-top > div.display-flex.flex-direction-column.header-content > div.ubt-layout-main__search > div#b1-$b3.OSBlockWidget[BasePatterns.Columns_Two] > div#b1-b3-$b1.OSBlockWidget[Adaptive.Columns2] > div.align-items-center.columns.columns2 > div#b1-b3-b1-Column2.columns-item > div#b1-b3-Right.ubt-columns--column.ubt-columns--right > div#b1-Placeholder_Header_Input_Icon.header-right > div#$b3.OSBlockWidget[ConnectPatterns.Icon]",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Block_OneSchoolGlobal_List.OSBlockWidget[Directory_Locality.Locality_OneSchoolGlobal] > div#b21-Block_OneSchoolGlobalListWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b1-Content.background-neutral-0.padding-x-base.padding-y-s > div#b21-$b3.OSBlockWidget[Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_List] > div#b21-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-b1-Placeholder_LoadingSection > div.OSFillParent.list.list--gap-s > div#b21-b3-l1-146419_3-$b2.OSBlockWidget[ConnectCorePatterns.ImageCard_LazyLoading] > div#b21-b3-l1-146419_3-b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_3-b2-b1-Content.background-neutral-0.border-color-neutral-3.border-radius-large > div#b21-b3-l1-146419_3-b2-ImageWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_3-b2-b2-Content.align-items-flex-start.bookmark--rounded.border-radius-top-left-large > div#b21-b3-l1-146419_3-b2-LazyImage_Placeholder.ubt-image-card--lazy-image-placeholder",
+   "detail": "390×26 → 390×260"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Block_OneSchoolGlobal_List.OSBlockWidget[Directory_Locality.Locality_OneSchoolGlobal] > div#b21-Block_OneSchoolGlobalListWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b1-Content.background-neutral-0.padding-x-base.padding-y-s > div#b21-$b3.OSBlockWidget[Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_List] > div#b21-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-b1-Placeholder_LoadingSection > div.OSFillParent.list.list--gap-s > div#b21-b3-l1-146419_3-$b2.OSBlockWidget[ConnectCorePatterns.ImageCard_LazyLoading] > div#b21-b3-l1-146419_3-b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_3-b2-b1-Content.background-neutral-0.border-color-neutral-3.border-radius-large > div#b21-b3-l1-146419_3-b2-ImageWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_3-b2-b2-Content.align-items-flex-start.bookmark--rounded.border-radius-top-left-large > div#b21-b3-l1-146419_3-b2-LazyImage_Placeholder.ubt-image-card--lazy-image-placeholder > div",
+   "detail": "390×26 → 390×260"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Block_OneSchoolGlobal_List.OSBlockWidget[Directory_Locality.Locality_OneSchoolGlobal] > div#b21-Block_OneSchoolGlobalListWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b1-Content.background-neutral-0.padding-x-base.padding-y-s > div#b21-$b3.OSBlockWidget[Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_List] > div#b21-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-b1-Placeholder_LoadingSection > div.OSFillParent.list.list--gap-s > div#b21-b3-l1-146419_3-$b2.OSBlockWidget[ConnectCorePatterns.ImageCard_LazyLoading] > div#b21-b3-l1-146419_3-b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_3-b2-b1-Content.background-neutral-0.border-color-neutral-3.border-radius-large > div#b21-b3-l1-146419_3-b2-ImageWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_3-b2-b2-Content.align-items-flex-start.bookmark--rounded.border-radius-top-left-large > div#b21-b3-l1-146419_3-b2-LazyImage_Placeholder.ubt-image-card--lazy-image-placeholder > div > div#b21-b3-l1-146419_3-$b3.OSBlockWidget[CW_Image.UBT_LazyImage]",
+   "detail": "390×26 → 390×260"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Block_OneSchoolGlobal_List.OSBlockWidget[Directory_Locality.Locality_OneSchoolGlobal] > div#b21-Block_OneSchoolGlobalListWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b1-Content.background-neutral-0.padding-x-base.padding-y-s > div#b21-$b3.OSBlockWidget[Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_List] > div#b21-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-b1-Placeholder_LoadingSection > div.OSFillParent.list.list--gap-s > div#b21-b3-l1-146419_3-$b2.OSBlockWidget[ConnectCorePatterns.ImageCard_LazyLoading] > div#b21-b3-l1-146419_3-b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_3-b2-b1-Content.background-neutral-0.border-color-neutral-3.border-radius-large > div#b21-b3-l1-146419_3-b2-ImageWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_3-b2-b2-Content.align-items-flex-start.bookmark--rounded.border-radius-top-left-large > div#b21-b3-l1-146419_3-b2-LazyImage_Placeholder.ubt-image-card--lazy-image-placeholder > div > div#b21-b3-l1-146419_3-$b3.OSBlockWidget[CW_Image.UBT_LazyImage] > div#b21-b3-l1-146419_3-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection]",
+   "detail": "390×26 → 390×260"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Block_OneSchoolGlobal_List.OSBlockWidget[Directory_Locality.Locality_OneSchoolGlobal] > div#b21-Block_OneSchoolGlobalListWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b1-Content.background-neutral-0.padding-x-base.padding-y-s > div#b21-$b3.OSBlockWidget[Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_List] > div#b21-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-b1-Placeholder_LoadingSection > div.OSFillParent.list.list--gap-s > div#b21-b3-l1-146419_3-$b2.OSBlockWidget[ConnectCorePatterns.ImageCard_LazyLoading] > div#b21-b3-l1-146419_3-b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_3-b2-b1-Content.background-neutral-0.border-color-neutral-3.border-radius-large > div#b21-b3-l1-146419_3-b2-ImageWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_3-b2-b2-Content.align-items-flex-start.bookmark--rounded.border-radius-top-left-large > div#b21-b3-l1-146419_3-b2-LazyImage_Placeholder.ubt-image-card--lazy-image-placeholder > div > div#b21-b3-l1-146419_3-$b3.OSBlockWidget[CW_Image.UBT_LazyImage] > div#b21-b3-l1-146419_3-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-l1-146419_3-b3-b1-Placeholder_LoadingSection",
+   "detail": "390×26 → 390×260"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Block_OneSchoolGlobal_List.OSBlockWidget[Directory_Locality.Locality_OneSchoolGlobal] > div#b21-Block_OneSchoolGlobalListWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b1-Content.background-neutral-0.padding-x-base.padding-y-s > div#b21-$b3.OSBlockWidget[Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_List] > div#b21-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-b1-Placeholder_LoadingSection > div.OSFillParent.list.list--gap-s > div#b21-b3-l1-146419_3-$b2.OSBlockWidget[ConnectCorePatterns.ImageCard_LazyLoading] > div#b21-b3-l1-146419_3-b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_3-b2-b1-Content.background-neutral-0.border-color-neutral-3.border-radius-large > div#b21-b3-l1-146419_3-b2-ImageWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_3-b2-b2-Content.align-items-flex-start.bookmark--rounded.border-radius-top-left-large > div#b21-b3-l1-146419_3-b2-LazyImage_Placeholder.ubt-image-card--lazy-image-placeholder > div > div#b21-b3-l1-146419_3-$b3.OSBlockWidget[CW_Image.UBT_LazyImage] > div#b21-b3-l1-146419_3-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-l1-146419_3-b3-b1-Placeholder_LoadingSection > div#b21-b3-l1-146419_3-b3-$b2.OSBlockWidget[ConnectPatterns.LazyImage]",
+   "detail": "390×26 → 390×260"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Block_OneSchoolGlobal_List.OSBlockWidget[Directory_Locality.Locality_OneSchoolGlobal] > div#b21-Block_OneSchoolGlobalListWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b1-Content.background-neutral-0.padding-x-base.padding-y-s > div#b21-$b3.OSBlockWidget[Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_List] > div#b21-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-b1-Placeholder_LoadingSection > div.OSFillParent.list.list--gap-s > div#b21-b3-l1-146419_3-$b2.OSBlockWidget[ConnectCorePatterns.ImageCard_LazyLoading] > div#b21-b3-l1-146419_3-b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_3-b2-b1-Content.background-neutral-0.border-color-neutral-3.border-radius-large > div#b21-b3-l1-146419_3-b2-ImageWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_3-b2-b2-Content.align-items-flex-start.bookmark--rounded.border-radius-top-left-large > div#b21-b3-l1-146419_3-b2-LazyImage_Placeholder.ubt-image-card--lazy-image-placeholder > div > div#b21-b3-l1-146419_3-$b3.OSBlockWidget[CW_Image.UBT_LazyImage] > div#b21-b3-l1-146419_3-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-l1-146419_3-b3-b1-Placeholder_LoadingSection > div#b21-b3-l1-146419_3-b3-$b2.OSBlockWidget[ConnectPatterns.LazyImage] > div#b21-b3-l1-146419_3-b3-b2-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection]",
+   "detail": "390×26 → 390×260"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Block_OneSchoolGlobal_List.OSBlockWidget[Directory_Locality.Locality_OneSchoolGlobal] > div#b21-Block_OneSchoolGlobalListWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b1-Content.background-neutral-0.padding-x-base.padding-y-s > div#b21-$b3.OSBlockWidget[Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_List] > div#b21-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-b1-Placeholder_LoadingSection > div.OSFillParent.list.list--gap-s > div#b21-b3-l1-146419_3-$b2.OSBlockWidget[ConnectCorePatterns.ImageCard_LazyLoading] > div#b21-b3-l1-146419_3-b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_3-b2-b1-Content.background-neutral-0.border-color-neutral-3.border-radius-large > div#b21-b3-l1-146419_3-b2-ImageWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_3-b2-b2-Content.align-items-flex-start.bookmark--rounded.border-radius-top-left-large > div#b21-b3-l1-146419_3-b2-LazyImage_Placeholder.ubt-image-card--lazy-image-placeholder > div > div#b21-b3-l1-146419_3-$b3.OSBlockWidget[CW_Image.UBT_LazyImage] > div#b21-b3-l1-146419_3-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-l1-146419_3-b3-b1-Placeholder_LoadingSection > div#b21-b3-l1-146419_3-b3-$b2.OSBlockWidget[ConnectPatterns.LazyImage] > div#b21-b3-l1-146419_3-b3-b2-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-l1-146419_3-b3-b2-b1-Placeholder_LoadingSection",
+   "detail": "390×26 → 390×260"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Block_OneSchoolGlobal_List.OSBlockWidget[Directory_Locality.Locality_OneSchoolGlobal] > div#b21-Block_OneSchoolGlobalListWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b1-Content.background-neutral-0.padding-x-base.padding-y-s > div#b21-$b3.OSBlockWidget[Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_List] > div#b21-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-b1-Placeholder_LoadingSection > div.OSFillParent.list.list--gap-s > div#b21-b3-l1-146419_3-$b2.OSBlockWidget[ConnectCorePatterns.ImageCard_LazyLoading] > div#b21-b3-l1-146419_3-b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_3-b2-b1-Content.background-neutral-0.border-color-neutral-3.border-radius-large > div#b21-b3-l1-146419_3-b2-ImageWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_3-b2-b2-Content.align-items-flex-start.bookmark--rounded.border-radius-top-left-large > div#b21-b3-l1-146419_3-b2-LazyImage_Placeholder.ubt-image-card--lazy-image-placeholder > div > div#b21-b3-l1-146419_3-$b3.OSBlockWidget[CW_Image.UBT_LazyImage] > div#b21-b3-l1-146419_3-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-l1-146419_3-b3-b1-Placeholder_LoadingSection > div#b21-b3-l1-146419_3-b3-$b2.OSBlockWidget[ConnectPatterns.LazyImage] > div#b21-b3-l1-146419_3-b3-b2-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-l1-146419_3-b3-b2-b1-Placeholder_LoadingSection > div#b21-b3-l1-146419_3-b3-b2-$b2.OSBlockWidget[BasePatterns.CustomContainer]",
+   "detail": "390×26 → 390×260"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Block_OneSchoolGlobal_List.OSBlockWidget[Directory_Locality.Locality_OneSchoolGlobal] > div#b21-Block_OneSchoolGlobalListWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b1-Content.background-neutral-0.padding-x-base.padding-y-s > div#b21-$b3.OSBlockWidget[Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_List] > div#b21-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-b1-Placeholder_LoadingSection > div.OSFillParent.list.list--gap-s > div#b21-b3-l1-146419_3-$b2.OSBlockWidget[ConnectCorePatterns.ImageCard_LazyLoading] > div#b21-b3-l1-146419_3-b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_3-b2-b1-Content.background-neutral-0.border-color-neutral-3.border-radius-large > div#b21-b3-l1-146419_3-b2-ImageWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_3-b2-b2-Content.align-items-flex-start.bookmark--rounded.border-radius-top-left-large > div#b21-b3-l1-146419_3-b2-LazyImage_Placeholder.ubt-image-card--lazy-image-placeholder > div > div#b21-b3-l1-146419_3-$b3.OSBlockWidget[CW_Image.UBT_LazyImage] > div#b21-b3-l1-146419_3-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-l1-146419_3-b3-b1-Placeholder_LoadingSection > div#b21-b3-l1-146419_3-b3-$b2.OSBlockWidget[ConnectPatterns.LazyImage] > div#b21-b3-l1-146419_3-b3-b2-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-l1-146419_3-b3-b2-b1-Placeholder_LoadingSection > div#b21-b3-l1-146419_3-b3-b2-$b2.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_3-b3-b2-b2-Content.border-radius-none.ubt-custom-container.ubt-lazy-image",
+   "detail": "390×26 → 390×260"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Block_OneSchoolGlobal_List.OSBlockWidget[Directory_Locality.Locality_OneSchoolGlobal] > div#b21-Block_OneSchoolGlobalListWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b1-Content.background-neutral-0.padding-x-base.padding-y-s > div#b21-$b3.OSBlockWidget[Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_List] > div#b21-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-b1-Placeholder_LoadingSection > div.OSFillParent.list.list--gap-s > div#b21-b3-l1-146419_3-$b2.OSBlockWidget[ConnectCorePatterns.ImageCard_LazyLoading] > div#b21-b3-l1-146419_3-b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_3-b2-b1-Content.background-neutral-0.border-color-neutral-3.border-radius-large > div#b21-b3-l1-146419_3-b2-ImageWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_3-b2-b2-Content.align-items-flex-start.bookmark--rounded.border-radius-top-left-large > div#b21-b3-l1-146419_3-b2-LazyImage_Placeholder.ubt-image-card--lazy-image-placeholder > div > div#b21-b3-l1-146419_3-$b3.OSBlockWidget[CW_Image.UBT_LazyImage] > div#b21-b3-l1-146419_3-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-l1-146419_3-b3-b1-Placeholder_LoadingSection > div#b21-b3-l1-146419_3-b3-$b2.OSBlockWidget[ConnectPatterns.LazyImage] > div#b21-b3-l1-146419_3-b3-b2-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-l1-146419_3-b3-b2-b1-Placeholder_LoadingSection > div#b21-b3-l1-146419_3-b3-b2-$b2.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_3-b3-b2-b2-Content.border-radius-none.ubt-custom-container.ubt-lazy-image > img#b21-b3-l1-146419_3-b3-b2-Image",
+   "detail": "390×26 → 390×260"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Block_OneSchoolGlobal_List.OSBlockWidget[Directory_Locality.Locality_OneSchoolGlobal] > div#b21-Block_OneSchoolGlobalListWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b1-Content.background-neutral-0.padding-x-base.padding-y-s > div#b21-$b3.OSBlockWidget[Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_List] > div#b21-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-b1-Placeholder_LoadingSection > div.OSFillParent.list.list--gap-s > div#b21-b3-l1-146419_3-$b2.OSBlockWidget[ConnectCorePatterns.ImageCard_LazyLoading] > div#b21-b3-l1-146419_3-b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_3-b2-b1-Content.background-neutral-0.border-color-neutral-3.border-radius-large > div#b21-b3-l1-146419_3-b2-$b3.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_3-b2-b3-Content.font-semi-bold.font-size-base.padding-x-base > div#b21-b3-l1-146419_3-b2-Placeholder_Content > div#b21-b3-l1-146419_3-$b4.OSBlockWidget[ConnectPatterns.ImageCard__Content] > div#b21-b3-l1-146419_3-b4-Div_Root.image-card-content > div#b21-b3-l1-146419_3-b4-Placeholder_BottomSectionContent > div#b21-b3-l1-146419_3-$b5.OSBlockWidget[ConnectPatterns.StopPropagationHelper] > div#b21-b3-l1-146419_3-b5-Content.helper-stop-propagation > div#b21-b3-l1-146419_3-$b6.OSBlockWidget[Directory_CommonBlocks.Directory_EntityDetailsActions] > div.OSBlockWidget[CW_Notes.NotesSheet]",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Block_OneSchoolGlobal_List.OSBlockWidget[Directory_Locality.Locality_OneSchoolGlobal] > div#b21-Block_OneSchoolGlobalListWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b1-Content.background-neutral-0.padding-x-base.padding-y-s > div#b21-$b3.OSBlockWidget[Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_List] > div#b21-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-b1-Placeholder_LoadingSection > div.OSFillParent.list.list--gap-s > div#b21-b3-l1-146419_4-$b2.OSBlockWidget[ConnectCorePatterns.ImageCard_LazyLoading] > div#b21-b3-l1-146419_4-b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_4-b2-b1-Content.background-neutral-0.border-color-neutral-3.border-radius-large > div#b21-b3-l1-146419_4-b2-ImageWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_4-b2-b2-Content.align-items-flex-start.bookmark--rounded.border-radius-top-left-large > div#b21-b3-l1-146419_4-b2-LazyImage_Placeholder.ubt-image-card--lazy-image-placeholder",
+   "detail": "390×26 → 390×260"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Block_OneSchoolGlobal_List.OSBlockWidget[Directory_Locality.Locality_OneSchoolGlobal] > div#b21-Block_OneSchoolGlobalListWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b1-Content.background-neutral-0.padding-x-base.padding-y-s > div#b21-$b3.OSBlockWidget[Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_List] > div#b21-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-b1-Placeholder_LoadingSection > div.OSFillParent.list.list--gap-s > div#b21-b3-l1-146419_4-$b2.OSBlockWidget[ConnectCorePatterns.ImageCard_LazyLoading] > div#b21-b3-l1-146419_4-b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_4-b2-b1-Content.background-neutral-0.border-color-neutral-3.border-radius-large > div#b21-b3-l1-146419_4-b2-ImageWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_4-b2-b2-Content.align-items-flex-start.bookmark--rounded.border-radius-top-left-large > div#b21-b3-l1-146419_4-b2-LazyImage_Placeholder.ubt-image-card--lazy-image-placeholder > div",
+   "detail": "390×26 → 390×260"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Block_OneSchoolGlobal_List.OSBlockWidget[Directory_Locality.Locality_OneSchoolGlobal] > div#b21-Block_OneSchoolGlobalListWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b1-Content.background-neutral-0.padding-x-base.padding-y-s > div#b21-$b3.OSBlockWidget[Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_List] > div#b21-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-b1-Placeholder_LoadingSection > div.OSFillParent.list.list--gap-s > div#b21-b3-l1-146419_4-$b2.OSBlockWidget[ConnectCorePatterns.ImageCard_LazyLoading] > div#b21-b3-l1-146419_4-b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_4-b2-b1-Content.background-neutral-0.border-color-neutral-3.border-radius-large > div#b21-b3-l1-146419_4-b2-ImageWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_4-b2-b2-Content.align-items-flex-start.bookmark--rounded.border-radius-top-left-large > div#b21-b3-l1-146419_4-b2-LazyImage_Placeholder.ubt-image-card--lazy-image-placeholder > div > div#b21-b3-l1-146419_4-$b3.OSBlockWidget[CW_Image.UBT_LazyImage]",
+   "detail": "390×26 → 390×260"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Block_OneSchoolGlobal_List.OSBlockWidget[Directory_Locality.Locality_OneSchoolGlobal] > div#b21-Block_OneSchoolGlobalListWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b1-Content.background-neutral-0.padding-x-base.padding-y-s > div#b21-$b3.OSBlockWidget[Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_List] > div#b21-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-b1-Placeholder_LoadingSection > div.OSFillParent.list.list--gap-s > div#b21-b3-l1-146419_4-$b2.OSBlockWidget[ConnectCorePatterns.ImageCard_LazyLoading] > div#b21-b3-l1-146419_4-b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_4-b2-b1-Content.background-neutral-0.border-color-neutral-3.border-radius-large > div#b21-b3-l1-146419_4-b2-ImageWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_4-b2-b2-Content.align-items-flex-start.bookmark--rounded.border-radius-top-left-large > div#b21-b3-l1-146419_4-b2-LazyImage_Placeholder.ubt-image-card--lazy-image-placeholder > div > div#b21-b3-l1-146419_4-$b3.OSBlockWidget[CW_Image.UBT_LazyImage] > div#b21-b3-l1-146419_4-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection]",
+   "detail": "390×26 → 390×260"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Block_OneSchoolGlobal_List.OSBlockWidget[Directory_Locality.Locality_OneSchoolGlobal] > div#b21-Block_OneSchoolGlobalListWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b1-Content.background-neutral-0.padding-x-base.padding-y-s > div#b21-$b3.OSBlockWidget[Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_List] > div#b21-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-b1-Placeholder_LoadingSection > div.OSFillParent.list.list--gap-s > div#b21-b3-l1-146419_4-$b2.OSBlockWidget[ConnectCorePatterns.ImageCard_LazyLoading] > div#b21-b3-l1-146419_4-b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_4-b2-b1-Content.background-neutral-0.border-color-neutral-3.border-radius-large > div#b21-b3-l1-146419_4-b2-ImageWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_4-b2-b2-Content.align-items-flex-start.bookmark--rounded.border-radius-top-left-large > div#b21-b3-l1-146419_4-b2-LazyImage_Placeholder.ubt-image-card--lazy-image-placeholder > div > div#b21-b3-l1-146419_4-$b3.OSBlockWidget[CW_Image.UBT_LazyImage] > div#b21-b3-l1-146419_4-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-l1-146419_4-b3-b1-Placeholder_LoadingSection",
+   "detail": "390×26 → 390×260"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Block_OneSchoolGlobal_List.OSBlockWidget[Directory_Locality.Locality_OneSchoolGlobal] > div#b21-Block_OneSchoolGlobalListWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b1-Content.background-neutral-0.padding-x-base.padding-y-s > div#b21-$b3.OSBlockWidget[Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_List] > div#b21-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-b1-Placeholder_LoadingSection > div.OSFillParent.list.list--gap-s > div#b21-b3-l1-146419_4-$b2.OSBlockWidget[ConnectCorePatterns.ImageCard_LazyLoading] > div#b21-b3-l1-146419_4-b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_4-b2-b1-Content.background-neutral-0.border-color-neutral-3.border-radius-large > div#b21-b3-l1-146419_4-b2-ImageWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_4-b2-b2-Content.align-items-flex-start.bookmark--rounded.border-radius-top-left-large > div#b21-b3-l1-146419_4-b2-LazyImage_Placeholder.ubt-image-card--lazy-image-placeholder > div > div#b21-b3-l1-146419_4-$b3.OSBlockWidget[CW_Image.UBT_LazyImage] > div#b21-b3-l1-146419_4-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-l1-146419_4-b3-b1-Placeholder_LoadingSection > div#b21-b3-l1-146419_4-b3-$b2.OSBlockWidget[ConnectPatterns.LazyImage]",
+   "detail": "390×26 → 390×260"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Block_OneSchoolGlobal_List.OSBlockWidget[Directory_Locality.Locality_OneSchoolGlobal] > div#b21-Block_OneSchoolGlobalListWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b1-Content.background-neutral-0.padding-x-base.padding-y-s > div#b21-$b3.OSBlockWidget[Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_List] > div#b21-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-b1-Placeholder_LoadingSection > div.OSFillParent.list.list--gap-s > div#b21-b3-l1-146419_4-$b2.OSBlockWidget[ConnectCorePatterns.ImageCard_LazyLoading] > div#b21-b3-l1-146419_4-b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_4-b2-b1-Content.background-neutral-0.border-color-neutral-3.border-radius-large > div#b21-b3-l1-146419_4-b2-ImageWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_4-b2-b2-Content.align-items-flex-start.bookmark--rounded.border-radius-top-left-large > div#b21-b3-l1-146419_4-b2-LazyImage_Placeholder.ubt-image-card--lazy-image-placeholder > div > div#b21-b3-l1-146419_4-$b3.OSBlockWidget[CW_Image.UBT_LazyImage] > div#b21-b3-l1-146419_4-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-l1-146419_4-b3-b1-Placeholder_LoadingSection > div#b21-b3-l1-146419_4-b3-$b2.OSBlockWidget[ConnectPatterns.LazyImage] > div#b21-b3-l1-146419_4-b3-b2-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection]",
+   "detail": "390×26 → 390×260"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Block_OneSchoolGlobal_List.OSBlockWidget[Directory_Locality.Locality_OneSchoolGlobal] > div#b21-Block_OneSchoolGlobalListWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b1-Content.background-neutral-0.padding-x-base.padding-y-s > div#b21-$b3.OSBlockWidget[Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_List] > div#b21-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-b1-Placeholder_LoadingSection > div.OSFillParent.list.list--gap-s > div#b21-b3-l1-146419_4-$b2.OSBlockWidget[ConnectCorePatterns.ImageCard_LazyLoading] > div#b21-b3-l1-146419_4-b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_4-b2-b1-Content.background-neutral-0.border-color-neutral-3.border-radius-large > div#b21-b3-l1-146419_4-b2-ImageWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_4-b2-b2-Content.align-items-flex-start.bookmark--rounded.border-radius-top-left-large > div#b21-b3-l1-146419_4-b2-LazyImage_Placeholder.ubt-image-card--lazy-image-placeholder > div > div#b21-b3-l1-146419_4-$b3.OSBlockWidget[CW_Image.UBT_LazyImage] > div#b21-b3-l1-146419_4-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-l1-146419_4-b3-b1-Placeholder_LoadingSection > div#b21-b3-l1-146419_4-b3-$b2.OSBlockWidget[ConnectPatterns.LazyImage] > div#b21-b3-l1-146419_4-b3-b2-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-l1-146419_4-b3-b2-b1-Placeholder_LoadingSection",
+   "detail": "390×26 → 390×260"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Block_OneSchoolGlobal_List.OSBlockWidget[Directory_Locality.Locality_OneSchoolGlobal] > div#b21-Block_OneSchoolGlobalListWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b1-Content.background-neutral-0.padding-x-base.padding-y-s > div#b21-$b3.OSBlockWidget[Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_List] > div#b21-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-b1-Placeholder_LoadingSection > div.OSFillParent.list.list--gap-s > div#b21-b3-l1-146419_4-$b2.OSBlockWidget[ConnectCorePatterns.ImageCard_LazyLoading] > div#b21-b3-l1-146419_4-b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_4-b2-b1-Content.background-neutral-0.border-color-neutral-3.border-radius-large > div#b21-b3-l1-146419_4-b2-ImageWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_4-b2-b2-Content.align-items-flex-start.bookmark--rounded.border-radius-top-left-large > div#b21-b3-l1-146419_4-b2-LazyImage_Placeholder.ubt-image-card--lazy-image-placeholder > div > div#b21-b3-l1-146419_4-$b3.OSBlockWidget[CW_Image.UBT_LazyImage] > div#b21-b3-l1-146419_4-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-l1-146419_4-b3-b1-Placeholder_LoadingSection > div#b21-b3-l1-146419_4-b3-$b2.OSBlockWidget[ConnectPatterns.LazyImage] > div#b21-b3-l1-146419_4-b3-b2-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-l1-146419_4-b3-b2-b1-Placeholder_LoadingSection > div#b21-b3-l1-146419_4-b3-b2-$b2.OSBlockWidget[BasePatterns.CustomContainer]",
+   "detail": "390×26 → 390×260"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Block_OneSchoolGlobal_List.OSBlockWidget[Directory_Locality.Locality_OneSchoolGlobal] > div#b21-Block_OneSchoolGlobalListWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b1-Content.background-neutral-0.padding-x-base.padding-y-s > div#b21-$b3.OSBlockWidget[Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_List] > div#b21-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-b1-Placeholder_LoadingSection > div.OSFillParent.list.list--gap-s > div#b21-b3-l1-146419_4-$b2.OSBlockWidget[ConnectCorePatterns.ImageCard_LazyLoading] > div#b21-b3-l1-146419_4-b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_4-b2-b1-Content.background-neutral-0.border-color-neutral-3.border-radius-large > div#b21-b3-l1-146419_4-b2-ImageWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_4-b2-b2-Content.align-items-flex-start.bookmark--rounded.border-radius-top-left-large > div#b21-b3-l1-146419_4-b2-LazyImage_Placeholder.ubt-image-card--lazy-image-placeholder > div > div#b21-b3-l1-146419_4-$b3.OSBlockWidget[CW_Image.UBT_LazyImage] > div#b21-b3-l1-146419_4-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-l1-146419_4-b3-b1-Placeholder_LoadingSection > div#b21-b3-l1-146419_4-b3-$b2.OSBlockWidget[ConnectPatterns.LazyImage] > div#b21-b3-l1-146419_4-b3-b2-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-l1-146419_4-b3-b2-b1-Placeholder_LoadingSection > div#b21-b3-l1-146419_4-b3-b2-$b2.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_4-b3-b2-b2-Content.border-radius-none.ubt-custom-container.ubt-lazy-image",
+   "detail": "390×26 → 390×260"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Block_OneSchoolGlobal_List.OSBlockWidget[Directory_Locality.Locality_OneSchoolGlobal] > div#b21-Block_OneSchoolGlobalListWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b1-Content.background-neutral-0.padding-x-base.padding-y-s > div#b21-$b3.OSBlockWidget[Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_List] > div#b21-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-b1-Placeholder_LoadingSection > div.OSFillParent.list.list--gap-s > div#b21-b3-l1-146419_4-$b2.OSBlockWidget[ConnectCorePatterns.ImageCard_LazyLoading] > div#b21-b3-l1-146419_4-b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_4-b2-b1-Content.background-neutral-0.border-color-neutral-3.border-radius-large > div#b21-b3-l1-146419_4-b2-ImageWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_4-b2-b2-Content.align-items-flex-start.bookmark--rounded.border-radius-top-left-large > div#b21-b3-l1-146419_4-b2-LazyImage_Placeholder.ubt-image-card--lazy-image-placeholder > div > div#b21-b3-l1-146419_4-$b3.OSBlockWidget[CW_Image.UBT_LazyImage] > div#b21-b3-l1-146419_4-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-l1-146419_4-b3-b1-Placeholder_LoadingSection > div#b21-b3-l1-146419_4-b3-$b2.OSBlockWidget[ConnectPatterns.LazyImage] > div#b21-b3-l1-146419_4-b3-b2-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-l1-146419_4-b3-b2-b1-Placeholder_LoadingSection > div#b21-b3-l1-146419_4-b3-b2-$b2.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_4-b3-b2-b2-Content.border-radius-none.ubt-custom-container.ubt-lazy-image > img#b21-b3-l1-146419_4-b3-b2-Image",
+   "detail": "390×26 → 390×260"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Block_OneSchoolGlobal_List.OSBlockWidget[Directory_Locality.Locality_OneSchoolGlobal] > div#b21-Block_OneSchoolGlobalListWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b1-Content.background-neutral-0.padding-x-base.padding-y-s > div#b21-$b3.OSBlockWidget[Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_List] > div#b21-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-b1-Placeholder_LoadingSection > div.OSFillParent.list.list--gap-s > div#b21-b3-l1-146419_4-$b2.OSBlockWidget[ConnectCorePatterns.ImageCard_LazyLoading] > div#b21-b3-l1-146419_4-b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_4-b2-b1-Content.background-neutral-0.border-color-neutral-3.border-radius-large > div#b21-b3-l1-146419_4-b2-$b3.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b3-l1-146419_4-b2-b3-Content.font-semi-bold.font-size-base.padding-x-base > div#b21-b3-l1-146419_4-b2-Placeholder_Content > div#b21-b3-l1-146419_4-$b4.OSBlockWidget[ConnectPatterns.ImageCard__Content] > div#b21-b3-l1-146419_4-b4-Div_Root.image-card-content > div#b21-b3-l1-146419_4-b4-Placeholder_BottomSectionContent > div#b21-b3-l1-146419_4-$b5.OSBlockWidget[ConnectPatterns.StopPropagationHelper] > div#b21-b3-l1-146419_4-b5-Content.helper-stop-propagation > div#b21-b3-l1-146419_4-$b6.OSBlockWidget[Directory_CommonBlocks.Directory_EntityDetailsActions] > div.OSBlockWidget[CW_Notes.NotesSheet]",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "pixel",
+   "path": "screenshot",
+   "detail": "1.00% pixels differ (max 0.20%), worst 40px tile 37.2% (max 3.0%), hotspots 320,80 (595px); 320,40 (361px); 360,80 (93px); 280,80 (87px); 360,40 (29px); see migration/screens/Locality_Details/parity/tag-oneschoolglobal.diff.png"
+  }
+ ]
 }

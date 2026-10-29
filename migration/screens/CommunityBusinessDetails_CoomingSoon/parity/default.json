@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "75e7c4f4e90a55e7562c",
+ "fingerprint": "fe595a3df32f7f6c3bc6",
  "options": {
   "text": true,
   "style": true,
@@ -27,16 +27,19 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-28T15:17:25.164Z",
- "counts": {},
+ "at": "2026-10-29T07:10:55.665Z",
+ "counts": {
+  "text": 1,
+  "pixel": 1
+ },
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 1
  },
  "pixel": {
-  "ratio": 0,
-  "maxCell": 0,
+  "ratio": 0.00156,
+  "maxCell": 0.1313,
   "maxCellRatio": 0.03,
-  "diffPixels": 0,
+  "diffPixels": 515,
   "comparedPixels": 329160,
   "maxRatio": 0.002,
   "threshold": 0.1,
@@ -49,7 +52,13 @@
    844
   ],
   "masks": 0,
-  "hotspots": [],
+  "hotspots": [
+   "280,80 (210px)",
+   "240,80 (181px)",
+   "320,80 (106px)",
+   "240,40 (11px)",
+   "200,80 (7px)"
+  ],
   "diffPng": "migration/screens/CommunityBusinessDetails_CoomingSoon/parity/default.diff.png"
  },
  "calls": {
@@ -59,5 +68,16 @@
   "expected": 3,
   "actual": 7
  },
- "diffs": []
+ "diffs": [
+  {
+   "kind": "text",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > header#b1-Header.header > div.header-top > div.display-flex.flex-direction-column.header-content > div.ubt-layout-main__search > div#b1-$b3.OSBlockWidget[BasePatterns.Columns_Two] > div#b1-b3-$b1.OSBlockWidget[Adaptive.Columns2] > div.align-items-center.columns.columns2 > div#b1-b3-b1-Column1.columns-item > div#b1-b3-Left.ubt-columns--column.ubt-columns--left > div#b1-Placeholder_Header_Input > div#$b2.OSBlockWidget[ConnectPatterns.StaticInput] > div.search-placeholder-ellipsis.ubt-static-input > div#b2-$b2.OSBlockWidget[ConnectPatterns.TextEllipsis] > span.text-ellipsis.ubt-text-ellipsis",
+   "detail": "\"Search for households, members or places.\" → \"Search for households. entities, news\""
+  },
+  {
+   "kind": "pixel",
+   "path": "screenshot",
+   "detail": "0.16% pixels differ (max 0.20%), worst 40px tile 13.1% (max 3.0%), hotspots 280,80 (210px); 240,80 (181px); 320,80 (106px); 240,40 (11px); 200,80 (7px); see migration/screens/CommunityBusinessDetails_CoomingSoon/parity/default.diff.png"
+  }
+ ]
 }

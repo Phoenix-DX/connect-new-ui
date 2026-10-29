@@ -13,12 +13,10 @@ import {
 import { CommunicationException } from '@/legacy/os/exceptions';
 import { IgnorableSystemException } from '@/legacy/os/os-exceptions';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import {
-  get_Note_DynamicFilter_YearOptions,
-  getLocalNotesCategoryIds_ByUserId,
-} from '@/platform/storage/localEntities';
+import { feedbackMessageAutoClose } from '@/platform/feedback/feedbackMessageAutoClose';
+import { getLocalNotesCategoryIds_ByUserId } from '@/platform/storage/localEntities';
 import { scrollTop } from '@/lib/ubtConnect/actions';
-import { INITIAL_NOTES_STATE, skeletonNotes, type NotesState } from './notesState';
+import { getNotes_FilterYear, INITIAL_NOTES_STATE, skeletonNotes, type NotesState } from './notesState';
 import { useNotes } from './useNotes';
 
 /* The flows of the Notes screen, with the two calls of api/note, the local note reads, the scroll, the navigation, the
@@ -30,8 +28,11 @@ vi.mock('@/api/note', async (importOriginal) => ({
 }));
 vi.mock('@/platform/storage/localEntities', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/platform/storage/localEntities')>()),
-  get_Note_DynamicFilter_YearOptions: vi.fn(),
   getLocalNotesCategoryIds_ByUserId: vi.fn(),
+}));
+vi.mock('@/platform/feedback/feedbackMessageAutoClose', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/platform/feedback/feedbackMessageAutoClose')>()),
+  feedbackMessageAutoClose: vi.fn(),
 }));
 vi.mock('@/platform/session/session', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/platform/session/session')>()),
@@ -75,11 +76,16 @@ vi.mock('@/platform/navigation/hooks', async (importOriginal) => {
 const card = (id: string, title: string, noteCategoryId = 'Household'): NoteCardItem => ({
   id: `${noteCategoryId}-${id}`,
   itemId: id,
+  itemId2: '0',
+  hasDetailAccess: true,
   noteCategoryId,
   title,
   subtitle: 'Northbrook',
   sourceHeader: { iconId: '', imageURL: '', initials: '', label: noteCategoryId },
   notes: { Total: 1, Note_Item_List: [{ Id: `5${id}`, Note: 'Bring the picnic blanket' }] },
+  channelName: '',
+  channelLogo: '',
+  publishedAt: '1900-01-01T00:00:00',
 });
 const FENWICK = card('1', 'Fenwick Household');
 const ASHDOWN = card('2', 'Ashdown Household');
@@ -128,7 +134,6 @@ beforeEach(() => {
   vi.clearAllMocks();
   viewCache.restored = false;
   viewCache.saved = undefined;
-  vi.mocked(get_Note_DynamicFilter_YearOptions).mockResolvedValue(['2026', '2025']);
   vi.mocked(getLocalNotesCategoryIds_ByUserId).mockResolvedValue(['Household', 'Supper Meeting']);
   vi.mocked(fetchNotePills).mockResolvedValue(PILLS);
   vi.mocked(fetchNoteCards).mockResolvedValue(page([FENWICK, ASHDOWN]));
@@ -137,21 +142,20 @@ beforeEach(() => {
 describe('useNotes: OnInitialize and OnReady', () => {
   it('starts with the skeletons, then Years, the pills, GetNotes and the pills again', async () => {
     const { result } = renderFlows();
-    expect(result.current.state).toEqual(INITIAL_NOTES_STATE);
+    // OnInitialize is synchronous on TST 2026-10-29: Years is set before the first await.
+    expect(result.current.state).toEqual({ ...INITIAL_NOTES_STATE, years: getNotes_FilterYear(), isInitialized: true });
     await settle();
-    expect(get_Note_DynamicFilter_YearOptions).toHaveBeenCalledTimes(1);
     expect(getLocalNotesCategoryIds_ByUserId).toHaveBeenCalledWith(990001);
     expect(fetchNotePills).toHaveBeenCalledTimes(2);
     expect(fetchNotePills).toHaveBeenCalledWith(['Household', 'Supper Meeting']);
     expect(fetchNoteCards).toHaveBeenCalledTimes(1);
-    expect(order(get_Note_DynamicFilter_YearOptions)).toBeLessThan(order(fetchNotePills, 0));
     expect(order(fetchNotePills, 0)).toBeLessThan(order(fetchNoteCards));
     expect(order(fetchNoteCards)).toBeLessThan(order(fetchNotePills, 1));
     // DataActionGetNotes sends every screen variable, as they are when it starts.
     expect(sentWith()).toMatchObject({
       notesLoading: true,
       notePills: TAGS,
-      years: ['2026', '2025'],
+      years: getNotes_FilterYear(),
       pageNumber: 1,
       resetPillsValue: true,
       pillsLoaded: false,
@@ -159,7 +163,7 @@ describe('useNotes: OnInitialize and OnReady', () => {
       notesList: skeletonNotes(),
     });
     expect(result.current.state).toMatchObject({
-      years: ['2026', '2025'],
+      years: getNotes_FilterYear(),
       isInitialized: true,
       notePills: TAGS,
       maxRecords: '2',
@@ -193,17 +197,6 @@ describe('useNotes: OnInitialize and OnReady', () => {
     });
   });
 
-  it('a failed GetNotes_FilterYear goes to the flow handler and OnReady does not run', async () => {
-    const failure = new Error('Local storage unavailable');
-    vi.mocked(get_Note_DynamicFilter_YearOptions).mockRejectedValueOnce(failure);
-    const { result } = renderFlows();
-    await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(failure, expect.anything());
-    expect(fetchNotePills).not.toHaveBeenCalled();
-    expect(fetchNoteCards).not.toHaveBeenCalled();
-    expect(result.current.state.isInitialized).toBe(false);
-  });
-
   it('a failed GetNotes goes to the flow handler; the list stays loading', async () => {
     const failure = new CommunicationException('Request failed with status 500');
     vi.mocked(fetchNoteCards).mockRejectedValueOnce(failure);
@@ -223,7 +216,8 @@ describe('useNotes: OnInitialize and OnReady', () => {
       isInitialized: true,
     } satisfies NotesState;
     const { result } = renderFlows();
-    expect(result.current.state).toEqual(INITIAL_NOTES_STATE);
+    // OnInitialize is synchronous on TST 2026-10-29: Years is set before the first await.
+    expect(result.current.state).toEqual({ ...INITIAL_NOTES_STATE, years: getNotes_FilterYear(), isInitialized: true });
     await settle();
     expect(fetchNoteCards).toHaveBeenCalledTimes(1);
     expect(result.current.state.notesList).toEqual([FENWICK, ASHDOWN]);
@@ -340,15 +334,38 @@ describe('useNotes: the events of the blocks', () => {
     expect(fetchNoteCards).toHaveBeenCalledTimes(1);
   });
 
-  it('Handler_OnClickNoteCardItem opens the screen of a Household card; another category does nothing', async () => {
+  it('Handler_OnClickNoteCardItem opens HouseholdCarousel for a Household card; a locality does nothing', async () => {
     const { result } = renderFlows();
     await settle();
     act(() => {
-      result.current.onClickNoteCardItem('1', 'Household');
-      result.current.onClickNoteCardItem('9', 'Locality');
+      result.current.onClickNoteCardItem('1', '0', 'Household', true);
+      result.current.onClickNoteCardItem('9', '0', 'locality', true);
     });
     expect(navigate).toHaveBeenCalledTimes(1);
-    expect(navigate).toHaveBeenCalledWith('/UBTConnect/HouseholdDetails', { HouseholdId: '1' });
+    expect(navigate).toHaveBeenCalledWith('/UBTConnect/HouseholdCarousel', { In_StartingHouseholdId: '1' });
+    expect(feedbackMessageAutoClose).not.toHaveBeenCalled();
+  });
+
+  it('a card without detail access shows "This <category> is no longer available." and opens nothing', async () => {
+    const { result } = renderFlows();
+    await settle();
+    act(() => {
+      result.current.onClickNoteCardItem('1', '0', 'Household', false);
+    });
+    expect(navigate).not.toHaveBeenCalled();
+    expect(feedbackMessageAutoClose).toHaveBeenCalledWith(
+      expect.objectContaining({ message: 'This household is no longer available.', messageType: 'info' }),
+    );
+  });
+
+  it('ResetPillsVallues sends the selected category: GetNotes_Pills(Notes_Filter.NoteCategoryId)', async () => {
+    const { result } = renderFlows();
+    await settle();
+    act(() => {
+      result.current.onClickPill([{ Text: 'Household', Identifier: 'Household', IsSelected: true }]);
+    });
+    await settle();
+    expect(result.current.state.notesFilter.noteCategoryId).toBe('Household');
   });
 
   it('the header scroll, the sheet events and the search icon', async () => {
@@ -382,7 +399,6 @@ describe('useNotes after an unmount and in StrictMode (flow scope, item 8)', () 
   it('runs OnInitialize and OnReady once in StrictMode', async () => {
     const { result } = renderHook(() => useNotes(), { wrapper: strictWrapper });
     await settle();
-    expect(get_Note_DynamicFilter_YearOptions).toHaveBeenCalledTimes(1);
     expect(fetchNotePills).toHaveBeenCalledTimes(2);
     expect(fetchNoteCards).toHaveBeenCalledTimes(1);
     expect(result.current.state.notesList).toEqual([FENWICK, ASHDOWN]);
@@ -440,20 +456,6 @@ describe('useNotes after an unmount and in StrictMode (flow scope, item 8)', () 
     getNotes.reject(new CommunicationException('The connection has timed out'));
     await settle();
     expect(raisedErrors()).toEqual([]);
-    expect(viewWrites).not.toHaveBeenCalled();
-  });
-
-  it('OnReady does not start when the screen unmounts during OnInitialize', async () => {
-    const years = pending<string[]>();
-    vi.mocked(get_Note_DynamicFilter_YearOptions).mockReturnValueOnce(years.promise);
-    const { unmount } = renderFlows();
-    await settle();
-    unmount();
-    viewWrites.mockClear();
-    years.resolve(['2026']);
-    await settle();
-    expect(fetchNotePills).not.toHaveBeenCalled();
-    expect(fetchNoteCards).not.toHaveBeenCalled();
     expect(viewWrites).not.toHaveBeenCalled();
   });
 });

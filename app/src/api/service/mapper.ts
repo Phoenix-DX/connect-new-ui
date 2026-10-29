@@ -93,6 +93,9 @@ export const toFeedServicesVariablesWire = (v: FeedServicesVariables): FeedServi
     AppName: v.externalAppPopUpInfo.appName,
     PackageName: v.externalAppPopUpInfo.packageName,
     IconId: v.externalAppPopUpInfo.iconId,
+    /* URL: an attribute of the live TST record (contract regeneration of I10-6) that the React state does not keep
+       yet; the record default. */
+    URL: '',
   },
   ItemPerPage: v.itemPerPage,
   ForceAddService: v.forceAddService,

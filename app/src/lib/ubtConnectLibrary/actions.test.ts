@@ -15,8 +15,54 @@ import {
   removeRegexSpecialCharacters,
   sVGHeader_GetPath,
   onApplicationReady_BottomBarSlider,
+  preetyFormatDate,
 } from './actions';
 import { UBT_Display, UBT_Size, UBT_VerticalAlign } from './staticEntities';
+import { currDateTime } from '@/lib/osDateTime';
+
+/* PreetyFormatDate (UBTConnectLibrary.controller.js:7952-8072, JavaScript1 node timeAgo :8028-8067). The inputs are
+   built from NOW in local time, so a daylight-saving change does not move the difference. */
+describe('preetyFormatDate (timeAgo)', () => {
+  const NOW = new Date(2026, 9, 29, 12, 0, 0);
+  const ago = (seconds: number) => currDateTime(new Date(NOW.getTime() - seconds * 1000));
+  const DAY = 86400;
+
+  it('a date in the future is "just now" (seconds < 0)', () => {
+    expect(preetyFormatDate(ago(-1), NOW)).toBe('just now');
+    expect(preetyFormatDate(ago(-3 * DAY), NOW)).toBe('just now');
+  });
+
+  it('less than one second is "just now" (no unit gives a value >= 1)', () => {
+    expect(preetyFormatDate(ago(0), NOW)).toBe('just now');
+    expect(preetyFormatDate(ago(0), new Date(NOW.getTime() + 999))).toBe('just now');
+  });
+
+  it('the largest unit with a value >= 1, singular for 1 and plural above', () => {
+    expect(preetyFormatDate(ago(1), NOW)).toBe('1 second ago');
+    expect(preetyFormatDate(ago(59), NOW)).toBe('59 seconds ago');
+    expect(preetyFormatDate(ago(60), NOW)).toBe('1 minute ago');
+    expect(preetyFormatDate(ago(3599), NOW)).toBe('59 minutes ago');
+    expect(preetyFormatDate(ago(3600), NOW)).toBe('1 hour ago');
+    expect(preetyFormatDate(ago(5 * 3600), NOW)).toBe('5 hours ago');
+    expect(preetyFormatDate(ago(DAY), NOW)).toBe('1 day ago');
+    expect(preetyFormatDate(ago(6 * DAY), NOW)).toBe('6 days ago');
+    expect(preetyFormatDate(ago(7 * DAY), NOW)).toBe('1 week ago');
+    expect(preetyFormatDate(ago(29 * DAY), NOW)).toBe('4 weeks ago');
+    expect(preetyFormatDate(ago(30 * DAY), NOW)).toBe('1 month ago');
+    expect(preetyFormatDate(ago(364 * DAY), NOW)).toBe('12 months ago');
+    expect(preetyFormatDate(ago(365 * DAY), NOW)).toBe('1 year ago');
+    expect(preetyFormatDate(ago(3 * 365 * DAY), NOW)).toBe('3 years ago');
+  });
+
+  it('the seconds are floored from the milliseconds', () => {
+    expect(preetyFormatDate(ago(60), new Date(NOW.getTime() - 1))).toBe('59 seconds ago');
+  });
+
+  it('the OutSystems null date (and an empty or invalid text, read as the null date) is years ago', () => {
+    expect(preetyFormatDate('1900-01-01T00:00:00', NOW)).toBe('126 years ago');
+    expect(preetyFormatDate('', NOW)).toBe('126 years ago');
+  });
+});
 
 /* Branches that no captured variant reaches; expected values follow the compiled actions. */
 describe('UBTConnectLibrary actions', () => {

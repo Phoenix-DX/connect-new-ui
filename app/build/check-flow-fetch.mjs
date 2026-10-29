@@ -21,7 +21,6 @@ const ALLOWED = new Map([
   ['fetchUserSubdivision', `GetCacheableUserInfo, ${MODULE}`],
   ['fetchUserSubdivisionId', `GetCacheableUserInfo, ${MODULE}`],
   ['fetchSubscribedCountries', `the subscribed countries, ${MODULE}`],
-  ['fetchBookmarkById', `GetBookmarkById (Connect2_MyBookmarks_MUI), ${MODULE}`],
   ['fetchLegacySignedImageURL', `GetCacheableSignedImageURL (Connect2_LegacyShared), ${MODULE}`],
   ['fetchShareDetails', `Get_ShareDetails, ${SERVER}; inside OnInitializeSharingScreen, ${MODULE}`],
   ['fetchHouseholdCoordinatesById', `GetHouseholdCoordinates, ${SERVER}`],
@@ -31,9 +30,9 @@ const ALLOWED = new Map([
   ['fetchNotePills', `Get_NotePills_ByNoteCategoryIds, ${SERVER}`],
   ['fetchMember', `GetMemberByMemberId, ${SERVER}`],
   ['fetchScanEventQRCode', `GetScanEventQRCode, ${SERVER}`],
+  ['fetchScanMilestoneQRCode', `GetScanMilestoneQRCode, ${SERVER}`],
   ['src/pages/AssembleEvents/hooks/useAssembleFilterSheet.ts | fetchCountries', 'an own action (flow.own, R3)'],
   ['src/pages/Assemble_BrowseByCountry/hooks/useAssembleFilter.ts | fetchCountries', 'an own action (flow.own, R3)'],
-  ['src/pages/BookmarksByGroup/hooks/useBookmarkGroup.ts | fetchBookmarks', 'a local refresh: flow.fetch is inside'],
   ['src/pages/EventBooklet/hooks/eventBookletDataFlows.ts | fetch', 'the parameter `fetch` is flow.fetch'],
 ]);
 

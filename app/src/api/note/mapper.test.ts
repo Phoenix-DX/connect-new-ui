@@ -48,11 +48,16 @@ const fenwickWire: NoteCardItemWire = {
 const fenwick: NoteCardItem = {
   id: 'Household-7310',
   itemId: '7310',
+  itemId2: '0',
+  hasDetailAccess: false,
   noteCategoryId: 'Household',
   title: 'Fenwick Household',
   subtitle: 'Northbrook',
   sourceHeader: { iconId: 'home', imageURL: '', initials: 'FH', label: 'Household' },
   notes: { Total: 2, Note_Item_List: [{ ...picnic }, { ...parking }] },
+  channelName: '',
+  channelLogo: '',
+  publishedAt: '1900-01-01T00:00:00',
 };
 
 const variables = (fields: Partial<NotesVariables> = {}): NotesVariables => ({

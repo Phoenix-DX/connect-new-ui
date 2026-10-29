@@ -1,5 +1,6 @@
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
+import { MainPagesUpgradeLayout } from '@/components/layout/MainPagesUpgradeLayout';
 import { Badge } from '@/components/ui/Badge';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { Icon } from '@/components/ui/Icon';
@@ -13,7 +14,7 @@ import {
   UBT_IconsSize,
   UBT_Size,
 } from '@/lib/ubtConnectLibrary/staticEntities';
-import { Layout_MainPages_Upgrade } from './components/Layout_MainPages_Upgrade';
+import { useNavigateBack } from '@/platform/navigation';
 import { Notifications_MoreActionSheet } from './components/MoreActionSheet';
 import { NotificationsListBreakpoints } from './components/NotificationsListBreakpoints';
 import { Notifications_Action } from './components/Notifications_Action';
@@ -41,7 +42,9 @@ export default function Notifications() {
     onApplyFilters,
     onFilterSheetInitialized,
     onMoreActionSheetInitialized,
+    onNotificationDetail,
   } = useNotifications();
+  const navigateBack = useNavigateBack();
 
   const searchOptions = {
     InitalString: v.currentSearchString,
@@ -74,8 +77,9 @@ export default function Notifications() {
   );
   return (
     <>
-      <Layout_MainPages_Upgrade
+      <MainPagesUpgradeLayout
         isGrayBackground
+        onBack={navigateBack}
         onOnHeaderScrolled={onHeaderScrolled}
         placeholderHeaderTitle={
           v.isToggleSearch && v.isHeaderScrolled ? (
@@ -159,6 +163,7 @@ export default function Notifications() {
               id="$b14"
               breakpoints={v.breakpoints}
               uiNotificationItemList={v.items}
+              onNotificationDetail={onNotificationDetail}
               isLoading={v.isLoading}
             />
           )

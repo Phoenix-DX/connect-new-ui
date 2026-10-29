@@ -1,0 +1,61 @@
+{
+ "note": "Generated from the runtime capture. phase = load, or the label of the plan step after which the call started.",
+ "calls": [
+  {
+   "module": "UBTConnect",
+   "action": "DataActionFetchContactDetails",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
+   "phase": "load",
+   "ts": 2770,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "DataActionFetchNotes",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchNotes",
+   "phase": "load",
+   "ts": 2782,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "DataActionGetOneSchoolGlobalDetails",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_OneSchoolGlobal/OneSchoolGlobalDetails_Block/DataActionGetOneSchoolGlobalDetails",
+   "phase": "load",
+   "ts": 2770,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "DataActionFetchContactDetails",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
+   "phase": "load",
+   "ts": 2770,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "DataActionFetchContactDetails",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
+   "phase": "load",
+   "ts": 3142,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  }
+ ],
+ "variants": {}
+}

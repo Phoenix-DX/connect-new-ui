@@ -968,17 +968,21 @@ Directory_Locality.Directory_LegendBottomSheet
 ## `UBTConnect.Directory_Locality.CountryList.mvc.js`
 | variable | kind | type | default |
 |---|---|---|---|
+| Out_CommunityStatistics | output | Record | `OS.DataTypes.ImmutableBase.getData(new Connect_Geography_CSModel.UI_CommunityStatisticsRec())` |
 | Out_CountriesStatistics | output | RecordList | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.UI_CountryStatisticsList())` |
 | LocalCacheControl_UserInformation | local | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.BooleanDirectory_UserCurrentRecord())` |
 | BottomSheetId | local | Text | `""` |
+| SkeletonCommunityStatistics | local | Record | `OS.DataTypes.ImmutableBase.getData(new Connect_Geography_CSModel.UI_CommunityStatisticsRec())` |
+| GetCommunityStatistics | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new GetCommunityStatisticsDataActRec())` |
 | GetCountriesStatistics | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new GetCountriesStatisticsDataActRec())` |
-- Data actions: `DataActionGetCountriesStatistics` → `screenservices/UBTConnect/Directory_Locality/CountryList/DataActionGetCountriesStatistics`
+- Data actions: `DataActionGetCommunityStatistics` → `screenservices/UBTConnect/Directory_Locality/CountryList/DataActionGetCommunityStatistics`, `DataActionGetCountriesStatistics` → `screenservices/UBTConnect/Directory_Locality/CountryList/DataActionGetCountriesStatistics`
 - Lifecycle handlers: Ready
-- Client actions / event handlers: `onAfterFetch_GetCountriesStatistics`, `screenEvent_OnReady`, `handler_StatisticsList_Clicked`, `action_RefreshData`, `onClick_MyCountry`, `onClick_MyLocality`, `staticInputClick_Input`, `cacheControl_UserInfo_WrapperResult`, `onClick_LegendInfo`, `directory_LegendBottomSheetSheetInitialized`
+- Client actions / event handlers: `onAfterFetch_GetCountriesStatistics`, `screenEvent_OnReady`, `handler_StatisticsList_Clicked`, `action_RefreshData_CountryStatistics`, `onClick_MyCountry`, `onClick_MyLocality`, `staticInputClick_Input`, `cacheControl_UserInfo_WrapperResult`, `onClick_LegendInfo`, `directory_LegendBottomSheetSheetInitialized`, `action_RefreshData_CommunityStatistics`
 - Navigation: `/UBTConnect/CountryDetails`(CountryCode); `/UBTConnect/Locality_Details`(LocalityId, PreloadedLocalityLabel); `/UBTConnect/Search`()
-- JavaScript nodes: `UBTConnect.Directory_Locality.CountryList.mvc$controller.ScreenEvent_OnReady.IsViewRestoredFromCacheJS`
+- JavaScript nodes: `UBTConnect.Directory_Locality.CountryList.mvc$controller.ScreenEvent_OnReady.IsViewRestoredFromCacheJS`, `UBTConnect.Directory_Locality.CountryList.mvc$controller.ScreenEvent_OnReady.JavaScript1JS`
 - Exceptions handled: CommunicationException, UserException, NotRegisteredException
 - Static entities / flags: `uBT_Size.base`, `uBT_Size.small`, `uBT_Color.neutral0`, `uBT_Shape.medium`, `uBT_Shape.circle`, `connect_Entity.locality`, `uBT_ImageSize.base_52`, `uBT_ImageSize.square`, `uBT_Color.neutral6`, `uBT_FontSize.small`, `uBT_FontWeight.semiBold`, `uBT_Color.neutral10`, `uBT_FontSize.base`, `uBT_Color.primary`, `uBT_FontSize.extraSmall`, `uBT_ColumnBehaviour.reduceLast`, `uBT_VerticalAlign.center`, `uBT_Icons2.info`, `uBT_IconsSize.nonStandard_16`, `connect_BottomBar_Items.directory`
+- Candidate static strings: `Action_RefreshData_CommunityStatistics`
 
 ## `UBTConnectLibrary.Layouts.Layout_MainPages.mvc.js`
 | variable | kind | type | default |
@@ -1100,7 +1104,7 @@ Directory_Locality.Directory_LegendBottomSheet
 ## `UBTConnectLibrary.ConnectPatterns.StaticInput.mvc.js`
 | variable | kind | type | default |
 |---|---|---|---|
-| In_Prompt | input | Text | `"Search for households. entities, news"` |
+| In_Prompt | input | Text | `"Search for households, members or places."` |
 | In_ExtendedClasses | input | Text | `""` |
 - Client actions / event handlers: `click_Input`
 - Static entities / flags: `uBT_Color.inherit`, `uBT_Icons.search`, `uBT_IconSize.medium_20`
@@ -1142,6 +1146,7 @@ Directory_Locality.Directory_LegendBottomSheet
 | In_BorderRadius | input | Text | `""` |
 | In_HighRes | input | Boolean | `false` |
 | HasErrorMessage | input | Boolean | `false` |
+| In_ForceLoadingState | input | Boolean | `false` |
 - Lifecycle handlers: Initialize, Ready, ParametersChanged
 - Client actions / event handlers: `onInitialize`, `onReady`, `setLocalEntityId`, `onParametersChanged`
 - Static entities / flags: `uBT_Shape.circle`, `connect_Entity.member`, `uBT_Color.cyanLightest`, `uBT_Color.cyanDarker`, `uBT_Size.none`, `uBT_Shape.none`, `uBT_Size.base`, `uBT_FontSize.display`, `uBT_ImageSize.extraSmall_32`, `uBT_FontSize.extraSmall`, `uBT_IconSize.medium_20`, `uBT_ImageSize.small_40`, `uBT_FontSize.small`, `uBT_IconSize.base_24`, `uBT_ImageSize.base_52`, `uBT_FontSize.base`, `uBT_IconSize.nonStandard_32`, `uBT_ImageSize.medium_60`, `uBT_FontSize.heading6`, `uBT_IconSize.display_36`, `uBT_ImageSize.large_65`, `uBT_FontSize.heading4`, `uBT_ImageSize.extraLarge_100`, `uBT_FontSize.heading2`, `uBT_IconSize.nonStandard_64`, `uBT_ImageSize.doubleExtraLarge_176`, `uBT_IconSize.nonStandard_108`, `uBT_ImageSize.fullHeight_100_Percent`, `uBT_ImageSize.maxHeight_100vh`, `uBT_ImageSize.fullWidth_100_Percent`
@@ -1162,6 +1167,7 @@ Directory_Locality.Directory_LegendBottomSheet
 | In_BorderOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ImageBorderOptionsRec())` |
 | HasErrorMessage | input | Boolean | `false` |
 | ExtendedClass | input | Text | `""` |
+| In_ForceLoadingState | input | Boolean | `false` |
 - Lifecycle handlers: Initialize, Ready, Destroy, ParametersChanged
 - Client actions / event handlers: `actionDefineHasImage`, `onParametersChanged`, `onLoad`, `onReady`, `onError`, `onInitialize`, `onDestroy`
 - JavaScript nodes: `UBTConnectLibrary.ConnectPatterns.LazyImage.mvc$controller.OnReady.SetupOnLoadJS`, `UBTConnectLibrary.ConnectPatterns.LazyImage.mvc$controller.OnInitialize.IsViewRestoredFromCacheJS`, `UBTConnectLibrary.ConnectPatterns.LazyImage.mvc$controller.OnDestroy.JavaScript1JS`
@@ -1258,9 +1264,9 @@ Directory_Locality.Directory_LegendBottomSheet
 | isRootPage | input | Boolean | `false` |
 - Lifecycle handlers: Initialize, Ready, ParametersChanged
 - Client actions / event handlers: `onInitialize`, `onReady`, `onParametersChanged`, `event_BottomBar_Clicked`, `bottomBar_Clicked`
-- Navigation: `/UBTConnect/HomeFeed`(); `/UBTConnect/CountryList`(); `/UBTConnect/Locality_Details`(); `/UBTConnect/Updates_SingleList`(); `/UBTConnect/Bookmarks`(); `/UBTConnect/New_MyBookmarks`(); `/UBTConnect/MyBookmarks`(); `/UBTConnect/Menu`()
+- Navigation: `/UBTConnect/HomeFeed`(); `/UBTConnect/CountryList`(); `/UBTConnect/Locality_Details`(); `/UBTConnect/Updates_SingleList`(); `/UBTConnect/Bookmarks`(); `/UBTConnect/Menu`()
 - JavaScript nodes: `UBTConnect.App_Common.BottomBarMenu.mvc$controller.OnParametersChanged.Delayed_BottomBarSlider_ForceRefreshJS`
-- Static entities / flags: `connect_BottomBar_Items.updates`, `uBT_Color.primary`, `uBT_Color.neutral6`, `uBT_IconsSize.base_24`, `uBT_FontSize.extraSmall`, `connect_BottomBar_Items.bookmarks`, `connect_BottomBar_Items.home`, `connect_BottomBar_Items.directory`, `launchDarkly_FF.mobileDirectoryBookmarkNote`, `connect_BottomBar_Items.menu`
+- Static entities / flags: `connect_BottomBar_Items.updates`, `uBT_Color.primary`, `uBT_Color.neutral6`, `uBT_IconsSize.base_24`, `uBT_FontSize.extraSmall`, `connect_BottomBar_Items.bookmarks`, `connect_BottomBar_Items.home`, `connect_BottomBar_Items.directory`, `connect_BottomBar_Items.menu`
 - Client variables: getDirectory_Updates_UnreadCount
 
 ## `OutSystemsUI_2_23.Navigation.BottomBarItem.mvc.js`
@@ -1520,9 +1526,10 @@ Directory_Locality.Directory_LegendBottomSheet
 | ShowBackButton | input | Boolean | `false` |
 | IsNotInertWhenClosed | input | Boolean | `false` |
 | IsHideContentWhenClosed | input | Boolean | `false` |
+| In_TouchActionNoneFix | input | Boolean | `false` |
 - Lifecycle handlers: Ready
 - Client actions / event handlers: `bottomSheet_InternalOnToggle`, `onReady`, `maybeHideContentWhenClosed`, `setHideContentWhenClosed`, `closeOnClick`, `bottomSheet_InternalInitialized`, `removeInert`, `initialized`, `onClose`, `onToggle`, `onBack`
-- JavaScript nodes: `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.OnReady.CloseOnClickJS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.OnReady.AddTransitionListenerJS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.MaybeHideContentWhenClosed.DelaySetHideWhenClosedJS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.BottomSheet_InternalInitialized.JavaScript1JS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.RemoveInert.RemoveInertJS`
+- JavaScript nodes: `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.OnReady.CloseOnClickJS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.OnReady.AddTransitionListenerJS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.MaybeHideContentWhenClosed.DelaySetHideWhenClosedJS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.BottomSheet_InternalInitialized.JavaScript2JS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.BottomSheet_InternalInitialized.JavaScript1JS`, `UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$controller.RemoveInert.RemoveInertJS`
 - Static entities / flags: `shape.rounded`, `uBT_ColumnBehaviour.expandMiddle`, `uBT_Size.none`, `uBT_VerticalAlign.center`, `uBT_Icons.arrowLeftAlt`, `uBT_Color.neutral9`, `uBT_Color.transparent`, `uBT_IconSize.medium_20`, `uBT_Icons.close`, `uBT_Color.neutral10`, `uBT_FontSize.small`, `uBT_FontWeight.semiBold`
 - Candidate static strings: `RemoveInert` | `SetHideContentWhenClosed`
 
@@ -1545,15 +1552,16 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 3022 ms
-- 2. `DataActionGetCountriesStatistics` (200) at 4212 ms
-- 3. `DataActionFetchCount` (200) at 4220 ms
-- 4. `DataActionGetCacheInfo` (200) at 4226 ms
-- 5. `ActionAppManager_AfterInitialize` (200) at 6060 ms
-- 6. `ActionSync_Info_GetMain` (200) at 6555 ms
-- 7. `ActionGetNumberUnreadMessages` (200) at 6966 ms
-- 8. `ServiceAPIFetchData_CacheableHouseholds` (200) at 7787 ms
-- 9. `ServiceAPIFetchData_CacheableMapEntities` (200) at 7863 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 3756 ms
+- 2. `DataActionGetCommunityStatistics` (200) at 5054 ms
+- 3. `DataActionFetchCount` (200) at 5090 ms
+- 4. `DataActionGetCountriesStatistics` (200) at 5141 ms
+- 5. `DataActionGetCacheInfo` (200) at 5155 ms
+- 6. `ActionAppManager_AfterInitialize` (200) at 6722 ms
+- 7. `ActionSync_Info_GetMain` (200) at 7179 ms
+- 8. `ActionGetNumberUnreadMessages` (200) at 7494 ms
+- 9. `ServiceAPIFetchData_CacheableMapEntities` (200) at 9780 ms
+- 10. `ServiceAPIFetchData_CacheableHouseholds` (200) at 12007 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

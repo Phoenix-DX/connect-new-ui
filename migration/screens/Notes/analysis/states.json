@@ -10,7 +10,7 @@
   "auto": null,
   "htmlClass": "",
   "bodyClass": "phone portrait osx is-ltr",
-  "bodyStyle": "--header-size-content: 62px; --footer-height: 42px; --viewport-height: 844px;",
+  "bodyStyle": "--header-size-content: 47px; --footer-height: 56px; --viewport-height: 844px;",
   "dpr": 1
  },
  "loading": {
@@ -24,7 +24,7 @@
   "auto": "loading",
   "htmlClass": "",
   "bodyClass": "phone portrait osx is-ltr",
-  "bodyStyle": "--header-size-content: 62px; --footer-height: 42px; --viewport-height: 844px;",
+  "bodyStyle": "--header-size-content: 47px; --footer-height: 56px; --viewport-height: 844px;",
   "dpr": 1
  },
  "offline": {

@@ -1,4 +1,4 @@
-define("UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnectLibrary.model", "UBTConnect.controller", "UBTConnect_Utils.model", "APIDomain_Directory_IS.model", "NavigationHandler.controller", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "UBTConnectLibrary.controller", "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$model", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$model", "UBTConnectLibrary.ConnectPatterns.IconText.mvc$model", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$model", "UBTConnectLibrary.ConnectPatterns.Button.mvc$model", "UBTConnect.App_Cache.CacheControl_UserInfo_Wrapper.mvc$model", "NavigationHandler.NavigationHandler.BackNavigationHandler.mvc$model", "UBTConnect.model$Filter_Common_Control_ListRec", "UBTConnect.model$CacheControl_AllCountriesBooleanRecord", "UBTConnect.model$CacheControl_AllLocalitiesBooleanRecord", "UBTConnect.model$BooleanDirectory_UserCurrentRecord", "UBTConnect.model$Filter_Common_Control_ListListFilter_Common_Control_ListListFilter_Common_Control_ChoiceListRecord", "UBTConnect.model$Filter_CommonRec", "UBTConnect.model$Filter_Common_OptionsRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$ButtonOptionsRec", "UBTConnect.model$Filter_Common_Control_ChoiceList", "UBTConnect.model$Filter_Common_Control_ListList", "UBTConnectLibrary.model$SelectionOption_ItemRec", "UBTConnect.model$SelectionOption_ItemList", "UBTConnect.model$Filter_Common_Control_ChoiceRec", "UBTConnect.controller$App_CommonFilter_DefineOptionNames", "UBTConnect.model$TextTextLongIntegerRecordList", "UBTConnect.controller$App_CommonFilter_CheckCountry", "UBTConnect_Utils.model$UI_LocalityDetailsRec", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.model$UI_LocalityDetailsList", "APIDomain_Directory_IS.model$Directory_UserCurrentRec", "UBTConnect.referencesHealth$APIDomain_Directory_IS", "NavigationHandler.controller$PreventNavigation", "UBTConnect.referencesHealth$NavigationHandler", "OutSystemsUI_2_23.model$ErrorMessageRec", "UBTConnect.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.controller$BottomSheetClose", "UBTConnect_Utils.model$UI_CountryDetailsRec", "UBTConnect.model$UI_CountryDetails2List", "UBTConnectLibrary.controller$Input_ClearString"], function (OutSystems, UBTConnectModel, UBTConnectLibraryModel, UBTConnectController, UBTConnect_UtilsModel, APIDomain_Directory_ISModel, NavigationHandlerController, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, UBTConnectLibraryController, UBTConnectLibrary_ConnectPatterns_BottomSheet_mvcModel, UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel, UBTConnectLibrary_ConnectPatterns_IconText_mvcModel, UBTConnectLibrary_ConnectPatterns_Icon_mvcModel, UBTConnectLibrary_ConnectPatterns_Button_mvcModel, UBTConnect_App_Cache_CacheControl_UserInfo_Wrapper_mvcModel, NavigationHandler_NavigationHandler_BackNavigationHandler_mvcModel) {
+define("UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnectLibrary.model", "UBTConnect.controller", "UBTConnect_Utils.model", "APIDomain_Directory_IS.model", "NavigationHandler.controller", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "UBTConnectLibrary.controller", "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$model", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$model", "UBTConnectLibrary.ConnectPatterns.IconText.mvc$model", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$model", "UBTConnectLibrary.ConnectPatterns.Button.mvc$model", "UBTConnect.App_Cache.CacheControl_UserInfo_Wrapper.mvc$model", "UBTConnect.App_Notifications.Notifications_ConfirmDialog.mvc$model", "NavigationHandler.NavigationHandler.BackNavigationHandler.mvc$model", "UBTConnect.model$Filter_Common_Control_ListRec", "UBTConnect.model$CacheControl_AllCountriesBooleanRecord", "UBTConnect.model$CacheControl_AllLocalitiesBooleanRecord", "UBTConnect.model$BooleanDirectory_UserCurrentRecord", "UBTConnect.model$Filter_Common_Control_ListListFilter_Common_Control_ListListFilter_Common_Control_ChoiceListRecord", "UBTConnect.model$Filter_CommonRec", "UBTConnect.model$Filter_Common_OptionsRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$ButtonOptionsRec", "UBTConnect.model$Filter_Common_Control_ChoiceList", "UBTConnect.model$Filter_Common_Control_ListList", "UBTConnectLibrary.model$SelectionOption_ItemRec", "UBTConnect.model$SelectionOption_ItemList", "UBTConnect.model$Filter_Common_Control_ChoiceRec", "UBTConnect.controller$App_CommonFilter_DefineOptionNames", "UBTConnect.model$TextTextLongIntegerRecordList", "UBTConnect.controller$App_CommonFilter_CheckCountry", "UBTConnect_Utils.model$UI_LocalityDetailsRec", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.model$UI_LocalityDetailsList", "APIDomain_Directory_IS.model$Directory_UserCurrentRec", "UBTConnect.referencesHealth$APIDomain_Directory_IS", "NavigationHandler.controller$PreventNavigation", "UBTConnect.referencesHealth$NavigationHandler", "OutSystemsUI_2_23.model$ErrorMessageRec", "UBTConnect.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.controller$BottomSheetClose", "UBTConnect_Utils.model$UI_CountryDetailsRec", "UBTConnect.model$UI_CountryDetails2List", "UBTConnectLibrary.controller$Input_ClearString"], function (OutSystems, UBTConnectModel, UBTConnectLibraryModel, UBTConnectController, UBTConnect_UtilsModel, APIDomain_Directory_ISModel, NavigationHandlerController, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, UBTConnectLibraryController, UBTConnectLibrary_ConnectPatterns_BottomSheet_mvcModel, UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel, UBTConnectLibrary_ConnectPatterns_IconText_mvcModel, UBTConnectLibrary_ConnectPatterns_Icon_mvcModel, UBTConnectLibrary_ConnectPatterns_Button_mvcModel, UBTConnect_App_Cache_CacheControl_UserInfo_Wrapper_mvcModel, UBTConnect_App_Notifications_Notifications_ConfirmDialog_mvcModel, NavigationHandler_NavigationHandler_BackNavigationHandler_mvcModel) {
 var OS = OutSystems.Internal;
 
 
@@ -60,6 +60,9 @@ return "";
 this.attr("ForceUpdateOptionList", "forceUpdateOptionListVar", "ForceUpdateOptionList", true, false, OS.DataTypes.DataTypes.Boolean, function () {
 return false;
 }, false), 
+this.attr("ShowConfirmDeleteAllPopup", "showConfirmDeleteAllPopupVar", "ShowConfirmDeleteAllPopup", true, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
+}, false), 
 this.attr("In_StartFilter", "in_StartFilterIn", "In_StartFilter", true, false, OS.DataTypes.DataTypes.Record, function () {
 return OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.Filter_CommonRec());
 }, false, UBTConnectModel.Filter_CommonRec), 
@@ -111,7 +114,7 @@ enumerable: true,
 configurable: true,
 get: function () {
 if((Model._hasValidationWidgetsValue === undefined)) {
-Model._hasValidationWidgetsValue = ((((((UBTConnectLibrary_ConnectPatterns_BottomSheet_mvcModel.hasValidationWidgets || UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_IconText_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_Icon_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_Button_mvcModel.hasValidationWidgets) || UBTConnect_App_Cache_CacheControl_UserInfo_Wrapper_mvcModel.hasValidationWidgets) || NavigationHandler_NavigationHandler_BackNavigationHandler_mvcModel.hasValidationWidgets);
+Model._hasValidationWidgetsValue = (((((((UBTConnectLibrary_ConnectPatterns_BottomSheet_mvcModel.hasValidationWidgets || UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_IconText_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_Icon_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_Button_mvcModel.hasValidationWidgets) || UBTConnect_App_Cache_CacheControl_UserInfo_Wrapper_mvcModel.hasValidationWidgets) || UBTConnect_App_Notifications_Notifications_ConfirmDialog_mvcModel.hasValidationWidgets) || NavigationHandler_NavigationHandler_BackNavigationHandler_mvcModel.hasValidationWidgets);
 }
 
 return Model._hasValidationWidgetsValue;
@@ -148,7 +151,7 @@ return Model;
 })(OS.Model.BaseViewModel);
 return new OS.Model.ModelFactory(Model, "App_CommonBlocks_Filter.MoreActionSheet");
 });
-define("UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnectLibrary.model", "UBTConnect_Utils.model", "APIDomain_Directory_IS.model", "NavigationHandler.controller", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "UBTConnectLibrary.controller", "react", "OutSystems/ReactView/Main", "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc$model", "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc$controller", "UBTConnect.clientVariables", "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$view", "OutSystems/ReactWidgets/Main", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$view", "UBTConnectLibrary.ConnectPatterns.IconText.mvc$view", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$view", "UBTConnectLibrary.ConnectPatterns.Button.mvc$view", "UBTConnect.App_Cache.CacheControl_UserInfo_Wrapper.mvc$view", "NavigationHandler.NavigationHandler.BackNavigationHandler.mvc$view", "UBTConnect.model$Filter_Common_Control_ListRec", "UBTConnect.model$CacheControl_AllCountriesBooleanRecord", "UBTConnect.model$CacheControl_AllLocalitiesBooleanRecord", "UBTConnect.model$BooleanDirectory_UserCurrentRecord", "UBTConnect.model$Filter_Common_Control_ListListFilter_Common_Control_ListListFilter_Common_Control_ChoiceListRecord", "UBTConnect.model$Filter_CommonRec", "UBTConnect.model$Filter_Common_OptionsRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$ButtonOptionsRec", "UBTConnect.model$Filter_Common_Control_ChoiceList", "UBTConnect.model$Filter_Common_Control_ListList", "UBTConnectLibrary.model$SelectionOption_ItemRec", "UBTConnect.model$SelectionOption_ItemList", "UBTConnect.model$Filter_Common_Control_ChoiceRec", "UBTConnect.controller$App_CommonFilter_DefineOptionNames", "UBTConnect.model$TextTextLongIntegerRecordList", "UBTConnect.controller$App_CommonFilter_CheckCountry", "UBTConnect_Utils.model$UI_LocalityDetailsRec", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.model$UI_LocalityDetailsList", "APIDomain_Directory_IS.model$Directory_UserCurrentRec", "UBTConnect.referencesHealth$APIDomain_Directory_IS", "NavigationHandler.controller$PreventNavigation", "UBTConnect.referencesHealth$NavigationHandler", "OutSystemsUI_2_23.model$ErrorMessageRec", "UBTConnect.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.controller$BottomSheetClose", "UBTConnect_Utils.model$UI_CountryDetailsRec", "UBTConnect.model$UI_CountryDetails2List", "UBTConnectLibrary.controller$Input_ClearString"], function (OutSystems, UBTConnectModel, UBTConnectController, UBTConnectLibraryModel, UBTConnect_UtilsModel, APIDomain_Directory_ISModel, NavigationHandlerController, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, UBTConnectLibraryController, React, OSView, UBTConnect_App_CommonBlocks_Filter_MoreActionSheet_mvc_model, UBTConnect_App_CommonBlocks_Filter_MoreActionSheet_mvc_controller, UBTConnectClientVariables, UBTConnectLibrary_ConnectPatterns_BottomSheet_mvc_view, OSWidgets, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnectLibrary_ConnectPatterns_IconText_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnectLibrary_ConnectPatterns_Button_mvc_view, UBTConnect_App_Cache_CacheControl_UserInfo_Wrapper_mvc_view, NavigationHandler_NavigationHandler_BackNavigationHandler_mvc_view) {
+define("UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnectLibrary.model", "UBTConnect_Utils.model", "APIDomain_Directory_IS.model", "NavigationHandler.controller", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "UBTConnectLibrary.controller", "react", "OutSystems/ReactView/Main", "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc$model", "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc$controller", "UBTConnect.clientVariables", "OutSystems/ReactWidgets/Main", "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$view", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$view", "UBTConnectLibrary.ConnectPatterns.IconText.mvc$view", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$view", "UBTConnectLibrary.ConnectPatterns.Button.mvc$view", "UBTConnect.App_Cache.CacheControl_UserInfo_Wrapper.mvc$view", "UBTConnect.App_Notifications.Notifications_ConfirmDialog.mvc$view", "NavigationHandler.NavigationHandler.BackNavigationHandler.mvc$view", "UBTConnect.model$Filter_Common_Control_ListRec", "UBTConnect.model$CacheControl_AllCountriesBooleanRecord", "UBTConnect.model$CacheControl_AllLocalitiesBooleanRecord", "UBTConnect.model$BooleanDirectory_UserCurrentRecord", "UBTConnect.model$Filter_Common_Control_ListListFilter_Common_Control_ListListFilter_Common_Control_ChoiceListRecord", "UBTConnect.model$Filter_CommonRec", "UBTConnect.model$Filter_Common_OptionsRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$ButtonOptionsRec", "UBTConnect.model$Filter_Common_Control_ChoiceList", "UBTConnect.model$Filter_Common_Control_ListList", "UBTConnectLibrary.model$SelectionOption_ItemRec", "UBTConnect.model$SelectionOption_ItemList", "UBTConnect.model$Filter_Common_Control_ChoiceRec", "UBTConnect.controller$App_CommonFilter_DefineOptionNames", "UBTConnect.model$TextTextLongIntegerRecordList", "UBTConnect.controller$App_CommonFilter_CheckCountry", "UBTConnect_Utils.model$UI_LocalityDetailsRec", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.model$UI_LocalityDetailsList", "APIDomain_Directory_IS.model$Directory_UserCurrentRec", "UBTConnect.referencesHealth$APIDomain_Directory_IS", "NavigationHandler.controller$PreventNavigation", "UBTConnect.referencesHealth$NavigationHandler", "OutSystemsUI_2_23.model$ErrorMessageRec", "UBTConnect.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.controller$BottomSheetClose", "UBTConnect_Utils.model$UI_CountryDetailsRec", "UBTConnect.model$UI_CountryDetails2List", "UBTConnectLibrary.controller$Input_ClearString"], function (OutSystems, UBTConnectModel, UBTConnectController, UBTConnectLibraryModel, UBTConnect_UtilsModel, APIDomain_Directory_ISModel, NavigationHandlerController, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, UBTConnectLibraryController, React, OSView, UBTConnect_App_CommonBlocks_Filter_MoreActionSheet_mvc_model, UBTConnect_App_CommonBlocks_Filter_MoreActionSheet_mvc_controller, UBTConnectClientVariables, OSWidgets, UBTConnectLibrary_ConnectPatterns_BottomSheet_mvc_view, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnectLibrary_ConnectPatterns_IconText_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnectLibrary_ConnectPatterns_Button_mvc_view, UBTConnect_App_Cache_CacheControl_UserInfo_Wrapper_mvc_view, UBTConnect_App_Notifications_Notifications_ConfirmDialog_mvc_view, NavigationHandler_NavigationHandler_BackNavigationHandler_mvc_view) {
     var OS = OutSystems.Internal;
 var PlaceholderContent = OSView.Widget.PlaceholderContent;
 var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
@@ -180,7 +183,7 @@ var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
             return [];
         };
         View.getBlocks = function() {
-            return [UBTConnectLibrary_ConnectPatterns_BottomSheet_mvc_view, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnectLibrary_ConnectPatterns_IconText_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnectLibrary_ConnectPatterns_Button_mvc_view, UBTConnect_App_Cache_CacheControl_UserInfo_Wrapper_mvc_view, NavigationHandler_NavigationHandler_BackNavigationHandler_mvc_view];
+            return [UBTConnectLibrary_ConnectPatterns_BottomSheet_mvc_view, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnectLibrary_ConnectPatterns_IconText_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnectLibrary_ConnectPatterns_Button_mvc_view, UBTConnect_App_Cache_CacheControl_UserInfo_Wrapper_mvc_view, UBTConnect_App_Notifications_Notifications_ConfirmDialog_mvc_view, NavigationHandler_NavigationHandler_BackNavigationHandler_mvc_view];
         };
         Object.defineProperty(View.prototype, "modelFactory", {
             get: function () {
@@ -216,40 +219,35 @@ var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
             var getTranslation = View.getTranslation;
             var _this = this;
 
-            return React.createElement("div", this.getRootNodeProperties(), React.createElement(UBTConnectLibrary_ConnectPatterns_BottomSheet_mvc_view, {
+            return React.createElement("div", this.getRootNodeProperties(), React.createElement(OSWidgets.Container, {
+align: /*Default*/ 0,
+animate: false,
+style: "moreActionContainer",
+visible: true,
+_idProps: {
+service: idService,
+uuid: "0"
+},
+_widgetRecordProvider: widgetsRecordProvider
+}, React.createElement(UBTConnectLibrary_ConnectPatterns_BottomSheet_mvc_view, {
 inputs: {
-ShowHeader: false,
-Content_BackgroundColorId: UBTConnectModel.staticEntities.uBT_Color.neutral2,
-FooterHeight: "72px",
-Content_Padding: model.getCachedValue(idService.getId("kNpMMmZYlUKZPcSrij8MMQ.Content_Padding"), function () {
+Content_Padding: model.getCachedValue(idService.getId("xEQNIjn_mEG3X0I4AHL_sw.Content_Padding"), function () {
 return function () {
 var rec = new UBTConnectLibraryModel.SpacingOptionsRec();
 rec.generalSizeIdAttr = UBTConnectModel.staticEntities.uBT_Size.small;
 return rec;
 }();
 }),
+ShowHeader: false,
+FooterHeight: "72px",
+Content_BackgroundColorId: UBTConnectModel.staticEntities.uBT_Color.neutral2,
+Title: "Sort",
 ExtendedClasses: model.variables.extendedClassesIn,
-_extendedClassesInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables._extendedClassesInDataFetchStatus),
-Title: "Sort"
+_extendedClassesInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables._extendedClassesInDataFetchStatus)
 },
 events: {
 _handleError: function (ex) {
 controller.handleError(ex);
-},
-initialized$Action: function (idIn) {
-return Promise.resolve().then(function () {
-var eventHandlerContext = callContext.clone();
-return OS.Flow.tryFinally(function () {
-var varBag = {};
-controller.pushDebuggerContext(eventHandlerContext);
-
-OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectPatterns/BottomSheet Initialized");
-return controller.bottomSheetInitialized$Action(idIn, controller.callContext(eventHandlerContext));
-}, function () {
-controller.popDebuggerContext(eventHandlerContext);
-});
-});
-;
 },
 onToggle$Action: function (isOpenIn) {
 var eventHandlerContext = callContext.clone();
@@ -278,6 +276,21 @@ controller.popDebuggerContext(eventHandlerContext);
 });
 
 ;
+},
+initialized$Action: function (idIn) {
+return Promise.resolve().then(function () {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectPatterns/BottomSheet Initialized");
+return controller.bottomSheetInitialized$Action(idIn, controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+});
+;
 }
 },
 _validationProps: {
@@ -285,7 +298,7 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "0",
+uuid: "1",
 alias: "1"
 },
 _widgetRecordProvider: widgetsRecordProvider,
@@ -293,7 +306,7 @@ placeholders: {
 content: new PlaceholderContent(function () {
 return [React.createElement(UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, {
 inputs: {
-Options: model.getCachedValue(idService.getId("OGT1iQBInkOsEtpQFxF2xA.Options"), function () {
+Options: model.getCachedValue(idService.getId("GVIV7xxWYECsYdZ5eKF0_g.Options"), function () {
 return function () {
 var rec = new UBTConnectLibraryModel.ContainerOptionsRec();
 rec.backgroundAttr = function () {
@@ -331,7 +344,7 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "1",
+uuid: "2",
 alias: "2"
 },
 _widgetRecordProvider: widgetsRecordProvider,
@@ -339,7 +352,7 @@ placeholders: {
 content: new PlaceholderContent(function () {
 return [React.createElement(UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, {
 inputs: {
-Options: model.getCachedValue(idService.getId("Jivt_fMfoUmfMuOAmCyWPg.Options"), function () {
+Options: model.getCachedValue(idService.getId("_BAVYG1fs02q3uhkbNPIFw.Options"), function () {
 return function () {
 var rec = new UBTConnectLibraryModel.ContainerOptionsRec();
 rec.paddingSizeAttr = function () {
@@ -361,7 +374,7 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "2",
+uuid: "3",
 alias: "3"
 },
 _widgetRecordProvider: widgetsRecordProvider,
@@ -369,8 +382,7 @@ placeholders: {
 content: new PlaceholderContent(function () {
 return [React.createElement(UBTConnectLibrary_ConnectPatterns_IconText_mvc_view, {
 inputs: {
-Text: "Mark all as read",
-TextOptions: model.getCachedValue(idService.getId("n5yNBAWinkKd2x99m8NhEw.TextOptions"), function () {
+TextOptions: model.getCachedValue(idService.getId("d4+d7k8Gs0+NAbj4T6Pp1Q.TextOptions"), function () {
 return function () {
 var rec = new UBTConnectLibraryModel.TextOptionsRec();
 rec.colorAttr = UBTConnectModel.staticEntities.uBT_Color.primary;
@@ -378,7 +390,8 @@ rec.fontSizeAttr = UBTConnectModel.staticEntities.uBT_FontSize.base;
 rec.fontWeightAttr = UBTConnectModel.staticEntities.uBT_FontWeight.semiBold;
 return rec;
 }();
-})
+}),
+Text: "Mark all as read"
 },
 events: {
 _handleError: function (ex) {
@@ -405,7 +418,7 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "3",
+uuid: "4",
 alias: "4"
 },
 _widgetRecordProvider: widgetsRecordProvider,
@@ -427,7 +440,7 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "4",
+uuid: "5",
 alias: "5"
 },
 _widgetRecordProvider: widgetsRecordProvider,
@@ -442,7 +455,7 @@ _dependencies: []
 _dependencies: []
 }), React.createElement(UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, {
 inputs: {
-Options: model.getCachedValue(idService.getId("h_T9A+3Y4kW2QkGROkR7JQ.Options"), function () {
+Options: model.getCachedValue(idService.getId("vAXP1j46xki7Hv9272nSJg.Options"), function () {
 return function () {
 var rec = new UBTConnectLibraryModel.ContainerOptionsRec();
 rec.paddingSizeAttr = function () {
@@ -464,7 +477,7 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "5",
+uuid: "6",
 alias: "6"
 },
 _widgetRecordProvider: widgetsRecordProvider,
@@ -473,7 +486,7 @@ content: new PlaceholderContent(function () {
 return [React.createElement(UBTConnectLibrary_ConnectPatterns_IconText_mvc_view, {
 inputs: {
 Text: "Delete all notifications",
-TextOptions: model.getCachedValue(idService.getId("unfzPGihSkGfnDyqtWK6yw.TextOptions"), function () {
+TextOptions: model.getCachedValue(idService.getId("tCBN6wu5GUiwx+4b9AGWMQ.TextOptions"), function () {
 return function () {
 var rec = new UBTConnectLibraryModel.TextOptionsRec();
 rec.colorAttr = UBTConnectModel.staticEntities.uBT_Color.error;
@@ -488,18 +501,17 @@ _handleError: function (ex) {
 controller.handleError(ex);
 },
 clicked$Action: function () {
-return Promise.resolve().then(function () {
 var eventHandlerContext = callContext.clone();
 return OS.Flow.tryFinally(function () {
 var varBag = {};
 controller.pushDebuggerContext(eventHandlerContext);
 
 OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectPatterns/IconText Clicked");
-return controller.deleteAllNotificationClicked$Action(controller.callContext(eventHandlerContext));
+controller.toggle_DeleteAllPopup$Action(controller.callContext(eventHandlerContext));
 }, function () {
 controller.popDebuggerContext(eventHandlerContext);
 });
-});
+
 ;
 }
 },
@@ -508,7 +520,7 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "6",
+uuid: "7",
 alias: "7"
 },
 _widgetRecordProvider: widgetsRecordProvider,
@@ -516,9 +528,9 @@ placeholders: {
 icon: new PlaceholderContent(function () {
 return [React.createElement(UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, {
 inputs: {
-In_IconId: UBTConnectModel.staticEntities.uBT_Icons2.delete,
 In_SizeId: UBTConnectModel.staticEntities.uBT_IconsSize.medium_20,
-In_ColorId: UBTConnectModel.staticEntities.uBT_Color.error
+In_ColorId: UBTConnectModel.staticEntities.uBT_Color.error,
+In_IconId: UBTConnectModel.staticEntities.uBT_Icons2.delete
 },
 events: {
 _handleError: function (ex) {
@@ -530,7 +542,7 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "7",
+uuid: "8",
 alias: "8"
 },
 _widgetRecordProvider: widgetsRecordProvider,
@@ -552,7 +564,7 @@ _dependencies: []
 footer: new PlaceholderContent(function () {
 return [React.createElement(UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, {
 inputs: {
-Options: model.getCachedValue(idService.getId("RfnRG_BdmU6rXd+csgT8Hg.Options"), function () {
+Options: model.getCachedValue(idService.getId("mg0BTOCVGUiGAYH6NKRuYQ.Options"), function () {
 return function () {
 var rec = new UBTConnectLibraryModel.ContainerOptionsRec();
 rec.backgroundAttr = function () {
@@ -587,7 +599,7 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "8",
+uuid: "9",
 alias: "9"
 },
 _widgetRecordProvider: widgetsRecordProvider,
@@ -595,7 +607,8 @@ placeholders: {
 content: new PlaceholderContent(function () {
 return [React.createElement(UBTConnectLibrary_ConnectPatterns_Button_mvc_view, {
 inputs: {
-In_ButtonOptions: model.getCachedValue(idService.getId("PzRlnFotBEu8NU_2AlyQTg.In_ButtonOptions"), function () {
+In_IsDisabled: false,
+In_ButtonOptions: model.getCachedValue(idService.getId("26j4FwxM3kaLzfnwlFzbNQ.In_ButtonOptions"), function () {
 return function () {
 var rec = new UBTConnectLibraryModel.ButtonOptionsRec();
 rec.uBT_ButtonSizeIdAttr = UBTConnectModel.staticEntities.uBT_ButtonSize.medium;
@@ -603,8 +616,7 @@ rec.uBT_ButtonTypeIdAttr = UBTConnectModel.staticEntities.uBT_ButtonType.tertiar
 rec.uBT_FlexBehaviorAttr = UBTConnectModel.staticEntities.uBT_FlexBehavior.grow;
 return rec;
 }();
-}),
-In_IsDisabled: false
+})
 },
 events: {
 _handleError: function (ex) {
@@ -631,7 +643,7 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "9",
+uuid: "10",
 alias: "10"
 },
 _widgetRecordProvider: widgetsRecordProvider,
@@ -649,7 +661,7 @@ _dependencies: []
 })
 },
 _dependencies: []
-}), $if((model.variables.in_Filter_Common_Options_ChoiceIn.hasCountriesAttr.enableAttr || model.variables.in_Filter_Common_Options_ChoiceIn.hasLocalitiesAttr.enableAttr), false, this, function () {
+})), $if((model.variables.in_Filter_Common_Options_ChoiceIn.hasCountriesAttr.enableAttr || model.variables.in_Filter_Common_Options_ChoiceIn.hasLocalitiesAttr.enableAttr), false, this, function () {
 return [React.createElement(UBTConnect_App_Cache_CacheControl_UserInfo_Wrapper_mvc_view, {
 inputs: {},
 events: {
@@ -677,7 +689,7 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "10",
+uuid: "11",
 alias: "11"
 },
 _widgetRecordProvider: widgetsRecordProvider,
@@ -685,7 +697,63 @@ _dependencies: []
 })];
 }, function () {
 return [];
-}), React.createElement(NavigationHandler_NavigationHandler_BackNavigationHandler_mvc_view, {
+}), React.createElement(OSWidgets.Popup, {
+showPopup: model.variables.showConfirmDeleteAllPopupVar,
+style: "popup-dialog",
+_idProps: {
+service: idService,
+uuid: "12"
+},
+_widgetRecordProvider: widgetsRecordProvider
+}, React.createElement(UBTConnect_App_Notifications_Notifications_ConfirmDialog_mvc_view, {
+inputs: {
+IsSingle: false
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+},
+confirm$Action: function () {
+return Promise.resolve().then(function () {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "App_Notifications/Notifications_ConfirmDialog Confirm");
+return controller.deleteAllNotificationClicked$Action(controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+});
+;
+},
+cancel$Action: function () {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "App_Notifications/Notifications_ConfirmDialog Cancel");
+controller.toggle_DeleteAllPopup$Action(controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+
+;
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+uuid: "13",
+alias: "12"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+_dependencies: []
+})), React.createElement(NavigationHandler_NavigationHandler_BackNavigationHandler_mvc_view, {
 inputs: {},
 events: {
 _handleError: function (ex) {
@@ -711,8 +779,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "11",
-alias: "12"
+uuid: "14",
+alias: "13"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
@@ -1112,6 +1180,30 @@ OutSystemsDebugger.handleException(ex, callContext.id);
 throw ex;
 } finally {
 OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:_phiQwHXGUSZoj+JsEVL3Q", callContext.id);
+}
+
+};
+Controller.prototype._toggle_DeleteAllPopup$Action = function (callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("Toggle_DeleteAllPopup");
+callContext = controller.callContext(callContext);
+varBag.callContext = callContext;
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:KxUKS9p5x0W3keBUmdIssA:/NRWebFlows.Jpw6vcM30keGIepdkjtS7A/NodesShownInESpaceTree.UdG21F4c3E6cr1pBKYbIfQ/ClientActions.KxUKS9p5x0W3keBUmdIssA:gcJTrWbVp1wr6Sr03aJJEA", "UBTConnect", "Toggle_DeleteAllPopup", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:UqakJjIbSEeiTLjIy3ETyQ", callContext.id);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:6jMuZzrpN0+hpWU0FdWM4A", callContext.id);
+// ShowConfirmDeleteAllPopup = notShowConfirmDeleteAllPopup
+model.variables.showConfirmDeleteAllPopupVar = !(model.variables.showConfirmDeleteAllPopupVar);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:z92wYS5CEUyHJk8Tm+ooqg", callContext.id);
+} catch (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+throw ex;
+} finally {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:KxUKS9p5x0W3keBUmdIssA", callContext.id);
 }
 
 };
@@ -1929,12 +2021,15 @@ varBag.idService = idService;
 controller.ensureControllerAlive("DeleteAllNotificationClicked");
 callContext = controller.callContext(callContext);
 varBag.callContext = callContext;
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:wCyVpipH1kupg01HL1nM0w:/NRWebFlows.Jpw6vcM30keGIepdkjtS7A/NodesShownInESpaceTree.UdG21F4c3E6cr1pBKYbIfQ/ClientActions.wCyVpipH1kupg01HL1nM0w:Wng1KBrVtxsOvd3FTCKwsw", "UBTConnect", "DeleteAllNotificationClicked", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:wCyVpipH1kupg01HL1nM0w:/NRWebFlows.Jpw6vcM30keGIepdkjtS7A/NodesShownInESpaceTree.UdG21F4c3E6cr1pBKYbIfQ/ClientActions.wCyVpipH1kupg01HL1nM0w:5peIhB4XbMw2HUx9g+Dskw", "UBTConnect", "DeleteAllNotificationClicked", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:vVo4I0MzvEurEwOHK0XuuQ", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:F2ubVVGlu0yqRMxJYwYO5g", callContext.id);
 // Trigger Event: DeleteAllNotification
 return controller.deleteAllNotification$Action(callContext).then(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:UHlCBqk1QUGluMqX9SJB8w", callContext.id);
+// Execute Action: Toggle_DeleteAllPopup
+controller._toggle_DeleteAllPopup$Action(callContext);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:MReFXBdWY0mXh8dyNszAJQ", callContext.id);
 });
 }).then(function (res) {
@@ -2160,12 +2255,15 @@ varBag.idService = idService;
 controller.ensureControllerAlive("MarkAllAsReadClicked");
 callContext = controller.callContext(callContext);
 varBag.callContext = callContext;
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:xQVywcugWUO4uhhjFAZ31A:/NRWebFlows.Jpw6vcM30keGIepdkjtS7A/NodesShownInESpaceTree.UdG21F4c3E6cr1pBKYbIfQ/ClientActions.xQVywcugWUO4uhhjFAZ31A:oXApRPKCt07J9Rf+044nYg", "UBTConnect", "MarkAllAsReadClicked", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:xQVywcugWUO4uhhjFAZ31A:/NRWebFlows.Jpw6vcM30keGIepdkjtS7A/NodesShownInESpaceTree.UdG21F4c3E6cr1pBKYbIfQ/ClientActions.xQVywcugWUO4uhhjFAZ31A:FW352JMoKAw+YAsDlSW3aQ", "UBTConnect", "MarkAllAsReadClicked", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:9J70fCGl+U6bWdq+q4HsVQ", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Pm7fnn7P_EyfuJqZ4KDy_w", callContext.id);
 // Trigger Event: MarkAllAsRead
 return controller.markAllAsRead$Action(callContext).then(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:ktIUo07iak+26c94y1mpIQ", callContext.id);
+// Execute Action: BottomSheetOnClose
+controller._bottomSheetOnClose$Action(callContext);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:y++JG2Es_UWJiUEQQK+_Eg", callContext.id);
 });
 }).then(function (res) {
@@ -2411,6 +2509,11 @@ var controller = this.controller;
 return controller.safeExecuteClientAction(controller._screenEvent_OnInitialize$Action, callContext);
 
 };
+Controller.prototype.toggle_DeleteAllPopup$Action = function (callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._toggle_DeleteAllPopup$Action, callContext);
+
+};
 Controller.prototype.action_FilterLocalitiesByCountry$Action = function (callContext) {
 var controller = this.controller;
 return controller.safeExecuteClientAction(controller._action_FilterLocalitiesByCountry$Action, callContext);
@@ -2536,7 +2639,7 @@ return Promise.resolve();
 Controller.prototype.pushDebuggerContext = function (callContext) {
 var varBag = {};
 OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:Jpw6vcM30keGIepdkjtS7A:/NRWebFlows.Jpw6vcM30keGIepdkjtS7A:aO+UykmPPS6VEpIYdNjDCA", "UBTConnect", "App_CommonBlocks_Filter", "NRFlows.WebFlow", callContext.id, varBag);
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:UdG21F4c3E6cr1pBKYbIfQ:/NRWebFlows.Jpw6vcM30keGIepdkjtS7A/NodesShownInESpaceTree.UdG21F4c3E6cr1pBKYbIfQ:T7gpmgWerGROMuE3oxVfKw", "UBTConnect", "MoreActionSheet", "NRNodes.WebBlock", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:UdG21F4c3E6cr1pBKYbIfQ:/NRWebFlows.Jpw6vcM30keGIepdkjtS7A/NodesShownInESpaceTree.UdG21F4c3E6cr1pBKYbIfQ:xTv71UY2LfhxZlTF6EcXIg", "UBTConnect", "MoreActionSheet", "NRNodes.WebBlock", callContext.id, varBag);
 };
 Controller.prototype.popDebuggerContext = function (callContext) {
 OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:UdG21F4c3E6cr1pBKYbIfQ", callContext.id);
@@ -2910,6 +3013,12 @@ return varBag.model.variables.forceUpdateOptionListVar;
 },
 dataType: OS.DataTypes.DataTypes.Boolean
 },
+"TdJkncZ4wUSoVeF60+M6+w": {
+getter: function (varBag, idService) {
+return varBag.model.variables.showConfirmDeleteAllPopupVar;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
 "+IBuw+VoCUu6oqcHhD5Chw": {
 getter: function (varBag, idService) {
 return varBag.model.variables.in_StartFilterIn;
@@ -2926,63 +3035,63 @@ return varBag.model.variables.extendedClassesIn;
 },
 dataType: OS.DataTypes.DataTypes.Text
 },
-"LoxtJTA1IkWXBQ1X7Zj7QA": {
+"bGta4IZXzEWXT6LyUOAcfw": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("Content"));
 })(varBag.model, idService);
 }
 },
-"QbUs5+AJCkeEfiFVx0FrMA": {
+"MFzqNTIJSUW1seW2OgKReA": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("Content"));
 })(varBag.model, idService);
 }
 },
-"frpQprPU3EaXtm7MHKiVOg": {
+"H6Ssl4_NVkOYnw9yp9gRtw": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("Content"));
 })(varBag.model, idService);
 }
 },
-"qCtf0HsC6k6yfRgaVmBwgg": {
+"xdeSelMEQ0yaCP2eLFf8HQ": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("Icon"));
 })(varBag.model, idService);
 }
 },
-"gSB99eOlyEmOajh1wBPe7g": {
+"Gb50ASQ2wU+vGsv4Eq0Xmg": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("Content"));
 })(varBag.model, idService);
 }
 },
-"Q5zWlXBb2UOJezryCRHHnQ": {
+"+iSEZUZp2kuA+Lh+ZYIjuQ": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("Icon"));
 })(varBag.model, idService);
 }
 },
-"I6HEzSOZiE6aKRStLdgyyQ": {
+"ZzO5FqLDwkmNsuMEf+BB0Q": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("Footer"));
 })(varBag.model, idService);
 }
 },
-"09SO59++KkeItGjDIsAokg": {
+"CmvcTWyfgkCPgGmxA9uhKg": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("Content"));
 })(varBag.model, idService);
 }
 },
-"7R8L8LAGKk2VeoLRse1gFw": {
+"vjhnOcq7rkC6B3kJus2AzQ": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("Content"));

@@ -75,6 +75,7 @@ export const handlers: RequestHandler[] = [
   contractHandler('UBTConnect', 'HouseholdRelations_Block/DataActionGet_MemberDetails', () => ({
     MemberName: `${VITALE.householder} ${VITALE.surname}`,
     FamilyName: 'The Vitales',
+    IsMemberDeceased: false,
     Father: parent('7101', VITALE_PARENTS.householder, VITALE_PARENTS.members[0]?.born ?? ''),
     Mother: parent('7102', 'María Ana Fernández', VITALE_PARENTS.members[1]?.born ?? ''),
     FormerSpouses: wireList([]),

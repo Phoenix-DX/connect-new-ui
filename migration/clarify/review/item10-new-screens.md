@@ -205,8 +205,8 @@ Capture results (TST, read-only guard on):
 | Screen | Result | Evidence |
 |---|---|---|
 | NotificationDetails | Captured with a notification that is already read (no `MarkAsRead` on the way). | `migration/clarify/tools/probe_notification_ids.cjs` (273 items, 2 read) |
-| Bookmarks | Captured. The test account has no bookmarks, so the list is empty. | `migration/screens/Bookmarks/analysis/` |
-| OneSchoolGlobalCarousel | Captured by URL. With no preload object, the carousel has no items. | `OneSchoolGlobalCarousel.mvc.js:343-370` |
+| Bookmarks | Captured. **Correction (2026-10-29):** the list has 3 cards (2 Household, 1 OneSchool Global) and 9 pills. The probe of 2026-10-28 read the page before the list loaded and saw the EmptyList, so the first note "no bookmarks" was wrong. | `migration/screens/Bookmarks/analysis/dom/default.html` (3 `Bookmarks_Card_Item`) |
+| OneSchoolGlobalCarousel | Captured by URL. With no preload object, the carousel has no items. A re-capture fixed an early track-width measurement (Q3); parity is clean. Bookmarks has one OSG card, so a capture via Bookmarks is possible. | `OneSchoolGlobalCarousel.mvc.js:343-370` |
 | PassportScan | Not reachable. "View Passport details" does nothing for the test account: the handler navigates only when `IsFetchingData` is false and `CurrentMemberId` is not 0. | `ScreenBlock_OrbitLanding.mvc.js:1989`; `migration/clarify/tools/probe_passport_entry.cjs` (no navigation, no call in 22 s) |
 | PassportScan | The block puts an iframe of the external Orbit Passport portal in a container. The portal signs in with the B2C id token and asks the host for a camera picture. | `migration/runtime-sources/OrbitPassportScanC2.PassportScan.js:1-40, 213-245` |
 | OrbitAdminMilestones, OrbitAdminMilestoneDetail | Not capturable: the test account has no admin events (OrbitAdminLanding shows `NoInformation_Orbit`). | `probe-new-screens.json` `orbitAdminLanding` |
@@ -218,7 +218,7 @@ User decisions (2026-10-29):
 | I10-1 | `route.py` still uses the layout from before the refactor (`app/src/screens/<S>/index.tsx`, `route.py:859`; mock check and parity fingerprint `route.py:683, 834`). | (a) Change `route.py` to the current layout (`pages/<S>/<S>Page.tsx`; all `mocks.ts` of `app/src`; fingerprint with `pages/<S>`, `api`, `containers`, `components`, `platform`, `legacy`). Update the path tables of `route-agent.md` and `migration/AGENTS.md`. Test the script. |
 | I10-2 | PassportScan | (a) No capture. Build the host screen from the compiled code. In the demo, the iframe opens a local fake portal page that answers the `postMessage` handshake and shows fictional passport data. No parity: the user reviews it. |
 | I10-3 | OrbitAdminMilestones and OrbitAdminMilestoneDetail | (a) No capture for both, as OrbitAdminEventDetail (user, 2026-10-16). Build from the compiled code and MCP, with meaningful fictional mocks, and the OrbitAdminLanding branch on `GetMilestoneScanFF` (N1). `GetScanMilestoneQRCode` is only mocked. No parity: the user reviews it. |
-| I10-4 | Bookmarks and OneSchoolGlobalCarousel: the states with data are not capturable. | (a) As Notes (user, 2026-10-15): parity compares the captured state with the `empty` mock scenario. The default mock has fictional data (bookmark cards, OSG carousel items), built from the compiled code; the user reviews it. |
+| I10-4 | Bookmarks and OneSchoolGlobalCarousel: the states with data are not capturable. **Asked on a wrong fact (see the Bookmarks row above); asked again on 2026-10-29.** | (a) As Notes (user, 2026-10-15): parity compares the captured state with the `empty` mock scenario. The default mock has fictional data (bookmark cards, OSG carousel items), built from the compiled code; the user reviews it. |
 | I10-5 | `route.py ready` still runs `consistency_check.py` with the old `stack.json` rules and `scope_guard.py` against `main`. | (a) Use the refactor gates: drop `requiredIfCalls` and `allowedImportRoots` (recorded in `stack.json` `_changes`), check imports with `npm run arch`, keep the `forbidden` rules on `pages/<S>`, required file `<S>Page.tsx`. Scope guard: base is the commit at `route.py start` (in `run.json`); allowed are `pages/<S>`, `migration/screens/<S>` and the folders that the page template lets a route change (`api`, `components`, `containers`, `mocks`, `app/routes`). |
 | I10-6 | NotificationDetails Q1: the contract has no FetchMessageInstance and no MarkAsRead; `contract_gen.py` reads the old route copy of `Notifications.mvc.js`. | (a) Fix the source choice (the live TST code wins). Regenerate `openapi.yaml` when Bookmarks retires MyBookmarks and BookmarksByGroup, run `npm run gen:api`, remove the interim `@ts-expect-error` lines. The diff of other operations goes to the user. |
 | I10-7 | NotificationDetails Q2: `scaffold_react_app.py --update-routes` reads `migration/survey` of 2026-10-13. | (a) Update only the screen and route list of `migration/survey` from the live survey. Re-run `--update-routes` and check the diff. |
@@ -238,3 +238,14 @@ User decisions on the pipeline tooling (2026-10-29, after `migration/clarify/bui
 | — | `adaptivecards` is not in the `stack.json` allow-list. | Settled by an earlier decision: PD7 (user, 2026-10-28, `app/docs/reference/stack.md:53`). Added with a `_changes` line. |
 | — | Tooling Q1: 3 red tests in `routes.test.ts` (the MyBookmarks rows left `routes.generated.ts`). | Ordering only: the Bookmarks route removes the redirect and fixes the tests in this wave (user decision of 2026-10-28, retire MyBookmarks). |
 | — | Tooling Q2: refresh the other rows of `migration/survey`? | No: I10-7 asked for the screen and route list only. |
+
+Scope decision (2026-10-29, after the re-capture of 11 finished routes for Bookmarks Q4):
+
+| Id | Question | Answer |
+|---|---|---|
+| I10-12 | The re-captures show other TST changes of 2026-10-27 in finished routes (beyond the Input class): Updates_SingleList, AssembleEvents, Notifications, HomeFeed, Locality_Details, BrowseCountries, CountryList, CommunityBusinessDetails_CoomingSoon; 50 routes are not re-captured. | (a) This wave does only Q4 (the Input class) for the 11 routes, runs the gate and commits items 9 and 10. The other differences are recorded as stale per route. A separate drift wave re-captures all routes, sorts each difference (TST code change, mock data, capture timing) and fixes them per shared block; the user decides each group. |
+
+OneSchoolGlobalCarousel (auto decision row 17, 2026-10-29): parity held at the parity step. The 12 (default) and 23
+(offline) differences come from the shared block `containers/EntityDetailsActions` (Directory_EntityDetailsActions:
+FetchNotes not automatic, NotesSheet always rendered, `html.popup-disable-scroll`) and ComingSoon. The route joins the
+drift wave with that block and OneSchoolGlobalDetails Q7/Q8. Loading is clean.

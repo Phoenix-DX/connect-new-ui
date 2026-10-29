@@ -141,7 +141,7 @@ describe('useOneSchoolGlobalDetailsQuery', () => {
     localIsBookmarked: false,
     in_OneSchoolGlobalId: '1430',
   });
-  const ACTION_PATH = 'UBTConnect/OneSchoolGlobalDetails/DataActionGetOneSchoolGlobalDetails';
+  const ACTION_PATH = 'UBTConnect/OneSchoolGlobalDetails_Block/DataActionGetOneSchoolGlobalDetails';
 
   it('the key is the school id only', () => {
     expect(localityKeys.oneSchoolGlobalDetails('1430')).toEqual(['locality', 'oneSchoolGlobalDetails', '1430']);

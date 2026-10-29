@@ -58,6 +58,8 @@ export function mockDirectoryUser(t: MockUserToggles = mockUserToggles()): Direc
       Locality_Id: '585',
       Locality_Name: 'Bahia Blanca',
       Locality_SubdivisionCount: '3',
+      MainHall_Latitude: '0',
+      MainHall_Longitude: '0',
       Subdivision_Id: '2820',
       Subdivision_Name: 'Zapiola (Main Meeting Room)',
     },

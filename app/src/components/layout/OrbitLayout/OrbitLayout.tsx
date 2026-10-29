@@ -1,12 +1,10 @@
 /** @origin Connect2_LegacyShared.Layout_OrbitTheme.Layout_Orbit */
 // @os-block Connect2_LegacyShared.Layout_OrbitTheme.Layout_Orbit
-import { useEffect, useLayoutEffect, type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { setThemeClassToBody } from '@/legacy/os/bodyTheme';
 import { LayoutRuntimeTop } from '@/components/layout/LayoutRuntimeTop';
 import { BaseLayout } from '@/components/layout/BaseLayout';
-import { iOSMetaTags, iOSPreventSwipe } from '@/lib/legacyShared/actions';
-import { ThemeClass } from '@/lib/legacyShared/staticEntities';
+import { useOrbitLayoutEffects } from './useOrbitLayoutEffects';
 
 export interface OrbitLayoutProps {
   /** OutSystems instance id of the block. */
@@ -40,8 +38,8 @@ export interface OrbitLayoutProps {
     BaseLayout_UpdatedOSUI inside `orbit-theme backwards-compatibility`, with ExtendedClass "orbit-theme " +
     ExtendedClasses, CustomClass, UsePullToRefresh and each placeholder in its own container (HeaderSearch empty;
     IsHeaderTransparent not passed). OnInitialize (controller :384-408) sets the Orbit theme class on the body
-    (shell/bodyTheme.ts); OnReady (:353-383) runs IOSMetaTags and IOSPreventSwipe (OutSystems UI
-    DEPRECATED_LayoutReadyMobile is not ported, as in Layout). */
+    (platform/theme/bodyTheme.ts through layoutTheme.ts); OnReady (:353-383) runs IOSMetaTags and IOSPreventSwipe (OutSystems UI
+    DEPRECATED_LayoutReadyMobile is not ported, as in Layout): `useOrbitLayoutEffects`. */
 export function OrbitLayout({
   id,
   usePullToRefresh = false,
@@ -59,13 +57,7 @@ export function OrbitLayout({
 }: OrbitLayoutProps) {
   const prefix = id?.replace('$', '');
   const child = (alias: string) => (prefix === undefined ? undefined : `${prefix}-${alias}`);
-  useLayoutEffect(() => {
-    setThemeClassToBody(ThemeClass.Orbit);
-  }, []);
-  useEffect(() => {
-    iOSMetaTags();
-    iOSPreventSwipe();
-  }, []);
+  useOrbitLayoutEffects();
   return (
     <OSBlock name="Layout_OrbitTheme.Layout_Orbit" id={id}>
       <LayoutRuntimeTop id={child('$b1')} />

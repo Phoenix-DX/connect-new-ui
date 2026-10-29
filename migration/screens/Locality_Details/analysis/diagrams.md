@@ -61,8 +61,8 @@ flowchart TB
     S6["ActionAppManager_AfterInitialize<br/>observed"]
     S7["ActionSync_Info_GetMain<br/>observed"]
     S8["ActionGetNumberUnreadMessages<br/>observed"]
-    S9["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
-    S10["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
+    S9["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
+    S10["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
   end
   Backend["Backend<br/>not visible from the browser"]
   B8 --> S0
@@ -104,10 +104,10 @@ sequenceDiagram
   S->>API: DataActionGet_LocalityDetails
   API-->>S: LocalityDetails
   S->>S: onAfterFetch_Get_LocalityDetails
-  S->>API: ServiceAPIFetchData_CacheableHouseholds
+  S->>API: ServiceAPIFetchData_CacheableMapEntities
   Note over S,API: observed in capture, trigger unverified (TODO)
   API-->>S: TODO outputs
-  S->>API: ServiceAPIFetchData_CacheableMapEntities
+  S->>API: ServiceAPIFetchData_CacheableHouseholds
   Note over S,API: observed in capture, trigger unverified (TODO)
   API-->>S: TODO outputs
   S->>S: OnReady

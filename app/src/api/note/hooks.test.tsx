@@ -56,7 +56,8 @@ describe('useNoteCardsQuery', () => {
     await waitFor(() => {
       expect(first.result.current.isSuccess).toBe(true);
     });
-    expect(first.result.current.data?.total).toBe('1');
+    // The household card and the two OneSchool Global cards of pages/Notes/mocks.ts (OneSchoolGlobalCarousel Q2 (a)).
+    expect(first.result.current.data?.total).toBe('3');
     first.unmount();
     await waitFor(() => {
       expect(client.getQueryCache().find({ queryKey: noteKeys.cards(notesVariables) })).toBeUndefined();

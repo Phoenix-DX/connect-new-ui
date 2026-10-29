@@ -1,4 +1,4 @@
-define("UBTConnect.App_Notifications.Notifications.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "Connect_Updates_CS.model", "UBTConnectLibrary.model", "Connect2_Notification_CS.model", "UBTConnect.controller", "NavigationHandler.controller", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "UBTConnectLibrary.Layouts.Layout_MainPages_Upgrade.mvc$model", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$model", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$model", "UBTConnectLibrary.ConnectPatterns.Input.mvc$model", "UBTConnectLibrary.OutSystemsUIOverrides.Badge.mvc$model", "UBTConnect.App_Notifications.Notifications_Action.mvc$model", "UBTConnect.App_Notifications.Notifications_Header.mvc$model", "UBTConnect.App_Notifications.Notifications_NoItemsFound.mvc$model", "UBTConnect.App_Notifications.NotificationsListBreakpoints.mvc$model", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$model", "UBTConnectLibrary.ConnectCorePatterns.Notification_ListItem.mvc$model", "NavigationHandler.ScrollAnchors.ScrollAnchor.mvc$model", "UBTConnect.App_Common.BottomBarMenu.mvc$model", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$model", "UBTConnect.App_Notifications.Notifications_SortSheet.mvc$model", "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc$model", "Connect_Updates_CS.model$Filter_UpdatesRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Updates_CS", "UBTConnect.model$UI_Updates_DateRangeList", "UBTConnect.model$UI_UpdateItem_BreakpointList", "UBTConnect.model$UI_UpdateItem_BreakpointRec", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$SearchInputRec", "UBTConnect.model$UI_Updates_DateRangeRec", "Connect2_Notification_CS.model$MessageListItemRec", "UBTConnect.referencesHealth$Connect2_Notification_CS", "UBTConnect.model$MessageListItemList", "UBTConnectLibrary.model$AvatarImageRec", "UBTConnectLibrary.model$AvatarImageFallbackoptionsRec", "UBTConnect.controller$ScrollTop", "UBTConnect.controller$Directory_Updates_RefreshBottomBarCount", "NavigationHandler.controller$GetPreloadObject", "UBTConnect.referencesHealth$NavigationHandler", "NavigationHandler.controller$AssignFromObject", "UBTConnect.model$EntitiesCarousel_SwippedItemList", "OutSystemsUI_2_23.model$ErrorMessageRec", "UBTConnect.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.controller$BottomSheetOpen", "UBTConnect.controller$GetSkeletonList_UI_Notification", "UBTConnect.model$Updates_DateRangesList", "UBTConnect.controller$App_Notifications_AugmentDateRanges", "UBTConnect.controller$App_Notifications_GetBreakpoints", "UBTConnect.controller$Directory_Updates_GetListBreakpoint"], function(OutSystems, UBTConnectModel, Connect_Updates_CSModel, UBTConnectLibraryModel, Connect2_Notification_CSModel, UBTConnectController, NavigationHandlerController, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, UBTConnectLibrary_Layouts_Layout_MainPages_Upgrade_mvcModel, UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel, UBTConnectLibrary_ConnectPatterns_Icon_mvcModel, UBTConnectLibrary_ConnectPatterns_Input_mvcModel, UBTConnectLibrary_OutSystemsUIOverrides_Badge_mvcModel, UBTConnect_App_Notifications_Notifications_Action_mvcModel, UBTConnect_App_Notifications_Notifications_Header_mvcModel, UBTConnect_App_Notifications_Notifications_NoItemsFound_mvcModel, UBTConnect_App_Notifications_NotificationsListBreakpoints_mvcModel, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel, UBTConnectLibrary_ConnectCorePatterns_Notification_ListItem_mvcModel, NavigationHandler_ScrollAnchors_ScrollAnchor_mvcModel, UBTConnect_App_Common_BottomBarMenu_mvcModel, UBTConnect_App_Common_CommonUI_InsideLayout_mvcModel, UBTConnect_App_Notifications_Notifications_SortSheet_mvcModel, UBTConnect_App_Notifications_Notifications_MoreActionSheet_mvcModel) {
+define("UBTConnect.App_Notifications.Notifications.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "Connect_Updates_CS.model", "Connect2_Notification_CS.model", "UBTConnectLibrary.model", "UBTConnect.controller", "NavigationHandler.controller", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "UBTConnectLibrary.Layouts.Layout_MainPages_Upgrade.mvc$model", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$model", "UBTConnectLibrary.ConnectPatterns.Input.mvc$model", "UBTConnectLibrary.OutSystemsUIOverrides.Badge.mvc$model", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$model", "UBTConnect.App_Notifications.Notifications_Action.mvc$model", "UBTConnect.App_Notifications.Notifications_Header.mvc$model", "UBTConnectLibrary.ConnectPatterns.EmptyList.mvc$model", "UBTConnect.App_Notifications.Notifications_NoItemsFound.mvc$model", "UBTConnect.App_Notifications.NotificationsListBreakpoints.mvc$model", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$model", "UBTConnectLibrary.ConnectCorePatterns.Notification_ListItem.mvc$model", "NavigationHandler.ScrollAnchors.ScrollAnchor.mvc$model", "UBTConnect.App_Common.BottomBarMenu.mvc$model", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$model", "UBTConnect.App_Notifications.Notifications_SortSheet.mvc$model", "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc$model", "Connect_Updates_CS.model$Filter_UpdatesRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Updates_CS", "UBTConnect.model$UI_Updates_DateRangeList", "UBTConnect.model$UI_UpdateItem_BreakpointList", "UBTConnect.model$UI_UpdateItem_BreakpointRec", "Connect2_Notification_CS.model$MessageListItemRec", "UBTConnect.referencesHealth$Connect2_Notification_CS", "UBTConnect.model$MessageListItemList", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$SearchInputRec", "UBTConnect.model$UI_Updates_DateRangeRec", "UBTConnectLibrary.model$AvatarImageRec", "UBTConnectLibrary.model$AvatarImageFallbackoptionsRec", "UBTConnect.controller$ScrollTop", "UBTConnect.controller$Directory_Updates_RefreshBottomBarCount", "NavigationHandler.controller$GetPreloadObject", "UBTConnect.referencesHealth$NavigationHandler", "NavigationHandler.controller$AssignFromObject", "UBTConnect.model$EntitiesCarousel_SwippedItemList", "OutSystemsUI_2_23.model$ErrorMessageRec", "UBTConnect.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.controller$BottomSheetOpen", "UBTConnect.controller$GetSkeletonList_UI_Notification", "UBTConnect.model$Updates_DateRangesList", "UBTConnect.controller$App_Notifications_AugmentDateRanges", "UBTConnect.controller$App_Notifications_GetBreakpoints", "UBTConnect.controller$Directory_Updates_GetListBreakpoint"], function(OutSystems, UBTConnectModel, Connect_Updates_CSModel, Connect2_Notification_CSModel, UBTConnectLibraryModel, UBTConnectController, NavigationHandlerController, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, UBTConnectLibrary_Layouts_Layout_MainPages_Upgrade_mvcModel, UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel, UBTConnectLibrary_ConnectPatterns_Input_mvcModel, UBTConnectLibrary_OutSystemsUIOverrides_Badge_mvcModel, UBTConnectLibrary_ConnectPatterns_Icon_mvcModel, UBTConnect_App_Notifications_Notifications_Action_mvcModel, UBTConnect_App_Notifications_Notifications_Header_mvcModel, UBTConnectLibrary_ConnectPatterns_EmptyList_mvcModel, UBTConnect_App_Notifications_Notifications_NoItemsFound_mvcModel, UBTConnect_App_Notifications_NotificationsListBreakpoints_mvcModel, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel, UBTConnectLibrary_ConnectCorePatterns_Notification_ListItem_mvcModel, NavigationHandler_ScrollAnchors_ScrollAnchor_mvcModel, UBTConnect_App_Common_BottomBarMenu_mvcModel, UBTConnect_App_Common_CommonUI_InsideLayout_mvcModel, UBTConnect_App_Notifications_Notifications_SortSheet_mvcModel, UBTConnect_App_Notifications_Notifications_MoreActionSheet_mvcModel) {
     var OS = OutSystems.Internal;
 
     var GetDateRangesDataActRec = (function(_super) {
@@ -98,9 +98,6 @@ define("UBTConnect.App_Notifications.Notifications.mvc$model", ["OutSystems/Clie
                 this.attr("CurrentSearchString", "currentSearchStringVar", "CurrentSearchString", true, false, OS.DataTypes.DataTypes.Text, function() {
                     return "";
                 }, false),
-                this.attr("BadgeNumber", "badgeNumberVar", "BadgeNumber", true, false, OS.DataTypes.DataTypes.Integer, function() {
-                    return 0;
-                }, false),
                 this.attr("SelectedHistorySearch", "selectedHistorySearchVar", "SelectedHistorySearch", true, false, OS.DataTypes.DataTypes.Text, function() {
                     return "";
                 }, false),
@@ -117,7 +114,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$model", ["OutSystems/Clie
                     return false;
                 }, false),
                 this.attr("MaxRecords", "maxRecordsVar", "MaxRecords", true, false, OS.DataTypes.DataTypes.Integer, function() {
-                    return 20;
+                    return 2000;
                 }, false),
                 this.attr("ShowWarning", "showWarningVar", "ShowWarning", true, false, OS.DataTypes.DataTypes.Boolean, function() {
                     return false;
@@ -140,6 +137,15 @@ define("UBTConnect.App_Notifications.Notifications.mvc$model", ["OutSystems/Clie
                 this.attr("MoreAction_BottomSheetId", "moreAction_BottomSheetIdVar", "MoreAction_BottomSheetId", true, false, OS.DataTypes.DataTypes.Text, function() {
                     return "";
                 }, false),
+                this.attr("Local_OnlyShowUnread", "local_OnlyShowUnreadVar", "Local_OnlyShowUnread", true, false, OS.DataTypes.DataTypes.Boolean, function() {
+                    return false;
+                }, false),
+                this.attr("ReadCount", "readCountVar", "ReadCount", true, false, OS.DataTypes.DataTypes.LongInteger, function() {
+                    return OS.DataTypes.LongInteger.defaultValue;
+                }, false),
+                this.attr("Screen_NotificationItemList", "screen_NotificationItemListVar", "Screen_NotificationItemList", true, false, OS.DataTypes.DataTypes.RecordList, function() {
+                    return OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.MessageListItemList());
+                }, false, UBTConnectModel.MessageListItemList),
                 this.attr("GetDateRanges", "getDateRangesDataAct", "getDateRangesDataAct", true, true, OS.DataTypes.DataTypes.Record, function() {
                     return OS.DataTypes.ImmutableBase.getData(new GetDateRangesDataActRec());
                 }, true, GetDateRangesDataActRec),
@@ -181,7 +187,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$model", ["OutSystems/Clie
             configurable: true,
             get: function() {
                 if ((Model._hasValidationWidgetsValue === undefined)) {
-                    Model._hasValidationWidgetsValue = (((((((((((((((UBTConnectLibrary_Layouts_Layout_MainPages_Upgrade_mvcModel.hasValidationWidgets || UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_Icon_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_Input_mvcModel.hasValidationWidgets) || UBTConnectLibrary_OutSystemsUIOverrides_Badge_mvcModel.hasValidationWidgets) || UBTConnect_App_Notifications_Notifications_Action_mvcModel.hasValidationWidgets) || UBTConnect_App_Notifications_Notifications_Header_mvcModel.hasValidationWidgets) || UBTConnect_App_Notifications_Notifications_NoItemsFound_mvcModel.hasValidationWidgets) || UBTConnect_App_Notifications_NotificationsListBreakpoints_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectCorePatterns_Notification_ListItem_mvcModel.hasValidationWidgets) || NavigationHandler_ScrollAnchors_ScrollAnchor_mvcModel.hasValidationWidgets) || UBTConnect_App_Common_BottomBarMenu_mvcModel.hasValidationWidgets) || UBTConnect_App_Common_CommonUI_InsideLayout_mvcModel.hasValidationWidgets) || UBTConnect_App_Notifications_Notifications_SortSheet_mvcModel.hasValidationWidgets) || UBTConnect_App_Notifications_Notifications_MoreActionSheet_mvcModel.hasValidationWidgets);
+                    Model._hasValidationWidgetsValue = ((((((((((((((((UBTConnectLibrary_Layouts_Layout_MainPages_Upgrade_mvcModel.hasValidationWidgets || UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_Input_mvcModel.hasValidationWidgets) || UBTConnectLibrary_OutSystemsUIOverrides_Badge_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_Icon_mvcModel.hasValidationWidgets) || UBTConnect_App_Notifications_Notifications_Action_mvcModel.hasValidationWidgets) || UBTConnect_App_Notifications_Notifications_Header_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_EmptyList_mvcModel.hasValidationWidgets) || UBTConnect_App_Notifications_Notifications_NoItemsFound_mvcModel.hasValidationWidgets) || UBTConnect_App_Notifications_NotificationsListBreakpoints_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectCorePatterns_Notification_ListItem_mvcModel.hasValidationWidgets) || NavigationHandler_ScrollAnchors_ScrollAnchor_mvcModel.hasValidationWidgets) || UBTConnect_App_Common_BottomBarMenu_mvcModel.hasValidationWidgets) || UBTConnect_App_Common_CommonUI_InsideLayout_mvcModel.hasValidationWidgets) || UBTConnect_App_Notifications_Notifications_SortSheet_mvcModel.hasValidationWidgets) || UBTConnect_App_Notifications_Notifications_MoreActionSheet_mvcModel.hasValidationWidgets);
                 }
 
                 return Model._hasValidationWidgetsValue;
@@ -193,7 +199,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$model", ["OutSystems/Clie
     })(OS.Model.BaseViewModel);
     return new OS.Model.ModelFactory(Model, "App_Notifications.Notifications");
 });
-define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "Connect_Updates_CS.model", "UBTConnectLibrary.model", "Connect2_Notification_CS.model", "NavigationHandler.controller", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "react", "OutSystems/ReactView/Main", "UBTConnect.App_Notifications.Notifications.mvc$model", "UBTConnect.App_Notifications.Notifications.mvc$controller", "UBTConnect.clientVariables", "UBTConnectLibrary.Layouts.Layout_MainPages_Upgrade.mvc$view", "OutSystems/ReactWidgets/Main", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$view", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$view", "UBTConnectLibrary.ConnectPatterns.Input.mvc$view", "UBTConnectLibrary.OutSystemsUIOverrides.Badge.mvc$view", "UBTConnect.App_Notifications.Notifications_Action.mvc$view", "UBTConnect.App_Notifications.Notifications_Header.mvc$view", "UBTConnect.App_Notifications.Notifications_NoItemsFound.mvc$view", "UBTConnect.App_Notifications.NotificationsListBreakpoints.mvc$view", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$view", "UBTConnectLibrary.ConnectCorePatterns.Notification_ListItem.mvc$view", "NavigationHandler.ScrollAnchors.ScrollAnchor.mvc$view", "UBTConnect.App_Common.BottomBarMenu.mvc$view", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$view", "UBTConnect.App_Notifications.Notifications_SortSheet.mvc$view", "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc$view", "Connect_Updates_CS.model$Filter_UpdatesRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Updates_CS", "UBTConnect.model$UI_Updates_DateRangeList", "UBTConnect.model$UI_UpdateItem_BreakpointList", "UBTConnect.model$UI_UpdateItem_BreakpointRec", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$SearchInputRec", "UBTConnect.model$UI_Updates_DateRangeRec", "Connect2_Notification_CS.model$MessageListItemRec", "UBTConnect.referencesHealth$Connect2_Notification_CS", "UBTConnect.model$MessageListItemList", "UBTConnectLibrary.model$AvatarImageRec", "UBTConnectLibrary.model$AvatarImageFallbackoptionsRec", "UBTConnect.controller$ScrollTop", "UBTConnect.controller$Directory_Updates_RefreshBottomBarCount", "NavigationHandler.controller$GetPreloadObject", "UBTConnect.referencesHealth$NavigationHandler", "NavigationHandler.controller$AssignFromObject", "UBTConnect.model$EntitiesCarousel_SwippedItemList", "OutSystemsUI_2_23.model$ErrorMessageRec", "UBTConnect.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.controller$BottomSheetOpen", "UBTConnect.controller$GetSkeletonList_UI_Notification", "UBTConnect.model$Updates_DateRangesList", "UBTConnect.controller$App_Notifications_AugmentDateRanges", "UBTConnect.controller$App_Notifications_GetBreakpoints", "UBTConnect.controller$Directory_Updates_GetListBreakpoint"], function(OutSystems, UBTConnectModel, UBTConnectController, Connect_Updates_CSModel, UBTConnectLibraryModel, Connect2_Notification_CSModel, NavigationHandlerController, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, React, OSView, UBTConnect_App_Notifications_Notifications_mvc_model, UBTConnect_App_Notifications_Notifications_mvc_controller, UBTConnectClientVariables, UBTConnectLibrary_Layouts_Layout_MainPages_Upgrade_mvc_view, OSWidgets, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnectLibrary_ConnectPatterns_Input_mvc_view, UBTConnectLibrary_OutSystemsUIOverrides_Badge_mvc_view, UBTConnect_App_Notifications_Notifications_Action_mvc_view, UBTConnect_App_Notifications_Notifications_Header_mvc_view, UBTConnect_App_Notifications_Notifications_NoItemsFound_mvc_view, UBTConnect_App_Notifications_NotificationsListBreakpoints_mvc_view, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, UBTConnectLibrary_ConnectCorePatterns_Notification_ListItem_mvc_view, NavigationHandler_ScrollAnchors_ScrollAnchor_mvc_view, UBTConnect_App_Common_BottomBarMenu_mvc_view, UBTConnect_App_Common_CommonUI_InsideLayout_mvc_view, UBTConnect_App_Notifications_Notifications_SortSheet_mvc_view, UBTConnect_App_Notifications_Notifications_MoreActionSheet_mvc_view) {
+define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "Connect_Updates_CS.model", "Connect2_Notification_CS.model", "UBTConnectLibrary.model", "NavigationHandler.controller", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "react", "OutSystems/ReactView/Main", "UBTConnect.App_Notifications.Notifications.mvc$model", "UBTConnect.App_Notifications.Notifications.mvc$controller", "UBTConnect.clientVariables", "UBTConnectLibrary.Layouts.Layout_MainPages_Upgrade.mvc$view", "OutSystems/ReactWidgets/Main", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$view", "UBTConnectLibrary.ConnectPatterns.Input.mvc$view", "UBTConnectLibrary.OutSystemsUIOverrides.Badge.mvc$view", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$view", "UBTConnect.App_Notifications.Notifications_Action.mvc$view", "UBTConnect.App_Notifications.Notifications_Header.mvc$view", "UBTConnectLibrary.ConnectPatterns.EmptyList.mvc$view", "UBTConnect.App_Notifications.Notifications_NoItemsFound.mvc$view", "UBTConnect.App_Notifications.NotificationsListBreakpoints.mvc$view", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$view", "UBTConnectLibrary.ConnectCorePatterns.Notification_ListItem.mvc$view", "NavigationHandler.ScrollAnchors.ScrollAnchor.mvc$view", "UBTConnect.App_Common.BottomBarMenu.mvc$view", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$view", "UBTConnect.App_Notifications.Notifications_SortSheet.mvc$view", "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc$view", "Connect_Updates_CS.model$Filter_UpdatesRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Updates_CS", "UBTConnect.model$UI_Updates_DateRangeList", "UBTConnect.model$UI_UpdateItem_BreakpointList", "UBTConnect.model$UI_UpdateItem_BreakpointRec", "Connect2_Notification_CS.model$MessageListItemRec", "UBTConnect.referencesHealth$Connect2_Notification_CS", "UBTConnect.model$MessageListItemList", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$SearchInputRec", "UBTConnect.model$UI_Updates_DateRangeRec", "UBTConnectLibrary.model$AvatarImageRec", "UBTConnectLibrary.model$AvatarImageFallbackoptionsRec", "UBTConnect.controller$ScrollTop", "UBTConnect.controller$Directory_Updates_RefreshBottomBarCount", "NavigationHandler.controller$GetPreloadObject", "UBTConnect.referencesHealth$NavigationHandler", "NavigationHandler.controller$AssignFromObject", "UBTConnect.model$EntitiesCarousel_SwippedItemList", "OutSystemsUI_2_23.model$ErrorMessageRec", "UBTConnect.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.controller$BottomSheetOpen", "UBTConnect.controller$GetSkeletonList_UI_Notification", "UBTConnect.model$Updates_DateRangesList", "UBTConnect.controller$App_Notifications_AugmentDateRanges", "UBTConnect.controller$App_Notifications_GetBreakpoints", "UBTConnect.controller$Directory_Updates_GetListBreakpoint"], function(OutSystems, UBTConnectModel, UBTConnectController, Connect_Updates_CSModel, Connect2_Notification_CSModel, UBTConnectLibraryModel, NavigationHandlerController, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, React, OSView, UBTConnect_App_Notifications_Notifications_mvc_model, UBTConnect_App_Notifications_Notifications_mvc_controller, UBTConnectClientVariables, UBTConnectLibrary_Layouts_Layout_MainPages_Upgrade_mvc_view, OSWidgets, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnectLibrary_ConnectPatterns_Input_mvc_view, UBTConnectLibrary_OutSystemsUIOverrides_Badge_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnect_App_Notifications_Notifications_Action_mvc_view, UBTConnect_App_Notifications_Notifications_Header_mvc_view, UBTConnectLibrary_ConnectPatterns_EmptyList_mvc_view, UBTConnect_App_Notifications_Notifications_NoItemsFound_mvc_view, UBTConnect_App_Notifications_NotificationsListBreakpoints_mvc_view, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, UBTConnectLibrary_ConnectCorePatterns_Notification_ListItem_mvc_view, NavigationHandler_ScrollAnchors_ScrollAnchor_mvc_view, UBTConnect_App_Common_BottomBarMenu_mvc_view, UBTConnect_App_Common_CommonUI_InsideLayout_mvc_view, UBTConnect_App_Notifications_Notifications_SortSheet_mvc_view, UBTConnect_App_Notifications_Notifications_MoreActionSheet_mvc_view) {
     var OS = OutSystems.Internal;
     var PlaceholderContent = OSView.Widget.PlaceholderContent;
     var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
@@ -226,7 +232,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
             return ["scripts/UBTConnectLibrary.ScrollAnimations.js"];
         };
         View.getBlocks = function() {
-            return [UBTConnectLibrary_Layouts_Layout_MainPages_Upgrade_mvc_view, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnectLibrary_ConnectPatterns_Input_mvc_view, UBTConnectLibrary_OutSystemsUIOverrides_Badge_mvc_view, UBTConnect_App_Notifications_Notifications_Action_mvc_view, UBTConnect_App_Notifications_Notifications_Header_mvc_view, UBTConnect_App_Notifications_Notifications_NoItemsFound_mvc_view, UBTConnect_App_Notifications_NotificationsListBreakpoints_mvc_view, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, UBTConnectLibrary_ConnectCorePatterns_Notification_ListItem_mvc_view, NavigationHandler_ScrollAnchors_ScrollAnchor_mvc_view, UBTConnect_App_Common_BottomBarMenu_mvc_view, UBTConnect_App_Common_CommonUI_InsideLayout_mvc_view, UBTConnect_App_Notifications_Notifications_SortSheet_mvc_view, UBTConnect_App_Notifications_Notifications_MoreActionSheet_mvc_view];
+            return [UBTConnectLibrary_Layouts_Layout_MainPages_Upgrade_mvc_view, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnectLibrary_ConnectPatterns_Input_mvc_view, UBTConnectLibrary_OutSystemsUIOverrides_Badge_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnect_App_Notifications_Notifications_Action_mvc_view, UBTConnect_App_Notifications_Notifications_Header_mvc_view, UBTConnectLibrary_ConnectPatterns_EmptyList_mvc_view, UBTConnect_App_Notifications_Notifications_NoItemsFound_mvc_view, UBTConnect_App_Notifications_NotificationsListBreakpoints_mvc_view, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, UBTConnectLibrary_ConnectCorePatterns_Notification_ListItem_mvc_view, NavigationHandler_ScrollAnchors_ScrollAnchor_mvc_view, UBTConnect_App_Common_BottomBarMenu_mvc_view, UBTConnect_App_Common_CommonUI_InsideLayout_mvc_view, UBTConnect_App_Notifications_Notifications_SortSheet_mvc_view, UBTConnect_App_Notifications_Notifications_MoreActionSheet_mvc_view];
         };
         Object.defineProperty(View.prototype, "modelFactory", {
             get: function() {
@@ -301,7 +307,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                                 return [React.createElement(UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, {
                                     inputs: {
                                         ExtendedClasses: "full-width",
-                                        Options: model.getCachedValue(idService.getId("sjcU_qk4XEy+T4wt7D89mg.Options"), function() {
+                                        Options: model.getCachedValue(idService.getId("jJ2WvyOvtka1sBC4oQS36A.Options"), function() {
                                             return function() {
                                                 var rec = new UBTConnectLibraryModel.ContainerOptionsRec();
                                                 rec.displayOptionsAttr = function() {
@@ -331,42 +337,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                                     _widgetRecordProvider: widgetsRecordProvider,
                                     placeholders: {
                                         content: new PlaceholderContent(function() {
-                                            return [React.createElement(UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, {
-                                                inputs: {
-                                                    In_ColorId: UBTConnectModel.staticEntities.uBT_Color.neutral0,
-                                                    In_IconId: UBTConnectModel.staticEntities.uBT_Icons2.arrowLeftAlt,
-                                                    In_SizeId: UBTConnectModel.staticEntities.uBT_IconsSize.base_24
-                                                },
-                                                events: {
-                                                    _handleError: function(ex) {
-                                                        controller.handleError(ex);
-                                                    },
-                                                    click$Action: function() {
-                                                        var eventHandlerContext = callContext.clone();
-                                                        return OS.Flow.tryFinally(function() {
-                                                            var varBag = {};
-                                                            controller.pushDebuggerContext(eventHandlerContext);
-
-                                                            OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectPatterns/Icon Click");
-                                                            controller.handler_ToggleSearch$Action(controller.callContext(eventHandlerContext));
-                                                        }, function() {
-                                                            controller.popDebuggerContext(eventHandlerContext);
-                                                        });
-
-                                                        ;
-                                                    }
-                                                },
-                                                _validationProps: {
-                                                    validationService: validationService
-                                                },
-                                                _idProps: {
-                                                    service: idService,
-                                                    uuid: "2",
-                                                    alias: "3"
-                                                },
-                                                _widgetRecordProvider: widgetsRecordProvider,
-                                                _dependencies: []
-                                            }), React.createElement(UBTConnectLibrary_ConnectPatterns_Input_mvc_view, {
+                                            return [React.createElement(UBTConnectLibrary_ConnectPatterns_Input_mvc_view, {
                                                 inputs: {
                                                     In_Options: model.getCachedValue(idService.getId("Search_PostScroll.In_Options"), function() {
                                                         return function() {
@@ -436,7 +407,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                                                 _idProps: {
                                                     service: idService,
                                                     name: "Search_PostScroll",
-                                                    alias: "4"
+                                                    alias: "3"
                                                 },
                                                 _widgetRecordProvider: widgetsRecordProvider,
                                                 _dependencies: []
@@ -448,10 +419,10 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                             }, function() {
                                 return ["Notifications", React.createElement(UBTConnectLibrary_OutSystemsUIOverrides_Badge_mvc_view, {
                                     inputs: {
-                                        Size: UBTConnectModel.staticEntities.uBT_Size.extraSmall,
                                         Color: UBTConnectModel.staticEntities.uBT_Color.redDark,
-                                        Number: OS.BuiltinFunctions.integerToLongInteger(model.variables.badgeNumberVar),
-                                        MaxNumber: 9
+                                        Number: model.variables.readCountVar,
+                                        MaxNumber: 9,
+                                        Size: UBTConnectModel.staticEntities.uBT_Size.extraSmall
                                     },
                                     events: {
                                         _handleError: function(ex) {
@@ -463,8 +434,8 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                                     },
                                     _idProps: {
                                         service: idService,
-                                        uuid: "4",
-                                        alias: "5"
+                                        uuid: "3",
+                                        alias: "4"
                                     },
                                     _widgetRecordProvider: widgetsRecordProvider,
                                     _dependencies: []
@@ -473,10 +444,10 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                         }, function() {
                             return ["Notifications", React.createElement(UBTConnectLibrary_OutSystemsUIOverrides_Badge_mvc_view, {
                                 inputs: {
-                                    Color: UBTConnectModel.staticEntities.uBT_Color.redDark,
-                                    Number: OS.BuiltinFunctions.integerToLongInteger(model.variables.badgeNumberVar),
+                                    Number: model.variables.readCountVar,
+                                    Size: UBTConnectModel.staticEntities.uBT_Size.extraSmall,
                                     MaxNumber: 9,
-                                    Size: UBTConnectModel.staticEntities.uBT_Size.extraSmall
+                                    Color: UBTConnectModel.staticEntities.uBT_Color.redDark
                                 },
                                 events: {
                                     _handleError: function(ex) {
@@ -488,8 +459,8 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                                 },
                                 _idProps: {
                                     service: idService,
-                                    uuid: "5",
-                                    alias: "6"
+                                    uuid: "4",
+                                    alias: "5"
                                 },
                                 _widgetRecordProvider: widgetsRecordProvider,
                                 _dependencies: []
@@ -532,7 +503,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                                     _idProps: {
                                         service: idService,
                                         name: "Icon_Search",
-                                        alias: "7"
+                                        alias: "6"
                                     },
                                     _widgetRecordProvider: widgetsRecordProvider,
                                     _dependencies: []
@@ -540,44 +511,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                             }), React.createElement(UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, {
                                 inputs: {
                                     In_SizeId: UBTConnectModel.staticEntities.uBT_IconsSize.base_24,
-                                    In_IconId: UBTConnectModel.staticEntities.uBT_Icons2.moreVertical,
-                                    In_ColorId: UBTConnectModel.staticEntities.uBT_Color.neutral0
-                                },
-                                events: {
-                                    _handleError: function(ex) {
-                                        controller.handleError(ex);
-                                    },
-                                    click$Action: function() {
-                                        var eventHandlerContext = callContext.clone();
-                                        return OS.Flow.tryFinally(function() {
-                                            var varBag = {};
-                                            controller.pushDebuggerContext(eventHandlerContext);
-
-                                            OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectPatterns/Icon Click");
-                                            controller.onClick_KebabButton$Action(controller.callContext(eventHandlerContext));
-                                        }, function() {
-                                            controller.popDebuggerContext(eventHandlerContext);
-                                        });
-
-                                        ;
-                                    }
-                                },
-                                _validationProps: {
-                                    validationService: validationService
-                                },
-                                _idProps: {
-                                    service: idService,
-                                    name: "Icon_Kebab",
-                                    alias: "8"
-                                },
-                                _widgetRecordProvider: widgetsRecordProvider,
-                                _dependencies: []
-                            })];
-                        }, function() {
-                            return [React.createElement(UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, {
-                                inputs: {
                                     In_ColorId: UBTConnectModel.staticEntities.uBT_Color.neutral0,
-                                    In_SizeId: UBTConnectModel.staticEntities.uBT_IconsSize.base_24,
                                     In_IconId: UBTConnectModel.staticEntities.uBT_Icons2.moreVertical
                                 },
                                 events: {
@@ -604,8 +538,45 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                                 },
                                 _idProps: {
                                     service: idService,
+                                    name: "Icon_Kebab",
+                                    alias: "7"
+                                },
+                                _widgetRecordProvider: widgetsRecordProvider,
+                                _dependencies: []
+                            })];
+                        }, function() {
+                            return [React.createElement(UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, {
+                                inputs: {
+                                    In_IconId: UBTConnectModel.staticEntities.uBT_Icons2.moreVertical,
+                                    In_ColorId: UBTConnectModel.staticEntities.uBT_Color.neutral0,
+                                    In_SizeId: UBTConnectModel.staticEntities.uBT_IconsSize.base_24
+                                },
+                                events: {
+                                    _handleError: function(ex) {
+                                        controller.handleError(ex);
+                                    },
+                                    click$Action: function() {
+                                        var eventHandlerContext = callContext.clone();
+                                        return OS.Flow.tryFinally(function() {
+                                            var varBag = {};
+                                            controller.pushDebuggerContext(eventHandlerContext);
+
+                                            OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectPatterns/Icon Click");
+                                            controller.onClick_KebabButton$Action(controller.callContext(eventHandlerContext));
+                                        }, function() {
+                                            controller.popDebuggerContext(eventHandlerContext);
+                                        });
+
+                                        ;
+                                    }
+                                },
+                                _validationProps: {
+                                    validationService: validationService
+                                },
+                                _idProps: {
+                                    service: idService,
                                     name: "Icon_Kebab2",
-                                    alias: "9"
+                                    alias: "8"
                                 },
                                 _widgetRecordProvider: widgetsRecordProvider,
                                 _dependencies: []
@@ -613,80 +584,84 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                         })];
                     }),
                     placeholder_Header_Input: new PlaceholderContent(function() {
-                        return [React.createElement(UBTConnectLibrary_ConnectPatterns_Input_mvc_view, {
-                            inputs: {
-                                In_Options: model.getCachedValue(idService.getId("Search_PreScroll.In_Options"), function() {
-                                    return function() {
-                                        var rec = new UBTConnectLibraryModel.SearchInputRec();
-                                        rec.initalStringAttr = model.variables.currentSearchStringVar;
-                                        rec.searchPromptAttr = "Search notifications";
-                                        rec.debounce_DelayMSAttr = 300;
-                                        rec.borderRadiusAttr = UBTConnectModel.staticEntities.shape.rounded;
-                                        rec.enableAutocompleteHTMLAttr = false;
-                                        rec.isSyncValueWithInputAttr = true;
-                                        return rec;
-                                    }();
-                                }, function() {
-                                    return model.variables.currentSearchStringVar;
-                                })
-                            },
-                            events: {
-                                _handleError: function(ex) {
-                                    controller.handleError(ex);
-                                },
-                                event_OnChange$Action: function(event_CurrentStringIn) {
-                                    var eventHandlerContext = callContext.clone();
-                                    return OS.Flow.tryFinally(function() {
-                                        var varBag = {};
-                                        controller.pushDebuggerContext(eventHandlerContext);
-
-                                        OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectPatterns/Input Event_OnChange");
-                                        controller.handler_OnChangeSearchInput$Action(event_CurrentStringIn, true, controller.callContext(eventHandlerContext));
+                        return [$if(model.variables.isHeaderScrolledVar, false, this, function() {
+                            return [];
+                        }, function() {
+                            return [React.createElement(UBTConnectLibrary_ConnectPatterns_Input_mvc_view, {
+                                inputs: {
+                                    In_Options: model.getCachedValue(idService.getId("Search_PreScroll.In_Options"), function() {
+                                        return function() {
+                                            var rec = new UBTConnectLibraryModel.SearchInputRec();
+                                            rec.initalStringAttr = model.variables.currentSearchStringVar;
+                                            rec.searchPromptAttr = "Search notifications";
+                                            rec.debounce_DelayMSAttr = 300;
+                                            rec.borderRadiusAttr = UBTConnectModel.staticEntities.shape.rounded;
+                                            rec.enableAutocompleteHTMLAttr = false;
+                                            rec.isSyncValueWithInputAttr = true;
+                                            return rec;
+                                        }();
                                     }, function() {
-                                        controller.popDebuggerContext(eventHandlerContext);
-                                    });
-
-                                    ;
+                                        return model.variables.currentSearchStringVar;
+                                    })
                                 },
-                                event_ClearString$Action: function() {
-                                    return Promise.resolve().then(function() {
+                                events: {
+                                    _handleError: function(ex) {
+                                        controller.handleError(ex);
+                                    },
+                                    event_OnChange$Action: function(event_CurrentStringIn) {
                                         var eventHandlerContext = callContext.clone();
                                         return OS.Flow.tryFinally(function() {
                                             var varBag = {};
                                             controller.pushDebuggerContext(eventHandlerContext);
 
-                                            OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectPatterns/Input Event_ClearString");
-                                            return controller.handler_FilterSearchText$Action("", controller.callContext(eventHandlerContext));
+                                            OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectPatterns/Input Event_OnChange");
+                                            controller.handler_OnChangeSearchInput$Action(event_CurrentStringIn, true, controller.callContext(eventHandlerContext));
                                         }, function() {
                                             controller.popDebuggerContext(eventHandlerContext);
                                         });
-                                    });;
-                                },
-                                event_Submit$Action: function(event_SubmittedStringIn) {
-                                    return Promise.resolve().then(function() {
-                                        var eventHandlerContext = callContext.clone();
-                                        return OS.Flow.tryFinally(function() {
-                                            var varBag = {};
-                                            controller.pushDebuggerContext(eventHandlerContext);
 
-                                            OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectPatterns/Input Event_Submit");
-                                            return controller.handler_FilterSearchText$Action(event_SubmittedStringIn, controller.callContext(eventHandlerContext));
-                                        }, function() {
-                                            controller.popDebuggerContext(eventHandlerContext);
-                                        });
-                                    });;
-                                }
-                            },
-                            _validationProps: {
-                                validationService: validationService
-                            },
-                            _idProps: {
-                                service: idService,
-                                name: "Search_PreScroll",
-                                alias: "10"
-                            },
-                            _widgetRecordProvider: widgetsRecordProvider,
-                            _dependencies: []
+                                        ;
+                                    },
+                                    event_Submit$Action: function(event_SubmittedStringIn) {
+                                        return Promise.resolve().then(function() {
+                                            var eventHandlerContext = callContext.clone();
+                                            return OS.Flow.tryFinally(function() {
+                                                var varBag = {};
+                                                controller.pushDebuggerContext(eventHandlerContext);
+
+                                                OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectPatterns/Input Event_Submit");
+                                                return controller.handler_FilterSearchText$Action(event_SubmittedStringIn, controller.callContext(eventHandlerContext));
+                                            }, function() {
+                                                controller.popDebuggerContext(eventHandlerContext);
+                                            });
+                                        });;
+                                    },
+                                    event_ClearString$Action: function() {
+                                        return Promise.resolve().then(function() {
+                                            var eventHandlerContext = callContext.clone();
+                                            return OS.Flow.tryFinally(function() {
+                                                var varBag = {};
+                                                controller.pushDebuggerContext(eventHandlerContext);
+
+                                                OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectPatterns/Input Event_ClearString");
+                                                return controller.handler_FilterSearchText$Action("", controller.callContext(eventHandlerContext));
+                                            }, function() {
+                                                controller.popDebuggerContext(eventHandlerContext);
+                                            });
+                                        });;
+                                    }
+                                },
+                                _validationProps: {
+                                    validationService: validationService
+                                },
+                                _idProps: {
+                                    service: idService,
+                                    name: "Search_PreScroll",
+                                    alias: "9"
+                                },
+                                _widgetRecordProvider: widgetsRecordProvider,
+                                _dependencies: []
+                            })];
                         })];
                     }),
                     headerContent: new PlaceholderContent(function() {
@@ -700,6 +675,20 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                             events: {
                                 _handleError: function(ex) {
                                     controller.handleError(ex);
+                                },
+                                onlyShowUnread$Action: function(onlyShowUnreadIn) {
+                                    return Promise.resolve().then(function() {
+                                        var eventHandlerContext = callContext.clone();
+                                        return OS.Flow.tryFinally(function() {
+                                            var varBag = {};
+                                            controller.pushDebuggerContext(eventHandlerContext);
+
+                                            OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "App_Notifications/Notifications_Action OnlyShowUnread");
+                                            return controller.handler_OnlyShowUnread$Action(onlyShowUnreadIn, controller.callContext(eventHandlerContext));
+                                        }, function() {
+                                            controller.popDebuggerContext(eventHandlerContext);
+                                        });
+                                    });;
                                 }
                             },
                             _validationProps: {
@@ -708,7 +697,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                             _idProps: {
                                 service: idService,
                                 name: "Notifications_Action",
-                                alias: "11"
+                                alias: "10"
                             },
                             _widgetRecordProvider: widgetsRecordProvider,
                             _dependencies: []
@@ -718,7 +707,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                             visible: false,
                             _idProps: {
                                 service: idService,
-                                uuid: "11"
+                                uuid: "10"
                             },
                             _widgetRecordProvider: widgetsRecordProvider
                         }, React.createElement(UBTConnect_App_Notifications_Notifications_Header_mvc_view, {
@@ -738,7 +727,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                             _idProps: {
                                 service: idService,
                                 name: "Notifications_ListHeader",
-                                alias: "12"
+                                alias: "11"
                             },
                             _widgetRecordProvider: widgetsRecordProvider,
                             _dependencies: []
@@ -746,23 +735,107 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                     }),
                     content: new PlaceholderContent(function() {
                         return [$if(((!(model.variables.isLoadingVar) && model.variables.fetchNotificationsDataAct.isDataFetchedAttr) && model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut.isEmpty), false, this, function() {
-                            return [React.createElement(UBTConnect_App_Notifications_Notifications_NoItemsFound_mvc_view, {
-                                inputs: {},
-                                events: {
-                                    _handleError: function(ex) {
-                                        controller.handleError(ex);
-                                    }
-                                },
-                                _validationProps: {
-                                    validationService: validationService
-                                },
-                                _idProps: {
-                                    service: idService,
-                                    uuid: "13",
-                                    alias: "13"
-                                },
-                                _widgetRecordProvider: widgetsRecordProvider,
-                                _dependencies: []
+                            return [$if(((model.variables.selectedHistorySearchVar) !== ("")), false, this, function() {
+                                return [React.createElement(UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, {
+                                    inputs: {
+                                        Options: model.getCachedValue(idService.getId("JQpUtTr8M0Gi9wj11NR3Bw.Options"), function() {
+                                            return function() {
+                                                var rec = new UBTConnectLibraryModel.ContainerOptionsRec();
+                                                rec.backgroundAttr = function() {
+                                                    var rec = new UBTConnectLibraryModel.BackgroundOptionsRec();
+                                                    rec.backgroundColorAttr = UBTConnectModel.staticEntities.uBT_Color.neutral0;
+                                                    return rec;
+                                                }();
+                                                rec.paddingSizeAttr = function() {
+                                                    var rec = new UBTConnectLibraryModel.SpacingOptionsRec();
+                                                    rec.generalSizeIdAttr = UBTConnectModel.staticEntities.uBT_Size.small;
+                                                    return rec;
+                                                }();
+                                                return rec;
+                                            }();
+                                        })
+                                    },
+                                    events: {
+                                        _handleError: function(ex) {
+                                            controller.handleError(ex);
+                                        }
+                                    },
+                                    _validationProps: {
+                                        validationService: validationService
+                                    },
+                                    _idProps: {
+                                        service: idService,
+                                        uuid: "12",
+                                        alias: "12"
+                                    },
+                                    _widgetRecordProvider: widgetsRecordProvider,
+                                    placeholders: {
+                                        content: new PlaceholderContent(function() {
+                                            return [React.createElement(UBTConnectLibrary_ConnectPatterns_EmptyList_mvc_view, {
+                                                inputs: {
+                                                    IconId: UBTConnectModel.staticEntities.uBT_Icons2.search
+                                                },
+                                                events: {
+                                                    _handleError: function(ex) {
+                                                        controller.handleError(ex);
+                                                    }
+                                                },
+                                                _validationProps: {
+                                                    validationService: validationService
+                                                },
+                                                _idProps: {
+                                                    service: idService,
+                                                    uuid: "13",
+                                                    alias: "13"
+                                                },
+                                                _widgetRecordProvider: widgetsRecordProvider,
+                                                placeholders: {
+                                                    titlePlaceholder: new PlaceholderContent(function() {
+                                                        return [React.createElement(OSWidgets.Expression, {
+                                                            value: (("No results found for \'" + model.variables.selectedHistorySearchVar) + "\'"),
+                                                            _idProps: {
+                                                                service: idService,
+                                                                uuid: "14"
+                                                            },
+                                                            _widgetRecordProvider: widgetsRecordProvider
+                                                        })];
+                                                    }),
+                                                    textPlaceholder: new PlaceholderContent(function() {
+                                                        return [React.createElement(OSWidgets.Expression, {
+                                                            value: "Sorry, we couldn\'t find any results for your search. Please check your spelling or try different keywords.",
+                                                            _idProps: {
+                                                                service: idService,
+                                                                uuid: "15"
+                                                            },
+                                                            _widgetRecordProvider: widgetsRecordProvider
+                                                        })];
+                                                    })
+                                                },
+                                                _dependencies: [asPrimitiveValue(model.variables.selectedHistorySearchVar)]
+                                            })];
+                                        })
+                                    },
+                                    _dependencies: [asPrimitiveValue(model.variables.selectedHistorySearchVar)]
+                                })];
+                            }, function() {
+                                return [React.createElement(UBTConnect_App_Notifications_Notifications_NoItemsFound_mvc_view, {
+                                    inputs: {},
+                                    events: {
+                                        _handleError: function(ex) {
+                                            controller.handleError(ex);
+                                        }
+                                    },
+                                    _validationProps: {
+                                        validationService: validationService
+                                    },
+                                    _idProps: {
+                                        service: idService,
+                                        uuid: "16",
+                                        alias: "14"
+                                    },
+                                    _widgetRecordProvider: widgetsRecordProvider,
+                                    _dependencies: []
+                                })];
                             })];
                         }, function() {
                             return [React.createElement(UBTConnect_App_Notifications_NotificationsListBreakpoints_mvc_view, {
@@ -775,6 +848,34 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                                 events: {
                                     _handleError: function(ex) {
                                         controller.handleError(ex);
+                                    },
+                                    updateReadCount$Action: function(addToCountIn, isDeleteIn, isReadIn) {
+                                        var eventHandlerContext = callContext.clone();
+                                        return OS.Flow.tryFinally(function() {
+                                            var varBag = {};
+                                            controller.pushDebuggerContext(eventHandlerContext);
+
+                                            OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "App_Notifications/NotificationsListBreakpoints UpdateReadCount");
+                                            controller.handler_UpdateReadCount$Action(addToCountIn, isDeleteIn, isReadIn, controller.callContext(eventHandlerContext));
+                                        }, function() {
+                                            controller.popDebuggerContext(eventHandlerContext);
+                                        });
+
+                                        ;
+                                    },
+                                    notificationDetail$Action: function(messageInstanceIdIn, isReadIn) {
+                                        return Promise.resolve().then(function() {
+                                            var eventHandlerContext = callContext.clone();
+                                            return OS.Flow.tryFinally(function() {
+                                                var varBag = {};
+                                                controller.pushDebuggerContext(eventHandlerContext);
+
+                                                OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "App_Notifications/NotificationsListBreakpoints NotificationDetail");
+                                                return controller.handler_NotificationDetail$Action(messageInstanceIdIn, isReadIn, controller.callContext(eventHandlerContext));
+                                            }, function() {
+                                                controller.popDebuggerContext(eventHandlerContext);
+                                            });
+                                        });;
                                     }
                                 },
                                 _validationProps: {
@@ -782,8 +883,8 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                                 },
                                 _idProps: {
                                     service: idService,
-                                    uuid: "14",
-                                    alias: "14"
+                                    uuid: "17",
+                                    alias: "15"
                                 },
                                 _widgetRecordProvider: widgetsRecordProvider,
                                 _dependencies: []
@@ -793,7 +894,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                                 visible: false,
                                 _idProps: {
                                     service: idService,
-                                    uuid: "15"
+                                    uuid: "18"
                                 },
                                 _widgetRecordProvider: widgetsRecordProvider
                             }, React.createElement(OSWidgets.List, {
@@ -830,8 +931,8 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                                             },
                                             _idProps: {
                                                 service: idService,
-                                                uuid: "17",
-                                                alias: "15"
+                                                uuid: "20",
+                                                alias: "16"
                                             },
                                             _widgetRecordProvider: widgetsRecordProvider,
                                             placeholders: {
@@ -846,7 +947,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                                                         visible: true,
                                                         _idProps: {
                                                             service: idService,
-                                                            uuid: "18"
+                                                            uuid: "21"
                                                         },
                                                         _widgetRecordProvider: widgetsRecordProvider
                                                     }, React.createElement(UBTConnectLibrary_ConnectCorePatterns_Notification_ListItem_mvc_view, {
@@ -880,7 +981,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                                                         _idProps: {
                                                             service: idService,
                                                             name: "NotificationItem",
-                                                            alias: "16"
+                                                            alias: "17"
                                                         },
                                                         _widgetRecordProvider: widgetsRecordProvider,
                                                         _dependencies: []
@@ -899,8 +1000,8 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                                                         },
                                                         _idProps: {
                                                             service: idService,
-                                                            uuid: "20",
-                                                            alias: "17"
+                                                            uuid: "23",
+                                                            alias: "18"
                                                         },
                                                         _widgetRecordProvider: widgetsRecordProvider,
                                                         _dependencies: []
@@ -932,8 +1033,8 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                             },
                             _idProps: {
                                 service: idService,
-                                uuid: "21",
-                                alias: "18"
+                                uuid: "24",
+                                alias: "19"
                             },
                             _widgetRecordProvider: widgetsRecordProvider,
                             _dependencies: []
@@ -952,15 +1053,15 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                             },
                             _idProps: {
                                 service: idService,
-                                uuid: "22",
-                                alias: "19"
+                                uuid: "25",
+                                alias: "20"
                             },
                             _widgetRecordProvider: widgetsRecordProvider,
                             _dependencies: []
                         })];
                     })
                 },
-                _dependencies: [asPrimitiveValue(model.variables.breakpointsVar), asPrimitiveValue(model.variables.fetchNotificationsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut), asPrimitiveValue(model.variables.fetchNotificationsDataAct.isDataFetchedAttr), asPrimitiveValue(model.variables.isLoadingVar), asPrimitiveValue(model.variables.currentBreakpointVar.badgeCountAttr), asPrimitiveValue(model.variables.currentBreakpointVar.sectionNameAttr), asPrimitiveValue(model.variables.bottomSheetId_ShowSubscriptionVar), asPrimitiveValue(model.variables.filter_BottomSheetIdVar), asPrimitiveValue(model.variables.hasFiltersAppliedVar), asPrimitiveValue(model.variables.badgeNumberVar), asPrimitiveValue(model.variables.currentSearchStringVar), asPrimitiveValue(model.variables.isHeaderScrolledVar), asPrimitiveValue(model.variables.isToggleSearchVar)]
+                _dependencies: [asPrimitiveValue(model.variables.breakpointsVar), asPrimitiveValue(model.variables.selectedHistorySearchVar), asPrimitiveValue(model.variables.fetchNotificationsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut), asPrimitiveValue(model.variables.fetchNotificationsDataAct.isDataFetchedAttr), asPrimitiveValue(model.variables.isLoadingVar), asPrimitiveValue(model.variables.currentBreakpointVar.badgeCountAttr), asPrimitiveValue(model.variables.currentBreakpointVar.sectionNameAttr), asPrimitiveValue(model.variables.bottomSheetId_ShowSubscriptionVar), asPrimitiveValue(model.variables.filter_BottomSheetIdVar), asPrimitiveValue(model.variables.hasFiltersAppliedVar), asPrimitiveValue(model.variables.readCountVar), asPrimitiveValue(model.variables.currentSearchStringVar), asPrimitiveValue(model.variables.isHeaderScrolledVar), asPrimitiveValue(model.variables.isToggleSearchVar)]
             }), $if(false, false, this, function() {
                 return [];
             }, function() {
@@ -998,7 +1099,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
 
                             ;
                         },
-                        applyFilters$Action: function() {
+                        applyFilters$Action: function(isNewestToOldestIn) {
                             return Promise.resolve().then(function() {
                                 var eventHandlerContext = callContext.clone();
                                 return OS.Flow.tryFinally(function() {
@@ -1006,7 +1107,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                                     controller.pushDebuggerContext(eventHandlerContext);
 
                                     OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "App_Notifications/Notifications_SortSheet ApplyFilters");
-                                    return controller.handler_ApplyFilters$Action(model.variables.hasFiltersAppliedVar, controller.callContext(eventHandlerContext));
+                                    return controller.handler_ApplyFilters$Action(model.variables.hasFiltersAppliedVar, isNewestToOldestIn, controller.callContext(eventHandlerContext));
                                 }, function() {
                                     controller.popDebuggerContext(eventHandlerContext);
                                 });
@@ -1018,8 +1119,8 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                     },
                     _idProps: {
                         service: idService,
-                        uuid: "23",
-                        alias: "20"
+                        uuid: "26",
+                        alias: "21"
                     },
                     _widgetRecordProvider: widgetsRecordProvider,
                     _dependencies: []
@@ -1032,6 +1133,34 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                     events: {
                         _handleError: function(ex) {
                             controller.handleError(ex);
+                        },
+                        deleteAll$Action: function() {
+                            return Promise.resolve().then(function() {
+                                var eventHandlerContext = callContext.clone();
+                                return OS.Flow.tryFinally(function() {
+                                    var varBag = {};
+                                    controller.pushDebuggerContext(eventHandlerContext);
+
+                                    OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "App_Notifications/Notifications_MoreActionSheet DeleteAll");
+                                    return controller.handler_MoreActionSheetDeleteAll$Action(controller.callContext(eventHandlerContext));
+                                }, function() {
+                                    controller.popDebuggerContext(eventHandlerContext);
+                                });
+                            });;
+                        },
+                        markAllAsRead$Action: function() {
+                            return Promise.resolve().then(function() {
+                                var eventHandlerContext = callContext.clone();
+                                return OS.Flow.tryFinally(function() {
+                                    var varBag = {};
+                                    controller.pushDebuggerContext(eventHandlerContext);
+
+                                    OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "App_Notifications/Notifications_MoreActionSheet MarkAllAsRead");
+                                    return controller.handler_MoreActionSheetMarkAllAsRead$Action(controller.callContext(eventHandlerContext));
+                                }, function() {
+                                    controller.popDebuggerContext(eventHandlerContext);
+                                });
+                            });;
                         },
                         loaded$Action: function(showSubscriptionOnClickIn) {
                             var eventHandlerContext = callContext.clone();
@@ -1055,7 +1184,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                                     controller.pushDebuggerContext(eventHandlerContext);
 
                                     OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "App_Notifications/Notifications_MoreActionSheet ApplyFilters");
-                                    return controller.handler_ApplyFilters$Action(model.variables.hasFiltersAppliedVar, controller.callContext(eventHandlerContext));
+                                    return controller.handler_ApplyFilters$Action(model.variables.hasFiltersAppliedVar, true, controller.callContext(eventHandlerContext));
                                 }, function() {
                                     controller.popDebuggerContext(eventHandlerContext);
                                 });
@@ -1081,8 +1210,8 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                     },
                     _idProps: {
                         service: idService,
-                        uuid: "24",
-                        alias: "21"
+                        uuid: "27",
+                        alias: "22"
                     },
                     _widgetRecordProvider: widgetsRecordProvider,
                     _dependencies: []
@@ -1094,7 +1223,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
 
     return View;
 });
-define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "Connect_Updates_CS.model", "UBTConnectLibrary.model", "Connect2_Notification_CS.model", "NavigationHandler.controller", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "UBTConnect.languageResources", "UBTConnect.clientVariables", "UBTConnect.App_Notifications.Notifications.mvc$debugger", "UBTConnect.App_Notifications.controller", "UBTConnect.App_Notifications.Notifications.mvc$controller.DestroyEventListener.DestroyEventListenerJS", "UBTConnect.App_Notifications.Notifications.mvc$controller.ScreenEvent_OnInitialize.FocusCursorJS", "UBTConnect.App_Notifications.Notifications.mvc$controller.ScreenEvent_OnInitialize.IsViewRestoredFromCacheJS", "UBTConnect.App_Notifications.Notifications.mvc$controller.ScreenEvent_OnReady.SetStickyHeaderHeightJS", "UBTConnect.App_Notifications.Notifications.mvc$controller.SetupScrollThreshold.SetupScrollThresholdsJS", "UBTConnect.App_Notifications.Notifications.mvc$controller.SetupScrollListener.SetupScrollEndListenerJS", "Connect_Updates_CS.model$Filter_UpdatesRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Updates_CS", "UBTConnect.model$UI_Updates_DateRangeList", "UBTConnect.model$UI_UpdateItem_BreakpointList", "UBTConnect.model$UI_UpdateItem_BreakpointRec", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$SearchInputRec", "UBTConnect.model$UI_Updates_DateRangeRec", "Connect2_Notification_CS.model$MessageListItemRec", "UBTConnect.referencesHealth$Connect2_Notification_CS", "UBTConnect.model$MessageListItemList", "UBTConnectLibrary.model$AvatarImageRec", "UBTConnectLibrary.model$AvatarImageFallbackoptionsRec", "UBTConnect.controller$ScrollTop", "UBTConnect.controller$Directory_Updates_RefreshBottomBarCount", "NavigationHandler.controller$GetPreloadObject", "UBTConnect.referencesHealth$NavigationHandler", "NavigationHandler.controller$AssignFromObject", "UBTConnect.model$EntitiesCarousel_SwippedItemList", "OutSystemsUI_2_23.model$ErrorMessageRec", "UBTConnect.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.controller$BottomSheetOpen", "UBTConnect.controller$GetSkeletonList_UI_Notification", "UBTConnect.model$Updates_DateRangesList", "UBTConnect.controller$App_Notifications_AugmentDateRanges", "UBTConnect.controller$App_Notifications_GetBreakpoints", "UBTConnect.controller$Directory_Updates_GetListBreakpoint"], function(OutSystems, UBTConnectModel, UBTConnectController, Connect_Updates_CSModel, UBTConnectLibraryModel, Connect2_Notification_CSModel, NavigationHandlerController, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, UBTConnectLanguageResources, UBTConnectClientVariables, UBTConnect_App_Notifications_Notifications_mvc_Debugger, _flow_UBTConnect_App_NotificationsController, UBTConnect_App_Notifications_Notifications_mvc_controller_DestroyEventListener_DestroyEventListenerJS, UBTConnect_App_Notifications_Notifications_mvc_controller_ScreenEvent_OnInitialize_FocusCursorJS, UBTConnect_App_Notifications_Notifications_mvc_controller_ScreenEvent_OnInitialize_IsViewRestoredFromCacheJS, UBTConnect_App_Notifications_Notifications_mvc_controller_ScreenEvent_OnReady_SetStickyHeaderHeightJS, UBTConnect_App_Notifications_Notifications_mvc_controller_SetupScrollThreshold_SetupScrollThresholdsJS, UBTConnect_App_Notifications_Notifications_mvc_controller_SetupScrollListener_SetupScrollEndListenerJS) {
+define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "Connect_Updates_CS.model", "Connect2_Notification_CS.model", "UBTConnectLibrary.model", "NavigationHandler.controller", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "UBTConnect.languageResources", "UBTConnect.clientVariables", "UBTConnect.App_Notifications.Notifications.mvc$debugger", "UBTConnect.App_Notifications.controller", "UBTConnect.App_Notifications.Notifications.mvc$controller.DestroyEventListener.DestroyEventListenerJS", "UBTConnect.App_Notifications.Notifications.mvc$controller.ScreenEvent_OnInitialize.FocusCursorJS", "UBTConnect.App_Notifications.Notifications.mvc$controller.ScreenEvent_OnInitialize.IsViewRestoredFromCacheJS", "UBTConnect.App_Notifications.Notifications.mvc$controller.ScreenEvent_OnReady.SetStickyHeaderHeightJS", "UBTConnect.App_Notifications.Notifications.mvc$controller.SetupScrollThreshold.SetupScrollThresholdsJS", "UBTConnect.App_Notifications.Notifications.mvc$controller.SetupScrollListener.SetupScrollEndListenerJS", "Connect_Updates_CS.model$Filter_UpdatesRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Updates_CS", "UBTConnect.model$UI_Updates_DateRangeList", "UBTConnect.model$UI_UpdateItem_BreakpointList", "UBTConnect.model$UI_UpdateItem_BreakpointRec", "Connect2_Notification_CS.model$MessageListItemRec", "UBTConnect.referencesHealth$Connect2_Notification_CS", "UBTConnect.model$MessageListItemList", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$SearchInputRec", "UBTConnect.model$UI_Updates_DateRangeRec", "UBTConnectLibrary.model$AvatarImageRec", "UBTConnectLibrary.model$AvatarImageFallbackoptionsRec", "UBTConnect.controller$ScrollTop", "UBTConnect.controller$Directory_Updates_RefreshBottomBarCount", "NavigationHandler.controller$GetPreloadObject", "UBTConnect.referencesHealth$NavigationHandler", "NavigationHandler.controller$AssignFromObject", "UBTConnect.model$EntitiesCarousel_SwippedItemList", "OutSystemsUI_2_23.model$ErrorMessageRec", "UBTConnect.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.controller$BottomSheetOpen", "UBTConnect.controller$GetSkeletonList_UI_Notification", "UBTConnect.model$Updates_DateRangesList", "UBTConnect.controller$App_Notifications_AugmentDateRanges", "UBTConnect.controller$App_Notifications_GetBreakpoints", "UBTConnect.controller$Directory_Updates_GetListBreakpoint"], function(OutSystems, UBTConnectModel, UBTConnectController, Connect_Updates_CSModel, Connect2_Notification_CSModel, UBTConnectLibraryModel, NavigationHandlerController, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, UBTConnectLanguageResources, UBTConnectClientVariables, UBTConnect_App_Notifications_Notifications_mvc_Debugger, _flow_UBTConnect_App_NotificationsController, UBTConnect_App_Notifications_Notifications_mvc_controller_DestroyEventListener_DestroyEventListenerJS, UBTConnect_App_Notifications_Notifications_mvc_controller_ScreenEvent_OnInitialize_FocusCursorJS, UBTConnect_App_Notifications_Notifications_mvc_controller_ScreenEvent_OnInitialize_IsViewRestoredFromCacheJS, UBTConnect_App_Notifications_Notifications_mvc_controller_ScreenEvent_OnReady_SetStickyHeaderHeightJS, UBTConnect_App_Notifications_Notifications_mvc_controller_SetupScrollThreshold_SetupScrollThresholdsJS, UBTConnect_App_Notifications_Notifications_mvc_controller_SetupScrollListener_SetupScrollEndListenerJS) {
     var OS = OutSystems.Internal;
     var Controller = (function(_super) {
         __extends(Controller, _super);
@@ -1140,6 +1269,49 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
                 OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
             }, false).then(function(outputs) {});
         };
+        Controller.prototype.markAllAsReadNotifications$ServerAction = function(isPublicIn, isPrivateIn, deviceHardwareIdIn, searchTermIn, callContext) {
+            var controller = this.controller;
+            var inputs = {
+                IsPublic: OS.DataConversion.ServerDataConverter.to(isPublicIn, OS.DataTypes.DataTypes.Boolean),
+                IsPrivate: OS.DataConversion.ServerDataConverter.to(isPrivateIn, OS.DataTypes.DataTypes.Boolean),
+                DeviceHardwareId: OS.DataConversion.ServerDataConverter.to(deviceHardwareIdIn, OS.DataTypes.DataTypes.Text),
+                SearchTerm: OS.DataConversion.ServerDataConverter.to(searchTermIn, OS.DataTypes.DataTypes.Text)
+            };
+            return controller.callServerAction("MarkAllAsReadNotifications", "screenservices/UBTConnect/App_Notifications/Notifications/ActionMarkAllAsReadNotifications", "R9h4fsIgtsM2TTIdhZ04xA", inputs, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function(json, headers) {
+                OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
+            }, false).then(function(outputs) {
+                var executeServerActionResult = new(controller.constructor.getVariableGroupType("UBTConnect.App_Notifications.Notifications$rssespacecomms_cs_ActionMarkAllAsReadNotifications"))();
+                executeServerActionResult.totalChangeOut = OS.DataConversion.ServerDataConverter.from(outputs.TotalChange, OS.DataTypes.DataTypes.Integer);
+                return executeServerActionResult;
+            });
+        };
+        Controller.registerVariableGroupType("UBTConnect.App_Notifications.Notifications$rssespacecomms_cs_ActionMarkAllAsReadNotifications", [{
+            name: "TotalChange",
+            attrName: "totalChangeOut",
+            mandatory: false,
+            dataType: OS.DataTypes.DataTypes.Integer,
+            defaultValue: function() {
+                return 0;
+            }
+        }]);
+        Controller.prototype.delete_Notifications$ServerAction = function(messagesIn, callContext) {
+            var controller = this.controller;
+            var inputs = {
+                Messages: OS.DataConversion.ServerDataConverter.to(messagesIn, OS.DataTypes.DataTypes.RecordList)
+            };
+            return controller.callServerAction("Delete_Notifications", "screenservices/UBTConnect/App_Notifications/Notifications/ServiceAPIDelete_Notifications", "SvVK+IMeHLKks+MyVbNeRw", inputs, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function(json, headers) {
+                OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
+            }, false).then(function(outputs) {});
+        };
+        Controller.prototype.markAsRead$ServerAction = function(messageInstanceIdIn, callContext) {
+            var controller = this.controller;
+            var inputs = {
+                MessageInstanceId: OS.DataConversion.ServerDataConverter.to(messageInstanceIdIn, OS.DataTypes.DataTypes.LongInteger)
+            };
+            return controller.callServerAction("MarkAsRead", "screenservices/UBTConnect/App_Notifications/Notifications/ActionMarkAsRead", "3QibMYQOoD+ru5If14QffQ", inputs, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function(json, headers) {
+                OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
+            }, false).then(function(outputs) {});
+        };
 
         // Aggregates and Data Actions
         Controller.prototype.getDateRanges$DataActRefresh = function(callContext) {
@@ -1178,7 +1350,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
                 var varBag = {};
                 controller.pushDebuggerContext(callContext);
 
-                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:MIT7zgZzJ0urDbwBA22R5w:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/DataActions.MIT7zgZzJ0urDbwBA22R5w:Tccoa3GNYo_IVjZWpuzsAw", "UBTConnect", "FetchNotifications", "NRFlows.DataScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:MIT7zgZzJ0urDbwBA22R5w:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/DataActions.MIT7zgZzJ0urDbwBA22R5w:iDSdxe_I8kbuXeFtPlf+dA", "UBTConnect", "FetchNotifications", "NRFlows.DataScreenActionFlow", callContext.id, varBag);
                 OutSystemsDebugger.setThreadStartName(callContext.id, "App_Notifications/Notifications/FetchNotifications");
                 return controller.callDataAction("DataActionFetchNotifications", "screenservices/UBTConnect/App_Notifications/Notifications/DataActionFetchNotifications", "5f64GmY73D9nis0X1mHptw", function(b) {
                     model.variables.fetchNotificationsDataAct.dataFetchStatusAttr = b;
@@ -1214,7 +1386,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
             vars.value.textInLocal = textIn;
             varBag.callContext = callContext;
             varBag.vars = vars;
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:M_+VDP1teUWZD7RK8Zgwpg:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.M_+VDP1teUWZD7RK8Zgwpg:H91Nm7n_wmKq5YnqvlHFyw", "UBTConnect", "Handler_FilterSearchText", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:M_+VDP1teUWZD7RK8Zgwpg:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.M_+VDP1teUWZD7RK8Zgwpg:jLoGsw+m3Mcg8DMaFxWW1w", "UBTConnect", "Handler_FilterSearchText", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
             OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:KamIlQ2JrUSmPK7_xzsDlw", callContext.id);
             return OS.Flow.executeAsyncFlow(function() {
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:_d01obfHqketUAqs2VtDSQ", callContext.id);
@@ -1228,6 +1400,9 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
                         OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:fCMhfAQN5U6BsQIS0OqhDA", callContext.id);
                         // Filter_Updates.Filter_SearchText = Text
                         model.variables.filter_UpdatesVar.filter_SearchTextAttr = vars.value.textInLocal;
+                        OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:fCMhfAQN5U6BsQIS0OqhDA", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
+                        // SelectedHistorySearch = Text
+                        model.variables.selectedHistorySearchVar = vars.value.textInLocal;
                         OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:D6I9+poeVkCV8gYu1twH6A", callContext.id);
                         // ShowMarkAll = False
                         model.variables.showMarkAllVar = false;
@@ -1426,6 +1601,52 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
                 return 0;
             }
         }]);
+        Controller.prototype._handler_OnlyShowUnread$Action = function(onlyShowUnreadIn, callContext) {
+            var varBag = {};
+            var model = this.model;
+            var controller = this.controller;
+            var idService = this.idService;
+            varBag.model = model;
+            varBag.idService = idService;
+            controller.ensureControllerAlive("Handler_OnlyShowUnread");
+            callContext = controller.callContext(callContext);
+            var vars = new OS.DataTypes.VariableHolder(new(controller.constructor.getVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_OnlyShowUnread$vars"))());
+            vars.value.onlyShowUnreadInLocal = onlyShowUnreadIn;
+            varBag.callContext = callContext;
+            varBag.vars = vars;
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:aF2yJucyQkGf8u+5OwmH3w:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.aF2yJucyQkGf8u+5OwmH3w:X5UhaLlGIHIC_3fSPVnVEA", "UBTConnect", "Handler_OnlyShowUnread", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:T_q8wqylbk+UdQyflaxwDA", callContext.id);
+            return OS.Flow.executeAsyncFlow(function() {
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:7A4Y+3m2+06zrhU1PByXXw", callContext.id);
+                // Local_OnlyShowUnread = OnlyShowUnread
+                model.variables.local_OnlyShowUnreadVar = vars.value.onlyShowUnreadInLocal;
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:y+sa+G1VfESqSxu54ddSbw", callContext.id);
+                // Refresh Query: FetchNotifications
+                var result = controller.fetchNotifications$DataActRefresh(callContext);
+                model.flush();
+                return result.then(function() {
+                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:KFIDVx4dQk6IhJZDl7CLxA", callContext.id);
+                });
+            }).then(function(res) {
+                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:aF2yJucyQkGf8u+5OwmH3w", callContext.id);
+                return res;
+
+            }).catch(function(ex) {
+                OutSystemsDebugger.handleException(ex, callContext.id);
+                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:aF2yJucyQkGf8u+5OwmH3w", callContext.id);
+                throw ex;
+
+            });
+        };
+        Controller.registerVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_OnlyShowUnread$vars", [{
+            name: "OnlyShowUnread",
+            attrName: "onlyShowUnreadInLocal",
+            mandatory: true,
+            dataType: OS.DataTypes.DataTypes.Boolean,
+            defaultValue: function() {
+                return false;
+            }
+        }]);
         Controller.prototype._screenEvent_OnInitialize$Action = function(callContext) {
             var varBag = {};
             var model = this.model;
@@ -1447,7 +1668,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
             varBag.assignFromObjectVar = assignFromObjectVar;
             varBag.isViewRestoredFromCacheJSResult = isViewRestoredFromCacheJSResult;
             try {
-                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:MUEAKd2DjE2aiuGILTE2AA:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.MUEAKd2DjE2aiuGILTE2AA:B2NJEcDO+GOPYGTu1y6iDg", "UBTConnect", "ScreenEvent_OnInitialize", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:MUEAKd2DjE2aiuGILTE2AA:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.MUEAKd2DjE2aiuGILTE2AA:p0IOJKWIiX3AtdNn7F7KSQ", "UBTConnect", "ScreenEvent_OnInitialize", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:MOApiuQyhUeQ35kRuoK3hA", callContext.id);
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:G2D90PzT4ke3OuMiHJrU1w", callContext.id);
                 isViewRestoredFromCacheJSResult.value = controller.safeExecuteJSNode(UBTConnect_App_Notifications_Notifications_mvc_controller_ScreenEvent_OnInitialize_IsViewRestoredFromCacheJS, "IsViewRestoredFromCache", "ScreenEvent_OnInitialize", {
@@ -2302,7 +2523,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
             varBag.vars = vars;
             varBag.allExceptionsVar = allExceptionsVar;
             varBag.app_Notifications_GetBreakpointsVar = app_Notifications_GetBreakpointsVar;
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:_nDMuYywM0SeuHnioSuYpw:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions._nDMuYywM0SeuHnioSuYpw:b3t45pn9E3ZRXGJsDwvN+w", "UBTConnect", "OnAfterFetch_FetchNotifications", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:_nDMuYywM0SeuHnioSuYpw:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions._nDMuYywM0SeuHnioSuYpw:43WEJn8sn3XAinboGEBucg", "UBTConnect", "OnAfterFetch_FetchNotifications", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
             OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:IS0X6ycyY0O9besICMNhmw", callContext.id);
             return OS.Flow.executeAsyncFlow(function() {
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:jR8B_wO+gUKAsms7F5q9gg", callContext.id);
@@ -2327,6 +2548,10 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:XOr0IHDegku1HnicxXVR6w", callContext.id);
                 // ShowMarkAll = FetchNotifications.UnreadNotificationsCount > 0
                 model.variables.showMarkAllVar = model.variables.fetchNotificationsDataAct.unreadNotificationsCountOut.gt(OS.BuiltinFunctions.integerToLongInteger(0));
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:M7mAzuI240W51Jot8Lx7Kw", callContext.id);
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:qg3wjJId+kqdu2MX85IW6Q", callContext.id);
+                // ReadCount = FetchNotifications.UnreadNotificationsCount
+                model.variables.readCountVar = model.variables.fetchNotificationsDataAct.unreadNotificationsCountOut;
                 // isLoading
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:KMPBj8iHXEeWSjn3MqlzsQ", callContext.id);
                 // isLoading = False
@@ -2383,6 +2608,58 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
             },
             complexType: UBTConnectModel.UI_UpdateItem_BreakpointRec
         }]);
+        Controller.prototype._handler_MoreActionSheetMarkAllAsRead$Action = function(callContext) {
+            var varBag = {};
+            var model = this.model;
+            var controller = this.controller;
+            var idService = this.idService;
+            varBag.model = model;
+            varBag.idService = idService;
+            controller.ensureControllerAlive("Handler_MoreActionSheetMarkAllAsRead");
+            callContext = controller.callContext(callContext);
+            var markAllAsReadNotificationsVar = new OS.DataTypes.VariableHolder();
+            varBag.callContext = callContext;
+            varBag.markAllAsReadNotificationsVar = markAllAsReadNotificationsVar;
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:vXvEuyTtbEifDyH+8CCTcA:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.vXvEuyTtbEifDyH+8CCTcA:6bhltWBaBW3gtzLR1SzKBQ", "UBTConnect", "Handler_MoreActionSheetMarkAllAsRead", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:WVYjmohiiU+RqPsqSQa9_A", callContext.id);
+            return OS.Flow.executeAsyncFlow(function() {
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:noby1C2HVEiZcSG5C9Vceg", callContext.id);
+                // isLoading = True
+                model.variables.isLoadingVar = true;
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:KkqA6qW44UeKxPf9na2V+g", callContext.id);
+                // Execute Action: MarkAllAsReadNotifications
+                model.flush();
+                return controller.markAllAsReadNotifications$ServerAction(model.variables.filter_MessageTypePublicVar, model.variables.filter_MessageTypePrivateVar, model.variables.deviceHardwareIdVar, model.variables.currentSearchStringVar, callContext).then(function(value) {
+                    markAllAsReadNotificationsVar.value = value;
+                }).then(function() {
+                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:AA5MDEOyPUaL8O5t3+r08A", callContext.id);
+                    // Execute Action: SetBadgeCountsToZero
+                    controller._setBadgeCountsToZero$Action(callContext);
+                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:uMGoAEEp1kqgRYzEfwPOoA", callContext.id);
+                    // isLoading = False
+                    model.variables.isLoadingVar = false;
+                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:7KQNJW9l0UmM7ZHrMmQnQQ", callContext.id);
+                    // Execute Action: Directory_Updates_RefreshBottomBarCount
+                    model.flush();
+                    return UBTConnectController.default.directory_Updates_RefreshBottomBarCount$Action(true, callContext);
+                }).then(function() {
+                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:H1GG9CLHs0ObBzp6vmhuHQ", callContext.id);
+                    // Execute Action: RefreshNotifications
+                    return controller._refreshNotifications$Action(callContext);
+                }).then(function() {
+                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Vq46Ra8O3EWzWq3t63iYJw", callContext.id);
+                });
+            }).then(function(res) {
+                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:vXvEuyTtbEifDyH+8CCTcA", callContext.id);
+                return res;
+
+            }).catch(function(ex) {
+                OutSystemsDebugger.handleException(ex, callContext.id);
+                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:vXvEuyTtbEifDyH+8CCTcA", callContext.id);
+                throw ex;
+
+            });
+        };
         Controller.prototype._handler_MoreActionSheetLoaded$Action = function(showSubscriptionOnClickIn, callContext) {
             var varBag = {};
             var model = this.model;
@@ -2424,6 +2701,46 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
                 return false;
             }
         }]);
+        Controller.prototype._handler_MoreActionSheetDeleteAll$Action = function(callContext) {
+            var varBag = {};
+            var model = this.model;
+            var controller = this.controller;
+            var idService = this.idService;
+            varBag.model = model;
+            varBag.idService = idService;
+            controller.ensureControllerAlive("Handler_MoreActionSheetDeleteAll");
+            callContext = controller.callContext(callContext);
+            varBag.callContext = callContext;
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:sP3By9h8mUmu6lZybtj7wA:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.sP3By9h8mUmu6lZybtj7wA:NaOB57+k_6HYhjmV7v74NQ", "UBTConnect", "Handler_MoreActionSheetDeleteAll", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:L9TRKSes8Ue6LVWWefaeUA", callContext.id);
+            return OS.Flow.executeAsyncFlow(function() {
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:vHsmc_mh5kiWzNJjJ9kIYQ", callContext.id);
+                // isLoading = True
+                model.variables.isLoadingVar = true;
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:0HYDaBKGpEqC5LQB8c34zw", callContext.id);
+                // Execute Action: Delete_Notifications
+                model.flush();
+                return controller.delete_Notifications$ServerAction(model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut, callContext).then(function() {
+                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:qgCJIpSD10eBH8Rmq7oq_A", callContext.id);
+                    // isLoading = False
+                    model.variables.isLoadingVar = false;
+                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:o6nASpOljU60jlJSNd8aZQ", callContext.id);
+                    // Execute Action: RefreshNotifications
+                    return controller._refreshNotifications$Action(callContext);
+                }).then(function() {
+                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:PESCeTW38kK23HT4CVVz4A", callContext.id);
+                });
+            }).then(function(res) {
+                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:sP3By9h8mUmu6lZybtj7wA", callContext.id);
+                return res;
+
+            }).catch(function(ex) {
+                OutSystemsDebugger.handleException(ex, callContext.id);
+                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:sP3By9h8mUmu6lZybtj7wA", callContext.id);
+                throw ex;
+
+            });
+        };
         Controller.prototype._handler_OnHeaderScrolled$Action = function(event_IsHeaderScrolledIn, callContext) {
             var varBag = {};
             var model = this.model;
@@ -2461,7 +2778,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
                 return false;
             }
         }]);
-        Controller.prototype._handler_ApplyFilters$Action = function(event_HasFiltersAppliedIn, callContext) {
+        Controller.prototype._handler_ApplyFilters$Action = function(event_HasFiltersAppliedIn, isNewestToOldestIn, callContext) {
             var varBag = {};
             var model = this.model;
             var controller = this.controller;
@@ -2472,9 +2789,10 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
             callContext = controller.callContext(callContext);
             var vars = new OS.DataTypes.VariableHolder(new(controller.constructor.getVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_ApplyFilters$vars"))());
             vars.value.event_HasFiltersAppliedInLocal = event_HasFiltersAppliedIn;
+            vars.value.isNewestToOldestInLocal = isNewestToOldestIn;
             varBag.callContext = callContext;
             varBag.vars = vars;
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:YAJz4bPV1UOZ5xXzUvvfOg:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.YAJz4bPV1UOZ5xXzUvvfOg:fxP1FyD5f9j0X2r5JsO1DQ", "UBTConnect", "Handler_ApplyFilters", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:YAJz4bPV1UOZ5xXzUvvfOg:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.YAJz4bPV1UOZ5xXzUvvfOg:Uzp4dBqp75J4ljtSDhiuMg", "UBTConnect", "Handler_ApplyFilters", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
             OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:HK_72iyG4E61AnCbgMQlGg", callContext.id);
             return OS.Flow.executeAsyncFlow(function() {
                 // Setup Variables
@@ -2484,13 +2802,13 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:t9lic+Ls8kWnDxNH_vR4+w", callContext.id);
                 // ShowMarkAll = False
                 model.variables.showMarkAllVar = false;
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:_2QKGu4GMEm4ULydBx4bGg", callContext.id);
-                // Execute Action: ScrollTop
-                UBTConnectController.default.scrollTop$Action(".active-screen", "instant", callContext);
                 // isLoading
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:_Mm22_0J806UhWZgd+11ew", callContext.id);
                 // isLoading = True
                 model.variables.isLoadingVar = true;
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:5K2yxdxbJUewF5iEToiIIg", callContext.id);
+                // OrderByIsAscending = notIsNewestToOldest
+                model.variables.orderByIsAscendingVar = !(vars.value.isNewestToOldestInLocal);
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:jc+xCEpqIE23AKu4+icR+A", callContext.id);
                 // Execute Action: RefreshUpdates
                 return controller._refreshNotifications$Action(callContext).then(function() {
@@ -2510,6 +2828,82 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
         Controller.registerVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_ApplyFilters$vars", [{
             name: "Event_HasFiltersApplied",
             attrName: "event_HasFiltersAppliedInLocal",
+            mandatory: true,
+            dataType: OS.DataTypes.DataTypes.Boolean,
+            defaultValue: function() {
+                return false;
+            }
+        }, {
+            name: "IsNewestToOldest",
+            attrName: "isNewestToOldestInLocal",
+            mandatory: false,
+            dataType: OS.DataTypes.DataTypes.Boolean,
+            defaultValue: function() {
+                return true;
+            }
+        }]);
+        Controller.prototype._handler_UpdateReadCount$Action = function(addToCountIn, isDeleteIn, isReadIn, callContext) {
+            var varBag = {};
+            var model = this.model;
+            var controller = this.controller;
+            var idService = this.idService;
+            varBag.model = model;
+            varBag.idService = idService;
+            controller.ensureControllerAlive("Handler_UpdateReadCount");
+            callContext = controller.callContext(callContext);
+            var vars = new OS.DataTypes.VariableHolder(new(controller.constructor.getVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_UpdateReadCount$vars"))());
+            vars.value.addToCountInLocal = addToCountIn;
+            vars.value.isDeleteInLocal = isDeleteIn;
+            vars.value.isReadInLocal = isReadIn;
+            varBag.callContext = callContext;
+            varBag.vars = vars;
+            try {
+                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:4WYo5rxiwkOFrsnHgT_V2Q:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.4WYo5rxiwkOFrsnHgT_V2Q:Z3u_vIXdFojfCu2YSpATtw", "UBTConnect", "Handler_UpdateReadCount", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:5zYixAd730K7mUXfds4K5w", callContext.id);
+                if ((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:yiiRl6Fask+fnRDcfStbqw", callContext.id) && vars.value.addToCountInLocal)) {
+                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:C8iAhQ2N90eYf9AUhrHqxg", callContext.id);
+                    // ReadCount = ReadCount + 1
+                    model.variables.readCountVar = model.variables.readCountVar.add(OS.BuiltinFunctions.integerToLongInteger(1));
+                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:lGk3Ss2bbUuh1O4wv2Bi5g", callContext.id);
+                } else {
+                    if ((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:iT6_UG45fEOmFmzS+wxISw", callContext.id) && vars.value.isReadInLocal)) {
+                        OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:t7rD2oBGP0aYZ8paH9FxTw", callContext.id);
+                    } else {
+                        OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:qzwvV0a5o0eFt0sPIlXUlg", callContext.id);
+                        // ReadCount = ReadCount - 1
+                        model.variables.readCountVar = model.variables.readCountVar.sub(OS.BuiltinFunctions.integerToLongInteger(1));
+                        OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:lGk3Ss2bbUuh1O4wv2Bi5g", callContext.id);
+                    }
+
+                }
+
+            } catch (ex) {
+                OutSystemsDebugger.handleException(ex, callContext.id);
+                throw ex;
+            } finally {
+                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:4WYo5rxiwkOFrsnHgT_V2Q", callContext.id);
+            }
+
+        };
+        Controller.registerVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_UpdateReadCount$vars", [{
+            name: "AddToCount",
+            attrName: "addToCountInLocal",
+            mandatory: true,
+            dataType: OS.DataTypes.DataTypes.Boolean,
+            defaultValue: function() {
+                return false;
+            }
+        }, {
+            name: "IsDelete",
+            attrName: "isDeleteInLocal",
+            mandatory: true,
+            dataType: OS.DataTypes.DataTypes.Boolean,
+            defaultValue: function() {
+                return false;
+            }
+        }, {
+            name: "IsRead",
+            attrName: "isReadInLocal",
             mandatory: true,
             dataType: OS.DataTypes.DataTypes.Boolean,
             defaultValue: function() {
@@ -2584,6 +2978,66 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
             dataType: OS.DataTypes.DataTypes.Object,
             defaultValue: function() {
                 return null;
+            }
+        }]);
+        Controller.prototype._handler_NotificationDetail$Action = function(messageInstanceIdIn, isReadIn, callContext) {
+            var varBag = {};
+            var model = this.model;
+            var controller = this.controller;
+            var idService = this.idService;
+            varBag.model = model;
+            varBag.idService = idService;
+            controller.ensureControllerAlive("Handler_NotificationDetail");
+            callContext = controller.callContext(callContext);
+            var vars = new OS.DataTypes.VariableHolder(new(controller.constructor.getVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_NotificationDetail$vars"))());
+            vars.value.messageInstanceIdInLocal = messageInstanceIdIn;
+            vars.value.isReadInLocal = isReadIn;
+            varBag.callContext = callContext;
+            varBag.vars = vars;
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:cYVy7NaI0kKIu1LiWOl93Q:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.cYVy7NaI0kKIu1LiWOl93Q:FTWa6vAdStj_0810hjahRw", "UBTConnect", "Handler_NotificationDetail", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:7HhYs2s6uk6lvQQ8Etj0ZA", callContext.id);
+            return OS.Flow.executeAsyncFlow(function() {
+                return OS.Flow.executeSequence(function() {
+                    if ((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:S0h_LcYv_kGhcdYz+AWLaA", callContext.id) && !(vars.value.isReadInLocal))) {
+                        OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:hOy2842IEkWLTREqghQk6A", callContext.id);
+                        // Execute Action: MarkAsRead
+                        model.flush();
+                        return controller.markAsRead$ServerAction(vars.value.messageInstanceIdInLocal, callContext);
+                    }
+
+                }).then(function() {
+                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:gIRvHz3e9UKztZAnxH+fQQ", callContext.id);
+                    // Destination: /UBTConnect/NotificationDetails
+                    return OS.Flow.returnAsync(OS.Navigation.navigateTo(OS.Navigation.generateScreenURL("/UBTConnect/NotificationDetails", {
+                        MessageInstanceId: OS.DataConversion.ServerDataConverter.asString(vars.value.messageInstanceIdInLocal, OS.DataTypes.DataTypes.LongInteger)
+                    }), OS.Transitions.createTransition(OS.Transitions.TransitionAnimation.Default), callContext, true));
+                });
+            }).then(function(res) {
+                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:cYVy7NaI0kKIu1LiWOl93Q", callContext.id);
+                return res;
+
+            }).catch(function(ex) {
+                OutSystemsDebugger.handleException(ex, callContext.id);
+                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:cYVy7NaI0kKIu1LiWOl93Q", callContext.id);
+                throw ex;
+
+            });
+        };
+        Controller.registerVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_NotificationDetail$vars", [{
+            name: "MessageInstanceId",
+            attrName: "messageInstanceIdInLocal",
+            mandatory: true,
+            dataType: OS.DataTypes.DataTypes.LongInteger,
+            defaultValue: function() {
+                return OS.DataTypes.LongInteger.defaultValue;
+            }
+        }, {
+            name: "IsRead",
+            attrName: "isReadInLocal",
+            mandatory: true,
+            dataType: OS.DataTypes.DataTypes.Boolean,
+            defaultValue: function() {
+                return false;
             }
         }]);
         Controller.prototype._handler_ScrollEnding_UpdateBreakpoint$Action = function(in_DateIn, callContext) {
@@ -2683,6 +3137,11 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
             return controller.safeExecuteClientAction(controller._handler_MarkAsRead$Action, callContext, updateItemIdIn, currentPositionIn);
 
         };
+        Controller.prototype.handler_OnlyShowUnread$Action = function(onlyShowUnreadIn, callContext) {
+            var controller = this.controller;
+            return controller.safeExecuteClientAction(controller._handler_OnlyShowUnread$Action, callContext, onlyShowUnreadIn);
+
+        };
         Controller.prototype.screenEvent_OnInitialize$Action = function(callContext) {
             var controller = this.controller;
             return controller.safeExecuteClientAction(controller._screenEvent_OnInitialize$Action, callContext);
@@ -2773,9 +3232,19 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
             return controller.safeExecuteClientAction(controller._onAfterFetch_FetchNotifications$Action, callContext);
 
         };
+        Controller.prototype.handler_MoreActionSheetMarkAllAsRead$Action = function(callContext) {
+            var controller = this.controller;
+            return controller.safeExecuteClientAction(controller._handler_MoreActionSheetMarkAllAsRead$Action, callContext);
+
+        };
         Controller.prototype.handler_MoreActionSheetLoaded$Action = function(showSubscriptionOnClickIn, callContext) {
             var controller = this.controller;
             return controller.safeExecuteClientAction(controller._handler_MoreActionSheetLoaded$Action, callContext, showSubscriptionOnClickIn);
+
+        };
+        Controller.prototype.handler_MoreActionSheetDeleteAll$Action = function(callContext) {
+            var controller = this.controller;
+            return controller.safeExecuteClientAction(controller._handler_MoreActionSheetDeleteAll$Action, callContext);
 
         };
         Controller.prototype.handler_OnHeaderScrolled$Action = function(event_IsHeaderScrolledIn, callContext) {
@@ -2783,14 +3252,24 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
             return controller.safeExecuteClientAction(controller._handler_OnHeaderScrolled$Action, callContext, event_IsHeaderScrolledIn);
 
         };
-        Controller.prototype.handler_ApplyFilters$Action = function(event_HasFiltersAppliedIn, callContext) {
+        Controller.prototype.handler_ApplyFilters$Action = function(event_HasFiltersAppliedIn, isNewestToOldestIn, callContext) {
             var controller = this.controller;
-            return controller.safeExecuteClientAction(controller._handler_ApplyFilters$Action, callContext, event_HasFiltersAppliedIn);
+            return controller.safeExecuteClientAction(controller._handler_ApplyFilters$Action, callContext, event_HasFiltersAppliedIn, isNewestToOldestIn);
+
+        };
+        Controller.prototype.handler_UpdateReadCount$Action = function(addToCountIn, isDeleteIn, isReadIn, callContext) {
+            var controller = this.controller;
+            return controller.safeExecuteClientAction(controller._handler_UpdateReadCount$Action, callContext, addToCountIn, isDeleteIn, isReadIn);
 
         };
         Controller.prototype.setupScrollThreshold$Action = function(callContext) {
             var controller = this.controller;
             return controller.safeExecuteClientAction(controller._setupScrollThreshold$Action, callContext);
+
+        };
+        Controller.prototype.handler_NotificationDetail$Action = function(messageInstanceIdIn, isReadIn, callContext) {
+            var controller = this.controller;
+            return controller.safeExecuteClientAction(controller._handler_NotificationDetail$Action, callContext, messageInstanceIdIn, isReadIn);
 
         };
         Controller.prototype.handler_ScrollEnding_UpdateBreakpoint$Action = function(in_DateIn, callContext) {
@@ -2807,8 +3286,8 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
         // Event Handler Actions
         Controller.prototype.pushDebuggerContext = function(callContext) {
             var varBag = {};
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:jD6cc912jEmdKmf5_8Sipg:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg:C0dHS3xzkGhxAA9p12FDtg", "UBTConnect", "App_Notifications", "NRFlows.WebFlow", callContext.id, varBag);
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:nXyc+9VWHk+uigsyRKJRVQ:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ:2tGp0LMjDWxcoa2Fgm8oIw", "UBTConnect", "Notifications", "NRNodes.WebScreen", callContext.id, varBag);
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:jD6cc912jEmdKmf5_8Sipg:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg:sMKFKooX6A1nm6D_Lsn4Wg", "UBTConnect", "App_Notifications", "NRFlows.WebFlow", callContext.id, varBag);
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:nXyc+9VWHk+uigsyRKJRVQ:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ:vhstpAD1sQY9_2ByhiyAiA", "UBTConnect", "Notifications", "NRNodes.WebScreen", callContext.id, varBag);
         };
         Controller.prototype.popDebuggerContext = function(callContext) {
             OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:nXyc+9VWHk+uigsyRKJRVQ", callContext.id);
@@ -3114,6 +3593,12 @@ define("UBTConnect.App_Notifications.Notifications.mvc$debugger", ["exports", "O
             },
             dataType: OS.DataTypes.DataTypes.Integer
         },
+        "IEuTKVYzcEOLLzsg0UZJ8g": {
+            getter: function(varBag, idService) {
+                return varBag.vars.value.onlyShowUnreadInLocal;
+            },
+            dataType: OS.DataTypes.DataTypes.Boolean
+        },
         "HHC0uDKDYUS_X6l6PWrA7A": {
             getter: function(varBag, idService) {
                 return varBag.vars.value.entitiesCarousel_SwippedItemsVar;
@@ -3256,6 +3741,11 @@ define("UBTConnect.App_Notifications.Notifications.mvc$debugger", ["exports", "O
                 return varBag.app_Notifications_GetBreakpointsVar.value;
             }
         },
+        "KkqA6qW44UeKxPf9na2V+g": {
+            getter: function(varBag, idService) {
+                return varBag.markAllAsReadNotificationsVar.value;
+            }
+        },
         "UHJXCySKCEqXj7Rkvh2nPQ": {
             getter: function(varBag, idService) {
                 return varBag.vars.value.showSubscriptionOnClickInLocal;
@@ -3274,6 +3764,30 @@ define("UBTConnect.App_Notifications.Notifications.mvc$debugger", ["exports", "O
             },
             dataType: OS.DataTypes.DataTypes.Boolean
         },
+        "YGaTNLJ9o0+GzhB8OAehgg": {
+            getter: function(varBag, idService) {
+                return varBag.vars.value.isNewestToOldestInLocal;
+            },
+            dataType: OS.DataTypes.DataTypes.Boolean
+        },
+        "b2JygPRNaECvS3DOfI+DJg": {
+            getter: function(varBag, idService) {
+                return varBag.vars.value.addToCountInLocal;
+            },
+            dataType: OS.DataTypes.DataTypes.Boolean
+        },
+        "xQThi1A_m027VxjYEIQMSA": {
+            getter: function(varBag, idService) {
+                return varBag.vars.value.isDeleteInLocal;
+            },
+            dataType: OS.DataTypes.DataTypes.Boolean
+        },
+        "hM4jNdkUa0ahZyOvcnsv6w": {
+            getter: function(varBag, idService) {
+                return varBag.vars.value.isReadInLocal;
+            },
+            dataType: OS.DataTypes.DataTypes.Boolean
+        },
         "WMyX4qhe5EuTgiRYWXr4Hg": {
             getter: function(varBag, idService) {
                 return varBag.jSONSerialize_BreakpointsVar.value;
@@ -3283,6 +3797,18 @@ define("UBTConnect.App_Notifications.Notifications.mvc$debugger", ["exports", "O
             getter: function(varBag, idService) {
                 return varBag.setupScrollThresholdsJSResult.value;
             }
+        },
+        "h+8PjqXiIEa53zXRV5GiAg": {
+            getter: function(varBag, idService) {
+                return varBag.vars.value.messageInstanceIdInLocal;
+            },
+            dataType: OS.DataTypes.DataTypes.LongInteger
+        },
+        "gauj+xotSUqtTDftZZDC_Q": {
+            getter: function(varBag, idService) {
+                return varBag.vars.value.isReadInLocal;
+            },
+            dataType: OS.DataTypes.DataTypes.Boolean
         },
         "ZeD9YUwhO0u4TuCaXY0YCQ": {
             getter: function(varBag, idService) {
@@ -3386,12 +3912,6 @@ define("UBTConnect.App_Notifications.Notifications.mvc$debugger", ["exports", "O
             },
             dataType: OS.DataTypes.DataTypes.Text
         },
-        "IIG11rUy10WrUw06pg2r0w": {
-            getter: function(varBag, idService) {
-                return varBag.model.variables.badgeNumberVar;
-            },
-            dataType: OS.DataTypes.DataTypes.Integer
-        },
         "EblTTh2TnkObWettGbVJVQ": {
             getter: function(varBag, idService) {
                 return varBag.model.variables.selectedHistorySearchVar;
@@ -3470,6 +3990,23 @@ define("UBTConnect.App_Notifications.Notifications.mvc$debugger", ["exports", "O
             },
             dataType: OS.DataTypes.DataTypes.Text
         },
+        "bWVt23_QZka9IW1gBMz7Xw": {
+            getter: function(varBag, idService) {
+                return varBag.model.variables.local_OnlyShowUnreadVar;
+            },
+            dataType: OS.DataTypes.DataTypes.Boolean
+        },
+        "r8PUVHu15UWQDsptuWEMEw": {
+            getter: function(varBag, idService) {
+                return varBag.model.variables.readCountVar;
+            },
+            dataType: OS.DataTypes.DataTypes.LongInteger
+        },
+        "5E+zz8x68kaRU2iipmLCog": {
+            getter: function(varBag, idService) {
+                return varBag.model.variables.screen_NotificationItemListVar;
+            }
+        },
         "UPatnTxUzUSyph6SkRu4vw": {
             getter: function(varBag, idService) {
                 return varBag.model.variables.getDateRangesDataAct;
@@ -3487,28 +4024,28 @@ define("UBTConnect.App_Notifications.Notifications.mvc$debugger", ["exports", "O
                 })(varBag.model, idService);
             }
         },
-        "B72G2PQdm0C6Aol5soIVdA": {
+        "a29bKSrW+E2+c0kO3O0e6g": {
             getter: function(varBag, idService) {
                 return (function(model, idService) {
                     return model.widgets.get(idService.getId("If_IsSearchToggled_Input"));
                 })(varBag.model, idService);
             }
         },
-        "0Lq_jHZEaUOWdtUdmbZxXw": {
+        "yY2lkCoSxEmpGQiYv5bIFw": {
             getter: function(varBag, idService) {
                 return (function(model, idService) {
                     return model.widgets.get(idService.getId("If_IsHeaderScrolled_Search"));
                 })(varBag.model, idService);
             }
         },
-        "H33XnlBpj0+WDCi2Lto5JQ": {
+        "hkMi3Gv4Hki_XpbDLBwqug": {
             getter: function(varBag, idService) {
                 return (function(model, idService) {
                     return model.widgets.get(idService.getId("Content"));
                 })(varBag.model, idService);
             }
         },
-        "2AjcLHmnoUircLfxmvY5pA": {
+        "UsWb9aZx+ECX_ThlCz8k0g": {
             getter: function(varBag, idService) {
                 return (function(model, idService) {
                     return model.widgets.get(idService.getId("Search_PostScroll"));
@@ -3522,35 +4059,35 @@ define("UBTConnect.App_Notifications.Notifications.mvc$debugger", ["exports", "O
                 })(varBag.model, idService);
             }
         },
-        "hHjyKBM2ikehrl1BEJ1h8w": {
+        "+9EKS9MfIUqvj1UtGDM3Rg": {
             getter: function(varBag, idService) {
                 return (function(model, idService) {
                     return model.widgets.get(idService.getId("If_IsHeaderScrolled_Icons"));
                 })(varBag.model, idService);
             }
         },
-        "DGidlJuWR0uMxYLAPqizcQ": {
+        "5dDb3JAhy02mVfq1v3qkHA": {
             getter: function(varBag, idService) {
                 return (function(model, idService) {
                     return model.widgets.get(idService.getId("If_IsSearchToggled_Icon"));
                 })(varBag.model, idService);
             }
         },
-        "F9qovGw8X0W94Xcxwpy_Iw": {
+        "_uqdRGWbkkKZQukGWo1qBw": {
             getter: function(varBag, idService) {
                 return (function(model, idService) {
                     return model.widgets.get(idService.getId("Icon_Search"));
                 })(varBag.model, idService);
             }
         },
-        "9v6+p7xojUK7gmcT3ijKWA": {
+        "ppuHgYOwv0usl25ApVIdcQ": {
             getter: function(varBag, idService) {
                 return (function(model, idService) {
                     return model.widgets.get(idService.getId("Icon_Kebab"));
                 })(varBag.model, idService);
             }
         },
-        "5NUTDKXfIkq376PZ1UgoOA": {
+        "5PMuu_I7skec1mKm0wBDoA": {
             getter: function(varBag, idService) {
                 return (function(model, idService) {
                     return model.widgets.get(idService.getId("Icon_Kebab2"));
@@ -3564,7 +4101,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$debugger", ["exports", "O
                 })(varBag.model, idService);
             }
         },
-        "JOAAAD96SEa060Uyu7NVFw": {
+        "g6B6m7dTHE2M83Fe8kmNWA": {
             getter: function(varBag, idService) {
                 return (function(model, idService) {
                     return model.widgets.get(idService.getId("Search_PreScroll"));
@@ -3603,6 +4140,27 @@ define("UBTConnect.App_Notifications.Notifications.mvc$debugger", ["exports", "O
             getter: function(varBag, idService) {
                 return (function(model, idService) {
                     return model.widgets.get(idService.getId("If_HasNoNotifications"));
+                })(varBag.model, idService);
+            }
+        },
+        "grmLELEN_0+MvSBt5+xJlw": {
+            getter: function(varBag, idService) {
+                return (function(model, idService) {
+                    return model.widgets.get(idService.getId("Content"));
+                })(varBag.model, idService);
+            }
+        },
+        "CzbW6mudSE6sFkW4bdJNSQ": {
+            getter: function(varBag, idService) {
+                return (function(model, idService) {
+                    return model.widgets.get(idService.getId("TitlePlaceholder"));
+                })(varBag.model, idService);
+            }
+        },
+        "yVwpl+QnfkyA4pv5Hgtkyw": {
+            getter: function(varBag, idService) {
+                return (function(model, idService) {
+                    return model.widgets.get(idService.getId("TextPlaceholder"));
                 })(varBag.model, idService);
             }
         },

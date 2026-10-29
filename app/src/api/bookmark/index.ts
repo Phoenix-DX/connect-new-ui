@@ -1,16 +1,12 @@
-export { useBookmarkGroupQuery, useBookmarkGroupSummariesQuery, type BookmarkQueryOptions } from './hooks';
-export { bookmarkCache, bookmarkKeys } from './keys';
-/* ScreenBlock_BookmarkGroup maps the BookmarkItem records of the MyBookmarks cache back to its rows. */
-export { toBookmark } from './mapper';
-export {
-  addAssembleBookmark,
-  addC2Bookmark,
-  deleteAssembleBookmark,
-  deleteBookmark,
-  deleteC2Bookmark,
-  fetchBookmarkById,
-  fetchBookmarkGroup,
-  fetchBookmarkGroupSummaries,
-  updateBookmarkNote,
-} from './repository';
+export { bookmarkCache } from './keys';
+export { addAssembleBookmark, addC2Bookmark, deleteAssembleBookmark, deleteC2Bookmark } from './repository';
 export type * from './types';
+/* The screen Bookmarks (operations of the regenerated contract, I10-6). */
+export {
+  fetchBookmarkCards,
+  fetchBookmarkPills,
+  type BookmarkCardItem,
+  type BookmarkCardItemWire,
+  type BookmarkPill,
+  type BookmarksFilter,
+} from './bookmarkCards';

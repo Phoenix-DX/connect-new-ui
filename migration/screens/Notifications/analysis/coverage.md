@@ -2,7 +2,7 @@
 
 - UI states captured: default, loading, offline
 - Runtime captures: 1 file(s), 10 call(s)
-- Masked text nodes: 17, user images removed: 0
+- Masked text nodes: 54, user images removed: 0
 - Fetch failures during snapshot: 0
 
 ## Blocks referenced in code but not rendered in any captured state
@@ -10,10 +10,12 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 
 - [ ] `App_Cache.CacheControl_UserInfo_Wrapper`
 - [ ] `App_Common.UnsupportedVersion_Wrapper`
+- [ ] `App_Notifications.Notifications_ConfirmDialog`
 - [ ] `App_Notifications.Notifications_NoItemsFound`
 - [ ] `App_Policies.Policy_Checker`
 - [ ] `CacheControl.CacheControl_Policies`
 - [ ] `ConnectPatterns.AvatarDouble`
+- [ ] `ConnectPatterns.EmptyList`
 - [ ] `ConnectPatterns.HighlightSearch`
 - [ ] `ConnectPatterns.IconSVG`
 - [ ] `ConnectPatterns.LazyImage`
@@ -52,6 +54,11 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [x] `DataActionGetDateRanges` (UBTConnect.App_Notifications.Notifications.mvc.js)
 - [x] `DataActionFetchNotifications` (UBTConnect.App_Notifications.Notifications.mvc.js)
 - [ ] `Action_UI_UpdateItem_MarkAllAsRead` (UBTConnect.App_Notifications.Notifications.mvc.js)
+- [ ] `MarkAllAsReadNotifications` (UBTConnect.App_Notifications.Notifications.mvc.js)
+- [ ] `Delete_Notifications` (UBTConnect.App_Notifications.Notifications.mvc.js)
+- [ ] `MarkAsRead` (UBTConnect.App_Notifications.Notifications.mvc.js)
+- [ ] `ToggleRead` (UBTConnect.App_Notifications.NotificationsList.mvc.js)
+- [ ] `Delete_Notifications` (UBTConnect.App_Notifications.NotificationsList.mvc.js)
 
 ## Module-level server actions (called from client actions; check which ones this screen uses)
 - [ ] `AddBookmark` (UBTConnect.controller.js)

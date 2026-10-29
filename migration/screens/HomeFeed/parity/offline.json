@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "aad1f36419777683a3dc",
+ "fingerprint": "441c5c9f4ded439c9849",
  "options": {
   "text": true,
   "style": true,
@@ -19,28 +19,31 @@
  },
  "replay": {
   "mode": "builder",
-  "elements": 626,
-  "texts": 44,
+  "elements": 632,
+  "texts": 46,
   "comments": 0,
   "dropped": 0,
   "endTagMismatch": 0,
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-28T15:19:20.892Z",
- "counts": {},
+ "at": "2026-10-29T07:12:46.199Z",
+ "counts": {
+  "layout": 2,
+  "text": 1
+ },
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 54,
   "ignoreSubtrees": 3,
-  "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 2,
-  "CAPTURE-SKELETON-SHIMMER-PHASE": 25
+  "CAPTURE-SKELETON-SHIMMER-PHASE": 25,
+  "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1
  },
  "pixel": {
-  "ratio": 0.00034,
-  "maxCell": 0.0163,
+  "ratio": 0.00027,
+  "maxCell": 0.0206,
   "maxCellRatio": 0.03,
-  "diffPixels": 72,
-  "comparedPixels": 214288,
+  "diffPixels": 58,
+  "comparedPixels": 214990,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -53,12 +56,27 @@
   ],
   "masks": 9,
   "hotspots": [
-   "200,800 (26px)",
-   "200,760 (25px)",
-   "360,0 (21px)"
+   "200,800 (33px)",
+   "200,760 (25px)"
   ],
   "diffPng": "migration/screens/HomeFeed/parity/offline.diff.png"
  },
  "calls": null,
- "diffs": []
+ "diffs": [
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_HomePage] > div#b1-LayoutWrapper_Home.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.background-neutral-4.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div.content-middle > div#b1-SearchInput.OSBlockWidget[Layouts.SubLayout_HomePageSearch] > div#b1-b6-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b1-b6-b1-Content.padding-top-base.padding-x-base.ubt-custom-container > div#b1-b6-$b2.OSBlockWidget[ConnectPatterns.StaticInput] > div.search-placeholder-ellipsis.ubt-static-input > div#b1-b6-b2-$b2.OSBlockWidget[ConnectPatterns.TextEllipsis]",
+   "detail": "288×24 → 271×24"
+  },
+  {
+   "kind": "text",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_HomePage] > div#b1-LayoutWrapper_Home.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.background-neutral-4.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div.content-middle > div#b1-SearchInput.OSBlockWidget[Layouts.SubLayout_HomePageSearch] > div#b1-b6-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b1-b6-b1-Content.padding-top-base.padding-x-base.ubt-custom-container > div#b1-b6-$b2.OSBlockWidget[ConnectPatterns.StaticInput] > div.search-placeholder-ellipsis.ubt-static-input > div#b1-b6-b2-$b2.OSBlockWidget[ConnectPatterns.TextEllipsis] > span.text-ellipsis.ubt-text-ellipsis",
+   "detail": "\"Search for households, members or places.\" → \"Search for households. entities, news\""
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_HomePage] > div#b1-LayoutWrapper_Home.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.background-neutral-4.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div.content-middle > div#b1-SearchInput.OSBlockWidget[Layouts.SubLayout_HomePageSearch] > div#b1-b6-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b1-b6-b1-Content.padding-top-base.padding-x-base.ubt-custom-container > div#b1-b6-$b2.OSBlockWidget[ConnectPatterns.StaticInput] > div.search-placeholder-ellipsis.ubt-static-input > div#b1-b6-b2-$b2.OSBlockWidget[ConnectPatterns.TextEllipsis] > span.text-ellipsis.ubt-text-ellipsis",
+   "detail": "288×24 → 271×24"
+  }
+ ]
 }

@@ -185,6 +185,15 @@ placeholders: {
 content: new PlaceholderContent(function () {
 return [React.createElement(UBTConnectLibrary_BasePatterns_CustomText_mvc_view, {
 inputs: {
+InlineIcon: model.getCachedValue(idService.getId("C+fsq+HYhUa7gw9oT_26gw.InlineIcon"), function () {
+return function () {
+var rec = new UBTConnectLibraryModel.InlineIconRec();
+rec.iconIdAttr = UBTConnectLibraryModel.staticEntities.uBT_Icons.calendar;
+rec.iconSizeIdAttr = UBTConnectLibraryModel.staticEntities.uBT_IconSize.medium_20;
+rec.iconColorIdAttr = UBTConnectLibraryModel.staticEntities.uBT_Color.neutral0;
+return rec;
+}();
+}),
 In_TextOptions: model.variables.in_TextOptionsIn,
 _in_TextOptionsInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables._in_TextOptionsInDataFetchStatus),
 In_Text: "Coming Soon",
@@ -239,8 +248,8 @@ Controller.prototype.dataFetchActionNames = [];
 // Event Handler Actions
 Controller.prototype.pushDebuggerContext = function (callContext) {
 var varBag = {};
-OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:GRnUlqBGNE26Hxr_Ah3_7g:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g:3o_94888UGa0qaomZFOpnQ", "UBTConnectLibrary", "ConnectPatterns", "NRFlows.WebFlow", callContext.id, varBag);
-OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:vQtGgQHtsUGmLT4hkpSwmw:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g/NodesShownInESpaceTree.vQtGgQHtsUGmLT4hkpSwmw:Uz3eiDV+MIIY+xBLayQ2GQ", "UBTConnectLibrary", "ComingSoon", "NRNodes.WebBlock", callContext.id, varBag);
+OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:GRnUlqBGNE26Hxr_Ah3_7g:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g:Y06DhYqVkffzqTnycnKUGw", "UBTConnectLibrary", "ConnectPatterns", "NRFlows.WebFlow", callContext.id, varBag);
+OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:vQtGgQHtsUGmLT4hkpSwmw:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g/NodesShownInESpaceTree.vQtGgQHtsUGmLT4hkpSwmw:JxKhUXMX5+KEZ6nZkIcpZA", "UBTConnectLibrary", "ComingSoon", "NRNodes.WebBlock", callContext.id, varBag);
 };
 Controller.prototype.popDebuggerContext = function (callContext) {
 OutSystemsDebugger.pop("lAQ0zS6tEEyl6BBIK9yo1A:vQtGgQHtsUGmLT4hkpSwmw", callContext.id);

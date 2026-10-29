@@ -357,12 +357,13 @@ export const toSubdivisionInformationResults = (wire: BulkSubdivisionsWire): Sub
 
 /* ---- OneSchoolGlobalDetails: DataActionGetOneSchoolGlobalDetails ---- */
 
-/** The inputs and the outputs of DataActionGetOneSchoolGlobalDetails (OneSchoolGlobalDetails). */
+/** The inputs and the outputs of DataActionGetOneSchoolGlobalDetails (OneSchoolGlobalDetails_Block: the live TST
+    path since the contract regeneration of I10-6; OneSchoolGlobalCarousel build note). */
 export type OneSchoolGlobalDetailsInputsWire = ActionInputs<
-  PathOf<'UBTConnect', 'OneSchoolGlobalDetails/DataActionGetOneSchoolGlobalDetails'>
+  PathOf<'UBTConnect', 'OneSchoolGlobalDetails_Block/DataActionGetOneSchoolGlobalDetails'>
 >;
 export type OneSchoolGlobalDetailsWire = ActionOutputs<
-  PathOf<'UBTConnect', 'OneSchoolGlobalDetails/DataActionGetOneSchoolGlobalDetails'>
+  PathOf<'UBTConnect', 'OneSchoolGlobalDetails_Block/DataActionGetOneSchoolGlobalDetails'>
 >;
 
 /** A label of LookupSections as OutSystems sends it: every attribute, "" when absent. */

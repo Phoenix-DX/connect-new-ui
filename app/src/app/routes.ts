@@ -67,10 +67,6 @@ export const NO_ROUTE_META: RouteMeta = { access: 'anonymous', lock: 'enforce' }
 const FLAG_REDIRECTS: Readonly<Record<string, FlagRedirect>> = {
   // GetHasNewNotifications (D11): the bell and MessageDetail open Notifications when on, MessageList when off
   Notifications: { flag: 'C2NewNotifications', when: false, to: 'MessageList' },
-  // GetHasNewBookmarks and GetHasBookmarNote (D2): the Bookmarks tab opens Bookmarks when C2NewBookmarks is on, else
-  // New_MyBookmarks with mobileDirectoryBookmarkNote on, else MyBookmarks (BottomBarMenu Event_BottomBar_Clicked)
-  Bookmarks: { flag: 'C2NewBookmarks', when: false, to: 'MyBookmarks' },
-  MyBookmarks: { flag: 'mobileDirectoryBookmarkNote', when: true, to: 'New_MyBookmarks' },
   // GetHasNewLDM (D1): the LDM V2 screens when on, the V1 screens when off
   LDM_MyEvents_V2: { flag: 'C2NewLDM', when: false, to: 'LDM_MyEvents' },
   // GetHasCarouselEnabled: the carousel opens at the household or subdivision, else its details screen
@@ -113,7 +109,7 @@ const renameInputs = (params: OsParams, inputs: Readonly<Record<string, string>>
   Object.fromEntries(Object.entries(params).map(([name, value]) => [inputs[name] ?? name, value]));
 
 /** Where a navigation goes after the flag redirects of the route meta (useOsNavigate, through AppFrame and
-    NavigationHost). A redirect can lead to a route with its own redirect (Bookmarks, MyBookmarks, New_MyBookmarks). */
+    NavigationHost). A redirect can lead to a route with its own redirect (the loop stops at a route seen before). */
 export function flagRedirectTarget(target: NavigationTarget): NavigationTarget {
   let { path, params } = target;
   const seen = new Set<string>();

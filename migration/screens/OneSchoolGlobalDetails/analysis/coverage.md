@@ -1,7 +1,7 @@
 # Coverage for OneSchoolGlobalDetails
 
 - UI states captured: default, loading, offline
-- Runtime captures: 1 file(s), 11 call(s)
+- Runtime captures: 1 file(s), 12 call(s)
 - Masked text nodes: 5, user images removed: 1
 - Fetch failures during snapshot: 0
 
@@ -55,9 +55,9 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [ ] `scripts/OutSystemsUI_2_23.OutSystemsUI.js`
 
 ## Data/server actions declared in the screen and its blocks
-- [x] `DataActionGetOneSchoolGlobalDetails` (UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js)
+- [x] `DataActionGetOneSchoolGlobalDetails` (UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js)
 - [x] `DataActionFetchContactDetails` (UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js)
-- [ ] `DataActionFetchNotes` (UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js)
+- [x] `DataActionFetchNotes` (UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js)
 - [ ] `AddNote` (UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js)
 - [ ] `DataActionGetAvailableMembers` (UBTConnect_Utils.CW_Share.ShareSheet.mvc.js)
 - [ ] `DataActionGetRecentlyShared` (UBTConnect_Utils.CW_Share.ShareSheet.mvc.js)

@@ -1,6 +1,27 @@
-define("UBTConnect.Directory_Locality.CountryList.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnectLibrary.controller", "UBTConnectLibrary.model", "Connect_Geography_CS.model", "UBTConnect.controller", "UBTConnect_Utils.controller", "APIDomain_Directory_IS.model", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "UBTConnectLibrary.Layouts.Layout_MainPages.mvc$model", "UBTConnect.App_Common_Blocks.App_NotificationIcon.mvc$model", "UBTConnectLibrary.ConnectPatterns.StaticInput.mvc$model", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$model", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$model", "UBTConnectLibrary.BasePatterns.Columns_Two.mvc$model", "UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc$model", "UBTConnectLibrary.BasePatterns.CustomText.mvc$model", "UBTConnect.Home.FeedBlock_CommunityPopulation.mvc$model", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$model", "UBTConnect.Directory_Locality.Statistics_TypedItem.mvc$model", "UBTConnect.App_Common.BottomBarMenu.mvc$model", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$model", "UBTConnect.App_Cache.CacheControl_UserInfo_Wrapper.mvc$model", "UBTConnect.Directory_Locality.Directory_LegendBottomSheet.mvc$model", "UBTConnectLibrary.controller$GetFlagURLByCountryCode", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$BooleanDirectory_UserCurrentRecord", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnect.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$LazyImageSizeRec", "UBTConnectLibrary.model$InlineIconRec", "UBTConnect.model$UI_TypedStatisticsRec", "Connect_Geography_CS.model$UI_StatisticsTextsRec", "UBTConnect.referencesHealth$Connect_Geography_CS", "Connect_Geography_CS.model$UI_CountryStatisticsRec", "UBTConnect.model$UI_CountryStatisticsList", "UBTConnect.controller$HasAccessToRegion", "UBTConnect_Utils.controller$App_Subscription_ShowUpgradePopUp", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.controller$GetSkeletonList_UI_CountryStatistics", "APIDomain_Directory_IS.model$Directory_UserCurrentRec", "UBTConnect.referencesHealth$APIDomain_Directory_IS", "OutSystemsUI_2_23.model$ErrorMessageRec", "UBTConnect.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.controller$BottomSheetOpen"], function(OutSystems, UBTConnectModel, UBTConnectLibraryController, UBTConnectLibraryModel, Connect_Geography_CSModel, UBTConnectController, UBTConnect_UtilsController, APIDomain_Directory_ISModel, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, UBTConnectLibrary_Layouts_Layout_MainPages_mvcModel, UBTConnect_App_Common_Blocks_App_NotificationIcon_mvcModel, UBTConnectLibrary_ConnectPatterns_StaticInput_mvcModel, UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel, UBTConnectLibrary_BasePatterns_Columns_Two_mvcModel, UBTConnect_Utils_CW_Image_UBT_LazyImage_mvcModel, UBTConnectLibrary_BasePatterns_CustomText_mvcModel, UBTConnect_Home_FeedBlock_CommunityPopulation_mvcModel, UBTConnectLibrary_ConnectPatterns_Icon_mvcModel, UBTConnect_Directory_Locality_Statistics_TypedItem_mvcModel, UBTConnect_App_Common_BottomBarMenu_mvcModel, UBTConnect_App_Common_CommonUI_InsideLayout_mvcModel, UBTConnect_App_Cache_CacheControl_UserInfo_Wrapper_mvcModel, UBTConnect_Directory_Locality_Directory_LegendBottomSheet_mvcModel) {
+define("UBTConnect.Directory_Locality.CountryList.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnectLibrary.controller", "Connect_Geography_CS.model", "UBTConnectLibrary.model", "UBTConnect.controller", "UBTConnect_Utils.controller", "APIDomain_Directory_IS.model", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "UBTConnectLibrary.Layouts.Layout_MainPages.mvc$model", "UBTConnect.App_Common_Blocks.App_NotificationIcon.mvc$model", "UBTConnectLibrary.ConnectPatterns.StaticInput.mvc$model", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$model", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$model", "UBTConnectLibrary.BasePatterns.Columns_Two.mvc$model", "UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc$model", "UBTConnectLibrary.BasePatterns.CustomText.mvc$model", "UBTConnect.Home.FeedBlock_CommunityPopulation.mvc$model", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$model", "UBTConnect.Directory_Locality.Statistics_TypedItem.mvc$model", "UBTConnect.App_Common.BottomBarMenu.mvc$model", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$model", "UBTConnect.App_Cache.CacheControl_UserInfo_Wrapper.mvc$model", "UBTConnect.Directory_Locality.Directory_LegendBottomSheet.mvc$model", "UBTConnectLibrary.controller$GetFlagURLByCountryCode", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$BooleanDirectory_UserCurrentRecord", "Connect_Geography_CS.model$UI_CommunityStatisticsRec", "UBTConnect.referencesHealth$Connect_Geography_CS", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnect.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$LazyImageSizeRec", "UBTConnectLibrary.model$InlineIconRec", "UBTConnect.model$UI_TypedStatisticsRec", "Connect_Geography_CS.model$UI_StatisticsTextsRec", "Connect_Geography_CS.model$UI_CountryStatisticsRec", "UBTConnect.model$UI_CountryStatisticsList", "UBTConnect.controller$HasAccessToRegion", "UBTConnect_Utils.controller$App_Subscription_ShowUpgradePopUp", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.controller$GetSkeletonList_UI_CountryStatistics", "APIDomain_Directory_IS.model$Directory_UserCurrentRec", "UBTConnect.referencesHealth$APIDomain_Directory_IS", "OutSystemsUI_2_23.model$ErrorMessageRec", "UBTConnect.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.controller$BottomSheetOpen"], function(OutSystems, UBTConnectModel, UBTConnectLibraryController, Connect_Geography_CSModel, UBTConnectLibraryModel, UBTConnectController, UBTConnect_UtilsController, APIDomain_Directory_ISModel, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, UBTConnectLibrary_Layouts_Layout_MainPages_mvcModel, UBTConnect_App_Common_Blocks_App_NotificationIcon_mvcModel, UBTConnectLibrary_ConnectPatterns_StaticInput_mvcModel, UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel, UBTConnectLibrary_BasePatterns_Columns_Two_mvcModel, UBTConnect_Utils_CW_Image_UBT_LazyImage_mvcModel, UBTConnectLibrary_BasePatterns_CustomText_mvcModel, UBTConnect_Home_FeedBlock_CommunityPopulation_mvcModel, UBTConnectLibrary_ConnectPatterns_Icon_mvcModel, UBTConnect_Directory_Locality_Statistics_TypedItem_mvcModel, UBTConnect_App_Common_BottomBarMenu_mvcModel, UBTConnect_App_Common_CommonUI_InsideLayout_mvcModel, UBTConnect_App_Cache_CacheControl_UserInfo_Wrapper_mvcModel, UBTConnect_Directory_Locality_Directory_LegendBottomSheet_mvcModel) {
     var OS = OutSystems.Internal;
 
+    var GetCommunityStatisticsDataActRec = (function(_super) {
+        __extends(GetCommunityStatisticsDataActRec, _super);
+
+        function GetCommunityStatisticsDataActRec(defaults) {
+            _super.apply(this, arguments);
+        }
+        GetCommunityStatisticsDataActRec.attributesToDeclare = function() {
+            return [
+                this.attr("Out_CommunityStatistics", "out_CommunityStatisticsOut", "Out_CommunityStatistics", true, false, OS.DataTypes.DataTypes.Record, function() {
+                    return OS.DataTypes.ImmutableBase.getData(new Connect_Geography_CSModel.UI_CommunityStatisticsRec());
+                }, true, Connect_Geography_CSModel.UI_CommunityStatisticsRec)
+            ].concat(_super.attributesToDeclare.call(this));
+        };
+        GetCommunityStatisticsDataActRec.fromStructure = function(str) {
+            return new GetCommunityStatisticsDataActRec(new GetCommunityStatisticsDataActRec.RecordClass({
+                out_CommunityStatisticsOut: OS.DataTypes.ImmutableBase.getData(str)
+            }));
+        };
+        GetCommunityStatisticsDataActRec.init();
+        return GetCommunityStatisticsDataActRec;
+    })(OS.Model.DataSourceRecord);
     var GetCountriesStatisticsDataActRec = (function(_super) {
         __extends(GetCountriesStatisticsDataActRec, _super);
 
@@ -37,6 +58,12 @@ define("UBTConnect.Directory_Locality.CountryList.mvc$model", ["OutSystems/Clien
                 this.attr("BottomSheetId", "bottomSheetIdVar", "BottomSheetId", true, false, OS.DataTypes.DataTypes.Text, function() {
                     return "";
                 }, false),
+                this.attr("SkeletonCommunityStatistics", "skeletonCommunityStatisticsVar", "SkeletonCommunityStatistics", true, false, OS.DataTypes.DataTypes.Record, function() {
+                    return OS.DataTypes.ImmutableBase.getData(new Connect_Geography_CSModel.UI_CommunityStatisticsRec());
+                }, false, Connect_Geography_CSModel.UI_CommunityStatisticsRec),
+                this.attr("GetCommunityStatistics", "getCommunityStatisticsDataAct", "getCommunityStatisticsDataAct", true, true, OS.DataTypes.DataTypes.Record, function() {
+                    return OS.DataTypes.ImmutableBase.getData(new GetCommunityStatisticsDataActRec());
+                }, true, GetCommunityStatisticsDataActRec),
                 this.attr("GetCountriesStatistics", "getCountriesStatisticsDataAct", "getCountriesStatisticsDataAct", true, true, OS.DataTypes.DataTypes.Record, function() {
                     return OS.DataTypes.ImmutableBase.getData(new GetCountriesStatisticsDataActRec());
                 }, true, GetCountriesStatisticsDataActRec)
@@ -87,7 +114,7 @@ define("UBTConnect.Directory_Locality.CountryList.mvc$model", ["OutSystems/Clien
     })(OS.Model.BaseViewModel);
     return new OS.Model.ModelFactory(Model, "Directory_Locality.CountryList");
 });
-define("UBTConnect.Directory_Locality.CountryList.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnectLibrary.controller", "UBTConnectLibrary.model", "Connect_Geography_CS.model", "UBTConnect_Utils.controller", "APIDomain_Directory_IS.model", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "react", "OutSystems/ReactView/Main", "UBTConnect.Directory_Locality.CountryList.mvc$model", "UBTConnect.Directory_Locality.CountryList.mvc$controller", "UBTConnect.clientVariables", "UBTConnectLibrary.Layouts.Layout_MainPages.mvc$view", "OutSystems/ReactWidgets/Main", "UBTConnect.App_Common_Blocks.App_NotificationIcon.mvc$view", "UBTConnectLibrary.ConnectPatterns.StaticInput.mvc$view", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$view", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$view", "UBTConnectLibrary.BasePatterns.Columns_Two.mvc$view", "UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc$view", "UBTConnectLibrary.BasePatterns.CustomText.mvc$view", "UBTConnect.Home.FeedBlock_CommunityPopulation.mvc$view", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$view", "UBTConnect.Directory_Locality.Statistics_TypedItem.mvc$view", "UBTConnect.App_Common.BottomBarMenu.mvc$view", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$view", "UBTConnect.App_Cache.CacheControl_UserInfo_Wrapper.mvc$view", "UBTConnect.Directory_Locality.Directory_LegendBottomSheet.mvc$view", "UBTConnectLibrary.controller$GetFlagURLByCountryCode", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$BooleanDirectory_UserCurrentRecord", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnect.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$LazyImageSizeRec", "UBTConnectLibrary.model$InlineIconRec", "UBTConnect.model$UI_TypedStatisticsRec", "Connect_Geography_CS.model$UI_StatisticsTextsRec", "UBTConnect.referencesHealth$Connect_Geography_CS", "Connect_Geography_CS.model$UI_CountryStatisticsRec", "UBTConnect.model$UI_CountryStatisticsList", "UBTConnect.controller$HasAccessToRegion", "UBTConnect_Utils.controller$App_Subscription_ShowUpgradePopUp", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.controller$GetSkeletonList_UI_CountryStatistics", "APIDomain_Directory_IS.model$Directory_UserCurrentRec", "UBTConnect.referencesHealth$APIDomain_Directory_IS", "OutSystemsUI_2_23.model$ErrorMessageRec", "UBTConnect.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.controller$BottomSheetOpen"], function(OutSystems, UBTConnectModel, UBTConnectController, UBTConnectLibraryController, UBTConnectLibraryModel, Connect_Geography_CSModel, UBTConnect_UtilsController, APIDomain_Directory_ISModel, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, React, OSView, UBTConnect_Directory_Locality_CountryList_mvc_model, UBTConnect_Directory_Locality_CountryList_mvc_controller, UBTConnectClientVariables, UBTConnectLibrary_Layouts_Layout_MainPages_mvc_view, OSWidgets, UBTConnect_App_Common_Blocks_App_NotificationIcon_mvc_view, UBTConnectLibrary_ConnectPatterns_StaticInput_mvc_view, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, UBTConnectLibrary_BasePatterns_Columns_Two_mvc_view, UBTConnect_Utils_CW_Image_UBT_LazyImage_mvc_view, UBTConnectLibrary_BasePatterns_CustomText_mvc_view, UBTConnect_Home_FeedBlock_CommunityPopulation_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnect_Directory_Locality_Statistics_TypedItem_mvc_view, UBTConnect_App_Common_BottomBarMenu_mvc_view, UBTConnect_App_Common_CommonUI_InsideLayout_mvc_view, UBTConnect_App_Cache_CacheControl_UserInfo_Wrapper_mvc_view, UBTConnect_Directory_Locality_Directory_LegendBottomSheet_mvc_view) {
+define("UBTConnect.Directory_Locality.CountryList.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnectLibrary.controller", "Connect_Geography_CS.model", "UBTConnectLibrary.model", "UBTConnect_Utils.controller", "APIDomain_Directory_IS.model", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "react", "OutSystems/ReactView/Main", "UBTConnect.Directory_Locality.CountryList.mvc$model", "UBTConnect.Directory_Locality.CountryList.mvc$controller", "UBTConnect.clientVariables", "UBTConnectLibrary.Layouts.Layout_MainPages.mvc$view", "OutSystems/ReactWidgets/Main", "UBTConnect.App_Common_Blocks.App_NotificationIcon.mvc$view", "UBTConnectLibrary.ConnectPatterns.StaticInput.mvc$view", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$view", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$view", "UBTConnectLibrary.BasePatterns.Columns_Two.mvc$view", "UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc$view", "UBTConnectLibrary.BasePatterns.CustomText.mvc$view", "UBTConnect.Home.FeedBlock_CommunityPopulation.mvc$view", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$view", "UBTConnect.Directory_Locality.Statistics_TypedItem.mvc$view", "UBTConnect.App_Common.BottomBarMenu.mvc$view", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$view", "UBTConnect.App_Cache.CacheControl_UserInfo_Wrapper.mvc$view", "UBTConnect.Directory_Locality.Directory_LegendBottomSheet.mvc$view", "UBTConnectLibrary.controller$GetFlagURLByCountryCode", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$BooleanDirectory_UserCurrentRecord", "Connect_Geography_CS.model$UI_CommunityStatisticsRec", "UBTConnect.referencesHealth$Connect_Geography_CS", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnect.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$LazyImageSizeRec", "UBTConnectLibrary.model$InlineIconRec", "UBTConnect.model$UI_TypedStatisticsRec", "Connect_Geography_CS.model$UI_StatisticsTextsRec", "Connect_Geography_CS.model$UI_CountryStatisticsRec", "UBTConnect.model$UI_CountryStatisticsList", "UBTConnect.controller$HasAccessToRegion", "UBTConnect_Utils.controller$App_Subscription_ShowUpgradePopUp", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.controller$GetSkeletonList_UI_CountryStatistics", "APIDomain_Directory_IS.model$Directory_UserCurrentRec", "UBTConnect.referencesHealth$APIDomain_Directory_IS", "OutSystemsUI_2_23.model$ErrorMessageRec", "UBTConnect.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.controller$BottomSheetOpen"], function(OutSystems, UBTConnectModel, UBTConnectController, UBTConnectLibraryController, Connect_Geography_CSModel, UBTConnectLibraryModel, UBTConnect_UtilsController, APIDomain_Directory_ISModel, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, React, OSView, UBTConnect_Directory_Locality_CountryList_mvc_model, UBTConnect_Directory_Locality_CountryList_mvc_controller, UBTConnectClientVariables, UBTConnectLibrary_Layouts_Layout_MainPages_mvc_view, OSWidgets, UBTConnect_App_Common_Blocks_App_NotificationIcon_mvc_view, UBTConnectLibrary_ConnectPatterns_StaticInput_mvc_view, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, UBTConnectLibrary_BasePatterns_Columns_Two_mvc_view, UBTConnect_Utils_CW_Image_UBT_LazyImage_mvc_view, UBTConnectLibrary_BasePatterns_CustomText_mvc_view, UBTConnect_Home_FeedBlock_CommunityPopulation_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnect_Directory_Locality_Statistics_TypedItem_mvc_view, UBTConnect_App_Common_BottomBarMenu_mvc_view, UBTConnect_App_Common_CommonUI_InsideLayout_mvc_view, UBTConnect_App_Cache_CacheControl_UserInfo_Wrapper_mvc_view, UBTConnect_Directory_Locality_Directory_LegendBottomSheet_mvc_view) {
     var OS = OutSystems.Internal;
     var PlaceholderContent = OSView.Widget.PlaceholderContent;
     var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
@@ -719,57 +746,61 @@ define("UBTConnect.Directory_Locality.CountryList.mvc$view", ["OutSystems/Client
                                             })
                                         },
                                         _dependencies: [asPrimitiveValue(model.variables.localCacheControl_UserInformationVar.directory_UserCurrentAttr.directory_UserCurrent_GeographyAttr.country_LocalityCountAttr), asPrimitiveValue(model.variables.localCacheControl_UserInformationVar.directory_UserCurrentAttr.directory_UserCurrent_GeographyAttr.country_NameAttr), asPrimitiveValue(model.variables.localCacheControl_UserInformationVar.directory_UserCurrentAttr.directory_UserCurrent_GeographyAttr.country_CodeAttr), asPrimitiveValue(model.variables.localCacheControl_UserInformationVar.directory_UserCurrentAttr.directory_UserCurrent_GeographyAttr.locality_SubdivisionCountAttr), asPrimitiveValue(model.variables.localCacheControl_UserInformationVar.directory_UserCurrentAttr.directory_UserCurrent_GeographyAttr.locality_NameAttr)]
-                                    }), React.createElement(UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, {
-                                        inputs: {
-                                            Options: model.getCachedValue(idService.getId("Population.Options"), function() {
-                                                return function() {
-                                                    var rec = new UBTConnectLibraryModel.ContainerOptionsRec();
-                                                    rec.paddingSizeAttr = function() {
-                                                        var rec = new UBTConnectLibraryModel.SpacingOptionsRec();
-                                                        rec.topSizeIdAttr = UBTConnectModel.staticEntities.uBT_Size.base;
+                                    }), $if(true, false, this, function() {
+                                        return [React.createElement(UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, {
+                                            inputs: {
+                                                Options: model.getCachedValue(idService.getId("Population.Options"), function() {
+                                                    return function() {
+                                                        var rec = new UBTConnectLibraryModel.ContainerOptionsRec();
+                                                        rec.paddingSizeAttr = function() {
+                                                            var rec = new UBTConnectLibraryModel.SpacingOptionsRec();
+                                                            rec.topSizeIdAttr = UBTConnectModel.staticEntities.uBT_Size.base;
+                                                            return rec;
+                                                        }();
                                                         return rec;
                                                     }();
-                                                    return rec;
-                                                }();
-                                            })
-                                        },
-                                        events: {
-                                            _handleError: function(ex) {
-                                                controller.handleError(ex);
-                                            }
-                                        },
-                                        _validationProps: {
-                                            validationService: validationService
-                                        },
-                                        _idProps: {
-                                            service: idService,
-                                            name: "Population",
-                                            alias: "17"
-                                        },
-                                        _widgetRecordProvider: widgetsRecordProvider,
-                                        placeholders: {
-                                            content: new PlaceholderContent(function() {
-                                                return [React.createElement(UBTConnect_Home_FeedBlock_CommunityPopulation_mvc_view, {
-                                                    inputs: {},
-                                                    events: {
-                                                        _handleError: function(ex) {
-                                                            controller.handleError(ex);
-                                                        }
-                                                    },
-                                                    _validationProps: {
-                                                        validationService: validationService
-                                                    },
-                                                    _idProps: {
-                                                        service: idService,
-                                                        uuid: "19",
-                                                        alias: "18"
-                                                    },
-                                                    _widgetRecordProvider: widgetsRecordProvider,
-                                                    _dependencies: []
-                                                })];
-                                            })
-                                        },
-                                        _dependencies: []
+                                                })
+                                            },
+                                            events: {
+                                                _handleError: function(ex) {
+                                                    controller.handleError(ex);
+                                                }
+                                            },
+                                            _validationProps: {
+                                                validationService: validationService
+                                            },
+                                            _idProps: {
+                                                service: idService,
+                                                name: "Population",
+                                                alias: "17"
+                                            },
+                                            _widgetRecordProvider: widgetsRecordProvider,
+                                            placeholders: {
+                                                content: new PlaceholderContent(function() {
+                                                    return [React.createElement(UBTConnect_Home_FeedBlock_CommunityPopulation_mvc_view, {
+                                                        inputs: {},
+                                                        events: {
+                                                            _handleError: function(ex) {
+                                                                controller.handleError(ex);
+                                                            }
+                                                        },
+                                                        _validationProps: {
+                                                            validationService: validationService
+                                                        },
+                                                        _idProps: {
+                                                            service: idService,
+                                                            uuid: "19",
+                                                            alias: "18"
+                                                        },
+                                                        _widgetRecordProvider: widgetsRecordProvider,
+                                                        _dependencies: []
+                                                    })];
+                                                })
+                                            },
+                                            _dependencies: []
+                                        })];
+                                    }, function() {
+                                        return [];
                                     }), React.createElement(UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, {
                                         inputs: {
                                             Options: model.getCachedValue(idService.getId("Legend.Options"), function() {
@@ -1127,7 +1158,7 @@ define("UBTConnect.Directory_Locality.CountryList.mvc$view", ["OutSystems/Client
 
     return View;
 });
-define("UBTConnect.Directory_Locality.CountryList.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnectLibrary.controller", "UBTConnectLibrary.model", "Connect_Geography_CS.model", "UBTConnect_Utils.controller", "APIDomain_Directory_IS.model", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "UBTConnect.languageResources", "UBTConnect.clientVariables", "UBTConnect.Directory_Locality.CountryList.mvc$debugger", "UBTConnect.Directory_Locality.controller", "UBTConnect.Directory_Locality.CountryList.mvc$controller.ScreenEvent_OnReady.IsViewRestoredFromCacheJS", "UBTConnectLibrary.controller$GetFlagURLByCountryCode", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$BooleanDirectory_UserCurrentRecord", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnect.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$LazyImageSizeRec", "UBTConnectLibrary.model$InlineIconRec", "UBTConnect.model$UI_TypedStatisticsRec", "Connect_Geography_CS.model$UI_StatisticsTextsRec", "UBTConnect.referencesHealth$Connect_Geography_CS", "Connect_Geography_CS.model$UI_CountryStatisticsRec", "UBTConnect.model$UI_CountryStatisticsList", "UBTConnect.controller$HasAccessToRegion", "UBTConnect_Utils.controller$App_Subscription_ShowUpgradePopUp", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.controller$GetSkeletonList_UI_CountryStatistics", "APIDomain_Directory_IS.model$Directory_UserCurrentRec", "UBTConnect.referencesHealth$APIDomain_Directory_IS", "OutSystemsUI_2_23.model$ErrorMessageRec", "UBTConnect.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.controller$BottomSheetOpen"], function(OutSystems, UBTConnectModel, UBTConnectController, UBTConnectLibraryController, UBTConnectLibraryModel, Connect_Geography_CSModel, UBTConnect_UtilsController, APIDomain_Directory_ISModel, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, UBTConnectLanguageResources, UBTConnectClientVariables, UBTConnect_Directory_Locality_CountryList_mvc_Debugger, _flow_UBTConnect_Directory_LocalityController, UBTConnect_Directory_Locality_CountryList_mvc_controller_ScreenEvent_OnReady_IsViewRestoredFromCacheJS) {
+define("UBTConnect.Directory_Locality.CountryList.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnectLibrary.controller", "Connect_Geography_CS.model", "UBTConnectLibrary.model", "UBTConnect_Utils.controller", "APIDomain_Directory_IS.model", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "UBTConnect.languageResources", "UBTConnect.clientVariables", "UBTConnect.Directory_Locality.CountryList.mvc$debugger", "UBTConnect.Directory_Locality.controller", "UBTConnect.Directory_Locality.CountryList.mvc$controller.ScreenEvent_OnReady.IsViewRestoredFromCacheJS", "UBTConnect.Directory_Locality.CountryList.mvc$controller.ScreenEvent_OnReady.JavaScript1JS", "UBTConnectLibrary.controller$GetFlagURLByCountryCode", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$BooleanDirectory_UserCurrentRecord", "Connect_Geography_CS.model$UI_CommunityStatisticsRec", "UBTConnect.referencesHealth$Connect_Geography_CS", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnect.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$LazyImageSizeRec", "UBTConnectLibrary.model$InlineIconRec", "UBTConnect.model$UI_TypedStatisticsRec", "Connect_Geography_CS.model$UI_StatisticsTextsRec", "Connect_Geography_CS.model$UI_CountryStatisticsRec", "UBTConnect.model$UI_CountryStatisticsList", "UBTConnect.controller$HasAccessToRegion", "UBTConnect_Utils.controller$App_Subscription_ShowUpgradePopUp", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.controller$GetSkeletonList_UI_CountryStatistics", "APIDomain_Directory_IS.model$Directory_UserCurrentRec", "UBTConnect.referencesHealth$APIDomain_Directory_IS", "OutSystemsUI_2_23.model$ErrorMessageRec", "UBTConnect.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.controller$BottomSheetOpen"], function(OutSystems, UBTConnectModel, UBTConnectController, UBTConnectLibraryController, Connect_Geography_CSModel, UBTConnectLibraryModel, UBTConnect_UtilsController, APIDomain_Directory_ISModel, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, UBTConnectLanguageResources, UBTConnectClientVariables, UBTConnect_Directory_Locality_CountryList_mvc_Debugger, _flow_UBTConnect_Directory_LocalityController, UBTConnect_Directory_Locality_CountryList_mvc_controller_ScreenEvent_OnReady_IsViewRestoredFromCacheJS, UBTConnect_Directory_Locality_CountryList_mvc_controller_ScreenEvent_OnReady_JavaScript1JS) {
     var OS = OutSystems.Internal;
     var Controller = (function(_super) {
         __extends(Controller, _super);
@@ -1135,11 +1166,21 @@ define("UBTConnect.Directory_Locality.CountryList.mvc$controller", ["OutSystems/
         function Controller() {
             _super.apply(this, arguments);
             var controller = this.controller;
-            this.clientActionProxies = {};
+            this.clientActionProxies = {
+                action_RefreshData_CommunityStatistics$Action: function() {
+                    return controller.executeActionInsideJSNode(controller._action_RefreshData_CommunityStatistics$Action.bind(controller), controller.callContext(), function(actionResults) {
+                        return {};
+                    }, function() {
+                        return;
+                    }, "Action_RefreshData_CommunityStatistics");
+                }
+            };
             this.dataFetchDependenciesOriginal = {
+                getCommunityStatistics$DataActRefresh: -1,
                 getCountriesStatistics$DataActRefresh: -1
             };
             this.dataFetchDependentsGraph = {
+                getCommunityStatistics$DataActRefresh: [],
                 getCountriesStatistics$DataActRefresh: []
             };
             this.shouldSendClientVarsToDataSources = false;
@@ -1147,6 +1188,30 @@ define("UBTConnect.Directory_Locality.CountryList.mvc$controller", ["OutSystems/
         // Server Actions
 
         // Aggregates and Data Actions
+        Controller.prototype.getCommunityStatistics$DataActRefresh = function(callContext) {
+            var model = this.model;
+            var controller = this.controller;
+            var callContext = controller.callContext(callContext);
+            return OS.Flow.tryFinally(function() {
+                var varBag = {};
+                controller.pushDebuggerContext(callContext);
+
+                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:DQjlZslSMkGzowe85Heg1g:/NRWebFlows.BmZ1TBE6pkiXu8fkupJ8UQ/NodesShownInESpaceTree.UT2tMtWQW06Fg1vg6YNqxQ/DataActions.DQjlZslSMkGzowe85Heg1g:Yu6x3k8U2BTlA2HFsA6OZw", "UBTConnect", "GetCommunityStatistics", "NRFlows.DataScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.setThreadStartName(callContext.id, "Directory_Locality/CountryList/GetCommunityStatistics");
+                return controller.callDataAction("DataActionGetCommunityStatistics", "screenservices/UBTConnect/Directory_Locality/CountryList/DataActionGetCommunityStatistics", "WEbiZcexFuzyELbRsdqeIw", function(b) {
+                    model.variables.getCommunityStatisticsDataAct.dataFetchStatusAttr = b;
+                }, function(json) {
+                    model.variables.getCommunityStatisticsDataAct.replaceWith(OS.DataConversion.ServerDataConverter.from(json, model.variables.getCommunityStatisticsDataAct.constructor));
+                }, undefined, OutSystemsDebugger.getRequestHeaders(callContext.id), function(json, headers) {
+                    OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
+                }, callContext, undefined, false);
+
+            }, function() {
+                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:DQjlZslSMkGzowe85Heg1g", callContext.id);
+                controller.popDebuggerContext(callContext);
+
+            });
+        };
         Controller.prototype.getCountriesStatistics$DataActRefresh = function(callContext) {
             var model = this.model;
             var controller = this.controller;
@@ -1176,7 +1241,7 @@ define("UBTConnect.Directory_Locality.CountryList.mvc$controller", ["OutSystems/
             });
         };
 
-        Controller.prototype.dataFetchActionNames = ["getCountriesStatistics$DataActRefresh"];
+        Controller.prototype.dataFetchActionNames = ["getCommunityStatistics$DataActRefresh", "getCountriesStatistics$DataActRefresh"];
         // Client Actions
         Controller.prototype._onAfterFetch_GetCountriesStatistics$Action = function(callContext) {
             var varBag = {};
@@ -1231,7 +1296,7 @@ define("UBTConnect.Directory_Locality.CountryList.mvc$controller", ["OutSystems/
             var isViewRestoredFromCacheJSResult = new OS.DataTypes.VariableHolder();
             varBag.callContext = callContext;
             varBag.isViewRestoredFromCacheJSResult = isViewRestoredFromCacheJSResult;
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:SXOrFWZffkGPfkbSrpI_RA:/NRWebFlows.BmZ1TBE6pkiXu8fkupJ8UQ/NodesShownInESpaceTree.UT2tMtWQW06Fg1vg6YNqxQ/ClientActions.SXOrFWZffkGPfkbSrpI_RA:TcZfrd+eUrjZO3yanrqcnQ", "UBTConnect", "ScreenEvent_OnReady", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:SXOrFWZffkGPfkbSrpI_RA:/NRWebFlows.BmZ1TBE6pkiXu8fkupJ8UQ/NodesShownInESpaceTree.UT2tMtWQW06Fg1vg6YNqxQ/ClientActions.SXOrFWZffkGPfkbSrpI_RA:SbZtt8dLXC0Tg4Z7fQdISA", "UBTConnect", "ScreenEvent_OnReady", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
             OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:F75q07QvYki0le3JX5ATlA", callContext.id);
             return OS.Flow.executeAsyncFlow(function() {
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:jsSNI+n2VkeIc_J+J18sBg", callContext.id);
@@ -1247,9 +1312,13 @@ define("UBTConnect.Directory_Locality.CountryList.mvc$controller", ["OutSystems/
                     if ((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Ur6aK0nwtk2dtzUUOTCTDA", callContext.id) && (isViewRestoredFromCacheJSResult.value.isRestoredFromCacheOut && model.variables.getCountriesStatisticsDataAct.isDataFetchedAttr))) {
                         OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:3y_XUo3rak2nRjA14J_DMw", callContext.id);
                     } else {
+                        OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:naWbXeSc2kSvnVgB1mpuuQ", callContext.id);
+                        controller.safeExecuteJSNode(UBTConnect_Directory_Locality_CountryList_mvc_controller_ScreenEvent_OnReady_JavaScript1JS, "JavaScript1", "ScreenEvent_OnReady", null, function($parameters) {}, {
+                            Action_RefreshData_CommunityStatistics: controller.clientActionProxies.action_RefreshData_CommunityStatistics$Action
+                        }, {});
                         OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:YPAe0+daqEiauhfnSn_5Ww", callContext.id);
-                        // Execute Action: Action_RefreshData
-                        return controller._action_RefreshData$Action(callContext).then(function() {
+                        // Execute Action: Action_RefreshData_CountryStatistics
+                        return controller._action_RefreshData_CountryStatistics$Action(callContext).then(function() {
                             OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:VMsyiUigSkKuDfFqDdNKhw", callContext.id);
                         });
                     }
@@ -1344,14 +1413,14 @@ define("UBTConnect.Directory_Locality.CountryList.mvc$controller", ["OutSystems/
                 return "";
             }
         }]);
-        Controller.prototype._action_RefreshData$Action = function(callContext) {
+        Controller.prototype._action_RefreshData_CountryStatistics$Action = function(callContext) {
             var varBag = {};
             var model = this.model;
             var controller = this.controller;
             var idService = this.idService;
             varBag.model = model;
             varBag.idService = idService;
-            controller.ensureControllerAlive("Action_RefreshData");
+            controller.ensureControllerAlive("Action_RefreshData_CountryStatistics");
             callContext = controller.callContext(callContext);
             var communicationExceptionVar = new OS.DataTypes.VariableHolder(new OS.DataTypes.ErrorHandlerOutputType());
             var allExceptionsVar = new OS.DataTypes.VariableHolder(new OS.DataTypes.ErrorHandlerOutputType());
@@ -1362,7 +1431,7 @@ define("UBTConnect.Directory_Locality.CountryList.mvc$controller", ["OutSystems/
             varBag.allExceptionsVar = allExceptionsVar;
             varBag.notRegisteredVar = notRegisteredVar;
             varBag.getSkeletonList_UI_CountryStatisticsVar = getSkeletonList_UI_CountryStatisticsVar;
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:uZSAMJqgTkegHtoNQvG4Jw:/NRWebFlows.BmZ1TBE6pkiXu8fkupJ8UQ/NodesShownInESpaceTree.UT2tMtWQW06Fg1vg6YNqxQ/ClientActions.uZSAMJqgTkegHtoNQvG4Jw:7pVvfEiQhxyrC2Fc40yoow", "UBTConnect", "Action_RefreshData", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:uZSAMJqgTkegHtoNQvG4Jw:/NRWebFlows.BmZ1TBE6pkiXu8fkupJ8UQ/NodesShownInESpaceTree.UT2tMtWQW06Fg1vg6YNqxQ/ClientActions.uZSAMJqgTkegHtoNQvG4Jw:1ZaEZBFylAytmnI7HnwDKg", "UBTConnect", "Action_RefreshData_CountryStatistics", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
             OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:7pcHsm_ydkeyL7U8kUsnCw", callContext.id);
             return OS.Flow.executeAsyncFlow(function() {
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:8xwRFhyns0yaGNPP9zAwqg", callContext.id);
@@ -1380,7 +1449,7 @@ define("UBTConnect.Directory_Locality.CountryList.mvc$controller", ["OutSystems/
                     OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:U8RJxSpZdkSoXOdZWDetsg", callContext.id);
                 });
             }).catch(function(ex) {
-                OS.Logger.trace("CountryList.Action_RefreshData", OS.Exceptions.getMessage(ex), ex.name);
+                OS.Logger.trace("CountryList.Action_RefreshData_CountryStatistics", OS.Exceptions.getMessage(ex), ex.name);
                 // Handle Error: CommunicationException
                 if (OS.Exceptions.isInstanceOf(ex, OS.Exceptions.Exceptions.CommunicationException)) {
                     OS.Logger.error(null, ex);
@@ -1621,6 +1690,37 @@ define("UBTConnect.Directory_Locality.CountryList.mvc$controller", ["OutSystems/
                 return "";
             }
         }]);
+        Controller.prototype._action_RefreshData_CommunityStatistics$Action = function(callContext) {
+            var varBag = {};
+            var model = this.model;
+            var controller = this.controller;
+            var idService = this.idService;
+            varBag.model = model;
+            varBag.idService = idService;
+            controller.ensureControllerAlive("Action_RefreshData_CommunityStatistics");
+            callContext = controller.callContext(callContext);
+            varBag.callContext = callContext;
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:Uh75_9YsrkaVlMYxKpI0ig:/NRWebFlows.BmZ1TBE6pkiXu8fkupJ8UQ/NodesShownInESpaceTree.UT2tMtWQW06Fg1vg6YNqxQ/ClientActions.Uh75_9YsrkaVlMYxKpI0ig:wegdfWd8ANXYpAMZjfFPpg", "UBTConnect", "Action_RefreshData_CommunityStatistics", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:4+p8BkyfaUGvkjEVhBS7hA", callContext.id);
+            return OS.Flow.executeAsyncFlow(function() {
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:uGn2Bv4xkEG1HUFg5K4VsQ", callContext.id);
+                // Refresh Query: GetCommunityStatistics
+                var result = controller.getCommunityStatistics$DataActRefresh(callContext);
+                model.flush();
+                return result.then(function() {
+                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:LouoaSBxJkSP0aL+OKlA8A", callContext.id);
+                });
+            }).then(function(res) {
+                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:Uh75_9YsrkaVlMYxKpI0ig", callContext.id);
+                return res;
+
+            }).catch(function(ex) {
+                OutSystemsDebugger.handleException(ex, callContext.id);
+                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:Uh75_9YsrkaVlMYxKpI0ig", callContext.id);
+                throw ex;
+
+            });
+        };
 
         Controller.prototype.onAfterFetch_GetCountriesStatistics$Action = function(callContext) {
             var controller = this.controller;
@@ -1637,9 +1737,9 @@ define("UBTConnect.Directory_Locality.CountryList.mvc$controller", ["OutSystems/
             return controller.safeExecuteClientAction(controller._handler_StatisticsList_Clicked$Action, callContext, event_IdIn);
 
         };
-        Controller.prototype.action_RefreshData$Action = function(callContext) {
+        Controller.prototype.action_RefreshData_CountryStatistics$Action = function(callContext) {
             var controller = this.controller;
-            return controller.safeExecuteClientAction(controller._action_RefreshData$Action, callContext);
+            return controller.safeExecuteClientAction(controller._action_RefreshData_CountryStatistics$Action, callContext);
 
         };
         Controller.prototype.onClick_MyCountry$Action = function(callContext) {
@@ -1672,12 +1772,17 @@ define("UBTConnect.Directory_Locality.CountryList.mvc$controller", ["OutSystems/
             return controller.safeExecuteClientAction(controller._directory_LegendBottomSheetSheetInitialized$Action, callContext, sheetIdIn);
 
         };
+        Controller.prototype.action_RefreshData_CommunityStatistics$Action = function(callContext) {
+            var controller = this.controller;
+            return controller.safeExecuteClientAction(controller._action_RefreshData_CommunityStatistics$Action, callContext);
+
+        };
 
         // Event Handler Actions
         Controller.prototype.pushDebuggerContext = function(callContext) {
             var varBag = {};
             OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:BmZ1TBE6pkiXu8fkupJ8UQ:/NRWebFlows.BmZ1TBE6pkiXu8fkupJ8UQ:FwAkjRuoCVCfL_Y3sNenPQ", "UBTConnect", "Directory_Locality", "NRFlows.WebFlow", callContext.id, varBag);
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:UT2tMtWQW06Fg1vg6YNqxQ:/NRWebFlows.BmZ1TBE6pkiXu8fkupJ8UQ/NodesShownInESpaceTree.UT2tMtWQW06Fg1vg6YNqxQ:CVeAVPOH896++aLZGXC4yQ", "UBTConnect", "CountryList", "NRNodes.WebScreen", callContext.id, varBag);
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:UT2tMtWQW06Fg1vg6YNqxQ:/NRWebFlows.BmZ1TBE6pkiXu8fkupJ8UQ/NodesShownInESpaceTree.UT2tMtWQW06Fg1vg6YNqxQ:IVB6Il+zn1v_TDCj6nQgUw", "UBTConnect", "CountryList", "NRNodes.WebScreen", callContext.id, varBag);
         };
         Controller.prototype.popDebuggerContext = function(callContext) {
             OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:UT2tMtWQW06Fg1vg6YNqxQ", callContext.id);
@@ -1723,6 +1828,11 @@ define("UBTConnect.Directory_Locality.CountryList.mvc$controller.ScreenEvent_OnR
         $parameters.IsRestoredFromCache = $public.View.wasCurrentViewRestoredFromCache()
     };
 });
+define("UBTConnect.Directory_Locality.CountryList.mvc$controller.ScreenEvent_OnReady.JavaScript1JS", [], function() {
+    return function($actions, $roles, $public) {
+        $actions.Action_RefreshData_CommunityStatistics()
+    };
+});
 
 define("UBTConnect.Directory_Locality.CountryList.mvc$debugger", ["exports", "OutSystems/ClientRuntime/Debugger", "OutSystems/ClientRuntime/Main"], function(exports, Debugger, OutSystems) {
     var OS = OutSystems.Internal;
@@ -1730,6 +1840,11 @@ define("UBTConnect.Directory_Locality.CountryList.mvc$debugger", ["exports", "Ou
         "jsSNI+n2VkeIc_J+J18sBg": {
             getter: function(varBag, idService) {
                 return varBag.isViewRestoredFromCacheJSResult.value;
+            }
+        },
+        "naWbXeSc2kSvnVgB1mpuuQ": {
+            getter: function(varBag, idService) {
+                return varBag.javaScript1JSResult.value;
             }
         },
         "dKGcNTdBe0SZ4Jik23RiUQ": {
@@ -1789,6 +1904,16 @@ define("UBTConnect.Directory_Locality.CountryList.mvc$debugger", ["exports", "Ou
                 return varBag.model.variables.bottomSheetIdVar;
             },
             dataType: OS.DataTypes.DataTypes.Text
+        },
+        "gSj4rDzMekm4F3wVTno6sg": {
+            getter: function(varBag, idService) {
+                return varBag.model.variables.skeletonCommunityStatisticsVar;
+            }
+        },
+        "DQjlZslSMkGzowe85Heg1g": {
+            getter: function(varBag, idService) {
+                return varBag.model.variables.getCommunityStatisticsDataAct;
+            }
         },
         "QFZMxcb1xEuO73oR4yGItw": {
             getter: function(varBag, idService) {
@@ -1900,14 +2025,14 @@ define("UBTConnect.Directory_Locality.CountryList.mvc$debugger", ["exports", "Ou
                 })(varBag.model, idService);
             }
         },
-        "4PMQia02gUq4vC6iJiL8ug": {
+        "gL_kQ7v7TEG+pqKlKfhLkg": {
             getter: function(varBag, idService) {
                 return (function(model, idService) {
                     return model.widgets.get(idService.getId("Population"));
                 })(varBag.model, idService);
             }
         },
-        "xyIHudVSwUCaozfEbopV4A": {
+        "yXabiwOIa0C4T42cfti+LA": {
             getter: function(varBag, idService) {
                 return (function(model, idService) {
                     return model.widgets.get(idService.getId("Content"));

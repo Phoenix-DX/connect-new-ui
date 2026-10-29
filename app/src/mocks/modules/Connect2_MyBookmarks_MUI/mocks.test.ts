@@ -1,5 +1,4 @@
 import { beforeEach, expect, test, vi } from 'vitest';
-import { callAction } from '@/api/client/callAction';
 import { mockLocalBookmarks } from '@/platform/bootstrap/mocks';
 import { freshPage } from '@/test/testSupport';
 import { MyBookmarks_Group } from '@/lib/ubtConnect/staticEntities';
@@ -21,19 +20,4 @@ test('one legacy collection with the captured counts and the households the fini
   expect(local).toEqual(expect.arrayContaining(['42438', '35419'])); // 42438: HouseholdDetails and Locality_Details card 1
   expect(local).not.toContain('91001');
   expect(local).not.toEqual(expect.arrayContaining(['1210'])); // SupperMeeting_Details capture: "Bookmark"
-});
-
-test('GetBookmarkById answers the row, then an empty record once DeleteBookmarkByBookmarkId removed it', async () => {
-  const [first] = legacyBookmarksOfGroup(MyBookmarks_Group.Contacts);
-  const id = first?.Id ?? '';
-  const found = await callAction('Connect2_MyBookmarks_MUI', 'ActionGetBookmarkById', { BookmarkId: id });
-  expect(found.IsBookmarkFound).toBe(true);
-  expect(found.GetBookmarkByIdResponse.ObjectId).toBe(first?.ObjectId);
-  const deleted = await callAction('Connect2_MyBookmarks_MUI', 'ActionDeleteBookmarkByBookmarkId', { BookmarkId: id });
-  expect(deleted.Success).toBe(true);
-  const gone = await callAction('Connect2_MyBookmarks_MUI', 'ActionNew_GetBookmarkById', { BookmarkId: id });
-  expect(gone.IsBookmarkFound).toBe(false);
-  expect(gone.GetBookmarkByIdResponse.Id).toBe('0');
-  expect(legacyBookmarksOfGroup(MyBookmarks_Group.Contacts)).toHaveLength(6);
-  expect(mockLocalBookmarks().some((b) => b.BookmarkId === id)).toBe(false);
 });

@@ -13,11 +13,16 @@ vi.mock('./NoteCard_Item', () => ({
 const card = (id: string, title: string): NoteCardItem => ({
   id: `Household-${id}`,
   itemId: id,
+  itemId2: '0',
+  hasDetailAccess: true,
   noteCategoryId: 'Household',
   title,
   subtitle: 'Northbrook',
   sourceHeader: { iconId: '', imageURL: '', initials: '', label: 'Household' },
   notes: { Total: 1, Note_Item_List: [{ Id: `5${id}`, Note: 'Bring the picnic blanket' }] },
+  channelName: '',
+  channelLogo: '',
+  publishedAt: '1900-01-01T00:00:00',
 });
 const NOTES = [card('1', 'Fenwick Household'), card('2', 'Ashdown Household')];
 

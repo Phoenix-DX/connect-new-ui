@@ -2,7 +2,7 @@
     DataActionGetOneSchoolGlobalDetails (`useOneSchoolGlobalDetailsQuery` of the domain api/locality) and gives it to
     Directory_EntityDetailsActions as the entity id.
     @origin UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails */
-export interface OneSchoolGlobalDetailsInputs {
+interface OneSchoolGlobalDetailsInputs {
   /** In_OneSchoolGlobalId (Long Integer, as text): the school. */
   In_OneSchoolGlobalId: string;
 }

@@ -1,7 +1,7 @@
 # Coverage for HomeFeed
 
 - UI states captured: default, loading, offline
-- Runtime captures: 1 file(s), 11 call(s)
+- Runtime captures: 1 file(s), 12 call(s)
 - Masked text nodes: 12, user images removed: 0
 - Fetch failures during snapshot: 0
 
@@ -62,6 +62,7 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [ ] `scripts/OutSystemsUI_2_23.OutSystemsUI.js`
 
 ## Data/server actions declared in the screen and its blocks
+- [x] `DataActionGetCommunityStatistics` (UBTConnect.Home.HomeFeed.mvc.js)
 - [x] `DataActionGetServices` (UBTConnect.Home.FeedBlock_Services.mvc.js)
 - [x] `DataActionFetchCount` (UBTConnect.Home.FeedBlock_CommunityPopulation.mvc.js)
 - [x] `DataActionFetchUpdates` (UBTConnect.Home.FeedBlock_Updates.mvc.js)

@@ -373,6 +373,11 @@ tive .header-right, .ubt-layout-main.layout-native .header-right, .phone .ubt-la
 ```
 ## ConnectPatterns.StaticInput
 
+### .search-placeholder-ellipsis  (2 rules)
+```css
+.search-placeholder-ellipsis input:placeholder-shown, input.search-placeholder-ellipsis:placeholder-shown { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.search-placeholder-ellipsis input::placeholder, input.search-placeholder-ellipsis::placeholder { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+```
 ### .ubt-static-input  (1 rule)
 ```css
 .ubt-static-input { background-color: var(--color-neutral-1); border: var(--border-size-s) solid var(--color-neutral-5); border-radius: var(--border-radius-rounded); color: var(--color-neutral-7); min-height: 37px; height: 37px; padding: 0 var(--space-base); display: flex; align-items: center; justify-content: flex-start; column-gap: var(--space-base); }

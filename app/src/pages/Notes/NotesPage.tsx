@@ -6,9 +6,10 @@ import { useNotificationIcon } from '@/platform/session/useNotificationIcon';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { Icon } from '@/components/ui/Icon';
 import { Input } from '@/components/ui/Input';
+import { FilterSheet_Icon_Label } from '@/components/filter/FilterSheetIconLabel';
+import { Horizontal_Filter_TagList } from '@/components/filter/HorizontalFilterTagList';
+import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
 import { UBT_Color, UBT_Shape, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
-import { FilterSheet_Icon_Label } from './components/FilterSheet_Icon_Label';
-import { Horizontal_Filter_TagList } from './components/Horizontal_Filter_TagList';
 import { NoteCard_List } from './components/NoteCard_List';
 import { Notes_FilterSheet } from './components/Notes_FilterSheet';
 import { UBT_Icons2_Search } from './components/staticEntities';
@@ -16,7 +17,8 @@ import { useNotes } from './hooks/useNotes';
 
 /** @origin UBTConnect.Notes.Notes
     The My Notes route: Layout_MainPages_FixedTitle (gray) with the title "My Notes", the search icon once the header
-    scrolled, the notification bell, the search input, the category pills with the filter label as header content, the
+    scrolled, the notification bell, the search input (enabled, with the search term as InitalString: TST
+    2026-10-29, Notes.mvc.js:293-308), the category pills with the filter label as header content, the
     note cards, the bottom bar and CommonUI. Outside the layout: Notes_FilterSheet, once OnInitialize has ended. The
     flows are in useNotes. */
 export default function Notes() {
@@ -55,7 +57,7 @@ export default function Notes() {
           <Input
             id="$b4"
             inOptions={{
-              IsEnabled: v.getNotesList.length > 1,
+              InitalString: v.notesFilter.searchTerm,
               MaxLength: 50,
               SearchPrompt: 'Search',
               Debounce_DelayMS: 200,
@@ -90,6 +92,7 @@ export default function Notes() {
                   haveFiltersApplied={v.hasFiltersApplied}
                   bottomSheetId={v.filterBottomSheetId}
                   isLoaded
+                  onShowUpgradePopUp={showUpgradePopUp}
                 />
               }
             />

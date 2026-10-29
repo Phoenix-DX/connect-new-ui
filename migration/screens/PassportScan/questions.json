@@ -1,0 +1,61 @@
+[
+ {
+  "id": "Q1",
+  "kind": "decision",
+  "topic": "embed loader",
+  "question": "How does React hold the Orbit Passport embed loader (scripts/OrbitPassportScanC2.PassportScan.js, the portal team's 'host embed loader' v1.0.0, ES5 IIFE that sets window.OrbitPassport)?",
+  "evidence": "ScreenBlock_PassportScan.mvc.js:148 (JS dependency), :699-782 (configure/open/destroy/back/isConfigured); runtime-sources/OrbitPassportScanC2.PassportScan.js:1-40, 213-245, 600-700; vendored precedent src/vendor/barcodeplugin (ADR-11)",
+  "mcp": "Not an MCP fact (design choice).",
+  "options": [
+   "a: vendor the loader byte-identical in app/src/vendor/orbitpassport/ (SOURCE.md, typed loader index.ts that adds one classic <script> on first use, as barcodeplugin); the protocol, origin checks and camera image parsing stay the portal team's code; an upgrade is a file swap; needs an ADR row like ADR-11 and a scope exception for src/vendor",
+   "b: TypeScript port of the postMessage protocol in pages/PassportScan (about 300 lines to keep in step with the portal team by hand; lint and types apply)"
+  ],
+  "recommend": "a",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-29T10:06:56",
+  "answer": "(a) (user, 2026-10-29): keep the TST loader byte-identical in app/src/vendor/orbitpassport/ behind the typed adapter; add an ADR row as ADR-11.",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-29T10:38:14"
+ },
+ {
+  "id": "Q2",
+  "kind": "decision",
+  "topic": "camera on the web",
+  "question": "What does onRequestCamera do in the web build? TST calls the native CameraPlugin TakePhoto (quality 60, JPEG, back camera) and returns the thumbnail as base64; React has no camera plugin port. Fact for MCP too: does the CameraPlugin version of OrbitPassportScanC2 run in a PWA/browser?",
+  "evidence": "OrbitPassportScanC2.controller.js Handler_OnRequestCamera (TakePhoto, BinaryToBase64, Image='' on error); loader deliverCapture: no image -> ocr:error, portal falls back to Upload or manual entry (OrbitPassportScanC2.PassportScan.js:381-425)",
+  "mcp": "Not asked yet (orchestrator: CameraPlugin module, TakePhoto, PWA support).",
+  "options": [
+   "a: mock and demo builds answer a fictional passport image; other builds answer no image ({Image: ''}), as the TakePhoto failure branch, so the portal shows its Upload/manual fallback",
+   "b: browser camera through <input type=file accept=image/* capture=environment> (new web feature, own ADR)",
+   "c: wait for a native wrapper camera bridge; until then as (a)"
+  ],
+  "recommend": "a",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-29T10:06:56",
+  "answer": "Re-asked on 2026-10-29 with the corrected fact (TST CameraPlugin TakePhoto works in a PWA: Web_TakePhoto with getUserMedia, CameraPlugin.controller.js / CameraStream.js; mcp-session-2026-10-29.md row 8). User answer (a): port the web camera path as TST (browser camera view, JPEG quality 60, back camera; permission denied or no camera follows the TST error path: log, empty image); the UI comes from the CameraPlugin compiled code.",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-29T11:45:33"
+ },
+ {
+  "id": "Q3",
+  "kind": "decision",
+  "topic": "architecture rule 9",
+  "question": "OrbitBlankLayout (port of Layout_OrbitBlank) must set the Orbit theme class on the body in OnInitialize (SetThemeClassToBody, Layout_OrbitBlank.mvc.js:265-300). The only helper is legacy/os/bodyTheme, which rule-9-legacy-os-importers forbids outside platform/api/app; OrbitLayout and LegacyLayout import it as known violations. npm run arch now shows 1 new error for OrbitBlankLayout.",
+  "evidence": "app/src/components/layout/OrbitBlankLayout/OrbitBlankLayout.tsx:4; .dependency-cruiser.cjs rule-9 (from pathNot platform|api|app|legacy/os); OrbitLayout.tsx:5 (known violation)",
+  "mcp": "Not an MCP fact.",
+  "options": [
+   "a: the foundation owner exports the body theme setter from platform (for example @/platform/theme) and the three layouts use it; no baseline row",
+   "b: add OrbitBlankLayout to the known violations, as OrbitLayout",
+   "c: the page sets the theme through a platform hook and the layout stays without the effect"
+  ],
+  "recommend": "a",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-29T10:15:56",
+  "answer": "(a) (user, 2026-10-29): platform/ exports the body theme setter; OrbitBlankLayout, OrbitLayout and the third layout use it; the known violation of OrbitLayout goes away.",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-29T10:50:10"
+ }
+]

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useReducer, useRef } from 'react';
-import { fetchNotificationDateRanges, fetchNotifications } from '@/api/notification';
+import { fetchNotificationDateRanges, fetchNotifications, markNotificationAsRead } from '@/api/notification';
 import { UserException, exceptionMessage, isSystemException } from '@/legacy/os/exceptions';
-import { useFlowScope, useViewState } from '@/platform/navigation';
+import { useFlowScope, useOsNavigate, useViewState } from '@/platform/navigation';
 import { directory_Updates_RefreshBottomBarCount, scrollTop } from '@/lib/ubtConnect/actions';
 import { bottomSheetOpen } from '@/components/ui/lib/actions';
 import {
@@ -43,6 +43,8 @@ export interface NotificationsFlows {
   onFilterSheetInitialized: (sheetId: string) => void;
   /** SheetInitialized of Notifications_MoreActionSheet. */
   onMoreActionSheetInitialized: (sheetId: string) => void;
+  /** Handler_NotificationDetail: NotificationDetail of the list, with the notification id and IsRead. */
+  onNotificationDetail: (messageInstanceId: string, isRead: boolean) => void;
 }
 
 /** The view cache keeps three variables, not the whole state: a restored view starts without the list and fetches it
@@ -81,6 +83,7 @@ function useNotificationsState() {
     (the bottom bar count, RefreshNotifications) does not run and no failure reaches the flow handler. */
 export function useNotifications(): NotificationsFlows {
   const { state, latest, dispatch, flow } = useNotificationsState();
+  const navigate = useOsNavigate();
 
   /** A handled exception of an OnAfterFetch: isLoading False, then BubbleGenericException. A system exception goes up
       as it is. */
@@ -180,6 +183,18 @@ export function useNotifications(): NotificationsFlows {
     dispatch({ type: 'moreActionSheetInitialized', sheetId });
   };
 
+  /* Handler_NotificationDetail (live TST copy, Notifications.mvc.js:2986-3003): MarkAsRead when the notification is
+     not read (a server action: R2, not wrapped), then NotificationDetails with its id and the Default transition (R4
+     in useOsNavigate). The click of the list starts the flow (R6). */
+  const notificationDetail = async (messageInstanceId: string, isRead: boolean) => {
+    if (!isRead) await markNotificationAsRead(messageInstanceId);
+    navigate('/UBTConnect/NotificationDetails', { MessageInstanceId: messageInstanceId });
+  };
+
+  const onNotificationDetail = (messageInstanceId: string, isRead: boolean) => {
+    flow.run(() => notificationDetail(messageInstanceId, isRead));
+  };
+
   return {
     state,
     onHeaderScrolled,
@@ -190,5 +205,6 @@ export function useNotifications(): NotificationsFlows {
     onApplyFilters,
     onFilterSheetInitialized,
     onMoreActionSheetInitialized,
+    onNotificationDetail,
   };
 }

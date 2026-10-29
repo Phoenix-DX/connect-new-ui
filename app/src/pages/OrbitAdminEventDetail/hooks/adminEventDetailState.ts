@@ -56,7 +56,7 @@ export const EMPTY_SCANNED_USER: ScannedUser = {
 };
 
 /** ScanError when no error popup shows. */
-export const NO_SCAN_ERROR: ScanError = { IsShowErrorMessage: false, Message: '' };
+const NO_SCAN_ERROR: ScanError = { IsShowErrorMessage: false, Message: '' };
 
 /** The variables of a new visit (the block has no OnInitialize: the defaults). */
 export const INITIAL_ADMIN_EVENT_DETAIL_STATE: AdminEventDetailState = {

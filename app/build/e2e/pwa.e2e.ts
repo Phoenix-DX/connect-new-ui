@@ -4,6 +4,7 @@ import { join } from 'node:path';
 import type { BrowserContext, Page } from 'playwright';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { MANIFEST_PATH } from '../pwa';
+import { NOT_FOUND_TITLE } from '../unknownPaths';
 import { APP_DIR, DEMO_ARGS, DEMO_ENV, PRODUCTION_ENV, viteBuild } from '../viteBuild';
 import {
   cachedUrls,
@@ -267,5 +268,18 @@ describe('production build (vite preview, no mocks, app service worker at /UBTCo
 
   it('serves the TST manifest at /UBTConnect/moduleservices/pwa/manifest; the 4 icons load', async () => {
     await expectTstManifest(productionServer.origin);
+  });
+
+  /* Item 9 D4 (migration/clarify/review/item9-solution.md §5.3): TST's server answers HTTP 404 with its own page, and
+     the app does not load (P7). `vite preview` does the same through build/unknownPaths.ts. */
+  it('first load of a path that no screen has: HTTP 404 and the TST server page, no app document', async () => {
+    const page = await pageOf(await profile());
+    const response = await page.goto(`${productionServer.origin}/UBTConnect/NoSuchScreen`);
+    expect(response?.status()).toBe(404);
+    expect(await page.title()).toBe(NOT_FOUND_TITLE);
+    expect(await page.locator('body').innerText()).toContain('Server Error');
+    expect(await page.locator('script').count()).toBe(0);
+    // a screen path still loads the app
+    expect((await page.goto(`${productionServer.origin}${HOME}`))?.status()).toBe(200);
   });
 });

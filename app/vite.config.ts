@@ -6,6 +6,7 @@ import { bootPlan } from './src/pwa/bootPlan';
 import { apiContractVersion, appServiceWorker, pwaManifest } from './build/pwa';
 import { mockFreeBuild } from './build/mockFree';
 import { demoHostFiles, mockFeedCms, originalImages } from './build/staticFiles';
+import { unknownPaths } from './build/unknownPaths';
 
 /* Three build modes (src/pwa/bootPlan.ts, docs/guides/pwa.md): dev and the plain mock build use MSW's worker; the
    demo build (`--mode demo`, .env.demo) answers mocks in the page and registers the app service worker, output
@@ -24,6 +25,8 @@ export default defineConfig(({ mode }) => {
       ...(demo ? [demoHostFiles()] : []),
       ...(plan.mocks === 'none' ? mockFreeBuild() : []),
       appServiceWorker(plan),
+      // last, after the plugins that answer their own paths: HTTP 404 for a path that no screen has (item 9 D4, P7)
+      unknownPaths(),
     ],
     resolve: { alias: { '@': path.resolve(import.meta.dirname, 'src') } },
     define: { __API_CONTRACT_VERSION__: JSON.stringify(apiContractVersion()) },

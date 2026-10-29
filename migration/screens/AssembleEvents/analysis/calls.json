@@ -6,7 +6,7 @@
    "action": "ActionAppManager_SynchAppContext",
    "path": "/UBTConnect/screenservices/UBT_AppManager/ActionAppManager_SynchAppContext",
    "phase": "load",
-   "ts": 2716,
+   "ts": 3487,
    "status": 200,
    "kind": "server",
    "inputNames": [
@@ -19,7 +19,7 @@
    "action": "ActionGetUserInformation",
    "path": "/UBTConnect/screenservices/Connect2_LegacyShared/ActionGetUserInformation",
    "phase": "load",
-   "ts": 4008,
+   "ts": 5084,
    "status": 200,
    "kind": "server",
    "inputNames": [],
@@ -30,10 +30,32 @@
    "action": "ActionGetUserInformation",
    "path": "/UBTConnect/screenservices/UBTConnect_Utils/ActionGetUserInformation",
    "phase": "load",
-   "ts": 4323,
+   "ts": 5401,
    "status": 200,
    "kind": "server",
    "inputNames": [],
+   "scope": "this screen"
+  },
+  {
+   "module": "Connect2_Assemble_MUI",
+   "action": "DataActionGetAssembleEventTypes",
+   "path": "/UBTConnect/screenservices/Connect2_Assemble_MUI/Assemble/AssembleSummary_List/DataActionGetAssembleEventTypes",
+   "phase": "load",
+   "ts": 5401,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "Connect2_Assemble_MUI",
+   "action": "DataActionGetAssembleMeetingSummaryList",
+   "path": "/UBTConnect/screenservices/Connect2_Assemble_MUI/Assemble/AssembleSummary_List/DataActionGetAssembleMeetingSummaryList",
+   "phase": "load",
+   "ts": 5401,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
    "scope": "this screen"
   },
   {
@@ -41,7 +63,7 @@
    "action": "ActionGetCountriesBySubscription",
    "path": "/UBTConnect/screenservices/Connect2_LegacyShared/ActionGetCountriesBySubscription",
    "phase": "load",
-   "ts": 4633,
+   "ts": 5723,
    "status": 200,
    "kind": "server",
    "inputNames": [
@@ -54,7 +76,7 @@
    "action": "ActionAppManager_AfterInitialize",
    "path": "/UBTConnect/screenservices/UBT_AppManager/ActionAppManager_AfterInitialize",
    "phase": "load",
-   "ts": 5233,
+   "ts": 6366,
    "status": 200,
    "kind": "server",
    "inputNames": [
@@ -65,22 +87,11 @@
    "scope": "this screen"
   },
   {
-   "module": "Connect2_Assemble_MUI",
-   "action": "DataActionGetAssembleEventTypes",
-   "path": "/UBTConnect/screenservices/Connect2_Assemble_MUI/Assemble/AssembleSummary_List/DataActionGetAssembleEventTypes",
-   "phase": "load",
-   "ts": 4324,
-   "status": 200,
-   "kind": "data",
-   "inputNames": null,
-   "scope": "this screen"
-  },
-  {
    "module": "UBTConnect",
    "action": "ActionSync_Info_GetMain",
    "path": "/UBTConnect/screenservices/UBTConnect/ActionSync_Info_GetMain",
    "phase": "load",
-   "ts": 5492,
+   "ts": 6597,
    "status": 200,
    "kind": "server",
    "inputNames": [
@@ -89,22 +100,11 @@
    "scope": "this screen"
   },
   {
-   "module": "Connect2_Assemble_MUI",
-   "action": "DataActionGetAssembleMeetingSummaryList",
-   "path": "/UBTConnect/screenservices/Connect2_Assemble_MUI/Assemble/AssembleSummary_List/DataActionGetAssembleMeetingSummaryList",
-   "phase": "load",
-   "ts": 4324,
-   "status": 200,
-   "kind": "data",
-   "inputNames": null,
-   "scope": "this screen"
-  },
-  {
    "module": "Connect2_LegacyShared",
    "action": "ActionGetNumberUnreadMessages",
    "path": "/UBTConnect/screenservices/Connect2_LegacyShared/ActionGetNumberUnreadMessages",
    "phase": "load",
-   "ts": 6387,
+   "ts": 7164,
    "status": 200,
    "kind": "server",
    "inputNames": [
@@ -117,7 +117,7 @@
    "action": "ServiceAPIFetchData_CacheableMapEntities",
    "path": "/UBTConnect/screenservices/UBTConnect/ServiceAPIFetchData_CacheableMapEntities",
    "phase": "load",
-   "ts": 6643,
+   "ts": 7402,
    "status": 200,
    "kind": "server",
    "inputNames": [],
@@ -128,7 +128,7 @@
    "action": "ServiceAPIFetchData_CacheableHouseholds",
    "path": "/UBTConnect/screenservices/UBTConnect/ServiceAPIFetchData_CacheableHouseholds",
    "phase": "load",
-   "ts": 6643,
+   "ts": 7402,
    "status": 200,
    "kind": "server",
    "inputNames": [],

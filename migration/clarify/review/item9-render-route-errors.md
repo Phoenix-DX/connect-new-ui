@@ -151,6 +151,9 @@ What the user sees on TST: nothing. The browser console shows the error. No toas
 
 D1 to D5 are the cases where the user sees a different result. The markers are review markers, not TST screens.
 
+The design for D1 to D6 is in [item9-solution.md](item9-solution.md) (approved by the user, 2026-10-29). The TST
+facts of this file are also in `migration/knowledge/error-handling-tst.md`.
+
 ## 6. Questions and unclear points
 
 For the MCP (DEV; TST wins on a difference):

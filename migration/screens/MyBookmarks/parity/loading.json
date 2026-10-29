@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "52f528c44d7eacca6e39",
+ "fingerprint": "79ef9252015b5e263d65",
  "options": {
   "text": true,
   "style": true,
@@ -27,31 +27,74 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-28T15:22:30.291Z",
- "counts": {},
+ "at": "2026-10-29T06:55:08.336Z",
+ "counts": {
+  "structure": 4,
+  "style": 1,
+  "pixel": 1
+ },
  "exemptionsUsed": {
-  "ignoreSubtrees": 1
+  "ignoreSubtrees": 1,
+  "CAPTURE-LOADING-BODYCLASS": 1,
+  "CAPTURE-LOADING-FETCH-TIMEOUT-MYBOOKMARKS-PIXEL-F7B": 1
  },
  "pixel": {
-  "ratio": 0,
-  "maxCell": 0,
+  "ratio": 0.06222,
+  "maxCell": 0.2381,
   "maxCellRatio": 0.03,
-  "diffPixels": 0,
-  "comparedPixels": 0,
+  "diffPixels": 2324,
+  "comparedPixels": 37354,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
    390,
-   844
+   1049
   ],
   "buildSize": [
    390,
    844
   ],
-  "masks": 2,
-  "hotspots": [],
+  "masks": 1,
+  "hotspots": [
+   "120,0 (381px)",
+   "80,0 (380px)",
+   "40,0 (359px)",
+   "0,0 (326px)",
+   "160,0 (283px)"
+  ],
   "diffPng": "migration/screens/MyBookmarks/parity/loading.diff.png"
  },
  "calls": null,
- "diffs": []
+ "diffs": [
+  {
+   "kind": "structure",
+   "path": "div#reactContainer",
+   "detail": "tag div → body"
+  },
+  {
+   "kind": "style",
+   "path": "div#reactContainer",
+   "detail": "margin-top 0px → 8px; margin-right 0px → 8px; margin-bottom 0px → 8px; margin-left 0px → 8px"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > h1",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > h2",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > h3",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "pixel",
+   "path": "screenshot",
+   "detail": "page height 1049 → 844"
+  }
+ ]
 }

@@ -937,3 +937,16 @@ Report: [reports/P7.md](reports/P7.md). `components/ui/` is filled and `src/shar
 - Architecture: 4 files split inside their own page folders, no logic change, 9 modules of 370 lines or less. `useEventBooklet.ts` 494 to 370 (+ `eventBookletDataFlows.ts` 165). `eventBookletState.ts` 482 to 336 (+ `eventBookletTypes.ts` 103, `eventBookletLists.ts` 67). `BookmarkGroupView.tsx` 439 to 187 (+ `bookmarkGroupRows.tsx` 299). `useUpdatesSingleList.ts` 408 to 362 (+ `updatesSingleListFlows.ts` 52).
 - `useEventBookletDataFlows` has a `use` name but calls no hook: the lint rule `react-hooks/refs` refuses a plain function that reads refs. `asUnknownError` stays in `useEventBooklet.ts` and is passed in, so the `legacy/os/exceptions` import (a depcruise row) does not move. Knip baseline: 2 rows removed (the Flags and Flows types are now used).
 - Gate: ci: pass; parity visual `--all` both references: 64/64; HomeFeed 245.90 kB gzip (+0.10; +1.03 since P9-4, W45 triggers not met), Login 185.10 (+0.04). The dependency-cruiser baseline stays 144.
+
+## Item 9 - Render errors, route errors and unknown paths (branch clarify-screens)
+
+- Design: `migration/clarify/review/item9-solution.md` (cases D1 to D6, user decisions of 2026-10-29). Facts: `item9-render-route-errors.md`, `migration/knowledge/error-handling-tst.md`.
+- Architecture: new `platform/feedback/RenderErrorBoundary.tsx`. `app/router.tsx` wraps each screen route in one boundary. A render error empties the screen, and the flow handler shows the toast (D1). A render loop opens the error page (D2).
+- `app/RouteError.tsx` and `app/ErrorBoundary.tsx` log the error and open the error page (`showErrorPage`). They render nothing, and their review markers are gone (D2, decision 2 (a)).
+- `app/screens.ts`: a failed screen chunk opens the error page, and the load stays pending. There is no retry (D5; N12, N13).
+- `platform/navigation/osNavigate.ts` `goTo`: a path that no screen has is a full page load (`window.location.assign`). The check comes after the R4 check and the flag redirect (D3; N14, P6). `NavigationHost` gets the screen check from `AppFrame` (`isScreen={showsScreen}`). Without it (a block alone in a test), every path goes to the router.
+- New `app/UnknownPath.tsx` for the `*` route: it logs `unknown path` and renders nothing (N5). The marker "unknown route" shows on the dev server with `?review=1` only. `NotMigrated` takes a route only.
+- New `build/unknownPaths.ts`: a Vite plugin for the dev server and `vite preview`. For a path under `/UBTConnect/` that no screen has, it answers HTTP 404 with the TST page text (D4, P7). The production host rule is in the [PWA guide](../guides/pwa.md#unknown-paths).
+- `app/RouteGuard.tsx`: the Login redirect replaces the history entry (N8, R281345). The PINUnlock redirect does not change.
+- D6 has no code (decision 4 (a)). The service worker change waits for the production phase (decision 6 (a)).
+- Gate: the orchestrator runs `npm run ci`, `npm run e2e:pwa` and parity after the wave.

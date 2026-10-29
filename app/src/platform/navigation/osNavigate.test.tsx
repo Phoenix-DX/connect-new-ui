@@ -2,7 +2,7 @@ import { useLayoutEffect } from 'react';
 import { act, renderHook, screen, waitFor } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { MemoryRouter, useLocation } from 'react-router';
-import { beforeEach, describe, expect, test, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 import { OutOfContextException } from '@/legacy/os/os-exceptions';
 import { useFlowState } from './flowState';
 import {
@@ -16,7 +16,9 @@ import {
   useOsNavigate,
   type NavigationTarget,
   type OsParams,
+  type ScreenCheck,
 } from './osNavigate';
+import { screenOf } from './paths';
 import { DEFAULT_TRANSITION, TransitionAnimation, transitionState } from './screenTransition';
 import { renderRoutes, resetNavigation } from './testRouter';
 
@@ -288,4 +290,113 @@ describe('the context check of a navigation (R4, item 8 §2.4)', () => {
       expect(at()).toBe('/UBTConnect/B');
     },
   );
+});
+
+/* D3 of item 9 (migration/clarify/review/item9-solution.md §4.3): TST's navigateTo treats a URL that matches no screen
+   URL of the home module as external and changes the window location (N14: urlBelongsToCurrentApplication W229508,
+   changeWindowLocation W224025). Observed P6: a full page load, then the server page "404 - File or directory not
+   found.". The route table comes from the NavigationHost (AppFrame: app/screens.ts showsScreen). */
+describe('a path that no screen has: a full page load (D3; N14, P6)', () => {
+  const isScreen: ScreenCheck = ({ pathname }) => screenOf(pathname) !== null;
+  let location: { href: string; assign: ReturnType<typeof vi.fn> };
+
+  beforeEach(() => {
+    location = { href: 'http://localhost:3000/UBTConnect/HomeFeed', assign: vi.fn() };
+    vi.stubGlobal('location', location);
+  });
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  const appRoutes = {
+    '/UBTConnect/HomeFeed': (
+      <>
+        <button type="button" onClick={replaceOnUpcomingNavigation}>
+          mark replace
+        </button>
+        <Go to="/UBTConnect/NoSuchScreen" params={{ a: 1 }} />
+        <Go to="/UBTConnect/OldScreen" />
+        <Go to="/UBTConnect/Menu?From=Home" />
+        <Go to="/UBTConnect/Menu" />
+      </>
+    ),
+    '/UBTConnect/Menu': <p>menu</p>,
+  };
+
+  test('useOsNavigate: location.assign(screen URL); the router location, the history and the replace mark stay', async () => {
+    const { router, at } = renderRoutes(appRoutes, '/UBTConnect/HomeFeed', undefined, undefined, isScreen);
+    await userEvent.click(screen.getByText('mark replace'));
+    await userEvent.click(screen.getByText('go /UBTConnect/NoSuchScreen'));
+    expect(location.assign).toHaveBeenCalledExactlyOnceWith('/UBTConnect/NoSuchScreen?a=1');
+    expect(at()).toBe('/UBTConnect/HomeFeed');
+    expect(router.state.historyAction).toBe('POP'); // the first entry: no push, no replace
+
+    // a known path: the router navigates, no full page load; the replace mark was not used by the unknown path
+    await userEvent.click(screen.getByText('go /UBTConnect/Menu'));
+    expect(at()).toBe('/UBTConnect/Menu');
+    expect(router.state.historyAction).toBe('REPLACE');
+    expect(location.assign).toHaveBeenCalledOnce();
+  });
+
+  test('a query in the path does not make a screen path unknown', async () => {
+    const { at } = renderRoutes(appRoutes, '/UBTConnect/HomeFeed', undefined, undefined, isScreen);
+    await userEvent.click(screen.getByText('go /UBTConnect/Menu?From=Home'));
+    expect(at()).toBe('/UBTConnect/Menu?From=Home');
+    expect(location.assign).not.toHaveBeenCalled();
+  });
+
+  test('osNavigateTo through the host navigate does the same', async () => {
+    const { at } = renderRoutes(appRoutes, '/UBTConnect/HomeFeed', undefined, undefined, isScreen);
+    act(() => {
+      osNavigateTo('/UBTConnect/NoSuchScreen', { a: 1 }, { transition: TransitionAnimation.Default });
+    });
+    expect(location.assign).toHaveBeenCalledExactlyOnceWith('/UBTConnect/NoSuchScreen?a=1');
+    act(() => {
+      osNavigateTo('/UBTConnect/Menu');
+    });
+    await waitFor(() => {
+      expect(at()).toBe('/UBTConnect/Menu');
+    });
+    expect(location.assign).toHaveBeenCalledOnce();
+  });
+
+  test('the flag redirect runs first: a redirected target that is a screen navigates in the router', async () => {
+    const redirect = (target: NavigationTarget): NavigationTarget =>
+      target.path === '/UBTConnect/OldScreen' ? { path: '/UBTConnect/Menu', params: target.params } : target;
+    const { at } = renderRoutes(appRoutes, '/UBTConnect/HomeFeed', undefined, redirect, isScreen);
+    await userEvent.click(screen.getByText('go /UBTConnect/OldScreen'));
+    expect(at()).toBe('/UBTConnect/Menu');
+    expect(location.assign).not.toHaveBeenCalled();
+  });
+
+  test('the R4 check comes first: from a left screen, OutOfContextException and no full page load', async () => {
+    let go: ReturnType<typeof useOsNavigate> | undefined;
+    function Home() {
+      const navigate = useOsNavigate();
+      useLayoutEffect(() => {
+        go = navigate;
+      });
+      return <p>home</p>;
+    }
+    const screens = { '/UBTConnect/HomeFeed': <Home />, '/UBTConnect/Menu': <p>menu</p> };
+    renderRoutes(screens, '/UBTConnect/HomeFeed', undefined, undefined, isScreen);
+    const fromHome = go;
+    act(() => {
+      fromHome?.('/UBTConnect/Menu');
+    });
+    expect(await screen.findByText('menu')).toBeInTheDocument();
+    expect(() => {
+      fromHome?.('/UBTConnect/NoSuchScreen');
+    }).toThrow(OutOfContextException);
+    expect(location.assign).not.toHaveBeenCalled();
+  });
+
+  test('without the route table (a block rendered alone): the router gets every path, as before', async () => {
+    vi.spyOn(console, 'warn').mockImplementation(() => undefined); // React Router: no route matches
+    const { at } = renderRoutes(appRoutes, '/UBTConnect/HomeFeed');
+    await userEvent.click(screen.getByText('go /UBTConnect/NoSuchScreen'));
+    expect(at()).toBe('/UBTConnect/NoSuchScreen?a=1');
+    expect(location.assign).not.toHaveBeenCalled();
+  });
 });

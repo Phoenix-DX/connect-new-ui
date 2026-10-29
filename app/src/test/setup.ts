@@ -19,6 +19,8 @@ beforeAll(async () => {
      after the test file, so that its vi.mock calls also apply to the modules that app/dialogs.ts imports. */
   const { connectDialogs } = await import('@/app/dialogs');
   connectDialogs();
+  const { connectLayoutTheme } = await import('@/app/layoutTheme');
+  connectLayoutTheme();
 });
 /* Tests check the reviewer's view of the dev server: review markers on, as with `?review=1`. */
 beforeEach(() => {

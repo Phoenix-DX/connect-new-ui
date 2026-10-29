@@ -55,29 +55,31 @@ flowchart TB
   end
   subgraph Server["OutSystems server · screenservices"]
     direction LR
-    S0["DataActionFetchSearchResults<br/>data action / aggregate, declared, not observed"]
-    S1["ScreenDataSetGet_SearchBirthdayOptions<br/>data action / aggregate, observed"]
-    S2["DataActionGetCacheInfo<br/>data action / aggregate, observed"]
-    S3["ActionAppManager_SynchAppContext<br/>observed"]
-    S4["ActionAppManager_AfterInitialize<br/>observed"]
-    S5["ActionSync_Info_GetMain<br/>observed"]
-    S6["ActionGetNumberUnreadMessages<br/>observed"]
-    S7["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
-    S8["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
+    S0["DataActionGet_FilteredRecentClickedResults<br/>data action / aggregate, observed"]
+    S1["DataActionFetchSearchResults<br/>data action / aggregate, declared, not observed"]
+    S2["ScreenDataSetGet_SearchBirthdayOptions<br/>data action / aggregate, observed"]
+    S3["DataActionGetCacheInfo<br/>data action / aggregate, observed"]
+    S4["ActionAppManager_SynchAppContext<br/>observed"]
+    S5["ActionAppManager_AfterInitialize<br/>observed"]
+    S6["ActionSync_Info_GetMain<br/>observed"]
+    S7["ActionGetNumberUnreadMessages<br/>observed"]
+    S8["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
+    S9["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
   end
   Backend["Backend<br/>not visible from the browser"]
-  B0 -.-> S0
-  B0 --> S1
-  B36 --> S2
-  Content -.-> S3
+  B0 --> S0
+  B0 -.-> S1
+  B0 --> S2
+  B36 --> S3
   Content -.-> S4
   Content -.-> S5
   Content -.-> S6
   Content -.-> S7
   Content -.-> S8
+  Content -.-> S9
   S0 -.-> Backend
   classDef unknown stroke-dasharray: 5 4;
-  class S0,Backend unknown;
+  class S1,Backend unknown;
 ```
 
 ## Sequence: enter the screen (draft)
@@ -95,6 +97,8 @@ sequenceDiagram
   else back from history (view restored)
     S->>S: TODO keep cached data?
   end
+  S->>API: DataActionGet_FilteredRecentClickedResults
+  API-->>S: Out_RecentClickedResults, Out_IdsToRemove
   S->>API: DataActionFetchSearchResults
   API-->>S: TODO outputs
   S->>S: onAfterFetch_FetchSearchResults

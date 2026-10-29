@@ -1,4 +1,4 @@
-define("UBTConnect.Notes.NoteCard_List.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "Connect_Notes_CS.model", "UBTConnectLibrary.model", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$model", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$model", "UBTConnectLibrary.ConnectPatterns.EmptyList.mvc$model", "UBTConnectLibrary.BasePatterns.CustomText.mvc$model", "UBTConnect.Notes.NoteCard_Item.mvc$model", "Connect_Notes_CS.model$UI_Note_CardItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Notes_CS", "UBTConnect.model$UI_Note_CardItemList", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$InlineIconRec", "Connect_Notes_CS.model$UI_Note_CardContentRec", "Connect_Notes_CS.model$UI_NoteCard_SourceHeaderRec", "UBTConnectLibrary.model$NotesRec", "UBTConnectLibrary.model$Note_ItemRec", "UBTConnect.model$Note_ItemList"], function (OutSystems, UBTConnectModel, Connect_Notes_CSModel, UBTConnectLibraryModel, UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel, UBTConnectLibrary_ConnectPatterns_EmptyList_mvcModel, UBTConnectLibrary_BasePatterns_CustomText_mvcModel, UBTConnect_Notes_NoteCard_Item_mvcModel) {
+define("UBTConnect.Notes.NoteCard_List.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "Connect_Notes_CS.model", "UBTConnectLibrary.model", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$model", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$model", "UBTConnectLibrary.ConnectPatterns.EmptyListBorderless.mvc$model", "UBTConnectLibrary.BasePatterns.CustomText.mvc$model", "UBTConnect.Notes.NoteCard_Item.mvc$model", "Connect_Notes_CS.model$UI_Note_CardItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Notes_CS", "UBTConnect.model$UI_Note_CardItemList", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$InlineIconRec", "Connect_Notes_CS.model$UI_Note_CardContentRec", "Connect_Notes_CS.model$UI_NoteCard_SourceHeaderRec", "UBTConnectLibrary.model$NotesRec", "UBTConnectLibrary.model$Note_ItemRec", "UBTConnect.model$Note_ItemList"], function (OutSystems, UBTConnectModel, Connect_Notes_CSModel, UBTConnectLibraryModel, UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel, UBTConnectLibrary_ConnectPatterns_EmptyListBorderless_mvcModel, UBTConnectLibrary_BasePatterns_CustomText_mvcModel, UBTConnect_Notes_NoteCard_Item_mvcModel) {
 var OS = OutSystems.Internal;
 
 
@@ -60,7 +60,7 @@ enumerable: true,
 configurable: true,
 get: function () {
 if((Model._hasValidationWidgetsValue === undefined)) {
-Model._hasValidationWidgetsValue = ((((UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel.hasValidationWidgets || UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_EmptyList_mvcModel.hasValidationWidgets) || UBTConnectLibrary_BasePatterns_CustomText_mvcModel.hasValidationWidgets) || UBTConnect_Notes_NoteCard_Item_mvcModel.hasValidationWidgets);
+Model._hasValidationWidgetsValue = ((((UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel.hasValidationWidgets || UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_EmptyListBorderless_mvcModel.hasValidationWidgets) || UBTConnectLibrary_BasePatterns_CustomText_mvcModel.hasValidationWidgets) || UBTConnect_Notes_NoteCard_Item_mvcModel.hasValidationWidgets);
 }
 
 return Model._hasValidationWidgetsValue;
@@ -97,7 +97,7 @@ return Model;
 })(OS.Model.BaseViewModel);
 return new OS.Model.ModelFactory(Model, "Notes.NoteCard_List");
 });
-define("UBTConnect.Notes.NoteCard_List.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "Connect_Notes_CS.model", "UBTConnectLibrary.model", "react", "OutSystems/ReactView/Main", "UBTConnect.Notes.NoteCard_List.mvc$model", "UBTConnect.Notes.NoteCard_List.mvc$controller", "UBTConnect.clientVariables", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$view", "OutSystems/ReactWidgets/Main", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$view", "UBTConnectLibrary.ConnectPatterns.EmptyList.mvc$view", "UBTConnectLibrary.BasePatterns.CustomText.mvc$view", "UBTConnect.Notes.NoteCard_Item.mvc$view", "Connect_Notes_CS.model$UI_Note_CardItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Notes_CS", "UBTConnect.model$UI_Note_CardItemList", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$InlineIconRec", "Connect_Notes_CS.model$UI_Note_CardContentRec", "Connect_Notes_CS.model$UI_NoteCard_SourceHeaderRec", "UBTConnectLibrary.model$NotesRec", "UBTConnectLibrary.model$Note_ItemRec", "UBTConnect.model$Note_ItemList"], function (OutSystems, UBTConnectModel, UBTConnectController, Connect_Notes_CSModel, UBTConnectLibraryModel, React, OSView, UBTConnect_Notes_NoteCard_List_mvc_model, UBTConnect_Notes_NoteCard_List_mvc_controller, UBTConnectClientVariables, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, OSWidgets, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, UBTConnectLibrary_ConnectPatterns_EmptyList_mvc_view, UBTConnectLibrary_BasePatterns_CustomText_mvc_view, UBTConnect_Notes_NoteCard_Item_mvc_view) {
+define("UBTConnect.Notes.NoteCard_List.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "Connect_Notes_CS.model", "UBTConnectLibrary.model", "react", "OutSystems/ReactView/Main", "UBTConnect.Notes.NoteCard_List.mvc$model", "UBTConnect.Notes.NoteCard_List.mvc$controller", "UBTConnect.clientVariables", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$view", "OutSystems/ReactWidgets/Main", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$view", "UBTConnectLibrary.ConnectPatterns.EmptyListBorderless.mvc$view", "UBTConnectLibrary.BasePatterns.CustomText.mvc$view", "UBTConnect.Notes.NoteCard_Item.mvc$view", "Connect_Notes_CS.model$UI_Note_CardItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Notes_CS", "UBTConnect.model$UI_Note_CardItemList", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$InlineIconRec", "Connect_Notes_CS.model$UI_Note_CardContentRec", "Connect_Notes_CS.model$UI_NoteCard_SourceHeaderRec", "UBTConnectLibrary.model$NotesRec", "UBTConnectLibrary.model$Note_ItemRec", "UBTConnect.model$Note_ItemList"], function (OutSystems, UBTConnectModel, UBTConnectController, Connect_Notes_CSModel, UBTConnectLibraryModel, React, OSView, UBTConnect_Notes_NoteCard_List_mvc_model, UBTConnect_Notes_NoteCard_List_mvc_controller, UBTConnectClientVariables, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, OSWidgets, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, UBTConnectLibrary_ConnectPatterns_EmptyListBorderless_mvc_view, UBTConnectLibrary_BasePatterns_CustomText_mvc_view, UBTConnect_Notes_NoteCard_Item_mvc_view) {
     var OS = OutSystems.Internal;
 var PlaceholderContent = OSView.Widget.PlaceholderContent;
 var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
@@ -129,7 +129,7 @@ var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
             return [];
         };
         View.getBlocks = function() {
-            return [UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, UBTConnectLibrary_ConnectPatterns_EmptyList_mvc_view, UBTConnectLibrary_BasePatterns_CustomText_mvc_view, UBTConnect_Notes_NoteCard_Item_mvc_view];
+            return [UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, UBTConnectLibrary_ConnectPatterns_EmptyListBorderless_mvc_view, UBTConnectLibrary_BasePatterns_CustomText_mvc_view, UBTConnect_Notes_NoteCard_Item_mvc_view];
         };
         Object.defineProperty(View.prototype, "modelFactory", {
             get: function () {
@@ -181,9 +181,17 @@ rec.horizontalSizeIdAttr = UBTConnectModel.staticEntities.uBT_Size.base;
 rec.topSizeIdAttr = UBTConnectModel.staticEntities.uBT_Size.base;
 return rec;
 }();
+rec.heightOptionsAttr = function () {
+var rec = new UBTConnectLibraryModel.SizeOptionsRec();
+rec.mainAttr = ((model.variables.in_NotesIn.isEmpty) ? ("100%") : (""));
 return rec;
 }();
-})
+return rec;
+}();
+}, function () {
+return model.variables.in_NotesIn.isEmpty;
+}),
+_optionsInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables._in_NotesInDataFetchStatus)
 },
 events: {
 _handleError: function (ex) {
@@ -223,9 +231,9 @@ _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
 placeholder_LoadingSection: new PlaceholderContent(function () {
 return [$if(model.variables.in_NotesIn.isEmpty, false, this, function () {
-return [React.createElement(UBTConnectLibrary_ConnectPatterns_EmptyList_mvc_view, {
+return [React.createElement(UBTConnectLibrary_ConnectPatterns_EmptyListBorderless_mvc_view, {
 inputs: {
-IconId: UBTConnectModel.staticEntities.uBT_Icons2.bookmark
+IconId: UBTConnectModel.staticEntities.uBT_Icons2.borderColor
 },
 events: {
 _handleError: function (ex) {
@@ -245,7 +253,7 @@ placeholders: {
 titlePlaceholder: new PlaceholderContent(function () {
 return [React.createElement(UBTConnectLibrary_BasePatterns_CustomText_mvc_view, {
 inputs: {
-In_Text: "No Notes found",
+In_Text: "No note added yet",
 In_TextOptions: model.getCachedValue(idService.getId("EhFwWvM8VUqa1ehhz2T9Dg.In_TextOptions"), function () {
 return function () {
 var rec = new UBTConnectLibraryModel.TextOptionsRec();
@@ -276,7 +284,7 @@ _dependencies: []
 textPlaceholder: new PlaceholderContent(function () {
 return [React.createElement(UBTConnectLibrary_BasePatterns_CustomText_mvc_view, {
 inputs: {
-In_Text: "We were unable to find any Notes to",
+In_Text: "Add note to content by tapping the Add Note",
 In_TextOptions: model.getCachedValue(idService.getId("3uxAa+vBbUa9zzIPXZI4ew.In_TextOptions"), function () {
 return function () {
 var rec = new UBTConnectLibraryModel.TextOptionsRec();
@@ -311,7 +319,7 @@ rec.fontSizeAttr = UBTConnectModel.staticEntities.uBT_FontSize.small;
 return rec;
 }();
 }),
-In_Text: "display."
+In_Text: "icon."
 },
 events: {
 _handleError: function (ex) {
@@ -384,7 +392,7 @@ var varBag = {};
 controller.pushDebuggerContext(eventHandlerContext);
 
 OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "Notes/NoteCard_Item OnClickCardItem");
-controller.onClick_NoteCardItem$Action(OS.BuiltinFunctions.longIntegerToText(model.variables.in_NotesIn.getCurrent(callContext.iterationContext).itemIdAttr), model.variables.in_NotesIn.getCurrent(callContext.iterationContext).noteCategoryIdAttr, controller.callContext(eventHandlerContext));
+controller.onClick_NoteCardItem$Action(model.variables.in_NotesIn.getCurrent(callContext.iterationContext).itemIdAttr, OS.BuiltinFunctions.longIntegerToText(model.variables.in_NotesIn.getCurrent(callContext.iterationContext).itemId2Attr), model.variables.in_NotesIn.getCurrent(callContext.iterationContext).noteCategoryIdAttr, model.variables.in_NotesIn.getCurrent(callContext.iterationContext).hasDetailAccessAttr, controller.callContext(eventHandlerContext));
 }, function () {
 controller.popDebuggerContext(eventHandlerContext);
 });
@@ -476,7 +484,7 @@ OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:6hAsu2X5UEugZnv5HI5s
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:ri6Jb+F18EG1Nd5XhIxe8A", callContext.id);
 // Execute Action: ListIndexOf
 listIndexOfVar.value = OS.SystemActions.listIndexOf(model.variables.in_NotesIn, function (p) {
-return (((p.idAttr === vars.value.noteCard_IdInLocal) && p.itemIdAttr.equals(vars.value.noteCard_ItemIdInLocal)) && (p.noteCategoryIdAttr === vars.value.noteCard_NoteCategoryIdInLocal));
+return (((p.idAttr === vars.value.noteCard_IdInLocal) && (p.itemIdAttr === OS.BuiltinFunctions.longIntegerToText(vars.value.noteCard_ItemIdInLocal))) && (p.noteCategoryIdAttr === vars.value.noteCard_NoteCategoryIdInLocal));
 }, callContext);
 
 if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:o8cr1yWRjkKFLrLa+uWe9g", callContext.id) && ((listIndexOfVar.value.positionOut) !== (-1)))) {
@@ -625,7 +633,7 @@ return Promise.resolve();
 Controller.prototype.pushDebuggerContext = function (callContext) {
 var varBag = {};
 OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:2DlYrQQBWkK7ftgdGmwqyg:/NRWebFlows.2DlYrQQBWkK7ftgdGmwqyg:H6BPPYIIY_GDy0FJgaUDiA", "UBTConnect", "Notes", "NRFlows.WebFlow", callContext.id, varBag);
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:ASOS800jzUe57Z88yf7chg:/NRWebFlows.2DlYrQQBWkK7ftgdGmwqyg/NodesShownInESpaceTree.ASOS800jzUe57Z88yf7chg:a3NNumOvtQX23BNIgXKTwQ", "UBTConnect", "NoteCard_List", "NRNodes.WebBlock", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:ASOS800jzUe57Z88yf7chg:/NRWebFlows.2DlYrQQBWkK7ftgdGmwqyg/NodesShownInESpaceTree.ASOS800jzUe57Z88yf7chg:TlHIz6i3WT+2unatl0K9Mw", "UBTConnect", "NoteCard_List", "NRNodes.WebBlock", callContext.id, varBag);
 };
 Controller.prototype.popDebuggerContext = function (callContext) {
 OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:ASOS800jzUe57Z88yf7chg", callContext.id);

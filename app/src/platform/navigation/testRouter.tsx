@@ -8,7 +8,7 @@ import { resetBackQueue } from './backQueue';
 import { resetHistoryStack } from './historyStack';
 import { resetNavigationGate } from './navigationGate';
 import { NavigationHost } from './NavigationHost';
-import { resetReplaceOnUpcomingNavigation, type NavigationRedirect } from './osNavigate';
+import { resetReplaceOnUpcomingNavigation, type NavigationRedirect, type ScreenCheck } from './osNavigate';
 import { clearPreloadObject } from './preload';
 import { ScreenFrame } from './ScreenFrame';
 import { resetTransitionEvents } from './transitionEvents';
@@ -51,6 +51,7 @@ export function renderRoutes(
   initialPath: string,
   queryClient = testQueryClient(),
   redirect?: NavigationRedirect,
+  isScreen?: ScreenCheck,
 ) {
   const router = createMemoryRouter(
     [
@@ -58,7 +59,7 @@ export function renderRoutes(
         path: '/',
         element: (
           <>
-            <NavigationHost redirect={redirect} />
+            <NavigationHost redirect={redirect} isScreen={isScreen} />
             <Outlet />
           </>
         ),

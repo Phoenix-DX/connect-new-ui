@@ -1,4 +1,4 @@
-define("UBTConnect.Notes.Notes.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnectLibrary.model", "Connect_Notes_CS.model", "UBTConnect.controller", "UBTConnectLibrary.Layouts.Layout_MainPages_FixedTitle.mvc$model", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$model", "UBTConnect.App_Common_Blocks.App_NotificationIcon.mvc$model", "UBTConnectLibrary.ConnectPatterns.Input.mvc$model", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$model", "UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc$model", "UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon_Label.mvc$model", "UBTConnect.Notes.NoteCard_List.mvc$model", "UBTConnect.App_Common.BottomBarMenu.mvc$model", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$model", "UBTConnect.Notes.Notes_FilterSheet.mvc$model", "UBTConnectLibrary.model$TagRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$TagList", "Connect_Notes_CS.model$Notes_FilterRec", "UBTConnect.referencesHealth$Connect_Notes_CS", "Connect_Notes_CS.model$UI_Note_CardItemRec", "UBTConnect.model$UI_Note_CardItemList", "UBTConnectLibrary.model$SearchInputRec", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "Connect_Notes_CS.model$UI_Note_CardContentRec", "Connect_Notes_CS.model$UI_NoteCard_SourceHeaderRec", "UBTConnectLibrary.model$NotesRec", "UBTConnectLibrary.model$Note_ItemRec", "UBTConnect.model$Note_ItemList", "UBTConnect.controller$ScrollTop", "UBTConnect.controller$GetNotes_Pills", "UBTConnect.controller$GetNotes_FilterYear", "Connect_Notes_CS.model$UI_NotesRec"], function (OutSystems, UBTConnectModel, UBTConnectLibraryModel, Connect_Notes_CSModel, UBTConnectController, UBTConnectLibrary_Layouts_Layout_MainPages_FixedTitle_mvcModel, UBTConnectLibrary_ConnectPatterns_Icon_mvcModel, UBTConnect_App_Common_Blocks_App_NotificationIcon_mvcModel, UBTConnectLibrary_ConnectPatterns_Input_mvcModel, UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel, UBTConnectLibrary_ConnectPatterns_Horizontal_Filter_TagList_mvcModel, UBTConnect_App_CommonBlocks_Filter_FilterSheet_Icon_Label_mvcModel, UBTConnect_Notes_NoteCard_List_mvcModel, UBTConnect_App_Common_BottomBarMenu_mvcModel, UBTConnect_App_Common_CommonUI_InsideLayout_mvcModel, UBTConnect_Notes_Notes_FilterSheet_mvcModel) {
+define("UBTConnect.Notes.Notes.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnectLibrary.model", "Connect_Notes_CS.model", "UBTJavaScriptUtils.controller", "UBTConnect.controller", "NavigationHandler.controller", "UBTConnectLibrary.Layouts.Layout_MainPages_FixedTitle.mvc$model", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$model", "UBTConnect.App_Common_Blocks.App_NotificationIcon.mvc$model", "UBTConnectLibrary.ConnectPatterns.Input.mvc$model", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$model", "UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc$model", "UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon_Label.mvc$model", "UBTConnect.Notes.NoteCard_List.mvc$model", "UBTConnect.App_Common.BottomBarMenu.mvc$model", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$model", "UBTConnect.Notes.Notes_FilterSheet.mvc$model", "UBTConnectLibrary.model$TagRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$TagList", "Connect_Notes_CS.model$Notes_FilterRec", "UBTConnect.referencesHealth$Connect_Notes_CS", "Connect_Notes_CS.model$UI_Note_CardItemRec", "UBTConnect.model$UI_Note_CardItemList", "UBTConnectLibrary.model$SearchInputRec", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "Connect_Notes_CS.model$UI_Note_CardContentRec", "Connect_Notes_CS.model$UI_NoteCard_SourceHeaderRec", "UBTConnectLibrary.model$NotesRec", "UBTConnectLibrary.model$Note_ItemRec", "UBTConnect.model$Note_ItemList", "UBTJavaScriptUtils.controller$FeedbackMessage_AutoClose", "UBTConnect.referencesHealth$UBTJavaScriptUtils", "UBTConnect.controller$ScrollTop", "UBTConnect.controller$GetNotes_Pills", "UBTConnect.controller$GetNotes_FilterYear", "UBTConnect.controller$Notes_InterchangeId_ExtractId", "NavigationHandler.controller$SetPreloadObject", "UBTConnect.referencesHealth$NavigationHandler", "UBTConnect.model$SwipeActionLongIntegerRecordList", "UBTConnect.model$CarouselPreloadedHouseholdsRec", "UBTConnect.model$PreloadedCarouselRec", "Connect_Notes_CS.model$UI_NotesRec"], function (OutSystems, UBTConnectModel, UBTConnectLibraryModel, Connect_Notes_CSModel, UBTJavaScriptUtilsController, UBTConnectController, NavigationHandlerController, UBTConnectLibrary_Layouts_Layout_MainPages_FixedTitle_mvcModel, UBTConnectLibrary_ConnectPatterns_Icon_mvcModel, UBTConnect_App_Common_Blocks_App_NotificationIcon_mvcModel, UBTConnectLibrary_ConnectPatterns_Input_mvcModel, UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel, UBTConnectLibrary_ConnectPatterns_Horizontal_Filter_TagList_mvcModel, UBTConnect_App_CommonBlocks_Filter_FilterSheet_Icon_Label_mvcModel, UBTConnect_Notes_NoteCard_List_mvcModel, UBTConnect_App_Common_BottomBarMenu_mvcModel, UBTConnect_App_Common_CommonUI_InsideLayout_mvcModel, UBTConnect_Notes_Notes_FilterSheet_mvcModel) {
 var OS = OutSystems.Internal;
 
 var GetNotesDataActRec = (function (_super) {
@@ -123,7 +123,7 @@ return Model;
 })(OS.Model.BaseViewModel);
 return new OS.Model.ModelFactory(Model, "Notes.Notes");
 });
-define("UBTConnect.Notes.Notes.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnectLibrary.model", "Connect_Notes_CS.model", "react", "OutSystems/ReactView/Main", "UBTConnect.Notes.Notes.mvc$model", "UBTConnect.Notes.Notes.mvc$controller", "UBTConnect.clientVariables", "UBTConnectLibrary.Layouts.Layout_MainPages_FixedTitle.mvc$view", "OutSystems/ReactWidgets/Main", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$view", "UBTConnect.App_Common_Blocks.App_NotificationIcon.mvc$view", "UBTConnectLibrary.ConnectPatterns.Input.mvc$view", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$view", "UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc$view", "UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon_Label.mvc$view", "UBTConnect.Notes.NoteCard_List.mvc$view", "UBTConnect.App_Common.BottomBarMenu.mvc$view", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$view", "UBTConnect.Notes.Notes_FilterSheet.mvc$view", "UBTConnectLibrary.model$TagRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$TagList", "Connect_Notes_CS.model$Notes_FilterRec", "UBTConnect.referencesHealth$Connect_Notes_CS", "Connect_Notes_CS.model$UI_Note_CardItemRec", "UBTConnect.model$UI_Note_CardItemList", "UBTConnectLibrary.model$SearchInputRec", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "Connect_Notes_CS.model$UI_Note_CardContentRec", "Connect_Notes_CS.model$UI_NoteCard_SourceHeaderRec", "UBTConnectLibrary.model$NotesRec", "UBTConnectLibrary.model$Note_ItemRec", "UBTConnect.model$Note_ItemList", "UBTConnect.controller$ScrollTop", "UBTConnect.controller$GetNotes_Pills", "UBTConnect.controller$GetNotes_FilterYear", "Connect_Notes_CS.model$UI_NotesRec"], function (OutSystems, UBTConnectModel, UBTConnectController, UBTConnectLibraryModel, Connect_Notes_CSModel, React, OSView, UBTConnect_Notes_Notes_mvc_model, UBTConnect_Notes_Notes_mvc_controller, UBTConnectClientVariables, UBTConnectLibrary_Layouts_Layout_MainPages_FixedTitle_mvc_view, OSWidgets, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnect_App_Common_Blocks_App_NotificationIcon_mvc_view, UBTConnectLibrary_ConnectPatterns_Input_mvc_view, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnectLibrary_ConnectPatterns_Horizontal_Filter_TagList_mvc_view, UBTConnect_App_CommonBlocks_Filter_FilterSheet_Icon_Label_mvc_view, UBTConnect_Notes_NoteCard_List_mvc_view, UBTConnect_App_Common_BottomBarMenu_mvc_view, UBTConnect_App_Common_CommonUI_InsideLayout_mvc_view, UBTConnect_Notes_Notes_FilterSheet_mvc_view) {
+define("UBTConnect.Notes.Notes.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnectLibrary.model", "Connect_Notes_CS.model", "UBTJavaScriptUtils.controller", "NavigationHandler.controller", "react", "OutSystems/ReactView/Main", "UBTConnect.Notes.Notes.mvc$model", "UBTConnect.Notes.Notes.mvc$controller", "UBTConnect.clientVariables", "UBTConnectLibrary.Layouts.Layout_MainPages_FixedTitle.mvc$view", "OutSystems/ReactWidgets/Main", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$view", "UBTConnect.App_Common_Blocks.App_NotificationIcon.mvc$view", "UBTConnectLibrary.ConnectPatterns.Input.mvc$view", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$view", "UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc$view", "UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon_Label.mvc$view", "UBTConnect.Notes.NoteCard_List.mvc$view", "UBTConnect.App_Common.BottomBarMenu.mvc$view", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$view", "UBTConnect.Notes.Notes_FilterSheet.mvc$view", "UBTConnectLibrary.model$TagRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$TagList", "Connect_Notes_CS.model$Notes_FilterRec", "UBTConnect.referencesHealth$Connect_Notes_CS", "Connect_Notes_CS.model$UI_Note_CardItemRec", "UBTConnect.model$UI_Note_CardItemList", "UBTConnectLibrary.model$SearchInputRec", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "Connect_Notes_CS.model$UI_Note_CardContentRec", "Connect_Notes_CS.model$UI_NoteCard_SourceHeaderRec", "UBTConnectLibrary.model$NotesRec", "UBTConnectLibrary.model$Note_ItemRec", "UBTConnect.model$Note_ItemList", "UBTJavaScriptUtils.controller$FeedbackMessage_AutoClose", "UBTConnect.referencesHealth$UBTJavaScriptUtils", "UBTConnect.controller$ScrollTop", "UBTConnect.controller$GetNotes_Pills", "UBTConnect.controller$GetNotes_FilterYear", "UBTConnect.controller$Notes_InterchangeId_ExtractId", "NavigationHandler.controller$SetPreloadObject", "UBTConnect.referencesHealth$NavigationHandler", "UBTConnect.model$SwipeActionLongIntegerRecordList", "UBTConnect.model$CarouselPreloadedHouseholdsRec", "UBTConnect.model$PreloadedCarouselRec", "Connect_Notes_CS.model$UI_NotesRec"], function (OutSystems, UBTConnectModel, UBTConnectController, UBTConnectLibraryModel, Connect_Notes_CSModel, UBTJavaScriptUtilsController, NavigationHandlerController, React, OSView, UBTConnect_Notes_Notes_mvc_model, UBTConnect_Notes_Notes_mvc_controller, UBTConnectClientVariables, UBTConnectLibrary_Layouts_Layout_MainPages_FixedTitle_mvc_view, OSWidgets, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnect_App_Common_Blocks_App_NotificationIcon_mvc_view, UBTConnectLibrary_ConnectPatterns_Input_mvc_view, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnectLibrary_ConnectPatterns_Horizontal_Filter_TagList_mvc_view, UBTConnect_App_CommonBlocks_Filter_FilterSheet_Icon_Label_mvc_view, UBTConnect_Notes_NoteCard_List_mvc_view, UBTConnect_App_Common_BottomBarMenu_mvc_view, UBTConnect_App_Common_CommonUI_InsideLayout_mvc_view, UBTConnect_Notes_Notes_FilterSheet_mvc_view) {
     var OS = OutSystems.Internal;
 var PlaceholderContent = OSView.Widget.PlaceholderContent;
 var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
@@ -291,8 +291,8 @@ inputs: {
 In_Options: model.getCachedValue(idService.getId("5F6dfu+8n0edcHf_XT1mdA.In_Options"), function () {
 return function () {
 var rec = new UBTConnectLibraryModel.SearchInputRec();
-rec.isEnabledAttr = (model.variables.getNotesDataAct.out_NotesOut.noteCardItem_ListAttr.length > 1);
 rec.maxLengthAttr = 50;
+rec.initalStringAttr = model.variables.notes_FilterVar.searchTermAttr;
 rec.searchPromptAttr = "Search";
 rec.debounce_DelayMSAttr = 200;
 rec.borderRadiusAttr = UBTConnectModel.staticEntities.shape.rounded;
@@ -300,9 +300,8 @@ rec.enableAutocompleteHTMLAttr = false;
 return rec;
 }();
 }, function () {
-return model.variables.getNotesDataAct.out_NotesOut.noteCardItem_ListAttr.length;
-}),
-_in_OptionsInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.getNotesDataAct.dataFetchStatusAttr)
+return model.variables.notes_FilterVar.searchTermAttr;
+})
 },
 events: {
 _handleError: function (ex) {
@@ -346,7 +345,7 @@ var varBag = {};
 controller.pushDebuggerContext(eventHandlerContext);
 
 OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectPatterns/Input Event_Submit");
-return controller.refresh_GetNotes$Action(controller.callContext(eventHandlerContext));
+return controller.handler_SearchOnSubmit$Action(controller.callContext(eventHandlerContext));
 }, function () {
 controller.popDebuggerContext(eventHandlerContext);
 });
@@ -489,14 +488,14 @@ events: {
 _handleError: function (ex) {
 controller.handleError(ex);
 },
-onClick_NoteCardItem$Action: function (objectIdIn, noteCategoryTypeIdIn) {
+onClick_NoteCardItem$Action: function (objectIdIn, objectId2In, noteCategoryTypeIdIn, hasDetailAccessIn) {
 var eventHandlerContext = callContext.clone();
 return OS.Flow.tryFinally(function () {
 var varBag = {};
 controller.pushDebuggerContext(eventHandlerContext);
 
 OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "Notes/NoteCard_List OnClick_NoteCardItem");
-controller.handler_OnClickNoteCardItem$Action(objectIdIn, noteCategoryTypeIdIn, controller.callContext(eventHandlerContext));
+controller.handler_OnClickNoteCardItem$Action(objectIdIn, objectId2In, noteCategoryTypeIdIn, hasDetailAccessIn, controller.callContext(eventHandlerContext));
 }, function () {
 controller.popDebuggerContext(eventHandlerContext);
 });
@@ -572,7 +571,7 @@ _dependencies: []
 })];
 })
 },
-_dependencies: [asPrimitiveValue(model.variables.notes_FilterVar.searchTermAttr), asPrimitiveValue(model.variables.notes_ListVar), asPrimitiveValue(model.variables.notes_LoadingVar), asPrimitiveValue(model.variables.filter_BottomSheetIdVar), asPrimitiveValue(model.variables.hasFiltersAppliedVar), asPrimitiveValue(model.variables.bottomSheetId_Filter_ShowSubscriptionOnClickVar), asPrimitiveValue(model.variables.note_PillsVar), asPrimitiveValue(model.variables.pillsLoadedVar), asPrimitiveValue(model.variables.getNotesDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.getNotesDataAct.out_NotesOut.noteCardItem_ListAttr.length), asPrimitiveValue(model.variables.headerIsScrolledVar)]
+_dependencies: [asPrimitiveValue(model.variables.notes_ListVar), asPrimitiveValue(model.variables.notes_LoadingVar), asPrimitiveValue(model.variables.filter_BottomSheetIdVar), asPrimitiveValue(model.variables.hasFiltersAppliedVar), asPrimitiveValue(model.variables.bottomSheetId_Filter_ShowSubscriptionOnClickVar), asPrimitiveValue(model.variables.note_PillsVar), asPrimitiveValue(model.variables.pillsLoadedVar), asPrimitiveValue(model.variables.notes_FilterVar.searchTermAttr), asPrimitiveValue(model.variables.headerIsScrolledVar)]
 }), $if(false, false, this, function () {
 return [];
 }, function () {
@@ -647,7 +646,7 @@ _dependencies: []
 	
     return View;
 });
-define("UBTConnect.Notes.Notes.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnectLibrary.model", "Connect_Notes_CS.model", "UBTConnect.languageResources", "UBTConnect.clientVariables", "UBTConnect.Notes.Notes.mvc$debugger", "UBTConnect.Notes.controller", "UBTConnectLibrary.model$TagRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$TagList", "Connect_Notes_CS.model$Notes_FilterRec", "UBTConnect.referencesHealth$Connect_Notes_CS", "Connect_Notes_CS.model$UI_Note_CardItemRec", "UBTConnect.model$UI_Note_CardItemList", "UBTConnectLibrary.model$SearchInputRec", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "Connect_Notes_CS.model$UI_Note_CardContentRec", "Connect_Notes_CS.model$UI_NoteCard_SourceHeaderRec", "UBTConnectLibrary.model$NotesRec", "UBTConnectLibrary.model$Note_ItemRec", "UBTConnect.model$Note_ItemList", "UBTConnect.controller$ScrollTop", "UBTConnect.controller$GetNotes_Pills", "UBTConnect.controller$GetNotes_FilterYear", "Connect_Notes_CS.model$UI_NotesRec"], function (OutSystems, UBTConnectModel, UBTConnectController, UBTConnectLibraryModel, Connect_Notes_CSModel, UBTConnectLanguageResources, UBTConnectClientVariables, UBTConnect_Notes_Notes_mvc_Debugger, _flow_UBTConnect_NotesController) {
+define("UBTConnect.Notes.Notes.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnectLibrary.model", "Connect_Notes_CS.model", "UBTJavaScriptUtils.controller", "NavigationHandler.controller", "UBTConnect.languageResources", "UBTConnect.clientVariables", "UBTConnect.Notes.Notes.mvc$debugger", "UBTConnect.Notes.controller", "UBTConnect.Notes.Notes.mvc$controller.ScreenEvent_OnInitialize.CheckRestoredJS", "UBTConnectLibrary.model$TagRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$TagList", "Connect_Notes_CS.model$Notes_FilterRec", "UBTConnect.referencesHealth$Connect_Notes_CS", "Connect_Notes_CS.model$UI_Note_CardItemRec", "UBTConnect.model$UI_Note_CardItemList", "UBTConnectLibrary.model$SearchInputRec", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "Connect_Notes_CS.model$UI_Note_CardContentRec", "Connect_Notes_CS.model$UI_NoteCard_SourceHeaderRec", "UBTConnectLibrary.model$NotesRec", "UBTConnectLibrary.model$Note_ItemRec", "UBTConnect.model$Note_ItemList", "UBTJavaScriptUtils.controller$FeedbackMessage_AutoClose", "UBTConnect.referencesHealth$UBTJavaScriptUtils", "UBTConnect.controller$ScrollTop", "UBTConnect.controller$GetNotes_Pills", "UBTConnect.controller$GetNotes_FilterYear", "UBTConnect.controller$Notes_InterchangeId_ExtractId", "NavigationHandler.controller$SetPreloadObject", "UBTConnect.referencesHealth$NavigationHandler", "UBTConnect.model$SwipeActionLongIntegerRecordList", "UBTConnect.model$CarouselPreloadedHouseholdsRec", "UBTConnect.model$PreloadedCarouselRec", "Connect_Notes_CS.model$UI_NotesRec"], function (OutSystems, UBTConnectModel, UBTConnectController, UBTConnectLibraryModel, Connect_Notes_CSModel, UBTJavaScriptUtilsController, NavigationHandlerController, UBTConnectLanguageResources, UBTConnectClientVariables, UBTConnect_Notes_Notes_mvc_Debugger, _flow_UBTConnect_NotesController, UBTConnect_Notes_Notes_mvc_controller_ScreenEvent_OnInitialize_CheckRestoredJS) {
 var OS = OutSystems.Internal;
 var Controller = (function (_super) {
 __extends(Controller, _super);
@@ -676,7 +675,7 @@ controller.pushDebuggerContext(callContext);
 
 OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:pSbHrxUcRkO5hH0g8kn4UA:/NRWebFlows.2DlYrQQBWkK7ftgdGmwqyg/NodesShownInESpaceTree.KuZaKSMlaEijTD5vqwT8EA/DataActions.pSbHrxUcRkO5hH0g8kn4UA:HFAi8MbyWrOtZxJMpPZFfw", "UBTConnect", "GetNotes", "NRFlows.DataScreenActionFlow", callContext.id, varBag);
 OutSystemsDebugger.setThreadStartName(callContext.id, "Notes/Notes/GetNotes");
-return controller.callDataAction("DataActionGetNotes", "screenservices/UBTConnect/Notes/Notes/DataActionGetNotes", "n1UuRcejP0s25USyG53QnA", function (b) {
+return controller.callDataAction("DataActionGetNotes", "screenservices/UBTConnect/Notes/Notes/DataActionGetNotes", "or0gbNzeUJiIeyAfL7R_lA", function (b) {
 model.variables.getNotesDataAct.dataFetchStatusAttr = b;
 }, function (json) {
 model.variables.getNotesDataAct.replaceWith(OS.DataConversion.ServerDataConverter.from(json, model.variables.getNotesDataAct.constructor));
@@ -829,7 +828,7 @@ varBag.idService = idService;
 controller.ensureControllerAlive("GetNotesOnAfterFetch");
 callContext = controller.callContext(callContext);
 varBag.callContext = callContext;
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:zligUi53VEus5Cf2j8ookg:/NRWebFlows.2DlYrQQBWkK7ftgdGmwqyg/NodesShownInESpaceTree.KuZaKSMlaEijTD5vqwT8EA/ClientActions.zligUi53VEus5Cf2j8ookg:_1+grMiVHtf4e7WNBIYfrA", "UBTConnect", "GetNotesOnAfterFetch", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:zligUi53VEus5Cf2j8ookg:/NRWebFlows.2DlYrQQBWkK7ftgdGmwqyg/NodesShownInESpaceTree.KuZaKSMlaEijTD5vqwT8EA/ClientActions.zligUi53VEus5Cf2j8ookg:qo1y++JBvdDWwoyyFlCa9A", "UBTConnect", "GetNotesOnAfterFetch", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:V0c5X4az9UOZHPvfJmCAgA", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 return OS.Flow.executeSequence(function () {
@@ -844,9 +843,7 @@ return OS.Flow.executeSequence(function () {
 if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:e2B46_8U5kahH5xJ9zpTVw", callContext.id) && model.variables.resetPillsValueVar)) {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:7hc2J6lFA0qeP+Ymr9OjHQ", callContext.id);
 // Execute Action: ResetPillsVallues
-return controller._resetPillsVallues$Action(callContext).then(function () {
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:H++gsJ8lYkOVXHae4zo+7g", callContext.id);
-});
+return controller._resetPillsVallues$Action(callContext);
 }
 
 }).then(function () {
@@ -949,7 +946,7 @@ varBag.idService = idService;
 controller.ensureControllerAlive("SkeletonLoader_Notes");
 callContext = controller.callContext(callContext);
 varBag.callContext = callContext;
-try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:uAnpWKYZyEugZ1Zp3F8bYg:/NRWebFlows.2DlYrQQBWkK7ftgdGmwqyg/NodesShownInESpaceTree.KuZaKSMlaEijTD5vqwT8EA/ClientActions.uAnpWKYZyEugZ1Zp3F8bYg:JrPj5xX1xaerYXRYGb9Fvg", "UBTConnect", "SkeletonLoader_Notes", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:uAnpWKYZyEugZ1Zp3F8bYg:/NRWebFlows.2DlYrQQBWkK7ftgdGmwqyg/NodesShownInESpaceTree.KuZaKSMlaEijTD5vqwT8EA/ClientActions.uAnpWKYZyEugZ1Zp3F8bYg:8gDk3KDjtTPuF6rnMcHEMQ", "UBTConnect", "SkeletonLoader_Notes", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Sb9hdjYpTUC7yT_I1IuIJQ", callContext.id);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:bySBgHvbAkaIZ_TS19aXBA", callContext.id);
 // Execute Action: ListAppend
@@ -1105,6 +1102,64 @@ throw ex;
 
 });
 };
+Controller.prototype._handler_OnClickUnauthorizedObject$Action = function (noteCategoryIdIn, callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("Handler_OnClickUnauthorizedObject");
+callContext = controller.callContext(callContext);
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.Notes.Notes.Handler_OnClickUnauthorizedObject$vars"))());
+vars.value.noteCategoryIdInLocal = noteCategoryIdIn;
+var listFilterVar = new OS.DataTypes.VariableHolder();
+varBag.callContext = callContext;
+varBag.vars = vars;
+varBag.listFilterVar = listFilterVar;
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:G7ZwZAD7ckOD7YSwEW9LMw:/NRWebFlows.2DlYrQQBWkK7ftgdGmwqyg/NodesShownInESpaceTree.KuZaKSMlaEijTD5vqwT8EA/ClientActions.G7ZwZAD7ckOD7YSwEW9LMw:nBS5jggMO_ilTf4jAWjhdw", "UBTConnect", "Handler_OnClickUnauthorizedObject", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:P74NLIICAUysVkcyKbxr1A", callContext.id);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:WbZuPDonOkGvjXe_dCOs9w", callContext.id);
+// Execute Action: ListFilter
+listFilterVar.value = OS.SystemActions.listFilter(model.variables.note_PillsVar, function (p) {
+return (p.identifierAttr === vars.value.noteCategoryIdInLocal);
+}, callContext);
+
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:ct4GvVCXbUyiK2yf84ijPw", callContext.id);
+// ObjectLabelSingular = ToLower
+vars.value.objectLabelSingularVar = OS.BuiltinFunctions.toLower(listFilterVar.value.filteredListOut.getCurrent(callContext.iterationContext).textAttr);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:ct4GvVCXbUyiK2yf84ijPw", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
+// ObjectLabelSingular = If
+vars.value.objectLabelSingularVar = ((((OS.BuiltinFunctions.length(vars.value.objectLabelSingularVar) > 0) && (OS.BuiltinFunctions.substr(vars.value.objectLabelSingularVar, (OS.BuiltinFunctions.length(vars.value.objectLabelSingularVar) - 1), 1) === "s"))) ? (OS.BuiltinFunctions.substr(vars.value.objectLabelSingularVar, 0, (OS.BuiltinFunctions.length(vars.value.objectLabelSingularVar) - 1))) : (vars.value.objectLabelSingularVar));
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:CTdDdC1Se0C5s13HT51vaQ", callContext.id);
+// Execute Action: FeedbackMessage_AutoClose
+UBTJavaScriptUtilsController.default.feedbackMessage_AutoClose$Action("", (("This " + vars.value.objectLabelSingularVar) + " is no longer available."), UBTConnectModel.staticEntities.uBT_MessageType.info, true, "", 0, false, callContext);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:BpG0fWnjVUukj7zmu80OAA", callContext.id);
+} catch (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+throw ex;
+} finally {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:G7ZwZAD7ckOD7YSwEW9LMw", callContext.id);
+}
+
+};
+Controller.registerVariableGroupType("UBTConnect.Notes.Notes.Handler_OnClickUnauthorizedObject$vars", [{
+name: "NoteCategoryId",
+attrName: "noteCategoryIdInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Text,
+defaultValue: function () {
+return "";
+}
+}, {
+name: "ObjectLabelSingular",
+attrName: "objectLabelSingularVar",
+mandatory: false,
+dataType: OS.DataTypes.DataTypes.Text,
+defaultValue: function () {
+return "";
+}
+}]);
 Controller.prototype._notes_CardListOnLoadMore$Action = function (callContext) {
 var varBag = {};
 var model = this.model;
@@ -1284,13 +1339,13 @@ callContext = controller.callContext(callContext);
 var getNotes_PillsVar = new OS.DataTypes.VariableHolder();
 varBag.callContext = callContext;
 varBag.getNotes_PillsVar = getNotes_PillsVar;
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:wUfXu_xYUUaXFBVWYog+GA:/NRWebFlows.2DlYrQQBWkK7ftgdGmwqyg/NodesShownInESpaceTree.KuZaKSMlaEijTD5vqwT8EA/ClientActions.wUfXu_xYUUaXFBVWYog+GA:_aXZ8nbMe1YCYXfBl2Bm4A", "UBTConnect", "ResetPillsVallues", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:wUfXu_xYUUaXFBVWYog+GA:/NRWebFlows.2DlYrQQBWkK7ftgdGmwqyg/NodesShownInESpaceTree.KuZaKSMlaEijTD5vqwT8EA/ClientActions.wUfXu_xYUUaXFBVWYog+GA:HIE8BVYeoXeOipslTMNH8Q", "UBTConnect", "ResetPillsVallues", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:X4CSk5UVxEOJUOst39jV5w", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:yCkuTp6OUkWwsG574d7Phw", callContext.id);
 // Execute Action: GetNotes_Pills
 model.flush();
-return UBTConnectController.default.getNotes_Pills$Action(callContext).then(function (value) {
+return UBTConnectController.default.getNotes_Pills$Action(model.variables.notes_FilterVar.noteCategoryIdAttr, callContext).then(function (value) {
 getNotes_PillsVar.value = value;
 }).then(function () {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:5kr9IBnx9UWOqE3qD80wMA", callContext.id);
@@ -1322,11 +1377,31 @@ varBag.idService = idService;
 controller.ensureControllerAlive("ScreenEvent_OnInitialize");
 callContext = controller.callContext(callContext);
 var getNotes_FilterYearVar = new OS.DataTypes.VariableHolder();
+var checkRestoredJSResult = new OS.DataTypes.VariableHolder();
 varBag.callContext = callContext;
 varBag.getNotes_FilterYearVar = getNotes_FilterYearVar;
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:tODmwVF78EyfJ_nQvnY_6Q:/NRWebFlows.2DlYrQQBWkK7ftgdGmwqyg/NodesShownInESpaceTree.KuZaKSMlaEijTD5vqwT8EA/ClientActions.tODmwVF78EyfJ_nQvnY_6Q:TWiBWDuHAIb6H3KeJw7l+g", "UBTConnect", "ScreenEvent_OnInitialize", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+varBag.checkRestoredJSResult = checkRestoredJSResult;
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:tODmwVF78EyfJ_nQvnY_6Q:/NRWebFlows.2DlYrQQBWkK7ftgdGmwqyg/NodesShownInESpaceTree.KuZaKSMlaEijTD5vqwT8EA/ClientActions.tODmwVF78EyfJ_nQvnY_6Q:UqgDBWWG8dHBtmzpsbR9tg", "UBTConnect", "ScreenEvent_OnInitialize", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:+oVLQLO7H0mdTV4n5x4bSQ", callContext.id);
-return OS.Flow.executeAsyncFlow(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:wMKEJiGcYEaJWG3dtlj3Jg", callContext.id);
+checkRestoredJSResult.value = controller.safeExecuteJSNode(UBTConnect_Notes_Notes_mvc_controller_ScreenEvent_OnInitialize_CheckRestoredJS, "CheckRestored", "ScreenEvent_OnInitialize", {
+FromCache: OS.DataConversion.JSNodeParamConverter.to(false, OS.DataTypes.DataTypes.Boolean),
+FromHistory: OS.DataConversion.JSNodeParamConverter.to(false, OS.DataTypes.DataTypes.Boolean)
+}, function ($parameters) {
+var jsNodeResult = new (controller.constructor.getVariableGroupType("UBTConnect.Notes.Notes.ScreenEvent_OnInitialize$checkRestoredJSResult"))();
+jsNodeResult.fromCacheOut = OS.DataConversion.JSNodeParamConverter.from($parameters.FromCache, OS.DataTypes.DataTypes.Boolean);
+jsNodeResult.fromHistoryOut = OS.DataConversion.JSNodeParamConverter.from($parameters.FromHistory, OS.DataTypes.DataTypes.Boolean);
+return jsNodeResult;
+}, {}, {});
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:aqqS10AukEeB9cX2tCbDHA", callContext.id) && (checkRestoredJSResult.value.fromCacheOut || checkRestoredJSResult.value.fromHistoryOut))) {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:ParKgTtqI0y5q60ejINNtw", callContext.id);
+// PageNumber = 1
+model.variables.pageNumberVar = 1;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:zvohNiPCZkK8euTAFqu_Iw", callContext.id);
+} else {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:rb8m_j6PzUOjGUPZvrGzWg", callContext.id);
+// Notes_Loading = True
+model.variables.notes_LoadingVar = true;
 if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:8kCzO8GGQECNKO7WVsUDww", callContext.id) && model.variables.note_PillsVar.isEmpty)) {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:z80ukRibQEyLJ4Y2xDOr_Q", callContext.id);
 // Execute Action: SkeletonLoader_Pills
@@ -1341,26 +1416,42 @@ controller._skeletonLoader_Notes$Action(callContext);
 
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:6sNaCc_gyUCI+eMYMQicfA", callContext.id);
 // Execute Action: GetNotes_FilterYear
-model.flush();
-return UBTConnectController.default.getNotes_FilterYear$Action(callContext).then(function (value) {
-getNotes_FilterYearVar.value = value;
-}).then(function () {
+getNotes_FilterYearVar.value = UBTConnectController.default.getNotes_FilterYear$Action(callContext);
+
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:g6y4In9ZB0WFCMej5GqxwQ", callContext.id);
+// Execute Action: ListClearYears
+OS.SystemActions.listClear(model.variables.yearsVar, callContext);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:hi2Vtqrdv0unbnrwbUzyvg", callContext.id);
 // Years = GetNotes_FilterYear.Years
 model.variables.yearsVar = getNotes_FilterYearVar.value.yearsOut;
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:1sJzMiEVxkGNEM7ANCi9ZQ", callContext.id);
-});
-}).then(function (res) {
-OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:tODmwVF78EyfJ_nQvnY_6Q", callContext.id);
-return res;
+}
 
-}).catch(function (ex) {
+} catch (ex) {
 OutSystemsDebugger.handleException(ex, callContext.id);
-OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:tODmwVF78EyfJ_nQvnY_6Q", callContext.id);
 throw ex;
+} finally {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:tODmwVF78EyfJ_nQvnY_6Q", callContext.id);
+}
 
-});
 };
+Controller.registerVariableGroupType("UBTConnect.Notes.Notes.ScreenEvent_OnInitialize$checkRestoredJSResult", [{
+name: "FromCache",
+attrName: "fromCacheOut",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Boolean,
+defaultValue: function () {
+return false;
+}
+}, {
+name: "FromHistory",
+attrName: "fromHistoryOut",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Boolean,
+defaultValue: function () {
+return false;
+}
+}]);
 Controller.prototype._screenEvent_Ready$Action = function (callContext) {
 var varBag = {};
 var model = this.model;
@@ -1408,12 +1499,15 @@ vars.value.event_Notes_FilterInLocal = event_Notes_FilterIn.clone();
 vars.value.event_HasFiltersAppliedInLocal = event_HasFiltersAppliedIn;
 varBag.callContext = callContext;
 varBag.vars = vars;
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:ARpuykQBGES6g_aQs3tLew:/NRWebFlows.2DlYrQQBWkK7ftgdGmwqyg/NodesShownInESpaceTree.KuZaKSMlaEijTD5vqwT8EA/ClientActions.ARpuykQBGES6g_aQs3tLew:3_SoHFs7XuWDJzp_ZF7gAw", "UBTConnect", "Handler_ApplyFilters", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:ARpuykQBGES6g_aQs3tLew:/NRWebFlows.2DlYrQQBWkK7ftgdGmwqyg/NodesShownInESpaceTree.KuZaKSMlaEijTD5vqwT8EA/ClientActions.ARpuykQBGES6g_aQs3tLew:AUxNdK1SDFjFgrH17Ym5Eg", "UBTConnect", "Handler_ApplyFilters", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:G13eAW7Ksk239UCAN2Dv4Q", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Nazs+ghbsEOZhvGcQGzARA", callContext.id);
 // Notes_Filter.SortByNewest = Event_Notes_Filter.SortByNewest
 model.variables.notes_FilterVar.sortByNewestAttr = vars.value.event_Notes_FilterInLocal.sortByNewestAttr;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Nazs+ghbsEOZhvGcQGzARA", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
+// Notes_Filter.Years = Event_Notes_Filter.Years
+model.variables.notes_FilterVar.yearsAttr = vars.value.event_Notes_FilterInLocal.yearsAttr;
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:ArteawxPVkGFsa8w7toI8Q", callContext.id);
 // HasFiltersApplied = Event_HasFiltersApplied
 model.variables.hasFiltersAppliedVar = vars.value.event_HasFiltersAppliedInLocal;
@@ -1451,7 +1545,7 @@ defaultValue: function () {
 return false;
 }
 }]);
-Controller.prototype._handler_OnClickNoteCardItem$Action = function (objectIdIn, objectTypeIn, callContext) {
+Controller.prototype._handler_OnClickNoteCardItem$Action = function (objectIdIn, objectId2In, objectTypeIn, hasDetailAccessIn, callContext) {
 var varBag = {};
 var model = this.model;
 var controller = this.controller;
@@ -1462,26 +1556,66 @@ controller.ensureControllerAlive("Handler_OnClickNoteCardItem");
 callContext = controller.callContext(callContext);
 var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.Notes.Notes.Handler_OnClickNoteCardItem$vars"))());
 vars.value.objectIdInLocal = objectIdIn;
+vars.value.objectId2InLocal = objectId2In;
 vars.value.objectTypeInLocal = objectTypeIn;
+vars.value.hasDetailAccessInLocal = hasDetailAccessIn;
+var notes_InterchangeId_ExtractIdVar = new OS.DataTypes.VariableHolder();
+var listFilter_AuthorizedHouseholdsVar = new OS.DataTypes.VariableHolder();
+var listFilter_OneSchoolGlobalVar = new OS.DataTypes.VariableHolder();
 varBag.callContext = callContext;
 varBag.vars = vars;
-try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:tFLE85YP8UaLEofBaV5tvg:/NRWebFlows.2DlYrQQBWkK7ftgdGmwqyg/NodesShownInESpaceTree.KuZaKSMlaEijTD5vqwT8EA/ClientActions.tFLE85YP8UaLEofBaV5tvg:Nl+eLtDmPDoUz9BK0GDBFA", "UBTConnect", "Handler_OnClickNoteCardItem", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+varBag.notes_InterchangeId_ExtractIdVar = notes_InterchangeId_ExtractIdVar;
+varBag.listFilter_AuthorizedHouseholdsVar = listFilter_AuthorizedHouseholdsVar;
+varBag.listFilter_OneSchoolGlobalVar = listFilter_OneSchoolGlobalVar;
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:tFLE85YP8UaLEofBaV5tvg:/NRWebFlows.2DlYrQQBWkK7ftgdGmwqyg/NodesShownInESpaceTree.KuZaKSMlaEijTD5vqwT8EA/ClientActions.tFLE85YP8UaLEofBaV5tvg:ukWn_HUWurohkx9iy4lH1Q", "UBTConnect", "Handler_OnClickNoteCardItem", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:VvaH7AfMl0CgbNency_QRw", callContext.id);
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:FaF8RniVJUOZRBIm2V14XA", callContext.id) && vars.value.hasDetailAccessInLocal)) {
 if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:S0D48dIhvEqjL+v0vPqu8g", callContext.id) && (vars.value.objectTypeInLocal === UBTConnectModel.staticEntities.noteCategory2.household))) {
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:byYSj+_sRUSsArHn9eaWCg", callContext.id);
-// Destination: /UBTConnect/HouseholdDetails
-return OS.Navigation.navigateTo(OS.Navigation.generateScreenURL("/UBTConnect/HouseholdDetails", {
-HouseholdId: OS.DataConversion.ServerDataConverter.asString(OS.BuiltinFunctions.textToLongInteger(vars.value.objectIdInLocal), OS.DataTypes.DataTypes.LongInteger)
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:2A_bKDlcN0qkyiEN1lmUDQ", callContext.id);
+// Execute Action: ListFilter_AuthorizedHouseholds
+listFilter_AuthorizedHouseholdsVar.value = OS.SystemActions.listFilter(model.variables.notes_ListVar, function (p) {
+return (p.hasDetailAccessAttr && (p.noteCategoryIdAttr === UBTConnectModel.staticEntities.noteCategory2.household));
+}, callContext);
+
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:cPu4W75NbkCo416h5TUItQ", callContext.id);
+// HouseholdIdList.CarouselHouseholdItem = ListFilter_AuthorizedHouseholds.FilteredList
+vars.value.householdIdListVar.carouselHouseholdItemAttr = OS.DataConversion.JSConversions.typeConvertRecordList(listFilter_AuthorizedHouseholdsVar.value.filteredListOut, new UBTConnectModel.SwipeActionLongIntegerRecordList(), function (source, target) {
+target.householdAttr = OS.BuiltinFunctions.textToLongInteger(source.itemIdAttr);
+return target;
+});
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:hMsk2hIxN0qFPfFT9kl2fQ", callContext.id);
+// Execute Action: SetPreloadObject
+NavigationHandlerController.default.setPreloadObject$Action(OS.BuiltinFunctions.toObject(vars.value.householdIdListVar), callContext);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:knjsM2JJtU+BDXpzym2JZA", callContext.id);
+// Destination: /UBTConnect/HouseholdCarousel
+return OS.Navigation.navigateTo(OS.Navigation.generateScreenURL("/UBTConnect/HouseholdCarousel", {
+In_StartingHouseholdId: OS.DataConversion.ServerDataConverter.asString(OS.BuiltinFunctions.textToLongInteger(vars.value.objectIdInLocal), OS.DataTypes.DataTypes.LongInteger)
 }), OS.Transitions.createTransition(OS.Transitions.TransitionAnimation.Default), callContext, true);
 } else {
 if((vars.value.objectTypeInLocal === UBTConnectModel.staticEntities.noteCategory2.feedItem)) {
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:xNyRX2xIx0iAZ0CEfGJq6Q", callContext.id);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:w21u7Lbc80uWpVn2_XYbPA", callContext.id);
+// Destination: /UBTConnect/FeedItemDetail
+return OS.Navigation.navigateTo(OS.Navigation.generateScreenURL("/UBTConnect/FeedItemDetail", {
+FeedItemId: OS.DataConversion.ServerDataConverter.asString(vars.value.objectIdInLocal, OS.DataTypes.DataTypes.Text)
+}), OS.Transitions.createTransition(OS.Transitions.TransitionAnimation.Default), callContext, true);
 } else {
 if((vars.value.objectTypeInLocal === UBTConnectModel.staticEntities.noteCategory2.assembleEvent)) {
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:gBp0hk1IekOXo5Hn53_08A", callContext.id);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:jAYaJ1cxWUiLowVSwZeCUg", callContext.id);
+// Destination: /UBTConnect/AssembleDetail
+return OS.Navigation.navigateTo(OS.Navigation.generateScreenURL("/UBTConnect/AssembleDetail", {
+EventId: OS.DataConversion.ServerDataConverter.asString(vars.value.objectIdInLocal, OS.DataTypes.DataTypes.Text)
+}), OS.Transitions.createTransition(OS.Transitions.TransitionAnimation.Default), callContext, true);
 } else {
 if((vars.value.objectTypeInLocal === UBTConnectModel.staticEntities.noteCategory2.interchange)) {
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:3ObVSL0wcUawC9V3rBL2BA", callContext.id);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:M8rqFgxSZUaxq1e8RFjNbg", callContext.id);
+// Execute Action: Notes_InterchangeId_ExtractId
+notes_InterchangeId_ExtractIdVar.value = UBTConnectController.default.notes_InterchangeId_ExtractId$Action(vars.value.objectIdInLocal, callContext);
+
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:aM6xpL52TkiVyqhKs+l+Zg", callContext.id);
+// Destination: /UBTConnect/Locality_Details
+return OS.Navigation.navigateTo(OS.Navigation.generateScreenURL("/UBTConnect/Locality_Details", {
+LocalityId: OS.DataConversion.ServerDataConverter.asString(OS.BuiltinFunctions.textToLongInteger(notes_InterchangeId_ExtractIdVar.value.localityIdOut), OS.DataTypes.DataTypes.LongInteger)
+}), OS.Transitions.createTransition(OS.Transitions.TransitionAnimation.Default), callContext, true);
 } else {
 if((vars.value.objectTypeInLocal === UBTConnectModel.staticEntities.noteCategory2.lDMEvent)) {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:LCRSJDSzJ0qdtK9dPxi+jw", callContext.id);
@@ -1493,13 +1627,33 @@ if((vars.value.objectTypeInLocal === UBTConnectModel.staticEntities.noteCategory
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:fcK7uTQV1EOZKzRRJr7yVA", callContext.id);
 } else {
 if((vars.value.objectTypeInLocal === UBTConnectModel.staticEntities.noteCategory2.member)) {
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:1ttzqdyEhkaC8o_4SaUt1w", callContext.id);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:FQWWT3CDzUmA_iA+1w3EtQ", callContext.id);
+// Destination: /UBTConnect/Household_Relations
+return OS.Navigation.navigateTo(OS.Navigation.generateScreenURL("/UBTConnect/Household_Relations", {
+MemberId: OS.DataConversion.ServerDataConverter.asString(OS.BuiltinFunctions.textToLongInteger(vars.value.objectIdInLocal), OS.DataTypes.DataTypes.LongInteger),
+HouseholdId: OS.DataConversion.ServerDataConverter.asString(OS.BuiltinFunctions.textToLongInteger(vars.value.objectId2InLocal), OS.DataTypes.DataTypes.LongInteger)
+}), OS.Transitions.createTransition(OS.Transitions.TransitionAnimation.Default), callContext, true);
 } else {
 if((vars.value.objectTypeInLocal === UBTConnectModel.staticEntities.noteCategory2.oneSchoolGlobal)) {
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:3UBSopexyEG6hR4GHCPlsg", callContext.id);
-// Destination: /UBTConnect/OneSchoolGlobalDetails
-return OS.Navigation.navigateTo(OS.Navigation.generateScreenURL("/UBTConnect/OneSchoolGlobalDetails", {
-In_OneSchoolGlobalId: OS.DataConversion.ServerDataConverter.asString(OS.BuiltinFunctions.textToLongInteger(vars.value.objectIdInLocal), OS.DataTypes.DataTypes.LongInteger)
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:EN22ugZI90eyXeX_kSvd9A", callContext.id);
+// Execute Action: ListFilter_OneSchoolGlobal
+listFilter_OneSchoolGlobalVar.value = OS.SystemActions.listFilter(model.variables.notes_ListVar, function (p) {
+return (p.noteCategoryIdAttr === UBTConnectModel.staticEntities.noteCategory2.oneSchoolGlobal);
+}, callContext);
+
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Z26tB_U1t0qph_HG558xPw", callContext.id);
+// PreloadedCarousel.CarouselItemIds = ListFilter_OneSchoolGlobal.FilteredList
+vars.value.preloadedCarouselVar.carouselItemIdsAttr = OS.DataConversion.JSConversions.typeConvertRecordList(listFilter_OneSchoolGlobalVar.value.filteredListOut, new OS.DataTypes.LongIntegerList(), function (source, target) {
+target = OS.BuiltinFunctions.textToLongInteger(source.itemIdAttr);
+return target;
+});
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:f5aae8Yo30mogGJwaMbXrQ", callContext.id);
+// Execute Action: SetPreloadObject3
+NavigationHandlerController.default.setPreloadObject$Action(OS.BuiltinFunctions.toObject(vars.value.preloadedCarouselVar), callContext);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:n9c1xaRRs0WadpcHvnEmcA", callContext.id);
+// Destination: /UBTConnect/OneSchoolGlobalCarousel
+return OS.Navigation.navigateTo(OS.Navigation.generateScreenURL("/UBTConnect/OneSchoolGlobalCarousel", {
+In_StartingObjectId: OS.DataConversion.ServerDataConverter.asString(OS.BuiltinFunctions.textToLongInteger(vars.value.objectIdInLocal), OS.DataTypes.DataTypes.LongInteger)
 }), OS.Transitions.createTransition(OS.Transitions.TransitionAnimation.Default), callContext, true);
 } else {
 if((vars.value.objectTypeInLocal === UBTConnectModel.staticEntities.noteCategory2.orbitEvent)) {
@@ -1545,6 +1699,13 @@ OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:zv+5zPkkpUyRBHGZeCyf
 
 }
 
+} else {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:c611Ba1l00ymf2qLtly3BQ", callContext.id);
+// Execute Action: Handler_OnClickUnauthorizedObject
+controller._handler_OnClickUnauthorizedObject$Action(vars.value.objectTypeInLocal, callContext);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:UuC4CfjJlUqZdVBmptwK6g", callContext.id);
+}
+
 } catch (ex) {
 OutSystemsDebugger.handleException(ex, callContext.id);
 throw ex;
@@ -1562,6 +1723,14 @@ defaultValue: function () {
 return "";
 }
 }, {
+name: "ObjectId2",
+attrName: "objectId2InLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Text,
+defaultValue: function () {
+return "";
+}
+}, {
 name: "ObjectType",
 attrName: "objectTypeInLocal",
 mandatory: true,
@@ -1569,6 +1738,32 @@ dataType: OS.DataTypes.DataTypes.Text,
 defaultValue: function () {
 return "";
 }
+}, {
+name: "HasDetailAccess",
+attrName: "hasDetailAccessInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Boolean,
+defaultValue: function () {
+return false;
+}
+}, {
+name: "HouseholdIdList",
+attrName: "householdIdListVar",
+mandatory: false,
+dataType: OS.DataTypes.DataTypes.Record,
+defaultValue: function () {
+return new UBTConnectModel.CarouselPreloadedHouseholdsRec();
+},
+complexType: UBTConnectModel.CarouselPreloadedHouseholdsRec
+}, {
+name: "PreloadedCarousel",
+attrName: "preloadedCarouselVar",
+mandatory: false,
+dataType: OS.DataTypes.DataTypes.Record,
+defaultValue: function () {
+return new UBTConnectModel.PreloadedCarouselRec();
+},
+complexType: UBTConnectModel.PreloadedCarouselRec
 }]);
 
 Controller.prototype.handler_OnHeaderScrolled$Action = function (event_IsHeaderScrolledIn, callContext) {
@@ -1609,6 +1804,11 @@ return controller.safeExecuteClientAction(controller._handler_FilterSheetLoaded$
 Controller.prototype.refresh_GetNotes$Action = function (callContext) {
 var controller = this.controller;
 return controller.safeExecuteClientAction(controller._refresh_GetNotes$Action, callContext);
+
+};
+Controller.prototype.handler_OnClickUnauthorizedObject$Action = function (noteCategoryIdIn, callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._handler_OnClickUnauthorizedObject$Action, callContext, noteCategoryIdIn);
 
 };
 Controller.prototype.notes_CardListOnLoadMore$Action = function (callContext) {
@@ -1656,9 +1856,9 @@ var controller = this.controller;
 return controller.safeExecuteClientAction(controller._handler_ApplyFilters$Action, callContext, event_Notes_FilterIn, event_HasFiltersAppliedIn);
 
 };
-Controller.prototype.handler_OnClickNoteCardItem$Action = function (objectIdIn, objectTypeIn, callContext) {
+Controller.prototype.handler_OnClickNoteCardItem$Action = function (objectIdIn, objectId2In, objectTypeIn, hasDetailAccessIn, callContext) {
 var controller = this.controller;
-return controller.safeExecuteClientAction(controller._handler_OnClickNoteCardItem$Action, callContext, objectIdIn, objectTypeIn);
+return controller.safeExecuteClientAction(controller._handler_OnClickNoteCardItem$Action, callContext, objectIdIn, objectId2In, objectTypeIn, hasDetailAccessIn);
 
 };
 
@@ -1666,7 +1866,7 @@ return controller.safeExecuteClientAction(controller._handler_OnClickNoteCardIte
 Controller.prototype.pushDebuggerContext = function (callContext) {
 var varBag = {};
 OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:2DlYrQQBWkK7ftgdGmwqyg:/NRWebFlows.2DlYrQQBWkK7ftgdGmwqyg:H6BPPYIIY_GDy0FJgaUDiA", "UBTConnect", "Notes", "NRFlows.WebFlow", callContext.id, varBag);
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:KuZaKSMlaEijTD5vqwT8EA:/NRWebFlows.2DlYrQQBWkK7ftgdGmwqyg/NodesShownInESpaceTree.KuZaKSMlaEijTD5vqwT8EA:2_YMsj48bzF+YZOlmWvy4Q", "UBTConnect", "Notes", "NRNodes.WebScreen", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:KuZaKSMlaEijTD5vqwT8EA:/NRWebFlows.2DlYrQQBWkK7ftgdGmwqyg/NodesShownInESpaceTree.KuZaKSMlaEijTD5vqwT8EA:9UDhcfY9UuPFvUUnOJ5KSA", "UBTConnect", "Notes", "NRNodes.WebScreen", callContext.id, varBag);
 };
 Controller.prototype.popDebuggerContext = function (callContext) {
 OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:KuZaKSMlaEijTD5vqwT8EA", callContext.id);
@@ -1724,6 +1924,12 @@ return Controller;
 })(OS.Controller.BaseViewController);
 return new OS.Controller.ControllerFactory(Controller, UBTConnectLanguageResources);
 });
+define("UBTConnect.Notes.Notes.mvc$controller.ScreenEvent_OnInitialize.CheckRestoredJS", [], function () {
+return function ($parameters, $actions, $roles, $public) {
+$parameters.FromCache = $public.View.wasCurrentViewRestoredFromCache();
+//$parameters.FromHistory = $public.Navigation.navigatedFromHistory();
+};
+});
 
 define("UBTConnect.Notes.Notes.mvc$debugger", ["exports", "OutSystems/ClientRuntime/Debugger", "OutSystems/ClientRuntime/Main"], function (exports, Debugger, OutSystems) {
 var OS = OutSystems.Internal;
@@ -1750,6 +1956,23 @@ return varBag.vars.value.showSubscriptionOnClickInLocal;
 },
 dataType: OS.DataTypes.DataTypes.Boolean
 },
+"7NfjdGbf0kmi7szSi4hrag": {
+getter: function (varBag, idService) {
+return varBag.vars.value.objectLabelSingularVar;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
+"MLc8_RWcBEium7eDHDlr2A": {
+getter: function (varBag, idService) {
+return varBag.vars.value.noteCategoryIdInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
+"WbZuPDonOkGvjXe_dCOs9w": {
+getter: function (varBag, idService) {
+return varBag.listFilterVar.value;
+}
+},
 "bbkNjlcoZUSHpIf_m6AhWA": {
 getter: function (varBag, idService) {
 return varBag.vars.value.sheetIdInLocal;
@@ -1772,6 +1995,11 @@ getter: function (varBag, idService) {
 return varBag.getNotes_FilterYearVar.value;
 }
 },
+"wMKEJiGcYEaJWG3dtlj3Jg": {
+getter: function (varBag, idService) {
+return varBag.checkRestoredJSResult.value;
+}
+},
 "GW51y6I7jkms71ToAP8H1Q": {
 getter: function (varBag, idService) {
 return varBag.vars.value.event_Notes_FilterInLocal;
@@ -1783,9 +2011,25 @@ return varBag.vars.value.event_HasFiltersAppliedInLocal;
 },
 dataType: OS.DataTypes.DataTypes.Boolean
 },
+"OySTXt_vF0aAOl8BbFDUjw": {
+getter: function (varBag, idService) {
+return varBag.vars.value.householdIdListVar;
+}
+},
+"bpzgR6mBV0mL3jmjzXhyxw": {
+getter: function (varBag, idService) {
+return varBag.vars.value.preloadedCarouselVar;
+}
+},
 "5P11BRAc+Eyp_pbzf0KVZg": {
 getter: function (varBag, idService) {
 return varBag.vars.value.objectIdInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
+"_klduu98eUS04TaUvuBN5g": {
+getter: function (varBag, idService) {
+return varBag.vars.value.objectId2InLocal;
 },
 dataType: OS.DataTypes.DataTypes.Text
 },
@@ -1794,6 +2038,27 @@ getter: function (varBag, idService) {
 return varBag.vars.value.objectTypeInLocal;
 },
 dataType: OS.DataTypes.DataTypes.Text
+},
+"FNCM4pq7a0uLOwADtKFtew": {
+getter: function (varBag, idService) {
+return varBag.vars.value.hasDetailAccessInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"M8rqFgxSZUaxq1e8RFjNbg": {
+getter: function (varBag, idService) {
+return varBag.notes_InterchangeId_ExtractIdVar.value;
+}
+},
+"2A_bKDlcN0qkyiEN1lmUDQ": {
+getter: function (varBag, idService) {
+return varBag.listFilter_AuthorizedHouseholdsVar.value;
+}
+},
+"EN22ugZI90eyXeX_kSvd9A": {
+getter: function (varBag, idService) {
+return varBag.listFilter_OneSchoolGlobalVar.value;
+}
 },
 "KmMx8oEOokirysbGvNnd3Q": {
 getter: function (varBag, idService) {

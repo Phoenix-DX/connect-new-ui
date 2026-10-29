@@ -1,19 +1,25 @@
+import { getMilestoneScanFF } from '@/api/event';
 import { APP_ID } from '@/platform/navigation/paths';
 import { useOsNavigate, type OsParams } from '@/platform/navigation';
 import type { EventDetailTarget } from './adminLandingState';
 
 /** OnHandle_NavigateToEventDetail of the screen OrbitAdminLanding: the handler of the block event
-    NavigateTo_EventDetail. It only opens OrbitAdminEventDetail with the event's id, start date, location, name, end
-    date and friendly type (the parameter names and order of the original; TST survey of 2026-10-13,
-    UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js:244-252). The TST publish of 2026-10-27 added a
-    GetMilestoneScanFF call and an OrbitAdminMilestones branch here (OrbitAdminLanding.js:244-290); the port waits
-    with the new TST screens (N1, user 2026-10-28; Legacy_OrbitAdminFlow Q1 read the older survey).
-    Flow scope (item 8): no await. A navigation from a screen that the user left does not happen (R4, useOsNavigate).
+    NavigateTo_EventDetail. It calls the server action GetMilestoneScanFF (module Connect2_OrbitMobile_BL; TST publish
+    of 2026-10-27, live survey OrbitAdminLanding.mvc.js:218-227, 242-290; N1, user 2026-10-28). True: OrbitAdminMilestones
+    with the event's id. False (the live TST value, probe 2026-10-28): OrbitAdminEventDetail with the event's id, start
+    date, location, name, end date and friendly type (the parameter names and order of the original).
+    Flow scope (item 8): GetMilestoneScanFF is a server action (R2, no wrap). A navigation from a screen that the user
+    left does not happen (R4, useOsNavigate throws OutOfContextException).
     @origin UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding */
-export function useNavigateToEventDetail(): (target: EventDetailTarget) => void {
+export function useNavigateToEventDetail(): (target: EventDetailTarget) => Promise<void> {
   const navigate = useOsNavigate();
-  return (target) => {
-    navigate(`/${APP_ID}/OrbitAdminEventDetail`, orbitAdminEventDetailParams(target));
+  return async (target) => {
+    const isScanPerMilestone = await getMilestoneScanFF(); // R2
+    if (isScanPerMilestone) {
+      navigate(`/${APP_ID}/OrbitAdminMilestones`, { EventId: target.eventId });
+    } else {
+      navigate(`/${APP_ID}/OrbitAdminEventDetail`, orbitAdminEventDetailParams(target));
+    }
   };
 }
 

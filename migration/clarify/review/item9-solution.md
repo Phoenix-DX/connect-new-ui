@@ -463,3 +463,4 @@ Facts still open that do not change the design: U1 (Global Exception Handler pro
 | 2. Markers for D1, D2, D5 | (a) No marker: every build shows the TST result. |
 | 3. D4 in the demo | (a) The Vite plugin for the dev server and `vite preview`; the production host rule is recorded for later. |
 | 4, 5, 6 | (a) As recommended: D6 has no code now (one MCP session for U1, U2, U6 first); confirm N8 against the compiled code in B6 and set `replace: true`; the service worker change waits for the production phase. |
+| Build questions (2026-10-29) | 9A Q1 (a): keep the React error for a render loop. 9B Q2 (a): no change to `serve.mjs` and `serve.py`. 9B Q1: the PINUnlock history goes to the MCP session with U1, U2, U6 (user chose one MCP session; the user opens Connect2_OrbitMobile_BL). |

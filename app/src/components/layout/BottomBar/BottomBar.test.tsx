@@ -99,20 +99,18 @@ describe('BottomBarMenu', () => {
     clickLabel('Directory');
     expect(where()).toBe('/UBTConnect/CountryList');
     clickLabel('Bookmarks');
-    expect(where()).toBe('/UBTConnect/MyBookmarks');
+    expect(where()).toBe('/UBTConnect/Bookmarks');
     clickLabel('Menu');
     expect(where()).toBe('/UBTConnect/Menu');
   });
 
-  it('flag branches: Locality_Details, New_MyBookmarks, Bookmarks; an active root item scrolls instead', () => {
+  it('flag branches: Locality_Details; Bookmarks with no flag (TST 2026-10-27); an active root item scrolls instead', () => {
     setFlag('C2EnableC1DirectoryView', 'off');
     setFlag('mobileDirectoryBookmarkNote', 'on');
+    setFlag('C2NewBookmarks', 'off');
     renderMenu({ activeItem: I.Home, isRootPage: true });
     clickLabel('Directory');
     expect(where()).toBe('/UBTConnect/Locality_Details');
-    clickLabel('Bookmarks');
-    expect(where()).toBe('/UBTConnect/New_MyBookmarks');
-    setFlag('C2NewBookmarks', 'on');
     clickLabel('Bookmarks');
     expect(where()).toBe('/UBTConnect/Bookmarks');
     const scroll = vi.fn();

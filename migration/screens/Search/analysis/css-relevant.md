@@ -506,6 +506,11 @@ html[data-uieditorversion^="1"] .placeholder-empty:empty {  }
 .ph:empty, .placeholder-empty:empty { display:none; }
 list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .placeholder-empty > .OSBlockWidget, .osui-tabs__content > .ph > .list.list-group, .osui-tabs__content > .placeholder-empty > .list.list-group { display:contents; }
 ```
+### .search-placeholder-ellipsis  (2 rules)
+```css
+.search-placeholder-ellipsis input:placeholder-shown, input.search-placeholder-ellipsis:placeholder-shown { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.search-placeholder-ellipsis input::placeholder, input.search-placeholder-ellipsis::placeholder { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+```
 ## BasePatterns.CustomContainer
 
 ### .background-neutral-0  (4 rules)
@@ -660,7 +665,7 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 ```
 ## ConnectPatterns.HorizontalTagList
 
-### .list-group  (24 rules)
+### .list-group  (25 rules)
 ```css
 .list.list-group { overflow:hidden; position:relative; }
 .list.list-group > [data-block*=AnimatedLabel]:first-child .animated-label { margin-top:var(--space-s); }
@@ -680,6 +685,7 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 .list.list-group.overflow-horizontal { overflow-x: auto; }
 .ubt-tag-list.list.list-group { display: flex; overflow-x: scroll; -ms-overflow-style: none; /* Internet Explorer 10+ */ scrollbar-width: none; /* Firefox */ }
 .ubt-tag-list.list.list-group::-webkit-scrollbar { display: none; /* Safari and Chrome */ }
+.list.list-group.recent-search-list { display: flex; gap: var(--space-s); overflow: hidden; overflow-x: auto; /* beats the theme's overflow: hidden */ }
 .Household_GalleryCard-list.list.list-group { display: flex; justify-content: flex-start; overflow-x: scroll; -ms-overflow-style: none; /* Internet Explorer 10+ */ scrollbar-width: none; /* Firefox */ }
 .Household_GalleryCard-list.list.list-group::-webkit-scrollbar { display: none; /* Safari and Chrome */ }
 .calendar-list.list.list-group { display: flex; flex-direction: row; overflow-x: auto !important; scroll-snap-type: x mandatory; /* scroll-behavior: smooth;*/ scroll-snap-points-x: repeat(100vw); -webkit-overflow-scrolling: touch; /* border-bottom: 1px solid var(--color-neutral-11);*/ background-color: white; }
@@ -983,7 +989,7 @@ ottom-sheet--is-active .osui-bottom-sheet__content .osui-datepicker, .osui-botto
 .osui-bottom-sheet__content *:has(.connect-share-sheet__fill-parent-end) { flex: 1; }
 .connect-share-sheet .osui-bottom-sheet__content .connect-share-sheet__results { flex: 1 1 auto; min-height: 0; overflow-y: auto; }
 ```
-### .osui-bottom-sheet__header  (9 rules)
+### .osui-bottom-sheet__header  (10 rules)
 ```css
 .osui-bottom-sheet--has-handler .osui-bottom-sheet__header::before { background:var(--background-color-neutral-5, var(--color-neutral-5)); border-radius:100px; content:""; height:4px; left:50%; position:absolute; top:var(--space-base); -webkit-transform:translateX(-50%); -ms-transform:translateX(-50%); transform:translateX(-50%); width:40px; }
 .osui-bottom-sheet__header { position:relative; }
@@ -994,6 +1000,7 @@ ottom-sheet--is-active .osui-bottom-sheet__content .osui-datepicker, .osui-botto
 /* disabling due to issues with Sharings. .ubt-bottom-sheet.custom-padding .osui-bottom-sheet__header, .ubt-bottom-sheet.osui-bottom-sheet { --osui-bottom-sheet-layer: 103; }
 .ubt-bottom-sheet.custom-padding.ubt-bottom-sheet--handler-preview .osui-bottom-sheet__header, .ubt-bottom-sheet.osui-bottom-sheet.ubt-bottom-sheet--handler-preview { /*ensure the bottom bar stays on top of this*/ --osui-bottom-sheet-layer: 1006; }
 .connect-share-sheet .osui-bottom-sheet__header__top-bar::before, .connect-share-sheet .osui-bottom-sheet__header::after { display: none; }
+.moreActionContainer .osui-bottom-sheet__header::after { height: 20px; }
 ```
 ### .osui-bottom-sheet__header__top-bar  (9 rules)
 ```css
@@ -1214,7 +1221,7 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 ```
 ## Generic utility classes (too many rules to list; see bundle.css)
 
-`.btn` (61), `.columns` (82), `.columns-item` (71), `.form-control` (75), `.header` (51), `.layout` (53), `.layout-native` (241), `.layout-side` (89), `.list` (92), `.phone` (235)
+`.btn` (61), `.columns` (82), `.columns-item` (71), `.form-control` (79), `.header` (51), `.layout` (53), `.layout-native` (241), `.layout-side` (89), `.list` (93), `.phone` (235)
 
 ## Design tokens referenced by the rules above
 

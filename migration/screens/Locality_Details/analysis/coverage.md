@@ -1,7 +1,7 @@
 # Coverage for Locality_Details
 
-- UI states captured: default, loading, offline
-- Runtime captures: 1 file(s), 40 call(s)
+- UI states captured: default, loading, offline, tag-interchange, tag-oneschoolglobal, tag-suppermeetings
+- Runtime captures: 1 file(s), 48 call(s)
 - Masked text nodes: 64, user images removed: 67
 - Fetch failures during snapshot: 0
 
@@ -12,12 +12,13 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [ ] `App_Policies.Policy_Checker`
 - [ ] `CacheControl.CacheControl_Policies`
 - [ ] `ConnectPatterns.AvatarImage`
-- [ ] `ConnectPatterns.ComingSoon`
+- [ ] `ConnectPatterns.ComingSoon_V2`
 - [ ] `ConnectPatterns.HighlightSearch`
 - [ ] `ConnectPatterns.IconSVG`
 - [ ] `Directory_CommonBlocks.Directory_EmptyState`
 - [ ] `Directory_Household.HouseholdDetails_Block`
 - [ ] `Directory_Locality.Locality_Interchange`
+- [ ] `Directory_Locality.Locality_LocalityContacts`
 - [ ] `Directory_Locality.Locality_OneSchoolGlobal`
 - [ ] `Directory_Locality.Locality_Subdivisions`
 - [ ] `Fingerprint.FingerprintScanner`

@@ -86,9 +86,17 @@ describe('note repository', () => {
         ],
       }),
     ]);
-    expect(page.total).toBe('1');
-    expect(page.items).toHaveLength(1);
-    expect(page.items[0]).toEqual(
+    // The household card and the two OneSchool Global cards of pages/Notes/mocks.ts (OneSchoolGlobalCarousel Q2 (a)).
+    expect(page.total).toBe('3');
+    expect(page.items).toHaveLength(3);
+    expect(
+      page.items
+        .filter((i) => i.noteCategoryId !== 'Household')
+        .map((i) => i.itemId)
+        .sort(),
+    ).toEqual(['1431', '1432']);
+    const household = page.items.find((i) => i.noteCategoryId === 'Household');
+    expect(household).toEqual(
       expect.objectContaining({
         itemId: '1',
         noteCategoryId: 'Household',
@@ -96,13 +104,24 @@ describe('note repository', () => {
         subtitle: 'Northbrook',
       }),
     );
-    expect(page.items[0]?.notes.Total).toBe(3);
-    expect(noteIds(page.items[0]?.notes ?? {})).toEqual(['501', '502', '503']);
+    expect(household?.notes.Total).toBe(3);
+    expect(noteIds(household?.notes ?? {})).toEqual(['501', '502', '503']);
   });
 
   it('fetchNotePills calls Get_NotePills_ByNoteCategoryIds with the category ids', async () => {
     expect(await fetchNotePills(['Household', 'Household'])).toEqual([{ text: 'Household', identifier: 'Household' }]);
-    expect(await fetchNotePills([])).toEqual([]);
+    // An empty list answers the nine pills of the TST capture of 2026-10-29 (pages/Notes/mocks.ts).
+    expect((await fetchNotePills([])).map((p) => p.text)).toEqual([
+      'Assemble',
+      'Feeds',
+      'Households',
+      'Interchange',
+      'LDM',
+      'Members',
+      'OneSchool Global',
+      'Orbit',
+      'Supper Meetings',
+    ]);
     expect(window.__osCalls).toEqual([
       expect.objectContaining({
         module: 'UBTConnect_Notes_MCS',

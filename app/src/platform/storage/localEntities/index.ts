@@ -6,7 +6,6 @@ export {
   delete_LocalNoteById,
   delete_LocalNoteByNoteId,
   get_LocalNoteByNoteId,
-  get_Note_DynamicFilter_YearOptions,
   getLocalNotesByNoteId,
   getLocalNotesByUserId,
   getLocalNotesCategoryIds_ByUserId,

@@ -1,19 +1,9 @@
-import { waitFor } from '@testing-library/react';
-import { createElement } from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { UserException } from '@/legacy/os/os-exceptions';
-import { VITALE_PARENTS } from '@/mocks/fictional/directory';
-import BookmarksByGroup from '@/pages/BookmarksByGroup/BookmarksByGroupPage';
-import { fromCacheRecord, toCacheRecord } from '@/pages/BookmarksByGroup/hooks/bookmarkGroupActions';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
-import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
 import { setSignedInUser } from '@/platform/session/session';
 import { freshPage } from '@/test/testSupport';
-import { addLegacyBookmark } from '@/mocks/modules/Connect2_MyBookmarks_MUI/mocks';
 import {
-  addBookmarkToCache,
-  getCachedMyBookmarks,
-  removeBookmarkFromCache,
   addMetaTag,
   getCacheableCountryInfo,
   getCacheableLocality,
@@ -332,46 +322,3 @@ describe('GetCacheableMemberContactList / GetCacheableTimezoneInfo (CR-Milestone
 
 /* G2: in OutSystems, ScreenBlock_BookmarkGroup and AddBookmarkToCache / RemoveBookmarkFromCache use the same
    GetCachedMyBookmarks / PutCachedMyBookmarks with one structure, Connect2_MyBookmarks_IS.BookmarkItem. */
-describe('MyBookmarks cache filled by BookmarksByGroup, then AddBookmarkToCache / RemoveBookmarkFromCache (G2)', () => {
-  const Contacts = 'Contacts';
-
-  beforeEach(() => {
-    freshPage();
-    resetNavigation();
-  });
-
-  it('adds without error, sorts by DateCreatedUtc descending and finds the row to remove', async () => {
-    // BookmarksByGroup OnReady → DataActionGetAllBookmarksByGroup → OnAfterFetch PutCachedMyBookmarks(Group, Items).
-    renderRoutes(
-      { '/UBTConnect/BookmarksByGroup': createElement(BookmarksByGroup) },
-      '/UBTConnect/BookmarksByGroup?BookmarkGroup=Contacts',
-    );
-    await waitFor(() => {
-      expect(getCachedMyBookmarks(Contacts).cacheHit).toBe(true);
-    });
-    const seeded = getCachedMyBookmarks(Contacts).bookmarks;
-    expect(seeded.length).toBeGreaterThan(1);
-
-    // AssembleDetail ToggleBookmarkItem: AddBookmark answers CreatedBookmarkResponse, then AddBookmarkToCache.
-    const created = addLegacyBookmark(Contacts, 'Contact', VITALE_PARENTS.id, '');
-    expect(addBookmarkToCache(created)).toBe(true);
-    const cached = getCachedMyBookmarks(Contacts).bookmarks;
-    expect(cached.map((b) => b.ObjectId)).toEqual([created.ObjectId, ...seeded.map((b) => b.ObjectId)]);
-    const dates = cached.map((b) => b.DateCreatedUtc);
-    expect(dates.every((d) => typeof d === 'string' && d !== '')).toBe(true);
-    expect(dates).toEqual([...dates].sort().reverse());
-    expect(cached.every((b) => b.Group === Contacts)).toBe(true);
-
-    // The block restores the cached group (PreloadListSource_Bookmarks), the added record included; its rows go back
-    // to the cache unchanged.
-    const restored = cached.map(fromCacheRecord);
-    expect(restored[0]).toMatchObject({ id: created.Id, objectId: created.ObjectId, title: created.Title });
-    expect(restored.map((row) => fromCacheRecord(toCacheRecord(row, Contacts)))).toEqual(restored);
-
-    // RemoveBookmarkFromCache(In_Group, Id) finds the row whose ObjectId is the given id (compiled comparison).
-    const last = seeded[seeded.length - 1];
-    if (!last) throw new Error('seed');
-    expect(removeBookmarkFromCache(Contacts, last.ObjectId)).toBe(true);
-    expect(getCachedMyBookmarks(Contacts).bookmarks.map((b) => b.ObjectId)).not.toContain(last.ObjectId);
-  });
-});

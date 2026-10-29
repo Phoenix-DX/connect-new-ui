@@ -13,6 +13,7 @@ import {
 import { textToLongInteger } from '@/lib/ubtConnectUtils/actions';
 import type { CarouselHouseholdDetailsSlot } from '@/components/directory/CarouselHouseholdDetails';
 import type { CarouselSupperMeetingDetailsSlot } from '@/components/directory/CarouselSupperMeetingDetails';
+import type { CarouselOneSchoolGlobalDetailsSlot } from '@/components/directory/CarouselOneSchoolGlobalDetails';
 import { EntitiesCarouselElement } from '@/components/directory/EntitiesCarouselElement';
 import { EntitiesCarouselHeader } from '@/components/directory/EntitiesCarouselHeader';
 import { BooleanTypes, CarouselNavigation } from '@/lib/ubtConnect/staticEntities';
@@ -42,6 +43,9 @@ export interface EntitiesCarouselProps {
   /** SupperMeeting_DetailsBlock of each supper meeting slide: the page renders the supper meeting details container
       with the slot inputs (a component does not import a container, rule 4). */
   renderSupperMeetingDetails?: (slot: CarouselSupperMeetingDetailsSlot) => ReactNode;
+  /** OneSchoolGlobalDetails_Block of each OneSchool Global slide (EntitiesCarousel_OneSchoolGlobal): the page renders
+      the school details container with the slot inputs (a component does not import a container, rule 4). */
+  renderOneSchoolGlobalDetails?: (slot: CarouselOneSchoolGlobalDetailsSlot) => ReactNode;
 }
 
 /** Swipeable entities carousel of HouseholdCarousel and SupperMeeting_Carousel
@@ -56,6 +60,7 @@ export function EntitiesCarousel({
   onEventMoved,
   renderHouseholdDetails,
   renderSupperMeetingDetails,
+  renderOneSchoolGlobalDetails,
 }: EntitiesCarouselProps) {
   const fallback = useId();
   const prefix = id?.replace('$', '') ?? `entities${fallback}`;
@@ -143,6 +148,7 @@ export function EntitiesCarousel({
                 }}
                 renderHouseholdDetails={renderHouseholdDetails}
                 renderSupperMeetingDetails={renderSupperMeetingDetails}
+                renderOneSchoolGlobalDetails={renderOneSchoolGlobalDetails}
               />
             </div>
           )}

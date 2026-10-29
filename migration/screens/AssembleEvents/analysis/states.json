@@ -24,7 +24,7 @@
   "auto": "loading",
   "htmlClass": "",
   "bodyClass": "phone portrait connect-theme osx is-ltr",
-  "bodyStyle": "--header-size-content: 0px; --footer-height: 46.875px; --viewport-height: 844px;",
+  "bodyStyle": "--header-size-content: 0px; --footer-height: 56px; --viewport-height: 844px;",
   "dpr": 1
  },
  "offline": {

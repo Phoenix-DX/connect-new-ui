@@ -317,6 +317,8 @@ export interface Member {
   DisplayMobilePhone: boolean;
   DisplayAge: boolean;
   UbtAccountNumber: string;
+  Latitude: string /* Decimal as string */;
+  Longitude: string /* Decimal as string */;
 }
 
 export interface Roles {
@@ -403,6 +405,24 @@ export interface GetUserInformationResponse {
   UserInformation: UserInformation;
 }
 
+export interface AssembleEventTypeListItem {
+  Id: string;
+  Title: string;
+}
+
+export interface GetAssembleEventTypesResponse {
+  AssembleEventTypeList: AssembleEventTypeListItem[] /* wire: { List: [...] } */;
+}
+
+export interface AssembleSummaryMeetingList {
+  List: unknown[] /* empty in capture */;
+  EmptyListItem: EmptyListItem;
+}
+
+export interface GetAssembleMeetingSummaryListResponse {
+  AssembleSummaryMeetingList: AssembleSummaryMeetingList;
+}
+
 export interface CountriesItem {
   Code: string;
   Name: string;
@@ -422,15 +442,6 @@ export interface GetCountriesBySubscriptionResponse {
 
 export interface AppManager_AfterInitializeResponse {
   isNotRegistered: boolean;
-}
-
-export interface AssembleEventTypeListItem {
-  Id: string;
-  Title: string;
-}
-
-export interface GetAssembleEventTypesResponse {
-  AssembleEventTypeList: AssembleEventTypeListItem[] /* wire: { List: [...] } */;
 }
 
 export interface OrbitEventTypesItem {
@@ -564,9 +575,13 @@ export interface LocalBookmarkItem {
   Note: string /* "" in capture */;
 }
 
-export interface LocalBookmarksC2 {
-  List: unknown[] /* empty in capture */;
-  EmptyListItem: EmptyListItem;
+export interface LocalBookmarksC2Item {
+  Id: string /* Long Integer as string */;
+  UserId: number;
+  BookmarkId: string /* Long Integer as string */;
+  BookmarkCategoryId: string;
+  ItemId: string /* Long Integer as string */;
+  CreatedAtDateUtc: string /* ISO DateTime */;
 }
 
 export interface LocalNotes {
@@ -576,7 +591,7 @@ export interface LocalNotes {
 
 export interface LocalEntities_App {
   LocalBookmark: LocalBookmarkItem[] /* wire: { List: [...] } */;
-  LocalBookmarksC2: LocalBookmarksC2;
+  LocalBookmarksC2: LocalBookmarksC2Item[] /* wire: { List: [...] } */;
   LocalNotes: LocalNotes;
 }
 
@@ -591,15 +606,6 @@ export interface Sync_Info_GetMainResponse {
   MyEntertainingBaseURL: string;
   FeedBaseURL: string;
   B2CTenant: string;
-}
-
-export interface AssembleSummaryMeetingList {
-  List: unknown[] /* empty in capture */;
-  EmptyListItem: EmptyListItem;
-}
-
-export interface GetAssembleMeetingSummaryListResponse {
-  AssembleSummaryMeetingList: AssembleSummaryMeetingList;
 }
 
 export interface GetNumberUnreadMessagesResponse {

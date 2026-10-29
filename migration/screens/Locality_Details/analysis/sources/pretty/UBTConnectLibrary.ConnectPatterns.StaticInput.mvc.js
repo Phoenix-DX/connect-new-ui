@@ -11,7 +11,7 @@ define("UBTConnectLibrary.ConnectPatterns.StaticInput.mvc$model", ["OutSystems/C
         VariablesRecord.attributesToDeclare = function() {
             return [
                 this.attr("In_Prompt", "in_PromptIn", "In_Prompt", true, false, OS.DataTypes.DataTypes.Text, function() {
-                    return "Search for households. entities, news";
+                    return "Search for households, members or places.";
                 }, false),
                 this.attr("_in_PromptInDataFetchStatus", "_in_PromptInDataFetchStatus", "_in_PromptInDataFetchStatus", true, false, OS.DataTypes.DataTypes.Integer, function() {
                     return /*Fetched*/ 1;
@@ -174,7 +174,7 @@ define("UBTConnectLibrary.ConnectPatterns.StaticInput.mvc$view", ["OutSystems/Cl
                         ;
                     }
                 },
-                style: ("ubt-static-input " + model.variables.in_ExtendedClassesIn),
+                style: ("search-placeholder-ellipsis ubt-static-input " + model.variables.in_ExtendedClassesIn),
                 visible: true,
                 _idProps: {
                     service: idService,
@@ -257,8 +257,8 @@ define("UBTConnectLibrary.ConnectPatterns.StaticInput.mvc$controller", ["OutSyst
         // Event Handler Actions
         Controller.prototype.pushDebuggerContext = function(callContext) {
             var varBag = {};
-            OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:GRnUlqBGNE26Hxr_Ah3_7g:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g:3o_94888UGa0qaomZFOpnQ", "UBTConnectLibrary", "ConnectPatterns", "NRFlows.WebFlow", callContext.id, varBag);
-            OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:+wAagQo3eUehB3hw7egUmQ:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g/NodesShownInESpaceTree.+wAagQo3eUehB3hw7egUmQ:vW9tT_rLEav__VDlcWGylg", "UBTConnectLibrary", "StaticInput", "NRNodes.WebBlock", callContext.id, varBag);
+            OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:GRnUlqBGNE26Hxr_Ah3_7g:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g:Y06DhYqVkffzqTnycnKUGw", "UBTConnectLibrary", "ConnectPatterns", "NRFlows.WebFlow", callContext.id, varBag);
+            OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:+wAagQo3eUehB3hw7egUmQ:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g/NodesShownInESpaceTree.+wAagQo3eUehB3hw7egUmQ:QKRZT+R1FGbWgxatI9ecEw", "UBTConnectLibrary", "StaticInput", "NRNodes.WebBlock", callContext.id, varBag);
         };
         Controller.prototype.popDebuggerContext = function(callContext) {
             OutSystemsDebugger.pop("lAQ0zS6tEEyl6BBIK9yo1A:+wAagQo3eUehB3hw7egUmQ", callContext.id);

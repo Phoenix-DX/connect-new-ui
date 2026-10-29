@@ -1,0 +1,59 @@
+{
+ "default": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/OneSchoolGlobalCarousel?In_StartingObjectId=1430",
+  "via": {
+   "from": "/UBTConnect/Bookmarks",
+   "click": "[data-block='Bookmarks.Bookmarks_Card_Item']",
+   "nth": 2
+  },
+  "steps": [],
+  "scenario": "real",
+  "auto": null,
+  "htmlClass": "popup-disable-scroll",
+  "bodyClass": "phone portrait osx is-ltr",
+  "bodyStyle": "--header-size-content: 0px; --footer-height: 56px; --viewport-height: 844px;",
+  "dpr": 1
+ },
+ "loading": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/OneSchoolGlobalCarousel?In_StartingObjectId=1430",
+  "via": {
+   "from": "/UBTConnect/Bookmarks",
+   "click": "[data-block='Bookmarks.Bookmarks_Card_Item']",
+   "nth": 2
+  },
+  "steps": [],
+  "scenario": "loading",
+  "auto": "loading",
+  "htmlClass": "",
+  "bodyClass": "phone portrait osx is-ltr",
+  "bodyStyle": "--header-size-content: 0px; --footer-height: 56px; --viewport-height: 844px;",
+  "dpr": 1
+ },
+ "offline": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/OneSchoolGlobalCarousel?In_StartingObjectId=1430",
+  "via": {
+   "from": "/UBTConnect/Bookmarks",
+   "click": "[data-block='Bookmarks.Bookmarks_Card_Item']",
+   "nth": 2
+  },
+  "steps": [],
+  "scenario": "error",
+  "auto": "offline",
+  "htmlClass": "popup-disable-scroll",
+  "bodyClass": "phone portrait osx is-ltr",
+  "bodyStyle": "--header-size-content: 0px; --footer-height: 56px; --viewport-height: 844px;",
+  "dpr": 1
+ }
+}

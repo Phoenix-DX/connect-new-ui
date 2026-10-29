@@ -65,3 +65,5 @@ export {
 } from './repository';
 export type * from './types';
 export * from './milestoneBlocks';
+export * from './adminMilestones';
+export * from './adminMilestoneDetail';

@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "126abb1f345d9a4a61cd",
+ "fingerprint": "780259e99b11b96957b2",
  "options": {
   "text": true,
   "style": true,
@@ -27,8 +27,11 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-28T15:16:57.633Z",
- "counts": {},
+ "at": "2026-10-29T07:10:34.906Z",
+ "counts": {
+  "text": 3,
+  "layout": 1
+ },
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
   "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
@@ -65,5 +68,26 @@
   "expected": 8,
   "actual": 8
  },
- "diffs": []
+ "diffs": [
+  {
+   "kind": "text",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b2.OSBlockWidget[Directory_Locality.StatisticsList] > div#b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b1-Content.background-neutral-0.padding-x-base.padding-y-s > div#b2-$b4.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b2-b4-Placeholder_LoadingSection > div#b2-List.OSFillParent.list.list--gap-s > div > div#b2-l1-87_13-$b7.OSBlockWidget[ConnectCorePatterns.Statistics_ListItem] > div#b2-l1-87_13-b7-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-l1-87_13-b7-b1-Content.background-neutral-0.border-color-neutral-3.border-radius-large > div > div#b2-l1-87_13-b7-$b2.OSBlockWidget[BasePatterns.Columns_Two] > div#b2-l1-87_13-b7-b2-$b1.OSBlockWidget[Adaptive.Columns2] > div.columns.columns2.phone-break-none > div#b2-l1-87_13-b7-b2-b1-Column1.columns-item > div#b2-l1-87_13-b7-b2-Left.ubt-columns--column.ubt-columns--left > div.OSInline > div.OSFillParent.list.list-group > div > div#b2-l1-87_13-b7-l1-83_2-$b11.OSBlockWidget[BasePatterns.CustomText] > div.font-semi-bold.font-size-base > span",
+   "detail": "\"34\" → \"33\""
+  },
+  {
+   "kind": "text",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b2.OSBlockWidget[Directory_Locality.StatisticsList] > div#b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b1-Content.background-neutral-0.padding-x-base.padding-y-s > div#b2-$b4.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b2-b4-Placeholder_LoadingSection > div#b2-List.OSFillParent.list.list--gap-s > div > div#b2-l1-87_13-$b7.OSBlockWidget[ConnectCorePatterns.Statistics_ListItem] > div#b2-l1-87_13-b7-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-l1-87_13-b7-b1-Content.background-neutral-0.border-color-neutral-3.border-radius-large > div > div#b2-l1-87_13-b7-$b2.OSBlockWidget[BasePatterns.Columns_Two] > div#b2-l1-87_13-b7-b2-$b1.OSBlockWidget[Adaptive.Columns2] > div.columns.columns2.phone-break-none > div#b2-l1-87_13-b7-b2-b1-Column1.columns-item > div#b2-l1-87_13-b7-b2-Left.ubt-columns--column.ubt-columns--left > div.OSInline > div.OSFillParent.list.list-group > div > div#b2-l1-87_13-b7-l1-83_3-$b11.OSBlockWidget[BasePatterns.CustomText] > div.font-semi-bold.font-size-base > span",
+   "detail": "\"61\" → \"58\""
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b2.OSBlockWidget[Directory_Locality.StatisticsList] > div#b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b1-Content.background-neutral-0.padding-x-base.padding-y-s > div#b2-$b4.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b2-b4-Placeholder_LoadingSection > div#b2-List.OSFillParent.list.list--gap-s > div > div#b2-l1-87_13-$b7.OSBlockWidget[ConnectCorePatterns.Statistics_ListItem] > div#b2-l1-87_13-b7-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-l1-87_13-b7-b1-Content.background-neutral-0.border-color-neutral-3.border-radius-large > div > div#b2-l1-87_13-b7-$b2.OSBlockWidget[BasePatterns.Columns_Two] > div#b2-l1-87_13-b7-b2-$b1.OSBlockWidget[Adaptive.Columns2] > div.columns.columns2.phone-break-none > div#b2-l1-87_13-b7-b2-b1-Column1.columns-item > div#b2-l1-87_13-b7-b2-Left.ubt-columns--column.ubt-columns--left > div.OSInline > div.OSFillParent.list.list-group > div > div#b2-l1-87_13-b7-l1-83_3-$b11.OSBlockWidget[BasePatterns.CustomText] > div.font-semi-bold.font-size-base > span",
+   "detail": "18×18 → 21×18"
+  },
+  {
+   "kind": "text",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b2.OSBlockWidget[Directory_Locality.StatisticsList] > div#b2-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-b1-Content.background-neutral-0.padding-x-base.padding-y-s > div#b2-$b4.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b2-b4-Placeholder_LoadingSection > div#b2-List.OSFillParent.list.list--gap-s > div > div#b2-l1-87_13-$b7.OSBlockWidget[ConnectCorePatterns.Statistics_ListItem] > div#b2-l1-87_13-b7-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b2-l1-87_13-b7-b1-Content.background-neutral-0.border-color-neutral-3.border-radius-large > div > div#b2-l1-87_13-b7-$b2.OSBlockWidget[BasePatterns.Columns_Two] > div#b2-l1-87_13-b7-b2-$b1.OSBlockWidget[Adaptive.Columns2] > div.columns.columns2.phone-break-none > div#b2-l1-87_13-b7-b2-b1-Column1.columns-item > div#b2-l1-87_13-b7-b2-Left.ubt-columns--column.ubt-columns--left > div.OSInline > div.OSFillParent.list.list-group > div > div#b2-l1-87_13-b7-l1-83_4-$b11.OSBlockWidget[BasePatterns.CustomText] > div.font-semi-bold.font-size-base > span",
+   "detail": "\"52\" → \"51\""
+  }
+ ]
 }

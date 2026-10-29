@@ -466,7 +466,7 @@ define("UBTConnect_EmbedFeed.Blocks.Embedded_FeedCMS.mvc$controller", ["OutSyste
                     OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
                 }, callContext, undefined, false).then(function() {
                     OutSystemsDebugger.setThreadStartName(callContext.id, "Blocks/Embedded_FeedCMS/GetFeedConfig On After Fetch");
-                    controller._onAfterFetch_GetFeedConfig$Action(controller.callContext(callContext));
+                    return controller._onAfterFetch_GetFeedConfig$Action(controller.callContext(callContext));
 
                 });
 
@@ -654,40 +654,48 @@ define("UBTConnect_EmbedFeed.Blocks.Embedded_FeedCMS.mvc$controller", ["OutSyste
             controller.ensureControllerAlive("OnAfterFetch_GetFeedConfig");
             callContext = controller.callContext(callContext);
             varBag.callContext = callContext;
-            try {
-                OutSystemsDebugger.push("bCdF3mIZXke12L9HDxk1Qg:Bysuo78XgEeaAEpN0H6NwQ:/NRWebFlows.Gckt5X_GZkCYJZnf68B3CA/NodesShownInESpaceTree.MgoAFZ4OpEqoKEw3X7rgIQ/ClientActions.Bysuo78XgEeaAEpN0H6NwQ:AgOZRSiq1OvIEasGPR63sg", "UBTConnect_EmbedFeed", "OnAfterFetch_GetFeedConfig", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
-                OutSystemsDebugger.handleBreakpoint("bCdF3mIZXke12L9HDxk1Qg:KoeeEj+0hUeCTvyfbE81xw", callContext.id);
-                OutSystemsDebugger.handleBreakpoint("bCdF3mIZXke12L9HDxk1Qg:4_U7fGENKkStUlw55fo8EQ", callContext.id);
-                controller.safeExecuteJSNode(UBTConnect_EmbedFeed_Blocks_Embedded_FeedCMS_mvc_controller_OnAfterFetch_GetFeedConfig_InitializeFeedJS, "InitializeFeed", "OnAfterFetch_GetFeedConfig", {
-                    Channel: OS.DataConversion.JSNodeParamConverter.to("", OS.DataTypes.DataTypes.Text),
-                    B2CClientId: OS.DataConversion.JSNodeParamConverter.to(model.variables.getFeedConfigDataAct.b2CClientIdOut, OS.DataTypes.DataTypes.Text),
-                    B2CTenant: OS.DataConversion.JSNodeParamConverter.to(model.variables.b2CTenantIn, OS.DataTypes.DataTypes.Text),
-                    B2CPolicy: OS.DataConversion.JSNodeParamConverter.to(model.variables.getFeedConfigDataAct.b2CPolicyOut, OS.DataTypes.DataTypes.Text),
-                    TokenType: OS.DataConversion.JSNodeParamConverter.to(model.variables.getFeedConfigDataAct.tokenTypeOut, OS.DataTypes.DataTypes.Text),
-                    ContainerId: OS.DataConversion.JSNodeParamConverter.to(idService.getId("connect2feeds"), OS.DataTypes.DataTypes.Text),
-                    Limit: OS.DataConversion.JSNodeParamConverter.to(10, OS.DataTypes.DataTypes.Integer),
-                    Theme: OS.DataConversion.JSNodeParamConverter.to("light", OS.DataTypes.DataTypes.Text),
-                    BaseURL: OS.DataConversion.JSNodeParamConverter.to(model.variables.getFeedConfigDataAct.baseURLOut, OS.DataTypes.DataTypes.Text),
-                    FeedItemId: OS.DataConversion.JSNodeParamConverter.to(model.variables.feedItemIdIn, OS.DataTypes.DataTypes.Text),
-                    Token: OS.DataConversion.JSNodeParamConverter.to(model.variables.getFeedConfigDataAct.tokenOut, OS.DataTypes.DataTypes.Text)
-                }, function($parameters) {}, {
-                    Action_OnFeedReady: controller.clientActionProxies.action_OnFeedReady$Action,
-                    Action_OnFeedComplete: controller.clientActionProxies.action_OnFeedComplete$Action,
-                    Action_OnFeedShare: controller.clientActionProxies.action_OnFeedShare$Action,
-                    Action_SetListenerScroll: controller.clientActionProxies.action_SetListenerScroll$Action,
-                    Action_OnFeedDownload: controller.clientActionProxies.action_OnFeedDownload$Action,
-                    GetIframeObject: UBTConnect_EmbedFeedController.default.getClientActionProxies(controller).getIframeObject$Action,
-                    GetScrollContainer: UBTConnect_EmbedFeedController.default.getClientActionProxies(controller).getScrollContainer$Action,
-                    JSUtils_Console_Log: UBTJavaScriptUtilsController.default.getClientActionProxies(controller).jSUtils_Console_Log$Action
-                }, {});
-                OutSystemsDebugger.handleBreakpoint("bCdF3mIZXke12L9HDxk1Qg:jHCPlcKh9UGQ16+apcwazg", callContext.id);
-            } catch (ex) {
-                OutSystemsDebugger.handleException(ex, callContext.id);
-                throw ex;
-            } finally {
+            OutSystemsDebugger.push("bCdF3mIZXke12L9HDxk1Qg:Bysuo78XgEeaAEpN0H6NwQ:/NRWebFlows.Gckt5X_GZkCYJZnf68B3CA/NodesShownInESpaceTree.MgoAFZ4OpEqoKEw3X7rgIQ/ClientActions.Bysuo78XgEeaAEpN0H6NwQ:dvi9OeIyN6ZauVUbrkc4ig", "UBTConnect_EmbedFeed", "OnAfterFetch_GetFeedConfig", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.handleBreakpoint("bCdF3mIZXke12L9HDxk1Qg:KoeeEj+0hUeCTvyfbE81xw", callContext.id);
+            return OS.Flow.executeAsyncFlow(function() {
+                OutSystemsDebugger.handleBreakpoint("bCdF3mIZXke12L9HDxk1Qg:rQOnrLJh1UynLtAvIg3r7Q", callContext.id);
+                // Execute Action: RequireScript
+                model.flush();
+                return OS.SystemActions.requireScript((model.variables.getFeedConfigDataAct.baseURLOut + "/embed-feed.js"), callContext).then(function() {
+                    OutSystemsDebugger.handleBreakpoint("bCdF3mIZXke12L9HDxk1Qg:4_U7fGENKkStUlw55fo8EQ", callContext.id);
+                    controller.safeExecuteJSNode(UBTConnect_EmbedFeed_Blocks_Embedded_FeedCMS_mvc_controller_OnAfterFetch_GetFeedConfig_InitializeFeedJS, "InitializeFeed", "OnAfterFetch_GetFeedConfig", {
+                        Channel: OS.DataConversion.JSNodeParamConverter.to("", OS.DataTypes.DataTypes.Text),
+                        B2CClientId: OS.DataConversion.JSNodeParamConverter.to(model.variables.getFeedConfigDataAct.b2CClientIdOut, OS.DataTypes.DataTypes.Text),
+                        B2CTenant: OS.DataConversion.JSNodeParamConverter.to(model.variables.b2CTenantIn, OS.DataTypes.DataTypes.Text),
+                        B2CPolicy: OS.DataConversion.JSNodeParamConverter.to(model.variables.getFeedConfigDataAct.b2CPolicyOut, OS.DataTypes.DataTypes.Text),
+                        TokenType: OS.DataConversion.JSNodeParamConverter.to(model.variables.getFeedConfigDataAct.tokenTypeOut, OS.DataTypes.DataTypes.Text),
+                        ContainerId: OS.DataConversion.JSNodeParamConverter.to(idService.getId("connect2feeds"), OS.DataTypes.DataTypes.Text),
+                        Limit: OS.DataConversion.JSNodeParamConverter.to(10, OS.DataTypes.DataTypes.Integer),
+                        Theme: OS.DataConversion.JSNodeParamConverter.to("light", OS.DataTypes.DataTypes.Text),
+                        BaseURL: OS.DataConversion.JSNodeParamConverter.to(model.variables.getFeedConfigDataAct.baseURLOut, OS.DataTypes.DataTypes.Text),
+                        FeedItemId: OS.DataConversion.JSNodeParamConverter.to(model.variables.feedItemIdIn, OS.DataTypes.DataTypes.Text),
+                        Token: OS.DataConversion.JSNodeParamConverter.to(model.variables.getFeedConfigDataAct.tokenOut, OS.DataTypes.DataTypes.Text)
+                    }, function($parameters) {}, {
+                        Action_OnFeedReady: controller.clientActionProxies.action_OnFeedReady$Action,
+                        Action_OnFeedComplete: controller.clientActionProxies.action_OnFeedComplete$Action,
+                        Action_OnFeedShare: controller.clientActionProxies.action_OnFeedShare$Action,
+                        Action_SetListenerScroll: controller.clientActionProxies.action_SetListenerScroll$Action,
+                        Action_OnFeedDownload: controller.clientActionProxies.action_OnFeedDownload$Action,
+                        GetIframeObject: UBTConnect_EmbedFeedController.default.getClientActionProxies(controller).getIframeObject$Action,
+                        GetScrollContainer: UBTConnect_EmbedFeedController.default.getClientActionProxies(controller).getScrollContainer$Action,
+                        JSUtils_Console_Log: UBTJavaScriptUtilsController.default.getClientActionProxies(controller).jSUtils_Console_Log$Action
+                    }, {});
+                    OutSystemsDebugger.handleBreakpoint("bCdF3mIZXke12L9HDxk1Qg:jHCPlcKh9UGQ16+apcwazg", callContext.id);
+                });
+            }).then(function(res) {
                 OutSystemsDebugger.pop("bCdF3mIZXke12L9HDxk1Qg:Bysuo78XgEeaAEpN0H6NwQ", callContext.id);
-            }
+                return res;
 
+            }).catch(function(ex) {
+                OutSystemsDebugger.handleException(ex, callContext.id);
+                OutSystemsDebugger.pop("bCdF3mIZXke12L9HDxk1Qg:Bysuo78XgEeaAEpN0H6NwQ", callContext.id);
+                throw ex;
+
+            });
         };
         Controller.prototype._action_OnFeedComplete$Action = function(callContext) {
             var varBag = {};
@@ -904,7 +912,7 @@ define("UBTConnect_EmbedFeed.Blocks.Embedded_FeedCMS.mvc$controller", ["OutSyste
         Controller.prototype.pushDebuggerContext = function(callContext) {
             var varBag = {};
             OutSystemsDebugger.push("bCdF3mIZXke12L9HDxk1Qg:Gckt5X_GZkCYJZnf68B3CA:/NRWebFlows.Gckt5X_GZkCYJZnf68B3CA:x8ULQ0mx5rZSvYs3cTLXxw", "UBTConnect_EmbedFeed", "Blocks", "NRFlows.WebFlow", callContext.id, varBag);
-            OutSystemsDebugger.push("bCdF3mIZXke12L9HDxk1Qg:MgoAFZ4OpEqoKEw3X7rgIQ:/NRWebFlows.Gckt5X_GZkCYJZnf68B3CA/NodesShownInESpaceTree.MgoAFZ4OpEqoKEw3X7rgIQ:6VcMMlXlEmJk5TdALsYtjw", "UBTConnect_EmbedFeed", "Embedded_FeedCMS", "NRNodes.WebBlock", callContext.id, varBag);
+            OutSystemsDebugger.push("bCdF3mIZXke12L9HDxk1Qg:MgoAFZ4OpEqoKEw3X7rgIQ:/NRWebFlows.Gckt5X_GZkCYJZnf68B3CA/NodesShownInESpaceTree.MgoAFZ4OpEqoKEw3X7rgIQ:gsgS1VQD5mbSFleIf5nwqg", "UBTConnect_EmbedFeed", "Embedded_FeedCMS", "NRNodes.WebBlock", callContext.id, varBag);
         };
         Controller.prototype.popDebuggerContext = function(callContext) {
             OutSystemsDebugger.pop("bCdF3mIZXke12L9HDxk1Qg:MgoAFZ4OpEqoKEw3X7rgIQ", callContext.id);

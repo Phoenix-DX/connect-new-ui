@@ -2,6 +2,8 @@ import { describe, expect, it, vi } from 'vitest';
 import { getClientVar } from '@/platform/session/session';
 import {
   addExtensionToFile,
+  deserializeQRCodeInformation,
+  getFormattedLocalDateTime,
   checkDirectoryAccess,
   setBookletMaxRows,
   getLocalityName,
@@ -178,5 +180,49 @@ describe('CR-EventBooklet-1 SetBookletMaxRows', () => {
     await setBookletMaxRows();
     expect(getClientVar('Connect2_OrbitMobile_MUI.BookletGuestsMaxRows')).toBe(BOOKLET_MAX_ROWS.guests);
     expect(getClientVar('Connect2_OrbitMobile_MUI.BookletHelpersMaxRows')).toBe(BOOKLET_MAX_ROWS.helpers);
+  });
+});
+
+/* The scan flow of the Orbit admin pages (OrbitAdminEventDetail, OrbitAdminMilestoneDetail; auto decision O2). */
+describe('deserializeQRCodeInformation', () => {
+  it('reads the event id, the member id and the milestone id of a member QR code', () => {
+    expect(deserializeQRCodeInformation('{"eventid":7301,"id":9101,"milestoneid":""}')).toEqual({
+      EventId: '7301',
+      MemberId: '9101',
+      MilestoneId: '',
+    });
+  });
+
+  it('reads the JSON names in any case and numeric texts', () => {
+    expect(deserializeQRCodeInformation('{"EventId":"7301","ID":" 9101 ","MilestoneId":12}')).toEqual({
+      EventId: '7301',
+      MemberId: '9101',
+      MilestoneId: '12',
+    });
+  });
+
+  it('an empty text and missing fields give the default record', () => {
+    expect(deserializeQRCodeInformation('')).toEqual({ EventId: '0', MemberId: '0', MilestoneId: '' });
+    expect(deserializeQRCodeInformation('{}')).toEqual({ EventId: '0', MemberId: '0', MilestoneId: '' });
+  });
+
+  it('a text that is not JSON or a field that is not a number fails as the JSON deserializer', () => {
+    expect(() => deserializeQRCodeInformation('WIFI:S:Hall-Guests;T:WPA;;')).toThrow(
+      /^Failed to deserialize JSON to QRCodeInformation/,
+    );
+    expect(() => deserializeQRCodeInformation('{"eventid":"abc","id":1}')).toThrow(
+      'Failed to deserialize JSON to QRCodeInformation: eventid',
+    );
+  });
+});
+
+describe('getFormattedLocalDateTime (Popup_QRCodeScan of both Orbit admin pages)', () => {
+  it('gives day, 3-letter month and year on the local parts of the date, and h:mm AM/PM when asked', () => {
+    const afternoon = new Date(2026, 9, 29, 14, 5);
+    expect(getFormattedLocalDateTime(afternoon, false, false, false, false, false)).toBe('29 Oct 2026');
+    expect(getFormattedLocalDateTime(afternoon, true, false, false, false, false)).toBe('29 Oct 2026 2:05 PM');
+    expect(getFormattedLocalDateTime(new Date(2026, 0, 3, 0, 30), true, false, false, false, false)).toBe(
+      '3 Jan 2026 12:30 AM',
+    );
   });
 });
