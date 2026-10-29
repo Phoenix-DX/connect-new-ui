@@ -13,8 +13,11 @@ import { Type_ShareObject } from './components/staticEntities';
    - GetAvailableUsers: fictional (person data), as the TST capture of 2026-10-29 (drift wave, messages B3,
      dom/default.html): Label "Locality Members" (unmasked) and, for an empty search, 50 members of one locality (the
      block's MaxRecords 50) in the captured order and word lengths ("Granite Falls, United States": 7 6 6 6 letters).
-     Mock assumption (the server rule is not known, MCP fact M-Q4 open): the answer keeps the members whose FullName
-     holds every word of SearchFilter (Q2), at most MaxRecords.
+     A search (M-Q4 (b), read-only TST probe of 2026-10-29, migration/clarify/tools/probe_share_search.cjs): a non-empty
+     SearchFilter answers Label "" (the title container hides), a term that matches nobody 0 rows, and at most MaxRecords
+     (50) rows; the empty search answers "Locality Members" again. The rows of a search come from the external Directory
+     API (API_Directory_Share_SuggestedUsers_Grouped_GET, MCP row 11b), so the mock keeps the members whose FullName holds
+     every word of SearchFilter (Q2).
    - GetHouseholdDetails: the household of the directory cast (src/mocks/fictional/directory.ts) for the id, else the
      Vitale household (the captured text lengths, dom/default.html:92-106: Bahia Blanca, Argentina); no members
      (captured empty lists).
@@ -130,7 +133,8 @@ export const handlers: RequestHandler[] = [
     ({ SearchFilter = '', MaxRecords }) => {
       const found = users.filter((u) => matches(u, SearchFilter));
       const max = typeof MaxRecords === 'number' && MaxRecords > 0 ? MaxRecords : found.length;
-      return { Label: LABEL, Response: { Type: '', Items: { List: found.slice(0, max) } } };
+      const label = SearchFilter.trim() === '' ? LABEL : '';
+      return { Label: label, Response: { Type: '', Items: { List: found.slice(0, max) } } };
     },
   ),
   contractHandler('Connect2_LegacyShared', 'ServiceAPIGetHouseholdDetails', ({ HouseholdId }) => {

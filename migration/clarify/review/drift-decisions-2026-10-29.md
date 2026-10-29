@@ -108,3 +108,6 @@ False; search and type filters). WP5 Q3 (a) holds (Delete_Notifications reads on
 row 11) waits for Connect2_Sharing_CS (the grouping logic). User decision (2026-10-29), WP6 Q2: (a) the three fetches at
 start whose failure React dropped (FetchEventNotes of EventDetail and LDM_EventDetail_V2, GetCoordinatorDetails) send the
 failure to the flow handler and keep their defaults, as TST (E1, E3).
+User decision (2026-10-29), M-Q4: (b) a read-only TST probe of one search. Result (MCP session row 11c): a search
+answers Label "" and at most 50 rows; the LegacyShareObject mock follows it (parity of LegacyShareObject clean).
+

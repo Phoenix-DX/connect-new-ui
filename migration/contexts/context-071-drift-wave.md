@@ -29,10 +29,10 @@
   ItemCard_WithNotes, flags registry; `migration/parity-exemptions.json`, `migration/flags.{json,md}`.
 
 ## Open issues
-- M-Q4 LegacyShareObject: the group rule is in the external Directory API (MCP row 11b); user chose (b) a read-only
-  TST probe of one search, then the mock follows.
+- M-Q4 done after the commit: read-only TST probe (user b, MCP row 11c): a search answers Label "" and at most 50
+  rows; the mock follows (LegacyShareObject parity clean).
 - `flags.py export` would change the routes of 12 flags (refreshed survey): sync not done.
 - EmptyListBorderless moved into EmptyState by the jscpd fix, against Notes Q10: to report.
 
 ## Next
-- The M-Q4 probe; then the follow-ups in `../clarify/builds/README.md`.
+- The follow-ups in `../clarify/builds/README.md`; the reversible items and the flags route sync for the user.

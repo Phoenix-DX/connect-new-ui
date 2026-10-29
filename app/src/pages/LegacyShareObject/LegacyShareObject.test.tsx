@@ -78,6 +78,8 @@ describe('LegacyShareObject', () => {
     await waitFor(() => {
       expect(container.querySelector('#b1-b8-l1-39_0-b3-Contents mark')?.textContent).toBe('Hutch');
     });
+    // a search answers Label "" (TST probe of 2026-10-29, M-Q4 b): the title container hides
+    expect(container.querySelector('.share-with-input .text-bold')).toBeNull();
     fireEvent.change(searchInput(container), { target: { value: 'Ngaio' } });
     fireEvent.keyUp(searchInput(container), { key: 'Enter' });
     await waitFor(() => {
@@ -87,6 +89,7 @@ describe('LegacyShareObject', () => {
     await waitFor(() => {
       expect(shareIcons(container)).toHaveLength(50);
     });
+    expect(container.querySelector('.share-with-input .text-bold')?.textContent).toBe('Locality Members');
     fireEvent.click(shareIcons(container)[0] as Element);
     await waitFor(() => {
       expect(container.querySelector('.fa-check-circle')).not.toBeNull();
