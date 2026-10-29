@@ -262,8 +262,12 @@ def render(a, st):
     L += [f"| `{k}` | {v} | dev |" for k, v in sorted(st["devDependencies"].items())]
     L += ["", "## Consistency rules (consistency_check.py)", ""]
     r = st["rules"]
-    L += [f"- Required files per route: {', '.join(r['requiredFiles'])}; when the route has calls also {', '.join(r['requiredIfCalls'])}",
-          f"- Imports allowed from: the route's own folder, {', '.join(r['allowedImportRoots'])}, and allowed packages",
+    # requiredIfCalls and allowedImportRoots were dropped after the page-template refactor (user, 2026-10-29, I10-5 a):
+    # folder imports are checked by `npm run arch`. Old stack.json files that still have them are rendered as before.
+    L += [f"- Required files per route (in app/src/pages/<S>/, {{screen}} = route name): {', '.join(r.get('requiredFiles', []))}"
+          + (f"; when the route has calls also {', '.join(r['requiredIfCalls'])}" if r.get("requiredIfCalls") else ""),
+          f"- Imports allowed from: the route's own folder, {', '.join(r['allowedImportRoots'])}, and allowed packages"
+          if r.get("allowedImportRoots") else "- Imports: packages only from the allow-list; folder imports are checked by `npm run arch`",
           *[f"- {f['id']}: {f['why']}" for f in r["forbidden"]]]
     L += ["", "## Patterns", "", "| ID | Title | Status | Applies when | Reference |", "|---|---|---|---|---|"]
     for p in all_patterns(a):
@@ -320,8 +324,7 @@ def cmd_init(a):
                           "status": "proposed", "value": None, "by": None, "at": None, "note": ""})
     st = {"app": app, "status": "draft", "items": items, "dependencies": dict(BASE_DEPS), "devDependencies": dict(BASE_DEV),
           "rules": {
-              "requiredFiles": ["index.tsx"], "requiredIfCalls": ["api.ts", "mocks.ts", "types.ts"],
-              "allowedImportRoots": ["src/shared", "src/shell", "src/lib", "src/components", "src/mocks"],
+              "requiredFiles": ["{screen}Page.tsx"],   # page template: app/src/pages/<S>/<S>Page.tsx; imports: npm run arch
               "forbidden": [
                   {"id": "NO-RAW-FETCH", "regex": r"\bfetch\s*\(|\baxios\b|XMLHttpRequest", "files": "*", "why": "server calls only through callAction in api.ts"},
                   {"id": "NO-BROWSER-STORAGE", "regex": r"\b(localStorage|sessionStorage|indexedDB)\b", "files": "*", "why": "no tokens or personal data in browser storage; use the shell's stores"},

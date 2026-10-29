@@ -30,11 +30,13 @@ Which actions (scope)
     it missed calls TST added after the survey and depended on actions.md being regenerated after a scope change.)
 
 Evidence (types are never guessed)
-  * Compiled code, newest TST copy per file name: route captures (migration/screens/*/analysis/sources/raw), files
-    fetched read-only into migration/runtime-sources (knowledge/runtime-sources.md) and producer-module *.model.js in
-    migration/contract/sources/raw, the most recently written copy winning; capture/survey-UBTConnect.json (static
-    survey of 2026-10-13, all screens and blocks) only for files no later fetch has. TST changed after the survey, and
-    a survey .mvc.js read with a newer *.model.js leaves structures unresolved (ScannedUserRec moved modules).
+  * Compiled code, one copy per file name, live TST first (user decision I10-6 (a), 2026-10-29): 1. the live survey
+    capture/survey-UBTConnect.json, 2. files fetched read-only into migration/runtime-sources (knowledge/
+    runtime-sources.md), 3. producer-module *.model.js in migration/contract/sources/raw and route captures
+    (migration/screens/*/analysis/sources/raw), newest file first. If the live survey is missing (it is not committed)
+    a warning is printed and the old order applies: fetched copies newest first, then the survey of 2026-10-13
+    (capture/survey-UBTConnect-2026-10-13.json). A route capture copy can be older than TST (Notifications.mvc.js
+    of 2026-10-14 lacks ActionMarkAsRead), so it must not win over the live code.
     Parsed constructs:
       - records:     define("<M>.model$<Name>") ... this.attr("Name", "nameAttr", "JsonName", mandatory, isId,
                      OS.DataTypes.DataTypes.<T>, default, ?, <ComplexType>)   (wire key = first argument)
@@ -106,6 +108,7 @@ from collections import defaultdict
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
 SK = os.path.join(ROOT, ".claude", "skills", "outsystems-screen-spec", "scripts")
 SURVEY = os.path.join(ROOT, "capture", "survey-UBTConnect.json")
+OLD_SURVEY = os.path.join(ROOT, "capture", "survey-UBTConnect-2026-10-13.json")
 SCREENS_DIR = os.path.join(ROOT, "migration", "screens")
 RUNTIME_SOURCES = os.path.join(ROOT, "migration", "runtime-sources")  # files fetched read-only from TST (knowledge/runtime-sources.md)
 CONTRACT_SOURCES = os.path.join(ROOT, "migration", "contract", "sources", "raw")  # producer *.model.js fetched from TST
@@ -253,21 +256,43 @@ class Sources:
         # the Orbit / Assemble modules: ScreenBlock_OrbitLanding gained Handle_ViewPassportDetails, ScannedUserRec moved
         # from Connect2_OrbitMobile_MUI to Connect2_OrbitMobile_BL), and mixing a survey .mvc.js with a newer *.model.js
         # leaves its structures unresolved.
-        fetched = glob.glob(os.path.join(SCREENS_DIR, "*", "analysis", "sources", "raw", "*.js")) + \
-            glob.glob(os.path.join(RUNTIME_SOURCES, "*.js")) + glob.glob(os.path.join(CONTRACT_SOURCES, "*.js"))
-        for p in sorted(fetched, key=lambda p: (-os.path.getmtime(p), p)):
-            b = os.path.basename(p)
-            if b not in self.text:
-                self.text[b] = open(p, encoding="utf-8").read()
-                self.origin[b] = rel(p)
-        survey = json.load(open(SURVEY))
+        # Order (user decision I10-6 (a), 2026-10-29; live TST code is the source of truth, context-062): 1. the live
+        # survey (capture/survey-UBTConnect.json), 2. migration/runtime-sources, 3. producer models in
+        # migration/contract/sources/raw and route captures (migration/screens/*/analysis/sources/raw), newest file
+        # first, 4. nothing else. If the live survey is missing (it is not committed) the old order applies: fetched
+        # copies by modification time, the older survey (capture/survey-UBTConnect-2026-10-13.json) as the last resort.
         norm = lambda t: t.replace("\ufeff", "").replace("\r\n", "\n").strip()  # BOM, line endings
-        self.newer_than_survey = sorted(b for b in self.text if b in survey["sources"]
-                                        and norm(self.text[b]) != norm(survey["sources"][b]))
-        for name, txt in survey["sources"].items():
-            if name not in self.text:
+        live = os.path.isfile(SURVEY)
+        if live:
+            survey = json.load(open(SURVEY))
+        else:
+            print(f"WARNING: live survey {rel(SURVEY)} is missing; using the old source order (newest fetched copy "
+                  f"wins, then {rel(OLD_SURVEY)}). The result may miss changes TST published after 2026-10-13.",
+                  file=sys.stderr)
+            survey = json.load(open(OLD_SURVEY))
+        if live:
+            for name, txt in survey["sources"].items():
                 self.text[name] = txt
                 self.origin[name] = "capture/survey-UBTConnect.json#" + name
+        by_age = lambda ps: sorted(ps, key=lambda p: (-os.path.getmtime(p), p))
+        tiers = [glob.glob(os.path.join(RUNTIME_SOURCES, "*.js")),
+                 glob.glob(os.path.join(CONTRACT_SOURCES, "*.js")) +
+                 glob.glob(os.path.join(SCREENS_DIR, "*", "analysis", "sources", "raw", "*.js"))]
+        if not live:
+            tiers = [tiers[0] + tiers[1]]
+        for tier in tiers:
+            for p in by_age(tier):
+                b = os.path.basename(p)
+                if b not in self.text:
+                    self.text[b] = open(p, encoding="utf-8").read()
+                    self.origin[b] = rel(p)
+        self.newer_than_survey = sorted(b for b in self.text if b in survey["sources"] and not self.origin[b].startswith("capture/")
+                                        and norm(self.text[b]) != norm(survey["sources"][b]))
+        if not live:
+            for name, txt in survey["sources"].items():
+                if name not in self.text:
+                    self.text[name] = txt
+                    self.origin[name] = rel(OLD_SURVEY) + "#" + name
         self.defines: dict[str, list[Define]] = {}
         self.def_starts: dict[str, list[int]] = {}
         self.mvc_deps: dict[str, set[str]] = defaultdict(set)  # .mvc.js file -> the .mvc.js files it requires

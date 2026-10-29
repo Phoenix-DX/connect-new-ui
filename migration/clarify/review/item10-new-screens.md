@@ -197,3 +197,44 @@ blocked service workers.
 | OrbitAdminMilestoneDetail | 17,255 | 2 (117,179) | layouts, `OrbitErrorMessage` | none (from OrbitAdminMilestones) |
 | OneSchoolGlobalCarousel | 27,979 | 1 (16,000) | `EntitiesCarousel`, OSG details | Notes filter branch |
 | Bookmarks | 94,500 | 3 (98,903) | Notes blocks, `FilterSheet` | bottom bar, `FLAG_REDIRECTS` |
+
+## 10. Capture results and user decisions (2026-10-29)
+
+Capture results (TST, read-only guard on):
+
+| Screen | Result | Evidence |
+|---|---|---|
+| NotificationDetails | Captured with a notification that is already read (no `MarkAsRead` on the way). | `migration/clarify/tools/probe_notification_ids.cjs` (273 items, 2 read) |
+| Bookmarks | Captured. The test account has no bookmarks, so the list is empty. | `migration/screens/Bookmarks/analysis/` |
+| OneSchoolGlobalCarousel | Captured by URL. With no preload object, the carousel has no items. | `OneSchoolGlobalCarousel.mvc.js:343-370` |
+| PassportScan | Not reachable. "View Passport details" does nothing for the test account: the handler navigates only when `IsFetchingData` is false and `CurrentMemberId` is not 0. | `ScreenBlock_OrbitLanding.mvc.js:1989`; `migration/clarify/tools/probe_passport_entry.cjs` (no navigation, no call in 22 s) |
+| PassportScan | The block puts an iframe of the external Orbit Passport portal in a container. The portal signs in with the B2C id token and asks the host for a camera picture. | `migration/runtime-sources/OrbitPassportScanC2.PassportScan.js:1-40, 213-245` |
+| OrbitAdminMilestones, OrbitAdminMilestoneDetail | Not capturable: the test account has no admin events (OrbitAdminLanding shows `NoInformation_Orbit`). | `probe-new-screens.json` `orbitAdminLanding` |
+
+User decisions (2026-10-29):
+
+| Id | Question | Answer |
+|---|---|---|
+| I10-1 | `route.py` still uses the layout from before the refactor (`app/src/screens/<S>/index.tsx`, `route.py:859`; mock check and parity fingerprint `route.py:683, 834`). | (a) Change `route.py` to the current layout (`pages/<S>/<S>Page.tsx`; all `mocks.ts` of `app/src`; fingerprint with `pages/<S>`, `api`, `containers`, `components`, `platform`, `legacy`). Update the path tables of `route-agent.md` and `migration/AGENTS.md`. Test the script. |
+| I10-2 | PassportScan | (a) No capture. Build the host screen from the compiled code. In the demo, the iframe opens a local fake portal page that answers the `postMessage` handshake and shows fictional passport data. No parity: the user reviews it. |
+| I10-3 | OrbitAdminMilestones and OrbitAdminMilestoneDetail | (a) No capture for both, as OrbitAdminEventDetail (user, 2026-10-16). Build from the compiled code and MCP, with meaningful fictional mocks, and the OrbitAdminLanding branch on `GetMilestoneScanFF` (N1). `GetScanMilestoneQRCode` is only mocked. No parity: the user reviews it. |
+| I10-4 | Bookmarks and OneSchoolGlobalCarousel: the states with data are not capturable. | (a) As Notes (user, 2026-10-15): parity compares the captured state with the `empty` mock scenario. The default mock has fictional data (bookmark cards, OSG carousel items), built from the compiled code; the user reviews it. |
+| I10-5 | `route.py ready` still runs `consistency_check.py` with the old `stack.json` rules and `scope_guard.py` against `main`. | (a) Use the refactor gates: drop `requiredIfCalls` and `allowedImportRoots` (recorded in `stack.json` `_changes`), check imports with `npm run arch`, keep the `forbidden` rules on `pages/<S>`, required file `<S>Page.tsx`. Scope guard: base is the commit at `route.py start` (in `run.json`); allowed are `pages/<S>`, `migration/screens/<S>` and the folders that the page template lets a route change (`api`, `components`, `containers`, `mocks`, `app/routes`). |
+| I10-6 | NotificationDetails Q1: the contract has no FetchMessageInstance and no MarkAsRead; `contract_gen.py` reads the old route copy of `Notifications.mvc.js`. | (a) Fix the source choice (the live TST code wins). Regenerate `openapi.yaml` when Bookmarks retires MyBookmarks and BookmarksByGroup, run `npm run gen:api`, remove the interim `@ts-expect-error` lines. The diff of other operations goes to the user. |
+| I10-7 | NotificationDetails Q2: `scaffold_react_app.py --update-routes` reads `migration/survey` of 2026-10-13. | (a) Update only the screen and route list of `migration/survey` from the live survey. Re-run `--update-routes` and check the diff. |
+| I10-8 | NotificationDetails Q3 (fact): what FetchMessageInstance returns for an unknown id. MCP (DEV): it calls the service action `Get_UI_NotificationDetails` of `Connect2_Notification_CS`, which is not open in Service Studio. | (a) Read-only probe on TST with an unknown id. Result (2026-10-29, `probe_notification_unknown.cjs`, id 1): HTTP 200 with the empty record (Id "0", empty texts, date 1900-01-01), no exception, no toast. The React mock matches. |
+
+MCP note (DEV, 2026-10-29): NotificationDetails has the roles `UBTOne_User` and `Registered`. TST compiles this to
+`checkRegistered()` only (`NotificationDetails.mvc.js:577`), because `Registered` is in the list. No difference.
+
+User decisions on the pipeline tooling (2026-10-29, after `migration/clarify/builds/item10-routepy.md` and
+`item10-tooling.md`):
+
+| Id | Question | Answer |
+|---|---|---|
+| I10-9 | The `forbidden` rules give false hits after the refactor (`NO-RAW-FETCH` matches `flow.fetch(`; rules match test files). | (a) Skip `*.test.*`, `*.spec.*`, `*.stories.*`; `NO-RAW-FETCH` regex `(?<![.\w])fetch\s*\(`. Done: `consistency_check.py`, `migration/stack.json` `_changes`, 2 tests. |
+| I10-10 | The scope guard on a shared branch. | (a) Also allow the pipeline outputs `migration/knowledge/**`, `migration/runtime-sources/**`, `migration/survey/**`, `migration/screens/_capture-summary.json`. Skill scripts, platform and finished pages stay flagged; an entry change in a finished page goes to the user, then `--allow`. Done: `scope_guard.py`, 1 test. |
+| I10-11 | Old paths in the other skill docs and in `scaffold_react_app.py`. | (a) Update the docs (no scaffold code change). |
+| — | `adaptivecards` is not in the `stack.json` allow-list. | Settled by an earlier decision: PD7 (user, 2026-10-28, `app/docs/reference/stack.md:53`). Added with a `_changes` line. |
+| — | Tooling Q1: 3 red tests in `routes.test.ts` (the MyBookmarks rows left `routes.generated.ts`). | Ordering only: the Bookmarks route removes the redirect and fixes the tests in this wave (user decision of 2026-10-28, retire MyBookmarks). |
+| — | Tooling Q2: refresh the other rows of `migration/survey`? | No: I10-7 asked for the screen and route list only. |

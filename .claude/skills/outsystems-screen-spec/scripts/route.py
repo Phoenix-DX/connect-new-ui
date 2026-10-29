@@ -41,7 +41,12 @@ its last review checkpoint (feedback items it was working on go back to open); u
 Starting and finishing require the architecture and stack confirmed by the user (stack.py), and finishing requires
 consistency_check.py to pass for the route.
 
-RESET deletes:  app/src/screens/<S>/, migration/screens/<S>/{parity/, run.json, finished.json, checkpoint/},
+Code layout (page template, app/docs/guides/page-template.md; user, 2026-10-29, I10-1 a): the route's own code is
+app/src/pages/<S>/ with <S>Page.tsx. Shared code a route may also change (api/, components/, containers/, mocks/) is not
+part of its checkpoint or reset; the parity fingerprint covers it. `start` records `startCommit` (git HEAD) in run.json:
+the scope guard diffs from it. `ready` also runs `npm --prefix app run arch` (imports) and fails on its error.
+
+RESET deletes:  app/src/pages/<S>/, migration/screens/<S>/{parity/, run.json, finished.json, checkpoint/},
                 open change requests raised by this route (migration/change-requests/CR-<S>-*.md)
        and, with --recapture or when the capture is incomplete: capture/ and analysis/.
        pack.md, route-spec.md and spec.complete.json are KEPT when the spec was recorded with `spec-done` and its inputs
@@ -90,6 +95,26 @@ class Ctx:
     def set_status(self, s, st):
         self.rows[s]["Status"] = st
         self.save()
+
+
+# ------------------------------------------------------------------ code layout (page template)
+def page_dir(c, s):
+    """The route's own code: app/src/pages/<S>/ (refactor plan v2, page template)."""
+    return os.path.join(c.app, "src", "pages", s)
+
+
+def page_file(c, s):
+    """The route component that the build gate requires: app/src/pages/<S>/<S>Page.tsx."""
+    return os.path.join(page_dir(c, s), f"{s}Page.tsx")
+
+
+def head_commit():
+    """git HEAD of the working tree, or '' outside git."""
+    try:
+        r = subprocess.run(["git", "rev-parse", "HEAD"], capture_output=True, text=True)
+    except FileNotFoundError:
+        return ""
+    return r.stdout.strip() if r.returncode == 0 else ""
 
 
 # ------------------------------------------------------------------ questions
@@ -157,7 +182,7 @@ def make_checkpoint(c, s, round_no):
     if os.path.isdir(d):
         shutil.rmtree(d)
     os.makedirs(d)
-    code = os.path.join(c.app, "src", "screens", s)
+    code = page_dir(c, s)   # only the page folder: shared api/components/containers/mocks are not checkpointed
     if os.path.isdir(code):
         shutil.copytree(code, os.path.join(d, "code"))
     for x in ("route-spec.md", SPEC_DONE, "parity"):
@@ -173,7 +198,7 @@ def restore_checkpoint(c, s):
     d = cp_dir(c, s)
     if not os.path.isdir(d):
         return False
-    code = os.path.join(c.app, "src", "screens", s)
+    code = page_dir(c, s)
     if os.path.isdir(code):
         shutil.rmtree(code)
     if os.path.isdir(os.path.join(d, "code")):
@@ -237,7 +262,7 @@ def capture_ok(c, s):
 
 def fingerprint(c, s):
     files = {}
-    root = os.path.join(c.app, "src", "screens", s)
+    root = page_dir(c, s)
     for p in sorted(glob.glob(os.path.join(root, "**", "*"), recursive=True)):
         if os.path.isfile(p):
             files[os.path.relpath(p, c.app)] = hashlib.sha256(open(p, "rb").read()).hexdigest()[:16]
@@ -252,7 +277,10 @@ def finished_state(c, s):
         f = json.load(open(os.path.join(c.rdir(s), "finished.json"), encoding="utf-8"))
     except (OSError, ValueError):
         return "finished"  # finished before route.py was used (imported status)
-    return "finished" if f.get("files") == fingerprint(c, s) else "modified"
+    files = f.get("files") or {}
+    if files and all(k.startswith("src/screens/") for k in files):
+        return "finished"  # recorded in the old layout (src/screens/<S>) before the refactor: not comparable, keep the state
+    return "finished" if files == fingerprint(c, s) else "modified"
 
 
 # ------------------------------------------------------------------ commands
@@ -353,7 +381,7 @@ def do_reset(c, s, recapture=False, why="reset", keep_spec=True):
     removed = []
     kept_spec = keep_spec and not recapture and not spec_reuse_problems(c, s)
     gen = ("parity", "run.json", "finished.json", "checkpoint") + (() if kept_spec else ("pack.md", "route-spec.md", SPEC_DONE))
-    targets = [os.path.join(c.app, "src", "screens", s)] + [os.path.join(d, x) for x in gen]
+    targets = [page_dir(c, s)] + [os.path.join(d, x) for x in gen]   # shared api/components/containers/mocks are kept
     targets += glob.glob(os.path.join(c.mig, "change-requests", f"CR-{s}-*.md"))
     if recapture or not capture_ok(c, s):
         targets += [os.path.join(d, "capture"), os.path.join(d, "analysis")]
@@ -456,12 +484,15 @@ def cmd_start(c, a):
     if oq and not a.force:
         sys.exit(f"{s}: blocking questions still open ({', '.join(q['id'] for q in oq)}); ask the user first")
     if fs or a.from_scratch or r["Status"] in INTERRUPTED or r["Status"] in ("waiting", "review", "fixing") or os.path.exists(run_path(c, s)) \
-            or os.path.isdir(os.path.join(c.app, "src", "screens", s)):
+            or os.path.isdir(page_dir(c, s)):
         removed = do_reset(c, s, a.recapture, why=f"reset before start (was {r['Status']})", keep_spec=not a.from_scratch)
         print(f"{s}: reset ({len(removed)} item(s) removed)")
     spec_kept = os.path.exists(os.path.join(c.rdir(s), SPEC_DONE)) and not a.from_scratch and not spec_reuse_problems(c, s)
     run = {"runId": now(), "owner": a.owner or "", "startedAt": now(), "step": "build" if spec_kept else "start",
            "captureReused": capture_ok(c, s), "specReused": spec_kept}
+    start_commit = head_commit()
+    if start_commit:
+        run["startCommit"] = start_commit   # the scope guard diffs from here (I10-5 a)
     os.makedirs(c.rdir(s), exist_ok=True)
     json.dump(run, open(run_path(c, s), "w"), indent=1)
     c.rows[s]["Owner"] = a.owner or ""
@@ -680,7 +711,10 @@ def cmd_spec_done(c, a):
 
 
 # ------------------------------------------------------------------ parity runs and their fingerprint
-PARITY_SHARED = ("src/shell", "src/shared", "src/lib", "src/components", "src/mocks", "src/app", "public/UBTConnect", "index.html")
+# Shared inputs of every parity report (page template layout, user 2026-10-29, I10-1 a). src/shell and src/shared were
+# removed by the refactor. A change here makes all reports made before it stale (finished routes keep their state).
+PARITY_SHARED = ("src/api", "src/containers", "src/components", "src/platform", "src/legacy", "src/lib", "src/mocks",
+                 "src/app", "src/styles", "src/vendor", "public/UBTConnect", "index.html")
 
 
 def load_states(c, s):
@@ -697,19 +731,21 @@ def load_states(c, s):
     return st
 
 
-def parity_fingerprint(c, s, state):
-    """Hash of everything a parity report depends on: route code, shell/shared/lib/mocks, legacy CSS, exemptions,
-    the captured reference of the state, its metadata and the call reference. Any change makes the report stale."""
+def parity_fingerprint(c, s, state, cache=None):
+    """Hash of everything a parity report depends on: the page (src/pages/<S>), the shared inputs (PARITY_SHARED: api,
+    containers, components, platform, legacy, lib, mocks, app, styles, vendor, legacy CSS, index.html), exemptions,
+    the captured reference of the state, its metadata and the call reference. Any change makes the report stale.
+    `cache` (a dict, one per command) keeps the digests of folders while several states are checked in one run."""
     h = hashlib.sha256()
-    parts = [os.path.join(c.app, "src", "screens", s)] + [os.path.join(c.app, x) for x in PARITY_SHARED]
+    parts = [page_dir(c, s)] + [os.path.join(c.app, x) for x in PARITY_SHARED]
     an = os.path.join(c.rdir(s), "analysis")
     parts += [os.path.join(c.mig, "parity-exemptions.json"), os.path.join(an, "dom", f"{state}.raw.html"), os.path.join(an, "calls.json")]
+    cache = {} if cache is None else cache
     for p in parts:
         h.update(p.encode("utf-8"))
-        if os.path.isdir(p):
-            h.update((sha_tree(p) or "").encode("utf-8"))
-        else:
-            h.update((sha_file(p) or "-").encode("utf-8"))
+        if p not in cache:
+            cache[p] = (sha_tree(p) or "") if os.path.isdir(p) else (sha_file(p) or "-")
+        h.update(cache[p].encode("utf-8"))
     h.update(json.dumps(load_states(c, s).get(state, {}), sort_keys=True).encode("utf-8"))
     return h.hexdigest()[:20]
 
@@ -756,6 +792,7 @@ def cmd_parity(c, a):
         ex = json.load(open(exf, encoding="utf-8"))
     script = os.path.join(os.path.dirname(os.path.abspath(__file__)), "parity_check.cjs")
     bad = 0
+    fp_cache = {}
     for st, meta in sorted(states.items()):
         if a.state and st != a.state:
             continue
@@ -768,7 +805,7 @@ def cmd_parity(c, a):
             bad += 1
             continue
         cmd = [a.node, script, "--app", a.app, "--route", route_url(c, s, meta), "--expect", raw, "--state", st,
-               "--out", os.path.join(c.rdir(s), "parity", f"{st}.json"), "--fingerprint", parity_fingerprint(c, s, st)]
+               "--out", os.path.join(c.rdir(s), "parity", f"{st}.json"), "--fingerprint", parity_fingerprint(c, s, st, fp_cache)]
         if os.path.exists(os.path.join(an, "states.json")):
             cmd += ["--states", os.path.join(an, "states.json")]
         scenario = plan_scenarios(c, s).get(st)   # capture-plan `scenarios`: a state's mock scenario chosen by the user
@@ -801,6 +838,7 @@ def parity_problems(c, s):
         ex = json.load(open(exf, encoding="utf-8")).get("ignoreStates", {})
     states = load_states(c, s)
     has_calls = os.path.exists(os.path.join(c.rdir(s), "analysis", "calls.json"))
+    fp_cache = {}
     for st, meta in sorted(states.items()):
         if st in ex:
             continue
@@ -809,7 +847,7 @@ def parity_problems(c, s):
             problems.append(f"parity report missing for state {st} (route.py parity {s} --app <url>)")
             continue
         rep = json.load(open(rp, encoding="utf-8"))
-        if rep.get("fingerprint") != parity_fingerprint(c, s, st):
+        if rep.get("fingerprint") != parity_fingerprint(c, s, st, fp_cache):
             problems.append(f"parity {st}: report is stale or not made by route.py parity (code, CSS, mocks, exemptions or reference changed since)")
             continue
         if not (rep.get("options") or {}).get("full"):
@@ -824,17 +862,29 @@ def parity_problems(c, s):
     return problems
 
 
+MOCK_CODE = (".ts", ".tsx", ".js", ".mjs", ".cjs")
+
+
+def mock_sources(c):
+    """Where MSW handlers live after the refactor (user, 2026-10-29, I10-1 a): every `mocks.ts` in app/src (pages,
+    containers, platform, ...) and every source file under app/src/mocks/ (modules, fictional data, store, handlers).
+    Tests and stories are left out (they name actions without handling them); recorded fixture data (JSON) is
+    covered by the recordedHandlers rule below."""
+    src = os.path.join(c.app, "src")
+    found = {p for p in glob.glob(os.path.join(src, "**", "mocks.ts"), recursive=True) if os.path.isfile(p)}
+    for p in glob.glob(os.path.join(src, "mocks", "**", "*"), recursive=True):
+        if os.path.isfile(p) and p.endswith(MOCK_CODE) and not re.search(r"\.(test|spec|stories)\.", os.path.basename(p)):
+            found.add(p)
+    return sorted(found)
+
+
 def mock_coverage_problems(c, s):
     """Every service call the route makes in the capture (any phase, any flag variant) has a mock handler."""
     try:
         ref = json.load(open(os.path.join(c.rdir(s), "analysis", "calls.json"), encoding="utf-8"))
     except (OSError, ValueError):
         return []
-    texts = []
-    for root in (os.path.join(c.app, "src", "screens", s), os.path.join(c.app, "src", "shell"), os.path.join(c.app, "src", "shared")):
-        for p in glob.glob(os.path.join(root, "**", "mocks.ts"), recursive=True):
-            texts.append(open(p, encoding="utf-8", errors="ignore").read())
-    text = "\n".join(texts)
+    text = "\n".join(open(p, encoding="utf-8", errors="ignore").read() for p in mock_sources(c))
     fx = os.path.join(c.app, "src", "mocks", "fixtures")
     missing = {}
     for c0 in ref.get("calls", []) + [x for v in (ref.get("variants") or {}).values() for x in v]:
@@ -851,13 +901,39 @@ def mock_coverage_problems(c, s):
             for k, v in sorted(missing.items())]
 
 
+def page_problems(c, s):
+    """The page-template gate: the route component app/src/pages/<S>/<S>Page.tsx exists."""
+    p = page_file(c, s)
+    return [] if os.path.exists(p) else [f"{c.app}/src/pages/{s}/{s}Page.tsx missing (page template: app/docs/guides/page-template.md)"]
+
+
+def arch_problems(c):
+    """`npm --prefix <app> run arch` (dependency-cruiser over src, known violations ignored) checks every import of
+    pages, api, components, containers and platform (user, 2026-10-29, I10-5 a). Any error fails the gate."""
+    pkg = os.path.join(c.app, "package.json")
+    try:
+        scripts = json.load(open(pkg, encoding="utf-8")).get("scripts") or {}
+    except (OSError, ValueError):
+        return [f"{pkg} missing or unreadable: npm run arch cannot run"]
+    if "arch" not in scripts:
+        return [f"{pkg} has no 'arch' script: the import check cannot run"]
+    try:
+        r = subprocess.run(["npm", "--prefix", c.app, "run", "arch"], capture_output=True, text=True)
+    except FileNotFoundError:
+        return ["npm not found: npm run arch cannot run"]
+    if r.returncode == 0:
+        return []
+    lines = [l.strip() for l in (r.stdout + "\n" + r.stderr).splitlines() if l.strip() and not l.lstrip().startswith(">")]
+    errs = [l for l in lines if re.search(r"\berror\b", l, re.I)] or lines
+    return [f"npm run arch failed (exit {r.returncode}): " + " | ".join(errs[:5])]
+
+
 def build_gates(c, s, a):
     """Everything that must hold before the user is asked to test the route."""
     problems = list(stack_problems(c))
     if c.rows[s]["Decision"] != "build":
         problems.append("decision is not build")
-    if not os.path.exists(os.path.join(c.app, "src", "screens", s, "index.tsx")):
-        problems.append(f"{c.app}/src/screens/{s}/index.tsx missing")
+    problems += page_problems(c, s)
     p = os.path.join(c.rdir(s), "route-spec.md")
     problems += spec_problems(c, s)
     if os.path.exists(p):
@@ -892,14 +968,17 @@ def build_gates(c, s, a):
         problems += variant_problems(c.mig, s, load_states(c, s))
     except ImportError:
         pass
-    if os.path.isdir(os.path.join(c.app, "src", "screens", s)) and os.path.exists(os.path.join(c.mig, "stack.json")):
+    if os.path.isdir(page_dir(c, s)) and os.path.exists(os.path.join(c.mig, "stack.json")):
         from consistency_check import check as consistency
         problems += ["consistency " + x for x in consistency(s, c.app, c.mig)]
+    problems += arch_problems(c)
     if not a.no_scope_guard and os.path.isdir(".git"):
         r = subprocess.run([sys.executable, os.path.join(os.path.dirname(os.path.abspath(__file__)), "scope_guard.py"), "--screen", s,
                             "--base", a.base, "--app-dir", c.app, "--migration-dir", c.mig], capture_output=True, text=True)
         if r.returncode:
-            problems.append("scope_guard: " + r.stdout.strip().splitlines()[0])
+            out = (r.stdout.strip() or r.stderr.strip() or "failed").splitlines()
+            problems.append("scope_guard: " + out[0].removeprefix("scope_guard: ")
+                            + "".join(f" | {x.strip()}" for x in out[1:6] if x.startswith("  ")))
     return problems
 
 
