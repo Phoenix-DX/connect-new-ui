@@ -25,5 +25,9 @@
       "Bash(git push*)",
       "Bash(node * --allow-writes*)"
     ]
+  },
+  "enabledPlugins": {
+    "mod-finder@aidojo": true,
+    "claude-code-setup@claude-plugins-official": true
   }
 }
