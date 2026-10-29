@@ -57,5 +57,36 @@
   "answer": "(a) (user, 2026-10-29): platform/ exports the body theme setter; OrbitBlankLayout, OrbitLayout and the third layout use it; the known violation of OrbitLayout goes away.",
   "answeredBy": "user",
   "answeredAt": "2026-10-29T10:50:10"
+ },
+ {
+  "id": "Q4",
+  "kind": "review",
+  "topic": "review round 1",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 (a), user 2026-10-29: vendor the loader byte-identical (ADR-17).; Q2 (a), user 2026-10-29 (asked again with the corrected fact): port the web camera path as TST.; Q3 (a), user 2026-10-29: the body theme setter is exported from `platform/`. Three layouts use it.; Auto decisions of window 7 (`migration/clarify/auto-decisions-2026-10-29.md`):; Row 4 (K1, a): the back button in the camera view follows TST (no answer to the portal). Answer an empty image only if; Row 5 (K2, a): phones and tablets use the TST file-input camera (`NativeCamera`).; Row 6 (K3, a now, b on the production accessibility list): the capture button keeps the TST markup, with no; Not ported, as in the other layouts: DEPRECATED_LayoutReadyMobile, LayoutReady, SetLang, AddFavicon, LayoutDestroy;; Fake portal location: `public/mock-embeds/` (already left out of production builds, `app/build/mockFree.ts:12`). The",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-29T15:06:31",
+  "items": [
+   "Q1 (a), user 2026-10-29: vendor the loader byte-identical (ADR-17).",
+   "Q2 (a), user 2026-10-29 (asked again with the corrected fact): port the web camera path as TST.",
+   "Q3 (a), user 2026-10-29: the body theme setter is exported from `platform/`. Three layouts use it.",
+   "Auto decisions of window 7 (`migration/clarify/auto-decisions-2026-10-29.md`):",
+   "Row 4 (K1, a): the back button in the camera view follows TST (no answer to the portal). Answer an empty image only if",
+   "Row 5 (K2, a): phones and tablets use the TST file-input camera (`NativeCamera`).",
+   "Row 6 (K3, a now, b on the production accessibility list): the capture button keeps the TST markup, with no",
+   "Not ported, as in the other layouts: DEPRECATED_LayoutReadyMobile, LayoutReady, SetLang, AddFavicon, LayoutDestroy;",
+   "Fake portal location: `public/mock-embeds/` (already left out of production builds, `app/build/mockFree.ts:12`). The"
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed, user instruction 2026-10-29 window 7, Fable review; auto decision rows 20 in migration/clarify/auto-decisions-2026-10-29.md; final ci 4686 tests, final sweep 2026-10-29)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-29T15:06:51"
  }
 ]

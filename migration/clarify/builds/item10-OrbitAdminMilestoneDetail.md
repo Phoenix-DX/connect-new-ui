@@ -85,3 +85,37 @@ None: no capture. The user reviews by eye: `/UBTConnect/OrbitAdminMilestoneDetai
   The hook takes `isSystemException` and `UserException` from `platform/feedback/flowErrors` (rule 9).
 
 Tool calls: 85.
+
+## Review round 1 fixes (2026-10-29)
+
+Source: auto decision row 21 of `migration/clarify/auto-decisions-2026-10-29.md` (review round 1, CHANGE).
+
+1. Lookup by MilestoneRef. The entry sends the MilestoneRef as `In_MilestoneId` (OnAfterFetch of
+   `ScreenBlock_AdminMilestones.mvc.js:506-530`, `app/src/api/event/adminMilestones.ts:43`). The mock compared the
+   fictional numeric `MilestoneId`, so Get_MilestoneInformation gave the default record (no Scan QR Code button, no
+   type row) and every check-in failed with "not allocated".
+   - `app/src/pages/OrbitAdminMilestoneDetail/mocks.ts`: `findMilestone` matches `MilestoneRef`; `checkInAnswer`
+     returns `Response.MilestoneId` = the MilestoneRef; the header comment says so. The local check-in key and the
+     PriorCheckIns row keep the fictional `MilestoneId` (internal values, not shown).
+   - `OrbitAdminMilestoneDetail.test.tsx`: the page opens with `MILESTONE.MilestoneRef` (query, Get_MilestoneInformation
+     body, ScannedQRCodeInfo.MilestoneId). New test: the entry id `MS-7301-01` gives the Scan QR Code button
+     (HasQRCode True) and the type row "Admin".
+2. Admin type Name / Type. MCP row 7 (`migration/clarify/review/mcp-session-2026-10-29.md`): `Name` = "Admin" for
+   the six types, `Type` = AdminMeeting, AdminMeal, AdminMealAtHall, AdminAccommodation, AdminTransportVehicle,
+   AdminBreak, `Order` = 17 to 22. The type row shows `MilestoneType.Name` (compiled
+   `ScreenBlock_AdminMilestoneDetail.mvc.js:428-461`, `milestoneTypeVar.nameAttr`; React `AdminMilestoneDetailView.tsx:49`),
+   so the row now shows "Admin".
+   - `app/src/mocks/fictional/orbitAdminMilestones.ts`: `adminType` takes `Type`, sets `Name: 'Admin'`; the six types
+     use the MCP Type and Order values; colours and icons stay fictional; the header comment cites row 7.
+   - `app/src/pages/OrbitAdminMilestones/OrbitAdminMilestones.test.tsx`: the OnAfterFetch mapping expects
+     `Type: 'AdminMeeting'`.
+   - Not changed: the unit tests `AdminMilestoneDetailView.test.tsx`, `adminMilestoneDetailActions.test.ts` and
+     `api/event/adminMilestoneDetail.test.ts` use their own input record with `Name: 'Meeting'`; they do not read the
+     fictional data.
+
+Checks (from `app/`): `npx tsc --noEmit` clean; eslint and prettier clean on the 4 changed files;
+`npx vitest run src/pages/OrbitAdminMilestoneDetail src/pages/OrbitAdminMilestones src/mocks src/api/event
+src/components/orbit src/containers/AdminQRCodeScan`: 33 files, 275 tests passed (the 8 changed or new tests failed
+before the fix); `npm run unused`: 0 new, 0 stale; `npm run dup`: exit 0 (35 clones, 0.54 %). No parity run.
+
+Tool calls: 23.

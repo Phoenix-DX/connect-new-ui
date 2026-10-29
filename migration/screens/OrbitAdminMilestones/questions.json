@@ -37,5 +37,30 @@
   "answer": "(a) (user, 2026-10-29): set the six Admin* ids of lib/orbit/staticEntities.ts to the live TST moduleinfo values (version 15682): meeting-admin, meeting-meal, meal-at-hall-admin, accommodation-admin, transport-vehicle-admin, break-admin (decision (c) of 2026-10-28: the live TST code wins).",
   "answeredBy": "user",
   "answeredAt": "2026-10-29T10:38:14"
+ },
+ {
+  "id": "Q3",
+  "kind": "review",
+  "topic": "review round 1",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 (a), user 2026-10-29: the default mock answers `GetMilestoneScanFF` false, as TST. The scenario; Q2 (a), user 2026-10-29: the six Admin* ids of `lib/orbit/staticEntities.ts` are the live TST values (decision (c) of; Auto decisions of window 7 (`migration/clarify/auto-decisions-2026-10-29.md`): none concerns this route directly. Row 10 (O2) moves the helpers that",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-29T15:06:33",
+  "items": [
+   "Q1 (a), user 2026-10-29: the default mock answers `GetMilestoneScanFF` false, as TST. The scenario",
+   "Q2 (a), user 2026-10-29: the six Admin* ids of `lib/orbit/staticEntities.ts` are the live TST values (decision (c) of",
+   "Auto decisions of window 7 (`migration/clarify/auto-decisions-2026-10-29.md`): none concerns this route directly. Row 10 (O2) moves the helpers that"
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed, user instruction 2026-10-29 window 7, Fable review; auto decision rows 21,23 in migration/clarify/auto-decisions-2026-10-29.md; final ci 4686 tests, final sweep 2026-10-29)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-29T15:06:53"
  }
 ]

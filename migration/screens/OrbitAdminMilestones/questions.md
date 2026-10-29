@@ -15,3 +15,9 @@ Managed by route.py. Facts may be answered by the OutSystems MCP; decisions and 
 - OutSystems MCP: Fact from the live TST moduleinfo; not asked to MCP (DEV).
 - Options: a) Change request: the orchestrator sets the six live Ids in lib/orbit/staticEntities.ts (and the comment); the admin cards then render as TST; other cards are unchanged (no other milestone has these Ids) | b) Keep undefined: admin milestone cards show the title only (differs from TST since 2026-10-27) (recommended: a)
 - Answer (user, 2026-10-29T10:38:14): (a) (user, 2026-10-29): set the six Admin* ids of lib/orbit/staticEntities.ts to the live TST moduleinfo values (version 15682): meeting-admin, meeting-meal, meal-at-hall-admin, accommodation-admin, transport-vehicle-admin, break-admin (decision (c) of 2026-10-28: the live TST code wins).
+
+## Q3 [review] review round 1 (answered, blocking)
+- Question: Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 (a), user 2026-10-29: the default mock answers `GetMilestoneScanFF` false, as TST. The scenario; Q2 (a), user 2026-10-29: the six Admin* ids of `lib/orbit/staticEntities.ts` are the live TST values (decision (c) of; Auto decisions of window 7 (`migration/clarify/auto-decisions-2026-10-29.md`): none concerns this route directly. Row 10 (O2) moves the helpers that
+- Evidence: route-spec.md, parity reports, feedback.md
+- Options: confirm | change (say what)
+- Answer (user, 2026-10-29T15:06:53): confirm (auto-confirmed, user instruction 2026-10-29 window 7, Fable review; auto decision rows 21,23 in migration/clarify/auto-decisions-2026-10-29.md; final ci 4686 tests, final sweep 2026-10-29)

@@ -55,8 +55,8 @@ Earlier status (third session): the clarify work was complete before the fix wav
      hooks, N1-N6); design `review/item8-solution.md` approved (flow scope, static error page, open points as
      recommended, N2-N4 fixed in the waves). Build steps S0a, S0b, then groups B, A, C, D, then cleanup; notes in
      `builds/item8-*.md`.
-     - Later (user, 2026-10-28): a separate item for the render and route errors (check the TST global error handler
-       first, Q3 c); the production precache of `_error.html` waits for the production phase (Q4 a).
+     - Later (user, 2026-10-28): a separate item for the render and route errors (Q3 c). It checks the TST global
+       error handler first. The production precache of `_error.html` waits for the production phase (Q4 a).
 
 Open items for the user:
 - The 13 decisions of the build wave: answered 2026-10-28.
@@ -126,14 +126,29 @@ Open items for the user:
 | `tools/answers.py` | record the user's answers; `decisions.md` |
 | `tools/agent_cost.py label=<transcript> …` | token-waste statistics of subagent transcripts |
 
-## Work list of 2026-10-28 (evening)
+## Work list of 2026-10-28 (evening): status 2026-10-29
 
-- Item 9 (render and route errors): findings `review/item9-render-route-errors.md` (D1-D8). User decision: (a) run
-  the read-only TST probes U4 and U5, then a Fable design for D1-D6, then the user approves before a build.
-- Item 10 (new TST screens): facts `review/item10-new-screens.md`, live probe `review/probe-new-screens.json`. User
-  decisions (2026-10-28): build Bookmarks and remove the React routes MyBookmarks and BookmarksByGroup (404 on TST);
-  build PassportScan, NotificationDetails, OneSchoolGlobalCarousel, OrbitAdminMilestones and OrbitAdminMilestoneDetail
-  (N1, with the OrbitAdminLanding `GetMilestoneScanFF` branch). Each screen goes through the outsystems-screen-spec
-  pipeline (board decision=build, `route.py start`, capture read-only, spec, build, parity, user review).
+- Item 9 (render and route errors): done. Probes U4 and U5 ran on TST. Fable designed D1-D6 and the user approved it
+  (`review/item9-solution.md` §12). The build is in commit 2601955c (builds `item9-9A.md`, `item9-9B.md`). D6 has no
+  code: no UBTConnect screen checks a role (`review/mcp-session-2026-10-29.md` row 3).
+- Item 10 (new TST screens): `review/item10-new-screens.md` §10 has the capture results and the user decisions I10-1
+  to I10-12. The auto decisions of window 7 are in `auto-decisions-2026-10-29.md`.
+  - Finished after the review (Fable, window 7): NotificationDetails, Bookmarks, PassportScan, OrbitAdminMilestones,
+    OrbitAdminMilestoneDetail.
+  - Held at the parity step: OneSchoolGlobalCarousel. The shared block `containers/EntityDetailsActions` causes its
+    differences (auto decision 17). It goes to the drift wave.
+  - Retired: MyBookmarks and BookmarksByGroup (`retired.json`).
 - Done the same evening: the production precache of `_error.html` (as TST).
 
+## Next: the drift wave (user decision I10-12)
+
+1. Re-capture all routes on TST (read-only). The 11 routes of 2026-10-29 are done; about 50 are left.
+2. Sort each difference: TST code change, mock data or capture timing. The first list is in
+   `builds/item10-finish.md` ("drift list").
+3. Fix per shared block. The user decides each group. Known groups: `Directory_EntityDetailsActions` (OneSchoolGlobalDetails
+   Q7, OneSchoolGlobalCarousel), ComingSoon (Q8), the StaticInput prompt text, `GetCommunityStatistics`, Updates tags,
+   Notifications list, AssembleEvents rows. The flag `getHasNewBookmarks` goes with the first group.
+4. Open facts for the next MCP session: U1, PINUnlock push or replace, the `QRCodeErrorTypeId` of a successful check-in
+   (F2), Get_MilestoneInformation for an unknown milestone.
+5. Small open items: the Notes pixel band (0.58 %) and the old paths of `scaffold_react_app.py`. The `css_sets.py`
+   rows are done (2026-10-29). Three missing TST stylesheets were fetched for them.

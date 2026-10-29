@@ -21,3 +21,8 @@ Consequences:
 - OrbitAdminMilestoneDetail: the mock texts can use rows 5 and 5b; the mock must not imply that a scan is harmless.
 - PassportScan Q2 was answered on the premise that TST has only a native camera. Row 8 shows that TST takes a photo
   with the browser camera in a PWA. The question goes back to the user.
+
+Addendum (2026-10-29, review round 2 of OrbitAdminMilestones): the same MCP answer (static entity `OrbitMilestoneType`,
+22 records) gives for the six admin types: `IsTransportMilestone` False, `MainColorVar` Green, `CanHost` False,
+`MainIcon` orbit-icon-meeting (AdminMeeting, AdminTransportVehicle), orbit-icon-meal (AdminMeal, AdminMealAtHall),
+orbit-icon-accommodation (AdminAccommodation), orbit-icon-date-time (AdminBreak). The mock uses these values.

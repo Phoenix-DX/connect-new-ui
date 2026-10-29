@@ -27,7 +27,7 @@ if (!MILESTONE) throw new Error('No fictional admin milestone');
 const query = (extra: Record<string, string> = {}) =>
   `?${new URLSearchParams({
     In_EventId: MILESTONE.EventId,
-    In_MilestoneId: MILESTONE.MilestoneId,
+    In_MilestoneId: MILESTONE.MilestoneRef,
     In_MilestoneName: MILESTONE.MilestoneName,
     In_MilestoneDate: MILESTONE.EventDate,
     In_MilestoneStartDate: MILESTONE.StartDate,
@@ -100,7 +100,7 @@ describe('OrbitAdminMilestoneDetail page', () => {
     expect(calledActions().filter((a) => a === GET_INFORMATION)).toHaveLength(1);
     expect(bodies[0]).toMatchObject({
       In_EventId: MILESTONE.EventId,
-      In_MilestoneId: MILESTONE.MilestoneId,
+      In_MilestoneId: MILESTONE.MilestoneRef,
       IsFetchingData: true,
       IsProcessingData: false,
       QRCodePopupOpened: false,
@@ -126,7 +126,7 @@ describe('OrbitAdminMilestoneDetail page', () => {
       ScanClientId: 'ConnectMobile',
       ScannedQRCodeInfo: {
         EventId: MILESTONE.EventId,
-        MilestoneId: MILESTONE.MilestoneId,
+        MilestoneId: MILESTONE.MilestoneRef,
         MilestoneType: MILESTONE.type.Id,
         ScannedUserInformation: { MemberId: attendees[0]?.member.Id },
       },
@@ -137,6 +137,17 @@ describe('OrbitAdminMilestoneDetail page', () => {
       expect(popupText()).toContain('This QR code has been scanned');
     });
     expect(checkIns()).toHaveLength(2);
+  });
+
+  it('the entry id (In_MilestoneId = MilestoneRef "MS-7301-01"): HasQRCode True, the Scan QR Code button, type "Admin"', async () => {
+    // OnAfterFetch of ScreenBlock_AdminMilestones (ScreenBlock_AdminMilestones.mvc.js:506-530) sends the MilestoneRef;
+    // the Scan QR Code button shows only when Get_MilestoneInformation answers HasQRCode True.
+    await open(query({ In_MilestoneId: 'MS-7301-01' }));
+    await ready();
+    expect(scanButton()).not.toBeNull();
+    // MCP row 7 (mcp-session-2026-10-29.md): Name "Admin" for the six admin types; the type row shows Name.
+    expect(screen.getByText('Admin').parentElement).toHaveClass('flex-center-vertical');
+    expect(document.querySelector('.orbit-icon-host-guest')).not.toBeNull();
   });
 
   it('a QR code of another event: "Guest is not allocated to this event.", no check-in', async () => {

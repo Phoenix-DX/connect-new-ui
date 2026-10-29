@@ -21,3 +21,9 @@ Managed by route.py. Facts may be answered by the OutSystems MCP; decisions and 
 - Evidence: NotificationDetails.mvc.js:538-554 (data action, output UI_NotificationDetail); the capture has only an existing id (5496739). Interim mock: an empty record (title '', date 1900-01-01).
 - OutSystems MCP: to ask: Connect2_Notification_CS server action behind FetchMessageInstance [OutSystems MCP]
 - Answer (code, 2026-10-29T08:37:49): TST read-only probe (2026-10-29, migration/clarify/tools/probe_notification_unknown.cjs, MessageInstanceId=1): DataActionFetchMessageInstance answers HTTP 200 with the empty UI_NotificationDetail record (Id '0', Title '', Summary '', DateTimeCreated 1900-01-01T00:00:00, flags false); no exception, no toast; the screen stays on NotificationDetails with an empty title. The mock (empty record) matches TST. MCP (DEV): the data action calls the service action Get_UI_NotificationDetails of Connect2_Notification_CS (module not open).
+
+## Q4 [review] review round 1 (answered, blocking)
+- Question: Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 (a), user 2026-10-29: the contract comes from the live TST code, with the MyBookmarks retirement. The diff of the; Q2 (a), user 2026-10-29: only the screen and route list of `migration/survey` is refreshed from the live TST survey.; Q3 (fact, code 2026-10-29): the empty-record mock matches TST. No decision needed.; Mock data: the captured record (Id 5496739, Title "Your Host on Wednesday", Summary empty, read) is served for the
+- Evidence: route-spec.md, parity reports, feedback.md
+- Options: confirm | change (say what)
+- Answer (user, 2026-10-29T15:06:46): confirm (auto-confirmed, user instruction 2026-10-29 window 7, Fable review; auto decision rows 18 in migration/clarify/auto-decisions-2026-10-29.md; final ci 4686 tests, final sweep 2026-10-29)

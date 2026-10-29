@@ -17,8 +17,9 @@ import { QRCodeErrorType } from './staticEntities';
    event (orbitAdmin.ts). No-capture route (user decision I10-3 (a)): no recorded call, shapes from the compiled
    records. Both operations are in the contract since its regeneration (I10-6): Get_MilestoneInformation is a
    contractHandler; GetScanMilestoneQRCode stays a statefulHandler, because it writes the in-memory collection.
-   - Get_MilestoneInformation: HasQRCode (every listed admin milestone uses QR codes) and its OrbitMilestoneType; an
-     unknown milestone gives the default record (no QR code, no type).
+   - Get_MilestoneInformation: HasQRCode (every listed admin milestone uses QR codes) and its OrbitMilestoneType; the
+     milestone is found by its MilestoneRef (the In_MilestoneId of the entry); an unknown milestone gives the default
+     record (no QR code, no type).
    - GetScanMilestoneQRCode: never called on TST by this migration, because on TST a scan WRITES (Q1, answered by MCP
      DEV, migration/clarify/review/mcp-session-2026-10-29.md row 5): Connect2_OrbitMobile_BL calls the Orbit API
      check-in (Connect2_OrbitMobile_IS Get_ScanMilestoneQRCode, with the user token) and, for CheckedIn,
@@ -88,8 +89,10 @@ const HALL_TYPES: readonly string[] = ['meeting-admin', 'meeting-meal', 'meal-at
 export const milestoneVenue = (m: OrbitAdminMilestone): string =>
   HALL_TYPES.includes(m.type.Id) ? `${m.LocalityName} Main Hall` : '';
 
+/** The milestone of In_MilestoneId. The entry sends the MilestoneRef as MilestoneId (OnAfterFetch of
+    ScreenBlock_AdminMilestones.mvc.js:506-530, src/api/event/adminMilestones.ts), so the lookup is by MilestoneRef. */
 const findMilestone = (eventId: string, milestoneId: string): OrbitAdminMilestone | undefined =>
-  orbitAdminMilestones(eventId).find((m) => m.MilestoneId === milestoneId);
+  orbitAdminMilestones(eventId).find((m) => m.MilestoneRef === milestoneId);
 
 const checkIns = () => collection('orbitAdminMilestoneCheckIns', () => [], 'Id');
 
@@ -112,7 +115,7 @@ function checkInAnswer(
       Result: '',
       MemberId: info.ScannedUserInformation.MemberId,
       EventId: info.EventId,
-      MilestoneId: milestone?.MilestoneId ?? '0',
+      MilestoneId: milestone?.MilestoneRef ?? '0',
       MilestoneRef: milestone?.MilestoneRef ?? '',
       MilestoneName: name,
       RowAllocation: attendee ? row : '',

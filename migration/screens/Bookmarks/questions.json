@@ -90,5 +90,38 @@
   "answer": "(a) (user, 2026-10-29): build the channel row of ItemCard_WithNotes now (port PreetyFormatDate to lib/, the 3 inputs, a feed card in the demo mock); the user reviews it by eye.",
   "answeredBy": "user",
   "answeredAt": "2026-10-29T11:06:54"
+ },
+ {
+  "id": "Q6",
+  "kind": "review",
+  "topic": "review round 1",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Retire MyBookmarks and BookmarksByGroup (user, 2026-10-28). Q1 of 2026-10-22 (a, keep MyBookmarks until the PROD value; Q2 (a), user 2026-10-29: parity of state default uses the mock scenario `captured`. The default demo mock keeps 7; Q3 (a), user 2026-10-29: update the shared `ItemCard_WithNotes` to the live TST code, re-capture Notes, re-run parity; Q4 (a), user 2026-10-29: update `Input` and `StaticInput` to the live TST code, re-capture the routes with older; Q5 (a), user 2026-10-29: build the channel row of `ItemCard_WithNotes` now. The user reviews it by eye.; Auto decisions of window 7 (`migration/clarify/auto-decisions-2026-10-29.md`), rows that concern this route:; Row 1 (C1, a): keep the local-time rule for `PublishedAt`.; Row 2 (C2, a): keep the mock Feed card header until a capture exists.; Row 3 (Notes C3, a): the channel fields are required, with defaults at the contract regeneration.; Row 11 (G1, a): GridGallery is deleted. No user is left after the retirement.; Row 12 (G2, a): 4 handlers of `Connect2_MyBookmarks_MUI` are deleted. The legacy bookmark collection stays. Feature flags: action:connect_LaunchDarkly_PermissionCheck → not a flag (false positive): shared wrapper that reads LaunchDarkly flags (the flags are decided one by one); behaviour built as in the original (user, 2026-10-14); action:getFlagURLByCountryCode → not a flag (false positive): country flag image URL; behaviour built as in the original (user, 2026-10-14); action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); action:getHasNewBookmarks → auto-accepted (user instruction 2026-10-29, window 7; Fable H1 with the premise corrected): TST value true since 2026-10-21 (migration/knowledge/flag-values-tst.json). The bottom bar no longer reads it on TST (BottomBarMenu.mvc.js:623-626 opens Bookmarks with no condition; React BottomBar the same since 2026-10-29; MyBookmarks/BookmarksByGroup retired, user 2026-10-28). Readers left: Directory_EntityDetailsActions (React containers/EntityDetailsActions/useEntityDetailsActions.ts:168, 286) and Locality_Households_HouseholdList. The branch choice for these readers goes to the drift wave with the EntityDetailsActions block (OneSchoolGlobalDetails Q7, decision I10-12); until then React keeps the default value off.; action:getHasNewNotifications → both branches, default off (TST); only the navigation target changes (Notifications / MessageList), both screens captured, so reference none (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14); launchDarkly_FF.mobileDirectoryBookmarkNote → default-only: TST value off (user, 2026-10-14); registeredCallbackEvents.onToggle → not a flag (false positive): bottom sheet toggle event; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-29T15:06:29",
+  "items": [
+   "Retire MyBookmarks and BookmarksByGroup (user, 2026-10-28). Q1 of 2026-10-22 (a, keep MyBookmarks until the PROD value",
+   "Q2 (a), user 2026-10-29: parity of state default uses the mock scenario `captured`. The default demo mock keeps 7",
+   "Q3 (a), user 2026-10-29: update the shared `ItemCard_WithNotes` to the live TST code, re-capture Notes, re-run parity",
+   "Q4 (a), user 2026-10-29: update `Input` and `StaticInput` to the live TST code, re-capture the routes with older",
+   "Q5 (a), user 2026-10-29: build the channel row of `ItemCard_WithNotes` now. The user reviews it by eye.",
+   "Auto decisions of window 7 (`migration/clarify/auto-decisions-2026-10-29.md`), rows that concern this route:",
+   "Row 1 (C1, a): keep the local-time rule for `PublishedAt`.",
+   "Row 2 (C2, a): keep the mock Feed card header until a capture exists.",
+   "Row 3 (Notes C3, a): the channel fields are required, with defaults at the contract regeneration.",
+   "Row 11 (G1, a): GridGallery is deleted. No user is left after the retirement.",
+   "Row 12 (G2, a): 4 handlers of `Connect2_MyBookmarks_MUI` are deleted. The legacy bookmark collection stays."
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed, user instruction 2026-10-29 window 7, Fable review; auto decision rows 19 in migration/clarify/auto-decisions-2026-10-29.md; final ci 4686 tests, final sweep 2026-10-29)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-29T15:06:49"
  }
 ]

@@ -11,7 +11,9 @@ import { LOCALITY } from './directory';
    Values in OutSystems field names: AdminMilestoneRec (Connect2_OrbitMobile_IS.model.js:3842-3905) and the
    OrbitMilestoneType record. The type Ids are the live TST values of the six Admin* records (moduleinfo version
    15682, entity 3cdbee62…; adminMeal is "meeting-meal" there). Their other attributes come from the app start sync
-   (Sync_Info_GetMain), which was not captured for them: Type "Admin", names, colours and icons are fictional. DateTimes
+   (Sync_Info_GetMain), which was not captured for them. Name, Type and Order are the MCP (DEV) facts of the static
+   entity OrbitMilestoneType of Connect2_OrbitMobile_BL (migration/clarify/review/mcp-session-2026-10-29.md row 7):
+   Name "Admin" for all six, Type AdminMeeting … AdminBreak, Order 17 … 22. Colours, icons and IsTransportMilestone are MCP facts too (see the types below). DateTimes
    are UTC wire values ("yyyy-MM-ddTHH:mm:ssZ"), relative to today; Bahia Blanca is UTC-3. */
 
 /** An OrbitMilestoneType record of an admin milestone. */
@@ -27,10 +29,11 @@ export interface OrbitAdminMilestoneType {
   IsTransportMilestone: boolean;
 }
 
+/** An admin type: Name "Admin" for all six (MCP row 7); Type and Order per record. */
 const adminType = (
   Id: string,
   Order: number,
-  Name: string,
+  Type: string,
   MainColorVar: string,
   MainIcon: string,
   IsTransportMilestone = false,
@@ -38,29 +41,31 @@ const adminType = (
   Id,
   Is_Active: true,
   Order,
-  Type: 'Admin',
-  Name,
+  Type,
+  Name: 'Admin',
   MainColorVar,
   MainIcon,
   CanHost: false,
   IsTransportMilestone,
 });
 
-/** The six Admin* milestone types (static entity Connect2_OrbitMobile_MUI.orbitMilestoneType). */
+/** The six Admin* milestone types (static entity Connect2_OrbitMobile_MUI.orbitMilestoneType). Every attribute is the
+    MCP fact (DEV, Connect2_OrbitMobile_BL static entity OrbitMilestoneType, 2026-10-29; ids equal TST moduleinfo 15682):
+    MainColorVar Green for all six, IsTransportMilestone False for all six (so the transport card has no departure and
+    arrival rows), MainIcon per record (transport-vehicle-admin uses the meeting icon on TST). Auto decision row 23. */
 const ORBIT_ADMIN_MILESTONE_TYPES = {
-  adminMeeting: adminType('meeting-admin', 1, 'Meeting', 'purple', 'orbit-icon-meeting'),
-  adminMeal: adminType('meeting-meal', 2, 'Meal', 'orange', 'orbit-icon-meal'),
-  adminMealAtHall: adminType('meal-at-hall-admin', 3, 'Meal at the hall', 'orange', 'orbit-icon-meal'),
-  adminAccommodation: adminType('accommodation-admin', 4, 'Accommodation', 'purple', 'orbit-icon-accommodation'),
+  adminMeeting: adminType('meeting-admin', 17, 'AdminMeeting', 'green', 'orbit-icon-meeting'),
+  adminMeal: adminType('meeting-meal', 18, 'AdminMeal', 'green', 'orbit-icon-meal'),
+  adminMealAtHall: adminType('meal-at-hall-admin', 19, 'AdminMealAtHall', 'green', 'orbit-icon-meal'),
+  adminAccommodation: adminType('accommodation-admin', 20, 'AdminAccommodation', 'green', 'orbit-icon-accommodation'),
   adminTransportVehicle: adminType(
     'transport-vehicle-admin',
-    5,
-    'Transport',
+    21,
+    'AdminTransportVehicle',
     'green',
-    'orbit-icon-transportation-vehicle',
-    true,
+    'orbit-icon-meeting',
   ),
-  adminBreak: adminType('break-admin', 6, 'Break', 'green', 'orbit-icon-break'),
+  adminBreak: adminType('break-admin', 22, 'AdminBreak', 'green', 'orbit-icon-date-time'),
 } as const;
 
 /** A milestone of an admin event (AdminMilestoneRec) and its type. */

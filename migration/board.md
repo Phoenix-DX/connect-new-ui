@@ -2,7 +2,7 @@
 
 Lean status table. Long notes live in `screens/<Screen>/notes.md`. Change rows with `scripts/board.py set`, not by hand, so parallel agents do not overwrite each other. Agents start only on `Decision = build`.
 
-Complexity left on build rows not yet built: 117
+Complexity left on build rows not yet built: 0
 
 | Screen | Route | Wave | Cx | Tier | Decision | Reason | Status | Owner |
 |---|---|---|---|---|---|---|---|---|
@@ -50,7 +50,7 @@ Complexity left on build rows not yet built: 117
 | AssembleDetail | `/UBTConnect/AssembleDetail` |  | 139 | full | build | Assemble is not a separate app either (UBTConnect screens with Connect2_Assemble_MUI blocks); build (user, 2026-10-16) | built | route-assembledetail |
 | AssembleEvents | `/UBTConnect/AssembleEvents` |  | 121 | full | build | Assemble is not a separate app either (UBTConnect screens with Connect2_Assemble_MUI blocks); build (user, 2026-10-16) | built | route-assemble |
 | Assemble_BrowseByCountry | `/UBTConnect/Assemble_BrowseByCountry` |  | 64 | lite | build | Assemble is not a separate app either (UBTConnect screens with Connect2_Assemble_MUI blocks); build (user, 2026-10-16) | built | route-assemble |
-| Bookmarks | `/UBTConnect/Bookmarks` |  | 117 |  | build | TST deployed it 2026-10-27; build (user, 2026-10-28; migration/clarify/review/item10-new-screens.md) | building |  |
+| Bookmarks | `/UBTConnect/Bookmarks` |  | 117 |  | build | TST deployed it 2026-10-27; build (user, 2026-10-28; migration/clarify/review/item10-new-screens.md) | built |  |
 | CommunityBusinessDetails | `/UBTConnect/CommunityBusinessDetails` |  | 64 |  | skip | V7 · skip:dead · zDEV flow; live links open CoomingSoon; revisit if TST links the real screen (user, 2026-10-14) | - |  |
 | ContactByEmailContacts | `/UBTConnect/ContactByEmailContacts` |  | 29 |  | skip | V7 · skip:dead · only link in Locality_LocalityContacts, not embedded on TST; revisit if the block appears (user, 2026-10-14) | - |  |
 | ContactByEmailLDMCoordinator | `/UBTConnect/ContactByEmailLDMCoordinator` |  | 25 | lite | build | LDM family (UI in the Orbit module Connect2_OrbitMobile_MUI); build with Orbit (user, 2026-10-16) | built | route-ldm-forms |
@@ -75,15 +75,15 @@ Complexity left on build rows not yet built: 117
 | MyCalendar | `/UBTConnect/MyCalendar` |  | 85 |  | skip | V7 · skip:dead · replaced by MyEntertaining; revisit if a link to MyCalendar appears (user, 2026-10-14) | - |  |
 | New_BookmarksByGroup | `/UBTConnect/New_BookmarksByGroup` |  | 94 |  | skip | V3d · D2 · skip:variant · branch 2, revisit if LD mobileDirectoryBookmarkNote=true and C2NewBookmarks=false (user, 2026-10-14) | - |  |
 | New_MyBookmarks | `/UBTConnect/New_MyBookmarks` |  | 85 |  | skip | V3d · D2 · skip:variant · branch 2, revisit if LD mobileDirectoryBookmarkNote=true and C2NewBookmarks=false (user, 2026-10-14) | - |  |
-| NotificationDetails | `/UBTConnect/NotificationDetails` |  |  |  | build | TST deployed it 2026-10-27; build (user, 2026-10-28; migration/clarify/review/item10-new-screens.md) | building |  |
+| NotificationDetails | `/UBTConnect/NotificationDetails` |  |  |  | build | TST deployed it 2026-10-27; build (user, 2026-10-28; migration/clarify/review/item10-new-screens.md) | built |  |
 | OneSchoolGlobalCarousel | `/UBTConnect/OneSchoolGlobalCarousel` |  |  |  | build | TST deployed it 2026-10-27; build (user, 2026-10-28; migration/clarify/review/item10-new-screens.md) | capture |  |
 | OneSchoolGlobalEventDetail | `/UBTConnect/OneSchoolGlobalEventDetail` |  | 35 |  | skip | V7 · skip:dead · no way in, input unused; revisit if a link appears (user, 2026-10-14) | - |  |
 | OrbitAdminEventDetail | `/UBTConnect/OrbitAdminEventDetail` |  | 76 | lite | build | Orbit is not an embedded/separate app: its screens are UBTConnect screens (same SPA) using Connect2_OrbitMobile_MUI blocks; build (user, 2026-10-16) | built | route-orbit-admin |
 | OrbitAdminLanding | `/UBTConnect/OrbitAdminLanding` |  | 75 | lite | build | Orbit is not an embedded/separate app: its screens are UBTConnect screens (same SPA) using Connect2_OrbitMobile_MUI blocks; build (user, 2026-10-16) | built | route-orbit-admin |
-| OrbitAdminMilestoneDetail | `/UBTConnect/OrbitAdminMilestoneDetail` |  |  |  | build | TST deployed it 2026-10-27; build (user, 2026-10-28; migration/clarify/review/item10-new-screens.md) | building |  |
-| OrbitAdminMilestones | `/UBTConnect/OrbitAdminMilestones` |  |  |  | build | TST deployed it 2026-10-27; build (user, 2026-10-28; migration/clarify/review/item10-new-screens.md) | building |  |
+| OrbitAdminMilestoneDetail | `/UBTConnect/OrbitAdminMilestoneDetail` |  |  |  | build | TST deployed it 2026-10-27; build (user, 2026-10-28; migration/clarify/review/item10-new-screens.md) | built |  |
+| OrbitAdminMilestones | `/UBTConnect/OrbitAdminMilestones` |  |  |  | build | TST deployed it 2026-10-27; build (user, 2026-10-28; migration/clarify/review/item10-new-screens.md) | built |  |
 | OrbitLanding | `/UBTConnect/OrbitLanding` |  | 83 | full | build | Orbit is not an embedded/separate app: its screens are UBTConnect screens (same SPA) using Connect2_OrbitMobile_MUI blocks; build (user, 2026-10-16) | built | route-orbitlanding |
-| PassportScan | `/UBTConnect/PassportScan` |  |  |  | build | TST deployed it 2026-10-27; build (user, 2026-10-28; migration/clarify/review/item10-new-screens.md) | building |  |
+| PassportScan | `/UBTConnect/PassportScan` |  |  |  | build | TST deployed it 2026-10-27; build (user, 2026-10-28; migration/clarify/review/item10-new-screens.md) | built |  |
 | PersonalEventDetails | `/UBTConnect/PersonalEventDetails` |  | 59 |  | skip | V7 · skip:dead · Deprecated_Calendar_PersonalEvent, only from dead screens; C2EnablePersonalEvents=false on TST (user, 2026-10-14) | - |  |
 | PersonalEventForm | `/UBTConnect/PersonalEventForm` |  | 108 |  | skip | V7 · skip:dead · Deprecated_Calendar_PersonalEvent, only from dead screens; C2EnablePersonalEvents=false on TST (user, 2026-10-14) | - |  |
 | QRCodeGenerate | `/UBTConnect/QRCodeGenerate` |  | 61 | lite | build | Orbit is not an embedded/separate app: its screens are UBTConnect screens (same SPA) using Connect2_OrbitMobile_MUI blocks; build (user, 2026-10-16) | built | route-orbit-lite-2 |

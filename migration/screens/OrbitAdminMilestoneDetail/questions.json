@@ -34,5 +34,33 @@
   "answer": "MCP (DEV) Connect2_OrbitMobile_BL static entity OrbitMilestoneType: Name 'Admin' for all six admin types; Type AdminMeeting (meeting-admin), AdminMeal (meeting-meal), AdminMealAtHall (meal-at-hall-admin), AdminAccommodation (accommodation-admin), AdminTransportVehicle (transport-vehicle-admin), AdminBreak (break-admin); ids equal TST moduleinfo 15682. migration/clarify/review/mcp-session-2026-10-29.md row 7.",
   "answeredBy": "mcp",
   "answeredAt": "2026-10-29T11:19:40"
+ },
+ {
+  "id": "Q3",
+  "kind": "review",
+  "topic": "review round 1",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: No new decision for the barcode plugin: the ADR-11 adapter and the fictional scanner of OrbitAdminEventDetail Q1 (A); Shared code: OrbitErrorMessage and the Popup widget move to `components/orbit/` (page-template rule \"a second page moves; Auto decision, row 10 (O2): the duplicated helpers of the two admin pages move to `lib/orbit/actions.ts` now. They reuse; Auto decision, row 8 (F2, Fable): see \"Unclear points\".; Row 13 (dedupe): the admin detail view, the QR popup and the scan hook are shared with OrbitAdminEventDetail.; Q1 and Q2 are facts answered by the MCP (2026-10-29): \"Server facts\". No user decision.",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-29T15:06:36",
+  "items": [
+   "No new decision for the barcode plugin: the ADR-11 adapter and the fictional scanner of OrbitAdminEventDetail Q1 (A)",
+   "Shared code: OrbitErrorMessage and the Popup widget move to `components/orbit/` (page-template rule \"a second page moves",
+   "Auto decision, row 10 (O2): the duplicated helpers of the two admin pages move to `lib/orbit/actions.ts` now. They reuse",
+   "Auto decision, row 8 (F2, Fable): see \"Unclear points\".",
+   "Row 13 (dedupe): the admin detail view, the QR popup and the scan hook are shared with OrbitAdminEventDetail.",
+   "Q1 and Q2 are facts answered by the MCP (2026-10-29): \"Server facts\". No user decision."
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed, user instruction 2026-10-29 window 7, Fable review; auto decision rows 21,23 in migration/clarify/auto-decisions-2026-10-29.md; final ci 4686 tests, final sweep 2026-10-29)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-29T15:06:56"
  }
 ]

@@ -1107,3 +1107,6 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-29,clarify-item10,fix,222716,dedupe-orbit-opus,opus,"dedupe Orbit admin pairs 1,2,5; 76 calls"
 2026-10-29,clarify-item10,review,64119,advisor-fable,fable,"window 7: ready-gate decisions Q-S, Q-N, Q-O; 7 calls"
 2026-10-29,clarify-item10,spec,152103,specs-sonnet,sonnet,"6 route specs updated to the answers, spec-done; 31 calls"
+2026-10-29,clarify-item10,review,154037,review-fable,fable,"window 7 review of 5 routes: 3 confirm, 2 change; H1/H2; 28 calls"
+2026-10-29,OrbitAdminMilestoneDetail,fix,85851,build-opus,opus,"review round 1 fixes: lookup by MilestoneRef, admin type Name/Type per MCP row 7; 30 calls"
+2026-10-29,clarify-item10,review,75845,review-fable,fable,"window 7 review round 2 Orbit admin: detail confirm, list mock flag (row 23); 16 calls"

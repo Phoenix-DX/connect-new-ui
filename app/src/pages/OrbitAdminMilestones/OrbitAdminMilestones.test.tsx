@@ -151,7 +151,8 @@ describe('ScreenBlock_AdminMilestones pure parts', () => {
     const [milestone] = toAdminMilestones({ Response: { List: [adminMilestoneRow(first)] } });
     expect(milestone).toEqual({
       MilestoneId: first.MilestoneRef,
-      Type: 'Admin',
+      // OrbitMilestoneType.Type of the first milestone's type (MCP row 7, mcp-session-2026-10-29.md).
+      Type: 'AdminMeeting',
       Title: first.MilestoneName,
       MilestoneDateTime: first.EventDate,
       SequenceNo: '1',

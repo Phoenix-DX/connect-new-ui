@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 2,
- "fingerprint": "65030dcccfb133f227f8",
+ "fingerprint": "045d1746faf387a2d6f0",
  "options": {
   "text": true,
   "style": true,
@@ -27,7 +27,7 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-29T07:14:19.804Z",
+ "at": "2026-10-29T08:00:55.215Z",
  "counts": {
   "attr": 1,
   "layout": 10,
@@ -46,7 +46,7 @@
   "maxCell": 0.3719,
   "maxCellRatio": 0.03,
   "diffPixels": 1242,
-  "comparedPixels": 307924,
+  "comparedPixels": 307900,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [

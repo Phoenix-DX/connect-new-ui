@@ -15,3 +15,9 @@ Managed by route.py. Facts may be answered by the OutSystems MCP; decisions and 
 - OutSystems MCP: getDataModel / runQuery of the OrbitMilestoneType entity (Connect2_OrbitMobile_BL)
 - Options: a) MCP (DEV) lookup, the mock takes the real names; b) keep the fictional names (Meeting, Accommodation, Break, Meal at the Hall, Transport, Meeting Meal) (recommended: a)
 - Answer (mcp, 2026-10-29T11:19:40): MCP (DEV) Connect2_OrbitMobile_BL static entity OrbitMilestoneType: Name 'Admin' for all six admin types; Type AdminMeeting (meeting-admin), AdminMeal (meeting-meal), AdminMealAtHall (meal-at-hall-admin), AdminAccommodation (accommodation-admin), AdminTransportVehicle (transport-vehicle-admin), AdminBreak (break-admin); ids equal TST moduleinfo 15682. migration/clarify/review/mcp-session-2026-10-29.md row 7.
+
+## Q3 [review] review round 1 (answered, blocking)
+- Question: Please test this route and confirm, or tell me what to change. Decisions to confirm: No new decision for the barcode plugin: the ADR-11 adapter and the fictional scanner of OrbitAdminEventDetail Q1 (A); Shared code: OrbitErrorMessage and the Popup widget move to `components/orbit/` (page-template rule "a second page moves; Auto decision, row 10 (O2): the duplicated helpers of the two admin pages move to `lib/orbit/actions.ts` now. They reuse; Auto decision, row 8 (F2, Fable): see "Unclear points".; Row 13 (dedupe): the admin detail view, the QR popup and the scan hook are shared with OrbitAdminEventDetail.; Q1 and Q2 are facts answered by the MCP (2026-10-29): "Server facts". No user decision.
+- Evidence: route-spec.md, parity reports, feedback.md
+- Options: confirm | change (say what)
+- Answer (user, 2026-10-29T15:06:56): confirm (auto-confirmed, user instruction 2026-10-29 window 7, Fable review; auto decision rows 21,23 in migration/clarify/auto-decisions-2026-10-29.md; final ci 4686 tests, final sweep 2026-10-29)

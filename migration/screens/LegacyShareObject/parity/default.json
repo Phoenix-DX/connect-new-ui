@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "fd4a1b485c960e0e7074",
+ "fingerprint": "a97a446a620e632de5bb",
  "options": {
   "text": true,
   "style": true,
@@ -27,7 +27,7 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-29T07:13:49.239Z",
+ "at": "2026-10-29T08:00:24.550Z",
  "counts": {},
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-MENUICON-BACK": 2,
