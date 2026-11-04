@@ -77,7 +77,7 @@ The two lists are independent: the OutSystems list comes from the TST compiled c
 
 | # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
 |---|---|---|---|---|---|
-| [1](#511-block_pinregister_contentwrapper-event_pincode_registerpinregistrationsuccess) | `Block_PINRegister_ContentWrapper` | `pinRegistrationSuccess of Register` | `event_Pincode_RegisterPinRegistrationSuccess` | – | goes to Menu, HomeFeed; shows a message |
+| [1](#511-block_pinregister_contentwrapper-event_pincode_registerpinregistrationsuccess) | `Block_PINRegister_ContentWrapper` | `pinRegistrationSuccess of Register` | `event_Pincode_RegisterPinRegistrationSuccess` | – | goes to Menu, URL getResumeLoginLink.uRLOut, URL client variable LastURL, HomeFeed; shows a message |
 | [2](#512-block_pinregister_contentwrapper-event_pincode_registerpinregistrationerror) | `Block_PINRegister_ContentWrapper` | `pinRegistrationError of Register` | `event_Pincode_RegisterPinRegistrationError` | – | shows a message |
 | [3](#513-pinregister-onclick_backtologin) | `PINRegister` | `onClick (HTML element)` | `onClick_BackToLogin` | – | calls AppManager_Logout, AppManager_SynchAppContext; goes to Login |
 
@@ -92,6 +92,8 @@ sequenceDiagram
   U->>B: pinRegistrationSuccess of Register → event_Pincode_RegisterPinRegistrationSuccess
   Note over B: message FeedbackMessage_AutoClose
   B->>N: go to Menu
+  B->>N: go to URL getResumeLoginLink.uRLOut
+  B->>N: go to URL client variable LastURL
   B->>N: go to HomeFeed
 ```
 
@@ -129,7 +131,7 @@ sequenceDiagram
 | # | File | Element | Event prop | Handler | Branch | Effects |
 |---|---|---|---|---|---|---|
 | [1](#521-oslink-onclick) | [`pages/PINRegister/PINRegisterPage.tsx:29`](../../app/src/pages/PINRegister/PINRegisterPage.tsx#L29) | `<OSLink>` | `onClick` | `inline` | – | goes to Login |
-| [2](#522-pinregistercontent-onsetpin-newpincode) | [`pages/PINRegister/PINRegisterPage.tsx:59`](../../app/src/pages/PINRegister/PINRegisterPage.tsx#L59) | `<PinRegisterContent>` | `onSetPin` | `registration.onSetPin` | `newPinCode` | goes to Menu, HomeFeed; shows a message |
+| [2](#522-pinregistercontent-onsetpin-newpincode) | [`pages/PINRegister/PINRegisterPage.tsx:59`](../../app/src/pages/PINRegister/PINRegisterPage.tsx#L59) | `<PinRegisterContent>` | `onSetPin` | `registration.onSetPin` | `newPinCode` | goes to Menu, URL resumeLink, URL lastUrl, HomeFeed; shows a message |
 | [3](#523-pinregistercontent-onsetpin-other) | [`pages/PINRegister/PINRegisterPage.tsx:59`](../../app/src/pages/PINRegister/PINRegisterPage.tsx#L59) | `<PinRegisterContent>` | `onSetPin` | `registration.onSetPin` | `other` | shows a message |
 | [4](#524-preventbacknavigation-onbacknavigationprevented) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:80`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L80) | `<PreventBackNavigation>` | `onBackNavigationPrevented` | `redirectHome` | – | goes to HomeFeed |
 | [5](#525-backnavigationhandler-onbacknavigation) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:82`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L82) | `<BackNavigationHandler>` | `onBackNavigation` | `maybeRedirectHome` | – | goes to HomeFeed |
@@ -161,6 +163,8 @@ sequenceDiagram
   Note over H: via onPinRegistrationSuccess()
   Note over H: message { title: '', message: 'Your PIN has been changed.', messageType: 'success', encodedHtml: t
   H->>N: go to Menu
+  H->>N: go to URL resumeLink
+  H->>N: go to URL lastUrl
   H->>N: go to HomeFeed
 ```
 

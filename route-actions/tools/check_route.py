@@ -753,6 +753,12 @@ def user_actions(sources, rendered, eps):
             if re.search(r"(?i)exception", name):  # the error handler of the action, not its normal flow
                 out.append({"branch": br, "kind": "message", "detail": "error message (on exception)"})
                 continue
+            nav_url = re.search(r"screenController_NavigateToPage\$Action\(([^,]{1,120}),", code)
+            if nav_url:  # ScreenController_NavigateToPage(URL, …): a navigation to a URL that the code computes
+                arg = re.sub(r"Var\.value\b|\.value\b|vars\.|InLocal\b", "", nav_url.group(1))
+                arg = re.sub(r"\w+ClientVariables\.get(\w+)\(\)", r"client variable \1", arg)
+                out.append({"branch": br, "kind": "navigate", "detail": f"URL {arg}"})
+                continue
             if re.match(r"(?i)feedbackmessage", name):  # FeedbackMessage_AutoClose and the like (a module action)
                 out.append({"branch": br, "kind": "message", "detail": name})
                 continue

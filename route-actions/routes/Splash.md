@@ -85,7 +85,7 @@ The two lists are independent: the OutSystems list comes from the TST compiled c
 
 | # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
 |---|---|---|---|---|---|
-| [1](#511-splash-loadingdotsanimationcomplete) | `Splash` | `animationComplete of LoadingDots` | `loadingDotsAnimationComplete` | – | goes to PINRegister, PINUnlock |
+| [1](#511-splash-loadingdotsanimationcomplete) | `Splash` | `animationComplete of LoadingDots` | `loadingDotsAnimationComplete` | – | goes to PINRegister, PINUnlock, URL getColdStartLinkURL.uRLOut, URL client variable LastURL |
 | [2](#512-handleonresumeopenlink-androidapplinkonresumehandlerresumenavigation) | `HandleOnResumeOpenLink` | `resumeNavigation of AndroidAppLinkOnResumeHandler` | `androidAppLinkOnResumeHandlerResumeNavigation` | – | goes to /UBTConnect/ |
 | [3](#513-handleonresumeopenlink-deeplinkhandlercentralondeeplinkopen) | `HandleOnResumeOpenLink` | `onDeeplinkOpen of DeeplinkHandlerCentral` | `deeplinkHandlerCentralOnDeeplinkOpen` | – | goes to /UBTConnect/ |
 
@@ -100,6 +100,8 @@ sequenceDiagram
   U->>B: animationComplete of LoadingDots → loadingDotsAnimationComplete
   B->>N: go to PINRegister
   B->>N: go to PINUnlock
+  B->>N: go to URL getColdStartLinkURL.uRLOut
+  B->>N: go to URL client variable LastURL
 ```
 
 #### 5.1.2 HandleOnResumeOpenLink: androidAppLinkOnResumeHandlerResumeNavigation
@@ -130,7 +132,7 @@ sequenceDiagram
 
 | # | File | Element | Event prop | Handler | Branch | Effects |
 |---|---|---|---|---|---|---|
-| [1](#521-loadingdots-onanimationcomplete) | [`pages/Splash/SplashPage.tsx:30`](../../app/src/pages/Splash/SplashPage.tsx#L30) | `<LoadingDots>` | `onAnimationComplete` | `onLoadingDotsAnimationComplete` | – | goes to PINRegister, PINUnlock |
+| [1](#521-loadingdots-onanimationcomplete) | [`pages/Splash/SplashPage.tsx:30`](../../app/src/pages/Splash/SplashPage.tsx#L30) | `<LoadingDots>` | `onAnimationComplete` | `onLoadingDotsAnimationComplete` | – | goes to PINRegister, PINUnlock, URL coldStartLinkUrl !== '' ? coldStartLinkUrl : clientVar.lastUrl.get() |
 
 #### 5.2.1 LoadingDots: onAnimationComplete
 
@@ -143,6 +145,7 @@ sequenceDiagram
   U->>H: onAnimationComplete → onLoadingDotsAnimationComplete
   H->>N: go to PINRegister
   H->>N: go to PINUnlock
+  H->>N: go to URL coldStartLinkUrl !== '' ? coldStartLinkUrl : clientVar.lastUrl.get()
 ```
 
 ## 6. Server calls

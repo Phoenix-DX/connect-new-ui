@@ -496,6 +496,8 @@ function effectsOf(fn, label, depth, seen, env = null) {
         if (!ts.length && ((/^navigateBack\w*$/.test(name) && !args.length) || (args[0] && args[0].getText() === '-1')))
           add('navigate', 'previous screen', node, lab);
         else if (!ts.length) handled = false;
+      } else if (/^screenController_NavigateToPage\w*$/.test(name) && args[0]) {
+        add('navigate', `URL ${args[0].getText()}`, node, lab); // a navigation to a URL that the code computes
       } else if (/^confirm\w*$/i.test(name)) {
         add('confirm', args[0] ? args[0].getText().replace(/['"`]/g, '') : 'confirm', node, lab);
       } else if ((/^show\w*(Feedback)?Message$/.test(name) || /^feedbackMessage\w*$/.test(name)) && !ERROR_FN.test(name)) {
