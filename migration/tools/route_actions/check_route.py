@@ -586,41 +586,48 @@ def short_list(xs, n=3):
     return ", ".join(xs[:n]) + (", …" if len(xs) > n else "")
 
 
+USER_TRIGGER = re.compile(r"^(click|submit|event )")
+
+
 def sequence(r, rows):
-    """Mermaid sequence diagram: per phase, each OutSystems block sends its calls to the server and gets the outputs.
-    A participant names the OutSystems block and the React component that has the same call."""
-    order = []
-    for owners, trigs, e in sorted(rows, key=lambda x: min(phase_of(t) for t in x[1])):
+    """Mermaid sequence diagram of the server calls that a user action starts (click, submit, block event). One
+    group per user action. None when no user action on the route makes a server call."""
+    groups = collections.OrderedDict()  # (block, first action, trigger) -> [(call, via)]
+    block_names = {b["key"].split(".")[-1] for b in r["blocks"]}
+    for owners, _, e in rows:
         for o in owners:
-            if o[0] not in order:
-                order.append(o[0])
-    pid = {o: f"p{i}" for i, o in enumerate(order)}
+            for ch in e["chains"]:
+                if not ch or chain_owner(ch, r["blocks"]) != o:
+                    continue
+                t = trigger(ch, block_names)
+                if not USER_TRIGGER.match(t):
+                    continue
+                own = [x for x in ch if x.startswith(o[0] + ".")] or [ch[0]]
+                first = own[0] if own[0] == own[-1] else f"{own[0]} → {own[-1].split('.', 1)[-1]}"
+                via = ch[-2] if len(ch) >= 2 and ch[-2] not in own and not ch[-2].startswith("event ") else ""
+                items = groups.setdefault((o[0], first, t), [])
+                if all(x[0] is not e for x in items):
+                    items.append((e, via))
+    if not groups:
+        return None
+    blocks = []
+    for (o, _, _) in groups:
+        if o not in blocks:
+            blocks.append(o)
+    pid = {o: f"p{i}" for i, o in enumerate(blocks)}
     L = ["sequenceDiagram", "  autonumber", "  actor U as User"]
-    for o in order:
-        L.append(f"  participant {pid[o]} as {o}")
+    L += [f"  participant {pid[o]} as {o}" for o in blocks]
     L.append("  participant S as Server (TST calls)")
-    steps = collections.defaultdict(list)
-    for owners, trigs, e in rows:
-        for o, t in zip(owners, trigs):
-            ch = next((c for c in e["chains"] if c and chain_owner(c, r["blocks"]) == o), [])
-            first = next((x for x in from_owner(ch, o[0]) if x.startswith(o[0] + ".")), "") if ch else ""
-            steps[phase_of(t)].append((o[0], t, e, first))
-    for i, (_, title) in enumerate(PHASES):
-        if not steps.get(i):
-            continue
-        L.append(f"  rect rgba(120, 120, 120, 0.06)")
-        L.append(f"  Note over U,S: {title}")
-        for o, t, e, first in steps[i]:
-            name = e["short"].rsplit("/", 1)[-1]
-            name = re.sub(r"^(Action|ServiceAPI|DataAction|ScreenDataSet)", "", name)
-            label = re.sub(r"[`;#]", "", t)
-            if i == len(PHASES) - 1:
-                L.append(f"  U->>{pid[o]}: {label}" + (f": {first}" if first else ""))
-            elif PHASES[i][0] in ("client action", "module action"):
-                L.append(f"  Note over {pid[o]}: {label}")
+    for (o, first, t), items in groups.items():
+        L.append("  rect rgba(120, 120, 120, 0.06)")
+        L.append(f"  U->>{pid[o]}: {re.sub(r'[`;#]', '', t)}: {first.split('.', 1)[-1]}")
+        for e, via in items:
+            name = re.sub(r"^(Action|ServiceAPI|DataAction|ScreenDataSet)", "", e["short"].rsplit("/", 1)[-1])
             ins, outs = e["io"] or ([], [])
             chains = sorted((ch for c in e["react"] for ch in c.get("callers", [])), key=len)
-            react = f"React: {chains[0][0]['name']}" if chains else ("React: none" if e["status"] == "missing" else "React: no caller found")
+            react = f"React: {chains[0][0]['name']}" if chains else "React: none"
+            if via:
+                L.append(f"  Note over {pid[o]}: via {via.split('.', 1)[-1]}")
             if e["status"] == "missing":
                 L.append("  rect rgba(192, 57, 43, 0.15)")
             L.append(f"  {pid[o]}->>S: {name}({short_list(ins)}) · {react}")
@@ -632,27 +639,38 @@ def sequence(r, rows):
 
 
 def screenshots(route):
-    """Markdown lines with the parity screenshots of the route (TST capture, React build, difference)."""
-    d = os.path.join(ROOT, "migration", "screens", route, "parity")
+    """Markdown lines with the screenshots of the route. First choice: the parity run (TST capture, React build,
+    difference). Else the React review images (migration/screens/<R>/review/), else the TST capture images."""
+    base = os.path.join(ROOT, "migration", "screens", route)
+    d = os.path.join(base, "parity")
+    img = lambda path, alt: f'<img src="{os.path.relpath(path, OUT)}" width="200" alt="{alt}">' if os.path.exists(path) else "–"
     states = sorted(glob.glob(os.path.join(d, "*.json")), key=lambda p: (not p.endswith("default.json"), p))
-    if not states:
-        return ["No screenshots: the route has no parity run in `migration/screens/" + route + "/parity/`."]
-    L = ["The screenshots come from the last parity run (`route.py parity`). The TST capture hides personal text "
-         "with dots. The React build shows fictional mock data.", "",
-         "| State | TST (expected) | React (build) | Difference |", "|---|---|---|---|"]
-    for js in states:
-        st = os.path.basename(js)[:-5]
-        try:
-            meta = load(js)
-        except ValueError:
-            continue
-        img = lambda kind: (f'<img src="{os.path.relpath(os.path.join(d, f"{st}.{kind}.png"), OUT)}" width="200" alt="{st} {kind}">'
-                            if os.path.exists(os.path.join(d, f"{st}.{kind}.png")) else "–")
-        px = meta.get("pixel") or {}
-        info = (f"`{st}`<br>{meta.get('viewport', '')}, mock `{meta.get('mock', '')}`<br>{(meta.get('at') or '')[:10]}"
-                + (f"<br>pixel difference {px['ratio'] * 100:.1f}%" if "ratio" in px else ""))
-        L.append(f"| {info} | {img('expected')} | {img('build')} | {img('diff')} |")
-    return L
+    if states:
+        L = ["The screenshots come from the last parity run (`route.py parity`). The TST capture hides personal text "
+             "with dots. The React build shows fictional mock data.", "",
+             "| State | TST (expected) | React (build) | Difference |", "|---|---|---|---|"]
+        for js in states:
+            st = os.path.basename(js)[:-5]
+            try:
+                meta = load(js)
+            except ValueError:
+                continue
+            px = meta.get("pixel") or {}
+            info = (f"`{st}`<br>{meta.get('viewport', '')}, mock `{meta.get('mock', '')}`<br>{(meta.get('at') or '')[:10]}"
+                    + (f"<br>pixel difference {px['ratio'] * 100:.1f}%" if "ratio" in px else ""))
+            L.append(f"| {info} | " + " | ".join(img(os.path.join(d, f"{st}.{k}.png"), f"{st} {k}")
+                                                for k in ("expected", "build", "diff")) + " |")
+        return L
+    for folder, who, note in (("review", "React", "The React app with fictional mock data (review images)."),
+                              ("capture", "TST", "The TST capture.")):
+        pngs = sorted(glob.glob(os.path.join(base, folder, "**", "*.png"), recursive=True))
+        if pngs:
+            L = [f"The route has no parity run. {note}", "", f"| State | {who} |", "|---|---|"]
+            for pth in pngs[:6]:
+                st = os.path.splitext(os.path.basename(pth))[0]
+                L.append(f"| `{st}` | {img(pth, st)} |")
+            return L
+    return ["No screenshots: the route has no parity run, no review image and no TST capture image."]
 
 
 def render(r):
@@ -680,7 +698,11 @@ def render(r):
         rows.append((owners, trigs, e))
     rows.sort(key=lambda x: (x[0][0][1] != "shell", x[0][0][0], x[2]["short"]))
     sq = sequence(r, rows)
-    open(os.path.join(DATA, f"{route}-sequence.mmd"), "w").write(sq)
+    seq_svg = os.path.join(OUT, "svg", f"{route}-sequence.svg")
+    if sq:
+        open(os.path.join(DATA, f"{route}-sequence.mmd"), "w").write(sq)
+    elif os.path.exists(seq_svg):
+        os.remove(seq_svg)
     L = [f"# {route}: server calls in OutSystems and React", "",
          f"This file compares the server calls of the route `/UBTConnect/{route}` in OutSystems (TST) with the calls "
          "of the React app.",
@@ -708,17 +730,18 @@ def render(r):
          "- A red box is a call that React does not make.", "",
          f"![{route} diagram](svg/{route}.svg)", "", "<details><summary>Mermaid source</summary>", "",
          "```mermaid", mm, "```", "", "</details>", "",
-         "## 5. Data flow", "",
-         "- The diagram shows the server calls in the order of the phases: app start, screen load, screen ready, then the "
-         "user actions.",
-         "- Each participant is an OutSystems block or module that makes calls.",
-         "- An arrow from the user is a click, a submit or an event. A note over a block gives a callback or another client action.",
-         "- Each call arrow ends with the nearest React component that makes the same call (`React: …`).",
-         "- An arrow to the server gives the inputs of the call. The return arrow gives the outputs. The names come from "
-         "the contract `app/src/api/openapi.yaml`.",
-         "- A red area is a call that React does not make.", "",
-         f"![{route} data flow](svg/{route}-sequence.svg)", "", "<details><summary>Mermaid source</summary>", "",
-         "```mermaid", sq, "```", "", "</details>", "",
+         "## 5. Data flow (user actions)", "",
+         *(["- The diagram shows the server calls that a user action starts: a click, a submit or a block event.",
+            "- Each group starts with the user action on an OutSystems block. A note gives the client action that "
+            "calls the server when it is not the first action.",
+            "- An arrow to the server gives the inputs of the call. The return arrow gives the outputs. The names come "
+            "from the contract `app/src/api/openapi.yaml`.",
+            "- Each call arrow ends with the nearest React component that makes the same call (`React: …`). A red "
+            "area is a call that React does not make.",
+            "- The calls of the app start, the screen load and the callbacks are in section 6, not here.", "",
+            f"![{route} data flow](svg/{route}-sequence.svg)", "", "<details><summary>Mermaid source</summary>", "",
+            "```mermaid", sq, "```", "", "</details>", ""] if sq else
+           ["No user action on this route makes a server call. The tool does not draw a data flow.", ""]),
          "## 6. Server calls", "",
          "- **Called from (OutSystems):** the block or the app-level module whose own client action makes the call. "
          "`app shell` = the layout and the app start; `screen` = the screen and its blocks.",
@@ -789,9 +812,9 @@ def render(r):
     open(p, "w", encoding="utf-8").write("\n".join(L) + "\n")
     subprocess.run(["node", os.path.join(ROOT, "migration", "tools", "route_actions", "render_svg.cjs"),
                     os.path.join(DATA, f"{route}.mmd"), os.path.join(OUT, "svg", f"{route}.svg")], check=True, cwd=ROOT)
-    subprocess.run(["node", os.path.join(ROOT, "migration", "tools", "route_actions", "render_svg.cjs"),
-                    os.path.join(DATA, f"{route}-sequence.mmd"), os.path.join(OUT, "svg", f"{route}-sequence.svg")],
-                   check=True, cwd=ROOT)
+    if sq:
+        subprocess.run(["node", os.path.join(ROOT, "migration", "tools", "route_actions", "render_svg.cjs"),
+                        os.path.join(DATA, f"{route}-sequence.mmd"), seq_svg], check=True, cwd=ROOT)
     print("wrote", rel(p))
     return p
 

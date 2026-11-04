@@ -138,14 +138,13 @@ flowchart LR
 
 </details>
 
-## 5. Data flow
+## 5. Data flow (user actions)
 
-- The diagram shows the server calls in the order of the phases: app start, screen load, screen ready, then the user actions.
-- Each participant is an OutSystems block or module that makes calls.
-- An arrow from the user is a click, a submit or an event. A note over a block gives a callback or another client action.
-- Each call arrow ends with the nearest React component that makes the same call (`React: …`).
+- The diagram shows the server calls that a user action starts: a click, a submit or a block event.
+- Each group starts with the user action on an OutSystems block. A note gives the client action that calls the server when it is not the first action.
 - An arrow to the server gives the inputs of the call. The return arrow gives the outputs. The names come from the contract `app/src/api/openapi.yaml`.
-- A red area is a call that React does not make.
+- Each call arrow ends with the nearest React component that makes the same call (`React: …`). A red area is a call that React does not make.
+- The calls of the app start, the screen load and the callbacks are in section 6, not here.
 
 ![Menu data flow](svg/Menu-sequence.svg)
 
@@ -155,64 +154,19 @@ flowchart LR
 sequenceDiagram
   autonumber
   actor U as User
-  participant p0 as UBTConnect
-  participant p1 as UBT_AppManager
-  participant p2 as CacheControl_UserInfo
-  participant p3 as BottomBarMenu
-  participant p4 as Version
-  participant p5 as HandleImageLoadError
-  participant p6 as Menu
+  participant p0 as Menu
   participant S as Server (TST calls)
   rect rgba(120, 120, 120, 0.06)
-  Note over U,S: App start and sign-in context
-  p0->>S: GetNumberUnreadMessages(DeviceId) · React: AppFrame
-  S-->>p0: NumberPrivateUnreadMessages, NumberPublicUnreadMessages
-  p0->>S: Sync_Info_GetMain(isFromLogin) · React: AppFrame
-  S-->>p0: B2CTenant, FeedBaseURL, LocalEntities_App, …
-  p0->>S: AppManager_AfterInitialize(AppManager_MobileContext, EspaceName, TOTP) · React: AppFrame
-  S-->>p0: isNotRegistered
-  p1->>S: AppManager_AfterInitialize(AppManager_MobileContext, EspaceName, TOTP) · React: AppFrame
-  S-->>p1: isNotRegistered
+  U->>p0: click: onClick_MenuOption
+  p0->>S: RequestPhotoUpdate() · React: Menu
+  S-->>p0: Out_IsSuccess
   end
   rect rgba(120, 120, 120, 0.06)
-  Note over U,S: Screen initialize
-  p2->>S: GetCacheInfo(CacheKey, CacheTypeId) · React: Menu
-  S-->>p2: CacheControl_Response, TTL
-  end
-  rect rgba(120, 120, 120, 0.06)
-  Note over U,S: Screen ready
-  p3->>S: Get_UI_UpdateItems_UnreadCount_All() · React: BottomBar
-  S-->>p3: UnreadCount
-  p4->>S: Get_RuntimeVersion() · React: AppVersion
-  S-->>p4: Out_Name, Out_RuntimeVersion
-  end
-  rect rgba(120, 120, 120, 0.06)
-  Note over U,S: Called by a module action (no caller in the TST graph)
-  Note over p0: module action get_Cacheable_MapHouseholds (the TST graph has no caller)
-  p0->>S: FetchData_CacheableHouseholds() · React: AppFrame
-  S-->>p0: Household_Markers
-  Note over p0: module action get_Cacheable_MapEntities (the TST graph has no caller)
-  p0->>S: FetchData_CacheableMapEntities() · React: AppFrame
-  S-->>p0: Countries_GeoJSON, Countries_Markers, GlobalLocations_Markers, …
-  end
-  rect rgba(120, 120, 120, 0.06)
-  Note over U,S: Image load error
+  U->>p0: click: onClick_MenuOption → action_Logout
+  Note over p0: via appManager_Logout
   rect rgba(192, 57, 43, 0.15)
-  p5->>S: GetAllApplicationEvents() · React: none
-  S-->>p5: EventList
-  end
-  p5->>S: AppManager_SynchAppContext(EspaceName) · React: Menu
-  S-->>p5: AppManager_ClientConfig, FirebaseRealTimeDB_Token, PermissionList, …
-  end
-  rect rgba(120, 120, 120, 0.06)
-  Note over U,S: User actions and events
-  U->>p6: click: Menu.onClick_MenuOption
-  p6->>S: RequestPhotoUpdate() · React: Menu
-  S-->>p6: Out_IsSuccess
-  U->>p6: click: Menu.onClick_MenuOption
-  rect rgba(192, 57, 43, 0.15)
-  p6->>S: AppManager_Logout() · React: none
-  S-->>p6: outputs not in the contract
+  p0->>S: AppManager_Logout() · React: none
+  S-->>p0: outputs not in the contract
   end
   end
 ```

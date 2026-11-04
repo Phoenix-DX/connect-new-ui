@@ -107,14 +107,13 @@ flowchart LR
 
 </details>
 
-## 5. Data flow
+## 5. Data flow (user actions)
 
-- The diagram shows the server calls in the order of the phases: app start, screen load, screen ready, then the user actions.
-- Each participant is an OutSystems block or module that makes calls.
-- An arrow from the user is a click, a submit or an event. A note over a block gives a callback or another client action.
-- Each call arrow ends with the nearest React component that makes the same call (`React: …`).
+- The diagram shows the server calls that a user action starts: a click, a submit or a block event.
+- Each group starts with the user action on an OutSystems block. A note gives the client action that calls the server when it is not the first action.
 - An arrow to the server gives the inputs of the call. The return arrow gives the outputs. The names come from the contract `app/src/api/openapi.yaml`.
-- A red area is a call that React does not make.
+- Each call arrow ends with the nearest React component that makes the same call (`React: …`). A red area is a call that React does not make.
+- The calls of the app start, the screen load and the callbacks are in section 6, not here.
 
 ![Login data flow](svg/Login-sequence.svg)
 
@@ -124,45 +123,18 @@ flowchart LR
 sequenceDiagram
   autonumber
   actor U as User
-  participant p0 as HandleImageLoadError
-  participant p1 as Login
-  participant p2 as Version
+  participant p0 as Login
   participant S as Server (TST calls)
   rect rgba(120, 120, 120, 0.06)
-  Note over U,S: Screen initialize
-  p1->>S: AppManager_SynchAppContext(EspaceName) · React: Login
-  S-->>p1: AppManager_ClientConfig, FirebaseRealTimeDB_Token, PermissionList, …
-  rect rgba(192, 57, 43, 0.15)
-  p1->>S: AppManager_Logout() · React: none
-  S-->>p1: outputs not in the contract
-  end
-  end
-  rect rgba(120, 120, 120, 0.06)
-  Note over U,S: Screen ready
-  rect rgba(192, 57, 43, 0.15)
-  p1->>S: AppManager_ChangeDevice() · React: none
-  S-->>p1: outputs not in the contract
-  end
-  p2->>S: Get_RuntimeVersion() · React: AppVersion
-  S-->>p2: Out_Name, Out_RuntimeVersion
-  end
-  rect rgba(120, 120, 120, 0.06)
-  Note over U,S: Image load error
-  rect rgba(192, 57, 43, 0.15)
-  p0->>S: GetAllApplicationEvents() · React: none
-  S-->>p0: EventList
-  end
+  U->>p0: click: login
+  Note over p0: via appManager_SynchAppContextInternal
   p0->>S: AppManager_SynchAppContext(EspaceName) · React: Login
   S-->>p0: AppManager_ClientConfig, FirebaseRealTimeDB_Token, PermissionList, …
+  Note over p0: via appManager_Logout
+  rect rgba(192, 57, 43, 0.15)
+  p0->>S: AppManager_Logout() · React: none
+  S-->>p0: outputs not in the contract
   end
-  rect rgba(120, 120, 120, 0.06)
-  Note over U,S: Callbacks and other client actions
-  Note over p1: client action onCallbackAction
-  p1->>S: GetNumberUnreadMessages(DeviceId) · React: Login
-  S-->>p1: NumberPrivateUnreadMessages, NumberPublicUnreadMessages
-  Note over p1: client action onCallbackAction
-  p1->>S: Sync_Info_GetMain(isFromLogin) · React: AppFrame
-  S-->>p1: B2CTenant, FeedBaseURL, LocalEntities_App, …
   end
 ```
 

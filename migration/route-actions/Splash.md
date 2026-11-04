@@ -112,60 +112,9 @@ flowchart LR
 
 </details>
 
-## 5. Data flow
+## 5. Data flow (user actions)
 
-- The diagram shows the server calls in the order of the phases: app start, screen load, screen ready, then the user actions.
-- Each participant is an OutSystems block or module that makes calls.
-- An arrow from the user is a click, a submit or an event. A note over a block gives a callback or another client action.
-- Each call arrow ends with the nearest React component that makes the same call (`React: …`).
-- An arrow to the server gives the inputs of the call. The return arrow gives the outputs. The names come from the contract `app/src/api/openapi.yaml`.
-- A red area is a call that React does not make.
-
-![Splash data flow](svg/Splash-sequence.svg)
-
-<details><summary>Mermaid source</summary>
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant p0 as Connect2_LegacyShared
-  participant p1 as UBTConnect
-  participant p2 as UBTConnect_Utils
-  participant p3 as UBT_AppManager
-  participant p4 as CacheControl_Policies
-  participant S as Server (TST calls)
-  rect rgba(120, 120, 120, 0.06)
-  Note over U,S: App start and sign-in context
-  p0->>S: GetNumberUnreadMessages(DeviceId) · React: AppFrame
-  S-->>p0: NumberPrivateUnreadMessages, NumberPublicUnreadMessages
-  p1->>S: Sync_Info_GetMain(isFromLogin) · React: AppFrame
-  S-->>p1: B2CTenant, FeedBaseURL, LocalEntities_App, …
-  p2->>S: GetUserInformation() · React: AppFrame
-  S-->>p2: UserInformation
-  p3->>S: AppManager_AfterInitialize(AppManager_MobileContext, EspaceName, TOTP) · React: AppFrame
-  S-->>p3: isNotRegistered
-  p3->>S: AppManager_SynchAppContext(EspaceName) · React: AppFrame
-  S-->>p3: AppManager_ClientConfig, FirebaseRealTimeDB_Token, PermissionList, …
-  end
-  rect rgba(120, 120, 120, 0.06)
-  Note over U,S: Called by a module action (no caller in the TST graph)
-  Note over p1: module action get_Cacheable_MapHouseholds (the TST graph has no caller)
-  p1->>S: FetchData_CacheableHouseholds() · React: AppFrame
-  S-->>p1: Household_Markers
-  Note over p1: module action get_Cacheable_MapEntities (the TST graph has no caller)
-  p1->>S: FetchData_CacheableMapEntities() · React: AppFrame
-  S-->>p1: Countries_GeoJSON, Countries_Markers, GlobalLocations_Markers, …
-  end
-  rect rgba(120, 120, 120, 0.06)
-  Note over U,S: User actions and events
-  U->>p4: seen on TST, no static chain
-  p4->>S: GetCacheInfo(CacheKey, CacheTypeId, TimeToLiveSeconds) · React: AppFrame
-  S-->>p4: CacheControl_Response
-  end
-```
-
-</details>
+No user action on this route makes a server call. The tool does not draw a data flow.
 
 ## 6. Server calls
 
