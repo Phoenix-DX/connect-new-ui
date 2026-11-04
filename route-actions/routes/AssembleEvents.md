@@ -24,7 +24,7 @@ The app shell is in [APP_SHELL.md](../APP_SHELL.md), not here.
 | Check | Result |
 |---|---|
 | Server calls of the route on TST | 5: React makes 4, **1 missing** |
-| User actions of the route | OutSystems: 15 diagrams. React: 27 diagrams |
+| User actions of the route | OutSystems: 15 diagrams. React: 30 diagrams |
 | React calls of the screen that TST does not make | 4 (see [questions](#8-questions)) |
 | Screen and blocks with a React port | 30 of 30 |
 | Navigation targets found in React | 9 of 9 |
@@ -342,10 +342,13 @@ sequenceDiagram
 | [21](#5221-bottombariconbadge-ononclick-menu) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Menu` | goes to Menu |
 | [22](#5222-bottombariconbadge-ononclick-other) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `other` | calls the prop onBottomBarClicked() |
 | [23](#5223-assemblesummarycard-onaddressclick) | [`containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx:77`](../../app/src/containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx#L77) | `<AssembleSummaryCard>` | `onAddressClick` | `linkAddressOnClick` | – | shows a message |
-| [24](#5224-assemblesummarycard-onmeetinginfotoggle) | [`containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx:78`](../../app/src/containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx#L78) | `<AssembleSummaryCard>` | `onMeetingInfoToggle` | `meetingInfoToggle` | – | asks for a confirmation |
-| [25](#5225-div-onclick) | [`components/layout/MenuIcon/MenuIcon.tsx:34`](../../app/src/components/layout/MenuIcon/MenuIcon.tsx#L34) | `<div>` | `onClick` | `inline` | – | goes to previous screen |
-| [26](#5226-preventbacknavigation-onbacknavigationprevented) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:80`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L80) | `<PreventBackNavigation>` | `onBackNavigationPrevented` | `redirectHome` | – | goes to HomeFeed |
-| [27](#5227-backnavigationhandler-onbacknavigation) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:82`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L82) | `<BackNavigationHandler>` | `onBackNavigation` | `maybeRedirectHome` | – | goes to HomeFeed |
+| [24](#5224-assemblesummarycard-onaddressclick-androidbrowser) | [`containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx:77`](../../app/src/containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx#L77) | `<AssembleSummaryCard>` | `onAddressClick` | `linkAddressOnClick` | `AndroidBrowser` | opens an external link; shows a message |
+| [25](#5225-assemblesummarycard-onaddressclick-iphonebrowser) | [`containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx:77`](../../app/src/containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx#L77) | `<AssembleSummaryCard>` | `onAddressClick` | `linkAddressOnClick` | `IPhoneBrowser` | opens an external link; shows a message |
+| [26](#5226-assemblesummarycard-onaddressclick-other) | [`containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx:77`](../../app/src/containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx#L77) | `<AssembleSummaryCard>` | `onAddressClick` | `linkAddressOnClick` | `other` | opens an external link; shows a message |
+| [27](#5227-assemblesummarycard-onmeetinginfotoggle) | [`containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx:78`](../../app/src/containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx#L78) | `<AssembleSummaryCard>` | `onMeetingInfoToggle` | `meetingInfoToggle` | – | asks for a confirmation |
+| [28](#5228-div-onclick) | [`components/layout/MenuIcon/MenuIcon.tsx:34`](../../app/src/components/layout/MenuIcon/MenuIcon.tsx#L34) | `<div>` | `onClick` | `inline` | – | goes to previous screen |
+| [29](#5229-preventbacknavigation-onbacknavigationprevented) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:80`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L80) | `<PreventBackNavigation>` | `onBackNavigationPrevented` | `redirectHome` | – | goes to HomeFeed |
+| [30](#5230-backnavigationhandler-onbacknavigation) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:82`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L82) | `<BackNavigationHandler>` | `onBackNavigation` | `maybeRedirectHome` | – | goes to HomeFeed |
 
 #### 5.2.1 AssembleEventsBlock: onNavigateToAssembleLocationFilters
 
@@ -658,12 +661,54 @@ sequenceDiagram
   actor U as User
   participant H as AssembleSummaryCard · AssembleSummaryCardContainer.tsx
   U->>H: onAddressClick → linkAddressOnClick
-  Note over H: message 'Map is not available'
   Note over H: via navigateToMaps()
   Note over H: message 'Please check your network connection and try again'
+  Note over H: message 'Map is not available'
 ```
 
-#### 5.2.24 AssembleSummaryCard: onMeetingInfoToggle
+#### 5.2.24 AssembleSummaryCard: onAddressClick (AndroidBrowser)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as AssembleSummaryCard · AssembleSummaryCardContainer.tsx
+  participant X as External link
+  U->>H: onAddressClick → linkAddressOnClick (AndroidBrowser)
+  Note over H: via navigateToMaps()
+  Note over H: message 'Please check your network connection and try again'
+  H->>X: geo: link
+```
+
+#### 5.2.25 AssembleSummaryCard: onAddressClick (IPhoneBrowser)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as AssembleSummaryCard · AssembleSummaryCardContainer.tsx
+  participant X as External link
+  U->>H: onAddressClick → linkAddressOnClick (IPhoneBrowser)
+  Note over H: via navigateToMaps()
+  Note over H: message 'Please check your network connection and try again'
+  H->>X: comgooglemapsurl: link
+```
+
+#### 5.2.26 AssembleSummaryCard: onAddressClick (other)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as AssembleSummaryCard · AssembleSummaryCardContainer.tsx
+  participant X as External link
+  U->>H: onAddressClick → linkAddressOnClick (other)
+  Note over H: via navigateToMaps()
+  Note over H: message 'Please check your network connection and try again'
+  H->>X: https: link
+```
+
+#### 5.2.27 AssembleSummaryCard: onMeetingInfoToggle
 
 ```mermaid
 sequenceDiagram
@@ -674,7 +719,7 @@ sequenceDiagram
   Note over H: confirm dialog dialogId
 ```
 
-#### 5.2.25 div: onClick
+#### 5.2.28 div: onClick
 
 ```mermaid
 sequenceDiagram
@@ -686,7 +731,7 @@ sequenceDiagram
   H->>N: go to previous screen
 ```
 
-#### 5.2.26 PreventBackNavigation: onBackNavigationPrevented
+#### 5.2.29 PreventBackNavigation: onBackNavigationPrevented
 
 ```mermaid
 sequenceDiagram
@@ -698,7 +743,7 @@ sequenceDiagram
   H->>N: go to HomeFeed
 ```
 
-#### 5.2.27 BackNavigationHandler: onBackNavigation
+#### 5.2.30 BackNavigationHandler: onBackNavigation
 
 ```mermaid
 sequenceDiagram

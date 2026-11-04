@@ -438,7 +438,10 @@ def check(route):
     os_nav = collections.defaultdict(set)
     for f in rendered:
         for n in js.get(f, {}).get("navigation", []):
-            os_nav[n["to"].rsplit("/", 1)[-1]].add(short(f))
+            to = n["to"].rsplit("/", 1)[-1]
+            if not re.fullmatch(r"\w+", to):  # `geo:0,0`, `?api=1`: a URL, not a screen (an external link)
+                continue
+            os_nav[to].add(short(f))
     react_nav = collections.defaultdict(set)
     navigates = re.compile(r"navigat|\bgo\(|osNavigateTo|replaceTo|flagRedirect", re.I)
     for r, w in ((page_r, "page"), (shell_r, "shell")):

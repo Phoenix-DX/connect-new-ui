@@ -417,6 +417,21 @@ function bodyOfDecl(d) {
 // argument at that call.
 const ENV = new Map();
 
+// The object literal behind an expression: the literal itself, the initializer of a `const`, or the value that the
+// parent gives to a prop (`<X events={events} />`), through the components that pass it on.
+function objectOf(e, hops = 0) {
+  if (!e || hops > 5) return null;
+  if (Node.isObjectLiteralExpression(e)) return e;
+  if (!Node.isIdentifier(e)) return null;
+  let sym = e.getSymbol?.();
+  if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
+  const d = sym?.getDeclarations()?.[0];
+  if (d && Node.isVariableDeclaration(d)) return objectOf(d.getInitializer(), hops + 1);
+  const po = propOf(e);
+  if (po) for (const v of propValues(po.prm, po.prop)) { const o = objectOf(v, hops + 1); if (o) return o; }
+  return null;
+}
+
 function envResolve(ex, env) {
   if (!env) return null;
   const declOf = (n) => {
@@ -461,6 +476,21 @@ function envResolve(ex, env) {
         } else if (p && Node.isPropertyAssignment(p)) obj = p.getInitializer();
       }
     }
+    if (obj && Node.isPropertyAccessExpression(obj) && obj.getName() === 'events' && Node.isIdentifier(obj.getExpression())) {
+      // `flow.events.onX` with `const { flow } = useFlowState({ events })` or `const flow = useFlowScope(events)`: the
+      // events option of the hook
+      const fd = declOf(obj.getExpression());
+      const vd = fd && Node.isBindingElement(fd) ? fd.getFirstAncestorByKind(SyntaxKind.VariableDeclaration) : fd;
+      const hv = vd && Node.isVariableDeclaration(vd) ? vd.getInitializer() : null;
+      const a0 = hv && Node.isCallExpression(hv) ? hv.getArguments()[0] : null;
+      if (a0 && Node.isObjectLiteralExpression(a0)) {
+        const p = a0.getProperty('events');
+        const vs = p && Node.isShorthandPropertyAssignment(p) ? p.getValueSymbol?.()?.getDeclarations()?.[0] : null;
+        if (vs) arg = paramArg(vs);
+        else if (p && Node.isPropertyAssignment(p) && Node.isIdentifier(p.getInitializer())) arg = paramArg(declOf(p.getInitializer()));
+      } else if (a0 && Node.isIdentifier(a0) && /useFlowScope$/.test(hv.getExpression().getText())) arg = paramArg(declOf(a0));
+      obj = null;
+    }
     if (obj && Node.isIdentifier(obj)) arg = paramArg(declOf(obj));
   } else if (Node.isIdentifier(ex)) {
     const d = declOf(ex);
@@ -473,12 +503,8 @@ function envResolve(ex, env) {
     }
   }
   if (!arg || !prop) return null;
-  if (Node.isIdentifier(arg)) {
-    const vd = declOf(arg);
-    const init = vd && Node.isVariableDeclaration(vd) ? vd.getInitializer() : null;
-    if (init && Node.isObjectLiteralExpression(init)) arg = init;
-  }
-  if (!Node.isObjectLiteralExpression(arg)) return null;
+  arg = objectOf(arg);
+  if (!arg) return null;
   const p = arg.getProperty(prop);
   if (!p) return null;
   if (Node.isShorthandPropertyAssignment(p)) return resolveFn(p.getNameNode(), 0, p.getValueSymbol?.());
@@ -645,6 +671,9 @@ function effectsOf(fn, label, depth, seen, env = null) {
         add('message', 'error message (on exception)', node, lab);
       } else if (/open\w*External\w*Link|openInApp|openUrl|OpenInNewTab/i.test(name)) {
         add('external', name, node, lab);
+      } else if (name === 'pageRedirect' && args[0]) {
+        const scheme = constText(args[0]).match(/[`'"]([a-z]+):/);
+        add('external', scheme ? `${scheme[1]}: link` : name, node, lab); // a full page load of a URL
       } else if (name === 'changeWindowLocation') {
         const scheme = (args[0] ? args[0].getText() : '').match(/^[`'"]([a-z]+):/);
         add('external', scheme ? `${scheme[1]}: link` : name, node, lab);
