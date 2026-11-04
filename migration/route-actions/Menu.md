@@ -140,11 +140,14 @@ flowchart LR
 
 ## 5. Data flow (user actions)
 
-- The diagram shows the server calls that a user action starts: a click, a submit or a block event.
-- Each group starts with the user action on an OutSystems block. A note gives the client action that calls the server when it is not the first action.
+- The diagram shows each user action of the route (click, change, submit) and its effects.
+- The effects are server calls, navigation (`Navigation`), external links, messages and confirm dialogs.
+- Each group starts with the user action on an OutSystems block and its handler.
+- When the handler has branches, `alt` / `else` shows them. The name of a branch comes from its condition in the TST compiled code. `other` is the last `else`.
+- A note `via …` gives the module action that makes the next calls.
 - An arrow to the server gives the inputs of the call. The return arrow gives the outputs. The names come from the contract `app/src/api/openapi.yaml`.
 - Each call arrow ends with the nearest React component that makes the same call (`React: …`). A red area is a call that React does not make.
-- The calls of the app start, the screen load and the callbacks are in section 6, not here.
+- The calls of the app start, the screen load and the callbacks are in section 6, not here. A user action that only changes the screen state is not in the diagram.
 
 ![Menu data flow](svg/Menu-sequence.svg)
 
@@ -154,19 +157,62 @@ flowchart LR
 sequenceDiagram
   autonumber
   actor U as User
-  participant p0 as Menu
+  participant p0 as BottomBarMenu
+  participant p1 as Menu
+  participant p2 as Block_PINUnlock_ContentWrapper
   participant S as Server (TST calls)
+  participant N as Navigation
+  participant X as External link
   rect rgba(120, 120, 120, 0.06)
-  U->>p0: click: onClick_MenuOption
-  p0->>S: RequestPhotoUpdate() · React: Menu
-  S-->>p0: Out_IsSuccess
+  U->>p0: click: event_BottomBar_Clicked
+  alt home
+  p0->>N: go to HomeFeed
+  else directory
+  p0->>N: go to CountryList
+  p0->>N: go to Locality_Details
+  else updates
+  p0->>N: go to Updates_SingleList
+  else bookmarks
+  p0->>N: go to Bookmarks
+  else menu
+  p0->>N: go to Menu
+  end
   end
   rect rgba(120, 120, 120, 0.06)
-  U->>p0: click: onClick_MenuOption → action_Logout
-  Note over p0: via appManager_Logout
+  U->>p1: click: onClick_EditYourAccount
+  p1->>N: go to Profile
+  end
+  rect rgba(120, 120, 120, 0.06)
+  U->>p2: click: onClick_ForgotPIN
+  p2->>N: go to Login
+  end
+  rect rgba(120, 120, 120, 0.06)
+  U->>p1: click: onClick_MenuOption
+  alt logOut
+  Note over p1: confirm dialog
+  Note over p1: via UBTConnect.connect_Logout
   rect rgba(192, 57, 43, 0.15)
-  p0->>S: AppManager_Logout() · React: none
-  S-->>p0: outputs not in the contract
+  p1->>S: AppManager_Logout() · React: none
+  S-->>p1: outputs not in the contract
+  end
+  p1->>S: AppManager_SynchAppContext(EspaceName) · React: Menu
+  S-->>p1: AppManager_ClientConfig, FirebaseRealTimeDB_Token, PermissionList, …
+  p1->>N: go to HomeFeed
+  else contactUs
+  p1->>N: go to ContactUsMenu
+  else termsAndPolicies
+  p1->>N: go to TermsAndPoliciesMenu
+  else pINAndBiometrics
+  p1->>N: go to PINBiometricsMenu
+  else subscriptionAndPayments
+  p1->>X: OpenInApp_OpenExternalLink
+  else requestPhotoUpdate
+  Note over p1: confirm dialog
+  p1->>S: RequestPhotoUpdate() · React: Menu
+  S-->>p1: Out_IsSuccess
+  Note over p1: message "Your update photo request has been submitted."
+  else other
+  Note over p1: message "Go to " + id
   end
   end
 ```

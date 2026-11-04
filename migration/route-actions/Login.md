@@ -109,11 +109,14 @@ flowchart LR
 
 ## 5. Data flow (user actions)
 
-- The diagram shows the server calls that a user action starts: a click, a submit or a block event.
-- Each group starts with the user action on an OutSystems block. A note gives the client action that calls the server when it is not the first action.
+- The diagram shows each user action of the route (click, change, submit) and its effects.
+- The effects are server calls, navigation (`Navigation`), external links, messages and confirm dialogs.
+- Each group starts with the user action on an OutSystems block and its handler.
+- When the handler has branches, `alt` / `else` shows them. The name of a branch comes from its condition in the TST compiled code. `other` is the last `else`.
+- A note `via …` gives the module action that makes the next calls.
 - An arrow to the server gives the inputs of the call. The return arrow gives the outputs. The names come from the contract `app/src/api/openapi.yaml`.
 - Each call arrow ends with the nearest React component that makes the same call (`React: …`). A red area is a call that React does not make.
-- The calls of the app start, the screen load and the callbacks are in section 6, not here.
+- The calls of the app start, the screen load and the callbacks are in section 6, not here. A user action that only changes the screen state is not in the diagram.
 
 ![Login data flow](svg/Login-sequence.svg)
 
@@ -127,14 +130,10 @@ sequenceDiagram
   participant S as Server (TST calls)
   rect rgba(120, 120, 120, 0.06)
   U->>p0: click: login
-  Note over p0: via appManager_SynchAppContextInternal
+  Note over p0: via UBT_AppManager.appManager_Login
   p0->>S: AppManager_SynchAppContext(EspaceName) · React: Login
   S-->>p0: AppManager_ClientConfig, FirebaseRealTimeDB_Token, PermissionList, …
-  Note over p0: via appManager_Logout
-  rect rgba(192, 57, 43, 0.15)
-  p0->>S: AppManager_Logout() · React: none
-  S-->>p0: outputs not in the contract
-  end
+  Note over p0: message error message (on exception)
   end
 ```
 

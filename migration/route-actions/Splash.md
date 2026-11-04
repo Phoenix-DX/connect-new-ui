@@ -114,7 +114,7 @@ flowchart LR
 
 ## 5. Data flow (user actions)
 
-No user action on this route makes a server call. The tool does not draw a data flow.
+No user action on this route makes a server call, a navigation, an external link or a message. The tool does not draw a data flow.
 
 ## 6. Server calls
 

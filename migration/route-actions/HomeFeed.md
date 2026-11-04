@@ -194,11 +194,14 @@ flowchart LR
 
 ## 5. Data flow (user actions)
 
-- The diagram shows the server calls that a user action starts: a click, a submit or a block event.
-- Each group starts with the user action on an OutSystems block. A note gives the client action that calls the server when it is not the first action.
+- The diagram shows each user action of the route (click, change, submit) and its effects.
+- The effects are server calls, navigation (`Navigation`), external links, messages and confirm dialogs.
+- Each group starts with the user action on an OutSystems block and its handler.
+- When the handler has branches, `alt` / `else` shows them. The name of a branch comes from its condition in the TST compiled code. `other` is the last `else`.
+- A note `via …` gives the module action that makes the next calls.
 - An arrow to the server gives the inputs of the call. The return arrow gives the outputs. The names come from the contract `app/src/api/openapi.yaml`.
 - Each call arrow ends with the nearest React component that makes the same call (`React: …`). A red area is a call that React does not make.
-- The calls of the app start, the screen load and the callbacks are in section 6, not here.
+- The calls of the app start, the screen load and the callbacks are in section 6, not here. A user action that only changes the screen state is not in the diagram.
 
 ![HomeFeed data flow](svg/HomeFeed-sequence.svg)
 
@@ -208,65 +211,116 @@ flowchart LR
 sequenceDiagram
   autonumber
   actor U as User
-  participant p0 as FeedBlock_Updates
-  participant p1 as Feed_Embeded
-  participant p2 as ShareSheet
+  participant p0 as Dialog_GoExternalApp
+  participant p1 as BottomBarMenu
+  participant p2 as Block_PINUnlock_ContentWrapper
+  participant p3 as FeedBlock_CommunityPopulation
+  participant p4 as FeedBlock_Updates
+  participant p5 as FeedBlock_Services
+  participant p6 as ShareSheet
+  participant p7 as HomeFeed
   participant S as Server (TST calls)
+  participant N as Navigation
+  participant X as External link
   rect rgba(120, 120, 120, 0.06)
-  U->>p0: click: event_MarkAsRead
-  Note over p0: via directory_Updates_RefreshBottomBarCount
-  p0->>S: Get_UI_UpdateItems_UnreadCount_All() · React: BottomBar
-  S-->>p0: UnreadCount
-  p0->>S: Action_UI_UpdateItem_MarkAsRead(UpdateItemId) · React: FeedUpdates
-  S-->>p0: no outputs
+  U->>p0: click: goToExternalApp
+  p0->>X: OpenInApp_OpenExternalLink
+  p0->>X: OpenInApp_OpenApp
   end
   rect rgba(120, 120, 120, 0.06)
-  U->>p0: click: event_MarkAsUnread
-  Note over p0: via directory_Updates_RefreshBottomBarCount
-  p0->>S: Get_UI_UpdateItems_UnreadCount_All() · React: BottomBar
-  S-->>p0: UnreadCount
-  p0->>S: Action_UI_UpdateItem_MarkAsUnread(UpdateItemId) · React: FeedUpdates
-  S-->>p0: no outputs
+  U->>p1: click: event_BottomBar_Clicked
+  alt home
+  p1->>N: go to HomeFeed
+  else directory
+  p1->>N: go to CountryList
+  p1->>N: go to Locality_Details
+  else updates
+  p1->>N: go to Updates_SingleList
+  else bookmarks
+  p1->>N: go to Bookmarks
+  else menu
+  p1->>N: go to Menu
+  end
   end
   rect rgba(120, 120, 120, 0.06)
-  U->>p0: click: event_ListItemOnClick
-  p0->>S: Action_UI_UpdateItem_MarkAsRead(UpdateItemId) · React: FeedUpdates
-  S-->>p0: no outputs
+  U->>p2: click: onClick_ForgotPIN
+  p2->>N: go to Login
   end
   rect rgba(120, 120, 120, 0.06)
-  U->>p1: click: handle_Share_Others
-  Note over p1: via cacheLocalApplicationEvents
+  U->>p3: click: onClick_Block
+  p3->>N: go to Updates_SingleList
+  end
+  rect rgba(120, 120, 120, 0.06)
+  U->>p4: click: event_ListItemOnClick
+  p4->>S: Action_UI_UpdateItem_MarkAsRead(UpdateItemId) · React: FeedUpdates
+  S-->>p4: no outputs
+  p4->>N: go to HouseholdCarousel
+  p4->>N: go to HouseholdDetails
+  Note over p4: via UBTConnect_Utils.app_Subscription_ShowUpgradePopUp
+  Note over p4: confirm dialog
+  end
+  rect rgba(120, 120, 120, 0.06)
+  U->>p4: click: event_MarkAsRead
+  p4->>S: Action_UI_UpdateItem_MarkAsRead(UpdateItemId) · React: FeedUpdates
+  S-->>p4: no outputs
+  Note over p4: via UBTConnect.directory_Updates_RefreshBottomBarCount
+  p4->>S: Get_UI_UpdateItems_UnreadCount_All() · React: BottomBar
+  S-->>p4: UnreadCount
+  end
+  rect rgba(120, 120, 120, 0.06)
+  U->>p4: click: event_MarkAsUnread
+  p4->>S: Action_UI_UpdateItem_MarkAsUnread(UpdateItemId) · React: FeedUpdates
+  S-->>p4: no outputs
+  Note over p4: via UBTConnect.directory_Updates_RefreshBottomBarCount
+  p4->>S: Get_UI_UpdateItems_UnreadCount_All() · React: BottomBar
+  S-->>p4: UnreadCount
+  end
+  rect rgba(120, 120, 120, 0.06)
+  U->>p4: click: event_SendGift
+  Note over p4: message "Send gift"
+  end
+  rect rgba(120, 120, 120, 0.06)
+  U->>p5: click: onClick_ServiceSettings
+  p5->>N: go to Services
+  end
+  rect rgba(120, 120, 120, 0.06)
+  U->>p5: click: onClick_Service
+  alt orbit
+  p5->>N: go to OrbitLanding
+  else lDM
+  p5->>N: go to LDM_MyEvents_V2
+  p5->>N: go to LDM_MyEvents
+  else myCalendar
+  p5->>N: go to MyEntertaining
+  else assemble
+  p5->>N: go to AssembleEvents
+  else orbitAdmin
+  p5->>N: go to OrbitAdminLanding
+  else myNotes
+  p5->>N: go to Notes
+  else other
+  Note over p5: confirm dialog
+  end
+  end
+  rect rgba(120, 120, 120, 0.06)
+  U->>p6: click: handler_OnClickExternalOption
   rect rgba(192, 57, 43, 0.15)
-  p1->>S: GetAllApplicationEvents() · React: none
-  S-->>p1: EventList
-  end
-  Note over p1: via shareEntity_ByURL
-  rect rgba(192, 57, 43, 0.15)
-  p1->>S: CS_CreateShareProfileLink() · React: none
-  S-->>p1: outputs not in the contract
+  p6->>S: CS_CreateShareProfileLink(In_ShareObjectTypeId, In_SharedObjectId, In_UpdateDate, …) · React: none
+  S-->>p6: ShareId, URL
   end
   end
   rect rgba(120, 120, 120, 0.06)
-  U->>p2: click: handler_OnClickExternalOption
-  rect rgba(192, 57, 43, 0.15)
-  p2->>S: CS_CreateShareProfileLink(In_ShareObjectTypeId, In_SharedObjectId, In_UpdateDate, …) · React: none
-  S-->>p2: ShareId, URL
-  end
-  end
-  rect rgba(120, 120, 120, 0.06)
-  U->>p2: click: handler_OnClickRecentMember → action_SubmitShare
-  p2->>S: CS_ShareObject(In_ShareObjectTypeId, In_SharedObjectId, In_SharingProfileName, …) · React: ShareSheetContainer
-  S-->>p2: IsAllowed, IsSuccess, Message, …
+  U->>p6: click: handler_OnClickRecentMember
+  Note over p6: via UBTConnect_Utils.app_Subscription_ShowUpgradePopUp
+  Note over p6: confirm dialog
+  p6->>S: CS_ShareObject(In_ShareObjectTypeId, In_SharedObjectId, In_SharingProfileName, …) · React: ShareSheetContainer
+  S-->>p6: IsAllowed, IsSuccess, Message, …
+  Note over p6: message submitMessageVar + " has been shared."
+  Note over p6: message "Share failed. Please try again."
   end
   rect rgba(120, 120, 120, 0.06)
-  U->>p2: click: handler_OnClickSend → action_SubmitShare
-  p2->>S: CS_ShareObject(In_ShareObjectTypeId, In_SharedObjectId, In_SharingProfileName, …) · React: ShareSheetContainer
-  S-->>p2: IsAllowed, IsSuccess, Message, …
-  end
-  rect rgba(120, 120, 120, 0.06)
-  U->>p2: submit: handler_InputEventSubmit → DataActionGetAvailableMembers
-  p2->>S: GetAvailableMembers(AvatarImageSize_HorizontalList, AvatarImageSize_VerticalList, AvatarSize_HorizontalList, …) · React: ShareSheetContainer
-  S-->>p2: Out_SearchResultItemList
+  U->>p7: click: onClick_Search
+  p7->>N: go to Search
   end
 ```
 
