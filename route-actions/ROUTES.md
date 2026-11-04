@@ -1,6 +1,6 @@
 # Routes: OutSystems actions against React
 
-One file per route in `routes/`. Run `python3 route-actions/tools/check_route.py <Route>` (see [README](README.md)). Progress: **17 of 68** build routes done.
+One file per route in `routes/`. Run `python3 route-actions/tools/check_route.py <Route>` (see [README](README.md)). Progress: **18 of 68** build routes done.
 
 The app shell (`CommonUI_InsideLayout` and its blocks on TST; the code that `main.tsx` loads in React) is in [APP_SHELL.md](APP_SHELL.md). The tool merges it from the checked routes.
 
@@ -26,7 +26,7 @@ UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read 2026-11-04.
 | [`Bookmarks`](routes/Bookmarks.md) | `Bookmarks` | done |
 | [`MyEntertaining`](routes/MyEntertaining.md) | `Calendar` | done |
 | `ContactByEmailLDMCoordinator` | `ContactFlow` | todo |
-| [`ContactByEmailMember`](routes/ContactByEmailMember.md) | `ContactFlow` | todo |
+| [`ContactByEmailMember`](routes/ContactByEmailMember.md) | `ContactFlow` | done |
 | `ContactByEmailOneSchoolGlobal` | `ContactFlow` | todo |
 | `ContactByEmailOrbitHelpdesk` | `ContactFlow` | todo |
 | `ContactByEmailOrbitHost` | `ContactFlow` | todo |
