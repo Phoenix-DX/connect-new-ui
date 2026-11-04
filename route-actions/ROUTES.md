@@ -30,7 +30,7 @@ UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read 2026-11-04.
 | [`ContactByEmailOneSchoolGlobal`](routes/ContactByEmailOneSchoolGlobal.md) | `ContactFlow` | done |
 | [`ContactByEmailOrbitHelpdesk`](routes/ContactByEmailOrbitHelpdesk.md) | `ContactFlow` | done |
 | `ContactByEmailOrbitHost` | `ContactFlow` | todo |
-| `HouseholdCarousel` | `Directory_Household` | todo |
+| [`HouseholdCarousel`](routes/HouseholdCarousel.md) | `Directory_Household` | todo |
 | `HouseholdDetails` | `Directory_Household` | todo |
 | `Household_Relations` | `Directory_Household` | todo |
 | `BrowseCountries` | `Directory_Locality` | todo |
