@@ -107,18 +107,25 @@ flowchart LR
 
 </details>
 
-## 5. Data flow (user actions)
+## 5. User actions
 
-- The diagram shows each user action of the route (click, change, submit) and its effects.
+Each user action of the route (click, change, submit) has its own sequence diagram below.
+
 - The effects are server calls, navigation (`Navigation`), external links, messages and confirm dialogs.
-- Each group starts with the user action on an OutSystems block and its handler.
 - When the handler has branches, `alt` / `else` shows them. The name of a branch comes from its condition in the TST compiled code. `other` is the last `else`.
 - A note `via …` gives the module action that makes the next calls.
 - An arrow to the server gives the inputs of the call. The return arrow gives the outputs. The names come from the contract `app/src/api/openapi.yaml`.
 - Each call arrow ends with the nearest React component that makes the same call (`React: …`). A red area is a call that React does not make.
-- The calls of the app start, the screen load and the callbacks are in section 6, not here. A user action that only changes the screen state is not in the diagram.
+- The calls of the app start, the screen load and the callbacks are in section 6. A user action that only changes the screen state is not here.
 
-![Login data flow](svg/Login-sequence.svg)
+| # | Block (OutSystems) | User action | Handler | Branches | Effects |
+|---|---|---|---|---|---|
+| [1](#51-dialog_accessrestrictedaction-click-upgrade) | `Dialog_AccessRestrictedAction` | click | `upgrade` | – | opens an external link |
+| [2](#52-login-click-login) | `Login` | click | `login` | – | calls AppManager_SynchAppContext; shows a message |
+
+### 5.1 Dialog_AccessRestrictedAction: click upgrade
+
+![Dialog_AccessRestrictedAction upgrade](svg/Login-action-1.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -126,15 +133,32 @@ flowchart LR
 sequenceDiagram
   autonumber
   actor U as User
-  participant p0 as Login
+  participant B as Dialog_AccessRestrictedAction
+  participant X as External link
+  U->>B: click: upgrade
+  Note over B: via UBTConnect_Utils.app_Subscription_NavigateToUpgrade
+  B->>X: OpenInApp_OpenExternalLink
+```
+
+</details>
+
+### 5.2 Login: click login
+
+![Login login](svg/Login-action-2.svg)
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as Login
   participant S as Server (TST calls)
-  rect rgba(120, 120, 120, 0.06)
-  U->>p0: click: login
-  Note over p0: via UBT_AppManager.appManager_Login
-  p0->>S: AppManager_SynchAppContext(EspaceName) · React: Login
-  S-->>p0: AppManager_ClientConfig, FirebaseRealTimeDB_Token, PermissionList, …
-  Note over p0: message error message (on exception)
-  end
+  U->>B: click: login
+  Note over B: via UBT_AppManager.appManager_Login
+  B->>S: AppManager_SynchAppContext(EspaceName) · React: Login
+  S-->>B: AppManager_ClientConfig, FirebaseRealTimeDB_Token, PermissionList, …
+  Note over B: message error message (on exception)
 ```
 
 </details>

@@ -138,18 +138,28 @@ flowchart LR
 
 </details>
 
-## 5. Data flow (user actions)
+## 5. User actions
 
-- The diagram shows each user action of the route (click, change, submit) and its effects.
+Each user action of the route (click, change, submit) has its own sequence diagram below.
+
 - The effects are server calls, navigation (`Navigation`), external links, messages and confirm dialogs.
-- Each group starts with the user action on an OutSystems block and its handler.
 - When the handler has branches, `alt` / `else` shows them. The name of a branch comes from its condition in the TST compiled code. `other` is the last `else`.
 - A note `via …` gives the module action that makes the next calls.
 - An arrow to the server gives the inputs of the call. The return arrow gives the outputs. The names come from the contract `app/src/api/openapi.yaml`.
 - Each call arrow ends with the nearest React component that makes the same call (`React: …`). A red area is a call that React does not make.
-- The calls of the app start, the screen load and the callbacks are in section 6, not here. A user action that only changes the screen state is not in the diagram.
+- The calls of the app start, the screen load and the callbacks are in section 6. A user action that only changes the screen state is not here.
 
-![Menu data flow](svg/Menu-sequence.svg)
+| # | Block (OutSystems) | User action | Handler | Branches | Effects |
+|---|---|---|---|---|---|
+| [1](#51-dialog_accessrestrictedaction-click-upgrade) | `Dialog_AccessRestrictedAction` | click | `upgrade` | – | opens an external link |
+| [2](#52-bottombarmenu-click-event_bottombar_clicked) | `BottomBarMenu` | click | `event_BottomBar_Clicked` | 5 | goes to HomeFeed, CountryList, Locality_Details, Updates_SingleList, Bookmarks, Menu |
+| [3](#53-menu-click-onclick_edityouraccount) | `Menu` | click | `onClick_EditYourAccount` | – | goes to Profile |
+| [4](#54-block_pinunlock_contentwrapper-click-onclick_forgotpin) | `Block_PINUnlock_ContentWrapper` | click | `onClick_ForgotPIN` | – | goes to Login |
+| [5](#55-menu-click-onclick_menuoption) | `Menu` | click | `onClick_MenuOption` | 7 | calls **AppManager_Logout (missing)**, AppManager_SynchAppContext, RequestPhotoUpdate; goes to HomeFeed, ContactUsMenu, TermsAndPoliciesMenu, PINBiometricsMenu; opens an external link; shows a message |
+
+### 5.1 Dialog_AccessRestrictedAction: click upgrade
+
+![Dialog_AccessRestrictedAction upgrade](svg/Menu-action-1.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -157,63 +167,120 @@ flowchart LR
 sequenceDiagram
   autonumber
   actor U as User
-  participant p0 as BottomBarMenu
-  participant p1 as Menu
-  participant p2 as Block_PINUnlock_ContentWrapper
+  participant B as Dialog_AccessRestrictedAction
+  participant X as External link
+  U->>B: click: upgrade
+  Note over B: via UBTConnect_Utils.app_Subscription_NavigateToUpgrade
+  B->>X: OpenInApp_OpenExternalLink
+```
+
+</details>
+
+### 5.2 BottomBarMenu: click event_BottomBar_Clicked
+
+![BottomBarMenu event_BottomBar_Clicked](svg/Menu-action-2.svg)
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as BottomBarMenu
+  participant N as Navigation
+  U->>B: click: event_BottomBar_Clicked
+  alt home
+  B->>N: go to HomeFeed
+  else directory
+  B->>N: go to CountryList
+  B->>N: go to Locality_Details
+  else updates
+  B->>N: go to Updates_SingleList
+  else bookmarks
+  B->>N: go to Bookmarks
+  else menu
+  B->>N: go to Menu
+  end
+```
+
+</details>
+
+### 5.3 Menu: click onClick_EditYourAccount
+
+![Menu onClick_EditYourAccount](svg/Menu-action-3.svg)
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as Menu
+  participant N as Navigation
+  U->>B: click: onClick_EditYourAccount
+  B->>N: go to Profile
+```
+
+</details>
+
+### 5.4 Block_PINUnlock_ContentWrapper: click onClick_ForgotPIN
+
+![Block_PINUnlock_ContentWrapper onClick_ForgotPIN](svg/Menu-action-4.svg)
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as Block_PINUnlock_ContentWrapper
+  participant N as Navigation
+  U->>B: click: onClick_ForgotPIN
+  B->>N: go to Login
+```
+
+</details>
+
+### 5.5 Menu: click onClick_MenuOption
+
+![Menu onClick_MenuOption](svg/Menu-action-5.svg)
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as Menu
   participant S as Server (TST calls)
   participant N as Navigation
   participant X as External link
-  rect rgba(120, 120, 120, 0.06)
-  U->>p0: click: event_BottomBar_Clicked
-  alt home
-  p0->>N: go to HomeFeed
-  else directory
-  p0->>N: go to CountryList
-  p0->>N: go to Locality_Details
-  else updates
-  p0->>N: go to Updates_SingleList
-  else bookmarks
-  p0->>N: go to Bookmarks
-  else menu
-  p0->>N: go to Menu
-  end
-  end
-  rect rgba(120, 120, 120, 0.06)
-  U->>p1: click: onClick_EditYourAccount
-  p1->>N: go to Profile
-  end
-  rect rgba(120, 120, 120, 0.06)
-  U->>p2: click: onClick_ForgotPIN
-  p2->>N: go to Login
-  end
-  rect rgba(120, 120, 120, 0.06)
-  U->>p1: click: onClick_MenuOption
+  U->>B: click: onClick_MenuOption
   alt logOut
-  Note over p1: confirm dialog
-  Note over p1: via UBTConnect.connect_Logout
+  Note over B: confirm dialog
+  Note over B: via UBTConnect.connect_Logout
   rect rgba(192, 57, 43, 0.15)
-  p1->>S: AppManager_Logout() · React: none
-  S-->>p1: outputs not in the contract
+  B->>S: AppManager_Logout() · React: none
+  S-->>B: outputs not in the contract
   end
-  p1->>S: AppManager_SynchAppContext(EspaceName) · React: Menu
-  S-->>p1: AppManager_ClientConfig, FirebaseRealTimeDB_Token, PermissionList, …
-  p1->>N: go to HomeFeed
+  B->>S: AppManager_SynchAppContext(EspaceName) · React: Menu
+  S-->>B: AppManager_ClientConfig, FirebaseRealTimeDB_Token, PermissionList, …
+  B->>N: go to HomeFeed
   else contactUs
-  p1->>N: go to ContactUsMenu
+  B->>N: go to ContactUsMenu
   else termsAndPolicies
-  p1->>N: go to TermsAndPoliciesMenu
+  B->>N: go to TermsAndPoliciesMenu
   else pINAndBiometrics
-  p1->>N: go to PINBiometricsMenu
+  B->>N: go to PINBiometricsMenu
   else subscriptionAndPayments
-  p1->>X: OpenInApp_OpenExternalLink
+  B->>X: OpenInApp_OpenExternalLink
   else requestPhotoUpdate
-  Note over p1: confirm dialog
-  p1->>S: RequestPhotoUpdate() · React: Menu
-  S-->>p1: Out_IsSuccess
-  Note over p1: message "Your update photo request has been submitted."
+  Note over B: confirm dialog
+  B->>S: RequestPhotoUpdate() · React: Menu
+  S-->>B: Out_IsSuccess
+  Note over B: message "Your update photo request has been submitted."
   else other
-  Note over p1: message "Go to " + id
-  end
+  Note over B: message "Go to " + id
   end
 ```
 

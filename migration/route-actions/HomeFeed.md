@@ -192,18 +192,43 @@ flowchart LR
 
 </details>
 
-## 5. Data flow (user actions)
+## 5. User actions
 
-- The diagram shows each user action of the route (click, change, submit) and its effects.
+Each user action of the route (click, change, submit) has its own sequence diagram below.
+
 - The effects are server calls, navigation (`Navigation`), external links, messages and confirm dialogs.
-- Each group starts with the user action on an OutSystems block and its handler.
 - When the handler has branches, `alt` / `else` shows them. The name of a branch comes from its condition in the TST compiled code. `other` is the last `else`.
 - A note `via …` gives the module action that makes the next calls.
 - An arrow to the server gives the inputs of the call. The return arrow gives the outputs. The names come from the contract `app/src/api/openapi.yaml`.
 - Each call arrow ends with the nearest React component that makes the same call (`React: …`). A red area is a call that React does not make.
-- The calls of the app start, the screen load and the callbacks are in section 6, not here. A user action that only changes the screen state is not in the diagram.
+- The calls of the app start, the screen load and the callbacks are in section 6. A user action that only changes the screen state is not here.
 
-![HomeFeed data flow](svg/HomeFeed-sequence.svg)
+| # | Block (OutSystems) | User action | Handler | Branches | Effects |
+|---|---|---|---|---|---|
+| [1](#51-feed_embeded-click-handle_share_connect) | `Feed_Embeded` | click | `handle_Share_Connect` | – | goes to LegacyShareObject |
+| [2](#52-feed_embeded-click-handle_share_others) | `Feed_Embeded` | click | `handle_Share_Others` | – | calls **GetAllApplicationEvents (missing)**, **CS_CreateShareProfileLink (missing)**, AppManager_SynchAppContext |
+| [3](#53-dialog_goexternalapp-click-gotoexternalapp) | `Dialog_GoExternalApp` | click | `goToExternalApp` | – | opens an external link |
+| [4](#54-dialog_accessrestrictedaction-click-upgrade) | `Dialog_AccessRestrictedAction` | click | `upgrade` | – | opens an external link |
+| [5](#55-bottombarmenu-click-event_bottombar_clicked) | `BottomBarMenu` | click | `event_BottomBar_Clicked` | 5 | goes to HomeFeed, CountryList, Locality_Details, Updates_SingleList, Bookmarks, Menu |
+| [6](#56-app_notificationicon-click-iconclick) | `App_NotificationIcon` | click | `iconClick` | – | goes to Notifications, MessageList |
+| [7](#57-block_pinunlock_contentwrapper-click-onclick_forgotpin) | `Block_PINUnlock_ContentWrapper` | click | `onClick_ForgotPIN` | – | goes to Login |
+| [8](#58-feedblock_communitypopulation-click-onclick_block) | `FeedBlock_CommunityPopulation` | click | `onClick_Block` | – | goes to Updates_SingleList |
+| [9](#59-feedblock_updates-click-event_listitemonclick) | `FeedBlock_Updates` | click | `event_ListItemOnClick` | – | calls Action_UI_UpdateItem_MarkAsRead; goes to HouseholdCarousel, HouseholdDetails |
+| [10](#510-feedblock_updates-click-event_markasread) | `FeedBlock_Updates` | click | `event_MarkAsRead` | – | calls Action_UI_UpdateItem_MarkAsRead, Get_UI_UpdateItems_UnreadCount_All |
+| [11](#511-feedblock_updates-click-event_markasunread) | `FeedBlock_Updates` | click | `event_MarkAsUnread` | – | calls Action_UI_UpdateItem_MarkAsUnread, Get_UI_UpdateItems_UnreadCount_All |
+| [12](#512-feedblock_updates-click-event_sendgift) | `FeedBlock_Updates` | click | `event_SendGift` | – | shows a message |
+| [13](#513-feedblock_services-click-onclick_servicesettings) | `FeedBlock_Services` | click | `onClick_ServiceSettings` | – | goes to Services |
+| [14](#514-feedblock_services-click-onclick_service) | `FeedBlock_Services` | click | `onClick_Service` | 7 | goes to OrbitLanding, LDM_MyEvents_V2, LDM_MyEvents, MyEntertaining, AssembleEvents, OrbitAdminLanding, Notes |
+| [15](#515-sharesheet-click-handler_onclickrecentmember) | `ShareSheet` | click | `handler_OnClickRecentMember` | 1 | calls CS_ShareObject; shows a message |
+| [16](#516-sharesheet-click-handler_onclickexternaloption) | `ShareSheet` | click | `handler_OnClickExternalOption` | – | calls **CS_CreateShareProfileLink (missing)** |
+| [17](#517-homefeed-click-onclick_search) | `HomeFeed` | click | `onClick_Search` | – | goes to Search |
+| [18](#518-homefeed-click-section_updatesonclick_viewall) | `HomeFeed` | click | `section_UpdatesOnClick_ViewAll` | – | goes to Updates_SingleList |
+| [19](#519-sharesheet-submit-handler_inputeventsubmit) | `ShareSheet` | submit | `handler_InputEventSubmit` | – | calls GetAvailableMembers |
+| [20](#520-sharesheet-click-handler_onclicksend) | `ShareSheet` | click | `handler_OnClickSend` | 1 | calls CS_ShareObject; shows a message |
+
+### 5.1 Feed_Embeded: click handle_Share_Connect
+
+![Feed_Embeded handle_Share_Connect](svg/HomeFeed-action-1.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -211,117 +236,416 @@ flowchart LR
 sequenceDiagram
   autonumber
   actor U as User
-  participant p0 as Dialog_GoExternalApp
-  participant p1 as BottomBarMenu
-  participant p2 as Block_PINUnlock_ContentWrapper
-  participant p3 as FeedBlock_CommunityPopulation
-  participant p4 as FeedBlock_Updates
-  participant p5 as FeedBlock_Services
-  participant p6 as ShareSheet
-  participant p7 as HomeFeed
+  participant B as Feed_Embeded
+  participant N as Navigation
+  U->>B: click: handle_Share_Connect
+  B->>N: go to LegacyShareObject
+```
+
+</details>
+
+### 5.2 Feed_Embeded: click handle_Share_Others
+
+![Feed_Embeded handle_Share_Others](svg/HomeFeed-action-2.svg)
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as Feed_Embeded
+  participant S as Server (TST calls)
+  U->>B: click: handle_Share_Others
+  Note over B: via UBTConnect_Utils.shareEntity_ByURL
+  rect rgba(192, 57, 43, 0.15)
+  B->>S: GetAllApplicationEvents() · React: none
+  S-->>B: EventList
+  end
+  rect rgba(192, 57, 43, 0.15)
+  B->>S: CS_CreateShareProfileLink() · React: none
+  S-->>B: outputs not in the contract
+  end
+  B->>S: AppManager_SynchAppContext(EspaceName) · React: AppFrame
+  S-->>B: AppManager_ClientConfig, FirebaseRealTimeDB_Token, PermissionList, …
+```
+
+</details>
+
+### 5.3 Dialog_GoExternalApp: click goToExternalApp
+
+![Dialog_GoExternalApp goToExternalApp](svg/HomeFeed-action-3.svg)
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as Dialog_GoExternalApp
+  participant X as External link
+  U->>B: click: goToExternalApp
+  B->>X: OpenInApp_OpenExternalLink
+  B->>X: OpenInApp_OpenApp
+```
+
+</details>
+
+### 5.4 Dialog_AccessRestrictedAction: click upgrade
+
+![Dialog_AccessRestrictedAction upgrade](svg/HomeFeed-action-4.svg)
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as Dialog_AccessRestrictedAction
+  participant X as External link
+  U->>B: click: upgrade
+  Note over B: via UBTConnect_Utils.app_Subscription_NavigateToUpgrade
+  B->>X: OpenInApp_OpenExternalLink
+```
+
+</details>
+
+### 5.5 BottomBarMenu: click event_BottomBar_Clicked
+
+![BottomBarMenu event_BottomBar_Clicked](svg/HomeFeed-action-5.svg)
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as BottomBarMenu
+  participant N as Navigation
+  U->>B: click: event_BottomBar_Clicked
+  alt home
+  B->>N: go to HomeFeed
+  else directory
+  B->>N: go to CountryList
+  B->>N: go to Locality_Details
+  else updates
+  B->>N: go to Updates_SingleList
+  else bookmarks
+  B->>N: go to Bookmarks
+  else menu
+  B->>N: go to Menu
+  end
+```
+
+</details>
+
+### 5.6 App_NotificationIcon: click iconClick
+
+![App_NotificationIcon iconClick](svg/HomeFeed-action-6.svg)
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as App_NotificationIcon
+  participant N as Navigation
+  U->>B: click: iconClick
+  B->>N: go to Notifications
+  B->>N: go to MessageList
+```
+
+</details>
+
+### 5.7 Block_PINUnlock_ContentWrapper: click onClick_ForgotPIN
+
+![Block_PINUnlock_ContentWrapper onClick_ForgotPIN](svg/HomeFeed-action-7.svg)
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as Block_PINUnlock_ContentWrapper
+  participant N as Navigation
+  U->>B: click: onClick_ForgotPIN
+  B->>N: go to Login
+```
+
+</details>
+
+### 5.8 FeedBlock_CommunityPopulation: click onClick_Block
+
+![FeedBlock_CommunityPopulation onClick_Block](svg/HomeFeed-action-8.svg)
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as FeedBlock_CommunityPopulation
+  participant N as Navigation
+  U->>B: click: onClick_Block
+  B->>N: go to Updates_SingleList
+```
+
+</details>
+
+### 5.9 FeedBlock_Updates: click event_ListItemOnClick
+
+![FeedBlock_Updates event_ListItemOnClick](svg/HomeFeed-action-9.svg)
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as FeedBlock_Updates
   participant S as Server (TST calls)
   participant N as Navigation
-  participant X as External link
-  rect rgba(120, 120, 120, 0.06)
-  U->>p0: click: goToExternalApp
-  p0->>X: OpenInApp_OpenExternalLink
-  p0->>X: OpenInApp_OpenApp
-  end
-  rect rgba(120, 120, 120, 0.06)
-  U->>p1: click: event_BottomBar_Clicked
-  alt home
-  p1->>N: go to HomeFeed
-  else directory
-  p1->>N: go to CountryList
-  p1->>N: go to Locality_Details
-  else updates
-  p1->>N: go to Updates_SingleList
-  else bookmarks
-  p1->>N: go to Bookmarks
-  else menu
-  p1->>N: go to Menu
-  end
-  end
-  rect rgba(120, 120, 120, 0.06)
-  U->>p2: click: onClick_ForgotPIN
-  p2->>N: go to Login
-  end
-  rect rgba(120, 120, 120, 0.06)
-  U->>p3: click: onClick_Block
-  p3->>N: go to Updates_SingleList
-  end
-  rect rgba(120, 120, 120, 0.06)
-  U->>p4: click: event_ListItemOnClick
-  p4->>S: Action_UI_UpdateItem_MarkAsRead(UpdateItemId) · React: FeedUpdates
-  S-->>p4: no outputs
-  p4->>N: go to HouseholdCarousel
-  p4->>N: go to HouseholdDetails
-  Note over p4: via UBTConnect_Utils.app_Subscription_ShowUpgradePopUp
-  Note over p4: confirm dialog
-  end
-  rect rgba(120, 120, 120, 0.06)
-  U->>p4: click: event_MarkAsRead
-  p4->>S: Action_UI_UpdateItem_MarkAsRead(UpdateItemId) · React: FeedUpdates
-  S-->>p4: no outputs
-  Note over p4: via UBTConnect.directory_Updates_RefreshBottomBarCount
-  p4->>S: Get_UI_UpdateItems_UnreadCount_All() · React: BottomBar
-  S-->>p4: UnreadCount
-  end
-  rect rgba(120, 120, 120, 0.06)
-  U->>p4: click: event_MarkAsUnread
-  p4->>S: Action_UI_UpdateItem_MarkAsUnread(UpdateItemId) · React: FeedUpdates
-  S-->>p4: no outputs
-  Note over p4: via UBTConnect.directory_Updates_RefreshBottomBarCount
-  p4->>S: Get_UI_UpdateItems_UnreadCount_All() · React: BottomBar
-  S-->>p4: UnreadCount
-  end
-  rect rgba(120, 120, 120, 0.06)
-  U->>p4: click: event_SendGift
-  Note over p4: message "Send gift"
-  end
-  rect rgba(120, 120, 120, 0.06)
-  U->>p5: click: onClick_ServiceSettings
-  p5->>N: go to Services
-  end
-  rect rgba(120, 120, 120, 0.06)
-  U->>p5: click: onClick_Service
+  U->>B: click: event_ListItemOnClick
+  B->>S: Action_UI_UpdateItem_MarkAsRead(UpdateItemId) · React: FeedUpdates
+  S-->>B: no outputs
+  B->>N: go to HouseholdCarousel
+  B->>N: go to HouseholdDetails
+  Note over B: via UBTConnect_Utils.app_Subscription_ShowUpgradePopUp
+  Note over B: confirm dialog
+```
+
+</details>
+
+### 5.10 FeedBlock_Updates: click event_MarkAsRead
+
+![FeedBlock_Updates event_MarkAsRead](svg/HomeFeed-action-10.svg)
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as FeedBlock_Updates
+  participant S as Server (TST calls)
+  U->>B: click: event_MarkAsRead
+  B->>S: Action_UI_UpdateItem_MarkAsRead(UpdateItemId) · React: FeedUpdates
+  S-->>B: no outputs
+  Note over B: via UBTConnect.directory_Updates_RefreshBottomBarCount
+  B->>S: Get_UI_UpdateItems_UnreadCount_All() · React: BottomBar
+  S-->>B: UnreadCount
+```
+
+</details>
+
+### 5.11 FeedBlock_Updates: click event_MarkAsUnread
+
+![FeedBlock_Updates event_MarkAsUnread](svg/HomeFeed-action-11.svg)
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as FeedBlock_Updates
+  participant S as Server (TST calls)
+  U->>B: click: event_MarkAsUnread
+  B->>S: Action_UI_UpdateItem_MarkAsUnread(UpdateItemId) · React: FeedUpdates
+  S-->>B: no outputs
+  Note over B: via UBTConnect.directory_Updates_RefreshBottomBarCount
+  B->>S: Get_UI_UpdateItems_UnreadCount_All() · React: BottomBar
+  S-->>B: UnreadCount
+```
+
+</details>
+
+### 5.12 FeedBlock_Updates: click event_SendGift
+
+![FeedBlock_Updates event_SendGift](svg/HomeFeed-action-12.svg)
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as FeedBlock_Updates
+  U->>B: click: event_SendGift
+  Note over B: message "Send gift"
+```
+
+</details>
+
+### 5.13 FeedBlock_Services: click onClick_ServiceSettings
+
+![FeedBlock_Services onClick_ServiceSettings](svg/HomeFeed-action-13.svg)
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as FeedBlock_Services
+  participant N as Navigation
+  U->>B: click: onClick_ServiceSettings
+  B->>N: go to Services
+```
+
+</details>
+
+### 5.14 FeedBlock_Services: click onClick_Service
+
+![FeedBlock_Services onClick_Service](svg/HomeFeed-action-14.svg)
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as FeedBlock_Services
+  participant N as Navigation
+  U->>B: click: onClick_Service
   alt orbit
-  p5->>N: go to OrbitLanding
+  B->>N: go to OrbitLanding
   else lDM
-  p5->>N: go to LDM_MyEvents_V2
-  p5->>N: go to LDM_MyEvents
+  B->>N: go to LDM_MyEvents_V2
+  B->>N: go to LDM_MyEvents
   else myCalendar
-  p5->>N: go to MyEntertaining
+  B->>N: go to MyEntertaining
   else assemble
-  p5->>N: go to AssembleEvents
+  B->>N: go to AssembleEvents
   else orbitAdmin
-  p5->>N: go to OrbitAdminLanding
+  B->>N: go to OrbitAdminLanding
   else myNotes
-  p5->>N: go to Notes
+  B->>N: go to Notes
   else other
-  Note over p5: confirm dialog
+  Note over B: confirm dialog
   end
-  end
-  rect rgba(120, 120, 120, 0.06)
-  U->>p6: click: handler_OnClickExternalOption
+```
+
+</details>
+
+### 5.15 ShareSheet: click handler_OnClickRecentMember
+
+![ShareSheet handler_OnClickRecentMember](svg/HomeFeed-action-15.svg)
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as ShareSheet
+  participant S as Server (TST calls)
+  U->>B: click: handler_OnClickRecentMember
+  Note over B: via UBTConnect_Utils.app_Subscription_ShowUpgradePopUp
+  Note over B: confirm dialog
+  B->>S: CS_ShareObject(In_ShareObjectTypeId, In_SharedObjectId, In_SharingProfileName, …) · React: ShareSheetContainer
+  S-->>B: IsAllowed, IsSuccess, Message, …
+  Note over B: message submitMessageVar + " has been shared."
+  Note over B: message "Share failed. Please try again."
+```
+
+</details>
+
+### 5.16 ShareSheet: click handler_OnClickExternalOption
+
+![ShareSheet handler_OnClickExternalOption](svg/HomeFeed-action-16.svg)
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as ShareSheet
+  participant S as Server (TST calls)
+  U->>B: click: handler_OnClickExternalOption
   rect rgba(192, 57, 43, 0.15)
-  p6->>S: CS_CreateShareProfileLink(In_ShareObjectTypeId, In_SharedObjectId, In_UpdateDate, …) · React: none
-  S-->>p6: ShareId, URL
+  B->>S: CS_CreateShareProfileLink(In_ShareObjectTypeId, In_SharedObjectId, In_UpdateDate, …) · React: none
+  S-->>B: ShareId, URL
   end
-  end
-  rect rgba(120, 120, 120, 0.06)
-  U->>p6: click: handler_OnClickRecentMember
-  Note over p6: via UBTConnect_Utils.app_Subscription_ShowUpgradePopUp
-  Note over p6: confirm dialog
-  p6->>S: CS_ShareObject(In_ShareObjectTypeId, In_SharedObjectId, In_SharingProfileName, …) · React: ShareSheetContainer
-  S-->>p6: IsAllowed, IsSuccess, Message, …
-  Note over p6: message submitMessageVar + " has been shared."
-  Note over p6: message "Share failed. Please try again."
-  end
-  rect rgba(120, 120, 120, 0.06)
-  U->>p7: click: onClick_Search
-  p7->>N: go to Search
-  end
+```
+
+</details>
+
+### 5.17 HomeFeed: click onClick_Search
+
+![HomeFeed onClick_Search](svg/HomeFeed-action-17.svg)
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as HomeFeed
+  participant N as Navigation
+  U->>B: click: onClick_Search
+  B->>N: go to Search
+```
+
+</details>
+
+### 5.18 HomeFeed: click section_UpdatesOnClick_ViewAll
+
+![HomeFeed section_UpdatesOnClick_ViewAll](svg/HomeFeed-action-18.svg)
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as HomeFeed
+  participant N as Navigation
+  U->>B: click: section_UpdatesOnClick_ViewAll
+  B->>N: go to Updates_SingleList
+```
+
+</details>
+
+### 5.19 ShareSheet: submit handler_InputEventSubmit
+
+![ShareSheet handler_InputEventSubmit](svg/HomeFeed-action-19.svg)
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as ShareSheet
+  participant S as Server (TST calls)
+  U->>B: submit: handler_InputEventSubmit
+  B->>S: GetAvailableMembers(AvatarImageSize_HorizontalList, AvatarImageSize_VerticalList, AvatarSize_HorizontalList, …) · React: ShareSheetContainer
+  S-->>B: Out_SearchResultItemList
+```
+
+</details>
+
+### 5.20 ShareSheet: click handler_OnClickSend
+
+![ShareSheet handler_OnClickSend](svg/HomeFeed-action-20.svg)
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as ShareSheet
+  participant S as Server (TST calls)
+  U->>B: click: handler_OnClickSend
+  B->>S: CS_ShareObject(In_ShareObjectTypeId, In_SharedObjectId, In_SharingProfileName, …) · React: ShareSheetContainer
+  S-->>B: IsAllowed, IsSuccess, Message, …
+  Note over B: message submitMessageVar + " has been shared."
+  Note over B: message "Share failed. Please try again."
 ```
 
 </details>

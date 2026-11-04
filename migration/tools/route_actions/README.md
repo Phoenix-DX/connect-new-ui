@@ -51,7 +51,7 @@ status in `ROUTES.md`. Use `git diff` to see what changed.
 | 2. Result | The counts. |
 | 3. Screenshots | First choice: the images of the last parity run (`migration/screens/<Route>/parity/`), per state: TST capture (personal text hidden), React build (mock data), difference. Without parity: the React review images (`review/`), else the TST capture images. The file links to the images; it does not copy them. |
 | 4. Diagram | OutSystems block → server call → React action → React component. A red box is a missing call. |
-| 5. Data flow (user actions) | Sequence diagram of each user action (click, change, submit) and its effects, branch by branch (`alt` / `else` from the conditions of the TST code): server calls with inputs and outputs and the React component, navigation, external links, messages, confirm dialogs. No diagram when no user action has an effect. |
+| 5. User actions | An index table of the user actions (click, change, submit), then one sequence diagram per action (`svg/<Route>-action-<n>.svg`): its effects branch by branch (`alt` / `else` from the conditions of the TST code): server calls with inputs, outputs and the React component, navigation, external links, messages, confirm dialogs. |
 | 6. Server calls | One row per TST call: the calling block, the trigger, the chain, the React action, the React caller (component → hooks → action), the status. |
 | 7. Missing in React | The calls, blocks and navigation targets that React does not have, with the notes of the React code. |
 | 8. Questions | The React calls that TST does not make on the route. |

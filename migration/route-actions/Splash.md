@@ -112,9 +112,9 @@ flowchart LR
 
 </details>
 
-## 5. Data flow (user actions)
+## 5. User actions
 
-No user action on this route makes a server call, a navigation, an external link or a message. The tool does not draw a data flow.
+No user action on this route makes a server call, a navigation, an external link or a message.
 
 ## 6. Server calls
 
