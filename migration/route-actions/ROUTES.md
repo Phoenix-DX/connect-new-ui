@@ -1,6 +1,6 @@
 # Routes: OutSystems actions against React
 
-One file per route. Run `python3 migration/tools/route_actions/check_route.py <Route>` (see [README](../tools/route_actions/README.md)). Progress: **3 of 68** build routes done.
+One file per route. Run `python3 migration/tools/route_actions/check_route.py <Route>` (see [README](../tools/route_actions/README.md)). Progress: **4 of 68** build routes done.
 
 The app shell (layout, app start, bottom bar, PIN lock, shared dialogs) is in [APP_SHELL.md](APP_SHELL.md). The tool merges it from the checked routes.
 
@@ -10,7 +10,7 @@ UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read 2026-11-04.
 |---|---|---|
 | [`Login`](Login.md) | `App_Common` | done |
 | [`Splash`](Splash.md) | `App_Common` | done |
-| [`Menu`](Menu.md) | `App_Menu` | todo |
+| [`Menu`](Menu.md) | `App_Menu` | done |
 | `PINBiometricsMenu` | `App_Menu` | todo |
 | `TermsAndPoliciesMenu` | `App_Menu` | todo |
 | `ContactUsDetails` | `App_Menu_ContactUs` | todo |
