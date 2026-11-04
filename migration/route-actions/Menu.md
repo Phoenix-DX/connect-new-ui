@@ -20,11 +20,21 @@ The tool reads the code. It does not run the app.
 | Check | Result |
 |---|---|
 | Server calls on TST | 12: React makes 10, **2 missing** |
-| React calls that TST does not make on this route | 3 (see [questions](#7-questions)) |
+| React calls that TST does not make on this route | 3 (see [questions](#8-questions)) |
 | Screen and blocks with a React port | 48 of 48 |
 | Navigation targets found in React | 12 of 12 |
 
-## 3. Diagram
+## 3. Screenshots
+
+The screenshots come from the last parity run (`route.py parity`). The TST capture hides personal text with dots. The React build shows fictional mock data.
+
+| State | TST (expected) | React (build) | Difference |
+|---|---|---|---|
+| `default`<br>390x844, mock `member`<br>2026-10-29<br>pixel difference 1.1% | <img src="../screens/Menu/parity/default.expected.png" width="200" alt="default expected"> | <img src="../screens/Menu/parity/default.build.png" width="200" alt="default build"> | <img src="../screens/Menu/parity/default.diff.png" width="200" alt="default diff"> |
+| `loading`<br>390x844, mock `loading`<br>2026-10-29<br>pixel difference 0.0% | <img src="../screens/Menu/parity/loading.expected.png" width="200" alt="loading expected"> | <img src="../screens/Menu/parity/loading.build.png" width="200" alt="loading build"> | <img src="../screens/Menu/parity/loading.diff.png" width="200" alt="loading diff"> |
+| `offline`<br>390x844, mock `error`<br>2026-10-29<br>pixel difference 0.0% | <img src="../screens/Menu/parity/offline.expected.png" width="200" alt="offline expected"> | <img src="../screens/Menu/parity/offline.build.png" width="200" alt="offline build"> | <img src="../screens/Menu/parity/offline.diff.png" width="200" alt="offline diff"> |
+
+## 4. Diagram
 
 - A box on the left is the OutSystems block or app action that makes the call.
 - A line connects each call to the React action that makes the same call.
@@ -128,7 +138,7 @@ flowchart LR
 
 </details>
 
-## 4. Data flow
+## 5. Data flow
 
 - The diagram shows the server calls in the order of the phases: app start, screen load, screen ready, then the user actions.
 - Each participant is an OutSystems block or module that makes calls.
@@ -209,7 +219,7 @@ sequenceDiagram
 
 </details>
 
-## 5. Server calls
+## 6. Server calls
 
 - **Called from (OutSystems):** the block or the app-level module whose own client action makes the call. `app shell` = the layout and the app start; `screen` = the screen and its blocks.
 - **Made by (TST):** for each block in "Called from", its chain of client actions from the block to the call.
@@ -233,7 +243,7 @@ sequenceDiagram
 | 11 | `UBT_AppManager/ActionAppManager_Logout` | server action | `Menu` (screen) | click | Menu.onClick_MenuOption → Menu.action_Logout → … → server AppManager_Logout | no | – | – | **missing** |
 | 12 | `UBTConnect_Utils/ActionGet_RuntimeVersion` | server action | `Version` (screen) | ready | Version.OnReady → Version.screenEvent_OnReady → UBTConnect_Utils.get_ConnectVersionDetails → server Get_RuntimeVersion | yes | `get_ConnectVersionDetails()` [`lib/ubtConnectUtils/actions.ts:36`](../../app/src/lib/ubtConnectUtils/actions.ts#L36) (page) | `AppVersion → loadVersionDetails → get_ConnectVersionDetails`<br>[`components/version/AppVersion/AppVersion.tsx`](../../app/src/components/version/AppVersion/AppVersion.tsx) | implemented |
 
-## 6. Missing in React
+## 7. Missing in React
 
 - Call `UBT_AppManager/ActionAppManager_Logout`. Chain on TST: onClick in CustomContainer → event clicked of CustomContainer → event onClick_MenuOption of Menu_List → Menu.onClick_MenuOption → Menu.action_Logout → UBTConnect.connect_Logout → UBT_AppManager.appManager_Logout → server AppManager_Logout.
   - No React code makes this call.
@@ -243,13 +253,13 @@ sequenceDiagram
 - Call `Connect2_LegacyShared/ActionGetAllApplicationEvents`. Chain on TST: HandleImageLoadError.applicationEvent_ImageError → Connect2_LegacyShared.zOnApplicationEvent_Wrapper → Connect2_LegacyShared.getAppEventName → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents.
   - No React code makes this call.
 
-## 7. Questions
+## 8. Questions
 
 1. React calls `/api/UBTConnect_Utils/ActionGetUserInformation` from `fetchUserInformation()` [`api/member/userInformation.ts:6`](../../app/src/api/member/userInformation.ts#L6) (shell + page). TST Menu has no chain to this call. Does the call belong to this route?
 2. React calls `/api/UBTConnect_Utils/CacheControl_Policies/DataActionGetCacheInfo` from `fetchPolicies()` [`api/app/repository.ts:54`](../../app/src/api/app/repository.ts#L54) (shell + page). TST Menu has no chain to this call. Does the call belong to this route?
 3. React calls `/api/UBTConnect_Utils/ActionGetSignedImagesInBulk` from `cache_SignedImageURL_GetCallback()` [`lib/ubtConnectUtils/actions.ts:124`](../../app/src/lib/ubtConnectUtils/actions.ts#L124) (page). TST Menu has no chain to this call. Does the call belong to this route?
 
-## 8. Method
+## 9. Method
 
 1. **OutSystems (TST).** The tool reads `facts.json` of `migration/screens/Menu/analysis/`:
    - the screen and block files that TST renders;

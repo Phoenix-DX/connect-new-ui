@@ -49,12 +49,13 @@ status in `ROUTES.md`. Use `git diff` to see what changed.
 |---|---|
 | 1. Route | The route, the OutSystems screen, the UI flow, the React screen and its route rules. |
 | 2. Result | The counts. |
-| 3. Diagram | OutSystems block → server call → React action → React component. A red box is a missing call. |
-| 4. Data flow | Sequence diagram by phase (app start, load, ready, user actions): block → server call (inputs) → outputs, with the React component of each call. The input and output names come from `app/src/api/openapi.yaml`. |
-| 5. Server calls | One row per TST call: the calling block, the trigger, the chain, the React action, the React caller (component → hooks → action), the status. |
-| 6. Missing in React | The calls, blocks and navigation targets that React does not have, with the notes of the React code. |
-| 7. Questions | The React calls that TST does not make on the route. |
-| 8. Method | How the tool gets each fact. |
+| 3. Screenshots | The images of the last parity run (`migration/screens/<Route>/parity/`), per state: TST capture (personal text hidden), React build (mock data), difference. The file links to the images; it does not copy them. |
+| 4. Diagram | OutSystems block → server call → React action → React component. A red box is a missing call. |
+| 5. Data flow | Sequence diagram by phase (app start, load, ready, user actions): block → server call (inputs) → outputs, with the React component of each call. The input and output names come from `app/src/api/openapi.yaml`. |
+| 6. Server calls | One row per TST call: the calling block, the trigger, the chain, the React action, the React caller (component → hooks → action), the status. |
+| 7. Missing in React | The calls, blocks and navigation targets that React does not have, with the notes of the React code. |
+| 8. Questions | The React calls that TST does not make on the route. |
+| 9. Method | How the tool gets each fact. |
 
 ## Files
 

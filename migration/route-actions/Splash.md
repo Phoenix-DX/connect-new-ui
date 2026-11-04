@@ -20,11 +20,19 @@ The tool reads the code. It does not run the app.
 | Check | Result |
 |---|---|
 | Server calls on TST | 8: React makes 8, **0 missing** |
-| React calls that TST does not make on this route | 0 (see [questions](#7-questions)) |
+| React calls that TST does not make on this route | 0 (see [questions](#8-questions)) |
 | Screen and blocks with a React port | 16 of 16 |
 | Navigation targets found in React | 2 of 2 |
 
-## 3. Diagram
+## 3. Screenshots
+
+The screenshots come from the last parity run (`route.py parity`). The TST capture hides personal text with dots. The React build shows fictional mock data.
+
+| State | TST (expected) | React (build) | Difference |
+|---|---|---|---|
+| `default`<br>390x844, mock `real`<br>2026-10-29<br>pixel difference 0.0% | <img src="../screens/Splash/parity/default.expected.png" width="200" alt="default expected"> | <img src="../screens/Splash/parity/default.build.png" width="200" alt="default build"> | <img src="../screens/Splash/parity/default.diff.png" width="200" alt="default diff"> |
+
+## 4. Diagram
 
 - A box on the left is the OutSystems block or app action that makes the call.
 - A line connects each call to the React action that makes the same call.
@@ -104,7 +112,7 @@ flowchart LR
 
 </details>
 
-## 4. Data flow
+## 5. Data flow
 
 - The diagram shows the server calls in the order of the phases: app start, screen load, screen ready, then the user actions.
 - Each participant is an OutSystems block or module that makes calls.
@@ -159,7 +167,7 @@ sequenceDiagram
 
 </details>
 
-## 5. Server calls
+## 6. Server calls
 
 - **Called from (OutSystems):** the block or the app-level module whose own client action makes the call. `app shell` = the layout and the app start; `screen` = the screen and its blocks.
 - **Made by (TST):** for each block in "Called from", its chain of client actions from the block to the call.
@@ -179,15 +187,15 @@ sequenceDiagram
 | 7 | `UBT_AppManager/ActionAppManager_SynchAppContext` | server action | `UBT_AppManager` (app shell) | app start (seen on TST, no static chain) | no static chain in the TST code | yes | `fetchAppContext()` [`api/app/repository.ts:23`](../../app/src/api/app/repository.ts#L23) (shell) | `AppFrame → AppStart → … → fetchAppContext`<br>[`app/AppFrame.tsx`](../../app/src/app/AppFrame.tsx) | implemented |
 | 8 | `UBTConnect_Utils/CacheControl/CacheControl_Policies/DataActionGetCacheInfo` | data action | `CacheControl_Policies` (screen) | seen on TST, no static chain | no static chain in the TST code | yes | `fetchPolicies()` [`api/app/repository.ts:54`](../../app/src/api/app/repository.ts#L54) (shell) | `AppFrame → AppLockHost → … → fetchPolicies`<br>[`app/AppFrame.tsx`](../../app/src/app/AppFrame.tsx) | implemented |
 
-## 6. Missing in React
+## 7. Missing in React
 
 None.
 
-## 7. Questions
+## 8. Questions
 
 None.
 
-## 8. Method
+## 9. Method
 
 1. **OutSystems (TST).** The tool reads `facts.json` of `migration/screens/Splash/analysis/`:
    - the screen and block files that TST renders;

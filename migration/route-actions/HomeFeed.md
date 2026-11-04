@@ -20,11 +20,21 @@ The tool reads the code. It does not run the app.
 | Check | Result |
 |---|---|
 | Server calls on TST | 21: React makes 18, **3 missing** |
-| React calls that TST does not make on this route | 2 (see [questions](#7-questions)) |
+| React calls that TST does not make on this route | 2 (see [questions](#8-questions)) |
 | Screen and blocks with a React port | 65 of 65 |
 | Navigation targets found in React | 23 of 23 |
 
-## 3. Diagram
+## 3. Screenshots
+
+The screenshots come from the last parity run (`route.py parity`). The TST capture hides personal text with dots. The React build shows fictional mock data.
+
+| State | TST (expected) | React (build) | Difference |
+|---|---|---|---|
+| `default`<br>390x844, mock `real`<br>2026-10-29<br>pixel difference 0.0% | <img src="../screens/HomeFeed/parity/default.expected.png" width="200" alt="default expected"> | <img src="../screens/HomeFeed/parity/default.build.png" width="200" alt="default build"> | <img src="../screens/HomeFeed/parity/default.diff.png" width="200" alt="default diff"> |
+| `loading`<br>390x844, mock `loading`<br>2026-10-29<br>pixel difference 0.0% | <img src="../screens/HomeFeed/parity/loading.expected.png" width="200" alt="loading expected"> | <img src="../screens/HomeFeed/parity/loading.build.png" width="200" alt="loading build"> | <img src="../screens/HomeFeed/parity/loading.diff.png" width="200" alt="loading diff"> |
+| `offline`<br>390x844, mock `error`<br>2026-10-29<br>pixel difference 0.0% | <img src="../screens/HomeFeed/parity/offline.expected.png" width="200" alt="offline expected"> | <img src="../screens/HomeFeed/parity/offline.build.png" width="200" alt="offline build"> | <img src="../screens/HomeFeed/parity/offline.diff.png" width="200" alt="offline diff"> |
+
+## 4. Diagram
 
 - A box on the left is the OutSystems block or app action that makes the call.
 - A line connects each call to the React action that makes the same call.
@@ -182,7 +192,7 @@ flowchart LR
 
 </details>
 
-## 4. Data flow
+## 5. Data flow
 
 - The diagram shows the server calls in the order of the phases: app start, screen load, screen ready, then the user actions.
 - Each participant is an OutSystems block or module that makes calls.
@@ -304,7 +314,7 @@ sequenceDiagram
 
 </details>
 
-## 5. Server calls
+## 6. Server calls
 
 - **Called from (OutSystems):** the block or the app-level module whose own client action makes the call. `app shell` = the layout and the app start; `screen` = the screen and its blocks.
 - **Made by (TST):** for each block in "Called from", its chain of client actions from the block to the call.
@@ -337,7 +347,7 @@ sequenceDiagram
 | 20 | `UBTConnect_Utils/CW_Share/ShareSheet/DataActionGetAvailableMembers` | data action | `ShareSheet` (screen) | submit | ShareSheet.handler_InputEventSubmit → ShareSheet.DataActionGetAvailableMembers<br>(+1 more chains) | no | `fetchAvailableMembers()` [`api/member/repository.ts:12`](../../app/src/api/member/repository.ts#L12) (page) | `ShareSheetContainer → useShareSheet → useAvailableMembersQuery → fetchAvailableMembers`<br>[`containers/ShareSheet/ShareSheetContainer.tsx`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx) | implemented |
 | 21 | `UBTConnect_Utils/CW_Share/ShareSheet/DataActionGetRecentlyShared` | data action | `ShareSheet` (screen) | parameters change | ShareSheet.OnParametersChanged → ShareSheet.screenEvent_OnParametersChanged → ShareSheet.DataActionGetRecentlyShared<br>(+1 more chains) | no | `fetchRecentlyShared()` [`api/share/shareSheet.ts:14`](../../app/src/api/share/shareSheet.ts#L14) (page) | `ShareSheetContainer → useShareSheet → useRecentlySharedQuery → fetchRecentlyShared`<br>[`containers/ShareSheet/ShareSheetContainer.tsx`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx) | implemented |
 
-## 6. Missing in React
+## 7. Missing in React
 
 - Call `UBTConnect_Utils/CW_Share/ShareSheet/ActionCS_CreateShareProfileLink`. Chain on TST: onClick in CircleButton_WithLabel → CircleButton_WithLabel.action_OnClick → event onClick of CircleButton_WithLabel → ShareSheet.handler_OnClickExternalOption → server CS_CreateShareProfileLink.
   - React has the function, but this route does not use it: `csCreateShareProfileLink()` [`api/share/shareSheet.ts:39`](../../app/src/api/share/shareSheet.ts#L39).
@@ -352,12 +362,12 @@ sequenceDiagram
 - Call `Connect2_LegacyShared/ActionGetAllApplicationEvents`. Chain on TST: HandleImageLoadError.applicationEvent_ImageError → Connect2_LegacyShared.zOnApplicationEvent_Wrapper → Connect2_LegacyShared.getAppEventName → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents.
   - No React code makes this call.
 
-## 7. Questions
+## 8. Questions
 
 1. React calls `/api/UBTConnect_Utils/ActionGetSignedImagesInBulk` from `cache_SignedImageURL_GetCallback()` [`lib/ubtConnectUtils/actions.ts:124`](../../app/src/lib/ubtConnectUtils/actions.ts#L124) (page). TST HomeFeed has no chain to this call. Does the call belong to this route?
 2. React calls `/api/UBTConnect_Utils/CacheControl_Policies/DataActionGetCacheInfo` from `fetchPolicies()` [`api/app/repository.ts:54`](../../app/src/api/app/repository.ts#L54) (shell + page). TST HomeFeed has no chain to this call. Does the call belong to this route?
 
-## 8. Method
+## 9. Method
 
 1. **OutSystems (TST).** The tool reads `facts.json` of `migration/screens/HomeFeed/analysis/`:
    - the screen and block files that TST renders;

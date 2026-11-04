@@ -631,6 +631,30 @@ def sequence(r, rows):
     return "\n".join(L)
 
 
+def screenshots(route):
+    """Markdown lines with the parity screenshots of the route (TST capture, React build, difference)."""
+    d = os.path.join(ROOT, "migration", "screens", route, "parity")
+    states = sorted(glob.glob(os.path.join(d, "*.json")), key=lambda p: (not p.endswith("default.json"), p))
+    if not states:
+        return ["No screenshots: the route has no parity run in `migration/screens/" + route + "/parity/`."]
+    L = ["The screenshots come from the last parity run (`route.py parity`). The TST capture hides personal text "
+         "with dots. The React build shows fictional mock data.", "",
+         "| State | TST (expected) | React (build) | Difference |", "|---|---|---|---|"]
+    for js in states:
+        st = os.path.basename(js)[:-5]
+        try:
+            meta = load(js)
+        except ValueError:
+            continue
+        img = lambda kind: (f'<img src="{os.path.relpath(os.path.join(d, f"{st}.{kind}.png"), OUT)}" width="200" alt="{st} {kind}">'
+                            if os.path.exists(os.path.join(d, f"{st}.{kind}.png")) else "–")
+        px = meta.get("pixel") or {}
+        info = (f"`{st}`<br>{meta.get('viewport', '')}, mock `{meta.get('mock', '')}`<br>{(meta.get('at') or '')[:10]}"
+                + (f"<br>pixel difference {px['ratio'] * 100:.1f}%" if "ratio" in px else ""))
+        L.append(f"| {info} | {img('expected')} | {img('build')} | {img('diff')} |")
+    return L
+
+
 def render(r):
     route = r["route"]
     eps = r["endpoints"]
@@ -673,17 +697,18 @@ def render(r):
          "", "## 2. Result", "",
          "| Check | Result |", "|---|---|",
          f"| Server calls on TST | {len(eps)}: React makes {cnt['implemented']}, **{cnt['missing']} missing** |",
-         f"| React calls that TST does not make on this route | {len(r['reactOnly'])} (see [questions](#7-questions)) |",
+         f"| React calls that TST does not make on this route | {len(r['reactOnly'])} (see [questions](#8-questions)) |",
          f"| Screen and blocks with a React port | {blocks_ported} of {len(r['blocks'])} |",
          f"| Navigation targets found in React | {len(r['osNav']) - len(nav_missing)} of {len(r['osNav'])} |",
-         "", "## 3. Diagram", "",
+         "", "## 3. Screenshots", "", *screenshots(route),
+         "", "## 4. Diagram", "",
          "- A box on the left is the OutSystems block or app action that makes the call.",
          "- A line connects each call to the React action that makes the same call.",
          "- The right column shows the React components that use each React action.",
          "- A red box is a call that React does not make.", "",
          f"![{route} diagram](svg/{route}.svg)", "", "<details><summary>Mermaid source</summary>", "",
          "```mermaid", mm, "```", "", "</details>", "",
-         "## 4. Data flow", "",
+         "## 5. Data flow", "",
          "- The diagram shows the server calls in the order of the phases: app start, screen load, screen ready, then the "
          "user actions.",
          "- Each participant is an OutSystems block or module that makes calls.",
@@ -694,7 +719,7 @@ def render(r):
          "- A red area is a call that React does not make.", "",
          f"![{route} data flow](svg/{route}-sequence.svg)", "", "<details><summary>Mermaid source</summary>", "",
          "```mermaid", sq, "```", "", "</details>", "",
-         "## 5. Server calls", "",
+         "## 6. Server calls", "",
          "- **Called from (OutSystems):** the block or the app-level module whose own client action makes the call. "
          "`app shell` = the layout and the app start; `screen` = the screen and its blocks.",
          "- **Made by (TST):** for each block in \"Called from\", its chain of client actions from the block to the call.",
@@ -722,7 +747,7 @@ def render(r):
         chains = sorted((ch for c in e["react"] for ch in c.get("callers", [])), key=len)[:2]
         caller = "<br>".join(react_chain(ch) for ch in chains) or "–"
         L.append(f"| {i} | `{e['short']}` | {e['kind']} | {frm} | {'<br>'.join(trig)} | {chain} | {seen} | {rc} | {caller} | {st} |")
-    L += ["", "## 6. Missing in React", ""]
+    L += ["", "## 7. Missing in React", ""]
     miss_eps = [e for e in eps if e["status"] == "missing"]
     miss_blocks = [b for b in r["blocks"] if b["evidence"] not in ("tag", "name")]
     if not (miss_eps or miss_blocks or nav_missing):
@@ -742,11 +767,11 @@ def render(r):
         L.append(f"- Block `{b['key']}`.{where}")
     for t in nav_missing:
         L.append(f"- Navigation to `{t}` (from {', '.join(r['osNav'][t])}). The React screen and the app shell do not go to this route.")
-    L += ["", "## 7. Questions", ""]
+    L += ["", "## 8. Questions", ""]
     qs = [f"React calls `{c['apiPath']}` from `{c['fn']}()` {link(c['file'], c['line'])} ({c['where']}). TST {route} "
           "has no chain to this call. Does the call belong to this route?" for c in r["reactOnly"]]
     L += [f"{i}. {q}" for i, q in enumerate(qs, 1)] or ["None."]
-    L += ["", "## 8. Method", "",
+    L += ["", "## 9. Method", "",
           "1. **OutSystems (TST).** The tool reads `facts.json` of `migration/screens/" + route + "/analysis/`:",
           "   - the screen and block files that TST renders;",
           "   - each server call, and the chain of client actions that makes the call;",
