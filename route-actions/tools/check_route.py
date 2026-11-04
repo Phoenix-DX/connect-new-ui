@@ -6,6 +6,7 @@ Usage (from the project root):
   python3 route-actions/tools/check_route.py <Route> --mark-done  # sets the route to done in ROUTES.md
   python3 route-actions/tools/check_route.py --routes             # writes ROUTES.md
   python3 route-actions/tools/check_route.py --app-shell          # writes APP_SHELL.md
+  python3 route-actions/tools/check_route.py --status             # done, next route, routes without capture
 
 Sources (README.md has the details):
   1. TST, in this repository (TST wins): migration/screens/<S>/analysis/{facts.json,calls.json,sources/raw},
@@ -101,6 +102,25 @@ def read_status():
         for m in re.finditer(r"^\| \[?`?(\w+)`?\]?[^|]*\| [^|]*\| (todo|done) \|", open(p, encoding="utf-8").read(), re.M):
             st[m.group(1)] = m.group(2)
     return st
+
+
+def status():
+    """The state of the check: routes done, the next route (order of ROUTES.md), the routes without a TST capture,
+    the files of route-actions/ that git has not committed."""
+    st = read_status()
+    txt = open(routes_md_path(), encoding="utf-8").read().split("## Out of scope")[0]
+    order = re.findall(r"^\| \[?`(\w+)`", txt, re.M)
+    has = lambda r: os.path.exists(os.path.join(cfg("tst", "screens"), r, "analysis", "facts.json"))
+    done = [r for r in order if st.get(r) == "done"]
+    todo = [r for r in order if st.get(r) != "done"]
+    nxt = next((r for r in todo if has(r)), None)
+    print(f"done: {len(done)} of {len(order)}: {', '.join(done) or '-'}")
+    print(f"next: {nxt or '-'}")
+    print(f"todo with a TST capture: {sum(1 for r in todo if has(r))}")
+    nocap = [r for r in todo if not has(r)]
+    print(f"todo without a TST capture (the tool stops): {len(nocap)}: {', '.join(nocap) or '-'}")
+    git = subprocess.run(["git", "status", "--short", "--", "route-actions"], cwd=ROOT, capture_output=True, text=True).stdout.strip()
+    print("uncommitted in route-actions/: " + (git.replace("\n", "; ") if git else "none"))
 
 
 def write_routes(done=None):
@@ -1225,6 +1245,7 @@ def main():
     ap.add_argument("--routes", action="store_true", help="write ROUTES.md")
     ap.add_argument("--mark-done", action="store_true", help="set the route to done in ROUTES.md")
     ap.add_argument("--app-shell", action="store_true", help="write APP_SHELL.md from the checked routes")
+    ap.add_argument("--status", action="store_true", help="print the state of the check and the next route")
     a = ap.parse_args()
     os.makedirs(DATA, exist_ok=True)
     if a.routes:
@@ -1232,6 +1253,9 @@ def main():
         return
     if a.app_shell:
         render_app_shell()
+        return
+    if a.status:
+        status()
         return
     if not a.route:
         ap.error("route needed")

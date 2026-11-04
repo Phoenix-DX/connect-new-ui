@@ -1,6 +1,8 @@
 # Route actions: OutSystems against React, one route at a time
 
 This folder is the reference for the check of the routes (user, 2026-11-04). Start here, not in `migration/`.
+In Claude Code, the skill `/route-actions` (`status`, `continue`, `run <Route>`, `done <Route>`, `app-shell`) runs
+the steps below (`.claude/skills/route-actions/SKILL.md`).
 
 ```
 route-actions/
@@ -31,6 +33,7 @@ python3 route-actions/tools/check_route.py --routes          # writes ROUTES.md
 python3 route-actions/tools/check_route.py <Route>           # writes <Route>.md and APP_SHELL.md
 python3 route-actions/tools/check_route.py <Route> --mark-done
 python3 route-actions/tools/check_route.py --app-shell       # writes APP_SHELL.md again
+python3 route-actions/tools/check_route.py --status          # done, next route, routes without capture
 ```
 
 The tool keeps the app shell scan in `route-actions/.cache/data/react-shell.json`. When a `.ts` or `.tsx` file in
