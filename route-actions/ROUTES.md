@@ -74,7 +74,7 @@ UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read 2026-11-04.
 | `QRCodeGenerate` | `Legacy_OrbitQRCodeFlow` | todo |
 | [`ConnectShare`](routes/ConnectShare.md) | `Legacy_Share` | done |
 | [`LegacyShareObject`](routes/LegacyShareObject.md) | `Legacy_Share` | done |
-| `Notes` | `Notes` | todo |
+| [`Notes`](routes/Notes.md) | `Notes` | todo |
 | `CommunityBusinessDetails_CoomingSoon` | `zDEV_Directory_CommunityBusinessBlocks` | todo |
 
 ## Out of scope (16 skip routes)
