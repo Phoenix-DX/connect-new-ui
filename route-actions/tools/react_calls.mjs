@@ -367,6 +367,28 @@ function navTargetsOf(arg) {
   if (/\bPATHS\.home\b|\bHOME\b/.test(t)) out.push(HOME_SCREEN);
   for (const m of t.matchAll(/\/([A-Za-z]\w*)(?=[`'"?/#]|$)/g)) if (ROUTE_NAMES.has(m[1])) out.push(m[1]);
   for (const m of t.matchAll(/['"`]([A-Za-z]\w*)['"`]/g)) if (ROUTE_NAMES.has(m[1])) out.push(m[1]);
+  if (!out.length && Node.isPropertyAccessExpression(arg) && Node.isIdentifier(arg.getExpression())) {
+    // `navigate(target.path)` with `const target = f(…)`: the route paths in the returns of f
+    let sym = arg.getExpression().getSymbol?.();
+    if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
+    const vd = sym?.getDeclarations()?.[0];
+    const init = vd && Node.isVariableDeclaration(vd) ? vd.getInitializer() : null;
+    if (init && Node.isCallExpression(init)) {
+      let fs = init.getExpression().getSymbol?.();
+      if (fs?.isAlias()) fs = fs.getAliasedSymbol() ?? fs;
+      const fd = fs?.getDeclarations()?.[0];
+      const body = fd && !excluded(fd.getSourceFile().getFilePath()) ? bodyOfDecl(fd) : null;
+      if (body) {
+        for (const ret of body.getDescendantsOfKind(SyntaxKind.ReturnStatement)) {
+          const e = ret.getExpression();
+          if (!e || !Node.isObjectLiteralExpression(e)) continue;
+          const p = e.getProperty(arg.getName());
+          const v = p && Node.isPropertyAssignment(p) ? p.getInitializer() : null;
+          if (v) out.push(...navTargetsOf(v));
+        }
+      }
+    }
+  }
   return [...new Set(out)];
 }
 
@@ -379,6 +401,11 @@ function bodyOfDecl(d) {
   if (Node.isVariableDeclaration(d) || Node.isPropertyAssignment(d)) {
     const init = d.getInitializer?.();
     if (init && isFunctionLike(init)) return init;
+    // a function in a wrapper that returns it to run: `flow.own(fn)`, `useCallback(fn, deps)`
+    if (init && Node.isCallExpression(init) && /(^|\.)(own|useCallback|useEvent|useEffectEvent)$/.test(init.getExpression().getText())) {
+      const a = init.getArguments()[0];
+      if (a && isFunctionLike(a)) return a;
+    }
   }
   return null;
 }
@@ -443,6 +470,56 @@ function envResolve(ex, env) {
   if (Node.isPropertyAssignment(p)) return resolveFn(p.getInitializer());
   if (Node.isMethodDeclaration(p)) return p;
   return null;
+}
+
+// The files of the route (set by bindingsOf) and the JSX elements of each component name in them.
+let ROUTE_FILES = new Set();
+const JSX_CACHE = new Map();
+function jsxOf(tag) {
+  const key = tag + '|' + ROUTE_FILES.size;
+  if (JSX_CACHE.has(key)) return JSX_CACHE.get(key);
+  const els = [];
+  for (const f of ROUTE_FILES) {
+    const sf = project.getSourceFile(f);
+    if (!sf) continue;
+    for (const el of [...sf.getDescendantsOfKind(SyntaxKind.JsxOpeningElement), ...sf.getDescendantsOfKind(SyntaxKind.JsxSelfClosingElement)])
+      if (el.getTagNameNode().getText() === tag) els.push(el);
+  }
+  JSX_CACHE.set(key, els);
+  return els;
+}
+
+// A function prop (not `on*`) that the code calls: the value of that attribute on the JSX elements of the component in
+// the route files, through the components that pass it on.
+function propResolve(ex, hops = 0) {
+  if (hops > 5) return [];
+  let sym = (Node.isPropertyAccessExpression(ex) ? ex.getNameNode() : ex).getSymbol?.();
+  if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
+  const d = sym?.getDeclarations()?.[0];
+  let prop = null, prm = null;
+  if (d && Node.isBindingElement(d)) {
+    prm = d.getFirstAncestorByKind(SyntaxKind.Parameter);
+    prop = d.getPropertyNameNode()?.getText() ?? d.getName();
+  } else if (d && Node.isPropertySignature(d) && Node.isPropertyAccessExpression(ex)) {
+    let os = ex.getExpression().getSymbol?.();
+    const od = os?.getDeclarations()?.[0];
+    if (od && Node.isParameterDeclaration(od)) { prm = od; prop = ex.getName(); }
+  }
+  if (!prm || !prop || /^on[A-Z]/.test(prop)) return [];
+  const comp = prm.getParent();
+  const name = Node.isFunctionDeclaration(comp) ? comp.getName() : comp.getParent()?.getName?.();
+  if (!name || !/^[A-Z]/.test(name)) return [];
+  const out = [];
+  for (const el of jsxOf(name)) {
+    const attr = el.getAttribute(prop);
+    const init = attr && Node.isJsxAttribute(attr) ? attr.getInitializer() : null;
+    const v = init && Node.isJsxExpression(init) ? init.getExpression() : null;
+    if (!v) continue;
+    const fn = isFunctionLike(v) ? v : resolveFn(v);
+    if (fn) out.push(fn);
+    else out.push(...propResolve(v, hops + 1));
+  }
+  return [...new Set(out)];
 }
 
 function effectsOf(fn, label, depth, seen, env = null) {
@@ -548,7 +625,17 @@ function effectsOf(fn, label, depth, seen, env = null) {
         if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
         const d0 = sym?.getDeclarations()?.[0];
         const cb = envResolve(ex, env);
-        if (cb && !seen.has(cb)) {
+        const viaProps = cb ? [] : propResolve(ex).filter((b) => !seen.has(b));
+        for (const pb of viaProps) {
+          const sub = effectsOf(pb, lab, depth + 1, new Set([...seen, pb]), null);
+          if (sub.length) {
+            out.push({ branch: lab ?? null, kind: 'via', detail: name, file: rel(pb.getSourceFile().getFilePath()), line: pb.getStartLineNumber() });
+            out.push(...sub);
+          }
+        }
+        if (viaProps.length) {
+          // resolved through the props
+        } else if (cb && !seen.has(cb)) {
           const sub = effectsOf(cb, lab, depth + 1, new Set([...seen, cb]), env);
           if (sub.length) {
             out.push({ branch: lab ?? null, kind: 'via', detail: name, file: rel(cb.getSourceFile().getFilePath()), line: cb.getStartLineNumber() });
@@ -701,7 +788,9 @@ function resolveFn(expr, depth = 0, given = null) {
     if ((Node.isPropertySignature(d) || Node.isPropertyAssignment(d) || Node.isShorthandPropertyAssignment(d)) && Node.isPropertyAccessExpression(expr)) {
       const objSym = expr.getExpression().getSymbol?.();
       const od = objSym?.getDeclarations()?.[0];
-      const init = od && Node.isVariableDeclaration(od) ? od.getInitializer() : null;
+      // `const x = useY()` or the rest element `const { a, ...x } = useY()`
+      const ovd = od && Node.isBindingElement(od) && od.getDotDotDotToken() ? od.getFirstAncestorByKind(SyntaxKind.VariableDeclaration) : od;
+      const init = ovd && Node.isVariableDeclaration(ovd) ? ovd.getInitializer() : null;
       if (init && Node.isCallExpression(init)) return returnedProperty(init, expr.getName(), depth);
     }
   }
@@ -711,6 +800,7 @@ function resolveFn(expr, depth = 0, given = null) {
 function bindingsOf(units, reached) {
   const out = [];
   const files = new Set([...reached].map((k) => units.get(k).file));
+  ROUTE_FILES = files;
   for (const f of files) {
     if (!f.endsWith('.tsx')) continue;
     const sf = project.getSourceFile(f);
@@ -731,6 +821,24 @@ function bindingsOf(units, reached) {
       if (!effects.some((e) => EFFECT_KINDS.has(e.kind))) continue;
       const el = attr.getFirstAncestor((x) => Node.isJsxOpeningElement(x) || Node.isJsxSelfClosingElement(x));
       out.push({ element: el ? el.getTagNameNode().getText() : '?', prop, handler, file: rel(f), line: attr.getStartLineNumber(), effects });
+    }
+    // `<X {...flows} />` with `const flows = useY()`: each `on*` property of the object that the hook returns
+    for (const sp of sf.getDescendantsOfKind(SyntaxKind.JsxSpreadAttribute)) {
+      const id = sp.getExpression();
+      if (!Node.isIdentifier(id)) continue;
+      let sym = id.getSymbol?.();
+      if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
+      const vd = sym?.getDeclarations()?.[0];
+      const init = vd && Node.isVariableDeclaration(vd) ? vd.getInitializer() : null;
+      if (!init || !Node.isCallExpression(init) || !/^use[A-Z]/.test(init.getExpression().getText())) continue;
+      for (const prop of (init.getType().getProperties() ?? []).map((x) => x.getName()).filter((n) => /^on[A-Z]/.test(n))) {
+        const body = returnedProperty(init, prop, 0);
+        if (!body) continue;
+        const effects = effectsOf(body, null, 0, new Set([body]));
+        if (!effects.some((e) => EFFECT_KINDS.has(e.kind))) continue;
+        const el = sp.getFirstAncestor((x) => Node.isJsxOpeningElement(x) || Node.isJsxSelfClosingElement(x));
+        out.push({ element: el ? el.getTagNameNode().getText() : '?', prop, handler: `${id.getText()}.${prop}`, file: rel(f), line: sp.getStartLineNumber(), effects });
+      }
     }
   }
   return out;
