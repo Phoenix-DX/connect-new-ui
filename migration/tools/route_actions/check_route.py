@@ -1137,10 +1137,8 @@ def actions_section(diagrams, name, sec):
         open(os.path.join(DATA, f"{n}-react.mmd"), "w").write(d["mmdReact"])
         rh = f"`{d['react']['name']}()` in {link(d['react']['file'], d['react']['line'])}" if d["react"] else "no React handler found"
         L += ["", f"### {t}", "", f"Result: {d['status']}.", "",
-              "**OutSystems (TST)**", "", f"![OutSystems {d['handler']}](svg/{n}.svg)", "",
-              f"**React**: {rh}", "", f"![React {d['handler']}](svg/{n}-react.svg)", "",
-              "<details><summary>Mermaid source</summary>", "", "```mermaid", d["mmd"], "```", "",
-              "```mermaid", d["mmdReact"], "```", "", "</details>"]
+              "**OutSystems (TST)**", "", "```mermaid", d["mmd"], "```", "",
+              f"**React**: {rh}", "", "```mermaid", d["mmdReact"], "```"]
     return L + [""], names
 
 
@@ -1169,17 +1167,18 @@ def missing_lines(eps, blocks, nav_missing, os_nav):
 
 
 def render_svgs(names):
-    """All the diagrams of one file in one browser (render_svg.cjs)."""
+    """Syntax check of all the Mermaid diagrams of one file, in one browser (render_svg.cjs). The route files carry
+    the Mermaid text (user, 2026-11-04); the SVG files stay in data/svg/, which git ignores."""
     pairs = []
     for n in names:
-        pairs += [os.path.join(DATA, f"{n}.mmd"), os.path.join(OUT, "svg", f"{n}.svg")]
+        pairs += [os.path.join(DATA, f"{n}.mmd"), os.path.join(DATA, "svg", f"{n}.svg")]
     if pairs:
         subprocess.run(["node", os.path.join(ROOT, "migration", "tools", "route_actions", "render_svg.cjs"), *pairs],
                        check=True, cwd=ROOT, stdout=subprocess.DEVNULL)
 
 
 def clean_outputs(name):
-    for stale in glob.glob(os.path.join(OUT, "svg", f"{name}-*.svg")) + glob.glob(os.path.join(DATA, f"{name}-*.mmd")):
+    for stale in glob.glob(os.path.join(DATA, "svg", f"{name}-*.svg")) + glob.glob(os.path.join(DATA, f"{name}-*.mmd")):
         os.remove(stale)
 
 
@@ -1200,7 +1199,6 @@ def render(r):
     view = {**r, "endpoints": eps, "allEndpoints": r["endpoints"],
             "userActions": [a for a in r.get("userActions") or [] if a.get("group") != "shell"]}
     mm = mermaid(view)
-    os.makedirs(os.path.join(OUT, "svg"), exist_ok=True)
     open(os.path.join(DATA, f"{route}.mmd"), "w").write(mm)
     clean_outputs(route)
     ua, names = actions_section(action_diagrams(view), route, 5)
@@ -1232,8 +1230,7 @@ def render(r):
          "- A line connects each call to the React action that makes the same call.",
          "- The right column shows the React components that use each React action.",
          "- A red box is a call that React does not make.", "",
-         f"![{route} diagram](svg/{route}.svg)", "", "<details><summary>Mermaid source</summary>", "",
-         "```mermaid", mm, "```", "", "</details>", "",
+         "```mermaid", mm, "```", "",
          "## 5. User actions", "", *ua,
          "## 6. Server calls", "", *(calls_table(call_rows(eps, blocks), blocks) if eps else ["None."]),
          "", "## 7. Missing in React", "", *missing_lines(eps, own_blocks, nav_missing, own_nav),
@@ -1319,8 +1316,7 @@ def render_app_shell():
          f"| App shell user actions | {len(names)} diagrams (one per action and option) |",
          f"| React app shell calls that TST does not make on a route | {len(qs)} |", "",
          "## 2. Diagram", "",
-         f"![App shell diagram](svg/APP_SHELL.svg)", "", "<details><summary>Mermaid source</summary>", "",
-         "```mermaid", mm, "```", "", "</details>", "",
+         "```mermaid", mm, "```", "",
          "## 3. User actions", "", *ua,
          "## 4. Server calls", "",
          "The column **Routes** gives the checked routes where the app shell makes the call.", "",

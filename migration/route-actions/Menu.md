@@ -46,10 +46,6 @@ The screenshots come from the last parity run (`route.py parity`). The TST captu
 - The right column shows the React components that use each React action.
 - A red box is a call that React does not make.
 
-![Menu diagram](svg/Menu.svg)
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart LR
   subgraph OS["OutSystems (TST compiled)"]
@@ -96,8 +92,6 @@ flowchart LR
   class e3,e4,e5 ok
 ```
 
-</details>
-
 ## 5. User actions
 
 Each user action (click, change, submit) has two sequence diagrams: OutSystems (TST code) and React.
@@ -127,14 +121,6 @@ Result: same.
 
 **OutSystems (TST)**
 
-![OutSystems onClick_EditYourAccount](svg/Menu-action-1.svg)
-
-**React**: `onEditYourAccount()` in [`pages/Menu/hooks/useMenu.ts:58`](../../app/src/pages/Menu/hooks/useMenu.ts#L58)
-
-![React onClick_EditYourAccount](svg/Menu-action-1-react.svg)
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 sequenceDiagram
   autonumber
@@ -144,6 +130,8 @@ sequenceDiagram
   U->>B: click: onClick_EditYourAccount
   B->>N: go to Profile
 ```
+
+**React**: `onEditYourAccount()` in [`pages/Menu/hooks/useMenu.ts:58`](../../app/src/pages/Menu/hooks/useMenu.ts#L58)
 
 ```mermaid
 sequenceDiagram
@@ -155,21 +143,11 @@ sequenceDiagram
   H->>N: go to Profile
 ```
 
-</details>
-
 ### 5.2 Menu: click onClick_MenuOption (logOut)
 
 Result: differs: 2 missing.
 
 **OutSystems (TST)**
-
-![OutSystems onClick_MenuOption](svg/Menu-action-2.svg)
-
-**React**: `menuOption()` in [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72)
-
-![React onClick_MenuOption](svg/Menu-action-2-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -194,6 +172,8 @@ sequenceDiagram
   B->>N: go to HomeFeed
 ```
 
+**React**: `menuOption()` in [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72)
+
 ```mermaid
 sequenceDiagram
   autonumber
@@ -210,21 +190,11 @@ sequenceDiagram
   end
 ```
 
-</details>
-
 ### 5.3 Menu: click onClick_MenuOption (contactUs)
 
 Result: same.
 
 **OutSystems (TST)**
-
-![OutSystems onClick_MenuOption](svg/Menu-action-3.svg)
-
-**React**: `menuOption()` in [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72)
-
-![React onClick_MenuOption](svg/Menu-action-3-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -236,6 +206,8 @@ sequenceDiagram
   B->>N: go to ContactUsMenu
 ```
 
+**React**: `menuOption()` in [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72)
+
 ```mermaid
 sequenceDiagram
   autonumber
@@ -246,21 +218,11 @@ sequenceDiagram
   H->>N: go to ContactUsMenu
 ```
 
-</details>
-
 ### 5.4 Menu: click onClick_MenuOption (termsAndPolicies)
 
 Result: same.
 
 **OutSystems (TST)**
-
-![OutSystems onClick_MenuOption](svg/Menu-action-4.svg)
-
-**React**: `menuOption()` in [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72)
-
-![React onClick_MenuOption](svg/Menu-action-4-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -272,6 +234,8 @@ sequenceDiagram
   B->>N: go to TermsAndPoliciesMenu
 ```
 
+**React**: `menuOption()` in [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72)
+
 ```mermaid
 sequenceDiagram
   autonumber
@@ -282,21 +246,11 @@ sequenceDiagram
   H->>N: go to TermsAndPoliciesMenu
 ```
 
-</details>
-
 ### 5.5 Menu: click onClick_MenuOption (pINAndBiometrics)
 
 Result: same.
 
 **OutSystems (TST)**
-
-![OutSystems onClick_MenuOption](svg/Menu-action-5.svg)
-
-**React**: `menuOption()` in [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72)
-
-![React onClick_MenuOption](svg/Menu-action-5-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -308,6 +262,8 @@ sequenceDiagram
   B->>N: go to PINBiometricsMenu
 ```
 
+**React**: `menuOption()` in [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72)
+
 ```mermaid
 sequenceDiagram
   autonumber
@@ -318,21 +274,11 @@ sequenceDiagram
   H->>N: go to PINBiometricsMenu
 ```
 
-</details>
-
 ### 5.6 Menu: click onClick_MenuOption (subscriptionAndPayments)
 
 Result: same.
 
 **OutSystems (TST)**
-
-![OutSystems onClick_MenuOption](svg/Menu-action-6.svg)
-
-**React**: `menuOption()` in [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72)
-
-![React onClick_MenuOption](svg/Menu-action-6-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -344,6 +290,8 @@ sequenceDiagram
   B->>X: OpenInApp_OpenExternalLink
 ```
 
+**React**: `menuOption()` in [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72)
+
 ```mermaid
 sequenceDiagram
   autonumber
@@ -354,21 +302,11 @@ sequenceDiagram
   H->>X: openInApp_OpenExternalLink
 ```
 
-</details>
-
 ### 5.7 Menu: click onClick_MenuOption (requestPhotoUpdate)
 
 Result: same.
 
 **OutSystems (TST)**
-
-![OutSystems onClick_MenuOption](svg/Menu-action-7.svg)
-
-**React**: `menuOption()` in [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72)
-
-![React onClick_MenuOption](svg/Menu-action-7-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -382,6 +320,8 @@ sequenceDiagram
   S-->>B: Out_IsSuccess
   Note over B: message "Your update photo request has been submitted."
 ```
+
+**React**: `menuOption()` in [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72)
 
 ```mermaid
 sequenceDiagram
@@ -397,21 +337,11 @@ sequenceDiagram
   Note over H: message 'Your update photo request has been submitted.'
 ```
 
-</details>
-
 ### 5.8 Menu: click onClick_MenuOption (other)
 
 Result: same.
 
 **OutSystems (TST)**
-
-![OutSystems onClick_MenuOption](svg/Menu-action-8.svg)
-
-**React**: `menuOption()` in [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72)
-
-![React onClick_MenuOption](svg/Menu-action-8-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -422,6 +352,8 @@ sequenceDiagram
   Note over B: message "Go to " + id
 ```
 
+**React**: `menuOption()` in [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72)
+
 ```mermaid
 sequenceDiagram
   autonumber
@@ -430,8 +362,6 @@ sequenceDiagram
   U->>H: click (other)
   Note over H: message `Go to ${id}`
 ```
-
-</details>
 
 ## 6. Server calls
 

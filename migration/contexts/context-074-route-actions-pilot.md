@@ -2,7 +2,7 @@
 
 ## Result
 - New pipeline `migration/tools/route_actions/` ([README](../tools/route_actions/README.md)): one route at a time, one
-  file `migration/route-actions/<Route>.md` with an SVG diagram; list and status in
+  file `migration/route-actions/<Route>.md` with Mermaid diagrams as text; list and status in
   [`ROUTES.md`](../route-actions/ROUTES.md).
 - Pilot run 2 (user feedback, same day): no KB, MCP only; sections "client actions", "module actions" and
   "rendered blocks" removed; STE style. [`HomeFeed.md`](../route-actions/HomeFeed.md) went from 1,667 to 224 lines.
@@ -17,10 +17,12 @@
 - User 2026-11-04 (run 1): KB `~/Projects/ubt_sharing_kb` first, MCP only for gaps. Replaced (run 2): no KB; read
   MCP directly; the user opens each module that the route needs; the tool does not guess a closed module.
 - User 2026-11-04 (run 2): the route file has no tables of client actions, module actions or rendered blocks; STE.
-- User 2026-11-04 (run 3): server calls table with Called from, Trigger, React caller; 4-column diagram; no table of
-  the inside of the calls, so MCP reads only the UI flow and no module needs to be open.
+- User 2026-11-04 (run 3+):
+  - columns Called from, Trigger, React caller; no MCP table of the inside of the calls; screenshots;
+  - section User actions: one OutSystems and one React sequence per action and branch, differences in red;
+  - the app shell parts go to `APP_SHELL.md`, not to the route files; Mermaid text, no SVG.
 - User 2026-11-04: MCP modules UBTConnect + Connect2_* + UBTConnect_Utils + UBT_AppManager + UBTConnectLibrary +
-  NavigationHandler; scope 68 build routes; Mermaid + SVG.
+  NavigationHandler; scope 68 build routes. Later: Mermaid text in the file, no SVG (user, 2026-11-04).
 - User 2026-11-04: pilot HomeFeed first, wait for feedback before the next route.
 
 ## Facts learned (evidence)
@@ -32,7 +34,7 @@
 
 ## Files changed
 - New: `migration/tools/route_actions/` (4 tools + README), `migration/route-actions/` (`ROUTES.md`, `HomeFeed.md`,
-  `svg/`), this context. Updated: `.gitignore` (`migration/route-actions/raw/`, `data/`), `INDEX.md`.
+  `APP_SHELL.md`), this context. Updated: `.gitignore` (`migration/route-actions/raw/`, `data/`), `INDEX.md`.
 
 ## Open issues
 - The user's feedback on the run 3 format of HomeFeed.

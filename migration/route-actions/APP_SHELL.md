@@ -14,10 +14,6 @@ The tool `migration/tools/route_actions/check_route.py` merges it from the check
 
 ## 2. Diagram
 
-![App shell diagram](svg/APP_SHELL.svg)
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart LR
   subgraph OS["OutSystems (TST compiled)"]
@@ -98,8 +94,6 @@ flowchart LR
   class e5,e6,e7,e8,e9,e10,e11,e12 ok
 ```
 
-</details>
-
 ## 3. User actions
 
 Each user action (click, change, submit) has two sequence diagrams: OutSystems (TST code) and React.
@@ -128,14 +122,6 @@ Result: no React handler found.
 
 **OutSystems (TST)**
 
-![OutSystems upgrade](svg/APP_SHELL-action-1.svg)
-
-**React**: no React handler found
-
-![React upgrade](svg/APP_SHELL-action-1-react.svg)
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 sequenceDiagram
   autonumber
@@ -150,6 +136,8 @@ sequenceDiagram
   end
 ```
 
+**React**: no React handler found
+
 ```mermaid
 sequenceDiagram
   actor U as User
@@ -159,21 +147,11 @@ sequenceDiagram
   end
 ```
 
-</details>
-
 ### 3.2 BottomBarMenu: click event_BottomBar_Clicked (home)
 
 Result: same.
 
 **OutSystems (TST)**
-
-![OutSystems event_BottomBar_Clicked](svg/APP_SHELL-action-2.svg)
-
-**React**: `event_BottomBar_Clicked()` in [`components/layout/BottomBar/BottomBar.tsx:95`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L95)
-
-![React event_BottomBar_Clicked](svg/APP_SHELL-action-2-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -185,6 +163,8 @@ sequenceDiagram
   B->>N: go to HomeFeed
 ```
 
+**React**: `event_BottomBar_Clicked()` in [`components/layout/BottomBar/BottomBar.tsx:95`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L95)
+
 ```mermaid
 sequenceDiagram
   autonumber
@@ -195,21 +175,11 @@ sequenceDiagram
   H->>N: go to HomeFeed
 ```
 
-</details>
-
 ### 3.3 BottomBarMenu: click event_BottomBar_Clicked (directory)
 
 Result: same.
 
 **OutSystems (TST)**
-
-![OutSystems event_BottomBar_Clicked](svg/APP_SHELL-action-3.svg)
-
-**React**: `event_BottomBar_Clicked()` in [`components/layout/BottomBar/BottomBar.tsx:95`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L95)
-
-![React event_BottomBar_Clicked](svg/APP_SHELL-action-3-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -222,6 +192,8 @@ sequenceDiagram
   B->>N: go to Locality_Details
 ```
 
+**React**: `event_BottomBar_Clicked()` in [`components/layout/BottomBar/BottomBar.tsx:95`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L95)
+
 ```mermaid
 sequenceDiagram
   autonumber
@@ -233,21 +205,11 @@ sequenceDiagram
   H->>N: go to Locality_Details
 ```
 
-</details>
-
 ### 3.4 BottomBarMenu: click event_BottomBar_Clicked (updates)
 
 Result: same.
 
 **OutSystems (TST)**
-
-![OutSystems event_BottomBar_Clicked](svg/APP_SHELL-action-4.svg)
-
-**React**: `event_BottomBar_Clicked()` in [`components/layout/BottomBar/BottomBar.tsx:95`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L95)
-
-![React event_BottomBar_Clicked](svg/APP_SHELL-action-4-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -259,6 +221,8 @@ sequenceDiagram
   B->>N: go to Updates_SingleList
 ```
 
+**React**: `event_BottomBar_Clicked()` in [`components/layout/BottomBar/BottomBar.tsx:95`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L95)
+
 ```mermaid
 sequenceDiagram
   autonumber
@@ -269,21 +233,11 @@ sequenceDiagram
   H->>N: go to Updates_SingleList
 ```
 
-</details>
-
 ### 3.5 BottomBarMenu: click event_BottomBar_Clicked (bookmarks)
 
 Result: same.
 
 **OutSystems (TST)**
-
-![OutSystems event_BottomBar_Clicked](svg/APP_SHELL-action-5.svg)
-
-**React**: `event_BottomBar_Clicked()` in [`components/layout/BottomBar/BottomBar.tsx:95`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L95)
-
-![React event_BottomBar_Clicked](svg/APP_SHELL-action-5-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -295,6 +249,8 @@ sequenceDiagram
   B->>N: go to Bookmarks
 ```
 
+**React**: `event_BottomBar_Clicked()` in [`components/layout/BottomBar/BottomBar.tsx:95`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L95)
+
 ```mermaid
 sequenceDiagram
   autonumber
@@ -305,21 +261,11 @@ sequenceDiagram
   H->>N: go to Bookmarks
 ```
 
-</details>
-
 ### 3.6 BottomBarMenu: click event_BottomBar_Clicked (menu)
 
 Result: same.
 
 **OutSystems (TST)**
-
-![OutSystems event_BottomBar_Clicked](svg/APP_SHELL-action-6.svg)
-
-**React**: `event_BottomBar_Clicked()` in [`components/layout/BottomBar/BottomBar.tsx:95`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L95)
-
-![React event_BottomBar_Clicked](svg/APP_SHELL-action-6-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -331,6 +277,8 @@ sequenceDiagram
   B->>N: go to Menu
 ```
 
+**React**: `event_BottomBar_Clicked()` in [`components/layout/BottomBar/BottomBar.tsx:95`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L95)
+
 ```mermaid
 sequenceDiagram
   autonumber
@@ -341,21 +289,11 @@ sequenceDiagram
   H->>N: go to Menu
 ```
 
-</details>
-
 ### 3.7 Block_PINUnlock_ContentWrapper: click onClick_ForgotPIN
 
 Result: same.
 
 **OutSystems (TST)**
-
-![OutSystems onClick_ForgotPIN](svg/APP_SHELL-action-7.svg)
-
-**React**: `onForgotPin()` in [`platform/session/usePinUnlockContent.ts:95`](../../app/src/platform/session/usePinUnlockContent.ts#L95)
-
-![React onClick_ForgotPIN](svg/APP_SHELL-action-7-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -367,6 +305,8 @@ sequenceDiagram
   B->>N: go to Login
 ```
 
+**React**: `onForgotPin()` in [`platform/session/usePinUnlockContent.ts:95`](../../app/src/platform/session/usePinUnlockContent.ts#L95)
+
 ```mermaid
 sequenceDiagram
   autonumber
@@ -376,8 +316,6 @@ sequenceDiagram
   U->>H: click
   H->>N: go to Login
 ```
-
-</details>
 
 ## 4. Server calls
 

@@ -44,10 +44,6 @@ The screenshots come from the last parity run (`route.py parity`). The TST captu
 - The right column shows the React components that use each React action.
 - A red box is a call that React does not make.
 
-![Splash diagram](svg/Splash.svg)
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart LR
   subgraph OS["OutSystems (TST compiled)"]
@@ -77,8 +73,6 @@ flowchart LR
   classDef ok fill:#e3f4e8,stroke:#2e7d4f,color:#1d4d31
   class e1 ok
 ```
-
-</details>
 
 ## 5. User actions
 

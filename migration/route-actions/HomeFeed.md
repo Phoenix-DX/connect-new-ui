@@ -46,10 +46,6 @@ The screenshots come from the last parity run (`route.py parity`). The TST captu
 - The right column shows the React components that use each React action.
 - A red box is a call that React does not make.
 
-![HomeFeed diagram](svg/HomeFeed.svg)
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart LR
   subgraph OS["OutSystems (TST compiled)"]
@@ -148,8 +144,6 @@ flowchart LR
   class e7,e8,e9,e10,e11,e12,e13,e15,e16,e17,e18 ok
 ```
 
-</details>
-
 ## 5. User actions
 
 Each user action (click, change, submit) has two sequence diagrams: OutSystems (TST code) and React.
@@ -164,8 +158,8 @@ Each user action (click, change, submit) has two sequence diagrams: OutSystems (
 
 | # | Block (OutSystems) | User action | Handler | Option (branch) | Effects (OutSystems) | React handler | React |
 |---|---|---|---|---|---|---|---|
-| [1](#51-feed_embeded-click-handle_share_connect) | `Feed_Embeded` | click | `handle_Share_Connect` | – | goes to LegacyShareObject | `handle_Share_Connect()` [`components/feed/EmbeddedFeed/EmbeddedFeed.tsx:76`](../../app/src/components/feed/EmbeddedFeed/EmbeddedFeed.tsx#L76) | **differs: 1 missing** |
-| [2](#52-feed_embeded-click-handle_share_others) | `Feed_Embeded` | click | `handle_Share_Others` | – | calls **GetAllApplicationEvents (missing)**, **CS_CreateShareProfileLink (missing)**, AppManager_SynchAppContext | – | **no React handler found** |
+| [1](#51-feed_embeded-click-handle_share_others) | `Feed_Embeded` | click | `handle_Share_Others` | – | calls **GetAllApplicationEvents (missing)**, **CS_CreateShareProfileLink (missing)**, AppManager_SynchAppContext | – | **no React handler found** |
+| [2](#52-feed_embeded-click-handle_share_connect) | `Feed_Embeded` | click | `handle_Share_Connect` | – | goes to LegacyShareObject | `handle_Share_Connect()` [`components/feed/EmbeddedFeed/EmbeddedFeed.tsx:76`](../../app/src/components/feed/EmbeddedFeed/EmbeddedFeed.tsx#L76) | **differs: 1 missing** |
 | [3](#53-dialog_goexternalapp-click-gotoexternalapp) | `Dialog_GoExternalApp` | click | `goToExternalApp` | – | opens an external link | `goToExternalApp()` [`pages/HomeFeed/hooks/goToExternalApp.ts:11`](../../app/src/pages/HomeFeed/hooks/goToExternalApp.ts#L11) | **differs: 1 not in OutSystems** |
 | [4](#54-app_notificationicon-click-iconclick) | `App_NotificationIcon` | click | `iconClick` | – | goes to Notifications, MessageList | `onIconClick()` [`platform/session/useNotificationIcon.ts:40`](../../app/src/platform/session/useNotificationIcon.ts#L40) | same |
 | [5](#55-feedblock_updates-click-event_listitemonclick) | `FeedBlock_Updates` | click | `event_ListItemOnClick` | – | calls Action_UI_UpdateItem_MarkAsRead; goes to HouseholdCarousel, HouseholdDetails; asks for a confirmation | `itemClick()` [`pages/HomeFeed/hooks/useFeedUpdates.ts:95`](../../app/src/pages/HomeFeed/hooks/useFeedUpdates.ts#L95) | **differs: 1 missing** |
@@ -188,61 +182,11 @@ Each user action (click, change, submit) has two sequence diagrams: OutSystems (
 | [22](#522-sharesheet-submit-handler_inputeventsubmit) | `ShareSheet` | submit | `handler_InputEventSubmit` | – | calls GetAvailableMembers | `onSubmit()` [`containers/ShareSheet/useShareSheet.ts:112`](../../app/src/containers/ShareSheet/useShareSheet.ts#L112) | **differs: 1 missing** |
 | [23](#523-sharesheet-click-handler_onclicksend) | `ShareSheet` | click | `handler_OnClickSend` | – | calls CS_ShareObject; shows a message | `onClickSend()` [`containers/ShareSheet/useShareSheet.ts:215`](../../app/src/containers/ShareSheet/useShareSheet.ts#L215) | same |
 
-### 5.1 Feed_Embeded: click handle_Share_Connect
-
-Result: differs: 1 missing.
-
-**OutSystems (TST)**
-
-![OutSystems handle_Share_Connect](svg/HomeFeed-action-1.svg)
-
-**React**: `handle_Share_Connect()` in [`components/feed/EmbeddedFeed/EmbeddedFeed.tsx:76`](../../app/src/components/feed/EmbeddedFeed/EmbeddedFeed.tsx#L76)
-
-![React handle_Share_Connect](svg/HomeFeed-action-1-react.svg)
-
-<details><summary>Mermaid source</summary>
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as Feed_Embeded
-  participant N as Navigation
-  U->>B: click: handle_Share_Connect
-  rect rgba(192, 57, 43, 0.15)
-  B->>N: go to LegacyShareObject
-  Note over B,N: not in the React handler
-  end
-```
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as handle_Share_Connect() · EmbeddedFeed.tsx
-  participant N as Navigation
-  U->>H: click
-  Note over H: calls the prop onShareToConnect() (the parent component decides)
-  rect rgba(192, 57, 43, 0.15)
-  Note over H: missing, OutSystems has: go to LegacyShareObject
-  end
-```
-
-</details>
-
-### 5.2 Feed_Embeded: click handle_Share_Others
+### 5.1 Feed_Embeded: click handle_Share_Others
 
 Result: no React handler found.
 
 **OutSystems (TST)**
-
-![OutSystems handle_Share_Others](svg/HomeFeed-action-2.svg)
-
-**React**: no React handler found
-
-![React handle_Share_Others](svg/HomeFeed-action-2-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -269,6 +213,8 @@ sequenceDiagram
   end
 ```
 
+**React**: no React handler found
+
 ```mermaid
 sequenceDiagram
   actor U as User
@@ -278,21 +224,45 @@ sequenceDiagram
   end
 ```
 
-</details>
+### 5.2 Feed_Embeded: click handle_Share_Connect
+
+Result: differs: 1 missing.
+
+**OutSystems (TST)**
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as Feed_Embeded
+  participant N as Navigation
+  U->>B: click: handle_Share_Connect
+  rect rgba(192, 57, 43, 0.15)
+  B->>N: go to LegacyShareObject
+  Note over B,N: not in the React handler
+  end
+```
+
+**React**: `handle_Share_Connect()` in [`components/feed/EmbeddedFeed/EmbeddedFeed.tsx:76`](../../app/src/components/feed/EmbeddedFeed/EmbeddedFeed.tsx#L76)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as handle_Share_Connect() · EmbeddedFeed.tsx
+  participant N as Navigation
+  U->>H: click
+  Note over H: calls the prop onShareToConnect() (the parent component decides)
+  rect rgba(192, 57, 43, 0.15)
+  Note over H: missing, OutSystems has: go to LegacyShareObject
+  end
+```
 
 ### 5.3 Dialog_GoExternalApp: click goToExternalApp
 
 Result: differs: 1 not in OutSystems.
 
 **OutSystems (TST)**
-
-![OutSystems goToExternalApp](svg/HomeFeed-action-3.svg)
-
-**React**: `goToExternalApp()` in [`pages/HomeFeed/hooks/goToExternalApp.ts:11`](../../app/src/pages/HomeFeed/hooks/goToExternalApp.ts#L11)
-
-![React goToExternalApp](svg/HomeFeed-action-3-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -304,6 +274,8 @@ sequenceDiagram
   B->>X: OpenInApp_OpenExternalLink
   B->>X: OpenInApp_OpenApp
 ```
+
+**React**: `goToExternalApp()` in [`pages/HomeFeed/hooks/goToExternalApp.ts:11`](../../app/src/pages/HomeFeed/hooks/goToExternalApp.ts#L11)
 
 ```mermaid
 sequenceDiagram
@@ -321,21 +293,11 @@ sequenceDiagram
   H->>X: openInApp_OpenApp
 ```
 
-</details>
-
 ### 5.4 App_NotificationIcon: click iconClick
 
 Result: same.
 
 **OutSystems (TST)**
-
-![OutSystems iconClick](svg/HomeFeed-action-4.svg)
-
-**React**: `onIconClick()` in [`platform/session/useNotificationIcon.ts:40`](../../app/src/platform/session/useNotificationIcon.ts#L40)
-
-![React iconClick](svg/HomeFeed-action-4-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -348,6 +310,8 @@ sequenceDiagram
   B->>N: go to MessageList
 ```
 
+**React**: `onIconClick()` in [`platform/session/useNotificationIcon.ts:40`](../../app/src/platform/session/useNotificationIcon.ts#L40)
+
 ```mermaid
 sequenceDiagram
   autonumber
@@ -359,21 +323,11 @@ sequenceDiagram
   H->>N: go to MessageList
 ```
 
-</details>
-
 ### 5.5 FeedBlock_Updates: click event_ListItemOnClick
 
 Result: differs: 1 missing.
 
 **OutSystems (TST)**
-
-![OutSystems event_ListItemOnClick](svg/HomeFeed-action-5.svg)
-
-**React**: `itemClick()` in [`pages/HomeFeed/hooks/useFeedUpdates.ts:95`](../../app/src/pages/HomeFeed/hooks/useFeedUpdates.ts#L95)
-
-![React event_ListItemOnClick](svg/HomeFeed-action-5-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -394,6 +348,8 @@ sequenceDiagram
   Note over B: confirm dialog
 ```
 
+**React**: `itemClick()` in [`pages/HomeFeed/hooks/useFeedUpdates.ts:95`](../../app/src/pages/HomeFeed/hooks/useFeedUpdates.ts#L95)
+
 ```mermaid
 sequenceDiagram
   autonumber
@@ -413,21 +369,11 @@ sequenceDiagram
   end
 ```
 
-</details>
-
 ### 5.6 FeedBlock_CommunityPopulation: click onClick_Block
 
 Result: same.
 
 **OutSystems (TST)**
-
-![OutSystems onClick_Block](svg/HomeFeed-action-6.svg)
-
-**React**: `onClick()` in [`pages/HomeFeed/HomeFeedPage.tsx:156`](../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L156)
-
-![React onClick_Block](svg/HomeFeed-action-6-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -439,6 +385,8 @@ sequenceDiagram
   B->>N: go to Updates_SingleList
 ```
 
+**React**: `onClick()` in [`pages/HomeFeed/HomeFeedPage.tsx:156`](../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L156)
+
 ```mermaid
 sequenceDiagram
   autonumber
@@ -449,21 +397,11 @@ sequenceDiagram
   H->>N: go to Updates_SingleList
 ```
 
-</details>
-
 ### 5.7 FeedBlock_Updates: click event_MarkAsRead
 
 Result: same.
 
 **OutSystems (TST)**
-
-![OutSystems event_MarkAsRead](svg/HomeFeed-action-7.svg)
-
-**React**: `markAs()` in [`pages/HomeFeed/hooks/useFeedUpdates.ts:121`](../../app/src/pages/HomeFeed/hooks/useFeedUpdates.ts#L121)
-
-![React event_MarkAsRead](svg/HomeFeed-action-7-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -479,6 +417,8 @@ sequenceDiagram
   S-->>B: UnreadCount
 ```
 
+**React**: `markAs()` in [`pages/HomeFeed/hooks/useFeedUpdates.ts:121`](../../app/src/pages/HomeFeed/hooks/useFeedUpdates.ts#L121)
+
 ```mermaid
 sequenceDiagram
   autonumber
@@ -497,21 +437,11 @@ sequenceDiagram
   A-->>H: UnreadCount
 ```
 
-</details>
-
 ### 5.8 FeedBlock_Updates: click event_MarkAsUnread
 
 Result: same.
 
 **OutSystems (TST)**
-
-![OutSystems event_MarkAsUnread](svg/HomeFeed-action-8.svg)
-
-**React**: `markAs()` in [`pages/HomeFeed/hooks/useFeedUpdates.ts:121`](../../app/src/pages/HomeFeed/hooks/useFeedUpdates.ts#L121)
-
-![React event_MarkAsUnread](svg/HomeFeed-action-8-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -527,6 +457,8 @@ sequenceDiagram
   S-->>B: UnreadCount
 ```
 
+**React**: `markAs()` in [`pages/HomeFeed/hooks/useFeedUpdates.ts:121`](../../app/src/pages/HomeFeed/hooks/useFeedUpdates.ts#L121)
+
 ```mermaid
 sequenceDiagram
   autonumber
@@ -545,21 +477,11 @@ sequenceDiagram
   A-->>H: UnreadCount
 ```
 
-</details>
-
 ### 5.9 FeedBlock_Updates: click event_SendGift
 
 Result: same.
 
 **OutSystems (TST)**
-
-![OutSystems event_SendGift](svg/HomeFeed-action-9.svg)
-
-**React**: `onSendGift()` in [`pages/HomeFeed/hooks/useFeedUpdates.ts:139`](../../app/src/pages/HomeFeed/hooks/useFeedUpdates.ts#L139)
-
-![React event_SendGift](svg/HomeFeed-action-9-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -570,6 +492,8 @@ sequenceDiagram
   Note over B: message "Send gift"
 ```
 
+**React**: `onSendGift()` in [`pages/HomeFeed/hooks/useFeedUpdates.ts:139`](../../app/src/pages/HomeFeed/hooks/useFeedUpdates.ts#L139)
+
 ```mermaid
 sequenceDiagram
   autonumber
@@ -579,21 +503,11 @@ sequenceDiagram
   Note over H: message 'Send gift'
 ```
 
-</details>
-
 ### 5.10 FeedBlock_Services: click onClick_ServiceSettings
 
 Result: same.
 
 **OutSystems (TST)**
-
-![OutSystems onClick_ServiceSettings](svg/HomeFeed-action-10.svg)
-
-**React**: `onClickServiceSettings()` in [`pages/HomeFeed/hooks/useFeedServices.ts:149`](../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L149)
-
-![React onClick_ServiceSettings](svg/HomeFeed-action-10-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -605,6 +519,8 @@ sequenceDiagram
   B->>N: go to Services
 ```
 
+**React**: `onClickServiceSettings()` in [`pages/HomeFeed/hooks/useFeedServices.ts:149`](../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L149)
+
 ```mermaid
 sequenceDiagram
   autonumber
@@ -615,21 +531,11 @@ sequenceDiagram
   H->>N: go to Services
 ```
 
-</details>
-
 ### 5.11 ShareSheet: click handler_OnClickExternalOption
 
 Result: no React handler found.
 
 **OutSystems (TST)**
-
-![OutSystems handler_OnClickExternalOption](svg/HomeFeed-action-11.svg)
-
-**React**: no React handler found
-
-![React handler_OnClickExternalOption](svg/HomeFeed-action-11-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -645,6 +551,8 @@ sequenceDiagram
   end
 ```
 
+**React**: no React handler found
+
 ```mermaid
 sequenceDiagram
   actor U as User
@@ -654,21 +562,11 @@ sequenceDiagram
   end
 ```
 
-</details>
-
 ### 5.12 FeedBlock_Services: click onClick_Service (orbit)
 
 Result: same.
 
 **OutSystems (TST)**
-
-![OutSystems onClick_Service](svg/HomeFeed-action-12.svg)
-
-**React**: `clickService()` in [`pages/HomeFeed/hooks/useFeedServices.ts:80`](../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L80)
-
-![React onClick_Service](svg/HomeFeed-action-12-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -680,6 +578,8 @@ sequenceDiagram
   B->>N: go to OrbitLanding
 ```
 
+**React**: `clickService()` in [`pages/HomeFeed/hooks/useFeedServices.ts:80`](../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L80)
+
 ```mermaid
 sequenceDiagram
   autonumber
@@ -690,21 +590,11 @@ sequenceDiagram
   H->>N: go to OrbitLanding
 ```
 
-</details>
-
 ### 5.13 FeedBlock_Services: click onClick_Service (lDM)
 
 Result: differs: 1 missing.
 
 **OutSystems (TST)**
-
-![OutSystems onClick_Service](svg/HomeFeed-action-13.svg)
-
-**React**: `clickService()` in [`pages/HomeFeed/hooks/useFeedServices.ts:80`](../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L80)
-
-![React onClick_Service](svg/HomeFeed-action-13-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -720,6 +610,8 @@ sequenceDiagram
   end
 ```
 
+**React**: `clickService()` in [`pages/HomeFeed/hooks/useFeedServices.ts:80`](../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L80)
+
 ```mermaid
 sequenceDiagram
   autonumber
@@ -733,21 +625,11 @@ sequenceDiagram
   end
 ```
 
-</details>
-
 ### 5.14 FeedBlock_Services: click onClick_Service (myCalendar)
 
 Result: same.
 
 **OutSystems (TST)**
-
-![OutSystems onClick_Service](svg/HomeFeed-action-14.svg)
-
-**React**: `clickService()` in [`pages/HomeFeed/hooks/useFeedServices.ts:80`](../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L80)
-
-![React onClick_Service](svg/HomeFeed-action-14-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -759,6 +641,8 @@ sequenceDiagram
   B->>N: go to MyEntertaining
 ```
 
+**React**: `clickService()` in [`pages/HomeFeed/hooks/useFeedServices.ts:80`](../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L80)
+
 ```mermaid
 sequenceDiagram
   autonumber
@@ -769,21 +653,11 @@ sequenceDiagram
   H->>N: go to MyEntertaining
 ```
 
-</details>
-
 ### 5.15 FeedBlock_Services: click onClick_Service (assemble)
 
 Result: same.
 
 **OutSystems (TST)**
-
-![OutSystems onClick_Service](svg/HomeFeed-action-15.svg)
-
-**React**: `clickService()` in [`pages/HomeFeed/hooks/useFeedServices.ts:80`](../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L80)
-
-![React onClick_Service](svg/HomeFeed-action-15-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -795,6 +669,8 @@ sequenceDiagram
   B->>N: go to AssembleEvents
 ```
 
+**React**: `clickService()` in [`pages/HomeFeed/hooks/useFeedServices.ts:80`](../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L80)
+
 ```mermaid
 sequenceDiagram
   autonumber
@@ -805,21 +681,11 @@ sequenceDiagram
   H->>N: go to AssembleEvents
 ```
 
-</details>
-
 ### 5.16 FeedBlock_Services: click onClick_Service (orbitAdmin)
 
 Result: same.
 
 **OutSystems (TST)**
-
-![OutSystems onClick_Service](svg/HomeFeed-action-16.svg)
-
-**React**: `clickService()` in [`pages/HomeFeed/hooks/useFeedServices.ts:80`](../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L80)
-
-![React onClick_Service](svg/HomeFeed-action-16-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -831,6 +697,8 @@ sequenceDiagram
   B->>N: go to OrbitAdminLanding
 ```
 
+**React**: `clickService()` in [`pages/HomeFeed/hooks/useFeedServices.ts:80`](../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L80)
+
 ```mermaid
 sequenceDiagram
   autonumber
@@ -841,21 +709,11 @@ sequenceDiagram
   H->>N: go to OrbitAdminLanding
 ```
 
-</details>
-
 ### 5.17 FeedBlock_Services: click onClick_Service (myNotes)
 
 Result: same.
 
 **OutSystems (TST)**
-
-![OutSystems onClick_Service](svg/HomeFeed-action-17.svg)
-
-**React**: `clickService()` in [`pages/HomeFeed/hooks/useFeedServices.ts:80`](../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L80)
-
-![React onClick_Service](svg/HomeFeed-action-17-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -867,6 +725,8 @@ sequenceDiagram
   B->>N: go to Notes
 ```
 
+**React**: `clickService()` in [`pages/HomeFeed/hooks/useFeedServices.ts:80`](../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L80)
+
 ```mermaid
 sequenceDiagram
   autonumber
@@ -877,21 +737,11 @@ sequenceDiagram
   H->>N: go to Notes
 ```
 
-</details>
-
 ### 5.18 FeedBlock_Services: click onClick_Service (other)
 
 Result: same.
 
 **OutSystems (TST)**
-
-![OutSystems onClick_Service](svg/HomeFeed-action-18.svg)
-
-**React**: `clickService()` in [`pages/HomeFeed/hooks/useFeedServices.ts:80`](../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L80)
-
-![React onClick_Service](svg/HomeFeed-action-18-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -902,6 +752,8 @@ sequenceDiagram
   Note over B: confirm dialog
 ```
 
+**React**: `clickService()` in [`pages/HomeFeed/hooks/useFeedServices.ts:80`](../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L80)
+
 ```mermaid
 sequenceDiagram
   autonumber
@@ -911,21 +763,11 @@ sequenceDiagram
   Note over H: confirm dialog externalAppPopUpId
 ```
 
-</details>
-
 ### 5.19 ShareSheet: click handler_OnClickRecentMember
 
 Result: same.
 
 **OutSystems (TST)**
-
-![OutSystems handler_OnClickRecentMember](svg/HomeFeed-action-19.svg)
-
-**React**: `onClickRecentMember()` in [`containers/ShareSheet/useShareSheet.ts:177`](../../app/src/containers/ShareSheet/useShareSheet.ts#L177)
-
-![React handler_OnClickRecentMember](svg/HomeFeed-action-19-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -941,6 +783,8 @@ sequenceDiagram
   Note over B: message submitMessageVar + " has been shared."
   Note over B: message "Share failed. Please try again."
 ```
+
+**React**: `onClickRecentMember()` in [`containers/ShareSheet/useShareSheet.ts:177`](../../app/src/containers/ShareSheet/useShareSheet.ts#L177)
 
 ```mermaid
 sequenceDiagram
@@ -962,21 +806,11 @@ sequenceDiagram
   Note over H: message 'Share failed. Please try again.'
 ```
 
-</details>
-
 ### 5.20 HomeFeed: click onClick_Search
 
 Result: same.
 
 **OutSystems (TST)**
-
-![OutSystems onClick_Search](svg/HomeFeed-action-20.svg)
-
-**React**: `onOnSearchClick()` in [`pages/HomeFeed/HomeFeedPage.tsx:128`](../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L128)
-
-![React onClick_Search](svg/HomeFeed-action-20-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -988,6 +822,8 @@ sequenceDiagram
   B->>N: go to Search
 ```
 
+**React**: `onOnSearchClick()` in [`pages/HomeFeed/HomeFeedPage.tsx:128`](../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L128)
+
 ```mermaid
 sequenceDiagram
   autonumber
@@ -998,21 +834,11 @@ sequenceDiagram
   H->>N: go to Search
 ```
 
-</details>
-
 ### 5.21 HomeFeed: click section_UpdatesOnClick_ViewAll
 
 Result: same.
 
 **OutSystems (TST)**
-
-![OutSystems section_UpdatesOnClick_ViewAll](svg/HomeFeed-action-21.svg)
-
-**React**: `onOnClickViewAll()` in [`pages/HomeFeed/HomeFeedPage.tsx:170`](../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L170)
-
-![React section_UpdatesOnClick_ViewAll](svg/HomeFeed-action-21-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -1024,6 +850,8 @@ sequenceDiagram
   B->>N: go to Updates_SingleList
 ```
 
+**React**: `onOnClickViewAll()` in [`pages/HomeFeed/HomeFeedPage.tsx:170`](../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L170)
+
 ```mermaid
 sequenceDiagram
   autonumber
@@ -1034,21 +862,11 @@ sequenceDiagram
   H->>N: go to Updates_SingleList
 ```
 
-</details>
-
 ### 5.22 ShareSheet: submit handler_InputEventSubmit
 
 Result: differs: 1 missing.
 
 **OutSystems (TST)**
-
-![OutSystems handler_InputEventSubmit](svg/HomeFeed-action-22.svg)
-
-**React**: `onSubmit()` in [`containers/ShareSheet/useShareSheet.ts:112`](../../app/src/containers/ShareSheet/useShareSheet.ts#L112)
-
-![React handler_InputEventSubmit](svg/HomeFeed-action-22-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -1064,6 +882,8 @@ sequenceDiagram
   end
 ```
 
+**React**: `onSubmit()` in [`containers/ShareSheet/useShareSheet.ts:112`](../../app/src/containers/ShareSheet/useShareSheet.ts#L112)
+
 ```mermaid
 sequenceDiagram
   autonumber
@@ -1077,21 +897,11 @@ sequenceDiagram
   end
 ```
 
-</details>
-
 ### 5.23 ShareSheet: click handler_OnClickSend
 
 Result: same.
 
 **OutSystems (TST)**
-
-![OutSystems handler_OnClickSend](svg/HomeFeed-action-23.svg)
-
-**React**: `onClickSend()` in [`containers/ShareSheet/useShareSheet.ts:215`](../../app/src/containers/ShareSheet/useShareSheet.ts#L215)
-
-![React handler_OnClickSend](svg/HomeFeed-action-23-react.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -1105,6 +915,8 @@ sequenceDiagram
   Note over B: message submitMessageVar + " has been shared."
   Note over B: message "Share failed. Please try again."
 ```
+
+**React**: `onClickSend()` in [`containers/ShareSheet/useShareSheet.ts:215`](../../app/src/containers/ShareSheet/useShareSheet.ts#L215)
 
 ```mermaid
 sequenceDiagram
@@ -1123,8 +935,6 @@ sequenceDiagram
   Note over H: message error message (on exception)
   Note over H: message 'Share failed. Please try again.'
 ```
-
-</details>
 
 ## 6. Server calls
 

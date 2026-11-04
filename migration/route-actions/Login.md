@@ -46,10 +46,6 @@ The screenshots come from the last parity run (`route.py parity`). The TST captu
 - The right column shows the React components that use each React action.
 - A red box is a call that React does not make.
 
-![Login diagram](svg/Login.svg)
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart LR
   subgraph OS["OutSystems (TST compiled)"]
@@ -106,8 +102,6 @@ flowchart LR
   class e2,e3,e4,e7 ok
 ```
 
-</details>
-
 ## 5. User actions
 
 Each user action (click, change, submit) has two sequence diagrams: OutSystems (TST code) and React.
@@ -130,14 +124,6 @@ Result: differs: 1 missing.
 
 **OutSystems (TST)**
 
-![OutSystems login](svg/Login-action-1.svg)
-
-**React**: `onLogin()` in [`pages/Login/hooks/useLogin.ts:121`](../../app/src/pages/Login/hooks/useLogin.ts#L121)
-
-![React login](svg/Login-action-1-react.svg)
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 sequenceDiagram
   autonumber
@@ -154,6 +140,8 @@ sequenceDiagram
   Note over B: message error message (on exception)
 ```
 
+**React**: `onLogin()` in [`pages/Login/hooks/useLogin.ts:121`](../../app/src/pages/Login/hooks/useLogin.ts#L121)
+
 ```mermaid
 sequenceDiagram
   autonumber
@@ -167,8 +155,6 @@ sequenceDiagram
   Note over H: missing, OutSystems has: call AppManager_SynchAppContext
   end
 ```
-
-</details>
 
 ## 6. Server calls
 

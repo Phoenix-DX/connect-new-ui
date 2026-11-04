@@ -1,7 +1,7 @@
 # Route actions: OutSystems against React, one route at a time
 
 The tools check the server calls of one route in OutSystems against the React app. Each run writes one file,
-`migration/route-actions/<Route>.md`, with an SVG diagram. `migration/route-actions/ROUTES.md` lists the 68 build
+`migration/route-actions/<Route>.md`, with Mermaid diagrams as text. `migration/route-actions/ROUTES.md` lists the 68 build
 routes and their status (`todo` / `done`). The pilot route is HomeFeed (user, 2026-11-04).
 
 ## Commands
@@ -13,7 +13,7 @@ Run from the project root.
 export MCP_TOKEN=<token>                                            # never write it to a file
 
 python3 migration/tools/route_actions/check_route.py --routes          # writes ROUTES.md
-python3 migration/tools/route_actions/check_route.py <Route>           # writes <Route>.md and svg/<Route>.svg
+python3 migration/tools/route_actions/check_route.py <Route>           # writes <Route>.md and APP_SHELL.md
 python3 migration/tools/route_actions/check_route.py <Route> --mark-done
 python3 migration/tools/route_actions/check_route.py --app-shell       # writes APP_SHELL.md again
 ```
@@ -72,7 +72,7 @@ Each route run writes `APP_SHELL.md` again from all `data/check-*.json`. Its cal
 | `check_route.py` | Reads the sources, matches them, writes the route file and `ROUTES.md`. |
 | `react_calls.mjs` | React scan; writes `migration/route-actions/data/react-*.json`. |
 | `mcp_client.py` | Read-only MCP client (`get*` tools only) with a file cache. |
-| `render_svg.cjs` | Renders the Mermaid diagrams of one file to SVG in one browser (Playwright of the project root, Mermaid 10.9.1), with a white background. |
+| `render_svg.cjs` | Syntax check: renders the Mermaid diagrams of one file in one browser (Playwright of the project root, Mermaid 10.9.1) to `data/svg/`, which git ignores. The route files carry the Mermaid text (user, 2026-11-04). |
 
 ## Match rules
 
