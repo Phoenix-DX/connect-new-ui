@@ -909,6 +909,45 @@ function startDepth(body) {
   return named ? 0 : -1;
 }
 
+function spreadOfHookObject(id, f) {
+  const out = [];
+  const vd = id.getExpression().getSymbol?.()?.getDeclarations()?.[0];
+  const init = vd && Node.isVariableDeclaration(vd) ? vd.getInitializer() : null;
+  if (!init || !Node.isCallExpression(init) || !/^use[A-Z]/.test(init.getExpression().getText())) return out;
+  let hs = init.getExpression().getSymbol?.();
+  if (hs?.isAlias()) hs = hs.getAliasedSymbol() ?? hs;
+  const hd = hs?.getDeclarations()?.[0];
+  const fn = hd && !excluded(hd.getSourceFile().getFilePath()) ? bodyOfDecl(hd) : null;
+  if (!fn) return out;
+  let objLit = null;
+  for (const ret of fn.getDescendantsOfKind(SyntaxKind.ReturnStatement)) {
+    if (ret.getFirstAncestor(isFunctionLike) !== fn) continue;
+    const r = ret.getExpression();
+    const p = r && Node.isObjectLiteralExpression(r) ? r.getProperty(id.getName()) : null;
+    if (!p) continue;
+    const v = Node.isShorthandPropertyAssignment(p) ? p.getValueSymbol?.()?.getDeclarations()?.[0]?.getInitializer?.()
+      : Node.isPropertyAssignment(p) ? p.getInitializer() : null;
+    objLit = v ? objectOf(v) : null;
+    if (objLit) break;
+  }
+  if (!objLit) return out;
+  for (const p of objLit.getProperties()) {
+    const prop = p.getName?.();
+    if (!prop || !/^on[A-Z]/.test(prop)) continue;
+    let body = null;
+    if (Node.isShorthandPropertyAssignment(p)) body = resolveFn(p.getNameNode(), 0, p.getValueSymbol?.());
+    else if (Node.isPropertyAssignment(p)) body = isFunctionLike(p.getInitializer()) ? p.getInitializer() : resolveFn(p.getInitializer());
+    else if (Node.isMethodDeclaration(p)) body = p;
+    if (!body) continue;
+    if (!ENV.has(body)) ENV.set(body, { hookFn: fn, call: init, parent: null });
+    const effects = effectsOf(body, null, startDepth(body), new Set([body]));
+    if (!effects.some((e) => EFFECT_KINDS.has(e.kind))) continue;
+    const el = id.getFirstAncestor((x) => Node.isJsxOpeningElement(x) || Node.isJsxSelfClosingElement(x));
+    out.push({ element: el ? el.getTagNameNode().getText() : '?', prop, handler: `${id.getText()}.${prop}`, file: rel(f), line: id.getStartLineNumber(), effects });
+  }
+  return out;
+}
+
 function bindingsOf(units, reached) {
   const out = [];
   const files = new Set([...reached].map((k) => units.get(k).file));
@@ -937,6 +976,11 @@ function bindingsOf(units, reached) {
     // `<X {...flows} />` with `const flows = useY()`: each `on*` property of the object that the hook returns
     for (const sp of sf.getDescendantsOfKind(SyntaxKind.JsxSpreadAttribute)) {
       const id = sp.getExpression();
+      if (Node.isPropertyAccessExpression(id) && Node.isIdentifier(id.getExpression())) {
+        // `<X {...detail.handlers} />` with `const detail = useY()` and `handlers` an object that the hook returns
+        out.push(...spreadOfHookObject(id, f));
+        continue;
+      }
       if (!Node.isIdentifier(id)) continue;
       let sym = id.getSymbol?.();
       if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
