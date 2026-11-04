@@ -25,8 +25,10 @@ from the project root. Reply to the user in Vietnamese; the files stay in Englis
 
 ### `status` (also the default when no argument is given)
 1. Run `check_route.py --status`.
-2. Tell the user in at most 5 lines: done count and names, the next route, the count of routes left, the routes
-   without a TST capture (the tool stops for them), and any uncommitted change in `route-actions/`.
+2. Tell the user in at most 5 lines:
+   - the done count and names, the next route, the count of routes left;
+   - the routes without a TST capture (the tool stops for them);
+   - any uncommitted change in `route-actions/`.
 3. Do not run a route. Ask whether to continue.
 
 ### `continue`
