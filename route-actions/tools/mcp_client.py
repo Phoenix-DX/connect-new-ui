@@ -3,13 +3,13 @@
 Only `get*` tools are allowed. The session token comes from the environment variable MCP_TOKEN (create it with the
 MCP tool `createSessionToken`); it is never written to a file. The model is DEV: reference only, TST wins (CLAUDE.md).
 
-Cache: migration/route-actions/raw/mcp/<module>/<tool>/<name>.txt (gitignored).
+Cache: route-actions/.cache/raw/mcp/<module>/<tool>/<name>.txt (gitignored).
 """
 import json, os, re, urllib.request
 
 MCP_URL = os.environ.get("MCP_URL", "http://127.0.0.1:41820/mcp")
-ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-CACHE = os.path.join(ROOT, "migration", "route-actions", "raw", "mcp")
+HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # route-actions/
+CACHE = os.path.join(HERE, ".cache", "raw", "mcp")
 
 
 class McpError(RuntimeError):

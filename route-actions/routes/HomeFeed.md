@@ -1,10 +1,10 @@
 # HomeFeed: server calls and user actions in OutSystems and React
 
 This file compares the route `/UBTConnect/HomeFeed` in OutSystems (TST) with the React app.
-The tool `migration/tools/route_actions/check_route.py` wrote this file on 2026-11-04.
+The tool `route-actions/tools/check_route.py` wrote this file on 2026-11-04.
 The tool reads the code. It does not run the app.
 
-The app shell is in [APP_SHELL.md](APP_SHELL.md), not here.
+The app shell is in [APP_SHELL.md](../APP_SHELL.md), not here.
 - OutSystems app shell: `CommonUI_InsideLayout` with its blocks (TST survey), and the chains that start in a module action.
 - React app shell: the code that `app/src/main.tsx` loads (router, `AppFrame`, app start, hosts).
 
@@ -28,7 +28,7 @@ The app shell is in [APP_SHELL.md](APP_SHELL.md), not here.
 | React calls of the screen that TST does not make | 2 (see [questions](#8-questions)) |
 | Screen and blocks with a React port | 37 of 37 |
 | Navigation targets found in React | 20 of 20 |
-| App shell on this route | 9 calls; event bindings: OutSystems 6, React 6: see [APP_SHELL.md](APP_SHELL.md) |
+| App shell on this route | 9 calls; event bindings: OutSystems 6, React 6: see [APP_SHELL.md](../APP_SHELL.md) |
 
 ## 3. Screenshots
 
@@ -36,9 +36,9 @@ The screenshots come from the last parity run (`route.py parity`). The TST captu
 
 | State | TST (expected) | React (build) | Difference |
 |---|---|---|---|
-| `default`<br>390x844, mock `real`<br>2026-10-29<br>pixel difference 0.0% | <img src="../screens/HomeFeed/parity/default.expected.png" width="200" alt="default expected"> | <img src="../screens/HomeFeed/parity/default.build.png" width="200" alt="default build"> | <img src="../screens/HomeFeed/parity/default.diff.png" width="200" alt="default diff"> |
-| `loading`<br>390x844, mock `loading`<br>2026-10-29<br>pixel difference 0.0% | <img src="../screens/HomeFeed/parity/loading.expected.png" width="200" alt="loading expected"> | <img src="../screens/HomeFeed/parity/loading.build.png" width="200" alt="loading build"> | <img src="../screens/HomeFeed/parity/loading.diff.png" width="200" alt="loading diff"> |
-| `offline`<br>390x844, mock `error`<br>2026-10-29<br>pixel difference 0.0% | <img src="../screens/HomeFeed/parity/offline.expected.png" width="200" alt="offline expected"> | <img src="../screens/HomeFeed/parity/offline.build.png" width="200" alt="offline build"> | <img src="../screens/HomeFeed/parity/offline.diff.png" width="200" alt="offline diff"> |
+| `default`<br>390x844, mock `real`<br>2026-10-29<br>pixel difference 0.0% | <img src="../../migration/screens/HomeFeed/parity/default.expected.png" width="200" alt="default expected"> | <img src="../../migration/screens/HomeFeed/parity/default.build.png" width="200" alt="default build"> | <img src="../../migration/screens/HomeFeed/parity/default.diff.png" width="200" alt="default diff"> |
+| `loading`<br>390x844, mock `loading`<br>2026-10-29<br>pixel difference 0.0% | <img src="../../migration/screens/HomeFeed/parity/loading.expected.png" width="200" alt="loading expected"> | <img src="../../migration/screens/HomeFeed/parity/loading.build.png" width="200" alt="loading build"> | <img src="../../migration/screens/HomeFeed/parity/loading.diff.png" width="200" alt="loading diff"> |
+| `offline`<br>390x844, mock `error`<br>2026-10-29<br>pixel difference 0.0% | <img src="../../migration/screens/HomeFeed/parity/offline.expected.png" width="200" alt="offline expected"> | <img src="../../migration/screens/HomeFeed/parity/offline.build.png" width="200" alt="offline build"> | <img src="../../migration/screens/HomeFeed/parity/offline.diff.png" width="200" alt="offline diff"> |
 
 ## 4. Diagram
 

@@ -1,7 +1,22 @@
 # Route actions: OutSystems against React, one route at a time
 
+This folder is the reference for the check of the routes (user, 2026-11-04). Start here, not in `migration/`.
+
+```
+route-actions/
+├── README.md        this file
+├── ROUTES.md        the 68 build routes and their status (todo / done)
+├── APP_SHELL.md     the app shell, merged from the checked routes
+├── routes/          one file per route: <Route>.md
+├── tools/           check_route.py, react_calls.mjs, os_call_graph.py, mcp_client.py, render_svg.cjs
+├── config.json      the input paths (read only): TST data in migration/screens, survey, board; React app and contract
+└── .cache/          git ignores it: data/ (scans), raw/mcp/ (MCP answers), data/svg/ (Mermaid syntax check)
+```
+
+The inputs stay where they are (`migration/screens/…`, `app/…`). The tools only read them, through `config.json`.
+
 The tools check the server calls of one route in OutSystems against the React app. Each run writes one file,
-`migration/route-actions/<Route>.md`, with Mermaid diagrams as text. `migration/route-actions/ROUTES.md` lists the 68 build
+`route-actions/routes/<Route>.md`, with Mermaid diagrams as text. `route-actions/ROUTES.md` lists the 68 build
 routes and their status (`todo` / `done`). The pilot route is HomeFeed (user, 2026-11-04).
 
 ## Commands
@@ -12,15 +27,15 @@ Run from the project root.
 # once per Claude session: createSessionToken (Service Studio MCP), then
 export MCP_TOKEN=<token>                                            # never write it to a file
 
-python3 migration/tools/route_actions/check_route.py --routes          # writes ROUTES.md
-python3 migration/tools/route_actions/check_route.py <Route>           # writes <Route>.md and APP_SHELL.md
-python3 migration/tools/route_actions/check_route.py <Route> --mark-done
-python3 migration/tools/route_actions/check_route.py --app-shell       # writes APP_SHELL.md again
+python3 route-actions/tools/check_route.py --routes          # writes ROUTES.md
+python3 route-actions/tools/check_route.py <Route>           # writes <Route>.md and APP_SHELL.md
+python3 route-actions/tools/check_route.py <Route> --mark-done
+python3 route-actions/tools/check_route.py --app-shell       # writes APP_SHELL.md again
 ```
 
-The tool keeps the app shell scan in `migration/route-actions/data/react-shell.json`. When a `.ts` or `.tsx` file in
+The tool keeps the app shell scan in `route-actions/.cache/data/react-shell.json`. When a `.ts` or `.tsx` file in
 `app/src`, a `tsconfig` file or `react_calls.mjs` is newer than that file, the tool scans the app shell again. Git
-ignores `migration/route-actions/data/` (the tools make it again) and `migration/route-actions/raw/` (the MCP cache).
+ignores `route-actions/.cache/data/` (the tools make it again) and `route-actions/.cache/raw/` (the MCP cache).
 
 To check a route again later, run `check_route.py <Route>` again. The tool overwrites the route file and keeps the
 status in `ROUTES.md`. Use `git diff` to see what changed.
@@ -33,7 +48,7 @@ status in `ROUTES.md`. Use `git diff` to see what changed.
    - `analysis/calls.json`: the calls that TST made in the capture.
    - `migration/survey/screens.json` and `app/src/api/openapi.yaml` (`x-os-paths`).
 2. **MCP** (DEV, read only, `mcp_client.py`): the UI flow of each screen (`getScreenNames`). The answer is cached in
-   `migration/route-actions/raw/mcp/`. The route file does not show the inside of the calls (user, 2026-11-04).
+   `route-actions/.cache/raw/mcp/`. The route file does not show the inside of the calls (user, 2026-11-04).
 3. **React** (`react_calls.mjs`, TypeScript type checker through ts-morph from `app/node_modules`):
    - `shell`: the app shell from `app/src/main.tsx` (router, `AppFrame`, `AppStart`, `RouteGuard`, hosts);
    - `page <Route>`: the screen from `app/src/pages/<Route>/<Route>Page.tsx`;
@@ -51,7 +66,7 @@ The route files carry only what the tool reads in the code and the data, with th
 
 ## Route file and app shell file
 
-A route file has only the parts of the route. `migration/route-actions/APP_SHELL.md` has the app shell:
+A route file has only the parts of the route. `route-actions/APP_SHELL.md` has the app shell:
 
 - OutSystems: the chains that start in `CommonUI_InsideLayout` or one of its blocks (TST survey), or in a module action;
 - React: the event bindings of the code that `app/src/main.tsx` loads.
@@ -75,7 +90,9 @@ Each route run writes `APP_SHELL.md` again from all `data/check-*.json`. Its cal
 | File | Role |
 |---|---|
 | `check_route.py` | Reads the sources, matches them, writes the route file and `ROUTES.md`. |
-| `react_calls.mjs` | React scan; writes `migration/route-actions/data/react-*.json`. |
+| `react_calls.mjs` | React scan; writes `route-actions/.cache/data/react-*.json`. |
+| `os_call_graph.py` | Call graph of the TST compiled code. A copy of the function `call_graph` of the skill `outsystems-screen-spec` (`analyze_capture.py`), so that the tools do not depend on the skill. |
+| `config.json` (folder root) | The input paths. |
 | `mcp_client.py` | Read-only MCP client (`get*` tools only) with a file cache. |
 | `render_svg.cjs` | Syntax check: renders the Mermaid diagrams of one file in one browser (Playwright of the project root, Mermaid 10.9.1) to `data/svg/`, which git ignores. The route files carry the Mermaid text (user, 2026-11-04). |
 

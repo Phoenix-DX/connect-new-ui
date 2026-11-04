@@ -5,10 +5,10 @@ section "Context notes".
 
 ## Now
 - Goal (user 2026-10-14): replace the OutSystems app in production; UI/UX 1:1. **Current focus (user 2026-10-17): local demo for colleagues, no production work.**
-- 2026-11-04: route actions pipeline ([context-074](context-074-route-actions-pilot.md), `migration/route-actions/ROUTES.md`, `APP_SHELL.md`): facts only; per route server calls + two independent User actions lists (OutSystems, React) as Mermaid text. 4 of 68 done (HomeFeed, Login, Splash, Menu); paused by the user.
+- 2026-11-04: route actions pipeline in **`route-actions/`** at the repository root ([context-074](context-074-route-actions-pilot.md)). Facts only. 4 of 68 routes done; paused by the user.
 - 2026-11-04: convention review of `app/src` ([context-073](context-073-app-conventions-review.md)): D1–D8 open. 2026-11-03: principal review ([context-072](context-072-app-principal-review.md)): WPs and V1–V6 open.
 - TST has 84 routes: 68 build (all finished), 16 skip. Demo: `npm --prefix app run build:demo`; dev http://localhost:5173/UBTConnect/HomeFeed (`?review=1`).
-- Next: route actions, next route `PINBiometricsMenu` (order of `ROUTES.md`): run, hand-check, the user says done, `--mark-done`, commit.
+- Next: route actions, next route `PINBiometricsMenu` (order of `route-actions/ROUTES.md`). Read `route-actions/README.md` first.
 
 ## Contexts
 | id | date | topic | status |

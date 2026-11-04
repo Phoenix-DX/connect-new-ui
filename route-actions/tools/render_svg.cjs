@@ -1,7 +1,7 @@
 // Render Mermaid files to SVG, headless (Playwright of the project root, as migration/tools/check_mermaid.cjs;
 // Mermaid 10.9.1 from cdnjs: the same version as the flows dashboard). One browser for all the pairs. Fails when
 // Mermaid reports a syntax error. The SVG gets a white background.
-// Usage (from the project root): node migration/tools/route_actions/render_svg.cjs <in.mmd> <out.svg> [<in> <out> ...]
+// Usage (from the project root): node route-actions/tools/render_svg.cjs <in.mmd> <out.svg> [<in> <out> ...]
 const path = require('path');
 const fs = require('fs');
 const { chromium } = require(require.resolve('playwright', { paths: [process.cwd()] }));

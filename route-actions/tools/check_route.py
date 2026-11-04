@@ -2,25 +2,37 @@
 """Check one route: the OutSystems client actions and server calls against the React app. Writes one md file.
 
 Usage (from the project root):
-  MCP_TOKEN=<token> python3 migration/tools/route_actions/check_route.py <Route>        # writes the route file
-  python3 migration/tools/route_actions/check_route.py <Route> --mark-done              # sets the route to done
-  python3 migration/tools/route_actions/check_route.py --routes                         # writes ROUTES.md
+  python3 route-actions/tools/check_route.py <Route>              # writes routes/<Route>.md and APP_SHELL.md
+  python3 route-actions/tools/check_route.py <Route> --mark-done  # sets the route to done in ROUTES.md
+  python3 route-actions/tools/check_route.py --routes             # writes ROUTES.md
+  python3 route-actions/tools/check_route.py --app-shell          # writes APP_SHELL.md
 
 Sources (README.md has the details):
   1. TST, in this repository (TST wins): migration/screens/<S>/analysis/{facts.json,calls.json,sources/raw},
      migration/survey/screens.json, app/src/api/openapi.yaml.
   2. MCP (DEV, read only): the UI flow of each screen (module UBTConnect).
-  3. React: migration/route-actions/data/react-shell.json and react-<Route>.json (react_calls.mjs).
+  3. React: route-actions/.cache/data/react-shell.json and react-<Route>.json (react_calls.mjs).
+The input paths are in route-actions/config.json.
 """
 import argparse, collections, glob, json, os, re, subprocess, sys
 from datetime import date
 
-ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # route-actions/
+ROOT = os.path.dirname(HERE)
+CFG = json.load(open(os.path.join(HERE, "config.json"), encoding="utf-8"))
+
+
+def cfg(*keys):
+    """An input path of route-actions/config.json, absolute."""
+    v = CFG
+    for k in keys:
+        v = v[k]
+    return os.path.join(ROOT, v)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import mcp_client  # noqa: E402
 
-OUT = os.path.join(ROOT, "migration", "route-actions")
-DATA = os.path.join(OUT, "data")
+OUT = os.path.join(HERE, "routes")          # the route files
+DATA = os.path.join(cfg("cache"), "data")   # git ignores route-actions/.cache/
 
 
 PATTERN_MODULES = ("UBTConnectLibrary", "OutSystemsUI_2_23")
@@ -58,7 +70,7 @@ def short(f):
 # ---------------------------------------------------------------------------------------------------------------
 def board_rows():
     rows = {}
-    for line in open(os.path.join(ROOT, "migration", "board.md"), encoding="utf-8"):
+    for line in open(cfg("tst", "board"), encoding="utf-8"):
         if line.startswith("| ") and "`/UBTConnect" in line:
             c = [x.strip() for x in line.split("|")]
             rows[c[1]] = {"decision": c[6], "status": c[8]}
@@ -66,7 +78,7 @@ def board_rows():
 
 
 def generated_routes():
-    txt = open(os.path.join(ROOT, "app", "src", "app", "routes.generated.ts"), encoding="utf-8").read()
+    txt = open(cfg("react", "routesGenerated"), encoding="utf-8").read()
     return [json.loads(m.group(0)) for m in re.finditer(r'\{"path": [^\n]*?\}', txt)]
 
 
@@ -79,7 +91,7 @@ def ui_flows():
 
 
 def routes_md_path():
-    return os.path.join(OUT, "ROUTES.md")
+    return os.path.join(HERE, "ROUTES.md")
 
 
 def read_status():
@@ -105,8 +117,8 @@ def write_routes(done=None):
         by_flow[flows.get(r["screen"], "unclear (not in MCP list)")].append(r["screen"])
     n_done = sum(1 for r in build if st.get(r["screen"]) == "done")
     L = ["# Routes: OutSystems actions against React", "",
-         f"One file per route. Run `python3 migration/tools/route_actions/check_route.py <Route>` (see "
-         f"[README](../tools/route_actions/README.md)). Progress: **{n_done} of {len(build)}** build routes done.", "",
+         f"One file per route in `routes/`. Run `python3 route-actions/tools/check_route.py <Route>` (see "
+         f"[README](README.md)). Progress: **{n_done} of {len(build)}** build routes done.", "",
          "The app shell (`CommonUI_InsideLayout` and its blocks on TST; the code that `main.tsx` loads in React) is in "
          "[APP_SHELL.md](APP_SHELL.md). The tool merges it from the checked routes.", "",
          f"UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read {date.today().isoformat()}. "
@@ -115,7 +127,7 @@ def write_routes(done=None):
     for flow in sorted(by_flow):
         for s in sorted(by_flow[flow]):
             status = st.get(s, "todo")
-            name = f"[`{s}`]({s}.md)" if os.path.exists(os.path.join(OUT, f"{s}.md")) else f"`{s}`"
+            name = f"[`{s}`](routes/{s}.md)" if os.path.exists(os.path.join(OUT, f"{s}.md")) else f"`{s}`"
             L.append(f"| {name} | `{flow}` | {status} |")
     L += ["", f"## Out of scope ({len(skip)} skip routes)", "",
           "These routes have no React page (decision `skip` on the board). They are not checked.", "",
@@ -130,7 +142,7 @@ def write_routes(done=None):
 # TST
 # ---------------------------------------------------------------------------------------------------------------
 def tst_route(screen):
-    base = os.path.join(ROOT, "migration", "screens", screen, "analysis")
+    base = os.path.join(cfg("tst", "screens"), screen, "analysis")
     if not os.path.exists(os.path.join(base, "facts.json")):
         return None
     facts = load(os.path.join(base, "facts.json"))
@@ -142,7 +154,7 @@ def tst_route(screen):
 
 
 def survey_screen(screen):
-    s = load(os.path.join(ROOT, "migration", "survey", "screens.json"))
+    s = load(cfg("tst", "survey"))
     for f, v in s["screens"].items():
         if v["screen"] == screen:
             return f, v, s
@@ -154,8 +166,8 @@ def survey_screen(screen):
 # ---------------------------------------------------------------------------------------------------------------
 def newest_source(scan):
     """The newest change time of the code that the app shell scan reads: app/src, the tsconfig files and the scanner."""
-    newest = max(os.path.getmtime(scan), *(os.path.getmtime(p) for p in glob.glob(os.path.join(ROOT, "app", "tsconfig*.json"))))
-    for d, _, files in os.walk(os.path.join(ROOT, "app", "src")):
+    newest = max(os.path.getmtime(scan), *(os.path.getmtime(p) for p in glob.glob(os.path.join(cfg("react", "app"), "tsconfig*.json"))))
+    for d, _, files in os.walk(cfg("react", "src")):
         for f in files:
             if f.endswith((".ts", ".tsx")):
                 newest = max(newest, os.path.getmtime(os.path.join(d, f)))
@@ -165,7 +177,7 @@ def newest_source(scan):
 def react_data(route):
     shell_p = os.path.join(DATA, "react-shell.json")
     page_p = os.path.join(DATA, f"react-{route}.json")
-    scan = os.path.join(ROOT, "migration", "tools", "route_actions", "react_calls.mjs")
+    scan = os.path.join(HERE, "tools", "react_calls.mjs")
     if not os.path.exists(shell_p) or newest_source(scan) > os.path.getmtime(shell_p):
         print("app shell: code changed since the last scan, or no scan yet; scanning again")
         subprocess.run(["node", scan, "shell"], check=True, cwd=ROOT)
@@ -178,7 +190,7 @@ def doc_notes(names, prefer=(), limit=3):
     """Notes in the React code that name an OutSystems call or the client action that makes it: lines of the docs
     next to the code (app/src/**/*.md) and comment lines of .ts/.tsx files. Files of the route come first."""
     pats = [re.compile(rf"\b{re.escape(n)}\b", re.I) for n in names if n]
-    files = [p for p in glob.glob(os.path.join(ROOT, "app", "src", "**", "*"), recursive=True)
+    files = [p for p in glob.glob(os.path.join(cfg("react", "src"), "**", "*"), recursive=True)
              if p.endswith((".md", ".ts", ".tsx")) and not p.endswith(".d.ts") and ".test." not in p]
     files.sort(key=lambda p: (rel(p) not in prefer, not p.endswith(".md"), p))
     out = []
@@ -199,7 +211,7 @@ def doc_notes(names, prefer=(), limit=3):
 def contract_io():
     """{TST call path: (input names, output names)} from the contract app/src/api/openapi.yaml."""
     import yaml
-    d = yaml.safe_load(open(os.path.join(ROOT, "app", "src", "api", "openapi.yaml"), encoding="utf-8"))
+    d = yaml.safe_load(open(cfg("react", "contract"), encoding="utf-8"))
     schemas = d.get("components", {}).get("schemas", {})
 
     def names(ref):
@@ -218,12 +230,12 @@ def contract_io():
 
 def contract_paths():
     import yaml
-    d = yaml.safe_load(open(os.path.join(ROOT, "app", "src", "api", "openapi.yaml"), encoding="utf-8"))
+    d = yaml.safe_load(open(cfg("react", "contract"), encoding="utf-8"))
     return {p: (op.get("post") or {}).get("x-os-paths", []) for p, op in d["paths"].items()}
 
 
 def route_meta(screen):
-    txt = open(os.path.join(ROOT, "app", "src", "app", "routes.ts"), encoding="utf-8").read()
+    txt = open(cfg("react", "routeMeta"), encoding="utf-8").read()
     m = re.search(rf"^\s*{screen}: \{{ access: '(\w+)', lock: '(\w+)' \}}", txt, re.M)
     meta = {"access": m.group(1), "lock": m.group(2)} if m else {"access": "member", "lock": "enforce"}
     fr = re.search(rf"^\s*{screen}: \{{\s*flag: '(\w+)',\s*when: (\w+),\s*to: '(\w+)'", txt, re.M)
@@ -413,7 +425,7 @@ def check(route):
                 continue
             react_nav[n["to"]].add(f"{n['file']}:{n['line']}")
     # the default screen: the shell and the screens go there through the constant HOME (PATHS.home), not a literal
-    home = re.search(r'export const HOME = "/\w+/(\w+)"', open(os.path.join(ROOT, "app", "src", "app", "routes.generated.ts"), encoding="utf-8").read())
+    home = re.search(r'export const HOME = "/\w+/(\w+)"', open(cfg("react", "routesGenerated"), encoding="utf-8").read())
     if home:
         for f, t in reached_texts.items():
             if not navigates.search(t) or re.search(r"routes(\.css)?\.generated\.ts$", f):
@@ -466,8 +478,11 @@ def md_escape(s):
     return str(s).replace("|", "\\|")
 
 
+LINK_BASE = [None]  # the folder of the file that render writes (routes/ or route-actions/)
+
+
 def link(path, line=None):
-    target = os.path.relpath(os.path.join(ROOT, path), OUT)
+    target = os.path.relpath(os.path.join(ROOT, path), LINK_BASE[0] or OUT)
     return f"[`{path.replace('app/src/', '')}{':' + str(line) if line else ''}`]({target}{'#L' + str(line) if line else ''})"
 
 
@@ -584,7 +599,6 @@ def short_list(xs, n=3):
 
 
 USER_TRIGGER = re.compile(r"^(click|submit|event )")
-SKILL_SCRIPTS = os.path.join(ROOT, ".claude", "skills", "outsystems-screen-spec", "scripts")
 UI_KIND = {"onClick": "click", "onDoubleClick": "double click", "onChange": "change", "onBlur": "leave field",
            "onFocus": "focus", "onKeyUp": "key", "onKeyDown": "key", "onKeyPress": "key", "onSubmit": "submit",
            "onScroll": "scroll", "onTap": "tap", "onToggle": "toggle"}
@@ -597,8 +611,7 @@ def user_actions(sources, rendered, eps):
     first handler of a business block), with what each handler does, branch by branch, from the TST compiled code:
     server calls, navigation, external links, messages and confirm dialogs. Local client actions are followed 3
     levels deep."""
-    sys.path.insert(0, SKILL_SCRIPTS)
-    import analyze_capture as ac
+    import os_call_graph as ac  # a copy of the skill function (tools/os_call_graph.py)
     nodes, edges, endpoints = ac.call_graph(sources)
     callees = collections.defaultdict(set)
     for a, b in edges:
@@ -872,7 +885,7 @@ def slug(text):
 def screenshots(route):
     """Markdown lines with the screenshots of the route. First choice: the parity run (TST capture, React build,
     difference). Else the React review images (migration/screens/<R>/review/), else the TST capture images."""
-    base = os.path.join(ROOT, "migration", "screens", route)
+    base = os.path.join(cfg("tst", "screens"), route)
     d = os.path.join(base, "parity")
     img = lambda path, alt: f'<img src="{os.path.relpath(path, OUT)}" width="200" alt="{alt}">' if os.path.exists(path) else "–"
     states = sorted(glob.glob(os.path.join(d, "*.json")), key=lambda p: (not p.endswith("default.json"), p))
@@ -927,7 +940,7 @@ def short_chain(ch):
     return ch if len(ch) <= 5 else ch[:2] + ["…"] + ch[-2:]
 
 
-def calls_table(rows, blocks, with_routes=False):
+def calls_table(rows, blocks, with_routes=False, base=None):
     L = ["All columns come from the code, without interpretation:", "",
          "- **Direct caller (TST):** the block or module of the action that calls the server (the step before the "
          "server call in the chain).",
@@ -957,7 +970,7 @@ def calls_table(rows, blocks, with_routes=False):
         used = "<br>".join(react_chain(ch) for ch in refs) or "–"
         row = f"| {i} | `{e['short']}` | {e['kind']} | {frm} | {chain} | {seen} | {rc} | {used} | {st} |"
         if with_routes:
-            row += " " + ", ".join(f"[{x}]({x}.md)" for x in e.get("routes", [])) + " |"
+            row += " " + ", ".join(f"[{x}](routes/{x}.md)" for x in e.get("routes", [])) + " |"
         L.append(row)
     return L
 
@@ -1028,7 +1041,7 @@ def render_svgs(names):
     for n in names:
         pairs += [os.path.join(DATA, f"{n}.mmd"), os.path.join(DATA, "svg", f"{n}.svg")]
     if pairs:
-        subprocess.run(["node", os.path.join(ROOT, "migration", "tools", "route_actions", "render_svg.cjs"), *pairs],
+        subprocess.run(["node", os.path.join(HERE, "tools", "render_svg.cjs"), *pairs],
                        check=True, cwd=ROOT, stdout=subprocess.DEVNULL)
 
 
@@ -1039,6 +1052,7 @@ def clean_outputs(name):
 
 def render(r):
     """The route file: only what belongs to the route. The app shell parts go to APP_SHELL.md."""
+    LINK_BASE[0] = OUT
     route = r["route"]
     blocks = r["blocks"]
     eps = [x for x in (part_of(e, blocks, "screen") for e in r["endpoints"]) if x]
@@ -1065,9 +1079,9 @@ def render(r):
     ua = [*ACTIONS_INTRO, "### 5.1 OutSystems (TST)", "", *ua_os, "### 5.2 React", "", *ua_re]
     L = [f"# {route}: server calls and user actions in OutSystems and React", "",
          f"This file compares the route `/UBTConnect/{route}` in OutSystems (TST) with the React app.",
-         f"The tool `migration/tools/route_actions/check_route.py` wrote this file on {date.today().isoformat()}.",
+         f"The tool `route-actions/tools/check_route.py` wrote this file on {date.today().isoformat()}.",
          "The tool reads the code. It does not run the app.", "",
-         "The app shell is in [APP_SHELL.md](APP_SHELL.md), not here.",
+         "The app shell is in [APP_SHELL.md](../APP_SHELL.md), not here.",
          "- OutSystems app shell: `CommonUI_InsideLayout` with its blocks (TST survey), and the chains that start in a "
          "module action.",
          "- React app shell: the code that `app/src/main.tsx` loads (router, `AppFrame`, app start, hosts).", "",
@@ -1086,7 +1100,7 @@ def render(r):
          f"| React calls of the screen that TST does not make | {len(questions)} (see [questions](#8-questions)) |",
          f"| Screen and blocks with a React port | {blocks_ported} of {len(own_blocks)} |",
          f"| Navigation targets found in React | {len(own_nav) - len(nav_missing)} of {len(own_nav)} |",
-         f"| App shell on this route | {len(shell_eps)} calls; event bindings: OutSystems {len(shell_acts)}, React {len(shell_react)}: see [APP_SHELL.md](APP_SHELL.md) |",
+         f"| App shell on this route | {len(shell_eps)} calls; event bindings: OutSystems {len(shell_acts)}, React {len(shell_react)}: see [APP_SHELL.md](../APP_SHELL.md) |",
          "", "## 3. Screenshots", "", *screenshots(route),
          "", "## 4. Diagram", "",
          "- A box on the left is the block or module of the action that calls the server (TST code).",
@@ -1121,11 +1135,12 @@ def render(r):
     open(p, "w", encoding="utf-8").write("\n".join(L) + "\n")
     render_svgs([route] + names)
     print("wrote", rel(p))
-    return p
+    return p  # route file
 
 
 def render_app_shell():
     """APP_SHELL.md: the app shell parts of every checked route, merged (data/check-*.json)."""
+    LINK_BASE[0] = HERE
     eps, blocks, acts, qs, nav, nav_missing, every, racts = {}, {}, {}, {}, {}, set(), {}, {}
     routes = []
     for path in sorted(glob.glob(os.path.join(DATA, "check-*.json"))):
@@ -1178,8 +1193,8 @@ def render_app_shell():
          "- OutSystems: `CommonUI_InsideLayout` with its blocks (TST survey), and the chains that start in a module "
          "action.",
          "- React: the code that `app/src/main.tsx` loads (router, `AppFrame`, app start, hosts).",
-         f"The tool `migration/tools/route_actions/check_route.py` merges it from the checked routes on "
-         f"{date.today().isoformat()}: " + ", ".join(f"[{x}]({x}.md)" for x in routes) + ".", "",
+         f"The tool `route-actions/tools/check_route.py` merges it from the checked routes on "
+         f"{date.today().isoformat()}: " + ", ".join(f"[{x}](routes/{x}.md)" for x in routes) + ".", "",
          "## 1. Result", "",
          "| Check | Result |", "|---|---|",
          f"| App shell server calls on TST | {len(ep_list)}: React makes {cnt['implemented']}, **{cnt['missing']} missing** |",
@@ -1198,7 +1213,7 @@ def render_app_shell():
           f"chain to this call on {', '.join(c['routes'])}. Does the app shell make this call on these routes?"
           for c in qs.values()]
     L += [f"{i}. {q}" for i, q in enumerate(ql, 1)] or ["None."]
-    p = os.path.join(OUT, "APP_SHELL.md")
+    p = os.path.join(HERE, "APP_SHELL.md")
     open(p, "w", encoding="utf-8").write("\n".join(L) + "\n")
     render_svgs(["APP_SHELL"] + names)
     print("wrote", rel(p))

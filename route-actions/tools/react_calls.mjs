@@ -1,8 +1,8 @@
 // React side of the route check: what code runs for a route, and which endpoints and functions it reaches.
 //
 // Usage (from the project root):
-//   node migration/tools/route_actions/react_calls.mjs shell            → migration/route-actions/data/react-shell.json
-//   node migration/tools/route_actions/react_calls.mjs page <Route>     → migration/route-actions/data/react-<Route>.json
+//   node route-actions/tools/react_calls.mjs shell            → route-actions/.cache/data/react-shell.json
+//   node route-actions/tools/react_calls.mjs page <Route>     → route-actions/.cache/data/react-<Route>.json
 //
 // Method (static, TypeScript AST and type checker through ts-morph from app/node_modules):
 // 1. File closure: static imports (not `import type`), re-exports and dynamic `import('…')` from the entry.
@@ -16,8 +16,10 @@ import { createRequire } from 'node:module';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '../../..');
-const APP = path.join(ROOT, 'app');
+const HERE = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..'); // route-actions/
+const ROOT = path.dirname(HERE);
+const CFG = JSON.parse(fs.readFileSync(path.join(HERE, 'config.json'), 'utf8')); // input paths, relative to ROOT
+const APP = path.join(ROOT, CFG.react.app);
 const SRC = path.join(APP, 'src');
 const require = createRequire(path.join(APP, 'package.json'));
 const { Project, Node, SyntaxKind } = require('ts-morph');
@@ -593,7 +595,7 @@ function bindingsOf(units, reached) {
 }
 
 // ---- main ----------------------------------------------------------------------------------------------------
-const outDir = path.join(ROOT, 'migration', 'route-actions', 'data');
+const outDir = path.join(HERE, '.cache', 'data');
 fs.mkdirSync(outDir, { recursive: true });
 let entry, rootKeys, out;
 if (mode === 'all') {

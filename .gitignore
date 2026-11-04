@@ -44,5 +44,4 @@ capture/survey-UBTConnect.json
 capture/runtime-sources-live-*/
 
 # route-actions pipeline: MCP (DEV) cache
-migration/route-actions/raw/
-migration/route-actions/data/
+route-actions/.cache/

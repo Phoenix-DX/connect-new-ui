@@ -1,6 +1,6 @@
 # Routes: OutSystems actions against React
 
-One file per route. Run `python3 migration/tools/route_actions/check_route.py <Route>` (see [README](../tools/route_actions/README.md)). Progress: **4 of 68** build routes done.
+One file per route in `routes/`. Run `python3 route-actions/tools/check_route.py <Route>` (see [README](README.md)). Progress: **4 of 68** build routes done.
 
 The app shell (`CommonUI_InsideLayout` and its blocks on TST; the code that `main.tsx` loads in React) is in [APP_SHELL.md](APP_SHELL.md). The tool merges it from the checked routes.
 
@@ -8,9 +8,9 @@ UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read 2026-11-04.
 
 | Route | UI flow | Status |
 |---|---|---|
-| [`Login`](Login.md) | `App_Common` | done |
-| [`Splash`](Splash.md) | `App_Common` | done |
-| [`Menu`](Menu.md) | `App_Menu` | done |
+| [`Login`](routes/Login.md) | `App_Common` | done |
+| [`Splash`](routes/Splash.md) | `App_Common` | done |
+| [`Menu`](routes/Menu.md) | `App_Menu` | done |
 | `PINBiometricsMenu` | `App_Menu` | todo |
 | `TermsAndPoliciesMenu` | `App_Menu` | todo |
 | `ContactUsDetails` | `App_Menu_ContactUs` | todo |
@@ -46,7 +46,7 @@ UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read 2026-11-04.
 | `SupperMeeting_Details` | `Directory_SupperMeetings` | todo |
 | `Updates_SingleList` | `Directory_Updates` | todo |
 | `FeedItemDetail` | `Home` | todo |
-| [`HomeFeed`](HomeFeed.md) | `Home` | done |
+| [`HomeFeed`](routes/HomeFeed.md) | `Home` | done |
 | `AssembleDetail` | `Legacy_AssembleFlow` | todo |
 | `AssembleEvents` | `Legacy_AssembleFlow` | todo |
 | `Assemble_BrowseByCountry` | `Legacy_AssembleFlow` | todo |

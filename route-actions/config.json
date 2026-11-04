@@ -1,0 +1,19 @@
+{
+  "_note": "Inputs of route-actions, read only. Paths are relative to the repository root. The route files cite them.",
+  "tst": {
+    "screens": "migration/screens",
+    "_screens": "per route: <screens>/<Route>/analysis/{facts.json,calls.json,sources/raw/}, parity/, review/, capture/",
+    "survey": "migration/survey/screens.json",
+    "board": "migration/board.md"
+  },
+  "react": {
+    "app": "app",
+    "src": "app/src",
+    "contract": "app/src/api/openapi.yaml",
+    "routesGenerated": "app/src/app/routes.generated.ts",
+    "routeMeta": "app/src/app/routes.ts",
+    "shellEntry": "app/src/main.tsx",
+    "pages": "app/src/pages"
+  },
+  "cache": "route-actions/.cache"
+}
