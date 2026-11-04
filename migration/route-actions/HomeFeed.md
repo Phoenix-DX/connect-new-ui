@@ -23,7 +23,6 @@ The tool reads the code. It does not run the app.
 | React calls that TST does not make on this route | 2 (see [questions](#6-questions)) |
 | Screen and blocks with a React port | 65 of 65 |
 | Navigation targets found in React | 23 of 23 |
-| Modules that MCP did not read | 0 |
 
 ## 3. Diagram
 
@@ -216,32 +215,6 @@ flowchart LR
 | 20 | `UBTConnect_Utils/CW_Share/ShareSheet/DataActionGetAvailableMembers` | data action | `ShareSheet` (screen) | submit | ShareSheet.handler_InputEventSubmit → ShareSheet.DataActionGetAvailableMembers<br>(+1 more chains) | no | `fetchAvailableMembers()` [`api/member/repository.ts:12`](../../app/src/api/member/repository.ts#L12) (page) | `ShareSheetContainer → useShareSheet → useAvailableMembersQuery → fetchAvailableMembers`<br>[`containers/ShareSheet/ShareSheetContainer.tsx`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx) | implemented |
 | 21 | `UBTConnect_Utils/CW_Share/ShareSheet/DataActionGetRecentlyShared` | data action | `ShareSheet` (screen) | parameters change | ShareSheet.OnParametersChanged → ShareSheet.screenEvent_OnParametersChanged → ShareSheet.DataActionGetRecentlyShared<br>(+1 more chains) | no | `fetchRecentlyShared()` [`api/share/shareSheet.ts:14`](../../app/src/api/share/shareSheet.ts#L14) (page) | `ShareSheetContainer → useShareSheet → useRecentlySharedQuery → fetchRecentlyShared`<br>[`containers/ShareSheet/ShareSheetContainer.tsx`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx) | implemented |
 
-### What each call does on the server (MCP, DEV)
-
-| # | Call | Inside the call |
-|---|---|---|
-| 1 | `ActionAppManager_SynchAppContext` | `UBT_AppManager_CS.AppManager_SynchAppContext (server, producer module)` |
-| 2 | `ActionGetNumberUnreadMessages` | `Connect2_LegacyShared.GetNumberPublicUnreadMessages (server)`, `Connect2_LegacyShared.GetNumberPrivateUnreadMessages (server)` |
-| 3 | `ActionSync_Info_GetMain` | `UBTConnect_EmbedMyEntertaining.Get_MyEntertainingBaseURL (server)`, `UBTConnect_EmbedFeed.Get_FeedBaseURL (server)`, `Connect2_OrbitMobile_MUI.SyncAllOrbitEntities (server)`, `UBTConnect.Sync_LocalEntities_GetApp (server)`, `UBTConnect_ServerConfigs.UpdateFeed_MonthsToShow (server)` |
-| 4 | `ServiceAPIFetchData_CacheableHouseholds` | `Connect_Map_CS.FetchData_CacheableHouseholds (service, producer module)` |
-| 5 | `ServiceAPIFetchData_CacheableMapEntities` | `Connect_Map_CS.FetchData_CacheableMapEntities (service, producer module)` |
-| 6 | `ActionAppManager_AfterInitialize` | `UBT_AppManager_CS.AppManager_AfterInitialize (server, producer module)` |
-| 7 | `ActionGetUserInformation` | `UBT_AppManager_CS.AppManager_Get_UserToken (server)`, `APIDomain_Directory_IS.API_Directory_User_Current_GET (server)`, `ApplicationPolicies.HasPoliciesToAccept (server)` |
-| 8 | `ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | `Connect_Updates_CS.Get_UI_UpdateItems_UnreadCount_All (service, producer module)` |
-| 9 | `DataActionGetFeedConfig` | `UBT_AppManager_CS.AppManager_Get_UserIdToken (server)`, `UBT_AppManager_CS.AppManager_GetConfig (server)`, `UBT_AppManager_CS.AppManager_Get_UserToken (server)` |
-| 10 | `DataActionFetchCount` | `Connect_Geography_CS.Get_UI_MembersStatistics (service)` |
-| 11 | `DataActionGetServices` | `UBTConnect_ServerConfigs.GetExternalLinks_ElGusto (server)`, `UBTConnect_ServerConfigs.GetExternalPackages_CommunityTradelink (server)`, `UBTConnect_ServerConfigs.GetExternalPackages_HR100 (server)`, `UBTConnect_ServerConfigs.GetExternalPackages_Trove (server)`, `Connect_Services_CS.Service_ConnectServices_GetByUser (service)` |
-| 12 | `DataActionFetchUpdates` | `Connect_Updates_CS.Get_UI_UpdateItemsForHomePage (service)` |
-| 13 | `ServiceAPIAction_UI_UpdateItem_MarkAsRead` | `Connect_Updates_CS.Action_UI_UpdateItem_MarkAsRead (service, producer module)` |
-| 14 | `ServiceAPIAction_UI_UpdateItem_MarkAsUnread` | `Connect_Updates_CS.Action_UI_UpdateItem_MarkAsUnread (service, producer module)` |
-| 15 | `ActionGetAllApplicationEvents` | `aggregates on ApplicationEvents_Alpha, ApplicationEvents_Directory, ApplicationEvents_LDM, ApplicationEvents_Orbit` |
-| 16 | `ActionCS_CreateShareProfileLink` | `Connect2_Sharing_CS.CS_CreateShareProfileLink (server, producer module)` |
-| 17 | `DataActionGetCommunityStatistics` | `Connect_Geography_CS.Get_UI_CommunityNumbers (service)` |
-| 18 | `ActionCS_CreateShareProfileLink` | `Connect2_Sharing_CS.CS_CreateShareProfileLink (server, producer module)` |
-| 19 | `ActionCS_ShareObject` | `Connect2_Sharing_CS.CS_ShareObject (server, producer module)` |
-| 20 | `DataActionGetAvailableMembers` | `Connect2_Sharing_CS.GetAvailableUsersToShareGrouped (server)` |
-| 21 | `DataActionGetRecentlyShared` | `Connect2_Sharing_CS.GetAvailableUsersToShareGrouped (server)` |
-
 ## 5. Missing in React
 
 - Call `UBTConnect_Utils/CW_Share/ShareSheet/ActionCS_CreateShareProfileLink`. Chain on TST: onClick in CircleButton_WithLabel → CircleButton_WithLabel.action_OnClick → event onClick of CircleButton_WithLabel → ShareSheet.handler_OnClickExternalOption → server CS_CreateShareProfileLink.
@@ -260,18 +233,14 @@ flowchart LR
 1. React calls `/api/UBTConnect_Utils/ActionGetSignedImagesInBulk` from `cache_SignedImageURL_GetCallback()` [`lib/ubtConnectUtils/actions.ts:124`](../../app/src/lib/ubtConnectUtils/actions.ts#L124) (page). TST HomeFeed has no chain to this call. Does the call belong to this route?
 2. React calls `/api/UBTConnect_Utils/CacheControl_Policies/DataActionGetCacheInfo` from `fetchPolicies()` [`api/app/repository.ts:54`](../../app/src/api/app/repository.ts#L54) (shell + page). TST HomeFeed has no chain to this call. Does the call belong to this route?
 
-## 7. Modules to open in Service Studio
-
-None. MCP read all the modules of this route.
-
-## 8. Method
+## 7. Method
 
 1. **OutSystems (TST).** The tool reads `facts.json` of `migration/screens/HomeFeed/analysis/`:
    - the screen and block files that TST renders;
    - each server call, and the chain of client actions that makes the call;
    - the calls that TST made in the capture (`calls.json`).
-2. **Part.** `app shell` is `CommonUI_InsideLayout`, its blocks and the app-level actions. `screen` is the screen and its other blocks.
-3. **MCP (DEV).** The tool reads the UI flow and the inside of each call with `getScreen`, `getWebBlock`, `getServerAction` and `getServiceAction`. TST wins when DEV is different.
+2. **App shell and screen.** `app shell` is `CommonUI_InsideLayout`, its blocks and the app-level actions. `screen` is the screen and its other blocks.
+3. **MCP (DEV).** The tool reads the UI flow with `getScreenNames`. TST wins when DEV is different.
 4. **React.** `react_calls.mjs` reads the app shell from `app/src/main.tsx` and the screen from its `<Route>Page.tsx`. It counts only the code that the app uses.
 5. **Match.** `callAction(M, A)` gives `/api/M/A`. The `x-os-paths` of `app/src/api/openapi.yaml` give the TST call. The status is `implemented` when the TST call is the same. Else the status is `missing`.
 

@@ -2,8 +2,6 @@
 
 One file per route. Run `python3 migration/tools/route_actions/check_route.py <Route>` (see [README](../tools/route_actions/README.md)). Progress: **0 of 68** build routes done.
 
-Status `waiting for MCP`: the route file lists the modules to open in Service Studio. Open them, then run the tool again.
-
 UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read 2026-11-04. Routes and scope: `app/src/app/routes.generated.ts` (84 routes) and `migration/board.md`.
 
 | Route | UI flow | Status |

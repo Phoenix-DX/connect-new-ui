@@ -9,9 +9,7 @@ Usage (from the project root):
 Sources (README.md has the details):
   1. TST, in this repository (TST wins): migration/screens/<S>/analysis/{facts.json,calls.json,sources/raw},
      migration/survey/screens.json, app/src/api/openapi.yaml.
-  2. MCP (DEV, read only): the UI flow of each screen, and what each server call does inside (data actions, server
-     actions, service actions). The tool reads only the modules that are open in Service Studio. It lists the other
-     modules in the route file; the user opens them, then the tool runs again. The tool does not guess their content.
+  2. MCP (DEV, read only): the UI flow of each screen (module UBTConnect).
   3. React: migration/route-actions/data/react-shell.json and react-<Route>.json (react_calls.mjs).
 """
 import argparse, collections, glob, json, os, re, subprocess, sys
@@ -85,19 +83,15 @@ def read_status():
     st = {}
     p = routes_md_path()
     if os.path.exists(p):
-        for m in re.finditer(r"^\| \[?`?(\w+)`?\]?[^|]*\| [^|]*\| (todo|done|waiting for MCP) \|", open(p, encoding="utf-8").read(), re.M):
+        for m in re.finditer(r"^\| \[?`?(\w+)`?\]?[^|]*\| [^|]*\| (todo|done) \|", open(p, encoding="utf-8").read(), re.M):
             st[m.group(1)] = m.group(2)
     return st
 
 
-def write_routes(done=None, waiting=None, reset=None):
+def write_routes(done=None):
     st = read_status()
-    if reset and st.get(reset) == "waiting for MCP":
-        st[reset] = "todo"
     if done:
         st[done] = "done"
-    if waiting:
-        st[waiting] = "waiting for MCP"
     flows = ui_flows()
     board = board_rows()
     routes = generated_routes()
@@ -110,8 +104,6 @@ def write_routes(done=None, waiting=None, reset=None):
     L = ["# Routes: OutSystems actions against React", "",
          f"One file per route. Run `python3 migration/tools/route_actions/check_route.py <Route>` (see "
          f"[README](../tools/route_actions/README.md)). Progress: **{n_done} of {len(build)}** build routes done.", "",
-         "Status `waiting for MCP`: the route file lists the modules to open in Service Studio. Open them, then run "
-         "the tool again.", "",
          f"UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read {date.today().isoformat()}. "
          "Routes and scope: `app/src/app/routes.generated.ts` (84 routes) and `migration/board.md`.", "",
          "| Route | UI flow | Status |", "|---|---|---|"]
@@ -127,78 +119,6 @@ def write_routes(done=None, waiting=None, reset=None):
         L.append(f"| `{r['screen']}` | `{flows.get(r['screen'], 'not in the MCP list (DEV)')}` |")
     open(routes_md_path(), "w", encoding="utf-8").write("\n".join(L) + "\n")
     print("wrote", rel(routes_md_path()), f"({len(build)} build, {len(skip)} skip, {n_done} done)")
-
-
-# ---------------------------------------------------------------------------------------------------------------
-# MCP (DEV): what each server call does inside
-# ---------------------------------------------------------------------------------------------------------------
-def _named_actions(code, module):
-    """Server and service actions that Model API code names, as 'Module.Action (server|service)'."""
-    refs = dict(re.findall(r"var (\w+) = eSpace\.References\.Named\(\"(\w+)\"\)", code))
-    named = {}
-    for v, holder, coll, n in re.findall(r"var (\w+) = (\w+)\.(ServiceActions|ServerActions)\.Named\(\"(\w+)\"\)", code):
-        named[v] = (module if holder == "eSpace" else refs.get(holder, holder), n,
-                    "service" if coll == "ServiceActions" else "server")
-    return named
-
-
-def mcp_element(kind, module, name):
-    """{dataActionName: ['Module.Action (kind)']} for a screen or block. Raises mcp_client.NotOpen."""
-    code = mcp_client.element_code(kind, module, name)
-    owners = {v: n for v, n in re.findall(r"var (\w+) = \w+\.Create(?:DataAction|Aggregate)\(\"(\w+)\"\)", code)}
-    named = _named_actions(code, module)
-    nodes = re.findall(r"var (\w+) = (\w+)\.CreateNode<OutSystems\.Model\.Logic\.Nodes\.IExecuteServerActionNode>\(\"\w+\"\)", code)
-    assign = dict(re.findall(r"(\w+)\.Action = (\w+);", code))
-    out = collections.defaultdict(list)
-    for nv, owner in nodes:
-        if owner in owners and assign.get(nv) in named:
-            mod, n, k = named[assign[nv]]
-            item = f"{mod}.{n} ({k})"
-            if mod != "_System_" and item not in out[owners[owner]]:
-                out[owners[owner]].append(item)
-    for n in owners.values():
-        out.setdefault(n, [])
-    return dict(out)
-
-
-def mcp_action(kind, module, name):
-    """What a server action calls, or the producer module of a referenced action. Raises mcp_client.NotOpen."""
-    code = mcp_client.element_code(kind, module, name)
-    m = re.search(r"I(Service|Server)ActionSignature (\w+)/(\w+)", code)
-    if m:  # a reference: the action lives in its producer module
-        return [f"{m.group(2)}.{m.group(3)} ({m.group(1).lower()}, producer module)"]
-    out = []
-    for mod, n, k in _named_actions(code, module).values():
-        if mod != "_System_" and f"{mod}.{n} ({k})" not in out:
-            out.append(f"{mod}.{n} ({k})")
-    ents = sorted(set(re.findall(r"Entities\.OfType<OutSystems\.Model\.Data\.I(?:Static)?Entity>\(\)\.Named\(\"(\w+)\"\)", code)))
-    if ents and "IAggregateNode" in code:
-        out.append("aggregates on " + ", ".join(ents))
-    return out
-
-
-def inside(url, screen):
-    """(text, module to open or None) for one server call URL: screenservices/<Module>/.../<Prefix><Name>."""
-    parts = url.split("/")[1:]
-    module, last = parts[0], parts[-1]
-    owner = parts[-2] if len(parts) > 2 else None
-    m = re.match(r"^(DataAction|ScreenDataSet|ServiceAPI|Action)(\w+)$", last)
-    if not m:
-        return "not read: unknown call kind", None
-    prefix, name = m.groups()
-    try:
-        if prefix in ("DataAction", "ScreenDataSet"):
-            got = mcp_element("screen" if owner == screen else "block", module, owner).get(name)
-            if got is None:
-                return "not found in MCP (DEV)", None
-            return (", ".join(f"`{x}`" for x in got) or ("aggregate (entities only)" if prefix == "ScreenDataSet" else "no server action")), None
-        kind = "service" if prefix == "ServiceAPI" else "server"
-        got = mcp_action(kind, module, name)
-        return (", ".join(f"`{x}`" for x in got) or "no server or service action"), None
-    except mcp_client.NotOpen:
-        return f"waiting: open module `{module}`", module
-    except mcp_client.McpError as e:
-        return f"not found in MCP (DEV): {str(e)[:80]}", None
 
 
 # ---------------------------------------------------------------------------------------------------------------
@@ -377,13 +297,6 @@ def check(route):
         if not any(p in tst_urls for p in ps):
             react_only.append({**c, "osPaths": ps})
 
-    # --- inside each server call (MCP, DEV; only open modules) -----------------------------------------------------
-    closed = collections.defaultdict(list)
-    for e in eps:
-        e["inside"], mod = inside(e["url"], route)
-        if mod:
-            closed[mod].append(e["short"])
-
     # --- React name index ----------------------------------------------------------------------------------------
     origin_files = collections.defaultdict(set)
     for r in (page_r, shell_r):
@@ -434,7 +347,7 @@ def check(route):
             react_nav[n["to"]].add(f"{n['file']}:{n['line']}")
 
     result = {"route": route, "screenFile": sfile, "flow": flow, "survey": sv, "meta": meta, "endpoints": eps,
-              "reactOnly": react_only, "reactUnknown": react_unknown, "closed": dict(closed),
+              "reactOnly": react_only, "reactUnknown": react_unknown,
               "blocks": blocks, "osNav": {k: sorted(v) for k, v in os_nav.items()},
               "reactNav": {k: sorted(v) for k, v in react_nav.items()}, "observedCount": len(tst["calls"]),
               "react": {"shellFiles": len(shell_r["files"]), "pageFiles": len(page_r["files"]),
@@ -592,7 +505,6 @@ def render(r):
     cnt = collections.Counter(e["status"] for e in eps)
     blocks_ported = sum(1 for b in r["blocks"] if b["evidence"] in ("tag", "name"))
     nav_missing = [t for t in r["osNav"] if t not in r["reactNav"]]
-    closed = r["closed"]
     mm = mermaid(r)
     os.makedirs(os.path.join(OUT, "svg"), exist_ok=True)
     open(os.path.join(DATA, f"{route}.mmd"), "w").write(mm)
@@ -615,7 +527,6 @@ def render(r):
          f"| React calls that TST does not make on this route | {len(r['reactOnly'])} (see [questions](#6-questions)) |",
          f"| Screen and blocks with a React port | {blocks_ported} of {len(r['blocks'])} |",
          f"| Navigation targets found in React | {len(r['osNav']) - len(nav_missing)} of {len(r['osNav'])} |",
-         f"| Modules that MCP did not read | {len(closed)}" + (": " + ", ".join(f"`{m}`" for m in sorted(closed)) if closed else "") + " |",
          "", "## 3. Diagram", "",
          "- A box on the left is the OutSystems block or app action that makes the call.",
          "- A line connects each call to the React action that makes the same call.",
@@ -656,10 +567,6 @@ def render(r):
         chains = sorted((ch for c in e["react"] for ch in c.get("callers", [])), key=len)[:2]
         caller = "<br>".join(react_chain(ch) for ch in chains) or "–"
         L.append(f"| {i} | `{e['short']}` | {e['kind']} | {frm} | {'<br>'.join(trig)} | {chain} | {seen} | {rc} | {caller} | {st} |")
-    L += ["", "### What each call does on the server (MCP, DEV)", "",
-          "| # | Call | Inside the call |", "|---|---|---|"]
-    for _, e in rows:
-        L.append(f"| {e['n']} | `{e['short'].rsplit('/', 1)[-1]}` | {e['inside']} |")
     L += ["", "## 5. Missing in React", ""]
     miss_eps = [e for e in eps if e["status"] == "missing"]
     miss_blocks = [b for b in r["blocks"] if b["evidence"] not in ("tag", "name")]
@@ -684,26 +591,14 @@ def render(r):
     qs = [f"React calls `{c['apiPath']}` from `{c['fn']}()` {link(c['file'], c['line'])} ({c['where']}). TST {route} "
           "has no chain to this call. Does the call belong to this route?" for c in r["reactOnly"]]
     L += [f"{i}. {q}" for i, q in enumerate(qs, 1)] or ["None."]
-    L += ["", "## 7. Modules to open in Service Studio", ""]
-    if closed:
-        L += ["MCP reads only the modules that are open in Service Studio. The tool does not guess the content of the "
-              "other modules.", "",
-              "1. Open each module below in Service Studio.",
-              "2. Run the tool again. The column \"Inside the call\" then shows the result.", "",
-              "| Module | Calls that wait |", "|---|---|"]
-        for m in sorted(closed):
-            L.append(f"| `{m}` | " + "<br>".join(f"`{x}`" for x in closed[m]) + " |")
-    else:
-        L.append("None. MCP read all the modules of this route.")
-    L += ["", "## 8. Method", "",
+    L += ["", "## 7. Method", "",
           "1. **OutSystems (TST).** The tool reads `facts.json` of `migration/screens/" + route + "/analysis/`:",
           "   - the screen and block files that TST renders;",
           "   - each server call, and the chain of client actions that makes the call;",
           "   - the calls that TST made in the capture (`calls.json`).",
-          "2. **Part.** `app shell` is `CommonUI_InsideLayout`, its blocks and the app-level actions. `screen` is the "
-          "screen and its other blocks.",
-          "3. **MCP (DEV).** The tool reads the UI flow and the inside of each call with `getScreen`, `getWebBlock`, "
-          "`getServerAction` and `getServiceAction`. TST wins when DEV is different.",
+          "2. **App shell and screen.** `app shell` is `CommonUI_InsideLayout`, its blocks and the app-level actions. "
+          "`screen` is the screen and its other blocks.",
+          "3. **MCP (DEV).** The tool reads the UI flow with `getScreenNames`. TST wins when DEV is different.",
           "4. **React.** `react_calls.mjs` reads the app shell from `app/src/main.tsx` and the screen from its "
           "`<Route>Page.tsx`. It counts only the code that the app uses.",
           "5. **Match.** `callAction(M, A)` gives `/api/M/A`. The `x-os-paths` of `app/src/api/openapi.yaml` give the "
@@ -735,9 +630,7 @@ def main():
         return
     r = check(a.route)
     render(r)
-    write_routes(waiting=a.route if r["closed"] else None, reset=not r["closed"] and a.route)
-    if r["closed"]:
-        print("open these modules in Service Studio, then run again:", ", ".join(sorted(r["closed"])))
+    write_routes()
 
 
 if __name__ == "__main__":
