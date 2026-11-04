@@ -390,15 +390,25 @@ const ENV = new Map();
 
 function envResolve(ex, env) {
   if (!env) return null;
-  const paramArg = (decl) => {
-    const prm = Node.isParameterDeclaration(decl) ? decl : decl?.getFirstAncestorByKind?.(SyntaxKind.Parameter);
-    if (!prm || prm.getParent() !== env.hookFn) return null;
-    return env.call.getArguments()[env.hookFn.getParameters().indexOf(prm)] ?? null;
-  };
   const declOf = (n) => {
     let sym = n.getSymbol?.();
     if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
     return sym?.getDeclarations()?.[0];
+  };
+  // the argument of a parameter at the call of its function (the nearest env of that function); an argument that is
+  // itself a parameter of the caller is resolved again one env up
+  const paramArg = (decl, e = env, hops = 0) => {
+    const prm = decl && (Node.isParameterDeclaration(decl) ? decl : decl.getFirstAncestorByKind?.(SyntaxKind.Parameter));
+    if (!prm || hops > 6) return null;
+    let x = e;
+    while (x && prm.getParent() !== x.hookFn) x = x.parent;
+    if (!x) return null;
+    const arg = x.call.getArguments()[x.hookFn.getParameters().indexOf(prm)] ?? null;
+    if (arg && Node.isIdentifier(arg)) {
+      const ad = declOf(arg);
+      if (ad && Node.isParameterDeclaration(ad)) return paramArg(ad, x.parent, hops + 1);
+    }
+    return arg;
   };
   let arg = null, prop = null;
   if (Node.isPropertyAccessExpression(ex)) {
@@ -415,6 +425,9 @@ function envResolve(ex, env) {
     if (d && Node.isBindingElement(d)) {
       prop = d.getPropertyNameNode()?.getText() ?? d.getName();
       arg = paramArg(d);
+    } else if (d && Node.isParameterDeclaration(d)) {
+      const a = paramArg(d);  // a function given as an argument
+      return a ? resolveFn(a) : null;
     }
   }
   if (!arg || !prop) return null;
@@ -549,7 +562,7 @@ function effectsOf(fn, label, depth, seen, env = null) {
           if (excluded(f)) continue;
           const body = bodyOfDecl(d) ?? (Node.isBindingElement(d) ? resolveFn(ex) : null);
           if (!body || seen.has(body)) continue;
-          const sub = effectsOf(body, lab, depth + 1, new Set([...seen, body]), env);
+          const sub = effectsOf(body, lab, depth + 1, new Set([...seen, body]), { hookFn: body, call: node, parent: env });
           if (sub.length) {
             out.push({ branch: lab ?? null, kind: 'via', detail: name, file: rel(f), line: d.getStartLineNumber() });
             out.push(...sub);
@@ -628,7 +641,7 @@ function returnedProperty(callExpr, name, depth) {
       const p = obj.getProperty(name);
       if (!p) continue;
       const keep = (r) => {
-        if (r && !ENV.has(r) && r.getFirstAncestor((x) => x === fn)) ENV.set(r, { hookFn: fn, call: callExpr });
+        if (r && !ENV.has(r) && r.getFirstAncestor((x) => x === fn)) ENV.set(r, { hookFn: fn, call: callExpr, parent: null });
         return r;
       };
       if (Node.isShorthandPropertyAssignment(p)) return keep(resolveFn(p.getNameNode(), depth + 1, p.getValueSymbol?.()));
@@ -657,7 +670,7 @@ function hookReturnedFn(callExpr) {
       let e = ret.getExpression();
       if (e && Node.isCallExpression(e) && e.getExpression().getText() === 'useCallback') e = e.getArguments()[0];
       if (e && isFunctionLike(e)) {
-        if (!ENV.has(e)) ENV.set(e, { hookFn: fn, call: callExpr });
+        if (!ENV.has(e)) ENV.set(e, { hookFn: fn, call: callExpr, parent: null });
         return e;
       }
     }
@@ -685,7 +698,7 @@ function resolveFn(expr, depth = 0, given = null) {
       const name = d.getPropertyNameNode()?.getText() ?? d.getName();
       if (init && Node.isCallExpression(init)) return returnedProperty(init, name, depth);
     }
-    if ((Node.isPropertySignature(d) || Node.isPropertyAssignment(d)) && Node.isPropertyAccessExpression(expr)) {
+    if ((Node.isPropertySignature(d) || Node.isPropertyAssignment(d) || Node.isShorthandPropertyAssignment(d)) && Node.isPropertyAccessExpression(expr)) {
       const objSym = expr.getExpression().getSymbol?.();
       const od = objSym?.getDeclarations()?.[0];
       const init = od && Node.isVariableDeclaration(od) ? od.getInitializer() : null;
@@ -710,6 +723,9 @@ function bindingsOf(units, reached) {
       const handler = isFunctionLike(ex) ? 'inline' : ex.getText().slice(0, 60);
       const body = isFunctionLike(ex) ? ex : (Node.isIdentifier(ex) || Node.isPropertyAccessExpression(ex)) ? resolveFn(ex) : null;
       if (!body) continue;
+      // the global error handler as the handler (`onError: raiseToFlowHandler`): the default error path, not an effect
+      const bodyName = Node.isFunctionDeclaration(body) ? body.getName() : body.getParent()?.getName?.();
+      if (bodyName && ERROR_FN.test(bodyName) && bodyName === 'raiseToFlowHandler') continue;
       // an inline arrow is not a named level: the 3 levels count from the first named function, as for `on={name}`
       const effects = effectsOf(body, null, isFunctionLike(ex) ? -1 : 0, new Set([body]));
       if (!effects.some((e) => EFFECT_KINDS.has(e.kind))) continue;

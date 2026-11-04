@@ -3,13 +3,13 @@
 The app shell is the part of the app that the routes share. The route files leave it out.
 - OutSystems: `CommonUI_InsideLayout` with its blocks (TST survey), and the chains that start in a module action.
 - React: the code that `app/src/main.tsx` loads (router, `AppFrame`, app start, hosts).
-The tool `route-actions/tools/check_route.py` merges it from the checked routes on 2026-11-04: [ContactUsDetails](routes/ContactUsDetails.md), [ContactUsMenu](routes/ContactUsMenu.md), [HomeFeed](routes/HomeFeed.md), [Login](routes/Login.md), [Menu](routes/Menu.md), [NotificationDetails](routes/NotificationDetails.md), [Notifications](routes/Notifications.md), [PINBiometricsMenu](routes/PINBiometricsMenu.md), [PINChange](routes/PINChange.md), [PINRegister](routes/PINRegister.md), [PINUnlock](routes/PINUnlock.md), [Splash](routes/Splash.md), [TermsAndPoliciesMenu](routes/TermsAndPoliciesMenu.md).
+The tool `route-actions/tools/check_route.py` merges it from the checked routes on 2026-11-04: [ContactUsDetails](routes/ContactUsDetails.md), [ContactUsMenu](routes/ContactUsMenu.md), [HomeFeed](routes/HomeFeed.md), [Login](routes/Login.md), [Menu](routes/Menu.md), [NotificationDetails](routes/NotificationDetails.md), [Notifications](routes/Notifications.md), [PINBiometricsMenu](routes/PINBiometricsMenu.md), [PINChange](routes/PINChange.md), [PINRegister](routes/PINRegister.md), [PINUnlock](routes/PINUnlock.md), [Profile](routes/Profile.md), [Splash](routes/Splash.md), [TermsAndPoliciesMenu](routes/TermsAndPoliciesMenu.md).
 
 ## 1. Result
 
 | Check | Result |
 |---|---|
-| App shell server calls on TST | 13: React makes 11, **2 missing** |
+| App shell server calls on TST | 14: React makes 12, **2 missing** |
 | App shell event bindings | OutSystems: 11 diagrams. React: 8 diagrams |
 | React app shell calls that TST does not make on a route | 4 |
 
@@ -43,47 +43,51 @@ flowchart LR
     e18["ActionAppManager_Logout"]
     e19["DataActionFetchNotifications"]
     e20["DataActionGetCacheInfo"]
+    e21["ActionGetSignedImagesInBulk"]
   end
   subgraph RE["React actions"]
     subgraph RE_shell["App shell"]
-      r21["afterInitialize()"]
-      r22["fetchAppContext()"]
-      r23["fetchCacheableHouseholds()"]
-      r24["fetchCacheableMapEntities()"]
-      r25["fetchNumberUnreadMessages()"]
-      r26["fetchPolicies()"]
-      r27["fetchSyncInfoMain()"]
-      r28["fetchUserInformation()"]
+      r22["afterInitialize()"]
+      r23["fetchAppContext()"]
+      r24["fetchCacheableHouseholds()"]
+      r25["fetchCacheableMapEntities()"]
+      r26["fetchNumberUnreadMessages()"]
+      r27["fetchPolicies()"]
+      r28["fetchSyncInfoMain()"]
+      r29["fetchUserInformation()"]
     end
     subgraph RE_page["Screen"]
-      r29["fetchNotifications()"]
-      r30["markUpdateItemAsRead()"]
-      r31["requestPhotoUpdate()"]
+      r30["cache_SignedImageURL_GetCallback()"]
+      r31["fetchNotifications()"]
+      r32["markUpdateItemAsRead()"]
+      r33["requestPhotoUpdate()"]
     end
   end
   subgraph RC["React components"]
-    c32["AppFrame"]
-    c33["CommonUiLayout"]
-    c34["ContactUsDetails"]
-    c35["FeedUpdates"]
-    c36["Menu"]
-    c37["Notifications"]
-    c38["PINUnlock"]
+    c34["AppFrame"]
+    c35["CommonUiLayout"]
+    c36["ContactUsDetails"]
+    c37["EntityLazyImage"]
+    c38["FeedUpdates"]
+    c39["Menu"]
+    c40["Notifications"]
+    c41["PINUnlock"]
   end
-  r21 --- c32
-  r22 --- c32
-  r23 --- c32
-  r24 --- c32
-  r25 --- c32
-  r27 --- c32
-  r28 --- c32
   r22 --- c34
-  r26 --- c33
-  r28 --- c33
-  r30 --- c35
-  r31 --- c36
-  r29 --- c37
-  r26 --- c38
+  r23 --- c34
+  r24 --- c34
+  r25 --- c34
+  r26 --- c34
+  r28 --- c34
+  r29 --- c34
+  r23 --- c36
+  r27 --- c35
+  r29 --- c35
+  r32 --- c38
+  r33 --- c39
+  r31 --- c40
+  r27 --- c41
+  r30 --- c37
   o7 --> e8
   o7 --> e9
   o7 --> e18
@@ -93,25 +97,27 @@ flowchart LR
   o1 --> e11
   o1 --> e14
   o6 --> e15
+  o6 --> e21
   o2 --> e16
   o3 --> e17
   o4 --> e19
   o0 --> e20
-  e8 --- r22
-  e9 --- r21
-  e10 --- r27
-  e11 --- r25
-  e12 --- r24
-  e13 --- r23
-  e15 --- r28
-  e16 --- r30
-  e17 --- r31
-  e19 --- r29
-  e20 --- r26
+  e8 --- r23
+  e9 --- r22
+  e10 --- r28
+  e11 --- r26
+  e12 --- r25
+  e13 --- r24
+  e15 --- r29
+  e16 --- r32
+  e17 --- r33
+  e19 --- r31
+  e20 --- r27
+  e21 --- r30
   classDef missing fill:#fde2e1,stroke:#c0392b,color:#7b241c
   classDef ok fill:#e3f4e8,stroke:#2e7d4f,color:#1d4d31
   class e14,e18 missing
-  class e8,e9,e10,e11,e12,e13,e15,e16,e17,e19,e20 ok
+  class e8,e9,e10,e11,e12,e13,e15,e16,e17,e19,e20,e21 ok
 ```
 
 ## 3. User actions
@@ -410,24 +416,25 @@ All columns come from the code, without interpretation:
 | # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status | Routes |
 |---|---|---|---|---|---|---|---|---|---|
 | 1 | `UBTConnect_Utils/CacheControl/CacheControl_Policies/DataActionGetCacheInfo` | data action | `CacheControl_Policies` | CacheControl.OnInitialize → CacheControl.onInitialize → event onNonCacheHit of CacheControl → CacheControl_Policies.cacheControlOnNonCacheHit → CacheControl_Policies.DataActionGetCacheInfo<br>CacheControl_Policies fetch at start → CacheControl_Policies.DataActionGetCacheInfo | yes | `fetchPolicies()` [`api/app/repository.ts:54`](../app/src/api/app/repository.ts#L54) (shell + page) | `PINUnlock → BlockPinUnlock → … → fetchPolicies`<br>[`pages/PINUnlock/PINUnlockPage.tsx`](../app/src/pages/PINUnlock/PINUnlockPage.tsx)<br>`CommonUiLayout → LockHost → … → fetchPolicies`<br>[`components/layout/CommonUiLayout/CommonUiLayout.tsx`](../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx) | implemented | [PINUnlock](routes/PINUnlock.md), [TermsAndPoliciesMenu](routes/TermsAndPoliciesMenu.md) |
-| 2 | `Connect2_LegacyShared/ActionGetAllApplicationEvents` | server action | `Connect2_LegacyShared` | HandleImageLoadError.applicationEvent_ImageError → Connect2_LegacyShared.zOnApplicationEvent_Wrapper → Connect2_LegacyShared.getAppEventName → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents | no | – | – | **missing** | [ContactUsDetails](routes/ContactUsDetails.md), [ContactUsMenu](routes/ContactUsMenu.md), [HomeFeed](routes/HomeFeed.md), [Login](routes/Login.md), [Menu](routes/Menu.md), [NotificationDetails](routes/NotificationDetails.md), [Notifications](routes/Notifications.md), [PINRegister](routes/PINRegister.md), [PINUnlock](routes/PINUnlock.md), [TermsAndPoliciesMenu](routes/TermsAndPoliciesMenu.md) |
-| 3 | `Connect2_LegacyShared/ActionGetNumberUnreadMessages` | server action | `Connect2_LegacyShared` | UBTConnect.onApplicationReady → UBTConnect.connect_SetLoggedContext → Connect2_LegacyShared.synchronizeNumberUnreadMessages → server GetNumberUnreadMessages<br>UBTConnect.fCM_NotificationCallback → Connect2_LegacyShared.synchronizeNumberUnreadMessages → server GetNumberUnreadMessages | yes | `fetchNumberUnreadMessages()` [`api/message/unreadMessages.ts:22`](../app/src/api/message/unreadMessages.ts#L22) (shell) | `AppFrame → AppStart → … → fetchNumberUnreadMessages`<br>[`app/AppFrame.tsx`](../app/src/app/AppFrame.tsx) | implemented | [ContactUsDetails](routes/ContactUsDetails.md), [ContactUsMenu](routes/ContactUsMenu.md), [HomeFeed](routes/HomeFeed.md), [Menu](routes/Menu.md), [NotificationDetails](routes/NotificationDetails.md), [Notifications](routes/Notifications.md), [PINBiometricsMenu](routes/PINBiometricsMenu.md), [PINChange](routes/PINChange.md), [PINRegister](routes/PINRegister.md), [PINUnlock](routes/PINUnlock.md), [Splash](routes/Splash.md), [TermsAndPoliciesMenu](routes/TermsAndPoliciesMenu.md) |
+| 2 | `Connect2_LegacyShared/ActionGetAllApplicationEvents` | server action | `Connect2_LegacyShared` | HandleImageLoadError.applicationEvent_ImageError → Connect2_LegacyShared.zOnApplicationEvent_Wrapper → Connect2_LegacyShared.getAppEventName → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents | no | – | – | **missing** | [ContactUsDetails](routes/ContactUsDetails.md), [ContactUsMenu](routes/ContactUsMenu.md), [HomeFeed](routes/HomeFeed.md), [Login](routes/Login.md), [Menu](routes/Menu.md), [NotificationDetails](routes/NotificationDetails.md), [Notifications](routes/Notifications.md), [PINRegister](routes/PINRegister.md), [PINUnlock](routes/PINUnlock.md), [Profile](routes/Profile.md), [TermsAndPoliciesMenu](routes/TermsAndPoliciesMenu.md) |
+| 3 | `Connect2_LegacyShared/ActionGetNumberUnreadMessages` | server action | `Connect2_LegacyShared` | UBTConnect.onApplicationReady → UBTConnect.connect_SetLoggedContext → Connect2_LegacyShared.synchronizeNumberUnreadMessages → server GetNumberUnreadMessages<br>UBTConnect.fCM_NotificationCallback → Connect2_LegacyShared.synchronizeNumberUnreadMessages → server GetNumberUnreadMessages | yes | `fetchNumberUnreadMessages()` [`api/message/unreadMessages.ts:22`](../app/src/api/message/unreadMessages.ts#L22) (shell) | `AppFrame → AppStart → … → fetchNumberUnreadMessages`<br>[`app/AppFrame.tsx`](../app/src/app/AppFrame.tsx) | implemented | [ContactUsDetails](routes/ContactUsDetails.md), [ContactUsMenu](routes/ContactUsMenu.md), [HomeFeed](routes/HomeFeed.md), [Menu](routes/Menu.md), [NotificationDetails](routes/NotificationDetails.md), [Notifications](routes/Notifications.md), [PINBiometricsMenu](routes/PINBiometricsMenu.md), [PINChange](routes/PINChange.md), [PINRegister](routes/PINRegister.md), [PINUnlock](routes/PINUnlock.md), [Profile](routes/Profile.md), [Splash](routes/Splash.md), [TermsAndPoliciesMenu](routes/TermsAndPoliciesMenu.md) |
 | 4 | `UBTConnect/Home/FeedBlock_Updates/ServiceAPIAction_UI_UpdateItem_MarkAsRead` | service action | `FeedBlock_Updates` | onClick in CustomContainer → event clicked of CustomContainer → event onClick of Update_ListItem → FeedBlock_Updates.event_ListItemOnClick → server Action_UI_UpdateItem_MarkAsRead | no | `markUpdateItemAsRead()` [`api/update/repository.ts:47`](../app/src/api/update/repository.ts#L47) (page) | `FeedUpdates → useFeedUpdates → markUpdateItemAsRead`<br>[`pages/HomeFeed/HomeFeedPage.tsx`](../app/src/pages/HomeFeed/HomeFeedPage.tsx) | implemented | [HomeFeed](routes/HomeFeed.md) |
 | 5 | `UBTConnect/App_Menu/Menu/ActionRequestPhotoUpdate` | server action | `Menu` | onClick in CustomContainer → event clicked of CustomContainer → event onClick_MenuOption of Menu_List → Menu.onClick_MenuOption → server RequestPhotoUpdate | no | `requestPhotoUpdate()` [`api/member/repository.ts:46`](../app/src/api/member/repository.ts#L46) (page) | `Menu → useMenu → requestPhotoUpdate`<br>[`pages/Menu/MenuPage.tsx`](../app/src/pages/Menu/MenuPage.tsx) | implemented | [Menu](routes/Menu.md) |
 | 6 | `UBTConnect/App_Notifications/Notifications/DataActionFetchNotifications` | data action | `Notifications` | onClick in Icon → event click of Icon → … → Notifications.refreshNotifications → Notifications.DataActionFetchNotifications | yes | `fetchNotifications()` [`api/notification/repository.ts:40`](../app/src/api/notification/repository.ts#L40) (page) | `Notifications → useNotifications → fetchNotifications`<br>[`pages/Notifications/NotificationsPage.tsx`](../app/src/pages/Notifications/NotificationsPage.tsx) | implemented | [Notifications](routes/Notifications.md) |
-| 7 | `UBTConnect/ActionSync_Info_GetMain` | server action | `UBTConnect` | UBTConnect.onApplicationReady → UBTConnect.connect_SetLoggedContext → UBTConnect.sync_Info_Main → server Sync_Info_GetMain<br>UBTConnect.onApplicationReady → UBTConnect.sync_Info_Main → server Sync_Info_GetMain | yes | `fetchSyncInfoMain()` [`api/app/repository.ts:36`](../app/src/api/app/repository.ts#L36) (shell) | `AppFrame → AppStart → … → fetchSyncInfoMain`<br>[`app/AppFrame.tsx`](../app/src/app/AppFrame.tsx) | implemented | [ContactUsDetails](routes/ContactUsDetails.md), [ContactUsMenu](routes/ContactUsMenu.md), [HomeFeed](routes/HomeFeed.md), [Menu](routes/Menu.md), [NotificationDetails](routes/NotificationDetails.md), [Notifications](routes/Notifications.md), [PINBiometricsMenu](routes/PINBiometricsMenu.md), [PINChange](routes/PINChange.md), [PINRegister](routes/PINRegister.md), [PINUnlock](routes/PINUnlock.md), [Splash](routes/Splash.md), [TermsAndPoliciesMenu](routes/TermsAndPoliciesMenu.md) |
-| 8 | `UBTConnect/ServiceAPIFetchData_CacheableHouseholds` | service action | `UBTConnect` | UBTConnect.get_Cacheable_MapHouseholds → server FetchData_CacheableHouseholds | yes | `fetchCacheableHouseholds()` [`api/app/repository.ts:48`](../app/src/api/app/repository.ts#L48) (shell) | `AppFrame → AppStart → … → fetchCacheableHouseholds`<br>[`app/AppFrame.tsx`](../app/src/app/AppFrame.tsx) | implemented | [ContactUsDetails](routes/ContactUsDetails.md), [ContactUsMenu](routes/ContactUsMenu.md), [HomeFeed](routes/HomeFeed.md), [Menu](routes/Menu.md), [NotificationDetails](routes/NotificationDetails.md), [Notifications](routes/Notifications.md), [PINBiometricsMenu](routes/PINBiometricsMenu.md), [PINChange](routes/PINChange.md), [PINRegister](routes/PINRegister.md), [PINUnlock](routes/PINUnlock.md), [Splash](routes/Splash.md), [TermsAndPoliciesMenu](routes/TermsAndPoliciesMenu.md) |
-| 9 | `UBTConnect/ServiceAPIFetchData_CacheableMapEntities` | service action | `UBTConnect` | UBTConnect.get_Cacheable_MapEntities → server FetchData_CacheableMapEntities | yes | `fetchCacheableMapEntities()` [`api/app/repository.ts:42`](../app/src/api/app/repository.ts#L42) (shell) | `AppFrame → AppStart → … → fetchCacheableMapEntities`<br>[`app/AppFrame.tsx`](../app/src/app/AppFrame.tsx) | implemented | [ContactUsDetails](routes/ContactUsDetails.md), [ContactUsMenu](routes/ContactUsMenu.md), [HomeFeed](routes/HomeFeed.md), [Menu](routes/Menu.md), [NotificationDetails](routes/NotificationDetails.md), [Notifications](routes/Notifications.md), [PINBiometricsMenu](routes/PINBiometricsMenu.md), [PINChange](routes/PINChange.md), [PINRegister](routes/PINRegister.md), [PINUnlock](routes/PINUnlock.md), [Splash](routes/Splash.md), [TermsAndPoliciesMenu](routes/TermsAndPoliciesMenu.md) |
-| 10 | `UBTConnect_Utils/ActionGetUserInformation` | server action | `UBTConnect_Utils` | UBTConnect_Utils.cache_UserInfo_GetCallback → server GetUserInformation | yes | `fetchUserInformation()` [`api/member/userInformation.ts:6`](../app/src/api/member/userInformation.ts#L6) (shell + page) | `CommonUiLayout → DialogAccessRestrictedAction → … → fetchUserInformation`<br>[`components/layout/CommonUiLayout/CommonUiLayout.tsx`](../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx)<br>`AppFrame → CommonUiHost → … → fetchUserInformation`<br>[`app/AppFrame.tsx`](../app/src/app/AppFrame.tsx) | implemented | [ContactUsMenu](routes/ContactUsMenu.md), [HomeFeed](routes/HomeFeed.md), [NotificationDetails](routes/NotificationDetails.md), [Notifications](routes/Notifications.md), [PINBiometricsMenu](routes/PINBiometricsMenu.md), [PINChange](routes/PINChange.md), [PINRegister](routes/PINRegister.md), [PINUnlock](routes/PINUnlock.md), [Splash](routes/Splash.md), [TermsAndPoliciesMenu](routes/TermsAndPoliciesMenu.md) |
-| 11 | `UBT_AppManager/ActionAppManager_AfterInitialize` | server action | `UBT_AppManager` | UBT_AppManager.appManager_OnAppReady_Web → UBT_AppManager.appManager_InitializeWebComponents → UBT_AppManager.appManager_AfterInitialize → server AppManager_AfterInitialize<br>UBTConnect.onApplicationReady → UBT_AppManager_Mobile.appManager_Mobile_OnAppReady → UBT_AppManager.appManager_InitializeWebComponents → UBT_AppManager.appManager_AfterInitialize → server AppManager_AfterInitialize | yes | `afterInitialize()` [`api/app/repository.ts:30`](../app/src/api/app/repository.ts#L30) (shell) | `AppFrame → AppStart → … → afterInitialize`<br>[`app/AppFrame.tsx`](../app/src/app/AppFrame.tsx) | implemented | [ContactUsDetails](routes/ContactUsDetails.md), [ContactUsMenu](routes/ContactUsMenu.md), [HomeFeed](routes/HomeFeed.md), [Menu](routes/Menu.md), [NotificationDetails](routes/NotificationDetails.md), [Notifications](routes/Notifications.md), [PINBiometricsMenu](routes/PINBiometricsMenu.md), [PINChange](routes/PINChange.md), [PINRegister](routes/PINRegister.md), [PINUnlock](routes/PINUnlock.md), [Splash](routes/Splash.md), [TermsAndPoliciesMenu](routes/TermsAndPoliciesMenu.md) |
-| 12 | `UBT_AppManager/ActionAppManager_Logout` | server action | `UBT_AppManager` | onClick in CustomContainer → event clicked of CustomContainer → … → UBT_AppManager.appManager_Logout → server AppManager_Logout | no | – | – | **missing** | [Menu](routes/Menu.md) |
-| 13 | `UBT_AppManager/ActionAppManager_SynchAppContext` | server action | `UBT_AppManager` | HandleImageLoadError.applicationEvent_ImageError → Connect2_LegacyShared.zOnApplicationEvent_Wrapper → … → UBT_AppManager.appManager_SynchAppContextInternal → server AppManager_SynchAppContext<br>UBT_AppManager.inAppBrowser_BeforeLoadCallback → UBT_AppManager.appManager_HandleCallback → … → UBT_AppManager.appManager_SynchAppContextInternal → server AppManager_SynchAppContext<br>UBT_AppManager.inAppBrowser_BeforeLoadCallback → UBT_AppManager.appManager_HandleCallback → … → UBT_AppManager.appManager_SynchAppContextInternal → server AppManager_SynchAppContext<br>(+4 more chains) | yes | `fetchAppContext()` [`api/app/repository.ts:23`](../app/src/api/app/repository.ts#L23) (shell + page) | `AppFrame → AppStart → … → fetchAppContext`<br>[`app/AppFrame.tsx`](../app/src/app/AppFrame.tsx)<br>`ContactUsDetails → useContactUsDetails → … → fetchAppContext`<br>[`pages/ContactUsDetails/ContactUsDetailsPage.tsx`](../app/src/pages/ContactUsDetails/ContactUsDetailsPage.tsx) | implemented | [ContactUsDetails](routes/ContactUsDetails.md), [ContactUsMenu](routes/ContactUsMenu.md), [HomeFeed](routes/HomeFeed.md), [Login](routes/Login.md), [Menu](routes/Menu.md), [NotificationDetails](routes/NotificationDetails.md), [Notifications](routes/Notifications.md), [PINBiometricsMenu](routes/PINBiometricsMenu.md), [PINChange](routes/PINChange.md), [PINRegister](routes/PINRegister.md), [PINUnlock](routes/PINUnlock.md), [Splash](routes/Splash.md), [TermsAndPoliciesMenu](routes/TermsAndPoliciesMenu.md) |
+| 7 | `UBTConnect/ActionSync_Info_GetMain` | server action | `UBTConnect` | UBTConnect.onApplicationReady → UBTConnect.connect_SetLoggedContext → UBTConnect.sync_Info_Main → server Sync_Info_GetMain<br>UBTConnect.onApplicationReady → UBTConnect.sync_Info_Main → server Sync_Info_GetMain | yes | `fetchSyncInfoMain()` [`api/app/repository.ts:36`](../app/src/api/app/repository.ts#L36) (shell) | `AppFrame → AppStart → … → fetchSyncInfoMain`<br>[`app/AppFrame.tsx`](../app/src/app/AppFrame.tsx) | implemented | [ContactUsDetails](routes/ContactUsDetails.md), [ContactUsMenu](routes/ContactUsMenu.md), [HomeFeed](routes/HomeFeed.md), [Menu](routes/Menu.md), [NotificationDetails](routes/NotificationDetails.md), [Notifications](routes/Notifications.md), [PINBiometricsMenu](routes/PINBiometricsMenu.md), [PINChange](routes/PINChange.md), [PINRegister](routes/PINRegister.md), [PINUnlock](routes/PINUnlock.md), [Profile](routes/Profile.md), [Splash](routes/Splash.md), [TermsAndPoliciesMenu](routes/TermsAndPoliciesMenu.md) |
+| 8 | `UBTConnect/ServiceAPIFetchData_CacheableHouseholds` | service action | `UBTConnect` | UBTConnect.get_Cacheable_MapHouseholds → server FetchData_CacheableHouseholds | yes | `fetchCacheableHouseholds()` [`api/app/repository.ts:48`](../app/src/api/app/repository.ts#L48) (shell) | `AppFrame → AppStart → … → fetchCacheableHouseholds`<br>[`app/AppFrame.tsx`](../app/src/app/AppFrame.tsx) | implemented | [ContactUsDetails](routes/ContactUsDetails.md), [ContactUsMenu](routes/ContactUsMenu.md), [HomeFeed](routes/HomeFeed.md), [Menu](routes/Menu.md), [NotificationDetails](routes/NotificationDetails.md), [Notifications](routes/Notifications.md), [PINBiometricsMenu](routes/PINBiometricsMenu.md), [PINChange](routes/PINChange.md), [PINRegister](routes/PINRegister.md), [PINUnlock](routes/PINUnlock.md), [Profile](routes/Profile.md), [Splash](routes/Splash.md), [TermsAndPoliciesMenu](routes/TermsAndPoliciesMenu.md) |
+| 9 | `UBTConnect/ServiceAPIFetchData_CacheableMapEntities` | service action | `UBTConnect` | UBTConnect.get_Cacheable_MapEntities → server FetchData_CacheableMapEntities | yes | `fetchCacheableMapEntities()` [`api/app/repository.ts:42`](../app/src/api/app/repository.ts#L42) (shell) | `AppFrame → AppStart → … → fetchCacheableMapEntities`<br>[`app/AppFrame.tsx`](../app/src/app/AppFrame.tsx) | implemented | [ContactUsDetails](routes/ContactUsDetails.md), [ContactUsMenu](routes/ContactUsMenu.md), [HomeFeed](routes/HomeFeed.md), [Menu](routes/Menu.md), [NotificationDetails](routes/NotificationDetails.md), [Notifications](routes/Notifications.md), [PINBiometricsMenu](routes/PINBiometricsMenu.md), [PINChange](routes/PINChange.md), [PINRegister](routes/PINRegister.md), [PINUnlock](routes/PINUnlock.md), [Profile](routes/Profile.md), [Splash](routes/Splash.md), [TermsAndPoliciesMenu](routes/TermsAndPoliciesMenu.md) |
+| 10 | `UBTConnect_Utils/ActionGetSignedImagesInBulk` | server action | `UBTConnect_Utils` | UBTConnect_Utils.cache_SignedImageURL_GetCallback → server GetSignedImagesInBulk | yes | `cache_SignedImageURL_GetCallback()` [`lib/ubtConnectUtils/actions.ts:124`](../app/src/lib/ubtConnectUtils/actions.ts#L124) (page) | `EntityLazyImage → cache_SignedImageURL_Get → cache_SignedImageURL_GetCallback`<br>[`components/ui/EntityLazyImage/EntityLazyImage.tsx`](../app/src/components/ui/EntityLazyImage/EntityLazyImage.tsx) | implemented | [Profile](routes/Profile.md) |
+| 11 | `UBTConnect_Utils/ActionGetUserInformation` | server action | `UBTConnect_Utils` | UBTConnect_Utils.cache_UserInfo_GetCallback → server GetUserInformation | yes | `fetchUserInformation()` [`api/member/userInformation.ts:6`](../app/src/api/member/userInformation.ts#L6) (shell + page) | `CommonUiLayout → DialogAccessRestrictedAction → … → fetchUserInformation`<br>[`components/layout/CommonUiLayout/CommonUiLayout.tsx`](../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx)<br>`AppFrame → CommonUiHost → … → fetchUserInformation`<br>[`app/AppFrame.tsx`](../app/src/app/AppFrame.tsx) | implemented | [ContactUsMenu](routes/ContactUsMenu.md), [HomeFeed](routes/HomeFeed.md), [NotificationDetails](routes/NotificationDetails.md), [Notifications](routes/Notifications.md), [PINBiometricsMenu](routes/PINBiometricsMenu.md), [PINChange](routes/PINChange.md), [PINRegister](routes/PINRegister.md), [PINUnlock](routes/PINUnlock.md), [Splash](routes/Splash.md), [TermsAndPoliciesMenu](routes/TermsAndPoliciesMenu.md) |
+| 12 | `UBT_AppManager/ActionAppManager_AfterInitialize` | server action | `UBT_AppManager` | UBT_AppManager.appManager_OnAppReady_Web → UBT_AppManager.appManager_InitializeWebComponents → UBT_AppManager.appManager_AfterInitialize → server AppManager_AfterInitialize<br>UBTConnect.onApplicationReady → UBT_AppManager_Mobile.appManager_Mobile_OnAppReady → UBT_AppManager.appManager_InitializeWebComponents → UBT_AppManager.appManager_AfterInitialize → server AppManager_AfterInitialize | yes | `afterInitialize()` [`api/app/repository.ts:30`](../app/src/api/app/repository.ts#L30) (shell) | `AppFrame → AppStart → … → afterInitialize`<br>[`app/AppFrame.tsx`](../app/src/app/AppFrame.tsx) | implemented | [ContactUsDetails](routes/ContactUsDetails.md), [ContactUsMenu](routes/ContactUsMenu.md), [HomeFeed](routes/HomeFeed.md), [Menu](routes/Menu.md), [NotificationDetails](routes/NotificationDetails.md), [Notifications](routes/Notifications.md), [PINBiometricsMenu](routes/PINBiometricsMenu.md), [PINChange](routes/PINChange.md), [PINRegister](routes/PINRegister.md), [PINUnlock](routes/PINUnlock.md), [Profile](routes/Profile.md), [Splash](routes/Splash.md), [TermsAndPoliciesMenu](routes/TermsAndPoliciesMenu.md) |
+| 13 | `UBT_AppManager/ActionAppManager_Logout` | server action | `UBT_AppManager` | onClick in CustomContainer → event clicked of CustomContainer → … → UBT_AppManager.appManager_Logout → server AppManager_Logout | no | – | – | **missing** | [Menu](routes/Menu.md) |
+| 14 | `UBT_AppManager/ActionAppManager_SynchAppContext` | server action | `UBT_AppManager` | HandleImageLoadError.applicationEvent_ImageError → Connect2_LegacyShared.zOnApplicationEvent_Wrapper → … → UBT_AppManager.appManager_SynchAppContextInternal → server AppManager_SynchAppContext<br>UBT_AppManager.inAppBrowser_BeforeLoadCallback → UBT_AppManager.appManager_HandleCallback → … → UBT_AppManager.appManager_SynchAppContextInternal → server AppManager_SynchAppContext<br>UBT_AppManager.inAppBrowser_BeforeLoadCallback → UBT_AppManager.appManager_HandleCallback → … → UBT_AppManager.appManager_SynchAppContextInternal → server AppManager_SynchAppContext<br>(+4 more chains) | yes | `fetchAppContext()` [`api/app/repository.ts:23`](../app/src/api/app/repository.ts#L23) (shell + page) | `AppFrame → AppStart → … → fetchAppContext`<br>[`app/AppFrame.tsx`](../app/src/app/AppFrame.tsx)<br>`ContactUsDetails → useContactUsDetails → … → fetchAppContext`<br>[`pages/ContactUsDetails/ContactUsDetailsPage.tsx`](../app/src/pages/ContactUsDetails/ContactUsDetailsPage.tsx) | implemented | [ContactUsDetails](routes/ContactUsDetails.md), [ContactUsMenu](routes/ContactUsMenu.md), [HomeFeed](routes/HomeFeed.md), [Login](routes/Login.md), [Menu](routes/Menu.md), [NotificationDetails](routes/NotificationDetails.md), [Notifications](routes/Notifications.md), [PINBiometricsMenu](routes/PINBiometricsMenu.md), [PINChange](routes/PINChange.md), [PINRegister](routes/PINRegister.md), [PINUnlock](routes/PINUnlock.md), [Profile](routes/Profile.md), [Splash](routes/Splash.md), [TermsAndPoliciesMenu](routes/TermsAndPoliciesMenu.md) |
 
 ## 5. Missing in React
 
 - Call `Connect2_LegacyShared/ActionGetAllApplicationEvents`. Chain on TST: HandleImageLoadError.applicationEvent_ImageError → Connect2_LegacyShared.zOnApplicationEvent_Wrapper → Connect2_LegacyShared.getAppEventName → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents.
   - No React code makes this call.
-- Call `UBT_AppManager/ActionAppManager_Logout`. Chain on TST: onClick in CustomContainer → event clicked of CustomContainer → event onClick_MenuOption of Menu_List → Menu.onClick_MenuOption → Menu.action_Logout → UBTConnect.connect_Logout → UBT_AppManager.appManager_Logout → server AppManager_Logout.
+- Call `UBT_AppManager/ActionAppManager_Logout`. Chain on TST: onClick in CustomContainer → event clicked of CustomContainer → … → UBT_AppManager.appManager_Logout → server AppManager_Logout.
   - No React code makes this call.
   - Note in [`platform/auth/mockAuth.ts:24`](../app/src/platform/auth/mockAuth.ts#L24): "/** The server logout of AppManager_Logout: no call (app-shell spec 10). */"
   - Note in [`platform/session/auth.ts:84`](../app/src/platform/session/auth.ts#L84): "/** Connect_Logout (UC:1062-1066): Cache_InvalidateEverything, then AppManager_Logout (AM:3649-3720): server logout"

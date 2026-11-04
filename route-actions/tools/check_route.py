@@ -1073,7 +1073,7 @@ def missing_lines(eps, blocks, nav_missing, os_nav):
     for e in eps:
         if e["status"] != "missing":
             continue
-        L.append(f"- Call `{e['short']}`. Chain on TST: " + md_escape(" → ".join(e["chains"][0]) if e["chains"] else "–") + ".")
+        L.append(f"- Call `{e['short']}`. Chain on TST: " + md_escape(" → ".join(short_chain(e["chains"][0])) if e["chains"] else "–") + ".")
         if e.get("elsewhere"):
             L.append("  - React has the function, but this route does not use it: " + ", ".join(
                 f"`{c['fn']}()` {link(c['file'], c['line'])}" for c in e["elsewhere"]) + ".")
