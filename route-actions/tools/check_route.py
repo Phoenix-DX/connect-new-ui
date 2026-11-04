@@ -472,7 +472,7 @@ def check(route):
     seen_b = set()
     for rr in (page_r, shell_r):
         for bnd in rr.get("bindings", []):
-            k = (bnd["file"], bnd["line"])
+            k = (bnd["file"], bnd["line"], bnd["prop"])  # a spread `{...flows}` gives several props on one line
             if k in seen_b:
                 continue
             seen_b.add(k)

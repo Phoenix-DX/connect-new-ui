@@ -378,7 +378,7 @@ sequenceDiagram
 | [4](#524-filtersheet_icon_label-onshowupgradepopup) | [`pages/Bookmarks/BookmarksPage.tsx:84`](../../app/src/pages/Bookmarks/BookmarksPage.tsx#L84) | `<FilterSheet_Icon_Label>` | `onShowUpgradePopUp` | `showUpgradePopUp` | – | asks for a confirmation |
 | [5](#525-bookmarks_card_list-ononclickbookmarkcarditem) | [`pages/Bookmarks/BookmarksPage.tsx:96`](../../app/src/pages/Bookmarks/BookmarksPage.tsx#L96) | `<Bookmarks_Card_List>` | `onOnClickBookmarkCardItem` | `f.onClickBookmarkCardItem` | – | goes to OneSchoolGlobalCarousel, SupperMeeting_Details, HouseholdCarousel |
 | [6](#526-bookmarks_card_list-onitemunbookmarked) | [`pages/Bookmarks/BookmarksPage.tsx:97`](../../app/src/pages/Bookmarks/BookmarksPage.tsx#L97) | `<Bookmarks_Card_List>` | `onItemUnbookmarked` | `f.onItemUnbookmarked` | – | calls DataActionGetBookmarks |
-| [7](#527-bookmarks_card_list-ononloadmore) | [`pages/Bookmarks/BookmarksPage.tsx:99`](../../app/src/pages/Bookmarks/BookmarksPage.tsx#L99) | `<Bookmarks_Card_List>` | `onOnLoadMore` | `f.onLoadMore` | – | calls DataActionGetBookmarks |
+| [7](#527-bookmarks_card_list-ononloadmore) | [`pages/Bookmarks/BookmarksPage.tsx:99`](../../app/src/pages/Bookmarks/BookmarksPage.tsx#L99) | `<Bookmarks_Card_List>` | `onOnLoadMore` | `f.onLoadMore` | – | calls DataActionGetBookmarks, ActionGet_BookmarkPills_ByBookmarkCategoryIds |
 | [8](#528-bookmarks_filtersheet-onapplyfilters) | [`pages/Bookmarks/BookmarksPage.tsx:111`](../../app/src/pages/Bookmarks/BookmarksPage.tsx#L111) | `<Bookmarks_FilterSheet>` | `onApplyFilters` | `f.onApplyFilters` | – | calls DataActionGetBookmarks |
 | [9](#529-notificationicon-oniconclick) | [`pages/Bookmarks/BookmarksPage.tsx:41`](../../app/src/pages/Bookmarks/BookmarksPage.tsx#L41) | `<NotificationIcon>` | `onIconClick` | `notificationIcon.onIconClick` | – | goes to Notifications, MessageList |
 | [10](#5210-filtersheet-onshowupgradepopup) | [`containers/FilterSheet/FilterSheetContainer.tsx:43`](../../app/src/containers/FilterSheet/FilterSheetContainer.tsx#L43) | `<FilterSheet>` | `onShowUpgradePopUp` | `showUpgradePopUp` | – | asks for a confirmation |
@@ -504,6 +504,11 @@ sequenceDiagram
   Note over H: via fetchBookmarkCards()
   H->>A: DataActionGetBookmarks(BookmarkPills, Bookmarks_Filter, Bookmarks_List, …)
   A-->>H: Out_Bookmarks
+  Note over H: via reset_PillsValues()
+  Note over H: via get_LocalDynamicBookmarkPills()
+  Note over H: via fetchBookmarkPills()
+  H->>A: ActionGet_BookmarkPills_ByBookmarkCategoryIds(In_BookmarkCategoryIds)
+  A-->>H: Out_BookmarkPills
 ```
 
 #### 5.2.8 Bookmarks_FilterSheet: onApplyFilters

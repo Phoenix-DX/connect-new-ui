@@ -848,6 +848,13 @@ function resolveFn(expr, depth = 0, given = null) {
   return null;
 }
 
+// An anonymous function (inline in JSX or in an object) is not a named level: the 3 levels count from the first named
+// function, as for `on={name}`.
+function startDepth(body) {
+  const named = Node.isFunctionDeclaration(body) || Node.isMethodDeclaration(body) || Node.isVariableDeclaration(body.getParent());
+  return named ? 0 : -1;
+}
+
 function bindingsOf(units, reached) {
   const out = [];
   const files = new Set([...reached].map((k) => units.get(k).file));
@@ -868,7 +875,7 @@ function bindingsOf(units, reached) {
       const bodyName = Node.isFunctionDeclaration(body) ? body.getName() : body.getParent()?.getName?.();
       if (bodyName && ERROR_FN.test(bodyName) && bodyName === 'raiseToFlowHandler') continue;
       // an inline arrow is not a named level: the 3 levels count from the first named function, as for `on={name}`
-      const effects = effectsOf(body, null, isFunctionLike(ex) ? -1 : 0, new Set([body]));
+      const effects = effectsOf(body, null, startDepth(body), new Set([body]));
       if (!effects.some((e) => EFFECT_KINDS.has(e.kind))) continue;
       const el = attr.getFirstAncestor((x) => Node.isJsxOpeningElement(x) || Node.isJsxSelfClosingElement(x));
       out.push({ element: el ? el.getTagNameNode().getText() : '?', prop, handler, file: rel(f), line: attr.getStartLineNumber(), effects });
@@ -885,7 +892,7 @@ function bindingsOf(units, reached) {
       for (const prop of (init.getType().getProperties() ?? []).map((x) => x.getName()).filter((n) => /^on[A-Z]/.test(n))) {
         const body = returnedProperty(init, prop, 0);
         if (!body) continue;
-        const effects = effectsOf(body, null, 0, new Set([body]));
+        const effects = effectsOf(body, null, startDepth(body), new Set([body]));
         if (!effects.some((e) => EFFECT_KINDS.has(e.kind))) continue;
         const el = sp.getFirstAncestor((x) => Node.isJsxOpeningElement(x) || Node.isJsxSelfClosingElement(x));
         out.push({ element: el ? el.getTagNameNode().getText() : '?', prop, handler: `${id.getText()}.${prop}`, file: rel(f), line: sp.getStartLineNumber(), effects });

@@ -276,6 +276,8 @@ sequenceDiagram
   Note over H: via directory_BrowseByCountry_TooltipBuilder()
   Note over H: via linkOnClickAction()
   Note over H: via current()
+  Note over H: via showUpgradePopUp()
+  Note over H: confirm dialog dialogId
   H->>N: go to Locality_Details
   Note over H: via current()
   Note over H: via showUpgradePopUp()

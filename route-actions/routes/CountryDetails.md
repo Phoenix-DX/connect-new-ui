@@ -290,7 +290,7 @@ sequenceDiagram
 | # | File | Element | Event prop | Handler | Branch | Effects |
 |---|---|---|---|---|---|---|
 | [1](#521-countrydetailscontent-onselectcountryclicked) | [`pages/CountryDetails/CountryDetailsPage.tsx:60`](../../app/src/pages/CountryDetails/CountryDetailsPage.tsx#L60) | `<CountryDetailsContent>` | `onSelectCountryClicked` | `onSelectCountryClicked` | – | asks for a confirmation |
-| [2](#522-countrydetailscontent-onmapsetcallbacks) | [`pages/CountryDetails/CountryDetailsPage.tsx:62`](../../app/src/pages/CountryDetails/CountryDetailsPage.tsx#L62) | `<CountryDetailsContent>` | `onMapSetCallbacks` | `onMapSetCallbacks` | – | goes to Locality_Details |
+| [2](#522-countrydetailscontent-onmapsetcallbacks) | [`pages/CountryDetails/CountryDetailsPage.tsx:62`](../../app/src/pages/CountryDetails/CountryDetailsPage.tsx#L62) | `<CountryDetailsContent>` | `onMapSetCallbacks` | `onMapSetCallbacks` | – | goes to Locality_Details; asks for a confirmation |
 | [3](#523-countrydetailscontent-onlocalityclicked) | [`pages/CountryDetails/CountryDetailsPage.tsx:67`](../../app/src/pages/CountryDetails/CountryDetailsPage.tsx#L67) | `<CountryDetailsContent>` | `onLocalityClicked` | `onLocalityClicked` | – | goes to Locality_Details; asks for a confirmation |
 | [4](#524-filtersheetcontainer-onapplyfilters) | [`pages/CountryDetails/CountryDetailsPage.tsx:80`](../../app/src/pages/CountryDetails/CountryDetailsPage.tsx#L80) | `<FilterSheetContainer>` | `onApplyFilters` | `inline` | – | calls DataActionGetLocalityStatistics |
 | [5](#525-filtersheet-onshowupgradepopup) | [`containers/FilterSheet/FilterSheetContainer.tsx:43`](../../app/src/containers/FilterSheet/FilterSheetContainer.tsx#L43) | `<FilterSheet>` | `onShowUpgradePopUp` | `showUpgradePopUp` | – | asks for a confirmation |
@@ -338,6 +338,8 @@ sequenceDiagram
   Note over H: via directory_BrowseByCountry_TooltipBuilder()
   Note over H: via linkOnClickAction()
   Note over H: via current()
+  Note over H: via showUpgradePopUp()
+  Note over H: confirm dialog dialogId
   H->>N: go to Locality_Details
 ```
 

@@ -41,7 +41,7 @@ UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read 2026-11-04.
 | [`OneSchoolGlobalCarousel`](routes/OneSchoolGlobalCarousel.md) | `Directory_OneSchoolGlobal` | done |
 | [`OneSchoolGlobalDetails`](routes/OneSchoolGlobalDetails.md) | `Directory_OneSchoolGlobal` | done |
 | [`Photobook`](routes/Photobook.md) | `Directory_Photobook` | done |
-| `Search` | `Directory_Search` | todo |
+| [`Search`](routes/Search.md) | `Directory_Search` | todo |
 | `SupperMeeting_Carousel` | `Directory_SupperMeetings` | todo |
 | `SupperMeeting_Details` | `Directory_SupperMeetings` | todo |
 | `Updates_SingleList` | `Directory_Updates` | todo |
