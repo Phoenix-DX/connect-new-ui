@@ -12,7 +12,7 @@ UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read 2026-11-04.
 | [`Splash`](routes/Splash.md) | `App_Common` | done |
 | [`Menu`](routes/Menu.md) | `App_Menu` | done |
 | [`PINBiometricsMenu`](routes/PINBiometricsMenu.md) | `App_Menu` | done |
-| `TermsAndPoliciesMenu` | `App_Menu` | todo |
+| [`TermsAndPoliciesMenu`](routes/TermsAndPoliciesMenu.md) | `App_Menu` | todo |
 | `ContactUsDetails` | `App_Menu_ContactUs` | todo |
 | `ContactUsMenu` | `App_Menu_ContactUs` | todo |
 | `NotificationDetails` | `App_Notifications` | todo |

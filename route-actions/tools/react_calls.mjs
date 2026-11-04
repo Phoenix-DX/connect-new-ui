@@ -315,6 +315,17 @@ function labelOfExpr(e) {
   return null;
 }
 
+function isConstName(e) {
+  // an identifier of a `const` with a string or number literal initializer (a named constant)
+  if (!Node.isIdentifier(e)) return false;
+  let sym = e.getSymbol?.();
+  if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
+  const d = sym?.getDeclarations()?.[0];
+  if (!d || !Node.isVariableDeclaration(d) || d.getVariableStatement?.()?.getDeclarationKind() !== 'const') return false;
+  const init = d.getInitializer();
+  return !!init && (Node.isStringLiteral(init) || Node.isNumericLiteral(init) || Node.isNoSubstitutionTemplateLiteral(init));
+}
+
 function condLabel(cond) {
   // is(S.Orbit) / isItem('Home'): a call with one constant argument
   for (const c of [cond, ...cond.getDescendantsOfKind(SyntaxKind.CallExpression)]) {
@@ -327,7 +338,7 @@ function condLabel(cond) {
     const op = b.getOperatorToken().getKind();
     if (op !== SyntaxKind.EqualsEqualsEqualsToken && op !== SyntaxKind.EqualsEqualsToken) continue;
     const r = b.getRight();
-    if (Node.isPropertyAccessExpression(r) || Node.isStringLiteral(r)) return labelOfExpr(r);
+    if (Node.isPropertyAccessExpression(r) || Node.isStringLiteral(r) || isConstName(r)) return labelOfExpr(r);
   }
   return null;
 }
@@ -440,7 +451,7 @@ function effectsOf(fn, label, depth, seen) {
         add('refresh', name, node, lab); // a query fetches again (a new key or a refetch)
       } else if (ERROR_FN.test(name)) {
         add('message', 'error message (on exception)', node, lab);
-      } else if (/open\w*External\w*Link|openInApp|openUrl/i.test(name)) {
+      } else if (/open\w*External\w*Link|openInApp|openUrl|OpenInNewTab/i.test(name)) {
         add('external', name, node, lab);
       } else handled = false;
       if (!handled && depth < 3) {

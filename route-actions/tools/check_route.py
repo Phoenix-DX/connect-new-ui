@@ -629,7 +629,7 @@ UI_KIND = {"onClick": "click", "onDoubleClick": "double click", "onChange": "cha
            "onFocus": "focus", "onKeyUp": "key", "onKeyDown": "key", "onKeyPress": "key", "onSubmit": "submit",
            "onScroll": "scroll", "onTap": "tap", "onToggle": "toggle"}
 SKIP_ACTIONS = re.compile(r"^(List\w+|String\w*|Text\w*|Integer\w*|LogMessage|Audit|ConfirmAction|Destroy\w*)$")
-EXTERNAL_LINK = re.compile(r"(?i)open\w*external\w*link|openinapp|openurl|openbrowser")
+EXTERNAL_LINK = re.compile(r"(?i)open\w*external\w*link|openinapp|openurl|openbrowser|openinnewtab")
 
 
 def user_actions(sources, rendered, eps):
@@ -690,7 +690,8 @@ def user_actions(sources, rendered, eps):
             dest = m.group(1).rstrip("/")
             # the screen name; the module root (`/UBTConnect/`) stays a path
             marks.append((m.start(), "navigate", dest.rsplit("/", 1)[-1] if dest.count("/") >= 2 else m.group(1)))
-        for m in re.finditer(r'showFeedbackMessage\((\("?[^,]{0,120}?"?\)|"[^"]{0,120}")', body):
+        # the first argument: a text, an expression in parentheses or a variable (an input of the action)
+        for m in re.finditer(r'showFeedbackMessage\((\("?[^,]{0,120}?"?\)|"[^"]{0,120}"|[\w.$]{1,120}(?=\s*,))', body):
             txt = m.group(1).strip("()")
             marks.append((m.start(), "message", re.sub(r"vars\.value\.|In(Local)?\b", "", txt)))
         for m in re.finditer(r"// Execute Action: (\w+)(?=\s*\n?\s*(.{0,200}))", body, re.S):
