@@ -981,27 +981,29 @@ function bindingsOf(units, reached) {
         out.push(...spreadOfHookObject(id, f));
         continue;
       }
-      if (!Node.isIdentifier(id)) continue;
-      let sym = id.getSymbol?.();
+      const direct = Node.isCallExpression(id) && /^use[A-Z]/.test(id.getExpression().getText()); // `{...useY(…)}`
+      if (!Node.isIdentifier(id) && !direct) continue;
+      let sym = direct ? null : id.getSymbol?.();
       if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
       const d0 = sym?.getDeclarations()?.[0];
       // `const flows = useY()` or the rest element `const { a, ...flows } = useY()`
       const vd = d0 && Node.isBindingElement(d0) && d0.getDotDotDotToken() ? d0.getFirstAncestorByKind(SyntaxKind.VariableDeclaration) : d0;
-      let init = vd && Node.isVariableDeclaration(vd) ? vd.getInitializer() : null;
+      let init = direct ? id : vd && Node.isVariableDeclaration(vd) ? vd.getInitializer() : null;
       if (init && Node.isIdentifier(init)) {
         // `const { a, ...view } = list` with `const list = useY()`
         const ld = init.getSymbol?.()?.getDeclarations()?.[0];
         init = ld && Node.isVariableDeclaration(ld) ? ld.getInitializer() : null;
       }
       if (!init || !Node.isCallExpression(init) || !/^use[A-Z]/.test(init.getExpression().getText())) continue;
-      const taken = vd !== d0 ? new Set(vd.getNameNode().getElements?.().map((e) => e.getName()) ?? []) : new Set();
+      const taken = !direct && vd !== d0 ? new Set(vd.getNameNode().getElements?.().map((e) => e.getName()) ?? []) : new Set();
       for (const prop of (init.getType().getProperties() ?? []).map((x) => x.getName()).filter((n) => /^on[A-Z]/.test(n) && !taken.has(n))) {
         const body = returnedProperty(init, prop, 0);
         if (!body) continue;
         const effects = effectsOf(body, null, startDepth(body), new Set([body]));
         if (!effects.some((e) => EFFECT_KINDS.has(e.kind))) continue;
         const el = sp.getFirstAncestor((x) => Node.isJsxOpeningElement(x) || Node.isJsxSelfClosingElement(x));
-        out.push({ element: el ? el.getTagNameNode().getText() : '?', prop, handler: `${id.getText()}.${prop}`, file: rel(f), line: sp.getStartLineNumber(), effects });
+        const hname = direct ? `${id.getExpression().getText()}().${prop}` : `${id.getText()}.${prop}`;
+        out.push({ element: el ? el.getTagNameNode().getText() : '?', prop, handler: hname, file: rel(f), line: sp.getStartLineNumber(), effects });
       }
     }
   }

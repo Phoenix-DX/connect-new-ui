@@ -24,7 +24,7 @@ The app shell is in [APP_SHELL.md](../APP_SHELL.md), not here.
 | Check | Result |
 |---|---|
 | Server calls of the route on TST | 14: React makes 11, **3 missing** |
-| User actions of the route | OutSystems: 34 diagrams. React: 36 diagrams |
+| User actions of the route | OutSystems: 34 diagrams. React: 41 diagrams |
 | React calls of the screen that TST does not make | 2 (see [questions](#8-questions)) |
 | Screen and blocks with a React port | 37 of 37 |
 | Navigation targets found in React | 20 of 20 |
@@ -648,28 +648,33 @@ sequenceDiagram
 | [12](#5212-feedblock_services-onclickservice-oneschoolglobal) | [`pages/HomeFeed/HomeFeedPage.tsx:60`](../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L60) | `<FeedBlock_Services>` | `onClickService` | `services.onClickService` | `OneSchoolGlobal` | shows a message |
 | [13](#5213-feedblock_services-onclickservice-other) | [`pages/HomeFeed/HomeFeedPage.tsx:60`](../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L60) | `<FeedBlock_Services>` | `onClickService` | `services.onClickService` | `other` | asks for a confirmation |
 | [14](#5214-feedblock_services-ongotoexternalapp) | [`pages/HomeFeed/HomeFeedPage.tsx:60`](../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L60) | `<FeedBlock_Services>` | `onGoToExternalApp` | `services.onGoToExternalApp` | – | opens an external link; shows a message |
-| [15](#5215-notificationicon-oniconclick) | [`pages/HomeFeed/HomeFeedPage.tsx:132`](../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L132) | `<NotificationIcon>` | `onIconClick` | `notificationIcon.onIconClick` | – | goes to Notifications, MessageList |
-| [16](#5216-embeddedfeed-ondownloaded) | [`pages/HomeFeed/HomeFeedPage.tsx:177`](../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L177) | `<EmbeddedFeed>` | `onDownloaded` | `embeddedFeed.onDownloaded` | – | opens an external link |
-| [17](#5217-embeddedfeed-onsharetoconnect) | [`pages/HomeFeed/HomeFeedPage.tsx:177`](../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L177) | `<EmbeddedFeed>` | `onShareToConnect` | `embeddedFeed.onShareToConnect` | – | goes to LegacyShareObject |
-| [18](#5218-sharesheetfirststep-onclickrecentmember) | [`containers/ShareSheet/ShareSheetContainer.tsx:111`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L111) | `<ShareSheetFirstStep>` | `onClickRecentMember` | `onClickRecentMember` | – | calls ActionCS_ShareObject; shows a message; asks for a confirmation |
-| [19](#5219-sharesheetsearchstep-onsubmit) | [`containers/ShareSheet/ShareSheetContainer.tsx:127`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L127) | `<ShareSheetSearchStep>` | `onSubmit` | `onSubmit` | – | setSearchFetchId(): a query fetches again |
-| [20](#5220-sharesheetsearchstep-onselect) | [`containers/ShareSheet/ShareSheetContainer.tsx:129`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L129) | `<ShareSheetSearchStep>` | `onSelect` | `onSelect` | – | shows a message |
-| [21](#5221-sharesheetsearchstep-onclickupgradesubscription) | [`containers/ShareSheet/ShareSheetContainer.tsx:130`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L130) | `<ShareSheetSearchStep>` | `onClickUpgradeSubscription` | `onClickUpgradeSubscription` | – | opens an external link |
-| [22](#5222-actionbutton-onbuttononclick) | [`containers/ShareSheet/ShareSheetContainer.tsx:148`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L148) | `<ActionButton>` | `onButtonOnClick` | `onClickSend` | – | calls ActionCS_ShareObject; shows a message |
-| [23](#5223-preventbacknavigation-onbacknavigationprevented) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:80`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L80) | `<PreventBackNavigation>` | `onBackNavigationPrevented` | `redirectHome` | – | goes to HomeFeed |
-| [24](#5224-backnavigationhandler-onbacknavigation) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:82`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L82) | `<BackNavigationHandler>` | `onBackNavigation` | `maybeRedirectHome` | – | goes to HomeFeed |
-| [25](#5225-oslink-onclick-home) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Home` | goes to HomeFeed |
-| [26](#5226-oslink-onclick-directory) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Directory` | goes to CountryList, Locality_Details |
-| [27](#5227-oslink-onclick-updates) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Updates` | goes to Updates_SingleList |
-| [28](#5228-oslink-onclick-bookmarks) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Bookmarks` | goes to Bookmarks |
-| [29](#5229-oslink-onclick-menu) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Menu` | goes to Menu |
-| [30](#5230-oslink-onclick-other) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `other` | calls the prop onBottomBarClicked() |
-| [31](#5231-bottombariconbadge-ononclick-home) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Home` | goes to HomeFeed |
-| [32](#5232-bottombariconbadge-ononclick-directory) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Directory` | goes to CountryList, Locality_Details |
-| [33](#5233-bottombariconbadge-ononclick-updates) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Updates` | goes to Updates_SingleList |
-| [34](#5234-bottombariconbadge-ononclick-bookmarks) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Bookmarks` | goes to Bookmarks |
-| [35](#5235-bottombariconbadge-ononclick-menu) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Menu` | goes to Menu |
-| [36](#5236-bottombariconbadge-ononclick-other) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `other` | calls the prop onBottomBarClicked() |
+| [15](#5215-feedblock_updates-onitemclick) | [`pages/HomeFeed/HomeFeedPage.tsx:66`](../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L66) | `<FeedBlock_Updates>` | `onItemClick` | `useFeedUpdates().onItemClick` | – | calls ServiceAPIAction_UI_UpdateItem_MarkAsRead; goes to HouseholdCarousel; asks for a confirmation |
+| [16](#5216-feedblock_updates-onsendgift) | [`pages/HomeFeed/HomeFeedPage.tsx:66`](../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L66) | `<FeedBlock_Updates>` | `onSendGift` | `useFeedUpdates().onSendGift` | – | shows a message |
+| [17](#5217-feedblock_updates-onmarkasread) | [`pages/HomeFeed/HomeFeedPage.tsx:66`](../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L66) | `<FeedBlock_Updates>` | `onMarkAsRead` | `useFeedUpdates().onMarkAsRead` | – | calls ServiceAPIAction_UI_UpdateItem_MarkAsRead, ServiceAPIAction_UI_UpdateItem_MarkAsUnread, ServiceAPIGet_UI_UpdateItems_UnreadCount_All |
+| [18](#5218-feedblock_updates-onmarkasunread) | [`pages/HomeFeed/HomeFeedPage.tsx:66`](../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L66) | `<FeedBlock_Updates>` | `onMarkAsUnread` | `useFeedUpdates().onMarkAsUnread` | – | calls ServiceAPIAction_UI_UpdateItem_MarkAsRead, ServiceAPIAction_UI_UpdateItem_MarkAsUnread, ServiceAPIGet_UI_UpdateItems_UnreadCount_All |
+| [19](#5219-feedblock_updates-onclickupgrade) | [`pages/HomeFeed/HomeFeedPage.tsx:66`](../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L66) | `<FeedBlock_Updates>` | `onClickUpgrade` | `useFeedUpdates().onClickUpgrade` | – | asks for a confirmation |
+| [20](#5220-notificationicon-oniconclick) | [`pages/HomeFeed/HomeFeedPage.tsx:132`](../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L132) | `<NotificationIcon>` | `onIconClick` | `notificationIcon.onIconClick` | – | goes to Notifications, MessageList |
+| [21](#5221-embeddedfeed-ondownloaded) | [`pages/HomeFeed/HomeFeedPage.tsx:177`](../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L177) | `<EmbeddedFeed>` | `onDownloaded` | `embeddedFeed.onDownloaded` | – | opens an external link |
+| [22](#5222-embeddedfeed-onsharetoconnect) | [`pages/HomeFeed/HomeFeedPage.tsx:177`](../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L177) | `<EmbeddedFeed>` | `onShareToConnect` | `embeddedFeed.onShareToConnect` | – | goes to LegacyShareObject |
+| [23](#5223-sharesheetfirststep-onclickrecentmember) | [`containers/ShareSheet/ShareSheetContainer.tsx:111`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L111) | `<ShareSheetFirstStep>` | `onClickRecentMember` | `onClickRecentMember` | – | calls ActionCS_ShareObject; shows a message; asks for a confirmation |
+| [24](#5224-sharesheetsearchstep-onsubmit) | [`containers/ShareSheet/ShareSheetContainer.tsx:127`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L127) | `<ShareSheetSearchStep>` | `onSubmit` | `onSubmit` | – | setSearchFetchId(): a query fetches again |
+| [25](#5225-sharesheetsearchstep-onselect) | [`containers/ShareSheet/ShareSheetContainer.tsx:129`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L129) | `<ShareSheetSearchStep>` | `onSelect` | `onSelect` | – | shows a message |
+| [26](#5226-sharesheetsearchstep-onclickupgradesubscription) | [`containers/ShareSheet/ShareSheetContainer.tsx:130`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L130) | `<ShareSheetSearchStep>` | `onClickUpgradeSubscription` | `onClickUpgradeSubscription` | – | opens an external link |
+| [27](#5227-actionbutton-onbuttononclick) | [`containers/ShareSheet/ShareSheetContainer.tsx:148`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L148) | `<ActionButton>` | `onButtonOnClick` | `onClickSend` | – | calls ActionCS_ShareObject; shows a message |
+| [28](#5228-preventbacknavigation-onbacknavigationprevented) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:80`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L80) | `<PreventBackNavigation>` | `onBackNavigationPrevented` | `redirectHome` | – | goes to HomeFeed |
+| [29](#5229-backnavigationhandler-onbacknavigation) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:82`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L82) | `<BackNavigationHandler>` | `onBackNavigation` | `maybeRedirectHome` | – | goes to HomeFeed |
+| [30](#5230-oslink-onclick-home) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Home` | goes to HomeFeed |
+| [31](#5231-oslink-onclick-directory) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Directory` | goes to CountryList, Locality_Details |
+| [32](#5232-oslink-onclick-updates) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Updates` | goes to Updates_SingleList |
+| [33](#5233-oslink-onclick-bookmarks) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Bookmarks` | goes to Bookmarks |
+| [34](#5234-oslink-onclick-menu) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Menu` | goes to Menu |
+| [35](#5235-oslink-onclick-other) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `other` | calls the prop onBottomBarClicked() |
+| [36](#5236-bottombariconbadge-ononclick-home) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Home` | goes to HomeFeed |
+| [37](#5237-bottombariconbadge-ononclick-directory) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Directory` | goes to CountryList, Locality_Details |
+| [38](#5238-bottombariconbadge-ononclick-updates) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Updates` | goes to Updates_SingleList |
+| [39](#5239-bottombariconbadge-ononclick-bookmarks) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Bookmarks` | goes to Bookmarks |
+| [40](#5240-bottombariconbadge-ononclick-menu) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Menu` | goes to Menu |
+| [41](#5241-bottombariconbadge-ononclick-other) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `other` | calls the prop onBottomBarClicked() |
 
 #### 5.2.1 HomeLayout: onOnSearchClick
 
@@ -848,7 +853,89 @@ sequenceDiagram
   H->>X: openInApp_OpenApp
 ```
 
-#### 5.2.15 NotificationIcon: onIconClick
+#### 5.2.15 FeedBlock_Updates: onItemClick
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as FeedBlock_Updates · HomeFeedPage.tsx
+  participant A as Server (React api)
+  participant N as Navigation
+  U->>H: onItemClick → useFeedUpdates().onItemClick
+  Note over H: via itemClick()
+  Note over H: via showUpgradePopUp()
+  Note over H: confirm dialog dialogId
+  Note over H: via markUpdateItemAsRead()
+  H->>A: ServiceAPIAction_UI_UpdateItem_MarkAsRead(UpdateItemId)
+  A-->>H: no outputs
+  H->>N: go to HouseholdCarousel
+```
+
+#### 5.2.16 FeedBlock_Updates: onSendGift
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as FeedBlock_Updates · HomeFeedPage.tsx
+  U->>H: onSendGift → useFeedUpdates().onSendGift
+  Note over H: message 'Send gift'
+```
+
+#### 5.2.17 FeedBlock_Updates: onMarkAsRead
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as FeedBlock_Updates · HomeFeedPage.tsx
+  participant A as Server (React api)
+  U->>H: onMarkAsRead → useFeedUpdates().onMarkAsRead
+  Note over H: via markAs()
+  H->>A: ServiceAPIAction_UI_UpdateItem_MarkAsRead(UpdateItemId)
+  A-->>H: no outputs
+  H->>A: ServiceAPIAction_UI_UpdateItem_MarkAsUnread(UpdateItemId)
+  A-->>H: no outputs
+  Note over H: via directory_Updates_RefreshBottomBarCount()
+  Note over H: via fetchUnreadUpdateItemsCount()
+  H->>A: ServiceAPIGet_UI_UpdateItems_UnreadCount_All()
+  A-->>H: UnreadCount
+```
+
+#### 5.2.18 FeedBlock_Updates: onMarkAsUnread
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as FeedBlock_Updates · HomeFeedPage.tsx
+  participant A as Server (React api)
+  U->>H: onMarkAsUnread → useFeedUpdates().onMarkAsUnread
+  Note over H: via markAs()
+  H->>A: ServiceAPIAction_UI_UpdateItem_MarkAsRead(UpdateItemId)
+  A-->>H: no outputs
+  H->>A: ServiceAPIAction_UI_UpdateItem_MarkAsUnread(UpdateItemId)
+  A-->>H: no outputs
+  Note over H: via directory_Updates_RefreshBottomBarCount()
+  Note over H: via fetchUnreadUpdateItemsCount()
+  H->>A: ServiceAPIGet_UI_UpdateItems_UnreadCount_All()
+  A-->>H: UnreadCount
+```
+
+#### 5.2.19 FeedBlock_Updates: onClickUpgrade
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as FeedBlock_Updates · HomeFeedPage.tsx
+  U->>H: onClickUpgrade → useFeedUpdates().onClickUpgrade
+  Note over H: via showUpgradePopUp()
+  Note over H: confirm dialog dialogId
+```
+
+#### 5.2.20 NotificationIcon: onIconClick
 
 ```mermaid
 sequenceDiagram
@@ -861,7 +948,7 @@ sequenceDiagram
   H->>N: go to MessageList
 ```
 
-#### 5.2.16 EmbeddedFeed: onDownloaded
+#### 5.2.21 EmbeddedFeed: onDownloaded
 
 ```mermaid
 sequenceDiagram
@@ -873,7 +960,7 @@ sequenceDiagram
   H->>X: openInApp_TryOpenFileInApp
 ```
 
-#### 5.2.17 EmbeddedFeed: onShareToConnect
+#### 5.2.22 EmbeddedFeed: onShareToConnect
 
 ```mermaid
 sequenceDiagram
@@ -885,7 +972,7 @@ sequenceDiagram
   H->>N: go to LegacyShareObject
 ```
 
-#### 5.2.18 ShareSheetFirstStep: onClickRecentMember
+#### 5.2.23 ShareSheetFirstStep: onClickRecentMember
 
 ```mermaid
 sequenceDiagram
@@ -904,7 +991,7 @@ sequenceDiagram
   Note over H: message 'Share failed. Please try again.'
 ```
 
-#### 5.2.19 ShareSheetSearchStep: onSubmit
+#### 5.2.24 ShareSheetSearchStep: onSubmit
 
 ```mermaid
 sequenceDiagram
@@ -915,7 +1002,7 @@ sequenceDiagram
   Note over H: setSearchFetchId(): a query fetches again
 ```
 
-#### 5.2.20 ShareSheetSearchStep: onSelect
+#### 5.2.25 ShareSheetSearchStep: onSelect
 
 ```mermaid
 sequenceDiagram
@@ -926,7 +1013,7 @@ sequenceDiagram
   Note over H: message { title: '', message: 'You can select up to 50 recipients only.', messageType: 'error', en
 ```
 
-#### 5.2.21 ShareSheetSearchStep: onClickUpgradeSubscription
+#### 5.2.26 ShareSheetSearchStep: onClickUpgradeSubscription
 
 ```mermaid
 sequenceDiagram
@@ -939,7 +1026,7 @@ sequenceDiagram
   H->>X: openInApp_OpenExternalLink
 ```
 
-#### 5.2.22 ActionButton: onButtonOnClick
+#### 5.2.27 ActionButton: onButtonOnClick
 
 ```mermaid
 sequenceDiagram
@@ -956,7 +1043,7 @@ sequenceDiagram
   Note over H: message 'Share failed. Please try again.'
 ```
 
-#### 5.2.23 PreventBackNavigation: onBackNavigationPrevented
+#### 5.2.28 PreventBackNavigation: onBackNavigationPrevented
 
 ```mermaid
 sequenceDiagram
@@ -968,7 +1055,7 @@ sequenceDiagram
   H->>N: go to HomeFeed
 ```
 
-#### 5.2.24 BackNavigationHandler: onBackNavigation
+#### 5.2.29 BackNavigationHandler: onBackNavigation
 
 ```mermaid
 sequenceDiagram
@@ -981,7 +1068,7 @@ sequenceDiagram
   H->>N: go to HomeFeed
 ```
 
-#### 5.2.25 OSLink: onClick (Home)
+#### 5.2.30 OSLink: onClick (Home)
 
 ```mermaid
 sequenceDiagram
@@ -994,7 +1081,7 @@ sequenceDiagram
   H->>N: go to HomeFeed
 ```
 
-#### 5.2.26 OSLink: onClick (Directory)
+#### 5.2.31 OSLink: onClick (Directory)
 
 ```mermaid
 sequenceDiagram
@@ -1008,7 +1095,7 @@ sequenceDiagram
   H->>N: go to Locality_Details
 ```
 
-#### 5.2.27 OSLink: onClick (Updates)
+#### 5.2.32 OSLink: onClick (Updates)
 
 ```mermaid
 sequenceDiagram
@@ -1021,7 +1108,7 @@ sequenceDiagram
   H->>N: go to Updates_SingleList
 ```
 
-#### 5.2.28 OSLink: onClick (Bookmarks)
+#### 5.2.33 OSLink: onClick (Bookmarks)
 
 ```mermaid
 sequenceDiagram
@@ -1034,7 +1121,7 @@ sequenceDiagram
   H->>N: go to Bookmarks
 ```
 
-#### 5.2.29 OSLink: onClick (Menu)
+#### 5.2.34 OSLink: onClick (Menu)
 
 ```mermaid
 sequenceDiagram
@@ -1047,7 +1134,7 @@ sequenceDiagram
   H->>N: go to Menu
 ```
 
-#### 5.2.30 OSLink: onClick (other)
+#### 5.2.35 OSLink: onClick (other)
 
 ```mermaid
 sequenceDiagram
@@ -1059,7 +1146,7 @@ sequenceDiagram
   Note over H: calls the prop onBottomBarClicked()
 ```
 
-#### 5.2.31 BottomBarIconBadge: onOnClick (Home)
+#### 5.2.36 BottomBarIconBadge: onOnClick (Home)
 
 ```mermaid
 sequenceDiagram
@@ -1072,7 +1159,7 @@ sequenceDiagram
   H->>N: go to HomeFeed
 ```
 
-#### 5.2.32 BottomBarIconBadge: onOnClick (Directory)
+#### 5.2.37 BottomBarIconBadge: onOnClick (Directory)
 
 ```mermaid
 sequenceDiagram
@@ -1086,7 +1173,7 @@ sequenceDiagram
   H->>N: go to Locality_Details
 ```
 
-#### 5.2.33 BottomBarIconBadge: onOnClick (Updates)
+#### 5.2.38 BottomBarIconBadge: onOnClick (Updates)
 
 ```mermaid
 sequenceDiagram
@@ -1099,7 +1186,7 @@ sequenceDiagram
   H->>N: go to Updates_SingleList
 ```
 
-#### 5.2.34 BottomBarIconBadge: onOnClick (Bookmarks)
+#### 5.2.39 BottomBarIconBadge: onOnClick (Bookmarks)
 
 ```mermaid
 sequenceDiagram
@@ -1112,7 +1199,7 @@ sequenceDiagram
   H->>N: go to Bookmarks
 ```
 
-#### 5.2.35 BottomBarIconBadge: onOnClick (Menu)
+#### 5.2.40 BottomBarIconBadge: onOnClick (Menu)
 
 ```mermaid
 sequenceDiagram
@@ -1125,7 +1212,7 @@ sequenceDiagram
   H->>N: go to Menu
 ```
 
-#### 5.2.36 BottomBarIconBadge: onOnClick (other)
+#### 5.2.41 BottomBarIconBadge: onOnClick (other)
 
 ```mermaid
 sequenceDiagram
