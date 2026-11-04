@@ -50,6 +50,8 @@ shell again. Git ignores `migration/route-actions/data/` (the tools make it agai
    - `shell`: the app shell from `app/src/main.tsx` (router, `AppFrame`, `AppStart`, `RouteGuard`, hosts);
    - `page <Route>`: the screen from `app/src/pages/<Route>/<Route>Page.tsx`;
    - `all`: every `callAction` call and every `@origin` / `@os-block` tag in `app/src`.
+   - For each `callAction` call, the tool follows the users of the function back to the nearest component. A
+     component is a PascalCase declaration in `pages/`, `containers/`, `components/` or `app/`.
 
    In the shell and the screen, the tool counts only the declarations that the code uses. It skips tests, stories,
    `src/test/` and `src/mocks/`.
@@ -60,8 +62,8 @@ shell again. Git ignores `migration/route-actions/data/` (the tools make it agai
 |---|---|
 | 1. Route | The route, the OutSystems screen, the UI flow, the React screen and its route rules. |
 | 2. Result | The counts. |
-| 3. Diagram | OutSystems block → server call → React function. A red box is a missing call. |
-| 4. Server calls | One row per TST call: the chain, the inside (MCP), the React function, the status. |
+| 3. Diagram | OutSystems block → server call → React action → React component. A red box is a missing call. |
+| 4. Server calls | One row per TST call: the calling block, the trigger, the chain, the React action, the React caller (component → hooks → action), the status. A second table gives the inside of each call (MCP). |
 | 5. Missing in React | The calls, blocks and navigation targets that React does not have. |
 | 6. Questions | The React calls that TST does not make on the route. |
 | 7. Modules to open | The modules that MCP did not read. |

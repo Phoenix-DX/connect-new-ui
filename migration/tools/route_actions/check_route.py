@@ -316,8 +316,10 @@ def check(route):
     observed = {("screenservices/" + k.split("screenservices/", 1)[-1]): v for k, v in observed.items()}
     react_calls = []
     for c in page_r["calls"]:
-        where = "shell + page" if any(c["file"] == s["file"] and c["line"] == s["line"] for s in shell_r["calls"]) else "page"
-        react_calls.append({**c, "where": where})
+        sh = [x for x in shell_r["calls"] if c["file"] == x["file"] and c["line"] == x["line"]]
+        where = "shell + page" if sh else "page"
+        callers = (sh[0]["callers"] if sh else []) + c.get("callers", [])
+        react_calls.append({**c, "where": where, "callers": callers})
     for c in shell_r["calls"]:
         if not any(c["file"] == p["file"] and c["line"] == p["line"] for p in page_r["calls"]):
             react_calls.append({**c, "where": "shell"})
@@ -473,6 +475,42 @@ def chain_owner(chain, blocks):
     return head, "shell"
 
 
+def trigger(chain, blocks=()):
+    """When the call runs, from the root (first step) of a TST chain."""
+    root = chain[0] if chain else ""
+    act = root.split(".")[-1].split(" ")[-1]
+    rules = [
+        (r" fetch at start$", "block load (fetch at start)"),
+        (r"(?i)onApplicationReady|OnAppReady", "app start"),
+        (r"(?i)connect_SetLoggedContext", "sign-in context (app start)"),
+        (r"(?i)\.OnReady$|\.onReady$", "ready"),
+        (r"(?i)OnInitialize", "initialize"),
+        (r"(?i)OnParametersChanged", "parameters change"),
+        (r"(?i)OnRender", "render"),
+        (r"(?i)ImageError", "image load error"),
+        (r"(?i)onClick|Click", "click"),
+        (r"(?i)Submit", "submit"),
+    ]
+    for pat, label in rules:
+        if re.search(pat, root):
+            return label
+    m = re.match(r"^event (\w+) of (\w+)$", root)
+    if m:
+        return f"event `{m.group(1)}` of `{m.group(2)}`"
+    m = re.match(r"^(\w+)\.(\w+)$", root)
+    if m and m.group(1) not in blocks:
+        return f"module action `{m.group(2)}` (the TST graph has no caller)"
+    return f"client action `{act}`" if act else "–"
+
+
+def react_chain(ch):
+    """Component → hook → … → function, with a link to the component file. Long chains keep 2 steps, '…' and the
+    last step."""
+    names = [x["name"] for x in ch]
+    names = names if len(names) <= 4 else names[:2] + ["…"] + names[-1:]
+    return f"`{' → '.join(names)}`<br>{link(ch[0]['file'])}"
+
+
 def from_owner(chain, owner):
     """The chain from the first step of the owner block to the call; long chains keep 2 steps, '…' and the call."""
     i = next((k for k, st in enumerate(chain) if st.startswith((owner + ".", owner + " "))), 0)
@@ -503,7 +541,7 @@ def mermaid(r):
                 L.append(f'      {nid(("o", g, o), "o")}["{o}"]')
         L.append("    end")
     L.append("  end")
-    L.append('  subgraph EP["Endpoints (TST)"]')
+    L.append('  subgraph EP["Server calls (TST)"]')
     for e in r["endpoints"]:
         label = e["short"].rsplit("/", 1)[-1]
         L.append(f'    {nid(("e", e["url"]), "e")}["{label}"]')
@@ -512,14 +550,25 @@ def mermaid(r):
     for e in r["endpoints"]:
         for c in e["react"]:
             fns[(c["where"].split(" ")[0], c["fn"], c["file"])] = c
-    L.append('  subgraph RE["React"]')
-    for grp, title in (("shell", "App shell"), ("page", "Page")):
+    L.append('  subgraph RE["React actions"]')
+    for grp, title in (("shell", "App shell"), ("page", "Screen")):
         L.append(f'    subgraph RE_{grp}["{title}"]')
         for (w, fn, f), c in sorted(fns.items()):
             if w == grp:
                 L.append(f'      {nid(("r", fn, f), "r")}["{fn}()"]')
         L.append("    end")
     L.append("  end")
+    comps = {}
+    for (w, fn, f), c in fns.items():
+        for ch in sorted(c.get("callers", []), key=len)[:2]:
+            comps.setdefault((ch[0]["name"], ch[0]["file"]), set()).add((fn, f))
+    L.append('  subgraph RC["React components"]')
+    for (cn, cf) in sorted(comps):
+        L.append(f'    {nid(("c", cn, cf), "c")}["{cn}"]')
+    L.append("  end")
+    for (cn, cf), fs in comps.items():
+        for fn, f in sorted(fs):
+            L.append(f'  {ids[("r", fn, f)]} --- {ids[("c", cn, cf)]}')
     for (g, o), es in owners.items():
         for e in es:
             L.append(f'  {ids[("o", g, o)]} --> {ids[("e", e["url"])]}')
@@ -569,7 +618,8 @@ def render(r):
          f"| Modules that MCP did not read | {len(closed)}" + (": " + ", ".join(f"`{m}`" for m in sorted(closed)) if closed else "") + " |",
          "", "## 3. Diagram", "",
          "- A box on the left is the OutSystems block or app action that makes the call.",
-         "- A line connects each call to the React function that makes the same call.",
+         "- A line connects each call to the React action that makes the same call.",
+         "- The right column shows the React components that use each React action.",
          "- A red box is a call that React does not make.", "",
          f"![{route} diagram](svg/{route}.svg)", "", "<details><summary>Mermaid source</summary>", "",
          "```mermaid", mm, "```", "", "</details>", "",
@@ -577,9 +627,14 @@ def render(r):
          "- **Called from (OutSystems):** the block or the app-level module whose own client action makes the call. "
          "`app shell` = the layout and the app start; `screen` = the screen and its blocks.",
          "- **Made by (TST):** for each block in \"Called from\", its chain of client actions from the block to the call.",
-         "- **Seen on TST:** `yes` when TST made the call in the capture. Many calls run only after a click.", "",
-         "| # | Call (TST) | Kind | Called from (OutSystems) | Made by (TST) | Seen on TST | React action | Status |",
-         "|---|---|---|---|---|---|---|---|"]
+         "- **Trigger:** when the call runs, from the start of the chain on TST.",
+         "- **Seen on TST:** `yes` when TST made the call in the capture. Many calls run only after a click.",
+         "- **React action:** the React function that makes the same call, and the part that loads it: `shell`, `page` "
+         "or both.",
+         "- **React caller:** the nearest React component that uses the React action, and the hooks between them. At "
+         "most 2 chains, the shortest first.", "",
+         "| # | Call (TST) | Kind | Called from (OutSystems) | Trigger | Made by (TST) | Seen on TST | React action | React caller | Status |",
+         "|---|---|---|---|---|---|---|---|---|---|"]
     rows = []
     for e in eps:
         owners = sorted({chain_owner(c, r["blocks"]) for c in e["chains"] if c}) or [("?", e["group"])]
@@ -588,16 +643,19 @@ def render(r):
     for i, (owners, e) in enumerate(rows, 1):
         e["n"] = i
         frm = "<br>".join(f"`{o}` ({'app shell' if g == 'shell' else 'screen'})" for o, g in owners)
-        made = []
+        made, trig = [], []
         for o in owners:
             ch = next((c for c in e["chains"] if c and chain_owner(c, r["blocks"]) == o), None)
             made.append(md_escape(" → ".join(from_owner(ch, o[0]))) if ch else "–")
+            trig.append(trigger(ch, {b["key"].split(".")[-1] for b in r["blocks"]}) if ch else "–")
         more = len(e["chains"]) - len(owners)
         chain = "<br>".join(made) + (f"<br>(+{more} more chains)" if more > 0 else "")
         rc = "<br>".join(f"`{c['fn']}()` {link(c['file'], c['line'])} ({c['where']})" for c in e["react"]) or "–"
         st = f"**{e['status']}**" if e["status"] == "missing" else e["status"]
         seen = {"observed": "yes", "not observed": "no", "not captured": "no capture"}[e["observed"]]
-        L.append(f"| {i} | `{e['short']}` | {e['kind']} | {frm} | {chain} | {seen} | {rc} | {st} |")
+        chains = sorted((ch for c in e["react"] for ch in c.get("callers", [])), key=len)[:2]
+        caller = "<br>".join(react_chain(ch) for ch in chains) or "–"
+        L.append(f"| {i} | `{e['short']}` | {e['kind']} | {frm} | {'<br>'.join(trig)} | {chain} | {seen} | {rc} | {caller} | {st} |")
     L += ["", "### What each call does on the server (MCP, DEV)", "",
           "| # | Call | Inside the call |", "|---|---|---|"]
     for _, e in rows:

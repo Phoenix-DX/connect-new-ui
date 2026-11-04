@@ -135,6 +135,7 @@ function reach(files, rootKeys) {
     }
   }
   const reached = new Set();
+  const users = new Map(); // key -> Set of keys that use it (reverse edges)
   const todo = rootKeys.filter((k) => units.has(k));
   for (const f of files) if (units.has(`${f}::#top`)) todo.push(`${f}::#top`);
   while (todo.length) {
@@ -150,12 +151,47 @@ function reach(files, rootKeys) {
         if (sym.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
         for (const d of sym.getDeclarations()) {
           const tk = topUnitKey(d, files);
-          if (tk && tk !== k && units.has(tk) && !reached.has(tk)) todo.push(tk);
+          if (tk && tk !== k && units.has(tk)) {
+            if (!users.has(tk)) users.set(tk, new Set());
+            users.get(tk).add(k);
+            if (!reached.has(tk)) todo.push(tk);
+          }
         }
       }
     }
   }
-  return { units, reached };
+  return { units, reached, users };
+}
+
+// ---- callers: from the unit that calls callAction up to the nearest React components -------------------------
+// A component is a PascalCase unit in src/pages, src/containers, src/components or src/app. Hooks and helpers on the
+// way are kept in the chain. Breadth first, so the nearest components come first; at most 3.
+const UI_DIR = /^app\/src\/(pages|containers|components|app)\//;
+const isComponent = (key) => {
+  const [f, name] = [key.slice(0, key.lastIndexOf('::')), key.slice(key.lastIndexOf('::') + 2)];
+  return UI_DIR.test(rel(f)) && /^[A-Z]/.test(name);
+};
+function callersOf(start, users, reached) {
+  const parent = new Map([[start, null]]);
+  const queue = [start];
+  const found = [];
+  while (queue.length && found.length < 3) {
+    const k = queue.shift();
+    if (k !== start && isComponent(k)) { found.push(k); continue; }
+    for (const u of users.get(k) ?? []) {
+      if (!reached.has(u) || parent.has(u) || u.endsWith('::#top')) continue;
+      parent.set(u, k);
+      queue.push(u);
+    }
+  }
+  return found.map((c) => {
+    const chain = [];
+    for (let k = c; k; k = parent.get(k)) {
+      const i = k.lastIndexOf('::');
+      chain.push({ name: k.slice(i + 2), file: rel(k.slice(0, i)) });
+    }
+    return chain; // component first, the calling function last
+  });
 }
 
 // ---- facts in reached units -----------------------------------------------------------------------------------
@@ -214,7 +250,7 @@ function navTargets(node, file) {
   return out;
 }
 
-function facts(units, reached) {
+function facts(units, reached, users) {
   const calls = [];
   const functions = new Set();
   const origins = [];
@@ -245,6 +281,7 @@ function facts(units, reached) {
           apiPath: module && action ? `/api/${module}/${action}` : null,
           file: rel(u.file), line: c.getStartLineNumber(),
           fn: fn?.getName?.() ?? u.name,
+          callers: users ? callersOf(k, users, reached) : [],
         });
       }
     }
@@ -293,8 +330,8 @@ if (mode === 'all') {
   const files = closure([entry]);
   const sf = project.getSourceFile(entry);
   rootKeys = unitsOf(sf).map((u) => `${entry}::${u.name}`);
-  const { units, reached } = reach(files, rootKeys);
-  out = { mode, entry: rel(entry), closureFiles: files.size, reachedUnits: reached.size, ...facts(units, reached),
+  const { units, reached, users } = reach(files, rootKeys);
+  out = { mode, entry: rel(entry), closureFiles: files.size, reachedUnits: reached.size, ...facts(units, reached, users),
     reachedKeys: [...reached].map((k) => rel(k)) };
   fs.writeFileSync(path.join(outDir, 'react-shell.json'), JSON.stringify(out, null, 1));
 } else {
@@ -304,8 +341,8 @@ if (mode === 'all') {
   rootKeys = [`${entry}::default`];
   const sf = project.getSourceFile(entry);
   for (const u of unitsOf(sf)) if (u.isDefault) rootKeys.push(`${entry}::${u.name}`);
-  const { units, reached } = reach(files, rootKeys);
-  out = { mode, route, entry: rel(entry), closureFiles: files.size, reachedUnits: reached.size, ...facts(units, reached),
+  const { units, reached, users } = reach(files, rootKeys);
+  out = { mode, route, entry: rel(entry), closureFiles: files.size, reachedUnits: reached.size, ...facts(units, reached, users),
     reachedKeys: [...reached].map((k) => rel(k)) };
   fs.writeFileSync(path.join(outDir, `react-${route}.json`), JSON.stringify(out, null, 1));
 }
