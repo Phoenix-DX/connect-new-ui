@@ -547,39 +547,45 @@ def mermaid(r):
         for o, g in sorted(found):
             if e not in owners[(g, o)]:
                 owners[(g, o)].append(e)
-    L.append('  subgraph OS["OutSystems (TST compiled)"]')
-    for grp, title in (("shell", "App shell"), ("screen", "Screen and its blocks")):
-        L.append(f'    subgraph OS_{grp}["{title}"]')
-        for (g, o), _ in sorted(owners.items()):
-            if g == grp:
-                L.append(f'      {nid(("o", g, o), "o")}["{o}"]')
-        L.append("    end")
-    L.append("  end")
-    L.append('  subgraph EP["Server calls (TST)"]')
-    for e in r["endpoints"]:
-        label = e["short"].rsplit("/", 1)[-1]
-        L.append(f'    {nid(("e", e["url"]), "e")}["{label}"]')
-    L.append("  end")
+    # Empty subgraphs are not written: Mermaid draws them as narrow empty boxes with wrapped titles.
+    os_groups = [(grp, title, [o for (g, o) in sorted(owners) if g == grp])
+                 for grp, title in (("shell", "App shell"), ("screen", "Screen and its blocks"))]
+    if any(os for _, _, os in os_groups):
+        L.append('  subgraph OS["OutSystems (TST compiled)"]')
+        for grp, title, os_ in os_groups:
+            if os_:
+                L.append(f'    subgraph OS_{grp}["{title}"]')
+                L += [f'      {nid(("o", grp, o), "o")}["{o}"]' for o in os_]
+                L.append("    end")
+        L.append("  end")
+    if r["endpoints"]:
+        L.append('  subgraph EP["Server calls (TST)"]')
+        for e in r["endpoints"]:
+            label = e["short"].rsplit("/", 1)[-1]
+            L.append(f'    {nid(("e", e["url"]), "e")}["{label}"]')
+        L.append("  end")
     fns = {}
     for e in r["endpoints"]:
         for c in e["react"]:
             fns[(c["where"].split(" ")[0], c["fn"], c["file"])] = c
-    L.append('  subgraph RE["React actions"]')
-    for grp, title in (("shell", "App shell"), ("page", "Screen")):
-        L.append(f'    subgraph RE_{grp}["{title}"]')
-        for (w, fn, f), c in sorted(fns.items()):
-            if w == grp:
-                L.append(f'      {nid(("r", fn, f), "r")}["{fn}()"]')
-        L.append("    end")
-    L.append("  end")
+    re_groups = [(grp, title, [(fn, f) for (w, fn, f) in sorted(fns) if w == grp])
+                 for grp, title in (("shell", "App shell"), ("page", "Screen"))]
+    if fns:
+        L.append('  subgraph RE["React actions"]')
+        for grp, title, rs in re_groups:
+            if rs:
+                L.append(f'    subgraph RE_{grp}["{title}"]')
+                L += [f'      {nid(("r", fn, f), "r")}["{fn}()"]' for fn, f in rs]
+                L.append("    end")
+        L.append("  end")
     comps = {}
     for (w, fn, f), c in fns.items():
         for ch in sorted(c.get("callers", []), key=len)[:2]:
             comps.setdefault((ch[0]["name"], ch[0]["file"]), set()).add((fn, f))
-    L.append('  subgraph RC["React components"]')
-    for (cn, cf) in sorted(comps):
-        L.append(f'    {nid(("c", cn, cf), "c")}["{cn}"]')
-    L.append("  end")
+    if comps:
+        L.append('  subgraph RC["React components"]')
+        L += [f'    {nid(("c", cn, cf), "c")}["{cn}"]' for (cn, cf) in sorted(comps)]
+        L.append("  end")
     for (cn, cf), fs in comps.items():
         for fn, f in sorted(fs):
             L.append(f'  {ids[("r", fn, f)]} --- {ids[("c", cn, cf)]}')
@@ -1123,11 +1129,11 @@ def render(r):
          f"| App shell on this route | {len(shell_eps)} calls; event bindings: OutSystems {len(shell_acts)}, React {len(shell_react)}: see [APP_SHELL.md](../APP_SHELL.md) |",
          "", "## 3. Screenshots", "", *screenshots(route),
          "", "## 4. Diagram", "",
-         "- A box on the left is the block or module of the action that calls the server (TST code).",
-         "- A line connects each call to the React action that makes the same call.",
-         "- The right column shows the React components that use each React action.",
-         "- A red box is a call that React does not make.", "",
-         "```mermaid", mm, "```", "",
+         *(["- A box on the left is the block or module of the action that calls the server (TST code).",
+            "- A line connects each call to the React action that makes the same call.",
+            "- The right column shows the React components that use each React action.",
+            "- A red box is a call that React does not make.", "",
+            "```mermaid", mm, "```"] if eps else ["None. The route makes no server call on TST."]), "",
          "## 5. User actions", "", *ua,
          "## 6. Server calls", "", *(calls_table(call_rows(eps, blocks), blocks) if eps else ["None."]),
          "", "## 7. Missing in React", "", *missing_lines(eps, own_blocks, nav_missing, own_nav),
@@ -1165,6 +1171,9 @@ def render_app_shell():
     routes = []
     for path in sorted(glob.glob(os.path.join(DATA, "check-*.json"))):
         r = load(path)
+        # Only the checked routes (a file in routes/). The cache can keep data of older runs of other routes.
+        if not os.path.exists(os.path.join(HERE, "routes", f"{r['route']}.md")):
+            continue
         routes.append(r["route"])
         for b in r["blocks"]:
             if b["group"] == "shell":

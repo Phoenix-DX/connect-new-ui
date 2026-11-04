@@ -48,8 +48,6 @@ The screenshots come from the last parity run (`route.py parity`). The TST captu
 ```mermaid
 flowchart LR
   subgraph OS["OutSystems (TST compiled)"]
-    subgraph OS_shell["App shell"]
-    end
     subgraph OS_screen["Screen and its blocks"]
       o0["?"]
     end
@@ -60,8 +58,6 @@ flowchart LR
   subgraph RE["React actions"]
     subgraph RE_shell["App shell"]
       r2["fetchPolicies()"]
-    end
-    subgraph RE_page["Screen"]
     end
   end
   subgraph RC["React components"]

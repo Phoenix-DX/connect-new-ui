@@ -26,8 +26,6 @@ flowchart LR
       o4["UBTConnect_Utils"]
       o5["UBT_AppManager"]
     end
-    subgraph OS_screen["Screen and its blocks"]
-    end
   end
   subgraph EP["Server calls (TST)"]
     e6["ActionAppManager_SynchAppContext"]

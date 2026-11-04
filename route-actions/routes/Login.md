@@ -50,8 +50,6 @@ The screenshots come from the last parity run (`route.py parity`). The TST captu
 ```mermaid
 flowchart LR
   subgraph OS["OutSystems (TST compiled)"]
-    subgraph OS_shell["App shell"]
-    end
     subgraph OS_screen["Screen and its blocks"]
       o0["Connect2_LegacyShared"]
       o1["UBTConnect"]

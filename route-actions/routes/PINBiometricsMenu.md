@@ -42,32 +42,7 @@ The screenshots come from the last parity run (`route.py parity`). The TST captu
 
 ## 4. Diagram
 
-- A box on the left is the block or module of the action that calls the server (TST code).
-- A line connects each call to the React action that makes the same call.
-- The right column shows the React components that use each React action.
-- A red box is a call that React does not make.
-
-```mermaid
-flowchart LR
-  subgraph OS["OutSystems (TST compiled)"]
-    subgraph OS_shell["App shell"]
-    end
-    subgraph OS_screen["Screen and its blocks"]
-    end
-  end
-  subgraph EP["Server calls (TST)"]
-  end
-  subgraph RE["React actions"]
-    subgraph RE_shell["App shell"]
-    end
-    subgraph RE_page["Screen"]
-    end
-  end
-  subgraph RC["React components"]
-  end
-  classDef missing fill:#fde2e1,stroke:#c0392b,color:#7b241c
-  classDef ok fill:#e3f4e8,stroke:#2e7d4f,color:#1d4d31
-```
+None. The route makes no server call on TST.
 
 ## 5. User actions
 
