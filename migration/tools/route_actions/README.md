@@ -59,7 +59,7 @@ Each route run writes `APP_SHELL.md` again from all `data/check-*.json`. Its cal
 | 2. Result | The counts, and the count of the app shell parts on the route. |
 | 3. Screenshots | The images of the last parity run, per state: TST capture (personal text hidden), React build (mock data), difference. Without parity: the React review images, else the TST capture images. |
 | 4. Diagram | OutSystems block of the route → server call → React action → React component. A red box is a missing call. |
-| 5. User actions | An index table, then one sequence diagram per user action and per branch (a menu option, for example). The diagrams follow the OutSystems code on TST. The effects are server calls with inputs, outputs and the React component, navigation, external links, messages and confirm dialogs. |
+| 5. User actions | An index table, then per user action and per branch (a menu option, for example) two sequence diagrams, one under the other: OutSystems (TST code) and React (the matched React handler). Red marks the differences: in OutSystems, an effect that the React handler does not have; in React, an effect that OutSystems does not have, and a note with the effects that React does not have. |
 | 6. Server calls | One row per call of the route: the calling block, the trigger, the chain, the React action, the React caller, the status. |
 | 7. Missing in React | The calls, blocks and navigation targets of the route that React does not have, with the notes of the React code. |
 | 8. Questions | The React calls of the screen that TST does not make on the route. |
@@ -72,9 +72,15 @@ Each route run writes `APP_SHELL.md` again from all `data/check-*.json`. Its cal
 | `check_route.py` | Reads the sources, matches them, writes the route file and `ROUTES.md`. |
 | `react_calls.mjs` | React scan; writes `migration/route-actions/data/react-*.json`. |
 | `mcp_client.py` | Read-only MCP client (`get*` tools only) with a file cache. |
-| `render_svg.cjs` | Renders the Mermaid diagram to SVG with Playwright of the project root and Mermaid 10.9.1. |
+| `render_svg.cjs` | Renders the Mermaid diagrams of one file to SVG in one browser (Playwright of the project root, Mermaid 10.9.1), with a white background. |
 
 ## Match rules
+
+- **React handler of a user action.** The tool reads each React function of the screen and the app shell: its
+  comment, and its effects branch by branch (`switch` case, `if (x === Y.Z)`, `is(Y.Z)`). The function whose comment
+  names the OutSystems handler wins. Else the same name without the prefixes `on`, `handle`, `handler`, `event`,
+  `onClick`. A short name counts only in a file of the block (`@origin` tag or folder name). Files of `app/src/api/`
+  and components do not count.
 
 - **Server call.** React `callAction(M, A)` becomes `/api/M/A`. Its `x-os-paths` in the contract give the TST URL.
   The call is `implemented` when the URL is the same. Else the call is `missing`.

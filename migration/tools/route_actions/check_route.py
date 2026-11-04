@@ -245,6 +245,43 @@ def endpoint_kind(url):
     return "server action"
 
 
+def handler_core(name):
+    n = re.sub(r"(?i)^(on_?click_?|handler_?|handle_?|event_?|on_?|action_?)+", "", name)
+    return n.replace("_", "").lower()
+
+
+def match_react_handler(a, handlers, origin_by_file):
+    """The React function that ports an OutSystems user action handler: its leading comment names the handler (3),
+    its name is the same without the prefixes on/handle/handler/event/action/onClick (2), its file has the @origin
+    tag of the block (1). The highest score wins; at equal score, the function with more effects. None below 2."""
+    want = handler_core(a["handler"])
+    name = a["handler"].lstrip("_")
+    # a short name without "_" (login, upgrade) is too common to trust in a comment
+    pat = re.compile(rf"(?i)\b{re.escape(name)}\b") if ("_" in name or len(name) >= 10) else None
+    best, best_key = None, (1, 0)
+    for h in handlers:
+        if h["name"][:1].isupper():  # a component, not a handler
+            continue
+        core = handler_core(h["name"])
+        com = h.get("comment", "")
+        hit = bool(pat and pat.search(com))
+        if hit and len(core) >= 5:  # the comment names several handlers: this function ports another one
+            others = [t for t in re.findall(r"\b[A-Z]\w*_\w+\b", com) if t.lower() != name.lower()]
+            if any(core in handler_core(t) for t in others) and core not in want:
+                hit = False
+        related = a["block"] in origin_by_file.get(h["file"], ()) or \
+            a["block"].replace("_", "").lower() in h["file"].replace("_", "").lower()
+        if not hit and len(want) < 10 and not related:  # a short name alone is not enough
+            continue
+        sc = (3 if hit else 0) + (2 if core == want else 0)
+        sc += 1 if core != want and ((len(want) >= 6 and want in core) or (len(core) >= 6 and core in want)) else 0
+        sc += 1 if related else 0
+        key = (sc, len(h["effects"]))
+        if sc >= 2 and key > best_key:
+            best, best_key = h, key
+    return best
+
+
 SHARED_SHARE = 0.4  # a business block that at least 40% of the captured routes render belongs to the app shell
 
 
@@ -441,8 +478,18 @@ def check(route):
 
     uacts = user_actions(tst.get("sources", {}), set(rendered), eps)
     by_short = {short(f): f for f in rendered}
+    origin_by_file = collections.defaultdict(set)
+    for rr in (page_r, shell_r):
+        for o in rr["origins"]:
+            origin_by_file[o["file"]].add(o["origin"].split(".")[-1])
     for a in uacts:
         a["group"] = group_of_file.get(by_short.get(a["block"], ""), "screen")
+        handlers = [h for h in page_r.get("handlers", []) + shell_r.get("handlers", [])
+                    if not h["file"].startswith("app/src/api/")]
+        a["react"] = match_react_handler(a, handlers, origin_by_file)
+        for e in (a["react"] or {}).get("effects", []):
+            if e["kind"] == "call":
+                e["urls"] = cpaths.get(e["detail"]) or []
     nav_from = collections.defaultdict(set)
     for f in rendered:
         for n in js.get(f, {}).get("navigation", []):
@@ -786,34 +833,97 @@ def user_actions(sources, rendered, eps):
     return out
 
 
-def action_diagrams(r):
-    """One Mermaid sequence diagram per user action of the route that has an effect, and one per branch when the
-    handler has branches (a menu option, for example): server calls (inputs and outputs), navigation, external
-    links, messages and confirm dialogs. Returns a list of {block, trigger, handler, branch, summary, mmd}."""
-    eps = {e["url"]: e for e in r.get("allEndpoints") or r["endpoints"]}
-    clean = lambda t: re.sub(r"[;#]", "", str(t))
+def norm_items(effects, os_side, prefer=()):
+    """The comparable items of a list of effects: calls (TST URL), navigation targets, external link, confirm, message.
+    A React call has the TST URLs of its contract path; the URL in `prefer` (the OutSystems items) wins."""
+    items = set()
+    for e in effects:
+        k = e["kind"]
+        if k == "call":
+            if os_side:
+                items.add(("call", e["detail"]))
+            else:
+                urls = e.get("urls") or [e["detail"]]
+                items.add(("call", next((u for u in urls if ("call", u) in prefer), urls[0])))
+        elif k == "navigate":
+            items.add(("navigate", e["detail"]))
+        elif k in ("external", "confirm", "message"):
+            items.add((k, ""))
+    return items
 
-    def lines(e):
+
+def item_text(it, eps):
+    k, d = it
+    if k == "call":
+        e = eps.get(d)
+        name = re.sub(r"^(Action|ServiceAPI|DataAction|ScreenDataSet)", "", (e["short"] if e else d).rsplit("/", 1)[-1])
+        return f"call {name}"
+    return {"navigate": f"go to {d}", "external": "external link", "confirm": "confirm dialog", "message": "message"}[k]
+
+
+def action_diagrams(r):
+    """For each user action with an effect (one per branch when the handler has branches): an OutSystems sequence
+    diagram (TST code) and a React sequence diagram (the matched React handler), with the differences in red.
+    Returns a list of {block, trigger, handler, branch, summary, react, status, mmd, mmdReact}."""
+    eps = {e["url"]: e for e in r.get("allEndpoints") or r["endpoints"]}
+    by_api = {}
+    for e in eps.values():
+        for c in e["react"]:
+            by_api.setdefault(c["apiPath"], e)
+    clean = lambda t: re.sub(r"[;#]", "", str(t))[:90]
+
+    def os_lines(e, miss=frozenset()):
+        """OutSystems lines; red when React does not make the call at all, or when the React handler of this action
+        does not have the effect (`miss`)."""
+        k, d = e["kind"], e["detail"]
+        its = norm_items([e], True)
+        not_here = bool(its) and its <= miss
+        if k == "navigate":
+            body = [f"  B->>N: go to {d}"]
+        elif k == "external":
+            body = [f"  B->>X: {d}"]
+        elif k == "message":
+            body = [f"  Note over B: message {clean(d)}"]
+        elif k == "confirm":
+            body = ["  Note over B: confirm dialog"]
+        elif k == "via":
+            return [f"  Note over B: via {d}"]
+        else:
+            ep = eps[d]
+            name = re.sub(r"^(Action|ServiceAPI|DataAction|ScreenDataSet)", "", ep["short"].rsplit("/", 1)[-1])
+            ins, outs = ep["io"] or ([], [])
+            body = [f"  B->>S: {name}({short_list(ins)})",
+                    "  S-->>B: " + ((short_list(outs) or "no outputs") if ep["io"] else "outputs not in the contract")]
+            if ep["status"] == "missing":
+                return ["  rect rgba(192, 57, 43, 0.15)"] + body + ["  Note over B,S: React does not make this call", "  end"]
+        if not_here:
+            target = "S" if k == "call" else ("N" if k == "navigate" else ("X" if k == "external" else "B"))
+            return ["  rect rgba(192, 57, 43, 0.15)"] + body + [f"  Note over B,{target}: not in the React handler" if target != "B"
+                                                              else "  Note over B: not in the React handler", "  end"]
+        return body
+
+    def react_lines(e, extra):
         k, d = e["kind"], e["detail"]
         if k == "navigate":
-            return [f"  B->>N: go to {d}"]
-        if k == "external":
-            return [f"  B->>X: {d}"]
-        if k == "message":
-            return [f"  Note over B: message {clean(d)}"]
-        if k == "confirm":
-            return ["  Note over B: confirm dialog"]
-        if k == "via":
-            return [f"  Note over B: via {d}"]
-        ep = eps[d]
-        name = re.sub(r"^(Action|ServiceAPI|DataAction|ScreenDataSet)", "", ep["short"].rsplit("/", 1)[-1])
-        ins, outs = ep["io"] or ([], [])
-        chains = sorted((ch for c in ep["react"] for ch in c.get("callers", [])), key=len)
-        react = f"React: {chains[0][0]['name']}" if chains else "React: none"
-        o = ["  rect rgba(192, 57, 43, 0.15)"] if ep["status"] == "missing" else []
-        o.append(f"  B->>S: {name}({short_list(ins)}) · {react}")
-        o.append("  S-->>B: " + ((short_list(outs) or "no outputs") if ep["io"] else "outputs not in the contract"))
-        return o + (["  end"] if ep["status"] == "missing" else [])
+            body = [f"  H->>N: go to {d}"]
+        elif k == "external":
+            body = [f"  H->>X: {d}"]
+        elif k == "message":
+            body = [f"  Note over H: message {clean(d)}"]
+        elif k == "confirm":
+            body = [f"  Note over H: confirm dialog {clean(d)}"]
+        elif k == "via":
+            return [f"  Note over H: via {d}()"]
+        elif k == "callback":
+            return [f"  Note over H: calls the prop {d}() (the parent component decides)"]
+        elif k == "refresh":
+            return [f"  Note over H: {d}(): a query fetches again (the tool does not follow it)"]
+        else:
+            ep = next((eps[u] for u in e.get("urls") or [] if u in eps), None) or by_api.get(d)
+            ins, outs = (ep or {}).get("io") or ([], [])
+            body = [f"  H->>A: {d.rsplit('/', 1)[-1]}({short_list(ins)})",
+                    "  A-->>H: " + ((short_list(outs) or "no outputs") if ep and ep.get("io") else "outputs")]
+        return (["  rect rgba(192, 57, 43, 0.15)"] + body + ["  Note over H: not in OutSystems", "  end"]) if extra else body
 
     def summary(effects):
         names, navs = [], []
@@ -839,6 +949,7 @@ def action_diagrams(r):
         for e in a["effects"]:
             if e["branch"] is not None and e["branch"] not in branches:
                 branches.append(e["branch"])
+        h = a.get("react")
         for br in (branches if len(branches) > 1 else [None]):
             effects = always + [e for e in a["effects"] if e["branch"] is not None and (br is None or e["branch"] == br)]
             kinds = {e["kind"] for e in effects}
@@ -847,10 +958,46 @@ def action_diagrams(r):
                  (["  participant N as Navigation"] if "navigate" in kinds else []) + \
                  (["  participant X as External link"] if "external" in kinds else [])
             L.append(f"  U->>B: {a['trigger']}: {a['handler']}" + (f" ({br})" if br else ""))
+            os_items = norm_items(effects, True)
+            if h:
+                rb = [e for e in h["effects"] if e["branch"] is None or br is None or (e["branch"] or "").lower() == br.lower()]
+                re_items = norm_items(rb, False, os_items)
+                either = norm_items([e for e in rb if e.get("either")], False, os_items)
+                missing, extra = os_items - re_items, (re_items - os_items) - either
+            else:
+                missing, extra = os_items, set()
             for e in effects:
-                L += lines(e)
+                L += os_lines(e, frozenset(missing))
+            # React
+            if h:
+                rk = {e["kind"] for e in rb} | {k for k, _ in missing}
+                R = ["sequenceDiagram", "  autonumber", "  actor U as User",
+                     f"  participant H as {h['name']}() · {h['file'].rsplit('/', 1)[-1]}"]
+                R += (["  participant A as Server (React api)"] if "call" in rk else []) + \
+                     (["  participant N as Navigation"] if "navigate" in rk else []) + \
+                     (["  participant X as External link"] if "external" in rk else [])
+                R.append(f"  U->>H: {a['trigger']}" + (f" ({br})" if br else ""))
+                for e in rb:
+                    its = norm_items([e], False, os_items)
+                    if e.get("either") and not its & os_items:
+                        R.append("  Note over H: or (the other function of a conditional call)")
+                    R += react_lines(e, bool(its) and its <= extra)
+                if missing:
+                    R.append("  rect rgba(192, 57, 43, 0.15)")
+                    R.append("  Note over H: missing, OutSystems has: " + ", ".join(sorted(item_text(i, eps) for i in missing)))
+                    R.append("  end")
+                status = "same" if not (missing or extra) else \
+                    "differs: " + ", ".join(x for x in (f"{len(missing)} missing" if missing else "",
+                                                       f"{len(extra)} not in OutSystems" if extra else "") if x)
+                react = {"name": h["name"], "file": h["file"], "line": h["line"]}
+            else:
+                R = ["sequenceDiagram", "  actor U as User", "  participant H as React",
+                     "  rect rgba(192, 57, 43, 0.15)",
+                     f"  Note over U,H: no React handler found for {a['handler']}", "  end"]
+                status, react = "no React handler found", None
             out_list.append({"block": a["block"], "trigger": a["trigger"], "handler": a["handler"], "branch": br,
-                             "group": a.get("group", "screen"), "summary": summary(effects), "mmd": "\n".join(L)})
+                             "group": a.get("group", "screen"), "summary": summary(effects), "react": react,
+                             "status": status, "mmd": "\n".join(L), "mmdReact": "\n".join(R)})
     return out_list
 
 
@@ -956,34 +1103,44 @@ def calls_table(rows, blocks, with_routes=False):
 
 
 def actions_section(diagrams, name, sec):
-    """Index table and one diagram per user action. Writes the .mmd files; returns (lines, names to render)."""
+    """Index table and, per user action, the OutSystems and the React sequence diagrams. Writes the .mmd files;
+    returns (lines, names to render)."""
     if not diagrams:
         return ["No user action here makes a server call, a navigation, an external link or a message.", ""], []
-    L = ["Each user action (click, change, submit) has its own sequence diagram below.",
-         "The diagrams follow the OutSystems code on TST. The participant is the OutSystems block. The action is its "
-         "screen action.", "",
+    L = ["Each user action (click, change, submit) has two sequence diagrams: OutSystems (TST code) and React.", "",
+         "- **OutSystems:** the participant is the OutSystems block. The action is its screen action on TST.",
+         "- **React:** the participant is the React function that ports the action. The tool finds it by its comment "
+         "(the OutSystems name), its name, or the `@origin` tag of its file.",
+         "- When the handler has branches (a menu option, for example), each branch has its own diagrams. The name of "
+         "a branch comes from its condition. `other` is the last `else` or `default`.",
          "- The effects are server calls, navigation (`Navigation`), external links, messages and confirm dialogs.",
-         "- When the handler has branches (a menu option, for example), each branch has its own diagram.",
-         "- The name of a branch comes from its condition in the TST code. `other` is the last `else`.",
-         "- A note `via …` gives the module action that makes the next calls.",
-         "- An arrow to the server gives the inputs of the call. The return arrow gives the outputs. The names come "
-         "from the contract `app/src/api/openapi.yaml`.",
-         "- Each call arrow ends with the nearest React component that makes the same call (`React: …`). A red area "
-         "is a call that React does not make.", "",
-         "| # | Block (OutSystems) | User action | Handler | Option (branch) | Effects |", "|---|---|---|---|---|---|"]
+         "- An arrow to the server gives the inputs of the call. The return arrow gives the outputs (contract "
+         "`app/src/api/openapi.yaml`).",
+         "- **Red in the OutSystems diagram:** an effect that the React handler of the action does not have.",
+         "- **Red in the React diagram:** an effect that OutSystems does not have, and a note with the effects that "
+         "React does not have.", "",
+         "| # | Block (OutSystems) | User action | Handler | Option (branch) | Effects (OutSystems) | React handler | React |",
+         "|---|---|---|---|---|---|---|---|"]
     titles = []
     for i, d in enumerate(diagrams, 1):
         t = f"{sec}.{i} {d['block']}: {d['trigger']} {d['handler']}" + (f" ({d['branch']})" if d["branch"] else "")
         titles.append(t)
+        rh = f"`{d['react']['name']}()` {link(d['react']['file'], d['react']['line'])}" if d["react"] else "–"
+        st = d["status"] if d["status"] == "same" else f"**{d['status']}**"
         L.append(f"| [{i}](#{slug(t)}) | `{d['block']}` | {d['trigger']} | `{d['handler']}` | "
-                 f"{('`' + d['branch'] + '`') if d['branch'] else '–'} | {md_escape(d['summary'])} |")
+                 f"{('`' + d['branch'] + '`') if d['branch'] else '–'} | {md_escape(d['summary'])} | {rh} | {st} |")
     names = []
     for i, (d, t) in enumerate(zip(diagrams, titles), 1):
         n = f"{name}-action-{i}"
-        names.append(n)
+        names += [n, f"{n}-react"]
         open(os.path.join(DATA, f"{n}.mmd"), "w").write(d["mmd"])
-        L += ["", f"### {t}", "", f"![{d['block']} {d['handler']}](svg/{n}.svg)", "",
-              "<details><summary>Mermaid source</summary>", "", "```mermaid", d["mmd"], "```", "", "</details>"]
+        open(os.path.join(DATA, f"{n}-react.mmd"), "w").write(d["mmdReact"])
+        rh = f"`{d['react']['name']}()` in {link(d['react']['file'], d['react']['line'])}" if d["react"] else "no React handler found"
+        L += ["", f"### {t}", "", f"Result: {d['status']}.", "",
+              "**OutSystems (TST)**", "", f"![OutSystems {d['handler']}](svg/{n}.svg)", "",
+              f"**React**: {rh}", "", f"![React {d['handler']}](svg/{n}-react.svg)", "",
+              "<details><summary>Mermaid source</summary>", "", "```mermaid", d["mmd"], "```", "",
+              "```mermaid", d["mmdReact"], "```", "", "</details>"]
     return L + [""], names
 
 
@@ -1012,9 +1169,12 @@ def missing_lines(eps, blocks, nav_missing, os_nav):
 
 
 def render_svgs(names):
+    """All the diagrams of one file in one browser (render_svg.cjs)."""
+    pairs = []
     for n in names:
-        subprocess.run(["node", os.path.join(ROOT, "migration", "tools", "route_actions", "render_svg.cjs"),
-                        os.path.join(DATA, f"{n}.mmd"), os.path.join(OUT, "svg", f"{n}.svg")],
+        pairs += [os.path.join(DATA, f"{n}.mmd"), os.path.join(OUT, "svg", f"{n}.svg")]
+    if pairs:
+        subprocess.run(["node", os.path.join(ROOT, "migration", "tools", "route_actions", "render_svg.cjs"), *pairs],
                        check=True, cwd=ROOT, stdout=subprocess.DEVNULL)
 
 

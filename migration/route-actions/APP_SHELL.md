@@ -9,7 +9,7 @@ The tool `migration/tools/route_actions/check_route.py` merges it from the check
 | Check | Result |
 |---|---|
 | App shell server calls on TST | 9: React makes 8, **1 missing** |
-| App shell user actions | 7 diagrams (one per action and option) |
+| App shell user actions | 14 diagrams (one per action and option) |
 | React app shell calls that TST does not make on a route | 3 |
 
 ## 2. Diagram
@@ -102,29 +102,37 @@ flowchart LR
 
 ## 3. User actions
 
-Each user action (click, change, submit) has its own sequence diagram below.
-The diagrams follow the OutSystems code on TST. The participant is the OutSystems block. The action is its screen action.
+Each user action (click, change, submit) has two sequence diagrams: OutSystems (TST code) and React.
 
+- **OutSystems:** the participant is the OutSystems block. The action is its screen action on TST.
+- **React:** the participant is the React function that ports the action. The tool finds it by its comment (the OutSystems name), its name, or the `@origin` tag of its file.
+- When the handler has branches (a menu option, for example), each branch has its own diagrams. The name of a branch comes from its condition. `other` is the last `else` or `default`.
 - The effects are server calls, navigation (`Navigation`), external links, messages and confirm dialogs.
-- When the handler has branches (a menu option, for example), each branch has its own diagram.
-- The name of a branch comes from its condition in the TST code. `other` is the last `else`.
-- A note `via …` gives the module action that makes the next calls.
-- An arrow to the server gives the inputs of the call. The return arrow gives the outputs. The names come from the contract `app/src/api/openapi.yaml`.
-- Each call arrow ends with the nearest React component that makes the same call (`React: …`). A red area is a call that React does not make.
+- An arrow to the server gives the inputs of the call. The return arrow gives the outputs (contract `app/src/api/openapi.yaml`).
+- **Red in the OutSystems diagram:** an effect that the React handler of the action does not have.
+- **Red in the React diagram:** an effect that OutSystems does not have, and a note with the effects that React does not have.
 
-| # | Block (OutSystems) | User action | Handler | Option (branch) | Effects |
-|---|---|---|---|---|---|
-| [1](#31-dialog_accessrestrictedaction-click-upgrade) | `Dialog_AccessRestrictedAction` | click | `upgrade` | – | opens an external link |
-| [2](#32-bottombarmenu-click-event_bottombar_clicked-home) | `BottomBarMenu` | click | `event_BottomBar_Clicked` | `home` | goes to HomeFeed |
-| [3](#33-bottombarmenu-click-event_bottombar_clicked-directory) | `BottomBarMenu` | click | `event_BottomBar_Clicked` | `directory` | goes to CountryList, Locality_Details |
-| [4](#34-bottombarmenu-click-event_bottombar_clicked-updates) | `BottomBarMenu` | click | `event_BottomBar_Clicked` | `updates` | goes to Updates_SingleList |
-| [5](#35-bottombarmenu-click-event_bottombar_clicked-bookmarks) | `BottomBarMenu` | click | `event_BottomBar_Clicked` | `bookmarks` | goes to Bookmarks |
-| [6](#36-bottombarmenu-click-event_bottombar_clicked-menu) | `BottomBarMenu` | click | `event_BottomBar_Clicked` | `menu` | goes to Menu |
-| [7](#37-block_pinunlock_contentwrapper-click-onclick_forgotpin) | `Block_PINUnlock_ContentWrapper` | click | `onClick_ForgotPIN` | – | goes to Login |
+| # | Block (OutSystems) | User action | Handler | Option (branch) | Effects (OutSystems) | React handler | React |
+|---|---|---|---|---|---|---|---|
+| [1](#31-dialog_accessrestrictedaction-click-upgrade) | `Dialog_AccessRestrictedAction` | click | `upgrade` | – | opens an external link | – | **no React handler found** |
+| [2](#32-bottombarmenu-click-event_bottombar_clicked-home) | `BottomBarMenu` | click | `event_BottomBar_Clicked` | `home` | goes to HomeFeed | `event_BottomBar_Clicked()` [`components/layout/BottomBar/BottomBar.tsx:95`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L95) | same |
+| [3](#33-bottombarmenu-click-event_bottombar_clicked-directory) | `BottomBarMenu` | click | `event_BottomBar_Clicked` | `directory` | goes to CountryList, Locality_Details | `event_BottomBar_Clicked()` [`components/layout/BottomBar/BottomBar.tsx:95`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L95) | same |
+| [4](#34-bottombarmenu-click-event_bottombar_clicked-updates) | `BottomBarMenu` | click | `event_BottomBar_Clicked` | `updates` | goes to Updates_SingleList | `event_BottomBar_Clicked()` [`components/layout/BottomBar/BottomBar.tsx:95`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L95) | same |
+| [5](#35-bottombarmenu-click-event_bottombar_clicked-bookmarks) | `BottomBarMenu` | click | `event_BottomBar_Clicked` | `bookmarks` | goes to Bookmarks | `event_BottomBar_Clicked()` [`components/layout/BottomBar/BottomBar.tsx:95`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L95) | same |
+| [6](#36-bottombarmenu-click-event_bottombar_clicked-menu) | `BottomBarMenu` | click | `event_BottomBar_Clicked` | `menu` | goes to Menu | `event_BottomBar_Clicked()` [`components/layout/BottomBar/BottomBar.tsx:95`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L95) | same |
+| [7](#37-block_pinunlock_contentwrapper-click-onclick_forgotpin) | `Block_PINUnlock_ContentWrapper` | click | `onClick_ForgotPIN` | – | goes to Login | `onForgotPin()` [`platform/session/usePinUnlockContent.ts:95`](../../app/src/platform/session/usePinUnlockContent.ts#L95) | same |
 
 ### 3.1 Dialog_AccessRestrictedAction: click upgrade
 
-![Dialog_AccessRestrictedAction upgrade](svg/APP_SHELL-action-1.svg)
+Result: no React handler found.
+
+**OutSystems (TST)**
+
+![OutSystems upgrade](svg/APP_SHELL-action-1.svg)
+
+**React**: no React handler found
+
+![React upgrade](svg/APP_SHELL-action-1-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -136,14 +144,34 @@ sequenceDiagram
   participant X as External link
   U->>B: click: upgrade
   Note over B: via UBTConnect_Utils.app_Subscription_NavigateToUpgrade
+  rect rgba(192, 57, 43, 0.15)
   B->>X: OpenInApp_OpenExternalLink
+  Note over B,X: not in the React handler
+  end
+```
+
+```mermaid
+sequenceDiagram
+  actor U as User
+  participant H as React
+  rect rgba(192, 57, 43, 0.15)
+  Note over U,H: no React handler found for upgrade
+  end
 ```
 
 </details>
 
 ### 3.2 BottomBarMenu: click event_BottomBar_Clicked (home)
 
-![BottomBarMenu event_BottomBar_Clicked](svg/APP_SHELL-action-2.svg)
+Result: same.
+
+**OutSystems (TST)**
+
+![OutSystems event_BottomBar_Clicked](svg/APP_SHELL-action-2.svg)
+
+**React**: `event_BottomBar_Clicked()` in [`components/layout/BottomBar/BottomBar.tsx:95`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L95)
+
+![React event_BottomBar_Clicked](svg/APP_SHELL-action-2-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -157,11 +185,29 @@ sequenceDiagram
   B->>N: go to HomeFeed
 ```
 
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as event_BottomBar_Clicked() · BottomBar.tsx
+  participant N as Navigation
+  U->>H: click (home)
+  H->>N: go to HomeFeed
+```
+
 </details>
 
 ### 3.3 BottomBarMenu: click event_BottomBar_Clicked (directory)
 
-![BottomBarMenu event_BottomBar_Clicked](svg/APP_SHELL-action-3.svg)
+Result: same.
+
+**OutSystems (TST)**
+
+![OutSystems event_BottomBar_Clicked](svg/APP_SHELL-action-3.svg)
+
+**React**: `event_BottomBar_Clicked()` in [`components/layout/BottomBar/BottomBar.tsx:95`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L95)
+
+![React event_BottomBar_Clicked](svg/APP_SHELL-action-3-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -176,11 +222,30 @@ sequenceDiagram
   B->>N: go to Locality_Details
 ```
 
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as event_BottomBar_Clicked() · BottomBar.tsx
+  participant N as Navigation
+  U->>H: click (directory)
+  H->>N: go to CountryList
+  H->>N: go to Locality_Details
+```
+
 </details>
 
 ### 3.4 BottomBarMenu: click event_BottomBar_Clicked (updates)
 
-![BottomBarMenu event_BottomBar_Clicked](svg/APP_SHELL-action-4.svg)
+Result: same.
+
+**OutSystems (TST)**
+
+![OutSystems event_BottomBar_Clicked](svg/APP_SHELL-action-4.svg)
+
+**React**: `event_BottomBar_Clicked()` in [`components/layout/BottomBar/BottomBar.tsx:95`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L95)
+
+![React event_BottomBar_Clicked](svg/APP_SHELL-action-4-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -194,11 +259,29 @@ sequenceDiagram
   B->>N: go to Updates_SingleList
 ```
 
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as event_BottomBar_Clicked() · BottomBar.tsx
+  participant N as Navigation
+  U->>H: click (updates)
+  H->>N: go to Updates_SingleList
+```
+
 </details>
 
 ### 3.5 BottomBarMenu: click event_BottomBar_Clicked (bookmarks)
 
-![BottomBarMenu event_BottomBar_Clicked](svg/APP_SHELL-action-5.svg)
+Result: same.
+
+**OutSystems (TST)**
+
+![OutSystems event_BottomBar_Clicked](svg/APP_SHELL-action-5.svg)
+
+**React**: `event_BottomBar_Clicked()` in [`components/layout/BottomBar/BottomBar.tsx:95`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L95)
+
+![React event_BottomBar_Clicked](svg/APP_SHELL-action-5-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -212,11 +295,29 @@ sequenceDiagram
   B->>N: go to Bookmarks
 ```
 
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as event_BottomBar_Clicked() · BottomBar.tsx
+  participant N as Navigation
+  U->>H: click (bookmarks)
+  H->>N: go to Bookmarks
+```
+
 </details>
 
 ### 3.6 BottomBarMenu: click event_BottomBar_Clicked (menu)
 
-![BottomBarMenu event_BottomBar_Clicked](svg/APP_SHELL-action-6.svg)
+Result: same.
+
+**OutSystems (TST)**
+
+![OutSystems event_BottomBar_Clicked](svg/APP_SHELL-action-6.svg)
+
+**React**: `event_BottomBar_Clicked()` in [`components/layout/BottomBar/BottomBar.tsx:95`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L95)
+
+![React event_BottomBar_Clicked](svg/APP_SHELL-action-6-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -230,11 +331,29 @@ sequenceDiagram
   B->>N: go to Menu
 ```
 
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as event_BottomBar_Clicked() · BottomBar.tsx
+  participant N as Navigation
+  U->>H: click (menu)
+  H->>N: go to Menu
+```
+
 </details>
 
 ### 3.7 Block_PINUnlock_ContentWrapper: click onClick_ForgotPIN
 
-![Block_PINUnlock_ContentWrapper onClick_ForgotPIN](svg/APP_SHELL-action-7.svg)
+Result: same.
+
+**OutSystems (TST)**
+
+![OutSystems onClick_ForgotPIN](svg/APP_SHELL-action-7.svg)
+
+**React**: `onForgotPin()` in [`platform/session/usePinUnlockContent.ts:95`](../../app/src/platform/session/usePinUnlockContent.ts#L95)
+
+![React onClick_ForgotPIN](svg/APP_SHELL-action-7-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -246,6 +365,16 @@ sequenceDiagram
   participant N as Navigation
   U->>B: click: onClick_ForgotPIN
   B->>N: go to Login
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as onForgotPin() · usePinUnlockContent.ts
+  participant N as Navigation
+  U->>H: click
+  H->>N: go to Login
 ```
 
 </details>

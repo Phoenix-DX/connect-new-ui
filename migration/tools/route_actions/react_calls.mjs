@@ -296,6 +296,204 @@ function facts(units, reached, users) {
   };
 }
 
+// ---- handlers: what each React function does, branch by branch -------------------------------------------------
+// For each function of the reached code: its name, file, line, leading comment (the OutSystems names it ports) and
+// its effects in order, with the branch label of a `switch` case or an `if (x === Y.Z)` condition. Effects:
+// navigation, confirm dialog, message, external link, server call (callAction). Calls to other functions of
+// app/src are followed 3 levels deep.
+const NAV_FN = /^(navigate|go|osNavigateTo|navigateTo|replaceTo|goTo\w*|navigateBack\w*)$/;
+const ERROR_FN = /^(raiseToFlowHandler|showExceptionMessage|handleError\w*)$/;
+const HOME_SCREEN = (fs.readFileSync(path.join(SRC, 'app', 'routes.generated.ts'), 'utf8').match(/export const HOME = "\/\w+\/(\w+)"/) || [])[1];
+
+function labelOfExpr(e) {
+  if (!e) return null;
+  if (Node.isStringLiteral(e) || Node.isNoSubstitutionTemplateLiteral(e)) return e.getLiteralValue();
+  if (Node.isPropertyAccessExpression(e)) return e.getName();
+  if (Node.isIdentifier(e)) return e.getText();
+  return null;
+}
+
+function condLabel(cond) {
+  // is(S.Orbit) / isItem('Home'): a call with one constant argument
+  for (const c of [cond, ...cond.getDescendantsOfKind(SyntaxKind.CallExpression)]) {
+    if (!Node.isCallExpression(c)) continue;
+    const args = c.getArguments();
+    if (args.length === 1 && (Node.isPropertyAccessExpression(args[0]) || Node.isStringLiteral(args[0]))) return labelOfExpr(args[0]);
+  }
+  for (const b of [cond, ...cond.getDescendantsOfKind(SyntaxKind.BinaryExpression)]) {
+    if (!Node.isBinaryExpression(b)) continue;
+    const op = b.getOperatorToken().getKind();
+    if (op !== SyntaxKind.EqualsEqualsEqualsToken && op !== SyntaxKind.EqualsEqualsToken) continue;
+    const r = b.getRight();
+    if (Node.isPropertyAccessExpression(r) || Node.isStringLiteral(r)) return labelOfExpr(r);
+  }
+  return null;
+}
+
+function navTargetsOf(arg) {
+  if (!arg) return [];
+  const t = arg.getText();
+  const out = [];
+  if (/\bPATHS\.home\b|\bHOME\b/.test(t)) out.push(HOME_SCREEN);
+  for (const m of t.matchAll(/\/([A-Za-z]\w*)(?=[`'"?/#]|$)/g)) if (ROUTE_NAMES.has(m[1])) out.push(m[1]);
+  for (const m of t.matchAll(/['"`]([A-Za-z]\w*)['"`]/g)) if (ROUTE_NAMES.has(m[1])) out.push(m[1]);
+  for (const m of t.matchAll(/PATHS\.(\w+)/g)) if (m[1] !== 'home') out.push(m[1].charAt(0).toUpperCase() + m[1].slice(1));
+  return [...new Set(out)];
+}
+
+function isFunctionLike(n) {
+  return Node.isFunctionDeclaration(n) || Node.isArrowFunction(n) || Node.isFunctionExpression(n) || Node.isMethodDeclaration(n);
+}
+
+function bodyOfDecl(d) {
+  if (isFunctionLike(d)) return d;
+  if (Node.isVariableDeclaration(d) || Node.isPropertyAssignment(d)) {
+    const init = d.getInitializer?.();
+    if (init && isFunctionLike(init)) return init;
+  }
+  return null;
+}
+
+function effectsOf(fn, label, depth, seen) {
+  const out = [];
+  const add = (kind, detail, node, lab) => out.push({ branch: lab ?? null, kind, detail, file: rel(node.getSourceFile().getFilePath()), line: node.getStartLineNumber() });
+  const walk = (node, lab) => {
+    if (!node) return;
+    if (node !== fn && (Node.isFunctionDeclaration(node) || (Node.isVariableDeclaration(node) && bodyOfDecl(node)))) return; // a declaration, not a run
+    if (Node.isSwitchStatement(node)) {
+      walk(node.getExpression(), lab);
+      for (const c of node.getCaseBlock().getClauses()) {
+        const l = lab ?? (Node.isDefaultClause(c) ? 'other' : labelOfExpr(c.getExpression()));
+        for (const st of c.getStatements()) walk(st, l);
+      }
+      return;
+    }
+    if (Node.isBlock(node) || Node.isSourceFile(node)) {
+      let rest = null;
+      for (const st of node.getStatements()) {
+        const own = Node.isIfStatement(st) && condLabel(st.getExpression());
+        walk(st, lab ?? (own ? null : rest));
+        if (Node.isIfStatement(st) && !st.getElseStatement() && condLabel(st.getExpression())) {
+          const th = st.getThenStatement();
+          const stmts = Node.isBlock(th) ? th.getStatements() : [th];
+          if (stmts.length && Node.isReturnStatement(stmts[stmts.length - 1])) rest = 'other';
+        }
+      }
+      return;
+    }
+    if (Node.isIfStatement(node)) {
+      const l = condLabel(node.getExpression());
+      walk(node.getExpression(), lab);
+      walk(node.getThenStatement(), lab ?? l);
+      const el = node.getElseStatement();
+      if (el) walk(el, lab ?? (l && !Node.isIfStatement(el) ? 'other' : null));
+      return;
+    }
+    if (Node.isCallExpression(node)) {
+      let ex = node.getExpression();
+      while (Node.isParenthesizedExpression(ex)) ex = ex.getExpression();
+      if (Node.isConditionalExpression(ex) && depth < 3) {
+        // (a ? f : g)(x): one of the two functions runs
+        for (const alt of [ex.getWhenTrue(), ex.getWhenFalse()]) {
+          let sym = alt.getSymbol?.();
+          if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
+          const d = sym?.getDeclarations()?.[0];
+          const body = d && !excluded(d.getSourceFile().getFilePath()) ? bodyOfDecl(d) : null;
+          if (!body || seen.has(body)) continue;
+          for (const e of effectsOf(body, lab, depth + 1, new Set([...seen, body]))) out.push({ ...e, either: true });
+        }
+        for (const c of node.getArguments()) walk(c, lab);
+        return;
+      }
+      const name = Node.isPropertyAccessExpression(ex) ? ex.getName() : ex.getText();
+      const args = node.getArguments();
+      let handled = true;
+      if (name === 'callAction') {
+        const m = literalOf(args[0]), a = literalOf(args[1]);
+        if (m && a) add('call', `/api/${m}/${a}`, node, lab);
+      } else if (NAV_FN.test(name)) {
+        const ts = navTargetsOf(args[0]);
+        for (const t of ts) add('navigate', t, node, lab);
+        if (!ts.length) handled = false;
+      } else if (/^confirm\w*$/i.test(name)) {
+        add('confirm', args[0] ? args[0].getText().replace(/['"`]/g, '') : 'confirm', node, lab);
+      } else if (/^show\w*(Feedback)?Message$/.test(name) && !ERROR_FN.test(name)) {
+        add('message', args[0] ? args[0].getText() : '', node, lab);
+      } else if (/^set\w*FetchId$|^refetch\w*$|^invalidateQueries$/.test(name)) {
+        add('refresh', name, node, lab); // a query fetches again (a new key or a refetch)
+      } else if (ERROR_FN.test(name)) {
+        add('message', 'error message (on exception)', node, lab);
+      } else if (/open\w*External\w*Link|openInApp|openUrl|^open$/i.test(name)) {
+        add('external', name, node, lab);
+      } else handled = false;
+      if (!handled && depth < 3) {
+        let sym = (Node.isPropertyAccessExpression(ex) ? ex.getNameNode() : ex).getSymbol?.();
+        if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
+        const d0 = sym?.getDeclarations()?.[0];
+        if (d0 && (Node.isParameterDeclaration(d0) || Node.isPropertySignature(d0) || Node.isBindingElement(d0)) && /^on[A-Z]/.test(name)) {
+          add('callback', name, node, lab); // the parent decides what happens
+        }
+        for (const d of sym?.getDeclarations() ?? []) {
+          const f = d.getSourceFile().getFilePath();
+          if (excluded(f)) continue;
+          const body = bodyOfDecl(d);
+          if (!body || seen.has(body)) continue;
+          const sub = effectsOf(body, lab, depth + 1, new Set([...seen, body]));
+          if (sub.length) {
+            out.push({ branch: lab ?? null, kind: 'via', detail: name, file: rel(f), line: d.getStartLineNumber() });
+            out.push(...sub);
+          }
+          break;
+        }
+      }
+    }
+    for (const c of node.getChildren()) walk(c, lab);
+  };
+  const b = fn.getBody?.() ?? fn;
+  walk(b, label);
+  return out;
+}
+
+function leadingComment(n) {
+  if (Node.isJsxAttribute(n)) {
+    const full = n.getSourceFile().getFullText();
+    const before = full.slice(Math.max(0, n.getStart() - 300), n.getStart());
+    const m = before.match(/(\/\/[^\n]*|\/\*[\s\S]*?\*\/)\s*$/);
+    const after = full.slice(n.getEnd(), n.getEnd() + 200).match(/^[^\n]*?(\/\/[^\n]*)/); // `}} // OnClick_Block`
+    return [m ? m[1] : '', after ? after[1] : ''].join(' ').replace(/\s+/g, ' ').trim();
+  }
+  let x = n;
+  while (x && !Node.isStatement(x) && !Node.isPropertyAssignment(x) && !Node.isMethodDeclaration(x)) x = x.getParent();
+  if (!x) return '';
+  return x.getLeadingCommentRanges().map((r) => r.getText()).join(' ').replace(/\s+/g, ' ').slice(0, 400);
+}
+
+function handlersOf(units, reached) {
+  const out = [];
+  const files = new Set([...reached].map((k) => units.get(k).file));
+  for (const f of files) {
+    const sf = project.getSourceFile(f);
+    for (const d of [...sf.getDescendantsOfKind(SyntaxKind.FunctionDeclaration), ...sf.getDescendantsOfKind(SyntaxKind.VariableDeclaration),
+      ...sf.getDescendantsOfKind(SyntaxKind.PropertyAssignment), ...sf.getDescendantsOfKind(SyntaxKind.MethodDeclaration),
+      ...sf.getDescendantsOfKind(SyntaxKind.JsxAttribute)]) {
+      let body = bodyOfDecl(d);
+      if (!body && Node.isJsxAttribute(d)) {
+        const init = d.getInitializer();
+        const ex = init && Node.isJsxExpression(init) ? init.getExpression() : null;
+        if (ex && isFunctionLike(ex)) body = ex;
+      }
+      if (!body) continue;
+      const name = Node.isJsxAttribute(d) ? d.getNameNode().getText() : d.getName?.();
+      if (!name || !/^[A-Za-z_$][\w$]*$/.test(name)) continue;
+      const effects = effectsOf(body, null, 0, new Set([body]));
+      const comment = leadingComment(d);
+      if (!effects.length && !comment && !/^(on|handle)[A-Z_]/.test(name)) continue;
+      out.push({ name, file: rel(f), line: d.getStartLineNumber(), comment, effects });
+    }
+  }
+  return out;
+}
+
 // ---- main ----------------------------------------------------------------------------------------------------
 const outDir = path.join(ROOT, 'migration', 'route-actions', 'data');
 fs.mkdirSync(outDir, { recursive: true });
@@ -332,7 +530,7 @@ if (mode === 'all') {
   rootKeys = unitsOf(sf).map((u) => `${entry}::${u.name}`);
   const { units, reached, users } = reach(files, rootKeys);
   out = { mode, entry: rel(entry), closureFiles: files.size, reachedUnits: reached.size, ...facts(units, reached, users),
-    reachedKeys: [...reached].map((k) => rel(k)) };
+    reachedKeys: [...reached].map((k) => rel(k)), handlers: handlersOf(units, reached) };
   fs.writeFileSync(path.join(outDir, 'react-shell.json'), JSON.stringify(out, null, 1));
 } else {
   entry = path.join(SRC, 'pages', route, `${route}Page.tsx`);
@@ -343,7 +541,7 @@ if (mode === 'all') {
   for (const u of unitsOf(sf)) if (u.isDefault) rootKeys.push(`${entry}::${u.name}`);
   const { units, reached, users } = reach(files, rootKeys);
   out = { mode, route, entry: rel(entry), closureFiles: files.size, reachedUnits: reached.size, ...facts(units, reached, users),
-    reachedKeys: [...reached].map((k) => rel(k)) };
+    reachedKeys: [...reached].map((k) => rel(k)), handlers: handlersOf(units, reached) };
   fs.writeFileSync(path.join(outDir, `react-${route}.json`), JSON.stringify(out, null, 1));
 }
 console.log(`${mode}${route ? ' ' + route : ''}: ${out.closureFiles} files in closure, ${out.reachedUnits} units reached, ${out.calls.length} callAction sites, ${out.functions.length} functions, ${out.origins.length} @origin tags`);

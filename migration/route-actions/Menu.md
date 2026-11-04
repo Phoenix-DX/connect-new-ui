@@ -23,7 +23,7 @@ The app shell is the same on many routes: layout, app start, bottom bar, PIN loc
 | Check | Result |
 |---|---|
 | Server calls of the route on TST | 4: React makes 3, **1 missing** |
-| User actions of the route | 8 diagrams (one per action and option) |
+| User actions of the route | 16 diagrams (one per action and option) |
 | React calls of the screen that TST does not make | 3 (see [questions](#8-questions)) |
 | Screen and blocks with a React port | 14 of 14 |
 | Navigation targets found in React | 5 of 5 |
@@ -100,30 +100,38 @@ flowchart LR
 
 ## 5. User actions
 
-Each user action (click, change, submit) has its own sequence diagram below.
-The diagrams follow the OutSystems code on TST. The participant is the OutSystems block. The action is its screen action.
+Each user action (click, change, submit) has two sequence diagrams: OutSystems (TST code) and React.
 
+- **OutSystems:** the participant is the OutSystems block. The action is its screen action on TST.
+- **React:** the participant is the React function that ports the action. The tool finds it by its comment (the OutSystems name), its name, or the `@origin` tag of its file.
+- When the handler has branches (a menu option, for example), each branch has its own diagrams. The name of a branch comes from its condition. `other` is the last `else` or `default`.
 - The effects are server calls, navigation (`Navigation`), external links, messages and confirm dialogs.
-- When the handler has branches (a menu option, for example), each branch has its own diagram.
-- The name of a branch comes from its condition in the TST code. `other` is the last `else`.
-- A note `via …` gives the module action that makes the next calls.
-- An arrow to the server gives the inputs of the call. The return arrow gives the outputs. The names come from the contract `app/src/api/openapi.yaml`.
-- Each call arrow ends with the nearest React component that makes the same call (`React: …`). A red area is a call that React does not make.
+- An arrow to the server gives the inputs of the call. The return arrow gives the outputs (contract `app/src/api/openapi.yaml`).
+- **Red in the OutSystems diagram:** an effect that the React handler of the action does not have.
+- **Red in the React diagram:** an effect that OutSystems does not have, and a note with the effects that React does not have.
 
-| # | Block (OutSystems) | User action | Handler | Option (branch) | Effects |
-|---|---|---|---|---|---|
-| [1](#51-menu-click-onclick_edityouraccount) | `Menu` | click | `onClick_EditYourAccount` | – | goes to Profile |
-| [2](#52-menu-click-onclick_menuoption-logout) | `Menu` | click | `onClick_MenuOption` | `logOut` | calls **AppManager_Logout (missing)**, AppManager_SynchAppContext; goes to HomeFeed; asks for a confirmation |
-| [3](#53-menu-click-onclick_menuoption-contactus) | `Menu` | click | `onClick_MenuOption` | `contactUs` | goes to ContactUsMenu |
-| [4](#54-menu-click-onclick_menuoption-termsandpolicies) | `Menu` | click | `onClick_MenuOption` | `termsAndPolicies` | goes to TermsAndPoliciesMenu |
-| [5](#55-menu-click-onclick_menuoption-pinandbiometrics) | `Menu` | click | `onClick_MenuOption` | `pINAndBiometrics` | goes to PINBiometricsMenu |
-| [6](#56-menu-click-onclick_menuoption-subscriptionandpayments) | `Menu` | click | `onClick_MenuOption` | `subscriptionAndPayments` | opens an external link |
-| [7](#57-menu-click-onclick_menuoption-requestphotoupdate) | `Menu` | click | `onClick_MenuOption` | `requestPhotoUpdate` | calls RequestPhotoUpdate; shows a message; asks for a confirmation |
-| [8](#58-menu-click-onclick_menuoption-other) | `Menu` | click | `onClick_MenuOption` | `other` | shows a message |
+| # | Block (OutSystems) | User action | Handler | Option (branch) | Effects (OutSystems) | React handler | React |
+|---|---|---|---|---|---|---|---|
+| [1](#51-menu-click-onclick_edityouraccount) | `Menu` | click | `onClick_EditYourAccount` | – | goes to Profile | `onEditYourAccount()` [`pages/Menu/hooks/useMenu.ts:58`](../../app/src/pages/Menu/hooks/useMenu.ts#L58) | same |
+| [2](#52-menu-click-onclick_menuoption-logout) | `Menu` | click | `onClick_MenuOption` | `logOut` | calls **AppManager_Logout (missing)**, AppManager_SynchAppContext; goes to HomeFeed; asks for a confirmation | `menuOption()` [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72) | **differs: 2 missing** |
+| [3](#53-menu-click-onclick_menuoption-contactus) | `Menu` | click | `onClick_MenuOption` | `contactUs` | goes to ContactUsMenu | `menuOption()` [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72) | same |
+| [4](#54-menu-click-onclick_menuoption-termsandpolicies) | `Menu` | click | `onClick_MenuOption` | `termsAndPolicies` | goes to TermsAndPoliciesMenu | `menuOption()` [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72) | same |
+| [5](#55-menu-click-onclick_menuoption-pinandbiometrics) | `Menu` | click | `onClick_MenuOption` | `pINAndBiometrics` | goes to PINBiometricsMenu | `menuOption()` [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72) | same |
+| [6](#56-menu-click-onclick_menuoption-subscriptionandpayments) | `Menu` | click | `onClick_MenuOption` | `subscriptionAndPayments` | opens an external link | `menuOption()` [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72) | same |
+| [7](#57-menu-click-onclick_menuoption-requestphotoupdate) | `Menu` | click | `onClick_MenuOption` | `requestPhotoUpdate` | calls RequestPhotoUpdate; shows a message; asks for a confirmation | `menuOption()` [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72) | same |
+| [8](#58-menu-click-onclick_menuoption-other) | `Menu` | click | `onClick_MenuOption` | `other` | shows a message | `menuOption()` [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72) | same |
 
 ### 5.1 Menu: click onClick_EditYourAccount
 
-![Menu onClick_EditYourAccount](svg/Menu-action-1.svg)
+Result: same.
+
+**OutSystems (TST)**
+
+![OutSystems onClick_EditYourAccount](svg/Menu-action-1.svg)
+
+**React**: `onEditYourAccount()` in [`pages/Menu/hooks/useMenu.ts:58`](../../app/src/pages/Menu/hooks/useMenu.ts#L58)
+
+![React onClick_EditYourAccount](svg/Menu-action-1-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -137,11 +145,29 @@ sequenceDiagram
   B->>N: go to Profile
 ```
 
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as onEditYourAccount() · useMenu.ts
+  participant N as Navigation
+  U->>H: click
+  H->>N: go to Profile
+```
+
 </details>
 
 ### 5.2 Menu: click onClick_MenuOption (logOut)
 
-![Menu onClick_MenuOption](svg/Menu-action-2.svg)
+Result: differs: 2 missing.
+
+**OutSystems (TST)**
+
+![OutSystems onClick_MenuOption](svg/Menu-action-2.svg)
+
+**React**: `menuOption()` in [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72)
+
+![React onClick_MenuOption](svg/Menu-action-2-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -156,19 +182,47 @@ sequenceDiagram
   Note over B: confirm dialog
   Note over B: via UBTConnect.connect_Logout
   rect rgba(192, 57, 43, 0.15)
-  B->>S: AppManager_Logout() · React: none
+  B->>S: AppManager_Logout()
   S-->>B: outputs not in the contract
+  Note over B,S: React does not make this call
   end
-  B->>S: AppManager_SynchAppContext(EspaceName) · React: Menu
+  rect rgba(192, 57, 43, 0.15)
+  B->>S: AppManager_SynchAppContext(EspaceName)
   S-->>B: AppManager_ClientConfig, FirebaseRealTimeDB_Token, PermissionList, …
+  Note over B,S: not in the React handler
+  end
   B->>N: go to HomeFeed
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as menuOption() · useMenu.ts
+  participant A as Server (React api)
+  participant N as Navigation
+  U->>H: click (logOut)
+  Note over H: via logout()
+  Note over H: confirm dialog PopUp_Logout
+  H->>N: go to HomeFeed
+  rect rgba(192, 57, 43, 0.15)
+  Note over H: missing, OutSystems has: call AppManager_Logout, call AppManager_SynchAppContext
+  end
 ```
 
 </details>
 
 ### 5.3 Menu: click onClick_MenuOption (contactUs)
 
-![Menu onClick_MenuOption](svg/Menu-action-3.svg)
+Result: same.
+
+**OutSystems (TST)**
+
+![OutSystems onClick_MenuOption](svg/Menu-action-3.svg)
+
+**React**: `menuOption()` in [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72)
+
+![React onClick_MenuOption](svg/Menu-action-3-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -182,11 +236,29 @@ sequenceDiagram
   B->>N: go to ContactUsMenu
 ```
 
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as menuOption() · useMenu.ts
+  participant N as Navigation
+  U->>H: click (contactUs)
+  H->>N: go to ContactUsMenu
+```
+
 </details>
 
 ### 5.4 Menu: click onClick_MenuOption (termsAndPolicies)
 
-![Menu onClick_MenuOption](svg/Menu-action-4.svg)
+Result: same.
+
+**OutSystems (TST)**
+
+![OutSystems onClick_MenuOption](svg/Menu-action-4.svg)
+
+**React**: `menuOption()` in [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72)
+
+![React onClick_MenuOption](svg/Menu-action-4-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -200,11 +272,29 @@ sequenceDiagram
   B->>N: go to TermsAndPoliciesMenu
 ```
 
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as menuOption() · useMenu.ts
+  participant N as Navigation
+  U->>H: click (termsAndPolicies)
+  H->>N: go to TermsAndPoliciesMenu
+```
+
 </details>
 
 ### 5.5 Menu: click onClick_MenuOption (pINAndBiometrics)
 
-![Menu onClick_MenuOption](svg/Menu-action-5.svg)
+Result: same.
+
+**OutSystems (TST)**
+
+![OutSystems onClick_MenuOption](svg/Menu-action-5.svg)
+
+**React**: `menuOption()` in [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72)
+
+![React onClick_MenuOption](svg/Menu-action-5-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -218,11 +308,29 @@ sequenceDiagram
   B->>N: go to PINBiometricsMenu
 ```
 
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as menuOption() · useMenu.ts
+  participant N as Navigation
+  U->>H: click (pINAndBiometrics)
+  H->>N: go to PINBiometricsMenu
+```
+
 </details>
 
 ### 5.6 Menu: click onClick_MenuOption (subscriptionAndPayments)
 
-![Menu onClick_MenuOption](svg/Menu-action-6.svg)
+Result: same.
+
+**OutSystems (TST)**
+
+![OutSystems onClick_MenuOption](svg/Menu-action-6.svg)
+
+**React**: `menuOption()` in [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72)
+
+![React onClick_MenuOption](svg/Menu-action-6-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -236,11 +344,29 @@ sequenceDiagram
   B->>X: OpenInApp_OpenExternalLink
 ```
 
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as menuOption() · useMenu.ts
+  participant X as External link
+  U->>H: click (subscriptionAndPayments)
+  H->>X: openInApp_OpenExternalLink
+```
+
 </details>
 
 ### 5.7 Menu: click onClick_MenuOption (requestPhotoUpdate)
 
-![Menu onClick_MenuOption](svg/Menu-action-7.svg)
+Result: same.
+
+**OutSystems (TST)**
+
+![OutSystems onClick_MenuOption](svg/Menu-action-7.svg)
+
+**React**: `menuOption()` in [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72)
+
+![React onClick_MenuOption](svg/Menu-action-7-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -252,16 +378,38 @@ sequenceDiagram
   participant S as Server (TST calls)
   U->>B: click: onClick_MenuOption (requestPhotoUpdate)
   Note over B: confirm dialog
-  B->>S: RequestPhotoUpdate() · React: Menu
+  B->>S: RequestPhotoUpdate()
   S-->>B: Out_IsSuccess
   Note over B: message "Your update photo request has been submitted."
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as menuOption() · useMenu.ts
+  participant A as Server (React api)
+  U->>H: click (requestPhotoUpdate)
+  Note over H: confirm dialog Popup_SubmitPhotoRequest
+  Note over H: via requestPhotoUpdate()
+  H->>A: ActionRequestPhotoUpdate()
+  A-->>H: Out_IsSuccess
+  Note over H: message 'Your update photo request has been submitted.'
 ```
 
 </details>
 
 ### 5.8 Menu: click onClick_MenuOption (other)
 
-![Menu onClick_MenuOption](svg/Menu-action-8.svg)
+Result: same.
+
+**OutSystems (TST)**
+
+![OutSystems onClick_MenuOption](svg/Menu-action-8.svg)
+
+**React**: `menuOption()` in [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72)
+
+![React onClick_MenuOption](svg/Menu-action-8-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -272,6 +420,15 @@ sequenceDiagram
   participant B as Menu
   U->>B: click: onClick_MenuOption (other)
   Note over B: message "Go to " + id
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as menuOption() · useMenu.ts
+  U->>H: click (other)
+  Note over H: message `Go to ${id}`
 ```
 
 </details>

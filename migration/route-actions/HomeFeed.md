@@ -23,7 +23,7 @@ The app shell is the same on many routes: layout, app start, bottom bar, PIN loc
 | Check | Result |
 |---|---|
 | Server calls of the route on TST | 14: React makes 11, **3 missing** |
-| User actions of the route | 23 diagrams (one per action and option) |
+| User actions of the route | 46 diagrams (one per action and option) |
 | React calls of the screen that TST does not make | 2 (see [questions](#8-questions)) |
 | Screen and blocks with a React port | 31 of 31 |
 | Navigation targets found in React | 15 of 15 |
@@ -152,45 +152,95 @@ flowchart LR
 
 ## 5. User actions
 
-Each user action (click, change, submit) has its own sequence diagram below.
-The diagrams follow the OutSystems code on TST. The participant is the OutSystems block. The action is its screen action.
+Each user action (click, change, submit) has two sequence diagrams: OutSystems (TST code) and React.
 
+- **OutSystems:** the participant is the OutSystems block. The action is its screen action on TST.
+- **React:** the participant is the React function that ports the action. The tool finds it by its comment (the OutSystems name), its name, or the `@origin` tag of its file.
+- When the handler has branches (a menu option, for example), each branch has its own diagrams. The name of a branch comes from its condition. `other` is the last `else` or `default`.
 - The effects are server calls, navigation (`Navigation`), external links, messages and confirm dialogs.
-- When the handler has branches (a menu option, for example), each branch has its own diagram.
-- The name of a branch comes from its condition in the TST code. `other` is the last `else`.
-- A note `via …` gives the module action that makes the next calls.
-- An arrow to the server gives the inputs of the call. The return arrow gives the outputs. The names come from the contract `app/src/api/openapi.yaml`.
-- Each call arrow ends with the nearest React component that makes the same call (`React: …`). A red area is a call that React does not make.
+- An arrow to the server gives the inputs of the call. The return arrow gives the outputs (contract `app/src/api/openapi.yaml`).
+- **Red in the OutSystems diagram:** an effect that the React handler of the action does not have.
+- **Red in the React diagram:** an effect that OutSystems does not have, and a note with the effects that React does not have.
 
-| # | Block (OutSystems) | User action | Handler | Option (branch) | Effects |
-|---|---|---|---|---|---|
-| [1](#51-feed_embeded-click-handle_share_others) | `Feed_Embeded` | click | `handle_Share_Others` | – | calls **GetAllApplicationEvents (missing)**, **CS_CreateShareProfileLink (missing)**, AppManager_SynchAppContext |
-| [2](#52-feed_embeded-click-handle_share_connect) | `Feed_Embeded` | click | `handle_Share_Connect` | – | goes to LegacyShareObject |
-| [3](#53-dialog_goexternalapp-click-gotoexternalapp) | `Dialog_GoExternalApp` | click | `goToExternalApp` | – | opens an external link |
-| [4](#54-app_notificationicon-click-iconclick) | `App_NotificationIcon` | click | `iconClick` | – | goes to Notifications, MessageList |
-| [5](#55-feedblock_updates-click-event_listitemonclick) | `FeedBlock_Updates` | click | `event_ListItemOnClick` | – | calls Action_UI_UpdateItem_MarkAsRead; goes to HouseholdCarousel, HouseholdDetails; asks for a confirmation |
-| [6](#56-feedblock_communitypopulation-click-onclick_block) | `FeedBlock_CommunityPopulation` | click | `onClick_Block` | – | goes to Updates_SingleList |
-| [7](#57-feedblock_updates-click-event_markasread) | `FeedBlock_Updates` | click | `event_MarkAsRead` | – | calls Action_UI_UpdateItem_MarkAsRead, Get_UI_UpdateItems_UnreadCount_All |
-| [8](#58-feedblock_updates-click-event_markasunread) | `FeedBlock_Updates` | click | `event_MarkAsUnread` | – | calls Action_UI_UpdateItem_MarkAsUnread, Get_UI_UpdateItems_UnreadCount_All |
-| [9](#59-feedblock_updates-click-event_sendgift) | `FeedBlock_Updates` | click | `event_SendGift` | – | shows a message |
-| [10](#510-feedblock_services-click-onclick_servicesettings) | `FeedBlock_Services` | click | `onClick_ServiceSettings` | – | goes to Services |
-| [11](#511-feedblock_services-click-onclick_service-orbit) | `FeedBlock_Services` | click | `onClick_Service` | `orbit` | goes to OrbitLanding |
-| [12](#512-feedblock_services-click-onclick_service-ldm) | `FeedBlock_Services` | click | `onClick_Service` | `lDM` | goes to LDM_MyEvents_V2, LDM_MyEvents |
-| [13](#513-feedblock_services-click-onclick_service-mycalendar) | `FeedBlock_Services` | click | `onClick_Service` | `myCalendar` | goes to MyEntertaining |
-| [14](#514-feedblock_services-click-onclick_service-assemble) | `FeedBlock_Services` | click | `onClick_Service` | `assemble` | goes to AssembleEvents |
-| [15](#515-feedblock_services-click-onclick_service-orbitadmin) | `FeedBlock_Services` | click | `onClick_Service` | `orbitAdmin` | goes to OrbitAdminLanding |
-| [16](#516-feedblock_services-click-onclick_service-mynotes) | `FeedBlock_Services` | click | `onClick_Service` | `myNotes` | goes to Notes |
-| [17](#517-feedblock_services-click-onclick_service-other) | `FeedBlock_Services` | click | `onClick_Service` | `other` | asks for a confirmation |
-| [18](#518-sharesheet-click-handler_onclickexternaloption) | `ShareSheet` | click | `handler_OnClickExternalOption` | – | calls **CS_CreateShareProfileLink (missing)** |
-| [19](#519-sharesheet-click-handler_onclickrecentmember) | `ShareSheet` | click | `handler_OnClickRecentMember` | – | calls CS_ShareObject; shows a message; asks for a confirmation |
-| [20](#520-homefeed-click-onclick_search) | `HomeFeed` | click | `onClick_Search` | – | goes to Search |
-| [21](#521-homefeed-click-section_updatesonclick_viewall) | `HomeFeed` | click | `section_UpdatesOnClick_ViewAll` | – | goes to Updates_SingleList |
-| [22](#522-sharesheet-submit-handler_inputeventsubmit) | `ShareSheet` | submit | `handler_InputEventSubmit` | – | calls GetAvailableMembers |
-| [23](#523-sharesheet-click-handler_onclicksend) | `ShareSheet` | click | `handler_OnClickSend` | – | calls CS_ShareObject; shows a message |
+| # | Block (OutSystems) | User action | Handler | Option (branch) | Effects (OutSystems) | React handler | React |
+|---|---|---|---|---|---|---|---|
+| [1](#51-feed_embeded-click-handle_share_connect) | `Feed_Embeded` | click | `handle_Share_Connect` | – | goes to LegacyShareObject | `handle_Share_Connect()` [`components/feed/EmbeddedFeed/EmbeddedFeed.tsx:76`](../../app/src/components/feed/EmbeddedFeed/EmbeddedFeed.tsx#L76) | **differs: 1 missing** |
+| [2](#52-feed_embeded-click-handle_share_others) | `Feed_Embeded` | click | `handle_Share_Others` | – | calls **GetAllApplicationEvents (missing)**, **CS_CreateShareProfileLink (missing)**, AppManager_SynchAppContext | – | **no React handler found** |
+| [3](#53-dialog_goexternalapp-click-gotoexternalapp) | `Dialog_GoExternalApp` | click | `goToExternalApp` | – | opens an external link | `goToExternalApp()` [`pages/HomeFeed/hooks/goToExternalApp.ts:11`](../../app/src/pages/HomeFeed/hooks/goToExternalApp.ts#L11) | **differs: 1 not in OutSystems** |
+| [4](#54-app_notificationicon-click-iconclick) | `App_NotificationIcon` | click | `iconClick` | – | goes to Notifications, MessageList | `onIconClick()` [`platform/session/useNotificationIcon.ts:40`](../../app/src/platform/session/useNotificationIcon.ts#L40) | same |
+| [5](#55-feedblock_updates-click-event_listitemonclick) | `FeedBlock_Updates` | click | `event_ListItemOnClick` | – | calls Action_UI_UpdateItem_MarkAsRead; goes to HouseholdCarousel, HouseholdDetails; asks for a confirmation | `itemClick()` [`pages/HomeFeed/hooks/useFeedUpdates.ts:95`](../../app/src/pages/HomeFeed/hooks/useFeedUpdates.ts#L95) | **differs: 1 missing** |
+| [6](#56-feedblock_communitypopulation-click-onclick_block) | `FeedBlock_CommunityPopulation` | click | `onClick_Block` | – | goes to Updates_SingleList | `onClick()` [`pages/HomeFeed/HomeFeedPage.tsx:156`](../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L156) | same |
+| [7](#57-feedblock_updates-click-event_markasread) | `FeedBlock_Updates` | click | `event_MarkAsRead` | – | calls Action_UI_UpdateItem_MarkAsRead, Get_UI_UpdateItems_UnreadCount_All | `markAs()` [`pages/HomeFeed/hooks/useFeedUpdates.ts:121`](../../app/src/pages/HomeFeed/hooks/useFeedUpdates.ts#L121) | same |
+| [8](#58-feedblock_updates-click-event_markasunread) | `FeedBlock_Updates` | click | `event_MarkAsUnread` | – | calls Action_UI_UpdateItem_MarkAsUnread, Get_UI_UpdateItems_UnreadCount_All | `markAs()` [`pages/HomeFeed/hooks/useFeedUpdates.ts:121`](../../app/src/pages/HomeFeed/hooks/useFeedUpdates.ts#L121) | same |
+| [9](#59-feedblock_updates-click-event_sendgift) | `FeedBlock_Updates` | click | `event_SendGift` | – | shows a message | `onSendGift()` [`pages/HomeFeed/hooks/useFeedUpdates.ts:139`](../../app/src/pages/HomeFeed/hooks/useFeedUpdates.ts#L139) | same |
+| [10](#510-feedblock_services-click-onclick_servicesettings) | `FeedBlock_Services` | click | `onClick_ServiceSettings` | – | goes to Services | `onClickServiceSettings()` [`pages/HomeFeed/hooks/useFeedServices.ts:149`](../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L149) | same |
+| [11](#511-sharesheet-click-handler_onclickexternaloption) | `ShareSheet` | click | `handler_OnClickExternalOption` | – | calls **CS_CreateShareProfileLink (missing)** | – | **no React handler found** |
+| [12](#512-feedblock_services-click-onclick_service-orbit) | `FeedBlock_Services` | click | `onClick_Service` | `orbit` | goes to OrbitLanding | `clickService()` [`pages/HomeFeed/hooks/useFeedServices.ts:80`](../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L80) | same |
+| [13](#513-feedblock_services-click-onclick_service-ldm) | `FeedBlock_Services` | click | `onClick_Service` | `lDM` | goes to LDM_MyEvents_V2, LDM_MyEvents | `clickService()` [`pages/HomeFeed/hooks/useFeedServices.ts:80`](../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L80) | **differs: 1 missing** |
+| [14](#514-feedblock_services-click-onclick_service-mycalendar) | `FeedBlock_Services` | click | `onClick_Service` | `myCalendar` | goes to MyEntertaining | `clickService()` [`pages/HomeFeed/hooks/useFeedServices.ts:80`](../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L80) | same |
+| [15](#515-feedblock_services-click-onclick_service-assemble) | `FeedBlock_Services` | click | `onClick_Service` | `assemble` | goes to AssembleEvents | `clickService()` [`pages/HomeFeed/hooks/useFeedServices.ts:80`](../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L80) | same |
+| [16](#516-feedblock_services-click-onclick_service-orbitadmin) | `FeedBlock_Services` | click | `onClick_Service` | `orbitAdmin` | goes to OrbitAdminLanding | `clickService()` [`pages/HomeFeed/hooks/useFeedServices.ts:80`](../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L80) | same |
+| [17](#517-feedblock_services-click-onclick_service-mynotes) | `FeedBlock_Services` | click | `onClick_Service` | `myNotes` | goes to Notes | `clickService()` [`pages/HomeFeed/hooks/useFeedServices.ts:80`](../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L80) | same |
+| [18](#518-feedblock_services-click-onclick_service-other) | `FeedBlock_Services` | click | `onClick_Service` | `other` | asks for a confirmation | `clickService()` [`pages/HomeFeed/hooks/useFeedServices.ts:80`](../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L80) | same |
+| [19](#519-sharesheet-click-handler_onclickrecentmember) | `ShareSheet` | click | `handler_OnClickRecentMember` | – | calls CS_ShareObject; shows a message; asks for a confirmation | `onClickRecentMember()` [`containers/ShareSheet/useShareSheet.ts:177`](../../app/src/containers/ShareSheet/useShareSheet.ts#L177) | same |
+| [20](#520-homefeed-click-onclick_search) | `HomeFeed` | click | `onClick_Search` | – | goes to Search | `onOnSearchClick()` [`pages/HomeFeed/HomeFeedPage.tsx:128`](../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L128) | same |
+| [21](#521-homefeed-click-section_updatesonclick_viewall) | `HomeFeed` | click | `section_UpdatesOnClick_ViewAll` | – | goes to Updates_SingleList | `onOnClickViewAll()` [`pages/HomeFeed/HomeFeedPage.tsx:170`](../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L170) | same |
+| [22](#522-sharesheet-submit-handler_inputeventsubmit) | `ShareSheet` | submit | `handler_InputEventSubmit` | – | calls GetAvailableMembers | `onSubmit()` [`containers/ShareSheet/useShareSheet.ts:112`](../../app/src/containers/ShareSheet/useShareSheet.ts#L112) | **differs: 1 missing** |
+| [23](#523-sharesheet-click-handler_onclicksend) | `ShareSheet` | click | `handler_OnClickSend` | – | calls CS_ShareObject; shows a message | `onClickSend()` [`containers/ShareSheet/useShareSheet.ts:215`](../../app/src/containers/ShareSheet/useShareSheet.ts#L215) | same |
 
-### 5.1 Feed_Embeded: click handle_Share_Others
+### 5.1 Feed_Embeded: click handle_Share_Connect
 
-![Feed_Embeded handle_Share_Others](svg/HomeFeed-action-1.svg)
+Result: differs: 1 missing.
+
+**OutSystems (TST)**
+
+![OutSystems handle_Share_Connect](svg/HomeFeed-action-1.svg)
+
+**React**: `handle_Share_Connect()` in [`components/feed/EmbeddedFeed/EmbeddedFeed.tsx:76`](../../app/src/components/feed/EmbeddedFeed/EmbeddedFeed.tsx#L76)
+
+![React handle_Share_Connect](svg/HomeFeed-action-1-react.svg)
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as Feed_Embeded
+  participant N as Navigation
+  U->>B: click: handle_Share_Connect
+  rect rgba(192, 57, 43, 0.15)
+  B->>N: go to LegacyShareObject
+  Note over B,N: not in the React handler
+  end
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as handle_Share_Connect() · EmbeddedFeed.tsx
+  participant N as Navigation
+  U->>H: click
+  Note over H: calls the prop onShareToConnect() (the parent component decides)
+  rect rgba(192, 57, 43, 0.15)
+  Note over H: missing, OutSystems has: go to LegacyShareObject
+  end
+```
+
+</details>
+
+### 5.2 Feed_Embeded: click handle_Share_Others
+
+Result: no React handler found.
+
+**OutSystems (TST)**
+
+![OutSystems handle_Share_Others](svg/HomeFeed-action-2.svg)
+
+**React**: no React handler found
+
+![React handle_Share_Others](svg/HomeFeed-action-2-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -203,40 +253,44 @@ sequenceDiagram
   U->>B: click: handle_Share_Others
   Note over B: via UBTConnect_Utils.shareEntity_ByURL
   rect rgba(192, 57, 43, 0.15)
-  B->>S: GetAllApplicationEvents() · React: none
+  B->>S: GetAllApplicationEvents()
   S-->>B: EventList
+  Note over B,S: React does not make this call
   end
   rect rgba(192, 57, 43, 0.15)
-  B->>S: CS_CreateShareProfileLink() · React: none
+  B->>S: CS_CreateShareProfileLink()
   S-->>B: outputs not in the contract
+  Note over B,S: React does not make this call
   end
-  B->>S: AppManager_SynchAppContext(EspaceName) · React: AppFrame
+  rect rgba(192, 57, 43, 0.15)
+  B->>S: AppManager_SynchAppContext(EspaceName)
   S-->>B: AppManager_ClientConfig, FirebaseRealTimeDB_Token, PermissionList, …
+  Note over B,S: not in the React handler
+  end
 ```
-
-</details>
-
-### 5.2 Feed_Embeded: click handle_Share_Connect
-
-![Feed_Embeded handle_Share_Connect](svg/HomeFeed-action-2.svg)
-
-<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
-  autonumber
   actor U as User
-  participant B as Feed_Embeded
-  participant N as Navigation
-  U->>B: click: handle_Share_Connect
-  B->>N: go to LegacyShareObject
+  participant H as React
+  rect rgba(192, 57, 43, 0.15)
+  Note over U,H: no React handler found for handle_Share_Others
+  end
 ```
 
 </details>
 
 ### 5.3 Dialog_GoExternalApp: click goToExternalApp
 
-![Dialog_GoExternalApp goToExternalApp](svg/HomeFeed-action-3.svg)
+Result: differs: 1 not in OutSystems.
+
+**OutSystems (TST)**
+
+![OutSystems goToExternalApp](svg/HomeFeed-action-3.svg)
+
+**React**: `goToExternalApp()` in [`pages/HomeFeed/hooks/goToExternalApp.ts:11`](../../app/src/pages/HomeFeed/hooks/goToExternalApp.ts#L11)
+
+![React goToExternalApp](svg/HomeFeed-action-3-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -251,11 +305,35 @@ sequenceDiagram
   B->>X: OpenInApp_OpenApp
 ```
 
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as goToExternalApp() · goToExternalApp.ts
+  participant X as External link
+  U->>H: click
+  Note over H: via feedbackMessageAutoClose()
+  Note over H: via run()
+  rect rgba(192, 57, 43, 0.15)
+  Note over H: message message
+  Note over H: not in OutSystems
+  end
+  H->>X: openInApp_OpenApp
+```
+
 </details>
 
 ### 5.4 App_NotificationIcon: click iconClick
 
-![App_NotificationIcon iconClick](svg/HomeFeed-action-4.svg)
+Result: same.
+
+**OutSystems (TST)**
+
+![OutSystems iconClick](svg/HomeFeed-action-4.svg)
+
+**React**: `onIconClick()` in [`platform/session/useNotificationIcon.ts:40`](../../app/src/platform/session/useNotificationIcon.ts#L40)
+
+![React iconClick](svg/HomeFeed-action-4-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -270,11 +348,30 @@ sequenceDiagram
   B->>N: go to MessageList
 ```
 
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as onIconClick() · useNotificationIcon.ts
+  participant N as Navigation
+  U->>H: click
+  H->>N: go to Notifications
+  H->>N: go to MessageList
+```
+
 </details>
 
 ### 5.5 FeedBlock_Updates: click event_ListItemOnClick
 
-![FeedBlock_Updates event_ListItemOnClick](svg/HomeFeed-action-5.svg)
+Result: differs: 1 missing.
+
+**OutSystems (TST)**
+
+![OutSystems event_ListItemOnClick](svg/HomeFeed-action-5.svg)
+
+**React**: `itemClick()` in [`pages/HomeFeed/hooks/useFeedUpdates.ts:95`](../../app/src/pages/HomeFeed/hooks/useFeedUpdates.ts#L95)
+
+![React event_ListItemOnClick](svg/HomeFeed-action-5-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -286,19 +383,49 @@ sequenceDiagram
   participant S as Server (TST calls)
   participant N as Navigation
   U->>B: click: event_ListItemOnClick
-  B->>S: Action_UI_UpdateItem_MarkAsRead(UpdateItemId) · React: FeedUpdates
+  B->>S: Action_UI_UpdateItem_MarkAsRead(UpdateItemId)
   S-->>B: no outputs
   B->>N: go to HouseholdCarousel
+  rect rgba(192, 57, 43, 0.15)
   B->>N: go to HouseholdDetails
+  Note over B,N: not in the React handler
+  end
   Note over B: via UBTConnect_Utils.app_Subscription_ShowUpgradePopUp
   Note over B: confirm dialog
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as itemClick() · useFeedUpdates.ts
+  participant A as Server (React api)
+  participant N as Navigation
+  U->>H: click
+  Note over H: via showUpgradePopUp()
+  Note over H: confirm dialog dialogId
+  Note over H: via markUpdateItemAsRead()
+  H->>A: ServiceAPIAction_UI_UpdateItem_MarkAsRead(UpdateItemId)
+  A-->>H: no outputs
+  H->>N: go to HouseholdCarousel
+  rect rgba(192, 57, 43, 0.15)
+  Note over H: missing, OutSystems has: go to HouseholdDetails
+  end
 ```
 
 </details>
 
 ### 5.6 FeedBlock_CommunityPopulation: click onClick_Block
 
-![FeedBlock_CommunityPopulation onClick_Block](svg/HomeFeed-action-6.svg)
+Result: same.
+
+**OutSystems (TST)**
+
+![OutSystems onClick_Block](svg/HomeFeed-action-6.svg)
+
+**React**: `onClick()` in [`pages/HomeFeed/HomeFeedPage.tsx:156`](../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L156)
+
+![React onClick_Block](svg/HomeFeed-action-6-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -312,11 +439,29 @@ sequenceDiagram
   B->>N: go to Updates_SingleList
 ```
 
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as onClick() · HomeFeedPage.tsx
+  participant N as Navigation
+  U->>H: click
+  H->>N: go to Updates_SingleList
+```
+
 </details>
 
 ### 5.7 FeedBlock_Updates: click event_MarkAsRead
 
-![FeedBlock_Updates event_MarkAsRead](svg/HomeFeed-action-7.svg)
+Result: same.
+
+**OutSystems (TST)**
+
+![OutSystems event_MarkAsRead](svg/HomeFeed-action-7.svg)
+
+**React**: `markAs()` in [`pages/HomeFeed/hooks/useFeedUpdates.ts:121`](../../app/src/pages/HomeFeed/hooks/useFeedUpdates.ts#L121)
+
+![React event_MarkAsRead](svg/HomeFeed-action-7-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -327,18 +472,44 @@ sequenceDiagram
   participant B as FeedBlock_Updates
   participant S as Server (TST calls)
   U->>B: click: event_MarkAsRead
-  B->>S: Action_UI_UpdateItem_MarkAsRead(UpdateItemId) · React: FeedUpdates
+  B->>S: Action_UI_UpdateItem_MarkAsRead(UpdateItemId)
   S-->>B: no outputs
   Note over B: via UBTConnect.directory_Updates_RefreshBottomBarCount
-  B->>S: Get_UI_UpdateItems_UnreadCount_All() · React: BottomBar
+  B->>S: Get_UI_UpdateItems_UnreadCount_All()
   S-->>B: UnreadCount
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as markAs() · useFeedUpdates.ts
+  participant A as Server (React api)
+  U->>H: click
+  H->>A: ServiceAPIAction_UI_UpdateItem_MarkAsRead(UpdateItemId)
+  A-->>H: no outputs
+  Note over H: or (the other function of a conditional call)
+  H->>A: ServiceAPIAction_UI_UpdateItem_MarkAsUnread(UpdateItemId)
+  A-->>H: no outputs
+  Note over H: via directory_Updates_RefreshBottomBarCount()
+  Note over H: via fetchUnreadUpdateItemsCount()
+  H->>A: ServiceAPIGet_UI_UpdateItems_UnreadCount_All()
+  A-->>H: UnreadCount
 ```
 
 </details>
 
 ### 5.8 FeedBlock_Updates: click event_MarkAsUnread
 
-![FeedBlock_Updates event_MarkAsUnread](svg/HomeFeed-action-8.svg)
+Result: same.
+
+**OutSystems (TST)**
+
+![OutSystems event_MarkAsUnread](svg/HomeFeed-action-8.svg)
+
+**React**: `markAs()` in [`pages/HomeFeed/hooks/useFeedUpdates.ts:121`](../../app/src/pages/HomeFeed/hooks/useFeedUpdates.ts#L121)
+
+![React event_MarkAsUnread](svg/HomeFeed-action-8-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -349,18 +520,44 @@ sequenceDiagram
   participant B as FeedBlock_Updates
   participant S as Server (TST calls)
   U->>B: click: event_MarkAsUnread
-  B->>S: Action_UI_UpdateItem_MarkAsUnread(UpdateItemId) · React: FeedUpdates
+  B->>S: Action_UI_UpdateItem_MarkAsUnread(UpdateItemId)
   S-->>B: no outputs
   Note over B: via UBTConnect.directory_Updates_RefreshBottomBarCount
-  B->>S: Get_UI_UpdateItems_UnreadCount_All() · React: BottomBar
+  B->>S: Get_UI_UpdateItems_UnreadCount_All()
   S-->>B: UnreadCount
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as markAs() · useFeedUpdates.ts
+  participant A as Server (React api)
+  U->>H: click
+  Note over H: or (the other function of a conditional call)
+  H->>A: ServiceAPIAction_UI_UpdateItem_MarkAsRead(UpdateItemId)
+  A-->>H: no outputs
+  H->>A: ServiceAPIAction_UI_UpdateItem_MarkAsUnread(UpdateItemId)
+  A-->>H: no outputs
+  Note over H: via directory_Updates_RefreshBottomBarCount()
+  Note over H: via fetchUnreadUpdateItemsCount()
+  H->>A: ServiceAPIGet_UI_UpdateItems_UnreadCount_All()
+  A-->>H: UnreadCount
 ```
 
 </details>
 
 ### 5.9 FeedBlock_Updates: click event_SendGift
 
-![FeedBlock_Updates event_SendGift](svg/HomeFeed-action-9.svg)
+Result: same.
+
+**OutSystems (TST)**
+
+![OutSystems event_SendGift](svg/HomeFeed-action-9.svg)
+
+**React**: `onSendGift()` in [`pages/HomeFeed/hooks/useFeedUpdates.ts:139`](../../app/src/pages/HomeFeed/hooks/useFeedUpdates.ts#L139)
+
+![React event_SendGift](svg/HomeFeed-action-9-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -373,11 +570,28 @@ sequenceDiagram
   Note over B: message "Send gift"
 ```
 
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as onSendGift() · useFeedUpdates.ts
+  U->>H: click
+  Note over H: message 'Send gift'
+```
+
 </details>
 
 ### 5.10 FeedBlock_Services: click onClick_ServiceSettings
 
-![FeedBlock_Services onClick_ServiceSettings](svg/HomeFeed-action-10.svg)
+Result: same.
+
+**OutSystems (TST)**
+
+![OutSystems onClick_ServiceSettings](svg/HomeFeed-action-10.svg)
+
+**React**: `onClickServiceSettings()` in [`pages/HomeFeed/hooks/useFeedServices.ts:149`](../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L149)
+
+![React onClick_ServiceSettings](svg/HomeFeed-action-10-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -391,11 +605,68 @@ sequenceDiagram
   B->>N: go to Services
 ```
 
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as onClickServiceSettings() · useFeedServices.ts
+  participant N as Navigation
+  U->>H: click
+  H->>N: go to Services
+```
+
 </details>
 
-### 5.11 FeedBlock_Services: click onClick_Service (orbit)
+### 5.11 ShareSheet: click handler_OnClickExternalOption
 
-![FeedBlock_Services onClick_Service](svg/HomeFeed-action-11.svg)
+Result: no React handler found.
+
+**OutSystems (TST)**
+
+![OutSystems handler_OnClickExternalOption](svg/HomeFeed-action-11.svg)
+
+**React**: no React handler found
+
+![React handler_OnClickExternalOption](svg/HomeFeed-action-11-react.svg)
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as ShareSheet
+  participant S as Server (TST calls)
+  U->>B: click: handler_OnClickExternalOption
+  rect rgba(192, 57, 43, 0.15)
+  B->>S: CS_CreateShareProfileLink(In_ShareObjectTypeId, In_SharedObjectId, In_UpdateDate, …)
+  S-->>B: ShareId, URL
+  Note over B,S: React does not make this call
+  end
+```
+
+```mermaid
+sequenceDiagram
+  actor U as User
+  participant H as React
+  rect rgba(192, 57, 43, 0.15)
+  Note over U,H: no React handler found for handler_OnClickExternalOption
+  end
+```
+
+</details>
+
+### 5.12 FeedBlock_Services: click onClick_Service (orbit)
+
+Result: same.
+
+**OutSystems (TST)**
+
+![OutSystems onClick_Service](svg/HomeFeed-action-12.svg)
+
+**React**: `clickService()` in [`pages/HomeFeed/hooks/useFeedServices.ts:80`](../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L80)
+
+![React onClick_Service](svg/HomeFeed-action-12-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -409,11 +680,29 @@ sequenceDiagram
   B->>N: go to OrbitLanding
 ```
 
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as clickService() · useFeedServices.ts
+  participant N as Navigation
+  U->>H: click (orbit)
+  H->>N: go to OrbitLanding
+```
+
 </details>
 
-### 5.12 FeedBlock_Services: click onClick_Service (lDM)
+### 5.13 FeedBlock_Services: click onClick_Service (lDM)
 
-![FeedBlock_Services onClick_Service](svg/HomeFeed-action-12.svg)
+Result: differs: 1 missing.
+
+**OutSystems (TST)**
+
+![OutSystems onClick_Service](svg/HomeFeed-action-13.svg)
+
+**React**: `clickService()` in [`pages/HomeFeed/hooks/useFeedServices.ts:80`](../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L80)
+
+![React onClick_Service](svg/HomeFeed-action-13-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -425,14 +714,38 @@ sequenceDiagram
   participant N as Navigation
   U->>B: click: onClick_Service (lDM)
   B->>N: go to LDM_MyEvents_V2
+  rect rgba(192, 57, 43, 0.15)
   B->>N: go to LDM_MyEvents
+  Note over B,N: not in the React handler
+  end
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as clickService() · useFeedServices.ts
+  participant N as Navigation
+  U->>H: click (lDM)
+  H->>N: go to LDM_MyEvents_V2
+  rect rgba(192, 57, 43, 0.15)
+  Note over H: missing, OutSystems has: go to LDM_MyEvents
+  end
 ```
 
 </details>
 
-### 5.13 FeedBlock_Services: click onClick_Service (myCalendar)
+### 5.14 FeedBlock_Services: click onClick_Service (myCalendar)
 
-![FeedBlock_Services onClick_Service](svg/HomeFeed-action-13.svg)
+Result: same.
+
+**OutSystems (TST)**
+
+![OutSystems onClick_Service](svg/HomeFeed-action-14.svg)
+
+**React**: `clickService()` in [`pages/HomeFeed/hooks/useFeedServices.ts:80`](../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L80)
+
+![React onClick_Service](svg/HomeFeed-action-14-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -446,11 +759,29 @@ sequenceDiagram
   B->>N: go to MyEntertaining
 ```
 
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as clickService() · useFeedServices.ts
+  participant N as Navigation
+  U->>H: click (myCalendar)
+  H->>N: go to MyEntertaining
+```
+
 </details>
 
-### 5.14 FeedBlock_Services: click onClick_Service (assemble)
+### 5.15 FeedBlock_Services: click onClick_Service (assemble)
 
-![FeedBlock_Services onClick_Service](svg/HomeFeed-action-14.svg)
+Result: same.
+
+**OutSystems (TST)**
+
+![OutSystems onClick_Service](svg/HomeFeed-action-15.svg)
+
+**React**: `clickService()` in [`pages/HomeFeed/hooks/useFeedServices.ts:80`](../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L80)
+
+![React onClick_Service](svg/HomeFeed-action-15-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -464,11 +795,29 @@ sequenceDiagram
   B->>N: go to AssembleEvents
 ```
 
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as clickService() · useFeedServices.ts
+  participant N as Navigation
+  U->>H: click (assemble)
+  H->>N: go to AssembleEvents
+```
+
 </details>
 
-### 5.15 FeedBlock_Services: click onClick_Service (orbitAdmin)
+### 5.16 FeedBlock_Services: click onClick_Service (orbitAdmin)
 
-![FeedBlock_Services onClick_Service](svg/HomeFeed-action-15.svg)
+Result: same.
+
+**OutSystems (TST)**
+
+![OutSystems onClick_Service](svg/HomeFeed-action-16.svg)
+
+**React**: `clickService()` in [`pages/HomeFeed/hooks/useFeedServices.ts:80`](../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L80)
+
+![React onClick_Service](svg/HomeFeed-action-16-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -482,11 +831,29 @@ sequenceDiagram
   B->>N: go to OrbitAdminLanding
 ```
 
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as clickService() · useFeedServices.ts
+  participant N as Navigation
+  U->>H: click (orbitAdmin)
+  H->>N: go to OrbitAdminLanding
+```
+
 </details>
 
-### 5.16 FeedBlock_Services: click onClick_Service (myNotes)
+### 5.17 FeedBlock_Services: click onClick_Service (myNotes)
 
-![FeedBlock_Services onClick_Service](svg/HomeFeed-action-16.svg)
+Result: same.
+
+**OutSystems (TST)**
+
+![OutSystems onClick_Service](svg/HomeFeed-action-17.svg)
+
+**React**: `clickService()` in [`pages/HomeFeed/hooks/useFeedServices.ts:80`](../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L80)
+
+![React onClick_Service](svg/HomeFeed-action-17-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -500,11 +867,29 @@ sequenceDiagram
   B->>N: go to Notes
 ```
 
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as clickService() · useFeedServices.ts
+  participant N as Navigation
+  U->>H: click (myNotes)
+  H->>N: go to Notes
+```
+
 </details>
 
-### 5.17 FeedBlock_Services: click onClick_Service (other)
+### 5.18 FeedBlock_Services: click onClick_Service (other)
 
-![FeedBlock_Services onClick_Service](svg/HomeFeed-action-17.svg)
+Result: same.
+
+**OutSystems (TST)**
+
+![OutSystems onClick_Service](svg/HomeFeed-action-18.svg)
+
+**React**: `clickService()` in [`pages/HomeFeed/hooks/useFeedServices.ts:80`](../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L80)
+
+![React onClick_Service](svg/HomeFeed-action-18-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -517,32 +902,28 @@ sequenceDiagram
   Note over B: confirm dialog
 ```
 
-</details>
-
-### 5.18 ShareSheet: click handler_OnClickExternalOption
-
-![ShareSheet handler_OnClickExternalOption](svg/HomeFeed-action-18.svg)
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 sequenceDiagram
   autonumber
   actor U as User
-  participant B as ShareSheet
-  participant S as Server (TST calls)
-  U->>B: click: handler_OnClickExternalOption
-  rect rgba(192, 57, 43, 0.15)
-  B->>S: CS_CreateShareProfileLink(In_ShareObjectTypeId, In_SharedObjectId, In_UpdateDate, …) · React: none
-  S-->>B: ShareId, URL
-  end
+  participant H as clickService() · useFeedServices.ts
+  U->>H: click (other)
+  Note over H: confirm dialog externalAppPopUpId
 ```
 
 </details>
 
 ### 5.19 ShareSheet: click handler_OnClickRecentMember
 
-![ShareSheet handler_OnClickRecentMember](svg/HomeFeed-action-19.svg)
+Result: same.
+
+**OutSystems (TST)**
+
+![OutSystems handler_OnClickRecentMember](svg/HomeFeed-action-19.svg)
+
+**React**: `onClickRecentMember()` in [`containers/ShareSheet/useShareSheet.ts:177`](../../app/src/containers/ShareSheet/useShareSheet.ts#L177)
+
+![React handler_OnClickRecentMember](svg/HomeFeed-action-19-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -555,17 +936,45 @@ sequenceDiagram
   U->>B: click: handler_OnClickRecentMember
   Note over B: via UBTConnect_Utils.app_Subscription_ShowUpgradePopUp
   Note over B: confirm dialog
-  B->>S: CS_ShareObject(In_ShareObjectTypeId, In_SharedObjectId, In_SharingProfileName, …) · React: ShareSheetContainer
+  B->>S: CS_ShareObject(In_ShareObjectTypeId, In_SharedObjectId, In_SharingProfileName, …)
   S-->>B: IsAllowed, IsSuccess, Message, …
   Note over B: message submitMessageVar + " has been shared."
   Note over B: message "Share failed. Please try again."
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as onClickRecentMember() · useShareSheet.ts
+  participant A as Server (React api)
+  U->>H: click
+  Note over H: via showUpgradePopUp()
+  Note over H: confirm dialog dialogId
+  Note over H: via submitShare()
+  Note over H: via csShareObject()
+  H->>A: ActionCS_ShareObject(In_ShareObjectTypeId, In_SharedObjectId, In_SharingProfileName, …)
+  A-->>H: IsAllowed, IsSuccess, Message, …
+  Note over H: message `${submitMessage} has been shared.`
+  Note over H: message error message (on exception)
+  Note over H: message error message (on exception)
+  Note over H: message error message (on exception)
+  Note over H: message 'Share failed. Please try again.'
 ```
 
 </details>
 
 ### 5.20 HomeFeed: click onClick_Search
 
-![HomeFeed onClick_Search](svg/HomeFeed-action-20.svg)
+Result: same.
+
+**OutSystems (TST)**
+
+![OutSystems onClick_Search](svg/HomeFeed-action-20.svg)
+
+**React**: `onOnSearchClick()` in [`pages/HomeFeed/HomeFeedPage.tsx:128`](../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L128)
+
+![React onClick_Search](svg/HomeFeed-action-20-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -579,11 +988,29 @@ sequenceDiagram
   B->>N: go to Search
 ```
 
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as onOnSearchClick() · HomeFeedPage.tsx
+  participant N as Navigation
+  U->>H: click
+  H->>N: go to Search
+```
+
 </details>
 
 ### 5.21 HomeFeed: click section_UpdatesOnClick_ViewAll
 
-![HomeFeed section_UpdatesOnClick_ViewAll](svg/HomeFeed-action-21.svg)
+Result: same.
+
+**OutSystems (TST)**
+
+![OutSystems section_UpdatesOnClick_ViewAll](svg/HomeFeed-action-21.svg)
+
+**React**: `onOnClickViewAll()` in [`pages/HomeFeed/HomeFeedPage.tsx:170`](../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L170)
+
+![React section_UpdatesOnClick_ViewAll](svg/HomeFeed-action-21-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -597,11 +1024,29 @@ sequenceDiagram
   B->>N: go to Updates_SingleList
 ```
 
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as onOnClickViewAll() · HomeFeedPage.tsx
+  participant N as Navigation
+  U->>H: click
+  H->>N: go to Updates_SingleList
+```
+
 </details>
 
 ### 5.22 ShareSheet: submit handler_InputEventSubmit
 
-![ShareSheet handler_InputEventSubmit](svg/HomeFeed-action-22.svg)
+Result: differs: 1 missing.
+
+**OutSystems (TST)**
+
+![OutSystems handler_InputEventSubmit](svg/HomeFeed-action-22.svg)
+
+**React**: `onSubmit()` in [`containers/ShareSheet/useShareSheet.ts:112`](../../app/src/containers/ShareSheet/useShareSheet.ts#L112)
+
+![React handler_InputEventSubmit](svg/HomeFeed-action-22-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -612,15 +1057,39 @@ sequenceDiagram
   participant B as ShareSheet
   participant S as Server (TST calls)
   U->>B: submit: handler_InputEventSubmit
-  B->>S: GetAvailableMembers(AvatarImageSize_HorizontalList, AvatarImageSize_VerticalList, AvatarSize_HorizontalList, …) · React: ShareSheetContainer
+  rect rgba(192, 57, 43, 0.15)
+  B->>S: GetAvailableMembers(AvatarImageSize_HorizontalList, AvatarImageSize_VerticalList, AvatarSize_HorizontalList, …)
   S-->>B: Out_SearchResultItemList
+  Note over B,S: not in the React handler
+  end
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as onSubmit() · useShareSheet.ts
+  participant A as Server (React api)
+  U->>H: submit
+  Note over H: setSearchFetchId(): a query fetches again (the tool does not follow it)
+  rect rgba(192, 57, 43, 0.15)
+  Note over H: missing, OutSystems has: call GetAvailableMembers
+  end
 ```
 
 </details>
 
 ### 5.23 ShareSheet: click handler_OnClickSend
 
-![ShareSheet handler_OnClickSend](svg/HomeFeed-action-23.svg)
+Result: same.
+
+**OutSystems (TST)**
+
+![OutSystems handler_OnClickSend](svg/HomeFeed-action-23.svg)
+
+**React**: `onClickSend()` in [`containers/ShareSheet/useShareSheet.ts:215`](../../app/src/containers/ShareSheet/useShareSheet.ts#L215)
+
+![React handler_OnClickSend](svg/HomeFeed-action-23-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -631,10 +1100,28 @@ sequenceDiagram
   participant B as ShareSheet
   participant S as Server (TST calls)
   U->>B: click: handler_OnClickSend
-  B->>S: CS_ShareObject(In_ShareObjectTypeId, In_SharedObjectId, In_SharingProfileName, …) · React: ShareSheetContainer
+  B->>S: CS_ShareObject(In_ShareObjectTypeId, In_SharedObjectId, In_SharingProfileName, …)
   S-->>B: IsAllowed, IsSuccess, Message, …
   Note over B: message submitMessageVar + " has been shared."
   Note over B: message "Share failed. Please try again."
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as onClickSend() · useShareSheet.ts
+  participant A as Server (React api)
+  U->>H: click
+  Note over H: via submitShare()
+  Note over H: via csShareObject()
+  H->>A: ActionCS_ShareObject(In_ShareObjectTypeId, In_SharedObjectId, In_SharingProfileName, …)
+  A-->>H: IsAllowed, IsSuccess, Message, …
+  Note over H: message `${submitMessage} has been shared.`
+  Note over H: message error message (on exception)
+  Note over H: message error message (on exception)
+  Note over H: message error message (on exception)
+  Note over H: message 'Share failed. Please try again.'
 ```
 
 </details>

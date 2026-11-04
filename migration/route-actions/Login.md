@@ -23,7 +23,7 @@ The app shell is the same on many routes: layout, app start, bottom bar, PIN loc
 | Check | Result |
 |---|---|
 | Server calls of the route on TST | 6: React makes 4, **2 missing** |
-| User actions of the route | 1 diagrams (one per action and option) |
+| User actions of the route | 2 diagrams (one per action and option) |
 | React calls of the screen that TST does not make | 2 (see [questions](#8-questions)) |
 | Screen and blocks with a React port | 14 of 14 |
 | Navigation targets found in React | 3 of 3 |
@@ -110,23 +110,31 @@ flowchart LR
 
 ## 5. User actions
 
-Each user action (click, change, submit) has its own sequence diagram below.
-The diagrams follow the OutSystems code on TST. The participant is the OutSystems block. The action is its screen action.
+Each user action (click, change, submit) has two sequence diagrams: OutSystems (TST code) and React.
 
+- **OutSystems:** the participant is the OutSystems block. The action is its screen action on TST.
+- **React:** the participant is the React function that ports the action. The tool finds it by its comment (the OutSystems name), its name, or the `@origin` tag of its file.
+- When the handler has branches (a menu option, for example), each branch has its own diagrams. The name of a branch comes from its condition. `other` is the last `else` or `default`.
 - The effects are server calls, navigation (`Navigation`), external links, messages and confirm dialogs.
-- When the handler has branches (a menu option, for example), each branch has its own diagram.
-- The name of a branch comes from its condition in the TST code. `other` is the last `else`.
-- A note `via …` gives the module action that makes the next calls.
-- An arrow to the server gives the inputs of the call. The return arrow gives the outputs. The names come from the contract `app/src/api/openapi.yaml`.
-- Each call arrow ends with the nearest React component that makes the same call (`React: …`). A red area is a call that React does not make.
+- An arrow to the server gives the inputs of the call. The return arrow gives the outputs (contract `app/src/api/openapi.yaml`).
+- **Red in the OutSystems diagram:** an effect that the React handler of the action does not have.
+- **Red in the React diagram:** an effect that OutSystems does not have, and a note with the effects that React does not have.
 
-| # | Block (OutSystems) | User action | Handler | Option (branch) | Effects |
-|---|---|---|---|---|---|
-| [1](#51-login-click-login) | `Login` | click | `login` | – | calls AppManager_SynchAppContext; shows a message |
+| # | Block (OutSystems) | User action | Handler | Option (branch) | Effects (OutSystems) | React handler | React |
+|---|---|---|---|---|---|---|---|
+| [1](#51-login-click-login) | `Login` | click | `login` | – | calls AppManager_SynchAppContext; shows a message | `onLogin()` [`pages/Login/hooks/useLogin.ts:121`](../../app/src/pages/Login/hooks/useLogin.ts#L121) | **differs: 1 missing** |
 
 ### 5.1 Login: click login
 
-![Login login](svg/Login-action-1.svg)
+Result: differs: 1 missing.
+
+**OutSystems (TST)**
+
+![OutSystems login](svg/Login-action-1.svg)
+
+**React**: `onLogin()` in [`pages/Login/hooks/useLogin.ts:121`](../../app/src/pages/Login/hooks/useLogin.ts#L121)
+
+![React login](svg/Login-action-1-react.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -138,9 +146,26 @@ sequenceDiagram
   participant S as Server (TST calls)
   U->>B: click: login
   Note over B: via UBT_AppManager.appManager_Login
-  B->>S: AppManager_SynchAppContext(EspaceName) · React: Login
+  rect rgba(192, 57, 43, 0.15)
+  B->>S: AppManager_SynchAppContext(EspaceName)
   S-->>B: AppManager_ClientConfig, FirebaseRealTimeDB_Token, PermissionList, …
+  Note over B,S: not in the React handler
+  end
   Note over B: message error message (on exception)
+```
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as onLogin() · useLogin.ts
+  participant A as Server (React api)
+  U->>H: click
+  Note over H: via login()
+  Note over H: message error message (on exception)
+  rect rgba(192, 57, 43, 0.15)
+  Note over H: missing, OutSystems has: call AppManager_SynchAppContext
+  end
 ```
 
 </details>
