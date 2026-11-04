@@ -447,6 +447,19 @@ function envResolve(ex, env) {
       const rd = declOf(obj.getExpression());
       const init = rd && Node.isVariableDeclaration(rd) ? rd.getInitializer() : null;
       if (init && Node.isCallExpression(init) && init.getExpression().getText() === 'useRef') obj = init.getArguments()[0];
+      else if (rd && Node.isBindingElement(rd) && /\bcurrent\b/.test(rd.getType().getText())) {
+        // `const { events: ref } = useFlowState({ events })`: the hook keeps the option `events` in a ref of the same
+        // name (flowState.ts: `events: useRef(events)`), so `ref.current` is the option
+        const key = rd.getPropertyNameNode()?.getText() ?? rd.getName();
+        const hv = rd.getFirstAncestorByKind(SyntaxKind.VariableDeclaration)?.getInitializer();
+        const opt = hv && Node.isCallExpression(hv) ? hv.getArguments()[0] : null;
+        const p = opt && Node.isObjectLiteralExpression(opt) ? opt.getProperty(key) : null;
+        if (p && Node.isShorthandPropertyAssignment(p)) {
+          const vd = p.getValueSymbol?.()?.getDeclarations()?.[0];
+          if (vd) arg = paramArg(vd);
+          obj = null;
+        } else if (p && Node.isPropertyAssignment(p)) obj = p.getInitializer();
+      }
     }
     if (obj && Node.isIdentifier(obj)) arg = paramArg(declOf(obj));
   } else if (Node.isIdentifier(ex)) {
@@ -886,10 +899,13 @@ function bindingsOf(units, reached) {
       if (!Node.isIdentifier(id)) continue;
       let sym = id.getSymbol?.();
       if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
-      const vd = sym?.getDeclarations()?.[0];
+      const d0 = sym?.getDeclarations()?.[0];
+      // `const flows = useY()` or the rest element `const { a, ...flows } = useY()`
+      const vd = d0 && Node.isBindingElement(d0) && d0.getDotDotDotToken() ? d0.getFirstAncestorByKind(SyntaxKind.VariableDeclaration) : d0;
       const init = vd && Node.isVariableDeclaration(vd) ? vd.getInitializer() : null;
       if (!init || !Node.isCallExpression(init) || !/^use[A-Z]/.test(init.getExpression().getText())) continue;
-      for (const prop of (init.getType().getProperties() ?? []).map((x) => x.getName()).filter((n) => /^on[A-Z]/.test(n))) {
+      const taken = vd !== d0 ? new Set(vd.getNameNode().getElements?.().map((e) => e.getName()) ?? []) : new Set();
+      for (const prop of (init.getType().getProperties() ?? []).map((x) => x.getName()).filter((n) => /^on[A-Z]/.test(n) && !taken.has(n))) {
         const body = returnedProperty(init, prop, 0);
         if (!body) continue;
         const effects = effectsOf(body, null, startDepth(body), new Set([body]));
