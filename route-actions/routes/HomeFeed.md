@@ -17,7 +17,7 @@ The app shell is in [APP_SHELL.md](../APP_SHELL.md), not here.
 | UI flow | `Home` | MCP `getScreenNames` (DEV) |
 | React screen | [`pages/HomeFeed/HomeFeedPage.tsx`](../../app/src/pages/HomeFeed/HomeFeedPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
-| Code read | OutSystems: 37 screen and block files of the route, 28 app shell files. React: 228 screen files | TST `facts.json`, `react_calls.mjs` |
+| Code read | OutSystems: 37 screen and block files of the route, 28 app shell files. React: 229 screen files | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 

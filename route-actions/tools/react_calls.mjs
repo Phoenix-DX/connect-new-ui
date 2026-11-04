@@ -148,7 +148,9 @@ function reach(files, rootKeys) {
     for (const node of u.nodes) {
       for (const id of node.getDescendantsOfKind(SyntaxKind.Identifier)) {
         if (inTypePosition(id)) continue;
-        let sym = id.getSymbol();
+        // `{ name }`: the identifier names the property; the value is the variable or function `name`
+        const sh = id.getParent();
+        let sym = Node.isShorthandPropertyAssignment(sh) && sh.getNameNode() === id ? sh.getValueSymbol() : id.getSymbol();
         if (!sym) continue;
         if (sym.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
         for (const d of sym.getDeclarations()) {
@@ -489,23 +491,9 @@ function jsxOf(tag) {
   return els;
 }
 
-// A function prop (not `on*`) that the code calls: the value of that attribute on the JSX elements of the component in
-// the route files, through the components that pass it on.
-function propResolve(ex, hops = 0) {
-  if (hops > 5) return [];
-  let sym = (Node.isPropertyAccessExpression(ex) ? ex.getNameNode() : ex).getSymbol?.();
-  if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
-  const d = sym?.getDeclarations()?.[0];
-  let prop = null, prm = null;
-  if (d && Node.isBindingElement(d)) {
-    prm = d.getFirstAncestorByKind(SyntaxKind.Parameter);
-    prop = d.getPropertyNameNode()?.getText() ?? d.getName();
-  } else if (d && Node.isPropertySignature(d) && Node.isPropertyAccessExpression(ex)) {
-    let os = ex.getExpression().getSymbol?.();
-    const od = os?.getDeclarations()?.[0];
-    if (od && Node.isParameterDeclaration(od)) { prm = od; prop = ex.getName(); }
-  }
-  if (!prm || !prop || /^on[A-Z]/.test(prop)) return [];
+// The values of a prop: `prop` of the component that declares `prm` (its parameter), on the JSX elements of that
+// component in the route files.
+function propValues(prm, prop) {
   const comp = prm.getParent();
   const name = Node.isFunctionDeclaration(comp) ? comp.getName() : comp.getParent()?.getName?.();
   if (!name || !/^[A-Z]/.test(name)) return [];
@@ -514,7 +502,34 @@ function propResolve(ex, hops = 0) {
     const attr = el.getAttribute(prop);
     const init = attr && Node.isJsxAttribute(attr) ? attr.getInitializer() : null;
     const v = init && Node.isJsxExpression(init) ? init.getExpression() : null;
-    if (!v) continue;
+    if (v) out.push(v);
+  }
+  return out;
+}
+
+// The prop behind an expression: `{ prop }` of a component parameter, or `props.prop`. Else null.
+function propOf(ex) {
+  let sym = (Node.isPropertyAccessExpression(ex) ? ex.getNameNode() : ex).getSymbol?.();
+  if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
+  const d = sym?.getDeclarations()?.[0];
+  if (d && Node.isBindingElement(d)) {
+    const prm = d.getFirstAncestorByKind(SyntaxKind.Parameter);
+    if (prm) return { prm, prop: d.getPropertyNameNode()?.getText() ?? d.getName() };
+  } else if (d && Node.isPropertySignature(d) && Node.isPropertyAccessExpression(ex)) {
+    const od = ex.getExpression().getSymbol?.()?.getDeclarations()?.[0];
+    if (od && Node.isParameterDeclaration(od)) return { prm: od, prop: ex.getName() };
+  }
+  return null;
+}
+
+// A function prop (not `on*`) that the code calls: the value of that attribute on the JSX elements of the component in
+// the route files, through the components that pass it on.
+function propResolve(ex, hops = 0) {
+  if (hops > 5) return [];
+  const p = propOf(ex);
+  if (!p || /^on[A-Z]/.test(p.prop)) return [];
+  const out = [];
+  for (const v of propValues(p.prm, p.prop)) {
     const fn = isFunctionLike(v) ? v : resolveFn(v);
     if (fn) out.push(fn);
     else out.push(...propResolve(v, hops + 1));
@@ -788,6 +803,18 @@ function resolveFn(expr, depth = 0, given = null) {
     if ((Node.isPropertySignature(d) || Node.isPropertyAssignment(d) || Node.isShorthandPropertyAssignment(d)) && Node.isPropertyAccessExpression(expr)) {
       const objSym = expr.getExpression().getSymbol?.();
       const od = objSym?.getDeclarations()?.[0];
+      // `flow.onX` with `flow` a prop: the object that the parent gives (`flow={flow}`, `const flow = useY()`)
+      const po = propOf(expr.getExpression());
+      if (po && depth < 4) {
+        for (const v of propValues(po.prm, po.prop)) {
+          const vs = v.getSymbol?.()?.getDeclarations()?.[0];
+          const vi = vs && Node.isVariableDeclaration(vs) ? vs.getInitializer() : null;
+          if (vi && Node.isCallExpression(vi)) {
+            const b = returnedProperty(vi, expr.getName(), depth);
+            if (b) return b;
+          }
+        }
+      }
       // `const x = useY()` or the rest element `const { a, ...x } = useY()`
       const ovd = od && Node.isBindingElement(od) && od.getDotDotDotToken() ? od.getFirstAncestorByKind(SyntaxKind.VariableDeclaration) : od;
       const init = ovd && Node.isVariableDeclaration(ovd) ? ovd.getInitializer() : null;
