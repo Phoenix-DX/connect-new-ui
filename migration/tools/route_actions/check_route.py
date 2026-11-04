@@ -322,6 +322,21 @@ def check(route):
             "chains": site.get("chains", []), "react": rc,
             "status": "implemented" if rc else "missing",
         })
+    # calls that TST made in the capture but that have no static chain in the compiled code (the call graph does not
+    # read the app start roots, for example): they belong to the route too
+    have = {e["url"] for e in eps}
+    for full, c in observed.items():
+        if full in have or not full.startswith("screenservices/"):
+            continue
+        short_url = full[len("screenservices/"):]
+        parts = short_url.split("/")
+        rc = react_by_url.get(full, [])
+        eps.append({
+            "url": full, "short": short_url, "kind": endpoint_kind(short_url),
+            "group": "shell" if len(parts) == 2 else "screen", "observed": "observed", "chains": [], "react": rc,
+            "status": "implemented" if rc else "missing", "noChain": True,
+            "owner": parts[0] if len(parts) == 2 else parts[-2],
+        })
     tst_urls = {e["url"] for e in eps}
     for e in eps:
         e["io"] = cio.get(e["url"])
@@ -628,11 +643,16 @@ def render(r):
     block_names = {b["key"].split(".")[-1] for b in r["blocks"]}
     rows = []
     for e in eps:
-        owners = sorted({chain_owner(c, r["blocks"]) for c in e["chains"] if c}) or [("?", e["group"])]
+        owners = sorted({chain_owner(c, r["blocks"]) for c in e["chains"] if c}) or [(e.get("owner", "?"), e["group"])]
         trigs = []
         for o in owners:
             ch = next((c for c in e["chains"] if c and chain_owner(c, r["blocks"]) == o), None)
-            trigs.append(trigger(ch, block_names) if ch else "–")
+            if ch:
+                trigs.append(trigger(ch, block_names))
+            elif e.get("noChain"):
+                trigs.append("app start (seen on TST, no static chain)" if e["group"] == "shell" else "seen on TST, no static chain")
+            else:
+                trigs.append("–")
         rows.append((owners, trigs, e))
     rows.sort(key=lambda x: (x[0][0][1] != "shell", x[0][0][0], x[2]["short"]))
     sq = sequence(r, rows)
@@ -679,21 +699,21 @@ def render(r):
          "`app shell` = the layout and the app start; `screen` = the screen and its blocks.",
          "- **Made by (TST):** for each block in \"Called from\", its chain of client actions from the block to the call.",
          "- **Trigger:** when the call runs, from the start of the chain on TST.",
-         "- **Seen on TST:** `yes` when TST made the call in the capture. Many calls run only after a click.",
+         "- **Seen on TST:** `yes` when TST made the call in the capture. Many calls run only after a click. A call that "
+         "TST made but that has no static chain in the TST code is in the table too; its trigger says so.",
          "- **React action:** the React function that makes the same call, and the part that loads it: `shell`, `page` "
          "or both.",
          "- **React caller:** the nearest React component that uses the React action, and the hooks between them. At "
          "most 2 chains, the shortest first.", "",
          "| # | Call (TST) | Kind | Called from (OutSystems) | Trigger | Made by (TST) | Seen on TST | React action | React caller | Status |",
          "|---|---|---|---|---|---|---|---|---|---|"]
-    for i, (owners, _, e) in enumerate(rows, 1):
+    for i, (owners, trigs_row, e) in enumerate(rows, 1):
         e["n"] = i
         frm = "<br>".join(f"`{o}` ({'app shell' if g == 'shell' else 'screen'})" for o, g in owners)
-        made, trig = [], []
+        made, trig = [], trigs_row
         for o in owners:
             ch = next((c for c in e["chains"] if c and chain_owner(c, r["blocks"]) == o), None)
-            made.append(md_escape(" → ".join(from_owner(ch, o[0]))) if ch else "–")
-            trig.append(trigger(ch, {b["key"].split(".")[-1] for b in r["blocks"]}) if ch else "–")
+            made.append(md_escape(" → ".join(from_owner(ch, o[0]))) if ch else ("no static chain in the TST code" if e.get("noChain") else "–"))
         more = len(e["chains"]) - len(owners)
         chain = "<br>".join(made) + (f"<br>(+{more} more chains)" if more > 0 else "")
         rc = "<br>".join(f"`{c['fn']}()` {link(c['file'], c['line'])} ({c['where']})" for c in e["react"]) or "–"

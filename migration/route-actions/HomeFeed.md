@@ -309,7 +309,7 @@ sequenceDiagram
 - **Called from (OutSystems):** the block or the app-level module whose own client action makes the call. `app shell` = the layout and the app start; `screen` = the screen and its blocks.
 - **Made by (TST):** for each block in "Called from", its chain of client actions from the block to the call.
 - **Trigger:** when the call runs, from the start of the chain on TST.
-- **Seen on TST:** `yes` when TST made the call in the capture. Many calls run only after a click.
+- **Seen on TST:** `yes` when TST made the call in the capture. Many calls run only after a click. A call that TST made but that has no static chain in the TST code is in the table too; its trigger says so.
 - **React action:** the React function that makes the same call, and the part that loads it: `shell`, `page` or both.
 - **React caller:** the nearest React component that uses the React action, and the hooks between them. At most 2 chains, the shortest first.
 
