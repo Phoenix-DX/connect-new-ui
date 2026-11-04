@@ -650,15 +650,23 @@ function effectsOf(fn, label, depth, seen, env = null) {
         // a query fetches again (a new key or a refetch). `q.refetch()` with `const q = useXQuery(…)`: the calls of the
         // query hook
         let qcalls = [];
-        if (Node.isPropertyAccessExpression(ex) && Node.isIdentifier(ex.getExpression()) && depth < 3) {
+        // the query is a last step (queryFn → fetch function → callAction): it has its own depth, from level 1
+        if (Node.isPropertyAccessExpression(ex) && Node.isIdentifier(ex.getExpression())) {
           const qd = ex.getExpression().getSymbol?.()?.getDeclarations()?.[0];
           const qi = qd && Node.isVariableDeclaration(qd) ? qd.getInitializer() : null;
-          if (qi && Node.isCallExpression(qi) && /^use\w*Query$/.test(qi.getExpression().getText())) {
+          const qn = qi && Node.isCallExpression(qi) ? qi.getExpression().getText() : '';
+          const qo = /^use(Infinite)?Query$/.test(qn) ? qi.getArguments()[0] : null;
+          const qp = qo && Node.isObjectLiteralExpression(qo) ? qo.getProperty('queryFn') : null;
+          const qf = qp && Node.isPropertyAssignment(qp) ? resolveFn(qp.getInitializer()) : null;
+          if (qf && !seen.has(qf)) {
+            // `const q = useQuery({ queryFn })`: the calls of queryFn
+            qcalls = effectsOf(qf, lab, 1, new Set([...seen, qf])).filter((e) => e.kind === 'call');
+          } else if (qi && Node.isCallExpression(qi) && /^use\w*Query$/.test(qn)) {
             let hs = qi.getExpression().getSymbol?.();
             if (hs?.isAlias()) hs = hs.getAliasedSymbol() ?? hs;
             const hd = hs?.getDeclarations()?.[0];
             const hb = hd && !excluded(hd.getSourceFile().getFilePath()) ? bodyOfDecl(hd) : null;
-            if (hb && !seen.has(hb)) qcalls = effectsOf(hb, lab, depth + 1, new Set([...seen, hb])).filter((e) => e.kind === 'call');
+            if (hb && !seen.has(hb)) qcalls = effectsOf(hb, lab, 1, new Set([...seen, hb])).filter((e) => e.kind === 'call');
           }
         }
         if (qcalls.length) {
@@ -883,7 +891,11 @@ function resolveFn(expr, depth = 0, given = null) {
       }
       // `const x = useY()` or the rest element `const { a, ...x } = useY()`
       const ovd = od && Node.isBindingElement(od) && od.getDotDotDotToken() ? od.getFirstAncestorByKind(SyntaxKind.VariableDeclaration) : od;
-      const init = ovd && Node.isVariableDeclaration(ovd) ? ovd.getInitializer() : null;
+      let init = ovd && Node.isVariableDeclaration(ovd) ? ovd.getInitializer() : null;
+      if (init && Node.isIdentifier(init)) {
+        const ld = init.getSymbol?.()?.getDeclarations()?.[0];
+        init = ld && Node.isVariableDeclaration(ld) ? ld.getInitializer() : null;
+      }
       if (init && Node.isCallExpression(init)) return returnedProperty(init, expr.getName(), depth);
     }
   }
@@ -931,7 +943,12 @@ function bindingsOf(units, reached) {
       const d0 = sym?.getDeclarations()?.[0];
       // `const flows = useY()` or the rest element `const { a, ...flows } = useY()`
       const vd = d0 && Node.isBindingElement(d0) && d0.getDotDotDotToken() ? d0.getFirstAncestorByKind(SyntaxKind.VariableDeclaration) : d0;
-      const init = vd && Node.isVariableDeclaration(vd) ? vd.getInitializer() : null;
+      let init = vd && Node.isVariableDeclaration(vd) ? vd.getInitializer() : null;
+      if (init && Node.isIdentifier(init)) {
+        // `const { a, ...view } = list` with `const list = useY()`
+        const ld = init.getSymbol?.()?.getDeclarations()?.[0];
+        init = ld && Node.isVariableDeclaration(ld) ? ld.getInitializer() : null;
+      }
       if (!init || !Node.isCallExpression(init) || !/^use[A-Z]/.test(init.getExpression().getText())) continue;
       const taken = vd !== d0 ? new Set(vd.getNameNode().getElements?.().map((e) => e.getName()) ?? []) : new Set();
       for (const prop of (init.getType().getProperties() ?? []).map((x) => x.getName()).filter((n) => /^on[A-Z]/.test(n) && !taken.has(n))) {

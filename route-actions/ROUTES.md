@@ -55,7 +55,7 @@ UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read 2026-11-04.
 | [`LDM_EventDetail_V2`](routes/LDM_EventDetail_V2.md) | `Legacy_LDMEventsFlow_V2` | done |
 | [`LDM_MyEvents_V2`](routes/LDM_MyEvents_V2.md) | `Legacy_LDMEventsFlow_V2` | done |
 | [`MessageDetail`](routes/MessageDetail.md) | `Legacy_MyNotificationsFlow` | done |
-| `MessageList` | `Legacy_MyNotificationsFlow` | todo |
+| [`MessageList`](routes/MessageList.md) | `Legacy_MyNotificationsFlow` | todo |
 | `OrbitAdminEventDetail` | `Legacy_OrbitAdminFlow` | todo |
 | `OrbitAdminLanding` | `Legacy_OrbitAdminFlow` | todo |
 | `OrbitAdminMilestoneDetail` | `Legacy_OrbitAdminFlow` | todo |
