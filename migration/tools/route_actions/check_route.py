@@ -166,16 +166,25 @@ def react_data(route):
     return load(shell_p), load(page_p), load(os.path.join(DATA, "react-all.json"))
 
 
-def doc_notes(name, limit=3):
-    """Lines of the React docs next to the code (app/src/**/*.md) that name an OutSystems action or block."""
+def doc_notes(names, prefer=(), limit=3):
+    """Notes in the React code that name an OutSystems call or the client action that makes it: lines of the docs
+    next to the code (app/src/**/*.md) and comment lines of .ts/.tsx files. Files of the route come first."""
+    pats = [re.compile(rf"\b{re.escape(n)}\b", re.I) for n in names if n]
+    files = [p for p in glob.glob(os.path.join(ROOT, "app", "src", "**", "*"), recursive=True)
+             if p.endswith((".md", ".ts", ".tsx")) and not p.endswith(".d.ts") and ".test." not in p]
+    files.sort(key=lambda p: (rel(p) not in prefer, not p.endswith(".md"), p))
     out = []
-    pat = re.compile(rf"\b{re.escape(name)}\b")
-    for p in sorted(glob.glob(os.path.join(ROOT, "app", "src", "**", "*.md"), recursive=True)):
+    for p in files:
+        code = not p.endswith(".md")
         for i, line in enumerate(open(p, encoding="utf-8"), 1):
-            if pat.search(line):
-                out.append((rel(p), i, line.strip()[:180]))
+            t = line.strip()
+            if code and not t.startswith(("//", "/*", "*")) and "// " not in t:
+                continue
+            if any(x.search(t) for x in pats):
+                out.append((rel(p), i, t[:180]))
                 if len(out) >= limit:
                     return out
+                break  # one line per file
     return out
 
 
@@ -301,7 +310,8 @@ def check(route):
         if e["status"] == "missing":
             e["elsewhere"] = all_by_url.get(e["url"], [])
             bare = re.sub(r"^(Action|ServiceAPI|DataAction|ScreenDataSet)", "", e["url"].rsplit("/", 1)[-1])
-            e["notes"] = doc_notes(bare)
+            callers = {c[-2].split(".")[-1] for c in e["chains"] if len(c) >= 2 and "." in c[-2]}
+            e["notes"] = doc_notes([bare, *sorted(callers)], prefer=set(page_r["files"]) | set(shell_r["files"]))
     react_only = []
     for c in react_calls:
         ps = cpaths.get(c["apiPath"]) or []
@@ -356,6 +366,16 @@ def check(route):
             if n.get("how") == "name" and not navigates.search(reached_texts.get(n["file"], "")):
                 continue
             react_nav[n["to"]].add(f"{n['file']}:{n['line']}")
+    # the default screen: the shell and the screens go there through the constant HOME (PATHS.home), not a literal
+    home = re.search(r'export const HOME = "/\w+/(\w+)"', open(os.path.join(ROOT, "app", "src", "app", "routes.generated.ts"), encoding="utf-8").read())
+    if home:
+        for f, t in reached_texts.items():
+            if not navigates.search(t) or re.search(r"routes(\.css)?\.generated\.ts$", f):
+                continue
+            for i, line in enumerate(t.splitlines(), 1):
+                if re.search(r"\bPATHS\.home\b|\bHOME\b", line) and not line.lstrip().startswith(("import", "//", "*", "/*")):
+                    react_nav[home.group(1)].add(f"{f}:{i}")
+                    break
 
     result = {"route": route, "screenFile": sfile, "flow": flow, "survey": sv, "meta": meta, "endpoints": eps,
               "reactOnly": react_only, "reactUnknown": react_unknown,
