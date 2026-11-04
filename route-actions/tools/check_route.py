@@ -709,8 +709,7 @@ def user_actions(sources, rendered, eps):
             # a URL in a variable (`generateScreenURL(vars.value.xVar, …)`): not the screen of the comment
             var = re.match(r'\s*return[^\n]{0,80}?generateScreenURL\(([\w.$]+),', nxt)
             if var:
-                arg = re.sub(r"Var$|^vars\.value\.|InLocal$", "", var.group(1))
-                marks.append((m.start(), "navigate", f"URL {arg}"))
+                marks.append((m.start(), "navigate", f"URL {os_var_name(var.group(1))}"))
                 continue
             dest = m.group(1).rstrip("/")
             # the screen name; the module root (`/UBTConnect/`) stays a path
@@ -1007,6 +1006,12 @@ def call_rows(eps, blocks):
         rows.append((callers, e))
     rows.sort(key=lambda x: (x[0][0], x[1]["short"]))
     return rows
+
+
+def os_var_name(expr):
+    """`model.variables.in_LinkIn.linkAttr` → `in_Link.link`: the names of the OutSystems variables and attributes."""
+    expr = re.sub(r"^(model\.variables\.|vars\.value\.)", "", expr)
+    return ".".join(re.sub(r"(Var|InLocal|In|Attr)$", "", p) for p in expr.split("."))
 
 
 def own_routes(short_url):
