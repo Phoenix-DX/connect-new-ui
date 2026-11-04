@@ -608,7 +608,24 @@ function effectsOf(fn, label, depth, seen, env = null) {
       } else if ((/^show\w*(Feedback)?Message$/.test(name) || /^feedbackMessage\w*$/.test(name)) && !ERROR_FN.test(name)) {
         add('message', args[0] ? args[0].getText() : '', node, lab);
       } else if (/^set\w*FetchId$|^refetch\w*$|^invalidateQueries$/.test(name)) {
-        add('refresh', name, node, lab); // a query fetches again (a new key or a refetch)
+        // a query fetches again (a new key or a refetch). `q.refetch()` with `const q = useXQuery(…)`: the calls of the
+        // query hook
+        let qcalls = [];
+        if (Node.isPropertyAccessExpression(ex) && Node.isIdentifier(ex.getExpression()) && depth < 3) {
+          const qd = ex.getExpression().getSymbol?.()?.getDeclarations()?.[0];
+          const qi = qd && Node.isVariableDeclaration(qd) ? qd.getInitializer() : null;
+          if (qi && Node.isCallExpression(qi) && /^use\w*Query$/.test(qi.getExpression().getText())) {
+            let hs = qi.getExpression().getSymbol?.();
+            if (hs?.isAlias()) hs = hs.getAliasedSymbol() ?? hs;
+            const hd = hs?.getDeclarations()?.[0];
+            const hb = hd && !excluded(hd.getSourceFile().getFilePath()) ? bodyOfDecl(hd) : null;
+            if (hb && !seen.has(hb)) qcalls = effectsOf(hb, lab, depth + 1, new Set([...seen, hb])).filter((e) => e.kind === 'call');
+          }
+        }
+        if (qcalls.length) {
+          out.push({ branch: lab ?? null, kind: 'via', detail: ex.getText(), file: rel(node.getSourceFile().getFilePath()), line: node.getStartLineNumber() });
+          out.push(...qcalls.map((e) => ({ ...e, branch: lab ?? null })));
+        } else add('refresh', ex.getText(), node, lab);
       } else if (name === 'raiseToFlowHandler') {
         // the default error path of every OutSystems action (the global exception handler), not an effect
       } else if (ERROR_FN.test(name)) {
@@ -732,7 +749,7 @@ function handlersOf(units, reached) {
 // named function) and its effects (effectsOf). Only bindings with at least one effect (server call, navigation,
 // message, external link, confirm dialog) are kept. A binding that only calls a prop of its component is not kept:
 // the parent binds the real handler.
-const EFFECT_KINDS = new Set(['call', 'navigate', 'message', 'external', 'confirm']);
+const EFFECT_KINDS = new Set(['call', 'navigate', 'message', 'external', 'confirm', 'refresh']);
 
 // The function behind a handler expression: a function declaration or const, a name taken from the object that a
 // hook returns (`const { onX } = useY()` or `flows.onX` with `flows = useY()`), a shorthand property. A prop or a

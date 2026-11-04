@@ -1278,8 +1278,8 @@ def render_app_shell():
          "- OutSystems: `CommonUI_InsideLayout` with its blocks (TST survey), and the chains that start in a module "
          "action.",
          "- React: the code that `app/src/main.tsx` loads (router, `AppFrame`, app start, hosts).",
-         f"The tool `route-actions/tools/check_route.py` merges it from the checked routes on "
-         f"{date.today().isoformat()}: " + ", ".join(f"[{x}](routes/{x}.md)" for x in routes) + ".", "",
+         f"The tool `route-actions/tools/check_route.py` merges it from the {len(routes)} checked routes on "
+         f"{date.today().isoformat()}:", "", *[f"- [{x}](routes/{x}.md)" for x in routes], "",
          "## 1. Result", "",
          "| Check | Result |", "|---|---|",
          f"| App shell server calls on TST | {len(ep_list)}: React makes {cnt['implemented']}, **{cnt['missing']} missing** |",

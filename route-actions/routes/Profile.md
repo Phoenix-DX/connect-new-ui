@@ -24,7 +24,7 @@ The app shell is in [APP_SHELL.md](../APP_SHELL.md), not here.
 | Check | Result |
 |---|---|
 | Server calls of the route on TST | 16: React makes 13, **3 missing** |
-| User actions of the route | OutSystems: 29 diagrams. React: 33 diagrams |
+| User actions of the route | OutSystems: 29 diagrams. React: 34 diagrams |
 | React calls of the screen that TST does not make | 6 (see [questions](#8-questions)) |
 | Screen and blocks with a React port | 48 of 48 |
 | Navigation targets found in React | 9 of 9 |
@@ -600,25 +600,26 @@ sequenceDiagram
 | [12](#5212-addresspopup-oneventopeningooglemaps) | [`components/contact/AddressPopupWrapper/AddressPopupWrapper.tsx:110`](../../app/src/components/contact/AddressPopupWrapper/AddressPopupWrapper.tsx#L110) | `<AddressPopup>` | `onEventOpenInGoogleMaps` | `inline` | – | opens an external link; shows a message |
 | [13](#5213-addresspopup-oneventopeninmaps) | [`components/contact/AddressPopupWrapper/AddressPopupWrapper.tsx:113`](../../app/src/components/contact/AddressPopupWrapper/AddressPopupWrapper.tsx#L113) | `<AddressPopup>` | `onEventOpenInMaps` | `inline` | – | opens an external link; shows a message |
 | [14](#5214-sharesheetfirststep-onclickrecentmember) | [`containers/ShareSheet/ShareSheetContainer.tsx:111`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L111) | `<ShareSheetFirstStep>` | `onClickRecentMember` | `onClickRecentMember` | – | calls ActionCS_ShareObject; shows a message; asks for a confirmation |
-| [15](#5215-sharesheetsearchstep-onselect) | [`containers/ShareSheet/ShareSheetContainer.tsx:129`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L129) | `<ShareSheetSearchStep>` | `onSelect` | `onSelect` | – | shows a message |
-| [16](#5216-sharesheetsearchstep-onclickupgradesubscription) | [`containers/ShareSheet/ShareSheetContainer.tsx:130`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L130) | `<ShareSheetSearchStep>` | `onClickUpgradeSubscription` | `onClickUpgradeSubscription` | – | opens an external link |
-| [17](#5217-actionbutton-onbuttononclick) | [`containers/ShareSheet/ShareSheetContainer.tsx:148`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L148) | `<ActionButton>` | `onButtonOnClick` | `onClickSend` | – | calls ActionCS_ShareObject; shows a message |
-| [18](#5218-actionsmenu-oneventclickbookmark) | [`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:100`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx#L100) | `<ActionsMenu>` | `onEventClickBookmark` | `onClickBookmark` | – | calls ServiceAPIDeleteBookmarkByBookmarkId2, ServiceAPIAddBookmark2; shows a message; calls the prop onOnChangeBookmark() |
-| [19](#5219-actionsmenu-oneventclickunbookmark) | [`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:101`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx#L101) | `<ActionsMenu>` | `onEventClickUnbookmark` | `onClickBookmark` | – | calls ServiceAPIDeleteBookmarkByBookmarkId2, ServiceAPIAddBookmark2; shows a message; calls the prop onOnChangeBookmark() |
-| [20](#5220-actionsmenu-oneventclicknotes) | [`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:109`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx#L109) | `<ActionsMenu>` | `onEventClickNotes` | `inline` | – | calls DataActionFetchNotes |
-| [21](#5221-actionsmenu-oneventclickemail) | [`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:112`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx#L112) | `<ActionsMenu>` | `onEventClickEmail` | `inline` | – | goes to ContactByEmailOneSchoolGlobal |
-| [22](#5222-contactbymessage-oneventcancel) | [`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:123`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx#L123) | `<ContactByMessage>` | `onEventCancel` | `inline` | – | goes to ContactByEmailOneSchoolGlobal |
-| [23](#5223-contactbymessage-oneventemail) | [`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:126`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx#L126) | `<ContactByMessage>` | `onEventEmail` | `handleMailPage` | – | goes to ContactByEmailMember |
-| [24](#5224-sharepopup-oneventsharetoconnect) | [`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:155`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx#L155) | `<SharePopup>` | `onEventShareToConnect` | `inline` | – | goes to LegacyShareObject |
-| [25](#5225-addnote-ononsubmitrequested) | [`components/note/NotesSheet/NotesSheet.tsx:175`](../../app/src/components/note/NotesSheet/NotesSheet.tsx#L175) | `<AddNote>` | `onOnSubmitRequested` | `addNoteRequested` | – | calls ServiceAPIAddNote; shows a message; calls the prop onOnNotesChanged() |
-| [26](#5226-notelist-onondeleterequested) | [`containers/NoteListActions/NoteListActionsContainer.tsx:157`](../../app/src/containers/NoteListActions/NoteListActionsContainer.tsx#L157) | `<NoteList>` | `onOnDeleteRequested` | `inline` | – | calls ServiceAPIDeleteNoteByNoteId; shows a message; calls the prop onOnNoteDeleted() |
-| [27](#5227-notelist-ononsaveeditrequested) | [`containers/NoteListActions/NoteListActionsContainer.tsx:160`](../../app/src/containers/NoteListActions/NoteListActionsContainer.tsx#L160) | `<NoteList>` | `onOnSaveEditRequested` | `inline` | – | calls ServiceAPIUpdateNote; shows a message; calls the prop onOnSaveEditNote(); calls the prop onOnEditingStateChanged(); calls the prop onOnSaveEditNote(); calls the prop onOnEditingStateChanged() |
-| [28](#5228-contactpopup-oneventclicked) | [`components/contact/ContactPopupByPhone/ContactPopupByPhone.tsx:66`](../../app/src/components/contact/ContactPopupByPhone/ContactPopupByPhone.tsx#L66) | `<ContactPopup>` | `onEventClicked` | `inline` | – | opens an external link; calls the prop onEventCall() |
-| [29](#5229-contactpopupbymessage-oneventselectedmessagechannel-email) | [`components/contact/ContactByMessage/ContactByMessage.tsx:64`](../../app/src/components/contact/ContactByMessage/ContactByMessage.tsx#L64) | `<ContactPopupByMessage>` | `onEventSelectedMessageChannel` | `handlerSelectedMessageChannel` | `Email` | calls the prop onEventMessageChannel(); calls the prop onEventEmail() |
-| [30](#5230-contactpopupbymessage-oneventselectedmessagechannel-call) | [`components/contact/ContactByMessage/ContactByMessage.tsx:64`](../../app/src/components/contact/ContactByMessage/ContactByMessage.tsx#L64) | `<ContactPopupByMessage>` | `onEventSelectedMessageChannel` | `handlerSelectedMessageChannel` | `Call` | opens an external link; calls the prop onEventMessageChannel(); calls the prop onEventCall() |
-| [31](#5231-cachecontrol-onnoncachehit) | [`legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx:52`](../../app/src/legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx#L52) | `<CacheControl>` | `onNonCacheHit` | `onNonCacheHit` | – | calls DataActionGetCacheInfo |
-| [32](#5232-preventbacknavigation-onbacknavigationprevented) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:80`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L80) | `<PreventBackNavigation>` | `onBackNavigationPrevented` | `redirectHome` | – | goes to HomeFeed |
-| [33](#5233-backnavigationhandler-onbacknavigation) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:82`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L82) | `<BackNavigationHandler>` | `onBackNavigation` | `maybeRedirectHome` | – | goes to HomeFeed |
+| [15](#5215-sharesheetsearchstep-onsubmit) | [`containers/ShareSheet/ShareSheetContainer.tsx:127`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L127) | `<ShareSheetSearchStep>` | `onSubmit` | `onSubmit` | – | setSearchFetchId(): a query fetches again |
+| [16](#5216-sharesheetsearchstep-onselect) | [`containers/ShareSheet/ShareSheetContainer.tsx:129`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L129) | `<ShareSheetSearchStep>` | `onSelect` | `onSelect` | – | shows a message |
+| [17](#5217-sharesheetsearchstep-onclickupgradesubscription) | [`containers/ShareSheet/ShareSheetContainer.tsx:130`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L130) | `<ShareSheetSearchStep>` | `onClickUpgradeSubscription` | `onClickUpgradeSubscription` | – | opens an external link |
+| [18](#5218-actionbutton-onbuttononclick) | [`containers/ShareSheet/ShareSheetContainer.tsx:148`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L148) | `<ActionButton>` | `onButtonOnClick` | `onClickSend` | – | calls ActionCS_ShareObject; shows a message |
+| [19](#5219-actionsmenu-oneventclickbookmark) | [`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:100`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx#L100) | `<ActionsMenu>` | `onEventClickBookmark` | `onClickBookmark` | – | calls ServiceAPIDeleteBookmarkByBookmarkId2, ServiceAPIAddBookmark2; shows a message; calls the prop onOnChangeBookmark() |
+| [20](#5220-actionsmenu-oneventclickunbookmark) | [`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:101`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx#L101) | `<ActionsMenu>` | `onEventClickUnbookmark` | `onClickBookmark` | – | calls ServiceAPIDeleteBookmarkByBookmarkId2, ServiceAPIAddBookmark2; shows a message; calls the prop onOnChangeBookmark() |
+| [21](#5221-actionsmenu-oneventclicknotes) | [`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:109`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx#L109) | `<ActionsMenu>` | `onEventClickNotes` | `inline` | – | calls DataActionFetchNotes |
+| [22](#5222-actionsmenu-oneventclickemail) | [`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:112`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx#L112) | `<ActionsMenu>` | `onEventClickEmail` | `inline` | – | goes to ContactByEmailOneSchoolGlobal |
+| [23](#5223-contactbymessage-oneventcancel) | [`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:123`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx#L123) | `<ContactByMessage>` | `onEventCancel` | `inline` | – | goes to ContactByEmailOneSchoolGlobal |
+| [24](#5224-contactbymessage-oneventemail) | [`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:126`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx#L126) | `<ContactByMessage>` | `onEventEmail` | `handleMailPage` | – | goes to ContactByEmailMember |
+| [25](#5225-sharepopup-oneventsharetoconnect) | [`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:155`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx#L155) | `<SharePopup>` | `onEventShareToConnect` | `inline` | – | goes to LegacyShareObject |
+| [26](#5226-addnote-ononsubmitrequested) | [`components/note/NotesSheet/NotesSheet.tsx:175`](../../app/src/components/note/NotesSheet/NotesSheet.tsx#L175) | `<AddNote>` | `onOnSubmitRequested` | `addNoteRequested` | – | calls ServiceAPIAddNote; shows a message; calls the prop onOnNotesChanged() |
+| [27](#5227-notelist-onondeleterequested) | [`containers/NoteListActions/NoteListActionsContainer.tsx:157`](../../app/src/containers/NoteListActions/NoteListActionsContainer.tsx#L157) | `<NoteList>` | `onOnDeleteRequested` | `inline` | – | calls ServiceAPIDeleteNoteByNoteId; shows a message; calls the prop onOnNoteDeleted() |
+| [28](#5228-notelist-ononsaveeditrequested) | [`containers/NoteListActions/NoteListActionsContainer.tsx:160`](../../app/src/containers/NoteListActions/NoteListActionsContainer.tsx#L160) | `<NoteList>` | `onOnSaveEditRequested` | `inline` | – | calls ServiceAPIUpdateNote; shows a message; calls the prop onOnSaveEditNote(); calls the prop onOnEditingStateChanged(); calls the prop onOnSaveEditNote(); calls the prop onOnEditingStateChanged() |
+| [29](#5229-contactpopup-oneventclicked) | [`components/contact/ContactPopupByPhone/ContactPopupByPhone.tsx:66`](../../app/src/components/contact/ContactPopupByPhone/ContactPopupByPhone.tsx#L66) | `<ContactPopup>` | `onEventClicked` | `inline` | – | opens an external link; calls the prop onEventCall() |
+| [30](#5230-contactpopupbymessage-oneventselectedmessagechannel-email) | [`components/contact/ContactByMessage/ContactByMessage.tsx:64`](../../app/src/components/contact/ContactByMessage/ContactByMessage.tsx#L64) | `<ContactPopupByMessage>` | `onEventSelectedMessageChannel` | `handlerSelectedMessageChannel` | `Email` | calls the prop onEventMessageChannel(); calls the prop onEventEmail() |
+| [31](#5231-contactpopupbymessage-oneventselectedmessagechannel-call) | [`components/contact/ContactByMessage/ContactByMessage.tsx:64`](../../app/src/components/contact/ContactByMessage/ContactByMessage.tsx#L64) | `<ContactPopupByMessage>` | `onEventSelectedMessageChannel` | `handlerSelectedMessageChannel` | `Call` | opens an external link; calls the prop onEventMessageChannel(); calls the prop onEventCall() |
+| [32](#5232-cachecontrol-onnoncachehit) | [`legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx:52`](../../app/src/legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx#L52) | `<CacheControl>` | `onNonCacheHit` | `onNonCacheHit` | – | calls DataActionGetCacheInfo |
+| [33](#5233-preventbacknavigation-onbacknavigationprevented) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:80`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L80) | `<PreventBackNavigation>` | `onBackNavigationPrevented` | `redirectHome` | – | goes to HomeFeed |
+| [34](#5234-backnavigationhandler-onbacknavigation) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:82`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L82) | `<BackNavigationHandler>` | `onBackNavigation` | `maybeRedirectHome` | – | goes to HomeFeed |
 
 #### 5.2.1 IconText: onClicked
 
@@ -809,7 +810,18 @@ sequenceDiagram
   Note over H: message 'Share failed. Please try again.'
 ```
 
-#### 5.2.15 ShareSheetSearchStep: onSelect
+#### 5.2.15 ShareSheetSearchStep: onSubmit
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as ShareSheetSearchStep · ShareSheetContainer.tsx
+  U->>H: onSubmit → onSubmit
+  Note over H: setSearchFetchId(): a query fetches again
+```
+
+#### 5.2.16 ShareSheetSearchStep: onSelect
 
 ```mermaid
 sequenceDiagram
@@ -820,7 +832,7 @@ sequenceDiagram
   Note over H: message { title: '', message: 'You can select up to 50 recipients only.', messageType: 'error', en
 ```
 
-#### 5.2.16 ShareSheetSearchStep: onClickUpgradeSubscription
+#### 5.2.17 ShareSheetSearchStep: onClickUpgradeSubscription
 
 ```mermaid
 sequenceDiagram
@@ -833,7 +845,7 @@ sequenceDiagram
   H->>X: openInApp_OpenExternalLink
 ```
 
-#### 5.2.17 ActionButton: onButtonOnClick
+#### 5.2.18 ActionButton: onButtonOnClick
 
 ```mermaid
 sequenceDiagram
@@ -850,7 +862,7 @@ sequenceDiagram
   Note over H: message 'Share failed. Please try again.'
 ```
 
-#### 5.2.18 ActionsMenu: onEventClickBookmark
+#### 5.2.19 ActionsMenu: onEventClickBookmark
 
 ```mermaid
 sequenceDiagram
@@ -885,7 +897,7 @@ sequenceDiagram
   Note over H: calls the prop onOnChangeBookmark()
 ```
 
-#### 5.2.19 ActionsMenu: onEventClickUnbookmark
+#### 5.2.20 ActionsMenu: onEventClickUnbookmark
 
 ```mermaid
 sequenceDiagram
@@ -920,7 +932,7 @@ sequenceDiagram
   Note over H: calls the prop onOnChangeBookmark()
 ```
 
-#### 5.2.20 ActionsMenu: onEventClickNotes
+#### 5.2.21 ActionsMenu: onEventClickNotes
 
 ```mermaid
 sequenceDiagram
@@ -936,7 +948,7 @@ sequenceDiagram
   A-->>H: Notes
 ```
 
-#### 5.2.21 ActionsMenu: onEventClickEmail
+#### 5.2.22 ActionsMenu: onEventClickEmail
 
 ```mermaid
 sequenceDiagram
@@ -949,7 +961,7 @@ sequenceDiagram
   H->>N: go to ContactByEmailOneSchoolGlobal
 ```
 
-#### 5.2.22 ContactByMessage: onEventCancel
+#### 5.2.23 ContactByMessage: onEventCancel
 
 ```mermaid
 sequenceDiagram
@@ -962,7 +974,7 @@ sequenceDiagram
   H->>N: go to ContactByEmailOneSchoolGlobal
 ```
 
-#### 5.2.23 ContactByMessage: onEventEmail
+#### 5.2.24 ContactByMessage: onEventEmail
 
 ```mermaid
 sequenceDiagram
@@ -974,7 +986,7 @@ sequenceDiagram
   H->>N: go to ContactByEmailMember
 ```
 
-#### 5.2.24 SharePopup: onEventShareToConnect
+#### 5.2.25 SharePopup: onEventShareToConnect
 
 ```mermaid
 sequenceDiagram
@@ -986,7 +998,7 @@ sequenceDiagram
   H->>N: go to LegacyShareObject
 ```
 
-#### 5.2.25 AddNote: onOnSubmitRequested
+#### 5.2.26 AddNote: onOnSubmitRequested
 
 ```mermaid
 sequenceDiagram
@@ -1007,7 +1019,7 @@ sequenceDiagram
   Note over H: message message
 ```
 
-#### 5.2.26 NoteList: onOnDeleteRequested
+#### 5.2.27 NoteList: onOnDeleteRequested
 
 ```mermaid
 sequenceDiagram
@@ -1029,7 +1041,7 @@ sequenceDiagram
   Note over H: message message
 ```
 
-#### 5.2.27 NoteList: onOnSaveEditRequested
+#### 5.2.28 NoteList: onOnSaveEditRequested
 
 ```mermaid
 sequenceDiagram
@@ -1056,7 +1068,7 @@ sequenceDiagram
   Note over H: message message
 ```
 
-#### 5.2.28 ContactPopup: onEventClicked
+#### 5.2.29 ContactPopup: onEventClicked
 
 ```mermaid
 sequenceDiagram
@@ -1069,7 +1081,7 @@ sequenceDiagram
   H->>X: tel: link
 ```
 
-#### 5.2.29 ContactPopupByMessage: onEventSelectedMessageChannel (Email)
+#### 5.2.30 ContactPopupByMessage: onEventSelectedMessageChannel (Email)
 
 ```mermaid
 sequenceDiagram
@@ -1081,7 +1093,7 @@ sequenceDiagram
   Note over H: calls the prop onEventEmail()
 ```
 
-#### 5.2.30 ContactPopupByMessage: onEventSelectedMessageChannel (Call)
+#### 5.2.31 ContactPopupByMessage: onEventSelectedMessageChannel (Call)
 
 ```mermaid
 sequenceDiagram
@@ -1095,7 +1107,7 @@ sequenceDiagram
   H->>X: tel: link
 ```
 
-#### 5.2.31 CacheControl: onNonCacheHit
+#### 5.2.32 CacheControl: onNonCacheHit
 
 ```mermaid
 sequenceDiagram
@@ -1108,7 +1120,7 @@ sequenceDiagram
   A-->>H: CacheControl_Response, TTL
 ```
 
-#### 5.2.32 PreventBackNavigation: onBackNavigationPrevented
+#### 5.2.33 PreventBackNavigation: onBackNavigationPrevented
 
 ```mermaid
 sequenceDiagram
@@ -1120,7 +1132,7 @@ sequenceDiagram
   H->>N: go to HomeFeed
 ```
 
-#### 5.2.33 BackNavigationHandler: onBackNavigation
+#### 5.2.34 BackNavigationHandler: onBackNavigation
 
 ```mermaid
 sequenceDiagram
