@@ -15,6 +15,7 @@ specified and checked. Use it to re-capture or re-check a route. Architecture wo
 - `app/`: the React app. Folders of `app/src/`: `app`, `pages`, `containers`, `components`, `api`, `platform`, `lib`,
   `legacy/os`, `mocks`, `styles`, `vendor`, `pwa`, `sw`, `test`. Read `app/README.md` and
   `app/docs/architecture/overview.md` first.
+- `route-actions/`: the check of the routes, OutSystems against React (facts only). Start with `route-actions/README.md`.
 - `.auth/`: credentials and session. **SECRET.**
 
 ## Hard rules
