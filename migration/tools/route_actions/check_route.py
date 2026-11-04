@@ -567,15 +567,34 @@ def render(r):
          f"![{route} diagram](svg/{route}.svg)", "", "<details><summary>Mermaid source</summary>", "",
          "```mermaid", mm, "```", "", "</details>", "",
          "## 4. Server calls", "",
-         "| # | Call (TST) | Kind | Part | Made by (TST) | Seen on TST | Inside the call (MCP, DEV) | React function | Status |",
-         "|---|---|---|---|---|---|---|---|---|"]
-    for i, e in enumerate(sorted(eps, key=lambda e: (e["group"], e["short"])), 1):
-        chain = " → ".join(e["chains"][0][-3:]) if e["chains"] else "–"
+         "- **Called from (OutSystems):** the block or the app-level module whose own client action makes the call. "
+         "`app shell` = the layout and the app start; `screen` = the screen and its blocks.",
+         "- **Made by (TST):** for each block in \"Called from\", the last 3 steps of its chain of client actions to the call.",
+         "- **Seen on TST:** `yes` when TST made the call in the capture. Many calls run only after a click.", "",
+         "| # | Call (TST) | Kind | Called from (OutSystems) | Made by (TST) | Seen on TST | React action | Status |",
+         "|---|---|---|---|---|---|---|---|"]
+    rows = []
+    for e in eps:
+        owners = sorted({chain_owner(c, r["blocks"]) for c in e["chains"] if c}) or [("?", e["group"])]
+        rows.append((owners, e))
+    rows.sort(key=lambda x: (x[0][0][1] != "shell", x[0][0][0], x[1]["short"]))
+    for i, (owners, e) in enumerate(rows, 1):
+        e["n"] = i
+        frm = "<br>".join(f"`{o}` ({'app shell' if g == 'shell' else 'screen'})" for o, g in owners)
+        made = []
+        for o in owners:
+            ch = next((c for c in e["chains"] if c and chain_owner(c, r["blocks"]) == o), None)
+            made.append(md_escape(" → ".join(ch[-3:])) if ch else "–")
+        more = len(e["chains"]) - len(owners)
+        chain = "<br>".join(made) + (f"<br>(+{more} more chains)" if more > 0 else "")
         rc = "<br>".join(f"`{c['fn']}()` {link(c['file'], c['line'])} ({c['where']})" for c in e["react"]) or "–"
         st = f"**{e['status']}**" if e["status"] == "missing" else e["status"]
         seen = {"observed": "yes", "not observed": "no", "not captured": "no capture"}[e["observed"]]
-        part = "app shell" if e["group"] == "shell" else "screen"
-        L.append(f"| {i} | `{e['short']}` | {e['kind']} | {part} | {md_escape(chain)} | {seen} | {e['inside']} | {rc} | {st} |")
+        L.append(f"| {i} | `{e['short']}` | {e['kind']} | {frm} | {chain} | {seen} | {rc} | {st} |")
+    L += ["", "### What each call does on the server (MCP, DEV)", "",
+          "| # | Call | Inside the call |", "|---|---|---|"]
+    for _, e in rows:
+        L.append(f"| {e['n']} | `{e['short'].rsplit('/', 1)[-1]}` | {e['inside']} |")
     L += ["", "## 5. Missing in React", ""]
     miss_eps = [e for e in eps if e["status"] == "missing"]
     miss_blocks = [b for b in r["blocks"] if b["evidence"] not in ("tag", "name")]
