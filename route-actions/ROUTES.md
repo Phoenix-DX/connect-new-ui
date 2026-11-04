@@ -32,7 +32,7 @@ UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read 2026-11-04.
 | `ContactByEmailOrbitHost` | `ContactFlow` | todo |
 | [`HouseholdCarousel`](routes/HouseholdCarousel.md) | `Directory_Household` | done |
 | [`HouseholdDetails`](routes/HouseholdDetails.md) | `Directory_Household` | done |
-| `Household_Relations` | `Directory_Household` | todo |
+| [`Household_Relations`](routes/Household_Relations.md) | `Directory_Household` | todo |
 | `BrowseCountries` | `Directory_Locality` | todo |
 | `BrowseDirectory` | `Directory_Locality` | todo |
 | `CountryDetails` | `Directory_Locality` | todo |
