@@ -1,6 +1,6 @@
 # Routes: OutSystems actions against React
 
-One file per route in `routes/`. Run `python3 route-actions/tools/check_route.py <Route>` (see [README](README.md)). Progress: **36 of 68** build routes done.
+One file per route in `routes/`. Run `python3 route-actions/tools/check_route.py <Route>` (see [README](README.md)). Progress: **37 of 68** build routes done.
 
 The app shell (`CommonUI_InsideLayout` and its blocks on TST; the code that `main.tsx` loads in React) is in [APP_SHELL.md](APP_SHELL.md). The tool merges it from the checked routes.
 
@@ -49,7 +49,7 @@ UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read 2026-11-04.
 | [`HomeFeed`](routes/HomeFeed.md) | `Home` | done |
 | `AssembleDetail` | `Legacy_AssembleFlow` | todo |
 | [`AssembleEvents`](routes/AssembleEvents.md) | `Legacy_AssembleFlow` | done |
-| [`Assemble_BrowseByCountry`](routes/Assemble_BrowseByCountry.md) | `Legacy_AssembleFlow` | todo |
+| [`Assemble_BrowseByCountry`](routes/Assemble_BrowseByCountry.md) | `Legacy_AssembleFlow` | done |
 | `EmailTarget` | `Legacy_LDMEventsFlow` | todo |
 | `LDM_Email_V2` | `Legacy_LDMEventsFlow_V2` | todo |
 | `LDM_EventDetail_V2` | `Legacy_LDMEventsFlow_V2` | todo |
