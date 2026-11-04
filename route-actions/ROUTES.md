@@ -72,7 +72,7 @@ UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read 2026-11-04.
 | `TransportDetail` | `Legacy_OrbitEventsFlow` | todo |
 | `ViewDocuments` | `Legacy_OrbitEventsFlow` | todo |
 | `QRCodeGenerate` | `Legacy_OrbitQRCodeFlow` | todo |
-| `ConnectShare` | `Legacy_Share` | todo |
+| [`ConnectShare`](routes/ConnectShare.md) | `Legacy_Share` | todo |
 | `LegacyShareObject` | `Legacy_Share` | todo |
 | `Notes` | `Notes` | todo |
 | `CommunityBusinessDetails_CoomingSoon` | `zDEV_Directory_CommunityBusinessBlocks` | todo |

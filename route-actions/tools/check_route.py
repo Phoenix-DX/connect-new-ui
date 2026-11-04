@@ -807,6 +807,7 @@ def user_actions(sources, rendered, eps):
     # event of a child block or widget (the last React.createElement(<child>_mvc_view) before it), and
     # `on<Event>: function (...) { ... controller.<handler>$Action(` for an event of an HTML element of the view
     found = collections.OrderedDict()
+    inline_back = {}
     for fname in sorted(rendered):
         src = sources.get(fname, "")
         marks = [(m.start(), m.end(), m.group(1)) for m in re.finditer(r"([\w$]+)\s*:\s*function\s*\([^)]*\)\s*\{", src)]
@@ -816,6 +817,10 @@ def user_actions(sources, rendered, eps):
             win = src[en: marks[i + 1][0] if i + 1 < len(marks) else en + 1500][:1500]
             c = re.search(r"controller\.(_?\w+?)\$Action\(", win)
             if not c:
+                # an inline binding that goes back without a client action (`onClick: function () {
+                # OS.Navigation.navigateBack(null); }`)
+                if re.match(r"\s*OS\.Navigation\.navigateBack\(", win) and re.match(r"on[A-Z]", prop):
+                    inline_back.setdefault(fname, []).append(f"{prop} (HTML element)")
                 continue
             handler = c.group(1).lstrip("_")
             if prop.endswith("$Action"):
@@ -825,7 +830,9 @@ def user_actions(sources, rendered, eps):
             else:
                 event = f"{prop} (HTML element)"
             found.setdefault((fname, handler), []).append(event)
-    out = []
+    out = [{"block": short(f), "file": f, "handler": "inline", "events": sorted(set(ev)),
+             "effects": [{"branch": None, "kind": "navigate", "detail": "previous screen"}]}
+           for f, ev in inline_back.items()]
     for (f, name), events in found.items():
         eff = effects((f, name), None, 0, set())
         if any(e["kind"] in ("call", "navigate", "external", "message", "confirm") for e in eff):

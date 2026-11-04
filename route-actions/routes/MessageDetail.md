@@ -24,7 +24,7 @@ The app shell is in [APP_SHELL.md](../APP_SHELL.md), not here.
 | Check | Result |
 |---|---|
 | Server calls of the route on TST | 7: React makes 7, **0 missing** |
-| User actions of the route | OutSystems: 25 diagrams. React: 36 diagrams |
+| User actions of the route | OutSystems: 26 diagrams. React: 36 diagrams |
 | React calls of the screen that TST does not make | 2 (see [questions](#8-questions)) |
 | Screen and blocks with a React port | 14 of 14 |
 | Navigation targets found in React | 21 of 21 |
@@ -119,33 +119,46 @@ The two lists are independent: the OutSystems list comes from the TST compiled c
 
 | # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
 |---|---|---|---|---|---|
-| [1](#511-screenblock_messagedetail-adaptivecardvieweronexecuteaction) | `ScreenBlock_MessageDetail` | `adaptiveCardEventExecuted of NotificationDetailBlock` | `adaptiveCardViewerOnExecuteAction` | – | calls StoreAdaptiveCardResponses, GetMessageInstance; shows a message |
-| [2](#512-screenblock_messagedetail-onclick_viewassembleevent) | `ScreenBlock_MessageDetail` | `onClick (HTML element)` | `onClick_ViewAssembleEvent` | – | shows a message |
-| [3](#513-screenblock_messagedetail-onclick_vieworbitevent-orbit) | `ScreenBlock_MessageDetail` | `onClick (HTML element)` | `onClick_ViewOrbitEvent` | `orbit` | calls Get_OrbitNotificationParameters |
-| [4](#514-screenblock_messagedetail-onclick_vieworbitevent-orbithostsurvey) | `ScreenBlock_MessageDetail` | `onClick (HTML element)` | `onClick_ViewOrbitEvent` | `orbitHostSurvey` | calls Get_OrbitHostSurveyNotificationParameters; shows a message |
-| [5](#515-screenblock_messagedetail-onclick_vieworbitevent-other) | `ScreenBlock_MessageDetail` | `onClick (HTML element)` | `onClick_ViewOrbitEvent` | `other` | shows a message |
-| [6](#516-notificationdetailblock-adaptivecardvieweronexecuteaction) | `NotificationDetailBlock` | `onExecuteAction of AdaptiveCardViewer` | `adaptiveCardViewerOnExecuteAction` | – | shows a message |
-| [7](#517-bottombarmenu-event_bottombar_clicked-home) | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `home` | goes to HomeFeed |
-| [8](#518-bottombarmenu-event_bottombar_clicked-directory) | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `directory` | goes to CountryList, Locality_Details |
-| [9](#519-bottombarmenu-event_bottombar_clicked-updates) | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `updates` | goes to Updates_SingleList |
-| [10](#5110-bottombarmenu-event_bottombar_clicked-bookmarks) | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `bookmarks` | goes to Bookmarks |
-| [11](#5111-bottombarmenu-event_bottombar_clicked-menu) | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `menu` | goes to Menu |
-| [12](#5112-messagedetail-handler_addauditandnavigateto_eventdetail) | `MessageDetail` | `addAuditAndNavigateTo_EventDetail of MessageDetail` | `handler_AddAuditAndNavigateTo_EventDetail` | – | goes to LDM_EventDetail_V2, LDM_EventDetail |
-| [13](#5113-messagedetail-handler_navigateto_shareobjectdetail-myhousehold) | `MessageDetail` | `navigateTo_ObjectDetail of MessageDetail` | `handler_NavigateTo_ShareObjectDetail` | `myHousehold` | goes to HouseholdDetails |
-| [14](#5114-messagedetail-handler_navigateto_shareobjectdetail-oneschoolglobal) | `MessageDetail` | `navigateTo_ObjectDetail of MessageDetail` | `handler_NavigateTo_ShareObjectDetail` | `oneSchoolGlobal` | goes to OneSchoolGlobalDetails |
-| [15](#5115-messagedetail-handler_navigateto_shareobjectdetail-suppermeeting) | `MessageDetail` | `navigateTo_ObjectDetail of MessageDetail` | `handler_NavigateTo_ShareObjectDetail` | `supperMeeting` | goes to SupperMeeting_Details |
-| [16](#5116-messagedetail-handler_navigateto_shareobjectdetail-feed) | `MessageDetail` | `navigateTo_ObjectDetail of MessageDetail` | `handler_NavigateTo_ShareObjectDetail` | `feed` | goes to FeedItemDetail |
-| [17](#5117-messagedetail-handler_navigateto_login) | `MessageDetail` | `navigateTo_Login of MessageDetail` | `handler_NavigateTo_Login` | – | goes to Login |
-| [18](#5118-messagedetail-handler_navigateto_messagelist) | `MessageDetail` | `navigateTo_MessageList of MessageDetail` | `handler_NavigateTo_MessageList` | – | goes to Notifications, MessageList |
-| [19](#5119-messagedetail-handler_subscriptiondenied) | `MessageDetail` | `subscriptionDenied of MessageDetail` | `handler_SubscriptionDenied` | – | asks for a confirmation |
-| [20](#5120-messagedetail-handler_navigateto_assembledetail) | `MessageDetail` | `navigateTo_AssembleEvent of MessageDetail` | `handler_NavigateTo_AssembleDetail` | – | goes to AssembleDetail |
-| [21](#5121-messagedetail-handler_navigateto_orbiteventdetails) | `MessageDetail` | `navigateTo_OrbitEvent of MessageDetail` | `handler_NavigateTo_OrbitEventDetails` | – | goes to EventDetail |
-| [22](#5122-messagedetail-handler_navigateto_orbitmilestone) | `MessageDetail` | `navigateTo_OrbitMilestone of MessageDetail` | `handler_NavigateTo_OrbitMilestone` | – | goes to MilestoneDetail |
-| [23](#5123-messagedetail-handler_navigateto_orbithostsurvey) | `MessageDetail` | `navigateTo_OrbitHostSurvey of MessageDetail` | `handler_NavigateTo_OrbitHostSurvey` | – | goes to HostSurvey |
-| [24](#5124-messagedetail-handler_addauditandnavigateto_eventemail) | `MessageDetail` | `addAuditAndNavigateTo_EventEmail of MessageDetail` | `handler_AddAuditAndNavigateTo_EventEmail` | – | goes to LDM_Email_V2, LDM_Email |
-| [25](#5125-messagedetail-handler_backnavigationhandlerbacknavigation) | `MessageDetail` | `backNavigation of BackNavigationHandler` | `handler_BackNavigationHandlerBackNavigation` | – | goes to HomeFeed |
+| [1](#511-menuicon_back-inline) | `MenuIcon_Back` | `onClick (HTML element)` | `inline` | – | goes to previous screen |
+| [2](#512-screenblock_messagedetail-adaptivecardvieweronexecuteaction) | `ScreenBlock_MessageDetail` | `adaptiveCardEventExecuted of NotificationDetailBlock` | `adaptiveCardViewerOnExecuteAction` | – | calls StoreAdaptiveCardResponses, GetMessageInstance; shows a message |
+| [3](#513-screenblock_messagedetail-onclick_viewassembleevent) | `ScreenBlock_MessageDetail` | `onClick (HTML element)` | `onClick_ViewAssembleEvent` | – | shows a message |
+| [4](#514-screenblock_messagedetail-onclick_vieworbitevent-orbit) | `ScreenBlock_MessageDetail` | `onClick (HTML element)` | `onClick_ViewOrbitEvent` | `orbit` | calls Get_OrbitNotificationParameters |
+| [5](#515-screenblock_messagedetail-onclick_vieworbitevent-orbithostsurvey) | `ScreenBlock_MessageDetail` | `onClick (HTML element)` | `onClick_ViewOrbitEvent` | `orbitHostSurvey` | calls Get_OrbitHostSurveyNotificationParameters; shows a message |
+| [6](#516-screenblock_messagedetail-onclick_vieworbitevent-other) | `ScreenBlock_MessageDetail` | `onClick (HTML element)` | `onClick_ViewOrbitEvent` | `other` | shows a message |
+| [7](#517-notificationdetailblock-adaptivecardvieweronexecuteaction) | `NotificationDetailBlock` | `onExecuteAction of AdaptiveCardViewer` | `adaptiveCardViewerOnExecuteAction` | – | shows a message |
+| [8](#518-bottombarmenu-event_bottombar_clicked-home) | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `home` | goes to HomeFeed |
+| [9](#519-bottombarmenu-event_bottombar_clicked-directory) | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `directory` | goes to CountryList, Locality_Details |
+| [10](#5110-bottombarmenu-event_bottombar_clicked-updates) | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `updates` | goes to Updates_SingleList |
+| [11](#5111-bottombarmenu-event_bottombar_clicked-bookmarks) | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `bookmarks` | goes to Bookmarks |
+| [12](#5112-bottombarmenu-event_bottombar_clicked-menu) | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `menu` | goes to Menu |
+| [13](#5113-messagedetail-handler_addauditandnavigateto_eventdetail) | `MessageDetail` | `addAuditAndNavigateTo_EventDetail of MessageDetail` | `handler_AddAuditAndNavigateTo_EventDetail` | – | goes to LDM_EventDetail_V2, LDM_EventDetail |
+| [14](#5114-messagedetail-handler_navigateto_shareobjectdetail-myhousehold) | `MessageDetail` | `navigateTo_ObjectDetail of MessageDetail` | `handler_NavigateTo_ShareObjectDetail` | `myHousehold` | goes to HouseholdDetails |
+| [15](#5115-messagedetail-handler_navigateto_shareobjectdetail-oneschoolglobal) | `MessageDetail` | `navigateTo_ObjectDetail of MessageDetail` | `handler_NavigateTo_ShareObjectDetail` | `oneSchoolGlobal` | goes to OneSchoolGlobalDetails |
+| [16](#5116-messagedetail-handler_navigateto_shareobjectdetail-suppermeeting) | `MessageDetail` | `navigateTo_ObjectDetail of MessageDetail` | `handler_NavigateTo_ShareObjectDetail` | `supperMeeting` | goes to SupperMeeting_Details |
+| [17](#5117-messagedetail-handler_navigateto_shareobjectdetail-feed) | `MessageDetail` | `navigateTo_ObjectDetail of MessageDetail` | `handler_NavigateTo_ShareObjectDetail` | `feed` | goes to FeedItemDetail |
+| [18](#5118-messagedetail-handler_navigateto_login) | `MessageDetail` | `navigateTo_Login of MessageDetail` | `handler_NavigateTo_Login` | – | goes to Login |
+| [19](#5119-messagedetail-handler_navigateto_messagelist) | `MessageDetail` | `navigateTo_MessageList of MessageDetail` | `handler_NavigateTo_MessageList` | – | goes to Notifications, MessageList |
+| [20](#5120-messagedetail-handler_subscriptiondenied) | `MessageDetail` | `subscriptionDenied of MessageDetail` | `handler_SubscriptionDenied` | – | asks for a confirmation |
+| [21](#5121-messagedetail-handler_navigateto_assembledetail) | `MessageDetail` | `navigateTo_AssembleEvent of MessageDetail` | `handler_NavigateTo_AssembleDetail` | – | goes to AssembleDetail |
+| [22](#5122-messagedetail-handler_navigateto_orbiteventdetails) | `MessageDetail` | `navigateTo_OrbitEvent of MessageDetail` | `handler_NavigateTo_OrbitEventDetails` | – | goes to EventDetail |
+| [23](#5123-messagedetail-handler_navigateto_orbitmilestone) | `MessageDetail` | `navigateTo_OrbitMilestone of MessageDetail` | `handler_NavigateTo_OrbitMilestone` | – | goes to MilestoneDetail |
+| [24](#5124-messagedetail-handler_navigateto_orbithostsurvey) | `MessageDetail` | `navigateTo_OrbitHostSurvey of MessageDetail` | `handler_NavigateTo_OrbitHostSurvey` | – | goes to HostSurvey |
+| [25](#5125-messagedetail-handler_addauditandnavigateto_eventemail) | `MessageDetail` | `addAuditAndNavigateTo_EventEmail of MessageDetail` | `handler_AddAuditAndNavigateTo_EventEmail` | – | goes to LDM_Email_V2, LDM_Email |
+| [26](#5126-messagedetail-handler_backnavigationhandlerbacknavigation) | `MessageDetail` | `backNavigation of BackNavigationHandler` | `handler_BackNavigationHandlerBackNavigation` | – | goes to HomeFeed |
 
-#### 5.1.1 ScreenBlock_MessageDetail: adaptiveCardViewerOnExecuteAction
+#### 5.1.1 MenuIcon_Back: inline
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as MenuIcon_Back
+  participant N as Navigation
+  U->>B: onClick (HTML element) → inline
+  B->>N: go to previous screen
+```
+
+#### 5.1.2 ScreenBlock_MessageDetail: adaptiveCardViewerOnExecuteAction
 
 ```mermaid
 sequenceDiagram
@@ -163,7 +176,7 @@ sequenceDiagram
   Note over B: message "Please check your internet connection!"
 ```
 
-#### 5.1.2 ScreenBlock_MessageDetail: onClick_ViewAssembleEvent
+#### 5.1.3 ScreenBlock_MessageDetail: onClick_ViewAssembleEvent
 
 ```mermaid
 sequenceDiagram
@@ -174,7 +187,7 @@ sequenceDiagram
   Note over B: message "You don\'t have access to Assemble."
 ```
 
-#### 5.1.3 ScreenBlock_MessageDetail: onClick_ViewOrbitEvent (orbit)
+#### 5.1.4 ScreenBlock_MessageDetail: onClick_ViewOrbitEvent (orbit)
 
 ```mermaid
 sequenceDiagram
@@ -187,7 +200,7 @@ sequenceDiagram
   S-->>B: OrbitEventId, OrbitEventName, OrbitMilestoneId
 ```
 
-#### 5.1.4 ScreenBlock_MessageDetail: onClick_ViewOrbitEvent (orbitHostSurvey)
+#### 5.1.5 ScreenBlock_MessageDetail: onClick_ViewOrbitEvent (orbitHostSurvey)
 
 ```mermaid
 sequenceDiagram
@@ -201,7 +214,7 @@ sequenceDiagram
   Note over B: message "You don\'t have access to Orbit Host Survey. Please contact the Orbit Helpdesk if you hav
 ```
 
-#### 5.1.5 ScreenBlock_MessageDetail: onClick_ViewOrbitEvent (other)
+#### 5.1.6 ScreenBlock_MessageDetail: onClick_ViewOrbitEvent (other)
 
 ```mermaid
 sequenceDiagram
@@ -212,7 +225,7 @@ sequenceDiagram
   Note over B: message "You don\'t have access to Orbit. Please contact the Orbit Helpdesk if you have any questi
 ```
 
-#### 5.1.6 NotificationDetailBlock: adaptiveCardViewerOnExecuteAction
+#### 5.1.7 NotificationDetailBlock: adaptiveCardViewerOnExecuteAction
 
 ```mermaid
 sequenceDiagram
@@ -223,7 +236,7 @@ sequenceDiagram
   Note over B: message "Please check your internet connection!"
 ```
 
-#### 5.1.7 BottomBarMenu: event_BottomBar_Clicked (home)
+#### 5.1.8 BottomBarMenu: event_BottomBar_Clicked (home)
 
 ```mermaid
 sequenceDiagram
@@ -235,7 +248,7 @@ sequenceDiagram
   B->>N: go to HomeFeed
 ```
 
-#### 5.1.8 BottomBarMenu: event_BottomBar_Clicked (directory)
+#### 5.1.9 BottomBarMenu: event_BottomBar_Clicked (directory)
 
 ```mermaid
 sequenceDiagram
@@ -248,7 +261,7 @@ sequenceDiagram
   B->>N: go to Locality_Details
 ```
 
-#### 5.1.9 BottomBarMenu: event_BottomBar_Clicked (updates)
+#### 5.1.10 BottomBarMenu: event_BottomBar_Clicked (updates)
 
 ```mermaid
 sequenceDiagram
@@ -260,7 +273,7 @@ sequenceDiagram
   B->>N: go to Updates_SingleList
 ```
 
-#### 5.1.10 BottomBarMenu: event_BottomBar_Clicked (bookmarks)
+#### 5.1.11 BottomBarMenu: event_BottomBar_Clicked (bookmarks)
 
 ```mermaid
 sequenceDiagram
@@ -272,7 +285,7 @@ sequenceDiagram
   B->>N: go to Bookmarks
 ```
 
-#### 5.1.11 BottomBarMenu: event_BottomBar_Clicked (menu)
+#### 5.1.12 BottomBarMenu: event_BottomBar_Clicked (menu)
 
 ```mermaid
 sequenceDiagram
@@ -284,7 +297,7 @@ sequenceDiagram
   B->>N: go to Menu
 ```
 
-#### 5.1.12 MessageDetail: handler_AddAuditAndNavigateTo_EventDetail
+#### 5.1.13 MessageDetail: handler_AddAuditAndNavigateTo_EventDetail
 
 ```mermaid
 sequenceDiagram
@@ -297,7 +310,7 @@ sequenceDiagram
   B->>N: go to LDM_EventDetail
 ```
 
-#### 5.1.13 MessageDetail: handler_NavigateTo_ShareObjectDetail (myHousehold)
+#### 5.1.14 MessageDetail: handler_NavigateTo_ShareObjectDetail (myHousehold)
 
 ```mermaid
 sequenceDiagram
@@ -309,7 +322,7 @@ sequenceDiagram
   B->>N: go to HouseholdDetails
 ```
 
-#### 5.1.14 MessageDetail: handler_NavigateTo_ShareObjectDetail (oneSchoolGlobal)
+#### 5.1.15 MessageDetail: handler_NavigateTo_ShareObjectDetail (oneSchoolGlobal)
 
 ```mermaid
 sequenceDiagram
@@ -321,7 +334,7 @@ sequenceDiagram
   B->>N: go to OneSchoolGlobalDetails
 ```
 
-#### 5.1.15 MessageDetail: handler_NavigateTo_ShareObjectDetail (supperMeeting)
+#### 5.1.16 MessageDetail: handler_NavigateTo_ShareObjectDetail (supperMeeting)
 
 ```mermaid
 sequenceDiagram
@@ -333,7 +346,7 @@ sequenceDiagram
   B->>N: go to SupperMeeting_Details
 ```
 
-#### 5.1.16 MessageDetail: handler_NavigateTo_ShareObjectDetail (feed)
+#### 5.1.17 MessageDetail: handler_NavigateTo_ShareObjectDetail (feed)
 
 ```mermaid
 sequenceDiagram
@@ -345,7 +358,7 @@ sequenceDiagram
   B->>N: go to FeedItemDetail
 ```
 
-#### 5.1.17 MessageDetail: handler_NavigateTo_Login
+#### 5.1.18 MessageDetail: handler_NavigateTo_Login
 
 ```mermaid
 sequenceDiagram
@@ -357,7 +370,7 @@ sequenceDiagram
   B->>N: go to Login
 ```
 
-#### 5.1.18 MessageDetail: handler_NavigateTo_MessageList
+#### 5.1.19 MessageDetail: handler_NavigateTo_MessageList
 
 ```mermaid
 sequenceDiagram
@@ -370,7 +383,7 @@ sequenceDiagram
   B->>N: go to MessageList
 ```
 
-#### 5.1.19 MessageDetail: handler_SubscriptionDenied
+#### 5.1.20 MessageDetail: handler_SubscriptionDenied
 
 ```mermaid
 sequenceDiagram
@@ -382,7 +395,7 @@ sequenceDiagram
   Note over B: confirm dialog
 ```
 
-#### 5.1.20 MessageDetail: handler_NavigateTo_AssembleDetail
+#### 5.1.21 MessageDetail: handler_NavigateTo_AssembleDetail
 
 ```mermaid
 sequenceDiagram
@@ -394,7 +407,7 @@ sequenceDiagram
   B->>N: go to AssembleDetail
 ```
 
-#### 5.1.21 MessageDetail: handler_NavigateTo_OrbitEventDetails
+#### 5.1.22 MessageDetail: handler_NavigateTo_OrbitEventDetails
 
 ```mermaid
 sequenceDiagram
@@ -406,7 +419,7 @@ sequenceDiagram
   B->>N: go to EventDetail
 ```
 
-#### 5.1.22 MessageDetail: handler_NavigateTo_OrbitMilestone
+#### 5.1.23 MessageDetail: handler_NavigateTo_OrbitMilestone
 
 ```mermaid
 sequenceDiagram
@@ -418,7 +431,7 @@ sequenceDiagram
   B->>N: go to MilestoneDetail
 ```
 
-#### 5.1.23 MessageDetail: handler_NavigateTo_OrbitHostSurvey
+#### 5.1.24 MessageDetail: handler_NavigateTo_OrbitHostSurvey
 
 ```mermaid
 sequenceDiagram
@@ -430,7 +443,7 @@ sequenceDiagram
   B->>N: go to HostSurvey
 ```
 
-#### 5.1.24 MessageDetail: handler_AddAuditAndNavigateTo_EventEmail
+#### 5.1.25 MessageDetail: handler_AddAuditAndNavigateTo_EventEmail
 
 ```mermaid
 sequenceDiagram
@@ -443,7 +456,7 @@ sequenceDiagram
   B->>N: go to LDM_Email
 ```
 
-#### 5.1.25 MessageDetail: handler_BackNavigationHandlerBackNavigation
+#### 5.1.26 MessageDetail: handler_BackNavigationHandlerBackNavigation
 
 ```mermaid
 sequenceDiagram
