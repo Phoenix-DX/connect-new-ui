@@ -144,11 +144,22 @@ def survey_screen(screen):
 # ---------------------------------------------------------------------------------------------------------------
 # React
 # ---------------------------------------------------------------------------------------------------------------
+def newest_source(scan):
+    """The newest change time of the code that the app shell scan reads: app/src, the tsconfig files and the scanner."""
+    newest = max(os.path.getmtime(scan), *(os.path.getmtime(p) for p in glob.glob(os.path.join(ROOT, "app", "tsconfig*.json"))))
+    for d, _, files in os.walk(os.path.join(ROOT, "app", "src")):
+        for f in files:
+            if f.endswith((".ts", ".tsx")):
+                newest = max(newest, os.path.getmtime(os.path.join(d, f)))
+    return newest
+
+
 def react_data(route):
     shell_p = os.path.join(DATA, "react-shell.json")
     page_p = os.path.join(DATA, f"react-{route}.json")
     scan = os.path.join(ROOT, "migration", "tools", "route_actions", "react_calls.mjs")
-    if not os.path.exists(shell_p):
+    if not os.path.exists(shell_p) or newest_source(scan) > os.path.getmtime(shell_p):
+        print("app shell: code changed since the last scan, or no scan yet; scanning again")
         subprocess.run(["node", scan, "shell"], check=True, cwd=ROOT)
     subprocess.run(["node", scan, "page", route], check=True, cwd=ROOT)
     subprocess.run(["node", scan, "all"], check=True, cwd=ROOT)

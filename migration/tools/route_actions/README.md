@@ -17,9 +17,12 @@ python3 migration/tools/route_actions/check_route.py <Route>           # writes 
 python3 migration/tools/route_actions/check_route.py <Route> --mark-done
 ```
 
-After a change in `app/src`, delete `migration/route-actions/data/react-shell.json`. The next run then reads the app
-shell again. Git ignores `migration/route-actions/data/` (the tools make it again) and `migration/route-actions/raw/`
-(the MCP cache).
+The tool keeps the app shell scan in `migration/route-actions/data/react-shell.json`. When a `.ts` or `.tsx` file in
+`app/src`, a `tsconfig` file or `react_calls.mjs` is newer than that file, the tool scans the app shell again. Git
+ignores `migration/route-actions/data/` (the tools make it again) and `migration/route-actions/raw/` (the MCP cache).
+
+To check a route again later, run `check_route.py <Route>` again. The tool overwrites the route file and keeps the
+status in `ROUTES.md`. Use `git diff` to see what changed.
 
 ## Sources
 
