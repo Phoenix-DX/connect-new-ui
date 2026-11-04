@@ -39,8 +39,9 @@
   `APP_SHELL.md`), this context. Updated: `.gitignore` (`migration/route-actions/raw/`, `data/`), `INDEX.md`.
 
 ## Open issues
-- The user's feedback on the run 3 format of HomeFeed.
-- The 17 routes without a TST capture.
+- The 17 routes without a TST capture (the tool stops for them).
+- Open questions in the route files (section Questions) and in `APP_SHELL.md`.
 
 ## Next
-- After the feedback: mark HomeFeed `done`, then run the next routes one by one.
+- Paused by the user (2026-11-04) after 4 of 68 routes done. Resume with `PINBiometricsMenu`, then the order of
+  `ROUTES.md`: run `check_route.py <Route>`, hand-check the missing rows, the user says done, `--mark-done`, commit.
