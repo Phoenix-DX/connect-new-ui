@@ -34,7 +34,7 @@ UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read 2026-11-04.
 | [`HouseholdDetails`](routes/HouseholdDetails.md) | `Directory_Household` | done |
 | [`Household_Relations`](routes/Household_Relations.md) | `Directory_Household` | done |
 | [`BrowseCountries`](routes/BrowseCountries.md) | `Directory_Locality` | done |
-| `BrowseDirectory` | `Directory_Locality` | todo |
+| [`BrowseDirectory`](routes/BrowseDirectory.md) | `Directory_Locality` | todo |
 | `CountryDetails` | `Directory_Locality` | todo |
 | `CountryList` | `Directory_Locality` | todo |
 | `Locality_Details` | `Directory_Locality` | todo |

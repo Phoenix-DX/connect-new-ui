@@ -639,7 +639,14 @@ function effectsOf(fn, label, depth, seen, env = null) {
         let sym = (Node.isPropertyAccessExpression(ex) ? ex.getNameNode() : ex).getSymbol?.();
         if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
         const d0 = sym?.getDeclarations()?.[0];
-        const cb = envResolve(ex, env);
+        let cb = envResolve(ex, env);
+        if (!cb && Node.isPropertyAccessExpression(ex) && ex.getName() === 'current' && Node.isIdentifier(ex.getExpression())) {
+          // `ref.current(…)` with `const ref = useRef(fn)`: fn runs
+          const rd = ex.getExpression().getSymbol?.()?.getDeclarations()?.[0];
+          const ri = rd && Node.isVariableDeclaration(rd) ? rd.getInitializer() : null;
+          if (ri && Node.isCallExpression(ri) && ri.getExpression().getText() === 'useRef' && ri.getArguments()[0])
+            cb = resolveFn(ri.getArguments()[0]);
+        }
         const viaProps = cb ? [] : propResolve(ex).filter((b) => !seen.has(b));
         for (const pb of viaProps) {
           const sub = effectsOf(pb, lab, depth + 1, new Set([...seen, pb]), null);
