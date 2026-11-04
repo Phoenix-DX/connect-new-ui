@@ -1,6 +1,6 @@
 # Routes: OutSystems actions against React
 
-One file per route in `routes/`. Run `python3 route-actions/tools/check_route.py <Route>` (see [README](README.md)). Progress: **9 of 68** build routes done.
+One file per route in `routes/`. Run `python3 route-actions/tools/check_route.py <Route>` (see [README](README.md)). Progress: **10 of 68** build routes done.
 
 The app shell (`CommonUI_InsideLayout` and its blocks on TST; the code that `main.tsx` loads in React) is in [APP_SHELL.md](APP_SHELL.md). The tool merges it from the checked routes.
 
@@ -16,7 +16,7 @@ UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read 2026-11-04.
 | [`ContactUsDetails`](routes/ContactUsDetails.md) | `App_Menu_ContactUs` | done |
 | [`ContactUsMenu`](routes/ContactUsMenu.md) | `App_Menu_ContactUs` | done |
 | [`NotificationDetails`](routes/NotificationDetails.md) | `App_Notifications` | done |
-| [`Notifications`](routes/Notifications.md) | `App_Notifications` | todo |
+| [`Notifications`](routes/Notifications.md) | `App_Notifications` | done |
 | `PINChange` | `App_PIN` | todo |
 | `PINRegister` | `App_PIN` | todo |
 | `PINUnlock` | `App_PIN` | todo |
