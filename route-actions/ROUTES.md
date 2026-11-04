@@ -75,7 +75,7 @@ UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read 2026-11-04.
 | [`ConnectShare`](routes/ConnectShare.md) | `Legacy_Share` | done |
 | [`LegacyShareObject`](routes/LegacyShareObject.md) | `Legacy_Share` | done |
 | [`Notes`](routes/Notes.md) | `Notes` | done |
-| `CommunityBusinessDetails_CoomingSoon` | `zDEV_Directory_CommunityBusinessBlocks` | todo |
+| [`CommunityBusinessDetails_CoomingSoon`](routes/CommunityBusinessDetails_CoomingSoon.md) | `zDEV_Directory_CommunityBusinessBlocks` | todo |
 
 ## Out of scope (16 skip routes)
 
