@@ -4,8 +4,11 @@
 - Pipeline in [`route-actions/`](../../route-actions/README.md) at the repository root: one file per route in
   `route-actions/routes/`, status in [`ROUTES.md`](../../route-actions/ROUTES.md), the app shell in
   [`APP_SHELL.md`](../../route-actions/APP_SHELL.md). Mermaid diagrams as text.
-- 4 of 68 build routes done: HomeFeed, Login, Splash, Menu. Example: [HomeFeed](../../route-actions/routes/HomeFeed.md)
-  has 21 TST calls, 18 implemented, 3 missing (`CS_CreateShareProfileLink` ×2, `GetAllApplicationEvents`).
+- 51 of 68 build routes done (all routes with a TST capture), 2026-11-04. The user let Claude mark done and go on
+  route by route (stop only for MCP). Status per route in [`ROUTES.md`](../../route-actions/ROUTES.md).
+- Real gaps found: `HouseholdRelations_Block/DataActionFetchNotes` (React opens the sheet without the fetch),
+  `GetEventsForCalendar` (LDM calendar view not in React), `CS_CreateShareProfileLink` and
+  `GetAllApplicationEvents` (share to others, audit events), `AppManager_Logout` (PINRegister back to login).
 - No file in `app/` changed.
 
 ## Decisions (who, date)
@@ -30,10 +33,15 @@
 - Updated: `.gitignore` (`route-actions/.cache/`), `INDEX.md`. Moved from `migration/route-actions/` and
   `migration/tools/route_actions/` with `git mv`.
 
+- Tool fixes 2026-11-04 (in the commits): TST messages with a variable, JS nodes (messages, action proxies),
+  `tel:`/URL destinations, previous screen; React: hook closures and call-site arguments, props through JSX,
+  hook spreads, `flow.run`/`flow.own`/`flow.events`, query refetch → calls, capture calls of another screen.
+
 ## Open issues
-- The 17 routes without a TST capture.
+- The 17 routes without a TST capture (the tool stops).
+- Some questions come from blocks that TST did not render in the capture (empty lists, for example
+  Locality_Details entity actions).
 - The questions in the route files (section Questions) and in `APP_SHELL.md`.
 
 ## Next
-- Paused by the user after 4 routes. Resume with `PINBiometricsMenu`, then the order of `ROUTES.md`:
-  `python3 route-actions/tools/check_route.py <Route>`, hand-check, the user says done, `--mark-done`, commit.
+- The user decides: the 17 routes without a capture (capture them first, or leave them), and the open questions.
