@@ -42,7 +42,7 @@ UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read 2026-11-04.
 | [`OneSchoolGlobalDetails`](routes/OneSchoolGlobalDetails.md) | `Directory_OneSchoolGlobal` | done |
 | [`Photobook`](routes/Photobook.md) | `Directory_Photobook` | done |
 | [`Search`](routes/Search.md) | `Directory_Search` | done |
-| `SupperMeeting_Carousel` | `Directory_SupperMeetings` | todo |
+| [`SupperMeeting_Carousel`](routes/SupperMeeting_Carousel.md) | `Directory_SupperMeetings` | todo |
 | `SupperMeeting_Details` | `Directory_SupperMeetings` | todo |
 | `Updates_SingleList` | `Directory_Updates` | todo |
 | `FeedItemDetail` | `Home` | todo |
