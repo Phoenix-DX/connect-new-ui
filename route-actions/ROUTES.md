@@ -1,6 +1,6 @@
 # Routes: OutSystems actions against React
 
-One file per route in `routes/`. Run `python3 route-actions/tools/check_route.py <Route>` (see [README](README.md)). Progress: **45 of 68** build routes done.
+One file per route in `routes/`. Run `python3 route-actions/tools/check_route.py <Route>` (see [README](README.md)). Progress: **46 of 68** build routes done.
 
 The app shell (`CommonUI_InsideLayout` and its blocks on TST; the code that `main.tsx` loads in React) is in [APP_SHELL.md](APP_SHELL.md). The tool merges it from the checked routes.
 
@@ -66,7 +66,7 @@ UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read 2026-11-04.
 | `GuestArrangements` | `Legacy_OrbitEventsFlow` | todo |
 | [`HelpersDetail`](routes/HelpersDetail.md) | `Legacy_OrbitEventsFlow` | done |
 | [`HostSurvey`](routes/HostSurvey.md) | `Legacy_OrbitEventsFlow` | done |
-| [`MilestoneDetail`](routes/MilestoneDetail.md) | `Legacy_OrbitEventsFlow` | todo |
+| [`MilestoneDetail`](routes/MilestoneDetail.md) | `Legacy_OrbitEventsFlow` | done |
 | `OrbitLanding` | `Legacy_OrbitEventsFlow` | todo |
 | `PassportScan` | `Legacy_OrbitEventsFlow` | todo |
 | `TransportDetail` | `Legacy_OrbitEventsFlow` | todo |
