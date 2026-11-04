@@ -717,6 +717,9 @@ def user_actions(sources, rendered, eps):
             js = js_nodes.get(m.group(1), "")
             win = body[m.end(): m.end() + 1500]
             win = win[: win.find("safeExecuteJSNode")] if "safeExecuteJSNode" in win else win
+            if "showFeedbackMessage" in js:  # a JavaScript node that shows a message
+                lit = re.search(r'Message:\s*OS\.DataConversion\.JSNodeParamConverter\.to\("([^"]{0,120})"', win)
+                marks.append((m.start(), "message", f'"{lit.group(1)}"' if lit else "JavaScript node"))
             for p in re.finditer(r"(\w+):\s*controller\.clientActionProxies\.(\w+?)\$Action", win):
                 if re.search(r"\$actions\." + p.group(1) + r"\b", js):
                     marks.append((m.start(), "action", (p.group(1), f"controller.{p.group(2)}$Action(")))

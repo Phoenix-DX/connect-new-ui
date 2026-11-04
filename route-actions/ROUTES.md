@@ -26,7 +26,7 @@ UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read 2026-11-04.
 | [`Bookmarks`](routes/Bookmarks.md) | `Bookmarks` | done |
 | [`MyEntertaining`](routes/MyEntertaining.md) | `Calendar` | done |
 | `ContactByEmailLDMCoordinator` | `ContactFlow` | todo |
-| `ContactByEmailMember` | `ContactFlow` | todo |
+| [`ContactByEmailMember`](routes/ContactByEmailMember.md) | `ContactFlow` | todo |
 | `ContactByEmailOneSchoolGlobal` | `ContactFlow` | todo |
 | `ContactByEmailOrbitHelpdesk` | `ContactFlow` | todo |
 | `ContactByEmailOrbitHost` | `ContactFlow` | todo |
