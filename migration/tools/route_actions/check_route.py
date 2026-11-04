@@ -473,6 +473,13 @@ def chain_owner(chain, blocks):
     return head, "shell"
 
 
+def from_owner(chain, owner):
+    """The chain from the first step of the owner block to the call; long chains keep 2 steps, '…' and the call."""
+    i = next((k for k, st in enumerate(chain) if st.startswith((owner + ".", owner + " "))), 0)
+    steps = chain[i:]
+    return steps if len(steps) <= 4 else steps[:2] + ["…"] + steps[-1:]
+
+
 def mermaid(r):
     L = ["flowchart LR"]
     ids = {}
@@ -569,7 +576,7 @@ def render(r):
          "## 4. Server calls", "",
          "- **Called from (OutSystems):** the block or the app-level module whose own client action makes the call. "
          "`app shell` = the layout and the app start; `screen` = the screen and its blocks.",
-         "- **Made by (TST):** for each block in \"Called from\", the last 3 steps of its chain of client actions to the call.",
+         "- **Made by (TST):** for each block in \"Called from\", its chain of client actions from the block to the call.",
          "- **Seen on TST:** `yes` when TST made the call in the capture. Many calls run only after a click.", "",
          "| # | Call (TST) | Kind | Called from (OutSystems) | Made by (TST) | Seen on TST | React action | Status |",
          "|---|---|---|---|---|---|---|---|"]
@@ -584,7 +591,7 @@ def render(r):
         made = []
         for o in owners:
             ch = next((c for c in e["chains"] if c and chain_owner(c, r["blocks"]) == o), None)
-            made.append(md_escape(" → ".join(ch[-3:])) if ch else "–")
+            made.append(md_escape(" → ".join(from_owner(ch, o[0]))) if ch else "–")
         more = len(e["chains"]) - len(owners)
         chain = "<br>".join(made) + (f"<br>(+{more} more chains)" if more > 0 else "")
         rc = "<br>".join(f"`{c['fn']}()` {link(c['file'], c['line'])} ({c['where']})" for c in e["react"]) or "–"
