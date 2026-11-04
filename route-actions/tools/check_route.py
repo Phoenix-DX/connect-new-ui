@@ -701,9 +701,16 @@ def user_actions(sources, rendered, eps):
             marks.append((m.start(), "navigate", "previous screen"))
         for m in re.finditer(r"// Destination: (/\S*)", body):
             # a URL with a scheme built in the code (`generateScreenURL(("tel:" + …`): an external link, not the screen
-            ext = re.match(r'\s*return[^\n]{0,80}?generateScreenURL\(\(*"([a-z]+):', body[m.end():m.end() + 300])
+            nxt = body[m.end():m.end() + 400]
+            ext = re.match(r'\s*return[^\n]{0,80}?generateScreenURL\(\(*"([a-z]+):', nxt)
             if ext:
                 marks.append((m.start(), "external", f"{ext.group(1)}: link"))
+                continue
+            # a URL in a variable (`generateScreenURL(vars.value.xVar, …)`): not the screen of the comment
+            var = re.match(r'\s*return[^\n]{0,80}?generateScreenURL\(([\w.$]+),', nxt)
+            if var:
+                arg = re.sub(r"Var$|^vars\.value\.|InLocal$", "", var.group(1))
+                marks.append((m.start(), "navigate", f"URL {arg}"))
                 continue
             dest = m.group(1).rstrip("/")
             # the screen name; the module root (`/UBTConnect/`) stays a path

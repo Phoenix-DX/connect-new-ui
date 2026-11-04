@@ -38,7 +38,7 @@ UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read 2026-11-04.
 | [`CountryDetails`](routes/CountryDetails.md) | `Directory_Locality` | done |
 | [`CountryList`](routes/CountryList.md) | `Directory_Locality` | done |
 | [`Locality_Details`](routes/Locality_Details.md) | `Directory_Locality` | done |
-| `OneSchoolGlobalCarousel` | `Directory_OneSchoolGlobal` | todo |
+| [`OneSchoolGlobalCarousel`](routes/OneSchoolGlobalCarousel.md) | `Directory_OneSchoolGlobal` | todo |
 | `OneSchoolGlobalDetails` | `Directory_OneSchoolGlobal` | todo |
 | `Photobook` | `Directory_Photobook` | todo |
 | `Search` | `Directory_Search` | todo |

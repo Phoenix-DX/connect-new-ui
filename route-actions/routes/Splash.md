@@ -86,8 +86,8 @@ The two lists are independent: the OutSystems list comes from the TST compiled c
 | # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
 |---|---|---|---|---|---|
 | [1](#511-splash-loadingdotsanimationcomplete) | `Splash` | `animationComplete of LoadingDots` | `loadingDotsAnimationComplete` | – | goes to PINRegister, PINUnlock, URL getColdStartLinkURL.uRLOut, URL client variable LastURL |
-| [2](#512-handleonresumeopenlink-androidapplinkonresumehandlerresumenavigation) | `HandleOnResumeOpenLink` | `resumeNavigation of AndroidAppLinkOnResumeHandler` | `androidAppLinkOnResumeHandlerResumeNavigation` | – | goes to /UBTConnect/ |
-| [3](#513-handleonresumeopenlink-deeplinkhandlercentralondeeplinkopen) | `HandleOnResumeOpenLink` | `onDeeplinkOpen of DeeplinkHandlerCentral` | `deeplinkHandlerCentralOnDeeplinkOpen` | – | goes to /UBTConnect/ |
+| [2](#512-handleonresumeopenlink-androidapplinkonresumehandlerresumenavigation) | `HandleOnResumeOpenLink` | `resumeNavigation of AndroidAppLinkOnResumeHandler` | `androidAppLinkOnResumeHandlerResumeNavigation` | – | goes to URL in_URL |
+| [3](#513-handleonresumeopenlink-deeplinkhandlercentralondeeplinkopen) | `HandleOnResumeOpenLink` | `onDeeplinkOpen of DeeplinkHandlerCentral` | `deeplinkHandlerCentralOnDeeplinkOpen` | – | goes to URL in_URL |
 
 #### 5.1.1 Splash: loadingDotsAnimationComplete
 
@@ -113,7 +113,7 @@ sequenceDiagram
   participant B as HandleOnResumeOpenLink
   participant N as Navigation
   U->>B: resumeNavigation of AndroidAppLinkOnResumeHandler → androidAppLinkOnResumeHandlerResumeNavigation
-  B->>N: go to /UBTConnect/
+  B->>N: go to URL in_URL
 ```
 
 #### 5.1.3 HandleOnResumeOpenLink: deeplinkHandlerCentralOnDeeplinkOpen
@@ -125,7 +125,7 @@ sequenceDiagram
   participant B as HandleOnResumeOpenLink
   participant N as Navigation
   U->>B: onDeeplinkOpen of DeeplinkHandlerCentral → deeplinkHandlerCentralOnDeeplinkOpen
-  B->>N: go to /UBTConnect/
+  B->>N: go to URL in_URL
 ```
 
 ### 5.2 React

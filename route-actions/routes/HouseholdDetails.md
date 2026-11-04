@@ -174,7 +174,7 @@ The two lists are independent: the OutSystems list comes from the TST compiled c
 | [18](#5118-householddetails_block-handler_onclickmember) | `HouseholdDetails_Block` | `event_MemberOnClick of Block` | `handler_OnClickMember` | – | goes to Household_Relations |
 | [19](#5119-householddetails_members_block-handler_nonmemberonclick) | `HouseholdDetails_Members_Block` | `click of Icon`<br>`onClickPerson of ListItem` | `handler_NonMemberOnClick` | – | asks for a confirmation |
 | [20](#5120-layout_detailpage-onclick_backnavigation) | `Layout_DetailPage` | `click of Icon` | `onClick_BackNavigation` | – | goes to previous screen |
-| [21](#5121-addresspopup_wrapper-handler_openinmapsorgooglemaps) | `AddressPopup_Wrapper` | `event_OpenInGoogleMaps of AddressPopup`<br>`event_OpenInMaps of AddressPopup` | `handler_OpenInMapsOrGoogleMaps` | – | goes to /UBTConnect_Utils/; opens an external link; shows a message |
+| [21](#5121-addresspopup_wrapper-handler_openinmapsorgooglemaps) | `AddressPopup_Wrapper` | `event_OpenInGoogleMaps of AddressPopup`<br>`event_OpenInMaps of AddressPopup` | `handler_OpenInMapsOrGoogleMaps` | – | goes to URL mapsAddress; opens an external link; shows a message |
 | [22](#5122-contactbymessage_wrapper-handler_selectedmessagechannel) | `ContactByMessage_Wrapper` | `event_SelectedMessageChannel of ByMessage` | `handler_SelectedMessageChannel` | – | opens an external link |
 | [23](#5123-contactpopup_byphone-onclick_callbutton) | `ContactPopup_ByPhone` | `event_Clicked of ContactPopup` | `onClick_CallButton` | – | opens an external link |
 | [24](#5124-notessheet-handler_onsubmitnote) | `NotesSheet` | `onSubmitRequested of AddNote` | `handler_OnSubmitNote` | – | calls AddNote; shows a message |
@@ -447,7 +447,7 @@ sequenceDiagram
   participant N as Navigation
   participant X as External link
   U->>B: event_OpenInGoogleMaps of AddressPopup → handler_OpenInMapsOrGoogleMaps
-  B->>N: go to /UBTConnect_Utils/
+  B->>N: go to URL mapsAddress
   B->>X: https: link
   Note over B: message "Map is not available"
 ```
