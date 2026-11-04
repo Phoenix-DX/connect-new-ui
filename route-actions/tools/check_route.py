@@ -1021,7 +1021,8 @@ def call_rows(eps, blocks):
 def os_var_name(expr):
     """`model.variables.in_LinkIn.linkAttr` → `in_Link.link`: the names of the OutSystems variables and attributes."""
     expr = re.sub(r"^(model\.variables\.|vars\.value\.)", "", expr)
-    return ".".join(re.sub(r"(Var|InLocal|In|Attr)$", "", p) for p in expr.split("."))
+    parts = [re.sub(r"(Var|InLocal|In|Attr|Out)$", "", p) for p in expr.split(".") if p != "value"]
+    return ".".join(parts) if len(parts) <= 3 else f"{parts[0]}.….{parts[-1]}".replace(".….", "…")
 
 
 def own_routes(short_url):
