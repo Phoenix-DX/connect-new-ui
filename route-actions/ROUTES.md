@@ -22,7 +22,7 @@ UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read 2026-11-04.
 | [`PINUnlock`](routes/PINUnlock.md) | `App_PIN` | done |
 | `AcceptPendingPolicies` | `App_Policies` | todo |
 | [`Profile`](routes/Profile.md) | `App_Profile` | done |
-| `Services` | `App_Services` | todo |
+| [`Services`](routes/Services.md) | `App_Services` | todo |
 | `Bookmarks` | `Bookmarks` | todo |
 | `MyEntertaining` | `Calendar` | todo |
 | `ContactByEmailLDMCoordinator` | `ContactFlow` | todo |
