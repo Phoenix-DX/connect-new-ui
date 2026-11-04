@@ -1,7 +1,8 @@
 # connect-new: UBTConnect (OutSystems 11) → React
 
 Migrate the OutSystems app **UBTConnect TST** (`https://ubtm-tst.ubtconnectglobal.com/UBTConnect/`) to a React app
-(`app/`) with mock data, screen by screen, matching the original 1:1. All 64 routes are migrated. The project skill
+(`app/`) with mock data, screen by screen, matching the original 1:1. TST has 84 routes (live survey, 2026-10-28): all 68 `build` routes are migrated, and the
+16 `skip` routes show the `NotMigrated` placeholder. The project skill
 **outsystems-screen-spec** (`.claude/skills/outsystems-screen-spec/`) is a reference for how the routes were captured,
 specified and checked. Use it to re-capture or re-check a route. Architecture work follows the Refactor section below.
 
