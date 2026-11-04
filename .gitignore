@@ -42,3 +42,7 @@ migration/clarify/.dump/
 # 2026-10-13 stays committed as capture/survey-UBTConnect-2026-10-13.json
 capture/survey-UBTConnect.json
 capture/runtime-sources-live-*/
+
+# route-actions pipeline: MCP (DEV) cache
+migration/route-actions/raw/
+migration/route-actions/data/
