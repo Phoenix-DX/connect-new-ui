@@ -46,7 +46,7 @@ UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read 2026-11-04.
 | `SupperMeeting_Details` | `Directory_SupperMeetings` | todo |
 | `Updates_SingleList` | `Directory_Updates` | todo |
 | `FeedItemDetail` | `Home` | todo |
-| [`HomeFeed`](HomeFeed.md) | `Home` | waiting for MCP |
+| [`HomeFeed`](HomeFeed.md) | `Home` | todo |
 | `AssembleDetail` | `Legacy_AssembleFlow` | todo |
 | `AssembleEvents` | `Legacy_AssembleFlow` | todo |
 | `Assemble_BrowseByCountry` | `Legacy_AssembleFlow` | todo |

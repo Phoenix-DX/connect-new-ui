@@ -90,8 +90,10 @@ def read_status():
     return st
 
 
-def write_routes(done=None, waiting=None):
+def write_routes(done=None, waiting=None, reset=None):
     st = read_status()
+    if reset and st.get(reset) == "waiting for MCP":
+        st[reset] = "todo"
     if done:
         st[done] = "done"
     if waiting:
@@ -152,7 +154,7 @@ def mcp_element(kind, module, name):
         if owner in owners and assign.get(nv) in named:
             mod, n, k = named[assign[nv]]
             item = f"{mod}.{n} ({k})"
-            if item not in out[owners[owner]]:
+            if mod != "_System_" and item not in out[owners[owner]]:
                 out[owners[owner]].append(item)
     for n in owners.values():
         out.setdefault(n, [])
@@ -160,15 +162,18 @@ def mcp_element(kind, module, name):
 
 
 def mcp_action(kind, module, name):
-    """What a server action calls, or the producer module of a service action. Raises mcp_client.NotOpen."""
+    """What a server action calls, or the producer module of a referenced action. Raises mcp_client.NotOpen."""
     code = mcp_client.element_code(kind, module, name)
-    if kind == "service":
-        m = re.search(r"IServiceActionSignature (\w+)/(\w+)", code)
-        return [f"{m.group(1)}.{m.group(2)} (service, producer module)"] if m else [f"{module}.{name} (service)"]
+    m = re.search(r"I(Service|Server)ActionSignature (\w+)/(\w+)", code)
+    if m:  # a reference: the action lives in its producer module
+        return [f"{m.group(2)}.{m.group(3)} ({m.group(1).lower()}, producer module)"]
     out = []
     for mod, n, k in _named_actions(code, module).values():
-        if f"{mod}.{n} ({k})" not in out:
+        if mod != "_System_" and f"{mod}.{n} ({k})" not in out:
             out.append(f"{mod}.{n} ({k})")
+    ents = sorted(set(re.findall(r"Entities\.OfType<OutSystems\.Model\.Data\.I(?:Static)?Entity>\(\)\.Named\(\"(\w+)\"\)", code)))
+    if ents and "IAggregateNode" in code:
+        out.append("aggregates on " + ", ".join(ents))
     return out
 
 
@@ -646,7 +651,7 @@ def main():
         return
     r = check(a.route)
     render(r)
-    write_routes(waiting=a.route if r["closed"] else None)
+    write_routes(waiting=a.route if r["closed"] else None, reset=not r["closed"] and a.route)
     if r["closed"]:
         print("open these modules in Service Studio, then run again:", ", ".join(sorted(r["closed"])))
 

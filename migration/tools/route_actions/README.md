@@ -40,6 +40,8 @@ shell again. Git ignores `migration/route-actions/data/` (the tools make it agai
    - the UI flow of each screen (`getScreenNames`);
    - the inside of each server call: `getScreen` and `getWebBlock` for data actions, `getServerAction` for server
      actions, `getServiceAction` for service actions.
+   - A referenced action shows its producer module, for example `Connect2_Sharing_CS.CS_ShareObject (server,
+     producer module)`. The tool does not read the producer module. The tool does not show `_System_` actions.
 
    MCP reads only the modules that are open in Service Studio. The tool does not guess the content of a closed
    module. It lists the closed modules in the route file. The user opens them, then the tool runs again (user,
