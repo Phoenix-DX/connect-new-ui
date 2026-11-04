@@ -330,14 +330,29 @@ function condLabel(cond) {
   return null;
 }
 
+function constText(n, depth = 0) {
+  // the text of an argument, with each identifier or property access replaced by its constant initializer
+  let t = n.getText();
+  if (depth > 2) return t;
+  for (const x of [n, ...n.getDescendants()]) {
+    if (!(Node.isIdentifier(x) || Node.isPropertyAccessExpression(x))) continue;
+    let sym = (Node.isPropertyAccessExpression(x) ? x.getNameNode() : x).getSymbol?.();
+    if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
+    const d = sym?.getDeclarations()?.[0];
+    const init = d && (Node.isVariableDeclaration(d) || Node.isPropertyAssignment(d)) ? d.getInitializer() : null;
+    if (init && (Node.isStringLiteral(init) || Node.isNoSubstitutionTemplateLiteral(init) || Node.isTemplateExpression(init)))
+      t += ' ' + constText(init, depth + 1);
+  }
+  return t;
+}
+
 function navTargetsOf(arg) {
   if (!arg) return [];
-  const t = arg.getText();
+  const t = constText(arg);
   const out = [];
   if (/\bPATHS\.home\b|\bHOME\b/.test(t)) out.push(HOME_SCREEN);
   for (const m of t.matchAll(/\/([A-Za-z]\w*)(?=[`'"?/#]|$)/g)) if (ROUTE_NAMES.has(m[1])) out.push(m[1]);
   for (const m of t.matchAll(/['"`]([A-Za-z]\w*)['"`]/g)) if (ROUTE_NAMES.has(m[1])) out.push(m[1]);
-  for (const m of t.matchAll(/PATHS\.(\w+)/g)) if (m[1] !== 'home') out.push(m[1].charAt(0).toUpperCase() + m[1].slice(1));
   return [...new Set(out)];
 }
 
@@ -423,7 +438,7 @@ function effectsOf(fn, label, depth, seen) {
         add('refresh', name, node, lab); // a query fetches again (a new key or a refetch)
       } else if (ERROR_FN.test(name)) {
         add('message', 'error message (on exception)', node, lab);
-      } else if (/open\w*External\w*Link|openInApp|openUrl|^open$/i.test(name)) {
+      } else if (/open\w*External\w*Link|openInApp|openUrl/i.test(name)) {
         add('external', name, node, lab);
       } else handled = false;
       if (!handled && depth < 3) {
@@ -436,7 +451,7 @@ function effectsOf(fn, label, depth, seen) {
         for (const d of sym?.getDeclarations() ?? []) {
           const f = d.getSourceFile().getFilePath();
           if (excluded(f)) continue;
-          const body = bodyOfDecl(d);
+          const body = bodyOfDecl(d) ?? (Node.isBindingElement(d) ? resolveFn(ex) : null);
           if (!body || seen.has(body)) continue;
           const sub = effectsOf(body, lab, depth + 1, new Set([...seen, body]));
           if (sub.length) {
@@ -494,6 +509,89 @@ function handlersOf(units, reached) {
   return out;
 }
 
+// ---- bindings: the event handlers of the JSX ------------------------------------------------------------------
+// Each JSX attribute `on<Event>={handler}` of the reached files: the element, the attribute, the handler (inline or a
+// named function) and its effects (effectsOf). Only bindings with at least one effect (server call, navigation,
+// message, external link, confirm dialog) are kept. A binding that only calls a prop of its component is not kept:
+// the parent binds the real handler.
+const EFFECT_KINDS = new Set(['call', 'navigate', 'message', 'external', 'confirm']);
+
+// The function behind a handler expression: a function declaration or const, a name taken from the object that a
+// hook returns (`const { onX } = useY()` or `flows.onX` with `flows = useY()`), a shorthand property. A prop or a
+// parameter gives null: the parent decides.
+function returnedProperty(callExpr, name, depth) {
+  let sym = callExpr.getExpression().getSymbol?.();
+  if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
+  for (const d of sym?.getDeclarations() ?? []) {
+    const fn = bodyOfDecl(d);
+    if (!fn) continue;
+    for (const ret of fn.getDescendantsOfKind(SyntaxKind.ReturnStatement)) {
+      if (ret.getFirstAncestor(isFunctionLike) !== fn) continue;
+      const obj = ret.getExpression();
+      if (!obj || !Node.isObjectLiteralExpression(obj)) continue;
+      const p = obj.getProperty(name);
+      if (!p) continue;
+      if (Node.isShorthandPropertyAssignment(p)) return resolveFn(p.getNameNode(), depth + 1, p.getValueSymbol?.());
+      if (Node.isPropertyAssignment(p)) {
+        const init = p.getInitializer();
+        if (init && isFunctionLike(init)) return init;
+        if (init) return resolveFn(init, depth + 1);
+      }
+      if (Node.isMethodDeclaration(p)) return p;
+    }
+  }
+  return null;
+}
+
+function resolveFn(expr, depth = 0, given = null) {
+  if (!expr || depth > 4) return null;
+  if (isFunctionLike(expr)) return expr;
+  let sym = given ?? (Node.isPropertyAccessExpression(expr) ? expr.getNameNode() : expr).getSymbol?.();
+  if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
+  for (const d of sym?.getDeclarations() ?? []) {
+    if (excluded(d.getSourceFile().getFilePath())) continue;
+    const body = bodyOfDecl(d);
+    if (body) return body;
+    if (Node.isBindingElement(d)) {
+      const vd = d.getFirstAncestorByKind(SyntaxKind.VariableDeclaration);
+      const init = vd?.getInitializer();
+      const name = d.getPropertyNameNode()?.getText() ?? d.getName();
+      if (init && Node.isCallExpression(init)) return returnedProperty(init, name, depth);
+    }
+    if ((Node.isPropertySignature(d) || Node.isPropertyAssignment(d)) && Node.isPropertyAccessExpression(expr)) {
+      const objSym = expr.getExpression().getSymbol?.();
+      const od = objSym?.getDeclarations()?.[0];
+      const init = od && Node.isVariableDeclaration(od) ? od.getInitializer() : null;
+      if (init && Node.isCallExpression(init)) return returnedProperty(init, expr.getName(), depth);
+    }
+  }
+  return null;
+}
+
+function bindingsOf(units, reached) {
+  const out = [];
+  const files = new Set([...reached].map((k) => units.get(k).file));
+  for (const f of files) {
+    if (!f.endsWith('.tsx')) continue;
+    const sf = project.getSourceFile(f);
+    for (const attr of sf.getDescendantsOfKind(SyntaxKind.JsxAttribute)) {
+      const prop = attr.getNameNode().getText();
+      if (!/^on[A-Z]/.test(prop)) continue;
+      const init = attr.getInitializer();
+      const ex = init && Node.isJsxExpression(init) ? init.getExpression() : null;
+      if (!ex) continue;
+      const handler = isFunctionLike(ex) ? 'inline' : ex.getText().slice(0, 60);
+      const body = isFunctionLike(ex) ? ex : (Node.isIdentifier(ex) || Node.isPropertyAccessExpression(ex)) ? resolveFn(ex) : null;
+      if (!body) continue;
+      const effects = effectsOf(body, null, 0, new Set([body]));
+      if (!effects.some((e) => EFFECT_KINDS.has(e.kind))) continue;
+      const el = attr.getFirstAncestor((x) => Node.isJsxOpeningElement(x) || Node.isJsxSelfClosingElement(x));
+      out.push({ element: el ? el.getTagNameNode().getText() : '?', prop, handler, file: rel(f), line: attr.getStartLineNumber(), effects });
+    }
+  }
+  return out;
+}
+
 // ---- main ----------------------------------------------------------------------------------------------------
 const outDir = path.join(ROOT, 'migration', 'route-actions', 'data');
 fs.mkdirSync(outDir, { recursive: true });
@@ -530,7 +628,7 @@ if (mode === 'all') {
   rootKeys = unitsOf(sf).map((u) => `${entry}::${u.name}`);
   const { units, reached, users } = reach(files, rootKeys);
   out = { mode, entry: rel(entry), closureFiles: files.size, reachedUnits: reached.size, ...facts(units, reached, users),
-    reachedKeys: [...reached].map((k) => rel(k)), handlers: handlersOf(units, reached) };
+    reachedKeys: [...reached].map((k) => rel(k)), bindings: bindingsOf(units, reached) };
   fs.writeFileSync(path.join(outDir, 'react-shell.json'), JSON.stringify(out, null, 1));
 } else {
   entry = path.join(SRC, 'pages', route, `${route}Page.tsx`);
@@ -541,7 +639,7 @@ if (mode === 'all') {
   for (const u of unitsOf(sf)) if (u.isDefault) rootKeys.push(`${entry}::${u.name}`);
   const { units, reached, users } = reach(files, rootKeys);
   out = { mode, route, entry: rel(entry), closureFiles: files.size, reachedUnits: reached.size, ...facts(units, reached, users),
-    reachedKeys: [...reached].map((k) => rel(k)), handlers: handlersOf(units, reached) };
+    reachedKeys: [...reached].map((k) => rel(k)), bindings: bindingsOf(units, reached) };
   fs.writeFileSync(path.join(outDir, `react-${route}.json`), JSON.stringify(out, null, 1));
 }
 console.log(`${mode}${route ? ' ' + route : ''}: ${out.closureFiles} files in closure, ${out.reachedUnits} units reached, ${out.calls.length} callAction sites, ${out.functions.length} functions, ${out.origins.length} @origin tags`);

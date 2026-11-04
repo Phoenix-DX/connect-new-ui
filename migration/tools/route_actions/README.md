@@ -44,12 +44,17 @@ status in `ROUTES.md`. Use `git diff` to see what changed.
    In the shell and the screen, the tool counts only the declarations that the code uses. It skips tests, stories,
    `src/test/` and `src/mocks/`.
 
+## Rule: facts only
+
+The route files carry only what the tool reads in the code and the data, with the place in the code (user,
+2026-11-04). The tool does not guess. When it cannot read a fact, the file says so. The known limits are at the end.
+
 ## Route file and app shell file
 
-A route file has only the parts of the route. The app shell is in `migration/route-actions/APP_SHELL.md`:
+A route file has only the parts of the route. `migration/route-actions/APP_SHELL.md` has the app shell:
 
-- `CommonUI_InsideLayout` with its blocks, and the app-level actions;
-- the business blocks that at least 40% of the captured routes render, for example the bottom bar.
+- OutSystems: the chains that start in `CommonUI_InsideLayout` or one of its blocks (TST survey), or in a module action;
+- React: the event bindings of the code that `app/src/main.tsx` loads.
 
 Each route run writes `APP_SHELL.md` again from all `data/check-*.json`. Its call table gives the routes of each call.
 
@@ -57,12 +62,12 @@ Each route run writes `APP_SHELL.md` again from all `data/check-*.json`. Its cal
 |---|---|
 | 1. Route | The route, the OutSystems screen, the UI flow, the React screen and its route rules. |
 | 2. Result | The counts, and the count of the app shell parts on the route. |
-| 3. Screenshots | The images of the last parity run, per state: TST capture (personal text hidden), React build (mock data), difference. Without parity: the React review images, else the TST capture images. |
-| 4. Diagram | OutSystems block of the route → server call → React action → React component. A red box is a missing call. |
-| 5. User actions | An index table, then per user action and per branch (a menu option, for example) two sequence diagrams, one under the other: OutSystems (TST code) and React (the matched React handler). Red marks the differences: in OutSystems, an effect that the React handler does not have; in React, an effect that OutSystems does not have, and a note with the effects that React does not have. |
-| 6. Server calls | One row per call of the route: the calling block, the trigger, the chain, the React action, the React caller, the status. |
-| 7. Missing in React | The calls, blocks and navigation targets of the route that React does not have, with the notes of the React code. |
-| 8. Questions | The React calls of the screen that TST does not make on the route. |
+| 3. Screenshots | The images of the last parity run, per state. Without parity: the React review images, else the TST capture images. |
+| 4. Diagram | Block or module of the direct caller (TST) → server call → React action → React component. A red box is a call that React does not make. |
+| 5. User actions | Two independent lists, no mapping between them. 5.1 OutSystems: each event binding of the TST views with an effect. 5.2 React: each JSX `on<Event>={handler}` with an effect. One Mermaid sequence diagram per binding and per branch of its handler. |
+| 6. Server calls | One row per call of the route: direct caller, chains, seen on TST, React action, React references, status. |
+| 7. Missing in React | The calls, blocks and navigation targets of the route that React does not have, with the lines of the React code that name them. |
+| 8. Questions | The React calls of the screen that the TST code of the route has no chain to. |
 | 9. Method | How the tool gets each fact. |
 
 ## Files
@@ -74,25 +79,30 @@ Each route run writes `APP_SHELL.md` again from all `data/check-*.json`. Its cal
 | `mcp_client.py` | Read-only MCP client (`get*` tools only) with a file cache. |
 | `render_svg.cjs` | Syntax check: renders the Mermaid diagrams of one file in one browser (Playwright of the project root, Mermaid 10.9.1) to `data/svg/`, which git ignores. The route files carry the Mermaid text (user, 2026-11-04). |
 
-## Match rules
-
-- **React handler of a user action.** The tool reads each React function of the screen and the app shell: its
-  comment, and its effects branch by branch (`switch` case, `if (x === Y.Z)`, `is(Y.Z)`). The function whose comment
-  names the OutSystems handler wins. Else the same name without the prefixes `on`, `handle`, `handler`, `event`,
-  `onClick`. A short name counts only in a file of the block (`@origin` tag or folder name). Files of `app/src/api/`
-  and components do not count.
+## Read rules
 
 - **Server call.** React `callAction(M, A)` becomes `/api/M/A`. Its `x-os-paths` in the contract give the TST URL.
   The call is `implemented` when the URL is the same. Else the call is `missing`.
-- **Missing call.** The route file says whether React code for the call exists elsewhere. It also quotes the lines
-  of the React READMEs that name the action.
+- **OutSystems event binding.** A compiled view binds a handler in two ways:
+  - `<event>$Action: function`: an event of the child block or widget that the view creates just before;
+  - `on<Event>: function`: an event of an HTML element.
+
+  The handler is the first `controller.<handler>$Action(` in the function body.
+- **React event binding.** A JSX attribute `on<Event>={…}`: an inline function, a function name, or a name from the
+  object that a hook returns (`const { onX } = useY()`).
+- **Effects.** OutSystems: `// Destination:`, `// Execute Action:`, `showFeedbackMessage(…)`, `// Refresh Query:`, the
+  server call nodes. React: `callAction`, navigation functions with a path (constants read), `confirm…`,
+  `show…Message`, `open…ExternalLink`. Called functions are followed 3 levels deep.
+- **Branches.** OutSystems: the `if` blocks with `=== <constant>`. React: `switch` cases and `if` with `===` or a call
+  with one constant argument. `other` is the last `else` or `default`.
 - **Block port.** The `@origin` or `@os-block` tag gives the React file. Without a tag, the block name in a file of
   the route counts.
-- **Navigation.** A path literal that ends in a route name counts. A bare route name counts only in a file that
-  navigates.
 
 ## Limits
 
 - The tools read code. They do not run the app.
 - A name or a call match does not prove the same behaviour. The parity checks of the migration compare the behaviour.
+- The effects stop at 3 levels of calls. A prop callback and a query that fetches again are named, not followed.
+- An OutSystems branch condition other than `=== <constant>` (for example `IsSuccess`) is not split.
+- The calls that a module action reaches come from the call graph; they can belong to only one path of that action.
 - A route without a TST capture (`no-capture.json`) has no `facts.json`. The tool stops for such a route.

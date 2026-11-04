@@ -21,6 +21,8 @@
   - columns Called from, Trigger, React caller; no MCP table of the inside of the calls; screenshots;
   - section User actions: one OutSystems and one React sequence per action and branch, differences in red;
   - the app shell parts go to `APP_SHELL.md`, not to the route files; Mermaid text, no SVG.
+- User 2026-11-04: facts only, no inference. User actions = two independent lists (OutSystems bindings, React
+  bindings), no mapping. App shell by definition (survey shell, `main.tsx` code), no 40% rule.
 - User 2026-11-04: MCP modules UBTConnect + Connect2_* + UBTConnect_Utils + UBT_AppManager + UBTConnectLibrary +
   NavigationHandler; scope 68 build routes. Later: Mermaid text in the file, no SVG (user, 2026-11-04).
 - User 2026-11-04: pilot HomeFeed first, wait for feedback before the next route.

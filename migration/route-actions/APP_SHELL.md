@@ -1,15 +1,16 @@
 # App shell: server calls and user actions in OutSystems and React
 
-The app shell is the part of the app that many routes share.
-It has the layout `CommonUI_InsideLayout` and its blocks, the app start, the bottom bar, the PIN lock and the shared dialogs. The route files leave it out.
+The app shell is the part of the app that the routes share. The route files leave it out.
+- OutSystems: `CommonUI_InsideLayout` with its blocks (TST survey), and the chains that start in a module action.
+- React: the code that `app/src/main.tsx` loads (router, `AppFrame`, app start, hosts).
 The tool `migration/tools/route_actions/check_route.py` merges it from the checked routes on 2026-11-04: [HomeFeed](HomeFeed.md), [Login](Login.md), [Menu](Menu.md), [Splash](Splash.md).
 
 ## 1. Result
 
 | Check | Result |
 |---|---|
-| App shell server calls on TST | 9: React makes 8, **1 missing** |
-| App shell user actions | 14 diagrams (one per action and option) |
+| App shell server calls on TST | 11: React makes 9, **2 missing** |
+| App shell event bindings | OutSystems: 6 diagrams. React: 6 diagrams |
 | React app shell calls that TST does not make on a route | 3 |
 
 ## 2. Diagram
@@ -18,282 +19,134 @@ The tool `migration/tools/route_actions/check_route.py` merges it from the check
 flowchart LR
   subgraph OS["OutSystems (TST compiled)"]
     subgraph OS_shell["App shell"]
-      o0["BottomBarMenu"]
-      o1["HandleImageLoadError"]
-      o2["UBTConnect"]
-      o3["UBTConnect_Utils"]
-      o4["UBT_AppManager"]
+      o0["Connect2_LegacyShared"]
+      o1["FeedBlock_Updates"]
+      o2["Menu"]
+      o3["UBTConnect"]
+      o4["UBTConnect_Utils"]
+      o5["UBT_AppManager"]
     end
     subgraph OS_screen["Screen and its blocks"]
     end
   end
   subgraph EP["Server calls (TST)"]
-    e5["ActionAppManager_SynchAppContext"]
-    e6["ActionAppManager_AfterInitialize"]
-    e7["ActionSync_Info_GetMain"]
-    e8["ActionGetUserInformation"]
-    e9["ActionGetNumberUnreadMessages"]
-    e10["ServiceAPIFetchData_CacheableMapEntities"]
-    e11["ServiceAPIFetchData_CacheableHouseholds"]
-    e12["ServiceAPIGet_UI_UpdateItems_UnreadCount_All"]
-    e13["ActionGetAllApplicationEvents"]
+    e6["ActionAppManager_SynchAppContext"]
+    e7["ActionAppManager_AfterInitialize"]
+    e8["ActionSync_Info_GetMain"]
+    e9["ActionGetUserInformation"]
+    e10["ActionGetNumberUnreadMessages"]
+    e11["ServiceAPIFetchData_CacheableMapEntities"]
+    e12["ServiceAPIFetchData_CacheableHouseholds"]
+    e13["ServiceAPIAction_UI_UpdateItem_MarkAsRead"]
+    e14["ActionGetAllApplicationEvents"]
+    e15["ActionRequestPhotoUpdate"]
+    e16["ActionAppManager_Logout"]
   end
   subgraph RE["React actions"]
     subgraph RE_shell["App shell"]
-      r14["afterInitialize()"]
-      r15["fetchAppContext()"]
-      r16["fetchCacheableHouseholds()"]
-      r17["fetchCacheableMapEntities()"]
-      r18["fetchNumberUnreadMessages()"]
-      r19["fetchSyncInfoMain()"]
-      r20["fetchUserInformation()"]
+      r17["afterInitialize()"]
+      r18["fetchAppContext()"]
+      r19["fetchCacheableHouseholds()"]
+      r20["fetchCacheableMapEntities()"]
+      r21["fetchNumberUnreadMessages()"]
+      r22["fetchSyncInfoMain()"]
+      r23["fetchUserInformation()"]
     end
     subgraph RE_page["Screen"]
-      r21["fetchUnreadUpdateItemsCount()"]
+      r24["markUpdateItemAsRead()"]
+      r25["requestPhotoUpdate()"]
     end
   end
   subgraph RC["React components"]
-    c22["AppFrame"]
-    c23["BottomBar"]
-    c24["CommonUiLayout"]
-    c25["FeedUpdates"]
-    c26["ShareSheetContainer"]
+    c26["AppFrame"]
+    c27["CommonUiLayout"]
+    c28["FeedUpdates"]
+    c29["Menu"]
+    c30["ShareSheetContainer"]
   end
-  r14 --- c22
-  r15 --- c22
-  r16 --- c22
-  r17 --- c22
-  r18 --- c22
-  r19 --- c22
-  r15 --- c26
+  r17 --- c26
+  r18 --- c26
+  r19 --- c26
   r20 --- c26
-  r20 --- c24
-  r21 --- c23
-  r21 --- c25
-  o1 --> e5
-  o1 --> e13
-  o2 --> e6
-  o2 --> e7
-  o2 --> e9
-  o2 --> e10
-  o2 --> e11
-  o4 --> e6
+  r21 --- c26
+  r22 --- c26
+  r18 --- c30
+  r23 --- c30
+  r23 --- c27
+  r24 --- c28
+  r25 --- c29
+  o5 --> e6
+  o5 --> e7
+  o5 --> e16
   o3 --> e8
-  o0 --> e12
-  e5 --- r15
-  e6 --- r14
-  e7 --- r19
-  e8 --- r20
-  e9 --- r18
-  e10 --- r17
-  e11 --- r16
-  e12 --- r21
+  o3 --> e11
+  o3 --> e12
+  o4 --> e9
+  o0 --> e10
+  o0 --> e14
+  o1 --> e13
+  o2 --> e15
+  e6 --- r18
+  e7 --- r17
+  e8 --- r22
+  e9 --- r23
+  e10 --- r21
+  e11 --- r20
+  e12 --- r19
+  e13 --- r24
+  e15 --- r25
   classDef missing fill:#fde2e1,stroke:#c0392b,color:#7b241c
   classDef ok fill:#e3f4e8,stroke:#2e7d4f,color:#1d4d31
-  class e13 missing
-  class e5,e6,e7,e8,e9,e10,e11,e12 ok
+  class e14,e16 missing
+  class e6,e7,e8,e9,e10,e11,e12,e13,e15 ok
 ```
 
 ## 3. User actions
 
-Each user action (click, change, submit) has two sequence diagrams: OutSystems (TST code) and React.
+The two lists are independent: the OutSystems list comes from the TST compiled code, the React list from the React code. The tool does not map one list to the other.
 
-- **OutSystems:** the participant is the OutSystems block. The action is its screen action on TST.
-- **React:** the participant is the React function that ports the action. The tool finds it by its comment (the OutSystems name), its name, or the `@origin` tag of its file.
-- When the handler has branches (a menu option, for example), each branch has its own diagrams. The name of a branch comes from its condition. `other` is the last `else` or `default`.
-- The effects are server calls, navigation (`Navigation`), external links, messages and confirm dialogs.
-- An arrow to the server gives the inputs of the call. The return arrow gives the outputs (contract `app/src/api/openapi.yaml`).
-- **Red in the OutSystems diagram:** an effect that the React handler of the action does not have.
-- **Red in the React diagram:** an effect that OutSystems does not have, and a note with the effects that React does not have.
+- **OutSystems:** each event binding of the compiled views (`<event>$Action: function` of a child block or widget, `on<Event>: function` of an HTML element) with its handler.
+- **React:** each JSX attribute `on<Event>={handler}` with its handler.
+- Both lists keep only the bindings whose handler has an effect: a server call, a navigation, an external link, a message or a confirm dialog. The tool follows the called functions 3 levels deep.
+- When the handler has branches in the code (`switch` case, `if` with `===`), each branch has its own diagram. The branch name is the constant of the condition. `other` is the last `else` or `default`.
+- An arrow to the server gives the inputs of the call, the return arrow its outputs (contract `app/src/api/openapi.yaml`).
 
-| # | Block (OutSystems) | User action | Handler | Option (branch) | Effects (OutSystems) | React handler | React |
-|---|---|---|---|---|---|---|---|
-| [1](#31-dialog_accessrestrictedaction-click-upgrade) | `Dialog_AccessRestrictedAction` | click | `upgrade` | – | opens an external link | – | **no React handler found** |
-| [2](#32-bottombarmenu-click-event_bottombar_clicked-home) | `BottomBarMenu` | click | `event_BottomBar_Clicked` | `home` | goes to HomeFeed | `event_BottomBar_Clicked()` [`components/layout/BottomBar/BottomBar.tsx:95`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L95) | same |
-| [3](#33-bottombarmenu-click-event_bottombar_clicked-directory) | `BottomBarMenu` | click | `event_BottomBar_Clicked` | `directory` | goes to CountryList, Locality_Details | `event_BottomBar_Clicked()` [`components/layout/BottomBar/BottomBar.tsx:95`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L95) | same |
-| [4](#34-bottombarmenu-click-event_bottombar_clicked-updates) | `BottomBarMenu` | click | `event_BottomBar_Clicked` | `updates` | goes to Updates_SingleList | `event_BottomBar_Clicked()` [`components/layout/BottomBar/BottomBar.tsx:95`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L95) | same |
-| [5](#35-bottombarmenu-click-event_bottombar_clicked-bookmarks) | `BottomBarMenu` | click | `event_BottomBar_Clicked` | `bookmarks` | goes to Bookmarks | `event_BottomBar_Clicked()` [`components/layout/BottomBar/BottomBar.tsx:95`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L95) | same |
-| [6](#36-bottombarmenu-click-event_bottombar_clicked-menu) | `BottomBarMenu` | click | `event_BottomBar_Clicked` | `menu` | goes to Menu | `event_BottomBar_Clicked()` [`components/layout/BottomBar/BottomBar.tsx:95`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L95) | same |
-| [7](#37-block_pinunlock_contentwrapper-click-onclick_forgotpin) | `Block_PINUnlock_ContentWrapper` | click | `onClick_ForgotPIN` | – | goes to Login | `onForgotPin()` [`platform/session/usePinUnlockContent.ts:95`](../../app/src/platform/session/usePinUnlockContent.ts#L95) | same |
+### 3.1 OutSystems (TST)
 
-### 3.1 Dialog_AccessRestrictedAction: click upgrade
+| # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
+|---|---|---|---|---|---|
+| [1](#311-commonui_insidelayout-onbacknavigation_redirecthome) | `CommonUI_InsideLayout` | `backNavigationPrevented of PreventBackNavigation` | `onBackNavigation_RedirectHome` | – | goes to HomeFeed |
+| [2](#312-block_pinunlock-block_pinunlock_contentwrappernavigateto_pinregist) | `Block_PINUnlock` | `navigateTo_PINRegister of ContentWrapper` | `block_PINUnlock_ContentWrapperNavigateTo_PINRegist` | – | goes to PINRegister |
+| [3](#313-block_pinunlock_contentwrapper-onclick_forgotpin) | `Block_PINUnlock_ContentWrapper` | `onClick (HTML element)` | `onClick_ForgotPIN` | – | goes to Login |
+| [4](#314-handleonresumeopenlink-androidapplinkonresumehandlerresumenavigation) | `HandleOnResumeOpenLink` | `resumeNavigation of AndroidAppLinkOnResumeHandler` | `androidAppLinkOnResumeHandlerResumeNavigation` | – | goes to /UBTConnect/ |
+| [5](#315-handleonresumeopenlink-deeplinkhandlercentralondeeplinkopen) | `HandleOnResumeOpenLink` | `onDeeplinkOpen of DeeplinkHandlerCentral` | `deeplinkHandlerCentralOnDeeplinkOpen` | – | goes to /UBTConnect/ |
+| [6](#316-dialog_accessrestrictedaction-upgrade) | `Dialog_AccessRestrictedAction` | `confirmed of ActionConfirmationDialog` | `upgrade` | – | opens an external link |
 
-Result: no React handler found.
-
-**OutSystems (TST)**
+#### 3.1.1 CommonUI_InsideLayout: onBackNavigation_RedirectHome
 
 ```mermaid
 sequenceDiagram
   autonumber
   actor U as User
-  participant B as Dialog_AccessRestrictedAction
-  participant X as External link
-  U->>B: click: upgrade
-  Note over B: via UBTConnect_Utils.app_Subscription_NavigateToUpgrade
-  rect rgba(192, 57, 43, 0.15)
-  B->>X: OpenInApp_OpenExternalLink
-  Note over B,X: not in the React handler
-  end
-```
-
-**React**: no React handler found
-
-```mermaid
-sequenceDiagram
-  actor U as User
-  participant H as React
-  rect rgba(192, 57, 43, 0.15)
-  Note over U,H: no React handler found for upgrade
-  end
-```
-
-### 3.2 BottomBarMenu: click event_BottomBar_Clicked (home)
-
-Result: same.
-
-**OutSystems (TST)**
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as BottomBarMenu
+  participant B as CommonUI_InsideLayout
   participant N as Navigation
-  U->>B: click: event_BottomBar_Clicked (home)
+  U->>B: backNavigationPrevented of PreventBackNavigation → onBackNavigation_RedirectHome
   B->>N: go to HomeFeed
 ```
 
-**React**: `event_BottomBar_Clicked()` in [`components/layout/BottomBar/BottomBar.tsx:95`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L95)
+#### 3.1.2 Block_PINUnlock: block_PINUnlock_ContentWrapperNavigateTo_PINRegist
 
 ```mermaid
 sequenceDiagram
   autonumber
   actor U as User
-  participant H as event_BottomBar_Clicked() · BottomBar.tsx
+  participant B as Block_PINUnlock
   participant N as Navigation
-  U->>H: click (home)
-  H->>N: go to HomeFeed
+  U->>B: navigateTo_PINRegister of ContentWrapper → block_PINUnlock_ContentWrapperNavigateTo_PINRegist
+  B->>N: go to PINRegister
 ```
 
-### 3.3 BottomBarMenu: click event_BottomBar_Clicked (directory)
-
-Result: same.
-
-**OutSystems (TST)**
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as BottomBarMenu
-  participant N as Navigation
-  U->>B: click: event_BottomBar_Clicked (directory)
-  B->>N: go to CountryList
-  B->>N: go to Locality_Details
-```
-
-**React**: `event_BottomBar_Clicked()` in [`components/layout/BottomBar/BottomBar.tsx:95`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L95)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as event_BottomBar_Clicked() · BottomBar.tsx
-  participant N as Navigation
-  U->>H: click (directory)
-  H->>N: go to CountryList
-  H->>N: go to Locality_Details
-```
-
-### 3.4 BottomBarMenu: click event_BottomBar_Clicked (updates)
-
-Result: same.
-
-**OutSystems (TST)**
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as BottomBarMenu
-  participant N as Navigation
-  U->>B: click: event_BottomBar_Clicked (updates)
-  B->>N: go to Updates_SingleList
-```
-
-**React**: `event_BottomBar_Clicked()` in [`components/layout/BottomBar/BottomBar.tsx:95`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L95)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as event_BottomBar_Clicked() · BottomBar.tsx
-  participant N as Navigation
-  U->>H: click (updates)
-  H->>N: go to Updates_SingleList
-```
-
-### 3.5 BottomBarMenu: click event_BottomBar_Clicked (bookmarks)
-
-Result: same.
-
-**OutSystems (TST)**
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as BottomBarMenu
-  participant N as Navigation
-  U->>B: click: event_BottomBar_Clicked (bookmarks)
-  B->>N: go to Bookmarks
-```
-
-**React**: `event_BottomBar_Clicked()` in [`components/layout/BottomBar/BottomBar.tsx:95`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L95)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as event_BottomBar_Clicked() · BottomBar.tsx
-  participant N as Navigation
-  U->>H: click (bookmarks)
-  H->>N: go to Bookmarks
-```
-
-### 3.6 BottomBarMenu: click event_BottomBar_Clicked (menu)
-
-Result: same.
-
-**OutSystems (TST)**
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as BottomBarMenu
-  participant N as Navigation
-  U->>B: click: event_BottomBar_Clicked (menu)
-  B->>N: go to Menu
-```
-
-**React**: `event_BottomBar_Clicked()` in [`components/layout/BottomBar/BottomBar.tsx:95`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L95)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as event_BottomBar_Clicked() · BottomBar.tsx
-  participant N as Navigation
-  U->>H: click (menu)
-  H->>N: go to Menu
-```
-
-### 3.7 Block_PINUnlock_ContentWrapper: click onClick_ForgotPIN
-
-Result: same.
-
-**OutSystems (TST)**
+#### 3.1.3 Block_PINUnlock_ContentWrapper: onClick_ForgotPIN
 
 ```mermaid
 sequenceDiagram
@@ -301,49 +154,172 @@ sequenceDiagram
   actor U as User
   participant B as Block_PINUnlock_ContentWrapper
   participant N as Navigation
-  U->>B: click: onClick_ForgotPIN
+  U->>B: onClick (HTML element) → onClick_ForgotPIN
   B->>N: go to Login
 ```
 
-**React**: `onForgotPin()` in [`platform/session/usePinUnlockContent.ts:95`](../../app/src/platform/session/usePinUnlockContent.ts#L95)
+#### 3.1.4 HandleOnResumeOpenLink: androidAppLinkOnResumeHandlerResumeNavigation
 
 ```mermaid
 sequenceDiagram
   autonumber
   actor U as User
-  participant H as onForgotPin() · usePinUnlockContent.ts
+  participant B as HandleOnResumeOpenLink
   participant N as Navigation
-  U->>H: click
+  U->>B: resumeNavigation of AndroidAppLinkOnResumeHandler → androidAppLinkOnResumeHandlerResumeNavigation
+  B->>N: go to /UBTConnect/
+```
+
+#### 3.1.5 HandleOnResumeOpenLink: deeplinkHandlerCentralOnDeeplinkOpen
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as HandleOnResumeOpenLink
+  participant N as Navigation
+  U->>B: onDeeplinkOpen of DeeplinkHandlerCentral → deeplinkHandlerCentralOnDeeplinkOpen
+  B->>N: go to /UBTConnect/
+```
+
+#### 3.1.6 Dialog_AccessRestrictedAction: upgrade
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as Dialog_AccessRestrictedAction
+  participant X as External link
+  U->>B: confirmed of ActionConfirmationDialog → upgrade
+  Note over B: via UBTConnect_Utils.app_Subscription_NavigateToUpgrade
+  B->>X: OpenInApp_OpenExternalLink
+```
+
+### 3.2 React
+
+| # | File | Element | Event prop | Handler | Branch | Effects |
+|---|---|---|---|---|---|---|
+| [1](#321-confirmdialogview-onconfirmed) | [`platform/feedback/dialogs/DialogAccessRestrictedAction.tsx:74`](../../app/src/platform/feedback/dialogs/DialogAccessRestrictedAction.tsx#L74) | `<ConfirmDialogView>` | `onConfirmed` | `navigateToUpgrade` | – | opens an external link |
+| [2](#322-pinunlockcontentcontainer-onnavigatetopinregister) | [`platform/feedback/dialogs/BlockPinUnlock.tsx:90`](../../app/src/platform/feedback/dialogs/BlockPinUnlock.tsx#L90) | `<PinUnlockContentContainer>` | `onNavigateToPINRegister` | `inline` | – | goes to PINRegister |
+| [3](#323-pinunlockcontent-onpinunlockerror) | [`platform/feedback/dialogs/PinUnlockContentContainer.tsx:70`](../../app/src/platform/feedback/dialogs/PinUnlockContentContainer.tsx#L70) | `<PinUnlockContent>` | `onPinUnlockError` | `content.onPinUnlockError` | – | shows a message; calls the prop onNavigateToPINRegister() |
+| [4](#324-pinunlockcontent-onforgotpin) | [`platform/feedback/dialogs/PinUnlockContentContainer.tsx:71`](../../app/src/platform/feedback/dialogs/PinUnlockContentContainer.tsx#L71) | `<PinUnlockContent>` | `onForgotPin` | `content.onForgotPin` | – | goes to Login |
+| [5](#325-pinunlockcontent-onclickpolicy) | [`platform/feedback/dialogs/PinUnlockContentContainer.tsx:72`](../../app/src/platform/feedback/dialogs/PinUnlockContentContainer.tsx#L72) | `<PinUnlockContent>` | `onClickPolicy` | `content.onClickPolicy` | – | shows a message |
+| [6](#326-cachecontrol-onnoncachehit) | [`legacy/os/cache/PoliciesCacheControl/PoliciesCacheControl.tsx:55`](../../app/src/legacy/os/cache/PoliciesCacheControl/PoliciesCacheControl.tsx#L55) | `<CacheControl>` | `onNonCacheHit` | `onNonCacheHit` | – | calls DataActionGetCacheInfo |
+
+#### 3.2.1 ConfirmDialogView: onConfirmed
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as ConfirmDialogView · DialogAccessRestrictedAction.tsx
+  participant X as External link
+  U->>H: onConfirmed → navigateToUpgrade
+  H->>X: openInApp_OpenExternalLink
+```
+
+#### 3.2.2 PinUnlockContentContainer: onNavigateToPINRegister
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as PinUnlockContentContainer · BlockPinUnlock.tsx
+  participant N as Navigation
+  U->>H: onNavigateToPINRegister → inline
+  H->>N: go to PINRegister
+```
+
+#### 3.2.3 PinUnlockContent: onPinUnlockError
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as PinUnlockContent · PinUnlockContentContainer.tsx
+  U->>H: onPinUnlockError → content.onPinUnlockError
+  Note over H: via showError()
+  Note over H: via feedbackMessageAutoClose()
+  Note over H: via run()
+  Note over H: message message
+  Note over H: calls the prop onNavigateToPINRegister()
+```
+
+#### 3.2.4 PinUnlockContent: onForgotPin
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as PinUnlockContent · PinUnlockContentContainer.tsx
+  participant N as Navigation
+  U->>H: onForgotPin → content.onForgotPin
   H->>N: go to Login
+```
+
+#### 3.2.5 PinUnlockContent: onClickPolicy
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as PinUnlockContent · PinUnlockContentContainer.tsx
+  U->>H: onClickPolicy → content.onClickPolicy
+  Note over H: via openPolicy()
+  Note over H: message errorMessage
+```
+
+#### 3.2.6 CacheControl: onNonCacheHit
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as CacheControl · PoliciesCacheControl.tsx
+  participant A as Server (React api)
+  U->>H: onNonCacheHit → onNonCacheHit
+  Note over H: via fetchPolicies()
+  H->>A: DataActionGetCacheInfo(CacheKey, CacheTypeId, TimeToLiveSeconds)
+  A-->>H: CacheControl_Response
 ```
 
 ## 4. Server calls
 
 The column **Routes** gives the checked routes where the app shell makes the call.
 
-- **Called from (OutSystems):** the block or the app-level module whose own client action makes the call.
-- **Made by (TST):** for each block in "Called from", its chain of client actions from the block to the call.
-- **Trigger:** when the call runs, from the start of the chain on TST.
-- **Seen on TST:** `yes` when TST made the call in the capture. Many calls run only after a click.
-- **React action:** the React function that makes the same call, and the part that loads it: `shell`, `page` or both.
-- **React caller:** the nearest React component that uses the React action, and the hooks between them. At most 2 chains, the shortest first.
+All columns come from the code, without interpretation:
 
-| # | Call (TST) | Kind | Called from (OutSystems) | Trigger | Made by (TST) | Seen on TST | React action | React caller | Status | Routes |
-|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `BottomBarMenu` | ready | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx)<br>`FeedUpdates → useFeedUpdates → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`pages/HomeFeed/HomeFeedPage.tsx`](../../app/src/pages/HomeFeed/HomeFeedPage.tsx) | implemented | [HomeFeed](HomeFeed.md), [Menu](Menu.md) |
-| 2 | `Connect2_LegacyShared/ActionGetAllApplicationEvents` | server action | `HandleImageLoadError` | image load error | HandleImageLoadError.applicationEvent_ImageError → Connect2_LegacyShared.zOnApplicationEvent_Wrapper → … → server GetAllApplicationEvents | no | – | – | **missing** | [HomeFeed](HomeFeed.md), [Login](Login.md), [Menu](Menu.md) |
-| 3 | `UBT_AppManager/ActionAppManager_SynchAppContext` | server action | `HandleImageLoadError` | image load error | HandleImageLoadError.applicationEvent_ImageError → Connect2_LegacyShared.zOnApplicationEvent_Wrapper → … → server AppManager_SynchAppContext | yes | `fetchAppContext()` [`api/app/repository.ts:23`](../../app/src/api/app/repository.ts#L23) (shell + page) | `AppFrame → AppStart → … → fetchAppContext`<br>[`app/AppFrame.tsx`](../../app/src/app/AppFrame.tsx)<br>`ShareSheetContainer → useShareSheet → … → fetchAppContext`<br>[`containers/ShareSheet/ShareSheetContainer.tsx`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx) | implemented | [HomeFeed](HomeFeed.md), [Login](Login.md), [Menu](Menu.md), [Splash](Splash.md) |
-| 4 | `Connect2_LegacyShared/ActionGetNumberUnreadMessages` | server action | `UBTConnect` | app start | UBTConnect.onApplicationReady → UBTConnect.connect_SetLoggedContext → Connect2_LegacyShared.synchronizeNumberUnreadMessages → server GetNumberUnreadMessages<br>(+1 more chains) | yes | `fetchNumberUnreadMessages()` [`api/message/unreadMessages.ts:22`](../../app/src/api/message/unreadMessages.ts#L22) (shell) | `AppFrame → AppStart → … → fetchNumberUnreadMessages`<br>[`app/AppFrame.tsx`](../../app/src/app/AppFrame.tsx) | implemented | [HomeFeed](HomeFeed.md), [Menu](Menu.md), [Splash](Splash.md) |
-| 5 | `UBTConnect/ActionSync_Info_GetMain` | server action | `UBTConnect` | app start | UBTConnect.onApplicationReady → UBTConnect.connect_SetLoggedContext → UBTConnect.sync_Info_Main → server Sync_Info_GetMain<br>(+1 more chains) | yes | `fetchSyncInfoMain()` [`api/app/repository.ts:36`](../../app/src/api/app/repository.ts#L36) (shell) | `AppFrame → AppStart → … → fetchSyncInfoMain`<br>[`app/AppFrame.tsx`](../../app/src/app/AppFrame.tsx) | implemented | [HomeFeed](HomeFeed.md), [Menu](Menu.md), [Splash](Splash.md) |
-| 6 | `UBTConnect/ServiceAPIFetchData_CacheableHouseholds` | service action | `UBTConnect` | module action `get_Cacheable_MapHouseholds` (the TST graph has no caller) | UBTConnect.get_Cacheable_MapHouseholds → server FetchData_CacheableHouseholds | yes | `fetchCacheableHouseholds()` [`api/app/repository.ts:48`](../../app/src/api/app/repository.ts#L48) (shell) | `AppFrame → AppStart → … → fetchCacheableHouseholds`<br>[`app/AppFrame.tsx`](../../app/src/app/AppFrame.tsx) | implemented | [HomeFeed](HomeFeed.md), [Menu](Menu.md), [Splash](Splash.md) |
-| 7 | `UBTConnect/ServiceAPIFetchData_CacheableMapEntities` | service action | `UBTConnect` | module action `get_Cacheable_MapEntities` (the TST graph has no caller) | UBTConnect.get_Cacheable_MapEntities → server FetchData_CacheableMapEntities | yes | `fetchCacheableMapEntities()` [`api/app/repository.ts:42`](../../app/src/api/app/repository.ts#L42) (shell) | `AppFrame → AppStart → … → fetchCacheableMapEntities`<br>[`app/AppFrame.tsx`](../../app/src/app/AppFrame.tsx) | implemented | [HomeFeed](HomeFeed.md), [Menu](Menu.md), [Splash](Splash.md) |
-| 8 | `UBT_AppManager/ActionAppManager_AfterInitialize` | server action | `UBTConnect`<br>`UBT_AppManager` | app start<br>app start | UBTConnect.onApplicationReady → UBT_AppManager_Mobile.appManager_Mobile_OnAppReady → … → server AppManager_AfterInitialize<br>UBT_AppManager.appManager_OnAppReady_Web → UBT_AppManager.appManager_InitializeWebComponents → UBT_AppManager.appManager_AfterInitialize → server AppManager_AfterInitialize | yes | `afterInitialize()` [`api/app/repository.ts:30`](../../app/src/api/app/repository.ts#L30) (shell) | `AppFrame → AppStart → … → afterInitialize`<br>[`app/AppFrame.tsx`](../../app/src/app/AppFrame.tsx) | implemented | [HomeFeed](HomeFeed.md), [Menu](Menu.md), [Splash](Splash.md) |
-| 9 | `UBTConnect_Utils/ActionGetUserInformation` | server action | `UBTConnect_Utils` | module action `cache_UserInfo_GetCallback` (the TST graph has no caller) | UBTConnect_Utils.cache_UserInfo_GetCallback → server GetUserInformation | yes | `fetchUserInformation()` [`api/member/userInformation.ts:6`](../../app/src/api/member/userInformation.ts#L6) (shell + page) | `ShareSheetContainer → useShareSheet → … → fetchUserInformation`<br>[`containers/ShareSheet/ShareSheetContainer.tsx`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx)<br>`CommonUiLayout → DialogAccessRestrictedAction → … → fetchUserInformation`<br>[`components/layout/CommonUiLayout/CommonUiLayout.tsx`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx) | implemented | [HomeFeed](HomeFeed.md), [Splash](Splash.md) |
+- **Direct caller (TST):** the block or module of the action that calls the server (the step before the server call in the chain).
+- **Chain (TST):** the chains of client actions in the TST compiled code, from their start to the call.
+  A long chain shows its first 2 steps, …, and its last 2 steps.
+- **Seen on TST:** `yes` when TST made the call in the capture.
+- **React action:** the React function with the `callAction` of the same call (`file:line`), and the code that loads it: `shell` (from `main.tsx`), `page` (from the screen), or both.
+- **Used by (React references):** the functions and components that reference the React action, up to the nearest component. A reference is not always a call.
+- **Status:** `implemented` when the contract path of the React call gives the same TST URL. It does not prove the same behaviour.
+
+| # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status | Routes |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | `Connect2_LegacyShared/ActionGetAllApplicationEvents` | server action | `Connect2_LegacyShared` | HandleImageLoadError.applicationEvent_ImageError → Connect2_LegacyShared.zOnApplicationEvent_Wrapper → Connect2_LegacyShared.getAppEventName → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents | no | – | – | **missing** | [HomeFeed](HomeFeed.md), [Login](Login.md), [Menu](Menu.md) |
+| 2 | `Connect2_LegacyShared/ActionGetNumberUnreadMessages` | server action | `Connect2_LegacyShared` | UBTConnect.onApplicationReady → UBTConnect.connect_SetLoggedContext → Connect2_LegacyShared.synchronizeNumberUnreadMessages → server GetNumberUnreadMessages<br>UBTConnect.fCM_NotificationCallback → Connect2_LegacyShared.synchronizeNumberUnreadMessages → server GetNumberUnreadMessages | yes | `fetchNumberUnreadMessages()` [`api/message/unreadMessages.ts:22`](../../app/src/api/message/unreadMessages.ts#L22) (shell) | `AppFrame → AppStart → … → fetchNumberUnreadMessages`<br>[`app/AppFrame.tsx`](../../app/src/app/AppFrame.tsx) | implemented | [HomeFeed](HomeFeed.md), [Menu](Menu.md), [Splash](Splash.md) |
+| 3 | `UBTConnect/Home/FeedBlock_Updates/ServiceAPIAction_UI_UpdateItem_MarkAsRead` | service action | `FeedBlock_Updates` | onClick in CustomContainer → event clicked of CustomContainer → event onClick of Update_ListItem → FeedBlock_Updates.event_ListItemOnClick → server Action_UI_UpdateItem_MarkAsRead | no | `markUpdateItemAsRead()` [`api/update/repository.ts:47`](../../app/src/api/update/repository.ts#L47) (page) | `FeedUpdates → useFeedUpdates → markUpdateItemAsRead`<br>[`pages/HomeFeed/HomeFeedPage.tsx`](../../app/src/pages/HomeFeed/HomeFeedPage.tsx) | implemented | [HomeFeed](HomeFeed.md) |
+| 4 | `UBTConnect/App_Menu/Menu/ActionRequestPhotoUpdate` | server action | `Menu` | onClick in CustomContainer → event clicked of CustomContainer → event onClick_MenuOption of Menu_List → Menu.onClick_MenuOption → server RequestPhotoUpdate | no | `requestPhotoUpdate()` [`api/member/repository.ts:46`](../../app/src/api/member/repository.ts#L46) (page) | `Menu → useMenu → requestPhotoUpdate`<br>[`pages/Menu/MenuPage.tsx`](../../app/src/pages/Menu/MenuPage.tsx) | implemented | [Menu](Menu.md) |
+| 5 | `UBTConnect/ActionSync_Info_GetMain` | server action | `UBTConnect` | UBTConnect.onApplicationReady → UBTConnect.connect_SetLoggedContext → UBTConnect.sync_Info_Main → server Sync_Info_GetMain<br>UBTConnect.onApplicationReady → UBTConnect.sync_Info_Main → server Sync_Info_GetMain | yes | `fetchSyncInfoMain()` [`api/app/repository.ts:36`](../../app/src/api/app/repository.ts#L36) (shell) | `AppFrame → AppStart → … → fetchSyncInfoMain`<br>[`app/AppFrame.tsx`](../../app/src/app/AppFrame.tsx) | implemented | [HomeFeed](HomeFeed.md), [Menu](Menu.md), [Splash](Splash.md) |
+| 6 | `UBTConnect/ServiceAPIFetchData_CacheableHouseholds` | service action | `UBTConnect` | UBTConnect.get_Cacheable_MapHouseholds → server FetchData_CacheableHouseholds | yes | `fetchCacheableHouseholds()` [`api/app/repository.ts:48`](../../app/src/api/app/repository.ts#L48) (shell) | `AppFrame → AppStart → … → fetchCacheableHouseholds`<br>[`app/AppFrame.tsx`](../../app/src/app/AppFrame.tsx) | implemented | [HomeFeed](HomeFeed.md), [Menu](Menu.md), [Splash](Splash.md) |
+| 7 | `UBTConnect/ServiceAPIFetchData_CacheableMapEntities` | service action | `UBTConnect` | UBTConnect.get_Cacheable_MapEntities → server FetchData_CacheableMapEntities | yes | `fetchCacheableMapEntities()` [`api/app/repository.ts:42`](../../app/src/api/app/repository.ts#L42) (shell) | `AppFrame → AppStart → … → fetchCacheableMapEntities`<br>[`app/AppFrame.tsx`](../../app/src/app/AppFrame.tsx) | implemented | [HomeFeed](HomeFeed.md), [Menu](Menu.md), [Splash](Splash.md) |
+| 8 | `UBTConnect_Utils/ActionGetUserInformation` | server action | `UBTConnect_Utils` | UBTConnect_Utils.cache_UserInfo_GetCallback → server GetUserInformation | yes | `fetchUserInformation()` [`api/member/userInformation.ts:6`](../../app/src/api/member/userInformation.ts#L6) (shell + page) | `ShareSheetContainer → useShareSheet → … → fetchUserInformation`<br>[`containers/ShareSheet/ShareSheetContainer.tsx`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx)<br>`CommonUiLayout → DialogAccessRestrictedAction → … → fetchUserInformation`<br>[`components/layout/CommonUiLayout/CommonUiLayout.tsx`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx) | implemented | [HomeFeed](HomeFeed.md), [Splash](Splash.md) |
+| 9 | `UBT_AppManager/ActionAppManager_AfterInitialize` | server action | `UBT_AppManager` | UBT_AppManager.appManager_OnAppReady_Web → UBT_AppManager.appManager_InitializeWebComponents → UBT_AppManager.appManager_AfterInitialize → server AppManager_AfterInitialize<br>UBTConnect.onApplicationReady → UBT_AppManager_Mobile.appManager_Mobile_OnAppReady → UBT_AppManager.appManager_InitializeWebComponents → UBT_AppManager.appManager_AfterInitialize → server AppManager_AfterInitialize | yes | `afterInitialize()` [`api/app/repository.ts:30`](../../app/src/api/app/repository.ts#L30) (shell) | `AppFrame → AppStart → … → afterInitialize`<br>[`app/AppFrame.tsx`](../../app/src/app/AppFrame.tsx) | implemented | [HomeFeed](HomeFeed.md), [Menu](Menu.md), [Splash](Splash.md) |
+| 10 | `UBT_AppManager/ActionAppManager_Logout` | server action | `UBT_AppManager` | onClick in CustomContainer → event clicked of CustomContainer → … → UBT_AppManager.appManager_Logout → server AppManager_Logout | no | – | – | **missing** | [Menu](Menu.md) |
+| 11 | `UBT_AppManager/ActionAppManager_SynchAppContext` | server action | `UBT_AppManager` | HandleImageLoadError.applicationEvent_ImageError → Connect2_LegacyShared.zOnApplicationEvent_Wrapper → … → UBT_AppManager.appManager_SynchAppContextInternal → server AppManager_SynchAppContext | yes | `fetchAppContext()` [`api/app/repository.ts:23`](../../app/src/api/app/repository.ts#L23) (shell + page) | `AppFrame → AppStart → … → fetchAppContext`<br>[`app/AppFrame.tsx`](../../app/src/app/AppFrame.tsx)<br>`ShareSheetContainer → useShareSheet → … → fetchAppContext`<br>[`containers/ShareSheet/ShareSheetContainer.tsx`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx) | implemented | [HomeFeed](HomeFeed.md), [Login](Login.md), [Menu](Menu.md), [Splash](Splash.md) |
 
 ## 5. Missing in React
 
 - Call `Connect2_LegacyShared/ActionGetAllApplicationEvents`. Chain on TST: HandleImageLoadError.applicationEvent_ImageError → Connect2_LegacyShared.zOnApplicationEvent_Wrapper → Connect2_LegacyShared.getAppEventName → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents.
   - No React code makes this call.
+- Call `UBT_AppManager/ActionAppManager_Logout`. Chain on TST: onClick in CustomContainer → event clicked of CustomContainer → event onClick_MenuOption of Menu_List → Menu.onClick_MenuOption → Menu.action_Logout → UBTConnect.connect_Logout → UBT_AppManager.appManager_Logout → server AppManager_Logout.
+  - No React code makes this call.
+  - Note in [`platform/auth/mockAuth.ts:24`](../../app/src/platform/auth/mockAuth.ts#L24): "/** The server logout of AppManager_Logout: no call (app-shell spec 10). */"
+  - Note in [`platform/session/auth.ts:84`](../../app/src/platform/session/auth.ts#L84): "/** Connect_Logout (UC:1062-1066): Cache_InvalidateEverything, then AppManager_Logout (AM:3649-3720): server logout"
+  - Note in [`platform/session/pin.ts:66`](../../app/src/platform/session/pin.ts#L66): "/** PIN_Delete(UserId, AppName), part of AppManager_Logout (AM:3712). */"
 
 ## 6. Questions
 

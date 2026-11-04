@@ -4,8 +4,9 @@ This file compares the route `/UBTConnect/Menu` in OutSystems (TST) with the Rea
 The tool `migration/tools/route_actions/check_route.py` wrote this file on 2026-11-04.
 The tool reads the code. It does not run the app.
 
-The app shell is the same on many routes: layout, app start, bottom bar, PIN lock and shared dialogs.
-[APP_SHELL.md](APP_SHELL.md) has it. This file does not.
+The app shell is in [APP_SHELL.md](APP_SHELL.md), not here.
+- OutSystems app shell: `CommonUI_InsideLayout` with its blocks (TST survey), and the chains that start in a module action.
+- React app shell: the code that `app/src/main.tsx` loads (router, `AppFrame`, app start, hosts).
 
 ## 1. Route
 
@@ -16,18 +17,18 @@ The app shell is the same on many routes: layout, app start, bottom bar, PIN loc
 | UI flow | `App_Menu` | MCP `getScreenNames` (DEV) |
 | React screen | [`pages/Menu/MenuPage.tsx`](../../app/src/pages/Menu/MenuPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
-| Code read | OutSystems: 14 screen and block files of the route, 34 app shell files. React: 152 screen files | TST `facts.json`, `react_calls.mjs` |
+| Code read | OutSystems: 20 screen and block files of the route, 28 app shell files. React: 152 screen files | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
 | Check | Result |
 |---|---|
-| Server calls of the route on TST | 4: React makes 3, **1 missing** |
-| User actions of the route | 16 diagrams (one per action and option) |
+| Server calls of the route on TST | 3: React makes 3, **0 missing** |
+| User actions of the route | OutSystems: 14 diagrams. React: 22 diagrams |
 | React calls of the screen that TST does not make | 3 (see [questions](#8-questions)) |
-| Screen and blocks with a React port | 14 of 14 |
-| Navigation targets found in React | 5 of 5 |
-| App shell on this route | 8 calls, 3 user actions: see [APP_SHELL.md](APP_SHELL.md) |
+| Screen and blocks with a React port | 20 of 20 |
+| Navigation targets found in React | 10 of 10 |
+| App shell on this route | 9 calls; event bindings: OutSystems 6, React 6: see [APP_SHELL.md](APP_SHELL.md) |
 
 ## 3. Screenshots
 
@@ -41,7 +42,7 @@ The screenshots come from the last parity run (`route.py parity`). The TST captu
 
 ## 4. Diagram
 
-- A box on the left is the OutSystems block of the route that makes the call.
+- A box on the left is the block or module of the action that calls the server (TST code).
 - A line connects each call to the React action that makes the same call.
 - The right column shows the React components that use each React action.
 - A red box is a call that React does not make.
@@ -53,148 +54,134 @@ flowchart LR
     end
     subgraph OS_screen["Screen and its blocks"]
       o0["CacheControl_UserInfo"]
-      o1["Menu"]
-      o2["Version"]
+      o1["UBTConnect"]
+      o2["UBTConnect_Utils"]
     end
   end
   subgraph EP["Server calls (TST)"]
     e3["ActionGet_RuntimeVersion"]
     e4["DataActionGetCacheInfo"]
-    e5["ActionRequestPhotoUpdate"]
-    e6["ActionAppManager_Logout"]
+    e5["ServiceAPIGet_UI_UpdateItems_UnreadCount_All"]
   end
   subgraph RE["React actions"]
     subgraph RE_shell["App shell"]
     end
     subgraph RE_page["Screen"]
-      r7["UserInfoCacheControl()"]
+      r6["UserInfoCacheControl()"]
+      r7["fetchUnreadUpdateItemsCount()"]
       r8["get_ConnectVersionDetails()"]
-      r9["requestPhotoUpdate()"]
     end
   end
   subgraph RC["React components"]
-    c10["AppVersion"]
+    c9["AppVersion"]
+    c10["BottomBar"]
     c11["Menu"]
   end
-  r8 --- c10
-  r7 --- c11
-  r9 --- c11
+  r8 --- c9
+  r6 --- c11
+  r7 --- c10
   o2 --> e3
   o0 --> e4
   o1 --> e5
-  o1 --> e6
   e3 --- r8
-  e4 --- r7
-  e5 --- r9
+  e4 --- r6
+  e5 --- r7
   classDef missing fill:#fde2e1,stroke:#c0392b,color:#7b241c
   classDef ok fill:#e3f4e8,stroke:#2e7d4f,color:#1d4d31
-  class e6 missing
   class e3,e4,e5 ok
 ```
 
 ## 5. User actions
 
-Each user action (click, change, submit) has two sequence diagrams: OutSystems (TST code) and React.
+The two lists are independent: the OutSystems list comes from the TST compiled code, the React list from the React code. The tool does not map one list to the other.
 
-- **OutSystems:** the participant is the OutSystems block. The action is its screen action on TST.
-- **React:** the participant is the React function that ports the action. The tool finds it by its comment (the OutSystems name), its name, or the `@origin` tag of its file.
-- When the handler has branches (a menu option, for example), each branch has its own diagrams. The name of a branch comes from its condition. `other` is the last `else` or `default`.
-- The effects are server calls, navigation (`Navigation`), external links, messages and confirm dialogs.
-- An arrow to the server gives the inputs of the call. The return arrow gives the outputs (contract `app/src/api/openapi.yaml`).
-- **Red in the OutSystems diagram:** an effect that the React handler of the action does not have.
-- **Red in the React diagram:** an effect that OutSystems does not have, and a note with the effects that React does not have.
+- **OutSystems:** each event binding of the compiled views (`<event>$Action: function` of a child block or widget, `on<Event>: function` of an HTML element) with its handler.
+- **React:** each JSX attribute `on<Event>={handler}` with its handler.
+- Both lists keep only the bindings whose handler has an effect: a server call, a navigation, an external link, a message or a confirm dialog. The tool follows the called functions 3 levels deep.
+- When the handler has branches in the code (`switch` case, `if` with `===`), each branch has its own diagram. The branch name is the constant of the condition. `other` is the last `else` or `default`.
+- An arrow to the server gives the inputs of the call, the return arrow its outputs (contract `app/src/api/openapi.yaml`).
 
-| # | Block (OutSystems) | User action | Handler | Option (branch) | Effects (OutSystems) | React handler | React |
-|---|---|---|---|---|---|---|---|
-| [1](#51-menu-click-onclick_edityouraccount) | `Menu` | click | `onClick_EditYourAccount` | – | goes to Profile | `onEditYourAccount()` [`pages/Menu/hooks/useMenu.ts:58`](../../app/src/pages/Menu/hooks/useMenu.ts#L58) | same |
-| [2](#52-menu-click-onclick_menuoption-logout) | `Menu` | click | `onClick_MenuOption` | `logOut` | calls **AppManager_Logout (missing)**, AppManager_SynchAppContext; goes to HomeFeed; asks for a confirmation | `menuOption()` [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72) | **differs: 2 missing** |
-| [3](#53-menu-click-onclick_menuoption-contactus) | `Menu` | click | `onClick_MenuOption` | `contactUs` | goes to ContactUsMenu | `menuOption()` [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72) | same |
-| [4](#54-menu-click-onclick_menuoption-termsandpolicies) | `Menu` | click | `onClick_MenuOption` | `termsAndPolicies` | goes to TermsAndPoliciesMenu | `menuOption()` [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72) | same |
-| [5](#55-menu-click-onclick_menuoption-pinandbiometrics) | `Menu` | click | `onClick_MenuOption` | `pINAndBiometrics` | goes to PINBiometricsMenu | `menuOption()` [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72) | same |
-| [6](#56-menu-click-onclick_menuoption-subscriptionandpayments) | `Menu` | click | `onClick_MenuOption` | `subscriptionAndPayments` | opens an external link | `menuOption()` [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72) | same |
-| [7](#57-menu-click-onclick_menuoption-requestphotoupdate) | `Menu` | click | `onClick_MenuOption` | `requestPhotoUpdate` | calls RequestPhotoUpdate; shows a message; asks for a confirmation | `menuOption()` [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72) | same |
-| [8](#58-menu-click-onclick_menuoption-other) | `Menu` | click | `onClick_MenuOption` | `other` | shows a message | `menuOption()` [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72) | same |
+### 5.1 OutSystems (TST)
 
-### 5.1 Menu: click onClick_EditYourAccount
+| # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
+|---|---|---|---|---|---|
+| [1](#511-bottombarmenu-event_bottombar_clicked-home) | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `home` | goes to HomeFeed |
+| [2](#512-bottombarmenu-event_bottombar_clicked-directory) | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `directory` | goes to CountryList, Locality_Details |
+| [3](#513-bottombarmenu-event_bottombar_clicked-updates) | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `updates` | goes to Updates_SingleList |
+| [4](#514-bottombarmenu-event_bottombar_clicked-bookmarks) | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `bookmarks` | goes to Bookmarks |
+| [5](#515-bottombarmenu-event_bottombar_clicked-menu) | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `menu` | goes to Menu |
+| [6](#516-menu-onclick_edityouraccount) | `Menu` | `onClick (HTML element)` | `onClick_EditYourAccount` | – | goes to Profile |
+| [7](#517-menu-onclick_menuoption-logout) | `Menu` | `onClick_MenuOption of List` | `onClick_MenuOption` | `logOut` | calls AppManager_Logout, AppManager_SynchAppContext; goes to HomeFeed; asks for a confirmation |
+| [8](#518-menu-onclick_menuoption-contactus) | `Menu` | `onClick_MenuOption of List` | `onClick_MenuOption` | `contactUs` | goes to ContactUsMenu |
+| [9](#519-menu-onclick_menuoption-termsandpolicies) | `Menu` | `onClick_MenuOption of List` | `onClick_MenuOption` | `termsAndPolicies` | goes to TermsAndPoliciesMenu |
+| [10](#5110-menu-onclick_menuoption-pinandbiometrics) | `Menu` | `onClick_MenuOption of List` | `onClick_MenuOption` | `pINAndBiometrics` | goes to PINBiometricsMenu |
+| [11](#5111-menu-onclick_menuoption-subscriptionandpayments) | `Menu` | `onClick_MenuOption of List` | `onClick_MenuOption` | `subscriptionAndPayments` | opens an external link |
+| [12](#5112-menu-onclick_menuoption-requestphotoupdate) | `Menu` | `onClick_MenuOption of List` | `onClick_MenuOption` | `requestPhotoUpdate` | calls RequestPhotoUpdate; shows a message; asks for a confirmation |
+| [13](#5113-menu-onclick_menuoption-other) | `Menu` | `onClick_MenuOption of List` | `onClick_MenuOption` | `other` | shows a message |
+| [14](#5114-cachecontrol_userinfo-cachecontrolonnoncachehit) | `CacheControl_UserInfo` | `onNonCacheHit of CacheControl` | `cacheControlOnNonCacheHit` | – | calls GetCacheInfo |
 
-Result: same.
-
-**OutSystems (TST)**
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as Menu
-  participant N as Navigation
-  U->>B: click: onClick_EditYourAccount
-  B->>N: go to Profile
-```
-
-**React**: `onEditYourAccount()` in [`pages/Menu/hooks/useMenu.ts:58`](../../app/src/pages/Menu/hooks/useMenu.ts#L58)
+#### 5.1.1 BottomBarMenu: event_BottomBar_Clicked (home)
 
 ```mermaid
 sequenceDiagram
   autonumber
   actor U as User
-  participant H as onEditYourAccount() · useMenu.ts
+  participant B as BottomBarMenu
   participant N as Navigation
-  U->>H: click
-  H->>N: go to Profile
-```
-
-### 5.2 Menu: click onClick_MenuOption (logOut)
-
-Result: differs: 2 missing.
-
-**OutSystems (TST)**
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as Menu
-  participant S as Server (TST calls)
-  participant N as Navigation
-  U->>B: click: onClick_MenuOption (logOut)
-  Note over B: confirm dialog
-  Note over B: via UBTConnect.connect_Logout
-  rect rgba(192, 57, 43, 0.15)
-  B->>S: AppManager_Logout()
-  S-->>B: outputs not in the contract
-  Note over B,S: React does not make this call
-  end
-  rect rgba(192, 57, 43, 0.15)
-  B->>S: AppManager_SynchAppContext(EspaceName)
-  S-->>B: AppManager_ClientConfig, FirebaseRealTimeDB_Token, PermissionList, …
-  Note over B,S: not in the React handler
-  end
+  U->>B: onClick (HTML element) → event_BottomBar_Clicked (home)
   B->>N: go to HomeFeed
 ```
 
-**React**: `menuOption()` in [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72)
+#### 5.1.2 BottomBarMenu: event_BottomBar_Clicked (directory)
 
 ```mermaid
 sequenceDiagram
   autonumber
   actor U as User
-  participant H as menuOption() · useMenu.ts
-  participant A as Server (React api)
+  participant B as BottomBarMenu
   participant N as Navigation
-  U->>H: click (logOut)
-  Note over H: via logout()
-  Note over H: confirm dialog PopUp_Logout
-  H->>N: go to HomeFeed
-  rect rgba(192, 57, 43, 0.15)
-  Note over H: missing, OutSystems has: call AppManager_Logout, call AppManager_SynchAppContext
-  end
+  U->>B: onClick (HTML element) → event_BottomBar_Clicked (directory)
+  B->>N: go to CountryList
+  B->>N: go to Locality_Details
 ```
 
-### 5.3 Menu: click onClick_MenuOption (contactUs)
+#### 5.1.3 BottomBarMenu: event_BottomBar_Clicked (updates)
 
-Result: same.
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as BottomBarMenu
+  participant N as Navigation
+  U->>B: onClick (HTML element) → event_BottomBar_Clicked (updates)
+  B->>N: go to Updates_SingleList
+```
 
-**OutSystems (TST)**
+#### 5.1.4 BottomBarMenu: event_BottomBar_Clicked (bookmarks)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as BottomBarMenu
+  participant N as Navigation
+  U->>B: onClick (HTML element) → event_BottomBar_Clicked (bookmarks)
+  B->>N: go to Bookmarks
+```
+
+#### 5.1.5 BottomBarMenu: event_BottomBar_Clicked (menu)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as BottomBarMenu
+  participant N as Navigation
+  U->>B: onClick (HTML element) → event_BottomBar_Clicked (menu)
+  B->>N: go to Menu
+```
+
+#### 5.1.6 Menu: onClick_EditYourAccount
 
 ```mermaid
 sequenceDiagram
@@ -202,111 +189,11 @@ sequenceDiagram
   actor U as User
   participant B as Menu
   participant N as Navigation
-  U->>B: click: onClick_MenuOption (contactUs)
-  B->>N: go to ContactUsMenu
+  U->>B: onClick (HTML element) → onClick_EditYourAccount
+  B->>N: go to Profile
 ```
 
-**React**: `menuOption()` in [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as menuOption() · useMenu.ts
-  participant N as Navigation
-  U->>H: click (contactUs)
-  H->>N: go to ContactUsMenu
-```
-
-### 5.4 Menu: click onClick_MenuOption (termsAndPolicies)
-
-Result: same.
-
-**OutSystems (TST)**
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as Menu
-  participant N as Navigation
-  U->>B: click: onClick_MenuOption (termsAndPolicies)
-  B->>N: go to TermsAndPoliciesMenu
-```
-
-**React**: `menuOption()` in [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as menuOption() · useMenu.ts
-  participant N as Navigation
-  U->>H: click (termsAndPolicies)
-  H->>N: go to TermsAndPoliciesMenu
-```
-
-### 5.5 Menu: click onClick_MenuOption (pINAndBiometrics)
-
-Result: same.
-
-**OutSystems (TST)**
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as Menu
-  participant N as Navigation
-  U->>B: click: onClick_MenuOption (pINAndBiometrics)
-  B->>N: go to PINBiometricsMenu
-```
-
-**React**: `menuOption()` in [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as menuOption() · useMenu.ts
-  participant N as Navigation
-  U->>H: click (pINAndBiometrics)
-  H->>N: go to PINBiometricsMenu
-```
-
-### 5.6 Menu: click onClick_MenuOption (subscriptionAndPayments)
-
-Result: same.
-
-**OutSystems (TST)**
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as Menu
-  participant X as External link
-  U->>B: click: onClick_MenuOption (subscriptionAndPayments)
-  B->>X: OpenInApp_OpenExternalLink
-```
-
-**React**: `menuOption()` in [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as menuOption() · useMenu.ts
-  participant X as External link
-  U->>H: click (subscriptionAndPayments)
-  H->>X: openInApp_OpenExternalLink
-```
-
-### 5.7 Menu: click onClick_MenuOption (requestPhotoUpdate)
-
-Result: same.
-
-**OutSystems (TST)**
+#### 5.1.7 Menu: onClick_MenuOption (logOut)
 
 ```mermaid
 sequenceDiagram
@@ -314,22 +201,220 @@ sequenceDiagram
   actor U as User
   participant B as Menu
   participant S as Server (TST calls)
-  U->>B: click: onClick_MenuOption (requestPhotoUpdate)
+  participant N as Navigation
+  U->>B: onClick_MenuOption of List → onClick_MenuOption (logOut)
+  Note over B: confirm dialog
+  Note over B: via UBTConnect.connect_Logout
+  B->>S: AppManager_Logout()
+  S-->>B: outputs not in the contract
+  B->>S: AppManager_SynchAppContext(EspaceName)
+  S-->>B: AppManager_ClientConfig, FirebaseRealTimeDB_Token, PermissionList, …
+  B->>N: go to HomeFeed
+```
+
+#### 5.1.8 Menu: onClick_MenuOption (contactUs)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as Menu
+  participant N as Navigation
+  U->>B: onClick_MenuOption of List → onClick_MenuOption (contactUs)
+  B->>N: go to ContactUsMenu
+```
+
+#### 5.1.9 Menu: onClick_MenuOption (termsAndPolicies)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as Menu
+  participant N as Navigation
+  U->>B: onClick_MenuOption of List → onClick_MenuOption (termsAndPolicies)
+  B->>N: go to TermsAndPoliciesMenu
+```
+
+#### 5.1.10 Menu: onClick_MenuOption (pINAndBiometrics)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as Menu
+  participant N as Navigation
+  U->>B: onClick_MenuOption of List → onClick_MenuOption (pINAndBiometrics)
+  B->>N: go to PINBiometricsMenu
+```
+
+#### 5.1.11 Menu: onClick_MenuOption (subscriptionAndPayments)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as Menu
+  participant X as External link
+  U->>B: onClick_MenuOption of List → onClick_MenuOption (subscriptionAndPayments)
+  B->>X: OpenInApp_OpenExternalLink
+```
+
+#### 5.1.12 Menu: onClick_MenuOption (requestPhotoUpdate)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as Menu
+  participant S as Server (TST calls)
+  U->>B: onClick_MenuOption of List → onClick_MenuOption (requestPhotoUpdate)
   Note over B: confirm dialog
   B->>S: RequestPhotoUpdate()
   S-->>B: Out_IsSuccess
   Note over B: message "Your update photo request has been submitted."
 ```
 
-**React**: `menuOption()` in [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72)
+#### 5.1.13 Menu: onClick_MenuOption (other)
 
 ```mermaid
 sequenceDiagram
   autonumber
   actor U as User
-  participant H as menuOption() · useMenu.ts
+  participant B as Menu
+  U->>B: onClick_MenuOption of List → onClick_MenuOption (other)
+  Note over B: message "Go to " + id
+```
+
+#### 5.1.14 CacheControl_UserInfo: cacheControlOnNonCacheHit
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as CacheControl_UserInfo
+  participant S as Server (TST calls)
+  U->>B: onNonCacheHit of CacheControl → cacheControlOnNonCacheHit
+  B->>S: GetCacheInfo(CacheKey, CacheTypeId)
+  S-->>B: CacheControl_Response, TTL
+```
+
+### 5.2 React
+
+| # | File | Element | Event prop | Handler | Branch | Effects |
+|---|---|---|---|---|---|---|
+| [1](#521-menuuserheader-onedityouraccount) | [`pages/Menu/MenuPage.tsx:70`](../../app/src/pages/Menu/MenuPage.tsx#L70) | `<MenuUserHeader>` | `onEditYourAccount` | `onEditYourAccount` | – | goes to Profile |
+| [2](#522-menulist-ononclickmenuoption-logout) | [`pages/Menu/MenuPage.tsx:72`](../../app/src/pages/Menu/MenuPage.tsx#L72) | `<MenuList>` | `onOnClickMenuOption` | `onMenuOption` | `LogOut` | goes to HomeFeed; asks for a confirmation |
+| [3](#523-menulist-ononclickmenuoption-contactus) | [`pages/Menu/MenuPage.tsx:72`](../../app/src/pages/Menu/MenuPage.tsx#L72) | `<MenuList>` | `onOnClickMenuOption` | `onMenuOption` | `ContactUs` | goes to ContactUsMenu |
+| [4](#524-menulist-ononclickmenuoption-termsandpolicies) | [`pages/Menu/MenuPage.tsx:72`](../../app/src/pages/Menu/MenuPage.tsx#L72) | `<MenuList>` | `onOnClickMenuOption` | `onMenuOption` | `TermsAndPolicies` | goes to TermsAndPoliciesMenu |
+| [5](#525-menulist-ononclickmenuoption-pinandbiometrics) | [`pages/Menu/MenuPage.tsx:72`](../../app/src/pages/Menu/MenuPage.tsx#L72) | `<MenuList>` | `onOnClickMenuOption` | `onMenuOption` | `PINAndBiometrics` | goes to PINBiometricsMenu |
+| [6](#526-menulist-ononclickmenuoption-subscriptionandpayments) | [`pages/Menu/MenuPage.tsx:72`](../../app/src/pages/Menu/MenuPage.tsx#L72) | `<MenuList>` | `onOnClickMenuOption` | `onMenuOption` | `SubscriptionAndPayments` | opens an external link |
+| [7](#527-menulist-ononclickmenuoption-requestphotoupdate) | [`pages/Menu/MenuPage.tsx:72`](../../app/src/pages/Menu/MenuPage.tsx#L72) | `<MenuList>` | `onOnClickMenuOption` | `onMenuOption` | `RequestPhotoUpdate` | calls ActionRequestPhotoUpdate; shows a message; asks for a confirmation |
+| [8](#528-menulist-ononclickmenuoption-other) | [`pages/Menu/MenuPage.tsx:72`](../../app/src/pages/Menu/MenuPage.tsx#L72) | `<MenuList>` | `onOnClickMenuOption` | `onMenuOption` | `other` | shows a message |
+| [9](#529-cachecontrol-onnoncachehit) | [`legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx:52`](../../app/src/legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx#L52) | `<CacheControl>` | `onNonCacheHit` | `onNonCacheHit` | – | calls DataActionGetCacheInfo |
+| [10](#5210-preventbacknavigation-onbacknavigationprevented) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:80`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L80) | `<PreventBackNavigation>` | `onBackNavigationPrevented` | `redirectHome` | – | goes to HomeFeed |
+| [11](#5211-oslink-onclick-home) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Home` | goes to HomeFeed |
+| [12](#5212-oslink-onclick-directory) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Directory` | goes to CountryList, Locality_Details |
+| [13](#5213-oslink-onclick-updates) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Updates` | goes to Updates_SingleList |
+| [14](#5214-oslink-onclick-bookmarks) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Bookmarks` | goes to Bookmarks |
+| [15](#5215-oslink-onclick-menu) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Menu` | goes to Menu |
+| [16](#5216-oslink-onclick-other) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `other` | calls the prop onBottomBarClicked() |
+| [17](#5217-bottombariconbadge-ononclick-home) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Home` | goes to HomeFeed |
+| [18](#5218-bottombariconbadge-ononclick-directory) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Directory` | goes to CountryList, Locality_Details |
+| [19](#5219-bottombariconbadge-ononclick-updates) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Updates` | goes to Updates_SingleList |
+| [20](#5220-bottombariconbadge-ononclick-bookmarks) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Bookmarks` | goes to Bookmarks |
+| [21](#5221-bottombariconbadge-ononclick-menu) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Menu` | goes to Menu |
+| [22](#5222-bottombariconbadge-ononclick-other) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `other` | calls the prop onBottomBarClicked() |
+
+#### 5.2.1 MenuUserHeader: onEditYourAccount
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as MenuUserHeader · MenuPage.tsx
+  participant N as Navigation
+  U->>H: onEditYourAccount → onEditYourAccount
+  H->>N: go to Profile
+```
+
+#### 5.2.2 MenuList: onOnClickMenuOption (LogOut)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as MenuList · MenuPage.tsx
+  participant N as Navigation
+  U->>H: onOnClickMenuOption → onMenuOption (LogOut)
+  Note over H: via menuOption()
+  Note over H: via logout()
+  Note over H: confirm dialog PopUp_Logout
+  H->>N: go to HomeFeed
+```
+
+#### 5.2.3 MenuList: onOnClickMenuOption (ContactUs)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as MenuList · MenuPage.tsx
+  participant N as Navigation
+  U->>H: onOnClickMenuOption → onMenuOption (ContactUs)
+  Note over H: via menuOption()
+  H->>N: go to ContactUsMenu
+```
+
+#### 5.2.4 MenuList: onOnClickMenuOption (TermsAndPolicies)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as MenuList · MenuPage.tsx
+  participant N as Navigation
+  U->>H: onOnClickMenuOption → onMenuOption (TermsAndPolicies)
+  Note over H: via menuOption()
+  H->>N: go to TermsAndPoliciesMenu
+```
+
+#### 5.2.5 MenuList: onOnClickMenuOption (PINAndBiometrics)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as MenuList · MenuPage.tsx
+  participant N as Navigation
+  U->>H: onOnClickMenuOption → onMenuOption (PINAndBiometrics)
+  Note over H: via menuOption()
+  H->>N: go to PINBiometricsMenu
+```
+
+#### 5.2.6 MenuList: onOnClickMenuOption (SubscriptionAndPayments)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as MenuList · MenuPage.tsx
+  participant X as External link
+  U->>H: onOnClickMenuOption → onMenuOption (SubscriptionAndPayments)
+  Note over H: via menuOption()
+  H->>X: openInApp_OpenExternalLink
+```
+
+#### 5.2.7 MenuList: onOnClickMenuOption (RequestPhotoUpdate)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as MenuList · MenuPage.tsx
   participant A as Server (React api)
-  U->>H: click (requestPhotoUpdate)
+  U->>H: onOnClickMenuOption → onMenuOption (RequestPhotoUpdate)
+  Note over H: via menuOption()
   Note over H: confirm dialog Popup_SubmitPhotoRequest
   Note over H: via requestPhotoUpdate()
   H->>A: ActionRequestPhotoUpdate()
@@ -337,55 +422,220 @@ sequenceDiagram
   Note over H: message 'Your update photo request has been submitted.'
 ```
 
-### 5.8 Menu: click onClick_MenuOption (other)
-
-Result: same.
-
-**OutSystems (TST)**
+#### 5.2.8 MenuList: onOnClickMenuOption (other)
 
 ```mermaid
 sequenceDiagram
   autonumber
   actor U as User
-  participant B as Menu
-  U->>B: click: onClick_MenuOption (other)
-  Note over B: message "Go to " + id
+  participant H as MenuList · MenuPage.tsx
+  U->>H: onOnClickMenuOption → onMenuOption (other)
+  Note over H: via menuOption()
+  Note over H: message `Go to ${id}`
 ```
 
-**React**: `menuOption()` in [`pages/Menu/hooks/useMenu.ts:72`](../../app/src/pages/Menu/hooks/useMenu.ts#L72)
+#### 5.2.9 CacheControl: onNonCacheHit
 
 ```mermaid
 sequenceDiagram
   autonumber
   actor U as User
-  participant H as menuOption() · useMenu.ts
-  U->>H: click (other)
-  Note over H: message `Go to ${id}`
+  participant H as CacheControl · UserInfoCacheControl.tsx
+  participant A as Server (React api)
+  U->>H: onNonCacheHit → onNonCacheHit
+  H->>A: DataActionGetCacheInfo(CacheKey, CacheTypeId)
+  A-->>H: CacheControl_Response, TTL
+```
+
+#### 5.2.10 PreventBackNavigation: onBackNavigationPrevented
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as PreventBackNavigation · CommonUiLayout.tsx
+  participant N as Navigation
+  U->>H: onBackNavigationPrevented → redirectHome
+  H->>N: go to HomeFeed
+```
+
+#### 5.2.11 OSLink: onClick (Home)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as OSLink · BottomBar.tsx
+  participant N as Navigation
+  U->>H: onClick → click (Home)
+  Note over H: via event_BottomBar_Clicked()
+  H->>N: go to HomeFeed
+```
+
+#### 5.2.12 OSLink: onClick (Directory)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as OSLink · BottomBar.tsx
+  participant N as Navigation
+  U->>H: onClick → click (Directory)
+  Note over H: via event_BottomBar_Clicked()
+  H->>N: go to CountryList
+  H->>N: go to Locality_Details
+```
+
+#### 5.2.13 OSLink: onClick (Updates)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as OSLink · BottomBar.tsx
+  participant N as Navigation
+  U->>H: onClick → click (Updates)
+  Note over H: via event_BottomBar_Clicked()
+  H->>N: go to Updates_SingleList
+```
+
+#### 5.2.14 OSLink: onClick (Bookmarks)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as OSLink · BottomBar.tsx
+  participant N as Navigation
+  U->>H: onClick → click (Bookmarks)
+  Note over H: via event_BottomBar_Clicked()
+  H->>N: go to Bookmarks
+```
+
+#### 5.2.15 OSLink: onClick (Menu)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as OSLink · BottomBar.tsx
+  participant N as Navigation
+  U->>H: onClick → click (Menu)
+  Note over H: via event_BottomBar_Clicked()
+  H->>N: go to Menu
+```
+
+#### 5.2.16 OSLink: onClick (other)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as OSLink · BottomBar.tsx
+  U->>H: onClick → click (other)
+  Note over H: via event_BottomBar_Clicked()
+  Note over H: calls the prop onBottomBarClicked()
+```
+
+#### 5.2.17 BottomBarIconBadge: onOnClick (Home)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as BottomBarIconBadge · BottomBar.tsx
+  participant N as Navigation
+  U->>H: onOnClick → click (Home)
+  Note over H: via event_BottomBar_Clicked()
+  H->>N: go to HomeFeed
+```
+
+#### 5.2.18 BottomBarIconBadge: onOnClick (Directory)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as BottomBarIconBadge · BottomBar.tsx
+  participant N as Navigation
+  U->>H: onOnClick → click (Directory)
+  Note over H: via event_BottomBar_Clicked()
+  H->>N: go to CountryList
+  H->>N: go to Locality_Details
+```
+
+#### 5.2.19 BottomBarIconBadge: onOnClick (Updates)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as BottomBarIconBadge · BottomBar.tsx
+  participant N as Navigation
+  U->>H: onOnClick → click (Updates)
+  Note over H: via event_BottomBar_Clicked()
+  H->>N: go to Updates_SingleList
+```
+
+#### 5.2.20 BottomBarIconBadge: onOnClick (Bookmarks)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as BottomBarIconBadge · BottomBar.tsx
+  participant N as Navigation
+  U->>H: onOnClick → click (Bookmarks)
+  Note over H: via event_BottomBar_Clicked()
+  H->>N: go to Bookmarks
+```
+
+#### 5.2.21 BottomBarIconBadge: onOnClick (Menu)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as BottomBarIconBadge · BottomBar.tsx
+  participant N as Navigation
+  U->>H: onOnClick → click (Menu)
+  Note over H: via event_BottomBar_Clicked()
+  H->>N: go to Menu
+```
+
+#### 5.2.22 BottomBarIconBadge: onOnClick (other)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as BottomBarIconBadge · BottomBar.tsx
+  U->>H: onOnClick → click (other)
+  Note over H: via event_BottomBar_Clicked()
+  Note over H: calls the prop onBottomBarClicked()
 ```
 
 ## 6. Server calls
 
-- **Called from (OutSystems):** the block or the app-level module whose own client action makes the call.
-- **Made by (TST):** for each block in "Called from", its chain of client actions from the block to the call.
-- **Trigger:** when the call runs, from the start of the chain on TST.
-- **Seen on TST:** `yes` when TST made the call in the capture. Many calls run only after a click.
-- **React action:** the React function that makes the same call, and the part that loads it: `shell`, `page` or both.
-- **React caller:** the nearest React component that uses the React action, and the hooks between them. At most 2 chains, the shortest first.
+All columns come from the code, without interpretation:
 
-| # | Call (TST) | Kind | Called from (OutSystems) | Trigger | Made by (TST) | Seen on TST | React action | React caller | Status |
-|---|---|---|---|---|---|---|---|---|---|
-| 1 | `UBTConnect_Utils/CacheControl/CacheControl_UserInfo/DataActionGetCacheInfo` | data action | `CacheControl_UserInfo` | initialize | CacheControl_UserInfo.cacheControlOnNonCacheHit → CacheControl_UserInfo.DataActionGetCacheInfo<br>(+1 more chains) | yes | `UserInfoCacheControl()` [`legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx:37`](../../app/src/legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx#L37) (page) | `Menu → UserInfoCache → UserInfoCacheControl`<br>[`pages/Menu/MenuPage.tsx`](../../app/src/pages/Menu/MenuPage.tsx) | implemented |
-| 2 | `UBTConnect/App_Menu/Menu/ActionRequestPhotoUpdate` | server action | `Menu` | click | Menu.onClick_MenuOption → server RequestPhotoUpdate | no | `requestPhotoUpdate()` [`api/member/repository.ts:46`](../../app/src/api/member/repository.ts#L46) (page) | `Menu → useMenu → requestPhotoUpdate`<br>[`pages/Menu/MenuPage.tsx`](../../app/src/pages/Menu/MenuPage.tsx) | implemented |
-| 3 | `UBT_AppManager/ActionAppManager_Logout` | server action | `Menu` | click | Menu.onClick_MenuOption → Menu.action_Logout → … → server AppManager_Logout | no | – | – | **missing** |
-| 4 | `UBTConnect_Utils/ActionGet_RuntimeVersion` | server action | `Version` | ready | Version.OnReady → Version.screenEvent_OnReady → UBTConnect_Utils.get_ConnectVersionDetails → server Get_RuntimeVersion | yes | `get_ConnectVersionDetails()` [`lib/ubtConnectUtils/actions.ts:36`](../../app/src/lib/ubtConnectUtils/actions.ts#L36) (page) | `AppVersion → loadVersionDetails → get_ConnectVersionDetails`<br>[`components/version/AppVersion/AppVersion.tsx`](../../app/src/components/version/AppVersion/AppVersion.tsx) | implemented |
+- **Direct caller (TST):** the block or module of the action that calls the server (the step before the server call in the chain).
+- **Chain (TST):** the chains of client actions in the TST compiled code, from their start to the call.
+  A long chain shows its first 2 steps, …, and its last 2 steps.
+- **Seen on TST:** `yes` when TST made the call in the capture.
+- **React action:** the React function with the `callAction` of the same call (`file:line`), and the code that loads it: `shell` (from `main.tsx`), `page` (from the screen), or both.
+- **Used by (React references):** the functions and components that reference the React action, up to the nearest component. A reference is not always a call.
+- **Status:** `implemented` when the contract path of the React call gives the same TST URL. It does not prove the same behaviour.
+
+| # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
+|---|---|---|---|---|---|---|---|---|
+| 1 | `UBTConnect_Utils/CacheControl/CacheControl_UserInfo/DataActionGetCacheInfo` | data action | `CacheControl_UserInfo` | CacheControl.OnInitialize → CacheControl.onInitialize → event onNonCacheHit of CacheControl → CacheControl_UserInfo.cacheControlOnNonCacheHit → CacheControl_UserInfo.DataActionGetCacheInfo<br>CacheControl_UserInfo fetch at start → CacheControl_UserInfo.DataActionGetCacheInfo | yes | `UserInfoCacheControl()` [`legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx:37`](../../app/src/legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx#L37) (page) | `Menu → UserInfoCache → UserInfoCacheControl`<br>[`pages/Menu/MenuPage.tsx`](../../app/src/pages/Menu/MenuPage.tsx) | implemented |
+| 2 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx) | implemented |
+| 3 | `UBTConnect_Utils/ActionGet_RuntimeVersion` | server action | `UBTConnect_Utils` | Version.OnReady → Version.screenEvent_OnReady → UBTConnect_Utils.get_ConnectVersionDetails → server Get_RuntimeVersion | yes | `get_ConnectVersionDetails()` [`lib/ubtConnectUtils/actions.ts:36`](../../app/src/lib/ubtConnectUtils/actions.ts#L36) (page) | `AppVersion → loadVersionDetails → get_ConnectVersionDetails`<br>[`components/version/AppVersion/AppVersion.tsx`](../../app/src/components/version/AppVersion/AppVersion.tsx) | implemented |
 
 ## 7. Missing in React
 
-- Call `UBT_AppManager/ActionAppManager_Logout`. Chain on TST: onClick in CustomContainer → event clicked of CustomContainer → event onClick_MenuOption of Menu_List → Menu.onClick_MenuOption → Menu.action_Logout → UBTConnect.connect_Logout → UBT_AppManager.appManager_Logout → server AppManager_Logout.
-  - No React code makes this call.
-  - Note in [`platform/auth/mockAuth.ts:24`](../../app/src/platform/auth/mockAuth.ts#L24): "/** The server logout of AppManager_Logout: no call (app-shell spec 10). */"
-  - Note in [`platform/session/auth.ts:84`](../../app/src/platform/session/auth.ts#L84): "/** Connect_Logout (UC:1062-1066): Cache_InvalidateEverything, then AppManager_Logout (AM:3649-3720): server logout"
-  - Note in [`platform/session/pin.ts:66`](../../app/src/platform/session/pin.ts#L66): "/** PIN_Delete(UserId, AppName), part of AppManager_Logout (AM:3712). */"
+None.
 
 ## 8. Questions
 
@@ -399,10 +649,7 @@ sequenceDiagram
    - the rendered files;
    - each server call with its chain of client actions, and the calls that TST made in the capture;
    - the effects of each user action.
-2. **Route and app shell.** The app shell has these parts:
-   - `CommonUI_InsideLayout` with its blocks, and the app-level actions;
-   - the business blocks that at least 40% of the captured routes render, for example the bottom bar.
-   This file shows only the other blocks.
+2. **Route and app shell.** OutSystems: a chain belongs to the app shell when it starts in `CommonUI_InsideLayout`, one of its blocks, or a module action. React: a binding belongs to the app shell when its file is in the code that `main.tsx` loads.
 3. **MCP (DEV).** The tool reads the UI flow with `getScreenNames`. TST wins when DEV is different.
 4. **React.** `react_calls.mjs` reads the app shell from `app/src/main.tsx` and the screen from its `<Route>Page.tsx`. It counts only the code that the app uses.
 5. **Match.** `callAction(M, A)` gives `/api/M/A`. The `x-os-paths` of `app/src/api/openapi.yaml` give the TST call. The status is `implemented` when the TST call is the same. Else the status is `missing`.

@@ -107,8 +107,8 @@ def write_routes(done=None):
     L = ["# Routes: OutSystems actions against React", "",
          f"One file per route. Run `python3 migration/tools/route_actions/check_route.py <Route>` (see "
          f"[README](../tools/route_actions/README.md)). Progress: **{n_done} of {len(build)}** build routes done.", "",
-         "The app shell (layout, app start, bottom bar, PIN lock, shared dialogs) is in [APP_SHELL.md](APP_SHELL.md). "
-         "The tool merges it from the checked routes.", "",
+         "The app shell (`CommonUI_InsideLayout` and its blocks on TST; the code that `main.tsx` loads in React) is in "
+         "[APP_SHELL.md](APP_SHELL.md). The tool merges it from the checked routes.", "",
          f"UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read {date.today().isoformat()}. "
          "Routes and scope: `app/src/app/routes.generated.ts` (84 routes) and `migration/board.md`.", "",
          "| Route | UI flow | Status |", "|---|---|---|"]
@@ -245,58 +245,6 @@ def endpoint_kind(url):
     return "server action"
 
 
-def handler_core(name):
-    n = re.sub(r"(?i)^(on_?click_?|handler_?|handle_?|event_?|on_?|action_?)+", "", name)
-    return n.replace("_", "").lower()
-
-
-def match_react_handler(a, handlers, origin_by_file):
-    """The React function that ports an OutSystems user action handler: its leading comment names the handler (3),
-    its name is the same without the prefixes on/handle/handler/event/action/onClick (2), its file has the @origin
-    tag of the block (1). The highest score wins; at equal score, the function with more effects. None below 2."""
-    want = handler_core(a["handler"])
-    name = a["handler"].lstrip("_")
-    # a short name without "_" (login, upgrade) is too common to trust in a comment
-    pat = re.compile(rf"(?i)\b{re.escape(name)}\b") if ("_" in name or len(name) >= 10) else None
-    best, best_key = None, (1, 0)
-    for h in handlers:
-        if h["name"][:1].isupper():  # a component, not a handler
-            continue
-        core = handler_core(h["name"])
-        com = h.get("comment", "")
-        hit = bool(pat and pat.search(com))
-        if hit and len(core) >= 5:  # the comment names several handlers: this function ports another one
-            others = [t for t in re.findall(r"\b[A-Z]\w*_\w+\b", com) if t.lower() != name.lower()]
-            if any(core in handler_core(t) for t in others) and core not in want:
-                hit = False
-        related = a["block"] in origin_by_file.get(h["file"], ()) or \
-            a["block"].replace("_", "").lower() in h["file"].replace("_", "").lower()
-        if not hit and len(want) < 10 and not related:  # a short name alone is not enough
-            continue
-        sc = (3 if hit else 0) + (2 if core == want else 0)
-        sc += 1 if core != want and ((len(want) >= 6 and want in core) or (len(core) >= 6 and core in want)) else 0
-        sc += 1 if related else 0
-        key = (sc, len(h["effects"]))
-        if sc >= 2 and key > best_key:
-            best, best_key = h, key
-    return best
-
-
-SHARED_SHARE = 0.4  # a business block that at least 40% of the captured routes render belongs to the app shell
-
-
-def shared_block_names():
-    """Business blocks that many routes render (layout parts such as the bottom bar). With CommonUI_InsideLayout and
-    its blocks, they make the app shell: the route files leave them out, APP_SHELL.md has them."""
-    cnt, n = collections.Counter(), 0
-    for f in glob.glob(os.path.join(ROOT, "migration", "screens", "*", "analysis", "facts.json")):
-        n += 1
-        for x in set(load(f)["renderedFiles"]):
-            if x.endswith(".mvc.js") and not x.startswith(PATTERN_MODULES + ("OutSystemsUI", "NavigationHandler")):
-                cnt[x] += 1
-    return {k for k, v in cnt.items() if n and v >= SHARED_SHARE * n}
-
-
 def check(route):
     flows = ui_flows()
     board = board_rows()
@@ -318,8 +266,7 @@ def check(route):
     js = facts["js"]
     by_key = {file_key(f): f for f in rendered}
     shell_files = set()
-    shared = shared_block_names()
-    todo = [f for f in rendered if f in set(survey["shell"]) or f in shared]
+    todo = [f for f in rendered if f in set(survey["shell"])]
     while todo:
         f = todo.pop()
         if f in shell_files:
@@ -484,17 +431,24 @@ def check(route):
             origin_by_file[o["file"]].add(o["origin"].split(".")[-1])
     for a in uacts:
         a["group"] = group_of_file.get(by_short.get(a["block"], ""), "screen")
-        handlers = [h for h in page_r.get("handlers", []) + shell_r.get("handlers", [])
-                    if not h["file"].startswith("app/src/api/")]
-        a["react"] = match_react_handler(a, handlers, origin_by_file)
-        for e in (a["react"] or {}).get("effects", []):
-            if e["kind"] == "call":
-                e["urls"] = cpaths.get(e["detail"]) or []
+    shell_set = set(shell_r["files"])
+    react_acts = []
+    seen_b = set()
+    for rr in (page_r, shell_r):
+        for bnd in rr.get("bindings", []):
+            k = (bnd["file"], bnd["line"])
+            if k in seen_b:
+                continue
+            seen_b.add(k)
+            for e in bnd["effects"]:
+                if e["kind"] == "call":
+                    e["urls"] = cpaths.get(e["detail"]) or []
+            react_acts.append({**bnd, "group": "shell" if bnd["file"] in shell_set else "screen"})
     nav_from = collections.defaultdict(set)
     for f in rendered:
         for n in js.get(f, {}).get("navigation", []):
             nav_from[n["to"].rsplit("/", 1)[-1]].add(group_of_file[f])
-    result = {"route": route, "screenFile": sfile, "userActions": uacts, "flow": flow, "survey": sv, "meta": meta, "endpoints": eps,
+    result = {"route": route, "screenFile": sfile, "userActions": uacts, "reactActions": react_acts, "flow": flow, "survey": sv, "meta": meta, "endpoints": eps,
               "reactOnly": react_only, "reactUnknown": react_unknown,
               "blocks": blocks, "osNav": {k: sorted(v) for k, v in os_nav.items()},
               "reactNav": {k: sorted(v) for k, v in react_nav.items()}, "observedCount": len(tst["calls"]),
@@ -520,48 +474,19 @@ def link(path, line=None):
 
 
 def chain_owner(chain, blocks):
-    """The block whose own action makes the call: the last `Block.action` step of a screen or business block (not a
-    UI pattern). Else the block of a `<Block> fetch at start` root, else the module of an app-level root."""
+    """(direct caller, part) of a TST chain. The direct caller is the block or module of the action that calls the
+    server: the step before `server …`, or the data action step. The part is the part of the chain start: the group
+    of its block (`shell` for CommonUI_InsideLayout and its blocks), `shell` for a module-level start."""
     by_short = {b["key"].split(".")[-1]: b for b in blocks}
-    for step in reversed(chain):
-        m = re.match(r"^(\w+)\.\w+$", step)
-        if m and m.group(1) in by_short and by_short[m.group(1)]["module"] not in PATTERN_MODULES:
-            return m.group(1), by_short[m.group(1)]["group"]
-        m = re.match(r"^(\w+) fetch at start$", step)
-        if m and m.group(1) in by_short:
-            return m.group(1), by_short[m.group(1)]["group"]
-    head = (chain[0] if chain else "?").split(" ")[0].split(".")[0]
-    if head in by_short:
-        return head, by_short[head]["group"]
-    return head, "shell"
-
-
-def trigger(chain, blocks=()):
-    """When the call runs, from the root (first step) of a TST chain."""
+    steps = [x for x in chain if not x.startswith("server ")]
+    last = steps[-1] if steps else (chain[0] if chain else "?")
+    m = re.match(r"^(\w+)(?:\.| fetch at start$)", last) or re.match(r"^(?:onClick in|event \w+ of) (\w+)$", last)
+    owner = m.group(1) if m else last.split(" ")[0]
     root = chain[0] if chain else ""
-    act = root.split(".")[-1].split(" ")[-1]
-    rules = [
-        (r" fetch at start$", "block load (fetch at start)"),
-        (r"(?i)onApplicationReady|OnAppReady", "app start"),
-        (r"(?i)connect_SetLoggedContext", "sign-in context (app start)"),
-        (r"(?i)\.OnReady$|\.onReady$", "ready"),
-        (r"(?i)OnInitialize", "initialize"),
-        (r"(?i)OnParametersChanged", "parameters change"),
-        (r"(?i)OnRender", "render"),
-        (r"(?i)ImageError", "image load error"),
-        (r"(?i)onClick|Click", "click"),
-        (r"(?i)Submit", "submit"),
-    ]
-    for pat, label in rules:
-        if re.search(pat, root):
-            return label
-    m = re.match(r"^event (\w+) of (\w+)$", root)
-    if m:
-        return f"event `{m.group(1)}` of `{m.group(2)}`"
-    m = re.match(r"^(\w+)\.(\w+)$", root)
-    if m and m.group(1) not in blocks:
-        return f"module action `{m.group(2)}` (the TST graph has no caller)"
-    return f"client action `{act}`" if act else "–"
+    r = re.match(r"^(\w+)(?:\.| fetch at start$)", root) or re.match(r"^(?:\w+ in|event \w+ of) (\w+)$", root)
+    rb = r.group(1) if r else ""
+    part = by_short[rb]["group"] if rb in by_short else "shell"
+    return owner, part
 
 
 def react_chain(ch):
@@ -570,13 +495,6 @@ def react_chain(ch):
     names = [x["name"] for x in ch]
     names = names if len(names) <= 4 else names[:2] + ["…"] + names[-1:]
     return f"`{' → '.join(names)}`<br>{link(ch[0]['file'])}"
-
-
-def from_owner(chain, owner):
-    """The chain from the first step of the owner block to the call; long chains keep 2 steps, '…' and the call."""
-    i = next((k for k, st in enumerate(chain) if st.startswith((owner + ".", owner + " "))), 0)
-    steps = chain[i:]
-    return steps if len(steps) <= 4 else steps[:2] + ["…"] + steps[-1:]
 
 
 def mermaid(r):
@@ -729,8 +647,10 @@ def user_actions(sources, rendered, eps):
         seen = seen | {key}
         out = []
         marks = []
-        for m in re.finditer(r"// Destination: (/\S*\w)", body):
-            marks.append((m.start(), "navigate", m.group(1).rsplit("/", 1)[-1]))
+        for m in re.finditer(r"// Destination: (/\S*)", body):
+            dest = m.group(1).rstrip("/")
+            # the screen name; the module root (`/UBTConnect/`) stays a path
+            marks.append((m.start(), "navigate", dest.rsplit("/", 1)[-1] if dest.count("/") >= 2 else m.group(1)))
         for m in re.finditer(r'showFeedbackMessage\((\("?[^,]{0,120}?"?\)|"[^"]{0,120}")', body):
             txt = m.group(1).strip("()")
             marks.append((m.start(), "message", re.sub(r"vars\.value\.|In(Local)?\b", "", txt)))
@@ -795,210 +715,154 @@ def user_actions(sources, rendered, eps):
                         out += sub
         return out
 
-    # user handlers: from UI events, through block events, to the first action of a business block
-    pattern = ("UBTConnectLibrary", "OutSystemsUI", "NavigationHandler")
+    # event bindings in the compiled views: `<event>$Action: function (...) { ... controller.<handler>$Action(` for an
+    # event of a child block or widget (the last React.createElement(<child>_mvc_view) before it), and
+    # `on<Event>: function (...) { ... controller.<handler>$Action(` for an event of an HTML element of the view
     found = collections.OrderedDict()
-    raised = {b for a, b in edges if b.startswith("evt:")}
-    called = {b for a, b in edges}
-    # roots: UI events, block events that no code raises, and screen actions that no code calls (a screen action
-    # with no caller is bound to a widget event that the call graph does not read)
-    user_name = re.compile(r"(?i)click|tap|submit|change|select|search|input|toggle|swipe")
-    roots = [n for n in sorted(nodes) if n.startswith("ui:")
-             or (n.startswith("evt:") and n not in raised and user_name.search(n.split(":")[2]))]
-    roots += [n for n in sorted(nodes) if n.startswith("act:") and n not in called and n.split(":")[1] in rendered
-              and not n.split(":")[1].startswith(pattern) and user_name.search(n.split(":", 2)[2])
-              and not re.match(r"(?i)(onAfterFetch|screenEvent|on(Initialize|Ready|Render|Destroy|ParametersChanged))", n.split(":", 2)[2])]
-    for n in roots:
-        fname, ev = n.split(":")[1], n.split(":")[2]
-        kind = UI_KIND.get(ev) or ("click" if re.search(r"(?i)click|tap", ev) else
-                                   "submit" if re.search(r"(?i)submit", ev) else "event")
-        todo, seen = [n], set()
-        while todo:
-            x = todo.pop()
-            if x in seen:
+    for fname in sorted(rendered):
+        src = sources.get(fname, "")
+        marks = [(m.start(), m.end(), m.group(1)) for m in re.finditer(r"([\w$]+)\s*:\s*function\s*\([^)]*\)\s*\{", src)]
+        for i, (st, en, prop) in enumerate(marks):
+            if not (prop.endswith("$Action") or re.match(r"on[A-Z]", prop)):
                 continue
-            seen.add(x)
-            if x.startswith("act:"):
-                f = x.split(":")[1]
-                if f in rendered and not f.startswith(pattern):
-                    found.setdefault((f, x.split(":", 2)[2]), kind)
-                    todo += [c for c in callees.get(x, ()) if c.startswith("evt:")]  # events it raises to its parent
-                    continue
-            todo += [c for c in callees.get(x, ()) if c.startswith(("act:", "evt:"))]
+            win = src[en: marks[i + 1][0] if i + 1 < len(marks) else en + 1500][:1500]
+            c = re.search(r"controller\.(_?\w+?)\$Action\(", win)
+            if not c:
+                continue
+            handler = c.group(1).lstrip("_")
+            if prop.endswith("$Action"):
+                created = re.findall(r"React\.createElement\((\w+?)_mvc_view", src[:st])
+                source = created[-1].split("_")[-1] if created else "?"
+                event = f"{prop[:-len('$Action')]} of {source}"
+            else:
+                event = f"{prop} (HTML element)"
+            found.setdefault((fname, handler), []).append(event)
     out = []
-    for (f, name), kind in found.items():
+    for (f, name), events in found.items():
         eff = effects((f, name), None, 0, set())
-        if any(e["kind"] in ("call", "navigate", "external", "message") for e in eff):
-            out.append({"block": short(f), "handler": name, "trigger": kind, "effects": eff})
+        if any(e["kind"] in ("call", "navigate", "external", "message", "confirm") for e in eff):
+            out.append({"block": short(f), "file": f, "handler": name, "events": sorted(set(events)), "effects": eff})
     return out
 
 
-def norm_items(effects, os_side, prefer=()):
-    """The comparable items of a list of effects: calls (TST URL), navigation targets, external link, confirm, message.
-    A React call has the TST URLs of its contract path; the URL in `prefer` (the OutSystems items) wins."""
-    items = set()
+def effect_summary(effects, eps, react=False):
+    names, navs = [], []
     for e in effects:
-        k = e["kind"]
-        if k == "call":
-            if os_side:
-                items.add(("call", e["detail"]))
+        if e["kind"] == "call":
+            if react:
+                n = e["detail"].rsplit("/", 1)[-1]
             else:
-                urls = e.get("urls") or [e["detail"]]
-                items.add(("call", next((u for u in urls if ("call", u) in prefer), urls[0])))
-        elif k == "navigate":
-            items.add(("navigate", e["detail"]))
-        elif k in ("external", "confirm", "message"):
-            items.add((k, ""))
-    return items
+                c = eps.get(e["detail"])
+                n = re.sub(r"^(Action|ServiceAPI|DataAction|ScreenDataSet)", "", (c["short"] if c else e["detail"]).rsplit("/", 1)[-1])
+            if n not in names:
+                names.append(n)
+        if e["kind"] == "navigate" and e["detail"] not in navs:
+            navs.append(e["detail"])
+    kinds = {e["kind"] for e in effects}
+    parts = (["calls " + ", ".join(names)] if names else []) + (["goes to " + ", ".join(navs)] if navs else [])
+    parts += (["opens an external link"] if "external" in kinds else []) + (["shows a message"] if "message" in kinds else [])
+    parts += (["asks for a confirmation"] if "confirm" in kinds else [])
+    parts += [f"calls the prop {e['detail']}()" for e in effects if e["kind"] == "callback"]
+    parts += [f"{e['detail']}(): a query fetches again" for e in effects if e["kind"] == "refresh"]
+    return "; ".join(parts) or "no effect"
 
 
-def item_text(it, eps):
-    k, d = it
-    if k == "call":
-        e = eps.get(d)
-        name = re.sub(r"^(Action|ServiceAPI|DataAction|ScreenDataSet)", "", (e["short"] if e else d).rsplit("/", 1)[-1])
-        return f"call {name}"
-    return {"navigate": f"go to {d}", "external": "external link", "confirm": "confirm dialog", "message": "message"}[k]
+def split_branches(effects):
+    """[(branch, effects)]: one entry per branch label of the code; the effects outside any branch go to each entry."""
+    always = [e for e in effects if e["branch"] is None]
+    branches = []
+    for e in effects:
+        if e["branch"] is not None and e["branch"] not in branches:
+            branches.append(e["branch"])
+    if len(branches) <= 1:
+        return [(None, effects)]
+    return [(br, always + [e for e in effects if e["branch"] == br]) for br in branches]
 
 
 def action_diagrams(r):
-    """For each user action with an effect (one per branch when the handler has branches): an OutSystems sequence
-    diagram (TST code) and a React sequence diagram (the matched React handler), with the differences in red.
-    Returns a list of {block, trigger, handler, branch, summary, react, status, mmd, mmdReact}."""
+    """OutSystems: one sequence diagram per event binding of the TST views (and per branch of its handler)."""
     eps = {e["url"]: e for e in r.get("allEndpoints") or r["endpoints"]}
-    by_api = {}
-    for e in eps.values():
-        for c in e["react"]:
-            by_api.setdefault(c["apiPath"], e)
     clean = lambda t: re.sub(r"[;#]", "", str(t))[:90]
-
-    def os_lines(e, miss=frozenset()):
-        """OutSystems lines; red when React does not make the call at all, or when the React handler of this action
-        does not have the effect (`miss`)."""
-        k, d = e["kind"], e["detail"]
-        its = norm_items([e], True)
-        not_here = bool(its) and its <= miss
-        if k == "navigate":
-            body = [f"  B->>N: go to {d}"]
-        elif k == "external":
-            body = [f"  B->>X: {d}"]
-        elif k == "message":
-            body = [f"  Note over B: message {clean(d)}"]
-        elif k == "confirm":
-            body = ["  Note over B: confirm dialog"]
-        elif k == "via":
-            return [f"  Note over B: via {d}"]
-        else:
-            ep = eps[d]
-            name = re.sub(r"^(Action|ServiceAPI|DataAction|ScreenDataSet)", "", ep["short"].rsplit("/", 1)[-1])
-            ins, outs = ep["io"] or ([], [])
-            body = [f"  B->>S: {name}({short_list(ins)})",
-                    "  S-->>B: " + ((short_list(outs) or "no outputs") if ep["io"] else "outputs not in the contract")]
-            if ep["status"] == "missing":
-                return ["  rect rgba(192, 57, 43, 0.15)"] + body + ["  Note over B,S: React does not make this call", "  end"]
-        if not_here:
-            target = "S" if k == "call" else ("N" if k == "navigate" else ("X" if k == "external" else "B"))
-            return ["  rect rgba(192, 57, 43, 0.15)"] + body + [f"  Note over B,{target}: not in the React handler" if target != "B"
-                                                              else "  Note over B: not in the React handler", "  end"]
-        return body
-
-    def react_lines(e, extra):
-        k, d = e["kind"], e["detail"]
-        if k == "navigate":
-            body = [f"  H->>N: go to {d}"]
-        elif k == "external":
-            body = [f"  H->>X: {d}"]
-        elif k == "message":
-            body = [f"  Note over H: message {clean(d)}"]
-        elif k == "confirm":
-            body = [f"  Note over H: confirm dialog {clean(d)}"]
-        elif k == "via":
-            return [f"  Note over H: via {d}()"]
-        elif k == "callback":
-            return [f"  Note over H: calls the prop {d}() (the parent component decides)"]
-        elif k == "refresh":
-            return [f"  Note over H: {d}(): a query fetches again (the tool does not follow it)"]
-        else:
-            ep = next((eps[u] for u in e.get("urls") or [] if u in eps), None) or by_api.get(d)
-            ins, outs = (ep or {}).get("io") or ([], [])
-            body = [f"  H->>A: {d.rsplit('/', 1)[-1]}({short_list(ins)})",
-                    "  A-->>H: " + ((short_list(outs) or "no outputs") if ep and ep.get("io") else "outputs")]
-        return (["  rect rgba(192, 57, 43, 0.15)"] + body + ["  Note over H: not in OutSystems", "  end"]) if extra else body
-
-    def summary(effects):
-        names, navs = [], []
-        for e in effects:
-            if e["kind"] == "call":
-                c = eps[e["detail"]]
-                n = re.sub(r"^(Action|ServiceAPI|DataAction|ScreenDataSet)", "", c["short"].rsplit("/", 1)[-1])
-                n = f"**{n} (missing)**" if c["status"] == "missing" else n
-                if n not in names:
-                    names.append(n)
-            if e["kind"] == "navigate" and e["detail"] not in navs:
-                navs.append(e["detail"])
-        kinds = {e["kind"] for e in effects}
-        parts = (["calls " + ", ".join(names)] if names else []) + (["goes to " + ", ".join(navs)] if navs else [])
-        parts += (["opens an external link"] if "external" in kinds else []) + (["shows a message"] if "message" in kinds else [])
-        parts += (["asks for a confirmation"] if "confirm" in kinds else [])
-        return "; ".join(parts) or "no effect"
-
-    out_list = []
+    out = []
     for a in r.get("userActions") or []:
-        always = [e for e in a["effects"] if e["branch"] is None]
-        branches = []
-        for e in a["effects"]:
-            if e["branch"] is not None and e["branch"] not in branches:
-                branches.append(e["branch"])
-        h = a.get("react")
-        for br in (branches if len(branches) > 1 else [None]):
-            effects = always + [e for e in a["effects"] if e["branch"] is not None and (br is None or e["branch"] == br)]
+        if "events" not in a:  # data of an older run: the route runs again later
+            continue
+        for br, effects in split_branches(a["effects"]):
             kinds = {e["kind"] for e in effects}
             L = ["sequenceDiagram", "  autonumber", "  actor U as User", f"  participant B as {a['block']}"]
             L += (["  participant S as Server (TST calls)"] if "call" in kinds else []) + \
                  (["  participant N as Navigation"] if "navigate" in kinds else []) + \
                  (["  participant X as External link"] if "external" in kinds else [])
-            L.append(f"  U->>B: {a['trigger']}: {a['handler']}" + (f" ({br})" if br else ""))
-            os_items = norm_items(effects, True)
-            if h:
-                rb = [e for e in h["effects"] if e["branch"] is None or br is None or (e["branch"] or "").lower() == br.lower()]
-                re_items = norm_items(rb, False, os_items)
-                either = norm_items([e for e in rb if e.get("either")], False, os_items)
-                missing, extra = os_items - re_items, (re_items - os_items) - either
-            else:
-                missing, extra = os_items, set()
+            L.append(f"  U->>B: {clean(a['events'][0])} → {a['handler']}" + (f" ({br})" if br else ""))
             for e in effects:
-                L += os_lines(e, frozenset(missing))
-            # React
-            if h:
-                rk = {e["kind"] for e in rb} | {k for k, _ in missing}
-                R = ["sequenceDiagram", "  autonumber", "  actor U as User",
-                     f"  participant H as {h['name']}() · {h['file'].rsplit('/', 1)[-1]}"]
-                R += (["  participant A as Server (React api)"] if "call" in rk else []) + \
-                     (["  participant N as Navigation"] if "navigate" in rk else []) + \
-                     (["  participant X as External link"] if "external" in rk else [])
-                R.append(f"  U->>H: {a['trigger']}" + (f" ({br})" if br else ""))
-                for e in rb:
-                    its = norm_items([e], False, os_items)
-                    if e.get("either") and not its & os_items:
-                        R.append("  Note over H: or (the other function of a conditional call)")
-                    R += react_lines(e, bool(its) and its <= extra)
-                if missing:
-                    R.append("  rect rgba(192, 57, 43, 0.15)")
-                    R.append("  Note over H: missing, OutSystems has: " + ", ".join(sorted(item_text(i, eps) for i in missing)))
-                    R.append("  end")
-                status = "same" if not (missing or extra) else \
-                    "differs: " + ", ".join(x for x in (f"{len(missing)} missing" if missing else "",
-                                                       f"{len(extra)} not in OutSystems" if extra else "") if x)
-                react = {"name": h["name"], "file": h["file"], "line": h["line"]}
-            else:
-                R = ["sequenceDiagram", "  actor U as User", "  participant H as React",
-                     "  rect rgba(192, 57, 43, 0.15)",
-                     f"  Note over U,H: no React handler found for {a['handler']}", "  end"]
-                status, react = "no React handler found", None
-            out_list.append({"block": a["block"], "trigger": a["trigger"], "handler": a["handler"], "branch": br,
-                             "group": a.get("group", "screen"), "summary": summary(effects), "react": react,
-                             "status": status, "mmd": "\n".join(L), "mmdReact": "\n".join(R)})
-    return out_list
+                k, d = e["kind"], e["detail"]
+                if k == "navigate":
+                    L.append(f"  B->>N: go to {d}")
+                elif k == "external":
+                    L.append(f"  B->>X: {d}")
+                elif k == "message":
+                    L.append(f"  Note over B: message {clean(d)}")
+                elif k == "confirm":
+                    L.append("  Note over B: confirm dialog")
+                elif k == "via":
+                    L.append(f"  Note over B: via {d}")
+                elif d in eps:
+                    ep = eps[d]
+                    name = re.sub(r"^(Action|ServiceAPI|DataAction|ScreenDataSet)", "", ep["short"].rsplit("/", 1)[-1])
+                    ins, outs = ep["io"] or ([], [])
+                    L.append(f"  B->>S: {name}({short_list(ins)})")
+                    L.append("  S-->>B: " + ((short_list(outs) or "no outputs") if ep["io"] else "outputs not in the contract"))
+            out.append({"title": f"{a['block']}: {a['handler']}" + (f" ({br})" if br else ""),
+                        "row": [f"`{a['block']}`", "<br>".join(f"`{x}`" for x in a["events"]), f"`{a['handler']}`",
+                                f"`{br}`" if br else "–", md_escape(effect_summary(effects, eps))],
+                        "mmd": "\n".join(L)})
+    return out
+
+
+def react_action_diagrams(acts, eps_all):
+    """React: one sequence diagram per JSX event binding with effects (and per branch of its handler)."""
+    by_api = {}
+    for e in eps_all:
+        for c in e["react"]:
+            by_api.setdefault(c["apiPath"], e)
+    clean = lambda t: re.sub(r"[;#]", "", str(t))[:90]
+    out = []
+    for a in acts:
+        for br, effects in split_branches(a["effects"]):
+            kinds = {e["kind"] for e in effects}
+            who = f"{a['element']} · {a['file'].rsplit('/', 1)[-1]}"
+            L = ["sequenceDiagram", "  autonumber", "  actor U as User", f"  participant H as {who}"]
+            L += (["  participant A as Server (React api)"] if "call" in kinds else []) + \
+                 (["  participant N as Navigation"] if "navigate" in kinds else []) + \
+                 (["  participant X as External link"] if "external" in kinds else [])
+            L.append(f"  U->>H: {a['prop']} → {clean(a['handler'])}" + (f" ({br})" if br else ""))
+            for e in effects:
+                k, d = e["kind"], e["detail"]
+                if k == "navigate":
+                    L.append(f"  H->>N: go to {d}")
+                elif k == "external":
+                    L.append(f"  H->>X: {d}")
+                elif k == "message":
+                    L.append(f"  Note over H: message {clean(d)}")
+                elif k == "confirm":
+                    L.append(f"  Note over H: confirm dialog {clean(d)}")
+                elif k == "via":
+                    L.append(f"  Note over H: via {d}()")
+                elif k == "callback":
+                    L.append(f"  Note over H: calls the prop {d}()")
+                elif k == "refresh":
+                    L.append(f"  Note over H: {d}(): a query fetches again")
+                elif k == "call":
+                    ep = by_api.get(d)
+                    ins, outs = (ep or {}).get("io") or ([], [])
+                    L.append(f"  H->>A: {d.rsplit('/', 1)[-1]}({short_list(ins)})")
+                    L.append("  A-->>H: " + ((short_list(outs) or "no outputs") if ep and ep.get("io") else "outputs"))
+            out.append({"title": f"{a['element']}: {a['prop']}" + (f" ({br})" if br else ""),
+                        "row": [link(a["file"], a["line"]), f"`<{a['element']}>`", f"`{a['prop']}`",
+                                f"`{md_escape(a['handler'])}`", f"`{br}`" if br else "–",
+                                md_escape(effect_summary(effects, {}, react=True))],
+                        "mmd": "\n".join(L)})
+    return out
 
 
 def slug(text):
@@ -1046,100 +910,91 @@ def part_of(e, blocks, part):
     if not e["chains"]:
         g = e["group"]
         return dict(e) if g == part else None
-    chains = [c for c in e["chains"] if c and chain_owner(c, blocks)[1] == part]
+    chains = [c for c in e["chains"] if c and chain_owner(c, blocks)[1] == part]  # by the part of the chain start
     return {**e, "chains": chains, "group": part} if chains else None
 
 
 def call_rows(eps, blocks):
-    block_names = {b["key"].split(".")[-1] for b in blocks}
     rows = []
     for e in eps:
-        owners = sorted({chain_owner(c, blocks) for c in e["chains"] if c}) or [(e.get("owner", "?"), e["group"])]
-        trigs = []
-        for o in owners:
-            ch = next((c for c in e["chains"] if c and chain_owner(c, blocks) == o), None)
-            if ch:
-                trigs.append(trigger(ch, block_names))
-            elif e.get("noChain"):
-                trigs.append("app start (seen on TST, no static chain)" if e["group"] == "shell" else "seen on TST, no static chain")
-            else:
-                trigs.append("–")
-        rows.append((owners, trigs, e))
-    rows.sort(key=lambda x: (x[0][0][0], x[2]["short"]))
+        callers = sorted({chain_owner(c, blocks)[0] for c in e["chains"] if c}) or [e.get("owner", "?")]
+        rows.append((callers, e))
+    rows.sort(key=lambda x: (x[0][0], x[1]["short"]))
     return rows
 
 
+def short_chain(ch):
+    return ch if len(ch) <= 5 else ch[:2] + ["…"] + ch[-2:]
+
+
 def calls_table(rows, blocks, with_routes=False):
-    L = ["- **Called from (OutSystems):** the block or the app-level module whose own client action makes the call.",
-         "- **Made by (TST):** for each block in \"Called from\", its chain of client actions from the block to the call.",
-         "- **Trigger:** when the call runs, from the start of the chain on TST.",
-         "- **Seen on TST:** `yes` when TST made the call in the capture. Many calls run only after a click.",
-         "- **React action:** the React function that makes the same call, and the part that loads it: `shell`, `page` "
-         "or both.",
-         "- **React caller:** the nearest React component that uses the React action, and the hooks between them. At "
-         "most 2 chains, the shortest first.", ""]
-    head = "| # | Call (TST) | Kind | Called from (OutSystems) | Trigger | Made by (TST) | Seen on TST | React action | React caller | Status |"
+    L = ["All columns come from the code, without interpretation:", "",
+         "- **Direct caller (TST):** the block or module of the action that calls the server (the step before the "
+         "server call in the chain).",
+         "- **Chain (TST):** the chains of client actions in the TST compiled code, from their start to the call.",
+         "  A long chain shows its first 2 steps, …, and its last 2 steps.",
+         "- **Seen on TST:** `yes` when TST made the call in the capture.",
+         "- **React action:** the React function with the `callAction` of the same call (`file:line`), and the code "
+         "that loads it: `shell` (from `main.tsx`), `page` (from the screen), or both.",
+         "- **Used by (React references):** the functions and components that reference the React action, up to the "
+         "nearest component. A reference is not always a call.",
+         "- **Status:** `implemented` when the contract path of the React call gives the same TST URL. It does not "
+         "prove the same behaviour.", ""]
+    head = "| # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |"
     if with_routes:
         head += " Routes |"
     L += [head, "|---" * (head.count("|") - 1) + "|"]
-    for i, (owners, trigs, e) in enumerate(rows, 1):
-        frm = "<br>".join(f"`{o}`" for o, g in owners)
-        made = []
-        for o in owners:
-            ch = next((c for c in e["chains"] if c and chain_owner(c, blocks) == o), None)
-            made.append(md_escape(" → ".join(from_owner(ch, o[0]))) if ch else ("no static chain in the TST code" if e.get("noChain") else "–"))
-        more = len(e["chains"]) - len(owners)
-        chain = "<br>".join(made) + (f"<br>(+{more} more chains)" if more > 0 else "")
+    for i, (callers, e) in enumerate(rows, 1):
+        frm = "<br>".join(f"`{o}`" for o in callers)
+        chains = [md_escape(" → ".join(short_chain(c))) for c in e["chains"][:3]]
+        more = len(e["chains"]) - 3
+        chain = ("<br>".join(chains) + (f"<br>(+{more} more chains)" if more > 0 else "")) if chains else \
+            ("no chain in the TST code; TST made the call in the capture" if e.get("noChain") else "–")
         rc = "<br>".join(f"`{c['fn']}()` {link(c['file'], c['line'])} ({c['where']})" for c in e["react"]) or "–"
         st = f"**{e['status']}**" if e["status"] == "missing" else e["status"]
         seen = {"observed": "yes", "not observed": "no", "not captured": "no capture"}[e["observed"]]
-        chains = sorted((ch for c in e["react"] for ch in c.get("callers", [])), key=len)[:2]
-        caller = "<br>".join(react_chain(ch) for ch in chains) or "–"
-        row = f"| {i} | `{e['short']}` | {e['kind']} | {frm} | {'<br>'.join(trigs)} | {chain} | {seen} | {rc} | {caller} | {st} |"
+        refs = sorted((ch for c in e["react"] for ch in c.get("callers", [])), key=len)[:2]
+        used = "<br>".join(react_chain(ch) for ch in refs) or "–"
+        row = f"| {i} | `{e['short']}` | {e['kind']} | {frm} | {chain} | {seen} | {rc} | {used} | {st} |"
         if with_routes:
             row += " " + ", ".join(f"[{x}]({x}.md)" for x in e.get("routes", [])) + " |"
         L.append(row)
     return L
 
 
-def actions_section(diagrams, name, sec):
-    """Index table and, per user action, the OutSystems and the React sequence diagrams. Writes the .mmd files;
-    returns (lines, names to render)."""
+def actions_section(diagrams, name, sec, head):
+    """Index table, then one Mermaid diagram per entry. Writes the .mmd files for the syntax check."""
     if not diagrams:
-        return ["No user action here makes a server call, a navigation, an external link or a message.", ""], []
-    L = ["Each user action (click, change, submit) has two sequence diagrams: OutSystems (TST code) and React.", "",
-         "- **OutSystems:** the participant is the OutSystems block. The action is its screen action on TST.",
-         "- **React:** the participant is the React function that ports the action. The tool finds it by its comment "
-         "(the OutSystems name), its name, or the `@origin` tag of its file.",
-         "- When the handler has branches (a menu option, for example), each branch has its own diagrams. The name of "
-         "a branch comes from its condition. `other` is the last `else` or `default`.",
-         "- The effects are server calls, navigation (`Navigation`), external links, messages and confirm dialogs.",
-         "- An arrow to the server gives the inputs of the call. The return arrow gives the outputs (contract "
-         "`app/src/api/openapi.yaml`).",
-         "- **Red in the OutSystems diagram:** an effect that the React handler of the action does not have.",
-         "- **Red in the React diagram:** an effect that OutSystems does not have, and a note with the effects that "
-         "React does not have.", "",
-         "| # | Block (OutSystems) | User action | Handler | Option (branch) | Effects (OutSystems) | React handler | React |",
-         "|---|---|---|---|---|---|---|---|"]
+        return ["None found.", ""], []
+    L = ["| # | " + " | ".join(head) + " |", "|---" * (len(head) + 1) + "|"]
     titles = []
     for i, d in enumerate(diagrams, 1):
-        t = f"{sec}.{i} {d['block']}: {d['trigger']} {d['handler']}" + (f" ({d['branch']})" if d["branch"] else "")
+        t = f"{sec}.{i} {d['title']}"
         titles.append(t)
-        rh = f"`{d['react']['name']}()` {link(d['react']['file'], d['react']['line'])}" if d["react"] else "–"
-        st = d["status"] if d["status"] == "same" else f"**{d['status']}**"
-        L.append(f"| [{i}](#{slug(t)}) | `{d['block']}` | {d['trigger']} | `{d['handler']}` | "
-                 f"{('`' + d['branch'] + '`') if d['branch'] else '–'} | {md_escape(d['summary'])} | {rh} | {st} |")
+        L.append(f"| [{i}](#{slug(t)}) | " + " | ".join(d["row"]) + " |")
     names = []
     for i, (d, t) in enumerate(zip(diagrams, titles), 1):
-        n = f"{name}-action-{i}"
-        names += [n, f"{n}-react"]
+        n = f"{name}-{i}"
+        names.append(n)
         open(os.path.join(DATA, f"{n}.mmd"), "w").write(d["mmd"])
-        open(os.path.join(DATA, f"{n}-react.mmd"), "w").write(d["mmdReact"])
-        rh = f"`{d['react']['name']}()` in {link(d['react']['file'], d['react']['line'])}" if d["react"] else "no React handler found"
-        L += ["", f"### {t}", "", f"Result: {d['status']}.", "",
-              "**OutSystems (TST)**", "", "```mermaid", d["mmd"], "```", "",
-              f"**React**: {rh}", "", "```mermaid", d["mmdReact"], "```"]
+        L += ["", f"#### {t}", "", "```mermaid", d["mmd"], "```"]
     return L + [""], names
+
+
+OS_HEAD = ["Block (OutSystems)", "Event (TST view)", "Handler", "Branch", "Effects"]
+REACT_HEAD = ["File", "Element", "Event prop", "Handler", "Branch", "Effects"]
+ACTIONS_INTRO = [
+    "The two lists are independent: the OutSystems list comes from the TST compiled code, the React list from the "
+    "React code. The tool does not map one list to the other.", "",
+    "- **OutSystems:** each event binding of the compiled views (`<event>$Action: function` of a child block or "
+    "widget, `on<Event>: function` of an HTML element) with its handler.",
+    "- **React:** each JSX attribute `on<Event>={handler}` with its handler.",
+    "- Both lists keep only the bindings whose handler has an effect: a server call, a navigation, an external link, "
+    "a message or a confirm dialog. The tool follows the called functions 3 levels deep.",
+    "- When the handler has branches in the code (`switch` case, `if` with `===`), each branch has its own diagram. "
+    "The branch name is the constant of the condition. `other` is the last `else` or `default`.",
+    "- An arrow to the server gives the inputs of the call, the return arrow its outputs (contract "
+    "`app/src/api/openapi.yaml`).", ""]
 
 
 def missing_lines(eps, blocks, nav_missing, os_nav):
@@ -1196,18 +1051,26 @@ def render(r):
     questions = [c for c in r["reactOnly"] if "page" in c["where"]]
     shell_questions = [c for c in r["reactOnly"] if c["where"] == "shell"]
     shell_acts = [a for a in r.get("userActions") or [] if a.get("group") == "shell"]
+    shell_react = [a for a in r.get("reactActions") or [] if a.get("group") == "shell"]
     view = {**r, "endpoints": eps, "allEndpoints": r["endpoints"],
             "userActions": [a for a in r.get("userActions") or [] if a.get("group") != "shell"]}
     mm = mermaid(view)
     open(os.path.join(DATA, f"{route}.mmd"), "w").write(mm)
     clean_outputs(route)
-    ua, names = actions_section(action_diagrams(view), route, 5)
+    os_d = action_diagrams(view)
+    re_d = react_action_diagrams([a for a in r.get("reactActions") or [] if a.get("group") != "shell"], r["endpoints"])
+    ua_os, n1 = actions_section(os_d, f"{route}-os", "5.1", OS_HEAD)
+    ua_re, n2 = actions_section(re_d, f"{route}-react", "5.2", REACT_HEAD)
+    names = n1 + n2
+    ua = [*ACTIONS_INTRO, "### 5.1 OutSystems (TST)", "", *ua_os, "### 5.2 React", "", *ua_re]
     L = [f"# {route}: server calls and user actions in OutSystems and React", "",
          f"This file compares the route `/UBTConnect/{route}` in OutSystems (TST) with the React app.",
          f"The tool `migration/tools/route_actions/check_route.py` wrote this file on {date.today().isoformat()}.",
          "The tool reads the code. It does not run the app.", "",
-         "The app shell is the same on many routes: layout, app start, bottom bar, PIN lock and shared dialogs.",
-         "[APP_SHELL.md](APP_SHELL.md) has it. This file does not.", "",
+         "The app shell is in [APP_SHELL.md](APP_SHELL.md), not here.",
+         "- OutSystems app shell: `CommonUI_InsideLayout` with its blocks (TST survey), and the chains that start in a "
+         "module action.",
+         "- React app shell: the code that `app/src/main.tsx` loads (router, `AppFrame`, app start, hosts).", "",
          "## 1. Route", "",
          "| Item | Value | Source |", "|---|---|---|",
          f"| Route | `/UBTConnect/{route}` | `app/src/app/routes.generated.ts` |",
@@ -1219,14 +1082,14 @@ def render(r):
          "", "## 2. Result", "",
          "| Check | Result |", "|---|---|",
          f"| Server calls of the route on TST | {len(eps)}: React makes {cnt['implemented']}, **{cnt['missing']} missing** |",
-         f"| User actions of the route | {len(names)} diagrams (one per action and option) |",
+         f"| User actions of the route | OutSystems: {len(os_d)} diagrams. React: {len(re_d)} diagrams |",
          f"| React calls of the screen that TST does not make | {len(questions)} (see [questions](#8-questions)) |",
          f"| Screen and blocks with a React port | {blocks_ported} of {len(own_blocks)} |",
          f"| Navigation targets found in React | {len(own_nav) - len(nav_missing)} of {len(own_nav)} |",
-         f"| App shell on this route | {len(shell_eps)} calls, {len(shell_acts)} user actions: see [APP_SHELL.md](APP_SHELL.md) |",
+         f"| App shell on this route | {len(shell_eps)} calls; event bindings: OutSystems {len(shell_acts)}, React {len(shell_react)}: see [APP_SHELL.md](APP_SHELL.md) |",
          "", "## 3. Screenshots", "", *screenshots(route),
          "", "## 4. Diagram", "",
-         "- A box on the left is the OutSystems block of the route that makes the call.",
+         "- A box on the left is the block or module of the action that calls the server (TST code).",
          "- A line connects each call to the React action that makes the same call.",
          "- The right column shows the React components that use each React action.",
          "- A red box is a call that React does not make.", "",
@@ -1244,11 +1107,9 @@ def render(r):
           "   - the rendered files;",
           "   - each server call with its chain of client actions, and the calls that TST made in the capture;",
           "   - the effects of each user action.",
-          "2. **Route and app shell.** The app shell has these parts:",
-          "   - `CommonUI_InsideLayout` with its blocks, and the app-level actions;",
-          f"   - the business blocks that at least {int(SHARED_SHARE * 100)}% of the captured routes render, for "
-          "example the bottom bar.",
-          "   This file shows only the other blocks.",
+          "2. **Route and app shell.** OutSystems: a chain belongs to the app shell when it starts in "
+          "`CommonUI_InsideLayout`, one of its blocks, or a module action. React: a binding belongs to the app shell "
+          "when its file is in the code that `main.tsx` loads.",
           "3. **MCP (DEV).** The tool reads the UI flow with `getScreenNames`. TST wins when DEV is different.",
           "4. **React.** `react_calls.mjs` reads the app shell from `app/src/main.tsx` and the screen from its "
           "`<Route>Page.tsx`. It counts only the code that the app uses.",
@@ -1265,7 +1126,7 @@ def render(r):
 
 def render_app_shell():
     """APP_SHELL.md: the app shell parts of every checked route, merged (data/check-*.json)."""
-    eps, blocks, acts, qs, nav, nav_missing, every = {}, {}, {}, {}, {}, set(), {}
+    eps, blocks, acts, qs, nav, nav_missing, every, racts = {}, {}, {}, {}, {}, set(), {}, {}
     routes = []
     for path in sorted(glob.glob(os.path.join(DATA, "check-*.json"))):
         r = load(path)
@@ -1286,6 +1147,9 @@ def render_app_shell():
         for a in r.get("userActions") or []:
             if a.get("group") == "shell":
                 acts.setdefault((a["block"], a["handler"]), a)
+        for a in r.get("reactActions") or []:
+            if a.get("group") == "shell":
+                racts.setdefault((a["file"], a["line"]), a)
         for c in r["reactOnly"]:
             if c["where"] == "shell":
                 qs.setdefault(c["apiPath"], {**c, "routes": []})["routes"].append(r["route"])
@@ -1302,18 +1166,24 @@ def render_app_shell():
     mm = mermaid(view)
     open(os.path.join(DATA, "APP_SHELL.mmd"), "w").write(mm)
     clean_outputs("APP_SHELL")
-    ua, names = actions_section(action_diagrams(view), "APP_SHELL", 3)
+    os_d = action_diagrams(view)
+    re_d = react_action_diagrams(list(racts.values()), list(every.values()))
+    ua_os, n1 = actions_section(os_d, "APP_SHELL-os", "3.1", OS_HEAD)
+    ua_re, n2 = actions_section(re_d, "APP_SHELL-react", "3.2", REACT_HEAD)
+    names = n1 + n2
+    ua = [*ACTIONS_INTRO, "### 3.1 OutSystems (TST)", "", *ua_os, "### 3.2 React", "", *ua_re]
     cnt = collections.Counter(e["status"] for e in ep_list)
     L = ["# App shell: server calls and user actions in OutSystems and React", "",
-         "The app shell is the part of the app that many routes share.",
-         "It has the layout `CommonUI_InsideLayout` and its blocks, the app start, the bottom bar, the PIN lock and the "
-         "shared dialogs. The route files leave it out.",
+         "The app shell is the part of the app that the routes share. The route files leave it out.",
+         "- OutSystems: `CommonUI_InsideLayout` with its blocks (TST survey), and the chains that start in a module "
+         "action.",
+         "- React: the code that `app/src/main.tsx` loads (router, `AppFrame`, app start, hosts).",
          f"The tool `migration/tools/route_actions/check_route.py` merges it from the checked routes on "
          f"{date.today().isoformat()}: " + ", ".join(f"[{x}]({x}.md)" for x in routes) + ".", "",
          "## 1. Result", "",
          "| Check | Result |", "|---|---|",
          f"| App shell server calls on TST | {len(ep_list)}: React makes {cnt['implemented']}, **{cnt['missing']} missing** |",
-         f"| App shell user actions | {len(names)} diagrams (one per action and option) |",
+         f"| App shell event bindings | OutSystems: {len(os_d)} diagrams. React: {len(re_d)} diagrams |",
          f"| React app shell calls that TST does not make on a route | {len(qs)} |", "",
          "## 2. Diagram", "",
          "```mermaid", mm, "```", "",

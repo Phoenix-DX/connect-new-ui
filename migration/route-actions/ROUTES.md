@@ -2,7 +2,7 @@
 
 One file per route. Run `python3 migration/tools/route_actions/check_route.py <Route>` (see [README](../tools/route_actions/README.md)). Progress: **4 of 68** build routes done.
 
-The app shell (layout, app start, bottom bar, PIN lock, shared dialogs) is in [APP_SHELL.md](APP_SHELL.md). The tool merges it from the checked routes.
+The app shell (`CommonUI_InsideLayout` and its blocks on TST; the code that `main.tsx` loads in React) is in [APP_SHELL.md](APP_SHELL.md). The tool merges it from the checked routes.
 
 UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read 2026-11-04. Routes and scope: `app/src/app/routes.generated.ts` (84 routes) and `migration/board.md`.
 

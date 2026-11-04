@@ -4,8 +4,9 @@ This file compares the route `/UBTConnect/Login` in OutSystems (TST) with the Re
 The tool `migration/tools/route_actions/check_route.py` wrote this file on 2026-11-04.
 The tool reads the code. It does not run the app.
 
-The app shell is the same on many routes: layout, app start, bottom bar, PIN lock and shared dialogs.
-[APP_SHELL.md](APP_SHELL.md) has it. This file does not.
+The app shell is in [APP_SHELL.md](APP_SHELL.md), not here.
+- OutSystems app shell: `CommonUI_InsideLayout` with its blocks (TST survey), and the chains that start in a module action.
+- React app shell: the code that `app/src/main.tsx` loads (router, `AppFrame`, app start, hosts).
 
 ## 1. Route
 
@@ -23,11 +24,11 @@ The app shell is the same on many routes: layout, app start, bottom bar, PIN loc
 | Check | Result |
 |---|---|
 | Server calls of the route on TST | 6: React makes 4, **2 missing** |
-| User actions of the route | 2 diagrams (one per action and option) |
+| User actions of the route | OutSystems: 3 diagrams. React: 3 diagrams |
 | React calls of the screen that TST does not make | 2 (see [questions](#8-questions)) |
 | Screen and blocks with a React port | 14 of 14 |
 | Navigation targets found in React | 3 of 3 |
-| App shell on this route | 2 calls, 1 user actions: see [APP_SHELL.md](APP_SHELL.md) |
+| App shell on this route | 2 calls; event bindings: OutSystems 4, React 6: see [APP_SHELL.md](APP_SHELL.md) |
 
 ## 3. Screenshots
 
@@ -41,7 +42,7 @@ The screenshots come from the last parity run (`route.py parity`). The TST captu
 
 ## 4. Diagram
 
-- A box on the left is the OutSystems block of the route that makes the call.
+- A box on the left is the block or module of the action that calls the server (TST code).
 - A line connects each call to the React action that makes the same call.
 - The right column shows the React components that use each React action.
 - A red box is a call that React does not make.
@@ -52,77 +53,77 @@ flowchart LR
     subgraph OS_shell["App shell"]
     end
     subgraph OS_screen["Screen and its blocks"]
-      o0["Login"]
-      o1["Version"]
+      o0["Connect2_LegacyShared"]
+      o1["UBTConnect"]
+      o2["UBTConnect_Utils"]
+      o3["UBT_AppManager"]
     end
   end
   subgraph EP["Server calls (TST)"]
-    e2["ActionAppManager_SynchAppContext"]
-    e3["ActionSync_Info_GetMain"]
-    e4["ActionGet_RuntimeVersion"]
-    e5["ActionAppManager_ChangeDevice"]
-    e6["ActionAppManager_Logout"]
-    e7["ActionGetNumberUnreadMessages"]
+    e4["ActionAppManager_SynchAppContext"]
+    e5["ActionSync_Info_GetMain"]
+    e6["ActionGet_RuntimeVersion"]
+    e7["ActionAppManager_ChangeDevice"]
+    e8["ActionAppManager_Logout"]
+    e9["ActionGetNumberUnreadMessages"]
   end
   subgraph RE["React actions"]
     subgraph RE_shell["App shell"]
-      r8["fetchAppContext()"]
-      r9["fetchNumberUnreadMessages()"]
-      r10["fetchSyncInfoMain()"]
+      r10["fetchAppContext()"]
+      r11["fetchNumberUnreadMessages()"]
+      r12["fetchSyncInfoMain()"]
     end
     subgraph RE_page["Screen"]
-      r11["get_ConnectVersionDetails()"]
+      r13["get_ConnectVersionDetails()"]
     end
   end
   subgraph RC["React components"]
-    c12["AppFrame"]
-    c13["AppVersion"]
-    c14["Login"]
+    c14["AppFrame"]
+    c15["AppVersion"]
+    c16["Login"]
   end
-  r8 --- c14
-  r9 --- c14
+  r10 --- c16
+  r11 --- c16
+  r12 --- c16
   r10 --- c14
-  r8 --- c12
-  r9 --- c12
-  r10 --- c12
-  r11 --- c13
-  o0 --> e2
-  o0 --> e3
-  o0 --> e5
-  o0 --> e6
-  o0 --> e7
-  o1 --> e4
-  e2 --- r8
-  e3 --- r10
-  e4 --- r11
-  e7 --- r9
+  r11 --- c14
+  r12 --- c14
+  r13 --- c15
+  o3 --> e4
+  o3 --> e7
+  o3 --> e8
+  o1 --> e5
+  o2 --> e6
+  o0 --> e9
+  e4 --- r10
+  e5 --- r12
+  e6 --- r13
+  e9 --- r11
   classDef missing fill:#fde2e1,stroke:#c0392b,color:#7b241c
   classDef ok fill:#e3f4e8,stroke:#2e7d4f,color:#1d4d31
-  class e5,e6 missing
-  class e2,e3,e4,e7 ok
+  class e7,e8 missing
+  class e4,e5,e6,e9 ok
 ```
 
 ## 5. User actions
 
-Each user action (click, change, submit) has two sequence diagrams: OutSystems (TST code) and React.
+The two lists are independent: the OutSystems list comes from the TST compiled code, the React list from the React code. The tool does not map one list to the other.
 
-- **OutSystems:** the participant is the OutSystems block. The action is its screen action on TST.
-- **React:** the participant is the React function that ports the action. The tool finds it by its comment (the OutSystems name), its name, or the `@origin` tag of its file.
-- When the handler has branches (a menu option, for example), each branch has its own diagrams. The name of a branch comes from its condition. `other` is the last `else` or `default`.
-- The effects are server calls, navigation (`Navigation`), external links, messages and confirm dialogs.
-- An arrow to the server gives the inputs of the call. The return arrow gives the outputs (contract `app/src/api/openapi.yaml`).
-- **Red in the OutSystems diagram:** an effect that the React handler of the action does not have.
-- **Red in the React diagram:** an effect that OutSystems does not have, and a note with the effects that React does not have.
+- **OutSystems:** each event binding of the compiled views (`<event>$Action: function` of a child block or widget, `on<Event>: function` of an HTML element) with its handler.
+- **React:** each JSX attribute `on<Event>={handler}` with its handler.
+- Both lists keep only the bindings whose handler has an effect: a server call, a navigation, an external link, a message or a confirm dialog. The tool follows the called functions 3 levels deep.
+- When the handler has branches in the code (`switch` case, `if` with `===`), each branch has its own diagram. The branch name is the constant of the condition. `other` is the last `else` or `default`.
+- An arrow to the server gives the inputs of the call, the return arrow its outputs (contract `app/src/api/openapi.yaml`).
 
-| # | Block (OutSystems) | User action | Handler | Option (branch) | Effects (OutSystems) | React handler | React |
-|---|---|---|---|---|---|---|---|
-| [1](#51-login-click-login) | `Login` | click | `login` | – | calls AppManager_SynchAppContext; shows a message | `onLogin()` [`pages/Login/hooks/useLogin.ts:121`](../../app/src/pages/Login/hooks/useLogin.ts#L121) | **differs: 1 missing** |
+### 5.1 OutSystems (TST)
 
-### 5.1 Login: click login
+| # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
+|---|---|---|---|---|---|
+| [1](#511-login-login) | `Login` | `onClick (HTML element)` | `login` | – | calls AppManager_SynchAppContext; shows a message |
+| [2](#512-login-appmanager_callback-idp_onlogin) | `Login` | `onCallback of Events` | `appManager_Callback` | `idP_OnLogin` | calls GetNumberUnreadMessages, Sync_Info_GetMain; goes to HomeFeed |
+| [3](#513-login-appmanager_callback-pin_needregistration) | `Login` | `onCallback of Events` | `appManager_Callback` | `pIN_NeedRegistration` | calls GetNumberUnreadMessages, Sync_Info_GetMain; goes to PINRegister |
 
-Result: differs: 1 missing.
-
-**OutSystems (TST)**
+#### 5.1.1 Login: login
 
 ```mermaid
 sequenceDiagram
@@ -130,49 +131,116 @@ sequenceDiagram
   actor U as User
   participant B as Login
   participant S as Server (TST calls)
-  U->>B: click: login
+  U->>B: onClick (HTML element) → login
   Note over B: via UBT_AppManager.appManager_Login
-  rect rgba(192, 57, 43, 0.15)
   B->>S: AppManager_SynchAppContext(EspaceName)
   S-->>B: AppManager_ClientConfig, FirebaseRealTimeDB_Token, PermissionList, …
-  Note over B,S: not in the React handler
-  end
   Note over B: message error message (on exception)
 ```
 
-**React**: `onLogin()` in [`pages/Login/hooks/useLogin.ts:121`](../../app/src/pages/Login/hooks/useLogin.ts#L121)
+#### 5.1.2 Login: appManager_Callback (idP_OnLogin)
 
 ```mermaid
 sequenceDiagram
   autonumber
   actor U as User
-  participant H as onLogin() · useLogin.ts
-  participant A as Server (React api)
-  U->>H: click
+  participant B as Login
+  participant S as Server (TST calls)
+  participant N as Navigation
+  U->>B: onCallback of Events → appManager_Callback (idP_OnLogin)
+  Note over B: via UBTConnect.connect_SetLoggedContext
+  B->>S: GetNumberUnreadMessages(DeviceId)
+  S-->>B: NumberPrivateUnreadMessages, NumberPublicUnreadMessages
+  B->>S: Sync_Info_GetMain(isFromLogin)
+  S-->>B: B2CTenant, FeedBaseURL, LocalEntities_App, …
+  B->>N: go to HomeFeed
+```
+
+#### 5.1.3 Login: appManager_Callback (pIN_NeedRegistration)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as Login
+  participant S as Server (TST calls)
+  participant N as Navigation
+  U->>B: onCallback of Events → appManager_Callback (pIN_NeedRegistration)
+  Note over B: via UBTConnect.connect_SetLoggedContext
+  B->>S: GetNumberUnreadMessages(DeviceId)
+  S-->>B: NumberPrivateUnreadMessages, NumberPublicUnreadMessages
+  B->>S: Sync_Info_GetMain(isFromLogin)
+  S-->>B: B2CTenant, FeedBaseURL, LocalEntities_App, …
+  B->>N: go to PINRegister
+```
+
+### 5.2 React
+
+| # | File | Element | Event prop | Handler | Branch | Effects |
+|---|---|---|---|---|---|---|
+| [1](#521-logincard-onlogin) | [`pages/Login/LoginPage.tsx:36`](../../app/src/pages/Login/LoginPage.tsx#L36) | `<LoginCard>` | `onLogin` | `onLogin` | – | shows a message |
+| [2](#522-logincard-onforgotpassword) | [`pages/Login/LoginPage.tsx:37`](../../app/src/pages/Login/LoginPage.tsx#L37) | `<LoginCard>` | `onForgotPassword` | `onForgotPassword` | – | shows a message |
+| [3](#523-preventbacknavigation-onbacknavigationprevented) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:80`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L80) | `<PreventBackNavigation>` | `onBackNavigationPrevented` | `redirectHome` | – | goes to HomeFeed |
+
+#### 5.2.1 LoginCard: onLogin
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as LoginCard · LoginPage.tsx
+  U->>H: onLogin → onLogin
   Note over H: via login()
   Note over H: message error message (on exception)
-  rect rgba(192, 57, 43, 0.15)
-  Note over H: missing, OutSystems has: call AppManager_SynchAppContext
-  end
+```
+
+#### 5.2.2 LoginCard: onForgotPassword
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as LoginCard · LoginPage.tsx
+  U->>H: onForgotPassword → onForgotPassword
+  Note over H: via forgotPassword()
+  Note over H: message error message (on exception)
+  Note over H: via feedbackMessageAutoClose()
+  Note over H: via run()
+  Note over H: message message
+```
+
+#### 5.2.3 PreventBackNavigation: onBackNavigationPrevented
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as PreventBackNavigation · CommonUiLayout.tsx
+  participant N as Navigation
+  U->>H: onBackNavigationPrevented → redirectHome
+  H->>N: go to HomeFeed
 ```
 
 ## 6. Server calls
 
-- **Called from (OutSystems):** the block or the app-level module whose own client action makes the call.
-- **Made by (TST):** for each block in "Called from", its chain of client actions from the block to the call.
-- **Trigger:** when the call runs, from the start of the chain on TST.
-- **Seen on TST:** `yes` when TST made the call in the capture. Many calls run only after a click.
-- **React action:** the React function that makes the same call, and the part that loads it: `shell`, `page` or both.
-- **React caller:** the nearest React component that uses the React action, and the hooks between them. At most 2 chains, the shortest first.
+All columns come from the code, without interpretation:
 
-| # | Call (TST) | Kind | Called from (OutSystems) | Trigger | Made by (TST) | Seen on TST | React action | React caller | Status |
-|---|---|---|---|---|---|---|---|---|---|
-| 1 | `Connect2_LegacyShared/ActionGetNumberUnreadMessages` | server action | `Login` | client action `onCallbackAction` | Login.appManager_Callback → UBTConnect.connect_SetLoggedContext → Connect2_LegacyShared.synchronizeNumberUnreadMessages → server GetNumberUnreadMessages | no | `fetchNumberUnreadMessages()` [`api/message/unreadMessages.ts:22`](../../app/src/api/message/unreadMessages.ts#L22) (shell + page) | `Login → useLogin → … → fetchNumberUnreadMessages`<br>[`pages/Login/LoginPage.tsx`](../../app/src/pages/Login/LoginPage.tsx)<br>`AppFrame → AppStart → … → fetchNumberUnreadMessages`<br>[`app/AppFrame.tsx`](../../app/src/app/AppFrame.tsx) | implemented |
-| 2 | `UBTConnect/ActionSync_Info_GetMain` | server action | `Login` | client action `onCallbackAction` | Login.appManager_Callback → UBTConnect.connect_SetLoggedContext → UBTConnect.sync_Info_Main → server Sync_Info_GetMain | yes | `fetchSyncInfoMain()` [`api/app/repository.ts:36`](../../app/src/api/app/repository.ts#L36) (shell + page) | `AppFrame → AppStart → … → fetchSyncInfoMain`<br>[`app/AppFrame.tsx`](../../app/src/app/AppFrame.tsx)<br>`Login → useLogin → … → fetchSyncInfoMain`<br>[`pages/Login/LoginPage.tsx`](../../app/src/pages/Login/LoginPage.tsx) | implemented |
-| 3 | `UBT_AppManager/ActionAppManager_ChangeDevice` | server action | `Login` | ready | Login.OnReady → Login.onReady → UBT_AppManager.appManager_HandleDeviceAwarenessPopUp → server AppManager_ChangeDevice | no | – | – | **missing** |
-| 4 | `UBT_AppManager/ActionAppManager_Logout` | server action | `Login` | initialize | Login.OnInitialize → Login.onInitialize → UBT_AppManager.appManager_Logout → server AppManager_Logout<br>(+2 more chains) | no | – | – | **missing** |
-| 5 | `UBT_AppManager/ActionAppManager_SynchAppContext` | server action | `Login` | initialize | Login.OnInitialize → Login.onInitialize → … → server AppManager_SynchAppContext<br>(+2 more chains) | yes | `fetchAppContext()` [`api/app/repository.ts:23`](../../app/src/api/app/repository.ts#L23) (shell + page) | `Login → useLogin → … → fetchAppContext`<br>[`pages/Login/LoginPage.tsx`](../../app/src/pages/Login/LoginPage.tsx)<br>`AppFrame → AppStart → … → fetchAppContext`<br>[`app/AppFrame.tsx`](../../app/src/app/AppFrame.tsx) | implemented |
-| 6 | `UBTConnect_Utils/ActionGet_RuntimeVersion` | server action | `Version` | ready | Version.OnReady → Version.screenEvent_OnReady → UBTConnect_Utils.get_ConnectVersionDetails → server Get_RuntimeVersion | yes | `get_ConnectVersionDetails()` [`lib/ubtConnectUtils/actions.ts:36`](../../app/src/lib/ubtConnectUtils/actions.ts#L36) (page) | `AppVersion → loadVersionDetails → get_ConnectVersionDetails`<br>[`components/version/AppVersion/AppVersion.tsx`](../../app/src/components/version/AppVersion/AppVersion.tsx) | implemented |
+- **Direct caller (TST):** the block or module of the action that calls the server (the step before the server call in the chain).
+- **Chain (TST):** the chains of client actions in the TST compiled code, from their start to the call.
+  A long chain shows its first 2 steps, …, and its last 2 steps.
+- **Seen on TST:** `yes` when TST made the call in the capture.
+- **React action:** the React function with the `callAction` of the same call (`file:line`), and the code that loads it: `shell` (from `main.tsx`), `page` (from the screen), or both.
+- **Used by (React references):** the functions and components that reference the React action, up to the nearest component. A reference is not always a call.
+- **Status:** `implemented` when the contract path of the React call gives the same TST URL. It does not prove the same behaviour.
+
+| # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
+|---|---|---|---|---|---|---|---|---|
+| 1 | `Connect2_LegacyShared/ActionGetNumberUnreadMessages` | server action | `Connect2_LegacyShared` | AppManager_Events.onCallbackAction → event onCallback of AppManager_Events → … → Connect2_LegacyShared.synchronizeNumberUnreadMessages → server GetNumberUnreadMessages | no | `fetchNumberUnreadMessages()` [`api/message/unreadMessages.ts:22`](../../app/src/api/message/unreadMessages.ts#L22) (shell + page) | `Login → useLogin → … → fetchNumberUnreadMessages`<br>[`pages/Login/LoginPage.tsx`](../../app/src/pages/Login/LoginPage.tsx)<br>`AppFrame → AppStart → … → fetchNumberUnreadMessages`<br>[`app/AppFrame.tsx`](../../app/src/app/AppFrame.tsx) | implemented |
+| 2 | `UBTConnect/ActionSync_Info_GetMain` | server action | `UBTConnect` | AppManager_Events.onCallbackAction → event onCallback of AppManager_Events → … → UBTConnect.sync_Info_Main → server Sync_Info_GetMain | yes | `fetchSyncInfoMain()` [`api/app/repository.ts:36`](../../app/src/api/app/repository.ts#L36) (shell + page) | `AppFrame → AppStart → … → fetchSyncInfoMain`<br>[`app/AppFrame.tsx`](../../app/src/app/AppFrame.tsx)<br>`Login → useLogin → … → fetchSyncInfoMain`<br>[`pages/Login/LoginPage.tsx`](../../app/src/pages/Login/LoginPage.tsx) | implemented |
+| 3 | `UBTConnect_Utils/ActionGet_RuntimeVersion` | server action | `UBTConnect_Utils` | Version.OnReady → Version.screenEvent_OnReady → UBTConnect_Utils.get_ConnectVersionDetails → server Get_RuntimeVersion | yes | `get_ConnectVersionDetails()` [`lib/ubtConnectUtils/actions.ts:36`](../../app/src/lib/ubtConnectUtils/actions.ts#L36) (page) | `AppVersion → loadVersionDetails → get_ConnectVersionDetails`<br>[`components/version/AppVersion/AppVersion.tsx`](../../app/src/components/version/AppVersion/AppVersion.tsx) | implemented |
+| 4 | `UBT_AppManager/ActionAppManager_ChangeDevice` | server action | `UBT_AppManager` | Login.OnReady → Login.onReady → UBT_AppManager.appManager_HandleDeviceAwarenessPopUp → server AppManager_ChangeDevice | no | – | – | **missing** |
+| 5 | `UBT_AppManager/ActionAppManager_Logout` | server action | `UBT_AppManager` | Login.OnInitialize → Login.onInitialize → UBT_AppManager.appManager_Logout → server AppManager_Logout<br>Login.OnInitialize → Login.onInitialize → … → UBT_AppManager.appManager_Logout → server AppManager_Logout<br>onClick in Login → Login.login → … → UBT_AppManager.appManager_Logout → server AppManager_Logout | no | – | – | **missing** |
+| 6 | `UBT_AppManager/ActionAppManager_SynchAppContext` | server action | `UBT_AppManager` | Login.OnInitialize → Login.onInitialize → … → UBT_AppManager.appManager_SynchAppContextInternal → server AppManager_SynchAppContext<br>onClick in Login → Login.login → … → UBT_AppManager.appManager_SynchAppContextInternal → server AppManager_SynchAppContext<br>Login.OnReady → Login.onReady → … → UBT_AppManager.appManager_SynchAppContextInternal → server AppManager_SynchAppContext | yes | `fetchAppContext()` [`api/app/repository.ts:23`](../../app/src/api/app/repository.ts#L23) (shell + page) | `Login → useLogin → … → fetchAppContext`<br>[`pages/Login/LoginPage.tsx`](../../app/src/pages/Login/LoginPage.tsx)<br>`AppFrame → AppStart → … → fetchAppContext`<br>[`app/AppFrame.tsx`](../../app/src/app/AppFrame.tsx) | implemented |
 
 ## 7. Missing in React
 
@@ -196,10 +264,7 @@ sequenceDiagram
    - the rendered files;
    - each server call with its chain of client actions, and the calls that TST made in the capture;
    - the effects of each user action.
-2. **Route and app shell.** The app shell has these parts:
-   - `CommonUI_InsideLayout` with its blocks, and the app-level actions;
-   - the business blocks that at least 40% of the captured routes render, for example the bottom bar.
-   This file shows only the other blocks.
+2. **Route and app shell.** OutSystems: a chain belongs to the app shell when it starts in `CommonUI_InsideLayout`, one of its blocks, or a module action. React: a binding belongs to the app shell when its file is in the code that `main.tsx` loads.
 3. **MCP (DEV).** The tool reads the UI flow with `getScreenNames`. TST wins when DEV is different.
 4. **React.** `react_calls.mjs` reads the app shell from `app/src/main.tsx` and the screen from its `<Route>Page.tsx`. It counts only the code that the app uses.
 5. **Match.** `callAction(M, A)` gives `/api/M/A`. The `x-os-paths` of `app/src/api/openapi.yaml` give the TST call. The status is `implemented` when the TST call is the same. Else the status is `missing`.
