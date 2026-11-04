@@ -15,7 +15,7 @@ UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read 2026-11-04.
 | [`TermsAndPoliciesMenu`](routes/TermsAndPoliciesMenu.md) | `App_Menu` | done |
 | [`ContactUsDetails`](routes/ContactUsDetails.md) | `App_Menu_ContactUs` | done |
 | [`ContactUsMenu`](routes/ContactUsMenu.md) | `App_Menu_ContactUs` | done |
-| `NotificationDetails` | `App_Notifications` | todo |
+| [`NotificationDetails`](routes/NotificationDetails.md) | `App_Notifications` | todo |
 | `Notifications` | `App_Notifications` | todo |
 | `PINChange` | `App_PIN` | todo |
 | `PINRegister` | `App_PIN` | todo |
