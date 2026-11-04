@@ -20,7 +20,7 @@ The tool reads the code. It does not run the app.
 | Check | Result |
 |---|---|
 | Server calls on TST | 21: React makes 18, **3 missing** |
-| React calls that TST does not make on this route | 2 (see [questions](#6-questions)) |
+| React calls that TST does not make on this route | 2 (see [questions](#7-questions)) |
 | Screen and blocks with a React port | 65 of 65 |
 | Navigation targets found in React | 23 of 23 |
 
@@ -182,7 +182,129 @@ flowchart LR
 
 </details>
 
-## 4. Server calls
+## 4. Data flow
+
+- The diagram shows the server calls in the order of the phases: app start, screen load, screen ready, then the user actions.
+- Each participant is an OutSystems block or module that makes calls.
+- An arrow from the user is a click, a submit or an event. A note over a block gives a callback or another client action.
+- Each call arrow ends with the nearest React component that makes the same call (`React: …`).
+- An arrow to the server gives the inputs of the call. The return arrow gives the outputs. The names come from the contract `app/src/api/openapi.yaml`.
+- A red area is a call that React does not make.
+
+![HomeFeed data flow](svg/HomeFeed-sequence.svg)
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant p0 as UBTConnect
+  participant p1 as UBT_AppManager
+  participant p2 as Embedded_FeedCMS
+  participant p3 as FeedBlock_CommunityPopulation
+  participant p4 as FeedBlock_Services
+  participant p5 as FeedBlock_Updates
+  participant p6 as BottomBarMenu
+  participant p7 as HomeFeed
+  participant p8 as ShareSheet
+  participant p9 as UBTConnect_Utils
+  participant p10 as HandleImageLoadError
+  participant p11 as Feed_Embeded
+  participant S as Server (TST calls)
+  rect rgba(120, 120, 120, 0.06)
+  Note over U,S: App start and sign-in context
+  p0->>S: GetNumberUnreadMessages(DeviceId) · React: AppFrame
+  S-->>p0: NumberPrivateUnreadMessages, NumberPublicUnreadMessages
+  p0->>S: Sync_Info_GetMain(isFromLogin) · React: AppFrame
+  S-->>p0: B2CTenant, FeedBaseURL, LocalEntities_App, …
+  p0->>S: AppManager_AfterInitialize(AppManager_MobileContext, EspaceName, TOTP) · React: AppFrame
+  S-->>p0: isNotRegistered
+  p1->>S: AppManager_AfterInitialize(AppManager_MobileContext, EspaceName, TOTP) · React: AppFrame
+  S-->>p1: isNotRegistered
+  end
+  rect rgba(120, 120, 120, 0.06)
+  Note over U,S: Screen and block load
+  p2->>S: GetFeedConfig(B2CTenant, FeedItemId, LoadingList, …) · React: HomeFeed
+  S-->>p2: B2CClientId, B2CPolicy, BaseURL, …
+  p3->>S: FetchCount() · React: HomeFeed
+  S-->>p3: UI_MembersStatistics
+  p4->>S: GetServices(ExternalAppPopUp_Id, ForceAddService, ItemPerPage, …) · React: FeedServices
+  S-->>p4: ExternalLinks_ElGusto, ExterrnalPackages_CommunityTradelink, ExterrnalPackages_HR100, …
+  p5->>S: FetchUpdates(CarouselPreloadedHouseholds) · React: FeedUpdates
+  S-->>p5: UI_UpdateItemList
+  end
+  rect rgba(120, 120, 120, 0.06)
+  Note over U,S: Screen ready
+  p6->>S: Get_UI_UpdateItems_UnreadCount_All() · React: BottomBar
+  S-->>p6: UnreadCount
+  p7->>S: GetCommunityStatistics(HasUpdates, IsScreenInitialized, IsShareOpen, …) · React: HomeFeed
+  S-->>p7: Out_CommunityStatistics
+  end
+  rect rgba(120, 120, 120, 0.06)
+  Note over U,S: Parameters change
+  p8->>S: GetRecentlyShared(AvatarImageSize_HorizontalList, AvatarImageSize_VerticalList, AvatarSize_HorizontalList, …) · React: ShareSheetContainer
+  S-->>p8: Out_SearchResultItemList
+  end
+  rect rgba(120, 120, 120, 0.06)
+  Note over U,S: Called by a module action (no caller in the TST graph)
+  Note over p0: module action get_Cacheable_MapHouseholds (the TST graph has no caller)
+  p0->>S: FetchData_CacheableHouseholds() · React: AppFrame
+  S-->>p0: Household_Markers
+  Note over p0: module action get_Cacheable_MapEntities (the TST graph has no caller)
+  p0->>S: FetchData_CacheableMapEntities() · React: AppFrame
+  S-->>p0: Countries_GeoJSON, Countries_Markers, GlobalLocations_Markers, …
+  Note over p9: module action cache_UserInfo_GetCallback (the TST graph has no caller)
+  p9->>S: GetUserInformation() · React: ShareSheetContainer
+  S-->>p9: UserInformation
+  end
+  rect rgba(120, 120, 120, 0.06)
+  Note over U,S: Image load error
+  p10->>S: AppManager_SynchAppContext(EspaceName) · React: AppFrame
+  S-->>p10: AppManager_ClientConfig, FirebaseRealTimeDB_Token, PermissionList, …
+  rect rgba(192, 57, 43, 0.15)
+  p10->>S: GetAllApplicationEvents() · React: none
+  S-->>p10: EventList
+  end
+  end
+  rect rgba(120, 120, 120, 0.06)
+  Note over U,S: User actions and events
+  U->>p5: click: FeedBlock_Updates.event_MarkAsRead
+  p5->>S: Get_UI_UpdateItems_UnreadCount_All() · React: BottomBar
+  S-->>p5: UnreadCount
+  U->>p5: click: FeedBlock_Updates.event_ListItemOnClick
+  p5->>S: Action_UI_UpdateItem_MarkAsRead(UpdateItemId) · React: FeedUpdates
+  S-->>p5: no outputs
+  U->>p5: click: FeedBlock_Updates.event_MarkAsUnread
+  p5->>S: Action_UI_UpdateItem_MarkAsUnread(UpdateItemId) · React: FeedUpdates
+  S-->>p5: no outputs
+  U->>p11: click: Feed_Embeded.handle_Share_Others
+  rect rgba(192, 57, 43, 0.15)
+  p11->>S: GetAllApplicationEvents() · React: none
+  S-->>p11: EventList
+  end
+  U->>p11: click: Feed_Embeded.handle_Share_Others
+  rect rgba(192, 57, 43, 0.15)
+  p11->>S: CS_CreateShareProfileLink() · React: none
+  S-->>p11: outputs not in the contract
+  end
+  U->>p8: click: ShareSheet.handler_OnClickExternalOption
+  rect rgba(192, 57, 43, 0.15)
+  p8->>S: CS_CreateShareProfileLink(In_ShareObjectTypeId, In_SharedObjectId, In_UpdateDate, …) · React: none
+  S-->>p8: ShareId, URL
+  end
+  U->>p8: click: ShareSheet.handler_OnClickRecentMember
+  p8->>S: CS_ShareObject(In_ShareObjectTypeId, In_SharedObjectId, In_SharingProfileName, …) · React: ShareSheetContainer
+  S-->>p8: IsAllowed, IsSuccess, Message, …
+  U->>p8: submit: ShareSheet.handler_InputEventSubmit
+  p8->>S: GetAvailableMembers(AvatarImageSize_HorizontalList, AvatarImageSize_VerticalList, AvatarSize_HorizontalList, …) · React: ShareSheetContainer
+  S-->>p8: Out_SearchResultItemList
+  end
+```
+
+</details>
+
+## 5. Server calls
 
 - **Called from (OutSystems):** the block or the app-level module whose own client action makes the call. `app shell` = the layout and the app start; `screen` = the screen and its blocks.
 - **Made by (TST):** for each block in "Called from", its chain of client actions from the block to the call.
@@ -215,7 +337,7 @@ flowchart LR
 | 20 | `UBTConnect_Utils/CW_Share/ShareSheet/DataActionGetAvailableMembers` | data action | `ShareSheet` (screen) | submit | ShareSheet.handler_InputEventSubmit → ShareSheet.DataActionGetAvailableMembers<br>(+1 more chains) | no | `fetchAvailableMembers()` [`api/member/repository.ts:12`](../../app/src/api/member/repository.ts#L12) (page) | `ShareSheetContainer → useShareSheet → useAvailableMembersQuery → fetchAvailableMembers`<br>[`containers/ShareSheet/ShareSheetContainer.tsx`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx) | implemented |
 | 21 | `UBTConnect_Utils/CW_Share/ShareSheet/DataActionGetRecentlyShared` | data action | `ShareSheet` (screen) | parameters change | ShareSheet.OnParametersChanged → ShareSheet.screenEvent_OnParametersChanged → ShareSheet.DataActionGetRecentlyShared<br>(+1 more chains) | no | `fetchRecentlyShared()` [`api/share/shareSheet.ts:14`](../../app/src/api/share/shareSheet.ts#L14) (page) | `ShareSheetContainer → useShareSheet → useRecentlySharedQuery → fetchRecentlyShared`<br>[`containers/ShareSheet/ShareSheetContainer.tsx`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx) | implemented |
 
-## 5. Missing in React
+## 6. Missing in React
 
 - Call `UBTConnect_Utils/CW_Share/ShareSheet/ActionCS_CreateShareProfileLink`. Chain on TST: onClick in CircleButton_WithLabel → CircleButton_WithLabel.action_OnClick → event onClick of CircleButton_WithLabel → ShareSheet.handler_OnClickExternalOption → server CS_CreateShareProfileLink.
   - React has the function, but this route does not use it: `csCreateShareProfileLink()` [`api/share/shareSheet.ts:39`](../../app/src/api/share/shareSheet.ts#L39).
@@ -230,12 +352,12 @@ flowchart LR
 - Call `Connect2_LegacyShared/ActionGetAllApplicationEvents`. Chain on TST: HandleImageLoadError.applicationEvent_ImageError → Connect2_LegacyShared.zOnApplicationEvent_Wrapper → Connect2_LegacyShared.getAppEventName → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents.
   - No React code makes this call.
 
-## 6. Questions
+## 7. Questions
 
 1. React calls `/api/UBTConnect_Utils/ActionGetSignedImagesInBulk` from `cache_SignedImageURL_GetCallback()` [`lib/ubtConnectUtils/actions.ts:124`](../../app/src/lib/ubtConnectUtils/actions.ts#L124) (page). TST HomeFeed has no chain to this call. Does the call belong to this route?
 2. React calls `/api/UBTConnect_Utils/CacheControl_Policies/DataActionGetCacheInfo` from `fetchPolicies()` [`api/app/repository.ts:54`](../../app/src/api/app/repository.ts#L54) (shell + page). TST HomeFeed has no chain to this call. Does the call belong to this route?
 
-## 7. Method
+## 8. Method
 
 1. **OutSystems (TST).** The tool reads `facts.json` of `migration/screens/HomeFeed/analysis/`:
    - the screen and block files that TST renders;

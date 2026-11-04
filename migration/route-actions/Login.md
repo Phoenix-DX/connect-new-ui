@@ -20,7 +20,7 @@ The tool reads the code. It does not run the app.
 | Check | Result |
 |---|---|
 | Server calls on TST | 7: React makes 4, **3 missing** |
-| React calls that TST does not make on this route | 5 (see [questions](#6-questions)) |
+| React calls that TST does not make on this route | 5 (see [questions](#7-questions)) |
 | Screen and blocks with a React port | 28 of 28 |
 | Navigation targets found in React | 3 of 3 |
 
@@ -97,7 +97,68 @@ flowchart LR
 
 </details>
 
-## 4. Server calls
+## 4. Data flow
+
+- The diagram shows the server calls in the order of the phases: app start, screen load, screen ready, then the user actions.
+- Each participant is an OutSystems block or module that makes calls.
+- An arrow from the user is a click, a submit or an event. A note over a block gives a callback or another client action.
+- Each call arrow ends with the nearest React component that makes the same call (`React: …`).
+- An arrow to the server gives the inputs of the call. The return arrow gives the outputs. The names come from the contract `app/src/api/openapi.yaml`.
+- A red area is a call that React does not make.
+
+![Login data flow](svg/Login-sequence.svg)
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant p0 as HandleImageLoadError
+  participant p1 as Login
+  participant p2 as Version
+  participant S as Server (TST calls)
+  rect rgba(120, 120, 120, 0.06)
+  Note over U,S: Screen initialize
+  p1->>S: AppManager_SynchAppContext(EspaceName) · React: Login
+  S-->>p1: AppManager_ClientConfig, FirebaseRealTimeDB_Token, PermissionList, …
+  rect rgba(192, 57, 43, 0.15)
+  p1->>S: AppManager_Logout() · React: none
+  S-->>p1: outputs not in the contract
+  end
+  end
+  rect rgba(120, 120, 120, 0.06)
+  Note over U,S: Screen ready
+  rect rgba(192, 57, 43, 0.15)
+  p1->>S: AppManager_ChangeDevice() · React: none
+  S-->>p1: outputs not in the contract
+  end
+  p2->>S: Get_RuntimeVersion() · React: AppVersion
+  S-->>p2: Out_Name, Out_RuntimeVersion
+  end
+  rect rgba(120, 120, 120, 0.06)
+  Note over U,S: Image load error
+  rect rgba(192, 57, 43, 0.15)
+  p0->>S: GetAllApplicationEvents() · React: none
+  S-->>p0: EventList
+  end
+  p0->>S: AppManager_SynchAppContext(EspaceName) · React: Login
+  S-->>p0: AppManager_ClientConfig, FirebaseRealTimeDB_Token, PermissionList, …
+  end
+  rect rgba(120, 120, 120, 0.06)
+  Note over U,S: Callbacks and other client actions
+  Note over p1: client action onCallbackAction
+  p1->>S: GetNumberUnreadMessages(DeviceId) · React: Login
+  S-->>p1: NumberPrivateUnreadMessages, NumberPublicUnreadMessages
+  Note over p1: client action onCallbackAction
+  p1->>S: Sync_Info_GetMain(isFromLogin) · React: AppFrame
+  S-->>p1: B2CTenant, FeedBaseURL, LocalEntities_App, …
+  end
+```
+
+</details>
+
+## 5. Server calls
 
 - **Called from (OutSystems):** the block or the app-level module whose own client action makes the call. `app shell` = the layout and the app start; `screen` = the screen and its blocks.
 - **Made by (TST):** for each block in "Called from", its chain of client actions from the block to the call.
@@ -116,7 +177,7 @@ flowchart LR
 | 6 | `UBT_AppManager/ActionAppManager_Logout` | server action | `Login` (screen) | initialize | Login.OnInitialize → Login.onInitialize → UBT_AppManager.appManager_Logout → server AppManager_Logout<br>(+2 more chains) | no | – | – | **missing** |
 | 7 | `UBTConnect_Utils/ActionGet_RuntimeVersion` | server action | `Version` (screen) | ready | Version.OnReady → Version.screenEvent_OnReady → UBTConnect_Utils.get_ConnectVersionDetails → server Get_RuntimeVersion | yes | `get_ConnectVersionDetails()` [`lib/ubtConnectUtils/actions.ts:36`](../../app/src/lib/ubtConnectUtils/actions.ts#L36) (page) | `AppVersion → loadVersionDetails → get_ConnectVersionDetails`<br>[`components/version/AppVersion/AppVersion.tsx`](../../app/src/components/version/AppVersion/AppVersion.tsx) | implemented |
 
-## 5. Missing in React
+## 6. Missing in React
 
 - Call `UBT_AppManager/ActionAppManager_ChangeDevice`. Chain on TST: Login.OnReady → Login.onReady → UBT_AppManager.appManager_HandleDeviceAwarenessPopUp → server AppManager_ChangeDevice.
   - No React code makes this call.
@@ -129,7 +190,7 @@ flowchart LR
 - Call `Connect2_LegacyShared/ActionGetAllApplicationEvents`. Chain on TST: HandleImageLoadError.applicationEvent_ImageError → Connect2_LegacyShared.zOnApplicationEvent_Wrapper → Connect2_LegacyShared.getAppEventName → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents.
   - No React code makes this call.
 
-## 6. Questions
+## 7. Questions
 
 1. React calls `/api/UBTConnect_Utils/ActionGetUserInformation` from `fetchUserInformation()` [`api/member/userInformation.ts:6`](../../app/src/api/member/userInformation.ts#L6) (shell + page). TST Login has no chain to this call. Does the call belong to this route?
 2. React calls `/api/UBTConnect_Utils/CacheControl_Policies/DataActionGetCacheInfo` from `fetchPolicies()` [`api/app/repository.ts:54`](../../app/src/api/app/repository.ts#L54) (shell + page). TST Login has no chain to this call. Does the call belong to this route?
@@ -137,7 +198,7 @@ flowchart LR
 4. React calls `/api/UBTConnect/ServiceAPIFetchData_CacheableMapEntities` from `fetchCacheableMapEntities()` [`api/app/repository.ts:42`](../../app/src/api/app/repository.ts#L42) (shell). TST Login has no chain to this call. Does the call belong to this route?
 5. React calls `/api/UBT_AppManager/ActionAppManager_AfterInitialize` from `afterInitialize()` [`api/app/repository.ts:30`](../../app/src/api/app/repository.ts#L30) (shell). TST Login has no chain to this call. Does the call belong to this route?
 
-## 7. Method
+## 8. Method
 
 1. **OutSystems (TST).** The tool reads `facts.json` of `migration/screens/Login/analysis/`:
    - the screen and block files that TST renders;

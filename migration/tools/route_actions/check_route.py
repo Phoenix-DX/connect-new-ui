@@ -188,6 +188,26 @@ def doc_notes(names, prefer=(), limit=3):
     return out
 
 
+def contract_io():
+    """{TST call path: (input names, output names)} from the contract app/src/api/openapi.yaml."""
+    import yaml
+    d = yaml.safe_load(open(os.path.join(ROOT, "app", "src", "api", "openapi.yaml"), encoding="utf-8"))
+    schemas = d.get("components", {}).get("schemas", {})
+
+    def names(ref):
+        sch = schemas.get((ref or "").rsplit("/", 1)[-1], {})
+        return list(sch.get("properties", {}).keys())
+    out = {}
+    for op in d["paths"].values():
+        post = op.get("post") or {}
+        inp = (((post.get("requestBody") or {}).get("content") or {}).get("application/json") or {}).get("schema", {}).get("$ref")
+        res = ((((post.get("responses") or {}).get("200") or {}).get("content") or {}).get("application/json") or {}).get("schema", {})
+        outp = (res.get("properties", {}).get("data") or {}).get("$ref")
+        for x in post.get("x-os-paths", []):
+            out[x] = (names(inp), names(outp))
+    return out
+
+
 def contract_paths():
     import yaml
     d = yaml.safe_load(open(os.path.join(ROOT, "app", "src", "api", "openapi.yaml"), encoding="utf-8"))
@@ -229,6 +249,7 @@ def check(route):
     facts = tst["facts"]
     shell_r, page_r, all_r = react_data(route)
     cpaths = contract_paths()
+    cio = contract_io()
     meta = route_meta(route)
     flow = flows.get(route, "unclear")
 
@@ -302,6 +323,8 @@ def check(route):
             "status": "implemented" if rc else "missing",
         })
     tst_urls = {e["url"] for e in eps}
+    for e in eps:
+        e["io"] = cio.get(e["url"])
     all_by_url = collections.defaultdict(list)
     for c in all_r["calls"]:
         for p in cpaths.get(c["apiPath"]) or []:
@@ -530,6 +553,69 @@ def mermaid(r):
     return "\n".join(L)
 
 
+PHASES = [("app start", "App start and sign-in context"), ("initialize", "Screen initialize"),
+          ("block load", "Screen and block load"), ("ready", "Screen ready"), ("parameters change", "Parameters change"),
+          ("render", "Render"), ("module action", "Called by a module action (no caller in the TST graph)"),
+          ("image load error", "Image load error"), ("client action", "Callbacks and other client actions"),
+          ("", "User actions and events")]
+
+
+def phase_of(trig):
+    for i, (key, _) in enumerate(PHASES[:-1]):
+        if key and key in trig:
+            return i
+    return len(PHASES) - 1
+
+
+def short_list(xs, n=3):
+    return ", ".join(xs[:n]) + (", …" if len(xs) > n else "")
+
+
+def sequence(r, rows):
+    """Mermaid sequence diagram: per phase, each OutSystems block sends its calls to the server and gets the outputs.
+    A participant names the OutSystems block and the React component that has the same call."""
+    order = []
+    for owners, trigs, e in sorted(rows, key=lambda x: min(phase_of(t) for t in x[1])):
+        for o in owners:
+            if o[0] not in order:
+                order.append(o[0])
+    pid = {o: f"p{i}" for i, o in enumerate(order)}
+    L = ["sequenceDiagram", "  autonumber", "  actor U as User"]
+    for o in order:
+        L.append(f"  participant {pid[o]} as {o}")
+    L.append("  participant S as Server (TST calls)")
+    steps = collections.defaultdict(list)
+    for owners, trigs, e in rows:
+        for o, t in zip(owners, trigs):
+            ch = next((c for c in e["chains"] if c and chain_owner(c, r["blocks"]) == o), [])
+            first = next((x for x in from_owner(ch, o[0]) if x.startswith(o[0] + ".")), "") if ch else ""
+            steps[phase_of(t)].append((o[0], t, e, first))
+    for i, (_, title) in enumerate(PHASES):
+        if not steps.get(i):
+            continue
+        L.append(f"  rect rgba(120, 120, 120, 0.06)")
+        L.append(f"  Note over U,S: {title}")
+        for o, t, e, first in steps[i]:
+            name = e["short"].rsplit("/", 1)[-1]
+            name = re.sub(r"^(Action|ServiceAPI|DataAction|ScreenDataSet)", "", name)
+            label = re.sub(r"[`;#]", "", t)
+            if i == len(PHASES) - 1:
+                L.append(f"  U->>{pid[o]}: {label}" + (f": {first}" if first else ""))
+            elif PHASES[i][0] in ("client action", "module action"):
+                L.append(f"  Note over {pid[o]}: {label}")
+            ins, outs = e["io"] or ([], [])
+            chains = sorted((ch for c in e["react"] for ch in c.get("callers", [])), key=len)
+            react = f"React: {chains[0][0]['name']}" if chains else ("React: none" if e["status"] == "missing" else "React: no caller found")
+            if e["status"] == "missing":
+                L.append("  rect rgba(192, 57, 43, 0.15)")
+            L.append(f"  {pid[o]}->>S: {name}({short_list(ins)}) · {react}")
+            L.append(f"  S-->>{pid[o]}: " + ((short_list(outs) or "no outputs") if e["io"] else "outputs not in the contract"))
+            if e["status"] == "missing":
+                L.append("  end")
+        L.append("  end")
+    return "\n".join(L)
+
+
 def render(r):
     route = r["route"]
     eps = r["endpoints"]
@@ -539,6 +625,18 @@ def render(r):
     mm = mermaid(r)
     os.makedirs(os.path.join(OUT, "svg"), exist_ok=True)
     open(os.path.join(DATA, f"{route}.mmd"), "w").write(mm)
+    block_names = {b["key"].split(".")[-1] for b in r["blocks"]}
+    rows = []
+    for e in eps:
+        owners = sorted({chain_owner(c, r["blocks"]) for c in e["chains"] if c}) or [("?", e["group"])]
+        trigs = []
+        for o in owners:
+            ch = next((c for c in e["chains"] if c and chain_owner(c, r["blocks"]) == o), None)
+            trigs.append(trigger(ch, block_names) if ch else "–")
+        rows.append((owners, trigs, e))
+    rows.sort(key=lambda x: (x[0][0][1] != "shell", x[0][0][0], x[2]["short"]))
+    sq = sequence(r, rows)
+    open(os.path.join(DATA, f"{route}-sequence.mmd"), "w").write(sq)
     L = [f"# {route}: server calls in OutSystems and React", "",
          f"This file compares the server calls of the route `/UBTConnect/{route}` in OutSystems (TST) with the calls "
          "of the React app.",
@@ -555,7 +653,7 @@ def render(r):
          "", "## 2. Result", "",
          "| Check | Result |", "|---|---|",
          f"| Server calls on TST | {len(eps)}: React makes {cnt['implemented']}, **{cnt['missing']} missing** |",
-         f"| React calls that TST does not make on this route | {len(r['reactOnly'])} (see [questions](#6-questions)) |",
+         f"| React calls that TST does not make on this route | {len(r['reactOnly'])} (see [questions](#7-questions)) |",
          f"| Screen and blocks with a React port | {blocks_ported} of {len(r['blocks'])} |",
          f"| Navigation targets found in React | {len(r['osNav']) - len(nav_missing)} of {len(r['osNav'])} |",
          "", "## 3. Diagram", "",
@@ -565,7 +663,18 @@ def render(r):
          "- A red box is a call that React does not make.", "",
          f"![{route} diagram](svg/{route}.svg)", "", "<details><summary>Mermaid source</summary>", "",
          "```mermaid", mm, "```", "", "</details>", "",
-         "## 4. Server calls", "",
+         "## 4. Data flow", "",
+         "- The diagram shows the server calls in the order of the phases: app start, screen load, screen ready, then the "
+         "user actions.",
+         "- Each participant is an OutSystems block or module that makes calls.",
+         "- An arrow from the user is a click, a submit or an event. A note over a block gives a callback or another client action.",
+         "- Each call arrow ends with the nearest React component that makes the same call (`React: …`).",
+         "- An arrow to the server gives the inputs of the call. The return arrow gives the outputs. The names come from "
+         "the contract `app/src/api/openapi.yaml`.",
+         "- A red area is a call that React does not make.", "",
+         f"![{route} data flow](svg/{route}-sequence.svg)", "", "<details><summary>Mermaid source</summary>", "",
+         "```mermaid", sq, "```", "", "</details>", "",
+         "## 5. Server calls", "",
          "- **Called from (OutSystems):** the block or the app-level module whose own client action makes the call. "
          "`app shell` = the layout and the app start; `screen` = the screen and its blocks.",
          "- **Made by (TST):** for each block in \"Called from\", its chain of client actions from the block to the call.",
@@ -577,12 +686,7 @@ def render(r):
          "most 2 chains, the shortest first.", "",
          "| # | Call (TST) | Kind | Called from (OutSystems) | Trigger | Made by (TST) | Seen on TST | React action | React caller | Status |",
          "|---|---|---|---|---|---|---|---|---|---|"]
-    rows = []
-    for e in eps:
-        owners = sorted({chain_owner(c, r["blocks"]) for c in e["chains"] if c}) or [("?", e["group"])]
-        rows.append((owners, e))
-    rows.sort(key=lambda x: (x[0][0][1] != "shell", x[0][0][0], x[1]["short"]))
-    for i, (owners, e) in enumerate(rows, 1):
+    for i, (owners, _, e) in enumerate(rows, 1):
         e["n"] = i
         frm = "<br>".join(f"`{o}` ({'app shell' if g == 'shell' else 'screen'})" for o, g in owners)
         made, trig = [], []
@@ -598,7 +702,7 @@ def render(r):
         chains = sorted((ch for c in e["react"] for ch in c.get("callers", [])), key=len)[:2]
         caller = "<br>".join(react_chain(ch) for ch in chains) or "–"
         L.append(f"| {i} | `{e['short']}` | {e['kind']} | {frm} | {'<br>'.join(trig)} | {chain} | {seen} | {rc} | {caller} | {st} |")
-    L += ["", "## 5. Missing in React", ""]
+    L += ["", "## 6. Missing in React", ""]
     miss_eps = [e for e in eps if e["status"] == "missing"]
     miss_blocks = [b for b in r["blocks"] if b["evidence"] not in ("tag", "name")]
     if not (miss_eps or miss_blocks or nav_missing):
@@ -618,11 +722,11 @@ def render(r):
         L.append(f"- Block `{b['key']}`.{where}")
     for t in nav_missing:
         L.append(f"- Navigation to `{t}` (from {', '.join(r['osNav'][t])}). The React screen and the app shell do not go to this route.")
-    L += ["", "## 6. Questions", ""]
+    L += ["", "## 7. Questions", ""]
     qs = [f"React calls `{c['apiPath']}` from `{c['fn']}()` {link(c['file'], c['line'])} ({c['where']}). TST {route} "
           "has no chain to this call. Does the call belong to this route?" for c in r["reactOnly"]]
     L += [f"{i}. {q}" for i, q in enumerate(qs, 1)] or ["None."]
-    L += ["", "## 7. Method", "",
+    L += ["", "## 8. Method", "",
           "1. **OutSystems (TST).** The tool reads `facts.json` of `migration/screens/" + route + "/analysis/`:",
           "   - the screen and block files that TST renders;",
           "   - each server call, and the chain of client actions that makes the call;",
@@ -640,6 +744,9 @@ def render(r):
     open(p, "w", encoding="utf-8").write("\n".join(L) + "\n")
     subprocess.run(["node", os.path.join(ROOT, "migration", "tools", "route_actions", "render_svg.cjs"),
                     os.path.join(DATA, f"{route}.mmd"), os.path.join(OUT, "svg", f"{route}.svg")], check=True, cwd=ROOT)
+    subprocess.run(["node", os.path.join(ROOT, "migration", "tools", "route_actions", "render_svg.cjs"),
+                    os.path.join(DATA, f"{route}-sequence.mmd"), os.path.join(OUT, "svg", f"{route}-sequence.svg")],
+                   check=True, cwd=ROOT)
     print("wrote", rel(p))
     return p
 
