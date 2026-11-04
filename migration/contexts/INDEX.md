@@ -5,10 +5,10 @@ section "Context notes".
 
 ## Now
 - Goal (user 2026-10-14): replace the OutSystems app in production; UI/UX 1:1. **Current focus (user 2026-10-17): local demo for colleagues, no production work.**
-- 2026-11-03: principal review of `app/` done ([context-072](context-072-app-principal-review.md), report `../reviews/app-principal-review-2026-11-03.md`): 33 findings (2 S1, 10 S2), roadmap WP-1 to WP-13 and a target folder structure, none accepted yet. Repository split of `app/`: questions V1–V6 open.
-- All 64 routes finished; clarify screens and drift wave done ([context-071](context-071-drift-wave.md)); refactor plan v2 done ([context-052](context-052-refactor-user-decisions-2026-10-25.md)).
-- Demo: `npm --prefix app run build:demo` → `app/dist-demo/`; dev http://localhost:5173/UBTConnect/HomeFeed (`?review=1`). Tools: `migration/tools/` (README). Unattended runs: start `caffeinate -i -s -m` first.
-- Next: the user picks the work packages and decisions of the review, and answers V1–V6 of the split.
+- 2026-11-04: convention review of `app/src` ([context-073](context-073-app-conventions-review.md), report `../reviews/app-conventions-review-2026-11-04.md`): 16 findings, decisions D1–D8 open, plan N0–N5.
+- 2026-11-03: principal review of `app/` ([context-072](context-072-app-principal-review.md)): 33 findings, roadmap WP-1 to WP-13, none accepted yet. Repository split: V1–V6 open.
+- TST has 84 routes: 68 build (all finished), 16 skip. Demo: `npm --prefix app run build:demo`; dev http://localhost:5173/UBTConnect/HomeFeed (`?review=1`).
+- Next: the user answers D1–D8 (conventions), picks the WPs of the principal review, and answers V1–V6 of the split.
 
 ## Contexts
 | id | date | topic | status |
@@ -86,3 +86,4 @@ section "Context notes".
 | [070](context-070-items9-10-wave.md) | 2026-10-29 | Items 9-10 wave: TST render/route error handling ported; NotificationDetails, Bookmarks, PassportScan, OrbitAdminMilestones/Detail finished; OneSchoolGlobalCarousel held (drift); contract 178 ops; window 7 auto decisions 1-23 | done |
 | [071](context-071-drift-wave.md) | 2026-10-29 | Drift wave: re-capture of all routes, WP1-WP9, TST publish 2 gaps G1-G4, OneSchoolGlobalCarousel finished, gallery flag on, MCP rows 9-16, failed fetches at start to the flow handler, Splash replace, flag route sync; ci 4756, sweep 68/0 | current |
 | [072](context-072-app-principal-review.md) | 2026-11-03 | Principal review of `app/`: facts pack, 6 Sonnet collectors, Opus lead; 33 findings (2 S1, 10 S2), gate blind spots, self-assessment gaps, roadmap WP-1 to WP-13, target folder structure | current |
+| [073](context-073-app-conventions-review.md) | 2026-11-04 | Convention review of `app/src`: 16 findings (two naming regimes, barrels against R8, two origin tags, page folder layout), decisions D1–D8, plan N0–N5 next to WP-7 | current |
