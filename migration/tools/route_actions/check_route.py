@@ -6,27 +6,23 @@ Usage (from the project root):
   python3 migration/tools/route_actions/check_route.py <Route> --mark-done              # sets the route to done
   python3 migration/tools/route_actions/check_route.py --routes                         # writes ROUTES.md
 
-Sources, in this order (README.md has the details):
-  1. KB: ~/Projects/ubt_sharing_kb/connect/outsystems (DEV design time, extracted 2026-10-05).
-  2. TST, in this repository (TST wins): migration/screens/<S>/analysis/{facts.json,calls.json,sources/raw},
+Sources (README.md has the details):
+  1. TST, in this repository (TST wins): migration/screens/<S>/analysis/{facts.json,calls.json,sources/raw},
      migration/survey/screens.json, app/src/api/openapi.yaml.
-  3. MCP (DEV), only for gaps: UI flow per screen, the server actions inside data actions (module UBTConnect).
-  4. React: migration/route-actions/data/react-shell.json and react-<Route>.json (react_calls.mjs).
+  2. MCP (DEV, read only): the UI flow of each screen, and what each server call does inside (data actions, server
+     actions, service actions). The tool reads only the modules that are open in Service Studio. It lists the other
+     modules in the route file; the user opens them, then the tool runs again. The tool does not guess their content.
+  3. React: migration/route-actions/data/react-shell.json and react-<Route>.json (react_calls.mjs).
 """
 import argparse, collections, glob, json, os, re, subprocess, sys
 from datetime import date
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, os.path.join(ROOT, ".claude", "skills", "outsystems-screen-spec", "scripts"))
 import mcp_client  # noqa: E402
 
 OUT = os.path.join(ROOT, "migration", "route-actions")
 DATA = os.path.join(OUT, "data")
-KB = os.path.expanduser("~/Projects/ubt_sharing_kb/connect/outsystems/apps")
-KB_LABEL = "ubt_sharing_kb/connect/outsystems/apps"
-PLATFORM_MODULES = ("OutSystemsUI_2_23", "NavigationHandler", "UBTJavaScriptUtils", "OutSystems")
-APP_ROOT_RE = re.compile(r"(?i)^(onApplicationReady|appManager_OnAppReady\w*|onApplicationResume\w*|fCM_\w+|handleOnApplication\w+)$")
 
 
 def load(p):
@@ -89,15 +85,17 @@ def read_status():
     st = {}
     p = routes_md_path()
     if os.path.exists(p):
-        for m in re.finditer(r"^\| \[?`?(\w+)`?\]?[^|]*\| [^|]*\| (todo|done) \|", open(p, encoding="utf-8").read(), re.M):
+        for m in re.finditer(r"^\| \[?`?(\w+)`?\]?[^|]*\| [^|]*\| (todo|done|waiting for MCP) \|", open(p, encoding="utf-8").read(), re.M):
             st[m.group(1)] = m.group(2)
     return st
 
 
-def write_routes(done=None):
+def write_routes(done=None, waiting=None):
     st = read_status()
     if done:
         st[done] = "done"
+    if waiting:
+        st[waiting] = "waiting for MCP"
     flows = ui_flows()
     board = board_rows()
     routes = generated_routes()
@@ -110,6 +108,8 @@ def write_routes(done=None):
     L = ["# Routes: OutSystems actions against React", "",
          f"One file per route. Run `python3 migration/tools/route_actions/check_route.py <Route>` (see "
          f"[README](../tools/route_actions/README.md)). Progress: **{n_done} of {len(build)}** build routes done.", "",
+         "Status `waiting for MCP`: the route file lists the modules to open in Service Studio. Open them, then run "
+         "the tool again.", "",
          f"UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read {date.today().isoformat()}. "
          "Routes and scope: `app/src/app/routes.generated.ts` (84 routes) and `migration/board.md`.", "",
          "| Route | UI flow | Status |", "|---|---|---|"]
@@ -128,51 +128,23 @@ def write_routes(done=None):
 
 
 # ---------------------------------------------------------------------------------------------------------------
-# KB (DEV design time)
+# MCP (DEV): what each server call does inside
 # ---------------------------------------------------------------------------------------------------------------
-def kb_module(module):
-    hits = glob.glob(os.path.join(KB, "*", "modules", module))
-    if not hits:
-        return None
-    d = hits[0]
-    ui = os.path.join(d, "contracts", "ui.json")
-    elems = {}
-    if os.path.exists(ui):
-        u = load(ui)
-        for x in u.get("screens", []) + u.get("blocks", []):
-            elems[x["name"]] = x
-    rules = {}
-    for md in glob.glob(os.path.join(d, "ui", "*.md")):
-        cur = None
-        for line in open(md, encoding="utf-8"):
-            m = re.match(r"^## (\w+) \(", line)
-            if m:
-                cur = m.group(1)
-                rules.setdefault(cur, {"page": os.path.relpath(md, KB), "rules": []})
-            elif line.startswith("## "):
-                cur = None
-            elif cur:
-                rules[cur]["rules"] += re.findall(r"\[(BR-[\w-]+)\]", line)
-    return {"dir": os.path.relpath(d, KB), "elems": elems, "rules": rules}
-
-
-# ---------------------------------------------------------------------------------------------------------------
-# MCP (DEV): server actions inside the data actions of UBTConnect screens and blocks
-# ---------------------------------------------------------------------------------------------------------------
-def mcp_backend(kind, module, name):
-    """{dataActionName: [ 'Module.Action (service|server)' ]} from the Model API code; None when not readable."""
-    if module != "UBTConnect":
-        return None
-    try:
-        code = mcp_client.element_code(kind, module, name)
-    except Exception as e:
-        print(f"MCP {kind} {name}: {e}")
-        return None
-    owners = {v: n for v, n in re.findall(r"var (\w+) = \w+\.Create(?:DataAction|Aggregate)\(\"(\w+)\"\)", code)}
+def _named_actions(code, module):
+    """Server and service actions that Model API code names, as 'Module.Action (server|service)'."""
     refs = dict(re.findall(r"var (\w+) = eSpace\.References\.Named\(\"(\w+)\"\)", code))
     named = {}
     for v, holder, coll, n in re.findall(r"var (\w+) = (\w+)\.(ServiceActions|ServerActions)\.Named\(\"(\w+)\"\)", code):
-        named[v] = (refs.get(holder, module if holder == "eSpace" else holder), n, "service" if coll == "ServiceActions" else "server")
+        named[v] = (module if holder == "eSpace" else refs.get(holder, holder), n,
+                    "service" if coll == "ServiceActions" else "server")
+    return named
+
+
+def mcp_element(kind, module, name):
+    """{dataActionName: ['Module.Action (kind)']} for a screen or block. Raises mcp_client.NotOpen."""
+    code = mcp_client.element_code(kind, module, name)
+    owners = {v: n for v, n in re.findall(r"var (\w+) = \w+\.Create(?:DataAction|Aggregate)\(\"(\w+)\"\)", code)}
+    named = _named_actions(code, module)
     nodes = re.findall(r"var (\w+) = (\w+)\.CreateNode<OutSystems\.Model\.Logic\.Nodes\.IExecuteServerActionNode>\(\"\w+\"\)", code)
     assign = dict(re.findall(r"(\w+)\.Action = (\w+);", code))
     out = collections.defaultdict(list)
@@ -182,9 +154,46 @@ def mcp_backend(kind, module, name):
             item = f"{mod}.{n} ({k})"
             if item not in out[owners[owner]]:
                 out[owners[owner]].append(item)
-    for v, n in owners.items():
+    for n in owners.values():
         out.setdefault(n, [])
     return dict(out)
+
+
+def mcp_action(kind, module, name):
+    """What a server action calls, or the producer module of a service action. Raises mcp_client.NotOpen."""
+    code = mcp_client.element_code(kind, module, name)
+    if kind == "service":
+        m = re.search(r"IServiceActionSignature (\w+)/(\w+)", code)
+        return [f"{m.group(1)}.{m.group(2)} (service, producer module)"] if m else [f"{module}.{name} (service)"]
+    out = []
+    for mod, n, k in _named_actions(code, module).values():
+        if f"{mod}.{n} ({k})" not in out:
+            out.append(f"{mod}.{n} ({k})")
+    return out
+
+
+def inside(url, screen):
+    """(text, module to open or None) for one server call URL: screenservices/<Module>/.../<Prefix><Name>."""
+    parts = url.split("/")[1:]
+    module, last = parts[0], parts[-1]
+    owner = parts[-2] if len(parts) > 2 else None
+    m = re.match(r"^(DataAction|ScreenDataSet|ServiceAPI|Action)(\w+)$", last)
+    if not m:
+        return "not read: unknown call kind", None
+    prefix, name = m.groups()
+    try:
+        if prefix in ("DataAction", "ScreenDataSet"):
+            got = mcp_element("screen" if owner == screen else "block", module, owner).get(name)
+            if got is None:
+                return "not found in MCP (DEV)", None
+            return (", ".join(f"`{x}`" for x in got) or ("aggregate (entities only)" if prefix == "ScreenDataSet" else "no server action")), None
+        kind = "service" if prefix == "ServiceAPI" else "server"
+        got = mcp_action(kind, module, name)
+        return (", ".join(f"`{x}`" for x in got) or "no server or service action"), None
+    except mcp_client.NotOpen:
+        return f"waiting: open module `{module}`", module
+    except mcp_client.McpError as e:
+        return f"not found in MCP (DEV): {str(e)[:80]}", None
 
 
 # ---------------------------------------------------------------------------------------------------------------
@@ -196,11 +205,7 @@ def tst_route(screen):
         return None
     facts = load(os.path.join(base, "facts.json"))
     calls = load(os.path.join(base, "calls.json"))["calls"] if os.path.exists(os.path.join(base, "calls.json")) else []
-    srcdir = os.path.join(base, "sources", "raw")
-    sources = {f: open(os.path.join(srcdir, f), encoding="utf-8", errors="replace").read() for f in os.listdir(srcdir)}
-    import analyze_capture as ac
-    nodes, edges, endpoints = ac.call_graph(sources)
-    return {"facts": facts, "calls": calls, "nodes": nodes, "edges": edges, "endpoints": endpoints}
+    return {"facts": facts, "calls": calls}
 
 
 def survey_screen(screen):
@@ -276,7 +281,7 @@ def check(route):
     tst = tst_route(route)
     if tst is None:
         sys.exit(f"{route}: no TST capture (migration/screens/{route}/analysis/facts.json); the pilot covers captured routes")
-    facts, nodes, edges, endpoints = tst["facts"], tst["nodes"], tst["edges"], tst["endpoints"]
+    facts = tst["facts"]
     shell_r, page_r, all_r = react_data(route)
     cpaths = contract_paths()
     meta = route_meta(route)
@@ -301,35 +306,11 @@ def check(route):
     for f in rendered:
         short_to_file.setdefault(short(f), f)
 
-    # --- graph helpers -------------------------------------------------------------------------------------------
-    callees = collections.defaultdict(set)
-    for a, b in edges:
-        callees[a].add(b)
-    url_of_node = collections.defaultdict(set)
-    for url, ids in endpoints.items():
-        for i in ids:
-            url_of_node[i].add(url)
-
-    def effects(nid):
-        """Endpoints that an action reaches. A block event that the action raises is not followed: the handler of
-        the parent block owns what happens next."""
-        seen, todo2, out = set(), [nid], set()
-        while todo2:
-            n = todo2.pop()
-            if n in seen:
-                continue
-            seen.add(n)
-            out |= url_of_node.get(n, set())
-            todo2 += [c for c in callees.get(n, ()) if not c.startswith("evt:")]
-        return out
-
     # --- endpoints (TST callSites) -------------------------------------------------------------------------------
     observed = {c["path"].split("/UBTConnect/", 1)[-1]: c for c in tst["calls"]}
     observed = {("screenservices/" + k.split("screenservices/", 1)[-1]): v for k, v in observed.items()}
     react_calls = []
-    shell_keys = set(shell_r["reachedKeys"])
     for c in page_r["calls"]:
-        unit = f"{c['file']}::{c['fn']}"
         where = "shell + page" if any(c["file"] == s["file"] and c["line"] == s["line"] for s in shell_r["calls"]) else "page"
         react_calls.append({**c, "where": where})
     for c in shell_r["calls"]:
@@ -389,38 +370,14 @@ def check(route):
         if not any(p in tst_urls for p in ps):
             react_only.append({**c, "osPaths": ps})
 
-    # --- backend (MCP) for data actions of UBTConnect elements ---------------------------------------------------
-    backend = {}
-    for f in rendered:
-        das = js.get(f, {}).get("dataActions", [])
-        if not das:
-            continue
-        mod = f.split(".")[0]
-        kind = "screen" if f == sfile else "block"
-        b = mcp_backend(kind, mod, short(f))
-        for da in das:
-            name = re.sub(r"^DataAction", "", da["name"])
-            if b is None:
-                backend[da["url"]] = f"not read: module `{mod}` is not readable by MCP now"
-            else:
-                items = b.get(name)
-                backend[da["url"]] = ", ".join(f"`{x}`" for x in items) if items else "none found (MCP)"
+    # --- inside each server call (MCP, DEV; only open modules) -----------------------------------------------------
+    closed = collections.defaultdict(list)
     for e in eps:
-        e["backend"] = backend.get(e["url"], "–")
-
-    # --- KB ------------------------------------------------------------------------------------------------------
-    kb_cache = {}
-
-    def kb(mod):
-        if mod not in kb_cache:
-            kb_cache[mod] = kb_module(mod)
-        return kb_cache[mod]
+        e["inside"], mod = inside(e["url"], route)
+        if mod:
+            closed[mod].append(e["short"])
 
     # --- React name index ----------------------------------------------------------------------------------------
-    react_files = {}
-    for r in (page_r, shell_r):
-        for f, names in r["fileFunctions"].items():
-            react_files.setdefault(f, set()).update(names)
     origin_files = collections.defaultdict(set)
     for r in (page_r, shell_r):
         for o in r["origins"]:
@@ -448,106 +405,11 @@ def check(route):
         return [], None
 
     ports = {f: port_of(f) for f in rendered}
-    core_index = collections.defaultdict(set)
-    for f, names in react_files.items():
-        for n in names:
-            core_index[core(n)].add((n, f))
-
-    def name_match(name, prefer_files=()):
-        c = core(name)
-        if len(c) < 5:
-            return None
-        hits = core_index.get(c, set())
-        if not hits:
-            return None
-        pref = [h for h in hits if h[1] in prefer_files]
-        n, f = sorted(pref or hits)[0]
-        return n, f
-
-    # --- client actions per rendered file ------------------------------------------------------------------------
-    actions = []
-    for f in rendered:
-        mod = f.split(".")[0]
-        el = short(f)
-        pfiles, pev = ports[f]
-        ofiles = set(pfiles) if pev in ("tag", "name") else set()
-        kbm = kb(mod)
-        kbe = (kbm or {}).get("elems", {}).get(el)
-        kb_actions = {k[0].lower() + k[1:]: v for k, v in (kbe or {}).get("screenActions", {}).items()}
-        tst_names = js.get(f, {}).get("clientActions", [])
-        for a in tst_names:
-            nid = f"act:{f}:{a}"
-            eff = sorted(effects(nid))
-            nm = name_match(a, ofiles)
-            missing_eff = [u for u in eff if u in tst_urls and not react_by_url.get(u)]
-            if mod.startswith(PLATFORM_MODULES):
-                status = "matched" if nm else "platform"
-            elif nm:
-                status = "matched"
-            elif eff and not missing_eff and ofiles:
-                status = "matched (effects)"
-            elif missing_eff:
-                status = "missing"
-            elif ofiles:
-                status = "in ported block"
-            else:
-                status = "unclear"
-            actions.append({"file": f, "group": group_of_file[f], "element": el, "module": mod, "action": a,
-                            "effects": eff, "missingEffects": missing_eff, "nameMatch": nm, "originFiles": sorted(ofiles),
-                            "portEvidence": pev, "kb": kb_actions.get(a), "inKb": kbe is not None, "status": status})
-        if kbe:
-            for k in kb_actions:
-                if k not in tst_names:
-                    actions.append({"file": f, "group": group_of_file[f], "element": el, "module": mod, "action": k,
-                                    "effects": [], "missingEffects": [], "nameMatch": None, "originFiles": sorted(ofiles),
-                                    "kb": kb_actions[k], "inKb": True, "status": "dev-only"})
-
-    # --- module client actions reached ---------------------------------------------------------------------------
-    roots = [n for n in nodes if (n.split(":")[0] in ("act", "life", "ui", "evt", "start", "da") and n.split(":")[1] in rendered)]
-    app_roots = [n for n in nodes if n.startswith("mod:") and APP_ROOT_RE.match(n.split(":")[-1])]
-    reach_from = {}
-    for grp, rs in (("screen", roots), ("shell", app_roots)):
-        seen, todo3 = set(), list(rs)
-        while todo3:
-            n = todo3.pop()
-            if n in seen:
-                continue
-            seen.add(n)
-            todo3 += list(callees.get(n, ()))
-        for n in seen:
-            if n.startswith("mod:"):
-                reach_from.setdefault(n, set()).add(grp)
-    mod_actions = []
-    for n, grps in sorted(reach_from.items()):
-        _, mod, name = n.split(":", 2)
-        eff = sorted(effects(n))
-        nm = name_match(name)
-        missing_eff = [u for u in eff if u in tst_urls and not react_by_url.get(u)]
-        if mod.startswith(PLATFORM_MODULES) or mod.endswith("Plugin") or "Plugin" in mod:
-            status = "matched" if nm else "platform"
-        elif nm:
-            status = "matched"
-        elif eff and not missing_eff:
-            status = "matched (effects)"
-        elif missing_eff:
-            status = "missing"
-        else:
-            status = "no effect"
-        mod_actions.append({"module": mod, "action": name, "group": "shell" if grps == {"shell"} else "screen",
-                            "app": n in app_roots, "effects": eff, "missingEffects": missing_eff, "nameMatch": nm,
-                            "status": status})
-
     # --- blocks --------------------------------------------------------------------------------------------------
     blocks = []
     for f in rendered:
-        mod = f.split(".")[0]
-        el = short(f)
-        kbm = kb(mod)
-        r = (kbm or {}).get("rules", {}).get(el)
-        blocks.append({"file": f, "key": file_key(f), "group": group_of_file[f], "module": mod,
-                       "react": ports[f][0], "evidence": ports[f][1],
-                       "kbPage": f"{KB_LABEL}/{r['page']}" if r else None, "rules": (r or {}).get("rules", []),
-                       "inKb": bool(kbm and el in kbm["elems"]), "kbModule": bool(kbm)})
+        blocks.append({"file": f, "key": file_key(f), "group": group_of_file[f], "module": f.split(".")[0],
+                       "react": ports[f][0], "evidence": ports[f][1]})
 
     # --- navigation ----------------------------------------------------------------------------------------------
     os_nav = collections.defaultdict(set)
@@ -565,7 +427,7 @@ def check(route):
             react_nav[n["to"]].add(f"{n['file']}:{n['line']}")
 
     result = {"route": route, "screenFile": sfile, "flow": flow, "survey": sv, "meta": meta, "endpoints": eps,
-              "reactOnly": react_only, "reactUnknown": react_unknown, "actions": actions, "moduleActions": mod_actions,
+              "reactOnly": react_only, "reactUnknown": react_unknown, "closed": dict(closed),
               "blocks": blocks, "osNav": {k: sorted(v) for k, v in os_nav.items()},
               "reactNav": {k: sorted(v) for k, v in react_nav.items()}, "observedCount": len(tst["calls"]),
               "react": {"shellFiles": len(shell_r["files"]), "pageFiles": len(page_r["files"]),
@@ -667,182 +529,98 @@ def render(r):
     route = r["route"]
     eps = r["endpoints"]
     cnt = collections.Counter(e["status"] for e in eps)
-    act_cnt = collections.Counter(a["status"] for a in r["actions"])
-    mod_cnt = collections.Counter(a["status"] for a in r["moduleActions"])
     blocks_ported = sum(1 for b in r["blocks"] if b["evidence"] in ("tag", "name"))
     nav_missing = [t for t in r["osNav"] if t not in r["reactNav"]]
+    closed = r["closed"]
     mm = mermaid(r)
     os.makedirs(os.path.join(OUT, "svg"), exist_ok=True)
     open(os.path.join(DATA, f"{route}.mmd"), "w").write(mm)
-    L = [f"# {route}: OutSystems actions against React", "",
-         f"Generated by `migration/tools/route_actions/check_route.py` on {date.today().isoformat()}. The tool reads "
-         "the sources below. It does not run the app.", "",
+    L = [f"# {route}: server calls in OutSystems and React", "",
+         f"This file compares the server calls of the route `/UBTConnect/{route}` in OutSystems (TST) with the calls "
+         "of the React app.",
+         f"The tool `migration/tools/route_actions/check_route.py` wrote this file on {date.today().isoformat()}.",
+         "The tool reads the code. It does not run the app.", "",
+         "## 1. Route", "",
          "| Item | Value | Source |", "|---|---|---|",
          f"| Route | `/UBTConnect/{route}` | `app/src/app/routes.generated.ts` |",
-         f"| OutSystems screen | `{file_key(r['screenFile'])}` | TST compiled code (`migration/survey/screens.json`) |",
-         f"| UI flow | `{r['flow']}` | MCP `getScreenNames` (DEV); TST flow `{r['survey']['flow']}` |",
-         f"| React page | {link(r['react']['pageEntry'])} | `app/src/pages/` |",
-         f"| React route meta | access `{r['meta']['access']}`, lock `{r['meta']['lock']}`, flag redirect {r['meta']['flagRedirect']} | `app/src/app/routes.ts` |",
-         f"| TST runtime capture | {r['observedCount']} calls observed | `migration/screens/{route}/analysis/calls.json` |",
-         f"| Code read | OutSystems: {len([b for b in r['blocks']])} rendered screen and block files. React: {r['react']['shellFiles']} app shell files, {r['react']['pageFiles']} page files | facts.json, react_calls.mjs |",
-         "", "## 1. Result", "",
+         f"| OutSystems screen | `{file_key(r['screenFile'])}` | TST compiled code |",
+         f"| UI flow | `{r['flow']}` | MCP `getScreenNames` (DEV) |",
+         f"| React screen | {link(r['react']['pageEntry'])} | `app/src/pages/` |",
+         f"| React route rules | access `{r['meta']['access']}`, lock `{r['meta']['lock']}`, flag redirect {r['meta']['flagRedirect']} | `app/src/app/routes.ts` |",
+         f"| Code read | OutSystems: {len(r['blocks'])} screen and block files. React: {r['react']['shellFiles']} app shell files and {r['react']['pageFiles']} screen files | TST `facts.json`, `react_calls.mjs` |",
+         "", "## 2. Result", "",
          "| Check | Result |", "|---|---|",
-         f"| Endpoints (server calls) | {len(eps)} on TST: {cnt['implemented']} implemented, **{cnt['missing']} missing** |",
-         f"| React calls with no TST endpoint on this route | {len(r['reactOnly'])} |",
-         f"| Screen and block client actions | {len(r['actions'])}: " + ", ".join(f"{k} {v}" for k, v in sorted(act_cnt.items())) + " |",
-         f"| Module client actions reached | {len(r['moduleActions'])}: " + ", ".join(f"{k} {v}" for k, v in sorted(mod_cnt.items())) + " |",
-         f"| Rendered blocks with a React port (`@origin`) | {blocks_ported} of {len(r['blocks'])} |",
-         f"| Navigation targets | {len(r['osNav'])} on TST, {len(nav_missing)} not found in React |", "",
-         "Statuses: [legend](#8-method-and-legend).", "",
-         "## 2. Diagram", "",
-         "Each OutSystems root (block or app-level action) leads to the endpoints it calls. Each endpoint is joined "
-         "to the React function that calls it. Red = missing in React.", "",
+         f"| Server calls on TST | {len(eps)}: React makes {cnt['implemented']}, **{cnt['missing']} missing** |",
+         f"| React calls that TST does not make on this route | {len(r['reactOnly'])} (see [questions](#6-questions)) |",
+         f"| Screen and blocks with a React port | {blocks_ported} of {len(r['blocks'])} |",
+         f"| Navigation targets found in React | {len(r['osNav']) - len(nav_missing)} of {len(r['osNav'])} |",
+         f"| Modules that MCP did not read | {len(closed)}" + (": " + ", ".join(f"`{m}`" for m in sorted(closed)) if closed else "") + " |",
+         "", "## 3. Diagram", "",
+         "- A box on the left is the OutSystems block or app action that makes the call.",
+         "- A line connects each call to the React function that makes the same call.",
+         "- A red box is a call that React does not make.", "",
          f"![{route} diagram](svg/{route}.svg)", "", "<details><summary>Mermaid source</summary>", "",
          "```mermaid", mm, "```", "", "</details>", "",
-         "## 3. Endpoints (server calls)", "",
-         "| # | Endpoint (TST) | Kind | Where (OS) | First chain (TST compiled) | TST runtime | Inside the endpoint (MCP, DEV) | React call | Where (React) | Status |",
-         "|---|---|---|---|---|---|---|---|---|---|"]
+         "## 4. Server calls", "",
+         "| # | Call (TST) | Kind | Part | Made by (TST) | Seen on TST | Inside the call (MCP, DEV) | React function | Status |",
+         "|---|---|---|---|---|---|---|---|---|"]
     for i, e in enumerate(sorted(eps, key=lambda e: (e["group"], e["short"])), 1):
-        chain = " → ".join(e["chains"][0][-4:]) if e["chains"] else "–"
-        rc = "<br>".join(f"`{c['fn']}()` {link(c['file'], c['line'])}" for c in e["react"]) or (
-            "not reached: " + "<br>".join(f"`{c['fn']}()` {link(c['file'], c['line'])}" for c in e.get("elsewhere", []))
-            if e.get("elsewhere") else "no React code")
-        where = ", ".join(sorted({c["where"] for c in e["react"]})) or "–"
+        chain = " → ".join(e["chains"][0][-3:]) if e["chains"] else "–"
+        rc = "<br>".join(f"`{c['fn']}()` {link(c['file'], c['line'])} ({c['where']})" for c in e["react"]) or "–"
         st = f"**{e['status']}**" if e["status"] == "missing" else e["status"]
-        L.append(f"| {i} | `{e['short']}` | {e['kind']} | {e['group']} | {md_escape(chain)} | {e['observed']} | {e['backend']} | {rc} | {where} | {st} |")
-    L += ["", "### React calls with no TST endpoint on this route", ""]
-    if r["reactOnly"]:
-        L += ["| React call | Where | Contract `x-os-paths` | Note |", "|---|---|---|---|"]
-        for c in r["reactOnly"]:
-            L.append(f"| `{c['fn']}()` → `{c['apiPath']}` {link(c['file'], c['line'])} | {c['where']} | "
-                     f"{', '.join('`' + p + '`' for p in c['osPaths']) or '–'} | unclear: see section 7 |")
-    else:
-        L.append("None.")
-    # client actions
-    L += ["", "## 4. Client actions of the screen and its blocks", "",
-          "Source: TST compiled code (`facts.json` → `js[file].clientActions`, call graph of `analyze_capture.py`). "
-          "KB column: the actions that the action calls in the DEV model (`contracts/ui.json` of the KB).", ""]
-    by_el = collections.defaultdict(list)
-    for a in r["actions"]:
-        by_el[(a["group"], a["file"])].append(a)
-    for (grp, f), acts in sorted(by_el.items()):
-        c = collections.Counter(a["status"] for a in acts)
-        ev = acts[0].get("portEvidence")
-        react = (", ".join(link(x) for x in acts[0]["originFiles"]) + (" (block name in the file, no tag)" if ev == "name" else "")) \
-            if acts[0]["originFiles"] else "not found in the React code of this route"
-        L += [f"<details><summary><code>{file_key(f)}</code> ({grp}): {len(acts)} actions; "
-              + ", ".join(f"{k} {v}" for k, v in sorted(c.items())) + "</summary>", "",
-              f"React port: {react}", "",
-              "| Action | Calls (KB, DEV) | Endpoints reached (TST) | React match | Status |", "|---|---|---|---|---|"]
-        for a in sorted(acts, key=lambda a: a["action"]):
-            kbc = ", ".join(f"`{x}`" for x in (a["kb"] or [])) or ("–" if a["inKb"] else "not in KB")
-            eff = "<br>".join(f"`{u.rsplit('/', 1)[-1]}`" for u in a["effects"]) or "–"
-            nm = f"`{a['nameMatch'][0]}` {link(a['nameMatch'][1])}" if a["nameMatch"] else "–"
-            st = f"**{a['status']}**" if a["status"] in ("missing", "unclear") else a["status"]
-            L.append(f"| `{a['action']}` | {md_escape(kbc)} | {eff} | {nm} | {st} |")
-        L += ["", "</details>", ""]
-    # module actions
-    L += ["## 5. Module client actions reached", "",
-          "The module actions that the screen, its blocks or the app-level roots (`onApplicationReady` and similar) "
-          "reach in the TST call graph.", ""]
-    by_mod = collections.defaultdict(list)
-    for a in r["moduleActions"]:
-        by_mod[a["module"]].append(a)
-    for mod, acts in sorted(by_mod.items()):
-        c = collections.Counter(a["status"] for a in acts)
-        L += [f"<details><summary><code>{mod}</code>: {len(acts)} actions; " + ", ".join(f"{k} {v}" for k, v in sorted(c.items())) + "</summary>", "",
-              "| Action | Reached from | Endpoints reached | React match | Status |", "|---|---|---|---|---|"]
-        for a in sorted(acts, key=lambda a: a["action"]):
-            eff = "<br>".join(f"`{u.rsplit('/', 1)[-1]}`" for u in a["effects"]) or "–"
-            nm = f"`{a['nameMatch'][0]}` {link(a['nameMatch'][1])}" if a["nameMatch"] else "–"
-            st = f"**{a['status']}**" if a["status"] == "missing" else a["status"]
-            L.append(f"| `{a['action']}` | {a['group']}{' (app root)' if a['app'] else ''} | {eff} | {nm} | {st} |")
-        L += ["", "</details>", ""]
-    # blocks
-    L += ["## 6. Rendered screen and blocks", "",
-          "| Screen or block | Where | React port (`@origin`) | KB page and rules (DEV) |", "|---|---|---|---|"]
-    for b in sorted(r["blocks"], key=lambda b: (b["group"], b["key"])):
-        files = "<br>".join(link(x) for x in b["react"])
-        react = {"tag": files, "name": f"{files}<br>(block name in the file, no tag)",
-                 "elsewhere": f"**not reached**; tag in {files}"}.get(b["evidence"], "**not found**")
-        kbp = (f"`{b['kbPage']}`" + (": " + ", ".join(b["rules"]) if b["rules"] else "")) if b["kbPage"] else (
-            "in KB (`contracts/ui.json`)" if b["inKb"] else ("not in KB" if b["kbModule"] else "module not in KB"))
-        L.append(f"| `{b['key']}` | {b['group']} | {react} | {kbp} |")
-    # navigation
-    L += ["", "### Navigation targets", "", "| Target | From (TST) | React |", "|---|---|---|"]
-    for t in sorted(r["osNav"]):
-        rn = "<br>".join(f"`{x.replace('app/src/', '')}`" for x in r["reactNav"].get(t, [])[:3]) or "**not found**"
-        L.append(f"| `{t}` | {', '.join('`' + x + '`' for x in r['osNav'][t])} | {rn} |")
-    extra = sorted(set(r["reactNav"]) - set(r["osNav"]))
-    if extra:
-        L += ["", "React targets with no TST navigation in the rendered code: " + ", ".join(f"`{x}`" for x in extra) +
-              ". The app shell (bottom bar, menu, guards) has most of them."]
-    # missing + unclear
+        seen = {"observed": "yes", "not observed": "no", "not captured": "no capture"}[e["observed"]]
+        part = "app shell" if e["group"] == "shell" else "screen"
+        L.append(f"| {i} | `{e['short']}` | {e['kind']} | {part} | {md_escape(chain)} | {seen} | {e['inside']} | {rc} | {st} |")
+    L += ["", "## 5. Missing in React", ""]
     miss_eps = [e for e in eps if e["status"] == "missing"]
-    miss_acts = [a for a in r["actions"] + r["moduleActions"] if a["status"] == "missing"]
-    unclear = [a for a in r["actions"] if a["status"] == "unclear"]
-    L += ["", "## 7. Missing and unclear", "", "### Missing", ""]
     miss_blocks = [b for b in r["blocks"] if b["evidence"] not in ("tag", "name")]
-    if not (miss_eps or miss_acts or miss_blocks or nav_missing):
+    if not (miss_eps or miss_blocks or nav_missing):
         L.append("None.")
     for e in miss_eps:
-        L.append(f"- Endpoint `{e['short']}` ({e['kind']}, TST runtime: {e['observed']}). Chain: "
-                 + md_escape(" → ".join(e["chains"][0]) if e["chains"] else "–") + ".")
+        L.append(f"- Call `{e['short']}`. Chain on TST: " + md_escape(" → ".join(e["chains"][0]) if e["chains"] else "–") + ".")
         if e.get("elsewhere"):
-            L.append("  - React code exists, but this route does not reach it: " + ", ".join(
+            L.append("  - React has the function, but this route does not use it: " + ", ".join(
                 f"`{c['fn']}()` {link(c['file'], c['line'])}" for c in e["elsewhere"]) + ".")
         else:
-            L.append("  - No React code calls this endpoint.")
+            L.append("  - No React code makes this call.")
         for p, i, line in e.get("notes", []):
             L.append(f"  - Note in {link(p, i)}: \"{md_escape(line)}\"")
-    for a in miss_acts:
-        owner = file_key(a["file"]) if a.get("file") else a["module"]
-        L.append(f"- Client action `{owner}.{a['action']}`: it reaches " + ", ".join(f"`{u.rsplit('/', 1)[-1]}`" for u in a["missingEffects"]) + ", which React does not call on this route.")
     for b in miss_blocks:
-        where = f" A tag exists in {', '.join(link(x) for x in b['react'])}, but this route does not reach it." if b["evidence"] == "elsewhere" else " No React file has its tag or its name."
-        L.append(f"- Block `{b['key']}` ({b['group']}).{where}")
+        where = (f" A React file has its tag ({', '.join(link(x) for x in b['react'])}), but this route does not use it."
+                 if b["evidence"] == "elsewhere" else " No React file has its tag or its name.")
+        L.append(f"- Block `{b['key']}`.{where}")
     for t in nav_missing:
-        L.append(f"- Navigation to `{t}` (from {', '.join(r['osNav'][t])}): no React navigation to this route in the page or the app shell.")
-    L += ["", "### Unclear (questions)", ""]
-    qs = []
-    for c in r["reactOnly"]:
-        qs.append(f"React calls `{c['apiPath']}` from `{c['fn']}()` ({c['where']}), but TST HomeFeed has no chain to it. "
-                  "Is the call right on this route, or does it belong to another route?".replace("HomeFeed", route))
-    for a in unclear:
-        qs.append(f"`{file_key(a['file'])}.{a['action']}`: no React port of the block was found by `@origin`. Where is it?")
+        L.append(f"- Navigation to `{t}` (from {', '.join(r['osNav'][t])}). The React screen and the app shell do not go to this route.")
+    L += ["", "## 6. Questions", ""]
+    qs = [f"React calls `{c['apiPath']}` from `{c['fn']}()` {link(c['file'], c['line'])} ({c['where']}). TST {route} "
+          "has no chain to this call. Does the call belong to this route?" for c in r["reactOnly"]]
     L += [f"{i}. {q}" for i, q in enumerate(qs, 1)] or ["None."]
-    devonly = [a for a in r["actions"] if a["status"] == "dev-only"]
-    L += ["", "### DEV and TST differences", ""]
-    L += [f"- `{file_key(a['file'])}.{a['action']}` is in the KB (DEV, 2026-10-05) but not in the TST compiled code. "
-          "TST wins: not counted." for a in devonly] or ["None found."]
-    L += ["", "## 8. Method and legend", "",
-          "1. **OutSystems, TST.**",
-          "   - Rendered files come from `facts.json` `renderedFiles`.",
-          "   - Client actions and endpoints come from `facts.json` (`js`, `callSites`) and from the call graph of "
-          f"`analyze_capture.py` over `migration/screens/{route}/analysis/sources/raw/`.",
-          "   - Group `shell` holds `CommonUI_InsideLayout`, the blocks inside it, and the chains that start at an "
-          "app-level action. Group `screen` holds the screen and its other blocks.",
-          "2. **KB, DEV design time.** `contracts/ui.json` (the actions each action calls) and the `ui/*.md` pages "
-          "(business rules `BR-*`) of `~/Projects/ubt_sharing_kb/connect/outsystems`.",
-          "3. **MCP, DEV.** UI flow, and the server or service actions inside each data action of the UBTConnect "
-          "screen and blocks (`getScreen`, `getWebBlock`, read only).",
-          "4. **React.** `react_calls.mjs` reads two closures with the TypeScript type checker: the app shell from "
-          "`app/src/main.tsx` (router, `AppFrame`, `AppStart`, `RouteGuard`, hosts) and the page from its "
-          "`<Route>Page.tsx`. Only declarations that the code uses are counted. Endpoint match: `callAction(M, A)` → "
-          "`/api/M/A` → `x-os-paths` of `app/src/api/openapi.yaml` = the TST URL.", "",
-          "| Status | Meaning |", "|---|---|",
-          "| implemented | A React call reaches the same TST endpoint. |",
-          "| missing | TST has it on this route; React has no match. For a client action: it reaches an endpoint that React does not call. |",
-          "| matched | A React function with the same name (prefixes `on`, `handle`, `handler`, `event`, `screenEvent` and `_` ignored). |",
-          "| matched (effects) | No name match, but React calls every endpoint that the action reaches. |",
-          "| in ported block | The block has a React port (`@origin`). The action calls no endpoint, so there is nothing more to compare. |",
-          "| no effect | A module action that calls no endpoint and has no name match. It is not compared. |",
-          "| platform | OutSystems UI, NavigationHandler, JavaScript utilities and plugins. React has platform code for them; compared by name only. |",
-          "| dev-only | In the KB (DEV) but not in the TST compiled code. Not counted. |",
-          "| unclear | The tool cannot decide. A question is in section 7. |", "",
-          "Limits: static reading only. A client action is \"reached\" when the TST call graph links it; JavaScript "
-          "nodes and widget events that the graph does not parse can hide callers. A name match is not proof of the "
-          "same behaviour. The parity checks of the migration cover the behaviour."]
+    L += ["", "## 7. Modules to open in Service Studio", ""]
+    if closed:
+        L += ["MCP reads only the modules that are open in Service Studio. The tool does not guess the content of the "
+              "other modules.", "",
+              "1. Open each module below in Service Studio.",
+              "2. Run the tool again. The column \"Inside the call\" then shows the result.", "",
+              "| Module | Calls that wait |", "|---|---|"]
+        for m in sorted(closed):
+            L.append(f"| `{m}` | " + "<br>".join(f"`{x}`" for x in closed[m]) + " |")
+    else:
+        L.append("None. MCP read all the modules of this route.")
+    L += ["", "## 8. Method", "",
+          "1. **OutSystems (TST).** The tool reads `facts.json` of `migration/screens/" + route + "/analysis/`:",
+          "   - the screen and block files that TST renders;",
+          "   - each server call, and the chain of client actions that makes the call;",
+          "   - the calls that TST made in the capture (`calls.json`).",
+          "2. **Part.** `app shell` is `CommonUI_InsideLayout`, its blocks and the app-level actions. `screen` is the "
+          "screen and its other blocks.",
+          "3. **MCP (DEV).** The tool reads the UI flow and the inside of each call with `getScreen`, `getWebBlock`, "
+          "`getServerAction` and `getServiceAction`. TST wins when DEV is different.",
+          "4. **React.** `react_calls.mjs` reads the app shell from `app/src/main.tsx` and the screen from its "
+          "`<Route>Page.tsx`. It counts only the code that the app uses.",
+          "5. **Match.** `callAction(M, A)` gives `/api/M/A`. The `x-os-paths` of `app/src/api/openapi.yaml` give the "
+          "TST call. The status is `implemented` when the TST call is the same. Else the status is `missing`.", "",
+          "Limit: a name or a call match does not prove the same behaviour. The parity checks of the migration "
+          "compare the behaviour."]
     p = os.path.join(OUT, f"{route}.md")
     open(p, "w", encoding="utf-8").write("\n".join(L) + "\n")
     subprocess.run(["node", os.path.join(ROOT, "migration", "tools", "route_actions", "render_svg.cjs"),
@@ -868,7 +646,9 @@ def main():
         return
     r = check(a.route)
     render(r)
-    write_routes()
+    write_routes(waiting=a.route if r["closed"] else None)
+    if r["closed"]:
+        print("open these modules in Service Studio, then run again:", ", ".join(sorted(r["closed"])))
 
 
 if __name__ == "__main__":

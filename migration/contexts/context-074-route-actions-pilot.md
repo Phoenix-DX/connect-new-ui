@@ -4,38 +4,39 @@
 - New pipeline `migration/tools/route_actions/` ([README](../tools/route_actions/README.md)): one route at a time, one
   file `migration/route-actions/<Route>.md` with an SVG diagram; list and status in
   [`ROUTES.md`](../route-actions/ROUTES.md).
-- Pilot [`HomeFeed.md`](../route-actions/HomeFeed.md) is `done`:
+- Pilot run 2 (user feedback, same day): no KB, MCP only; sections "client actions", "module actions" and
+  "rendered blocks" removed; STE style. [`HomeFeed.md`](../route-actions/HomeFeed.md) went from 1,667 to 224 lines.
+  Status `waiting for MCP`: 4 modules are not open (`Connect2_LegacyShared`, `UBTConnect_EmbedFeed`,
+  `UBTConnect_Utils`, `UBT_AppManager`).
+- HomeFeed result:
   - 21 TST endpoints: 18 implemented, 3 missing (`CS_CreateShareProfileLink` ×2, `GetAllApplicationEvents`);
   - 2 React calls with no TST chain (questions);
   - 65 of 65 blocks ported; 23 of 23 navigation targets found.
 - No file in `app/` changed.
 
 ## Decisions (who, date)
-- User 2026-11-04: per-route pipeline, no summary report.
-- User 2026-11-04: KB `~/Projects/ubt_sharing_kb` first, MCP only for gaps.
-- User 2026-11-04: read the React app shell as well as the page.
+- User 2026-11-04: per-route pipeline, no summary report; read the React app shell as well as the screen.
+- User 2026-11-04 (run 1): KB `~/Projects/ubt_sharing_kb` first, MCP only for gaps. Replaced (run 2): no KB; read
+  MCP directly; the user opens each module that the route needs; the tool does not guess a closed module.
+- User 2026-11-04 (run 2): the route file has no tables of client actions, module actions or rendered blocks; STE.
 - User 2026-11-04: MCP modules UBTConnect + Connect2_* + UBTConnect_Utils + UBT_AppManager + UBTConnectLibrary +
   NavigationHandler; scope 68 build routes; Mermaid + SVG.
 - User 2026-11-04: pilot HomeFeed first, wait for feedback before the next route.
 
 ## Facts learned (evidence)
-- MCP reads UBTConnect without opening it. Other modules answer "No module is currently open".
-- TST compiled sources in `migration/screens/<S>/analysis/sources/raw/` cover UBTConnectLibrary and NavigationHandler,
-  so the per-element dump was not needed for the pilot.
-- The KB has no data action internals in `contracts/ui.json`. MCP `getScreen`/`getWebBlock` give them; for example
-  `FetchCount` → `Connect_Geography_CS.Get_UI_MembersStatistics`, which agrees with the KB page `ui/home-feed.md`.
+- MCP `getServerAction` gives the actions inside a server action (`Sync_Info_GetMain` calls 5). `getServiceAction`
+  gives the producer module of a service action (`Connect_Map_CS`, `Connect_Updates_CS`). A closed module answers
+  "No module is currently open".
 - 17 of 68 build routes have `no-capture.json` (no `facts.json`). The tool stops for them; the user decides how to
   cover them.
 
 ## Files changed
 - New: `migration/tools/route_actions/` (4 tools + README), `migration/route-actions/` (`ROUTES.md`, `HomeFeed.md`,
-  `svg/HomeFeed.svg`), this context.
-- Updated: `.gitignore` (`migration/route-actions/raw/`, `data/`), `INDEX.md`.
+  `svg/`), this context. Updated: `.gitignore` (`migration/route-actions/raw/`, `data/`), `INDEX.md`.
 
 ## Open issues
-- The user's feedback on the pilot format.
+- The user opens the 4 modules, then HomeFeed runs again; then the user's feedback on the format.
 - The 17 routes without a TST capture.
-- MCP for modules other than UBTConnect needs the module open in Service Studio.
 
 ## Next
-- After the user's feedback: run the next routes one by one, and mark each one `done`.
+- After the modules and the feedback: mark HomeFeed `done`, then run the next routes one by one.

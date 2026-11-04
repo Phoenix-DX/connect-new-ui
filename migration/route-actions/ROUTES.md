@@ -1,6 +1,8 @@
 # Routes: OutSystems actions against React
 
-One file per route. Run `python3 migration/tools/route_actions/check_route.py <Route>` (see [README](../tools/route_actions/README.md)). Progress: **1 of 68** build routes done.
+One file per route. Run `python3 migration/tools/route_actions/check_route.py <Route>` (see [README](../tools/route_actions/README.md)). Progress: **0 of 68** build routes done.
+
+Status `waiting for MCP`: the route file lists the modules to open in Service Studio. Open them, then run the tool again.
 
 UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read 2026-11-04. Routes and scope: `app/src/app/routes.generated.ts` (84 routes) and `migration/board.md`.
 
@@ -44,7 +46,7 @@ UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read 2026-11-04.
 | `SupperMeeting_Details` | `Directory_SupperMeetings` | todo |
 | `Updates_SingleList` | `Directory_Updates` | todo |
 | `FeedItemDetail` | `Home` | todo |
-| [`HomeFeed`](HomeFeed.md) | `Home` | done |
+| [`HomeFeed`](HomeFeed.md) | `Home` | waiting for MCP |
 | `AssembleDetail` | `Legacy_AssembleFlow` | todo |
 | `AssembleEvents` | `Legacy_AssembleFlow` | todo |
 | `Assemble_BrowseByCountry` | `Legacy_AssembleFlow` | todo |

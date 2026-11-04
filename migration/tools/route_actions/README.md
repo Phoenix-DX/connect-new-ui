@@ -1,8 +1,8 @@
 # Route actions: OutSystems against React, one route at a time
 
-The tools check one route: the OutSystems client actions and server calls of the route against the React app. Each
-run writes one file, `migration/route-actions/<Route>.md`, with an SVG diagram. `migration/route-actions/ROUTES.md`
-lists the 68 build routes and their status (`todo` / `done`). The pilot route is HomeFeed (user, 2026-11-04).
+The tools check the server calls of one route in OutSystems against the React app. Each run writes one file,
+`migration/route-actions/<Route>.md`, with an SVG diagram. `migration/route-actions/ROUTES.md` lists the 68 build
+routes and their status. The pilot route is HomeFeed (user, 2026-11-04).
 
 ## Commands
 
@@ -21,30 +21,49 @@ After a change in `app/src`, delete `migration/route-actions/data/react-shell.js
 shell again. Git ignores `migration/route-actions/data/` (the tools make it again) and `migration/route-actions/raw/`
 (the MCP cache).
 
-## Sources, in order of use
+## Route status
 
-1. **KB** (DEV design time, extracted 2026-10-05): `~/Projects/ubt_sharing_kb/connect/outsystems/apps/*/modules/<Module>/`.
-   The tools read `contracts/ui.json` (the actions that each screen action calls) and `ui/*.md` (business rules `BR-*`).
-2. **TST**, in this repository. TST wins over DEV.
-   - `migration/screens/<S>/analysis/facts.json`: the rendered files, the client actions and endpoints per file, and the
-     call chains to each endpoint.
-   - `analysis/calls.json`: the calls observed on TST.
-   - `analysis/sources/raw/`: the compiled code. The call graph of
-     `.claude/skills/outsystems-screen-spec/scripts/analyze_capture.py` reads it.
+| Status | Meaning |
+|---|---|
+| `todo` | The tool did not check the route. |
+| `waiting for MCP` | MCP did not read one or more modules. Section 7 of the route file lists them. |
+| `done` | The user accepted the route file. |
+
+## Sources
+
+1. **TST**, in this repository. TST wins over DEV.
+   - `migration/screens/<S>/analysis/facts.json`: the rendered files, the server calls, and the chain of client
+     actions to each call.
+   - `analysis/calls.json`: the calls that TST made in the capture.
    - `migration/survey/screens.json` and `app/src/api/openapi.yaml` (`x-os-paths`).
-3. **MCP** (DEV, read only, `mcp_client.py`), only for what the KB and TST do not give:
+2. **MCP** (DEV, read only, `mcp_client.py`):
    - the UI flow of each screen (`getScreenNames`);
-   - the server and service actions inside the data actions of UBTConnect screens and blocks (`getScreen`, `getWebBlock`).
+   - the inside of each server call: `getScreen` and `getWebBlock` for data actions, `getServerAction` for server
+     actions, `getServiceAction` for service actions.
 
-   The answers are cached in `migration/route-actions/raw/mcp/`, which git ignores. A module that is not open in
-   Service Studio cannot be read; the route file then says "not read".
-4. **React** (`react_calls.mjs`, TypeScript type checker through ts-morph from `app/node_modules`):
+   MCP reads only the modules that are open in Service Studio. The tool does not guess the content of a closed
+   module. It lists the closed modules in the route file. The user opens them, then the tool runs again (user,
+   2026-11-04). The answers are cached in `migration/route-actions/raw/mcp/`.
+3. **React** (`react_calls.mjs`, TypeScript type checker through ts-morph from `app/node_modules`):
    - `shell`: the app shell from `app/src/main.tsx` (router, `AppFrame`, `AppStart`, `RouteGuard`, hosts);
-   - `page <Route>`: the page from `app/src/pages/<Route>/<Route>Page.tsx`;
+   - `page <Route>`: the screen from `app/src/pages/<Route>/<Route>Page.tsx`;
    - `all`: every `callAction` call and every `@origin` / `@os-block` tag in `app/src`.
 
-   In the shell and the page, the tool counts only the declarations that the code uses. It skips tests, stories,
+   In the shell and the screen, the tool counts only the declarations that the code uses. It skips tests, stories,
    `src/test/` and `src/mocks/`.
+
+## Route file
+
+| Section | Content |
+|---|---|
+| 1. Route | The route, the OutSystems screen, the UI flow, the React screen and its route rules. |
+| 2. Result | The counts. |
+| 3. Diagram | OutSystems block → server call → React function. A red box is a missing call. |
+| 4. Server calls | One row per TST call: the chain, the inside (MCP), the React function, the status. |
+| 5. Missing in React | The calls, blocks and navigation targets that React does not have. |
+| 6. Questions | The React calls that TST does not make on the route. |
+| 7. Modules to open | The modules that MCP did not read. |
+| 8. Method | How the tool gets each fact. |
 
 ## Files
 
@@ -57,22 +76,17 @@ shell again. Git ignores `migration/route-actions/data/` (the tools make it agai
 
 ## Match rules
 
-- **Endpoint.** React `callAction(M, A)` becomes `/api/M/A`. Its `x-os-paths` in the contract give the TST URL. The
-  endpoint is `implemented` when the URL is the same.
-- **Missing endpoint.** The route file says whether React code for it exists elsewhere. It also quotes the lines of
-  the React READMEs that name the action.
-- **Client action.** The tool compares names after it drops `_` and the prefixes `on`, `handle`, `handler`, `event`
-  and `screenEvent`. Without a name match, the action is `matched (effects)` when React calls every endpoint that the
-  action reaches.
-- **Block events.** The tool does not follow a block event into the parent handler. The parent block owns that call.
-- **Block port.** The `@origin` or `@os-block` tag gives the React file. Without a tag, the block name in a file of the
-  route counts, and the file says so.
+- **Server call.** React `callAction(M, A)` becomes `/api/M/A`. Its `x-os-paths` in the contract give the TST URL.
+  The call is `implemented` when the URL is the same. Else the call is `missing`.
+- **Missing call.** The route file says whether React code for the call exists elsewhere. It also quotes the lines
+  of the React READMEs that name the action.
+- **Block port.** The `@origin` or `@os-block` tag gives the React file. Without a tag, the block name in a file of
+  the route counts.
 - **Navigation.** A path literal that ends in a route name counts. A bare route name counts only in a file that
   navigates.
 
 ## Limits
 
-- The tools read code; they do not run the app.
-- The TST call graph does not parse JavaScript nodes and some widget events, so a caller can be missing.
-- A name match does not prove the same behaviour. The parity checks of the migration cover the behaviour.
+- The tools read code. They do not run the app.
+- A name or a call match does not prove the same behaviour. The parity checks of the migration compare the behaviour.
 - A route without a TST capture (`no-capture.json`) has no `facts.json`. The tool stops for such a route.

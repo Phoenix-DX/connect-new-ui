@@ -5,7 +5,7 @@ section "Context notes".
 
 ## Now
 - Goal (user 2026-10-14): replace the OutSystems app in production; UI/UX 1:1. **Current focus (user 2026-10-17): local demo for colleagues, no production work.**
-- 2026-11-04: route actions pipeline ([context-074](context-074-route-actions-pilot.md), `migration/route-actions/ROUTES.md`): OutSystems actions and endpoints against React, one md per route; pilot HomeFeed done (3 missing endpoints, 2 questions). Waits for the user's feedback.
+- 2026-11-04: route actions pipeline ([context-074](context-074-route-actions-pilot.md), `migration/route-actions/ROUTES.md`): OutSystems actions and endpoints against React, one md per route; pilot HomeFeed run 2 (MCP only, no KB, short STE file): 3 missing calls, 2 questions; waits for the user to open 4 modules in Service Studio.
 - 2026-11-04: convention review of `app/src` ([context-073](context-073-app-conventions-review.md)): D1–D8 open. 2026-11-03: principal review ([context-072](context-072-app-principal-review.md)): WPs and V1–V6 open.
 - TST has 84 routes: 68 build (all finished), 16 skip. Demo: `npm --prefix app run build:demo`; dev http://localhost:5173/UBTConnect/HomeFeed (`?review=1`).
 - Next: the user's feedback on `HomeFeed.md`, then the next routes one by one.
@@ -87,4 +87,4 @@ section "Context notes".
 | [071](context-071-drift-wave.md) | 2026-10-29 | Drift wave: re-capture of all routes, WP1-WP9, TST publish 2 gaps G1-G4, OneSchoolGlobalCarousel finished, gallery flag on, MCP rows 9-16, failed fetches at start to the flow handler, Splash replace, flag route sync; ci 4756, sweep 68/0 | current |
 | [072](context-072-app-principal-review.md) | 2026-11-03 | Principal review of `app/`: facts pack, 6 Sonnet collectors, Opus lead; 33 findings (2 S1, 10 S2), gate blind spots, self-assessment gaps, roadmap WP-1 to WP-13, target folder structure | current |
 | [073](context-073-app-conventions-review.md) | 2026-11-04 | Convention review of `app/src`: 16 findings (two naming regimes, barrels against R8, two origin tags, page folder layout), decisions D1–D8, plan N0–N5 next to WP-7 | current |
-| [074](context-074-route-actions-pilot.md) | 2026-11-04 | Route actions pipeline (KB → TST → MCP gaps → React shell + page): one md per route, ROUTES.md list; pilot HomeFeed done (21 endpoints, 3 missing) | current |
+| [074](context-074-route-actions-pilot.md) | 2026-11-04 | Route actions pipeline (TST → MCP → React shell + screen; KB dropped in run 2): one md per route, ROUTES.md list; pilot HomeFeed (21 calls, 3 missing), waits for 4 modules | current |

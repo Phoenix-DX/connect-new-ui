@@ -16,6 +16,10 @@ class McpError(RuntimeError):
     pass
 
 
+class NotOpen(McpError):
+    """The module is not open in Service Studio. The user opens it; the tool does not guess its content."""
+
+
 def call(tool, inp, timeout=180):
     if not tool.startswith("get"):
         raise McpError(f"read-only client: tool {tool} is not allowed")
@@ -35,10 +39,13 @@ def call(tool, inp, timeout=180):
     if data is None:
         data = json.loads(txt)
     if "error" in data:
-        raise McpError(json.dumps(data["error"])[:300])
+        err = json.dumps(data["error"])[:300]
+        raise (NotOpen if "No module is currently open" in err else McpError)(err)
     res = data.get("result", {})
     content = res.get("content") or []
     text = "".join(c.get("text", "") for c in content if c.get("type") == "text")
+    if "No module is currently open" in text:
+        raise NotOpen(text[:300])
     if res.get("isError"):
         raise McpError(text[:300])
     try:
@@ -66,8 +73,8 @@ def screen_names(module="UBTConnect"):
 
 
 def element_code(kind, module, name):
-    """Model API code of a screen or block (kind: screen | block)."""
-    tool = {"screen": "getScreen", "block": "getWebBlock"}[kind]
+    """Model API code of a screen, block, server action or service action."""
+    tool = {"screen": "getScreen", "block": "getWebBlock", "server": "getServerAction", "service": "getServiceAction"}[kind]
     return cached(tool, module, name, {"eSpaceName": module, "objectName": name, "includeJson": "Never"})
 
 
