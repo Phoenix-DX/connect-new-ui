@@ -815,7 +815,7 @@ def split_branches(effects):
 def action_diagrams(r):
     """OutSystems: one sequence diagram per event binding of the TST views (and per branch of its handler)."""
     eps = {e["url"]: e for e in r.get("allEndpoints") or r["endpoints"]}
-    clean = lambda t: re.sub(r"[;#]", "", str(t))[:90]
+    clean = lambda t: re.sub(r"\s+", " ", re.sub(r"[;#]", "", str(t))).strip()[:90]  # one line: Mermaid ends a message at a newline
     out = []
     for a in r.get("userActions") or []:
         if "events" not in a:  # data of an older run: the route runs again later
@@ -858,7 +858,7 @@ def react_action_diagrams(acts, eps_all):
     for e in eps_all:
         for c in e["react"]:
             by_api.setdefault(c["apiPath"], e)
-    clean = lambda t: re.sub(r"[;#]", "", str(t))[:90]
+    clean = lambda t: re.sub(r"\s+", " ", re.sub(r"[;#]", "", str(t))).strip()[:90]  # one line: Mermaid ends a message at a newline
     out = []
     for a in acts:
         for br, effects in split_branches(a["effects"]):
