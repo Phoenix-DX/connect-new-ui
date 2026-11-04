@@ -4,11 +4,13 @@
 - Pipeline in [`route-actions/`](../../route-actions/README.md) at the repository root: one file per route in
   `route-actions/routes/`, status in [`ROUTES.md`](../../route-actions/ROUTES.md), the app shell in
   [`APP_SHELL.md`](../../route-actions/APP_SHELL.md). Mermaid diagrams as text.
-- 51 of 68 build routes done (all routes with a TST capture), 2026-11-04. The user let Claude mark done and go on
-  route by route (stop only for MCP). Status per route in [`ROUTES.md`](../../route-actions/ROUTES.md).
-- Real gaps found: `HouseholdRelations_Block/DataActionFetchNotes` (React opens the sheet without the fetch),
-  `GetEventsForCalendar` (LDM calendar view not in React), `CS_CreateShareProfileLink` and
-  `GetAllApplicationEvents` (share to others, audit events), `AppManager_Logout` (PINRegister back to login).
+- 51 of 68 build routes done (all routes with a TST capture), 2026-11-04. The user let Claude go on route by route.
+  Claude marked each route done and stopped only for MCP. Status per route in [`ROUTES.md`](../../route-actions/ROUTES.md).
+- Real gaps found:
+  - `HouseholdRelations_Block/DataActionFetchNotes`: React opens the notes sheet without the fetch.
+  - `GetEventsForCalendar`: React has no LDM calendar view.
+  - `CS_CreateShareProfileLink` and `GetAllApplicationEvents`: share to others and the audit events.
+  - `AppManager_Logout`: PINRegister "Back to login".
 - No file in `app/` changed.
 
 ## Decisions (who, date)
@@ -32,7 +34,6 @@
 - New: `route-actions/` (README, ROUTES.md, APP_SHELL.md, config.json, routes/, tools/), this context.
 - Updated: `.gitignore` (`route-actions/.cache/`), `INDEX.md`. Moved from `migration/route-actions/` and
   `migration/tools/route_actions/` with `git mv`.
-
 - Tool fixes 2026-11-04 (in the commits): TST messages with a variable, JS nodes (messages, action proxies),
   `tel:`/URL destinations, previous screen; React: hook closures and call-site arguments, props through JSX,
   hook spreads, `flow.run`/`flow.own`/`flow.events`, query refetch → calls, capture calls of another screen.
