@@ -383,8 +383,58 @@ function bodyOfDecl(d) {
   return null;
 }
 
-function effectsOf(fn, label, depth, seen) {
+// The closure of a function that a hook returns: the hook function and the call of the hook. A callback that the code
+// takes from a hook parameter (`events.onX()`, `useRef(events).current.onX?.()`, `{ onX }` of the parameter) is the
+// argument at that call.
+const ENV = new Map();
+
+function envResolve(ex, env) {
+  if (!env) return null;
+  const paramArg = (decl) => {
+    const prm = Node.isParameterDeclaration(decl) ? decl : decl?.getFirstAncestorByKind?.(SyntaxKind.Parameter);
+    if (!prm || prm.getParent() !== env.hookFn) return null;
+    return env.call.getArguments()[env.hookFn.getParameters().indexOf(prm)] ?? null;
+  };
+  const declOf = (n) => {
+    let sym = n.getSymbol?.();
+    if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
+    return sym?.getDeclarations()?.[0];
+  };
+  let arg = null, prop = null;
+  if (Node.isPropertyAccessExpression(ex)) {
+    prop = ex.getName();
+    let obj = ex.getExpression();
+    if (Node.isPropertyAccessExpression(obj) && obj.getName() === 'current') {
+      const rd = declOf(obj.getExpression());
+      const init = rd && Node.isVariableDeclaration(rd) ? rd.getInitializer() : null;
+      if (init && Node.isCallExpression(init) && init.getExpression().getText() === 'useRef') obj = init.getArguments()[0];
+    }
+    if (obj && Node.isIdentifier(obj)) arg = paramArg(declOf(obj));
+  } else if (Node.isIdentifier(ex)) {
+    const d = declOf(ex);
+    if (d && Node.isBindingElement(d)) {
+      prop = d.getPropertyNameNode()?.getText() ?? d.getName();
+      arg = paramArg(d);
+    }
+  }
+  if (!arg || !prop) return null;
+  if (Node.isIdentifier(arg)) {
+    const vd = declOf(arg);
+    const init = vd && Node.isVariableDeclaration(vd) ? vd.getInitializer() : null;
+    if (init && Node.isObjectLiteralExpression(init)) arg = init;
+  }
+  if (!Node.isObjectLiteralExpression(arg)) return null;
+  const p = arg.getProperty(prop);
+  if (!p) return null;
+  if (Node.isShorthandPropertyAssignment(p)) return resolveFn(p.getNameNode(), 0, p.getValueSymbol?.());
+  if (Node.isPropertyAssignment(p)) return resolveFn(p.getInitializer());
+  if (Node.isMethodDeclaration(p)) return p;
+  return null;
+}
+
+function effectsOf(fn, label, depth, seen, env = null) {
   const out = [];
+  env = ENV.get(fn) ?? env;
   const add = (kind, detail, node, lab) => out.push({ branch: lab ?? null, kind, detail, file: rel(node.getSourceFile().getFilePath()), line: node.getStartLineNumber() });
   const walk = (node, lab) => {
     if (!node) return;
@@ -429,7 +479,7 @@ function effectsOf(fn, label, depth, seen) {
           const d = sym?.getDeclarations()?.[0];
           const body = d && !excluded(d.getSourceFile().getFilePath()) ? bodyOfDecl(d) : null;
           if (!body || seen.has(body)) continue;
-          for (const e of effectsOf(body, lab, depth + 1, new Set([...seen, body]))) out.push({ ...e, either: true });
+          for (const e of effectsOf(body, lab, depth + 1, new Set([...seen, body]), env)) out.push({ ...e, either: true });
         }
         for (const c of node.getArguments()) walk(c, lab);
         return;
@@ -471,7 +521,7 @@ function effectsOf(fn, label, depth, seen) {
           const d = sym?.getDeclarations()?.[0];
           const body = d && !excluded(d.getSourceFile().getFilePath()) ? bodyOfDecl(d) : null;
           if (!body || seen.has(body)) continue;
-          const sub = effectsOf(body, lab, depth + 1, new Set([...seen, body]));
+          const sub = effectsOf(body, lab, depth + 1, new Set([...seen, body]), env);
           if (sub.length) {
             out.push({ branch: lab ?? null, kind: 'via', detail: a.getText(), file: rel(d.getSourceFile().getFilePath()), line: d.getStartLineNumber() });
             out.push(...sub);
@@ -482,7 +532,14 @@ function effectsOf(fn, label, depth, seen) {
         let sym = (Node.isPropertyAccessExpression(ex) ? ex.getNameNode() : ex).getSymbol?.();
         if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
         const d0 = sym?.getDeclarations()?.[0];
-        if (d0 && (Node.isParameterDeclaration(d0) || Node.isPropertySignature(d0) || (Node.isBindingElement(d0) && d0.getFirstAncestorByKind(SyntaxKind.Parameter))) && /^on[A-Z]/.test(name)) {
+        const cb = envResolve(ex, env);
+        if (cb && !seen.has(cb)) {
+          const sub = effectsOf(cb, lab, depth + 1, new Set([...seen, cb]), env);
+          if (sub.length) {
+            out.push({ branch: lab ?? null, kind: 'via', detail: name, file: rel(cb.getSourceFile().getFilePath()), line: cb.getStartLineNumber() });
+            out.push(...sub);
+          }
+        } else if (d0 && (Node.isParameterDeclaration(d0) || Node.isPropertySignature(d0) || (Node.isBindingElement(d0) && d0.getFirstAncestorByKind(SyntaxKind.Parameter))) && /^on[A-Z]/.test(name)) {
           add('callback', name, node, lab); // the parent decides what happens
         }
         for (const d of sym?.getDeclarations() ?? []) {
@@ -490,7 +547,7 @@ function effectsOf(fn, label, depth, seen) {
           if (excluded(f)) continue;
           const body = bodyOfDecl(d) ?? (Node.isBindingElement(d) ? resolveFn(ex) : null);
           if (!body || seen.has(body)) continue;
-          const sub = effectsOf(body, lab, depth + 1, new Set([...seen, body]));
+          const sub = effectsOf(body, lab, depth + 1, new Set([...seen, body]), env);
           if (sub.length) {
             out.push({ branch: lab ?? null, kind: 'via', detail: name, file: rel(f), line: d.getStartLineNumber() });
             out.push(...sub);
@@ -568,13 +625,17 @@ function returnedProperty(callExpr, name, depth) {
       if (!obj || !Node.isObjectLiteralExpression(obj)) continue;
       const p = obj.getProperty(name);
       if (!p) continue;
-      if (Node.isShorthandPropertyAssignment(p)) return resolveFn(p.getNameNode(), depth + 1, p.getValueSymbol?.());
+      const keep = (r) => {
+        if (r && !ENV.has(r) && r.getFirstAncestor((x) => x === fn)) ENV.set(r, { hookFn: fn, call: callExpr });
+        return r;
+      };
+      if (Node.isShorthandPropertyAssignment(p)) return keep(resolveFn(p.getNameNode(), depth + 1, p.getValueSymbol?.()));
       if (Node.isPropertyAssignment(p)) {
         const init = p.getInitializer();
-        if (init && isFunctionLike(init)) return init;
-        if (init) return resolveFn(init, depth + 1);
+        if (init && isFunctionLike(init)) return keep(init);
+        if (init) return keep(resolveFn(init, depth + 1));
       }
-      if (Node.isMethodDeclaration(p)) return p;
+      if (Node.isMethodDeclaration(p)) return keep(p);
     }
   }
   return null;
@@ -593,7 +654,10 @@ function hookReturnedFn(callExpr) {
       if (ret.getFirstAncestor(isFunctionLike) !== fn) continue;
       let e = ret.getExpression();
       if (e && Node.isCallExpression(e) && e.getExpression().getText() === 'useCallback') e = e.getArguments()[0];
-      if (e && isFunctionLike(e)) return e;
+      if (e && isFunctionLike(e)) {
+        if (!ENV.has(e)) ENV.set(e, { hookFn: fn, call: callExpr });
+        return e;
+      }
     }
   }
   return null;

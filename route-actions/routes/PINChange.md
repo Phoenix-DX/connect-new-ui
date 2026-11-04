@@ -24,11 +24,11 @@ The app shell is in [APP_SHELL.md](../APP_SHELL.md), not here.
 | Check | Result |
 |---|---|
 | Server calls of the route on TST | 0: React makes 0, **0 missing** |
-| User actions of the route | OutSystems: 4 diagrams. React: 3 diagrams |
+| User actions of the route | OutSystems: 4 diagrams. React: 5 diagrams |
 | React calls of the screen that TST does not make | 1 (see [questions](#8-questions)) |
 | Screen and blocks with a React port | 16 of 16 |
 | Navigation targets found in React | 3 of 3 |
-| App shell on this route | 7 calls; event bindings: OutSystems 0, React 6: see [APP_SHELL.md](../APP_SHELL.md) |
+| App shell on this route | 7 calls; event bindings: OutSystems 0, React 7: see [APP_SHELL.md](../APP_SHELL.md) |
 
 ## 3. Screenshots
 
@@ -115,8 +115,10 @@ sequenceDiagram
 | # | File | Element | Event prop | Handler | Branch | Effects |
 |---|---|---|---|---|---|---|
 | [1](#521-oslink-onclick) | [`pages/PINChange/PINChangePage.tsx:42`](../../app/src/pages/PINChange/PINChangePage.tsx#L42) | `<OSLink>` | `onClick` | `onClickBackToLogin` | – | goes to Menu |
-| [2](#522-pinunlockcontentcontainer-onunlock) | [`pages/PINChange/PINChangePage.tsx:85`](../../app/src/pages/PINChange/PINChangePage.tsx#L85) | `<PinUnlockContentContainer>` | `onUnlock` | `onUnlock` | – | shows a message |
-| [3](#523-pinunlockcontentcontainer-onnavigatetopinregister) | [`pages/PINChange/PINChangePage.tsx:86`](../../app/src/pages/PINChange/PINChangePage.tsx#L86) | `<PinUnlockContentContainer>` | `onNavigateToPINRegister` | `onUnlock` | – | shows a message |
+| [2](#522-pinregistercontent-onsetpin-newpincode) | [`pages/PINChange/PINChangePage.tsx:71`](../../app/src/pages/PINChange/PINChangePage.tsx#L71) | `<PinRegisterContent>` | `onSetPin` | `registration.onSetPin` | `newPinCode` | goes to Menu, HomeFeed; shows a message |
+| [3](#523-pinregistercontent-onsetpin-other) | [`pages/PINChange/PINChangePage.tsx:71`](../../app/src/pages/PINChange/PINChangePage.tsx#L71) | `<PinRegisterContent>` | `onSetPin` | `registration.onSetPin` | `other` | shows a message |
+| [4](#524-pinunlockcontentcontainer-onunlock) | [`pages/PINChange/PINChangePage.tsx:85`](../../app/src/pages/PINChange/PINChangePage.tsx#L85) | `<PinUnlockContentContainer>` | `onUnlock` | `onUnlock` | – | shows a message |
+| [5](#525-pinunlockcontentcontainer-onnavigatetopinregister) | [`pages/PINChange/PINChangePage.tsx:86`](../../app/src/pages/PINChange/PINChangePage.tsx#L86) | `<PinUnlockContentContainer>` | `onNavigateToPINRegister` | `onUnlock` | – | shows a message |
 
 #### 5.2.1 OSLink: onClick
 
@@ -130,7 +132,38 @@ sequenceDiagram
   H->>N: go to Menu
 ```
 
-#### 5.2.2 PinUnlockContentContainer: onUnlock
+#### 5.2.2 PinRegisterContent: onSetPin (newPinCode)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as PinRegisterContent · PINChangePage.tsx
+  participant N as Navigation
+  U->>H: onSetPin → registration.onSetPin (newPinCode)
+  Note over H: via onPinRegistrationError()
+  Note over H: message { title: '', message: errorMessage, messageType: 'error', encodedHtml: true, extendedClass
+  Note over H: via onPinRegistrationSuccess()
+  Note over H: message { title: '', message: 'Your PIN has been changed.', messageType: 'success', encodedHtml: t
+  H->>N: go to Menu
+  H->>N: go to HomeFeed
+```
+
+#### 5.2.3 PinRegisterContent: onSetPin (other)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as PinRegisterContent · PINChangePage.tsx
+  U->>H: onSetPin → registration.onSetPin (other)
+  Note over H: via onPinRegistrationError()
+  Note over H: message { title: '', message: errorMessage, messageType: 'error', encodedHtml: true, extendedClass
+  Note over H: via onPinRegistrationError()
+  Note over H: message { title: '', message: errorMessage, messageType: 'error', encodedHtml: true, extendedClass
+```
+
+#### 5.2.4 PinUnlockContentContainer: onUnlock
 
 ```mermaid
 sequenceDiagram
@@ -141,7 +174,7 @@ sequenceDiagram
   Note over H: message { title: '', message: 'Please provide a new PIN', messageType: 'success', encodedHtml: tru
 ```
 
-#### 5.2.3 PinUnlockContentContainer: onNavigateToPINRegister
+#### 5.2.5 PinUnlockContentContainer: onNavigateToPINRegister
 
 ```mermaid
 sequenceDiagram

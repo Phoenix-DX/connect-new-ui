@@ -28,7 +28,7 @@ The app shell is in [APP_SHELL.md](../APP_SHELL.md), not here.
 | React calls of the screen that TST does not make | 1 (see [questions](#8-questions)) |
 | Screen and blocks with a React port | 11 of 11 |
 | Navigation targets found in React | 6 of 6 |
-| App shell on this route | 8 calls; event bindings: OutSystems 10, React 6: see [APP_SHELL.md](../APP_SHELL.md) |
+| App shell on this route | 8 calls; event bindings: OutSystems 10, React 7: see [APP_SHELL.md](../APP_SHELL.md) |
 
 ## 3. Screenshots
 
