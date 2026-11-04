@@ -24,11 +24,11 @@ The app shell is in [APP_SHELL.md](../APP_SHELL.md), not here.
 | Check | Result |
 |---|---|
 | Server calls of the route on TST | 3: React makes 3, **0 missing** |
-| User actions of the route | OutSystems: 14 diagrams. React: 22 diagrams |
+| User actions of the route | OutSystems: 15 diagrams. React: 24 diagrams |
 | React calls of the screen that TST does not make | 3 (see [questions](#8-questions)) |
 | Screen and blocks with a React port | 20 of 20 |
 | Navigation targets found in React | 10 of 10 |
-| App shell on this route | 9 calls; event bindings: OutSystems 8, React 6: see [APP_SHELL.md](../APP_SHELL.md) |
+| App shell on this route | 9 calls; event bindings: OutSystems 10, React 6: see [APP_SHELL.md](../APP_SHELL.md) |
 
 ## 3. Screenshots
 
@@ -114,7 +114,8 @@ The two lists are independent: the OutSystems list comes from the TST compiled c
 | [11](#5111-menu-onclick_menuoption-subscriptionandpayments) | `Menu` | `onClick_MenuOption of List` | `onClick_MenuOption` | `subscriptionAndPayments` | opens an external link |
 | [12](#5112-menu-onclick_menuoption-requestphotoupdate) | `Menu` | `onClick_MenuOption of List` | `onClick_MenuOption` | `requestPhotoUpdate` | calls RequestPhotoUpdate; shows a message; asks for a confirmation |
 | [13](#5113-menu-onclick_menuoption-other) | `Menu` | `onClick_MenuOption of List` | `onClick_MenuOption` | `other` | shows a message |
-| [14](#5114-cachecontrol_userinfo-cachecontrolonnoncachehit) | `CacheControl_UserInfo` | `onNonCacheHit of CacheControl` | `cacheControlOnNonCacheHit` | – | calls GetCacheInfo |
+| [14](#5114-layout_detailpage-onclick_backnavigation) | `Layout_DetailPage` | `click of Icon` | `onClick_BackNavigation` | – | goes to previous screen |
+| [15](#5115-cachecontrol_userinfo-cachecontrolonnoncachehit) | `CacheControl_UserInfo` | `onNonCacheHit of CacheControl` | `cacheControlOnNonCacheHit` | – | calls GetCacheInfo |
 
 #### 5.1.1 BottomBarMenu: event_BottomBar_Clicked (home)
 
@@ -282,7 +283,19 @@ sequenceDiagram
   Note over B: message "Go to " + id
 ```
 
-#### 5.1.14 CacheControl_UserInfo: cacheControlOnNonCacheHit
+#### 5.1.14 Layout_DetailPage: onClick_BackNavigation
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as Layout_DetailPage
+  participant N as Navigation
+  U->>B: click of Icon → onClick_BackNavigation
+  B->>N: go to previous screen
+```
+
+#### 5.1.15 CacheControl_UserInfo: cacheControlOnNonCacheHit
 
 ```mermaid
 sequenceDiagram
@@ -299,30 +312,44 @@ sequenceDiagram
 
 | # | File | Element | Event prop | Handler | Branch | Effects |
 |---|---|---|---|---|---|---|
-| [1](#521-menuuserheader-onedityouraccount) | [`pages/Menu/MenuPage.tsx:70`](../../app/src/pages/Menu/MenuPage.tsx#L70) | `<MenuUserHeader>` | `onEditYourAccount` | `onEditYourAccount` | – | goes to Profile |
-| [2](#522-menulist-ononclickmenuoption-logout) | [`pages/Menu/MenuPage.tsx:72`](../../app/src/pages/Menu/MenuPage.tsx#L72) | `<MenuList>` | `onOnClickMenuOption` | `onMenuOption` | `LogOut` | goes to HomeFeed; asks for a confirmation |
-| [3](#523-menulist-ononclickmenuoption-contactus) | [`pages/Menu/MenuPage.tsx:72`](../../app/src/pages/Menu/MenuPage.tsx#L72) | `<MenuList>` | `onOnClickMenuOption` | `onMenuOption` | `ContactUs` | goes to ContactUsMenu |
-| [4](#524-menulist-ononclickmenuoption-termsandpolicies) | [`pages/Menu/MenuPage.tsx:72`](../../app/src/pages/Menu/MenuPage.tsx#L72) | `<MenuList>` | `onOnClickMenuOption` | `onMenuOption` | `TermsAndPolicies` | goes to TermsAndPoliciesMenu |
-| [5](#525-menulist-ononclickmenuoption-pinandbiometrics) | [`pages/Menu/MenuPage.tsx:72`](../../app/src/pages/Menu/MenuPage.tsx#L72) | `<MenuList>` | `onOnClickMenuOption` | `onMenuOption` | `PINAndBiometrics` | goes to PINBiometricsMenu |
-| [6](#526-menulist-ononclickmenuoption-subscriptionandpayments) | [`pages/Menu/MenuPage.tsx:72`](../../app/src/pages/Menu/MenuPage.tsx#L72) | `<MenuList>` | `onOnClickMenuOption` | `onMenuOption` | `SubscriptionAndPayments` | opens an external link |
-| [7](#527-menulist-ononclickmenuoption-requestphotoupdate) | [`pages/Menu/MenuPage.tsx:72`](../../app/src/pages/Menu/MenuPage.tsx#L72) | `<MenuList>` | `onOnClickMenuOption` | `onMenuOption` | `RequestPhotoUpdate` | calls ActionRequestPhotoUpdate; shows a message; asks for a confirmation |
-| [8](#528-menulist-ononclickmenuoption-other) | [`pages/Menu/MenuPage.tsx:72`](../../app/src/pages/Menu/MenuPage.tsx#L72) | `<MenuList>` | `onOnClickMenuOption` | `onMenuOption` | `other` | shows a message |
-| [9](#529-cachecontrol-onnoncachehit) | [`legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx:52`](../../app/src/legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx#L52) | `<CacheControl>` | `onNonCacheHit` | `onNonCacheHit` | – | calls DataActionGetCacheInfo |
-| [10](#5210-preventbacknavigation-onbacknavigationprevented) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:80`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L80) | `<PreventBackNavigation>` | `onBackNavigationPrevented` | `redirectHome` | – | goes to HomeFeed |
-| [11](#5211-oslink-onclick-home) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Home` | goes to HomeFeed |
-| [12](#5212-oslink-onclick-directory) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Directory` | goes to CountryList, Locality_Details |
-| [13](#5213-oslink-onclick-updates) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Updates` | goes to Updates_SingleList |
-| [14](#5214-oslink-onclick-bookmarks) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Bookmarks` | goes to Bookmarks |
-| [15](#5215-oslink-onclick-menu) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Menu` | goes to Menu |
-| [16](#5216-oslink-onclick-other) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `other` | calls the prop onBottomBarClicked() |
-| [17](#5217-bottombariconbadge-ononclick-home) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Home` | goes to HomeFeed |
-| [18](#5218-bottombariconbadge-ononclick-directory) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Directory` | goes to CountryList, Locality_Details |
-| [19](#5219-bottombariconbadge-ononclick-updates) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Updates` | goes to Updates_SingleList |
-| [20](#5220-bottombariconbadge-ononclick-bookmarks) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Bookmarks` | goes to Bookmarks |
-| [21](#5221-bottombariconbadge-ononclick-menu) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Menu` | goes to Menu |
-| [22](#5222-bottombariconbadge-ononclick-other) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `other` | calls the prop onBottomBarClicked() |
+| [1](#521-detaillayout-onback) | [`pages/Menu/MenuPage.tsx:40`](../../app/src/pages/Menu/MenuPage.tsx#L40) | `<DetailLayout>` | `onBack` | `navigateBack` | – | goes to previous screen |
+| [2](#522-menuuserheader-onedityouraccount) | [`pages/Menu/MenuPage.tsx:70`](../../app/src/pages/Menu/MenuPage.tsx#L70) | `<MenuUserHeader>` | `onEditYourAccount` | `onEditYourAccount` | – | goes to Profile |
+| [3](#523-menulist-ononclickmenuoption-logout) | [`pages/Menu/MenuPage.tsx:72`](../../app/src/pages/Menu/MenuPage.tsx#L72) | `<MenuList>` | `onOnClickMenuOption` | `onMenuOption` | `LogOut` | goes to HomeFeed; asks for a confirmation |
+| [4](#524-menulist-ononclickmenuoption-contactus) | [`pages/Menu/MenuPage.tsx:72`](../../app/src/pages/Menu/MenuPage.tsx#L72) | `<MenuList>` | `onOnClickMenuOption` | `onMenuOption` | `ContactUs` | goes to ContactUsMenu |
+| [5](#525-menulist-ononclickmenuoption-termsandpolicies) | [`pages/Menu/MenuPage.tsx:72`](../../app/src/pages/Menu/MenuPage.tsx#L72) | `<MenuList>` | `onOnClickMenuOption` | `onMenuOption` | `TermsAndPolicies` | goes to TermsAndPoliciesMenu |
+| [6](#526-menulist-ononclickmenuoption-pinandbiometrics) | [`pages/Menu/MenuPage.tsx:72`](../../app/src/pages/Menu/MenuPage.tsx#L72) | `<MenuList>` | `onOnClickMenuOption` | `onMenuOption` | `PINAndBiometrics` | goes to PINBiometricsMenu |
+| [7](#527-menulist-ononclickmenuoption-subscriptionandpayments) | [`pages/Menu/MenuPage.tsx:72`](../../app/src/pages/Menu/MenuPage.tsx#L72) | `<MenuList>` | `onOnClickMenuOption` | `onMenuOption` | `SubscriptionAndPayments` | opens an external link |
+| [8](#528-menulist-ononclickmenuoption-requestphotoupdate) | [`pages/Menu/MenuPage.tsx:72`](../../app/src/pages/Menu/MenuPage.tsx#L72) | `<MenuList>` | `onOnClickMenuOption` | `onMenuOption` | `RequestPhotoUpdate` | calls ActionRequestPhotoUpdate; shows a message; asks for a confirmation |
+| [9](#529-menulist-ononclickmenuoption-other) | [`pages/Menu/MenuPage.tsx:72`](../../app/src/pages/Menu/MenuPage.tsx#L72) | `<MenuList>` | `onOnClickMenuOption` | `onMenuOption` | `other` | shows a message |
+| [10](#5210-cachecontrol-onnoncachehit) | [`legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx:52`](../../app/src/legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx#L52) | `<CacheControl>` | `onNonCacheHit` | `onNonCacheHit` | – | calls DataActionGetCacheInfo |
+| [11](#5211-preventbacknavigation-onbacknavigationprevented) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:80`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L80) | `<PreventBackNavigation>` | `onBackNavigationPrevented` | `redirectHome` | – | goes to HomeFeed |
+| [12](#5212-backnavigationhandler-onbacknavigation) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:82`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L82) | `<BackNavigationHandler>` | `onBackNavigation` | `maybeRedirectHome` | – | goes to HomeFeed |
+| [13](#5213-oslink-onclick-home) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Home` | goes to HomeFeed |
+| [14](#5214-oslink-onclick-directory) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Directory` | goes to CountryList, Locality_Details |
+| [15](#5215-oslink-onclick-updates) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Updates` | goes to Updates_SingleList |
+| [16](#5216-oslink-onclick-bookmarks) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Bookmarks` | goes to Bookmarks |
+| [17](#5217-oslink-onclick-menu) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Menu` | goes to Menu |
+| [18](#5218-oslink-onclick-other) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `other` | calls the prop onBottomBarClicked() |
+| [19](#5219-bottombariconbadge-ononclick-home) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Home` | goes to HomeFeed |
+| [20](#5220-bottombariconbadge-ononclick-directory) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Directory` | goes to CountryList, Locality_Details |
+| [21](#5221-bottombariconbadge-ononclick-updates) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Updates` | goes to Updates_SingleList |
+| [22](#5222-bottombariconbadge-ononclick-bookmarks) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Bookmarks` | goes to Bookmarks |
+| [23](#5223-bottombariconbadge-ononclick-menu) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Menu` | goes to Menu |
+| [24](#5224-bottombariconbadge-ononclick-other) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `other` | calls the prop onBottomBarClicked() |
 
-#### 5.2.1 MenuUserHeader: onEditYourAccount
+#### 5.2.1 DetailLayout: onBack
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as DetailLayout · MenuPage.tsx
+  participant N as Navigation
+  U->>H: onBack → navigateBack
+  H->>N: go to previous screen
+```
+
+#### 5.2.2 MenuUserHeader: onEditYourAccount
 
 ```mermaid
 sequenceDiagram
@@ -334,7 +361,7 @@ sequenceDiagram
   H->>N: go to Profile
 ```
 
-#### 5.2.2 MenuList: onOnClickMenuOption (LogOut)
+#### 5.2.3 MenuList: onOnClickMenuOption (LogOut)
 
 ```mermaid
 sequenceDiagram
@@ -349,7 +376,7 @@ sequenceDiagram
   H->>N: go to HomeFeed
 ```
 
-#### 5.2.3 MenuList: onOnClickMenuOption (ContactUs)
+#### 5.2.4 MenuList: onOnClickMenuOption (ContactUs)
 
 ```mermaid
 sequenceDiagram
@@ -362,7 +389,7 @@ sequenceDiagram
   H->>N: go to ContactUsMenu
 ```
 
-#### 5.2.4 MenuList: onOnClickMenuOption (TermsAndPolicies)
+#### 5.2.5 MenuList: onOnClickMenuOption (TermsAndPolicies)
 
 ```mermaid
 sequenceDiagram
@@ -375,7 +402,7 @@ sequenceDiagram
   H->>N: go to TermsAndPoliciesMenu
 ```
 
-#### 5.2.5 MenuList: onOnClickMenuOption (PINAndBiometrics)
+#### 5.2.6 MenuList: onOnClickMenuOption (PINAndBiometrics)
 
 ```mermaid
 sequenceDiagram
@@ -388,7 +415,7 @@ sequenceDiagram
   H->>N: go to PINBiometricsMenu
 ```
 
-#### 5.2.6 MenuList: onOnClickMenuOption (SubscriptionAndPayments)
+#### 5.2.7 MenuList: onOnClickMenuOption (SubscriptionAndPayments)
 
 ```mermaid
 sequenceDiagram
@@ -401,7 +428,7 @@ sequenceDiagram
   H->>X: openInApp_OpenExternalLink
 ```
 
-#### 5.2.7 MenuList: onOnClickMenuOption (RequestPhotoUpdate)
+#### 5.2.8 MenuList: onOnClickMenuOption (RequestPhotoUpdate)
 
 ```mermaid
 sequenceDiagram
@@ -418,7 +445,7 @@ sequenceDiagram
   Note over H: message 'Your update photo request has been submitted.'
 ```
 
-#### 5.2.8 MenuList: onOnClickMenuOption (other)
+#### 5.2.9 MenuList: onOnClickMenuOption (other)
 
 ```mermaid
 sequenceDiagram
@@ -430,7 +457,7 @@ sequenceDiagram
   Note over H: message `Go to ${id}`
 ```
 
-#### 5.2.9 CacheControl: onNonCacheHit
+#### 5.2.10 CacheControl: onNonCacheHit
 
 ```mermaid
 sequenceDiagram
@@ -443,7 +470,7 @@ sequenceDiagram
   A-->>H: CacheControl_Response, TTL
 ```
 
-#### 5.2.10 PreventBackNavigation: onBackNavigationPrevented
+#### 5.2.11 PreventBackNavigation: onBackNavigationPrevented
 
 ```mermaid
 sequenceDiagram
@@ -455,7 +482,20 @@ sequenceDiagram
   H->>N: go to HomeFeed
 ```
 
-#### 5.2.11 OSLink: onClick (Home)
+#### 5.2.12 BackNavigationHandler: onBackNavigation
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as BackNavigationHandler · CommonUiLayout.tsx
+  participant N as Navigation
+  U->>H: onBackNavigation → maybeRedirectHome
+  Note over H: via actionRedirectHome()
+  H->>N: go to HomeFeed
+```
+
+#### 5.2.13 OSLink: onClick (Home)
 
 ```mermaid
 sequenceDiagram
@@ -468,7 +508,7 @@ sequenceDiagram
   H->>N: go to HomeFeed
 ```
 
-#### 5.2.12 OSLink: onClick (Directory)
+#### 5.2.14 OSLink: onClick (Directory)
 
 ```mermaid
 sequenceDiagram
@@ -482,7 +522,7 @@ sequenceDiagram
   H->>N: go to Locality_Details
 ```
 
-#### 5.2.13 OSLink: onClick (Updates)
+#### 5.2.15 OSLink: onClick (Updates)
 
 ```mermaid
 sequenceDiagram
@@ -495,7 +535,7 @@ sequenceDiagram
   H->>N: go to Updates_SingleList
 ```
 
-#### 5.2.14 OSLink: onClick (Bookmarks)
+#### 5.2.16 OSLink: onClick (Bookmarks)
 
 ```mermaid
 sequenceDiagram
@@ -508,7 +548,7 @@ sequenceDiagram
   H->>N: go to Bookmarks
 ```
 
-#### 5.2.15 OSLink: onClick (Menu)
+#### 5.2.17 OSLink: onClick (Menu)
 
 ```mermaid
 sequenceDiagram
@@ -521,7 +561,7 @@ sequenceDiagram
   H->>N: go to Menu
 ```
 
-#### 5.2.16 OSLink: onClick (other)
+#### 5.2.18 OSLink: onClick (other)
 
 ```mermaid
 sequenceDiagram
@@ -533,7 +573,7 @@ sequenceDiagram
   Note over H: calls the prop onBottomBarClicked()
 ```
 
-#### 5.2.17 BottomBarIconBadge: onOnClick (Home)
+#### 5.2.19 BottomBarIconBadge: onOnClick (Home)
 
 ```mermaid
 sequenceDiagram
@@ -546,7 +586,7 @@ sequenceDiagram
   H->>N: go to HomeFeed
 ```
 
-#### 5.2.18 BottomBarIconBadge: onOnClick (Directory)
+#### 5.2.20 BottomBarIconBadge: onOnClick (Directory)
 
 ```mermaid
 sequenceDiagram
@@ -560,7 +600,7 @@ sequenceDiagram
   H->>N: go to Locality_Details
 ```
 
-#### 5.2.19 BottomBarIconBadge: onOnClick (Updates)
+#### 5.2.21 BottomBarIconBadge: onOnClick (Updates)
 
 ```mermaid
 sequenceDiagram
@@ -573,7 +613,7 @@ sequenceDiagram
   H->>N: go to Updates_SingleList
 ```
 
-#### 5.2.20 BottomBarIconBadge: onOnClick (Bookmarks)
+#### 5.2.22 BottomBarIconBadge: onOnClick (Bookmarks)
 
 ```mermaid
 sequenceDiagram
@@ -586,7 +626,7 @@ sequenceDiagram
   H->>N: go to Bookmarks
 ```
 
-#### 5.2.21 BottomBarIconBadge: onOnClick (Menu)
+#### 5.2.23 BottomBarIconBadge: onOnClick (Menu)
 
 ```mermaid
 sequenceDiagram
@@ -599,7 +639,7 @@ sequenceDiagram
   H->>N: go to Menu
 ```
 
-#### 5.2.22 BottomBarIconBadge: onOnClick (other)
+#### 5.2.24 BottomBarIconBadge: onOnClick (other)
 
 ```mermaid
 sequenceDiagram

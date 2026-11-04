@@ -304,6 +304,7 @@ function facts(units, reached, users) {
 // navigation, confirm dialog, message, external link, server call (callAction). Calls to other functions of
 // app/src are followed 3 levels deep.
 const NAV_FN = /^(navigate|go|osNavigateTo|navigateTo|replaceTo|goTo\w*|navigateBack\w*)$/;
+const RUNS_ARG = /^(then|catch|finally|setTimeout|queueMicrotask|requestAnimationFrame|flushSync|startTransition)$/;
 const ERROR_FN = /^(raiseToFlowHandler|showExceptionMessage|handleError\w*)$/;
 const HOME_SCREEN = (fs.readFileSync(path.join(SRC, 'app', 'routes.generated.ts'), 'utf8').match(/export const HOME = "\/\w+\/(\w+)"/) || [])[1];
 
@@ -442,18 +443,41 @@ function effectsOf(fn, label, depth, seen) {
       } else if (NAV_FN.test(name)) {
         const ts = navTargetsOf(args[0]);
         for (const t of ts) add('navigate', t, node, lab);
-        if (!ts.length) handled = false;
+        if (!ts.length && ((/^navigateBack\w*$/.test(name) && !args.length) || (args[0] && args[0].getText() === '-1')))
+          add('navigate', 'previous screen', node, lab);
+        else if (!ts.length) handled = false;
       } else if (/^confirm\w*$/i.test(name)) {
         add('confirm', args[0] ? args[0].getText().replace(/['"`]/g, '') : 'confirm', node, lab);
-      } else if (/^show\w*(Feedback)?Message$/.test(name) && !ERROR_FN.test(name)) {
+      } else if ((/^show\w*(Feedback)?Message$/.test(name) || /^feedbackMessage\w*$/.test(name)) && !ERROR_FN.test(name)) {
         add('message', args[0] ? args[0].getText() : '', node, lab);
       } else if (/^set\w*FetchId$|^refetch\w*$|^invalidateQueries$/.test(name)) {
         add('refresh', name, node, lab); // a query fetches again (a new key or a refetch)
+      } else if (name === 'raiseToFlowHandler') {
+        // the default error path of every OutSystems action (the global exception handler), not an effect
       } else if (ERROR_FN.test(name)) {
         add('message', 'error message (on exception)', node, lab);
       } else if (/open\w*External\w*Link|openInApp|openUrl|OpenInNewTab/i.test(name)) {
         add('external', name, node, lab);
+      } else if (name === 'changeWindowLocation') {
+        const scheme = (args[0] ? args[0].getText() : '').match(/^[`'"]([a-z]+):/);
+        add('external', scheme ? `${scheme[1]}: link` : name, node, lab);
       } else handled = false;
+      if (RUNS_ARG.test(name) && depth < 3) {
+        // a function given to then/catch/setTimeout/…: it runs
+        for (const a of args) {
+          if (!Node.isIdentifier(a) || ERROR_FN.test(a.getText())) continue; // the error path: not followed
+          let sym = a.getSymbol?.();
+          if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
+          const d = sym?.getDeclarations()?.[0];
+          const body = d && !excluded(d.getSourceFile().getFilePath()) ? bodyOfDecl(d) : null;
+          if (!body || seen.has(body)) continue;
+          const sub = effectsOf(body, lab, depth + 1, new Set([...seen, body]));
+          if (sub.length) {
+            out.push({ branch: lab ?? null, kind: 'via', detail: a.getText(), file: rel(d.getSourceFile().getFilePath()), line: d.getStartLineNumber() });
+            out.push(...sub);
+          }
+        }
+      }
       if (!handled && depth < 3) {
         let sym = (Node.isPropertyAccessExpression(ex) ? ex.getNameNode() : ex).getSymbol?.();
         if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
@@ -556,6 +580,25 @@ function returnedProperty(callExpr, name, depth) {
   return null;
 }
 
+function hookReturnedFn(callExpr) {
+  const name = callExpr.getExpression().getText();
+  if (!/^use[A-Z]/.test(name)) return null;
+  let sym = callExpr.getExpression().getSymbol?.();
+  if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
+  for (const d of sym?.getDeclarations() ?? []) {
+    if (excluded(d.getSourceFile().getFilePath())) continue;
+    const fn = bodyOfDecl(d);
+    if (!fn) continue;
+    for (const ret of fn.getDescendantsOfKind(SyntaxKind.ReturnStatement)) {
+      if (ret.getFirstAncestor(isFunctionLike) !== fn) continue;
+      let e = ret.getExpression();
+      if (e && Node.isCallExpression(e) && e.getExpression().getText() === 'useCallback') e = e.getArguments()[0];
+      if (e && isFunctionLike(e)) return e;
+    }
+  }
+  return null;
+}
+
 function resolveFn(expr, depth = 0, given = null) {
   if (!expr || depth > 4) return null;
   if (isFunctionLike(expr)) return expr;
@@ -565,6 +608,11 @@ function resolveFn(expr, depth = 0, given = null) {
     if (excluded(d.getSourceFile().getFilePath())) continue;
     const body = bodyOfDecl(d);
     if (body) return body;
+    if (Node.isVariableDeclaration(d) && d.getInitializer() && Node.isCallExpression(d.getInitializer())) {
+      // `const back = useX()`: a hook that returns a function (`return useCallback(fn, …)` or `return fn`)
+      const fn = hookReturnedFn(d.getInitializer());
+      if (fn) return fn;
+    }
     if (Node.isBindingElement(d)) {
       const vd = d.getFirstAncestorByKind(SyntaxKind.VariableDeclaration);
       const init = vd?.getInitializer();

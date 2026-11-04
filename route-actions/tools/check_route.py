@@ -679,6 +679,12 @@ def user_actions(sources, rendered, eps):
             else:
                 bodies.setdefault(key, body)
 
+    # code of each JavaScript node, by the variable name of its module (`define("A.B$c.D.EJS"` → `A_B_c_D_E`)
+    js_nodes = {}
+    for src in sources.values():
+        for m in re.finditer(r'define\("([^"]+?)JS", \[\], function\s*\(\)\s*\{(.*?)\n\}\);', src, re.S):
+            js_nodes[re.sub(r"[.$]", "_", m.group(1))] = m.group(2)
+
     def effects(key, branch, depth, seen):
         body = bodies.get(key)
         if body is None or key in seen:
@@ -686,7 +692,14 @@ def user_actions(sources, rendered, eps):
         seen = seen | {key}
         out = []
         marks = []
+        for m in re.finditer(r"// Destination: \(PreviousScreen\)", body):
+            marks.append((m.start(), "navigate", "previous screen"))
         for m in re.finditer(r"// Destination: (/\S*)", body):
+            # a URL with a scheme built in the code (`generateScreenURL(("tel:" + …`): an external link, not the screen
+            ext = re.match(r'\s*return[^\n]{0,80}?generateScreenURL\(\(*"([a-z]+):', body[m.end():m.end() + 300])
+            if ext:
+                marks.append((m.start(), "external", f"{ext.group(1)}: link"))
+                continue
             dest = m.group(1).rstrip("/")
             # the screen name; the module root (`/UBTConnect/`) stays a path
             marks.append((m.start(), "navigate", dest.rsplit("/", 1)[-1] if dest.count("/") >= 2 else m.group(1)))
@@ -698,6 +711,15 @@ def user_actions(sources, rendered, eps):
             marks.append((m.start(), "action", (m.group(1), m.group(2))))
         for m in re.finditer(r"// Refresh Query: (\w+)", body):
             marks.append((m.start(), "refresh", m.group(1)))
+        # a JavaScript node that gets client actions (`{Name: controller.clientActionProxies.name$Action}`) and calls
+        # `$actions.Name` in its code: the action runs
+        for m in re.finditer(r"safeExecuteJSNode\((\w+?)JS,", body):
+            js = js_nodes.get(m.group(1), "")
+            win = body[m.end(): m.end() + 1500]
+            win = win[: win.find("safeExecuteJSNode")] if "safeExecuteJSNode" in win else win
+            for p in re.finditer(r"(\w+):\s*controller\.clientActionProxies\.(\w+?)\$Action", win):
+                if re.search(r"\$actions\." + p.group(1) + r"\b", js):
+                    marks.append((m.start(), "action", (p.group(1), f"controller.{p.group(2)}$Action(")))
         spans = []  # (label, start, end) of each if block with an equality condition
         for m in re.finditer(r"if\s*\(\((?:[^{]*?)===\s*[\w.]*?\.(\w+)\)+\s*\{", body):
             depth_b, i = 1, m.end()
@@ -730,6 +752,9 @@ def user_actions(sources, rendered, eps):
                 continue
             if re.search(r"(?i)exception", name):  # the error handler of the action, not its normal flow
                 out.append({"branch": br, "kind": "message", "detail": "error message (on exception)"})
+                continue
+            if re.match(r"(?i)feedbackmessage", name):  # FeedbackMessage_AutoClose and the like (a module action)
+                out.append({"branch": br, "kind": "message", "detail": name})
                 continue
             if EXTERNAL_LINK.search(name):
                 out.append({"branch": br, "kind": "external", "detail": name})

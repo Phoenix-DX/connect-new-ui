@@ -24,7 +24,7 @@ The app shell is in [APP_SHELL.md](../APP_SHELL.md), not here.
 | Check | Result |
 |---|---|
 | Server calls of the route on TST | 0: React makes 0, **0 missing** |
-| User actions of the route | OutSystems: 1 diagrams. React: 1 diagrams |
+| User actions of the route | OutSystems: 2 diagrams. React: 2 diagrams |
 | React calls of the screen that TST does not make | 0 (see [questions](#8-questions)) |
 | Screen and blocks with a React port | 11 of 11 |
 | Navigation targets found in React | 1 of 1 |
@@ -59,6 +59,7 @@ The two lists are independent: the OutSystems list comes from the TST compiled c
 | # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
 |---|---|---|---|---|---|
 | [1](#511-pinbiometricsmenu-onclick_menuoption) | `PINBiometricsMenu` | `onClick_MenuOption of List` | `onClick_MenuOption` | – | goes to PINChange |
+| [2](#512-layout_detailpage-onclick_backnavigation) | `Layout_DetailPage` | `click of Icon` | `onClick_BackNavigation` | – | goes to previous screen |
 
 #### 5.1.1 PINBiometricsMenu: onClick_MenuOption
 
@@ -72,13 +73,38 @@ sequenceDiagram
   B->>N: go to PINChange
 ```
 
+#### 5.1.2 Layout_DetailPage: onClick_BackNavigation
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as Layout_DetailPage
+  participant N as Navigation
+  U->>B: click of Icon → onClick_BackNavigation
+  B->>N: go to previous screen
+```
+
 ### 5.2 React
 
 | # | File | Element | Event prop | Handler | Branch | Effects |
 |---|---|---|---|---|---|---|
-| [1](#521-menulist-ononclickmenuoption) | [`pages/PINBiometricsMenu/PINBiometricsMenuPage.tsx:21`](../../app/src/pages/PINBiometricsMenu/PINBiometricsMenuPage.tsx#L21) | `<MenuList>` | `onOnClickMenuOption` | `onMenuOption` | – | goes to PINChange |
+| [1](#521-detaillayout-onback) | [`pages/PINBiometricsMenu/PINBiometricsMenuPage.tsx:19`](../../app/src/pages/PINBiometricsMenu/PINBiometricsMenuPage.tsx#L19) | `<DetailLayout>` | `onBack` | `navigateBack` | – | goes to previous screen |
+| [2](#522-menulist-ononclickmenuoption) | [`pages/PINBiometricsMenu/PINBiometricsMenuPage.tsx:21`](../../app/src/pages/PINBiometricsMenu/PINBiometricsMenuPage.tsx#L21) | `<MenuList>` | `onOnClickMenuOption` | `onMenuOption` | – | goes to PINChange |
 
-#### 5.2.1 MenuList: onOnClickMenuOption
+#### 5.2.1 DetailLayout: onBack
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as DetailLayout · PINBiometricsMenuPage.tsx
+  participant N as Navigation
+  U->>H: onBack → navigateBack
+  H->>N: go to previous screen
+```
+
+#### 5.2.2 MenuList: onOnClickMenuOption
 
 ```mermaid
 sequenceDiagram

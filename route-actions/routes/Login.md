@@ -24,11 +24,11 @@ The app shell is in [APP_SHELL.md](../APP_SHELL.md), not here.
 | Check | Result |
 |---|---|
 | Server calls of the route on TST | 6: React makes 4, **2 missing** |
-| User actions of the route | OutSystems: 3 diagrams. React: 3 diagrams |
+| User actions of the route | OutSystems: 5 diagrams. React: 4 diagrams |
 | React calls of the screen that TST does not make | 2 (see [questions](#8-questions)) |
 | Screen and blocks with a React port | 14 of 14 |
 | Navigation targets found in React | 3 of 3 |
-| App shell on this route | 2 calls; event bindings: OutSystems 4, React 6: see [APP_SHELL.md](../APP_SHELL.md) |
+| App shell on this route | 2 calls; event bindings: OutSystems 5, React 6: see [APP_SHELL.md](../APP_SHELL.md) |
 
 ## 3. Screenshots
 
@@ -119,7 +119,9 @@ The two lists are independent: the OutSystems list comes from the TST compiled c
 |---|---|---|---|---|---|
 | [1](#511-login-login) | `Login` | `onClick (HTML element)` | `login` | – | calls AppManager_SynchAppContext; shows a message |
 | [2](#512-login-appmanager_callback-idp_onlogin) | `Login` | `onCallback of Events` | `appManager_Callback` | `idP_OnLogin` | calls GetNumberUnreadMessages, Sync_Info_GetMain; goes to HomeFeed |
-| [3](#513-login-appmanager_callback-pin_needregistration) | `Login` | `onCallback of Events` | `appManager_Callback` | `pIN_NeedRegistration` | calls GetNumberUnreadMessages, Sync_Info_GetMain; goes to PINRegister |
+| [3](#513-login-appmanager_callback-idp_onresetpassword) | `Login` | `onCallback of Events` | `appManager_Callback` | `idP_OnResetPassword` | calls GetNumberUnreadMessages, Sync_Info_GetMain; shows a message |
+| [4](#514-login-appmanager_callback-pin_needregistration) | `Login` | `onCallback of Events` | `appManager_Callback` | `pIN_NeedRegistration` | calls GetNumberUnreadMessages, Sync_Info_GetMain; goes to PINRegister |
+| [5](#515-login-appmanager_callback-other) | `Login` | `onCallback of Events` | `appManager_Callback` | `other` | calls GetNumberUnreadMessages, Sync_Info_GetMain; shows a message |
 
 #### 5.1.1 Login: login
 
@@ -154,7 +156,24 @@ sequenceDiagram
   B->>N: go to HomeFeed
 ```
 
-#### 5.1.3 Login: appManager_Callback (pIN_NeedRegistration)
+#### 5.1.3 Login: appManager_Callback (idP_OnResetPassword)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as Login
+  participant S as Server (TST calls)
+  U->>B: onCallback of Events → appManager_Callback (idP_OnResetPassword)
+  Note over B: via UBTConnect.connect_SetLoggedContext
+  B->>S: GetNumberUnreadMessages(DeviceId)
+  S-->>B: NumberPrivateUnreadMessages, NumberPublicUnreadMessages
+  B->>S: Sync_Info_GetMain(isFromLogin)
+  S-->>B: B2CTenant, FeedBaseURL, LocalEntities_App, …
+  Note over B: message FeedbackMessage_AutoClose2
+```
+
+#### 5.1.4 Login: appManager_Callback (pIN_NeedRegistration)
 
 ```mermaid
 sequenceDiagram
@@ -172,6 +191,23 @@ sequenceDiagram
   B->>N: go to PINRegister
 ```
 
+#### 5.1.5 Login: appManager_Callback (other)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as Login
+  participant S as Server (TST calls)
+  U->>B: onCallback of Events → appManager_Callback (other)
+  Note over B: via UBTConnect.connect_SetLoggedContext
+  B->>S: GetNumberUnreadMessages(DeviceId)
+  S-->>B: NumberPrivateUnreadMessages, NumberPublicUnreadMessages
+  B->>S: Sync_Info_GetMain(isFromLogin)
+  S-->>B: B2CTenant, FeedBaseURL, LocalEntities_App, …
+  Note over B: message FeedbackMessage_AutoClose
+```
+
 ### 5.2 React
 
 | # | File | Element | Event prop | Handler | Branch | Effects |
@@ -179,6 +215,7 @@ sequenceDiagram
 | [1](#521-logincard-onlogin) | [`pages/Login/LoginPage.tsx:36`](../../app/src/pages/Login/LoginPage.tsx#L36) | `<LoginCard>` | `onLogin` | `onLogin` | – | shows a message |
 | [2](#522-logincard-onforgotpassword) | [`pages/Login/LoginPage.tsx:37`](../../app/src/pages/Login/LoginPage.tsx#L37) | `<LoginCard>` | `onForgotPassword` | `onForgotPassword` | – | shows a message |
 | [3](#523-preventbacknavigation-onbacknavigationprevented) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:80`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L80) | `<PreventBackNavigation>` | `onBackNavigationPrevented` | `redirectHome` | – | goes to HomeFeed |
+| [4](#524-backnavigationhandler-onbacknavigation) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:82`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L82) | `<BackNavigationHandler>` | `onBackNavigation` | `maybeRedirectHome` | – | goes to HomeFeed |
 
 #### 5.2.1 LoginCard: onLogin
 
@@ -202,9 +239,7 @@ sequenceDiagram
   U->>H: onForgotPassword → onForgotPassword
   Note over H: via forgotPassword()
   Note over H: message error message (on exception)
-  Note over H: via feedbackMessageAutoClose()
-  Note over H: via run()
-  Note over H: message message
+  Note over H: message { title: callback.messageTitle, message: callback.message, messageType: 'success', encoded
 ```
 
 #### 5.2.3 PreventBackNavigation: onBackNavigationPrevented
@@ -216,6 +251,19 @@ sequenceDiagram
   participant H as PreventBackNavigation · CommonUiLayout.tsx
   participant N as Navigation
   U->>H: onBackNavigationPrevented → redirectHome
+  H->>N: go to HomeFeed
+```
+
+#### 5.2.4 BackNavigationHandler: onBackNavigation
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as BackNavigationHandler · CommonUiLayout.tsx
+  participant N as Navigation
+  U->>H: onBackNavigation → maybeRedirectHome
+  Note over H: via actionRedirectHome()
   H->>N: go to HomeFeed
 ```
 

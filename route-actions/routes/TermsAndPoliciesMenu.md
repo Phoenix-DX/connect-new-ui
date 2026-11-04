@@ -24,11 +24,11 @@ The app shell is in [APP_SHELL.md](../APP_SHELL.md), not here.
 | Check | Result |
 |---|---|
 | Server calls of the route on TST | 0: React makes 0, **0 missing** |
-| User actions of the route | OutSystems: 2 diagrams. React: 3 diagrams |
+| User actions of the route | OutSystems: 3 diagrams. React: 5 diagrams |
 | React calls of the screen that TST does not make | 0 (see [questions](#8-questions)) |
 | Screen and blocks with a React port | 5 of 5 |
 | Navigation targets found in React | 0 of 0 |
-| App shell on this route | 9 calls; event bindings: OutSystems 9, React 6: see [APP_SHELL.md](../APP_SHELL.md) |
+| App shell on this route | 9 calls; event bindings: OutSystems 11, React 6: see [APP_SHELL.md](../APP_SHELL.md) |
 
 ## 3. Screenshots
 
@@ -60,6 +60,7 @@ The two lists are independent: the OutSystems list comes from the TST compiled c
 |---|---|---|---|---|---|
 | [1](#511-termsandpoliciesmenu-onclick_menuoption-termsandconditionsnamevar) | `TermsAndPoliciesMenu` | `onClick_MenuOption of List` | `onClick_MenuOption` | `termsAndConditionsNameVar` | opens an external link; shows a message |
 | [2](#512-termsandpoliciesmenu-onclick_menuoption-privacypolicynamevar) | `TermsAndPoliciesMenu` | `onClick_MenuOption of List` | `onClick_MenuOption` | `privacyPolicyNameVar` | opens an external link; shows a message |
+| [3](#513-layout_detailpage-onclick_backnavigation) | `Layout_DetailPage` | `click of Icon` | `onClick_BackNavigation` | – | goes to previous screen |
 
 #### 5.1.1 TermsAndPoliciesMenu: onClick_MenuOption (termsAndConditionsNameVar)
 
@@ -89,15 +90,41 @@ sequenceDiagram
   Note over B: message errorMessage
 ```
 
+#### 5.1.3 Layout_DetailPage: onClick_BackNavigation
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as Layout_DetailPage
+  participant N as Navigation
+  U->>B: click of Icon → onClick_BackNavigation
+  B->>N: go to previous screen
+```
+
 ### 5.2 React
 
 | # | File | Element | Event prop | Handler | Branch | Effects |
 |---|---|---|---|---|---|---|
-| [1](#521-menulist-ononclickmenuoption-terms_and_conditions_name) | [`pages/TermsAndPoliciesMenu/TermsAndPoliciesMenuPage.tsx:27`](../../app/src/pages/TermsAndPoliciesMenu/TermsAndPoliciesMenuPage.tsx#L27) | `<MenuList>` | `onOnClickMenuOption` | `onClickMenuOption` | `TERMS_AND_CONDITIONS_NAME` | opens an external link; shows a message |
-| [2](#522-menulist-ononclickmenuoption-privacy_policy_name) | [`pages/TermsAndPoliciesMenu/TermsAndPoliciesMenuPage.tsx:27`](../../app/src/pages/TermsAndPoliciesMenu/TermsAndPoliciesMenuPage.tsx#L27) | `<MenuList>` | `onOnClickMenuOption` | `onClickMenuOption` | `PRIVACY_POLICY_NAME` | opens an external link; shows a message |
-| [3](#523-preventbacknavigation-onbacknavigationprevented) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:80`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L80) | `<PreventBackNavigation>` | `onBackNavigationPrevented` | `redirectHome` | – | goes to HomeFeed |
+| [1](#521-detaillayout-onback) | [`pages/TermsAndPoliciesMenu/TermsAndPoliciesMenuPage.tsx:23`](../../app/src/pages/TermsAndPoliciesMenu/TermsAndPoliciesMenuPage.tsx#L23) | `<DetailLayout>` | `onBack` | `navigateBack` | – | goes to previous screen |
+| [2](#522-menulist-ononclickmenuoption-terms_and_conditions_name) | [`pages/TermsAndPoliciesMenu/TermsAndPoliciesMenuPage.tsx:27`](../../app/src/pages/TermsAndPoliciesMenu/TermsAndPoliciesMenuPage.tsx#L27) | `<MenuList>` | `onOnClickMenuOption` | `onClickMenuOption` | `TERMS_AND_CONDITIONS_NAME` | opens an external link; shows a message |
+| [3](#523-menulist-ononclickmenuoption-privacy_policy_name) | [`pages/TermsAndPoliciesMenu/TermsAndPoliciesMenuPage.tsx:27`](../../app/src/pages/TermsAndPoliciesMenu/TermsAndPoliciesMenuPage.tsx#L27) | `<MenuList>` | `onOnClickMenuOption` | `onClickMenuOption` | `PRIVACY_POLICY_NAME` | opens an external link; shows a message |
+| [4](#524-preventbacknavigation-onbacknavigationprevented) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:80`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L80) | `<PreventBackNavigation>` | `onBackNavigationPrevented` | `redirectHome` | – | goes to HomeFeed |
+| [5](#525-backnavigationhandler-onbacknavigation) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:82`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L82) | `<BackNavigationHandler>` | `onBackNavigation` | `maybeRedirectHome` | – | goes to HomeFeed |
 
-#### 5.2.1 MenuList: onOnClickMenuOption (TERMS_AND_CONDITIONS_NAME)
+#### 5.2.1 DetailLayout: onBack
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as DetailLayout · TermsAndPoliciesMenuPage.tsx
+  participant N as Navigation
+  U->>H: onBack → navigateBack
+  H->>N: go to previous screen
+```
+
+#### 5.2.2 MenuList: onOnClickMenuOption (TERMS_AND_CONDITIONS_NAME)
 
 ```mermaid
 sequenceDiagram
@@ -111,7 +138,7 @@ sequenceDiagram
   H->>X: jSUtils_PageOpenInNewTab
 ```
 
-#### 5.2.2 MenuList: onOnClickMenuOption (PRIVACY_POLICY_NAME)
+#### 5.2.3 MenuList: onOnClickMenuOption (PRIVACY_POLICY_NAME)
 
 ```mermaid
 sequenceDiagram
@@ -125,7 +152,7 @@ sequenceDiagram
   H->>X: jSUtils_PageOpenInNewTab
 ```
 
-#### 5.2.3 PreventBackNavigation: onBackNavigationPrevented
+#### 5.2.4 PreventBackNavigation: onBackNavigationPrevented
 
 ```mermaid
 sequenceDiagram
@@ -134,6 +161,19 @@ sequenceDiagram
   participant H as PreventBackNavigation · CommonUiLayout.tsx
   participant N as Navigation
   U->>H: onBackNavigationPrevented → redirectHome
+  H->>N: go to HomeFeed
+```
+
+#### 5.2.5 BackNavigationHandler: onBackNavigation
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as BackNavigationHandler · CommonUiLayout.tsx
+  participant N as Navigation
+  U->>H: onBackNavigation → maybeRedirectHome
+  Note over H: via actionRedirectHome()
   H->>N: go to HomeFeed
 ```
 
