@@ -365,11 +365,15 @@ def check(route):
     # calls that TST made in the capture but that have no static chain in the compiled code (the call graph does not
     # read the app start roots, for example): they belong to the route too
     have = {e["url"] for e in eps}
+    other_screen = []  # calls of another screen in the capture: scope `other`, no chain, a screen or block data path
     for full, c in observed.items():
         if full in have or not full.startswith("screenservices/"):
             continue
         short_url = full[len("screenservices/"):]
         parts = short_url.split("/")
+        if c.get("scope") == "other" and len(parts) > 2 and not react_by_url.get(full):
+            other_screen.append(short_url)
+            continue
         rc = react_by_url.get(full, [])
         eps.append({
             "url": full, "short": short_url, "kind": endpoint_kind(short_url),
@@ -484,6 +488,7 @@ def check(route):
               "reactOnly": react_only, "reactUnknown": react_unknown,
               "blocks": blocks, "osNav": {k: sorted(v) for k, v in os_nav.items()},
               "reactNav": {k: sorted(v) for k, v in react_nav.items()}, "observedCount": len(tst["calls"]),
+              "otherScreenCalls": sorted(other_screen),
               "navGroups": {k: sorted(v) for k, v in nav_from.items()},
               "react": {"shellFiles": len(shell_r["files"]), "pageFiles": len(page_r["files"]),
                         "pageEntry": page_r["entry"]}}
@@ -997,6 +1002,17 @@ def call_rows(eps, blocks):
     return rows
 
 
+def own_routes(short_url):
+    """The routes whose TST capture has this call with the scope `this screen`."""
+    out = []
+    for f in sorted(glob.glob(os.path.join(cfg("tst", "screens"), "*", "analysis", "calls.json"))):
+        for c in load(f).get("calls", []):
+            if c.get("scope") == "this screen" and c.get("path", "").endswith("/" + short_url):
+                out.append(f.split(os.sep)[-3])
+                break
+    return out
+
+
 def short_chain(ch):
     return ch if len(ch) <= 5 else ch[:2] + ["…"] + ch[-2:]
 
@@ -1171,6 +1187,11 @@ def render(r):
             "```mermaid", mm, "```"] if eps else ["None. The route makes no server call on TST."]), "",
          "## 5. User actions", "", *ua,
          "## 6. Server calls", "", *(calls_table(call_rows(eps, blocks), blocks) if eps else ["None."]),
+         *(["", "The TST capture also has calls of another screen. Each has the capture scope `other` and no chain in the code "
+            "of the route. React does not make them on this route. The tool does not count them:", "",
+            *[f"- `{u}`: a call of the screen in the capture of " + (", ".join(f"[{x}]({x}.md)" for x in own_routes(u)) or "no other route")
+              + "." for u in r.get("otherScreenCalls", [])]]
+           if r.get("otherScreenCalls") else []),
          "", "## 7. Missing in React", "", *missing_lines(eps, own_blocks, nav_missing, own_nav),
          "", "## 8. Questions", ""]
     qs = [f"React calls `{c['apiPath']}` from `{c['fn']}()` {link(c['file'], c['line'])} ({c['where']}). TST {route} "
