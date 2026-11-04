@@ -1,8 +1,11 @@
-# Menu: server calls in OutSystems and React
+# Menu: server calls and user actions in OutSystems and React
 
-This file compares the server calls of the route `/UBTConnect/Menu` in OutSystems (TST) with the calls of the React app.
+This file compares the route `/UBTConnect/Menu` in OutSystems (TST) with the React app.
 The tool `migration/tools/route_actions/check_route.py` wrote this file on 2026-11-04.
 The tool reads the code. It does not run the app.
+
+The app shell is the same on many routes: layout, app start, bottom bar, PIN lock and shared dialogs.
+[APP_SHELL.md](APP_SHELL.md) has it. This file does not.
 
 ## 1. Route
 
@@ -13,16 +16,18 @@ The tool reads the code. It does not run the app.
 | UI flow | `App_Menu` | MCP `getScreenNames` (DEV) |
 | React screen | [`pages/Menu/MenuPage.tsx`](../../app/src/pages/Menu/MenuPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
-| Code read | OutSystems: 48 screen and block files. React: 159 app shell files and 152 screen files | TST `facts.json`, `react_calls.mjs` |
+| Code read | OutSystems: 14 screen and block files of the route, 34 app shell files. React: 152 screen files | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
 | Check | Result |
 |---|---|
-| Server calls on TST | 12: React makes 10, **2 missing** |
-| React calls that TST does not make on this route | 3 (see [questions](#8-questions)) |
-| Screen and blocks with a React port | 48 of 48 |
-| Navigation targets found in React | 12 of 12 |
+| Server calls of the route on TST | 4: React makes 3, **1 missing** |
+| User actions of the route | 8 diagrams (one per action and option) |
+| React calls of the screen that TST does not make | 3 (see [questions](#8-questions)) |
+| Screen and blocks with a React port | 14 of 14 |
+| Navigation targets found in React | 5 of 5 |
+| App shell on this route | 8 calls, 3 user actions: see [APP_SHELL.md](APP_SHELL.md) |
 
 ## 3. Screenshots
 
@@ -36,7 +41,7 @@ The screenshots come from the last parity run (`route.py parity`). The TST captu
 
 ## 4. Diagram
 
-- A box on the left is the OutSystems block or app action that makes the call.
+- A box on the left is the OutSystems block of the route that makes the call.
 - A line connects each call to the React action that makes the same call.
 - The right column shows the React components that use each React action.
 - A red box is a call that React does not make.
@@ -49,165 +54,76 @@ The screenshots come from the last parity run (`route.py parity`). The TST captu
 flowchart LR
   subgraph OS["OutSystems (TST compiled)"]
     subgraph OS_shell["App shell"]
-      o0["HandleImageLoadError"]
-      o1["UBTConnect"]
-      o2["UBT_AppManager"]
     end
     subgraph OS_screen["Screen and its blocks"]
-      o3["BottomBarMenu"]
-      o4["CacheControl_UserInfo"]
-      o5["Menu"]
-      o6["Version"]
+      o0["CacheControl_UserInfo"]
+      o1["Menu"]
+      o2["Version"]
     end
   end
   subgraph EP["Server calls (TST)"]
-    e7["ActionAppManager_SynchAppContext"]
-    e8["ActionGet_RuntimeVersion"]
-    e9["DataActionGetCacheInfo"]
-    e10["ActionAppManager_AfterInitialize"]
-    e11["ActionSync_Info_GetMain"]
-    e12["ActionGetNumberUnreadMessages"]
-    e13["ServiceAPIFetchData_CacheableMapEntities"]
-    e14["ServiceAPIFetchData_CacheableHouseholds"]
-    e15["ActionRequestPhotoUpdate"]
-    e16["ServiceAPIGet_UI_UpdateItems_UnreadCount_All"]
-    e17["ActionAppManager_Logout"]
-    e18["ActionGetAllApplicationEvents"]
+    e3["ActionGet_RuntimeVersion"]
+    e4["DataActionGetCacheInfo"]
+    e5["ActionRequestPhotoUpdate"]
+    e6["ActionAppManager_Logout"]
   end
   subgraph RE["React actions"]
     subgraph RE_shell["App shell"]
-      r19["afterInitialize()"]
-      r20["fetchAppContext()"]
-      r21["fetchCacheableHouseholds()"]
-      r22["fetchCacheableMapEntities()"]
-      r23["fetchNumberUnreadMessages()"]
-      r24["fetchSyncInfoMain()"]
     end
     subgraph RE_page["Screen"]
-      r25["UserInfoCacheControl()"]
-      r26["fetchUnreadUpdateItemsCount()"]
-      r27["get_ConnectVersionDetails()"]
-      r28["requestPhotoUpdate()"]
+      r7["UserInfoCacheControl()"]
+      r8["get_ConnectVersionDetails()"]
+      r9["requestPhotoUpdate()"]
     end
   end
   subgraph RC["React components"]
-    c29["AppFrame"]
-    c30["AppVersion"]
-    c31["BottomBar"]
-    c32["Menu"]
+    c10["AppVersion"]
+    c11["Menu"]
   end
-  r25 --- c32
-  r20 --- c32
-  r28 --- c32
-  r19 --- c29
-  r20 --- c29
-  r21 --- c29
-  r22 --- c29
-  r23 --- c29
-  r24 --- c29
-  r27 --- c30
-  r26 --- c31
-  o0 --> e7
-  o0 --> e18
-  o6 --> e8
-  o4 --> e9
-  o1 --> e10
-  o1 --> e11
-  o1 --> e12
-  o1 --> e13
-  o1 --> e14
-  o2 --> e10
-  o5 --> e15
-  o5 --> e17
-  o3 --> e16
-  e7 --- r20
-  e8 --- r27
-  e9 --- r25
-  e10 --- r19
-  e11 --- r24
-  e12 --- r23
-  e13 --- r22
-  e14 --- r21
-  e15 --- r28
-  e16 --- r26
+  r8 --- c10
+  r7 --- c11
+  r9 --- c11
+  o2 --> e3
+  o0 --> e4
+  o1 --> e5
+  o1 --> e6
+  e3 --- r8
+  e4 --- r7
+  e5 --- r9
   classDef missing fill:#fde2e1,stroke:#c0392b,color:#7b241c
   classDef ok fill:#e3f4e8,stroke:#2e7d4f,color:#1d4d31
-  class e17,e18 missing
-  class e7,e8,e9,e10,e11,e12,e13,e14,e15,e16 ok
+  class e6 missing
+  class e3,e4,e5 ok
 ```
 
 </details>
 
 ## 5. User actions
 
-Each user action of the route (click, change, submit) has its own sequence diagram below.
+Each user action (click, change, submit) has its own sequence diagram below.
+The diagrams follow the OutSystems code on TST. The participant is the OutSystems block. The action is its screen action.
 
 - The effects are server calls, navigation (`Navigation`), external links, messages and confirm dialogs.
-- When the handler has branches, `alt` / `else` shows them. The name of a branch comes from its condition in the TST compiled code. `other` is the last `else`.
+- When the handler has branches (a menu option, for example), each branch has its own diagram.
+- The name of a branch comes from its condition in the TST code. `other` is the last `else`.
 - A note `via …` gives the module action that makes the next calls.
 - An arrow to the server gives the inputs of the call. The return arrow gives the outputs. The names come from the contract `app/src/api/openapi.yaml`.
 - Each call arrow ends with the nearest React component that makes the same call (`React: …`). A red area is a call that React does not make.
-- The calls of the app start, the screen load and the callbacks are in section 6. A user action that only changes the screen state is not here.
 
-| # | Block (OutSystems) | User action | Handler | Branches | Effects |
+| # | Block (OutSystems) | User action | Handler | Option (branch) | Effects |
 |---|---|---|---|---|---|
-| [1](#51-dialog_accessrestrictedaction-click-upgrade) | `Dialog_AccessRestrictedAction` | click | `upgrade` | – | opens an external link |
-| [2](#52-bottombarmenu-click-event_bottombar_clicked) | `BottomBarMenu` | click | `event_BottomBar_Clicked` | 5 | goes to HomeFeed, CountryList, Locality_Details, Updates_SingleList, Bookmarks, Menu |
-| [3](#53-menu-click-onclick_edityouraccount) | `Menu` | click | `onClick_EditYourAccount` | – | goes to Profile |
-| [4](#54-block_pinunlock_contentwrapper-click-onclick_forgotpin) | `Block_PINUnlock_ContentWrapper` | click | `onClick_ForgotPIN` | – | goes to Login |
-| [5](#55-menu-click-onclick_menuoption) | `Menu` | click | `onClick_MenuOption` | 7 | calls **AppManager_Logout (missing)**, AppManager_SynchAppContext, RequestPhotoUpdate; goes to HomeFeed, ContactUsMenu, TermsAndPoliciesMenu, PINBiometricsMenu; opens an external link; shows a message |
+| [1](#51-menu-click-onclick_edityouraccount) | `Menu` | click | `onClick_EditYourAccount` | – | goes to Profile |
+| [2](#52-menu-click-onclick_menuoption-logout) | `Menu` | click | `onClick_MenuOption` | `logOut` | calls **AppManager_Logout (missing)**, AppManager_SynchAppContext; goes to HomeFeed; asks for a confirmation |
+| [3](#53-menu-click-onclick_menuoption-contactus) | `Menu` | click | `onClick_MenuOption` | `contactUs` | goes to ContactUsMenu |
+| [4](#54-menu-click-onclick_menuoption-termsandpolicies) | `Menu` | click | `onClick_MenuOption` | `termsAndPolicies` | goes to TermsAndPoliciesMenu |
+| [5](#55-menu-click-onclick_menuoption-pinandbiometrics) | `Menu` | click | `onClick_MenuOption` | `pINAndBiometrics` | goes to PINBiometricsMenu |
+| [6](#56-menu-click-onclick_menuoption-subscriptionandpayments) | `Menu` | click | `onClick_MenuOption` | `subscriptionAndPayments` | opens an external link |
+| [7](#57-menu-click-onclick_menuoption-requestphotoupdate) | `Menu` | click | `onClick_MenuOption` | `requestPhotoUpdate` | calls RequestPhotoUpdate; shows a message; asks for a confirmation |
+| [8](#58-menu-click-onclick_menuoption-other) | `Menu` | click | `onClick_MenuOption` | `other` | shows a message |
 
-### 5.1 Dialog_AccessRestrictedAction: click upgrade
+### 5.1 Menu: click onClick_EditYourAccount
 
-![Dialog_AccessRestrictedAction upgrade](svg/Menu-action-1.svg)
-
-<details><summary>Mermaid source</summary>
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as Dialog_AccessRestrictedAction
-  participant X as External link
-  U->>B: click: upgrade
-  Note over B: via UBTConnect_Utils.app_Subscription_NavigateToUpgrade
-  B->>X: OpenInApp_OpenExternalLink
-```
-
-</details>
-
-### 5.2 BottomBarMenu: click event_BottomBar_Clicked
-
-![BottomBarMenu event_BottomBar_Clicked](svg/Menu-action-2.svg)
-
-<details><summary>Mermaid source</summary>
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as BottomBarMenu
-  participant N as Navigation
-  U->>B: click: event_BottomBar_Clicked
-  alt home
-  B->>N: go to HomeFeed
-  else directory
-  B->>N: go to CountryList
-  B->>N: go to Locality_Details
-  else updates
-  B->>N: go to Updates_SingleList
-  else bookmarks
-  B->>N: go to Bookmarks
-  else menu
-  B->>N: go to Menu
-  end
-```
-
-</details>
-
-### 5.3 Menu: click onClick_EditYourAccount
-
-![Menu onClick_EditYourAccount](svg/Menu-action-3.svg)
+![Menu onClick_EditYourAccount](svg/Menu-action-1.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -223,27 +139,9 @@ sequenceDiagram
 
 </details>
 
-### 5.4 Block_PINUnlock_ContentWrapper: click onClick_ForgotPIN
+### 5.2 Menu: click onClick_MenuOption (logOut)
 
-![Block_PINUnlock_ContentWrapper onClick_ForgotPIN](svg/Menu-action-4.svg)
-
-<details><summary>Mermaid source</summary>
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as Block_PINUnlock_ContentWrapper
-  participant N as Navigation
-  U->>B: click: onClick_ForgotPIN
-  B->>N: go to Login
-```
-
-</details>
-
-### 5.5 Menu: click onClick_MenuOption
-
-![Menu onClick_MenuOption](svg/Menu-action-5.svg)
+![Menu onClick_MenuOption](svg/Menu-action-2.svg)
 
 <details><summary>Mermaid source</summary>
 
@@ -254,9 +152,7 @@ sequenceDiagram
   participant B as Menu
   participant S as Server (TST calls)
   participant N as Navigation
-  participant X as External link
-  U->>B: click: onClick_MenuOption
-  alt logOut
+  U->>B: click: onClick_MenuOption (logOut)
   Note over B: confirm dialog
   Note over B: via UBTConnect.connect_Logout
   rect rgba(192, 57, 43, 0.15)
@@ -266,49 +162,135 @@ sequenceDiagram
   B->>S: AppManager_SynchAppContext(EspaceName) · React: Menu
   S-->>B: AppManager_ClientConfig, FirebaseRealTimeDB_Token, PermissionList, …
   B->>N: go to HomeFeed
-  else contactUs
+```
+
+</details>
+
+### 5.3 Menu: click onClick_MenuOption (contactUs)
+
+![Menu onClick_MenuOption](svg/Menu-action-3.svg)
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as Menu
+  participant N as Navigation
+  U->>B: click: onClick_MenuOption (contactUs)
   B->>N: go to ContactUsMenu
-  else termsAndPolicies
+```
+
+</details>
+
+### 5.4 Menu: click onClick_MenuOption (termsAndPolicies)
+
+![Menu onClick_MenuOption](svg/Menu-action-4.svg)
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as Menu
+  participant N as Navigation
+  U->>B: click: onClick_MenuOption (termsAndPolicies)
   B->>N: go to TermsAndPoliciesMenu
-  else pINAndBiometrics
+```
+
+</details>
+
+### 5.5 Menu: click onClick_MenuOption (pINAndBiometrics)
+
+![Menu onClick_MenuOption](svg/Menu-action-5.svg)
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as Menu
+  participant N as Navigation
+  U->>B: click: onClick_MenuOption (pINAndBiometrics)
   B->>N: go to PINBiometricsMenu
-  else subscriptionAndPayments
+```
+
+</details>
+
+### 5.6 Menu: click onClick_MenuOption (subscriptionAndPayments)
+
+![Menu onClick_MenuOption](svg/Menu-action-6.svg)
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as Menu
+  participant X as External link
+  U->>B: click: onClick_MenuOption (subscriptionAndPayments)
   B->>X: OpenInApp_OpenExternalLink
-  else requestPhotoUpdate
+```
+
+</details>
+
+### 5.7 Menu: click onClick_MenuOption (requestPhotoUpdate)
+
+![Menu onClick_MenuOption](svg/Menu-action-7.svg)
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as Menu
+  participant S as Server (TST calls)
+  U->>B: click: onClick_MenuOption (requestPhotoUpdate)
   Note over B: confirm dialog
   B->>S: RequestPhotoUpdate() · React: Menu
   S-->>B: Out_IsSuccess
   Note over B: message "Your update photo request has been submitted."
-  else other
+```
+
+</details>
+
+### 5.8 Menu: click onClick_MenuOption (other)
+
+![Menu onClick_MenuOption](svg/Menu-action-8.svg)
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as Menu
+  U->>B: click: onClick_MenuOption (other)
   Note over B: message "Go to " + id
-  end
 ```
 
 </details>
 
 ## 6. Server calls
 
-- **Called from (OutSystems):** the block or the app-level module whose own client action makes the call. `app shell` = the layout and the app start; `screen` = the screen and its blocks.
+- **Called from (OutSystems):** the block or the app-level module whose own client action makes the call.
 - **Made by (TST):** for each block in "Called from", its chain of client actions from the block to the call.
 - **Trigger:** when the call runs, from the start of the chain on TST.
-- **Seen on TST:** `yes` when TST made the call in the capture. Many calls run only after a click. A call that TST made but that has no static chain in the TST code is in the table too; its trigger says so.
+- **Seen on TST:** `yes` when TST made the call in the capture. Many calls run only after a click.
 - **React action:** the React function that makes the same call, and the part that loads it: `shell`, `page` or both.
 - **React caller:** the nearest React component that uses the React action, and the hooks between them. At most 2 chains, the shortest first.
 
 | # | Call (TST) | Kind | Called from (OutSystems) | Trigger | Made by (TST) | Seen on TST | React action | React caller | Status |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | `Connect2_LegacyShared/ActionGetAllApplicationEvents` | server action | `HandleImageLoadError` (app shell) | image load error | HandleImageLoadError.applicationEvent_ImageError → Connect2_LegacyShared.zOnApplicationEvent_Wrapper → … → server GetAllApplicationEvents | no | – | – | **missing** |
-| 2 | `UBT_AppManager/ActionAppManager_SynchAppContext` | server action | `HandleImageLoadError` (app shell) | image load error | HandleImageLoadError.applicationEvent_ImageError → Connect2_LegacyShared.zOnApplicationEvent_Wrapper → … → server AppManager_SynchAppContext | yes | `fetchAppContext()` [`api/app/repository.ts:23`](../../app/src/api/app/repository.ts#L23) (shell + page) | `Menu → useMenu → … → fetchAppContext`<br>[`pages/Menu/MenuPage.tsx`](../../app/src/pages/Menu/MenuPage.tsx)<br>`AppFrame → AppStart → … → fetchAppContext`<br>[`app/AppFrame.tsx`](../../app/src/app/AppFrame.tsx) | implemented |
-| 3 | `Connect2_LegacyShared/ActionGetNumberUnreadMessages` | server action | `UBTConnect` (app shell) | app start | UBTConnect.onApplicationReady → UBTConnect.connect_SetLoggedContext → Connect2_LegacyShared.synchronizeNumberUnreadMessages → server GetNumberUnreadMessages<br>(+1 more chains) | yes | `fetchNumberUnreadMessages()` [`api/message/unreadMessages.ts:22`](../../app/src/api/message/unreadMessages.ts#L22) (shell) | `AppFrame → AppStart → … → fetchNumberUnreadMessages`<br>[`app/AppFrame.tsx`](../../app/src/app/AppFrame.tsx) | implemented |
-| 4 | `UBTConnect/ActionSync_Info_GetMain` | server action | `UBTConnect` (app shell) | app start | UBTConnect.onApplicationReady → UBTConnect.connect_SetLoggedContext → UBTConnect.sync_Info_Main → server Sync_Info_GetMain<br>(+1 more chains) | yes | `fetchSyncInfoMain()` [`api/app/repository.ts:36`](../../app/src/api/app/repository.ts#L36) (shell) | `AppFrame → AppStart → … → fetchSyncInfoMain`<br>[`app/AppFrame.tsx`](../../app/src/app/AppFrame.tsx) | implemented |
-| 5 | `UBTConnect/ServiceAPIFetchData_CacheableHouseholds` | service action | `UBTConnect` (app shell) | module action `get_Cacheable_MapHouseholds` (the TST graph has no caller) | UBTConnect.get_Cacheable_MapHouseholds → server FetchData_CacheableHouseholds | yes | `fetchCacheableHouseholds()` [`api/app/repository.ts:48`](../../app/src/api/app/repository.ts#L48) (shell) | `AppFrame → AppStart → … → fetchCacheableHouseholds`<br>[`app/AppFrame.tsx`](../../app/src/app/AppFrame.tsx) | implemented |
-| 6 | `UBTConnect/ServiceAPIFetchData_CacheableMapEntities` | service action | `UBTConnect` (app shell) | module action `get_Cacheable_MapEntities` (the TST graph has no caller) | UBTConnect.get_Cacheable_MapEntities → server FetchData_CacheableMapEntities | yes | `fetchCacheableMapEntities()` [`api/app/repository.ts:42`](../../app/src/api/app/repository.ts#L42) (shell) | `AppFrame → AppStart → … → fetchCacheableMapEntities`<br>[`app/AppFrame.tsx`](../../app/src/app/AppFrame.tsx) | implemented |
-| 7 | `UBT_AppManager/ActionAppManager_AfterInitialize` | server action | `UBTConnect` (app shell)<br>`UBT_AppManager` (app shell) | app start<br>app start | UBTConnect.onApplicationReady → UBT_AppManager_Mobile.appManager_Mobile_OnAppReady → … → server AppManager_AfterInitialize<br>UBT_AppManager.appManager_OnAppReady_Web → UBT_AppManager.appManager_InitializeWebComponents → UBT_AppManager.appManager_AfterInitialize → server AppManager_AfterInitialize | yes | `afterInitialize()` [`api/app/repository.ts:30`](../../app/src/api/app/repository.ts#L30) (shell) | `AppFrame → AppStart → … → afterInitialize`<br>[`app/AppFrame.tsx`](../../app/src/app/AppFrame.tsx) | implemented |
-| 8 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `BottomBarMenu` (screen) | ready | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx) | implemented |
-| 9 | `UBTConnect_Utils/CacheControl/CacheControl_UserInfo/DataActionGetCacheInfo` | data action | `CacheControl_UserInfo` (screen) | initialize | CacheControl_UserInfo.cacheControlOnNonCacheHit → CacheControl_UserInfo.DataActionGetCacheInfo<br>(+1 more chains) | yes | `UserInfoCacheControl()` [`legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx:37`](../../app/src/legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx#L37) (page) | `Menu → UserInfoCache → UserInfoCacheControl`<br>[`pages/Menu/MenuPage.tsx`](../../app/src/pages/Menu/MenuPage.tsx) | implemented |
-| 10 | `UBTConnect/App_Menu/Menu/ActionRequestPhotoUpdate` | server action | `Menu` (screen) | click | Menu.onClick_MenuOption → server RequestPhotoUpdate | no | `requestPhotoUpdate()` [`api/member/repository.ts:46`](../../app/src/api/member/repository.ts#L46) (page) | `Menu → useMenu → requestPhotoUpdate`<br>[`pages/Menu/MenuPage.tsx`](../../app/src/pages/Menu/MenuPage.tsx) | implemented |
-| 11 | `UBT_AppManager/ActionAppManager_Logout` | server action | `Menu` (screen) | click | Menu.onClick_MenuOption → Menu.action_Logout → … → server AppManager_Logout | no | – | – | **missing** |
-| 12 | `UBTConnect_Utils/ActionGet_RuntimeVersion` | server action | `Version` (screen) | ready | Version.OnReady → Version.screenEvent_OnReady → UBTConnect_Utils.get_ConnectVersionDetails → server Get_RuntimeVersion | yes | `get_ConnectVersionDetails()` [`lib/ubtConnectUtils/actions.ts:36`](../../app/src/lib/ubtConnectUtils/actions.ts#L36) (page) | `AppVersion → loadVersionDetails → get_ConnectVersionDetails`<br>[`components/version/AppVersion/AppVersion.tsx`](../../app/src/components/version/AppVersion/AppVersion.tsx) | implemented |
+| 1 | `UBTConnect_Utils/CacheControl/CacheControl_UserInfo/DataActionGetCacheInfo` | data action | `CacheControl_UserInfo` | initialize | CacheControl_UserInfo.cacheControlOnNonCacheHit → CacheControl_UserInfo.DataActionGetCacheInfo<br>(+1 more chains) | yes | `UserInfoCacheControl()` [`legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx:37`](../../app/src/legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx#L37) (page) | `Menu → UserInfoCache → UserInfoCacheControl`<br>[`pages/Menu/MenuPage.tsx`](../../app/src/pages/Menu/MenuPage.tsx) | implemented |
+| 2 | `UBTConnect/App_Menu/Menu/ActionRequestPhotoUpdate` | server action | `Menu` | click | Menu.onClick_MenuOption → server RequestPhotoUpdate | no | `requestPhotoUpdate()` [`api/member/repository.ts:46`](../../app/src/api/member/repository.ts#L46) (page) | `Menu → useMenu → requestPhotoUpdate`<br>[`pages/Menu/MenuPage.tsx`](../../app/src/pages/Menu/MenuPage.tsx) | implemented |
+| 3 | `UBT_AppManager/ActionAppManager_Logout` | server action | `Menu` | click | Menu.onClick_MenuOption → Menu.action_Logout → … → server AppManager_Logout | no | – | – | **missing** |
+| 4 | `UBTConnect_Utils/ActionGet_RuntimeVersion` | server action | `Version` | ready | Version.OnReady → Version.screenEvent_OnReady → UBTConnect_Utils.get_ConnectVersionDetails → server Get_RuntimeVersion | yes | `get_ConnectVersionDetails()` [`lib/ubtConnectUtils/actions.ts:36`](../../app/src/lib/ubtConnectUtils/actions.ts#L36) (page) | `AppVersion → loadVersionDetails → get_ConnectVersionDetails`<br>[`components/version/AppVersion/AppVersion.tsx`](../../app/src/components/version/AppVersion/AppVersion.tsx) | implemented |
 
 ## 7. Missing in React
 
@@ -317,8 +299,6 @@ sequenceDiagram
   - Note in [`platform/auth/mockAuth.ts:24`](../../app/src/platform/auth/mockAuth.ts#L24): "/** The server logout of AppManager_Logout: no call (app-shell spec 10). */"
   - Note in [`platform/session/auth.ts:84`](../../app/src/platform/session/auth.ts#L84): "/** Connect_Logout (UC:1062-1066): Cache_InvalidateEverything, then AppManager_Logout (AM:3649-3720): server logout"
   - Note in [`platform/session/pin.ts:66`](../../app/src/platform/session/pin.ts#L66): "/** PIN_Delete(UserId, AppName), part of AppManager_Logout (AM:3712). */"
-- Call `Connect2_LegacyShared/ActionGetAllApplicationEvents`. Chain on TST: HandleImageLoadError.applicationEvent_ImageError → Connect2_LegacyShared.zOnApplicationEvent_Wrapper → Connect2_LegacyShared.getAppEventName → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents.
-  - No React code makes this call.
 
 ## 8. Questions
 
@@ -328,11 +308,14 @@ sequenceDiagram
 
 ## 9. Method
 
-1. **OutSystems (TST).** The tool reads `facts.json` of `migration/screens/Menu/analysis/`:
-   - the screen and block files that TST renders;
-   - each server call, and the chain of client actions that makes the call;
-   - the calls that TST made in the capture (`calls.json`).
-2. **App shell and screen.** `app shell` is `CommonUI_InsideLayout`, its blocks and the app-level actions. `screen` is the screen and its other blocks.
+1. **OutSystems (TST).** The tool reads `facts.json` and the compiled code of `migration/screens/Menu/analysis/`:
+   - the rendered files;
+   - each server call with its chain of client actions, and the calls that TST made in the capture;
+   - the effects of each user action.
+2. **Route and app shell.** The app shell has these parts:
+   - `CommonUI_InsideLayout` with its blocks, and the app-level actions;
+   - the business blocks that at least 40% of the captured routes render, for example the bottom bar.
+   This file shows only the other blocks.
 3. **MCP (DEV).** The tool reads the UI flow with `getScreenNames`. TST wins when DEV is different.
 4. **React.** `react_calls.mjs` reads the app shell from `app/src/main.tsx` and the screen from its `<Route>Page.tsx`. It counts only the code that the app uses.
 5. **Match.** `callAction(M, A)` gives `/api/M/A`. The `x-os-paths` of `app/src/api/openapi.yaml` give the TST call. The status is `implemented` when the TST call is the same. Else the status is `missing`.

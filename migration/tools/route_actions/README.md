@@ -15,6 +15,7 @@ export MCP_TOKEN=<token>                                            # never writ
 python3 migration/tools/route_actions/check_route.py --routes          # writes ROUTES.md
 python3 migration/tools/route_actions/check_route.py <Route>           # writes <Route>.md and svg/<Route>.svg
 python3 migration/tools/route_actions/check_route.py <Route> --mark-done
+python3 migration/tools/route_actions/check_route.py --app-shell       # writes APP_SHELL.md again
 ```
 
 The tool keeps the app shell scan in `migration/route-actions/data/react-shell.json`. When a `.ts` or `.tsx` file in
@@ -43,18 +44,25 @@ status in `ROUTES.md`. Use `git diff` to see what changed.
    In the shell and the screen, the tool counts only the declarations that the code uses. It skips tests, stories,
    `src/test/` and `src/mocks/`.
 
-## Route file
+## Route file and app shell file
+
+A route file has only the parts of the route. The app shell is in `migration/route-actions/APP_SHELL.md`:
+
+- `CommonUI_InsideLayout` with its blocks, and the app-level actions;
+- the business blocks that at least 40% of the captured routes render, for example the bottom bar.
+
+Each route run writes `APP_SHELL.md` again from all `data/check-*.json`. Its call table gives the routes of each call.
 
 | Section | Content |
 |---|---|
 | 1. Route | The route, the OutSystems screen, the UI flow, the React screen and its route rules. |
-| 2. Result | The counts. |
-| 3. Screenshots | First choice: the images of the last parity run (`migration/screens/<Route>/parity/`), per state: TST capture (personal text hidden), React build (mock data), difference. Without parity: the React review images (`review/`), else the TST capture images. The file links to the images; it does not copy them. |
-| 4. Diagram | OutSystems block → server call → React action → React component. A red box is a missing call. |
-| 5. User actions | An index table of the user actions (click, change, submit), then one sequence diagram per action (`svg/<Route>-action-<n>.svg`): its effects branch by branch (`alt` / `else` from the conditions of the TST code): server calls with inputs, outputs and the React component, navigation, external links, messages, confirm dialogs. |
-| 6. Server calls | One row per TST call: the calling block, the trigger, the chain, the React action, the React caller (component → hooks → action), the status. |
-| 7. Missing in React | The calls, blocks and navigation targets that React does not have, with the notes of the React code. |
-| 8. Questions | The React calls that TST does not make on the route. |
+| 2. Result | The counts, and the count of the app shell parts on the route. |
+| 3. Screenshots | The images of the last parity run, per state: TST capture (personal text hidden), React build (mock data), difference. Without parity: the React review images, else the TST capture images. |
+| 4. Diagram | OutSystems block of the route → server call → React action → React component. A red box is a missing call. |
+| 5. User actions | An index table, then one sequence diagram per user action and per branch (a menu option, for example). The diagrams follow the OutSystems code on TST. The effects are server calls with inputs, outputs and the React component, navigation, external links, messages and confirm dialogs. |
+| 6. Server calls | One row per call of the route: the calling block, the trigger, the chain, the React action, the React caller, the status. |
+| 7. Missing in React | The calls, blocks and navigation targets of the route that React does not have, with the notes of the React code. |
+| 8. Questions | The React calls of the screen that TST does not make on the route. |
 | 9. Method | How the tool gets each fact. |
 
 ## Files

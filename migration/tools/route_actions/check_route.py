@@ -23,6 +23,9 @@ OUT = os.path.join(ROOT, "migration", "route-actions")
 DATA = os.path.join(OUT, "data")
 
 
+PATTERN_MODULES = ("UBTConnectLibrary", "OutSystemsUI_2_23")
+
+
 def load(p):
     return json.load(open(p, encoding="utf-8"))
 
@@ -104,6 +107,8 @@ def write_routes(done=None):
     L = ["# Routes: OutSystems actions against React", "",
          f"One file per route. Run `python3 migration/tools/route_actions/check_route.py <Route>` (see "
          f"[README](../tools/route_actions/README.md)). Progress: **{n_done} of {len(build)}** build routes done.", "",
+         "The app shell (layout, app start, bottom bar, PIN lock, shared dialogs) is in [APP_SHELL.md](APP_SHELL.md). "
+         "The tool merges it from the checked routes.", "",
          f"UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read {date.today().isoformat()}. "
          "Routes and scope: `app/src/app/routes.generated.ts` (84 routes) and `migration/board.md`.", "",
          "| Route | UI flow | Status |", "|---|---|---|"]
@@ -240,6 +245,21 @@ def endpoint_kind(url):
     return "server action"
 
 
+SHARED_SHARE = 0.4  # a business block that at least 40% of the captured routes render belongs to the app shell
+
+
+def shared_block_names():
+    """Business blocks that many routes render (layout parts such as the bottom bar). With CommonUI_InsideLayout and
+    its blocks, they make the app shell: the route files leave them out, APP_SHELL.md has them."""
+    cnt, n = collections.Counter(), 0
+    for f in glob.glob(os.path.join(ROOT, "migration", "screens", "*", "analysis", "facts.json")):
+        n += 1
+        for x in set(load(f)["renderedFiles"]):
+            if x.endswith(".mvc.js") and not x.startswith(PATTERN_MODULES + ("OutSystemsUI", "NavigationHandler")):
+                cnt[x] += 1
+    return {k for k, v in cnt.items() if n and v >= SHARED_SHARE * n}
+
+
 def check(route):
     flows = ui_flows()
     board = board_rows()
@@ -261,7 +281,8 @@ def check(route):
     js = facts["js"]
     by_key = {file_key(f): f for f in rendered}
     shell_files = set()
-    todo = [f for f in rendered if f in set(survey["shell"])]
+    shared = shared_block_names()
+    todo = [f for f in rendered if f in set(survey["shell"]) or f in shared]
     while todo:
         f = todo.pop()
         if f in shell_files:
@@ -419,10 +440,18 @@ def check(route):
                     break
 
     uacts = user_actions(tst.get("sources", {}), set(rendered), eps)
+    by_short = {short(f): f for f in rendered}
+    for a in uacts:
+        a["group"] = group_of_file.get(by_short.get(a["block"], ""), "screen")
+    nav_from = collections.defaultdict(set)
+    for f in rendered:
+        for n in js.get(f, {}).get("navigation", []):
+            nav_from[n["to"].rsplit("/", 1)[-1]].add(group_of_file[f])
     result = {"route": route, "screenFile": sfile, "userActions": uacts, "flow": flow, "survey": sv, "meta": meta, "endpoints": eps,
               "reactOnly": react_only, "reactUnknown": react_unknown,
               "blocks": blocks, "osNav": {k: sorted(v) for k, v in os_nav.items()},
               "reactNav": {k: sorted(v) for k, v in react_nav.items()}, "observedCount": len(tst["calls"]),
+              "navGroups": {k: sorted(v) for k, v in nav_from.items()},
               "react": {"shellFiles": len(shell_r["files"]), "pageFiles": len(page_r["files"]),
                         "pageEntry": page_r["entry"]}}
     json.dump(result, open(os.path.join(DATA, f"check-{route}.json"), "w"), indent=1, default=list)
@@ -441,7 +470,6 @@ def link(path, line=None):
     return f"[`{path.replace('app/src/', '')}{':' + str(line) if line else ''}`]({target}{'#L' + str(line) if line else ''})"
 
 
-PATTERN_MODULES = ("UBTConnectLibrary", "OutSystemsUI_2_23")
 
 
 def chain_owner(chain, blocks):
@@ -759,87 +787,75 @@ def user_actions(sources, rendered, eps):
 
 
 def action_diagrams(r):
-    """One Mermaid sequence diagram per user action of the route that has an effect: server calls (inputs and
-    outputs), navigation, external links, messages and confirm dialogs, branch by branch. Returns a list of
-    {block, trigger, handler, summary, mmd}."""
-    eps = {e["url"]: e for e in r["endpoints"]}
+    """One Mermaid sequence diagram per user action of the route that has an effect, and one per branch when the
+    handler has branches (a menu option, for example): server calls (inputs and outputs), navigation, external
+    links, messages and confirm dialogs. Returns a list of {block, trigger, handler, branch, summary, mmd}."""
+    eps = {e["url"]: e for e in r.get("allEndpoints") or r["endpoints"]}
     clean = lambda t: re.sub(r"[;#]", "", str(t))
+
+    def lines(e):
+        k, d = e["kind"], e["detail"]
+        if k == "navigate":
+            return [f"  B->>N: go to {d}"]
+        if k == "external":
+            return [f"  B->>X: {d}"]
+        if k == "message":
+            return [f"  Note over B: message {clean(d)}"]
+        if k == "confirm":
+            return ["  Note over B: confirm dialog"]
+        if k == "via":
+            return [f"  Note over B: via {d}"]
+        ep = eps[d]
+        name = re.sub(r"^(Action|ServiceAPI|DataAction|ScreenDataSet)", "", ep["short"].rsplit("/", 1)[-1])
+        ins, outs = ep["io"] or ([], [])
+        chains = sorted((ch for c in ep["react"] for ch in c.get("callers", [])), key=len)
+        react = f"React: {chains[0][0]['name']}" if chains else "React: none"
+        o = ["  rect rgba(192, 57, 43, 0.15)"] if ep["status"] == "missing" else []
+        o.append(f"  B->>S: {name}({short_list(ins)}) · {react}")
+        o.append("  S-->>B: " + ((short_list(outs) or "no outputs") if ep["io"] else "outputs not in the contract"))
+        return o + (["  end"] if ep["status"] == "missing" else [])
+
+    def summary(effects):
+        names, navs = [], []
+        for e in effects:
+            if e["kind"] == "call":
+                c = eps[e["detail"]]
+                n = re.sub(r"^(Action|ServiceAPI|DataAction|ScreenDataSet)", "", c["short"].rsplit("/", 1)[-1])
+                n = f"**{n} (missing)**" if c["status"] == "missing" else n
+                if n not in names:
+                    names.append(n)
+            if e["kind"] == "navigate" and e["detail"] not in navs:
+                navs.append(e["detail"])
+        kinds = {e["kind"] for e in effects}
+        parts = (["calls " + ", ".join(names)] if names else []) + (["goes to " + ", ".join(navs)] if navs else [])
+        parts += (["opens an external link"] if "external" in kinds else []) + (["shows a message"] if "message" in kinds else [])
+        parts += (["asks for a confirmation"] if "confirm" in kinds else [])
+        return "; ".join(parts) or "no effect"
+
     out_list = []
     for a in r.get("userActions") or []:
-        kinds = {e["kind"] for e in a["effects"]}
-        L = ["sequenceDiagram", "  autonumber", "  actor U as User", f"  participant B as {a['block']}"]
-        if "call" in kinds:
-            L.append("  participant S as Server (TST calls)")
-        if "navigate" in kinds:
-            L.append("  participant N as Navigation")
-        if "external" in kinds:
-            L.append("  participant X as External link")
-
-        def lines(e):
-            k, d = e["kind"], e["detail"]
-            if k == "navigate":
-                return [f"  B->>N: go to {d}"]
-            if k == "external":
-                return [f"  B->>X: {d}"]
-            if k == "message":
-                return [f"  Note over B: message {clean(d)}"]
-            if k == "confirm":
-                return ["  Note over B: confirm dialog"]
-            if k == "via":
-                return [f"  Note over B: via {d}"]
-            ep = eps[d]
-            name = re.sub(r"^(Action|ServiceAPI|DataAction|ScreenDataSet)", "", ep["short"].rsplit("/", 1)[-1])
-            ins, outs = ep["io"] or ([], [])
-            chains = sorted((ch for c in ep["react"] for ch in c.get("callers", [])), key=len)
-            react = f"React: {chains[0][0]['name']}" if chains else "React: none"
-            o = ["  rect rgba(192, 57, 43, 0.15)"] if ep["status"] == "missing" else []
-            o.append(f"  B->>S: {name}({short_list(ins)}) · {react}")
-            o.append("  S-->>B: " + ((short_list(outs) or "no outputs") if ep["io"] else "outputs not in the contract"))
-            return o + (["  end"] if ep["status"] == "missing" else [])
-
-        L.append(f"  U->>B: {a['trigger']}: {a['handler']}")
-        for e in a["effects"]:  # effects outside any condition always run: before the branches
-            if e["branch"] is None:
-                L += lines(e)
+        always = [e for e in a["effects"] if e["branch"] is None]
         branches = []
         for e in a["effects"]:
             if e["branch"] is not None and e["branch"] not in branches:
                 branches.append(e["branch"])
-        if len(branches) == 1:
-            for e in a["effects"]:
-                if e["branch"] is not None:
-                    L += lines(e)
-        elif branches:
-            for i, br in enumerate(branches):
-                L.append(f"  {'alt' if i == 0 else 'else'} {br}")
-                for e in a["effects"]:
-                    if e["branch"] == br:
-                        L += lines(e)
-            L.append("  end")
-        # summary for the index table
-        calls = [eps[e["detail"]] for e in a["effects"] if e["kind"] == "call"]
-        names = []
-        for c in calls:
-            n = re.sub(r"^(Action|ServiceAPI|DataAction|ScreenDataSet)", "", c["short"].rsplit("/", 1)[-1])
-            n = f"**{n} (missing)**" if c["status"] == "missing" else n
-            if n not in names:
-                names.append(n)
-        navs = []
-        for e in a["effects"]:
-            if e["kind"] == "navigate" and e["detail"] not in navs:
-                navs.append(e["detail"])
-        parts = []
-        if names:
-            parts.append("calls " + ", ".join(names))
-        if navs:
-            parts.append("goes to " + ", ".join(navs))
-        if "external" in kinds:
-            parts.append("opens an external link")
-        if "message" in kinds:
-            parts.append("shows a message")
-        out_list.append({"block": a["block"], "trigger": a["trigger"], "handler": a["handler"],
-                         "branches": len(branches), "summary": "; ".join(parts), "mmd": "\n".join(L)})
+        for br in (branches if len(branches) > 1 else [None]):
+            effects = always + [e for e in a["effects"] if e["branch"] is not None and (br is None or e["branch"] == br)]
+            kinds = {e["kind"] for e in effects}
+            L = ["sequenceDiagram", "  autonumber", "  actor U as User", f"  participant B as {a['block']}"]
+            L += (["  participant S as Server (TST calls)"] if "call" in kinds else []) + \
+                 (["  participant N as Navigation"] if "navigate" in kinds else []) + \
+                 (["  participant X as External link"] if "external" in kinds else [])
+            L.append(f"  U->>B: {a['trigger']}: {a['handler']}" + (f" ({br})" if br else ""))
+            for e in effects:
+                L += lines(e)
+            out_list.append({"block": a["block"], "trigger": a["trigger"], "handler": a["handler"], "branch": br,
+                             "group": a.get("group", "screen"), "summary": summary(effects), "mmd": "\n".join(L)})
     return out_list
+
+
+def slug(text):
+    return re.sub(r"[^\w\- ]", "", text.lower()).strip().replace(" ", "-")
 
 
 def screenshots(route):
@@ -877,22 +893,24 @@ def screenshots(route):
     return ["No screenshots: the route has no parity run, no review image and no TST capture image."]
 
 
-def render(r):
-    route = r["route"]
-    eps = r["endpoints"]
-    cnt = collections.Counter(e["status"] for e in eps)
-    blocks_ported = sum(1 for b in r["blocks"] if b["evidence"] in ("tag", "name"))
-    nav_missing = [t for t in r["osNav"] if t not in r["reactNav"]]
-    mm = mermaid(r)
-    os.makedirs(os.path.join(OUT, "svg"), exist_ok=True)
-    open(os.path.join(DATA, f"{route}.mmd"), "w").write(mm)
-    block_names = {b["key"].split(".")[-1] for b in r["blocks"]}
+def part_of(e, blocks, part):
+    """The call as seen from one part ("screen" or "shell"): only the chains that a block of that part owns. None
+    when the part does not make the call."""
+    if not e["chains"]:
+        g = e["group"]
+        return dict(e) if g == part else None
+    chains = [c for c in e["chains"] if c and chain_owner(c, blocks)[1] == part]
+    return {**e, "chains": chains, "group": part} if chains else None
+
+
+def call_rows(eps, blocks):
+    block_names = {b["key"].split(".")[-1] for b in blocks}
     rows = []
     for e in eps:
-        owners = sorted({chain_owner(c, r["blocks"]) for c in e["chains"] if c}) or [(e.get("owner", "?"), e["group"])]
+        owners = sorted({chain_owner(c, blocks) for c in e["chains"] if c}) or [(e.get("owner", "?"), e["group"])]
         trigs = []
         for o in owners:
-            ch = next((c for c in e["chains"] if c and chain_owner(c, r["blocks"]) == o), None)
+            ch = next((c for c in e["chains"] if c and chain_owner(c, blocks) == o), None)
             if ch:
                 trigs.append(trigger(ch, block_names))
             elif e.get("noChain"):
@@ -900,85 +918,28 @@ def render(r):
             else:
                 trigs.append("–")
         rows.append((owners, trigs, e))
-    rows.sort(key=lambda x: (x[0][0][1] != "shell", x[0][0][0], x[2]["short"]))
-    diagrams = action_diagrams(r)
-    for stale in glob.glob(os.path.join(OUT, "svg", f"{route}-sequence.svg")) + \
-            glob.glob(os.path.join(OUT, "svg", f"{route}-action-*.svg")) + \
-            glob.glob(os.path.join(DATA, f"{route}-sequence.mmd")) + glob.glob(os.path.join(DATA, f"{route}-action-*.mmd")):
-        os.remove(stale)
-    ua = []
-    if diagrams:
-        ua += ["Each user action of the route (click, change, submit) has its own sequence diagram below.", "",
-               "- The effects are server calls, navigation (`Navigation`), external links, messages and confirm dialogs.",
-               "- When the handler has branches, `alt` / `else` shows them. The name of a branch comes from its "
-               "condition in the TST compiled code. `other` is the last `else`.",
-               "- A note `via …` gives the module action that makes the next calls.",
-               "- An arrow to the server gives the inputs of the call. The return arrow gives the outputs. The names "
-               "come from the contract `app/src/api/openapi.yaml`.",
-               "- Each call arrow ends with the nearest React component that makes the same call (`React: …`). A red "
-               "area is a call that React does not make.",
-               "- The calls of the app start, the screen load and the callbacks are in section 6. A user action that "
-               "only changes the screen state is not here.", "",
-               "| # | Block (OutSystems) | User action | Handler | Branches | Effects |", "|---|---|---|---|---|---|"]
-        for i, d in enumerate(diagrams, 1):
-            ua.append(f"| [{i}](#5{i}-{d['block'].lower()}-{d['trigger'].replace(' ', '-')}-{d['handler'].lower()}) | "
-                      f"`{d['block']}` | {d['trigger']} | `{d['handler']}` | {d['branches'] or '–'} | {md_escape(d['summary'])} |")
-        for i, d in enumerate(diagrams, 1):
-            name = f"{route}-action-{i}"
-            open(os.path.join(DATA, f"{name}.mmd"), "w").write(d["mmd"])
-            ua += ["", f"### 5.{i} {d['block']}: {d['trigger']} {d['handler']}", "",
-                   f"![{d['block']} {d['handler']}](svg/{name}.svg)", "",
-                   "<details><summary>Mermaid source</summary>", "", "```mermaid", d["mmd"], "```", "", "</details>"]
-        ua.append("")
-    else:
-        ua = ["No user action on this route makes a server call, a navigation, an external link or a message.", ""]
-    L = [f"# {route}: server calls in OutSystems and React", "",
-         f"This file compares the server calls of the route `/UBTConnect/{route}` in OutSystems (TST) with the calls "
-         "of the React app.",
-         f"The tool `migration/tools/route_actions/check_route.py` wrote this file on {date.today().isoformat()}.",
-         "The tool reads the code. It does not run the app.", "",
-         "## 1. Route", "",
-         "| Item | Value | Source |", "|---|---|---|",
-         f"| Route | `/UBTConnect/{route}` | `app/src/app/routes.generated.ts` |",
-         f"| OutSystems screen | `{file_key(r['screenFile'])}` | TST compiled code |",
-         f"| UI flow | `{r['flow']}` | MCP `getScreenNames` (DEV) |",
-         f"| React screen | {link(r['react']['pageEntry'])} | `app/src/pages/` |",
-         f"| React route rules | access `{r['meta']['access']}`, lock `{r['meta']['lock']}`, flag redirect {r['meta']['flagRedirect']} | `app/src/app/routes.ts` |",
-         f"| Code read | OutSystems: {len(r['blocks'])} screen and block files. React: {r['react']['shellFiles']} app shell files and {r['react']['pageFiles']} screen files | TST `facts.json`, `react_calls.mjs` |",
-         "", "## 2. Result", "",
-         "| Check | Result |", "|---|---|",
-         f"| Server calls on TST | {len(eps)}: React makes {cnt['implemented']}, **{cnt['missing']} missing** |",
-         f"| React calls that TST does not make on this route | {len(r['reactOnly'])} (see [questions](#8-questions)) |",
-         f"| Screen and blocks with a React port | {blocks_ported} of {len(r['blocks'])} |",
-         f"| Navigation targets found in React | {len(r['osNav']) - len(nav_missing)} of {len(r['osNav'])} |",
-         "", "## 3. Screenshots", "", *screenshots(route),
-         "", "## 4. Diagram", "",
-         "- A box on the left is the OutSystems block or app action that makes the call.",
-         "- A line connects each call to the React action that makes the same call.",
-         "- The right column shows the React components that use each React action.",
-         "- A red box is a call that React does not make.", "",
-         f"![{route} diagram](svg/{route}.svg)", "", "<details><summary>Mermaid source</summary>", "",
-         "```mermaid", mm, "```", "", "</details>", "",
-         "## 5. User actions", "", *ua,
-         "## 6. Server calls", "",
-         "- **Called from (OutSystems):** the block or the app-level module whose own client action makes the call. "
-         "`app shell` = the layout and the app start; `screen` = the screen and its blocks.",
+    rows.sort(key=lambda x: (x[0][0][0], x[2]["short"]))
+    return rows
+
+
+def calls_table(rows, blocks, with_routes=False):
+    L = ["- **Called from (OutSystems):** the block or the app-level module whose own client action makes the call.",
          "- **Made by (TST):** for each block in \"Called from\", its chain of client actions from the block to the call.",
          "- **Trigger:** when the call runs, from the start of the chain on TST.",
-         "- **Seen on TST:** `yes` when TST made the call in the capture. Many calls run only after a click. A call that "
-         "TST made but that has no static chain in the TST code is in the table too; its trigger says so.",
+         "- **Seen on TST:** `yes` when TST made the call in the capture. Many calls run only after a click.",
          "- **React action:** the React function that makes the same call, and the part that loads it: `shell`, `page` "
          "or both.",
          "- **React caller:** the nearest React component that uses the React action, and the hooks between them. At "
-         "most 2 chains, the shortest first.", "",
-         "| # | Call (TST) | Kind | Called from (OutSystems) | Trigger | Made by (TST) | Seen on TST | React action | React caller | Status |",
-         "|---|---|---|---|---|---|---|---|---|---|"]
-    for i, (owners, trigs_row, e) in enumerate(rows, 1):
-        e["n"] = i
-        frm = "<br>".join(f"`{o}` ({'app shell' if g == 'shell' else 'screen'})" for o, g in owners)
-        made, trig = [], trigs_row
+         "most 2 chains, the shortest first.", ""]
+    head = "| # | Call (TST) | Kind | Called from (OutSystems) | Trigger | Made by (TST) | Seen on TST | React action | React caller | Status |"
+    if with_routes:
+        head += " Routes |"
+    L += [head, "|---" * (head.count("|") - 1) + "|"]
+    for i, (owners, trigs, e) in enumerate(rows, 1):
+        frm = "<br>".join(f"`{o}`" for o, g in owners)
+        made = []
         for o in owners:
-            ch = next((c for c in e["chains"] if c and chain_owner(c, r["blocks"]) == o), None)
+            ch = next((c for c in e["chains"] if c and chain_owner(c, blocks) == o), None)
             made.append(md_escape(" → ".join(from_owner(ch, o[0]))) if ch else ("no static chain in the TST code" if e.get("noChain") else "–"))
         more = len(e["chains"]) - len(owners)
         chain = "<br>".join(made) + (f"<br>(+{more} more chains)" if more > 0 else "")
@@ -987,13 +948,50 @@ def render(r):
         seen = {"observed": "yes", "not observed": "no", "not captured": "no capture"}[e["observed"]]
         chains = sorted((ch for c in e["react"] for ch in c.get("callers", [])), key=len)[:2]
         caller = "<br>".join(react_chain(ch) for ch in chains) or "–"
-        L.append(f"| {i} | `{e['short']}` | {e['kind']} | {frm} | {'<br>'.join(trig)} | {chain} | {seen} | {rc} | {caller} | {st} |")
-    L += ["", "## 7. Missing in React", ""]
-    miss_eps = [e for e in eps if e["status"] == "missing"]
-    miss_blocks = [b for b in r["blocks"] if b["evidence"] not in ("tag", "name")]
-    if not (miss_eps or miss_blocks or nav_missing):
-        L.append("None.")
-    for e in miss_eps:
+        row = f"| {i} | `{e['short']}` | {e['kind']} | {frm} | {'<br>'.join(trigs)} | {chain} | {seen} | {rc} | {caller} | {st} |"
+        if with_routes:
+            row += " " + ", ".join(f"[{x}]({x}.md)" for x in e.get("routes", [])) + " |"
+        L.append(row)
+    return L
+
+
+def actions_section(diagrams, name, sec):
+    """Index table and one diagram per user action. Writes the .mmd files; returns (lines, names to render)."""
+    if not diagrams:
+        return ["No user action here makes a server call, a navigation, an external link or a message.", ""], []
+    L = ["Each user action (click, change, submit) has its own sequence diagram below.",
+         "The diagrams follow the OutSystems code on TST. The participant is the OutSystems block. The action is its "
+         "screen action.", "",
+         "- The effects are server calls, navigation (`Navigation`), external links, messages and confirm dialogs.",
+         "- When the handler has branches (a menu option, for example), each branch has its own diagram.",
+         "- The name of a branch comes from its condition in the TST code. `other` is the last `else`.",
+         "- A note `via …` gives the module action that makes the next calls.",
+         "- An arrow to the server gives the inputs of the call. The return arrow gives the outputs. The names come "
+         "from the contract `app/src/api/openapi.yaml`.",
+         "- Each call arrow ends with the nearest React component that makes the same call (`React: …`). A red area "
+         "is a call that React does not make.", "",
+         "| # | Block (OutSystems) | User action | Handler | Option (branch) | Effects |", "|---|---|---|---|---|---|"]
+    titles = []
+    for i, d in enumerate(diagrams, 1):
+        t = f"{sec}.{i} {d['block']}: {d['trigger']} {d['handler']}" + (f" ({d['branch']})" if d["branch"] else "")
+        titles.append(t)
+        L.append(f"| [{i}](#{slug(t)}) | `{d['block']}` | {d['trigger']} | `{d['handler']}` | "
+                 f"{('`' + d['branch'] + '`') if d['branch'] else '–'} | {md_escape(d['summary'])} |")
+    names = []
+    for i, (d, t) in enumerate(zip(diagrams, titles), 1):
+        n = f"{name}-action-{i}"
+        names.append(n)
+        open(os.path.join(DATA, f"{n}.mmd"), "w").write(d["mmd"])
+        L += ["", f"### {t}", "", f"![{d['block']} {d['handler']}](svg/{n}.svg)", "",
+              "<details><summary>Mermaid source</summary>", "", "```mermaid", d["mmd"], "```", "", "</details>"]
+    return L + [""], names
+
+
+def missing_lines(eps, blocks, nav_missing, os_nav):
+    L = []
+    for e in eps:
+        if e["status"] != "missing":
+            continue
         L.append(f"- Call `{e['short']}`. Chain on TST: " + md_escape(" → ".join(e["chains"][0]) if e["chains"] else "–") + ".")
         if e.get("elsewhere"):
             L.append("  - React has the function, but this route does not use it: " + ", ".join(
@@ -1002,23 +1000,98 @@ def render(r):
             L.append("  - No React code makes this call.")
         for p, i, line in e.get("notes", []):
             L.append(f"  - Note in {link(p, i)}: \"{md_escape(line)}\"")
-    for b in miss_blocks:
+    for b in blocks:
+        if b["evidence"] in ("tag", "name"):
+            continue
         where = (f" A React file has its tag ({', '.join(link(x) for x in b['react'])}), but this route does not use it."
                  if b["evidence"] == "elsewhere" else " No React file has its tag or its name.")
         L.append(f"- Block `{b['key']}`.{where}")
     for t in nav_missing:
-        L.append(f"- Navigation to `{t}` (from {', '.join(r['osNav'][t])}). The React screen and the app shell do not go to this route.")
-    L += ["", "## 8. Questions", ""]
+        L.append(f"- Navigation to `{t}` (from {', '.join(os_nav[t])}). The React screen and the app shell do not go to this route.")
+    return L or ["None."]
+
+
+def render_svgs(names):
+    for n in names:
+        subprocess.run(["node", os.path.join(ROOT, "migration", "tools", "route_actions", "render_svg.cjs"),
+                        os.path.join(DATA, f"{n}.mmd"), os.path.join(OUT, "svg", f"{n}.svg")],
+                       check=True, cwd=ROOT, stdout=subprocess.DEVNULL)
+
+
+def clean_outputs(name):
+    for stale in glob.glob(os.path.join(OUT, "svg", f"{name}-*.svg")) + glob.glob(os.path.join(DATA, f"{name}-*.mmd")):
+        os.remove(stale)
+
+
+def render(r):
+    """The route file: only what belongs to the route. The app shell parts go to APP_SHELL.md."""
+    route = r["route"]
+    blocks = r["blocks"]
+    eps = [x for x in (part_of(e, blocks, "screen") for e in r["endpoints"]) if x]
+    shell_eps = [x for x in (part_of(e, blocks, "shell") for e in r["endpoints"]) if x]
+    cnt = collections.Counter(e["status"] for e in eps)
+    own_blocks = [b for b in blocks if b["group"] == "screen"]
+    blocks_ported = sum(1 for b in own_blocks if b["evidence"] in ("tag", "name"))
+    own_nav = {t: v for t, v in r["osNav"].items() if "screen" in r.get("navGroups", {}).get(t, ["screen"])}
+    nav_missing = [t for t in own_nav if t not in r["reactNav"]]
+    questions = [c for c in r["reactOnly"] if "page" in c["where"]]
+    shell_questions = [c for c in r["reactOnly"] if c["where"] == "shell"]
+    shell_acts = [a for a in r.get("userActions") or [] if a.get("group") == "shell"]
+    view = {**r, "endpoints": eps, "allEndpoints": r["endpoints"],
+            "userActions": [a for a in r.get("userActions") or [] if a.get("group") != "shell"]}
+    mm = mermaid(view)
+    os.makedirs(os.path.join(OUT, "svg"), exist_ok=True)
+    open(os.path.join(DATA, f"{route}.mmd"), "w").write(mm)
+    clean_outputs(route)
+    ua, names = actions_section(action_diagrams(view), route, 5)
+    L = [f"# {route}: server calls and user actions in OutSystems and React", "",
+         f"This file compares the route `/UBTConnect/{route}` in OutSystems (TST) with the React app.",
+         f"The tool `migration/tools/route_actions/check_route.py` wrote this file on {date.today().isoformat()}.",
+         "The tool reads the code. It does not run the app.", "",
+         "The app shell is the same on many routes: layout, app start, bottom bar, PIN lock and shared dialogs.",
+         "[APP_SHELL.md](APP_SHELL.md) has it. This file does not.", "",
+         "## 1. Route", "",
+         "| Item | Value | Source |", "|---|---|---|",
+         f"| Route | `/UBTConnect/{route}` | `app/src/app/routes.generated.ts` |",
+         f"| OutSystems screen | `{file_key(r['screenFile'])}` | TST compiled code |",
+         f"| UI flow | `{r['flow']}` | MCP `getScreenNames` (DEV) |",
+         f"| React screen | {link(r['react']['pageEntry'])} | `app/src/pages/` |",
+         f"| React route rules | access `{r['meta']['access']}`, lock `{r['meta']['lock']}`, flag redirect {r['meta']['flagRedirect']} | `app/src/app/routes.ts` |",
+         f"| Code read | OutSystems: {len(own_blocks)} screen and block files of the route, {len(blocks) - len(own_blocks)} app shell files. React: {r['react']['pageFiles']} screen files | TST `facts.json`, `react_calls.mjs` |",
+         "", "## 2. Result", "",
+         "| Check | Result |", "|---|---|",
+         f"| Server calls of the route on TST | {len(eps)}: React makes {cnt['implemented']}, **{cnt['missing']} missing** |",
+         f"| User actions of the route | {len(names)} diagrams (one per action and option) |",
+         f"| React calls of the screen that TST does not make | {len(questions)} (see [questions](#8-questions)) |",
+         f"| Screen and blocks with a React port | {blocks_ported} of {len(own_blocks)} |",
+         f"| Navigation targets found in React | {len(own_nav) - len(nav_missing)} of {len(own_nav)} |",
+         f"| App shell on this route | {len(shell_eps)} calls, {len(shell_acts)} user actions: see [APP_SHELL.md](APP_SHELL.md) |",
+         "", "## 3. Screenshots", "", *screenshots(route),
+         "", "## 4. Diagram", "",
+         "- A box on the left is the OutSystems block of the route that makes the call.",
+         "- A line connects each call to the React action that makes the same call.",
+         "- The right column shows the React components that use each React action.",
+         "- A red box is a call that React does not make.", "",
+         f"![{route} diagram](svg/{route}.svg)", "", "<details><summary>Mermaid source</summary>", "",
+         "```mermaid", mm, "```", "", "</details>", "",
+         "## 5. User actions", "", *ua,
+         "## 6. Server calls", "", *(calls_table(call_rows(eps, blocks), blocks) if eps else ["None."]),
+         "", "## 7. Missing in React", "", *missing_lines(eps, own_blocks, nav_missing, own_nav),
+         "", "## 8. Questions", ""]
     qs = [f"React calls `{c['apiPath']}` from `{c['fn']}()` {link(c['file'], c['line'])} ({c['where']}). TST {route} "
-          "has no chain to this call. Does the call belong to this route?" for c in r["reactOnly"]]
+          "has no chain to this call. Does the call belong to this route?" for c in questions]
     L += [f"{i}. {q}" for i, q in enumerate(qs, 1)] or ["None."]
     L += ["", "## 9. Method", "",
-          "1. **OutSystems (TST).** The tool reads `facts.json` of `migration/screens/" + route + "/analysis/`:",
-          "   - the screen and block files that TST renders;",
-          "   - each server call, and the chain of client actions that makes the call;",
-          "   - the calls that TST made in the capture (`calls.json`).",
-          "2. **App shell and screen.** `app shell` is `CommonUI_InsideLayout`, its blocks and the app-level actions. "
-          "`screen` is the screen and its other blocks.",
+          "1. **OutSystems (TST).** The tool reads `facts.json` and the compiled code of `migration/screens/" + route +
+          "/analysis/`:",
+          "   - the rendered files;",
+          "   - each server call with its chain of client actions, and the calls that TST made in the capture;",
+          "   - the effects of each user action.",
+          "2. **Route and app shell.** The app shell has these parts:",
+          "   - `CommonUI_InsideLayout` with its blocks, and the app-level actions;",
+          f"   - the business blocks that at least {int(SHARED_SHARE * 100)}% of the captured routes render, for "
+          "example the bottom bar.",
+          "   This file shows only the other blocks.",
           "3. **MCP (DEV).** The tool reads the UI flow with `getScreenNames`. TST wins when DEV is different.",
           "4. **React.** `react_calls.mjs` reads the app shell from `app/src/main.tsx` and the screen from its "
           "`<Route>Page.tsx`. It counts only the code that the app uses.",
@@ -1028,14 +1101,81 @@ def render(r):
           "compare the behaviour."]
     p = os.path.join(OUT, f"{route}.md")
     open(p, "w", encoding="utf-8").write("\n".join(L) + "\n")
-    subprocess.run(["node", os.path.join(ROOT, "migration", "tools", "route_actions", "render_svg.cjs"),
-                    os.path.join(DATA, f"{route}.mmd"), os.path.join(OUT, "svg", f"{route}.svg")], check=True, cwd=ROOT)
-    for i in range(1, len(diagrams) + 1):
-        subprocess.run(["node", os.path.join(ROOT, "migration", "tools", "route_actions", "render_svg.cjs"),
-                        os.path.join(DATA, f"{route}-action-{i}.mmd"), os.path.join(OUT, "svg", f"{route}-action-{i}.svg")],
-                       check=True, cwd=ROOT, stdout=subprocess.DEVNULL)
+    render_svgs([route] + names)
     print("wrote", rel(p))
     return p
+
+
+def render_app_shell():
+    """APP_SHELL.md: the app shell parts of every checked route, merged (data/check-*.json)."""
+    eps, blocks, acts, qs, nav, nav_missing, every = {}, {}, {}, {}, {}, set(), {}
+    routes = []
+    for path in sorted(glob.glob(os.path.join(DATA, "check-*.json"))):
+        r = load(path)
+        routes.append(r["route"])
+        for b in r["blocks"]:
+            if b["group"] == "shell":
+                blocks.setdefault(b["key"], b)
+        for e in r["endpoints"]:
+            every.setdefault(e["url"], e)
+            x = part_of(e, r["blocks"], "shell")
+            if not x:
+                continue
+            m = eps.setdefault(x["url"], {**x, "chains": [], "routes": []})
+            m["routes"].append(r["route"])
+            m["chains"] += [c for c in x["chains"] if c not in m["chains"]]
+            if x["observed"] == "observed":
+                m["observed"] = "observed"
+        for a in r.get("userActions") or []:
+            if a.get("group") == "shell":
+                acts.setdefault((a["block"], a["handler"]), a)
+        for c in r["reactOnly"]:
+            if c["where"] == "shell":
+                qs.setdefault(c["apiPath"], {**c, "routes": []})["routes"].append(r["route"])
+        for t, g in (r.get("navGroups") or {}).items():
+            if g == ["shell"]:
+                nav.setdefault(t, r["osNav"].get(t, []))
+                if t not in r["reactNav"]:
+                    nav_missing.add(t)
+    if not routes:
+        return
+    blist = list(blocks.values())
+    ep_list = list(eps.values())
+    view = {"endpoints": ep_list, "allEndpoints": list(every.values()), "blocks": blist, "userActions": list(acts.values())}
+    mm = mermaid(view)
+    open(os.path.join(DATA, "APP_SHELL.mmd"), "w").write(mm)
+    clean_outputs("APP_SHELL")
+    ua, names = actions_section(action_diagrams(view), "APP_SHELL", 3)
+    cnt = collections.Counter(e["status"] for e in ep_list)
+    L = ["# App shell: server calls and user actions in OutSystems and React", "",
+         "The app shell is the part of the app that many routes share.",
+         "It has the layout `CommonUI_InsideLayout` and its blocks, the app start, the bottom bar, the PIN lock and the "
+         "shared dialogs. The route files leave it out.",
+         f"The tool `migration/tools/route_actions/check_route.py` merges it from the checked routes on "
+         f"{date.today().isoformat()}: " + ", ".join(f"[{x}]({x}.md)" for x in routes) + ".", "",
+         "## 1. Result", "",
+         "| Check | Result |", "|---|---|",
+         f"| App shell server calls on TST | {len(ep_list)}: React makes {cnt['implemented']}, **{cnt['missing']} missing** |",
+         f"| App shell user actions | {len(names)} diagrams (one per action and option) |",
+         f"| React app shell calls that TST does not make on a route | {len(qs)} |", "",
+         "## 2. Diagram", "",
+         f"![App shell diagram](svg/APP_SHELL.svg)", "", "<details><summary>Mermaid source</summary>", "",
+         "```mermaid", mm, "```", "", "</details>", "",
+         "## 3. User actions", "", *ua,
+         "## 4. Server calls", "",
+         "The column **Routes** gives the checked routes where the app shell makes the call.", "",
+         *(calls_table(call_rows(ep_list, blist), blist, with_routes=True) if ep_list else ["None."]),
+         "", "## 5. Missing in React", "",
+         *missing_lines(ep_list, blist, sorted(nav_missing), nav),
+         "", "## 6. Questions", ""]
+    ql = [f"React calls `{c['apiPath']}` from `{c['fn']}()` {link(c['file'], c['line'])} in the app shell. TST has no "
+          f"chain to this call on {', '.join(c['routes'])}. Does the app shell make this call on these routes?"
+          for c in qs.values()]
+    L += [f"{i}. {q}" for i, q in enumerate(ql, 1)] or ["None."]
+    p = os.path.join(OUT, "APP_SHELL.md")
+    open(p, "w", encoding="utf-8").write("\n".join(L) + "\n")
+    render_svgs(["APP_SHELL"] + names)
+    print("wrote", rel(p))
 
 
 def main():
@@ -1043,10 +1183,14 @@ def main():
     ap.add_argument("route", nargs="?")
     ap.add_argument("--routes", action="store_true", help="write ROUTES.md")
     ap.add_argument("--mark-done", action="store_true", help="set the route to done in ROUTES.md")
+    ap.add_argument("--app-shell", action="store_true", help="write APP_SHELL.md from the checked routes")
     a = ap.parse_args()
     os.makedirs(DATA, exist_ok=True)
     if a.routes:
         write_routes()
+        return
+    if a.app_shell:
+        render_app_shell()
         return
     if not a.route:
         ap.error("route needed")
@@ -1055,6 +1199,7 @@ def main():
         return
     r = check(a.route)
     render(r)
+    render_app_shell()
     write_routes()
 
 
