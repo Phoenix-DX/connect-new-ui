@@ -482,7 +482,7 @@ function effectsOf(fn, label, depth, seen) {
         let sym = (Node.isPropertyAccessExpression(ex) ? ex.getNameNode() : ex).getSymbol?.();
         if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
         const d0 = sym?.getDeclarations()?.[0];
-        if (d0 && (Node.isParameterDeclaration(d0) || Node.isPropertySignature(d0) || Node.isBindingElement(d0)) && /^on[A-Z]/.test(name)) {
+        if (d0 && (Node.isParameterDeclaration(d0) || Node.isPropertySignature(d0) || (Node.isBindingElement(d0) && d0.getFirstAncestorByKind(SyntaxKind.Parameter))) && /^on[A-Z]/.test(name)) {
           add('callback', name, node, lab); // the parent decides what happens
         }
         for (const d of sym?.getDeclarations() ?? []) {
