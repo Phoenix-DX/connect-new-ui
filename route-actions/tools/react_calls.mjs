@@ -304,7 +304,7 @@ function facts(units, reached, users) {
 // navigation, confirm dialog, message, external link, server call (callAction). Calls to other functions of
 // app/src are followed 3 levels deep.
 const NAV_FN = /^(navigate|go|osNavigateTo|navigateTo|replaceTo|goTo\w*|navigateBack\w*)$/;
-const RUNS_ARG = /^(then|catch|finally|setTimeout|queueMicrotask|requestAnimationFrame|flushSync|startTransition)$/;
+const RUNS_ARG = /^(run|runAwaited|then|catch|finally|setTimeout|queueMicrotask|requestAnimationFrame|flushSync|startTransition)$/;
 const ERROR_FN = /^(raiseToFlowHandler|showExceptionMessage|handleError\w*)$/;
 const HOME_SCREEN = (fs.readFileSync(path.join(SRC, 'app', 'routes.generated.ts'), 'utf8').match(/export const HOME = "\/\w+\/(\w+)"/) || [])[1];
 
@@ -644,7 +644,8 @@ function bindingsOf(units, reached) {
       const handler = isFunctionLike(ex) ? 'inline' : ex.getText().slice(0, 60);
       const body = isFunctionLike(ex) ? ex : (Node.isIdentifier(ex) || Node.isPropertyAccessExpression(ex)) ? resolveFn(ex) : null;
       if (!body) continue;
-      const effects = effectsOf(body, null, 0, new Set([body]));
+      // an inline arrow is not a named level: the 3 levels count from the first named function, as for `on={name}`
+      const effects = effectsOf(body, null, isFunctionLike(ex) ? -1 : 0, new Set([body]));
       if (!effects.some((e) => EFFECT_KINDS.has(e.kind))) continue;
       const el = attr.getFirstAncestor((x) => Node.isJsxOpeningElement(x) || Node.isJsxSelfClosingElement(x));
       out.push({ element: el ? el.getTagNameNode().getText() : '?', prop, handler, file: rel(f), line: attr.getStartLineNumber(), effects });
