@@ -100,6 +100,20 @@ describe('householdRelationsState', () => {
     expect(state.ShowNotesSheet).toBe(false);
   });
 
+  it('IsBookmarked: False by default, set by the OnInitialize read, flipped by OnClick_Bookmark', () => {
+    expect(INITIAL_HOUSEHOLD_RELATIONS_STATE.IsBookmarked).toBe(false);
+    expect(initialHouseholdRelationsState(false).IsBookmarked).toBe(false);
+    let state = householdRelationsReducer(INITIAL_HOUSEHOLD_RELATIONS_STATE, {
+      type: 'bookmarkRead',
+      isBookmarked: true,
+    });
+    expect(state.IsBookmarked).toBe(true);
+    state = householdRelationsReducer(state, { type: 'bookmarkToggled' });
+    expect(state.IsBookmarked).toBe(false);
+    state = householdRelationsReducer(state, { type: 'bookmarkToggled' });
+    expect(state.IsBookmarked).toBe(true);
+  });
+
   it('replaces the notes and removes a deleted note, with Total = the length of the list', () => {
     const notes = {
       Total: 7,

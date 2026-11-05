@@ -14,7 +14,8 @@ import {
 import { setSignedInUser } from '@/platform/session/session';
 import { freshPage } from '@/test/testSupport';
 import { MyBookmarks_ObjectType_Contact } from '@/pages/Locality_Details/components/staticEntities';
-import { getLocal_Bookmark, getLocal_Bookmark_C2 } from '@/pages/Locality_Details/components/actions';
+import { getLocal_Bookmark } from '@/pages/Locality_Details/components/actions';
+import { getLocal_Bookmark_C2 } from '@/lib/ubtConnect/actions';
 import { ControllerDisposedException } from '@/legacy/os/os-exceptions';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { localityHouseholdListReducer } from './localityBlocksState';
@@ -27,11 +28,11 @@ vi.mock('@/api/household', async (importOriginal) => ({
 /** The local bookmark reads and the reducer as spies (the real functions run), so a test sees every read and write. */
 vi.mock('@/pages/Locality_Details/components/actions', async (importOriginal) => {
   const actual = await importOriginal<typeof import('@/pages/Locality_Details/components/actions')>();
-  return {
-    ...actual,
-    getLocal_Bookmark: vi.fn(actual.getLocal_Bookmark),
-    getLocal_Bookmark_C2: vi.fn(actual.getLocal_Bookmark_C2),
-  };
+  return { ...actual, getLocal_Bookmark: vi.fn(actual.getLocal_Bookmark) };
+});
+vi.mock('@/lib/ubtConnect/actions', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/lib/ubtConnect/actions')>();
+  return { ...actual, getLocal_Bookmark_C2: vi.fn(actual.getLocal_Bookmark_C2) };
 });
 vi.mock('./localityBlocksState', async (importOriginal) => {
   const actual = await importOriginal<typeof import('./localityBlocksState')>();

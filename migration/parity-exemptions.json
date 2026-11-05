@@ -1763,6 +1763,33 @@
       "detailRegex": "DataActionFetchMessageInstance|DataActionGetMessageInstance|ActionGetSignedImagesInBulk",
       "reason": "Baseline of 2026-10-29 predates the TST change of 2026-11-05: the live screen fetches GetMessageInstance at start (the old FetchMessageInstance is declared, never fetched) and the sender photo URL (Cache_SignedImageURL_Get). Re-capture needed.",
       "evidence": "migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js:711-714, :776-798, :1096-1120; decision row 22."
+    },
+    {
+      "id": "TST-DRIFT-2026-11-05-HOUSEHOLDRELATIONS-BOOKMARK-BUTTON",
+      "kinds": [
+        "class",
+        "style",
+        "attr",
+        "pseudo"
+      ],
+      "routeRegex": "^/UBTConnect/Household_Relations(\\?|$)",
+      "states": "^(default|loading|offline)$",
+      "pathRegex": "b3-\\$b10\\.OSBlockWidget\\[CW_Common\\.Button\\]",
+      "detailRegex": ".",
+      "reason": "Baseline of 2026-10-29 predates the TST change of 2026-11-05: the live HouseholdRelations_Block enables the Bookmark button (secondary when not bookmarked, primary when bookmarked; it was a disabled primary placeholder). Re-capture needed; remove these rules then.",
+      "evidence": "migration/runtime-sources/live/UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js:553-590 (button), :2167-2195 (OnClick_Bookmark), :2237-2260 (the read); the October copy migration/screens/Household_Relations/analysis/sources/raw/…HouseholdRelations_Block.mvc.js:540-556; migration/knowledge/tst-drift-2026-11-05.md (second look)."
+    },
+    {
+      "id": "TST-DRIFT-2026-11-05-HOUSEHOLDRELATIONS-BOOKMARK-PIXEL",
+      "kinds": [
+        "pixel"
+      ],
+      "routeRegex": "^/UBTConnect/Household_Relations(\\?|$)",
+      "states": "^(default|loading|offline)$",
+      "pathRegex": "^screenshot$",
+      "detailRegex": "^0\\.[0-2]\\d% pixels differ .*worst 40px tile [0-5]\\.\\d%",
+      "reason": "Baseline of 2026-10-29 predates the TST change of 2026-11-05: the live HouseholdRelations_Block enables the Bookmark button (secondary when not bookmarked, primary when bookmarked; it was a disabled primary placeholder). Re-capture needed; remove these rules then. The pixels that differ are the button's fill and text.",
+      "evidence": "migration/runtime-sources/live/UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js:553-590 (button), :2167-2195 (OnClick_Bookmark), :2237-2260 (the read); the October copy migration/screens/Household_Relations/analysis/sources/raw/…HouseholdRelations_Block.mvc.js:540-556; migration/knowledge/tst-drift-2026-11-05.md (second look)."
     }
   ],
   "ignoreClasses": [

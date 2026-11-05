@@ -1,6 +1,7 @@
 import { fetchLocalityHouseholds, type LocalityHousehold } from '@/api/household';
 import { BookmarkCategory } from '@/lib/ubtConnect/staticEntities';
-import { getLocal_Bookmark, getLocal_Bookmark_C2 } from '@/pages/Locality_Details/components/actions';
+import { getLocal_Bookmark } from '@/pages/Locality_Details/components/actions';
+import { getLocal_Bookmark_C2 } from '@/lib/ubtConnect/actions';
 import { MyBookmarks_ObjectType_Contact } from '@/pages/Locality_Details/components/staticEntities';
 import { setPreloadObject, useFlowState, useOsNavigate } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';

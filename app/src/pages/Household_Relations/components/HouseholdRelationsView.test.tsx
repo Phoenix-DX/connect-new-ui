@@ -39,6 +39,7 @@ function renderView(props: Partial<HouseholdRelationsViewProps> = {}) {
   const handlers = {
     onClickMember: vi.fn(),
     onAddNotes: vi.fn(),
+    onClickBookmark: vi.fn(),
     onNotesSheetClosed: vi.fn(),
     onNotesChanged: vi.fn(),
     onNoteDeleted: vi.fn(),
@@ -57,12 +58,16 @@ function renderView(props: Partial<HouseholdRelationsViewProps> = {}) {
     siblingsFetchStatus: DataFetchStatus.Fetched,
     notes: { Total: 0, Note_Item_List: [] },
     isNotesSheetOpen: false,
+    isBookmarked: false,
     ...handlers,
     ...props,
   };
   const rendered = renderRoutes({ [PATH]: <HouseholdRelationsView {...view} /> }, PATH);
   return { ...rendered, handlers };
 }
+
+/** The button of the right column of b3-Buttons (Bookmark). */
+const bookmarkButton = () => screen.getByText('Bookmark').closest('button');
 
 const sectionText = (id: string) => document.getElementById(id)?.textContent ?? null;
 /** The two skeleton sections of the block that are loading (not those of the photos). */
@@ -158,6 +163,24 @@ describe('HouseholdRelationsView', () => {
     expect(handlers.onClickMember).toHaveBeenLastCalledWith(FATHER);
   });
 
+  it('Bookmark: Secondary and enabled while not bookmarked; a click raises OnClick_Bookmark', () => {
+    const { handlers } = renderView();
+    const button = bookmarkButton();
+    expect(button?.className).toContain('secondary');
+    expect(button?.className).not.toContain('primary');
+    expect(button?.disabled).toBe(false);
+    fireEvent.click(screen.getByText('Bookmark'));
+    expect(handlers.onClickBookmark).toHaveBeenCalledTimes(1);
+  });
+
+  it('Bookmark: Primary while bookmarked', () => {
+    renderView({ isBookmarked: true });
+    const button = bookmarkButton();
+    expect(button?.className).toContain('primary');
+    expect(button?.className).not.toContain('secondary');
+    expect(button?.disabled).toBe(false);
+  });
+
   it('raises the Notes handler; the notes sheet stays closed', () => {
     const { handlers } = renderView();
     fireEvent.click(screen.getByText('Notes'));
@@ -183,6 +206,8 @@ describe('HouseholdRelationsView', () => {
           siblingsFetchStatus={DataFetchStatus.Fetched}
           notes={{ Total: 0, Note_Item_List: [] }}
           isNotesSheetOpen={open}
+          isBookmarked={false}
+          onClickBookmark={vi.fn()}
           onClickMember={vi.fn()}
           onAddNotes={() => {
             setOpen(true);

@@ -10,6 +10,7 @@ import {
   type MemberRelations,
   type SiblingRelations,
 } from '@/api/household';
+import { addC2Bookmark } from '@/api/bookmark';
 import { DataFetchStatus } from '@/components/ui/os/OSList';
 import {
   CommunicationException,
@@ -24,7 +25,8 @@ import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter'
 import { MOCK_USER_ID, mockUserInformation } from '@/platform/session/mockUser';
 import { setSignedInUser } from '@/platform/session/session';
 import { getUserInformation } from '@/platform/session/userInfo';
-import { hasAccessToRegion } from '@/lib/ubtConnect/actions';
+import { getLocal_Bookmark_C2, hasAccessToRegion } from '@/lib/ubtConnect/actions';
+import { toggleBookmarkItem_C2 } from '@/lib/ubtConnectUtils/actions';
 import { householdRelationsReducer, MEMBER_DEFAULTS } from './householdRelationsState';
 import { useHouseholdRelations, type HouseholdRelationsFlows } from './useHouseholdRelations';
 
@@ -39,6 +41,10 @@ vi.mock('@/api/household', async (importOriginal) => ({
   fetchMemberRelations: vi.fn(),
   fetchSiblingRelations: vi.fn(),
 }));
+vi.mock('@/api/bookmark', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/api/bookmark')>()),
+  addC2Bookmark: vi.fn(),
+}));
 vi.mock('@/platform/session/userInfo', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/platform/session/userInfo')>()),
   getUserInformation: vi.fn(),
@@ -46,6 +52,11 @@ vi.mock('@/platform/session/userInfo', async (importOriginal) => ({
 vi.mock('@/lib/ubtConnect/actions', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/lib/ubtConnect/actions')>()),
   hasAccessToRegion: vi.fn(() => Promise.resolve(true)),
+  getLocal_Bookmark_C2: vi.fn(() => Promise.resolve(false)),
+}));
+vi.mock('@/lib/ubtConnectUtils/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/ubtConnectUtils/actions')>()),
+  toggleBookmarkItem_C2: vi.fn(() => Promise.resolve()),
 }));
 vi.mock('@/platform/feedback/dialogs', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/platform/feedback/dialogs')>()),
@@ -212,6 +223,9 @@ describe('useHouseholdRelations', () => {
     expect(fetchMemberRelations).not.toHaveBeenCalled();
     // No skeleton on a restored view: the saved record (here the defaults) stays.
     expect(result.current.siblings).toEqual([]);
+    // OnInitialize reads no bookmark on a restored view (live mvc.js:2226-2228): IsBookmarked keeps the saved value.
+    expect(getLocal_Bookmark_C2).not.toHaveBeenCalled();
+    expect(result.current.isBookmarked).toBe(false);
   });
 
   it('a restored view with another age visibility fetches again', async () => {
@@ -253,6 +267,53 @@ describe('useHouseholdRelations', () => {
     expect(result.current.siblingsFetchStatus).toBe(DataFetchStatus.Error);
     expect(result.current.memberName).toBe('Matías Fuentes');
     expect(result.current.isLoading).toBe(true);
+  });
+
+  it('OnInitialize reads the bookmark of the member (GetLocal_Bookmark_C2) before Get_MemberDetails', async () => {
+    vi.mocked(getLocal_Bookmark_C2).mockResolvedValueOnce(true);
+    const { result } = renderFlows();
+    await settle();
+    expect(getLocal_Bookmark_C2).toHaveBeenCalledTimes(1);
+    expect(getLocal_Bookmark_C2).toHaveBeenCalledWith('Member', '6101');
+    expect(vi.mocked(getLocal_Bookmark_C2).mock.invocationCallOrder[0]).toBeLessThan(
+      vi.mocked(fetchMemberRelations).mock.invocationCallOrder[0] ?? 0,
+    );
+    expect(result.current.isBookmarked).toBe(true);
+  });
+
+  it('OnClick_Bookmark: ToggleBookmarkItem_C2 with IsBookmarked, then IsBookmarked flips', async () => {
+    const { result } = renderFlows();
+    await settle();
+    act(() => {
+      result.current.onClickBookmark();
+    });
+    await settle();
+    expect(toggleBookmarkItem_C2).toHaveBeenCalledTimes(1);
+    expect(toggleBookmarkItem_C2).toHaveBeenCalledWith('6101', 'Member', false, expect.anything());
+    expect(result.current.isBookmarked).toBe(true);
+    act(() => {
+      result.current.onClickBookmark();
+    });
+    await settle();
+    expect(toggleBookmarkItem_C2).toHaveBeenLastCalledWith('6101', 'Member', true, expect.anything());
+    expect(result.current.isBookmarked).toBe(false);
+  });
+
+  it('OnClick_Bookmark: IsBookmarked flips also when AddBookmark2 answers Success False', async () => {
+    const actual = await vi.importActual<typeof import('@/lib/ubtConnectUtils/actions')>(
+      '@/lib/ubtConnectUtils/actions',
+    );
+    vi.mocked(toggleBookmarkItem_C2).mockImplementationOnce(actual.toggleBookmarkItem_C2);
+    vi.mocked(addC2Bookmark).mockResolvedValueOnce({ Success: false, Bookmark_Added: { Id: '0', DateCreatedUtc: '' } });
+    const { result } = renderFlows();
+    await settle();
+    act(() => {
+      result.current.onClickBookmark();
+    });
+    await settle();
+    expect(addC2Bookmark).toHaveBeenCalledWith('Member', '6101');
+    expect(result.current.isBookmarked).toBe(true);
+    expect(raiseToFlowHandler).not.toHaveBeenCalled();
   });
 
   it('OnClick_Member opens the household of the relative, or the upgrade popup without access', async () => {
@@ -337,6 +398,17 @@ describe('useHouseholdRelations after an unmount and in StrictMode (flow scope, 
       .mocked(raiseToFlowHandler)
       .mock.calls.map(([error, scope]) => [error instanceof ControllerDisposedException, isFlowScope(scope)]);
     expect(raised).toEqual([[true, true]]);
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R3: OnClick_Bookmark (flow.own) after the unmount does not toggle: ControllerDisposedException only', async () => {
+    const { result, unmount } = renderFlows();
+    await settle();
+    const { onClickBookmark } = result.current;
+    unmount();
+    onClickBookmark();
+    await settle();
+    expect(toggleBookmarkItem_C2).not.toHaveBeenCalled();
     expect(raisedErrors()).toEqual([]);
   });
 

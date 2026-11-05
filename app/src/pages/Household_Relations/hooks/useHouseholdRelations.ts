@@ -13,8 +13,10 @@ import { isViewHasChangedException } from '@/platform/feedback/flowErrors';
 import { useFlowState, useOsNavigate, useWasRestoredFromCache } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
 import { getUserInformation } from '@/platform/session/userInfo';
-import { hasAccessToRegion } from '@/lib/ubtConnect/actions';
+import { getLocal_Bookmark_C2, hasAccessToRegion, longIntegerText } from '@/lib/ubtConnect/actions';
+import { BookmarkCategory } from '@/lib/ubtConnect/staticEntities';
 import type { Notes } from '@/lib/ubtConnectLibrary/structures';
+import { bookmarkServerActions, toggleBookmarkItem_C2 } from '@/lib/ubtConnectUtils/actions';
 import {
   householdRelationsReducer,
   initialHouseholdRelationsState,
@@ -25,8 +27,8 @@ import {
 
 /** The flows of HouseholdRelations_Block: OnReady (GetUserInformation_Wrapper, then Action_Refresh_Get_MemberDetails
     unless the view is restored from the cache with the same age visibility), OnAfterFetch_Get_MemberDetails (the event
-    RelationsDetails_Fetched, the refresh of Get_ParentHouseholdDetails, Actions_DefineLoading), OnClick_Member and
-    the handlers of the notes sheet. The page calls this hook and passes the result to HouseholdRelationsView.
+    RelationsDetails_Fetched, the refresh of Get_ParentHouseholdDetails, Actions_DefineLoading), the bookmark read of
+    OnInitialize, OnClick_Bookmark, OnClick_Member and the handlers of the notes sheet. The page calls this hook and passes the result to HouseholdRelationsView.
     @origin UBTConnect.Directory_Household.HouseholdRelations_Block */
 
 /** The inputs of the block. */
@@ -67,6 +69,10 @@ export interface HouseholdRelationsFlows {
   notes: Notes;
   /** ShowNotesSheet. */
   isNotesSheetOpen: boolean;
+  /** IsBookmarked: the Bookmark button is Primary when True, else Secondary. */
+  isBookmarked: boolean;
+  /** OnClick_Bookmark. */
+  onClickBookmark: () => void;
   /** OnClick_Member of a relation (IsDeceased False at every caller). */
   onClickMember: (member: HouseholdMember) => void;
   /** Handler_AddNotes. */
@@ -159,11 +165,39 @@ export function useHouseholdRelations(
     await refreshMemberDetails();
   });
 
+  /** The bookmark read of ScreenEvent_OnInitialize (live HouseholdRelations_Block.mvc.js:2200-2275) for a view that is
+      not restored from the cache (:2226-2228) and has no data action fetched (:2231; always so for a new view):
+      GetLocal_Bookmark_C2(bookmarkCategory.member, MemberId) (:2237), a module action, then IsBookmarked =
+      GetLocal_Bookmark_C2.IsBookmarked (:2259-2260). The skeleton records of OnInitialize are in the initial state. */
+  const readBookmark = async () => {
+    const isBookmarked = await getLocal_Bookmark_C2(
+      BookmarkCategory.Member,
+      longIntegerText(parameters.current.memberId),
+    );
+    dispatch({ type: 'bookmarkRead', isBookmarked });
+  };
+
+  /** OnClick_Bookmark (live HouseholdRelations_Block.mvc.js:2167-2195), an own action of the block (R3,
+      ensureControllerAlive :2174): ToggleBookmarkItem_C2(LongIntegerToText(MemberId), bookmarkCategory.member,
+      IsBookmarked) (:2183), then IsBookmarked = not IsBookmarked (:2186) whatever the toggle answered (the toggle
+      shows its own messages and catches the non-system exceptions). No subscription check, no confirm, no refresh. */
+  const actionOnClickBookmark = flow.own(async () => {
+    if (!bookmarkServerActions) return;
+    await toggleBookmarkItem_C2(
+      longIntegerText(parameters.current.memberId),
+      BookmarkCategory.Member,
+      latest.current.IsBookmarked,
+      bookmarkServerActions,
+    );
+    dispatch({ type: 'bookmarkToggled' });
+  });
+
   /** ScreenEvent_OnReady: GetUserInformation_Wrapper (after the app start's own step), then, unless the view is
       restored from the cache with the same age visibility, UserAge_Visibility and Action_Refresh_Get_MemberDetails.
       After the unmount the wrapper still answers; the variable write then does nothing and
       Action_Refresh_Get_MemberDetails (R3) stops the flow (HouseholdRelations_Block.js:2136-2160). */
   const onReady = async (restored: boolean) => {
+    if (!restored) await readBookmark();
     const userInformation = await getUserInformation(); // a module action: not wrapped
     // The wrapper returns the cached record: its Directory_UserCurrent is the action's UserInformation output.
     const displayAge = userInformation.Directory_UserCurrent.Directory_UserCurrent_Visibility.DisplayAge;
@@ -200,6 +234,10 @@ export function useHouseholdRelations(
     siblingsFetchStatus: state.Get_ParentHouseholdDetails.dataFetchStatus,
     notes: state.FetchNotes.Notes,
     isNotesSheetOpen: state.ShowNotesSheet,
+    isBookmarked: state.IsBookmarked,
+    onClickBookmark: () => {
+      flow.run(actionOnClickBookmark);
+    },
     onClickMember,
     // Handler_AddNotes: Refresh Query FetchNotes (R1), then ShowNotesSheet = True (HouseholdRelations_Block.mvc.js:1918).
     onAddNotes: () => {

@@ -1,5 +1,11 @@
 import { describe, expect, it, vi } from 'vitest';
-import { getClientVar } from '@/platform/session/session';
+import { getClientVar, setSignedInUser } from '@/platform/session/session';
+import {
+  localBookmarksSchemas,
+  memoryDatabase,
+  setLocalBookmarksDatabase,
+  synchBookmarksC2,
+} from '@/platform/storage/localEntities';
 import { freshPage } from '@/test/testSupport';
 import {
   directory_Updates_GetCarouselPreloadedHouseholds,
@@ -10,6 +16,7 @@ import {
   set_InitialClientVariables,
   get_LookupSection,
   getDescriptor_Subdivision_GenderSplit,
+  getLocal_Bookmark_C2,
   getSkeletonList_UI_HouseholdMembers,
   getSkeletonList_UI_SubdivisionHousehold,
   isStringEquals,
@@ -18,7 +25,7 @@ import {
   notes_InterchangeId_ExtractId,
   unauthorizedObjectMessage,
 } from './actions';
-import { Type_CarouselItemSwipeAction } from './staticEntities';
+import { BookmarkCategory, Type_CarouselItemSwipeAction } from './staticEntities';
 import {
   directory_BrowseByCountry_TooltipBuilder,
   getLocalityLabel,
@@ -198,6 +205,32 @@ describe('LongIntegerToText(TextToLongInteger(text))', () => {
     expect(longIntegerText('9007199254740993')).toBe('9007199254740993');
     expect(longIntegerText('252:253')).toBe('0');
     expect(longIntegerText('')).toBe('0');
+  });
+});
+
+/* GetLocal_Bookmark_C2 (live UBTConnect.controller.js:9315-9381): a fictional C2 Member bookmark of user 990002. */
+describe('GetLocal_Bookmark_C2', () => {
+  it('is True only for a C2 bookmark row of that category and item', async () => {
+    setLocalBookmarksDatabase(memoryDatabase(localBookmarksSchemas()));
+    setSignedInUser('990002');
+    try {
+      await synchBookmarksC2([
+        {
+          Id: '1',
+          UserId: 990002,
+          BookmarkId: '601',
+          BookmarkCategoryId: BookmarkCategory.Member,
+          ItemId: '42438',
+          CreatedAtDateUtc: '2026-11-01T08:00:00',
+        },
+      ]);
+      expect(await getLocal_Bookmark_C2(BookmarkCategory.Member, '42438')).toBe(true);
+      expect(await getLocal_Bookmark_C2(BookmarkCategory.Household, '42438')).toBe(false);
+      expect(await getLocal_Bookmark_C2(BookmarkCategory.Member, '42439')).toBe(false);
+    } finally {
+      setLocalBookmarksDatabase(null);
+      setSignedInUser(null);
+    }
   });
 });
 

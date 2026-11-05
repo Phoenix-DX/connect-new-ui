@@ -33,7 +33,7 @@ import { MemberRelation_ListItem } from './MemberRelation_ListItem';
 import { UBT_AlignItems_Baseline } from './staticEntities';
 
 /** The view of the relations of a member, props only. SkeletonSection (Get_MemberDetails not fetched) with the member
-    photo and name and the Notes and Bookmark (disabled) buttons; SkeletonSection (isLoading) with "Relations" (father,
+    photo and name and the Notes and Bookmark buttons (Bookmark Primary when IsBookmarked, else Secondary); SkeletonSection (isLoading) with "Relations" (father,
     mother, previous spouses) and "Household" (siblings), or the "no relation" text; then NotesSheet. The flows are in
     `useHouseholdRelations`.
     @origin UBTConnect.Directory_Household.HouseholdRelations_Block */
@@ -65,6 +65,10 @@ export interface HouseholdRelationsViewProps {
   notes: Notes;
   /** ShowNotesSheet. */
   isNotesSheetOpen: boolean;
+  /** IsBookmarked: the type of the Bookmark button (live HouseholdRelations_Block.mvc.js:559). */
+  isBookmarked: boolean;
+  /** OnClick_Bookmark: the Bookmark button (live mvc.js:581). */
+  onClickBookmark: () => void;
   /** OnClick_Member: the avatar, the name or the chevron of a relation. */
   onClickMember: (member: HouseholdMember) => void;
   /** The Notes button. */
@@ -80,8 +84,6 @@ export interface HouseholdRelationsViewProps {
 const MEMBER_AVATAR = { Height: UBTConnect_Utils_ImageSize.ExtraLarge_100, Width: UBT_ImageSize.Square };
 const RELATION_AVATAR = { Height: UBT_ImageSize.Base_52, Width: UBT_ImageSize.Square };
 const memberKey = (member: HouseholdMember, index: number) => `${member.Id ?? ''}-${String(index)}`;
-/** OnClick_Bookmark: an empty action (the button is disabled). */
-const onClickBookmark = () => undefined;
 /** The member has a household (HouseholdId is not 0). */
 const hasHousehold = (member: HouseholdMember) => (member.HouseholdId ?? '0') !== '0';
 
@@ -99,6 +101,8 @@ export function HouseholdRelationsView({
   siblingsFetchStatus,
   notes,
   isNotesSheetOpen,
+  isBookmarked,
+  onClickBookmark,
   onClickMember,
   onAddNotes,
   onNotesSheetClosed,
@@ -188,10 +192,13 @@ export function HouseholdRelationsView({
               />
             }
             right={
+              // CW_Common/Button (live mvc.js:553-590): Primary when IsBookmarked, else Secondary; enabled.
               <ActionButton
-                buttonOptions={{ UBT_ButtonSizeId: UBT_ButtonSize.Small, UBT_ButtonTypeId: UBT_ButtonType.Primary }}
+                buttonOptions={{
+                  UBT_ButtonSizeId: UBT_ButtonSize.Small,
+                  UBT_ButtonTypeId: isBookmarked ? UBT_ButtonType.Primary : UBT_ButtonType.Secondary,
+                }}
                 iconId={UBT_Icons.Bookmark}
-                isDisabled
                 buttonText="Bookmark"
                 iconTextSpacingSize={UBT_Size.Small}
                 onButtonOnClick={onClickBookmark}

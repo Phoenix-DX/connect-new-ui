@@ -12,6 +12,7 @@ import { log } from '@/platform/log/log';
 import { osList } from '@/lib/os-wire';
 import { getClientVar, setClientVar } from '@/platform/session/session';
 import { getUserInformation } from '@/platform/session/userInfo';
+import { getLocalBookmarkByObjectId } from '@/platform/storage/localEntities';
 import { UserException } from '@/legacy/os/os-exceptions';
 import {
   BookmarkCategory,
@@ -204,6 +205,15 @@ export const longIntegerText = (v: string): string => {
   const trimmed = v.trim();
   return /^[-+]?\d+$/.test(trimmed) ? BigInt(trimmed).toString() : '0';
 };
+
+/** GetLocal_Bookmark_C2(ObjectType, ObjectId) (live migration/runtime-sources/UBTConnect.controller.js:9315-9381):
+    GetLocalBookmarkByObjectId_C2(LongIntegerToText(ObjectId), ObjectType) (:9334), then IsBookmarked =
+    GetLocalBookmarkByObjectId_C2.LocalBookmark.Id <> NullIdentifier (:9339; the C2 UBTConnect_Bookmarks_MCS
+    LocalBookmark). ObjectType is the bookmark category; ObjectId is the Long Integer as text. */
+export async function getLocal_Bookmark_C2(objectType: string, objectId: string): Promise<boolean> {
+  const bookmark = await getLocalBookmarkByObjectId(objectId, objectType);
+  return bookmark.Id !== '' && bookmark.Id !== '0';
+}
 
 /** Handler_OnClickUnauthorizedObject(CategoryId) of Bookmarks (live UBTConnect.Bookmarks.Bookmarks.mvc.js:788-817) and
     of Notes (live UBTConnect.Notes.Notes.mvc.js:1353-1394), the same logic: ObjectLabelSingular = ToLower(the Text of

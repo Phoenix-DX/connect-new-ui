@@ -1146,3 +1146,4 @@ date,screen,phase,tokens,agent,tier,note
 2026-11-05,NotificationDetails,fix,85725,sonnet,,contract regen fallout (live module files)
 2026-11-05,AssembleDetail,build,255384,opus,,bookmark module move build (row 24)
 2026-11-05,Household_Relations,fix,103344,opus,,bookmark drift proposal
+2026-11-05,Household_Relations,build,124131,opus,,bookmark button build

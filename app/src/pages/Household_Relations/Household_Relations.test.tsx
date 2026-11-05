@@ -1,6 +1,15 @@
-import { act, waitFor } from '@testing-library/react';
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { act, fireEvent, screen, waitFor } from '@testing-library/react';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { VITALE, VITALE_PARENTS } from '@/mocks/fictional/directory';
+import { bookmarksCollection } from '@/containers/EntityDetailsActions/mocks';
+import { BookmarkCategory } from '@/lib/ubtConnect/staticEntities';
+import * as feedback from '@/platform/feedback';
+import {
+  getLocalBookmarkByObjectId,
+  localBookmarksSchemas,
+  memoryDatabase,
+  setLocalBookmarksDatabase,
+} from '@/platform/storage/localEntities';
 import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { setSignedInUser } from '@/platform/session/session';
@@ -129,5 +138,34 @@ describe('Household_Relations page', () => {
       expect(router.state.location.pathname).toBe('/UBTConnect/HouseholdDetails');
     });
     expect(at()).toBe(`/UBTConnect/HouseholdDetails?HouseholdId=${VITALE_PARENTS.id}`);
+  });
+
+  it('Bookmark: Secondary for a member without bookmark; a click adds the row and shows the feedback message', async () => {
+    setLocalBookmarksDatabase(memoryDatabase(localBookmarksSchemas()));
+    const show = vi.spyOn(feedback, 'showFeedbackMessage');
+    try {
+      await open();
+      await waitFor(() => {
+        expect(loadingSections()).toHaveLength(0);
+      });
+      const button = () => screen.getByText('Bookmark').closest('button');
+      expect(button()?.className).toContain('secondary');
+      expect(button()?.disabled).toBe(false);
+      await act(async () => {
+        fireEvent.click(screen.getByText('Bookmark'));
+        await new Promise((resolve) => setTimeout(resolve, 0));
+      });
+      await waitFor(() => {
+        expect(button()?.className).toContain('primary');
+      });
+      expect(bookmarksCollection().all()).toEqual([
+        expect.objectContaining({ BookmarkCategoryId: BookmarkCategory.Member, ItemId: '7100' }),
+      ]);
+      expect((await getLocalBookmarkByObjectId('7100', BookmarkCategory.Member)).Id).not.toBe('0');
+      expect(show).toHaveBeenCalledWith('Added to your Bookmarks', feedback.PLATFORM_MESSAGE_TYPE.success);
+    } finally {
+      show.mockRestore();
+      setLocalBookmarksDatabase(null);
+    }
   });
 });

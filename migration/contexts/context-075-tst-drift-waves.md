@@ -19,7 +19,8 @@
   one. Fixed in `orbitStaticEntities.ts` (row 18, commit `391be660`).
 - Tool fixes in `route-actions/tools/`: the refresh function of a data action owns its OnAfterFetch call (call
   graph), aggregates in the fetch modes, the `noCaller` rule. They surfaced the bookmark module move.
-- Gates: `npm run ci` green (732 files, 4813 tests, build); parity sweep after wave 2: see "Open issues".
+- Wave 3: the Household_Relations Bookmark button (live: enabled, secondary/primary by the C2 state; row 25) with narrow parity rules for the October baseline.
+- Gates: `npm run ci` green (732 files, 4822 tests after wave 3, build); parity sweep 51 of 51 clean with the drift rules (NotificationDetails, Household_Relations).
 
 ## Decisions (who, date)
 - User 2026-11-05: Opus proposes first, Fable reviews and asks, loop until correct; never ask the user; full tests
@@ -57,4 +58,4 @@
 - `css_sets.py` cannot add a compiled-only sheet (`Unavailable_Image.css`) to a captured route; no visual effect today.
 
 ## Next
-- Parity sweep result and the route rerun (68) after wave 2; the user's decision on row 23; re-captures.
+- The user's decision on row 23 (JSON key names); re-captures (NotificationDetails, Household_Relations, Search pills and layout, the 17 routes without a capture); the legacy bookmark store decision.
