@@ -34,6 +34,7 @@ import mcp_client  # noqa: E402
 import os_extras  # noqa: E402
 import render_v2  # noqa: E402
 import os_static  # noqa: E402
+import os_call_graph  # noqa: E402
 
 OUT = os.path.join(HERE, "routes")          # the route files
 DATA = os.path.join(cfg("cache"), "data")   # git ignores route-actions/.cache/
@@ -544,12 +545,33 @@ def check(route):
 
     # --- navigation ----------------------------------------------------------------------------------------------
     os_nav = collections.defaultdict(set)
+    # a navigation inside a client action that nothing calls or binds (`dead_client_actions`) is declared, never run:
+    # not a difference; listed as "not a gap" with the noCaller rule (NotificationDetails live handlers, 2026-11-05)
+    dead = os_call_graph.dead_client_actions(tst.get("sources", {}))
+    nav_dead = collections.defaultdict(set)
+
+    def in_dead(f, pos):
+        return next((label for a, b, label in dead.get(f, []) if a <= pos < b), None)
+
     for f in rendered:
+        src_f = tst.get("sources", {}).get(f, "")
+        live_targets = set()
+        for m in re.finditer(r'generateScreenURL\("/\w+/(\w+)"', src_f):
+            label = in_dead(f, m.start())
+            if label:
+                nav_dead[m.group(1)].add(label)
+            else:
+                live_targets.add(m.group(1))
         for n in js.get(f, {}).get("navigation", []):
             to = n["to"].rsplit("/", 1)[-1]
             if not re.fullmatch(r"\w+", to):  # `geo:0,0`, `?api=1`: a URL, not a screen (an external link)
                 continue
+            if src_f and to not in live_targets and to in nav_dead:
+                continue
             os_nav[to].add(short(f))
+    for t in list(nav_dead):
+        if t in os_nav:
+            nav_dead.pop(t)  # reached elsewhere too
     react_nav = collections.defaultdict(set)
     navigates = re.compile(r"navigat|\bgo\(|osNavigateTo|replaceTo|flagRedirect", re.I)
     for r, w in ((page_r, "page"), (shell_r, "shell")):
@@ -599,6 +621,17 @@ def check(route):
     own_files = [f for f in rendered if group_of_file[f] == "screen"]
     shell_dir = os.path.join(ROOT, "migration", "shell", "sources")
     os_x = os_extras.extras(tst.get("sources", {}), own_files, facts.get("screenFile"), os.path.relpath(shell_dir, ROOT))
+    # a navigation (with parameters) inside a client action that nothing calls: declared, never run (see os_nav)
+    kept = []
+    for x in os_x.get("navParams") or []:
+        src_x = tst.get("sources", {}).get(x.get("file"), "")
+        pos = sum(len(ln) for ln in src_x.splitlines(True)[: x.get("line", 1) - 1]) if src_x else -1
+        label = in_dead(x.get("file"), pos) if pos >= 0 else None
+        if label and x["to"] not in os_nav:
+            nav_dead[x["to"]].add(label)
+        else:
+            kept.append(x)
+    os_x["navParams"] = kept
     react_x = {k: [x for x in v if x["file"] not in shell_set] for k, v in (page_r.get("extras") or {}).items()}
     react_x_all = page_r.get("extras") or {}  # with the app shell files: for the differences (a shell file can read a variable for the screen)
     gen = open(cfg("react", "routesGenerated"), encoding="utf-8").read()
@@ -613,7 +646,7 @@ def check(route):
               "static": {"missing": tst["missing"], "closure": facts["static"]["closure"]} if tst.get("static") else None,
               "userActions": uacts, "reactActions": react_acts, "flow": flow, "survey": sv, "meta": meta, "endpoints": eps,
               "reactOnly": react_only, "reactUnknown": react_unknown,
-              "blocks": blocks, "osNav": {k: sorted(v) for k, v in os_nav.items()},
+              "blocks": blocks, "osNav": {k: sorted(v) for k, v in os_nav.items()}, "navDead": {k: sorted(v) for k, v in nav_dead.items()},
               "reactNav": {k: sorted(v) for k, v in react_nav.items()}, "observedCount": len(tst["calls"]),
               "otherScreenCalls": sorted(other_screen),
               "navGroups": {k: sorted(v) for k, v in nav_from.items()},

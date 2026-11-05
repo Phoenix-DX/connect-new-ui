@@ -155,7 +155,8 @@ export const BookmarkCategory = {
   Locality: 'Locality',
   LocalityContact: 'Locality Contact',
   Member: 'Member',
-  OneSchoolGlobal: 'OneSchoolGlobal',
+  /** Key oneSchoolGlobal2. */
+  OneSchoolGlobal: 'OneSchool Global',
   OrbitEvent: 'Orbit Event',
   PersonalEvent: 'Personal Event',
   SupperMeeting: 'Supper Meeting',

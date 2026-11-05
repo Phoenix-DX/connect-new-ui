@@ -1443,6 +1443,19 @@ return UI_CalendarviewRecordList;
 UBTConnectModel.UI_CalendarviewRecordList = UI_CalendarviewRecordList;
 
 });
+define("UBTConnect.model$HostConfig_FontWeightsList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_LegacyShared.model", "UBTConnect.model", "Connect2_LegacyShared.model$HostConfig_FontWeightsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_LegacyShared"], function (exports, OutSystems, Connect2_LegacySharedModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var HostConfig_FontWeightsList = (function (_super) {
+__extends(HostConfig_FontWeightsList, _super);
+function HostConfig_FontWeightsList(defaults) {
+_super.apply(this, arguments);
+}
+HostConfig_FontWeightsList.itemType = Connect2_LegacySharedModel.HostConfig_FontWeightsRec;
+return HostConfig_FontWeightsList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.HostConfig_FontWeightsList = HostConfig_FontWeightsList;
+
+});
 define("UBTConnect.model$Bookmark_FilterRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Bookmarks_CS.model", "UBTConnect.model", "Connect_Bookmarks_CS.model$Bookmark_FilterRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Bookmarks_CS"], function (exports, OutSystems, Connect_Bookmarks_CSModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var Bookmark_FilterRecord = (function (_super) {
@@ -1535,6 +1548,46 @@ FirebaseEventRecordList.itemType = UBTConnectModel.FirebaseEventRecord;
 return FirebaseEventRecordList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.FirebaseEventRecordList = FirebaseEventRecordList;
+
+});
+define("UBTConnect.model$MessageParameterRecord", ["exports", "OutSystems/ClientRuntime/Main", "Comms_CS.model", "UBTConnect.model", "Comms_CS.model$MessageParameterRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Comms_CS"], function (exports, OutSystems, Comms_CSModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var MessageParameterRecord = (function (_super) {
+__extends(MessageParameterRecord, _super);
+function MessageParameterRecord(defaults) {
+_super.apply(this, arguments);
+}
+MessageParameterRecord.attributesToDeclare = function () {
+return [
+this.attr("MessageParameter", "messageParameterAttr", "MessageParameter", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Comms_CSModel.MessageParameterRec());
+}, true, Comms_CSModel.MessageParameterRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+MessageParameterRecord.fromStructure = function (str) {
+return new MessageParameterRecord(new MessageParameterRecord.RecordClass({
+messageParameterAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+MessageParameterRecord._isAnonymousRecord = true;
+MessageParameterRecord.UniqueId = "e55b0e02-e04b-4d9e-5205-2558b23719e7";
+MessageParameterRecord.init();
+return MessageParameterRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnectModel.MessageParameterRecord = MessageParameterRecord;
+
+});
+define("UBTConnect.model$MessageParameterRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$MessageParameterRecord"], function (exports, OutSystems, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var MessageParameterRecordList = (function (_super) {
+__extends(MessageParameterRecordList, _super);
+function MessageParameterRecordList(defaults) {
+_super.apply(this, arguments);
+}
+MessageParameterRecordList.itemType = UBTConnectModel.MessageParameterRecord;
+return MessageParameterRecordList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.MessageParameterRecordList = MessageParameterRecordList;
 
 });
 define("UBTConnect.model$DetailRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect.model", "APIDomain_Directory_IS.model$DetailRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnectModel) {
@@ -2185,6 +2238,46 @@ UBT_FontSizeList.itemType = UBTConnectLibraryModel.UBT_FontSizeRec;
 return UBT_FontSizeList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.UBT_FontSizeList = UBT_FontSizeList;
+
+});
+define("UBTConnect.model$UI_HouseholdRelations_AwayParentsRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Household_CS.model", "UBTConnect.model", "Connect_Household_CS.model$UI_HouseholdRelations_AwayParentsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Household_CS"], function (exports, OutSystems, Connect_Household_CSModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var UI_HouseholdRelations_AwayParentsRecord = (function (_super) {
+__extends(UI_HouseholdRelations_AwayParentsRecord, _super);
+function UI_HouseholdRelations_AwayParentsRecord(defaults) {
+_super.apply(this, arguments);
+}
+UI_HouseholdRelations_AwayParentsRecord.attributesToDeclare = function () {
+return [
+this.attr("UI_HouseholdRelations_AwayParents", "uI_HouseholdRelations_AwayParentsAttr", "UI_HouseholdRelations_AwayParents", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Connect_Household_CSModel.UI_HouseholdRelations_AwayParentsRec());
+}, true, Connect_Household_CSModel.UI_HouseholdRelations_AwayParentsRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+UI_HouseholdRelations_AwayParentsRecord.fromStructure = function (str) {
+return new UI_HouseholdRelations_AwayParentsRecord(new UI_HouseholdRelations_AwayParentsRecord.RecordClass({
+uI_HouseholdRelations_AwayParentsAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+UI_HouseholdRelations_AwayParentsRecord._isAnonymousRecord = true;
+UI_HouseholdRelations_AwayParentsRecord.UniqueId = "7f1bb5ca-5495-2968-0c20-9f86dd908659";
+UI_HouseholdRelations_AwayParentsRecord.init();
+return UI_HouseholdRelations_AwayParentsRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnectModel.UI_HouseholdRelations_AwayParentsRecord = UI_HouseholdRelations_AwayParentsRecord;
+
+});
+define("UBTConnect.model$UI_HouseholdRelations_AwayParentsRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$UI_HouseholdRelations_AwayParentsRecord"], function (exports, OutSystems, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var UI_HouseholdRelations_AwayParentsRecordList = (function (_super) {
+__extends(UI_HouseholdRelations_AwayParentsRecordList, _super);
+function UI_HouseholdRelations_AwayParentsRecordList(defaults) {
+_super.apply(this, arguments);
+}
+UI_HouseholdRelations_AwayParentsRecordList.itemType = UBTConnectModel.UI_HouseholdRelations_AwayParentsRecord;
+return UI_HouseholdRelations_AwayParentsRecordList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.UI_HouseholdRelations_AwayParentsRecordList = UI_HouseholdRelations_AwayParentsRecordList;
 
 });
 define("UBTConnect.model$MyBookmarks_ObjectTypeList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_MyBookmarks_IS.model", "UBTConnect.model", "Connect2_MyBookmarks_IS.model$MyBookmarks_ObjectTypeRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_MyBookmarks_IS"], function (exports, OutSystems, Connect2_MyBookmarks_ISModel, UBTConnectModel) {
@@ -4065,6 +4158,19 @@ return ContactByPhonePopupDataRecord;
 UBTConnectModel.ContactByPhonePopupDataRecord = ContactByPhonePopupDataRecord;
 
 });
+define("UBTConnect.model$MessageInfoTypeList", ["exports", "OutSystems/ClientRuntime/Main", "Comms_CS.model", "UBTConnect.model", "Comms_CS.model$MessageInfoTypeRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Comms_CS"], function (exports, OutSystems, Comms_CSModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var MessageInfoTypeList = (function (_super) {
+__extends(MessageInfoTypeList, _super);
+function MessageInfoTypeList(defaults) {
+_super.apply(this, arguments);
+}
+MessageInfoTypeList.itemType = Comms_CSModel.MessageInfoTypeRec;
+return MessageInfoTypeList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.MessageInfoTypeList = MessageInfoTypeList;
+
+});
 define("UBTConnect.model$HouseholdItemRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$HouseholdItemRec"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var HouseholdItemRecord = (function (_super) {
@@ -4322,6 +4428,46 @@ return DropdownOptionalConfigsList;
 UBTConnectModel.DropdownOptionalConfigsList = DropdownOptionalConfigsList;
 
 });
+define("UBTConnect.model$AppManager_DeviceContextRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBT_AppManager_CS.model", "UBTConnect.model", "UBT_AppManager_CS.model$AppManager_DeviceContextRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBT_AppManager_CS"], function (exports, OutSystems, UBT_AppManager_CSModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var AppManager_DeviceContextRecord = (function (_super) {
+__extends(AppManager_DeviceContextRecord, _super);
+function AppManager_DeviceContextRecord(defaults) {
+_super.apply(this, arguments);
+}
+AppManager_DeviceContextRecord.attributesToDeclare = function () {
+return [
+this.attr("AppManager_DeviceContext", "appManager_DeviceContextAttr", "AppManager_DeviceContext", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new UBT_AppManager_CSModel.AppManager_DeviceContextRec());
+}, true, UBT_AppManager_CSModel.AppManager_DeviceContextRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+AppManager_DeviceContextRecord.fromStructure = function (str) {
+return new AppManager_DeviceContextRecord(new AppManager_DeviceContextRecord.RecordClass({
+appManager_DeviceContextAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+AppManager_DeviceContextRecord._isAnonymousRecord = true;
+AppManager_DeviceContextRecord.UniqueId = "e046fbad-9b16-97b9-a3a8-12797a167da9";
+AppManager_DeviceContextRecord.init();
+return AppManager_DeviceContextRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnectModel.AppManager_DeviceContextRecord = AppManager_DeviceContextRecord;
+
+});
+define("UBTConnect.model$AppManager_DeviceContextRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$AppManager_DeviceContextRecord"], function (exports, OutSystems, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var AppManager_DeviceContextRecordList = (function (_super) {
+__extends(AppManager_DeviceContextRecordList, _super);
+function AppManager_DeviceContextRecordList(defaults) {
+_super.apply(this, arguments);
+}
+AppManager_DeviceContextRecordList.itemType = UBTConnectModel.AppManager_DeviceContextRecord;
+return AppManager_DeviceContextRecordList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.AppManager_DeviceContextRecordList = AppManager_DeviceContextRecordList;
+
+});
 define("UBTConnect.model$UBT_ShapeRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect.model", "UBTConnectLibrary.model$UBT_ShapeRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var UBT_ShapeRecord = (function (_super) {
@@ -4429,6 +4575,115 @@ return ContactByPhonePopupDataRecordList;
 UBTConnectModel.ContactByPhonePopupDataRecordList = ContactByPhonePopupDataRecordList;
 
 });
+define("UBTConnect.model$MessagePriorityList", ["exports", "OutSystems/ClientRuntime/Main", "Comms_CS.model", "UBTConnect.model", "Comms_CS.model$MessagePriorityRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Comms_CS"], function (exports, OutSystems, Comms_CSModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var MessagePriorityList = (function (_super) {
+__extends(MessagePriorityList, _super);
+function MessagePriorityList(defaults) {
+_super.apply(this, arguments);
+}
+MessagePriorityList.itemType = Comms_CSModel.MessagePriorityRec;
+return MessagePriorityList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.MessagePriorityList = MessagePriorityList;
+
+});
+define("UBTConnect.model$MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONUserTextRecord", ["exports", "OutSystems/ClientRuntime/Main", "Comms_CS.model", "ServiceCenter.model", "UBTConnect.model", "Comms_CS.model$MessagePriorityRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Comms_CS", "Comms_CS.model$MessageContentRec", "Comms_CS.model$MessageTemplateRec", "Comms_CS.model$MessageSenderTargetRec", "Comms_CS.model$MessageInstanceRec", "Comms_CS.model$AdaptiveCardJSONRec", "ServiceCenter.model$UserRec", "UBTConnect.referencesHealth$ServiceCenter"], function (exports, OutSystems, Comms_CSModel, ServiceCenterModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONUserTextRecord = (function (_super) {
+__extends(MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONUserTextRecord, _super);
+function MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONUserTextRecord(defaults) {
+_super.apply(this, arguments);
+}
+MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONUserTextRecord.attributesToDeclare = function () {
+return [
+this.attr("MessagePriority", "messagePriorityAttr", "MessagePriority", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Comms_CSModel.MessagePriorityRec());
+}, true, Comms_CSModel.MessagePriorityRec), 
+this.attr("MessageContent", "messageContentAttr", "MessageContent", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Comms_CSModel.MessageContentRec());
+}, true, Comms_CSModel.MessageContentRec), 
+this.attr("MessageTemplate", "messageTemplateAttr", "MessageTemplate", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Comms_CSModel.MessageTemplateRec());
+}, true, Comms_CSModel.MessageTemplateRec), 
+this.attr("MessageSenderTarget", "messageSenderTargetAttr", "MessageSenderTarget", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Comms_CSModel.MessageSenderTargetRec());
+}, true, Comms_CSModel.MessageSenderTargetRec), 
+this.attr("MessageInstance", "messageInstanceAttr", "MessageInstance", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Comms_CSModel.MessageInstanceRec());
+}, true, Comms_CSModel.MessageInstanceRec), 
+this.attr("AdaptiveCardJSON", "adaptiveCardJSONAttr", "AdaptiveCardJSON", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Comms_CSModel.AdaptiveCardJSONRec());
+}, true, Comms_CSModel.AdaptiveCardJSONRec), 
+this.attr("User", "userAttr", "User", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new ServiceCenterModel.UserRec());
+}, true, ServiceCenterModel.UserRec), 
+this.attr("CreatedByMemberId", "createdByMemberIdAttr", "CreatedByMemberId", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true)
+].concat(_super.attributesToDeclare.call(this));
+};
+MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONUserTextRecord._isAnonymousRecord = true;
+MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONUserTextRecord.UniqueId = "80a6aa85-7562-a4cc-45bb-db6e6222fb3b";
+MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONUserTextRecord.init();
+return MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONUserTextRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnectModel.MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONUserTextRecord = MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONUserTextRecord;
+
+});
+define("UBTConnect.model$MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONUserTextRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONUserTextRecord"], function (exports, OutSystems, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONUserTextRecordList = (function (_super) {
+__extends(MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONUserTextRecordList, _super);
+function MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONUserTextRecordList(defaults) {
+_super.apply(this, arguments);
+}
+MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONUserTextRecordList.itemType = UBTConnectModel.MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONUserTextRecord;
+return MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONUserTextRecordList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONUserTextRecordList = MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONUserTextRecordList;
+
+});
+define("UBTConnect.model$HostConfig_FontSizeRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_LegacyShared.model", "UBTConnect.model", "Connect2_LegacyShared.model$HostConfig_FontSizeRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_LegacyShared"], function (exports, OutSystems, Connect2_LegacySharedModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var HostConfig_FontSizeRecord = (function (_super) {
+__extends(HostConfig_FontSizeRecord, _super);
+function HostConfig_FontSizeRecord(defaults) {
+_super.apply(this, arguments);
+}
+HostConfig_FontSizeRecord.attributesToDeclare = function () {
+return [
+this.attr("HostConfig_FontSize", "hostConfig_FontSizeAttr", "HostConfig_FontSize", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Connect2_LegacySharedModel.HostConfig_FontSizeRec());
+}, true, Connect2_LegacySharedModel.HostConfig_FontSizeRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+HostConfig_FontSizeRecord.fromStructure = function (str) {
+return new HostConfig_FontSizeRecord(new HostConfig_FontSizeRecord.RecordClass({
+hostConfig_FontSizeAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+HostConfig_FontSizeRecord._isAnonymousRecord = true;
+HostConfig_FontSizeRecord.UniqueId = "2f55f75b-99a7-4d2a-dd4a-c5a90fa7b732";
+HostConfig_FontSizeRecord.init();
+return HostConfig_FontSizeRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnectModel.HostConfig_FontSizeRecord = HostConfig_FontSizeRecord;
+
+});
+define("UBTConnect.model$HostConfig_FontSizeRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$HostConfig_FontSizeRecord"], function (exports, OutSystems, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var HostConfig_FontSizeRecordList = (function (_super) {
+__extends(HostConfig_FontSizeRecordList, _super);
+function HostConfig_FontSizeRecordList(defaults) {
+_super.apply(this, arguments);
+}
+HostConfig_FontSizeRecordList.itemType = UBTConnectModel.HostConfig_FontSizeRecord;
+return HostConfig_FontSizeRecordList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.HostConfig_FontSizeRecordList = HostConfig_FontSizeRecordList;
+
+});
 define("UBTConnect.model$BONotificationNavigationInputParametersRecord", ["exports", "OutSystems/ClientRuntime/Main", "BackofficeNotifications_CS.model", "UBTConnect.model", "BackofficeNotifications_CS.model$BONotificationNavigationInputParametersRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$BackofficeNotifications_CS"], function (exports, OutSystems, BackofficeNotifications_CSModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var BONotificationNavigationInputParametersRecord = (function (_super) {
@@ -4454,6 +4709,19 @@ BONotificationNavigationInputParametersRecord.init();
 return BONotificationNavigationInputParametersRecord;
 })(OS.DataTypes.GenericRecord);
 UBTConnectModel.BONotificationNavigationInputParametersRecord = BONotificationNavigationInputParametersRecord;
+
+});
+define("UBTConnect.model$HostConfig_FontSizeList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_LegacyShared.model", "UBTConnect.model", "Connect2_LegacyShared.model$HostConfig_FontSizeRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_LegacyShared"], function (exports, OutSystems, Connect2_LegacySharedModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var HostConfig_FontSizeList = (function (_super) {
+__extends(HostConfig_FontSizeList, _super);
+function HostConfig_FontSizeList(defaults) {
+_super.apply(this, arguments);
+}
+HostConfig_FontSizeList.itemType = Connect2_LegacySharedModel.HostConfig_FontSizeRec;
+return HostConfig_FontSizeList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.HostConfig_FontSizeList = HostConfig_FontSizeList;
 
 });
 define("UBTConnect.model$SelectedHouseholdRec", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model"], function (exports, OutSystems, UBTConnectModel) {
@@ -4978,6 +5246,59 @@ return UI_CountryDetails2List;
 UBTConnectModel.UI_CountryDetails2List = UI_CountryDetails2List;
 
 });
+define("UBTConnect.model$ParameterNameRecord", ["exports", "OutSystems/ClientRuntime/Main", "Comms_CS.model", "UBTConnect.model", "Comms_CS.model$ParameterNameRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Comms_CS"], function (exports, OutSystems, Comms_CSModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var ParameterNameRecord = (function (_super) {
+__extends(ParameterNameRecord, _super);
+function ParameterNameRecord(defaults) {
+_super.apply(this, arguments);
+}
+ParameterNameRecord.attributesToDeclare = function () {
+return [
+this.attr("ParameterName", "parameterNameAttr", "ParameterName", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Comms_CSModel.ParameterNameRec());
+}, true, Comms_CSModel.ParameterNameRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+ParameterNameRecord.fromStructure = function (str) {
+return new ParameterNameRecord(new ParameterNameRecord.RecordClass({
+parameterNameAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+ParameterNameRecord._isAnonymousRecord = true;
+ParameterNameRecord.UniqueId = "e4f1ef90-a5d3-d136-05cb-d747a495cb60";
+ParameterNameRecord.init();
+return ParameterNameRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnectModel.ParameterNameRecord = ParameterNameRecord;
+
+});
+define("UBTConnect.model$ParameterNameRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$ParameterNameRecord"], function (exports, OutSystems, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var ParameterNameRecordList = (function (_super) {
+__extends(ParameterNameRecordList, _super);
+function ParameterNameRecordList(defaults) {
+_super.apply(this, arguments);
+}
+ParameterNameRecordList.itemType = UBTConnectModel.ParameterNameRecord;
+return ParameterNameRecordList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.ParameterNameRecordList = ParameterNameRecordList;
+
+});
+define("UBTConnect.model$HostConfigList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_LegacyShared.model", "UBTConnect.model", "Connect2_LegacyShared.model$HostConfigRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_LegacyShared"], function (exports, OutSystems, Connect2_LegacySharedModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var HostConfigList = (function (_super) {
+__extends(HostConfigList, _super);
+function HostConfigList(defaults) {
+_super.apply(this, arguments);
+}
+HostConfigList.itemType = Connect2_LegacySharedModel.HostConfigRec;
+return HostConfigList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.HostConfigList = HostConfigList;
+
+});
 define("UBTConnect.model$BottomBar_ItemList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Utils.model", "UBTConnect.model", "UBTConnect_Utils.model$BottomBar_ItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils"], function (exports, OutSystems, UBTConnect_UtilsModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var BottomBar_ItemList = (function (_super) {
@@ -5374,6 +5695,33 @@ return UI_ContactUsFormRecordList;
 UBTConnectModel.UI_ContactUsFormRecordList = UI_ContactUsFormRecordList;
 
 });
+define("UBTConnect.model$HostConfig_FontWeightsRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_LegacyShared.model", "UBTConnect.model", "Connect2_LegacyShared.model$HostConfig_FontWeightsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_LegacyShared"], function (exports, OutSystems, Connect2_LegacySharedModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var HostConfig_FontWeightsRecord = (function (_super) {
+__extends(HostConfig_FontWeightsRecord, _super);
+function HostConfig_FontWeightsRecord(defaults) {
+_super.apply(this, arguments);
+}
+HostConfig_FontWeightsRecord.attributesToDeclare = function () {
+return [
+this.attr("HostConfig_FontWeights", "hostConfig_FontWeightsAttr", "HostConfig_FontWeights", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Connect2_LegacySharedModel.HostConfig_FontWeightsRec());
+}, true, Connect2_LegacySharedModel.HostConfig_FontWeightsRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+HostConfig_FontWeightsRecord.fromStructure = function (str) {
+return new HostConfig_FontWeightsRecord(new HostConfig_FontWeightsRecord.RecordClass({
+hostConfig_FontWeightsAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+HostConfig_FontWeightsRecord._isAnonymousRecord = true;
+HostConfig_FontWeightsRecord.UniqueId = "1e0998a4-207d-9316-6db5-d8a30bf60ffc";
+HostConfig_FontWeightsRecord.init();
+return HostConfig_FontWeightsRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnectModel.HostConfig_FontWeightsRecord = HostConfig_FontWeightsRecord;
+
+});
 define("UBTConnect.model$EntitiesCarousel_SwippedItemRec", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var EntitiesCarousel_SwippedItemRec = (function (_super) {
@@ -5646,6 +5994,46 @@ return Type_ImageRecordList;
 UBTConnectModel.Type_ImageRecordList = Type_ImageRecordList;
 
 });
+define("UBTConnect.model$HostConfigRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_LegacyShared.model", "UBTConnect.model", "Connect2_LegacyShared.model$HostConfigRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_LegacyShared"], function (exports, OutSystems, Connect2_LegacySharedModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var HostConfigRecord = (function (_super) {
+__extends(HostConfigRecord, _super);
+function HostConfigRecord(defaults) {
+_super.apply(this, arguments);
+}
+HostConfigRecord.attributesToDeclare = function () {
+return [
+this.attr("HostConfig", "hostConfigAttr", "HostConfig", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Connect2_LegacySharedModel.HostConfigRec());
+}, true, Connect2_LegacySharedModel.HostConfigRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+HostConfigRecord.fromStructure = function (str) {
+return new HostConfigRecord(new HostConfigRecord.RecordClass({
+hostConfigAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+HostConfigRecord._isAnonymousRecord = true;
+HostConfigRecord.UniqueId = "7c87dde1-eeed-1832-842c-7d1de8295b2c";
+HostConfigRecord.init();
+return HostConfigRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnectModel.HostConfigRecord = HostConfigRecord;
+
+});
+define("UBTConnect.model$HostConfigRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$HostConfigRecord"], function (exports, OutSystems, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var HostConfigRecordList = (function (_super) {
+__extends(HostConfigRecordList, _super);
+function HostConfigRecordList(defaults) {
+_super.apply(this, arguments);
+}
+HostConfigRecordList.itemType = UBTConnectModel.HostConfigRecord;
+return HostConfigRecordList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.HostConfigRecordList = HostConfigRecordList;
+
+});
 define("UBTConnect.model$PolicyInformation2Record", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Utils.model", "UBTConnect.model", "UBTConnect_Utils.model$PolicyInformationRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils"], function (exports, OutSystems, UBTConnect_UtilsModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var PolicyInformation2Record = (function (_super) {
@@ -5856,6 +6244,33 @@ UI_ContactByMessage_WrapperDataRecord.init();
 return UI_ContactByMessage_WrapperDataRecord;
 })(OS.DataTypes.GenericRecord);
 UBTConnectModel.UI_ContactByMessage_WrapperDataRecord = UI_ContactByMessage_WrapperDataRecord;
+
+});
+define("UBTConnect.model$MessageSenderTargetRecord", ["exports", "OutSystems/ClientRuntime/Main", "Comms_CS.model", "UBTConnect.model", "Comms_CS.model$MessageSenderTargetRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Comms_CS"], function (exports, OutSystems, Comms_CSModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var MessageSenderTargetRecord = (function (_super) {
+__extends(MessageSenderTargetRecord, _super);
+function MessageSenderTargetRecord(defaults) {
+_super.apply(this, arguments);
+}
+MessageSenderTargetRecord.attributesToDeclare = function () {
+return [
+this.attr("MessageSenderTarget", "messageSenderTargetAttr", "MessageSenderTarget", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Comms_CSModel.MessageSenderTargetRec());
+}, true, Comms_CSModel.MessageSenderTargetRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+MessageSenderTargetRecord.fromStructure = function (str) {
+return new MessageSenderTargetRecord(new MessageSenderTargetRecord.RecordClass({
+messageSenderTargetAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+MessageSenderTargetRecord._isAnonymousRecord = true;
+MessageSenderTargetRecord.UniqueId = "21e9a036-7c64-0555-9aec-78cf63c726f4";
+MessageSenderTargetRecord.init();
+return MessageSenderTargetRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnectModel.MessageSenderTargetRecord = MessageSenderTargetRecord;
 
 });
 define("UBTConnect.model$SpeedList", ["exports", "OutSystems/ClientRuntime/Main", "OutSystemsUI_2_23.model", "UBTConnect.model", "OutSystemsUI_2_23.model$SpeedRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$OutSystemsUI_2_23"], function (exports, OutSystems, OutSystemsUI_2_23Model, UBTConnectModel) {
@@ -7463,6 +7878,19 @@ return CarouselItemsRecord;
 UBTConnectModel.CarouselItemsRecord = CarouselItemsRecord;
 
 });
+define("UBTConnect.model$Connect_EventTypesList", ["exports", "OutSystems/ClientRuntime/Main", "Connect_CommonEntities_DB.model", "UBTConnect.model", "Connect_CommonEntities_DB.model$Connect_EventTypesRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_CommonEntities_DB"], function (exports, OutSystems, Connect_CommonEntities_DBModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var Connect_EventTypesList = (function (_super) {
+__extends(Connect_EventTypesList, _super);
+function Connect_EventTypesList(defaults) {
+_super.apply(this, arguments);
+}
+Connect_EventTypesList.itemType = Connect_CommonEntities_DBModel.Connect_EventTypesRec;
+return Connect_EventTypesList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.Connect_EventTypesList = Connect_EventTypesList;
+
+});
 define("UBTConnect.model$Lookup_RecurrenceDayOfWeekRec", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect.model", "UBTConnectLibrary.model$WeekdayLabelTypeRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var Lookup_RecurrenceDayOfWeekRec = (function (_super) {
@@ -8188,6 +8616,33 @@ return CacheControl_AllLocalitiesBooleanRecordList;
 UBTConnectModel.CacheControl_AllLocalitiesBooleanRecordList = CacheControl_AllLocalitiesBooleanRecordList;
 
 });
+define("UBTConnect.model$Connect_EventTypesRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect_CommonEntities_DB.model", "UBTConnect.model", "Connect_CommonEntities_DB.model$Connect_EventTypesRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_CommonEntities_DB"], function (exports, OutSystems, Connect_CommonEntities_DBModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var Connect_EventTypesRecord = (function (_super) {
+__extends(Connect_EventTypesRecord, _super);
+function Connect_EventTypesRecord(defaults) {
+_super.apply(this, arguments);
+}
+Connect_EventTypesRecord.attributesToDeclare = function () {
+return [
+this.attr("Connect_EventTypes", "connect_EventTypesAttr", "Connect_EventTypes", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Connect_CommonEntities_DBModel.Connect_EventTypesRec());
+}, true, Connect_CommonEntities_DBModel.Connect_EventTypesRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+Connect_EventTypesRecord.fromStructure = function (str) {
+return new Connect_EventTypesRecord(new Connect_EventTypesRecord.RecordClass({
+connect_EventTypesAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+Connect_EventTypesRecord._isAnonymousRecord = true;
+Connect_EventTypesRecord.UniqueId = "3118ca1c-9559-0c2a-1120-96e1479301ae";
+Connect_EventTypesRecord.init();
+return Connect_EventTypesRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnectModel.Connect_EventTypesRecord = Connect_EventTypesRecord;
+
+});
 define("UBTConnect.model$SwipeActionLongIntegerRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$SwipeActionRec"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var SwipeActionLongIntegerRecord = (function (_super) {
@@ -8330,6 +8785,33 @@ BorderOptionsRecordList.itemType = UBTConnectModel.BorderOptionsRecord;
 return BorderOptionsRecordList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.BorderOptionsRecordList = BorderOptionsRecordList;
+
+});
+define("UBTConnect.model$Directory_ImageDetailsRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect.model", "APIDomain_Directory_IS.model$Directory_ImageDetailsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var Directory_ImageDetailsRecord = (function (_super) {
+__extends(Directory_ImageDetailsRecord, _super);
+function Directory_ImageDetailsRecord(defaults) {
+_super.apply(this, arguments);
+}
+Directory_ImageDetailsRecord.attributesToDeclare = function () {
+return [
+this.attr("Directory_ImageDetails", "directory_ImageDetailsAttr", "Directory_ImageDetails", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.Directory_ImageDetailsRec());
+}, true, APIDomain_Directory_ISModel.Directory_ImageDetailsRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+Directory_ImageDetailsRecord.fromStructure = function (str) {
+return new Directory_ImageDetailsRecord(new Directory_ImageDetailsRecord.RecordClass({
+directory_ImageDetailsAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+Directory_ImageDetailsRecord._isAnonymousRecord = true;
+Directory_ImageDetailsRecord.UniqueId = "32702e53-7c0d-0246-6bbf-61449b05c203";
+Directory_ImageDetailsRecord.init();
+return Directory_ImageDetailsRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnectModel.Directory_ImageDetailsRecord = Directory_ImageDetailsRecord;
 
 });
 define("UBTConnect.model$Filter_Common_Control_ChoiceRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$Filter_Common_Control_ChoiceRec"], function (exports, OutSystems, UBTConnectModel) {
@@ -9167,6 +9649,19 @@ return LookupConceptsList;
 UBTConnectModel.LookupConceptsList = LookupConceptsList;
 
 });
+define("UBTConnect.model$MessageStatusList", ["exports", "OutSystems/ClientRuntime/Main", "Comms_CS.model", "UBTConnect.model", "Comms_CS.model$MessageStatusRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Comms_CS"], function (exports, OutSystems, Comms_CSModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var MessageStatusList = (function (_super) {
+__extends(MessageStatusList, _super);
+function MessageStatusList(defaults) {
+_super.apply(this, arguments);
+}
+MessageStatusList.itemType = Comms_CSModel.MessageStatusRec;
+return MessageStatusList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.MessageStatusList = MessageStatusList;
+
+});
 define("UBTConnect.model$UI_NoteCard_SourceHeaderRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Notes_CS.model", "UBTConnect.model", "Connect_Notes_CS.model$UI_NoteCard_SourceHeaderRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Notes_CS"], function (exports, OutSystems, Connect_Notes_CSModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var UI_NoteCard_SourceHeaderRecord = (function (_super) {
@@ -9444,6 +9939,33 @@ return UI_Subdivision_CardRecord;
 UBTConnectModel.UI_Subdivision_CardRecord = UI_Subdivision_CardRecord;
 
 });
+define("UBTConnect.model$AdaptiveCardJSONRecord", ["exports", "OutSystems/ClientRuntime/Main", "Comms_CS.model", "UBTConnect.model", "Comms_CS.model$AdaptiveCardJSONRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Comms_CS"], function (exports, OutSystems, Comms_CSModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var AdaptiveCardJSONRecord = (function (_super) {
+__extends(AdaptiveCardJSONRecord, _super);
+function AdaptiveCardJSONRecord(defaults) {
+_super.apply(this, arguments);
+}
+AdaptiveCardJSONRecord.attributesToDeclare = function () {
+return [
+this.attr("AdaptiveCardJSON", "adaptiveCardJSONAttr", "AdaptiveCardJSON", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Comms_CSModel.AdaptiveCardJSONRec());
+}, true, Comms_CSModel.AdaptiveCardJSONRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+AdaptiveCardJSONRecord.fromStructure = function (str) {
+return new AdaptiveCardJSONRecord(new AdaptiveCardJSONRecord.RecordClass({
+adaptiveCardJSONAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+AdaptiveCardJSONRecord._isAnonymousRecord = true;
+AdaptiveCardJSONRecord.UniqueId = "3a865524-5ebf-18e5-413f-c7ef5a8d78e8";
+AdaptiveCardJSONRecord.init();
+return AdaptiveCardJSONRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnectModel.AdaptiveCardJSONRecord = AdaptiveCardJSONRecord;
+
+});
 define("UBTConnect.model$HouseholdPreviewStructureList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$HouseholdPreviewStructureRec"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var HouseholdPreviewStructureList = (function (_super) {
@@ -9717,6 +10239,34 @@ WarningList.itemType = CommonPluginModel.WarningRec;
 return WarningList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.WarningList = WarningList;
+
+});
+define("UBTConnect.model$TextTextTextRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model"], function (exports, OutSystems, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var TextTextTextRecord = (function (_super) {
+__extends(TextTextTextRecord, _super);
+function TextTextTextRecord(defaults) {
+_super.apply(this, arguments);
+}
+TextTextTextRecord.attributesToDeclare = function () {
+return [
+this.attr("Delimiter_Function", "delimiter_FunctionAttr", "Delimiter_Function", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("Delimiter_Parameter", "delimiter_ParameterAttr", "Delimiter_Parameter", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("Delimiter_Placeholder", "delimiter_PlaceholderAttr", "Delimiter_Placeholder", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true)
+].concat(_super.attributesToDeclare.call(this));
+};
+TextTextTextRecord._isAnonymousRecord = true;
+TextTextTextRecord.UniqueId = "3f0235fe-88ef-a3f3-37fc-15ad0ef057c7";
+TextTextTextRecord.init();
+return TextTextTextRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnectModel.TextTextTextRecord = TextTextTextRecord;
 
 });
 define("UBTConnect.model$ConnectSearch_RecentClickedResultsList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$ConnectSearch_RecentClickedResultsRec"], function (exports, OutSystems, UBTConnectModel) {
@@ -10196,6 +10746,60 @@ MessageInstanceList.itemType = Comms_CSModel.MessageInstanceRec;
 return MessageInstanceList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.MessageInstanceList = MessageInstanceList;
+
+});
+define("UBTConnect.model$MessageContentRecord", ["exports", "OutSystems/ClientRuntime/Main", "Comms_CS.model", "UBTConnect.model", "Comms_CS.model$MessageContentRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Comms_CS"], function (exports, OutSystems, Comms_CSModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var MessageContentRecord = (function (_super) {
+__extends(MessageContentRecord, _super);
+function MessageContentRecord(defaults) {
+_super.apply(this, arguments);
+}
+MessageContentRecord.attributesToDeclare = function () {
+return [
+this.attr("MessageContent", "messageContentAttr", "MessageContent", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Comms_CSModel.MessageContentRec());
+}, true, Comms_CSModel.MessageContentRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+MessageContentRecord.fromStructure = function (str) {
+return new MessageContentRecord(new MessageContentRecord.RecordClass({
+messageContentAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+MessageContentRecord._isAnonymousRecord = true;
+MessageContentRecord.UniqueId = "41e088b9-55f6-a26d-5d94-b602b68b66dd";
+MessageContentRecord.init();
+return MessageContentRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnectModel.MessageContentRecord = MessageContentRecord;
+
+});
+define("UBTConnect.model$MessagePriorityRecord", ["exports", "OutSystems/ClientRuntime/Main", "Comms_CS.model", "UBTConnect.model", "Comms_CS.model$MessagePriorityRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Comms_CS"], function (exports, OutSystems, Comms_CSModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var MessagePriorityRecord = (function (_super) {
+__extends(MessagePriorityRecord, _super);
+function MessagePriorityRecord(defaults) {
+_super.apply(this, arguments);
+}
+MessagePriorityRecord.attributesToDeclare = function () {
+return [
+this.attr("MessagePriority", "messagePriorityAttr", "MessagePriority", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Comms_CSModel.MessagePriorityRec());
+}, true, Comms_CSModel.MessagePriorityRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+MessagePriorityRecord.fromStructure = function (str) {
+return new MessagePriorityRecord(new MessagePriorityRecord.RecordClass({
+messagePriorityAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+MessagePriorityRecord._isAnonymousRecord = true;
+MessagePriorityRecord.UniqueId = "4251734c-56d8-f27d-d8d5-81bea2937f0e";
+MessagePriorityRecord.init();
+return MessagePriorityRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnectModel.MessagePriorityRecord = MessagePriorityRecord;
 
 });
 define("UBTConnect.model$HouseholdMemberTypeList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect.model", "UBTConnectLibrary.model$HouseholdMemberTypeRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnectModel) {
@@ -12012,6 +12616,33 @@ return Type_MyCalendarEventSourceList;
 UBTConnectModel.Type_MyCalendarEventSourceList = Type_MyCalendarEventSourceList;
 
 });
+define("UBTConnect.model$Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$TextTextTextRecord"], function (exports, OutSystems, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecord = (function (_super) {
+__extends(Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecord, _super);
+function Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecord(defaults) {
+_super.apply(this, arguments);
+}
+Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecord.attributesToDeclare = function () {
+return [
+this.attr("Delimiters", "delimitersAttr", "Delimiters", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.TextTextTextRecord());
+}, true, UBTConnectModel.TextTextTextRecord)
+].concat(_super.attributesToDeclare.call(this));
+};
+Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecord.fromStructure = function (str) {
+return new Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecord(new Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecord.RecordClass({
+delimitersAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecord._isAnonymousRecord = true;
+Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecord.UniqueId = "5334fb8f-2f05-8607-3ef7-7c2a4c04a1dd";
+Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecord.init();
+return Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnectModel.Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecord = Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecord;
+
+});
 define("UBTConnect.model$RecurrenceRangeTypeRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_Assemble_CS.model", "UBTConnect.model", "Connect2_Assemble_CS.model$RecurrenceRangeTypeRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_Assemble_CS"], function (exports, OutSystems, Connect2_Assemble_CSModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var RecurrenceRangeTypeRecord = (function (_super) {
@@ -12529,6 +13160,49 @@ return Connect_CacheTypeRecord;
 UBTConnectModel.Connect_CacheTypeRecord = Connect_CacheTypeRecord;
 
 });
+define("UBTConnect.model$MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONAppManager_UserExtendedUseRecord", ["exports", "OutSystems/ClientRuntime/Main", "Comms_CS.model", "UBT_AppManager_DB.model", "ServiceCenter.model", "UBTConnect.model", "Comms_CS.model$MessagePriorityRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Comms_CS", "Comms_CS.model$MessageContentRec", "Comms_CS.model$MessageTemplateRec", "Comms_CS.model$MessageSenderTargetRec", "Comms_CS.model$MessageInstanceRec", "Comms_CS.model$AdaptiveCardJSONRec", "UBT_AppManager_DB.model$AppManager_UserExtendedRec", "UBTConnect.referencesHealth$UBT_AppManager_DB", "ServiceCenter.model$UserRec", "UBTConnect.referencesHealth$ServiceCenter"], function (exports, OutSystems, Comms_CSModel, UBT_AppManager_DBModel, ServiceCenterModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONAppManager_UserExtendedUseRecord = (function (_super) {
+__extends(MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONAppManager_UserExtendedUseRecord, _super);
+function MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONAppManager_UserExtendedUseRecord(defaults) {
+_super.apply(this, arguments);
+}
+MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONAppManager_UserExtendedUseRecord.attributesToDeclare = function () {
+return [
+this.attr("MessagePriority", "messagePriorityAttr", "MessagePriority", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Comms_CSModel.MessagePriorityRec());
+}, true, Comms_CSModel.MessagePriorityRec), 
+this.attr("MessageContent", "messageContentAttr", "MessageContent", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Comms_CSModel.MessageContentRec());
+}, true, Comms_CSModel.MessageContentRec), 
+this.attr("MessageTemplate", "messageTemplateAttr", "MessageTemplate", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Comms_CSModel.MessageTemplateRec());
+}, true, Comms_CSModel.MessageTemplateRec), 
+this.attr("MessageSenderTarget", "messageSenderTargetAttr", "MessageSenderTarget", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Comms_CSModel.MessageSenderTargetRec());
+}, true, Comms_CSModel.MessageSenderTargetRec), 
+this.attr("MessageInstance", "messageInstanceAttr", "MessageInstance", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Comms_CSModel.MessageInstanceRec());
+}, true, Comms_CSModel.MessageInstanceRec), 
+this.attr("AdaptiveCardJSON", "adaptiveCardJSONAttr", "AdaptiveCardJSON", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Comms_CSModel.AdaptiveCardJSONRec());
+}, true, Comms_CSModel.AdaptiveCardJSONRec), 
+this.attr("AppManager_UserExtended", "appManager_UserExtendedAttr", "AppManager_UserExtended", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new UBT_AppManager_DBModel.AppManager_UserExtendedRec());
+}, true, UBT_AppManager_DBModel.AppManager_UserExtendedRec), 
+this.attr("User", "userAttr", "User", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new ServiceCenterModel.UserRec());
+}, true, ServiceCenterModel.UserRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONAppManager_UserExtendedUseRecord._isAnonymousRecord = true;
+MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONAppManager_UserExtendedUseRecord.UniqueId = "588ab54c-f7c1-1fd2-9f27-ea28c7077d7b";
+MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONAppManager_UserExtendedUseRecord.init();
+return MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONAppManager_UserExtendedUseRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnectModel.MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONAppManager_UserExtendedUseRecord = MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONAppManager_UserExtendedUseRecord;
+
+});
 define("UBTConnect.model$CustomScrollListElementRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$CustomScrollListElementRecord"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var CustomScrollListElementRecordList = (function (_super) {
@@ -12966,6 +13640,19 @@ return UI_OneSchoolGlobal_Event_CardRec;
 UBTConnectModel.UI_OneSchoolGlobal_Event_CardRec = UI_OneSchoolGlobal_Event_CardRec;
 
 });
+define("UBTConnect.model$HostConfig_FontTypeList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_LegacyShared.model", "UBTConnect.model", "Connect2_LegacyShared.model$HostConfig_FontTypeRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_LegacyShared"], function (exports, OutSystems, Connect2_LegacySharedModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var HostConfig_FontTypeList = (function (_super) {
+__extends(HostConfig_FontTypeList, _super);
+function HostConfig_FontTypeList(defaults) {
+_super.apply(this, arguments);
+}
+HostConfig_FontTypeList.itemType = Connect2_LegacySharedModel.HostConfig_FontTypeRec;
+return HostConfig_FontTypeList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.HostConfig_FontTypeList = HostConfig_FontTypeList;
+
+});
 define("UBTConnect.model$AuditPayload_EmailHostList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_OrbitMobile_MUI.model", "UBTConnect.model", "Connect2_OrbitMobile_MUI.model$AuditPayload_EmailHostRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_OrbitMobile_MUI"], function (exports, OutSystems, Connect2_OrbitMobile_MUIModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var AuditPayload_EmailHostList = (function (_super) {
@@ -13273,6 +13960,46 @@ SurveyStatusRecord.init();
 return SurveyStatusRecord;
 })(OS.DataTypes.GenericRecord);
 UBTConnectModel.SurveyStatusRecord = SurveyStatusRecord;
+
+});
+define("UBTConnect.model$HostConfig_FontTypeRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_LegacyShared.model", "UBTConnect.model", "Connect2_LegacyShared.model$HostConfig_FontTypeRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_LegacyShared"], function (exports, OutSystems, Connect2_LegacySharedModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var HostConfig_FontTypeRecord = (function (_super) {
+__extends(HostConfig_FontTypeRecord, _super);
+function HostConfig_FontTypeRecord(defaults) {
+_super.apply(this, arguments);
+}
+HostConfig_FontTypeRecord.attributesToDeclare = function () {
+return [
+this.attr("HostConfig_FontType", "hostConfig_FontTypeAttr", "HostConfig_FontType", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Connect2_LegacySharedModel.HostConfig_FontTypeRec());
+}, true, Connect2_LegacySharedModel.HostConfig_FontTypeRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+HostConfig_FontTypeRecord.fromStructure = function (str) {
+return new HostConfig_FontTypeRecord(new HostConfig_FontTypeRecord.RecordClass({
+hostConfig_FontTypeAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+HostConfig_FontTypeRecord._isAnonymousRecord = true;
+HostConfig_FontTypeRecord.UniqueId = "5e9b05bd-64b4-2400-083c-25f0e6bab7f6";
+HostConfig_FontTypeRecord.init();
+return HostConfig_FontTypeRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnectModel.HostConfig_FontTypeRecord = HostConfig_FontTypeRecord;
+
+});
+define("UBTConnect.model$HostConfig_FontTypeRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$HostConfig_FontTypeRecord"], function (exports, OutSystems, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var HostConfig_FontTypeRecordList = (function (_super) {
+__extends(HostConfig_FontTypeRecordList, _super);
+function HostConfig_FontTypeRecordList(defaults) {
+_super.apply(this, arguments);
+}
+HostConfig_FontTypeRecordList.itemType = UBTConnectModel.HostConfig_FontTypeRecord;
+return HostConfig_FontTypeRecordList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.HostConfig_FontTypeRecordList = HostConfig_FontTypeRecordList;
 
 });
 define("UBTConnect.model$EventAddressList", ["exports", "OutSystems/ClientRuntime/Main", "Deprecated_Connect2_PersonalEvents.model", "UBTConnect.model", "Deprecated_Connect2_PersonalEvents.model$EventAddressRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Deprecated_Connect2_PersonalEvents"], function (exports, OutSystems, Deprecated_Connect2_PersonalEventsModel, UBTConnectModel) {
@@ -13644,6 +14371,19 @@ return AppManager_CachedUserInfoRecordList;
 UBTConnectModel.AppManager_CachedUserInfoRecordList = AppManager_CachedUserInfoRecordList;
 
 });
+define("UBTConnect.model$AdaptiveCardJSONList", ["exports", "OutSystems/ClientRuntime/Main", "Comms_CS.model", "UBTConnect.model", "Comms_CS.model$AdaptiveCardJSONRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Comms_CS"], function (exports, OutSystems, Comms_CSModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var AdaptiveCardJSONList = (function (_super) {
+__extends(AdaptiveCardJSONList, _super);
+function AdaptiveCardJSONList(defaults) {
+_super.apply(this, arguments);
+}
+AdaptiveCardJSONList.itemType = Comms_CSModel.AdaptiveCardJSONRec;
+return AdaptiveCardJSONList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.AdaptiveCardJSONList = AdaptiveCardJSONList;
+
+});
 define("UBTConnect.model$UI_RecurrenceTypesRec", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var UI_RecurrenceTypesRec = (function (_super) {
@@ -13877,6 +14617,19 @@ Connect_CacheTypeList.itemType = UBTConnect_UtilsModel.Connect_CacheTypeRec;
 return Connect_CacheTypeList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.Connect_CacheTypeList = Connect_CacheTypeList;
+
+});
+define("UBTConnect.model$MessageContentList", ["exports", "OutSystems/ClientRuntime/Main", "Comms_CS.model", "UBTConnect.model", "Comms_CS.model$MessageContentRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Comms_CS"], function (exports, OutSystems, Comms_CSModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var MessageContentList = (function (_super) {
+__extends(MessageContentList, _super);
+function MessageContentList(defaults) {
+_super.apply(this, arguments);
+}
+MessageContentList.itemType = Comms_CSModel.MessageContentRec;
+return MessageContentList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.MessageContentList = MessageContentList;
 
 });
 define("UBTConnect.model$Photobook_SpeedRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$Photobook_SpeedRec"], function (exports, OutSystems, UBTConnectModel) {
@@ -14856,6 +15609,33 @@ return EmailHouseholdEventRecord;
 UBTConnectModel.EmailHouseholdEventRecord = EmailHouseholdEventRecord;
 
 });
+define("UBTConnect.model$MessageInfoTypeRecord", ["exports", "OutSystems/ClientRuntime/Main", "Comms_CS.model", "UBTConnect.model", "Comms_CS.model$MessageInfoTypeRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Comms_CS"], function (exports, OutSystems, Comms_CSModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var MessageInfoTypeRecord = (function (_super) {
+__extends(MessageInfoTypeRecord, _super);
+function MessageInfoTypeRecord(defaults) {
+_super.apply(this, arguments);
+}
+MessageInfoTypeRecord.attributesToDeclare = function () {
+return [
+this.attr("MessageInfoType", "messageInfoTypeAttr", "MessageInfoType", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Comms_CSModel.MessageInfoTypeRec());
+}, true, Comms_CSModel.MessageInfoTypeRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+MessageInfoTypeRecord.fromStructure = function (str) {
+return new MessageInfoTypeRecord(new MessageInfoTypeRecord.RecordClass({
+messageInfoTypeAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+MessageInfoTypeRecord._isAnonymousRecord = true;
+MessageInfoTypeRecord.UniqueId = "7393e800-adf2-27e0-f02f-e2a8b28d0691";
+MessageInfoTypeRecord.init();
+return MessageInfoTypeRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnectModel.MessageInfoTypeRecord = MessageInfoTypeRecord;
+
+});
 define("UBTConnect.model$Connect_ApplicationsRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect_CommonEntities_DB.model", "UBTConnect.model", "Connect_CommonEntities_DB.model$Connect_ApplicationsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_CommonEntities_DB"], function (exports, OutSystems, Connect_CommonEntities_DBModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var Connect_ApplicationsRecord = (function (_super) {
@@ -14934,6 +15714,19 @@ EventDataList.itemType = Connect2_AndroidAppLinksPluginModel.EventDataRec;
 return EventDataList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.EventDataList = EventDataList;
+
+});
+define("UBTConnect.model$MessagePriorityRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$MessagePriorityRecord"], function (exports, OutSystems, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var MessagePriorityRecordList = (function (_super) {
+__extends(MessagePriorityRecordList, _super);
+function MessagePriorityRecordList(defaults) {
+_super.apply(this, arguments);
+}
+MessagePriorityRecordList.itemType = UBTConnectModel.MessagePriorityRecord;
+return MessagePriorityRecordList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.MessagePriorityRecordList = MessagePriorityRecordList;
 
 });
 define("UBTConnect.model$Core_TimezoneRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Geography_CS.model", "UBTConnect.model", "Connect_Geography_CS.model$Core_TimezoneRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Geography_CS"], function (exports, OutSystems, Connect_Geography_CSModel, UBTConnectModel) {
@@ -15289,6 +16082,19 @@ return HouseholdDetailTagsList;
 UBTConnectModel.HouseholdDetailTagsList = HouseholdDetailTagsList;
 
 });
+define("UBTConnect.model$AdaptiveCardsConfigList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_LegacyShared.model", "UBTConnect.model", "Connect2_LegacyShared.model$AdaptiveCardsConfigRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_LegacyShared"], function (exports, OutSystems, Connect2_LegacySharedModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var AdaptiveCardsConfigList = (function (_super) {
+__extends(AdaptiveCardsConfigList, _super);
+function AdaptiveCardsConfigList(defaults) {
+_super.apply(this, arguments);
+}
+AdaptiveCardsConfigList.itemType = Connect2_LegacySharedModel.AdaptiveCardsConfigRec;
+return AdaptiveCardsConfigList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.AdaptiveCardsConfigList = AdaptiveCardsConfigList;
+
+});
 define("UBTConnect.model$LatLongRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$LatLongRecord"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var LatLongRecordList = (function (_super) {
@@ -15431,6 +16237,19 @@ Filter_Common_Options_ListList.itemType = UBTConnectModel.Filter_Common_Options_
 return Filter_Common_Options_ListList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.Filter_Common_Options_ListList = Filter_Common_Options_ListList;
+
+});
+define("UBTConnect.model$Directory_ImageDetailsRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$Directory_ImageDetailsRecord"], function (exports, OutSystems, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var Directory_ImageDetailsRecordList = (function (_super) {
+__extends(Directory_ImageDetailsRecordList, _super);
+function Directory_ImageDetailsRecordList(defaults) {
+_super.apply(this, arguments);
+}
+Directory_ImageDetailsRecordList.itemType = UBTConnectModel.Directory_ImageDetailsRecord;
+return Directory_ImageDetailsRecordList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.Directory_ImageDetailsRecordList = Directory_ImageDetailsRecordList;
 
 });
 define("UBTConnect.model$TooltipRecord", ["exports", "OutSystems/ClientRuntime/Main", "Leaflet.model", "UBTConnect.model", "Leaflet.model$TooltipRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Leaflet"], function (exports, OutSystems, LeafletModel, UBTConnectModel) {
@@ -15580,6 +16399,19 @@ return HouseFloorRecordList;
 UBTConnectModel.HouseFloorRecordList = HouseFloorRecordList;
 
 });
+define("UBTConnect.model$Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecord"], function (exports, OutSystems, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecordList = (function (_super) {
+__extends(Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecordList, _super);
+function Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecordList(defaults) {
+_super.apply(this, arguments);
+}
+Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecordList.itemType = UBTConnectModel.Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecord;
+return Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecordList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecordList = Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecordList;
+
+});
 define("UBTConnect.model$SenderRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$SenderRecord"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var SenderRecordList = (function (_super) {
@@ -15669,6 +16501,19 @@ Lookup_MyProfileMenuOptionsRecordList.itemType = UBTConnectModel.Lookup_MyProfil
 return Lookup_MyProfileMenuOptionsRecordList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.Lookup_MyProfileMenuOptionsRecordList = Lookup_MyProfileMenuOptionsRecordList;
+
+});
+define("UBTConnect.model$MessageSenderTargetList", ["exports", "OutSystems/ClientRuntime/Main", "Comms_CS.model", "UBTConnect.model", "Comms_CS.model$MessageSenderTargetRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Comms_CS"], function (exports, OutSystems, Comms_CSModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var MessageSenderTargetList = (function (_super) {
+__extends(MessageSenderTargetList, _super);
+function MessageSenderTargetList(defaults) {
+_super.apply(this, arguments);
+}
+MessageSenderTargetList.itemType = Comms_CSModel.MessageSenderTargetRec;
+return MessageSenderTargetList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.MessageSenderTargetList = MessageSenderTargetList;
 
 });
 define("UBTConnect.model$PhotoDetailsList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_MyBookmarks_IS.model", "UBTConnect.model", "Connect2_MyBookmarks_IS.model$PhotoDetailsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_MyBookmarks_IS"], function (exports, OutSystems, Connect2_MyBookmarks_ISModel, UBTConnectModel) {
@@ -16058,6 +16903,19 @@ MessageTemplateRecordList.itemType = UBTConnectModel.MessageTemplateRecord;
 return MessageTemplateRecordList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.MessageTemplateRecordList = MessageTemplateRecordList;
+
+});
+define("UBTConnect.model$HostConfig_FontList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_LegacyShared.model", "UBTConnect.model", "Connect2_LegacyShared.model$HostConfig_FontRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_LegacyShared"], function (exports, OutSystems, Connect2_LegacySharedModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var HostConfig_FontList = (function (_super) {
+__extends(HostConfig_FontList, _super);
+function HostConfig_FontList(defaults) {
+_super.apply(this, arguments);
+}
+HostConfig_FontList.itemType = Connect2_LegacySharedModel.HostConfig_FontRec;
+return HostConfig_FontList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.HostConfig_FontList = HostConfig_FontList;
 
 });
 define("UBTConnect.model$TextOptionsRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect.model", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnectModel) {
@@ -16577,6 +17435,33 @@ return Connect_Service_UserList;
 UBTConnectModel.Connect_Service_UserList = Connect_Service_UserList;
 
 });
+define("UBTConnect.model$AdaptiveCardsConfigRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_LegacyShared.model", "UBTConnect.model", "Connect2_LegacyShared.model$AdaptiveCardsConfigRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_LegacyShared"], function (exports, OutSystems, Connect2_LegacySharedModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var AdaptiveCardsConfigRecord = (function (_super) {
+__extends(AdaptiveCardsConfigRecord, _super);
+function AdaptiveCardsConfigRecord(defaults) {
+_super.apply(this, arguments);
+}
+AdaptiveCardsConfigRecord.attributesToDeclare = function () {
+return [
+this.attr("AdaptiveCardsConfig", "adaptiveCardsConfigAttr", "AdaptiveCardsConfig", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Connect2_LegacySharedModel.AdaptiveCardsConfigRec());
+}, true, Connect2_LegacySharedModel.AdaptiveCardsConfigRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+AdaptiveCardsConfigRecord.fromStructure = function (str) {
+return new AdaptiveCardsConfigRecord(new AdaptiveCardsConfigRecord.RecordClass({
+adaptiveCardsConfigAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+AdaptiveCardsConfigRecord._isAnonymousRecord = true;
+AdaptiveCardsConfigRecord.UniqueId = "87fb7a9b-bccc-174f-277f-bc096d49658f";
+AdaptiveCardsConfigRecord.init();
+return AdaptiveCardsConfigRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnectModel.AdaptiveCardsConfigRecord = AdaptiveCardsConfigRecord;
+
+});
 define("UBTConnect.model$UI_CountryStatisticsRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$UI_CountryStatisticsRecord"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var UI_CountryStatisticsRecordList = (function (_super) {
@@ -16877,6 +17762,33 @@ ReminderOptionList.itemType = Connect2_Assemble_CSModel.ReminderOptionRec;
 return ReminderOptionList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.ReminderOptionList = ReminderOptionList;
+
+});
+define("UBTConnect.model$MessageType2Record", ["exports", "OutSystems/ClientRuntime/Main", "Comms_CS.model", "UBTConnect.model", "Comms_CS.model$MessageTypeRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Comms_CS"], function (exports, OutSystems, Comms_CSModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var MessageType2Record = (function (_super) {
+__extends(MessageType2Record, _super);
+function MessageType2Record(defaults) {
+_super.apply(this, arguments);
+}
+MessageType2Record.attributesToDeclare = function () {
+return [
+this.attr("MessageType", "messageTypeAttr", "MessageType2", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Comms_CSModel.MessageTypeRec());
+}, true, Comms_CSModel.MessageTypeRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+MessageType2Record.fromStructure = function (str) {
+return new MessageType2Record(new MessageType2Record.RecordClass({
+messageTypeAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+MessageType2Record._isAnonymousRecord = true;
+MessageType2Record.UniqueId = "8ceb1a6c-5d47-ba97-104e-21a91d51f34f";
+MessageType2Record.init();
+return MessageType2Record;
+})(OS.DataTypes.GenericRecord);
+UBTConnectModel.MessageType2Record = MessageType2Record;
 
 });
 define("UBTConnect.model$LookupItemRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect.model", "UBTConnectLibrary.model$LookupItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnectModel) {
@@ -17649,6 +18561,19 @@ return UI_MyCalendar_WeekRecord;
 UBTConnectModel.UI_MyCalendar_WeekRecord = UI_MyCalendar_WeekRecord;
 
 });
+define("UBTConnect.model$MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONAppManager_UserExtendeRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONAppManager_UserExtendedUseRecord"], function (exports, OutSystems, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONAppManager_UserExtendeRecordList = (function (_super) {
+__extends(MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONAppManager_UserExtendeRecordList, _super);
+function MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONAppManager_UserExtendeRecordList(defaults) {
+_super.apply(this, arguments);
+}
+MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONAppManager_UserExtendeRecordList.itemType = UBTConnectModel.MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONAppManager_UserExtendedUseRecord;
+return MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONAppManager_UserExtendeRecordList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONAppManager_UserExtendeRecordList = MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONAppManager_UserExtendeRecordList;
+
+});
 define("UBTConnect.model$Custom_AddressList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect.model", "APIDomain_Directory_IS.model$Custom_AddressRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var Custom_AddressList = (function (_super) {
@@ -17967,6 +18892,33 @@ return MapExploreItemRecord;
 UBTConnectModel.MapExploreItemRecord = MapExploreItemRecord;
 
 });
+define("UBTConnect.model$HostConfig_FontRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_LegacyShared.model", "UBTConnect.model", "Connect2_LegacyShared.model$HostConfig_FontRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_LegacyShared"], function (exports, OutSystems, Connect2_LegacySharedModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var HostConfig_FontRecord = (function (_super) {
+__extends(HostConfig_FontRecord, _super);
+function HostConfig_FontRecord(defaults) {
+_super.apply(this, arguments);
+}
+HostConfig_FontRecord.attributesToDeclare = function () {
+return [
+this.attr("HostConfig_Font", "hostConfig_FontAttr", "HostConfig_Font", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Connect2_LegacySharedModel.HostConfig_FontRec());
+}, true, Connect2_LegacySharedModel.HostConfig_FontRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+HostConfig_FontRecord.fromStructure = function (str) {
+return new HostConfig_FontRecord(new HostConfig_FontRecord.RecordClass({
+hostConfig_FontAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+HostConfig_FontRecord._isAnonymousRecord = true;
+HostConfig_FontRecord.UniqueId = "999fa696-4e59-fcef-d540-59796556291c";
+HostConfig_FontRecord.init();
+return HostConfig_FontRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnectModel.HostConfig_FontRecord = HostConfig_FontRecord;
+
+});
 define("UBTConnect.model$Share_AttributesRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Utils.model", "UBTConnect.model", "UBTConnect_Utils.model$Share_AttributesRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils"], function (exports, OutSystems, UBTConnect_UtilsModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var Share_AttributesRecord = (function (_super) {
@@ -18137,6 +19089,19 @@ UBT_SizeList.itemType = UBTConnectLibraryModel.UBT_SizeRec;
 return UBT_SizeList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.UBT_SizeList = UBT_SizeList;
+
+});
+define("UBTConnect.model$AppManager_UserExtendedList", ["exports", "OutSystems/ClientRuntime/Main", "UBT_AppManager_DB.model", "UBTConnect.model", "UBT_AppManager_DB.model$AppManager_UserExtendedRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBT_AppManager_DB"], function (exports, OutSystems, UBT_AppManager_DBModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var AppManager_UserExtendedList = (function (_super) {
+__extends(AppManager_UserExtendedList, _super);
+function AppManager_UserExtendedList(defaults) {
+_super.apply(this, arguments);
+}
+AppManager_UserExtendedList.itemType = UBT_AppManager_DBModel.AppManager_UserExtendedRec;
+return AppManager_UserExtendedList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.AppManager_UserExtendedList = AppManager_UserExtendedList;
 
 });
 define("UBTConnect.model$Filter_Common_OptionsRec", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$Filter_Common_Options_ChoiceRec", "UBTConnect.model$Filter_Common_Options_ListRec", "UBTConnect.model$Filter_Common_Control_ListList", "UBTConnect.model$Filter_Common_Control_ChoiceList"], function (exports, OutSystems, UBTConnectModel) {
@@ -18370,6 +19335,19 @@ EntityMember_ExtraDataRecord.init();
 return EntityMember_ExtraDataRecord;
 })(OS.DataTypes.GenericRecord);
 UBTConnectModel.EntityMember_ExtraDataRecord = EntityMember_ExtraDataRecord;
+
+});
+define("UBTConnect.model$MessageParameterList", ["exports", "OutSystems/ClientRuntime/Main", "Comms_CS.model", "UBTConnect.model", "Comms_CS.model$MessageParameterRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Comms_CS"], function (exports, OutSystems, Comms_CSModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var MessageParameterList = (function (_super) {
+__extends(MessageParameterList, _super);
+function MessageParameterList(defaults) {
+_super.apply(this, arguments);
+}
+MessageParameterList.itemType = Comms_CSModel.MessageParameterRec;
+return MessageParameterList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.MessageParameterList = MessageParameterList;
 
 });
 define("UBTConnect.model$BusinessLinkItem2RecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$BusinessLinkItem2Record"], function (exports, OutSystems, UBTConnectModel) {
@@ -18912,6 +19890,19 @@ UI_StatisticsTextsRecordList.itemType = UBTConnectModel.UI_StatisticsTextsRecord
 return UI_StatisticsTextsRecordList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.UI_StatisticsTextsRecordList = UI_StatisticsTextsRecordList;
+
+});
+define("UBTConnect.model$MessageSenderTargetRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$MessageSenderTargetRecord"], function (exports, OutSystems, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var MessageSenderTargetRecordList = (function (_super) {
+__extends(MessageSenderTargetRecordList, _super);
+function MessageSenderTargetRecordList(defaults) {
+_super.apply(this, arguments);
+}
+MessageSenderTargetRecordList.itemType = UBTConnectModel.MessageSenderTargetRecord;
+return MessageSenderTargetRecordList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.MessageSenderTargetRecordList = MessageSenderTargetRecordList;
 
 });
 define("UBTConnect.model$Member_OptionalRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$Member_OptionalRec"], function (exports, OutSystems, UBTConnectModel) {
@@ -19997,6 +20988,46 @@ return LocalBookmarkRecord;
 UBTConnectModel.LocalBookmarkRecord = LocalBookmarkRecord;
 
 });
+define("UBTConnect.model$AppManager_UserExtendedRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBT_AppManager_DB.model", "UBTConnect.model", "UBT_AppManager_DB.model$AppManager_UserExtendedRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBT_AppManager_DB"], function (exports, OutSystems, UBT_AppManager_DBModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var AppManager_UserExtendedRecord = (function (_super) {
+__extends(AppManager_UserExtendedRecord, _super);
+function AppManager_UserExtendedRecord(defaults) {
+_super.apply(this, arguments);
+}
+AppManager_UserExtendedRecord.attributesToDeclare = function () {
+return [
+this.attr("AppManager_UserExtended", "appManager_UserExtendedAttr", "AppManager_UserExtended", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new UBT_AppManager_DBModel.AppManager_UserExtendedRec());
+}, true, UBT_AppManager_DBModel.AppManager_UserExtendedRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+AppManager_UserExtendedRecord.fromStructure = function (str) {
+return new AppManager_UserExtendedRecord(new AppManager_UserExtendedRecord.RecordClass({
+appManager_UserExtendedAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+AppManager_UserExtendedRecord._isAnonymousRecord = true;
+AppManager_UserExtendedRecord.UniqueId = "d80ef878-b0c6-75c9-c595-43a61974b82d";
+AppManager_UserExtendedRecord.init();
+return AppManager_UserExtendedRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnectModel.AppManager_UserExtendedRecord = AppManager_UserExtendedRecord;
+
+});
+define("UBTConnect.model$AppManager_UserExtendedRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$AppManager_UserExtendedRecord"], function (exports, OutSystems, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var AppManager_UserExtendedRecordList = (function (_super) {
+__extends(AppManager_UserExtendedRecordList, _super);
+function AppManager_UserExtendedRecordList(defaults) {
+_super.apply(this, arguments);
+}
+AppManager_UserExtendedRecordList.itemType = UBTConnectModel.AppManager_UserExtendedRecord;
+return AppManager_UserExtendedRecordList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.AppManager_UserExtendedRecordList = AppManager_UserExtendedRecordList;
+
+});
 define("UBTConnect.model$Type_ImageList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect.model", "UBTConnectLibrary.model$Type_ImageRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var Type_ImageList = (function (_super) {
@@ -20074,6 +21105,19 @@ MapExploreItemList.itemType = Connect_Map_CSModel.MapExploreItemRec;
 return MapExploreItemList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.MapExploreItemList = MapExploreItemList;
+
+});
+define("UBTConnect.model$MessageType2List", ["exports", "OutSystems/ClientRuntime/Main", "Comms_CS.model", "UBTConnect.model", "Comms_CS.model$MessageTypeRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Comms_CS"], function (exports, OutSystems, Comms_CSModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var MessageType2List = (function (_super) {
+__extends(MessageType2List, _super);
+function MessageType2List(defaults) {
+_super.apply(this, arguments);
+}
+MessageType2List.itemType = Comms_CSModel.MessageTypeRec;
+return MessageType2List;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.MessageType2List = MessageType2List;
 
 });
 define("UBTConnect.model$BackgroundImageRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$BackgroundImageRecord"], function (exports, OutSystems, UBTConnectModel) {
@@ -20468,6 +21512,46 @@ return EntityMember_ExtraDataRecordList;
 UBTConnectModel.EntityMember_ExtraDataRecordList = EntityMember_ExtraDataRecordList;
 
 });
+define("UBTConnect.model$MessageStatusRecord", ["exports", "OutSystems/ClientRuntime/Main", "Comms_CS.model", "UBTConnect.model", "Comms_CS.model$MessageStatusRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Comms_CS"], function (exports, OutSystems, Comms_CSModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var MessageStatusRecord = (function (_super) {
+__extends(MessageStatusRecord, _super);
+function MessageStatusRecord(defaults) {
+_super.apply(this, arguments);
+}
+MessageStatusRecord.attributesToDeclare = function () {
+return [
+this.attr("MessageStatus", "messageStatusAttr", "MessageStatus", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Comms_CSModel.MessageStatusRec());
+}, true, Comms_CSModel.MessageStatusRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+MessageStatusRecord.fromStructure = function (str) {
+return new MessageStatusRecord(new MessageStatusRecord.RecordClass({
+messageStatusAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+MessageStatusRecord._isAnonymousRecord = true;
+MessageStatusRecord.UniqueId = "d4e43f6c-a8a1-053c-6a54-37578b9cdd49";
+MessageStatusRecord.init();
+return MessageStatusRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnectModel.MessageStatusRecord = MessageStatusRecord;
+
+});
+define("UBTConnect.model$MessageStatusRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$MessageStatusRecord"], function (exports, OutSystems, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var MessageStatusRecordList = (function (_super) {
+__extends(MessageStatusRecordList, _super);
+function MessageStatusRecordList(defaults) {
+_super.apply(this, arguments);
+}
+MessageStatusRecordList.itemType = UBTConnectModel.MessageStatusRecord;
+return MessageStatusRecordList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.MessageStatusRecordList = MessageStatusRecordList;
+
+});
 define("UBTConnect.model$MyBookmarks_GroupRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_MyBookmarks_BL.model", "UBTConnect.model", "Connect2_MyBookmarks_BL.model$MyBookmarks_GroupRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_MyBookmarks_BL"], function (exports, OutSystems, Connect2_MyBookmarks_BLModel, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var MyBookmarks_GroupRecord = (function (_super) {
@@ -20730,6 +21814,19 @@ Custom_AddressInfoList.itemType = APIDomain_Directory_ISModel.Custom_AddressInfo
 return Custom_AddressInfoList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.Custom_AddressInfoList = Custom_AddressInfoList;
+
+});
+define("UBTConnect.model$MessageInfoTypeRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$MessageInfoTypeRecord"], function (exports, OutSystems, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var MessageInfoTypeRecordList = (function (_super) {
+__extends(MessageInfoTypeRecordList, _super);
+function MessageInfoTypeRecordList(defaults) {
+_super.apply(this, arguments);
+}
+MessageInfoTypeRecordList.itemType = UBTConnectModel.MessageInfoTypeRecord;
+return MessageInfoTypeRecordList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.MessageInfoTypeRecordList = MessageInfoTypeRecordList;
 
 });
 define("UBTConnect.model$NoteCategory2Record", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Notes_MCS.model", "UBTConnect.model", "UBTConnect_Notes_MCS.model$NoteCategoryRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Notes_MCS"], function (exports, OutSystems, UBTConnect_Notes_MCSModel, UBTConnectModel) {
@@ -21165,6 +22262,32 @@ Filter_Common_Options_ChoiceRecord.init();
 return Filter_Common_Options_ChoiceRecord;
 })(OS.DataTypes.GenericRecord);
 UBTConnectModel.Filter_Common_Options_ChoiceRecord = Filter_Common_Options_ChoiceRecord;
+
+});
+define("UBTConnect.model$HostConfig_FontRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$HostConfig_FontRecord"], function (exports, OutSystems, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var HostConfig_FontRecordList = (function (_super) {
+__extends(HostConfig_FontRecordList, _super);
+function HostConfig_FontRecordList(defaults) {
+_super.apply(this, arguments);
+}
+HostConfig_FontRecordList.itemType = UBTConnectModel.HostConfig_FontRecord;
+return HostConfig_FontRecordList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.HostConfig_FontRecordList = HostConfig_FontRecordList;
+
+});
+define("UBTConnect.model$Directory_ImageDetailsList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "UBTConnect.model", "APIDomain_Directory_IS.model$Directory_ImageDetailsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$APIDomain_Directory_IS"], function (exports, OutSystems, APIDomain_Directory_ISModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var Directory_ImageDetailsList = (function (_super) {
+__extends(Directory_ImageDetailsList, _super);
+function Directory_ImageDetailsList(defaults) {
+_super.apply(this, arguments);
+}
+Directory_ImageDetailsList.itemType = APIDomain_Directory_ISModel.Directory_ImageDetailsRec;
+return Directory_ImageDetailsList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.Directory_ImageDetailsList = Directory_ImageDetailsList;
 
 });
 define("UBTConnect.model$FirebaseEventList", ["exports", "OutSystems/ClientRuntime/Main", "Firebase.model", "UBTConnect.model", "Firebase.model$FirebaseEventRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Firebase"], function (exports, OutSystems, FirebaseModel, UBTConnectModel) {
@@ -21784,6 +22907,19 @@ return Map_MarkersStructureList;
 UBTConnectModel.Map_MarkersStructureList = Map_MarkersStructureList;
 
 });
+define("UBTConnect.model$AppManager_DeviceContextList", ["exports", "OutSystems/ClientRuntime/Main", "UBT_AppManager_CS.model", "UBTConnect.model", "UBT_AppManager_CS.model$AppManager_DeviceContextRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBT_AppManager_CS"], function (exports, OutSystems, UBT_AppManager_CSModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var AppManager_DeviceContextList = (function (_super) {
+__extends(AppManager_DeviceContextList, _super);
+function AppManager_DeviceContextList(defaults) {
+_super.apply(this, arguments);
+}
+AppManager_DeviceContextList.itemType = UBT_AppManager_CSModel.AppManager_DeviceContextRec;
+return AppManager_DeviceContextList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.AppManager_DeviceContextList = AppManager_DeviceContextList;
+
+});
 define("UBTConnect.model$RecurrencePatternWeekIndexIdentifierBooleanRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var RecurrencePatternWeekIndexIdentifierBooleanRecord = (function (_super) {
@@ -21954,6 +23090,19 @@ return Directory_UserCurrent_SubscriptionRecordList;
 UBTConnectModel.Directory_UserCurrent_SubscriptionRecordList = Directory_UserCurrent_SubscriptionRecordList;
 
 });
+define("UBTConnect.model$ParameterNameList", ["exports", "OutSystems/ClientRuntime/Main", "Comms_CS.model", "UBTConnect.model", "Comms_CS.model$ParameterNameRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Comms_CS"], function (exports, OutSystems, Comms_CSModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var ParameterNameList = (function (_super) {
+__extends(ParameterNameList, _super);
+function ParameterNameList(defaults) {
+_super.apply(this, arguments);
+}
+ParameterNameList.itemType = Comms_CSModel.ParameterNameRec;
+return ParameterNameList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.ParameterNameList = ParameterNameList;
+
+});
 define("UBTConnect.model$UI_LocalityDetailsRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$UI_LocalityDetailsRecord"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var UI_LocalityDetailsRecordList = (function (_super) {
@@ -22016,6 +23165,19 @@ MessageInstanceRecordList.itemType = UBTConnectModel.MessageInstanceRecord;
 return MessageInstanceRecordList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.MessageInstanceRecordList = MessageInstanceRecordList;
+
+});
+define("UBTConnect.model$HostConfig_SpacingList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_LegacyShared.model", "UBTConnect.model", "Connect2_LegacyShared.model$HostConfig_SpacingRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_LegacyShared"], function (exports, OutSystems, Connect2_LegacySharedModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var HostConfig_SpacingList = (function (_super) {
+__extends(HostConfig_SpacingList, _super);
+function HostConfig_SpacingList(defaults) {
+_super.apply(this, arguments);
+}
+HostConfig_SpacingList.itemType = Connect2_LegacySharedModel.HostConfig_SpacingRec;
+return HostConfig_SpacingList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.HostConfig_SpacingList = HostConfig_SpacingList;
 
 });
 define("UBTConnect.model$AutoplaySettingsList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$AutoplaySettingsRec"], function (exports, OutSystems, UBTConnectModel) {
@@ -22334,6 +23496,19 @@ return UI_OneSchoolGlobal_DetailCardList;
 UBTConnectModel.UI_OneSchoolGlobal_DetailCardList = UI_OneSchoolGlobal_DetailCardList;
 
 });
+define("UBTConnect.model$MessageType2RecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$MessageType2Record"], function (exports, OutSystems, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var MessageType2RecordList = (function (_super) {
+__extends(MessageType2RecordList, _super);
+function MessageType2RecordList(defaults) {
+_super.apply(this, arguments);
+}
+MessageType2RecordList.itemType = UBTConnectModel.MessageType2Record;
+return MessageType2RecordList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.MessageType2RecordList = MessageType2RecordList;
+
+});
 define("UBTConnect.model$EmailHouseholdEventRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$EmailHouseholdEventRecord"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var EmailHouseholdEventRecordList = (function (_super) {
@@ -22504,6 +23679,19 @@ return ContactPopupDataList;
 UBTConnectModel.ContactPopupDataList = ContactPopupDataList;
 
 });
+define("UBTConnect.model$AdaptiveCardsConfigRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$AdaptiveCardsConfigRecord"], function (exports, OutSystems, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var AdaptiveCardsConfigRecordList = (function (_super) {
+__extends(AdaptiveCardsConfigRecordList, _super);
+function AdaptiveCardsConfigRecordList(defaults) {
+_super.apply(this, arguments);
+}
+AdaptiveCardsConfigRecordList.itemType = UBTConnectModel.AdaptiveCardsConfigRecord;
+return AdaptiveCardsConfigRecordList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.AdaptiveCardsConfigRecordList = AdaptiveCardsConfigRecordList;
+
+});
 define("UBTConnect.model$Lookup_RecurrenceTypeList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$Lookup_RecurrenceTypeRec"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var Lookup_RecurrenceTypeList = (function (_super) {
@@ -22607,6 +23795,19 @@ UI_Bookmark_CardItemRecordList.itemType = UBTConnectModel.UI_Bookmark_CardItemRe
 return UI_Bookmark_CardItemRecordList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.UI_Bookmark_CardItemRecordList = UI_Bookmark_CardItemRecordList;
+
+});
+define("UBTConnect.model$TextTextTextRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$TextTextTextRecord"], function (exports, OutSystems, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var TextTextTextRecordList = (function (_super) {
+__extends(TextTextTextRecordList, _super);
+function TextTextTextRecordList(defaults) {
+_super.apply(this, arguments);
+}
+TextTextTextRecordList.itemType = UBTConnectModel.TextTextTextRecord;
+return TextTextTextRecordList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.TextTextTextRecordList = TextTextTextRecordList;
 
 });
 define("UBTConnect.model$CS_CountryNameList", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Geography_CS.model", "UBTConnect.model", "Connect_Geography_CS.model$CS_CountryNameRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Geography_CS"], function (exports, OutSystems, Connect_Geography_CSModel, UBTConnectModel) {
@@ -22740,6 +23941,33 @@ return BusinessLinkItemRecordList;
 UBTConnectModel.BusinessLinkItemRecordList = BusinessLinkItemRecordList;
 
 });
+define("UBTConnect.model$HostConfig_SpacingRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_LegacyShared.model", "UBTConnect.model", "Connect2_LegacyShared.model$HostConfig_SpacingRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_LegacyShared"], function (exports, OutSystems, Connect2_LegacySharedModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var HostConfig_SpacingRecord = (function (_super) {
+__extends(HostConfig_SpacingRecord, _super);
+function HostConfig_SpacingRecord(defaults) {
+_super.apply(this, arguments);
+}
+HostConfig_SpacingRecord.attributesToDeclare = function () {
+return [
+this.attr("HostConfig_Spacing", "hostConfig_SpacingAttr", "HostConfig_Spacing", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Connect2_LegacySharedModel.HostConfig_SpacingRec());
+}, true, Connect2_LegacySharedModel.HostConfig_SpacingRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+HostConfig_SpacingRecord.fromStructure = function (str) {
+return new HostConfig_SpacingRecord(new HostConfig_SpacingRecord.RecordClass({
+hostConfig_SpacingAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+HostConfig_SpacingRecord._isAnonymousRecord = true;
+HostConfig_SpacingRecord.UniqueId = "e2c69ee1-4e9b-0024-db96-1f5a31fcd299";
+HostConfig_SpacingRecord.init();
+return HostConfig_SpacingRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnectModel.HostConfig_SpacingRecord = HostConfig_SpacingRecord;
+
+});
 define("UBTConnect.model$SplideConfigsList", ["exports", "OutSystems/ClientRuntime/Main", "OutSystemsUI_2_23.model", "UBTConnect.model", "OutSystemsUI_2_23.model$SplideConfigsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$OutSystemsUI_2_23"], function (exports, OutSystems, OutSystemsUI_2_23Model, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var SplideConfigsList = (function (_super) {
@@ -22777,6 +24005,19 @@ EntitiesCarousel_SwippedItemRecordList.itemType = UBTConnectModel.EntitiesCarous
 return EntitiesCarousel_SwippedItemRecordList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.EntitiesCarousel_SwippedItemRecordList = EntitiesCarousel_SwippedItemRecordList;
+
+});
+define("UBTConnect.model$AdaptiveCardJSONRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$AdaptiveCardJSONRecord"], function (exports, OutSystems, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var AdaptiveCardJSONRecordList = (function (_super) {
+__extends(AdaptiveCardJSONRecordList, _super);
+function AdaptiveCardJSONRecordList(defaults) {
+_super.apply(this, arguments);
+}
+AdaptiveCardJSONRecordList.itemType = UBTConnectModel.AdaptiveCardJSONRecord;
+return AdaptiveCardJSONRecordList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.AdaptiveCardJSONRecordList = AdaptiveCardJSONRecordList;
 
 });
 define("UBTConnect.model$CarouselPreloadedHouseholdsRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$CarouselPreloadedHouseholdsRecord"], function (exports, OutSystems, UBTConnectModel) {
@@ -22858,6 +24099,19 @@ return AuditLog_ShareEventInfoRecord;
 UBTConnectModel.AuditLog_ShareEventInfoRecord = AuditLog_ShareEventInfoRecord;
 
 });
+define("UBTConnect.model$HostConfig_FontWeightsRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$HostConfig_FontWeightsRecord"], function (exports, OutSystems, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var HostConfig_FontWeightsRecordList = (function (_super) {
+__extends(HostConfig_FontWeightsRecordList, _super);
+function HostConfig_FontWeightsRecordList(defaults) {
+_super.apply(this, arguments);
+}
+HostConfig_FontWeightsRecordList.itemType = UBTConnectModel.HostConfig_FontWeightsRecord;
+return HostConfig_FontWeightsRecordList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.HostConfig_FontWeightsRecordList = HostConfig_FontWeightsRecordList;
+
+});
 define("UBTConnect.model$UI_LocalityDetailsWithStatisticsRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$UI_LocalityDetailsWithStatisticsRecord"], function (exports, OutSystems, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var UI_LocalityDetailsWithStatisticsRecordList = (function (_super) {
@@ -22921,6 +24175,19 @@ Lookup_RecurrenceDayOfWeekBooleanRecordList.itemType = UBTConnectModel.Lookup_Re
 return Lookup_RecurrenceDayOfWeekBooleanRecordList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.Lookup_RecurrenceDayOfWeekBooleanRecordList = Lookup_RecurrenceDayOfWeekBooleanRecordList;
+
+});
+define("UBTConnect.model$Connect_EventTypesRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$Connect_EventTypesRecord"], function (exports, OutSystems, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var Connect_EventTypesRecordList = (function (_super) {
+__extends(Connect_EventTypesRecordList, _super);
+function Connect_EventTypesRecordList(defaults) {
+_super.apply(this, arguments);
+}
+Connect_EventTypesRecordList.itemType = UBTConnectModel.Connect_EventTypesRecord;
+return Connect_EventTypesRecordList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.Connect_EventTypesRecordList = Connect_EventTypesRecordList;
 
 });
 define("UBTConnect.model$UI_OneSchoolGlobal_DetailCard_ContentRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$UI_OneSchoolGlobal_DetailCard_ContentRecord"], function (exports, OutSystems, UBTConnectModel) {
@@ -23328,6 +24595,19 @@ return UserList;
 UBTConnectModel.UserList = UserList;
 
 });
+define("UBTConnect.model$HostConfig_SpacingRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$HostConfig_SpacingRecord"], function (exports, OutSystems, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var HostConfig_SpacingRecordList = (function (_super) {
+__extends(HostConfig_SpacingRecordList, _super);
+function HostConfig_SpacingRecordList(defaults) {
+_super.apply(this, arguments);
+}
+HostConfig_SpacingRecordList.itemType = UBTConnectModel.HostConfig_SpacingRecord;
+return HostConfig_SpacingRecordList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.HostConfig_SpacingRecordList = HostConfig_SpacingRecordList;
+
+});
 define("UBTConnect.model$MenuActionList", ["exports", "OutSystems/ClientRuntime/Main", "OutSystemsUI_2_23.model", "UBTConnect.model", "OutSystemsUI_2_23.model$MenuActionRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$OutSystemsUI_2_23"], function (exports, OutSystems, OutSystemsUI_2_23Model, UBTConnectModel) {
 var OS = OutSystems.Internal;
 var MenuActionList = (function (_super) {
@@ -23704,6 +24984,32 @@ CommunityBusinessType2List.itemType = Connect2_LegacySharedModel.CommunityBusine
 return CommunityBusinessType2List;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectModel.CommunityBusinessType2List = CommunityBusinessType2List;
+
+});
+define("UBTConnect.model$MessageContentRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.model$MessageContentRecord"], function (exports, OutSystems, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var MessageContentRecordList = (function (_super) {
+__extends(MessageContentRecordList, _super);
+function MessageContentRecordList(defaults) {
+_super.apply(this, arguments);
+}
+MessageContentRecordList.itemType = UBTConnectModel.MessageContentRecord;
+return MessageContentRecordList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.MessageContentRecordList = MessageContentRecordList;
+
+});
+define("UBTConnect.model$UI_HouseholdRelations_AwayParentsList", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Household_CS.model", "UBTConnect.model", "Connect_Household_CS.model$UI_HouseholdRelations_AwayParentsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Household_CS"], function (exports, OutSystems, Connect_Household_CSModel, UBTConnectModel) {
+var OS = OutSystems.Internal;
+var UI_HouseholdRelations_AwayParentsList = (function (_super) {
+__extends(UI_HouseholdRelations_AwayParentsList, _super);
+function UI_HouseholdRelations_AwayParentsList(defaults) {
+_super.apply(this, arguments);
+}
+UI_HouseholdRelations_AwayParentsList.itemType = Connect_Household_CSModel.UI_HouseholdRelations_AwayParentsRec;
+return UI_HouseholdRelations_AwayParentsList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectModel.UI_HouseholdRelations_AwayParentsList = UI_HouseholdRelations_AwayParentsList;
 
 });
 define("UBTConnect.model$DetailDisplayTypeList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnect.model", "UBTConnectLibrary.model$DetailDisplayTypeRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnectModel) {
@@ -24157,6 +25463,336 @@ return getRecurrenceRangeTypeRecord("f60a7eeb-2f69-4bca-ae73-4a288b0dfcde");
 }
 });
 
+UBTConnectModel.staticEntities.messagePriority = {};
+var getMessagePriorityRecord = function (record) {
+return OS.ApplicationInfo.getModules()["1ead1054-e761-4048-8aa9-2cf23d90b9e7"].staticEntities["00febaa6-400d-438d-9506-211ce392fc7a"][record];
+};
+Object.defineProperty(UBTConnectModel.staticEntities.messagePriority, "normal", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessagePriorityRecord("5e8688ca-47e4-488b-92b6-ad9aa8ba66d1"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.messagePriority, "urgent", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessagePriorityRecord("a8904aab-07f7-47c7-a341-9a322599d2d0"));
+}
+});
+
+UBTConnectModel.staticEntities.messageType2 = {};
+var getMessageType2Record = function (record) {
+return OS.ApplicationInfo.getModules()["1ead1054-e761-4048-8aa9-2cf23d90b9e7"].staticEntities["039838ee-3041-4d17-8b46-dd00bec0ece4"][record];
+};
+Object.defineProperty(UBTConnectModel.staticEntities.messageType2, "private", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessageType2Record("01c17993-78e9-4a11-bc55-111ebcf2c103"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.messageType2, "public", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessageType2Record("bfa78740-e96a-4fc8-87b7-fede04699da2"));
+}
+});
+
+UBTConnectModel.staticEntities.messageInfoType = {};
+var getMessageInfoTypeRecord = function (record) {
+return OS.ApplicationInfo.getModules()["1ead1054-e761-4048-8aa9-2cf23d90b9e7"].staticEntities["0f8d49bf-d55b-4a75-affb-9d5966653460"][record];
+};
+Object.defineProperty(UBTConnectModel.staticEntities.messageInfoType, "generalInformation", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessageInfoTypeRecord("1a02759a-58a9-4729-a844-e94c2c961901"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.messageInfoType, "whatsNew", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessageInfoTypeRecord("3b26e8f9-7c0f-4dac-8070-45a3b4374913"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.messageInfoType, "sharing", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessageInfoTypeRecord("cf120104-5c23-4b29-bf9f-1b91cbf761db"));
+}
+});
+
+UBTConnectModel.staticEntities.messageStatus = {};
+var getMessageStatusRecord = function (record) {
+return OS.ApplicationInfo.getModules()["1ead1054-e761-4048-8aa9-2cf23d90b9e7"].staticEntities["7d698f43-df0d-4cf1-9e37-3d9f41afe626"][record];
+};
+Object.defineProperty(UBTConnectModel.staticEntities.messageStatus, "recalled", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessageStatusRecord("4a84459f-b7b0-45d6-b25e-e77573fce309"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.messageStatus, "sent", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessageStatusRecord("7e22bfb4-d3b8-47d0-b3fd-8a7fd1cc57c1"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.messageStatus, "sending", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessageStatusRecord("8702b70b-f030-4ee2-a384-b6013dab5eff"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.messageStatus, "skipSendPushNotification", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessageStatusRecord("8d2b0693-4738-4789-8dd9-29a86f9e74e1"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.messageStatus, "draft", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessageStatusRecord("b186a21d-062b-4c82-b862-5c2d67605841"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.messageStatus, "retractionInProgress", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessageStatusRecord("b7374b4a-9240-4801-8d8e-461035b5ed0f"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.messageStatus, "retracted", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessageStatusRecord("c5b08d26-5bb6-43a5-beac-f93961a18743"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.messageStatus, "scheduled", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessageStatusRecord("f5299086-a0ee-4055-a1de-1d6c5f67b214"));
+}
+});
+
+UBTConnectModel.staticEntities.messageSenderTarget = {};
+var getMessageSenderTargetRecord = function (record) {
+return OS.ApplicationInfo.getModules()["1ead1054-e761-4048-8aa9-2cf23d90b9e7"].staticEntities["889dcd3e-a0f3-4385-bdb7-46eea1464a15"][record];
+};
+Object.defineProperty(UBTConnectModel.staticEntities.messageSenderTarget, "gAP", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessageSenderTargetRecord("041e1648-646f-497b-b2be-411d672cf091"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.messageSenderTarget, "orbitHostSurvey", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessageSenderTargetRecord("07542b5f-1ae8-46a7-a6a0-abb7cbef9764"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.messageSenderTarget, "assemble", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessageSenderTargetRecord("0906446e-97ed-4382-9bad-507635aa6995"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.messageSenderTarget, "connect", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessageSenderTargetRecord("4913fe04-42b4-4458-9ecd-f34a853bed38"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.messageSenderTarget, "uBT", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessageSenderTargetRecord("50978e1e-7c57-4998-9586-38dcd6f9ea7b"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.messageSenderTarget, "lordsDayMeal", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessageSenderTargetRecord("633166fe-9318-40b5-b7b5-319deaa75841"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.messageSenderTarget, "trove", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessageSenderTargetRecord("68410198-ae79-43de-b3d6-eeebd49b89b2"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.messageSenderTarget, "orbit", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessageSenderTargetRecord("8e69edd1-33d9-4044-aeef-99fb9b9d9f0b"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.messageSenderTarget, "communityHub", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessageSenderTargetRecord("9506de13-c5aa-4ded-94e8-93fd50fa48c1"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.messageSenderTarget, "bGT", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessageSenderTargetRecord("a8400912-18f9-4aa8-931d-bf444764a277"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.messageSenderTarget, "uBTA", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessageSenderTargetRecord("a84d9f96-22ea-41e8-a2da-3f5d47775fdc"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.messageSenderTarget, "gFT", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessageSenderTargetRecord("b8061ca1-1bd2-4ed7-83ec-66d6376a707f"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.messageSenderTarget, "campusTrading", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessageSenderTargetRecord("b86e4891-dd10-4856-ac0d-e2c01bb21c0c"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.messageSenderTarget, "oSG", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessageSenderTargetRecord("bceecba0-d71c-4f91-a706-feddb4df956d"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.messageSenderTarget, "myEntertaining", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessageSenderTargetRecord("c2c9a5e0-f58a-4aae-81f2-7a1f3a156e2e"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.messageSenderTarget, "hR100", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessageSenderTargetRecord("d6e81be3-85ed-4bb3-8c6c-06c9105f7403"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.messageSenderTarget, "pBCC", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessageSenderTargetRecord("daa937ec-0831-4445-a941-70965230dc38"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.messageSenderTarget, "rRT", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessageSenderTargetRecord("ebb016a4-6f78-4ff9-80bd-467024e4c9d8"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.messageSenderTarget, "visionFoundation", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessageSenderTargetRecord("fc6264fc-b93e-4afc-aaba-6184c4e70ac7"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.messageSenderTarget, "directory", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessageSenderTargetRecord("fe118adb-cf02-4eb0-b3a2-ed8f31473265"));
+}
+});
+
+UBTConnectModel.staticEntities.parameterName = {};
+var getParameterNameRecord = function (record) {
+return OS.ApplicationInfo.getModules()["1ead1054-e761-4048-8aa9-2cf23d90b9e7"].staticEntities["eef250b9-fc12-4a1f-807a-70f0b874e102"][record];
+};
+Object.defineProperty(UBTConnectModel.staticEntities.parameterName, "shareId", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getParameterNameRecord("09c0630b-0e91-4ee5-be70-4301dc263a3f"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.parameterName, "orbitStartDate", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getParameterNameRecord("11203c6d-3e9f-4c18-9389-e63eedc9fefe"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.parameterName, "assembleEventInstanceId", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getParameterNameRecord("1999edc6-c9ca-400a-b37a-3145b2fa4172"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.parameterName, "assembleEventHostingLocation", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getParameterNameRecord("1ec17d5f-66aa-4bcf-aa4b-41bbb0b4ddea"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.parameterName, "orbitEventName", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getParameterNameRecord("4bf5a820-7572-4ffa-97c4-6ac535f97fa6"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.parameterName, "orbitMilestoneId", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getParameterNameRecord("4ca380a5-78ed-4032-8885-170cdce7b239"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.parameterName, "assembleEventRecurrenceType", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getParameterNameRecord("4d408903-0164-4b17-885a-857b6bfbacae"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.parameterName, "placeholderAddTop", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getParameterNameRecord("821581cf-b9df-45fc-b097-af4d4a8a9fe0"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.parameterName, "assembleEventAppliesToSequence", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getParameterNameRecord("878a04d2-99b2-44ea-beee-4408c12dafe1"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.parameterName, "assembleEventStartDate", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getParameterNameRecord("8ece6785-52ac-412b-a016-d086d1dbbe6c"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.parameterName, "assembleEventType", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getParameterNameRecord("9f20fac2-e7c9-4ba4-ba94-2189ca5aef0c"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.parameterName, "orbitEndDate", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getParameterNameRecord("a207913e-011e-45a7-8440-04091fcadd00"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.parameterName, "assembleEventAction", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getParameterNameRecord("c08dd859-15db-4efc-aef2-359ac4f5d873"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.parameterName, "assembleEventIsVirtual", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getParameterNameRecord("cd4c6b16-5dec-465e-85f0-e76dfca1ec86"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.parameterName, "orbitEventId", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getParameterNameRecord("ecc8a7dc-e605-42cd-8915-8207d2f4b42f"));
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.parameterName, "assembleEventParentId", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getParameterNameRecord("f1e9131e-35c8-4ce7-8dca-9d34d4039c4c"));
+}
+});
+
 UBTConnectModel.staticEntities.uBT_MessageType = {};
 var getUBT_MessageTypeRecord = function (record) {
 return OS.ApplicationInfo.getModules()["2c2986c3-daaf-4dc5-a0c6-d9a75a42125d"].staticEntities["5a451e53-0d4f-4a13-8dcd-d2c12db5eb4f"][record];
@@ -24346,6 +25982,16 @@ return getCommunityBusinessType2Record("5b42e41f-3053-407d-8cb4-e7334ab49272");
 Object.defineProperty(UBTConnectModel.staticEntities.communityBusinessType2, "commercial", {
 get: function () {
 return getCommunityBusinessType2Record("d5e44acc-a7a5-4f99-a52a-2cc127cdaa0f");
+}
+});
+
+UBTConnectModel.staticEntities.adaptiveCardsConfig = {};
+var getAdaptiveCardsConfigRecord = function (record) {
+return OS.ApplicationInfo.getModules()["3712370e-f7b5-4c2a-ade3-d8800219efd4"].staticEntities["649652eb-b439-45e2-b380-0b149c9c82ba"][record];
+};
+Object.defineProperty(UBTConnectModel.staticEntities.adaptiveCardsConfig, "events", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getAdaptiveCardsConfigRecord("d6370849-dc51-493a-b1d2-07f39f4ed18e"));
 }
 });
 
@@ -27829,6 +29475,12 @@ return getUBT_Icons2Record("900a6e7d-3539-4ceb-b038-281a6b9ae564");
 }
 });
 
+Object.defineProperty(UBTConnectModel.staticEntities.uBT_Icons2, "transportTrain", {
+get: function () {
+return getUBT_Icons2Record("90542196-917d-4e25-a264-f2ff0a1e1d60");
+}
+});
+
 Object.defineProperty(UBTConnectModel.staticEntities.uBT_Icons2, "menu", {
 get: function () {
 return getUBT_Icons2Record("913b1341-974f-41fa-b3d2-8c173d29ae47");
@@ -28141,6 +29793,12 @@ return getUBT_Icons2Record("d4f63836-85a1-4f9a-9d57-4a324075707c");
 }
 });
 
+Object.defineProperty(UBTConnectModel.staticEntities.uBT_Icons2, "transportPlane", {
+get: function () {
+return getUBT_Icons2Record("d6164d90-1fa7-4329-85ff-8f5484258b14");
+}
+});
+
 Object.defineProperty(UBTConnectModel.staticEntities.uBT_Icons2, "shoppingCart", {
 get: function () {
 return getUBT_Icons2Record("d7863646-a37e-4bd6-aedc-72183f218a9e");
@@ -28192,6 +29850,12 @@ return getUBT_Icons2Record("deec24f4-831f-4b87-bc37-3f92ab62ef11");
 Object.defineProperty(UBTConnectModel.staticEntities.uBT_Icons2, "sMS", {
 get: function () {
 return getUBT_Icons2Record("e2b0003e-25ec-41f2-9e14-00a2237353bc");
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.uBT_Icons2, "transportCar", {
+get: function () {
+return getUBT_Icons2Record("e2faf3e0-399c-4b1c-8903-0e6958d7cff1");
 }
 });
 
@@ -29465,7 +31129,7 @@ return getLaunchDarkly_FFRecord("9cf4f818-9b39-477b-9b3f-ffe9b9773d39");
 }
 });
 
-Object.defineProperty(UBTConnectModel.staticEntities.launchDarkly_FF, "mobileHasHiddenMembersAccess", {
+Object.defineProperty(UBTConnectModel.staticEntities.launchDarkly_FF, "mobileHasAwayMembersAccess", {
 get: function () {
 return getLaunchDarkly_FFRecord("a7bcf50b-9e90-4182-826e-015a31034d02");
 }
@@ -29659,6 +31323,28 @@ return getConnect_Subscription_RegionRecord("d9cb4179-4977-4ae9-bfdb-e075def53ae
 }
 });
 
+UBTConnectModel.staticEntities.connect_EventTypes = {};
+var getConnect_EventTypesRecord = function (record) {
+return OS.ApplicationInfo.getModules()["d86ffdd7-ae1d-48f1-9fea-17fe11fb97da"].staticEntities["882bef12-65bf-4fb5-9bd8-2d5e8327b3f1"][record];
+};
+Object.defineProperty(UBTConnectModel.staticEntities.connect_EventTypes, "assemble", {
+get: function () {
+return getConnect_EventTypesRecord("03659391-fa7a-4e21-90a5-8211bc1eb0dc");
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.connect_EventTypes, "orbit", {
+get: function () {
+return getConnect_EventTypesRecord("a422a02f-82cc-4a0c-80eb-f4b2b0ddeef9");
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.connect_EventTypes, "lDM", {
+get: function () {
+return getConnect_EventTypesRecord("db75afa7-bfa9-468b-bb74-00ee22e2659e");
+}
+});
+
 UBTConnectModel.staticEntities.connect_SearchCategories = {};
 var getConnect_SearchCategoriesRecord = function (record) {
 return OS.ApplicationInfo.getModules()["d86ffdd7-ae1d-48f1-9fea-17fe11fb97da"].staticEntities["a2feb2ad-13f2-44aa-9759-710c980b0a4c"][record];
@@ -29675,9 +31361,21 @@ return getConnect_SearchCategoriesRecord("659f7f79-b6be-448f-b64e-34018fee0fe0")
 }
 });
 
+Object.defineProperty(UBTConnectModel.staticEntities.connect_SearchCategories, "events", {
+get: function () {
+return getConnect_SearchCategoriesRecord("7f3a1945-b38e-4496-8e06-2418d9e3d782");
+}
+});
+
 Object.defineProperty(UBTConnectModel.staticEntities.connect_SearchCategories, "households", {
 get: function () {
 return getConnect_SearchCategoriesRecord("af1eb74c-7ce8-49b3-ba93-764b3dee6c55");
+}
+});
+
+Object.defineProperty(UBTConnectModel.staticEntities.connect_SearchCategories, "schools", {
+get: function () {
+return getConnect_SearchCategoriesRecord("e078602f-95bf-4e8e-99e8-ec657bbf4964");
 }
 });
 

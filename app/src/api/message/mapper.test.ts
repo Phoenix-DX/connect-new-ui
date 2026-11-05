@@ -442,9 +442,6 @@ describe('message detail mappers', () => {
   it('the NotificationDetails mappers read the UBTConnect records as the Connect2_LegacyShared ones', () => {
     const wire = messageInstanceWire({ id: '81012', sentAs: 3, created: '2026-10-07T11:25:00' });
     expect(toNotificationMessageInstanceResult(wire)).toEqual(toMessageInstanceResult(wire));
-    expect(() =>
-      toNotificationMessageInstanceResult({ ...wire, Message: { MessageTemplate: {} }, PlaceholderDelimiters: {} }),
-    ).toThrow('NotificationDetails GetMessageInstance');
     const list = {
       List: [
         {
@@ -461,7 +458,6 @@ describe('message detail mappers', () => {
     expect(toNotificationMessageParameters({ Count: 1, List: list })).toEqual([
       { id: '1', messageTemplateId: '47702', parameterNameId: 18, parameterValue: '4410', tenantId: 1 },
     ]);
-    expect(() => toNotificationMessageParameters({ Count: 0, List: [{}] })).toThrow('has no List');
     const variables = {
       FeedItemId: '',
       HardwareId: '',

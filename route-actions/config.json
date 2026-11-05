@@ -73,7 +73,7 @@
         "kind": "noCaller",
         "title": "Declared, never fetched",
         "reason": "The data action or aggregate fetches on demand (dataFetchDependenciesOriginal -1) and no action of the compiled code refreshes it: TST never calls it.",
-        "evidence": "facts.json callSites: the only chain is the synthetic 'fetch at start' root of the call graph; the fetch mode of the compiled file (tools/os_extras.py fetch_modes)."
+        "evidence": "facts.json callSites: the only chain is the synthetic 'fetch at start' root of the call graph. The fetch mode comes from the compiled file (tools/os_extras.py fetch_modes)."
       }
     ]
   },

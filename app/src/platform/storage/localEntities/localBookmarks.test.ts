@@ -7,12 +7,11 @@ import {
   LOCAL_BOOKMARK,
   create_LocalBookmark,
   delete_LocalBookmarkByBookmarkId,
-  get_LocalBookmarkByBookmarkId,
   get_LocalBookmarkByObjectId,
   getLocalBookmarkByBookmarkId,
   getLocalBookmarkByObjectId,
   getLocalBookmarksByObjectType,
-  legacyDelete_LocalBookmarkByBookmarkId,
+  legacyGetLocalBookmarksByObjectType,
   localBookmarksSchemas,
   setLocalBookmarksDatabase,
   synchBookmarks,
@@ -60,25 +59,27 @@ describe('local bookmarks (UBTConnect_Bookmarks_MCS, Connect2_LegacyShared)', ()
     expect(localBookmarksSchemas().map((s) => s.keyPath)).toEqual([['ID'], ['ID'], ['KEY', 'MODULEKEY']]);
   });
 
-  it('SynchBookmarksC2 replaces the copy; GetLocalBookmarkByObjectId finds the user row of the item only', async () => {
+  it('SynchBookmarksC2 replaces the copy; GetLocalBookmarkByObjectId finds the user row of the item and category', async () => {
     await synchBookmarksC2([c2({ Id: '5', ItemId: '77', BookmarkId: '700' })]);
     await synchBookmarksC2([
       c2({ Id: '1', ItemId: '42', BookmarkId: '420' }),
       c2({ Id: '2', ItemId: '43', BookmarkId: '430', UserId: OTHER }),
     ]);
-    expect((await getLocalBookmarkByObjectId('77')).Id).toBe('0');
-    expect(await getLocalBookmarkByObjectId('42')).toMatchObject({ Id: '1', BookmarkId: '420' });
-    expect((await getLocalBookmarkByObjectId('43')).Id).toBe('0');
-    expect((await getLocalBookmarkByBookmarkId('420')).ItemId).toBe('42');
+    expect((await getLocalBookmarkByObjectId('77', 'Household')).Id).toBe('0');
+    expect(await getLocalBookmarkByObjectId('42', 'Household')).toMatchObject({ Id: '1', BookmarkId: '420' });
+    expect((await getLocalBookmarkByObjectId('42', 'Member')).Id).toBe('0');
+    expect((await getLocalBookmarkByObjectId('43', 'Household')).Id).toBe('0');
+    expect((await getLocalBookmarkByBookmarkId('420', 'Household')).ItemId).toBe('42');
+    expect((await getLocalBookmarkByBookmarkId('420', 'Member')).Id).toBe('0');
   });
 
   it('Create_LocalBookmark: nothing without a category, the existing row, else a new auto-number row', async () => {
     expect(await create_LocalBookmark('42', '', '420')).toBe('0');
-    expect((await getLocalBookmarkByObjectId('42')).Id).toBe('0');
+    expect((await getLocalBookmarkByObjectId('42', '')).Id).toBe('0');
     const id = await create_LocalBookmark('42', 'Household', '420', '2026-10-15T10:00:00');
     expect(id).toBe('1');
     expect(await create_LocalBookmark('42', 'Household', '999')).toBe('1');
-    expect(await getLocalBookmarkByObjectId('42')).toMatchObject({
+    expect(await getLocalBookmarkByObjectId('42', 'Household')).toMatchObject({
       UserId: USER,
       BookmarkId: '420',
       BookmarkCategoryId: 'Household',
@@ -86,12 +87,35 @@ describe('local bookmarks (UBTConnect_Bookmarks_MCS, Connect2_LegacyShared)', ()
     });
   });
 
-  it('Delete_LocalBookmarkByBookmarkId removes the row of that bookmark, nothing when there is none', async () => {
+  it('Delete_LocalBookmarkByBookmarkId removes the row of that bookmark and category, nothing when there is none', async () => {
     await synchBookmarksC2([c2({ Id: '1', ItemId: '42', BookmarkId: '420' })]);
-    await delete_LocalBookmarkByBookmarkId('999');
-    expect((await getLocalBookmarkByObjectId('42')).Id).toBe('1');
-    await delete_LocalBookmarkByBookmarkId('420');
-    expect((await getLocalBookmarkByObjectId('42')).Id).toBe('0');
+    await delete_LocalBookmarkByBookmarkId('999', 'Household');
+    await delete_LocalBookmarkByBookmarkId('420', 'Member');
+    expect((await getLocalBookmarkByObjectId('42', 'Household')).Id).toBe('1');
+    await delete_LocalBookmarkByBookmarkId('420', 'Household');
+    expect((await getLocalBookmarkByObjectId('42', 'Household')).Id).toBe('0');
+  });
+
+  it('the same ItemId under two categories: read, create and delete touch only their own category row', async () => {
+    await synchBookmarksC2([c2({ Id: '1', ItemId: '42', BookmarkId: '420', BookmarkCategoryId: 'Household' })]);
+    expect(await create_LocalBookmark('42', 'Member', '421')).toBe('2');
+    expect(await getLocalBookmarkByObjectId('42', 'Household')).toMatchObject({ Id: '1', BookmarkId: '420' });
+    expect(await getLocalBookmarkByObjectId('42', 'Member')).toMatchObject({ Id: '2', BookmarkId: '421' });
+    await delete_LocalBookmarkByBookmarkId('421', 'Member');
+    expect((await getLocalBookmarkByObjectId('42', 'Member')).Id).toBe('0');
+    expect((await getLocalBookmarkByObjectId('42', 'Household')).Id).toBe('1');
+  });
+
+  it('GetLocalBookmarksByObjectType: the user rows of that exact category, in store order', async () => {
+    await synchBookmarksC2([
+      c2({ Id: '1', ItemId: '42' }),
+      c2({ Id: '2', ItemId: '43', BookmarkCategoryId: 'Member' }),
+      c2({ Id: '3', ItemId: '44', BookmarkCategoryId: 'household' }),
+      c2({ Id: '4', ItemId: '45', UserId: OTHER }),
+      c2({ Id: '5', ItemId: '46' }),
+    ]);
+    expect((await getLocalBookmarksByObjectType('Household')).map((r) => r.Id)).toEqual(['1', '5']);
+    expect(await getLocalBookmarksByObjectType('Feed Item')).toEqual([]);
   });
 
   it('legacy Get_LocalBookmarkByObjectId: user, object id and type, first by Note', async () => {
@@ -106,7 +130,7 @@ describe('local bookmarks (UBTConnect_Bookmarks_MCS, Connect2_LegacyShared)', ()
     expect((await get_LocalBookmarkByObjectId('Contact', '43')).Id).toBe('0');
   });
 
-  it('legacy GetLocalBookmarksByObjectType: the user rows of that exact type, by Note', async () => {
+  it('legacy GetLocalBookmarksByObjectType (legacyGetLocalBookmarksByObjectType): the user rows of that exact type, by Note', async () => {
     await synchBookmarks([
       legacy({ Id: '1', ObjectType: 'Locality', ObjectId: '252', Note: 'b' }),
       legacy({ Id: '2', ObjectType: 'Locality', ObjectId: '253', Note: 'a' }),
@@ -114,20 +138,7 @@ describe('local bookmarks (UBTConnect_Bookmarks_MCS, Connect2_LegacyShared)', ()
       legacy({ Id: '4', ObjectType: 'Locality', ObjectId: '255', UserId: OTHER }),
       legacy({ Id: '5', ObjectType: 'Contact', ObjectId: '256' }),
     ]);
-    expect((await getLocalBookmarksByObjectType('Locality')).map((r) => r.ObjectId)).toEqual(['253', '252']);
-    expect(await getLocalBookmarksByObjectType('News')).toEqual([]);
-  });
-
-  it('legacy Delete_LocalBookmarkByBookmarkId: the user row of that bookmark only, nothing when there is none', async () => {
-    await synchBookmarks([
-      legacy({ Id: '1', BookmarkId: '10', ObjectId: '42' }),
-      legacy({ Id: '2', BookmarkId: '10', ObjectId: '43', UserId: OTHER }),
-    ]);
-    expect((await get_LocalBookmarkByBookmarkId('10')).Id).toBe('1');
-    await legacyDelete_LocalBookmarkByBookmarkId('999');
-    expect((await get_LocalBookmarkByObjectId('Contact', '42')).Id).toBe('1');
-    await legacyDelete_LocalBookmarkByBookmarkId('10');
-    expect((await get_LocalBookmarkByObjectId('Contact', '42')).Id).toBe('0');
-    expect((await get_LocalBookmarkByBookmarkId('10')).Id).toBe('0');
+    expect((await legacyGetLocalBookmarksByObjectType('Locality')).map((r) => r.ObjectId)).toEqual(['253', '252']);
+    expect(await legacyGetLocalBookmarksByObjectType('News')).toEqual([]);
   });
 });

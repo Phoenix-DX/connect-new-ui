@@ -4,7 +4,7 @@ The route `/UBTConnect/ContactByEmailMember`, read from the TST compiled code an
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/ContactByEmailMember/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
-**Live code.** TST changed 1 compiled file of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `ContactByEmailMember`. The observed calls come from the capture.
+**Live code.** TST changed 11 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `ContactByEmailMember`, `UBTConnect`, `js`, `js`, `UBTConnectLibrary`, `js`, `UBTConnect_Utils`, `js`. The observed calls come from the capture.
 
 ## 1. Route
 
@@ -58,7 +58,7 @@ All columns come from the code, without interpretation:
 
 | # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
 |---|---|---|---|---|---|---|---|---|
-| 1 | `UBTConnect/ContactFlow/ContactByEmailMember/ServiceAPISendContactMemberEmail` | service action | `ContactByEmailMember` | onClick in Button → event event_OnClick of Button → … → ContactByEmailMember.handler_SubmitForm → server SendContactMemberEmail | no | `sendContactMemberEmail()` [`api/message/repository.ts:70`](../../app/src/api/message/repository.ts#L70) (page) | `ContactByEmailMember → useContactByEmailMemberSubmit → sendContactMemberEmail`<br>[`pages/ContactByEmailMember/ContactByEmailMemberPage.tsx`](../../app/src/pages/ContactByEmailMember/ContactByEmailMemberPage.tsx) | implemented |
+| 1 | `UBTConnect/ContactFlow/ContactByEmailMember/ServiceAPISendContactMemberEmail` | service action | `ContactByEmailMember` | onClick in Button → event event_OnClick of Button → … → ContactByEmailMember.handler_SubmitForm → server SendContactMemberEmail | no | `sendContactMemberEmail()` [`api/message/repository.ts:74`](../../app/src/api/message/repository.ts#L74) (page) | `ContactByEmailMember → useContactByEmailMemberSubmit → sendContactMemberEmail`<br>[`pages/ContactByEmailMember/ContactByEmailMemberPage.tsx`](../../app/src/pages/ContactByEmailMember/ContactByEmailMemberPage.tsx) | implemented |
 
 ## 6. User actions
 
@@ -309,4 +309,4 @@ Calls that React can make on this route, without a TST chain on this route. Ever
 
 | Call | React action | Reached through |
 |---|---|---|
-| `/api/UBTConnect_Utils/ActionGetSignedImagesInBulk` | `cache_SignedImageURL_GetCallback()` [`lib/ubtConnectUtils/actions.ts:124`](../../app/src/lib/ubtConnectUtils/actions.ts#L124) | `EntityLazyImage` [`components/ui/EntityLazyImage/EntityLazyImage.tsx`](../../app/src/components/ui/EntityLazyImage/EntityLazyImage.tsx) |
+| `/api/UBTConnect_Utils/ActionGetSignedImagesInBulk` | `cache_SignedImageURL_GetCallback()` [`lib/ubtConnectUtils/actions.ts:131`](../../app/src/lib/ubtConnectUtils/actions.ts#L131) | `EntityLazyImage` [`components/ui/EntityLazyImage/EntityLazyImage.tsx`](../../app/src/components/ui/EntityLazyImage/EntityLazyImage.tsx) |

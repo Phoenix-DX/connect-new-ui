@@ -71,12 +71,12 @@ export function EntityDetailsActionsContainer(props: EntityDetailsActionsContain
     showSharePopup,
     setShowSharePopup,
     showNotesSheet,
-    setShowNotesSheet,
     popupData,
     handleMail,
     handleMailPage,
     onClickBookmark,
     handlerAddNotes,
+    handlerOnNotesSheetClosed,
   } = useEntityDetailsActions(props);
 
   return (
@@ -184,9 +184,7 @@ export function EntityDetailsActionsContainer(props: EntityDetailsActionsContain
               return { ...n, Note_Item_List: list, Total: list.length };
             });
           }}
-          onOnNoteSheetClosed={() => {
-            setShowNotesSheet(false);
-          }}
+          onOnNoteSheetClosed={handlerOnNotesSheetClosed}
         />
       </ConnectSharePortal>
       {hasExtendedShare && (options.HasShare ?? false) && (

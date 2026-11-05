@@ -4,6 +4,8 @@ The route `/UBTConnect/LegacyShareObject`, read from the TST compiled code and f
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/LegacyShareObject/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
+**Live code.** TST changed 14 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `Connect2_LegacyShared`, `js`, `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `UBTConnect`, `js`, `js`, `UBTConnectLibrary`, `js`, `UBTConnect_Utils`, `js`, `UBT_AppManager`, `UBT_AppManager_Mobile`. The observed calls come from the capture.
+
 ## 1. Route
 
 | Item | Value | Source |
@@ -60,7 +62,7 @@ All columns come from the code, without interpretation:
 | 2 | `Connect2_LegacyShared/Share_UI/ProfileList/DataActionGetAvailableUsers` | data action | `ProfileList` | onChange in ProfileList → ProfileList.input_SearchFilterOnChange → ProfileList.DataActionGetAvailableUsers<br>ProfileList.searchProfile → ProfileList.DataActionGetAvailableUsers<br>ProfileList fetch at start → ProfileList.DataActionGetAvailableUsers | yes | `fetchAvailableUsers()` [`api/share/repository.ts:40`](../../app/src/api/share/repository.ts#L40) (page) | `ProfileListBlock → useProfileList → useAvailableUsersQuery → fetchAvailableUsers`<br>[`pages/LegacyShareObject/LegacyShareObjectPage.tsx`](../../app/src/pages/LegacyShareObject/LegacyShareObjectPage.tsx) | implemented |
 | 3 | `Connect2_LegacyShared/Share_UI/ScreenBlock_ShareObject/ActionShareObject` | server action | `ScreenBlock_ShareObject` | ScreenBlock_ShareObject.deferredHandleShareProfileList → server ShareObject | no | `shareObject()` [`api/share/repository.ts:47`](../../app/src/api/share/repository.ts#L47) (page) | `ProfileListBlock → useProfileList → shareObject`<br>[`pages/LegacyShareObject/LegacyShareObjectPage.tsx`](../../app/src/pages/LegacyShareObject/LegacyShareObjectPage.tsx) | implemented |
 | 4 | `Connect2_LegacyShared/Share_UI/ScreenBlock_ShareObject/ScreenDataSetGetShareObjectTypeById` | aggregate | `ScreenBlock_ShareObject` | ScreenBlock_ShareObject.OnParametersChanged → ScreenBlock_ShareObject.onParametersChanged → ScreenBlock_ShareObject.ScreenDataSetGetShareObjectTypeById<br>ScreenBlock_ShareObject fetch at start → ScreenBlock_ShareObject.ScreenDataSetGetShareObjectTypeById | yes | `fetchShareObjectTypeLabel()` [`api/share/repository.ts:33`](../../app/src/api/share/repository.ts#L33) (page) | `ShareObjectBlock → useShareObject → useShareObjectTypeLabelQuery → fetchShareObjectTypeLabel`<br>[`pages/LegacyShareObject/LegacyShareObjectPage.tsx`](../../app/src/pages/LegacyShareObject/LegacyShareObjectPage.tsx) | implemented |
-| 5 | `Connect2_LegacyShared/Share_UI/ScreenBlock_ShareObject/ServiceAPIGetHouseholdDetails` | service action | `ScreenBlock_ShareObject` | ScreenBlock_ShareObject.OnReady → ScreenBlock_ShareObject.onReady → server GetHouseholdDetails | yes | `fetchHouseholdShareCard()` [`api/household/repository.ts:148`](../../app/src/api/household/repository.ts#L148) (page) | `ShareObjectBlock → useShareObject → fetchHouseholdShareCard`<br>[`pages/LegacyShareObject/LegacyShareObjectPage.tsx`](../../app/src/pages/LegacyShareObject/LegacyShareObjectPage.tsx) | implemented |
+| 5 | `Connect2_LegacyShared/Share_UI/ScreenBlock_ShareObject/ServiceAPIGetHouseholdDetails` | service action | `ScreenBlock_ShareObject` | ScreenBlock_ShareObject.OnReady → ScreenBlock_ShareObject.onReady → server GetHouseholdDetails | yes | `fetchHouseholdShareCard()` [`api/household/repository.ts:162`](../../app/src/api/household/repository.ts#L162) (page) | `ShareObjectBlock → useShareObject → fetchHouseholdShareCard`<br>[`pages/LegacyShareObject/LegacyShareObjectPage.tsx`](../../app/src/pages/LegacyShareObject/LegacyShareObjectPage.tsx) | implemented |
 | 6 | `Connect2_LegacyShared/Share_UI/ScreenBlock_ShareObject/ServiceAPIGet_UI_CommunityBusinessShareCard` | service action | `ScreenBlock_ShareObject` | ScreenBlock_ShareObject.OnReady → ScreenBlock_ShareObject.onReady → server Get_UI_CommunityBusinessShareCard | no | `fetchCommunityBusinessShareCard()` [`api/locality/repository.ts:210`](../../app/src/api/locality/repository.ts#L210) (page) | `ShareObjectBlock → useShareObject → fetchCommunityBusinessShareCard`<br>[`pages/LegacyShareObject/LegacyShareObjectPage.tsx`](../../app/src/pages/LegacyShareObject/LegacyShareObjectPage.tsx) | implemented |
 
 ## 6. User actions
@@ -106,7 +108,7 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/screens/LegacyShareObject/analysis/sources/raw/`.
+The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 
@@ -236,19 +238,17 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | `Result_Item_Image` | `Connect2_LegacyShared` | [`components/ui/ResultItemImage/ResultItemImage.tsx`](../../app/src/components/ui/ResultItemImage/ResultItemImage.tsx) | 0 |
 | `UBT_LazyImage` | `UBTConnect_Utils` | [`components/ui/EntityLazyImage/EntityLazyImage.tsx`](../../app/src/components/ui/EntityLazyImage/EntityLazyImage.tsx) | 0 |
 | `LazyImage` | `UBTConnectLibrary` | [`components/ui/LazyImage/LazyImage.tsx`](../../app/src/components/ui/LazyImage/LazyImage.tsx) | 0 |
-| `ProfileList` | `Connect2_LegacyShared` | [`pages/LegacyShareObject/components/ProfileList.tsx`](../../app/src/pages/LegacyShareObject/components/ProfileList.tsx), [`pages/LegacyShareObject/hooks/profileListState.ts`](../../app/src/pages/LegacyShareObject/hooks/profileListState.ts), [`pages/LegacyShareObject/hooks/useProfileList.ts`](../../app/src/pages/LegacyShareObject/hooks/useProfileList.ts) | 2 |
+| `ProfileList` | `Connect2_LegacyShared` | [`pages/LegacyShareObject/components/ProfileList.tsx`](../../app/src/pages/LegacyShareObject/components/ProfileList.tsx), [`pages/LegacyShareObject/hooks/profileListState.ts`](../../app/src/pages/LegacyShareObject/hooks/profileListState.ts), [`pages/LegacyShareObject/hooks/useProfileList.ts`](../../app/src/pages/LegacyShareObject/hooks/useProfileList.ts) | 0 |
 | `InputWithIcon` | `OutSystemsUI_2_23` | [`components/ui/InputWithIcon/InputWithIcon.tsx`](../../app/src/components/ui/InputWithIcon/InputWithIcon.tsx) | 0 |
 | `HighlightSearch` | `Connect2_LegacyShared` | [`pages/LegacyShareObject/components/HighlightSearch.tsx`](../../app/src/pages/LegacyShareObject/components/HighlightSearch.tsx) | 0 |
 | `FreeSubscriptionActionDialog` | `Connect2_LegacyShared` | [`containers/FreeSubscriptionActionDialog/FreeSubscriptionActionDialog.tsx`](../../app/src/containers/FreeSubscriptionActionDialog/FreeSubscriptionActionDialog.tsx) | 1 |
 
-<details><summary>User actions of the shared blocks (4)</summary>
+<details><summary>User actions of the shared blocks (2)</summary>
 
 | # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
 |---|---|---|---|---|---|
 | 1 | `MenuIcon_Back` | `onClick (HTML element)` | `inline` | – | goes to previous screen |
-| 2 | `ProfileList` | `onKeyUp (HTML element)` | `input_SearchFilterOnKeyup` | – | calls GetAvailableUsers |
-| 3 | `ProfileList` | `onChange (HTML element)` | `input_SearchFilterOnChange` | – | calls GetAvailableUsers |
-| 4 | `FreeSubscriptionActionDialog` | `confirmed of ActionConfirmationDialog` | `onConfirmed` | – | goes to URL getCacheableUserInfo…subscriptionManageLink |
+| 2 | `FreeSubscriptionActionDialog` | `confirmed of ActionConfirmationDialog` | `onConfirmed` | – | goes to URL getCacheableUserInfo…subscriptionManageLink |
 
 </details>
 
@@ -277,4 +277,4 @@ Calls that React can make on this route, without a TST chain on this route. Ever
 
 | Call | React action | Reached through |
 |---|---|---|
-| `/api/Connect2_LegacyShared/ActionGetSignedPhotosInBulk` | `getSignedPhotosInBulk()` [`lib/legacyShared/actions.ts:49`](../../app/src/lib/legacyShared/actions.ts#L49) | `ResultItemImage` [`components/ui/ResultItemImage/ResultItemImage.tsx`](../../app/src/components/ui/ResultItemImage/ResultItemImage.tsx) |
+| `/api/Connect2_LegacyShared/ActionGetSignedPhotosInBulk` | `getSignedPhotosInBulk()` [`lib/legacyShared/actions.ts:45`](../../app/src/lib/legacyShared/actions.ts#L45) | `ResultItemImage` [`components/ui/ResultItemImage/ResultItemImage.tsx`](../../app/src/components/ui/ResultItemImage/ResultItemImage.tsx) |

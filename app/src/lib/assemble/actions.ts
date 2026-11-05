@@ -4,23 +4,9 @@
 import { dayOfWeek, formatDateTime } from '@/lib/osDateTime';
 import { log } from '@/platform/log/log';
 import { osList } from '@/lib/os-wire';
-import { addAssembleBookmark, deleteAssembleBookmark } from '@/api/bookmark';
-import {
-  get_LocalBookmarkByObjectId,
-  getLocalBookmarksByObjectType,
-  legacyCreate_LocalBookmark,
-  legacyDelete_LocalBookmarkByBookmarkId,
-} from '@/platform/storage/localEntities';
-import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback/feedbackStore';
+import { legacyGetLocalBookmarksByObjectType } from '@/platform/storage/localEntities';
 import { getUserInformation } from '@/platform/session/userInfo';
-import {
-  addBookmarkToCache,
-  getCacheableLocality,
-  getCacheableUserInfo,
-  removeBookmarkFromCache,
-  removeDiacritics,
-  sendBookmarkedFeedbackMessage,
-} from '@/lib/legacyShared/actions';
+import { getCacheableLocality, getCacheableUserInfo, removeDiacritics } from '@/lib/legacyShared/actions';
 import type { CacheableLocalityInformation } from '@/lib/legacyShared/structures';
 import { Connect_Subscription_Plan } from '@/lib/ubtConnect/staticEntities';
 import { MyBookmarks_ObjectType } from './staticEntities';
@@ -78,7 +64,7 @@ export async function getLocalBookmarkedLocalityInformation(
 ): Promise<CacheableLocalityInformation> {
   const info = structuredClone(localityInformation);
   const bookmarkedIds = async (objectType: string) =>
-    new Set((await getLocalBookmarksByObjectType(objectType)).map((b) => b.ObjectId));
+    new Set((await legacyGetLocalBookmarksByObjectType(objectType)).map((b) => b.ObjectId));
   const localities = await bookmarkedIds(MyBookmarks_ObjectType.Locality);
   info.IsBookmarked = localities.has(localityId);
   for (const i of osList(info.LocalityInterchanges)) i.IsBookmarked = localities.has(i.InterchangeLocalityId);
@@ -146,60 +132,4 @@ export async function hasAccessToRegion(countryCode = '', localityId = '0'): Pro
   }
   auditSubscriptionEvent('0', localityId, countryCode);
   return false;
-}
-
-/* ---- F15 (CR-AssembleDetail-2): ToggleBookmarkItem ---- */
-
-/** Server action AddBookmark(ObjectType, ObjectId, Group, Note), in the domain api/bookmark (addAssembleBookmark):
-    Success and CreatedBookmarkResponse (Connect2_MyBookmarks_IS BookmarkItem, every field). */
-export const addBookmark = addAssembleBookmark;
-
-/** Server action DeleteBookmarkByBookmarkId(BookmarkId), in the domain api/bookmark (deleteAssembleBookmark): Success. */
-export const deleteBookmarkByBookmarkId = deleteAssembleBookmark;
-
-/** ToggleBookmarkItem(In_IsBookmarked, In_ObjectType, In_ObjectId, In_Group, In_Note) (controller.js:1493-1686):
-    - bookmarked: Get_LocalBookmarkByObjectId(ObjectType, ObjectId) (the legacy local copy), DeleteBookmarkByBookmarkId
-      of its BookmarkId; Success → RemoveBookmarkFromCache(In_Group, BookmarkId), Delete_LocalBookmarkByBookmarkId,
-      SendBookmarkedFeedbackMessage(False), Out_LocalBookmarkId = NullIdentifier; else the Info message "Bookmark could
-      not be removed. Please try again later." (:1546);
-    - not bookmarked: AddBookmark(ObjectType, LongIntegerToText(ObjectId), Group, Note); Success → Create_LocalBookmark
-      (ObjectType, ObjectId, Group, CreatedBookmarkResponse.Id, Note), AddBookmarkToCache(CreatedBookmarkResponse),
-      SendBookmarkedFeedbackMessage(True), Out_LocalBookmarkId = its LocalBookmarkId, Out_CreatedBookmarkId =
-      CreatedBookmarkResponse.Id; else nothing.
-    Out_* stay "0" when not set. Server exceptions propagate to the caller (no handler in the flow). */
-export async function toggleBookmarkItem(
-  in_IsBookmarked: boolean,
-  in_ObjectType: string,
-  in_ObjectId: string,
-  in_Group: string,
-  in_Note = '',
-): Promise<{ Out_LocalBookmarkId: string; Out_CreatedBookmarkId: string }> {
-  const out = { Out_LocalBookmarkId: '0', Out_CreatedBookmarkId: '0' };
-  if (in_IsBookmarked) {
-    const localBookmark = await get_LocalBookmarkByObjectId(in_ObjectType, in_ObjectId);
-    const deleted = await deleteBookmarkByBookmarkId(localBookmark.BookmarkId);
-    if (deleted.Success) {
-      removeBookmarkFromCache(in_Group, localBookmark.BookmarkId);
-      await legacyDelete_LocalBookmarkByBookmarkId(localBookmark.BookmarkId);
-      sendBookmarkedFeedbackMessage(false);
-      out.Out_LocalBookmarkId = '0';
-    } else {
-      showFeedbackMessage('Bookmark could not be removed. Please try again later.', PLATFORM_MESSAGE_TYPE.info);
-    }
-    return out;
-  }
-  const added = await addBookmark(in_ObjectType, in_ObjectId, in_Group, in_Note);
-  if (added.Success) {
-    out.Out_LocalBookmarkId = await legacyCreate_LocalBookmark(
-      in_ObjectType,
-      in_ObjectId,
-      in_Group,
-      added.CreatedBookmarkResponse.Id,
-      in_Note,
-    );
-    addBookmarkToCache(added.CreatedBookmarkResponse);
-    sendBookmarkedFeedbackMessage(true);
-    out.Out_CreatedBookmarkId = added.CreatedBookmarkResponse.Id;
-  }
-  return out;
 }

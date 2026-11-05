@@ -4,7 +4,7 @@ The route `/UBTConnect/MyEntertaining`, read from the TST compiled code and from
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/MyEntertaining/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
-**Live code.** TST changed 1 compiled file of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `MyEntertaining_Embedded`. The observed calls come from the capture.
+**Live code.** TST changed 16 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `Connect2_LegacyShared`, `js`, `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `MyEntertaining_Embedded`, `UBTConnect`, `js`, `js`, `UBTConnectLibrary`, `js`, `UBTConnect_EmbedMyEntertaining`, `UBTConnect_Utils`, `js`, `UBT_AppManager`, `UBT_AppManager_Mobile`. The observed calls come from the capture.
 
 ## 1. Route
 

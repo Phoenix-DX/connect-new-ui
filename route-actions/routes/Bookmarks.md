@@ -4,7 +4,7 @@ The route `/UBTConnect/Bookmarks`, read from the TST compiled code and from the 
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/Bookmarks/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
-**Live code.** TST changed 8 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `FilterSheet`, `ItemCardActions`, `Bookmarks`, `Bookmarks_Card_Item`, `Bookmarks_Card_List`, `AvatarImage`, `Horizontal_Filter_TagList`, `ItemCard_WithNotes`. The observed calls come from the capture.
+**Live code.** TST changed 23 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `Connect2_LegacyShared`, `js`, `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `FilterSheet`, `FilterSheet_Icon_Label`, `ItemCardActions`, `Bookmarks`, `Bookmarks_Card_Item`, `Bookmarks_Card_List`, `UBTConnect`, `js`, `js`, `AvatarImage`, `Horizontal_Filter_TagList`, `ItemCard_WithNotes`, `UBTConnectLibrary`, `js`, `UBTConnect_Utils`, `js`, `UBT_AppManager`, `UBT_AppManager_Mobile`. The observed calls come from the capture.
 
 ## 1. Route
 
@@ -22,13 +22,13 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 
 | Check | Result |
 |---|---|
-| Server calls of the route on TST | 3: React makes 3, **0 missing** |
-| Differences found | **2** (see [section 3](#3-differences-found)) |
-| Questions | 2 (see [section 4](#4-questions)) |
+| Server calls of the route on TST | 5: React makes 5, **0 missing** |
+| Differences found | **0** (see [section 3](#3-differences-found)) |
+| Questions | 0 (see [section 4](#4-questions)) |
 | React calls reached only through shared code | 5: see the last section |
-| User actions of the route (own code) | OutSystems: 7. React: 9 |
+| User actions of the route (own code) | OutSystems: 1. React: 9 |
 | Screen and blocks of the UI flow with a React port | 4 of 4 |
-| Navigation targets found in React | 11 of 12 |
+| Navigation targets found in React | 12 of 12 |
 | Shared blocks and components on the route | OutSystems 28, React 9 with user actions: see the last section |
 | App shell on this route | 10 calls: see [APP_SHELL.md](../APP_SHELL.md) |
 
@@ -36,13 +36,11 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 
 Each line is a fact of both sides: a TST call, navigation or variable, and the React code that has it or not. The tool does not judge the behaviour.
 
-- Navigation to `Household_Relations` (from Bookmarks). The React screen and the app shell do not go to this route.
-- Navigation to `Locality_Details` with the parameters `LocalityId`, `TagsList_SelectedTag` ([`UBTConnect.Bookmarks.Bookmarks.mvc.js:1105`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1105)). No React navigation to `Locality_Details` gives parameters. React names `Locality_Details` in: [`components/layout/BottomBar/BottomBar.tsx:101`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L101).
+None.
 
 ## 4. Questions
 
-1. React calls `/api/UBTConnect/ServiceAPIDeleteBookmarkByBookmarkId2` from `deleteC2Bookmark()` [`api/bookmark/repository.ts:52`](../../app/src/api/bookmark/repository.ts#L52) (page). TST Bookmarks has no chain to this call. Does the call belong to this route?
-2. React calls `/api/UBTConnect/ServiceAPIAddBookmark2` from `addC2Bookmark()` [`api/bookmark/repository.ts:41`](../../app/src/api/bookmark/repository.ts#L41) (page). TST Bookmarks has no chain to this call. Does the call belong to this route?
+None.
 
 React reaches 5 more calls without a TST chain on this route only through shared containers, components or app code. The last section lists them, not this one.
 
@@ -60,9 +58,11 @@ All columns come from the code, without interpretation:
 
 | # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
 |---|---|---|---|---|---|---|---|---|
-| 1 | `UBTConnect/Bookmarks/Bookmarks/DataActionGetBookmarks` | data action | `Bookmarks` | Bookmarks_Card_List.bookmarksCardList_OnScrollEnding → event onLoadMore of Bookmarks_Card_List → Bookmarks.bookmarks_Card_ListOnLoadMore → Bookmarks.refresh_GetBookmarksData → Bookmarks.DataActionGetBookmarks<br>event event_OnClick of Button → FilterSheet.onClick_ClearFilters → … → Bookmarks.refresh_GetBookmarksData → Bookmarks.DataActionGetBookmarks<br>onClick in Button → event event_OnClick of Button → … → Bookmarks.refresh_GetBookmarksData → Bookmarks.DataActionGetBookmarks<br>(+1 more chains) | yes | `fetchBookmarkCards()` [`api/bookmark/bookmarkCards.ts:114`](../../app/src/api/bookmark/bookmarkCards.ts#L114) (page) | `Bookmarks → useBookmarks → fetchBookmarkCards`<br>[`pages/Bookmarks/BookmarksPage.tsx`](../../app/src/pages/Bookmarks/BookmarksPage.tsx) | implemented |
+| 1 | `UBTConnect/Bookmarks/Bookmarks/DataActionGetBookmarks` | data action | `Bookmarks` | Bookmarks_Card_List.bookmarksCardList_OnScrollEnding → event onLoadMore of Bookmarks_Card_List → Bookmarks.bookmarks_Card_ListOnLoadMore → Bookmarks.refresh_GetBookmarksData → Bookmarks.DataActionGetBookmarks<br>event event_OnClick of Button → FilterSheet.onClick_ClearFilters → … → Bookmarks.refresh_GetBookmarksData → Bookmarks.DataActionGetBookmarks<br>onClick in Button → event event_OnClick of Button → … → Bookmarks.refresh_GetBookmarksData → Bookmarks.DataActionGetBookmarks<br>(+1 more chains) | yes | `fetchBookmarkCards()` [`api/bookmark/bookmarkCards.ts:107`](../../app/src/api/bookmark/bookmarkCards.ts#L107) (page) | `Bookmarks → useBookmarks → fetchBookmarkCards`<br>[`pages/Bookmarks/BookmarksPage.tsx`](../../app/src/pages/Bookmarks/BookmarksPage.tsx) | implemented |
 | 2 | `UBTConnect_Utils/CW_Notes/NotesSheet/ServiceAPIAddNote` | service action | `NotesSheet` | NotesSheet.handler_OnSubmitNote → server AddNote | no | `addNote()` [`api/note/repository.ts:54`](../../app/src/api/note/repository.ts#L54) (page) | `NotesSheet → addNote`<br>[`components/note/NotesSheet/NotesSheet.tsx`](../../app/src/components/note/NotesSheet/NotesSheet.tsx) | implemented |
 | 3 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx) | implemented |
+| 4 | `UBTConnect_Utils/ServiceAPIAddBookmark2` | service action | `UBTConnect_Utils` | onClick in IconText → event clicked of IconText → … → UBTConnect_Utils.toggleBookmarkItem_C2 → server AddBookmark2 | no | `addC2Bookmark()` [`api/bookmark/repository.ts:16`](../../app/src/api/bookmark/repository.ts#L16) (page) | `Bookmarks → useBookmarks → bookmarkServerActions → addC2Bookmark`<br>[`pages/Bookmarks/BookmarksPage.tsx`](../../app/src/pages/Bookmarks/BookmarksPage.tsx) | implemented |
+| 5 | `UBTConnect_Utils/ServiceAPIDeleteBookmarkByBookmarkId2` | service action | `UBTConnect_Utils` | onClick in IconText → event clicked of IconText → … → UBTConnect_Utils.toggleBookmarkItem_C2 → server DeleteBookmarkByBookmarkId2 | no | `deleteC2Bookmark()` [`api/bookmark/repository.ts:27`](../../app/src/api/bookmark/repository.ts#L27) (page) | `Bookmarks → useBookmarks → bookmarkServerActions → deleteC2Bookmark`<br>[`pages/Bookmarks/BookmarksPage.tsx`](../../app/src/pages/Bookmarks/BookmarksPage.tsx) | implemented |
 
 ## 6. User actions
 
@@ -72,18 +72,12 @@ Two independent lists: the event bindings of the TST views, and the JSX event bi
 
 | # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
 |---|---|---|---|---|---|
-| 1 | `Bookmarks` | `event_Submit of Input` | `handler_SearchOnSubmit` | – | calls GetBookmarks |
-| 2 | `Bookmarks` | `event_ClearString of Input` | `handler_SearchOnClear` | – | calls GetBookmarks |
-| 3 | `Bookmarks` | `changed of TagList` | `handler_OnClickPill` | – | calls GetBookmarks |
-| 4 | `Bookmarks` | `item_Unbookmarked of List` | `handler_ItemUnbookmarked` | – | calls GetBookmarks |
-| 5 | `Bookmarks` | `onClick_BookmarkCardItem of List` | `handler_OnClickBookmarkCardItem` | `interchange` | goes to Locality_Details |
-| 6 | `Bookmarks` | `onClick_BookmarkCardItem of List` | `handler_OnClickBookmarkCardItem` | `member` | goes to Household_Relations |
-| 7 | `Bookmarks` | `onClick_BookmarkCardItem of List` | `handler_OnClickBookmarkCardItem` | `oneSchoolGlobal2` | goes to OneSchoolGlobalCarousel |
-| 8 | `Bookmarks` | `onClick_BookmarkCardItem of List` | `handler_OnClickBookmarkCardItem` | `supperMeeting` | goes to SupperMeeting_Details |
-| 9 | `Bookmarks` | `onClick_BookmarkCardItem of List` | `handler_OnClickBookmarkCardItem` | `household` | goes to HouseholdCarousel |
-| 10 | `Bookmarks` | `onClick_BookmarkCardItem of List` | `handler_OnClickBookmarkCardItem` | `other` | shows a message |
-| 11 | `Bookmarks` | `onLoadMore of List` | `bookmarks_Card_ListOnLoadMore` | – | calls GetBookmarks |
-| 12 | `Bookmarks` | `applyFilters of FilterSheet` | `handler_ApplyFilters` | – | calls GetBookmarks |
+| 1 | `Bookmarks` | `onClick_BookmarkCardItem of List` | `handler_OnClickBookmarkCardItem` | `interchange` | goes to Locality_Details |
+| 2 | `Bookmarks` | `onClick_BookmarkCardItem of List` | `handler_OnClickBookmarkCardItem` | `member` | goes to Household_Relations |
+| 3 | `Bookmarks` | `onClick_BookmarkCardItem of List` | `handler_OnClickBookmarkCardItem` | `oneSchoolGlobal2` | goes to OneSchoolGlobalCarousel |
+| 4 | `Bookmarks` | `onClick_BookmarkCardItem of List` | `handler_OnClickBookmarkCardItem` | `supperMeeting` | goes to SupperMeeting_Details |
+| 5 | `Bookmarks` | `onClick_BookmarkCardItem of List` | `handler_OnClickBookmarkCardItem` | `household` | goes to HouseholdCarousel |
+| 6 | `Bookmarks` | `onClick_BookmarkCardItem of List` | `handler_OnClickBookmarkCardItem` | `other` | shows a message |
 
 ### 6.2 React
 
@@ -93,7 +87,7 @@ Two independent lists: the event bindings of the TST views, and the JSX event bi
 | 2 | [`pages/Bookmarks/BookmarksPage.tsx:58`](../../app/src/pages/Bookmarks/BookmarksPage.tsx#L58) | `<Input>` | `onEventSubmit` | `f.onSearchSubmit` | – | calls DataActionGetBookmarks |
 | 3 | [`pages/Bookmarks/BookmarksPage.tsx:76`](../../app/src/pages/Bookmarks/BookmarksPage.tsx#L76) | `<Horizontal_Filter_TagList>` | `onChanged` | `f.onClickPill` | – | calls DataActionGetBookmarks |
 | 4 | [`pages/Bookmarks/BookmarksPage.tsx:84`](../../app/src/pages/Bookmarks/BookmarksPage.tsx#L84) | `<FilterSheet_Icon_Label>` | `onShowUpgradePopUp` | `showUpgradePopUp` | – | asks for a confirmation |
-| [5](#625-bookmarks_card_list-ononclickbookmarkcarditem) | [`pages/Bookmarks/BookmarksPage.tsx:96`](../../app/src/pages/Bookmarks/BookmarksPage.tsx#L96) | `<Bookmarks_Card_List>` | `onOnClickBookmarkCardItem` | `f.onClickBookmarkCardItem` | – | goes to OneSchoolGlobalCarousel, SupperMeeting_Details, HouseholdCarousel |
+| [5](#625-bookmarks_card_list-ononclickbookmarkcarditem) | [`pages/Bookmarks/BookmarksPage.tsx:96`](../../app/src/pages/Bookmarks/BookmarksPage.tsx#L96) | `<Bookmarks_Card_List>` | `onOnClickBookmarkCardItem` | `f.onClickBookmarkCardItem` | – | goes to Locality_Details, Household_Relations, OneSchoolGlobalCarousel, SupperMeeting_Details, HouseholdCarousel; shows a message |
 | 6 | [`pages/Bookmarks/BookmarksPage.tsx:97`](../../app/src/pages/Bookmarks/BookmarksPage.tsx#L97) | `<Bookmarks_Card_List>` | `onItemUnbookmarked` | `f.onItemUnbookmarked` | – | calls DataActionGetBookmarks |
 | [7](#627-bookmarks_card_list-ononloadmore) | [`pages/Bookmarks/BookmarksPage.tsx:99`](../../app/src/pages/Bookmarks/BookmarksPage.tsx#L99) | `<Bookmarks_Card_List>` | `onOnLoadMore` | `f.onLoadMore` | – | calls DataActionGetBookmarks, ActionGet_BookmarkPills_ByBookmarkCategoryIds |
 | 8 | [`pages/Bookmarks/BookmarksPage.tsx:111`](../../app/src/pages/Bookmarks/BookmarksPage.tsx#L111) | `<Bookmarks_FilterSheet>` | `onApplyFilters` | `f.onApplyFilters` | – | calls DataActionGetBookmarks |
@@ -110,6 +104,9 @@ sequenceDiagram
   participant H as Bookmarks_Card_List · BookmarksPage.tsx
   participant N as Navigation
   U->>H: onOnClickBookmarkCardItem → f.onClickBookmarkCardItem
+  Note over H: message { title: '', message: unauthorizedObjectMessage(objectType, latest.current.bookmarkPills),
+  H->>N: go to Locality_Details
+  H->>N: go to Household_Relations
   H->>N: go to OneSchoolGlobalCarousel
   H->>N: go to SupperMeeting_Details
   H->>N: go to HouseholdCarousel
@@ -177,9 +174,11 @@ Parameters read (`useSearchParams`, `useParams`): none.
 
 | File | Target | Parameters | Place |
 |---|---|---|---|
-| `bookmarksState.ts` | `OneSchoolGlobalCarousel` | `In_StartingObjectId` = `objectId` | [`pages/Bookmarks/hooks/bookmarksState.ts:152`](../../app/src/pages/Bookmarks/hooks/bookmarksState.ts#L152) |
-| `bookmarksState.ts` | `SupperMeeting_Details` | `In_SubdivsionId` = `objectId` | [`pages/Bookmarks/hooks/bookmarksState.ts:159`](../../app/src/pages/Bookmarks/hooks/bookmarksState.ts#L159) |
-| `bookmarksState.ts` | `HouseholdCarousel` | `In_StartingHouseholdId` = `objectId` | [`pages/Bookmarks/hooks/bookmarksState.ts:162`](../../app/src/pages/Bookmarks/hooks/bookmarksState.ts#L162) |
+| `bookmarksState.ts` | `Locality_Details` | `LocalityId` = `longIntegerText(notes_InterchangeId_ExtractId(objectId).Inte…`<br>`TagsList_SelectedTag` = `LocalityMenu.Interchange` | [`pages/Bookmarks/hooks/bookmarksState.ts:163`](../../app/src/pages/Bookmarks/hooks/bookmarksState.ts#L163) |
+| `bookmarksState.ts` | `Household_Relations` | `HouseholdId` = `longIntegerText(objectId2)`<br>`MemberId` = `longIntegerText(objectId)` | [`pages/Bookmarks/hooks/bookmarksState.ts:171`](../../app/src/pages/Bookmarks/hooks/bookmarksState.ts#L171) |
+| `bookmarksState.ts` | `OneSchoolGlobalCarousel` | `In_StartingObjectId` = `longIntegerText(objectId)` | [`pages/Bookmarks/hooks/bookmarksState.ts:176`](../../app/src/pages/Bookmarks/hooks/bookmarksState.ts#L176) |
+| `bookmarksState.ts` | `SupperMeeting_Details` | `In_SubdivsionId` = `longIntegerText(objectId)` | [`pages/Bookmarks/hooks/bookmarksState.ts:182`](../../app/src/pages/Bookmarks/hooks/bookmarksState.ts#L182) |
+| `bookmarksState.ts` | `HouseholdCarousel` | `In_StartingHouseholdId` = `longIntegerText(objectId)` | [`pages/Bookmarks/hooks/bookmarksState.ts:184`](../../app/src/pages/Bookmarks/hooks/bookmarksState.ts#L184) |
 
 ## 8. Lifecycle
 
@@ -320,7 +319,7 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | `ItemCard_WithNotes` | `UBTConnectLibrary` | [`components/note/ItemCardWithNotes/ItemCard_WithNotes.tsx`](../../app/src/components/note/ItemCardWithNotes/ItemCard_WithNotes.tsx) | 0 |
 | `AvatarImage` | `UBTConnectLibrary` | [`components/ui/AvatarImage/AvatarImage.tsx`](../../app/src/components/ui/AvatarImage/AvatarImage.tsx) | 0 |
 | `IconText` | `UBTConnectLibrary` | [`components/ui/IconText/IconText.tsx`](../../app/src/components/ui/IconText/IconText.tsx) | 0 |
-| `ItemCardActions` | `UBTConnect` | [`components/note/ItemCardActions/ItemCardActions.tsx`](../../app/src/components/note/ItemCardActions/ItemCardActions.tsx) | 0 |
+| `ItemCardActions` | `UBTConnect` | [`components/note/ItemCardActions/ItemCardActions.tsx`](../../app/src/components/note/ItemCardActions/ItemCardActions.tsx) | 1 |
 | `ItemCard_ActionBar` | `UBTConnectLibrary` | [`components/note/ItemCardActions/ItemCard_ActionBar.tsx`](../../app/src/components/note/ItemCardActions/ItemCard_ActionBar.tsx) | 0 |
 | `NotesSheet` | `UBTConnect_Utils` | [`components/note/NotesSheet/NotesSheet.tsx`](../../app/src/components/note/NotesSheet/NotesSheet.tsx) | 1 |
 | `BottomBarMenu` | `UBTConnect` | [`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx) | 1 |
@@ -335,7 +334,7 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | `SelectionOption_List` | `UBTConnectLibrary` | [`components/ui/SelectionOptionList/SelectionOptionList.tsx`](../../app/src/components/ui/SelectionOptionList/SelectionOptionList.tsx) | 0 |
 | `Button` | `UBTConnectLibrary` | [`components/ui/Button/Button.tsx`](../../app/src/components/ui/Button/Button.tsx) | 0 |
 
-<details><summary>User actions of the shared blocks (8)</summary>
+<details><summary>User actions of the shared blocks (9)</summary>
 
 | # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
 |---|---|---|---|---|---|
@@ -346,7 +345,8 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | 5 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `menu` | goes to Menu |
 | 6 | `FilterSheet_Icon_Label` | `click of Icon`<br>`clicked of CustomContainer` | `iconClick` | – | asks for a confirmation |
 | 7 | `App_NotificationIcon` | `onClick of IconBadge` | `iconClick` | – | goes to Notifications, MessageList |
-| 8 | `NotesSheet` | `onSubmitRequested of AddNote` | `handler_OnSubmitNote` | – | calls AddNote; shows a message |
+| 8 | `ItemCardActions` | `onClickUnbookmark of ActionBar` | `handler_OnClickUnmark` | – | calls AddBookmark2, DeleteBookmarkByBookmarkId2 |
+| 9 | `NotesSheet` | `onSubmitRequested of AddNote` | `handler_OnSubmitNote` | – | calls AddNote; shows a message |
 
 </details>
 

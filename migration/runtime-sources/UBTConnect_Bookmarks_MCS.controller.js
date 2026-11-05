@@ -42,7 +42,7 @@ varBag.vars = vars;
 varBag.createLocalBookmarkVar = createLocalBookmarkVar;
 varBag.getLocalBookmarksByUserIdVar = getLocalBookmarksByUserIdVar;
 varBag.outVars = outVars;
-OutSystemsDebugger.push("eIe57fGQl06d7_wNN6doow:tWWed5o_F0mCRaiO_duAGA:/ClientActionFlows.tWWed5o_F0mCRaiO_duAGA:txUpcOE1ocJMKxm0gU4E+g", "UBTConnect_Bookmarks_MCS", "Create_LocalBookmark", "NRFlows.ClientActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("eIe57fGQl06d7_wNN6doow:tWWed5o_F0mCRaiO_duAGA:/ClientActionFlows.tWWed5o_F0mCRaiO_duAGA:GAG+IRyIvJhcxVo+RzvHYA", "UBTConnect_Bookmarks_MCS", "Create_LocalBookmark", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("eIe57fGQl06d7_wNN6doow:RJUd4mLXGUSbYCghdYGskA", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 return OS.Flow.executeSequence(function () {
@@ -66,6 +66,7 @@ maxRecords = 0;
 }
 
 var qpinUserId = OS.BuiltinFunctions.getUserId();
+var qpstBookmarkCategoryId = vars.value.in_BookmarkCategoryIdInLocal;
 var qpstItemId = vars.value.in_ItemIdInLocal;
 
 var optimizeSelect = false;
@@ -89,8 +90,14 @@ argsList.add("qpinUserId", /*INTEGER*/ 3, qpinUserId);
 } else {
 fromAndWhereSql += "(\"ENLocalBookmark\".\"UserId\" IS NULL)";
 }
-fromAndWhereSql += " AND (\"ENLocalBookmark\".\"ItemId\" = :qpstItemId)";
+fromAndWhereSql += " AND (\"ENLocalBookmark\".\"ItemId\" = :qpstItemId) AND ";
 argsList.add("qpstItemId", /*TEXT*/ 0, qpstItemId);
+if (((qpstBookmarkCategoryId.trim()) !== (""))) {
+fromAndWhereSql += "((\"ENLocalBookmark\".\"BookmarkCategoryId\" = :qpstBookmarkCategoryId) AND (\"ENLocalBookmark\".\"BookmarkCategoryId\" IS NOT NULL))";
+argsList.add("qpstBookmarkCategoryId", /*TEXT*/ 0, qpstBookmarkCategoryId);
+} else {
+fromAndWhereSql += "(\"ENLocalBookmark\".\"BookmarkCategoryId\" IS NULL)";
+}
 if (maxRecords > 0) {
 orderBySql += " LIMIT ";
 orderBySql += maxRecords;
@@ -121,7 +128,7 @@ maxRecords = 0;
 
 return new Promise(function (resolve, reject) {
 require(["UBTConnect_Bookmarks_MCS.aggregates.IDB"], function (UBTConnect_Bookmarks_MCSAggregates_IDB) {
-return UBTConnect_Bookmarks_MCSAggregates_IDB.executeCreateLocalBookmark$ClientAction$getLocalBookmarksByUserIdAggr(OS.BuiltinFunctions.getUserId(), vars.value.in_ItemIdInLocal, maxRecords).then(function (result) {
+return UBTConnect_Bookmarks_MCSAggregates_IDB.executeCreateLocalBookmark$ClientAction$getLocalBookmarksByUserIdAggr(OS.BuiltinFunctions.getUserId(), vars.value.in_BookmarkCategoryIdInLocal, vars.value.in_ItemIdInLocal, maxRecords).then(function (result) {
 resolve(result);
 }).catch(function (e) {
 reject(e);
@@ -245,21 +252,22 @@ LocalBookmarkId: actionResults.localBookmarkIdOut
 
 define("UBTConnect_Bookmarks_MCS.controller$Delete_LocalBookmarkByBookmarkId", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Bookmarks_MCS.model", "UBTConnect_Bookmarks_MCS.controller", "UBTConnect_Bookmarks_MCS.model$LocalBookmarkRec", "UBTConnect_Bookmarks_MCS.controller$GetLocalBookmarkByBookmarkId", "UBTConnect_Bookmarks_MCS.controller$Delete_LocalBookmarkById"], function (exports, OutSystems, UBTConnect_Bookmarks_MCSModel, UBTConnect_Bookmarks_MCSController) {
 var OS = OutSystems.Internal;
-UBTConnect_Bookmarks_MCSController.default.delete_LocalBookmarkByBookmarkId$Action = function (bookmarkIdIn, callContext) {
+UBTConnect_Bookmarks_MCSController.default.delete_LocalBookmarkByBookmarkId$Action = function (bookmarkIdIn, in_BookmarkCategoryIdIn, callContext) {
 var varBag = {};
 callContext = controller.callContext(callContext);
 var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect_Bookmarks_MCS.Delete_LocalBookmarkByBookmarkId$vars"))());
 vars.value.bookmarkIdInLocal = bookmarkIdIn;
+vars.value.in_BookmarkCategoryIdInLocal = in_BookmarkCategoryIdIn;
 var getLocalBookmarkByBookmarkIdVar = new OS.DataTypes.VariableHolder();
 varBag.callContext = callContext;
 varBag.vars = vars;
 varBag.getLocalBookmarkByBookmarkIdVar = getLocalBookmarkByBookmarkIdVar;
-OutSystemsDebugger.push("eIe57fGQl06d7_wNN6doow:NaY+5e2DDEm5opsnZdrK9g:/ClientActionFlows.NaY+5e2DDEm5opsnZdrK9g:mJGLPCczAx1KZPGRZR6WXg", "UBTConnect_Bookmarks_MCS", "Delete_LocalBookmarkByBookmarkId", "NRFlows.ClientActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("eIe57fGQl06d7_wNN6doow:NaY+5e2DDEm5opsnZdrK9g:/ClientActionFlows.NaY+5e2DDEm5opsnZdrK9g:bFnBnHtLEc9oHCFaVxLd6A", "UBTConnect_Bookmarks_MCS", "Delete_LocalBookmarkByBookmarkId", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("eIe57fGQl06d7_wNN6doow:Wjqxum3OSkSopsRt4VBnEQ", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 OutSystemsDebugger.handleBreakpoint("eIe57fGQl06d7_wNN6doow:qLpiKprtIkqOZJvOD9uFpw", callContext.id);
 // Execute Action: GetLocalBookmarkByBookmarkId
-return UBTConnect_Bookmarks_MCSController.default.getLocalBookmarkByBookmarkId$Action(vars.value.bookmarkIdInLocal, callContext).then(function (value) {
+return UBTConnect_Bookmarks_MCSController.default.getLocalBookmarkByBookmarkId$Action(vars.value.bookmarkIdInLocal, vars.value.in_BookmarkCategoryIdInLocal, callContext).then(function (value) {
 getLocalBookmarkByBookmarkIdVar.value = value;
 }).then(function () {
 OutSystemsDebugger.handleBreakpoint("eIe57fGQl06d7_wNN6doow:5Xd+b7_xS0GJz+qnBlIFgg", callContext.id);
@@ -290,10 +298,19 @@ dataType: OS.DataTypes.DataTypes.LongInteger,
 defaultValue: function () {
 return OS.DataTypes.LongInteger.defaultValue;
 }
+}, {
+name: "In_BookmarkCategoryId",
+attrName: "in_BookmarkCategoryIdInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Text,
+defaultValue: function () {
+return "";
+}
 }]);
-UBTConnect_Bookmarks_MCSController.default.clientActionProxies.delete_LocalBookmarkByBookmarkId$Action = function (bookmarkIdIn) {
+UBTConnect_Bookmarks_MCSController.default.clientActionProxies.delete_LocalBookmarkByBookmarkId$Action = function (bookmarkIdIn, in_BookmarkCategoryIdIn) {
 bookmarkIdIn = (bookmarkIdIn === undefined) ? OS.DataTypes.LongInteger.defaultValue : bookmarkIdIn;
-return controller.executeActionInsideJSNode(UBTConnect_Bookmarks_MCSController.default.delete_LocalBookmarkByBookmarkId$Action.bind(controller, OS.DataConversion.JSNodeParamConverter.from(bookmarkIdIn, OS.DataTypes.DataTypes.LongInteger)), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
+in_BookmarkCategoryIdIn = (in_BookmarkCategoryIdIn === undefined) ? "" : in_BookmarkCategoryIdIn;
+return controller.executeActionInsideJSNode(UBTConnect_Bookmarks_MCSController.default.delete_LocalBookmarkByBookmarkId$Action.bind(controller, OS.DataConversion.JSNodeParamConverter.from(bookmarkIdIn, OS.DataTypes.DataTypes.LongInteger), in_BookmarkCategoryIdIn), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
 return {};
 });
 };
@@ -798,18 +815,19 @@ Out_Label: OS.DataConversion.JSNodeParamConverter.to(actionResults.out_LabelOut,
 
 define("UBTConnect_Bookmarks_MCS.controller$GetLocalBookmarkByBookmarkId", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Bookmarks_MCS.model", "UBTConnect_Bookmarks_MCS.controller", "UBTConnect_Bookmarks_MCS.entities", "UBTConnect_Bookmarks_MCS.model$LocalBookmarkRec", "UBTConnect_Bookmarks_MCS.model$LocalBookmarkRecordList"], function (exports, OutSystems, UBTConnect_Bookmarks_MCSModel, UBTConnect_Bookmarks_MCSController, UBTConnect_Bookmarks_MCSEntities) {
 var OS = OutSystems.Internal;
-UBTConnect_Bookmarks_MCSController.default.getLocalBookmarkByBookmarkId$Action = function (bookmarkIdIn, callContext) {
+UBTConnect_Bookmarks_MCSController.default.getLocalBookmarkByBookmarkId$Action = function (bookmarkIdIn, in_BookmarkCategoryIdIn, callContext) {
 var varBag = {};
 callContext = controller.callContext(callContext);
 var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect_Bookmarks_MCS.GetLocalBookmarkByBookmarkId$vars"))());
 vars.value.bookmarkIdInLocal = bookmarkIdIn;
+vars.value.in_BookmarkCategoryIdInLocal = in_BookmarkCategoryIdIn;
 var getLocalBookmarksByUserIdVar = new OS.DataTypes.VariableHolder(new (OS.Controller.BaseController.getAggregateOutputType(UBTConnect_Bookmarks_MCSModel.LocalBookmarkRecordList))());
 var outVars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect_Bookmarks_MCS.GetLocalBookmarkByBookmarkId$outVars"))());
 varBag.callContext = callContext;
 varBag.vars = vars;
 varBag.getLocalBookmarksByUserIdVar = getLocalBookmarksByUserIdVar;
 varBag.outVars = outVars;
-OutSystemsDebugger.push("eIe57fGQl06d7_wNN6doow:FBJ7lQZ5AEywJkYYpPPj5A:/ClientActionFlows.FBJ7lQZ5AEywJkYYpPPj5A:MQuxnPVNQc+bBi_dn4IGmA", "UBTConnect_Bookmarks_MCS", "GetLocalBookmarkByBookmarkId", "NRFlows.ClientActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("eIe57fGQl06d7_wNN6doow:FBJ7lQZ5AEywJkYYpPPj5A:/ClientActionFlows.FBJ7lQZ5AEywJkYYpPPj5A:+dSz_e5uycRizzTDYsV+rQ", "UBTConnect_Bookmarks_MCS", "GetLocalBookmarkByBookmarkId", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("eIe57fGQl06d7_wNN6doow:K4qFUdnhmkO4hzjbq7qbmA", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 OutSystemsDebugger.handleBreakpoint("eIe57fGQl06d7_wNN6doow:vwGPGCjLvEyykqgK1fH+zA", callContext.id);
@@ -830,6 +848,7 @@ maxRecords = 0;
 
 var qploBookmarkId = vars.value.bookmarkIdInLocal;
 var qpinUserId = OS.BuiltinFunctions.getUserId();
+var qpstBookmarkCategoryId = vars.value.in_BookmarkCategoryIdInLocal;
 
 var optimizeSelect = false;
 var selectSql = "";
@@ -852,8 +871,14 @@ argsList.add("qpinUserId", /*INTEGER*/ 3, qpinUserId);
 } else {
 fromAndWhereSql += "(\"ENLocalBookmark\".\"UserId\" IS NULL)";
 }
-fromAndWhereSql += " AND (\"ENLocalBookmark\".\"BookmarkId\" = CAST(:qploBookmarkId AS INTEGER))";
+fromAndWhereSql += " AND (\"ENLocalBookmark\".\"BookmarkId\" = CAST(:qploBookmarkId AS INTEGER)) AND ";
 argsList.add("qploBookmarkId", /*LONGINTEGER*/ 4, qploBookmarkId);
+if (((qpstBookmarkCategoryId.trim()) !== (""))) {
+fromAndWhereSql += "((\"ENLocalBookmark\".\"BookmarkCategoryId\" = :qpstBookmarkCategoryId) AND (\"ENLocalBookmark\".\"BookmarkCategoryId\" IS NOT NULL))";
+argsList.add("qpstBookmarkCategoryId", /*TEXT*/ 0, qpstBookmarkCategoryId);
+} else {
+fromAndWhereSql += "(\"ENLocalBookmark\".\"BookmarkCategoryId\" IS NULL)";
+}
 if (maxRecords > 0) {
 orderBySql += " LIMIT ";
 orderBySql += maxRecords;
@@ -884,7 +909,7 @@ maxRecords = 0;
 
 return new Promise(function (resolve, reject) {
 require(["UBTConnect_Bookmarks_MCS.aggregates.IDB"], function (UBTConnect_Bookmarks_MCSAggregates_IDB) {
-return UBTConnect_Bookmarks_MCSAggregates_IDB.executeGetLocalBookmarkByBookmarkId$ClientAction$getLocalBookmarksByUserIdAggr(vars.value.bookmarkIdInLocal, OS.BuiltinFunctions.getUserId(), maxRecords).then(function (result) {
+return UBTConnect_Bookmarks_MCSAggregates_IDB.executeGetLocalBookmarkByBookmarkId$ClientAction$getLocalBookmarksByUserIdAggr(vars.value.bookmarkIdInLocal, OS.BuiltinFunctions.getUserId(), vars.value.in_BookmarkCategoryIdInLocal, maxRecords).then(function (result) {
 resolve(result);
 }).catch(function (e) {
 reject(e);
@@ -926,6 +951,14 @@ dataType: OS.DataTypes.DataTypes.LongInteger,
 defaultValue: function () {
 return OS.DataTypes.LongInteger.defaultValue;
 }
+}, {
+name: "In_BookmarkCategoryId",
+attrName: "in_BookmarkCategoryIdInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Text,
+defaultValue: function () {
+return "";
+}
 }]);
 UBTConnect_Bookmarks_MCSController.default.constructor.registerVariableGroupType("UBTConnect_Bookmarks_MCS.GetLocalBookmarkByBookmarkId$outVars", [{
 name: "LocalBookmark",
@@ -937,9 +970,10 @@ return new UBTConnect_Bookmarks_MCSModel.LocalBookmarkRec();
 },
 complexType: UBTConnect_Bookmarks_MCSModel.LocalBookmarkRec
 }]);
-UBTConnect_Bookmarks_MCSController.default.clientActionProxies.getLocalBookmarkByBookmarkId$Action = function (bookmarkIdIn) {
+UBTConnect_Bookmarks_MCSController.default.clientActionProxies.getLocalBookmarkByBookmarkId$Action = function (bookmarkIdIn, in_BookmarkCategoryIdIn) {
 bookmarkIdIn = (bookmarkIdIn === undefined) ? OS.DataTypes.LongInteger.defaultValue : bookmarkIdIn;
-return controller.executeActionInsideJSNode(UBTConnect_Bookmarks_MCSController.default.getLocalBookmarkByBookmarkId$Action.bind(controller, OS.DataConversion.JSNodeParamConverter.from(bookmarkIdIn, OS.DataTypes.DataTypes.LongInteger)), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
+in_BookmarkCategoryIdIn = (in_BookmarkCategoryIdIn === undefined) ? "" : in_BookmarkCategoryIdIn;
+return controller.executeActionInsideJSNode(UBTConnect_Bookmarks_MCSController.default.getLocalBookmarkByBookmarkId$Action.bind(controller, OS.DataConversion.JSNodeParamConverter.from(bookmarkIdIn, OS.DataTypes.DataTypes.LongInteger), in_BookmarkCategoryIdIn), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
 return {
 LocalBookmark: actionResults.localBookmarkOut
 };
@@ -949,18 +983,19 @@ LocalBookmark: actionResults.localBookmarkOut
 
 define("UBTConnect_Bookmarks_MCS.controller$GetLocalBookmarkByObjectId", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Bookmarks_MCS.model", "UBTConnect_Bookmarks_MCS.controller", "UBTConnect_Bookmarks_MCS.entities", "UBTConnect_Bookmarks_MCS.model$LocalBookmarkRec", "UBTConnect_Bookmarks_MCS.model$LocalBookmarkRecordList"], function (exports, OutSystems, UBTConnect_Bookmarks_MCSModel, UBTConnect_Bookmarks_MCSController, UBTConnect_Bookmarks_MCSEntities) {
 var OS = OutSystems.Internal;
-UBTConnect_Bookmarks_MCSController.default.getLocalBookmarkByObjectId$Action = function (itemIdIn, callContext) {
+UBTConnect_Bookmarks_MCSController.default.getLocalBookmarkByObjectId$Action = function (itemIdIn, in_BookmarkCategoryIdIn, callContext) {
 var varBag = {};
 callContext = controller.callContext(callContext);
 var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect_Bookmarks_MCS.GetLocalBookmarkByObjectId$vars"))());
 vars.value.itemIdInLocal = itemIdIn;
+vars.value.in_BookmarkCategoryIdInLocal = in_BookmarkCategoryIdIn;
 var getLocalBookmarksByObjectIdVar = new OS.DataTypes.VariableHolder(new (OS.Controller.BaseController.getAggregateOutputType(UBTConnect_Bookmarks_MCSModel.LocalBookmarkRecordList))());
 var outVars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect_Bookmarks_MCS.GetLocalBookmarkByObjectId$outVars"))());
 varBag.callContext = callContext;
 varBag.vars = vars;
 varBag.getLocalBookmarksByObjectIdVar = getLocalBookmarksByObjectIdVar;
 varBag.outVars = outVars;
-OutSystemsDebugger.push("eIe57fGQl06d7_wNN6doow:lqTee2pdOEWJYmXUw5UQPA:/ClientActionFlows.lqTee2pdOEWJYmXUw5UQPA:j22XsmVYTAXX3chz5FDp7g", "UBTConnect_Bookmarks_MCS", "GetLocalBookmarkByObjectId", "NRFlows.ClientActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("eIe57fGQl06d7_wNN6doow:lqTee2pdOEWJYmXUw5UQPA:/ClientActionFlows.lqTee2pdOEWJYmXUw5UQPA:xDBoydT2gLeGlZTbgYCEPA", "UBTConnect_Bookmarks_MCS", "GetLocalBookmarkByObjectId", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("eIe57fGQl06d7_wNN6doow:qii39VcGME+rNiSGPOjWeQ", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 OutSystemsDebugger.handleBreakpoint("eIe57fGQl06d7_wNN6doow:n+Gdk4bo3kWCp5GV8yPJyQ", callContext.id);
@@ -980,6 +1015,7 @@ maxRecords = 0;
 }
 
 var qpinUserId = OS.BuiltinFunctions.getUserId();
+var qpstBookmarkCategoryId = vars.value.in_BookmarkCategoryIdInLocal;
 var qpstItemId = vars.value.itemIdInLocal;
 
 var optimizeSelect = false;
@@ -1003,6 +1039,13 @@ fromAndWhereSql += "((\"ENLocalBookmark\".\"UserId\" = :qpinUserId) AND (\"ENLoc
 argsList.add("qpinUserId", /*INTEGER*/ 3, qpinUserId);
 } else {
 fromAndWhereSql += "(\"ENLocalBookmark\".\"UserId\" IS NULL)";
+}
+fromAndWhereSql += " AND ";
+if (((qpstBookmarkCategoryId.trim()) !== (""))) {
+fromAndWhereSql += "((\"ENLocalBookmark\".\"BookmarkCategoryId\" = :qpstBookmarkCategoryId) AND (\"ENLocalBookmark\".\"BookmarkCategoryId\" IS NOT NULL))";
+argsList.add("qpstBookmarkCategoryId", /*TEXT*/ 0, qpstBookmarkCategoryId);
+} else {
+fromAndWhereSql += "(\"ENLocalBookmark\".\"BookmarkCategoryId\" IS NULL)";
 }
 if (maxRecords > 0) {
 orderBySql += " LIMIT ";
@@ -1034,7 +1077,7 @@ maxRecords = 0;
 
 return new Promise(function (resolve, reject) {
 require(["UBTConnect_Bookmarks_MCS.aggregates.IDB"], function (UBTConnect_Bookmarks_MCSAggregates_IDB) {
-return UBTConnect_Bookmarks_MCSAggregates_IDB.executeGetLocalBookmarkByObjectId$ClientAction$getLocalBookmarksByObjectIdAggr(OS.BuiltinFunctions.getUserId(), vars.value.itemIdInLocal, maxRecords).then(function (result) {
+return UBTConnect_Bookmarks_MCSAggregates_IDB.executeGetLocalBookmarkByObjectId$ClientAction$getLocalBookmarksByObjectIdAggr(OS.BuiltinFunctions.getUserId(), vars.value.in_BookmarkCategoryIdInLocal, vars.value.itemIdInLocal, maxRecords).then(function (result) {
 resolve(result);
 }).catch(function (e) {
 reject(e);
@@ -1076,6 +1119,14 @@ dataType: OS.DataTypes.DataTypes.Text,
 defaultValue: function () {
 return "";
 }
+}, {
+name: "In_BookmarkCategoryId",
+attrName: "in_BookmarkCategoryIdInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Text,
+defaultValue: function () {
+return "";
+}
 }]);
 UBTConnect_Bookmarks_MCSController.default.constructor.registerVariableGroupType("UBTConnect_Bookmarks_MCS.GetLocalBookmarkByObjectId$outVars", [{
 name: "LocalBookmark",
@@ -1087,11 +1138,171 @@ return new UBTConnect_Bookmarks_MCSModel.LocalBookmarkRec();
 },
 complexType: UBTConnect_Bookmarks_MCSModel.LocalBookmarkRec
 }]);
-UBTConnect_Bookmarks_MCSController.default.clientActionProxies.getLocalBookmarkByObjectId$Action = function (itemIdIn) {
+UBTConnect_Bookmarks_MCSController.default.clientActionProxies.getLocalBookmarkByObjectId$Action = function (itemIdIn, in_BookmarkCategoryIdIn) {
 itemIdIn = (itemIdIn === undefined) ? "" : itemIdIn;
-return controller.executeActionInsideJSNode(UBTConnect_Bookmarks_MCSController.default.getLocalBookmarkByObjectId$Action.bind(controller, OS.DataConversion.JSNodeParamConverter.from(itemIdIn, OS.DataTypes.DataTypes.Text)), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
+in_BookmarkCategoryIdIn = (in_BookmarkCategoryIdIn === undefined) ? "" : in_BookmarkCategoryIdIn;
+return controller.executeActionInsideJSNode(UBTConnect_Bookmarks_MCSController.default.getLocalBookmarkByObjectId$Action.bind(controller, OS.DataConversion.JSNodeParamConverter.from(itemIdIn, OS.DataTypes.DataTypes.Text), in_BookmarkCategoryIdIn), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
 return {
 LocalBookmark: actionResults.localBookmarkOut
+};
+});
+};
+});
+
+define("UBTConnect_Bookmarks_MCS.controller$GetLocalBookmarksByObjectType", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Bookmarks_MCS.model", "UBTConnect_Bookmarks_MCS.controller", "UBTConnect_Bookmarks_MCS.entities", "UBTConnect_Bookmarks_MCS.model$LocalBookmarkRecordList", "UBTConnect_Bookmarks_MCS.model$LocalBookmarkList", "UBTConnect_Bookmarks_MCS.model$LocalBookmarkRec"], function (exports, OutSystems, UBTConnect_Bookmarks_MCSModel, UBTConnect_Bookmarks_MCSController, UBTConnect_Bookmarks_MCSEntities) {
+var OS = OutSystems.Internal;
+UBTConnect_Bookmarks_MCSController.default.getLocalBookmarksByObjectType$Action = function (bookmarkCategoryIdIn, callContext) {
+var varBag = {};
+callContext = controller.callContext(callContext);
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect_Bookmarks_MCS.GetLocalBookmarksByObjectType$vars"))());
+vars.value.bookmarkCategoryIdInLocal = bookmarkCategoryIdIn;
+var getLocalBookmarksByUserIdVar = new OS.DataTypes.VariableHolder(new (OS.Controller.BaseController.getAggregateOutputType(UBTConnect_Bookmarks_MCSModel.LocalBookmarkRecordList))());
+var outVars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect_Bookmarks_MCS.GetLocalBookmarksByObjectType$outVars"))());
+varBag.callContext = callContext;
+varBag.vars = vars;
+varBag.getLocalBookmarksByUserIdVar = getLocalBookmarksByUserIdVar;
+varBag.outVars = outVars;
+OutSystemsDebugger.push("eIe57fGQl06d7_wNN6doow:S1ntgUVrh0e9cOJ+rqEKAQ:/ClientActionFlows.S1ntgUVrh0e9cOJ+rqEKAQ:gkqwKknpodIW_H07RqWMtw", "UBTConnect_Bookmarks_MCS", "GetLocalBookmarksByObjectType", "NRFlows.ClientActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("eIe57fGQl06d7_wNN6doow:vpEpgl7jQkGTP7uCI+Rrng", callContext.id);
+return OS.Flow.executeAsyncFlow(function () {
+OutSystemsDebugger.handleBreakpoint("eIe57fGQl06d7_wNN6doow:6RgeewhhzkK7JgZC+aIjlA", callContext.id);
+// Aggregate: GetLocalBookmarksByUserId
+var getLocalBookmarksByUserIdAggr = function (maxRecords) {
+var executeQuery = null;
+if(OS.NativeHelper.isRunningOnNative()) {
+executeQuery = function () {
+var targetListType = UBTConnect_Bookmarks_MCSModel.LocalBookmarkRecordList;
+var result = {
+list: null,
+count: OS.DataTypes.LongInteger.defaultValue
+};
+var countArgsList = new OS.Entities.QueryArgumentsList();
+if(!(maxRecords)) {
+maxRecords = 0;
+}
+
+var qpstBookmarkCategoryId = vars.value.bookmarkCategoryIdInLocal;
+var qpinUserId = OS.BuiltinFunctions.getUserId();
+
+var optimizeSelect = false;
+var selectSql = "";
+var fromAndWhereSql = "";
+var groupByAndHavingSql = "";
+var orderBySql = "";
+var argsList = new OS.Entities.QueryArgumentsList();
+
+selectSql += "SELECT ";
+if (optimizeSelect) {
+selectSql += "\"ENLocalBookmark\".\"Id\" o0, \"ENLocalBookmark\".\"UserId\" o1, \"ENLocalBookmark\".\"BookmarkId\" o2, \"ENLocalBookmark\".\"BookmarkCategoryId\" o3, \"ENLocalBookmark\".\"ItemId\" o4, \"ENLocalBookmark\".\"CreatedAtDateUtc\" o5";
+} else {
+selectSql += "\"ENLocalBookmark\".\"Id\" o0, \"ENLocalBookmark\".\"UserId\" o1, \"ENLocalBookmark\".\"BookmarkId\" o2, \"ENLocalBookmark\".\"BookmarkCategoryId\" o3, \"ENLocalBookmark\".\"ItemId\" o4, \"ENLocalBookmark\".\"CreatedAtDateUtc\" o5";
+}
+fromAndWhereSql += " FROM \"MAIN\".\"OSUSR_hcr_LocalBookmark\" \"ENLocalBookmark\"";
+fromAndWhereSql += " WHERE ";
+if (qpinUserId != 0) {
+fromAndWhereSql += "((\"ENLocalBookmark\".\"UserId\" = :qpinUserId) AND (\"ENLocalBookmark\".\"UserId\" IS NOT NULL))";
+argsList.add("qpinUserId", /*INTEGER*/ 3, qpinUserId);
+} else {
+fromAndWhereSql += "(\"ENLocalBookmark\".\"UserId\" IS NULL)";
+}
+fromAndWhereSql += " AND ";
+if (((qpstBookmarkCategoryId.trim()) !== (""))) {
+fromAndWhereSql += "((\"ENLocalBookmark\".\"BookmarkCategoryId\" = :qpstBookmarkCategoryId) AND (\"ENLocalBookmark\".\"BookmarkCategoryId\" IS NOT NULL))";
+argsList.add("qpstBookmarkCategoryId", /*TEXT*/ 0, qpstBookmarkCategoryId);
+} else {
+fromAndWhereSql += "(\"ENLocalBookmark\".\"BookmarkCategoryId\" IS NULL)";
+}
+if (maxRecords > 0) {
+orderBySql += " LIMIT ";
+orderBySql += maxRecords;
+}
+var sql = selectSql + fromAndWhereSql + groupByAndHavingSql + orderBySql;
+
+return OS.Entities.webSQLStorageInstance.executeQuery(sql, UBTConnect_Bookmarks_MCSModel.LocalBookmarkRecordList, function (rec, r) {
+var indexRef = {
+value: 0
+};
+var attrOrder = [
+"localBookmarkAttr",
+];
+return OS.DataConversion.LocalStorageConverter.from(r, targetListType.getItemType(), indexRef, attrOrder);
+
+}, argsList).then(function (resultList) {
+result.list = resultList;
+}).then(function () {
+}).then(function () {
+return result;
+});
+};
+} else {
+executeQuery = function () {
+if(!(maxRecords)) {
+maxRecords = 0;
+}
+
+return new Promise(function (resolve, reject) {
+require(["UBTConnect_Bookmarks_MCS.aggregates.IDB"], function (UBTConnect_Bookmarks_MCSAggregates_IDB) {
+return UBTConnect_Bookmarks_MCSAggregates_IDB.executeGetLocalBookmarksByObjectType$ClientAction$getLocalBookmarksByUserIdAggr(vars.value.bookmarkCategoryIdInLocal, OS.BuiltinFunctions.getUserId(), maxRecords).then(function (result) {
+resolve(result);
+}).catch(function (e) {
+reject(e);
+});
+});
+});
+};
+}
+
+return controller.executeClientAggregate(executeQuery, function () {
+return getLocalBookmarksByUserIdVar.value;
+});
+};
+return getLocalBookmarksByUserIdAggr().then(function () {
+OutSystemsDebugger.handleBreakpoint("eIe57fGQl06d7_wNN6doow:cRANZIiR4UCrSxo2Kb1ckA", callContext.id);
+// MyBookmarksList = GetLocalBookmarksByUserId.List
+outVars.value.myBookmarksListOut = OS.DataConversion.JSConversions.typeConvertRecordList(getLocalBookmarksByUserIdVar.value.listOut, new UBTConnect_Bookmarks_MCSModel.LocalBookmarkList(), function (source, target) {
+target = source.localBookmarkAttr;
+return target;
+});
+OutSystemsDebugger.handleBreakpoint("eIe57fGQl06d7_wNN6doow:EIUjy07EbUCU7ub5YODIrQ", callContext.id);
+});
+}).then(function () {
+return outVars.value;
+}).then(function (res) {
+OutSystemsDebugger.pop("eIe57fGQl06d7_wNN6doow:S1ntgUVrh0e9cOJ+rqEKAQ", callContext.id);
+return res;
+
+}).catch(function (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+OutSystemsDebugger.pop("eIe57fGQl06d7_wNN6doow:S1ntgUVrh0e9cOJ+rqEKAQ", callContext.id);
+throw ex;
+
+});
+};
+var controller = UBTConnect_Bookmarks_MCSController.default;
+UBTConnect_Bookmarks_MCSController.default.constructor.registerVariableGroupType("UBTConnect_Bookmarks_MCS.GetLocalBookmarksByObjectType$vars", [{
+name: "BookmarkCategoryId",
+attrName: "bookmarkCategoryIdInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Text,
+defaultValue: function () {
+return "";
+}
+}]);
+UBTConnect_Bookmarks_MCSController.default.constructor.registerVariableGroupType("UBTConnect_Bookmarks_MCS.GetLocalBookmarksByObjectType$outVars", [{
+name: "MyBookmarksList",
+attrName: "myBookmarksListOut",
+mandatory: false,
+dataType: OS.DataTypes.DataTypes.RecordList,
+defaultValue: function () {
+return new UBTConnect_Bookmarks_MCSModel.LocalBookmarkList();
+},
+complexType: UBTConnect_Bookmarks_MCSModel.LocalBookmarkList
+}]);
+UBTConnect_Bookmarks_MCSController.default.clientActionProxies.getLocalBookmarksByObjectType$Action = function (bookmarkCategoryIdIn) {
+bookmarkCategoryIdIn = (bookmarkCategoryIdIn === undefined) ? "" : bookmarkCategoryIdIn;
+return controller.executeActionInsideJSNode(UBTConnect_Bookmarks_MCSController.default.getLocalBookmarksByObjectType$Action.bind(controller, bookmarkCategoryIdIn), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
+return {
+MyBookmarksList: actionResults.myBookmarksListOut
 };
 });
 };
@@ -1298,6 +1509,12 @@ return varBag.vars.value.itemIdInLocal;
 },
 dataType: OS.DataTypes.DataTypes.Text
 },
+"BEJSy144Qkeg62lRKPXCYw": {
+getter: function (varBag, idService) {
+return varBag.vars.value.in_BookmarkCategoryIdInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
 "ycAEU6u9kkSW5_envOV+zg": {
 getter: function (varBag, idService) {
 return varBag.outVars.value.localBookmarkOut;
@@ -1306,6 +1523,22 @@ return varBag.outVars.value.localBookmarkOut;
 "n+Gdk4bo3kWCp5GV8yPJyQ": {
 getter: function (varBag, idService) {
 return varBag.getLocalBookmarksByObjectIdVar.value;
+}
+},
+"XA_lu8O7pEiej4qXPdn1Ow": {
+getter: function (varBag, idService) {
+return varBag.vars.value.bookmarkCategoryIdInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
+"_sxxCu_At0qRW2IiN_RP4A": {
+getter: function (varBag, idService) {
+return varBag.outVars.value.myBookmarksListOut;
+}
+},
+"6RgeewhhzkK7JgZC+aIjlA": {
+getter: function (varBag, idService) {
+return varBag.getLocalBookmarksByUserIdVar.value;
 }
 },
 "Hyvekz4wjkOkR6reHLAikQ": {
@@ -1323,6 +1556,12 @@ getter: function (varBag, idService) {
 return varBag.vars.value.bookmarkIdInLocal;
 },
 dataType: OS.DataTypes.DataTypes.LongInteger
+},
+"aL4ejVOWd0KqpoQ_cVhWWg": {
+getter: function (varBag, idService) {
+return varBag.vars.value.in_BookmarkCategoryIdInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Text
 },
 "2QNrJlweak2_e+hKgBf1XQ": {
 getter: function (varBag, idService) {
@@ -1359,6 +1598,12 @@ getter: function (varBag, idService) {
 return varBag.vars.value.bookmarkIdInLocal;
 },
 dataType: OS.DataTypes.DataTypes.LongInteger
+},
+"+FknuFNzAk60jO0WCz152Q": {
+getter: function (varBag, idService) {
+return varBag.vars.value.in_BookmarkCategoryIdInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Text
 },
 "qLpiKprtIkqOZJvOD9uFpw": {
 getter: function (varBag, idService) {

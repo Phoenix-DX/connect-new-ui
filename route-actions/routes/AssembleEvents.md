@@ -4,6 +4,8 @@ The route `/UBTConnect/AssembleEvents`, read from the TST compiled code and from
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/AssembleEvents/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
+**Live code.** TST changed 16 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `Connect2_Assemble_MUI`, `js`, `Connect2_LegacyShared`, `js`, `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `UBTConnect`, `js`, `js`, `UBTConnectLibrary`, `js`, `UBTConnect_Utils`, `js`, `UBT_AppManager`, `UBT_AppManager_Mobile`. The observed calls come from the capture.
+
 ## 1. Route
 
 | Item | Value | Source |
@@ -123,7 +125,7 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/screens/AssembleEvents/analysis/sources/raw/`.
+The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 
@@ -234,7 +236,7 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | `BaseLayout_UpdatedOSUI` | `Connect2_LegacyShared` | [`components/layout/BaseLayout/BaseLayout.tsx`](../../app/src/components/layout/BaseLayout/BaseLayout.tsx) | 0 |
 | `MenuIcon__UpdatedOSUI` | `Connect2_LegacyShared` | [`components/layout/MenuIcon/MenuIcon.tsx`](../../app/src/components/layout/MenuIcon/MenuIcon.tsx) | 1 |
 | `NewConnectContent` | `Connect2_LegacyShared` | [`components/ui/NewConnectContent/NewConnectContent.tsx`](../../app/src/components/ui/NewConnectContent/NewConnectContent.tsx) | 0 |
-| `AssembleSummary_List` | `Connect2_Assemble_MUI` | [`pages/AssembleEvents/components/AssembleSummary_List.tsx`](../../app/src/pages/AssembleEvents/components/AssembleSummary_List.tsx), [`pages/AssembleEvents/hooks/assembleSummaryListState.ts`](../../app/src/pages/AssembleEvents/hooks/assembleSummaryListState.ts), [`pages/AssembleEvents/hooks/useAssembleSummaryList.ts`](../../app/src/pages/AssembleEvents/hooks/useAssembleSummaryList.ts) | 4 |
+| `AssembleSummary_List` | `Connect2_Assemble_MUI` | [`pages/AssembleEvents/components/AssembleSummary_List.tsx`](../../app/src/pages/AssembleEvents/components/AssembleSummary_List.tsx), [`pages/AssembleEvents/hooks/assembleSummaryListState.ts`](../../app/src/pages/AssembleEvents/hooks/assembleSummaryListState.ts), [`pages/AssembleEvents/hooks/useAssembleSummaryList.ts`](../../app/src/pages/AssembleEvents/hooks/useAssembleSummaryList.ts) | 0 |
 | `StickyHeader` | `Connect2_LegacyShared` | [`pages/AssembleEvents/components/AssembleSummary_List.tsx`](../../app/src/pages/AssembleEvents/components/AssembleSummary_List.tsx) | 0 |
 | `HorizontalTags` | `Connect2_LegacyShared` | [`pages/AssembleEvents/components/HorizontalTags.tsx`](../../app/src/pages/AssembleEvents/components/HorizontalTags.tsx) | 0 |
 | `HorizontalScrollTiles` | `Connect2_LegacyShared` | [`pages/AssembleEvents/components/HorizontalTags.tsx`](../../app/src/pages/AssembleEvents/components/HorizontalTags.tsx) | 0 |
@@ -259,22 +261,18 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | `LocalityListDetail` | `Connect2_LegacyShared` | [`components/assemble/LocalityListDetail/LocalityListDetail.tsx`](../../app/src/components/assemble/LocalityListDetail/LocalityListDetail.tsx) | 0 |
 | `Dialog_AccessRestrictedAction_Legacy` | `UBTConnect_Utils` | [`platform/feedback/dialogs/DialogAccessRestrictedActionLegacy.tsx`](../../app/src/platform/feedback/dialogs/DialogAccessRestrictedActionLegacy.tsx) | 0 |
 
-<details><summary>User actions of the shared blocks (12)</summary>
+<details><summary>User actions of the shared blocks (8)</summary>
 
 | # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
 |---|---|---|---|---|---|
-| 1 | `AssembleSummary_List` | `onClickTag of HorizontalTags` | `horizontalTagsOnClickTag` | – | calls GetAssembleMeetingSummaryList |
-| 2 | `AssembleSummary_List` | `clear of Header` | `handler_ClearFilters` | – | calls GetAssembleMeetingSummaryList |
-| 3 | `AssembleSummary_List` | `onScrollEnding (HTML element)` | `list_AssembleSummaryCardsOnScrollEnding` | – | calls GetAssembleMeetingSummaryList |
-| 4 | `AssembleSummary_List` | `applyFilters of FilterDrawer` | `handler_ApplyFilters` | – | calls GetAssembleMeetingSummaryList |
-| 5 | `Assemble_FilterSheet` | `onClick_GoToBrowseCountry of LocalityListDetail` | `handler_GoToBrowseCountry` | – | calls GetAllApplicationEvents, AppManager_SynchAppContext |
-| 6 | `Assemble_FilterSheet` | `freeSubscriptionAlert of FilterLocalityByCountry` | `handler_FreeSubscriptionAlert` | – | asks for a confirmation |
-| 7 | `MenuIcon__UpdatedOSUI` | `onClick (HTML element)` | `onBack` | – | goes to previous screen |
-| 8 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `home` | goes to HomeFeed |
-| 9 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `directory` | goes to CountryList, Locality_Details |
-| 10 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `updates` | goes to Updates_SingleList |
-| 11 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `bookmarks` | goes to Bookmarks |
-| 12 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `menu` | goes to Menu |
+| 1 | `Assemble_FilterSheet` | `onClick_GoToBrowseCountry of LocalityListDetail` | `handler_GoToBrowseCountry` | – | calls GetAllApplicationEvents, AppManager_SynchAppContext |
+| 2 | `Assemble_FilterSheet` | `freeSubscriptionAlert of FilterLocalityByCountry` | `handler_FreeSubscriptionAlert` | – | asks for a confirmation |
+| 3 | `MenuIcon__UpdatedOSUI` | `onClick (HTML element)` | `onBack` | – | goes to previous screen |
+| 4 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `home` | goes to HomeFeed |
+| 5 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `directory` | goes to CountryList, Locality_Details |
+| 6 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `updates` | goes to Updates_SingleList |
+| 7 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `bookmarks` | goes to Bookmarks |
+| 8 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `menu` | goes to Menu |
 
 </details>
 
@@ -326,4 +324,4 @@ Calls that React can make on this route, without a TST chain on this route. Ever
 |---|---|---|
 | `/api/Connect2_LegacyShared/ActionGetLocalityInformation` | `fetchLocalityInformation()` [`api/locality/repository.ts:173`](../../app/src/api/locality/repository.ts#L173) | `AssembleSubdivisionFilter` [`components/assemble/AssembleSubdivisionFilter/AssembleSubdivisionFilter.tsx`](../../app/src/components/assemble/AssembleSubdivisionFilter/AssembleSubdivisionFilter.tsx) |
 | `/api/Connect2_LegacyShared/ActionGetUserLocalitiesForCountryCodeWithGPS` | `fetchCountryLocalities()` [`api/country/repository.ts:74`](../../app/src/api/country/repository.ts#L74) | `AssembleLocalityFilter` [`components/assemble/AssembleLocalityFilter/AssembleLocalityFilter.tsx`](../../app/src/components/assemble/AssembleLocalityFilter/AssembleLocalityFilter.tsx) |
-| `/api/Connect2_LegacyShared/ActionGetSignedPhotosInBulk` | `getSignedPhotosInBulk()` [`lib/legacyShared/actions.ts:49`](../../app/src/lib/legacyShared/actions.ts#L49) | `CardItemVisual` [`components/ui/CardItemVisual/CardItemVisual.tsx`](../../app/src/components/ui/CardItemVisual/CardItemVisual.tsx), `ResultItemMedia` [`components/ui/ResultItemMedia/ResultItemMedia.tsx`](../../app/src/components/ui/ResultItemMedia/ResultItemMedia.tsx) |
+| `/api/Connect2_LegacyShared/ActionGetSignedPhotosInBulk` | `getSignedPhotosInBulk()` [`lib/legacyShared/actions.ts:45`](../../app/src/lib/legacyShared/actions.ts#L45) | `CardItemVisual` [`components/ui/CardItemVisual/CardItemVisual.tsx`](../../app/src/components/ui/CardItemVisual/CardItemVisual.tsx), `ResultItemMedia` [`components/ui/ResultItemMedia/ResultItemMedia.tsx`](../../app/src/components/ui/ResultItemMedia/ResultItemMedia.tsx) |

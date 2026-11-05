@@ -4,7 +4,7 @@ The route `/UBTConnect/Household_Relations`, read from the TST compiled code and
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/Household_Relations/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
-**Live code.** TST changed 2 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `HouseholdRelations_Block`, `MemberRelation_ListItem`. The observed calls come from the capture.
+**Live code.** TST changed 16 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `Connect2_LegacyShared`, `js`, `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `HouseholdRelations_Block`, `UBTConnect`, `js`, `js`, `MemberRelation_ListItem`, `UBTConnectLibrary`, `js`, `UBTConnect_Utils`, `js`, `UBT_AppManager`, `UBT_AppManager_Mobile`. The observed calls come from the capture.
 
 ## 1. Route
 
@@ -22,8 +22,8 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 
 | Check | Result |
 |---|---|
-| Server calls of the route on TST | 5: React makes 5, **0 missing** |
-| Differences found | **0** (see [section 3](#3-differences-found)) |
+| Server calls of the route on TST | 7: React makes 5, **2 missing** |
+| Differences found | **2** (see [section 3](#3-differences-found)) |
 | Questions | 0 (see [section 4](#4-questions)) |
 | React calls reached only through shared code | 2: see the last section |
 | User actions of the route (own code) | OutSystems: 2. React: 2 |
@@ -36,7 +36,16 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 
 Each line is a fact of both sides: a TST call, navigation or variable, and the React code that has it or not. The tool does not judge the behaviour.
 
-None.
+- Call `UBTConnect_Utils/ServiceAPIAddBookmark2`. Chain on TST: onClick in Button → event event_OnClick of Button → … → UBTConnect_Utils.toggleBookmarkItem_C2 → server AddBookmark2.
+  - React has the function, but this route does not use it: `addC2Bookmark()` [`api/bookmark/repository.ts:16`](../../app/src/api/bookmark/repository.ts#L16).
+  - Note in [`lib/ubtConnectUtils/actions.ts:281`](../../app/src/lib/ubtConnectUtils/actions.ts#L281): "/* ---- ToggleBookmarkItem_C2 (live module of 2026-11-05: TST moved it from UBTConnect to UBTConnect_Utils) ---- */"
+  - Note in [`api/README.md:48`](../../app/src/api/README.md#L48): "ToggleBookmarkItem_C2 in `lib/ubtConnectUtils/actions.ts` calls these functions. `bookmarkCards.ts` holds the calls of the screen Bookmarks (`fetchBookmarkCards`, `fetchBookmarkPil"
+  - Note in [`containers/EntityDetailsActions/README.md:67`](../../app/src/containers/EntityDetailsActions/README.md#L67): "- **Handle_Bookmark** (:1400-1470): UBTConnect_Utils ToggleBookmarkItem_C2(EntityId, Local_BookmarkTypeId,"
+- Call `UBTConnect_Utils/ServiceAPIDeleteBookmarkByBookmarkId2`. Chain on TST: onClick in Button → event event_OnClick of Button → … → UBTConnect_Utils.toggleBookmarkItem_C2 → server DeleteBookmarkByBookmarkId2.
+  - React has the function, but this route does not use it: `deleteC2Bookmark()` [`api/bookmark/repository.ts:27`](../../app/src/api/bookmark/repository.ts#L27).
+  - Note in [`lib/ubtConnectUtils/actions.ts:281`](../../app/src/lib/ubtConnectUtils/actions.ts#L281): "/* ---- ToggleBookmarkItem_C2 (live module of 2026-11-05: TST moved it from UBTConnect to UBTConnect_Utils) ---- */"
+  - Note in [`api/README.md:48`](../../app/src/api/README.md#L48): "ToggleBookmarkItem_C2 in `lib/ubtConnectUtils/actions.ts` calls these functions. `bookmarkCards.ts` holds the calls of the screen Bookmarks (`fetchBookmarkCards`, `fetchBookmarkPil"
+  - Note in [`containers/EntityDetailsActions/README.md:67`](../../app/src/containers/EntityDetailsActions/README.md#L67): "- **Handle_Bookmark** (:1400-1470): UBTConnect_Utils ToggleBookmarkItem_C2(EntityId, Local_BookmarkTypeId,"
 
 ## 4. Questions
 
@@ -58,11 +67,13 @@ All columns come from the code, without interpretation:
 
 | # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
 |---|---|---|---|---|---|---|---|---|
-| 1 | `UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionFetchNotes` | data action | `HouseholdRelations_Block` | onClick in Button → event event_OnClick of Button → event buttonOnClick of Button → HouseholdRelations_Block.handler_AddNotes → HouseholdRelations_Block.DataActionFetchNotes<br>HouseholdRelations_Block fetch at start → HouseholdRelations_Block.DataActionFetchNotes | no | `fetchHouseholdRelationNotes()` [`api/household/repository.ts:96`](../../app/src/api/household/repository.ts#L96) (page) | `HouseholdRelations → useHouseholdRelations → fetchHouseholdRelationNotes`<br>[`pages/Household_Relations/Household_RelationsPage.tsx`](../../app/src/pages/Household_Relations/Household_RelationsPage.tsx) | implemented |
-| 2 | `UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionGet_MemberDetails` | data action | `HouseholdRelations_Block` | HouseholdRelations_Block.OnReady → HouseholdRelations_Block.screenEvent_OnReady → HouseholdRelations_Block.action_Refresh_Get_MemberDetails → HouseholdRelations_Block.DataActionGet_MemberDetails<br>HouseholdRelations_Block fetch at start → HouseholdRelations_Block.DataActionGet_MemberDetails | yes | `fetchMemberRelations()` [`api/household/repository.ts:81`](../../app/src/api/household/repository.ts#L81) (page) | `HouseholdRelations → useHouseholdRelations → fetchMemberRelations`<br>[`pages/Household_Relations/Household_RelationsPage.tsx`](../../app/src/pages/Household_Relations/Household_RelationsPage.tsx) | implemented |
-| 3 | `UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionGet_ParentHouseholdDetails` | data action | `HouseholdRelations_Block` | HouseholdRelations_Block.OnReady → HouseholdRelations_Block.screenEvent_OnReady → … → HouseholdRelations_Block.onAfterFetch_Get_MemberDetails → HouseholdRelations_Block.DataActionGet_ParentHouseholdDetails<br>HouseholdRelations_Block fetch at start → HouseholdRelations_Block.DataActionGet_MemberDetails → HouseholdRelations_Block.onAfterFetch_Get_MemberDetails → HouseholdRelations_Block.DataActionGet_ParentHouseholdDetails<br>HouseholdRelations_Block fetch at start → HouseholdRelations_Block.DataActionGet_ParentHouseholdDetails | yes | `fetchSiblingRelations()` [`api/household/repository.ts:88`](../../app/src/api/household/repository.ts#L88) (page) | `HouseholdRelations → useHouseholdRelations → fetchSiblingRelations`<br>[`pages/Household_Relations/Household_RelationsPage.tsx`](../../app/src/pages/Household_Relations/Household_RelationsPage.tsx) | implemented |
+| 1 | `UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionFetchNotes` | data action | `HouseholdRelations_Block` | onClick in Button → event event_OnClick of Button → event buttonOnClick of Button → HouseholdRelations_Block.handler_AddNotes → HouseholdRelations_Block.DataActionFetchNotes<br>HouseholdRelations_Block fetch at start → HouseholdRelations_Block.DataActionFetchNotes | no | `fetchHouseholdRelationNotes()` [`api/household/repository.ts:110`](../../app/src/api/household/repository.ts#L110) (page) | `HouseholdRelations → useHouseholdRelations → fetchHouseholdRelationNotes`<br>[`pages/Household_Relations/Household_RelationsPage.tsx`](../../app/src/pages/Household_Relations/Household_RelationsPage.tsx) | implemented |
+| 2 | `UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionGet_MemberDetails` | data action | `HouseholdRelations_Block` | HouseholdRelations_Block.OnReady → HouseholdRelations_Block.screenEvent_OnReady → HouseholdRelations_Block.action_Refresh_Get_MemberDetails → HouseholdRelations_Block.DataActionGet_MemberDetails<br>HouseholdRelations_Block fetch at start → HouseholdRelations_Block.DataActionGet_MemberDetails | yes | `fetchMemberRelations()` [`api/household/repository.ts:95`](../../app/src/api/household/repository.ts#L95) (page) | `HouseholdRelations → useHouseholdRelations → fetchMemberRelations`<br>[`pages/Household_Relations/Household_RelationsPage.tsx`](../../app/src/pages/Household_Relations/Household_RelationsPage.tsx) | implemented |
+| 3 | `UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionGet_ParentHouseholdDetails` | data action | `HouseholdRelations_Block` | HouseholdRelations_Block.OnReady → HouseholdRelations_Block.screenEvent_OnReady → … → HouseholdRelations_Block.onAfterFetch_Get_MemberDetails → HouseholdRelations_Block.DataActionGet_ParentHouseholdDetails<br>HouseholdRelations_Block fetch at start → HouseholdRelations_Block.DataActionGet_MemberDetails → HouseholdRelations_Block.onAfterFetch_Get_MemberDetails → HouseholdRelations_Block.DataActionGet_ParentHouseholdDetails<br>HouseholdRelations_Block fetch at start → HouseholdRelations_Block.DataActionGet_ParentHouseholdDetails | yes | `fetchSiblingRelations()` [`api/household/repository.ts:102`](../../app/src/api/household/repository.ts#L102) (page) | `HouseholdRelations → useHouseholdRelations → fetchSiblingRelations`<br>[`pages/Household_Relations/Household_RelationsPage.tsx`](../../app/src/pages/Household_Relations/Household_RelationsPage.tsx) | implemented |
 | 4 | `UBTConnect_Utils/CW_Notes/NotesSheet/ServiceAPIAddNote` | service action | `NotesSheet` | NotesSheet.handler_OnSubmitNote → server AddNote | no | `addNote()` [`api/note/repository.ts:54`](../../app/src/api/note/repository.ts#L54) (page) | `NotesSheet → addNote`<br>[`components/note/NotesSheet/NotesSheet.tsx`](../../app/src/components/note/NotesSheet/NotesSheet.tsx) | implemented |
 | 5 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx) | implemented |
+| 6 | `UBTConnect_Utils/ServiceAPIAddBookmark2` | service action | `UBTConnect_Utils` | onClick in Button → event event_OnClick of Button → … → UBTConnect_Utils.toggleBookmarkItem_C2 → server AddBookmark2 | no | – | – | **missing** |
+| 7 | `UBTConnect_Utils/ServiceAPIDeleteBookmarkByBookmarkId2` | service action | `UBTConnect_Utils` | onClick in Button → event event_OnClick of Button → … → UBTConnect_Utils.toggleBookmarkItem_C2 → server DeleteBookmarkByBookmarkId2 | no | – | – | **missing** |
 
 ## 6. User actions
 
@@ -72,10 +83,26 @@ Two independent lists: the event bindings of the TST views, and the JSX event bi
 
 | # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
 |---|---|---|---|---|---|
-| 1 | `HouseholdRelations_Block` | `buttonOnClick of Button` | `handler_AddNotes` | – | calls FetchNotes |
+| [1](#611-householdrelations_block-onclick_bookmark) | `HouseholdRelations_Block` | `buttonOnClick of Button` | `onClick_Bookmark` | – | calls AddBookmark2, DeleteBookmarkByBookmarkId2 |
 | [2](#612-householdrelations_block-onclick_member) | `HouseholdRelations_Block` | `click of Icon`<br>`onClickPerson of ListItem` | `onClick_Member` | – | goes to HouseholdDetails; asks for a confirmation |
 
-<details><summary>1 diagrams (handlers with two or more effects)</summary>
+<details><summary>2 diagrams (handlers with two or more effects)</summary>
+
+#### 6.1.1 HouseholdRelations_Block: onClick_Bookmark
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as HouseholdRelations_Block
+  participant S as Server (TST calls)
+  U->>B: buttonOnClick of Button → onClick_Bookmark
+  Note over B: via UBTConnect_Utils.toggleBookmarkItem_C2
+  B->>S: AddBookmark2(In_BookmarkCategoryId, In_ItemId)
+  S-->>B: Bookmark_Added, Success
+  B->>S: DeleteBookmarkByBookmarkId2(BookmarkId)
+  S-->>B: Success, WasFound
+```
 
 #### 6.1.2 HouseholdRelations_Block: onClick_Member
 

@@ -4,6 +4,8 @@ The route `/UBTConnect/LDM_MyEvents_V2`, read from the TST compiled code and fro
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/LDM_MyEvents_V2/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
+**Live code.** TST changed 16 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `Connect2_LegacyShared`, `js`, `Connect2_OrbitMobile_MUI`, `js`, `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `UBTConnect`, `js`, `js`, `UBTConnectLibrary`, `js`, `UBTConnect_Utils`, `js`, `UBT_AppManager`, `UBT_AppManager_Mobile`. The observed calls come from the capture.
+
 ## 1. Route
 
 | Item | Value | Source |
@@ -42,8 +44,8 @@ Missing TST calls that a rule of `route-actions/config.json` (`notApplicable`, u
 
 **Unreachable on TST.** The handler is bound only in the Month, Day and Agenda calendar views, and OnReady calls GetEventCalendarData only when CurrentEventView is not MyTimeline. The variable keeps its default MyTimeline: no action assigns it. Evidence: Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_MyEvents_V2.mvc.js:50 (CurrentEventView default), :521-692 (the $if of the calendar views), :2140-2185 (OnReady: Day or Month? / MyTimeline? / else GetEventCalendarData), no `currentEventViewVar =` in the file; app/src/pages/LDM_MyEvents_V2/hooks/ldmMyEventsState.ts:16-18.
 
-- `Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_MyEvents_V2/DataActionGetEventsForCalendar`. Chain on TST: ScreenBlock_MyEvents_V2.onHandle_DateClicked → ScreenBlock_MyEvents_V2.checkDateBoundaries → ScreenBlock_MyEvents_V2.getEventCalendarData → ScreenBlock_MyEvents_V2.DataActionGetEventsForCalendar.
 - `Connect2_OrbitMobile_MUI/ActionGetEventViewInfo`. Chain on TST: ScreenBlock_MyEvents_V2.onHandle_DateClicked → Connect2_OrbitMobile_MUI.addAuditCalendarEvent → Connect2_OrbitMobile_MUI.getEventViewInfo → server GetEventViewInfo.
+- `Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_MyEvents_V2/DataActionGetEventsForCalendar`. Chain on TST: ScreenBlock_MyEvents_V2.onHandle_DateClicked → ScreenBlock_MyEvents_V2.checkDateBoundaries → ScreenBlock_MyEvents_V2.getEventCalendarData → ScreenBlock_MyEvents_V2.DataActionGetEventsForCalendar.
 
 
 ## 4. Questions
@@ -159,7 +161,7 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/screens/LDM_MyEvents_V2/analysis/sources/raw/`.
+The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 
@@ -287,7 +289,7 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 
 | Block | Module | React port | User actions |
 |---|---|---|---|
-| `ScreenBlock_MyEvents_V2` | `Connect2_OrbitMobile_MUI` | [`pages/LDM_MyEvents_V2/components/LdmMyEventsView.tsx`](../../app/src/pages/LDM_MyEvents_V2/components/LdmMyEventsView.tsx), [`pages/LDM_MyEvents_V2/hooks/useLdmMyEvents.ts`](../../app/src/pages/LDM_MyEvents_V2/hooks/useLdmMyEvents.ts) | 10 |
+| `ScreenBlock_MyEvents_V2` | `Connect2_OrbitMobile_MUI` | [`pages/LDM_MyEvents_V2/components/LdmMyEventsView.tsx`](../../app/src/pages/LDM_MyEvents_V2/components/LdmMyEventsView.tsx), [`pages/LDM_MyEvents_V2/hooks/useLdmMyEvents.ts`](../../app/src/pages/LDM_MyEvents_V2/hooks/useLdmMyEvents.ts) | 9 |
 | `Layout` | `Connect2_LegacyShared` | [`components/layout/LegacyLayout/LegacyLayout.tsx`](../../app/src/components/layout/LegacyLayout/LegacyLayout.tsx) | 0 |
 | `BaseLayout_UpdatedOSUI` | `Connect2_LegacyShared` | [`components/layout/BaseLayout/BaseLayout.tsx`](../../app/src/components/layout/BaseLayout/BaseLayout.tsx) | 0 |
 | `MenuIcon__UpdatedOSUI` | `Connect2_LegacyShared` | [`components/layout/MenuIcon/MenuIcon.tsx`](../../app/src/components/layout/MenuIcon/MenuIcon.tsx) | 1 |
@@ -311,30 +313,29 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | `IconBadge` | `UBTConnectLibrary` | [`components/ui/IconBadge/IconBadge.tsx`](../../app/src/components/ui/IconBadge/IconBadge.tsx) | 0 |
 | `Badge` | `UBTConnectLibrary` | [`components/ui/Badge/Badge.tsx`](../../app/src/components/ui/Badge/Badge.tsx) | 0 |
 
-<details><summary>User actions of the shared blocks (20)</summary>
+<details><summary>User actions of the shared blocks (19)</summary>
 
 | # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
 |---|---|---|---|---|---|
 | 1 | `MenuIcon__UpdatedOSUI` | `onClick (HTML element)` | `onBack` | – | goes to previous screen |
 | 2 | `EventCard_Guests` | `emailClicked of Options` | `onHandle_ClickedEmail` | – | shows a message |
-| 3 | `ScreenBlock_MyEvents_V2` | `dateClicked of EventCalendarWeekMonth`<br>`dateSelected of MonthYearSelector` | `onHandle_DateClicked` | – | calls GetEventsForCalendar, GetAllApplicationEvents, AppManager_SynchAppContext, GetEventViewInfo |
-| 4 | `ScreenBlock_MyEvents_V2` | `resetFilters of MyTimelineFilterButton` | `onHandle_ResetFilters` | – | calls GetEventsForMyTimeline, GetAllApplicationEvents, AppManager_SynchAppContext |
-| 5 | `ScreenBlock_MyEvents_V2` | `filter of MyTimelineFilterButton` | `onHandle_MyTimelineFilter` | – | calls GetAllApplicationEvents, AppManager_SynchAppContext, GetEventsForMyTimeline |
+| 3 | `ScreenBlock_MyEvents_V2` | `dateClicked of EventCalendarWeekMonth`<br>`dateSelected of MonthYearSelector` | `onHandle_DateClicked` | – | calls GetAllApplicationEvents, AppManager_SynchAppContext, GetEventViewInfo |
+| 4 | `ScreenBlock_MyEvents_V2` | `resetFilters of MyTimelineFilterButton` | `onHandle_ResetFilters` | – | calls GetAllApplicationEvents, AppManager_SynchAppContext |
+| 5 | `ScreenBlock_MyEvents_V2` | `filter of MyTimelineFilterButton` | `onHandle_MyTimelineFilter` | – | calls GetAllApplicationEvents, AppManager_SynchAppContext |
 | 6 | `ScreenBlock_MyEvents_V2` | `eventClicked of DayCalendar`<br>`eventClicked of MonthCalendar`<br>`eventClicked of V2` | `onHandle_EventClicked` | `calendarEventClicked` | calls GetAllApplicationEvents, AppManager_SynchAppContext |
 | 7 | `ScreenBlock_MyEvents_V2` | `eventClicked of DayCalendar`<br>`eventClicked of MonthCalendar`<br>`eventClicked of V2` | `onHandle_EventClicked` | `other` | calls GetAllApplicationEvents, AppManager_SynchAppContext |
-| 8 | `ScreenBlock_MyEvents_V2` | `tryAgain of NetworkWarning` | `getEventCalendarData` | – | calls GetEventsForCalendar, GetAllApplicationEvents, AppManager_SynchAppContext |
-| 9 | `ScreenBlock_MyEvents_V2` | `eventsSwipeUp of V2` | `onHandle_SwipeUp` | – | calls GetEventsForMyTimeline |
-| 10 | `ScreenBlock_MyEvents_V2` | `callPhone of V2`<br>`onClick_PhoneCall of V2` | `onHandle_PhoneCall` | – | shows a message |
-| 11 | `ScreenBlock_MyEvents_V2` | `tryAgain of V2` | `getMyTimelineData` | – | calls GetEventsForMyTimeline, GetAllApplicationEvents, AppManager_SynchAppContext |
-| 12 | `ScreenBlock_MyEvents_V2` | `scrollEnding of V2` | `onScrollEnding_MyTimeline` | – | calls GetEventsForMyTimeline, GetAllApplicationEvents, AppManager_SynchAppContext |
-| 13 | `ScreenBlock_MyEvents_V2` | `householdClicked of V2` | `onHandle_HouseholdClicked` | – | calls GetAllApplicationEvents, AppManager_SynchAppContext; asks for a confirmation |
-| 14 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `home` | goes to HomeFeed |
-| 15 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `directory` | goes to CountryList, Locality_Details |
-| 16 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `updates` | goes to Updates_SingleList |
-| 17 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `bookmarks` | goes to Bookmarks |
-| 18 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `menu` | goes to Menu |
-| 19 | `ContactByMessage_Wrapper` | `event_SelectedMessageChannel of ByMessage` | `handler_SelectedMessageChannel` | – | opens an external link |
-| 20 | `ContactPopup_ByPhone` | `event_Clicked of ContactPopup` | `onClick_CallButton` | – | opens an external link |
+| 8 | `ScreenBlock_MyEvents_V2` | `tryAgain of NetworkWarning` | `getEventCalendarData` | – | calls GetAllApplicationEvents, AppManager_SynchAppContext |
+| 9 | `ScreenBlock_MyEvents_V2` | `callPhone of V2`<br>`onClick_PhoneCall of V2` | `onHandle_PhoneCall` | – | shows a message |
+| 10 | `ScreenBlock_MyEvents_V2` | `tryAgain of V2` | `getMyTimelineData` | – | calls GetAllApplicationEvents, AppManager_SynchAppContext |
+| 11 | `ScreenBlock_MyEvents_V2` | `scrollEnding of V2` | `onScrollEnding_MyTimeline` | – | calls GetAllApplicationEvents, AppManager_SynchAppContext |
+| 12 | `ScreenBlock_MyEvents_V2` | `householdClicked of V2` | `onHandle_HouseholdClicked` | – | calls GetAllApplicationEvents, AppManager_SynchAppContext; asks for a confirmation |
+| 13 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `home` | goes to HomeFeed |
+| 14 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `directory` | goes to CountryList, Locality_Details |
+| 15 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `updates` | goes to Updates_SingleList |
+| 16 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `bookmarks` | goes to Bookmarks |
+| 17 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `menu` | goes to Menu |
+| 18 | `ContactByMessage_Wrapper` | `event_SelectedMessageChannel of ByMessage` | `handler_SelectedMessageChannel` | – | opens an external link |
+| 19 | `ContactPopup_ByPhone` | `event_Clicked of ContactPopup` | `onClick_CallButton` | – | opens an external link |
 
 </details>
 
@@ -381,5 +382,5 @@ Calls that React can make on this route, without a TST chain on this route. Ever
 
 | Call | React action | Reached through |
 |---|---|---|
-| `/api/UBTConnect_Utils/ActionGetSignedImagesInBulk` | `cache_SignedImageURL_GetCallback()` [`lib/ubtConnectUtils/actions.ts:124`](../../app/src/lib/ubtConnectUtils/actions.ts#L124) | `EntityLazyImage` [`components/ui/EntityLazyImage/EntityLazyImage.tsx`](../../app/src/components/ui/EntityLazyImage/EntityLazyImage.tsx) |
-| `/api/Connect2_LegacyShared/ActionGetSignedPhotosInBulk` | `getSignedPhotosInBulk()` [`lib/legacyShared/actions.ts:49`](../../app/src/lib/legacyShared/actions.ts#L49) | `ResultItemImage` [`components/ui/ResultItemImage/ResultItemImage.tsx`](../../app/src/components/ui/ResultItemImage/ResultItemImage.tsx) |
+| `/api/UBTConnect_Utils/ActionGetSignedImagesInBulk` | `cache_SignedImageURL_GetCallback()` [`lib/ubtConnectUtils/actions.ts:131`](../../app/src/lib/ubtConnectUtils/actions.ts#L131) | `EntityLazyImage` [`components/ui/EntityLazyImage/EntityLazyImage.tsx`](../../app/src/components/ui/EntityLazyImage/EntityLazyImage.tsx) |
+| `/api/Connect2_LegacyShared/ActionGetSignedPhotosInBulk` | `getSignedPhotosInBulk()` [`lib/legacyShared/actions.ts:45`](../../app/src/lib/legacyShared/actions.ts#L45) | `ResultItemImage` [`components/ui/ResultItemImage/ResultItemImage.tsx`](../../app/src/components/ui/ResultItemImage/ResultItemImage.tsx) |

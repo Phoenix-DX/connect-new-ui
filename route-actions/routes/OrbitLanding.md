@@ -4,6 +4,8 @@ The route `/UBTConnect/OrbitLanding`, read from the TST compiled code and from t
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/OrbitLanding/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
+**Live code.** TST changed 17 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `Connect2_LegacyShared`, `js`, `ScreenBlock_OrbitLanding`, `Connect2_OrbitMobile_MUI`, `js`, `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `UBTConnect`, `js`, `js`, `UBTConnectLibrary`, `js`, `UBTConnect_Utils`, `js`, `UBT_AppManager`, `UBT_AppManager_Mobile`. The observed calls come from the capture.
+
 ## 1. Route
 
 | Item | Value | Source |
@@ -55,7 +57,7 @@ All columns come from the code, without interpretation:
 | # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
 |---|---|---|---|---|---|---|---|---|
 | 1 | `Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_OrbitLanding/DataActionGet_EventsByMemberId` | data action | `ScreenBlock_OrbitLanding` | ScreenBlock_OrbitLanding.OnReady → ScreenBlock_OrbitLanding.onReady → … → ScreenBlock_OrbitLanding.refresh_GetEventsByMemberId → ScreenBlock_OrbitLanding.DataActionGet_EventsByMemberId<br>ScreenBlock_OrbitLanding fetch at start → ScreenBlock_OrbitLanding.DataActionGet_HouseholdMembers → ScreenBlock_OrbitLanding.onAfterFetch_Get_HouseholdMembers → ScreenBlock_OrbitLanding.refresh_GetEventsByMemberId → ScreenBlock_OrbitLanding.DataActionGet_EventsByMemberId<br>onClick in Household_Members_Selection → Household_Members_Selection.onClick_HouseholdMember → … → ScreenBlock_OrbitLanding.refresh_GetEventsByMemberId → ScreenBlock_OrbitLanding.DataActionGet_EventsByMemberId<br>(+1 more chains) | yes | `fetchEventsByMemberId()` [`api/event/repository.ts:135`](../../app/src/api/event/repository.ts#L135) (page) | `OrbitLanding → useOrbitLanding → fetchEventsByMemberId`<br>[`pages/OrbitLanding/OrbitLandingPage.tsx`](../../app/src/pages/OrbitLanding/OrbitLandingPage.tsx) | implemented |
-| 2 | `Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_OrbitLanding/DataActionGet_HouseholdMembers` | data action | `ScreenBlock_OrbitLanding` | ScreenBlock_OrbitLanding.OnReady → ScreenBlock_OrbitLanding.onReady → ScreenBlock_OrbitLanding.refresh_GetHouseholdMembers → ScreenBlock_OrbitLanding.DataActionGet_HouseholdMembers<br>ScreenBlock_OrbitLanding fetch at start → ScreenBlock_OrbitLanding.DataActionGet_HouseholdMembers | yes | `fetchOrbitHouseholdMembers()` [`api/household/repository.ts:128`](../../app/src/api/household/repository.ts#L128) (page) | `OrbitLanding → useOrbitLanding → fetchOrbitHouseholdMembers`<br>[`pages/OrbitLanding/OrbitLandingPage.tsx`](../../app/src/pages/OrbitLanding/OrbitLandingPage.tsx) | implemented |
+| 2 | `Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_OrbitLanding/DataActionGet_HouseholdMembers` | data action | `ScreenBlock_OrbitLanding` | ScreenBlock_OrbitLanding.OnReady → ScreenBlock_OrbitLanding.onReady → ScreenBlock_OrbitLanding.refresh_GetHouseholdMembers → ScreenBlock_OrbitLanding.DataActionGet_HouseholdMembers<br>ScreenBlock_OrbitLanding fetch at start → ScreenBlock_OrbitLanding.DataActionGet_HouseholdMembers | yes | `fetchOrbitHouseholdMembers()` [`api/household/repository.ts:142`](../../app/src/api/household/repository.ts#L142) (page) | `OrbitLanding → useOrbitLanding → fetchOrbitHouseholdMembers`<br>[`pages/OrbitLanding/OrbitLandingPage.tsx`](../../app/src/pages/OrbitLanding/OrbitLandingPage.tsx) | implemented |
 | 3 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx) | implemented |
 
 ## 6. User actions
@@ -185,7 +187,7 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/screens/OrbitLanding/analysis/sources/raw/`.
+The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 
@@ -306,7 +308,7 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
 |---|---|---|---|---|---|
 | 1 | `MenuIcon__UpdatedOSUI` | `onClick (HTML element)` | `onBack` | – | goes to previous screen |
-| 2 | `ScreenBlock_OrbitLanding` | `clickedHouseholdMember of Selection` | `onHandle_ClickedHouseholdMember` | – | calls Get_EventsByMemberId, GetAllApplicationEvents, AppManager_SynchAppContext |
+| 2 | `ScreenBlock_OrbitLanding` | `clickedHouseholdMember of Selection` | `onHandle_ClickedHouseholdMember` | – | calls GetAllApplicationEvents, AppManager_SynchAppContext |
 | 3 | `ScreenBlock_OrbitLanding` | `clickedMilestone of Milestone` | `onHandle_MilestoneCardClicked` | – | calls GetAllApplicationEvents, AppManager_SynchAppContext |
 | 4 | `ScreenBlock_OrbitLanding` | `clickedEvent of Event` | `onHandle_EventCardClicked` | – | calls GetAllApplicationEvents, AppManager_SynchAppContext |
 | 5 | `ScreenBlock_OrbitLanding` | `applyFilters of Filters` | `onHandle_ApplyFilters` | – | calls GetAllApplicationEvents, AppManager_SynchAppContext |

@@ -15,69 +15,6 @@
 openapi: '3.1.0'
 info: { title: 'UBTConnect API', version: '0.1.0' }
 paths:
-  '/api/Connect2_Assemble_MUI/ActionAddBookmark':
-    post:
-      operationId: 'Connect2_Assemble_MUI.ActionAddBookmark'
-      requestBody:
-        content:
-          'application/json':
-            schema: { '$ref': '#/components/schemas/Connect2_Assemble_MUI__ActionAddBookmark__Input' }
-        required: true
-      responses:
-        '200':
-          content:
-            'application/json':
-              schema:
-                properties:
-                  data: { '$ref': '#/components/schemas/Connect2_Assemble_MUI__ActionAddBookmark__Output' }
-                required: ['data']
-                type: 'object'
-          description: 'The action outputs.'
-        default:
-          content:
-            'application/json':
-              schema: { '$ref': '#/components/schemas/Error' }
-          description: 'Error.'
-      summary: 'Server action (module client-action wrapper) AddBookmark (Connect2_Assemble_MUI)'
-      tags: ['Connect2_Assemble_MUI']
-      x-mock-source: 'fictional'
-      x-os-kind: 'clientWrapper'
-      x-os-paths: ['screenservices/Connect2_Assemble_MUI/ActionAddBookmark']
-      x-os-phase: []
-      x-os-screens: ['AssembleDetail']
-      x-os-writes: true
-  '/api/Connect2_Assemble_MUI/ActionDeleteBookmarkByBookmarkId':
-    post:
-      operationId: 'Connect2_Assemble_MUI.ActionDeleteBookmarkByBookmarkId'
-      requestBody:
-        content:
-          'application/json':
-            schema: { '$ref': '#/components/schemas/Connect2_Assemble_MUI__ActionDeleteBookmarkByBookmarkId__Input' }
-        required: true
-      responses:
-        '200':
-          content:
-            'application/json':
-              schema:
-                properties:
-                  data:
-                    '$ref': '#/components/schemas/Connect2_Assemble_MUI__ActionDeleteBookmarkByBookmarkId__Output'
-                required: ['data']
-                type: 'object'
-          description: 'The action outputs.'
-        default:
-          content:
-            'application/json':
-              schema: { '$ref': '#/components/schemas/Error' }
-          description: 'Error.'
-      summary: 'Server action (module client-action wrapper) DeleteBookmarkByBookmarkId (Connect2_Assemble_MUI)'
-      tags: ['Connect2_Assemble_MUI']
-      x-mock-source: 'fictional'
-      x-os-kind: 'clientWrapper'
-      x-os-paths: ['screenservices/Connect2_Assemble_MUI/ActionDeleteBookmarkByBookmarkId']
-      x-os-phase: []
-      x-os-screens: ['AssembleDetail']
-      x-os-writes: true
   '/api/Connect2_Assemble_MUI/AssembleEventDetail/DataActionGetAssembleEvent':
     post:
       operationId: 'Connect2_Assemble_MUI.AssembleEventDetail.DataActionGetAssembleEvent'
@@ -5095,82 +5032,6 @@ paths:
       x-os-phase: []
       x-os-screens: ['HomeFeed', 'Updates_SingleList']
       x-os-writes: true
-  '/api/UBTConnect/ServiceAPIAddBookmark2':
-    post:
-      operationId: 'UBTConnect.ServiceAPIAddBookmark2'
-      requestBody:
-        content:
-          'application/json':
-            schema: { '$ref': '#/components/schemas/UBTConnect__ServiceAPIAddBookmark2__Input' }
-        required: true
-      responses:
-        '200':
-          content:
-            'application/json':
-              schema:
-                properties:
-                  data: { '$ref': '#/components/schemas/UBTConnect__ServiceAPIAddBookmark2__Output' }
-                required: ['data']
-                type: 'object'
-          description: 'The action outputs.'
-        default:
-          content:
-            'application/json':
-              schema: { '$ref': '#/components/schemas/Error' }
-          description: 'Error.'
-      summary: 'Service action AddBookmark2 (UBTConnect)'
-      tags: ['UBTConnect']
-      x-mock-source: 'fictional'
-      x-os-kind: 'serviceAPI'
-      x-os-paths: ['screenservices/UBTConnect/ServiceAPIAddBookmark2']
-      x-os-phase: []
-      x-os-screens:
-        - 'HouseholdCarousel'
-        - 'HouseholdDetails'
-        - 'Locality_Details'
-        - 'OneSchoolGlobalDetails'
-        - 'Profile'
-        - 'SupperMeeting_Carousel'
-        - 'SupperMeeting_Details'
-      x-os-writes: true
-  '/api/UBTConnect/ServiceAPIDeleteBookmarkByBookmarkId2':
-    post:
-      operationId: 'UBTConnect.ServiceAPIDeleteBookmarkByBookmarkId2'
-      requestBody:
-        content:
-          'application/json':
-            schema: { '$ref': '#/components/schemas/UBTConnect__ServiceAPIDeleteBookmarkByBookmarkId2__Input' }
-        required: true
-      responses:
-        '200':
-          content:
-            'application/json':
-              schema:
-                properties:
-                  data: { '$ref': '#/components/schemas/UBTConnect__ServiceAPIDeleteBookmarkByBookmarkId2__Output' }
-                required: ['data']
-                type: 'object'
-          description: 'The action outputs.'
-        default:
-          content:
-            'application/json':
-              schema: { '$ref': '#/components/schemas/Error' }
-          description: 'Error.'
-      summary: 'Service action DeleteBookmarkByBookmarkId2 (UBTConnect)'
-      tags: ['UBTConnect']
-      x-mock-source: 'fictional'
-      x-os-kind: 'serviceAPI'
-      x-os-paths: ['screenservices/UBTConnect/ServiceAPIDeleteBookmarkByBookmarkId2']
-      x-os-phase: []
-      x-os-screens:
-        - 'HouseholdCarousel'
-        - 'HouseholdDetails'
-        - 'Locality_Details'
-        - 'OneSchoolGlobalDetails'
-        - 'Profile'
-        - 'SupperMeeting_Carousel'
-        - 'SupperMeeting_Details'
-      x-os-writes: true
   '/api/UBTConnect/ServiceAPIDelete_Notifications':
     post:
       operationId: 'UBTConnect.ServiceAPIDelete_Notifications'
@@ -6347,6 +6208,49 @@ paths:
         - 'Search'
         - 'Updates_SingleList'
       x-review: 'inputs'
+  '/api/UBTConnect_Utils/ServiceAPIAddBookmark2':
+    post:
+      operationId: 'UBTConnect_Utils.ServiceAPIAddBookmark2'
+      requestBody:
+        content:
+          'application/json':
+            schema: { '$ref': '#/components/schemas/UBTConnect_Utils__ServiceAPIAddBookmark2__Input' }
+        required: true
+      responses:
+        '200':
+          content:
+            'application/json':
+              schema:
+                properties:
+                  data: { '$ref': '#/components/schemas/UBTConnect_Utils__ServiceAPIAddBookmark2__Output' }
+                required: ['data']
+                type: 'object'
+          description: 'The action outputs.'
+        default:
+          content:
+            'application/json':
+              schema: { '$ref': '#/components/schemas/Error' }
+          description: 'Error.'
+      summary: 'Service action AddBookmark2 (UBTConnect_Utils)'
+      tags: ['UBTConnect_Utils']
+      x-mock-source: 'fictional'
+      x-os-kind: 'serviceAPI'
+      x-os-paths: ['screenservices/UBTConnect_Utils/ServiceAPIAddBookmark2']
+      x-os-phase: []
+      x-os-screens:
+        - 'AssembleDetail'
+        - 'Bookmarks'
+        - 'HouseholdCarousel'
+        - 'HouseholdDetails'
+        - 'Household_Relations'
+        - 'Locality_Details'
+        - 'Notes'
+        - 'OneSchoolGlobalCarousel'
+        - 'OneSchoolGlobalDetails'
+        - 'Profile'
+        - 'SupperMeeting_Carousel'
+        - 'SupperMeeting_Details'
+      x-os-writes: true
   '/api/UBTConnect_Utils/ServiceAPIAddNote':
     post:
       operationId: 'UBTConnect_Utils.ServiceAPIAddNote'
@@ -6384,6 +6288,50 @@ paths:
         - 'HouseholdDetails'
         - 'Household_Relations'
         - 'LDM_EventDetail_V2'
+        - 'Locality_Details'
+        - 'Notes'
+        - 'OneSchoolGlobalCarousel'
+        - 'OneSchoolGlobalDetails'
+        - 'Profile'
+        - 'SupperMeeting_Carousel'
+        - 'SupperMeeting_Details'
+      x-os-writes: true
+  '/api/UBTConnect_Utils/ServiceAPIDeleteBookmarkByBookmarkId2':
+    post:
+      operationId: 'UBTConnect_Utils.ServiceAPIDeleteBookmarkByBookmarkId2'
+      requestBody:
+        content:
+          'application/json':
+            schema: { '$ref': '#/components/schemas/UBTConnect_Utils__ServiceAPIDeleteBookmarkByBookmarkId2__Input' }
+        required: true
+      responses:
+        '200':
+          content:
+            'application/json':
+              schema:
+                properties:
+                  data:
+                    '$ref': '#/components/schemas/UBTConnect_Utils__ServiceAPIDeleteBookmarkByBookmarkId2__Output'
+                required: ['data']
+                type: 'object'
+          description: 'The action outputs.'
+        default:
+          content:
+            'application/json':
+              schema: { '$ref': '#/components/schemas/Error' }
+          description: 'Error.'
+      summary: 'Service action DeleteBookmarkByBookmarkId2 (UBTConnect_Utils)'
+      tags: ['UBTConnect_Utils']
+      x-mock-source: 'fictional'
+      x-os-kind: 'serviceAPI'
+      x-os-paths: ['screenservices/UBTConnect_Utils/ServiceAPIDeleteBookmarkByBookmarkId2']
+      x-os-phase: []
+      x-os-screens:
+        - 'AssembleDetail'
+        - 'Bookmarks'
+        - 'HouseholdCarousel'
+        - 'HouseholdDetails'
+        - 'Household_Relations'
         - 'Locality_Details'
         - 'Notes'
         - 'OneSchoolGlobalCarousel'
@@ -7000,6 +6948,15 @@ components:
       required: ['Latitude', 'Longitude', 'UseCoordinates']
       type: 'object'
       x-os-structure: 'APIDomain_Directory_IS.Directory_CoordinatesRec'
+    APIDomain_Directory_IS__Directory_ImageDetails:
+      properties:
+        Id: { type: 'string', x-os-type: 'LongInteger' }
+        IsHidden: { type: 'boolean' }
+        SignedUrl: { type: 'string' }
+        isDeceased: { type: 'boolean' }
+      required: ['Id', 'IsHidden', 'SignedUrl', 'isDeceased']
+      type: 'object'
+      x-os-structure: 'APIDomain_Directory_IS.Directory_ImageDetailsRec'
     APIDomain_Directory_IS__Directory_LocalitySubdivision:
       properties:
         LocalityId: { type: 'string' }
@@ -7102,11 +7059,21 @@ components:
       properties:
         Address: { '$ref': '#/components/schemas/APIDomain_Directory_IS__Custom_Address' }
         HouseholderId: { type: 'string', x-os-type: 'LongInteger' }
+        HouseholderLatitude: { type: 'string', x-os-type: 'Decimal' }
+        HouseholderLongitude: { type: 'string', x-os-type: 'Decimal' }
         Photo: { '$ref': '#/components/schemas/APIDomain_Directory_IS__Directory_Photo' }
         SpouseId: { type: 'string', x-os-type: 'LongInteger' }
         SpouseIsHouseholder: { type: 'boolean' }
         isHouseholder: { type: 'boolean' }
-      required: ['Address', 'HouseholderId', 'Photo', 'SpouseId', 'SpouseIsHouseholder', 'isHouseholder']
+      required:
+        - 'Address'
+        - 'HouseholderId'
+        - 'HouseholderLatitude'
+        - 'HouseholderLongitude'
+        - 'Photo'
+        - 'SpouseId'
+        - 'SpouseIsHouseholder'
+        - 'isHouseholder'
       type: 'object'
       x-os-structure: 'APIDomain_Directory_IS.Directory_UserCurrent_MemberRec'
     APIDomain_Directory_IS__Directory_UserCurrent_Subscription:
@@ -7269,6 +7236,8 @@ components:
         IsMainHall: { type: 'boolean' }
         LastName: { type: 'string' }
         LastUpdated: { type: 'string', x-os-type: 'DateTime' }
+        Latitude: { type: 'string', x-os-type: 'Decimal' }
+        Longitude: { type: 'string', x-os-type: 'Decimal' }
         MaidenName: { type: 'string' }
         MobilePhoneLastUpdated: { type: 'string', x-os-type: 'DateTime' }
         Name: { type: 'string' }
@@ -7297,6 +7266,8 @@ components:
         - 'IsMainHall'
         - 'LastName'
         - 'LastUpdated'
+        - 'Latitude'
+        - 'Longitude'
         - 'MaidenName'
         - 'MobilePhoneLastUpdated'
         - 'Name'
@@ -8237,36 +8208,6 @@ components:
       required: ['AssembleAttendeeSubdivisionList', 'LocalityId', 'LocalityName']
       type: 'object'
       x-os-structure: 'Connect2_Assemble_CS.LocalityDetailsRec'
-    Connect2_Assemble_MUI__ActionAddBookmark__Input:
-      additionalProperties: false
-      properties:
-        Group: { type: 'string' }
-        Note: { type: 'string' }
-        ObjectId: { type: 'string' }
-        ObjectType: { type: 'string' }
-      required: ['Group', 'Note', 'ObjectId', 'ObjectType']
-      type: 'object'
-      x-os-input-of: 'Connect2_Assemble_MUI.ActionAddBookmark'
-    Connect2_Assemble_MUI__ActionAddBookmark__Output:
-      properties:
-        CreatedBookmarkResponse: { '$ref': '#/components/schemas/Connect2_MyBookmarks_IS__BookmarkItem' }
-        Success: { type: 'boolean' }
-      required: ['CreatedBookmarkResponse', 'Success']
-      type: 'object'
-      x-os-output-of: 'Connect2_Assemble_MUI.ActionAddBookmark'
-    Connect2_Assemble_MUI__ActionDeleteBookmarkByBookmarkId__Input:
-      additionalProperties: false
-      properties:
-        BookmarkId: { type: 'string', x-os-type: 'LongInteger' }
-      required: ['BookmarkId']
-      type: 'object'
-      x-os-input-of: 'Connect2_Assemble_MUI.ActionDeleteBookmarkByBookmarkId'
-    Connect2_Assemble_MUI__ActionDeleteBookmarkByBookmarkId__Output:
-      properties:
-        Success: { type: 'boolean' }
-      required: ['Success']
-      type: 'object'
-      x-os-output-of: 'Connect2_Assemble_MUI.ActionDeleteBookmarkByBookmarkId'
     Connect2_Assemble_MUI__AssembleEventDetail__DataActionGetAssembleEvent__Input:
       additionalProperties: true
       description: 'Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter.'
@@ -14557,9 +14498,10 @@ components:
     Connect_Household_CS__UI_AccountForm_PersonalInformation:
       properties:
         Email: { type: 'string' }
+        ShowEmail: { type: 'boolean' }
         ShowLifeCycleDates: { type: 'boolean' }
         Username: { type: 'string' }
-      required: ['Email', 'ShowLifeCycleDates', 'Username']
+      required: ['Email', 'ShowEmail', 'ShowLifeCycleDates', 'Username']
       type: 'object'
       x-os-structure: 'Connect_Household_CS.UI_AccountForm_PersonalInformationRec'
     Connect_Household_CS__UI_DisplayOptions:
@@ -14636,10 +14578,14 @@ components:
       type: 'object'
       x-os-structure: 'Connect_Household_CS.UI_HouseholdMemberRec'
     Connect_Household_CS__UI_HouseholdRelations_AwayParents:
-      description: 'structure Connect_Household_CS.UI_HouseholdRelations_AwayParentsRec (module not in the downloaded code) never captured'
-      x-os-source: 'capture'
+      properties:
+        CountryName: { type: 'string' }
+        HouseholdId: { type: 'string', x-os-type: 'LongInteger' }
+        LocalityName: { type: 'string' }
+        Title: { type: 'string' }
+      required: ['CountryName', 'HouseholdId', 'LocalityName', 'Title']
+      type: 'object'
       x-os-structure: 'Connect_Household_CS.UI_HouseholdRelations_AwayParentsRec'
-      x-unknown: true
     Connect_Household_CS__UI_HouseholdTimelineImages:
       properties:
         Date: { type: 'string', x-os-type: 'DateTime' }
@@ -16035,6 +15981,21 @@ components:
       required: ['IsEnabled', 'IsSelected', 'SearchResult']
       type: 'object'
       x-os-structure: 'UBTConnect_Utils.SelectableSearchResultListRec'
+    UBTConnect_Utils__ServiceAPIAddBookmark2__Input:
+      additionalProperties: false
+      properties:
+        In_BookmarkCategoryId: { type: 'string' }
+        In_ItemId: { type: 'string' }
+      required: ['In_BookmarkCategoryId', 'In_ItemId']
+      type: 'object'
+      x-os-input-of: 'UBTConnect_Utils.ServiceAPIAddBookmark2'
+    UBTConnect_Utils__ServiceAPIAddBookmark2__Output:
+      properties:
+        Bookmark_Added: { '$ref': '#/components/schemas/Connect_Bookmarks_CS__UI_Bookmark_Added' }
+        Success: { type: 'boolean' }
+      required: ['Bookmark_Added', 'Success']
+      type: 'object'
+      x-os-output-of: 'UBTConnect_Utils.ServiceAPIAddBookmark2'
     UBTConnect_Utils__ServiceAPIAddNote__Input:
       additionalProperties: false
       properties:
@@ -16051,6 +16012,20 @@ components:
       required: ['Note_Added', 'Success']
       type: 'object'
       x-os-output-of: 'UBTConnect_Utils.ServiceAPIAddNote'
+    UBTConnect_Utils__ServiceAPIDeleteBookmarkByBookmarkId2__Input:
+      additionalProperties: false
+      properties:
+        BookmarkId: { type: 'string', x-os-type: 'LongInteger' }
+      required: ['BookmarkId']
+      type: 'object'
+      x-os-input-of: 'UBTConnect_Utils.ServiceAPIDeleteBookmarkByBookmarkId2'
+    UBTConnect_Utils__ServiceAPIDeleteBookmarkByBookmarkId2__Output:
+      properties:
+        Success: { type: 'boolean' }
+        WasFound: { type: 'boolean' }
+      required: ['Success', 'WasFound']
+      type: 'object'
+      x-os-output-of: 'UBTConnect_Utils.ServiceAPIDeleteBookmarkByBookmarkId2'
     UBTConnect_Utils__ServiceAPIDeleteNoteByNoteId__Input:
       additionalProperties: false
       properties:
@@ -16872,10 +16847,11 @@ components:
       type: 'object'
       x-os-output-of: 'UBTConnect.CountryList.DataActionGetCountriesStatistics'
     UBTConnect__Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecord:
-      description: 'structure UBTConnect.Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecord (module not in the downloaded code) never captured'
-      x-os-source: 'capture'
+      properties:
+        Delimiters: { '$ref': '#/components/schemas/UBTConnect__TextTextTextRecord' }
+      required: ['Delimiters']
+      type: 'object'
       x-os-structure: 'UBTConnect.Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecord'
-      x-unknown: true
     UBTConnect__Directory_EntityDetailsActions__DataActionFetchContactDetails__Input:
       additionalProperties: true
       description: 'Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter.'
@@ -16967,11 +16943,6 @@ components:
       required: ['Notes']
       type: 'object'
       x-os-output-of: 'UBTConnect.Directory_EntityDetailsActions.DataActionFetchNotes'
-    UBTConnect__Directory_ImageDetailsList:
-      description: 'structure UBTConnect.Directory_ImageDetailsList (module not in the downloaded code) never captured'
-      x-os-source: 'capture'
-      x-os-structure: 'UBTConnect.Directory_ImageDetailsList'
-      x-unknown: true
     UBTConnect__FeedBlock_CommunityPopulation__DataActionFetchCount__Input:
       additionalProperties: true
       description: 'Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter.'
@@ -17108,7 +17079,15 @@ components:
       x-os-input-of: 'UBTConnect.HouseholdDetails_Block.DataActionGetHouseHold_Gallery'
     UBTConnect__HouseholdDetails_Block__DataActionGetHouseHold_Gallery__Output:
       properties:
-        Out_ImageDetails: { '$ref': '#/components/schemas/UBTConnect__Directory_ImageDetailsList' }
+        Out_ImageDetails:
+          properties:
+            EmptyListItem: { '$ref': '#/components/schemas/APIDomain_Directory_IS__Directory_ImageDetails' }
+            List:
+              items: { '$ref': '#/components/schemas/APIDomain_Directory_IS__Directory_ImageDetails' }
+              type: 'array'
+          required: ['List']
+          type: 'object'
+          x-os-list: true
       required: ['Out_ImageDetails']
       type: 'object'
       x-os-output-of: 'UBTConnect.HouseholdDetails_Block.DataActionGetHouseHold_Gallery'
@@ -17541,16 +17520,33 @@ components:
       required: ['MapExploreItem', 'MarkerWithWindow']
       type: 'object'
       x-os-structure: 'UBTConnect.MarkerWithWindowMapExploreItemRecord'
-    UBTConnect__MessageParameterRecordList:
-      description: 'structure UBTConnect.MessageParameterRecordList (module not in the downloaded code) never captured'
-      x-os-source: 'capture'
-      x-os-structure: 'UBTConnect.MessageParameterRecordList'
-      x-unknown: true
+    UBTConnect__MessageParameterRecord:
+      properties:
+        MessageParameter: { '$ref': '#/components/schemas/Comms_CS__MessageParameter' }
+      required: ['MessageParameter']
+      type: 'object'
+      x-os-structure: 'UBTConnect.MessageParameterRecord'
     UBTConnect__MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONUserTextRecord:
-      description: 'structure UBTConnect.MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONUserTextRecord (module not in the downloaded code) never captured'
-      x-os-source: 'capture'
+      properties:
+        AdaptiveCardJSON: { '$ref': '#/components/schemas/Comms_CS__AdaptiveCardJSON' }
+        CreatedByMemberId: { type: 'string' }
+        MessageContent: { '$ref': '#/components/schemas/Comms_CS__MessageContent' }
+        MessageInstance: { '$ref': '#/components/schemas/Comms_CS__MessageInstance' }
+        MessagePriority: { '$ref': '#/components/schemas/Comms_CS__MessagePriority' }
+        MessageSenderTarget: { '$ref': '#/components/schemas/Comms_CS__MessageSenderTarget' }
+        MessageTemplate: { '$ref': '#/components/schemas/Comms_CS__MessageTemplate' }
+        User: { '$ref': '#/components/schemas/ServiceCenter__User' }
+      required:
+        - 'AdaptiveCardJSON'
+        - 'CreatedByMemberId'
+        - 'MessageContent'
+        - 'MessageInstance'
+        - 'MessagePriority'
+        - 'MessageSenderTarget'
+        - 'MessageTemplate'
+        - 'User'
+      type: 'object'
       x-os-structure: 'UBTConnect.MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONUserTextRecord'
-      x-unknown: true
     UBTConnect__Notes__DataActionGetNotes__Input:
       additionalProperties: true
       description: 'Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter.'
@@ -17659,7 +17655,15 @@ components:
     UBTConnect__NotificationDetails__ScreenDataSetGetMessageTemplateParametersByMessageTemplateId__Output:
       properties:
         Count: { type: 'integer' }
-        List: { '$ref': '#/components/schemas/UBTConnect__MessageParameterRecordList' }
+        List:
+          properties:
+            EmptyListItem: { '$ref': '#/components/schemas/UBTConnect__MessageParameterRecord' }
+            List:
+              items: { '$ref': '#/components/schemas/UBTConnect__MessageParameterRecord' }
+              type: 'array'
+          required: ['List']
+          type: 'object'
+          x-os-list: true
       required: ['Count', 'List']
       type: 'object'
       x-os-output-of: 'UBTConnect.NotificationDetails.ScreenDataSetGetMessageTemplateParametersByMessageTemplateId'
@@ -18274,35 +18278,6 @@ components:
       properties: {}
       type: 'object'
       x-os-output-of: 'UBTConnect.ServiceAPIAction_UI_UpdateItem_MarkAsUnread'
-    UBTConnect__ServiceAPIAddBookmark2__Input:
-      additionalProperties: false
-      properties:
-        In_BookmarkCategoryId: { type: 'string' }
-        In_ItemId: { type: 'string' }
-      required: ['In_BookmarkCategoryId', 'In_ItemId']
-      type: 'object'
-      x-os-input-of: 'UBTConnect.ServiceAPIAddBookmark2'
-    UBTConnect__ServiceAPIAddBookmark2__Output:
-      properties:
-        Bookmark_Added: { '$ref': '#/components/schemas/Connect_Bookmarks_CS__UI_Bookmark_Added' }
-        Success: { type: 'boolean' }
-      required: ['Bookmark_Added', 'Success']
-      type: 'object'
-      x-os-output-of: 'UBTConnect.ServiceAPIAddBookmark2'
-    UBTConnect__ServiceAPIDeleteBookmarkByBookmarkId2__Input:
-      additionalProperties: false
-      properties:
-        BookmarkId: { type: 'string', x-os-type: 'LongInteger' }
-      required: ['BookmarkId']
-      type: 'object'
-      x-os-input-of: 'UBTConnect.ServiceAPIDeleteBookmarkByBookmarkId2'
-    UBTConnect__ServiceAPIDeleteBookmarkByBookmarkId2__Output:
-      properties:
-        Success: { type: 'boolean' }
-        WasFound: { type: 'boolean' }
-      required: ['Success', 'WasFound']
-      type: 'object'
-      x-os-output-of: 'UBTConnect.ServiceAPIDeleteBookmarkByBookmarkId2'
     UBTConnect__ServiceAPIDelete_Notifications__Input:
       additionalProperties: false
       properties:
@@ -18631,6 +18606,14 @@ components:
       required: ['LocalityId', 'LocalityName']
       type: 'object'
       x-os-structure: 'UBTConnect.TextLongIntegerRecord'
+    UBTConnect__TextTextTextRecord:
+      properties:
+        Delimiter_Function: { type: 'string' }
+        Delimiter_Parameter: { type: 'string' }
+        Delimiter_Placeholder: { type: 'string' }
+      required: ['Delimiter_Function', 'Delimiter_Parameter', 'Delimiter_Placeholder']
+      type: 'object'
+      x-os-structure: 'UBTConnect.TextTextTextRecord'
     UBTConnect__Type_OneschoolGlobal_Subsection:
       properties:
         AboutOurCampus: { type: 'string' }

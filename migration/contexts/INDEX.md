@@ -5,10 +5,10 @@ section "Context notes".
 
 ## Now
 - Goal (user 2026-10-14): replace the OutSystems app in production; UI/UX 1:1. **Current focus (user 2026-10-17): local demo for colleagues, no production work.**
-- 2026-11-05: route actions pipeline in **`route-actions/`** at the repository root ([context-074](context-074-route-actions-pilot.md)). Facts only. 68 of 68 routes done (17 static); the 9 gaps closed or set aside by rule on 2026-11-05 (`migration/clarify/auto-decisions-2026-11-05.md`): 0 gaps left.
-- 2026-11-04: convention review of `app/src` ([context-073](context-073-app-conventions-review.md)): D1–D8 open. 2026-11-03: principal review ([context-072](context-072-app-principal-review.md)): WPs and V1–V6 open.
-- TST has 84 routes: 68 build (all finished), 16 skip. Demo: `npm --prefix app run build:demo`; dev http://localhost:5173/UBTConnect/HomeFeed (`?review=1`).
-- Next: nothing waits for the user; `migration/clarify/auto-decisions-2026-11-05.md` has the 12 decisions (0 gaps, 0 questions on 68 routes).
+- 2026-11-05: TST drift handled, live code wins ([context-075](context-075-tst-drift-waves.md)): 24 route differences built in two waves, the bookmark toggle moved to `UBTConnect_Utils`, contract from the live module files; CI green (4813 tests). Decision log rows 18–24.
+- Route actions pipeline `route-actions/` ([context-074](context-074-route-actions-pilot.md)): 68 of 68 routes; the tool reads the live compiled code for drifted routes.
+- Waits for the user: row 23 (JSON key names of the contract: generator / BFF / defer). Re-captures: NotificationDetails, Search pills and layout, the 17 routes without a capture.
+- TST has 84 routes: 68 build, 16 skip. Demo: `npm --prefix app run build:demo`; dev http://localhost:5173/UBTConnect/HomeFeed (`?review=1`).
 
 ## Contexts
 | id | date | topic | status |
@@ -88,3 +88,4 @@ section "Context notes".
 | [072](context-072-app-principal-review.md) | 2026-11-03 | Principal review of `app/`: facts pack, 6 Sonnet collectors, Opus lead; 33 findings (2 S1, 10 S2), gate blind spots, self-assessment gaps, roadmap WP-1 to WP-13, target folder structure | current |
 | [073](context-073-app-conventions-review.md) | 2026-11-04 | Convention review of `app/src`: 16 findings (two naming regimes, barrels against R8, two origin tags, page folder layout), decisions D1–D8, plan N0–N5 next to WP-7 | current |
 | [074](context-074-route-actions-pilot.md) | 2026-11-04 | Route actions pipeline (TST → MCP → React shell + screen; KB dropped in run 2): one md per route, ROUTES.md list; pilot HomeFeed (21 calls, 3 missing) | current |
+| [075](context-075-tst-drift-waves.md) | 2026-11-05 | TST drift of 2026-11-05 handled in two waves (live compiled code wins): 24 route differences built, bookmark toggle moved to UBTConnect_Utils, contract from the live module files, HostSurvey store race fixed, route-actions call graph fixes; open: JSON key names (row 23), re-captures | current |

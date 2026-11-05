@@ -174,3 +174,11 @@ CSS and fonts (2026-11-05, static GET): `UBTConnectLibrary.UBTConnectBase.css`, 
 font `connect-icon.ttf` / `connect-icon.woff`. Rule diff against `app/public/UBTConnect/css/`: UBTConnectBase.css adds the
 icons `connect-icon-transport_car`, `_plane`, `_train`, the `line-clamp-1..3` utilities and a new font version; the other
 two files are equal. The app copies were replaced by the live ones (the icon font with them).
+
+Module files replaced (2026-11-05, after the drift decisions): every file of `migration/runtime-sources/live/` with a copy
+at the top level replaced that copy. That is 18 files, among them `UBTConnect.controller.js`,
+`UBTConnect_Utils.controller.js`, `Connect2_Assemble_MUI.controller.js`, `UBTConnect_Bookmarks_MCS.*` and the three
+`*.model.js` of UBTConnect, UBTConnectLibrary and Connect2_LegacyShared. 46 live files without a copy were added (the
+fetched models, the drifted blocks). The
+top level is what `contract_gen.py` reads; the `live/` folder keeps the same copies for the route check. The October
+versions stay in git history (commit before 2026-11-05 wave 2).

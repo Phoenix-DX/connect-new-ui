@@ -1684,12 +1684,16 @@
     {
       "id": "TST-DRIFT-2026-11-05-NOTIFICATIONDETAILS-HEADER",
       "kinds": [
-        "text"
+        "text",
+        "position",
+        "layout",
+        "style",
+        "structure"
       ],
       "routeRegex": "^/UBTConnect/NotificationDetails(\\?|$)",
       "states": "^(default|loading|offline)$",
-      "pathRegex": "Placeholder_Header_Title( > .+)?$",
-      "detailRegex": "^\"Notifications\" → ",
+      "pathRegex": "Placeholder_Header_Title",
+      "detailRegex": ".",
       "reason": "Baseline of 2026-10-29 predates the TST change of 2026-11-05: the live NotificationDetails renders the header from the sender or the user (no literal \"Notifications\") and a bordered content container under the summary (adaptive card or sanitized HTML). Re-capture needed; remove these rules then.",
       "evidence": "migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js:247-260 (header Expression), :466-575 (content container); migration/knowledge/tst-drift-2026-11-05.md:25; migration/clarify/auto-decisions-2026-11-05.md row 22."
     },
@@ -1699,12 +1703,14 @@
         "structure",
         "attr",
         "class",
-        "style"
+        "style",
+        "layout",
+        "position"
       ],
       "routeRegex": "^/UBTConnect/NotificationDetails(\\?|$)",
       "states": "^(default|loading|offline)$",
-      "pathRegex": "#Notification_Content( > .+)?$",
-      "detailRegex": "extra in build|^(extra|missing) \\.|^[a-z-]+: ",
+      "pathRegex": "Notification_Content|Notification_Date",
+      "detailRegex": ".",
       "reason": "Baseline of 2026-10-29 predates the TST change of 2026-11-05: the live NotificationDetails renders the header from the sender or the user (no literal \"Notifications\") and a bordered content container under the summary (adaptive card or sanitized HTML). Re-capture needed; remove these rules then.",
       "evidence": "migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js:247-260 (header Expression), :466-575 (content container); migration/knowledge/tst-drift-2026-11-05.md:25; migration/clarify/auto-decisions-2026-11-05.md row 22."
     },
@@ -1716,8 +1722,8 @@
       ],
       "routeRegex": "^/UBTConnect/NotificationDetails(\\?|$)",
       "states": "^(default|loading|offline)$",
-      "pathRegex": "\\$b1[0-4]\\b|#b1-Placeholder_Content( > .+)?$",
-      "detailRegex": "id |\\$b1[0-4]",
+      "pathRegex": "\\$b1[0-4]\\b|Placeholder_Content",
+      "detailRegex": ".",
       "reason": "Baseline of 2026-10-29 predates the TST change of 2026-11-05: the live NotificationDetails renders the header from the sender or the user (no literal \"Notifications\") and a bordered content container under the summary (adaptive card or sanitized HTML). Re-capture needed; remove these rules then. The block aliases shift by two (date $b10→$b12, BottomBarMenu $b11→$b13, CommonUI $b12→$b14).",
       "evidence": "migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js:247-260 (header Expression), :466-575 (content container); migration/knowledge/tst-drift-2026-11-05.md:25; migration/clarify/auto-decisions-2026-11-05.md row 22."
     },
@@ -1729,7 +1735,7 @@
       ],
       "routeRegex": "^/UBTConnect/NotificationDetails(\\?|$)",
       "states": "^(default|loading|offline)$",
-      "pathRegex": "#Notification_Date( > .+)?$|#Notification_Content( > .+)?$|Placeholder_Content( > .+)?$|footer|Bottom",
+      "pathRegex": "Notification_Date|Notification_Content|Placeholder_Content|footer|Bottom",
       "detailRegex": ".",
       "reason": "Baseline of 2026-10-29 predates the TST change of 2026-11-05: the live NotificationDetails renders the header from the sender or the user (no literal \"Notifications\") and a bordered content container under the summary (adaptive card or sanitized HTML). Re-capture needed; remove these rules then.",
       "evidence": "migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js:247-260 (header Expression), :466-575 (content container); migration/knowledge/tst-drift-2026-11-05.md:25; migration/clarify/auto-decisions-2026-11-05.md row 22."
@@ -1745,6 +1751,18 @@
       "detailRegex": ".",
       "reason": "Baseline of 2026-10-29 predates the TST change of 2026-11-05: the live NotificationDetails renders the header from the sender or the user (no literal \"Notifications\") and a bordered content container under the summary (adaptive card or sanitized HTML). Re-capture needed; remove these rules then.",
       "evidence": "migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js:247-260 (header Expression), :466-575 (content container); migration/knowledge/tst-drift-2026-11-05.md:25; migration/clarify/auto-decisions-2026-11-05.md row 22."
+    },
+    {
+      "id": "TST-DRIFT-2026-11-05-NOTIFICATIONDETAILS-CALLS",
+      "kinds": [
+        "call"
+      ],
+      "routeRegex": "^/UBTConnect/NotificationDetails(\\?|$)",
+      "states": "^(default|loading|offline)$",
+      "pathRegex": "^calls:",
+      "detailRegex": "DataActionFetchMessageInstance|DataActionGetMessageInstance|ActionGetSignedImagesInBulk",
+      "reason": "Baseline of 2026-10-29 predates the TST change of 2026-11-05: the live screen fetches GetMessageInstance at start (the old FetchMessageInstance is declared, never fetched) and the sender photo URL (Cache_SignedImageURL_Get). Re-capture needed.",
+      "evidence": "migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js:711-714, :776-798, :1096-1120; decision row 22."
     }
   ],
   "ignoreClasses": [

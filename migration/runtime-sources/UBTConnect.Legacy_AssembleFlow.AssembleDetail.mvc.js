@@ -1179,7 +1179,7 @@ return controller.safeExecuteClientAction(controller._openNoteSheet$Action, call
 Controller.prototype.pushDebuggerContext = function (callContext) {
 var varBag = {};
 OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:oopA8UC9ZEGRmQoiLfCXdg:/NRWebFlows.oopA8UC9ZEGRmQoiLfCXdg:dN024IGxNurNTd_3Az0hHQ", "UBTConnect", "Legacy_AssembleFlow", "NRFlows.WebFlow", callContext.id, varBag);
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:UhZy6XyctkmbEYZIMPPQng:/NRWebFlows.oopA8UC9ZEGRmQoiLfCXdg/NodesShownInESpaceTree.UhZy6XyctkmbEYZIMPPQng:X4wsIAq+c26bB6FHj9e5CA", "UBTConnect", "AssembleDetail", "NRNodes.WebScreen", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:UhZy6XyctkmbEYZIMPPQng:/NRWebFlows.oopA8UC9ZEGRmQoiLfCXdg/NodesShownInESpaceTree.UhZy6XyctkmbEYZIMPPQng:62LzYBWzHUONS9imn0q3WQ", "UBTConnect", "AssembleDetail", "NRNodes.WebScreen", callContext.id, varBag);
 };
 Controller.prototype.popDebuggerContext = function (callContext) {
 OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:UhZy6XyctkmbEYZIMPPQng", callContext.id);

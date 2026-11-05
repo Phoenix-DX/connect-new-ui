@@ -41,12 +41,11 @@ The mappers drop only fields that no code in `src` reads. The local-entity recor
 
 The shared record types (for example `EventInfo`, `Milestone_Screen`, `MemberInformation`, `AssembleEventSummary`) are defined in `event/types.ts`. The `structures.ts` files of Connect2_Assemble_MUI and Connect2_OrbitMobile_MUI re-export them. The 8 local copies of the null-date helper are one helper. The 25 hooks have no caller yet; the flows call the repository functions. They set `staleTime: 0`, `gcTime: 0` and no retry by default.
 
-`bookmark/` has no hooks. `repository.ts` holds 4 calls:
+`bookmark/` has no hooks. `repository.ts` holds 2 calls: ServiceAPIAddBookmark2 and
+ServiceAPIDeleteBookmarkByBookmarkId2 (UBTConnect_Utils). TST moved them from UBTConnect and removed the legacy writes of
+Connect2_Assemble_MUI (live code of 2026-11-05).
 
-- AddBookmark and DeleteBookmarkByBookmarkId (Connect2_Assemble_MUI)
-- ServiceAPIAddBookmark2 and ServiceAPIDeleteBookmarkByBookmarkId2 (UBTConnect).
-
-`lib/assemble/actions.ts` and `lib/ubtConnect/actions.ts` call these functions. `bookmarkCards.ts` holds the calls of the screen Bookmarks (`fetchBookmarkCards`, `fetchBookmarkPills`; interim form, decision I10-6). `keys.ts` holds the `MyBookmarks` memory-cache entry (`bookmarkCache`). The calls, mappers, types and hooks of the blocks of Connect2_MyBookmarks_MUI (BookmarksByGroup, MyBookmarks) are deleted with these routes (TST removed them; user decision 2026-10-28). `AssembleBookmarkAdded`, `C2BookmarkAdded` and `BookmarkDeleted` keep the OutSystems names.
+ToggleBookmarkItem_C2 in `lib/ubtConnectUtils/actions.ts` calls these functions. `bookmarkCards.ts` holds the calls of the screen Bookmarks (`fetchBookmarkCards`, `fetchBookmarkPills`; interim form, decision I10-6). `keys.ts` holds the `MyBookmarks` memory-cache entry (`bookmarkCache`). The calls, mappers, types and hooks of the blocks of Connect2_MyBookmarks_MUI (BookmarksByGroup, MyBookmarks) are deleted with these routes (TST removed them; user decision 2026-10-28). `C2BookmarkAdded` and `BookmarkDeleted` keep the OutSystems names.
 
 `note/` has the same files. It holds 6 calls.
 

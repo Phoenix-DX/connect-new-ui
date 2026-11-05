@@ -4,6 +4,8 @@ The route `/UBTConnect/MessageList`, read from the TST compiled code and from th
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/MessageList/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
+**Live code.** TST changed 14 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `Connect2_LegacyShared`, `js`, `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `UBTConnect`, `js`, `js`, `UBTConnectLibrary`, `js`, `UBTConnect_Utils`, `js`, `UBT_AppManager`, `UBT_AppManager_Mobile`. The observed calls come from the capture.
+
 ## 1. Route
 
 | Item | Value | Source |
@@ -55,11 +57,11 @@ All columns come from the code, without interpretation:
 | # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
 |---|---|---|---|---|---|---|---|---|
 | 1 | `Connect2_LegacyShared/ActionGetNumberUnreadMessages` | server action | `Connect2_LegacyShared` | onClick in MessageListBlock → event markAllRead of MessageListBlock → ScreenBlock_MessageList.onClick_MarkAllAsRead → Connect2_LegacyShared.synchronizeNumberUnreadMessages → server GetNumberUnreadMessages | yes | `fetchNumberUnreadMessages()` [`api/message/unreadMessages.ts:22`](../../app/src/api/message/unreadMessages.ts#L22) (shell + page) | `MessageList → useMessageList → synchronizeNumberUnreadMessages → fetchNumberUnreadMessages`<br>[`pages/MessageList/MessageListPage.tsx`](../../app/src/pages/MessageList/MessageListPage.tsx)<br>`AppFrame → AppStart → … → fetchNumberUnreadMessages`<br>[`app/AppFrame.tsx`](../../app/src/app/AppFrame.tsx) | implemented |
-| 2 | `Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageList/ActionMarkMessageAsClear` | server action | `ScreenBlock_MessageList` | onClick in MessageListBlock → event swipeEventsClear of MessageListBlock → ScreenBlock_MessageList.swipe_EventsClear → server MarkMessageAsClear | no | `markMessageAsClear()` [`api/message/repository.ts:251`](../../app/src/api/message/repository.ts#L251) (page) | `MessageList → useMessageList → markMessageAsClear`<br>[`pages/MessageList/MessageListPage.tsx`](../../app/src/pages/MessageList/MessageListPage.tsx) | implemented |
-| 3 | `Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageList/ActionMarkMessageAsRead` | server action | `ScreenBlock_MessageList` | onClick in MessageListBlock → event swipeEventsRead of MessageListBlock → ScreenBlock_MessageList.swipe_EventsRead → server MarkMessageAsRead | no | `markMessageAsRead()` [`api/message/repository.ts:240`](../../app/src/api/message/repository.ts#L240) (page) | `MessageList → useMessageList → markMessageAsRead`<br>[`pages/MessageList/MessageListPage.tsx`](../../app/src/pages/MessageList/MessageListPage.tsx) | implemented |
+| 2 | `Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageList/ActionMarkMessageAsClear` | server action | `ScreenBlock_MessageList` | onClick in MessageListBlock → event swipeEventsClear of MessageListBlock → ScreenBlock_MessageList.swipe_EventsClear → server MarkMessageAsClear | no | `markMessageAsClear()` [`api/message/repository.ts:281`](../../app/src/api/message/repository.ts#L281) (page) | `MessageList → useMessageList → markMessageAsClear`<br>[`pages/MessageList/MessageListPage.tsx`](../../app/src/pages/MessageList/MessageListPage.tsx) | implemented |
+| 3 | `Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageList/ActionMarkMessageAsRead` | server action | `ScreenBlock_MessageList` | onClick in MessageListBlock → event swipeEventsRead of MessageListBlock → ScreenBlock_MessageList.swipe_EventsRead → server MarkMessageAsRead | no | `markMessageAsRead()` [`api/message/repository.ts:270`](../../app/src/api/message/repository.ts#L270) (page) | `MessageList → useMessageList → markMessageAsRead`<br>[`pages/MessageList/MessageListPage.tsx`](../../app/src/pages/MessageList/MessageListPage.tsx) | implemented |
 | 4 | `Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageList/ActionWrapper_MarkAllAsReadNotifications` | server action | `ScreenBlock_MessageList` | onClick in MessageListBlock → event markAllRead of MessageListBlock → ScreenBlock_MessageList.onClick_MarkAllAsRead → server Wrapper_MarkAllAsReadNotifications | no | `markAllNotificationsAsRead()` [`api/notification/repository.ts:84`](../../app/src/api/notification/repository.ts#L84) (page) | `MessageList → useMessageList → markAllNotificationsAsRead`<br>[`pages/MessageList/MessageListPage.tsx`](../../app/src/pages/MessageList/MessageListPage.tsx) | implemented |
-| 5 | `Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageList/DataActionGetMessageInstanceById2` | data action | `ScreenBlock_MessageList` | onClick in MessageListBlock → event onClick_GoToMessageDetail of MessageListBlock → ScreenBlock_MessageList.onClick_GoToMessageDetail → ScreenBlock_MessageList.DataActionGetMessageInstanceById2<br>ScreenBlock_MessageList fetch at start → ScreenBlock_MessageList.DataActionGetMessageInstanceById2 | no | `fetchMessageInstanceExists()` [`api/message/repository.ts:229`](../../app/src/api/message/repository.ts#L229) (page) | `MessageList → useMessageList → fetchMessageInstanceExists`<br>[`pages/MessageList/MessageListPage.tsx`](../../app/src/pages/MessageList/MessageListPage.tsx) | implemented |
-| 6 | `Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageList/DataActionGetMessages` | data action | `ScreenBlock_MessageList` | onClick in MessageListBlock → event onClick_GoToMessageDetail of MessageListBlock → ScreenBlock_MessageList.onClick_GoToMessageDetail → ScreenBlock_MessageList.DataActionGetMessages<br>ScreenBlock_MessageList.OnReady → ScreenBlock_MessageList.onReady → ScreenBlock_MessageList.DataActionGetMessages<br>ScreenBlock_MessageList.onClick_ApplyFilters → ScreenBlock_MessageList.refreshMessages → ScreenBlock_MessageList.DataActionGetMessages<br>(+3 more chains) | yes | `fetchMessages()` [`api/message/repository.ts:213`](../../app/src/api/message/repository.ts#L213) (page) | `MessageList → useMessageList → fetchMessages`<br>[`pages/MessageList/MessageListPage.tsx`](../../app/src/pages/MessageList/MessageListPage.tsx) | implemented |
+| 5 | `Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageList/DataActionGetMessageInstanceById2` | data action | `ScreenBlock_MessageList` | onClick in MessageListBlock → event onClick_GoToMessageDetail of MessageListBlock → ScreenBlock_MessageList.onClick_GoToMessageDetail → ScreenBlock_MessageList.DataActionGetMessageInstanceById2<br>ScreenBlock_MessageList fetch at start → ScreenBlock_MessageList.DataActionGetMessageInstanceById2 | no | `fetchMessageInstanceExists()` [`api/message/repository.ts:259`](../../app/src/api/message/repository.ts#L259) (page) | `MessageList → useMessageList → fetchMessageInstanceExists`<br>[`pages/MessageList/MessageListPage.tsx`](../../app/src/pages/MessageList/MessageListPage.tsx) | implemented |
+| 6 | `Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageList/DataActionGetMessages` | data action | `ScreenBlock_MessageList` | onClick in MessageListBlock → event onClick_GoToMessageDetail of MessageListBlock → ScreenBlock_MessageList.onClick_GoToMessageDetail → ScreenBlock_MessageList.DataActionGetMessages<br>ScreenBlock_MessageList.OnReady → ScreenBlock_MessageList.onReady → ScreenBlock_MessageList.DataActionGetMessages<br>ScreenBlock_MessageList.onClick_ApplyFilters → ScreenBlock_MessageList.refreshMessages → ScreenBlock_MessageList.DataActionGetMessages<br>(+3 more chains) | yes | `fetchMessages()` [`api/message/repository.ts:243`](../../app/src/api/message/repository.ts#L243) (page) | `MessageList → useMessageList → fetchMessages`<br>[`pages/MessageList/MessageListPage.tsx`](../../app/src/pages/MessageList/MessageListPage.tsx) | implemented |
 | 7 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx) | implemented |
 
 ## 6. User actions
@@ -145,7 +147,7 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/screens/MessageList/analysis/sources/raw/`.
+The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 
@@ -265,7 +267,7 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 
 | Block | Module | React port | User actions |
 |---|---|---|---|
-| `ScreenBlock_MessageList` | `Connect2_LegacyShared` | [`pages/MessageList/components/MessageListView.tsx`](../../app/src/pages/MessageList/components/MessageListView.tsx), [`pages/MessageList/hooks/messageListState.ts`](../../app/src/pages/MessageList/hooks/messageListState.ts), [`pages/MessageList/hooks/useMessageList.ts`](../../app/src/pages/MessageList/hooks/useMessageList.ts) | 11 |
+| `ScreenBlock_MessageList` | `Connect2_LegacyShared` | [`pages/MessageList/components/MessageListView.tsx`](../../app/src/pages/MessageList/components/MessageListView.tsx), [`pages/MessageList/hooks/messageListState.ts`](../../app/src/pages/MessageList/hooks/messageListState.ts), [`pages/MessageList/hooks/useMessageList.ts`](../../app/src/pages/MessageList/hooks/useMessageList.ts) | 4 |
 | `Layout` | `Connect2_LegacyShared` | [`components/layout/LegacyLayout/LegacyLayout.tsx`](../../app/src/components/layout/LegacyLayout/LegacyLayout.tsx) | 0 |
 | `BaseLayout_UpdatedOSUI` | `Connect2_LegacyShared` | [`components/layout/BaseLayout/BaseLayout.tsx`](../../app/src/components/layout/BaseLayout/BaseLayout.tsx) | 0 |
 | `MenuIcon__UpdatedOSUI` | `Connect2_LegacyShared` | [`components/layout/MenuIcon/MenuIcon.tsx`](../../app/src/components/layout/MenuIcon/MenuIcon.tsx) | 1 |
@@ -280,27 +282,20 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | `IconBadge` | `UBTConnectLibrary` | [`components/ui/IconBadge/IconBadge.tsx`](../../app/src/components/ui/IconBadge/IconBadge.tsx) | 0 |
 | `Badge` | `UBTConnectLibrary` | [`components/ui/Badge/Badge.tsx`](../../app/src/components/ui/Badge/Badge.tsx) | 0 |
 
-<details><summary>User actions of the shared blocks (17)</summary>
+<details><summary>User actions of the shared blocks (10)</summary>
 
 | # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
 |---|---|---|---|---|---|
 | 1 | `MenuIcon__UpdatedOSUI` | `onClick (HTML element)` | `onBack` | – | goes to previous screen |
-| 2 | `ScreenBlock_MessageList` | `onPullToRefresh of Layout` | `pullToRefresh` | – | calls GetMessages |
-| 3 | `ScreenBlock_MessageList` | `onClick (HTML element)` | `onClick_CloseSearchAndFilter` | – | calls GetMessages |
-| 4 | `ScreenBlock_MessageList` | `onKeyUp (HTML element)` | `onKeyup_SearchMessages` | – | calls GetMessages |
-| 5 | `ScreenBlock_MessageList` | `onClick (HTML element)` | `onClickSearchClear` | – | calls GetMessages |
-| 6 | `ScreenBlock_MessageList` | `swipeEventsClear of MessageListBlock` | `swipe_EventsClear` | – | calls MarkMessageAsClear |
-| 7 | `ScreenBlock_MessageList` | `markAllRead of MessageListBlock` | `onClick_MarkAllAsRead` | – | calls Wrapper_MarkAllAsReadNotifications, GetMessages, GetNumberUnreadMessages |
-| 8 | `ScreenBlock_MessageList` | `onClick_GoToMessageDetail of MessageListBlock` | `onClick_GoToMessageDetail` | – | calls GetMessageInstanceById2, GetMessages; shows a message |
-| 9 | `ScreenBlock_MessageList` | `swipeEventsRead of MessageListBlock` | `swipe_EventsRead` | – | calls MarkMessageAsRead |
-| 10 | `ScreenBlock_MessageList` | `onScrollEnding of MessageListBlock` | `onScrollEnding` | – | calls GetMessages |
-| 11 | `ScreenBlock_MessageList` | `applyFilters of Filter` | `onClick_ApplyFilters` | – | calls GetMessages |
-| 12 | `ScreenBlock_MessageList` | `resetFilters of Filter` | `onClick_ResetFilters` | – | calls GetMessages |
-| 13 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `home` | goes to HomeFeed |
-| 14 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `directory` | goes to CountryList, Locality_Details |
-| 15 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `updates` | goes to Updates_SingleList |
-| 16 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `bookmarks` | goes to Bookmarks |
-| 17 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `menu` | goes to Menu |
+| 2 | `ScreenBlock_MessageList` | `swipeEventsClear of MessageListBlock` | `swipe_EventsClear` | – | calls MarkMessageAsClear |
+| 3 | `ScreenBlock_MessageList` | `markAllRead of MessageListBlock` | `onClick_MarkAllAsRead` | – | calls Wrapper_MarkAllAsReadNotifications, GetNumberUnreadMessages |
+| 4 | `ScreenBlock_MessageList` | `onClick_GoToMessageDetail of MessageListBlock` | `onClick_GoToMessageDetail` | – | shows a message |
+| 5 | `ScreenBlock_MessageList` | `swipeEventsRead of MessageListBlock` | `swipe_EventsRead` | – | calls MarkMessageAsRead |
+| 6 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `home` | goes to HomeFeed |
+| 7 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `directory` | goes to CountryList, Locality_Details |
+| 8 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `updates` | goes to Updates_SingleList |
+| 9 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `bookmarks` | goes to Bookmarks |
+| 10 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `menu` | goes to Menu |
 
 </details>
 

@@ -52,5 +52,3 @@ export type Timezone = Schemas['APIDomain_Directory_IS__Timezone'];
     (HouseholdListResponse, LocalityHouseholdsResultItem list), the domain type SubdivisionInformation of api/locality:
     the fields that the UI reads. */
 export type { SubdivisionInformation as CacheableSubdivisionInformation } from '@/api/locality';
-/** Connect2_MyBookmarks_IS BookmarkItem: a legacy bookmark (AddBookmarkToCache, the MyBookmarks cache). */
-export type BookmarkItem = Schemas['Connect2_MyBookmarks_IS__BookmarkItem'];

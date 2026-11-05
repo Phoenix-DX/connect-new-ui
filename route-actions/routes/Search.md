@@ -4,7 +4,7 @@ The route `/UBTConnect/Search`, read from the TST compiled code and from the Rea
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/Search/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
-**Live code.** TST changed 4 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `FilterSheet`, `ScreenBlock_Search`, `HorizontalTagList`, `CacheControl_UserInfo`. The observed calls come from the capture.
+**Live code.** TST changed 18 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `Connect2_LegacyShared`, `js`, `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `FilterSheet`, `ScreenBlock_Search`, `UBTConnect`, `js`, `js`, `HorizontalTagList`, `UBTConnectLibrary`, `js`, `CacheControl_UserInfo`, `UBTConnect_Utils`, `js`, `UBT_AppManager`, `UBT_AppManager_Mobile`. The observed calls come from the capture.
 
 ## 1. Route
 
@@ -16,29 +16,27 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/Search/SearchPage.tsx`](../../app/src/pages/Search/SearchPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 | Screenshots | [`migration/screens/Search/parity`](../../migration/screens/Search/parity) | `route.py parity` |
-| Code read | OutSystems: 2 files of the UI flow, 27 shared blocks, 28 app shell files. React: 187 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
+| Code read | OutSystems: 2 files of the UI flow, 27 shared blocks, 28 app shell files. React: 190 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
 | Check | Result |
 |---|---|
 | Server calls of the route on TST | 6: React makes 6, **0 missing** |
-| Differences found | **3** (see [section 3](#3-differences-found)) |
+| Differences found | **0** (see [section 3](#3-differences-found)) |
 | Questions | 0 (see [section 4](#4-questions)) |
 | React calls reached only through shared code | 2: see the last section |
-| User actions of the route (own code) | OutSystems: 5. React: 7 |
+| User actions of the route (own code) | OutSystems: 2. React: 7 |
 | Screen and blocks of the UI flow with a React port | 2 of 2 |
-| Navigation targets found in React | 8 of 11 |
+| Navigation targets found in React | 11 of 11 |
 | Shared blocks and components on the route | OutSystems 27, React 7 with user actions: see the last section |
-| App shell on this route | 7 calls: see [APP_SHELL.md](../APP_SHELL.md) |
+| App shell on this route | 8 calls: see [APP_SHELL.md](../APP_SHELL.md) |
 
 ## 3. Differences found
 
 Each line is a fact of both sides: a TST call, navigation or variable, and the React code that has it or not. The tool does not judge the behaviour.
 
-- Navigation to `OneSchoolGlobalDetails` (from ScreenBlock_Search). The React screen and the app shell do not go to this route.
-- Navigation to `AssembleDetail` (from ScreenBlock_Search). The React screen and the app shell do not go to this route.
-- Navigation to `LDM_EventDetail_V2` (from ScreenBlock_Search). The React screen and the app shell do not go to this route.
+None.
 
 ## 4. Questions
 
@@ -63,7 +61,7 @@ All columns come from the code, without interpretation:
 | 1 | `UBTConnect_Utils/CacheControl/CacheControl_AllCountries/DataActionGetCacheInfo` | data action | `CacheControl_AllCountries` | CacheControl.OnInitialize → CacheControl.onInitialize → event onNonCacheHit of CacheControl → CacheControl_AllCountries.cacheControlOnNonCacheHit → CacheControl_AllCountries.DataActionGetCacheInfo<br>CacheControl_AllCountries fetch at start → CacheControl_AllCountries.DataActionGetCacheInfo | yes | `fetchAllCountries()` [`api/country/repository.ts:94`](../../app/src/api/country/repository.ts#L94) (page) | `FilterSheetContainer → AllCountriesCacheControl → fetchAllCountries`<br>[`containers/FilterSheet/FilterSheetContainer.tsx`](../../app/src/containers/FilterSheet/FilterSheetContainer.tsx) | implemented |
 | 2 | `UBTConnect_Utils/CacheControl/CacheControl_UserInfo/DataActionGetCacheInfo` | data action | `CacheControl_UserInfo` | CacheControl.OnInitialize → CacheControl.onInitialize → event onNonCacheHit of CacheControl → CacheControl_UserInfo.cacheControlOnNonCacheHit → CacheControl_UserInfo.DataActionGetCacheInfo<br>CacheControl_UserInfo fetch at start → CacheControl_UserInfo.DataActionGetCacheInfo | yes | `UserInfoCacheControl()` [`legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx:37`](../../app/src/legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx#L37) (page) | `FilterSheetContainer → UserInfoCache → UserInfoCacheControl`<br>[`containers/FilterSheet/FilterSheetContainer.tsx`](../../app/src/containers/FilterSheet/FilterSheetContainer.tsx) | implemented |
 | 3 | `UBTConnect/Directory_Search/ScreenBlock_Search/DataActionFetchSearchResults` | data action | `ScreenBlock_Search` | onClick in Button → event event_OnClick of Button → … → ScreenBlock_Search.action_RefreshSearch → ScreenBlock_Search.DataActionFetchSearchResults<br>onClick in Button → event event_OnClick of Button → … → ScreenBlock_Search.action_RefreshSearch → ScreenBlock_Search.DataActionFetchSearchResults<br>ScreenBlock_Search.event_HorizontalTagListChanged → ScreenBlock_Search.action_RefreshSearch → ScreenBlock_Search.DataActionFetchSearchResults<br>(+3 more chains) | no | `fetchSearchResults()` [`api/search/repository.ts:30`](../../app/src/api/search/repository.ts#L30) (page) | `Search → useSearch → fetchSearchResults`<br>[`pages/Search/SearchPage.tsx`](../../app/src/pages/Search/SearchPage.tsx) | implemented |
-| 4 | `UBTConnect/Directory_Search/ScreenBlock_Search/DataActionGet_FilteredRecentClickedResults` | data action | `ScreenBlock_Search` | ScreenBlock_Search.get_RecentClickedResultsOnAfterFetch → ScreenBlock_Search.DataActionGet_FilteredRecentClickedResults<br>ScreenBlock_Search fetch at start → ScreenBlock_Search.DataActionGet_FilteredRecentClickedResults | yes | `getFilteredRecentClickedResults()` [`api/search/repository.ts:59`](../../app/src/api/search/repository.ts#L59) (page) | `Search → useSearch → getFilteredRecentClickedResults`<br>[`pages/Search/SearchPage.tsx`](../../app/src/pages/Search/SearchPage.tsx) | implemented |
+| 4 | `UBTConnect/Directory_Search/ScreenBlock_Search/DataActionGet_FilteredRecentClickedResults` | data action | `ScreenBlock_Search` | FilterSheet.onClick_ClearFilters → FilterSheet.onClick_Apply → … → ScreenBlock_Search.get_RecentClickedResultsOnAfterFetch → ScreenBlock_Search.DataActionGet_FilteredRecentClickedResults<br>event event_OnClick of Button → FilterSheet.onClick_Apply → … → ScreenBlock_Search.get_RecentClickedResultsOnAfterFetch → ScreenBlock_Search.DataActionGet_FilteredRecentClickedResults<br>ScreenBlock_Search.event_HorizontalTagListChanged → ScreenBlock_Search.action_RefreshSearch → … → ScreenBlock_Search.get_RecentClickedResultsOnAfterFetch → ScreenBlock_Search.DataActionGet_FilteredRecentClickedResults<br>(+2 more chains) | yes | `getFilteredRecentClickedResults()` [`api/search/repository.ts:59`](../../app/src/api/search/repository.ts#L59) (page) | `Search → useSearch → getFilteredRecentClickedResults`<br>[`pages/Search/SearchPage.tsx`](../../app/src/pages/Search/SearchPage.tsx) | implemented |
 | 5 | `UBTConnect/Directory_Search/ScreenBlock_Search/ScreenDataSetGet_SearchBirthdayOptions` | aggregate | `ScreenBlock_Search` | ScreenBlock_Search.OnReady → ScreenBlock_Search.screenEvent_OnReady → ScreenBlock_Search.ScreenDataSetGet_SearchBirthdayOptions<br>ScreenBlock_Search fetch at start → ScreenBlock_Search.ScreenDataSetGet_SearchBirthdayOptions | yes | `fetchSearchBirthdayOptions()` [`api/search/repository.ts:41`](../../app/src/api/search/repository.ts#L41) (page) | `Search → useSearch → useSearchBirthdayOptionsQuery → fetchSearchBirthdayOptions`<br>[`pages/Search/SearchPage.tsx`](../../app/src/pages/Search/SearchPage.tsx) | implemented |
 | 6 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx) | implemented |
 
@@ -75,32 +73,15 @@ Two independent lists: the event bindings of the TST views, and the JSX event bi
 
 | # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
 |---|---|---|---|---|---|
-| [1](#611-screenblock_search-inputevent_submit) | `ScreenBlock_Search` | `event_Submit of Input` | `inputEvent_Submit` | – | calls FetchSearchResults; shows a message |
-| 2 | `ScreenBlock_Search` | `changed of TagList` | `event_HorizontalTagListChanged` | – | calls FetchSearchResults |
-| [3](#613-screenblock_search-event_sectiononitemclick-locality) | `ScreenBlock_Search` | `onClick (HTML element)`<br>`onItemClick of Section` | `event_SectionOnItemClick` | `locality` | goes to Locality_Details; asks for a confirmation |
-| [4](#614-screenblock_search-event_sectiononitemclick-other) | `ScreenBlock_Search` | `onClick (HTML element)`<br>`onItemClick of Section` | `event_SectionOnItemClick` | `other` | goes to OneSchoolGlobalDetails, HouseholdCarousel, HouseholdDetails; asks for a confirmation |
-| [5](#615-screenblock_search-event_sectiononitemclick-assemble) | `ScreenBlock_Search` | `onClick (HTML element)`<br>`onItemClick of Section` | `event_SectionOnItemClick` | `assemble` | goes to AssembleDetail; asks for a confirmation |
-| [6](#616-screenblock_search-event_sectiononitemclick-ldm) | `ScreenBlock_Search` | `onClick (HTML element)`<br>`onItemClick of Section` | `event_SectionOnItemClick` | `lDM` | goes to LDM_EventDetail_V2; asks for a confirmation |
-| 7 | `ScreenBlock_Search` | `clicked of IconText`<br>`selected of BirthdayOptions` | `onClick_RecentSearchTerm` | – | calls FetchSearchResults |
-| 8 | `ScreenBlock_Search` | `applyFilters of FilterSheet` | `event_ApplyFilters` | – | calls FetchSearchResults |
+| 1 | `ScreenBlock_Search` | `event_Submit of Input` | `inputEvent_Submit` | – | shows a message |
+| [2](#612-screenblock_search-event_sectiononitemclick-locality) | `ScreenBlock_Search` | `onClick (HTML element)`<br>`onItemClick of Section` | `event_SectionOnItemClick` | `locality` | goes to Locality_Details; asks for a confirmation |
+| [3](#613-screenblock_search-event_sectiononitemclick-other) | `ScreenBlock_Search` | `onClick (HTML element)`<br>`onItemClick of Section` | `event_SectionOnItemClick` | `other` | goes to OneSchoolGlobalDetails, HouseholdCarousel, HouseholdDetails; asks for a confirmation |
+| [4](#614-screenblock_search-event_sectiononitemclick-assemble) | `ScreenBlock_Search` | `onClick (HTML element)`<br>`onItemClick of Section` | `event_SectionOnItemClick` | `assemble` | goes to AssembleDetail; asks for a confirmation |
+| [5](#615-screenblock_search-event_sectiononitemclick-ldm) | `ScreenBlock_Search` | `onClick (HTML element)`<br>`onItemClick of Section` | `event_SectionOnItemClick` | `lDM` | goes to LDM_EventDetail_V2; asks for a confirmation |
 
-<details><summary>5 diagrams (handlers with two or more effects)</summary>
+<details><summary>4 diagrams (handlers with two or more effects)</summary>
 
-#### 6.1.1 ScreenBlock_Search: inputEvent_Submit
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as ScreenBlock_Search
-  participant S as Server (TST calls)
-  U->>B: event_Submit of Input → inputEvent_Submit
-  B->>S: FetchSearchResults(BottomSheetId_Filter, BottomSheetId_Filter_IsLoaded, BottomSheetId_Filter_ShowSubscriptionOnClick, …)
-  S-->>B: Events, Households, People, …
-  Note over B: message FeedbackMessage_AutoClose
-```
-
-#### 6.1.3 ScreenBlock_Search: event_SectionOnItemClick (locality)
+#### 6.1.2 ScreenBlock_Search: event_SectionOnItemClick (locality)
 
 ```mermaid
 sequenceDiagram
@@ -114,7 +95,7 @@ sequenceDiagram
   B->>N: go to Locality_Details
 ```
 
-#### 6.1.4 ScreenBlock_Search: event_SectionOnItemClick (other)
+#### 6.1.3 ScreenBlock_Search: event_SectionOnItemClick (other)
 
 ```mermaid
 sequenceDiagram
@@ -130,7 +111,7 @@ sequenceDiagram
   B->>N: go to HouseholdDetails
 ```
 
-#### 6.1.5 ScreenBlock_Search: event_SectionOnItemClick (assemble)
+#### 6.1.4 ScreenBlock_Search: event_SectionOnItemClick (assemble)
 
 ```mermaid
 sequenceDiagram
@@ -144,7 +125,7 @@ sequenceDiagram
   B->>N: go to AssembleDetail
 ```
 
-#### 6.1.6 ScreenBlock_Search: event_SectionOnItemClick (lDM)
+#### 6.1.5 ScreenBlock_Search: event_SectionOnItemClick (lDM)
 
 ```mermaid
 sequenceDiagram
@@ -170,13 +151,19 @@ sequenceDiagram
 | [2](#622-searchview-ontaglistchanged) | [`pages/Search/SearchPage.tsx:12`](../../app/src/pages/Search/SearchPage.tsx#L12) | `<SearchView>` | `onTagListChanged` | `search.onTagListChanged` | – | calls DataActionGet_FilteredRecentClickedResults, DataActionFetchSearchResults |
 | 3 | [`pages/Search/SearchPage.tsx:12`](../../app/src/pages/Search/SearchPage.tsx#L12) | `<SearchView>` | `onRecentSearchTerm` | `search.onRecentSearchTerm` | – | calls DataActionFetchSearchResults |
 | [4](#624-searchview-onrecentresultclick-locality) | [`pages/Search/SearchPage.tsx:12`](../../app/src/pages/Search/SearchPage.tsx#L12) | `<SearchView>` | `onRecentResultClick` | `search.onRecentResultClick` | `Locality` | goes to Locality_Details; asks for a confirmation; calls the prop onEventSearchResultClick() |
-| [5](#625-searchview-onrecentresultclick-other) | [`pages/Search/SearchPage.tsx:12`](../../app/src/pages/Search/SearchPage.tsx#L12) | `<SearchView>` | `onRecentResultClick` | `search.onRecentResultClick` | `other` | goes to HouseholdCarousel, HouseholdDetails; asks for a confirmation; calls the prop onEventSearchResultClick() |
-| [6](#626-searchview-onresultclick-locality) | [`pages/Search/SearchPage.tsx:12`](../../app/src/pages/Search/SearchPage.tsx#L12) | `<SearchView>` | `onResultClick` | `search.onResultClick` | `Locality` | goes to Locality_Details; asks for a confirmation; calls the prop onEventSearchResultClick() |
-| [7](#627-searchview-onresultclick-other) | [`pages/Search/SearchPage.tsx:12`](../../app/src/pages/Search/SearchPage.tsx#L12) | `<SearchView>` | `onResultClick` | `search.onResultClick` | `other` | goes to HouseholdCarousel, HouseholdDetails; asks for a confirmation; calls the prop onEventSearchResultClick() |
-| 8 | [`pages/Search/SearchPage.tsx:12`](../../app/src/pages/Search/SearchPage.tsx#L12) | `<SearchView>` | `onApplyFilters` | `search.onApplyFilters` | – | calls DataActionFetchSearchResults |
-| 9 | [`pages/Search/components/SearchView.tsx:106`](../../app/src/pages/Search/components/SearchView.tsx#L106) | `<FilterSheetIcon>` | `onShowUpgradePopUp` | `showUpgradePopUp` | – | asks for a confirmation |
+| [5](#625-searchview-onrecentresultclick-oneschoolglobal) | [`pages/Search/SearchPage.tsx:12`](../../app/src/pages/Search/SearchPage.tsx#L12) | `<SearchView>` | `onRecentResultClick` | `search.onRecentResultClick` | `OneSchoolGlobal` | goes to OneSchoolGlobalDetails; asks for a confirmation; calls the prop onEventSearchResultClick() |
+| [6](#626-searchview-onrecentresultclick-assemble) | [`pages/Search/SearchPage.tsx:12`](../../app/src/pages/Search/SearchPage.tsx#L12) | `<SearchView>` | `onRecentResultClick` | `search.onRecentResultClick` | `Assemble` | goes to AssembleDetail; asks for a confirmation; calls the prop onEventSearchResultClick() |
+| [7](#627-searchview-onrecentresultclick-ldm) | [`pages/Search/SearchPage.tsx:12`](../../app/src/pages/Search/SearchPage.tsx#L12) | `<SearchView>` | `onRecentResultClick` | `search.onRecentResultClick` | `LDM` | goes to LDM_EventDetail_V2; asks for a confirmation; calls the prop onEventSearchResultClick() |
+| [8](#628-searchview-onrecentresultclick-other) | [`pages/Search/SearchPage.tsx:12`](../../app/src/pages/Search/SearchPage.tsx#L12) | `<SearchView>` | `onRecentResultClick` | `search.onRecentResultClick` | `other` | goes to HouseholdCarousel, HouseholdDetails; asks for a confirmation; calls the prop onEventSearchResultClick() |
+| [9](#629-searchview-onresultclick-locality) | [`pages/Search/SearchPage.tsx:12`](../../app/src/pages/Search/SearchPage.tsx#L12) | `<SearchView>` | `onResultClick` | `search.onResultClick` | `Locality` | goes to Locality_Details; asks for a confirmation; calls the prop onEventSearchResultClick() |
+| [10](#6210-searchview-onresultclick-oneschoolglobal) | [`pages/Search/SearchPage.tsx:12`](../../app/src/pages/Search/SearchPage.tsx#L12) | `<SearchView>` | `onResultClick` | `search.onResultClick` | `OneSchoolGlobal` | goes to OneSchoolGlobalDetails; asks for a confirmation; calls the prop onEventSearchResultClick() |
+| [11](#6211-searchview-onresultclick-assemble) | [`pages/Search/SearchPage.tsx:12`](../../app/src/pages/Search/SearchPage.tsx#L12) | `<SearchView>` | `onResultClick` | `search.onResultClick` | `Assemble` | goes to AssembleDetail; asks for a confirmation; calls the prop onEventSearchResultClick() |
+| [12](#6212-searchview-onresultclick-ldm) | [`pages/Search/SearchPage.tsx:12`](../../app/src/pages/Search/SearchPage.tsx#L12) | `<SearchView>` | `onResultClick` | `search.onResultClick` | `LDM` | goes to LDM_EventDetail_V2; asks for a confirmation; calls the prop onEventSearchResultClick() |
+| [13](#6213-searchview-onresultclick-other) | [`pages/Search/SearchPage.tsx:12`](../../app/src/pages/Search/SearchPage.tsx#L12) | `<SearchView>` | `onResultClick` | `search.onResultClick` | `other` | goes to HouseholdCarousel, HouseholdDetails; asks for a confirmation; calls the prop onEventSearchResultClick() |
+| 14 | [`pages/Search/SearchPage.tsx:12`](../../app/src/pages/Search/SearchPage.tsx#L12) | `<SearchView>` | `onApplyFilters` | `search.onApplyFilters` | – | calls DataActionFetchSearchResults |
+| 15 | [`pages/Search/components/SearchView.tsx:108`](../../app/src/pages/Search/components/SearchView.tsx#L108) | `<FilterSheetIcon>` | `onShowUpgradePopUp` | `showUpgradePopUp` | – | asks for a confirmation |
 
-<details><summary>6 diagrams (handlers with two or more effects)</summary>
+<details><summary>12 diagrams (handlers with two or more effects)</summary>
 
 #### 6.2.1 SearchView: onSubmit
 
@@ -230,7 +217,55 @@ sequenceDiagram
   H->>N: go to Locality_Details
 ```
 
-#### 6.2.5 SearchView: onRecentResultClick (other)
+#### 6.2.5 SearchView: onRecentResultClick (OneSchoolGlobal)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as SearchView · SearchPage.tsx
+  participant N as Navigation
+  U->>H: onRecentResultClick → search.onRecentResultClick (OneSchoolGlobal)
+  Note over H: via itemClick()
+  Note over H: via showUpgradePopUp()
+  Note over H: confirm dialog dialogId
+  Note over H: calls the prop onEventSearchResultClick()
+  H->>N: go to OneSchoolGlobalDetails
+```
+
+#### 6.2.6 SearchView: onRecentResultClick (Assemble)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as SearchView · SearchPage.tsx
+  participant N as Navigation
+  U->>H: onRecentResultClick → search.onRecentResultClick (Assemble)
+  Note over H: via itemClick()
+  Note over H: via showUpgradePopUp()
+  Note over H: confirm dialog dialogId
+  Note over H: calls the prop onEventSearchResultClick()
+  H->>N: go to AssembleDetail
+```
+
+#### 6.2.7 SearchView: onRecentResultClick (LDM)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as SearchView · SearchPage.tsx
+  participant N as Navigation
+  U->>H: onRecentResultClick → search.onRecentResultClick (LDM)
+  Note over H: via itemClick()
+  Note over H: via showUpgradePopUp()
+  Note over H: confirm dialog dialogId
+  Note over H: calls the prop onEventSearchResultClick()
+  H->>N: go to LDM_EventDetail_V2
+```
+
+#### 6.2.8 SearchView: onRecentResultClick (other)
 
 ```mermaid
 sequenceDiagram
@@ -247,7 +282,7 @@ sequenceDiagram
   H->>N: go to HouseholdDetails
 ```
 
-#### 6.2.6 SearchView: onResultClick (Locality)
+#### 6.2.9 SearchView: onResultClick (Locality)
 
 ```mermaid
 sequenceDiagram
@@ -263,7 +298,55 @@ sequenceDiagram
   H->>N: go to Locality_Details
 ```
 
-#### 6.2.7 SearchView: onResultClick (other)
+#### 6.2.10 SearchView: onResultClick (OneSchoolGlobal)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as SearchView · SearchPage.tsx
+  participant N as Navigation
+  U->>H: onResultClick → search.onResultClick (OneSchoolGlobal)
+  Note over H: via itemClick()
+  Note over H: via showUpgradePopUp()
+  Note over H: confirm dialog dialogId
+  Note over H: calls the prop onEventSearchResultClick()
+  H->>N: go to OneSchoolGlobalDetails
+```
+
+#### 6.2.11 SearchView: onResultClick (Assemble)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as SearchView · SearchPage.tsx
+  participant N as Navigation
+  U->>H: onResultClick → search.onResultClick (Assemble)
+  Note over H: via itemClick()
+  Note over H: via showUpgradePopUp()
+  Note over H: confirm dialog dialogId
+  Note over H: calls the prop onEventSearchResultClick()
+  H->>N: go to AssembleDetail
+```
+
+#### 6.2.12 SearchView: onResultClick (LDM)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as SearchView · SearchPage.tsx
+  participant N as Navigation
+  U->>H: onResultClick → search.onResultClick (LDM)
+  Note over H: via itemClick()
+  Note over H: via showUpgradePopUp()
+  Note over H: confirm dialog dialogId
+  Note over H: calls the prop onEventSearchResultClick()
+  H->>N: go to LDM_EventDetail_V2
+```
+
+#### 6.2.13 SearchView: onResultClick (other)
 
 ```mermaid
 sequenceDiagram
@@ -310,9 +393,12 @@ Parameters read (`useSearchParams`, `useParams`): none.
 
 | File | Target | Parameters | Place |
 |---|---|---|---|
-| `useSearch.ts` | `Locality_Details` | `LocalityId` = `searchResult.id` | [`pages/Search/hooks/useSearch.ts:390`](../../app/src/pages/Search/hooks/useSearch.ts#L390) |
-| `useSearch.ts` | `HouseholdCarousel` | `In_StartingHouseholdId` = `searchResult.householderId` | [`pages/Search/hooks/useSearch.ts:411`](../../app/src/pages/Search/hooks/useSearch.ts#L411) |
-| `useSearch.ts` | `HouseholdDetails` | `HouseholdId` = `searchResult.householderId` | [`pages/Search/hooks/useSearch.ts:413`](../../app/src/pages/Search/hooks/useSearch.ts#L413) |
+| `useSearch.ts` | `Locality_Details` | `LocalityId` = `searchResult.id` | [`pages/Search/hooks/useSearch.ts:392`](../../app/src/pages/Search/hooks/useSearch.ts#L392) |
+| `useSearch.ts` | `OneSchoolGlobalDetails` | `In_OneSchoolGlobalId` = `searchResult.id` | [`pages/Search/hooks/useSearch.ts:398`](../../app/src/pages/Search/hooks/useSearch.ts#L398) |
+| `useSearch.ts` | `AssembleDetail` | `EventId` = `searchResult.id` | [`pages/Search/hooks/useSearch.ts:402`](../../app/src/pages/Search/hooks/useSearch.ts#L402) |
+| `useSearch.ts` | `LDM_EventDetail_V2` | `EventHostId` = `searchResult.eventEventHostId`<br>`EventId` = `searchResult.id` | [`pages/Search/hooks/useSearch.ts:406`](../../app/src/pages/Search/hooks/useSearch.ts#L406) |
+| `useSearch.ts` | `HouseholdCarousel` | `In_StartingHouseholdId` = `searchResult.householderId` | [`pages/Search/hooks/useSearch.ts:430`](../../app/src/pages/Search/hooks/useSearch.ts#L430) |
+| `useSearch.ts` | `HouseholdDetails` | `HouseholdId` = `searchResult.householderId` | [`pages/Search/hooks/useSearch.ts:432`](../../app/src/pages/Search/hooks/useSearch.ts#L432) |
 
 ## 8. Lifecycle
 
@@ -331,6 +417,9 @@ Data actions and aggregates. The tool reads `dataFetchDependenciesOriginal`: `0`
 
 | Block | Data action | Fetch | Read by | Place |
 |---|---|---|---|---|
+| `ScreenBlock_Search` | `Get_RecentClickedResults` | at start (`0`) | **no widget or action reads it** | [`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:1979`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L1979) |
+| `ScreenBlock_Search` | `Get_RecentSearchTerms` | at start (`0`) | **no widget or action reads it** | [`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:1980`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L1980) |
+| `ScreenBlock_Search` | `Get_SearchBirthdayOptions` | on demand (`-1`) | **no widget or action reads it** | [`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:1981`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L1981) |
 | `ScreenBlock_Search` | `Get_FilteredRecentClickedResults` | on demand (`-1`) | `shown if (SectionSeparator)` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:584`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L584)), `shown if (CustomContainer)` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:616`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L616)), `shown if (CustomText)` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:696`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L696)), `text` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:758`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L758)), `SkeletonSection.In_IsLoading` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:795`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L795)), `LazyImage.In_ForceLoadingState` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:888`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L888)), `action get_RecentClickedResultsOnAfterFetch` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:2524`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2524)) | [`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:1982`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L1982) |
 | `ScreenBlock_Search` | `FetchSearchResults` | on demand (`-1`) | `Section.Items` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:1437`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L1437)), `view` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:1438`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L1438)), `Section.HideSeparator` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:1480`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L1480)), `text` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:1819`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L1819)), `action action_RefreshSearch` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:2765`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2765)), `action action_ClearResults` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:2928`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2928)), `action event_SectionOnItemClick` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:3436`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3436)), `action onAfterFetch_FetchSearchResults` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:4209`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L4209)) | [`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:1983`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L1983) |
 
@@ -340,9 +429,9 @@ Effects (`useEffect`, `useLayoutEffect`) of the screen files, and the effects of
 
 | File | Hook (function) | Dependencies | Cleanup | Effects | Place |
 |---|---|---|---|---|---|
-| `useSearch.ts` | `useEffect` (`useSearch`) | `[flags.birthdaySearch]` | yes | none | [`pages/Search/hooks/useSearch.ts:172`](../../app/src/pages/Search/hooks/useSearch.ts#L172) |
-| `useSearch.ts` | `useLayoutEffect` (`useSearch`) | `none (every render)` | no | none | [`pages/Search/hooks/useSearch.ts:239`](../../app/src/pages/Search/hooks/useSearch.ts#L239) |
-| `useSearch.ts` | `useEffect` (`useSearch`) | `[inSearchTargetId]` | yes | call `/api/UBTConnect/ScreenBlock_Search/DataActionGet_FilteredRecentClickedResults` | [`pages/Search/hooks/useSearch.ts:255`](../../app/src/pages/Search/hooks/useSearch.ts#L255) |
+| `useSearch.ts` | `useEffect` (`useSearch`) | `[flags.birthdaySearch]` | yes | none | [`pages/Search/hooks/useSearch.ts:173`](../../app/src/pages/Search/hooks/useSearch.ts#L173) |
+| `useSearch.ts` | `useLayoutEffect` (`useSearch`) | `none (every render)` | no | none | [`pages/Search/hooks/useSearch.ts:240`](../../app/src/pages/Search/hooks/useSearch.ts#L240) |
+| `useSearch.ts` | `useEffect` (`useSearch`) | `[inSearchTargetId]` | yes | call `/api/UBTConnect/ScreenBlock_Search/DataActionGet_FilteredRecentClickedResults` | [`pages/Search/hooks/useSearch.ts:256`](../../app/src/pages/Search/hooks/useSearch.ts#L256) |
 
 <details><summary>Sequence diagrams of the effects with a call, a navigation, a message or a refresh (1)</summary>
 
@@ -366,7 +455,7 @@ Queries. A query fetches when its component mounts and when its key changes. `Re
 
 | File | Hook (function) | Calls | Read by | Place |
 |---|---|---|---|---|
-| `useSearch.ts` | `useSearchBirthdayOptionsQuery` (`useSearch`) | `/api/UBTConnect/ScreenBlock_Search/ScreenDataSetGet_SearchBirthdayOptions` | `return` ([`L421`](../../app/src/pages/Search/hooks/useSearch.ts#L421)) | [`pages/Search/hooks/useSearch.ts:181`](../../app/src/pages/Search/hooks/useSearch.ts#L181) |
+| `useSearch.ts` | `useSearchBirthdayOptionsQuery` (`useSearch`) | `/api/UBTConnect/ScreenBlock_Search/ScreenDataSetGet_SearchBirthdayOptions` | `return` ([`L440`](../../app/src/pages/Search/hooks/useSearch.ts#L440)) | [`pages/Search/hooks/useSearch.ts:182`](../../app/src/pages/Search/hooks/useSearch.ts#L182) |
 
 ## 9. Client state
 
@@ -382,7 +471,7 @@ Client variables and browser storage that the route reads or writes. Other scree
 
 | File | Operation | Variable or key | Place |
 |---|---|---|---|
-| `useSearch.ts` | `clientVar.get` | `UBTConnect.Search_RecenctClickedResultsLimit` | [`pages/Search/hooks/useSearch.ts:384`](../../app/src/pages/Search/hooks/useSearch.ts#L384) |
+| `useSearch.ts` | `clientVar.get` | `UBTConnect.Search_RecenctClickedResultsLimit` | [`pages/Search/hooks/useSearch.ts:386`](../../app/src/pages/Search/hooks/useSearch.ts#L386) |
 
 ## 10. Access
 
@@ -415,7 +504,7 @@ An error without a handler goes to the `OnException` of the UI flow (`handleErro
 
 | File | Kind | Function | Effects | Place |
 |---|---|---|---|---|
-| `useSearch.ts` | try/catch | `refreshSearch` | none | [`pages/Search/hooks/useSearch.ts:296`](../../app/src/pages/Search/hooks/useSearch.ts#L296) |
+| `useSearch.ts` | try/catch | `refreshSearch` | none | [`pages/Search/hooks/useSearch.ts:297`](../../app/src/pages/Search/hooks/useSearch.ts#L297) |
 
 `flow handler`: `raiseToFlowHandler` gives the error to the flow handler of the screen (`app/src/platform/feedback/flowErrors.ts`). The tool lists `.catch`, `try/catch` and `onError` that do not give the error to it.
 
@@ -450,12 +539,12 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | `IconText` | `UBTConnectLibrary` | [`components/ui/IconText/IconText.tsx`](../../app/src/components/ui/IconText/IconText.tsx) | 0 |
 | `LazyImage` | `UBTConnectLibrary` | [`components/ui/LazyImage/LazyImage.tsx`](../../app/src/components/ui/LazyImage/LazyImage.tsx) | 0 |
 | `Button` | `UBTConnectLibrary` | [`components/ui/Button/Button.tsx`](../../app/src/components/ui/Button/Button.tsx) | 0 |
-| `CacheControl_AllCountries` | `UBTConnect_Utils` | [`legacy/os/cache/AllCountriesCacheControl/AllCountriesCacheControl.tsx`](../../app/src/legacy/os/cache/AllCountriesCacheControl/AllCountriesCacheControl.tsx) | 1 |
+| `CacheControl_AllCountries` | `UBTConnect_Utils` | [`legacy/os/cache/AllCountriesCacheControl/AllCountriesCacheControl.tsx`](../../app/src/legacy/os/cache/AllCountriesCacheControl/AllCountriesCacheControl.tsx) | 0 |
 | `CacheControl` | `UBTConnect_Utils` | [`legacy/os/cache/CacheControl/CacheControl.tsx`](../../app/src/legacy/os/cache/CacheControl/CacheControl.tsx) | 0 |
 | `CacheControl_UserInfo_Wrapper` | `UBTConnect` | [`platform/session/UserInfoCache/UserInfoCache.tsx`](../../app/src/platform/session/UserInfoCache/UserInfoCache.tsx) | 0 |
-| `CacheControl_UserInfo` | `UBTConnect_Utils` | [`legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx`](../../app/src/legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx) | 1 |
+| `CacheControl_UserInfo` | `UBTConnect_Utils` | [`legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx`](../../app/src/legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx) | 0 |
 
-<details><summary>User actions of the shared blocks (10)</summary>
+<details><summary>User actions of the shared blocks (8)</summary>
 
 | # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
 |---|---|---|---|---|---|
@@ -467,8 +556,6 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | 6 | `FilterSheet_Icon` | `click of Icon` | `iconClick` | – | asks for a confirmation |
 | 7 | `FilterSheet_OptionList_Item` | `notEnabledOnClick of List` | `selectionOption_ListNotEnabledOnClick` | – | asks for a confirmation |
 | 8 | `Layout_DetailPage` | `click of Icon` | `onClick_BackNavigation` | – | goes to previous screen |
-| 9 | `CacheControl_AllCountries` | `onNonCacheHit of CacheControl` | `cacheControlOnNonCacheHit` | – | calls GetCacheInfo |
-| 10 | `CacheControl_UserInfo` | `onNonCacheHit of CacheControl` | `cacheControlOnNonCacheHit` | – | calls GetCacheInfo |
 
 </details>
 
@@ -519,4 +606,4 @@ Calls that React can make on this route, without a TST chain on this route. Ever
 | Call | React action | Reached through |
 |---|---|---|
 | `/api/UBTConnect_Utils/CacheControl_AllLocalities/DataActionGetCacheInfo` | `fetchAllLocalities()` [`api/locality/repository.ts:157`](../../app/src/api/locality/repository.ts#L157) | `FilterSheetContainer` [`containers/FilterSheet/FilterSheetContainer.tsx`](../../app/src/containers/FilterSheet/FilterSheetContainer.tsx) |
-| `/api/UBTConnect_Utils/ActionGetSignedImagesInBulk` | `cache_SignedImageURL_GetCallback()` [`lib/ubtConnectUtils/actions.ts:124`](../../app/src/lib/ubtConnectUtils/actions.ts#L124) | `EntityLazyImage` [`components/ui/EntityLazyImage/EntityLazyImage.tsx`](../../app/src/components/ui/EntityLazyImage/EntityLazyImage.tsx) |
+| `/api/UBTConnect_Utils/ActionGetSignedImagesInBulk` | `cache_SignedImageURL_GetCallback()` [`lib/ubtConnectUtils/actions.ts:131`](../../app/src/lib/ubtConnectUtils/actions.ts#L131) | `EntityLazyImage` [`components/ui/EntityLazyImage/EntityLazyImage.tsx`](../../app/src/components/ui/EntityLazyImage/EntityLazyImage.tsx) |

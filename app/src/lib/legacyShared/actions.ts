@@ -1,13 +1,10 @@
 /* Client actions of Connect2_LegacyShared, ported 1:1 from migration/runtime-sources/Connect2_LegacyShared.controller.js
    (fetched read-only from TST, 2026-10-15; cited below as controller.js:<line>). */
-import { bookmarkCache } from '@/api/bookmark/keys';
 import {
   cacheKeyPart,
   getCacheKeyParts,
   getCacheableObject,
   getCacheableObjectInBulk,
-  peekCacheableObject,
-  putCacheableObject,
   type BulkCacheResult,
 } from '@/api/client/cache';
 import { callAction } from '@/api/client/callAction';
@@ -25,7 +22,6 @@ import { checkAppLauncherPlugin, getOperatingSystem } from '@/lib/ubtConnectUtil
 import { Mobile_OperatingSystem } from '@/lib/ubtConnectUtils/staticEntities';
 import { MapNavigationRedirect } from './staticEntities';
 import type {
-  BookmarkItem,
   BulkSignedPhotoParameters,
   BulkSignedPhotoResult,
   CacheableLocalityInformation,
@@ -416,56 +412,4 @@ export async function getCacheableSubdivision_V2(
 ): Promise<CacheableSubdivisionInformation | undefined> {
   if (subdivisionId === '0' || subdivisionId === '') throw objectNotFound('Invalid subdivision id');
   return getCacheableObjectInBulk(localityCache.subdivision(subdivisionId), getBulkSubdivision_V2);
-}
-
-/* ---- F15 (CR-AssembleDetail-2): the legacy bookmarks cache and feedback of ToggleBookmarkItem ---- */
-
-/** GetCachedMyBookmarks(Group) (controller.js:4529 ff.): GetCachedObject(DirectoryCacheType.MyBookmarks, Group)
-    (bookmarkCache.myBookmarks); on a hit AssignFromObject → Bookmarks (a copy) and CacheHit True. */
-export function getCachedMyBookmarks(group: string): { cacheHit: boolean; bookmarks: BookmarkItem[] } {
-  const cached = peekCacheableObject(bookmarkCache.myBookmarks(group));
-  if (!cached.hit || !Array.isArray(cached.value)) return { cacheHit: false, bookmarks: [] };
-  return { cacheHit: true, bookmarks: [...(cached.value as BookmarkItem[])] };
-}
-
-/** PutCachedMyBookmarks(Group, Bookmarks) (controller.js:6407 ff.): PutCacheableObject(DirectoryCacheType.MyBookmarks,
-    Group, Bookmarks, UnlimitedTimeToLiveSeconds = 604800 s) (bookmarkCache.myBookmarks). */
-export function putCachedMyBookmarks(group: string, bookmarks: readonly BookmarkItem[]): void {
-  putCacheableObject(bookmarkCache.myBookmarks(group), [...bookmarks]);
-}
-
-/** AddBookmarkToCache(In_Bookmark) (controller.js:1-60): BookmarkGroup = In_Bookmark.Group; GetCachedMyBookmarks; on a
-    hit: ListFilter out the rows with In_Bookmark's ObjectId, ListAppend In_Bookmark, ListSort by DateCreatedUtc
-    descending (Ascending False), PutCachedMyBookmarks, Success True; no hit: nothing (False). */
-export function addBookmarkToCache(in_Bookmark: BookmarkItem): boolean {
-  const bookmarkGroup = in_Bookmark.Group;
-  const cached = getCachedMyBookmarks(bookmarkGroup);
-  if (!cached.cacheHit) return false;
-  const filtered = cached.bookmarks.filter((p) => p.ObjectId !== in_Bookmark.ObjectId);
-  filtered.push({ ...in_Bookmark });
-  filtered.sort((a, b) => b.DateCreatedUtc.localeCompare(a.DateCreatedUtc));
-  putCachedMyBookmarks(bookmarkGroup, filtered);
-  return true;
-}
-
-/** RemoveBookmarkFromCache(In_Group, In_BookmarkId) (controller.js:6607-6660): GetCachedMyBookmarks(In_Group); on a hit,
-    ListIndexOf the row whose ObjectId = LongIntegerToText(In_BookmarkId) (the bookmark id compared with the object id,
-    as compiled; ported 1:1); found → ListRemove, PutCachedMyBookmarks, Success True. */
-export function removeBookmarkFromCache(in_Group: string, in_BookmarkId: string): boolean {
-  const cached = getCachedMyBookmarks(in_Group);
-  if (!cached.cacheHit) return false;
-  const position = cached.bookmarks.findIndex((p) => p.ObjectId === in_BookmarkId);
-  if (position === -1) return false;
-  cached.bookmarks.splice(position, 1);
-  putCachedMyBookmarks(in_Group, cached.bookmarks);
-  return true;
-}
-
-/** SendBookmarkedFeedbackMessage(IsCreate) (controller.js:6917-6945): success message "Added to your Bookmarks" /
-    "Removed from your Bookmarks". */
-export function sendBookmarkedFeedbackMessage(isCreate: boolean): void {
-  showFeedbackMessage(
-    isCreate ? 'Added to your Bookmarks' : 'Removed from your Bookmarks',
-    PLATFORM_MESSAGE_TYPE.success,
-  );
 }

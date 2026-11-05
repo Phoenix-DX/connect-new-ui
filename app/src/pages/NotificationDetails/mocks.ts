@@ -73,9 +73,24 @@ const assembleParameters = (messageTemplateId: string) =>
     },
   }));
 
+/** GetMessageInstance.Message of the seed: the UBTConnect records carry Tenant_Id (1, as the parameter rows) on
+    MessageContent, MessageInstance, MessageTemplate,
+    User and AdaptiveCardJSON, which the shared record does not. */
+export function notificationMessage(seed: MessageSeed | undefined) {
+  const message = wireMessage(seed);
+  return {
+    ...message,
+    MessageContent: { ...message.MessageContent, Tenant_Id: 1 },
+    MessageTemplate: { ...message.MessageTemplate, Tenant_Id: 1 },
+    User: { ...message.User, Tenant_Id: 1 },
+    MessageInstance: { ...message.MessageInstance, Tenant_Id: 1 },
+    AdaptiveCardJSON: { ...message.AdaptiveCardJSON, Tenant_Id: 1 },
+  };
+}
+
 export const handlers: RequestHandler[] = [
   contractHandler('UBTConnect', 'NotificationDetails/DataActionGetMessageInstance', ({ MessageInstanceId }) => ({
-    Message: wireMessage(findMessage(MessageInstanceId)),
+    Message: notificationMessage(findMessage(MessageInstanceId)),
     IsRetracted: false,
     IsCleared: false,
     PlaceholderDelimiters: DELIMITERS,

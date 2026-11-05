@@ -2,7 +2,7 @@ import { act, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { contractHandler } from '@/mocks/contract';
 import { MOCK_USER } from '@/mocks/fictional/directory';
-import { wireMessage, type MessageSeed } from '@/mocks/fictional/messages';
+import { type MessageSeed } from '@/mocks/fictional/messages';
 import { notificationRows, type MessageListItemRow } from '@/mocks/fictional/notifications';
 import { getFeedbackMessage, resetFeedbackMessages } from '@/platform/feedback/feedbackStore';
 import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
@@ -10,6 +10,7 @@ import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { getClientVar, setClientVar, setSignedInUser } from '@/platform/session/session';
 import { server } from '@/test/setup';
 import { calledActions, freshPage, recordBodies } from '@/test/testSupport';
+import { notificationMessage } from './mocks';
 import NotificationDetails from './NotificationDetailsPage';
 
 /* The screen with its flows (useNotificationDetail, live TST 2026-11-05) and the MSW mocks of the route
@@ -64,7 +65,7 @@ const seed = (fields: Partial<MessageSeed> = {}): MessageSeed => ({
 function serve(message: MessageSeed | undefined, answer: { IsRetracted?: boolean; IsCleared?: boolean } = {}) {
   server.use(
     contractHandler('UBTConnect', GET_MESSAGE, () => ({
-      Message: wireMessage(message),
+      Message: notificationMessage(message),
       IsRetracted: answer.IsRetracted ?? false,
       IsCleared: answer.IsCleared ?? false,
       PlaceholderDelimiters: {

@@ -143,3 +143,23 @@ def call_graph(sources):
                     src_evt = node(f"evt:{child}:{ev}", f"event {ev} of {_short(child)}", "block event")
                     edges.add((src_evt, tgt))
     return nodes, edges, endpoints
+
+
+def dead_client_actions(sources):
+    """{fname: [(start, end, label)]}: the character ranges of the private client actions of a compiled block that no
+    edge of the call graph reaches (no caller, no view or block event binds them): declared, never run (user,
+    2026-11-05, facts only). The range ends at the next `Controller.prototype.` definition."""
+    nodes, edges, _ = call_graph(sources)
+    called = {b for _, b in edges}
+    out = {}
+    for fname, src in sources.items():
+        if not fname.endswith(".mvc.js"):
+            continue
+        bounds = sorted(m.start() for m in re.finditer(r'Controller\.prototype\.[\w$]+\s*=\s*function', src))
+        for m in re.finditer(r'Controller\.prototype\._(\w+?)\$Action\s*=\s*function', src):
+            nid = f"act:{fname}:{m.group(1)}"
+            if nid not in nodes or nid in called:
+                continue
+            end = next((b for b in bounds if b > m.start()), len(src))
+            out.setdefault(fname, []).append((m.start(), end, nodes[nid]["label"]))
+    return out

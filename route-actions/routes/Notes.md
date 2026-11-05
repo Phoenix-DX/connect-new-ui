@@ -4,7 +4,7 @@ The route `/UBTConnect/Notes`, read from the TST compiled code and from the Reac
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/Notes/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
-**Live code.** TST changed 4 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `FilterSheet`, `NoteCard_List`, `Notes`, `Horizontal_Filter_TagList`. The observed calls come from the capture.
+**Live code.** TST changed 19 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `Connect2_LegacyShared`, `js`, `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `FilterSheet`, `FilterSheet_Icon_Label`, `NoteCard_List`, `Notes`, `UBTConnect`, `js`, `js`, `Horizontal_Filter_TagList`, `UBTConnectLibrary`, `js`, `UBTConnect_Utils`, `js`, `UBT_AppManager`, `UBT_AppManager_Mobile`. The observed calls come from the capture.
 
 ## 1. Route
 
@@ -23,10 +23,10 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | Check | Result |
 |---|---|
 | Server calls of the route on TST | 2: React makes 2, **0 missing** |
-| Differences found | **1** (see [section 3](#3-differences-found)) |
+| Differences found | **0** (see [section 3](#3-differences-found)) |
 | Questions | 0 (see [section 4](#4-questions)) |
 | React calls reached only through shared code | 6: see the last section |
-| User actions of the route (own code) | OutSystems: 6. React: 8 |
+| User actions of the route (own code) | OutSystems: 1. React: 8 |
 | Screen and blocks of the UI flow with a React port | 3 of 3 |
 | Navigation targets found in React | 14 of 14 |
 | Shared blocks and components on the route | OutSystems 24, React 8 with user actions: see the last section |
@@ -36,7 +36,16 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 
 Each line is a fact of both sides: a TST call, navigation or variable, and the React code that has it or not. The tool does not judge the behaviour.
 
-- Navigation to `Locality_Details`: TST gives `TagsList_SelectedTag` ([`UBTConnect.Notes.Notes.mvc.js:1891`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L1891)); React gives `LocalityId` ([`pages/Notes/hooks/notesState.ts:175`](../../app/src/pages/Notes/hooks/notesState.ts#L175)).
+None.
+
+### Not a gap of the web app
+
+Missing TST calls that a rule of `route-actions/config.json` (`notApplicable`, user 2026-11-05) sets aside. The rule names the fact and its evidence; the chain is the one of the TST code.
+
+**Declared, never run (navigation).** The navigation sits in a client action that no event, lifecycle step or action of the compiled code calls or binds (`tools/os_call_graph.py dead_client_actions`): TST cannot reach it.
+
+- Navigation to `Login` in `Block_PINUnlock_ContentWrapper.cacheControl_PoliciesResult`.
+
 
 ## 4. Questions
 
@@ -69,19 +78,14 @@ Two independent lists: the event bindings of the TST views, and the JSX event bi
 
 | # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
 |---|---|---|---|---|---|
-| 1 | `Notes` | `event_Submit of Input` | `handler_SearchOnSubmit` | – | calls GetNotes |
-| 2 | `Notes` | `event_ClearString of Input` | `handler_SearchOnClear` | – | calls GetNotes |
-| 3 | `Notes` | `changed of TagList` | `handler_OnClickPill` | – | calls GetNotes |
-| 4 | `Notes` | `onClick_NoteCardItem of List` | `handler_OnClickNoteCardItem` | `household` | goes to HouseholdCarousel |
-| 5 | `Notes` | `onClick_NoteCardItem of List` | `handler_OnClickNoteCardItem` | `feedItem` | goes to FeedItemDetail |
-| 6 | `Notes` | `onClick_NoteCardItem of List` | `handler_OnClickNoteCardItem` | `assembleEvent` | goes to AssembleDetail |
-| 7 | `Notes` | `onClick_NoteCardItem of List` | `handler_OnClickNoteCardItem` | `interchange` | goes to Locality_Details |
-| 8 | `Notes` | `onClick_NoteCardItem of List` | `handler_OnClickNoteCardItem` | `member` | goes to Household_Relations |
-| 9 | `Notes` | `onClick_NoteCardItem of List` | `handler_OnClickNoteCardItem` | `oneSchoolGlobal` | goes to OneSchoolGlobalCarousel |
-| 10 | `Notes` | `onClick_NoteCardItem of List` | `handler_OnClickNoteCardItem` | `supperMeeting` | goes to SupperMeeting_Details |
-| 11 | `Notes` | `onClick_NoteCardItem of List` | `handler_OnClickNoteCardItem` | `other` | shows a message |
-| 12 | `Notes` | `onLoadMore of List` | `notes_CardListOnLoadMore` | – | calls GetNotes |
-| 13 | `Notes` | `applyFilters of FilterSheet` | `handler_ApplyFilters` | – | calls GetNotes |
+| 1 | `Notes` | `onClick_NoteCardItem of List` | `handler_OnClickNoteCardItem` | `household` | goes to HouseholdCarousel |
+| 2 | `Notes` | `onClick_NoteCardItem of List` | `handler_OnClickNoteCardItem` | `feedItem` | goes to FeedItemDetail |
+| 3 | `Notes` | `onClick_NoteCardItem of List` | `handler_OnClickNoteCardItem` | `assembleEvent` | goes to AssembleDetail |
+| 4 | `Notes` | `onClick_NoteCardItem of List` | `handler_OnClickNoteCardItem` | `interchange` | goes to Locality_Details |
+| 5 | `Notes` | `onClick_NoteCardItem of List` | `handler_OnClickNoteCardItem` | `member` | goes to Household_Relations |
+| 6 | `Notes` | `onClick_NoteCardItem of List` | `handler_OnClickNoteCardItem` | `oneSchoolGlobal` | goes to OneSchoolGlobalCarousel |
+| 7 | `Notes` | `onClick_NoteCardItem of List` | `handler_OnClickNoteCardItem` | `supperMeeting` | goes to SupperMeeting_Details |
+| 8 | `Notes` | `onClick_NoteCardItem of List` | `handler_OnClickNoteCardItem` | `other` | shows a message |
 
 ### 6.2 React
 
@@ -248,7 +252,7 @@ Screen inputs: none. `setInputs` of `Notes` reads no input.
 | `Notes` | `HouseholdCarousel` | `In_StartingHouseholdId` = `textToLongInteger(objectId)` | [`UBTConnect.Notes.Notes.mvc.js:1866`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L1866) |
 | `Notes` | `FeedItemDetail` | `FeedItemId` = `objectId` | [`UBTConnect.Notes.Notes.mvc.js:1873`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L1873) |
 | `Notes` | `AssembleDetail` | `EventId` = `objectId` | [`UBTConnect.Notes.Notes.mvc.js:1880`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L1880) |
-| `Notes` | `Locality_Details` | `TagsList_SelectedTag` = `OS.DataConversion.ServerDataConverter.asString(OutSystemsDebugger.handleFunctionCall(funct…` | [`UBTConnect.Notes.Notes.mvc.js:1891`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L1891) |
+| `Notes` | `Locality_Details` | `TagsList_SelectedTag` = `UBTConnectController.default.getLocalityMenu$Action(callContext).localityMenuOptions.inter…`<br>`LocalityId` = `textToLongInteger(notes_InterchangeId_ExtractId.localityId)` | [`UBTConnect.Notes.Notes.mvc.js:1891`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L1891) |
 | `Notes` | `Household_Relations` | `MemberId` = `textToLongInteger(objectId)`<br>`HouseholdId` = `textToLongInteger(objectId2)` | [`UBTConnect.Notes.Notes.mvc.js:1910`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L1910) |
 | `Notes` | `OneSchoolGlobalCarousel` | `In_StartingObjectId` = `textToLongInteger(objectId)` | [`UBTConnect.Notes.Notes.mvc.js:1933`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L1933) |
 | `Notes` | `SupperMeeting_Details` | `In_SubdivsionId` = `textToLongInteger(objectId)` | [`UBTConnect.Notes.Notes.mvc.js:1946`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L1946) |
@@ -261,13 +265,13 @@ Parameters read (`useSearchParams`, `useParams`): none.
 
 | File | Target | Parameters | Place |
 |---|---|---|---|
-| `notesState.ts` | `HouseholdCarousel` | `In_StartingHouseholdId` = `longIntegerText(objectId)` | [`pages/Notes/hooks/notesState.ts:141`](../../app/src/pages/Notes/hooks/notesState.ts#L141) |
-| `notesState.ts` | `FeedItemDetail` | `FeedItemId` = `objectId` | [`pages/Notes/hooks/notesState.ts:154`](../../app/src/pages/Notes/hooks/notesState.ts#L154) |
-| `notesState.ts` | `AssembleDetail` | `EventId` = `objectId` | [`pages/Notes/hooks/notesState.ts:156`](../../app/src/pages/Notes/hooks/notesState.ts#L156) |
-| `notesState.ts` | `Household_Relations` | `MemberId` = `longIntegerText(objectId)`<br>`HouseholdId` = `longIntegerText(objectId2)` | [`pages/Notes/hooks/notesState.ts:158`](../../app/src/pages/Notes/hooks/notesState.ts#L158) |
-| `notesState.ts` | `OneSchoolGlobalCarousel` | `In_StartingObjectId` = `longIntegerText(objectId)` | [`pages/Notes/hooks/notesState.ts:163`](../../app/src/pages/Notes/hooks/notesState.ts#L163) |
-| `notesState.ts` | `SupperMeeting_Details` | `In_SubdivsionId` = `longIntegerText(objectId)` | [`pages/Notes/hooks/notesState.ts:173`](../../app/src/pages/Notes/hooks/notesState.ts#L173) |
-| `notesState.ts` | `Locality_Details` | `LocalityId` = `longIntegerText(notes_InterchangeId_ExtractId(objectId).Loca…` | [`pages/Notes/hooks/notesState.ts:175`](../../app/src/pages/Notes/hooks/notesState.ts#L175) |
+| `notesState.ts` | `HouseholdCarousel` | `In_StartingHouseholdId` = `longIntegerText(objectId)` | [`pages/Notes/hooks/notesState.ts:135`](../../app/src/pages/Notes/hooks/notesState.ts#L135) |
+| `notesState.ts` | `FeedItemDetail` | `FeedItemId` = `objectId` | [`pages/Notes/hooks/notesState.ts:148`](../../app/src/pages/Notes/hooks/notesState.ts#L148) |
+| `notesState.ts` | `AssembleDetail` | `EventId` = `objectId` | [`pages/Notes/hooks/notesState.ts:150`](../../app/src/pages/Notes/hooks/notesState.ts#L150) |
+| `notesState.ts` | `Household_Relations` | `MemberId` = `longIntegerText(objectId)`<br>`HouseholdId` = `longIntegerText(objectId2)` | [`pages/Notes/hooks/notesState.ts:152`](../../app/src/pages/Notes/hooks/notesState.ts#L152) |
+| `notesState.ts` | `OneSchoolGlobalCarousel` | `In_StartingObjectId` = `longIntegerText(objectId)` | [`pages/Notes/hooks/notesState.ts:157`](../../app/src/pages/Notes/hooks/notesState.ts#L157) |
+| `notesState.ts` | `SupperMeeting_Details` | `In_SubdivsionId` = `longIntegerText(objectId)` | [`pages/Notes/hooks/notesState.ts:167`](../../app/src/pages/Notes/hooks/notesState.ts#L167) |
+| `notesState.ts` | `Locality_Details` | `LocalityId` = `longIntegerText(notes_InterchangeId_ExtractId(objectId).Loca…`<br>`TagsList_SelectedTag` = `LocalityMenu.Interchange` | [`pages/Notes/hooks/notesState.ts:169`](../../app/src/pages/Notes/hooks/notesState.ts#L169) |
 
 ## 8. Lifecycle
 
@@ -341,7 +345,7 @@ Effects (`useEffect`, `useLayoutEffect`) of the screen files, and the effects of
 
 | File | Hook (function) | Dependencies | Cleanup | Effects | Place |
 |---|---|---|---|---|---|
-| `useNotes.ts` | `useEffect` (`useNotes`) | `[state.isInitialized]` | no | call `/api/UBTConnect_Notes_MCS/ActionGet_NotePills_ByNoteCategoryIds`<br>call `/api/UBTConnect/Notes/DataActionGetNotes` | [`pages/Notes/hooks/useNotes.ts:130`](../../app/src/pages/Notes/hooks/useNotes.ts#L130) |
+| `useNotes.ts` | `useEffect` (`useNotes`) | `[state.isInitialized]` | no | call `/api/UBTConnect_Notes_MCS/ActionGet_NotePills_ByNoteCategoryIds`<br>call `/api/UBTConnect/Notes/DataActionGetNotes` | [`pages/Notes/hooks/useNotes.ts:129`](../../app/src/pages/Notes/hooks/useNotes.ts#L129) |
 
 <details><summary>Sequence diagrams of the effects with a call, a navigation, a message or a refresh (1)</summary>
 

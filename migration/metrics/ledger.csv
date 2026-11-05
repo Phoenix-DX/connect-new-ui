@@ -1143,3 +1143,6 @@ date,screen,phase,tokens,agent,tier,note
 2026-11-05,Search,build,116707,opus,,drift build shared blocks TagContent/AvatarImage/HorizontalTagList
 2026-11-05,NotificationDetails,build,309558,opus,,drift build NotificationDetails + Notifications
 2026-11-05,HouseholdDetails,fix,171069,opus,,bookmark module move proposal (decision row 24)
+2026-11-05,NotificationDetails,fix,85725,sonnet,,contract regen fallout (live module files)
+2026-11-05,AssembleDetail,build,255384,opus,,bookmark module move build (row 24)
+2026-11-05,Household_Relations,fix,103344,opus,,bookmark drift proposal

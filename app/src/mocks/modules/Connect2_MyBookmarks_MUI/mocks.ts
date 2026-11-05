@@ -2,19 +2,12 @@ import type { RequestHandler } from 'msw';
 import type { components } from '@/api/schema.d';
 import { collection } from '@/mocks/store';
 import { MOCK_SIGNED_PHOTO_URL } from '@/components/ui/ResultItemImage/mocks';
-import {
-  BOOKMARKED_ELSEWHERE,
-  BOOKMARKED_PLACES,
-  VITALE,
-  bookmarkTitle,
-  householdById,
-} from '@/mocks/fictional/directory';
+import { BOOKMARKED_ELSEWHERE, BOOKMARKED_PLACES, VITALE, bookmarkTitle } from '@/mocks/fictional/directory';
 import { MyBookmarks_Group, MyBookmarks_ObjectType } from '@/lib/ubtConnect/staticEntities';
 
-/* The mock user's legacy bookmarks (Connect2_MyBookmarks_IS BookmarkItem rows on the server), shared by every reader and
-   writer of the legacy bookmarks (CR-MyBookmarks-2, CR-BookmarksByGroup-2; P-MUTATION):
-   - Connect2_Assemble_MUI AddBookmark / DeleteBookmarkByBookmarkId (addLegacyBookmark below; mocks/modules/Connect2_Assemble_MUI/
-     mocks.ts, CR-AssembleDetail-2);
+/* The mock user's legacy bookmarks (Connect2_MyBookmarks_IS BookmarkItem rows on the server), shared by every reader of
+   the legacy bookmarks (CR-MyBookmarks-2, CR-BookmarksByGroup-2). No writer is left: TST removed Connect2_Assemble_MUI
+   AddBookmark / DeleteBookmarkByBookmarkId (live survey 2026-11-05).
    - the device copy the app start syncs: Sync_Info_GetMain LocalEntities_App.LocalBookmark (src/shell/mocks.ts
      mockLocalBookmarks, derived from this collection), read by Directory_EntityDetailsActions (Get_LocalBookmarkByObjectId).
    Its readers MyBookmarks and BookmarksByGroup (with New_MyBookmarks and New_BookmarksByGroup) are retired: 404 on TST,
@@ -160,42 +153,6 @@ export const allLegacyBookmarks = (): LegacyBookmarkItem[] =>
   [...(legacyBookmarksCollection().all() as unknown as LegacyBookmarkItem[])].sort((a, b) =>
     b.DateCreatedUtc.localeCompare(a.DateCreatedUtc),
   );
-
-/** A server DateTime in UTC ("yyyy-MM-ddTHH:mm:ss"). */
-const nowUtc = () => new Date().toISOString().slice(0, 19);
-
-/** A new legacy bookmark (Connect2_Assemble_MUI AddBookmark, CR-AssembleDetail-2; P-MUTATION): the row the server would
-    add, in the seed's form (a Contacts row of a cast household gets its bookmark title, children, "<locality>,
-    <country>" tag, the placeholder photo and ShareObjectTypeId Household, as `contact` above), DateCreatedUtc now (the
-    most recent of its group). An object outside the cast keeps the default details and an empty title. */
-export function addLegacyBookmark(
-  group: string,
-  objectType: string,
-  objectId: string,
-  note: string,
-): LegacyBookmarkItem {
-  const household = objectType === T.Contact ? householdById(objectId) : undefined;
-  const added = legacyBookmarksCollection().upsert({
-    ...emptyLegacyBookmarkItem(),
-    Id: '',
-    Group: group,
-    ObjectType: objectType,
-    ObjectId: objectId,
-    Title: household ? bookmarkTitle(household) : '',
-    DateCreatedUtc: nowUtc(),
-    Image: household ? MOCK_SIGNED_PHOTO_URL : '',
-    Note: note,
-    DetailsJson: household
-      ? details({
-          ChildrenNames: household.children.join(', '),
-          LocalityName: household.localityName,
-          CountryName: household.countryName,
-          ShareObjectTypeId: 'Household',
-        })
-      : details(),
-  }) as unknown as LegacyBookmarkItem;
-  return { ...added };
-}
 
 /* No handler: the module's server actions GetBookmarkById, New_GetBookmarkById, DeleteBookmarkByBookmarkId and
    New_UpdateBookmarkNote served only the retired routes (auto decision G2, 2026-10-29). */

@@ -48,7 +48,12 @@ const accountForm: MemberAccountForm = {
     WorkNumber: '',
   },
   AccountForm_IdentificationInformation: { AccountNumber: 'NZ-4471', MemberId: '11' },
-  AccountForm_PersonalInformation: { Email: 'ada@example.org', ShowLifeCycleDates: true, Username: 'aharlow' },
+  AccountForm_PersonalInformation: {
+    Email: 'ada@example.org',
+    ShowEmail: true,
+    ShowLifeCycleDates: true,
+    Username: 'aharlow',
+  },
 };
 
 describe('member mapper', () => {

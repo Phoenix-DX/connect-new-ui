@@ -7,13 +7,12 @@ import type {
   UI_Screen_SubdivisionDetails,
   UI_SubdivisionHousehold,
 } from './structures';
-import { addC2Bookmark, deleteC2Bookmark, type BookmarkDeleted, type C2BookmarkAdded } from '@/api/bookmark';
 import { fetchUnreadUpdateItemsCount } from '@/api/update';
 import { log } from '@/platform/log/log';
 import { osList } from '@/lib/os-wire';
 import { getClientVar, setClientVar } from '@/platform/session/session';
 import { getUserInformation } from '@/platform/session/userInfo';
-import { SystemException, UserException, isInstanceOf } from '@/legacy/os/os-exceptions';
+import { UserException } from '@/legacy/os/os-exceptions';
 import {
   BookmarkCategory,
   Connect_Entity,
@@ -29,12 +28,6 @@ import {
 import { getLookupConcepts, setLookupLabel_MaybeLowercase } from '@/lib/ubtConnectLibrary/actions';
 import { jSUtils_String_Split } from '@/lib/jsUtils';
 import { setCarouselStartingPosition } from '@/components/ui/lib/actions';
-import { bookmark_SendFeedbackMessage } from '@/lib/ubtConnectUtils/actions';
-import {
-  create_LocalBookmark,
-  delete_LocalBookmarkByBookmarkId,
-  getLocalBookmarkByObjectId,
-} from '@/platform/storage/localEntities';
 import type {
   CarouselPreloadedHouseholds,
   CarouselSwipeCallbackParametersItem,
@@ -298,70 +291,6 @@ export function getBookmarkType_FromEntity(entityType: string): { BookmarkType: 
     default:
       throw new UserException('Bookmarks not available', 'UBTConnect.InvalidAction');
   }
-}
-
-/** The two server actions of ToggleBookmarkItem_C2. */
-export interface BookmarkServerActions {
-  /** ServiceAPIAddBookmark2(In_BookmarkCategoryId, In_ItemId as text) (UC:18251-18286): Success, Bookmark_Added
-      (Connect_Bookmarks_CS UI_Bookmark_Added; Id and DateCreatedUtc are used). */
-  addBookmark2(in_BookmarkCategoryId: string, in_ItemId: string): Promise<C2BookmarkAdded>;
-  /** ServiceAPIDeleteBookmarkByBookmarkId2(BookmarkId) (UC:18312-18336): Success. */
-  deleteBookmarkByBookmarkId2(bookmarkId: string): Promise<BookmarkDeleted>;
-}
-
-/** The two server actions in the domain api/bookmark (addC2Bookmark and deleteC2Bookmark; contract operations
-    `UBTConnect/ServiceAPIAddBookmark2` and `…/ServiceAPIDeleteBookmarkByBookmarkId2`, CR-W4A-1); mocks in
-    `../Directory_EntityDetailsActions/mocks.ts`. Typed nullable so callers keep their guard. */
-export const bookmarkServerActions: BookmarkServerActions | null = {
-  addBookmark2: addC2Bookmark,
-  deleteBookmarkByBookmarkId2: deleteC2Bookmark,
-};
-
-/** ToggleBookmarkItem_C2(In_ItemId, In_BookmarkType, IsBookmarked_C2) (UC:17105-17280):
-    - bookmarked: GetLocalBookmarkByObjectId(In_ItemId) → DeleteBookmarkByBookmarkId2(its BookmarkId); on Success
-      Delete_LocalBookmarkByBookmarkId and Bookmark_SendFeedbackMessage(not IsBookmarked_C2, False), else the error
-      message;
-    - not bookmarked: AddBookmark2(In_BookmarkType, LongIntegerToText(In_ItemId)); on Success Create_LocalBookmark(
-      In_ItemId, In_BookmarkType, Bookmark_Added.Id, Bookmark_Added.DateCreatedUtc) and the success message, else the
-      error message;
-    - AllExceptions (not system): the error message, then the action ends normally; system exceptions are raised.
-    Its outputs Out_LocalBookmarkId and Out_CreatedBookmarkId are never assigned (their defaults, "0"). */
-export async function toggleBookmarkItem_C2(
-  in_ItemId: string,
-  in_BookmarkType: string,
-  isBookmarked_C2: boolean,
-  server: BookmarkServerActions,
-): Promise<{ Out_LocalBookmarkId: string; Out_CreatedBookmarkId: string }> {
-  const out = { Out_LocalBookmarkId: '0', Out_CreatedBookmarkId: '0' };
-  try {
-    if (isBookmarked_C2) {
-      const local = await getLocalBookmarkByObjectId(in_ItemId);
-      const deleted = await server.deleteBookmarkByBookmarkId2(local.BookmarkId);
-      if (deleted.Success) {
-        await delete_LocalBookmarkByBookmarkId(local.BookmarkId);
-        bookmark_SendFeedbackMessage(!isBookmarked_C2, false);
-      } else {
-        bookmark_SendFeedbackMessage(!isBookmarked_C2, true);
-      }
-    } else {
-      const added = await server.addBookmark2(in_BookmarkType, in_ItemId);
-      if (added.Success) {
-        await create_LocalBookmark(
-          in_ItemId,
-          in_BookmarkType,
-          added.Bookmark_Added.Id,
-          added.Bookmark_Added.DateCreatedUtc,
-        );
-        bookmark_SendFeedbackMessage(!isBookmarked_C2, false);
-      } else {
-        bookmark_SendFeedbackMessage(!isBookmarked_C2, true);
-      }
-    }
-  } catch (ex) {
-    if (isInstanceOf(ex, SystemException)) throw ex;
-    bookmark_SendFeedbackMessage(!isBookmarked_C2, true);
-  }
-  return out;
 }
 
 /* ---- Wave 4C (household details and supper meeting blocks). UC = UBTConnect.controller.js (raw copy of the screen

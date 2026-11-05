@@ -108,7 +108,7 @@ var outVars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVar
 varBag.callContext = callContext;
 varBag.vars = vars;
 varBag.outVars = outVars;
-try {OutSystemsDebugger.push("DjcSN7X3Kkyt49iAAhnv1A:T2TXU49S9UiCTDi6KMk93A:/ClientActionFlows.T2TXU49S9UiCTDi6KMk93A:UEOoYwvknFDXSw737lTq5A", "Connect2_LegacyShared", "AddFirstSentence", "NRFlows.ClientActionFlow", callContext.id, varBag);
+try {OutSystemsDebugger.push("DjcSN7X3Kkyt49iAAhnv1A:T2TXU49S9UiCTDi6KMk93A:/ClientActionFlows.T2TXU49S9UiCTDi6KMk93A:m+cX+sjNf1mrHuW4fEQkHA", "Connect2_LegacyShared", "AddFirstSentence", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("DjcSN7X3Kkyt49iAAhnv1A:EUOvzAfSyE2BmX26LD5paQ", callContext.id);
 OutSystemsDebugger.handleBreakpoint("DjcSN7X3Kkyt49iAAhnv1A:9q8ij5rmRUOFuL4706daYw", callContext.id);
 // Out_MessageContent = "Hello " + In_UserFirstName + ", <br> <br>" + In_MessageContent
@@ -696,7 +696,7 @@ varBag.listIndexOf_StartDateVar = listIndexOf_StartDateVar;
 varBag.listIndexOf_RecurrenceVar = listIndexOf_RecurrenceVar;
 varBag.cache_UserInfo_GetVar = cache_UserInfo_GetVar;
 varBag.outVars = outVars;
-OutSystemsDebugger.push("DjcSN7X3Kkyt49iAAhnv1A:dWlwpJI4W0ClAXaGLnozjA:/ClientActionFlows.dWlwpJI4W0ClAXaGLnozjA:D7_FndxFQEhbt0mwPcMtHA", "Connect2_LegacyShared", "BuildAssembleNotificationContent", "NRFlows.ClientActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("DjcSN7X3Kkyt49iAAhnv1A:dWlwpJI4W0ClAXaGLnozjA:/ClientActionFlows.dWlwpJI4W0ClAXaGLnozjA:+XzrfRCWP5Bq62zmPJK2VQ", "Connect2_LegacyShared", "BuildAssembleNotificationContent", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("DjcSN7X3Kkyt49iAAhnv1A:FDjP2TJ6_0aeBKhZ6sbsYA", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 return OS.Flow.executeSequence(function () {
@@ -1849,7 +1849,7 @@ callContext = controller.callContext(callContext);
 var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("Connect2_LegacyShared.DecrementReadMessagesCounter$vars"))());
 varBag.callContext = callContext;
 varBag.vars = vars;
-try {OutSystemsDebugger.push("DjcSN7X3Kkyt49iAAhnv1A:phFseEhDskORPxNoZz+_yA:/ClientActionFlows.phFseEhDskORPxNoZz+_yA:7+BmubfCPYmlQE_KP20aKg", "Connect2_LegacyShared", "DecrementReadMessagesCounter", "NRFlows.ClientActionFlow", callContext.id, varBag);
+try {OutSystemsDebugger.push("DjcSN7X3Kkyt49iAAhnv1A:phFseEhDskORPxNoZz+_yA:/ClientActionFlows.phFseEhDskORPxNoZz+_yA:L7pC7DVeJP4YiU+gv+1kYw", "Connect2_LegacyShared", "DecrementReadMessagesCounter", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("DjcSN7X3Kkyt49iAAhnv1A:_ruVOb0mFEaNs7cpGwoq9A", callContext.id);
 // Client.UnreadMessagesNumber
 OutSystemsDebugger.handleBreakpoint("DjcSN7X3Kkyt49iAAhnv1A:lmX9Zc0MxEijsph+w65SIg", callContext.id);
@@ -1894,7 +1894,7 @@ Connect2_LegacySharedController.default.decrementReadWhatsNewsCounter$Action = f
 var varBag = {};
 callContext = controller.callContext(callContext);
 varBag.callContext = callContext;
-try {OutSystemsDebugger.push("DjcSN7X3Kkyt49iAAhnv1A:4SJMosdlqk2FYCOCckIJXA:/ClientActionFlows.4SJMosdlqk2FYCOCckIJXA:tAK1bDuJvRILnvJZiz4hBg", "Connect2_LegacyShared", "DecrementReadWhatsNewsCounter", "NRFlows.ClientActionFlow", callContext.id, varBag);
+try {OutSystemsDebugger.push("DjcSN7X3Kkyt49iAAhnv1A:4SJMosdlqk2FYCOCckIJXA:/ClientActionFlows.4SJMosdlqk2FYCOCckIJXA:O8Y7GTuQo8G1UL7smwjw4g", "Connect2_LegacyShared", "DecrementReadWhatsNewsCounter", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("DjcSN7X3Kkyt49iAAhnv1A:oXgdWBCHZ0+DE3rw5NGdmA", callContext.id);
 // Client.UnreadMessagesNumber
 OutSystemsDebugger.handleBreakpoint("DjcSN7X3Kkyt49iAAhnv1A:f_7mrp51wECR6sf_gDNc_g", callContext.id);
@@ -4114,11 +4114,12 @@ $parameters.GetObjectBulkCallback = $actions.GetBulkSignedPhotosURL;
 
 define("Connect2_LegacyShared.controller$GetCacheableSubdivision_V2", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_LegacyShared.model", "Connect2_LegacyShared.controller", "NavigationHandler.controller", "MemoryClientCache.model", "MemoryClientCache.controller", "Connect2_LegacyShared.controller$GetCacheableSubdivision_V2.CallbacksJS", "Connect2_LegacyShared.clientVariables", "NavigationHandler.controller$AssignFromObject", "Connect2_LegacyShared.referencesHealth", "Connect2_LegacyShared.referencesHealth$NavigationHandler", "MemoryClientCache.model$MemoryCacheResultRec", "Connect2_LegacyShared.referencesHealth$MemoryClientCache", "MemoryClientCache.controller$GetCacheableObjectInBulk", "Connect2_LegacyShared.model$CacheableSubdivisionInformationTextTextRecordList", "Connect2_LegacyShared.controller$GetBulkSubdivision_V2", "Connect2_LegacyShared.model$CacheableSubdivisionInformationRec"], function (exports, OutSystems, Connect2_LegacySharedModel, Connect2_LegacySharedController, NavigationHandlerController, MemoryClientCacheModel, MemoryClientCacheController, Connect2_LegacyShared_controller_GetCacheableSubdivision_V2_CallbacksJS, Connect2_LegacySharedClientVariables) {
 var OS = OutSystems.Internal;
-Connect2_LegacySharedController.default.getCacheableSubdivision_V2$Action = function (subdivisionIdIn, callContext) {
+Connect2_LegacySharedController.default.getCacheableSubdivision_V2$Action = function (subdivisionIdIn, timeToLiveIn, callContext) {
 var varBag = {};
 callContext = controller.callContext(callContext);
 var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("Connect2_LegacyShared.GetCacheableSubdivision_V2$vars"))());
 vars.value.subdivisionIdInLocal = subdivisionIdIn;
+vars.value.timeToLiveInLocal = timeToLiveIn;
 var assignFromObjectVar = new OS.DataTypes.VariableHolder();
 var getCacheableObjectInBulkVar = new OS.DataTypes.VariableHolder();
 var callbacksJSResult = new OS.DataTypes.VariableHolder();
@@ -4129,7 +4130,7 @@ varBag.assignFromObjectVar = assignFromObjectVar;
 varBag.getCacheableObjectInBulkVar = getCacheableObjectInBulkVar;
 varBag.callbacksJSResult = callbacksJSResult;
 varBag.outVars = outVars;
-OutSystemsDebugger.push("DjcSN7X3Kkyt49iAAhnv1A:Om9LW041tEOu0KnScvbfcg:/ClientActionFlows.Om9LW041tEOu0KnScvbfcg:LgnwOKyIYAKE_nh2Dfp_Eg", "Connect2_LegacyShared", "GetCacheableSubdivision_V2", "NRFlows.ClientActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("DjcSN7X3Kkyt49iAAhnv1A:Om9LW041tEOu0KnScvbfcg:/ClientActionFlows.Om9LW041tEOu0KnScvbfcg:pJXuG+DJyAFnBRxB+ohQqw", "Connect2_LegacyShared", "GetCacheableSubdivision_V2", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("DjcSN7X3Kkyt49iAAhnv1A:S+VHdbtnW0Sril4GHQJ4MA", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 return OS.Flow.executeSequence(function () {
@@ -4146,7 +4147,7 @@ GetBulkSubdivision_V2: Connect2_LegacySharedController.default.getClientActionPr
 }, {});
 OutSystemsDebugger.handleBreakpoint("DjcSN7X3Kkyt49iAAhnv1A:UKbdzxREt0mCG3v1sQ1nTA", callContext.id);
 // Execute Action: GetCacheableObjectInBulk
-return MemoryClientCacheController.default.getCacheableObjectInBulk$Action(OS.BuiltinFunctions.textToIdentifier(Connect2_LegacySharedModel.staticEntities.directoryCacheType.assembleSubdivision), OS.BuiltinFunctions.longIntegerToText(vars.value.subdivisionIdInLocal), vars.value.timeToLiveVar, vars.value.timeoutVar, callbacksJSResult.value.getObjectBulkCallbackOut, OS.DataTypes.LongInteger.defaultValue, callContext).then(function (value) {
+return MemoryClientCacheController.default.getCacheableObjectInBulk$Action(OS.BuiltinFunctions.textToIdentifier(Connect2_LegacySharedModel.staticEntities.directoryCacheType.assembleSubdivision), OS.BuiltinFunctions.longIntegerToText(vars.value.subdivisionIdInLocal), vars.value.timeToLiveInLocal, vars.value.timeoutVar, callbacksJSResult.value.getObjectBulkCallbackOut, OS.DataTypes.LongInteger.defaultValue, callContext).then(function (value) {
 getCacheableObjectInBulkVar.value = value;
 }).then(function () {
 OutSystemsDebugger.handleBreakpoint("DjcSN7X3Kkyt49iAAhnv1A:iecxrqvAt0+I7UHAwusX+g", callContext.id);
@@ -4189,7 +4190,7 @@ return OS.DataTypes.LongInteger.defaultValue;
 }
 }, {
 name: "TimeToLive",
-attrName: "timeToLiveVar",
+attrName: "timeToLiveInLocal",
 mandatory: false,
 dataType: OS.DataTypes.DataTypes.Integer,
 defaultValue: function () {
@@ -4232,9 +4233,10 @@ return new MemoryClientCacheModel.MemoryCacheResultRec();
 },
 complexType: MemoryClientCacheModel.MemoryCacheResultRec
 }]);
-Connect2_LegacySharedController.default.clientActionProxies.getCacheableSubdivision_V2$Action = function (subdivisionIdIn) {
+Connect2_LegacySharedController.default.clientActionProxies.getCacheableSubdivision_V2$Action = function (subdivisionIdIn, timeToLiveIn) {
 subdivisionIdIn = (subdivisionIdIn === undefined) ? OS.DataTypes.LongInteger.defaultValue : subdivisionIdIn;
-return controller.executeActionInsideJSNode(Connect2_LegacySharedController.default.getCacheableSubdivision_V2$Action.bind(controller, OS.DataConversion.JSNodeParamConverter.from(subdivisionIdIn, OS.DataTypes.DataTypes.LongInteger)), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
+timeToLiveIn = (timeToLiveIn === undefined) ? 300 : timeToLiveIn;
+return controller.executeActionInsideJSNode(Connect2_LegacySharedController.default.getCacheableSubdivision_V2$Action.bind(controller, OS.DataConversion.JSNodeParamConverter.from(subdivisionIdIn, OS.DataTypes.DataTypes.LongInteger), OS.DataConversion.JSNodeParamConverter.from(timeToLiveIn, OS.DataTypes.DataTypes.Integer)), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
 return {
 SubdivisionInformation: actionResults.subdivisionInformationOut,
 CacheResult: actionResults.cacheResultOut
@@ -8548,12 +8550,6 @@ getter: function (varBag, idService) {
 return varBag.getUnixEpochTimestampJSResult.value;
 }
 },
-"yBcmktnqSE+PSY6OoVWwCQ": {
-getter: function (varBag, idService) {
-return varBag.vars.value.timeToLiveVar;
-},
-dataType: OS.DataTypes.DataTypes.Integer
-},
 "NXw8x2ofqE63hP3i1tY8eg": {
 getter: function (varBag, idService) {
 return varBag.vars.value.timeoutVar;
@@ -8565,6 +8561,12 @@ getter: function (varBag, idService) {
 return varBag.vars.value.subdivisionIdInLocal;
 },
 dataType: OS.DataTypes.DataTypes.LongInteger
+},
+"zumUqf6mpkKSo0mh+qM_pw": {
+getter: function (varBag, idService) {
+return varBag.vars.value.timeToLiveInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Integer
 },
 "SUEmxLtdKkak05mhwX35mg": {
 getter: function (varBag, idService) {

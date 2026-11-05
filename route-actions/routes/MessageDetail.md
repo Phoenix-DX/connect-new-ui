@@ -4,6 +4,8 @@ The route `/UBTConnect/MessageDetail`, read from the TST compiled code and from 
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/MessageDetail/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
+**Live code.** TST changed 17 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `ScreenBlock_MessageDetail`, `Connect2_LegacyShared`, `js`, `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `ReactiveHtmlSanitizer`, `MessageDetail`, `UBTConnect`, `js`, `js`, `UBTConnectLibrary`, `js`, `UBTConnect_Utils`, `js`, `UBT_AppManager`, `UBT_AppManager_Mobile`. The observed calls come from the capture.
+
 ## 1. Route
 
 | Item | Value | Source |
@@ -14,7 +16,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/MessageDetail/MessageDetailPage.tsx`](../../app/src/pages/MessageDetail/MessageDetailPage.tsx) | `app/src/pages/` |
 | React route rules | access `anonymous`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 | Screenshots | [`migration/screens/MessageDetail/parity`](../../migration/screens/MessageDetail/parity) | `route.py parity` |
-| Code read | OutSystems: 1 files of the UI flow, 13 shared blocks, 25 app shell files. React: 189 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
+| Code read | OutSystems: 1 files of the UI flow, 13 shared blocks, 25 app shell files. React: 191 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
@@ -62,12 +64,12 @@ All columns come from the code, without interpretation:
 
 | # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
 |---|---|---|---|---|---|---|---|---|
-| 1 | `Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageDetail/ActionGet_OrbitHostSurveyNotificationParameters` | server action | `ScreenBlock_MessageDetail` | onClick in ScreenBlock_MessageDetail → ScreenBlock_MessageDetail.onClick_ViewOrbitEvent → server Get_OrbitHostSurveyNotificationParameters | no | `getOrbitHostSurveyNotificationParameters()` [`api/message/repository.ts:185`](../../app/src/api/message/repository.ts#L185) (page) | `MessageDetail → useMessageDetail → getOrbitHostSurveyNotificationParameters`<br>[`pages/MessageDetail/MessageDetailPage.tsx`](../../app/src/pages/MessageDetail/MessageDetailPage.tsx) | implemented |
-| 2 | `Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageDetail/ActionGet_OrbitNotificationParameters` | server action | `ScreenBlock_MessageDetail` | onClick in ScreenBlock_MessageDetail → ScreenBlock_MessageDetail.onClick_ViewOrbitEvent → server Get_OrbitNotificationParameters | no | `getOrbitNotificationParameters()` [`api/message/repository.ts:173`](../../app/src/api/message/repository.ts#L173) (page) | `MessageDetail → useMessageDetail → getOrbitNotificationParameters`<br>[`pages/MessageDetail/MessageDetailPage.tsx`](../../app/src/pages/MessageDetail/MessageDetailPage.tsx) | implemented |
-| 3 | `Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageDetail/ActionStoreAdaptiveCardResponses` | server action | `ScreenBlock_MessageDetail` | NotificationDetailBlock.adaptiveCardViewerOnExecuteAction → event adaptiveCardEventExecuted of NotificationDetailBlock → ScreenBlock_MessageDetail.adaptiveCardViewerOnExecuteAction → server StoreAdaptiveCardResponses | no | `storeAdaptiveCardResponses()` [`api/message/repository.ts:194`](../../app/src/api/message/repository.ts#L194) (page) | `MessageDetail → useMessageDetail → storeAdaptiveCardResponses`<br>[`pages/MessageDetail/MessageDetailPage.tsx`](../../app/src/pages/MessageDetail/MessageDetailPage.tsx) | implemented |
-| 4 | `Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageDetail/ActionWrapper_NotificationOpened` | server action | `ScreenBlock_MessageDetail` | NotificationDetailBlock.adaptiveCardViewerOnExecuteAction → event adaptiveCardEventExecuted of NotificationDetailBlock → … → ScreenBlock_MessageDetail.getMessageInstanceByIdOnAfterFetch → server Wrapper_NotificationOpened | no | `markNotificationOpened()` [`api/notification/repository.ts:75`](../../app/src/api/notification/repository.ts#L75) (page) | `MessageDetail → useMessageDetail → markNotificationOpened`<br>[`pages/MessageDetail/MessageDetailPage.tsx`](../../app/src/pages/MessageDetail/MessageDetailPage.tsx) | implemented |
-| 5 | `Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageDetail/DataActionGetMessageInstance` | data action | `ScreenBlock_MessageDetail` | NotificationDetailBlock.adaptiveCardViewerOnExecuteAction → event adaptiveCardEventExecuted of NotificationDetailBlock → ScreenBlock_MessageDetail.adaptiveCardViewerOnExecuteAction → ScreenBlock_MessageDetail.DataActionGetMessageInstance<br>ScreenBlock_MessageDetail.OnReady → ScreenBlock_MessageDetail.onReady → ScreenBlock_MessageDetail.DataActionGetMessageInstance<br>ScreenBlock_MessageDetail fetch at start → ScreenBlock_MessageDetail.DataActionGetMessageInstance | yes | `fetchMessageInstance()` [`api/message/repository.ts:152`](../../app/src/api/message/repository.ts#L152) (page) | `MessageDetail → useMessageDetail → fetchMessageInstance`<br>[`pages/MessageDetail/MessageDetailPage.tsx`](../../app/src/pages/MessageDetail/MessageDetailPage.tsx) | implemented |
-| 6 | `Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageDetail/ScreenDataSetGetMessageTemplateParametersByMessageTemplateId` | aggregate | `ScreenBlock_MessageDetail` | NotificationDetailBlock.adaptiveCardViewerOnExecuteAction → event adaptiveCardEventExecuted of NotificationDetailBlock → … → ScreenBlock_MessageDetail.getMessageInstanceByIdOnAfterFetch → ScreenBlock_MessageDetail.ScreenDataSetGetMessageTemplateParametersByMessageTemplateId<br>ScreenBlock_MessageDetail fetch at start → ScreenBlock_MessageDetail.ScreenDataSetGetMessageTemplateParametersByMessageTemplateId | no | `fetchMessageTemplateParameters()` [`api/message/repository.ts:160`](../../app/src/api/message/repository.ts#L160) (page) | `MessageDetail → useMessageDetail → fetchMessageTemplateParameters`<br>[`pages/MessageDetail/MessageDetailPage.tsx`](../../app/src/pages/MessageDetail/MessageDetailPage.tsx) | implemented |
+| 1 | `Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageDetail/ActionGet_OrbitHostSurveyNotificationParameters` | server action | `ScreenBlock_MessageDetail` | onClick in ScreenBlock_MessageDetail → ScreenBlock_MessageDetail.onClick_ViewOrbitEvent → server Get_OrbitHostSurveyNotificationParameters | no | `getOrbitHostSurveyNotificationParameters()` [`api/message/repository.ts:189`](../../app/src/api/message/repository.ts#L189) (page) | `MessageDetail → useMessageDetail → getOrbitHostSurveyNotificationParameters`<br>[`pages/MessageDetail/MessageDetailPage.tsx`](../../app/src/pages/MessageDetail/MessageDetailPage.tsx) | implemented |
+| 2 | `Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageDetail/ActionGet_OrbitNotificationParameters` | server action | `ScreenBlock_MessageDetail` | onClick in ScreenBlock_MessageDetail → ScreenBlock_MessageDetail.onClick_ViewOrbitEvent → server Get_OrbitNotificationParameters | no | `getOrbitNotificationParameters()` [`api/message/repository.ts:177`](../../app/src/api/message/repository.ts#L177) (page) | `MessageDetail → useMessageDetail → getOrbitNotificationParameters`<br>[`pages/MessageDetail/MessageDetailPage.tsx`](../../app/src/pages/MessageDetail/MessageDetailPage.tsx) | implemented |
+| 3 | `Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageDetail/ActionStoreAdaptiveCardResponses` | server action | `ScreenBlock_MessageDetail` | NotificationDetailBlock.adaptiveCardViewerOnExecuteAction → event adaptiveCardEventExecuted of NotificationDetailBlock → ScreenBlock_MessageDetail.adaptiveCardViewerOnExecuteAction → server StoreAdaptiveCardResponses | no | `storeAdaptiveCardResponses()` [`api/message/repository.ts:198`](../../app/src/api/message/repository.ts#L198) (page) | `MessageDetail → useMessageDetail → storeAdaptiveCardResponses`<br>[`pages/MessageDetail/MessageDetailPage.tsx`](../../app/src/pages/MessageDetail/MessageDetailPage.tsx) | implemented |
+| 4 | `Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageDetail/ActionWrapper_NotificationOpened` | server action | `ScreenBlock_MessageDetail` | NotificationDetailBlock.adaptiveCardViewerOnExecuteAction → event adaptiveCardEventExecuted of NotificationDetailBlock → … → ScreenBlock_MessageDetail.getMessageInstanceByIdOnAfterFetch → server Wrapper_NotificationOpened<br>ScreenBlock_MessageDetail.OnReady → ScreenBlock_MessageDetail.onReady → ScreenBlock_MessageDetail.DataActionGetMessageInstance → ScreenBlock_MessageDetail.getMessageInstanceByIdOnAfterFetch → server Wrapper_NotificationOpened<br>ScreenBlock_MessageDetail fetch at start → ScreenBlock_MessageDetail.DataActionGetMessageInstance → ScreenBlock_MessageDetail.getMessageInstanceByIdOnAfterFetch → server Wrapper_NotificationOpened | no | `markNotificationOpened()` [`api/notification/repository.ts:75`](../../app/src/api/notification/repository.ts#L75) (page) | `MessageDetail → useMessageDetail → markNotificationOpened`<br>[`pages/MessageDetail/MessageDetailPage.tsx`](../../app/src/pages/MessageDetail/MessageDetailPage.tsx) | implemented |
+| 5 | `Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageDetail/DataActionGetMessageInstance` | data action | `ScreenBlock_MessageDetail` | NotificationDetailBlock.adaptiveCardViewerOnExecuteAction → event adaptiveCardEventExecuted of NotificationDetailBlock → ScreenBlock_MessageDetail.adaptiveCardViewerOnExecuteAction → ScreenBlock_MessageDetail.DataActionGetMessageInstance<br>ScreenBlock_MessageDetail.OnReady → ScreenBlock_MessageDetail.onReady → ScreenBlock_MessageDetail.DataActionGetMessageInstance<br>ScreenBlock_MessageDetail fetch at start → ScreenBlock_MessageDetail.DataActionGetMessageInstance | yes | `fetchMessageInstance()` [`api/message/repository.ts:156`](../../app/src/api/message/repository.ts#L156) (page) | `MessageDetail → useMessageDetail → fetchMessageInstance`<br>[`pages/MessageDetail/MessageDetailPage.tsx`](../../app/src/pages/MessageDetail/MessageDetailPage.tsx) | implemented |
+| 6 | `Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageDetail/ScreenDataSetGetMessageTemplateParametersByMessageTemplateId` | aggregate | `ScreenBlock_MessageDetail` | NotificationDetailBlock.adaptiveCardViewerOnExecuteAction → event adaptiveCardEventExecuted of NotificationDetailBlock → … → ScreenBlock_MessageDetail.getMessageInstanceByIdOnAfterFetch → ScreenBlock_MessageDetail.ScreenDataSetGetMessageTemplateParametersByMessageTemplateId<br>ScreenBlock_MessageDetail.OnReady → ScreenBlock_MessageDetail.onReady → ScreenBlock_MessageDetail.DataActionGetMessageInstance → ScreenBlock_MessageDetail.getMessageInstanceByIdOnAfterFetch → ScreenBlock_MessageDetail.ScreenDataSetGetMessageTemplateParametersByMessageTemplateId<br>ScreenBlock_MessageDetail fetch at start → ScreenBlock_MessageDetail.DataActionGetMessageInstance → ScreenBlock_MessageDetail.getMessageInstanceByIdOnAfterFetch → ScreenBlock_MessageDetail.ScreenDataSetGetMessageTemplateParametersByMessageTemplateId<br>(+1 more chains) | no | `fetchMessageTemplateParameters()` [`api/message/repository.ts:164`](../../app/src/api/message/repository.ts#L164) (page) | `MessageDetail → useMessageDetail → fetchMessageTemplateParameters`<br>[`pages/MessageDetail/MessageDetailPage.tsx`](../../app/src/pages/MessageDetail/MessageDetailPage.tsx) | implemented |
 | 7 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx) | implemented |
 
 ## 6. User actions
@@ -152,7 +154,7 @@ sequenceDiagram
 | [8](#628-messagedetailview-onclickviewassembleevent) | [`pages/MessageDetail/MessageDetailPage.tsx:145`](../../app/src/pages/MessageDetail/MessageDetailPage.tsx#L145) | `<MessageDetailView>` | `onClickViewAssembleEvent` | `detail.onClickViewAssembleEvent` | – | goes to AssembleDetail; shows a message |
 | [9](#629-messagedetailview-onadaptivecardeventexecuted-send_email) | [`pages/MessageDetail/MessageDetailPage.tsx:146`](../../app/src/pages/MessageDetail/MessageDetailPage.tsx#L146) | `<MessageDetailView>` | `onAdaptiveCardEventExecuted` | `detail.adaptiveCardViewerOnExecuteAction` | `send_email` | goes to LDM_Email_V2, LDM_Email; shows a message |
 | [10](#6210-messagedetailview-onadaptivecardeventexecuted-view_event) | [`pages/MessageDetail/MessageDetailPage.tsx:146`](../../app/src/pages/MessageDetail/MessageDetailPage.tsx#L146) | `<MessageDetailView>` | `onAdaptiveCardEventExecuted` | `detail.adaptiveCardViewerOnExecuteAction` | `view_event` | goes to LDM_EventDetail_V2, LDM_EventDetail; shows a message |
-| [11](#6211-messagedetailview-onadaptivecardeventexecuted-other) | [`pages/MessageDetail/MessageDetailPage.tsx:146`](../../app/src/pages/MessageDetail/MessageDetailPage.tsx#L146) | `<MessageDetailView>` | `onAdaptiveCardEventExecuted` | `detail.adaptiveCardViewerOnExecuteAction` | `other` | calls ActionStoreAdaptiveCardResponses, DataActionGetMessageInstance, ActionWrapper_NotificationOpened, ScreenDataSetGetMessageTemplateParametersByMessageTemplateId; goes to Notifications, MessageList, Login; shows a message |
+| [11](#6211-messagedetailview-onadaptivecardeventexecuted-other) | [`pages/MessageDetail/MessageDetailPage.tsx:146`](../../app/src/pages/MessageDetail/MessageDetailPage.tsx#L146) | `<MessageDetailView>` | `onAdaptiveCardEventExecuted` | `detail.adaptiveCardViewerOnExecuteAction` | `other` | calls ActionStoreAdaptiveCardResponses, DataActionGetMessageInstance; shows a message |
 | 12 | [`pages/MessageDetail/MessageDetailPage.tsx:153`](../../app/src/pages/MessageDetail/MessageDetailPage.tsx#L153) | `<BackNavigationHandler>` | `onBackNavigation` | `inline` | – | goes to HomeFeed |
 | [13](#6213-adaptivecardviewer-onexecuteaction) | [`pages/MessageDetail/components/NotificationDetailBlock.tsx:116`](../../app/src/pages/MessageDetail/components/NotificationDetailBlock.tsx#L116) | `<AdaptiveCardViewer>` | `onExecuteAction` | `adaptiveCardViewerOnExecuteAction` | – | shows a message; calls the prop onAdaptiveCardEventExecuted() |
 | 14 | [`pages/MessageDetail/components/ShareObjectDetail_ExtendedShare.tsx:79`](../../app/src/pages/MessageDetail/components/ShareObjectDetail_ExtendedShare.tsx#L79) | `<UpdateListItem>` | `onOnClick` | `onClickShareDetail` | `unavailable` | shows a message |
@@ -265,7 +267,6 @@ sequenceDiagram
   actor U as User
   participant H as MessageDetailView · MessageDetailPage.tsx
   participant A as Server (React api)
-  participant N as Navigation
   U->>H: onAdaptiveCardEventExecuted → detail.adaptiveCardViewerOnExecuteAction (other)
   Note over H: via adaptiveCardViewerOnExecuteAction()
   Note over H: message MESSAGE_CHECK_CONNECTION
@@ -275,30 +276,6 @@ sequenceDiagram
   Note over H: via fetchMessageInstance()
   H->>A: DataActionGetMessageInstance(HardwareId, IsEntryScreen, IsLoading, …)
   A-->>H: IsCleared, IsRetracted, Message, …
-  Note over H: via onAfterFetchMessageInstance()
-  Note over H: via autoCloseError()
-  Note over H: message { title: '', message, messageType: 'error', encodedHtml: true, extendedClass: '', delayMs:
-  Note over H: via leaveToMessageList()
-  Note over H: via autoCloseError()
-  Note over H: message { title: '', message, messageType: 'error', encodedHtml: true, extendedClass: '', delayMs:
-  Note over H: via onNavigateToMessageList()
-  H->>N: go to Notifications
-  H->>N: go to MessageList
-  Note over H: via leaveToMessageList()
-  Note over H: via autoCloseError()
-  Note over H: message { title: '', message, messageType: 'error', encodedHtml: true, extendedClass: '', delayMs:
-  Note over H: via onNavigateToMessageList()
-  H->>N: go to Notifications
-  H->>N: go to MessageList
-  Note over H: via onNavigateToLogin()
-  H->>N: go to Login
-  Note over H: via prepareMessage()
-  Note over H: via markNotificationOpened()
-  H->>A: ActionWrapper_NotificationOpened(MessageInstanceId)
-  A-->>H: IsRetracted
-  Note over H: via fetchMessageTemplateParameters()
-  H->>A: ScreenDataSetGetMessageTemplateParametersByMessageTemplateId(HardwareId, IsEntryScreen, IsLoading, …)
-  A-->>H: Count, List
   Note over H: message MESSAGE_FORM_THANKS
 ```
 
@@ -321,31 +298,31 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/screens/MessageDetail/analysis/sources/raw/`.
+The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 
 | Input | Type | Mandatory | Place |
 |---|---|---|---|
-| `MessageInstanceId` | LongInteger | yes | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:80`](../../migration/screens/MessageDetail/analysis/sources/raw/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L80) |
-| `isOriginPushNotification` | Boolean | yes | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:84`](../../migration/screens/MessageDetail/analysis/sources/raw/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L84) |
-| `MessageTemplateId` | LongInteger | yes | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:88`](../../migration/screens/MessageDetail/analysis/sources/raw/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L88) |
-| `HardwareId` | Text | yes | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:92`](../../migration/screens/MessageDetail/analysis/sources/raw/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L92) |
+| `MessageInstanceId` | LongInteger | yes | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:80`](../../migration/runtime-sources/live/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L80) |
+| `isOriginPushNotification` | Boolean | yes | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:84`](../../migration/runtime-sources/live/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L84) |
+| `MessageTemplateId` | LongInteger | yes | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:88`](../../migration/runtime-sources/live/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L88) |
+| `HardwareId` | Text | yes | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:92`](../../migration/runtime-sources/live/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L92) |
 
 | Block | Target | Parameters | Place |
 |---|---|---|---|
-| `MessageDetail` | `LDM_Email_V2` | `In_EventId` = `in_EventId`<br>`EventHostId` = `in_EventHostId`<br>`In_IsContactOrganiser` = `false`<br>`In_IsMessageGuest` = `true` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:504`](../../migration/screens/MessageDetail/analysis/sources/raw/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L504) |
-| `MessageDetail` | `LDM_Email` | `In_EventId` = `in_EventId`<br>`In_IsMessageGuest` = `true`<br>`EventHostId` = `in_EventHostId`<br>`In_IsContactOrganiser` = `false` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:513`](../../migration/screens/MessageDetail/analysis/sources/raw/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L513) |
-| `MessageDetail` | `AssembleDetail` | `EventId` = `eventInstanceId`<br>`SeriesId` = `eventParentId`<br>`AssembleEventTypeTile` = `assembleEventTypeTile` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:592`](../../migration/screens/MessageDetail/analysis/sources/raw/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L592) |
-| `MessageDetail` | `EventDetail` | `In_EventId` = `eventId`<br>`In_EventName` = `eventName`<br>`In_FromNotification` = `true`<br>`In_MemberId` = `memberId` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:649`](../../migration/screens/MessageDetail/analysis/sources/raw/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L649) |
-| `MessageDetail` | `MilestoneDetail` | `In_EventName` = `eventName`<br>`In_FromNotification` = `true`<br>`In_MilestoneId` = `milestoneId`<br>`In_EventId` = `eventId` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:780`](../../migration/screens/MessageDetail/analysis/sources/raw/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L780) |
-| `MessageDetail` | `HostSurvey` | `In_MemberId` = `memberId`<br>`In_EventId` = `eventId`<br>`In_EventStartDate` = `eventStartDate`<br>`In_EventEndDate` = `eventEndDate`<br>`In_EventName` = `eventName` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:840`](../../migration/screens/MessageDetail/analysis/sources/raw/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L840) |
-| `MessageDetail` | `HouseholdDetails` | `HouseholdId` = `textToLongInteger(objectId)` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:916`](../../migration/screens/MessageDetail/analysis/sources/raw/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L916) |
-| `MessageDetail` | `OneSchoolGlobalDetails` | `In_OneSchoolGlobalId` = `textToLongInteger(objectId)` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:923`](../../migration/screens/MessageDetail/analysis/sources/raw/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L923) |
-| `MessageDetail` | `SupperMeeting_Details` | `In_SubdivsionId` = `textToLongInteger(objectId)` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:930`](../../migration/screens/MessageDetail/analysis/sources/raw/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L930) |
-| `MessageDetail` | `FeedItemDetail` | `FeedItemId` = `objectId` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:937`](../../migration/screens/MessageDetail/analysis/sources/raw/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L937) |
-| `MessageDetail` | `LDM_EventDetail_V2` | `EventId` = `in_EventId`<br>`EventHostId` = `in_EventHostId` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:1006`](../../migration/screens/MessageDetail/analysis/sources/raw/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L1006) |
-| `MessageDetail` | `LDM_EventDetail` | `EventHostId` = `in_EventHostId`<br>`EventId` = `in_EventId` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:1013`](../../migration/screens/MessageDetail/analysis/sources/raw/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L1013) |
+| `MessageDetail` | `LDM_Email_V2` | `In_EventId` = `in_EventId`<br>`EventHostId` = `in_EventHostId`<br>`In_IsContactOrganiser` = `false`<br>`In_IsMessageGuest` = `true` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:504`](../../migration/runtime-sources/live/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L504) |
+| `MessageDetail` | `LDM_Email` | `In_EventId` = `in_EventId`<br>`In_IsMessageGuest` = `true`<br>`EventHostId` = `in_EventHostId`<br>`In_IsContactOrganiser` = `false` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:513`](../../migration/runtime-sources/live/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L513) |
+| `MessageDetail` | `AssembleDetail` | `EventId` = `eventInstanceId`<br>`SeriesId` = `eventParentId`<br>`AssembleEventTypeTile` = `assembleEventTypeTile` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:592`](../../migration/runtime-sources/live/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L592) |
+| `MessageDetail` | `EventDetail` | `In_EventId` = `eventId`<br>`In_EventName` = `eventName`<br>`In_FromNotification` = `true`<br>`In_MemberId` = `memberId` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:649`](../../migration/runtime-sources/live/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L649) |
+| `MessageDetail` | `MilestoneDetail` | `In_EventName` = `eventName`<br>`In_FromNotification` = `true`<br>`In_MilestoneId` = `milestoneId`<br>`In_EventId` = `eventId` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:780`](../../migration/runtime-sources/live/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L780) |
+| `MessageDetail` | `HostSurvey` | `In_MemberId` = `memberId`<br>`In_EventId` = `eventId`<br>`In_EventStartDate` = `eventStartDate`<br>`In_EventEndDate` = `eventEndDate`<br>`In_EventName` = `eventName` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:840`](../../migration/runtime-sources/live/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L840) |
+| `MessageDetail` | `HouseholdDetails` | `HouseholdId` = `textToLongInteger(objectId)` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:916`](../../migration/runtime-sources/live/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L916) |
+| `MessageDetail` | `OneSchoolGlobalDetails` | `In_OneSchoolGlobalId` = `textToLongInteger(objectId)` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:923`](../../migration/runtime-sources/live/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L923) |
+| `MessageDetail` | `SupperMeeting_Details` | `In_SubdivsionId` = `textToLongInteger(objectId)` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:930`](../../migration/runtime-sources/live/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L930) |
+| `MessageDetail` | `FeedItemDetail` | `FeedItemId` = `objectId` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:937`](../../migration/runtime-sources/live/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L937) |
+| `MessageDetail` | `LDM_EventDetail_V2` | `EventId` = `in_EventId`<br>`EventHostId` = `in_EventHostId` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:1006`](../../migration/runtime-sources/live/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L1006) |
+| `MessageDetail` | `LDM_EventDetail` | `EventHostId` = `in_EventHostId`<br>`EventId` = `in_EventId` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:1013`](../../migration/runtime-sources/live/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L1013) |
 
 ### 7.2 React
 
@@ -406,9 +383,7 @@ None.
 
 | File | Operation | Variable or key | Place |
 |---|---|---|---|
-| `messageDetailState.ts` | `clientVar.get` | `Connect2_LegacyShared.UnreadWhatsNewsNumber` | [`pages/MessageDetail/hooks/messageDetailState.ts:156`](../../app/src/pages/MessageDetail/hooks/messageDetailState.ts#L156) |
-| `messageDetailState.ts` | `clientVar.set` | `Connect2_LegacyShared.UnreadWhatsNewsNumber` | [`pages/MessageDetail/hooks/messageDetailState.ts:157`](../../app/src/pages/MessageDetail/hooks/messageDetailState.ts#L157) |
-| `useMessageDetail.ts` | `clientVar.get` | `UBT_AppManager.DeviceInfo_UUID` | [`pages/MessageDetail/hooks/useMessageDetail.ts:334`](../../app/src/pages/MessageDetail/hooks/useMessageDetail.ts#L334) |
+| `useMessageDetail.ts` | `clientVar.get` | `UBT_AppManager.DeviceInfo_UUID` | [`pages/MessageDetail/hooks/useMessageDetail.ts:245`](../../app/src/pages/MessageDetail/hooks/useMessageDetail.ts#L245) |
 
 ## 10. Access
 
@@ -416,7 +391,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | anonymous (no check) | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:1222`](../../migration/screens/MessageDetail/analysis/sources/raw/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L1222) |
+| OutSystems (TST) | anonymous (no check) | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:1222`](../../migration/runtime-sources/live/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L1222) |
 | React | access `anonymous`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.
@@ -438,8 +413,7 @@ An error without a handler goes to the `OnException` of the UI flow (`handleErro
 | File | Kind | Function | Effects | Place |
 |---|---|---|---|---|
 | `NotificationDetailBlock.tsx` | flow handler | `adaptiveCardViewerOnExecuteAction` | none | [`pages/MessageDetail/components/NotificationDetailBlock.tsx:94`](../../app/src/pages/MessageDetail/components/NotificationDetailBlock.tsx#L94) |
-| `useMessageDetail.ts` | try/catch | `adaptiveCardViewerOnExecuteAction` | message `MESSAGE_CHECK_CONNECTION` | [`pages/MessageDetail/hooks/useMessageDetail.ts:366`](../../app/src/pages/MessageDetail/hooks/useMessageDetail.ts#L366) |
-| `placeholderLib.ts` | try/catch | `deserializePlaceholderParameters` | none | [`pages/MessageDetail/placeholderLib.ts:62`](../../app/src/pages/MessageDetail/placeholderLib.ts#L62) |
+| `useMessageDetail.ts` | try/catch | `adaptiveCardViewerOnExecuteAction` | message `MESSAGE_CHECK_CONNECTION` | [`pages/MessageDetail/hooks/useMessageDetail.ts:277`](../../app/src/pages/MessageDetail/hooks/useMessageDetail.ts#L277) |
 
 `flow handler`: `raiseToFlowHandler` gives the error to the flow handler of the screen (`app/src/platform/feedback/flowErrors.ts`). The tool lists `.catch`, `try/catch` and `onError` that do not give the error to it.
 
@@ -451,7 +425,7 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 
 | Block | Module | React port | User actions |
 |---|---|---|---|
-| `ScreenBlock_MessageDetail` | `Connect2_LegacyShared` | [`pages/MessageDetail/components/MessageDetailView.tsx`](../../app/src/pages/MessageDetail/components/MessageDetailView.tsx), [`pages/MessageDetail/hooks/messageDetailState.ts`](../../app/src/pages/MessageDetail/hooks/messageDetailState.ts), [`pages/MessageDetail/hooks/useMessageDetail.ts`](../../app/src/pages/MessageDetail/hooks/useMessageDetail.ts) | 3 |
+| `ScreenBlock_MessageDetail` | `Connect2_LegacyShared` | [`containers/MessageInstance/messageDetailState.ts`](../../app/src/containers/MessageInstance/messageDetailState.ts), [`containers/MessageInstance/messageInstanceAfterFetch.ts`](../../app/src/containers/MessageInstance/messageInstanceAfterFetch.ts), [`pages/MessageDetail/components/MessageDetailView.tsx`](../../app/src/pages/MessageDetail/components/MessageDetailView.tsx), [`pages/MessageDetail/hooks/useMessageDetail.ts`](../../app/src/pages/MessageDetail/hooks/useMessageDetail.ts) | 3 |
 | `Layout` | `Connect2_LegacyShared` | [`components/layout/LegacyLayout/LegacyLayout.tsx`](../../app/src/components/layout/LegacyLayout/LegacyLayout.tsx) | 0 |
 | `BaseLayout_UpdatedOSUI` | `Connect2_LegacyShared` | [`components/layout/BaseLayout/BaseLayout.tsx`](../../app/src/components/layout/BaseLayout/BaseLayout.tsx) | 0 |
 | `MenuIcon_Back` | `Connect2_LegacyShared` | [`components/layout/MenuIconBack/MenuIconBack.tsx`](../../app/src/components/layout/MenuIconBack/MenuIconBack.tsx) | 1 |
@@ -470,7 +444,7 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
 |---|---|---|---|---|---|
 | 1 | `MenuIcon_Back` | `onClick (HTML element)` | `inline` | – | goes to previous screen |
-| 2 | `ScreenBlock_MessageDetail` | `adaptiveCardEventExecuted of NotificationDetailBlock` | `adaptiveCardViewerOnExecuteAction` | – | calls StoreAdaptiveCardResponses, GetMessageInstance; shows a message |
+| 2 | `ScreenBlock_MessageDetail` | `adaptiveCardEventExecuted of NotificationDetailBlock` | `adaptiveCardViewerOnExecuteAction` | – | calls StoreAdaptiveCardResponses; shows a message |
 | 3 | `ScreenBlock_MessageDetail` | `onClick (HTML element)` | `onClick_ViewAssembleEvent` | – | shows a message |
 | 4 | `ScreenBlock_MessageDetail` | `onClick (HTML element)` | `onClick_ViewOrbitEvent` | `orbit` | calls Get_OrbitNotificationParameters |
 | 5 | `ScreenBlock_MessageDetail` | `onClick (HTML element)` | `onClick_ViewOrbitEvent` | `orbitHostSurvey` | calls Get_OrbitHostSurveyNotificationParameters; shows a message |

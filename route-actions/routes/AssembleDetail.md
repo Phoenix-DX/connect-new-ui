@@ -21,15 +21,15 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/AssembleDetail/AssembleDetailPage.tsx`](../../app/src/pages/AssembleDetail/AssembleDetailPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 | Screenshots | no parity run | `route.py parity` |
-| Code read | OutSystems: 1 files of the UI flow, 76 shared blocks, 43 app shell files. React: 271 files in the closure of the page | TST survey closure and compiled code (static), `react_calls.mjs` |
+| Code read | OutSystems: 1 files of the UI flow, 76 shared blocks, 43 app shell files. React: 272 files in the closure of the page | TST survey closure and compiled code (static), `react_calls.mjs` |
 
 ## 2. Result
 
 | Check | Result |
 |---|---|
-| Server calls of the route on TST | 10: React makes 7, **0 missing**, 3 not a gap of the web app |
+| Server calls of the route on TST | 12: React makes 9, **0 missing**, 3 not a gap of the web app |
 | Differences found | **0** (+ 3 not a gap of the web app) (see [section 3](#3-differences-found)) |
-| Questions | 0 (+ 6 declared on TST outside the call graph) (see [section 4](#4-questions)) |
+| Questions | 0 (+ 4 declared on TST outside the call graph) (see [section 4](#4-questions)) |
 | React calls reached only through shared code | 3: see the last section |
 | User actions of the route (own code) | OutSystems: 4. React: 3 |
 | Screen and blocks of the UI flow with a React port | 1 of 1 |
@@ -67,11 +67,9 @@ React calls of the screen without a TST chain in the code of the route. TST make
 
 | Call | React action | How TST declares it | Evidence |
 |---|---|---|---|
-| `/api/Connect2_LegacyShared/ActionGetSignedPhotosInBulk` | `getSignedPhotosInBulk()` [`lib/legacyShared/actions.ts:49`](../../app/src/lib/legacyShared/actions.ts#L49) | extra-actions | Connect2_LegacyShared.controller.js:7865-7880 (ServerAction.GetSignedPhotosInBulk), :2983-3035 (GetBulkSignedPhotosURL), :3947-4115 (GetCacheableSignedPhotoURL), called by Connect2_LegacyShared.Utility.Result_Item_Image (LoadPhotoAsync, .mvc.js:702-770); CR-W3Y-1; 2026-11-05 (route-actions questions |
-| `/api/Connect2_LegacyShared/ActionGetUserInformation` | `getCacheableUserInfo()` [`lib/legacyShared/actions.ts:302`](../../app/src/lib/legacyShared/actions.ts#L302) | extra-actions | Connect2_LegacyShared.controller.js (migration/runtime-sources/, fetched read-only from TST): ServerAction.GetUserInformation :7917-7935 (no input, output UserInformation), called by client action GetUserInformation :5620-5667, the miss callback of GetCacheableUserInfo :4391-4520; reached by Assembl |
-| `/api/Connect2_LegacyShared/ActionGetMemberContactByCacheKey` | `fetchMemberContacts()` [`api/message/repository.ts:271`](../../app/src/api/message/repository.ts#L271) | extra-actions | Connect2_LegacyShared.controller.js (migration/runtime-sources/): ServerAction.GetMemberContactByCacheKey :7780-7800, called by client action GetMemberContactList :5210-5260, the miss callback of GetCacheableMemberContactList :3414-3545 (memory cache DirectoryCacheType.MemberContact, key BuildMember |
-| `/api/Connect2_Assemble_MUI/ActionAddBookmark` | `addAssembleBookmark()` [`api/bookmark/repository.ts:20`](../../app/src/api/bookmark/repository.ts#L20) | extra-actions | Connect2_Assemble_MUI.controller.js (prettified, migration/screens/AssembleEvents/analysis/sources/pretty/): ServerAction.AddBookmark :1687-1723 (ObjectType, ObjectId, Group, Note Text; outputs Success Boolean, CreatedBookmarkResponse Connect2_MyBookmarks_IS BookmarkItem), called by the client actio |
-| `/api/Connect2_Assemble_MUI/ActionDeleteBookmarkByBookmarkId` | `deleteAssembleBookmark()` [`api/bookmark/repository.ts:33`](../../app/src/api/bookmark/repository.ts#L33) | extra-actions | Connect2_Assemble_MUI.controller.js (prettified, migration/screens/AssembleEvents/analysis/sources/pretty/): ServerAction.DeleteBookmarkByBookmarkId :1725-1749 (BookmarkId Long Integer; output Success Boolean), called by the client action ToggleBookmarkItem :1493-1686; reached by AssembleEventDetail |
+| `/api/Connect2_LegacyShared/ActionGetSignedPhotosInBulk` | `getSignedPhotosInBulk()` [`lib/legacyShared/actions.ts:45`](../../app/src/lib/legacyShared/actions.ts#L45) | extra-actions | Connect2_LegacyShared.controller.js:7865-7880 (ServerAction.GetSignedPhotosInBulk), :2983-3035 (GetBulkSignedPhotosURL), :3947-4115 (GetCacheableSignedPhotoURL), called by Connect2_LegacyShared.Utility.Result_Item_Image (LoadPhotoAsync, .mvc.js:702-770); CR-W3Y-1; 2026-11-05 (route-actions questions |
+| `/api/Connect2_LegacyShared/ActionGetUserInformation` | `getCacheableUserInfo()` [`lib/legacyShared/actions.ts:298`](../../app/src/lib/legacyShared/actions.ts#L298) | extra-actions | Connect2_LegacyShared.controller.js (migration/runtime-sources/, fetched read-only from TST): ServerAction.GetUserInformation :7917-7935 (no input, output UserInformation), called by client action GetUserInformation :5620-5667, the miss callback of GetCacheableUserInfo :4391-4520; reached by Assembl |
+| `/api/Connect2_LegacyShared/ActionGetMemberContactByCacheKey` | `fetchMemberContacts()` [`api/message/repository.ts:301`](../../app/src/api/message/repository.ts#L301) | extra-actions | Connect2_LegacyShared.controller.js (migration/runtime-sources/): ServerAction.GetMemberContactByCacheKey :7780-7800, called by client action GetMemberContactList :5210-5260, the miss callback of GetCacheableMemberContactList :3414-3545 (memory cache DirectoryCacheType.MemberContact, key BuildMember |
 | `/api/Connect2_LegacyShared/ActionGetBulkSubdivisions_V2` | `fetchBulkSubdivisions()` [`api/locality/repository.ts:181`](../../app/src/api/locality/repository.ts#L181) | extra-actions | Connect2_LegacyShared.controller.js (migration/runtime-sources/, fetched read-only from TST): ServerAction.GetBulkSubdivisions_V2 :7691-7704 (input CacheKeys RecordList, output Results CacheableSubdivisionInformationTextTextRecordList), called by client action GetBulkSubdivision_V2 :3070-3110, the b |
 
 React reaches 3 more calls without a TST chain on this route only through shared containers, components or app code. The last section lists them, not this one.
@@ -100,6 +98,8 @@ All columns come from the code, without interpretation:
 | 8 | `UBTConnect_Utils/CW_Share/ShareSheet/DataActionGetRecentlyShared` | data action | `ShareSheet` | ShareSheet.OnParametersChanged → ShareSheet.screenEvent_OnParametersChanged → ShareSheet.DataActionGetRecentlyShared<br>ShareSheet fetch at start → ShareSheet.DataActionGetRecentlyShared | no capture | `fetchRecentlyShared()` [`api/share/shareSheet.ts:14`](../../app/src/api/share/shareSheet.ts#L14) (page) | `ShareSheetContainer → useShareSheet → useRecentlySharedQuery → fetchRecentlyShared`<br>[`containers/ShareSheet/ShareSheetContainer.tsx`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx) | implemented |
 | 9 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no capture | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx) | implemented |
 | 10 | `UBTConnect_Utils/ActionCS_CreateShareProfileLink` | server action | `UBTConnect_Utils` | AssembleEventDetail_AttendeeSubdivision.handler_OnClickShareConnect → event navigateTo_ShareObject of AssembleEventDetail_AttendeeSubdivision → … → UBTConnect_Utils.shareEntity_ByURL → server CS_CreateShareProfileLink<br>AssembleEventDetail_AttendeeSubdivision.handler_OnShareToOthers → event navigateTo_ShareObject of AssembleEventDetail_AttendeeSubdivision → … → UBTConnect_Utils.shareEntity_ByURL → server CS_CreateShareProfileLink | no capture | – | – | not applicable (nativeOnly) |
+| 11 | `UBTConnect_Utils/ServiceAPIAddBookmark2` | service action | `UBTConnect_Utils` | onClick in ItemOptionsMenu → event bookmarkToggle of ItemOptionsMenu → … → UBTConnect_Utils.toggleBookmarkItem_C2 → server AddBookmark2 | no capture | `addC2Bookmark()` [`api/bookmark/repository.ts:16`](../../app/src/api/bookmark/repository.ts#L16) (page) | `AssembleEventDetail_AttendeeSubdivision → useAttendeeSubdivision → bookmarkServerActions → addC2Bookmark`<br>[`pages/AssembleDetail/components/AssembleEventDetail_AttendeeSubdivision.tsx`](../../app/src/pages/AssembleDetail/components/AssembleEventDetail_AttendeeSubdivision.tsx) | implemented |
+| 12 | `UBTConnect_Utils/ServiceAPIDeleteBookmarkByBookmarkId2` | service action | `UBTConnect_Utils` | onClick in ItemOptionsMenu → event bookmarkToggle of ItemOptionsMenu → … → UBTConnect_Utils.toggleBookmarkItem_C2 → server DeleteBookmarkByBookmarkId2 | no capture | `deleteC2Bookmark()` [`api/bookmark/repository.ts:27`](../../app/src/api/bookmark/repository.ts#L27) (page) | `AssembleEventDetail_AttendeeSubdivision → useAttendeeSubdivision → bookmarkServerActions → deleteC2Bookmark`<br>[`pages/AssembleDetail/components/AssembleEventDetail_AttendeeSubdivision.tsx`](../../app/src/pages/AssembleDetail/components/AssembleEventDetail_AttendeeSubdivision.tsx) | implemented |
 
 ## 6. User actions
 
@@ -332,7 +332,7 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | `Columns_Three` | `UBTConnectLibrary` | [`components/ui/ColumnsThree/ColumnsThree.tsx`](../../app/src/components/ui/ColumnsThree/ColumnsThree.tsx) | 0 |
 | `Columns3` | `OutSystemsUI_2_23` | [`components/ui/Columns3/Columns3.tsx`](../../app/src/components/ui/Columns3/Columns3.tsx) | 0 |
 | `BottomSheet` | `OutSystemsUI_2_23` | [`components/ui/BottomSheet/BottomSheet.tsx`](../../app/src/components/ui/BottomSheet/BottomSheet.tsx) | 0 |
-| `ShareSheet` | `UBTConnect_Utils` | [`containers/ShareSheet/ShareSheetContainer.tsx`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx), [`containers/ShareSheet/components/ShareSheetFirstStep.tsx`](../../app/src/containers/ShareSheet/components/ShareSheetFirstStep.tsx), [`containers/ShareSheet/components/ShareSheetSearchStep.tsx`](../../app/src/containers/ShareSheet/components/ShareSheetSearchStep.tsx), [`containers/ShareSheet/shareSheetState.ts`](../../app/src/containers/ShareSheet/shareSheetState.ts), [`containers/ShareSheet/useShareSheet.ts`](../../app/src/containers/ShareSheet/useShareSheet.ts) | 5 |
+| `ShareSheet` | `UBTConnect_Utils` | [`containers/ShareSheet/ShareSheetContainer.tsx`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx), [`containers/ShareSheet/components/ShareSheetFirstStep.tsx`](../../app/src/containers/ShareSheet/components/ShareSheetFirstStep.tsx), [`containers/ShareSheet/components/ShareSheetSearchStep.tsx`](../../app/src/containers/ShareSheet/components/ShareSheetSearchStep.tsx), [`containers/ShareSheet/shareSheetState.ts`](../../app/src/containers/ShareSheet/shareSheetState.ts), [`containers/ShareSheet/useShareSheet.ts`](../../app/src/containers/ShareSheet/useShareSheet.ts) | 4 |
 | `SearchResult_Item` | `UBTConnect_Utils` | [`components/search/SearchResultItem/SearchResultItem.tsx`](../../app/src/components/search/SearchResultItem/SearchResultItem.tsx) | 1 |
 | `TagContent` | `UBTConnectLibrary` | [`components/ui/TagContent/TagContent.tsx`](../../app/src/components/ui/TagContent/TagContent.tsx) | 0 |
 | `UBT_LazyImage` | `UBTConnect_Utils` | [`components/ui/EntityLazyImage/EntityLazyImage.tsx`](../../app/src/components/ui/EntityLazyImage/EntityLazyImage.tsx) | 0 |
@@ -396,13 +396,13 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | `BaseLayout_UpdatedOSUI` | `Connect2_LegacyShared` | [`components/layout/BaseLayout/BaseLayout.tsx`](../../app/src/components/layout/BaseLayout/BaseLayout.tsx) | 0 |
 | `PullToRefresh` | `OutSystemsUI_2_23` | [`components/ui/PullToRefresh/PullToRefresh.tsx`](../../app/src/components/ui/PullToRefresh/PullToRefresh.tsx) | 0 |
 
-<details><summary>User actions of the shared blocks (24)</summary>
+<details><summary>User actions of the shared blocks (23)</summary>
 
 | # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
 |---|---|---|---|---|---|
 | 1 | `AssembleCommon_VirtualMeetingURL` | `onClick (HTML element)` | `meetingInfo_Toggle` | – | asks for a confirmation |
 | 2 | `AssembleEventDetail_AttendeeSubdivision` | `onClick_Item of Image` | `handler_OnClickHousehold` | – | calls GetAllApplicationEvents, AppManager_SynchAppContext |
-| 3 | `AssembleEventDetail_AttendeeSubdivision` | `bookmarkButtonClicked of ContextMenu` | `handler_OnClickBookmarkButton` | – | calls GetAllApplicationEvents, AppManager_SynchAppContext; asks for a confirmation |
+| 3 | `AssembleEventDetail_AttendeeSubdivision` | `bookmarkButtonClicked of ContextMenu` | `handler_OnClickBookmarkButton` | – | calls GetAllApplicationEvents, AppManager_SynchAppContext, AddBookmark2, DeleteBookmarkByBookmarkId2; asks for a confirmation |
 | 4 | `AssembleEventDetail_AttendeeSubdivision` | `shareProfileToOthers of ContextMenu` | `handler_OnShareToOthers` | – | calls GetAllApplicationEvents, AppManager_SynchAppContext |
 | 5 | `AssembleEventDetail_AttendeeSubdivision` | `shareProfileToConnect of ContextMenu` | `handler_OnClickShareConnect` | – | calls GetAllApplicationEvents, AppManager_SynchAppContext |
 | 6 | `AssembleEventDetail_Contact` | `onClick_Item of Image` | `handler_OnClickHostContact` | – | calls GetAllApplicationEvents, AppManager_SynchAppContext; asks for a confirmation |
@@ -421,9 +421,8 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | 19 | `SearchResult_Item` | `clicked of IconText` | `onClick_UpgradeSubscription` | – | opens an external link |
 | 20 | `ShareSheet` | `onClick of WithLabel` | `handler_OnClickRecentMember` | – | calls CS_ShareObject; shows a message; asks for a confirmation |
 | 21 | `ShareSheet` | `onClick of WithLabel` | `handler_OnClickExternalOption` | – | calls CS_CreateShareProfileLink |
-| 22 | `ShareSheet` | `event_Submit of Input` | `handler_InputEventSubmit` | – | calls GetAvailableMembers |
-| 23 | `ShareSheet` | `click of Icon` | `handler_SearchResultItemOnSelect` | – | shows a message |
-| 24 | `ShareSheet` | `buttonOnClick of Button` | `handler_OnClickSend` | – | calls CS_ShareObject; shows a message |
+| 22 | `ShareSheet` | `click of Icon` | `handler_SearchResultItemOnSelect` | – | shows a message |
+| 23 | `ShareSheet` | `buttonOnClick of Button` | `handler_OnClickSend` | – | calls CS_ShareObject; shows a message |
 
 </details>
 
@@ -489,4 +488,4 @@ Calls that React can make on this route, without a TST chain on this route. Ever
 |---|---|---|
 | `/api/UBTConnect_Utils/ServiceAPIDeleteNoteByNoteId` | `deleteNote()` [`api/note/repository.ts:73`](../../app/src/api/note/repository.ts#L73) | `NoteListActionsContainer` [`containers/NoteListActions/NoteListActionsContainer.tsx`](../../app/src/containers/NoteListActions/NoteListActionsContainer.tsx) |
 | `/api/UBTConnect_Utils/ServiceAPIUpdateNote` | `updateNote()` [`api/note/repository.ts:66`](../../app/src/api/note/repository.ts#L66) | `NoteListActionsContainer` [`containers/NoteListActions/NoteListActionsContainer.tsx`](../../app/src/containers/NoteListActions/NoteListActionsContainer.tsx) |
-| `/api/UBTConnect_Utils/ActionGetSignedImagesInBulk` | `cache_SignedImageURL_GetCallback()` [`lib/ubtConnectUtils/actions.ts:124`](../../app/src/lib/ubtConnectUtils/actions.ts#L124) | `EntityLazyImage` [`components/ui/EntityLazyImage/EntityLazyImage.tsx`](../../app/src/components/ui/EntityLazyImage/EntityLazyImage.tsx) |
+| `/api/UBTConnect_Utils/ActionGetSignedImagesInBulk` | `cache_SignedImageURL_GetCallback()` [`lib/ubtConnectUtils/actions.ts:131`](../../app/src/lib/ubtConnectUtils/actions.ts#L131) | `EntityLazyImage` [`components/ui/EntityLazyImage/EntityLazyImage.tsx`](../../app/src/components/ui/EntityLazyImage/EntityLazyImage.tsx) |

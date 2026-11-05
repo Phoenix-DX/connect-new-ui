@@ -96,8 +96,8 @@ export const handlers: RequestHandler[] = [
     Mother: parent('7102', 'María Ana Fernández', VITALE_PARENTS.members[1]?.born ?? ''),
     FormerSpouses: wireList([]),
     ParentHouseholdId: PARENTS_HOUSEHOLD_ID,
-    // live TST of 2026-11-05: AwayParents (a structure never captured) and NoDisplaySiblings (a member list)
-    AwayParents: {},
+    // live TST of 2026-11-05: AwayParents (a structure never captured, empty here) and NoDisplaySiblings (a member list)
+    AwayParents: { CountryName: '', HouseholdId: '0', LocalityName: '', Title: '' },
     NoDisplaySiblings: wireList([]),
   })),
   contractHandler('UBTConnect', 'HouseholdRelations_Block/DataActionGet_ParentHouseholdDetails', () => ({

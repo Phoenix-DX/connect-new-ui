@@ -13,12 +13,12 @@ import {
 } from '@/platform/storage/localEntities';
 import { setClientVar, setSignedInUser } from '@/platform/session/session';
 import { freshPage } from '@/test/testSupport';
-import { bookmarkServerActions, toggleBookmarkItem_C2 } from '@/lib/ubtConnect/actions';
+import { bookmarkServerActions, toggleBookmarkItem_C2 } from '@/lib/ubtConnectUtils/actions';
 import { BookmarkCategory, Connect_Entity } from '@/lib/ubtConnect/staticEntities';
 import { EntityDetailsActionsContainer } from './EntityDetailsActionsContainer';
 import { bookmarksCollection } from './mocks';
 
-/* ToggleBookmarkItem_C2 (UBTConnect.controller.js:17105-17280) through callAction and the fictional mocks of
+/* ToggleBookmarkItem_C2 (UBTConnect_Utils.controller.js:5661-5770, live module of 2026-11-05) through callAction and the fictional mocks of
    AddBookmark2 / DeleteBookmarkByBookmarkId2 (CR-W4A-1): the server collection, the local entity row
    (UBTConnect_Bookmarks_MCS.LocalBookmark) and Bookmark_SendFeedbackMessage (UBTConnect_Utils.controller.js:92-149). */
 const server = () => {
@@ -48,7 +48,7 @@ describe('bookmark server actions (CR-W4A-1)', () => {
     await toggleBookmarkItem_C2('101', BookmarkCategory.Household, false, server());
     const [added] = bookmarksCollection().all();
     expect(added).toMatchObject({ BookmarkCategoryId: BookmarkCategory.Household, ItemId: '101' });
-    expect(await getLocalBookmarkByObjectId('101')).toMatchObject({
+    expect(await getLocalBookmarkByObjectId('101', BookmarkCategory.Household)).toMatchObject({
       UserId: 990001,
       BookmarkId: added?.Id,
       BookmarkCategoryId: BookmarkCategory.Household,
@@ -59,7 +59,7 @@ describe('bookmark server actions (CR-W4A-1)', () => {
 
     await toggleBookmarkItem_C2('101', BookmarkCategory.Household, true, server());
     expect(bookmarksCollection().all()).toEqual([]);
-    expect((await getLocalBookmarkByObjectId('101')).Id).toBe('0');
+    expect((await getLocalBookmarkByObjectId('101', BookmarkCategory.Household)).Id).toBe('0');
     expect(show).toHaveBeenLastCalledWith('Removed from your Bookmarks', feedback.PLATFORM_MESSAGE_TYPE.success);
   });
 
@@ -68,7 +68,7 @@ describe('bookmark server actions (CR-W4A-1)', () => {
 
     await toggleBookmarkItem_C2('102', '', false, server());
     expect(bookmarksCollection().where((r) => r.ItemId === '102')).toMatchObject([{ BookmarkCategoryId: '' }]);
-    expect((await getLocalBookmarkByObjectId('102')).Id).toBe('0'); // Create_LocalBookmark: nothing (BC:49)
+    expect((await getLocalBookmarkByObjectId('102', '')).Id).toBe('0'); // Create_LocalBookmark: nothing (BC:49)
     expect(show).toHaveBeenLastCalledWith('Added to your Bookmarks', feedback.PLATFORM_MESSAGE_TYPE.success);
 
     // GetLocalBookmarkByObjectId → empty record → DeleteBookmarkByBookmarkId2("0") → Success False (fictional mock)
@@ -83,14 +83,11 @@ describe('bookmark server actions (CR-W4A-1)', () => {
     const show = vi.spyOn(feedback, 'showFeedbackMessage');
     sessionStorage.setItem('mock:mock', 'error'); // ?mock=error: HTTP 500 → CommunicationException
     try {
-      await expect(toggleBookmarkItem_C2('103', BookmarkCategory.Locality, false, server())).resolves.toEqual({
-        Out_LocalBookmarkId: '0',
-        Out_CreatedBookmarkId: '0',
-      });
+      await expect(toggleBookmarkItem_C2('103', BookmarkCategory.Locality, false, server())).resolves.toBeUndefined();
     } finally {
       sessionStorage.removeItem('mock:mock');
     }
-    expect((await getLocalBookmarkByObjectId('103')).Id).toBe('0');
+    expect((await getLocalBookmarkByObjectId('103', BookmarkCategory.Locality)).Id).toBe('0');
     expect(show).toHaveBeenLastCalledWith(
       'Bookmark could not be added. Please try again later.',
       feedback.PLATFORM_MESSAGE_TYPE.error,
@@ -99,7 +96,8 @@ describe('bookmark server actions (CR-W4A-1)', () => {
 });
 
 /* The block's OnReady bookmark lookup and Handle_Bookmark (TST code of 2026-10-27, Directory_EntityDetailsActions.mvc.js
-   :1400-1470, :1864-1887): the C2 store only, with no flag; the menu reads Local_isBookmarked (:375-376). */
+   :1400-1470, :1864-1887; the lookup with the category since the live code of 2026-11-05, :1920-1924): the C2 store
+   only, with no flag; the menu reads Local_isBookmarked (:375-376). */
 describe('Directory_EntityDetailsActions Bookmark / Unmark (CR-W4A-1, drift wave H-Q2 a)', () => {
   const wrap = (ui: ReactNode) => (
     <QueryClientProvider client={new QueryClient({ defaultOptions: { queries: { retry: false } } })}>
@@ -142,7 +140,7 @@ describe('Directory_EntityDetailsActions Bookmark / Unmark (CR-W4A-1, drift wave
     fireEvent.click(await screen.findByText('Bookmark'));
     expect(await screen.findByText('Unmark')).toBeInTheDocument();
     expect(onChange).toHaveBeenLastCalledWith(true);
-    expect(await getLocalBookmarkByObjectId('201')).toMatchObject({
+    expect(await getLocalBookmarkByObjectId('201', BookmarkCategory.Household)).toMatchObject({
       BookmarkCategoryId: BookmarkCategory.Household,
       ItemId: '201',
     });
@@ -151,7 +149,7 @@ describe('Directory_EntityDetailsActions Bookmark / Unmark (CR-W4A-1, drift wave
     fireEvent.click(screen.getByText('Unmark'));
     expect(await screen.findByText('Bookmark')).toBeInTheDocument();
     expect(onChange).toHaveBeenLastCalledWith(false);
-    expect((await getLocalBookmarkByObjectId('201')).Id).toBe('0');
+    expect((await getLocalBookmarkByObjectId('201', BookmarkCategory.Household)).Id).toBe('0');
     expect(bookmarksCollection().where((r) => r.ItemId === '201')).toEqual([]);
     expect(show).toHaveBeenLastCalledWith('Removed from your Bookmarks', feedback.PLATFORM_MESSAGE_TYPE.success);
   });
@@ -166,5 +164,15 @@ describe('Directory_EntityDetailsActions Bookmark / Unmark (CR-W4A-1, drift wave
     });
     expect(await screen.findByText('Unmark')).toBeInTheDocument();
     expect(screen.queryByText('Bookmark')).toBeNull();
+  });
+
+  it('OnReady reads the local bookmark of the item in the category of the entity type only', async () => {
+    await toggleBookmarkItem_C2('203', BookmarkCategory.Member, false, server());
+    const onChange = vi.fn();
+    household('203', onChange);
+    await waitFor(() => {
+      expect(onChange).toHaveBeenCalledWith(false);
+    });
+    expect(await screen.findByText('Bookmark')).toBeInTheDocument();
   });
 });

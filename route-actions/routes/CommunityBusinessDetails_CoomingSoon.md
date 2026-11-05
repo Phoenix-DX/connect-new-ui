@@ -4,6 +4,8 @@ The route `/UBTConnect/CommunityBusinessDetails_CoomingSoon`, read from the TST 
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/CommunityBusinessDetails_CoomingSoon/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
+**Live code.** TST changed 8 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `UBTConnect`, `js`, `js`, `UBTConnectLibrary`, `js`. The observed calls come from the capture.
+
 ## 1. Route
 
 | Item | Value | Source |
@@ -59,7 +61,7 @@ None.
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/screens/CommunityBusinessDetails_CoomingSoon/analysis/sources/raw/`.
+The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 

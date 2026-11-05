@@ -2612,6 +2612,33 @@ return UBT_AvatarSizeRecordList;
 UBTConnectLibraryModel.UBT_AvatarSizeRecordList = UBT_AvatarSizeRecordList;
 
 });
+define("UBTConnectLibrary.model$Connect_EntityRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect_CommonEntities_DB.model", "UBTConnectLibrary.model", "Connect_CommonEntities_DB.model$Connect_EntityRec", "UBTConnectLibrary.referencesHealth", "UBTConnectLibrary.referencesHealth$Connect_CommonEntities_DB"], function (exports, OutSystems, Connect_CommonEntities_DBModel, UBTConnectLibraryModel) {
+var OS = OutSystems.Internal;
+var Connect_EntityRecord = (function (_super) {
+__extends(Connect_EntityRecord, _super);
+function Connect_EntityRecord(defaults) {
+_super.apply(this, arguments);
+}
+Connect_EntityRecord.attributesToDeclare = function () {
+return [
+this.attr("Connect_Entity", "connect_EntityAttr", "Connect_Entity", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Connect_CommonEntities_DBModel.Connect_EntityRec());
+}, true, Connect_CommonEntities_DBModel.Connect_EntityRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+Connect_EntityRecord.fromStructure = function (str) {
+return new Connect_EntityRecord(new Connect_EntityRecord.RecordClass({
+connect_EntityAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+Connect_EntityRecord._isAnonymousRecord = true;
+Connect_EntityRecord.UniqueId = "3514ce6c-0a23-b49d-ae55-1b6dcb4baa9d";
+Connect_EntityRecord.init();
+return Connect_EntityRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnectLibraryModel.Connect_EntityRecord = Connect_EntityRecord;
+
+});
 define("UBTConnectLibrary.model$LookupActionsRec", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnectLibrary.model$LookupItemRec"], function (exports, OutSystems, UBTConnectLibraryModel) {
 var OS = OutSystems.Internal;
 var LookupActionsRec = (function (_super) {
@@ -4420,6 +4447,33 @@ return BackgroundOptionsRecordList;
 UBTConnectLibraryModel.BackgroundOptionsRecordList = BackgroundOptionsRecordList;
 
 });
+define("UBTConnectLibrary.model$ImageSizeRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect_CommonEntities_DB.model", "UBTConnectLibrary.model", "Connect_CommonEntities_DB.model$ImageSizeRec", "UBTConnectLibrary.referencesHealth", "UBTConnectLibrary.referencesHealth$Connect_CommonEntities_DB"], function (exports, OutSystems, Connect_CommonEntities_DBModel, UBTConnectLibraryModel) {
+var OS = OutSystems.Internal;
+var ImageSizeRecord = (function (_super) {
+__extends(ImageSizeRecord, _super);
+function ImageSizeRecord(defaults) {
+_super.apply(this, arguments);
+}
+ImageSizeRecord.attributesToDeclare = function () {
+return [
+this.attr("ImageSize", "imageSizeAttr", "ImageSize", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Connect_CommonEntities_DBModel.ImageSizeRec());
+}, true, Connect_CommonEntities_DBModel.ImageSizeRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+ImageSizeRecord.fromStructure = function (str) {
+return new ImageSizeRecord(new ImageSizeRecord.RecordClass({
+imageSizeAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+ImageSizeRecord._isAnonymousRecord = true;
+ImageSizeRecord.UniqueId = "75e61112-d52d-9f7a-c010-240bb39f50eb";
+ImageSizeRecord.init();
+return ImageSizeRecord;
+})(OS.DataTypes.GenericRecord);
+UBTConnectLibraryModel.ImageSizeRecord = ImageSizeRecord;
+
+});
 define("UBTConnectLibrary.model$WeekdayLabelTypeRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnectLibrary.model$WeekdayLabelTypeRec"], function (exports, OutSystems, UBTConnectLibraryModel) {
 var OS = OutSystems.Internal;
 var WeekdayLabelTypeRecord = (function (_super) {
@@ -5769,6 +5823,19 @@ return Note_ItemRecordList;
 UBTConnectLibraryModel.Note_ItemRecordList = Note_ItemRecordList;
 
 });
+define("UBTConnectLibrary.model$Connect_EntityList", ["exports", "OutSystems/ClientRuntime/Main", "Connect_CommonEntities_DB.model", "UBTConnectLibrary.model", "Connect_CommonEntities_DB.model$Connect_EntityRec", "UBTConnectLibrary.referencesHealth", "UBTConnectLibrary.referencesHealth$Connect_CommonEntities_DB"], function (exports, OutSystems, Connect_CommonEntities_DBModel, UBTConnectLibraryModel) {
+var OS = OutSystems.Internal;
+var Connect_EntityList = (function (_super) {
+__extends(Connect_EntityList, _super);
+function Connect_EntityList(defaults) {
+_super.apply(this, arguments);
+}
+Connect_EntityList.itemType = Connect_CommonEntities_DBModel.Connect_EntityRec;
+return Connect_EntityList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectLibraryModel.Connect_EntityList = Connect_EntityList;
+
+});
 define("UBTConnectLibrary.model$UBT_IconsRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnectLibrary.model$UBT_IconsRecord"], function (exports, OutSystems, UBTConnectLibraryModel) {
 var OS = OutSystems.Internal;
 var UBT_IconsRecordList = (function (_super) {
@@ -5922,6 +5989,32 @@ UBT_MessageTypeRecordList.itemType = UBTConnectLibraryModel.UBT_MessageTypeRecor
 return UBT_MessageTypeRecordList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectLibraryModel.UBT_MessageTypeRecordList = UBT_MessageTypeRecordList;
+
+});
+define("UBTConnectLibrary.model$Connect_EntityRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnectLibrary.model$Connect_EntityRecord"], function (exports, OutSystems, UBTConnectLibraryModel) {
+var OS = OutSystems.Internal;
+var Connect_EntityRecordList = (function (_super) {
+__extends(Connect_EntityRecordList, _super);
+function Connect_EntityRecordList(defaults) {
+_super.apply(this, arguments);
+}
+Connect_EntityRecordList.itemType = UBTConnectLibraryModel.Connect_EntityRecord;
+return Connect_EntityRecordList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectLibraryModel.Connect_EntityRecordList = Connect_EntityRecordList;
+
+});
+define("UBTConnectLibrary.model$ImageSizeList", ["exports", "OutSystems/ClientRuntime/Main", "Connect_CommonEntities_DB.model", "UBTConnectLibrary.model", "Connect_CommonEntities_DB.model$ImageSizeRec", "UBTConnectLibrary.referencesHealth", "UBTConnectLibrary.referencesHealth$Connect_CommonEntities_DB"], function (exports, OutSystems, Connect_CommonEntities_DBModel, UBTConnectLibraryModel) {
+var OS = OutSystems.Internal;
+var ImageSizeList = (function (_super) {
+__extends(ImageSizeList, _super);
+function ImageSizeList(defaults) {
+_super.apply(this, arguments);
+}
+ImageSizeList.itemType = Connect_CommonEntities_DBModel.ImageSizeRec;
+return ImageSizeList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectLibraryModel.ImageSizeList = ImageSizeList;
 
 });
 define("UBTConnectLibrary.model$Connect_UpdateTypeIdRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnectLibrary.model$Connect_UpdateTypeIdRecord"], function (exports, OutSystems, UBTConnectLibraryModel) {
@@ -6385,6 +6478,19 @@ TextBoolean1RecordList.itemType = UBTConnectLibraryModel.TextBooleanRecord;
 return TextBoolean1RecordList;
 })(OS.DataTypes.GenericRecordList);
 UBTConnectLibraryModel.TextBoolean1RecordList = TextBoolean1RecordList;
+
+});
+define("UBTConnectLibrary.model$ImageSizeRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnectLibrary.model$ImageSizeRecord"], function (exports, OutSystems, UBTConnectLibraryModel) {
+var OS = OutSystems.Internal;
+var ImageSizeRecordList = (function (_super) {
+__extends(ImageSizeRecordList, _super);
+function ImageSizeRecordList(defaults) {
+_super.apply(this, arguments);
+}
+ImageSizeRecordList.itemType = UBTConnectLibraryModel.ImageSizeRecord;
+return ImageSizeRecordList;
+})(OS.DataTypes.GenericRecordList);
+UBTConnectLibraryModel.ImageSizeRecordList = ImageSizeRecordList;
 
 });
 define("UBTConnectLibrary.model$UBT_ButtonTypeRecordList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnectLibrary.model$UBT_ButtonTypeRecord"], function (exports, OutSystems, UBTConnectLibraryModel) {
@@ -8455,6 +8561,12 @@ return getUBT_IconsRecord("900a6e7d-3539-4ceb-b038-281a6b9ae564");
 }
 });
 
+Object.defineProperty(UBTConnectLibraryModel.staticEntities.uBT_Icons, "transportTrain", {
+get: function () {
+return getUBT_IconsRecord("90542196-917d-4e25-a264-f2ff0a1e1d60");
+}
+});
+
 Object.defineProperty(UBTConnectLibraryModel.staticEntities.uBT_Icons, "menu", {
 get: function () {
 return getUBT_IconsRecord("913b1341-974f-41fa-b3d2-8c173d29ae47");
@@ -8767,6 +8879,12 @@ return getUBT_IconsRecord("d4f63836-85a1-4f9a-9d57-4a324075707c");
 }
 });
 
+Object.defineProperty(UBTConnectLibraryModel.staticEntities.uBT_Icons, "transportPlane", {
+get: function () {
+return getUBT_IconsRecord("d6164d90-1fa7-4329-85ff-8f5484258b14");
+}
+});
+
 Object.defineProperty(UBTConnectLibraryModel.staticEntities.uBT_Icons, "shoppingCart", {
 get: function () {
 return getUBT_IconsRecord("d7863646-a37e-4bd6-aedc-72183f218a9e");
@@ -8818,6 +8936,12 @@ return getUBT_IconsRecord("deec24f4-831f-4b87-bc37-3f92ab62ef11");
 Object.defineProperty(UBTConnectLibraryModel.staticEntities.uBT_Icons, "sMS", {
 get: function () {
 return getUBT_IconsRecord("e2b0003e-25ec-41f2-9e14-00a2237353bc");
+}
+});
+
+Object.defineProperty(UBTConnectLibraryModel.staticEntities.uBT_Icons, "transportCar", {
+get: function () {
+return getUBT_IconsRecord("e2faf3e0-399c-4b1c-8903-0e6958d7cff1");
 }
 });
 
@@ -9920,6 +10044,80 @@ return getConnect_UpdateTypeIdRecord("b7d823ee-1bb4-49ba-85ac-3e707804a5aa");
 Object.defineProperty(UBTConnectLibraryModel.staticEntities.connect_UpdateTypeId, "taken", {
 get: function () {
 return getConnect_UpdateTypeIdRecord("fe340bb6-94a0-40cf-b19e-7508ad0b862c");
+}
+});
+
+UBTConnectLibraryModel.staticEntities.connect_Entity = {};
+var getConnect_EntityRecord = function (record) {
+return OS.ApplicationInfo.getModules()["d86ffdd7-ae1d-48f1-9fea-17fe11fb97da"].staticEntities["2710e296-7733-44ad-8ef9-bbcd4c4dd77c"][record];
+};
+Object.defineProperty(UBTConnectLibraryModel.staticEntities.connect_Entity, "household", {
+get: function () {
+return getConnect_EntityRecord("57dd184c-b9fc-4a7f-9f9a-f20e6e275fe3");
+}
+});
+
+Object.defineProperty(UBTConnectLibraryModel.staticEntities.connect_Entity, "supperMeetings_aka_Subdivisions", {
+get: function () {
+return getConnect_EntityRecord("62a170b3-4134-43b4-a09f-3e030e687bfd");
+}
+});
+
+Object.defineProperty(UBTConnectLibraryModel.staticEntities.connect_Entity, "interchange", {
+get: function () {
+return getConnect_EntityRecord("6f037faf-a5dc-4f83-b491-b5a1af3012c2");
+}
+});
+
+Object.defineProperty(UBTConnectLibraryModel.staticEntities.connect_Entity, "locality", {
+get: function () {
+return getConnect_EntityRecord("78e8b5bb-7b51-447b-8f03-ac3f57c4bab3");
+}
+});
+
+Object.defineProperty(UBTConnectLibraryModel.staticEntities.connect_Entity, "country", {
+get: function () {
+return getConnect_EntityRecord("a35b9acc-2c9c-4d8c-95bf-3842b859880e");
+}
+});
+
+Object.defineProperty(UBTConnectLibraryModel.staticEntities.connect_Entity, "oneSchoolGlobal", {
+get: function () {
+return getConnect_EntityRecord("a896e28c-f387-4cf4-93f1-7ba6b8f3ac64");
+}
+});
+
+Object.defineProperty(UBTConnectLibraryModel.staticEntities.connect_Entity, "member", {
+get: function () {
+return getConnect_EntityRecord("dbaf9275-057c-4718-b4fb-c4b31ae95ccc");
+}
+});
+
+Object.defineProperty(UBTConnectLibraryModel.staticEntities.connect_Entity, "feedItem", {
+get: function () {
+return getConnect_EntityRecord("e22d3178-31c6-411a-a572-083e8aa9db11");
+}
+});
+
+UBTConnectLibraryModel.staticEntities.imageSize = {};
+var getImageSizeRecord = function (record) {
+return OS.ApplicationInfo.getModules()["d86ffdd7-ae1d-48f1-9fea-17fe11fb97da"].staticEntities["389ed431-2686-4fe1-9cf0-1e588caa7ea2"][record];
+};
+Object.defineProperty(UBTConnectLibraryModel.staticEntities.imageSize, "large", {
+get: function () {
+return getImageSizeRecord("b8989d10-6db9-4416-8ad1-cbc113960ae8");
+}
+});
+
+Object.defineProperty(UBTConnectLibraryModel.staticEntities.imageSize, "medium", {
+get: function () {
+return getImageSizeRecord("df1b802e-04f6-49ad-aa61-46503f0ab877");
+}
+});
+
+Object.defineProperty(UBTConnectLibraryModel.staticEntities.imageSize, "small", {
+get: function () {
+return getImageSizeRecord("e8f0625e-a573-4bc8-a384-182271dcabf5");
 }
 });
 

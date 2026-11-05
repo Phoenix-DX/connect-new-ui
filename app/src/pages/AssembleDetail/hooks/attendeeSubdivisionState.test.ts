@@ -97,9 +97,13 @@ describe('attendeeSubdivisionState', () => {
     expect(hallLocationOf(undefined)).toEqual({ countryCode: '', localityId: '0' });
   });
 
-  it('Set_SelectedAssembleAttendeeListBookmarks: IsBookmarked = a local bookmark has the row id', () => {
-    const rows = [guest('91004', 'Molina', false), guest('91005', 'Vitale', true)];
-    expect(withLocalBookmarks(rows, [{ ObjectId: '91004' }]).map((r) => r.IsBookmarked)).toEqual([true, false]);
+  it('Set_SelectedAssembleAttendeeListBookmarks: IsBookmarked = a C2 local bookmark has LongIntegerToText(row id) as ItemId', () => {
+    const rows = [guest('91004', 'Molina', false), guest('91005', 'Vitale', true), guest('091006', 'Rossi', false)];
+    expect(withLocalBookmarks(rows, [{ ItemId: '91004' }, { ItemId: '91006' }]).map((r) => r.IsBookmarked)).toEqual([
+      true,
+      false,
+      true,
+    ]);
   });
 
   it('the share object of a household: entity, flipped name, family names, location and avatar', () => {

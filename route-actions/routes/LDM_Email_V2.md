@@ -73,8 +73,8 @@ All columns come from the code, without interpretation:
 | # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
 |---|---|---|---|---|---|---|---|---|
 | 1 | `Connect2_LegacyShared/ActionGetAllApplicationEvents` | server action | `Connect2_LegacyShared` | onClick in ScreenBlock_Event_Email_V2 → ScreenBlock_Event_Email_V2.onSubmit_Email → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents | no capture | – | – | not applicable (telemetry) |
-| 2 | `Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_Event_Email_V2/ActionEventContact` | server action | `ScreenBlock_Event_Email_V2` | onClick in ScreenBlock_Event_Email_V2 → ScreenBlock_Event_Email_V2.onSubmit_Email → server EventContact | no capture | `sendEventContactEmail()` [`api/message/repository.ts:94`](../../app/src/api/message/repository.ts#L94) (page) | `LdmEventEmail → useLdmEventEmail → sendEventContactEmail`<br>[`pages/LDM_Email_V2/LDM_Email_V2Page.tsx`](../../app/src/pages/LDM_Email_V2/LDM_Email_V2Page.tsx) | implemented |
-| 3 | `Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_Event_Email_V2/DataActionGetCoordinatorDetails` | data action | `ScreenBlock_Event_Email_V2` | onClick in NetworkWarning → event tryAgain of NetworkWarning → ScreenBlock_Event_Email_V2.onHandle_NetworkWarningTryAgain → ScreenBlock_Event_Email_V2.refreshGetCoordinatorDetails → ScreenBlock_Event_Email_V2.DataActionGetCoordinatorDetails<br>ScreenBlock_Event_Email_V2.OnReady → ScreenBlock_Event_Email_V2.onReady → ScreenBlock_Event_Email_V2.refreshGetCoordinatorDetails → ScreenBlock_Event_Email_V2.DataActionGetCoordinatorDetails<br>ScreenBlock_Event_Email_V2 fetch at start → ScreenBlock_Event_Email_V2.DataActionGetCoordinatorDetails | no capture | `fetchEventEmailCoordinator()` [`api/message/repository.ts:138`](../../app/src/api/message/repository.ts#L138) (page) | `LdmEventEmail → useLdmEventEmail → fetchEventEmailCoordinator`<br>[`pages/LDM_Email_V2/LDM_Email_V2Page.tsx`](../../app/src/pages/LDM_Email_V2/LDM_Email_V2Page.tsx) | implemented |
+| 2 | `Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_Event_Email_V2/ActionEventContact` | server action | `ScreenBlock_Event_Email_V2` | onClick in ScreenBlock_Event_Email_V2 → ScreenBlock_Event_Email_V2.onSubmit_Email → server EventContact | no capture | `sendEventContactEmail()` [`api/message/repository.ts:98`](../../app/src/api/message/repository.ts#L98) (page) | `LdmEventEmail → useLdmEventEmail → sendEventContactEmail`<br>[`pages/LDM_Email_V2/LDM_Email_V2Page.tsx`](../../app/src/pages/LDM_Email_V2/LDM_Email_V2Page.tsx) | implemented |
+| 3 | `Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_Event_Email_V2/DataActionGetCoordinatorDetails` | data action | `ScreenBlock_Event_Email_V2` | onClick in NetworkWarning → event tryAgain of NetworkWarning → ScreenBlock_Event_Email_V2.onHandle_NetworkWarningTryAgain → ScreenBlock_Event_Email_V2.refreshGetCoordinatorDetails → ScreenBlock_Event_Email_V2.DataActionGetCoordinatorDetails<br>ScreenBlock_Event_Email_V2.OnReady → ScreenBlock_Event_Email_V2.onReady → ScreenBlock_Event_Email_V2.refreshGetCoordinatorDetails → ScreenBlock_Event_Email_V2.DataActionGetCoordinatorDetails<br>ScreenBlock_Event_Email_V2 fetch at start → ScreenBlock_Event_Email_V2.DataActionGetCoordinatorDetails | no capture | `fetchEventEmailCoordinator()` [`api/message/repository.ts:142`](../../app/src/api/message/repository.ts#L142) (page) | `LdmEventEmail → useLdmEventEmail → fetchEventEmailCoordinator`<br>[`pages/LDM_Email_V2/LDM_Email_V2Page.tsx`](../../app/src/pages/LDM_Email_V2/LDM_Email_V2Page.tsx) | implemented |
 | 4 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no capture | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx) | implemented |
 | 5 | `UBT_AppManager/ActionAppManager_SynchAppContext` | server action | `UBT_AppManager` | onClick in ScreenBlock_Event_Email_V2 → ScreenBlock_Event_Email_V2.onSubmit_Email → … → UBT_AppManager.appManager_SynchAppContextInternal → server AppManager_SynchAppContext | no capture | `fetchAppContext()` [`api/app/repository.ts:24`](../../app/src/api/app/repository.ts#L24) (shell + page) | `AppFrame → AppStart → … → fetchAppContext`<br>[`app/AppFrame.tsx`](../../app/src/app/AppFrame.tsx)<br>`LdmEventEmail → useLdmEventEmail → … → fetchAppContext`<br>[`pages/LDM_Email_V2/LDM_Email_V2Page.tsx`](../../app/src/pages/LDM_Email_V2/LDM_Email_V2Page.tsx) | implemented |
 
@@ -229,7 +229,7 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | `Badge` | `UBTConnectLibrary` | [`components/ui/Badge/Badge.tsx`](../../app/src/components/ui/Badge/Badge.tsx) | 0 |
 | `BottomBarItem` | `OutSystemsUI_2_23` | [`components/ui/BottomBarItem/BottomBarItem.tsx`](../../app/src/components/ui/BottomBarItem/BottomBarItem.tsx) | 0 |
 | `BottomBarContent` | `UBTConnect` | [`components/layout/BottomBarContent/BottomBarContent.tsx`](../../app/src/components/layout/BottomBarContent/BottomBarContent.tsx) | 0 |
-| `ScreenBlock_Event_Email_V2` | `Connect2_OrbitMobile_MUI` | [`pages/LDM_Email_V2/components/LdmEventEmailView.tsx`](../../app/src/pages/LDM_Email_V2/components/LdmEventEmailView.tsx), [`pages/LDM_Email_V2/hooks/ldmEventEmailState.ts`](../../app/src/pages/LDM_Email_V2/hooks/ldmEventEmailState.ts), [`pages/LDM_Email_V2/hooks/useLdmEventEmail.ts`](../../app/src/pages/LDM_Email_V2/hooks/useLdmEventEmail.ts) | 3 |
+| `ScreenBlock_Event_Email_V2` | `Connect2_OrbitMobile_MUI` | [`pages/LDM_Email_V2/components/LdmEventEmailView.tsx`](../../app/src/pages/LDM_Email_V2/components/LdmEventEmailView.tsx), [`pages/LDM_Email_V2/hooks/ldmEventEmailState.ts`](../../app/src/pages/LDM_Email_V2/hooks/ldmEventEmailState.ts), [`pages/LDM_Email_V2/hooks/useLdmEventEmail.ts`](../../app/src/pages/LDM_Email_V2/hooks/useLdmEventEmail.ts) | 2 |
 | `ContactPopup_ByPhone` | `UBTConnect_Utils` | [`components/contact/ContactPopupByPhone/ContactPopupByPhone.tsx`](../../app/src/components/contact/ContactPopupByPhone/ContactPopupByPhone.tsx) | 1 |
 | `ContactPopup` | `UBTConnect_Utils` | [`components/contact/ContactPopup/ContactPopup.tsx`](../../app/src/components/contact/ContactPopup/ContactPopup.tsx) | 0 |
 | `LazyImage` | `UBTConnectLibrary` | [`components/ui/LazyImage/LazyImage.tsx`](../../app/src/components/ui/LazyImage/LazyImage.tsx) | 0 |
@@ -245,20 +245,19 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | `BaseLayout_UpdatedOSUI` | `Connect2_LegacyShared` | [`components/layout/BaseLayout/BaseLayout.tsx`](../../app/src/components/layout/BaseLayout/BaseLayout.tsx) | 0 |
 | `PullToRefresh` | `OutSystemsUI_2_23` | [`components/ui/PullToRefresh/PullToRefresh.tsx`](../../app/src/components/ui/PullToRefresh/PullToRefresh.tsx) | 0 |
 
-<details><summary>User actions of the shared blocks (10)</summary>
+<details><summary>User actions of the shared blocks (9)</summary>
 
 | # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
 |---|---|---|---|---|---|
 | 1 | `MenuIcon__UpdatedOSUI` | `onClick (HTML element)` | `onBack` | – | goes to previous screen |
 | 2 | `ScreenBlock_Event_Email_V2` | `onClick (HTML element)` | `onSubmit_Email` | – | calls EventContact, GetAllApplicationEvents, AppManager_SynchAppContext; goes to previous screen; shows a message |
 | 3 | `ScreenBlock_Event_Email_V2` | `onClick (HTML element)` | `onClick_Call` | – | shows a message |
-| 4 | `ScreenBlock_Event_Email_V2` | `tryAgain of NetworkWarning` | `onHandle_NetworkWarningTryAgain` | – | calls GetCoordinatorDetails |
-| 5 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `home` | goes to HomeFeed |
-| 6 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `directory` | goes to CountryList, Locality_Details |
-| 7 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `updates` | goes to Updates_SingleList |
-| 8 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `bookmarks` | goes to Bookmarks |
-| 9 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `menu` | goes to Menu |
-| 10 | `ContactPopup_ByPhone` | `event_Clicked of ContactPopup` | `onClick_CallButton` | – | opens an external link |
+| 4 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `home` | goes to HomeFeed |
+| 5 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `directory` | goes to CountryList, Locality_Details |
+| 6 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `updates` | goes to Updates_SingleList |
+| 7 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `bookmarks` | goes to Bookmarks |
+| 8 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `menu` | goes to Menu |
+| 9 | `ContactPopup_ByPhone` | `event_Clicked of ContactPopup` | `onClick_CallButton` | – | opens an external link |
 
 </details>
 
@@ -302,4 +301,4 @@ Calls that React can make on this route, without a TST chain on this route. Ever
 
 | Call | React action | Reached through |
 |---|---|---|
-| `/api/UBTConnect_Utils/ActionGetSignedImagesInBulk` | `cache_SignedImageURL_GetCallback()` [`lib/ubtConnectUtils/actions.ts:124`](../../app/src/lib/ubtConnectUtils/actions.ts#L124) | `EntityLazyImage` [`components/ui/EntityLazyImage/EntityLazyImage.tsx`](../../app/src/components/ui/EntityLazyImage/EntityLazyImage.tsx) |
+| `/api/UBTConnect_Utils/ActionGetSignedImagesInBulk` | `cache_SignedImageURL_GetCallback()` [`lib/ubtConnectUtils/actions.ts:131`](../../app/src/lib/ubtConnectUtils/actions.ts#L131) | `EntityLazyImage` [`components/ui/EntityLazyImage/EntityLazyImage.tsx`](../../app/src/components/ui/EntityLazyImage/EntityLazyImage.tsx) |

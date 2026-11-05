@@ -8,12 +8,8 @@ import {
   localBookmarksDatabase,
   type LocalBookmark,
 } from '@/platform/storage/localEntities';
-import {
-  bookmarkServerActions,
-  scrollTop,
-  toggleBookmarkItem_C2,
-  unauthorizedObjectMessage,
-} from '@/lib/ubtConnect/actions';
+import { scrollTop, unauthorizedObjectMessage } from '@/lib/ubtConnect/actions';
+import { bookmarkServerActions, toggleBookmarkItem_C2 } from '@/lib/ubtConnectUtils/actions';
 import type { Tag } from '@/lib/ubtConnectLibrary/structures';
 import {
   bookmarkCardTarget,

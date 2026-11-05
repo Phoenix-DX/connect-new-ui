@@ -136,8 +136,8 @@ const mockLocalNotes = (): LocalNoteWire[] =>
 type LocalNoteWire = components['schemas']['UBTConnect_Notes_MCS__LocalNote'];
 
 /** The legacy LocalBookmark rows of the mock user (Connect2_LegacyShared, read while C2NewBookmarks is off as on TST):
-    the device copy of the server's legacy bookmarks, i.e. of the shared collection that the Connect2_Assemble_MUI and
-    Directory_EntityDetailsActions bookmark mocks write (src/mocks/modules/Connect2_MyBookmarks_MUI/mocks.ts,
+    the device copy of the server's legacy bookmarks, i.e. of the shared collection of
+    src/mocks/modules/Connect2_MyBookmarks_MUI/mocks.ts (no mock writes it since the toggle moved to the C2 store, 2026-11-05;
     CR-MyBookmarks-2), so a delete there shows after the next sync. Id = BookmarkId = the server row's Id (fictional). It holds the households bookmarked in the TST
     captures:
     - 42438, the household of the HouseholdDetails / HouseholdCarousel parity routes (`?HouseholdId=42438`,

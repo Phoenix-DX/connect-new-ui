@@ -4,7 +4,7 @@ The route `/UBTConnect/Notifications`, read from the TST compiled code and from 
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/Notifications/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
-**Live code.** TST changed 6 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `Notifications`, `NotificationsList`, `NotificationsListBreakpoints`, `Notifications_Header`, `Notification_ListItem`, `AvatarImage`. The observed calls come from the capture.
+**Live code.** TST changed 21 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `Connect2_LegacyShared`, `js`, `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `ReactiveHtmlSanitizer`, `Notifications`, `NotificationsList`, `NotificationsListBreakpoints`, `Notifications_Header`, `UBTConnect`, `js`, `js`, `Notification_ListItem`, `AvatarImage`, `UBTConnectLibrary`, `js`, `UBTConnect_Utils`, `js`, `UBT_AppManager`, `UBT_AppManager_Mobile`. The observed calls come from the capture.
 
 ## 1. Route
 
@@ -23,10 +23,10 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | Check | Result |
 |---|---|
 | Server calls of the route on TST | 8: React makes 8, **0 missing** |
-| Differences found | **1** (see [section 3](#3-differences-found)) |
+| Differences found | **0** (see [section 3](#3-differences-found)) |
 | Questions | 0 (see [section 4](#4-questions)) |
 | React calls reached only through shared code | 0: see the last section |
-| User actions of the route (own code) | OutSystems: 10. React: 16 |
+| User actions of the route (own code) | OutSystems: 6. React: 16 |
 | Screen and blocks of the UI flow with a React port | 7 of 7 |
 | Navigation targets found in React | 7 of 7 |
 | Shared blocks and components on the route | OutSystems 23, React 2 with user actions: see the last section |
@@ -36,7 +36,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 
 Each line is a fact of both sides: a TST call, navigation or variable, and the React code that has it or not. The tool does not judge the behaviour.
 
-- Navigation to `NotificationDetails`: TST gives `HardwareId`, `MessageInstanceId`, `MessageTemplateId` ([`UBTConnect.App_Notifications.Notifications.mvc.js:2592`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L2592)); React gives `MessageInstanceId` ([`pages/Notifications/hooks/useNotifications.ts:245`](../../app/src/pages/Notifications/hooks/useNotifications.ts#L245)).
+None.
 
 ## 4. Questions
 
@@ -57,7 +57,7 @@ All columns come from the code, without interpretation:
 | # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
 |---|---|---|---|---|---|---|---|---|
 | 1 | `UBTConnect/App_Notifications/Notifications/ActionMarkAllAsReadNotifications` | server action | `Notifications` | onClick in IconText → event clicked of IconText → … → Notifications.handler_MoreActionSheetMarkAllAsRead → server MarkAllAsReadNotifications | no | `markAllAsReadNotifications()` [`api/notification/repository.ts:68`](../../app/src/api/notification/repository.ts#L68) (page) | `Notifications → useNotifications → markAllAsReadNotifications`<br>[`pages/Notifications/NotificationsPage.tsx`](../../app/src/pages/Notifications/NotificationsPage.tsx) | implemented |
-| 2 | `UBTConnect/App_Notifications/Notifications/ActionMarkAsRead` | server action | `Notifications` | onClick in NotificationsList → NotificationsList.onClick_NotificationDetail → … → Notifications.handler_NotificationDetail → server MarkAsRead | no | `markNotificationAsRead()` [`api/notification/notificationDetail.ts:47`](../../app/src/api/notification/notificationDetail.ts#L47) (page) | `Notifications → useNotifications → markNotificationAsRead`<br>[`pages/Notifications/NotificationsPage.tsx`](../../app/src/pages/Notifications/NotificationsPage.tsx) | implemented |
+| 2 | `UBTConnect/App_Notifications/Notifications/ActionMarkAsRead` | server action | `Notifications` | onClick in NotificationsList → NotificationsList.onClick_NotificationDetail → … → Notifications.handler_NotificationDetail → server MarkAsRead | no | `markNotificationAsRead()` [`api/notification/notificationDetail.ts:14`](../../app/src/api/notification/notificationDetail.ts#L14) (page) | `Notifications → useNotifications → markNotificationAsRead`<br>[`pages/Notifications/NotificationsPage.tsx`](../../app/src/pages/Notifications/NotificationsPage.tsx) | implemented |
 | 3 | `UBTConnect/App_Notifications/Notifications/DataActionFetchNotifications` | data action | `Notifications` | onChange in Notifications_Action → Notifications_Action.switch_IsOnlyShowUnReadOnChange → event onlyShowUnread of Notifications_Action → Notifications.handler_OnlyShowUnread → Notifications.DataActionFetchNotifications<br>NotificationsListBreakpoints.notificationsListBreakpoints_OnScrollEnding → event onLoadMore of NotificationsListBreakpoints → Notifications.notificationsListBreakpoints_OnLoadMore → Notifications.DataActionFetchNotifications<br>event event_OnClick of Button → MoreActionSheet.onClick_Clear → … → Notifications.refreshNotifications → Notifications.DataActionFetchNotifications<br>(+2 more chains) | yes | `fetchNotifications()` [`api/notification/repository.ts:40`](../../app/src/api/notification/repository.ts#L40) (page) | `Notifications → useNotifications → fetchNotifications`<br>[`pages/Notifications/NotificationsPage.tsx`](../../app/src/pages/Notifications/NotificationsPage.tsx) | implemented |
 | 4 | `UBTConnect/App_Notifications/Notifications/DataActionGetDateRanges` | data action | `Notifications` | Notifications.OnReady → Notifications.screenEvent_OnReady → Notifications.DataActionGetDateRanges<br>Notifications fetch at start → Notifications.DataActionGetDateRanges | yes | `fetchNotificationDateRanges()` [`api/notification/repository.ts:32`](../../app/src/api/notification/repository.ts#L32) (page) | `Notifications → useNotifications → fetchNotificationDateRanges`<br>[`pages/Notifications/NotificationsPage.tsx`](../../app/src/pages/Notifications/NotificationsPage.tsx) | implemented |
 | 5 | `UBTConnect/App_Notifications/Notifications/ServiceAPIDelete_Notifications` | service action | `Notifications` | MoreActionSheet.deleteAllNotificationClicked → event deleteAllNotification of MoreActionSheet → … → Notifications.handler_MoreActionSheetDeleteAll → server Delete_Notifications | no | `deleteNotifications()` [`api/notification/repository.ts:60`](../../app/src/api/notification/repository.ts#L60) (page) | `NotificationsList → deleteNotifications`<br>[`pages/Notifications/components/NotificationsList.tsx`](../../app/src/pages/Notifications/components/NotificationsList.tsx)<br>`Notifications → useNotifications → deleteNotifications`<br>[`pages/Notifications/NotificationsPage.tsx`](../../app/src/pages/Notifications/NotificationsPage.tsx) | implemented |
@@ -73,20 +73,16 @@ Two independent lists: the event bindings of the TST views, and the JSX event bi
 
 | # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
 |---|---|---|---|---|---|
-| 1 | `Notifications` | `event_ClearString of Input`<br>`event_Submit of Input` | `handler_FilterSearchText` | – | calls FetchNotifications |
-| 2 | `Notifications` | `onlyShowUnread of Action` | `handler_OnlyShowUnread` | – | calls FetchNotifications |
-| [3](#613-notifications-handler_notificationdetail) | `Notifications` | `notificationDetail of NotificationsListBreakpoints` | `handler_NotificationDetail` | – | calls MarkAsRead; goes to NotificationDetails |
-| 4 | `Notifications` | `onLoadMore of NotificationsListBreakpoints` | `notificationsListBreakpoints_OnLoadMore` | – | calls FetchNotifications |
-| 5 | `Notifications` | `applyFilters of MoreActionSheet`<br>`applyFilters of SortSheet` | `handler_ApplyFilters` | – | calls FetchNotifications |
-| [6](#616-notifications-handler_moreactionsheetdeleteall) | `Notifications` | `deleteAll of MoreActionSheet` | `handler_MoreActionSheetDeleteAll` | – | calls Delete_Notifications, FetchNotifications |
-| [7](#617-notifications-handler_moreactionsheetmarkallasread) | `Notifications` | `markAllAsRead of MoreActionSheet` | `handler_MoreActionSheetMarkAllAsRead` | – | calls MarkAllAsReadNotifications, Get_UI_UpdateItems_UnreadCount_All, FetchNotifications |
-| 8 | `NotificationsList` | `onClick (HTML element)` | `handler_ToggleRead` | – | calls ToggleRead |
-| 9 | `NotificationsList` | `confirm of ConfirmDialog` | `handler_DeleteNotification` | – | calls Delete_Notifications |
-| 10 | `Notifications_Action` | `click of Icon`<br>`clicked of IconText` | `iconClick` | – | asks for a confirmation |
+| [1](#611-notifications-handler_notificationdetail) | `Notifications` | `notificationDetail of NotificationsListBreakpoints` | `handler_NotificationDetail` | – | calls MarkAsRead; goes to NotificationDetails |
+| 2 | `Notifications` | `deleteAll of MoreActionSheet` | `handler_MoreActionSheetDeleteAll` | – | calls Delete_Notifications |
+| [3](#613-notifications-handler_moreactionsheetmarkallasread) | `Notifications` | `markAllAsRead of MoreActionSheet` | `handler_MoreActionSheetMarkAllAsRead` | – | calls MarkAllAsReadNotifications, Get_UI_UpdateItems_UnreadCount_All |
+| 4 | `NotificationsList` | `onClick (HTML element)` | `handler_ToggleRead` | – | calls ToggleRead |
+| 5 | `NotificationsList` | `confirm of ConfirmDialog` | `handler_DeleteNotification` | – | calls Delete_Notifications |
+| 6 | `Notifications_Action` | `click of Icon`<br>`clicked of IconText` | `iconClick` | – | asks for a confirmation |
 
-<details><summary>3 diagrams (handlers with two or more effects)</summary>
+<details><summary>2 diagrams (handlers with two or more effects)</summary>
 
-#### 6.1.3 Notifications: handler_NotificationDetail
+#### 6.1.1 Notifications: handler_NotificationDetail
 
 ```mermaid
 sequenceDiagram
@@ -101,22 +97,7 @@ sequenceDiagram
   B->>N: go to NotificationDetails
 ```
 
-#### 6.1.6 Notifications: handler_MoreActionSheetDeleteAll
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as Notifications
-  participant S as Server (TST calls)
-  U->>B: deleteAll of MoreActionSheet → handler_MoreActionSheetDeleteAll
-  B->>S: Delete_Notifications(Messages)
-  S-->>B: no outputs
-  B->>S: FetchNotifications(BottomSheetId_IsLoaded, BottomSheetId_ShowSubscription, Breakpoints, …)
-  S-->>B: UI_NotificationItemList, UnreadNotificationsCount
-```
-
-#### 6.1.7 Notifications: handler_MoreActionSheetMarkAllAsRead
+#### 6.1.3 Notifications: handler_MoreActionSheetMarkAllAsRead
 
 ```mermaid
 sequenceDiagram
@@ -130,8 +111,6 @@ sequenceDiagram
   Note over B: via UBTConnect.directory_Updates_RefreshBottomBarCount
   B->>S: Get_UI_UpdateItems_UnreadCount_All()
   S-->>B: UnreadCount
-  B->>S: FetchNotifications(BottomSheetId_IsLoaded, BottomSheetId_ShowSubscription, Breakpoints, …)
-  S-->>B: UI_NotificationItemList, UnreadNotificationsCount
 ```
 
 
@@ -153,8 +132,8 @@ sequenceDiagram
 | [9](#629-notifications_moreactionsheet-onapplyfilters) | [`pages/Notifications/NotificationsPage.tsx:206`](../../app/src/pages/Notifications/NotificationsPage.tsx#L206) | `<Notifications_MoreActionSheet>` | `onApplyFilters` | `inline` | – | calls DataActionFetchNotifications, ServiceAPIGet_UI_UpdateItems_UnreadCount_All |
 | [10](#6210-notifications_moreactionsheet-onmarkallasread) | [`pages/Notifications/NotificationsPage.tsx:209`](../../app/src/pages/Notifications/NotificationsPage.tsx#L209) | `<Notifications_MoreActionSheet>` | `onMarkAllAsRead` | `onMarkAllAsRead` | – | calls ActionMarkAllAsReadNotifications, ServiceAPIGet_UI_UpdateItems_UnreadCount_All, DataActionFetchNotifications |
 | [11](#6211-notifications_moreactionsheet-ondeleteall) | [`pages/Notifications/NotificationsPage.tsx:210`](../../app/src/pages/Notifications/NotificationsPage.tsx#L210) | `<Notifications_MoreActionSheet>` | `onDeleteAll` | `onDeleteAll` | – | calls ServiceAPIDelete_Notifications, DataActionFetchNotifications, ServiceAPIGet_UI_UpdateItems_UnreadCount_All |
-| [12](#6212-oslistitemaction-onclick) | [`pages/Notifications/components/NotificationsList.tsx:107`](../../app/src/pages/Notifications/components/NotificationsList.tsx#L107) | `<OSListItemAction>` | `onClick` | `inline` | – | calls ActionToggleRead; calls the prop onUpdateReadCount() |
-| [13](#6213-notifications_confirmdialog-onconfirm) | [`pages/Notifications/components/NotificationsList.tsx:176`](../../app/src/pages/Notifications/components/NotificationsList.tsx#L176) | `<Notifications_ConfirmDialog>` | `onConfirm` | `inline` | – | calls ServiceAPIDelete_Notifications; calls the prop onUpdateReadCount() |
+| [12](#6212-oslistitemaction-onclick) | [`pages/Notifications/components/NotificationsList.tsx:113`](../../app/src/pages/Notifications/components/NotificationsList.tsx#L113) | `<OSListItemAction>` | `onClick` | `inline` | – | calls ActionToggleRead; calls the prop onUpdateReadCount() |
+| [13](#6213-notifications_confirmdialog-onconfirm) | [`pages/Notifications/components/NotificationsList.tsx:183`](../../app/src/pages/Notifications/components/NotificationsList.tsx#L183) | `<Notifications_ConfirmDialog>` | `onConfirm` | `inline` | – | calls ServiceAPIDelete_Notifications; calls the prop onUpdateReadCount() |
 | 14 | [`pages/Notifications/components/Notifications_Action.tsx:73`](../../app/src/pages/Notifications/components/Notifications_Action.tsx#L73) | `<IconText>` | `onClicked` | `iconClick` | – | asks for a confirmation |
 | 15 | [`pages/Notifications/components/Notifications_Action.tsx:79`](../../app/src/pages/Notifications/components/Notifications_Action.tsx#L79) | `<Icon>` | `onClick` | `iconClick` | – | asks for a confirmation |
 | 16 | [`pages/Notifications/components/Notifications_Action.tsx:87`](../../app/src/pages/Notifications/components/Notifications_Action.tsx#L87) | `<Icon>` | `onClick` | `iconClick` | – | asks for a confirmation |
@@ -343,7 +322,7 @@ Parameters read (`useSearchParams`, `useParams`): none.
 
 | File | Target | Parameters | Place |
 |---|---|---|---|
-| `useNotifications.ts` | `NotificationDetails` | `MessageInstanceId` = `messageInstanceId` | [`pages/Notifications/hooks/useNotifications.ts:245`](../../app/src/pages/Notifications/hooks/useNotifications.ts#L245) |
+| `useNotifications.ts` | `NotificationDetails` | `HardwareId` = `hardwareId`<br>`MessageInstanceId` = `messageInstanceId`<br>`MessageTemplateId` = `messageTemplateId` | [`pages/Notifications/hooks/useNotifications.ts:258`](../../app/src/pages/Notifications/hooks/useNotifications.ts#L258) |
 
 ## 8. Lifecycle
 
@@ -452,7 +431,7 @@ Effects (`useEffect`, `useLayoutEffect`) of the screen files, and the effects of
 
 | File | Hook (function) | Dependencies | Cleanup | Effects | Place |
 |---|---|---|---|---|---|
-| `useNotifications.ts` | `useEffect` (`useNotifications`) | `[]` | no | call `/api/UBTConnect/Notifications/DataActionGetDateRanges`<br>call `/api/UBTConnect/Notifications/DataActionFetchNotifications` | [`pages/Notifications/hooks/useNotifications.ts:148`](../../app/src/pages/Notifications/hooks/useNotifications.ts#L148) |
+| `useNotifications.ts` | `useEffect` (`useNotifications`) | `[]` | no | call `/api/UBTConnect/Notifications/DataActionGetDateRanges`<br>call `/api/UBTConnect/Notifications/DataActionFetchNotifications` | [`pages/Notifications/hooks/useNotifications.ts:154`](../../app/src/pages/Notifications/hooks/useNotifications.ts#L154) |
 
 <details><summary>Sequence diagrams of the effects with a call, a navigation, a message or a refresh (1)</summary>
 
@@ -519,8 +498,8 @@ An error without a handler goes to the `OnException` of the UI flow (`handleErro
 
 | File | Kind | Function | Effects | Place |
 |---|---|---|---|---|
-| `useNotifications.ts` | try/catch | `refreshNotifications` | none | [`pages/Notifications/hooks/useNotifications.ts:125`](../../app/src/pages/Notifications/hooks/useNotifications.ts#L125) |
-| `useNotifications.ts` | try/catch | `onReady` | none | [`pages/Notifications/hooks/useNotifications.ts:142`](../../app/src/pages/Notifications/hooks/useNotifications.ts#L142) |
+| `useNotifications.ts` | try/catch | `refreshNotifications` | none | [`pages/Notifications/hooks/useNotifications.ts:131`](../../app/src/pages/Notifications/hooks/useNotifications.ts#L131) |
+| `useNotifications.ts` | try/catch | `onReady` | none | [`pages/Notifications/hooks/useNotifications.ts:148`](../../app/src/pages/Notifications/hooks/useNotifications.ts#L148) |
 
 `flow handler`: `raiseToFlowHandler` gives the error to the flow handler of the screen (`app/src/platform/feedback/flowErrors.ts`). The tool lists `.catch`, `try/catch` and `onError` that do not give the error to it.
 

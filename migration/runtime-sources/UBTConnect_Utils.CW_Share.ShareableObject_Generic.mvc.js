@@ -256,6 +256,12 @@ _dependencies: []
 return [React.createElement(UBTConnectLibrary_BasePatterns_CustomText_mvc_view, {
 inputs: {
 In_HighlightWords: "",
+ExtendedClasses: model.getCachedValue(idService.getId("RaFCE2sVLUeMi8tbgmm7Qg.ExtendedClasses"), function () {
+return (((model.variables.in_ShareableObjectIn.connectEntityTypeIdAttr === UBTConnect_UtilsModel.staticEntities.connect_Entity.feedItem)) ? ("line-clamp-2") : (""));
+}, function () {
+return model.variables.in_ShareableObjectIn.connectEntityTypeIdAttr;
+}),
+_extendedClassesInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables._in_ShareableObjectInDataFetchStatus),
 In_Text: model.variables.in_ShareableObjectIn.subtitleAttr,
 _in_TextInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables._in_ShareableObjectInDataFetchStatus),
 In_HighlightOptions: model.getCachedValue(idService.getId("RaFCE2sVLUeMi8tbgmm7Qg.In_HighlightOptions"), function () {
@@ -422,7 +428,7 @@ return Promise.resolve();
 Controller.prototype.pushDebuggerContext = function (callContext) {
 var varBag = {};
 OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:pDMoTWIiTkS1lgPdIBVaUg:/NRWebFlows.pDMoTWIiTkS1lgPdIBVaUg:HjSruKDLIyQt9ROE1cl6OA", "UBTConnect_Utils", "CW_Share", "NRFlows.WebFlow", callContext.id, varBag);
-OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:s3JUSei11UST2wgfNyWSng:/NRWebFlows.pDMoTWIiTkS1lgPdIBVaUg/NodesShownInESpaceTree.s3JUSei11UST2wgfNyWSng:FXpXa+4+dFLkweeEKAs8Dg", "UBTConnect_Utils", "ShareableObject_Generic", "NRNodes.WebBlock", callContext.id, varBag);
+OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:s3JUSei11UST2wgfNyWSng:/NRWebFlows.pDMoTWIiTkS1lgPdIBVaUg/NodesShownInESpaceTree.s3JUSei11UST2wgfNyWSng:M_6zsCyk7DP5DphhRDsmMQ", "UBTConnect_Utils", "ShareableObject_Generic", "NRNodes.WebBlock", callContext.id, varBag);
 };
 Controller.prototype.popDebuggerContext = function (callContext) {
 OutSystemsDebugger.pop("_OwvmJqPz0GyaZBFX4uPyQ:s3JUSei11UST2wgfNyWSng", callContext.id);

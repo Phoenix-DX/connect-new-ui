@@ -1,14 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { CommunicationException } from '@/legacy/os/os-exceptions';
-import * as feedback from '@/platform/feedback';
-import {
-  getLocalBookmarkByObjectId,
-  localBookmarksSchemas,
-  memoryDatabase,
-  setLocalBookmarksDatabase,
-  synchBookmarksC2,
-} from '@/platform/storage/localEntities';
-import { setSignedInUser } from '@/platform/session/session';
+import { describe, expect, it, vi } from 'vitest';
 import { getClientVar } from '@/platform/session/session';
 import { freshPage } from '@/test/testSupport';
 import {
@@ -18,7 +8,6 @@ import {
   getNameAndSurname_ByFullName,
   getShareType_FromEntity,
   set_InitialClientVariables,
-  toggleBookmarkItem_C2,
   get_LookupSection,
   getDescriptor_Subdivision_GenderSplit,
   getSkeletonList_UI_HouseholdMembers,
@@ -74,79 +63,14 @@ describe('directory_Updates_GetCarouselPreloadedHouseholds (UC:1828-1925)', () =
   });
 });
 
-describe('bookmarks (CR-W4A-1)', () => {
-  const server = (success: boolean, fail?: Error) => ({
-    addBookmark2: vi.fn(() =>
-      fail
-        ? Promise.reject(fail)
-        : Promise.resolve({ Success: success, Bookmark_Added: { Id: '900', DateCreatedUtc: '2026-10-15T09:00:00' } }),
-    ),
-    deleteBookmarkByBookmarkId2: vi.fn(() => (fail ? Promise.reject(fail) : Promise.resolve({ Success: success }))),
-  });
-  beforeEach(() => {
-    setLocalBookmarksDatabase(memoryDatabase(localBookmarksSchemas()));
-    setSignedInUser('990001');
-    return () => {
-      setLocalBookmarksDatabase(null);
-      setSignedInUser(null);
-      vi.restoreAllMocks();
-    };
-  });
-
+describe('bookmark categories (CR-W4A-1)', () => {
   it('GetBookmarkCategoryId_ByEntityTypeId and GetBookmarkType_FromEntity map the entity types', () => {
     expect(getBookmarkCategoryId_ByEntityTypeId('Supper Meetings')).toBe('Supper Meeting');
-    expect(getBookmarkCategoryId_ByEntityTypeId('OneSchool Global')).toBe('OneSchoolGlobal');
+    expect(getBookmarkCategoryId_ByEntityTypeId('OneSchool Global')).toBe('OneSchool Global');
     expect(() => getBookmarkCategoryId_ByEntityTypeId('Member')).toThrow('Bookmarks not available');
     expect(getBookmarkType_FromEntity('Household')).toEqual({ BookmarkType: 'Contact', BookmarkGroup: 'Contacts' });
     expect(getBookmarkType_FromEntity('Interchange')).toEqual({ BookmarkType: 'Locality', BookmarkGroup: 'Locations' });
     expect(() => getBookmarkType_FromEntity('Feed Item')).toThrow('Bookmarks not available');
-  });
-
-  it('ToggleBookmarkItem_C2 adds: AddBookmark2 with the item as text, local row, success message', async () => {
-    const show = vi.spyOn(feedback, 'showFeedbackMessage');
-    const s = server(true);
-    await toggleBookmarkItem_C2('42', 'Household', false, s);
-    expect(s.addBookmark2).toHaveBeenCalledWith('Household', '42');
-    expect(await getLocalBookmarkByObjectId('42')).toMatchObject({
-      BookmarkId: '900',
-      BookmarkCategoryId: 'Household',
-    });
-    expect(show).toHaveBeenCalledWith('Added to your Bookmarks', feedback.PLATFORM_MESSAGE_TYPE.success);
-  });
-
-  it('ToggleBookmarkItem_C2 removes by the local BookmarkId; failures show the error message', async () => {
-    const show = vi.spyOn(feedback, 'showFeedbackMessage');
-    await synchBookmarksC2([
-      {
-        Id: '1',
-        UserId: 990001,
-        BookmarkId: '420',
-        BookmarkCategoryId: 'Household',
-        ItemId: '42',
-        CreatedAtDateUtc: '1900-01-01T00:00:00',
-      },
-    ]);
-    await toggleBookmarkItem_C2('42', 'Household', true, server(false));
-    expect((await getLocalBookmarkByObjectId('42')).Id).toBe('1');
-    expect(show).toHaveBeenLastCalledWith(
-      'Bookmark could not be removed. Please try again later.',
-      feedback.PLATFORM_MESSAGE_TYPE.error,
-    );
-    const s = server(true);
-    await toggleBookmarkItem_C2('42', 'Household', true, s);
-    expect(s.deleteBookmarkByBookmarkId2).toHaveBeenCalledWith('420');
-    expect((await getLocalBookmarkByObjectId('42')).Id).toBe('0');
-    expect(show).toHaveBeenLastCalledWith('Removed from your Bookmarks', feedback.PLATFORM_MESSAGE_TYPE.success);
-    await expect(
-      toggleBookmarkItem_C2('43', 'Household', false, server(true, new CommunicationException('x'))),
-    ).resolves.toEqual({
-      Out_LocalBookmarkId: '0',
-      Out_CreatedBookmarkId: '0',
-    });
-    expect(show).toHaveBeenLastCalledWith(
-      'Bookmark could not be added. Please try again later.',
-      feedback.PLATFORM_MESSAGE_TYPE.error,
-    );
   });
 });
 

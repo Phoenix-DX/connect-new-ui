@@ -5240,17 +5240,20 @@ return {};
 
 define("UBTConnect_Utils.controller$SearchCategory_GetList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Utils.model", "UBTConnect_Utils.controller", "UBTConnect_Utils.clientVariables", "UBTConnect_Utils.model$SearchCategory_ItemRec", "UBTConnect_Utils.model$SearchCategory_ItemList"], function (exports, OutSystems, UBTConnect_UtilsModel, UBTConnect_UtilsController, UBTConnect_UtilsClientVariables) {
 var OS = OutSystems.Internal;
-UBTConnect_UtilsController.default.searchCategory_GetList$Action = function (callContext) {
+UBTConnect_UtilsController.default.searchCategory_GetList$Action = function (in_SearchTargetIn, callContext) {
 var varBag = {};
 callContext = controller.callContext(callContext);
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect_Utils.SearchCategory_GetList$vars"))());
+vars.value.in_SearchTargetInLocal = in_SearchTargetIn;
 var outVars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect_Utils.SearchCategory_GetList$outVars"))());
 varBag.callContext = callContext;
+varBag.vars = vars;
 varBag.outVars = outVars;
-try {OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:7SOXUq_SSkisLBg6_F3gMA:/ClientActionFlows.7SOXUq_SSkisLBg6_F3gMA:a8Mmy52SjaePXXIqKPBTLw", "UBTConnect_Utils", "SearchCategory_GetList", "NRFlows.ClientActionFlow", callContext.id, varBag);
+try {OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:7SOXUq_SSkisLBg6_F3gMA:/ClientActionFlows.7SOXUq_SSkisLBg6_F3gMA:bZG_kjwl3t9DCJC4RlFB7Q", "UBTConnect_Utils", "SearchCategory_GetList", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:kwgwlz+2CkKxbqMni_DVig", callContext.id);
 OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:4MaAhsw1yUOS6pCNu8mzeA", callContext.id);
 // Execute Action: All
-OS.SystemActions.listAppend(outVars.value.searchCategoryItemsListOut, function () {
+OS.SystemActions.listAppend(outVars.value.out_SearchCategoryItemsListOut, function () {
 var rec = new UBTConnect_UtilsModel.SearchCategory_ItemRec();
 rec.searchCategoryIdAttr = UBTConnect_UtilsModel.staticEntities.connect_SearchCategories.all;
 rec.orderAttr = 1;
@@ -5259,7 +5262,7 @@ return rec;
 }(), callContext);
 OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:CFLnkLyMFEiQQiBDfaoXJw", callContext.id);
 // Execute Action: Households
-OS.SystemActions.listAppend(outVars.value.searchCategoryItemsListOut, function () {
+OS.SystemActions.listAppend(outVars.value.out_SearchCategoryItemsListOut, function () {
 var rec = new UBTConnect_UtilsModel.SearchCategory_ItemRec();
 rec.searchCategoryIdAttr = UBTConnect_UtilsModel.staticEntities.connect_SearchCategories.households;
 rec.orderAttr = 2;
@@ -5268,7 +5271,7 @@ return rec;
 }(), callContext);
 OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:KoCHC7gui0+SR8RVn6ahDw", callContext.id);
 // Execute Action: Members
-OS.SystemActions.listAppend(outVars.value.searchCategoryItemsListOut, function () {
+OS.SystemActions.listAppend(outVars.value.out_SearchCategoryItemsListOut, function () {
 var rec = new UBTConnect_UtilsModel.SearchCategory_ItemRec();
 rec.searchCategoryIdAttr = UBTConnect_UtilsModel.staticEntities.connect_SearchCategories.people;
 rec.orderAttr = 3;
@@ -5277,11 +5280,32 @@ return rec;
 }(), callContext);
 OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:ioVAIe1ik0GLZt7p5zFf8A", callContext.id);
 // Execute Action: Places
-OS.SystemActions.listAppend(outVars.value.searchCategoryItemsListOut, function () {
+OS.SystemActions.listAppend(outVars.value.out_SearchCategoryItemsListOut, function () {
 var rec = new UBTConnect_UtilsModel.SearchCategory_ItemRec();
 rec.searchCategoryIdAttr = UBTConnect_UtilsModel.staticEntities.connect_SearchCategories.places;
 rec.orderAttr = 4;
 rec.labelAttr = UBTConnect_UtilsModel.staticEntities.connect_SearchCategories.places;
+return rec;
+}(), callContext);
+if((OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:T6BW8oOG_022V9zFAxurVQ", callContext.id) && ((vars.value.in_SearchTargetInLocal) !== (UBTConnect_UtilsModel.staticEntities.type_SearchTarget.map)))) {
+OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:URYMbF3vQUOKdFj_oF3H+A", callContext.id);
+// Execute Action: Events
+OS.SystemActions.listAppend(outVars.value.out_SearchCategoryItemsListOut, function () {
+var rec = new UBTConnect_UtilsModel.SearchCategory_ItemRec();
+rec.searchCategoryIdAttr = UBTConnect_UtilsModel.staticEntities.connect_SearchCategories.events;
+rec.orderAttr = 5;
+rec.labelAttr = UBTConnect_UtilsModel.staticEntities.connect_SearchCategories.events;
+return rec;
+}(), callContext);
+}
+
+OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:XnPwx+_YKka8+yMcuS6bbA", callContext.id);
+// Execute Action: Schools
+OS.SystemActions.listAppend(outVars.value.out_SearchCategoryItemsListOut, function () {
+var rec = new UBTConnect_UtilsModel.SearchCategory_ItemRec();
+rec.searchCategoryIdAttr = UBTConnect_UtilsModel.staticEntities.connect_SearchCategories.schools;
+rec.orderAttr = 6;
+rec.labelAttr = UBTConnect_UtilsModel.staticEntities.connect_SearchCategories.schools;
 return rec;
 }(), callContext);
 OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:2eFZpwNqbUOfT0xO5BeJSA", callContext.id);
@@ -5295,9 +5319,18 @@ OutSystemsDebugger.pop("_OwvmJqPz0GyaZBFX4uPyQ:7SOXUq_SSkisLBg6_F3gMA", callCont
 
 };
 var controller = UBTConnect_UtilsController.default;
+UBTConnect_UtilsController.default.constructor.registerVariableGroupType("UBTConnect_Utils.SearchCategory_GetList$vars", [{
+name: "In_SearchTarget",
+attrName: "in_SearchTargetInLocal",
+mandatory: false,
+dataType: OS.DataTypes.DataTypes.Text,
+defaultValue: function () {
+return "";
+}
+}]);
 UBTConnect_UtilsController.default.constructor.registerVariableGroupType("UBTConnect_Utils.SearchCategory_GetList$outVars", [{
-name: "SearchCategoryItemsList",
-attrName: "searchCategoryItemsListOut",
+name: "Out_SearchCategoryItemsList",
+attrName: "out_SearchCategoryItemsListOut",
 mandatory: false,
 dataType: OS.DataTypes.DataTypes.RecordList,
 defaultValue: function () {
@@ -5305,10 +5338,11 @@ return new UBTConnect_UtilsModel.SearchCategory_ItemList();
 },
 complexType: UBTConnect_UtilsModel.SearchCategory_ItemList
 }]);
-UBTConnect_UtilsController.default.clientActionProxies.searchCategory_GetList$Action = function () {
-return controller.executeActionInsideJSNode(UBTConnect_UtilsController.default.searchCategory_GetList$Action.bind(controller), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
+UBTConnect_UtilsController.default.clientActionProxies.searchCategory_GetList$Action = function (in_SearchTargetIn) {
+in_SearchTargetIn = (in_SearchTargetIn === undefined) ? "" : in_SearchTargetIn;
+return controller.executeActionInsideJSNode(UBTConnect_UtilsController.default.searchCategory_GetList$Action.bind(controller, in_SearchTargetIn), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
 return {
-SearchCategoryItemsList: actionResults.searchCategoryItemsListOut
+Out_SearchCategoryItemsList: actionResults.out_SearchCategoryItemsListOut
 };
 });
 };
@@ -5624,6 +5658,200 @@ return {};
 };
 });
 
+define("UBTConnect_Utils.controller$ToggleBookmarkItem_C2", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Utils.model", "UBTConnect_Utils.controller", "UBTConnect_Bookmarks_MCS.controller", "Connect_Bookmarks_CS.model", "UBTConnect_Bookmarks_MCS.model", "UBTConnect_Utils.clientVariables", "UBTConnect_Utils.controller$Bookmark_SendFeedbackMessage", "UBTConnect_Utils.controller$ServerAction.DeleteBookmarkByBookmarkId2", "UBTConnect_Bookmarks_MCS.controller$Delete_LocalBookmarkByBookmarkId", "UBTConnect_Utils.referencesHealth", "UBTConnect_Utils.referencesHealth$UBTConnect_Bookmarks_MCS", "UBTConnect_Bookmarks_MCS.controller$Create_LocalBookmark", "Connect_Bookmarks_CS.model$UI_Bookmark_AddedRec", "UBTConnect_Utils.referencesHealth$Connect_Bookmarks_CS", "UBTConnect_Utils.controller$ServerAction.AddBookmark2", "UBTConnect_Bookmarks_MCS.model$LocalBookmarkRec", "UBTConnect_Bookmarks_MCS.controller$GetLocalBookmarkByObjectId"], function (exports, OutSystems, UBTConnect_UtilsModel, UBTConnect_UtilsController, UBTConnect_Bookmarks_MCSController, Connect_Bookmarks_CSModel, UBTConnect_Bookmarks_MCSModel, UBTConnect_UtilsClientVariables) {
+var OS = OutSystems.Internal;
+UBTConnect_UtilsController.default.toggleBookmarkItem_C2$Action = function (in_ItemIdIn, in_BookmarkTypeIn, isBookmarked_C2In, callContext) {
+var varBag = {};
+callContext = controller.callContext(callContext);
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect_Utils.ToggleBookmarkItem_C2$vars"))());
+vars.value.in_ItemIdInLocal = in_ItemIdIn;
+vars.value.in_BookmarkTypeInLocal = in_BookmarkTypeIn;
+vars.value.isBookmarked_C2InLocal = isBookmarked_C2In;
+var allExceptionsVar = new OS.DataTypes.VariableHolder(new OS.DataTypes.ErrorHandlerOutputType());
+var deleteBookmarkByBookmarkId2Var = new OS.DataTypes.VariableHolder();
+var addBookmark2Var = new OS.DataTypes.VariableHolder();
+var create_LocalBookmark_C2Var = new OS.DataTypes.VariableHolder();
+var getLocalBookmarkByObjectId_C2Var = new OS.DataTypes.VariableHolder();
+varBag.callContext = callContext;
+varBag.vars = vars;
+varBag.allExceptionsVar = allExceptionsVar;
+varBag.deleteBookmarkByBookmarkId2Var = deleteBookmarkByBookmarkId2Var;
+varBag.addBookmark2Var = addBookmark2Var;
+varBag.create_LocalBookmark_C2Var = create_LocalBookmark_C2Var;
+varBag.getLocalBookmarkByObjectId_C2Var = getLocalBookmarkByObjectId_C2Var;
+OutSystemsDebugger.push("_OwvmJqPz0GyaZBFX4uPyQ:x7gBZT3920iY6XiWQ_c2cA:/ClientActionFlows.x7gBZT3920iY6XiWQ_c2cA:UZhQg6HbA3EZzew2wenCRA", "UBTConnect_Utils", "ToggleBookmarkItem_C2", "NRFlows.ClientActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:Fs8fzo5vpUS81iKoM15l0Q", callContext.id);
+return OS.Flow.executeAsyncFlow(function () {
+// Is Bookmarked?
+return OS.Flow.executeSequence(function () {
+if((OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:dzzKPf5hkkOWG8BDHPRMpw", callContext.id) && vars.value.isBookmarked_C2InLocal)) {
+OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:41R_9ux6vES+u3gFG_+3Tg", callContext.id);
+// Execute Action: GetLocalBookmarkByObjectId_C2
+return UBTConnect_Bookmarks_MCSController.default.getLocalBookmarkByObjectId$Action(vars.value.in_ItemIdInLocal, vars.value.in_BookmarkTypeInLocal, callContext).then(function (value) {
+getLocalBookmarkByObjectId_C2Var.value = value;
+}).then(function () {
+OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:QlqcZ35nK0SWs+ioIJYJPg", callContext.id);
+// Execute Action: DeleteBookmarkByBookmarkId2
+return controller.deleteBookmarkByBookmarkId2$ServerAction(getLocalBookmarkByObjectId_C2Var.value.localBookmarkOut.bookmarkIdAttr, callContext).then(function (value) {
+deleteBookmarkByBookmarkId2Var.value = value;
+});
+}).then(function () {
+return OS.Flow.executeSequence(function () {
+if((OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:zVOtzeLgvEOCbd6uBozsNg", callContext.id) && deleteBookmarkByBookmarkId2Var.value.successOut)) {
+OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:aC5_aOcvBkue1AvCNzs1zg", callContext.id);
+// Execute Action: Delete_LocalBookmarkByBookmarkId_C2
+return UBTConnect_Bookmarks_MCSController.default.delete_LocalBookmarkByBookmarkId$Action(getLocalBookmarkByObjectId_C2Var.value.localBookmarkOut.bookmarkIdAttr, vars.value.in_BookmarkTypeInLocal, callContext).then(function () {
+OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:ePEijYLgRkqOfTqTVFW2Mw", callContext.id);
+// Execute Action: Bookmark_SendFeedbackMessage2
+UBTConnect_UtilsController.default.bookmark_SendFeedbackMessage$Action(!(vars.value.isBookmarked_C2InLocal), false, callContext);
+OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:6ujhFyM45kWvK8sg_kwvHg", callContext.id);
+});
+} else {
+OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:mrSDU1gLo0eIQA6ypw+yRg", callContext.id);
+// Execute Action: Bookmark_SendFeedbackMessage4
+UBTConnect_UtilsController.default.bookmark_SendFeedbackMessage$Action(!(vars.value.isBookmarked_C2InLocal), true, callContext);
+OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:Pkh1rl_gN0qo8C3zB3wUvw", callContext.id);
+}
+
+});
+});
+} else {
+OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:N746SZBvc0mtfdn2IgVeMQ", callContext.id);
+// Execute Action: LogMessage
+OS.SystemActions.logMessage(("In_BookmarkType " + vars.value.in_BookmarkTypeInLocal), "UBTConnect", callContext);
+OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:jpP+y3LwcE+DmMJCFQQN9Q", callContext.id);
+// Execute Action: AddBookmark2
+return controller.addBookmark2$ServerAction(vars.value.in_BookmarkTypeInLocal, vars.value.in_ItemIdInLocal, callContext).then(function (value) {
+addBookmark2Var.value = value;
+}).then(function () {
+return OS.Flow.executeSequence(function () {
+if((OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:uVi1YXFzV0m+4NZFYhVpmQ", callContext.id) && addBookmark2Var.value.successOut)) {
+OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:QT4iibwUckCvAwr1f4Bhzg", callContext.id);
+// Execute Action: Create_LocalBookmark_C2
+return UBTConnect_Bookmarks_MCSController.default.create_LocalBookmark$Action(vars.value.in_ItemIdInLocal, vars.value.in_BookmarkTypeInLocal, addBookmark2Var.value.bookmark_AddedOut.idAttr, addBookmark2Var.value.bookmark_AddedOut.dateCreatedUtcAttr, callContext).then(function (value) {
+create_LocalBookmark_C2Var.value = value;
+}).then(function () {
+OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:h2uU2pQ1okKHtX2bkZmOqA", callContext.id);
+// Execute Action: Bookmark_SendFeedbackMessage
+UBTConnect_UtilsController.default.bookmark_SendFeedbackMessage$Action(!(vars.value.isBookmarked_C2InLocal), false, callContext);
+OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:BwYZVkzzR0mMx1_NrTsosA", callContext.id);
+});
+} else {
+OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:PgYTkGadzkqVfhZsnZ0VBw", callContext.id);
+// Execute Action: Bookmark_SendFeedbackMessage5
+UBTConnect_UtilsController.default.bookmark_SendFeedbackMessage$Action(!(vars.value.isBookmarked_C2InLocal), true, callContext);
+OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:KmFxE0pOv0CUSq9tOz4kbQ", callContext.id);
+}
+
+});
+});
+}
+
+});
+}).catch(function (ex) {
+OS.Logger.trace("ToggleBookmarkItem_C2.ToggleBookmarkItem_C2", OS.Exceptions.getMessage(ex), ex.name);
+// Handle Error: AllExceptions
+if(!(OS.Exceptions.isSystem(ex))) {
+OS.Logger.error(null, ex);
+allExceptionsVar.value.exceptionMessageAttr = OS.Exceptions.getMessage(ex);
+OutSystemsDebugger.handleException(allExceptionsVar.value.exceptionMessageAttr, callContext.id);
+return OS.Flow.executeAsyncFlow(function () {
+OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:iyWGT92nPUi_7YbyIa0+IA", callContext.id);
+OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:rTylrVvjIEiK81Bugq4vUA", callContext.id);
+// Execute Action: Bookmark_SendFeedbackMessage3
+UBTConnect_UtilsController.default.bookmark_SendFeedbackMessage$Action(!(vars.value.isBookmarked_C2InLocal), true, callContext);
+OutSystemsDebugger.handleBreakpoint("_OwvmJqPz0GyaZBFX4uPyQ:CaamF4RU6Eqqj2r4rkO6qQ", callContext.id);
+return OS.Flow.returnAsync();
+
+});
+}
+
+throw ex;
+}).then(function () {
+return ;
+}).then(function (res) {
+OutSystemsDebugger.pop("_OwvmJqPz0GyaZBFX4uPyQ:x7gBZT3920iY6XiWQ_c2cA", callContext.id);
+return res;
+
+}).catch(function (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+OutSystemsDebugger.pop("_OwvmJqPz0GyaZBFX4uPyQ:x7gBZT3920iY6XiWQ_c2cA", callContext.id);
+throw ex;
+
+});
+};
+var controller = UBTConnect_UtilsController.default;
+UBTConnect_UtilsController.default.constructor.registerVariableGroupType("UBTConnect_Utils.ToggleBookmarkItem_C2$vars", [{
+name: "In_ItemId",
+attrName: "in_ItemIdInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Text,
+defaultValue: function () {
+return "";
+}
+}, {
+name: "In_BookmarkType",
+attrName: "in_BookmarkTypeInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Text,
+defaultValue: function () {
+return "";
+}
+}, {
+name: "IsBookmarked_C2",
+attrName: "isBookmarked_C2InLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Boolean,
+defaultValue: function () {
+return false;
+}
+}]);
+UBTConnect_UtilsController.default.clientActionProxies.toggleBookmarkItem_C2$Action = function (in_ItemIdIn, in_BookmarkTypeIn, isBookmarked_C2In) {
+in_ItemIdIn = (in_ItemIdIn === undefined) ? "" : in_ItemIdIn;
+in_BookmarkTypeIn = (in_BookmarkTypeIn === undefined) ? "" : in_BookmarkTypeIn;
+isBookmarked_C2In = (isBookmarked_C2In === undefined) ? false : isBookmarked_C2In;
+return controller.executeActionInsideJSNode(UBTConnect_UtilsController.default.toggleBookmarkItem_C2$Action.bind(controller, OS.DataConversion.JSNodeParamConverter.from(in_ItemIdIn, OS.DataTypes.DataTypes.Text), in_BookmarkTypeIn, OS.DataConversion.JSNodeParamConverter.from(isBookmarked_C2In, OS.DataTypes.DataTypes.Boolean)), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
+return {};
+});
+};
+});
+
+define("UBTConnect_Utils.controller$ServerAction.AddBookmark2", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Utils.model", "UBTConnect_Utils.controller", "Connect_Bookmarks_CS.model", "Connect_Bookmarks_CS.model$UI_Bookmark_AddedRec", "UBTConnect_Utils.referencesHealth", "UBTConnect_Utils.referencesHealth$Connect_Bookmarks_CS"], function (exports, OutSystems, UBTConnect_UtilsModel, UBTConnect_UtilsController, Connect_Bookmarks_CSModel) {
+var OS = OutSystems.Internal;
+UBTConnect_UtilsController.default.addBookmark2$ServerAction = function (in_BookmarkCategoryIdIn, in_ItemIdIn, callContext) {
+var controller = this.controller;
+var inputs = {
+In_BookmarkCategoryId: OS.DataConversion.ServerDataConverter.to(in_BookmarkCategoryIdIn, OS.DataTypes.DataTypes.Text),
+In_ItemId: OS.DataConversion.ServerDataConverter.to(in_ItemIdIn, OS.DataTypes.DataTypes.Text)
+};
+return controller.callServerAction("AddBookmark2", "screenservices/UBTConnect_Utils/ServiceAPIAddBookmark2", "Uf9sDLXpqy05v+ny77VjWA", inputs, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function (json, headers) {
+OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
+}, false).then(function (outputs) {
+var executeServerActionResult = new (controller.constructor.getVariableGroupType("UBTConnect_Utils$ServiceAPIAddBookmark2"))();
+executeServerActionResult.successOut = OS.DataConversion.ServerDataConverter.from(outputs.Success, OS.DataTypes.DataTypes.Boolean);
+executeServerActionResult.bookmark_AddedOut = OS.DataConversion.ServerDataConverter.from(outputs.Bookmark_Added, Connect_Bookmarks_CSModel.UI_Bookmark_AddedRec);
+return executeServerActionResult;
+});
+};
+UBTConnect_UtilsController.default.constructor.registerVariableGroupType("UBTConnect_Utils$ServiceAPIAddBookmark2", [{
+name: "Success",
+attrName: "successOut",
+mandatory: false,
+dataType: OS.DataTypes.DataTypes.Boolean,
+defaultValue: function () {
+return false;
+}
+}, {
+name: "Bookmark_Added",
+attrName: "bookmark_AddedOut",
+mandatory: false,
+dataType: OS.DataTypes.DataTypes.Record,
+defaultValue: function () {
+return new Connect_Bookmarks_CSModel.UI_Bookmark_AddedRec();
+},
+complexType: Connect_Bookmarks_CSModel.UI_Bookmark_AddedRec
+}]);
+});
 define("UBTConnect_Utils.controller$ServerAction.CS_CreateShareProfileLink", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Utils.model", "UBTConnect_Utils.controller"], function (exports, OutSystems, UBTConnect_UtilsModel, UBTConnect_UtilsController) {
 var OS = OutSystems.Internal;
 UBTConnect_UtilsController.default.cS_CreateShareProfileLink$ServerAction = function (in_ShareObjectTypeIdIn, in_SharedObjectIdIn, in_UpdateTypeIn, in_UpdateDateIn, callContext) {
@@ -5658,6 +5886,40 @@ mandatory: false,
 dataType: OS.DataTypes.DataTypes.LongInteger,
 defaultValue: function () {
 return OS.DataTypes.LongInteger.defaultValue;
+}
+}]);
+});
+define("UBTConnect_Utils.controller$ServerAction.DeleteBookmarkByBookmarkId2", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnect_Utils.model", "UBTConnect_Utils.controller"], function (exports, OutSystems, UBTConnect_UtilsModel, UBTConnect_UtilsController) {
+var OS = OutSystems.Internal;
+UBTConnect_UtilsController.default.deleteBookmarkByBookmarkId2$ServerAction = function (bookmarkIdIn, callContext) {
+var controller = this.controller;
+var inputs = {
+BookmarkId: OS.DataConversion.ServerDataConverter.to(bookmarkIdIn, OS.DataTypes.DataTypes.LongInteger)
+};
+return controller.callServerAction("DeleteBookmarkByBookmarkId2", "screenservices/UBTConnect_Utils/ServiceAPIDeleteBookmarkByBookmarkId2", "8lz57SQpYDeyudLGP7Pong", inputs, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function (json, headers) {
+OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
+}, false).then(function (outputs) {
+var executeServerActionResult = new (controller.constructor.getVariableGroupType("UBTConnect_Utils$ServiceAPIDeleteBookmarkByBookmarkId2"))();
+executeServerActionResult.successOut = OS.DataConversion.ServerDataConverter.from(outputs.Success, OS.DataTypes.DataTypes.Boolean);
+executeServerActionResult.wasFoundOut = OS.DataConversion.ServerDataConverter.from(outputs.WasFound, OS.DataTypes.DataTypes.Boolean);
+return executeServerActionResult;
+});
+};
+UBTConnect_UtilsController.default.constructor.registerVariableGroupType("UBTConnect_Utils$ServiceAPIDeleteBookmarkByBookmarkId2", [{
+name: "Success",
+attrName: "successOut",
+mandatory: false,
+dataType: OS.DataTypes.DataTypes.Boolean,
+defaultValue: function () {
+return false;
+}
+}, {
+name: "WasFound",
+attrName: "wasFoundOut",
+mandatory: false,
+dataType: OS.DataTypes.DataTypes.Boolean,
+defaultValue: function () {
+return false;
 }
 }]);
 });
@@ -5722,7 +5984,7 @@ define("UBTConnect_Utils.controller$ServerAction.GetUserInformation", ["exports"
 var OS = OutSystems.Internal;
 UBTConnect_UtilsController.default.getUserInformation$ServerAction = function (callContext) {
 var controller = this.controller;
-return controller.callServerAction("GetUserInformation", "screenservices/UBTConnect_Utils/ActionGetUserInformation", "YZYdEql7Z5Nq6vkutg4XqQ", {}, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function (json, headers) {
+return controller.callServerAction("GetUserInformation", "screenservices/UBTConnect_Utils/ActionGetUserInformation", "hQNApvQ_7YGh3JXjRpTZMA", {}, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function (json, headers) {
 OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
 }, false).then(function (outputs) {
 var executeServerActionResult = new (controller.constructor.getVariableGroupType("UBTConnect_Utils$ActionGetUserInformation"))();
@@ -6054,9 +6316,15 @@ getter: function (varBag, idService) {
 return varBag.connect_OutSystems_PermissionCheckVar.value;
 }
 },
+"WI3NEvHidE2ZqptSuvmgRg": {
+getter: function (varBag, idService) {
+return varBag.vars.value.in_SearchTargetInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
 "NoYu8sA8kk+SDLicD8CXsg": {
 getter: function (varBag, idService) {
-return varBag.outVars.value.searchCategoryItemsListOut;
+return varBag.outVars.value.out_SearchCategoryItemsListOut;
 }
 },
 "5AI2vtigBU2aCkTR8ytkWw": {
@@ -6151,6 +6419,49 @@ return varBag.outVars.value.userInformationOut;
 "lJeP9dkCJUmn96QDYE5icg": {
 getter: function (varBag, idService) {
 return varBag.getUserInformationVar.value;
+}
+},
+"zAXr5Gxq6UWoHrxeRoAOZg": {
+getter: function (varBag, idService) {
+return varBag.vars.value.in_ItemIdInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
+"AejWvrZliEGzUwPUte53eQ": {
+getter: function (varBag, idService) {
+return varBag.vars.value.in_BookmarkTypeInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
+"yv+zI+Vh80KI6w7uNKJPMw": {
+getter: function (varBag, idService) {
+return varBag.vars.value.isBookmarked_C2InLocal;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"iyWGT92nPUi_7YbyIa0+IA": {
+getter: function (varBag, idService) {
+return varBag.allExceptionsVar.value;
+}
+},
+"QlqcZ35nK0SWs+ioIJYJPg": {
+getter: function (varBag, idService) {
+return varBag.deleteBookmarkByBookmarkId2Var.value;
+}
+},
+"jpP+y3LwcE+DmMJCFQQN9Q": {
+getter: function (varBag, idService) {
+return varBag.addBookmark2Var.value;
+}
+},
+"QT4iibwUckCvAwr1f4Bhzg": {
+getter: function (varBag, idService) {
+return varBag.create_LocalBookmark_C2Var.value;
+}
+},
+"41R_9ux6vES+u3gFG_+3Tg": {
+getter: function (varBag, idService) {
+return varBag.getLocalBookmarkByObjectId_C2Var.value;
 }
 },
 "rzZEcNLAgEuxJgeTe42ZnQ": {

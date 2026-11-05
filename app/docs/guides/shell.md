@@ -157,9 +157,10 @@ Local entities in practice:
     the old or the new rows, never none.
   - Keep it that way (decision: [ADR-8](../reference/stack.md)).
 
-UBTConnect ToggleBookmarkItem_C2 (`src/lib/ubtConnect/actions.ts`) uses the C2 bookmark actions. Its two server
-calls (ServiceAPIAddBookmark2, ServiceAPIDeleteBookmarkByBookmarkId2) are not in the API contract yet
-(`bookmarkServerActions` null, CR-W4A-1).
+UBTConnect_Utils ToggleBookmarkItem_C2 (`src/lib/ubtConnectUtils/actions.ts`) uses the C2 bookmark actions. Each
+read, create and delete uses the item and the bookmark category (live TST code of 2026-11-05). Its two server calls
+(ServiceAPIAddBookmark2, ServiceAPIDeleteBookmarkByBookmarkId2 of UBTConnect_Utils) are in the API contract
+(`bookmarkServerActions`).
 
 Device: `UBT_AppManager.DeviceInfo_IsNative` (Boolean, type default; UBT_AppManager.clientVariables.js:242-247) stays
 false in the browser (the device context of the React app is never native). Read it with `appManager_GetIsNative()`

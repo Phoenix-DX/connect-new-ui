@@ -4,7 +4,7 @@ The route `/UBTConnect/CountryDetails`, read from the TST compiled code and from
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/CountryDetails/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
-**Live code.** TST changed 2 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `FilterSheet`, `CacheControl_UserInfo`. The observed calls come from the capture.
+**Live code.** TST changed 16 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `Connect2_LegacyShared`, `js`, `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `FilterSheet`, `UBTConnect`, `js`, `js`, `UBTConnectLibrary`, `js`, `CacheControl_UserInfo`, `UBTConnect_Utils`, `js`, `UBT_AppManager`, `UBT_AppManager_Mobile`. The observed calls come from the capture.
 
 ## 1. Route
 
@@ -26,7 +26,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | Differences found | **0** (see [section 3](#3-differences-found)) |
 | Questions | 0 (see [section 4](#4-questions)) |
 | React calls reached only through shared code | 1: see the last section |
-| User actions of the route (own code) | OutSystems: 4. React: 4 |
+| User actions of the route (own code) | OutSystems: 3. React: 4 |
 | Screen and blocks of the UI flow with a React port | 4 of 4 |
 | Navigation targets found in React | 6 of 6 |
 | Shared blocks and components on the route | OutSystems 26, React 7 with user actions: see the last section |
@@ -74,7 +74,6 @@ Two independent lists: the event bindings of the TST views, and the JSX event bi
 | 1 | `CountryDetails` | `onClick (HTML element)` | `handler_BrowseCountries` | – | asks for a confirmation |
 | [2](#612-countrydetails-leafletmapsetcallbacks) | `CountryDetails` | `setCallbacks of LeafletMap` | `leafletMapSetCallbacks` | – | goes to Locality_Details; asks for a confirmation |
 | [3](#613-countrydetails-handler_statisticslist_clicked) | `CountryDetails` | `onClick (HTML element)` | `handler_StatisticsList_Clicked` | – | goes to Locality_Details; asks for a confirmation |
-| 4 | `CountryDetails` | `applyFilters of FilterSheet` | `handler_FilterSheetApplyFilters` | – | calls GetLocalityStatistics |
 
 <details><summary>2 diagrams (handlers with two or more effects)</summary>
 
@@ -325,12 +324,12 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | `FilterSheet_OptionList_Item` | `UBTConnect` | [`components/filter/FilterOptionList/FilterOptionList.tsx`](../../app/src/components/filter/FilterOptionList/FilterOptionList.tsx) | 1 |
 | `SelectionOption_List` | `UBTConnectLibrary` | [`components/ui/SelectionOptionList/SelectionOptionList.tsx`](../../app/src/components/ui/SelectionOptionList/SelectionOptionList.tsx) | 0 |
 | `Button` | `UBTConnectLibrary` | [`components/ui/Button/Button.tsx`](../../app/src/components/ui/Button/Button.tsx) | 0 |
-| `CacheControl_AllCountries` | `UBTConnect_Utils` | [`legacy/os/cache/AllCountriesCacheControl/AllCountriesCacheControl.tsx`](../../app/src/legacy/os/cache/AllCountriesCacheControl/AllCountriesCacheControl.tsx) | 1 |
+| `CacheControl_AllCountries` | `UBTConnect_Utils` | [`legacy/os/cache/AllCountriesCacheControl/AllCountriesCacheControl.tsx`](../../app/src/legacy/os/cache/AllCountriesCacheControl/AllCountriesCacheControl.tsx) | 0 |
 | `CacheControl` | `UBTConnect_Utils` | [`legacy/os/cache/CacheControl/CacheControl.tsx`](../../app/src/legacy/os/cache/CacheControl/CacheControl.tsx) | 0 |
 | `CacheControl_UserInfo_Wrapper` | `UBTConnect` | [`platform/session/UserInfoCache/UserInfoCache.tsx`](../../app/src/platform/session/UserInfoCache/UserInfoCache.tsx) | 0 |
-| `CacheControl_UserInfo` | `UBTConnect_Utils` | [`legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx`](../../app/src/legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx) | 1 |
+| `CacheControl_UserInfo` | `UBTConnect_Utils` | [`legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx`](../../app/src/legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx) | 0 |
 
-<details><summary>User actions of the shared blocks (9)</summary>
+<details><summary>User actions of the shared blocks (7)</summary>
 
 | # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
 |---|---|---|---|---|---|
@@ -341,8 +340,6 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | 5 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `menu` | goes to Menu |
 | 6 | `FilterSheet_OptionList_Item` | `notEnabledOnClick of List` | `selectionOption_ListNotEnabledOnClick` | – | asks for a confirmation |
 | 7 | `Layout_DetailPage` | `click of Icon` | `onClick_BackNavigation` | – | goes to previous screen |
-| 8 | `CacheControl_AllCountries` | `onNonCacheHit of CacheControl` | `cacheControlOnNonCacheHit` | – | calls GetCacheInfo |
-| 9 | `CacheControl_UserInfo` | `onNonCacheHit of CacheControl` | `cacheControlOnNonCacheHit` | – | calls GetCacheInfo |
 
 </details>
 

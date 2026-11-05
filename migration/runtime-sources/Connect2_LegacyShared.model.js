@@ -7912,6 +7912,19 @@ return EventRecordList;
 Connect2_LegacySharedModel.EventRecordList = EventRecordList;
 
 });
+define("Connect2_LegacyShared.model$UBT_FontWeightList", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "Connect2_LegacyShared.model", "UBTConnectLibrary.model$UBT_FontWeightRec", "Connect2_LegacyShared.referencesHealth", "Connect2_LegacyShared.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, Connect2_LegacySharedModel) {
+var OS = OutSystems.Internal;
+var UBT_FontWeightList = (function (_super) {
+__extends(UBT_FontWeightList, _super);
+function UBT_FontWeightList(defaults) {
+_super.apply(this, arguments);
+}
+UBT_FontWeightList.itemType = UBTConnectLibraryModel.UBT_FontWeightRec;
+return UBT_FontWeightList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_LegacySharedModel.UBT_FontWeightList = UBT_FontWeightList;
+
+});
 define("Connect2_LegacyShared.model$CacheableGeocodeInformationRecord", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_LegacyShared.model", "Connect2_LegacyShared.model$CacheableGeocodeInformationRec"], function (exports, OutSystems, Connect2_LegacySharedModel) {
 var OS = OutSystems.Internal;
 var CacheableGeocodeInformationRecord = (function (_super) {
@@ -9275,6 +9288,46 @@ LocalityList.itemType = APIDomain_Directory_ISModel.LocalityRec;
 return LocalityList;
 })(OS.DataTypes.GenericRecordList);
 Connect2_LegacySharedModel.LocalityList = LocalityList;
+
+});
+define("Connect2_LegacyShared.model$UBT_FontWeightRecord", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "Connect2_LegacyShared.model", "UBTConnectLibrary.model$UBT_FontWeightRec", "Connect2_LegacyShared.referencesHealth", "Connect2_LegacyShared.referencesHealth$UBTConnectLibrary"], function (exports, OutSystems, UBTConnectLibraryModel, Connect2_LegacySharedModel) {
+var OS = OutSystems.Internal;
+var UBT_FontWeightRecord = (function (_super) {
+__extends(UBT_FontWeightRecord, _super);
+function UBT_FontWeightRecord(defaults) {
+_super.apply(this, arguments);
+}
+UBT_FontWeightRecord.attributesToDeclare = function () {
+return [
+this.attr("UBT_FontWeight", "uBT_FontWeightAttr", "UBT_FontWeight", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.UBT_FontWeightRec());
+}, true, UBTConnectLibraryModel.UBT_FontWeightRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+UBT_FontWeightRecord.fromStructure = function (str) {
+return new UBT_FontWeightRecord(new UBT_FontWeightRecord.RecordClass({
+uBT_FontWeightAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+UBT_FontWeightRecord._isAnonymousRecord = true;
+UBT_FontWeightRecord.UniqueId = "ebf4e21c-f96c-712c-486f-3ae7f9b2c7a7";
+UBT_FontWeightRecord.init();
+return UBT_FontWeightRecord;
+})(OS.DataTypes.GenericRecord);
+Connect2_LegacySharedModel.UBT_FontWeightRecord = UBT_FontWeightRecord;
+
+});
+define("Connect2_LegacyShared.model$UBT_FontWeightRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_LegacyShared.model", "Connect2_LegacyShared.model$UBT_FontWeightRecord"], function (exports, OutSystems, Connect2_LegacySharedModel) {
+var OS = OutSystems.Internal;
+var UBT_FontWeightRecordList = (function (_super) {
+__extends(UBT_FontWeightRecordList, _super);
+function UBT_FontWeightRecordList(defaults) {
+_super.apply(this, arguments);
+}
+UBT_FontWeightRecordList.itemType = Connect2_LegacySharedModel.UBT_FontWeightRecord;
+return UBT_FontWeightRecordList;
+})(OS.DataTypes.GenericRecordList);
+Connect2_LegacySharedModel.UBT_FontWeightRecordList = UBT_FontWeightRecordList;
 
 });
 define("Connect2_LegacyShared.model$MessageTemplateRecordList", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_LegacyShared.model", "Connect2_LegacyShared.model$MessageTemplateRecord"], function (exports, OutSystems, Connect2_LegacySharedModel) {
@@ -15021,6 +15074,12 @@ return OS.BuiltinFunctions.textToInteger(getMessageSenderTargetRecord("bceecba0-
 }
 });
 
+Object.defineProperty(Connect2_LegacySharedModel.staticEntities.messageSenderTarget, "myEntertaining", {
+get: function () {
+return OS.BuiltinFunctions.textToInteger(getMessageSenderTargetRecord("c2c9a5e0-f58a-4aae-81f2-7a1f3a156e2e"));
+}
+});
+
 Object.defineProperty(Connect2_LegacySharedModel.staticEntities.messageSenderTarget, "hR100", {
 get: function () {
 return OS.BuiltinFunctions.textToInteger(getMessageSenderTargetRecord("d6e81be3-85ed-4bb3-8c6c-06c9105f7403"));
@@ -16071,6 +16130,40 @@ return getUBT_Icons2izeRecord("d7aa876d-cfd2-4e80-87dd-52eb44cd09ea");
 }
 });
 
+Connect2_LegacySharedModel.staticEntities.uBT_FontWeight = {};
+var getUBT_FontWeightRecord = function (record) {
+return OS.ApplicationInfo.getModules()["cd340494-ad2e-4c10-a5e8-10482bdca8d4"].staticEntities["6024a623-26dc-4b80-8d13-c17d22458d47"][record];
+};
+Object.defineProperty(Connect2_LegacySharedModel.staticEntities.uBT_FontWeight, "bold", {
+get: function () {
+return getUBT_FontWeightRecord("1886c4b9-8680-4707-b67d-ddcfc8a10146");
+}
+});
+
+Object.defineProperty(Connect2_LegacySharedModel.staticEntities.uBT_FontWeight, "semiBold", {
+get: function () {
+return getUBT_FontWeightRecord("29004952-a085-4761-9daf-e1112e3eb0da");
+}
+});
+
+Object.defineProperty(Connect2_LegacySharedModel.staticEntities.uBT_FontWeight, "regular", {
+get: function () {
+return getUBT_FontWeightRecord("709c6b9d-64e0-492f-89b5-bcd9f2919121");
+}
+});
+
+Object.defineProperty(Connect2_LegacySharedModel.staticEntities.uBT_FontWeight, "medium", {
+get: function () {
+return getUBT_FontWeightRecord("a64fbd75-f7fd-4fd0-9eb8-8c3b09964ecc");
+}
+});
+
+Object.defineProperty(Connect2_LegacySharedModel.staticEntities.uBT_FontWeight, "light", {
+get: function () {
+return getUBT_FontWeightRecord("b14cf433-3d5e-49cb-abd3-89fa693d4b94");
+}
+});
+
 Connect2_LegacySharedModel.staticEntities.uBT_FlexDirection = {};
 var getUBT_FlexDirectionRecord = function (record) {
 return OS.ApplicationInfo.getModules()["cd340494-ad2e-4c10-a5e8-10482bdca8d4"].staticEntities["71ce133f-c7fd-4b8f-96ce-86fc9740c100"][record];
@@ -16877,6 +16970,12 @@ return getUBT_Icons2Record("900a6e7d-3539-4ceb-b038-281a6b9ae564");
 }
 });
 
+Object.defineProperty(Connect2_LegacySharedModel.staticEntities.uBT_Icons2, "transportTrain", {
+get: function () {
+return getUBT_Icons2Record("90542196-917d-4e25-a264-f2ff0a1e1d60");
+}
+});
+
 Object.defineProperty(Connect2_LegacySharedModel.staticEntities.uBT_Icons2, "menu", {
 get: function () {
 return getUBT_Icons2Record("913b1341-974f-41fa-b3d2-8c173d29ae47");
@@ -17189,6 +17288,12 @@ return getUBT_Icons2Record("d4f63836-85a1-4f9a-9d57-4a324075707c");
 }
 });
 
+Object.defineProperty(Connect2_LegacySharedModel.staticEntities.uBT_Icons2, "transportPlane", {
+get: function () {
+return getUBT_Icons2Record("d6164d90-1fa7-4329-85ff-8f5484258b14");
+}
+});
+
 Object.defineProperty(Connect2_LegacySharedModel.staticEntities.uBT_Icons2, "shoppingCart", {
 get: function () {
 return getUBT_Icons2Record("d7863646-a37e-4bd6-aedc-72183f218a9e");
@@ -17240,6 +17345,12 @@ return getUBT_Icons2Record("deec24f4-831f-4b87-bc37-3f92ab62ef11");
 Object.defineProperty(Connect2_LegacySharedModel.staticEntities.uBT_Icons2, "sMS", {
 get: function () {
 return getUBT_Icons2Record("e2b0003e-25ec-41f2-9e14-00a2237353bc");
+}
+});
+
+Object.defineProperty(Connect2_LegacySharedModel.staticEntities.uBT_Icons2, "transportCar", {
+get: function () {
+return getUBT_Icons2Record("e2faf3e0-399c-4b1c-8903-0e6958d7cff1");
 }
 });
 

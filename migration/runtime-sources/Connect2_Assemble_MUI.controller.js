@@ -322,71 +322,6 @@ DateRange: actionResults.dateRangeOut
 };
 });
 
-define("Connect2_Assemble_MUI.controller$GetAssembleEventSummaryDateTimeString", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_Assemble_MUI.model", "Connect2_Assemble_MUI.controller"], function (exports, OutSystems, Connect2_Assemble_MUIModel, Connect2_Assemble_MUIController) {
-var OS = OutSystems.Internal;
-Connect2_Assemble_MUIController.default.getAssembleEventSummaryDateTimeString$Action = function (meetingDateTimeIn, isAllDAyIn, callContext) {
-var varBag = {};
-callContext = controller.callContext(callContext);
-var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("Connect2_Assemble_MUI.GetAssembleEventSummaryDateTimeString$vars"))());
-vars.value.meetingDateTimeInLocal = meetingDateTimeIn;
-vars.value.isAllDAyInLocal = isAllDAyIn;
-var outVars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("Connect2_Assemble_MUI.GetAssembleEventSummaryDateTimeString$outVars"))());
-varBag.callContext = callContext;
-varBag.vars = vars;
-varBag.outVars = outVars;
-try {OutSystemsDebugger.push("4YvUCWT53U+6BrZWsVWc3Q:7_XugEeTY0u6PffykLObDw:/ClientActionFlows.7_XugEeTY0u6PffykLObDw:kT+545gvW1BqSNW_Pt97pw", "Connect2_Assemble_MUI", "GetAssembleEventSummaryDateTimeString", "NRFlows.ClientActionFlow", callContext.id, varBag);
-OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:H5leqb53IEOnDKXIsP8+Cg", callContext.id);
-OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:IkWvmwE62kuQgsUlqQXwug", callContext.id);
-// DateTimeString = If + If + FormatDateTime
-outVars.value.dateTimeStringOut = ((((vars.value.isAllDAyInLocal) ? ("On ") : (OS.BuiltinFunctions.formatDateTime(vars.value.meetingDateTimeInLocal, "h:mm tt on "))) + (((OS.BuiltinFunctions.dayOfWeek(vars.value.meetingDateTimeInLocal) === 0)) ? ("Lord\'s Day") : (OS.BuiltinFunctions.formatDateTime(vars.value.meetingDateTimeInLocal, "dddd")))) + OS.BuiltinFunctions.formatDateTime(vars.value.meetingDateTimeInLocal, ", d MMMM yyyy"));
-OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:NNxuGr7HSU2qvEBGQkkvMA", callContext.id);
-return outVars.value;
-} catch (ex) {
-OutSystemsDebugger.handleException(ex, callContext.id);
-throw ex;
-} finally {
-OutSystemsDebugger.pop("4YvUCWT53U+6BrZWsVWc3Q:7_XugEeTY0u6PffykLObDw", callContext.id);
-}
-
-};
-var controller = Connect2_Assemble_MUIController.default;
-Connect2_Assemble_MUIController.default.constructor.registerVariableGroupType("Connect2_Assemble_MUI.GetAssembleEventSummaryDateTimeString$vars", [{
-name: "MeetingDateTime",
-attrName: "meetingDateTimeInLocal",
-mandatory: true,
-dataType: OS.DataTypes.DataTypes.DateTime,
-defaultValue: function () {
-return OS.DataTypes.DateTime.defaultValue;
-}
-}, {
-name: "IsAllDAy",
-attrName: "isAllDAyInLocal",
-mandatory: true,
-dataType: OS.DataTypes.DataTypes.Boolean,
-defaultValue: function () {
-return false;
-}
-}]);
-Connect2_Assemble_MUIController.default.constructor.registerVariableGroupType("Connect2_Assemble_MUI.GetAssembleEventSummaryDateTimeString$outVars", [{
-name: "DateTimeString",
-attrName: "dateTimeStringOut",
-mandatory: false,
-dataType: OS.DataTypes.DataTypes.Text,
-defaultValue: function () {
-return "";
-}
-}]);
-Connect2_Assemble_MUIController.default.clientActionProxies.getAssembleEventSummaryDateTimeString$Action = function (meetingDateTimeIn, isAllDAyIn) {
-meetingDateTimeIn = (meetingDateTimeIn === undefined) ? OS.DataTypes.DateTime.defaultValue : meetingDateTimeIn;
-isAllDAyIn = (isAllDAyIn === undefined) ? false : isAllDAyIn;
-return controller.executeActionInsideJSNode(Connect2_Assemble_MUIController.default.getAssembleEventSummaryDateTimeString$Action.bind(controller, OS.DataConversion.JSNodeParamConverter.from(meetingDateTimeIn, OS.DataTypes.DataTypes.DateTime), OS.DataConversion.JSNodeParamConverter.from(isAllDAyIn, OS.DataTypes.DataTypes.Boolean)), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
-return {
-DateTimeString: OS.DataConversion.JSNodeParamConverter.to(actionResults.dateTimeStringOut, OS.DataTypes.DataTypes.Text)
-};
-});
-};
-});
-
 define("Connect2_Assemble_MUI.controller$GetAssembleEventSummaryHeaderLabel", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_Assemble_MUI.model", "Connect2_Assemble_MUI.controller", "Connect2_Assemble_CS.model", "Connect2_Assemble_CS.model$AssembleEventSummaryRec", "Connect2_Assemble_MUI.referencesHealth", "Connect2_Assemble_MUI.referencesHealth$Connect2_Assemble_CS"], function (exports, OutSystems, Connect2_Assemble_MUIModel, Connect2_Assemble_MUIController, Connect2_Assemble_CSModel) {
 var OS = OutSystems.Internal;
 Connect2_Assemble_MUIController.default.getAssembleEventSummaryHeaderLabel$Action = function (assembleEventSummaryIn, callContext) {
@@ -728,7 +663,7 @@ $parameters.IANATimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 };
 });
 
-define("Connect2_Assemble_MUI.controller$GetLocalBookmarkedLocalityInformation", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_Assemble_MUI.model", "Connect2_Assemble_MUI.controller", "Connect2_LegacyShared.model", "Connect2_LegacyShared.controller", "APIDomain_Directory_IS.model", "Connect2_LegacyShared.model$LocalBookmarkRec", "Connect2_Assemble_MUI.referencesHealth", "Connect2_Assemble_MUI.referencesHealth$Connect2_LegacyShared", "Connect2_Assemble_MUI.model$LocalBookmarkList", "Connect2_LegacyShared.controller$GetLocalBookmarksByObjectType", "Connect2_LegacyShared.model$LocalityHouseholdsItemRec", "Connect2_Assemble_MUI.model$LocalityHouseholdsItemList", "Connect2_LegacyShared.model$InterchangeItemRec", "Connect2_Assemble_MUI.model$InterchangeItemList", "APIDomain_Directory_IS.model$LocalityCommunityBusinessRec", "Connect2_Assemble_MUI.referencesHealth$APIDomain_Directory_IS", "Connect2_Assemble_MUI.model$LocalityCommunityBusinessList", "Connect2_LegacyShared.model$SubdivisionsItemRec", "Connect2_Assemble_MUI.model$SubdivisionsItemList", "Connect2_LegacyShared.model$CacheableLocalityInformationRec"], function (exports, OutSystems, Connect2_Assemble_MUIModel, Connect2_Assemble_MUIController, Connect2_LegacySharedModel, Connect2_LegacySharedController, APIDomain_Directory_ISModel) {
+define("Connect2_Assemble_MUI.controller$GetLocalBookmarkedLocalityInformation", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_Assemble_MUI.model", "Connect2_Assemble_MUI.controller", "UBTConnect_Bookmarks_MCS.model", "UBTConnect_Bookmarks_MCS.controller", "Connect2_LegacyShared.model", "APIDomain_Directory_IS.model", "UBTConnect_Bookmarks_MCS.model$LocalBookmarkRec", "Connect2_Assemble_MUI.referencesHealth", "Connect2_Assemble_MUI.referencesHealth$UBTConnect_Bookmarks_MCS", "Connect2_Assemble_MUI.model$LocalBookmark2List", "UBTConnect_Bookmarks_MCS.controller$GetLocalBookmarksByObjectType", "Connect2_LegacyShared.model$LocalityHouseholdsItemRec", "Connect2_Assemble_MUI.referencesHealth$Connect2_LegacyShared", "Connect2_Assemble_MUI.model$LocalityHouseholdsItemList", "Connect2_LegacyShared.model$InterchangeItemRec", "Connect2_Assemble_MUI.model$InterchangeItemList", "APIDomain_Directory_IS.model$LocalityCommunityBusinessRec", "Connect2_Assemble_MUI.referencesHealth$APIDomain_Directory_IS", "Connect2_Assemble_MUI.model$LocalityCommunityBusinessList", "Connect2_LegacyShared.model$SubdivisionsItemRec", "Connect2_Assemble_MUI.model$SubdivisionsItemList", "Connect2_LegacyShared.model$CacheableLocalityInformationRec"], function (exports, OutSystems, Connect2_Assemble_MUIModel, Connect2_Assemble_MUIController, UBTConnect_Bookmarks_MCSModel, UBTConnect_Bookmarks_MCSController, Connect2_LegacySharedModel, APIDomain_Directory_ISModel) {
 var OS = OutSystems.Internal;
 Connect2_Assemble_MUIController.default.getLocalBookmarkedLocalityInformation$Action = function (in_LocalityIdIn, in_LocalityInformationIn, callContext) {
 var varBag = {};
@@ -762,18 +697,18 @@ varBag.listIndexOf_InterchangesVar = listIndexOf_InterchangesVar;
 varBag.listIndexOf_SchoolsVar = listIndexOf_SchoolsVar;
 varBag.listIndexOf_SubdivisionsVar = listIndexOf_SubdivisionsVar;
 varBag.outVars = outVars;
-OutSystemsDebugger.push("4YvUCWT53U+6BrZWsVWc3Q:FPmlDT8I20iO+TlJrviI+w:/ClientActionFlows.FPmlDT8I20iO+TlJrviI+w:yPYkNcUnMw55xTEcOIMP1w", "Connect2_Assemble_MUI", "GetLocalBookmarkedLocalityInformation", "NRFlows.ClientActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("4YvUCWT53U+6BrZWsVWc3Q:FPmlDT8I20iO+TlJrviI+w:/ClientActionFlows.FPmlDT8I20iO+TlJrviI+w:IEAqULKWmuF6sGgpmVxqfw", "Connect2_Assemble_MUI", "GetLocalBookmarkedLocalityInformation", "NRFlows.ClientActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:iDIJtHAYLkKEnBZO2EYpEA", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:_zAWfaHA4kCQe_9y6g5P4w", callContext.id);
 // Execute Action: GetLocalBookmarksByLocality
-return Connect2_LegacySharedController.default.getLocalBookmarksByObjectType$Action(Connect2_Assemble_MUIModel.staticEntities.myBookmarks_ObjectType.locality, callContext).then(function (value) {
+return UBTConnect_Bookmarks_MCSController.default.getLocalBookmarksByObjectType$Action(Connect2_Assemble_MUIModel.staticEntities.bookmarkCategory.locality, callContext).then(function (value) {
 getLocalBookmarksByLocalityVar.value = value;
 }).then(function () {
 OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:WulNb6jWRU2hxw3OKIeEJQ", callContext.id);
 // Execute Action: ListIndexOf_Locality
 listIndexOf_LocalityVar.value = OS.SystemActions.listIndexOf(getLocalBookmarksByLocalityVar.value.myBookmarksListOut, function (p) {
-return p.objectIdAttr.equals(vars.value.in_LocalityIdInLocal);
+return (p.itemIdAttr === OS.BuiltinFunctions.longIntegerToText(vars.value.in_LocalityIdInLocal));
 }, callContext);
 
 // Set Locality IsBookmarked
@@ -791,7 +726,7 @@ localityInterchangesIterator.currentRowNumber = localityInterchangesIndex;
 OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:5_F55PZudkGq5zisbglO4A", callContext.id);
 // Execute Action: ListIndexOf_Interchanges
 listIndexOf_InterchangesVar.value = OS.SystemActions.listIndexOf(getLocalBookmarksByLocalityVar.value.myBookmarksListOut, function (p) {
-return p.objectIdAttr.equals(vars.value.in_LocalityInformationInLocal.localityInterchangesAttr.getItem(localityInterchangesIndex.valueOf()).interchangeLocalityIdAttr);
+return (p.itemIdAttr === OS.BuiltinFunctions.longIntegerToText(vars.value.in_LocalityInformationInLocal.localityInterchangesAttr.getItem(localityInterchangesIndex.valueOf()).interchangeLocalityIdAttr));
 }, callContext);
 
 // Set Interchanges IsBookmarked
@@ -807,7 +742,7 @@ callContext.iterationContext.registerIterationEnd(vars.value.in_LocalityInformat
 
 OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:oZBFk2MoGUOHA5JIBtfCBQ", callContext.id);
 // Execute Action: GetLocalBookmarksByContact
-return Connect2_LegacySharedController.default.getLocalBookmarksByObjectType$Action(Connect2_Assemble_MUIModel.staticEntities.myBookmarks_ObjectType.contact, callContext).then(function (value) {
+return UBTConnect_Bookmarks_MCSController.default.getLocalBookmarksByObjectType$Action(Connect2_Assemble_MUIModel.staticEntities.bookmarkCategory.household, callContext).then(function (value) {
 getLocalBookmarksByContactVar.value = value;
 }).then(function () {
 // LocalityHouseholds
@@ -822,7 +757,7 @@ localityHouseholdsListIterator.currentRowNumber = localityHouseholdsListIndex;
 OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:4pbn2crq_EGZHPbknAnHPg", callContext.id);
 // Execute Action: ListIndexOf_Contact
 listIndexOf_ContactVar.value = OS.SystemActions.listIndexOf(getLocalBookmarksByContactVar.value.myBookmarksListOut, function (p) {
-return p.objectIdAttr.equals(vars.value.in_LocalityInformationInLocal.localityHouseholdsListAttr.getItem(localityHouseholdsListIndex.valueOf()).idAttr);
+return (p.itemIdAttr === OS.BuiltinFunctions.longIntegerToText(vars.value.in_LocalityInformationInLocal.localityHouseholdsListAttr.getItem(localityHouseholdsListIndex.valueOf()).idAttr));
 }, callContext);
 
 // Set Households IsBookmarked
@@ -838,7 +773,7 @@ callContext.iterationContext.registerIterationEnd(vars.value.in_LocalityInformat
 
 OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:h87OUdc_u0uv2ZnU+uWt2A", callContext.id);
 // Execute Action: GetLocalBookmarksBySubdivision
-return Connect2_LegacySharedController.default.getLocalBookmarksByObjectType$Action(Connect2_Assemble_MUIModel.staticEntities.myBookmarks_ObjectType.subdivision, callContext).then(function (value) {
+return UBTConnect_Bookmarks_MCSController.default.getLocalBookmarksByObjectType$Action(Connect2_Assemble_MUIModel.staticEntities.bookmarkCategory.supperMeeting, callContext).then(function (value) {
 getLocalBookmarksBySubdivisionVar.value = value;
 }).then(function () {
 // LocalitySubdivisions
@@ -853,7 +788,7 @@ localitySubdivisionsListIterator.currentRowNumber = localitySubdivisionsListInde
 OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:7JsJ6DX_yUSROBMwGaGqfA", callContext.id);
 // Execute Action: ListIndexOf_Subdivisions
 listIndexOf_SubdivisionsVar.value = OS.SystemActions.listIndexOf(getLocalBookmarksBySubdivisionVar.value.myBookmarksListOut, function (p) {
-return p.objectIdAttr.equals(vars.value.in_LocalityInformationInLocal.localitySubdivisionsListAttr.getItem(localitySubdivisionsListIndex.valueOf()).idAttr);
+return (p.itemIdAttr === OS.BuiltinFunctions.longIntegerToText(vars.value.in_LocalityInformationInLocal.localitySubdivisionsListAttr.getItem(localitySubdivisionsListIndex.valueOf()).idAttr));
 }, callContext);
 
 // Set Subdivisions IsBookmarked
@@ -869,7 +804,7 @@ callContext.iterationContext.registerIterationEnd(vars.value.in_LocalityInformat
 
 OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:z_CvGOpFvU2Owags4rFahA", callContext.id);
 // Execute Action: GetLocalBookmarksByOneSchool
-return Connect2_LegacySharedController.default.getLocalBookmarksByObjectType$Action(Connect2_Assemble_MUIModel.staticEntities.myBookmarks_ObjectType.oneSchoolGlobal, callContext).then(function (value) {
+return UBTConnect_Bookmarks_MCSController.default.getLocalBookmarksByObjectType$Action(Connect2_Assemble_MUIModel.staticEntities.bookmarkCategory.oneSchoolGlobal2, callContext).then(function (value) {
 getLocalBookmarksByOneSchoolVar.value = value;
 }).then(function () {
 // LocalitySchools
@@ -884,7 +819,7 @@ localitySchoolsIterator.currentRowNumber = localitySchoolsIndex;
 OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:UzKG5RQ3IEKaprHFx5gM7w", callContext.id);
 // Execute Action: ListIndexOf_Schools
 listIndexOf_SchoolsVar.value = OS.SystemActions.listIndexOf(getLocalBookmarksByOneSchoolVar.value.myBookmarksListOut, function (p) {
-return p.objectIdAttr.equals(vars.value.in_LocalityInformationInLocal.localitySchoolsAttr.getItem(localitySchoolsIndex.valueOf()).communityBusinessIDAttr);
+return (p.itemIdAttr === OS.BuiltinFunctions.longIntegerToText(vars.value.in_LocalityInformationInLocal.localitySchoolsAttr.getItem(localitySchoolsIndex.valueOf()).communityBusinessIDAttr));
 }, callContext);
 
 // Set Schools IsBookmarked
@@ -900,7 +835,7 @@ callContext.iterationContext.registerIterationEnd(vars.value.in_LocalityInformat
 
 OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:VBhYaZmcKUib1vic4clhdA", callContext.id);
 // Execute Action: GetLocalBookmarksByCampusCo
-return Connect2_LegacySharedController.default.getLocalBookmarksByObjectType$Action(Connect2_Assemble_MUIModel.staticEntities.myBookmarks_ObjectType.campusCo, callContext).then(function (value) {
+return UBTConnect_Bookmarks_MCSController.default.getLocalBookmarksByObjectType$Action(Connect2_Assemble_MUIModel.staticEntities.bookmarkCategory.oneSchoolGlobal2, callContext).then(function (value) {
 getLocalBookmarksByCampusCoVar.value = value;
 }).then(function () {
 // LocalityStores
@@ -915,7 +850,7 @@ localityStoresIterator.currentRowNumber = localityStoresIndex;
 OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:inVpiv5NPkWo6myoHq5gGA", callContext.id);
 // Execute Action: ListIndexOf_Stores
 listIndexOf_StoresVar.value = OS.SystemActions.listIndexOf(getLocalBookmarksByCampusCoVar.value.myBookmarksListOut, function (p) {
-return p.objectIdAttr.equals(vars.value.in_LocalityInformationInLocal.localityStoresAttr.getItem(localityStoresIndex.valueOf()).communityBusinessIDAttr);
+return (p.itemIdAttr === OS.BuiltinFunctions.longIntegerToText(vars.value.in_LocalityInformationInLocal.localityStoresAttr.getItem(localityStoresIndex.valueOf()).communityBusinessIDAttr));
 }, callContext);
 
 // Set Stores IsBookmarked
@@ -1475,263 +1410,6 @@ $parameters.ConvertedDateTime = new Date($parameters.DateTime.getTime() + (offse
 };
 });
 
-define("Connect2_Assemble_MUI.controller$ToggleBookmarkItem", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_Assemble_MUI.model", "Connect2_Assemble_MUI.controller", "Connect2_LegacyShared.controller", "Connect2_MyBookmarks_IS.model", "Connect2_LegacyShared.model", "Connect2_LegacyShared.controller$RemoveBookmarkFromCache", "Connect2_Assemble_MUI.referencesHealth", "Connect2_Assemble_MUI.referencesHealth$Connect2_LegacyShared", "Connect2_LegacyShared.controller$Create_LocalBookmark", "Connect2_LegacyShared.controller$SendBookmarkedFeedbackMessage", "Connect2_MyBookmarks_IS.model$BookmarkItemRec", "Connect2_Assemble_MUI.referencesHealth$Connect2_MyBookmarks_IS", "Connect2_Assemble_MUI.controller$ServerAction.AddBookmark", "Connect2_Assemble_MUI.controller$ServerAction.DeleteBookmarkByBookmarkId", "Connect2_LegacyShared.controller$AddBookmarkToCache", "Connect2_LegacyShared.controller$Delete_LocalBookmarkByBookmarkId", "Connect2_LegacyShared.model$LocalBookmarkRec", "Connect2_LegacyShared.controller$Get_LocalBookmarkByObjectId"], function (exports, OutSystems, Connect2_Assemble_MUIModel, Connect2_Assemble_MUIController, Connect2_LegacySharedController, Connect2_MyBookmarks_ISModel, Connect2_LegacySharedModel) {
-var OS = OutSystems.Internal;
-Connect2_Assemble_MUIController.default.toggleBookmarkItem$Action = function (in_IsBookmarkedIn, in_ObjectTypeIn, in_ObjectIdIn, in_GroupIn, in_NoteIn, callContext) {
-var varBag = {};
-callContext = controller.callContext(callContext);
-var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("Connect2_Assemble_MUI.ToggleBookmarkItem$vars"))());
-vars.value.in_IsBookmarkedInLocal = in_IsBookmarkedIn;
-vars.value.in_ObjectTypeInLocal = in_ObjectTypeIn;
-vars.value.in_ObjectIdInLocal = in_ObjectIdIn;
-vars.value.in_GroupInLocal = in_GroupIn;
-vars.value.in_NoteInLocal = in_NoteIn;
-var addBookmarkVar = new OS.DataTypes.VariableHolder();
-var deleteBookmarkByObjectIdVar = new OS.DataTypes.VariableHolder();
-var removeBookmarkFromCacheVar = new OS.DataTypes.VariableHolder();
-var create_LocalBookmarkVar = new OS.DataTypes.VariableHolder();
-var addBookmarkToCacheVar = new OS.DataTypes.VariableHolder();
-var get_LocalBookmarkByObjectIdVar = new OS.DataTypes.VariableHolder();
-var outVars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("Connect2_Assemble_MUI.ToggleBookmarkItem$outVars"))());
-varBag.callContext = callContext;
-varBag.vars = vars;
-varBag.addBookmarkVar = addBookmarkVar;
-varBag.deleteBookmarkByObjectIdVar = deleteBookmarkByObjectIdVar;
-varBag.removeBookmarkFromCacheVar = removeBookmarkFromCacheVar;
-varBag.create_LocalBookmarkVar = create_LocalBookmarkVar;
-varBag.addBookmarkToCacheVar = addBookmarkToCacheVar;
-varBag.get_LocalBookmarkByObjectIdVar = get_LocalBookmarkByObjectIdVar;
-varBag.outVars = outVars;
-OutSystemsDebugger.push("4YvUCWT53U+6BrZWsVWc3Q:kh7q1GFrlEOstAwGRRfXAA:/ClientActionFlows.kh7q1GFrlEOstAwGRRfXAA:JmGg+tCCWRQ84IBkn0hjdA", "Connect2_Assemble_MUI", "ToggleBookmarkItem", "NRFlows.ClientActionFlow", callContext.id, varBag);
-OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:+1ezPDZ4vk2+NIpTLma5QQ", callContext.id);
-return OS.Flow.executeAsyncFlow(function () {
-return OS.Flow.executeSequence(function () {
-if((OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:s0PiIEveQEKmyJYSQEligQ", callContext.id) && vars.value.in_IsBookmarkedInLocal)) {
-OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:_AFl6Jyfok+o4xlXuIJWXg", callContext.id);
-// Execute Action: Get_LocalBookmarkByObjectId
-return Connect2_LegacySharedController.default.get_LocalBookmarkByObjectId$Action(vars.value.in_ObjectTypeInLocal, vars.value.in_ObjectIdInLocal, callContext).then(function (value) {
-get_LocalBookmarkByObjectIdVar.value = value;
-}).then(function () {
-OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:9TseyAY+7EeRhmBc7FFFVA", callContext.id);
-// Execute Action: DeleteBookmarkByObjectId
-return controller.deleteBookmarkByBookmarkId$ServerAction(get_LocalBookmarkByObjectIdVar.value.localBookmarkOut.bookmarkIdAttr, callContext).then(function (value) {
-deleteBookmarkByObjectIdVar.value = value;
-});
-}).then(function () {
-return OS.Flow.executeSequence(function () {
-if((OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:FIEGU0qEUEC1VSQrojGv6Q", callContext.id) && deleteBookmarkByObjectIdVar.value.successOut)) {
-OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:AiumC24FxEiRHcaf9ixdGg", callContext.id);
-// Execute Action: RemoveBookmarkFromCache
-removeBookmarkFromCacheVar.value = Connect2_LegacySharedController.default.removeBookmarkFromCache$Action(vars.value.in_GroupInLocal, get_LocalBookmarkByObjectIdVar.value.localBookmarkOut.bookmarkIdAttr, callContext);
-
-OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:7BLp1YW6cUe2n0oUL9L4uA", callContext.id);
-// Execute Action: Delete_LocalBookmarkByBookmarkId
-return Connect2_LegacySharedController.default.delete_LocalBookmarkByBookmarkId$Action(get_LocalBookmarkByObjectIdVar.value.localBookmarkOut.bookmarkIdAttr, callContext).then(function () {
-OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:b7NpM_3PuEGmViGR1+zR_A", callContext.id);
-// Execute Action: BookmarkFeedbackMessage_Delete
-Connect2_LegacySharedController.default.sendBookmarkedFeedbackMessage$Action(false, callContext);
-// Set Output
-OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:aNs0lS92eU2E5Y+ULnqJRQ", callContext.id);
-// Out_LocalBookmarkId = NullIdentifier
-outVars.value.out_LocalBookmarkIdOut = OS.BuiltinFunctions.integerToLongInteger(OS.BuiltinFunctions.nullIdentifier());
-OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:Djy1krabRUOTs2uiNbAZEQ", callContext.id);
-});
-} else {
-OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:LS2G+OdgnE+K91N1b4OCyw", callContext.id);
-OS.FeedbackMessageService.showFeedbackMessage("Bookmark could not be removed. Please try again later.", /*Info*/ 0);
-OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:IECEKjTX5Eu2rdV4EKpohg", callContext.id);
-}
-
-});
-});
-} else {
-OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:sp6PwShkyEKVT0i6WXPj8A", callContext.id);
-// Execute Action: AddBookmark
-return controller.addBookmark$ServerAction(vars.value.in_ObjectTypeInLocal, OS.BuiltinFunctions.longIntegerToText(vars.value.in_ObjectIdInLocal), vars.value.in_GroupInLocal, vars.value.in_NoteInLocal, callContext).then(function (value) {
-addBookmarkVar.value = value;
-}).then(function () {
-return OS.Flow.executeSequence(function () {
-if((OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:uH6iTAg7ZU+EPgykDjQm0Q", callContext.id) && addBookmarkVar.value.successOut)) {
-OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:gP0HDw3yTEu9quJe4jKifw", callContext.id);
-// Execute Action: Create_LocalBookmark
-return Connect2_LegacySharedController.default.create_LocalBookmark$Action(vars.value.in_ObjectTypeInLocal, vars.value.in_ObjectIdInLocal, vars.value.in_GroupInLocal, addBookmarkVar.value.createdBookmarkResponseOut.idAttr, vars.value.in_NoteInLocal, callContext).then(function (value) {
-create_LocalBookmarkVar.value = value;
-}).then(function () {
-OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:ul0hyR9D_EWn7gJhaUP7Lw", callContext.id);
-// Execute Action: AddBookmarkToCache
-addBookmarkToCacheVar.value = Connect2_LegacySharedController.default.addBookmarkToCache$Action(addBookmarkVar.value.createdBookmarkResponseOut, callContext);
-
-OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:n3HAb3uD9kuIGEhD6CXJrA", callContext.id);
-// Execute Action: BookmarkFeedbackMessage_Create
-Connect2_LegacySharedController.default.sendBookmarkedFeedbackMessage$Action(true, callContext);
-// Set Output
-OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:dji4UyF9YECSLwvP07xxhg", callContext.id);
-// Out_LocalBookmarkId = Create_LocalBookmark.LocalBookmarkId
-outVars.value.out_LocalBookmarkIdOut = create_LocalBookmarkVar.value.localBookmarkIdOut;
-OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:dji4UyF9YECSLwvP07xxhg", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
-// Out_CreatedBookmarkId = AddBookmark.CreatedBookmarkResponse.Id
-outVars.value.out_CreatedBookmarkIdOut = addBookmarkVar.value.createdBookmarkResponseOut.idAttr;
-OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:AoiHpg1IoEurGJJSzovmiw", callContext.id);
-});
-} else {
-OutSystemsDebugger.handleBreakpoint("4YvUCWT53U+6BrZWsVWc3Q:3YBL_T7SmEOTPkByzvH_pA", callContext.id);
-}
-
-});
-});
-}
-
-});
-}).then(function () {
-return outVars.value;
-}).then(function (res) {
-OutSystemsDebugger.pop("4YvUCWT53U+6BrZWsVWc3Q:kh7q1GFrlEOstAwGRRfXAA", callContext.id);
-return res;
-
-}).catch(function (ex) {
-OutSystemsDebugger.handleException(ex, callContext.id);
-OutSystemsDebugger.pop("4YvUCWT53U+6BrZWsVWc3Q:kh7q1GFrlEOstAwGRRfXAA", callContext.id);
-throw ex;
-
-});
-};
-var controller = Connect2_Assemble_MUIController.default;
-Connect2_Assemble_MUIController.default.constructor.registerVariableGroupType("Connect2_Assemble_MUI.ToggleBookmarkItem$vars", [{
-name: "In_IsBookmarked",
-attrName: "in_IsBookmarkedInLocal",
-mandatory: true,
-dataType: OS.DataTypes.DataTypes.Boolean,
-defaultValue: function () {
-return false;
-}
-}, {
-name: "In_ObjectType",
-attrName: "in_ObjectTypeInLocal",
-mandatory: true,
-dataType: OS.DataTypes.DataTypes.Text,
-defaultValue: function () {
-return "";
-}
-}, {
-name: "In_ObjectId",
-attrName: "in_ObjectIdInLocal",
-mandatory: true,
-dataType: OS.DataTypes.DataTypes.LongInteger,
-defaultValue: function () {
-return OS.DataTypes.LongInteger.defaultValue;
-}
-}, {
-name: "In_Group",
-attrName: "in_GroupInLocal",
-mandatory: true,
-dataType: OS.DataTypes.DataTypes.Text,
-defaultValue: function () {
-return "";
-}
-}, {
-name: "In_Note",
-attrName: "in_NoteInLocal",
-mandatory: false,
-dataType: OS.DataTypes.DataTypes.Text,
-defaultValue: function () {
-return "";
-}
-}]);
-Connect2_Assemble_MUIController.default.constructor.registerVariableGroupType("Connect2_Assemble_MUI.ToggleBookmarkItem$outVars", [{
-name: "Out_LocalBookmarkId",
-attrName: "out_LocalBookmarkIdOut",
-mandatory: false,
-dataType: OS.DataTypes.DataTypes.LongInteger,
-defaultValue: function () {
-return OS.DataTypes.LongInteger.defaultValue;
-}
-}, {
-name: "Out_CreatedBookmarkId",
-attrName: "out_CreatedBookmarkIdOut",
-mandatory: false,
-dataType: OS.DataTypes.DataTypes.LongInteger,
-defaultValue: function () {
-return OS.DataTypes.LongInteger.defaultValue;
-}
-}]);
-Connect2_Assemble_MUIController.default.clientActionProxies.toggleBookmarkItem$Action = function (in_IsBookmarkedIn, in_ObjectTypeIn, in_ObjectIdIn, in_GroupIn, in_NoteIn) {
-in_IsBookmarkedIn = (in_IsBookmarkedIn === undefined) ? false : in_IsBookmarkedIn;
-in_ObjectTypeIn = (in_ObjectTypeIn === undefined) ? "" : in_ObjectTypeIn;
-in_ObjectIdIn = (in_ObjectIdIn === undefined) ? OS.DataTypes.LongInteger.defaultValue : in_ObjectIdIn;
-in_GroupIn = (in_GroupIn === undefined) ? "" : in_GroupIn;
-in_NoteIn = (in_NoteIn === undefined) ? "" : in_NoteIn;
-return controller.executeActionInsideJSNode(Connect2_Assemble_MUIController.default.toggleBookmarkItem$Action.bind(controller, OS.DataConversion.JSNodeParamConverter.from(in_IsBookmarkedIn, OS.DataTypes.DataTypes.Boolean), in_ObjectTypeIn, OS.DataConversion.JSNodeParamConverter.from(in_ObjectIdIn, OS.DataTypes.DataTypes.LongInteger), in_GroupIn, OS.DataConversion.JSNodeParamConverter.from(in_NoteIn, OS.DataTypes.DataTypes.Text)), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
-return {
-Out_LocalBookmarkId: actionResults.out_LocalBookmarkIdOut,
-Out_CreatedBookmarkId: OS.DataConversion.JSNodeParamConverter.to(actionResults.out_CreatedBookmarkIdOut, OS.DataTypes.DataTypes.LongInteger)
-};
-});
-};
-});
-
-define("Connect2_Assemble_MUI.controller$ServerAction.AddBookmark", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_Assemble_MUI.model", "Connect2_Assemble_MUI.controller", "Connect2_MyBookmarks_IS.model", "Connect2_MyBookmarks_IS.model$BookmarkItemRec", "Connect2_Assemble_MUI.referencesHealth", "Connect2_Assemble_MUI.referencesHealth$Connect2_MyBookmarks_IS"], function (exports, OutSystems, Connect2_Assemble_MUIModel, Connect2_Assemble_MUIController, Connect2_MyBookmarks_ISModel) {
-var OS = OutSystems.Internal;
-Connect2_Assemble_MUIController.default.addBookmark$ServerAction = function (objectTypeIn, objectIdIn, groupIn, noteIn, callContext) {
-var controller = this.controller;
-var inputs = {
-ObjectType: OS.DataConversion.ServerDataConverter.to(objectTypeIn, OS.DataTypes.DataTypes.Text),
-ObjectId: OS.DataConversion.ServerDataConverter.to(objectIdIn, OS.DataTypes.DataTypes.Text),
-Group: OS.DataConversion.ServerDataConverter.to(groupIn, OS.DataTypes.DataTypes.Text),
-Note: OS.DataConversion.ServerDataConverter.to(noteIn, OS.DataTypes.DataTypes.Text)
-};
-return controller.callServerAction("AddBookmark", "screenservices/Connect2_Assemble_MUI/ActionAddBookmark", "DvG7WkrArpWUX7xh7_i_AA", inputs, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function (json, headers) {
-OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
-}, false).then(function (outputs) {
-var executeServerActionResult = new (controller.constructor.getVariableGroupType("Connect2_Assemble_MUI$rssespaceconnect2_mybookmarks_bl_ActionAddBookmark"))();
-executeServerActionResult.successOut = OS.DataConversion.ServerDataConverter.from(outputs.Success, OS.DataTypes.DataTypes.Boolean);
-executeServerActionResult.createdBookmarkResponseOut = OS.DataConversion.ServerDataConverter.from(outputs.CreatedBookmarkResponse, Connect2_MyBookmarks_ISModel.BookmarkItemRec);
-return executeServerActionResult;
-});
-};
-Connect2_Assemble_MUIController.default.constructor.registerVariableGroupType("Connect2_Assemble_MUI$rssespaceconnect2_mybookmarks_bl_ActionAddBookmark", [{
-name: "Success",
-attrName: "successOut",
-mandatory: false,
-dataType: OS.DataTypes.DataTypes.Boolean,
-defaultValue: function () {
-return false;
-}
-}, {
-name: "CreatedBookmarkResponse",
-attrName: "createdBookmarkResponseOut",
-mandatory: false,
-dataType: OS.DataTypes.DataTypes.Record,
-defaultValue: function () {
-return new Connect2_MyBookmarks_ISModel.BookmarkItemRec();
-},
-complexType: Connect2_MyBookmarks_ISModel.BookmarkItemRec
-}]);
-});
-define("Connect2_Assemble_MUI.controller$ServerAction.DeleteBookmarkByBookmarkId", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_Assemble_MUI.model", "Connect2_Assemble_MUI.controller"], function (exports, OutSystems, Connect2_Assemble_MUIModel, Connect2_Assemble_MUIController) {
-var OS = OutSystems.Internal;
-Connect2_Assemble_MUIController.default.deleteBookmarkByBookmarkId$ServerAction = function (bookmarkIdIn, callContext) {
-var controller = this.controller;
-var inputs = {
-BookmarkId: OS.DataConversion.ServerDataConverter.to(bookmarkIdIn, OS.DataTypes.DataTypes.LongInteger)
-};
-return controller.callServerAction("DeleteBookmarkByBookmarkId", "screenservices/Connect2_Assemble_MUI/ActionDeleteBookmarkByBookmarkId", "3Ib_7A4fr_Qg+58dJT0Hgw", inputs, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function (json, headers) {
-OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
-}, false).then(function (outputs) {
-var executeServerActionResult = new (controller.constructor.getVariableGroupType("Connect2_Assemble_MUI$rssespaceconnect2_mybookmarks_bl_ActionDeleteBookmarkByBookmarkId"))();
-executeServerActionResult.successOut = OS.DataConversion.ServerDataConverter.from(outputs.Success, OS.DataTypes.DataTypes.Boolean);
-return executeServerActionResult;
-});
-};
-Connect2_Assemble_MUIController.default.constructor.registerVariableGroupType("Connect2_Assemble_MUI$rssespaceconnect2_mybookmarks_bl_ActionDeleteBookmarkByBookmarkId", [{
-name: "Success",
-attrName: "successOut",
-mandatory: false,
-dataType: OS.DataTypes.DataTypes.Boolean,
-defaultValue: function () {
-return false;
-}
-}]);
-});
 define("Connect2_Assemble_MUI.controller", ["exports", "OutSystems/ClientRuntime/Main", "Connect2_Assemble_MUI.model", "Connect2_Assemble_MUI.controller$debugger"], function (exports, OutSystems, Connect2_Assemble_MUIModel, Connect2_Assemble_MUI_Controller_debugger) {
 var OS = OutSystems.Internal;
 var Connect2_Assemble_MUIController = exports;
@@ -1910,24 +1588,6 @@ getter: function (varBag, idService) {
 return varBag.jSONSerialize1Var.value;
 }
 },
-"MsPy0SLLfkCoQ_AchRHLJw": {
-getter: function (varBag, idService) {
-return varBag.vars.value.meetingDateTimeInLocal;
-},
-dataType: OS.DataTypes.DataTypes.DateTime
-},
-"IjbvLPDOCESOnTnHnlwI6g": {
-getter: function (varBag, idService) {
-return varBag.vars.value.isAllDAyInLocal;
-},
-dataType: OS.DataTypes.DataTypes.Boolean
-},
-"537A8e7drkCf77wfAKLyhg": {
-getter: function (varBag, idService) {
-return varBag.outVars.value.dateTimeStringOut;
-},
-dataType: OS.DataTypes.DataTypes.Text
-},
 "W1FsI7pEVketI9Rm5JP7jg": {
 getter: function (varBag, idService) {
 return varBag.vars.value.assembleEventFilterInLocal;
@@ -2029,78 +1689,6 @@ dataType: OS.DataTypes.DataTypes.DateTime
 "ZLAZ9qM6nEqSJVg235RStQ": {
 getter: function (varBag, idService) {
 return varBag.mapStartDateTimeJSResult.value;
-}
-},
-"Nbqas3ILMUiykRgLW8QQKg": {
-getter: function (varBag, idService) {
-return varBag.vars.value.in_IsBookmarkedInLocal;
-},
-dataType: OS.DataTypes.DataTypes.Boolean
-},
-"szEzh21fcU6iAra5zTgkww": {
-getter: function (varBag, idService) {
-return varBag.vars.value.in_ObjectTypeInLocal;
-},
-dataType: OS.DataTypes.DataTypes.Text
-},
-"hysHbgDWgESYSJsJmbSZzg": {
-getter: function (varBag, idService) {
-return varBag.vars.value.in_ObjectIdInLocal;
-},
-dataType: OS.DataTypes.DataTypes.LongInteger
-},
-"ZIyR2wAFzk6JyJnyeKlo7w": {
-getter: function (varBag, idService) {
-return varBag.vars.value.in_GroupInLocal;
-},
-dataType: OS.DataTypes.DataTypes.Text
-},
-"I5wd2sW7d02GVI6LmwEwWA": {
-getter: function (varBag, idService) {
-return varBag.vars.value.in_NoteInLocal;
-},
-dataType: OS.DataTypes.DataTypes.Text
-},
-"56BXVqCK3E+2CBCUMlc+9w": {
-getter: function (varBag, idService) {
-return varBag.outVars.value.out_LocalBookmarkIdOut;
-},
-dataType: OS.DataTypes.DataTypes.LongInteger
-},
-"UXUa00pENkKq3pPBjDEK+w": {
-getter: function (varBag, idService) {
-return varBag.outVars.value.out_CreatedBookmarkIdOut;
-},
-dataType: OS.DataTypes.DataTypes.LongInteger
-},
-"sp6PwShkyEKVT0i6WXPj8A": {
-getter: function (varBag, idService) {
-return varBag.addBookmarkVar.value;
-}
-},
-"9TseyAY+7EeRhmBc7FFFVA": {
-getter: function (varBag, idService) {
-return varBag.deleteBookmarkByObjectIdVar.value;
-}
-},
-"AiumC24FxEiRHcaf9ixdGg": {
-getter: function (varBag, idService) {
-return varBag.removeBookmarkFromCacheVar.value;
-}
-},
-"gP0HDw3yTEu9quJe4jKifw": {
-getter: function (varBag, idService) {
-return varBag.create_LocalBookmarkVar.value;
-}
-},
-"ul0hyR9D_EWn7gJhaUP7Lw": {
-getter: function (varBag, idService) {
-return varBag.addBookmarkToCacheVar.value;
-}
-},
-"_AFl6Jyfok+o4xlXuIJWXg": {
-getter: function (varBag, idService) {
-return varBag.get_LocalBookmarkByObjectIdVar.value;
 }
 },
 "pG7jcg2FSkOo5DSLGQvPEw": {

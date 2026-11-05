@@ -1337,6 +1337,71 @@ Out_FormattedTime: OS.DataConversion.JSNodeParamConverter.to(actionResults.out_F
 };
 });
 
+define("UBTConnectLibrary.controller$FormatDateForAssembleMeetings", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnectLibrary.controller", "UBTConnectLibrary.clientVariables"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnectLibraryController, UBTConnectLibraryClientVariables) {
+var OS = OutSystems.Internal;
+UBTConnectLibraryController.default.formatDateForAssembleMeetings$Action = function (meetingDateTimeIn, isAllDAyIn, callContext) {
+var varBag = {};
+callContext = controller.callContext(callContext);
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnectLibrary.FormatDateForAssembleMeetings$vars"))());
+vars.value.meetingDateTimeInLocal = meetingDateTimeIn;
+vars.value.isAllDAyInLocal = isAllDAyIn;
+var outVars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnectLibrary.FormatDateForAssembleMeetings$outVars"))());
+varBag.callContext = callContext;
+varBag.vars = vars;
+varBag.outVars = outVars;
+try {OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:XHLYj8rMnU2mLVXVCdRLfQ:/ClientActionFlows.XHLYj8rMnU2mLVXVCdRLfQ:YA8ebEK5ecu3ghDAxlf8sA", "UBTConnectLibrary", "FormatDateForAssembleMeetings", "NRFlows.ClientActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:O1lr0z50SEmfr5FNlCPrJA", callContext.id);
+OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:wJJ9bGzgf0eB0fHBxpBcMg", callContext.id);
+// DateTimeString = If + If + FormatDateTime
+outVars.value.dateTimeStringOut = ((((vars.value.isAllDAyInLocal) ? ("On ") : (OS.BuiltinFunctions.formatDateTime(vars.value.meetingDateTimeInLocal, "h:mm tt on "))) + (((OS.BuiltinFunctions.dayOfWeek(vars.value.meetingDateTimeInLocal) === 0)) ? ("Lord\'s Day") : (OS.BuiltinFunctions.formatDateTime(vars.value.meetingDateTimeInLocal, "dddd")))) + OS.BuiltinFunctions.formatDateTime(vars.value.meetingDateTimeInLocal, ", d MMMM yyyy"));
+OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:pYgz_QryEEalIgaIbQ99OQ", callContext.id);
+return outVars.value;
+} catch (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+throw ex;
+} finally {
+OutSystemsDebugger.pop("lAQ0zS6tEEyl6BBIK9yo1A:XHLYj8rMnU2mLVXVCdRLfQ", callContext.id);
+}
+
+};
+var controller = UBTConnectLibraryController.default;
+UBTConnectLibraryController.default.constructor.registerVariableGroupType("UBTConnectLibrary.FormatDateForAssembleMeetings$vars", [{
+name: "MeetingDateTime",
+attrName: "meetingDateTimeInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.DateTime,
+defaultValue: function () {
+return OS.DataTypes.DateTime.defaultValue;
+}
+}, {
+name: "IsAllDAy",
+attrName: "isAllDAyInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Boolean,
+defaultValue: function () {
+return false;
+}
+}]);
+UBTConnectLibraryController.default.constructor.registerVariableGroupType("UBTConnectLibrary.FormatDateForAssembleMeetings$outVars", [{
+name: "DateTimeString",
+attrName: "dateTimeStringOut",
+mandatory: false,
+dataType: OS.DataTypes.DataTypes.Text,
+defaultValue: function () {
+return "";
+}
+}]);
+UBTConnectLibraryController.default.clientActionProxies.formatDateForAssembleMeetings$Action = function (meetingDateTimeIn, isAllDAyIn) {
+meetingDateTimeIn = (meetingDateTimeIn === undefined) ? OS.DataTypes.DateTime.defaultValue : meetingDateTimeIn;
+isAllDAyIn = (isAllDAyIn === undefined) ? false : isAllDAyIn;
+return controller.executeActionInsideJSNode(UBTConnectLibraryController.default.formatDateForAssembleMeetings$Action.bind(controller, OS.DataConversion.JSNodeParamConverter.from(meetingDateTimeIn, OS.DataTypes.DataTypes.DateTime), OS.DataConversion.JSNodeParamConverter.from(isAllDAyIn, OS.DataTypes.DataTypes.Boolean)), OS.Controller.BaseViewController.activeScreen ? OS.Controller.BaseViewController.activeScreen.callContext() : undefined, function (actionResults) {
+return {
+DateTimeString: OS.DataConversion.JSNodeParamConverter.to(actionResults.dateTimeStringOut, OS.DataTypes.DataTypes.Text)
+};
+});
+};
+});
+
 define("UBTConnectLibrary.controller$FormatStyles", ["exports", "OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnectLibrary.controller", "UBTConnectLibrary.clientVariables"], function (exports, OutSystems, UBTConnectLibraryModel, UBTConnectLibraryController, UBTConnectLibraryClientVariables) {
 var OS = OutSystems.Internal;
 UBTConnectLibraryController.default.formatStyles$Action = function (originalStylesIn, newStylePropertyIn, newStyleValueIn, callContext) {
@@ -10417,6 +10482,24 @@ dataType: OS.DataTypes.DataTypes.Text
 "kd73ELv0g0y3bPm48VHKZg": {
 getter: function (varBag, idService) {
 return varBag.outVars.value.out_FontColorOut;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
+"YC3BAen_6k+DQQbvgPs_6w": {
+getter: function (varBag, idService) {
+return varBag.vars.value.meetingDateTimeInLocal;
+},
+dataType: OS.DataTypes.DataTypes.DateTime
+},
+"y+9ZuC_GSEqTUg0GT4tfDA": {
+getter: function (varBag, idService) {
+return varBag.vars.value.isAllDAyInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"Q4IaIBUoLE+Do01ofKyWkg": {
+getter: function (varBag, idService) {
+return varBag.outVars.value.dateTimeStringOut;
 },
 dataType: OS.DataTypes.DataTypes.Text
 },

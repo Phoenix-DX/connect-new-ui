@@ -56,11 +56,11 @@ export async function getLocal_Bookmark(objectType: string, objectId: string): P
   return bookmark.Id !== '' && bookmark.Id !== '0';
 }
 
-/** GetLocal_Bookmark_C2(ObjectType, ObjectId) (UC:9270-9310): IsBookmarked = GetLocalBookmarkByObjectId_C2(ObjectId)
-    .LocalBookmark.Id <> NullIdentifier (the C2 UBTConnect_Bookmarks_MCS.LocalBookmark). ObjectType is an input that
-    the flow does not read. */
-export async function getLocal_Bookmark_C2(_objectType: string, objectId: string): Promise<boolean> {
-  const bookmark = await getLocalBookmarkByObjectId(objectId);
+/** GetLocal_Bookmark_C2(ObjectType, ObjectId) (live migration/runtime-sources/UBTConnect.controller.js:9317-9381):
+    IsBookmarked = GetLocalBookmarkByObjectId_C2(LongIntegerToText(ObjectId), ObjectType).LocalBookmark.Id <>
+    NullIdentifier (:9334; the C2 UBTConnect_Bookmarks_MCS.LocalBookmark): ObjectType is the bookmark category. */
+export async function getLocal_Bookmark_C2(objectType: string, objectId: string): Promise<boolean> {
+  const bookmark = await getLocalBookmarkByObjectId(objectId, objectType);
   return bookmark.Id !== '' && bookmark.Id !== '0';
 }
 

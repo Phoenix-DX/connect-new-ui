@@ -4,6 +4,8 @@ The route `/UBTConnect/ContactByEmailOrbitHelpdesk`, read from the TST compiled 
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/ContactByEmailOrbitHelpdesk/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
+**Live code.** TST changed 10 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `UBTConnect`, `js`, `js`, `UBTConnectLibrary`, `js`, `UBTConnect_Utils`, `js`. The observed calls come from the capture.
+
 ## 1. Route
 
 | Item | Value | Source |
@@ -54,7 +56,7 @@ All columns come from the code, without interpretation:
 
 | # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
 |---|---|---|---|---|---|---|---|---|
-| 1 | `UBTConnect/ContactFlow/ContactByEmailOrbitHelpdesk/ActionSendContactEmail` | server action | `ContactByEmailOrbitHelpdesk` | onClick in Button → event event_OnClick of Button → … → ContactByEmailOrbitHelpdesk.handler_SubmitForm → server SendContactEmail | no | `sendContactEmail()` [`api/message/repository.ts:76`](../../app/src/api/message/repository.ts#L76) (page) | `ContactByEmailOrbitHelpdesk → useContactByEmailOrbitHelpdeskSubmit → sendContactEmail`<br>[`pages/ContactByEmailOrbitHelpdesk/ContactByEmailOrbitHelpdeskPage.tsx`](../../app/src/pages/ContactByEmailOrbitHelpdesk/ContactByEmailOrbitHelpdeskPage.tsx) | implemented |
+| 1 | `UBTConnect/ContactFlow/ContactByEmailOrbitHelpdesk/ActionSendContactEmail` | server action | `ContactByEmailOrbitHelpdesk` | onClick in Button → event event_OnClick of Button → … → ContactByEmailOrbitHelpdesk.handler_SubmitForm → server SendContactEmail | no | `sendContactEmail()` [`api/message/repository.ts:80`](../../app/src/api/message/repository.ts#L80) (page) | `ContactByEmailOrbitHelpdesk → useContactByEmailOrbitHelpdeskSubmit → sendContactEmail`<br>[`pages/ContactByEmailOrbitHelpdesk/ContactByEmailOrbitHelpdeskPage.tsx`](../../app/src/pages/ContactByEmailOrbitHelpdesk/ContactByEmailOrbitHelpdeskPage.tsx) | implemented |
 
 The TST capture also has calls of another screen (scope `other`, no chain in the code of the route). React does not make them on this route. The tool does not count them:
 
@@ -128,7 +130,7 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/screens/ContactByEmailOrbitHelpdesk/analysis/sources/raw/`.
+The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 

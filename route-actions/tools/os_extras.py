@@ -100,8 +100,19 @@ def nav_params(lines):
             nxt = lines[j].strip()  # the next line (lines is 0-based, j is the 1-based number of the current line)
             pm = re.match(r"(\w+): (.+?),?$", nxt)
             if pm and "generateScreenURL" not in nxt:
-                pairs.append((pm.group(1), clean_expr(re.sub(r"OS\.DataConversion\.\w+\.(?:to|asString)\((.+), OS\.DataTypes\.DataTypes\.\w+\)", r"\1", pm.group(2)))))
+                value = pm.group(2)
                 j += 1
+                # a value that spans lines (a function call, e.g. Notes.mvc.js:1891-1894): read on to the line that
+                # closes it, so the next key is still seen
+                depth = value.count("(") + value.count("{") - value.count(")") - value.count("}")
+                while depth > 0 and j < len(lines):
+                    more = lines[j].strip()
+                    value += " " + more
+                    depth += more.count("(") + more.count("{") - more.count(")") - more.count("}")
+                    j += 1
+                value = re.sub(r"OutSystemsDebugger\.handleFunctionCall\(function \(\) \{\s*return (.+?);?\s*\}, OS\.DataTypes\.DataTypes\.\w+, callContext\.id\)", r"\1", value)
+                value = re.sub(r",?\s*$", "", value)
+                pairs.append((pm.group(1), clean_expr(re.sub(r"OS\.DataConversion\.\w+\.(?:to|asString)\((.+), OS\.DataTypes\.DataTypes\.\w+\)", r"\1", value))))
                 continue
             break
         out.append({"to": m.group(1), "params": pairs, "line": i})

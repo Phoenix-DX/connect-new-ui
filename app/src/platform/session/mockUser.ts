@@ -80,6 +80,9 @@ export function mockDirectoryUser(t: MockUserToggles = mockUserToggles()): Direc
       isHouseholder: t.householder,
       SpouseId: '',
       SpouseIsHouseholder: false,
+      // live TST of 2026-11-05: the householder's coordinates (Locality Bahia Blanca, as Address.Lat / Long below)
+      HouseholderLatitude: '-38.717652',
+      HouseholderLongitude: '-62.265487',
       Photo: { Bucket: '', Path: '', Type: '', SignedURL: '' },
       Address: {
         AddressItemsList: wireList<Schemas['APIDomain_Directory_IS__Custom_Address_Item']>([]),

@@ -4,6 +4,8 @@ The route `/UBTConnect/Photobook`, read from the TST compiled code and from the 
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/Photobook/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
+**Live code.** TST changed 14 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `Connect2_LegacyShared`, `js`, `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `UBTConnect`, `js`, `js`, `UBTConnectLibrary`, `js`, `UBTConnect_Utils`, `js`, `UBT_AppManager`, `UBT_AppManager_Mobile`. The observed calls come from the capture.
+
 ## 1. Route
 
 | Item | Value | Source |
@@ -24,7 +26,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | Differences found | **0** (see [section 3](#3-differences-found)) |
 | Questions | 0 (see [section 4](#4-questions)) |
 | React calls reached only through shared code | 0: see the last section |
-| User actions of the route (own code) | OutSystems: 2. React: 2 |
+| User actions of the route (own code) | OutSystems: 1. React: 2 |
 | Screen and blocks of the UI flow with a React port | 9 of 9 |
 | Navigation targets found in React | 2 of 2 |
 | Shared blocks and components on the route | OutSystems 6, React 1 with user actions: see the last section |
@@ -54,8 +56,8 @@ All columns come from the code, without interpretation:
 
 | # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
 |---|---|---|---|---|---|---|---|---|
-| 1 | `UBTConnect/Directory_Photobook/Photobook/DataActionGetLocalityHouseholdIds` | data action | `Photobook` | Photobook fetch at start → Photobook.DataActionGetLocalityHouseholdIds | yes | `fetchLocalityHouseholdIds()` [`api/household/repository.ts:59`](../../app/src/api/household/repository.ts#L59) (page) | `Photobook → usePhotobook → fetchLocalityHouseholdIds`<br>[`pages/Photobook/PhotobookPage.tsx`](../../app/src/pages/Photobook/PhotobookPage.tsx) | implemented |
-| 2 | `UBTConnect/Directory_Photobook/Photobook_Options_Left/DataActionGetHouseholdCaption` | data action | `Photobook_Options_Left` | Photobook_Options_Left fetch at start → Photobook_Options_Left.DataActionGetHouseholdCaption | no | `fetchHouseholdCaption()` [`api/household/repository.ts:67`](../../app/src/api/household/repository.ts#L67) (page) | `Photobook_Options_Left → useHouseholdCaption → fetchHouseholdCaption`<br>[`pages/Photobook/components/Photobook_Options_Left.tsx`](../../app/src/pages/Photobook/components/Photobook_Options_Left.tsx) | implemented |
+| 1 | `UBTConnect/Directory_Photobook/Photobook/DataActionGetLocalityHouseholdIds` | data action | `Photobook` | Photobook fetch at start → Photobook.DataActionGetLocalityHouseholdIds | yes | `fetchLocalityHouseholdIds()` [`api/household/repository.ts:73`](../../app/src/api/household/repository.ts#L73) (page) | `Photobook → usePhotobook → fetchLocalityHouseholdIds`<br>[`pages/Photobook/PhotobookPage.tsx`](../../app/src/pages/Photobook/PhotobookPage.tsx) | implemented |
+| 2 | `UBTConnect/Directory_Photobook/Photobook_Options_Left/DataActionGetHouseholdCaption` | data action | `Photobook_Options_Left` | Photobook_Options_Left fetch at start → Photobook_Options_Left.DataActionGetHouseholdCaption | no | `fetchHouseholdCaption()` [`api/household/repository.ts:81`](../../app/src/api/household/repository.ts#L81) (page) | `Photobook_Options_Left → useHouseholdCaption → fetchHouseholdCaption`<br>[`pages/Photobook/components/Photobook_Options_Left.tsx`](../../app/src/pages/Photobook/components/Photobook_Options_Left.tsx) | implemented |
 
 ## 6. User actions
 
@@ -66,7 +68,6 @@ Two independent lists: the event bindings of the TST views, and the JSX event bi
 | # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
 |---|---|---|---|---|---|
 | [1](#611-photobook-handler_closephotobook) | `Photobook` | `closePhotobook of Carousel` | `handler_ClosePhotobook` | – | goes to HouseholdCarousel, HouseholdDetails, previous screen |
-| 2 | `Photobook_Options_Left` | `clicked of CustomContainer` | `handler_ClickedInfo` | – | calls GetHouseholdCaption |
 
 <details><summary>1 diagrams (handlers with two or more effects)</summary>
 
@@ -118,7 +119,7 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/screens/Photobook/analysis/sources/raw/`.
+The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 

@@ -11,8 +11,8 @@ interface ItemCardActionsProps {
   /** Input BookmarkType (a BookmarkCategory identifier; default ""). */
   bookmarkType?: string;
   actionBarOptions: ActionBarOptions;
-  /** UBTConnect ToggleBookmarkItem_C2(ObjectId, BookmarkType, True), given by the caller (lib/ubtConnect/actions with
-      the bookmark server actions): a component makes no server call itself. */
+  /** UBTConnect_Utils ToggleBookmarkItem_C2(ObjectId, BookmarkType, True), given by the caller
+      (lib/ubtConnectUtils/actions with the bookmark server actions): a component makes no server call itself. */
   toggleBookmarkItem_C2?: (objectId: string, bookmarkType: string) => Promise<unknown>;
   /** Event Event_ItemUnbookmarked: raised after ToggleBookmarkItem_C2 ends. */
   onEventItemUnbookmarked?: () => void;

@@ -57,6 +57,7 @@ describe('fromUserInformation', () => {
     expect(result.accountForm.AccountForm_PersonalInformation).toEqual({
       Username: user.UserName,
       Email: user.Email,
+      ShowEmail: false,
       ShowLifeCycleDates: true,
     });
     expect(result.accountForm.AccountForm_IdentificationInformation).toEqual({
@@ -104,6 +105,7 @@ describe('client actions', () => {
     expect(form.AccountForm_PersonalInformation).toEqual({
       Username: '',
       Email: 'a@example.org',
+      ShowEmail: false,
       ShowLifeCycleDates: false,
     });
     expect(form.AccountForm_ContactInformation.ShowWorkNumber).toBe(true);

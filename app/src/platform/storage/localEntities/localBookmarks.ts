@@ -8,21 +8,26 @@ import { DATABASE_NAME, METADATA_TABLE, NULL_DATE_TIME, entityService, tableSche
      .controller.js, BA = …aggregates.IDB.js, BE = …entities.js;
    - Connect2_LegacyShared.LocalBookmark (legacy bookmarks). LC = migration/runtime-sources/Connect2_LegacyShared
      .controller.js, LA = …aggregates.IDB.js, LE = …entities.js.
-   UC = UBTConnect.controller.js (copy in migration/screens/BookmarksByGroup/analysis/sources/raw/).
+   UC = migration/runtime-sources/UBTConnect.controller.js.
+
+   The C2 actions follow the live module of 2026-11-05: every read, create and delete keys on the item (or bookmark)
+   AND the bookmark category, so one ItemId may have a row per category.
 
    Who uses them in the original:
    - app start / sign-in: Connect_SetLoggedContext → SynchBookmarks(Sync_Info_Main.Bookmarks) then
-     SynchBookmarksC2(Sync_Info_Main.Bookmarks_C2), then Bookmarks_IsSynched = True (UC:1135-1143); Sync_Info_Main takes
-     them from Sync_Info_GetMain.LocalEntities_App.LocalBookmark / .LocalBookmarksC2 (UC:16576-16589). Each sync replaces
-     the whole copy;
-   - UBTConnect ToggleBookmarkItem_C2 (UC:17107-17225): GetLocalBookmarkByObjectId, Create_LocalBookmark,
-     Delete_LocalBookmarkByBookmarkId;
-   - Directory_EntityDetailsActions OnReady: GetLocalBookmarkByObjectId (C2NewBookmarks on) or the legacy
-     Get_LocalBookmarkByObjectId (off, the TST value).
-   - Connect2_Assemble_MUI ToggleBookmarkItem (AssembleDetail hall households, CR-AssembleDetail-2): the legacy
-     Get_LocalBookmarkByObjectId, Create_LocalBookmark (legacyCreate_LocalBookmark) and Delete_LocalBookmarkByBookmarkId.
+     SynchBookmarksC2(Sync_Info_Main.Bookmarks_C2), then Bookmarks_IsSynched = True (UC:1135-1136); Sync_Info_Main takes
+     them from Sync_Info_GetMain.LocalEntities_App.LocalBookmark / .LocalBookmarksC2. Each sync replaces the whole copy;
+   - UBTConnect_Utils ToggleBookmarkItem_C2 (UBTConnect_Utils.controller.js:5661-5770; lib/ubtConnectUtils/actions.ts):
+     GetLocalBookmarkByObjectId, Create_LocalBookmark, Delete_LocalBookmarkByBookmarkId, each with the category;
+   - Directory_EntityDetailsActions OnReady and Locality_Details GetLocal_Bookmark_C2: GetLocalBookmarkByObjectId with
+     the category (C2NewBookmarks on) or the legacy Get_LocalBookmarkByObjectId (off, the TST value);
+   - Connect2_Assemble_MUI AssembleEventDetail_AttendeeSubdivision: GetLocalBookmarksByObjectType(Household);
+   - legacy GetLocalBookmarksByObjectType (legacyGetLocalBookmarksByObjectType): Connect2_Assemble_MUI
+     GetLocalBookmarkedLocalityInformation.
    Not ported (no caller in the clone yet): Get_LocalDynamicBookmarkPills / _Years, GetBookmarkCategoryLabel and the
-   empty AddBookmarkToCache / RemoveBookmarkFromCache (BC:1-26, :1093-1118). */
+   empty AddBookmarkToCache / RemoveBookmarkFromCache (BC:3-28, :1313-1338). The legacy writes (Create_LocalBookmark,
+   Delete_LocalBookmarkByBookmarkId) lost their last caller with Connect2_Assemble_MUI ToggleBookmarkItem (TST removed
+   it, live survey 2026-11-05). */
 
 /** UBTConnect_Bookmarks_MCS.LocalBookmark (BE:4-58): idIsAutoNumber YesIfEmpty (BE:58). */
 export const LOCAL_BOOKMARK: EntityInfo = {
@@ -135,38 +140,39 @@ const getUserId = () => Number(currentUserId() ?? 0);
 
 /* ---- UBTConnect_Bookmarks_MCS ---- */
 
-/** GetLocalBookmarksByObjectId (BA:260-331): rows of index ITEMID = ItemId whose UserId = the user. */
-async function localBookmarksByObjectId(userId: number, itemId: string): Promise<LocalBookmark[]> {
+/** The user's rows (index USERID) that match `keep` (the aggregates GetLocalBookmarksByUserId of the live module). */
+async function localBookmarksOfUser(keep: (r: LocalBookmark) => boolean): Promise<LocalBookmark[]> {
+  const rows = await entities.getAllByIndex<LocalBookmark>(LOCAL_BOOKMARK, 'UserId', getUserId());
+  return rows.filter(keep);
+}
+
+/** GetLocalBookmarkByObjectId(ItemId, In_BookmarkCategoryId) (BC:986-1140; aggregate GetLocalBookmarksByObjectId
+    BA:381-415: rows of index ITEMID = ItemId whose UserId is the user and BookmarkCategoryId equals the input):
+    List.Current (an empty record when none). */
+export async function getLocalBookmarkByObjectId(itemId: string, categoryId: string): Promise<LocalBookmark> {
+  const userId = getUserId();
   const rows = await entities.getAllByIndex<LocalBookmark>(LOCAL_BOOKMARK, 'ItemId', itemId);
-  return rows.filter((r) => r.UserId === userId);
-}
-
-/** GetLocalBookmarksByUserId of GetLocalBookmarkByBookmarkId (BA:103-174) and of Create_LocalBookmark (BA:332-403):
-    the user's rows (index USERID) whose `column` equals the value. */
-async function localBookmarksOfUser(
-  userId: number,
-  column: 'BookmarkId' | 'ItemId',
-  value: string,
-): Promise<LocalBookmark[]> {
-  const rows = await entities.getAllByIndex<LocalBookmark>(LOCAL_BOOKMARK, 'UserId', userId);
-  return rows.filter((r) => r[column] === value);
-}
-
-/** GetLocalBookmarkByObjectId(ItemId) (BC:943-1091): List.Current of the aggregate (an empty record when none). */
-export async function getLocalBookmarkByObjectId(itemId: string): Promise<LocalBookmark> {
-  const [first] = await localBookmarksByObjectId(getUserId(), itemId);
+  const [first] = rows.filter((r) => r.UserId === userId && r.BookmarkCategoryId === categoryId);
   return first ?? EMPTY_LOCAL_BOOKMARK;
 }
 
-/** GetLocalBookmarkByBookmarkId(BookmarkId) (BC:792-941): List.Current of the aggregate (an empty record when none). */
-export async function getLocalBookmarkByBookmarkId(bookmarkId: string): Promise<LocalBookmark> {
-  const [first] = await localBookmarksOfUser(getUserId(), 'BookmarkId', bookmarkId);
+/** GetLocalBookmarkByBookmarkId(BookmarkId, In_BookmarkCategoryId) (BC:818-972; aggregate BA:152-186: the user's rows
+    with that BookmarkId and BookmarkCategoryId): List.Current (an empty record when none). */
+export async function getLocalBookmarkByBookmarkId(bookmarkId: string, categoryId: string): Promise<LocalBookmark> {
+  const [first] = await localBookmarksOfUser((r) => r.BookmarkId === bookmarkId && r.BookmarkCategoryId === categoryId);
   return first ?? EMPTY_LOCAL_BOOKMARK;
 }
 
-/** Create_LocalBookmark(In_ItemId, In_BookmarkCategoryId, In_BookmarkId, In_DateCreatedUtc) (BC:27-245): nothing when
-    In_BookmarkCategoryId is empty (BC:49); the Id of the user's row of the item when there is one; else a new row
-    (Id NullIdentifier → the next auto-number). Out: LocalBookmarkId ("0" when nothing was written). */
+/** GetLocalBookmarksByObjectType(BookmarkCategoryId) (BC:1154-1300; aggregate BA:309-343): the user's rows whose
+    BookmarkCategoryId equals the input (`===`), in store order (no sort). */
+export function getLocalBookmarksByObjectType(bookmarkCategoryId: string): Promise<LocalBookmark[]> {
+  return localBookmarksOfUser((r) => r.BookmarkCategoryId === bookmarkCategoryId);
+}
+
+/** Create_LocalBookmark(In_ItemId, In_BookmarkCategoryId, In_BookmarkId, In_DateCreatedUtc) (BC:29-239): nothing when
+    In_BookmarkCategoryId is empty (BC:49); the Id of the user's row of that item and category when there is one
+    (aggregate BA:450-487); else a new row (Id NullIdentifier → the next auto-number). Out: LocalBookmarkId ("0" when
+    nothing was written). */
 export async function create_LocalBookmark(
   in_ItemId: string,
   in_BookmarkCategoryId: string,
@@ -174,7 +180,9 @@ export async function create_LocalBookmark(
   in_DateCreatedUtc: string = NULL_DATE_TIME,
 ): Promise<string> {
   if (in_BookmarkCategoryId === '') return '0';
-  const [existing] = await localBookmarksOfUser(getUserId(), 'ItemId', in_ItemId);
+  const [existing] = await localBookmarksOfUser(
+    (r) => r.ItemId === in_ItemId && r.BookmarkCategoryId === in_BookmarkCategoryId,
+  );
   if (existing) return existing.Id;
   return entities.create(LOCAL_BOOKMARK, {
     Id: '0',
@@ -186,19 +194,19 @@ export async function create_LocalBookmark(
   });
 }
 
-/** Delete_LocalBookmarkById(LocalBookmarkId) (BC:302-349): DeleteLocalBookmark. */
+/** Delete_LocalBookmarkById(LocalBookmarkId) (BC:321-358): DeleteLocalBookmark. */
 export function delete_LocalBookmarkById(localBookmarkId: string): Promise<void> {
   return entities.delete(LOCAL_BOOKMARK, localBookmarkId);
 }
 
-/** Delete_LocalBookmarkByBookmarkId(BookmarkId) (BC:246-301): GetLocalBookmarkByBookmarkId, then
-    Delete_LocalBookmarkById of its Id ("0", i.e. nothing, when there is none). */
-export async function delete_LocalBookmarkByBookmarkId(bookmarkId: string): Promise<void> {
-  const localBookmark = await getLocalBookmarkByBookmarkId(bookmarkId);
+/** Delete_LocalBookmarkByBookmarkId(BookmarkId, In_BookmarkCategoryId) (BC:255-309): GetLocalBookmarkByBookmarkId
+    with the category, then Delete_LocalBookmarkById of its Id (BC:275; "0", i.e. nothing, when there is none). */
+export async function delete_LocalBookmarkByBookmarkId(bookmarkId: string, categoryId: string): Promise<void> {
+  const localBookmark = await getLocalBookmarkByBookmarkId(bookmarkId, categoryId);
   await delete_LocalBookmarkById(localBookmark.Id);
 }
 
-/** SynchBookmarksC2(In_UpdateBookmarks) (BC:1119-1173): DeleteAllLocalBookmark, then CreateOrUpdateSomeLocalBookmark,
+/** SynchBookmarksC2(In_UpdateBookmarks) (BC:1339-1384): DeleteAllLocalBookmark, then CreateOrUpdateSomeLocalBookmark,
     in one transaction (see synchBookmarks). */
 export async function synchBookmarksC2(in_UpdateBookmarks: readonly LocalBookmark[]): Promise<void> {
   await entities.replaceAll(LOCAL_BOOKMARK, in_UpdateBookmarks);
@@ -213,7 +221,7 @@ const compareText = (a: string, b: string) => {
   return x > y ? 1 : x < y ? -1 : 0;
 };
 
-/** Get_LocalBookmarkByObjectId(ObjectType, ObjectId) (LC:2342-2480; aggregate LA:19-131): the user's rows (index USERID)
+/** Get_LocalBookmarkByObjectId(ObjectType, ObjectId) (LC:2344 ff.; aggregate LA:19-131): the user's rows (index USERID)
     with that ObjectId and ObjectType, sorted by Note ascending (LA:106-110); List.Current (an empty record when none). */
 export async function get_LocalBookmarkByObjectId(objectType: string, objectId: string): Promise<LegacyLocalBookmark> {
   const rows = await entities.getAllByIndex<LegacyLocalBookmark>(LEGACY_LOCAL_BOOKMARK, 'UserId', getUserId());
@@ -223,76 +231,16 @@ export async function get_LocalBookmarkByObjectId(objectType: string, objectId: 
   return first ?? EMPTY_LEGACY_LOCAL_BOOKMARK;
 }
 
-/** GetLocalBookmarksByObjectType(ObjectType) (LC:4964-5100; aggregate LA:314-420): the user's rows (index USERID)
-    whose ObjectType equals the input (`===`, LA:356), sorted by Note ascending (LA:401-404); MyBookmarksList. Used by
-    Connect2_Assemble_MUI GetLocalBookmarkedLocalityInformation. */
-export async function getLocalBookmarksByObjectType(objectType: string): Promise<LegacyLocalBookmark[]> {
+/** GetLocalBookmarksByObjectType(ObjectType) of Connect2_LegacyShared (LC:4968 ff.; aggregate LA:314-420): the user's
+    rows (index USERID) whose ObjectType equals the input (`===`, LA:356), sorted by Note ascending (LA:401-404);
+    MyBookmarksList. Named with the `legacy` prefix: the C2 module has an action of the same name
+    (getLocalBookmarksByObjectType above). Read by Connect2_Assemble_MUI GetLocalBookmarkedLocalityInformation. */
+export async function legacyGetLocalBookmarksByObjectType(objectType: string): Promise<LegacyLocalBookmark[]> {
   const rows = await entities.getAllByIndex<LegacyLocalBookmark>(LEGACY_LOCAL_BOOKMARK, 'UserId', getUserId());
   return rows.filter((r) => r.ObjectType === objectType).sort((a, b) => compareText(a.Note, b.Note));
 }
 
-/** Get_LocalBookmarkByBookmarkId(BookmarkId) (LC:2190 ff.; aggregate GetLocalBookmarksByUserId LA:132 ff., sort LA:219-222): the user's
-    rows (index USERID) whose BookmarkId equals the input, sorted by Note ascending; List.Current (an empty record when
-    none). */
-export async function get_LocalBookmarkByBookmarkId(bookmarkId: string): Promise<LegacyLocalBookmark> {
-  const rows = await entities.getAllByIndex<LegacyLocalBookmark>(LEGACY_LOCAL_BOOKMARK, 'UserId', getUserId());
-  const [first] = rows.filter((r) => r.BookmarkId === bookmarkId).sort((a, b) => compareText(a.Note, b.Note));
-  return first ?? EMPTY_LEGACY_LOCAL_BOOKMARK;
-}
-
-/** CurrDateTime() as the clone writes DateTimes: local "yyyy-MM-ddTHH:mm:ss" (as localSearchHistory.ts). */
-function currDateTime(): string {
-  const d = new Date();
-  const p = (n: number) => String(n).padStart(2, '0');
-  return `${String(d.getFullYear())}-${p(d.getMonth() + 1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`;
-}
-
-/** Connect2_LegacyShared Create_LocalBookmark(ObjectType, ObjectId, Group, BookmarkId, Note) (LC:1555-1720): aggregate
-    CheckForRepeatRecord (IndexedDB LA:427-540: the user's rows (index USERID) with ObjectType `===`, ObjectId equal and
-    Group `===` the inputs, sorted by Note ascending); none → CreateLocalBookmark (Id NullIdentifier → the next
-    auto-number, UserId = GetUserId(), DateCreatedUtc = CurrDateTime(), LC:1683-1697) and LocalBookmarkId = its Id; else
-    LocalBookmarkId = List.Current.Id (nothing written). Named with the `legacy` prefix: the C2 module has an action of
-    the same name (create_LocalBookmark above). Called by Connect2_Assemble_MUI ToggleBookmarkItem (CR-AssembleDetail-2). */
-export async function legacyCreate_LocalBookmark(
-  objectType: string,
-  objectId: string,
-  group: string,
-  bookmarkId: string,
-  note: string,
-): Promise<string> {
-  const userId = getUserId();
-  const rows = await entities.getAllByIndex<LegacyLocalBookmark>(LEGACY_LOCAL_BOOKMARK, 'UserId', userId);
-  const [repeat] = rows
-    .filter((r) => r.ObjectType === objectType && r.ObjectId === objectId && r.Group === group)
-    .sort((a, b) => compareText(a.Note, b.Note));
-  if (repeat) return repeat.Id;
-  return entities.create(LEGACY_LOCAL_BOOKMARK, {
-    Id: '0',
-    UserId: userId,
-    BookmarkId: bookmarkId,
-    ObjectType: objectType,
-    ObjectId: objectId,
-    Group: group,
-    DateCreatedUtc: currDateTime(),
-    Note: note,
-  });
-}
-
-/** Connect2_LegacyShared Delete_LocalBookmarkById(LocalBookmarkId) (LC:1977 ff.): DeleteLocalBookmark. Named with the
-    `legacy` prefix: the C2 module has an action of the same name (delete_LocalBookmarkById above). */
-export function legacyDelete_LocalBookmarkById(localBookmarkId: string): Promise<void> {
-  return entities.delete(LEGACY_LOCAL_BOOKMARK, localBookmarkId);
-}
-
-/** Connect2_LegacyShared Delete_LocalBookmarkByBookmarkId(BookmarkId) (LC:1921-1976): Get_LocalBookmarkByBookmarkId,
-    then Delete_LocalBookmarkById of its Id ("0", i.e. nothing, when there is none). Called by BookmarksByGroup
-    OnHandle_BookmarkToggle after the server delete (ScreenBlock_BookmarkGroup.mvc.js:3169-3172). */
-export async function legacyDelete_LocalBookmarkByBookmarkId(bookmarkId: string): Promise<void> {
-  const localBookmark = await get_LocalBookmarkByBookmarkId(bookmarkId);
-  await legacyDelete_LocalBookmarkById(localBookmark.Id);
-}
-
-/** SynchBookmarks(UpdatedBookmarks) (LC:7421-7476): DeleteAllLocalBookmark, then CreateOrUpdateSomeLocalBookmark. The
+/** SynchBookmarks(UpdatedBookmarks) (LC:7425 ff.): DeleteAllLocalBookmark, then CreateOrUpdateSomeLocalBookmark. The
     original runs them as two IndexedDB transactions; the clone runs one (entityService.replaceAll), so the bookmarks
     read while the app start syncs are the old copy or the new one, never none. In TST the screens' OnReady reads come
     before the app start's sync (HouseholdDetails analysis/calls.json: GetHousehold 4270 ms, Sync_Info_GetMain 6172 ms);

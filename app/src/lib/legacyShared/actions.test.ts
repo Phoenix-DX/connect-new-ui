@@ -319,6 +319,3 @@ describe('GetCacheableMemberContactList / GetCacheableTimezoneInfo (CR-Milestone
     expect(flipHouseholdName('Julián Vitale')).toEqual('Julián Vitale');
   });
 });
-
-/* G2: in OutSystems, ScreenBlock_BookmarkGroup and AddBookmarkToCache / RemoveBookmarkFromCache use the same
-   GetCachedMyBookmarks / PutCachedMyBookmarks with one structure, Connect2_MyBookmarks_IS.BookmarkItem. */

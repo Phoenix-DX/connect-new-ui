@@ -4,7 +4,7 @@ The route `/UBTConnect/ContactUsDetails`, read from the TST compiled code and fr
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/ContactUsDetails/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
-**Live code.** TST changed 1 compiled file of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `CacheControl_UserInfo`. The observed calls come from the capture.
+**Live code.** TST changed 15 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `Connect2_LegacyShared`, `js`, `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `UBTConnect`, `js`, `js`, `UBTConnectLibrary`, `js`, `CacheControl_UserInfo`, `UBTConnect_Utils`, `js`, `UBT_AppManager`, `UBT_AppManager_Mobile`. The observed calls come from the capture.
 
 ## 1. Route
 
@@ -26,7 +26,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | Differences found | **0** (see [section 3](#3-differences-found)) |
 | Questions | 0 (see [section 4](#4-questions)) |
 | React calls reached only through shared code | 1: see the last section |
-| User actions of the route (own code) | OutSystems: 2. React: 3 |
+| User actions of the route (own code) | OutSystems: 1. React: 3 |
 | Screen and blocks of the UI flow with a React port | 1 of 1 |
 | Navigation targets found in React | 0 of 0 |
 | Shared blocks and components on the route | OutSystems 17, React 3 with user actions: see the last section |
@@ -59,9 +59,9 @@ All columns come from the code, without interpretation:
 | # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
 |---|---|---|---|---|---|---|---|---|
 | 1 | `UBTConnect_Utils/CacheControl/CacheControl_UserInfo/DataActionGetCacheInfo` | data action | `CacheControl_UserInfo` | CacheControl.OnInitialize → CacheControl.onInitialize → event onNonCacheHit of CacheControl → CacheControl_UserInfo.cacheControlOnNonCacheHit → CacheControl_UserInfo.DataActionGetCacheInfo<br>CacheControl_UserInfo fetch at start → CacheControl_UserInfo.DataActionGetCacheInfo | yes | `UserInfoCacheControl()` [`legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx:37`](../../app/src/legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx#L37) (page) | `ContactUsDetails → UserInfoCache → UserInfoCacheControl`<br>[`pages/ContactUsDetails/ContactUsDetailsPage.tsx`](../../app/src/pages/ContactUsDetails/ContactUsDetailsPage.tsx) | implemented |
-| 2 | `UBTConnect/App_Menu_ContactUs/ContactUsDetails/DataActionDataAction_GetCountriesNames` | data action | `ContactUsDetails` | ContactUsDetails.OnReady → ContactUsDetails.screenEvent_OnReady → ContactUsDetails.DataActionDataAction_GetCountriesNames<br>ContactUsDetails fetch at start → ContactUsDetails.DataActionDataAction_GetCountriesNames | no | `fetchCountryNames()` [`api/message/repository.ts:111`](../../app/src/api/message/repository.ts#L111) (page) | `ContactUsDetails → useContactUsDetails → fetchCountryNames`<br>[`pages/ContactUsDetails/ContactUsDetailsPage.tsx`](../../app/src/pages/ContactUsDetails/ContactUsDetailsPage.tsx) | implemented |
-| 3 | `UBTConnect/App_Menu_ContactUs/ContactUsDetails/DataActionDataAction_GetLocalityTimezone` | data action | `ContactUsDetails` | CacheControl.OnInitialize → CacheControl.onInitialize → … → ContactUsDetails.cacheControl_UserInfo_WrapperResult → ContactUsDetails.DataActionDataAction_GetLocalityTimezone<br>CacheControl_UserInfo.onAfterFetch → event result of CacheControl_UserInfo → … → ContactUsDetails.cacheControl_UserInfo_WrapperResult → ContactUsDetails.DataActionDataAction_GetLocalityTimezone<br>ContactUsDetails fetch at start → ContactUsDetails.DataActionDataAction_GetLocalityTimezone | yes | `fetchLocalityTimezone()` [`api/message/repository.ts:103`](../../app/src/api/message/repository.ts#L103) (page) | `ContactUsDetails → useContactUsDetails → fetchLocalityTimezone`<br>[`pages/ContactUsDetails/ContactUsDetailsPage.tsx`](../../app/src/pages/ContactUsDetails/ContactUsDetailsPage.tsx) | implemented |
-| 4 | `UBTConnect/App_Menu_ContactUs/ContactUsDetails/ServiceAPISendContactUsMessage` | service action | `ContactUsDetails` | onClick in Button → event event_OnClick of Button → event buttonOnClick of Button → ContactUsDetails.onClick_SubmitForm → server SendContactUsMessage | no | `sendContactUsMessage()` [`api/message/repository.ts:124`](../../app/src/api/message/repository.ts#L124) (page) | `ContactUsDetails → useContactUsDetails → sendContactUsMessage`<br>[`pages/ContactUsDetails/ContactUsDetailsPage.tsx`](../../app/src/pages/ContactUsDetails/ContactUsDetailsPage.tsx) | implemented |
+| 2 | `UBTConnect/App_Menu_ContactUs/ContactUsDetails/DataActionDataAction_GetCountriesNames` | data action | `ContactUsDetails` | ContactUsDetails.OnReady → ContactUsDetails.screenEvent_OnReady → ContactUsDetails.DataActionDataAction_GetCountriesNames<br>ContactUsDetails fetch at start → ContactUsDetails.DataActionDataAction_GetCountriesNames | no | `fetchCountryNames()` [`api/message/repository.ts:115`](../../app/src/api/message/repository.ts#L115) (page) | `ContactUsDetails → useContactUsDetails → fetchCountryNames`<br>[`pages/ContactUsDetails/ContactUsDetailsPage.tsx`](../../app/src/pages/ContactUsDetails/ContactUsDetailsPage.tsx) | implemented |
+| 3 | `UBTConnect/App_Menu_ContactUs/ContactUsDetails/DataActionDataAction_GetLocalityTimezone` | data action | `ContactUsDetails` | CacheControl.OnInitialize → CacheControl.onInitialize → … → ContactUsDetails.cacheControl_UserInfo_WrapperResult → ContactUsDetails.DataActionDataAction_GetLocalityTimezone<br>event onNonCacheHit of CacheControl → CacheControl_UserInfo.cacheControlOnNonCacheHit → … → ContactUsDetails.cacheControl_UserInfo_WrapperResult → ContactUsDetails.DataActionDataAction_GetLocalityTimezone<br>CacheControl_UserInfo fetch at start → CacheControl_UserInfo.DataActionGetCacheInfo → … → ContactUsDetails.cacheControl_UserInfo_WrapperResult → ContactUsDetails.DataActionDataAction_GetLocalityTimezone<br>(+1 more chains) | yes | `fetchLocalityTimezone()` [`api/message/repository.ts:107`](../../app/src/api/message/repository.ts#L107) (page) | `ContactUsDetails → useContactUsDetails → fetchLocalityTimezone`<br>[`pages/ContactUsDetails/ContactUsDetailsPage.tsx`](../../app/src/pages/ContactUsDetails/ContactUsDetailsPage.tsx) | implemented |
+| 4 | `UBTConnect/App_Menu_ContactUs/ContactUsDetails/ServiceAPISendContactUsMessage` | service action | `ContactUsDetails` | onClick in Button → event event_OnClick of Button → event buttonOnClick of Button → ContactUsDetails.onClick_SubmitForm → server SendContactUsMessage | no | `sendContactUsMessage()` [`api/message/repository.ts:128`](../../app/src/api/message/repository.ts#L128) (page) | `ContactUsDetails → useContactUsDetails → sendContactUsMessage`<br>[`pages/ContactUsDetails/ContactUsDetailsPage.tsx`](../../app/src/pages/ContactUsDetails/ContactUsDetailsPage.tsx) | implemented |
 
 ## 6. User actions
 
@@ -72,7 +72,6 @@ Two independent lists: the event bindings of the TST views, and the JSX event bi
 | # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
 |---|---|---|---|---|---|
 | [1](#611-contactusdetails-onclick_submitform) | `ContactUsDetails` | `buttonOnClick of Button` | `onClick_SubmitForm` | – | calls SendContactUsMessage; goes to previous screen; shows a message; asks for a confirmation |
-| 2 | `ContactUsDetails` | `result of Wrapper` | `cacheControl_UserInfo_WrapperResult` | – | calls DataAction_GetLocalityTimezone |
 
 <details><summary>1 diagrams (handlers with two or more effects)</summary>
 
@@ -321,16 +320,15 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | `ContactPopup_ByPhone` | `UBTConnect_Utils` | [`components/contact/ContactPopupByPhone/ContactPopupByPhone.tsx`](../../app/src/components/contact/ContactPopupByPhone/ContactPopupByPhone.tsx) | 1 |
 | `ContactPopup` | `UBTConnect_Utils` | [`components/contact/ContactPopup/ContactPopup.tsx`](../../app/src/components/contact/ContactPopup/ContactPopup.tsx) | 0 |
 | `CacheControl_UserInfo_Wrapper` | `UBTConnect` | [`platform/session/UserInfoCache/UserInfoCache.tsx`](../../app/src/platform/session/UserInfoCache/UserInfoCache.tsx) | 0 |
-| `CacheControl_UserInfo` | `UBTConnect_Utils` | [`legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx`](../../app/src/legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx) | 1 |
+| `CacheControl_UserInfo` | `UBTConnect_Utils` | [`legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx`](../../app/src/legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx) | 0 |
 | `CacheControl` | `UBTConnect_Utils` | [`legacy/os/cache/CacheControl/CacheControl.tsx`](../../app/src/legacy/os/cache/CacheControl/CacheControl.tsx) | 0 |
 
-<details><summary>User actions of the shared blocks (3)</summary>
+<details><summary>User actions of the shared blocks (2)</summary>
 
 | # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
 |---|---|---|---|---|---|
 | 1 | `Layout_DetailPage` | `click of Icon` | `onClick_BackNavigation` | – | goes to previous screen |
 | 2 | `ContactPopup_ByPhone` | `event_Clicked of ContactPopup` | `onClick_CallButton` | – | opens an external link |
-| 3 | `CacheControl_UserInfo` | `onNonCacheHit of CacheControl` | `cacheControlOnNonCacheHit` | – | calls GetCacheInfo |
 
 </details>
 
@@ -361,4 +359,4 @@ Calls that React can make on this route, without a TST chain on this route. Ever
 
 | Call | React action | Reached through |
 |---|---|---|
-| `/api/UBTConnect_Utils/ActionGetSignedImagesInBulk` | `cache_SignedImageURL_GetCallback()` [`lib/ubtConnectUtils/actions.ts:124`](../../app/src/lib/ubtConnectUtils/actions.ts#L124) | `EntityLazyImage` [`components/ui/EntityLazyImage/EntityLazyImage.tsx`](../../app/src/components/ui/EntityLazyImage/EntityLazyImage.tsx) |
+| `/api/UBTConnect_Utils/ActionGetSignedImagesInBulk` | `cache_SignedImageURL_GetCallback()` [`lib/ubtConnectUtils/actions.ts:131`](../../app/src/lib/ubtConnectUtils/actions.ts#L131) | `EntityLazyImage` [`components/ui/EntityLazyImage/EntityLazyImage.tsx`](../../app/src/components/ui/EntityLazyImage/EntityLazyImage.tsx) |

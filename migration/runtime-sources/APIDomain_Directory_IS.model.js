@@ -1278,42 +1278,6 @@ return PersonalEvents_MemberCalendar_POST_ResponseRecordList;
 APIDomain_Directory_ISModel.PersonalEvents_MemberCalendar_POST_ResponseRecordList = PersonalEvents_MemberCalendar_POST_ResponseRecordList;
 
 });
-define("APIDomain_Directory_IS.model$HTTPHeader8Rec", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
-var OS = OutSystems.Internal;
-var HTTPHeader8Rec = (function (_super) {
-__extends(HTTPHeader8Rec, _super);
-function HTTPHeader8Rec(defaults) {
-_super.apply(this, arguments);
-}
-HTTPHeader8Rec.attributesToDeclare = function () {
-return [
-this.attr("Name", "nameAttr", "Name", false, false, OS.DataTypes.DataTypes.Text, function () {
-return "";
-}, true), 
-this.attr("Value", "valueAttr", "Value", false, false, OS.DataTypes.DataTypes.Text, function () {
-return "";
-}, true)
-].concat(_super.attributesToDeclare.call(this));
-};
-HTTPHeader8Rec.init();
-return HTTPHeader8Rec;
-})(OS.DataTypes.GenericRecord);
-APIDomain_Directory_ISModel.HTTPHeader8Rec = HTTPHeader8Rec;
-
-});
-define("APIDomain_Directory_IS.model$HTTPHeader8List", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$HTTPHeader8Rec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
-var OS = OutSystems.Internal;
-var HTTPHeader8List = (function (_super) {
-__extends(HTTPHeader8List, _super);
-function HTTPHeader8List(defaults) {
-_super.apply(this, arguments);
-}
-HTTPHeader8List.itemType = APIDomain_Directory_ISModel.HTTPHeader8Rec;
-return HTTPHeader8List;
-})(OS.DataTypes.GenericRecordList);
-APIDomain_Directory_ISModel.HTTPHeader8List = HTTPHeader8List;
-
-});
 define("APIDomain_Directory_IS.model$SingleNoteRec", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
 var OS = OutSystems.Internal;
 var SingleNoteRec = (function (_super) {
@@ -1754,13 +1718,19 @@ return [
 this.attr("Id", "idAttr", "Id", false, false, OS.DataTypes.DataTypes.LongInteger, function () {
 return OS.DataTypes.LongInteger.defaultValue;
 }, true), 
-this.attr("Attribute1", "attribute1Attr", "...", false, false, OS.DataTypes.DataTypes.Text, function () {
-return "";
-}, true), 
 this.attr("HouseholderId", "householderIdAttr", "HouseholderId", false, false, OS.DataTypes.DataTypes.Text, function () {
 return "";
 }, true), 
 this.attr("DisplayHousehold", "displayHouseholdAttr", "DisplayHousehold", false, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
+}, true), 
+this.attr("DateTimeStartUTC", "dateTimeStartUTCAttr", "DateTimeStartUTC", false, false, OS.DataTypes.DataTypes.DateTime, function () {
+return OS.DataTypes.DateTime.defaultValue;
+}, true), 
+this.attr("DateTimeEndUTC", "dateTimeEndUTCAttr", "DateTimeEndUTC", false, false, OS.DataTypes.DataTypes.DateTime, function () {
+return OS.DataTypes.DateTime.defaultValue;
+}, true), 
+this.attr("IsHidden", "isHiddenAttr", "IsHidden", false, false, OS.DataTypes.DataTypes.Boolean, function () {
 return false;
 }, true)
 ].concat(_super.attributesToDeclare.call(this));
@@ -2374,6 +2344,15 @@ return OS.DataTypes.DateTime.defaultValue;
 }, true), 
 this.attr("DisplayHousehold", "displayHouseholdAttr", "DisplayHousehold", false, false, OS.DataTypes.DataTypes.Boolean, function () {
 return false;
+}, true), 
+this.attr("DateTimeStartUTC", "dateTimeStartUTCAttr", "DateTimeStartUTC", false, false, OS.DataTypes.DataTypes.DateTime, function () {
+return OS.DataTypes.DateTime.defaultValue;
+}, true), 
+this.attr("DateTimeEndUTC", "dateTimeEndUTCAttr", "DateTimeEndUTC", false, false, OS.DataTypes.DataTypes.DateTime, function () {
+return OS.DataTypes.DateTime.defaultValue;
+}, true), 
+this.attr("IsHidden", "isHiddenAttr", "IsHidden", false, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
 }, true)
 ].concat(_super.attributesToDeclare.call(this));
 };
@@ -2570,33 +2549,6 @@ General_Normalized_BookmarksWithNotesRecordList.itemType = APIDomain_Directory_I
 return General_Normalized_BookmarksWithNotesRecordList;
 })(OS.DataTypes.GenericRecordList);
 APIDomain_Directory_ISModel.General_Normalized_BookmarksWithNotesRecordList = General_Normalized_BookmarksWithNotesRecordList;
-
-});
-define("APIDomain_Directory_IS.model$HTTPHeader8Record", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$HTTPHeader8Rec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
-var OS = OutSystems.Internal;
-var HTTPHeader8Record = (function (_super) {
-__extends(HTTPHeader8Record, _super);
-function HTTPHeader8Record(defaults) {
-_super.apply(this, arguments);
-}
-HTTPHeader8Record.attributesToDeclare = function () {
-return [
-this.attr("HTTPHeader8", "hTTPHeader8Attr", "HTTPHeader8", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.HTTPHeader8Rec());
-}, true, APIDomain_Directory_ISModel.HTTPHeader8Rec)
-].concat(_super.attributesToDeclare.call(this));
-};
-HTTPHeader8Record.fromStructure = function (str) {
-return new HTTPHeader8Record(new HTTPHeader8Record.RecordClass({
-hTTPHeader8Attr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-HTTPHeader8Record._isAnonymousRecord = true;
-HTTPHeader8Record.UniqueId = "0948ebf0-2073-aec6-5bfd-9abba7a97641";
-HTTPHeader8Record.init();
-return HTTPHeader8Record;
-})(OS.DataTypes.GenericRecord);
-APIDomain_Directory_ISModel.HTTPHeader8Record = HTTPHeader8Record;
 
 });
 define("APIDomain_Directory_IS.model$HTTPHeader6Rec", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
@@ -2950,48 +2902,6 @@ LocalitybyIdsRecord.init();
 return LocalitybyIdsRecord;
 })(OS.DataTypes.GenericRecord);
 APIDomain_Directory_ISModel.LocalitybyIdsRecord = LocalitybyIdsRecord;
-
-});
-define("APIDomain_Directory_IS.model$HouseholdItemRec", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
-var OS = OutSystems.Internal;
-var HouseholdItemRec = (function (_super) {
-__extends(HouseholdItemRec, _super);
-function HouseholdItemRec(defaults) {
-_super.apply(this, arguments);
-}
-HouseholdItemRec.attributesToDeclare = function () {
-return [
-this.attr("HouseholdId", "householdIdAttr", "HouseholdId", false, false, OS.DataTypes.DataTypes.LongInteger, function () {
-return OS.DataTypes.LongInteger.defaultValue;
-}, true), 
-this.attr("IsTaken", "isTakenAttr", "IsTaken", false, false, OS.DataTypes.DataTypes.Boolean, function () {
-return false;
-}, true), 
-this.attr("Status", "statusAttr", "Status", false, false, OS.DataTypes.DataTypes.Text, function () {
-return "";
-}, true), 
-this.attr("Error", "errorAttr", "Error", false, false, OS.DataTypes.DataTypes.Text, function () {
-return "";
-}, true)
-].concat(_super.attributesToDeclare.call(this));
-};
-HouseholdItemRec.init();
-return HouseholdItemRec;
-})(OS.DataTypes.GenericRecord);
-APIDomain_Directory_ISModel.HouseholdItemRec = HouseholdItemRec;
-
-});
-define("APIDomain_Directory_IS.model$HouseholdItemList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$HouseholdItemRec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
-var OS = OutSystems.Internal;
-var HouseholdItemList = (function (_super) {
-__extends(HouseholdItemList, _super);
-function HouseholdItemList(defaults) {
-_super.apply(this, arguments);
-}
-HouseholdItemList.itemType = APIDomain_Directory_ISModel.HouseholdItemRec;
-return HouseholdItemList;
-})(OS.DataTypes.GenericRecordList);
-APIDomain_Directory_ISModel.HouseholdItemList = HouseholdItemList;
 
 });
 define("APIDomain_Directory_IS.model$Users_CurrentLite_GETResponseRec", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
@@ -4984,6 +4894,86 @@ return Extension2Record;
 APIDomain_Directory_ISModel.Extension2Record = Extension2Record;
 
 });
+define("APIDomain_Directory_IS.model$Place2Rec", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+var OS = OutSystems.Internal;
+var Place2Rec = (function (_super) {
+__extends(Place2Rec, _super);
+function Place2Rec(defaults) {
+_super.apply(this, arguments);
+}
+Place2Rec.attributesToDeclare = function () {
+return [
+this.attr("Score", "scoreAttr", "Score", false, false, OS.DataTypes.DataTypes.Decimal, function () {
+return OS.DataTypes.Decimal.defaultValue;
+}, true), 
+this.attr("Id", "idAttr", "Id", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("Name", "nameAttr", "Name", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("AdditionalInformation", "additionalInformationAttr", "AdditionalInformation", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("Location", "locationAttr", "Location", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("Type", "typeAttr", "Type", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("MonthDayOfBirth", "monthDayOfBirthAttr", "MonthDayOfBirth", false, false, OS.DataTypes.DataTypes.LongInteger, function () {
+return OS.DataTypes.LongInteger.defaultValue;
+}, true), 
+this.attr("Latitude", "latitudeAttr", "Latitude", false, false, OS.DataTypes.DataTypes.Decimal, function () {
+return OS.DataTypes.Decimal.defaultValue;
+}, true), 
+this.attr("Longitude", "longitudeAttr", "Longitude", false, false, OS.DataTypes.DataTypes.Decimal, function () {
+return OS.DataTypes.Decimal.defaultValue;
+}, true), 
+this.attr("CountryLatitude", "countryLatitudeAttr", "CountryLatitude", false, false, OS.DataTypes.DataTypes.Decimal, function () {
+return OS.DataTypes.Decimal.defaultValue;
+}, true), 
+this.attr("CountryLongitude", "countryLongitudeAttr", "CountryLongitude", false, false, OS.DataTypes.DataTypes.Decimal, function () {
+return OS.DataTypes.Decimal.defaultValue;
+}, true), 
+this.attr("RecordDisabled", "recordDisabledAttr", "RecordDisabled", false, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
+}, true)
+].concat(_super.attributesToDeclare.call(this));
+};
+Place2Rec.init();
+return Place2Rec;
+})(OS.DataTypes.GenericRecord);
+APIDomain_Directory_ISModel.Place2Rec = Place2Rec;
+
+});
+define("APIDomain_Directory_IS.model$Place2Record", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$Place2Rec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+var OS = OutSystems.Internal;
+var Place2Record = (function (_super) {
+__extends(Place2Record, _super);
+function Place2Record(defaults) {
+_super.apply(this, arguments);
+}
+Place2Record.attributesToDeclare = function () {
+return [
+this.attr("Place2", "place2Attr", "Place2", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.Place2Rec());
+}, true, APIDomain_Directory_ISModel.Place2Rec)
+].concat(_super.attributesToDeclare.call(this));
+};
+Place2Record.fromStructure = function (str) {
+return new Place2Record(new Place2Record.RecordClass({
+place2Attr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+Place2Record._isAnonymousRecord = true;
+Place2Record.UniqueId = "136b7248-4dc5-d23d-c70e-eb0b45d4fb53";
+Place2Record.init();
+return Place2Record;
+})(OS.DataTypes.GenericRecord);
+APIDomain_Directory_ISModel.Place2Record = Place2Record;
+
+});
 define("APIDomain_Directory_IS.model$Directory_UserCurrent_VisibilityRec", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
 var OS = OutSystems.Internal;
 var Directory_UserCurrent_VisibilityRec = (function (_super) {
@@ -5195,7 +5185,13 @@ return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.Direct
 }, true, APIDomain_Directory_ISModel.Directory_PhotoRec), 
 this.attr("Address", "addressAttr", "Address", false, false, OS.DataTypes.DataTypes.Record, function () {
 return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.Custom_AddressRec());
-}, true, APIDomain_Directory_ISModel.Custom_AddressRec)
+}, true, APIDomain_Directory_ISModel.Custom_AddressRec), 
+this.attr("HouseholderLatitude", "householderLatitudeAttr", "HouseholderLatitude", false, false, OS.DataTypes.DataTypes.Decimal, function () {
+return OS.DataTypes.Decimal.defaultValue;
+}, true), 
+this.attr("HouseholderLongitude", "householderLongitudeAttr", "HouseholderLongitude", false, false, OS.DataTypes.DataTypes.Decimal, function () {
+return OS.DataTypes.Decimal.defaultValue;
+}, true)
 ].concat(_super.attributesToDeclare.call(this));
 };
 Directory_UserCurrent_MemberRec.init();
@@ -7598,6 +7594,98 @@ return Directory_UpdateFeedItemRec;
 APIDomain_Directory_ISModel.Directory_UpdateFeedItemRec = Directory_UpdateFeedItemRec;
 
 });
+define("APIDomain_Directory_IS.model$SchoolRec", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+var OS = OutSystems.Internal;
+var SchoolRec = (function (_super) {
+__extends(SchoolRec, _super);
+function SchoolRec(defaults) {
+_super.apply(this, arguments);
+}
+SchoolRec.attributesToDeclare = function () {
+return [
+this.attr("Score", "scoreAttr", "Score", false, false, OS.DataTypes.DataTypes.Decimal, function () {
+return OS.DataTypes.Decimal.defaultValue;
+}, true), 
+this.attr("Id", "idAttr", "Id", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("Type", "typeAttr", "Type", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("Name", "nameAttr", "Name", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("SchoolType", "schoolTypeAttr", "SchoolType", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("FormattedAddress", "formattedAddressAttr", "FormattedAddress", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("Location", "locationAttr", "Location", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("LocalityName", "localityNameAttr", "LocalityName", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("CountryName", "countryNameAttr", "CountryName", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("CountryCode", "countryCodeAttr", "CountryCode", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("LocalityId", "localityIdAttr", "LocalityId", false, false, OS.DataTypes.DataTypes.LongInteger, function () {
+return OS.DataTypes.LongInteger.defaultValue;
+}, true), 
+this.attr("AreasServed", "areasServedAttr", "AreasServed", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("Email", "emailAttr", "Email", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("Phone", "phoneAttr", "Phone", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("Latitude", "latitudeAttr", "Latitude", false, false, OS.DataTypes.DataTypes.Decimal, function () {
+return OS.DataTypes.Decimal.defaultValue;
+}, true), 
+this.attr("Longitude", "longitudeAttr", "Longitude", false, false, OS.DataTypes.DataTypes.Decimal, function () {
+return OS.DataTypes.Decimal.defaultValue;
+}, true)
+].concat(_super.attributesToDeclare.call(this));
+};
+SchoolRec.init();
+return SchoolRec;
+})(OS.DataTypes.GenericRecord);
+APIDomain_Directory_ISModel.SchoolRec = SchoolRec;
+
+});
+define("APIDomain_Directory_IS.model$SchoolRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$SchoolRec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+var OS = OutSystems.Internal;
+var SchoolRecord = (function (_super) {
+__extends(SchoolRecord, _super);
+function SchoolRecord(defaults) {
+_super.apply(this, arguments);
+}
+SchoolRecord.attributesToDeclare = function () {
+return [
+this.attr("School", "schoolAttr", "School", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.SchoolRec());
+}, true, APIDomain_Directory_ISModel.SchoolRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+SchoolRecord.fromStructure = function (str) {
+return new SchoolRecord(new SchoolRecord.RecordClass({
+schoolAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+SchoolRecord._isAnonymousRecord = true;
+SchoolRecord.UniqueId = "20ee6f99-0cf7-ead4-bc56-2d87b86876e0";
+SchoolRecord.init();
+return SchoolRecord;
+})(OS.DataTypes.GenericRecord);
+APIDomain_Directory_ISModel.SchoolRecord = SchoolRecord;
+
+});
 define("APIDomain_Directory_IS.model$General_Normalized_NoteRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$General_Normalized_NoteRec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
 var OS = OutSystems.Internal;
 var General_Normalized_NoteRecord = (function (_super) {
@@ -8041,6 +8129,12 @@ return OS.DataTypes.DateTime.defaultValue;
 }, true), 
 this.attr("DisplayAge", "displayAgeAttr", "DisplayAge", false, false, OS.DataTypes.DataTypes.Boolean, function () {
 return false;
+}, true), 
+this.attr("Latitude", "latitudeAttr", "Latitude", false, false, OS.DataTypes.DataTypes.Decimal, function () {
+return OS.DataTypes.Decimal.defaultValue;
+}, true), 
+this.attr("Longitude", "longitudeAttr", "Longitude", false, false, OS.DataTypes.DataTypes.Decimal, function () {
+return OS.DataTypes.Decimal.defaultValue;
 }, true)
 ].concat(_super.attributesToDeclare.call(this));
 };
@@ -9103,6 +9197,129 @@ return Directory_CDNRecordList;
 APIDomain_Directory_ISModel.Directory_CDNRecordList = Directory_CDNRecordList;
 
 });
+define("APIDomain_Directory_IS.model$EventRec", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+var OS = OutSystems.Internal;
+var EventRec = (function (_super) {
+__extends(EventRec, _super);
+function EventRec(defaults) {
+_super.apply(this, arguments);
+}
+EventRec.attributesToDeclare = function () {
+return [
+this.attr("Score", "scoreAttr", "Score", false, false, OS.DataTypes.DataTypes.Decimal, function () {
+return OS.DataTypes.Decimal.defaultValue;
+}, true), 
+this.attr("Id", "idAttr", "Id", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("Type", "typeAttr", "Type", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("Source", "sourceAttr", "Source", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("EventId", "eventIdAttr", "EventId", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("EventHostId", "eventHostIdAttr", "EventHostId", false, false, OS.DataTypes.DataTypes.LongInteger, function () {
+return OS.DataTypes.LongInteger.defaultValue;
+}, true), 
+this.attr("IsPersonal", "isPersonalAttr", "IsPersonal", false, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
+}, true), 
+this.attr("Title", "titleAttr", "Title", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("Subtitle", "subtitleAttr", "Subtitle", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("EventTypeTitle", "eventTypeTitleAttr", "EventTypeTitle", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("StartDate", "startDateAttr", "StartDate", false, false, OS.DataTypes.DataTypes.DateTime, function () {
+return OS.DataTypes.DateTime.defaultValue;
+}, true), 
+this.attr("EndDate", "endDateAttr", "EndDate", false, false, OS.DataTypes.DataTypes.DateTime, function () {
+return OS.DataTypes.DateTime.defaultValue;
+}, true), 
+this.attr("StartUtc", "startUtcAttr", "StartUtc", false, false, OS.DataTypes.DataTypes.DateTime, function () {
+return OS.DataTypes.DateTime.defaultValue;
+}, true), 
+this.attr("EndUtc", "endUtcAttr", "EndUtc", false, false, OS.DataTypes.DataTypes.DateTime, function () {
+return OS.DataTypes.DateTime.defaultValue;
+}, true), 
+this.attr("TimeZone", "timeZoneAttr", "TimeZone", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("Location", "locationAttr", "Location", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("LocalityId", "localityIdAttr", "LocalityId", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("CountryCode", "countryCodeAttr", "CountryCode", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("HostSubdivisionId", "hostSubdivisionIdAttr", "HostSubdivisionId", false, false, OS.DataTypes.DataTypes.LongInteger, function () {
+return OS.DataTypes.LongInteger.defaultValue;
+}, true), 
+this.attr("HostHouseholderId", "hostHouseholderIdAttr", "HostHouseholderId", false, false, OS.DataTypes.DataTypes.LongInteger, function () {
+return OS.DataTypes.LongInteger.defaultValue;
+}, true), 
+this.attr("Latitude", "latitudeAttr", "Latitude", false, false, OS.DataTypes.DataTypes.Decimal, function () {
+return OS.DataTypes.Decimal.defaultValue;
+}, true), 
+this.attr("Longitude", "longitudeAttr", "Longitude", false, false, OS.DataTypes.DataTypes.Decimal, function () {
+return OS.DataTypes.Decimal.defaultValue;
+}, true)
+].concat(_super.attributesToDeclare.call(this));
+};
+EventRec.init();
+return EventRec;
+})(OS.DataTypes.GenericRecord);
+APIDomain_Directory_ISModel.EventRec = EventRec;
+
+});
+define("APIDomain_Directory_IS.model$EventRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$EventRec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+var OS = OutSystems.Internal;
+var EventRecord = (function (_super) {
+__extends(EventRecord, _super);
+function EventRecord(defaults) {
+_super.apply(this, arguments);
+}
+EventRecord.attributesToDeclare = function () {
+return [
+this.attr("Event", "eventAttr", "Event", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.EventRec());
+}, true, APIDomain_Directory_ISModel.EventRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+EventRecord.fromStructure = function (str) {
+return new EventRecord(new EventRecord.RecordClass({
+eventAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+EventRecord._isAnonymousRecord = true;
+EventRecord.UniqueId = "6b0cdeda-40b0-d923-5ae0-f81e4c644c43";
+EventRecord.init();
+return EventRecord;
+})(OS.DataTypes.GenericRecord);
+APIDomain_Directory_ISModel.EventRecord = EventRecord;
+
+});
+define("APIDomain_Directory_IS.model$EventRecordList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$EventRecord"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+var OS = OutSystems.Internal;
+var EventRecordList = (function (_super) {
+__extends(EventRecordList, _super);
+function EventRecordList(defaults) {
+_super.apply(this, arguments);
+}
+EventRecordList.itemType = APIDomain_Directory_ISModel.EventRecord;
+return EventRecordList;
+})(OS.DataTypes.GenericRecordList);
+APIDomain_Directory_ISModel.EventRecordList = EventRecordList;
+
+});
 define("APIDomain_Directory_IS.model$Locality_WithGeoJSONRec", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
 var OS = OutSystems.Internal;
 var Locality_WithGeoJSONRec = (function (_super) {
@@ -9529,6 +9746,100 @@ return HTTPHeader4Record;
 APIDomain_Directory_ISModel.HTTPHeader4Record = HTTPHeader4Record;
 
 });
+define("APIDomain_Directory_IS.model$HouseholdItem2Rec", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+var OS = OutSystems.Internal;
+var HouseholdItem2Rec = (function (_super) {
+__extends(HouseholdItem2Rec, _super);
+function HouseholdItem2Rec(defaults) {
+_super.apply(this, arguments);
+}
+HouseholdItem2Rec.attributesToDeclare = function () {
+return [
+this.attr("HouseholdId", "householdIdAttr", "HouseholdId", false, false, OS.DataTypes.DataTypes.LongInteger, function () {
+return OS.DataTypes.LongInteger.defaultValue;
+}, true), 
+this.attr("IsTaken", "isTakenAttr", "IsTaken", false, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
+}, true), 
+this.attr("Status", "statusAttr", "Status", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("Error", "errorAttr", "Error", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true)
+].concat(_super.attributesToDeclare.call(this));
+};
+HouseholdItem2Rec.init();
+return HouseholdItem2Rec;
+})(OS.DataTypes.GenericRecord);
+APIDomain_Directory_ISModel.HouseholdItem2Rec = HouseholdItem2Rec;
+
+});
+define("APIDomain_Directory_IS.model$HouseholdItem2List", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$HouseholdItem2Rec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+var OS = OutSystems.Internal;
+var HouseholdItem2List = (function (_super) {
+__extends(HouseholdItem2List, _super);
+function HouseholdItem2List(defaults) {
+_super.apply(this, arguments);
+}
+HouseholdItem2List.itemType = APIDomain_Directory_ISModel.HouseholdItem2Rec;
+return HouseholdItem2List;
+})(OS.DataTypes.GenericRecordList);
+APIDomain_Directory_ISModel.HouseholdItem2List = HouseholdItem2List;
+
+});
+define("APIDomain_Directory_IS.model$GetHouseholdTakenStatusByIdsGetResponseRec", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$HouseholdItem2List"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+var OS = OutSystems.Internal;
+var GetHouseholdTakenStatusByIdsGetResponseRec = (function (_super) {
+__extends(GetHouseholdTakenStatusByIdsGetResponseRec, _super);
+function GetHouseholdTakenStatusByIdsGetResponseRec(defaults) {
+_super.apply(this, arguments);
+}
+GetHouseholdTakenStatusByIdsGetResponseRec.attributesToDeclare = function () {
+return [
+this.attr("Households", "householdsAttr", "Households", false, false, OS.DataTypes.DataTypes.RecordList, function () {
+return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.HouseholdItem2List());
+}, true, APIDomain_Directory_ISModel.HouseholdItem2List)
+].concat(_super.attributesToDeclare.call(this));
+};
+GetHouseholdTakenStatusByIdsGetResponseRec.fromStructure = function (str) {
+return new GetHouseholdTakenStatusByIdsGetResponseRec(new GetHouseholdTakenStatusByIdsGetResponseRec.RecordClass({
+householdsAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+GetHouseholdTakenStatusByIdsGetResponseRec.init();
+return GetHouseholdTakenStatusByIdsGetResponseRec;
+})(OS.DataTypes.GenericRecord);
+APIDomain_Directory_ISModel.GetHouseholdTakenStatusByIdsGetResponseRec = GetHouseholdTakenStatusByIdsGetResponseRec;
+
+});
+define("APIDomain_Directory_IS.model$GetHouseholdTakenStatusByIdsGetResponseRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$GetHouseholdTakenStatusByIdsGetResponseRec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+var OS = OutSystems.Internal;
+var GetHouseholdTakenStatusByIdsGetResponseRecord = (function (_super) {
+__extends(GetHouseholdTakenStatusByIdsGetResponseRecord, _super);
+function GetHouseholdTakenStatusByIdsGetResponseRecord(defaults) {
+_super.apply(this, arguments);
+}
+GetHouseholdTakenStatusByIdsGetResponseRecord.attributesToDeclare = function () {
+return [
+this.attr("GetHouseholdTakenStatusByIdsGetResponse", "getHouseholdTakenStatusByIdsGetResponseAttr", "GetHouseholdTakenStatusByIdsGetResponse", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.GetHouseholdTakenStatusByIdsGetResponseRec());
+}, true, APIDomain_Directory_ISModel.GetHouseholdTakenStatusByIdsGetResponseRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+GetHouseholdTakenStatusByIdsGetResponseRecord.fromStructure = function (str) {
+return new GetHouseholdTakenStatusByIdsGetResponseRecord(new GetHouseholdTakenStatusByIdsGetResponseRecord.RecordClass({
+getHouseholdTakenStatusByIdsGetResponseAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+GetHouseholdTakenStatusByIdsGetResponseRecord._isAnonymousRecord = true;
+GetHouseholdTakenStatusByIdsGetResponseRecord.UniqueId = "30259a9b-515b-1001-bb4e-03febb0b8ba1";
+GetHouseholdTakenStatusByIdsGetResponseRecord.init();
+return GetHouseholdTakenStatusByIdsGetResponseRecord;
+})(OS.DataTypes.GenericRecord);
+APIDomain_Directory_ISModel.GetHouseholdTakenStatusByIdsGetResponseRecord = GetHouseholdTakenStatusByIdsGetResponseRecord;
+
+});
 define("APIDomain_Directory_IS.model$PhotoTagList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$PhotoTagRec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
 var OS = OutSystems.Internal;
 var PhotoTagList = (function (_super) {
@@ -9793,6 +10104,9 @@ return "";
 }, true), 
 this.attr("isDeceased", "isDeceasedAttr", "isDeceased", false, false, OS.DataTypes.DataTypes.Boolean, function () {
 return false;
+}, true), 
+this.attr("IsHidden", "isHiddenAttr", "IsHidden", false, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
 }, true)
 ].concat(_super.attributesToDeclare.call(this));
 };
@@ -9904,6 +10218,9 @@ this.attr("DisplayHousehold", "displayHouseholdAttr", "DisplayHousehold", false,
 return false;
 }, true), 
 this.attr("DisplayAge", "displayAgeAttr", "DisplayAge", false, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
+}, true), 
+this.attr("DisplayEmail", "displayEmailAttr", "DisplayEmail", false, false, OS.DataTypes.DataTypes.Boolean, function () {
 return false;
 }, true)
 ].concat(_super.attributesToDeclare.call(this));
@@ -10499,6 +10816,33 @@ return ObjectsIdsRec;
 APIDomain_Directory_ISModel.ObjectsIdsRec = ObjectsIdsRec;
 
 });
+define("APIDomain_Directory_IS.model$HouseholdItem2Record", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$HouseholdItem2Rec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+var OS = OutSystems.Internal;
+var HouseholdItem2Record = (function (_super) {
+__extends(HouseholdItem2Record, _super);
+function HouseholdItem2Record(defaults) {
+_super.apply(this, arguments);
+}
+HouseholdItem2Record.attributesToDeclare = function () {
+return [
+this.attr("HouseholdItem2", "householdItem2Attr", "HouseholdItem2", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.HouseholdItem2Rec());
+}, true, APIDomain_Directory_ISModel.HouseholdItem2Rec)
+].concat(_super.attributesToDeclare.call(this));
+};
+HouseholdItem2Record.fromStructure = function (str) {
+return new HouseholdItem2Record(new HouseholdItem2Record.RecordClass({
+householdItem2Attr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+HouseholdItem2Record._isAnonymousRecord = true;
+HouseholdItem2Record.UniqueId = "38a2162a-5f94-451c-d2ae-89dc8a4d2ed9";
+HouseholdItem2Record.init();
+return HouseholdItem2Record;
+})(OS.DataTypes.GenericRecord);
+APIDomain_Directory_ISModel.HouseholdItem2Record = HouseholdItem2Record;
+
+});
 define("APIDomain_Directory_IS.model$GetDirectoryimagesResponseRec", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
 var OS = OutSystems.Internal;
 var GetDirectoryimagesResponseRec = (function (_super) {
@@ -11064,38 +11408,6 @@ return SenderList;
 APIDomain_Directory_ISModel.SenderList = SenderList;
 
 });
-define("APIDomain_Directory_IS.model$HTTPResponse8Rec", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$HTTPHeader8List"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
-var OS = OutSystems.Internal;
-var HTTPResponse8Rec = (function (_super) {
-__extends(HTTPResponse8Rec, _super);
-function HTTPResponse8Rec(defaults) {
-_super.apply(this, arguments);
-}
-HTTPResponse8Rec.attributesToDeclare = function () {
-return [
-this.attr("StatusCode", "statusCodeAttr", "StatusCode", false, false, OS.DataTypes.DataTypes.Integer, function () {
-return 0;
-}, true), 
-this.attr("StatusLine", "statusLineAttr", "StatusLine", false, false, OS.DataTypes.DataTypes.Text, function () {
-return "";
-}, true), 
-this.attr("Headers", "headersAttr", "Headers", false, false, OS.DataTypes.DataTypes.RecordList, function () {
-return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.HTTPHeader8List());
-}, true, APIDomain_Directory_ISModel.HTTPHeader8List), 
-this.attr("ResponseText", "responseTextAttr", "ResponseText", false, false, OS.DataTypes.DataTypes.Text, function () {
-return "";
-}, true), 
-this.attr("ResponseBinary", "responseBinaryAttr", "ResponseBinary", false, false, OS.DataTypes.DataTypes.BinaryData, function () {
-return OS.DataTypes.BinaryData.defaultValue;
-}, true)
-].concat(_super.attributesToDeclare.call(this));
-};
-HTTPResponse8Rec.init();
-return HTTPResponse8Rec;
-})(OS.DataTypes.GenericRecord);
-APIDomain_Directory_ISModel.HTTPResponse8Rec = HTTPResponse8Rec;
-
-});
 define("APIDomain_Directory_IS.model$PersonalEvents_GetEvent_POST_RequestRec", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
 var OS = OutSystems.Internal;
 var PersonalEvents_GetEvent_POST_RequestRec = (function (_super) {
@@ -11220,33 +11532,6 @@ Map_VisibilityPreferencesRecordList.itemType = APIDomain_Directory_ISModel.Map_V
 return Map_VisibilityPreferencesRecordList;
 })(OS.DataTypes.GenericRecordList);
 APIDomain_Directory_ISModel.Map_VisibilityPreferencesRecordList = Map_VisibilityPreferencesRecordList;
-
-});
-define("APIDomain_Directory_IS.model$HouseholdItemRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$HouseholdItemRec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
-var OS = OutSystems.Internal;
-var HouseholdItemRecord = (function (_super) {
-__extends(HouseholdItemRecord, _super);
-function HouseholdItemRecord(defaults) {
-_super.apply(this, arguments);
-}
-HouseholdItemRecord.attributesToDeclare = function () {
-return [
-this.attr("HouseholdItem", "householdItemAttr", "HouseholdItem", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.HouseholdItemRec());
-}, true, APIDomain_Directory_ISModel.HouseholdItemRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-HouseholdItemRecord.fromStructure = function (str) {
-return new HouseholdItemRecord(new HouseholdItemRecord.RecordClass({
-householdItemAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-HouseholdItemRecord._isAnonymousRecord = true;
-HouseholdItemRecord.UniqueId = "406f375a-41d6-9bd5-90a8-535014836353";
-HouseholdItemRecord.init();
-return HouseholdItemRecord;
-})(OS.DataTypes.GenericRecord);
-APIDomain_Directory_ISModel.HouseholdItemRecord = HouseholdItemRecord;
 
 });
 define("APIDomain_Directory_IS.model$ChangeRequestsRec", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
@@ -11623,6 +11908,264 @@ LocalitySimplestRecordList.itemType = APIDomain_Directory_ISModel.LocalitySimple
 return LocalitySimplestRecordList;
 })(OS.DataTypes.GenericRecordList);
 APIDomain_Directory_ISModel.LocalitySimplestRecordList = LocalitySimplestRecordList;
+
+});
+define("APIDomain_Directory_IS.model$Household2Rec", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+var OS = OutSystems.Internal;
+var Household2Rec = (function (_super) {
+__extends(Household2Rec, _super);
+function Household2Rec(defaults) {
+_super.apply(this, arguments);
+}
+Household2Rec.attributesToDeclare = function () {
+return [
+this.attr("Score", "scoreAttr", "Score", false, false, OS.DataTypes.DataTypes.Decimal, function () {
+return OS.DataTypes.Decimal.defaultValue;
+}, true), 
+this.attr("Id", "idAttr", "Id", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("HouseholderId", "householderIdAttr", "HouseholderId", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("Name", "nameAttr", "Name", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("FirstName", "firstNameAttr", "FirstName", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("LastName", "lastNameAttr", "LastName", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("MaidenName", "maidenNameAttr", "MaidenName", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("AdditionalInformation", "additionalInformationAttr", "AdditionalInformation", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("Location", "locationAttr", "Location", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("Type", "typeAttr", "Type", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("MonthDayOfBirth", "monthDayOfBirthAttr", "MonthDayOfBirth", false, false, OS.DataTypes.DataTypes.LongInteger, function () {
+return OS.DataTypes.LongInteger.defaultValue;
+}, true), 
+this.attr("Latitude", "latitudeAttr", "Latitude", false, false, OS.DataTypes.DataTypes.Decimal, function () {
+return OS.DataTypes.Decimal.defaultValue;
+}, true), 
+this.attr("Longitude", "longitudeAttr", "Longitude", false, false, OS.DataTypes.DataTypes.Decimal, function () {
+return OS.DataTypes.Decimal.defaultValue;
+}, true), 
+this.attr("CountryLatitude", "countryLatitudeAttr", "CountryLatitude", false, false, OS.DataTypes.DataTypes.Decimal, function () {
+return OS.DataTypes.Decimal.defaultValue;
+}, true), 
+this.attr("CountryLongitude", "countryLongitudeAttr", "CountryLongitude", false, false, OS.DataTypes.DataTypes.Decimal, function () {
+return OS.DataTypes.Decimal.defaultValue;
+}, true), 
+this.attr("FormattedAddress", "formattedAddressAttr", "FormattedAddress", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("DisplayHouseholdName", "displayHouseholdNameAttr", "DisplayHouseholdName", false, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
+}, true), 
+this.attr("DisplayAddress", "displayAddressAttr", "DisplayAddress", false, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
+}, true), 
+this.attr("RecordDisabled", "recordDisabledAttr", "RecordDisabled", false, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
+}, true)
+].concat(_super.attributesToDeclare.call(this));
+};
+Household2Rec.init();
+return Household2Rec;
+})(OS.DataTypes.GenericRecord);
+APIDomain_Directory_ISModel.Household2Rec = Household2Rec;
+
+});
+define("APIDomain_Directory_IS.model$Household2List", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$Household2Rec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+var OS = OutSystems.Internal;
+var Household2List = (function (_super) {
+__extends(Household2List, _super);
+function Household2List(defaults) {
+_super.apply(this, arguments);
+}
+Household2List.itemType = APIDomain_Directory_ISModel.Household2Rec;
+return Household2List;
+})(OS.DataTypes.GenericRecordList);
+APIDomain_Directory_ISModel.Household2List = Household2List;
+
+});
+define("APIDomain_Directory_IS.model$Place2List", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$Place2Rec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+var OS = OutSystems.Internal;
+var Place2List = (function (_super) {
+__extends(Place2List, _super);
+function Place2List(defaults) {
+_super.apply(this, arguments);
+}
+Place2List.itemType = APIDomain_Directory_ISModel.Place2Rec;
+return Place2List;
+})(OS.DataTypes.GenericRecordList);
+APIDomain_Directory_ISModel.Place2List = Place2List;
+
+});
+define("APIDomain_Directory_IS.model$EventList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$EventRec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+var OS = OutSystems.Internal;
+var EventList = (function (_super) {
+__extends(EventList, _super);
+function EventList(defaults) {
+_super.apply(this, arguments);
+}
+EventList.itemType = APIDomain_Directory_ISModel.EventRec;
+return EventList;
+})(OS.DataTypes.GenericRecordList);
+APIDomain_Directory_ISModel.EventList = EventList;
+
+});
+define("APIDomain_Directory_IS.model$SchoolList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$SchoolRec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+var OS = OutSystems.Internal;
+var SchoolList = (function (_super) {
+__extends(SchoolList, _super);
+function SchoolList(defaults) {
+_super.apply(this, arguments);
+}
+SchoolList.itemType = APIDomain_Directory_ISModel.SchoolRec;
+return SchoolList;
+})(OS.DataTypes.GenericRecordList);
+APIDomain_Directory_ISModel.SchoolList = SchoolList;
+
+});
+define("APIDomain_Directory_IS.model$Member3Rec", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+var OS = OutSystems.Internal;
+var Member3Rec = (function (_super) {
+__extends(Member3Rec, _super);
+function Member3Rec(defaults) {
+_super.apply(this, arguments);
+}
+Member3Rec.attributesToDeclare = function () {
+return [
+this.attr("Score", "scoreAttr", "Score", false, false, OS.DataTypes.DataTypes.Decimal, function () {
+return OS.DataTypes.Decimal.defaultValue;
+}, true), 
+this.attr("Id", "idAttr", "Id", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("HouseholderId", "householderIdAttr", "HouseholderId", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("Name", "nameAttr", "Name", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("FirstName", "firstNameAttr", "FirstName", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("LastName", "lastNameAttr", "LastName", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("AdditionalInformation", "additionalInformationAttr", "AdditionalInformation", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("Location", "locationAttr", "Location", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("Type", "typeAttr", "Type", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("MonthDayOfBirth", "monthDayOfBirthAttr", "MonthDayOfBirth", false, false, OS.DataTypes.DataTypes.LongInteger, function () {
+return OS.DataTypes.LongInteger.defaultValue;
+}, true), 
+this.attr("CountryLatitude", "countryLatitudeAttr", "CountryLatitude", false, false, OS.DataTypes.DataTypes.Decimal, function () {
+return OS.DataTypes.Decimal.defaultValue;
+}, true), 
+this.attr("CountryLongitude", "countryLongitudeAttr", "CountryLongitude", false, false, OS.DataTypes.DataTypes.Decimal, function () {
+return OS.DataTypes.Decimal.defaultValue;
+}, true), 
+this.attr("RecordDisabled", "recordDisabledAttr", "RecordDisabled", false, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
+}, true), 
+this.attr("MaidenName", "maidenNameAttr", "MaidenName", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("Latitude", "latitudeAttr", "Latitude", false, false, OS.DataTypes.DataTypes.Decimal, function () {
+return OS.DataTypes.Decimal.defaultValue;
+}, true), 
+this.attr("Longitude", "longitudeAttr", "Longitude", false, false, OS.DataTypes.DataTypes.Decimal, function () {
+return OS.DataTypes.Decimal.defaultValue;
+}, true), 
+this.attr("FormattedAddress", "formattedAddressAttr", "FormattedAddress", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("DisplayHouseholdName", "displayHouseholdNameAttr", "DisplayHouseholdName", false, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
+}, true), 
+this.attr("DisplayAddress", "displayAddressAttr", "DisplayAddress", false, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
+}, true)
+].concat(_super.attributesToDeclare.call(this));
+};
+Member3Rec.init();
+return Member3Rec;
+})(OS.DataTypes.GenericRecord);
+APIDomain_Directory_ISModel.Member3Rec = Member3Rec;
+
+});
+define("APIDomain_Directory_IS.model$Member3List", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$Member3Rec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+var OS = OutSystems.Internal;
+var Member3List = (function (_super) {
+__extends(Member3List, _super);
+function Member3List(defaults) {
+_super.apply(this, arguments);
+}
+Member3List.itemType = APIDomain_Directory_ISModel.Member3Rec;
+return Member3List;
+})(OS.DataTypes.GenericRecordList);
+APIDomain_Directory_ISModel.Member3List = Member3List;
+
+});
+define("APIDomain_Directory_IS.model$App_GlobalSearch_GETResponseRec", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$Household2List", "APIDomain_Directory_IS.model$Place2List", "APIDomain_Directory_IS.model$EventList", "APIDomain_Directory_IS.model$SchoolList", "APIDomain_Directory_IS.model$Member3List"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+var OS = OutSystems.Internal;
+var App_GlobalSearch_GETResponseRec = (function (_super) {
+__extends(App_GlobalSearch_GETResponseRec, _super);
+function App_GlobalSearch_GETResponseRec(defaults) {
+_super.apply(this, arguments);
+}
+App_GlobalSearch_GETResponseRec.attributesToDeclare = function () {
+return [
+this.attr("Households", "householdsAttr", "Households", false, false, OS.DataTypes.DataTypes.RecordList, function () {
+return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.Household2List());
+}, true, APIDomain_Directory_ISModel.Household2List), 
+this.attr("Places", "placesAttr", "Places", false, false, OS.DataTypes.DataTypes.RecordList, function () {
+return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.Place2List());
+}, true, APIDomain_Directory_ISModel.Place2List), 
+this.attr("Events", "eventsAttr", "Events", false, false, OS.DataTypes.DataTypes.RecordList, function () {
+return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.EventList());
+}, true, APIDomain_Directory_ISModel.EventList), 
+this.attr("Schools", "schoolsAttr", "Schools", false, false, OS.DataTypes.DataTypes.RecordList, function () {
+return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.SchoolList());
+}, true, APIDomain_Directory_ISModel.SchoolList), 
+this.attr("Members", "membersAttr", "Members", false, false, OS.DataTypes.DataTypes.RecordList, function () {
+return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.Member3List());
+}, true, APIDomain_Directory_ISModel.Member3List)
+].concat(_super.attributesToDeclare.call(this));
+};
+App_GlobalSearch_GETResponseRec.init();
+return App_GlobalSearch_GETResponseRec;
+})(OS.DataTypes.GenericRecord);
+APIDomain_Directory_ISModel.App_GlobalSearch_GETResponseRec = App_GlobalSearch_GETResponseRec;
+
+});
+define("APIDomain_Directory_IS.model$App_GlobalSearch_GETResponseList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$App_GlobalSearch_GETResponseRec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+var OS = OutSystems.Internal;
+var App_GlobalSearch_GETResponseList = (function (_super) {
+__extends(App_GlobalSearch_GETResponseList, _super);
+function App_GlobalSearch_GETResponseList(defaults) {
+_super.apply(this, arguments);
+}
+App_GlobalSearch_GETResponseList.itemType = APIDomain_Directory_ISModel.App_GlobalSearch_GETResponseRec;
+return App_GlobalSearch_GETResponseList;
+})(OS.DataTypes.GenericRecordList);
+APIDomain_Directory_ISModel.App_GlobalSearch_GETResponseList = App_GlobalSearch_GETResponseList;
 
 });
 define("APIDomain_Directory_IS.model$Business_GetCommunityBusiness_GETResponseRec", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$OpeningHourItemList", "APIDomain_Directory_IS.model$BusinessLinkItemList", "APIDomain_Directory_IS.model$CDNRec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
@@ -12562,6 +13105,9 @@ return "";
 }, true), 
 this.attr("Deceased", "deceasedAttr", "deceased", false, false, OS.DataTypes.DataTypes.Boolean, function () {
 return false;
+}, true), 
+this.attr("Hidden", "hiddenAttr", "Hidden", false, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
 }, true)
 ].concat(_super.attributesToDeclare.call(this));
 };
@@ -13113,6 +13659,19 @@ Directory_LocationDetailsRecordList.itemType = APIDomain_Directory_ISModel.Direc
 return Directory_LocationDetailsRecordList;
 })(OS.DataTypes.GenericRecordList);
 APIDomain_Directory_ISModel.Directory_LocationDetailsRecordList = Directory_LocationDetailsRecordList;
+
+});
+define("APIDomain_Directory_IS.model$HouseholdItem2RecordList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$HouseholdItem2Record"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+var OS = OutSystems.Internal;
+var HouseholdItem2RecordList = (function (_super) {
+__extends(HouseholdItem2RecordList, _super);
+function HouseholdItem2RecordList(defaults) {
+_super.apply(this, arguments);
+}
+HouseholdItem2RecordList.itemType = APIDomain_Directory_ISModel.HouseholdItem2Record;
+return HouseholdItem2RecordList;
+})(OS.DataTypes.GenericRecordList);
+APIDomain_Directory_ISModel.HouseholdItem2RecordList = HouseholdItem2RecordList;
 
 });
 define("APIDomain_Directory_IS.model$BookmarksNotesC2_GETList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$BookmarksNotesC2_GETRec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
@@ -13754,6 +14313,19 @@ Directory_ImageCaptionList.itemType = APIDomain_Directory_ISModel.Directory_Imag
 return Directory_ImageCaptionList;
 })(OS.DataTypes.GenericRecordList);
 APIDomain_Directory_ISModel.Directory_ImageCaptionList = Directory_ImageCaptionList;
+
+});
+define("APIDomain_Directory_IS.model$GetHouseholdTakenStatusByIdsGetResponseList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$GetHouseholdTakenStatusByIdsGetResponseRec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+var OS = OutSystems.Internal;
+var GetHouseholdTakenStatusByIdsGetResponseList = (function (_super) {
+__extends(GetHouseholdTakenStatusByIdsGetResponseList, _super);
+function GetHouseholdTakenStatusByIdsGetResponseList(defaults) {
+_super.apply(this, arguments);
+}
+GetHouseholdTakenStatusByIdsGetResponseList.itemType = APIDomain_Directory_ISModel.GetHouseholdTakenStatusByIdsGetResponseRec;
+return GetHouseholdTakenStatusByIdsGetResponseList;
+})(OS.DataTypes.GenericRecordList);
+APIDomain_Directory_ISModel.GetHouseholdTakenStatusByIdsGetResponseList = GetHouseholdTakenStatusByIdsGetResponseList;
 
 });
 define("APIDomain_Directory_IS.model$Directory_HouseholdTimezoneRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$Directory_HouseholdTimezoneRec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
@@ -15657,71 +16229,6 @@ return SubdivisionLocalityRecord;
 APIDomain_Directory_ISModel.SubdivisionLocalityRecord = SubdivisionLocalityRecord;
 
 });
-define("APIDomain_Directory_IS.model$HouseholdTakenStatusByIds_V1_GetResponseRec", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$HouseholdItemList"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
-var OS = OutSystems.Internal;
-var HouseholdTakenStatusByIds_V1_GetResponseRec = (function (_super) {
-__extends(HouseholdTakenStatusByIds_V1_GetResponseRec, _super);
-function HouseholdTakenStatusByIds_V1_GetResponseRec(defaults) {
-_super.apply(this, arguments);
-}
-HouseholdTakenStatusByIds_V1_GetResponseRec.attributesToDeclare = function () {
-return [
-this.attr("Households", "householdsAttr", "Households", false, false, OS.DataTypes.DataTypes.RecordList, function () {
-return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.HouseholdItemList());
-}, true, APIDomain_Directory_ISModel.HouseholdItemList)
-].concat(_super.attributesToDeclare.call(this));
-};
-HouseholdTakenStatusByIds_V1_GetResponseRec.fromStructure = function (str) {
-return new HouseholdTakenStatusByIds_V1_GetResponseRec(new HouseholdTakenStatusByIds_V1_GetResponseRec.RecordClass({
-householdsAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-HouseholdTakenStatusByIds_V1_GetResponseRec.init();
-return HouseholdTakenStatusByIds_V1_GetResponseRec;
-})(OS.DataTypes.GenericRecord);
-APIDomain_Directory_ISModel.HouseholdTakenStatusByIds_V1_GetResponseRec = HouseholdTakenStatusByIds_V1_GetResponseRec;
-
-});
-define("APIDomain_Directory_IS.model$HouseholdTakenStatusByIds_V1_GetResponseRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$HouseholdTakenStatusByIds_V1_GetResponseRec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
-var OS = OutSystems.Internal;
-var HouseholdTakenStatusByIds_V1_GetResponseRecord = (function (_super) {
-__extends(HouseholdTakenStatusByIds_V1_GetResponseRecord, _super);
-function HouseholdTakenStatusByIds_V1_GetResponseRecord(defaults) {
-_super.apply(this, arguments);
-}
-HouseholdTakenStatusByIds_V1_GetResponseRecord.attributesToDeclare = function () {
-return [
-this.attr("HouseholdTakenStatusByIds_V1_GetResponse", "householdTakenStatusByIds_V1_GetResponseAttr", "HouseholdTakenStatusByIds_V1_GetResponse", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.HouseholdTakenStatusByIds_V1_GetResponseRec());
-}, true, APIDomain_Directory_ISModel.HouseholdTakenStatusByIds_V1_GetResponseRec)
-].concat(_super.attributesToDeclare.call(this));
-};
-HouseholdTakenStatusByIds_V1_GetResponseRecord.fromStructure = function (str) {
-return new HouseholdTakenStatusByIds_V1_GetResponseRecord(new HouseholdTakenStatusByIds_V1_GetResponseRecord.RecordClass({
-householdTakenStatusByIds_V1_GetResponseAttr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-HouseholdTakenStatusByIds_V1_GetResponseRecord._isAnonymousRecord = true;
-HouseholdTakenStatusByIds_V1_GetResponseRecord.UniqueId = "ee95c4e1-709b-3771-54ae-559d4efd7f1e";
-HouseholdTakenStatusByIds_V1_GetResponseRecord.init();
-return HouseholdTakenStatusByIds_V1_GetResponseRecord;
-})(OS.DataTypes.GenericRecord);
-APIDomain_Directory_ISModel.HouseholdTakenStatusByIds_V1_GetResponseRecord = HouseholdTakenStatusByIds_V1_GetResponseRecord;
-
-});
-define("APIDomain_Directory_IS.model$HouseholdTakenStatusByIds_V1_GetResponseRecordList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$HouseholdTakenStatusByIds_V1_GetResponseRecord"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
-var OS = OutSystems.Internal;
-var HouseholdTakenStatusByIds_V1_GetResponseRecordList = (function (_super) {
-__extends(HouseholdTakenStatusByIds_V1_GetResponseRecordList, _super);
-function HouseholdTakenStatusByIds_V1_GetResponseRecordList(defaults) {
-_super.apply(this, arguments);
-}
-HouseholdTakenStatusByIds_V1_GetResponseRecordList.itemType = APIDomain_Directory_ISModel.HouseholdTakenStatusByIds_V1_GetResponseRecord;
-return HouseholdTakenStatusByIds_V1_GetResponseRecordList;
-})(OS.DataTypes.GenericRecordList);
-APIDomain_Directory_ISModel.HouseholdTakenStatusByIds_V1_GetResponseRecordList = HouseholdTakenStatusByIds_V1_GetResponseRecordList;
-
-});
 define("APIDomain_Directory_IS.model$MemberProfile_GETList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$MemberProfile_GETRec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
 var OS = OutSystems.Internal;
 var MemberProfile_GETList = (function (_super) {
@@ -16010,6 +16517,33 @@ return Directory_Setting_ParsedRecordList;
 APIDomain_Directory_ISModel.Directory_Setting_ParsedRecordList = Directory_Setting_ParsedRecordList;
 
 });
+define("APIDomain_Directory_IS.model$Household2Record", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$Household2Rec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+var OS = OutSystems.Internal;
+var Household2Record = (function (_super) {
+__extends(Household2Record, _super);
+function Household2Record(defaults) {
+_super.apply(this, arguments);
+}
+Household2Record.attributesToDeclare = function () {
+return [
+this.attr("Household2", "household2Attr", "Household2", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.Household2Rec());
+}, true, APIDomain_Directory_ISModel.Household2Rec)
+].concat(_super.attributesToDeclare.call(this));
+};
+Household2Record.fromStructure = function (str) {
+return new Household2Record(new Household2Record.RecordClass({
+household2Attr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+Household2Record._isAnonymousRecord = true;
+Household2Record.UniqueId = "7180437a-0c7a-fb32-a7fb-dfc78623af0f";
+Household2Record.init();
+return Household2Record;
+})(OS.DataTypes.GenericRecord);
+APIDomain_Directory_ISModel.Household2Record = Household2Record;
+
+});
 define("APIDomain_Directory_IS.model$Directory_UpdateFeed_ResponseRecordList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$Directory_UpdateFeed_ResponseRecord"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
 var OS = OutSystems.Internal;
 var Directory_UpdateFeed_ResponseRecordList = (function (_super) {
@@ -16200,6 +16734,46 @@ Locality3List.itemType = APIDomain_Directory_ISModel.Locality3Rec;
 return Locality3List;
 })(OS.DataTypes.GenericRecordList);
 APIDomain_Directory_ISModel.Locality3List = Locality3List;
+
+});
+define("APIDomain_Directory_IS.model$Member3Record", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$Member3Rec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+var OS = OutSystems.Internal;
+var Member3Record = (function (_super) {
+__extends(Member3Record, _super);
+function Member3Record(defaults) {
+_super.apply(this, arguments);
+}
+Member3Record.attributesToDeclare = function () {
+return [
+this.attr("Member3", "member3Attr", "Member3", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.Member3Rec());
+}, true, APIDomain_Directory_ISModel.Member3Rec)
+].concat(_super.attributesToDeclare.call(this));
+};
+Member3Record.fromStructure = function (str) {
+return new Member3Record(new Member3Record.RecordClass({
+member3Attr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+Member3Record._isAnonymousRecord = true;
+Member3Record.UniqueId = "fd59836f-04a1-45e8-57c0-36eb454ca23b";
+Member3Record.init();
+return Member3Record;
+})(OS.DataTypes.GenericRecord);
+APIDomain_Directory_ISModel.Member3Record = Member3Record;
+
+});
+define("APIDomain_Directory_IS.model$Member3RecordList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$Member3Record"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+var OS = OutSystems.Internal;
+var Member3RecordList = (function (_super) {
+__extends(Member3RecordList, _super);
+function Member3RecordList(defaults) {
+_super.apply(this, arguments);
+}
+Member3RecordList.itemType = APIDomain_Directory_ISModel.Member3Record;
+return Member3RecordList;
+})(OS.DataTypes.GenericRecordList);
+APIDomain_Directory_ISModel.Member3RecordList = Member3RecordList;
 
 });
 define("APIDomain_Directory_IS.model$MapVisibilityPreferencesSingleMemberRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$MapVisibilityPreferencesSingleMemberRec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
@@ -16512,46 +17086,6 @@ return GetVisibilityPreferencesResponseRecordList;
 APIDomain_Directory_ISModel.GetVisibilityPreferencesResponseRecordList = GetVisibilityPreferencesResponseRecordList;
 
 });
-define("APIDomain_Directory_IS.model$HTTPResponse8Record", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$HTTPResponse8Rec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
-var OS = OutSystems.Internal;
-var HTTPResponse8Record = (function (_super) {
-__extends(HTTPResponse8Record, _super);
-function HTTPResponse8Record(defaults) {
-_super.apply(this, arguments);
-}
-HTTPResponse8Record.attributesToDeclare = function () {
-return [
-this.attr("HTTPResponse8", "hTTPResponse8Attr", "HTTPResponse8", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.HTTPResponse8Rec());
-}, true, APIDomain_Directory_ISModel.HTTPResponse8Rec)
-].concat(_super.attributesToDeclare.call(this));
-};
-HTTPResponse8Record.fromStructure = function (str) {
-return new HTTPResponse8Record(new HTTPResponse8Record.RecordClass({
-hTTPResponse8Attr: OS.DataTypes.ImmutableBase.getData(str)
-}));
-};
-HTTPResponse8Record._isAnonymousRecord = true;
-HTTPResponse8Record.UniqueId = "97170b35-dfe7-35b6-d789-dac0fde41e3b";
-HTTPResponse8Record.init();
-return HTTPResponse8Record;
-})(OS.DataTypes.GenericRecord);
-APIDomain_Directory_ISModel.HTTPResponse8Record = HTTPResponse8Record;
-
-});
-define("APIDomain_Directory_IS.model$HTTPResponse8RecordList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$HTTPResponse8Record"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
-var OS = OutSystems.Internal;
-var HTTPResponse8RecordList = (function (_super) {
-__extends(HTTPResponse8RecordList, _super);
-function HTTPResponse8RecordList(defaults) {
-_super.apply(this, arguments);
-}
-HTTPResponse8RecordList.itemType = APIDomain_Directory_ISModel.HTTPResponse8Record;
-return HTTPResponse8RecordList;
-})(OS.DataTypes.GenericRecordList);
-APIDomain_Directory_ISModel.HTTPResponse8RecordList = HTTPResponse8RecordList;
-
-});
 define("APIDomain_Directory_IS.model$ConfigRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$ConfigRec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
 var OS = OutSystems.Internal;
 var ConfigRecord = (function (_super) {
@@ -16590,19 +17124,6 @@ ConfigRecordList.itemType = APIDomain_Directory_ISModel.ConfigRecord;
 return ConfigRecordList;
 })(OS.DataTypes.GenericRecordList);
 APIDomain_Directory_ISModel.ConfigRecordList = ConfigRecordList;
-
-});
-define("APIDomain_Directory_IS.model$HTTPHeader8RecordList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$HTTPHeader8Record"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
-var OS = OutSystems.Internal;
-var HTTPHeader8RecordList = (function (_super) {
-__extends(HTTPHeader8RecordList, _super);
-function HTTPHeader8RecordList(defaults) {
-_super.apply(this, arguments);
-}
-HTTPHeader8RecordList.itemType = APIDomain_Directory_ISModel.HTTPHeader8Record;
-return HTTPHeader8RecordList;
-})(OS.DataTypes.GenericRecordList);
-APIDomain_Directory_ISModel.HTTPHeader8RecordList = HTTPHeader8RecordList;
 
 });
 define("APIDomain_Directory_IS.model$PersonalEvents_Data_RecurrenceRecordList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$PersonalEvents_Data_RecurrenceRecord"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
@@ -16711,14 +17232,14 @@ return PlaceList;
 APIDomain_Directory_ISModel.PlaceList = PlaceList;
 
 });
-define("APIDomain_Directory_IS.model$Search_Directory_ViewResponseRec", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$HouseholdList", "APIDomain_Directory_IS.model$Member2List", "APIDomain_Directory_IS.model$PlaceList"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+define("APIDomain_Directory_IS.model$Deprecated_Search_Directory_ViewResponseRec", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$HouseholdList", "APIDomain_Directory_IS.model$Member2List", "APIDomain_Directory_IS.model$PlaceList"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
 var OS = OutSystems.Internal;
-var Search_Directory_ViewResponseRec = (function (_super) {
-__extends(Search_Directory_ViewResponseRec, _super);
-function Search_Directory_ViewResponseRec(defaults) {
+var Deprecated_Search_Directory_ViewResponseRec = (function (_super) {
+__extends(Deprecated_Search_Directory_ViewResponseRec, _super);
+function Deprecated_Search_Directory_ViewResponseRec(defaults) {
 _super.apply(this, arguments);
 }
-Search_Directory_ViewResponseRec.attributesToDeclare = function () {
+Deprecated_Search_Directory_ViewResponseRec.attributesToDeclare = function () {
 return [
 this.attr("Households", "householdsAttr", "households", false, false, OS.DataTypes.DataTypes.RecordList, function () {
 return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.HouseholdList());
@@ -16731,50 +17252,50 @@ return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.PlaceL
 }, true, APIDomain_Directory_ISModel.PlaceList)
 ].concat(_super.attributesToDeclare.call(this));
 };
-Search_Directory_ViewResponseRec.init();
-return Search_Directory_ViewResponseRec;
+Deprecated_Search_Directory_ViewResponseRec.init();
+return Deprecated_Search_Directory_ViewResponseRec;
 })(OS.DataTypes.GenericRecord);
-APIDomain_Directory_ISModel.Search_Directory_ViewResponseRec = Search_Directory_ViewResponseRec;
+APIDomain_Directory_ISModel.Deprecated_Search_Directory_ViewResponseRec = Deprecated_Search_Directory_ViewResponseRec;
 
 });
-define("APIDomain_Directory_IS.model$Search_Directory_ViewResponseRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$Search_Directory_ViewResponseRec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+define("APIDomain_Directory_IS.model$Deprecated_Search_Directory_ViewResponseRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$Deprecated_Search_Directory_ViewResponseRec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
 var OS = OutSystems.Internal;
-var Search_Directory_ViewResponseRecord = (function (_super) {
-__extends(Search_Directory_ViewResponseRecord, _super);
-function Search_Directory_ViewResponseRecord(defaults) {
+var Deprecated_Search_Directory_ViewResponseRecord = (function (_super) {
+__extends(Deprecated_Search_Directory_ViewResponseRecord, _super);
+function Deprecated_Search_Directory_ViewResponseRecord(defaults) {
 _super.apply(this, arguments);
 }
-Search_Directory_ViewResponseRecord.attributesToDeclare = function () {
+Deprecated_Search_Directory_ViewResponseRecord.attributesToDeclare = function () {
 return [
-this.attr("Search_Directory_ViewResponse", "search_Directory_ViewResponseAttr", "Search_Directory_ViewResponse", false, false, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.Search_Directory_ViewResponseRec());
-}, true, APIDomain_Directory_ISModel.Search_Directory_ViewResponseRec)
+this.attr("Deprecated_Search_Directory_ViewResponse", "deprecated_Search_Directory_ViewResponseAttr", "Deprecated_Search_Directory_ViewResponse", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.Deprecated_Search_Directory_ViewResponseRec());
+}, true, APIDomain_Directory_ISModel.Deprecated_Search_Directory_ViewResponseRec)
 ].concat(_super.attributesToDeclare.call(this));
 };
-Search_Directory_ViewResponseRecord.fromStructure = function (str) {
-return new Search_Directory_ViewResponseRecord(new Search_Directory_ViewResponseRecord.RecordClass({
-search_Directory_ViewResponseAttr: OS.DataTypes.ImmutableBase.getData(str)
+Deprecated_Search_Directory_ViewResponseRecord.fromStructure = function (str) {
+return new Deprecated_Search_Directory_ViewResponseRecord(new Deprecated_Search_Directory_ViewResponseRecord.RecordClass({
+deprecated_Search_Directory_ViewResponseAttr: OS.DataTypes.ImmutableBase.getData(str)
 }));
 };
-Search_Directory_ViewResponseRecord._isAnonymousRecord = true;
-Search_Directory_ViewResponseRecord.UniqueId = "c0655c71-87c6-46fc-51e5-ae4b69645bf1";
-Search_Directory_ViewResponseRecord.init();
-return Search_Directory_ViewResponseRecord;
+Deprecated_Search_Directory_ViewResponseRecord._isAnonymousRecord = true;
+Deprecated_Search_Directory_ViewResponseRecord.UniqueId = "c0655c71-87c6-46fc-51e5-ae4b69645bf1";
+Deprecated_Search_Directory_ViewResponseRecord.init();
+return Deprecated_Search_Directory_ViewResponseRecord;
 })(OS.DataTypes.GenericRecord);
-APIDomain_Directory_ISModel.Search_Directory_ViewResponseRecord = Search_Directory_ViewResponseRecord;
+APIDomain_Directory_ISModel.Deprecated_Search_Directory_ViewResponseRecord = Deprecated_Search_Directory_ViewResponseRecord;
 
 });
-define("APIDomain_Directory_IS.model$Search_Directory_ViewResponseRecordList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$Search_Directory_ViewResponseRecord"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+define("APIDomain_Directory_IS.model$Deprecated_Search_Directory_ViewResponseRecordList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$Deprecated_Search_Directory_ViewResponseRecord"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
 var OS = OutSystems.Internal;
-var Search_Directory_ViewResponseRecordList = (function (_super) {
-__extends(Search_Directory_ViewResponseRecordList, _super);
-function Search_Directory_ViewResponseRecordList(defaults) {
+var Deprecated_Search_Directory_ViewResponseRecordList = (function (_super) {
+__extends(Deprecated_Search_Directory_ViewResponseRecordList, _super);
+function Deprecated_Search_Directory_ViewResponseRecordList(defaults) {
 _super.apply(this, arguments);
 }
-Search_Directory_ViewResponseRecordList.itemType = APIDomain_Directory_ISModel.Search_Directory_ViewResponseRecord;
-return Search_Directory_ViewResponseRecordList;
+Deprecated_Search_Directory_ViewResponseRecordList.itemType = APIDomain_Directory_ISModel.Deprecated_Search_Directory_ViewResponseRecord;
+return Deprecated_Search_Directory_ViewResponseRecordList;
 })(OS.DataTypes.GenericRecordList);
-APIDomain_Directory_ISModel.Search_Directory_ViewResponseRecordList = Search_Directory_ViewResponseRecordList;
+APIDomain_Directory_ISModel.Deprecated_Search_Directory_ViewResponseRecordList = Deprecated_Search_Directory_ViewResponseRecordList;
 
 });
 define("APIDomain_Directory_IS.model$Extension2List", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$Extension2Rec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
@@ -18616,6 +19137,33 @@ return Directory_CDNList;
 APIDomain_Directory_ISModel.Directory_CDNList = Directory_CDNList;
 
 });
+define("APIDomain_Directory_IS.model$App_GlobalSearch_GETResponseRecord", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$App_GlobalSearch_GETResponseRec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+var OS = OutSystems.Internal;
+var App_GlobalSearch_GETResponseRecord = (function (_super) {
+__extends(App_GlobalSearch_GETResponseRecord, _super);
+function App_GlobalSearch_GETResponseRecord(defaults) {
+_super.apply(this, arguments);
+}
+App_GlobalSearch_GETResponseRecord.attributesToDeclare = function () {
+return [
+this.attr("App_GlobalSearch_GETResponse", "app_GlobalSearch_GETResponseAttr", "App_GlobalSearch_GETResponse", false, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.App_GlobalSearch_GETResponseRec());
+}, true, APIDomain_Directory_ISModel.App_GlobalSearch_GETResponseRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+App_GlobalSearch_GETResponseRecord.fromStructure = function (str) {
+return new App_GlobalSearch_GETResponseRecord(new App_GlobalSearch_GETResponseRecord.RecordClass({
+app_GlobalSearch_GETResponseAttr: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+App_GlobalSearch_GETResponseRecord._isAnonymousRecord = true;
+App_GlobalSearch_GETResponseRecord.UniqueId = "a22f36d6-be63-6a73-db6b-0e9413292165";
+App_GlobalSearch_GETResponseRecord.init();
+return App_GlobalSearch_GETResponseRecord;
+})(OS.DataTypes.GenericRecord);
+APIDomain_Directory_ISModel.App_GlobalSearch_GETResponseRecord = App_GlobalSearch_GETResponseRecord;
+
+});
 define("APIDomain_Directory_IS.model$Extension2RecordList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$Extension2Record"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
 var OS = OutSystems.Internal;
 var Extension2RecordList = (function (_super) {
@@ -18627,19 +19175,6 @@ Extension2RecordList.itemType = APIDomain_Directory_ISModel.Extension2Record;
 return Extension2RecordList;
 })(OS.DataTypes.GenericRecordList);
 APIDomain_Directory_ISModel.Extension2RecordList = Extension2RecordList;
-
-});
-define("APIDomain_Directory_IS.model$HTTPResponse8List", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$HTTPResponse8Rec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
-var OS = OutSystems.Internal;
-var HTTPResponse8List = (function (_super) {
-__extends(HTTPResponse8List, _super);
-function HTTPResponse8List(defaults) {
-_super.apply(this, arguments);
-}
-HTTPResponse8List.itemType = APIDomain_Directory_ISModel.HTTPResponse8Rec;
-return HTTPResponse8List;
-})(OS.DataTypes.GenericRecordList);
-APIDomain_Directory_ISModel.HTTPResponse8List = HTTPResponse8List;
 
 });
 define("APIDomain_Directory_IS.model$ConfigList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$ConfigRec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
@@ -19198,19 +19733,6 @@ return Directory_SubdivisionRecordList;
 APIDomain_Directory_ISModel.Directory_SubdivisionRecordList = Directory_SubdivisionRecordList;
 
 });
-define("APIDomain_Directory_IS.model$HouseholdTakenStatusByIds_V1_GetResponseList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$HouseholdTakenStatusByIds_V1_GetResponseRec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
-var OS = OutSystems.Internal;
-var HouseholdTakenStatusByIds_V1_GetResponseList = (function (_super) {
-__extends(HouseholdTakenStatusByIds_V1_GetResponseList, _super);
-function HouseholdTakenStatusByIds_V1_GetResponseList(defaults) {
-_super.apply(this, arguments);
-}
-HouseholdTakenStatusByIds_V1_GetResponseList.itemType = APIDomain_Directory_ISModel.HouseholdTakenStatusByIds_V1_GetResponseRec;
-return HouseholdTakenStatusByIds_V1_GetResponseList;
-})(OS.DataTypes.GenericRecordList);
-APIDomain_Directory_ISModel.HouseholdTakenStatusByIds_V1_GetResponseList = HouseholdTakenStatusByIds_V1_GetResponseList;
-
-});
 define("APIDomain_Directory_IS.model$App_AncestryHousehold_GETResponseList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$App_AncestryHousehold_GETResponseRec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
 var OS = OutSystems.Internal;
 var App_AncestryHousehold_GETResponseList = (function (_super) {
@@ -19405,6 +19927,19 @@ PersonalEvents_Data_Recurrence_PatternList.itemType = APIDomain_Directory_ISMode
 return PersonalEvents_Data_Recurrence_PatternList;
 })(OS.DataTypes.GenericRecordList);
 APIDomain_Directory_ISModel.PersonalEvents_Data_Recurrence_PatternList = PersonalEvents_Data_Recurrence_PatternList;
+
+});
+define("APIDomain_Directory_IS.model$Household2RecordList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$Household2Record"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+var OS = OutSystems.Internal;
+var Household2RecordList = (function (_super) {
+__extends(Household2RecordList, _super);
+function Household2RecordList(defaults) {
+_super.apply(this, arguments);
+}
+Household2RecordList.itemType = APIDomain_Directory_ISModel.Household2Record;
+return Household2RecordList;
+})(OS.DataTypes.GenericRecordList);
+APIDomain_Directory_ISModel.Household2RecordList = Household2RecordList;
 
 });
 define("APIDomain_Directory_IS.model$CoordinateItem3Record", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$CoordinateItem3Rec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
@@ -19843,6 +20378,19 @@ return Directory_Subdivision_SimpleList;
 APIDomain_Directory_ISModel.Directory_Subdivision_SimpleList = Directory_Subdivision_SimpleList;
 
 });
+define("APIDomain_Directory_IS.model$GetHouseholdTakenStatusByIdsGetResponseRecordList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$GetHouseholdTakenStatusByIdsGetResponseRecord"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+var OS = OutSystems.Internal;
+var GetHouseholdTakenStatusByIdsGetResponseRecordList = (function (_super) {
+__extends(GetHouseholdTakenStatusByIdsGetResponseRecordList, _super);
+function GetHouseholdTakenStatusByIdsGetResponseRecordList(defaults) {
+_super.apply(this, arguments);
+}
+GetHouseholdTakenStatusByIdsGetResponseRecordList.itemType = APIDomain_Directory_ISModel.GetHouseholdTakenStatusByIdsGetResponseRecord;
+return GetHouseholdTakenStatusByIdsGetResponseRecordList;
+})(OS.DataTypes.GenericRecordList);
+APIDomain_Directory_ISModel.GetHouseholdTakenStatusByIdsGetResponseRecordList = GetHouseholdTakenStatusByIdsGetResponseRecordList;
+
+});
 define("APIDomain_Directory_IS.model$Members_Locality_ById_GETList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$Members_Locality_ById_GETRec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
 var OS = OutSystems.Internal;
 var Members_Locality_ById_GETList = (function (_super) {
@@ -19854,19 +20402,6 @@ Members_Locality_ById_GETList.itemType = APIDomain_Directory_ISModel.Members_Loc
 return Members_Locality_ById_GETList;
 })(OS.DataTypes.GenericRecordList);
 APIDomain_Directory_ISModel.Members_Locality_ById_GETList = Members_Locality_ById_GETList;
-
-});
-define("APIDomain_Directory_IS.model$HouseholdItemRecordList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$HouseholdItemRecord"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
-var OS = OutSystems.Internal;
-var HouseholdItemRecordList = (function (_super) {
-__extends(HouseholdItemRecordList, _super);
-function HouseholdItemRecordList(defaults) {
-_super.apply(this, arguments);
-}
-HouseholdItemRecordList.itemType = APIDomain_Directory_ISModel.HouseholdItemRecord;
-return HouseholdItemRecordList;
-})(OS.DataTypes.GenericRecordList);
-APIDomain_Directory_ISModel.HouseholdItemRecordList = HouseholdItemRecordList;
 
 });
 define("APIDomain_Directory_IS.model$Custom_MapHouseholdRecordList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$Custom_MapHouseholdRecord"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
@@ -20358,6 +20893,19 @@ return Directory_CountryDetailsRecordList;
 APIDomain_Directory_ISModel.Directory_CountryDetailsRecordList = Directory_CountryDetailsRecordList;
 
 });
+define("APIDomain_Directory_IS.model$App_GlobalSearch_GETResponseRecordList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$App_GlobalSearch_GETResponseRecord"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+var OS = OutSystems.Internal;
+var App_GlobalSearch_GETResponseRecordList = (function (_super) {
+__extends(App_GlobalSearch_GETResponseRecordList, _super);
+function App_GlobalSearch_GETResponseRecordList(defaults) {
+_super.apply(this, arguments);
+}
+App_GlobalSearch_GETResponseRecordList.itemType = APIDomain_Directory_ISModel.App_GlobalSearch_GETResponseRecord;
+return App_GlobalSearch_GETResponseRecordList;
+})(OS.DataTypes.GenericRecordList);
+APIDomain_Directory_ISModel.App_GlobalSearch_GETResponseRecordList = App_GlobalSearch_GETResponseRecordList;
+
+});
 define("APIDomain_Directory_IS.model$HouseholdListItemRecordList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$HouseholdListItemRecord"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
 var OS = OutSystems.Internal;
 var HouseholdListItemRecordList = (function (_super) {
@@ -20502,6 +21050,19 @@ return Directory_RegionDetailsList;
 APIDomain_Directory_ISModel.Directory_RegionDetailsList = Directory_RegionDetailsList;
 
 });
+define("APIDomain_Directory_IS.model$Place2RecordList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$Place2Record"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+var OS = OutSystems.Internal;
+var Place2RecordList = (function (_super) {
+__extends(Place2RecordList, _super);
+function Place2RecordList(defaults) {
+_super.apply(this, arguments);
+}
+Place2RecordList.itemType = APIDomain_Directory_ISModel.Place2Record;
+return Place2RecordList;
+})(OS.DataTypes.GenericRecordList);
+APIDomain_Directory_ISModel.Place2RecordList = Place2RecordList;
+
+});
 define("APIDomain_Directory_IS.model$Directory_UserCurrentRecordList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$Directory_UserCurrentRecord"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
 var OS = OutSystems.Internal;
 var Directory_UserCurrentRecordList = (function (_super) {
@@ -20620,17 +21181,30 @@ return Directory_MemberDetailsList;
 APIDomain_Directory_ISModel.Directory_MemberDetailsList = Directory_MemberDetailsList;
 
 });
-define("APIDomain_Directory_IS.model$Search_Directory_ViewResponseList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$Search_Directory_ViewResponseRec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+define("APIDomain_Directory_IS.model$Deprecated_Search_Directory_ViewResponseList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$Deprecated_Search_Directory_ViewResponseRec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
 var OS = OutSystems.Internal;
-var Search_Directory_ViewResponseList = (function (_super) {
-__extends(Search_Directory_ViewResponseList, _super);
-function Search_Directory_ViewResponseList(defaults) {
+var Deprecated_Search_Directory_ViewResponseList = (function (_super) {
+__extends(Deprecated_Search_Directory_ViewResponseList, _super);
+function Deprecated_Search_Directory_ViewResponseList(defaults) {
 _super.apply(this, arguments);
 }
-Search_Directory_ViewResponseList.itemType = APIDomain_Directory_ISModel.Search_Directory_ViewResponseRec;
-return Search_Directory_ViewResponseList;
+Deprecated_Search_Directory_ViewResponseList.itemType = APIDomain_Directory_ISModel.Deprecated_Search_Directory_ViewResponseRec;
+return Deprecated_Search_Directory_ViewResponseList;
 })(OS.DataTypes.GenericRecordList);
-APIDomain_Directory_ISModel.Search_Directory_ViewResponseList = Search_Directory_ViewResponseList;
+APIDomain_Directory_ISModel.Deprecated_Search_Directory_ViewResponseList = Deprecated_Search_Directory_ViewResponseList;
+
+});
+define("APIDomain_Directory_IS.model$SchoolRecordList", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$SchoolRecord"], function (exports, OutSystems, APIDomain_Directory_ISModel) {
+var OS = OutSystems.Internal;
+var SchoolRecordList = (function (_super) {
+__extends(SchoolRecordList, _super);
+function SchoolRecordList(defaults) {
+_super.apply(this, arguments);
+}
+SchoolRecordList.itemType = APIDomain_Directory_ISModel.SchoolRecord;
+return SchoolRecordList;
+})(OS.DataTypes.GenericRecordList);
+APIDomain_Directory_ISModel.SchoolRecordList = SchoolRecordList;
 
 });
 define("APIDomain_Directory_IS.model$HTTPResponse4List", ["exports", "OutSystems/ClientRuntime/Main", "APIDomain_Directory_IS.model", "APIDomain_Directory_IS.model$HTTPResponse4Rec"], function (exports, OutSystems, APIDomain_Directory_ISModel) {

@@ -1,6 +1,7 @@
 import type { AssembleAttendeeGuest, AssembleAttendeeSubdivision } from '@/api/event';
 import type { SubdivisionInformation } from '@/api/locality';
-import type { LegacyLocalBookmark } from '@/platform/storage/localEntities';
+import type { LocalBookmark } from '@/platform/storage/localEntities';
+import { longIntegerText } from '@/lib/ubtConnect/actions';
 import { flipHouseholdName } from '@/lib/legacyShared/actions';
 import type { UI_ShareableObject_Generic } from '@/lib/ubtConnectUtils/structures';
 
@@ -104,12 +105,13 @@ export const hallLocationOf = (
   localityId: info?.Subdivision.Locality.Id ?? '0',
 });
 
-/** Set_SelectedAssembleAttendeeListBookmarks: each row's IsBookmarked = a legacy local bookmark has the row's id as
-    ObjectId (ListIndexOf). */
+/** Set_SelectedAssembleAttendeeListBookmarks: each row's IsBookmarked = a C2 local bookmark has
+    LongIntegerToText(row.Id) as ItemId (ListIndexOf, live …AttendeeSubdivision.mvc.js:1173-1179). */
 export const withLocalBookmarks = (
   rows: readonly AssembleAttendeeGuest[],
-  bookmarks: readonly Pick<LegacyLocalBookmark, 'ObjectId'>[],
-): AssembleAttendeeGuest[] => rows.map((r) => ({ ...r, IsBookmarked: bookmarks.some((b) => b.ObjectId === r.Id) }));
+  bookmarks: readonly Pick<LocalBookmark, 'ItemId'>[],
+): AssembleAttendeeGuest[] =>
+  rows.map((r) => ({ ...r, IsBookmarked: bookmarks.some((b) => b.ItemId === longIntegerText(r.Id)) }));
 
 /** ShareableObject_Generic of a household row: the household entity, the FlipHouseholdName title, the family names,
     the location and the avatar. */

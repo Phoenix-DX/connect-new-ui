@@ -2,6 +2,7 @@
    (copy in migration/screens/Login/analysis/sources/raw/). */
 import { cacheKeyPart, getCacheableObjectInBulk, getCacheKeyParts, type BulkCacheResult } from '@/api/client/cache';
 import { callAction } from '@/api/client/callAction';
+import { addC2Bookmark, deleteC2Bookmark, type BookmarkDeleted, type C2BookmarkAdded } from '@/api/bookmark';
 import { imageCache } from '@/api/image';
 import { osList, wireList } from '@/lib/os-wire';
 import { flagValue } from '@/platform/flags';
@@ -9,6 +10,12 @@ import { log } from '@/platform/log/log';
 import { feedbackMessageAutoClose, PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { pageRedirect } from '@/platform/feedback/pageRedirect';
 import { getClientVar } from '@/platform/session/session';
+import {
+  create_LocalBookmark,
+  delete_LocalBookmarkByBookmarkId,
+  getLocalBookmarkByObjectId,
+} from '@/platform/storage/localEntities';
+import { SystemException, isInstanceOf } from '@/legacy/os/os-exceptions';
 import { jSUtils_PageOpenInNewTab } from '@/lib/jsUtils';
 import { dropdownClose } from '@/components/ui/lib/actions';
 import {
@@ -255,7 +262,7 @@ export function checkAppLauncherPlugin(): boolean {
 /** Bookmark_SendFeedbackMessage(IsCreate, isError) (UBTConnect_Utils.controller.js:92-149, BookmarksByGroup copy): an
     Error message "Bookmark could not be added / removed. Please try again later." when isError, else a Success
     message "Added to / Removed from your Bookmarks" (IsCreate picks the text). */
-export function bookmark_SendFeedbackMessage(isCreate = false, isError = false): void {
+function bookmark_SendFeedbackMessage(isCreate = false, isError = false): void {
   if (isError) {
     showFeedbackMessage(
       isCreate
@@ -268,6 +275,74 @@ export function bookmark_SendFeedbackMessage(isCreate = false, isError = false):
       isCreate ? 'Added to your Bookmarks' : 'Removed from your Bookmarks',
       PLATFORM_MESSAGE_TYPE.success,
     );
+  }
+}
+
+/* ---- ToggleBookmarkItem_C2 (live module of 2026-11-05: TST moved it from UBTConnect to UBTConnect_Utils) ---- */
+
+/** The two server actions of ToggleBookmarkItem_C2. */
+export interface BookmarkServerActions {
+  /** AddBookmark2(In_BookmarkCategoryId, In_ItemId) (UBTConnect_Utils.controller.js:5819-5835): Success, Bookmark_Added
+      (Connect_Bookmarks_CS UI_Bookmark_Added; Id and DateCreatedUtc are used). */
+  addBookmark2(in_BookmarkCategoryId: string, in_ItemId: string): Promise<C2BookmarkAdded>;
+  /** DeleteBookmarkByBookmarkId2(BookmarkId) (UBTConnect_Utils.controller.js:5892-5906): Success (WasFound is not
+      read). */
+  deleteBookmarkByBookmarkId2(bookmarkId: string): Promise<BookmarkDeleted>;
+}
+
+/** The two server actions in the domain api/bookmark (addC2Bookmark and deleteC2Bookmark; contract operations
+    `UBTConnect_Utils/ServiceAPIAddBookmark2` and `…/ServiceAPIDeleteBookmarkByBookmarkId2`); mocks in
+    `containers/EntityDetailsActions/mocks.ts`. Typed nullable so callers keep their guard. */
+export const bookmarkServerActions: BookmarkServerActions | null = {
+  addBookmark2: addC2Bookmark,
+  deleteBookmarkByBookmarkId2: deleteC2Bookmark,
+};
+
+/** ToggleBookmarkItem_C2(In_ItemId, In_BookmarkType, IsBookmarked_C2) (UBTConnect_Utils.controller.js:5661-5770):
+    - bookmarked: GetLocalBookmarkByObjectId(In_ItemId, In_BookmarkType) (:5690) → DeleteBookmarkByBookmarkId2(its
+      BookmarkId) (:5694); on Success Delete_LocalBookmarkByBookmarkId(BookmarkId, In_BookmarkType) (:5703) and
+      Bookmark_SendFeedbackMessage(not IsBookmarked_C2, False), else the error message;
+    - not bookmarked: LogMessage("In_BookmarkType " + In_BookmarkType, "UBTConnect") (:5722), AddBookmark2(
+      In_BookmarkType, In_ItemId) (:5723); on Success Create_LocalBookmark(In_ItemId, In_BookmarkType,
+      Bookmark_Added.Id, Bookmark_Added.DateCreatedUtc) and the success message, else the error message;
+    - AllExceptions (not system, :5750-5758): OS.Logger.error, the error message, then the action ends normally;
+      system exceptions are raised.
+    No outputs (:5765-5770). */
+export async function toggleBookmarkItem_C2(
+  in_ItemId: string,
+  in_BookmarkType: string,
+  isBookmarked_C2: boolean,
+  server: BookmarkServerActions,
+): Promise<void> {
+  try {
+    if (isBookmarked_C2) {
+      const local = await getLocalBookmarkByObjectId(in_ItemId, in_BookmarkType);
+      const deleted = await server.deleteBookmarkByBookmarkId2(local.BookmarkId);
+      if (deleted.Success) {
+        await delete_LocalBookmarkByBookmarkId(local.BookmarkId, in_BookmarkType);
+        bookmark_SendFeedbackMessage(!isBookmarked_C2, false);
+      } else {
+        bookmark_SendFeedbackMessage(!isBookmarked_C2, true);
+      }
+    } else {
+      log.info(`In_BookmarkType ${in_BookmarkType}`, { module: 'UBTConnect' });
+      const added = await server.addBookmark2(in_BookmarkType, in_ItemId);
+      if (added.Success) {
+        await create_LocalBookmark(
+          in_ItemId,
+          in_BookmarkType,
+          added.Bookmark_Added.Id,
+          added.Bookmark_Added.DateCreatedUtc,
+        );
+        bookmark_SendFeedbackMessage(!isBookmarked_C2, false);
+      } else {
+        bookmark_SendFeedbackMessage(!isBookmarked_C2, true);
+      }
+    }
+  } catch (ex) {
+    if (isInstanceOf(ex, SystemException)) throw ex;
+    log.error('ToggleBookmarkItem_C2', ex);
+    bookmark_SendFeedbackMessage(!isBookmarked_C2, true);
   }
 }
 

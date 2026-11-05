@@ -331,7 +331,7 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 
 | Block | Module | React port | User actions |
 |---|---|---|---|
-| `ScreenBlock_EventBooklet` | `Connect2_OrbitMobile_MUI` | [`pages/EventBooklet/components/EventBookletGuestView.tsx`](../../app/src/pages/EventBooklet/components/EventBookletGuestView.tsx), [`pages/EventBooklet/components/EventBookletHelperView.tsx`](../../app/src/pages/EventBooklet/components/EventBookletHelperView.tsx), [`pages/EventBooklet/components/EventBookletListParts.tsx`](../../app/src/pages/EventBooklet/components/EventBookletListParts.tsx), [`pages/EventBooklet/components/EventBookletView.tsx`](../../app/src/pages/EventBooklet/components/EventBookletView.tsx), [`pages/EventBooklet/hooks/eventBookletDataFlows.ts`](../../app/src/pages/EventBooklet/hooks/eventBookletDataFlows.ts), [`pages/EventBooklet/hooks/eventBookletLists.ts`](../../app/src/pages/EventBooklet/hooks/eventBookletLists.ts), [`pages/EventBooklet/hooks/eventBookletState.ts`](../../app/src/pages/EventBooklet/hooks/eventBookletState.ts), [`pages/EventBooklet/hooks/useEventBooklet.ts`](../../app/src/pages/EventBooklet/hooks/useEventBooklet.ts) | 7 |
+| `ScreenBlock_EventBooklet` | `Connect2_OrbitMobile_MUI` | [`pages/EventBooklet/components/EventBookletGuestView.tsx`](../../app/src/pages/EventBooklet/components/EventBookletGuestView.tsx), [`pages/EventBooklet/components/EventBookletHelperView.tsx`](../../app/src/pages/EventBooklet/components/EventBookletHelperView.tsx), [`pages/EventBooklet/components/EventBookletListParts.tsx`](../../app/src/pages/EventBooklet/components/EventBookletListParts.tsx), [`pages/EventBooklet/components/EventBookletView.tsx`](../../app/src/pages/EventBooklet/components/EventBookletView.tsx), [`pages/EventBooklet/hooks/eventBookletDataFlows.ts`](../../app/src/pages/EventBooklet/hooks/eventBookletDataFlows.ts), [`pages/EventBooklet/hooks/eventBookletLists.ts`](../../app/src/pages/EventBooklet/hooks/eventBookletLists.ts), [`pages/EventBooklet/hooks/eventBookletState.ts`](../../app/src/pages/EventBooklet/hooks/eventBookletState.ts), [`pages/EventBooklet/hooks/useEventBooklet.ts`](../../app/src/pages/EventBooklet/hooks/useEventBooklet.ts) | 2 |
 | `Dialog_AccessRestrictedAction_Legacy` | `UBTConnect_Utils` | [`platform/feedback/dialogs/DialogAccessRestrictedActionLegacy.tsx`](../../app/src/platform/feedback/dialogs/DialogAccessRestrictedActionLegacy.tsx) | 0 |
 | `PopUp_OrbitBookletFilters` | `Connect2_OrbitMobile_MUI` | [`pages/EventBooklet/components/PopUp_OrbitBookletFilters.tsx`](../../app/src/pages/EventBooklet/components/PopUp_OrbitBookletFilters.tsx) | 0 |
 | `Orbit_FooterWithActions` | `Connect2_OrbitMobile_MUI` | [`components/orbit/FooterWithActions/FooterWithActions.tsx`](../../app/src/components/orbit/FooterWithActions/FooterWithActions.tsx) | 0 |
@@ -350,18 +350,13 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | `BaseLayout_UpdatedOSUI` | `Connect2_LegacyShared` | [`components/layout/BaseLayout/BaseLayout.tsx`](../../app/src/components/layout/BaseLayout/BaseLayout.tsx) | 0 |
 | `PullToRefresh` | `OutSystemsUI_2_23` | [`components/ui/PullToRefresh/PullToRefresh.tsx`](../../app/src/components/ui/PullToRefresh/PullToRefresh.tsx) | 0 |
 
-<details><summary>User actions of the shared blocks (8)</summary>
+<details><summary>User actions of the shared blocks (3)</summary>
 
 | # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
 |---|---|---|---|---|---|
 | 1 | `MenuIcon__UpdatedOSUI` | `onClick (HTML element)` | `onBack` | – | goes to previous screen |
-| 2 | `ScreenBlock_EventBooklet` | `onKeyUp (HTML element)` | `onKeyUp_SearchTerm` | – | calls Get_EventBookletGuests, Get_EventBookletHelpers |
-| 3 | `ScreenBlock_EventBooklet` | `onClick (HTML element)` | `onClick_ViewSwap` | – | calls Get_EventBookletGuests, Get_EventBookletHelpers |
-| 4 | `ScreenBlock_EventBooklet` | `onClick (HTML element)` | `clearAllFilters` | – | calls Get_EventBookletGuests, Get_EventBookletHelpers |
-| 5 | `ScreenBlock_EventBooklet` | `onScrollEnding (HTML element)` | `onScrollEnding_Guests` | – | calls Get_EventBookletGuests |
-| 6 | `ScreenBlock_EventBooklet` | `click_Host of MembersItem`<br>`click_Member of MembersItem` | `onHandle_ClickedMember` | – | calls GetDirectoryAccess, GetAllApplicationEvents, AppManager_SynchAppContext; shows a message; asks for a confirmation |
-| 7 | `ScreenBlock_EventBooklet` | `onScrollEnding (HTML element)` | `onScrollEnding_Helpers` | – | calls Get_EventBookletHelpers |
-| 8 | `ScreenBlock_EventBooklet` | `applyFilters of OrbitBookletFilters` | `onHandle_ApplyFilters` | – | calls Get_EventBookletHelpers, Get_EventBookletGuests; shows a message |
+| 2 | `ScreenBlock_EventBooklet` | `click_Host of MembersItem`<br>`click_Member of MembersItem` | `onHandle_ClickedMember` | – | calls GetDirectoryAccess, GetAllApplicationEvents, AppManager_SynchAppContext; shows a message; asks for a confirmation |
+| 3 | `ScreenBlock_EventBooklet` | `applyFilters of OrbitBookletFilters` | `onHandle_ApplyFilters` | – | shows a message |
 
 </details>
 

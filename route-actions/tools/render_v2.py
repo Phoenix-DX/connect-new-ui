@@ -56,11 +56,18 @@ def not_applicable_lines(r, h, eps):
     """The missing TST calls that a rule of config.json `notApplicable` sets aside, with the rule's reason and evidence."""
     rules = {x["id"]: x for x in h.CFG.get("notApplicable", {}).get("rules", [])}
     rows = [e for e in eps if e["status"] == "not applicable"]
-    if not rows:
+    nav_dead = r.get("navDead") or {}
+    if not rows and not nav_dead:
         return []
     L = ["", "### Not a gap of the web app", "",
          "Missing TST calls that a rule of `route-actions/config.json` (`notApplicable`, user 2026-11-05) sets aside. "
          "The rule names the fact and its evidence; the chain is the one of the TST code.", ""]
+    if nav_dead:
+        L += ["**Declared, never run (navigation).** The navigation sits in a client action that no event, lifecycle "
+              "step or action of the compiled code calls or binds (`tools/os_call_graph.py dead_client_actions`): TST "
+              "cannot reach it.", ""]
+        L += [f"- Navigation to `{t}` in {', '.join(f'`{a}`' for a in acts)}." for t, acts in sorted(nav_dead.items())]
+        L += [""]
     for rule_id in rules:
         mine = [e for e in rows if e.get("notApplicable") == rule_id]
         if not mine:

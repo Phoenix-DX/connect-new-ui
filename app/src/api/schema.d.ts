@@ -4,40 +4,6 @@
  */
 
 export interface paths {
-    "/api/Connect2_Assemble_MUI/ActionAddBookmark": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Server action (module client-action wrapper) AddBookmark (Connect2_Assemble_MUI) */
-        post: operations["Connect2_Assemble_MUI.ActionAddBookmark"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/Connect2_Assemble_MUI/ActionDeleteBookmarkByBookmarkId": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Server action (module client-action wrapper) DeleteBookmarkByBookmarkId (Connect2_Assemble_MUI) */
-        post: operations["Connect2_Assemble_MUI.ActionDeleteBookmarkByBookmarkId"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/api/Connect2_Assemble_MUI/AssembleEventDetail/DataActionGetAssembleEvent": {
         parameters: {
             query?: never;
@@ -2469,40 +2435,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/UBTConnect/ServiceAPIAddBookmark2": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Service action AddBookmark2 (UBTConnect) */
-        post: operations["UBTConnect.ServiceAPIAddBookmark2"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/UBTConnect/ServiceAPIDeleteBookmarkByBookmarkId2": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Service action DeleteBookmarkByBookmarkId2 (UBTConnect) */
-        post: operations["UBTConnect.ServiceAPIDeleteBookmarkByBookmarkId2"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/api/UBTConnect/ServiceAPIDelete_Notifications": {
         parameters: {
             query?: never;
@@ -2996,6 +2928,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/UBTConnect_Utils/ServiceAPIAddBookmark2": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Service action AddBookmark2 (UBTConnect_Utils) */
+        post: operations["UBTConnect_Utils.ServiceAPIAddBookmark2"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/UBTConnect_Utils/ServiceAPIAddNote": {
         parameters: {
             query?: never;
@@ -3007,6 +2956,23 @@ export interface paths {
         put?: never;
         /** Service action AddNote (UBTConnect_Utils) */
         post: operations["UBTConnect_Utils.ServiceAPIAddNote"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/UBTConnect_Utils/ServiceAPIDeleteBookmarkByBookmarkId2": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Service action DeleteBookmarkByBookmarkId2 (UBTConnect_Utils) */
+        post: operations["UBTConnect_Utils.ServiceAPIDeleteBookmarkByBookmarkId2"];
         delete?: never;
         options?: never;
         head?: never;
@@ -3276,6 +3242,12 @@ export interface components {
             Longitude: string;
             UseCoordinates: boolean;
         };
+        APIDomain_Directory_IS__Directory_ImageDetails: {
+            Id: string;
+            IsHidden: boolean;
+            SignedUrl: string;
+            isDeceased: boolean;
+        };
         APIDomain_Directory_IS__Directory_LocalitySubdivision: {
             LocalityId: string;
             LocalityName: string;
@@ -3330,6 +3302,8 @@ export interface components {
         APIDomain_Directory_IS__Directory_UserCurrent_Member: {
             Address: components["schemas"]["APIDomain_Directory_IS__Custom_Address"];
             HouseholderId: string;
+            HouseholderLatitude: string;
+            HouseholderLongitude: string;
             Photo: components["schemas"]["APIDomain_Directory_IS__Directory_Photo"];
             SpouseId: string;
             SpouseIsHouseholder: boolean;
@@ -3429,6 +3403,8 @@ export interface components {
             IsMainHall: boolean;
             LastName: string;
             LastUpdated: string;
+            Latitude: string;
+            Longitude: string;
             MaidenName: string;
             MobilePhoneLastUpdated: string;
             Name: string;
@@ -3922,22 +3898,6 @@ export interface components {
             };
             LocalityId: string;
             LocalityName: string;
-        };
-        Connect2_Assemble_MUI__ActionAddBookmark__Input: {
-            Group: string;
-            Note: string;
-            ObjectId: string;
-            ObjectType: string;
-        };
-        Connect2_Assemble_MUI__ActionAddBookmark__Output: {
-            CreatedBookmarkResponse: components["schemas"]["Connect2_MyBookmarks_IS__BookmarkItem"];
-            Success: boolean;
-        };
-        Connect2_Assemble_MUI__ActionDeleteBookmarkByBookmarkId__Input: {
-            BookmarkId: string;
-        };
-        Connect2_Assemble_MUI__ActionDeleteBookmarkByBookmarkId__Output: {
-            Success: boolean;
         };
         /** @description Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter. */
         Connect2_Assemble_MUI__AssembleEventDetail__DataActionGetAssembleEvent__Input: {
@@ -7462,6 +7422,7 @@ export interface components {
         };
         Connect_Household_CS__UI_AccountForm_PersonalInformation: {
             Email: string;
+            ShowEmail: boolean;
             ShowLifeCycleDates: boolean;
             Username: string;
         };
@@ -7504,8 +7465,12 @@ export interface components {
             Title: string;
             WorkPhone: string;
         };
-        /** @description structure Connect_Household_CS.UI_HouseholdRelations_AwayParentsRec (module not in the downloaded code) never captured */
-        Connect_Household_CS__UI_HouseholdRelations_AwayParents: unknown;
+        Connect_Household_CS__UI_HouseholdRelations_AwayParents: {
+            CountryName: string;
+            HouseholdId: string;
+            LocalityName: string;
+            Title: string;
+        };
         Connect_Household_CS__UI_HouseholdTimelineImages: {
             Date: string;
             IsCurrent: boolean;
@@ -8255,6 +8220,14 @@ export interface components {
             IsSelected: boolean;
             SearchResult: components["schemas"]["Connect_Search_CS__SearchResult"];
         };
+        UBTConnect_Utils__ServiceAPIAddBookmark2__Input: {
+            In_BookmarkCategoryId: string;
+            In_ItemId: string;
+        };
+        UBTConnect_Utils__ServiceAPIAddBookmark2__Output: {
+            Bookmark_Added: components["schemas"]["Connect_Bookmarks_CS__UI_Bookmark_Added"];
+            Success: boolean;
+        };
         UBTConnect_Utils__ServiceAPIAddNote__Input: {
             ItemId: string;
             Note: string;
@@ -8263,6 +8236,13 @@ export interface components {
         UBTConnect_Utils__ServiceAPIAddNote__Output: {
             Note_Added: components["schemas"]["Connect_Notes_CS__UI_Note_Added"];
             Success: boolean;
+        };
+        UBTConnect_Utils__ServiceAPIDeleteBookmarkByBookmarkId2__Input: {
+            BookmarkId: string;
+        };
+        UBTConnect_Utils__ServiceAPIDeleteBookmarkByBookmarkId2__Output: {
+            Success: boolean;
+            WasFound: boolean;
         };
         UBTConnect_Utils__ServiceAPIDeleteNoteByNoteId__Input: {
             NoteId: string;
@@ -8727,8 +8707,9 @@ export interface components {
                 List: components["schemas"]["Connect_Geography_CS__UI_CountryStatistics"][];
             };
         };
-        /** @description structure UBTConnect.Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecord (module not in the downloaded code) never captured */
-        UBTConnect__Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecord: unknown;
+        UBTConnect__Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecord: {
+            Delimiters: components["schemas"]["UBTConnect__TextTextTextRecord"];
+        };
         /** @description Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter. */
         UBTConnect__Directory_EntityDetailsActions__DataActionFetchContactDetails__Input: {
             ContactPopUp_OverrideOptions?: components["schemas"]["UBTConnect_Utils__ContactPopUp_OverrideOptions"];
@@ -8801,8 +8782,6 @@ export interface components {
         UBTConnect__Directory_EntityDetailsActions__DataActionFetchNotes__Output: {
             Notes: components["schemas"]["UBTConnectLibrary__Notes"];
         };
-        /** @description structure UBTConnect.Directory_ImageDetailsList (module not in the downloaded code) never captured */
-        UBTConnect__Directory_ImageDetailsList: unknown;
         /** @description Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter. */
         UBTConnect__FeedBlock_CommunityPopulation__DataActionFetchCount__Input: {
             [key: string]: unknown;
@@ -8890,7 +8869,10 @@ export interface components {
             [key: string]: unknown;
         };
         UBTConnect__HouseholdDetails_Block__DataActionGetHouseHold_Gallery__Output: {
-            Out_ImageDetails: components["schemas"]["UBTConnect__Directory_ImageDetailsList"];
+            Out_ImageDetails: {
+                EmptyListItem?: components["schemas"]["APIDomain_Directory_IS__Directory_ImageDetails"];
+                List: components["schemas"]["APIDomain_Directory_IS__Directory_ImageDetails"][];
+            };
         };
         /** @description Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter. */
         UBTConnect__HouseholdDetails_Block__DataActionGetHousehold_Coordinates__Input: {
@@ -9157,10 +9139,19 @@ export interface components {
             MapExploreItem: components["schemas"]["Connect_Map_CS__MapExploreItem"];
             MarkerWithWindow: components["schemas"]["Leaflet__MarkerWithWindow"];
         };
-        /** @description structure UBTConnect.MessageParameterRecordList (module not in the downloaded code) never captured */
-        UBTConnect__MessageParameterRecordList: unknown;
-        /** @description structure UBTConnect.MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONUserTextRecord (module not in the downloaded code) never captured */
-        UBTConnect__MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONUserTextRecord: unknown;
+        UBTConnect__MessageParameterRecord: {
+            MessageParameter: components["schemas"]["Comms_CS__MessageParameter"];
+        };
+        UBTConnect__MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONUserTextRecord: {
+            AdaptiveCardJSON: components["schemas"]["Comms_CS__AdaptiveCardJSON"];
+            CreatedByMemberId: string;
+            MessageContent: components["schemas"]["Comms_CS__MessageContent"];
+            MessageInstance: components["schemas"]["Comms_CS__MessageInstance"];
+            MessagePriority: components["schemas"]["Comms_CS__MessagePriority"];
+            MessageSenderTarget: components["schemas"]["Comms_CS__MessageSenderTarget"];
+            MessageTemplate: components["schemas"]["Comms_CS__MessageTemplate"];
+            User: components["schemas"]["ServiceCenter__User"];
+        };
         /** @description Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter. */
         UBTConnect__Notes__DataActionGetNotes__Input: {
             BottomSheetId_Filter_IsLoaded?: boolean;
@@ -9238,7 +9229,10 @@ export interface components {
         };
         UBTConnect__NotificationDetails__ScreenDataSetGetMessageTemplateParametersByMessageTemplateId__Output: {
             Count: number;
-            List: components["schemas"]["UBTConnect__MessageParameterRecordList"];
+            List: {
+                EmptyListItem?: components["schemas"]["UBTConnect__MessageParameterRecord"];
+                List: components["schemas"]["UBTConnect__MessageParameterRecord"][];
+            };
         };
         /** @description Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter. */
         UBTConnect__Notifications__DataActionFetchNotifications__Input: {
@@ -9621,21 +9615,6 @@ export interface components {
             UpdateItemId: string;
         };
         UBTConnect__ServiceAPIAction_UI_UpdateItem_MarkAsUnread__Output: Record<string, never>;
-        UBTConnect__ServiceAPIAddBookmark2__Input: {
-            In_BookmarkCategoryId: string;
-            In_ItemId: string;
-        };
-        UBTConnect__ServiceAPIAddBookmark2__Output: {
-            Bookmark_Added: components["schemas"]["Connect_Bookmarks_CS__UI_Bookmark_Added"];
-            Success: boolean;
-        };
-        UBTConnect__ServiceAPIDeleteBookmarkByBookmarkId2__Input: {
-            BookmarkId: string;
-        };
-        UBTConnect__ServiceAPIDeleteBookmarkByBookmarkId2__Output: {
-            Success: boolean;
-            WasFound: boolean;
-        };
         UBTConnect__ServiceAPIDelete_Notifications__Input: {
             Messages: {
                 EmptyListItem?: components["schemas"]["Connect2_Notification_CS__MessageListItem"];
@@ -9784,6 +9763,11 @@ export interface components {
         UBTConnect__TextLongIntegerRecord: {
             LocalityId: string;
             LocalityName: string;
+        };
+        UBTConnect__TextTextTextRecord: {
+            Delimiter_Function: string;
+            Delimiter_Parameter: string;
+            Delimiter_Placeholder: string;
         };
         UBTConnect__Type_OneschoolGlobal_Subsection: {
             AboutOurCampus: string;
@@ -10035,76 +10019,6 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-    "Connect2_Assemble_MUI.ActionAddBookmark": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["Connect2_Assemble_MUI__ActionAddBookmark__Input"];
-            };
-        };
-        responses: {
-            /** @description The action outputs. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["Connect2_Assemble_MUI__ActionAddBookmark__Output"];
-                    };
-                };
-            };
-            /** @description Error. */
-            default: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Error"];
-                };
-            };
-        };
-    };
-    "Connect2_Assemble_MUI.ActionDeleteBookmarkByBookmarkId": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["Connect2_Assemble_MUI__ActionDeleteBookmarkByBookmarkId__Input"];
-            };
-        };
-        responses: {
-            /** @description The action outputs. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["Connect2_Assemble_MUI__ActionDeleteBookmarkByBookmarkId__Output"];
-                    };
-                };
-            };
-            /** @description Error. */
-            default: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Error"];
-                };
-            };
-        };
-    };
     "Connect2_Assemble_MUI.AssembleEventDetail.DataActionGetAssembleEvent": {
         parameters: {
             query?: never;
@@ -15110,76 +15024,6 @@ export interface operations {
             };
         };
     };
-    "UBTConnect.ServiceAPIAddBookmark2": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UBTConnect__ServiceAPIAddBookmark2__Input"];
-            };
-        };
-        responses: {
-            /** @description The action outputs. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["UBTConnect__ServiceAPIAddBookmark2__Output"];
-                    };
-                };
-            };
-            /** @description Error. */
-            default: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Error"];
-                };
-            };
-        };
-    };
-    "UBTConnect.ServiceAPIDeleteBookmarkByBookmarkId2": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UBTConnect__ServiceAPIDeleteBookmarkByBookmarkId2__Input"];
-            };
-        };
-        responses: {
-            /** @description The action outputs. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["UBTConnect__ServiceAPIDeleteBookmarkByBookmarkId2__Output"];
-                    };
-                };
-            };
-            /** @description Error. */
-            default: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Error"];
-                };
-            };
-        };
-    };
     "UBTConnect.ServiceAPIDelete_Notifications": {
         parameters: {
             query?: never;
@@ -16195,6 +16039,41 @@ export interface operations {
             };
         };
     };
+    "UBTConnect_Utils.ServiceAPIAddBookmark2": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UBTConnect_Utils__ServiceAPIAddBookmark2__Input"];
+            };
+        };
+        responses: {
+            /** @description The action outputs. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["UBTConnect_Utils__ServiceAPIAddBookmark2__Output"];
+                    };
+                };
+            };
+            /** @description Error. */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
     "UBTConnect_Utils.ServiceAPIAddNote": {
         parameters: {
             query?: never;
@@ -16216,6 +16095,41 @@ export interface operations {
                 content: {
                     "application/json": {
                         data: components["schemas"]["UBTConnect_Utils__ServiceAPIAddNote__Output"];
+                    };
+                };
+            };
+            /** @description Error. */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    "UBTConnect_Utils.ServiceAPIDeleteBookmarkByBookmarkId2": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UBTConnect_Utils__ServiceAPIDeleteBookmarkByBookmarkId2__Input"];
+            };
+        };
+        responses: {
+            /** @description The action outputs. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["UBTConnect_Utils__ServiceAPIDeleteBookmarkByBookmarkId2__Output"];
                     };
                 };
             };
