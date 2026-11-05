@@ -38,9 +38,9 @@ of each group of Phase 6. Answer in the chat. The master records your words and 
 ## Tools
 
 ```
-python3 .claude/skills/refactor-master/scripts/rf.py status       # also: next, verify, brief, ... (rf.py --help)
-python3 .claude/skills/refactor-master/scripts/gen_steps.py --check
-python3 -m unittest discover -s .claude/skills/refactor-master/scripts -p 'test_*.py'
+python3 tools/refactor/rf.py status       # also: next, verify, brief, ... (rf.py --help)
+python3 tools/refactor/gen_steps.py --check
+python3 -m unittest discover -s tools/refactor -p 'test_*.py'
 ```
 
 ## After a break

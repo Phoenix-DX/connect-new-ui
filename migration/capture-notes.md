@@ -1,7 +1,7 @@
 # Capture notes (Phase 2)
 
 Decisions and known gaps of the TST captures, for the route specs. Plan: `migration/capture-plan.json` (not in git:
-test-account ids). The script `migration/tools/route_discovery.cjs` finds the ids read-only and writes `migration/capture-ids.json`.
+test-account ids). The script `tools/tst/route_discovery.cjs` finds the ids read-only and writes `migration/capture-ids.json`.
 
 ## Decisions (user)
 

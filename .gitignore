@@ -43,5 +43,5 @@ migration/clarify/.dump/
 capture/survey-UBTConnect.json
 capture/runtime-sources-live-*/
 
-# route-actions pipeline: MCP (DEV) cache
-route-actions/.cache/
+# route-check pipeline: MCP (DEV) cache
+route-check/.cache/

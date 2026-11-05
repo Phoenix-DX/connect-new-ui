@@ -45,9 +45,9 @@ A pattern (`migration/patterns/P-<ID>.md`) states how this app does one recurrin
 
 Any change after confirmation (new package, different library, new rule) is an Architecture Decision Record:
 ```bash
-python3 scripts/stack.py adr new --title "<change>" --context "<why, evidence, routes affected>" --decision "<what>" --consequences "<cost, migration of existing routes>"
-python3 scripts/stack.py adr accept ADR-<n> --by user          # only after the user agrees
-python3 scripts/stack.py dep add <package> <version> --adr ADR-<n>
+python3 tools/pipeline/stack.py adr new --title "<change>" --context "<why, evidence, routes affected>" --decision "<what>" --consequences "<cost, migration of existing routes>"
+python3 tools/pipeline/stack.py adr accept ADR-<n> --by user          # only after the user agrees
+python3 tools/pipeline/stack.py dep add <package> <version> --adr ADR-<n>
 ```
 The foundation owner applies it (package.json, lockfile, shared code), runs `stack.py check`, and re-runs consistency and parity on affected finished routes. Route agents only ask; they never edit `package.json`, the lockfile, `stack.json` or patterns.
 

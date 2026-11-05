@@ -31,7 +31,7 @@ Run every tool from the project root. Node and Playwright (Chromium) come from t
 call that is not a read. Only the actions that the user confirmed in `migration/capture-plan.json`
 (`defaults.allowActions`) also pass.
 
-### 1. Skill pipeline (`.claude/skills/outsystems-screen-spec/scripts/`)
+### 1. Skill pipeline (`tools/pipeline/`)
 
 | Tool | What it does | Opens TST |
 |---|---|---|
@@ -42,16 +42,17 @@ call that is not a read. Only the actions that the user confirmed in `migration/
 | `site_auth.cjs`, `readonly_guard.cjs`, `capture.js` | Shared modules: sign-in and PIN, the read-only guard, the masked DOM snapshot. The other tools use them. | (modules) |
 | `ledger.py` | Records the tokens of each route and phase. | No |
 
-### 2. Project tools (`migration/tools/`, details in `migration/tools/README.md`)
+### 2. Project tools (`tools/parity`, `generate`, `docs`, `tst`, `mcp`, `refactor`, `route-check`; details in `tools/README.md`)
 
 | Tool | What it does | Opens TST |
 |---|---|---|
 | `journey_capture.cjs` | Runs the main user journeys step by step. Records the element used, the service calls and a masked screenshot of each step. | Yes, read-only |
 | `route_discovery.cjs` | Clicks an element and records the screen that the app opens. | Yes, read-only |
 | `flag_probe.cjs` | Reads the feature flag values of TST. | Yes, read-only |
-| `unlock_target.cjs`, `shell_observe.cjs`, `css_observe.cjs` | Observe redirects (lock, unlock, new tab) and styles. | Yes, read-only |
 | `parity_sweep.py`, `restamp.py`, `qa_dev_demo.cjs` | Parity of all 64 routes; comparison of the dev server and the demo build. | No (React app) |
-| `sitemap.py`, `contract_gen.py`, `docs_gen.py`, `block_pack.py`, `css_*`, `static_entities.py` | Navigation diagram, API contract, reference pages. | No |
+| `sitemap.py`, `contract_gen.py`, `docs_gen.py`, `block_pack.py`, `css_sets.py`, `static_entities.py` | Navigation diagram, API contract, reference pages. | No |
+| `check_route.py` (`tools/route-check/`) | The check of one route, OutSystems against React, into `route-check/routes/<Route>.md`. | No |
+| `rf.py`, `refactor_parity.py`, `arch_baseline.py` (`tools/refactor/`, `tools/parity/`) | The architecture refactor: state machine, parity gate, lint baseline (`npm run ci`). | No |
 | `english_docs.py`, `ste_lint.py`, `meaning_guard.py`, `check_mermaid.cjs` | Tools for the English documents in ASD-STE100 style. | No |
 
 ### 3. Dashboard

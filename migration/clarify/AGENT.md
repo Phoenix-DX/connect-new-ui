@@ -84,7 +84,7 @@ Rules:
 - Questions get an id `Q<n>`, with the evidence, the options and your recommendation. Do not answer a question
   yourself.
 - Count the rows at the end (§8) and keep the counts equal to `checklist.json`.
-- Run `python3 migration/tools/ste_lint.py migration/clarify/flows/<Flow>/report.md` and fix the errors (0 errors;
+- Run `python3 tools/docs/ste_lint.py migration/clarify/flows/<Flow>/report.md` and fix the errors (0 errors;
   warnings are for the reviewer).
 - A KB page that disagrees with both DEV and TST is not a finding of the React app. List it in §6.2 "KB pages vs TST"
   with the id `K<n>`, the KB text, the TST evidence and the file.

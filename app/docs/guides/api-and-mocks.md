@@ -10,7 +10,7 @@
   - Data actions and aggregates belong to the screen or block that defines them (same-named ones differ):
     `POST /api/<Module>/<Owner>/<Action>`, called as `callAction('Module', 'Owner/DataActionName', inputs)`.
 - `npm run gen:api` writes `src/api/schema.d.ts`. `callAction(module, action, inputs)` (`src/api/client/callAction.ts`) takes its types from that file.
-- `migration/tools/contract_gen.py` generates the contract from the compiled code of the original app.
+- `tools/generate/contract_gen.py` generates the contract from the compiled code of the original app.
   Only the foundation owner changes the contract.
 
 ## Errors (OutSystems exceptions)

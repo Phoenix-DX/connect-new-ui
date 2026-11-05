@@ -19,7 +19,7 @@
 | PWA e2e          | `npm run e2e:pwa` (not in `ci`)                                                                         | service worker, manifest, offline, update, PIN, mock-free production (headless Chrome; [pwa.md](pwa.md#testing))                                                                    |
 | Lighthouse       | `npm run lighthouse` (not in `ci`)                                                                      | demo build scores and warning budgets, reports local only ([pwa.md](pwa.md#lighthouse-npm-run-lighthouse))                                                                          |
 | Parity           | `route.py parity <Screen>` (project root)                                                               | DOM, styles and calls per captured state against the original                                                                                                                       |
-| Refactor parity  | `migration/tools/refactor_parity.py` (project root)                                                     | refactor gate: `--level strict` (all checks) or `visual` (no structure, class, attribute); `--changed` for the routes of a diff, `--all` for all 64; `--ref outsystems\|self\|both` |
+| Refactor parity  | `tools/parity/refactor_parity.py` (project root)                                                        | refactor gate: `--level strict` (all checks) or `visual` (no structure, class, attribute); `--changed` for the routes of a diff, `--all` for all 64; `--ref outsystems\|self\|both` |
 
 ## Architecture baselines (P9-1)
 
@@ -31,7 +31,7 @@ matches (a stale row).
 | Baseline                                        | Check                                                                       | Content                                                                      |
 | ----------------------------------------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `app/.dependency-cruiser-known-violations.json` | `npm run arch` (`--ignore-known`) and `node build/check-arch-baselines.mjs` | 144 dependency-cruiser violations                                            |
-| `app/docs/refactor/arch-baseline.csv`           | `python3 migration/tools/refactor/arch_baseline.py check --strict`          | 72 ESLint rows (rule 4); `eslint.config.js` sets `warn` for these files only |
+| `app/docs/refactor/arch-baseline.csv`           | `python3 tools/refactor/arch_baseline.py check --strict`                    | 72 ESLint rows (rule 4); `eslint.config.js` sets `warn` for these files only |
 | `app/.knip-known-unused.json`                   | `node app/build/check-unused-exports.mjs` (part of `npm run unused`)        | 1,122 unused exports and types                                               |
 
 When you fix a row:

@@ -1,6 +1,6 @@
 # RUNBOOK: migrate UBTConnect → React with the Claude Code CLI
 
-`$SK` = `.claude/skills/outsystems-screen-spec/scripts`. Run every command in the root folder `connect-new/`.
+`$SK` = `tools/pipeline`. Run every command in the root folder `connect-new/`.
 
 ## A. Prepare the machine (normal terminal, do this once)
 

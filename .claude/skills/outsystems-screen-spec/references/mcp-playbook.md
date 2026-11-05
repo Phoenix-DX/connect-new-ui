@@ -1,6 +1,6 @@
 # MCP playbook
 
-Default capture is `scripts/batch_capture.cjs` (Playwright, no tokens). Use a browser MCP for what a capture plan cannot express (back-from-history with view cache, states that need judgment to reach, debugging a failed batch run), and for the manual single-screen flow. Every page the MCP returns (snapshots, request lists) enters the conversation, so prefer evaluate calls that return small summaries.
+Default capture is `tools/pipeline/batch_capture.cjs` (Playwright, no tokens). Use a browser MCP for what a capture plan cannot express (back-from-history with view cache, states that need judgment to reach, debugging a failed batch run), and for the manual single-screen flow. Every page the MCP returns (snapshots, request lists) enters the conversation, so prefer evaluate calls that return small summaries.
 
 How to drive each tool during capture. Tool names differ between MCP versions: check the tool list you actually have and map the step to the closest tool. Never type credentials for the user.
 
@@ -30,7 +30,7 @@ Use one browser tool for the whole capture so the session, viewport and injected
 1. `browser_resize` to the target device size (default 390×844 unless the user gives one). Phone Apps choose their layout from the device classes set at load, so resize before navigating.
 2. `browser_navigate` to the app root or login page. If a login form appears, stop and ask the user to log in in that browser window (use `--headed`/a visible browser). Continue when the target screen is reachable.
 3. `browser_navigate` to the target route. `browser_wait_for` until the main content is visible (a known text, or no spinner).
-4. `browser_evaluate` with the full content of `scripts/capture.js` wrapped as a function body (this costs the whole script in output tokens every time; if the MCP supports init scripts or a file path, use that instead), e.g. `() => { <capture.js> }`. Expect `"installed"`.
+4. `browser_evaluate` with the full content of `tools/pipeline/capture.js` wrapped as a function body (this costs the whole script in output tokens every time; if the MCP supports init scripts or a file path, use that instead), e.g. `() => { <capture.js> }`. Expect `"installed"`.
 5. `browser_evaluate`: `() => window.__osCapture.startRuntime()`.
 6. Re-enter the screen without a full reload (a reload removes the script): click another in-app link (bottom bar, header back), then `browser_navigate_back` (history back). Data actions fire again and are captured.
 7. Exercise every interactive element listed in the DOM (tabs, "View All", list items, toggles, search). Use `browser_snapshot` to find refs and `browser_click`. After each navigation, go back.
@@ -56,7 +56,7 @@ Use the JavaScript execution tool to inject `capture.js` and call the same funct
 
 1. Download: Playwright MCP reports downloaded files and their path in its output directory; Chrome downloads go to the browser's download folder. Copy the file into `capture/`.
 2. Smaller snapshot + chunks: `snapshotUI({ label: 'default', download: false, includeAssets: false })`, then read `window.__osCapture.chunk(i)` for `i` in `0..chunks200k-1` and append each string to the file. Then take a second snapshot with `includeSources: false, includeCss: false` only if assets are needed. Expect many calls; prefer option 1.
-3. Ask the user: give them `scripts/capture.js` and the two console lines from SKILL.md "Manual fallback", let them run it in DevTools and upload the file.
+3. Ask the user: give them `tools/pipeline/capture.js` and the two console lines from SKILL.md "Manual fallback", let them run it in DevTools and upload the file.
 
 ## 6. OutSystems MCP
 

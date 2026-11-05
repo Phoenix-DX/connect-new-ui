@@ -26,7 +26,7 @@ Never open, read or print anything in `.auth/` or `migration/.raw/`.
 | `app/docs/refactor/move-map.csv`               | When the step moved or merged blocks: set the `status` column of those rows.                                                                    |
 | `app/docs/architecture/overview.md`            | When folders, layers or the data flow changed. Update the mermaid diagrams.                                                                     |
 | `app/docs/guides/*.md`, `app/src/**/README.md` | When paths or conventions that the guide names changed.                                                                                         |
-| ADR-15 in `migration/stack.json`               | When a rule of the target architecture changed. Edit the ADR-15 entry (`context`, `decision`, `consequences`), then run `python3 .claude/skills/outsystems-screen-spec/scripts/stack.py render`. Never edit `migration/architecture.md` by hand. |
+| ADR-15 in `migration/stack.json`               | When a rule of the target architecture changed. Edit the ADR-15 entry (`context`, `decision`, `consequences`), then run `python3 tools/pipeline/stack.py render`. Never edit `migration/architecture.md` by hand. |
 | `app/docs/guides/page-template.md`             | From P2-4, when the page pattern changed.                                                                                                       |
 
 The brief says "full run: --all" at the last step of a phase. At that step, also read the architecture documents
@@ -50,9 +50,9 @@ with `export PATH=$HOME/.nvm/versions/node/v24.21.0/bin:$PATH &&`.
 ## Checks
 
 ```
-python3 migration/tools/ste_lint.py <each changed .md file>          # 0 errors
+python3 tools/docs/ste_lint.py <each changed .md file>          # 0 errors
 cd app && npx prettier --check <each changed file under app/>
-node migration/tools/check_mermaid.cjs <each changed file with mermaid>
+node tools/docs/check_mermaid.cjs <each changed file with mermaid>
 ```
 
 ## Report

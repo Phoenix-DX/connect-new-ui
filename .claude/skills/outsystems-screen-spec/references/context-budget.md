@@ -46,8 +46,8 @@ If a pack is still over budget after cuts, the screen is too big for one task: s
 ## 5. Measuring
 
 ```bash
-python3 scripts/ledger.py add --screen <S> --phase build --tokens <n> --tier lite
-python3 scripts/ledger.py report
+python3 tools/pipeline/ledger.py add --screen <S> --phase build --tokens <n> --tier lite
+python3 tools/pipeline/ledger.py report
 ```
 Record every agent run (Claude Code reports total tokens per subagent). The report gives tokens by phase, per screen by tier (median and max), the most expensive screens and the waste on skipped screens. Measure two or three screens before changing the process, and again after each wave.
 

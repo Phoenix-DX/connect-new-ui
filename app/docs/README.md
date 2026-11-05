@@ -16,4 +16,4 @@
 | [Refactor final report](refactor/reports/final.md) | refactor metrics against the plan, phases, open work; step log in [CHANGELOG](refactor/CHANGELOG.md)                                                                         |
 | Reference (generated)                              | [stack and ADRs](reference/stack.md) · [screens](reference/screens.md) · [flags](reference/flags.md) · [shared blocks](reference/shared-blocks.md) · [API](reference/api.md) |
 
-The script `python3 migration/tools/docs_gen.py` (run from the project root) generates the reference pages. Do not edit them by hand.
+The script `python3 tools/generate/docs_gen.py` (run from the project root) generates the reference pages. Do not edit them by hand.

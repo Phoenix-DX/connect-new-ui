@@ -14,7 +14,7 @@ How a run goes through the route list, how it survives interruptions, and how un
 
 ## 1. The run
 
-1. `python3 scripts/route.py plan` and show the result to the user: routes skipped because they are finished, routes that will be reset and rebuilt (interrupted or failed), routes with open questions, routes waiting for the foundation, routes that still need a scope decision.
+1. `python3 tools/pipeline/route.py plan` and show the result to the user: routes skipped because they are finished, routes that will be reset and rebuilt (interrupted or failed), routes with open questions, routes waiting for the foundation, routes that still need a scope decision.
 2. Ask the user the open questions first (all routes, one batch), record the answers. Routes still lacking a scope decision go back to the scope gate; they are not built.
 3. Take the routes in board order (wave, then name) and run section 2 for each one. Finished routes are never touched; `route.py start` refuses them.
 4. At the end: `board.py summary`, `route.py questions --open`, `ledger.py report`.
@@ -74,8 +74,8 @@ A recommendation is welcome (`--recommend`), with its reason, but it is not an a
 2. Use read-only tools only, in the module that owns the element (the MCP sees one module at a time). Never call tools that create, modify, publish or delete.
 3. Record the question and what the MCP said, then answer it only if the MCP answer is unambiguous:
    ```bash
-   python3 scripts/route.py ask <S> --kind fact --topic "<area>" --question "<what>" --evidence "<file/expression>" --mcp "<what the MCP said> [OutSystems MCP: Module/Element]"
-   python3 scripts/route.py answer <S> Q<n> --by mcp --answer "<fact>"
+   python3 tools/pipeline/route.py ask <S> --kind fact --topic "<area>" --question "<what>" --evidence "<file/expression>" --mcp "<what the MCP said> [OutSystems MCP: Module/Element]"
+   python3 tools/pipeline/route.py answer <S> Q<n> --by mcp --answer "<fact>"
    ```
    Save reusable answers about an action to `migration/knowledge/actions/<Action>.md` too.
 4. If the MCP is unavailable, its answer is partial, or it leaves a choice open: keep the question open and ask the user, with what the MCP said as evidence. A fact the MCP cannot settle is asked as a decision.
@@ -84,10 +84,10 @@ A recommendation is welcome (`--recommend`), with its reason, but it is not an a
 
 Record first, then ask, then record the answer:
 ```bash
-python3 scripts/route.py ask <S> --kind decision --topic "<area>" --question "<one decision>" \
+python3 tools/pipeline/route.py ask <S> --kind decision --topic "<area>" --question "<one decision>" \
      --evidence "<what was observed, files>" --mcp "<what the MCP said, or 'not asked: no server side'>" \
      --options "<A>|<B>|<C>" --recommend "<A>" --blocking
-python3 scripts/route.py answer <S> Q<n> --by user --answer "<the user's answer, verbatim or faithfully summarised>"
+python3 tools/pipeline/route.py answer <S> Q<n> --by user --answer "<the user's answer, verbatim or faithfully summarised>"
 ```
 How to ask: one decision per question; say what is known and how (evidence), what the MCP said, the options with their consequence, and the recommendation with its reason. Group the questions of one route (or of several routes) in one message; use the client's question tool when it has one. `decision` and `review` questions can only be answered with `--by user`; route.py refuses anything else.
 

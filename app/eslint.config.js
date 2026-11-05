@@ -16,7 +16,7 @@ const rule4Pattern = {
 
 /* Files that have a row in the frozen baseline (docs/refactor/arch-baseline.csv, P9-1, W38). Rule 4 is an error
    everywhere else. In these files it stays a warning, because the rows are known debt with an owner:
-   `python3 migration/tools/refactor/arch_baseline.py check --strict` (run by `npm run ci`) fails on a warning whose row
+   `python3 tools/refactor/arch_baseline.py check --strict` (run by `npm run ci`) fails on a warning whose row
    is not in the baseline and on a baseline row that no longer occurs. The CSV has no quoted commas (paths and import
    specifiers). */
 const rule4BaselineFiles = readFileSync(new URL('./docs/refactor/arch-baseline.csv', import.meta.url), 'utf8')

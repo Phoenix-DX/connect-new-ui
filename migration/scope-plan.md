@@ -2,7 +2,7 @@
 
 Date 2026-10-14 · Approved by the user: go from the entrance (Splash, Login, PIN) → HomeFeed → then deeper step by step.
 Decide everything first, then build (option a). Evidence for each screen: [scope-review.md](scope-review.md). Diagram: [sitemap.md](sitemap.md) / `sitemap.html`.
-The depth comes from the TST navigation diagram (`migration/tools/sitemap.py`): step 1 from HomeFeed includes the tabs of the bottom bar.
+The depth comes from the TST navigation diagram (`tools/generate/sitemap.py`): step 1 from HomeFeed includes the tabs of the bottom bar.
 
 ## Principles
 
@@ -39,7 +39,7 @@ Rounds 4–5 mostly apply the decisions that exist. Ask only about the screens t
 3. Claude records the result:
    - `python3 $SK/board.py set <Screen> decision=build|skip reason="V<n> · D<k> · <label> · <reason> (user, <date>)"`;
    - the decision log in `scope-review.md`;
-   - run `python3 migration/tools/sitemap.py` again (colors follow the real decisions).
+   - run `python3 tools/generate/sitemap.py` again (colors follow the real decisions).
 4. Checkpoint: `migration/contexts/INDEX.md` § Now = "Round n finished, next is round n+1".
 
 ## Skip labels

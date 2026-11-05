@@ -64,9 +64,9 @@ Rules:
 ## Run on TST
 
 ```bash
-node migration/tools/journey_capture.cjs run                 # all journeys
-node migration/tools/journey_capture.cjs run --only J5,J11   # some journeys
-node migration/tools/journey_capture.cjs run --accounts regional   # only some accounts (see below)
+node tools/tst/journey_capture.cjs run                 # all journeys
+node tools/tst/journey_capture.cjs run --only J5,J11   # some journeys
+node tools/tst/journey_capture.cjs run --accounts regional   # only some accounts (see below)
 ```
 
 The runner signs in by itself (skill module `site_auth.cjs`), keeps the read-only guard on, and allows only the

@@ -50,9 +50,9 @@ Work from the project root `/Users/khaitruong/Projects/connect-new`.
 
 ## Checks for each file (fix until clean)
 
-1. `python3 migration/tools/meaning_guard.py check migration/.ste-backup/2026-10-21/<path> <path> --mode ste` → OK.
+1. `python3 tools/docs/meaning_guard.py check migration/.ste-backup/2026-10-21/<path> <path> --mode ste` → OK.
    Each "new" item must come from evidence that you looked up. List it in the report with its source.
-2. `python3 migration/tools/ste_lint.py <path>` → 0 errors. Check the warnings by hand and fix the real ones.
+2. `python3 tools/docs/ste_lint.py <path>` → 0 errors. Check the warnings by hand and fix the real ones.
 
 ## Report (short, English)
 

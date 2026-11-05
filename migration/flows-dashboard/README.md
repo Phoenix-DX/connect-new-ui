@@ -23,7 +23,7 @@ step is not a link in the TST code.
 | `site-review/` | Contact sheets for the privacy check. Local only (`.gitignore`). Never publish them. |
 
 Data sources: `migration/survey/dev-inventory.json` (DEV snapshot from the OutSystems MCP),
-`migration/survey/screens.json`, `migration/board.md`, `migration/tools/sitemap.py`, the route specifications and
+`migration/survey/screens.json`, `migration/board.md`, `tools/generate/sitemap.py`, the route specifications and
 `migration/screens/<Screen>/parity/*.expected.png` (TST captures with masked data).
 
 ## Build

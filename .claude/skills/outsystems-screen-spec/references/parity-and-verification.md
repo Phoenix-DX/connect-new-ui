@@ -42,7 +42,7 @@ The reference is `analysis/dom/<state>.raw.html`: the captured DOM byte for byte
 
 ```bash
 npm run dev                                                    # in app/ (or vite preview)
-python3 scripts/route.py parity <S> --app http://localhost:5173 [--state <state>]
+python3 tools/pipeline/route.py parity <S> --app http://localhost:5173 [--state <state>]
 ```
 It reads `analysis/states.json` (written by `analyze_capture.py` from the metadata `batch_capture.cjs` stores with each snapshot), runs `parity_check.cjs` for each state not in `ignoreStates`, and writes `parity/<state>.json` + `.diff.png`. Mocks answer at once during parity (`latency=0`) except in the `loading` scenario, which never answers. Run `parity_check.cjs` by hand only to debug one state; the gate will not accept that report.
 

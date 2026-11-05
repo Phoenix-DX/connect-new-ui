@@ -3,7 +3,7 @@
 Status: **approved by the user** (2026-10-21).
 Base: the writing rules of ASD-STE100 (Simplified Technical English). This project does not use the STE dictionary
 (user, 2026-10-21). Goal: easy to read for a reviewer who is not a native speaker, and easy for an agent to follow.
-`[lint]` = `migration/tools/ste_lint.py` checks the rule. The other rules need a writer and a reviewer.
+`[lint]` = `tools/docs/ste_lint.py` checks the rule. The other rules need a writer and a reviewer.
 
 ## 1. What you must not change
 
@@ -17,7 +17,7 @@ Base: the writing rules of ASD-STE100 (Simplified Technical English). This proje
 5. Do not add a fact. Do not remove a fact. If the old text is not clear, read the evidence. If the evidence does not
    give the answer, write **Unclear:** and the question. Never guess.
 
-`[guard]` = `migration/tools/meaning_guard.py` checks the rule.
+`[guard]` = `tools/docs/meaning_guard.py` checks the rule.
 
 ## 2. Words
 

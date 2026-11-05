@@ -18,16 +18,16 @@ Choose recorded fixtures when the screens' look depends on real data (text lengt
 
 ```bash
 # 1. the person logs in (once); agents never open the HAR
-node scripts/batch_capture.cjs login --base https://<host>/<App>/ --storage .auth/state.json
-node scripts/record_har.cjs --base https://<host>/<App>/ --storage .auth/state.json --out migration/.raw/session-<date>.har \
+node tools/pipeline/batch_capture.cjs login --base https://<host>/<App>/ --storage .auth/state.json
+node tools/pipeline/record_har.cjs --base https://<host>/<App>/ --storage .auth/state.json --out migration/.raw/session-<date>.har \
      --plan migration/capture-plan.json --crawl          # automatic (section 2a); omit both for manual browsing
 
 # 2. convert (deterministic: same HAR + same salt -> same fixtures)
-python3 scripts/har_to_fixtures.py convert --har migration/.raw/session-<date>.har \
+python3 tools/pipeline/har_to_fixtures.py convert --har migration/.raw/session-<date>.har \
         --out app/src/mocks/fixtures --rules migration/mock-rules.json
 
 # 3. the USER reads app/src/mocks/fixtures/REVIEW.md; adjust rules and convert again if needed, then
-python3 scripts/har_to_fixtures.py review --out app/src/mocks/fixtures --by user
+python3 tools/pipeline/har_to_fixtures.py review --out app/src/mocks/fixtures --by user
 
 # 4. delete the raw HAR
 ```
@@ -46,7 +46,7 @@ Safety, because the session is a real account:
 
 ### 2b. What to cover
 
-`python3 scripts/har_to_fixtures.py coverage --out app/src/mocks/fixtures` writes `migration/fixture-coverage.md`: per route, every call of the capture (all phases and flag variants, from `analysis/calls.json`) with or without a recording. Separately, `route.py ready` refuses a route with a captured call that has no mock handler at all.
+`python3 tools/pipeline/har_to_fixtures.py coverage --out app/src/mocks/fixtures` writes `migration/fixture-coverage.md`: per route, every call of the capture (all phases and flag variants, from `analysis/calls.json`) with or without a recording. Separately, `route.py ready` refuses a route with a captured call that has no mock handler at all.
 
 Whether automatic or manual, cover what the routes need: each list with data and (if possible) empty, each detail opened from a list, searches and filters with typical inputs, each status that changes the UI. `migration/catalog/actions.md` is the checklist of actions per screen. Recording more later: convert with `--append` (same salt file, so ids stay consistent) and review again.
 

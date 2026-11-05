@@ -8,14 +8,14 @@ specified and checked. Use it to re-capture or re-check a route. Architecture wo
 
 ## Paths
 
-- `SK=.claude/skills/outsystems-screen-spec/scripts`: every command below is `python3 $SK/<x>.py` or `node $SK/<x>.cjs`,
+- `SK=tools/pipeline`: every command below is `python3 $SK/<x>.py` or `node $SK/<x>.cjs`,
   always run from the project root (scripts default to `migration/`, `app/`, `.auth/`, `capture/` relative to it).
 - `capture/survey-UBTConnect.json`: static survey (compiled code only).
 - `migration/`: board, survey, catalog, stack, patterns, flags, per-route captures/specs/questions/parity.
 - `app/`: the React app. Folders of `app/src/`: `app`, `pages`, `containers`, `components`, `api`, `platform`, `lib`,
   `legacy/os`, `mocks`, `styles`, `vendor`, `pwa`, `sw`, `test`. Read `app/README.md` and
   `app/docs/architecture/overview.md` first.
-- `route-actions/`: the check of the routes, OutSystems against React (facts only). Start with `route-actions/README.md`.
+- `route-check/`: the check of the routes, OutSystems against React (facts only). Start with `route-check/README.md`.
 - `.auth/`: credentials and session. **SECRET.**
 
 ## Hard rules
@@ -68,7 +68,7 @@ specified and checked. Use it to re-capture or re-check a route. Architecture wo
 - Run it only through the skill **refactor-master**: `/refactor-master status | start | continue | phase P<n> | step <id>`.
   The master routes each step to the agents `refactor-developer`, `refactor-tester`, `refactor-documenter`
   (`.claude/agents/`). State: `migration/refactor/state.json`; guide: `migration/refactor/README.md`.
-- The refactor does not use `route.py` (D4). Its parity gate is `migration/tools/refactor_parity.py` (built in P0-2).
+- The refactor does not use `route.py` (D4). Its parity gate is `tools/parity/refactor_parity.py` (built in P0-2).
 
 ## Environment
 

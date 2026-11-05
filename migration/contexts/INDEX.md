@@ -6,7 +6,8 @@ section "Context notes".
 ## Now
 - Goal (user 2026-10-14): replace the OutSystems app in production; UI/UX 1:1. **Current focus (user 2026-10-17): local demo for colleagues, no production work.**
 - 2026-11-05: TST drift handled, live code wins ([context-075](context-075-tst-drift-waves.md)): 24 route differences built in two waves, the bookmark toggle moved to `UBTConnect_Utils`, contract from the live module files; CI green (4824 tests), full parity sweep 68 of 68 after wave 4 (20:10). Decision log rows 18–26.
-- Route actions pipeline `route-actions/` ([context-074](context-074-route-actions-pilot.md)): 68 of 68 routes; the tool reads the live compiled code for drifted routes.
+- 2026-11-05: folders reorganised ([context-076](context-076-folder-reorg.md)): `tools/` (by purpose, `tools/README.md`), `route-check/` (the former `route-actions/`, skill `/route-check`), one-off scripts deleted; generated files are behind their sources (open).
+- Route check `route-check/` ([context-074](context-074-route-actions-pilot.md)): 68 of 68 routes; the tool reads the live compiled code for drifted routes.
 - Waits for the user: row 23 (JSON key names of the contract: generator / BFF / defer). Re-captures: NotificationDetails, Search pills and layout, the 17 routes without a capture.
 - TST has 84 routes: 68 build, 16 skip. Demo: `npm --prefix app run build:demo`; dev http://localhost:5173/UBTConnect/HomeFeed (`?review=1`).
 
@@ -89,3 +90,4 @@ section "Context notes".
 | [073](context-073-app-conventions-review.md) | 2026-11-04 | Convention review of `app/src`: 16 findings (two naming regimes, barrels against R8, two origin tags, page folder layout), decisions D1–D8, plan N0–N5 next to WP-7 | current |
 | [074](context-074-route-actions-pilot.md) | 2026-11-04 | Route actions pipeline (TST → MCP → React shell + screen; KB dropped in run 2): one md per route, ROUTES.md list; pilot HomeFeed (21 calls, 3 missing) | current |
 | [075](context-075-tst-drift-waves.md) | 2026-11-05 | TST drift of 2026-11-05 handled in two waves (live compiled code wins): 24 route differences built, bookmark toggle moved to UBTConnect_Utils, contract from the live module files, HostSurvey store race fixed, route-actions call graph fixes; open: JSON key names (row 23), re-captures | current |
+| [076](context-076-folder-reorg.md) | 2026-11-05 | Folder reorganisation: `tools/` by purpose (pipeline, parity, generate, docs, tst, mcp, refactor, route-check), `route-actions` → `route-check`, one-off scripts deleted, path constants fixed; generators behind their sources (open) | current |

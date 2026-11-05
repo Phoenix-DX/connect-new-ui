@@ -7,7 +7,7 @@ You are rebuilding the UBTConnect mobile web front end (OutSystems 11) in React,
 ```
 migration/
 ├── AGENTS.md                      this file
-├── board.md                       status board: read it with `python3 <skill>/scripts/board.py show ...`, change it only with `board.py set`
+├── board.md                       status board: read it with `python3 tools/pipeline/board.py show ...`, change it only with `board.py set`
 ├── catalog/                       blocks.md (what is shared and where it is built), actions.md, foundation-queue.md
 ├── knowledge/actions/<Action>.md  cached server-side answers (OutSystems MCP)
 ├── change-requests/CR-<n>.md      requests for platform/legacy/lib changes
@@ -25,7 +25,7 @@ app/                               the React app (Vite + React 19 + TS + React R
 | Route agent for `<S>` | `app/src/pages/<S>/`; where the page template puts code: `app/src/api/<domain>/`, `app/src/components/`, `app/src/containers/`, `app/src/mocks/`, `app/src/app/routes*.ts`; `migration/screens/<S>/`, `migration/change-requests/CR-<S>-*.md`, route state via `route.py` | everything else, in particular `app/src/platform`, `app/src/legacy`, `app/src/lib`, `app/src/styles`, `app/src/vendor`, `app/public/UBTConnect/css`, other pages, exemptions |
 | Foundation owner | `app/src/platform`, `app/src/legacy`, `app/src/lib`, `app/src/styles`, legacy CSS (only to add missing original stylesheets), `package.json` and lockfile (only for accepted ADRs), change requests | pages (except to remove a `<NotCaptured>` marker for a closed CR, with the page's owner) |
 
-Layout of a route: `app/docs/guides/page-template.md`. `python3 <skill>/scripts/scope_guard.py --screen <S>` must pass before a route is finished (`route.py ready` and `finish` run it). It checks the files changed since the route's `startCommit` (in `run.json`, written by `route.py start`) and the working tree. It also allows the pages and `migration/screens/` folders of the other routes in progress and `migration/clarify/`, because several routes are built at the same time in one tree.
+Layout of a route: `app/docs/guides/page-template.md`. `python3 tools/pipeline/scope_guard.py --screen <S>` must pass before a route is finished (`route.py ready` and `finish` run it). It checks the files changed since the route's `startCommit` (in `run.json`, written by `route.py start`) and the working tree. It also allows the pages and `migration/screens/` folders of the other routes in progress and `migration/clarify/`, because several routes are built at the same time in one tree.
 
 ## Stack and patterns are fixed
 

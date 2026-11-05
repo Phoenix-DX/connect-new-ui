@@ -3,7 +3,7 @@
 Usage (from the project root):
   python3 migration/clarify/tools/flow_pack.py [--dump migration/clarify/.dump/espace.json] [--out migration/clarify/flows] [FLOW ...]
 
-Input: the JSON that migration/tools/mcp/unwrap.py makes from the MCP tool result of `getSerializedObject`.
+Input: the JSON that tools/mcp/unwrap.py makes from the MCP tool result of `getSerializedObject`.
 Output per flow, in <out>/<Flow>/pack/:
   screens.md     every screen of the flow: roles, inputs, variables, lifecycle, data actions, aggregates, widget tree,
                  screen actions (node flow as indented pseudo-code; disabled and unreachable nodes marked)

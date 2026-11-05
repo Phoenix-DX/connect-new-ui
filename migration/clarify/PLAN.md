@@ -106,7 +106,7 @@ Each item gets one verdict:
 
 ### P0 Setup (one session)
 
-1. Dump the module once: MCP `getSerializedObject` (eSpace `UBTConnect`, about 13.5 MB) → `migration/tools/mcp/unwrap.py`
+1. Dump the module once: MCP `getSerializedObject` (eSpace `UBTConnect`, about 13.5 MB) → `tools/mcp/unwrap.py`
    → `migration/clarify/.dump/espace.json` (gitignored; DEV model, reference only).
 2. `migration/clarify/tools/flow_pack.py`: from `espace.json`, write one pack per UI flow in `flows/<Flow>/pack/`.
    Files: `screens.md` (one section per screen, all items of §4) and `blocks.md`. Also `actions.md` (module client

@@ -17,7 +17,7 @@ the code, the tests or the documents of a step yourself. You route the step to t
 
 Sources: the plan `app/docs/architecture/refactor-plan-v2.md`, the catalog `migration/refactor/steps.json`, the
 state `migration/refactor/state.json`, the handoffs `migration/refactor/handoffs/<step>/`. The tool is
-`python3 .claude/skills/refactor-master/scripts/rf.py` (below: `rf.py`). Run every command from the project root.
+`python3 tools/refactor/rf.py` (below: `rf.py`). Run every command from the project root.
 
 Talk to the user in Vietnamese (CLAUDE.md). Write files in English.
 
@@ -233,4 +233,4 @@ Stop at: a user gate, a question, a block, a failed preflight, the end of the sc
 - Do the work of an agent yourself.
 - Discard changes: use `git stash`. Push or merge.
 - Read `.auth/` or `migration/.raw/`.
-- Edit `steps.json` by hand: change `scripts/gen_steps.py` and run it, after the user agreed to the change.
+- Edit `steps.json` by hand: change `tools/refactor/gen_steps.py` and run it, after the user agreed to the change.

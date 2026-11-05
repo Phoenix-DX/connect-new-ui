@@ -1,0 +1,1296 @@
+// React side of the route check: what code runs for a route, and which endpoints and functions it reaches.
+//
+// Usage (from the project root):
+//   node tools/route-check/react_calls.mjs shell            → route-check/.cache/data/react-shell.json
+//   node tools/route-check/react_calls.mjs page <Route>     → route-check/.cache/data/react-<Route>.json
+//
+// Method (static, TypeScript AST and type checker through ts-morph from app/node_modules):
+// 1. File closure: static imports (not `import type`), re-exports and dynamic `import('…')` from the entry.
+//    Excluded: tests, stories, src/test/, src/mocks/ (MSW engine). The shell closure stops at the lazy page glob
+//    (app/screens.ts uses import.meta.glob, which is not followed).
+// 2. Reachability by declaration: each top-level declaration is a unit. A unit reaches the units whose names it uses
+//    at run time (type positions skipped). Roots: the module top-level code of every closure file, plus the entry
+//    (shell: src/main.tsx; page: the default export of pages/<R>/<R>Page.tsx).
+// 3. In the reached units: every callAction(module, action) call, the declared function names, and the @origin tags.
+import { createRequire } from 'node:module';
+import fs from 'node:fs';
+import path from 'node:path';
+
+const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..'); // the repository root
+const HERE = path.join(ROOT, 'route-check'); // config and reports
+const CFG = JSON.parse(fs.readFileSync(path.join(HERE, 'config.json'), 'utf8')); // input paths, relative to ROOT
+const APP = path.join(ROOT, CFG.react.app);
+const SRC = path.join(APP, 'src');
+const require = createRequire(path.join(APP, 'package.json'));
+const { Project, Node, SyntaxKind } = require('ts-morph');
+
+const [mode, route] = process.argv.slice(2);
+if (!['shell', 'page', 'all'].includes(mode) || (mode === 'page' && !route)) {
+  console.error('usage: react_calls.mjs shell | page <Route> | all');
+  process.exit(2);
+}
+
+const project = new Project({ tsConfigFilePath: path.join(APP, 'tsconfig.json') });
+const rel = (f) => path.relative(ROOT, f);
+const excluded = (f) =>
+  !f.startsWith(SRC) ||
+  /\.(test|stories)\.tsx?$/.test(f) ||
+  f.startsWith(path.join(SRC, 'test') + path.sep) ||
+  f.startsWith(path.join(SRC, 'mocks') + path.sep) ||
+  f.endsWith('.d.ts');
+
+function resolveSpecifier(fromFile, spec) {
+  let base;
+  if (spec.startsWith('@/')) base = path.join(SRC, spec.slice(2));
+  else if (spec.startsWith('.')) base = path.resolve(path.dirname(fromFile), spec);
+  else return null;
+  for (const ext of ['', '.ts', '.tsx', '/index.ts', '/index.tsx']) {
+    const f = base + ext;
+    if (fs.existsSync(f) && fs.statSync(f).isFile()) return f;
+  }
+  return null;
+}
+
+function closure(entries) {
+  const seen = new Set();
+  const todo = [...entries];
+  while (todo.length) {
+    const f = todo.pop();
+    if (seen.has(f) || excluded(f)) continue;
+    seen.add(f);
+    const sf = project.getSourceFile(f);
+    if (!sf) continue;
+    const specs = [];
+    for (const d of sf.getImportDeclarations()) if (!d.isTypeOnly()) specs.push(d.getModuleSpecifierValue());
+    for (const d of sf.getExportDeclarations()) if (!d.isTypeOnly() && d.getModuleSpecifierValue()) specs.push(d.getModuleSpecifierValue());
+    for (const c of sf.getDescendantsOfKind(SyntaxKind.CallExpression)) {
+      if (c.getExpression().getKind() === SyntaxKind.ImportKeyword) {
+        const a = c.getArguments()[0];
+        if (a && Node.isStringLiteral(a)) specs.push(a.getLiteralValue());
+      }
+    }
+    for (const s of specs) {
+      const r = resolveSpecifier(f, s);
+      if (r && !seen.has(r)) todo.push(r);
+    }
+  }
+  return seen;
+}
+
+// ---- units -------------------------------------------------------------------------------------------------
+function unitsOf(sf) {
+  const units = []; // {name, node}
+  for (const st of sf.getStatements()) {
+    if (Node.isImportDeclaration(st) || Node.isExportDeclaration(st)) continue;
+    if (Node.isInterfaceDeclaration(st) || Node.isTypeAliasDeclaration(st)) continue;
+    if (Node.isFunctionDeclaration(st) || Node.isClassDeclaration(st) || Node.isEnumDeclaration(st)) {
+      units.push({ name: st.getName() ?? (st.isDefaultExport?.() ? 'default' : '#anon'), node: st, isDefault: !!st.isDefaultExport?.() });
+    } else if (Node.isVariableStatement(st)) {
+      for (const d of st.getDeclarations()) units.push({ name: d.getName(), node: d });
+    } else if (Node.isExportAssignment(st)) {
+      units.push({ name: 'default', node: st, isDefault: true });
+    } else {
+      units.push({ name: '#top', node: st, top: true });
+    }
+  }
+  return units;
+}
+
+function topUnitKey(declNode, files) {
+  const sf = declNode.getSourceFile();
+  const f = sf.getFilePath();
+  if (!files.has(f)) return null;
+  let n = declNode;
+  while (n.getParent() && !Node.isSourceFile(n.getParent())) n = n.getParent();
+  if (Node.isVariableStatement(n)) {
+    const vd = declNode.getFirstAncestorByKind?.(SyntaxKind.VariableDeclaration) ??
+      (Node.isVariableDeclaration(declNode) ? declNode : null);
+    const name = vd ? vd.getName() : n.getDeclarations()[0]?.getName();
+    return `${f}::${name}`;
+  }
+  if (Node.isFunctionDeclaration(n) || Node.isClassDeclaration(n) || Node.isEnumDeclaration(n)) {
+    return `${f}::${n.getName() ?? (n.isDefaultExport?.() ? 'default' : '#anon')}`;
+  }
+  if (Node.isExportAssignment(n)) return `${f}::default`;
+  if (Node.isInterfaceDeclaration(n) || Node.isTypeAliasDeclaration(n) || Node.isImportDeclaration(n)) return null;
+  return `${f}::#top`;
+}
+
+function inTypePosition(id) {
+  for (let p = id.getParent(); p; p = p.getParent()) {
+    if (Node.isTypeNode(p) || Node.isInterfaceDeclaration(p) || Node.isTypeAliasDeclaration(p)) return true;
+    if (Node.isStatement(p) || Node.isSourceFile(p)) return false;
+  }
+  return false;
+}
+
+function reach(files, rootKeys) {
+  const units = new Map(); // key -> {name,node,file}
+  for (const f of files) {
+    const sf = project.getSourceFile(f);
+    if (!sf) continue;
+    for (const u of unitsOf(sf)) {
+      const key = `${f}::${u.name}`;
+      const prev = units.get(key);
+      if (prev) prev.nodes.push(u.node);
+      else units.set(key, { ...u, file: f, nodes: [u.node] });
+    }
+  }
+  const reached = new Set();
+  const users = new Map(); // key -> Set of keys that use it (reverse edges)
+  const todo = rootKeys.filter((k) => units.has(k));
+  for (const f of files) if (units.has(`${f}::#top`)) todo.push(`${f}::#top`);
+  while (todo.length) {
+    const k = todo.pop();
+    if (reached.has(k)) continue;
+    reached.add(k);
+    const u = units.get(k);
+    for (const node of u.nodes) {
+      for (const id of node.getDescendantsOfKind(SyntaxKind.Identifier)) {
+        if (inTypePosition(id)) continue;
+        // `{ name }`: the identifier names the property; the value is the variable or function `name`
+        const sh = id.getParent();
+        let sym = Node.isShorthandPropertyAssignment(sh) && sh.getNameNode() === id ? sh.getValueSymbol() : id.getSymbol();
+        if (!sym) continue;
+        if (sym.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
+        for (const d of sym.getDeclarations()) {
+          const tk = topUnitKey(d, files);
+          if (tk && tk !== k && units.has(tk)) {
+            if (!users.has(tk)) users.set(tk, new Set());
+            users.get(tk).add(k);
+            if (!reached.has(tk)) todo.push(tk);
+          }
+        }
+      }
+    }
+  }
+  return { units, reached, users };
+}
+
+// ---- callers: from the unit that calls callAction up to the nearest React components -------------------------
+// A component is a PascalCase unit in src/pages, src/containers, src/components or src/app. Hooks and helpers on the
+// way are kept in the chain. Breadth first, so the nearest components come first; at most 3.
+const UI_DIR = /^app\/src\/(pages|containers|components|app)\//;
+const isComponent = (key) => {
+  const [f, name] = [key.slice(0, key.lastIndexOf('::')), key.slice(key.lastIndexOf('::') + 2)];
+  return UI_DIR.test(rel(f)) && /^[A-Z]/.test(name);
+};
+function callersOf(start, users, reached) {
+  const parent = new Map([[start, null]]);
+  const queue = [start];
+  const found = [];
+  while (queue.length && found.length < 3) {
+    const k = queue.shift();
+    if (k !== start && isComponent(k)) { found.push(k); continue; }
+    for (const u of users.get(k) ?? []) {
+      if (!reached.has(u) || parent.has(u) || u.endsWith('::#top')) continue;
+      parent.set(u, k);
+      queue.push(u);
+    }
+  }
+  return found.map((c) => {
+    const chain = [];
+    for (let k = c; k; k = parent.get(k)) {
+      const i = k.lastIndexOf('::');
+      chain.push({ name: k.slice(i + 2), file: rel(k.slice(0, i)) });
+    }
+    return chain; // component first, the calling function last
+  });
+}
+
+// ---- facts in reached units -----------------------------------------------------------------------------------
+function literalsOf(expr) {
+  const one = literalOf(expr);
+  if (one) return [one];
+  if (!expr || !Node.isElementAccessExpression(expr) || !Node.isIdentifier(expr.getExpression())) return [];
+  let sym = expr.getExpression().getSymbol?.();
+  if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
+  const d = sym?.getDeclarations()?.[0];
+  let init = d && Node.isVariableDeclaration(d) ? d.getInitializer() : null;
+  while (init && (Node.isAsExpression(init) || Node.isParenthesizedExpression(init))) init = init.getExpression();
+  if (!init || !Node.isObjectLiteralExpression(init)) return [];
+  return init.getProperties().map((p) => (Node.isPropertyAssignment(p) ? literalOf(p.getInitializer()) : null)).filter(Boolean);
+}
+function literalOf(expr) {
+  if (!expr) return null;
+  if (Node.isStringLiteral(expr) || Node.isNoSubstitutionTemplateLiteral(expr)) return expr.getLiteralValue();
+  const t = expr.getType();
+  if (t.isStringLiteral()) return t.getLiteralValue();
+  const sym = expr.getSymbol?.();
+  const d = sym?.getAliasedSymbol?.()?.getDeclarations?.()[0] ?? sym?.getDeclarations?.()[0];
+  if (d && Node.isVariableDeclaration(d)) {
+    const init = d.getInitializer();
+    if (init && (Node.isStringLiteral(init) || Node.isNoSubstitutionTemplateLiteral(init))) return init.getLiteralValue();
+  }
+  return null;
+}
+
+const ROUTE_NAMES = new Set(
+  [...fs.readFileSync(path.join(SRC, 'app', 'routes.generated.ts'), 'utf8').matchAll(/"screen": "(\w+)"/g)].map((m) => m[1]),
+);
+
+function innerFunctionNames(node) {
+  const names = new Set();
+  for (const d of node.getDescendants()) {
+    if (Node.isFunctionDeclaration(d) || Node.isMethodDeclaration(d)) {
+      if (d.getName()) names.add(d.getName());
+    } else if (Node.isVariableDeclaration(d) || Node.isPropertyAssignment(d)) {
+      const init = d.getInitializer?.();
+      if (init && (Node.isArrowFunction(init) || Node.isFunctionExpression(init) || Node.isCallExpression(init))) {
+        const n = d.getName?.();
+        if (n && /^[A-Za-z_$][\w$]*$/.test(n)) names.add(n);
+      }
+    }
+  }
+  return names;
+}
+
+// Navigation targets: a path literal that ends in a route name (`/${APP_ID}/Search`), or a string that is exactly a
+// route name (`go('OrbitLanding')`). The generated route tables list every route, so they are skipped.
+function navTargets(node, file) {
+  const out = [];
+  if (/routes(\.css)?\.generated\.ts$/.test(file)) return out;
+  for (const lit of node.getDescendants()) {
+    if (!(Node.isStringLiteral(lit) || Node.isNoSubstitutionTemplateLiteral(lit) || Node.isTemplateExpression(lit))) continue;
+    if (lit.getParent() && Node.isTemplateSpan(lit.getParent())) continue;
+    const text = lit.getText();
+    const exact = (Node.isStringLiteral(lit) || Node.isNoSubstitutionTemplateLiteral(lit)) ? lit.getLiteralValue() : null;
+    if (exact && ROUTE_NAMES.has(exact)) {
+      out.push({ to: exact, file: rel(file), line: lit.getStartLineNumber(), how: 'name' });
+      continue;
+    }
+    for (const m of text.matchAll(/\/([A-Za-z][\w]*)(?=[`'"?/#]|$)/g)) {
+      if (ROUTE_NAMES.has(m[1])) out.push({ to: m[1], file: rel(file), line: lit.getStartLineNumber(), how: 'path' });
+    }
+  }
+  return out;
+}
+
+function facts(units, reached, users) {
+  const calls = [];
+  const functions = new Set();
+  const origins = [];
+  const filesReached = new Set();
+  const fileFunctions = {};
+  const navigations = [];
+  for (const k of reached) {
+    const u = units.get(k);
+    filesReached.add(u.file);
+    for (const node of u.nodes) {
+      const ff = (fileFunctions[rel(u.file)] ??= new Set());
+      if (!u.top) ff.add(u.name);
+      for (const n of innerFunctionNames(node)) ff.add(n);
+      navigations.push(...navTargets(node, u.file));
+      if (!u.top) {
+        const init = Node.isVariableDeclaration(node) ? node.getInitializer() : null;
+        if (Node.isFunctionDeclaration(node) || (init && (Node.isArrowFunction(init) || Node.isFunctionExpression(init)))) functions.add(u.name);
+      }
+      for (const c of node.getDescendantsOfKind(SyntaxKind.CallExpression)) {
+        const e = c.getExpression();
+        if (!Node.isIdentifier(e) || e.getText() !== 'callAction') continue;
+        const [m, a] = c.getArguments();
+        const module = literalOf(m);
+        const fn = c.getFirstAncestor((x) => Node.isFunctionDeclaration(x) || (Node.isVariableDeclaration(x) && x.getParent()?.getParent()?.getParent() && Node.isSourceFile(x.getParent().getParent().getParent())));
+        const actions = literalsOf(a);
+        for (const action of actions.length ? actions : [null]) calls.push({
+          module, action,
+          apiPath: module && action ? `/api/${module}/${action}` : null,
+          file: rel(u.file), line: c.getStartLineNumber(),
+          fn: fn?.getName?.() ?? u.name,
+          callers: users ? callersOf(k, users, reached) : [],
+        });
+      }
+    }
+  }
+  for (const f of filesReached) {
+    const text = project.getSourceFile(f).getFullText();
+    for (const m of text.matchAll(/@(origin|os-block)\s+([\w.]+)/g)) origins.push({ origin: m[2], tag: m[1], file: rel(f) });
+  }
+  return {
+    calls, functions: [...functions].sort(), origins, files: [...filesReached].map(rel).sort(), navigations,
+    fileFunctions: Object.fromEntries(Object.entries(fileFunctions).map(([f, s]) => [f, [...s].sort()])),
+  };
+}
+
+// ---- handlers: what each React function does, branch by branch -------------------------------------------------
+// For each function of the reached code: its name, file, line, leading comment (the OutSystems names it ports) and
+// its effects in order, with the branch label of a `switch` case or an `if (x === Y.Z)` condition. Effects:
+// navigation, confirm dialog, message, external link, server call (callAction). Calls to other functions of
+// app/src are followed 3 levels deep.
+const NAV_FN = /^(navigate|go|osNavigateTo|navigateTo|replaceTo|goTo\w*|navigateBack\w*)$/;
+const RUNS_ARG = /^(run|runAwaited|then|catch|finally|setTimeout|queueMicrotask|requestAnimationFrame|flushSync|startTransition)$/;
+const ERROR_FN = /^(raiseToFlowHandler|showExceptionMessage|handleError\w*)$/;
+const HOME_SCREEN = (fs.readFileSync(path.join(SRC, 'app', 'routes.generated.ts'), 'utf8').match(/export const HOME = "\/\w+\/(\w+)"/) || [])[1];
+
+function labelOfExpr(e) {
+  if (!e) return null;
+  if (Node.isStringLiteral(e) || Node.isNoSubstitutionTemplateLiteral(e)) return e.getLiteralValue();
+  if (Node.isPropertyAccessExpression(e)) return e.getName();
+  if (Node.isIdentifier(e)) return e.getText();
+  return null;
+}
+
+function isConstName(e) {
+  // an identifier of a `const` with a string or number literal initializer (a named constant)
+  if (!Node.isIdentifier(e)) return false;
+  let sym = e.getSymbol?.();
+  if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
+  const d = sym?.getDeclarations()?.[0];
+  if (!d || !Node.isVariableDeclaration(d) || d.getVariableStatement?.()?.getDeclarationKind() !== 'const') return false;
+  const init = d.getInitializer();
+  return !!init && (Node.isStringLiteral(init) || Node.isNumericLiteral(init) || Node.isNoSubstitutionTemplateLiteral(init));
+}
+
+function condLabel(cond) {
+  // is(S.Orbit) / isItem('Home'): a call with one constant argument
+  for (const c of [cond, ...cond.getDescendantsOfKind(SyntaxKind.CallExpression)]) {
+    if (!Node.isCallExpression(c)) continue;
+    const args = c.getArguments();
+    if (args.length === 1 && (Node.isPropertyAccessExpression(args[0]) || Node.isStringLiteral(args[0]))) return labelOfExpr(args[0]);
+  }
+  for (const b of [cond, ...cond.getDescendantsOfKind(SyntaxKind.BinaryExpression)]) {
+    if (!Node.isBinaryExpression(b)) continue;
+    const op = b.getOperatorToken().getKind();
+    if (op !== SyntaxKind.EqualsEqualsEqualsToken && op !== SyntaxKind.EqualsEqualsToken) continue;
+    const r = b.getRight();
+    if (Node.isPropertyAccessExpression(r) || Node.isStringLiteral(r) || isConstName(r)) return labelOfExpr(r);
+  }
+  return null;
+}
+
+function constText(n, depth = 0) {
+  // the text of an argument, with each identifier or property access replaced by its constant initializer
+  let t = n.getText();
+  if (depth > 2) return t;
+  for (const x of [n, ...n.getDescendants()]) {
+    if (!(Node.isIdentifier(x) || Node.isPropertyAccessExpression(x))) continue;
+    let sym = (Node.isPropertyAccessExpression(x) ? x.getNameNode() : x).getSymbol?.();
+    if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
+    const d = sym?.getDeclarations()?.[0];
+    const init = d && (Node.isVariableDeclaration(d) || Node.isPropertyAssignment(d)) ? d.getInitializer() : null;
+    if (init && (Node.isStringLiteral(init) || Node.isNoSubstitutionTemplateLiteral(init) || Node.isTemplateExpression(init)))
+      t += ' ' + constText(init, depth + 1);
+  }
+  return t;
+}
+
+function navTargetsOf(arg) {
+  if (!arg) return [];
+  const t = constText(arg);
+  const out = [];
+  if (/\bPATHS\.home\b|\bHOME\b/.test(t)) out.push(HOME_SCREEN);
+  for (const m of t.matchAll(/\/([A-Za-z]\w*)(?=[`'"?/#]|$)/g)) if (ROUTE_NAMES.has(m[1])) out.push(m[1]);
+  for (const m of t.matchAll(/['"`]([A-Za-z]\w*)['"`]/g)) if (ROUTE_NAMES.has(m[1])) out.push(m[1]);
+  if (!out.length && Node.isPropertyAccessExpression(arg) && Node.isIdentifier(arg.getExpression())) {
+    // `navigate(target.path)` with `const target = f(…)`: the route paths in the returns of f
+    let sym = arg.getExpression().getSymbol?.();
+    if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
+    const vd = sym?.getDeclarations()?.[0];
+    const init = vd && Node.isVariableDeclaration(vd) ? vd.getInitializer() : null;
+    if (init && Node.isCallExpression(init)) {
+      let fs = init.getExpression().getSymbol?.();
+      if (fs?.isAlias()) fs = fs.getAliasedSymbol() ?? fs;
+      const fd = fs?.getDeclarations()?.[0];
+      const body = fd && !excluded(fd.getSourceFile().getFilePath()) ? bodyOfDecl(fd) : null;
+      if (body) {
+        for (const ret of body.getDescendantsOfKind(SyntaxKind.ReturnStatement)) {
+          const e = ret.getExpression();
+          if (!e || !Node.isObjectLiteralExpression(e)) continue;
+          const p = e.getProperty(arg.getName());
+          const v = p && Node.isPropertyAssignment(p) ? p.getInitializer() : null;
+          if (v) out.push(...navTargetsOf(v));
+        }
+      }
+    }
+  }
+  return [...new Set(out)];
+}
+
+function isFunctionLike(n) {
+  return Node.isFunctionDeclaration(n) || Node.isArrowFunction(n) || Node.isFunctionExpression(n) || Node.isMethodDeclaration(n);
+}
+
+function bodyOfDecl(d) {
+  if (isFunctionLike(d)) return d;
+  if (Node.isVariableDeclaration(d) || Node.isPropertyAssignment(d)) {
+    const init = d.getInitializer?.();
+    if (init && isFunctionLike(init)) return init;
+    // a function in a wrapper that returns it to run: `flow.own(fn)`, `useCallback(fn, deps)`
+    if (init && Node.isCallExpression(init) && /(^|\.)(own|useCallback|useEvent|useEffectEvent)$/.test(init.getExpression().getText())) {
+      const a = init.getArguments()[0];
+      if (a && isFunctionLike(a)) return a;
+    }
+  }
+  return null;
+}
+
+// The closure of a function that a hook returns: the hook function and the call of the hook. A callback that the code
+// takes from a hook parameter (`events.onX()`, `useRef(events).current.onX?.()`, `{ onX }` of the parameter) is the
+// argument at that call.
+const ENV = new Map();
+
+// The object literal behind an expression: the literal itself, the initializer of a `const`, or the value that the
+// parent gives to a prop (`<X events={events} />`), through the components that pass it on.
+function objectOf(e, hops = 0) {
+  if (!e || hops > 5) return null;
+  if (Node.isObjectLiteralExpression(e)) return e;
+  if (!Node.isIdentifier(e)) return null;
+  let sym = e.getSymbol?.();
+  if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
+  const d = sym?.getDeclarations()?.[0];
+  if (d && Node.isVariableDeclaration(d)) return objectOf(d.getInitializer(), hops + 1);
+  const po = propOf(e);
+  if (po) for (const v of propValues(po.prm, po.prop)) { const o = objectOf(v, hops + 1); if (o) return o; }
+  return null;
+}
+
+function envResolve(ex, env) {
+  if (!env) return null;
+  const declOf = (n) => {
+    let sym = n.getSymbol?.();
+    if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
+    return sym?.getDeclarations()?.[0];
+  };
+  // the argument of a parameter at the call of its function (the nearest env of that function); an argument that is
+  // itself a parameter of the caller is resolved again one env up
+  const paramArg = (decl, e = env, hops = 0) => {
+    const prm = decl && (Node.isParameterDeclaration(decl) ? decl : decl.getFirstAncestorByKind?.(SyntaxKind.Parameter));
+    if (!prm || hops > 6) return null;
+    let x = e;
+    while (x && prm.getParent() !== x.hookFn) x = x.parent;
+    if (!x) return null;
+    const arg = x.call.getArguments()[x.hookFn.getParameters().indexOf(prm)] ?? null;
+    if (arg && Node.isIdentifier(arg)) {
+      const ad = declOf(arg);
+      if (ad && Node.isParameterDeclaration(ad)) return paramArg(ad, x.parent, hops + 1);
+    }
+    return arg;
+  };
+  let arg = null, prop = null;
+  if (Node.isPropertyAccessExpression(ex)) {
+    prop = ex.getName();
+    let obj = ex.getExpression();
+    if (Node.isPropertyAccessExpression(obj) && obj.getName() === 'current') {
+      const rd = declOf(obj.getExpression());
+      const init = rd && Node.isVariableDeclaration(rd) ? rd.getInitializer() : null;
+      if (init && Node.isCallExpression(init) && init.getExpression().getText() === 'useRef') obj = init.getArguments()[0];
+      else if (rd && Node.isBindingElement(rd) && /\bcurrent\b/.test(rd.getType().getText())) {
+        // `const { events: ref } = useFlowState({ events })`: the hook keeps the option `events` in a ref of the same
+        // name (flowState.ts: `events: useRef(events)`), so `ref.current` is the option
+        const key = rd.getPropertyNameNode()?.getText() ?? rd.getName();
+        const hv = rd.getFirstAncestorByKind(SyntaxKind.VariableDeclaration)?.getInitializer();
+        const opt = hv && Node.isCallExpression(hv) ? hv.getArguments()[0] : null;
+        const p = opt && Node.isObjectLiteralExpression(opt) ? opt.getProperty(key) : null;
+        if (p && Node.isShorthandPropertyAssignment(p)) {
+          const vd = p.getValueSymbol?.()?.getDeclarations()?.[0];
+          if (vd) arg = paramArg(vd);
+          obj = null;
+        } else if (p && Node.isPropertyAssignment(p)) obj = p.getInitializer();
+      }
+    }
+    if (obj && Node.isPropertyAccessExpression(obj) && obj.getName() === 'events' && Node.isIdentifier(obj.getExpression())) {
+      // `flow.events.onX` with `const { flow } = useFlowState({ events })` or `const flow = useFlowScope(events)`: the
+      // events option of the hook
+      const fd = declOf(obj.getExpression());
+      const vd = fd && Node.isBindingElement(fd) ? fd.getFirstAncestorByKind(SyntaxKind.VariableDeclaration) : fd;
+      const hv = vd && Node.isVariableDeclaration(vd) ? vd.getInitializer() : null;
+      const a0 = hv && Node.isCallExpression(hv) ? hv.getArguments()[0] : null;
+      if (a0 && Node.isObjectLiteralExpression(a0)) {
+        const p = a0.getProperty('events');
+        const vs = p && Node.isShorthandPropertyAssignment(p) ? p.getValueSymbol?.()?.getDeclarations()?.[0] : null;
+        if (vs) arg = paramArg(vs);
+        else if (p && Node.isPropertyAssignment(p) && Node.isIdentifier(p.getInitializer())) arg = paramArg(declOf(p.getInitializer()));
+      } else if (a0 && Node.isIdentifier(a0) && /useFlowScope$/.test(hv.getExpression().getText())) arg = paramArg(declOf(a0));
+      obj = null;
+    }
+    if (obj && Node.isIdentifier(obj)) arg = paramArg(declOf(obj));
+  } else if (Node.isIdentifier(ex)) {
+    const d = declOf(ex);
+    if (d && Node.isBindingElement(d)) {
+      prop = d.getPropertyNameNode()?.getText() ?? d.getName();
+      arg = paramArg(d);
+    } else if (d && Node.isParameterDeclaration(d)) {
+      const a = paramArg(d);  // a function given as an argument
+      return a ? resolveFn(a) : null;
+    }
+  }
+  if (!arg || !prop) return null;
+  arg = objectOf(arg);
+  if (!arg) return null;
+  const p = arg.getProperty(prop);
+  if (!p) return null;
+  if (Node.isShorthandPropertyAssignment(p)) return resolveFn(p.getNameNode(), 0, p.getValueSymbol?.());
+  if (Node.isPropertyAssignment(p)) return resolveFn(p.getInitializer());
+  if (Node.isMethodDeclaration(p)) return p;
+  return null;
+}
+
+// The files of the route (set by bindingsOf) and the JSX elements of each component name in them.
+let ROUTE_FILES = new Set();
+const JSX_CACHE = new Map();
+function jsxOf(tag) {
+  const key = tag + '|' + ROUTE_FILES.size;
+  if (JSX_CACHE.has(key)) return JSX_CACHE.get(key);
+  const els = [];
+  for (const f of ROUTE_FILES) {
+    const sf = project.getSourceFile(f);
+    if (!sf) continue;
+    for (const el of [...sf.getDescendantsOfKind(SyntaxKind.JsxOpeningElement), ...sf.getDescendantsOfKind(SyntaxKind.JsxSelfClosingElement)])
+      if (el.getTagNameNode().getText() === tag) els.push(el);
+  }
+  JSX_CACHE.set(key, els);
+  return els;
+}
+
+// The values of a prop: `prop` of the component that declares `prm` (its parameter), on the JSX elements of that
+// component in the route files.
+function propValues(prm, prop) {
+  const comp = prm.getParent();
+  const name = Node.isFunctionDeclaration(comp) ? comp.getName() : comp.getParent()?.getName?.();
+  if (!name || !/^[A-Z]/.test(name)) return [];
+  const out = [];
+  for (const el of jsxOf(name)) {
+    const attr = el.getAttribute(prop);
+    const init = attr && Node.isJsxAttribute(attr) ? attr.getInitializer() : null;
+    const v = init && Node.isJsxExpression(init) ? init.getExpression() : null;
+    if (v) out.push(v);
+  }
+  return out;
+}
+
+// The prop behind an expression: `{ prop }` of a component parameter, or `props.prop`. Else null.
+function propOf(ex) {
+  let sym = (Node.isPropertyAccessExpression(ex) ? ex.getNameNode() : ex).getSymbol?.();
+  if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
+  const d = sym?.getDeclarations()?.[0];
+  if (d && Node.isBindingElement(d)) {
+    const prm = d.getFirstAncestorByKind(SyntaxKind.Parameter);
+    if (prm) return { prm, prop: d.getPropertyNameNode()?.getText() ?? d.getName() };
+  } else if (d && Node.isPropertySignature(d) && Node.isPropertyAccessExpression(ex)) {
+    const od = ex.getExpression().getSymbol?.()?.getDeclarations()?.[0];
+    if (od && Node.isParameterDeclaration(od)) return { prm: od, prop: ex.getName() };
+  }
+  return null;
+}
+
+// A function prop (not `on*`) that the code calls: the value of that attribute on the JSX elements of the component in
+// the route files, through the components that pass it on.
+function propResolve(ex, hops = 0) {
+  if (hops > 5) return [];
+  const p = propOf(ex);
+  if (!p || /^on[A-Z]/.test(p.prop)) return [];
+  const out = [];
+  for (const v of propValues(p.prm, p.prop)) {
+    const fn = isFunctionLike(v) ? v : resolveFn(v);
+    if (fn) out.push(fn);
+    else out.push(...propResolve(v, hops + 1));
+  }
+  return [...new Set(out)];
+}
+
+function effectsOf(fn, label, depth, seen, env = null) {
+  const out = [];
+  env = ENV.get(fn) ?? env;
+  const add = (kind, detail, node, lab) => out.push({ branch: lab ?? null, kind, detail, file: rel(node.getSourceFile().getFilePath()), line: node.getStartLineNumber() });
+  const walk = (node, lab) => {
+    if (!node) return;
+    if (node !== fn && (Node.isFunctionDeclaration(node) || (Node.isVariableDeclaration(node) && bodyOfDecl(node)))) return; // a declaration, not a run
+    if (Node.isSwitchStatement(node)) {
+      walk(node.getExpression(), lab);
+      for (const c of node.getCaseBlock().getClauses()) {
+        const l = lab ?? (Node.isDefaultClause(c) ? 'other' : labelOfExpr(c.getExpression()));
+        for (const st of c.getStatements()) walk(st, l);
+      }
+      return;
+    }
+    if (Node.isBlock(node) || Node.isSourceFile(node)) {
+      let rest = null;
+      for (const st of node.getStatements()) {
+        const own = Node.isIfStatement(st) && condLabel(st.getExpression());
+        walk(st, lab ?? (own ? null : rest));
+        if (Node.isIfStatement(st) && !st.getElseStatement() && condLabel(st.getExpression())) {
+          const th = st.getThenStatement();
+          const stmts = Node.isBlock(th) ? th.getStatements() : [th];
+          if (stmts.length && Node.isReturnStatement(stmts[stmts.length - 1])) rest = 'other';
+        }
+      }
+      return;
+    }
+    if (Node.isIfStatement(node)) {
+      const l = condLabel(node.getExpression());
+      walk(node.getExpression(), lab);
+      walk(node.getThenStatement(), lab ?? l);
+      const el = node.getElseStatement();
+      if (el) walk(el, lab ?? (l && !Node.isIfStatement(el) ? 'other' : null));
+      return;
+    }
+    if (Node.isCallExpression(node)) {
+      let ex = node.getExpression();
+      while (Node.isParenthesizedExpression(ex)) ex = ex.getExpression();
+      if (Node.isConditionalExpression(ex) && depth < 3) {
+        // (a ? f : g)(x): one of the two functions runs
+        for (const alt of [ex.getWhenTrue(), ex.getWhenFalse()]) {
+          let sym = alt.getSymbol?.();
+          if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
+          const d = sym?.getDeclarations()?.[0];
+          const body = d && !excluded(d.getSourceFile().getFilePath()) ? bodyOfDecl(d) : null;
+          if (!body || seen.has(body)) continue;
+          for (const e of effectsOf(body, lab, depth + 1, new Set([...seen, body]), env)) out.push({ ...e, either: true });
+        }
+        for (const c of node.getArguments()) walk(c, lab);
+        return;
+      }
+      const name = Node.isPropertyAccessExpression(ex) ? ex.getName() : ex.getText();
+      const args = node.getArguments();
+      let handled = true;
+      if (name === 'callAction') {
+        const m = literalOf(args[0]), a = literalOf(args[1]);
+        if (m && a) add('call', `/api/${m}/${a}`, node, lab);
+      } else if (NAV_FN.test(name)) {
+        const ts = navTargetsOf(args[0]);
+        for (const t of ts) add('navigate', t, node, lab);
+        if (!ts.length && ((/^navigateBack\w*$/.test(name) && !args.length) || (args[0] && args[0].getText() === '-1')))
+          add('navigate', 'previous screen', node, lab);
+        else if (!ts.length) handled = false;
+      } else if (/^screenController_NavigateToPage\w*$/.test(name) && args[0]) {
+        add('navigate', `URL ${args[0].getText()}`, node, lab); // a navigation to a URL that the code computes
+      } else if (/^confirm\w*$/i.test(name)) {
+        add('confirm', args[0] ? args[0].getText().replace(/['"`]/g, '') : 'confirm', node, lab);
+      } else if ((/^show\w*(Feedback)?Message$/.test(name) || /^feedbackMessage\w*$/.test(name)) && !ERROR_FN.test(name)) {
+        add('message', args[0] ? args[0].getText() : '', node, lab);
+      } else if (/^set\w*FetchId$|^refetch\w*$|^invalidateQueries$/.test(name)) {
+        // a query fetches again (a new key or a refetch). `q.refetch()` with `const q = useXQuery(…)`: the calls of the
+        // query hook
+        let qcalls = [];
+        // the query is a last step (queryFn → fetch function → callAction): it has its own depth, from level 1
+        if (Node.isPropertyAccessExpression(ex) && Node.isIdentifier(ex.getExpression())) {
+          const qd = ex.getExpression().getSymbol?.()?.getDeclarations()?.[0];
+          const qi = qd && Node.isVariableDeclaration(qd) ? qd.getInitializer() : null;
+          const qn = qi && Node.isCallExpression(qi) ? qi.getExpression().getText() : '';
+          const qo = /^use(Infinite)?Query$/.test(qn) ? qi.getArguments()[0] : null;
+          const qp = qo && Node.isObjectLiteralExpression(qo) ? qo.getProperty('queryFn') : null;
+          const qf = qp && Node.isPropertyAssignment(qp) ? resolveFn(qp.getInitializer()) : null;
+          if (qf && !seen.has(qf)) {
+            // `const q = useQuery({ queryFn })`: the calls of queryFn
+            qcalls = effectsOf(qf, lab, 1, new Set([...seen, qf])).filter((e) => e.kind === 'call');
+          } else if (qi && Node.isCallExpression(qi) && /^use\w*Query$/.test(qn)) {
+            let hs = qi.getExpression().getSymbol?.();
+            if (hs?.isAlias()) hs = hs.getAliasedSymbol() ?? hs;
+            const hd = hs?.getDeclarations()?.[0];
+            const hb = hd && !excluded(hd.getSourceFile().getFilePath()) ? bodyOfDecl(hd) : null;
+            if (hb && !seen.has(hb)) qcalls = effectsOf(hb, lab, 1, new Set([...seen, hb])).filter((e) => e.kind === 'call');
+          }
+        }
+        if (qcalls.length) {
+          out.push({ branch: lab ?? null, kind: 'via', detail: ex.getText(), file: rel(node.getSourceFile().getFilePath()), line: node.getStartLineNumber() });
+          out.push(...qcalls.map((e) => ({ ...e, branch: lab ?? null })));
+        } else add('refresh', ex.getText(), node, lab);
+      } else if (name === 'raiseToFlowHandler') {
+        // the default error path of every OutSystems action (the global exception handler), not an effect
+      } else if (ERROR_FN.test(name)) {
+        add('message', 'error message (on exception)', node, lab);
+      } else if (/open\w*External\w*Link|openInApp|openUrl|OpenInNewTab/i.test(name)) {
+        add('external', name, node, lab);
+      } else if (name === 'pageRedirect' && args[0]) {
+        const scheme = constText(args[0]).match(/[`'"]([a-z]+):/);
+        add('external', scheme ? `${scheme[1]}: link` : name, node, lab); // a full page load of a URL
+      } else if (name === 'changeWindowLocation') {
+        const scheme = (args[0] ? args[0].getText() : '').match(/^[`'"]([a-z]+):/);
+        add('external', scheme ? `${scheme[1]}: link` : name, node, lab);
+      } else handled = false;
+      if (RUNS_ARG.test(name) && depth < 3) {
+        // a function given to then/catch/setTimeout/…: it runs
+        for (const a of args) {
+          if (!Node.isIdentifier(a) || ERROR_FN.test(a.getText())) continue; // the error path: not followed
+          let sym = a.getSymbol?.();
+          if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
+          const d = sym?.getDeclarations()?.[0];
+          const body = d && !excluded(d.getSourceFile().getFilePath()) ? bodyOfDecl(d) : null;
+          if (!body || seen.has(body)) continue;
+          const sub = effectsOf(body, lab, depth + 1, new Set([...seen, body]), env);
+          if (sub.length) {
+            out.push({ branch: lab ?? null, kind: 'via', detail: a.getText(), file: rel(d.getSourceFile().getFilePath()), line: d.getStartLineNumber() });
+            out.push(...sub);
+          }
+        }
+      }
+      if (!handled && depth < 3) {
+        let sym = (Node.isPropertyAccessExpression(ex) ? ex.getNameNode() : ex).getSymbol?.();
+        if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
+        const d0 = sym?.getDeclarations()?.[0];
+        let cb = envResolve(ex, env);
+        if (!cb && Node.isPropertyAccessExpression(ex) && ex.getName() === 'current' && Node.isIdentifier(ex.getExpression())) {
+          // `ref.current(…)` with `const ref = useRef(fn)`: fn runs
+          const rd = ex.getExpression().getSymbol?.()?.getDeclarations()?.[0];
+          const ri = rd && Node.isVariableDeclaration(rd) ? rd.getInitializer() : null;
+          if (ri && Node.isCallExpression(ri) && ri.getExpression().getText() === 'useRef' && ri.getArguments()[0])
+            cb = resolveFn(ri.getArguments()[0]);
+        }
+        const viaProps = cb ? [] : propResolve(ex).filter((b) => !seen.has(b));
+        for (const pb of viaProps) {
+          const sub = effectsOf(pb, lab, depth + 1, new Set([...seen, pb]), null);
+          if (sub.length) {
+            out.push({ branch: lab ?? null, kind: 'via', detail: name, file: rel(pb.getSourceFile().getFilePath()), line: pb.getStartLineNumber() });
+            out.push(...sub);
+          }
+        }
+        if (viaProps.length) {
+          // resolved through the props
+        } else if (cb && !seen.has(cb)) {
+          const sub = effectsOf(cb, lab, depth + 1, new Set([...seen, cb]), env);
+          if (sub.length) {
+            out.push({ branch: lab ?? null, kind: 'via', detail: name, file: rel(cb.getSourceFile().getFilePath()), line: cb.getStartLineNumber() });
+            out.push(...sub);
+          }
+        } else if (d0 && (Node.isParameterDeclaration(d0) || Node.isPropertySignature(d0) || (Node.isBindingElement(d0) && d0.getFirstAncestorByKind(SyntaxKind.Parameter))) && /^on[A-Z]/.test(name)) {
+          add('callback', name, node, lab); // the parent decides what happens
+        }
+        for (const d of sym?.getDeclarations() ?? []) {
+          const f = d.getSourceFile().getFilePath();
+          if (excluded(f)) continue;
+          const body = bodyOfDecl(d) ?? (Node.isBindingElement(d) ? resolveFn(ex) : null);
+          if (!body || seen.has(body)) continue;
+          const sub = effectsOf(body, lab, depth + 1, new Set([...seen, body]), { hookFn: body, call: node, parent: env });
+          if (sub.length) {
+            out.push({ branch: lab ?? null, kind: 'via', detail: name, file: rel(f), line: d.getStartLineNumber() });
+            out.push(...sub);
+          }
+          break;
+        }
+      }
+    }
+    for (const c of node.getChildren()) walk(c, lab);
+  };
+  const b = fn.getBody?.() ?? fn;
+  walk(b, label);
+  return out;
+}
+
+function leadingComment(n) {
+  if (Node.isJsxAttribute(n)) {
+    const full = n.getSourceFile().getFullText();
+    const before = full.slice(Math.max(0, n.getStart() - 300), n.getStart());
+    const m = before.match(/(\/\/[^\n]*|\/\*[\s\S]*?\*\/)\s*$/);
+    const after = full.slice(n.getEnd(), n.getEnd() + 200).match(/^[^\n]*?(\/\/[^\n]*)/); // `}} // OnClick_Block`
+    return [m ? m[1] : '', after ? after[1] : ''].join(' ').replace(/\s+/g, ' ').trim();
+  }
+  let x = n;
+  while (x && !Node.isStatement(x) && !Node.isPropertyAssignment(x) && !Node.isMethodDeclaration(x)) x = x.getParent();
+  if (!x) return '';
+  return x.getLeadingCommentRanges().map((r) => r.getText()).join(' ').replace(/\s+/g, ' ').slice(0, 400);
+}
+
+function handlersOf(units, reached) {
+  const out = [];
+  const files = new Set([...reached].map((k) => units.get(k).file));
+  for (const f of files) {
+    const sf = project.getSourceFile(f);
+    for (const d of [...sf.getDescendantsOfKind(SyntaxKind.FunctionDeclaration), ...sf.getDescendantsOfKind(SyntaxKind.VariableDeclaration),
+      ...sf.getDescendantsOfKind(SyntaxKind.PropertyAssignment), ...sf.getDescendantsOfKind(SyntaxKind.MethodDeclaration),
+      ...sf.getDescendantsOfKind(SyntaxKind.JsxAttribute)]) {
+      let body = bodyOfDecl(d);
+      if (!body && Node.isJsxAttribute(d)) {
+        const init = d.getInitializer();
+        const ex = init && Node.isJsxExpression(init) ? init.getExpression() : null;
+        if (ex && isFunctionLike(ex)) body = ex;
+      }
+      if (!body) continue;
+      const name = Node.isJsxAttribute(d) ? d.getNameNode().getText() : d.getName?.();
+      if (!name || !/^[A-Za-z_$][\w$]*$/.test(name)) continue;
+      const effects = effectsOf(body, null, 0, new Set([body]));
+      const comment = leadingComment(d);
+      if (!effects.length && !comment && !/^(on|handle)[A-Z_]/.test(name)) continue;
+      out.push({ name, file: rel(f), line: d.getStartLineNumber(), comment, effects });
+    }
+  }
+  return out;
+}
+
+// ---- bindings: the event handlers of the JSX ------------------------------------------------------------------
+// Each JSX attribute `on<Event>={handler}` of the reached files: the element, the attribute, the handler (inline or a
+// named function) and its effects (effectsOf). Only bindings with at least one effect (server call, navigation,
+// message, external link, confirm dialog) are kept. A binding that only calls a prop of its component is not kept:
+// the parent binds the real handler.
+const EFFECT_KINDS = new Set(['call', 'navigate', 'message', 'external', 'confirm', 'refresh']);
+
+// The function behind a handler expression: a function declaration or const, a name taken from the object that a
+// hook returns (`const { onX } = useY()` or `flows.onX` with `flows = useY()`), a shorthand property. A prop or a
+// parameter gives null: the parent decides.
+function returnedProperty(callExpr, name, depth) {
+  let sym = callExpr.getExpression().getSymbol?.();
+  if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
+  for (const d of sym?.getDeclarations() ?? []) {
+    const fn = bodyOfDecl(d);
+    if (!fn) continue;
+    for (const ret of fn.getDescendantsOfKind(SyntaxKind.ReturnStatement)) {
+      if (ret.getFirstAncestor(isFunctionLike) !== fn) continue;
+      const obj = ret.getExpression();
+      if (!obj || !Node.isObjectLiteralExpression(obj)) continue;
+      const p = obj.getProperty(name);
+      if (!p) continue;
+      const keep = (r) => {
+        if (r && !ENV.has(r) && r.getFirstAncestor((x) => x === fn)) ENV.set(r, { hookFn: fn, call: callExpr, parent: null });
+        return r;
+      };
+      if (Node.isShorthandPropertyAssignment(p)) return keep(resolveFn(p.getNameNode(), depth + 1, p.getValueSymbol?.()));
+      if (Node.isPropertyAssignment(p)) {
+        const init = p.getInitializer();
+        if (init && isFunctionLike(init)) return keep(init);
+        if (init) return keep(resolveFn(init, depth + 1));
+      }
+      if (Node.isMethodDeclaration(p)) return keep(p);
+    }
+  }
+  return null;
+}
+
+function hookReturnedFn(callExpr) {
+  const name = callExpr.getExpression().getText();
+  if (!/^use[A-Z]/.test(name)) return null;
+  let sym = callExpr.getExpression().getSymbol?.();
+  if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
+  for (const d of sym?.getDeclarations() ?? []) {
+    if (excluded(d.getSourceFile().getFilePath())) continue;
+    const fn = bodyOfDecl(d);
+    if (!fn) continue;
+    for (const ret of fn.getDescendantsOfKind(SyntaxKind.ReturnStatement)) {
+      if (ret.getFirstAncestor(isFunctionLike) !== fn) continue;
+      let e = ret.getExpression();
+      if (e && Node.isCallExpression(e) && e.getExpression().getText() === 'useCallback') e = e.getArguments()[0];
+      if (e && isFunctionLike(e)) {
+        if (!ENV.has(e)) ENV.set(e, { hookFn: fn, call: callExpr, parent: null });
+        return e;
+      }
+    }
+  }
+  return null;
+}
+
+function resolveFn(expr, depth = 0, given = null) {
+  if (!expr || depth > 4) return null;
+  if (isFunctionLike(expr)) return expr;
+  let sym = given ?? (Node.isPropertyAccessExpression(expr) ? expr.getNameNode() : expr).getSymbol?.();
+  if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
+  for (const d of sym?.getDeclarations() ?? []) {
+    if (excluded(d.getSourceFile().getFilePath())) continue;
+    const body = bodyOfDecl(d);
+    if (body) return body;
+    if (Node.isVariableDeclaration(d) && d.getInitializer() && Node.isCallExpression(d.getInitializer())) {
+      // `const back = useX()`: a hook that returns a function (`return useCallback(fn, …)` or `return fn`)
+      const fn = hookReturnedFn(d.getInitializer());
+      if (fn) return fn;
+    }
+    if (Node.isBindingElement(d)) {
+      const vd = d.getFirstAncestorByKind(SyntaxKind.VariableDeclaration);
+      const init = vd?.getInitializer();
+      const name = d.getPropertyNameNode()?.getText() ?? d.getName();
+      if (init && Node.isCallExpression(init)) return returnedProperty(init, name, depth);
+    }
+    if ((Node.isPropertySignature(d) || Node.isPropertyAssignment(d) || Node.isShorthandPropertyAssignment(d)) && Node.isPropertyAccessExpression(expr)) {
+      const objSym = expr.getExpression().getSymbol?.();
+      const od = objSym?.getDeclarations()?.[0];
+      // `flow.onX` with `flow` a prop: the object that the parent gives (`flow={flow}`, `const flow = useY()`)
+      const po = propOf(expr.getExpression());
+      if (po && depth < 4) {
+        for (const v of propValues(po.prm, po.prop)) {
+          const vs = v.getSymbol?.()?.getDeclarations()?.[0];
+          const vi = vs && Node.isVariableDeclaration(vs) ? vs.getInitializer() : null;
+          if (vi && Node.isCallExpression(vi)) {
+            const b = returnedProperty(vi, expr.getName(), depth);
+            if (b) return b;
+          }
+        }
+      }
+      // `const x = useY()` or the rest element `const { a, ...x } = useY()`
+      const ovd = od && Node.isBindingElement(od) && od.getDotDotDotToken() ? od.getFirstAncestorByKind(SyntaxKind.VariableDeclaration) : od;
+      let init = ovd && Node.isVariableDeclaration(ovd) ? ovd.getInitializer() : null;
+      if (init && Node.isIdentifier(init)) {
+        const ld = init.getSymbol?.()?.getDeclarations()?.[0];
+        init = ld && Node.isVariableDeclaration(ld) ? ld.getInitializer() : null;
+      }
+      if (init && Node.isCallExpression(init)) return returnedProperty(init, expr.getName(), depth);
+    }
+  }
+  return null;
+}
+
+// An anonymous function (inline in JSX or in an object) is not a named level: the 3 levels count from the first named
+// function, as for `on={name}`.
+function startDepth(body) {
+  const named = Node.isFunctionDeclaration(body) || Node.isMethodDeclaration(body) || Node.isVariableDeclaration(body.getParent());
+  return named ? 0 : -1;
+}
+
+function spreadOfHookObject(id, f) {
+  const out = [];
+  const vd = id.getExpression().getSymbol?.()?.getDeclarations()?.[0];
+  const init = vd && Node.isVariableDeclaration(vd) ? vd.getInitializer() : null;
+  if (!init || !Node.isCallExpression(init) || !/^use[A-Z]/.test(init.getExpression().getText())) return out;
+  let hs = init.getExpression().getSymbol?.();
+  if (hs?.isAlias()) hs = hs.getAliasedSymbol() ?? hs;
+  const hd = hs?.getDeclarations()?.[0];
+  const fn = hd && !excluded(hd.getSourceFile().getFilePath()) ? bodyOfDecl(hd) : null;
+  if (!fn) return out;
+  let objLit = null;
+  for (const ret of fn.getDescendantsOfKind(SyntaxKind.ReturnStatement)) {
+    if (ret.getFirstAncestor(isFunctionLike) !== fn) continue;
+    const r = ret.getExpression();
+    const p = r && Node.isObjectLiteralExpression(r) ? r.getProperty(id.getName()) : null;
+    if (!p) continue;
+    const v = Node.isShorthandPropertyAssignment(p) ? p.getValueSymbol?.()?.getDeclarations()?.[0]?.getInitializer?.()
+      : Node.isPropertyAssignment(p) ? p.getInitializer() : null;
+    objLit = v ? objectOf(v) : null;
+    if (objLit) break;
+  }
+  if (!objLit) return out;
+  for (const p of objLit.getProperties()) {
+    const prop = p.getName?.();
+    if (!prop || !/^on[A-Z]/.test(prop)) continue;
+    let body = null;
+    if (Node.isShorthandPropertyAssignment(p)) body = resolveFn(p.getNameNode(), 0, p.getValueSymbol?.());
+    else if (Node.isPropertyAssignment(p)) body = isFunctionLike(p.getInitializer()) ? p.getInitializer() : resolveFn(p.getInitializer());
+    else if (Node.isMethodDeclaration(p)) body = p;
+    if (!body) continue;
+    if (!ENV.has(body)) ENV.set(body, { hookFn: fn, call: init, parent: null });
+    const effects = effectsOf(body, null, startDepth(body), new Set([body]));
+    if (!effects.some((e) => EFFECT_KINDS.has(e.kind))) continue;
+    const el = id.getFirstAncestor((x) => Node.isJsxOpeningElement(x) || Node.isJsxSelfClosingElement(x));
+    out.push({ element: el ? el.getTagNameNode().getText() : '?', prop, handler: `${id.getText()}.${prop}`, file: rel(f), line: id.getStartLineNumber(), effects });
+  }
+  return out;
+}
+
+function bindingsOf(units, reached) {
+  const out = [];
+  const files = new Set([...reached].map((k) => units.get(k).file));
+  ROUTE_FILES = files;
+  for (const f of files) {
+    if (!f.endsWith('.tsx')) continue;
+    const sf = project.getSourceFile(f);
+    for (const attr of sf.getDescendantsOfKind(SyntaxKind.JsxAttribute)) {
+      const prop = attr.getNameNode().getText();
+      if (!/^on[A-Z]/.test(prop)) continue;
+      const init = attr.getInitializer();
+      const ex = init && Node.isJsxExpression(init) ? init.getExpression() : null;
+      if (!ex) continue;
+      const handler = isFunctionLike(ex) ? 'inline' : ex.getText().slice(0, 60);
+      const body = isFunctionLike(ex) ? ex : (Node.isIdentifier(ex) || Node.isPropertyAccessExpression(ex)) ? resolveFn(ex) : null;
+      if (!body) continue;
+      // the global error handler as the handler (`onError: raiseToFlowHandler`): the default error path, not an effect
+      const bodyName = Node.isFunctionDeclaration(body) ? body.getName() : body.getParent()?.getName?.();
+      if (bodyName && ERROR_FN.test(bodyName) && bodyName === 'raiseToFlowHandler') continue;
+      // an inline arrow is not a named level: the 3 levels count from the first named function, as for `on={name}`
+      const effects = effectsOf(body, null, startDepth(body), new Set([body]));
+      if (!effects.some((e) => EFFECT_KINDS.has(e.kind))) continue;
+      const el = attr.getFirstAncestor((x) => Node.isJsxOpeningElement(x) || Node.isJsxSelfClosingElement(x));
+      out.push({ element: el ? el.getTagNameNode().getText() : '?', prop, handler, file: rel(f), line: attr.getStartLineNumber(), effects });
+    }
+    // `<X {...flows} />` with `const flows = useY()`: each `on*` property of the object that the hook returns
+    for (const sp of sf.getDescendantsOfKind(SyntaxKind.JsxSpreadAttribute)) {
+      const id = sp.getExpression();
+      if (Node.isPropertyAccessExpression(id) && Node.isIdentifier(id.getExpression())) {
+        // `<X {...detail.handlers} />` with `const detail = useY()` and `handlers` an object that the hook returns
+        out.push(...spreadOfHookObject(id, f));
+        continue;
+      }
+      const direct = Node.isCallExpression(id) && /^use[A-Z]/.test(id.getExpression().getText()); // `{...useY(…)}`
+      if (!Node.isIdentifier(id) && !direct) continue;
+      let sym = direct ? null : id.getSymbol?.();
+      if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
+      const d0 = sym?.getDeclarations()?.[0];
+      // `const flows = useY()` or the rest element `const { a, ...flows } = useY()`
+      const vd = d0 && Node.isBindingElement(d0) && d0.getDotDotDotToken() ? d0.getFirstAncestorByKind(SyntaxKind.VariableDeclaration) : d0;
+      let init = direct ? id : vd && Node.isVariableDeclaration(vd) ? vd.getInitializer() : null;
+      if (init && Node.isIdentifier(init)) {
+        // `const { a, ...view } = list` with `const list = useY()`
+        const ld = init.getSymbol?.()?.getDeclarations()?.[0];
+        init = ld && Node.isVariableDeclaration(ld) ? ld.getInitializer() : null;
+      }
+      if (!init || !Node.isCallExpression(init) || !/^use[A-Z]/.test(init.getExpression().getText())) continue;
+      const taken = !direct && vd !== d0 ? new Set(vd.getNameNode().getElements?.().map((e) => e.getName()) ?? []) : new Set();
+      for (const prop of (init.getType().getProperties() ?? []).map((x) => x.getName()).filter((n) => /^on[A-Z]/.test(n) && !taken.has(n))) {
+        const body = returnedProperty(init, prop, 0);
+        if (!body) continue;
+        const effects = effectsOf(body, null, startDepth(body), new Set([body]));
+        if (!effects.some((e) => EFFECT_KINDS.has(e.kind))) continue;
+        const el = sp.getFirstAncestor((x) => Node.isJsxOpeningElement(x) || Node.isJsxSelfClosingElement(x));
+        const hname = direct ? `${id.getExpression().getText()}().${prop}` : `${id.getText()}.${prop}`;
+        out.push({ element: el ? el.getTagNameNode().getText() : '?', prop, handler: hname, file: rel(f), line: sp.getStartLineNumber(), effects });
+      }
+    }
+  }
+  return out;
+}
+
+// ---- extras: inputs, lifecycle, client state, errors (the screen files of a route) -----------------------------
+// Only the reached units of the UI folders (pages, containers, components). The caller removes the app shell files.
+const LIFECYCLE_FN = /^(useEffect|useLayoutEffect)$/;
+// `clientVar.lastUrl` → `UBTConnect.LastURL` (platform/session/session.ts: `lastUrl: accessorOf('UBTConnect.LastURL')`)
+const CLIENT_VAR_MAP = new Map();
+{
+  const sess = path.join(SRC, 'platform', 'session', 'session.ts');
+  if (fs.existsSync(sess))
+    for (const m of fs.readFileSync(sess, 'utf8').matchAll(/(\w+): accessorOf\('([^']+)'\)/g)) CLIENT_VAR_MAP.set(m[1], m[2]);
+}
+function clientVarName(arg) {
+  if (!arg) return null;
+  const lit = literalOf(arg);
+  if (lit) return lit;
+  const m = arg.getText().match(/^clientVar\.(\w+)$/);
+  return m ? (CLIENT_VAR_MAP.get(m[1]) ?? arg.getText()) : short60(arg.getText());
+}
+// the object literal that a navigation parameter expression gives: `{…}`, a const with `{…}`, or `f(x)` with `f`
+// returning `{…}`
+function paramObject(e, hops = 0) {
+  if (!e || hops > 3) return null;
+  if (Node.isParenthesizedExpression(e)) return paramObject(e.getExpression(), hops + 1);
+  if (Node.isObjectLiteralExpression(e)) return e;
+  if (Node.isIdentifier(e)) {
+    let sym = e.getSymbol?.();
+    if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
+    const d = sym?.getDeclarations()?.[0];
+    return d && Node.isVariableDeclaration(d) ? paramObject(d.getInitializer(), hops + 1) : null;
+  }
+  if (Node.isCallExpression(e)) {
+    const fn = resolveFn(e.getExpression());
+    if (!fn) return null;
+    const b = fn.getBody?.();
+    if (!b) return null;
+    if (!Node.isBlock(b)) return paramObject(b, hops + 1);
+    const rs = b.getDescendantsOfKind(SyntaxKind.ReturnStatement).find((r) => r.getExpression());
+    return rs ? paramObject(rs.getExpression(), hops + 1) : null;
+  }
+  return null;
+}
+function navParamEntry(pathArg, obj, n, f) {
+  const keys = [], values = [];
+  for (const p of obj.getProperties()) {
+    if (Node.isSpreadAssignment(p)) {
+      // `{ ...f(x) }`: the keys of the object that f returns
+      const inner = paramObject(p.getExpression());
+      for (const q of inner?.getProperties() ?? []) {
+        keys.push(q.getName?.() ?? q.getText());
+        values.push(short60(Node.isPropertyAssignment(q) ? q.getInitializer().getText() : q.getText()));
+      }
+      if (!inner) { keys.push(short60(p.getText())); values.push('?'); }
+      continue;
+    }
+    keys.push(p.getName?.() ?? p.getText());
+    values.push(short60(Node.isPropertyAssignment(p) ? p.getInitializer().getText() : p.getText()));
+  }
+  return { to: navTargetsOf(pathArg), keys, values, file: rel(f), line: n.getStartLineNumber() };
+}
+const CLIENT_VAR_FN = /^(getClientVar|setClientVar|useClientVar)$/;
+const STORAGE_FN = /^(readItem|writeItem|removeItem|getItem|setItem)$/;
+const short60 = (t) => t.replace(/\s+/g, ' ').slice(0, 60) + (t.replace(/\s+/g, ' ').length > 60 ? '…' : '');
+const callName = (c) => {
+  let ex = c.getExpression();
+  while (Node.isParenthesizedExpression(ex)) ex = ex.getExpression();
+  return Node.isPropertyAccessExpression(ex) ? ex.getName() : ex.getText();
+};
+const keep = (effs) => effs.filter((e) => EFFECT_KINDS.has(e.kind)).map(({ kind, detail, branch, file, line }) => ({ kind, detail, branch, file, line }));
+function hasCleanup(body) {
+  const b = body.getBody?.();
+  if (!b) return false;
+  if (!Node.isBlock(b)) return isFunctionLike(b);
+  return b.getStatements().some((st) => Node.isReturnStatement(st) && st.getExpression() &&
+    (isFunctionLike(st.getExpression()) || Node.isIdentifier(st.getExpression())));
+}
+function queryCalls(c) {
+  // `useXQuery(…)`: the calls of the hook body; `useQuery({ queryFn })`: the calls of queryFn
+  const n = callName(c);
+  if (/^use(Infinite)?Query$/.test(n)) {
+    const o = c.getArguments()[0];
+    const p = o && Node.isObjectLiteralExpression(o) ? o.getProperty('queryFn') : null;
+    const f = p && Node.isPropertyAssignment(p) ? resolveFn(p.getInitializer()) : null;
+    return f ? keep(effectsOf(f, null, 1, new Set([f]))).filter((e) => e.kind === 'call') : [];
+  }
+  let hs = c.getExpression().getSymbol?.();
+  if (hs?.isAlias()) hs = hs.getAliasedSymbol() ?? hs;
+  const hd = hs?.getDeclarations()?.[0];
+  const hb = hd && !excluded(hd.getSourceFile().getFilePath()) ? bodyOfDecl(hd) : null;
+  return hb ? keep(effectsOf(hb, null, 1, new Set([hb]))).filter((e) => e.kind === 'call') : [];
+}
+function readBy(queryCall) {
+  // `const q = useXQuery(…)`: what reads q (a JSX prop of a child, a variable, a hook argument, a return)
+  const vd = queryCall.getFirstAncestorByKind(SyntaxKind.VariableDeclaration);
+  if (!vd || vd.getInitializer() !== queryCall) return [];
+  const nn = vd.getNameNode();
+  const ids = Node.isIdentifier(nn) ? [nn] : nn.getDescendantsOfKind(SyntaxKind.Identifier);
+  const out = [];
+  for (const id of ids) {
+    for (const ref of id.findReferencesAsNodes()) {
+      if (ref === id || ref.getSourceFile() !== id.getSourceFile()) continue;
+      const attr = ref.getFirstAncestorByKind(SyntaxKind.JsxAttribute);
+      const el = attr?.getFirstAncestor((x) => Node.isJsxOpeningElement(x) || Node.isJsxSelfClosingElement(x));
+      let what;
+      if (attr) what = `${el?.getTagNameNode().getText() ?? '?'}.${attr.getNameNode().getText()}`;
+      else {
+        const rvd = ref.getFirstAncestorByKind(SyntaxKind.VariableDeclaration);
+        const rs = ref.getFirstAncestorByKind(SyntaxKind.ReturnStatement);
+        const call = ref.getFirstAncestorByKind(SyntaxKind.CallExpression);
+        if (rvd && rvd !== vd) what = `var ${rvd.getName()}`;
+        else if (rs) what = 'return';
+        else if (call) what = `${callName(call)}()`;
+        else what = 'expression';
+      }
+      if (!out.some((o) => o.what === what)) out.push({ what, line: ref.getStartLineNumber() });
+    }
+  }
+  return out;
+}
+function extrasOf(units, reached) {
+  const out = { lifecycle: [], queries: [], clientState: [], inputs: [], navParams: [], errors: [] };
+  const seenNode = new Set();
+  const seenCv = new Set();
+  for (const k of reached) {
+    // client state: every reached file (platform code reads client variables for the screens)
+    const u0 = units.get(k);
+    if (!seenCv.has(u0.node) && !excluded(u0.file) && !/platform\/session\/(session|clientVars)\.ts$/.test(rel(u0.file))) {
+      seenCv.add(u0.node);
+      // a navigation target object `{ path: '/App/Screen', inputs: {…} }` or `{ path, params: {…} }` that a navigate consumes
+      for (const o of u0.node.getDescendantsOfKind(SyntaxKind.ObjectLiteralExpression)) {
+        const pp = o.getProperty('path');
+        const ip = o.getProperty('inputs') ?? o.getProperty('params');
+        if (!pp || !ip || !Node.isPropertyAssignment(pp) || !Node.isPropertyAssignment(ip)) continue;
+        const obj = paramObject(ip.getInitializer());
+        if (!obj) continue;
+        const e = navParamEntry(pp.getInitializer(), obj, o, u0.file);
+        if (e.to.length) out.navParams.push(e);
+      }
+      for (const c of u0.node.getDescendantsOfKind(SyntaxKind.CallExpression)) {
+        const name = callName(c);
+        const args = c.getArguments();
+        const ex = c.getExpression();
+        const acc = Node.isPropertyAccessExpression(ex) ? ex.getExpression().getText().match(/^clientVar\.(\w+)$/) : null;
+        if (acc && /^(get|set)$/.test(name))
+          out.clientState.push({ op: `clientVar.${name}`, name: CLIENT_VAR_MAP.get(acc[1]) ?? acc[1], file: rel(u0.file), line: c.getStartLineNumber() });
+        else if (CLIENT_VAR_FN.test(name) && args[0])
+          out.clientState.push({ op: name, name: clientVarName(args[0]), file: rel(u0.file), line: c.getStartLineNumber() });
+        else if (NAV_FN.test(name) && args[1] && !Node.isPropertyAccessExpression(args[1])) {
+          const obj = paramObject(args[1]);
+          if (obj) out.navParams.push(navParamEntry(args[0], obj, c, u0.file));
+        } else if (STORAGE_FN.test(name) && args.length) {
+          const recv = Node.isPropertyAccessExpression(ex) ? ex.getExpression().getText() : '';
+          if (/^(get|set)Item$/.test(name) && !/^(localStorage|sessionStorage|window\.\w+Storage)$/.test(recv)) continue;
+          const area = /^(read|write|remove)Item$/.test(name) ? literalOf(args[0]) : recv;
+          const key = /^(read|write|remove)Item$/.test(name) ? args[1] : args[0];
+          out.clientState.push({ op: `${area ?? '?'}.${name}`, name: key ? (literalOf(key) ?? short60(key.getText())) : '?', file: rel(u0.file), line: c.getStartLineNumber() });
+        }
+      }
+    }
+    const u = units.get(k);
+    const f = u.file;
+    if (!UI_DIR.test(rel(f)) || seenNode.has(u.node)) continue;
+    seenNode.add(u.node);
+    const here = (n) => ({ file: rel(f), line: n.getStartLineNumber() });
+    for (const c of u.node.getDescendantsOfKind(SyntaxKind.CallExpression)) {
+      const name = callName(c);
+      const args = c.getArguments();
+      const fnName = c.getFirstAncestor((x) => Node.isFunctionDeclaration(x) || (Node.isVariableDeclaration(x) && bodyOfDecl(x)))?.getName?.() ?? '?';
+      if (LIFECYCLE_FN.test(name) && args[0] && isFunctionLike(args[0])) {
+        out.lifecycle.push({ hook: name, in: fnName, deps: args[1] ? short60(args[1].getText()) : 'none (every render)',
+          cleanup: hasCleanup(args[0]), effects: keep(effectsOf(args[0], null, 0, new Set([args[0]]))), ...here(c) });
+      } else if (/^use\w*Query$/.test(name) && name !== 'useQueryClient') {
+        // a query fetches when the component mounts (and when its key changes)
+        if (/^use(Infinite)?Query$/.test(name) && c.getFirstAncestor((x) => Node.isFunctionDeclaration(x) && /^use\w*Query$/.test(x.getName() ?? ''))) continue;
+        out.queries.push({ hook: name, in: fnName, calls: queryCalls(c), readBy: readBy(c), ...here(c) });
+      } else if (/^use(Search)?Params$/.test(name)) {
+        // `const [params] = useSearchParams()` then `params.get('K')`
+        const vd = c.getFirstAncestorByKind(SyntaxKind.VariableDeclaration);
+        const nn = vd?.getNameNode();
+        const id = nn && Node.isArrayBindingPattern(nn) ? nn.getElements()[0] : nn;
+        const keys = [];
+        const idName = id && !Node.isOmittedExpression(id) ? id.getName?.() ?? id.getText() : null;
+        if (idName) {
+          for (const g of u.node.getDescendantsOfKind(SyntaxKind.CallExpression)) {
+            const e = g.getExpression();
+            if (Node.isPropertyAccessExpression(e) && e.getName() === 'get' && e.getExpression().getText() === idName && g.getArguments()[0])
+              keys.push({ key: literalOf(g.getArguments()[0]) ?? short60(g.getArguments()[0].getText()), line: g.getStartLineNumber() });
+          }
+        }
+        out.inputs.push({ hook: name, keys, ...here(c) });
+      } else if (name === 'raiseToFlowHandler') {
+        out.errors.push({ kind: 'flow handler', in: fnName, effects: [], ...here(c) });
+      } else if (name === 'catch' && args[0] && isFunctionLike(args[0])) {
+        const effs = keep(effectsOf(args[0], null, 0, new Set([args[0]])));
+        const raises = args[0].getDescendantsOfKind(SyntaxKind.CallExpression).some((x) => callName(x) === 'raiseToFlowHandler');
+        if (!raises) out.errors.push({ kind: '.catch', in: fnName, effects: effs, ...here(c) });
+      }
+    }
+    for (const t of u.node.getDescendantsOfKind(SyntaxKind.TryStatement)) {
+      const cc = t.getCatchClause();
+      if (!cc) continue;
+      const fnName = t.getFirstAncestor((x) => Node.isFunctionDeclaration(x) || (Node.isVariableDeclaration(x) && bodyOfDecl(x)))?.getName?.() ?? '?';
+      const raises = cc.getDescendantsOfKind(SyntaxKind.CallExpression).some((x) => callName(x) === 'raiseToFlowHandler');
+      if (raises) continue; // listed as `flow handler`
+      out.errors.push({ kind: 'try/catch', in: fnName, effects: keep(effectsOf(cc.getBlock(), null, 0, new Set([cc]))), file: rel(f), line: cc.getStartLineNumber() });
+    }
+    for (const pa of u.node.getDescendantsOfKind(SyntaxKind.PropertyAssignment)) {
+      if (pa.getName() !== 'onError') continue;
+      const init = pa.getInitializer();
+      const body = init && (isFunctionLike(init) ? init : resolveFn(init));
+      const isFlow = init && init.getText() === 'raiseToFlowHandler';
+      const fnName = pa.getFirstAncestor((x) => Node.isFunctionDeclaration(x) || (Node.isVariableDeclaration(x) && bodyOfDecl(x)))?.getName?.() ?? '?';
+      out.errors.push({ kind: isFlow ? 'onError: flow handler' : 'onError', in: fnName,
+        effects: body && !isFlow ? keep(effectsOf(body, null, 0, new Set([body]))) : [], file: rel(f), line: pa.getStartLineNumber() });
+    }
+  }
+  out.clientState = out.clientState.filter((x) => x.name !== '?'); // a storage call whose key the code computes
+  out.navParams = out.navParams.filter((x) => x.to.length); // `navigate(path, { replace, state })` of the router: no screen
+  const byLine = (a, b) => a.file.localeCompare(b.file) || a.line - b.line;
+  for (const v of Object.values(out)) v.sort(byLine);
+  return out;
+}
+
+// ---- main ----------------------------------------------------------------------------------------------------
+const outDir = path.join(HERE, '.cache', 'data');
+fs.mkdirSync(outDir, { recursive: true });
+let entry, rootKeys, out;
+if (mode === 'all') {
+  // every callAction site and every origin tag in app/src (tests, stories, src/test and src/mocks excluded), with no
+  // reachability: used to tell "no React code" from "React code that this route does not reach"
+  const calls = [];
+  const origins = [];
+  for (const sf of project.getSourceFiles()) {
+    const f = sf.getFilePath();
+    if (excluded(f)) continue;
+    for (const m of sf.getFullText().matchAll(/@(origin|os-block)\s+([\w.]+)/g)) origins.push({ origin: m[2], tag: m[1], file: rel(f) });
+    for (const c of sf.getDescendantsOfKind(SyntaxKind.CallExpression)) {
+      const e = c.getExpression();
+      if (!Node.isIdentifier(e) || e.getText() !== 'callAction') continue;
+      const [m, a] = c.getArguments();
+      const module = literalOf(m);
+      const fn = c.getFirstAncestor((x) => Node.isFunctionDeclaration(x)) ??
+        c.getFirstAncestor((x) => Node.isVariableDeclaration(x) && Node.isSourceFile(x.getParent()?.getParent()?.getParent()));
+      const actions = literalsOf(a);
+      for (const action of actions.length ? actions : [null]) calls.push({ module, action, apiPath: module && action ? `/api/${module}/${action}` : null, file: rel(f),
+        line: c.getStartLineNumber(), fn: fn?.getName?.() ?? '?' });
+    }
+  }
+  out = { mode, calls, origins };
+  fs.writeFileSync(path.join(outDir, 'react-all.json'), JSON.stringify(out, null, 1));
+  console.log(`all: ${calls.length} callAction sites, ${origins.length} origin tags`);
+  process.exit(0);
+} else if (mode === 'shell') {
+  entry = path.join(SRC, 'main.tsx');
+  const files = closure([entry]);
+  const sf = project.getSourceFile(entry);
+  rootKeys = unitsOf(sf).map((u) => `${entry}::${u.name}`);
+  const { units, reached, users } = reach(files, rootKeys);
+  out = { mode, entry: rel(entry), closureFiles: files.size, reachedUnits: reached.size, ...facts(units, reached, users),
+    reachedKeys: [...reached].map((k) => rel(k)), bindings: bindingsOf(units, reached) };
+  fs.writeFileSync(path.join(outDir, 'react-shell.json'), JSON.stringify(out, null, 1));
+} else {
+  entry = path.join(SRC, 'pages', route, `${route}Page.tsx`);
+  if (!fs.existsSync(entry)) { console.error(`no page: ${rel(entry)}`); process.exit(3); }
+  const files = closure([entry]);
+  rootKeys = [`${entry}::default`];
+  const sf = project.getSourceFile(entry);
+  for (const u of unitsOf(sf)) if (u.isDefault) rootKeys.push(`${entry}::${u.name}`);
+  const { units, reached, users } = reach(files, rootKeys);
+  out = { mode, route, entry: rel(entry), closureFiles: files.size, reachedUnits: reached.size, ...facts(units, reached, users),
+    reachedKeys: [...reached].map((k) => rel(k)), bindings: bindingsOf(units, reached), extras: extrasOf(units, reached) };
+  fs.writeFileSync(path.join(outDir, `react-${route}.json`), JSON.stringify(out, null, 1));
+}
+console.log(`${mode}${route ? ' ' + route : ''}: ${out.closureFiles} files in closure, ${out.reachedUnits} units reached, ${out.calls.length} callAction sites, ${out.functions.length} functions, ${out.origins.length} @origin tags`);

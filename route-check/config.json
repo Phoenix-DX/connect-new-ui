@@ -1,0 +1,130 @@
+{
+  "_note": "Inputs of route-check (tools in tools/route-check), read only. Paths are relative to the repository root. The route files cite them.",
+  "tst": {
+    "screens": "migration/screens",
+    "_screens": "per route: <screens>/<Route>/analysis/{facts.json,calls.json,sources/raw/}, parity/, review/, capture/",
+    "survey": "migration/survey/screens.json",
+    "board": "migration/board.md"
+  },
+  "react": {
+    "app": "app",
+    "src": "app/src",
+    "contract": "app/src/api/openapi.yaml",
+    "routesGenerated": "app/src/app/routes.generated.ts",
+    "routeMeta": "app/src/app/routes.ts",
+    "shellEntry": "app/src/main.tsx",
+    "pages": "app/src/pages"
+  },
+  "cache": "route-check/.cache",
+  "notApplicable": {
+    "_note": "Rules of section 3 (user delegation 2026-11-05, migration/clarify/auto-decisions-2026-11-05.md). A missing TST call whose every chain passes through `step` (a label of the chain), or whose every chain roots in a client action of the route's own files (`rootKinds`), is not a gap of the web app. Each rule cites its evidence; the route file prints it.",
+    "rules": [
+      {
+        "id": "nativeOnly",
+        "kind": "chainStep",
+        "steps": [
+          "ShareSheet.handler_OnClickExternalOption",
+          "UBTConnect_Utils.shareEntity_ByURL"
+        ],
+        "title": "Native only",
+        "reason": "TST offers the external share options only when AppManager_GetIsNative is true; the React app is never native.",
+        "evidence": "ShareSheet Action_SetExternalShareOptions appends Share via, Copy link, WhatsApp, Signal and Outlook inside `if (AppManager_GetIsNative)` (UBTConnect_Utils.CW_Share.ShareSheet.mvc.js:2418-2475); SharePopup appends \"Share to other apps\" after AppManager_GetIsNative (UBTConnect_Utils.CW_CTA_PopUps.SharePopup.mvc.js:274-288); ShareEntity_ByURL calls the SocialSharing plugin (UBTConnect_Utils.controller.js:5319+); app/src/platform/session/clientVars.ts:40 (DeviceInfo_IsNative false)."
+      },
+      {
+        "id": "telemetry",
+        "kind": "chainStep",
+        "steps": [
+          "Connect2_LegacyShared.zOnApplicationEvent_Wrapper"
+        ],
+        "title": "Telemetry (decision U17)",
+        "reason": "The call belongs to the application-event pipeline (zOnApplicationEvent_Wrapper → getAppEventName → cacheLocalApplicationEvents). Telemetry is not wired in the mock phase (decision U17).",
+        "evidence": "Connect2_LegacyShared.controller.js:989-1240 (CacheLocalApplicationEvents); migration/app-shell.spec.md:349,384 (U17: no telemetry in the mock phase); app/src/lib/orbit/actions.ts:318-321."
+      },
+      {
+        "id": "decidedQ3",
+        "kind": "chainStep",
+        "steps": [
+          "UBT_AppManager.appManager_HandleDeviceAwarenessPopUp"
+        ],
+        "title": "Decided earlier (Login Q3 a)",
+        "reason": "The device-awareness dialog comes with the production identity provider; DeviceAwareness_Use is false on TST.",
+        "evidence": "migration/clarify/decisions.md Q3 (a); app/src/pages/Login/hooks/useLogin.ts:110; migration/knowledge/shell-observed.md U2."
+      },
+      {
+        "id": "calendarUnreachable",
+        "kind": "chainStep",
+        "steps": [
+          "ScreenBlock_MyEvents_V2.onHandle_DateClicked",
+          "ScreenBlock_MyEvents_V2.getEventCalendarData"
+        ],
+        "title": "Unreachable on TST",
+        "reason": "The handler is bound only in the Month, Day and Agenda calendar views, and OnReady calls GetEventCalendarData only when CurrentEventView is not MyTimeline. The variable keeps its default MyTimeline: no action assigns it.",
+        "evidence": "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_MyEvents_V2.mvc.js:50 (CurrentEventView default), :521-692 (the $if of the calendar views), :2140-2185 (OnReady: Day or Month? / MyTimeline? / else GetEventCalendarData), no `currentEventViewVar =` in the file; app/src/pages/LDM_MyEvents_V2/hooks/ldmMyEventsState.ts:16-18."
+      },
+      {
+        "id": "noBinding",
+        "kind": "rootKinds",
+        "title": "No binding in the TST view",
+        "reason": "Every chain roots in a client action of the screen or of a block of its UI flow. No view event, lifecycle event or block event binds that action.",
+        "evidence": "facts.json callSites rootKinds of the call (the call graph of the compiled code, tools/os_call_graph.py)."
+      },
+      {
+        "id": "noCaller",
+        "kind": "noCaller",
+        "title": "Declared, never fetched",
+        "reason": "The data action or aggregate fetches on demand (dataFetchDependenciesOriginal -1) and no action of the compiled code refreshes it: TST never calls it.",
+        "evidence": "facts.json callSites: the only chain is the synthetic 'fetch at start' root of the call graph. The fetch mode comes from the compiled file (tools/os_extras.py fetch_modes)."
+      }
+    ]
+  },
+  "shellDeclared": {
+    "_note": "App-shell React calls that TST makes from module roots the static call graph does not read (app start, sign-out). Explicit list (Opus review 2026-11-05: x-os-phase 'load' is too broad). Each entry cites its evidence.",
+    "calls": [
+      {
+        "apiPath": "/api/UBT_AppManager/ActionAppManager_SynchAppContext",
+        "how": "app start",
+        "evidence": "the app-start calls observed on TST (migration/knowledge/shell-observed.md:26-27, U3: SynchAppContext, AfterInitialize, Sync_Info_GetMain, GetUserInformation, GetNumberUnreadMessages, CacheableMapEntities, CacheableHouseholds, GetCacheInfo of CacheControl_Policies); the call graph does not read the module roots of OnApplicationReady"
+      },
+      {
+        "apiPath": "/api/UBT_AppManager/ActionAppManager_AfterInitialize",
+        "how": "app start",
+        "evidence": "the app-start calls observed on TST (migration/knowledge/shell-observed.md:26-27, U3: SynchAppContext, AfterInitialize, Sync_Info_GetMain, GetUserInformation, GetNumberUnreadMessages, CacheableMapEntities, CacheableHouseholds, GetCacheInfo of CacheControl_Policies); the call graph does not read the module roots of OnApplicationReady"
+      },
+      {
+        "apiPath": "/api/UBTConnect/ActionSync_Info_GetMain",
+        "how": "app start",
+        "evidence": "the app-start calls observed on TST (migration/knowledge/shell-observed.md:26-27, U3: SynchAppContext, AfterInitialize, Sync_Info_GetMain, GetUserInformation, GetNumberUnreadMessages, CacheableMapEntities, CacheableHouseholds, GetCacheInfo of CacheControl_Policies); the call graph does not read the module roots of OnApplicationReady"
+      },
+      {
+        "apiPath": "/api/UBTConnect_Utils/ActionGetUserInformation",
+        "how": "app start",
+        "evidence": "the app-start calls observed on TST (migration/knowledge/shell-observed.md:26-27, U3: SynchAppContext, AfterInitialize, Sync_Info_GetMain, GetUserInformation, GetNumberUnreadMessages, CacheableMapEntities, CacheableHouseholds, GetCacheInfo of CacheControl_Policies); the call graph does not read the module roots of OnApplicationReady"
+      },
+      {
+        "apiPath": "/api/Connect2_LegacyShared/ActionGetNumberUnreadMessages",
+        "how": "app start",
+        "evidence": "the app-start calls observed on TST (migration/knowledge/shell-observed.md:26-27, U3: SynchAppContext, AfterInitialize, Sync_Info_GetMain, GetUserInformation, GetNumberUnreadMessages, CacheableMapEntities, CacheableHouseholds, GetCacheInfo of CacheControl_Policies); the call graph does not read the module roots of OnApplicationReady"
+      },
+      {
+        "apiPath": "/api/UBTConnect/ServiceAPIFetchData_CacheableMapEntities",
+        "how": "app start",
+        "evidence": "the app-start calls observed on TST (migration/knowledge/shell-observed.md:26-27, U3: SynchAppContext, AfterInitialize, Sync_Info_GetMain, GetUserInformation, GetNumberUnreadMessages, CacheableMapEntities, CacheableHouseholds, GetCacheInfo of CacheControl_Policies); the call graph does not read the module roots of OnApplicationReady"
+      },
+      {
+        "apiPath": "/api/UBTConnect/ServiceAPIFetchData_CacheableHouseholds",
+        "how": "app start",
+        "evidence": "the app-start calls observed on TST (migration/knowledge/shell-observed.md:26-27, U3: SynchAppContext, AfterInitialize, Sync_Info_GetMain, GetUserInformation, GetNumberUnreadMessages, CacheableMapEntities, CacheableHouseholds, GetCacheInfo of CacheControl_Policies); the call graph does not read the module roots of OnApplicationReady"
+      },
+      {
+        "apiPath": "/api/UBTConnect_Utils/CacheControl_Policies/DataActionGetCacheInfo",
+        "how": "app start",
+        "evidence": "the app-start calls observed on TST (migration/knowledge/shell-observed.md:26-27, U3: SynchAppContext, AfterInitialize, Sync_Info_GetMain, GetUserInformation, GetNumberUnreadMessages, CacheableMapEntities, CacheableHouseholds, GetCacheInfo of CacheControl_Policies); the call graph does not read the module roots of OnApplicationReady"
+      },
+      {
+        "apiPath": "/api/UBT_AppManager/ActionAppManager_Logout",
+        "how": "sign-out",
+        "evidence": "TST Connect_Logout: Cache_InvalidateEverything, then AppManager_Logout (UBTConnect.controller.js:1054-1069); the client action calls the server action (UBT_AppManager.controller.js:3684-3694); Login OnInitialize and PINRegister OnClick_BackToLogin call it too (route-check gap 6)"
+      }
+    ]
+  }
+}

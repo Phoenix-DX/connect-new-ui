@@ -19,7 +19,7 @@ approved to correct (user, 2026-10-21). Work from the project root `/Users/khait
 ## Step 1: meaning review
 
 For each file, compare the original and the new text paragraph by paragraph (for a Before / After view:
-`python3 migration/tools/meaning_guard.py diff <original> <path>`). Find:
+`python3 tools/docs/meaning_guard.py diff <original> <path>`). Find:
 - a fact dropped, added or changed; an order, cause or purpose that the original does not say;
 - a condition that lost its scope when a sentence was split;
 - a changed subject (original app ↔ React app, block ↔ screen, provider ↔ app);
@@ -28,8 +28,8 @@ For each file, compare the original and the new text paragraph by paragraph (for
 Verify each clarification of the writer against its evidence. For a behavior claim, read the compiled code
 (`migration/screens/*/analysis/sources/pretty/*.mvc.js`), not only the React code.
 Fix each problem: restore the original meaning, or remove a clarification that the evidence does not support.
-Then run `python3 migration/tools/meaning_guard.py check <original> <path> --mode ste` (must be OK) and
-`python3 migration/tools/ste_lint.py <path>` (must be 0 errors).
+Then run `python3 tools/docs/meaning_guard.py check <original> <path> --mode ste` (must be OK) and
+`python3 tools/docs/ste_lint.py <path>` (must be 0 errors).
 
 ## Step 2: stale facts
 

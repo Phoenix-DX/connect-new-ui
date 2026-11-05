@@ -16,13 +16,13 @@ Two ideas carry the whole skill:
 
 ## Default site and automatic sign-in
 
-Unless the user names another app, every run works on **UBTConnect TST**: `https://ubtm-tst.ubtconnectglobal.com/UBTConnect/` (profile `assets/site-profiles/default.json` = `ubtconnect-tst.json`). Two pages gate the app, and `scripts/site_auth.cjs` passes both by itself:
+Unless the user names another app, every run works on **UBTConnect TST**: `https://ubtm-tst.ubtconnectglobal.com/UBTConnect/` (profile `assets/site-profiles/default.json` = `ubtconnect-tst.json`). Two pages gate the app, and `tools/pipeline/site_auth.cjs` passes both by itself:
 1. `/UBTConnect/Login` → button **"Login with UBT One"** → identity provider `https://ubtb2cuat.b2clogin.com/…` → test account user + password → back to the app.
 2. `/UBTConnect/PINUnlock` → the PIN (input boxes or keypad, both handled).
 
 Secrets are never in the skill: they come from `.auth/credentials.json` (`{"user", "password", "pin"}`, template `assets/credentials.example.json`) or the environment variables `UBT_USER`, `UBT_PASSWORD`, `UBT_PIN`. Before the first run, check that the secrets file exists and that `.auth/` is in the project's `.gitignore`; if the file is missing, ask the user to create it (never write the values into chat, code, notes or the board). Then:
 ```bash
-node scripts/batch_capture.cjs login --auto --storage .auth/state.json     # sign in + PIN, save the session
+node tools/pipeline/batch_capture.cjs login --auto --storage .auth/state.json     # sign in + PIN, save the session
 ```
 `batch_capture.cjs run` and `record_har.cjs` use the same profile: they sign in when no session is saved, and sign in again or unlock the PIN by themselves whenever the app sends a page to the login, identity provider or PIN page (a PIN lock kept per tab is unlocked on every new tab before capturing). Calls made while signing in are kept out of runtime captures and out of fixtures. Another app: copy a profile to `migration/site.json` (it wins over the default) or pass `--profile`; `--no-auto` turns automatic sign-in off.
 
@@ -44,22 +44,22 @@ Measure all along with `ledger.py` (tokens per screen and phase, and the waste o
 
 ## Phase 0: Survey
 
-Run `node scripts/batch_capture.cjs survey` (signs in by itself with the site profile, injects `scripts/survey.js`, saves `capture/survey-<App>.json`: static compiled code only, no user data). Without automation: inject `scripts/survey.js` on any screen (logged in), run `await __osSurvey.run()`, save `survey-<App>.json`. Then:
+Run `node tools/pipeline/batch_capture.cjs survey` (signs in by itself with the site profile, injects `tools/pipeline/survey.js`, saves `capture/survey-<App>.json`: static compiled code only, no user data). Without automation: inject `tools/pipeline/survey.js` on any screen (logged in), run `await __osSurvey.run()`, save `survey-<App>.json`. Then:
 ```bash
-python3 scripts/survey_app.py --survey capture/survey-<App>.json --out migration/survey --agents-out migration/AGENTS.md
+python3 tools/pipeline/survey_app.py --survey capture/survey-<App>.json --out migration/survey --agents-out migration/AGENTS.md
 ```
 The survey is a map, never a spec.
 
 ## Phase 1: Scope gate (do this before any capture or spec)
 
 ```bash
-python3 scripts/board.py init --screens migration/survey/screens.json [--import-routes migration/survey/routes.md]
-python3 scripts/board.py triage --survey capture/survey-<App>.json
-python3 scripts/board.py show --decision "ask,?build,?skip"
+python3 tools/pipeline/board.py init --screens migration/survey/screens.json [--import-routes migration/survey/routes.md]
+python3 tools/pipeline/board.py triage --survey capture/survey-<App>.json
+python3 tools/pipeline/board.py show --decision "ask,?build,?skip"
 ```
 `triage` suggests `?build` / `?skip` / `ask` with evidence (reachability from the shell, entry points that are all skipped, no reference anywhere in compiled code, variants of a screen already chosen, test screens, screens with the same inputs as a built one, content in `Deprecated`/`Legacy` modules). It never decides. Take the list to the person who owns the product scope, in **one** session, and record each answer:
 ```bash
-python3 scripts/board.py set <Screen> decision=skip reason="<why> (<who>, <date>)"
+python3 tools/pipeline/board.py set <Screen> decision=skip reason="<why> (<who>, <date>)"
 ```
 Agents only start on `decision = build`; `board.py set` refuses status changes on anything else. Whole product areas (an entire module out of scope) are decided here too. Why this matters: work on screens later skipped is pure waste and is typically the single largest leak. Details and the decision checklist: `references/scope-gate.md`.
 
@@ -68,28 +68,28 @@ Agents only start on `decision = build`; `board.py set` refuses status changes o
 ## Phase 2: Capture without tokens
 
 ```bash
-node scripts/batch_capture.cjs login --base https://<host>/<App>/ --storage .auth/state.json   # the person logs in
-node scripts/batch_capture.cjs init-plan --board-dir migration --out migration/capture-plan.json
+node tools/pipeline/batch_capture.cjs login --base https://<host>/<App>/ --storage .auth/state.json   # the person logs in
+node tools/pipeline/batch_capture.cjs init-plan --board-dir migration --out migration/capture-plan.json
 # fill route parameters (test-account ids), waitFor selectors, interaction steps
-node scripts/batch_capture.cjs run --base https://<host> --plan migration/capture-plan.json \
+node tools/pipeline/batch_capture.cjs run --base https://<host> --plan migration/capture-plan.json \
      --storage .auth/state.json --out migration/screens --analyze
 ```
 For each screen it loads the route with `capture.js` and `startRuntime()` as an init script (the first load is captured), snapshots `default`, runs the plan's steps (click → snapshot → back, each step marked so its service calls are known), and adds `loading` (service calls held) and `offline` (service calls aborted) automatically; `--analyze` runs `analyze_capture.py`. The plan can add **viewports** (`defaults.viewports`, stack item `viewports`: states `<state>@<viewport>`) and **flag variants** (`flagVariants`, from `flags.py variants`: states `<state>+<Key>=<value>`, each with its own runtime capture). Every snapshot stores how it was reached (viewport, html/body classes, flags, steps, scenario) in `analysis/states.json`; `analysis/calls.json` lists every call with its phase (load or the step that triggered it); `analysis/dom/<state>.raw.html` is the byte-exact DOM parity renders (`dom/<state>.html` is pretty-printed for reading only). Use a browser MCP (`references/mcp-playbook.md`) only for states the plan cannot express: back-from-history with view cache, an account with other data, native-ish gestures. Sign-in is done by `site_auth.cjs` from the secrets file (section "Default site and automatic sign-in") or by the person; an agent never types, reads or prints credentials. The session file is a secret too (keep `.auth/` out of git, delete it after the campaign).
 
 **Recorded mocks (optional, the user decides in phase 4).** When the stack's `mocking` item says recorded fixtures, mock data comes from the real app instead of being invented: `record_har.cjs` records the screenservice calls of a test environment, either while the person browses or automatically (it replays the capture plan and crawls in-app links from the logged-in session, with a read-only guard that aborts every action that is not a read), `har_to_fixtures.py convert` turns them into anonymized fixtures (same structure, list sizes, statuses and OutSystems empty values; personal text replaced by fake text of the same length; ids remapped with one table so lists and details stay linked), and the user reviews `REVIEW.md` before `har_to_fixtures.py review --by user`. Routes serve them with `recordedHandler(module, action)`. Agents never open the HAR. The read-only guard of automatic recording lets through only data actions, aggregates and `ActionGet|List|Load|Fetch|Search|Find|Read|Count…` names with no write verb in them. `har_to_fixtures.py coverage` lists, per route, the calls without a recording. Mutations keep state through `src/mocks/store.ts` (pattern P-MUTATION), seeded from the fixtures. Details: `references/recorded-mocks.md`.
 ```bash
-node scripts/record_har.cjs --base https://<host>/<App>/ --storage .auth/state.json --out migration/.raw/session-<date>.har \
+node tools/pipeline/record_har.cjs --base https://<host>/<App>/ --storage .auth/state.json --out migration/.raw/session-<date>.har \
      --plan migration/capture-plan.json --crawl      # automatic; without --plan/--crawl the person browses; read migration/recording-coverage.md
-python3 scripts/har_to_fixtures.py convert --har migration/.raw/session-<date>.har --out app/src/mocks/fixtures --rules migration/mock-rules.json
-python3 scripts/har_to_fixtures.py review --out app/src/mocks/fixtures --by user    # only after the user read REVIEW.md
+python3 tools/pipeline/har_to_fixtures.py convert --har migration/.raw/session-<date>.har --out app/src/mocks/fixtures --rules migration/mock-rules.json
+python3 tools/pipeline/har_to_fixtures.py review --out app/src/mocks/fixtures --by user    # only after the user read REVIEW.md
 ```
 
 ## Phase 3: Catalog and tiers
 
 ```bash
-python3 scripts/catalog.py --screens migration/survey/screens.json --board-dir migration --app app --out migration/catalog
-python3 scripts/board.py tier --tiers migration/catalog/tiers.json
-python3 scripts/flags.py scan --survey capture/survey-<App>.json --screens migration/survey/screens.json
+python3 tools/pipeline/catalog.py --screens migration/survey/screens.json --board-dir migration --app app --out migration/catalog
+python3 tools/pipeline/board.py tier --tiers migration/catalog/tiers.json
+python3 tools/pipeline/flags.py scan --survey capture/survey-<App>.json --screens migration/survey/screens.json
 ```
 `catalog.py` counts every block across live screens, finds which ones are built (a component carrying `@os-block Module.Flow.Block`), and writes:
 - `foundation-queue.md`: shared blocks remaining screens need that are not built. These are built in phase 5, never inside a screen task.
@@ -102,8 +102,8 @@ python3 scripts/flags.py scan --survey capture/survey-<App>.json --screens migra
 
 Before anything is scaffolded, agree the architecture and the stack with the user, and fix the references every route will follow:
 ```bash
-python3 scripts/stack.py init --screens migration/survey/screens.json
-python3 scripts/stack.py questions
+python3 tools/pipeline/stack.py init --screens migration/survey/screens.json
+python3 tools/pipeline/stack.py questions
 ```
 `init` writes `migration/stack.json` with a proposal, options and a reason for every item (language, framework and build, React version, routing, server state, client state, API layer, mocking (fictional data or anonymized recordings of the real app), styling, forms, dates, strings/i18n, testing, lint/format, package manager, Node, authentication, tokens in the browser, PWA/offline, viewports to match, browser support, folder layout, target backend), one item per third-party OutSystems module found in the survey (maps, sortable lists, sanitizers, charts…: each needs a web equivalent, no default), one item per OutSystems UI pattern with behaviour to reproduce (`osui:<Pattern>`: the original's provider library, hand-written, or out of scope), a pinned dependency allow-list, consistency rules and seeded implementation patterns (`migration/patterns/P-*.md`: data, mocks, params, states, lists, forms, dialogs, back, OutSystems UI, flags, mutations, calls). Everything starts as *proposed*.
 
@@ -119,27 +119,27 @@ Details: `references/architecture-and-stack.md`.
 
 ## Phase 5: Foundation, then freeze
 
-One owner builds the shell (`assets/app-shell-spec-template.md`, `scripts/scaffold_react_app.py --stack migration/stack.json`) following the confirmed stack and patterns, and every block in the foundation queue (OutSystems UI patterns included), each with a DOM snapshot test per captured state and an `@os-block` tag. Then shell and shared are **frozen**: screen agents may not edit `src/platform`, `src/legacy`, `src/lib`, `src/styles`, `src/vendor` or the legacy CSS. When a screen needs a change, it writes `migration/change-requests/CR-<n>.md` (`assets/change-request-template.md`), renders that part as `<NotCaptured>` and carries on. The foundation owner batches change requests, applies them, and re-runs parity on all built screens once per batch. Why: a shared fix made inside a screen task forces re-verification of every other screen that uses the block, so one screen's cost leaks into all of them. Details: `references/foundation-and-freeze.md`.
+One owner builds the shell (`assets/app-shell-spec-template.md`, `tools/pipeline/scaffold_react_app.py --stack migration/stack.json`) following the confirmed stack and patterns, and every block in the foundation queue (OutSystems UI patterns included), each with a DOM snapshot test per captured state and an `@os-block` tag. Then shell and shared are **frozen**: screen agents may not edit `src/platform`, `src/legacy`, `src/lib`, `src/styles`, `src/vendor` or the legacy CSS. When a screen needs a change, it writes `migration/change-requests/CR-<n>.md` (`assets/change-request-template.md`), renders that part as `<NotCaptured>` and carries on. The foundation owner batches change requests, applies them, and re-runs parity on all built screens once per batch. Why: a shared fix made inside a screen task forces re-verification of every other screen that uses the block, so one screen's cost leaks into all of them. Details: `references/foundation-and-freeze.md`.
 
 ## Phase 6: The route loop
 
 The skill knows no route of any app. The list of routes comes only from the board, built from the survey of the app being migrated. Read `references/route-loop.md` before the first run; it holds the full protocol.
 
-**Every run starts the same way:** `python3 scripts/route.py plan`. Show the user what will happen: finished routes are skipped, interrupted or failed routes are reset and rebuilt from scratch, open questions are asked first, routes without a scope decision are not built. Then take the routes in board order:
+**Every run starts the same way:** `python3 tools/pipeline/route.py plan`. Show the user what will happen: finished routes are skipped, interrupted or failed routes are reset and rebuilt from scratch, open questions are asked first, routes without a scope decision are not built. Then take the routes in board order:
 
 ```bash
-python3 scripts/route.py start <S> --owner <you>      # refuses finished routes; resets partial work first
-python3 scripts/route.py step <S> capture             # batch_capture.cjs run --only <S> --analyze (skipped if capture/.complete)
-python3 scripts/route.py step <S> spec                # context_pack.py, then route-spec.md with every unclear point
-python3 scripts/route.py spec-done <S>                # record the spec + hashes of its inputs: a later reset keeps it
-python3 scripts/route.py step <S> build               # code in app/src/pages/<S>/
-python3 scripts/route.py step <S> parity
-python3 scripts/route.py parity <S> --app http://localhost:5173   # every captured state, fingerprinted reports
-python3 scripts/route.py ready <S>                    # build gates pass → status review: the USER tests now
-python3 scripts/route.py feedback <S> --kind bug|todo|question --text "..." --by user   # what the user found → status fixing
-python3 scripts/route.py fixed <S> F<n> --note "..." # each item done, then `ready` again for the next round
-python3 scripts/route.py finish <S>                   # only after the user answered the latest review "confirm"
-python3 scripts/route.py fail <S> --reason "..."      # whenever a step cannot complete (network, crash, gate)
+python3 tools/pipeline/route.py start <S> --owner <you>      # refuses finished routes; resets partial work first
+python3 tools/pipeline/route.py step <S> capture             # batch_capture.cjs run --only <S> --analyze (skipped if capture/.complete)
+python3 tools/pipeline/route.py step <S> spec                # context_pack.py, then route-spec.md with every unclear point
+python3 tools/pipeline/route.py spec-done <S>                # record the spec + hashes of its inputs: a later reset keeps it
+python3 tools/pipeline/route.py step <S> build               # code in app/src/pages/<S>/
+python3 tools/pipeline/route.py step <S> parity
+python3 tools/pipeline/route.py parity <S> --app http://localhost:5173   # every captured state, fingerprinted reports
+python3 tools/pipeline/route.py ready <S>                    # build gates pass → status review: the USER tests now
+python3 tools/pipeline/route.py feedback <S> --kind bug|todo|question --text "..." --by user   # what the user found → status fixing
+python3 tools/pipeline/route.py fixed <S> F<n> --note "..." # each item done, then `ready` again for the next round
+python3 tools/pipeline/route.py finish <S>                   # only after the user answered the latest review "confirm"
+python3 tools/pipeline/route.py fail <S> --reason "..."      # whenever a step cannot complete (network, crash, gate)
 ```
 
 **A route spec for every route.** Before writing code, write `migration/screens/<S>/route-spec.md`: `assets/route-spec-template.md` for lite routes, `assets/spec-template.md` for full ones. Both must have Summary, Patterns used, Unclear points and Decisions to confirm. Every statement cites its evidence; anything without evidence goes to Unclear points with a question id.
@@ -157,14 +157,14 @@ Ask during the spec step, before code, so answers shape the first build. A quest
 
 **Context and tiers.** Generate the pack and read it instead of the analysis folder:
 ```bash
-python3 scripts/context_pack.py --screen <S> --analysis migration/screens/<S>/analysis --budget 14000
+python3 tools/pipeline/context_pack.py --screen <S> --analysis migration/screens/<S>/analysis --budget 14000
 ```
 It holds the block plan (shell / shared with path / build here), the captured markup compacted, the route's calls with trigger chains, response types and cached server answers, the logic of route-specific blocks, the gaps and the other states, and the exact files to open if something is missing. CSS is not in it on purpose: the original CSS is global and unchanged, the build only needs class names. Lite routes need no full spec and no independent verifier unless parity shows an unexplained difference; full routes get the full spec with sequence diagrams and an independent check. Budget and reading rules: `references/context-budget.md`.
 
 ## Phase 7: Parity gate
 
 ```bash
-python3 scripts/route.py parity <S> --app http://localhost:5173 [--state <state>]
+python3 tools/pipeline/route.py parity <S> --app http://localhost:5173 [--state <state>]
 ```
 For every captured state in `analysis/states.json` it runs `parity_check.cjs` at the state's viewport, with its mock scenario, flags and steps, against `dom/<state>.raw.html`. It aligns elements by tag, `data-block` and classes and reports structure, class (also `<html>`/`<body>` device classes), attribute, static text, ~80 computed styles, `::before`/`::after`, size, position, a masked full-page pixel diff (page ratio and worst 40px tile, with a diff image) and **call parity** (data actions per phase, server actions in order with their input names, against `calls.json`), after applying **named exemptions** (`assets/parity-exemptions.example.json`). Every exemption has an id and a reason, is decided by the user, and is counted in each report. Each report carries a fingerprint of the route code, shell/shared/lib/mocks, legacy CSS, exemptions and reference: the gates accept only current, full (no relaxed options) reports with zero unexempted differences, and every captured call needs a mock handler. A difference is fixed in the route's markup (or its logic for a call difference); if it can only be fixed in shell/shared it becomes a change request; if it cannot be fixed at all it becomes a decision for the user. Details: `references/parity-and-verification.md`.
 
@@ -195,14 +195,14 @@ migration/screens/<Screen>/
 ```
 
 1. **Prepare.** Read `references/mcp-playbook.md` and skim `references/outsystems-runtime.md`. Set the viewport before loading (OutSystems sets device classes at load).
-2. **Runtime capture.** Inject `scripts/capture.js`, `__osCapture.startRuntime()`, re-enter the screen without a full reload so data actions fire under the interceptor, exercise every interactive element, `await __osCapture.stopRuntime()` → `capture/runtime-<Screen>.json`. Cross-check `screenservices` URLs with the browser's request list.
+2. **Runtime capture.** Inject `tools/pipeline/capture.js`, `__osCapture.startRuntime()`, re-enter the screen without a full reload so data actions fire under the interceptor, exercise every interactive element, `await __osCapture.stopRuntime()` → `capture/runtime-<Screen>.json`. Cross-check `screenservices` URLs with the browser's request list.
 3. **UI capture.** `await __osCapture.snapshotUI({ label: 'default' })`, retrieve the file; run the analyzer once, read `coverage.md`, capture the reachable extra states with small snapshots.
-4. **Analyze.** `python3 scripts/analyze_capture.py --ui capture/capture-<S>-default.json --runtime capture/runtime-<S>.json --state capture/capture-<S>-<state>.json --out analysis`. Read `digest.md`, `call-sites.md`, `diagrams.md`, `coverage.md`, then `calls.md` + `types.ts`, `blocks-tree.txt` + `dom/default.html`; `css-relevant.md` and `security.md` when the section you write needs them; `sources/pretty/*.mvc.js` by grep for exact expressions.
+4. **Analyze.** `python3 tools/pipeline/analyze_capture.py --ui capture/capture-<S>-default.json --runtime capture/runtime-<S>.json --state capture/capture-<S>-<state>.json --out analysis`. Read `digest.md`, `call-sites.md`, `diagrams.md`, `coverage.md`, then `calls.md` + `types.ts`, `blocks-tree.txt` + `dom/default.html`; `css-relevant.md` and `security.md` when the section you write needs them; `sources/pretty/*.mvc.js` by grep for exact expressions.
 5. **Server side.** Check `migration/knowledge/actions/` first. For what is not cached, ask the OutSystems MCP (read-only tools only): bodies of data actions and aggregates, server actions called from client logic, unreadable conditions, login/session/lock actions, whether each server action enforces authorization, session variables, roles, site properties, what selects between variants. Cite as `[OutSystems MCP: Module/Element]`, record each with `route.py ask --kind fact` and save reusable answers to the cache. What the MCP cannot settle, or does not exist, becomes a decision for the user.
-6. **Write the spec** from `assets/spec-template.md` (as `route-spec.md` inside the route loop): traceability for every rule, component tree with render/shell/invisible/not-captured marks, markup contract, data flow and API table, state and lifecycle, render logic, interactions (from `call-sites.md`), architecture diagram (2a) and sequence diagrams (10) from `analysis/diagrams.md` with every TODO resolved, gaps, acceptance criteria. Section 4 (visual) references the shell for global styles and lists only screen-specific rules. The review prototype (`references/prototype-guide.md`, `scripts/build_prototype.py`) is optional: the React app with MSW scenarios is the prototype.
+6. **Write the spec** from `assets/spec-template.md` (as `route-spec.md` inside the route loop): traceability for every rule, component tree with render/shell/invisible/not-captured marks, markup contract, data flow and API table, state and lifecycle, render logic, interactions (from `call-sites.md`), architecture diagram (2a) and sequence diagrams (10) from `analysis/diagrams.md` with every TODO resolved, gaps, acceptance criteria. Section 4 (visual) references the shell for global styles and lists only screen-specific rules. The review prototype (`references/prototype-guide.md`, `tools/pipeline/build_prototype.py`) is optional: the React app with MSW scenarios is the prototype.
 7. **Verify the spec.** Every in-scope call in `calls.md` appears in section 6; every block in `blocks-tree.txt` in section 2; every navigation target in section 9 with its parameters; every `$if` branch in section 8; triggers match `call-sites.md`; diagrams contain no TODO and use real names; no invented strings, colors, sizes or images; every unclear point has a question id.
 
-**Manual fallback (no browser tooling).** Give the person `scripts/capture.js` and these console lines, then continue from step 4 with the uploaded files:
+**Manual fallback (no browser tooling).** Give the person `tools/pipeline/capture.js` and these console lines, then continue from step 4 with the uploaded files:
 ```js
 __osCapture.startRuntime();   // navigate away in the app, come back, click through the screen
 copy(JSON.stringify(await __osCapture.stopRuntime()));   // paste into runtime-<Screen>.json
@@ -252,4 +252,4 @@ await __osCapture.snapshotUI({ label: 'default' });      // downloads capture-<S
 - `references/prototype-guide.md`: optional single-file review prototype.
 - `assets/`: `route-spec-template.md` (lite), `spec-template.md` (full), `app-shell-spec-template.md`, `AGENTS-template.md`, `pattern-template.md`, `change-request-template.md`, `parity-exemptions.example.json`, `mocks-fixtures.ts` (MSW helper for recorded fixtures, written by the scaffold), `mock-rules.example.json`, `example-diagrams.md` (neutral worked pattern for spec sections 2a and 10), `prototype-app-skeleton.js`, `prototype-template.html`.
 - `assets/site-profiles/`: `default.json` (= `ubtconnect-tst.json`, the default site), `assets/credentials.example.json` (template for `.auth/credentials.json`).
-- `scripts/`: `site_auth.cjs` (automatic sign-in and PIN unlock, all phases that open the real app); `survey.js`, `survey_app.py` (phase 0); `board.py` (phase 1 and status); `batch_capture.cjs`, `capture.js`, `analyze_capture.py`, `record_har.cjs`, `har_to_fixtures.py` (phase 2); `catalog.py`, `flags.py` (phase 3); `stack.py` (phase 4); `scaffold_react_app.py` (phase 5: also writes `src/lib/device.ts`, `src/lib/flags.ts`, `src/components/FlagPanel.tsx`, `src/mocks/store.ts`); `route.py`, `context_pack.py`, `consistency_check.py`, `scope_guard.py` (phase 6); `parity_check.cjs`, run by `route.py parity` (phase 7); `ledger.py` (all); `build_prototype.py` (optional).
+- `tools/pipeline/`: `site_auth.cjs` (automatic sign-in and PIN unlock, all phases that open the real app); `survey.js`, `survey_app.py` (phase 0); `board.py` (phase 1 and status); `batch_capture.cjs`, `capture.js`, `analyze_capture.py`, `record_har.cjs`, `har_to_fixtures.py` (phase 2); `catalog.py`, `flags.py` (phase 3); `stack.py` (phase 4); `scaffold_react_app.py` (phase 5: also writes `src/lib/device.ts`, `src/lib/flags.ts`, `src/components/FlagPanel.tsx`, `src/mocks/store.ts`); `route.py`, `context_pack.py`, `consistency_check.py`, `scope_guard.py` (phase 6); `parity_check.cjs`, run by `route.py parity` (phase 7); `ledger.py` (all); `build_prototype.py` (optional).

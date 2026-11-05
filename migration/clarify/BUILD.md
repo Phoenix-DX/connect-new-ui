@@ -48,7 +48,7 @@ You change code, tests, mocks and docs. You make no commit (the orchestrator com
 2. `migration/clarify/builds/<group>.md` (English), one section per item. Each section has: id, TST evidence
    (file:line), files changed (path:line), what was built in a few sentences, the tests you ran. It ends with the
    proposed verdict of the rows (`match`, or open with the reason). A last section "Decisions needed" (options,
-   evidence, recommendation) when there are any. Lint: `python3 migration/tools/ste_lint.py <file>`, 0 errors
+   evidence, recommendation) when there are any. Lint: `python3 tools/docs/ste_lint.py <file>`, 0 errors
    (sentences of at most 25 words, paragraphs of at most 6 sentences; use lists).
 3. Final message (English, short): items built, items open with the reason, decisions needed, files changed, test
    results.

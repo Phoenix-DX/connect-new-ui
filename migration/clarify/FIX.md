@@ -37,7 +37,7 @@ commit (the orchestrator commits).
 1. The code and test changes in `app/`.
 2. `migration/clarify/fixes/<group>.md` (English), one section per finding. Each section has: id, TST evidence
    (file:line), files changed (path:line), what changed in one or two sentences, the tests you ran. It ends with the
-   proposed verdict of the rows (`match`, or still open with the reason). Lint: `python3 migration/tools/ste_lint.py <file>`,
+   proposed verdict of the rows (`match`, or still open with the reason). Lint: `python3 tools/docs/ste_lint.py <file>`,
    0 errors.
 3. Final message (English, short): findings fixed, findings left open with the reason, files changed, test results.
 

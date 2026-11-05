@@ -17,7 +17,7 @@ controller :16008-16027; record key in model.js :27022-27026). Not cross-checked
 
 ## TST values (source of truth), 2026-10-15 (see the update of 2026-10-28 below)
 `migration/knowledge/static-entities-tst.json` has all static-entity values of TST by name (514 entity views, own and referenced).
-`migration/tools/static_entities.py` made it from `migration/runtime-sources/moduleinfo.json` and the compiled model.js names.
+`tools/generate/static_entities.py` made it from `migration/runtime-sources/moduleinfo.json` and the compiled model.js names.
 That file comes from a read-only GET of `/UBTConnect/moduleservices/moduleinfo` (user-approved). It gives these settled values:
 - `UBTConnectLibrary.UBT_Icons`: Gift = `connect-icon-gift`, FeedItem = `connect-icon-feed`, InfoFill = `connect-icon-info_fill`.
 - `UBTConnect.Photobook_Speed`: EightSeconds = 8000 (TST = DEV).

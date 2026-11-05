@@ -5,7 +5,7 @@ must be in English, easy to read, and easy for an agent to follow. Style: ASD-ST
 dictionary (user, 2026-10-21). Backup before change: `migration/.ste-backup/` (user, 2026-10-21).
 
 Files: `inventory.json` (scope groups), `glossary.md`, `style-rules.md`, `pilot/` (pilot outputs), `pilot-diff.md`,
-`pilot-report.md`. Tools: `migration/tools/english_docs.py`, `ste_lint.py`, `meaning_guard.py`.
+`pilot-report.md`. Tools: `tools/docs/english_docs.py`, `ste_lint.py`, `meaning_guard.py`.
 
 ## Phase 0: preparation
 
@@ -16,19 +16,19 @@ Files: `inventory.json` (scope groups), `glossary.md`, `style-rules.md`, `pilot/
 
 Findings:
 - `app/src/shared/**` and `app/src/shell/**` are parity inputs (`route.py` hashes the full folders, README files too).
-  A change there makes the parity reports of all 64 routes stale: run `migration/tools/parity_sweep.py` after it.
+  A change there makes the parity reports of all 64 routes stale: run `tools/parity/parity_sweep.py` after it.
   Phase A does not change app files; the README files change only in phase B, with one sweep.
 - `migration/blocks/*.md` are generated block packs (`block_pack.py`): no STE rewrite.
 - A change to `route-spec.md` breaks its `spec.complete.json` hash. After the user approves a rewritten spec, run
   `route.py spec-done <Route>` (user's OK needed).
-- `migration/tools/sitemap.py` reads the table rows of `scope-review.md`: the translation keeps the columns, the
+- `tools/generate/sitemap.py` reads the table rows of `scope-review.md`: the translation keeps the columns, the
   D-codes and the words build / skip.
 
 ## Phase A: Vietnamese documents
 
 - [x] Translate `RUNBOOK.md`, `migration/scope-review.md`, `migration/scope-plan.md` (style rules apply). Lint 0 errors.
       Vietnamese placeholders became English (`<Screen>`, `<date>`, `<reason>`); one term became "wave" (glossary §9). Heading references in context-003/005 updated.
-- [x] `migration/tools/sitemap.py` labels to English; regenerate `migration/sitemap.md` and `.html`. Same scope classes
+- [x] `tools/generate/sitemap.py` labels to English; regenerate `migration/sitemap.md` and `.html`. Same scope classes
       with the old and the new `scope-review.md`. The old sitemap (2026-10-14) was stale: it now follows the board.
 - [x] Vietnamese quotes: keep them, add "(English: …)" (10 files).
 - [x] New `REVIEW-GUIDE.md` at the project root for the reviewer. Lint 0 errors.

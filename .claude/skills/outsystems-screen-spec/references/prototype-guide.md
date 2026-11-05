@@ -6,7 +6,7 @@ How to turn a spec into a single-file review prototype that looks like the real 
 
 ## How the harness works
 
-`scripts/build_prototype.py` combines:
+`tools/pipeline/build_prototype.py` combines:
 - `assets/prototype-template.html`: review panel on the left, device frame on the right. The device is an `<iframe>` whose document gets the original stylesheet bundle, the captured `<html>`/`<body>` classes and body style variables. A second React root renders the screen inside it, so OutSystems global CSS applies exactly as in the app and never leaks into the panel.
 - `analysis/<Screen>/styles/bundle.css` + `assets.json`: original CSS in load order, `url()` pointing to embedded fonts and images.
 - your `<Screen>.app.js`.
@@ -46,7 +46,7 @@ Helpers available: `html`, `store`/`useSettings()` (`scenario`, `latency`, `flag
 ## Build and check
 
 ```bash
-python3 scripts/build_prototype.py --analysis analysis/<Screen> --app <Screen>.app.js \
+python3 tools/pipeline/build_prototype.py --analysis analysis/<Screen> --app <Screen>.app.js \
   --title "<Screen> · React prototype" --out <Screen>-prototype.html
 ```
 
