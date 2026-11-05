@@ -156,3 +156,15 @@ Source switch (user decision (c), 2026-10-28): the live TST code of 2026-10-27 i
 
 Fetched read-only (static GET, no session) from the manifest versions of `moduleinfo.json`, for `route-actions`
 (`check_route.py` static mode: the 17 build routes without a TST capture). 71 files; `Connect2_LegacyShared.Utility.ShowMoreShowLessContainer.mvc.js` is not in the manifest.
+
+| More files (2026-11-05, static GET of the live manifest, read-only; stored in `migration/runtime-sources/live/`) | Size | What it answers |
+|---|---|---|
+| `moduleinfo.json` | 287 kB | URL versions of 2026-11-05 and the static-entity values (`connect_SearchCategories` Events/Schools, `connect_EventTypes` Assemble/Orbit/LDM) |
+| `Connect_Bookmarks_CS.model.js` | 13 kB | `UI_Bookmark_CardItem` live: ItemId Text, ItemId2, HasDetailAccess, PublishedAt, ChannelLogo, ChannelName |
+| `Connect_Search_CS.model.js` | 9 kB | `SearchResult` live: the Event_* fields and their wire names |
+| `Connect2_Notification_CS.model.js` | 3 kB | `MessageListItem` live: MessageTemplateId |
+| `UBTConnect.model.js`, `UBTConnect.controller.js` | 1.6 MB, 1.2 MB | `SetTagSelected`, the NotificationDetails output records |
+| `UBTConnect_Utils.model.js`, `UBTConnect_Utils.controller.js` | 601 kB, 402 kB | `SearchCategory_GetList` live (Events when the target is not the map, Schools) |
+| `APIDomain_Directory_IS.model.js` | 1.2 MB | `Directory_ImageDetails` (the household gallery row) |
+| `Connect_Household_CS.model.js` | 48 kB | `UI_HouseholdTimelineImages` |
+| From the survey file (no new GET): `HouseholdDetails_TimelinePhoto_List`, `SearchResult_Section`, `FilterSheet_Icon_Label`, `Unavailable_Image`, `ScreenBlock_MessageDetail`, `Legacy_MyNotificationsFlow.MessageDetail` `.mvc.js` | — | The live blocks of the drift decisions of 2026-11-05 |
