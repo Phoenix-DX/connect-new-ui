@@ -21,7 +21,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/OrbitAdminMilestones/OrbitAdminMilestonesPage.tsx`](../../app/src/pages/OrbitAdminMilestones/OrbitAdminMilestonesPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 | Screenshots | no parity run | `route.py parity` |
-| Code read | OutSystems: 1 files of the UI flow, 15 shared blocks, 43 app shell files. React: 153 files in the closure of the page | TST survey closure and compiled code (static), `react_calls.mjs` |
+| Code read | OutSystems: 1 files of the UI flow, 15 shared blocks, 43 app shell files. React: 154 files in the closure of the page | TST survey closure and compiled code (static), `react_calls.mjs` |
 
 ## 2. Result
 

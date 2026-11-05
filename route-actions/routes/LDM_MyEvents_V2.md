@@ -14,14 +14,14 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/LDM_MyEvents_V2/LDM_MyEvents_V2Page.tsx`](../../app/src/pages/LDM_MyEvents_V2/LDM_MyEvents_V2Page.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect C2NewLDM = false → LDM_MyEvents | `app/src/app/routes.ts` |
 | Screenshots | [`migration/screens/LDM_MyEvents_V2/parity`](../../migration/screens/LDM_MyEvents_V2/parity) | `route.py parity` |
-| Code read | OutSystems: 1 files of the UI flow, 23 shared blocks, 25 app shell files. React: 182 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
+| Code read | OutSystems: 1 files of the UI flow, 23 shared blocks, 25 app shell files. React: 183 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
 | Check | Result |
 |---|---|
-| Server calls of the route on TST | 5: React makes 3, **2 missing** |
-| Differences found | **2** (see [section 3](#3-differences-found)) |
+| Server calls of the route on TST | 5: React makes 3, **0 missing**, 2 not a gap of the web app |
+| Differences found | **0** (+ 2 not a gap of the web app) (see [section 3](#3-differences-found)) |
 | Questions | 0 (see [section 4](#4-questions)) |
 | React calls reached only through shared code | 2: see the last section |
 | User actions of the route (own code) | OutSystems: 4. React: 11 |
@@ -34,11 +34,17 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 
 Each line is a fact of both sides: a TST call, navigation or variable, and the React code that has it or not. The tool does not judge the behaviour.
 
-- Call `Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_MyEvents_V2/DataActionGetEventsForCalendar`. Chain on TST: ScreenBlock_MyEvents_V2.onHandle_DateClicked → ScreenBlock_MyEvents_V2.checkDateBoundaries → ScreenBlock_MyEvents_V2.getEventCalendarData → ScreenBlock_MyEvents_V2.DataActionGetEventsForCalendar.
-  - No React code makes this call.
-  - Note in [`mocks/fictional/ldm.ts:194`](../../app/src/mocks/fictional/ldm.ts#L194): "/** One EventCalendar_V2 record (GetEventsForMyTimeline, GetEventsForCalendar, the event detail). */"
-- Call `Connect2_OrbitMobile_MUI/ActionGetEventViewInfo`. Chain on TST: ScreenBlock_MyEvents_V2.onHandle_DateClicked → Connect2_OrbitMobile_MUI.addAuditCalendarEvent → Connect2_OrbitMobile_MUI.getEventViewInfo → server GetEventViewInfo.
-  - No React code makes this call.
+None.
+
+### Not a gap of the web app
+
+Missing TST calls that a rule of `route-actions/config.json` (`notApplicable`, user 2026-11-05) sets aside. The rule names the fact and its evidence; the chain is the one of the TST code.
+
+**Unreachable on TST.** The handler is bound only in the Month, Day and Agenda calendar views, and OnReady calls GetEventCalendarData only when CurrentEventView is not MyTimeline. The variable keeps its default MyTimeline: no action assigns it. Evidence: Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_MyEvents_V2.mvc.js:50 (CurrentEventView default), :521-692 (the $if of the calendar views), :2140-2185 (OnReady: Day or Month? / MyTimeline? / else GetEventCalendarData), no `currentEventViewVar =` in the file; app/src/pages/LDM_MyEvents_V2/hooks/ldmMyEventsState.ts:16-18.
+
+- `Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_MyEvents_V2/DataActionGetEventsForCalendar`. Chain on TST: ScreenBlock_MyEvents_V2.onHandle_DateClicked → ScreenBlock_MyEvents_V2.checkDateBoundaries → ScreenBlock_MyEvents_V2.getEventCalendarData → ScreenBlock_MyEvents_V2.DataActionGetEventsForCalendar.
+- `Connect2_OrbitMobile_MUI/ActionGetEventViewInfo`. Chain on TST: ScreenBlock_MyEvents_V2.onHandle_DateClicked → Connect2_OrbitMobile_MUI.addAuditCalendarEvent → Connect2_OrbitMobile_MUI.getEventViewInfo → server GetEventViewInfo.
+
 
 ## 4. Questions
 
@@ -60,10 +66,10 @@ All columns come from the code, without interpretation:
 
 | # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
 |---|---|---|---|---|---|---|---|---|
-| 1 | `Connect2_OrbitMobile_MUI/ActionGetEventViewInfo` | server action | `Connect2_OrbitMobile_MUI` | ScreenBlock_MyEvents_V2.onHandle_DateClicked → Connect2_OrbitMobile_MUI.addAuditCalendarEvent → Connect2_OrbitMobile_MUI.getEventViewInfo → server GetEventViewInfo | no | – | – | **missing** |
+| 1 | `Connect2_OrbitMobile_MUI/ActionGetEventViewInfo` | server action | `Connect2_OrbitMobile_MUI` | ScreenBlock_MyEvents_V2.onHandle_DateClicked → Connect2_OrbitMobile_MUI.addAuditCalendarEvent → Connect2_OrbitMobile_MUI.getEventViewInfo → server GetEventViewInfo | no | – | – | not applicable (calendarUnreachable) |
 | 2 | `Connect2_OrbitMobile_MUI/LDM_Blocks_V2/MyEvents_MyTimelineFilterButton/DataActionGetEventLocalitiesForFilter` | data action | `MyEvents_MyTimelineFilterButton` | MyEvents_MyTimelineFilterButton.OnReady → MyEvents_MyTimelineFilterButton.onReady → MyEvents_MyTimelineFilterButton.onParametersChanged → MyEvents_MyTimelineFilterButton.getEventLocalitiesData → MyEvents_MyTimelineFilterButton.DataActionGetEventLocalitiesForFilter<br>MyEvents_MyTimelineFilterButton.OnParametersChanged → MyEvents_MyTimelineFilterButton.onParametersChanged → MyEvents_MyTimelineFilterButton.getEventLocalitiesData → MyEvents_MyTimelineFilterButton.DataActionGetEventLocalitiesForFilter<br>MyEvents_MyTimelineFilterButton fetch at start → MyEvents_MyTimelineFilterButton.DataActionGetEventLocalitiesForFilter | yes | `fetchEventFilterLocalities()` [`api/locality/repository.ts:83`](../../app/src/api/locality/repository.ts#L83) (page) | `MyEvents_MyTimelineFilterButton → useMyTimelineFilterButton → fetchEventFilterLocalities`<br>[`pages/LDM_MyEvents_V2/components/MyEvents_MyTimelineFilterButton.tsx`](../../app/src/pages/LDM_MyEvents_V2/components/MyEvents_MyTimelineFilterButton.tsx) | implemented |
-| 3 | `Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_MyEvents_V2/DataActionGetEventsForCalendar` | data action | `ScreenBlock_MyEvents_V2` | ScreenBlock_MyEvents_V2.onHandle_DateClicked → ScreenBlock_MyEvents_V2.checkDateBoundaries → ScreenBlock_MyEvents_V2.getEventCalendarData → ScreenBlock_MyEvents_V2.DataActionGetEventsForCalendar<br>ScreenBlock_MyEvents_V2.OnReady → ScreenBlock_MyEvents_V2.onReady → ScreenBlock_MyEvents_V2.getEventCalendarData → ScreenBlock_MyEvents_V2.DataActionGetEventsForCalendar<br>ScreenBlock_MyEvents_V2 fetch at start → ScreenBlock_MyEvents_V2.DataActionGetEventsForCalendar | no | – | – | **missing** |
-| 4 | `Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_MyEvents_V2/DataActionGetEventsForMyTimeline` | data action | `ScreenBlock_MyEvents_V2` | MyEvents_MyTimelineFilterButton.onHandle_Filter → event filter of MyEvents_MyTimelineFilterButton → ScreenBlock_MyEvents_V2.onHandle_MyTimelineFilter → ScreenBlock_MyEvents_V2.getMyTimelineData → ScreenBlock_MyEvents_V2.DataActionGetEventsForMyTimeline<br>MyEvents_MyTimelineFilterButton.onHandle_Close → event resetFilters of MyEvents_MyTimelineFilterButton → ScreenBlock_MyEvents_V2.onHandle_ResetFilters → ScreenBlock_MyEvents_V2.getMyTimelineData → ScreenBlock_MyEvents_V2.DataActionGetEventsForMyTimeline<br>ScreenBlock_MyEvents_V2.OnReady → ScreenBlock_MyEvents_V2.onReady → ScreenBlock_MyEvents_V2.getMyTimelineData → ScreenBlock_MyEvents_V2.DataActionGetEventsForMyTimeline<br>(+3 more chains) | yes | `fetchEventsForMyTimeline()` [`api/event/repository.ts:325`](../../app/src/api/event/repository.ts#L325) (page) | `LDM_MyEvents_V2 → useLdmMyEvents → fetchEventsForMyTimeline`<br>[`pages/LDM_MyEvents_V2/LDM_MyEvents_V2Page.tsx`](../../app/src/pages/LDM_MyEvents_V2/LDM_MyEvents_V2Page.tsx) | implemented |
+| 3 | `Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_MyEvents_V2/DataActionGetEventsForCalendar` | data action | `ScreenBlock_MyEvents_V2` | ScreenBlock_MyEvents_V2.onHandle_DateClicked → ScreenBlock_MyEvents_V2.checkDateBoundaries → ScreenBlock_MyEvents_V2.getEventCalendarData → ScreenBlock_MyEvents_V2.DataActionGetEventsForCalendar<br>ScreenBlock_MyEvents_V2.OnReady → ScreenBlock_MyEvents_V2.onReady → ScreenBlock_MyEvents_V2.getEventCalendarData → ScreenBlock_MyEvents_V2.DataActionGetEventsForCalendar<br>ScreenBlock_MyEvents_V2 fetch at start → ScreenBlock_MyEvents_V2.DataActionGetEventsForCalendar | no | – | – | not applicable (calendarUnreachable) |
+| 4 | `Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_MyEvents_V2/DataActionGetEventsForMyTimeline` | data action | `ScreenBlock_MyEvents_V2` | MyEvents_MyTimelineFilterButton.onHandle_Filter → event filter of MyEvents_MyTimelineFilterButton → ScreenBlock_MyEvents_V2.onHandle_MyTimelineFilter → ScreenBlock_MyEvents_V2.getMyTimelineData → ScreenBlock_MyEvents_V2.DataActionGetEventsForMyTimeline<br>MyEvents_MyTimelineFilterButton.onHandle_Close → event resetFilters of MyEvents_MyTimelineFilterButton → ScreenBlock_MyEvents_V2.onHandle_ResetFilters → ScreenBlock_MyEvents_V2.getMyTimelineData → ScreenBlock_MyEvents_V2.DataActionGetEventsForMyTimeline<br>ScreenBlock_MyEvents_V2.OnReady → ScreenBlock_MyEvents_V2.onReady → ScreenBlock_MyEvents_V2.getMyTimelineData → ScreenBlock_MyEvents_V2.DataActionGetEventsForMyTimeline<br>(+3 more chains) | yes | `fetchEventsForMyTimeline()` [`api/event/repository.ts:333`](../../app/src/api/event/repository.ts#L333) (page) | `LDM_MyEvents_V2 → useLdmMyEvents → fetchEventsForMyTimeline`<br>[`pages/LDM_MyEvents_V2/LDM_MyEvents_V2Page.tsx`](../../app/src/pages/LDM_MyEvents_V2/LDM_MyEvents_V2Page.tsx) | implemented |
 | 5 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx) | implemented |
 
 ## 6. User actions

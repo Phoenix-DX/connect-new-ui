@@ -14,7 +14,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/HelpersDetail/HelpersDetailPage.tsx`](../../app/src/pages/HelpersDetail/HelpersDetailPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 | Screenshots | [`migration/screens/HelpersDetail/parity`](../../migration/screens/HelpersDetail/parity) | `route.py parity` |
-| Code read | OutSystems: 1 files of the UI flow, 9 shared blocks, 21 app shell files. React: 165 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
+| Code read | OutSystems: 1 files of the UI flow, 9 shared blocks, 21 app shell files. React: 166 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
@@ -42,7 +42,7 @@ None.
 2. React calls `/api/Connect2_LegacyShared/ActionGetTimezoneInformation` from `getTimezoneInformation()` [`lib/legacyShared/actions.ts:360`](../../app/src/lib/legacyShared/actions.ts#L360) (page). TST HelpersDetail has no chain to this call. Does the call belong to this route?
 3. React calls `/api/Connect2_LegacyShared/ActionGetMemberContactByCacheKey` from `fetchMemberContacts()` [`api/message/repository.ts:271`](../../app/src/api/message/repository.ts#L271) (page). TST HelpersDetail has no chain to this call. Does the call belong to this route?
 
-1 more React calls without a TST chain on this route are reached only through shared containers, components or app code. They are in the last section, not here.
+React reaches 1 more call without a TST chain on this route only through shared containers, components or app code. The last section lists it, not this one.
 
 ## 5. Server calls
 
@@ -59,7 +59,7 @@ All columns come from the code, without interpretation:
 | # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
 |---|---|---|---|---|---|---|---|---|
 | 1 | `Connect2_OrbitMobile_MUI/ActionGetDirectoryAccess` | server action | `Connect2_OrbitMobile_MUI` | ScreenBlock_HelperDetails.onHandle_ClickedMember → Connect2_OrbitMobile_MUI.checkDirectoryAccess → server GetDirectoryAccess | no | `checkDirectoryAccess()` [`lib/orbit/actions.ts:264`](../../app/src/lib/orbit/actions.ts#L264) (page) | `HelperDetails → useHelperDetails → checkDirectoryAccess`<br>[`pages/HelpersDetail/HelpersDetailPage.tsx`](../../app/src/pages/HelpersDetail/HelpersDetailPage.tsx) | implemented |
-| 2 | `Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_HelperDetails/DataActionGetHelperDetails` | data action | `ScreenBlock_HelperDetails` | ScreenBlock_HelperDetails.OnReady → ScreenBlock_HelperDetails.onReady → ScreenBlock_HelperDetails.refreshData → ScreenBlock_HelperDetails.DataActionGetHelperDetails<br>ScreenBlock_HelperDetails fetch at start → ScreenBlock_HelperDetails.DataActionGetHelperDetails | yes | `fetchHelperDetails()` [`api/event/repository.ts:205`](../../app/src/api/event/repository.ts#L205) (page) | `HelperDetails → useHelperDetails → fetchHelperDetails`<br>[`pages/HelpersDetail/HelpersDetailPage.tsx`](../../app/src/pages/HelpersDetail/HelpersDetailPage.tsx) | implemented |
+| 2 | `Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_HelperDetails/DataActionGetHelperDetails` | data action | `ScreenBlock_HelperDetails` | ScreenBlock_HelperDetails.OnReady → ScreenBlock_HelperDetails.onReady → ScreenBlock_HelperDetails.refreshData → ScreenBlock_HelperDetails.DataActionGetHelperDetails<br>ScreenBlock_HelperDetails fetch at start → ScreenBlock_HelperDetails.DataActionGetHelperDetails | yes | `fetchHelperDetails()` [`api/event/repository.ts:213`](../../app/src/api/event/repository.ts#L213) (page) | `HelperDetails → useHelperDetails → fetchHelperDetails`<br>[`pages/HelpersDetail/HelpersDetailPage.tsx`](../../app/src/pages/HelpersDetail/HelpersDetailPage.tsx) | implemented |
 
 ## 6. User actions
 

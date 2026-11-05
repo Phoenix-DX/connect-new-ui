@@ -14,14 +14,14 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/AssembleEvents/AssembleEventsPage.tsx`](../../app/src/pages/AssembleEvents/AssembleEventsPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 | Screenshots | [`migration/screens/AssembleEvents/parity`](../../migration/screens/AssembleEvents/parity) | `route.py parity` |
-| Code read | OutSystems: 1 files of the UI flow, 29 shared blocks, 25 app shell files. React: 214 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
+| Code read | OutSystems: 1 files of the UI flow, 29 shared blocks, 25 app shell files. React: 215 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
 | Check | Result |
 |---|---|
-| Server calls of the route on TST | 5: React makes 4, **1 missing** |
-| Differences found | **1** (see [section 3](#3-differences-found)) |
+| Server calls of the route on TST | 5: React makes 4, **0 missing**, 1 not a gap of the web app |
+| Differences found | **0** (+ 1 not a gap of the web app) (see [section 3](#3-differences-found)) |
 | Questions | 0 (see [section 4](#4-questions)) |
 | React calls reached only through shared code | 3: see the last section |
 | User actions of the route (own code) | OutSystems: 3. React: 9 |
@@ -34,14 +34,22 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 
 Each line is a fact of both sides: a TST call, navigation or variable, and the React code that has it or not. The tool does not judge the behaviour.
 
-- Call `Connect2_LegacyShared/ActionGetAllApplicationEvents`. Chain on TST: onClick in LocalityListDetail → event onClick_GoToBrowseCountry of LocalityListDetail → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents.
-  - No React code makes this call.
+None.
+
+### Not a gap of the web app
+
+Missing TST calls that a rule of `route-actions/config.json` (`notApplicable`, user 2026-11-05) sets aside. The rule names the fact and its evidence; the chain is the one of the TST code.
+
+**Telemetry (decision U17).** The call belongs to the application-event pipeline (zOnApplicationEvent_Wrapper → getAppEventName → cacheLocalApplicationEvents). Telemetry is not wired in the mock phase (decision U17). Evidence: Connect2_LegacyShared.controller.js:989-1240 (CacheLocalApplicationEvents); migration/clarify/decisions.md U17; app/src/lib/orbit/actions.ts:318-321.
+
+- `Connect2_LegacyShared/ActionGetAllApplicationEvents`. Chain on TST: onClick in LocalityListDetail → event onClick_GoToBrowseCountry of LocalityListDetail → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents.
+
 
 ## 4. Questions
 
 None.
 
-3 more React calls without a TST chain on this route are reached only through shared containers, components or app code. They are in the last section, not here.
+React reaches 3 more calls without a TST chain on this route only through shared containers, components or app code. The last section lists them, not this one.
 
 ## 5. Server calls
 
@@ -57,9 +65,9 @@ All columns come from the code, without interpretation:
 
 | # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
 |---|---|---|---|---|---|---|---|---|
-| 1 | `Connect2_Assemble_MUI/Assemble/AssembleSummary_List/DataActionGetAssembleEventTypes` | data action | `AssembleSummary_List` | AssembleSummary_List.refresh_GetAssembleEventTypes → AssembleSummary_List.DataActionGetAssembleEventTypes<br>AssembleSummary_List fetch at start → AssembleSummary_List.DataActionGetAssembleEventTypes | yes | `fetchAssembleEventTypes()` [`api/event/repository.ts:106`](../../app/src/api/event/repository.ts#L106) (page) | `AssembleSummaryListBlock → useAssembleSummaryList → fetchAssembleEventTypes`<br>[`pages/AssembleEvents/AssembleEventsPage.tsx`](../../app/src/pages/AssembleEvents/AssembleEventsPage.tsx) | implemented |
-| 2 | `Connect2_Assemble_MUI/Assemble/AssembleSummary_List/DataActionGetAssembleMeetingSummaryList` | data action | `AssembleSummary_List` | AssembleSummary_List.list_AssembleSummaryCardsOnScrollEnding → AssembleSummary_List.DataActionGetAssembleMeetingSummaryList<br>onClick in HorizontalTags → HorizontalTags.onClick → … → AssembleSummary_List.refresh_EventList → AssembleSummary_List.DataActionGetAssembleMeetingSummaryList<br>onClick in AssembleSummary_FilterDrawer → AssembleSummary_FilterDrawer.applyOnClick → … → AssembleSummary_List.refresh_EventList → AssembleSummary_List.DataActionGetAssembleMeetingSummaryList<br>(+3 more chains) | yes | `fetchAssembleMeetings()` [`api/event/repository.ts:113`](../../app/src/api/event/repository.ts#L113) (page) | `AssembleSummaryListBlock → useAssembleSummaryList → fetchAssembleMeetings`<br>[`pages/AssembleEvents/AssembleEventsPage.tsx`](../../app/src/pages/AssembleEvents/AssembleEventsPage.tsx) | implemented |
-| 3 | `Connect2_LegacyShared/ActionGetAllApplicationEvents` | server action | `Connect2_LegacyShared` | onClick in LocalityListDetail → event onClick_GoToBrowseCountry of LocalityListDetail → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents | no | – | – | **missing** |
+| 1 | `Connect2_Assemble_MUI/Assemble/AssembleSummary_List/DataActionGetAssembleEventTypes` | data action | `AssembleSummary_List` | AssembleSummary_List.refresh_GetAssembleEventTypes → AssembleSummary_List.DataActionGetAssembleEventTypes<br>AssembleSummary_List fetch at start → AssembleSummary_List.DataActionGetAssembleEventTypes | yes | `fetchAssembleEventTypes()` [`api/event/repository.ts:114`](../../app/src/api/event/repository.ts#L114) (page) | `AssembleSummaryListBlock → useAssembleSummaryList → fetchAssembleEventTypes`<br>[`pages/AssembleEvents/AssembleEventsPage.tsx`](../../app/src/pages/AssembleEvents/AssembleEventsPage.tsx) | implemented |
+| 2 | `Connect2_Assemble_MUI/Assemble/AssembleSummary_List/DataActionGetAssembleMeetingSummaryList` | data action | `AssembleSummary_List` | AssembleSummary_List.list_AssembleSummaryCardsOnScrollEnding → AssembleSummary_List.DataActionGetAssembleMeetingSummaryList<br>onClick in HorizontalTags → HorizontalTags.onClick → … → AssembleSummary_List.refresh_EventList → AssembleSummary_List.DataActionGetAssembleMeetingSummaryList<br>onClick in AssembleSummary_FilterDrawer → AssembleSummary_FilterDrawer.applyOnClick → … → AssembleSummary_List.refresh_EventList → AssembleSummary_List.DataActionGetAssembleMeetingSummaryList<br>(+3 more chains) | yes | `fetchAssembleMeetings()` [`api/event/repository.ts:121`](../../app/src/api/event/repository.ts#L121) (page) | `AssembleSummaryListBlock → useAssembleSummaryList → fetchAssembleMeetings`<br>[`pages/AssembleEvents/AssembleEventsPage.tsx`](../../app/src/pages/AssembleEvents/AssembleEventsPage.tsx) | implemented |
+| 3 | `Connect2_LegacyShared/ActionGetAllApplicationEvents` | server action | `Connect2_LegacyShared` | onClick in LocalityListDetail → event onClick_GoToBrowseCountry of LocalityListDetail → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents | no | – | – | not applicable (telemetry) |
 | 4 | `Connect2_Assemble_MUI/Assemble/ScreenBlock_AssembleEvents/DataActionGetSubdivisionName` | data action | `ScreenBlock_AssembleEvents` | ScreenBlock_AssembleEvents.OnReady → ScreenBlock_AssembleEvents.onReady → ScreenBlock_AssembleEvents.DataActionGetSubdivisionName<br>ScreenBlock_AssembleEvents fetch at start → ScreenBlock_AssembleEvents.DataActionGetSubdivisionName | no | `fetchSubdivisionName()` [`api/locality/repository.ts:59`](../../app/src/api/locality/repository.ts#L59) (page) | `AssembleEventsBlock → useAssembleEvents → fetchSubdivisionName`<br>[`pages/AssembleEvents/AssembleEventsPage.tsx`](../../app/src/pages/AssembleEvents/AssembleEventsPage.tsx) | implemented |
 | 5 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx) | implemented |
 

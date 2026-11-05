@@ -14,7 +14,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/ConnectShare/ConnectSharePage.tsx`](../../app/src/pages/ConnectShare/ConnectSharePage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 | Screenshots | [`migration/screens/ConnectShare/parity`](../../migration/screens/ConnectShare/parity) | `route.py parity` |
-| Code read | OutSystems: 1 files of the UI flow, 7 shared blocks, 21 app shell files. React: 135 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
+| Code read | OutSystems: 1 files of the UI flow, 7 shared blocks, 21 app shell files. React: 136 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 

@@ -14,14 +14,14 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/Notifications/NotificationsPage.tsx`](../../app/src/pages/Notifications/NotificationsPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect C2NewNotifications = false → MessageList | `app/src/app/routes.ts` |
 | Screenshots | [`migration/screens/Notifications/parity`](../../migration/screens/Notifications/parity) | `route.py parity` |
-| Code read | OutSystems: 7 files of the UI flow, 23 shared blocks, 28 app shell files. React: 174 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
+| Code read | OutSystems: 7 files of the UI flow, 23 shared blocks, 28 app shell files. React: 175 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
 | Check | Result |
 |---|---|
-| Server calls of the route on TST | 9: React makes 8, **1 missing** |
-| Differences found | **1** (see [section 3](#3-differences-found)) |
+| Server calls of the route on TST | 9: React makes 8, **0 missing**, 1 not a gap of the web app |
+| Differences found | **0** (+ 1 not a gap of the web app) (see [section 3](#3-differences-found)) |
 | Questions | 0 (see [section 4](#4-questions)) |
 | React calls reached only through shared code | 0: see the last section |
 | User actions of the route (own code) | OutSystems: 9. React: 16 |
@@ -34,11 +34,16 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 
 Each line is a fact of both sides: a TST call, navigation or variable, and the React code that has it or not. The tool does not judge the behaviour.
 
-- Call `UBTConnect/App_Notifications/Notifications/ServiceAPIAction_UI_UpdateItem_MarkAllAsRead`. Chain on TST: Notifications.handler_MarkAllAsRead → server Action_UI_UpdateItem_MarkAllAsRead.
-  - React has the function, but this route does not use it: `markAllUpdateItemsAsRead()` [`api/update/repository.ts:58`](../../app/src/api/update/repository.ts#L58).
-  - Note in [`api/update/repository.ts:55`](../../app/src/api/update/repository.ts#L55): "/** The service action Action_UI_UpdateItem_MarkAllAsRead (Updates_SingleList): marks read every update item that"
-  - Note in [`pages/Updates_SingleList/hooks/updatesSingleListFlows.ts:32`](../../app/src/pages/Updates_SingleList/hooks/updatesSingleListFlows.ts#L32): "/** Handler_MarkAllAsRead: Click_MarkAll of the list header. */"
-  - Note in [`pages/Updates_SingleList/hooks/useUpdatesSingleList.ts:304`](../../app/src/pages/Updates_SingleList/hooks/useUpdatesSingleList.ts#L304): "/** Handler_MarkAllAsRead (US:2984-3030): a non-system error only clears isLoading. */"
+None.
+
+### Not a gap of the web app
+
+Missing TST calls that a rule of `route-actions/config.json` (`notApplicable`, user 2026-11-05) sets aside. The rule names the fact and its evidence; the chain is the one of the TST code.
+
+**No binding in the TST view.** Every chain roots in a client action of the screen or of a block of its UI flow. No view event, lifecycle event or block event binds that action. Evidence: facts.json callSites rootKinds of the call (the call graph of the compiled code, tools/os_call_graph.py).
+
+- `UBTConnect/App_Notifications/Notifications/ServiceAPIAction_UI_UpdateItem_MarkAllAsRead`. Chain on TST: Notifications.handler_MarkAllAsRead → server Action_UI_UpdateItem_MarkAllAsRead.
+
 
 ## 4. Questions
 
@@ -62,7 +67,7 @@ All columns come from the code, without interpretation:
 | 2 | `UBTConnect/App_Notifications/Notifications/ActionMarkAsRead` | server action | `Notifications` | onClick in NotificationsList → NotificationsList.onClick_NotificationDetail → … → Notifications.handler_NotificationDetail → server MarkAsRead | no | `markNotificationAsRead()` [`api/notification/notificationDetail.ts:47`](../../app/src/api/notification/notificationDetail.ts#L47) (page) | `Notifications → useNotifications → markNotificationAsRead`<br>[`pages/Notifications/NotificationsPage.tsx`](../../app/src/pages/Notifications/NotificationsPage.tsx) | implemented |
 | 3 | `UBTConnect/App_Notifications/Notifications/DataActionFetchNotifications` | data action | `Notifications` | onChange in Notifications_Action → Notifications_Action.switch_IsOnlyShowUnReadOnChange → event onlyShowUnread of Notifications_Action → Notifications.handler_OnlyShowUnread → Notifications.DataActionFetchNotifications<br>event event_OnClick of Button → MoreActionSheet.onClick_Clear → … → Notifications.refreshNotifications → Notifications.DataActionFetchNotifications<br>event event_OnClick of Button → SortSheet.onClick_Clear → … → Notifications.refreshNotifications → Notifications.DataActionFetchNotifications<br>(+2 more chains) | yes | `fetchNotifications()` [`api/notification/repository.ts:40`](../../app/src/api/notification/repository.ts#L40) (page) | `Notifications → useNotifications → fetchNotifications`<br>[`pages/Notifications/NotificationsPage.tsx`](../../app/src/pages/Notifications/NotificationsPage.tsx) | implemented |
 | 4 | `UBTConnect/App_Notifications/Notifications/DataActionGetDateRanges` | data action | `Notifications` | Notifications.OnReady → Notifications.screenEvent_OnReady → Notifications.DataActionGetDateRanges<br>Notifications fetch at start → Notifications.DataActionGetDateRanges | yes | `fetchNotificationDateRanges()` [`api/notification/repository.ts:32`](../../app/src/api/notification/repository.ts#L32) (page) | `Notifications → useNotifications → fetchNotificationDateRanges`<br>[`pages/Notifications/NotificationsPage.tsx`](../../app/src/pages/Notifications/NotificationsPage.tsx) | implemented |
-| 5 | `UBTConnect/App_Notifications/Notifications/ServiceAPIAction_UI_UpdateItem_MarkAllAsRead` | service action | `Notifications` | Notifications.handler_MarkAllAsRead → server Action_UI_UpdateItem_MarkAllAsRead | no | – | – | **missing** |
+| 5 | `UBTConnect/App_Notifications/Notifications/ServiceAPIAction_UI_UpdateItem_MarkAllAsRead` | service action | `Notifications` | Notifications.handler_MarkAllAsRead → server Action_UI_UpdateItem_MarkAllAsRead | no | – | – | not applicable (noBinding) |
 | 6 | `UBTConnect/App_Notifications/Notifications/ServiceAPIDelete_Notifications` | service action | `Notifications` | MoreActionSheet.deleteAllNotificationClicked → event deleteAllNotification of MoreActionSheet → … → Notifications.handler_MoreActionSheetDeleteAll → server Delete_Notifications | no | `deleteNotifications()` [`api/notification/repository.ts:60`](../../app/src/api/notification/repository.ts#L60) (page) | `NotificationsList → deleteNotifications`<br>[`pages/Notifications/components/NotificationsList.tsx`](../../app/src/pages/Notifications/components/NotificationsList.tsx)<br>`Notifications → useNotifications → deleteNotifications`<br>[`pages/Notifications/NotificationsPage.tsx`](../../app/src/pages/Notifications/NotificationsPage.tsx) | implemented |
 | 7 | `UBTConnect/App_Notifications/NotificationsList/ActionToggleRead` | server action | `NotificationsList` | onClick in NotificationsList → NotificationsList.handler_ToggleRead → server ToggleRead | no | `toggleNotificationRead()` [`api/notification/repository.ts:54`](../../app/src/api/notification/repository.ts#L54) (page) | `NotificationsList → toggleNotificationRead`<br>[`pages/Notifications/components/NotificationsList.tsx`](../../app/src/pages/Notifications/components/NotificationsList.tsx) | implemented |
 | 8 | `UBTConnect/App_Notifications/NotificationsList/ServiceAPIDelete_Notifications` | service action | `NotificationsList` | NotificationsList.handler_DeleteNotification → server Delete_Notifications | no | `deleteNotifications()` [`api/notification/repository.ts:60`](../../app/src/api/notification/repository.ts#L60) (page) | `NotificationsList → deleteNotifications`<br>[`pages/Notifications/components/NotificationsList.tsx`](../../app/src/pages/Notifications/components/NotificationsList.tsx)<br>`Notifications → useNotifications → deleteNotifications`<br>[`pages/Notifications/NotificationsPage.tsx`](../../app/src/pages/Notifications/NotificationsPage.tsx) | implemented |

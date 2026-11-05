@@ -366,7 +366,7 @@ def check(route):
         eps.append({
             "url": full, "short": url, "kind": endpoint_kind(url), "group": grp,
             "observed": "observed" if site.get("observed") else ("not observed" if tst["calls"] else "not captured"),
-            "chains": site.get("chains", []), "react": rc,
+            "chains": site.get("chains", []), "rootKinds": site.get("rootKinds", []), "rootLabels": site.get("rootLabels", []), "react": rc,
             "status": "implemented" if rc else "missing",
         })
     # calls that TST made in the capture but that have no static chain in the compiled code (the call graph does not
@@ -388,6 +388,38 @@ def check(route):
             "status": "implemented" if rc else "missing", "noChain": True,
             "owner": parts[0] if len(parts) == 2 else parts[-2],
         })
+    # a missing call that is not a gap of the web app (config.json notApplicable; user 2026-11-05): the rule, with its
+    # evidence, goes to the route file. Facts: the chain steps and the root kinds of the compiled code.
+    own_pre = ".".join(facts.get("screenFile", "").split(".")[:2]) + "."
+    own_shorts = {short(f) for f in rendered if f.startswith(own_pre)}
+    # the call graph adds a "<Block> fetch at start" root to every data action; a data action with
+    # dataFetchDependenciesOriginal -1 fetches on demand only, so that chain is not a path of the code
+    on_demand = set()
+    for f in rendered:
+        src = tst.get("sources", {}).get(f)
+        if src:
+            for x in os_extras.fetch_modes(src.splitlines()):
+                if x["mode"] == "on demand":
+                    on_demand.add((short(f), x["name"]))
+
+    def real_chains(e):
+        return [ch for ch in e["chains"] if not (len(ch) == 2 and ch[0].endswith(" fetch at start") and
+                                                (ch[0][:-len(" fetch at start")], ch[1].split(".")[-1].replace("DataAction", "", 1)) in on_demand)]
+    for e in eps:
+        if e["status"] != "missing" or not e["chains"]:
+            continue
+        chains = real_chains(e) or e["chains"]
+        for rule in CFG.get("notApplicable", {}).get("rules", []):
+            if rule["kind"] == "chainStep":
+                hit = all(any(step in rule["steps"] for step in ch) for ch in chains)
+            else:  # rootKinds: every chain roots in a client action of the route's own files
+                roots = [ch[0] for ch in chains]
+                hit = bool(e.get("rootKinds")) and set(e["rootKinds"]) <= {"client action"} and \
+                    all(r.split(".")[0] in own_shorts for r in roots)
+            if hit:
+                e["status"] = "not applicable"
+                e["notApplicable"] = rule["id"]
+                break
     tst_urls = {e["url"] for e in eps}
     for e in eps:
         e["io"] = cio.get(e["url"])
@@ -1100,7 +1132,7 @@ def calls_table(rows, blocks, with_routes=False, base=None):
         chain = ("<br>".join(chains) + (f"<br>(+{more} more chains)" if more > 0 else "")) if chains else \
             ("no chain in the TST code; TST made the call in the capture" if e.get("noChain") else "–")
         rc = "<br>".join(f"`{c['fn']}()` {link(c['file'], c['line'])} ({c['where']})" for c in e["react"]) or "–"
-        st = f"**{e['status']}**" if e["status"] == "missing" else e["status"]
+        st = f"**{e['status']}**" if e["status"] == "missing" else (f"not applicable ({e['notApplicable']})" if e["status"] == "not applicable" else e["status"])
         seen = {"observed": "yes", "not observed": "no", "not captured": "no capture"}[e["observed"]]
         refs = sorted((ch for c in e["react"] for ch in c.get("callers", [])), key=len)[:2]
         used = "<br>".join(react_chain(ch) for ch in refs) or "–"

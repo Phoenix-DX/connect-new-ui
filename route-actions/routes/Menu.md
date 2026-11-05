@@ -14,7 +14,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/Menu/MenuPage.tsx`](../../app/src/pages/Menu/MenuPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 | Screenshots | [`migration/screens/Menu/parity`](../../migration/screens/Menu/parity) | `route.py parity` |
-| Code read | OutSystems: 2 files of the UI flow, 18 shared blocks, 28 app shell files. React: 152 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
+| Code read | OutSystems: 2 files of the UI flow, 18 shared blocks, 28 app shell files. React: 153 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
@@ -91,8 +91,8 @@ sequenceDiagram
   U->>B: onClick_MenuOption of List → onClick_MenuOption (logOut)
   Note over B: confirm dialog
   Note over B: via UBTConnect.connect_Logout
-  B->>S: AppManager_Logout()
-  S-->>B: outputs not in the contract
+  B->>S: AppManager_Logout(AppManager_MobileContext, EspaceName)
+  S-->>B: no outputs
   B->>S: AppManager_SynchAppContext(EspaceName)
   S-->>B: AppManager_ClientConfig, FirebaseRealTimeDB_Token, PermissionList, …
   B->>N: go to HomeFeed

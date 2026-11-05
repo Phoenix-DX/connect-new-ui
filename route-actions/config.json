@@ -15,5 +15,59 @@
     "shellEntry": "app/src/main.tsx",
     "pages": "app/src/pages"
   },
-  "cache": "route-actions/.cache"
+  "cache": "route-actions/.cache",
+  "notApplicable": {
+    "_note": "Rules of section 3 (user delegation 2026-11-05, migration/clarify/auto-decisions-2026-11-05.md). A missing TST call whose every chain passes through `step` (a label of the chain), or whose every chain roots in a client action of the route's own files (`rootKinds`), is not a gap of the web app. Each rule cites its evidence; the route file prints it.",
+    "rules": [
+      {
+        "id": "nativeOnly",
+        "kind": "chainStep",
+        "steps": [
+          "ShareSheet.handler_OnClickExternalOption",
+          "UBTConnect_Utils.shareEntity_ByURL"
+        ],
+        "title": "Native only",
+        "reason": "TST offers the external share options only when AppManager_GetIsNative is true; the React app is never native.",
+        "evidence": "ShareSheet Action_SetExternalShareOptions appends Share via, Copy link, WhatsApp, Signal and Outlook inside `if (AppManager_GetIsNative)` (UBTConnect_Utils.CW_Share.ShareSheet.mvc.js:2418-2475); SharePopup appends \"Share to other apps\" after AppManager_GetIsNative (UBTConnect_Utils.CW_CTA_PopUps.SharePopup.mvc.js:274-288); ShareEntity_ByURL calls the SocialSharing plugin (UBTConnect_Utils.controller.js:5319+); app/src/platform/session/clientVars.ts:40 (DeviceInfo_IsNative false)."
+      },
+      {
+        "id": "telemetry",
+        "kind": "chainStep",
+        "steps": [
+          "Connect2_LegacyShared.zOnApplicationEvent_Wrapper"
+        ],
+        "title": "Telemetry (decision U17)",
+        "reason": "The call belongs to the application-event pipeline (zOnApplicationEvent_Wrapper → getAppEventName → cacheLocalApplicationEvents). Telemetry is not wired in the mock phase (decision U17).",
+        "evidence": "Connect2_LegacyShared.controller.js:989-1240 (CacheLocalApplicationEvents); migration/clarify/decisions.md U17; app/src/lib/orbit/actions.ts:318-321."
+      },
+      {
+        "id": "decidedQ3",
+        "kind": "chainStep",
+        "steps": [
+          "UBT_AppManager.appManager_HandleDeviceAwarenessPopUp"
+        ],
+        "title": "Decided earlier (Login Q3 a)",
+        "reason": "The device-awareness dialog comes with the production identity provider; DeviceAwareness_Use is false on TST.",
+        "evidence": "migration/clarify/decisions.md Q3 (a); app/src/pages/Login/hooks/useLogin.ts:110; migration/knowledge/shell-observed.md U2."
+      },
+      {
+        "id": "calendarUnreachable",
+        "kind": "chainStep",
+        "steps": [
+          "ScreenBlock_MyEvents_V2.onHandle_DateClicked",
+          "ScreenBlock_MyEvents_V2.getEventCalendarData"
+        ],
+        "title": "Unreachable on TST",
+        "reason": "The handler is bound only in the Month, Day and Agenda calendar views, and OnReady calls GetEventCalendarData only when CurrentEventView is not MyTimeline. The variable keeps its default MyTimeline: no action assigns it.",
+        "evidence": "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_MyEvents_V2.mvc.js:50 (CurrentEventView default), :521-692 (the $if of the calendar views), :2140-2185 (OnReady: Day or Month? / MyTimeline? / else GetEventCalendarData), no `currentEventViewVar =` in the file; app/src/pages/LDM_MyEvents_V2/hooks/ldmMyEventsState.ts:16-18."
+      },
+      {
+        "id": "noBinding",
+        "kind": "rootKinds",
+        "title": "No binding in the TST view",
+        "reason": "Every chain roots in a client action of the screen or of a block of its UI flow. No view event, lifecycle event or block event binds that action.",
+        "evidence": "facts.json callSites rootKinds of the call (the call graph of the compiled code, tools/os_call_graph.py)."
+      }
+    ]
+  }
 }

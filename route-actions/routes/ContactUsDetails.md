@@ -14,7 +14,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/ContactUsDetails/ContactUsDetailsPage.tsx`](../../app/src/pages/ContactUsDetails/ContactUsDetailsPage.tsx) | `app/src/pages/` |
 | React route rules | access `anonymous`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 | Screenshots | [`migration/screens/ContactUsDetails/parity`](../../migration/screens/ContactUsDetails/parity) | `route.py parity` |
-| Code read | OutSystems: 1 files of the UI flow, 17 shared blocks, 28 app shell files. React: 164 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
+| Code read | OutSystems: 1 files of the UI flow, 17 shared blocks, 28 app shell files. React: 165 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
@@ -40,7 +40,7 @@ None.
 
 None.
 
-1 more React calls without a TST chain on this route are reached only through shared containers, components or app code. They are in the last section, not here.
+React reaches 1 more call without a TST chain on this route only through shared containers, components or app code. The last section lists it, not this one.
 
 ## 5. Server calls
 

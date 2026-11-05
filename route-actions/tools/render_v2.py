@@ -52,6 +52,26 @@ def _has_two_effects(d):
     return n >= 2
 
 
+def not_applicable_lines(r, h, eps):
+    """The missing TST calls that a rule of config.json `notApplicable` sets aside, with the rule's reason and evidence."""
+    rules = {x["id"]: x for x in h.CFG.get("notApplicable", {}).get("rules", [])}
+    rows = [e for e in eps if e["status"] == "not applicable"]
+    if not rows:
+        return []
+    L = ["", "### Not a gap of the web app", "",
+         "Missing TST calls that a rule of `route-actions/config.json` (`notApplicable`, user 2026-11-05) sets aside. "
+         "The rule names the fact and its evidence; the chain is the one of the TST code.", ""]
+    for rule_id in rules:
+        mine = [e for e in rows if e.get("notApplicable") == rule_id]
+        if not mine:
+            continue
+        rule = rules[rule_id]
+        L += [f"**{rule['title']}.** {rule['reason']} Evidence: {rule['evidence']}", ""]
+        L += [f"- `{e['short']}`. Chain on TST: " + h.md_escape(" → ".join(h.short_chain(e["chains"][0]))) + "." for e in mine]
+        L += [""]
+    return L
+
+
 def differences(r, h, eps, own_blocks, nav_missing, own_nav, ox, rx):
     """Section 3: every difference the tool reads from both sides. Each line has its places."""
     L = h.missing_lines(eps, own_blocks, nav_missing, own_nav)
@@ -143,6 +163,8 @@ def render(r, h):
 
     diffs = differences(r, h, eps, own_blocks, nav_missing, own_nav, ox_own, r.get("reactExtrasAll") or rx)
     n_diff = sum(1 for x in diffs if x.startswith("- "))
+    na_lines = not_applicable_lines(r, h, eps)
+    n_na = cnt["not applicable"]
     parity = h.os.path.join(h.cfg("tst", "screens"), route, "parity")
     parity_link = h.link(h.os.path.relpath(parity, h.ROOT)) if h.os.path.isdir(parity) else "no parity run"
     st = r.get("static")
@@ -173,8 +195,8 @@ def render(r, h):
          f"| Code read | OutSystems: {len(own_blocks)} files of the UI flow, {len(shared_blocks)} shared blocks, {len(blocks) - len(screen_blocks)} app shell files. React: {r['react']['pageFiles']} files in the closure of the page | {'TST survey closure and compiled code (static)' if st else 'TST `facts.json`'}, `react_calls.mjs` |",
          "", "## 2. Result", "",
          "| Check | Result |", "|---|---|",
-         f"| Server calls of the route on TST | {len(eps)}: React makes {cnt['implemented']}, **{cnt['missing']} missing** |",
-         f"| Differences found | **{n_diff}** (see [section 3](#3-differences-found)) |",
+         f"| Server calls of the route on TST | {len(eps)}: React makes {cnt['implemented']}, **{cnt['missing']} missing**" + (f", {n_na} not a gap of the web app" if n_na else "") + " |",
+         f"| Differences found | **{n_diff}**" + (f" (+ {n_na} not a gap of the web app)" if n_na else "") + " (see [section 3](#3-differences-found)) |",
          f"| Questions | {len(questions)} (see [section 4](#4-questions)) |",
          f"| React calls reached only through shared code | {len(shared_calls)}: see the last section |",
          f"| User actions of the route (own code) | OutSystems: {len(os_own_acts)}. React: {len(re_own_acts)} |",
@@ -186,6 +208,7 @@ def render(r, h):
          "Each line is a fact of both sides: a TST call, navigation or variable, and the React code that has it or "
          "not. The tool does not judge the behaviour.", "",
          *diffs,
+         *na_lines,
          "", "## 4. Questions", ""]
     qs = [f"React calls `{c['apiPath']}` from `{c['fn']}()` {h.link(c['file'], c['line'])} ({c['where']}). TST {route} "
           "has no chain to this call. Does the call belong to this route?" for c in questions]

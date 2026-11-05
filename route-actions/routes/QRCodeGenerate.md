@@ -21,7 +21,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/QRCodeGenerate/QRCodeGeneratePage.tsx`](../../app/src/pages/QRCodeGenerate/QRCodeGeneratePage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 | Screenshots | no parity run | `route.py parity` |
-| Code read | OutSystems: 1 files of the UI flow, 8 shared blocks, 43 app shell files. React: 140 files in the closure of the page | TST survey closure and compiled code (static), `react_calls.mjs` |
+| Code read | OutSystems: 1 files of the UI flow, 8 shared blocks, 43 app shell files. React: 141 files in the closure of the page | TST survey closure and compiled code (static), `react_calls.mjs` |
 
 ## 2. Result
 
@@ -61,7 +61,7 @@ All columns come from the code, without interpretation:
 
 | # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
 |---|---|---|---|---|---|---|---|---|
-| 1 | `Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks_QRCode/ScreenBlock_GenerateQRCode/DataActionGet_EventQRCode` | data action | `ScreenBlock_GenerateQRCode` | ScreenBlock_GenerateQRCode.OnReady → ScreenBlock_GenerateQRCode.onReady → ScreenBlock_GenerateQRCode.refreshData → ScreenBlock_GenerateQRCode.DataActionGet_EventQRCode<br>ScreenBlock_GenerateQRCode fetch at start → ScreenBlock_GenerateQRCode.DataActionGet_EventQRCode | no capture | `fetchEventQRCode()` [`api/event/repository.ts:268`](../../app/src/api/event/repository.ts#L268) (page) | `QRCodeGenerate → useGenerateQrCode → fetchEventQRCode`<br>[`pages/QRCodeGenerate/QRCodeGeneratePage.tsx`](../../app/src/pages/QRCodeGenerate/QRCodeGeneratePage.tsx) | implemented |
+| 1 | `Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks_QRCode/ScreenBlock_GenerateQRCode/DataActionGet_EventQRCode` | data action | `ScreenBlock_GenerateQRCode` | ScreenBlock_GenerateQRCode.OnReady → ScreenBlock_GenerateQRCode.onReady → ScreenBlock_GenerateQRCode.refreshData → ScreenBlock_GenerateQRCode.DataActionGet_EventQRCode<br>ScreenBlock_GenerateQRCode fetch at start → ScreenBlock_GenerateQRCode.DataActionGet_EventQRCode | no capture | `fetchEventQRCode()` [`api/event/repository.ts:276`](../../app/src/api/event/repository.ts#L276) (page) | `QRCodeGenerate → useGenerateQrCode → fetchEventQRCode`<br>[`pages/QRCodeGenerate/QRCodeGeneratePage.tsx`](../../app/src/pages/QRCodeGenerate/QRCodeGeneratePage.tsx) | implemented |
 
 ## 6. User actions
 

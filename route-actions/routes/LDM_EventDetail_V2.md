@@ -14,14 +14,14 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/LDM_EventDetail_V2/LDM_EventDetail_V2Page.tsx`](../../app/src/pages/LDM_EventDetail_V2/LDM_EventDetail_V2Page.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 | Screenshots | [`migration/screens/LDM_EventDetail_V2/parity`](../../migration/screens/LDM_EventDetail_V2/parity) | `route.py parity` |
-| Code read | OutSystems: 1 files of the UI flow, 23 shared blocks, 28 app shell files. React: 203 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
+| Code read | OutSystems: 1 files of the UI flow, 23 shared blocks, 28 app shell files. React: 204 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
 | Check | Result |
 |---|---|
-| Server calls of the route on TST | 8: React makes 6, **2 missing** |
-| Differences found | **2** (see [section 3](#3-differences-found)) |
+| Server calls of the route on TST | 8: React makes 6, **0 missing**, 2 not a gap of the web app |
+| Differences found | **0** (+ 2 not a gap of the web app) (see [section 3](#3-differences-found)) |
 | Questions | 0 (see [section 4](#4-questions)) |
 | React calls reached only through shared code | 3: see the last section |
 | User actions of the route (own code) | OutSystems: 3. React: 5 |
@@ -34,13 +34,20 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 
 Each line is a fact of both sides: a TST call, navigation or variable, and the React code that has it or not. The tool does not judge the behaviour.
 
-- Call `Connect2_LegacyShared/ActionGetAllApplicationEvents`. Chain on TST: ItemNotesSection.handler_OnShareToOthers → UBTConnect_Utils.shareEntity_ByURL → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents.
-  - No React code makes this call.
-- Call `UBTConnect_Utils/ActionCS_CreateShareProfileLink`. Chain on TST: ItemNotesSection.handler_OnShareToOthers → UBTConnect_Utils.shareEntity_ByURL → server CS_CreateShareProfileLink.
-  - No React code makes this call.
-  - Note in [`components/feed/EmbeddedFeed/README.md:65`](../../app/src/components/feed/EmbeddedFeed/README.md#L65): "- Event_ShareToOthers → Handle_Share_Others (:257, :775-807: close, then ShareEntity_ByURL(Type_ShareObject.Feed, Id))"
-  - Note in [`containers/EntityDetailsActions/README.md:74`](../../app/src/containers/EntityDetailsActions/README.md#L74): "- **Share to others**: the React app does not port UBTConnect_Utils ShareEntity_ByURL. The dialog only closes."
-  - Note in [`containers/ShareSheet/README.md:56`](../../app/src/containers/ShareSheet/README.md#L56): "- ActionCS_CreateShareProfileLink (`cs_CreateShareProfileLink`)."
+None.
+
+### Not a gap of the web app
+
+Missing TST calls that a rule of `route-actions/config.json` (`notApplicable`, user 2026-11-05) sets aside. The rule names the fact and its evidence; the chain is the one of the TST code.
+
+**Native only.** TST offers the external share options only when AppManager_GetIsNative is true; the React app is never native. Evidence: ShareSheet Action_SetExternalShareOptions appends Share via, Copy link, WhatsApp, Signal and Outlook inside `if (AppManager_GetIsNative)` (UBTConnect_Utils.CW_Share.ShareSheet.mvc.js:2418-2475); SharePopup appends "Share to other apps" after AppManager_GetIsNative (UBTConnect_Utils.CW_CTA_PopUps.SharePopup.mvc.js:274-288); ShareEntity_ByURL calls the SocialSharing plugin (UBTConnect_Utils.controller.js:5319+); app/src/platform/session/clientVars.ts:40 (DeviceInfo_IsNative false).
+
+- `UBTConnect_Utils/ActionCS_CreateShareProfileLink`. Chain on TST: ItemNotesSection.handler_OnShareToOthers → UBTConnect_Utils.shareEntity_ByURL → server CS_CreateShareProfileLink.
+
+**Telemetry (decision U17).** The call belongs to the application-event pipeline (zOnApplicationEvent_Wrapper → getAppEventName → cacheLocalApplicationEvents). Telemetry is not wired in the mock phase (decision U17). Evidence: Connect2_LegacyShared.controller.js:989-1240 (CacheLocalApplicationEvents); migration/clarify/decisions.md U17; app/src/lib/orbit/actions.ts:318-321.
+
+- `Connect2_LegacyShared/ActionGetAllApplicationEvents`. Chain on TST: ItemNotesSection.handler_OnShareToOthers → UBTConnect_Utils.shareEntity_ByURL → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents.
+
 
 ## 4. Questions
 
@@ -62,14 +69,14 @@ All columns come from the code, without interpretation:
 
 | # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
 |---|---|---|---|---|---|---|---|---|
-| 1 | `Connect2_LegacyShared/ActionGetAllApplicationEvents` | server action | `Connect2_LegacyShared` | ItemNotesSection.handler_OnShareToOthers → UBTConnect_Utils.shareEntity_ByURL → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents | no | – | – | **missing** |
+| 1 | `Connect2_LegacyShared/ActionGetAllApplicationEvents` | server action | `Connect2_LegacyShared` | ItemNotesSection.handler_OnShareToOthers → UBTConnect_Utils.shareEntity_ByURL → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents | no | – | – | not applicable (telemetry) |
 | 2 | `UBTConnect_Utils/CW_Notes/NotesSheet/ServiceAPIAddNote` | service action | `NotesSheet` | NotesSheet.handler_OnSubmitNote → server AddNote | no | `addNote()` [`api/note/repository.ts:54`](../../app/src/api/note/repository.ts#L54) (page) | `NotesSheet → addNote`<br>[`components/note/NotesSheet/NotesSheet.tsx`](../../app/src/components/note/NotesSheet/NotesSheet.tsx) | implemented |
-| 3 | `Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/ActionGetHouseholdCoordinates` | server action | `ScreenBlock_EventDetail_V2` | onClick in EventDetail_HostCard → event address of EventDetail_HostCard → ScreenBlock_EventDetail_V2.onHandle_HostCardAddress → server GetHouseholdCoordinates | no | `fetchHouseholdCoordinatesById()` [`api/household/repository.ts:129`](../../app/src/api/household/repository.ts#L129) (page) | `LdmEventDetail → useLdmEventDetail → fetchHouseholdCoordinatesById`<br>[`pages/LDM_EventDetail_V2/LDM_EventDetail_V2Page.tsx`](../../app/src/pages/LDM_EventDetail_V2/LDM_EventDetail_V2Page.tsx) | implemented |
-| 4 | `Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionFetchEventNotes` | data action | `ScreenBlock_EventDetail_V2` | ScreenBlock_EventDetail_V2 fetch at start → ScreenBlock_EventDetail_V2.DataActionFetchEventNotes | yes | `fetchLdmEventNotes()` [`api/event/repository.ts:312`](../../app/src/api/event/repository.ts#L312) (page) | `LdmEventDetail → useLdmEventDetail → fetchLdmEventNotes`<br>[`pages/LDM_EventDetail_V2/LDM_EventDetail_V2Page.tsx`](../../app/src/pages/LDM_EventDetail_V2/LDM_EventDetail_V2Page.tsx) | implemented |
-| 5 | `Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionGetCoordinatorDetails` | data action | `ScreenBlock_EventDetail_V2` | ScreenBlock_EventDetail_V2.OnParametersChanged → ScreenBlock_EventDetail_V2.onParametersChanged → ScreenBlock_EventDetail_V2.DataActionGetCoordinatorDetails<br>ScreenBlock_EventDetail_V2 fetch at start → ScreenBlock_EventDetail_V2.DataActionGetCoordinatorDetails | yes | `fetchCoordinatorDetails()` [`api/event/repository.ts:318`](../../app/src/api/event/repository.ts#L318) (page) | `LdmEventDetail → useLdmEventDetail → fetchCoordinatorDetails`<br>[`pages/LDM_EventDetail_V2/LDM_EventDetail_V2Page.tsx`](../../app/src/pages/LDM_EventDetail_V2/LDM_EventDetail_V2Page.tsx) | implemented |
-| 6 | `Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionGetEventByEventId` | data action | `ScreenBlock_EventDetail_V2` | ScreenBlock_EventDetail_V2.OnParametersChanged → ScreenBlock_EventDetail_V2.onParametersChanged → ScreenBlock_EventDetail_V2.DataActionGetEventByEventId<br>ScreenBlock_EventDetail_V2.OnReady → ScreenBlock_EventDetail_V2.onReady → ScreenBlock_EventDetail_V2.DataActionGetEventByEventId<br>ScreenBlock_EventDetail_V2 fetch at start → ScreenBlock_EventDetail_V2.DataActionGetEventByEventId | yes | `fetchEventByEventId()` [`api/event/repository.ts:305`](../../app/src/api/event/repository.ts#L305) (page) | `LdmEventDetail → useLdmEventDetail → fetchEventByEventId`<br>[`pages/LDM_EventDetail_V2/LDM_EventDetail_V2Page.tsx`](../../app/src/pages/LDM_EventDetail_V2/LDM_EventDetail_V2Page.tsx) | implemented |
+| 3 | `Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/ActionGetHouseholdCoordinates` | server action | `ScreenBlock_EventDetail_V2` | onClick in EventDetail_HostCard → event address of EventDetail_HostCard → ScreenBlock_EventDetail_V2.onHandle_HostCardAddress → server GetHouseholdCoordinates | no | `fetchHouseholdCoordinatesById()` [`api/household/repository.ts:139`](../../app/src/api/household/repository.ts#L139) (page) | `LdmEventDetail → useLdmEventDetail → fetchHouseholdCoordinatesById`<br>[`pages/LDM_EventDetail_V2/LDM_EventDetail_V2Page.tsx`](../../app/src/pages/LDM_EventDetail_V2/LDM_EventDetail_V2Page.tsx) | implemented |
+| 4 | `Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionFetchEventNotes` | data action | `ScreenBlock_EventDetail_V2` | ScreenBlock_EventDetail_V2 fetch at start → ScreenBlock_EventDetail_V2.DataActionFetchEventNotes | yes | `fetchLdmEventNotes()` [`api/event/repository.ts:320`](../../app/src/api/event/repository.ts#L320) (page) | `LdmEventDetail → useLdmEventDetail → fetchLdmEventNotes`<br>[`pages/LDM_EventDetail_V2/LDM_EventDetail_V2Page.tsx`](../../app/src/pages/LDM_EventDetail_V2/LDM_EventDetail_V2Page.tsx) | implemented |
+| 5 | `Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionGetCoordinatorDetails` | data action | `ScreenBlock_EventDetail_V2` | ScreenBlock_EventDetail_V2.OnParametersChanged → ScreenBlock_EventDetail_V2.onParametersChanged → ScreenBlock_EventDetail_V2.DataActionGetCoordinatorDetails<br>ScreenBlock_EventDetail_V2 fetch at start → ScreenBlock_EventDetail_V2.DataActionGetCoordinatorDetails | yes | `fetchCoordinatorDetails()` [`api/event/repository.ts:326`](../../app/src/api/event/repository.ts#L326) (page) | `LdmEventDetail → useLdmEventDetail → fetchCoordinatorDetails`<br>[`pages/LDM_EventDetail_V2/LDM_EventDetail_V2Page.tsx`](../../app/src/pages/LDM_EventDetail_V2/LDM_EventDetail_V2Page.tsx) | implemented |
+| 6 | `Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionGetEventByEventId` | data action | `ScreenBlock_EventDetail_V2` | ScreenBlock_EventDetail_V2.OnParametersChanged → ScreenBlock_EventDetail_V2.onParametersChanged → ScreenBlock_EventDetail_V2.DataActionGetEventByEventId<br>ScreenBlock_EventDetail_V2.OnReady → ScreenBlock_EventDetail_V2.onReady → ScreenBlock_EventDetail_V2.DataActionGetEventByEventId<br>ScreenBlock_EventDetail_V2 fetch at start → ScreenBlock_EventDetail_V2.DataActionGetEventByEventId | yes | `fetchEventByEventId()` [`api/event/repository.ts:313`](../../app/src/api/event/repository.ts#L313) (page) | `LdmEventDetail → useLdmEventDetail → fetchEventByEventId`<br>[`pages/LDM_EventDetail_V2/LDM_EventDetail_V2Page.tsx`](../../app/src/pages/LDM_EventDetail_V2/LDM_EventDetail_V2Page.tsx) | implemented |
 | 7 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx) | implemented |
-| 8 | `UBTConnect_Utils/ActionCS_CreateShareProfileLink` | server action | `UBTConnect_Utils` | ItemNotesSection.handler_OnShareToOthers → UBTConnect_Utils.shareEntity_ByURL → server CS_CreateShareProfileLink | no | – | – | **missing** |
+| 8 | `UBTConnect_Utils/ActionCS_CreateShareProfileLink` | server action | `UBTConnect_Utils` | ItemNotesSection.handler_OnShareToOthers → UBTConnect_Utils.shareEntity_ByURL → server CS_CreateShareProfileLink | no | – | – | not applicable (nativeOnly) |
 
 ## 6. User actions
 

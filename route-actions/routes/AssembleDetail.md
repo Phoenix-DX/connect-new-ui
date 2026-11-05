@@ -21,40 +21,41 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/AssembleDetail/AssembleDetailPage.tsx`](../../app/src/pages/AssembleDetail/AssembleDetailPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 | Screenshots | no parity run | `route.py parity` |
-| Code read | OutSystems: 1 files of the UI flow, 66 shared blocks, 43 app shell files. React: 251 files in the closure of the page | TST survey closure and compiled code (static), `react_calls.mjs` |
+| Code read | OutSystems: 1 files of the UI flow, 66 shared blocks, 43 app shell files. React: 272 files in the closure of the page | TST survey closure and compiled code (static), `react_calls.mjs` |
 
 ## 2. Result
 
 | Check | Result |
 |---|---|
-| Server calls of the route on TST | 9: React makes 5, **4 missing** |
-| Differences found | **4** (see [section 3](#3-differences-found)) |
+| Server calls of the route on TST | 9: React makes 6, **0 missing**, 3 not a gap of the web app |
+| Differences found | **0** (+ 3 not a gap of the web app) (see [section 3](#3-differences-found)) |
 | Questions | 6 (see [section 4](#4-questions)) |
-| React calls reached only through shared code | 1: see the last section |
+| React calls reached only through shared code | 4: see the last section |
 | User actions of the route (own code) | OutSystems: 4. React: 3 |
 | Screen and blocks of the UI flow with a React port | 1 of 1 |
 | Navigation targets found in React | 10 of 10 |
-| Shared blocks and components on the route | OutSystems 66, React 7 with user actions: see the last section |
+| Shared blocks and components on the route | OutSystems 66, React 9 with user actions: see the last section |
 | App shell on this route | 4 calls: see [APP_SHELL.md](../APP_SHELL.md) |
 
 ## 3. Differences found
 
 Each line is a fact of both sides: a TST call, navigation or variable, and the React code that has it or not. The tool does not judge the behaviour.
 
-- Call `UBTConnect/Legacy_AssembleFlow/AssembleDetail/DataActionGetAssembleNotes`. Chain on TST: AssembleDetail fetch at start → AssembleDetail.DataActionGetAssembleNotes.
-  - No React code makes this call.
-- Call `UBTConnect_Utils/CW_Share/ShareSheet/ActionCS_CreateShareProfileLink`. Chain on TST: onClick in CircleButton_WithLabel → CircleButton_WithLabel.action_OnClick → event onClick of CircleButton_WithLabel → ShareSheet.handler_OnClickExternalOption → server CS_CreateShareProfileLink.
-  - React has the function, but this route does not use it: `csCreateShareProfileLink()` [`api/share/shareSheet.ts:39`](../../app/src/api/share/shareSheet.ts#L39).
-  - Note in [`api/share/shareSheet.ts:35`](../../app/src/api/share/shareSheet.ts#L35): "/** CS_CreateShareProfileLink (Handler_OnClickExternalOption, ShareSheet.mvc.js:2250-2301): the share id and URL. */"
-  - Note in [`components/feed/EmbeddedFeed/README.md:66`](../../app/src/components/feed/EmbeddedFeed/README.md#L66): "is not wired: ShareEntity_ByURL (UBTConnect_Utils) is not ported (SocialSharing plugin + CS_CreateShareProfileLink),"
-  - Note in [`containers/ShareSheet/README.md:56`](../../app/src/containers/ShareSheet/README.md#L56): "- ActionCS_CreateShareProfileLink (`cs_CreateShareProfileLink`)."
-- Call `Connect2_LegacyShared/ActionGetAllApplicationEvents`. Chain on TST: NC_Result_Item__Image.onClick_Result_Item → event onClick_Item of NC_Result_Item__Image → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents.
-  - No React code makes this call.
-- Call `UBTConnect_Utils/ActionCS_CreateShareProfileLink`. Chain on TST: AssembleEventDetail_AttendeeSubdivision.handler_OnClickShareConnect → event navigateTo_ShareObject of AssembleEventDetail_AttendeeSubdivision → … → UBTConnect_Utils.shareEntity_ByURL → server CS_CreateShareProfileLink.
-  - No React code makes this call.
-  - Note in [`api/share/shareSheet.ts:35`](../../app/src/api/share/shareSheet.ts#L35): "/** CS_CreateShareProfileLink (Handler_OnClickExternalOption, ShareSheet.mvc.js:2250-2301): the share id and URL. */"
-  - Note in [`pages/AssembleDetail/AssembleDetailPage.tsx:95`](../../app/src/pages/AssembleDetail/AssembleDetailPage.tsx#L95): "if (isExternalSharing) return; // ShareEntity_ByURL: never raised (see above)."
-  - Note in [`components/feed/EmbeddedFeed/README.md:65`](../../app/src/components/feed/EmbeddedFeed/README.md#L65): "- Event_ShareToOthers → Handle_Share_Others (:257, :775-807: close, then ShareEntity_ByURL(Type_ShareObject.Feed, Id))"
+None.
+
+### Not a gap of the web app
+
+Missing TST calls that a rule of `route-actions/config.json` (`notApplicable`, user 2026-11-05) sets aside. The rule names the fact and its evidence; the chain is the one of the TST code.
+
+**Native only.** TST offers the external share options only when AppManager_GetIsNative is true; the React app is never native. Evidence: ShareSheet Action_SetExternalShareOptions appends Share via, Copy link, WhatsApp, Signal and Outlook inside `if (AppManager_GetIsNative)` (UBTConnect_Utils.CW_Share.ShareSheet.mvc.js:2418-2475); SharePopup appends "Share to other apps" after AppManager_GetIsNative (UBTConnect_Utils.CW_CTA_PopUps.SharePopup.mvc.js:274-288); ShareEntity_ByURL calls the SocialSharing plugin (UBTConnect_Utils.controller.js:5319+); app/src/platform/session/clientVars.ts:40 (DeviceInfo_IsNative false).
+
+- `UBTConnect_Utils/CW_Share/ShareSheet/ActionCS_CreateShareProfileLink`. Chain on TST: onClick in CircleButton_WithLabel → CircleButton_WithLabel.action_OnClick → event onClick of CircleButton_WithLabel → ShareSheet.handler_OnClickExternalOption → server CS_CreateShareProfileLink.
+- `UBTConnect_Utils/ActionCS_CreateShareProfileLink`. Chain on TST: AssembleEventDetail_AttendeeSubdivision.handler_OnClickShareConnect → event navigateTo_ShareObject of AssembleEventDetail_AttendeeSubdivision → … → UBTConnect_Utils.shareEntity_ByURL → server CS_CreateShareProfileLink.
+
+**Telemetry (decision U17).** The call belongs to the application-event pipeline (zOnApplicationEvent_Wrapper → getAppEventName → cacheLocalApplicationEvents). Telemetry is not wired in the mock phase (decision U17). Evidence: Connect2_LegacyShared.controller.js:989-1240 (CacheLocalApplicationEvents); migration/clarify/decisions.md U17; app/src/lib/orbit/actions.ts:318-321.
+
+- `Connect2_LegacyShared/ActionGetAllApplicationEvents`. Chain on TST: NC_Result_Item__Image.onClick_Result_Item → event onClick_Item of NC_Result_Item__Image → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents.
+
 
 ## 4. Questions
 
@@ -65,7 +66,7 @@ Each line is a fact of both sides: a TST call, navigation or variable, and the R
 5. React calls `/api/Connect2_Assemble_MUI/ActionDeleteBookmarkByBookmarkId` from `deleteAssembleBookmark()` [`api/bookmark/repository.ts:33`](../../app/src/api/bookmark/repository.ts#L33) (page). TST AssembleDetail has no chain to this call. Does the call belong to this route?
 6. React calls `/api/Connect2_LegacyShared/ActionGetBulkSubdivisions_V2` from `fetchBulkSubdivisions()` [`api/locality/repository.ts:181`](../../app/src/api/locality/repository.ts#L181) (page). TST AssembleDetail has no chain to this call. Does the call belong to this route?
 
-React reaches 1 more call without a TST chain on this route only through shared containers, components or app code. The last section lists it, not this one.
+React reaches 4 more calls without a TST chain on this route only through shared containers, components or app code. The last section lists them, not this one.
 
 ## 5. Server calls
 
@@ -81,15 +82,15 @@ All columns come from the code, without interpretation:
 
 | # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
 |---|---|---|---|---|---|---|---|---|
-| 1 | `UBTConnect/Legacy_AssembleFlow/AssembleDetail/DataActionGetAssembleNotes` | data action | `AssembleDetail` | AssembleDetail fetch at start → AssembleDetail.DataActionGetAssembleNotes | no capture | – | – | **missing** |
-| 2 | `Connect2_Assemble_MUI/Assemble/AssembleEventDetail/DataActionGetAssembleEvent` | data action | `AssembleEventDetail` | AssembleEventDetail.OnReady → AssembleEventDetail.onReady → AssembleEventDetail.DataActionGetAssembleEvent<br>AssembleEventDetail fetch at start → AssembleEventDetail.DataActionGetAssembleEvent | no capture | `fetchAssembleEvent()` [`api/event/repository.ts:99`](../../app/src/api/event/repository.ts#L99) (page) | `AssembleEventDetail → useAssembleEventDetail → fetchAssembleEvent`<br>[`pages/AssembleDetail/components/AssembleEventDetail.tsx`](../../app/src/pages/AssembleDetail/components/AssembleEventDetail.tsx) | implemented |
-| 3 | `Connect2_LegacyShared/ActionGetAllApplicationEvents` | server action | `Connect2_LegacyShared` | NC_Result_Item__Image.onClick_Result_Item → event onClick_Item of NC_Result_Item__Image → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents<br>event bookmarkButtonClicked of ContextMenu → AssembleEventDetail_AttendeeSubdivision.handler_OnClickBookmarkButton → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents<br>event onClick_Item of NC_Result_Item__Image → AssembleEventDetail_AttendeeSubdivision.handler_OnClickHousehold → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents<br>(+2 more chains) | no capture | – | – | **missing** |
-| 4 | `UBTConnect_Utils/CW_Share/ShareSheet/ActionCS_CreateShareProfileLink` | server action | `ShareSheet` | onClick in CircleButton_WithLabel → CircleButton_WithLabel.action_OnClick → event onClick of CircleButton_WithLabel → ShareSheet.handler_OnClickExternalOption → server CS_CreateShareProfileLink | no capture | – | – | **missing** |
+| 1 | `UBTConnect/Legacy_AssembleFlow/AssembleDetail/DataActionGetAssembleNotes` | data action | `AssembleDetail` | AssembleDetail fetch at start → AssembleDetail.DataActionGetAssembleNotes | no capture | `fetchAssembleNotes()` [`api/event/repository.ts:101`](../../app/src/api/event/repository.ts#L101) (page) | `AssembleDetail → useAssembleNotes → fetchAssembleNotes`<br>[`pages/AssembleDetail/AssembleDetailPage.tsx`](../../app/src/pages/AssembleDetail/AssembleDetailPage.tsx) | implemented |
+| 2 | `Connect2_Assemble_MUI/Assemble/AssembleEventDetail/DataActionGetAssembleEvent` | data action | `AssembleEventDetail` | AssembleEventDetail.OnReady → AssembleEventDetail.onReady → AssembleEventDetail.DataActionGetAssembleEvent<br>AssembleEventDetail fetch at start → AssembleEventDetail.DataActionGetAssembleEvent | no capture | `fetchAssembleEvent()` [`api/event/repository.ts:107`](../../app/src/api/event/repository.ts#L107) (page) | `AssembleEventDetail → useAssembleEventDetail → fetchAssembleEvent`<br>[`pages/AssembleDetail/components/AssembleEventDetail.tsx`](../../app/src/pages/AssembleDetail/components/AssembleEventDetail.tsx) | implemented |
+| 3 | `Connect2_LegacyShared/ActionGetAllApplicationEvents` | server action | `Connect2_LegacyShared` | NC_Result_Item__Image.onClick_Result_Item → event onClick_Item of NC_Result_Item__Image → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents<br>event bookmarkButtonClicked of ContextMenu → AssembleEventDetail_AttendeeSubdivision.handler_OnClickBookmarkButton → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents<br>event onClick_Item of NC_Result_Item__Image → AssembleEventDetail_AttendeeSubdivision.handler_OnClickHousehold → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents<br>(+2 more chains) | no capture | – | – | not applicable (telemetry) |
+| 4 | `UBTConnect_Utils/CW_Share/ShareSheet/ActionCS_CreateShareProfileLink` | server action | `ShareSheet` | onClick in CircleButton_WithLabel → CircleButton_WithLabel.action_OnClick → event onClick of CircleButton_WithLabel → ShareSheet.handler_OnClickExternalOption → server CS_CreateShareProfileLink | no capture | – | – | not applicable (nativeOnly) |
 | 5 | `UBTConnect_Utils/CW_Share/ShareSheet/ActionCS_ShareObject` | server action | `ShareSheet` | onClick in CircleButton_WithLabel → CircleButton_WithLabel.action_OnClick → … → ShareSheet.action_SubmitShare → server CS_ShareObject | no capture | `csShareObject()` [`api/share/shareSheet.ts:25`](../../app/src/api/share/shareSheet.ts#L25) (page) | `ShareSheetContainer → useShareSheet → csShareObject`<br>[`containers/ShareSheet/ShareSheetContainer.tsx`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx) | implemented |
 | 6 | `UBTConnect_Utils/CW_Share/ShareSheet/DataActionGetAvailableMembers` | data action | `ShareSheet` | onKeyUp in Input → Input.onKeyup → event event_Submit of Input → ShareSheet.handler_InputEventSubmit → ShareSheet.DataActionGetAvailableMembers<br>ShareSheet fetch at start → ShareSheet.DataActionGetAvailableMembers | no capture | `fetchAvailableMembers()` [`api/member/repository.ts:12`](../../app/src/api/member/repository.ts#L12) (page) | `ShareSheetContainer → useShareSheet → useAvailableMembersQuery → fetchAvailableMembers`<br>[`containers/ShareSheet/ShareSheetContainer.tsx`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx) | implemented |
 | 7 | `UBTConnect_Utils/CW_Share/ShareSheet/DataActionGetRecentlyShared` | data action | `ShareSheet` | ShareSheet.OnParametersChanged → ShareSheet.screenEvent_OnParametersChanged → ShareSheet.DataActionGetRecentlyShared<br>ShareSheet fetch at start → ShareSheet.DataActionGetRecentlyShared | no capture | `fetchRecentlyShared()` [`api/share/shareSheet.ts:14`](../../app/src/api/share/shareSheet.ts#L14) (page) | `ShareSheetContainer → useShareSheet → useRecentlySharedQuery → fetchRecentlyShared`<br>[`containers/ShareSheet/ShareSheetContainer.tsx`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx) | implemented |
 | 8 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no capture | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx) | implemented |
-| 9 | `UBTConnect_Utils/ActionCS_CreateShareProfileLink` | server action | `UBTConnect_Utils` | AssembleEventDetail_AttendeeSubdivision.handler_OnClickShareConnect → event navigateTo_ShareObject of AssembleEventDetail_AttendeeSubdivision → … → UBTConnect_Utils.shareEntity_ByURL → server CS_CreateShareProfileLink<br>AssembleEventDetail_AttendeeSubdivision.handler_OnShareToOthers → event navigateTo_ShareObject of AssembleEventDetail_AttendeeSubdivision → … → UBTConnect_Utils.shareEntity_ByURL → server CS_CreateShareProfileLink | no capture | – | – | **missing** |
+| 9 | `UBTConnect_Utils/ActionCS_CreateShareProfileLink` | server action | `UBTConnect_Utils` | AssembleEventDetail_AttendeeSubdivision.handler_OnClickShareConnect → event navigateTo_ShareObject of AssembleEventDetail_AttendeeSubdivision → … → UBTConnect_Utils.shareEntity_ByURL → server CS_CreateShareProfileLink<br>AssembleEventDetail_AttendeeSubdivision.handler_OnShareToOthers → event navigateTo_ShareObject of AssembleEventDetail_AttendeeSubdivision → … → UBTConnect_Utils.shareEntity_ByURL → server CS_CreateShareProfileLink | no capture | – | – | not applicable (nativeOnly) |
 
 ## 6. User actions
 
@@ -204,14 +205,14 @@ Declared inputs of the route: `EventId: Text`, `SeriesId: Text`, `Start: DateTim
 
 | Hook | Keys read | Place |
 |---|---|---|
-| `useSearchParams` | none | [`pages/AssembleDetail/AssembleDetailPage.tsx:46`](../../app/src/pages/AssembleDetail/AssembleDetailPage.tsx#L46) |
+| `useSearchParams` | none | [`pages/AssembleDetail/AssembleDetailPage.tsx:52`](../../app/src/pages/AssembleDetail/AssembleDetailPage.tsx#L52) |
 
 | File | Target | Parameters | Place |
 |---|---|---|---|
-| `AssembleDetailPage.tsx` | `HouseholdDetails` | `HouseholdId` = `householdId` | [`pages/AssembleDetail/AssembleDetailPage.tsx:58`](../../app/src/pages/AssembleDetail/AssembleDetailPage.tsx#L58) |
-| `AssembleDetailPage.tsx` | `HouseholdCarousel` | `In_StartingHouseholdId` = `selectedHouseholdId` | [`pages/AssembleDetail/AssembleDetailPage.tsx:75`](../../app/src/pages/AssembleDetail/AssembleDetailPage.tsx#L75) |
-| `AssembleDetailPage.tsx` | `ContactByEmailMember` | `In_EntityId` = `a.memberId`<br>`In_EntityType` = `CONNECT_ENTITY_MEMBER`<br>`In_ContactName` = `split.Out_Name`<br>`In_ContactLocality` = `a.contactLocality`<br>`In_AuditEventId` = `AUDIT_EMAIL_HOUSEHOLD`<br>`In_ContactCountry` = `a.contactCountry`<br>`In_EmailTo` = `a.emailTo`<br>`In_ContactSurname` = `split.Out_Surname`<br>`In_AvatarURL` = `a.avatarURL` | [`pages/AssembleDetail/AssembleDetailPage.tsx:82`](../../app/src/pages/AssembleDetail/AssembleDetailPage.tsx#L82) |
-| `AssembleDetailPage.tsx` | `LegacyShareObject` | `In_ShareObjectTypeId` = `shareObjectTypeId`<br>`In_ObjectId` = `objectId` | [`pages/AssembleDetail/AssembleDetailPage.tsx:96`](../../app/src/pages/AssembleDetail/AssembleDetailPage.tsx#L96) |
+| `AssembleDetailPage.tsx` | `HouseholdDetails` | `HouseholdId` = `householdId` | [`pages/AssembleDetail/AssembleDetailPage.tsx:88`](../../app/src/pages/AssembleDetail/AssembleDetailPage.tsx#L88) |
+| `AssembleDetailPage.tsx` | `HouseholdCarousel` | `In_StartingHouseholdId` = `selectedHouseholdId` | [`pages/AssembleDetail/AssembleDetailPage.tsx:106`](../../app/src/pages/AssembleDetail/AssembleDetailPage.tsx#L106) |
+| `AssembleDetailPage.tsx` | `ContactByEmailMember` | `In_EntityId` = `a.memberId`<br>`In_EntityType` = `CONNECT_ENTITY_MEMBER`<br>`In_ContactName` = `split.Out_Name`<br>`In_ContactLocality` = `a.contactLocality`<br>`In_AuditEventId` = `AUDIT_EMAIL_HOUSEHOLD`<br>`In_ContactCountry` = `a.contactCountry`<br>`In_EmailTo` = `a.emailTo`<br>`In_ContactSurname` = `split.Out_Surname`<br>`In_AvatarURL` = `a.avatarURL` | [`pages/AssembleDetail/AssembleDetailPage.tsx:113`](../../app/src/pages/AssembleDetail/AssembleDetailPage.tsx#L113) |
+| `AssembleDetailPage.tsx` | `LegacyShareObject` | `In_ShareObjectTypeId` = `shareObjectTypeId`<br>`In_ObjectId` = `objectId` | [`pages/AssembleDetail/AssembleDetailPage.tsx:127`](../../app/src/pages/AssembleDetail/AssembleDetailPage.tsx#L127) |
 
 ## 8. Lifecycle
 
@@ -236,6 +237,24 @@ Effects (`useEffect`, `useLayoutEffect`) of the screen files, and the effects of
 | File | Hook (function) | Dependencies | Cleanup | Effects | Place |
 |---|---|---|---|---|---|
 | `ShowMoreShowLessContainer.tsx` | `useEffect` (`ShowMoreShowLessContainer`) | `[]` | yes | none | [`pages/AssembleDetail/components/ShowMoreShowLessContainer.tsx:44`](../../app/src/pages/AssembleDetail/components/ShowMoreShowLessContainer.tsx#L44) |
+| `useAssembleNotes.ts` | `useEffect` (`useAssembleNotes`) | `[flow, restored, setNotes, EventId, SeriesId, Start, Assembl…` | no | call `/api/UBTConnect/AssembleDetail/DataActionGetAssembleNotes` | [`pages/AssembleDetail/hooks/useAssembleNotes.ts:50`](../../app/src/pages/AssembleDetail/hooks/useAssembleNotes.ts#L50) |
+
+<details><summary>Sequence diagrams of the effects with a call, a navigation, a message or a refresh (1)</summary>
+
+#### 8.2.1 useAssembleNotes: useEffect
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant R as React
+  participant H as useAssembleNotes · useAssembleNotes.ts
+  participant A as Server (React api)
+  R->>H: useEffect (after the mount and when [flow, restored, setNotes, EventId, SeriesId, Start, Assembl… changes)
+  H->>A: DataActionGetAssembleNotes
+  A-->>H: DataActionGetAssembleNotes
+```
+
+</details>
 
 Queries. A query fetches when its component mounts and when its key changes. `Read by` lists what reads the result in the same file.
 
@@ -278,7 +297,9 @@ An error without a handler goes to the `OnException` of the UI flow (`handleErro
 
 ### 11.2 React
 
-None.
+| File | Kind | Function | Effects | Place |
+|---|---|---|---|---|
+| `useAssembleNotes.ts` | flow handler | `useAssembleNotes` | none | [`pages/AssembleDetail/hooks/useAssembleNotes.ts:69`](../../app/src/pages/AssembleDetail/hooks/useAssembleNotes.ts#L69) |
 
 `flow handler`: `raiseToFlowHandler` gives the error to the flow handler of the screen (`app/src/platform/feedback/flowErrors.ts`). The tool lists `.catch`, `try/catch` and `onError` that do not give the error to it.
 
@@ -397,41 +418,46 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | [`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx) | 2 |
 | [`components/layout/CommonUiLayout/CommonUiLayout.tsx`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx) | 2 |
 | [`components/layout/MenuIcon/MenuIcon.tsx`](../../app/src/components/layout/MenuIcon/MenuIcon.tsx) | 1 |
+| [`components/note/NotesSheet/NotesSheet.tsx`](../../app/src/components/note/NotesSheet/NotesSheet.tsx) | 1 |
 | [`containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx`](../../app/src/containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx) | 2 |
+| [`containers/NoteListActions/NoteListActionsContainer.tsx`](../../app/src/containers/NoteListActions/NoteListActionsContainer.tsx) | 2 |
 | [`containers/ShareSheet/ShareSheetContainer.tsx`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx) | 5 |
 
-<details><summary>User actions of the shared components (28)</summary>
+<details><summary>User actions of the shared components (31)</summary>
 
 | # | File | Element | Event prop | Handler | Branch | Effects |
 |---|---|---|---|---|---|---|
-| 1 | [`containers/ShareSheet/ShareSheetContainer.tsx:111`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L111) | `<ShareSheetFirstStep>` | `onClickRecentMember` | `onClickRecentMember` | – | calls ActionCS_ShareObject; shows a message; asks for a confirmation |
-| 2 | [`containers/ShareSheet/ShareSheetContainer.tsx:127`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L127) | `<ShareSheetSearchStep>` | `onSubmit` | `onSubmit` | – | setSearchFetchId(): a query fetches again |
-| 3 | [`containers/ShareSheet/ShareSheetContainer.tsx:129`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L129) | `<ShareSheetSearchStep>` | `onSelect` | `onSelect` | – | shows a message |
-| 4 | [`containers/ShareSheet/ShareSheetContainer.tsx:130`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L130) | `<ShareSheetSearchStep>` | `onClickUpgradeSubscription` | `onClickUpgradeSubscription` | – | opens an external link |
-| 5 | [`containers/ShareSheet/ShareSheetContainer.tsx:148`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L148) | `<ActionButton>` | `onButtonOnClick` | `onClickSend` | – | calls ActionCS_ShareObject; shows a message |
-| 6 | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Home` | goes to HomeFeed |
-| 7 | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Directory` | goes to CountryList, Locality_Details |
-| 8 | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Updates` | goes to Updates_SingleList |
-| 9 | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Bookmarks` | goes to Bookmarks |
-| 10 | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Menu` | goes to Menu |
-| 11 | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `other` | calls the prop onBottomBarClicked() |
-| 12 | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Home` | goes to HomeFeed |
-| 13 | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Directory` | goes to CountryList, Locality_Details |
-| 14 | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Updates` | goes to Updates_SingleList |
-| 15 | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Bookmarks` | goes to Bookmarks |
-| 16 | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Menu` | goes to Menu |
-| 17 | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `other` | calls the prop onBottomBarClicked() |
-| 18 | [`components/contact/ContactByMessage/ContactByMessage.tsx:64`](../../app/src/components/contact/ContactByMessage/ContactByMessage.tsx#L64) | `<ContactPopupByMessage>` | `onEventSelectedMessageChannel` | `handlerSelectedMessageChannel` | `Email` | calls the prop onEventMessageChannel(); calls the prop onEventEmail() |
-| 19 | [`components/contact/ContactByMessage/ContactByMessage.tsx:64`](../../app/src/components/contact/ContactByMessage/ContactByMessage.tsx#L64) | `<ContactPopupByMessage>` | `onEventSelectedMessageChannel` | `handlerSelectedMessageChannel` | `Call` | opens an external link; calls the prop onEventMessageChannel(); calls the prop onEventCall() |
-| 20 | [`components/contact/ContactPopupByPhone/ContactPopupByPhone.tsx:66`](../../app/src/components/contact/ContactPopupByPhone/ContactPopupByPhone.tsx#L66) | `<ContactPopup>` | `onEventClicked` | `inline` | – | opens an external link; calls the prop onEventCall() |
-| 21 | [`containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx:77`](../../app/src/containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx#L77) | `<AssembleSummaryCard>` | `onAddressClick` | `linkAddressOnClick` | – | shows a message |
-| 22 | [`containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx:77`](../../app/src/containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx#L77) | `<AssembleSummaryCard>` | `onAddressClick` | `linkAddressOnClick` | `AndroidBrowser` | opens an external link; shows a message |
-| 23 | [`containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx:77`](../../app/src/containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx#L77) | `<AssembleSummaryCard>` | `onAddressClick` | `linkAddressOnClick` | `IPhoneBrowser` | opens an external link; shows a message |
-| 24 | [`containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx:77`](../../app/src/containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx#L77) | `<AssembleSummaryCard>` | `onAddressClick` | `linkAddressOnClick` | `other` | opens an external link; shows a message |
-| 25 | [`containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx:78`](../../app/src/containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx#L78) | `<AssembleSummaryCard>` | `onMeetingInfoToggle` | `meetingInfoToggle` | – | asks for a confirmation |
-| 26 | [`components/layout/MenuIcon/MenuIcon.tsx:34`](../../app/src/components/layout/MenuIcon/MenuIcon.tsx#L34) | `<div>` | `onClick` | `inline` | – | goes to previous screen |
-| 27 | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:80`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L80) | `<PreventBackNavigation>` | `onBackNavigationPrevented` | `redirectHome` | – | goes to HomeFeed |
-| 28 | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:82`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L82) | `<BackNavigationHandler>` | `onBackNavigation` | `maybeRedirectHome` | – | goes to HomeFeed |
+| 1 | [`components/note/NotesSheet/NotesSheet.tsx:175`](../../app/src/components/note/NotesSheet/NotesSheet.tsx#L175) | `<AddNote>` | `onOnSubmitRequested` | `addNoteRequested` | – | calls ServiceAPIAddNote; shows a message; calls the prop onOnNotesChanged() |
+| 2 | [`containers/NoteListActions/NoteListActionsContainer.tsx:157`](../../app/src/containers/NoteListActions/NoteListActionsContainer.tsx#L157) | `<NoteList>` | `onOnDeleteRequested` | `inline` | – | calls ServiceAPIDeleteNoteByNoteId; shows a message; calls the prop onOnNoteDeleted() |
+| 3 | [`containers/NoteListActions/NoteListActionsContainer.tsx:160`](../../app/src/containers/NoteListActions/NoteListActionsContainer.tsx#L160) | `<NoteList>` | `onOnSaveEditRequested` | `inline` | – | calls ServiceAPIUpdateNote; shows a message; calls the prop onOnSaveEditNote(); calls the prop onOnEditingStateChanged(); calls the prop onOnSaveEditNote(); calls the prop onOnEditingStateChanged() |
+| 4 | [`containers/ShareSheet/ShareSheetContainer.tsx:111`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L111) | `<ShareSheetFirstStep>` | `onClickRecentMember` | `onClickRecentMember` | – | calls ActionCS_ShareObject; shows a message; asks for a confirmation |
+| 5 | [`containers/ShareSheet/ShareSheetContainer.tsx:127`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L127) | `<ShareSheetSearchStep>` | `onSubmit` | `onSubmit` | – | setSearchFetchId(): a query fetches again |
+| 6 | [`containers/ShareSheet/ShareSheetContainer.tsx:129`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L129) | `<ShareSheetSearchStep>` | `onSelect` | `onSelect` | – | shows a message |
+| 7 | [`containers/ShareSheet/ShareSheetContainer.tsx:130`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L130) | `<ShareSheetSearchStep>` | `onClickUpgradeSubscription` | `onClickUpgradeSubscription` | – | opens an external link |
+| 8 | [`containers/ShareSheet/ShareSheetContainer.tsx:148`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L148) | `<ActionButton>` | `onButtonOnClick` | `onClickSend` | – | calls ActionCS_ShareObject; shows a message |
+| 9 | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Home` | goes to HomeFeed |
+| 10 | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Directory` | goes to CountryList, Locality_Details |
+| 11 | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Updates` | goes to Updates_SingleList |
+| 12 | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Bookmarks` | goes to Bookmarks |
+| 13 | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Menu` | goes to Menu |
+| 14 | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `other` | calls the prop onBottomBarClicked() |
+| 15 | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Home` | goes to HomeFeed |
+| 16 | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Directory` | goes to CountryList, Locality_Details |
+| 17 | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Updates` | goes to Updates_SingleList |
+| 18 | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Bookmarks` | goes to Bookmarks |
+| 19 | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Menu` | goes to Menu |
+| 20 | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `other` | calls the prop onBottomBarClicked() |
+| 21 | [`components/contact/ContactByMessage/ContactByMessage.tsx:64`](../../app/src/components/contact/ContactByMessage/ContactByMessage.tsx#L64) | `<ContactPopupByMessage>` | `onEventSelectedMessageChannel` | `handlerSelectedMessageChannel` | `Email` | calls the prop onEventMessageChannel(); calls the prop onEventEmail() |
+| 22 | [`components/contact/ContactByMessage/ContactByMessage.tsx:64`](../../app/src/components/contact/ContactByMessage/ContactByMessage.tsx#L64) | `<ContactPopupByMessage>` | `onEventSelectedMessageChannel` | `handlerSelectedMessageChannel` | `Call` | opens an external link; calls the prop onEventMessageChannel(); calls the prop onEventCall() |
+| 23 | [`components/contact/ContactPopupByPhone/ContactPopupByPhone.tsx:66`](../../app/src/components/contact/ContactPopupByPhone/ContactPopupByPhone.tsx#L66) | `<ContactPopup>` | `onEventClicked` | `inline` | – | opens an external link; calls the prop onEventCall() |
+| 24 | [`containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx:77`](../../app/src/containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx#L77) | `<AssembleSummaryCard>` | `onAddressClick` | `linkAddressOnClick` | – | shows a message |
+| 25 | [`containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx:77`](../../app/src/containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx#L77) | `<AssembleSummaryCard>` | `onAddressClick` | `linkAddressOnClick` | `AndroidBrowser` | opens an external link; shows a message |
+| 26 | [`containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx:77`](../../app/src/containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx#L77) | `<AssembleSummaryCard>` | `onAddressClick` | `linkAddressOnClick` | `IPhoneBrowser` | opens an external link; shows a message |
+| 27 | [`containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx:77`](../../app/src/containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx#L77) | `<AssembleSummaryCard>` | `onAddressClick` | `linkAddressOnClick` | `other` | opens an external link; shows a message |
+| 28 | [`containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx:78`](../../app/src/containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx#L78) | `<AssembleSummaryCard>` | `onMeetingInfoToggle` | `meetingInfoToggle` | – | asks for a confirmation |
+| 29 | [`components/layout/MenuIcon/MenuIcon.tsx:34`](../../app/src/components/layout/MenuIcon/MenuIcon.tsx#L34) | `<div>` | `onClick` | `inline` | – | goes to previous screen |
+| 30 | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:80`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L80) | `<PreventBackNavigation>` | `onBackNavigationPrevented` | `redirectHome` | – | goes to HomeFeed |
+| 31 | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:82`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L82) | `<BackNavigationHandler>` | `onBackNavigation` | `maybeRedirectHome` | – | goes to HomeFeed |
 
 </details>
 
@@ -442,4 +468,7 @@ Calls that React can make on this route, without a TST chain on this route. Ever
 
 | Call | React action | Reached through |
 |---|---|---|
+| `/api/UBTConnect_Utils/ServiceAPIDeleteNoteByNoteId` | `deleteNote()` [`api/note/repository.ts:73`](../../app/src/api/note/repository.ts#L73) | `NoteListActionsContainer` [`containers/NoteListActions/NoteListActionsContainer.tsx`](../../app/src/containers/NoteListActions/NoteListActionsContainer.tsx) |
+| `/api/UBTConnect_Utils/ServiceAPIUpdateNote` | `updateNote()` [`api/note/repository.ts:66`](../../app/src/api/note/repository.ts#L66) | `NoteListActionsContainer` [`containers/NoteListActions/NoteListActionsContainer.tsx`](../../app/src/containers/NoteListActions/NoteListActionsContainer.tsx) |
+| `/api/UBTConnect_Utils/ServiceAPIAddNote` | `addNote()` [`api/note/repository.ts:54`](../../app/src/api/note/repository.ts#L54) | `NotesSheet` [`components/note/NotesSheet/NotesSheet.tsx`](../../app/src/components/note/NotesSheet/NotesSheet.tsx) |
 | `/api/UBTConnect_Utils/ActionGetSignedImagesInBulk` | `cache_SignedImageURL_GetCallback()` [`lib/ubtConnectUtils/actions.ts:124`](../../app/src/lib/ubtConnectUtils/actions.ts#L124) | `EntityLazyImage` [`components/ui/EntityLazyImage/EntityLazyImage.tsx`](../../app/src/components/ui/EntityLazyImage/EntityLazyImage.tsx) |

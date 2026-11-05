@@ -14,7 +14,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/Bookmarks/BookmarksPage.tsx`](../../app/src/pages/Bookmarks/BookmarksPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 | Screenshots | [`migration/screens/Bookmarks/parity`](../../migration/screens/Bookmarks/parity) | `route.py parity` |
-| Code read | OutSystems: 4 files of the UI flow, 28 shared blocks, 29 app shell files. React: 211 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
+| Code read | OutSystems: 4 files of the UI flow, 28 shared blocks, 29 app shell files. React: 212 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
@@ -40,7 +40,7 @@ None.
 
 None.
 
-5 more React calls without a TST chain on this route are reached only through shared containers, components or app code. They are in the last section, not here.
+React reaches 5 more calls without a TST chain on this route only through shared containers, components or app code. The last section lists them, not this one.
 
 ## 5. Server calls
 

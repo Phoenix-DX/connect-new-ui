@@ -14,7 +14,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/MyEntertaining/MyEntertainingPage.tsx`](../../app/src/pages/MyEntertaining/MyEntertainingPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 | Screenshots | [`migration/screens/MyEntertaining/parity`](../../migration/screens/MyEntertaining/parity) | `route.py parity` |
-| Code read | OutSystems: 2 files of the UI flow, 2 shared blocks, 21 app shell files. React: 128 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
+| Code read | OutSystems: 2 files of the UI flow, 2 shared blocks, 21 app shell files. React: 129 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 

@@ -14,17 +14,17 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/Household_Relations/Household_RelationsPage.tsx`](../../app/src/pages/Household_Relations/Household_RelationsPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 | Screenshots | [`migration/screens/Household_Relations/parity`](../../migration/screens/Household_Relations/parity) | `route.py parity` |
-| Code read | OutSystems: 2 files of the UI flow, 19 shared blocks, 29 app shell files. React: 179 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
+| Code read | OutSystems: 2 files of the UI flow, 19 shared blocks, 29 app shell files. React: 180 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
 | Check | Result |
 |---|---|
-| Server calls of the route on TST | 5: React makes 4, **1 missing** |
-| Differences found | **1** (see [section 3](#3-differences-found)) |
+| Server calls of the route on TST | 5: React makes 5, **0 missing** |
+| Differences found | **0** (see [section 3](#3-differences-found)) |
 | Questions | 0 (see [section 4](#4-questions)) |
 | React calls reached only through shared code | 2: see the last section |
-| User actions of the route (own code) | OutSystems: 2. React: 1 |
+| User actions of the route (own code) | OutSystems: 2. React: 2 |
 | Screen and blocks of the UI flow with a React port | 2 of 2 |
 | Navigation targets found in React | 7 of 7 |
 | Shared blocks and components on the route | OutSystems 19, React 5 with user actions: see the last section |
@@ -34,17 +34,13 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 
 Each line is a fact of both sides: a TST call, navigation or variable, and the React code that has it or not. The tool does not judge the behaviour.
 
-- Call `UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionFetchNotes`. Chain on TST: onClick in Button → event event_OnClick of Button → event buttonOnClick of Button → HouseholdRelations_Block.handler_AddNotes → HouseholdRelations_Block.DataActionFetchNotes.
-  - No React code makes this call.
-  - Note in [`pages/Household_Relations/components/HouseholdRelationsView.tsx:64`](../../app/src/pages/Household_Relations/components/HouseholdRelationsView.tsx#L64): "/** FetchNotes.Notes. */"
-  - Note in [`pages/Household_Relations/hooks/householdRelationsState.ts:102`](../../app/src/pages/Household_Relations/hooks/householdRelationsState.ts#L102): "/** Handler_AddNotes and Handler_OnNotesSheetClosed. */"
-  - Note in [`pages/Household_Relations/hooks/useHouseholdRelations.ts:65`](../../app/src/pages/Household_Relations/hooks/useHouseholdRelations.ts#L65): "/** FetchNotes.Notes. */"
+None.
 
 ## 4. Questions
 
 None.
 
-2 more React calls without a TST chain on this route are reached only through shared containers, components or app code. They are in the last section, not here.
+React reaches 2 more calls without a TST chain on this route only through shared containers, components or app code. The last section lists them, not this one.
 
 ## 5. Server calls
 
@@ -60,9 +56,9 @@ All columns come from the code, without interpretation:
 
 | # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
 |---|---|---|---|---|---|---|---|---|
-| 1 | `UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionFetchNotes` | data action | `HouseholdRelations_Block` | onClick in Button → event event_OnClick of Button → event buttonOnClick of Button → HouseholdRelations_Block.handler_AddNotes → HouseholdRelations_Block.DataActionFetchNotes<br>HouseholdRelations_Block fetch at start → HouseholdRelations_Block.DataActionFetchNotes | no | – | – | **missing** |
-| 2 | `UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionGet_MemberDetails` | data action | `HouseholdRelations_Block` | HouseholdRelations_Block.OnReady → HouseholdRelations_Block.screenEvent_OnReady → HouseholdRelations_Block.action_Refresh_Get_MemberDetails → HouseholdRelations_Block.DataActionGet_MemberDetails<br>HouseholdRelations_Block fetch at start → HouseholdRelations_Block.DataActionGet_MemberDetails | yes | `fetchMemberRelations()` [`api/household/repository.ts:79`](../../app/src/api/household/repository.ts#L79) (page) | `HouseholdRelations → useHouseholdRelations → fetchMemberRelations`<br>[`pages/Household_Relations/Household_RelationsPage.tsx`](../../app/src/pages/Household_Relations/Household_RelationsPage.tsx) | implemented |
-| 3 | `UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionGet_ParentHouseholdDetails` | data action | `HouseholdRelations_Block` | HouseholdRelations_Block.OnReady → HouseholdRelations_Block.screenEvent_OnReady → … → HouseholdRelations_Block.onAfterFetch_Get_MemberDetails → HouseholdRelations_Block.DataActionGet_ParentHouseholdDetails<br>HouseholdRelations_Block fetch at start → HouseholdRelations_Block.DataActionGet_MemberDetails → HouseholdRelations_Block.onAfterFetch_Get_MemberDetails → HouseholdRelations_Block.DataActionGet_ParentHouseholdDetails<br>HouseholdRelations_Block fetch at start → HouseholdRelations_Block.DataActionGet_ParentHouseholdDetails | yes | `fetchSiblingRelations()` [`api/household/repository.ts:86`](../../app/src/api/household/repository.ts#L86) (page) | `HouseholdRelations → useHouseholdRelations → fetchSiblingRelations`<br>[`pages/Household_Relations/Household_RelationsPage.tsx`](../../app/src/pages/Household_Relations/Household_RelationsPage.tsx) | implemented |
+| 1 | `UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionFetchNotes` | data action | `HouseholdRelations_Block` | onClick in Button → event event_OnClick of Button → event buttonOnClick of Button → HouseholdRelations_Block.handler_AddNotes → HouseholdRelations_Block.DataActionFetchNotes<br>HouseholdRelations_Block fetch at start → HouseholdRelations_Block.DataActionFetchNotes | no | `fetchHouseholdRelationNotes()` [`api/household/repository.ts:96`](../../app/src/api/household/repository.ts#L96) (page) | `HouseholdRelations → useHouseholdRelations → fetchHouseholdRelationNotes`<br>[`pages/Household_Relations/Household_RelationsPage.tsx`](../../app/src/pages/Household_Relations/Household_RelationsPage.tsx) | implemented |
+| 2 | `UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionGet_MemberDetails` | data action | `HouseholdRelations_Block` | HouseholdRelations_Block.OnReady → HouseholdRelations_Block.screenEvent_OnReady → HouseholdRelations_Block.action_Refresh_Get_MemberDetails → HouseholdRelations_Block.DataActionGet_MemberDetails<br>HouseholdRelations_Block fetch at start → HouseholdRelations_Block.DataActionGet_MemberDetails | yes | `fetchMemberRelations()` [`api/household/repository.ts:81`](../../app/src/api/household/repository.ts#L81) (page) | `HouseholdRelations → useHouseholdRelations → fetchMemberRelations`<br>[`pages/Household_Relations/Household_RelationsPage.tsx`](../../app/src/pages/Household_Relations/Household_RelationsPage.tsx) | implemented |
+| 3 | `UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionGet_ParentHouseholdDetails` | data action | `HouseholdRelations_Block` | HouseholdRelations_Block.OnReady → HouseholdRelations_Block.screenEvent_OnReady → … → HouseholdRelations_Block.onAfterFetch_Get_MemberDetails → HouseholdRelations_Block.DataActionGet_ParentHouseholdDetails<br>HouseholdRelations_Block fetch at start → HouseholdRelations_Block.DataActionGet_MemberDetails → HouseholdRelations_Block.onAfterFetch_Get_MemberDetails → HouseholdRelations_Block.DataActionGet_ParentHouseholdDetails<br>HouseholdRelations_Block fetch at start → HouseholdRelations_Block.DataActionGet_ParentHouseholdDetails | yes | `fetchSiblingRelations()` [`api/household/repository.ts:88`](../../app/src/api/household/repository.ts#L88) (page) | `HouseholdRelations → useHouseholdRelations → fetchSiblingRelations`<br>[`pages/Household_Relations/Household_RelationsPage.tsx`](../../app/src/pages/Household_Relations/Household_RelationsPage.tsx) | implemented |
 | 4 | `UBTConnect_Utils/CW_Notes/NotesSheet/ServiceAPIAddNote` | service action | `NotesSheet` | NotesSheet.handler_OnSubmitNote → server AddNote | no | `addNote()` [`api/note/repository.ts:54`](../../app/src/api/note/repository.ts#L54) (page) | `NotesSheet → addNote`<br>[`components/note/NotesSheet/NotesSheet.tsx`](../../app/src/components/note/NotesSheet/NotesSheet.tsx) | implemented |
 | 5 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx) | implemented |
 
@@ -102,8 +98,9 @@ sequenceDiagram
 | # | File | Element | Event prop | Handler | Branch | Effects |
 |---|---|---|---|---|---|---|
 | [1](#621-householdrelationsview-onclickmember) | [`pages/Household_Relations/Household_RelationsPage.tsx:22`](../../app/src/pages/Household_Relations/Household_RelationsPage.tsx#L22) | `<HouseholdRelationsView>` | `onClickMember` | `relations.onClickMember` | – | goes to HouseholdDetails; asks for a confirmation |
+| [2](#622-householdrelationsview-onaddnotes) | [`pages/Household_Relations/Household_RelationsPage.tsx:22`](../../app/src/pages/Household_Relations/Household_RelationsPage.tsx#L22) | `<HouseholdRelationsView>` | `onAddNotes` | `relations.onAddNotes` | – | calls DataActionFetchNotes |
 
-<details><summary>1 diagrams (handlers with two or more effects)</summary>
+<details><summary>2 diagrams (handlers with two or more effects)</summary>
 
 #### 6.2.1 HouseholdRelationsView: onClickMember
 
@@ -118,6 +115,25 @@ sequenceDiagram
   H->>N: go to HouseholdDetails
   Note over H: via showUpgradePopUp()
   Note over H: confirm dialog dialogId
+```
+
+#### 6.2.2 HouseholdRelationsView: onAddNotes
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as HouseholdRelationsView · Household_RelationsPage.tsx
+  participant A as Server (React api)
+  U->>H: onAddNotes → relations.onAddNotes
+  Note over H: via refresh()
+  Note over H: via call()
+  Note over H: via fetchHouseholdRelationNotes()
+  H->>A: DataActionFetchNotes(HouseholdId, MemberId, ShowNotesSheet, …)
+  A-->>H: Notes
+  Note over H: via fetchHouseholdRelationNotes()
+  H->>A: DataActionFetchNotes(HouseholdId, MemberId, ShowNotesSheet, …)
+  A-->>H: Notes
 ```
 
 
@@ -150,7 +166,7 @@ Declared inputs of the route: `HouseholdId: LongInteger`, `MemberId: LongInteger
 
 | File | Target | Parameters | Place |
 |---|---|---|---|
-| `useHouseholdRelations.ts` | `HouseholdDetails` | `HouseholdId` = `householdId` | [`pages/Household_Relations/hooks/useHouseholdRelations.ts:181`](../../app/src/pages/Household_Relations/hooks/useHouseholdRelations.ts#L181) |
+| `useHouseholdRelations.ts` | `HouseholdDetails` | `HouseholdId` = `householdId` | [`pages/Household_Relations/hooks/useHouseholdRelations.ts:182`](../../app/src/pages/Household_Relations/hooks/useHouseholdRelations.ts#L182) |
 
 ## 8. Lifecycle
 
@@ -222,7 +238,7 @@ An error without a handler goes to the `OnException` of the UI flow (`handleErro
 
 | File | Kind | Function | Effects | Place |
 |---|---|---|---|---|
-| `useHouseholdRelations.ts` | try/catch | `refresh` | none | [`pages/Household_Relations/hooks/useHouseholdRelations.ts:125`](../../app/src/pages/Household_Relations/hooks/useHouseholdRelations.ts#L125) |
+| `useHouseholdRelations.ts` | try/catch | `refresh` | none | [`pages/Household_Relations/hooks/useHouseholdRelations.ts:126`](../../app/src/pages/Household_Relations/hooks/useHouseholdRelations.ts#L126) |
 
 `flow handler`: `raiseToFlowHandler` gives the error to the flow handler of the screen (`app/src/platform/feedback/flowErrors.ts`). The tool lists `.catch`, `try/catch` and `onError` that do not give the error to it.
 

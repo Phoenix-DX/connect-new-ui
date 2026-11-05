@@ -14,14 +14,14 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/PINRegister/PINRegisterPage.tsx`](../../app/src/pages/PINRegister/PINRegisterPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `ignore`, flag redirect none | `app/src/app/routes.ts` |
 | Screenshots | [`migration/screens/PINRegister/parity`](../../migration/screens/PINRegister/parity) | `route.py parity` |
-| Code read | OutSystems: 2 files of the UI flow, 10 shared blocks, 16 app shell files. React: 121 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
+| Code read | OutSystems: 2 files of the UI flow, 10 shared blocks, 16 app shell files. React: 122 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
 | Check | Result |
 |---|---|
-| Server calls of the route on TST | 1: React makes 0, **1 missing** |
-| Differences found | **1** (see [section 3](#3-differences-found)) |
+| Server calls of the route on TST | 1: React makes 1, **0 missing** |
+| Differences found | **0** (see [section 3](#3-differences-found)) |
 | Questions | 0 (see [section 4](#4-questions)) |
 | React calls reached only through shared code | 0: see the last section |
 | User actions of the route (own code) | OutSystems: 3. React: 2 |
@@ -34,11 +34,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 
 Each line is a fact of both sides: a TST call, navigation or variable, and the React code that has it or not. The tool does not judge the behaviour.
 
-- Call `UBT_AppManager/ActionAppManager_Logout`. Chain on TST: onClick in PINRegister → PINRegister.onClick_BackToLogin → UBT_AppManager.appManager_Logout → server AppManager_Logout.
-  - No React code makes this call.
-  - Note in [`platform/auth/mockAuth.ts:24`](../../app/src/platform/auth/mockAuth.ts#L24): "/** The server logout of AppManager_Logout: no call (app-shell spec 10). */"
-  - Note in [`platform/session/auth.ts:84`](../../app/src/platform/session/auth.ts#L84): "/** Connect_Logout (UC:1062-1066): Cache_InvalidateEverything, then AppManager_Logout (AM:3649-3720): server logout"
-  - Note in [`platform/session/pin.ts:66`](../../app/src/platform/session/pin.ts#L66): "/** PIN_Delete(UserId, AppName), part of AppManager_Logout (AM:3712). */"
+None.
 
 ## 4. Questions
 
@@ -58,7 +54,7 @@ All columns come from the code, without interpretation:
 
 | # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
 |---|---|---|---|---|---|---|---|---|
-| 1 | `UBT_AppManager/ActionAppManager_Logout` | server action | `UBT_AppManager` | onClick in PINRegister → PINRegister.onClick_BackToLogin → UBT_AppManager.appManager_Logout → server AppManager_Logout | no | – | – | **missing** |
+| 1 | `UBT_AppManager/ActionAppManager_Logout` | server action | `UBT_AppManager` | onClick in PINRegister → PINRegister.onClick_BackToLogin → UBT_AppManager.appManager_Logout → server AppManager_Logout | no | `appManagerLogout()` [`api/app/repository.ts:32`](../../app/src/api/app/repository.ts#L32) (shell + page) | `PINRegister → usePINRegister → … → appManagerLogout`<br>[`pages/PINRegister/PINRegisterPage.tsx`](../../app/src/pages/PINRegister/PINRegisterPage.tsx)<br>`AppFrame → AppStart → … → appManagerLogout`<br>[`app/AppFrame.tsx`](../../app/src/app/AppFrame.tsx) | implemented |
 
 ## 6. User actions
 
@@ -101,8 +97,8 @@ sequenceDiagram
   participant N as Navigation
   U->>B: onClick (HTML element) → onClick_BackToLogin
   Note over B: via UBT_AppManager.appManager_Logout
-  B->>S: AppManager_Logout()
-  S-->>B: outputs not in the contract
+  B->>S: AppManager_Logout(AppManager_MobileContext, EspaceName)
+  S-->>B: no outputs
   B->>S: AppManager_SynchAppContext(EspaceName)
   S-->>B: AppManager_ClientConfig, FirebaseRealTimeDB_Token, PermissionList, …
   B->>N: go to Login
@@ -116,11 +112,30 @@ sequenceDiagram
 
 | # | File | Element | Event prop | Handler | Branch | Effects |
 |---|---|---|---|---|---|---|
-| 1 | [`pages/PINRegister/PINRegisterPage.tsx:29`](../../app/src/pages/PINRegister/PINRegisterPage.tsx#L29) | `<OSLink>` | `onClick` | `inline` | – | goes to Login |
+| [1](#621-oslink-onclick) | [`pages/PINRegister/PINRegisterPage.tsx:29`](../../app/src/pages/PINRegister/PINRegisterPage.tsx#L29) | `<OSLink>` | `onClick` | `inline` | – | calls ActionAppManager_Logout; goes to Login |
 | [2](#622-pinregistercontent-onsetpin-newpincode) | [`pages/PINRegister/PINRegisterPage.tsx:59`](../../app/src/pages/PINRegister/PINRegisterPage.tsx#L59) | `<PinRegisterContent>` | `onSetPin` | `registration.onSetPin` | `newPinCode` | goes to Menu, URL resumeLink, URL lastUrl, HomeFeed; shows a message |
 | [3](#623-pinregistercontent-onsetpin-other) | [`pages/PINRegister/PINRegisterPage.tsx:59`](../../app/src/pages/PINRegister/PINRegisterPage.tsx#L59) | `<PinRegisterContent>` | `onSetPin` | `registration.onSetPin` | `other` | shows a message |
 
-<details><summary>2 diagrams (handlers with two or more effects)</summary>
+<details><summary>3 diagrams (handlers with two or more effects)</summary>
+
+#### 6.2.1 OSLink: onClick
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as OSLink · PINRegisterPage.tsx
+  participant A as Server (React api)
+  participant N as Navigation
+  U->>H: onClick → inline
+  Note over H: via onClickBackToLogin()
+  Note over H: via signOut()
+  Note over H: via connectLogout()
+  Note over H: via appManagerLogout()
+  H->>A: ActionAppManager_Logout(AppManager_MobileContext, EspaceName)
+  A-->>H: no outputs
+  H->>N: go to Login
+```
 
 #### 6.2.2 PinRegisterContent: onSetPin (newPinCode)
 

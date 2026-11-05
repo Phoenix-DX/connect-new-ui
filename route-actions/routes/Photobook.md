@@ -14,7 +14,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/Photobook/PhotobookPage.tsx`](../../app/src/pages/Photobook/PhotobookPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 | Screenshots | [`migration/screens/Photobook/parity`](../../migration/screens/Photobook/parity) | `route.py parity` |
-| Code read | OutSystems: 9 files of the UI flow, 6 shared blocks, 28 app shell files. React: 159 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
+| Code read | OutSystems: 9 files of the UI flow, 6 shared blocks, 28 app shell files. React: 160 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
@@ -54,8 +54,8 @@ All columns come from the code, without interpretation:
 
 | # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
 |---|---|---|---|---|---|---|---|---|
-| 1 | `UBTConnect/Directory_Photobook/Photobook/DataActionGetLocalityHouseholdIds` | data action | `Photobook` | Photobook fetch at start → Photobook.DataActionGetLocalityHouseholdIds | yes | `fetchLocalityHouseholdIds()` [`api/household/repository.ts:57`](../../app/src/api/household/repository.ts#L57) (page) | `Photobook → usePhotobook → fetchLocalityHouseholdIds`<br>[`pages/Photobook/PhotobookPage.tsx`](../../app/src/pages/Photobook/PhotobookPage.tsx) | implemented |
-| 2 | `UBTConnect/Directory_Photobook/Photobook_Options_Left/DataActionGetHouseholdCaption` | data action | `Photobook_Options_Left` | Photobook_Options_Left fetch at start → Photobook_Options_Left.DataActionGetHouseholdCaption | no | `fetchHouseholdCaption()` [`api/household/repository.ts:65`](../../app/src/api/household/repository.ts#L65) (page) | `Photobook_Options_Left → useHouseholdCaption → fetchHouseholdCaption`<br>[`pages/Photobook/components/Photobook_Options_Left.tsx`](../../app/src/pages/Photobook/components/Photobook_Options_Left.tsx) | implemented |
+| 1 | `UBTConnect/Directory_Photobook/Photobook/DataActionGetLocalityHouseholdIds` | data action | `Photobook` | Photobook fetch at start → Photobook.DataActionGetLocalityHouseholdIds | yes | `fetchLocalityHouseholdIds()` [`api/household/repository.ts:59`](../../app/src/api/household/repository.ts#L59) (page) | `Photobook → usePhotobook → fetchLocalityHouseholdIds`<br>[`pages/Photobook/PhotobookPage.tsx`](../../app/src/pages/Photobook/PhotobookPage.tsx) | implemented |
+| 2 | `UBTConnect/Directory_Photobook/Photobook_Options_Left/DataActionGetHouseholdCaption` | data action | `Photobook_Options_Left` | Photobook_Options_Left fetch at start → Photobook_Options_Left.DataActionGetHouseholdCaption | no | `fetchHouseholdCaption()` [`api/household/repository.ts:67`](../../app/src/api/household/repository.ts#L67) (page) | `Photobook_Options_Left → useHouseholdCaption → fetchHouseholdCaption`<br>[`pages/Photobook/components/Photobook_Options_Left.tsx`](../../app/src/pages/Photobook/components/Photobook_Options_Left.tsx) | implemented |
 
 ## 6. User actions
 

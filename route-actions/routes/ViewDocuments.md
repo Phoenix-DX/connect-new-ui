@@ -21,7 +21,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/ViewDocuments/ViewDocumentsPage.tsx`](../../app/src/pages/ViewDocuments/ViewDocumentsPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 | Screenshots | no parity run | `route.py parity` |
-| Code read | OutSystems: 1 files of the UI flow, 9 shared blocks, 43 app shell files. React: 144 files in the closure of the page | TST survey closure and compiled code (static), `react_calls.mjs` |
+| Code read | OutSystems: 1 files of the UI flow, 9 shared blocks, 43 app shell files. React: 145 files in the closure of the page | TST survey closure and compiled code (static), `react_calls.mjs` |
 
 ## 2. Result
 
@@ -61,7 +61,7 @@ All columns come from the code, without interpretation:
 
 | # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
 |---|---|---|---|---|---|---|---|---|
-| 1 | `Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks_Documents/ScreenBlock_ViewDocuments/DataActionGetEventDocuments` | data action | `ScreenBlock_ViewDocuments` | ScreenBlock_ViewDocuments.OnReady → ScreenBlock_ViewDocuments.onReady → ScreenBlock_ViewDocuments.refreshDocumentData → ScreenBlock_ViewDocuments.DataActionGetEventDocuments<br>ScreenBlock_ViewDocuments fetch at start → ScreenBlock_ViewDocuments.DataActionGetEventDocuments | no capture | `fetchEventDocuments()` [`api/event/repository.ts:263`](../../app/src/api/event/repository.ts#L263) (page) | `ViewDocuments → useViewDocuments → fetchEventDocuments`<br>[`pages/ViewDocuments/ViewDocumentsPage.tsx`](../../app/src/pages/ViewDocuments/ViewDocumentsPage.tsx) | implemented |
+| 1 | `Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks_Documents/ScreenBlock_ViewDocuments/DataActionGetEventDocuments` | data action | `ScreenBlock_ViewDocuments` | ScreenBlock_ViewDocuments.OnReady → ScreenBlock_ViewDocuments.onReady → ScreenBlock_ViewDocuments.refreshDocumentData → ScreenBlock_ViewDocuments.DataActionGetEventDocuments<br>ScreenBlock_ViewDocuments fetch at start → ScreenBlock_ViewDocuments.DataActionGetEventDocuments | no capture | `fetchEventDocuments()` [`api/event/repository.ts:271`](../../app/src/api/event/repository.ts#L271) (page) | `ViewDocuments → useViewDocuments → fetchEventDocuments`<br>[`pages/ViewDocuments/ViewDocumentsPage.tsx`](../../app/src/pages/ViewDocuments/ViewDocumentsPage.tsx) | implemented |
 
 ## 6. User actions
 

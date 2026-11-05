@@ -21,7 +21,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/AcceptPendingPolicies/AcceptPendingPoliciesPage.tsx`](../../app/src/pages/AcceptPendingPolicies/AcceptPendingPoliciesPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 | Screenshots | no parity run | `route.py parity` |
-| Code read | OutSystems: 2 files of the UI flow, 2 shared blocks, 43 app shell files. React: 130 files in the closure of the page | TST survey closure and compiled code (static), `react_calls.mjs` |
+| Code read | OutSystems: 2 files of the UI flow, 2 shared blocks, 43 app shell files. React: 131 files in the closure of the page | TST survey closure and compiled code (static), `react_calls.mjs` |
 
 ## 2. Result
 

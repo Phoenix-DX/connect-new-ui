@@ -21,7 +21,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/GuestArrangements/GuestArrangementsPage.tsx`](../../app/src/pages/GuestArrangements/GuestArrangementsPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 | Screenshots | no parity run | `route.py parity` |
-| Code read | OutSystems: 1 files of the UI flow, 14 shared blocks, 43 app shell files. React: 154 files in the closure of the page | TST survey closure and compiled code (static), `react_calls.mjs` |
+| Code read | OutSystems: 1 files of the UI flow, 14 shared blocks, 43 app shell files. React: 155 files in the closure of the page | TST survey closure and compiled code (static), `react_calls.mjs` |
 
 ## 2. Result
 
@@ -62,7 +62,7 @@ All columns come from the code, without interpretation:
 | # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
 |---|---|---|---|---|---|---|---|---|
 | 1 | `Connect2_OrbitMobile_MUI/ActionGetDirectoryAccess` | server action | `Connect2_OrbitMobile_MUI` | onClick in Card_MemberInformation → event clickedMember of Card_MemberInformation → ScreenBlock_GuestArrangements.onHandle_ClickedMember → Connect2_OrbitMobile_MUI.checkDirectoryAccess → server GetDirectoryAccess | no capture | `checkDirectoryAccess()` [`lib/orbit/actions.ts:264`](../../app/src/lib/orbit/actions.ts#L264) (page) | `GuestArrangementsBlock → useGuestArrangements → checkDirectoryAccess`<br>[`pages/GuestArrangements/GuestArrangementsPage.tsx`](../../app/src/pages/GuestArrangements/GuestArrangementsPage.tsx) | implemented |
-| 2 | `Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_GuestArrangements/DataActionGetGuestArrangements` | data action | `ScreenBlock_GuestArrangements` | ScreenBlock_GuestArrangements.OnReady → ScreenBlock_GuestArrangements.onReady → ScreenBlock_GuestArrangements.refreshData → ScreenBlock_GuestArrangements.DataActionGetGuestArrangements<br>ScreenBlock_GuestArrangements fetch at start → ScreenBlock_GuestArrangements.DataActionGetGuestArrangements | no capture | `fetchGuestArrangements()` [`api/event/repository.ts:199`](../../app/src/api/event/repository.ts#L199) (page) | `GuestArrangementsBlock → useGuestArrangements → fetchGuestArrangements`<br>[`pages/GuestArrangements/GuestArrangementsPage.tsx`](../../app/src/pages/GuestArrangements/GuestArrangementsPage.tsx) | implemented |
+| 2 | `Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_GuestArrangements/DataActionGetGuestArrangements` | data action | `ScreenBlock_GuestArrangements` | ScreenBlock_GuestArrangements.OnReady → ScreenBlock_GuestArrangements.onReady → ScreenBlock_GuestArrangements.refreshData → ScreenBlock_GuestArrangements.DataActionGetGuestArrangements<br>ScreenBlock_GuestArrangements fetch at start → ScreenBlock_GuestArrangements.DataActionGetGuestArrangements | no capture | `fetchGuestArrangements()` [`api/event/repository.ts:207`](../../app/src/api/event/repository.ts#L207) (page) | `GuestArrangementsBlock → useGuestArrangements → fetchGuestArrangements`<br>[`pages/GuestArrangements/GuestArrangementsPage.tsx`](../../app/src/pages/GuestArrangements/GuestArrangementsPage.tsx) | implemented |
 
 ## 6. User actions
 

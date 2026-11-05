@@ -21,14 +21,14 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/EmailTarget/EmailTargetPage.tsx`](../../app/src/pages/EmailTarget/EmailTargetPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 | Screenshots | no parity run | `route.py parity` |
-| Code read | OutSystems: 1 files of the UI flow, 15 shared blocks, 43 app shell files. React: 150 files in the closure of the page | TST survey closure and compiled code (static), `react_calls.mjs` |
+| Code read | OutSystems: 1 files of the UI flow, 15 shared blocks, 43 app shell files. React: 151 files in the closure of the page | TST survey closure and compiled code (static), `react_calls.mjs` |
 
 ## 2. Result
 
 | Check | Result |
 |---|---|
-| Server calls of the route on TST | 4: React makes 3, **1 missing** |
-| Differences found | **1** (see [section 3](#3-differences-found)) |
+| Server calls of the route on TST | 4: React makes 3, **0 missing**, 1 not a gap of the web app |
+| Differences found | **0** (+ 1 not a gap of the web app) (see [section 3](#3-differences-found)) |
 | Questions | 0 (see [section 4](#4-questions)) |
 | React calls reached only through shared code | 0: see the last section |
 | User actions of the route (own code) | OutSystems: 0. React: 1 |
@@ -41,8 +41,16 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 
 Each line is a fact of both sides: a TST call, navigation or variable, and the React code that has it or not. The tool does not judge the behaviour.
 
-- Call `Connect2_LegacyShared/ActionGetAllApplicationEvents`. Chain on TST: onClick in ScreenBlock_Household_Email → ScreenBlock_Household_Email.onSubmit_Email → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents.
-  - No React code makes this call.
+None.
+
+### Not a gap of the web app
+
+Missing TST calls that a rule of `route-actions/config.json` (`notApplicable`, user 2026-11-05) sets aside. The rule names the fact and its evidence; the chain is the one of the TST code.
+
+**Telemetry (decision U17).** The call belongs to the application-event pipeline (zOnApplicationEvent_Wrapper → getAppEventName → cacheLocalApplicationEvents). Telemetry is not wired in the mock phase (decision U17). Evidence: Connect2_LegacyShared.controller.js:989-1240 (CacheLocalApplicationEvents); migration/clarify/decisions.md U17; app/src/lib/orbit/actions.ts:318-321.
+
+- `Connect2_LegacyShared/ActionGetAllApplicationEvents`. Chain on TST: onClick in ScreenBlock_Household_Email → ScreenBlock_Household_Email.onSubmit_Email → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents.
+
 
 ## 4. Questions
 
@@ -62,10 +70,10 @@ All columns come from the code, without interpretation:
 
 | # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
 |---|---|---|---|---|---|---|---|---|
-| 1 | `Connect2_LegacyShared/ActionGetAllApplicationEvents` | server action | `Connect2_LegacyShared` | onClick in ScreenBlock_Household_Email → ScreenBlock_Household_Email.onSubmit_Email → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents | no capture | – | – | **missing** |
+| 1 | `Connect2_LegacyShared/ActionGetAllApplicationEvents` | server action | `Connect2_LegacyShared` | onClick in ScreenBlock_Household_Email → ScreenBlock_Household_Email.onSubmit_Email → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents | no capture | – | – | not applicable (telemetry) |
 | 2 | `Connect2_LegacyShared/Email/ScreenBlock_Household_Email/ActionUserContactUser` | server action | `ScreenBlock_Household_Email` | onClick in ScreenBlock_Household_Email → ScreenBlock_Household_Email.onSubmit_Email → server UserContactUser | no capture | `sendUserContactEmail()` [`api/message/repository.ts:88`](../../app/src/api/message/repository.ts#L88) (page) | `EmailTarget → useHouseholdEmail → sendUserContactEmail`<br>[`pages/EmailTarget/EmailTargetPage.tsx`](../../app/src/pages/EmailTarget/EmailTargetPage.tsx) | implemented |
 | 3 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no capture | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx) | implemented |
-| 4 | `UBT_AppManager/ActionAppManager_SynchAppContext` | server action | `UBT_AppManager` | onClick in ScreenBlock_Household_Email → ScreenBlock_Household_Email.onSubmit_Email → … → UBT_AppManager.appManager_SynchAppContextInternal → server AppManager_SynchAppContext | no capture | `fetchAppContext()` [`api/app/repository.ts:23`](../../app/src/api/app/repository.ts#L23) (shell + page) | `AppFrame → AppStart → … → fetchAppContext`<br>[`app/AppFrame.tsx`](../../app/src/app/AppFrame.tsx)<br>`EmailTarget → useHouseholdEmail → … → fetchAppContext`<br>[`pages/EmailTarget/EmailTargetPage.tsx`](../../app/src/pages/EmailTarget/EmailTargetPage.tsx) | implemented |
+| 4 | `UBT_AppManager/ActionAppManager_SynchAppContext` | server action | `UBT_AppManager` | onClick in ScreenBlock_Household_Email → ScreenBlock_Household_Email.onSubmit_Email → … → UBT_AppManager.appManager_SynchAppContextInternal → server AppManager_SynchAppContext | no capture | `fetchAppContext()` [`api/app/repository.ts:24`](../../app/src/api/app/repository.ts#L24) (shell + page) | `AppFrame → AppStart → … → fetchAppContext`<br>[`app/AppFrame.tsx`](../../app/src/app/AppFrame.tsx)<br>`EmailTarget → useHouseholdEmail → … → fetchAppContext`<br>[`pages/EmailTarget/EmailTargetPage.tsx`](../../app/src/pages/EmailTarget/EmailTargetPage.tsx) | implemented |
 
 ## 6. User actions
 

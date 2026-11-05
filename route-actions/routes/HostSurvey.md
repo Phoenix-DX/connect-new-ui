@@ -14,7 +14,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/HostSurvey/HostSurveyPage.tsx`](../../app/src/pages/HostSurvey/HostSurveyPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 | Screenshots | [`migration/screens/HostSurvey/parity`](../../migration/screens/HostSurvey/parity) | `route.py parity` |
-| Code read | OutSystems: 1 files of the UI flow, 12 shared blocks, 21 app shell files. React: 183 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
+| Code read | OutSystems: 1 files of the UI flow, 12 shared blocks, 21 app shell files. React: 184 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
@@ -39,7 +39,7 @@ None.
 ## 4. Questions
 
 1. React calls `/api/Connect2_LegacyShared/ActionGetSignedImagesInBulk` from `fetchLegacySignedImagesInBulk()` [`api/image/repository.ts:21`](../../app/src/api/image/repository.ts#L21) (page). TST HostSurvey has no chain to this call. Does the call belong to this route?
-2. React calls `/api/Connect2_OrbitMobile_MUI/HostSurvey_AddHelper/DataActionGetSurveyHelpers` from `fetchSurveyHelpers()` [`api/event/repository.ts:248`](../../app/src/api/event/repository.ts#L248) (page). TST HostSurvey has no chain to this call. Does the call belong to this route?
+2. React calls `/api/Connect2_OrbitMobile_MUI/HostSurvey_AddHelper/DataActionGetSurveyHelpers` from `fetchSurveyHelpers()` [`api/event/repository.ts:256`](../../app/src/api/event/repository.ts#L256) (page). TST HostSurvey has no chain to this call. Does the call belong to this route?
 
 ## 5. Server calls
 
@@ -55,8 +55,8 @@ All columns come from the code, without interpretation:
 
 | # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
 |---|---|---|---|---|---|---|---|---|
-| 1 | `Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks_HostSurvey/ScreenBlock_HostSurvey/ActionPostHostSurvey` | server action | `ScreenBlock_HostSurvey` | onClick in Orbit_ConfirmationPopUp_New → event primaryAction of Orbit_ConfirmationPopUp_New → ScreenBlock_HostSurvey.onHandle_PopUp_Primary → ScreenBlock_HostSurvey.postHostSurvey → server PostHostSurvey<br>ScreenBlock_HostSurvey.onHandle_PrimaryButton → ScreenBlock_HostSurvey.postHostSurvey → server PostHostSurvey | no | `postHostSurvey()` [`api/event/repository.ts:242`](../../app/src/api/event/repository.ts#L242) (page) | `HostSurvey → useHostSurvey → postHostSurvey`<br>[`pages/HostSurvey/HostSurveyPage.tsx`](../../app/src/pages/HostSurvey/HostSurveyPage.tsx) | implemented |
-| 2 | `Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks_HostSurvey/ScreenBlock_HostSurvey/DataActionGetHostSurvey` | data action | `ScreenBlock_HostSurvey` | ScreenBlock_HostSurvey.OnReady → ScreenBlock_HostSurvey.onReady → ScreenBlock_HostSurvey.refreshData → ScreenBlock_HostSurvey.DataActionGetHostSurvey<br>ScreenBlock_HostSurvey fetch at start → ScreenBlock_HostSurvey.DataActionGetHostSurvey | yes | `fetchHostSurvey()` [`api/event/repository.ts:235`](../../app/src/api/event/repository.ts#L235) (page) | `HostSurvey → useHostSurvey → fetchHostSurvey`<br>[`pages/HostSurvey/HostSurveyPage.tsx`](../../app/src/pages/HostSurvey/HostSurveyPage.tsx) | implemented |
+| 1 | `Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks_HostSurvey/ScreenBlock_HostSurvey/ActionPostHostSurvey` | server action | `ScreenBlock_HostSurvey` | onClick in Orbit_ConfirmationPopUp_New → event primaryAction of Orbit_ConfirmationPopUp_New → ScreenBlock_HostSurvey.onHandle_PopUp_Primary → ScreenBlock_HostSurvey.postHostSurvey → server PostHostSurvey<br>ScreenBlock_HostSurvey.onHandle_PrimaryButton → ScreenBlock_HostSurvey.postHostSurvey → server PostHostSurvey | no | `postHostSurvey()` [`api/event/repository.ts:250`](../../app/src/api/event/repository.ts#L250) (page) | `HostSurvey → useHostSurvey → postHostSurvey`<br>[`pages/HostSurvey/HostSurveyPage.tsx`](../../app/src/pages/HostSurvey/HostSurveyPage.tsx) | implemented |
+| 2 | `Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks_HostSurvey/ScreenBlock_HostSurvey/DataActionGetHostSurvey` | data action | `ScreenBlock_HostSurvey` | ScreenBlock_HostSurvey.OnReady → ScreenBlock_HostSurvey.onReady → ScreenBlock_HostSurvey.refreshData → ScreenBlock_HostSurvey.DataActionGetHostSurvey<br>ScreenBlock_HostSurvey fetch at start → ScreenBlock_HostSurvey.DataActionGetHostSurvey | yes | `fetchHostSurvey()` [`api/event/repository.ts:243`](../../app/src/api/event/repository.ts#L243) (page) | `HostSurvey → useHostSurvey → fetchHostSurvey`<br>[`pages/HostSurvey/HostSurveyPage.tsx`](../../app/src/pages/HostSurvey/HostSurveyPage.tsx) | implemented |
 
 ## 6. User actions
 
