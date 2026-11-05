@@ -48,6 +48,9 @@ export const handlers: RequestHandler[] = [
     Households: wireList(HOUSEHOLDS),
     People: wireList(PEOPLE),
     Places: wireList(PLACES),
+    // live TST of 2026-11-05: two more result lists (Events, Schools); the React Search does not show them yet
+    Events: wireList([]),
+    Schools: wireList([]),
   })),
   contractHandler('UBTConnect', 'ScreenBlock_Search/DataActionGet_FilteredRecentClickedResults', (inputs) => ({
     Out_RecentClickedResults: wireList(osList(inputs.RecentClickedResults)),

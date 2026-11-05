@@ -38,10 +38,9 @@ export const toNotificationItem = (w: NotificationItemWire): NotificationItem =>
   profileIconURL: w.ProfileIconURL,
 });
 
-/** The notifications with the list unwrapped, HasUnreadMessages, and the unread count (a Long Integer) as a number. */
+/** The notifications with the list unwrapped and the unread count (a Long Integer) as a number. */
 export const toNotificationList = (wire: NotificationsWire): NotificationList => ({
   items: osList(wire.UI_NotificationItemList).map(toNotificationItem),
-  hasUnreadMessages: wire.HasUnreadMessages,
   unreadNotificationsCount: osNumber(wire.UnreadNotificationsCount),
 });
 

@@ -87,10 +87,10 @@ export interface NotificationDateRangeRecord {
   order: number;
 }
 
-/** The outputs of DataActionFetchNotifications: the notifications, HasUnreadMessages and the unread count. */
+/** The outputs of DataActionFetchNotifications: the notifications and the unread count. The live TST code of
+    2026-11-05 has no HasUnreadMessages output any more (the survey of 2026-10-13 had one, never assigned). */
 export interface NotificationList {
   items: NotificationItem[];
-  hasUnreadMessages: boolean;
   unreadNotificationsCount: number;
 }
 

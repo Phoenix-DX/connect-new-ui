@@ -823,11 +823,28 @@ def cmd_parity(c, a):
             cmd += ["--exemptions", exf]
         if a.wait_for:
             cmd += ["--waitFor", a.wait_for]
+        # the page clock starts at the capture time (capture env.collectedAt): the labels that depend on "now" (a
+        # relative age, "today") compare against the capture, not against the day of the parity run (2026-11-05)
+        # (--start-time, not --fixed-time: a frozen clock stops the Date-driven tile fade of Leaflet, CountryDetails)
+        collected = capture_collected_at(c, s, st)
+        if collected:
+            cmd += ["--start-time", collected]
         r = subprocess.run(cmd, capture_output=True, text=True)
         print((r.stdout or r.stderr).rstrip())
         bad += r.returncode != 0
     print(f"{s}: parity {'clean' if not bad else f'{bad} state(s) with differences or errors'}; reports in migration/screens/{s}/parity/")
     sys.exit(1 if bad else 0)
+
+
+def capture_collected_at(c, s, st):
+    """The ISO time of the capture of a state (capture/capture-<S>-<state>.json → env.collectedAt), else None."""
+    p = os.path.join(c.rdir(s), "capture", f"capture-{s}-{st}.json")
+    if not os.path.exists(p):
+        return None
+    try:
+        return json.load(open(p, encoding="utf-8")).get("env", {}).get("collectedAt") or None
+    except (OSError, ValueError):
+        return None
 
 
 def parity_problems(c, s):

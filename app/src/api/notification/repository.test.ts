@@ -113,8 +113,6 @@ describe('notification repository: the screen Notifications', () => {
     expect(first?.dateTimeCreated).toMatch(/^\d{4}-\d{2}-\d{2}T10:50:23$/);
     // The TST capture of 2026-10-29: 2 unread notifications.
     expect(list.items.filter((n) => !n.isRead)).toHaveLength(2);
-    // DEV Get_UI_Notifications never assigns HasUnreadMessages (MCP, 2026-10-29): False.
-    expect(list.hasUnreadMessages).toBe(false);
     expect(list.unreadNotificationsCount).toBe(2);
   });
 

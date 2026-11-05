@@ -20,6 +20,8 @@
  *        [--record-self <dir>]   save tree.json, screenshot.png and calls of the build in <dir>; no comparison
  *        [--diff-ref <path>]     the diff png path named in pixel differences (exemptions match on it); default the --out one
  *        [--fixed-time <iso>]    fix the page clock (Date.now, new Date) at this time, timers keep running (self reference: clocks)
+ *        [--start-time <iso>]    start the page clock at this time and let it run (clock.install): labels that depend on
+ *                                "now" match the capture, animations driven by Date (Leaflet tile fade) still run
  *        [--freeze-animations]   before the snapshot: finish finite animations and transitions, pause endless ones at their start
  *        [--preload-fonts]       start loading every @font-face font as soon as a stylesheet is in (both pages), so no
  *                                font arrives after the first paint of the content (see preloadFonts)
@@ -766,6 +768,7 @@ async function main() {
     u.searchParams.set('latency', mock === 'loading' ? 'infinite' : String(o.latency ?? '0'));
     if (Object.keys(flags).length) u.searchParams.set('ff', Object.entries(flags).map(([k, v]) => `${k}:${v}`).join(','));
     if (o['fixed-time']) await app.clock.setFixedTime(new Date(o['fixed-time']));
+    if (o['start-time']) await app.clock.install({ time: new Date(o['start-time']) });
     await app.addInitScript(() => { window.__osPhase = 'load'; });
     await app.goto(u.toString(), { waitUntil: 'load', timeout: 60000 });
     if (mock !== 'loading') await app.waitForLoadState('networkidle', { timeout: 15000 }).catch(() => {});

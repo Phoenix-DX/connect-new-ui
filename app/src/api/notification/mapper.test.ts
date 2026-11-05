@@ -91,7 +91,6 @@ describe('notification mapper: outputs', () => {
     expect(
       toNotificationList({
         UI_NotificationItemList: { List: [rosterWire, supperWire] },
-        HasUnreadMessages: true,
         UnreadNotificationsCount: '1',
       }),
     ).toEqual({
@@ -105,16 +104,14 @@ describe('notification mapper: outputs', () => {
           profileIconURL: '',
         },
       ],
-      hasUnreadMessages: true,
       unreadNotificationsCount: 1,
     });
     expect(
       toNotificationList({
         UI_NotificationItemList: { List: [] },
-        HasUnreadMessages: false,
         UnreadNotificationsCount: '',
       }),
-    ).toEqual({ items: [], hasUnreadMessages: false, unreadNotificationsCount: 0 });
+    ).toEqual({ items: [], unreadNotificationsCount: 0 });
   });
 
   it('toNotificationDateRangeRecords keeps the Updates_DateRanges records in the order of the server', () => {

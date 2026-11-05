@@ -46,6 +46,9 @@ describe('search mapper', () => {
         List: [resultWire('7302', 'Member', 'Lucía Rojas'), resultWire('7303', 'Member', 'Tomás Rojas', true)],
       },
       Places: { List: [] },
+      // live TST of 2026-11-05: two more result lists; the mapper does not read them yet
+      Events: { List: [] },
+      Schools: { List: [] },
     });
     expect(results.households).toEqual([
       {

@@ -4,7 +4,7 @@ Blocks rendered directly by at least half of the screens. Build these once (app-
 
 | Block | Used directly by | Data | Navigation targets | Flags |
 |---|---|---|---|---|
-| `UBTConnect.App_Common.CommonUI_InsideLayout.mvc.js` | 66 screens | DataActionGetCacheInfo | /UBTConnect/AcceptPendingPolicies, /UBTConnect/ContactUsMenu, /UBTConnect/HomeFeed, /UBTConnect/Login, /UBTConnect/PINRegister | - |
+| `UBTConnect.App_Common.CommonUI_InsideLayout.mvc.js` | 67 screens | DataActionGetCacheInfo | /UBTConnect/AcceptPendingPolicies, /UBTConnect/ContactUsMenu, /UBTConnect/HomeFeed, /UBTConnect/Login, /UBTConnect/PINRegister | - |
 
 Blocks inside the shell (build as part of it):
 
@@ -53,5 +53,5 @@ Blocks inside the shell (build as part of it):
 
 Layout-level blocks: not rendered by screens directly, but inside the content of at least half of them (layouts, headers, common dialogs). Build them with the shell:
 
-- `OutSystemsUI_2_23.Private.PullToRefresh.mvc.js` (43 screens)
 - `UBTConnectLibrary.ConnectPatterns.LazyImage.mvc.js` (43 screens)
+- `OutSystemsUI_2_23.Private.PullToRefresh.mvc.js` (42 screens)

@@ -263,7 +263,7 @@ describe('useNotifications', () => {
       () =>
         new Promise((resolve) => {
           answerList = () => {
-            resolve({ items: ITEMS, hasUnreadMessages: true, unreadNotificationsCount: 2 });
+            resolve({ items: ITEMS, unreadNotificationsCount: 2 });
           };
         }),
     );

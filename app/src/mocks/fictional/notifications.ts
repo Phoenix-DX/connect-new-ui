@@ -39,7 +39,7 @@ export interface MessageListItemRow {
 const ROWS: [number, string, string, string, boolean][] = [
   [6, '09:52:54', 'Test Noti 2', '', true],
   [6, '09:49:19', 'test', '', false],
-  [7, '16:28:10', 'New Connect notification', '', false],
+  [7, '08:28:10', 'New Connect notification', '', false], // 7 days before 11:10 (the capture time): "1w", in Last 7 Days
   [30, '10:50:23', 'Test Noti 56', ENTITY_LOGO, true],
   [31, '17:01:04', 'Winter assembly hall catering schedule availability questionnaire', ASSEMBLE_LOGO, true],
   [31, '16:00:53', 'Spring assembly hall cleaning workdays availability questionnaire', ASSEMBLE_LOGO, true],

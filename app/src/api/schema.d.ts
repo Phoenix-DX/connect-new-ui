@@ -1687,6 +1687,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/UBTConnect/ActionWrapper_NotificationOpened": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Server action Wrapper_NotificationOpened (UBTConnect) */
+        post: operations["UBTConnect.ActionWrapper_NotificationOpened"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/UBTConnect/AssembleDetail/DataActionGetAssembleNotes": {
         parameters: {
             query?: never;
@@ -1942,6 +1959,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/UBTConnect/HouseholdDetails_Block/DataActionGetHouseHold_Gallery": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Data action DataActionGetHouseHold_Gallery (UBTConnect, Directory_Household/HouseholdDetails_Block) */
+        post: operations["UBTConnect.HouseholdDetails_Block.DataActionGetHouseHold_Gallery"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/UBTConnect/HouseholdDetails_Block/DataActionGetHousehold": {
         parameters: {
             query?: never;
@@ -2174,6 +2208,40 @@ export interface paths {
         put?: never;
         /** Data action DataActionFetchMessageInstance (UBTConnect, App_Notifications/NotificationDetails) */
         post: operations["UBTConnect.NotificationDetails.DataActionFetchMessageInstance"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/UBTConnect/NotificationDetails/DataActionGetMessageInstance": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Data action DataActionGetMessageInstance (UBTConnect, App_Notifications/NotificationDetails) */
+        post: operations["UBTConnect.NotificationDetails.DataActionGetMessageInstance"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/UBTConnect/NotificationDetails/ScreenDataSetGetMessageTemplateParametersByMessageTemplateId": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Aggregate ScreenDataSetGetMessageTemplateParametersByMessageTemplateId (UBTConnect, App_Notifications/NotificationDetails) */
+        post: operations["UBTConnect.NotificationDetails.ScreenDataSetGetMessageTemplateParametersByMessageTemplateId"];
         delete?: never;
         options?: never;
         head?: never;
@@ -7422,6 +7490,8 @@ export interface components {
             Title: string;
             WorkPhone: string;
         };
+        /** @description structure Connect_Household_CS.UI_HouseholdRelations_AwayParentsRec (module not in the downloaded code) never captured */
+        Connect_Household_CS__UI_HouseholdRelations_AwayParents: unknown;
         Connect_Household_CS__UI_HouseholdTimelineImages: {
             Date: string;
             IsCurrent: boolean;
@@ -8386,6 +8456,12 @@ export interface components {
             In_UpdateItemId: string;
         };
         UBTConnect__ActionUpdateItem_MarkAsRead__Output: Record<string, never>;
+        UBTConnect__ActionWrapper_NotificationOpened__Input: {
+            MessageInstanceId: string;
+        };
+        UBTConnect__ActionWrapper_NotificationOpened__Output: {
+            IsRetracted: boolean;
+        };
         /** @description Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter. */
         UBTConnect__AssembleDetail__DataActionGetAssembleNotes__Input: {
             AssembleEventTypeTile?: string;
@@ -8416,7 +8492,6 @@ export interface components {
             Bookmarks_Loading?: boolean;
             BottomSheetId_Filter_IsLoaded?: boolean;
             BottomSheetId_Filter_ShowSubscription?: boolean;
-            Filter_BookmarksDefaultState?: components["schemas"]["Connect_Bookmarks_CS__Bookmark_Filter"];
             Filter_BottomSheetId?: string;
             HasFiltersApplied?: boolean;
             HeaderIsScrolled?: boolean;
@@ -8625,6 +8700,8 @@ export interface components {
                 List: components["schemas"]["Connect_Geography_CS__UI_CountryStatistics"][];
             };
         };
+        /** @description structure UBTConnect.Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecord (module not in the downloaded code) never captured */
+        UBTConnect__Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecord: unknown;
         /** @description Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter. */
         UBTConnect__Directory_EntityDetailsActions__DataActionFetchContactDetails__Input: {
             ContactPopUp_OverrideOptions?: components["schemas"]["UBTConnect_Utils__ContactPopUp_OverrideOptions"];
@@ -8640,6 +8717,7 @@ export interface components {
             Local_ShareType?: string;
             Local_isBookmarked?: boolean;
             NoteCategoryId?: string;
+            PendingOpen?: boolean;
             ShareSheet_OverwriteImageURL?: string;
             ShowCallPopUp?: boolean;
             ShowEmailPopUp?: boolean;
@@ -8680,6 +8758,7 @@ export interface components {
             Local_ShareType?: string;
             Local_isBookmarked?: boolean;
             NoteCategoryId?: string;
+            PendingOpen?: boolean;
             ShareSheet_OverwriteImageURL?: string;
             ShowCallPopUp?: boolean;
             ShowEmailPopUp?: boolean;
@@ -8695,6 +8774,8 @@ export interface components {
         UBTConnect__Directory_EntityDetailsActions__DataActionFetchNotes__Output: {
             Notes: components["schemas"]["UBTConnectLibrary__Notes"];
         };
+        /** @description structure UBTConnect.Directory_ImageDetailsList (module not in the downloaded code) never captured */
+        UBTConnect__Directory_ImageDetailsList: unknown;
         /** @description Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter. */
         UBTConnect__FeedBlock_CommunityPopulation__DataActionFetchCount__Input: {
             [key: string]: unknown;
@@ -8752,6 +8833,37 @@ export interface components {
         };
         UBTConnect__HomeFeed__DataActionGetCommunityStatistics__Output: {
             Out_CommunityStatistics: components["schemas"]["Connect_Geography_CS__UI_CommunityStatistics"];
+        };
+        /** @description Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter. */
+        UBTConnect__HouseholdDetails_Block__DataActionGetHouseHold_Gallery__Input: {
+            HideActions_PhotoBook?: boolean;
+            HouseholdId?: string;
+            In_CheckVisibility?: boolean;
+            In_HideActions?: boolean;
+            In_IsSkeletonOnly?: boolean;
+            In_ShowKebabMenu?: boolean;
+            IsShareOpen?: boolean;
+            IsSkeletonOnly?: boolean;
+            LocalIsBookmarked?: boolean;
+            Preview?: components["schemas"]["UBTConnect__HouseholdPreviewStructure"];
+            TEMP_TimelineImages?: {
+                EmptyListItem?: components["schemas"]["Connect_Household_CS__UI_HouseholdTimelineImages"];
+                List: components["schemas"]["Connect_Household_CS__UI_HouseholdTimelineImages"][];
+            };
+            TagsList?: {
+                EmptyListItem?: components["schemas"]["UBTConnectLibrary__Tag"];
+                List: components["schemas"]["UBTConnectLibrary__Tag"][];
+            };
+            TagsList_Id_About?: string;
+            TagsList_Id_Photos?: string;
+            TagsList_SelectedTag?: string;
+            UserAge_Visibility?: boolean;
+            isEnabled?: boolean;
+        } & {
+            [key: string]: unknown;
+        };
+        UBTConnect__HouseholdDetails_Block__DataActionGetHouseHold_Gallery__Output: {
+            Out_ImageDetails: components["schemas"]["UBTConnect__Directory_ImageDetailsList"];
         };
         /** @description Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter. */
         UBTConnect__HouseholdDetails_Block__DataActionGetHousehold_Coordinates__Input: {
@@ -8834,6 +8946,7 @@ export interface components {
         /** @description Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter. */
         UBTConnect__HouseholdRelations_Block__DataActionFetchNotes__Input: {
             HouseholdId?: string;
+            IsBookmarked?: boolean;
             MemberId?: string;
             ShowNotesSheet?: boolean;
             UserAge_Visibility?: boolean;
@@ -8847,6 +8960,7 @@ export interface components {
         /** @description Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter. */
         UBTConnect__HouseholdRelations_Block__DataActionGet_MemberDetails__Input: {
             HouseholdId?: string;
+            IsBookmarked?: boolean;
             MemberId?: string;
             ShowNotesSheet?: boolean;
             UserAge_Visibility?: boolean;
@@ -8855,6 +8969,7 @@ export interface components {
             [key: string]: unknown;
         };
         UBTConnect__HouseholdRelations_Block__DataActionGet_MemberDetails__Output: {
+            AwayParents: components["schemas"]["Connect_Household_CS__UI_HouseholdRelations_AwayParents"];
             FamilyName: string;
             Father: components["schemas"]["Connect_Household_CS__UI_HouseholdMember"];
             FormerSpouses: {
@@ -8864,11 +8979,16 @@ export interface components {
             IsMemberDeceased: boolean;
             MemberName: string;
             Mother: components["schemas"]["Connect_Household_CS__UI_HouseholdMember"];
+            NoDisplaySiblings: {
+                EmptyListItem?: components["schemas"]["Connect_Household_CS__UI_HouseholdMember"];
+                List: components["schemas"]["Connect_Household_CS__UI_HouseholdMember"][];
+            };
             ParentHouseholdId: string;
         };
         /** @description Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter. */
         UBTConnect__HouseholdRelations_Block__DataActionGet_ParentHouseholdDetails__Input: {
             HouseholdId?: string;
+            IsBookmarked?: boolean;
             MemberId?: string;
             ShowNotesSheet?: boolean;
             UserAge_Visibility?: boolean;
@@ -8964,7 +9084,6 @@ export interface components {
             GetOneSchoolGlobal_List_StartIndex?: number;
             Get_OneSchoolGlobal_List_IsLoading?: boolean;
             In_LocalityId?: string;
-            In_LocalityTimezoneData?: components["schemas"]["Connect_Geography_CS__UI_LocalityTimezone"];
             Out_OneSchoolGlobal_List2?: {
                 EmptyListItem?: components["schemas"]["Connect_CommunityBusiness_CS__UI_OneSchool_Card"];
                 List: components["schemas"]["Connect_CommunityBusiness_CS__UI_OneSchool_Card"][];
@@ -9011,6 +9130,10 @@ export interface components {
             MapExploreItem: components["schemas"]["Connect_Map_CS__MapExploreItem"];
             MarkerWithWindow: components["schemas"]["Leaflet__MarkerWithWindow"];
         };
+        /** @description structure UBTConnect.MessageParameterRecordList (module not in the downloaded code) never captured */
+        UBTConnect__MessageParameterRecordList: unknown;
+        /** @description structure UBTConnect.MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONUserTextRecord (module not in the downloaded code) never captured */
+        UBTConnect__MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONUserTextRecord: unknown;
         /** @description Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter. */
         UBTConnect__Notes__DataActionGetNotes__Input: {
             BottomSheetId_Filter_IsLoaded?: boolean;
@@ -9018,6 +9141,7 @@ export interface components {
             Filter_BottomSheetId?: string;
             HasFiltersApplied?: boolean;
             HeaderIsScrolled?: boolean;
+            IsSearching?: boolean;
             MaxRecords?: string;
             Note_Pills?: {
                 EmptyListItem?: components["schemas"]["UBTConnectLibrary__Tag"];
@@ -9045,12 +9169,49 @@ export interface components {
         };
         /** @description Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter. */
         UBTConnect__NotificationDetails__DataActionFetchMessageInstance__Input: {
+            FeedItemId?: string;
+            HardwareId?: string;
+            IsLoading?: boolean;
             MessageInstanceId?: string;
+            MessageTemplateId?: string;
+            ShowAssembleAction?: boolean;
         } & {
             [key: string]: unknown;
         };
         UBTConnect__NotificationDetails__DataActionFetchMessageInstance__Output: {
             UI_NotificationDetail: components["schemas"]["Connect2_Notification_CS__MessageListItem"];
+        };
+        /** @description Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter. */
+        UBTConnect__NotificationDetails__DataActionGetMessageInstance__Input: {
+            FeedItemId?: string;
+            HardwareId?: string;
+            IsLoading?: boolean;
+            MessageInstanceId?: string;
+            MessageTemplateId?: string;
+            ShowAssembleAction?: boolean;
+        } & {
+            [key: string]: unknown;
+        };
+        UBTConnect__NotificationDetails__DataActionGetMessageInstance__Output: {
+            IsCleared: boolean;
+            IsRetracted: boolean;
+            Message: components["schemas"]["UBTConnect__MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONUserTextRecord"];
+            PlaceholderDelimiters: components["schemas"]["UBTConnect__Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecord"];
+        };
+        /** @description Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter. */
+        UBTConnect__NotificationDetails__ScreenDataSetGetMessageTemplateParametersByMessageTemplateId__Input: {
+            FeedItemId?: string;
+            HardwareId?: string;
+            IsLoading?: boolean;
+            MessageInstanceId?: string;
+            MessageTemplateId?: string;
+            ShowAssembleAction?: boolean;
+        } & {
+            [key: string]: unknown;
+        };
+        UBTConnect__NotificationDetails__ScreenDataSetGetMessageTemplateParametersByMessageTemplateId__Output: {
+            Count: number;
+            List: components["schemas"]["UBTConnect__MessageParameterRecordList"];
         };
         /** @description Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter. */
         UBTConnect__Notifications__DataActionFetchNotifications__Input: {
@@ -9084,6 +9245,7 @@ export interface components {
             MaxRecords?: number;
             MoreAction_BottomSheetId?: string;
             OrderByIsAscending?: boolean;
+            PageNumber?: number;
             ReadCount?: string;
             Screen_NotificationItemList?: {
                 EmptyListItem?: components["schemas"]["Connect2_Notification_CS__MessageListItem"];
@@ -9095,12 +9257,12 @@ export interface components {
             SelectedHistorySearch?: string;
             ShowMarkAll?: boolean;
             ShowWarning?: boolean;
+            StartIndex?: number;
             isLoading?: boolean;
         } & {
             [key: string]: unknown;
         };
         UBTConnect__Notifications__DataActionFetchNotifications__Output: {
-            HasUnreadMessages: boolean;
             UI_NotificationItemList: {
                 EmptyListItem?: components["schemas"]["Connect2_Notification_CS__MessageListItem"];
                 List: components["schemas"]["Connect2_Notification_CS__MessageListItem"][];
@@ -9139,6 +9301,7 @@ export interface components {
             MaxRecords?: number;
             MoreAction_BottomSheetId?: string;
             OrderByIsAscending?: boolean;
+            PageNumber?: number;
             ReadCount?: string;
             Screen_NotificationItemList?: {
                 EmptyListItem?: components["schemas"]["Connect2_Notification_CS__MessageListItem"];
@@ -9150,6 +9313,7 @@ export interface components {
             SelectedHistorySearch?: string;
             ShowMarkAll?: boolean;
             ShowWarning?: boolean;
+            StartIndex?: number;
             isLoading?: boolean;
         } & {
             [key: string]: unknown;
@@ -9258,10 +9422,12 @@ export interface components {
             BottomSheetId_Filter?: string;
             BottomSheetId_Filter_IsLoaded?: boolean;
             BottomSheetId_Filter_ShowSubscriptionOnClick?: boolean;
+            HasEvents?: boolean;
             HasFiltersApplied?: boolean;
             HasHouseholds?: boolean;
             HasPeople?: boolean;
             HasPlaces?: boolean;
+            HasSchool?: boolean;
             HasSearched?: boolean;
             In_IsEventNavigation?: boolean;
             In_IsInScreenSearch?: boolean;
@@ -9292,6 +9458,10 @@ export interface components {
             [key: string]: unknown;
         };
         UBTConnect__ScreenBlock_Search__DataActionFetchSearchResults__Output: {
+            Events: {
+                EmptyListItem?: components["schemas"]["Connect_Search_CS__SearchResult"];
+                List: components["schemas"]["Connect_Search_CS__SearchResult"][];
+            };
             Households: {
                 EmptyListItem?: components["schemas"]["Connect_Search_CS__SearchResult"];
                 List: components["schemas"]["Connect_Search_CS__SearchResult"][];
@@ -9304,16 +9474,22 @@ export interface components {
                 EmptyListItem?: components["schemas"]["Connect_Search_CS__SearchResult"];
                 List: components["schemas"]["Connect_Search_CS__SearchResult"][];
             };
+            Schools: {
+                EmptyListItem?: components["schemas"]["Connect_Search_CS__SearchResult"];
+                List: components["schemas"]["Connect_Search_CS__SearchResult"][];
+            };
         };
         /** @description Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter. */
         UBTConnect__ScreenBlock_Search__DataActionGet_FilteredRecentClickedResults__Input: {
             BottomSheetId_Filter?: string;
             BottomSheetId_Filter_IsLoaded?: boolean;
             BottomSheetId_Filter_ShowSubscriptionOnClick?: boolean;
+            HasEvents?: boolean;
             HasFiltersApplied?: boolean;
             HasHouseholds?: boolean;
             HasPeople?: boolean;
             HasPlaces?: boolean;
+            HasSchool?: boolean;
             HasSearched?: boolean;
             In_IsEventNavigation?: boolean;
             In_IsInScreenSearch?: boolean;
@@ -9358,10 +9534,12 @@ export interface components {
             BottomSheetId_Filter?: string;
             BottomSheetId_Filter_IsLoaded?: boolean;
             BottomSheetId_Filter_ShowSubscriptionOnClick?: boolean;
+            HasEvents?: boolean;
             HasFiltersApplied?: boolean;
             HasHouseholds?: boolean;
             HasPeople?: boolean;
             HasPlaces?: boolean;
+            HasSchool?: boolean;
             HasSearched?: boolean;
             In_IsEventNavigation?: boolean;
             In_IsInScreenSearch?: boolean;
@@ -13295,6 +13473,41 @@ export interface operations {
             };
         };
     };
+    "UBTConnect.ActionWrapper_NotificationOpened": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UBTConnect__ActionWrapper_NotificationOpened__Input"];
+            };
+        };
+        responses: {
+            /** @description The action outputs. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["UBTConnect__ActionWrapper_NotificationOpened__Output"];
+                    };
+                };
+            };
+            /** @description Error. */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
     "UBTConnect.AssembleDetail.DataActionGetAssembleNotes": {
         parameters: {
             query?: never;
@@ -13820,6 +14033,41 @@ export interface operations {
             };
         };
     };
+    "UBTConnect.HouseholdDetails_Block.DataActionGetHouseHold_Gallery": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UBTConnect__HouseholdDetails_Block__DataActionGetHouseHold_Gallery__Input"];
+            };
+        };
+        responses: {
+            /** @description The action outputs. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["UBTConnect__HouseholdDetails_Block__DataActionGetHouseHold_Gallery__Output"];
+                    };
+                };
+            };
+            /** @description Error. */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
     "UBTConnect.HouseholdDetails_Block.DataActionGetHousehold": {
         parameters: {
             query?: never;
@@ -14296,6 +14544,76 @@ export interface operations {
                 content: {
                     "application/json": {
                         data: components["schemas"]["UBTConnect__NotificationDetails__DataActionFetchMessageInstance__Output"];
+                    };
+                };
+            };
+            /** @description Error. */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    "UBTConnect.NotificationDetails.DataActionGetMessageInstance": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UBTConnect__NotificationDetails__DataActionGetMessageInstance__Input"];
+            };
+        };
+        responses: {
+            /** @description The action outputs. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["UBTConnect__NotificationDetails__DataActionGetMessageInstance__Output"];
+                    };
+                };
+            };
+            /** @description Error. */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    "UBTConnect.NotificationDetails.ScreenDataSetGetMessageTemplateParametersByMessageTemplateId": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UBTConnect__NotificationDetails__ScreenDataSetGetMessageTemplateParametersByMessageTemplateId__Input"];
+            };
+        };
+        responses: {
+            /** @description The action outputs. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["UBTConnect__NotificationDetails__ScreenDataSetGetMessageTemplateParametersByMessageTemplateId__Output"];
                     };
                 };
             };

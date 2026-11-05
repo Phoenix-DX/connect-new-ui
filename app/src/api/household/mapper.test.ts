@@ -303,6 +303,9 @@ describe('household mapper of the relations (HouseholdRelations_Block)', () => {
       Mother: memberWire({ Id: '32', HouseholdId: '7010', Title: 'Ruth Lane', IsDeceased: true }),
       FormerSpouses: { List: [memberWire({ Id: '33', Title: 'Tom Reed', MarriageText: 'Divorced' })] },
       ParentHouseholdId: '7010',
+      // live TST of 2026-11-05: two more outputs (AwayParents, a structure never captured; NoDisplaySiblings)
+      AwayParents: {},
+      NoDisplaySiblings: { List: [] },
     });
     expect(relations.MemberName).toBe('Ada Harlow');
     expect(relations.FamilyName).toBe('The Harlows');

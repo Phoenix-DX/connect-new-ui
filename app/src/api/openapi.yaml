@@ -3466,6 +3466,37 @@ paths:
       x-os-phase: []
       x-os-screens: ['HouseholdCarousel']
       x-os-writes: true
+  '/api/UBTConnect/ActionWrapper_NotificationOpened':
+    post:
+      operationId: 'UBTConnect.ActionWrapper_NotificationOpened'
+      requestBody:
+        content:
+          'application/json':
+            schema: { '$ref': '#/components/schemas/UBTConnect__ActionWrapper_NotificationOpened__Input' }
+        required: true
+      responses:
+        '200':
+          content:
+            'application/json':
+              schema:
+                properties:
+                  data: { '$ref': '#/components/schemas/UBTConnect__ActionWrapper_NotificationOpened__Output' }
+                required: ['data']
+                type: 'object'
+          description: 'The action outputs.'
+        default:
+          content:
+            'application/json':
+              schema: { '$ref': '#/components/schemas/Error' }
+          description: 'Error.'
+      summary: 'Server action Wrapper_NotificationOpened (UBTConnect)'
+      tags: ['UBTConnect']
+      x-mock-source: 'fictional'
+      x-os-kind: 'serverAction'
+      x-os-paths: ['screenservices/UBTConnect/App_Notifications/NotificationDetails/ActionWrapper_NotificationOpened']
+      x-os-phase: []
+      x-os-screens: ['NotificationDetails']
+      x-os-writes: true
   '/api/UBTConnect/AssembleDetail/DataActionGetAssembleNotes':
     post:
       operationId: 'UBTConnect.AssembleDetail.DataActionGetAssembleNotes'
@@ -4001,6 +4032,48 @@ paths:
       x-os-phase: ['load']
       x-os-screens: ['HomeFeed']
       x-review: 'inputs'
+  '/api/UBTConnect/HouseholdDetails_Block/DataActionGetHouseHold_Gallery':
+    post:
+      operationId: 'UBTConnect.HouseholdDetails_Block.DataActionGetHouseHold_Gallery'
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              '$ref': '#/components/schemas/UBTConnect__HouseholdDetails_Block__DataActionGetHouseHold_Gallery__Input'
+        required: true
+      responses:
+        '200':
+          content:
+            'application/json':
+              schema:
+                properties:
+                  data:
+                    '$ref': '#/components/schemas/UBTConnect__HouseholdDetails_Block__DataActionGetHouseHold_Gallery__Output'
+                required: ['data']
+                type: 'object'
+          description: 'The action outputs.'
+        default:
+          content:
+            'application/json':
+              schema: { '$ref': '#/components/schemas/Error' }
+          description: 'Error.'
+      summary: 'Data action DataActionGetHouseHold_Gallery (UBTConnect, Directory_Household/HouseholdDetails_Block)'
+      tags: ['UBTConnect']
+      x-mock-source: 'fictional'
+      x-os-inputs: 'screen-variables'
+      x-os-kind: 'dataAction'
+      x-os-owner: 'Directory_Household/HouseholdDetails_Block'
+      x-os-paths:
+        - 'screenservices/UBTConnect/Directory_Household/HouseholdDetails_Block/DataActionGetHouseHold_Gallery'
+      x-os-phase: []
+      x-os-screens:
+        - 'HouseholdCarousel'
+        - 'HouseholdDetails'
+        - 'Locality_Details'
+        - 'OneSchoolGlobalCarousel'
+        - 'Profile'
+        - 'SupperMeeting_Carousel'
+      x-review: 'inputs'
   '/api/UBTConnect/HouseholdDetails_Block/DataActionGetHousehold':
     post:
       operationId: 'UBTConnect.HouseholdDetails_Block.DataActionGetHousehold'
@@ -4503,6 +4576,77 @@ paths:
       x-os-phase: ['load']
       x-os-screens: ['NotificationDetails']
       x-review: 'inputs'
+  '/api/UBTConnect/NotificationDetails/DataActionGetMessageInstance':
+    post:
+      operationId: 'UBTConnect.NotificationDetails.DataActionGetMessageInstance'
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              '$ref': '#/components/schemas/UBTConnect__NotificationDetails__DataActionGetMessageInstance__Input'
+        required: true
+      responses:
+        '200':
+          content:
+            'application/json':
+              schema:
+                properties:
+                  data:
+                    '$ref': '#/components/schemas/UBTConnect__NotificationDetails__DataActionGetMessageInstance__Output'
+                required: ['data']
+                type: 'object'
+          description: 'The action outputs.'
+        default:
+          content:
+            'application/json':
+              schema: { '$ref': '#/components/schemas/Error' }
+          description: 'Error.'
+      summary: 'Data action DataActionGetMessageInstance (UBTConnect, App_Notifications/NotificationDetails)'
+      tags: ['UBTConnect']
+      x-mock-source: 'fictional'
+      x-os-inputs: 'screen-variables'
+      x-os-kind: 'dataAction'
+      x-os-owner: 'App_Notifications/NotificationDetails'
+      x-os-paths: ['screenservices/UBTConnect/App_Notifications/NotificationDetails/DataActionGetMessageInstance']
+      x-os-phase: []
+      x-os-screens: ['NotificationDetails']
+      x-review: 'inputs'
+  '/api/UBTConnect/NotificationDetails/ScreenDataSetGetMessageTemplateParametersByMessageTemplateId':
+    post:
+      operationId: 'UBTConnect.NotificationDetails.ScreenDataSetGetMessageTemplateParametersByMessageTemplateId'
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              '$ref': '#/components/schemas/UBTConnect__NotificationDetails__ScreenDataSetGetMessageTemplateParametersByMessageTemplateId__Input'
+        required: true
+      responses:
+        '200':
+          content:
+            'application/json':
+              schema:
+                properties:
+                  data:
+                    '$ref': '#/components/schemas/UBTConnect__NotificationDetails__ScreenDataSetGetMessageTemplateParametersByMessageTemplateId__Output'
+                required: ['data']
+                type: 'object'
+          description: 'The action outputs.'
+        default:
+          content:
+            'application/json':
+              schema: { '$ref': '#/components/schemas/Error' }
+          description: 'Error.'
+      summary: 'Aggregate ScreenDataSetGetMessageTemplateParametersByMessageTemplateId (UBTConnect, App_Notifications/NotificationDetails)'
+      tags: ['UBTConnect']
+      x-mock-source: 'fictional'
+      x-os-inputs: 'screen-variables'
+      x-os-kind: 'aggregate'
+      x-os-owner: 'App_Notifications/NotificationDetails'
+      x-os-paths:
+        - 'screenservices/UBTConnect/App_Notifications/NotificationDetails/ScreenDataSetGetMessageTemplateParametersByMessageTemplateId'
+      x-os-phase: []
+      x-os-screens: ['NotificationDetails']
+      x-review: 'inputs'
   '/api/UBTConnect/Notifications/DataActionFetchNotifications':
     post:
       operationId: 'UBTConnect.Notifications.DataActionFetchNotifications'
@@ -4880,10 +5024,9 @@ paths:
       x-mock-source: 'fictional'
       x-os-kind: 'serviceAPI'
       x-os-paths:
-        - 'screenservices/UBTConnect/App_Notifications/Notifications/ServiceAPIAction_UI_UpdateItem_MarkAllAsRead'
         - 'screenservices/UBTConnect/Directory_Updates/Updates_SingleList/ServiceAPIAction_UI_UpdateItem_MarkAllAsRead'
       x-os-phase: []
-      x-os-screens: ['Notifications', 'Updates_SingleList']
+      x-os-screens: ['Updates_SingleList']
       x-os-writes: true
   '/api/UBTConnect/ServiceAPIAction_UI_UpdateItem_MarkAsRead':
     post:
@@ -14462,6 +14605,11 @@ components:
         - 'WorkPhone'
       type: 'object'
       x-os-structure: 'Connect_Household_CS.UI_HouseholdMemberRec'
+    Connect_Household_CS__UI_HouseholdRelations_AwayParents:
+      description: 'structure Connect_Household_CS.UI_HouseholdRelations_AwayParentsRec (module not in the downloaded code) never captured'
+      x-os-source: 'capture'
+      x-os-structure: 'Connect_Household_CS.UI_HouseholdRelations_AwayParentsRec'
+      x-unknown: true
     Connect_Household_CS__UI_HouseholdTimelineImages:
       properties:
         Date: { type: 'string', x-os-type: 'DateTime' }
@@ -16260,6 +16408,19 @@ components:
       properties: {}
       type: 'object'
       x-os-output-of: 'UBTConnect.ActionUpdateItem_MarkAsRead'
+    UBTConnect__ActionWrapper_NotificationOpened__Input:
+      additionalProperties: false
+      properties:
+        MessageInstanceId: { type: 'string', x-os-type: 'LongInteger' }
+      required: ['MessageInstanceId']
+      type: 'object'
+      x-os-input-of: 'UBTConnect.ActionWrapper_NotificationOpened'
+    UBTConnect__ActionWrapper_NotificationOpened__Output:
+      properties:
+        IsRetracted: { type: 'boolean' }
+      required: ['IsRetracted']
+      type: 'object'
+      x-os-output-of: 'UBTConnect.ActionWrapper_NotificationOpened'
     UBTConnect__AssembleDetail__DataActionGetAssembleNotes__Input:
       additionalProperties: true
       description: 'Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter.'
@@ -16306,7 +16467,6 @@ components:
         Bookmarks_Loading: { type: 'boolean' }
         BottomSheetId_Filter_IsLoaded: { type: 'boolean' }
         BottomSheetId_Filter_ShowSubscription: { type: 'boolean' }
-        Filter_BookmarksDefaultState: { '$ref': '#/components/schemas/Connect_Bookmarks_CS__Bookmark_Filter' }
         Filter_BottomSheetId: { type: 'string' }
         HasFiltersApplied: { type: 'boolean' }
         HeaderIsScrolled: { type: 'boolean' }
@@ -16659,6 +16819,11 @@ components:
       required: ['Out_CountriesStatistics']
       type: 'object'
       x-os-output-of: 'UBTConnect.CountryList.DataActionGetCountriesStatistics'
+    UBTConnect__Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecord:
+      description: 'structure UBTConnect.Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecord (module not in the downloaded code) never captured'
+      x-os-source: 'capture'
+      x-os-structure: 'UBTConnect.Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecord'
+      x-unknown: true
     UBTConnect__Directory_EntityDetailsActions__DataActionFetchContactDetails__Input:
       additionalProperties: true
       description: 'Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter.'
@@ -16676,6 +16841,7 @@ components:
         Local_ShareType: { type: 'string' }
         Local_isBookmarked: { type: 'boolean' }
         NoteCategoryId: { type: 'string' }
+        PendingOpen: { type: 'boolean' }
         ShareSheet_OverwriteImageURL: { type: 'string' }
         ShowCallPopUp: { type: 'boolean' }
         ShowEmailPopUp: { type: 'boolean' }
@@ -16731,6 +16897,7 @@ components:
         Local_ShareType: { type: 'string' }
         Local_isBookmarked: { type: 'boolean' }
         NoteCategoryId: { type: 'string' }
+        PendingOpen: { type: 'boolean' }
         ShareSheet_OverwriteImageURL: { type: 'string' }
         ShowCallPopUp: { type: 'boolean' }
         ShowEmailPopUp: { type: 'boolean' }
@@ -16748,6 +16915,11 @@ components:
       required: ['Notes']
       type: 'object'
       x-os-output-of: 'UBTConnect.Directory_EntityDetailsActions.DataActionFetchNotes'
+    UBTConnect__Directory_ImageDetailsList:
+      description: 'structure UBTConnect.Directory_ImageDetailsList (module not in the downloaded code) never captured'
+      x-os-source: 'capture'
+      x-os-structure: 'UBTConnect.Directory_ImageDetailsList'
+      x-unknown: true
     UBTConnect__FeedBlock_CommunityPopulation__DataActionFetchCount__Input:
       additionalProperties: true
       description: 'Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter.'
@@ -16843,6 +17015,51 @@ components:
       required: ['Out_CommunityStatistics']
       type: 'object'
       x-os-output-of: 'UBTConnect.HomeFeed.DataActionGetCommunityStatistics'
+    UBTConnect__HouseholdDetails_Block__DataActionGetHouseHold_Gallery__Input:
+      additionalProperties: true
+      description: 'Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter.'
+      properties:
+        HideActions_PhotoBook: { type: 'boolean' }
+        HouseholdId: { type: 'string', x-os-type: 'LongInteger' }
+        In_CheckVisibility: { type: 'boolean' }
+        In_HideActions: { type: 'boolean' }
+        In_IsSkeletonOnly: { type: 'boolean' }
+        In_ShowKebabMenu: { type: 'boolean' }
+        IsShareOpen: { type: 'boolean' }
+        IsSkeletonOnly: { type: 'boolean' }
+        LocalIsBookmarked: { type: 'boolean' }
+        Preview: { '$ref': '#/components/schemas/UBTConnect__HouseholdPreviewStructure' }
+        TEMP_TimelineImages:
+          properties:
+            EmptyListItem: { '$ref': '#/components/schemas/Connect_Household_CS__UI_HouseholdTimelineImages' }
+            List:
+              items: { '$ref': '#/components/schemas/Connect_Household_CS__UI_HouseholdTimelineImages' }
+              type: 'array'
+          required: ['List']
+          type: 'object'
+          x-os-list: true
+        TagsList:
+          properties:
+            EmptyListItem: { '$ref': '#/components/schemas/UBTConnectLibrary__Tag' }
+            List:
+              items: { '$ref': '#/components/schemas/UBTConnectLibrary__Tag' }
+              type: 'array'
+          required: ['List']
+          type: 'object'
+          x-os-list: true
+        TagsList_Id_About: { type: 'string' }
+        TagsList_Id_Photos: { type: 'string' }
+        TagsList_SelectedTag: { type: 'string' }
+        UserAge_Visibility: { type: 'boolean' }
+        isEnabled: { type: 'boolean' }
+      type: 'object'
+      x-os-input-of: 'UBTConnect.HouseholdDetails_Block.DataActionGetHouseHold_Gallery'
+    UBTConnect__HouseholdDetails_Block__DataActionGetHouseHold_Gallery__Output:
+      properties:
+        Out_ImageDetails: { '$ref': '#/components/schemas/UBTConnect__Directory_ImageDetailsList' }
+      required: ['Out_ImageDetails']
+      type: 'object'
+      x-os-output-of: 'UBTConnect.HouseholdDetails_Block.DataActionGetHouseHold_Gallery'
     UBTConnect__HouseholdDetails_Block__DataActionGetHousehold_Coordinates__Input:
       additionalProperties: true
       description: 'Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter.'
@@ -16967,6 +17184,7 @@ components:
       description: 'Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter.'
       properties:
         HouseholdId: { type: 'string', x-os-type: 'LongInteger' }
+        IsBookmarked: { type: 'boolean' }
         MemberId: { type: 'string', x-os-type: 'LongInteger' }
         ShowNotesSheet: { type: 'boolean' }
         UserAge_Visibility: { type: 'boolean' }
@@ -16984,6 +17202,7 @@ components:
       description: 'Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter.'
       properties:
         HouseholdId: { type: 'string', x-os-type: 'LongInteger' }
+        IsBookmarked: { type: 'boolean' }
         MemberId: { type: 'string', x-os-type: 'LongInteger' }
         ShowNotesSheet: { type: 'boolean' }
         UserAge_Visibility: { type: 'boolean' }
@@ -16992,6 +17211,7 @@ components:
       x-os-input-of: 'UBTConnect.HouseholdRelations_Block.DataActionGet_MemberDetails'
     UBTConnect__HouseholdRelations_Block__DataActionGet_MemberDetails__Output:
       properties:
+        AwayParents: { '$ref': '#/components/schemas/Connect_Household_CS__UI_HouseholdRelations_AwayParents' }
         FamilyName: { type: 'string' }
         Father: { '$ref': '#/components/schemas/Connect_Household_CS__UI_HouseholdMember' }
         FormerSpouses:
@@ -17006,14 +17226,25 @@ components:
         IsMemberDeceased: { type: 'boolean' }
         MemberName: { type: 'string' }
         Mother: { '$ref': '#/components/schemas/Connect_Household_CS__UI_HouseholdMember' }
+        NoDisplaySiblings:
+          properties:
+            EmptyListItem: { '$ref': '#/components/schemas/Connect_Household_CS__UI_HouseholdMember' }
+            List:
+              items: { '$ref': '#/components/schemas/Connect_Household_CS__UI_HouseholdMember' }
+              type: 'array'
+          required: ['List']
+          type: 'object'
+          x-os-list: true
         ParentHouseholdId: { type: 'string' }
       required:
+        - 'AwayParents'
         - 'FamilyName'
         - 'Father'
         - 'FormerSpouses'
         - 'IsMemberDeceased'
         - 'MemberName'
         - 'Mother'
+        - 'NoDisplaySiblings'
         - 'ParentHouseholdId'
       type: 'object'
       x-os-output-of: 'UBTConnect.HouseholdRelations_Block.DataActionGet_MemberDetails'
@@ -17022,6 +17253,7 @@ components:
       description: 'Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter.'
       properties:
         HouseholdId: { type: 'string', x-os-type: 'LongInteger' }
+        IsBookmarked: { type: 'boolean' }
         MemberId: { type: 'string', x-os-type: 'LongInteger' }
         ShowNotesSheet: { type: 'boolean' }
         UserAge_Visibility: { type: 'boolean' }
@@ -17176,7 +17408,6 @@ components:
         GetOneSchoolGlobal_List_StartIndex: { type: 'integer' }
         Get_OneSchoolGlobal_List_IsLoading: { type: 'boolean' }
         In_LocalityId: { type: 'string', x-os-type: 'LongInteger' }
-        In_LocalityTimezoneData: { '$ref': '#/components/schemas/Connect_Geography_CS__UI_LocalityTimezone' }
         Out_OneSchoolGlobal_List2:
           properties:
             EmptyListItem: { '$ref': '#/components/schemas/Connect_CommunityBusiness_CS__UI_OneSchool_Card' }
@@ -17258,6 +17489,16 @@ components:
       required: ['MapExploreItem', 'MarkerWithWindow']
       type: 'object'
       x-os-structure: 'UBTConnect.MarkerWithWindowMapExploreItemRecord'
+    UBTConnect__MessageParameterRecordList:
+      description: 'structure UBTConnect.MessageParameterRecordList (module not in the downloaded code) never captured'
+      x-os-source: 'capture'
+      x-os-structure: 'UBTConnect.MessageParameterRecordList'
+      x-unknown: true
+    UBTConnect__MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONUserTextRecord:
+      description: 'structure UBTConnect.MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONUserTextRecord (module not in the downloaded code) never captured'
+      x-os-source: 'capture'
+      x-os-structure: 'UBTConnect.MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONUserTextRecord'
+      x-unknown: true
     UBTConnect__Notes__DataActionGetNotes__Input:
       additionalProperties: true
       description: 'Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter.'
@@ -17267,6 +17508,7 @@ components:
         Filter_BottomSheetId: { type: 'string' }
         HasFiltersApplied: { type: 'boolean' }
         HeaderIsScrolled: { type: 'boolean' }
+        IsSearching: { type: 'boolean' }
         MaxRecords: { type: 'string', x-os-type: 'LongInteger' }
         Note_Pills:
           properties:
@@ -17313,7 +17555,12 @@ components:
       additionalProperties: true
       description: 'Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter.'
       properties:
+        FeedItemId: { type: 'string' }
+        HardwareId: { type: 'string' }
+        IsLoading: { type: 'boolean' }
         MessageInstanceId: { type: 'string', x-os-type: 'LongInteger' }
+        MessageTemplateId: { type: 'string', x-os-type: 'LongInteger' }
+        ShowAssembleAction: { type: 'boolean' }
       type: 'object'
       x-os-input-of: 'UBTConnect.NotificationDetails.DataActionFetchMessageInstance'
     UBTConnect__NotificationDetails__DataActionFetchMessageInstance__Output:
@@ -17322,6 +17569,48 @@ components:
       required: ['UI_NotificationDetail']
       type: 'object'
       x-os-output-of: 'UBTConnect.NotificationDetails.DataActionFetchMessageInstance'
+    UBTConnect__NotificationDetails__DataActionGetMessageInstance__Input:
+      additionalProperties: true
+      description: 'Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter.'
+      properties:
+        FeedItemId: { type: 'string' }
+        HardwareId: { type: 'string' }
+        IsLoading: { type: 'boolean' }
+        MessageInstanceId: { type: 'string', x-os-type: 'LongInteger' }
+        MessageTemplateId: { type: 'string', x-os-type: 'LongInteger' }
+        ShowAssembleAction: { type: 'boolean' }
+      type: 'object'
+      x-os-input-of: 'UBTConnect.NotificationDetails.DataActionGetMessageInstance'
+    UBTConnect__NotificationDetails__DataActionGetMessageInstance__Output:
+      properties:
+        IsCleared: { type: 'boolean' }
+        IsRetracted: { type: 'boolean' }
+        Message:
+          '$ref': '#/components/schemas/UBTConnect__MessagePriorityMessageContentMessageTemplateMessageSenderTargetMessageInstanceAdaptiveCardJSONUserTextRecord'
+        PlaceholderDelimiters:
+          '$ref': '#/components/schemas/UBTConnect__Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordRecord'
+      required: ['IsCleared', 'IsRetracted', 'Message', 'PlaceholderDelimiters']
+      type: 'object'
+      x-os-output-of: 'UBTConnect.NotificationDetails.DataActionGetMessageInstance'
+    UBTConnect__NotificationDetails__ScreenDataSetGetMessageTemplateParametersByMessageTemplateId__Input:
+      additionalProperties: true
+      description: 'Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter.'
+      properties:
+        FeedItemId: { type: 'string' }
+        HardwareId: { type: 'string' }
+        IsLoading: { type: 'boolean' }
+        MessageInstanceId: { type: 'string', x-os-type: 'LongInteger' }
+        MessageTemplateId: { type: 'string', x-os-type: 'LongInteger' }
+        ShowAssembleAction: { type: 'boolean' }
+      type: 'object'
+      x-os-input-of: 'UBTConnect.NotificationDetails.ScreenDataSetGetMessageTemplateParametersByMessageTemplateId'
+    UBTConnect__NotificationDetails__ScreenDataSetGetMessageTemplateParametersByMessageTemplateId__Output:
+      properties:
+        Count: { type: 'integer' }
+        List: { '$ref': '#/components/schemas/UBTConnect__MessageParameterRecordList' }
+      required: ['Count', 'List']
+      type: 'object'
+      x-os-output-of: 'UBTConnect.NotificationDetails.ScreenDataSetGetMessageTemplateParametersByMessageTemplateId'
     UBTConnect__Notifications__DataActionFetchNotifications__Input:
       additionalProperties: true
       description: 'Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter.'
@@ -17364,6 +17653,7 @@ components:
         MaxRecords: { type: 'integer' }
         MoreAction_BottomSheetId: { type: 'string' }
         OrderByIsAscending: { type: 'boolean' }
+        PageNumber: { type: 'integer' }
         ReadCount: { type: 'string', x-os-type: 'LongInteger' }
         Screen_NotificationItemList:
           properties:
@@ -17380,12 +17670,12 @@ components:
         SelectedHistorySearch: { type: 'string' }
         ShowMarkAll: { type: 'boolean' }
         ShowWarning: { type: 'boolean' }
+        StartIndex: { type: 'integer' }
         isLoading: { type: 'boolean' }
       type: 'object'
       x-os-input-of: 'UBTConnect.Notifications.DataActionFetchNotifications'
     UBTConnect__Notifications__DataActionFetchNotifications__Output:
       properties:
-        HasUnreadMessages: { type: 'boolean' }
         UI_NotificationItemList:
           properties:
             EmptyListItem: { '$ref': '#/components/schemas/Connect2_Notification_CS__MessageListItem' }
@@ -17396,7 +17686,7 @@ components:
           type: 'object'
           x-os-list: true
         UnreadNotificationsCount: { type: 'string', x-os-type: 'LongInteger' }
-      required: ['HasUnreadMessages', 'UI_NotificationItemList', 'UnreadNotificationsCount']
+      required: ['UI_NotificationItemList', 'UnreadNotificationsCount']
       type: 'object'
       x-os-output-of: 'UBTConnect.Notifications.DataActionFetchNotifications'
     UBTConnect__Notifications__DataActionGetDateRanges__Input:
@@ -17441,6 +17731,7 @@ components:
         MaxRecords: { type: 'integer' }
         MoreAction_BottomSheetId: { type: 'string' }
         OrderByIsAscending: { type: 'boolean' }
+        PageNumber: { type: 'integer' }
         ReadCount: { type: 'string', x-os-type: 'LongInteger' }
         Screen_NotificationItemList:
           properties:
@@ -17457,6 +17748,7 @@ components:
         SelectedHistorySearch: { type: 'string' }
         ShowMarkAll: { type: 'boolean' }
         ShowWarning: { type: 'boolean' }
+        StartIndex: { type: 'integer' }
         isLoading: { type: 'boolean' }
       type: 'object'
       x-os-input-of: 'UBTConnect.Notifications.DataActionGetDateRanges'
@@ -17618,10 +17910,12 @@ components:
         BottomSheetId_Filter: { type: 'string' }
         BottomSheetId_Filter_IsLoaded: { type: 'boolean' }
         BottomSheetId_Filter_ShowSubscriptionOnClick: { type: 'boolean' }
+        HasEvents: { type: 'boolean' }
         HasFiltersApplied: { type: 'boolean' }
         HasHouseholds: { type: 'boolean' }
         HasPeople: { type: 'boolean' }
         HasPlaces: { type: 'boolean' }
+        HasSchool: { type: 'boolean' }
         HasSearched: { type: 'boolean' }
         In_IsEventNavigation: { type: 'boolean' }
         In_IsInScreenSearch: { type: 'boolean' }
@@ -17672,6 +17966,15 @@ components:
       x-os-input-of: 'UBTConnect.ScreenBlock_Search.DataActionFetchSearchResults'
     UBTConnect__ScreenBlock_Search__DataActionFetchSearchResults__Output:
       properties:
+        Events:
+          properties:
+            EmptyListItem: { '$ref': '#/components/schemas/Connect_Search_CS__SearchResult' }
+            List:
+              items: { '$ref': '#/components/schemas/Connect_Search_CS__SearchResult' }
+              type: 'array'
+          required: ['List']
+          type: 'object'
+          x-os-list: true
         Households:
           properties:
             EmptyListItem: { '$ref': '#/components/schemas/Connect_Search_CS__SearchResult' }
@@ -17699,7 +18002,16 @@ components:
           required: ['List']
           type: 'object'
           x-os-list: true
-      required: ['Households', 'People', 'Places']
+        Schools:
+          properties:
+            EmptyListItem: { '$ref': '#/components/schemas/Connect_Search_CS__SearchResult' }
+            List:
+              items: { '$ref': '#/components/schemas/Connect_Search_CS__SearchResult' }
+              type: 'array'
+          required: ['List']
+          type: 'object'
+          x-os-list: true
+      required: ['Events', 'Households', 'People', 'Places', 'Schools']
       type: 'object'
       x-os-output-of: 'UBTConnect.ScreenBlock_Search.DataActionFetchSearchResults'
     UBTConnect__ScreenBlock_Search__DataActionGet_FilteredRecentClickedResults__Input:
@@ -17709,10 +18021,12 @@ components:
         BottomSheetId_Filter: { type: 'string' }
         BottomSheetId_Filter_IsLoaded: { type: 'boolean' }
         BottomSheetId_Filter_ShowSubscriptionOnClick: { type: 'boolean' }
+        HasEvents: { type: 'boolean' }
         HasFiltersApplied: { type: 'boolean' }
         HasHouseholds: { type: 'boolean' }
         HasPeople: { type: 'boolean' }
         HasPlaces: { type: 'boolean' }
+        HasSchool: { type: 'boolean' }
         HasSearched: { type: 'boolean' }
         In_IsEventNavigation: { type: 'boolean' }
         In_IsInScreenSearch: { type: 'boolean' }
@@ -17797,10 +18111,12 @@ components:
         BottomSheetId_Filter: { type: 'string' }
         BottomSheetId_Filter_IsLoaded: { type: 'boolean' }
         BottomSheetId_Filter_ShowSubscriptionOnClick: { type: 'boolean' }
+        HasEvents: { type: 'boolean' }
         HasFiltersApplied: { type: 'boolean' }
         HasHouseholds: { type: 'boolean' }
         HasPeople: { type: 'boolean' }
         HasPlaces: { type: 'boolean' }
+        HasSchool: { type: 'boolean' }
         HasSearched: { type: 'boolean' }
         In_IsEventNavigation: { type: 'boolean' }
         In_IsInScreenSearch: { type: 'boolean' }
