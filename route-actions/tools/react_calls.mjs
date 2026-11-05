@@ -1013,6 +1013,48 @@ function bindingsOf(units, reached) {
 // ---- extras: inputs, lifecycle, client state, errors (the screen files of a route) -----------------------------
 // Only the reached units of the UI folders (pages, containers, components). The caller removes the app shell files.
 const LIFECYCLE_FN = /^(useEffect|useLayoutEffect)$/;
+// `clientVar.lastUrl` → `UBTConnect.LastURL` (platform/session/session.ts: `lastUrl: accessorOf('UBTConnect.LastURL')`)
+const CLIENT_VAR_MAP = new Map();
+{
+  const sess = path.join(SRC, 'platform', 'session', 'session.ts');
+  if (fs.existsSync(sess))
+    for (const m of fs.readFileSync(sess, 'utf8').matchAll(/(\w+): accessorOf\('([^']+)'\)/g)) CLIENT_VAR_MAP.set(m[1], m[2]);
+}
+function clientVarName(arg) {
+  if (!arg) return null;
+  const lit = literalOf(arg);
+  if (lit) return lit;
+  const m = arg.getText().match(/^clientVar\.(\w+)$/);
+  return m ? (CLIENT_VAR_MAP.get(m[1]) ?? arg.getText()) : short60(arg.getText());
+}
+// the object literal that a navigation parameter expression gives: `{…}`, a const with `{…}`, or `f(x)` with `f`
+// returning `{…}`
+function paramObject(e, hops = 0) {
+  if (!e || hops > 3) return null;
+  if (Node.isParenthesizedExpression(e)) return paramObject(e.getExpression(), hops + 1);
+  if (Node.isObjectLiteralExpression(e)) return e;
+  if (Node.isIdentifier(e)) {
+    let sym = e.getSymbol?.();
+    if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
+    const d = sym?.getDeclarations()?.[0];
+    return d && Node.isVariableDeclaration(d) ? paramObject(d.getInitializer(), hops + 1) : null;
+  }
+  if (Node.isCallExpression(e)) {
+    const fn = resolveFn(e.getExpression());
+    if (!fn) return null;
+    const b = fn.getBody?.();
+    if (!b) return null;
+    if (!Node.isBlock(b)) return paramObject(b, hops + 1);
+    const rs = b.getDescendantsOfKind(SyntaxKind.ReturnStatement).find((r) => r.getExpression());
+    return rs ? paramObject(rs.getExpression(), hops + 1) : null;
+  }
+  return null;
+}
+function navParamEntry(pathArg, obj, n, f) {
+  const keys = obj.getProperties().map((p) => p.getName?.() ?? p.getText());
+  const values = obj.getProperties().map((p) => short60(Node.isPropertyAssignment(p) ? p.getInitializer().getText() : p.getText()));
+  return { to: navTargetsOf(pathArg), keys, values, file: rel(f), line: n.getStartLineNumber() };
+}
 const CLIENT_VAR_FN = /^(getClientVar|setClientVar|useClientVar)$/;
 const STORAGE_FN = /^(readItem|writeItem|removeItem|getItem|setItem)$/;
 const short60 = (t) => t.replace(/\s+/g, ' ').slice(0, 60) + (t.replace(/\s+/g, ' ').length > 60 ? '…' : '');
@@ -1075,7 +1117,30 @@ function readBy(queryCall) {
 function extrasOf(units, reached) {
   const out = { lifecycle: [], queries: [], clientState: [], inputs: [], navParams: [], errors: [] };
   const seenNode = new Set();
+  const seenCv = new Set();
   for (const k of reached) {
+    // client state: every reached file (platform code reads client variables for the screens)
+    const u0 = units.get(k);
+    if (!seenCv.has(u0.node) && !excluded(u0.file) && !/platform\/session\/(session|clientVars)\.ts$/.test(rel(u0.file))) {
+      seenCv.add(u0.node);
+      for (const c of u0.node.getDescendantsOfKind(SyntaxKind.CallExpression)) {
+        const name = callName(c);
+        const args = c.getArguments();
+        const ex = c.getExpression();
+        const acc = Node.isPropertyAccessExpression(ex) ? ex.getExpression().getText().match(/^clientVar\.(\w+)$/) : null;
+        if (acc && /^(get|set)$/.test(name))
+          out.clientState.push({ op: `clientVar.${name}`, name: CLIENT_VAR_MAP.get(acc[1]) ?? acc[1], file: rel(u0.file), line: c.getStartLineNumber() });
+        else if (CLIENT_VAR_FN.test(name) && args[0])
+          out.clientState.push({ op: name, name: clientVarName(args[0]), file: rel(u0.file), line: c.getStartLineNumber() });
+        else if (STORAGE_FN.test(name) && args.length) {
+          const recv = Node.isPropertyAccessExpression(ex) ? ex.getExpression().getText() : '';
+          if (/^(get|set)Item$/.test(name) && !/^(localStorage|sessionStorage|window\.\w+Storage)$/.test(recv)) continue;
+          const area = /^(read|write|remove)Item$/.test(name) ? literalOf(args[0]) : recv;
+          const key = /^(read|write|remove)Item$/.test(name) ? args[1] : args[0];
+          out.clientState.push({ op: `${area ?? '?'}.${name}`, name: key ? (literalOf(key) ?? short60(key.getText())) : '?', file: rel(u0.file), line: c.getStartLineNumber() });
+        }
+      }
+    }
     const u = units.get(k);
     const f = u.file;
     if (!UI_DIR.test(rel(f)) || seenNode.has(u.node)) continue;
@@ -1092,15 +1157,6 @@ function extrasOf(units, reached) {
         // a query fetches when the component mounts (and when its key changes)
         if (/^use(Infinite)?Query$/.test(name) && c.getFirstAncestor((x) => Node.isFunctionDeclaration(x) && /^use\w*Query$/.test(x.getName() ?? ''))) continue;
         out.queries.push({ hook: name, in: fnName, calls: queryCalls(c), readBy: readBy(c), ...here(c) });
-      } else if (CLIENT_VAR_FN.test(name) && args[0]) {
-        const v = literalOf(args[0]) ?? short60(args[0].getText());
-        out.clientState.push({ op: name, name: v, ...here(c) });
-      } else if (STORAGE_FN.test(name) && args.length) {
-        const recv = Node.isPropertyAccessExpression(c.getExpression()) ? c.getExpression().getExpression().getText() : '';
-        if (STORAGE_FN.test(name) && /^(get|set)Item$/.test(name) && !/^(localStorage|sessionStorage|window\.\w+Storage)$/.test(recv)) continue;
-        const area = /^(read|write|remove)Item$/.test(name) ? literalOf(args[0]) : recv;
-        const key = /^(read|write|remove)Item$/.test(name) ? args[1] : args[0];
-        out.clientState.push({ op: `${area ?? '?'}.${name}`, name: key ? (literalOf(key) ?? short60(key.getText())) : '?', ...here(c) });
       } else if (/^use(Search)?Params$/.test(name)) {
         // `const [params] = useSearchParams()` then `params.get('K')`
         const vd = c.getFirstAncestorByKind(SyntaxKind.VariableDeclaration);
@@ -1116,10 +1172,11 @@ function extrasOf(units, reached) {
           }
         }
         out.inputs.push({ hook: name, keys, ...here(c) });
-      } else if (NAV_FN.test(name) && args[1] && Node.isObjectLiteralExpression(args[1])) {
-        const keys = args[1].getProperties().map((p) => (p.getName?.() ?? p.getText()));
-        const values = args[1].getProperties().map((p) => short60(Node.isPropertyAssignment(p) ? p.getInitializer().getText() : p.getText()));
-        out.navParams.push({ to: navTargetsOf(args[0]), keys, values, ...here(c) });
+      } else if (NAV_FN.test(name) && args[1] && !Node.isPropertyAccessExpression(args[1])) {
+        // `navigate(path, {…})`, `navigate(path, params)`, `navigate(path, f(x))`; `navigate(t.path, t.inputs)` is
+        // covered by the `{ path, inputs }` objects below
+        const obj = paramObject(args[1]);
+        if (obj) out.navParams.push(navParamEntry(args[0], obj, c, f));
       } else if (name === 'raiseToFlowHandler') {
         out.errors.push({ kind: 'flow handler', in: fnName, effects: [], ...here(c) });
       } else if (name === 'catch' && args[0] && isFunctionLike(args[0])) {
@@ -1127,6 +1184,16 @@ function extrasOf(units, reached) {
         const raises = args[0].getDescendantsOfKind(SyntaxKind.CallExpression).some((x) => callName(x) === 'raiseToFlowHandler');
         if (!raises) out.errors.push({ kind: '.catch', in: fnName, effects: effs, ...here(c) });
       }
+    }
+    // a navigation target object `{ path: '/App/Screen', inputs: {…} }` or `{ path, params: {…} }` that a navigate consumes
+    for (const o of u.node.getDescendantsOfKind(SyntaxKind.ObjectLiteralExpression)) {
+      const pp = o.getProperty('path');
+      const ip = o.getProperty('inputs') ?? o.getProperty('params');
+      if (!pp || !ip || !Node.isPropertyAssignment(pp) || !Node.isPropertyAssignment(ip)) continue;
+      const obj = paramObject(ip.getInitializer());
+      if (!obj) continue;
+      const e = navParamEntry(pp.getInitializer(), obj, o, f);
+      if (e.to.length) out.navParams.push(e);
     }
     for (const t of u.node.getDescendantsOfKind(SyntaxKind.TryStatement)) {
       const cc = t.getCatchClause();
@@ -1146,6 +1213,7 @@ function extrasOf(units, reached) {
         effects: body && !isFlow ? keep(effectsOf(body, null, 0, new Set([body]))) : [], file: rel(f), line: pa.getStartLineNumber() });
     }
   }
+  out.clientState = out.clientState.filter((x) => x.name !== '?'); // a storage call whose key the code computes
   const byLine = (a, b) => a.file.localeCompare(b.file) || a.line - b.line;
   for (const v of Object.values(out)) v.sort(byLine);
   return out;

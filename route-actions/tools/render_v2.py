@@ -114,7 +114,9 @@ def render(r, h):
     ox, rx = r["osExtras"], r["reactExtras"]
     is_own_os = lambda f: f.startswith(own_pre)
     is_own_re = lambda f: f.startswith(react_pre)
-    ox_own = {k: ([x for x in v if is_own_os(x["file"])] if isinstance(v, list) else v) for k, v in ox.items()}
+    # the per-block lists keep the own files; access and the UI flow handler chain belong to the screen as a whole
+    per_block = {"inputs", "navParams", "lifecycle", "fetch", "clientState", "errors", "roleRefs"}
+    ox_own = {k: ([x for x in v if is_own_os(x["file"])] if k in per_block else v) for k, v in ox.items()}
     rx_own = {k: [x for x in v if is_own_re(x["file"])] for k, v in rx.items()}
 
     # user actions
