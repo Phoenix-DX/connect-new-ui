@@ -22,7 +22,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 |---|---|
 | Server calls of the route on TST | 2: React makes 2, **0 missing** |
 | Differences found | **0** (see [section 3](#3-differences-found)) |
-| Questions | 3 (see [section 4](#4-questions)) |
+| Questions | 0 (+ 3 declared on TST outside the call graph) (see [section 4](#4-questions)) |
 | React calls reached only through shared code | 1: see the last section |
 | User actions of the route (own code) | OutSystems: 2. React: 3 |
 | Screen and blocks of the UI flow with a React port | 1 of 1 |
@@ -38,9 +38,17 @@ None.
 
 ## 4. Questions
 
-1. React calls `/api/Connect2_LegacyShared/ActionGetSignedImagesInBulk` from `fetchLegacySignedImagesInBulk()` [`api/image/repository.ts:21`](../../app/src/api/image/repository.ts#L21) (page). TST HelpersDetail has no chain to this call. Does the call belong to this route?
-2. React calls `/api/Connect2_LegacyShared/ActionGetTimezoneInformation` from `getTimezoneInformation()` [`lib/legacyShared/actions.ts:360`](../../app/src/lib/legacyShared/actions.ts#L360) (page). TST HelpersDetail has no chain to this call. Does the call belong to this route?
-3. React calls `/api/Connect2_LegacyShared/ActionGetMemberContactByCacheKey` from `fetchMemberContacts()` [`api/message/repository.ts:271`](../../app/src/api/message/repository.ts#L271) (page). TST HelpersDetail has no chain to this call. Does the call belong to this route?
+None.
+
+### Calls that TST declares outside the static call graph
+
+React calls of the screen without a TST chain in the code of the route. TST makes them: the contract (`x-os-screens`, from the compiled closure) or `migration/contract/extra-actions.json` records each. The reasons: a block that the capture did not render, a module client action, a JavaScript callback. Not questions (user 2026-11-05).
+
+| Call | React action | How TST declares it | Evidence |
+|---|---|---|---|
+| `/api/Connect2_LegacyShared/ActionGetSignedImagesInBulk` | `fetchLegacySignedImagesInBulk()` [`api/image/repository.ts:21`](../../app/src/api/image/repository.ts#L21) | extra-actions | Connect2_LegacyShared.controller.js (migration/runtime-sources/): ServerAction.GetSignedImagesInBulk, called by GetBulkSignedImageURL (:2816-2871), called through the CallbacksJS JavaScript node of GetCacheableSignedImageURL (:3692+, getClientActionProxies: a callback the call graph cannot follow);  |
+| `/api/Connect2_LegacyShared/ActionGetTimezoneInformation` | `getTimezoneInformation()` [`lib/legacyShared/actions.ts:360`](../../app/src/lib/legacyShared/actions.ts#L360) | extra-actions | Connect2_LegacyShared.controller.js (migration/runtime-sources/): ServerAction.GetTimezoneInformation :7892-7912 (LocalityId Long Integer; TimezoneInformation APIDomain_Directory_IS TimezoneRec), called by client action GetTimezoneInformation :5500-5575, the miss callback of GetCacheableTimezoneInfo |
+| `/api/Connect2_LegacyShared/ActionGetMemberContactByCacheKey` | `fetchMemberContacts()` [`api/message/repository.ts:271`](../../app/src/api/message/repository.ts#L271) | extra-actions | Connect2_LegacyShared.controller.js (migration/runtime-sources/): ServerAction.GetMemberContactByCacheKey :7780-7800, called by client action GetMemberContactList :5210-5260, the miss callback of GetCacheableMemberContactList :3414-3545 (memory cache DirectoryCacheType.MemberContact, key BuildMember |
 
 React reaches 1 more call without a TST chain on this route only through shared containers, components or app code. The last section lists it, not this one.
 

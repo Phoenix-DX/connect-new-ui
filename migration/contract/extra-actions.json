@@ -2,11 +2,14 @@
   {
     "path": "screenservices/Connect2_LegacyShared/ActionGetSignedPhotosInBulk",
     "screens": [
+      "AssembleDetail",
+      "AssembleEvents",
       "BookmarksByGroup",
+      "LDM_MyEvents_V2",
       "LegacyShareObject",
       "MessageDetail"
     ],
-    "evidence": "Connect2_LegacyShared.controller.js:7865-7880 (ServerAction.GetSignedPhotosInBulk), :2983-3035 (GetBulkSignedPhotosURL), :3947-4115 (GetCacheableSignedPhotoURL), called by Connect2_LegacyShared.Utility.Result_Item_Image (LoadPhotoAsync, .mvc.js:702-770); CR-W3Y-1"
+    "evidence": "Connect2_LegacyShared.controller.js:7865-7880 (ServerAction.GetSignedPhotosInBulk), :2983-3035 (GetBulkSignedPhotosURL), :3947-4115 (GetCacheableSignedPhotoURL), called by Connect2_LegacyShared.Utility.Result_Item_Image (LoadPhotoAsync, .mvc.js:702-770); CR-W3Y-1; 2026-11-05 (route-actions questions): also the build screens whose closure (migration/survey/screens.json) has a block that calls GetCacheableSignedPhotoURL: AssembleDetail (AssembleEventDetail_Contact, NC_Card_Item_Visual, NC_Result_Item__Image), AssembleEvents (NC_Card_Item_Visual, NC_Result_Item__Image), LDM_MyEvents_V2 (Result_Item_Image)"
   },
   {
     "path": "screenservices/UBTConnect/ServiceAPIAddBookmark2",
@@ -76,10 +79,22 @@
   {
     "path": "screenservices/Connect2_LegacyShared/ActionGetUserInformation",
     "screens": [
+      "AssembleDetail",
       "AssembleEvents",
-      "Assemble_BrowseByCountry"
+      "Assemble_BrowseByCountry",
+      "BrowseCountries",
+      "BrowseDirectory",
+      "CountryDetails",
+      "CountryList",
+      "HouseholdCarousel",
+      "HouseholdDetails",
+      "Household_Relations",
+      "Locality_Details",
+      "OneSchoolGlobalCarousel",
+      "Profile",
+      "SupperMeeting_Carousel"
     ],
-    "evidence": "Connect2_LegacyShared.controller.js (migration/runtime-sources/, fetched read-only from TST): ServerAction.GetUserInformation :7917-7935 (no input, output UserInformation), called by client action GetUserInformation :5620-5667, the miss callback of GetCacheableUserInfo :4391-4520; reached by Assemble_FilterLocalityByCountry OnReady and Connect2_Assemble_MUI HasAccessToRegion (Regional plan, controller.js:1140-1254) (O-B3)"
+    "evidence": "Connect2_LegacyShared.controller.js (migration/runtime-sources/, fetched read-only from TST): ServerAction.GetUserInformation :7917-7935 (no input, output UserInformation), called by client action GetUserInformation :5620-5667, the miss callback of GetCacheableUserInfo :4391-4520; reached by Assemble_FilterLocalityByCountry OnReady and Connect2_Assemble_MUI HasAccessToRegion (Regional plan, controller.js:1140-1254) (O-B3); 2026-11-05 (route-actions questions): also the build screens whose closure (migration/survey/screens.json) has a block that calls GetCacheableUserInfo / HasAccessToRegion: AssembleDetail (AssembleEventDetail_Contact), BrowseCountries (BrowseCountries), BrowseDirectory (BrowseDirectory), CountryDetails (CountryDetails), CountryList (CountryList), HouseholdCarousel (HouseholdDetails_Members_Block), HouseholdDetails (HouseholdDetails_Members_Block), Household_Relations (HouseholdRelations_Block), Locality_Details (HouseholdDetails_Members_Block), OneSchoolGlobalCarousel (HouseholdDetails_Members_Block), Profile (HouseholdDetails_Members_Block), SupperMeeting_Carousel (HouseholdDetails_Members_Block)"
   },
   {
     "path": "screenservices/Connect2_OrbitMobile_MUI/ActionGetDirectoryAccess",
@@ -91,16 +106,19 @@
   {
     "path": "screenservices/Connect2_LegacyShared/ActionGetMemberContactByCacheKey",
     "screens": [
+      "AssembleDetail",
+      "HelpersDetail",
       "MilestoneDetail"
     ],
-    "evidence": "Connect2_LegacyShared.controller.js (migration/runtime-sources/): ServerAction.GetMemberContactByCacheKey :7780-7800, called by client action GetMemberContactList :5210-5260, the miss callback of GetCacheableMemberContactList :3414-3545 (memory cache DirectoryCacheType.MemberContact, key BuildMemberContactsCacheKey :915-985); reached by ScreenBlock_AccommodationHost BuildMemberCallData (...ScreenBlock_AccommodationHost.mvc.js:2121-2260); CR-MilestoneDetail-2"
+    "evidence": "Connect2_LegacyShared.controller.js (migration/runtime-sources/): ServerAction.GetMemberContactByCacheKey :7780-7800, called by client action GetMemberContactList :5210-5260, the miss callback of GetCacheableMemberContactList :3414-3545 (memory cache DirectoryCacheType.MemberContact, key BuildMemberContactsCacheKey :915-985); reached by ScreenBlock_AccommodationHost BuildMemberCallData (...ScreenBlock_AccommodationHost.mvc.js:2121-2260); CR-MilestoneDetail-2; 2026-11-05 (route-actions questions): also the build screens whose closure (migration/survey/screens.json) has a block that calls GetCacheableMemberContactList: AssembleDetail (AssembleEventDetail_ContactList), HelpersDetail (ScreenBlock_HelperDetails)"
   },
   {
     "path": "screenservices/Connect2_LegacyShared/ActionGetTimezoneInformation",
     "screens": [
+      "HelpersDetail",
       "MilestoneDetail"
     ],
-    "evidence": "Connect2_LegacyShared.controller.js (migration/runtime-sources/): ServerAction.GetTimezoneInformation :7892-7912 (LocalityId Long Integer; TimezoneInformation APIDomain_Directory_IS TimezoneRec), called by client action GetTimezoneInformation :5500-5575, the miss callback of GetCacheableTimezoneInfo :4251-4390 (memory cache DirectoryCacheType.Timezone, key LocalityId, TTL 1200); reached by ScreenBlock_AccommodationHost BuildMemberCallData (...ScreenBlock_AccommodationHost.mvc.js:2121-2260); CR-MilestoneDetail-2"
+    "evidence": "Connect2_LegacyShared.controller.js (migration/runtime-sources/): ServerAction.GetTimezoneInformation :7892-7912 (LocalityId Long Integer; TimezoneInformation APIDomain_Directory_IS TimezoneRec), called by client action GetTimezoneInformation :5500-5575, the miss callback of GetCacheableTimezoneInfo :4251-4390 (memory cache DirectoryCacheType.Timezone, key LocalityId, TTL 1200); reached by ScreenBlock_AccommodationHost BuildMemberCallData (...ScreenBlock_AccommodationHost.mvc.js:2121-2260); CR-MilestoneDetail-2; 2026-11-05 (route-actions questions): also the build screens whose closure (migration/survey/screens.json) has a block that calls GetCacheableTimezoneInfo: HelpersDetail (ScreenBlock_HelperDetails)"
   },
   {
     "path": "screenservices/Connect2_LegacyShared/ActionGetBulkSubdivisions_V2",
@@ -144,5 +162,18 @@
       "PINRegister"
     ],
     "evidence": "UBT_AppManager.controller.js:8500-8512 (ServerAction.AppManager_Logout: EspaceName Text, AppManager_MobileContext Record AppManager_DeviceContext; no output), called by the client action AppManager_Logout (:3651+), called by Login OnInitialize (In_IsFromResetPIN) and PINRegister OnClick_BackToLogin, and by UBTConnect Connect_Logout; route-actions gap 6 (migration/clarify/auto-decisions-2026-11-05.md)"
+  },
+  {
+    "path": "screenservices/Connect2_LegacyShared/ActionGetSignedImagesInBulk",
+    "screens": [
+      "GuestArrangements",
+      "HelpersDetail",
+      "HostSurvey",
+      "MilestoneDetail",
+      "OrbitAdminEventDetail",
+      "OrbitAdminMilestoneDetail",
+      "QRCodeGenerate"
+    ],
+    "evidence": "Connect2_LegacyShared.controller.js (migration/runtime-sources/): ServerAction.GetSignedImagesInBulk, called by GetBulkSignedImageURL (:2816-2871), called through the CallbacksJS JavaScript node of GetCacheableSignedImageURL (:3692+, getClientActionProxies: a callback the call graph cannot follow); GetCacheableSignedImageURL is called by Card_MemberInformation, Card_MemberInformation_Survey, PhotoLazyLoaded, ScreenBlock_HelperDetails (_buildMemberCallData :959-1043), ScreenBlock_AdminEventDetail, ScreenBlock_AdminMilestoneDetail, ScreenBlock_GenerateQRCode and the MilestoneDetail meal/accommodation blocks; screens = build screens whose closure has one of these blocks (migration/survey/screens.json); route-actions questions 2026-11-05"
   }
 ]

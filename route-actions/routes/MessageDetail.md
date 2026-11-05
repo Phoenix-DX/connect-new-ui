@@ -22,7 +22,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 |---|---|
 | Server calls of the route on TST | 7: React makes 7, **0 missing** |
 | Differences found | **0** (see [section 3](#3-differences-found)) |
-| Questions | 1 (see [section 4](#4-questions)) |
+| Questions | 0 (+ 1 declared on TST outside the call graph) (see [section 4](#4-questions)) |
 | React calls reached only through shared code | 0: see the last section |
 | User actions of the route (own code) | OutSystems: 11. React: 9 |
 | Screen and blocks of the UI flow with a React port | 1 of 1 |
@@ -38,7 +38,15 @@ None.
 
 ## 4. Questions
 
-1. React calls `/api/Connect2_LegacyShared/ShareObjectDetail_ExtendedShare/DataActionGetShare` from `fetchSharedObjectDetail()` [`api/share/repository.ts:61`](../../app/src/api/share/repository.ts#L61) (page). TST MessageDetail has no chain to this call. Does the call belong to this route?
+None.
+
+### Calls that TST declares outside the static call graph
+
+React calls of the screen without a TST chain in the code of the route. TST makes them: the contract (`x-os-screens`, from the compiled closure) or `migration/contract/extra-actions.json` records each. The reasons: a block that the capture did not render, a module client action, a JavaScript callback. Not questions (user 2026-11-05).
+
+| Call | React action | How TST declares it | Evidence |
+|---|---|---|---|
+| `/api/Connect2_LegacyShared/ShareObjectDetail_ExtendedShare/DataActionGetShare` | `fetchSharedObjectDetail()` [`api/share/repository.ts:61`](../../app/src/api/share/repository.ts#L61) | contract | x-os-screens of the operation in app/src/api/openapi.yaml (the compiled closure of the screen, migration/tools/contract_gen.py) |
 
 ## 5. Server calls
 

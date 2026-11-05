@@ -29,7 +29,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 |---|---|
 | Server calls of the route on TST | 9: React makes 6, **0 missing**, 3 not a gap of the web app |
 | Differences found | **0** (+ 3 not a gap of the web app) (see [section 3](#3-differences-found)) |
-| Questions | 6 (see [section 4](#4-questions)) |
+| Questions | 0 (+ 6 declared on TST outside the call graph) (see [section 4](#4-questions)) |
 | React calls reached only through shared code | 4: see the last section |
 | User actions of the route (own code) | OutSystems: 4. React: 3 |
 | Screen and blocks of the UI flow with a React port | 1 of 1 |
@@ -52,19 +52,27 @@ Missing TST calls that a rule of `route-actions/config.json` (`notApplicable`, u
 - `UBTConnect_Utils/CW_Share/ShareSheet/ActionCS_CreateShareProfileLink`. Chain on TST: onClick in CircleButton_WithLabel → CircleButton_WithLabel.action_OnClick → event onClick of CircleButton_WithLabel → ShareSheet.handler_OnClickExternalOption → server CS_CreateShareProfileLink.
 - `UBTConnect_Utils/ActionCS_CreateShareProfileLink`. Chain on TST: AssembleEventDetail_AttendeeSubdivision.handler_OnClickShareConnect → event navigateTo_ShareObject of AssembleEventDetail_AttendeeSubdivision → … → UBTConnect_Utils.shareEntity_ByURL → server CS_CreateShareProfileLink.
 
-**Telemetry (decision U17).** The call belongs to the application-event pipeline (zOnApplicationEvent_Wrapper → getAppEventName → cacheLocalApplicationEvents). Telemetry is not wired in the mock phase (decision U17). Evidence: Connect2_LegacyShared.controller.js:989-1240 (CacheLocalApplicationEvents); migration/clarify/decisions.md U17; app/src/lib/orbit/actions.ts:318-321.
+**Telemetry (decision U17).** The call belongs to the application-event pipeline (zOnApplicationEvent_Wrapper → getAppEventName → cacheLocalApplicationEvents). Telemetry is not wired in the mock phase (decision U17). Evidence: Connect2_LegacyShared.controller.js:989-1240 (CacheLocalApplicationEvents); migration/app-shell.spec.md:349,384 (U17: no telemetry in the mock phase); app/src/lib/orbit/actions.ts:318-321.
 
 - `Connect2_LegacyShared/ActionGetAllApplicationEvents`. Chain on TST: NC_Result_Item__Image.onClick_Result_Item → event onClick_Item of NC_Result_Item__Image → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents.
 
 
 ## 4. Questions
 
-1. React calls `/api/Connect2_LegacyShared/ActionGetSignedPhotosInBulk` from `getSignedPhotosInBulk()` [`lib/legacyShared/actions.ts:49`](../../app/src/lib/legacyShared/actions.ts#L49) (page). TST AssembleDetail has no chain to this call. Does the call belong to this route?
-2. React calls `/api/Connect2_LegacyShared/ActionGetUserInformation` from `getCacheableUserInfo()` [`lib/legacyShared/actions.ts:302`](../../app/src/lib/legacyShared/actions.ts#L302) (page). TST AssembleDetail has no chain to this call. Does the call belong to this route?
-3. React calls `/api/Connect2_LegacyShared/ActionGetMemberContactByCacheKey` from `fetchMemberContacts()` [`api/message/repository.ts:271`](../../app/src/api/message/repository.ts#L271) (page). TST AssembleDetail has no chain to this call. Does the call belong to this route?
-4. React calls `/api/Connect2_Assemble_MUI/ActionAddBookmark` from `addAssembleBookmark()` [`api/bookmark/repository.ts:20`](../../app/src/api/bookmark/repository.ts#L20) (page). TST AssembleDetail has no chain to this call. Does the call belong to this route?
-5. React calls `/api/Connect2_Assemble_MUI/ActionDeleteBookmarkByBookmarkId` from `deleteAssembleBookmark()` [`api/bookmark/repository.ts:33`](../../app/src/api/bookmark/repository.ts#L33) (page). TST AssembleDetail has no chain to this call. Does the call belong to this route?
-6. React calls `/api/Connect2_LegacyShared/ActionGetBulkSubdivisions_V2` from `fetchBulkSubdivisions()` [`api/locality/repository.ts:181`](../../app/src/api/locality/repository.ts#L181) (page). TST AssembleDetail has no chain to this call. Does the call belong to this route?
+None.
+
+### Calls that TST declares outside the static call graph
+
+React calls of the screen without a TST chain in the code of the route. TST makes them: the contract (`x-os-screens`, from the compiled closure) or `migration/contract/extra-actions.json` records each. The reasons: a block that the capture did not render, a module client action, a JavaScript callback. Not questions (user 2026-11-05).
+
+| Call | React action | How TST declares it | Evidence |
+|---|---|---|---|
+| `/api/Connect2_LegacyShared/ActionGetSignedPhotosInBulk` | `getSignedPhotosInBulk()` [`lib/legacyShared/actions.ts:49`](../../app/src/lib/legacyShared/actions.ts#L49) | extra-actions | Connect2_LegacyShared.controller.js:7865-7880 (ServerAction.GetSignedPhotosInBulk), :2983-3035 (GetBulkSignedPhotosURL), :3947-4115 (GetCacheableSignedPhotoURL), called by Connect2_LegacyShared.Utility.Result_Item_Image (LoadPhotoAsync, .mvc.js:702-770); CR-W3Y-1; 2026-11-05 (route-actions questions |
+| `/api/Connect2_LegacyShared/ActionGetUserInformation` | `getCacheableUserInfo()` [`lib/legacyShared/actions.ts:302`](../../app/src/lib/legacyShared/actions.ts#L302) | extra-actions | Connect2_LegacyShared.controller.js (migration/runtime-sources/, fetched read-only from TST): ServerAction.GetUserInformation :7917-7935 (no input, output UserInformation), called by client action GetUserInformation :5620-5667, the miss callback of GetCacheableUserInfo :4391-4520; reached by Assembl |
+| `/api/Connect2_LegacyShared/ActionGetMemberContactByCacheKey` | `fetchMemberContacts()` [`api/message/repository.ts:271`](../../app/src/api/message/repository.ts#L271) | extra-actions | Connect2_LegacyShared.controller.js (migration/runtime-sources/): ServerAction.GetMemberContactByCacheKey :7780-7800, called by client action GetMemberContactList :5210-5260, the miss callback of GetCacheableMemberContactList :3414-3545 (memory cache DirectoryCacheType.MemberContact, key BuildMember |
+| `/api/Connect2_Assemble_MUI/ActionAddBookmark` | `addAssembleBookmark()` [`api/bookmark/repository.ts:20`](../../app/src/api/bookmark/repository.ts#L20) | extra-actions | Connect2_Assemble_MUI.controller.js (prettified, migration/screens/AssembleEvents/analysis/sources/pretty/): ServerAction.AddBookmark :1687-1723 (ObjectType, ObjectId, Group, Note Text; outputs Success Boolean, CreatedBookmarkResponse Connect2_MyBookmarks_IS BookmarkItem), called by the client actio |
+| `/api/Connect2_Assemble_MUI/ActionDeleteBookmarkByBookmarkId` | `deleteAssembleBookmark()` [`api/bookmark/repository.ts:33`](../../app/src/api/bookmark/repository.ts#L33) | extra-actions | Connect2_Assemble_MUI.controller.js (prettified, migration/screens/AssembleEvents/analysis/sources/pretty/): ServerAction.DeleteBookmarkByBookmarkId :1725-1749 (BookmarkId Long Integer; output Success Boolean), called by the client action ToggleBookmarkItem :1493-1686; reached by AssembleEventDetail |
+| `/api/Connect2_LegacyShared/ActionGetBulkSubdivisions_V2` | `fetchBulkSubdivisions()` [`api/locality/repository.ts:181`](../../app/src/api/locality/repository.ts#L181) | extra-actions | Connect2_LegacyShared.controller.js (migration/runtime-sources/, fetched read-only from TST): ServerAction.GetBulkSubdivisions_V2 :7691-7704 (input CacheKeys RecordList, output Results CacheableSubdivisionInformationTextTextRecordList), called by client action GetBulkSubdivision_V2 :3070-3110, the b |
 
 React reaches 4 more calls without a TST chain on this route only through shared containers, components or app code. The last section lists them, not this one.
 

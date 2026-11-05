@@ -29,7 +29,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 |---|---|
 | Server calls of the route on TST | 1: React makes 1, **0 missing** |
 | Differences found | **0** (see [section 3](#3-differences-found)) |
-| Questions | 1 (see [section 4](#4-questions)) |
+| Questions | 0 (+ 1 declared on TST outside the call graph) (see [section 4](#4-questions)) |
 | React calls reached only through shared code | 0: see the last section |
 | User actions of the route (own code) | OutSystems: 1. React: 1 |
 | Screen and blocks of the UI flow with a React port | 1 of 1 |
@@ -45,7 +45,15 @@ None.
 
 ## 4. Questions
 
-1. React calls `/api/Connect2_LegacyShared/ActionGetSignedImagesInBulk` from `fetchLegacySignedImagesInBulk()` [`api/image/repository.ts:21`](../../app/src/api/image/repository.ts#L21) (page). TST QRCodeGenerate has no chain to this call. Does the call belong to this route?
+None.
+
+### Calls that TST declares outside the static call graph
+
+React calls of the screen without a TST chain in the code of the route. TST makes them: the contract (`x-os-screens`, from the compiled closure) or `migration/contract/extra-actions.json` records each. The reasons: a block that the capture did not render, a module client action, a JavaScript callback. Not questions (user 2026-11-05).
+
+| Call | React action | How TST declares it | Evidence |
+|---|---|---|---|
+| `/api/Connect2_LegacyShared/ActionGetSignedImagesInBulk` | `fetchLegacySignedImagesInBulk()` [`api/image/repository.ts:21`](../../app/src/api/image/repository.ts#L21) | extra-actions | Connect2_LegacyShared.controller.js (migration/runtime-sources/): ServerAction.GetSignedImagesInBulk, called by GetBulkSignedImageURL (:2816-2871), called through the CallbacksJS JavaScript node of GetCacheableSignedImageURL (:3692+, getClientActionProxies: a callback the call graph cannot follow);  |
 
 ## 5. Server calls
 

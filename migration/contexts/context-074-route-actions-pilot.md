@@ -35,8 +35,8 @@
 ## Open issues
 - 29 route questions: MilestoneDetail 11, AssembleDetail 6, HelpersDetail 3, Profile 2, HostSurvey 2, static
   routes 5. 8 app shell questions. The user answers them per route.
-- The full `vitest run` fails 159 files on this branch before and after the change (`localStorage` undefined in
-  `freshPage`, full run only; each file passes alone). Not caused by this work; to find.
+- Running vitest as `caffeinate npx vitest run` uses Homebrew Node 26 (global `localStorage` shadows jsdom's):
+  159 files fail. Run vitest with the shell's nvm Node; keep the Mac awake with a separate `caffeinate` process.
 - Drift: the live `AssembleEventDetail.mvc.js` has no `Section_MeetingNotes`; React renders one (survey 2026-10-13).
 
 ## Next

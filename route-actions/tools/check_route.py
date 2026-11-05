@@ -258,6 +258,24 @@ def contract_paths():
     return {p: (op.get("post") or {}).get("x-os-paths", []) for p, op in d["paths"].items()}
 
 
+def contract_meta():
+    """{api path: {"screens": x-os-screens, "phase": x-os-phase}}: what the contract (generated from the compiled
+    code and the captures, migration/tools/contract_gen.py) records for each operation."""
+    import yaml
+    d = yaml.safe_load(open(cfg("react", "contract"), encoding="utf-8"))
+    return {p: {"screens": (op.get("post") or {}).get("x-os-screens", []), "phase": (op.get("post") or {}).get("x-os-phase", [])}
+            for p, op in d["paths"].items()}
+
+
+def extra_actions():
+    """{TST call path: {"screens": [...], "evidence": str}} of migration/contract/extra-actions.json: the server calls
+    that TST reaches only through a module client action or a JavaScript callback (not in the static call graph)."""
+    p = os.path.join(ROOT, "migration", "contract", "extra-actions.json")
+    if not os.path.exists(p):
+        return {}
+    return {e["path"]: e for e in load(p)}
+
+
 def route_meta(screen):
     txt = open(cfg("react", "routeMeta"), encoding="utf-8").read()
     m = re.search(rf"^\s*{screen}: \{{ access: '(\w+)', lock: '(\w+)' \}}", txt, re.M)
@@ -297,6 +315,8 @@ def check(route):
     shell_r, page_r, all_r = react_data(route)
     cpaths = contract_paths()
     cio = contract_io()
+    cmeta = contract_meta()
+    extra = extra_actions()
     meta = route_meta(route)
     flow = flows.get(route, "unclear")
 
@@ -446,13 +466,25 @@ def check(route):
         #   → the shared section of the route file, not a question
         # - page: a chain starts in the screen files → a question of the route
         roots = [ch[0] for ch in c.get("callers") or [] if ch]
+        declared = None  # TST declares the call for this screen, outside the static call graph (user 2026-11-05)
+        cm = cmeta.get(c["apiPath"], {})
+        ex = [extra[x] for x in ps if x in extra and route in extra[x].get("screens", [])]
+        if ex:
+            declared = {"how": "extra-actions", "evidence": ex[0]["evidence"]}
+        elif route in cm.get("screens", []):
+            declared = {"how": "contract", "evidence": "x-os-screens of the operation in app/src/api/openapi.yaml (the "
+                        "compiled closure of the screen, migration/tools/contract_gen.py)"}
         if "shell" in c["where"]:
             kind = "shell"
+            # an explicit list (config.json shellDeclared): the app start and the sign-out calls that TST makes from
+            # module roots the call graph does not read. Not x-os-phase (too broad: Opus review 2026-11-05).
+            sd = next((x for x in CFG.get("shellDeclared", {}).get("calls", []) if x["apiPath"] == c["apiPath"]), None)
+            declared = {"how": sd["how"], "evidence": sd["evidence"]} if sd else None
         elif roots and all(not r0["file"].startswith(f"app/src/pages/{route}/") for r0 in roots):
             kind = "shared"
         else:
             kind = "page"
-        react_only.append({**c, "osPaths": ps, "kind": kind,
+        react_only.append({**c, "osPaths": ps, "kind": kind, "declared": declared,
                            "roots": sorted({(r0["name"], r0["file"]) for r0 in roots})})
 
     # --- React name index ----------------------------------------------------------------------------------------
@@ -1222,6 +1254,7 @@ def render_app_shell():
     """APP_SHELL.md: the app shell parts of every checked route, merged (data/check-*.json)."""
     LINK_BASE[0] = HERE
     eps, blocks, acts, qs, nav, nav_missing, every, racts = {}, {}, {}, {}, {}, set(), {}, {}
+    decl = {}  # the shell calls that TST declares outside the static call graph (app start, extra actions)
     routes = []
     for path in sorted(glob.glob(os.path.join(DATA, "check-*.json"))):
         r = load(path)
@@ -1250,7 +1283,7 @@ def render_app_shell():
                 racts.setdefault((a["file"], a["line"]), a)
         for c in r["reactOnly"]:
             if c.get("kind", "shell" if c["where"] == "shell" else "page") == "shell":
-                qs.setdefault(c["apiPath"], {**c, "routes": []})["routes"].append(r["route"])
+                (decl if c.get("declared") else qs).setdefault(c["apiPath"], {**c, "routes": []})["routes"].append(r["route"])
         for t, g in (r.get("navGroups") or {}).items():
             if g == ["shell"]:
                 nav.setdefault(t, r["osNav"].get(t, []))
@@ -1299,6 +1332,14 @@ def render_app_shell():
     if qs:
         L += ["", "| # | Routes without a TST chain to the call |", "|---|---|"]
         L += [f"| {i} | " + ", ".join(f"`{r}`" for r in c["routes"]) + " |" for i, c in enumerate(qs.values(), 1)]
+    if decl:
+        L += ["", "### Calls that TST declares outside the static call graph", "",
+              "React calls of the app shell without a TST chain on some routes. TST makes them: the contract or "
+              "`extra-actions.json` records each (app start, module client actions, JavaScript callbacks). Not "
+              "questions (user 2026-11-05).", "",
+              "| Call | React action | How TST declares it | Evidence |", "|---|---|---|---|"]
+        L += [f"| `{c['apiPath']}` | `{c['fn']}()` {link(c['file'], c['line'])} | {c['declared']['how']} | {md_escape(c['declared']['evidence'])[:300]} |"
+              for c in decl.values()]
     p = os.path.join(HERE, "APP_SHELL.md")
     open(p, "w", encoding="utf-8").write("\n".join(L) + "\n")
     render_svgs(["APP_SHELL"] + names)

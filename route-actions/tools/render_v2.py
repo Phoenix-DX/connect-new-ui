@@ -130,7 +130,8 @@ def render(r, h):
     blocks_ported = sum(1 for b in own_blocks if b["evidence"] in ("tag", "name"))
     own_nav = {t: v for t, v in r["osNav"].items() if "screen" in r.get("navGroups", {}).get(t, ["screen"])}
     nav_missing = [t for t in own_nav if t not in r["reactNav"]]
-    questions = [c for c in r["reactOnly"] if c.get("kind") == "page"]
+    questions = [c for c in r["reactOnly"] if c.get("kind") == "page" and not c.get("declared")]
+    declared = [c for c in r["reactOnly"] if c.get("kind") == "page" and c.get("declared")]
     shared_calls = [c for c in r["reactOnly"] if c.get("kind") == "shared"]
     ox, rx = r["osExtras"], r["reactExtras"]
     is_own_os = lambda f: f.startswith(own_pre)
@@ -197,7 +198,7 @@ def render(r, h):
          "| Check | Result |", "|---|---|",
          f"| Server calls of the route on TST | {len(eps)}: React makes {cnt['implemented']}, **{cnt['missing']} missing**" + (f", {n_na} not a gap of the web app" if n_na else "") + " |",
          f"| Differences found | **{n_diff}**" + (f" (+ {n_na} not a gap of the web app)" if n_na else "") + " (see [section 3](#3-differences-found)) |",
-         f"| Questions | {len(questions)} (see [section 4](#4-questions)) |",
+         f"| Questions | {len(questions)}" + (f" (+ {len(declared)} declared on TST outside the call graph)" if declared else "") + " (see [section 4](#4-questions)) |",
          f"| React calls reached only through shared code | {len(shared_calls)}: see the last section |",
          f"| User actions of the route (own code) | OutSystems: {len(os_own_acts)}. React: {len(re_own_acts)} |",
          f"| Screen and blocks of the UI flow with a React port | {blocks_ported} of {len(own_blocks)} |",
@@ -213,6 +214,15 @@ def render(r, h):
     qs = [f"React calls `{c['apiPath']}` from `{c['fn']}()` {h.link(c['file'], c['line'])} ({c['where']}). TST {route} "
           "has no chain to this call. Does the call belong to this route?" for c in questions]
     L += [f"{i}. {q}" for i, q in enumerate(qs, 1)] or ["None."]
+    if declared:
+        L += ["", "### Calls that TST declares outside the static call graph", "",
+              "React calls of the screen without a TST chain in the code of the route. TST makes them: the contract "
+              "(`x-os-screens`, from the compiled closure) or `migration/contract/extra-actions.json` records each. "
+              "The reasons: a block that the capture did not render, a module client action, a JavaScript callback. "
+              "Not questions (user 2026-11-05).", "",
+              "| Call | React action | How TST declares it | Evidence |", "|---|---|---|---|"]
+        L += [f"| `{c['apiPath']}` | `{c['fn']}()` {h.link(c['file'], c['line'])} | {c['declared']['how']} | {h.md_escape(c['declared']['evidence'])[:300]} |"
+              for c in declared]
     if shared_calls:
         n_sc = len(shared_calls)
         L += ["", f"React reaches {n_sc} more call{'s' if n_sc > 1 else ''} without a TST chain on this route only through "

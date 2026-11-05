@@ -22,7 +22,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 |---|---|
 | Server calls of the route on TST | 16: React makes 13, **0 missing**, 3 not a gap of the web app |
 | Differences found | **0** (+ 3 not a gap of the web app) (see [section 3](#3-differences-found)) |
-| Questions | 2 (see [section 4](#4-questions)) |
+| Questions | 0 (+ 2 declared on TST outside the call graph) (see [section 4](#4-questions)) |
 | React calls reached only through shared code | 2: see the last section |
 | User actions of the route (own code) | OutSystems: 5. React: 4 |
 | Screen and blocks of the UI flow with a React port | 2 of 2 |
@@ -45,15 +45,23 @@ Missing TST calls that a rule of `route-actions/config.json` (`notApplicable`, u
 - `UBTConnect_Utils/CW_Share/ShareSheet/ActionCS_CreateShareProfileLink`. Chain on TST: onClick in CircleButton_WithLabel → CircleButton_WithLabel.action_OnClick → event onClick of CircleButton_WithLabel → ShareSheet.handler_OnClickExternalOption → server CS_CreateShareProfileLink.
 - `UBTConnect_Utils/ActionCS_CreateShareProfileLink`. Chain on TST: onClick in Button → event event_OnClick of Button → … → UBTConnect_Utils.shareEntity_ByURL → server CS_CreateShareProfileLink.
 
-**Telemetry (decision U17).** The call belongs to the application-event pipeline (zOnApplicationEvent_Wrapper → getAppEventName → cacheLocalApplicationEvents). Telemetry is not wired in the mock phase (decision U17). Evidence: Connect2_LegacyShared.controller.js:989-1240 (CacheLocalApplicationEvents); migration/clarify/decisions.md U17; app/src/lib/orbit/actions.ts:318-321.
+**Telemetry (decision U17).** The call belongs to the application-event pipeline (zOnApplicationEvent_Wrapper → getAppEventName → cacheLocalApplicationEvents). Telemetry is not wired in the mock phase (decision U17). Evidence: Connect2_LegacyShared.controller.js:989-1240 (CacheLocalApplicationEvents); migration/app-shell.spec.md:349,384 (U17: no telemetry in the mock phase); app/src/lib/orbit/actions.ts:318-321.
 
 - `Connect2_LegacyShared/ActionGetAllApplicationEvents`. Chain on TST: SharePopup.onClick_CallButton → event event_ShareToOthers of SharePopup → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents.
 
 
 ## 4. Questions
 
-1. React calls `/api/UBTConnect_Utils/CacheControl_AllSubdivisions/DataActionGetCacheInfo` from `fetchAllSubdivisions()` [`api/locality/repository.ts:165`](../../app/src/api/locality/repository.ts#L165) (page). TST Profile has no chain to this call. Does the call belong to this route?
-2. React calls `/api/UBTConnect_Utils/CacheControl_AllLocalities/DataActionGetCacheInfo` from `fetchAllLocalities()` [`api/locality/repository.ts:157`](../../app/src/api/locality/repository.ts#L157) (page). TST Profile has no chain to this call. Does the call belong to this route?
+None.
+
+### Calls that TST declares outside the static call graph
+
+React calls of the screen without a TST chain in the code of the route. TST makes them: the contract (`x-os-screens`, from the compiled closure) or `migration/contract/extra-actions.json` records each. The reasons: a block that the capture did not render, a module client action, a JavaScript callback. Not questions (user 2026-11-05).
+
+| Call | React action | How TST declares it | Evidence |
+|---|---|---|---|
+| `/api/UBTConnect_Utils/CacheControl_AllSubdivisions/DataActionGetCacheInfo` | `fetchAllSubdivisions()` [`api/locality/repository.ts:165`](../../app/src/api/locality/repository.ts#L165) | contract | x-os-screens of the operation in app/src/api/openapi.yaml (the compiled closure of the screen, migration/tools/contract_gen.py) |
+| `/api/UBTConnect_Utils/CacheControl_AllLocalities/DataActionGetCacheInfo` | `fetchAllLocalities()` [`api/locality/repository.ts:157`](../../app/src/api/locality/repository.ts#L157) | contract | x-os-screens of the operation in app/src/api/openapi.yaml (the compiled closure of the screen, migration/tools/contract_gen.py) |
 
 React reaches 2 more calls without a TST chain on this route only through shared containers, components or app code. The last section lists them, not this one.
 
