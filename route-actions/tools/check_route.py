@@ -494,11 +494,12 @@ def check(route):
     shell_dir = os.path.join(ROOT, "migration", "shell", "sources")
     os_x = os_extras.extras(tst.get("sources", {}), own_files, facts.get("screenFile"), os.path.relpath(shell_dir, ROOT))
     react_x = {k: [x for x in v if x["file"] not in shell_set] for k, v in (page_r.get("extras") or {}).items()}
+    react_x_all = page_r.get("extras") or {}  # with the app shell files: for the differences (a shell file can read a variable for the screen)
     gen = open(cfg("react", "routesGenerated"), encoding="utf-8").read()
     gm = re.search(r'"screen": "' + re.escape(route) + r'"[^\n]*?"inputs": \[([^\]]*)\]', gen)
     react_inputs = re.findall(r'"([^"]+)"', gm.group(1)) if gm else []
     result = {"route": route, "screenFile": sfile, "screenFileRaw": facts.get("screenFile"), "osExtras": os_x,
-              "reactExtras": react_x, "reactInputsDeclared": react_inputs,
+              "reactExtras": react_x, "reactExtrasAll": react_x_all, "reactInputsDeclared": react_inputs,
               "osRaw": os.path.relpath(os.path.join(cfg("tst", "screens"), route, "analysis", "sources", "raw"), ROOT), "userActions": uacts, "reactActions": react_acts, "flow": flow, "survey": sv, "meta": meta, "endpoints": eps,
               "reactOnly": react_only, "reactUnknown": react_unknown,
               "blocks": blocks, "osNav": {k: sorted(v) for k, v in os_nav.items()},

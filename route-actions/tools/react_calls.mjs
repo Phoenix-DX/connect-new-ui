@@ -1051,8 +1051,21 @@ function paramObject(e, hops = 0) {
   return null;
 }
 function navParamEntry(pathArg, obj, n, f) {
-  const keys = obj.getProperties().map((p) => p.getName?.() ?? p.getText());
-  const values = obj.getProperties().map((p) => short60(Node.isPropertyAssignment(p) ? p.getInitializer().getText() : p.getText()));
+  const keys = [], values = [];
+  for (const p of obj.getProperties()) {
+    if (Node.isSpreadAssignment(p)) {
+      // `{ ...f(x) }`: the keys of the object that f returns
+      const inner = paramObject(p.getExpression());
+      for (const q of inner?.getProperties() ?? []) {
+        keys.push(q.getName?.() ?? q.getText());
+        values.push(short60(Node.isPropertyAssignment(q) ? q.getInitializer().getText() : q.getText()));
+      }
+      if (!inner) { keys.push(short60(p.getText())); values.push('?'); }
+      continue;
+    }
+    keys.push(p.getName?.() ?? p.getText());
+    values.push(short60(Node.isPropertyAssignment(p) ? p.getInitializer().getText() : p.getText()));
+  }
   return { to: navTargetsOf(pathArg), keys, values, file: rel(f), line: n.getStartLineNumber() };
 }
 const CLIENT_VAR_FN = /^(getClientVar|setClientVar|useClientVar)$/;
@@ -1123,6 +1136,16 @@ function extrasOf(units, reached) {
     const u0 = units.get(k);
     if (!seenCv.has(u0.node) && !excluded(u0.file) && !/platform\/session\/(session|clientVars)\.ts$/.test(rel(u0.file))) {
       seenCv.add(u0.node);
+      // a navigation target object `{ path: '/App/Screen', inputs: {…} }` or `{ path, params: {…} }` that a navigate consumes
+      for (const o of u0.node.getDescendantsOfKind(SyntaxKind.ObjectLiteralExpression)) {
+        const pp = o.getProperty('path');
+        const ip = o.getProperty('inputs') ?? o.getProperty('params');
+        if (!pp || !ip || !Node.isPropertyAssignment(pp) || !Node.isPropertyAssignment(ip)) continue;
+        const obj = paramObject(ip.getInitializer());
+        if (!obj) continue;
+        const e = navParamEntry(pp.getInitializer(), obj, o, u0.file);
+        if (e.to.length) out.navParams.push(e);
+      }
       for (const c of u0.node.getDescendantsOfKind(SyntaxKind.CallExpression)) {
         const name = callName(c);
         const args = c.getArguments();
@@ -1132,7 +1155,10 @@ function extrasOf(units, reached) {
           out.clientState.push({ op: `clientVar.${name}`, name: CLIENT_VAR_MAP.get(acc[1]) ?? acc[1], file: rel(u0.file), line: c.getStartLineNumber() });
         else if (CLIENT_VAR_FN.test(name) && args[0])
           out.clientState.push({ op: name, name: clientVarName(args[0]), file: rel(u0.file), line: c.getStartLineNumber() });
-        else if (STORAGE_FN.test(name) && args.length) {
+        else if (NAV_FN.test(name) && args[1] && !Node.isPropertyAccessExpression(args[1])) {
+          const obj = paramObject(args[1]);
+          if (obj) out.navParams.push(navParamEntry(args[0], obj, c, u0.file));
+        } else if (STORAGE_FN.test(name) && args.length) {
           const recv = Node.isPropertyAccessExpression(ex) ? ex.getExpression().getText() : '';
           if (/^(get|set)Item$/.test(name) && !/^(localStorage|sessionStorage|window\.\w+Storage)$/.test(recv)) continue;
           const area = /^(read|write|remove)Item$/.test(name) ? literalOf(args[0]) : recv;
@@ -1172,11 +1198,6 @@ function extrasOf(units, reached) {
           }
         }
         out.inputs.push({ hook: name, keys, ...here(c) });
-      } else if (NAV_FN.test(name) && args[1] && !Node.isPropertyAccessExpression(args[1])) {
-        // `navigate(path, {…})`, `navigate(path, params)`, `navigate(path, f(x))`; `navigate(t.path, t.inputs)` is
-        // covered by the `{ path, inputs }` objects below
-        const obj = paramObject(args[1]);
-        if (obj) out.navParams.push(navParamEntry(args[0], obj, c, f));
       } else if (name === 'raiseToFlowHandler') {
         out.errors.push({ kind: 'flow handler', in: fnName, effects: [], ...here(c) });
       } else if (name === 'catch' && args[0] && isFunctionLike(args[0])) {
@@ -1184,16 +1205,6 @@ function extrasOf(units, reached) {
         const raises = args[0].getDescendantsOfKind(SyntaxKind.CallExpression).some((x) => callName(x) === 'raiseToFlowHandler');
         if (!raises) out.errors.push({ kind: '.catch', in: fnName, effects: effs, ...here(c) });
       }
-    }
-    // a navigation target object `{ path: '/App/Screen', inputs: {…} }` or `{ path, params: {…} }` that a navigate consumes
-    for (const o of u.node.getDescendantsOfKind(SyntaxKind.ObjectLiteralExpression)) {
-      const pp = o.getProperty('path');
-      const ip = o.getProperty('inputs') ?? o.getProperty('params');
-      if (!pp || !ip || !Node.isPropertyAssignment(pp) || !Node.isPropertyAssignment(ip)) continue;
-      const obj = paramObject(ip.getInitializer());
-      if (!obj) continue;
-      const e = navParamEntry(pp.getInitializer(), obj, o, f);
-      if (e.to.length) out.navParams.push(e);
     }
     for (const t of u.node.getDescendantsOfKind(SyntaxKind.TryStatement)) {
       const cc = t.getCatchClause();
@@ -1214,6 +1225,7 @@ function extrasOf(units, reached) {
     }
   }
   out.clientState = out.clientState.filter((x) => x.name !== '?'); // a storage call whose key the code computes
+  out.navParams = out.navParams.filter((x) => x.to.length); // `navigate(path, { replace, state })` of the router: no screen
   const byLine = (a, b) => a.file.localeCompare(b.file) || a.line - b.line;
   for (const v of Object.values(out)) v.sort(byLine);
   return out;

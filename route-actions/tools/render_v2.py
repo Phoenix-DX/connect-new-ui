@@ -90,7 +90,7 @@ def differences(r, h, eps, own_blocks, nav_missing, own_nav, ox, rx):
         seen.add(x["name"])
         if x["name"] not in react_cv:
             L.append(f"- Client variable `{x['name']}`: TST {x['op']}s it ({op(x['file'], x['line'])}). "
-                     "No React file of the route names it (`getClientVar`, `setClientVar`, `useClientVar`).")
+                     "No React file that the route loads names it (`getClientVar`, `setClientVar`, `useClientVar`, `clientVar.*`).")
     return L or ["None."]
 
 
@@ -140,7 +140,7 @@ def render(r, h):
         open(h.os.path.join(h.DATA, f"{name}.mmd"), "w").write(mmd)
         xnames.append(name)
 
-    diffs = differences(r, h, eps, own_blocks, nav_missing, own_nav, ox_own, rx)
+    diffs = differences(r, h, eps, own_blocks, nav_missing, own_nav, ox_own, r.get("reactExtrasAll") or rx)
     n_diff = sum(1 for x in diffs if x.startswith("- "))
     parity = h.os.path.join(h.cfg("tst", "screens"), route, "parity")
     parity_link = h.link(h.os.path.relpath(parity, h.ROOT)) if h.os.path.isdir(parity) else "no parity run"
