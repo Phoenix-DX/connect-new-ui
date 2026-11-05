@@ -11,7 +11,8 @@
   unreachable calendar 2.
 - Code of 2026-11-05: AppManager_Logout on sign-out, Household_Relations FetchNotes, AssembleDetail notes (fetch,
   preview, action bar, sheet), the HouseholdDetails branch with the carousel off. Parity clean on the three captured
-  routes. 29 route questions and 8 app shell questions stay.
+  routes. The 29 route questions and 9 app shell questions: declared on TST outside the static call graph (contract
+  `x-os-screens`, `extra-actions.json`, the app-start list), after an Opus review. 0 questions left.
 
 ## Decisions (who, date)
 - User 2026-11-04: one route at a time; facts only, no inference; two independent user action lists, no mapping;
@@ -33,11 +34,12 @@
   (+71 files), `migration/knowledge/runtime-sources.md`, the skill `route-actions`, this context, `INDEX.md`.
 
 ## Open issues
-- 29 route questions: MilestoneDetail 11, AssembleDetail 6, HelpersDetail 3, Profile 2, HostSurvey 2, static
-  routes 5. 8 app shell questions. The user answers them per route.
+- Two decisions for the user (Opus review): the `Section_MeetingNotes` drift of AssembleDetail (re-capture), and the
+  sign-out when AppManager_Logout fails (1:1 rethrow as TST, or try/finally for production).
+- Parity: Notifications default differs in one relative-age label (fixture date against today); a frozen clock later.
 - Running vitest as `caffeinate npx vitest run` uses Homebrew Node 26 (global `localStorage` shadows jsdom's):
   159 files fail. Run vitest with the shell's nvm Node; keep the Mac awake with a separate `caffeinate` process.
 - Drift: the live `AssembleEventDetail.mvc.js` has no `Section_MeetingNotes`; React renders one (survey 2026-10-13).
 
 ## Next
-- The user reviews the decision log and the 4 code changes; then the 29 route questions, and the full-run test failure.
+- The user reviews `migration/clarify/auto-decisions-2026-11-05.md` and answers the two decisions above.
