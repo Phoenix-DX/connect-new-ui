@@ -40,8 +40,8 @@ from the project root. Reply to the user in Vietnamese; the files stay in Englis
    `ROUTES.md`. If it stops (no TST capture, not a build route), tell the user and stop.
 2. Run `python3 migration/tools/ste_lint.py route-actions/routes/<Route>.md route-actions/APP_SHELL.md`; 0 errors.
 3. Hand-check, against the code at the given `file:line`:
-   - each row of section 7 "Missing in React" (open the React code and the TST code it cites);
-   - each item of section 8 "Questions";
+   - each line of section 3 "Differences found" (open the React code and the TST code it cites);
+   - each item of section 4 "Questions";
    - the user action lists: a binding that looks wrong (for example an effect that the code does not have).
    When the tool is wrong, fix `route-actions/tools/`, run again, and check the other done routes still give the
    same result (`git diff route-actions/routes/`).

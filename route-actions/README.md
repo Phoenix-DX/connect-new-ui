@@ -76,7 +76,7 @@ A route file has only the parts of the route. `route-actions/APP_SHELL.md` has t
 
 Each route run writes `APP_SHELL.md` again from all `data/check-*.json`. Its call table gives the routes of each call.
 
-Layout v2 (pilot, `--extras`, HomeFeed 2026-11-05): the conclusions first, the evidence after. Own code only in the
+Layout v2 (user, 2026-11-05): the conclusions first, the evidence after. Own code only in the
 main sections: the screen and the blocks of its UI flow (OutSystems), `app/src/pages/<Route>/` (React). The shared
 blocks and components of the route are in the last section, by name.
 
@@ -100,9 +100,6 @@ Method of the facts: `os_extras.py` reads the TST compiled files (`sources/raw/*
 of `migration/shell/sources/`; `react_calls.mjs` reads the React screen files through ts-morph. A step comes from a
 node comment of the compiled action (`// Execute Action: X`) or from its condition. A navigation parameter comes from
 `generateScreenURL(url, {…})` (TST) and from `navigate(path, {…})` (React).
-
-Layout v1 (the 51 done routes): 1 Route · 2 Result · 3 Screenshots · 4 Diagram (calls) · 5 User actions · 6 Server
-calls · 7 Missing in React · 8 Questions · 9 Method.
 
 ## Files
 

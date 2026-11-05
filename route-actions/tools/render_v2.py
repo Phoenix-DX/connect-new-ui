@@ -1,4 +1,4 @@
-"""Route file, layout v2 (pilot, `check_route.py <Route> --extras`): the conclusions first, the evidence after.
+"""Route file (layout v2, 2026-11-05): the conclusions first, the evidence after.
 
 Rules of the layout (user, 2026-11-05):
 - Own code only in the main sections. OutSystems: the screen and the blocks of its UI flow (`<Module>.<Flow>.*`).

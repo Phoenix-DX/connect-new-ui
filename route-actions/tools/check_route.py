@@ -32,7 +32,6 @@ def cfg(*keys):
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import mcp_client  # noqa: E402
 import os_extras  # noqa: E402
-import extras_md  # noqa: E402
 import render_v2  # noqa: E402
 
 OUT = os.path.join(HERE, "routes")          # the route files
@@ -490,7 +489,7 @@ def check(route):
     for f in rendered:
         for n in js.get(f, {}).get("navigation", []):
             nav_from[n["to"].rsplit("/", 1)[-1]].add(group_of_file[f])
-    # --- extras (pilot): inputs, lifecycle, client state, access, errors ------------------------------------------
+    # --- inputs, lifecycle, client state, access, errors (sections 7 to 11) ----------------------------------------
     own_files = [f for f in rendered if group_of_file[f] == "screen"]
     shell_dir = os.path.join(ROOT, "migration", "shell", "sources")
     os_x = os_extras.extras(tst.get("sources", {}), own_files, facts.get("screenFile"), os.path.relpath(shell_dir, ROOT))
@@ -1163,114 +1162,6 @@ def clean_outputs(name):
         os.remove(stale)
 
 
-def render(r, extras=False):
-    """The route file: only what belongs to the route. The app shell parts go to APP_SHELL.md."""
-    LINK_BASE[0] = OUT
-    route = r["route"]
-    blocks = r["blocks"]
-    eps = [x for x in (part_of(e, blocks, "screen") for e in r["endpoints"]) if x]
-    shell_eps = [x for x in (part_of(e, blocks, "shell") for e in r["endpoints"]) if x]
-    cnt = collections.Counter(e["status"] for e in eps)
-    own_blocks = [b for b in blocks if b["group"] == "screen"]
-    blocks_ported = sum(1 for b in own_blocks if b["evidence"] in ("tag", "name"))
-    own_nav = {t: v for t, v in r["osNav"].items() if "screen" in r.get("navGroups", {}).get(t, ["screen"])}
-    nav_missing = [t for t in own_nav if t not in r["reactNav"]]
-    questions = [c for c in r["reactOnly"] if "page" in c["where"]]
-    shell_questions = [c for c in r["reactOnly"] if c["where"] == "shell"]
-    shell_acts = [a for a in r.get("userActions") or [] if a.get("group") == "shell"]
-    shell_react = [a for a in r.get("reactActions") or [] if a.get("group") == "shell"]
-    view = {**r, "endpoints": eps, "allEndpoints": r["endpoints"],
-            "userActions": [a for a in r.get("userActions") or [] if a.get("group") != "shell"]}
-    mm = mermaid(view)
-    open(os.path.join(DATA, f"{route}.mmd"), "w").write(mm)
-    clean_outputs(route)
-    os_d = action_diagrams(view)
-    re_d = react_action_diagrams([a for a in r.get("reactActions") or [] if a.get("group") != "shell"], r["endpoints"])
-    ua_os, n1 = actions_section(os_d, f"{route}-os", "5.1", OS_HEAD)
-    ua_re, n2 = actions_section(re_d, f"{route}-react", "5.2", REACT_HEAD)
-    names = n1 + n2
-    ua = [*ACTIONS_INTRO, "### 5.1 OutSystems (TST)", "", *ua_os, "### 5.2 React", "", *ua_re]
-    L = [f"# {route}: server calls and user actions in OutSystems and React", "",
-         f"This file compares the route `/UBTConnect/{route}` in OutSystems (TST) with the React app.",
-         f"The tool `route-actions/tools/check_route.py` wrote this file on {date.today().isoformat()}.",
-         "The tool reads the code. It does not run the app.", "",
-         "The app shell is in [APP_SHELL.md](../APP_SHELL.md), not here.",
-         "- OutSystems app shell: `CommonUI_InsideLayout` with its blocks (TST survey), and the chains that start in a "
-         "module action.",
-         "- React app shell: the code that `app/src/main.tsx` loads (router, `AppFrame`, app start, hosts).", "",
-         "## 1. Route", "",
-         "| Item | Value | Source |", "|---|---|---|",
-         f"| Route | `/UBTConnect/{route}` | `app/src/app/routes.generated.ts` |",
-         f"| OutSystems screen | `{file_key(r['screenFile'])}` | TST compiled code |",
-         f"| UI flow | `{r['flow']}` | MCP `getScreenNames` (DEV) |",
-         f"| React screen | {link(r['react']['pageEntry'])} | `app/src/pages/` |",
-         f"| React route rules | access `{r['meta']['access']}`, lock `{r['meta']['lock']}`, flag redirect {r['meta']['flagRedirect']} | `app/src/app/routes.ts` |",
-         f"| Code read | OutSystems: {len(own_blocks)} screen and block files of the route, {len(blocks) - len(own_blocks)} app shell files. React: {r['react']['pageFiles']} screen files | TST `facts.json`, `react_calls.mjs` |",
-         "", "## 2. Result", "",
-         "| Check | Result |", "|---|---|",
-         f"| Server calls of the route on TST | {len(eps)}: React makes {cnt['implemented']}, **{cnt['missing']} missing** |",
-         f"| User actions of the route | OutSystems: {len(os_d)} diagrams. React: {len(re_d)} diagrams |",
-         f"| React calls of the screen that TST does not make | {len(questions)} (see [questions](#{{QN}}-questions)) |",
-         f"| Screen and blocks with a React port | {blocks_ported} of {len(own_blocks)} |",
-         f"| Navigation targets found in React | {len(own_nav) - len(nav_missing)} of {len(own_nav)} |",
-         f"| App shell on this route | {len(shell_eps)} calls; event bindings: OutSystems {len(shell_acts)}, React {len(shell_react)}: see [APP_SHELL.md](../APP_SHELL.md) |",
-         "", "## 3. Screenshots", "", *screenshots(route),
-         "", "## 4. Diagram", "",
-         *(["- A box on the left is the block or module of the action that calls the server (TST code).",
-            "- A line connects each call to the React action that makes the same call.",
-            "- The right column shows the React components that use each React action.",
-            "- A red box is a call that React does not make.", "",
-            "```mermaid", mm, "```"] if eps else ["None. The route makes no server call on TST."]), "",
-         "## 5. User actions", "", *ua,
-         "## 6. Server calls", "", *(calls_table(call_rows(eps, blocks), blocks) if eps else ["None."]),
-         *(["", "The TST capture also has calls of another screen. Each has the capture scope `other` and no chain in the code "
-            "of the route. React does not make them on this route. The tool does not count them:", "",
-            *[f"- `{u}`: a call of the screen in the capture of " + (", ".join(f"[{x}]({x}.md)" for x in own_routes(u)) or "no other route")
-              + "." for u in r.get("otherScreenCalls", [])]]
-           if r.get("otherScreenCalls") else []),
-         ""]
-    nx = 7
-    if extras:
-        xnames = []
-
-        def emit(name, mmd):
-            open(os.path.join(DATA, f"{name}.mmd"), "w").write(mmd)
-            xnames.append(name)
-        xl, nx = extras_md.sections(r, 7, link, short, emit)
-        names += xnames
-        L += xl
-    L += [f"## {nx}. Missing in React", "", *missing_lines(eps, own_blocks, nav_missing, own_nav),
-          "", f"## {nx + 1}. Questions", ""]
-    L = [x.replace("{QN}", str(nx + 1)) for x in L]
-    qs = [f"React calls `{c['apiPath']}` from `{c['fn']}()` {link(c['file'], c['line'])} ({c['where']}). TST {route} "
-          "has no chain to this call. Does the call belong to this route?" for c in questions]
-    L += [f"{i}. {q}" for i, q in enumerate(qs, 1)] or ["None."]
-    L += ["", f"## {nx + 2}. Method", "",
-          "1. **OutSystems (TST).** The tool reads `facts.json` and the compiled code of `migration/screens/" + route +
-          "/analysis/`:",
-          "   - the rendered files;",
-          "   - each server call with its chain of client actions, and the calls that TST made in the capture;",
-          "   - the effects of each user action.",
-          "2. **Route and app shell.** OutSystems: a chain belongs to the app shell when it starts in "
-          "`CommonUI_InsideLayout`, one of its blocks, or a module action. React: a binding belongs to the app shell "
-          "when its file is in the code that `main.tsx` loads.",
-          "3. **MCP (DEV).** The tool reads the UI flow with `getScreenNames`. TST wins when DEV is different.",
-          "4. **React.** `react_calls.mjs` reads the app shell from `app/src/main.tsx` and the screen from its "
-          "`<Route>Page.tsx`. It counts only the code that the app uses.",
-          "5. **Match.** `callAction(M, A)` gives `/api/M/A`. The `x-os-paths` of `app/src/api/openapi.yaml` give the "
-          "TST call. The status is `implemented` when the TST call is the same. Else the status is `missing`.",
-          *(["6. **Sections 7 to 11.** `os_extras.py` reads the TST compiled files of the screen and its blocks (not the "
-             "app shell). `react_calls.mjs` reads the React screen files (not the app shell). Both lists are independent.",
-             "   A step comes from a node comment of the compiled action, or from its condition."] if extras else []), "",
-          "Limit: a name or a call match does not prove the same behaviour. The parity checks of the migration "
-          "compare the behaviour."]
-    p = os.path.join(OUT, f"{route}.md")
-    open(p, "w", encoding="utf-8").write("\n".join(L) + "\n")
-    render_svgs([route] + names)
-    print("wrote", rel(p))
-    return p  # route file
-
-
 def render_app_shell():
     """APP_SHELL.md: the app shell parts of every checked route, merged (data/check-*.json)."""
     LINK_BASE[0] = HERE
@@ -1362,7 +1253,6 @@ def main():
     ap.add_argument("--mark-done", action="store_true", help="set the route to done in ROUTES.md")
     ap.add_argument("--app-shell", action="store_true", help="write APP_SHELL.md from the checked routes")
     ap.add_argument("--status", action="store_true", help="print the state of the check and the next route")
-    ap.add_argument("--extras", action="store_true", help="pilot: add inputs, lifecycle, client state, access, errors")
     a = ap.parse_args()
     os.makedirs(DATA, exist_ok=True)
     if a.routes:
@@ -1380,10 +1270,7 @@ def main():
         write_routes(done=a.route)
         return
     r = check(a.route)
-    if a.extras:
-        render_v2.render(r, sys.modules[__name__])
-    else:
-        render(r)
+    render_v2.render(r, sys.modules[__name__])
     render_app_shell()
     write_routes()
 
