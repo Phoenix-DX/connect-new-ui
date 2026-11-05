@@ -26,4 +26,14 @@ describe('AvatarImage', () => {
     expect(container.querySelector('[data-block="Utilities.InlineSVG"]')).not.toBeNull();
     expect(container.querySelector('[data-block="ConnectPatterns.Icon"]')).toBeNull();
   });
+
+  it('gives the fallback Icon the size of FallbackOptions.IconSizeId (live AvatarImage.mvc.js:363)', () => {
+    const { container } = render(
+      <AvatarImage
+        inAvatarImage={{ FallbackOptions: { IconId: 'transport-plane', IconSizeId: 'icon-non-standard-40' } }}
+      />,
+    );
+    const icon = container.querySelector('[data-block="ConnectPatterns.Icon"] > *');
+    expect(icon).toHaveClass('icon-non-standard-40');
+  });
 });

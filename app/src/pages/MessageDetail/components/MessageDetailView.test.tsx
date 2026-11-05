@@ -1,7 +1,7 @@
 import { cleanup, fireEvent } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import type { MessageDetail, MessageParameter } from '@/api/message';
-import { MessageInfoType, MessageSenderTarget, MessageType } from '@/pages/MessageDetail/staticEntities';
+import { MessageInfoType, MessageSenderTarget, MessageType } from '@/containers/MessageInstance/staticEntities';
 import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
 import { freshPage } from '@/test/testSupport';
 import { MessageDetailView, type MessageDetailViewProps } from './MessageDetailView';

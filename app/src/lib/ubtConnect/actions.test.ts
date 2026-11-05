@@ -24,8 +24,10 @@ import {
   getSkeletonList_UI_HouseholdMembers,
   getSkeletonList_UI_SubdivisionHousehold,
   isStringEquals,
+  longIntegerText,
   notes_InterchangeId_ComposeId,
   notes_InterchangeId_ExtractId,
+  unauthorizedObjectMessage,
 } from './actions';
 import { Type_CarouselItemSwipeAction } from './staticEntities';
 import {
@@ -263,5 +265,27 @@ describe('Notes_InterchangeId_ComposeId / Notes_InterchangeId_ExtractId', () => 
       LocalityId: '252',
       InterchangeLocalityId: '5',
     });
+  });
+});
+
+describe('LongIntegerToText(TextToLongInteger(text))', () => {
+  it('a number keeps its digits, an invalid text is 0', () => {
+    expect(longIntegerText(' 0042438 ')).toBe('42438');
+    expect(longIntegerText('9007199254740993')).toBe('9007199254740993');
+    expect(longIntegerText('252:253')).toBe('0');
+    expect(longIntegerText('')).toBe('0');
+  });
+});
+
+/* Handler_OnClickUnauthorizedObject of Bookmarks (live Bookmarks.mvc.js:788-817) and Notes (live Notes.mvc.js:1353+). */
+describe('unauthorizedObjectMessage', () => {
+  it('the pill text of the category, lower case, without a final "s"', () => {
+    const pills = [
+      { Text: 'Households', Identifier: 'Household', IsSelected: false },
+      { Text: 'OneSchool Global', Identifier: 'OneSchool Global', IsSelected: false },
+    ];
+    expect(unauthorizedObjectMessage('Household', pills)).toBe('This household is no longer available.');
+    expect(unauthorizedObjectMessage('OneSchool Global', pills)).toBe('This oneschool global is no longer available.');
+    expect(unauthorizedObjectMessage('Member', pills)).toBe('This  is no longer available.');
   });
 });

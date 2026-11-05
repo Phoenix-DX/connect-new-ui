@@ -1,4 +1,4 @@
-import type { SearchResult, SearchResults } from '@/api/search';
+import { SEARCH_RESULT_EVENT_DEFAULTS, type SearchResult, type SearchResults } from '@/api/search';
 import { Connect_SearchCategories } from '@/pages/Search/components/staticEntities';
 import { Connect_Entity } from '@/lib/ubtConnectUtils/staticEntities';
 import type { ConnectSearch_RecentClickedResults } from '@/platform/storage/localEntities';
@@ -33,6 +33,10 @@ export interface SearchState {
   hasHouseholds: boolean;
   /** [HasPlaces] The Places section shows. */
   hasPlaces: boolean;
+  /** [HasEvents] The Events section shows (live ScreenBlock_Search.mvc.js:120). */
+  hasEvents: boolean;
+  /** [HasSchool] The Schools section shows (live ScreenBlock_Search.mvc.js:123). */
+  hasSchool: boolean;
   /** [isBirthdayKeyWord] The input text contains "birthday". */
   isBirthdayKeyWord: boolean;
   /** [FetchSearchResults] The outputs of the last fetch. */
@@ -51,7 +55,7 @@ export type SearchAction =
   | { type: 'tagListChanged'; tagList: Tag[] }
   /** Event_ApplyFilters: SelectedCountryIds and HasFiltersApplied. */
   | { type: 'filtersApplied'; selectedCountryIds: string[]; hasFiltersApplied: boolean }
-  /** Action_ClearResults: the three lists empty, HasSearched False. */
+  /** Action_ClearResults: the five lists empty, HasSearched False (live ScreenBlock_Search.mvc.js:2930-2945). */
   | { type: 'resultsCleared' }
   /** Action_RefreshSearch before the fetch: HasSearched True, SearchKey_LastSearched = the term, IsLoading True, then
       the three loading rows at the end of each list in scope of SelectedCategory (`withLoadingRows`). */
@@ -61,7 +65,7 @@ export type SearchAction =
   /** The handled exceptions of Action_RefreshSearch: IsLoading False. */
   | { type: 'loadingEnded' };
 
-export const NO_RESULTS: SearchResults = { households: [], people: [], places: [] };
+export const NO_RESULTS: SearchResults = { households: [], people: [], places: [], events: [], schools: [] };
 
 /** SearchCategory_ItemRec (UBTConnect_Utils). */
 export interface SearchCategory_Item {
@@ -117,6 +121,8 @@ export const INITIAL_SEARCH_STATE: SearchState = {
   hasPeople: false,
   hasHouseholds: false,
   hasPlaces: false,
+  hasEvents: false,
+  hasSchool: false,
   isBirthdayKeyWord: false,
   results: NO_RESULTS,
 };
@@ -157,6 +163,7 @@ export const loadingRow = (type: string = Connect_Entity.Household): SearchResul
   latitude: '',
   longitude: '',
   recordDisabled: false,
+  ...SEARCH_RESULT_EVENT_DEFAULTS,
 });
 
 /** Action_RefreshSearch before the fetch (ScreenBlock_Search.mvc.js:2499-2533): LoadingList (three loading rows) goes
@@ -164,6 +171,8 @@ export const loadingRow = (type: string = Connect_Entity.Household): SearchResul
     placeholders until the fetch replaces the lists.
     - Places, then Households: when SelectedCategory is All or the list's own category.
     - People: when SelectedCategory is All or People; the Foreach first sets Type = Member on each LoadingList row.
+    - Events, then Schools (live ScreenBlock_Search.mvc.js:2761-2772): when SelectedCategory is All or the list's own
+      category; appended before the Foreach, so their rows keep Type Household.
     ListAppendAll copies the record data (OutSystems.js GenericRecordList.appendAll, `addFromOther`), so the rows of
     Places and Households keep Type Household. A null SelectedCategory adds no rows. */
 export function withLoadingRows(results: SearchResults, selectedCategory: string): SearchResults {
@@ -179,11 +188,17 @@ export function withLoadingRows(results: SearchResults, selectedCategory: string
     places: inScope(Connect_SearchCategories.Places)
       ? [...results.places, ...loadingList(Connect_Entity.Household)]
       : results.places,
+    events: inScope(Connect_SearchCategories.Events)
+      ? [...results.events, ...loadingList(Connect_Entity.Household)]
+      : results.events,
+    schools: inScope(Connect_SearchCategories.Schools)
+      ? [...results.schools, ...loadingList(Connect_Entity.Household)]
+      : results.schools,
   };
 }
 
 /** A recent clicked result as a SearchResult (the item click of the recent gallery): EntityId → Id, EntityType → Type;
-    RecordDisabled keeps its default False. */
+    RecordDisabled and the event fields keep their defaults (the client entity has no event field). */
 export const recentAsResult = (r: ConnectSearch_RecentClickedResults): SearchResult => ({
   id: r.EntityId,
   householderId: r.HouseholderId,
@@ -194,6 +209,7 @@ export const recentAsResult = (r: ConnectSearch_RecentClickedResults): SearchRes
   latitude: r.Latitude,
   longitude: r.Longitude,
   recordDisabled: false,
+  ...SEARCH_RESULT_EVENT_DEFAULTS,
 });
 
 /** The reducer of the block variables. */
@@ -223,6 +239,7 @@ export function searchReducer(state: SearchState, action: SearchAction): SearchS
         isLoading: true,
         results: withLoadingRows(state.results, state.selectedCategory),
       };
+    // OnAfterFetch_FetchSearchResults (live ScreenBlock_Search.mvc.js:4205-4221).
     case 'resultsFetched': {
       const { results, selectedCategory } = action;
       return {
@@ -233,6 +250,8 @@ export function searchReducer(state: SearchState, action: SearchAction): SearchS
         hasHouseholds:
           results.households.length > 0 && showsCategory(selectedCategory, Connect_SearchCategories.Households),
         hasPlaces: results.places.length > 0 && showsCategory(selectedCategory, Connect_SearchCategories.Places),
+        hasEvents: results.events.length > 0 && showsCategory(selectedCategory, Connect_SearchCategories.Events),
+        hasSchool: results.schools.length > 0 && showsCategory(selectedCategory, Connect_SearchCategories.Schools),
       };
     }
     case 'loadingEnded':

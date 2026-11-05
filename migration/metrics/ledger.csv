@@ -1136,3 +1136,10 @@ date,screen,phase,tokens,agent,tier,note
 2026-11-05,Bookmarks,fix,244653,opus,,drift decision rounds 1-2
 2026-11-05,Search,fix,299261,opus,,drift decision rounds 1-2
 2026-11-05,NotificationDetails,fix,326640,opus,,drift decision rounds 1-2
+2026-11-05,Bookmarks,build,176543,opus,,drift build Bookmarks/Notes/Locality_Details
+2026-11-05,HouseholdDetails,build,184692,opus,,drift build gallery
+2026-11-05,Search,build,202241,opus,,drift build Search lists
+2026-11-05,AssembleDetail,analyze,143440,sonnet,,facts Assemble/EDA bookmark drift
+2026-11-05,Search,build,116707,opus,,drift build shared blocks TagContent/AvatarImage/HorizontalTagList
+2026-11-05,NotificationDetails,build,309558,opus,,drift build NotificationDetails + Notifications
+2026-11-05,HouseholdDetails,fix,171069,opus,,bookmark module move proposal (decision row 24)

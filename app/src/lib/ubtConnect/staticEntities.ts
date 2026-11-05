@@ -206,3 +206,11 @@ export const BooleanTypes = { True: 'true', False: 'false', Unset: 'unset' } as 
 /** CarouselNavigation (UBTConnect's copy, EntitiesCarousel passes None): TST values (static-entities-tst.json
     `UBTConnect.carouselNavigation`), the same as OutSystems UI's (`osui/lib/staticEntities.ts`). */
 export const CarouselNavigation = { Arrows: 'arrows', Both: 'both', Dots: 'dots', None: 'none' } as const;
+
+/** Connect_EventTypes (UBTConnect, live moduleinfo.json of 2026-11-05: Assemble, Orbit, LDM; text identifier = label):
+    the Event_Source of a search result (Directory_Search.ScreenBlock_Search.mvc.js:3302, 3310 of the live copy). */
+export const Connect_EventTypes = {
+  Assemble: 'Assemble',
+  Orbit: 'Orbit',
+  LDM: 'LDM',
+} as const;

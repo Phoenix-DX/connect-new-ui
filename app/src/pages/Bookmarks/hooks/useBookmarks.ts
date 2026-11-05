@@ -1,13 +1,19 @@
 import { fetchBookmarkCards, fetchBookmarkPills, type BookmarksFilter } from '@/api/bookmark';
 import { setPreloadObject, useFlowState, useOsNavigate } from '@/platform/navigation';
 import { currentUserId } from '@/platform/session/session';
+import { feedbackMessageAutoClose } from '@/platform/feedback/feedbackMessageAutoClose';
 import {
   LOCAL_BOOKMARK,
   entityService,
   localBookmarksDatabase,
   type LocalBookmark,
 } from '@/platform/storage/localEntities';
-import { bookmarkServerActions, scrollTop, toggleBookmarkItem_C2 } from '@/lib/ubtConnect/actions';
+import {
+  bookmarkServerActions,
+  scrollTop,
+  toggleBookmarkItem_C2,
+  unauthorizedObjectMessage,
+} from '@/lib/ubtConnect/actions';
 import type { Tag } from '@/lib/ubtConnectLibrary/structures';
 import {
   bookmarkCardTarget,
@@ -38,8 +44,8 @@ interface BookmarksFlows {
   onApplyFilters: (filter: BookmarksFilter, hasFiltersApplied: boolean) => void;
   /** Bookmarks_Card_ListOnLoadMore: the Promise settles when the action ends. */
   onLoadMore: () => Promise<void>;
-  /** Handler_OnClickBookmarkCardItem(ObjectId, ObjectType). */
-  onClickBookmarkCardItem: (objectId: string, objectType: string) => void;
+  /** Handler_OnClickBookmarkCardItem(ObjectId, ObjectId2, ObjectType, HasDetailAccess). */
+  onClickBookmarkCardItem: (objectId: string, objectId2: string, objectType: string, hasDetailAccess: boolean) => void;
   /** Handler_ItemUnbookmarked: Refresh_GetBookmarksData. */
   onItemUnbookmarked: () => void;
   /** ToggleBookmarkItem_C2(ObjectId, BookmarkType, True) of ItemCardActions (the Unmark action). */
@@ -166,8 +172,23 @@ export function useBookmarks(): BookmarksFlows {
       dispatch({ pageNumber: latest.current.pageNumber + 1 });
       await flow.runAwaited(refresh_GetBookmarksData);
     },
-    onClickBookmarkCardItem: (objectId, objectType) => {
-      const target = bookmarkCardTarget(objectId, objectType, latest.current.bookmarksList);
+    /* Handler_OnClickBookmarkCardItem (live Bookmarks.mvc.js:1067-1219): without detail access,
+       Handler_OnClickUnauthorizedObject(ObjectType) (:788-817): FeedbackMessage_AutoClose("", message, Info, True, "",
+       0, False). */
+    onClickBookmarkCardItem: (objectId, objectId2, objectType, hasDetailAccess) => {
+      if (!hasDetailAccess) {
+        feedbackMessageAutoClose({
+          title: '',
+          message: unauthorizedObjectMessage(objectType, latest.current.bookmarkPills),
+          messageType: 'info',
+          encodedHtml: true,
+          extendedClass: '',
+          delayMs: 0,
+          useDebounce: false,
+        });
+        return;
+      }
+      const target = bookmarkCardTarget(objectId, objectId2, objectType, latest.current.bookmarksList);
       if (!target) return;
       if (target.preload !== undefined) setPreloadObject(target.preload);
       navigate(target.path, target.inputs);

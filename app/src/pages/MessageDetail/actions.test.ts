@@ -1,14 +1,14 @@
 import { describe, expect, it } from 'vitest';
+import { assembleEventParameters } from '@/containers/MessageInstance/actions';
+import { textToLongInteger } from '@/containers/MessageInstance/messageDetailState';
+import { ParameterName } from '@/containers/MessageInstance/staticEntities';
 import {
-  assembleEventParameters,
   deserializeAdaptiveCardActionSubmitData,
   getConnectEntity_ByShareType,
   substringJS,
   VIEW_EVENT_DATA_END,
   VIEW_EVENT_DATA_START,
 } from './actions';
-import { textToLongInteger } from './hooks/messageDetailState';
-import { ParameterName } from './staticEntities';
 
 const param = (parameterNameId: number, parameterValue: string) => ({
   id: '1',

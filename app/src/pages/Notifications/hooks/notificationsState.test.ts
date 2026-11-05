@@ -23,6 +23,8 @@ const item = (id: string, dateTimeCreated: string, isRead = false): Notification
   dateTimeCreated,
   isRead,
   profileIconURL: '',
+  messageTemplateId: '0',
+  createdByMemberId: '0',
 });
 
 describe('Notifications client actions', () => {

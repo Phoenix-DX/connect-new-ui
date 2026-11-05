@@ -1,5 +1,5 @@
 import type { NoteCardItem, NotePill, NotePillTag, NotesVariables } from '@/api/note';
-import { notes_InterchangeId_ExtractId } from '@/lib/ubtConnect/actions';
+import { LocalityMenu, longIntegerText, notes_InterchangeId_ExtractId } from '@/lib/ubtConnect/actions';
 import type { CarouselPreloadedHouseholds } from '@/lib/ubtConnect/structures';
 import type { Tag } from '@/lib/ubtConnectLibrary/structures';
 import { NoteCategory2 } from '@/pages/Notes/components/staticEntities';
@@ -115,20 +115,14 @@ interface NoteCardTarget {
 /** The screen variable that the Household and OneSchool Global branches read. */
 type NoteCardContext = Pick<NotesState, 'notesList'>;
 
-/** LongIntegerToText(TextToLongInteger(text)) for an item id: invalid is 0. */
-const longIntegerText = (v: string): string => {
-  const trimmed = v.trim();
-  return /^[-+]?\d+$/.test(trimmed) ? BigInt(trimmed).toString() : '0';
-};
-
 /** Handler_OnClickNoteCardItem(ObjectId, ObjectId2, ObjectType, HasDetailAccess), the branch with detail access (live
     Notes.mvc.js:1556-1717, TST 2026-10-29). Household: SetPreloadObject(CarouselHouseholdItem = the ItemIds of the
     Household cards of Notes_List with detail access), then HouseholdCarousel. Feed Item: FeedItemDetail. Assemble
     Event: AssembleDetail. Member: Household_Relations (MemberId = ObjectId, HouseholdId = ObjectId2). OneSchool
     Global: SetPreloadObject3(CarouselItemIds = the ItemIds of the OneSchool Global cards of Notes_List), then
     OneSchoolGlobalCarousel. Supper Meeting: SupperMeeting_Details. Interchange (:1618-1628): Locality_Details with
-    LocalityId = TextToLongInteger(Notes_InterchangeId_ExtractId(ObjectId).LocalityId). The other categories do
-    nothing. */
+    LocalityId = TextToLongInteger(Notes_InterchangeId_ExtractId(ObjectId).LocalityId) and TagsList_SelectedTag =
+    GetLocalityMenu().Interchange (live Notes.mvc.js:1884-1896, 2026-11-05). The other categories do nothing. */
 export function noteCardTarget(
   objectId: string,
   objectId2: string,
@@ -174,18 +168,12 @@ export function noteCardTarget(
     case NoteCategory2.Interchange:
       return {
         path: '/UBTConnect/Locality_Details',
-        inputs: { LocalityId: longIntegerText(notes_InterchangeId_ExtractId(objectId).LocalityId) },
+        inputs: {
+          LocalityId: longIntegerText(notes_InterchangeId_ExtractId(objectId).LocalityId),
+          TagsList_SelectedTag: LocalityMenu.Interchange,
+        },
       };
     default:
       return null;
   }
-}
-
-/** Handler_OnClickUnauthorizedObject(NoteCategoryId) (live Notes.mvc.js:1107-1148): ObjectLabelSingular = ToLower(the
-    Text of the first pill of Note_Pills with that Identifier; "" when none), without a final "s"; the message of
-    FeedbackMessage_AutoClose. */
-export function unauthorizedObjectMessage(noteCategoryId: string, notePills: NotePillTag[]): string {
-  const label = (notePills.find((p) => p.Identifier === noteCategoryId)?.Text ?? '').toLowerCase();
-  const singular = label.length > 0 && label.endsWith('s') ? label.slice(0, -1) : label;
-  return `This ${singular} is no longer available.`;
 }

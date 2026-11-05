@@ -2,16 +2,22 @@
 
 OutSystems: `UBTConnectLibrary.ConnectPatterns.TagContent` · pack `migration/blocks/UBTConnectLibrary.ConnectPatterns.TagContent.md`
 
-| Input             | Type         | Prop                | Default |
-| ----------------- | ------------ | ------------------- | ------- |
-| Text              | Text         | `text`              | `''`    |
-| ExtendedClasses   | Text         | `extendedClasses`   | `''`    |
-| BackgroundColorId | UBT_Color Id | `backgroundColorId` | `''`    |
-| TextColorId       | UBT_Color Id | `textColorId`       | `''`    |
+| Input                      | Type         | Prop                        | Default    |
+| -------------------------- | ------------ | --------------------------- | ---------- |
+| Text                       | Text         | `text`                      | `''`       |
+| ExtendedClasses            | Text         | `extendedClasses`           | `''`       |
+| BackgroundColorId          | UBT_Color Id | `backgroundColorId`         | `''`       |
+| TextColorId                | UBT_Color Id | `textColorId`               | `''`       |
+| In_VerticalPaddingSizeId   | UBT_Size Id  | `inVerticalPaddingSizeId`   | ExtraSmall |
+| In_HorizontalPaddingSizeId | UBT_Size Id  | `inHorizontalPaddingSizeId` | Small      |
+| In_ShapeId                 | UBT_Shape Id | `inShapeId`                 | Rounded    |
 
 Events: `Clicked` → `onClicked` (CustomContainer Clicked). Placeholders: none. Child block: `CustomContainer`
-(`ubt-tag--content inline-block` + ExtendedClasses, padding x Small / y ExtraSmall, Rounded radius, text
-DoubleExtraSmall SemiBold) with the Text expression.
+(`ubt-tag--content inline-block` + ExtendedClasses, padding x In_HorizontalPaddingSizeId / y
+In_VerticalPaddingSizeId, In_ShapeId radius, text DoubleExtraSmall SemiBold) with the Text expression. The three
+padding and shape inputs are in the live block of 2026-11-05
+(`migration/runtime-sources/live/UBTConnectLibrary.ConnectPatterns.TagContent.mvc.js:39-56, 244-284`); their
+defaults are the values the October block had fixed, so callers that do not set them render the same.
 
 ## Captured variants (1 in the pack + 3 whole; 4 tested)
 
@@ -25,3 +31,5 @@ DoubleExtraSmall SemiBold) with the Text expression.
 ## Not captured
 
 - `ExtendedClasses` and the Clicked event: tested in `TagContent.test.tsx`.
+- The padding and shape inputs (set only by `CW_Search.SearchResult_Item`): tested in `TagContent.test.tsx`
+  and in the `SearchResultItem` test.

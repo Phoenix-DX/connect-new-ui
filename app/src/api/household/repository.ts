@@ -6,6 +6,7 @@ import {
   toHouseholdCardMembers,
   toHouseholdCoordinates,
   toHouseholdCoordinatesById,
+  toHouseholdGalleryImages,
   toHouseholdShareCard,
   toLocalityHouseholdIds,
   toLocalityHouseholdIdsInputs,
@@ -15,8 +16,10 @@ import {
   toNotes,
   toOrbitHouseholdMembers,
   toSiblingRelations,
+  toTimelineImages,
 } from './mapper';
 import type { Notes } from '@/lib/ubtConnectLibrary/structures';
+import type { UI_HouseholdTimelineImages } from '@/lib/ubtConnect/structures';
 import type {
   Household,
   HouseholdCallInputs,
@@ -36,8 +39,8 @@ import type {
   SiblingRelations,
 } from './types';
 
-/** The two data actions of HouseholdDetails_Block, called with their OutSystems names. They are fetched on demand
-    only: the block refreshes them in its OnReady and OnParametersChanged events. Both send the same inputs.
+/** The three data actions of HouseholdDetails_Block, called with their OutSystems names. They are fetched on demand
+    only: the block refreshes them in its OnReady and OnParametersChanged events. All send the same inputs.
     @origin UBTConnect.Directory_Household.HouseholdDetails_Block */
 
 /** DataActionGetHousehold: the household, its members, the married children in other households and isVisible. */
@@ -49,6 +52,17 @@ export async function fetchHousehold(inputs: HouseholdCallInputs): Promise<House
 export async function fetchHouseholdCoordinates(inputs: HouseholdCallInputs): Promise<HouseholdCoordinates> {
   return toHouseholdCoordinates(
     await callAction('UBTConnect', 'HouseholdDetails_Block/DataActionGetHousehold_Coordinates', inputs),
+  );
+}
+
+/** DataActionGetHouseHold_Gallery: the gallery images of the household, as the timeline photo list reads them (only
+    SignedURL). On demand (HouseholdDetails_Block.mvc.js:1948), called at :1995 of the live code of 2026-11-05.
+    @origin migration/runtime-sources/live/UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js:1995 */
+export async function fetchHouseholdGallery(inputs: HouseholdCallInputs): Promise<UI_HouseholdTimelineImages[]> {
+  return toTimelineImages(
+    toHouseholdGalleryImages(
+      await callAction('UBTConnect', 'HouseholdDetails_Block/DataActionGetHouseHold_Gallery', inputs),
+    ),
   );
 }
 

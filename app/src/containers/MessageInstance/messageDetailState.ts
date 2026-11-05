@@ -1,11 +1,21 @@
 import type { MessageDetail, MessageDetailCallInputs, MessageInstanceResult, MessageParameter } from '@/api/message';
-import type { MessageDetailInputs } from '@/pages/MessageDetail/inputs';
-import { MessageInfoType, MessageSenderTarget, MessageType, ParameterName } from '@/pages/MessageDetail/staticEntities';
 import { clientVar } from '@/platform/session/session';
+import { MessageInfoType, MessageSenderTarget, MessageType, ParameterName } from './staticEntities';
 
 /** The state of ScreenBlock_MessageDetail and its reducer, the pure parts of its flows and view expressions, and the
-    client actions of Connect2_LegacyShared that the block calls.
+    client actions of Connect2_LegacyShared that the block calls. The screen NotificationDetails of UBTConnect (live
+    TST 2026-11-05, UBTConnect.App_Notifications.NotificationDetails.mvc.js:972-1378) has the same variables, the same
+    GetMessageInstanceByIdOnAfterFetch and the same GetMessageTemplateParametersOnAfterFetch, so both use this state.
     @origin Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail */
+
+/** The inputs that give the first values of the variables: the route inputs of MessageDetail (pages/MessageDetail
+    inputs.ts) and of NotificationDetails (isOriginPushNotification False there: the screen has no such input). */
+interface MessageInstanceInputs {
+  MessageInstanceId: string;
+  isOriginPushNotification: boolean;
+  MessageTemplateId: string;
+  HardwareId: string;
+}
 
 /** The block state. The view cache keeps it, so a back navigation to the screen shows the last message at once. */
 export interface MessageDetailState {
@@ -19,7 +29,7 @@ export interface MessageDetailState {
 }
 
 /** The changes of the state. */
-type MessageDetailAction =
+export type MessageDetailAction =
   /** GetMessageInstanceByIdOnAfterFetch, first node: MessageInstanceId = Message.MessageInstance.Id. */
   | { type: 'messageInstanceFetched'; message: MessageDetail }
   /** GetMessageTemplateParametersOnAfterFetch: the parameters; for Assemble, ShowAssembleAction. */
@@ -28,7 +38,7 @@ type MessageDetailAction =
   | { type: 'messagePrepared'; message: MessageDetail };
 
 /** OnInitialize: the variables with their defaults and the block inputs. */
-export function initialMessageDetailState(inputs: MessageDetailInputs): MessageDetailState {
+export function initialMessageDetailState(inputs: MessageInstanceInputs): MessageDetailState {
   return {
     variables: {
       IsEntryScreen: false,
@@ -97,7 +107,7 @@ export const needsTemplateParameters = (message: MessageDetail): boolean =>
     - `cleared`: IsCleared, the "not available" message;
     - `open`: the message shows.
     A private message of another user is `cleared` or `open`: see {@link isPrivateMessageOfAnotherUser}. */
-export type MessageAccess = 'retracted' | 'noAccess' | 'login' | 'cleared' | 'open';
+type MessageAccess = 'retracted' | 'noAccess' | 'login' | 'cleared' | 'open';
 
 /** The access decisions of GetMessageInstanceByIdOnAfterFetch, in their order. */
 export function messageAccess(result: MessageInstanceResult, signedIn: boolean): MessageAccess {

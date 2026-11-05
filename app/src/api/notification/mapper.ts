@@ -36,6 +36,8 @@ export const toNotificationItem = (w: NotificationItemWire): NotificationItem =>
   dateTimeCreated: w.DateTimeCreated,
   isRead: w.IsRead,
   profileIconURL: w.ProfileIconURL,
+  messageTemplateId: w.MessageTemplateId,
+  createdByMemberId: w.CreatedByMemberId,
 });
 
 /** The notifications with the list unwrapped and the unread count (a Long Integer) as a number. */
@@ -112,6 +114,7 @@ export const toNotificationsVariablesWire = (v: NotificationsVariables): Notific
 /** A notification as Connect2_Notification_CS.MessageListItem, for the inputs of Delete_Notifications. The list keeps
     only the fields it reads: the other fields go with their default values (the mock store reads Id only). */
 export const toMessageListItemWire = (item: NotificationItem): NotificationItemWire => ({
+  CreatedByMemberId: item.createdByMemberId,
   CreatedByUserId: 0,
   DateTimeCreated: item.dateTimeCreated,
   Id: item.id,
@@ -119,6 +122,7 @@ export const toMessageListItemWire = (item: NotificationItem): NotificationItemW
   IsRead: item.isRead,
   MessageInfoTypeId: 0,
   MessageSenderTargetName: '',
+  MessageTemplateId: item.messageTemplateId,
   MessageTemplatePriorityId: 0,
   MessageTemplateTypeId: 0,
   ProfileIconURL: item.profileIconURL,

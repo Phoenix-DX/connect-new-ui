@@ -4,7 +4,7 @@ import { setPreloadObject, useFlowState, useOsNavigate } from '@/platform/naviga
 import { currentUserId } from '@/platform/session/session';
 import { feedbackMessageAutoClose } from '@/platform/feedback/feedbackMessageAutoClose';
 import { getLocalNotesCategoryIds_ByUserId } from '@/platform/storage/localEntities';
-import { scrollTop } from '@/lib/ubtConnect/actions';
+import { scrollTop, unauthorizedObjectMessage } from '@/lib/ubtConnect/actions';
 import type { Tag } from '@/lib/ubtConnectLibrary/structures';
 import {
   canLoadMore,
@@ -14,7 +14,6 @@ import {
   notePillTags,
   notesReducer,
   selectedCategoryId,
-  unauthorizedObjectMessage,
   type NotesState,
 } from './notesState';
 

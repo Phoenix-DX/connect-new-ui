@@ -11,6 +11,7 @@ import type { NotificationBreakpoint, NotificationsVariables } from './types';
 
 /** Connect2_Notification_CS MessageListItem as the server sends it. */
 const itemWire = (fields: Partial<NotificationItemWire> = {}): NotificationItemWire => ({
+  CreatedByMemberId: '0',
   CreatedByUserId: 0,
   DateTimeCreated: '1900-01-01T00:00:00',
   Id: '0',
@@ -18,6 +19,7 @@ const itemWire = (fields: Partial<NotificationItemWire> = {}): NotificationItemW
   IsRead: false,
   MessageInfoTypeId: 0,
   MessageSenderTargetName: '',
+  MessageTemplateId: '0',
   MessageTemplatePriorityId: 0,
   MessageTemplateTypeId: 0,
   ProfileIconURL: '',
@@ -33,6 +35,8 @@ const rosterWire = itemWire({
   ProfileIconURL: '/UBT_CW/img/UBT_CW.logo_assemble.svg',
   Summary: 'The roster is ready',
   MessageTemplateTypeId: 1,
+  MessageTemplateId: '48120',
+  CreatedByMemberId: '900108',
 });
 const supperWire = itemWire({
   Id: '920113',
@@ -84,6 +88,8 @@ describe('notification mapper: outputs', () => {
       dateTimeCreated: '2026-10-12T08:45:10',
       isRead: false,
       profileIconURL: '/UBT_CW/img/UBT_CW.logo_assemble.svg',
+      messageTemplateId: '48120',
+      createdByMemberId: '900108',
     });
   });
 
@@ -102,6 +108,8 @@ describe('notification mapper: outputs', () => {
           dateTimeCreated: '2026-09-30T19:05:00',
           isRead: true,
           profileIconURL: '',
+          messageTemplateId: '0',
+          createdByMemberId: '0',
         },
       ],
       unreadNotificationsCount: 1,

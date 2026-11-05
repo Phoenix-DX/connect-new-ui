@@ -6,8 +6,9 @@ import { setSignedInUser } from '@/platform/session/session';
 import { freshPage } from '@/test/testSupport';
 import Notifications from './NotificationsPage';
 
-/* Handler_NotificationDetail of the live TST screen (Notifications.mvc.js:2986-3003): a click on a notification calls
-   MarkAsRead when it is not read, then opens NotificationDetails with its id. */
+/* Handler_NotificationDetail of the live TST screen (2026-11-05, Notifications.mvc.js:2562-2596): a click on a
+   notification calls MarkAsRead when it is not read, then opens NotificationDetails with HardwareId "" (the list sends
+   it, NotificationsList.mvc.js:361), its id and its MessageTemplateId. */
 const PATH = '/UBTConnect/Notifications';
 const routes = {
   [PATH]: <Notifications />,
@@ -38,7 +39,7 @@ describe('Notifications → NotificationDetails', () => {
     expect(markAsReadCalls()).toHaveLength(1);
     expect(markAsReadCalls()[0]?.inputNames).toEqual(['MessageInstanceId']);
     expect(markAsReadCalls()[0]?.phase).not.toBeUndefined();
-    expect(router.state.location.search).toBe('?MessageInstanceId=910021');
+    expect(router.state.location.search).toBe('?HardwareId=&MessageInstanceId=910021&MessageTemplateId=48189');
   });
 
   it('a read notification: no MarkAsRead, then NotificationDetails', async () => {
@@ -46,7 +47,7 @@ describe('Notifications → NotificationDetails', () => {
     fireEvent.click(await itemOf('Camp is booked out'));
     expect(await screen.findByText('NotificationDetails screen')).toBeInTheDocument();
     await waitFor(() => {
-      expect(router.state.location.search).toBe('?MessageInstanceId=910003');
+      expect(router.state.location.search).toBe('?HardwareId=&MessageInstanceId=910003&MessageTemplateId=48171');
     });
     expect(markAsReadCalls()).toHaveLength(0);
   });

@@ -59,8 +59,14 @@ export interface NotificationsFlows {
   onFilterSheetInitialized: (sheetId: string) => void;
   /** SheetInitialized of Notifications_MoreActionSheet. */
   onMoreActionSheetInitialized: (sheetId: string) => void;
-  /** Handler_NotificationDetail: NotificationDetail of the list, with the notification id and IsRead. */
-  onNotificationDetail: (messageInstanceId: string, isRead: boolean) => void;
+  /** Handler_NotificationDetail: NotificationDetail of the list, with the notification id, IsRead, its
+      MessageTemplateId and the HardwareId (the list sends ""). */
+  onNotificationDetail: (
+    messageInstanceId: string,
+    isRead: boolean,
+    messageTemplateId: string,
+    hardwareId: string,
+  ) => void;
 }
 
 /** The view cache keeps three variables, not the whole state: a restored view starts without the list and fetches it
@@ -237,16 +243,32 @@ export function useNotifications(): NotificationsFlows {
     dispatch({ type: 'moreActionSheetInitialized', sheetId });
   };
 
-  /* Handler_NotificationDetail (live TST copy, Notifications.mvc.js:2986-3003): MarkAsRead when the notification is
-     not read (a server action: R2, not wrapped), then NotificationDetails with its id and the Default transition (R4
-     in useOsNavigate). The click of the list starts the flow (R6). */
-  const notificationDetail = async (messageInstanceId: string, isRead: boolean) => {
+  /* Handler_NotificationDetail(MessageInstanceId, IsRead, MessageTemplateId, HardwareId) (live TST 2026-11-05,
+     UBTConnect.App_Notifications.Notifications.mvc.js:2562-2596): MarkAsRead when the notification is not read (a
+     server action: R2, not wrapped), then NotificationDetails with HardwareId, MessageInstanceId and MessageTemplateId,
+     in that order, and the Default transition (R4 in useOsNavigate). HardwareId "" stays in the URL
+     (generateScreenURL writes every given input). The click of the list starts the flow (R6). */
+  const notificationDetail = async (
+    messageInstanceId: string,
+    isRead: boolean,
+    messageTemplateId: string,
+    hardwareId: string,
+  ) => {
     if (!isRead) await markNotificationAsRead(messageInstanceId);
-    navigate('/UBTConnect/NotificationDetails', { MessageInstanceId: messageInstanceId });
+    navigate('/UBTConnect/NotificationDetails', {
+      HardwareId: hardwareId,
+      MessageInstanceId: messageInstanceId,
+      MessageTemplateId: messageTemplateId,
+    });
   };
 
-  const onNotificationDetail = (messageInstanceId: string, isRead: boolean) => {
-    flow.run(() => notificationDetail(messageInstanceId, isRead));
+  const onNotificationDetail = (
+    messageInstanceId: string,
+    isRead: boolean,
+    messageTemplateId: string,
+    hardwareId: string,
+  ) => {
+    flow.run(() => notificationDetail(messageInstanceId, isRead, messageTemplateId, hardwareId));
   };
 
   return {

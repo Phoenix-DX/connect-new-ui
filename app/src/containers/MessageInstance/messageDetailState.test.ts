@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest';
 import type { MessageDetail, MessageInstanceResult } from '@/api/message';
-import { MessageInfoType, MessageSenderTarget, MessageType, ParameterName } from '@/pages/MessageDetail/staticEntities';
+import { MessageInfoType, MessageSenderTarget, MessageType, ParameterName } from './staticEntities';
 import { getClientVar, setClientVar } from '@/platform/session/session';
 import {
   addFirstSentence,

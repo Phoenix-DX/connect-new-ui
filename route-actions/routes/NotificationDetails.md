@@ -4,7 +4,7 @@ The route `/UBTConnect/NotificationDetails`, read from the TST compiled code and
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/NotificationDetails/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
-**Live code.** TST changed 1 compiled file of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `NotificationDetails`. The observed calls come from the capture.
+**Live code.** TST changed 5 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `NotificationDetails`, `UBTConnect`, `js`, `UBTConnect_Utils`, `js`. The observed calls come from the capture.
 
 ## 1. Route
 
@@ -22,21 +22,26 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 
 | Check | Result |
 |---|---|
-| Server calls of the route on TST | 5: React makes 2, **2 missing**, 1 not a gap of the web app |
-| Differences found | **14** (+ 1 not a gap of the web app) (see [section 3](#3-differences-found)) |
+| Server calls of the route on TST | 5: React makes 2, **3 missing** |
+| Differences found | **15** (see [section 3](#3-differences-found)) |
 | Questions | 0 (see [section 4](#4-questions)) |
 | React calls reached only through shared code | 0: see the last section |
 | User actions of the route (own code) | OutSystems: 1. React: 1 |
 | Screen and blocks of the UI flow with a React port | 1 of 1 |
 | Navigation targets found in React | 10 of 20 |
 | Shared blocks and components on the route | OutSystems 10, React 2 with user actions: see the last section |
-| App shell on this route | 9 calls: see [APP_SHELL.md](../APP_SHELL.md) |
+| App shell on this route | 8 calls: see [APP_SHELL.md](../APP_SHELL.md) |
 
 ## 3. Differences found
 
 Each line is a fact of both sides: a TST call, navigation or variable, and the React code that has it or not. The tool does not judge the behaviour.
 
-- Call `UBTConnect/App_Notifications/NotificationDetails/ScreenDataSetGetMessageTemplateParametersByMessageTemplateId`. Chain on TST: NotificationDetails fetch at start → NotificationDetails.ScreenDataSetGetMessageTemplateParametersByMessageTemplateId.
+- Call `UBTConnect/App_Notifications/NotificationDetails/ActionWrapper_NotificationOpened`. Chain on TST: NotificationDetails fetch at start → NotificationDetails.DataActionGetMessageInstance → NotificationDetails.getMessageInstanceByIdOnAfterFetch → server Wrapper_NotificationOpened.
+  - No React code makes this call.
+  - Note in [`api/README.md:66`](../../app/src/api/README.md#L66): "The domain has one e-mail form type, `ContactByEmailForm`, and one mapper, `toOrbitContactEmailInputs`, for three screens that had their own copies. `sendContactEmail` returns IsSu"
+  - Note in [`api/message/mapper.ts:215`](../../app/src/api/message/mapper.ts#L215): "/** The block variables of the aggregate, with MaxRecords 50 and StartIndex 0 (GetMessageInstanceByIdOnAfterFetch). */"
+  - Note in [`api/notification/hooks.ts:55`](../../app/src/api/notification/hooks.ts#L55): "/** Wrapper_NotificationOpened as a mutation: the variable is the message instance id. */"
+- Call `UBTConnect/App_Notifications/NotificationDetails/ScreenDataSetGetMessageTemplateParametersByMessageTemplateId`. Chain on TST: NotificationDetails fetch at start → NotificationDetails.DataActionGetMessageInstance → NotificationDetails.getMessageInstanceByIdOnAfterFetch → NotificationDetails.ScreenDataSetGetMessageTemplateParametersByMessageTemplateId.
   - No React code makes this call.
   - Note in [`api/message/hooks.ts:90`](../../app/src/api/message/hooks.ts#L90): "/** The aggregate GetMessageTemplateParametersByMessageTemplateId of ScreenBlock_MessageDetail as a query. */"
   - Note in [`api/message/mapper.ts:59`](../../app/src/api/message/mapper.ts#L59): "/** The inputs of the aggregate GetMessageTemplateParametersByMessageTemplateId. */"
@@ -45,7 +50,7 @@ Each line is a fact of both sides: a TST call, navigation or variable, and the R
   - No React code makes this call.
   - Note in [`api/message/mapper.ts:179`](../../app/src/api/message/mapper.ts#L179): "/** The message of GetMessageInstance with the fields that the block reads: "" or "0" instance id, the null date and"
   - Note in [`api/message/types.ts:134`](../../app/src/api/message/types.ts#L134): "/** GetMessageInstance.Message, the fields that the block reads (null for "" / NullIdentifier / 1900-01-01). */"
-  - Note in [`pages/MessageDetail/components/MessageDetailView.tsx:21`](../../app/src/pages/MessageDetail/components/MessageDetailView.tsx#L21): "/** GetMessageInstance.Message; null before the first answer (the Spinner shows). */"
+  - Note in [`containers/MessageInstance/messageDetailState.ts:25`](../../app/src/containers/MessageInstance/messageDetailState.ts#L25): "/** GetMessageInstance.Message; null until the first answer. */"
 - Navigation to `HostSurvey` (from NotificationDetails). The React screen and the app shell do not go to this route.
 - Navigation to `MilestoneDetail` (from NotificationDetails). The React screen and the app shell do not go to this route.
 - Navigation to `EventDetail` (from NotificationDetails). The React screen and the app shell do not go to this route.
@@ -58,15 +63,6 @@ Each line is a fact of both sides: a TST call, navigation or variable, and the R
 - Navigation to `LDM_EventDetail` (from NotificationDetails). The React screen and the app shell do not go to this route.
 - Navigation to `HouseholdDetails` with the parameters `HouseholdId` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:1604`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L1604)). No React navigation to `HouseholdDetails` gives parameters. React names `HouseholdDetails` in: [`app/routes.ts:76`](../../app/src/app/routes.ts#L76).
 - Navigation to `SupperMeeting_Details` with the parameters `In_SubdivsionId` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:1618`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L1618)). No React navigation to `SupperMeeting_Details` gives parameters. React names `SupperMeeting_Details` in: [`app/routes.ts:82`](../../app/src/app/routes.ts#L82).
-
-### Not a gap of the web app
-
-Missing TST calls that a rule of `route-actions/config.json` (`notApplicable`, user 2026-11-05) sets aside. The rule names the fact and its evidence; the chain is the one of the TST code.
-
-**No binding in the TST view.** Every chain roots in a client action of the screen or of a block of its UI flow. No view event, lifecycle event or block event binds that action. Evidence: facts.json callSites rootKinds of the call (the call graph of the compiled code, tools/os_call_graph.py).
-
-- `UBTConnect/App_Notifications/NotificationDetails/ActionWrapper_NotificationOpened`. Chain on TST: NotificationDetails.getMessageInstanceByIdOnAfterFetch → server Wrapper_NotificationOpened.
-
 
 ## 4. Questions
 
@@ -86,10 +82,10 @@ All columns come from the code, without interpretation:
 
 | # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
 |---|---|---|---|---|---|---|---|---|
-| 1 | `UBTConnect/App_Notifications/NotificationDetails/ActionWrapper_NotificationOpened` | server action | `NotificationDetails` | NotificationDetails.getMessageInstanceByIdOnAfterFetch → server Wrapper_NotificationOpened | no | – | – | not applicable (noBinding) |
+| 1 | `UBTConnect/App_Notifications/NotificationDetails/ActionWrapper_NotificationOpened` | server action | `NotificationDetails` | NotificationDetails fetch at start → NotificationDetails.DataActionGetMessageInstance → NotificationDetails.getMessageInstanceByIdOnAfterFetch → server Wrapper_NotificationOpened | no | – | – | **missing** |
 | 2 | `UBTConnect/App_Notifications/NotificationDetails/DataActionFetchMessageInstance` | data action | `NotificationDetails` | NotificationDetails fetch at start → NotificationDetails.DataActionFetchMessageInstance | yes | `fetchNotificationDetail()` [`api/notification/notificationDetail.ts:39`](../../app/src/api/notification/notificationDetail.ts#L39) (page) | `NotificationDetails → useNotificationDetailQuery → fetchNotificationDetail`<br>[`pages/NotificationDetails/NotificationDetailsPage.tsx`](../../app/src/pages/NotificationDetails/NotificationDetailsPage.tsx) | implemented |
 | 3 | `UBTConnect/App_Notifications/NotificationDetails/DataActionGetMessageInstance` | data action | `NotificationDetails` | NotificationDetails fetch at start → NotificationDetails.DataActionGetMessageInstance | no | – | – | **missing** |
-| 4 | `UBTConnect/App_Notifications/NotificationDetails/ScreenDataSetGetMessageTemplateParametersByMessageTemplateId` | aggregate | `NotificationDetails` | NotificationDetails fetch at start → NotificationDetails.ScreenDataSetGetMessageTemplateParametersByMessageTemplateId | no | – | – | **missing** |
+| 4 | `UBTConnect/App_Notifications/NotificationDetails/ScreenDataSetGetMessageTemplateParametersByMessageTemplateId` | aggregate | `NotificationDetails` | NotificationDetails fetch at start → NotificationDetails.DataActionGetMessageInstance → NotificationDetails.getMessageInstanceByIdOnAfterFetch → NotificationDetails.ScreenDataSetGetMessageTemplateParametersByMessageTemplateId<br>NotificationDetails fetch at start → NotificationDetails.ScreenDataSetGetMessageTemplateParametersByMessageTemplateId | no | – | – | **missing** |
 | 5 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx) | implemented |
 
 ## 6. User actions
@@ -160,6 +156,7 @@ Data actions and aggregates. The tool reads `dataFetchDependenciesOriginal`: `0`
 
 | Block | Data action | Fetch | Read by | Place |
 |---|---|---|---|---|
+| `NotificationDetails` | `GetMessageTemplateParametersByMessageTemplateId` | on demand (`-1`) | **no widget or action reads it** | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:712`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L712) |
 | `NotificationDetails` | `FetchMessageInstance` | on demand (`-1`) | **no widget or action reads it** | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:713`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L713) |
 | `NotificationDetails` | `GetMessageInstance` | at start (`0`) | `view` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:249`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L249)), `IconText.Text` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:308`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L308)), `text` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:386`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L386)), `CustomText.In_Text` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:441`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L441)), `shown if (CustomText)` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:479`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L479)), `AdaptiveCardViewer.In_AdaptiveCardJson` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:499`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L499)), `SanitizedHtml.Value` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:553`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L553)), `action getMessageInstanceByIdOnAfterFetch` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:999`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L999)), `action getMessageTemplateParametersOnAfterFetch` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:1351`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L1351)) | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:714`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L714) |
 

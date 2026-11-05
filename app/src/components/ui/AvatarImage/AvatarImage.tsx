@@ -76,7 +76,14 @@ export function AvatarImage({
             // The compiled view passes no input to InlineSVG (UBTConnectLibrary.ConnectPatterns.AvatarImage.mvc.js:341).
             <InlineSVG />
           ) : (
-            <Icon inIconId={fallback.IconId ?? ''} inColorId={fallback.FontColor ?? ''} />
+            // The fallback Icon takes its size from FallbackOptions.IconSizeId (live
+            // UBTConnectLibrary.ConnectPatterns.AvatarImage.mvc.js:357-364); the October block passed no size (Icon
+            // default "", as the structure default of IconSizeId), so callers without IconSizeId render the same.
+            <Icon
+              inIconId={fallback.IconId ?? ''}
+              inColorId={fallback.FontColor ?? ''}
+              inSizeId={fallback.IconSizeId ?? ''}
+            />
           )}
         </CustomContainer>
       )}

@@ -4,7 +4,7 @@ The route `/UBTConnect/HouseholdDetails`, read from the TST compiled code and fr
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/HouseholdDetails/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
-**Live code.** TST changed 4 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `Directory_EntityDetailsActions`, `HouseholdDetails_Block`, `HorizontalTagList`, `ShareSheet`. The observed calls come from the capture.
+**Live code.** TST changed 8 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `Directory_EntityDetailsActions`, `HouseholdDetails_Block`, `UBTConnect`, `js`, `HorizontalTagList`, `ShareSheet`, `UBTConnect_Utils`, `js`. The observed calls come from the capture.
 
 ## 1. Route
 
@@ -16,14 +16,14 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/HouseholdDetails/HouseholdDetailsPage.tsx`](../../app/src/pages/HouseholdDetails/HouseholdDetailsPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 | Screenshots | [`migration/screens/HouseholdDetails/parity`](../../migration/screens/HouseholdDetails/parity) | `route.py parity` |
-| Code read | OutSystems: 2 files of the UI flow, 36 shared blocks, 28 app shell files. React: 233 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
+| Code read | OutSystems: 2 files of the UI flow, 36 shared blocks, 28 app shell files. React: 235 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
 | Check | Result |
 |---|---|
-| Server calls of the route on TST | 13: React makes 9, **1 missing**, 3 not a gap of the web app |
-| Differences found | **1** (+ 3 not a gap of the web app) (see [section 3](#3-differences-found)) |
+| Server calls of the route on TST | 15: React makes 10, **2 missing**, 3 not a gap of the web app |
+| Differences found | **2** (+ 3 not a gap of the web app) (see [section 3](#3-differences-found)) |
 | Questions | 0 (see [section 4](#4-questions)) |
 | React calls reached only through shared code | 4: see the last section |
 | User actions of the route (own code) | OutSystems: 7. React: 1 |
@@ -36,8 +36,16 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 
 Each line is a fact of both sides: a TST call, navigation or variable, and the React code that has it or not. The tool does not judge the behaviour.
 
-- Call `UBTConnect/Directory_Household/HouseholdDetails_Block/DataActionGetHouseHold_Gallery`. Chain on TST: HouseholdDetails_Block.refresh_GetHouseHold_Gallery → HouseholdDetails_Block.DataActionGetHouseHold_Gallery.
+- Call `UBTConnect_Utils/ServiceAPIAddBookmark2`. Chain on TST: onClick in CircleButton_WithLabel → CircleButton_WithLabel.action_OnClick → … → UBTConnect_Utils.toggleBookmarkItem_C2 → server AddBookmark2.
   - No React code makes this call.
+  - Note in [`api/bookmark/mapper.ts:9`](../../app/src/api/bookmark/mapper.ts#L9): "/** The service action AddBookmark2 of UBTConnect. */"
+  - Note in [`api/bookmark/repository.ts:37`](../../app/src/api/bookmark/repository.ts#L37): "/** The service action AddBookmark2(In_BookmarkCategoryId, In_ItemId) of UBTConnect (called by ToggleBookmarkItem_C2)."
+  - Note in [`lib/ubtConnect/actions.ts:303`](../../app/src/lib/ubtConnect/actions.ts#L303): "/** The two server actions of ToggleBookmarkItem_C2. */"
+- Call `UBTConnect_Utils/ServiceAPIDeleteBookmarkByBookmarkId2`. Chain on TST: onClick in CircleButton_WithLabel → CircleButton_WithLabel.action_OnClick → … → UBTConnect_Utils.toggleBookmarkItem_C2 → server DeleteBookmarkByBookmarkId2.
+  - No React code makes this call.
+  - Note in [`api/bookmark/repository.ts:37`](../../app/src/api/bookmark/repository.ts#L37): "/** The service action AddBookmark2(In_BookmarkCategoryId, In_ItemId) of UBTConnect (called by ToggleBookmarkItem_C2)."
+  - Note in [`lib/ubtConnect/actions.ts:303`](../../app/src/lib/ubtConnect/actions.ts#L303): "/** The two server actions of ToggleBookmarkItem_C2. */"
+  - Note in [`containers/EntityDetailsActions/README.md:62`](../../app/src/containers/EntityDetailsActions/README.md#L62): "- **Handle_Bookmark** (:1400-1470): ToggleBookmarkItem_C2(EntityId, Local_BookmarkTypeId, Local_isBookmarked), then"
 
 ### Not a gap of the web app
 
@@ -76,9 +84,9 @@ All columns come from the code, without interpretation:
 | 1 | `Connect2_LegacyShared/ActionGetAllApplicationEvents` | server action | `Connect2_LegacyShared` | SharePopup.onClick_CallButton → event event_ShareToOthers of SharePopup → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents | no | – | – | not applicable (telemetry) |
 | 2 | `UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails` | data action | `Directory_EntityDetailsActions` | Directory_EntityDetailsActions.action_AsyncRefresh_ContactDetails → Directory_EntityDetailsActions.DataActionFetchContactDetails<br>Directory_EntityDetailsActions fetch at start → Directory_EntityDetailsActions.DataActionFetchContactDetails | yes | `fetchEntityContactDetails()` [`api/message/repository.ts:264`](../../app/src/api/message/repository.ts#L264) (page) | `EntityDetailsActionsContainer → useEntityDetailsActions → fetchEntityContactDetails`<br>[`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx) | implemented |
 | 3 | `UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchNotes` | data action | `Directory_EntityDetailsActions` | onClick in CircleButton_WithLabel → CircleButton_WithLabel.action_OnClick → … → Directory_EntityDetailsActions.action_RefreshFetchNotes → Directory_EntityDetailsActions.DataActionFetchNotes<br>Directory_EntityDetailsActions.OnReady → Directory_EntityDetailsActions.onReady → Directory_EntityDetailsActions.action_RefreshFetchNotes → Directory_EntityDetailsActions.DataActionFetchNotes<br>Directory_EntityDetailsActions fetch at start → Directory_EntityDetailsActions.DataActionFetchNotes | yes | `fetchEntityNotes()` [`api/note/repository.ts:47`](../../app/src/api/note/repository.ts#L47) (page) | `EntityDetailsActionsContainer → useEntityDetailsActions → fetchEntityNotes`<br>[`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx) | implemented |
-| 4 | `UBTConnect/Directory_Household/HouseholdDetails_Block/DataActionGetHouseHold_Gallery` | data action | `HouseholdDetails_Block` | HouseholdDetails_Block.refresh_GetHouseHold_Gallery → HouseholdDetails_Block.DataActionGetHouseHold_Gallery<br>HouseholdDetails_Block fetch at start → HouseholdDetails_Block.DataActionGetHouseHold_Gallery | no | – | – | **missing** |
-| 5 | `UBTConnect/Directory_Household/HouseholdDetails_Block/DataActionGetHousehold` | data action | `HouseholdDetails_Block` | HouseholdDetails_Block.refresh_GetHouseholdDetail → HouseholdDetails_Block.DataActionGetHousehold<br>HouseholdDetails_Block.OnParametersChanged → HouseholdDetails_Block.screenEvent_OnParametersChanged → HouseholdDetails_Block.DataActionGetHousehold<br>HouseholdDetails_Block fetch at start → HouseholdDetails_Block.DataActionGetHousehold | yes | `fetchHousehold()` [`api/household/repository.ts:45`](../../app/src/api/household/repository.ts#L45) (page) | `HouseholdDetailsContainer → useHouseholdDetails → fetchHousehold`<br>[`containers/HouseholdDetails/HouseholdDetailsContainer.tsx`](../../app/src/containers/HouseholdDetails/HouseholdDetailsContainer.tsx) | implemented |
-| 6 | `UBTConnect/Directory_Household/HouseholdDetails_Block/DataActionGetHousehold_Coordinates` | data action | `HouseholdDetails_Block` | HouseholdDetails_Block.refresh_GetHouseholdCoordinates → HouseholdDetails_Block.DataActionGetHousehold_Coordinates<br>HouseholdDetails_Block fetch at start → HouseholdDetails_Block.DataActionGetHousehold_Coordinates | yes | `fetchHouseholdCoordinates()` [`api/household/repository.ts:51`](../../app/src/api/household/repository.ts#L51) (page) | `HouseholdDetailsContainer → useHouseholdDetails → fetchHouseholdCoordinates`<br>[`containers/HouseholdDetails/HouseholdDetailsContainer.tsx`](../../app/src/containers/HouseholdDetails/HouseholdDetailsContainer.tsx) | implemented |
+| 4 | `UBTConnect/Directory_Household/HouseholdDetails_Block/DataActionGetHouseHold_Gallery` | data action | `HouseholdDetails_Block` | HouseholdDetails_Block.refresh_GetHouseHold_Gallery → HouseholdDetails_Block.DataActionGetHouseHold_Gallery<br>HouseholdDetails_Block fetch at start → HouseholdDetails_Block.DataActionGetHouseHold_Gallery | no | `fetchHouseholdGallery()` [`api/household/repository.ts:64`](../../app/src/api/household/repository.ts#L64) (page) | `HouseholdDetailsContainer → useHouseholdDetails → fetchHouseholdGallery`<br>[`containers/HouseholdDetails/HouseholdDetailsContainer.tsx`](../../app/src/containers/HouseholdDetails/HouseholdDetailsContainer.tsx) | implemented |
+| 5 | `UBTConnect/Directory_Household/HouseholdDetails_Block/DataActionGetHousehold` | data action | `HouseholdDetails_Block` | HouseholdDetails_Block.refresh_GetHouseholdDetail → HouseholdDetails_Block.DataActionGetHousehold<br>HouseholdDetails_Block.OnParametersChanged → HouseholdDetails_Block.screenEvent_OnParametersChanged → HouseholdDetails_Block.DataActionGetHousehold<br>HouseholdDetails_Block fetch at start → HouseholdDetails_Block.DataActionGetHousehold | yes | `fetchHousehold()` [`api/household/repository.ts:48`](../../app/src/api/household/repository.ts#L48) (page) | `HouseholdDetailsContainer → useHouseholdDetails → fetchHousehold`<br>[`containers/HouseholdDetails/HouseholdDetailsContainer.tsx`](../../app/src/containers/HouseholdDetails/HouseholdDetailsContainer.tsx) | implemented |
+| 6 | `UBTConnect/Directory_Household/HouseholdDetails_Block/DataActionGetHousehold_Coordinates` | data action | `HouseholdDetails_Block` | HouseholdDetails_Block.refresh_GetHouseholdCoordinates → HouseholdDetails_Block.DataActionGetHousehold_Coordinates<br>HouseholdDetails_Block fetch at start → HouseholdDetails_Block.DataActionGetHousehold_Coordinates | yes | `fetchHouseholdCoordinates()` [`api/household/repository.ts:54`](../../app/src/api/household/repository.ts#L54) (page) | `HouseholdDetailsContainer → useHouseholdDetails → fetchHouseholdCoordinates`<br>[`containers/HouseholdDetails/HouseholdDetailsContainer.tsx`](../../app/src/containers/HouseholdDetails/HouseholdDetailsContainer.tsx) | implemented |
 | 7 | `UBTConnect_Utils/CW_Notes/NotesSheet/ServiceAPIAddNote` | service action | `NotesSheet` | NotesSheet.handler_OnSubmitNote → server AddNote | no | `addNote()` [`api/note/repository.ts:54`](../../app/src/api/note/repository.ts#L54) (page) | `NotesSheet → addNote`<br>[`components/note/NotesSheet/NotesSheet.tsx`](../../app/src/components/note/NotesSheet/NotesSheet.tsx) | implemented |
 | 8 | `UBTConnect_Utils/CW_Share/ShareSheet/ActionCS_CreateShareProfileLink` | server action | `ShareSheet` | onClick in CircleButton_WithLabel → CircleButton_WithLabel.action_OnClick → event onClick of CircleButton_WithLabel → ShareSheet.handler_OnClickExternalOption → server CS_CreateShareProfileLink | no | – | – | not applicable (nativeOnly) |
 | 9 | `UBTConnect_Utils/CW_Share/ShareSheet/ActionCS_ShareObject` | server action | `ShareSheet` | onClick in CircleButton_WithLabel → CircleButton_WithLabel.action_OnClick → … → ShareSheet.action_SubmitShare → server CS_ShareObject<br>ShareSheet.handler_OnClickSend → ShareSheet.action_SubmitShare → server CS_ShareObject | no | `csShareObject()` [`api/share/shareSheet.ts:25`](../../app/src/api/share/shareSheet.ts#L25) (page) | `ShareSheetContainer → useShareSheet → csShareObject`<br>[`containers/ShareSheet/ShareSheetContainer.tsx`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx) | implemented |
@@ -86,6 +94,8 @@ All columns come from the code, without interpretation:
 | 11 | `UBTConnect_Utils/CW_Share/ShareSheet/DataActionGetRecentlyShared` | data action | `ShareSheet` | ShareSheet.OnParametersChanged → ShareSheet.screenEvent_OnParametersChanged → ShareSheet.DataActionGetRecentlyShared<br>ShareSheet fetch at start → ShareSheet.DataActionGetRecentlyShared | no | `fetchRecentlyShared()` [`api/share/shareSheet.ts:14`](../../app/src/api/share/shareSheet.ts#L14) (page) | `ShareSheetContainer → useShareSheet → useRecentlySharedQuery → fetchRecentlyShared`<br>[`containers/ShareSheet/ShareSheetContainer.tsx`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx) | implemented |
 | 12 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx) | implemented |
 | 13 | `UBTConnect_Utils/ActionCS_CreateShareProfileLink` | server action | `UBTConnect_Utils` | event event_Clicked of ContactPopup → SharePopup.onClick_CallButton → … → UBTConnect_Utils.shareEntity_ByURL → server CS_CreateShareProfileLink | no | – | – | not applicable (nativeOnly) |
+| 14 | `UBTConnect_Utils/ServiceAPIAddBookmark2` | service action | `UBTConnect_Utils` | onClick in CircleButton_WithLabel → CircleButton_WithLabel.action_OnClick → … → UBTConnect_Utils.toggleBookmarkItem_C2 → server AddBookmark2<br>onClick in CircleButton_WithLabel → CircleButton_WithLabel.action_OnClick → … → UBTConnect_Utils.toggleBookmarkItem_C2 → server AddBookmark2 | no | – | – | **missing** |
+| 15 | `UBTConnect_Utils/ServiceAPIDeleteBookmarkByBookmarkId2` | service action | `UBTConnect_Utils` | onClick in CircleButton_WithLabel → CircleButton_WithLabel.action_OnClick → … → UBTConnect_Utils.toggleBookmarkItem_C2 → server DeleteBookmarkByBookmarkId2<br>onClick in CircleButton_WithLabel → CircleButton_WithLabel.action_OnClick → … → UBTConnect_Utils.toggleBookmarkItem_C2 → server DeleteBookmarkByBookmarkId2 | no | – | – | **missing** |
 
 ## 6. User actions
 
@@ -272,9 +282,9 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | `IconBadge` | `UBTConnectLibrary` | [`components/ui/IconBadge/IconBadge.tsx`](../../app/src/components/ui/IconBadge/IconBadge.tsx) | 0 |
 | `Badge` | `UBTConnectLibrary` | [`components/ui/Badge/Badge.tsx`](../../app/src/components/ui/Badge/Badge.tsx) | 0 |
 | `NotesSheet` | `UBTConnect_Utils` | [`components/note/NotesSheet/NotesSheet.tsx`](../../app/src/components/note/NotesSheet/NotesSheet.tsx) | 1 |
-| `ShareSheet` | `UBTConnect_Utils` | [`containers/ShareSheet/ShareSheetContainer.tsx`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx), [`containers/ShareSheet/components/ShareSheetFirstStep.tsx`](../../app/src/containers/ShareSheet/components/ShareSheetFirstStep.tsx), [`containers/ShareSheet/components/ShareSheetSearchStep.tsx`](../../app/src/containers/ShareSheet/components/ShareSheetSearchStep.tsx), [`containers/ShareSheet/shareSheetState.ts`](../../app/src/containers/ShareSheet/shareSheetState.ts), [`containers/ShareSheet/useShareSheet.ts`](../../app/src/containers/ShareSheet/useShareSheet.ts) | 5 |
+| `ShareSheet` | `UBTConnect_Utils` | [`containers/ShareSheet/ShareSheetContainer.tsx`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx), [`containers/ShareSheet/components/ShareSheetFirstStep.tsx`](../../app/src/containers/ShareSheet/components/ShareSheetFirstStep.tsx), [`containers/ShareSheet/components/ShareSheetSearchStep.tsx`](../../app/src/containers/ShareSheet/components/ShareSheetSearchStep.tsx), [`containers/ShareSheet/shareSheetState.ts`](../../app/src/containers/ShareSheet/shareSheetState.ts), [`containers/ShareSheet/useShareSheet.ts`](../../app/src/containers/ShareSheet/useShareSheet.ts) | 4 |
 
-<details><summary>User actions of the shared blocks (21)</summary>
+<details><summary>User actions of the shared blocks (20)</summary>
 
 | # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
 |---|---|---|---|---|---|
@@ -283,7 +293,7 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | 3 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `updates` | goes to Updates_SingleList |
 | 4 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `bookmarks` | goes to Bookmarks |
 | 5 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `menu` | goes to Menu |
-| 6 | `Directory_EntityDetailsActions` | `event_Click_Notes of ActionsMenu` | `handler_AddNotesOnClick` | – | calls FetchNotes |
+| 6 | `Directory_EntityDetailsActions` | `event_Click_Bookmark of ActionsMenu`<br>`event_Click_Unbookmark of ActionsMenu` | `handle_Bookmark` | – | calls AddBookmark2, DeleteBookmarkByBookmarkId2 |
 | 7 | `Directory_EntityDetailsActions` | `event_Cancel of Wrapper`<br>`event_Click_Email of ActionsMenu` | `handle_Mail` | – | goes to ContactByEmailOneSchoolGlobal |
 | 8 | `Directory_EntityDetailsActions` | `event_Email of Wrapper` | `handle_Mail_Page` | – | goes to ContactByEmailMember |
 | 9 | `Directory_EntityDetailsActions` | `event_ShareToConnect of SharePopup` | `handle_Share_Connect` | – | goes to LegacyShareObject |
@@ -296,9 +306,8 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | 16 | `NotesSheet` | `onSubmitRequested of AddNote` | `handler_OnSubmitNote` | – | calls AddNote; shows a message |
 | 17 | `ShareSheet` | `onClick of WithLabel` | `handler_OnClickRecentMember` | – | calls CS_ShareObject; shows a message; asks for a confirmation |
 | 18 | `ShareSheet` | `onClick of WithLabel` | `handler_OnClickExternalOption` | – | calls CS_CreateShareProfileLink |
-| 19 | `ShareSheet` | `event_Submit of Input` | `handler_InputEventSubmit` | – | calls GetAvailableMembers |
-| 20 | `ShareSheet` | `click of Icon` | `handler_SearchResultItemOnSelect` | – | shows a message |
-| 21 | `ShareSheet` | `buttonOnClick of Button` | `handler_OnClickSend` | – | calls CS_ShareObject; shows a message |
+| 19 | `ShareSheet` | `click of Icon` | `handler_SearchResultItemOnSelect` | – | shows a message |
+| 20 | `ShareSheet` | `buttonOnClick of Button` | `handler_OnClickSend` | – | calls CS_ShareObject; shows a message |
 
 </details>
 

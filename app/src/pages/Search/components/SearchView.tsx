@@ -68,6 +68,8 @@ export function SearchView({
     hasPeople,
     hasHouseholds,
     hasPlaces,
+    hasEvents,
+    hasSchool,
     isBirthdayKeyWord,
     results,
   } = state;
@@ -178,7 +180,7 @@ export function SearchView({
                   </>
                 )}
                 <Skeleton isLoading={isLoading}>
-                  {/* Places, Households and Members, then the no-match texts. While IsLoading, the lists in scope
+                  {/* Places, Households, Members, Events and Schools, then the no-match texts. While IsLoading, the lists in scope
                       hold the three loading rows of Action_RefreshSearch: the skeleton shows them as placeholders. */}
                   {(hasPlaces || (isLoading && showsCategory(selectedCategory, Connect_SearchCategories.Places))) && (
                     <SearchResult_Section
@@ -190,7 +192,10 @@ export function SearchView({
                       onItemClick={onResultClick}
                     />
                   )}
-                  {(hasHouseholds || isLoading) && (
+                  {/* Households and Members (live ScreenBlock_Search.mvc.js:1473, :1516): while IsLoading, only when
+                      SelectedCategory is null, All or that category. */}
+                  {(hasHouseholds ||
+                    (isLoading && showsCategory(selectedCategory, Connect_SearchCategories.Households))) && (
                     <SearchResult_Section
                       id="b1-HouseholdsSection"
                       type={Connect_SearchCategories.Households}
@@ -200,7 +205,7 @@ export function SearchView({
                       onItemClick={onResultClick}
                     />
                   )}
-                  {(hasPeople || isLoading) && (
+                  {(hasPeople || (isLoading && showsCategory(selectedCategory, Connect_SearchCategories.People))) && (
                     <SearchResult_Section
                       id="b1-MembersSection"
                       searchTerm={searchKeyCurrent}
@@ -212,7 +217,29 @@ export function SearchView({
                       onItemClick={onResultClick}
                     />
                   )}
-                  {!hasPeople && !hasHouseholds && !hasPlaces && !isLoading && (
+                  {/* Events and Schools (live ScreenBlock_Search.mvc.js:1559-1644): the widget names of TST,
+                      MembersSection2 and SchoolsSection. */}
+                  {(hasEvents || (isLoading && showsCategory(selectedCategory, Connect_SearchCategories.Events))) && (
+                    <SearchResult_Section
+                      id="b1-MembersSection2"
+                      hideSeparator={changedSinceSearch && results.events.length === 0 && results.people.length === 0}
+                      items={results.events}
+                      searchTerm={searchKeyCurrent}
+                      type={Connect_SearchCategories.Events}
+                      onItemClick={onResultClick}
+                    />
+                  )}
+                  {(hasSchool || (isLoading && showsCategory(selectedCategory, Connect_SearchCategories.Schools))) && (
+                    <SearchResult_Section
+                      id="b1-SchoolsSection"
+                      hideSeparator={changedSinceSearch && results.schools.length === 0 && results.events.length === 0}
+                      searchTerm={searchKeyCurrent}
+                      items={results.schools}
+                      type={Connect_SearchCategories.Schools}
+                      onItemClick={onResultClick}
+                    />
+                  )}
+                  {!hasPeople && !hasHouseholds && !hasPlaces && !hasEvents && !hasSchool && !isLoading && (
                     <>
                       {searchKeyCurrent === searchKeyLastSearched && <SectionSeparator />}
                       <CustomContainer

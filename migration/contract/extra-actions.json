@@ -12,32 +12,6 @@
     "evidence": "Connect2_LegacyShared.controller.js:7865-7880 (ServerAction.GetSignedPhotosInBulk), :2983-3035 (GetBulkSignedPhotosURL), :3947-4115 (GetCacheableSignedPhotoURL), called by Connect2_LegacyShared.Utility.Result_Item_Image (LoadPhotoAsync, .mvc.js:702-770); CR-W3Y-1; 2026-11-05 (route-actions questions): also the build screens whose closure (migration/survey/screens.json) has a block that calls GetCacheableSignedPhotoURL: AssembleDetail (AssembleEventDetail_Contact, NC_Card_Item_Visual, NC_Result_Item__Image), AssembleEvents (NC_Card_Item_Visual, NC_Result_Item__Image), LDM_MyEvents_V2 (Result_Item_Image)"
   },
   {
-    "path": "screenservices/UBTConnect/ServiceAPIAddBookmark2",
-    "screens": [
-      "HouseholdCarousel",
-      "HouseholdDetails",
-      "Locality_Details",
-      "OneSchoolGlobalDetails",
-      "Profile",
-      "SupperMeeting_Carousel",
-      "SupperMeeting_Details"
-    ],
-    "evidence": "UBTConnect.controller.js:18251-18286 (ServerAction.AddBookmark2: In_BookmarkCategoryId, In_ItemId Text; Success, Bookmark_Added Connect_Bookmarks_CS UI_Bookmark_Added), called by ToggleBookmarkItem_C2 (:17105-17280, :17167), called by UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions Handle_Bookmark (.mvc.js:1414); screens = build screens whose block closure has Directory_EntityDetailsActions (migration/survey/screens.json); CR-W4A-1"
-  },
-  {
-    "path": "screenservices/UBTConnect/ServiceAPIDeleteBookmarkByBookmarkId2",
-    "screens": [
-      "HouseholdCarousel",
-      "HouseholdDetails",
-      "Locality_Details",
-      "OneSchoolGlobalDetails",
-      "Profile",
-      "SupperMeeting_Carousel",
-      "SupperMeeting_Details"
-    ],
-    "evidence": "UBTConnect.controller.js:18312-18336 (ServerAction.DeleteBookmarkByBookmarkId2: BookmarkId Long Integer; Success), called by ToggleBookmarkItem_C2 (:17105-17280, :17141), called by UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions Handle_Bookmark (.mvc.js:1414); screens = build screens whose block closure has Directory_EntityDetailsActions (migration/survey/screens.json); CR-W4A-1"
-  },
-  {
     "path": "screenservices/UBTConnect/ActionUpdateItem_MarkAsRead",
     "screens": [
       "HouseholdCarousel"
@@ -175,5 +149,41 @@
       "QRCodeGenerate"
     ],
     "evidence": "Connect2_LegacyShared.controller.js (migration/runtime-sources/): ServerAction.GetSignedImagesInBulk, called by GetBulkSignedImageURL (:2816-2871), called through the CallbacksJS JavaScript node of GetCacheableSignedImageURL (:3692+, getClientActionProxies: a callback the call graph cannot follow); GetCacheableSignedImageURL is called by Card_MemberInformation, Card_MemberInformation_Survey, PhotoLazyLoaded, ScreenBlock_HelperDetails (_buildMemberCallData :959-1043), ScreenBlock_AdminEventDetail, ScreenBlock_AdminMilestoneDetail, ScreenBlock_GenerateQRCode and the MilestoneDetail meal/accommodation blocks; screens = build screens whose closure has one of these blocks (migration/survey/screens.json); route-actions questions 2026-11-05"
+  },
+  {
+    "path": "screenservices/UBTConnect_Utils/ServiceAPIAddBookmark2",
+    "screens": [
+      "AssembleDetail",
+      "Bookmarks",
+      "HouseholdCarousel",
+      "HouseholdDetails",
+      "Household_Relations",
+      "Locality_Details",
+      "Notes",
+      "OneSchoolGlobalCarousel",
+      "OneSchoolGlobalDetails",
+      "Profile",
+      "SupperMeeting_Carousel",
+      "SupperMeeting_Details"
+    ],
+    "evidence": "live UBTConnect_Utils.controller.js (2026-11-05, migration/runtime-sources/live/): ServerAction.AddBookmark2 (In_BookmarkCategoryId, In_ItemId Text; Success, Bookmark_Added) and DeleteBookmarkByBookmarkId2 (BookmarkId; Success) called by UBTConnect_Utils.ToggleBookmarkItem_C2; the October copies sat in UBTConnect.controller.js (:18251-18286, :18312-18336) and Connect2_Assemble_MUI.controller.js (ActionAddBookmark), both gone on 2026-11-05 (migration/knowledge/tst-drift-2026-11-05.md, second look). Live callers of ToggleBookmarkItem_C2 (survey of 2026-11-05): Directory_EntityDetailsActions, ItemCardActions, HouseholdRelations_Block, AssembleEventDetail_AttendeeSubdivision; screens = the build screens whose closure (migration/survey/screens.json) has one of them (Map is a skip route)"
+  },
+  {
+    "path": "screenservices/UBTConnect_Utils/ServiceAPIDeleteBookmarkByBookmarkId2",
+    "screens": [
+      "AssembleDetail",
+      "Bookmarks",
+      "HouseholdCarousel",
+      "HouseholdDetails",
+      "Household_Relations",
+      "Locality_Details",
+      "Notes",
+      "OneSchoolGlobalCarousel",
+      "OneSchoolGlobalDetails",
+      "Profile",
+      "SupperMeeting_Carousel",
+      "SupperMeeting_Details"
+    ],
+    "evidence": "live UBTConnect_Utils.controller.js (2026-11-05, migration/runtime-sources/live/): ServerAction.AddBookmark2 (In_BookmarkCategoryId, In_ItemId Text; Success, Bookmark_Added) and DeleteBookmarkByBookmarkId2 (BookmarkId; Success) called by UBTConnect_Utils.ToggleBookmarkItem_C2; the October copies sat in UBTConnect.controller.js (:18251-18286, :18312-18336) and Connect2_Assemble_MUI.controller.js (ActionAddBookmark), both gone on 2026-11-05 (migration/knowledge/tst-drift-2026-11-05.md, second look). Live callers of ToggleBookmarkItem_C2 (survey of 2026-11-05): Directory_EntityDetailsActions, ItemCardActions, HouseholdRelations_Block, AssembleEventDetail_AttendeeSubdivision; screens = the build screens whose closure (migration/survey/screens.json) has one of them (Map is a skip route)"
   }
 ]

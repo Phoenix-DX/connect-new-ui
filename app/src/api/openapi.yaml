@@ -9787,6 +9787,7 @@ components:
       x-os-output-of: 'Connect2_MyBookmarks_MUI.ActionNew_GetBookmarkById'
     Connect2_Notification_CS__MessageListItem:
       properties:
+        CreatedByMemberId: { type: 'string' }
         CreatedByUserId: { type: 'integer' }
         DateTimeCreated: { type: 'string', x-os-type: 'DateTime' }
         Id: { type: 'string', x-os-type: 'LongInteger' }
@@ -9794,12 +9795,14 @@ components:
         IsRead: { type: 'boolean' }
         MessageInfoTypeId: { type: 'integer' }
         MessageSenderTargetName: { type: 'string' }
+        MessageTemplateId: { type: 'string', x-os-type: 'LongInteger' }
         MessageTemplatePriorityId: { type: 'integer' }
         MessageTemplateTypeId: { type: 'integer' }
         ProfileIconURL: { type: 'string' }
         Summary: { type: 'string' }
         Title: { type: 'string' }
       required:
+        - 'CreatedByMemberId'
         - 'CreatedByUserId'
         - 'DateTimeCreated'
         - 'Id'
@@ -9807,6 +9810,7 @@ components:
         - 'IsRead'
         - 'MessageInfoTypeId'
         - 'MessageSenderTargetName'
+        - 'MessageTemplateId'
         - 'MessageTemplatePriorityId'
         - 'MessageTemplateTypeId'
         - 'ProfileIconURL'
@@ -14194,10 +14198,22 @@ components:
       type: 'object'
       x-os-structure: 'Connect2_Sharing_CS.UI_ShareableObject_GenericRec'
     Connect_Bookmarks_CS__Bookmark_Filter:
-      description: 'structure Connect_Bookmarks_CS.Bookmark_FilterRec (module not in the downloaded code) never captured'
-      x-os-source: 'capture'
+      properties:
+        BookmarkCategoryId: { type: 'string' }
+        SearchText: { type: 'string' }
+        SortByNewest: { type: 'string' }
+        Years:
+          properties:
+            EmptyListItem: { type: 'string' }
+            List:
+              items: { type: 'string' }
+              type: 'array'
+          required: ['List']
+          type: 'object'
+          x-os-list: true
+      required: ['BookmarkCategoryId', 'SearchText', 'SortByNewest', 'Years']
+      type: 'object'
       x-os-structure: 'Connect_Bookmarks_CS.Bookmark_FilterRec'
-      x-unknown: true
     Connect_Bookmarks_CS__UI_Bookmark_Added:
       properties:
         BookmarkCategoryId: { type: 'string' }
@@ -14211,9 +14227,23 @@ components:
       properties:
         BookmarkCategoryId: { type: 'string' }
         Bookmark_Card_Content: { '$ref': '#/components/schemas/Connect_Bookmarks_CS__UI_Bookmark_Card_Content' }
+        ChannelLogo: { type: 'string' }
+        ChannelName: { type: 'string' }
+        HasDetailAccess: { type: 'boolean' }
         Id: { type: 'string', x-os-type: 'LongInteger' }
-        ItemId: { type: 'string', x-os-type: 'LongInteger' }
-      required: ['BookmarkCategoryId', 'Bookmark_Card_Content', 'Id', 'ItemId']
+        ItemId: { type: 'string' }
+        ItemId2: { type: 'string' }
+        PublishedAt: { type: 'string', x-os-type: 'DateTime' }
+      required:
+        - 'BookmarkCategoryId'
+        - 'Bookmark_Card_Content'
+        - 'ChannelLogo'
+        - 'ChannelName'
+        - 'HasDetailAccess'
+        - 'Id'
+        - 'ItemId'
+        - 'ItemId2'
+        - 'PublishedAt'
       type: 'object'
       x-os-structure: 'Connect_Bookmarks_CS.UI_Bookmark_CardItemRec'
     Connect_Bookmarks_CS__UI_Bookmark_Card_Content:
@@ -14788,6 +14818,17 @@ components:
     Connect_Search_CS__SearchResult:
       properties:
         AdditionalInformation: { type: 'string' }
+        DisplayAddress: { type: 'boolean' }
+        DisplayHouseholdName: { type: 'boolean' }
+        Event_EndDate: { format: 'date', type: 'string', x-os-type: 'Date' }
+        Event_EventHostId: { type: 'string' }
+        Event_EventTypeTitle: { type: 'string' }
+        Event_HostHouseholderId: { type: 'string', x-os-type: 'LongInteger' }
+        Event_HostSubdivisionId: { type: 'string', x-os-type: 'LongInteger' }
+        Event_IsPersonal: { type: 'boolean' }
+        Event_OrbitEventType: { type: 'string' }
+        Event_Source: { type: 'string' }
+        Event_StartDate: { format: 'date', type: 'string', x-os-type: 'Date' }
         HouseholderId: { type: 'string' }
         Id: { type: 'string' }
         Latitude: { type: 'string', x-os-type: 'Decimal' }
@@ -14799,6 +14840,17 @@ components:
         Type: { type: 'string' }
       required:
         - 'AdditionalInformation'
+        - 'DisplayAddress'
+        - 'DisplayHouseholdName'
+        - 'Event_EndDate'
+        - 'Event_EventHostId'
+        - 'Event_EventTypeTitle'
+        - 'Event_HostHouseholderId'
+        - 'Event_HostSubdivisionId'
+        - 'Event_IsPersonal'
+        - 'Event_OrbitEventType'
+        - 'Event_Source'
+        - 'Event_StartDate'
         - 'HouseholderId'
         - 'Id'
         - 'Latitude'

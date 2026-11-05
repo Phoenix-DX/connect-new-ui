@@ -194,6 +194,36 @@ export function notes_InterchangeId_ExtractId(noteInterchangeId: string): {
   return { LocalityId: list[0] ?? '', InterchangeLocalityId: list[1] ?? '' };
 }
 
+/** GetLocalityMenu().LocalityMenuOptions (live UBTConnect.controller.js:9586-9620): the defaults of
+    Entities_LocalityMenuOptionsRec, the tag texts and identifiers of the locality menu of Locality_Details. */
+export const LocalityMenu = {
+  Households: 'Households',
+  Subdivsion: 'Supper Meetings',
+  Interchange: 'Interchange',
+  OneSchoolGlobal: 'OneSchool Global',
+  LocalityContacts: 'Locality Contacts',
+  MyHousehold: 'My Household',
+} as const;
+
+/** LongIntegerToText(TextToLongInteger(text)) for an item id that the wire sends as Text: an invalid text is 0
+    (BigInt keeps the Long Integers above 2^53). */
+export const longIntegerText = (v: string): string => {
+  const trimmed = v.trim();
+  return /^[-+]?\d+$/.test(trimmed) ? BigInt(trimmed).toString() : '0';
+};
+
+/** Handler_OnClickUnauthorizedObject(CategoryId) of Bookmarks (live UBTConnect.Bookmarks.Bookmarks.mvc.js:788-817) and
+    of Notes (live UBTConnect.Notes.Notes.mvc.js:1353-1394), the same logic: ObjectLabelSingular = ToLower(the Text of
+    the first pill with that Identifier; "" when none), without a final "s"; the message of FeedbackMessage_AutoClose. */
+export function unauthorizedObjectMessage(
+  categoryId: string,
+  pills: ReadonlyArray<{ Text?: string; Identifier?: string }>,
+): string {
+  const label = (pills.find((p) => p.Identifier === categoryId)?.Text ?? '').toLowerCase();
+  const singular = label.length > 0 && label.endsWith('s') ? label.slice(0, -1) : label;
+  return `This ${singular} is no longer available.`;
+}
+
 /** GetShareType_FromEntity(EntityType, In_IsMyHousehold) (TST UBTConnect.controller.js:11102-11223, BR-UBTCON-244), in
     the TST order: Member raises InvalidAction "Share not available" (:11115-11118); Locality and Interchange →
     Locality, Household → Household, Supper Meetings → Supper Meeting, OneSchool Global, Feed Item → Feed; after all

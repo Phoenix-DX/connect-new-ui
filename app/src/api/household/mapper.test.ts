@@ -6,6 +6,7 @@ import {
   toHouseholdCardMembers,
   toHouseholdCoordinates,
   toHouseholdCoordinatesById,
+  toHouseholdGalleryImages,
   toLocalityHouseholdIds,
   toLocalityHouseholdIdsInputs,
   toLocalityHouseholds,
@@ -13,6 +14,7 @@ import {
   toMemberRelations,
   toOrbitHouseholdMembers,
   toSiblingRelations,
+  toTimelineImages,
   type HouseholdWire,
 } from './mapper';
 
@@ -431,5 +433,32 @@ describe('household mapper: LDM_EventDetail_V2', () => {
       Longitude: '0',
       UseCoordinates: false,
     });
+  });
+});
+
+describe('DataActionGetHouseHold_Gallery (live TST 2026-11-05, HouseholdDetails_Block.mvc.js:1288-1290)', () => {
+  it('reads the Directory_ImageDetails rows of Out_ImageDetails, with the defaults for missing attributes', () => {
+    const rows = toHouseholdGalleryImages({
+      Out_ImageDetails: {
+        List: [
+          { Id: '7001', SignedUrl: 'https://img.example/a.jpg', isDeceased: false, IsHidden: true },
+          { Id: 7002 },
+          'not a row',
+        ],
+      },
+    });
+    expect(rows).toEqual([
+      { Id: '7001', SignedUrl: 'https://img.example/a.jpg', isDeceased: false, IsHidden: true },
+      { Id: '7002', SignedUrl: '', isDeceased: false, IsHidden: false },
+    ]);
+    expect(toHouseholdGalleryImages({ Out_ImageDetails: undefined })).toEqual([]);
+  });
+
+  it('maps only SignedURL to the timeline images (Date, Label and IsCurrent keep the defaults)', () => {
+    const images = toTimelineImages([
+      { Id: '7001', SignedUrl: 'https://img.example/a.jpg', isDeceased: true, IsHidden: true },
+      { Id: '7002', SignedUrl: 'https://img.example/b.jpg', isDeceased: false, IsHidden: false },
+    ]);
+    expect(images).toEqual([{ SignedURL: 'https://img.example/a.jpg' }, { SignedURL: 'https://img.example/b.jpg' }]);
   });
 });

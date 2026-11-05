@@ -9,13 +9,17 @@ import type { LongId } from '@/lib/os-wire';
 /* ---- The screen Notifications ---- */
 
 /** Connect2_Notification_CS MessageListItem: the fields that the notification list reads. DateTimeCreated is a client
-    DateTime "yyyy-MM-ddTHH:mm:ss". */
+    DateTime "yyyy-MM-ddTHH:mm:ss". MessageTemplateId and CreatedByMemberId came with the live TST model of 2026-11-05
+    (Connect2_Notification_CS.model.js); the list sends MessageTemplateId to NotificationDetails
+    (UBTConnect.App_Notifications.NotificationsList.mvc.js:361). */
 export interface NotificationItem {
   id: LongId;
   title: string;
   dateTimeCreated: string;
   isRead: boolean;
   profileIconURL: string;
+  messageTemplateId: LongId;
+  createdByMemberId: string;
 }
 
 /** UBTConnect UI_Updates_DateRange: Range (an Updates_DateRanges identifier) and the dates From and To "yyyy-MM-dd"

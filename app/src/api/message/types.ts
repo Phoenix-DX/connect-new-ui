@@ -205,6 +205,21 @@ export interface StoreAdaptiveCardResponsesInputs {
   messageInstanceId: LongId;
 }
 
+/* ---- The screen NotificationDetails of UBTConnect (App_Notifications) ---- */
+
+/** The NotificationDetails variables that OutSystems sends with its data actions (screenData.variables,
+    openapi.yaml NotificationDetails/DataActionGetMessageInstance; live TST 2026-11-05,
+    UBTConnect.App_Notifications.NotificationDetails.mvc.js:60-128). FeedItemId is a Text variable that no flow
+    sets. */
+export interface NotificationDetailsCallInputs {
+  FeedItemId: string;
+  HardwareId: string;
+  IsLoading: boolean;
+  MessageInstanceId: LongId;
+  MessageTemplateId: LongId;
+  ShowAssembleAction: boolean;
+}
+
 /* ---- Message list (Connect2_LegacyShared ScreenBlock_MessageList) ---- */
 
 /** A row of MessagesList (MessageListItem), the fields that the list reads. */

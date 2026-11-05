@@ -89,6 +89,17 @@ export interface HouseholdCoordinates {
   UseCoordinates?: boolean;
 }
 
+/** A gallery image of a household (APIDomain_Directory_IS Directory_ImageDetails), a row of Out_ImageDetails of
+    DataActionGetHouseHold_Gallery. The contract has the list as x-unknown (UBTConnect__Directory_ImageDetailsList),
+    so the row type is declared here. Id is a Long Integer as text.
+    @origin migration/runtime-sources/live/APIDomain_Directory_IS.model.js:10097-10111 */
+export interface HouseholdGalleryImage {
+  Id: string;
+  SignedUrl: string;
+  isDeceased: boolean;
+  IsHidden: boolean;
+}
+
 /* The households of the Photobook screen (Directory_Photobook): its list of the locality households and the caption
    of one household (Photobook_Options_Left). */
 

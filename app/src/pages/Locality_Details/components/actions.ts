@@ -3,7 +3,7 @@ import { getLocalBookmarkByObjectId, get_LocalBookmarkByObjectId } from '@/platf
 import { currDateTime, formatDateTime } from '@/lib/osDateTime';
 import { getConnectWeekdayLabel_ByDate, getLookupConcepts } from '@/lib/ubtConnectLibrary/actions';
 import type { LookupItem, Tag } from '@/lib/ubtConnectLibrary/structures';
-import { LocalityMenu } from './staticEntities';
+import { LocalityMenu } from '@/lib/ubtConnect/actions';
 
 /* Client actions of the UBTConnect module this route calls (UC = UBTConnect.controller.js, copy in
    migration/screens/BookmarksByGroup/analysis/sources/raw/). */
@@ -25,6 +25,12 @@ export function getSample_FilterTags(showMyHouseholdTag: boolean): Tag[] {
   tags.push(tag(LocalityMenu.Subdivsion, false), tag(LocalityMenu.Interchange, false));
   tags.push(tag(LocalityMenu.OneSchoolGlobal, false), tag(LocalityMenu.LocalityContacts, false));
   return tags;
+}
+
+/** SetTagSelected(In_TagToggleList, InSelectedTagIdentifier) (live UBTConnect.controller.js:16311-16345, TST
+    2026-11-05): for each tag IsSelected = (Identifier = InSelectedTagIdentifier); Out_TagToggleList = the list. */
+export function setTagSelected(in_TagToggleList: Tag[], inSelectedTagIdentifier: string): Tag[] {
+  return in_TagToggleList.map((t) => ({ ...t, IsSelected: t.Identifier === inSelectedTagIdentifier }));
 }
 
 /** GetLocalityCurrentTimeLabel(In_UTCOffsetSeconds, In_LocalDateTime) (UC GetLocalityCurrentTimeLabel): the device

@@ -316,3 +316,8 @@ export const UBT_ImageCardType = {
   ListWithImages: 'listWithImages',
   Sublist: 'sublist',
 } as const;
+
+/** Type_Image (UBTConnectLibrary): Unavailable_Image compares TypeImage with OneSchool for its title
+    (UBTConnectLibrary.ConnectPatterns.Unavailable_Image.mvc.js:294); TST values (static-entities-tst.json
+    `UBTConnectLibrary.type_Image`). */
+export const Type_Image = { Household: 'Household', OneSchool: 'OneSchool', Subdivision: 'Subdivision' } as const;

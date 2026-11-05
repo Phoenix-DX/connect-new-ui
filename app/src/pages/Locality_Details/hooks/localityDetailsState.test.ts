@@ -9,7 +9,7 @@ import {
 } from './localityDetailsState';
 
 /* The screen variables of Locality_Details without React. Fictional localities. */
-const inputs = { LocalityId: '252', PreloadedLocalityLabel: 'Bahia Blanca, Argentina' };
+const inputs = { LocalityId: '252', PreloadedLocalityLabel: 'Bahia Blanca, Argentina', TagsList_SelectedTag: '' };
 const user = { householdId: '91002', localityId: '585' };
 const tagNames = (tags: { Text?: string }[]) => tags.map((t) => t.Text);
 const DETAILS: LocalityDetails = {
@@ -72,7 +72,11 @@ describe('initializeScreen', () => {
   });
 
   it('opens the locality of the user when the route has no LocalityId', () => {
-    const initial = initialLocalityDetailsState({ LocalityId: '0', PreloadedLocalityLabel: '' });
+    const initial = initialLocalityDetailsState({
+      LocalityId: '0',
+      PreloadedLocalityLabel: '',
+      TagsList_SelectedTag: '',
+    });
     const state = initializeScreen(initial, user, 'Bahia Blanca, Argentina');
     expect(state).toMatchObject({ localityId: '585', localityLabel: 'Bahia Blanca, Argentina', isUserLocality: true });
     expect(tagNames(state.tagsList)).toContain('My Household');
@@ -142,5 +146,38 @@ describe('localityDetailsCallInputs', () => {
       LocalityId: '252',
       PreloadedLocalityLabel: 'Bahia Blanca, Argentina',
     });
+  });
+});
+
+/* TagsList_SelectedTag input and SetTags (live Locality_Details.mvc.js:62-64, 1455-1500; SetTagSelected,
+   UBTConnect.controller.js:16311-16345; TST 2026-11-05). */
+describe('TagsList_SelectedTag and SetTags', () => {
+  const selectedOf = (tags: { Text?: string; IsSelected?: boolean }[]) =>
+    tags.filter((t) => t.IsSelected).map((t) => t.Text);
+
+  it('the input selects its tag from the start', () => {
+    const state = initialLocalityDetailsState({ ...inputs, TagsList_SelectedTag: 'Interchange' });
+    expect(state.tagsList_SelectedTag).toBe('Interchange');
+    expect(selectedOf(state.tagsList)).toEqual(['Interchange']);
+  });
+
+  it('Action_InitializeScreen keeps the tag of the input (SetTagSelected)', () => {
+    const initial = initialLocalityDetailsState({ ...inputs, TagsList_SelectedTag: 'Interchange' });
+    const state = initializeScreen(initial, user, '');
+    expect(state.tagsList_SelectedTag).toBe('Interchange');
+    expect(selectedOf(state.tagsList)).toEqual(['Interchange']);
+    expect(tagNames(state.tagsList)).not.toContain('My Household');
+  });
+
+  it('without the input, Action_InitializeScreen selects Households', () => {
+    const state = initializeScreen(initialLocalityDetailsState(inputs), user, '');
+    expect(state.tagsList_SelectedTag).toBe('Households');
+    expect(selectedOf(state.tagsList)).toEqual(['Households']);
+  });
+
+  it('an unknown tag selects no tag', () => {
+    const state = initializeScreen(initialLocalityDetailsState({ ...inputs, TagsList_SelectedTag: 'Orbit' }), user, '');
+    expect(state.tagsList_SelectedTag).toBe('Orbit');
+    expect(selectedOf(state.tagsList)).toEqual([]);
   });
 });

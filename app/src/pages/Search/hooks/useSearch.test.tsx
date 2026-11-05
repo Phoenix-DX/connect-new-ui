@@ -277,6 +277,58 @@ describe('useSearch', () => {
     });
   });
 
+  // live ScreenBlock_Search.mvc.js:3274-3319: event navigation, Locality, OneSchool Global, then Event_Source.
+  it('a school opens OneSchoolGlobalDetails, an Assemble event AssembleDetail, an LDM event LDM_EventDetail_V2', async () => {
+    const search = renderSearch();
+    await settle();
+    await searchFor(search, 'Vitale');
+    const { events, schools } = search.result.current.state.results;
+    const assemble = events.find((e) => e.eventSource === 'Assemble');
+    const ldm = events.find((e) => e.eventSource === 'LDM');
+    const [school] = schools;
+    if (!assemble || !ldm || !school) throw new Error('no event or school result');
+    const click = async (result: SearchResult, path: string, params: Record<string, string>) => {
+      navigate.mockClear();
+      act(() => {
+        search.result.current.onResultClick(result);
+      });
+      await waitFor(() => {
+        expect(navigate).toHaveBeenCalledWith(path, params);
+      });
+    };
+    await click(school, '/UBTConnect/OneSchoolGlobalDetails', { In_OneSchoolGlobalId: school.id });
+    await click(assemble, '/UBTConnect/AssembleDetail', { EventId: assemble.id });
+    await click(ldm, '/UBTConnect/LDM_EventDetail_V2', { EventHostId: ldm.eventEventHostId, EventId: ldm.id });
+    // The Type comes first: a school with an Event_Source still opens its details, a place its locality.
+    await click({ ...school, eventSource: 'Assemble' }, '/UBTConnect/OneSchoolGlobalDetails', {
+      In_OneSchoolGlobalId: school.id,
+    });
+    const [place] = search.result.current.state.results.places;
+    if (!place) throw new Error('no place result');
+    await click({ ...place, eventSource: 'LDM' }, '/UBTConnect/Locality_Details', { LocalityId: place.id });
+    expect(setPreloadObject).not.toHaveBeenCalled();
+    // The recent clicked record keeps no event field (live ScreenBlock_Search.mvc.js:3100-3139).
+    const saved = (await get_RecentClickedResults('Global', '', 'All')).find((r) => r.EntityId === ldm.id);
+    expect(saved?.EntityType).toBe('');
+    expect(Object.keys(saved ?? {}).filter((key) => key.startsWith('Event'))).toEqual([]);
+  });
+
+  it('with In_IsEventNavigation an event click raises Event_SearchResultClick and does not navigate', async () => {
+    const onClick = vi.fn();
+    const search = renderSearch({ ...SEARCH_SCREEN_INPUTS, inIsEventNavigation: true }, FLAGS, onClick);
+    await settle();
+    await searchFor(search, 'Vitale');
+    const [event] = search.result.current.state.results.events;
+    if (!event) throw new Error('no event result');
+    act(() => {
+      search.result.current.onResultClick(event);
+    });
+    await waitFor(() => {
+      expect(onClick).toHaveBeenCalledWith(event);
+    });
+    expect(navigate).not.toHaveBeenCalled();
+  });
+
   it('a disabled result opens the upgrade popup; with In_IsEventNavigation a click raises Event_SearchResultClick', async () => {
     const onClick = vi.fn();
     const search = renderSearch({ ...SEARCH_SCREEN_INPUTS, inIsEventNavigation: true }, FLAGS, onClick);

@@ -17,6 +17,9 @@ import {
   toMessageParameters,
   toMessagesResult,
   toMessageTemplateParametersInputs,
+  toNotificationMessageInstanceResult,
+  toNotificationMessageParameters,
+  toNotificationTemplateParametersInputs,
   toOrbitContactEmailInputs,
   toSendContactUsMessageInputs,
   toSendContactUsMessageResult,
@@ -38,6 +41,7 @@ import type {
   MessageInstanceResult,
   MessageListCallInputs,
   MessageParameter,
+  NotificationDetailsCallInputs,
   OrbitHostSurveyNotificationParameters,
   OrbitNotificationParameters,
   StoreAdaptiveCardResponsesInputs,
@@ -198,6 +202,32 @@ export async function storeAdaptiveCardResponses(inputs: StoreAdaptiveCardRespon
     FormDataJSON: inputs.formDataJSON,
     MessageInstanceId: inputs.messageInstanceId,
   });
+}
+
+/* ---- The screen NotificationDetails of UBTConnect ---- */
+
+/** DataActionGetMessageInstance of NotificationDetails (fetched at the start, NotificationDetails.mvc.js:711-714 and
+    800-827, live TST 2026-11-05): the message, IsRetracted and IsCleared, as the block's data action answers them. */
+export async function fetchNotificationMessageInstance(
+  inputs: NotificationDetailsCallInputs,
+): Promise<MessageInstanceResult> {
+  return toNotificationMessageInstanceResult(
+    await callAction('UBTConnect', 'NotificationDetails/DataActionGetMessageInstance', { ...inputs }),
+  );
+}
+
+/** The aggregate GetMessageTemplateParametersByMessageTemplateId of NotificationDetails, refreshed by
+    GetMessageInstanceByIdOnAfterFetch (NotificationDetails.mvc.js:748-775): the parameters of the message template. */
+export async function fetchNotificationTemplateParameters(
+  inputs: NotificationDetailsCallInputs,
+): Promise<MessageParameter[]> {
+  return toNotificationMessageParameters(
+    await callAction(
+      'UBTConnect',
+      'NotificationDetails/ScreenDataSetGetMessageTemplateParametersByMessageTemplateId',
+      toNotificationTemplateParametersInputs(inputs),
+    ),
+  );
 }
 
 /* ---- Message list (ScreenBlock_MessageList) ---- */

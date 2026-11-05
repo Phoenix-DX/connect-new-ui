@@ -773,8 +773,6 @@
   "src/pages/Login/components/LoginCard.tsx | type | LoginCardProps",
   "src/pages/Login/components/Tile.tsx | type | TileProps",
   "src/pages/Login/hooks/useLogin.ts | type | LoginFlows",
-  "src/pages/MessageDetail/hooks/messageDetailState.ts | type | MessageAccess",
-  "src/pages/MessageDetail/hooks/messageDetailState.ts | type | MessageDetailState",
   "src/pages/MessageDetail/hooks/useMessageDetail.ts | type | MessageDetailEvents",
   "src/pages/MessageList/components/CircledCheckbox.tsx | type | CircledCheckboxProps",
   "src/pages/MessageList/components/MessageFilterGroup.tsx | type | MessageFilterGroupProps",

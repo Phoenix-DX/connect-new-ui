@@ -4,7 +4,7 @@ import { collection } from '@/mocks/store';
 /* The notifications of the signed-in user (Connect2_Notification_CS.MessageListItem rows) as one mock collection, so a
    write shows in later reads (P-MUTATION): Notifications lists them (DataActionFetchNotifications), its server actions
    MarkAsRead, ToggleRead, MarkAllAsReadNotifications and Delete_Notifications change them, and NotificationDetails opens
-   one (DataActionFetchMessageInstance).
+   one (DataActionGetMessageInstance) and marks it opened (Wrapper_NotificationOpened).
    DataActionFetchNotifications was never recorded: the 68 notifications of the TST capture of 2026-10-29 (drift wave,
    M-Q2 (a), user 2026-10-29) with the captured read state (2 unread), avatar kind and age (days before the capture day
    at the captured time), so the date groups (3 "Last 7 Days", 1 "Last 30 Days", 64 "Older") and the elapsed labels stay
@@ -21,6 +21,7 @@ const SIX_MONTHS = -1;
 
 /** The wire shape of a notification (Connect2_Notification_CS.MessageListItem). */
 export interface MessageListItemRow {
+  CreatedByMemberId: string;
   CreatedByUserId: number;
   DateTimeCreated: string;
   Id: string;
@@ -28,6 +29,7 @@ export interface MessageListItemRow {
   IsRead: boolean;
   MessageInfoTypeId: number;
   MessageSenderTargetName: string;
+  MessageTemplateId: string;
   MessageTemplatePriorityId: number;
   MessageTemplateTypeId: number;
   ProfileIconURL: string;
@@ -146,6 +148,14 @@ const ROWS: [number, string, string, string, boolean][] = [
 /* Ids: 'Test Noti 56' keeps 910019 and 'Camp is booked out' 910003, as in the 2026-10-14 mock. */
 const idOf = (index: number) => String(910022 - index);
 
+/* MessageTemplateId and CreatedByMemberId (fields of the live TST model of 2026-11-05, not in the capture): invented.
+   Each notification has its own template (one send of a template per user), and the members who wrote them are the
+   fictional senders of content.ts, in turn. NotificationDetails shows the sender name of a notification without a
+   logo (sent as a user). */
+const templateIdOf = (index: number) => String(48190 - index);
+const AUTHORS = ['900120', '900121', '900122', '900103', '900107', '900108', '900109', '900110', '900111', '900112'];
+const authorOf = (index: number) => AUTHORS[index % AUTHORS.length] ?? '900120';
+
 /** The notifications older than 30 days (scenario `olderread` of Notifications: they answer read). */
 export const OLDER_THAN_30_DAYS = new Set(
   ROWS.flatMap(([daysAgo], i) => (daysAgo > 30 || daysAgo === SIX_MONTHS ? [idOf(i)] : [])),
@@ -160,7 +170,9 @@ function created(daysAgo: number, time: string): string {
   return currDateTime(d);
 }
 
-const row = (fields: Pick<MessageListItemRow, 'Id' | 'DateTimeCreated' | 'Title' | 'ProfileIconURL' | 'IsRead'>) => ({
+type RowFields =
+  'Id' | 'DateTimeCreated' | 'Title' | 'ProfileIconURL' | 'IsRead' | 'MessageTemplateId' | 'CreatedByMemberId';
+const row = (fields: Pick<MessageListItemRow, RowFields>) => ({
   CreatedByUserId: 0,
   IsClear: false,
   MessageInfoTypeId: 0,
@@ -175,13 +187,22 @@ const row = (fields: Pick<MessageListItemRow, 'Id' | 'DateTimeCreated' | 'Title'
 export const notificationRows = () =>
   collection('Connect2_Notification_CS.MessageListItem', () =>
     ROWS.map(([daysAgo, time, title, icon, read], i): Record<string, unknown> =>
-      row({ Id: idOf(i), DateTimeCreated: created(daysAgo, time), Title: title, ProfileIconURL: icon, IsRead: read }),
+      row({
+        Id: idOf(i),
+        DateTimeCreated: created(daysAgo, time),
+        Title: title,
+        ProfileIconURL: icon,
+        IsRead: read,
+        MessageTemplateId: templateIdOf(i),
+        CreatedByMemberId: authorOf(i),
+      }),
     ),
   );
 
 /* The record of the NotificationDetails capture (MessageInstanceId 5496739, a read notification that is not one of
    the 68 above): its title as captured (a TST test label, unmasked), Summary empty as captured, a fictional date (the
-   capture masks it; a Wednesday, as the title says). */
+   capture masks it; a Wednesday, as the title says). No logo, so it is sent as a user: the header shows the name of
+   its invented author (Rebecca Lindsay, content.ts); its body is empty (the capture shows none). */
 const CAPTURED_DETAILS: Record<string, MessageListItemRow> = {
   '5496739': row({
     Id: '5496739',
@@ -189,16 +210,30 @@ const CAPTURED_DETAILS: Record<string, MessageListItemRow> = {
     Title: 'Your Host on Wednesday',
     ProfileIconURL: '',
     IsRead: true,
+    MessageTemplateId: '47702',
+    CreatedByMemberId: '900110',
   }),
 };
 
-/** UI_NotificationDetail of DataActionFetchMessageInstance: the notification of that id. An unknown id answers the
-    empty record for now (question Q3 of NotificationDetails: what TST answers is not known). */
-export function notificationDetailRow(messageInstanceId: string): MessageListItemRow {
+/** The notification of that id: a row of the collection (with the read state that MarkAsRead and
+    Wrapper_NotificationOpened set), else the captured record; undefined for an unknown id. */
+export function findNotificationRow(messageInstanceId: string): MessageListItemRow | undefined {
   const stored = notificationRows().get(messageInstanceId) as MessageListItemRow | undefined;
-  return (
-    stored ??
-    CAPTURED_DETAILS[messageInstanceId] ??
-    row({ Id: '0', DateTimeCreated: '1900-01-01T00:00:00', Title: '', ProfileIconURL: '', IsRead: false })
-  );
+  return stored ?? CAPTURED_DETAILS[messageInstanceId];
 }
+
+/** The captured record 5496739 has an empty body. */
+export const isCapturedDetail = (messageInstanceId: string): boolean => messageInstanceId in CAPTURED_DETAILS;
+
+/** The sender target (Connect2_LegacyShared MessageSenderTarget id, static-entities-tst.json) that a notification
+    logo stands for; the names are fictional labels. A notification without a logo is sent as a user. */
+const SENDER_TARGETS: Record<string, { Id: number; Name: string }> = {
+  [ENTITY_LOGO]: { Id: 3, Name: 'Directory' },
+  [ASSEMBLE_LOGO]: { Id: 21, Name: 'Assemble' },
+  [CONNECT_LOGO]: { Id: 1, Name: 'Connect' },
+  [LORDS_DAY_MEAL_LOGO]: { Id: 6, Name: "Lord's Day Meal" },
+};
+
+/** The sender target of a notification, by its logo; undefined for a notification sent as a user. */
+export const notificationSenderTarget = (row: MessageListItemRow): { Id: number; Name: string } | undefined =>
+  SENDER_TARGETS[row.ProfileIconURL];

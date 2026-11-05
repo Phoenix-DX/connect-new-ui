@@ -19,8 +19,14 @@ export interface NotificationsListProps {
   inNotificationItemList: NotificationItem[];
   isLoading?: boolean;
   currentBreakpoint: NotificationBreakpoint;
-  /** Event NotificationDetail(MessageInstanceId, IsRead), raised by OnClick_NotificationDetail. */
-  onNotificationDetail?: (messageInstanceId: string, isRead: boolean) => void;
+  /** Event NotificationDetail(MessageInstanceId, IsRead, MessageTemplateId, HardwareId), raised by
+      OnClick_NotificationDetail. */
+  onNotificationDetail?: (
+    messageInstanceId: string,
+    isRead: boolean,
+    messageTemplateId: string,
+    hardwareId: string,
+  ) => void;
   /** Event UpdateReadCount(AddToCount, Breakpoint, MessageInstanceId, IsDelete, IsRead). */
   onUpdateReadCount?: (update: ReadCountUpdate, isRead: boolean) => void | Promise<void>;
 }
@@ -151,7 +157,8 @@ export function NotificationsList({
                     data-plus-date={dateTimeToText(item.dateTimeCreated)}
                     style={{ cursor: 'pointer' }}
                     onClick={() => {
-                      onNotificationDetail?.(item.id, item.isRead);
+                      // OnClick_NotificationDetail(Id, IsRead, MessageTemplateId, "") (live NotificationsList.mvc.js:361).
+                      onNotificationDetail?.(item.id, item.isRead, item.messageTemplateId, '');
                     }}
                   >
                     <Notification_ListItem

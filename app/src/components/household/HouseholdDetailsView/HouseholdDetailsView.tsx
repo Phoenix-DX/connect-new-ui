@@ -49,6 +49,12 @@ export interface HouseholdDetailsData {
   isVisible: boolean;
 }
 
+/** The gallery of the Photos tag: the images of GetHouseHold_Gallery (only SignedURL) and its data fetch status. */
+export interface HouseholdGalleryData {
+  images: UI_HouseholdTimelineImages[];
+  dataFetchStatus: DataFetchStatus;
+}
+
 export interface HouseholdDetailsViewProps {
   /** OutSystems instance id of the block. */
   id?: string;
@@ -58,7 +64,8 @@ export interface HouseholdDetailsViewProps {
   isEnabled: boolean;
   /** Shows the kebab menu (edit, share) and the share sheet. */
   showKebabMenu: boolean;
-  /** LD check mobileDirectoryHouseholdGallery (registry default on, as TST): on hides the Coming Soon box of the Photos tag. */
+  /** LD check mobileDirectoryHouseholdGallery (registry default on, as TST): on shows the gallery in the Photos tag,
+      off only the Coming Soon box (live TST of 2026-11-05, HouseholdDetails_Block.mvc.js:1274-1392). */
   hasHouseholdGallery?: boolean;
   /** Hides the call-to-action section on the About tag. */
   hideActions: boolean;
@@ -77,8 +84,8 @@ export interface HouseholdDetailsViewProps {
   isSkeletonOnly: boolean;
   /** Hides the call-to-action section (the Photos tag without Photobook access). */
   hidePhotobookActions: boolean;
-  /** The timeline images of the Photos tag. */
-  timelineImages: UI_HouseholdTimelineImages[];
+  /** The gallery of the Photos tag (GetHouseHold_Gallery): its images and its data fetch status. */
+  gallery: HouseholdGalleryData;
   /** Placeholder inside the image tag of the card (the carousel tag of a carousel slide). */
   carouselTag?: ReactNode;
   /** The entity actions of the household (call-to-action section, About tag). */
@@ -117,7 +124,7 @@ export function HouseholdDetailsView({
   isBookmarked,
   isSkeletonOnly,
   hidePhotobookActions,
-  timelineImages,
+  gallery,
   carouselTag,
   entityActions,
   renderMemberActions,
@@ -180,7 +187,8 @@ export function HouseholdDetailsView({
                 )}
                 {selectedTag === HOUSEHOLD_TAG_PHOTOS && (
                   <HouseholdTimelinePhotos
-                    images={timelineImages}
+                    images={gallery.images}
+                    imagesDataFetchStatus={gallery.dataFetchStatus}
                     hasHouseholdGallery={hasHouseholdGallery}
                     onDateSelected={onTimelineDateSelected}
                   />

@@ -12,6 +12,7 @@ import type {
   MessageClearResult,
   MessageDetailCallInputs,
   MessageInstanceResult,
+  NotificationDetailsCallInputs,
   MessageItem,
   MessageListCallInputs,
   MessageParameter,
@@ -243,6 +244,91 @@ export const toListOfMessageParameters = (parameters: MessageParameter[]) =>
       Tenant_Id: p.tenantId,
     })),
   );
+
+/* ---- The screen NotificationDetails of UBTConnect ----
+   The contract has the two records of its GetMessageInstance and the list of its aggregate as x-unknown (their
+   UBTConnect copies are not in the captures). The live TST model of 2026-11-05 (UBTConnect.model.js) proves that they
+   are the Connect2_LegacyShared structures: MessagePriority…UserTextRecord = MessagePriority, MessageContent,
+   MessageTemplate, MessageSenderTarget, MessageInstance, AdaptiveCardJSON (Comms_CS), User (ServiceCenter) and
+   CreatedByMemberId; MessageParameterRecord = Comms_CS.MessageParameter. The guards check the record parts, then the
+   mappers of ScreenBlock_MessageDetail read them.
+   @origin UBTConnect.App_Notifications.NotificationDetails */
+
+type NotificationDetailsPath<A extends string> = PathOf<'UBTConnect', `NotificationDetails/${A}`>;
+/** The outputs of DataActionGetMessageInstance of NotificationDetails. */
+type NotificationMessageInstanceWire = ActionOutputs<NotificationDetailsPath<'DataActionGetMessageInstance'>>;
+/** The inputs of the aggregate GetMessageTemplateParametersByMessageTemplateId of NotificationDetails. */
+type NotificationTemplateParametersInputsWire = ActionInputs<
+  NotificationDetailsPath<'ScreenDataSetGetMessageTemplateParametersByMessageTemplateId'>
+>;
+/** The outputs of that aggregate. */
+type NotificationTemplateParametersWire = ActionOutputs<
+  NotificationDetailsPath<'ScreenDataSetGetMessageTemplateParametersByMessageTemplateId'>
+>;
+
+const isRecord = (value: unknown): value is Readonly<Record<string, unknown>> =>
+  typeof value === 'object' && value !== null && !Array.isArray(value);
+
+const MESSAGE_RECORD_PARTS = [
+  'MessagePriority',
+  'MessageContent',
+  'MessageTemplate',
+  'MessageSenderTarget',
+  'MessageInstance',
+  'AdaptiveCardJSON',
+  'User',
+] as const;
+
+/** The Message record: its seven record parts and CreatedByMemberId. */
+const isMessageRecordWire = (value: unknown): value is MessageInstanceWire['Message'] =>
+  isRecord(value) &&
+  MESSAGE_RECORD_PARTS.every((part) => isRecord(value[part])) &&
+  typeof value.CreatedByMemberId === 'string';
+
+/** The PlaceholderDelimiters record: its Delimiters part. */
+const isPlaceholderDelimitersWire = (value: unknown): value is MessageInstanceWire['PlaceholderDelimiters'] =>
+  isRecord(value) && isRecord(value.Delimiters);
+
+/** The list of the aggregate: rows with a MessageParameter record. */
+const isMessageParameterListWire = (value: unknown): value is MessageTemplateParametersWire['List'] =>
+  isRecord(value) &&
+  Array.isArray(value.List) &&
+  value.List.every((row: unknown) => isRecord(row) && isRecord(row.MessageParameter));
+
+/** GetMessageInstance of NotificationDetails, read as the one of ScreenBlock_MessageDetail. An answer whose records
+    do not have that structure is a server error. */
+export const toNotificationMessageInstanceResult = (wire: NotificationMessageInstanceWire): MessageInstanceResult => {
+  const { Message, PlaceholderDelimiters } = wire;
+  if (!isMessageRecordWire(Message) || !isPlaceholderDelimitersWire(PlaceholderDelimiters)) {
+    throw new Error(
+      'NotificationDetails GetMessageInstance: the answer has no Message or PlaceholderDelimiters record',
+    );
+  }
+  return toMessageInstanceResult({
+    IsCleared: wire.IsCleared,
+    IsRetracted: wire.IsRetracted,
+    Message,
+    PlaceholderDelimiters,
+  });
+};
+
+/** The screen variables of the aggregate, with MaxRecords 50 and StartIndex 0 (GetMessageInstanceByIdOnAfterFetch,
+    NotificationDetails.mvc.js:1124-1135). */
+export const toNotificationTemplateParametersInputs = (
+  inputs: NotificationDetailsCallInputs,
+): NotificationTemplateParametersInputsWire => ({
+  ...inputs,
+  MaxRecords: 50,
+  StartIndex: 0,
+});
+
+/** The parameters of the aggregate of NotificationDetails, read as the ones of ScreenBlock_MessageDetail. */
+export const toNotificationMessageParameters = (wire: NotificationTemplateParametersWire): MessageParameter[] => {
+  if (!isMessageParameterListWire(wire.List)) {
+    throw new Error('NotificationDetails GetMessageTemplateParametersByMessageTemplateId: the answer has no List');
+  }
+  return toMessageParameters({ Count: wire.Count, List: wire.List });
+};
 
 /** The outputs of Get_OrbitHostSurveyNotificationParameters. */
 type OrbitHostSurveyNotificationParametersWire = ActionOutputs<

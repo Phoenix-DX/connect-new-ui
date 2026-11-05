@@ -81,11 +81,26 @@ return [
 this.attr("Id", "idAttr", "Id", false, false, OS.DataTypes.DataTypes.LongInteger, function () {
 return OS.DataTypes.LongInteger.defaultValue;
 }, true), 
-this.attr("ItemId", "itemIdAttr", "ItemId", false, false, OS.DataTypes.DataTypes.LongInteger, function () {
-return OS.DataTypes.LongInteger.defaultValue;
+this.attr("ItemId", "itemIdAttr", "ItemId", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("ItemId2", "itemId2Attr", "ItemId2", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
 }, true), 
 this.attr("BookmarkCategoryId", "bookmarkCategoryIdAttr", "BookmarkCategoryId", false, false, OS.DataTypes.DataTypes.Text, function () {
 return "";
+}, true), 
+this.attr("PublishedAt", "publishedAtAttr", "PublishedAt", false, false, OS.DataTypes.DataTypes.DateTime, function () {
+return OS.DataTypes.DateTime.defaultValue;
+}, true), 
+this.attr("ChannelLogo", "channelLogoAttr", "ChannelLogo", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("ChannelName", "channelNameAttr", "ChannelName", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("HasDetailAccess", "hasDetailAccessAttr", "HasDetailAccess", false, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
 }, true), 
 this.attr("Bookmark_Card_Content", "bookmark_Card_ContentAttr", "Bookmark_Card_Content", false, false, OS.DataTypes.DataTypes.Record, function () {
 return OS.DataTypes.ImmutableBase.getData(new Connect_Bookmarks_CSModel.UI_Bookmark_Card_ContentRec());
@@ -205,16 +220,16 @@ return TextList;
 Connect_Bookmarks_CSModel.TextList = TextList;
 
 });
-define("Connect_Bookmarks_CS.model$Filter_BookmarkRec", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Bookmarks_CS.model"], function (exports, OutSystems, Connect_Bookmarks_CSModel) {
+define("Connect_Bookmarks_CS.model$Bookmark_FilterRec", ["exports", "OutSystems/ClientRuntime/Main", "Connect_Bookmarks_CS.model"], function (exports, OutSystems, Connect_Bookmarks_CSModel) {
 var OS = OutSystems.Internal;
-var Filter_BookmarkRec = (function (_super) {
-__extends(Filter_BookmarkRec, _super);
-function Filter_BookmarkRec(defaults) {
+var Bookmark_FilterRec = (function (_super) {
+__extends(Bookmark_FilterRec, _super);
+function Bookmark_FilterRec(defaults) {
 _super.apply(this, arguments);
 }
-Filter_BookmarkRec.attributesToDeclare = function () {
+Bookmark_FilterRec.attributesToDeclare = function () {
 return [
-this.attr("BookmarkTypeId", "bookmarkTypeIdAttr", "BookmarkTypeId", false, false, OS.DataTypes.DataTypes.Text, function () {
+this.attr("BookmarkCategoryId", "bookmarkCategoryIdAttr", "BookmarkCategoryId", false, false, OS.DataTypes.DataTypes.Text, function () {
 return "";
 }, true), 
 this.attr("SortByNewest", "sortByNewestAttr", "SortByNewest", false, false, OS.DataTypes.DataTypes.Text, function () {
@@ -228,10 +243,10 @@ return "";
 }, true)
 ].concat(_super.attributesToDeclare.call(this));
 };
-Filter_BookmarkRec.init();
-return Filter_BookmarkRec;
+Bookmark_FilterRec.init();
+return Bookmark_FilterRec;
 })(OS.DataTypes.GenericRecord);
-Connect_Bookmarks_CSModel.Filter_BookmarkRec = Filter_BookmarkRec;
+Connect_Bookmarks_CSModel.Bookmark_FilterRec = Bookmark_FilterRec;
 
 });
 define("Connect_Bookmarks_CS.model", ["exports", "OutSystems/ClientRuntime/Main"], function (exports, OutSystems) {

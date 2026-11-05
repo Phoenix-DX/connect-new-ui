@@ -31,6 +31,8 @@ export {
   fetchMessageInstanceExists,
   fetchMessages,
   fetchMessageTemplateParameters,
+  fetchNotificationMessageInstance,
+  fetchNotificationTemplateParameters,
   fetchNumberUnreadMessages,
   getOrbitHostSurveyNotificationParameters,
   getOrbitNotificationParameters,

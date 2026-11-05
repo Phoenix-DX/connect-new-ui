@@ -42,6 +42,12 @@ return 0;
 }, true), 
 this.attr("MessageSenderTargetName", "messageSenderTargetNameAttr", "MessageSenderTargetName", false, false, OS.DataTypes.DataTypes.Text, function () {
 return "";
+}, true), 
+this.attr("CreatedByMemberId", "createdByMemberIdAttr", "CreatedByMemberId", false, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, true), 
+this.attr("MessageTemplateId", "messageTemplateIdAttr", "MessageTemplateId", true, false, OS.DataTypes.DataTypes.LongInteger, function () {
+return OS.DataTypes.LongInteger.defaultValue;
 }, true)
 ].concat(_super.attributesToDeclare.call(this));
 };

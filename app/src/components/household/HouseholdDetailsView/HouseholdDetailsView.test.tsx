@@ -3,6 +3,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { supperMeetingName, VITALE } from '@/mocks/fictional/directory';
 import { KebabButtonMenu } from '@/components/ui/KebabButtonMenu';
+import { DataFetchStatus } from '@/components/ui/os/OSList';
 import * as stories from './HouseholdDetailsView.stories';
 
 const { Default, Loading, Offline, Preview } = composeStories(stories);
@@ -64,11 +65,27 @@ describe('HouseholdDetailsView', () => {
     expect(vi.mocked(KebabButtonMenu).mock.lastCall?.[0].inDisableShare).toBe(true);
   });
 
-  it('Photos tag: the Coming Soon box only while mobileDirectoryHouseholdGallery is off (live TST, :1298-1301)', () => {
-    const { container, rerender } = render(<Default selectedTag="Photos" />);
-    expect(block(container, 'ConnectPatterns.ComingSoon')).toHaveLength(1);
-    rerender(<Default selectedTag="Photos" hasHouseholdGallery />);
+  it('Photos tag, mobileDirectoryHouseholdGallery on: the gallery list and no Coming Soon box (live TST, :1274-1321)', () => {
+    const images = [{ SignedURL: 'https://img.example/a.jpg' }, { SignedURL: 'https://img.example/b.jpg' }];
+    const { container } = render(
+      <Default
+        selectedTag="Photos"
+        hasHouseholdGallery
+        gallery={{ images, dataFetchStatus: DataFetchStatus.Fetched }}
+      />,
+    );
+    expect(block(container, 'Directory_Household_Blocks.HouseholdDetails_TimelinePhoto_List')).toHaveLength(1);
+    expect(block(container, 'Directory_Household_Blocks.HouseholdDetails_TimelinePhoto')).toHaveLength(2);
     expect(block(container, 'ConnectPatterns.ComingSoon')).toHaveLength(0);
+  });
+
+  it('Photos tag, mobileDirectoryHouseholdGallery off: only the Coming Soon box, no list (live TST, :1323-1392)', () => {
+    const images = [{ SignedURL: 'https://img.example/a.jpg' }];
+    const { container } = render(
+      <Default selectedTag="Photos" gallery={{ images, dataFetchStatus: DataFetchStatus.Fetched }} />,
+    );
+    expect(block(container, 'ConnectPatterns.ComingSoon')).toHaveLength(1);
+    expect(block(container, 'Directory_Household_Blocks.HouseholdDetails_TimelinePhoto_List')).toHaveLength(0);
   });
 
   it('hides the members off the About tag and when skeleton only; hides the actions on request', () => {

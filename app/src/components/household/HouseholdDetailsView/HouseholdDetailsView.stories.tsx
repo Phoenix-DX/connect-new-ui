@@ -93,7 +93,7 @@ const base: HouseholdDetailsViewProps = {
   isBookmarked: true,
   isSkeletonOnly: false,
   hidePhotobookActions: false,
-  timelineImages: [],
+  gallery: { images: [], dataFetchStatus: DataFetchStatus.Fetched },
   entityActions,
   renderMemberActions,
   shareSheet,

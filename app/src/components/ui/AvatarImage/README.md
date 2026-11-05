@@ -13,7 +13,8 @@ Events, placeholders: none. The structure `AvatarImage` is re-exported as `Avata
 name). URL set → CustomContainer (Neutral5 Small border, In_BorderRadius, skeleton) with an `<img data-image>`.
 URL empty → CustomContainer from FallbackOptions (background, border colour/size, font colour, font size default Base,
 SemiBold). The CustomContainer holds, in order of precedence, `span.ubt-avatar-image__initials`, `InlineSVG` (with no input, as compiled:
-`UBTConnectLibrary.ConnectPatterns.AvatarImage.mvc.js:341`, BrowseCountries copy) or an `Icon` (IconId, FontColor).
+`UBTConnectLibrary.ConnectPatterns.AvatarImage.mvc.js:341`, BrowseCountries copy) or an `Icon` (IconId, FontColor, IconSizeId; the size is in the live block of 2026-11-05,
+`migration/runtime-sources/live/UBTConnectLibrary.ConnectPatterns.AvatarImage.mvc.js:357-364`).
 
 ## Captured variants (1 in the pack + 3 whole; 4 tested)
 

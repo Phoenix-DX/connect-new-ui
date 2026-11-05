@@ -4776,6 +4776,7 @@ export interface components {
             IsBookmarkFound: boolean;
         };
         Connect2_Notification_CS__MessageListItem: {
+            CreatedByMemberId: string;
             CreatedByUserId: number;
             DateTimeCreated: string;
             Id: string;
@@ -4783,6 +4784,7 @@ export interface components {
             IsRead: boolean;
             MessageInfoTypeId: number;
             MessageSenderTargetName: string;
+            MessageTemplateId: string;
             MessageTemplatePriorityId: number;
             MessageTemplateTypeId: number;
             ProfileIconURL: string;
@@ -7259,8 +7261,15 @@ export interface components {
             Subtitle: string;
             Title: string;
         };
-        /** @description structure Connect_Bookmarks_CS.Bookmark_FilterRec (module not in the downloaded code) never captured */
-        Connect_Bookmarks_CS__Bookmark_Filter: unknown;
+        Connect_Bookmarks_CS__Bookmark_Filter: {
+            BookmarkCategoryId: string;
+            SearchText: string;
+            SortByNewest: string;
+            Years: {
+                EmptyListItem?: string;
+                List: string[];
+            };
+        };
         Connect_Bookmarks_CS__UI_Bookmark_Added: {
             BookmarkCategoryId: string;
             DateCreatedUtc: string;
@@ -7270,8 +7279,13 @@ export interface components {
         Connect_Bookmarks_CS__UI_Bookmark_CardItem: {
             BookmarkCategoryId: string;
             Bookmark_Card_Content: components["schemas"]["Connect_Bookmarks_CS__UI_Bookmark_Card_Content"];
+            ChannelLogo: string;
+            ChannelName: string;
+            HasDetailAccess: boolean;
             Id: string;
             ItemId: string;
+            ItemId2: string;
+            PublishedAt: string;
         };
         Connect_Bookmarks_CS__UI_Bookmark_Card_Content: {
             Notes: components["schemas"]["UBTConnectLibrary__Notes"];
@@ -7599,6 +7613,19 @@ export interface components {
         };
         Connect_Search_CS__SearchResult: {
             AdditionalInformation: string;
+            DisplayAddress: boolean;
+            DisplayHouseholdName: boolean;
+            /** Format: date */
+            Event_EndDate: string;
+            Event_EventHostId: string;
+            Event_EventTypeTitle: string;
+            Event_HostHouseholderId: string;
+            Event_HostSubdivisionId: string;
+            Event_IsPersonal: boolean;
+            Event_OrbitEventType: string;
+            Event_Source: string;
+            /** Format: date */
+            Event_StartDate: string;
             HouseholderId: string;
             Id: string;
             Latitude: string;

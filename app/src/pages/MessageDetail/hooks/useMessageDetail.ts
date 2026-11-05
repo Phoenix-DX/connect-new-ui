@@ -6,16 +6,29 @@ import {
   getOrbitNotificationParameters,
   storeAdaptiveCardResponses,
   type MessageDetail,
-  type MessageDetailCallInputs,
-  type MessageInstanceResult,
   type MessageParameter,
 } from '@/api/message';
-import { isCommunicationException } from '@/platform/feedback/flowErrors';
 import { markNotificationOpened } from '@/api/notification';
+import { assembleEventParameters } from '@/containers/MessageInstance/actions';
+import {
+  initialMessageDetailState,
+  MESSAGE_CHECK_CONNECTION,
+  MESSAGE_EVENT_NOT_ACCESSIBLE,
+  MESSAGE_FORM_THANKS,
+  MESSAGE_INVALID_ID,
+  MESSAGE_NO_ASSEMBLE_ACCESS,
+  MESSAGE_NO_HOST_SURVEY_ACCESS,
+  MESSAGE_NO_ORBIT_ACCESS,
+  messageDetailReducer,
+  textToLongInteger,
+} from '@/containers/MessageInstance/messageDetailState';
+import {
+  autoCloseError,
+  createMessageInstanceAfterFetch,
+} from '@/containers/MessageInstance/messageInstanceAfterFetch';
+import { MessageSenderTarget } from '@/containers/MessageInstance/staticEntities';
 import type { MessageDetailInputs } from '@/pages/MessageDetail/inputs';
 import {
-  assembleEventParameters,
-  buildAssembleNotificationContent,
   deserializeAdaptiveCardActionSubmitData,
   getHasAssemble,
   getHasOrbitAccess,
@@ -24,34 +37,11 @@ import {
   VIEW_EVENT_DATA_END,
   VIEW_EVENT_DATA_START,
 } from '@/pages/MessageDetail/actions';
-import { MessageInfoType, MessageSenderTarget } from '@/pages/MessageDetail/staticEntities';
-import { feedbackMessageAutoClose, PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
+import { isCommunicationException } from '@/platform/feedback/flowErrors';
+import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { replaceOnUpcomingNavigation, useFlowState } from '@/platform/navigation';
-import { clientVar, currentUserId, isSignedIn } from '@/platform/session/session';
-import { decrementReadMessagesCounter } from '@/platform/session/unreadCounters';
+import { clientVar } from '@/platform/session/session';
 import { getUserInformation } from '@/platform/session/userInfo';
-import { cache_SignedImageURL_Get } from '@/lib/ubtConnectUtils/actions';
-import { Connect_Entity, ImageSize } from '@/lib/ubtConnectUtils/staticEntities';
-import {
-  addFirstSentence,
-  decrementReadWhatsNewsCounter,
-  initialMessageDetailState,
-  isOrbitKind,
-  isPrivateMessageOfAnotherUser,
-  MESSAGE_CHECK_CONNECTION,
-  MESSAGE_EVENT_NOT_ACCESSIBLE,
-  MESSAGE_FORM_THANKS,
-  MESSAGE_INVALID_ID,
-  MESSAGE_NO_ACCESS,
-  MESSAGE_NO_ASSEMBLE_ACCESS,
-  MESSAGE_NO_HOST_SURVEY_ACCESS,
-  MESSAGE_NO_ORBIT_ACCESS,
-  MESSAGE_NOT_AVAILABLE,
-  messageAccess,
-  messageDetailReducer,
-  needsTemplateParameters,
-  textToLongInteger,
-} from './messageDetailState';
 
 /** The flows of ScreenBlock_MessageDetail: OnReady (the refresh of GetMessageInstance), GetMessageInstanceByIdOnAfterFetch
     (the access decisions, Wrapper_NotificationOpened, the sender photo, the template parameters and the Orbit
@@ -104,19 +94,6 @@ export interface MessageDetailFlows {
   adaptiveCardViewerOnExecuteAction: (cardPayload: string, actionId: string, formPayload: string) => Promise<void>;
 }
 
-/** The error message of the block, closed automatically (FeedbackMessageAutoClose, no delay, no debounce). */
-function autoCloseError(message: string): void {
-  feedbackMessageAutoClose({
-    title: '',
-    message,
-    messageType: 'error',
-    encodedHtml: true,
-    extendedClass: '',
-    delayMs: 0,
-    useDebounce: false,
-  });
-}
-
 /** The state and the flows of the message detail. The state comes from useFlowState and the view cache keeps it.
     Flow scope (item 8):
     - GetMessageInstance and GetMessageTemplateParametersByMessageTemplateId are data actions (R1, `flow.fetch`,
@@ -163,86 +140,20 @@ export function useMessageDetail(inputs: MessageDetailInputs, events: MessageDet
     flow.events.onNavigateToMessageList();
   });
 
-  /** The "Is Notification Read?" part of GetMessageInstanceByIdOnAfterFetch. `variables` are the block variables
-      that the calls send. It returns null when the action ends early. */
-  const prepareMessage = async (
-    result: MessageInstanceResult,
-    variables: MessageDetailCallInputs,
-    restored: boolean,
-  ): Promise<MessageDetail | null> => {
-    const fetched = result.message;
-    let message = fetched;
-    if (!message.isRead) {
-      if (message.messageInfoTypeId === MessageInfoType.WhatsNew) decrementReadWhatsNewsCounter();
-      else decrementReadMessagesCounter();
-      const isRetracted = await markNotificationOpened(variables.MessageInstanceId); // server action (R2)
-      if (isRetracted) {
-        leaveToMessageList(MESSAGE_NOT_AVAILABLE); // MessageRetractedFlow (R3)
-        return null;
-      }
-    }
-    if (message.sentAs === null) {
-      // Cache_SignedImageURL_Get(TextToInteger(CreatedByMemberId), Member, Small) gives ProfileIconURL.
-      const url = await cache_SignedImageURL_Get(message.createdByMemberId, Connect_Entity.Member, ImageSize.Small);
-      message = { ...message, profileIconURL: url };
-    }
-    if (needsTemplateParameters(message)) {
-      // A restored view keeps the parameters of its cached state.
-      let parameters = latest.current.parameters ?? [];
-      if (!restored) {
-        parameters = await flow.fetch(fetchMessageTemplateParameters(variables)); // R1
-        dispatch({ type: 'templateParametersFetched', parameters, senderTargetId: message.senderTargetId });
-      }
-      if (isOrbitKind(message.senderTargetId)) {
-        const userInformation = await getUserInformation();
-        message = {
-          ...message,
-          messageContent: addFirstSentence(userInformation.Directory_UserCurrent.FirstName, message.messageContent),
-        };
-      } else if (message.senderTargetId === MessageSenderTarget.Assemble) {
-        // BuildAssembleNotificationContent(the parameters, MessageContent, the three PlaceholderDelimiters).
-        const content = await buildAssembleNotificationContent(
-          parameters,
-          message.messageContent,
-          result.placeholderDelimiters,
-        );
-        message = { ...message, messageContent: content };
-      }
-    }
-    return message;
-  };
-
-  /** GetMessageInstanceByIdOnAfterFetch. */
-  const onAfterFetchMessageInstance = async (result: MessageInstanceResult, restored: boolean) => {
-    // MessageInstanceId = Message.MessageInstance.Id. The flow keeps its own copy, which the next calls send.
-    const variables = { ...latest.current.variables, MessageInstanceId: result.message.messageInstanceId ?? '0' };
-    dispatch({ type: 'messageInstanceFetched', message: result.message });
-    const access = messageAccess(result, isSignedIn());
-    if (
-      (access === 'cleared' || access === 'open') &&
-      isPrivateMessageOfAnotherUser(result, isSignedIn(), currentUserId())
-    ) {
-      // "Is Private?": FeedbackMessage_AutoClose2, then a loop break: the flow goes on (decision Q4 (a)).
-      autoCloseError(MESSAGE_NO_ACCESS);
-    }
-    switch (access) {
-      case 'retracted':
-      case 'cleared':
-        leaveToMessageList(MESSAGE_NOT_AVAILABLE);
-        return;
-      case 'noAccess':
-        leaveToMessageList(MESSAGE_NO_ACCESS);
-        return;
-      case 'login':
+  /** GetMessageInstanceByIdOnAfterFetch (containers/MessageInstance): the calls of the block, the Connect2_LegacyShared
+      aggregate and Wrapper_NotificationOpened. */
+  const onAfterFetchMessageInstance = createMessageInstanceAfterFetch(
+    {
+      flow,
+      dispatch,
+      latest,
+      leaveToMessageList,
+      navigateToLogin: () => {
         flow.events.onNavigateToLogin();
-        return;
-      case 'open':
-        break;
-    }
-    const prepared = await prepareMessage(result, variables, restored);
-    if (prepared === null) return;
-    dispatch({ type: 'messagePrepared', message: prepared });
-  };
+      },
+    },
+    { fetchTemplateParameters: fetchMessageTemplateParameters, notificationOpened: markNotificationOpened },
+  );
 
   /** OnReady: both ids null, the "invalid id" message; else the refresh of GetMessageInstance. */
   const onReady = async (restored: boolean) => {

@@ -15,9 +15,6 @@ export interface CardWithNotesItem {
   channelName: string;
   channelLogo: string;
   publishedAt: string;
-  /** DateTime; the event time row of the card shows when both are not NullDate (TST publish of 2026-10-29). */
-  eventStartDate?: string;
-  eventEndDate?: string;
   notes: Notes;
 }
 
@@ -70,8 +67,6 @@ export function CardWithNotesSheet({
         inChannelName={item.channelName}
         inChannelLogo={item.channelLogo}
         inPublishedAt={item.publishedAt}
-        inEventStartDateTime={item.eventStartDate}
-        inEventEndDateTime={item.eventEndDate}
         onOnClickItemCard={onOnClickCardItem}
         onOnClickTotalNotesIcon={openNoteSheet}
         notes={

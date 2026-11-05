@@ -4,8 +4,8 @@ import { AdaptiveCardsConfig, getHostConfigByConfigId } from '@/components/widge
 import { LegacyLayout } from '@/components/layout/LegacyLayout';
 import { MenuIconBack } from '@/components/layout/MenuIconBack';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { isOrbitKind, messageTitle, orbitButtonText } from '@/pages/MessageDetail/hooks/messageDetailState';
-import { MessageInfoType, MessagePriority, MessageSenderTarget } from '@/pages/MessageDetail/staticEntities';
+import { isOrbitKind, messageTitle, orbitButtonText } from '@/containers/MessageInstance/messageDetailState';
+import { MessageInfoType, MessagePriority, MessageSenderTarget } from '@/containers/MessageInstance/staticEntities';
 import { Spinner } from '@/components/ui/Spinner';
 import { NotificationDetailBlock } from './NotificationDetailBlock';
 
