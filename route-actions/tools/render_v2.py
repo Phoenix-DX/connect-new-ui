@@ -110,7 +110,8 @@ def render(r, h):
     blocks_ported = sum(1 for b in own_blocks if b["evidence"] in ("tag", "name"))
     own_nav = {t: v for t, v in r["osNav"].items() if "screen" in r.get("navGroups", {}).get(t, ["screen"])}
     nav_missing = [t for t in own_nav if t not in r["reactNav"]]
-    questions = [c for c in r["reactOnly"] if "page" in c["where"]]
+    questions = [c for c in r["reactOnly"] if c.get("kind") == "page"]
+    shared_calls = [c for c in r["reactOnly"] if c.get("kind") == "shared"]
     ox, rx = r["osExtras"], r["reactExtras"]
     is_own_os = lambda f: f.startswith(own_pre)
     is_own_re = lambda f: f.startswith(react_pre)
@@ -166,6 +167,7 @@ def render(r, h):
          f"| Server calls of the route on TST | {len(eps)}: React makes {cnt['implemented']}, **{cnt['missing']} missing** |",
          f"| Differences found | **{n_diff}** (see [section 3](#3-differences-found)) |",
          f"| Questions | {len(questions)} (see [section 4](#4-questions)) |",
+         f"| React calls reached only through shared code | {len(shared_calls)}: see the last section |",
          f"| User actions of the route (own code) | OutSystems: {len(os_own_acts)}. React: {len(re_own_acts)} |",
          f"| Screen and blocks of the UI flow with a React port | {blocks_ported} of {len(own_blocks)} |",
          f"| Navigation targets found in React | {len(own_nav) - len(nav_missing)} of {len(own_nav)} |",
@@ -179,6 +181,9 @@ def render(r, h):
     qs = [f"React calls `{c['apiPath']}` from `{c['fn']}()` {h.link(c['file'], c['line'])} ({c['where']}). TST {route} "
           "has no chain to this call. Does the call belong to this route?" for c in questions]
     L += [f"{i}. {q}" for i, q in enumerate(qs, 1)] or ["None."]
+    if shared_calls:
+        L += ["", f"{len(shared_calls)} more React calls without a TST chain on this route are reached only through "
+              "shared containers, components or app code. They are in the last section, not here."]
     L += ["", "## 5. Server calls", "", *(h.calls_table(h.call_rows(eps, blocks), blocks) if eps else ["None."])]
     if r.get("otherScreenCalls"):
         L += ["", "The TST capture also has calls of another screen (scope `other`, no chain in the code of the route). "
@@ -221,6 +226,17 @@ def render(r, h):
         L += ["", *_details(f"User actions of the shared components ({len(sh_r)})",
                             ["| # | " + " | ".join(h.REACT_HEAD) + " |", "|---" * (len(h.REACT_HEAD) + 1) + "|",
                              *[f"| {i} | " + " | ".join(d["row"]) + " |" for i, d in enumerate(sh_r, 1)]])]
+    else:
+        L += ["None."]
+    L += ["", "### React calls reached only through shared code", "",
+          "Calls that React can make on this route, without a TST chain on this route. Every reference chain starts "
+          "in a shared container, component or app code (`containers/`, `components/`, `platform/`, `legacy/`, "
+          "`lib/`), not in the screen files. TST makes these calls on a user action of the shared block, which the "
+          "capture did not record, or on another screen.", ""]
+    if shared_calls:
+        L += ["| Call | React action | Reached through |", "|---|---|---|"]
+        L += [f"| `{c['apiPath']}` | `{c['fn']}()` {h.link(c['file'], c['line'])} | " +
+              ", ".join(f"`{n}` {h.link(f)}" for n, f in c["roots"]) + " |" for c in shared_calls]
     else:
         L += ["None."]
     p = h.os.path.join(h.OUT, f"{route}.md")

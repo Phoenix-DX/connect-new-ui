@@ -398,9 +398,25 @@ def check(route):
             e["notes"] = doc_notes([bare, *sorted(callers)], prefer=set(page_r["files"]) | set(shell_r["files"]))
     react_only = []
     for c in react_calls:
+        if not c.get("apiPath"):
+            continue  # a call whose action name the scan could not read: listed in reactUnknown
         ps = cpaths.get(c["apiPath"]) or []
-        if not any(p in tst_urls for p in ps):
-            react_only.append({**c, "osPaths": ps})
+        if any(p in tst_urls for p in ps):
+            continue
+        # where the question belongs (facts of the React code, user 2026-11-05):
+        # - shell: the call site is in the code that main.tsx loads → APP_SHELL.md
+        # - shared: every reference chain starts in a shared container, component or app code, not in pages/<Route>/
+        #   → the shared section of the route file, not a question
+        # - page: a chain starts in the screen files → a question of the route
+        roots = [ch[0] for ch in c.get("callers") or [] if ch]
+        if "shell" in c["where"]:
+            kind = "shell"
+        elif roots and all(not r0["file"].startswith(f"app/src/pages/{route}/") for r0 in roots):
+            kind = "shared"
+        else:
+            kind = "page"
+        react_only.append({**c, "osPaths": ps, "kind": kind,
+                           "roots": sorted({(r0["name"], r0["file"]) for r0 in roots})})
 
     # --- React name index ----------------------------------------------------------------------------------------
     origin_files = collections.defaultdict(set)
@@ -1194,7 +1210,7 @@ def render_app_shell():
             if a.get("group") == "shell":
                 racts.setdefault((a["file"], a["line"]), a)
         for c in r["reactOnly"]:
-            if c["where"] == "shell":
+            if c.get("kind", "shell" if c["where"] == "shell" else "page") == "shell":
                 qs.setdefault(c["apiPath"], {**c, "routes": []})["routes"].append(r["route"])
         for t, g in (r.get("navGroups") or {}).items():
             if g == ["shell"]:

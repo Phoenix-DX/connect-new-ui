@@ -23,6 +23,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | Server calls of the route on TST | 4: React makes 4, **0 missing** |
 | Differences found | **0** (see [section 3](#3-differences-found)) |
 | Questions | 11 (see [section 4](#4-questions)) |
+| React calls reached only through shared code | 1: see the last section |
 | User actions of the route (own code) | OutSystems: 4. React: 15 |
 | Screen and blocks of the UI flow with a React port | 1 of 1 |
 | Navigation targets found in React | 5 of 5 |
@@ -37,17 +38,19 @@ None.
 
 ## 4. Questions
 
-1. React calls `/api/UBTConnect_Utils/ActionGetUserInformation` from `fetchUserInformation()` [`api/member/userInformation.ts:6`](../../app/src/api/member/userInformation.ts#L6) (shell + page). TST MilestoneDetail has no chain to this call. Does the call belong to this route?
-2. React calls `/api/UBTConnect_Utils/CacheControl_Policies/DataActionGetCacheInfo` from `fetchPolicies()` [`api/app/repository.ts:54`](../../app/src/api/app/repository.ts#L54) (shell + page). TST MilestoneDetail has no chain to this call. Does the call belong to this route?
-3. React calls `/api/Connect2_LegacyShared/ActionGetTimezoneInformation` from `getTimezoneInformation()` [`lib/legacyShared/actions.ts:360`](../../app/src/lib/legacyShared/actions.ts#L360) (page). TST MilestoneDetail has no chain to this call. Does the call belong to this route?
-4. React calls `/api/Connect2_LegacyShared/ActionGetMemberContactByCacheKey` from `fetchMemberContacts()` [`api/message/repository.ts:271`](../../app/src/api/message/repository.ts#L271) (page). TST MilestoneDetail has no chain to this call. Does the call belong to this route?
-5. React calls `/api/Connect2_OrbitMobile_MUI/ScreenBlock_MealGuest/DataActionGetMealGuest` from `fetchMilestoneBlock()` [`api/event/milestoneBlocks.ts:374`](../../app/src/api/event/milestoneBlocks.ts#L374) (page). TST MilestoneDetail has no chain to this call. Does the call belong to this route?
-6. React calls `/api/Connect2_OrbitMobile_MUI/ScreenBlock_MealHost/DataActionGetMealHost` from `fetchMilestoneBlock()` [`api/event/milestoneBlocks.ts:376`](../../app/src/api/event/milestoneBlocks.ts#L376) (page). TST MilestoneDetail has no chain to this call. Does the call belong to this route?
-7. React calls `/api/Connect2_OrbitMobile_MUI/ScreenBlock_MealHelper/DataActionGetMealHelper` from `fetchMilestoneBlock()` [`api/event/milestoneBlocks.ts:378`](../../app/src/api/event/milestoneBlocks.ts#L378) (page). TST MilestoneDetail has no chain to this call. Does the call belong to this route?
-8. React calls `/api/Connect2_OrbitMobile_MUI/ScreenBlock_AccommodationGuest/DataActionGetAccommodationGuest` from `fetchMilestoneBlock()` [`api/event/milestoneBlocks.ts:380`](../../app/src/api/event/milestoneBlocks.ts#L380) (page). TST MilestoneDetail has no chain to this call. Does the call belong to this route?
-9. React calls `/api/Connect2_OrbitMobile_MUI/ScreenBlock_AccommodationHelper/DataActionGetAccommodationHelper` from `fetchMilestoneBlock()` [`api/event/milestoneBlocks.ts:382`](../../app/src/api/event/milestoneBlocks.ts#L382) (page). TST MilestoneDetail has no chain to this call. Does the call belong to this route?
-10. React calls `None` from `fetchMilestoneBlockCaptions()` [`api/event/milestoneBlocks.ts:398`](../../app/src/api/event/milestoneBlocks.ts#L398) (page). TST MilestoneDetail has no chain to this call. Does the call belong to this route?
-11. React calls `/api/UBTConnect_Utils/ActionGetSignedImagesInBulk` from `cache_SignedImageURL_GetCallback()` [`lib/ubtConnectUtils/actions.ts:124`](../../app/src/lib/ubtConnectUtils/actions.ts#L124) (page). TST MilestoneDetail has no chain to this call. Does the call belong to this route?
+1. React calls `/api/Connect2_LegacyShared/ActionGetTimezoneInformation` from `getTimezoneInformation()` [`lib/legacyShared/actions.ts:360`](../../app/src/lib/legacyShared/actions.ts#L360) (page). TST MilestoneDetail has no chain to this call. Does the call belong to this route?
+2. React calls `/api/Connect2_LegacyShared/ActionGetMemberContactByCacheKey` from `fetchMemberContacts()` [`api/message/repository.ts:271`](../../app/src/api/message/repository.ts#L271) (page). TST MilestoneDetail has no chain to this call. Does the call belong to this route?
+3. React calls `/api/Connect2_OrbitMobile_MUI/ScreenBlock_MealGuest/DataActionGetMealGuest` from `fetchMilestoneBlock()` [`api/event/milestoneBlocks.ts:374`](../../app/src/api/event/milestoneBlocks.ts#L374) (page). TST MilestoneDetail has no chain to this call. Does the call belong to this route?
+4. React calls `/api/Connect2_OrbitMobile_MUI/ScreenBlock_MealHost/DataActionGetMealHost` from `fetchMilestoneBlock()` [`api/event/milestoneBlocks.ts:376`](../../app/src/api/event/milestoneBlocks.ts#L376) (page). TST MilestoneDetail has no chain to this call. Does the call belong to this route?
+5. React calls `/api/Connect2_OrbitMobile_MUI/ScreenBlock_MealHelper/DataActionGetMealHelper` from `fetchMilestoneBlock()` [`api/event/milestoneBlocks.ts:378`](../../app/src/api/event/milestoneBlocks.ts#L378) (page). TST MilestoneDetail has no chain to this call. Does the call belong to this route?
+6. React calls `/api/Connect2_OrbitMobile_MUI/ScreenBlock_AccommodationGuest/DataActionGetAccommodationGuest` from `fetchMilestoneBlock()` [`api/event/milestoneBlocks.ts:380`](../../app/src/api/event/milestoneBlocks.ts#L380) (page). TST MilestoneDetail has no chain to this call. Does the call belong to this route?
+7. React calls `/api/Connect2_OrbitMobile_MUI/ScreenBlock_AccommodationHelper/DataActionGetAccommodationHelper` from `fetchMilestoneBlock()` [`api/event/milestoneBlocks.ts:382`](../../app/src/api/event/milestoneBlocks.ts#L382) (page). TST MilestoneDetail has no chain to this call. Does the call belong to this route?
+8. React calls `/api/Connect2_OrbitMobile_MUI/ScreenBlock_MealGuest/DataActionGetCaptions` from `fetchMilestoneBlockCaptions()` [`api/event/milestoneBlocks.ts:398`](../../app/src/api/event/milestoneBlocks.ts#L398) (page). TST MilestoneDetail has no chain to this call. Does the call belong to this route?
+9. React calls `/api/Connect2_OrbitMobile_MUI/ScreenBlock_MealHelper/DataActionGetCaptions` from `fetchMilestoneBlockCaptions()` [`api/event/milestoneBlocks.ts:398`](../../app/src/api/event/milestoneBlocks.ts#L398) (page). TST MilestoneDetail has no chain to this call. Does the call belong to this route?
+10. React calls `/api/Connect2_OrbitMobile_MUI/ScreenBlock_AccommodationGuest/DataActionGetCaptions` from `fetchMilestoneBlockCaptions()` [`api/event/milestoneBlocks.ts:398`](../../app/src/api/event/milestoneBlocks.ts#L398) (page). TST MilestoneDetail has no chain to this call. Does the call belong to this route?
+11. React calls `/api/Connect2_OrbitMobile_MUI/ScreenBlock_AccommodationHelper/DataActionGetCaptions` from `fetchMilestoneBlockCaptions()` [`api/event/milestoneBlocks.ts:398`](../../app/src/api/event/milestoneBlocks.ts#L398) (page). TST MilestoneDetail has no chain to this call. Does the call belong to this route?
+
+1 more React calls without a TST chain on this route are reached only through shared containers, components or app code. They are in the last section, not here.
 
 ## 5. Server calls
 
@@ -497,3 +500,11 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 
 </details>
 
+
+### React calls reached only through shared code
+
+Calls that React can make on this route, without a TST chain on this route. Every reference chain starts in a shared container, component or app code (`containers/`, `components/`, `platform/`, `legacy/`, `lib/`), not in the screen files. TST makes these calls on a user action of the shared block, which the capture did not record, or on another screen.
+
+| Call | React action | Reached through |
+|---|---|---|
+| `/api/UBTConnect_Utils/ActionGetSignedImagesInBulk` | `cache_SignedImageURL_GetCallback()` [`lib/ubtConnectUtils/actions.ts:124`](../../app/src/lib/ubtConnectUtils/actions.ts#L124) | `EntityLazyImage` [`components/ui/EntityLazyImage/EntityLazyImage.tsx`](../../app/src/components/ui/EntityLazyImage/EntityLazyImage.tsx) |

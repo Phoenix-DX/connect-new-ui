@@ -199,6 +199,18 @@ function callersOf(start, users, reached) {
 }
 
 // ---- facts in reached units -----------------------------------------------------------------------------------
+function literalsOf(expr) {
+  const one = literalOf(expr);
+  if (one) return [one];
+  if (!expr || !Node.isElementAccessExpression(expr) || !Node.isIdentifier(expr.getExpression())) return [];
+  let sym = expr.getExpression().getSymbol?.();
+  if (sym?.isAlias()) sym = sym.getAliasedSymbol() ?? sym;
+  const d = sym?.getDeclarations()?.[0];
+  let init = d && Node.isVariableDeclaration(d) ? d.getInitializer() : null;
+  while (init && (Node.isAsExpression(init) || Node.isParenthesizedExpression(init))) init = init.getExpression();
+  if (!init || !Node.isObjectLiteralExpression(init)) return [];
+  return init.getProperties().map((p) => (Node.isPropertyAssignment(p) ? literalOf(p.getInitializer()) : null)).filter(Boolean);
+}
 function literalOf(expr) {
   if (!expr) return null;
   if (Node.isStringLiteral(expr) || Node.isNoSubstitutionTemplateLiteral(expr)) return expr.getLiteralValue();
@@ -278,9 +290,9 @@ function facts(units, reached, users) {
         if (!Node.isIdentifier(e) || e.getText() !== 'callAction') continue;
         const [m, a] = c.getArguments();
         const module = literalOf(m);
-        const action = literalOf(a);
         const fn = c.getFirstAncestor((x) => Node.isFunctionDeclaration(x) || (Node.isVariableDeclaration(x) && x.getParent()?.getParent()?.getParent() && Node.isSourceFile(x.getParent().getParent().getParent())));
-        calls.push({
+        const actions = literalsOf(a);
+        for (const action of actions.length ? actions : [null]) calls.push({
           module, action,
           apiPath: module && action ? `/api/${module}/${action}` : null,
           file: rel(u.file), line: c.getStartLineNumber(),
@@ -1249,10 +1261,10 @@ if (mode === 'all') {
       if (!Node.isIdentifier(e) || e.getText() !== 'callAction') continue;
       const [m, a] = c.getArguments();
       const module = literalOf(m);
-      const action = literalOf(a);
       const fn = c.getFirstAncestor((x) => Node.isFunctionDeclaration(x)) ??
         c.getFirstAncestor((x) => Node.isVariableDeclaration(x) && Node.isSourceFile(x.getParent()?.getParent()?.getParent()));
-      calls.push({ module, action, apiPath: module && action ? `/api/${module}/${action}` : null, file: rel(f),
+      const actions = literalsOf(a);
+      for (const action of actions.length ? actions : [null]) calls.push({ module, action, apiPath: module && action ? `/api/${module}/${action}` : null, file: rel(f),
         line: c.getStartLineNumber(), fn: fn?.getName?.() ?? '?' });
     }
   }
