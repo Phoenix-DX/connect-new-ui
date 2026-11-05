@@ -1147,3 +1147,4 @@ date,screen,phase,tokens,agent,tier,note
 2026-11-05,AssembleDetail,build,255384,opus,,bookmark module move build (row 24)
 2026-11-05,Household_Relations,fix,103344,opus,,bookmark drift proposal
 2026-11-05,Household_Relations,build,124131,opus,,bookmark button build
+2026-11-05,Locality_Details,fix,142587,opus,,legacy bookmark store removal proposal (row 26)

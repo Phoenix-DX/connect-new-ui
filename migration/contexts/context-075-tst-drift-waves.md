@@ -52,10 +52,11 @@
   `metrics/ledger.csv`; `route-actions/` (tools, config, routes); the skill `route-actions`.
 
 ## Open issues
-- Re-capture needed (user accounts): NotificationDetails (3 states), Search (pills and layout), the 17 routes
-  without a capture. The drift report lists the rest: legacy bookmark store dead on live, Household_Relations C2
-  read, `recentSearch.ts` categories.
+- Re-capture needed (user accounts): NotificationDetails (3 states), Household_Relations (the Bookmark button),
+  Search (pills and layout), the 17 routes without a capture. `recentSearch.ts` categories go with the Search pills.
+- User 2026-11-05: remove the legacy local bookmark store (row 26, wave 4, in progress at the end of the session).
+  Push allowed; the permission mode blocks `git push` for Claude, so the user runs `! git push`.
 - `css_sets.py` cannot add a compiled-only sheet (`Unavailable_Image.css`) to a captured route; no visual effect today.
 
 ## Next
-- The user's decision on row 23 (JSON key names). Re-captures: NotificationDetails, Household_Relations, Search pills and layout, the 17 routes without a capture. The legacy bookmark store decision.
+- Wave 4 gates and commit (row 26). The user's decision on row 23 (JSON key names). Re-captures: NotificationDetails, Household_Relations, Search pills and layout, the 17 routes without a capture.
