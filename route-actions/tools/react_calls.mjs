@@ -1010,6 +1010,119 @@ function bindingsOf(units, reached) {
   return out;
 }
 
+// ---- extras: inputs, lifecycle, client state, errors (the screen files of a route) -----------------------------
+// Only the reached units of the UI folders (pages, containers, components). The caller removes the app shell files.
+const LIFECYCLE_FN = /^(useEffect|useLayoutEffect)$/;
+const CLIENT_VAR_FN = /^(getClientVar|setClientVar|useClientVar)$/;
+const STORAGE_FN = /^(readItem|writeItem|removeItem|getItem|setItem)$/;
+const short60 = (t) => t.replace(/\s+/g, ' ').slice(0, 60) + (t.replace(/\s+/g, ' ').length > 60 ? '…' : '');
+const callName = (c) => {
+  let ex = c.getExpression();
+  while (Node.isParenthesizedExpression(ex)) ex = ex.getExpression();
+  return Node.isPropertyAccessExpression(ex) ? ex.getName() : ex.getText();
+};
+const keep = (effs) => effs.filter((e) => EFFECT_KINDS.has(e.kind)).map(({ kind, detail, branch, file, line }) => ({ kind, detail, branch, file, line }));
+function hasCleanup(body) {
+  const b = body.getBody?.();
+  if (!b) return false;
+  if (!Node.isBlock(b)) return isFunctionLike(b);
+  return b.getStatements().some((st) => Node.isReturnStatement(st) && st.getExpression() &&
+    (isFunctionLike(st.getExpression()) || Node.isIdentifier(st.getExpression())));
+}
+function queryCalls(c) {
+  // `useXQuery(…)`: the calls of the hook body; `useQuery({ queryFn })`: the calls of queryFn
+  const n = callName(c);
+  if (/^use(Infinite)?Query$/.test(n)) {
+    const o = c.getArguments()[0];
+    const p = o && Node.isObjectLiteralExpression(o) ? o.getProperty('queryFn') : null;
+    const f = p && Node.isPropertyAssignment(p) ? resolveFn(p.getInitializer()) : null;
+    return f ? keep(effectsOf(f, null, 1, new Set([f]))).filter((e) => e.kind === 'call') : [];
+  }
+  let hs = c.getExpression().getSymbol?.();
+  if (hs?.isAlias()) hs = hs.getAliasedSymbol() ?? hs;
+  const hd = hs?.getDeclarations()?.[0];
+  const hb = hd && !excluded(hd.getSourceFile().getFilePath()) ? bodyOfDecl(hd) : null;
+  return hb ? keep(effectsOf(hb, null, 1, new Set([hb]))).filter((e) => e.kind === 'call') : [];
+}
+function extrasOf(units, reached) {
+  const out = { lifecycle: [], queries: [], clientState: [], inputs: [], navParams: [], errors: [] };
+  const seenNode = new Set();
+  for (const k of reached) {
+    const u = units.get(k);
+    const f = u.file;
+    if (!UI_DIR.test(rel(f)) || seenNode.has(u.node)) continue;
+    seenNode.add(u.node);
+    const here = (n) => ({ file: rel(f), line: n.getStartLineNumber() });
+    for (const c of u.node.getDescendantsOfKind(SyntaxKind.CallExpression)) {
+      const name = callName(c);
+      const args = c.getArguments();
+      const fnName = c.getFirstAncestor((x) => Node.isFunctionDeclaration(x) || (Node.isVariableDeclaration(x) && bodyOfDecl(x)))?.getName?.() ?? '?';
+      if (LIFECYCLE_FN.test(name) && args[0] && isFunctionLike(args[0])) {
+        out.lifecycle.push({ hook: name, in: fnName, deps: args[1] ? short60(args[1].getText()) : 'none (every render)',
+          cleanup: hasCleanup(args[0]), effects: keep(effectsOf(args[0], null, 0, new Set([args[0]]))), ...here(c) });
+      } else if (/^use\w*Query$/.test(name) && name !== 'useQueryClient') {
+        // a query fetches when the component mounts (and when its key changes)
+        if (/^use(Infinite)?Query$/.test(name) && c.getFirstAncestor((x) => Node.isFunctionDeclaration(x) && /^use\w*Query$/.test(x.getName() ?? ''))) continue;
+        out.queries.push({ hook: name, in: fnName, calls: queryCalls(c), ...here(c) });
+      } else if (CLIENT_VAR_FN.test(name) && args[0]) {
+        const v = literalOf(args[0]) ?? short60(args[0].getText());
+        out.clientState.push({ op: name, name: v, ...here(c) });
+      } else if (STORAGE_FN.test(name) && args.length) {
+        const recv = Node.isPropertyAccessExpression(c.getExpression()) ? c.getExpression().getExpression().getText() : '';
+        if (STORAGE_FN.test(name) && /^(get|set)Item$/.test(name) && !/^(localStorage|sessionStorage|window\.\w+Storage)$/.test(recv)) continue;
+        const area = /^(read|write|remove)Item$/.test(name) ? literalOf(args[0]) : recv;
+        const key = /^(read|write|remove)Item$/.test(name) ? args[1] : args[0];
+        out.clientState.push({ op: `${area ?? '?'}.${name}`, name: key ? (literalOf(key) ?? short60(key.getText())) : '?', ...here(c) });
+      } else if (/^use(Search)?Params$/.test(name)) {
+        // `const [params] = useSearchParams()` then `params.get('K')`
+        const vd = c.getFirstAncestorByKind(SyntaxKind.VariableDeclaration);
+        const nn = vd?.getNameNode();
+        const id = nn && Node.isArrayBindingPattern(nn) ? nn.getElements()[0] : nn;
+        const keys = [];
+        const idName = id && !Node.isOmittedExpression(id) ? id.getName?.() ?? id.getText() : null;
+        if (idName) {
+          for (const g of u.node.getDescendantsOfKind(SyntaxKind.CallExpression)) {
+            const e = g.getExpression();
+            if (Node.isPropertyAccessExpression(e) && e.getName() === 'get' && e.getExpression().getText() === idName && g.getArguments()[0])
+              keys.push({ key: literalOf(g.getArguments()[0]) ?? short60(g.getArguments()[0].getText()), line: g.getStartLineNumber() });
+          }
+        }
+        out.inputs.push({ hook: name, keys, ...here(c) });
+      } else if (NAV_FN.test(name) && args[1] && Node.isObjectLiteralExpression(args[1])) {
+        const keys = args[1].getProperties().map((p) => (p.getName?.() ?? p.getText()));
+        const values = args[1].getProperties().map((p) => short60(Node.isPropertyAssignment(p) ? p.getInitializer().getText() : p.getText()));
+        out.navParams.push({ to: navTargetsOf(args[0]), keys, values, ...here(c) });
+      } else if (name === 'raiseToFlowHandler') {
+        out.errors.push({ kind: 'flow handler', in: fnName, effects: [], ...here(c) });
+      } else if (name === 'catch' && args[0] && isFunctionLike(args[0])) {
+        const effs = keep(effectsOf(args[0], null, 0, new Set([args[0]])));
+        const raises = args[0].getDescendantsOfKind(SyntaxKind.CallExpression).some((x) => callName(x) === 'raiseToFlowHandler');
+        if (!raises) out.errors.push({ kind: '.catch', in: fnName, effects: effs, ...here(c) });
+      }
+    }
+    for (const t of u.node.getDescendantsOfKind(SyntaxKind.TryStatement)) {
+      const cc = t.getCatchClause();
+      if (!cc) continue;
+      const fnName = t.getFirstAncestor((x) => Node.isFunctionDeclaration(x) || (Node.isVariableDeclaration(x) && bodyOfDecl(x)))?.getName?.() ?? '?';
+      const raises = cc.getDescendantsOfKind(SyntaxKind.CallExpression).some((x) => callName(x) === 'raiseToFlowHandler');
+      if (raises) continue; // listed as `flow handler`
+      out.errors.push({ kind: 'try/catch', in: fnName, effects: keep(effectsOf(cc.getBlock(), null, 0, new Set([cc]))), file: rel(f), line: cc.getStartLineNumber() });
+    }
+    for (const pa of u.node.getDescendantsOfKind(SyntaxKind.PropertyAssignment)) {
+      if (pa.getName() !== 'onError') continue;
+      const init = pa.getInitializer();
+      const body = init && (isFunctionLike(init) ? init : resolveFn(init));
+      const isFlow = init && init.getText() === 'raiseToFlowHandler';
+      const fnName = pa.getFirstAncestor((x) => Node.isFunctionDeclaration(x) || (Node.isVariableDeclaration(x) && bodyOfDecl(x)))?.getName?.() ?? '?';
+      out.errors.push({ kind: isFlow ? 'onError: flow handler' : 'onError', in: fnName,
+        effects: body && !isFlow ? keep(effectsOf(body, null, 0, new Set([body]))) : [], file: rel(f), line: pa.getStartLineNumber() });
+    }
+  }
+  const byLine = (a, b) => a.file.localeCompare(b.file) || a.line - b.line;
+  for (const v of Object.values(out)) v.sort(byLine);
+  return out;
+}
+
 // ---- main ----------------------------------------------------------------------------------------------------
 const outDir = path.join(HERE, '.cache', 'data');
 fs.mkdirSync(outDir, { recursive: true });
@@ -1057,7 +1170,7 @@ if (mode === 'all') {
   for (const u of unitsOf(sf)) if (u.isDefault) rootKeys.push(`${entry}::${u.name}`);
   const { units, reached, users } = reach(files, rootKeys);
   out = { mode, route, entry: rel(entry), closureFiles: files.size, reachedUnits: reached.size, ...facts(units, reached, users),
-    reachedKeys: [...reached].map((k) => rel(k)), bindings: bindingsOf(units, reached) };
+    reachedKeys: [...reached].map((k) => rel(k)), bindings: bindingsOf(units, reached), extras: extrasOf(units, reached) };
   fs.writeFileSync(path.join(outDir, `react-${route}.json`), JSON.stringify(out, null, 1));
 }
 console.log(`${mode}${route ? ' ' + route : ''}: ${out.closureFiles} files in closure, ${out.reachedUnits} units reached, ${out.calls.length} callAction sites, ${out.functions.length} functions, ${out.origins.length} @origin tags`);

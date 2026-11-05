@@ -31,6 +31,8 @@ def cfg(*keys):
     return os.path.join(ROOT, v)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import mcp_client  # noqa: E402
+import os_extras  # noqa: E402
+import extras_md  # noqa: E402
 
 OUT = os.path.join(HERE, "routes")          # the route files
 DATA = os.path.join(cfg("cache"), "data")   # git ignores route-actions/.cache/
@@ -487,7 +489,17 @@ def check(route):
     for f in rendered:
         for n in js.get(f, {}).get("navigation", []):
             nav_from[n["to"].rsplit("/", 1)[-1]].add(group_of_file[f])
-    result = {"route": route, "screenFile": sfile, "userActions": uacts, "reactActions": react_acts, "flow": flow, "survey": sv, "meta": meta, "endpoints": eps,
+    # --- extras (pilot): inputs, lifecycle, client state, access, errors ------------------------------------------
+    own_files = [f for f in rendered if group_of_file[f] == "screen"]
+    shell_dir = os.path.join(ROOT, "migration", "shell", "sources")
+    os_x = os_extras.extras(tst.get("sources", {}), own_files, facts.get("screenFile"), os.path.relpath(shell_dir, ROOT))
+    react_x = {k: [x for x in v if x["file"] not in shell_set] for k, v in (page_r.get("extras") or {}).items()}
+    gen = open(cfg("react", "routesGenerated"), encoding="utf-8").read()
+    gm = re.search(r'"screen": "' + re.escape(route) + r'"[^\n]*?"inputs": \[([^\]]*)\]', gen)
+    react_inputs = re.findall(r'"([^"]+)"', gm.group(1)) if gm else []
+    result = {"route": route, "screenFile": sfile, "screenFileRaw": facts.get("screenFile"), "osExtras": os_x,
+              "reactExtras": react_x, "reactInputsDeclared": react_inputs,
+              "osRaw": os.path.relpath(os.path.join(cfg("tst", "screens"), route, "analysis", "sources", "raw"), ROOT), "userActions": uacts, "reactActions": react_acts, "flow": flow, "survey": sv, "meta": meta, "endpoints": eps,
               "reactOnly": react_only, "reactUnknown": react_unknown,
               "blocks": blocks, "osNav": {k: sorted(v) for k, v in os_nav.items()},
               "reactNav": {k: sorted(v) for k, v in react_nav.items()}, "observedCount": len(tst["calls"]),
@@ -1150,7 +1162,7 @@ def clean_outputs(name):
         os.remove(stale)
 
 
-def render(r):
+def render(r, extras=False):
     """The route file: only what belongs to the route. The app shell parts go to APP_SHELL.md."""
     LINK_BASE[0] = OUT
     route = r["route"]
@@ -1197,7 +1209,7 @@ def render(r):
          "| Check | Result |", "|---|---|",
          f"| Server calls of the route on TST | {len(eps)}: React makes {cnt['implemented']}, **{cnt['missing']} missing** |",
          f"| User actions of the route | OutSystems: {len(os_d)} diagrams. React: {len(re_d)} diagrams |",
-         f"| React calls of the screen that TST does not make | {len(questions)} (see [questions](#8-questions)) |",
+         f"| React calls of the screen that TST does not make | {len(questions)} (see [questions](#{{QN}}-questions)) |",
          f"| Screen and blocks with a React port | {blocks_ported} of {len(own_blocks)} |",
          f"| Navigation targets found in React | {len(own_nav) - len(nav_missing)} of {len(own_nav)} |",
          f"| App shell on this route | {len(shell_eps)} calls; event bindings: OutSystems {len(shell_acts)}, React {len(shell_react)}: see [APP_SHELL.md](../APP_SHELL.md) |",
@@ -1215,12 +1227,18 @@ def render(r):
             *[f"- `{u}`: a call of the screen in the capture of " + (", ".join(f"[{x}]({x}.md)" for x in own_routes(u)) or "no other route")
               + "." for u in r.get("otherScreenCalls", [])]]
            if r.get("otherScreenCalls") else []),
-         "", "## 7. Missing in React", "", *missing_lines(eps, own_blocks, nav_missing, own_nav),
-         "", "## 8. Questions", ""]
+         ""]
+    nx = 7
+    if extras:
+        xl, nx = extras_md.sections(r, 7, link, short)
+        L += xl
+    L += [f"## {nx}. Missing in React", "", *missing_lines(eps, own_blocks, nav_missing, own_nav),
+          "", f"## {nx + 1}. Questions", ""]
+    L = [x.replace("{QN}", str(nx + 1)) for x in L]
     qs = [f"React calls `{c['apiPath']}` from `{c['fn']}()` {link(c['file'], c['line'])} ({c['where']}). TST {route} "
           "has no chain to this call. Does the call belong to this route?" for c in questions]
     L += [f"{i}. {q}" for i, q in enumerate(qs, 1)] or ["None."]
-    L += ["", "## 9. Method", "",
+    L += ["", f"## {nx + 2}. Method", "",
           "1. **OutSystems (TST).** The tool reads `facts.json` and the compiled code of `migration/screens/" + route +
           "/analysis/`:",
           "   - the rendered files;",
@@ -1233,7 +1251,10 @@ def render(r):
           "4. **React.** `react_calls.mjs` reads the app shell from `app/src/main.tsx` and the screen from its "
           "`<Route>Page.tsx`. It counts only the code that the app uses.",
           "5. **Match.** `callAction(M, A)` gives `/api/M/A`. The `x-os-paths` of `app/src/api/openapi.yaml` give the "
-          "TST call. The status is `implemented` when the TST call is the same. Else the status is `missing`.", "",
+          "TST call. The status is `implemented` when the TST call is the same. Else the status is `missing`.",
+          *(["6. **Sections 7 to 11.** `os_extras.py` reads the TST compiled files of the screen and its blocks (not the "
+             "app shell). `react_calls.mjs` reads the React screen files (not the app shell). Both lists are independent.",
+             "   A step comes from a node comment of the compiled action, or from its condition."] if extras else []), "",
           "Limit: a name or a call match does not prove the same behaviour. The parity checks of the migration "
           "compare the behaviour."]
     p = os.path.join(OUT, f"{route}.md")
@@ -1334,6 +1355,7 @@ def main():
     ap.add_argument("--mark-done", action="store_true", help="set the route to done in ROUTES.md")
     ap.add_argument("--app-shell", action="store_true", help="write APP_SHELL.md from the checked routes")
     ap.add_argument("--status", action="store_true", help="print the state of the check and the next route")
+    ap.add_argument("--extras", action="store_true", help="pilot: add inputs, lifecycle, client state, access, errors")
     a = ap.parse_args()
     os.makedirs(DATA, exist_ok=True)
     if a.routes:
@@ -1351,7 +1373,7 @@ def main():
         write_routes(done=a.route)
         return
     r = check(a.route)
-    render(r)
+    render(r, extras=a.extras)
     render_app_shell()
     write_routes()
 
