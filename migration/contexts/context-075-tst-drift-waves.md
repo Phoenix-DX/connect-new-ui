@@ -20,7 +20,7 @@
 - Tool fixes in `route-actions/tools/`: the refresh function of a data action owns its OnAfterFetch call (call
   graph), aggregates in the fetch modes, the `noCaller` rule. They surfaced the bookmark module move.
 - Wave 3: the Household_Relations Bookmark button (live: enabled, secondary/primary by the C2 state; row 25) with narrow parity rules for the October baseline.
-- Gates: `npm run ci` green (732 files, 4822 tests after wave 3, build); parity sweep 51 of 51 clean with the drift rules (NotificationDetails, Household_Relations).
+- Gates: `npm run ci` green (732 files, 4822 tests after wave 3, 4824 after wave 4, build); parity sweep 51 of 51 clean with the drift rules (NotificationDetails, Household_Relations). After wave 4 (2026-11-05, 20:10): full sweep 68 of 68 clean, reports committed.
 
 ## Decisions (who, date)
 - User 2026-11-05: Opus proposes first, Fable reviews and asks, loop until correct; never ask the user; full tests

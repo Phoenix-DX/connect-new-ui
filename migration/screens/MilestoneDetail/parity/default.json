@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "3391b8d0a4709aa482bc",
+ "fingerprint": "408eed20d0446adcb157",
  "options": {
   "text": true,
   "style": true,
@@ -27,7 +27,7 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-05T06:15:30.859Z",
+ "at": "2026-11-05T13:10:00.794Z",
  "counts": {},
  "exemptionsUsed": {
   "VIA-BACK-MENUICON-MILESTONEDETAIL": 14,
@@ -37,11 +37,11 @@
   "CAPTURE-VIA-MASK-SHIFT-MILESTONEDETAIL-PIXELS": 1
  },
  "pixel": {
-  "ratio": 0.06301,
+  "ratio": 0.06297,
   "maxCell": 0.6512,
   "maxCellRatio": 0.03,
   "diffPixels": 16258,
-  "comparedPixels": 258026,
+  "comparedPixels": 258206,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [

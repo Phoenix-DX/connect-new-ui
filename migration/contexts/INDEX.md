@@ -5,7 +5,7 @@ section "Context notes".
 
 ## Now
 - Goal (user 2026-10-14): replace the OutSystems app in production; UI/UX 1:1. **Current focus (user 2026-10-17): local demo for colleagues, no production work.**
-- 2026-11-05: TST drift handled, live code wins ([context-075](context-075-tst-drift-waves.md)): 24 route differences built in two waves, the bookmark toggle moved to `UBTConnect_Utils`, contract from the live module files; CI green (4813 tests). Decision log rows 18–24.
+- 2026-11-05: TST drift handled, live code wins ([context-075](context-075-tst-drift-waves.md)): 24 route differences built in two waves, the bookmark toggle moved to `UBTConnect_Utils`, contract from the live module files; CI green (4824 tests), full parity sweep 68 of 68 after wave 4 (20:10). Decision log rows 18–26.
 - Route actions pipeline `route-actions/` ([context-074](context-074-route-actions-pilot.md)): 68 of 68 routes; the tool reads the live compiled code for drifted routes.
 - Waits for the user: row 23 (JSON key names of the contract: generator / BFF / defer). Re-captures: NotificationDetails, Search pills and layout, the 17 routes without a capture.
 - TST has 84 routes: 68 build, 16 skip. Demo: `npm --prefix app run build:demo`; dev http://localhost:5173/UBTConnect/HomeFeed (`?review=1`).

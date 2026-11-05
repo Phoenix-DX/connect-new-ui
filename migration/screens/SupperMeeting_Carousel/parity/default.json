@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "be33a1927b902240d418",
+ "fingerprint": "259a4572779a135a552f",
  "options": {
   "text": true,
   "style": true,
@@ -27,7 +27,7 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-05T06:19:10.530Z",
+ "at": "2026-11-05T13:13:30.238Z",
  "counts": {},
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 1,
@@ -63,7 +63,7 @@
    "load"
   ],
   "expected": 19,
-  "actual": 31,
+  "actual": 32,
   "viaAppStartSkipped": [
    "ActionAppManager_AfterInitialize",
    "ActionAppManager_SynchAppContext",

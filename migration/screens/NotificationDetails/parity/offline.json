@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "1f67122b5ec083a06e88",
+ "fingerprint": "426a3511b991046d4415",
  "options": {
   "text": true,
   "style": true,
@@ -27,19 +27,22 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-05T06:16:11.859Z",
+ "at": "2026-11-05T13:10:40.193Z",
  "counts": {},
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
+  "TST-DRIFT-2026-11-05-NOTIFICATIONDETAILS-HEADER": 5,
+  "TST-DRIFT-2026-11-05-NOTIFICATIONDETAILS-CONTENT": 4,
   "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
-  "ignoreSubtrees": 1
+  "ignoreSubtrees": 1,
+  "TST-DRIFT-2026-11-05-NOTIFICATIONDETAILS-PIXEL": 1
  },
  "pixel": {
-  "ratio": 0.00018,
-  "maxCell": 0.0219,
+  "ratio": 0.06874,
+  "maxCell": 0.875,
   "maxCellRatio": 0.03,
-  "diffPixels": 60,
-  "comparedPixels": 325792,
+  "diffPixels": 22220,
+  "comparedPixels": 323236,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -52,8 +55,11 @@
   ],
   "masks": 3,
   "hotspots": [
-   "200,800 (35px)",
-   "200,760 (25px)"
+   "200,200 (1400px)",
+   "240,200 (1400px)",
+   "280,200 (1400px)",
+   "320,200 (1400px)",
+   "160,200 (1380px)"
   ],
   "diffPng": "migration/screens/NotificationDetails/parity/offline.diff.png"
  },
