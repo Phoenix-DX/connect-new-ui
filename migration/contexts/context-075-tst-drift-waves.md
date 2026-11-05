@@ -58,4 +58,4 @@
 - `css_sets.py` cannot add a compiled-only sheet (`Unavailable_Image.css`) to a captured route; no visual effect today.
 
 ## Next
-- The user's decision on row 23 (JSON key names); re-captures (NotificationDetails, Household_Relations, Search pills and layout, the 17 routes without a capture); the legacy bookmark store decision.
+- The user's decision on row 23 (JSON key names). Re-captures: NotificationDetails, Household_Relations, Search pills and layout, the 17 routes without a capture. The legacy bookmark store decision.
