@@ -36,7 +36,8 @@
 - Closed by the Fable → Opus → Fable loop (user rule 2026-11-05, no question to the user): AssembleDetail
   `Section_MeetingNotes` removed (the live TST block has none); sign-out stays 1:1 (rows 11, 12 of the log).
 - Production backlog: sign-out on a shared device when AppManager_Logout fails (TST leaves the PIN and local data).
-- Parity: Notifications default differs in one relative-age label (fixture date against today); a frozen clock later.
+- Gates: `npm run ci` green end to end (4757 tests, two timing flakes fixed); parity sweep 50 of 51 (Notifications:
+  a relative-age label of a fixture; a frozen clock later).
 - Running vitest as `caffeinate npx vitest run` uses Homebrew Node 26 (global `localStorage` shadows jsdom's):
   159 files fail. Run vitest with the shell's nvm Node; keep the Mac awake with a separate `caffeinate` process.
 - Drift: the live `AssembleEventDetail.mvc.js` has no `Section_MeetingNotes`; React renders one (survey 2026-10-13).
