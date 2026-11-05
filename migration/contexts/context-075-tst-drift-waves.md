@@ -54,9 +54,9 @@
 ## Open issues
 - Re-capture needed (user accounts): NotificationDetails (3 states), Household_Relations (the Bookmark button),
   Search (pills and layout), the 17 routes without a capture. `recentSearch.ts` categories go with the Search pills.
-- User 2026-11-05: remove the legacy local bookmark store (row 26, wave 4, in progress at the end of the session).
+- User 2026-11-05: remove the legacy local bookmark store (row 26, wave 4, done: CI green with 4824 tests, parity clean).
   Push allowed; the permission mode blocks `git push` for Claude, so the user runs `! git push`.
 - `css_sets.py` cannot add a compiled-only sheet (`Unavailable_Image.css`) to a captured route; no visual effect today.
 
 ## Next
-- Wave 4 gates and commit (row 26). The user's decision on row 23 (JSON key names). Re-captures: NotificationDetails, Household_Relations, Search pills and layout, the 17 routes without a capture.
+- The user's decision on row 23 (JSON key names). Re-captures: NotificationDetails, Household_Relations, Search pills and layout, the 17 routes without a capture.
