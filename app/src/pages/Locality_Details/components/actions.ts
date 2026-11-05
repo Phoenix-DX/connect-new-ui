@@ -1,5 +1,4 @@
 import type { OneSchoolCard, SubdivisionCard } from '@/api/locality';
-import { get_LocalBookmarkByObjectId } from '@/platform/storage/localEntities';
 import { currDateTime, formatDateTime } from '@/lib/osDateTime';
 import { getConnectWeekdayLabel_ByDate, getLookupConcepts } from '@/lib/ubtConnectLibrary/actions';
 import type { LookupItem, Tag } from '@/lib/ubtConnectLibrary/structures';
@@ -47,13 +46,6 @@ export function getLocalityCurrentTimeLabel(in_UTCOffsetSeconds: number, in_Loca
   const fraction = hours - Math.trunc(hours);
   if (fraction > 0) offsetLabel = `${offsetLabel}:${String(fraction * 60)}`;
   return `${weekday}, ${time} (UTC${in_UTCOffsetSeconds < 0 ? ' - ' : ' + '}${offsetLabel})`;
-}
-
-/** GetLocal_Bookmark(ObjectType, ObjectId) (UC:9191+): IsBookmarked = Get_LocalBookmarkByObjectId(…).Id <> NullIdentifier
-    (legacy Connect2_LegacyShared.LocalBookmark through the shell adapter). */
-export async function getLocal_Bookmark(objectType: string, objectId: string): Promise<boolean> {
-  const bookmark = await get_LocalBookmarkByObjectId(objectType, objectId);
-  return bookmark.Id !== '' && bookmark.Id !== '0';
 }
 
 /* ---- Tags (feedback F1). UC = migration/screens/Locality_Details/analysis/sources/raw/UBTConnect.controller.js,

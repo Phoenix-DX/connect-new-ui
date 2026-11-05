@@ -160,8 +160,8 @@ export const APP_START_STEPS: readonly AppStartStep[] = [
     run: (context) => {
       if (!isSignedIn()) return;
       context.loggedContext = true;
-      const { notes, bookmarks, bookmarks_C2 } = context.localEntities;
-      return connectSetLoggedContext(false, notes, bookmarks, bookmarks_C2);
+      const { notes, bookmarks_C2 } = context.localEntities;
+      return connectSetLoggedContext(false, notes, bookmarks_C2);
     },
   },
   {

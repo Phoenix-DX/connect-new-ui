@@ -163,21 +163,6 @@ export const BookmarkCategory = {
   Update: 'Update',
 } as const;
 
-/** MyBookmarks_ObjectType (UBTConnect): TST values (static-entities-tst.json `UBTConnect.myBookmarks_ObjectType`): the
-    ObjectType of a legacy local bookmark. */
-export const MyBookmarks_ObjectType = {
-  CampusCo: 'Campus&Co',
-  CommunityBusiness: 'Community Business',
-  Contact: 'Contact',
-  Locality: 'Locality',
-  News: 'News',
-  OneSchoolGlobal: 'OneSchool Global',
-  Subdivision: 'Subdivision',
-} as const;
-
-/** MyBookmarks_Group (UBTConnect): TST values (static-entities-tst.json `UBTConnect.myBookmarks_Group`). */
-export const MyBookmarks_Group = { Contacts: 'Contacts', Entities: 'Entities', Locations: 'Locations' } as const;
-
 /* ---- Wave 4C (household details and supper meeting blocks) ---- */
 /** Connect_HouseholdMemberRole: only compared (HouseholdDetails_Members_Block: MemberRole <> Child), never rendered.
     TST values (static-entities-tst.json `UBTConnect.connect_HouseholdMemberRole`). */

@@ -11,6 +11,3 @@ export const UBT_Icons2_Locality = {
 
 /** UBT_AlignItems.center, written as a class as is: captured `display-flex align-items-center` (dom/default.html:99). */
 export const UBT_AlignItems_Center = 'align-items-center';
-
-/** MyBookmarks_ObjectType.Contact (static-entities-tst.json `UBTConnect.myBookmarks_ObjectType` contact = "Contact"). */
-export const MyBookmarks_ObjectType_Contact = 'Contact';

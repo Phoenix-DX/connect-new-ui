@@ -4,12 +4,12 @@
 import { dayOfWeek, formatDateTime } from '@/lib/osDateTime';
 import { log } from '@/platform/log/log';
 import { osList } from '@/lib/os-wire';
-import { legacyGetLocalBookmarksByObjectType } from '@/platform/storage/localEntities';
+import { getLocalBookmarksByObjectType } from '@/platform/storage/localEntities';
 import { getUserInformation } from '@/platform/session/userInfo';
 import { getCacheableLocality, getCacheableUserInfo, removeDiacritics } from '@/lib/legacyShared/actions';
 import type { CacheableLocalityInformation } from '@/lib/legacyShared/structures';
-import { Connect_Subscription_Plan } from '@/lib/ubtConnect/staticEntities';
-import { MyBookmarks_ObjectType } from './staticEntities';
+import { longIntegerText } from '@/lib/ubtConnect/actions';
+import { BookmarkCategory, Connect_Subscription_Plan } from '@/lib/ubtConnect/staticEntities';
 import type { AssembleEventSummary, HostedAtComponents } from './structures';
 
 /** OutSystems null DateTime (the DateTime input default). */
@@ -52,30 +52,33 @@ export function getAssembleHostedAtComponents(
 
 /* ---- Wave 8 O-B3 (Assemble_FilterLocalityByCountry, Assemble_FilterSubdivisionByLocality) ---- */
 
-/** GetLocalBookmarkedLocalityInformation(In_LocalityId, In_LocalityInformation) (controller.js:741-992): on a copy of
-    the locality (`.clone()`, :746), IsBookmarked of the locality and of each interchange, household, supper meeting,
-    school and store is set from the device's legacy bookmarks (GetLocalBookmarksByObjectType of Connect2_LegacyShared,
-    `shell/localEntities/localBookmarks.ts`): Locality bookmarks for the locality (ObjectId = In_LocalityId) and the
-    interchanges (InterchangeLocalityId), Contact for the households (Id), Subdivision for the supper meetings (Id),
-    OneSchool Global for the schools and Campus&Co for the stores (CommunityBusinessID). Out_LocalityInformation. */
+/** GetLocalBookmarkedLocalityInformation(In_LocalityId, In_LocalityInformation) (live
+    migration/runtime-sources/Connect2_Assemble_MUI.controller.js:668-912): on a copy of the locality (`.clone()`, :673),
+    IsBookmarked of the locality and of each interchange, household, supper meeting, school and store is set from the
+    device's C2 bookmarks (UBTConnect_Bookmarks_MCS GetLocalBookmarksByObjectType, by category): Locality for the
+    locality (In_LocalityId) and the interchanges (InterchangeLocalityId) (:705-737), Household for the households (Id)
+    (:741-766), Supper Meeting for the supper meetings (Id) (:772-797), OneSchool Global for the schools (:803-828) and,
+    with a second read, for the stores (CommunityBusinessID) (:829-860). A row matches when ItemId =
+    LongIntegerToText(id). Out_LocalityInformation = the copy (:862-863). */
 export async function getLocalBookmarkedLocalityInformation(
   localityId: string,
   localityInformation: CacheableLocalityInformation,
 ): Promise<CacheableLocalityInformation> {
   const info = structuredClone(localityInformation);
-  const bookmarkedIds = async (objectType: string) =>
-    new Set((await legacyGetLocalBookmarksByObjectType(objectType)).map((b) => b.ObjectId));
-  const localities = await bookmarkedIds(MyBookmarks_ObjectType.Locality);
-  info.IsBookmarked = localities.has(localityId);
-  for (const i of osList(info.LocalityInterchanges)) i.IsBookmarked = localities.has(i.InterchangeLocalityId);
-  const contacts = await bookmarkedIds(MyBookmarks_ObjectType.Contact);
-  for (const h of osList(info.LocalityHouseholdsList)) h.IsBookmarked = contacts.has(h.Id);
-  const subdivisions = await bookmarkedIds(MyBookmarks_ObjectType.Subdivision);
-  for (const s of osList(info.LocalitySubdivisionsList)) s.IsBookmarked = subdivisions.has(s.Id);
-  const schools = await bookmarkedIds(MyBookmarks_ObjectType.OneSchoolGlobal);
-  for (const s of osList(info.LocalitySchools)) s.IsBookmarked = schools.has(s.CommunityBusinessID);
-  const stores = await bookmarkedIds(MyBookmarks_ObjectType.CampusCo);
-  for (const s of osList(info.LocalityStores)) s.IsBookmarked = stores.has(s.CommunityBusinessID);
+  const bookmarkedItemIds = async (category: string) =>
+    new Set((await getLocalBookmarksByObjectType(category)).map((b) => b.ItemId));
+  const isIn = (itemIds: Set<string>, id: string) => itemIds.has(longIntegerText(id));
+  const localities = await bookmarkedItemIds(BookmarkCategory.Locality);
+  info.IsBookmarked = isIn(localities, localityId);
+  for (const i of osList(info.LocalityInterchanges)) i.IsBookmarked = isIn(localities, i.InterchangeLocalityId);
+  const households = await bookmarkedItemIds(BookmarkCategory.Household);
+  for (const h of osList(info.LocalityHouseholdsList)) h.IsBookmarked = isIn(households, h.Id);
+  const supperMeetings = await bookmarkedItemIds(BookmarkCategory.SupperMeeting);
+  for (const s of osList(info.LocalitySubdivisionsList)) s.IsBookmarked = isIn(supperMeetings, s.Id);
+  const schools = await bookmarkedItemIds(BookmarkCategory.OneSchoolGlobal);
+  for (const s of osList(info.LocalitySchools)) s.IsBookmarked = isIn(schools, s.CommunityBusinessID);
+  const stores = await bookmarkedItemIds(BookmarkCategory.OneSchoolGlobal);
+  for (const s of osList(info.LocalityStores)) s.IsBookmarked = isIn(stores, s.CommunityBusinessID);
   return info;
 }
 

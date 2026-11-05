@@ -3,20 +3,15 @@ import { setSignedInUser } from '@/platform/session/session';
 import { memoryDatabase } from './database';
 import { NULL_DATE_TIME } from './entities';
 import {
-  LEGACY_LOCAL_BOOKMARK,
   LOCAL_BOOKMARK,
   create_LocalBookmark,
   delete_LocalBookmarkByBookmarkId,
-  get_LocalBookmarkByObjectId,
   getLocalBookmarkByBookmarkId,
   getLocalBookmarkByObjectId,
   getLocalBookmarksByObjectType,
-  legacyGetLocalBookmarksByObjectType,
   localBookmarksSchemas,
   setLocalBookmarksDatabase,
-  synchBookmarks,
   synchBookmarksC2,
-  type LegacyLocalBookmark,
   type LocalBookmark,
 } from './localBookmarks';
 
@@ -31,19 +26,7 @@ const c2 = (fields: Partial<LocalBookmark>): LocalBookmark => ({
   CreatedAtDateUtc: NULL_DATE_TIME,
   ...fields,
 });
-const legacy = (fields: Partial<LegacyLocalBookmark>): LegacyLocalBookmark => ({
-  Id: '0',
-  UserId: USER,
-  BookmarkId: '0',
-  ObjectType: 'Contact',
-  ObjectId: '0',
-  Group: 'Contacts',
-  DateCreatedUtc: NULL_DATE_TIME,
-  Note: '',
-  ...fields,
-});
-
-describe('local bookmarks (UBTConnect_Bookmarks_MCS, Connect2_LegacyShared)', () => {
+describe('local bookmarks (UBTConnect_Bookmarks_MCS)', () => {
   beforeEach(() => {
     setLocalBookmarksDatabase(memoryDatabase(localBookmarksSchemas()));
     setSignedInUser(String(USER));
@@ -55,8 +38,7 @@ describe('local bookmarks (UBTConnect_Bookmarks_MCS, Connect2_LegacyShared)', ()
 
   it('keeps the entity tables and keys of the compiled entities', () => {
     expect(LOCAL_BOOKMARK.tableName).toBe('OSUSR_HCR_LOCALBOOKMARK');
-    expect(LEGACY_LOCAL_BOOKMARK.tableName).toBe('OSUSR_B3N_LOCALBOOKMARK');
-    expect(localBookmarksSchemas().map((s) => s.keyPath)).toEqual([['ID'], ['ID'], ['KEY', 'MODULEKEY']]);
+    expect(localBookmarksSchemas().map((s) => s.keyPath)).toEqual([['ID'], ['KEY', 'MODULEKEY']]);
   });
 
   it('SynchBookmarksC2 replaces the copy; GetLocalBookmarkByObjectId finds the user row of the item and category', async () => {
@@ -116,29 +98,5 @@ describe('local bookmarks (UBTConnect_Bookmarks_MCS, Connect2_LegacyShared)', ()
     ]);
     expect((await getLocalBookmarksByObjectType('Household')).map((r) => r.Id)).toEqual(['1', '5']);
     expect(await getLocalBookmarksByObjectType('Feed Item')).toEqual([]);
-  });
-
-  it('legacy Get_LocalBookmarkByObjectId: user, object id and type, first by Note', async () => {
-    await synchBookmarks([
-      legacy({ Id: '1', ObjectId: '42', Note: 'b' }),
-      legacy({ Id: '2', ObjectId: '42', Note: 'A' }),
-      legacy({ Id: '3', ObjectId: '42', ObjectType: 'Locality' }),
-      legacy({ Id: '4', ObjectId: '43', UserId: OTHER }),
-    ]);
-    expect((await get_LocalBookmarkByObjectId('Contact', '42')).Id).toBe('2');
-    expect((await get_LocalBookmarkByObjectId('Locality', '42')).Id).toBe('3');
-    expect((await get_LocalBookmarkByObjectId('Contact', '43')).Id).toBe('0');
-  });
-
-  it('legacy GetLocalBookmarksByObjectType (legacyGetLocalBookmarksByObjectType): the user rows of that exact type, by Note', async () => {
-    await synchBookmarks([
-      legacy({ Id: '1', ObjectType: 'Locality', ObjectId: '252', Note: 'b' }),
-      legacy({ Id: '2', ObjectType: 'Locality', ObjectId: '253', Note: 'a' }),
-      legacy({ Id: '3', ObjectType: 'locality', ObjectId: '254' }),
-      legacy({ Id: '4', ObjectType: 'Locality', ObjectId: '255', UserId: OTHER }),
-      legacy({ Id: '5', ObjectType: 'Contact', ObjectId: '256' }),
-    ]);
-    expect((await legacyGetLocalBookmarksByObjectType('Locality')).map((r) => r.ObjectId)).toEqual(['253', '252']);
-    expect(await legacyGetLocalBookmarksByObjectType('News')).toEqual([]);
   });
 });

@@ -2,32 +2,31 @@ import { currentUserId } from '@/platform/session/session';
 import { indexedDbDatabase, memoryDatabase, type LocalDatabase } from './database';
 import { DATABASE_NAME, METADATA_TABLE, NULL_DATE_TIME, entityService, tableSchema, type EntityInfo } from './entities';
 
-/* The device's local copies of the user's bookmarks (client entities) and their client actions, ported 1:1. Two
-   entities, as in TST:
-   - UBTConnect_Bookmarks_MCS.LocalBookmark ("C2" bookmarks). BC = migration/runtime-sources/UBTConnect_Bookmarks_MCS
-     .controller.js, BA = …aggregates.IDB.js, BE = …entities.js;
-   - Connect2_LegacyShared.LocalBookmark (legacy bookmarks). LC = migration/runtime-sources/Connect2_LegacyShared
-     .controller.js, LA = …aggregates.IDB.js, LE = …entities.js.
-   UC = migration/runtime-sources/UBTConnect.controller.js.
+/* The device's local copy of the user's C2 bookmarks (client entity UBTConnect_Bookmarks_MCS.LocalBookmark) and its
+   client actions, ported 1:1. BC = migration/runtime-sources/UBTConnect_Bookmarks_MCS.controller.js, BA =
+   …aggregates.IDB.js, BE = …entities.js; UC = migration/runtime-sources/UBTConnect.controller.js.
 
-   The C2 actions follow the live module of 2026-11-05: every read, create and delete keys on the item (or bookmark)
-   AND the bookmark category, so one ItemId may have a row per category.
+   The actions follow the live module of 2026-11-05: every read, create and delete keys on the item (or bookmark) AND
+   the bookmark category, so one ItemId may have a row per category.
 
    Who uses them in the original:
-   - app start / sign-in: Connect_SetLoggedContext → SynchBookmarks(Sync_Info_Main.Bookmarks) then
-     SynchBookmarksC2(Sync_Info_Main.Bookmarks_C2), then Bookmarks_IsSynched = True (UC:1135-1136); Sync_Info_Main takes
-     them from Sync_Info_GetMain.LocalEntities_App.LocalBookmark / .LocalBookmarksC2. Each sync replaces the whole copy;
+   - app start / sign-in: Connect_SetLoggedContext → SynchBookmarksC2(Sync_Info_Main.Bookmarks_C2), then
+     Bookmarks_IsSynched = True (UC:1129-1136); Sync_Info_Main takes the rows from
+     Sync_Info_GetMain.LocalEntities_App.LocalBookmarksC2. The sync replaces the whole copy;
    - UBTConnect_Utils ToggleBookmarkItem_C2 (UBTConnect_Utils.controller.js:5661-5770; lib/ubtConnectUtils/actions.ts):
      GetLocalBookmarkByObjectId, Create_LocalBookmark, Delete_LocalBookmarkByBookmarkId, each with the category;
    - Directory_EntityDetailsActions OnReady and Locality_Details GetLocal_Bookmark_C2: GetLocalBookmarkByObjectId with
-     the category (C2NewBookmarks on) or the legacy Get_LocalBookmarkByObjectId (off, the TST value);
-   - Connect2_Assemble_MUI AssembleEventDetail_AttendeeSubdivision: GetLocalBookmarksByObjectType(Household);
-   - legacy GetLocalBookmarksByObjectType (legacyGetLocalBookmarksByObjectType): Connect2_Assemble_MUI
-     GetLocalBookmarkedLocalityInformation.
+     the category;
+   - GetLocalBookmarksByObjectType (by category): Connect2_Assemble_MUI AssembleEventDetail_AttendeeSubdivision
+     (Household) and GetLocalBookmarkedLocalityInformation (live Connect2_Assemble_MUI.controller.js:668-912).
    Not ported (no caller in the clone yet): Get_LocalDynamicBookmarkPills / _Years, GetBookmarkCategoryLabel and the
-   empty AddBookmarkToCache / RemoveBookmarkFromCache (BC:3-28, :1313-1338). The legacy writes (Create_LocalBookmark,
-   Delete_LocalBookmarkByBookmarkId) lost their last caller with Connect2_Assemble_MUI ToggleBookmarkItem (TST removed
-   it, live survey 2026-11-05). */
+   empty AddBookmarkToCache / RemoveBookmarkFromCache (BC:3-28, :1313-1338).
+
+   The legacy store Connect2_LegacyShared.LocalBookmark is not ported: the live app start does not sync it (there is no
+   SynchBookmarks, UC:1129-1133) and nothing on live writes it, so its only live reader, GetLocal_Bookmark (UC:9237-9256,
+   the C2NewBookmarks-off branch of Locality_Households_HouseholdList), always reads an empty table (user decision,
+   2026-11-05). A browser that ran an older build keeps an orphan IndexedDB object store of that table; nothing reads
+   it, and it is harmless. */
 
 /** UBTConnect_Bookmarks_MCS.LocalBookmark (BE:4-58): idIsAutoNumber YesIfEmpty (BE:58). */
 export const LOCAL_BOOKMARK: EntityInfo = {
@@ -46,25 +45,6 @@ export const LOCAL_BOOKMARK: EntityInfo = {
   ],
 };
 
-/** Connect2_LegacyShared.LocalBookmark (LE:236-306): idIsAutoNumber YesIfEmpty (LE:302). */
-export const LEGACY_LOCAL_BOOKMARK: EntityInfo = {
-  key: 'e31d7357-1200-4637-8763-eb33045702bf',
-  moduleKey: '3712370e-f7b5-4c2a-ade3-d8800219efd4',
-  name: 'LocalBookmark',
-  tableName: 'OSUSR_B3N_LOCALBOOKMARK',
-  hash: '13ed8c05-caee-7c9e-4fa8-3f4b47c2fdff',
-  attributes: [
-    { name: 'Id', columnName: 'ID', type: 'LongInteger', isPrimaryKey: true },
-    { name: 'UserId', columnName: 'USERID', type: 'Integer' },
-    { name: 'BookmarkId', columnName: 'BOOKMARKID', type: 'LongInteger' },
-    { name: 'ObjectType', columnName: 'OBJECTTYPE', type: 'Text' },
-    { name: 'ObjectId', columnName: 'OBJECTID', type: 'LongInteger' },
-    { name: 'Group', columnName: 'GROUP', type: 'Text' },
-    { name: 'DateCreatedUtc', columnName: 'DATECREATEDUTC', type: 'DateTime' },
-    { name: 'Note', columnName: 'NOTE', type: 'Text' },
-  ],
-};
-
 /** UBTConnect_Bookmarks_MCS LocalBookmarkRec: Long Integers as text, DateTimes as "yyyy-MM-ddTHH:mm:ss". */
 export interface LocalBookmark {
   Id: string;
@@ -73,18 +53,6 @@ export interface LocalBookmark {
   BookmarkCategoryId: string;
   ItemId: string;
   CreatedAtDateUtc: string;
-}
-
-/** Connect2_LegacyShared LocalBookmarkRec. */
-export interface LegacyLocalBookmark {
-  Id: string;
-  UserId: number;
-  BookmarkId: string;
-  ObjectType: string;
-  ObjectId: string;
-  Group: string;
-  DateCreatedUtc: string;
-  Note: string;
 }
 
 const EMPTY_LOCAL_BOOKMARK: LocalBookmark = {
@@ -96,18 +64,7 @@ const EMPTY_LOCAL_BOOKMARK: LocalBookmark = {
   CreatedAtDateUtc: NULL_DATE_TIME,
 };
 
-const EMPTY_LEGACY_LOCAL_BOOKMARK: LegacyLocalBookmark = {
-  Id: '0',
-  UserId: 0,
-  BookmarkId: '0',
-  ObjectType: '',
-  ObjectId: '0',
-  Group: '',
-  DateCreatedUtc: NULL_DATE_TIME,
-  Note: '',
-};
-
-const SCHEMAS = [tableSchema(LOCAL_BOOKMARK), tableSchema(LEGACY_LOCAL_BOOKMARK), METADATA_TABLE];
+const SCHEMAS = [tableSchema(LOCAL_BOOKMARK), METADATA_TABLE];
 let database: LocalDatabase | null = null;
 
 function defaultDatabase(): LocalDatabase {
@@ -137,8 +94,6 @@ const entities = entityService(localBookmarksDatabase);
 
 /** GetUserId(): the signed-in user, 0 when nobody is (User Identifier, an Integer). */
 const getUserId = () => Number(currentUserId() ?? 0);
-
-/* ---- UBTConnect_Bookmarks_MCS ---- */
 
 /** The user's rows (index USERID) that match `keep` (the aggregates GetLocalBookmarksByUserId of the live module). */
 async function localBookmarksOfUser(keep: (r: LocalBookmark) => boolean): Promise<LocalBookmark[]> {
@@ -206,46 +161,10 @@ export async function delete_LocalBookmarkByBookmarkId(bookmarkId: string, categ
   await delete_LocalBookmarkById(localBookmark.Id);
 }
 
-/** SynchBookmarksC2(In_UpdateBookmarks) (BC:1339-1384): DeleteAllLocalBookmark, then CreateOrUpdateSomeLocalBookmark,
-    in one transaction (see synchBookmarks). */
+/** SynchBookmarksC2(In_UpdateBookmarks) (BC:1339-1384): DeleteAllLocalBookmark, then CreateOrUpdateSomeLocalBookmark.
+    The original runs them as two IndexedDB transactions; the clone runs one (entityService.replaceAll), so the
+    bookmarks read while the app start syncs are the old copy or the new one, never none (the first screen's OnReady
+    reads can come while the app start syncs; CR-HouseholdDetails-2 §2). */
 export async function synchBookmarksC2(in_UpdateBookmarks: readonly LocalBookmark[]): Promise<void> {
   await entities.replaceAll(LOCAL_BOOKMARK, in_UpdateBookmarks);
-}
-
-/* ---- Connect2_LegacyShared ---- */
-
-/** Compare of the client aggregates (LA:13-18): texts case-insensitively. */
-const compareText = (a: string, b: string) => {
-  const x = a.toLocaleLowerCase();
-  const y = b.toLocaleLowerCase();
-  return x > y ? 1 : x < y ? -1 : 0;
-};
-
-/** Get_LocalBookmarkByObjectId(ObjectType, ObjectId) (LC:2344 ff.; aggregate LA:19-131): the user's rows (index USERID)
-    with that ObjectId and ObjectType, sorted by Note ascending (LA:106-110); List.Current (an empty record when none). */
-export async function get_LocalBookmarkByObjectId(objectType: string, objectId: string): Promise<LegacyLocalBookmark> {
-  const rows = await entities.getAllByIndex<LegacyLocalBookmark>(LEGACY_LOCAL_BOOKMARK, 'UserId', getUserId());
-  const [first] = rows
-    .filter((r) => r.ObjectId === objectId && r.ObjectType === objectType)
-    .sort((a, b) => compareText(a.Note, b.Note));
-  return first ?? EMPTY_LEGACY_LOCAL_BOOKMARK;
-}
-
-/** GetLocalBookmarksByObjectType(ObjectType) of Connect2_LegacyShared (LC:4968 ff.; aggregate LA:314-420): the user's
-    rows (index USERID) whose ObjectType equals the input (`===`, LA:356), sorted by Note ascending (LA:401-404);
-    MyBookmarksList. Named with the `legacy` prefix: the C2 module has an action of the same name
-    (getLocalBookmarksByObjectType above). Read by Connect2_Assemble_MUI GetLocalBookmarkedLocalityInformation. */
-export async function legacyGetLocalBookmarksByObjectType(objectType: string): Promise<LegacyLocalBookmark[]> {
-  const rows = await entities.getAllByIndex<LegacyLocalBookmark>(LEGACY_LOCAL_BOOKMARK, 'UserId', getUserId());
-  return rows.filter((r) => r.ObjectType === objectType).sort((a, b) => compareText(a.Note, b.Note));
-}
-
-/** SynchBookmarks(UpdatedBookmarks) (LC:7425 ff.): DeleteAllLocalBookmark, then CreateOrUpdateSomeLocalBookmark. The
-    original runs them as two IndexedDB transactions; the clone runs one (entityService.replaceAll), so the bookmarks
-    read while the app start syncs are the old copy or the new one, never none. In TST the screens' OnReady reads come
-    before the app start's sync (HouseholdDetails analysis/calls.json: GetHousehold 4270 ms, Sync_Info_GetMain 6172 ms);
-    the clone's first screen loads after the app start's GetUserInformation step (userInfo.ts hold), i.e. while it
-    syncs, and showed bookmarked households as not bookmarked (CR-HouseholdDetails-2 §2). */
-export async function synchBookmarks(updatedBookmarks: readonly LegacyLocalBookmark[]): Promise<void> {
-  await entities.replaceAll(LEGACY_LOCAL_BOOKMARK, updatedBookmarks);
 }

@@ -1148,3 +1148,4 @@ date,screen,phase,tokens,agent,tier,note
 2026-11-05,Household_Relations,fix,103344,opus,,bookmark drift proposal
 2026-11-05,Household_Relations,build,124131,opus,,bookmark button build
 2026-11-05,Locality_Details,fix,142587,opus,,legacy bookmark store removal proposal (row 26)
+2026-11-05,Locality_Details,build,140224,opus,,legacy bookmark store removal build (row 26)

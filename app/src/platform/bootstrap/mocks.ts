@@ -15,7 +15,6 @@ import {
   ORBIT_VEHICLE_OWNERS,
   ORBIT_VEHICLE_TYPES,
 } from '@/mocks/fictional/orbit';
-import { allLegacyBookmarks } from '@/mocks/modules/Connect2_MyBookmarks_MUI/mocks';
 import { notesCollection } from '@/containers/NoteListActions/mocks';
 import { collection } from '@/mocks/store';
 import { currentUserId } from '@/platform/session/session';
@@ -135,31 +134,6 @@ const mockLocalNotes = (): LocalNoteWire[] =>
     }));
 type LocalNoteWire = components['schemas']['UBTConnect_Notes_MCS__LocalNote'];
 
-/** The legacy LocalBookmark rows of the mock user (Connect2_LegacyShared, read while C2NewBookmarks is off as on TST):
-    the device copy of the server's legacy bookmarks, i.e. of the shared collection of
-    src/mocks/modules/Connect2_MyBookmarks_MUI/mocks.ts (no mock writes it since the toggle moved to the C2 store, 2026-11-05;
-    CR-MyBookmarks-2), so a delete there shows after the next sync. Id = BookmarkId = the server row's Id (fictional). It holds the households bookmarked in the TST
-    captures:
-    - 42438, the household of the HouseholdDetails / HouseholdCarousel parity routes (`?HouseholdId=42438`,
-      analysis/states.json): "Unmark", `ubt-image-card__bookmarked` (CR-HouseholdDetails-2 §2); it is also the first
-      card of the Locality_Details list (screens/Locality_Details/mocks.ts), the captured only bookmarked one
-      (Locality_Details dom/default.html:302; CR-Locality_Details-1; decision A, 2026-10-16).
-    No other household or location of a finished route's mock is in it (the captured SupperMeeting_Details 1210 and
-    Locality 252 show "Bookmark"). Also seeded into the local copy by the `unlocked` test session (testSession.ts), as
-    the capture tab kept them. */
-export const mockLocalBookmarks = (): LegacyLocalBookmarkWire[] =>
-  allLegacyBookmarks().map((b) => ({
-    Id: b.Id,
-    UserId: Number(currentUserId() ?? 0),
-    BookmarkId: b.Id,
-    ObjectType: b.ObjectType,
-    ObjectId: b.ObjectId,
-    Group: b.Group,
-    DateCreatedUtc: b.DateCreatedUtc,
-    Note: b.Note,
-  }));
-type LegacyLocalBookmarkWire = components['schemas']['Connect2_LegacyShared__LocalBookmark'];
-
 /** The C2 LocalBookmark rows of the mock user (UBTConnect_Bookmarks_MCS, the only store that
     Directory_EntityDetailsActions and, with C2NewBookmarks on as on TST, Locality_Households_HouseholdList read): the
     device copy of the C2 bookmarks collection that AddBookmark2 / DeleteBookmarkByBookmarkId2 write
@@ -180,7 +154,8 @@ export const mockLocalBookmarksC2 = (): LocalBookmarkC2Wire[] =>
     }));
 type LocalBookmarkC2Wire = components['schemas']['UBTConnect_Bookmarks_MCS__LocalBookmark'];
 
-/** Fictional: the mock user's legacy bookmarks are mockLocalBookmarks and the C2 bookmarks mockLocalBookmarksC2 (above); the notes are those of
+/** Fictional: the mock user's C2 bookmarks are mockLocalBookmarksC2 (above); the legacy LocalBookmark list is empty (the
+    live app start does not sync it, migration/runtime-sources/UBTConnect.controller.js:1129-1133); the notes are those of
     the notes mock collection (above); the Orbit static entities are those of orbitStaticEntities (above).
     UpdatesFeed_MonthsToShow: TST value not captured (type default). */
 const syncInfoGetMain = contractHandler('UBTConnect', 'ActionSync_Info_GetMain', () => ({
@@ -188,7 +163,7 @@ const syncInfoGetMain = contractHandler('UBTConnect', 'ActionSync_Info_GetMain',
   FeedBaseURL: 'https://mock-feed.invalid/',
   MyEntertainingBaseURL: 'https://mock-entertaining.invalid/',
   LocalEntities_App: {
-    LocalBookmark: { List: mockLocalBookmarks() },
+    LocalBookmark: { List: [] },
     LocalBookmarksC2: { List: mockLocalBookmarksC2() },
     LocalNotes: { List: mockLocalNotes() },
   },

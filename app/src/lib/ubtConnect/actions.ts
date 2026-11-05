@@ -17,8 +17,6 @@ import { UserException } from '@/legacy/os/os-exceptions';
 import {
   BookmarkCategory,
   Connect_Entity,
-  MyBookmarks_Group,
-  MyBookmarks_ObjectType,
   NoteCategory2,
   Photobook_Speed,
   Type_CarouselItemSwipeAction,
@@ -280,24 +278,6 @@ export function getBookmarkCategoryId_ByEntityTypeId(entityType: string): string
       return BookmarkCategory.SupperMeeting;
     case Connect_Entity.OneSchoolGlobal:
       return BookmarkCategory.OneSchoolGlobal;
-    default:
-      throw new UserException('Bookmarks not available', 'UBTConnect.InvalidAction');
-  }
-}
-
-/** GetBookmarkType_FromEntity(EntityType) (UC:7410-7540): the legacy bookmark type and group; Member and any other type
-    raise InvalidAction "Bookmarks not available". */
-export function getBookmarkType_FromEntity(entityType: string): { BookmarkType: string; BookmarkGroup: string } {
-  switch (entityType) {
-    case Connect_Entity.Locality:
-    case Connect_Entity.Interchange:
-      return { BookmarkType: MyBookmarks_ObjectType.Locality, BookmarkGroup: MyBookmarks_Group.Locations };
-    case Connect_Entity.Household:
-      return { BookmarkType: MyBookmarks_ObjectType.Contact, BookmarkGroup: MyBookmarks_Group.Contacts };
-    case Connect_Entity.SupperMeetings_aka_Subdivisions:
-      return { BookmarkType: MyBookmarks_ObjectType.Subdivision, BookmarkGroup: MyBookmarks_Group.Locations };
-    case Connect_Entity.OneSchoolGlobal:
-      return { BookmarkType: MyBookmarks_ObjectType.OneSchoolGlobal, BookmarkGroup: MyBookmarks_Group.Entities };
     default:
       throw new UserException('Bookmarks not available', 'UBTConnect.InvalidAction');
   }

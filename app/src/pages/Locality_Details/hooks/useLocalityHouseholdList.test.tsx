@@ -8,13 +8,10 @@ import {
   localBookmarksSchemas,
   memoryDatabase,
   setLocalBookmarksDatabase,
-  synchBookmarks,
   synchBookmarksC2,
 } from '@/platform/storage/localEntities';
 import { setSignedInUser } from '@/platform/session/session';
 import { freshPage } from '@/test/testSupport';
-import { MyBookmarks_ObjectType_Contact } from '@/pages/Locality_Details/components/staticEntities';
-import { getLocal_Bookmark } from '@/pages/Locality_Details/components/actions';
 import { getLocal_Bookmark_C2 } from '@/lib/ubtConnect/actions';
 import { ControllerDisposedException } from '@/legacy/os/os-exceptions';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
@@ -25,11 +22,7 @@ vi.mock('@/api/household', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/api/household')>()),
   fetchLocalityHouseholds: vi.fn(),
 }));
-/** The local bookmark reads and the reducer as spies (the real functions run), so a test sees every read and write. */
-vi.mock('@/pages/Locality_Details/components/actions', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('@/pages/Locality_Details/components/actions')>();
-  return { ...actual, getLocal_Bookmark: vi.fn(actual.getLocal_Bookmark) };
-});
+/** The local bookmark read and the reducer as spies (the real functions run), so a test sees every read and write. */
 vi.mock('@/lib/ubtConnect/actions', async (importOriginal) => {
   const actual = await importOriginal<typeof import('@/lib/ubtConnect/actions')>();
   return { ...actual, getLocal_Bookmark_C2: vi.fn(actual.getLocal_Bookmark_C2) };
@@ -44,8 +37,8 @@ vi.mock('@/platform/feedback/flowErrors', async (importOriginal) => ({
 }));
 
 /* OnAfterFetch_GetLocalityHouseholds_Bookmarks (Locality_Households_HouseholdList.mvc.js:454-515): IsBookmarked of each
-   row from the C2 local bookmarks (GetLocal_Bookmark_C2) when GetHasNewBookmarks, else from the legacy ones
-   (GetLocal_Bookmark). Fictional households; the fetched IsBookmarked is true for both, so the test sees the local
+   row from the C2 local bookmarks (GetLocal_Bookmark_C2) when GetHasNewBookmarks, else false: TST reads the legacy
+   table (GetLocal_Bookmark, :508), which nothing on live writes. Fictional households; the fetched IsBookmarked is true for both, so the test sees the local
    value. */
 const USER = '990001';
 const household = (householdId: string, householdName: string): LocalityHousehold => ({
@@ -67,7 +60,7 @@ describe('useLocalityHouseholdList OnAfterFetch_GetLocalityHouseholds_Bookmarks'
     setLocalBookmarksDatabase(memoryDatabase(localBookmarksSchemas()));
     setSignedInUser(USER);
     vi.mocked(fetchLocalityHouseholds).mockResolvedValue(HOUSEHOLDS);
-    // 7101 is a C2 bookmark only, 7102 a legacy bookmark only.
+    // 7101 is a C2 bookmark.
     await synchBookmarksC2([
       {
         Id: '1',
@@ -76,18 +69,6 @@ describe('useLocalityHouseholdList OnAfterFetch_GetLocalityHouseholds_Bookmarks'
         BookmarkCategoryId: BookmarkCategory.Household,
         ItemId: '7101',
         CreatedAtDateUtc: '2026-10-01T08:00:00',
-      },
-    ]);
-    await synchBookmarks([
-      {
-        Id: '2',
-        UserId: Number(USER),
-        BookmarkId: '502',
-        ObjectType: MyBookmarks_ObjectType_Contact,
-        ObjectId: '7102',
-        Group: '',
-        DateCreatedUtc: '2026-10-01T08:00:00',
-        Note: '',
       },
     ]);
   });
@@ -107,14 +88,16 @@ describe('useLocalityHouseholdList OnAfterFetch_GetLocalityHouseholds_Bookmarks'
     });
   });
 
-  it('GetHasNewBookmarks off: IsBookmarked from the legacy GetLocal_Bookmark(Contact)', async () => {
+  it('GetHasNewBookmarks off: IsBookmarked false for every row, without a local bookmark read', async () => {
+    vi.mocked(getLocal_Bookmark_C2).mockClear();
     const { result } = renderList(false);
     await waitFor(() => {
       expect(result.current.list.map((h) => [h.householdId, h.isBookmarked])).toEqual([
         ['7101', false],
-        ['7102', true],
+        ['7102', false],
       ]);
     });
+    expect(getLocal_Bookmark_C2).not.toHaveBeenCalled();
   });
 });
 
@@ -162,7 +145,6 @@ describe('useLocalityHouseholdList after an unmount (flow scope, item 8)', () =>
     call.resolve(HOUSEHOLDS);
     await settle();
     expect(getLocal_Bookmark_C2).not.toHaveBeenCalled();
-    expect(getLocal_Bookmark).not.toHaveBeenCalled();
     expect(localityHouseholdListReducer).not.toHaveBeenCalled();
     expect(raisedErrors()).toEqual([]);
   });

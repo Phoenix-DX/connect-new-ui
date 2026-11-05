@@ -14,8 +14,9 @@ The shell depends on no screen. Screens call the APIs below.
 - Signed in: SynchAppContext, AfterInitialize, Sync_Info_GetMain, GetUserInformation (user-info cache miss),
   GetNumberUnreadMessages, then CacheableMapEntities + CacheableHouseholds together (not awaited).
 - Between GetUserInformation and GetNumberUnreadMessages, Connect_SetLoggedContext runs three syncs:
-  - SynchBookmarks and SynchBookmarksC2 (UC:1135-1141, local bookmark copies = `LocalEntities_App.LocalBookmark` /
-    `.LocalBookmarksC2`). The mock user has no local bookmarks.
+  - SynchBookmarksC2 (live UC:1129-1133, the local C2 bookmark copy = `LocalEntities_App.LocalBookmarksC2`). The live
+    app has no legacy SynchBookmarks: `LocalEntities_App.LocalBookmark` stays in the contract but is not synced (the
+    mock sends an empty list). The mock user has no local bookmarks.
   - SyncNotes (UC:1145): the local notes copy becomes the `LocalEntities_App.LocalNotes` of Sync_Info_GetMain.
     A sign-in fetches its own Sync_Info_GetMain first (UC:1121).
 - The app start is a list of 8 named steps, `APP_START_STEPS`: `synchAppContext`, `fetchFlags`, `initializeWebComponents`,
@@ -126,7 +127,7 @@ Client entities store DateTimes as DateTimeRevamp = false does: UTC `yyyy-MM-dd 
 | Adapter                                    | Entities (table)                                                                                                                          | Module actions                                                                                                                                                                                       |
 | ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `localNotes.ts`                            | UBTConnect_Notes_MCS.LocalNote                                                                                                            | CreateOrUpdate_LocalNote, Delete_LocalNoteBy*, Get_LocalNoteByNoteId, year/category lookups, SyncNotes                                                                                               |
-| `localBookmarks.ts`                        | UBTConnect_Bookmarks_MCS.LocalBookmark (`OSUSR_HCR_LOCALBOOKMARK`), Connect2_LegacyShared.LocalBookmark (`OSUSR_B3N_LOCALBOOKMARK`)       | GetLocalBookmarkByObjectId, GetLocalBookmarkByBookmarkId, Create_LocalBookmark, Delete_LocalBookmarkBy(Bookmark)Id, SynchBookmarksC2; legacy Get_LocalBookmarkByObjectId, SynchBookmarks (CR-W4A-1)  |
+| `localBookmarks.ts`                        | UBTConnect_Bookmarks_MCS.LocalBookmark (`OSUSR_HCR_LOCALBOOKMARK`)                                                                        | GetLocalBookmarkByObjectId, GetLocalBookmarkByBookmarkId, GetLocalBookmarksByObjectType, Create_LocalBookmark, Delete_LocalBookmarkBy(Bookmark)Id, SynchBookmarksC2 (CR-W4A-1)                       |
 | `recentSearch.ts`, `localSearchHistory.ts` | ConnectSearch recent terms / clicked results, local search history                                                                        | see the files                                                                                                                                                                                        |
 | `orbitStaticEntities.ts`                   | Connect2_OrbitMobile_MUI.LocalSurveyStatus (`OSUSR_HQ9_LOCALSURVEYSTATUS`), LocalOrbitMilestoneType (`OSUSR_HQ9_LOCALORBITMILESTONETYPE`) | SyncAllOrbitStaticEntities, SyncOrbitSurveyStatus, SyncOrbitMilestoneTypes, GetLocalOrbitMilestoneTypeById (Entity.get), aggregates by JSON_Name / Id; in-memory mirror for first-render reads (F12) |
 
@@ -150,7 +151,7 @@ Local entities in practice:
   delete, `replaceAll`). `database.ts` holds the IndexedDB layer: one database (`DATABASE_NAME`), one object store per
   table, one index per column.
 - Each adapter has a `set<...>Database` function, so tests inject an in-memory database.
-- **Bookmark sync (ADR-8).** `SynchBookmarks` and `SynchBookmarksC2` run at app start.
+- **Bookmark sync (ADR-8).** `SynchBookmarksC2` runs at app start (the live app has no legacy `SynchBookmarks`).
   - The original deletes all rows and then re-creates them in two transactions. A read in between sees no bookmark
     (known bug B5, see [known original bugs](../known-original-bugs.md)).
   - The React app does it in one transaction (`entityService.replaceAll`, used in `localBookmarks.ts`), so a read sees

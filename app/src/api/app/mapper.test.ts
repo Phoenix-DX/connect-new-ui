@@ -105,7 +105,7 @@ describe('app mapper', () => {
     expect(toAppContext(synchAppContextWire(false)).isSuccess).toBe(false);
   });
 
-  it('toSyncInfoMain keeps the tenant, the months, the Orbit static entities and the three lists, each record as it is', () => {
+  it('toSyncInfoMain keeps the tenant, the months, the Orbit static entities and the C2 bookmark and note lists, not the legacy bookmarks', () => {
     const legacyBookmark = {
       Id: '7101',
       UserId: 3315,
@@ -152,7 +152,7 @@ describe('app mapper', () => {
       b2cTenant: 'mock-tenant',
       updatesFeedMonthsToShow: 6,
       orbitStaticEntities: orbit,
-      localEntities: { bookmarks: [legacyBookmark], bookmarks_C2: [bookmark], notes: [note] },
+      localEntities: { bookmarks_C2: [bookmark], notes: [note] }, // LocalBookmark (legacy): on the wire, not mapped
     });
     expect(main.orbitStaticEntities).toBe(orbit);
     expect(JSON.stringify(main)).not.toContain('invalid');
@@ -217,6 +217,6 @@ describe('app mapper', () => {
         OrbitStaticEntities: orbitStaticEntities(),
         Sync_SiteProperties: { UpdatesFeed_MonthsToShow: 0 },
       }).localEntities,
-    ).toEqual({ bookmarks: [], bookmarks_C2: [], notes: [] });
+    ).toEqual({ bookmarks_C2: [], notes: [] });
   });
 });

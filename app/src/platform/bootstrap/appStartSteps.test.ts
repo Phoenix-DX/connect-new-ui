@@ -435,7 +435,7 @@ describe('the named steps of the app start (plan v2 §3.2)', () => {
     const context = await run('syncInfoMain');
     expect(calledActions()).toEqual(['ActionSync_Info_GetMain']);
     expect(main).toEqual([{ isFromLogin: false }]);
-    expect(context.localEntities.bookmarks.length).toBeGreaterThan(0);
+    expect(Object.keys(context.localEntities)).toEqual(['bookmarks_C2', 'notes']); // no legacy Bookmarks
     expect(context.localEntities.bookmarks_C2).toEqual([]);
   });
 

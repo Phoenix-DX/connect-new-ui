@@ -1,8 +1,6 @@
 import { fetchLocalityHouseholds, type LocalityHousehold } from '@/api/household';
 import { BookmarkCategory } from '@/lib/ubtConnect/staticEntities';
-import { getLocal_Bookmark } from '@/pages/Locality_Details/components/actions';
 import { getLocal_Bookmark_C2 } from '@/lib/ubtConnect/actions';
-import { MyBookmarks_ObjectType_Contact } from '@/pages/Locality_Details/components/staticEntities';
 import { setPreloadObject, useFlowState, useOsNavigate } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
 import { INITIAL_LOCALITY_HOUSEHOLD_LIST, localityHouseholdListReducer, withBookmark } from './localityBlocksState';
@@ -12,7 +10,7 @@ export interface LocalityHouseholdListFlags {
   /** C2EnableCarousel (GetHasCarouselEnabled): a card opens HouseholdCarousel. */
   hasCarouselEnabled: boolean;
   /** C2NewBookmarks (GetHasNewBookmarks; default-only, on as TST, H-Q2 a 2026-10-29): on, IsBookmarked of each row comes from
-      GetLocal_Bookmark_C2 (the C2 local bookmarks); off, from the legacy GetLocal_Bookmark. */
+      GetLocal_Bookmark_C2 (the C2 local bookmarks); off, false (see onReady). */
   hasNewBookmarks: boolean;
 }
 
@@ -36,8 +34,8 @@ export interface LocalityHouseholdListFlows {
     - OnReady: a view that the view cache restored with the list keeps it (ReactiveInstance_ForceUpdate);
       ForceListUpdateOnScrollEnd is a virtualization helper with nothing to port. Else the refresh of
       GetLocalityHouseholds, then OnAfterFetch_GetLocalityHouseholds_Bookmarks: IsBookmarked of each row from
-      GetLocal_Bookmark_C2(BookmarkCategory.Household, HouseholdId) when GetHasNewBookmarks, else from
-      GetLocal_Bookmark(Contact, HouseholdId) (Locality_Households_HouseholdList.mvc.js:454-515).
+      GetLocal_Bookmark_C2(BookmarkCategory.Household, HouseholdId) when GetHasNewBookmarks, else false (TST reads the
+      legacy table that nothing on live writes; see onReady) (Locality_Households_HouseholdList.mvc.js:454-515).
     - Household_CardEvent_OnClickHousehold: GetHasCarouselEnabled → every row's HouseholdId as the preload object
       (CarouselPreloadedHouseholds) and HouseholdCarousel at the clicked row; else Event_NavigateToHouseholdDetails.
     Flow scope (item 8): GetLocalityHouseholds is a data action (R1, Locality_Households_HouseholdList.js:346) and its
@@ -71,9 +69,14 @@ export function useLocalityHouseholdList(
     // OnAfterFetch_GetLocalityHouseholds_Bookmarks.
     const marked: LocalityHousehold[] = [];
     for (const household of list) {
+      /* Off: TST calls GetLocal_Bookmark(Contact, HouseholdId) (Locality_Households_HouseholdList.mvc.js:508, copy in
+         migration/screens/Locality_Details/analysis/sources/pretty/), which reads the legacy Connect2_LegacyShared
+         LocalBookmark table (live migration/runtime-sources/UBTConnect.controller.js:9237-9256). Nothing on live writes
+         that table (the app start runs SynchBookmarksC2 only, UBTConnect.controller.js:1129-1133), so the read is
+         always false: the clone gives false without a read (user decision (b), 2026-11-05). */
       const isBookmarked = flags.hasNewBookmarks
         ? await getLocal_Bookmark_C2(BookmarkCategory.Household, household.householdId)
-        : await getLocal_Bookmark(MyBookmarks_ObjectType_Contact, household.householdId);
+        : false;
       marked.push(withBookmark(household, isBookmarked));
     }
     dispatch({ type: 'householdsFetched', list: marked });

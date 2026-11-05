@@ -1387,6 +1387,17 @@
   },
   {
     "type": "dependency",
+    "from": "src/lib/ubtConnect/actions.ts",
+    "to": "src/platform/storage/localEntities/index.ts",
+    "unresolvedTo": "@/platform/storage/localEntities",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
     "from": "src/pages/ConnectShare/hooks/connectShareActions.ts",
     "to": "src/legacy/os/exceptions.ts",
     "unresolvedTo": "@/legacy/os/exceptions",

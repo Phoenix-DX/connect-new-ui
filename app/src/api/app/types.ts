@@ -58,18 +58,16 @@ export type AfterInitializeCallInputs = ActionInputs<PathOf<'UBT_AppManager', 'A
 /** The inputs of AppManager_Logout: EspaceName and the device context (UBT_AppManager.controller.js:8500-8512). */
 export type LogoutCallInputs = ActionInputs<PathOf<'UBT_AppManager', 'ActionAppManager_Logout'>>;
 
-/** A legacy bookmark of the user (Connect2_LegacyShared LocalBookmark), as the local copy keeps it. */
-export type SyncLegacyLocalBookmark = SyncLocalEntitiesWire['LocalBookmark']['List'][number];
 /** A bookmark of the user (UBTConnect_Bookmarks_MCS LocalBookmark), as the local copy keeps it. */
 export type SyncLocalBookmark = SyncLocalEntitiesWire['LocalBookmarksC2']['List'][number];
 /** A note of the user (UBTConnect_Notes_MCS LocalNote), as the local copy keeps it. */
 export type SyncLocalNote = SyncLocalEntitiesWire['LocalNotes']['List'][number];
 
 /** LocalEntities_App of Sync_Info_GetMain (UBTConnect Sync_LocalEntities), with the lists unwrapped: the local copies
-    that Connect_SetLoggedContext replaces. The records stay as they are: the local copies store them. */
+    that Connect_SetLoggedContext replaces. The records stay as they are: the local copies store them. The legacy
+    LocalBookmark list stays on the wire but is not mapped: the live app start does not sync it (live
+    migration/runtime-sources/UBTConnect.controller.js:1129-1133). */
 export interface SyncLocalEntityLists {
-  /** LocalBookmark. */
-  bookmarks: SyncLegacyLocalBookmark[];
   /** LocalBookmarksC2. */
   bookmarks_C2: SyncLocalBookmark[];
   /** LocalNotes. */

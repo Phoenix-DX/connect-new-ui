@@ -1,12 +1,5 @@
 import { log } from '@/platform/log/log';
-import {
-  synchBookmarks,
-  synchBookmarksC2,
-  syncNotes,
-  type LegacyLocalBookmark,
-  type LocalBookmark,
-  type LocalNote,
-} from '@/platform/storage/localEntities';
+import { synchBookmarksC2, syncNotes, type LocalBookmark, type LocalNote } from '@/platform/storage/localEntities';
 import { isSignedIn, setClientVar } from '@/platform/session/session';
 import { getUserInformation_Wrapper, releaseUserInfoForAppStart } from '@/platform/session/userInfo';
 import { syncInfoMain, synchronizeNumberUnreadMessages } from './startup';
@@ -18,14 +11,14 @@ import { syncInfoMain, synchronizeNumberUnreadMessages } from './startup';
 /** OutSystems CurrDateTime on the wire: ISO date and time without milliseconds. */
 const nowWire = () => new Date().toISOString().slice(0, 19);
 
-/** Connect_SetLoggedContext(Bookmarks, IsFromLogin, Bookmarks_C2, Notes) (UC:1092-1160), signed in only. The lists:
-    the app start passes Sync_Info_Main's outputs (UC:15367), the login empty lists (Login.mvc.js:845); from the login,
-    Sync_Info_Main replaces them (UC:1121-1128). SynchBookmarks, SynchBookmarksC2 and SyncNotes each replace a whole
-    local copy (UC:1135-1150; shell/localEntities). */
+/** Connect_SetLoggedContext(IsFromLogin, Bookmarks_C2, Notes) (UC:1092-1160), signed in only. The lists: the app
+    start passes Sync_Info_Main's outputs (UC:15367), the login empty lists (Login.mvc.js:845); from the login,
+    Sync_Info_Main replaces them (UC:1121-1128). SynchBookmarksC2 and SyncNotes each replace a whole local copy
+    (platform/storage/localEntities). The live module runs SynchBookmarksC2 only (live
+    migration/runtime-sources/UBTConnect.controller.js:1129-1133): there is no legacy SynchBookmarks. */
 export async function connectSetLoggedContext(
   isFromLogin: boolean,
   notes: readonly LocalNote[] = [],
-  bookmarks: readonly LegacyLocalBookmark[] = [],
   bookmarks_C2: readonly LocalBookmark[] = [],
 ): Promise<void> {
   if (!isSignedIn()) return;
@@ -36,8 +29,7 @@ export async function connectSetLoggedContext(
   } finally {
     releaseUserInfoForAppStart();
   }
-  if (isFromLogin) ({ notes, bookmarks, bookmarks_C2 } = await syncInfoMain(true));
-  await synchBookmarks(bookmarks);
+  if (isFromLogin) ({ notes, bookmarks_C2 } = await syncInfoMain(true));
   await synchBookmarksC2(bookmarks_C2);
   setClientVar('UBTConnect.Bookmarks_IsSynched', true);
   await syncNotes(notes);

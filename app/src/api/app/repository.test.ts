@@ -67,10 +67,7 @@ describe('app repository', () => {
     expect(bodies).toEqual([{ isFromLogin: true }]);
     expect(main.b2cTenant).toBe('mock-tenant');
     expect(main.updatesFeedMonthsToShow).toBe(0);
-    expect(main.localEntities.bookmarks.length).toBeGreaterThan(0);
-    expect(main.localEntities.bookmarks[0]).toEqual(
-      expect.objectContaining({ BookmarkId: expect.any(String) as unknown, ObjectType: expect.any(String) as unknown }),
-    );
+    expect(Object.keys(main.localEntities)).toEqual(['bookmarks_C2', 'notes']); // LocalBookmark (legacy) not mapped
     expect(main.localEntities.bookmarks_C2).toEqual([]);
     expect(main.localEntities.notes.length).toBeGreaterThan(0);
     expect(main.orbitStaticEntities.SurveyStatus.List.map((s) => s.JSON_Name)).toContain('confirmed');

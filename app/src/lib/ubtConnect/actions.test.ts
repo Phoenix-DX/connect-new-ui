@@ -10,7 +10,6 @@ import { freshPage } from '@/test/testSupport';
 import {
   directory_Updates_GetCarouselPreloadedHouseholds,
   getBookmarkCategoryId_ByEntityTypeId,
-  getBookmarkType_FromEntity,
   getNameAndSurname_ByFullName,
   getShareType_FromEntity,
   set_InitialClientVariables,
@@ -71,13 +70,10 @@ describe('directory_Updates_GetCarouselPreloadedHouseholds (UC:1828-1925)', () =
 });
 
 describe('bookmark categories (CR-W4A-1)', () => {
-  it('GetBookmarkCategoryId_ByEntityTypeId and GetBookmarkType_FromEntity map the entity types', () => {
+  it('GetBookmarkCategoryId_ByEntityTypeId maps the entity types', () => {
     expect(getBookmarkCategoryId_ByEntityTypeId('Supper Meetings')).toBe('Supper Meeting');
     expect(getBookmarkCategoryId_ByEntityTypeId('OneSchool Global')).toBe('OneSchool Global');
     expect(() => getBookmarkCategoryId_ByEntityTypeId('Member')).toThrow('Bookmarks not available');
-    expect(getBookmarkType_FromEntity('Household')).toEqual({ BookmarkType: 'Contact', BookmarkGroup: 'Contacts' });
-    expect(getBookmarkType_FromEntity('Interchange')).toEqual({ BookmarkType: 'Locality', BookmarkGroup: 'Locations' });
-    expect(() => getBookmarkType_FromEntity('Feed Item')).toThrow('Bookmarks not available');
   });
 });
 

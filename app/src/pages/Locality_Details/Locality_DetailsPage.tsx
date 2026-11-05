@@ -54,7 +54,7 @@ function Locality_DetailsScreen() {
   const [params] = useSearchParams();
   const mapsEnabled = useFlagOn('C2EnableMaps'); // GetHasMapsEnabled
   const hasCarouselEnabled = useFlagOn('C2EnableCarousel'); // GetHasCarouselEnabled
-  const hasNewBookmarks = useFlagOn('C2NewBookmarks'); // GetHasNewBookmarks: the GetLocal_Bookmark_C2 branch (decided off)
+  const hasNewBookmarks = useFlagOn('C2NewBookmarks'); // GetHasNewBookmarks: on (registry default), the GetLocal_Bookmark_C2 branch
   const householdDetailsFlags = useHouseholdDetailsFlags();
   // The LD check of the Locality Contacts section: it decides which branch (and block id) shows ComingSoon_V2.
   const hasLocalityContactsCheck = useFlagOn('mobileDirectoryLocalityContacts');
