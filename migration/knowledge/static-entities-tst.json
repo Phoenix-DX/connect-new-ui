@@ -37,6 +37,19 @@
   "landscape": "2",
   "portrait": "1"
  },
+ "CameraPlugin.cameraDirection": {
+  "backCamera": "1",
+  "frontCamera": "2"
+ },
+ "CameraPlugin.encodingType": {
+  "jPEG": "1",
+  "pNG": "2"
+ },
+ "CameraPlugin.mediaType": {
+  "both": "2",
+  "photo": "0",
+  "video": "1"
+ },
  "CommonPlugin.mobile_OperatingSystem": {
   "android": "Android",
   "iOS": "iOS",
@@ -82,6 +95,21 @@
   "subdivision": "a31f9239-5ca2-4af4-89a8-2589035b0e07",
   "subscriptionRequired": "c4ff6519-a3b7-4d54-9f88-f0c4b76c51a2",
   "updates": "2e5aceec-3b3c-4dde-b919-3004029c6b48"
+ },
+ "Connect2_Assemble_MUI.bookmarkCategory": {
+  "assembleEvent": "Assemble Event",
+  "feedItem": "Feed Item",
+  "household": "Household",
+  "interchange": "Interchange",
+  "lDMEvent": "LDM Event",
+  "locality": "Locality",
+  "localityContact": "Locality Contact",
+  "member": "Member",
+  "oneSchoolGlobal2": "OneSchool Global",
+  "orbitEvent": "Orbit Event",
+  "personalEvent": "Personal Event",
+  "supperMeeting": "Supper Meeting",
+  "update": "Update"
  },
  "Connect2_Assemble_MUI.color": {
   "blue": "blue",
@@ -720,6 +748,13 @@
   "label": "label",
   "small": "s"
  },
+ "Connect2_LegacyShared.uBT_FontWeight": {
+  "bold": "bold",
+  "light": "light",
+  "medium": "medium",
+  "regular": "regular",
+  "semiBold": "semi-bold"
+ },
  "Connect2_LegacyShared.uBT_Icons2": {
   "accountCircle": "connect-icon-account_circle",
   "accountCircleFill": "connect-icon-account_circle_fill",
@@ -999,381 +1034,6 @@
   "iOS": "iOS",
   "other": "Other",
   "windows": "Windows"
- },
- "Connect2_MyBookmarks_MUI.accordionIconPosition": {
-  "left": "left",
-  "right": "right"
- },
- "Connect2_MyBookmarks_MUI.accordionIconType": {
-  "caret": "Caret",
-  "custom": "Custom",
-  "plusMinus": "PlusMinus"
- },
- "Connect2_MyBookmarks_MUI.alert": {
-  "error": "alert-error",
-  "info": "alert-info",
-  "success": "alert-success",
-  "warning": "alert-warning"
- },
- "Connect2_MyBookmarks_MUI.animationType": {
-  "bottomToTop": "bottom-to-top",
-  "bounce": "bounce",
-  "fadeIn": "fade-in",
-  "leftToRight": "left-to-right",
-  "rightToLeft": "right-to-left",
-  "scale": "scale",
-  "scaleDown": "scale-down",
-  "spinner": "spinner",
-  "topToBottom": "top-to-bottom"
- },
- "Connect2_MyBookmarks_MUI.autoplay": {
-  "disabled": "disabled",
-  "fast": "fast",
-  "normal": "normal",
-  "slow": "slow"
- },
- "Connect2_MyBookmarks_MUI.booleanTypes": {
-  "false": "false",
-  "true": "true",
-  "unset": "unset"
- },
- "Connect2_MyBookmarks_MUI.breakColumns": {
-  "all": "break-all",
-  "first": "break-first",
-  "last": "break-last",
-  "middle": "break-middle",
-  "none": "break-none"
- },
- "Connect2_MyBookmarks_MUI.carouselDirection": {
-  "leftToRight": "LeftToRight",
-  "rightToLeft": "RightToLeft"
- },
- "Connect2_MyBookmarks_MUI.carouselNavigation": {
-  "arrows": "arrows",
-  "both": "both",
-  "dots": "dots",
-  "none": "none"
- },
- "Connect2_MyBookmarks_MUI.color": {
-  "blue": "blue",
-  "cyan": "cyan",
-  "grape": "grape",
-  "green": "green",
-  "indigo": "indigo",
-  "lime": "lime",
-  "neutral0": "neutral-0",
-  "neutral1": "neutral-1",
-  "neutral10": "neutral-10",
-  "neutral2": "neutral-2",
-  "neutral3": "neutral-3",
-  "neutral4": "neutral-4",
-  "neutral5": "neutral-5",
-  "neutral6": "neutral-6",
-  "neutral7": "neutral-7",
-  "neutral8": "neutral-8",
-  "neutral9": "neutral-9",
-  "orange": "orange",
-  "pink": "pink",
-  "primary": "primary",
-  "red": "red",
-  "secondary": "secondary",
-  "teal": "teal",
-  "transparent": "transparent",
-  "violet": "violet",
-  "yellow": "yellow"
- },
- "Connect2_MyBookmarks_MUI.columnBreak": {
-  "breakAll": "break-all",
-  "breakFirst": "break-first",
-  "breakLast": "break-last",
-  "breakMiddle": "break-middle",
-  "breakNone": "break-none"
- },
- "Connect2_MyBookmarks_MUI.communityBusinessType2": {
-  "campusCo": "Campus&Co",
-  "commercial": "commercial",
-  "oneSchoolGlobal": "OneSchool Global"
- },
- "Connect2_MyBookmarks_MUI.connect_Entity": {
-  "country": "Country",
-  "feedItem": "Feed Item",
-  "household": "Household",
-  "interchange": "Interchange",
-  "locality": "Locality",
-  "member": "Member",
-  "oneSchoolGlobal": "OneSchool Global",
-  "supperMeetings_aka_Subdivisions": "Supper Meetings"
- },
- "Connect2_MyBookmarks_MUI.dEPRECATED_Color": {
-  "black": "black",
-  "blue": "blue",
-  "green": "green",
-  "grey": "grey",
-  "none": "default",
-  "orange": "orange",
-  "primaryColor": "primary-color",
-  "red": "red",
-  "violet": "violet",
-  "white": "white"
- },
- "Connect2_MyBookmarks_MUI.datePickerLanguage": {
-  "albanian": "sq",
-  "arabic": "ar",
-  "armenian": "hy",
-  "azerbaijani": "az",
-  "belarusian": "be",
-  "bengali": "bn",
-  "bosnian": "bs",
-  "bulgarian": "bg",
-  "burmese": "my",
-  "catalanValencian": "ca",
-  "centralKhmer": "km",
-  "chinese": "zh",
-  "chineseTraditional": "zh_tw",
-  "croatian": "hr",
-  "czech": "cs",
-  "danish": "da",
-  "dutchFlemish": "nl",
-  "english": "en",
-  "esperanto": "eo",
-  "estonian": "et",
-  "faroese": "fo",
-  "finnish": "fi",
-  "french": "fr",
-  "georgian": "ka",
-  "german": "de",
-  "hebrew": "he",
-  "hindi": "hi",
-  "hungarian": "hu",
-  "indonesian": "id",
-  "italian": "it",
-  "japanese": "ja",
-  "korean": "ko",
-  "latvian": "lv",
-  "lithuanian": "lt",
-  "macedonian": "mk",
-  "malay": "ms",
-  "mongolian": "mn",
-  "norwegian": "no",
-  "norwegianBokmal": "nb",
-  "norwegianNynorsk": "nn",
-  "persian": "fa",
-  "polish": "pl",
-  "portuguese": "pt",
-  "punjabiPanjabi": "pa",
-  "romanianMoldavianMoldovan": "ro",
-  "russian": "ru",
-  "serbian": "sr",
-  "sinhalaSinhalese": "si",
-  "slovak": "sk",
-  "slovenian": "sl",
-  "spanishCastilian": "es",
-  "swedish": "sv",
-  "thai": "th",
-  "turkish": "tr",
-  "ukrainian": "uk",
-  "uzbek": "uz",
-  "vietnamese": "vi",
-  "welsh": "cy"
- },
- "Connect2_MyBookmarks_MUI.datePickerTimeFormat": {
-  "disabled": "disabled",
-  "time12hFormat": "12",
-  "time24hFormat": "24"
- },
- "Connect2_MyBookmarks_MUI.datePickerWeekDay": {
-  "friday": "5",
-  "monday": "1",
-  "saturday": "6",
-  "sunday": "0",
-  "thursday": "4",
-  "tuesday": "2",
-  "wednesday": "3"
- },
- "Connect2_MyBookmarks_MUI.deviceResponsive": {
-  "allDevices": "AllDevices",
-  "desktopAndTablet": "DesktopAndTablet",
-  "desktopOnly": "DesktopOnly",
-  "phoneOnly": "PhoneOnly",
-  "tabletAndPhone": "TabletAndPhone",
-  "tabletOnly": "TabletOnly"
- },
- "Connect2_MyBookmarks_MUI.direction": {
-  "left": "left",
-  "right": "right"
- },
- "Connect2_MyBookmarks_MUI.floatingPosition": {
-  "auto": "auto",
-  "bottom": "bottom",
-  "bottomEnd": "bottom-end",
-  "bottomStart": "bottom-start",
-  "center": "center",
-  "left": "left",
-  "leftEnd": "left-end",
-  "leftStart": "left-start",
-  "right": "right",
-  "rightEnd": "right-end",
-  "rightStart": "right-start",
-  "top": "top",
-  "topEnd": "top-end",
-  "topStart": "top-start"
- },
- "Connect2_MyBookmarks_MUI.gradient": {
-  "linearDiagonally": "LinearDiagonally",
-  "linearHorizontal": "LinearHorizontal",
-  "linearVertical": "LinearVertical",
-  "radial": "Radial"
- },
- "Connect2_MyBookmarks_MUI.gutterSize": {
-  "base": "gutter-base",
-  "extraLarge": "gutter-xl",
-  "extraSmall": "gutter-xs",
-  "large": "gutter-l",
-  "medium": "gutter-m",
-  "none": "gutter-none",
-  "small": "gutter-s",
-  "xXLarge": "gutter-xxl"
- },
- "Connect2_MyBookmarks_MUI.launchDarkly_FF": {
-  "mobileAssemble": "mobile-assemble",
-  "mobileDirectoryBookmarkNote": "mobile-directory-bookmark-notes",
-  "mobileDirectoryListVirtualization": "Mobile-Directory-list-virtualization",
-  "mobileDirectoryUpdateFeedDeceasedProfile": "Mobile-Directory-UpdateFeed-DeceasedProfile",
-  "mobileHasDeceasedPhotos": "mobile-has-deceased-photos",
-  "mobileHasHiddenMembersAccess": "connect-mobile-ancestry-away-members",
-  "mobileHouseholdAncestry4thGen": "connect-mobile-household-ancestry-4th-gen",
-  "mobileMemberAge": "mobile-member-age",
-  "mobileOrbitAccess": "mobile-orbit-access",
-  "mobileOrbitEventBooklet": "mobile-orbit-eventbooklet",
-  "mobileOrbitHostSurvey": "mobile-orbit-hostsurvey",
-  "mobilePhotobook": "mobile-photobook",
-  "mobileStudentInformation": "mobile-directory-student-information"
- },
- "Connect2_MyBookmarks_MUI.menuAction": {
-  "auto": "Auto",
-  "back": "Back",
-  "hidden": "Hidden",
-  "menu": "Menu"
- },
- "Connect2_MyBookmarks_MUI.messageStatus": {
-  "hidden": "Hidden",
-  "read": "Read",
-  "received": "Received",
-  "sent": "Sent"
- },
- "Connect2_MyBookmarks_MUI.month": {
-  "april": "April",
-  "august": "August",
-  "december": "December",
-  "february": "February",
-  "january": "January",
-  "july": "July",
-  "june": "June",
-  "march": "March",
-  "may": "May",
-  "november": "November",
-  "october": "October",
-  "september": "September"
- },
- "Connect2_MyBookmarks_MUI.myBookmarks_Group": {
-  "contacts": "Contacts",
-  "entities": "Entities",
-  "locations": "Locations"
- },
- "Connect2_MyBookmarks_MUI.myBookmarks_ObjectType": {
-  "campusCo": "Campus&Co",
-  "communityBusiness": "Community Business",
-  "contact": "Contact",
-  "locality": "Locality",
-  "news": "News",
-  "oneSchoolGlobal": "OneSchool Global",
-  "subdivision": "Subdivision"
- },
- "Connect2_MyBookmarks_MUI.orientation": {
-  "horizontal": "horizontal",
-  "vertical": "vertical"
- },
- "Connect2_MyBookmarks_MUI.position": {
-  "bottom": "bottom",
-  "bottomLeft": "bottom-left",
-  "bottomRight": "bottom-right",
-  "center": "center",
-  "left": "left",
-  "right": "right",
-  "top": "top",
-  "topLeft": "top-left",
-  "topRight": "top-right"
- },
- "Connect2_MyBookmarks_MUI.resultListType": {
-  "household": "2",
-  "notification": "1",
-  "subdivision": "3"
- },
- "Connect2_MyBookmarks_MUI.scrollbarStyle": {
-  "compact": "compact",
-  "default": "default",
-  "none": "none"
- },
- "Connect2_MyBookmarks_MUI.shape": {
-  "rounded": "rounded",
-  "sharp": "none",
-  "softRounded": "soft"
- },
- "Connect2_MyBookmarks_MUI.sideMenuBehavior": {
-  "expandable": "aside-expandable",
-  "overlay": "aside-overlay",
-  "visible": "aside-visible"
- },
- "Connect2_MyBookmarks_MUI.size": {
-  "medium": "medium",
-  "small": "small"
- },
- "Connect2_MyBookmarks_MUI.space": {
-  "base": "base",
-  "extraLarge": "xl",
-  "extraSmall": "xs",
-  "large": "l",
-  "medium": "m",
-  "none": "none",
-  "small": "s",
-  "xXLarge": "xxl"
- },
- "Connect2_MyBookmarks_MUI.speed": {
-  "fast": "fast",
-  "normal": "normal",
-  "slow": "slow"
- },
- "Connect2_MyBookmarks_MUI.stackedCardsPosition": {
-  "bottom": "Bottom",
-  "none": "None",
-  "top": "Top"
- },
- "Connect2_MyBookmarks_MUI.steps": {
-  "active": "active",
-  "next": "next",
-  "past": "past"
- },
- "Connect2_MyBookmarks_MUI.trigger": {
-  "onClick": "onclick",
-  "onHover": "onhover"
- },
- "Connect2_MyBookmarks_MUI.type_ShareObject": {
-  "campusCo": "Campus&Co",
-  "communityNotice": "CommunityNotice",
-  "feed": "Feed",
-  "household": "Household",
-  "locality": "Locality",
-  "localityContact": "LocalityContact",
-  "myHousehold": "My Household",
-  "oneSchoolGlobal": "OneSchool Global",
-  "supperMeeting": "Supper Meeting",
-  "update": "Update"
- },
- "Connect2_MyBookmarks_MUI.videoState": {
-  "ended": "Ended",
-  "paused": "Paused",
-  "playing": "Playing",
-  "unstarted": "Unstarted"
  },
  "Connect2_MyCalendar_BL.type_MyCalendarEventSource": {
   "assemble": "event-assemble",
@@ -2663,6 +2323,9 @@
   "fingerprint": "1",
   "none": "3"
  },
+ "UBTConnect.adaptiveCardsConfig": {
+  "events": "1"
+ },
  "UBTConnect.animationType": {
   "bottomToTop": "bottom-to-top",
   "bounce": "bounce",
@@ -3082,8 +2745,8 @@
   "mobileDirectoryListVirtualization": "Mobile-Directory-list-virtualization",
   "mobileDirectoryLocalityContacts": "directory-locality-contacts",
   "mobileDirectoryUpdateFeedDeceasedProfile": "Mobile-Directory-UpdateFeed-DeceasedProfile",
+  "mobileHasAwayMembersAccess": "connect-mobile-ancestry-away-members",
   "mobileHasDeceasedPhotos": "mobile-has-deceased-photos",
-  "mobileHasHiddenMembersAccess": "connect-mobile-ancestry-away-members",
   "mobileHouseholdAncestry4thGen": "connect-mobile-household-ancestry-4th-gen",
   "mobileMemberAge": "mobile-member-age",
   "mobileOrbitAccess": "mobile-orbit-access",
@@ -3101,6 +2764,50 @@
   "back": "Back",
   "hidden": "Hidden",
   "menu": "Menu"
+ },
+ "UBTConnect.messageInfoType": {
+  "generalInformation": "1",
+  "sharing": "3",
+  "whatsNew": "2"
+ },
+ "UBTConnect.messagePriority": {
+  "normal": "1",
+  "urgent": "2"
+ },
+ "UBTConnect.messageSenderTarget": {
+  "assemble": "21",
+  "bGT": "7",
+  "campusTrading": "9",
+  "communityHub": "17",
+  "connect": "1",
+  "directory": "3",
+  "gAP": "4",
+  "gFT": "14",
+  "hR100": "18",
+  "lordsDayMeal": "6",
+  "oSG": "10",
+  "orbit": "2",
+  "orbitHostSurvey": "20",
+  "pBCC": "11",
+  "rRT": "12",
+  "trove": "16",
+  "uBT": "5",
+  "uBTA": "8",
+  "visionFoundation": "13"
+ },
+ "UBTConnect.messageStatus": {
+  "draft": "3",
+  "recalled": "7",
+  "retracted": "5",
+  "retractionInProgress": "4",
+  "scheduled": "8",
+  "sending": "2",
+  "sent": "1",
+  "skipSendPushNotification": "6"
+ },
+ "UBTConnect.messageType2": {
+  "private": "1",
+  "public": "2"
  },
  "UBTConnect.myBookmarks_Group": {
   "contacts": "Contacts",
@@ -3187,6 +2894,24 @@
   "c2NewBookmarks": "C2NewBookmarks",
   "c2NewLDM": "C2NewLDM",
   "c2NewNotifications": "C2NewNotifications"
+ },
+ "UBTConnect.parameterName": {
+  "assembleEventAction": "15",
+  "assembleEventAppliesToSequence": "12",
+  "assembleEventHostingLocation": "10",
+  "assembleEventInstanceId": "17",
+  "assembleEventIsVirtual": "16",
+  "assembleEventParentId": "18",
+  "assembleEventRecurrenceType": "11",
+  "assembleEventStartDate": "13",
+  "assembleEventType": "14",
+  "orbitEndDate": "5",
+  "orbitEventId": "2",
+  "orbitEventName": "3",
+  "orbitMilestoneId": "7",
+  "orbitStartDate": "4",
+  "placeholderAddTop": "19",
+  "shareId": "1"
  },
  "UBTConnect.photobook_Speed": {
   "eightSeconds": "8000",
@@ -3888,6 +3613,16 @@
   "violet": "violet",
   "yellow": "yellow"
  },
+ "UBTConnectLibrary.connect_Entity": {
+  "country": "Country",
+  "feedItem": "Feed Item",
+  "household": "Household",
+  "interchange": "Interchange",
+  "locality": "Locality",
+  "member": "Member",
+  "oneSchoolGlobal": "OneSchool Global",
+  "supperMeetings_aka_Subdivisions": "Supper Meetings"
+ },
  "UBTConnectLibrary.connect_UpdateTypeId": {
   "birth": "Birth",
   "marriage": "Marriage",
@@ -3929,6 +3664,11 @@
   "non_HouseholdChildren": "Non_HouseholdChildren",
   "non_HouseholdMembers": "Non_HouseholdMembers",
   "spouse": "Spouse"
+ },
+ "UBTConnectLibrary.imageSize": {
+  "large": "Large",
+  "medium": "Medium",
+  "small": "Small"
  },
  "UBTConnectLibrary.position": {
   "bottom": "bottom",
@@ -4594,6 +4334,7 @@
   "addCircle": "connect-icon-add_circle",
   "aod": "connect-icon-aod",
   "aodFill": "connect-icon-aod_fill",
+  "arrowDown": "connect-icon-Arrow-down",
   "arrowDropDown": "connect-icon-arrow_drop_down",
   "arrowDropUp": "connect-icon-arrow_drop_up",
   "arrowLeft": "connect-icon-arrow_left",
@@ -4601,6 +4342,7 @@
   "arrowOutward": "connect-icon-arrow_outward",
   "arrowRight": "connect-icon-arrow_right",
   "arrowRightAlt": "connect-icon-arrow_right_alt",
+  "arrowUp": "connect-icon-Arrow-up1",
   "assemble": "connect-icon-assemble",
   "attachFile": "connect-icon-attach_file",
   "autorenew": "connect-icon-autorenew",
@@ -4749,6 +4491,10 @@
   "replay": "connect-icon-replay",
   "reply": "connect-icon-reply",
   "sMS": "connect-icon-sms",
+  "sVG_CommunityCountries": "SVG_CommunityCountries",
+  "sVG_CommunityHouseholds": "SVG_CommunityHouseholds",
+  "sVG_CommunityLocalities": "SVG_CommunityLocalities",
+  "sVG_CommunityMembers": "SVG_CommunityMembers",
   "sVG_CommunityTradelink": "SVG_CommunityTradelink",
   "sVG_ElGusto": "SVG_ElGusto",
   "sVG_HR100": "SVG_HR100",
@@ -4969,6 +4715,7 @@
   "addCircle": "connect-icon-add_circle",
   "aod": "connect-icon-aod",
   "aodFill": "connect-icon-aod_fill",
+  "arrowDown": "connect-icon-Arrow-down",
   "arrowDropDown": "connect-icon-arrow_drop_down",
   "arrowDropUp": "connect-icon-arrow_drop_up",
   "arrowLeft": "connect-icon-arrow_left",
@@ -4976,6 +4723,7 @@
   "arrowOutward": "connect-icon-arrow_outward",
   "arrowRight": "connect-icon-arrow_right",
   "arrowRightAlt": "connect-icon-arrow_right_alt",
+  "arrowUp": "connect-icon-Arrow-up1",
   "assemble": "connect-icon-assemble",
   "attachFile": "connect-icon-attach_file",
   "autorenew": "connect-icon-autorenew",
@@ -5124,6 +4872,10 @@
   "replay": "connect-icon-replay",
   "reply": "connect-icon-reply",
   "sMS": "connect-icon-sms",
+  "sVG_CommunityCountries": "SVG_CommunityCountries",
+  "sVG_CommunityHouseholds": "SVG_CommunityHouseholds",
+  "sVG_CommunityLocalities": "SVG_CommunityLocalities",
+  "sVG_CommunityMembers": "SVG_CommunityMembers",
   "sVG_CommunityTradelink": "SVG_CommunityTradelink",
   "sVG_ElGusto": "SVG_ElGusto",
   "sVG_HR100": "SVG_HR100",
@@ -5252,6 +5004,7 @@
   "locality": "Locality",
   "localityContact": "Locality Contact",
   "member": "Member",
+  "oneSchoolGlobal2": "OneSchool Global",
   "orbitEvent": "Orbit Event",
   "personalEvent": "Personal Event",
   "supperMeeting": "Supper Meeting",
@@ -5329,7 +5082,9 @@
  "UBTConnect_Utils.launchDarkly_FF": {
   "mobileAssemble": "mobile-assemble",
   "mobileDirectoryBookmarkNote": "mobile-directory-bookmark-notes",
+  "mobileDirectoryHouseholdGallery": "directory-household-gallery",
   "mobileDirectoryListVirtualization": "Mobile-Directory-list-virtualization",
+  "mobileDirectoryLocalityContacts": "directory-locality-contacts",
   "mobileDirectoryUpdateFeedDeceasedProfile": "Mobile-Directory-UpdateFeed-DeceasedProfile",
   "mobileHasDeceasedPhotos": "mobile-has-deceased-photos",
   "mobileHasHiddenMembersAccess": "connect-mobile-ancestry-away-members",
@@ -5446,6 +5201,10 @@
   "email": "Email",
   "signal": "Signal",
   "whatsApp": "WhatsApp"
+ },
+ "UBTConnect_Utils.type_SearchTarget": {
+  "global": "Global",
+  "map": "Map"
  },
  "UBTConnect_Utils.type_ShareObject": {
   "campusCo": "Campus&Co",
@@ -5633,12 +5392,14 @@
  "UBTConnect_Utils.uBT_IconSize": {
   "base_24": "icon-base",
   "display_36": "icon-display",
+  "extraSmall_10": "icon-extra-small",
   "medium_20": "icon-medium",
   "nonStandard_108": "icon-non-standard-108",
   "nonStandard_14": "icon-non-standard-14",
   "nonStandard_16": "icon-non-standard-16",
   "nonStandard_18": "icon-non-standard-18",
   "nonStandard_32": "icon-non-standard-32",
+  "nonStandard_40": "icon-non-standard-40",
   "nonStandard_64": "icon-non-standard-64",
   "small_12": "icon-small"
  },
@@ -5649,6 +5410,7 @@
   "addCircle": "connect-icon-add_circle",
   "aod": "connect-icon-aod",
   "aodFill": "connect-icon-aod_fill",
+  "arrowDown": "connect-icon-Arrow-down",
   "arrowDropDown": "connect-icon-arrow_drop_down",
   "arrowDropUp": "connect-icon-arrow_drop_up",
   "arrowLeft": "connect-icon-arrow_left",
@@ -5656,6 +5418,7 @@
   "arrowOutward": "connect-icon-arrow_outward",
   "arrowRight": "connect-icon-arrow_right",
   "arrowRightAlt": "connect-icon-arrow_right_alt",
+  "arrowUp": "connect-icon-Arrow-up1",
   "assemble": "connect-icon-assemble",
   "attachFile": "connect-icon-attach_file",
   "autorenew": "connect-icon-autorenew",
@@ -5804,6 +5567,10 @@
   "replay": "connect-icon-replay",
   "reply": "connect-icon-reply",
   "sMS": "connect-icon-sms",
+  "sVG_CommunityCountries": "SVG_CommunityCountries",
+  "sVG_CommunityHouseholds": "SVG_CommunityHouseholds",
+  "sVG_CommunityLocalities": "SVG_CommunityLocalities",
+  "sVG_CommunityMembers": "SVG_CommunityMembers",
   "sVG_CommunityTradelink": "SVG_CommunityTradelink",
   "sVG_ElGusto": "SVG_ElGusto",
   "sVG_HR100": "SVG_HR100",

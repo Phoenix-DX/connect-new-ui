@@ -1222,7 +1222,7 @@ export const ROUTE_CSS_ORIGIN: Readonly<Record<string, CssSetOrigin>> = {
   LDM_Email_V2: 'compiled',
   LDM_EventDetail: 'compiled',
   LDM_EventDetail_V2: 'capture',
-  LDM_MyEvents: 'capture',
+  LDM_MyEvents: 'compiled',
   LDM_MyEvents_V2: 'capture',
   LegacyShareObject: 'capture',
   Locality_Details: 'capture',
