@@ -90,8 +90,8 @@ export function useFeedUpdates(
   };
 
   /** Event_ListItemOnClick: without access, the upgrade popup. Otherwise MarkAsRead, then (GetHasCarouselEnabled) the
-      households of the items with access as the preload object and HouseholdCarousel(In_StartingHouseholdId). The
-      branch with the carousel off (HouseholdDetails) is not built: default-only. */
+      households of the items with access as the preload object and HouseholdCarousel(In_StartingHouseholdId); with
+      the carousel off, HouseholdDetails(HouseholdId) (FeedBlock_Updates.mvc.js:696-712). */
   const itemClick = async (item: UpdateItem) => {
     if (!item.hasAccess) {
       await showUpgradePopUp();
@@ -112,6 +112,8 @@ export function useFeedUpdates(
       );
       setPreloadObject({ CarouselHouseholdItem: preloaded.CarouselHouseholdItem });
       navigate(`/${APP_ID}/HouseholdCarousel`, { In_StartingHouseholdId: item.householdId }); // R4 in useOsNavigate
+    } else {
+      navigate(`/${APP_ID}/HouseholdDetails`, { HouseholdId: item.householdId }); // R4 in useOsNavigate
     }
   };
 

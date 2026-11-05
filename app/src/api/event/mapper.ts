@@ -800,6 +800,12 @@ type EventNotesWire = ActionOutputs<
   PathOf<'Connect2_OrbitMobile_MUI', 'ScreenBlock_EventDetail/DataActionFetchEventNotes'>
 >;
 
+/** DataActionGetAssembleNotes of the AssembleDetail screen (UBTConnect): Out_Notes, the same Notes structure. */
+type AssembleNotesWire = ActionOutputs<PathOf<'UBTConnect', 'AssembleDetail/DataActionGetAssembleNotes'>>;
+
+/** GetAssembleNotes.Out_Notes with the list unwrapped (route-actions gap 8, 2026-11-05). */
+export const toAssembleNotes = (wire: AssembleNotesWire): Notes => toEventNotes({ Notes: wire.Out_Notes });
+
 /** FetchEventNotes.Notes (UBTConnectLibrary Notes) with the list unwrapped: what OnAfterFetch_FetchEventNotes assigns
     to EventNotes. */
 export const toEventNotes = (wire: EventNotesWire): Notes => ({

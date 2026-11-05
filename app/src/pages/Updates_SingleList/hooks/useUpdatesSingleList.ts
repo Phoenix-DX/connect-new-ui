@@ -339,7 +339,10 @@ export function useUpdatesSingleList(flags: UpdatesSingleListFlags): UpdatesSing
       );
       setPreloadObject({ CarouselHouseholdItem: preloaded.CarouselHouseholdItem });
       navigate(`/${APP_ID}/HouseholdCarousel`, { In_StartingHouseholdId: item.householdId }); // R4 in useOsNavigate
-    } // HouseholdDetails branch (flag off) not built: default-only
+    } else {
+      // GetHasCarouselEnabled False: HouseholdDetails(HouseholdId) (Updates_SingleList.mvc.js:1870-1890)
+      navigate(`/${APP_ID}/HouseholdDetails`, { HouseholdId: item.householdId }); // R4 in useOsNavigate
+    }
   };
   /** Handler_OnShare. */
   const onItemShare = (item: UpdateItem) => {

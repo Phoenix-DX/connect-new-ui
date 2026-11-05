@@ -1,5 +1,6 @@
 import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 import { osList } from '@/lib/os-wire';
+import type { Notes } from '@/lib/ubtConnectLibrary/structures';
 import type {
   Household,
   HouseholdCaption,
@@ -141,6 +142,19 @@ export const toHouseholdCaption = (wire: HouseholdCaptionWire): HouseholdCaption
 
 /** The outputs of DataActionGet_MemberDetails (HouseholdRelations_Block), as the contract describes them. */
 type MemberRelationsWire = ActionOutputs<PathOf<'UBTConnect', 'HouseholdRelations_Block/DataActionGet_MemberDetails'>>;
+/** The Notes output of DataActionFetchNotes (HouseholdRelations_Block): the UBTConnectLibrary Notes structure. */
+type NotesWire = ActionOutputs<PathOf<'UBTConnect', 'HouseholdRelations_Block/DataActionFetchNotes'>>['Notes'];
+
+/** The notes of the member (UBTConnectLibrary Notes: Total and Note_Item_List). */
+export const toNotes = (wire: NotesWire): Notes => ({
+  Total: wire.Total,
+  Note_Item_List: osList(wire.Note_Item_List).map((n) => ({
+    Id: n.Id,
+    Note: n.Note,
+    DateCreatedUtc: n.DateCreatedUtc,
+    DateEditedUtc: n.DateEditedUtc,
+  })),
+});
 /** The outputs of DataActionGet_ParentHouseholdDetails (HouseholdRelations_Block), as the contract describes them. */
 type SiblingRelationsWire = ActionOutputs<
   PathOf<'UBTConnect', 'HouseholdRelations_Block/DataActionGet_ParentHouseholdDetails'>

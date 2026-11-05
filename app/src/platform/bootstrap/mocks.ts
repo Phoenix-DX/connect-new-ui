@@ -230,8 +230,12 @@ const cacheableHouseholds = contractHandler('UBTConnect', 'ServiceAPIFetchData_C
   Household_Markers: { List: [] },
 }));
 
+/** AppManager_Logout: the server side of the sign-out; no output. */
+const appManagerLogout = contractHandler('UBT_AppManager', 'ActionAppManager_Logout', () => ({}));
+
 export const handlers = [
   synchAppContext,
+  appManagerLogout,
   recordedHandler('UBT_AppManager', 'ActionAppManager_AfterInitialize', { matchInputs: false }), // inputs: device context
   syncInfoGetMain,
   getUserInformation,

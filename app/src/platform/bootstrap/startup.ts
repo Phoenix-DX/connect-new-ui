@@ -54,6 +54,9 @@ export async function synchAppContext(): Promise<ClientConfig | null> {
     'app.minWebViewChrome': c.MinWebViewVersion_Chrome,
     'app.minWebViewSafari': c.MinWebViewVersion_Safari,
   });
+  // AppManager_SetDeviceContext: DeviceInfo_PackageName = AppManager_ClientCache.PackageName (the device context that
+  // AppManager_Logout sends; migration/shell/client-variables.md:68).
+  setClientVar('UBT_AppManager.DeviceInfo_PackageName', c.PackageName);
   return out.AppManager_ClientConfig;
 }
 

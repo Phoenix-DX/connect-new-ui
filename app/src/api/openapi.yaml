@@ -2189,7 +2189,7 @@ paths:
       x-os-owner: 'Orbit_ScreenBlocks/ScreenBlock_EventDetail'
       x-os-paths:
         - 'screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionFetchEventNotes'
-      x-os-phase: []
+      x-os-phase: ['load']
       x-os-screens: ['EventDetail']
       x-review: 'inputs'
   '/api/Connect2_OrbitMobile_MUI/ScreenBlock_EventDetail/DataActionGet_EventDetails':
@@ -2262,7 +2262,7 @@ paths:
       x-os-paths:
         - 'screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_HasDocuments'
       x-os-phase: ['load']
-      x-os-screens: ['EventDetail']
+      x-os-screens: ['ContactByEmailOrbitHelpdesk', 'EventDetail']
       x-review: 'inputs'
   '/api/Connect2_OrbitMobile_MUI/ScreenBlock_EventDetail/DataActionGet_HasQRCode':
     post:
@@ -2298,7 +2298,7 @@ paths:
       x-os-paths:
         - 'screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_HasQRCode'
       x-os-phase: ['load']
-      x-os-screens: ['EventDetail']
+      x-os-screens: ['ContactByEmailOrbitHelpdesk', 'EventDetail']
       x-review: 'inputs'
   '/api/Connect2_OrbitMobile_MUI/ScreenBlock_EventDetail/DataActionGet_HostSurveyStatus':
     post:
@@ -2334,7 +2334,7 @@ paths:
       x-os-paths:
         - 'screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_HostSurveyStatus'
       x-os-phase: ['load']
-      x-os-screens: ['EventDetail']
+      x-os-screens: ['ContactByEmailOrbitHelpdesk', 'EventDetail']
       x-review: 'inputs'
   '/api/Connect2_OrbitMobile_MUI/ScreenBlock_EventDetail_V2/DataActionFetchEventNotes':
     post:
@@ -5838,6 +5838,7 @@ paths:
         - 'Household_Relations'
         - 'LegacyShareObject'
         - 'Locality_Details'
+        - 'MessageDetail'
         - 'MessageList'
         - 'Photobook'
         - 'Profile'
@@ -6218,6 +6219,7 @@ paths:
         - 'HouseholdCarousel'
         - 'HouseholdDetails'
         - 'Household_Relations'
+        - 'LDM_EventDetail_V2'
         - 'Locality_Details'
         - 'Notes'
         - 'OneSchoolGlobalCarousel'
@@ -6262,6 +6264,7 @@ paths:
         - 'HouseholdCarousel'
         - 'HouseholdDetails'
         - 'Household_Relations'
+        - 'LDM_EventDetail_V2'
         - 'Locality_Details'
         - 'Notes'
         - 'OneSchoolGlobalCarousel'
@@ -6306,6 +6309,7 @@ paths:
         - 'HouseholdCarousel'
         - 'HouseholdDetails'
         - 'Household_Relations'
+        - 'LDM_EventDetail_V2'
         - 'Locality_Details'
         - 'Notes'
         - 'OneSchoolGlobalCarousel'
@@ -6478,6 +6482,37 @@ paths:
         - 'SupperMeeting_Details'
         - 'TermsAndPoliciesMenu'
         - 'Updates_SingleList'
+      x-os-writes: true
+  '/api/UBT_AppManager/ActionAppManager_Logout':
+    post:
+      operationId: 'UBT_AppManager.ActionAppManager_Logout'
+      requestBody:
+        content:
+          'application/json':
+            schema: { '$ref': '#/components/schemas/UBT_AppManager__ActionAppManager_Logout__Input' }
+        required: true
+      responses:
+        '200':
+          content:
+            'application/json':
+              schema:
+                properties:
+                  data: { '$ref': '#/components/schemas/UBT_AppManager__ActionAppManager_Logout__Output' }
+                required: ['data']
+                type: 'object'
+          description: 'The action outputs.'
+        default:
+          content:
+            'application/json':
+              schema: { '$ref': '#/components/schemas/Error' }
+          description: 'Error.'
+      summary: 'Server action (module client-action wrapper) AppManager_Logout (UBT_AppManager)'
+      tags: ['UBT_AppManager']
+      x-mock-source: 'fictional'
+      x-os-kind: 'clientWrapper'
+      x-os-paths: ['screenservices/UBT_AppManager/ActionAppManager_Logout']
+      x-os-phase: []
+      x-os-screens: ['Login', 'PINRegister']
       x-os-writes: true
   '/api/UBT_AppManager/ActionAppManager_SynchAppContext':
     post:
@@ -12937,6 +12972,7 @@ components:
         ContactByPhoneData: { '$ref': '#/components/schemas/UBTConnect_Utils__ContactByPhonePopupData' }
         EventHostId: { type: 'string', x-os-type: 'LongInteger' }
         EventId: { type: 'string', x-os-type: 'LongInteger' }
+        EventNotes: { '$ref': '#/components/schemas/UBTConnectLibrary__Notes' }
         HasInformation: { type: 'boolean' }
         IsFetching: { type: 'boolean' }
         MaxPhotoHeight: { type: 'integer' }
@@ -12963,6 +12999,7 @@ components:
         ContactByPhoneData: { '$ref': '#/components/schemas/UBTConnect_Utils__ContactByPhonePopupData' }
         EventHostId: { type: 'string', x-os-type: 'LongInteger' }
         EventId: { type: 'string', x-os-type: 'LongInteger' }
+        EventNotes: { '$ref': '#/components/schemas/UBTConnectLibrary__Notes' }
         HasInformation: { type: 'boolean' }
         IsFetching: { type: 'boolean' }
         MaxPhotoHeight: { type: 'integer' }
@@ -15372,6 +15409,7 @@ components:
         MaxLoadingItems: { type: 'integer' }
         MessageListener: { description: 'OutSystems type Object', x-unknown: true }
         RefreshIntervalId: { description: 'OutSystems type Object', x-unknown: true }
+        ResumeListener: { description: 'OutSystems type Object', x-unknown: true }
         Sources: { type: 'string' }
         Theme: { type: 'string' }
         View: { type: 'string' }
@@ -16609,6 +16647,8 @@ components:
         EntityId: { type: 'string', x-os-type: 'LongInteger' }
         EntityNotes: { '$ref': '#/components/schemas/UBTConnectLibrary__Notes' }
         EntityType: { type: 'string' }
+        FetchNoteId: { type: 'string' }
+        In_LocalityId: { type: 'string' }
         IsEnabled: { type: 'boolean' }
         Local_BookmarkTypeId: { type: 'string' }
         Local_In_ActionsMenuOptions: { '$ref': '#/components/schemas/UBTConnectLibrary__ActionsMenuOptions' }
@@ -16662,6 +16702,8 @@ components:
         EntityId: { type: 'string', x-os-type: 'LongInteger' }
         EntityNotes: { '$ref': '#/components/schemas/UBTConnectLibrary__Notes' }
         EntityType: { type: 'string' }
+        FetchNoteId: { type: 'string' }
+        In_LocalityId: { type: 'string' }
         IsEnabled: { type: 'boolean' }
         Local_BookmarkTypeId: { type: 'string' }
         Local_In_ActionsMenuOptions: { '$ref': '#/components/schemas/UBTConnectLibrary__ActionsMenuOptions' }
@@ -17113,6 +17155,7 @@ components:
         GetOneSchoolGlobal_List_StartIndex: { type: 'integer' }
         Get_OneSchoolGlobal_List_IsLoading: { type: 'boolean' }
         In_LocalityId: { type: 'string', x-os-type: 'LongInteger' }
+        In_LocalityTimezoneData: { '$ref': '#/components/schemas/Connect_Geography_CS__UI_LocalityTimezone' }
         Out_OneSchoolGlobal_List2:
           properties:
             EmptyListItem: { '$ref': '#/components/schemas/Connect_CommunityBusiness_CS__UI_OneSchool_Card' }
@@ -18527,6 +18570,18 @@ components:
       required: ['isNotRegistered']
       type: 'object'
       x-os-output-of: 'UBT_AppManager.ActionAppManager_AfterInitialize'
+    UBT_AppManager__ActionAppManager_Logout__Input:
+      additionalProperties: false
+      properties:
+        AppManager_MobileContext: { '$ref': '#/components/schemas/UBT_AppManager_CS__AppManager_DeviceContext' }
+        EspaceName: { type: 'string' }
+      required: ['AppManager_MobileContext', 'EspaceName']
+      type: 'object'
+      x-os-input-of: 'UBT_AppManager.ActionAppManager_Logout'
+    UBT_AppManager__ActionAppManager_Logout__Output:
+      properties: {}
+      type: 'object'
+      x-os-output-of: 'UBT_AppManager.ActionAppManager_Logout'
     UBT_AppManager__ActionAppManager_SynchAppContext__Input:
       additionalProperties: false
       properties:

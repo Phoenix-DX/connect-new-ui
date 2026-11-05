@@ -136,5 +136,13 @@
       "EventBooklet"
     ],
     "evidence": "Connect2_OrbitMobile_MUI.controller.js (migration/runtime-sources/, fetched read-only from TST): ServerAction.GetBookletHelpersMaxRows :8488-8509 (no inputs; output BookletHelpersMaxRows Integer), called by client action Set_BookletHelpersMaxRows :6557-6598 (stores it in the client variable BookletHelpersMaxRows, Connect2_OrbitMobile_MUI.clientVariables.js), called by SetBookletMaxRows :6599-6620, called by ScreenBlock_EventBooklet OnReady (migration/screens/EventBooklet/analysis/sources/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_EventBooklet.ScreenBlock_EventBooklet.mvc.js:3121-3194); CR-EventBooklet-1"
+  },
+  {
+    "path": "screenservices/UBT_AppManager/ActionAppManager_Logout",
+    "screens": [
+      "Login",
+      "PINRegister"
+    ],
+    "evidence": "UBT_AppManager.controller.js:8500-8512 (ServerAction.AppManager_Logout: EspaceName Text, AppManager_MobileContext Record AppManager_DeviceContext; no output), called by the client action AppManager_Logout (:3651+), called by Login OnInitialize (In_IsFromResetPIN) and PINRegister OnClick_BackToLogin, and by UBTConnect Connect_Logout; route-actions gap 6 (migration/clarify/auto-decisions-2026-11-05.md)"
   }
 ]

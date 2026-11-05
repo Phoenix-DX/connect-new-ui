@@ -84,6 +84,9 @@ export interface AssembleMeetingListQuery {
 
 /** The variables of AssembleEventDetail that DataActionGetAssembleEvent sends. Start is a DateTime as
     "yyyy-MM-ddTHH:mm:ss" ("" = the null DateTime). */
+/** The screen variables that AssembleDetail sends with DataActionGetAssembleNotes (all optional on the wire). */
+export type AssembleNotesCallInputs = ActionInputs<PathOf<'UBTConnect', 'AssembleDetail/DataActionGetAssembleNotes'>>;
+
 export type AssembleEventCallInputs = {
   EventId: string;
   SeriesId: string;

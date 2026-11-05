@@ -99,9 +99,12 @@ export type HouseholdRelationsAction =
   | { type: 'siblingsFetching' }
   | { type: 'siblingsFetched'; details: SiblingRelations }
   | { type: 'siblingsFailed' }
-  /** Handler_AddNotes and Handler_OnNotesSheetClosed. */
+  /** Handler_AddNotes (Refresh Query FetchNotes, then ShowNotesSheet = True) and Handler_OnNotesSheetClosed. */
   | { type: 'notesSheetOpened' }
   | { type: 'notesSheetClosed' }
+  | { type: 'notesFetching' }
+  | { type: 'notesFetched'; notes: Notes }
+  | { type: 'notesFailed' }
   /** Handler_OnNotesChanged: FetchNotes.Notes = NewNotes. */
   | { type: 'notesChanged'; notes: Notes }
   /** Handler_OnNoteDeleted: the note leaves the list and Total is the length of the list. */
@@ -149,6 +152,12 @@ export function householdRelationsReducer(
       return { ...state, ShowNotesSheet: true };
     case 'notesSheetClosed':
       return { ...state, ShowNotesSheet: false };
+    case 'notesFetching':
+      return { ...state, FetchNotes: { ...state.FetchNotes, dataFetchStatus: DataFetchStatus.Fetching } };
+    case 'notesFetched':
+      return { ...state, FetchNotes: { Notes: action.notes, dataFetchStatus: DataFetchStatus.Fetched } };
+    case 'notesFailed':
+      return { ...state, FetchNotes: { ...state.FetchNotes, dataFetchStatus: DataFetchStatus.Error } };
     case 'notesChanged':
       return { ...state, FetchNotes: { ...state.FetchNotes, Notes: action.notes } };
     case 'noteDeleted': {

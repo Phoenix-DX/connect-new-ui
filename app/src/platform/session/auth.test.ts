@@ -125,9 +125,9 @@ describe('signOut (Connect_Logout)', () => {
     expect(getClientVar('UBT_AppManager.DeviceInfo_UUID')).toBe(uuid); // AppManager_SetDeviceContext
   });
 
-  test('re-syncs the app context, which restores the settings', async () => {
+  test('calls AppManager_Logout, then re-syncs the app context, which restores the settings', async () => {
     await signOut();
-    expect(calledActions()).toEqual(['ActionAppManager_SynchAppContext']);
+    expect(calledActions()).toEqual(['ActionAppManager_Logout', 'ActionAppManager_SynchAppContext']);
     expect(getClientVar('UBT_AppManager.PIN_Use')).toBe(true);
   });
 
@@ -213,7 +213,7 @@ describe('signOut (Connect_Logout)', () => {
       pin: null,
       caches: [false, false],
       noteRows: [],
-      calls: ['ActionAppManager_SynchAppContext'],
+      calls: ['ActionAppManager_Logout', 'ActionAppManager_SynchAppContext'],
     });
     // the storages are not empty: the *_IsPersistent variable and the device id stay after both
     expect(getClientVar('UBTConnect.App_NetworkStatus_IsOnline_IsPersistent')).toBe(false);
@@ -247,7 +247,7 @@ describe('signOut (Connect_Logout)', () => {
       );
       expect(left).toEqual([]);
     }
-    expect(calledActions()).toEqual(['ActionAppManager_SynchAppContext']);
+    expect(calledActions()).toEqual(['ActionAppManager_Logout', 'ActionAppManager_SynchAppContext']);
     // the page keeps the Orbit reference lists for a new sign-in; the next app start re-syncs the stores
     expect(getLocalOrbitMilestoneTypesById('mt-1')).toHaveLength(1);
   });

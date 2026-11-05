@@ -2,6 +2,7 @@ import { callAction } from '@/api/client/callAction';
 import { toAppContext, toCacheableHouseholds, toCacheableMapEntities, toPolicies, toSyncInfoMain } from './mapper';
 import type {
   AfterInitializeCallInputs,
+  LogoutCallInputs,
   AppContext,
   CacheableHouseholds,
   CacheableMapEntities,
@@ -22,6 +23,13 @@ export async function fetchAppContext(espaceName: string): Promise<AppContext> {
   return toAppContext(
     await callAction('UBT_AppManager', 'ActionAppManager_SynchAppContext', { EspaceName: espaceName }),
   );
+}
+
+/** AppManager_Logout of UBT_AppManager: the server side of the sign-out (the client action AppManager_Logout,
+    UBT_AppManager.controller.js:3651+, before FirebaseSignOut, PIN_Delete and AppManager_SynchAppContext). No output.
+    Route-actions gap 6 (2026-11-05). */
+export async function appManagerLogout(inputs: LogoutCallInputs): Promise<void> {
+  await callAction('UBT_AppManager', 'ActionAppManager_Logout', inputs);
 }
 
 /** AppManager_AfterInitialize of UBT_AppManager: the device check of a signed-in app start (CheckDeviceOnReady). The

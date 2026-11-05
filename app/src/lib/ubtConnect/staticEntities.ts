@@ -117,6 +117,7 @@ export const Connect_Subscription_Plan = {
 /** NoteCategory2 (UBTConnect): TST values (static-entities-tst.json `UBTConnect.noteCategory2`), the ones
     Get_NoteCategoryId_ByEntityTypeId returns. */
 export const NoteCategory2 = {
+  AssembleEvent: 'Assemble Event',
   Household: 'Household',
   SupperMeeting: 'Supper Meeting',
   Interchange: 'Interchange',

@@ -74,6 +74,9 @@ describe('AssembleDetail', () => {
     });
     expect(title(container)).toBe('Gospel Preaching');
     expect(calls('DataActionGetAssembleEvent')).toBe(1);
+    // GetAssembleNotes, the screen data action fetched at start (route-actions gap 8).
+    expect(calls('DataActionGetAssembleNotes')).toBe(1);
+    expect(container.querySelector('[data-block="ConnectCorePatterns.ItemCard_ActionBar"]')).not.toBeNull();
     expect(byId('b2-b4-b14-Header')).toHaveTextContent('Host Locality');
     expect(byId('b2-b4-b15-Header')).toHaveTextContent('Interchange Meetings');
     // One loading row per contact id, then the contacts of GetCacheableMemberContactList.

@@ -8,6 +8,7 @@ export {
   fetchHouseholdShareCard,
   fetchLocalityHouseholdIds,
   fetchLocalityHouseholds,
+  fetchHouseholdRelationNotes,
   fetchMemberRelations,
   fetchOrbitHouseholdMembers,
   fetchSiblingRelations,

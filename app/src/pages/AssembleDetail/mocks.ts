@@ -4,6 +4,8 @@ import { householdsOfSupperMeeting } from '@/mocks/fictional/directory';
 import { assembleEventOf, type AssembleEventSummaryWire } from '@/mocks/fictional/assemble';
 import { scenario } from '@/mocks/scenario';
 import { wireList } from '@/lib/os-wire';
+import { notesCollection } from '@/containers/NoteListActions/mocks';
+import { NoteCategory2 } from '@/lib/ubtConnect/staticEntities';
 
 /* Mocks of AssembleDetail (P-MOCKS), on the fictional Assemble world (src/mocks/fictional/assemble.ts). No TST capture
    (no-capture route): every value is fictional. Scenarios: real (the meeting of EventId; an unknown EventId → IsNotFound
@@ -53,6 +55,20 @@ const notFound = () => ({
 });
 
 export const handlers: RequestHandler[] = [
+  // DataActionGetAssembleNotes (fetched at start): the user's notes on the meeting, from the in-memory notes
+  // collection (P-MUTATION), category Assemble Event, item EventId.
+  contractHandler('UBTConnect', 'AssembleDetail/DataActionGetAssembleNotes', ({ EventId }) => {
+    const rows = notesCollection()
+      .all()
+      .filter((n) => String(n.ItemId) === (EventId ?? '') && n.NoteCategoryId === NoteCategory2.AssembleEvent);
+    const items = rows.map((n) => ({
+      Id: String(n.Id),
+      Note: String(n.Note),
+      DateCreatedUtc: String(n.DateCreatedUtc),
+      DateEditedUtc: String(n.DateEditedUtc),
+    }));
+    return { Out_Notes: { Total: rows.length, Note_Item_List: wireList(items) } };
+  }),
   contractHandler('Connect2_Assemble_MUI', 'AssembleEventDetail/DataActionGetAssembleEvent', (vars) => {
     const event = assembleEventOf(vars.EventId ?? '', (hallId) => householdsOfSupperMeeting(hallId).length);
     if (scenario() === 'notfound' || !event) return notFound();

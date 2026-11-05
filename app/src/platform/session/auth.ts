@@ -6,7 +6,9 @@ import { postLogin } from '@/platform/bootstrap/postLogin';
 import { synchAppContext } from '@/platform/bootstrap/startup';
 import { clearAllLocalEntities } from '@/platform/storage/localEntities';
 import { clearMemoryCache } from '@/api/client/cache';
-import { PATHS } from '@/platform/navigation/paths';
+import { appManagerLogout } from '@/api/app';
+import { deviceContext } from '@/platform/device/deviceContext';
+import { APP_ID, PATHS } from '@/platform/navigation/paths';
 import { sendSessionEvent } from './machine';
 import { deletePin, pinCheck } from './pin';
 import { getResumeLoginLink } from './resume';
@@ -107,6 +109,12 @@ async function connectLogout(event: 'signOut' | 'signedOutRemotely'): Promise<vo
   // Cache_InvalidateEverything (UBTConnect_Utils.controller.js:429-466: the seven Connect cache types), then the rest
   // of the memory cache (ADR-10): one clear does both.
   clearMemoryCache();
+  // AppManager_Logout, the server action (UBT_AppManager.controller.js:3651+: EspaceName = the app, the device
+  // context), before the local steps. Route-actions gap 6 (2026-11-05).
+  await appManagerLogout({
+    EspaceName: APP_ID,
+    AppManager_MobileContext: deviceContext(getClientVar('UBT_AppManager.DeviceInfo_PackageName')),
+  });
   await clearAllLocalEntities();
   await authProvider()?.signOut();
   const userId = currentUserId();

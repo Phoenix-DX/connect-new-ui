@@ -36,6 +36,9 @@ export const CLIENT_VAR_DEFAULTS = {
   'UBT_AppManager.PIN_IsLocked': false,
   'UBT_AppManager.PIN_HasUnlocked': false,
   'UBT_AppManager.DeviceInfo_UUID': '',
+  // Text, type default (migration/shell/client-variables.md:68): AppManager_ClientCache.PackageName, set by the app
+  // start (AppManager_SetDeviceContext); the device context of AppManager_Logout reads it.
+  'UBT_AppManager.DeviceInfo_PackageName': '',
   // Boolean, type default (UBT_AppManager.clientVariables.js:242-247; migration/shell/client-variables.md:74). The original
   // sets it from AppManager_MobileContext.isNativeDevice in AppManager_SetDeviceContext (UBT_AppManager.controller.js:
   // 4418-4419); the clone's device context is never native (deviceContext.ts), so it stays false in the browser.

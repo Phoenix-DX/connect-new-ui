@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { AssembleSummarySkeleton } from '@/components/assemble/AssembleSummarySkeleton';
 import { AssembleSummaryCardContainer } from '@/containers/AssembleSummaryCard';
@@ -29,6 +30,8 @@ export interface AssembleEventDetailProps
   inputs: AssembleEventDetailParameters;
   /** The flags of the halls, read by the page. */
   flags: AttendeeSubdivisionFlags;
+  /** The MeetingNotes placeholder (the notes preview and its action bar), rendered once the meeting is fetched. */
+  meetingNotes?: ReactNode;
 }
 
 const MEETING_NOT_FOUND_SUBTITLE =
@@ -47,6 +50,7 @@ export function AssembleEventDetail({
   id,
   inputs,
   flags,
+  meetingNotes,
   onUpdateTitle,
   onEmailContact,
   onNavigateToHousehold,
@@ -108,6 +112,7 @@ export function AssembleEventDetail({
           )}
         </div>
         <div className="padding-x-base" data-container="" id={`${scope}-DIV_Content`}>
+          {isDataFetched && meetingNotes}
           <AssembleEventDetail_Section
             id={`${scope}-Section_MeetingNotes`}
             isLoading={!isDataFetched}

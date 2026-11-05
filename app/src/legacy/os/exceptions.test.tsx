@@ -126,7 +126,7 @@ describe('SecurityException, signed-in user (Has User Id? True, ACF:66-75)', () 
     expect(signOut).not.toHaveBeenCalled();
     expect(getShellState()).toMatchObject({ signedIn: false, userId: null, hasLocalPin: false });
     expect(readPin()).toBeNull();
-    expect(calledActions()).toEqual(['ActionAppManager_SynchAppContext']);
+    expect(calledActions()).toEqual(['ActionAppManager_Logout', 'ActionAppManager_SynchAppContext']);
   });
 
   test('ends in the same state and storage as ShowExceptionMessage(message, ForceLogout = True)', async () => {

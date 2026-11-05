@@ -3030,6 +3030,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/UBT_AppManager/ActionAppManager_Logout": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Server action (module client-action wrapper) AppManager_Logout (UBT_AppManager) */
+        post: operations["UBT_AppManager.ActionAppManager_Logout"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/UBT_AppManager/ActionAppManager_SynchAppContext": {
         parameters: {
             query?: never;
@@ -6482,6 +6499,7 @@ export interface components {
             ContactByPhoneData?: components["schemas"]["UBTConnect_Utils__ContactByPhonePopupData"];
             EventHostId?: string;
             EventId?: string;
+            EventNotes?: components["schemas"]["UBTConnectLibrary__Notes"];
             HasInformation?: boolean;
             IsFetching?: boolean;
             MaxPhotoHeight?: number;
@@ -6503,6 +6521,7 @@ export interface components {
             ContactByPhoneData?: components["schemas"]["UBTConnect_Utils__ContactByPhonePopupData"];
             EventHostId?: string;
             EventId?: string;
+            EventNotes?: components["schemas"]["UBTConnectLibrary__Notes"];
             HasInformation?: boolean;
             IsFetching?: boolean;
             MaxPhotoHeight?: number;
@@ -7911,6 +7930,8 @@ export interface components {
             MessageListener?: unknown;
             /** @description OutSystems type Object */
             RefreshIntervalId?: unknown;
+            /** @description OutSystems type Object */
+            ResumeListener?: unknown;
             Sources?: string;
             Theme?: string;
             View?: string;
@@ -8611,6 +8632,8 @@ export interface components {
             EntityId?: string;
             EntityNotes?: components["schemas"]["UBTConnectLibrary__Notes"];
             EntityType?: string;
+            FetchNoteId?: string;
+            In_LocalityId?: string;
             IsEnabled?: boolean;
             Local_BookmarkTypeId?: string;
             Local_In_ActionsMenuOptions?: components["schemas"]["UBTConnectLibrary__ActionsMenuOptions"];
@@ -8649,6 +8672,8 @@ export interface components {
             EntityId?: string;
             EntityNotes?: components["schemas"]["UBTConnectLibrary__Notes"];
             EntityType?: string;
+            FetchNoteId?: string;
+            In_LocalityId?: string;
             IsEnabled?: boolean;
             Local_BookmarkTypeId?: string;
             Local_In_ActionsMenuOptions?: components["schemas"]["UBTConnectLibrary__ActionsMenuOptions"];
@@ -8939,6 +8964,7 @@ export interface components {
             GetOneSchoolGlobal_List_StartIndex?: number;
             Get_OneSchoolGlobal_List_IsLoading?: boolean;
             In_LocalityId?: string;
+            In_LocalityTimezoneData?: components["schemas"]["Connect_Geography_CS__UI_LocalityTimezone"];
             Out_OneSchoolGlobal_List2?: {
                 EmptyListItem?: components["schemas"]["Connect_CommunityBusiness_CS__UI_OneSchool_Card"];
                 List: components["schemas"]["Connect_CommunityBusiness_CS__UI_OneSchool_Card"][];
@@ -9744,6 +9770,11 @@ export interface components {
         UBT_AppManager__ActionAppManager_AfterInitialize__Output: {
             isNotRegistered: boolean;
         };
+        UBT_AppManager__ActionAppManager_Logout__Input: {
+            AppManager_MobileContext: components["schemas"]["UBT_AppManager_CS__AppManager_DeviceContext"];
+            EspaceName: string;
+        };
+        UBT_AppManager__ActionAppManager_Logout__Output: Record<string, never>;
         UBT_AppManager__ActionAppManager_SynchAppContext__Input: {
             EspaceName: string;
         };
@@ -16015,6 +16046,41 @@ export interface operations {
                 content: {
                     "application/json": {
                         data: components["schemas"]["UBT_AppManager__ActionAppManager_AfterInitialize__Output"];
+                    };
+                };
+            };
+            /** @description Error. */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    "UBT_AppManager.ActionAppManager_Logout": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UBT_AppManager__ActionAppManager_Logout__Input"];
+            };
+        };
+        responses: {
+            /** @description The action outputs. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["UBT_AppManager__ActionAppManager_Logout__Output"];
                     };
                 };
             };

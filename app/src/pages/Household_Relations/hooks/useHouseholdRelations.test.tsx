@@ -3,6 +3,7 @@ import { StrictMode, type ReactNode } from 'react';
 import { MemoryRouter } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
+  fetchHouseholdRelationNotes,
   fetchMemberRelations,
   fetchSiblingRelations,
   type HouseholdMember,
@@ -34,6 +35,7 @@ vi.mock('./householdRelationsState', async (importOriginal) => {
 });
 vi.mock('@/api/household', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/api/household')>()),
+  fetchHouseholdRelationNotes: vi.fn(),
   fetchMemberRelations: vi.fn(),
   fetchSiblingRelations: vi.fn(),
 }));
@@ -278,12 +280,17 @@ describe('useHouseholdRelations', () => {
     expect(hasAccessToRegion).toHaveBeenCalledTimes(2);
   });
 
-  it('opens and closes the notes sheet and keeps the notes that it changes', async () => {
+  it('Handler_AddNotes fetches the notes, then opens the sheet; the sheet keeps the notes that it changes', async () => {
     const { result } = renderFlows();
     await settle();
+    vi.mocked(fetchHouseholdRelationNotes).mockResolvedValueOnce({ Total: 1, Note_Item_List: [{ Id: '40' }] });
     act(() => {
       result.current.onAddNotes();
     });
+    expect(result.current.isNotesSheetOpen).toBe(false);
+    await settle();
+    expect(fetchHouseholdRelationNotes).toHaveBeenCalledTimes(1);
+    expect(result.current.notes).toEqual({ Total: 1, Note_Item_List: [{ Id: '40' }] });
     expect(result.current.isNotesSheetOpen).toBe(true);
     act(() => {
       result.current.onNotesChanged({ Total: 2, Note_Item_List: [{ Id: '41' }, { Id: '42' }] });

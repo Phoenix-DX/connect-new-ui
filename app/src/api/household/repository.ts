@@ -12,9 +12,11 @@ import {
   toLocalityHouseholds,
   toLocalityHouseholdWire,
   toMemberRelations,
+  toNotes,
   toOrbitHouseholdMembers,
   toSiblingRelations,
 } from './mapper';
+import type { Notes } from '@/lib/ubtConnectLibrary/structures';
 import type {
   Household,
   HouseholdCallInputs,
@@ -85,6 +87,14 @@ export async function fetchSiblingRelations(inputs: MemberRelationsCallInputs): 
   return toSiblingRelations(
     await callAction('UBTConnect', 'HouseholdRelations_Block/DataActionGet_ParentHouseholdDetails', inputs),
   );
+}
+
+/** DataActionFetchNotes of HouseholdRelations_Block, on demand only: the notes of the member, refreshed by
+    Handler_AddNotes before the notes sheet opens (HouseholdRelations_Block.mvc.js:1918-1950; route-actions 2026-11-05).
+    Same inputs as the two data actions above. */
+export async function fetchHouseholdRelationNotes(inputs: MemberRelationsCallInputs): Promise<Notes> {
+  const out = await callAction('UBTConnect', 'HouseholdRelations_Block/DataActionFetchNotes', inputs);
+  return toNotes(out.Notes);
 }
 
 /* ---- Locality_Households_HouseholdList and Household_Card (Locality_Details) ---- */

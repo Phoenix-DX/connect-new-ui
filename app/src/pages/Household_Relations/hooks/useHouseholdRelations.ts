@@ -1,4 +1,5 @@
 import {
+  fetchHouseholdRelationNotes,
   fetchMemberRelations,
   fetchSiblingRelations,
   type HouseholdMember,
@@ -200,8 +201,16 @@ export function useHouseholdRelations(
     notes: state.FetchNotes.Notes,
     isNotesSheetOpen: state.ShowNotesSheet,
     onClickMember,
+    // Handler_AddNotes: Refresh Query FetchNotes (R1), then ShowNotesSheet = True (HouseholdRelations_Block.mvc.js:1918).
     onAddNotes: () => {
-      dispatch({ type: 'notesSheetOpened' });
+      flow.run(async () => {
+        const notes = await refresh(() => fetchHouseholdRelationNotes(callInputs()), {
+          fetching: { type: 'notesFetching' },
+          failed: { type: 'notesFailed' },
+        });
+        dispatch({ type: 'notesFetched', notes });
+        dispatch({ type: 'notesSheetOpened' });
+      });
     },
     onNotesSheetClosed: () => {
       dispatch({ type: 'notesSheetClosed' });
