@@ -21,7 +21,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/AssembleDetail/AssembleDetailPage.tsx`](../../app/src/pages/AssembleDetail/AssembleDetailPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 | Screenshots | no parity run | `route.py parity` |
-| Code read | OutSystems: 1 files of the UI flow, 66 shared blocks, 43 app shell files. React: 272 files in the closure of the page | TST survey closure and compiled code (static), `react_calls.mjs` |
+| Code read | OutSystems: 1 files of the UI flow, 66 shared blocks, 43 app shell files. React: 271 files in the closure of the page | TST survey closure and compiled code (static), `react_calls.mjs` |
 
 ## 2. Result
 
@@ -244,7 +244,6 @@ Effects (`useEffect`, `useLayoutEffect`) of the screen files, and the effects of
 
 | File | Hook (function) | Dependencies | Cleanup | Effects | Place |
 |---|---|---|---|---|---|
-| `ShowMoreShowLessContainer.tsx` | `useEffect` (`ShowMoreShowLessContainer`) | `[]` | yes | none | [`pages/AssembleDetail/components/ShowMoreShowLessContainer.tsx:44`](../../app/src/pages/AssembleDetail/components/ShowMoreShowLessContainer.tsx#L44) |
 | `useAssembleNotes.ts` | `useEffect` (`useAssembleNotes`) | `[flow, restored, setNotes, EventId, SeriesId, Start, Assembl…` | no | call `/api/UBTConnect/AssembleDetail/DataActionGetAssembleNotes` | [`pages/AssembleDetail/hooks/useAssembleNotes.ts:50`](../../app/src/pages/AssembleDetail/hooks/useAssembleNotes.ts#L50) |
 
 <details><summary>Sequence diagrams of the effects with a call, a navigation, a message or a refresh (1)</summary>
