@@ -97,3 +97,35 @@ def build(screen_entry):
              "static": {"closure": len(closure), "missing": [f for f in closure if f not in sources]}}
     return {"facts": facts, "calls": [], "sources": sources, "dirs": dirs, "static": True,
             "missing": [f for f in closure if f not in sources]}
+
+
+def refresh(facts, sources, changed):
+    """facts.json of a captured route with the js facts and the call sites computed again from `sources`, after the
+    files in `changed` were replaced by their live code. The observed flags of the capture stay (by call path)."""
+    an = _analyze()
+    facts = dict(facts)
+    js = dict(facts.get("js", {}))
+    for f in changed:
+        if f in sources and f.endswith(".mvc.js"):
+            js[f] = an.js_facts(f, sources[f])
+    facts["js"] = js
+    rendered = [f for f in facts.get("renderedFiles", []) if f in sources]
+    nodes, edges, endpoints = os_call_graph.call_graph(sources)
+    scope = set(rendered)
+    old = facts.get("callSites", {})
+    sites = {}
+    for full, ids in endpoints.items():
+        key = full.split("screenservices/")[-1]
+        chains = root_chains(sorted(ids), nodes, edges)
+        in_scope = [c for c in chains if any(any(f in n for f in scope) for n in c)]
+        if in_scope:
+            sites[key] = {"observed": bool(old.get(key, {}).get("observed")), "defined": True,
+                          "chains": [[nodes.get(n, {"label": n})["label"] for n in c] for c in in_scope],
+                          "rootKinds": sorted({nodes.get(c[0], {}).get("kind", "?") for c in in_scope if c}),
+                          "rootLabels": [nodes.get(c[0], {"label": c[0]})["label"] for c in in_scope if c]}
+    for key, site in old.items():
+        if key not in sites and site.get("observed"):
+            sites[key] = site  # observed in the capture, no static chain in the live code either
+    facts["callSites"] = sites
+    facts["live"] = sorted(changed)
+    return facts

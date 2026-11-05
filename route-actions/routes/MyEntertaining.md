@@ -4,6 +4,8 @@ The route `/UBTConnect/MyEntertaining`, read from the TST compiled code and from
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/MyEntertaining/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
+**Live code.** TST changed 1 compiled file of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `MyEntertaining_Embedded`. The observed calls come from the capture.
+
 ## 1. Route
 
 | Item | Value | Source |
@@ -81,7 +83,7 @@ Two independent lists: the event bindings of the TST views, and the JSX event bi
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/screens/MyEntertaining/analysis/sources/raw/`.
+The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 
@@ -111,7 +113,7 @@ Event handlers. The steps are the node comments and the conditions of the compil
 
 | Block | Event | Action | Steps |
 |---|---|---|---|
-| `MyEntertaining_Embedded` | OnInitialize ([`UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js:478`](../../migration/screens/MyEntertaining/analysis/sources/raw/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L478)) | `onInitialize` | 1. If (in_InitialEventSouceId === UBTConnectModel.staticEntities.type_MyCalendarEventSource.orbi… ([`L292`](../../migration/screens/MyEntertaining/analysis/sources/raw/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L292))<br>2. PreloadedSource = "orbit" ([`L294`](../../migration/screens/MyEntertaining/analysis/sources/raw/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L294))<br>3. Else ([`L297`](../../migration/screens/MyEntertaining/analysis/sources/raw/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L297))<br>4. If in_InitialEventSouceId === UBTConnectModel.staticEntities.type_MyCalendarEventSource.lDM ([`L298`](../../migration/screens/MyEntertaining/analysis/sources/raw/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L298))<br>5. PreloadedSource = "ldm" ([`L300`](../../migration/screens/MyEntertaining/analysis/sources/raw/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L300))<br>6. Else ([`L303`](../../migration/screens/MyEntertaining/analysis/sources/raw/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L303))<br>7. If in_InitialEventSouceId === UBTConnectModel.staticEntities.type_MyCalendarEventSource.assem… ([`L304`](../../migration/screens/MyEntertaining/analysis/sources/raw/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L304))<br>8. PreloadedSource = "assemble" ([`L306`](../../migration/screens/MyEntertaining/analysis/sources/raw/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L306))<br>9. Else ([`L309`](../../migration/screens/MyEntertaining/analysis/sources/raw/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L309))<br>10. If in_InitialEventSouceId === UBTConnectModel.staticEntities.type_MyCalendarEventSource.userC… ([`L310`](../../migration/screens/MyEntertaining/analysis/sources/raw/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L310))<br>11. PreloadedSource = "personal" ([`L312`](../../migration/screens/MyEntertaining/analysis/sources/raw/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L312))<br>12. Else ([`L315`](../../migration/screens/MyEntertaining/analysis/sources/raw/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L315)) |
+| `MyEntertaining_Embedded` | OnInitialize ([`UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js:478`](../../migration/runtime-sources/live/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L478)) | `onInitialize` | 1. If (in_InitialEventSouceId === UBTConnectModel.staticEntities.type_MyCalendarEventSource.orbi… ([`L292`](../../migration/runtime-sources/live/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L292))<br>2. PreloadedSource = "orbit" ([`L294`](../../migration/runtime-sources/live/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L294))<br>3. Else ([`L297`](../../migration/runtime-sources/live/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L297))<br>4. If in_InitialEventSouceId === UBTConnectModel.staticEntities.type_MyCalendarEventSource.lDM ([`L298`](../../migration/runtime-sources/live/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L298))<br>5. PreloadedSource = "ldm" ([`L300`](../../migration/runtime-sources/live/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L300))<br>6. Else ([`L303`](../../migration/runtime-sources/live/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L303))<br>7. If in_InitialEventSouceId === UBTConnectModel.staticEntities.type_MyCalendarEventSource.assem… ([`L304`](../../migration/runtime-sources/live/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L304))<br>8. PreloadedSource = "assemble" ([`L306`](../../migration/runtime-sources/live/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L306))<br>9. Else ([`L309`](../../migration/runtime-sources/live/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L309))<br>10. If in_InitialEventSouceId === UBTConnectModel.staticEntities.type_MyCalendarEventSource.userC… ([`L310`](../../migration/runtime-sources/live/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L310))<br>11. PreloadedSource = "personal" ([`L312`](../../migration/runtime-sources/live/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L312))<br>12. Else ([`L315`](../../migration/runtime-sources/live/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L315)) |
 
 Data actions and aggregates. The tool reads `dataFetchDependenciesOriginal`: `0` is a fetch when the block opens, `-1` is a fetch only on demand (a `Refresh Query` step). `Read by` lists the child block inputs, conditions, text widgets and actions that read the result.
 
@@ -141,7 +143,7 @@ Client variables and browser storage that the route reads or writes. Other scree
 
 | Block | Operation | Variable | Places |
 |---|---|---|---|
-| `MyEntertaining_Embedded` | get | `UBTConnect.Embedd_B2CTenant` | [`UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js:169`](../../migration/screens/MyEntertaining/analysis/sources/raw/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L169), [`UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js:254`](../../migration/screens/MyEntertaining/analysis/sources/raw/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L254) |
+| `MyEntertaining_Embedded` | get | `UBTConnect.Embedd_B2CTenant` | [`UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js:169`](../../migration/runtime-sources/live/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L169), [`UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js:254`](../../migration/runtime-sources/live/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L254) |
 
 ### 9.2 React
 

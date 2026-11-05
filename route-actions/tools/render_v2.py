@@ -177,6 +177,11 @@ def render(r, h):
                     (": " + ", ".join(f"`{m}`" for m in st["missing"][:6]) + ("…" if len(st["missing"]) > 6 else "") if st["missing"] else "") + ".", ""]
                    if st else [])
 
+    live = r.get("live") or []
+    live_note = ([f"**Live code.** TST changed {len(live)} compiled file{'s' if len(live) > 1 else ''} of this route after the capture "
+                  "(`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in "
+                  "`migration/runtime-sources/live/` for: " + ", ".join(f"`{h.short(f)}`" for f in live) +
+                  ". The observed calls come from the capture.", ""] if live else [])
     L = [f"# {route}: OutSystems (TST) and React", "",
          f"The route `/UBTConnect/{route}`, read from the TST compiled code and from the React code by "
          f"`route-actions/tools/check_route.py` on {h.date.today().isoformat()}. Facts only, each with its place. "
@@ -185,6 +190,7 @@ def render(r, h):
          f"`app/src/pages/{route}/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks "
          "and components that the route uses are in the last section.", "",
          *static_note,
+         *live_note,
          "## 1. Route", "",
          "| Item | Value | Source |", "|---|---|---|",
          f"| Route | `/UBTConnect/{route}` | `app/src/app/routes.generated.ts` |",

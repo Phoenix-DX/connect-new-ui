@@ -4,6 +4,8 @@ The route `/UBTConnect/NotificationDetails`, read from the TST compiled code and
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/NotificationDetails/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
+**Live code.** TST changed 1 compiled file of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `NotificationDetails`. The observed calls come from the capture.
+
 ## 1. Route
 
 | Item | Value | Source |
@@ -20,21 +22,51 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 
 | Check | Result |
 |---|---|
-| Server calls of the route on TST | 2: React makes 2, **0 missing** |
-| Differences found | **0** (see [section 3](#3-differences-found)) |
+| Server calls of the route on TST | 5: React makes 2, **2 missing**, 1 not a gap of the web app |
+| Differences found | **14** (+ 1 not a gap of the web app) (see [section 3](#3-differences-found)) |
 | Questions | 0 (see [section 4](#4-questions)) |
 | React calls reached only through shared code | 0: see the last section |
-| User actions of the route (own code) | OutSystems: 0. React: 1 |
+| User actions of the route (own code) | OutSystems: 1. React: 1 |
 | Screen and blocks of the UI flow with a React port | 1 of 1 |
-| Navigation targets found in React | 6 of 6 |
+| Navigation targets found in React | 10 of 20 |
 | Shared blocks and components on the route | OutSystems 10, React 2 with user actions: see the last section |
-| App shell on this route | 8 calls: see [APP_SHELL.md](../APP_SHELL.md) |
+| App shell on this route | 9 calls: see [APP_SHELL.md](../APP_SHELL.md) |
 
 ## 3. Differences found
 
 Each line is a fact of both sides: a TST call, navigation or variable, and the React code that has it or not. The tool does not judge the behaviour.
 
-None.
+- Call `UBTConnect/App_Notifications/NotificationDetails/ScreenDataSetGetMessageTemplateParametersByMessageTemplateId`. Chain on TST: NotificationDetails fetch at start → NotificationDetails.ScreenDataSetGetMessageTemplateParametersByMessageTemplateId.
+  - No React code makes this call.
+  - Note in [`api/message/hooks.ts:90`](../../app/src/api/message/hooks.ts#L90): "/** The aggregate GetMessageTemplateParametersByMessageTemplateId of ScreenBlock_MessageDetail as a query. */"
+  - Note in [`api/message/mapper.ts:59`](../../app/src/api/message/mapper.ts#L59): "/** The inputs of the aggregate GetMessageTemplateParametersByMessageTemplateId. */"
+  - Note in [`api/message/repository.ts:156`](../../app/src/api/message/repository.ts#L156): "/** The aggregate GetMessageTemplateParametersByMessageTemplateId of ScreenBlock_MessageDetail, refreshed by"
+- Call `UBTConnect/App_Notifications/NotificationDetails/DataActionGetMessageInstance`. Chain on TST: NotificationDetails fetch at start → NotificationDetails.DataActionGetMessageInstance.
+  - No React code makes this call.
+  - Note in [`api/message/mapper.ts:179`](../../app/src/api/message/mapper.ts#L179): "/** The message of GetMessageInstance with the fields that the block reads: "" or "0" instance id, the null date and"
+  - Note in [`api/message/types.ts:134`](../../app/src/api/message/types.ts#L134): "/** GetMessageInstance.Message, the fields that the block reads (null for "" / NullIdentifier / 1900-01-01). */"
+  - Note in [`pages/MessageDetail/components/MessageDetailView.tsx:21`](../../app/src/pages/MessageDetail/components/MessageDetailView.tsx#L21): "/** GetMessageInstance.Message; null before the first answer (the Spinner shows). */"
+- Navigation to `HostSurvey` (from NotificationDetails). The React screen and the app shell do not go to this route.
+- Navigation to `MilestoneDetail` (from NotificationDetails). The React screen and the app shell do not go to this route.
+- Navigation to `EventDetail` (from NotificationDetails). The React screen and the app shell do not go to this route.
+- Navigation to `AssembleDetail` (from NotificationDetails). The React screen and the app shell do not go to this route.
+- Navigation to `OneSchoolGlobalDetails` (from NotificationDetails). The React screen and the app shell do not go to this route.
+- Navigation to `FeedItemDetail` (from NotificationDetails). The React screen and the app shell do not go to this route.
+- Navigation to `LDM_Email_V2` (from NotificationDetails). The React screen and the app shell do not go to this route.
+- Navigation to `LDM_Email` (from NotificationDetails). The React screen and the app shell do not go to this route.
+- Navigation to `LDM_EventDetail_V2` (from NotificationDetails). The React screen and the app shell do not go to this route.
+- Navigation to `LDM_EventDetail` (from NotificationDetails). The React screen and the app shell do not go to this route.
+- Navigation to `HouseholdDetails` with the parameters `HouseholdId` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:1604`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L1604)). No React navigation to `HouseholdDetails` gives parameters. React names `HouseholdDetails` in: [`app/routes.ts:76`](../../app/src/app/routes.ts#L76).
+- Navigation to `SupperMeeting_Details` with the parameters `In_SubdivsionId` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:1618`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L1618)). No React navigation to `SupperMeeting_Details` gives parameters. React names `SupperMeeting_Details` in: [`app/routes.ts:82`](../../app/src/app/routes.ts#L82).
+
+### Not a gap of the web app
+
+Missing TST calls that a rule of `route-actions/config.json` (`notApplicable`, user 2026-11-05) sets aside. The rule names the fact and its evidence; the chain is the one of the TST code.
+
+**No binding in the TST view.** Every chain roots in a client action of the screen or of a block of its UI flow. No view event, lifecycle event or block event binds that action. Evidence: facts.json callSites rootKinds of the call (the call graph of the compiled code, tools/os_call_graph.py).
+
+- `UBTConnect/App_Notifications/NotificationDetails/ActionWrapper_NotificationOpened`. Chain on TST: NotificationDetails.getMessageInstanceByIdOnAfterFetch → server Wrapper_NotificationOpened.
+
 
 ## 4. Questions
 
@@ -54,8 +86,11 @@ All columns come from the code, without interpretation:
 
 | # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
 |---|---|---|---|---|---|---|---|---|
-| 1 | `UBTConnect/App_Notifications/NotificationDetails/DataActionFetchMessageInstance` | data action | `NotificationDetails` | NotificationDetails fetch at start → NotificationDetails.DataActionFetchMessageInstance | yes | `fetchNotificationDetail()` [`api/notification/notificationDetail.ts:39`](../../app/src/api/notification/notificationDetail.ts#L39) (page) | `NotificationDetails → useNotificationDetailQuery → fetchNotificationDetail`<br>[`pages/NotificationDetails/NotificationDetailsPage.tsx`](../../app/src/pages/NotificationDetails/NotificationDetailsPage.tsx) | implemented |
-| 2 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx) | implemented |
+| 1 | `UBTConnect/App_Notifications/NotificationDetails/ActionWrapper_NotificationOpened` | server action | `NotificationDetails` | NotificationDetails.getMessageInstanceByIdOnAfterFetch → server Wrapper_NotificationOpened | no | – | – | not applicable (noBinding) |
+| 2 | `UBTConnect/App_Notifications/NotificationDetails/DataActionFetchMessageInstance` | data action | `NotificationDetails` | NotificationDetails fetch at start → NotificationDetails.DataActionFetchMessageInstance | yes | `fetchNotificationDetail()` [`api/notification/notificationDetail.ts:39`](../../app/src/api/notification/notificationDetail.ts#L39) (page) | `NotificationDetails → useNotificationDetailQuery → fetchNotificationDetail`<br>[`pages/NotificationDetails/NotificationDetailsPage.tsx`](../../app/src/pages/NotificationDetails/NotificationDetailsPage.tsx) | implemented |
+| 3 | `UBTConnect/App_Notifications/NotificationDetails/DataActionGetMessageInstance` | data action | `NotificationDetails` | NotificationDetails fetch at start → NotificationDetails.DataActionGetMessageInstance | no | – | – | **missing** |
+| 4 | `UBTConnect/App_Notifications/NotificationDetails/ScreenDataSetGetMessageTemplateParametersByMessageTemplateId` | aggregate | `NotificationDetails` | NotificationDetails fetch at start → NotificationDetails.ScreenDataSetGetMessageTemplateParametersByMessageTemplateId | no | – | – | **missing** |
+| 5 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx) | implemented |
 
 ## 6. User actions
 
@@ -63,7 +98,9 @@ Two independent lists: the event bindings of the TST views, and the JSX event bi
 
 ### 6.1 OutSystems (TST)
 
-None.
+| # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
+|---|---|---|---|---|---|
+| 1 | `NotificationDetails` | `onExecuteAction of AdaptiveCardViewer` | `adaptiveCardViewerOnExecuteAction` | – | shows a message |
 
 ### 6.2 React
 
@@ -74,15 +111,30 @@ None.
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/screens/NotificationDetails/analysis/sources/raw/`.
+The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 
 | Input | Type | Mandatory | Place |
 |---|---|---|---|
-| `MessageInstanceId` | LongInteger | yes | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:82`](../../migration/screens/NotificationDetails/analysis/sources/raw/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L82) |
+| `MessageInstanceId` | LongInteger | yes | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:142`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L142) |
+| `MessageTemplateId` | LongInteger | yes | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:146`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L146) |
+| `HardwareId` | Text | yes | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:150`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L150) |
 
-Navigations with parameters: none.
+| Block | Target | Parameters | Place |
+|---|---|---|---|
+| `NotificationDetails` | `HostSurvey` | `In_EventId` = `eventId`<br>`In_EventStartDate` = `eventStartDate`<br>`In_EventName` = `eventName`<br>`In_MemberId` = `memberId`<br>`In_EventEndDate` = `eventEndDate` | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:916`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L916) |
+| `NotificationDetails` | `MilestoneDetail` | `In_EventName` = `eventName`<br>`In_EventId` = `eventId`<br>`In_MilestoneId` = `milestoneId`<br>`In_FromNotification` = `true` | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:1296`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L1296) |
+| `NotificationDetails` | `EventDetail` | `In_FromNotification` = `true`<br>`In_EventId` = `eventId`<br>`In_MemberId` = `memberId`<br>`In_EventName` = `eventName` | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:1429`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L1429) |
+| `NotificationDetails` | `AssembleDetail` | `AssembleEventTypeTile` = `assembleEventTypeTile`<br>`SeriesId` = `eventParentId`<br>`EventId` = `eventInstanceId` | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:1487`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L1487) |
+| `NotificationDetails` | `HouseholdDetails` | `HouseholdId` = `textToLongInteger(objectId)` | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:1604`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L1604) |
+| `NotificationDetails` | `OneSchoolGlobalDetails` | `In_OneSchoolGlobalId` = `textToLongInteger(objectId)` | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:1611`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L1611) |
+| `NotificationDetails` | `SupperMeeting_Details` | `In_SubdivsionId` = `textToLongInteger(objectId)` | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:1618`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L1618) |
+| `NotificationDetails` | `FeedItemDetail` | `FeedItemId` = `objectId` | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:1625`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L1625) |
+| `NotificationDetails` | `LDM_Email_V2` | `EventHostId` = `in_EventHostId`<br>`In_IsContactOrganiser` = `false`<br>`In_IsMessageGuest` = `true`<br>`In_EventId` = `in_EventId` | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:1797`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L1797) |
+| `NotificationDetails` | `LDM_Email` | `In_IsContactOrganiser` = `false`<br>`EventHostId` = `in_EventHostId`<br>`In_EventId` = `in_EventId`<br>`In_IsMessageGuest` = `true` | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:1806`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L1806) |
+| `NotificationDetails` | `LDM_EventDetail_V2` | `EventHostId` = `in_EventHostId`<br>`EventId` = `in_EventId` | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:1874`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L1874) |
+| `NotificationDetails` | `LDM_EventDetail` | `EventHostId` = `in_EventHostId`<br>`EventId` = `in_EventId` | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:1881`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L1881) |
 
 ### 7.2 React
 
@@ -108,7 +160,8 @@ Data actions and aggregates. The tool reads `dataFetchDependenciesOriginal`: `0`
 
 | Block | Data action | Fetch | Read by | Place |
 |---|---|---|---|---|
-| `NotificationDetails` | `FetchMessageInstance` | at start (`0`) | `IconText.Text` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:222`](../../migration/screens/NotificationDetails/analysis/sources/raw/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L222)), `view` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:223`](../../migration/screens/NotificationDetails/analysis/sources/raw/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L223)), `text` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:300`](../../migration/screens/NotificationDetails/analysis/sources/raw/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L300)), `CustomText.In_Text` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:355`](../../migration/screens/NotificationDetails/analysis/sources/raw/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L355)) | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:519`](../../migration/screens/NotificationDetails/analysis/sources/raw/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L519) |
+| `NotificationDetails` | `FetchMessageInstance` | on demand (`-1`) | **no widget or action reads it** | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:713`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L713) |
+| `NotificationDetails` | `GetMessageInstance` | at start (`0`) | `view` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:249`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L249)), `IconText.Text` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:308`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L308)), `text` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:386`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L386)), `CustomText.In_Text` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:441`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L441)), `shown if (CustomText)` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:479`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L479)), `AdaptiveCardViewer.In_AdaptiveCardJson` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:499`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L499)), `SanitizedHtml.Value` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:553`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L553)), `action getMessageInstanceByIdOnAfterFetch` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:999`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L999)), `action getMessageTemplateParametersOnAfterFetch` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:1351`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L1351)) | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:714`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L714) |
 
 ### 8.2 React
 
@@ -140,7 +193,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:576`](../../migration/screens/NotificationDetails/analysis/sources/raw/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L576) |
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:2016`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L2016) |
 | React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.
@@ -151,7 +204,9 @@ What the route does when an action or a call fails.
 
 ### 11.1 OutSystems (TST)
 
-The actions of the screen and its blocks have no `Handle Error` node.
+| Block | Action | Error | Steps of the handler |
+|---|---|---|---|
+| `NotificationDetails` | `adaptiveCardViewerOnExecuteAction` | `CommunicationException` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:1686`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L1686)) | none |
 
 An error without a handler goes to the `OnException` of the UI flow (`handleError`):
 

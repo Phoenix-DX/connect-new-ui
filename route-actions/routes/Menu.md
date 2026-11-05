@@ -4,6 +4,8 @@ The route `/UBTConnect/Menu`, read from the TST compiled code and from the React
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/Menu/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
+**Live code.** TST changed 2 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `Menu`, `CacheControl_UserInfo`. The observed calls come from the capture.
+
 ## 1. Route
 
 | Item | Value | Source |
@@ -110,7 +112,7 @@ sequenceDiagram
   Note over B: confirm dialog
   B->>S: RequestPhotoUpdate()
   S-->>B: Out_IsSuccess
-  Note over B: message "Your update photo request has been submitted."
+  Note over B: message "Thank you. Your photo update request has been submitted and is awaiting review."
 ```
 
 
@@ -172,7 +174,7 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/screens/Menu/analysis/sources/raw/`.
+The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 
@@ -198,7 +200,7 @@ Event handlers. The steps are the node comments and the conditions of the compil
 
 | Block | Event | Action | Steps |
 |---|---|---|---|
-| `Menu` | OnInitialize ([`UBTConnect.App_Menu.Menu.mvc.js:1106`](../../migration/screens/Menu/analysis/sources/raw/UBTConnect.App_Menu.Menu.mvc.js#L1106)) | `screenEvent_OnInitialize` | 1. Execute Action: Menu_GetList ([`L892`](../../migration/screens/Menu/analysis/sources/raw/UBTConnect.App_Menu.Menu.mvc.js#L892))<br>2. MenuOptionList = Menu_GetList.MenuItemsList ([`L896`](../../migration/screens/Menu/analysis/sources/raw/UBTConnect.App_Menu.Menu.mvc.js#L896)) |
+| `Menu` | OnInitialize ([`UBTConnect.App_Menu.Menu.mvc.js:1106`](../../migration/runtime-sources/live/UBTConnect.App_Menu.Menu.mvc.js#L1106)) | `screenEvent_OnInitialize` | 1. Execute Action: Menu_GetList ([`L892`](../../migration/runtime-sources/live/UBTConnect.App_Menu.Menu.mvc.js#L892))<br>2. MenuOptionList = Menu_GetList.MenuItemsList ([`L896`](../../migration/runtime-sources/live/UBTConnect.App_Menu.Menu.mvc.js#L896)) |
 
 <details><summary>Sequence diagrams of the screen event handlers (1)</summary>
 
@@ -250,7 +252,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.App_Menu.Menu.mvc.js:1131`](../../migration/screens/Menu/analysis/sources/raw/UBTConnect.App_Menu.Menu.mvc.js#L1131) |
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.App_Menu.Menu.mvc.js:1131`](../../migration/runtime-sources/live/UBTConnect.App_Menu.Menu.mvc.js#L1131) |
 | React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.

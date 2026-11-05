@@ -4,6 +4,8 @@ The route `/UBTConnect/Notifications`, read from the TST compiled code and from 
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/Notifications/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
+**Live code.** TST changed 6 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `Notifications`, `NotificationsList`, `NotificationsListBreakpoints`, `Notifications_Header`, `Notification_ListItem`, `AvatarImage`. The observed calls come from the capture.
+
 ## 1. Route
 
 | Item | Value | Source |
@@ -20,11 +22,11 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 
 | Check | Result |
 |---|---|
-| Server calls of the route on TST | 9: React makes 8, **0 missing**, 1 not a gap of the web app |
-| Differences found | **0** (+ 1 not a gap of the web app) (see [section 3](#3-differences-found)) |
+| Server calls of the route on TST | 8: React makes 8, **0 missing** |
+| Differences found | **1** (see [section 3](#3-differences-found)) |
 | Questions | 0 (see [section 4](#4-questions)) |
 | React calls reached only through shared code | 0: see the last section |
-| User actions of the route (own code) | OutSystems: 9. React: 16 |
+| User actions of the route (own code) | OutSystems: 10. React: 16 |
 | Screen and blocks of the UI flow with a React port | 7 of 7 |
 | Navigation targets found in React | 7 of 7 |
 | Shared blocks and components on the route | OutSystems 23, React 2 with user actions: see the last section |
@@ -34,16 +36,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 
 Each line is a fact of both sides: a TST call, navigation or variable, and the React code that has it or not. The tool does not judge the behaviour.
 
-None.
-
-### Not a gap of the web app
-
-Missing TST calls that a rule of `route-actions/config.json` (`notApplicable`, user 2026-11-05) sets aside. The rule names the fact and its evidence; the chain is the one of the TST code.
-
-**No binding in the TST view.** Every chain roots in a client action of the screen or of a block of its UI flow. No view event, lifecycle event or block event binds that action. Evidence: facts.json callSites rootKinds of the call (the call graph of the compiled code, tools/os_call_graph.py).
-
-- `UBTConnect/App_Notifications/Notifications/ServiceAPIAction_UI_UpdateItem_MarkAllAsRead`. Chain on TST: Notifications.handler_MarkAllAsRead → server Action_UI_UpdateItem_MarkAllAsRead.
-
+- Navigation to `NotificationDetails`: TST gives `HardwareId`, `MessageInstanceId`, `MessageTemplateId` ([`UBTConnect.App_Notifications.Notifications.mvc.js:2592`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L2592)); React gives `MessageInstanceId` ([`pages/Notifications/hooks/useNotifications.ts:245`](../../app/src/pages/Notifications/hooks/useNotifications.ts#L245)).
 
 ## 4. Questions
 
@@ -65,13 +58,12 @@ All columns come from the code, without interpretation:
 |---|---|---|---|---|---|---|---|---|
 | 1 | `UBTConnect/App_Notifications/Notifications/ActionMarkAllAsReadNotifications` | server action | `Notifications` | onClick in IconText → event clicked of IconText → … → Notifications.handler_MoreActionSheetMarkAllAsRead → server MarkAllAsReadNotifications | no | `markAllAsReadNotifications()` [`api/notification/repository.ts:68`](../../app/src/api/notification/repository.ts#L68) (page) | `Notifications → useNotifications → markAllAsReadNotifications`<br>[`pages/Notifications/NotificationsPage.tsx`](../../app/src/pages/Notifications/NotificationsPage.tsx) | implemented |
 | 2 | `UBTConnect/App_Notifications/Notifications/ActionMarkAsRead` | server action | `Notifications` | onClick in NotificationsList → NotificationsList.onClick_NotificationDetail → … → Notifications.handler_NotificationDetail → server MarkAsRead | no | `markNotificationAsRead()` [`api/notification/notificationDetail.ts:47`](../../app/src/api/notification/notificationDetail.ts#L47) (page) | `Notifications → useNotifications → markNotificationAsRead`<br>[`pages/Notifications/NotificationsPage.tsx`](../../app/src/pages/Notifications/NotificationsPage.tsx) | implemented |
-| 3 | `UBTConnect/App_Notifications/Notifications/DataActionFetchNotifications` | data action | `Notifications` | onChange in Notifications_Action → Notifications_Action.switch_IsOnlyShowUnReadOnChange → event onlyShowUnread of Notifications_Action → Notifications.handler_OnlyShowUnread → Notifications.DataActionFetchNotifications<br>event event_OnClick of Button → MoreActionSheet.onClick_Clear → … → Notifications.refreshNotifications → Notifications.DataActionFetchNotifications<br>event event_OnClick of Button → SortSheet.onClick_Clear → … → Notifications.refreshNotifications → Notifications.DataActionFetchNotifications<br>(+2 more chains) | yes | `fetchNotifications()` [`api/notification/repository.ts:40`](../../app/src/api/notification/repository.ts#L40) (page) | `Notifications → useNotifications → fetchNotifications`<br>[`pages/Notifications/NotificationsPage.tsx`](../../app/src/pages/Notifications/NotificationsPage.tsx) | implemented |
+| 3 | `UBTConnect/App_Notifications/Notifications/DataActionFetchNotifications` | data action | `Notifications` | onChange in Notifications_Action → Notifications_Action.switch_IsOnlyShowUnReadOnChange → event onlyShowUnread of Notifications_Action → Notifications.handler_OnlyShowUnread → Notifications.DataActionFetchNotifications<br>NotificationsListBreakpoints.notificationsListBreakpoints_OnScrollEnding → event onLoadMore of NotificationsListBreakpoints → Notifications.notificationsListBreakpoints_OnLoadMore → Notifications.DataActionFetchNotifications<br>event event_OnClick of Button → MoreActionSheet.onClick_Clear → … → Notifications.refreshNotifications → Notifications.DataActionFetchNotifications<br>(+2 more chains) | yes | `fetchNotifications()` [`api/notification/repository.ts:40`](../../app/src/api/notification/repository.ts#L40) (page) | `Notifications → useNotifications → fetchNotifications`<br>[`pages/Notifications/NotificationsPage.tsx`](../../app/src/pages/Notifications/NotificationsPage.tsx) | implemented |
 | 4 | `UBTConnect/App_Notifications/Notifications/DataActionGetDateRanges` | data action | `Notifications` | Notifications.OnReady → Notifications.screenEvent_OnReady → Notifications.DataActionGetDateRanges<br>Notifications fetch at start → Notifications.DataActionGetDateRanges | yes | `fetchNotificationDateRanges()` [`api/notification/repository.ts:32`](../../app/src/api/notification/repository.ts#L32) (page) | `Notifications → useNotifications → fetchNotificationDateRanges`<br>[`pages/Notifications/NotificationsPage.tsx`](../../app/src/pages/Notifications/NotificationsPage.tsx) | implemented |
-| 5 | `UBTConnect/App_Notifications/Notifications/ServiceAPIAction_UI_UpdateItem_MarkAllAsRead` | service action | `Notifications` | Notifications.handler_MarkAllAsRead → server Action_UI_UpdateItem_MarkAllAsRead | no | – | – | not applicable (noBinding) |
-| 6 | `UBTConnect/App_Notifications/Notifications/ServiceAPIDelete_Notifications` | service action | `Notifications` | MoreActionSheet.deleteAllNotificationClicked → event deleteAllNotification of MoreActionSheet → … → Notifications.handler_MoreActionSheetDeleteAll → server Delete_Notifications | no | `deleteNotifications()` [`api/notification/repository.ts:60`](../../app/src/api/notification/repository.ts#L60) (page) | `NotificationsList → deleteNotifications`<br>[`pages/Notifications/components/NotificationsList.tsx`](../../app/src/pages/Notifications/components/NotificationsList.tsx)<br>`Notifications → useNotifications → deleteNotifications`<br>[`pages/Notifications/NotificationsPage.tsx`](../../app/src/pages/Notifications/NotificationsPage.tsx) | implemented |
-| 7 | `UBTConnect/App_Notifications/NotificationsList/ActionToggleRead` | server action | `NotificationsList` | onClick in NotificationsList → NotificationsList.handler_ToggleRead → server ToggleRead | no | `toggleNotificationRead()` [`api/notification/repository.ts:54`](../../app/src/api/notification/repository.ts#L54) (page) | `NotificationsList → toggleNotificationRead`<br>[`pages/Notifications/components/NotificationsList.tsx`](../../app/src/pages/Notifications/components/NotificationsList.tsx) | implemented |
-| 8 | `UBTConnect/App_Notifications/NotificationsList/ServiceAPIDelete_Notifications` | service action | `NotificationsList` | NotificationsList.handler_DeleteNotification → server Delete_Notifications | no | `deleteNotifications()` [`api/notification/repository.ts:60`](../../app/src/api/notification/repository.ts#L60) (page) | `NotificationsList → deleteNotifications`<br>[`pages/Notifications/components/NotificationsList.tsx`](../../app/src/pages/Notifications/components/NotificationsList.tsx)<br>`Notifications → useNotifications → deleteNotifications`<br>[`pages/Notifications/NotificationsPage.tsx`](../../app/src/pages/Notifications/NotificationsPage.tsx) | implemented |
-| 9 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All<br>Notifications.handler_MarkAllAsRead → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All<br>Notifications.handler_MarkAsRead → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All<br>(+3 more chains) | yes | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx)<br>`Notifications → useNotifications → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`pages/Notifications/NotificationsPage.tsx`](../../app/src/pages/Notifications/NotificationsPage.tsx) | implemented |
+| 5 | `UBTConnect/App_Notifications/Notifications/ServiceAPIDelete_Notifications` | service action | `Notifications` | MoreActionSheet.deleteAllNotificationClicked → event deleteAllNotification of MoreActionSheet → … → Notifications.handler_MoreActionSheetDeleteAll → server Delete_Notifications | no | `deleteNotifications()` [`api/notification/repository.ts:60`](../../app/src/api/notification/repository.ts#L60) (page) | `NotificationsList → deleteNotifications`<br>[`pages/Notifications/components/NotificationsList.tsx`](../../app/src/pages/Notifications/components/NotificationsList.tsx)<br>`Notifications → useNotifications → deleteNotifications`<br>[`pages/Notifications/NotificationsPage.tsx`](../../app/src/pages/Notifications/NotificationsPage.tsx) | implemented |
+| 6 | `UBTConnect/App_Notifications/NotificationsList/ActionToggleRead` | server action | `NotificationsList` | onClick in NotificationsList → NotificationsList.handler_ToggleRead → server ToggleRead | no | `toggleNotificationRead()` [`api/notification/repository.ts:54`](../../app/src/api/notification/repository.ts#L54) (page) | `NotificationsList → toggleNotificationRead`<br>[`pages/Notifications/components/NotificationsList.tsx`](../../app/src/pages/Notifications/components/NotificationsList.tsx) | implemented |
+| 7 | `UBTConnect/App_Notifications/NotificationsList/ServiceAPIDelete_Notifications` | service action | `NotificationsList` | NotificationsList.handler_DeleteNotification → server Delete_Notifications | no | `deleteNotifications()` [`api/notification/repository.ts:60`](../../app/src/api/notification/repository.ts#L60) (page) | `NotificationsList → deleteNotifications`<br>[`pages/Notifications/components/NotificationsList.tsx`](../../app/src/pages/Notifications/components/NotificationsList.tsx)<br>`Notifications → useNotifications → deleteNotifications`<br>[`pages/Notifications/NotificationsPage.tsx`](../../app/src/pages/Notifications/NotificationsPage.tsx) | implemented |
+| 8 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All<br>onClick in IconText → event clicked of IconText → … → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All<br>onChange in Notifications_Action → Notifications_Action.switch_IsOnlyShowUnReadOnChange → … → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All<br>(+3 more chains) | yes | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx)<br>`Notifications → useNotifications → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`pages/Notifications/NotificationsPage.tsx`](../../app/src/pages/Notifications/NotificationsPage.tsx) | implemented |
 
 ## 6. User actions
 
@@ -84,12 +76,13 @@ Two independent lists: the event bindings of the TST views, and the JSX event bi
 | 1 | `Notifications` | `event_ClearString of Input`<br>`event_Submit of Input` | `handler_FilterSearchText` | – | calls FetchNotifications |
 | 2 | `Notifications` | `onlyShowUnread of Action` | `handler_OnlyShowUnread` | – | calls FetchNotifications |
 | [3](#613-notifications-handler_notificationdetail) | `Notifications` | `notificationDetail of NotificationsListBreakpoints` | `handler_NotificationDetail` | – | calls MarkAsRead; goes to NotificationDetails |
-| 4 | `Notifications` | `applyFilters of MoreActionSheet`<br>`applyFilters of SortSheet` | `handler_ApplyFilters` | – | calls FetchNotifications |
-| [5](#615-notifications-handler_moreactionsheetdeleteall) | `Notifications` | `deleteAll of MoreActionSheet` | `handler_MoreActionSheetDeleteAll` | – | calls Delete_Notifications, FetchNotifications |
-| [6](#616-notifications-handler_moreactionsheetmarkallasread) | `Notifications` | `markAllAsRead of MoreActionSheet` | `handler_MoreActionSheetMarkAllAsRead` | – | calls MarkAllAsReadNotifications, Get_UI_UpdateItems_UnreadCount_All, FetchNotifications |
-| 7 | `NotificationsList` | `onClick (HTML element)` | `handler_ToggleRead` | – | calls ToggleRead |
-| 8 | `NotificationsList` | `confirm of ConfirmDialog` | `handler_DeleteNotification` | – | calls Delete_Notifications |
-| 9 | `Notifications_Action` | `click of Icon`<br>`clicked of IconText` | `iconClick` | – | asks for a confirmation |
+| 4 | `Notifications` | `onLoadMore of NotificationsListBreakpoints` | `notificationsListBreakpoints_OnLoadMore` | – | calls FetchNotifications |
+| 5 | `Notifications` | `applyFilters of MoreActionSheet`<br>`applyFilters of SortSheet` | `handler_ApplyFilters` | – | calls FetchNotifications |
+| [6](#616-notifications-handler_moreactionsheetdeleteall) | `Notifications` | `deleteAll of MoreActionSheet` | `handler_MoreActionSheetDeleteAll` | – | calls Delete_Notifications, FetchNotifications |
+| [7](#617-notifications-handler_moreactionsheetmarkallasread) | `Notifications` | `markAllAsRead of MoreActionSheet` | `handler_MoreActionSheetMarkAllAsRead` | – | calls MarkAllAsReadNotifications, Get_UI_UpdateItems_UnreadCount_All, FetchNotifications |
+| 8 | `NotificationsList` | `onClick (HTML element)` | `handler_ToggleRead` | – | calls ToggleRead |
+| 9 | `NotificationsList` | `confirm of ConfirmDialog` | `handler_DeleteNotification` | – | calls Delete_Notifications |
+| 10 | `Notifications_Action` | `click of Icon`<br>`clicked of IconText` | `iconClick` | – | asks for a confirmation |
 
 <details><summary>3 diagrams (handlers with two or more effects)</summary>
 
@@ -108,7 +101,7 @@ sequenceDiagram
   B->>N: go to NotificationDetails
 ```
 
-#### 6.1.5 Notifications: handler_MoreActionSheetDeleteAll
+#### 6.1.6 Notifications: handler_MoreActionSheetDeleteAll
 
 ```mermaid
 sequenceDiagram
@@ -120,10 +113,10 @@ sequenceDiagram
   B->>S: Delete_Notifications(Messages)
   S-->>B: no outputs
   B->>S: FetchNotifications(BottomSheetId_IsLoaded, BottomSheetId_ShowSubscription, Breakpoints, …)
-  S-->>B: HasUnreadMessages, UI_NotificationItemList, UnreadNotificationsCount
+  S-->>B: UI_NotificationItemList, UnreadNotificationsCount
 ```
 
-#### 6.1.6 Notifications: handler_MoreActionSheetMarkAllAsRead
+#### 6.1.7 Notifications: handler_MoreActionSheetMarkAllAsRead
 
 ```mermaid
 sequenceDiagram
@@ -138,7 +131,7 @@ sequenceDiagram
   B->>S: Get_UI_UpdateItems_UnreadCount_All()
   S-->>B: UnreadCount
   B->>S: FetchNotifications(BottomSheetId_IsLoaded, BottomSheetId_ShowSubscription, Breakpoints, …)
-  S-->>B: HasUnreadMessages, UI_NotificationItemList, UnreadNotificationsCount
+  S-->>B: UI_NotificationItemList, UnreadNotificationsCount
 ```
 
 
@@ -180,7 +173,7 @@ sequenceDiagram
   Note over H: via refreshNotifications()
   Note over H: via fetchNotifications()
   H->>A: DataActionFetchNotifications(BottomSheetId_IsLoaded, BottomSheetId_ShowSubscription, Breakpoints, …)
-  A-->>H: HasUnreadMessages, UI_NotificationItemList, UnreadNotificationsCount
+  A-->>H: UI_NotificationItemList, UnreadNotificationsCount
   Note over H: via directory_Updates_RefreshBottomBarCount()
   Note over H: via fetchUnreadUpdateItemsCount()
   H->>A: ServiceAPIGet_UI_UpdateItems_UnreadCount_All()
@@ -216,7 +209,7 @@ sequenceDiagram
   Note over H: via refreshNotifications()
   Note over H: via fetchNotifications()
   H->>A: DataActionFetchNotifications(BottomSheetId_IsLoaded, BottomSheetId_ShowSubscription, Breakpoints, …)
-  A-->>H: HasUnreadMessages, UI_NotificationItemList, UnreadNotificationsCount
+  A-->>H: UI_NotificationItemList, UnreadNotificationsCount
   Note over H: via directory_Updates_RefreshBottomBarCount()
   Note over H: via fetchUnreadUpdateItemsCount()
   H->>A: ServiceAPIGet_UI_UpdateItems_UnreadCount_All()
@@ -236,7 +229,7 @@ sequenceDiagram
   Note over H: via refreshNotifications()
   Note over H: via fetchNotifications()
   H->>A: DataActionFetchNotifications(BottomSheetId_IsLoaded, BottomSheetId_ShowSubscription, Breakpoints, …)
-  A-->>H: HasUnreadMessages, UI_NotificationItemList, UnreadNotificationsCount
+  A-->>H: UI_NotificationItemList, UnreadNotificationsCount
   Note over H: via directory_Updates_RefreshBottomBarCount()
   Note over H: via fetchUnreadUpdateItemsCount()
   H->>A: ServiceAPIGet_UI_UpdateItems_UnreadCount_All()
@@ -263,7 +256,7 @@ sequenceDiagram
   Note over H: via refreshNotifications()
   Note over H: via fetchNotifications()
   H->>A: DataActionFetchNotifications(BottomSheetId_IsLoaded, BottomSheetId_ShowSubscription, Breakpoints, …)
-  A-->>H: HasUnreadMessages, UI_NotificationItemList, UnreadNotificationsCount
+  A-->>H: UI_NotificationItemList, UnreadNotificationsCount
   Note over H: via directory_Updates_RefreshBottomBarCount()
   Note over H: via fetchUnreadUpdateItemsCount()
   H->>A: ServiceAPIGet_UI_UpdateItems_UnreadCount_All()
@@ -286,7 +279,7 @@ sequenceDiagram
   Note over H: via refreshNotifications()
   Note over H: via fetchNotifications()
   H->>A: DataActionFetchNotifications(BottomSheetId_IsLoaded, BottomSheetId_ShowSubscription, Breakpoints, …)
-  A-->>H: HasUnreadMessages, UI_NotificationItemList, UnreadNotificationsCount
+  A-->>H: UI_NotificationItemList, UnreadNotificationsCount
   Note over H: via directory_Updates_RefreshBottomBarCount()
   Note over H: via fetchUnreadUpdateItemsCount()
   H->>A: ServiceAPIGet_UI_UpdateItems_UnreadCount_All()
@@ -332,7 +325,7 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/screens/Notifications/analysis/sources/raw/`.
+The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 
@@ -340,7 +333,7 @@ Screen inputs: none. `setInputs` of `Notifications` reads no input.
 
 | Block | Target | Parameters | Place |
 |---|---|---|---|
-| `Notifications` | `NotificationDetails` | `MessageInstanceId` = `messageInstanceId` | [`UBTConnect.App_Notifications.Notifications.mvc.js:3000`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L3000) |
+| `Notifications` | `NotificationDetails` | `HardwareId` = `hardwareId`<br>`MessageInstanceId` = `messageInstanceId`<br>`MessageTemplateId` = `messageTemplateId` | [`UBTConnect.App_Notifications.Notifications.mvc.js:2592`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L2592) |
 
 ### 7.2 React
 
@@ -362,11 +355,12 @@ Event handlers. The steps are the node comments and the conditions of the compil
 
 | Block | Event | Action | Steps |
 |---|---|---|---|
-| `Notifications` | OnInitialize ([`UBTConnect.App_Notifications.Notifications.mvc.js:3284`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L3284)) | `screenEvent_OnInitialize` | 1. JavaScript: IsViewRestoredFromCache ([`L1678`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L1678))<br>2. Check if IsViewRestoredFromCache IsRestoredFromCache ([`L1685`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L1685))<br>3. If isViewRestoredFromCache.isRestoredFromCache ([`L1686`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L1686))<br>4. JavaScript: FocusCursor ([`L1688`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L1688))<br>5. Execute Action: GetPreloadObject ([`L1693`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L1693))<br>6. If ((getPreloadObject.preload) !== (nullObject())) ([`L1696`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L1696))<br>7. Execute Action: AssignFromObject ([`L1698`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L1698))<br>8. Foreach EntitiesCarousel_SwippedItems ([`L1701`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L1701))<br>9. If ((entitiesCarousel_SwippedItems.getItem(entitiesCarousel_SwippedItemsIndex.valueOf()).list… ([`L1707`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L1707))<br>10. FetchNotifications.UnreadNotificationsCount = FetchNotifications.UnreadNotificationsCount - 1 ([`L1709`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L1709))<br>11. FetchNotifications.UI_NotificationItemList[EntitiesCarousel_SwippedItems.Current.ListPosition].IsRead = True ([`L1712`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L1712))<br>12. Execute Action: ListIndexOf ([`L1715`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L1715))<br>13. If ((listIndexOf.position) !== (-1)) ([`L1720`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L1720))<br>14. Breakpoints[ListIndexOf.Position].BadgeCount = Breakpoints[ListIndexOf.Position].BadgeCount - 1 ([`L1722`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L1722))<br>15. << ([`L1726`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L1726))<br>16. Else ([`L1738`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L1738))<br>17. Else ([`L1742`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L1742))<br>18. SelectedFilter_MessageTypePrivate = True ([`L1744`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L1744))<br>19. SelectedFilter_MessageTypePublic = True ([`L1747`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L1747))<br>20. SelectedFilter_OrderASC = False ([`L1750`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L1750))<br>21. Execute Action: InitializeSetting ([`L1753`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L1753))<br>22. Set Initial Breakpoint ([`L1755`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L1755))<br>23. CurrentBreakpoint.Position = 0 ([`L1757`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L1757))<br>24. CurrentBreakpoint.SectionName = Today ([`L1760`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L1760))<br>25. CurrentBreakpoint.BadgeCount = 0 ([`L1763`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L1763)) |
-| `Notifications` | OnReady ([`UBTConnect.App_Notifications.Notifications.mvc.js:3302`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L3302)) | `screenEvent_OnReady` | 1. JavaScript: SetStickyHeaderHeight ([`L2126`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L2126))<br>2. isLoading ([`L2128`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L2128))<br>3. isLoading = True ([`L2130`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L2130))<br>4. Execute Action: GetSkeletonList_UI_Notification ([`L2133`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L2133))<br>5. Setup Skeleton Data ([`L2136`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L2136))<br>6. FetchNotifications.UI_NotificationItemList = GetSkeletonList_UI_Notification.UI_NotificationItems ([`L2138`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L2138))<br>7. Refresh Query: GetDateRanges ([`L2141`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L2141)) |
-| `Notifications` | OnDestroy ([`UBTConnect.App_Notifications.Notifications.mvc.js:3321`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L3321)) | `destroyEventListener` | 1. JavaScript: DestroyEventListener ([`L1464`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L1464)) |
-| `NotificationsList` | OnInitialize ([`UBTConnect.App_Notifications.NotificationsList.mvc.js:955`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.NotificationsList.mvc.js#L955)) | `onInitialize` | 1. Execute Action: ListFilter_GetRange ([`L762`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.NotificationsList.mvc.js#L762))<br>2. Execute Action: ListAppendAll ([`L768`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.NotificationsList.mvc.js#L768)) |
-| `NotificationsList` | OnParametersChanged ([`UBTConnect.App_Notifications.NotificationsList.mvc.js:976`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.NotificationsList.mvc.js#L976)) | `onParametersChanged` | 1. Execute Action: ListClear ([`L887`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.NotificationsList.mvc.js#L887))<br>2. Execute Action: ListFilter_GetRange ([`L890`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.NotificationsList.mvc.js#L890))<br>3. Execute Action: ListAppendAll ([`L896`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.NotificationsList.mvc.js#L896)) |
+| `Notifications` | OnInitialize ([`UBTConnect.App_Notifications.Notifications.mvc.js:2864`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L2864)) | `screenEvent_OnInitialize` | 1. Execute Action: ResetNotifications ([`L1504`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1504))<br>2. JavaScript: IsViewRestoredFromCache ([`L1507`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1507))<br>3. Check if IsViewRestoredFromCache IsRestoredFromCache ([`L1514`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1514))<br>4. If isViewRestoredFromCache.isRestoredFromCache ([`L1515`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1515))<br>5. JavaScript: FocusCursor ([`L1517`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1517))<br>6. Execute Action: GetPreloadObject ([`L1522`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1522))<br>7. If ((getPreloadObject.preload) !== (nullObject())) ([`L1525`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1525))<br>8. Execute Action: AssignFromObject ([`L1527`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1527))<br>9. Foreach EntitiesCarousel_SwippedItems ([`L1530`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1530))<br>10. If ((entitiesCarousel_SwippedItems.getItem(entitiesCarousel_SwippedItemsIndex.valueOf()).list… ([`L1536`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1536))<br>11. FetchNotifications.UnreadNotificationsCount = FetchNotifications.UnreadNotificationsCount - 1 ([`L1538`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1538))<br>12. FetchNotifications.UI_NotificationItemList[EntitiesCarousel_SwippedItems.Current.ListPosition].IsRead = True ([`L1541`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1541))<br>13. Execute Action: ListIndexOf ([`L1544`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1544))<br>14. If ((listIndexOf.position) !== (-1)) ([`L1549`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1549))<br>15. Breakpoints[ListIndexOf.Position].BadgeCount = Breakpoints[ListIndexOf.Position].BadgeCount - 1 ([`L1551`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1551))<br>16. << ([`L1555`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1555))<br>17. Else ([`L1567`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1567))<br>18. Else ([`L1571`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1571))<br>19. SelectedFilter_MessageTypePrivate = True ([`L1573`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1573))<br>20. SelectedFilter_MessageTypePublic = True ([`L1576`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1576))<br>21. SelectedFilter_OrderASC = False ([`L1579`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1579))<br>22. Execute Action: InitializeSetting ([`L1582`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1582))<br>23. Set Initial Breakpoint ([`L1584`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1584))<br>24. CurrentBreakpoint.Position = 0 ([`L1586`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1586))<br>25. CurrentBreakpoint.SectionName = Today ([`L1589`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1589))<br>26. CurrentBreakpoint.BadgeCount = 0 ([`L1592`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1592)) |
+| `Notifications` | OnReady ([`UBTConnect.App_Notifications.Notifications.mvc.js:2882`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L2882)) | `screenEvent_OnReady` | 1. isLoading ([`L1887`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1887))<br>2. isLoading = True ([`L1889`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1889))<br>3. Execute Action: GetSkeletonList_UI_Notification ([`L1892`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1892))<br>4. Setup Skeleton Data ([`L1895`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1895))<br>5. Screen_NotificationItemList = GetSkeletonList_UI_Notification.UI_NotificationItems ([`L1897`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1897))<br>6. Breakpoints = GetSkeletonList_UI_Notification.Breakpoints ([`L1900`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1900))<br>7. Refresh Query: GetDateRanges ([`L1903`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1903)) |
+| `Notifications` | OnDestroy ([`UBTConnect.App_Notifications.Notifications.mvc.js:2901`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L2901)) | `destroyEventListener` | 1. JavaScript: DestroyEventListener ([`L1337`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1337)) |
+| `Notifications_Header` | OnReady ([`UBTConnect.App_Notifications.Notifications_Header.mvc.js:426`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications_Header.mvc.js#L426)) | `onReady` | 1. JavaScript: SetStickyHeaderHeight ([`L397`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications_Header.mvc.js#L397)) |
+| `NotificationsList` | OnInitialize ([`UBTConnect.App_Notifications.NotificationsList.mvc.js:1025`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationsList.mvc.js#L1025)) | `onInitialize` | 1. Execute Action: ListFilter_GetRange ([`L814`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationsList.mvc.js#L814))<br>2. Execute Action: ListAppendAll ([`L820`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationsList.mvc.js#L820)) |
+| `NotificationsList` | OnParametersChanged ([`UBTConnect.App_Notifications.NotificationsList.mvc.js:1046`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationsList.mvc.js#L1046)) | `onParametersChanged` | 1. Execute Action: ListClear ([`L957`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationsList.mvc.js#L957))<br>2. Execute Action: ListFilter_GetRange ([`L960`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationsList.mvc.js#L960))<br>3. Execute Action: ListAppendAll ([`L966`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationsList.mvc.js#L966)) |
 
 <details><summary>Sequence diagrams of the screen event handlers (3)</summary>
 
@@ -380,6 +374,7 @@ sequenceDiagram
   participant R as OutSystems runtime
   participant B as Notifications
   R->>B: OnInitialize → screenEvent_OnInitialize
+  B->>B: action ResetNotifications
   B->>B: JavaScript IsViewRestoredFromCache
   Note over B: Check if IsViewRestoredFromCache IsRestoredFromCache
   alt isViewRestoredFromCache.isRestoredFromCache
@@ -421,12 +416,12 @@ sequenceDiagram
   participant B as Notifications
   participant S as Server (TST calls)
   R->>B: OnReady → screenEvent_OnReady
-  B->>B: JavaScript SetStickyHeaderHeight
   Note over B: isLoading
   Note over B: isLoading = True
   B->>B: action GetSkeletonList_UI_Notification
   Note over B: Setup Skeleton Data
-  Note over B: FetchNotifications.UI_NotificationItemList = GetSkeletonList_UI_Notification.UI_…
+  Note over B: Screen_NotificationItemList = GetSkeletonList_UI_Notification.UI_NotificationIte…
+  Note over B: Breakpoints = GetSkeletonList_UI_Notification.Breakpoints
   B->>S: GetDateRanges
   S-->>B: GetDateRanges
 ```
@@ -448,8 +443,8 @@ Data actions and aggregates. The tool reads `dataFetchDependenciesOriginal`: `0`
 
 | Block | Data action | Fetch | Read by | Place |
 |---|---|---|---|---|
-| `Notifications` | `GetDateRanges` | on demand (`-1`) | `action onAfterFetch_GetDateRanges` ([`UBTConnect.App_Notifications.Notifications.mvc.js:2265`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L2265)) | [`UBTConnect.App_Notifications.Notifications.mvc.js:1257`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L1257) |
-| `Notifications` | `FetchNotifications` | on demand (`-1`) | `shown if (Notifications_Header)` ([`UBTConnect.App_Notifications.Notifications.mvc.js:737`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L737)), `NotificationsListBreakpoints.UI_NotificationItemList` ([`UBTConnect.App_Notifications.Notifications.mvc.js:844`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L844)), `view` ([`UBTConnect.App_Notifications.Notifications.mvc.js:845`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L845)), `NotificationsListBreakpoints.source` ([`UBTConnect.App_Notifications.Notifications.mvc.js:910`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L910)), `Notification_ListItem.In_IsRead` ([`UBTConnect.App_Notifications.Notifications.mvc.js:966`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L966)), `Notification_ListItem.In_Description` ([`UBTConnect.App_Notifications.Notifications.mvc.js:969`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L969)), `Notification_ListItem.In_NotificationDate` ([`UBTConnect.App_Notifications.Notifications.mvc.js:971`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L971)), `ScrollAnchor.Id` ([`UBTConnect.App_Notifications.Notifications.mvc.js:991`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L991)), `text` ([`UBTConnect.App_Notifications.Notifications.mvc.js:1012`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L1012)), `action screenEvent_OnInitialize` ([`UBTConnect.App_Notifications.Notifications.mvc.js:1707`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L1707)), `action setMarkAllTag` ([`UBTConnect.App_Notifications.Notifications.mvc.js:1874`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L1874)), `action screenEvent_OnReady` ([`UBTConnect.App_Notifications.Notifications.mvc.js:2139`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L2139)), `action onAfterFetch_FetchNotifications` ([`UBTConnect.App_Notifications.Notifications.mvc.js:2524`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L2524)), `action handler_MoreActionSheetDeleteAll` ([`UBTConnect.App_Notifications.Notifications.mvc.js:2715`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L2715)) | [`UBTConnect.App_Notifications.Notifications.mvc.js:1258`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L1258) |
+| `Notifications` | `GetDateRanges` | on demand (`-1`) | `action onAfterFetch_GetDateRanges` ([`UBTConnect.App_Notifications.Notifications.mvc.js:2027`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L2027)) | [`UBTConnect.App_Notifications.Notifications.mvc.js:1141`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1141) |
+| `Notifications` | `FetchNotifications` | on demand (`-1`) | `shown if (Notifications_Header)` ([`UBTConnect.App_Notifications.Notifications.mvc.js:740`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L740)), `text` ([`UBTConnect.App_Notifications.Notifications.mvc.js:957`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L957)), `action screenEvent_OnInitialize` ([`UBTConnect.App_Notifications.Notifications.mvc.js:1536`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1536)), `action onAfterFetch_FetchNotifications` ([`UBTConnect.App_Notifications.Notifications.mvc.js:2167`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L2167)), `action handler_MoreActionSheetDeleteAll` ([`UBTConnect.App_Notifications.Notifications.mvc.js:2374`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L2374)) | [`UBTConnect.App_Notifications.Notifications.mvc.js:1142`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L1142) |
 
 ### 8.2 React
 
@@ -500,7 +495,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.App_Notifications.Notifications.mvc.js:3343`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L3343) |
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.App_Notifications.Notifications.mvc.js:2923`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L2923) |
 | React | access `member`, lock `enforce`, flag redirect C2NewNotifications = false → MessageList | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.
@@ -513,9 +508,8 @@ What the route does when an action or a call fails.
 
 | Block | Action | Error | Steps of the handler |
 |---|---|---|---|
-| `Notifications` | `handler_MarkAllAsRead` | `AllExceptions` ([`UBTConnect.App_Notifications.Notifications.mvc.js:2082`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L2082)) | 1. isLoading = False ([`L2090`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L2090)) |
-| `Notifications` | `onAfterFetch_GetDateRanges` | `AllExceptions` ([`UBTConnect.App_Notifications.Notifications.mvc.js:2280`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L2280)) | 1. isLoading = False ([`L2288`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L2288))<br>2. Raise Error: BubbleGenericException ([`L2291`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L2291)) |
-| `Notifications` | `onAfterFetch_FetchNotifications` | `AllExceptions` ([`UBTConnect.App_Notifications.Notifications.mvc.js:2566`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L2566)) | 1. isLoading = False ([`L2574`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L2574))<br>2. Raise Error: BubbleGenericException ([`L2577`](../../migration/screens/Notifications/analysis/sources/raw/UBTConnect.App_Notifications.Notifications.mvc.js#L2577)) |
+| `Notifications` | `onAfterFetch_GetDateRanges` | `AllExceptions` ([`UBTConnect.App_Notifications.Notifications.mvc.js:2042`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L2042)) | 1. isLoading = False ([`L2050`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L2050))<br>2. Raise Error: BubbleGenericException ([`L2053`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L2053)) |
+| `Notifications` | `onAfterFetch_FetchNotifications` | `AllExceptions` ([`UBTConnect.App_Notifications.Notifications.mvc.js:2225`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L2225)) | 1. isLoading = False ([`L2233`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L2233))<br>2. Raise Error: BubbleGenericException ([`L2236`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.Notifications.mvc.js#L2236)) |
 
 An error without a handler goes to the `OnException` of the UI flow (`handleError`):
 

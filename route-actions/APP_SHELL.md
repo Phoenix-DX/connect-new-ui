@@ -78,7 +78,7 @@ The tool `route-actions/tools/check_route.py` merges it from the 68 checked rout
 
 | Check | Result |
 |---|---|
-| App shell server calls on TST | 30: React makes 28, **0 missing** |
+| App shell server calls on TST | 30: React makes 27, **1 missing** |
 | App shell event bindings | OutSystems: 11 diagrams. React: 8 diagrams |
 | React app shell calls that TST does not make on a route | 0 |
 
@@ -95,10 +95,10 @@ flowchart LR
       o4["FeedBlock_Updates"]
       o5["Menu"]
       o6["Notes"]
-      o7["Notifications"]
-      o8["Photobook_Options_Left"]
-      o9["Policy_Custom_AcceptPendingPolicies"]
-      o10["ScreenBlock_Search"]
+      o7["NotificationDetails"]
+      o8["Notifications"]
+      o9["Photobook_Options_Left"]
+      o10["Policy_Custom_AcceptPendingPolicies"]
       o11["ShareSheet"]
       o12["UBTConnect"]
       o13["UBTConnect_Utils"]
@@ -125,18 +125,18 @@ flowchart LR
     e31["ActionGetSignedImagesInBulk"]
     e32["ActionCS_CreateShareProfileLink"]
     e33["ServiceAPIAction_UI_UpdateItem_MarkAsRead"]
-    e34["ActionRequestPhotoUpdate"]
-    e35["ActionAppManager_Logout"]
+    e34["ActionAppManager_Logout"]
+    e35["ActionRequestPhotoUpdate"]
     e36["ActionGetSignedImagesInBulk"]
     e37["DataActionGetNotes"]
     e38["ActionGet_NotePills_ByNoteCategoryIds"]
-    e39["DataActionFetchNotifications"]
-    e40["DataActionGetHouseholdCaption"]
-    e41["DataActionFetchSearchResults"]
-    e42["DataActionFetchUpdates"]
-    e43["ServiceAPIGet_UI_UpdateItems_UnreadCount_All"]
-    e44["ServiceAPIAction_UI_UpdateItem_MarkAsRead"]
-    e45["ServiceAPIAction_UI_UpdateItem_MarkAllAsRead"]
+    e39["ScreenDataSetGetMessageTemplateParametersByMessageTemplateId"]
+    e40["DataActionFetchNotifications"]
+    e41["DataActionGetHouseholdCaption"]
+    e42["ServiceAPIGet_UI_UpdateItems_UnreadCount_All"]
+    e43["ServiceAPIAction_UI_UpdateItem_MarkAsRead"]
+    e44["ServiceAPIAction_UI_UpdateItem_MarkAllAsRead"]
+    e45["DataActionFetchUpdates"]
   end
   subgraph RE["React actions"]
     subgraph RE_shell["App shell"]
@@ -162,70 +162,67 @@ flowchart LR
       r63["fetchNotePills()"]
       r64["fetchNotifications()"]
       r65["fetchRegionSubscribedCountries()"]
-      r66["fetchSearchResults()"]
-      r67["fetchUnreadUpdateItemsCount()"]
-      r68["fetchUpdatesList()"]
-      r69["getCacheableUserInfo()"]
-      r70["markAllUpdateItemsAsRead()"]
-      r71["markUpdateItemAsRead()"]
-      r72["requestPhotoUpdate()"]
+      r66["fetchUnreadUpdateItemsCount()"]
+      r67["fetchUpdatesList()"]
+      r68["getCacheableUserInfo()"]
+      r69["markAllUpdateItemsAsRead()"]
+      r70["markUpdateItemAsRead()"]
+      r71["requestPhotoUpdate()"]
     end
   end
   subgraph RC["React components"]
-    c73["AcceptPendingPolicies"]
-    c74["AccommodationHost"]
-    c75["AppFrame"]
-    c76["AssembleFilterSheetBlock"]
-    c77["AssembleLocalityFilter"]
-    c78["Bookmarks"]
-    c79["BottomBar"]
-    c80["CommonUiLayout"]
-    c81["EntityLazyImage"]
-    c82["Menu"]
-    c83["MilestoneBlock"]
-    c84["Notes"]
-    c85["Notifications"]
-    c86["Photobook_Options_Left"]
-    c87["Search"]
-    c88["ShareSheetContainer"]
-    c89["Updates_SingleList"]
+    c72["AcceptPendingPolicies"]
+    c73["AccommodationHost"]
+    c74["AppFrame"]
+    c75["AssembleFilterSheetBlock"]
+    c76["AssembleLocalityFilter"]
+    c77["Bookmarks"]
+    c78["BottomBar"]
+    c79["CommonUiLayout"]
+    c80["EntityLazyImage"]
+    c81["Menu"]
+    c82["MilestoneBlock"]
+    c83["Notes"]
+    c84["Notifications"]
+    c85["Photobook_Options_Left"]
+    c86["ShareSheetContainer"]
+    c87["Updates_SingleList"]
   end
-  r52 --- c80
-  r54 --- c80
-  r46 --- c75
-  r47 --- c75
-  r48 --- c75
-  r49 --- c75
-  r50 --- c75
-  r51 --- c75
-  r52 --- c75
-  r53 --- c75
-  r55 --- c73
-  r48 --- c73
-  r57 --- c88
-  r54 --- c77
-  r69 --- c77
-  r65 --- c76
-  r69 --- c76
-  r58 --- c78
-  r59 --- c78
-  r56 --- c81
-  r67 --- c89
-  r68 --- c89
-  r70 --- c89
-  r71 --- c89
-  r47 --- c82
-  r72 --- c82
-  r61 --- c83
-  r61 --- c74
-  r62 --- c84
-  r63 --- c84
-  r64 --- c85
-  r60 --- c86
+  r52 --- c79
+  r54 --- c79
+  r46 --- c74
+  r47 --- c74
+  r48 --- c74
+  r49 --- c74
+  r50 --- c74
+  r51 --- c74
+  r52 --- c74
+  r53 --- c74
+  r55 --- c72
+  r48 --- c72
+  r57 --- c86
+  r54 --- c76
+  r68 --- c76
+  r65 --- c75
+  r68 --- c75
+  r58 --- c77
+  r59 --- c77
+  r56 --- c80
   r66 --- c87
-  r67 --- c79
+  r67 --- c87
+  r69 --- c87
+  r70 --- c87
+  r47 --- c81
+  r71 --- c81
+  r61 --- c82
+  r61 --- c73
+  r62 --- c83
+  r63 --- c83
+  r64 --- c84
+  r60 --- c85
+  r66 --- c78
   o2 --> e16
-  o9 --> e17
+  o10 --> e17
   o3 --> e18
   o3 --> e21
   o3 --> e23
@@ -233,7 +230,7 @@ flowchart LR
   o3 --> e36
   o14 --> e19
   o14 --> e24
-  o14 --> e35
+  o14 --> e34
   o11 --> e20
   o13 --> e22
   o13 --> e31
@@ -241,24 +238,24 @@ flowchart LR
   o12 --> e25
   o12 --> e27
   o12 --> e28
-  o12 --> e43
+  o12 --> e42
   o1 --> e29
   o0 --> e30
   o0 --> e38
   o4 --> e33
-  o5 --> e34
+  o5 --> e35
   o6 --> e37
   o7 --> e39
   o8 --> e40
-  o10 --> e41
-  o15 --> e42
+  o9 --> e41
+  o15 --> e43
   o15 --> e44
   o15 --> e45
   e16 --- r52
   e17 --- r55
   e19 --- r48
   e20 --- r57
-  e21 --- r69
+  e21 --- r68
   e22 --- r54
   e23 --- r65
   e24 --- r46
@@ -269,22 +266,22 @@ flowchart LR
   e29 --- r58
   e30 --- r59
   e31 --- r56
-  e33 --- r71
-  e34 --- r72
-  e35 --- r47
+  e33 --- r70
+  e34 --- r47
+  e35 --- r71
   e36 --- r61
   e37 --- r62
   e38 --- r63
-  e39 --- r64
-  e40 --- r60
-  e41 --- r66
-  e42 --- r68
-  e43 --- r67
-  e44 --- r71
-  e45 --- r70
+  e40 --- r64
+  e41 --- r60
+  e42 --- r66
+  e43 --- r70
+  e44 --- r69
+  e45 --- r67
   classDef missing fill:#fde2e1,stroke:#c0392b,color:#7b241c
   classDef ok fill:#e3f4e8,stroke:#2e7d4f,color:#1d4d31
-  class e16,e17,e18,e19,e20,e21,e22,e23,e24,e25,e26,e27,e28,e29,e30,e31,e32,e33,e34,e35,e36,e37,e38,e39,e40,e41,e42,e43,e44,e45 ok
+  class e39 missing
+  class e16,e17,e18,e19,e20,e21,e22,e23,e24,e25,e26,e27,e28,e29,e30,e31,e32,e33,e34,e35,e36,e37,e38,e40,e41,e42,e43,e44,e45 ok
 ```
 
 ## 3. User actions
@@ -592,10 +589,10 @@ All columns come from the code, without interpretation:
 | 8 | `UBTConnect/Home/FeedBlock_Updates/ServiceAPIAction_UI_UpdateItem_MarkAsRead` | service action | `FeedBlock_Updates` | onClick in CustomContainer → event clicked of CustomContainer → event onClick of Update_ListItem → FeedBlock_Updates.event_ListItemOnClick → server Action_UI_UpdateItem_MarkAsRead | no | `markUpdateItemAsRead()` [`api/update/repository.ts:47`](../app/src/api/update/repository.ts#L47) (page) | `FeedUpdates → useFeedUpdates → markUpdateItemAsRead`<br>[`pages/HomeFeed/HomeFeedPage.tsx`](../app/src/pages/HomeFeed/HomeFeedPage.tsx) | implemented | [HomeFeed](routes/HomeFeed.md) |
 | 9 | `UBTConnect/App_Menu/Menu/ActionRequestPhotoUpdate` | server action | `Menu` | onClick in CustomContainer → event clicked of CustomContainer → event onClick_MenuOption of Menu_List → Menu.onClick_MenuOption → server RequestPhotoUpdate | no | `requestPhotoUpdate()` [`api/member/repository.ts:46`](../app/src/api/member/repository.ts#L46) (page) | `Menu → useMenu → requestPhotoUpdate`<br>[`pages/Menu/MenuPage.tsx`](../app/src/pages/Menu/MenuPage.tsx) | implemented | [Menu](routes/Menu.md) |
 | 10 | `UBTConnect/Notes/Notes/DataActionGetNotes` | data action | `Notes` | onClick in CustomContainer → event clicked of CustomContainer → … → Notes.refresh_GetNotes → Notes.DataActionGetNotes<br>onClick in Icon → event click of Icon → … → Notes.refresh_GetNotes → Notes.DataActionGetNotes | yes | `fetchNoteCards()` [`api/note/repository.ts:31`](../app/src/api/note/repository.ts#L31) (page) | `Notes → useNotes → fetchNoteCards`<br>[`pages/Notes/NotesPage.tsx`](../app/src/pages/Notes/NotesPage.tsx) | implemented | [Notes](routes/Notes.md) |
-| 11 | `UBTConnect/App_Notifications/Notifications/DataActionFetchNotifications` | data action | `Notifications` | onClick in Icon → event click of Icon → … → Notifications.refreshNotifications → Notifications.DataActionFetchNotifications | yes | `fetchNotifications()` [`api/notification/repository.ts:40`](../app/src/api/notification/repository.ts#L40) (page) | `Notifications → useNotifications → fetchNotifications`<br>[`pages/Notifications/NotificationsPage.tsx`](../app/src/pages/Notifications/NotificationsPage.tsx) | implemented | [Notifications](routes/Notifications.md) |
-| 12 | `UBTConnect/Directory_Photobook/Photobook_Options_Left/DataActionGetHouseholdCaption` | data action | `Photobook_Options_Left` | onClick in CustomContainer → event clicked of CustomContainer → Photobook_Options_Left.handler_ClickedInfo → Photobook_Options_Left.DataActionGetHouseholdCaption | no | `fetchHouseholdCaption()` [`api/household/repository.ts:67`](../app/src/api/household/repository.ts#L67) (page) | `Photobook_Options_Left → useHouseholdCaption → fetchHouseholdCaption`<br>[`pages/Photobook/components/Photobook_Options_Left.tsx`](../app/src/pages/Photobook/components/Photobook_Options_Left.tsx) | implemented | [Photobook](routes/Photobook.md) |
-| 13 | `UBTConnect/App_Policies/Policy_Custom_AcceptPendingPolicies/ActionAcceptPolicies` | server action | `Policy_Custom_AcceptPendingPolicies` | onClick in Button → event event_OnClick of Button → event buttonOnClick of Button → Policy_Custom_AcceptPendingPolicies.continueOnClick → server AcceptPolicies | no capture | `acceptPolicies()` [`api/policy/repository.ts:29`](../app/src/api/policy/repository.ts#L29) (page) | `AcceptPendingPolicies → usePendingPoliciesForm → acceptPolicies`<br>[`pages/AcceptPendingPolicies/AcceptPendingPoliciesPage.tsx`](../app/src/pages/AcceptPendingPolicies/AcceptPendingPoliciesPage.tsx) | implemented | [AcceptPendingPolicies](routes/AcceptPendingPolicies.md) |
-| 14 | `UBTConnect/Directory_Search/ScreenBlock_Search/DataActionFetchSearchResults` | data action | `ScreenBlock_Search` | onClick in CustomContainer → event clicked of CustomContainer → … → ScreenBlock_Search.action_RefreshSearch → ScreenBlock_Search.DataActionFetchSearchResults | no | `fetchSearchResults()` [`api/search/repository.ts:30`](../app/src/api/search/repository.ts#L30) (page) | `Search → useSearch → fetchSearchResults`<br>[`pages/Search/SearchPage.tsx`](../app/src/pages/Search/SearchPage.tsx) | implemented | [Search](routes/Search.md) |
+| 11 | `UBTConnect/App_Notifications/NotificationDetails/ScreenDataSetGetMessageTemplateParametersByMessageTemplateId` | aggregate | `NotificationDetails` | server Wrapper_NotificationOpened → NotificationDetails.getMessageInstanceByIdOnAfterFetch → NotificationDetails.ScreenDataSetGetMessageTemplateParametersByMessageTemplateId | no | – | – | **missing** | [NotificationDetails](routes/NotificationDetails.md) |
+| 12 | `UBTConnect/App_Notifications/Notifications/DataActionFetchNotifications` | data action | `Notifications` | onClick in Icon → event click of Icon → … → Notifications.refreshNotifications → Notifications.DataActionFetchNotifications | yes | `fetchNotifications()` [`api/notification/repository.ts:40`](../app/src/api/notification/repository.ts#L40) (page) | `Notifications → useNotifications → fetchNotifications`<br>[`pages/Notifications/NotificationsPage.tsx`](../app/src/pages/Notifications/NotificationsPage.tsx) | implemented | [Notifications](routes/Notifications.md) |
+| 13 | `UBTConnect/Directory_Photobook/Photobook_Options_Left/DataActionGetHouseholdCaption` | data action | `Photobook_Options_Left` | onClick in CustomContainer → event clicked of CustomContainer → Photobook_Options_Left.handler_ClickedInfo → Photobook_Options_Left.DataActionGetHouseholdCaption | no | `fetchHouseholdCaption()` [`api/household/repository.ts:67`](../app/src/api/household/repository.ts#L67) (page) | `Photobook_Options_Left → useHouseholdCaption → fetchHouseholdCaption`<br>[`pages/Photobook/components/Photobook_Options_Left.tsx`](../app/src/pages/Photobook/components/Photobook_Options_Left.tsx) | implemented | [Photobook](routes/Photobook.md) |
+| 14 | `UBTConnect/App_Policies/Policy_Custom_AcceptPendingPolicies/ActionAcceptPolicies` | server action | `Policy_Custom_AcceptPendingPolicies` | onClick in Button → event event_OnClick of Button → event buttonOnClick of Button → Policy_Custom_AcceptPendingPolicies.continueOnClick → server AcceptPolicies | no capture | `acceptPolicies()` [`api/policy/repository.ts:29`](../app/src/api/policy/repository.ts#L29) (page) | `AcceptPendingPolicies → usePendingPoliciesForm → acceptPolicies`<br>[`pages/AcceptPendingPolicies/AcceptPendingPoliciesPage.tsx`](../app/src/pages/AcceptPendingPolicies/AcceptPendingPoliciesPage.tsx) | implemented | [AcceptPendingPolicies](routes/AcceptPendingPolicies.md) |
 | 15 | `UBTConnect_Utils/CW_Share/ShareSheet/ActionCS_ShareObject` | server action | `ShareSheet` | onClick in Button → event event_OnClick of Button → … → ShareSheet.action_SubmitShare → server CS_ShareObject | no capture | `csShareObject()` [`api/share/shareSheet.ts:25`](../app/src/api/share/shareSheet.ts#L25) (page) | `ShareSheetContainer → useShareSheet → csShareObject`<br>[`containers/ShareSheet/ShareSheetContainer.tsx`](../app/src/containers/ShareSheet/ShareSheetContainer.tsx) | implemented | [AssembleDetail](routes/AssembleDetail.md), [FeedItemDetail](routes/FeedItemDetail.md) |
 | 16 | `UBTConnect/ActionSync_Info_GetMain` | server action | `UBTConnect` | UBTConnect.onApplicationReady → UBTConnect.connect_SetLoggedContext → UBTConnect.sync_Info_Main → server Sync_Info_GetMain<br>UBTConnect.onApplicationReady → UBTConnect.sync_Info_Main → server Sync_Info_GetMain | yes | `fetchSyncInfoMain()` [`api/app/repository.ts:44`](../app/src/api/app/repository.ts#L44) (shell) | `AppFrame → AppStart → … → fetchSyncInfoMain`<br>[`app/AppFrame.tsx`](../app/src/app/AppFrame.tsx) | implemented | [AssembleEvents](routes/AssembleEvents.md), [Assemble_BrowseByCountry](routes/Assemble_BrowseByCountry.md), [Bookmarks](routes/Bookmarks.md), [BrowseCountries](routes/BrowseCountries.md), [BrowseDirectory](routes/BrowseDirectory.md), [CommunityBusinessDetails_CoomingSoon](routes/CommunityBusinessDetails_CoomingSoon.md), [ConnectShare](routes/ConnectShare.md), [ContactByEmailMember](routes/ContactByEmailMember.md), [ContactByEmailOneSchoolGlobal](routes/ContactByEmailOneSchoolGlobal.md), [ContactUsDetails](routes/ContactUsDetails.md), [ContactUsMenu](routes/ContactUsMenu.md), [CountryDetails](routes/CountryDetails.md), [CountryList](routes/CountryList.md), [HomeFeed](routes/HomeFeed.md), [HouseholdDetails](routes/HouseholdDetails.md), [Household_Relations](routes/Household_Relations.md), [LDM_MyEvents_V2](routes/LDM_MyEvents_V2.md), [LegacyShareObject](routes/LegacyShareObject.md), [Locality_Details](routes/Locality_Details.md), [Menu](routes/Menu.md), [MessageDetail](routes/MessageDetail.md), [MessageList](routes/MessageList.md), [MyEntertaining](routes/MyEntertaining.md), [Notes](routes/Notes.md), [NotificationDetails](routes/NotificationDetails.md), [Notifications](routes/Notifications.md), [OneSchoolGlobalDetails](routes/OneSchoolGlobalDetails.md), [OrbitAdminLanding](routes/OrbitAdminLanding.md), [OrbitLanding](routes/OrbitLanding.md), [PINBiometricsMenu](routes/PINBiometricsMenu.md), [PINChange](routes/PINChange.md), [PINRegister](routes/PINRegister.md), [PINUnlock](routes/PINUnlock.md), [Photobook](routes/Photobook.md), [Profile](routes/Profile.md), [Search](routes/Search.md), [Services](routes/Services.md), [Splash](routes/Splash.md), [SupperMeeting_Details](routes/SupperMeeting_Details.md), [TermsAndPoliciesMenu](routes/TermsAndPoliciesMenu.md), [Updates_SingleList](routes/Updates_SingleList.md) |
 | 17 | `UBTConnect/ServiceAPIFetchData_CacheableHouseholds` | service action | `UBTConnect` | UBTConnect.get_Cacheable_MapHouseholds → server FetchData_CacheableHouseholds | yes | `fetchCacheableHouseholds()` [`api/app/repository.ts:56`](../app/src/api/app/repository.ts#L56) (shell) | `AppFrame → AppStart → … → fetchCacheableHouseholds`<br>[`app/AppFrame.tsx`](../app/src/app/AppFrame.tsx) | implemented | [AssembleEvents](routes/AssembleEvents.md), [Assemble_BrowseByCountry](routes/Assemble_BrowseByCountry.md), [Bookmarks](routes/Bookmarks.md), [BrowseCountries](routes/BrowseCountries.md), [BrowseDirectory](routes/BrowseDirectory.md), [CommunityBusinessDetails_CoomingSoon](routes/CommunityBusinessDetails_CoomingSoon.md), [ConnectShare](routes/ConnectShare.md), [ContactByEmailMember](routes/ContactByEmailMember.md), [ContactByEmailOneSchoolGlobal](routes/ContactByEmailOneSchoolGlobal.md), [ContactUsDetails](routes/ContactUsDetails.md), [ContactUsMenu](routes/ContactUsMenu.md), [CountryDetails](routes/CountryDetails.md), [CountryList](routes/CountryList.md), [HomeFeed](routes/HomeFeed.md), [HouseholdDetails](routes/HouseholdDetails.md), [Household_Relations](routes/Household_Relations.md), [LDM_MyEvents_V2](routes/LDM_MyEvents_V2.md), [LegacyShareObject](routes/LegacyShareObject.md), [Locality_Details](routes/Locality_Details.md), [Menu](routes/Menu.md), [MessageDetail](routes/MessageDetail.md), [MessageList](routes/MessageList.md), [MyEntertaining](routes/MyEntertaining.md), [Notes](routes/Notes.md), [NotificationDetails](routes/NotificationDetails.md), [Notifications](routes/Notifications.md), [OneSchoolGlobalDetails](routes/OneSchoolGlobalDetails.md), [OrbitAdminLanding](routes/OrbitAdminLanding.md), [OrbitLanding](routes/OrbitLanding.md), [PINBiometricsMenu](routes/PINBiometricsMenu.md), [PINChange](routes/PINChange.md), [PINRegister](routes/PINRegister.md), [PINUnlock](routes/PINUnlock.md), [Photobook](routes/Photobook.md), [Profile](routes/Profile.md), [Search](routes/Search.md), [Services](routes/Services.md), [Splash](routes/Splash.md), [SupperMeeting_Details](routes/SupperMeeting_Details.md), [TermsAndPoliciesMenu](routes/TermsAndPoliciesMenu.md), [Updates_SingleList](routes/Updates_SingleList.md) |
@@ -615,7 +612,11 @@ All columns come from the code, without interpretation:
 
 ## 5. Missing in React
 
-None.
+- Call `UBTConnect/App_Notifications/NotificationDetails/ScreenDataSetGetMessageTemplateParametersByMessageTemplateId`. Chain on TST: server Wrapper_NotificationOpened → NotificationDetails.getMessageInstanceByIdOnAfterFetch → NotificationDetails.ScreenDataSetGetMessageTemplateParametersByMessageTemplateId.
+  - No React code makes this call.
+  - Note in [`api/message/hooks.ts:90`](../app/src/api/message/hooks.ts#L90): "/** The aggregate GetMessageTemplateParametersByMessageTemplateId of ScreenBlock_MessageDetail as a query. */"
+  - Note in [`api/message/mapper.ts:59`](../app/src/api/message/mapper.ts#L59): "/** The inputs of the aggregate GetMessageTemplateParametersByMessageTemplateId. */"
+  - Note in [`api/message/repository.ts:156`](../app/src/api/message/repository.ts#L156): "/** The aggregate GetMessageTemplateParametersByMessageTemplateId of ScreenBlock_MessageDetail, refreshed by"
 
 ## 6. Questions
 

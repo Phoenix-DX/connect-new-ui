@@ -4,6 +4,8 @@ The route `/UBTConnect/Search`, read from the TST compiled code and from the Rea
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/Search/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
+**Live code.** TST changed 4 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `FilterSheet`, `ScreenBlock_Search`, `HorizontalTagList`, `CacheControl_UserInfo`. The observed calls come from the capture.
+
 ## 1. Route
 
 | Item | Value | Source |
@@ -21,20 +23,22 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | Check | Result |
 |---|---|
 | Server calls of the route on TST | 6: React makes 6, **0 missing** |
-| Differences found | **0** (see [section 3](#3-differences-found)) |
+| Differences found | **3** (see [section 3](#3-differences-found)) |
 | Questions | 0 (see [section 4](#4-questions)) |
 | React calls reached only through shared code | 2: see the last section |
 | User actions of the route (own code) | OutSystems: 5. React: 7 |
 | Screen and blocks of the UI flow with a React port | 2 of 2 |
-| Navigation targets found in React | 8 of 8 |
+| Navigation targets found in React | 8 of 11 |
 | Shared blocks and components on the route | OutSystems 27, React 7 with user actions: see the last section |
-| App shell on this route | 8 calls: see [APP_SHELL.md](../APP_SHELL.md) |
+| App shell on this route | 7 calls: see [APP_SHELL.md](../APP_SHELL.md) |
 
 ## 3. Differences found
 
 Each line is a fact of both sides: a TST call, navigation or variable, and the React code that has it or not. The tool does not judge the behaviour.
 
-None.
+- Navigation to `OneSchoolGlobalDetails` (from ScreenBlock_Search). The React screen and the app shell do not go to this route.
+- Navigation to `AssembleDetail` (from ScreenBlock_Search). The React screen and the app shell do not go to this route.
+- Navigation to `LDM_EventDetail_V2` (from ScreenBlock_Search). The React screen and the app shell do not go to this route.
 
 ## 4. Questions
 
@@ -58,7 +62,7 @@ All columns come from the code, without interpretation:
 |---|---|---|---|---|---|---|---|---|
 | 1 | `UBTConnect_Utils/CacheControl/CacheControl_AllCountries/DataActionGetCacheInfo` | data action | `CacheControl_AllCountries` | CacheControl.OnInitialize → CacheControl.onInitialize → event onNonCacheHit of CacheControl → CacheControl_AllCountries.cacheControlOnNonCacheHit → CacheControl_AllCountries.DataActionGetCacheInfo<br>CacheControl_AllCountries fetch at start → CacheControl_AllCountries.DataActionGetCacheInfo | yes | `fetchAllCountries()` [`api/country/repository.ts:94`](../../app/src/api/country/repository.ts#L94) (page) | `FilterSheetContainer → AllCountriesCacheControl → fetchAllCountries`<br>[`containers/FilterSheet/FilterSheetContainer.tsx`](../../app/src/containers/FilterSheet/FilterSheetContainer.tsx) | implemented |
 | 2 | `UBTConnect_Utils/CacheControl/CacheControl_UserInfo/DataActionGetCacheInfo` | data action | `CacheControl_UserInfo` | CacheControl.OnInitialize → CacheControl.onInitialize → event onNonCacheHit of CacheControl → CacheControl_UserInfo.cacheControlOnNonCacheHit → CacheControl_UserInfo.DataActionGetCacheInfo<br>CacheControl_UserInfo fetch at start → CacheControl_UserInfo.DataActionGetCacheInfo | yes | `UserInfoCacheControl()` [`legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx:37`](../../app/src/legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx#L37) (page) | `FilterSheetContainer → UserInfoCache → UserInfoCacheControl`<br>[`containers/FilterSheet/FilterSheetContainer.tsx`](../../app/src/containers/FilterSheet/FilterSheetContainer.tsx) | implemented |
-| 3 | `UBTConnect/Directory_Search/ScreenBlock_Search/DataActionFetchSearchResults` | data action | `ScreenBlock_Search` | onClick in Button → event event_OnClick of Button → … → ScreenBlock_Search.action_RefreshSearch → ScreenBlock_Search.DataActionFetchSearchResults<br>onClick in Button → event event_OnClick of Button → … → ScreenBlock_Search.action_RefreshSearch → ScreenBlock_Search.DataActionFetchSearchResults<br>onKeyUp in Input → Input.onKeyup → … → ScreenBlock_Search.action_RefreshSearch → ScreenBlock_Search.DataActionFetchSearchResults<br>(+2 more chains) | no | `fetchSearchResults()` [`api/search/repository.ts:30`](../../app/src/api/search/repository.ts#L30) (page) | `Search → useSearch → fetchSearchResults`<br>[`pages/Search/SearchPage.tsx`](../../app/src/pages/Search/SearchPage.tsx) | implemented |
+| 3 | `UBTConnect/Directory_Search/ScreenBlock_Search/DataActionFetchSearchResults` | data action | `ScreenBlock_Search` | onClick in Button → event event_OnClick of Button → … → ScreenBlock_Search.action_RefreshSearch → ScreenBlock_Search.DataActionFetchSearchResults<br>onClick in Button → event event_OnClick of Button → … → ScreenBlock_Search.action_RefreshSearch → ScreenBlock_Search.DataActionFetchSearchResults<br>ScreenBlock_Search.event_HorizontalTagListChanged → ScreenBlock_Search.action_RefreshSearch → ScreenBlock_Search.DataActionFetchSearchResults<br>(+3 more chains) | no | `fetchSearchResults()` [`api/search/repository.ts:30`](../../app/src/api/search/repository.ts#L30) (page) | `Search → useSearch → fetchSearchResults`<br>[`pages/Search/SearchPage.tsx`](../../app/src/pages/Search/SearchPage.tsx) | implemented |
 | 4 | `UBTConnect/Directory_Search/ScreenBlock_Search/DataActionGet_FilteredRecentClickedResults` | data action | `ScreenBlock_Search` | ScreenBlock_Search.get_RecentClickedResultsOnAfterFetch → ScreenBlock_Search.DataActionGet_FilteredRecentClickedResults<br>ScreenBlock_Search fetch at start → ScreenBlock_Search.DataActionGet_FilteredRecentClickedResults | yes | `getFilteredRecentClickedResults()` [`api/search/repository.ts:59`](../../app/src/api/search/repository.ts#L59) (page) | `Search → useSearch → getFilteredRecentClickedResults`<br>[`pages/Search/SearchPage.tsx`](../../app/src/pages/Search/SearchPage.tsx) | implemented |
 | 5 | `UBTConnect/Directory_Search/ScreenBlock_Search/ScreenDataSetGet_SearchBirthdayOptions` | aggregate | `ScreenBlock_Search` | ScreenBlock_Search.OnReady → ScreenBlock_Search.screenEvent_OnReady → ScreenBlock_Search.ScreenDataSetGet_SearchBirthdayOptions<br>ScreenBlock_Search fetch at start → ScreenBlock_Search.ScreenDataSetGet_SearchBirthdayOptions | yes | `fetchSearchBirthdayOptions()` [`api/search/repository.ts:41`](../../app/src/api/search/repository.ts#L41) (page) | `Search → useSearch → useSearchBirthdayOptionsQuery → fetchSearchBirthdayOptions`<br>[`pages/Search/SearchPage.tsx`](../../app/src/pages/Search/SearchPage.tsx) | implemented |
 | 6 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx) | implemented |
@@ -72,13 +76,15 @@ Two independent lists: the event bindings of the TST views, and the JSX event bi
 | # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
 |---|---|---|---|---|---|
 | [1](#611-screenblock_search-inputevent_submit) | `ScreenBlock_Search` | `event_Submit of Input` | `inputEvent_Submit` | – | calls FetchSearchResults; shows a message |
-| 2 | `ScreenBlock_Search` | `changed of HorizontalTagList` | `event_HorizontalTagListChanged` | – | calls FetchSearchResults |
+| 2 | `ScreenBlock_Search` | `changed of TagList` | `event_HorizontalTagListChanged` | – | calls FetchSearchResults |
 | [3](#613-screenblock_search-event_sectiononitemclick-locality) | `ScreenBlock_Search` | `onClick (HTML element)`<br>`onItemClick of Section` | `event_SectionOnItemClick` | `locality` | goes to Locality_Details; asks for a confirmation |
-| [4](#614-screenblock_search-event_sectiononitemclick-other) | `ScreenBlock_Search` | `onClick (HTML element)`<br>`onItemClick of Section` | `event_SectionOnItemClick` | `other` | goes to HouseholdCarousel, HouseholdDetails; asks for a confirmation |
-| 5 | `ScreenBlock_Search` | `clicked of IconText`<br>`selected of BirthdayOptions` | `onClick_RecentSearchTerm` | – | calls FetchSearchResults |
-| 6 | `ScreenBlock_Search` | `applyFilters of FilterSheet` | `event_ApplyFilters` | – | calls FetchSearchResults |
+| [4](#614-screenblock_search-event_sectiononitemclick-other) | `ScreenBlock_Search` | `onClick (HTML element)`<br>`onItemClick of Section` | `event_SectionOnItemClick` | `other` | goes to OneSchoolGlobalDetails, HouseholdCarousel, HouseholdDetails; asks for a confirmation |
+| [5](#615-screenblock_search-event_sectiononitemclick-assemble) | `ScreenBlock_Search` | `onClick (HTML element)`<br>`onItemClick of Section` | `event_SectionOnItemClick` | `assemble` | goes to AssembleDetail; asks for a confirmation |
+| [6](#616-screenblock_search-event_sectiononitemclick-ldm) | `ScreenBlock_Search` | `onClick (HTML element)`<br>`onItemClick of Section` | `event_SectionOnItemClick` | `lDM` | goes to LDM_EventDetail_V2; asks for a confirmation |
+| 7 | `ScreenBlock_Search` | `clicked of IconText`<br>`selected of BirthdayOptions` | `onClick_RecentSearchTerm` | – | calls FetchSearchResults |
+| 8 | `ScreenBlock_Search` | `applyFilters of FilterSheet` | `event_ApplyFilters` | – | calls FetchSearchResults |
 
-<details><summary>3 diagrams (handlers with two or more effects)</summary>
+<details><summary>5 diagrams (handlers with two or more effects)</summary>
 
 #### 6.1.1 ScreenBlock_Search: inputEvent_Submit
 
@@ -90,7 +96,7 @@ sequenceDiagram
   participant S as Server (TST calls)
   U->>B: event_Submit of Input → inputEvent_Submit
   B->>S: FetchSearchResults(BottomSheetId_Filter, BottomSheetId_Filter_IsLoaded, BottomSheetId_Filter_ShowSubscriptionOnClick, …)
-  S-->>B: Households, People, Places
+  S-->>B: Events, Households, People, …
   Note over B: message FeedbackMessage_AutoClose
 ```
 
@@ -119,8 +125,37 @@ sequenceDiagram
   U->>B: onClick (HTML element) → event_SectionOnItemClick (other)
   Note over B: via UBTConnect_Utils.app_Subscription_ShowUpgradePopUp
   Note over B: confirm dialog
+  B->>N: go to OneSchoolGlobalDetails
   B->>N: go to HouseholdCarousel
   B->>N: go to HouseholdDetails
+```
+
+#### 6.1.5 ScreenBlock_Search: event_SectionOnItemClick (assemble)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as ScreenBlock_Search
+  participant N as Navigation
+  U->>B: onClick (HTML element) → event_SectionOnItemClick (assemble)
+  Note over B: via UBTConnect_Utils.app_Subscription_ShowUpgradePopUp
+  Note over B: confirm dialog
+  B->>N: go to AssembleDetail
+```
+
+#### 6.1.6 ScreenBlock_Search: event_SectionOnItemClick (lDM)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as ScreenBlock_Search
+  participant N as Navigation
+  U->>B: onClick (HTML element) → event_SectionOnItemClick (lDM)
+  Note over B: via UBTConnect_Utils.app_Subscription_ShowUpgradePopUp
+  Note over B: confirm dialog
+  B->>N: go to LDM_EventDetail_V2
 ```
 
 
@@ -155,7 +190,7 @@ sequenceDiagram
   Note over H: via refreshSearch()
   Note over H: via fetchSearchResults()
   H->>A: DataActionFetchSearchResults(BottomSheetId_Filter, BottomSheetId_Filter_IsLoaded, BottomSheetId_Filter_ShowSubscriptionOnClick, …)
-  A-->>H: Households, People, Places
+  A-->>H: Events, Households, People, …
   Note over H: message { title: '', message: validation.errorMessage, messageType: 'error', encodedHtml: true, ex
 ```
 
@@ -176,7 +211,7 @@ sequenceDiagram
   Note over H: via refreshSearch()
   Note over H: via fetchSearchResults()
   H->>A: DataActionFetchSearchResults(BottomSheetId_Filter, BottomSheetId_Filter_IsLoaded, BottomSheetId_Filter_ShowSubscriptionOnClick, …)
-  A-->>H: Households, People, Places
+  A-->>H: Events, Households, People, …
 ```
 
 #### 6.2.4 SearchView: onRecentResultClick (Locality)
@@ -252,7 +287,7 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/screens/Search/analysis/sources/raw/`.
+The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 
@@ -260,9 +295,12 @@ Screen inputs: none. `setInputs` of `Search` reads no input.
 
 | Block | Target | Parameters | Place |
 |---|---|---|---|
-| `ScreenBlock_Search` | `Locality_Details` | `LocalityId` = `integerToLongInteger(textToInteger(searchResult.id))` | [`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:3120`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3120) |
-| `ScreenBlock_Search` | `HouseholdCarousel` | `In_StartingHouseholdId` = `integerToLongInteger(textToInteger(searchResult.householderId))` | [`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:3298`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3298) |
-| `ScreenBlock_Search` | `HouseholdDetails` | `HouseholdId` = `integerToLongInteger(textToInteger(searchResult.householderId))` | [`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:3304`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3304) |
+| `ScreenBlock_Search` | `Locality_Details` | `LocalityId` = `integerToLongInteger(textToInteger(searchResult.id))` | [`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:3285`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3285) |
+| `ScreenBlock_Search` | `OneSchoolGlobalDetails` | `In_OneSchoolGlobalId` = `textToLongInteger(searchResult.id)` | [`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:3297`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3297) |
+| `ScreenBlock_Search` | `AssembleDetail` | `EventId` = `searchResult.id` | [`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:3305`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3305) |
+| `ScreenBlock_Search` | `LDM_EventDetail_V2` | `EventHostId` = `textToLongInteger(searchResult.event_EventHostId)`<br>`EventId` = `textToLongInteger(searchResult.id)` | [`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:3313`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3313) |
+| `ScreenBlock_Search` | `HouseholdCarousel` | `In_StartingHouseholdId` = `integerToLongInteger(textToInteger(searchResult.householderId))` | [`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:3488`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3488) |
+| `ScreenBlock_Search` | `HouseholdDetails` | `HouseholdId` = `integerToLongInteger(textToInteger(searchResult.householderId))` | [`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:3494`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3494) |
 
 ### 7.2 React
 
@@ -286,15 +324,15 @@ Event handlers. The steps are the node comments and the conditions of the compil
 
 | Block | Event | Action | Steps |
 |---|---|---|---|
-| `ScreenBlock_Search` | OnInitialize ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:4188`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L4188)) | `screenEvent_OnInitialize` | 1. If tagList.isEmpty ([`L3424`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3424))<br>2. Execute Action: SearchCategory_GetList ([`L3426`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3426))<br>3. TagList = SearchCategory_GetList.SearchCategoryItemsList ([`L3430`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3430))<br>4. Else ([`L3439`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3439)) |
-| `ScreenBlock_Search` | OnReady ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:4206`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L4206)) | `screenEvent_OnReady` | 1. isBirthdaySearchEnabled = Connect_OutSystems_PermissionCheck(C2EnableSearchByBirthday) ([`L3381`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3381))<br>2. If isBirthdaySearchEnabled ([`L3386`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3386))<br>3. Refresh Query: Get_SearchBirthdayOptions ([`L3388`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3388))<br>4. Else ([`L3394`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3394)) |
+| `ScreenBlock_Search` | OnInitialize ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:4393`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L4393)) | `screenEvent_OnInitialize` | 1. If tagList.isEmpty ([`L3623`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3623))<br>2. Execute Action: SearchCategory_GetList ([`L3625`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3625))<br>3. TagList = SearchCategory_GetList.Out_SearchCategoryItemsList ([`L3629`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3629))<br>4. Else ([`L3638`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3638)) |
+| `ScreenBlock_Search` | OnReady ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:4411`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L4411)) | `screenEvent_OnReady` | 1. isBirthdaySearchEnabled = Connect_OutSystems_PermissionCheck(C2EnableSearchByBirthday) ([`L3580`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3580))<br>2. If isBirthdaySearchEnabled ([`L3585`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3585))<br>3. Refresh Query: Get_SearchBirthdayOptions ([`L3587`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3587))<br>4. Else ([`L3593`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3593)) |
 
 Data actions and aggregates. The tool reads `dataFetchDependenciesOriginal`: `0` is a fetch when the block opens, `-1` is a fetch only on demand (a `Refresh Query` step). `Read by` lists the child block inputs, conditions, text widgets and actions that read the result.
 
 | Block | Data action | Fetch | Read by | Place |
 |---|---|---|---|---|
-| `ScreenBlock_Search` | `Get_FilteredRecentClickedResults` | on demand (`-1`) | `shown if (SectionSeparator)` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:525`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L525)), `shown if (CustomContainer)` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:557`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L557)), `shown if (CustomText)` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:637`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L637)), `text` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:699`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L699)), `SkeletonSection.In_IsLoading` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:736`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L736)), `LazyImage.In_ForceLoadingState` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:829`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L829)), `action get_RecentClickedResultsOnAfterFetch` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:2379`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2379)) | [`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:1837`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L1837) |
-| `ScreenBlock_Search` | `FetchSearchResults` | on demand (`-1`) | `Section.Items` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:1378`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L1378)), `view` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:1379`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L1379)), `Section.HideSeparator` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:1421`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L1421)), `text` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:1674`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L1674)), `action action_RefreshSearch` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:2620`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2620)), `action action_ClearResults` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:2769`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2769)), `action event_SectionOnItemClick` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:3242`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3242)), `action onAfterFetch_FetchSearchResults` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:4010`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L4010)) | [`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:1838`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L1838) |
+| `ScreenBlock_Search` | `Get_FilteredRecentClickedResults` | on demand (`-1`) | `shown if (SectionSeparator)` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:584`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L584)), `shown if (CustomContainer)` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:616`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L616)), `shown if (CustomText)` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:696`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L696)), `text` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:758`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L758)), `SkeletonSection.In_IsLoading` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:795`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L795)), `LazyImage.In_ForceLoadingState` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:888`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L888)), `action get_RecentClickedResultsOnAfterFetch` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:2524`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2524)) | [`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:1982`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L1982) |
+| `ScreenBlock_Search` | `FetchSearchResults` | on demand (`-1`) | `Section.Items` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:1437`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L1437)), `view` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:1438`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L1438)), `Section.HideSeparator` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:1480`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L1480)), `text` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:1819`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L1819)), `action action_RefreshSearch` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:2765`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2765)), `action action_ClearResults` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:2928`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2928)), `action event_SectionOnItemClick` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:3436`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3436)), `action onAfterFetch_FetchSearchResults` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:4209`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L4209)) | [`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:1983`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L1983) |
 
 ### 8.2 React
 
@@ -338,7 +376,7 @@ Client variables and browser storage that the route reads or writes. Other scree
 
 | Block | Operation | Variable | Places |
 |---|---|---|---|
-| `ScreenBlock_Search` | get | `UBTConnect.Search_RecenctClickedResultsLimit` | [`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:3084`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3084), [`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:3089`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3089) |
+| `ScreenBlock_Search` | get | `UBTConnect.Search_RecenctClickedResultsLimit` | [`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:3249`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3249), [`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:3254`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3254) |
 
 ### 9.2 React
 
@@ -365,9 +403,9 @@ What the route does when an action or a call fails.
 
 | Block | Action | Error | Steps of the handler |
 |---|---|---|---|
-| `ScreenBlock_Search` | `action_RefreshSearch` | `NotRegistered` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:2668`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2668)) | 1. Raise Error: NotRegistered ([`L2676`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2676)) |
-| `ScreenBlock_Search` | `action_RefreshSearch` | `BubbleCommunicationException` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:2681`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2681)) | 1. Execute Action: Action_ClearResults3 ([`L2689`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2689))<br>2. IsLoading = False ([`L2692`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2692))<br>3. Raise Error: BubbleCommunicationException ([`L2695`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2695)) |
-| `ScreenBlock_Search` | `action_RefreshSearch` | `AllExceptions` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:2701`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2701)) | 1. Execute Action: Action_ClearResults2 ([`L2709`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2709))<br>2. IsLoading = False ([`L2712`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2712))<br>3. Raise Error: BubbleGenericException ([`L2715`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2715)) |
+| `ScreenBlock_Search` | `action_RefreshSearch` | `NotRegistered` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:2827`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2827)) | 1. Raise Error: NotRegistered ([`L2835`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2835)) |
+| `ScreenBlock_Search` | `action_RefreshSearch` | `BubbleCommunicationException` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:2840`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2840)) | 1. Execute Action: Action_ClearResults3 ([`L2848`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2848))<br>2. IsLoading = False ([`L2851`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2851))<br>3. Raise Error: BubbleCommunicationException ([`L2854`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2854)) |
+| `ScreenBlock_Search` | `action_RefreshSearch` | `AllExceptions` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:2860`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2860)) | 1. Execute Action: Action_ClearResults2 ([`L2868`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2868))<br>2. IsLoading = False ([`L2871`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2871))<br>3. Raise Error: BubbleGenericException ([`L2874`](../../migration/runtime-sources/live/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2874)) |
 
 An error without a handler goes to the `OnException` of the UI flow (`handleError`):
 

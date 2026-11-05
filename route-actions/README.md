@@ -19,7 +19,7 @@ The inputs stay where they are (`migration/screens/…`, `app/…`). The tools o
 
 The tools check the server calls of one route in OutSystems against the React app. Each run writes one file,
 `route-actions/routes/<Route>.md`, with Mermaid diagrams as text. `route-actions/ROUTES.md` lists the 68 build
-routes and their status (`todo` / `done`). The pilot route is HomeFeed (user, 2026-11-04).
+routes and their status (`todo` / `done`). HomeFeed served as the pilot route (user, 2026-11-04).
 
 ## Commands
 
@@ -50,7 +50,7 @@ status in `ROUTES.md`. Use `git diff` to see what changed.
      actions to each call.
    - `analysis/calls.json`: the calls that TST made in the capture.
    - `migration/survey/screens.json` and `app/src/api/openapi.yaml` (`x-os-paths`).
-2. **MCP** (DEV, read only, `mcp_client.py`): the UI flow of each screen (`getScreenNames`). The answer is cached in
+2. **MCP** (DEV, read only, `mcp_client.py`): the UI flow of each screen (`getScreenNames`). The tool caches the answer in
    `route-actions/.cache/raw/mcp/`. The route file does not show the inside of the calls (user, 2026-11-04).
 3. **React** (`react_calls.mjs`, TypeScript type checker through ts-morph from `app/node_modules`):
    - `shell`: the app shell from `app/src/main.tsx` (router, `AppFrame`, `AppStart`, `RouteGuard`, hosts);
@@ -101,6 +101,12 @@ OutSystems facts from the compiled code (`tools/os_static.py`). The files are th
 (`migration/survey/screens.json`), read from `migration/runtime-sources/` and the raw folders of the captured routes.
 No observed call, no screenshot; `ROUTES.md` shows `done (static)`.
 
+Live code (user, 2026-11-05): when TST changed a captured file after the capture, the tool reads the live copy in
+`migration/runtime-sources/live/` (drift report: `migration/knowledge/tst-drift-2026-11-05.md`). The facts and the
+call graph of that file come from the live code (`os_static.refresh`). The route file says so at the top. The capture
+keeps the observed calls. To refresh the drift: `node .claude/skills/outsystems-screen-spec/scripts/batch_capture.cjs
+survey`, then the drift script of context-074, then copy the changed files into `migration/runtime-sources/live/`.
+
 Method of the facts: `os_extras.py` reads the TST compiled files (`sources/raw/*.mvc.js`) and the UI flow controllers
 of `migration/shell/sources/`; `react_calls.mjs` reads the React screen files through ts-morph. A step comes from a
 node comment of the compiled action (`// Execute Action: X`) or from its condition. A navigation parameter comes from
@@ -130,7 +136,7 @@ node comment of the compiled action (`// Execute Action: X`) or from its conditi
   object that a hook returns (`const { onX } = useY()`).
 - **Effects.** OutSystems: `// Destination:`, `// Execute Action:`, `showFeedbackMessage(…)`, `// Refresh Query:`, the
   server call nodes. React: `callAction`, navigation functions with a path (constants read), `confirm…`,
-  `show…Message`, `open…ExternalLink`. Called functions are followed 3 levels deep.
+  `show…Message`, `open…ExternalLink`. The tool follows called functions 3 levels deep.
 - **Branches.** OutSystems: the `if` blocks with `=== <constant>`. React: `switch` cases and `if` with `===` or a call
   with one constant argument. `other` is the last `else` or `default`.
 - **Block port.** The `@origin` or `@os-block` tag gives the React file. Without a tag, the block name in a file of
@@ -140,7 +146,7 @@ node comment of the compiled action (`// Execute Action: X`) or from its conditi
 
 - The tools read code. They do not run the app.
 - A name or a call match does not prove the same behaviour. The parity checks of the migration compare the behaviour.
-- The effects stop at 3 levels of calls. A prop callback and a query that fetches again are named, not followed.
+- The effects stop at 3 levels of calls. The tool names a prop callback and a query that fetches again; it does not follow them.
 - An OutSystems branch condition other than `=== <constant>` (for example `IsSuccess`) is not split.
 - The calls that a module action reaches come from the call graph; they can belong to only one path of that action.
 - A route without a TST capture (`no-capture.json`) has no `facts.json`. The tool stops for such a route.

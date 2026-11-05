@@ -9,7 +9,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 - The OutSystems facts come from the compiled code of the screen and of its static closure (TST survey).
 - The code is in `migration/runtime-sources/` and in the raw folders of the captured routes.
 - The tool observed no call and has no screenshot.
-- Closure: 65 files, 0 without compiled code.
+- Closure: 67 files, 0 without compiled code.
 
 ## 1. Route
 
@@ -21,7 +21,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/FeedItemDetail/FeedItemDetailPage.tsx`](../../app/src/pages/FeedItemDetail/FeedItemDetailPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 | Screenshots | no parity run | `route.py parity` |
-| Code read | OutSystems: 2 files of the UI flow, 20 shared blocks, 43 app shell files. React: 173 files in the closure of the page | TST survey closure and compiled code (static), `react_calls.mjs` |
+| Code read | OutSystems: 2 files of the UI flow, 22 shared blocks, 43 app shell files. React: 173 files in the closure of the page | TST survey closure and compiled code (static), `react_calls.mjs` |
 
 ## 2. Result
 
@@ -34,7 +34,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | User actions of the route (own code) | OutSystems: 4. React: 3 |
 | Screen and blocks of the UI flow with a React port | 2 of 2 |
 | Navigation targets found in React | 1 of 1 |
-| Shared blocks and components on the route | OutSystems 20, React 2 with user actions: see the last section |
+| Shared blocks and components on the route | OutSystems 22, React 2 with user actions: see the last section |
 | App shell on this route | 5 calls: see [APP_SHELL.md](../APP_SHELL.md) |
 
 ## 3. Differences found
@@ -234,6 +234,8 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | `LazyImage` | `UBTConnectLibrary` | [`components/ui/LazyImage/LazyImage.tsx`](../../app/src/components/ui/LazyImage/LazyImage.tsx) | 0 |
 | `ShareSheet` | `UBTConnect_Utils` | [`containers/ShareSheet/ShareSheetContainer.tsx`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx), [`containers/ShareSheet/components/ShareSheetFirstStep.tsx`](../../app/src/containers/ShareSheet/components/ShareSheetFirstStep.tsx), [`containers/ShareSheet/components/ShareSheetSearchStep.tsx`](../../app/src/containers/ShareSheet/components/ShareSheetSearchStep.tsx), [`containers/ShareSheet/shareSheetState.ts`](../../app/src/containers/ShareSheet/shareSheetState.ts), [`containers/ShareSheet/useShareSheet.ts`](../../app/src/containers/ShareSheet/useShareSheet.ts) | 5 |
 | `SearchResult_Item` | `UBTConnect_Utils` | [`components/search/SearchResultItem/SearchResultItem.tsx`](../../app/src/components/search/SearchResultItem/SearchResultItem.tsx) | 1 |
+| `TagContent` | `UBTConnectLibrary` | [`components/ui/TagContent/TagContent.tsx`](../../app/src/components/ui/TagContent/TagContent.tsx) | 0 |
+| `AvatarImage` | `UBTConnectLibrary` | [`components/ui/AvatarImage/AvatarImage.tsx`](../../app/src/components/ui/AvatarImage/AvatarImage.tsx) | 0 |
 | `EmptyList` | `UBTConnectLibrary` | [`components/ui/EmptyState/EmptyState.tsx`](../../app/src/components/ui/EmptyState/EmptyState.tsx) | 0 |
 | `CircleButton` | `UBTConnectLibrary` | [`components/ui/CircleButton/CircleButton.tsx`](../../app/src/components/ui/CircleButton/CircleButton.tsx) | 0 |
 | `CircleButton_WithLabel` | `UBTConnectLibrary` | [`components/ui/CircleButtonWithLabel/CircleButtonWithLabel.tsx`](../../app/src/components/ui/CircleButtonWithLabel/CircleButtonWithLabel.tsx) | 0 |
