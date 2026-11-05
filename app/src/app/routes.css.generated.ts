@@ -1187,7 +1187,7 @@ export const ROUTE_CSS: Readonly<Record<string, readonly string[]>> = {
 export const ROUTE_CSS_ORIGIN: Readonly<Record<string, CssSetOrigin>> = {
   AcceptPendingPolicies: 'compiled',
   AssembleDetail: 'compiled',
-  AssembleEvents: 'compiled',
+  AssembleEvents: 'capture',
   Assemble_BrowseByCountry: 'capture',
   Bookmarks: 'capture',
   BrowseCountries: 'capture',

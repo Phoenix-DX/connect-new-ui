@@ -50,7 +50,7 @@ Confirmed by the user (Phase 4). Changing anything here is an ADR.
 | Leaflet | npm package leaflet 1.9.4 + leaflet.markercluster 1.5.3 |
 | ReactiveHtmlSanitizer | npm package dompurify 3 configured with the module's allow lists |
 | SortableJS | npm package sortablejs 1.15.7 |
-| AdaptiveCards (Connect2_LegacyShared) | npm package adaptivecards 2.5.0, the version of the TST bundle (decision PD7, user, 2026-10-28) |
+| AdaptiveCards | npm package adaptivecards 2.5.0, the version of the TST bundle (decision PD7, user, 2026-10-28) |
 
 ## Pinned dependencies
 | Package | Version |
@@ -173,7 +173,7 @@ Confirmed by the user (Phase 4). Changing anything here is an ADR.
 
 ### ADR-8: Bookmark sync replaces the local bookmarks in one IndexedDB transaction
 
-- Context: SynchBookmarksC2 (app start, via Sync_Info_GetMain; the live app has no legacy SynchBookmarks) runs DeleteAll then CreateOrUpdate as two IndexedDB transactions in the original (OutSystems.js deleteAll -> executeTransaction). A screen that reads LocalBookmark between the two steps sees no bookmark (menu shows Bookmark instead of Unmark). On TST the first screen reads before the sync starts; in the clone the first screen loads right after the GetUserInformation step, so its read lands inside the sync (HouseholdDetails default parity, F4a 2026-10-15). Known original race: known-original-bugs.md B5.
+- Context: SynchBookmarks / SynchBookmarksC2 (app start, via Sync_Info_GetMain) run DeleteAll then CreateOrUpdate as two IndexedDB transactions in the original (OutSystems.js deleteAll -> executeTransaction). A screen that reads LocalBookmark between the two steps sees no bookmark (menu shows Bookmark instead of Unmark). On TST the first screen reads before the sync starts; in the clone the first screen loads right after the GetUserInformation step, so its read lands inside the sync (HouseholdDetails default parity, F4a 2026-10-15). Known original race: known-original-bugs.md B5.
 - Decision: Keep the clone's entityService.replaceAll: delete and re-create the bookmark rows in one transaction (app/src/shell/localEntities/entities.ts:230, localBookmarks.ts:200-225). Recommended by the orchestrator; auto-accepted under the user's auto mode (2026-10-15 16:59) and listed for the user's review.
 - Consequences: Deviation from the 1:1 rule (bugs included): a read during the sync now sees either the old or the new rows, never none. No visible change on TST timing. Revert = two transactions again plus a timing exemption on HouseholdDetails default.
 
@@ -272,6 +272,6 @@ Confirmed by the user (Phase 4). Changing anything here is an ADR.
 
 ### ADR-17: Vendor the TST Orbit Passport loader (OrbitPassportScanC2.PassportScan.js) for PassportScan
 
-- Context: PassportScan Q1 (a) (user, 2026-10-29): vendor the TST loader. The original block `OrbitPassportScanC2.PassportScan.ScreenBlock_PassportScan` loads `OrbitPassportScanC2.PassportScan.js` as its JS dependency and calls `window.OrbitPassport.embed` from its JS nodes. The loader puts the portal page in an iframe and talks to it with `postMessage`. Rule: libraries the original ships keep the TST version.
-- Decision: Vendor the TST file unchanged in `src/vendor/orbitpassport/` (byte-identical copy, version 1.0.0, as ADR-5, ADR-7 and ADR-11), behind a typed adapter (`src/vendor/orbitpassport/index.ts`). `SOURCE.md` of that folder records the URL, size and sha256. Upgrades follow TST.
+- Context: PassportScan Q1 (a) (user, 2026-10-29): vendor the TST loader. The original block OrbitPassportScanC2.PassportScan.ScreenBlock_PassportScan loads OrbitPassportScanC2.PassportScan.js as its JS dependency and calls window.OrbitPassport.embed from its JS nodes. The loader puts the portal page in an iframe and talks to it with postMessage. Rule: libraries the original ships keep the TST version. Recorded in stack.json on 2026-11-05 (user, option a): the ADR had been written by hand into the generated stack.md.
+- Decision: Vendor the TST file unchanged in src/vendor/orbitpassport/ (byte-identical copy, version 1.0.0, as ADR-5, ADR-7 and ADR-11), behind a typed adapter (src/vendor/orbitpassport/index.ts). SOURCE.md of that folder records the URL, size and sha256. Upgrades follow TST.
 - Consequences: The vendored file is third-party code with no npm updates. The file states no license: confirm it with the Orbit Passport portal owner before production. The portal origin must allow the iframe of the app host.

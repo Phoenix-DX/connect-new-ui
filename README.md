@@ -19,9 +19,11 @@ project reads TST only and never writes data to it. The project skill `outsystem
 | Folder | Content |
 |---|---|
 | `app/` | The React app (progressive web app with mock data). |
-| `migration/` | Board, survey, specifications, captures, parity reports, knowledge, journeys, dashboard, tools. |
+| `tools/` | Every reusable script, by purpose (`pipeline`, `parity`, `generate`, `docs`, `tst`, `mcp`, `refactor`, `route-check`). Index: `tools/README.md`. |
+| `migration/` | Board, survey, specifications, captures, parity reports, knowledge, journeys, dashboard. |
 | `capture/` | The static survey of the compiled TST code. |
-| `.claude/skills/outsystems-screen-spec/` | The project skill: method, references and pipeline scripts. |
+| `route-check/` | The check of the routes, OutSystems against React: one report per route, read route by route. Start with its README. |
+| `.claude/` | The skills (text and references only; the scripts are in `tools/`) and the agents. |
 | `.auth/` | Secrets (credentials, saved session). Not in git. Only the skill's scripts read it. |
 
 ## Tools

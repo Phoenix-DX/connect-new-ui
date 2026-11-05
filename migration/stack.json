@@ -646,6 +646,23 @@
    "by": "user",
    "at": "2026-10-14T13:13:51",
    "note": "same version as TST; user: any library that keeps the UI 1:1 (user, 2026-10-14)"
+  },
+  {
+   "key": "equiv:AdaptiveCards",
+   "topic": "Web equivalent of AdaptiveCards (Connect2_LegacyShared)",
+   "question": "The OutSystems module Connect2_LegacyShared renders adaptive cards (AdaptiveCardViewer in MessageDetail, NotificationDetails). How is it reproduced in React?",
+   "options": [
+    "npm package (name it)",
+    "port the module's JavaScript",
+    "out of scope: render NotCaptured"
+   ],
+   "proposed": null,
+   "why": "Third-party component found in the clarify build wave; the TST bundle ships adaptivecards.",
+   "status": "confirmed",
+   "value": "npm package adaptivecards 2.5.0, the version of the TST bundle (decision PD7, user, 2026-10-28)",
+   "by": "user",
+   "at": "2026-10-28T00:00:00",
+   "note": "recorded in stack.json on 2026-11-05 (user, option a): the row had been written by hand into the generated stack.md on 2026-10-29"
   }
  ],
  "dependencies": {
@@ -923,6 +940,16 @@
    "status": "accepted",
    "by": "user",
    "at": "2026-10-24T00:00:00"
+  },
+  {
+   "id": "ADR-17",
+   "title": "Vendor the TST Orbit Passport loader (OrbitPassportScanC2.PassportScan.js) for PassportScan",
+   "context": "PassportScan Q1 (a) (user, 2026-10-29): vendor the TST loader. The original block OrbitPassportScanC2.PassportScan.ScreenBlock_PassportScan loads OrbitPassportScanC2.PassportScan.js as its JS dependency and calls window.OrbitPassport.embed from its JS nodes. The loader puts the portal page in an iframe and talks to it with postMessage. Rule: libraries the original ships keep the TST version. Recorded in stack.json on 2026-11-05 (user, option a): the ADR had been written by hand into the generated stack.md.",
+   "decision": "Vendor the TST file unchanged in src/vendor/orbitpassport/ (byte-identical copy, version 1.0.0, as ADR-5, ADR-7 and ADR-11), behind a typed adapter (src/vendor/orbitpassport/index.ts). SOURCE.md of that folder records the URL, size and sha256. Upgrades follow TST.",
+   "consequences": "The vendored file is third-party code with no npm updates. The file states no license: confirm it with the Orbit Passport portal owner before production. The portal origin must allow the iframe of the app host.",
+   "status": "accepted",
+   "by": "user",
+   "at": "2026-10-29T00:00:00"
   }
  ]
 }

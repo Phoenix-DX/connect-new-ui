@@ -15,6 +15,7 @@
 - Generated files carry the new banner only; their content stays as committed (see Open issues).
 
 ## Decisions (who, date)
+- User 2026-11-05: option (a) for the stale generated files: record the missing sources, regenerate, parity, CI.
 - User 2026-11-05: groups A–G + J move to `tools/`; layout by purpose; one-offs deleted; `route-check/` at the root,
   not in `migration/`; clarify tools and the dashboard builder stay next to their data.
 
@@ -37,8 +38,10 @@
 - `route-check/*.md` (tool-name lines), `route-check/config.json`.
 
 ## Open issues
-- The stale generated files (facts above): re-run the generators in their own change and check parity
-  (AssembleEvents CSS set) and `stack.md` (ADR-17 source).
+- Done in the follow-up commit (user, option a, 2026-11-05): ADR-17 and the AdaptiveCards item recorded in `stack.json`
+  (`stack.py adr new` + `adr accept`; the item by hand, no script command), `architecture.md` rendered, the four
+  generators run (`api.md`, `screens.md`, `flags.md`, `stack.md`, `sitemap.*`, `routes.css.generated.ts` AssembleEvents
+  = `capture`), parity AssembleEvents clean, CI green.
 - Historical files keep the old paths on purpose: contexts, `migration/refactor/handoffs`, `log.md`,
   `auto-decisions-*.md`, `migration/clarify/review`, `migration/screens`, `app/docs/refactor`, `migration/flags.json`.
 

@@ -7,23 +7,24 @@ Read with `useFlag` / `useFlagOn` (`src/lib/flags.ts`). `default-only`: only the
 | Key | Default | Branches | OutSystems source | Screens |
 |---|---|---|---|---|
 | mobileAssemble | on | default-only | action:getHasAssemble | MessageDetail |
-| mobileDirectoryBookmarkNote | off | default-only | action:getHasBookmarNote | AssembleDetail, BookmarksByGroup, New_BookmarksByGroup |
+| mobileDirectoryBookmarkNote | off | default-only | action:getHasBookmarNote | AssembleDetail, BookmarksByGroup |
 | C2EnableC1DirectoryView | on | default-only | action:getHasC1DirectoryView | AssembleDetail, AssembleEvents, Bookmarks, BookmarksByGroup, BrowseCountries, BrowseDirectory, CommunityBusinessDetails, CountryDetails … |
 | C2EnableCarousel | on | default-only | action:getHasCarouselEnabled | AssembleDetail, BookmarksByGroup, HomeFeed, HouseholdCarousel, LDM_EventDetail, LDM_EventDetail_V2, LDM_MyEvents, LDM_MyEvents_V2 … |
 | C2EnableCustomServices | on | default-only | action:getHasCustomEvents | HomeFeed |
 | mobileDirectoryUpdateFeedDeceasedProfile | on | default-only | action:getHasDeceasedProfileAccess | MessageDetail |
 | C2ExtendedShare | on | default-only | action:getHasExtendedShare | AssembleDetail, BookmarksByGroup, FeedItemDetail, HomeFeed, HouseholdCarousel, HouseholdDetails, Locality_Details, Map … |
 | C2EnableFeed | on | default-only | action:getHasFeedEnabled | FeedItemDetail, HomeFeed, MessageDetail |
-| C2EnableMaps | off | default-only | action:getHasMapsEnabled | Locality_Details |
-| C2NewBookmarks | off | default-only | action:getHasNewBookmarks | AssembleDetail, AssembleEvents, Bookmarks, BookmarksByGroup, BrowseCountries, BrowseDirectory, CommunityBusinessDetails, CountryDetails … |
+| C2EnableMaps | on | default-only | action:getHasMapsEnabled | Locality_Details |
+| C2NewBookmarks | on | default-only | action:getHasNewBookmarks | Locality_Details |
 | C2NewLDM | on | default-only | action:getHasNewLDM | HomeFeed, LDM_MyEvents, MessageDetail, MyCalendar |
 | C2NewNotifications | off | both | action:getHasNewNotifications | Bookmarks, CountryList, HomeFeed, MessageDetail, Notes, Updates_SingleList |
 | mobileOrbitAccess | on | default-only | action:getHasOrbitAccess | EmailContact, EventDetail, GuestArrangements, HelpersDetail, MessageDetail, MilestoneDetail, OrbitLanding, TransportDetail … |
 | getHasOrbitEventBooklet | on | default-only | action:getHasOrbitEventBooklet | EventDetail |
 | mobileOrbitHostSurvey | on | default-only | action:getHasOrbitHostSurvey | EventDetail, MessageDetail |
-| mobilePhotobook | on | default-only | action:getHasPhotobookAccess | HouseholdCarousel, HouseholdDetails, Locality_Details, Profile, SupperMeeting_Carousel |
-| WalletAccess | off | default-only | action:getHasWalletAccess | AssembleDetail, BookmarksByGroup, New_BookmarksByGroup |
-| mobileDirectoryBookmarkNote | off | default-only | launchDarkly_FF.mobileDirectoryBookmarkNote | AssembleDetail, AssembleEvents, Bookmarks, BookmarksByGroup, BrowseCountries, BrowseDirectory, CommunityBusinessDetails, CountryDetails … |
+| mobilePhotobook | on | default-only | action:getHasPhotobookAccess | HouseholdCarousel, HouseholdDetails, Locality_Details, OneSchoolGlobalCarousel, Profile, SupperMeeting_Carousel |
+| WalletAccess | off | default-only | action:getHasWalletAccess | AssembleDetail, BookmarksByGroup |
+| mobileDirectoryBookmarkNote | off | default-only | launchDarkly_FF.mobileDirectoryBookmarkNote |  |
+| mobileDirectoryHouseholdGallery | on | default-only | launchDarkly_FF.mobileDirectoryHouseholdGallery | HouseholdCarousel, HouseholdDetails, Locality_Details, OneSchoolGlobalCarousel, Profile, SupperMeeting_Carousel |
 | mobileOrbitEventBooklet | on | default-only | launchDarkly_FF.mobileOrbitEventBooklet |  |
-| mobileStudentInformation | on | default-only | launchDarkly_FF.mobileStudentInformation | OneSchoolGlobalDetails |
+| mobileStudentInformation | on | default-only | launchDarkly_FF.mobileStudentInformation | OneSchoolGlobalCarousel, OneSchoolGlobalDetails |
 | C2EnableSearchByBirthday | on | default-only | outSystems_FF.c2EnableSearchByBirthday | Map, Search |

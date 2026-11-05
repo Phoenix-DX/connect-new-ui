@@ -47,6 +47,7 @@ Every route is built with exactly this stack and these patterns. Route agents ne
 | Web equivalent of Leaflet | npm package leaflet 1.9.4 + leaflet.markercluster 1.5.3 | confirmed | Third-party component found in the survey; no default without knowing its use. | user 2026-10-14T13:13:51 |
 | Web equivalent of ReactiveHtmlSanitizer | npm package dompurify 3 configured with the module's allow lists | confirmed | Third-party component found in the survey; no default without knowing its use. | user 2026-10-14T13:13:52 |
 | Web equivalent of SortableJS | npm package sortablejs 1.15.7 | confirmed | Third-party component found in the survey; no default without knowing its use. | user 2026-10-14T13:13:51 |
+| Web equivalent of AdaptiveCards (Connect2_LegacyShared) | npm package adaptivecards 2.5.0, the version of the TST bundle (decision PD7, user, 2026-10-28) | confirmed | Third-party component found in the clarify build wave; the TST bundle ships adaptivecards. | user 2026-10-28T00:00:00 |
 
 ## Allowed dependencies (pinned)
 
@@ -54,6 +55,7 @@ Every route is built with exactly this stack and these patterns. Route agents ne
 |---|---|---|
 | `@splidejs/splide` | 4.1.3 | runtime |
 | `@tanstack/react-query` | 5.101.4 | runtime |
+| `adaptivecards` | 2.5.0 | runtime |
 | `dompurify` | 3.4.17 | runtime |
 | `gsap` | 3.13.0 | runtime |
 | `leaflet` | 1.9.4 | runtime |
@@ -106,9 +108,9 @@ Every route is built with exactly this stack and these patterns. Route agents ne
 
 ## Consistency rules (consistency_check.py)
 
-- Required files per route: index.tsx; when the route has calls also api.ts, mocks.ts, types.ts
-- Imports allowed from: the route's own folder, src/shared, src/shell, src/lib, src/components, src/mocks, src/vendor, and allowed packages
-- NO-RAW-FETCH: server calls only through callAction in api.ts
+- Required files per route (in app/src/pages/<S>/, {screen} = route name): {screen}Page.tsx
+- Imports: packages only from the allow-list; folder imports are checked by `npm run arch`
+- NO-RAW-FETCH: server calls only through the repositories of src/api (flow.fetch wraps them, R1)
 - NO-BROWSER-STORAGE: no tokens or personal data in browser storage; use the shell's stores
 - NO-ROUTE-CSS: the original CSS is global; routes add no CSS
 - NO-INLINE-COLOR: visual differences are fixed in markup, not inline styles (inline CSS variables from the capture are fine)
@@ -275,4 +277,10 @@ Every route is built with exactly this stack and these patterns. Route agents ne
 - Decision: Remove nouislider and wnumb from the allowed dependencies and remove the osui:RangeSlider item. ADR-3 stays as the record of the earlier decision (user, 2026-10-24).
 - Consequences: ContactUsDetails does not use a range slider library. A new use of a range slider needs a new ADR and a version check.
 - accepted by user 2026-10-24T00:00:00
+
+### ADR-17: Vendor the TST Orbit Passport loader (OrbitPassportScanC2.PassportScan.js) for PassportScan (accepted)
+- Context: PassportScan Q1 (a) (user, 2026-10-29): vendor the TST loader. The original block OrbitPassportScanC2.PassportScan.ScreenBlock_PassportScan loads OrbitPassportScanC2.PassportScan.js as its JS dependency and calls window.OrbitPassport.embed from its JS nodes. The loader puts the portal page in an iframe and talks to it with postMessage. Rule: libraries the original ships keep the TST version. Recorded in stack.json on 2026-11-05 (user, option a): the ADR had been written by hand into the generated stack.md.
+- Decision: Vendor the TST file unchanged in src/vendor/orbitpassport/ (byte-identical copy, version 1.0.0, as ADR-5, ADR-7 and ADR-11), behind a typed adapter (src/vendor/orbitpassport/index.ts). SOURCE.md of that folder records the URL, size and sha256. Upgrades follow TST.
+- Consequences: The vendored file is third-party code with no npm updates. The file states no license: confirm it with the Orbit Passport portal owner before production. The portal origin must allow the iframe of the app host.
+- accepted by user 2026-10-29T00:00:00
 
