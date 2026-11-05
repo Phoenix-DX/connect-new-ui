@@ -8,7 +8,7 @@ section "Context notes".
 - 2026-11-05: route actions pipeline in **`route-actions/`** at the repository root ([context-074](context-074-route-actions-pilot.md)). Facts only. 68 of 68 routes done (17 static); the 9 gaps closed or set aside by rule on 2026-11-05 (`migration/clarify/auto-decisions-2026-11-05.md`): 0 gaps left.
 - 2026-11-04: convention review of `app/src` ([context-073](context-073-app-conventions-review.md)): D1–D8 open. 2026-11-03: principal review ([context-072](context-072-app-principal-review.md)): WPs and V1–V6 open.
 - TST has 84 routes: 68 build (all finished), 16 skip. Demo: `npm --prefix app run build:demo`; dev http://localhost:5173/UBTConnect/HomeFeed (`?review=1`).
-- Next: the user reviews `migration/clarify/auto-decisions-2026-11-05.md` (0 gaps, 0 questions) and answers two decisions (AssembleDetail drift, sign-out on a Logout failure).
+- Next: nothing waits for the user; `migration/clarify/auto-decisions-2026-11-05.md` has the 12 decisions (0 gaps, 0 questions on 68 routes).
 
 ## Contexts
 | id | date | topic | status |

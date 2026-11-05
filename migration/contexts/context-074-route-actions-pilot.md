@@ -33,12 +33,13 @@
   (+71 files), `migration/knowledge/runtime-sources.md`, the skill `route-actions`, this context, `INDEX.md`.
 
 ## Open issues
-- Two decisions for the user (Opus review). One: the `Section_MeetingNotes` drift of AssembleDetail (re-capture).
-  Two: the sign-out when AppManager_Logout fails (1:1 rethrow as TST, or try/finally for production).
+- Closed by the Fable → Opus → Fable loop (user rule 2026-11-05, no question to the user): AssembleDetail
+  `Section_MeetingNotes` removed (the live TST block has none); sign-out stays 1:1 (rows 11, 12 of the log).
+- Production backlog: sign-out on a shared device when AppManager_Logout fails (TST leaves the PIN and local data).
 - Parity: Notifications default differs in one relative-age label (fixture date against today); a frozen clock later.
 - Running vitest as `caffeinate npx vitest run` uses Homebrew Node 26 (global `localStorage` shadows jsdom's):
   159 files fail. Run vitest with the shell's nvm Node; keep the Mac awake with a separate `caffeinate` process.
 - Drift: the live `AssembleEventDetail.mvc.js` has no `Section_MeetingNotes`; React renders one (survey 2026-10-13).
 
 ## Next
-- The user reviews `migration/clarify/auto-decisions-2026-11-05.md` and answers the two decisions above.
+- The user reads `migration/clarify/auto-decisions-2026-11-05.md` when convenient; nothing waits for an answer.

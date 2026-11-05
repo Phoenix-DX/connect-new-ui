@@ -29,9 +29,10 @@ Opus review (2026-11-05, model Opus, 38 tool calls):
   stay visible in the route file, with the block names.
 - 10c as first built (x-os-phase `load`) was too broad. Replaced by the explicit list above.
 - The U17 evidence pointed to the wrong file. Fixed.
-- Two decisions go to the user. One: the `Section_MeetingNotes` drift of AssembleDetail. Two: the sign-out behaviour
-  when AppManager_Logout fails, 1:1 rethrow as TST (`UBT_AppManager.controller.js:3740-3745`) or try/finally for
-  production. Both are open.
+- Two decisions went to a second Opus round (rows 11 and 12): removed the section; kept the sign-out 1:1. Closed.
+
+| 11 | AssembleDetail `Section_MeetingNotes` ("Meeting Note", the summary text) | The live block (manifest 2026-11-05) has no `Section_MeetingNotes`, no `DIV_MeetingNotes` and no use of the summary Notes text; only the `MeetingNotes` placeholder (`…AssembleEventDetail.mvc.js:434-437`). The live `AssembleSummaryCard.mvc.js` has none either. The survey copy of 2026-10-13 had the section. | Fable proposed (a) wait for a capture; Opus (b) remove now: the live code is the newest truth and the route cannot be captured with the test account. Fable agrees after checking that no live Assemble block renders the text. Removed; the old version stays in git. | done: `AssembleEventDetail.tsx`, `ShowMoreShowLessContainer.tsx` deleted |
+| 12 | Sign-out when AppManager_Logout fails | TST: `AppManager_Logout` is one promise chain; its only `.catch` rethrows; after a failed server call FirebaseSignOut, PIN_Delete, SetDeviceContext and SynchAppContext do not run (`UBT_AppManager.controller.js:3678-3738`). `Connect_Logout` clears the cache first, then calls it (`UBTConnect.controller.js:1056-1074`). React `connectLogout` has the same order (`auth.ts:110-125`). | Fable proposed (b) try/finally (a security gap on a shared device). Opus: (a) keep 1:1; React already matches TST, and (b) would wipe the device while the server session may stay valid: a product decision, not parity. Fable agrees: the correct decision under "TST wins" is 1:1; wiping the device while the server session stays valid would be a product change, not parity. Closed without a question to the user (user rule 2026-11-05: loop Fable → Opus → Fable until the decision is verified). | done: no change; production backlog: sign-out on a shared device |
 
 Drift noticed, not a gap of this work: the live `Connect2_Assemble_MUI.Assemble.AssembleEventDetail.mvc.js` (manifest
 version of 2026-11-05) has no `Section_MeetingNotes`. The survey of 2026-10-13 had one, and React renders it. To check

@@ -641,7 +641,6 @@
   "src/pages/AssembleDetail/components/ContextMenu.tsx | type | ContextMenuProps",
   "src/pages/AssembleDetail/components/FocusScrollAnchorOnBack.tsx | type | FocusScrollAnchorOnBackProps",
   "src/pages/AssembleDetail/components/NC_Result_Item__Image__Skeleton.tsx | type | NC_Result_Item__Image__SkeletonProps",
-  "src/pages/AssembleDetail/components/ShowMoreShowLessContainer.tsx | type | ShowMoreShowLessContainerProps",
   "src/pages/AssembleDetail/components/actions.ts | export | getUnavailableEventErrorMessage",
   "src/pages/AssembleDetail/hooks/assembleDetailState.ts | type | AssembleDetailPatch",
   "src/pages/AssembleDetail/hooks/assembleEventContacts.ts | type | AssembleEventContactAction",
