@@ -6,14 +6,12 @@
   [`APP_SHELL.md`](../../route-actions/APP_SHELL.md). Mermaid diagrams as text.
 - **68 of 68 build routes done** (2026-11-05): 51 from a TST capture, 17 from the compiled code (static check,
   `done (static)`). Layout v2: conclusions first, own code only, folded diagrams. 23,356 lines in all.
-- 48 differences, 29 route questions, 8 app shell questions. The gaps to close for production (section 3 of the
-  route files; the user wants them fixed, BE stays mock):
-  - `GetAllApplicationEvents` (16 routes) and `CS_CreateShareProfileLink` (11 + 11): share to others and the audit events.
-  - `AppManager_Logout` (Login, PINRegister), `AppManager_ChangeDevice` (Login).
-  - `HouseholdRelations_Block/DataActionFetchNotes`, `AssembleDetail/DataActionGetAssembleNotes` (React takes the
-    notes from another call), `Notifications MarkAllAsRead`, `GetEventsForCalendar` and `GetEventViewInfo` (no LDM calendar).
-  - `HouseholdDetails(HouseholdId)`: HomeFeed and Updates_SingleList do not build the carousel-off branch.
-- No file in `app/` changed.
+- 2026-11-05, gaps closed (user: "Fable decides everything"; log `migration/clarify/auto-decisions-2026-11-05.md`):
+  **0 gaps** on 68 routes. 34 rows set aside by rule: native only 13, telemetry U17 16, Q3 1, no binding 1,
+  unreachable calendar 2.
+- Code of 2026-11-05: AppManager_Logout on sign-out, Household_Relations FetchNotes, AssembleDetail notes (fetch,
+  preview, action bar, sheet), the HouseholdDetails branch with the carousel off. Parity clean on the three captured
+  routes. 29 route questions and 8 app shell questions stay.
 
 ## Decisions (who, date)
 - User 2026-11-04: one route at a time; facts only, no inference; two independent user action lists, no mapping;
@@ -37,8 +35,9 @@
 ## Open issues
 - 29 route questions: MilestoneDetail 11, AssembleDetail 6, HelpersDetail 3, Profile 2, HostSurvey 2, static
   routes 5. 8 app shell questions. The user answers them per route.
-- The gaps above are not fixed in `app/` yet.
+- The full `vitest run` fails 159 files on this branch before and after the change (`localStorage` undefined in
+  `freshPage`, full run only; each file passes alone). Not caused by this work; to find.
+- Drift: the live `AssembleEventDetail.mvc.js` has no `Section_MeetingNotes`; React renders one (survey 2026-10-13).
 
 ## Next
-- The user chooses the first gap to fix in `app/`; a design (Fable) before the build, per
-  `feedback-fable-architect-solutions`.
+- The user reviews the decision log and the 4 code changes; then the 29 route questions, and the full-run test failure.
