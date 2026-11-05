@@ -11,15 +11,14 @@
   unreachable calendar 2.
 - Code of 2026-11-05: AppManager_Logout on sign-out, Household_Relations FetchNotes, AssembleDetail notes (fetch,
   preview, action bar, sheet), the HouseholdDetails branch with the carousel off. Parity clean on the three captured
-  routes. The 29 route questions and 9 app shell questions: declared on TST outside the static call graph (contract
-  `x-os-screens`, `extra-actions.json`, the app-start list), after an Opus review. 0 questions left.
+  routes. The 29 route questions and 9 app shell questions are calls that TST declares outside the static call
+  graph (contract `x-os-screens`, `extra-actions.json`, the app-start list). Opus reviewed the rules. 0 questions left.
 
 ## Decisions (who, date)
 - User 2026-11-04: one route at a time; facts only, no inference; two independent user action lists, no mapping;
   no KB; MCP only for the UI flow; Mermaid text, no SVG; folder `route-actions/` at the root; inputs through `config.json`.
-- User 2026-11-05: layout v2; no data flow section (a `Read by` column keeps its one useful fact).
-- User 2026-11-05: questions by rule. A call site in the shell closure is a shell question (`APP_SHELL.md`). A call
-  reached only through shared code goes to the shared section. The rest is a route question.
+- User 2026-11-05: layout v2; no data flow section; questions by rule (shell closure → `APP_SHELL.md`, shared
+  code → the shared section, the rest → a route question).
 - User 2026-11-05: the 17 routes without a capture get a static check from the compiled code. Claude fetched 71 files
   read-only from the TST manifest (`migration/knowledge/runtime-sources.md`).
 - User 2026-11-05: goal = fix the remaining gaps toward production; BE mock; MCP may build mock data for screens
@@ -34,8 +33,8 @@
   (+71 files), `migration/knowledge/runtime-sources.md`, the skill `route-actions`, this context, `INDEX.md`.
 
 ## Open issues
-- Two decisions for the user (Opus review): the `Section_MeetingNotes` drift of AssembleDetail (re-capture), and the
-  sign-out when AppManager_Logout fails (1:1 rethrow as TST, or try/finally for production).
+- Two decisions for the user (Opus review). One: the `Section_MeetingNotes` drift of AssembleDetail (re-capture).
+  Two: the sign-out when AppManager_Logout fails (1:1 rethrow as TST, or try/finally for production).
 - Parity: Notifications default differs in one relative-age label (fixture date against today); a frozen clock later.
 - Running vitest as `caffeinate npx vitest run` uses Homebrew Node 26 (global `localStorage` shadows jsdom's):
   159 files fail. Run vitest with the shell's nvm Node; keep the Mac awake with a separate `caffeinate` process.
