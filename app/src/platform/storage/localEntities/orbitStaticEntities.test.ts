@@ -342,30 +342,139 @@ describe('host survey lists (CR-HostSurvey-1: SyncAllOrbitStaticEntities C:6677-
     expect(localHostSurveyStepsRead()).toBe(false);
     expect(getLocalHostSurveySteps({ ...flags, isConfirmedSurvey: true })).toEqual([]);
   });
-});
 
-describe('eviction recovery (ADR-10)', () => {
-  afterEach(() => {
-    setOrbitStaticEntitiesDatabase(null);
+  describe('SyncAllOrbitStaticEntities writes every mirror before its first transaction (HostSurvey first visit, 2026-11-05)', () => {
+    /** A database whose readwrite transactions wait until the test releases them; reads run on the memory database. */
+    function gated() {
+      const release: (() => void)[] = [];
+      const gatedDb: LocalDatabase = {
+        transaction: (tables, mode, body) =>
+          mode === 'readonly'
+            ? db.transaction(tables, mode, body)
+            : new Promise<void>((resolve) => {
+                release.push(resolve);
+              }).then(() => db.transaction(tables, mode, body)),
+      };
+      setOrbitStaticEntitiesDatabase(gatedDb);
+      return {
+        release: () => {
+          for (const r of release.splice(0)) r();
+        },
+      };
+    }
+    const withStatus = (): StaticEntities_Orbit => ({
+      ...all(),
+      SurveyStatus: { List: [status(2, 'Confirmed', 'confirmed'), status(1, 'Pending', 'pending')] },
+    });
+
+    it('a reader sees the steps, the statuses and the helper roles together, after one notification', async () => {
+      await loadOrbitStaticEntities();
+      const gate = gated();
+      let calls = 0;
+      const unsubscribe = subscribeOrbitStaticEntities(() => {
+        calls += 1;
+      });
+      const before = getOrbitStaticEntitiesVersion();
+      const sync = syncAllOrbitStaticEntities(withStatus());
+      // Before any transaction ran: every table of the sync is in the mirror.
+      expect(localHostSurveyStepsRead()).toBe(true);
+      expect(getLocalSurveyStatusByJSONName('confirmed')).toHaveLength(1);
+      expect(getLocalHelperRoles()).toHaveLength(2);
+      expect(getLocalHostSurveySteps({ ...flags, isConfirmedSurvey: true }).map((s) => s.Id)).toEqual([
+        HostSurveyStep.summary,
+      ]);
+      expect(getOrbitStaticEntitiesVersion()).toBe(before + 1);
+      expect(calls).toBe(1);
+      unsubscribe();
+      const done = { value: false };
+      void sync.then(() => {
+        done.value = true;
+      });
+      while (!done.value) {
+        gate.release();
+        await new Promise((resolve) => setTimeout(resolve, 0));
+      }
+      reloadPage();
+      await loadOrbitStaticEntities();
+      expect(getLocalSurveyStatusByJSONName('confirmed')).toHaveLength(1);
+      expect(getLocalHelperRoles()).toHaveLength(2);
+    });
+
+    it('the transactions run one after another, in the order of the original', async () => {
+      const order: string[] = [];
+      const tracing: LocalDatabase = {
+        transaction: (tables, mode, body) => {
+          if (mode === 'readwrite') order.push(tables[0] ?? '');
+          return db.transaction(tables, mode, body);
+        },
+      };
+      setOrbitStaticEntitiesDatabase(tracing);
+      await syncAllOrbitStaticEntities(withStatus());
+      expect(order.map((t) => t.replace(/^OSUSR_[A-Z0-9]+_/, ''))).toEqual([
+        'LOCALORBITEVENTTYPE',
+        'LOCALHOSTSURVEYSTEP',
+        'LOCALBEDSIZE',
+        'LOCALGENDERPREFERENCE',
+        'LOCALHOUSEFLOOR',
+        'LOCALVEHICLEOWNER',
+        'LOCALVEHICLETYPE',
+        'LOCALHELPERSTATUS',
+        'LOCALSURVEYSTATUS',
+        'LOCALMEALTYPE',
+        'LOCALHELPERROLE',
+      ]);
+    });
+
+    it('a failed transaction: the tables before it are stored, the tables after it get their earlier rows back', async () => {
+      await syncOrbitSurveyStatus([status(9, 'Old', 'old')]);
+      let writes = 0;
+      const failing: LocalDatabase = {
+        transaction: (tables, mode, body) => {
+          if (mode === 'readwrite' && ++writes === 3) return Promise.reject(new Error('QuotaExceededError'));
+          return db.transaction(tables, mode, body);
+        },
+      };
+      setOrbitStaticEntitiesDatabase(failing); // a new page: the mirror is read from the database first
+      await loadOrbitStaticEntities();
+      await expect(syncAllOrbitStaticEntities(withStatus())).rejects.toThrow('QuotaExceededError');
+      // Stored: event types, survey steps. Failed: bed sizes (never synced: not read). Not run: the rest.
+      expect(getLocalOrbitEventTypes()).toHaveLength(1);
+      expect(localHostSurveyStepsRead()).toBe(true);
+      expect(getLocalBedSizes()).toEqual([]);
+      expect(getLocalGenderPreferences()).toEqual([]);
+      expect(getLocalSurveyStatusByJSONName('confirmed')).toEqual([]);
+      expect(getLocalSurveyStatusByJSONName('old')).toHaveLength(1);
+      expect(getLocalHelperRoles()).toEqual([]);
+      reloadPage();
+      await loadOrbitStaticEntities();
+      expect(getLocalSurveyStatusByJSONName('old')).toHaveLength(1);
+      expect(getLocalOrbitEventTypes()).toHaveLength(1);
+    });
   });
 
-  it('an emptied database (eviction, logout) is "not read" until the sync, so readers wait instead of raising', async () => {
-    setOrbitStaticEntitiesDatabase(memoryDatabase(orbitStaticEntitiesSchemas()));
-    await loadOrbitStaticEntities();
-    expect(localOrbitMilestoneTypesRead()).toBe(false);
-    expect(localHostSurveyStepsRead()).toBe(false);
-    await syncOrbitMilestoneTypes([{ Id: 'mt-1', Type: 'Arrival', MainIcon: 'icon-plane' }]);
-    expect(localOrbitMilestoneTypesRead()).toBe(true);
-    expect(getLocalOrbitMilestoneTypeById('mt-1')).toMatchObject({ Type: 'Arrival' });
-  });
+  describe('eviction recovery (ADR-10)', () => {
+    afterEach(() => {
+      setOrbitStaticEntitiesDatabase(null);
+    });
 
-  it('a table synced empty (metadata row written) counts as read: the original raises "not found" then', async () => {
-    const db = memoryDatabase(orbitStaticEntitiesSchemas());
-    setOrbitStaticEntitiesDatabase(db);
-    await syncOrbitMilestoneTypes([]);
-    setOrbitStaticEntitiesDatabase(db); // a new page load on the same database
-    await loadOrbitStaticEntities();
-    expect(localOrbitMilestoneTypesRead()).toBe(true);
-    expect(() => getLocalOrbitMilestoneTypeById('mt-1')).toThrow(DataBaseException);
+    it('an emptied database (eviction, logout) is "not read" until the sync, so readers wait instead of raising', async () => {
+      setOrbitStaticEntitiesDatabase(memoryDatabase(orbitStaticEntitiesSchemas()));
+      await loadOrbitStaticEntities();
+      expect(localOrbitMilestoneTypesRead()).toBe(false);
+      expect(localHostSurveyStepsRead()).toBe(false);
+      await syncOrbitMilestoneTypes([{ Id: 'mt-1', Type: 'Arrival', MainIcon: 'icon-plane' }]);
+      expect(localOrbitMilestoneTypesRead()).toBe(true);
+      expect(getLocalOrbitMilestoneTypeById('mt-1')).toMatchObject({ Type: 'Arrival' });
+    });
+
+    it('a table synced empty (metadata row written) counts as read: the original raises "not found" then', async () => {
+      const db = memoryDatabase(orbitStaticEntitiesSchemas());
+      setOrbitStaticEntitiesDatabase(db);
+      await syncOrbitMilestoneTypes([]);
+      setOrbitStaticEntitiesDatabase(db); // a new page load on the same database
+      await loadOrbitStaticEntities();
+      expect(localOrbitMilestoneTypesRead()).toBe(true);
+      expect(() => getLocalOrbitMilestoneTypeById('mt-1')).toThrow(DataBaseException);
+    });
   });
 });
