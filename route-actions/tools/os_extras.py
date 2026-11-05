@@ -171,6 +171,51 @@ def fetch_modes(lines):
     return out
 
 
+def read_by(lines, name, files):
+    """Who reads the variable of a data action: child block inputs, `$if` conditions and text widgets of the view,
+    and the client actions (not the refresh). [(what, line)]."""
+    var = name[0].lower() + name[1:] + "DataAct"
+    view_start = next((i for i, ln in enumerate(lines) if re.match(r'define\("[\w.]+\.mvc\$view"', ln)), None)
+    view_end = next((i for i, ln in enumerate(lines) if re.match(r'define\("[\w.]+\.mvc\$controller"', ln)), len(lines))
+    out = []
+    child = None
+    for i, ln in enumerate(lines):
+        if view_start is not None and view_start <= i < view_end:
+            m = re.search(r"React\.createElement\((\w+)_mvc_view, \{", ln)
+            if m:
+                key = m.group(1)
+                child = next((f[:-7].split(".")[-1] for f in files if f.endswith(".mvc.js") and f[:-7].replace(".", "_") == key), key.split("_")[-1])
+            if f"model.variables.{var}" not in ln:
+                continue
+            s = ln.strip()
+            k = re.match(r"(\w+): ", s)
+            if "$if(" in s:
+                out.append(("shown if" + (f" ({child})" if child else ""), i + 1))
+            elif k and child and not k.group(1).startswith("_"):
+                out.append((f"{child}.{k.group(1)}", i + 1))
+            elif "$text(" in s or "asPrimitiveValue" in s:
+                out.append(("text", i + 1))
+            else:
+                out.append(("view", i + 1))
+        elif i >= view_end and f"model.variables.{var}" in ln and "DataActRefresh" not in ln and "replaceWith" not in ln and "dataFetchStatusAttr" not in ln:
+            act = None
+            for j in range(i, -1, -1):
+                mm = re.match(r"Controller\.prototype\._(\w+)\$Action = function", lines[j])
+                if mm:
+                    act = mm.group(1)
+                    break
+                if re.match(r"Controller\.prototype\.(\w+)\$DataActRefresh", lines[j]):
+                    break
+            if act:
+                out.append((f"action {act}", i + 1))
+    seen, uniq = set(), []
+    for w, ln in out:
+        if w not in seen:
+            seen.add(w)
+            uniq.append((w, ln))
+    return uniq
+
+
 def errors(acts):
     """`// Handle Error: X` in the actions: [(action, error, line, steps of the handler)]."""
     out = []
@@ -233,7 +278,7 @@ def flow_handler(src, shell_dir):
 def extras(sources, files, screen_file, shell_dir):
     """The facts for the screen and block files of the route (not the app shell)."""
     out = {"inputs": [], "navParams": [], "lifecycle": [], "fetch": [], "clientState": [], "errors": [],
-           "access": None, "flowHandler": [], "roleRefs": [], "dataflow": []}
+           "access": None, "flowHandler": [], "roleRefs": []}
     for f in files:
         src = sources.get(f)
         if src is None:
@@ -246,12 +291,9 @@ def extras(sources, files, screen_file, shell_dir):
             out["flowHandler"] = flow_handler(src, shell_dir)
         out["navParams"] += [{**x, "file": f} for x in nav_params(lines)]
         out["lifecycle"] += [{**x, "file": f} for x in lifecycle(lines, acts)]
-        out["fetch"] += [{**x, "file": f} for x in fetch_modes(lines)]
+        out["fetch"] += [{**x, "file": f, "readBy": read_by(lines, x["name"], list(sources))} for x in fetch_modes(lines)]
         out["clientState"] += [{**x, "file": f} for x in client_state(lines)]
         out["errors"] += [{**x, "file": f} for x in errors(acts)]
-        df = dataflow(lines, list(sources))
-        if df:
-            out["dataflow"].append({"file": f, "edges": df})
         for i, ln in enumerate(lines, 1):
             if ln.startswith("Controller.checkPermissions") or ln.strip() == "OS.RolesInfo.checkRegistered();":
                 continue
@@ -260,170 +302,3 @@ def extras(sources, files, screen_file, shell_dir):
     return out
 
 
-# ---- data flow ----------------------------------------------------------------------------------------------------
-# Edges (source → target) of one compiled screen or block file. Each edge has its line. Node kinds:
-#   server: a data action, aggregate or server action (TST call)   var: a variable of the screen or block
-#   param: an input parameter of an event handler                   child: an input of a child block
-#   clientvar: a client variable                                     nav: a parameter of a navigation
-def name_map(lines):
-    """Compiled name → OutSystems name: `this.attr("Name", "compiledName", …)` and the variable groups of the actions
-    (`name: "Name",` then `attrName: "compiledName",`)."""
-    m = {}
-    for i, ln in enumerate(lines):
-        a = re.search(r'this\.attr\("(\w+)", "(\w+)"', ln)
-        if a:
-            m.setdefault(a.group(2), a.group(1))
-        n = re.match(r'name: "(\w+)",$', ln.strip())
-        if n and i + 1 < len(lines):
-            b = re.match(r'attrName: "(\w+)",$', lines[i + 1].strip())
-            if b:
-                m.setdefault(b.group(1), n.group(1))
-    return m
-
-
-def child_name(ident, files):
-    """`UBTConnect_Home_FeedBlock_Updates_mvc_view` → `FeedBlock_Updates` (the rendered file with the same key)."""
-    key = ident[:-len("_mvc_view")] if ident.endswith("_mvc_view") else ident
-    for f in files:
-        k = f[:-len(".mvc.js")] if f.endswith(".mvc.js") else f
-        if k.replace(".", "_") == key:
-            return k.split(".")[-1]
-    return key.split("_")[-1]
-
-
-def dataflow(lines, files):
-    nm = name_map(lines)
-    known = set(nm.values())
-    edges = []
-
-    def os_name(compiled):
-        if compiled in nm:
-            return nm[compiled]
-        for suf in ("DataAct", "Aggr", "Var", "In", "Out"):
-            if compiled.endswith(suf) and compiled[:-len(suf)] + suf in nm:
-                return nm[compiled[:-len(suf)] + suf]
-        return compiled[0].upper() + compiled[1:]
-
-    def refs(expr):
-        out = []
-        for m in re.finditer(r"model\.variables\.(\w+)", expr):
-            out.append(("var", os_name(m.group(1))))
-        for m in re.finditer(r"vars\.value\.(\w+)", expr):
-            out.append(("param", os_name(m.group(1))))
-        for m in re.finditer(r"(\w+?)ClientVariables\.get(\w+)\(", expr):
-            out.append(("clientvar", f"{m.group(1)}.{m.group(2)}"))
-        return list(dict.fromkeys(out))
-
-    def add(src, dst, label, line):
-        if src != dst:
-            edges.append({"src": src, "dst": dst, "label": label, "line": line})
-
-    acts = action_bodies(lines)
-    # 1. server → data action or aggregate variable
-    cur = None
-    for i, ln in enumerate(lines, 1):
-        m = re.match(r"Controller\.prototype\.(\w+)\$(DataActRefresh|AggrRefresh) = function", ln)
-        if m:
-            cur = (m.group(1), m.group(2))
-            continue
-        if cur:
-            s = re.search(r'"screenservices/[\w/]+/(\w+)"', ln)
-            if s:
-                tgt = os_name(cur[0] + ("DataAct" if cur[1] == "DataActRefresh" else "Aggr"))
-                add(("server", s.group(1)), ("var", tgt), "fetch", i)
-                cur = None
-    # 2. assignments in the actions (`// A = B` node comments)
-    for act, (start, body) in acts.items():
-        params = set()
-        execs = set()
-        for i, ln in body:
-            s = ln.strip()
-            for m in re.finditer(r"vars\.value\.(\w+)", s):
-                params.add(os_name(m.group(1)))
-            e = re.match(r"// Execute Action: (\w+)", s)
-            if e:
-                execs.add(e.group(1))
-            a = re.match(r"// ([\w.\[\]]+) = (.+)$", s)
-            if not a:
-                continue
-            dst = re.split(r"[.\[]", a.group(1))[0]
-            for tok in dict.fromkeys(re.findall(r"(?<![.\w])([A-Za-z_]\w*)\b", a.group(2))):
-                if tok == dst:
-                    continue
-                if tok in params or tok.startswith("Event_"):
-                    add(("param", tok), ("var", dst), act, i)
-                elif tok in execs:
-                    add(("action", tok), ("var", dst), act, i)
-                elif tok in known and tok != dst:
-                    add(("var", tok), ("var", dst), act, i)
-    # 3. the view: inputs of child blocks, `$if` conditions, events of child blocks
-    handlers = {}
-    for i, ln in enumerate(lines, 1):
-        m = re.match(r"Controller\.prototype\._(\w+)\$Action = function \(([^)]*)\)", ln)
-        if m:
-            handlers[m.group(1)] = [p.strip() for p in m.group(2).split(",") if p.strip() and p.strip() != "callContext"]
-    child, in_inputs, in_events, ev = None, False, False, None
-    pending_if = None
-    for i, ln in enumerate(lines, 1):
-        s = ln.strip()
-        m = re.search(r"React\.createElement\((\w+_mvc_view), \{", s)
-        if "$if(" in s:
-            cond = s.split("$if(", 1)[1]
-            r_ = refs(cond.split(", false, this")[0] if ", false, this" in cond else cond)
-            pending_if = (r_, i) if r_ else None
-        if m:
-            child = child_name(m.group(1), files)
-            in_inputs = in_events = False
-            if pending_if:
-                for r_ in pending_if[0]:
-                    add(r_, ("child", f"{child} (shown if)"), "view", pending_if[1])
-                pending_if = None
-            continue
-        if child and s == "inputs: {":
-            in_inputs = True
-            continue
-        if child and s == "events: {":
-            in_events = True
-            continue
-        if in_inputs:
-            if s.startswith("}"):
-                in_inputs = False
-                continue
-            k = re.match(r"(\w+): (.+?),?$", s)
-            if k and not k.group(1).startswith("_"):  # `_xInDataFetchStatus`: the fetch status, not data
-                for r_ in refs(k.group(2)):
-                    add(r_, ("child", f"{child}.{k.group(1)}"), "view", i)
-        if in_events:
-            e = re.match(r"(\w+)\$Action: function \(([^)]*)\)", s)
-            if e:
-                ev = (e.group(1), [p.strip() for p in e.group(2).split(",") if p.strip()])
-                continue
-            c = re.search(r"controller\.(\w+)\$Action\(", s)
-            if c and ev:
-                if ev[1]:
-                    for p in handlers.get(c.group(1), ev[1]):
-                        add(("child", f"{child} event {ev[0]}"), ("param", os_name(p + "Local")), c.group(1), i)
-                ev = None
-            if s.startswith("_validationProps"):
-                in_events = False
-    # 4. navigation parameters and client variable writes
-    for x in nav_params(lines):
-        j = x["line"]
-        while j < len(lines):
-            k = re.match(r"(\w+): (.+?),?$", lines[j].strip())
-            if not k or "generateScreenURL" in lines[j]:
-                break
-            for r_ in refs(lines[j]):
-                add(r_, ("nav", f"{x['to']}.{k.group(1)}"), "navigate", j + 1)
-            j += 1
-    for i, ln in enumerate(lines, 1):
-        for m in re.finditer(r"(\w+?)ClientVariables\.set(\w+)\((.*)\)", ln):
-            for r_ in refs(m.group(3)):
-                add(r_, ("clientvar", f"{m.group(1)}.{m.group(2)}"), "set", i)
-    seen, out = set(), []
-    for e in edges:
-        k = (e["src"], e["dst"])
-        if k not in seen:
-            seen.add(k)
-            out.append(e)
-    return out

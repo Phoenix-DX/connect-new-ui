@@ -14,6 +14,11 @@ def _split_os(rows):
     return own, [x for x in rows if OS_SHARED.match(x["file"])]
 
 
+def _line(lk):
+    """A link with the line number only (`L123`): the file is in another column."""
+    return re.sub(r"^\[`[^`]*:(\d+)`\]", r"[`L\1`]", lk)
+
+
 def _cell(s):
     return str(s).replace("|", "\\|")
 
@@ -35,23 +40,6 @@ def _effects(effs, link):
         lab = f"[{e['branch']}] " if e.get("branch") else ""
         out.append(f"{lab}{e['kind']}" + (f" `{_cell(e['detail'])}`" if e.get("detail") else ""))
     return "<br>".join(dict.fromkeys(out))
-
-
-def _has_data(edges, react=False):
-    src = {"server", "state", "clientvar", "input"} if react else {"server", "clientvar"}
-    dst = {"nav", "state", "clientvar"} if react else {"nav", "clientvar"}
-    return any(e["src"][0] in src or e["dst"][0] in dst for e in edges)
-
-
-def _edge_table(edges, place):
-    def nm(x):
-        return f"{x[0]} `{_cell(x[1])}`"
-
-    def ln(e):  # the line only: the file is the title of the diagram
-        return re.sub(r"^\[`[^`]*:(\d+)`\]", r"[`L\1`]", place(e))
-    L = ["| From | To | Label | Line |", "|---|---|---|---|"]
-    L += [f"| {nm(e['src'])} | {nm(e['dst'])} | {_cell(e['label'])} | {ln(e)} |" for e in edges]
-    return L + [""]
 
 
 def sections(r, start, link, short, emit=lambda name, mmd: None, v2=False):
@@ -146,10 +134,13 @@ def sections(r, start, link, short, emit=lambda name, mmd: None, v2=False):
                   ["", "The diagram keeps the order of the steps in the compiled action. The code does not give the "
                    "order of the handlers of different blocks.", *dl])
     L += ["", "Data actions and aggregates. The tool reads `dataFetchDependenciesOriginal`: `0` is a fetch when the "
-          "block opens, `-1` is a fetch only on demand (a `Refresh Query` step).", ""]
+          "block opens, `-1` is a fetch only on demand (a `Refresh Query` step). `Read by` lists the child block "
+          "inputs, conditions, text widgets and actions that read the result.", ""]
     if ox["fetch"]:
-        L += ["| Block | Data action | Fetch | Place |", "|---|---|---|---|"]
-        L += [f"| {blk(x['file'])} | `{x['name']}` | {x['mode']} (`{x['value']}`) | {op(x['file'], x['line'])} |" for x in ox["fetch"]]
+        L += ["| Block | Data action | Fetch | Read by | Place |", "|---|---|---|---|---|"]
+        L += [f"| {blk(x['file'])} | `{x['name']}` | {x['mode']} (`{x['value']}`) | " +
+              (", ".join(f"`{_cell(w)}` ({op(x['file'], ln)})" for w, ln in x.get("readBy") or []) or "**no widget or action reads it**") +
+              f" | {op(x['file'], x['line'])} |" for x in ox["fetch"]]
     else:
         L += ["None."]
     own_eff = [x for x in rx["lifecycle"] if not UI_SHARED.match(x["file"]) or x["effects"]]
@@ -173,12 +164,14 @@ def sections(r, start, link, short, emit=lambda name, mmd: None, v2=False):
         for i, x in enumerate(with_eff, 1):
             dl += diagram(f"{n}.2.{i} {x['in']}: {x['hook']}", react_lifecycle_mmd(x))
         L += fold(f"Sequence diagrams of the effects with a call, a navigation, a message or a refresh ({len(with_eff)})", dl)
-    L += ["", "Queries. A query fetches when its component mounts and when its key changes.", ""]
+    L += ["", "Queries. A query fetches when its component mounts and when its key changes. `Read by` lists what "
+          "reads the result in the same file.", ""]
     if rx["queries"]:
-        L += ["| File | Hook (function) | Calls | Place |", "|---|---|---|---|"]
+        L += ["| File | Hook (function) | Calls | Read by | Place |", "|---|---|---|---|---|"]
         L += [f"| `{x['file'].rsplit('/', 1)[-1]}` | `{x['hook']}` (`{x['in']}`) | " +
-              ("<br>".join(dict.fromkeys(f"`{c['detail']}`" for c in x["calls"])) or "none found") + f" | {link(x['file'], x['line'])} |"
-              for x in rx["queries"]]
+              ("<br>".join(dict.fromkeys(f"`{c['detail']}`" for c in x["calls"])) or "none found") + " | " +
+              (", ".join(f"`{_cell(r['what'])}` ({_line(link(x['file'], r['line']))})" for r in x.get("readBy") or []) or "**nothing reads it**") +
+              f" | {link(x['file'], x['line'])} |" for x in rx["queries"]]
     else:
         L += ["None."]
     L += [""]
@@ -252,48 +245,6 @@ def sections(r, start, link, short, emit=lambda name, mmd: None, v2=False):
           "not give the error to it.", ""]
     n += 1
 
-    # --- data flow ---------------------------------------------------------------------------------------------------
-    L += [f"## {n}. Data flow", "",
-          "Where the data of the route comes from and where it goes: one flowchart per screen or block (OutSystems) "
-          "and per component or hook (React). An arrow goes from the source to the target. The label is the input, "
-          "the event or the action of the arrow. The places are in the table under each diagram.", "",
-          "| Shape | OutSystems | React |", "|---|---|---|",
-          "| `[(server: X)]` | data action, aggregate | query and its calls |",
-          "| `[X]` | variable of the screen or block | variable, `state:` state |",
-          "| `([event arg: X])` | input of an event handler | argument of a handler |",
-          "| `[[X]]` | child block (label: its input or event) | child component (label: its prop or event) |",
-          "| `{{client var: X}}` | client variable | client variable |",
-          "| `>navigate: S.P]` | parameter of a navigation | parameter of a navigation |",
-          "| `[/prop: X/]` | – | prop of the component |",
-          "| `([hook: X])` | `([action: X])`: result of an action | result of a hook |", "",
-          f"### {n}.1 OutSystems (TST)", ""]
-    df_own, df_shared = _split_os(ox.get("dataflow") or [])
-    if v2:
-        df_own = [x for x in df_own if _has_data(x["edges"])]
-        L += ["Only the screen and the blocks with a server, client variable or navigation edge. A block that only "
-              "passes its inputs to its children does not appear.", ""]
-    if not df_own:
-        L += ["None.", ""]
-    dl = []
-    for i, x in enumerate(df_own, 1):
-        dl += diagram(f"{n}.1.{i} {short(x['file'])}", dataflow_mmd(x["edges"]))
-        dl += [""] + _edge_table(x["edges"], lambda e, f=x["file"]: op(f, e["line"]))
-    L += fold(f"Data flow diagrams ({len(df_own)})", dl) + [""]
-    if df_shared:
-        L += [f"The shared pattern and plugin blocks have data flows too: " +
-              ", ".join(sorted({f"`{short(x['file'])}`" for x in df_shared})) + ". The tool does not show them.", ""]
-    L += [f"### {n}.2 React", ""]
-    rdf = rx.get("dataflow") or []
-    if v2:
-        rdf = [x for x in rdf if _has_data(x["edges"], react=True)]
-        L += ["Only the components and hooks with a server, state, client variable or navigation edge.", ""]
-    if not rdf:
-        L += ["None.", ""]
-    dl = []
-    for i, x in enumerate(rdf, 1):
-        dl += diagram(f"{n}.2.{i} {x['fn']} ({x['file'].rsplit('/', 1)[-1]})", dataflow_mmd(x["edges"]))
-        dl += [""] + _edge_table(x["edges"], lambda e, f=x["file"]: link(f, e["line"]))
-    L += fold(f"Data flow diagrams ({len(rdf)})", dl) + [""]
     n += 1
     return L, n
 
@@ -394,50 +345,4 @@ def react_lifecycle_mmd(x):
         L.append("  end")
     if x["cleanup"]:
         L.append("  R->>H: cleanup (unmount or before the next run)")
-    return "\n".join(L)
-
-
-SHAPE = {"server": ('[("', '")]'), "var": ('["', '"]'), "state": ('["', '"]'), "param": ('(["', '"])'),
-         "child": ('[["', '"]]'), "clientvar": ('{{"', '"}}'), "nav": ('>"', '"]'), "hook": ('(["', '"])'),
-         "action": ('(["', '"])'), "prop": ('[/"', '"/]'), "input": ('[/"', '"/]'), "out": ('[\\"', '"\\]')}
-PREFIX = {"server": "server: ", "param": "event arg: ", "clientvar": "client var: ", "nav": "navigate: ",
-          "hook": "hook: ", "action": "action: ", "prop": "prop: ", "input": "", "out": "", "var": "", "state": "state: ",
-          "child": ""}
-
-
-def dataflow_mmd(edges):
-    """Flowchart LR of the edges. A child block is one node: its inputs or its event are the edge label."""
-    ids, nodes, out = {}, [], {}
-
-    def node(kind, name):
-        if kind == "child":
-            m = re.match(r"(\w+)(?:\.(\w+)| \(shown if\)| event (\w+)| (on\w+))?$", name)
-            name = m.group(1) if m else name
-        k = (kind, name)
-        if k not in ids:
-            ids[k] = f"n{len(ids)}"
-            a, b = SHAPE.get(kind, ('["', '"]'))
-            nodes.append(f"  {ids[k]}{a}{_txt(PREFIX.get(kind, '') + name, 60).replace(chr(34), '')}{b}")
-        return ids[k]
-
-    for e in edges:
-        (sk, sn), (dk, dn) = e["src"], e["dst"]
-        lab = e["label"]
-        if dk == "child":
-            m = re.match(r"\w+\.(\w+)$", dn)
-            lab = m.group(1) if m else ("shown if" if dn.endswith("(shown if)") else lab)
-        if sk == "child":
-            m = re.match(r"\w+ (?:event )?(\w+)$", sn)
-            lab = m.group(1) if m else lab
-        if dk == "nav" or sk in ("server",) or lab in ("derived", "fetch", "view", "set", "return", "navigate") or \
-                (sk in ("hook",) and dk == "var"):
-            lab = "" if lab in ("derived", "fetch", "view", "return", "navigate") or sk == "hook" or sk == "server" else lab
-        key = (node(sk, sn), node(dk, dn))
-        out.setdefault(key, [])
-        if lab and lab not in out[key]:
-            out[key].append(lab)
-    L = ["flowchart LR", *nodes]
-    for (a, b), labs in out.items():
-        t = ", ".join(labs[:3]) + (f" +{len(labs) - 3}" if len(labs) > 3 else "")
-        L.append(f'  {a} -->|"{_txt(t, 50)}"| {b}' if t else f"  {a} --> {b}")
     return "\n".join(L)
