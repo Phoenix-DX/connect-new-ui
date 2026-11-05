@@ -28,7 +28,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React calls reached only through shared code | 2: see the last section |
 | User actions of the route (own code) | OutSystems: 8. React: 1 |
 | Screen and blocks of the UI flow with a React port | 2 of 2 |
-| Navigation targets found in React | 14 of 14 |
+| Navigation targets found in React | 13 of 13 |
 | Shared blocks and components on the route | OutSystems 44, React 11 with user actions: see the last section |
 | App shell on this route | 3 calls: see [APP_SHELL.md](../APP_SHELL.md) |
 
@@ -41,6 +41,10 @@ None.
 ### Not a gap of the web app
 
 Missing TST calls that a rule of `route-actions/config.json` (`notApplicable`, user 2026-11-05) sets aside. The rule names the fact and its evidence; the chain is the one of the TST code.
+
+**Declared, never run (navigation).** The navigation sits in a client action that no event, lifecycle step or action of the compiled code calls or binds (`tools/os_call_graph.py dead_client_actions`): TST cannot reach it.
+
+- Navigation to `Profile` in `HouseholdDetails_Block.handler_OnMenuEdit`.
 
 **Native only.** TST offers the external share options only when AppManager_GetIsNative is true; the React app is never native. Evidence: ShareSheet Action_SetExternalShareOptions appends Share via, Copy link, WhatsApp, Signal and Outlook inside `if (AppManager_GetIsNative)` (UBTConnect_Utils.CW_Share.ShareSheet.mvc.js:2418-2475); SharePopup appends "Share to other apps" after AppManager_GetIsNative (UBTConnect_Utils.CW_CTA_PopUps.SharePopup.mvc.js:274-288); ShareEntity_ByURL calls the SocialSharing plugin (UBTConnect_Utils.controller.js:5319+); app/src/platform/session/clientVars.ts:40 (DeviceInfo_IsNative false).
 

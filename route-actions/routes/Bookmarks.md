@@ -160,7 +160,7 @@ Screen inputs: none. `setInputs` of `Bookmarks` reads no input.
 
 | Block | Target | Parameters | Place |
 |---|---|---|---|
-| `Bookmarks` | `Locality_Details` | `LocalityId` = `textToLongInteger(notes_InterchangeId_ExtractId.interchangeLocalityId)`<br>`TagsList_SelectedTag` = `OS.DataConversion.ServerDataConverter.asString(OutSystemsDebugger.handleFunctionCall(funct…` | [`UBTConnect.Bookmarks.Bookmarks.mvc.js:1105`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1105) |
+| `Bookmarks` | `Locality_Details` | `LocalityId` = `textToLongInteger(notes_InterchangeId_ExtractId.interchangeLocalityId)`<br>`TagsList_SelectedTag` = `UBTConnectController.default.getLocalityMenu$Action(callContext).localityMenuOptions.inter…` | [`UBTConnect.Bookmarks.Bookmarks.mvc.js:1105`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1105) |
 | `Bookmarks` | `Household_Relations` | `HouseholdId` = `textToLongInteger(objectId2)`<br>`MemberId` = `textToLongInteger(objectId)` | [`UBTConnect.Bookmarks.Bookmarks.mvc.js:1124`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1124) |
 | `Bookmarks` | `OneSchoolGlobalCarousel` | `In_StartingObjectId` = `textToLongInteger(objectId)` | [`UBTConnect.Bookmarks.Bookmarks.mvc.js:1147`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1147) |
 | `Bookmarks` | `SupperMeeting_Details` | `In_SubdivsionId` = `textToLongInteger(objectId)` | [`UBTConnect.Bookmarks.Bookmarks.mvc.js:1160`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1160) |

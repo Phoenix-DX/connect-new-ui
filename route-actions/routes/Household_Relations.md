@@ -16,17 +16,17 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/Household_Relations/Household_RelationsPage.tsx`](../../app/src/pages/Household_Relations/Household_RelationsPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 | Screenshots | [`migration/screens/Household_Relations/parity`](../../migration/screens/Household_Relations/parity) | `route.py parity` |
-| Code read | OutSystems: 2 files of the UI flow, 19 shared blocks, 29 app shell files. React: 180 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
+| Code read | OutSystems: 2 files of the UI flow, 19 shared blocks, 29 app shell files. React: 182 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
 | Check | Result |
 |---|---|
-| Server calls of the route on TST | 7: React makes 5, **2 missing** |
-| Differences found | **2** (see [section 3](#3-differences-found)) |
+| Server calls of the route on TST | 7: React makes 7, **0 missing** |
+| Differences found | **0** (see [section 3](#3-differences-found)) |
 | Questions | 0 (see [section 4](#4-questions)) |
 | React calls reached only through shared code | 2: see the last section |
-| User actions of the route (own code) | OutSystems: 2. React: 2 |
+| User actions of the route (own code) | OutSystems: 2. React: 3 |
 | Screen and blocks of the UI flow with a React port | 2 of 2 |
 | Navigation targets found in React | 7 of 7 |
 | Shared blocks and components on the route | OutSystems 19, React 5 with user actions: see the last section |
@@ -36,16 +36,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 
 Each line is a fact of both sides: a TST call, navigation or variable, and the React code that has it or not. The tool does not judge the behaviour.
 
-- Call `UBTConnect_Utils/ServiceAPIAddBookmark2`. Chain on TST: onClick in Button → event event_OnClick of Button → … → UBTConnect_Utils.toggleBookmarkItem_C2 → server AddBookmark2.
-  - React has the function, but this route does not use it: `addC2Bookmark()` [`api/bookmark/repository.ts:16`](../../app/src/api/bookmark/repository.ts#L16).
-  - Note in [`lib/ubtConnectUtils/actions.ts:281`](../../app/src/lib/ubtConnectUtils/actions.ts#L281): "/* ---- ToggleBookmarkItem_C2 (live module of 2026-11-05: TST moved it from UBTConnect to UBTConnect_Utils) ---- */"
-  - Note in [`api/README.md:48`](../../app/src/api/README.md#L48): "ToggleBookmarkItem_C2 in `lib/ubtConnectUtils/actions.ts` calls these functions. `bookmarkCards.ts` holds the calls of the screen Bookmarks (`fetchBookmarkCards`, `fetchBookmarkPil"
-  - Note in [`containers/EntityDetailsActions/README.md:67`](../../app/src/containers/EntityDetailsActions/README.md#L67): "- **Handle_Bookmark** (:1400-1470): UBTConnect_Utils ToggleBookmarkItem_C2(EntityId, Local_BookmarkTypeId,"
-- Call `UBTConnect_Utils/ServiceAPIDeleteBookmarkByBookmarkId2`. Chain on TST: onClick in Button → event event_OnClick of Button → … → UBTConnect_Utils.toggleBookmarkItem_C2 → server DeleteBookmarkByBookmarkId2.
-  - React has the function, but this route does not use it: `deleteC2Bookmark()` [`api/bookmark/repository.ts:27`](../../app/src/api/bookmark/repository.ts#L27).
-  - Note in [`lib/ubtConnectUtils/actions.ts:281`](../../app/src/lib/ubtConnectUtils/actions.ts#L281): "/* ---- ToggleBookmarkItem_C2 (live module of 2026-11-05: TST moved it from UBTConnect to UBTConnect_Utils) ---- */"
-  - Note in [`api/README.md:48`](../../app/src/api/README.md#L48): "ToggleBookmarkItem_C2 in `lib/ubtConnectUtils/actions.ts` calls these functions. `bookmarkCards.ts` holds the calls of the screen Bookmarks (`fetchBookmarkCards`, `fetchBookmarkPil"
-  - Note in [`containers/EntityDetailsActions/README.md:67`](../../app/src/containers/EntityDetailsActions/README.md#L67): "- **Handle_Bookmark** (:1400-1470): UBTConnect_Utils ToggleBookmarkItem_C2(EntityId, Local_BookmarkTypeId,"
+None.
 
 ## 4. Questions
 
@@ -72,8 +63,8 @@ All columns come from the code, without interpretation:
 | 3 | `UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionGet_ParentHouseholdDetails` | data action | `HouseholdRelations_Block` | HouseholdRelations_Block.OnReady → HouseholdRelations_Block.screenEvent_OnReady → … → HouseholdRelations_Block.onAfterFetch_Get_MemberDetails → HouseholdRelations_Block.DataActionGet_ParentHouseholdDetails<br>HouseholdRelations_Block fetch at start → HouseholdRelations_Block.DataActionGet_MemberDetails → HouseholdRelations_Block.onAfterFetch_Get_MemberDetails → HouseholdRelations_Block.DataActionGet_ParentHouseholdDetails<br>HouseholdRelations_Block fetch at start → HouseholdRelations_Block.DataActionGet_ParentHouseholdDetails | yes | `fetchSiblingRelations()` [`api/household/repository.ts:102`](../../app/src/api/household/repository.ts#L102) (page) | `HouseholdRelations → useHouseholdRelations → fetchSiblingRelations`<br>[`pages/Household_Relations/Household_RelationsPage.tsx`](../../app/src/pages/Household_Relations/Household_RelationsPage.tsx) | implemented |
 | 4 | `UBTConnect_Utils/CW_Notes/NotesSheet/ServiceAPIAddNote` | service action | `NotesSheet` | NotesSheet.handler_OnSubmitNote → server AddNote | no | `addNote()` [`api/note/repository.ts:54`](../../app/src/api/note/repository.ts#L54) (page) | `NotesSheet → addNote`<br>[`components/note/NotesSheet/NotesSheet.tsx`](../../app/src/components/note/NotesSheet/NotesSheet.tsx) | implemented |
 | 5 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx) | implemented |
-| 6 | `UBTConnect_Utils/ServiceAPIAddBookmark2` | service action | `UBTConnect_Utils` | onClick in Button → event event_OnClick of Button → … → UBTConnect_Utils.toggleBookmarkItem_C2 → server AddBookmark2 | no | – | – | **missing** |
-| 7 | `UBTConnect_Utils/ServiceAPIDeleteBookmarkByBookmarkId2` | service action | `UBTConnect_Utils` | onClick in Button → event event_OnClick of Button → … → UBTConnect_Utils.toggleBookmarkItem_C2 → server DeleteBookmarkByBookmarkId2 | no | – | – | **missing** |
+| 6 | `UBTConnect_Utils/ServiceAPIAddBookmark2` | service action | `UBTConnect_Utils` | onClick in Button → event event_OnClick of Button → … → UBTConnect_Utils.toggleBookmarkItem_C2 → server AddBookmark2 | no | `addC2Bookmark()` [`api/bookmark/repository.ts:16`](../../app/src/api/bookmark/repository.ts#L16) (page) | `HouseholdRelations → useHouseholdRelations → bookmarkServerActions → addC2Bookmark`<br>[`pages/Household_Relations/Household_RelationsPage.tsx`](../../app/src/pages/Household_Relations/Household_RelationsPage.tsx) | implemented |
+| 7 | `UBTConnect_Utils/ServiceAPIDeleteBookmarkByBookmarkId2` | service action | `UBTConnect_Utils` | onClick in Button → event event_OnClick of Button → … → UBTConnect_Utils.toggleBookmarkItem_C2 → server DeleteBookmarkByBookmarkId2 | no | `deleteC2Bookmark()` [`api/bookmark/repository.ts:27`](../../app/src/api/bookmark/repository.ts#L27) (page) | `HouseholdRelations → useHouseholdRelations → bookmarkServerActions → deleteC2Bookmark`<br>[`pages/Household_Relations/Household_RelationsPage.tsx`](../../app/src/pages/Household_Relations/Household_RelationsPage.tsx) | implemented |
 
 ## 6. User actions
 
@@ -126,12 +117,47 @@ sequenceDiagram
 
 | # | File | Element | Event prop | Handler | Branch | Effects |
 |---|---|---|---|---|---|---|
-| [1](#621-householdrelationsview-onclickmember) | [`pages/Household_Relations/Household_RelationsPage.tsx:22`](../../app/src/pages/Household_Relations/Household_RelationsPage.tsx#L22) | `<HouseholdRelationsView>` | `onClickMember` | `relations.onClickMember` | – | goes to HouseholdDetails; asks for a confirmation |
-| [2](#622-householdrelationsview-onaddnotes) | [`pages/Household_Relations/Household_RelationsPage.tsx:22`](../../app/src/pages/Household_Relations/Household_RelationsPage.tsx#L22) | `<HouseholdRelationsView>` | `onAddNotes` | `relations.onAddNotes` | – | calls DataActionFetchNotes |
+| [1](#621-householdrelationsview-onclickbookmark) | [`pages/Household_Relations/Household_RelationsPage.tsx:22`](../../app/src/pages/Household_Relations/Household_RelationsPage.tsx#L22) | `<HouseholdRelationsView>` | `onClickBookmark` | `relations.onClickBookmark` | – | calls ServiceAPIDeleteBookmarkByBookmarkId2, ServiceAPIAddBookmark2; shows a message |
+| [2](#622-householdrelationsview-onclickmember) | [`pages/Household_Relations/Household_RelationsPage.tsx:22`](../../app/src/pages/Household_Relations/Household_RelationsPage.tsx#L22) | `<HouseholdRelationsView>` | `onClickMember` | `relations.onClickMember` | – | goes to HouseholdDetails; asks for a confirmation |
+| [3](#623-householdrelationsview-onaddnotes) | [`pages/Household_Relations/Household_RelationsPage.tsx:22`](../../app/src/pages/Household_Relations/Household_RelationsPage.tsx#L22) | `<HouseholdRelationsView>` | `onAddNotes` | `relations.onAddNotes` | – | calls DataActionFetchNotes |
 
-<details><summary>2 diagrams (handlers with two or more effects)</summary>
+<details><summary>3 diagrams (handlers with two or more effects)</summary>
 
-#### 6.2.1 HouseholdRelationsView: onClickMember
+#### 6.2.1 HouseholdRelationsView: onClickBookmark
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as HouseholdRelationsView · Household_RelationsPage.tsx
+  participant A as Server (React api)
+  U->>H: onClickBookmark → relations.onClickBookmark
+  Note over H: via actionOnClickBookmark()
+  Note over H: via toggleBookmarkItem_C2()
+  Note over H: via deleteBookmarkByBookmarkId2()
+  H->>A: ServiceAPIDeleteBookmarkByBookmarkId2(BookmarkId)
+  A-->>H: Success, WasFound
+  Note over H: via bookmark_SendFeedbackMessage()
+  Note over H: message isCreate ? 'Bookmark could not be added. Please try again later.' : 'Bookmark could not be
+  Note over H: message isCreate ? 'Added to your Bookmarks' : 'Removed from your Bookmarks'
+  Note over H: via bookmark_SendFeedbackMessage()
+  Note over H: message isCreate ? 'Bookmark could not be added. Please try again later.' : 'Bookmark could not be
+  Note over H: message isCreate ? 'Added to your Bookmarks' : 'Removed from your Bookmarks'
+  Note over H: via addBookmark2()
+  H->>A: ServiceAPIAddBookmark2(In_BookmarkCategoryId, In_ItemId)
+  A-->>H: Bookmark_Added, Success
+  Note over H: via bookmark_SendFeedbackMessage()
+  Note over H: message isCreate ? 'Bookmark could not be added. Please try again later.' : 'Bookmark could not be
+  Note over H: message isCreate ? 'Added to your Bookmarks' : 'Removed from your Bookmarks'
+  Note over H: via bookmark_SendFeedbackMessage()
+  Note over H: message isCreate ? 'Bookmark could not be added. Please try again later.' : 'Bookmark could not be
+  Note over H: message isCreate ? 'Added to your Bookmarks' : 'Removed from your Bookmarks'
+  Note over H: via bookmark_SendFeedbackMessage()
+  Note over H: message isCreate ? 'Bookmark could not be added. Please try again later.' : 'Bookmark could not be
+  Note over H: message isCreate ? 'Added to your Bookmarks' : 'Removed from your Bookmarks'
+```
+
+#### 6.2.2 HouseholdRelationsView: onClickMember
 
 ```mermaid
 sequenceDiagram
@@ -146,7 +172,7 @@ sequenceDiagram
   Note over H: confirm dialog dialogId
 ```
 
-#### 6.2.2 HouseholdRelationsView: onAddNotes
+#### 6.2.3 HouseholdRelationsView: onAddNotes
 
 ```mermaid
 sequenceDiagram
@@ -195,7 +221,7 @@ Declared inputs of the route: `HouseholdId: LongInteger`, `MemberId: LongInteger
 
 | File | Target | Parameters | Place |
 |---|---|---|---|
-| `useHouseholdRelations.ts` | `HouseholdDetails` | `HouseholdId` = `householdId` | [`pages/Household_Relations/hooks/useHouseholdRelations.ts:182`](../../app/src/pages/Household_Relations/hooks/useHouseholdRelations.ts#L182) |
+| `useHouseholdRelations.ts` | `HouseholdDetails` | `HouseholdId` = `householdId` | [`pages/Household_Relations/hooks/useHouseholdRelations.ts:216`](../../app/src/pages/Household_Relations/hooks/useHouseholdRelations.ts#L216) |
 
 ## 8. Lifecycle
 
@@ -267,7 +293,7 @@ An error without a handler goes to the `OnException` of the UI flow (`handleErro
 
 | File | Kind | Function | Effects | Place |
 |---|---|---|---|---|
-| `useHouseholdRelations.ts` | try/catch | `refresh` | none | [`pages/Household_Relations/hooks/useHouseholdRelations.ts:126`](../../app/src/pages/Household_Relations/hooks/useHouseholdRelations.ts#L126) |
+| `useHouseholdRelations.ts` | try/catch | `refresh` | none | [`pages/Household_Relations/hooks/useHouseholdRelations.ts:132`](../../app/src/pages/Household_Relations/hooks/useHouseholdRelations.ts#L132) |
 
 `flow handler`: `raiseToFlowHandler` gives the error to the flow handler of the screen (`app/src/platform/feedback/flowErrors.ts`). The tool lists `.catch`, `try/catch` and `onError` that do not give the error to it.
 

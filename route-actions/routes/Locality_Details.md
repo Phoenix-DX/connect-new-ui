@@ -28,7 +28,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React calls reached only through shared code | 11: see the last section |
 | User actions of the route (own code) | OutSystems: 6. React: 11 |
 | Screen and blocks of the UI flow with a React port | 4 of 4 |
-| Navigation targets found in React | 13 of 13 |
+| Navigation targets found in React | 12 of 12 |
 | Shared blocks and components on the route | OutSystems 20, React 10 with user actions: see the last section |
 | App shell on this route | 9 calls: see [APP_SHELL.md](../APP_SHELL.md) |
 
@@ -37,6 +37,15 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 Each line is a fact of both sides: a TST call, navigation or variable, and the React code that has it or not. The tool does not judge the behaviour.
 
 None.
+
+### Not a gap of the web app
+
+Missing TST calls that a rule of `route-actions/config.json` (`notApplicable`, user 2026-11-05) sets aside. The rule names the fact and its evidence; the chain is the one of the TST code.
+
+**Declared, never run (navigation).** The navigation sits in a client action that no event, lifecycle step or action of the compiled code calls or binds (`tools/os_call_graph.py dead_client_actions`): TST cannot reach it.
+
+- Navigation to `OneSchoolGlobalDetails` in `Locality_Details.handler_NavigateTo_OneschoolGlobalDetails`.
+
 
 ## 4. Questions
 
@@ -196,7 +205,6 @@ The OutSystems files are in the `analysis/sources/raw/` folder of the route; the
 |---|---|---|---|
 | `Locality_Details` | `CountryDetails` | `CountryCode` = `get_LocalityDetails.localityDetails.uI_LocalityDetails.countryCode` | [`UBTConnect.Directory_Locality.Locality_Details.mvc.js:1202`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.Locality_Details.mvc.js#L1202) |
 | `Locality_Details` | `BrowseDirectory` | `CountryCode` = `get_LocalityDetails.localityDetails.uI_LocalityDetails.countryCode` | [`UBTConnect.Directory_Locality.Locality_Details.mvc.js:1208`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.Locality_Details.mvc.js#L1208) |
-| `Locality_Details` | `OneSchoolGlobalDetails` | `In_OneSchoolGlobalId` = `event_OneSchoolGlobalId` | [`UBTConnect.Directory_Locality.Locality_Details.mvc.js:1654`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.Locality_Details.mvc.js#L1654) |
 | `Locality_Details` | `Map` | `In_InitialLongitude` = `get_LocalityDetails.localityDetails.mainHallLongitude`<br>`In_InitialLatitude` = `get_LocalityDetails.localityDetails.maiinHallLatitude` | [`UBTConnect.Directory_Locality.Locality_Details.mvc.js:1690`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.Locality_Details.mvc.js#L1690) |
 | `Locality_Details` | `HouseholdDetails` | `HouseholdId` = `householdId` | [`UBTConnect.Directory_Locality.Locality_Details.mvc.js:1723`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.Locality_Details.mvc.js#L1723) |
 | `Locality_Households_HouseholdList` | `HouseholdCarousel` | `In_StartingHouseholdId` = `getLocalityHouseholds.localityHouseholds.getCurrent(iterationContext).householdId` | [`UBTConnect.Directory_Locality.Locality_Households_HouseholdList.mvc.js:401`](../../migration/screens/Locality_Details/analysis/sources/raw/UBTConnect.Directory_Locality.Locality_Households_HouseholdList.mvc.js#L401) |
@@ -215,7 +223,7 @@ Declared inputs of the route: `LocalityId: LongInteger`, `PreloadedLocalityLabel
 | `useLocalityDetails.ts` | `CountryDetails`, `BrowseDirectory` | `CountryCode` = `countryCode` | [`pages/Locality_Details/hooks/useLocalityDetails.ts:128`](../../app/src/pages/Locality_Details/hooks/useLocalityDetails.ts#L128) |
 | `useLocalityDetails.ts` | `HouseholdDetails` | `HouseholdId` = `householdId` | [`pages/Locality_Details/hooks/useLocalityDetails.ts:136`](../../app/src/pages/Locality_Details/hooks/useLocalityDetails.ts#L136) |
 | `useLocalityDetails.ts` | `OneSchoolGlobalDetails` | `In_OneSchoolGlobalId` = `oneSchoolGlobalId` | [`pages/Locality_Details/hooks/useLocalityDetails.ts:143`](../../app/src/pages/Locality_Details/hooks/useLocalityDetails.ts#L143) |
-| `useLocalityHouseholdList.ts` | `HouseholdCarousel` | `In_StartingHouseholdId` = `householdId` | [`pages/Locality_Details/hooks/useLocalityHouseholdList.ts:84`](../../app/src/pages/Locality_Details/hooks/useLocalityHouseholdList.ts#L84) |
+| `useLocalityHouseholdList.ts` | `HouseholdCarousel` | `In_StartingHouseholdId` = `householdId` | [`pages/Locality_Details/hooks/useLocalityHouseholdList.ts:85`](../../app/src/pages/Locality_Details/hooks/useLocalityHouseholdList.ts#L85) |
 | `useLocalityInterchange.ts` | `Locality_Details` | `PreloadedLocalityLabel` = `localityLabel`<br>`LocalityId` = `localityId` | [`pages/Locality_Details/hooks/useLocalityInterchange.ts:60`](../../app/src/pages/Locality_Details/hooks/useLocalityInterchange.ts#L60) |
 | `useLocalitySubdivisions.ts` | `SupperMeeting_Carousel` | `In_StartingSupperMeetingId` = `subdivisionId` | [`pages/Locality_Details/hooks/useLocalitySubdivisions.ts:78`](../../app/src/pages/Locality_Details/hooks/useLocalitySubdivisions.ts#L78) |
 | `useLocalitySubdivisions.ts` | `SupperMeeting_Details` | `In_SubdivsionId` = `subdivisionId` | [`pages/Locality_Details/hooks/useLocalitySubdivisions.ts:81`](../../app/src/pages/Locality_Details/hooks/useLocalitySubdivisions.ts#L81) |
