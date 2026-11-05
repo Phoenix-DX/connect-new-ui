@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "6122fb8e5e44df0f259f",
+ "fingerprint": "6558edcebf4c8dc33057",
  "options": {
   "text": true,
   "style": true,
@@ -27,7 +27,7 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-29T15:59:42.756Z",
+ "at": "2026-11-05T06:11:59.279Z",
  "counts": {},
  "exemptionsUsed": {
   "VIA-BACK-MENUICON-EVENTDETAIL": 14,

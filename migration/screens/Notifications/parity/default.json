@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "222903ad7cf39e50bcf5",
+ "fingerprint": "62cd7cd9b1f4b6094e7c",
  "options": {
   "text": true,
   "style": true,
@@ -27,18 +27,20 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-29T16:03:47.734Z",
- "counts": {},
+ "at": "2026-11-05T06:17:28.053Z",
+ "counts": {
+  "text": 1
+ },
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
   "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
   "ignoreSubtrees": 1
  },
  "pixel": {
-  "ratio": 0,
-  "maxCell": 0,
+  "ratio": 0.00022,
+  "maxCell": 0.03,
   "maxCellRatio": 0.03,
-  "diffPixels": 0,
+  "diffPixels": 67,
   "comparedPixels": 299610,
   "maxRatio": 0.002,
   "threshold": 0.1,
@@ -51,7 +53,10 @@
    844
   ],
   "masks": 55,
-  "hotspots": [],
+  "hotspots": [
+   "80,400 (48px)",
+   "40,400 (19px)"
+  ],
   "diffPng": "migration/screens/Notifications/parity/default.diff.png"
  },
  "calls": {
@@ -61,5 +66,11 @@
   "expected": 10,
   "actual": 10
  },
- "diffs": []
+ "diffs": [
+  {
+   "kind": "text",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b15.OSBlockWidget[App_Notifications.NotificationsListBreakpoints] > div.OSFillParent.list.list-group > div > div#b15-l1-117_3-$b2.OSBlockWidget[App_Notifications.NotificationsList] > div#b15-l1-117_3-b2-List_Notifications.OSFillParent.background-neutral-0.list > div#b15-l1-117_3-b2-l1-131_2-ListItemContainer.ListItemContainer > div#b15-l1-117_3-b2-l1-131_2-ListItemNotification > div.list-item-container.list-item-float-left > div.list-item.list-itemNotifications-action-primary > div#b15-l1-117_3-b2-l1-131_2-$b3.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b15-l1-117_3-b2-l1-131_2-b3-Placeholder_LoadingSection > div.updates-list__list-item > div#b15-l1-117_3-b2-l1-131_2-NotificationItem.OSBlockWidget[ConnectCorePatterns.Notification_ListItem] > div#b15-l1-117_3-b2-l1-131_2-b4-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b15-l1-117_3-b2-l1-131_2-b4-b1-Content.background-cyan-lightest.padding-base.ubt-custom-container > div#b15-l1-117_3-b2-l1-131_2-b4-$b2.OSBlockWidget[BasePatterns.Columns_Three] > div#b15-l1-117_3-b2-l1-131_2-b4-b2-$b1.OSBlockWidget[Adaptive.Columns3] > div.align-items-center.columns.columns3 > div#b15-l1-117_3-b2-l1-131_2-b4-b2-b1-Column2.columns-item > div#b15-l1-117_3-b2-l1-131_2-b4-b2-Middle.ubt-columns--column.ubt-columns--middle > div#b15-l1-117_3-b2-l1-131_2-b4-Notification_Elapsed > div#b15-l1-117_3-b2-l1-131_2-b4-$b7.OSBlockWidget[BasePatterns.CustomContainer] > div#b15-l1-117_3-b2-l1-131_2-b4-b7-Content.padding-top-s.ubt-custom-container > div#b15-l1-117_3-b2-l1-131_2-b4-$b8.OSBlockWidget[BasePatterns.CustomText] > div.font-semi-bold.font-size-xxs.text-neutral-7 > span",
+   "detail": "\"1w\" → \"6d\""
+  }
+ ]
 }

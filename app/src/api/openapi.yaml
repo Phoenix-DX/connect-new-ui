@@ -371,7 +371,7 @@ paths:
       x-os-kind: 'clientWrapper'
       x-os-paths: ['screenservices/Connect2_LegacyShared/ActionGetMemberContactByCacheKey']
       x-os-phase: []
-      x-os-screens: ['MilestoneDetail']
+      x-os-screens: ['AssembleDetail', 'HelpersDetail', 'MilestoneDetail']
   '/api/Connect2_LegacyShared/ActionGetNumberUnreadMessages':
     post:
       operationId: 'Connect2_LegacyShared.ActionGetNumberUnreadMessages'
@@ -472,7 +472,14 @@ paths:
       x-os-kind: 'clientWrapper'
       x-os-paths: ['screenservices/Connect2_LegacyShared/ActionGetSignedImagesInBulk']
       x-os-phase: ['load']
-      x-os-screens: ['MilestoneDetail']
+      x-os-screens:
+        - 'GuestArrangements'
+        - 'HelpersDetail'
+        - 'HostSurvey'
+        - 'MilestoneDetail'
+        - 'OrbitAdminEventDetail'
+        - 'OrbitAdminMilestoneDetail'
+        - 'QRCodeGenerate'
   '/api/Connect2_LegacyShared/ActionGetSignedPhotosInBulk':
     post:
       operationId: 'Connect2_LegacyShared.ActionGetSignedPhotosInBulk'
@@ -502,7 +509,7 @@ paths:
       x-os-kind: 'clientWrapper'
       x-os-paths: ['screenservices/Connect2_LegacyShared/ActionGetSignedPhotosInBulk']
       x-os-phase: []
-      x-os-screens: ['LegacyShareObject', 'MessageDetail']
+      x-os-screens: ['AssembleDetail', 'AssembleEvents', 'LDM_MyEvents_V2', 'LegacyShareObject', 'MessageDetail']
   '/api/Connect2_LegacyShared/ActionGetTimezoneInformation':
     post:
       operationId: 'Connect2_LegacyShared.ActionGetTimezoneInformation'
@@ -532,7 +539,7 @@ paths:
       x-os-kind: 'clientWrapper'
       x-os-paths: ['screenservices/Connect2_LegacyShared/ActionGetTimezoneInformation']
       x-os-phase: []
-      x-os-screens: ['MilestoneDetail']
+      x-os-screens: ['HelpersDetail', 'MilestoneDetail']
   '/api/Connect2_LegacyShared/ActionGetUserInformation':
     post:
       operationId: 'Connect2_LegacyShared.ActionGetUserInformation'
@@ -562,7 +569,21 @@ paths:
       x-os-kind: 'clientWrapper'
       x-os-paths: ['screenservices/Connect2_LegacyShared/ActionGetUserInformation']
       x-os-phase: ['load']
-      x-os-screens: ['AssembleEvents', 'Assemble_BrowseByCountry']
+      x-os-screens:
+        - 'AssembleDetail'
+        - 'AssembleEvents'
+        - 'Assemble_BrowseByCountry'
+        - 'BrowseCountries'
+        - 'BrowseDirectory'
+        - 'CountryDetails'
+        - 'CountryList'
+        - 'HouseholdCarousel'
+        - 'HouseholdDetails'
+        - 'Household_Relations'
+        - 'Locality_Details'
+        - 'OneSchoolGlobalCarousel'
+        - 'Profile'
+        - 'SupperMeeting_Carousel'
   '/api/Connect2_LegacyShared/ActionGetUserLocalitiesForCountryCodeWithGPS':
     post:
       operationId: 'Connect2_LegacyShared.ActionGetUserLocalitiesForCountryCodeWithGPS'

@@ -8,7 +8,7 @@ import type { Notes } from '@/lib/ubtConnectLibrary/structures';
 const NO_NOTES: Notes = { Total: 0, Note_Item_List: [] };
 
 /** The screen variables of AssembleDetail that the notes data action and its handlers read. */
-export interface AssembleNotesScreen {
+interface AssembleNotesScreen {
   /** The inputs EventId, SeriesId, Start (DateTime wire) and AssembleEventTypeTile. */
   inputs: { EventId: string; SeriesId: string; Start: string; AssembleEventTypeTile: string };
   /** IsShareOpen and ShareableObjectId: sent with the call, as every screen variable. */
@@ -17,7 +17,7 @@ export interface AssembleNotesScreen {
 }
 
 /** What the page gives NoteListActions, ItemCard_ActionBar and NotesSheet. */
-export interface AssembleNotesFlows {
+interface AssembleNotesFlows {
   /** GetAssembleNotes.Out_Notes. */
   notes: Notes;
   /** IsAddNote: the notes sheet is open. */

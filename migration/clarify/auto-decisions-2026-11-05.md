@@ -45,3 +45,14 @@ Correction (same day): the "159 files fail in the full run" seen first was the r
 <command>` resolves `node` to Homebrew Node 26 (`/opt/homebrew/bin/node`), whose experimental global `localStorage`
 shadows the jsdom one; the shell's nvm Node 22.23 has no such global. Run vitest without `caffeinate` in front of
 `node` (keep-awake as a separate process). The full run with the nvm Node: see the result lines below.
+
+Parity sweep (2026-11-05, after the fixes, every route with a capture): 50 of 51 clean. Notifications default
+state differs in one text: the relative age of a recorded notification. The capture of 2026-10-29 shows "1w", today
+"6d" (a fixed `DateTimeCreated` fixture, a label computed from the current date). Not a change of this work; a frozen
+clock for parity is a later decision.
+
+Full `vitest run` (nvm Node 22.23, alone): 4756 of 4757 tests pass. The one failure is the AssembleEvents test "a
+navigation away while OnReady waits for the user starts no refresh" (`AssembleEvents.test.tsx`). It passes 3 of 3
+times alone: a timing flake of the full run under load (LegacyPopupMenu showed the same once). Not a change of this
+work.
+

@@ -74,7 +74,7 @@ describe('signIn and signOut use the provider of the build (plan v2 §3.2)', () 
     await signOut();
     expect(double.calls).toEqual(['signOut (needPinRegister)']);
     expect(getSessionStatus()).toEqual({ status: 'signedOut' });
-    expect(calledActions()).toEqual(['ActionAppManager_SynchAppContext']);
+    expect(calledActions()).toEqual(['ActionAppManager_Logout', 'ActionAppManager_SynchAppContext']);
   });
 
   test('resetPassword: the provider runs its reset-password policy; the session stays signed out; the callback carries the TST message', async () => {
