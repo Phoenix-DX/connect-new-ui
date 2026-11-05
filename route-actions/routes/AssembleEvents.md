@@ -22,7 +22,8 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 |---|---|
 | Server calls of the route on TST | 5: React makes 4, **1 missing** |
 | Differences found | **1** (see [section 3](#3-differences-found)) |
-| Questions | 4 (see [section 4](#4-questions)) |
+| Questions | 0 (see [section 4](#4-questions)) |
+| React calls reached only through shared code | 3: see the last section |
 | User actions of the route (own code) | OutSystems: 3. React: 9 |
 | Screen and blocks of the UI flow with a React port | 1 of 1 |
 | Navigation targets found in React | 9 of 9 |
@@ -38,10 +39,9 @@ Each line is a fact of both sides: a TST call, navigation or variable, and the R
 
 ## 4. Questions
 
-1. React calls `/api/Connect2_LegacyShared/ActionGetLocalityInformation` from `fetchLocalityInformation()` [`api/locality/repository.ts:173`](../../app/src/api/locality/repository.ts#L173) (page). TST AssembleEvents has no chain to this call. Does the call belong to this route?
-2. React calls `/api/Connect2_LegacyShared/ActionGetUserLocalitiesForCountryCodeWithGPS` from `fetchCountryLocalities()` [`api/country/repository.ts:74`](../../app/src/api/country/repository.ts#L74) (page). TST AssembleEvents has no chain to this call. Does the call belong to this route?
-3. React calls `/api/Connect2_LegacyShared/ActionGetSignedPhotosInBulk` from `getSignedPhotosInBulk()` [`lib/legacyShared/actions.ts:49`](../../app/src/lib/legacyShared/actions.ts#L49) (page). TST AssembleEvents has no chain to this call. Does the call belong to this route?
-4. React calls `/api/UBTConnect_Utils/CacheControl_Policies/DataActionGetCacheInfo` from `fetchPolicies()` [`api/app/repository.ts:54`](../../app/src/api/app/repository.ts#L54) (shell + page). TST AssembleEvents has no chain to this call. Does the call belong to this route?
+None.
+
+3 more React calls without a TST chain on this route are reached only through shared containers, components or app code. They are in the last section, not here.
 
 ## 5. Server calls
 
@@ -309,3 +309,13 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 
 </details>
 
+
+### React calls reached only through shared code
+
+Calls that React can make on this route, without a TST chain on this route. Every reference chain starts in a shared container, component or app code (`containers/`, `components/`, `platform/`, `legacy/`, `lib/`), not in the screen files. TST makes these calls on a user action of the shared block, which the capture did not record, or on another screen.
+
+| Call | React action | Reached through |
+|---|---|---|
+| `/api/Connect2_LegacyShared/ActionGetLocalityInformation` | `fetchLocalityInformation()` [`api/locality/repository.ts:173`](../../app/src/api/locality/repository.ts#L173) | `AssembleSubdivisionFilter` [`components/assemble/AssembleSubdivisionFilter/AssembleSubdivisionFilter.tsx`](../../app/src/components/assemble/AssembleSubdivisionFilter/AssembleSubdivisionFilter.tsx) |
+| `/api/Connect2_LegacyShared/ActionGetUserLocalitiesForCountryCodeWithGPS` | `fetchCountryLocalities()` [`api/country/repository.ts:74`](../../app/src/api/country/repository.ts#L74) | `AssembleLocalityFilter` [`components/assemble/AssembleLocalityFilter/AssembleLocalityFilter.tsx`](../../app/src/components/assemble/AssembleLocalityFilter/AssembleLocalityFilter.tsx) |
+| `/api/Connect2_LegacyShared/ActionGetSignedPhotosInBulk` | `getSignedPhotosInBulk()` [`lib/legacyShared/actions.ts:49`](../../app/src/lib/legacyShared/actions.ts#L49) | `CardItemVisual` [`components/ui/CardItemVisual/CardItemVisual.tsx`](../../app/src/components/ui/CardItemVisual/CardItemVisual.tsx), `ResultItemMedia` [`components/ui/ResultItemMedia/ResultItemMedia.tsx`](../../app/src/components/ui/ResultItemMedia/ResultItemMedia.tsx) |

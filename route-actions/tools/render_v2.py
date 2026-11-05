@@ -60,7 +60,7 @@ def differences(r, h, eps, own_blocks, nav_missing, own_nav, ox, rx):
     raw = r["osRaw"]
 
     def op(f, line):
-        return re.sub(r"^\[`[^`]*/([^`/]+)`\]", r"[`\1`]", h.link(f"{raw}/{f}", line))
+        return re.sub(r"^\[`[^`]*/([^`/]+)`\]", r"[`\1`]", h.link(f"{X.os_dir(raw, f)}/{f}", line))
 
     # navigation parameters: TST gives parameters to a screen; React goes there with other parameters or none
     react_np = collections.defaultdict(list)
@@ -145,6 +145,14 @@ def render(r, h):
     n_diff = sum(1 for x in diffs if x.startswith("- "))
     parity = h.os.path.join(h.cfg("tst", "screens"), route, "parity")
     parity_link = h.link(h.os.path.relpath(parity, h.ROOT)) if h.os.path.isdir(parity) else "no parity run"
+    st = r.get("static")
+    static_note = (["**Static check.** This route has no TST capture (`migration/screens/" + route + "/no-capture.json`).", "",
+                    "- The OutSystems facts come from the compiled code of the screen and of its static closure (TST survey).",
+                    "- The code is in `migration/runtime-sources/` and in the raw folders of the captured routes.",
+                    "- The tool observed no call and has no screenshot.",
+                    f"- Closure: {st['closure']} files, {len(st['missing'])} without compiled code" +
+                    (": " + ", ".join(f"`{m}`" for m in st["missing"][:6]) + ("…" if len(st["missing"]) > 6 else "") if st["missing"] else "") + ".", ""]
+                   if st else [])
 
     L = [f"# {route}: OutSystems (TST) and React", "",
          f"The route `/UBTConnect/{route}`, read from the TST compiled code and from the React code by "
@@ -153,6 +161,7 @@ def render(r, h):
          "Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of "
          f"`app/src/pages/{route}/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks "
          "and components that the route uses are in the last section.", "",
+         *static_note,
          "## 1. Route", "",
          "| Item | Value | Source |", "|---|---|---|",
          f"| Route | `/UBTConnect/{route}` | `app/src/app/routes.generated.ts` |",
@@ -161,7 +170,7 @@ def render(r, h):
          f"| React screen | {h.link(r['react']['pageEntry'])} | `app/src/pages/` |",
          f"| React route rules | access `{r['meta']['access']}`, lock `{r['meta']['lock']}`, flag redirect {r['meta']['flagRedirect']} | `app/src/app/routes.ts` |",
          f"| Screenshots | {parity_link} | `route.py parity` |",
-         f"| Code read | OutSystems: {len(own_blocks)} files of the UI flow, {len(shared_blocks)} shared blocks, {len(blocks) - len(screen_blocks)} app shell files. React: {r['react']['pageFiles']} files in the closure of the page | TST `facts.json`, `react_calls.mjs` |",
+         f"| Code read | OutSystems: {len(own_blocks)} files of the UI flow, {len(shared_blocks)} shared blocks, {len(blocks) - len(screen_blocks)} app shell files. React: {r['react']['pageFiles']} files in the closure of the page | {'TST survey closure and compiled code (static)' if st else 'TST `facts.json`'}, `react_calls.mjs` |",
          "", "## 2. Result", "",
          "| Check | Result |", "|---|---|",
          f"| Server calls of the route on TST | {len(eps)}: React makes {cnt['implemented']}, **{cnt['missing']} missing** |",
@@ -182,8 +191,9 @@ def render(r, h):
           "has no chain to this call. Does the call belong to this route?" for c in questions]
     L += [f"{i}. {q}" for i, q in enumerate(qs, 1)] or ["None."]
     if shared_calls:
-        L += ["", f"{len(shared_calls)} more React calls without a TST chain on this route are reached only through "
-              "shared containers, components or app code. They are in the last section, not here."]
+        n_sc = len(shared_calls)
+        L += ["", f"React reaches {n_sc} more call{'s' if n_sc > 1 else ''} without a TST chain on this route only through "
+              "shared containers, components or app code. The last section lists " + ("them" if n_sc > 1 else "it") + ", not this one."]
     L += ["", "## 5. Server calls", "", *(h.calls_table(h.call_rows(eps, blocks), blocks) if eps else ["None."])]
     if r.get("otherScreenCalls"):
         L += ["", "The TST capture also has calls of another screen (scope `other`, no chain in the code of the route). "

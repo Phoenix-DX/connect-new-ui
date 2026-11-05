@@ -140,3 +140,19 @@ Source switch (user decision (c), 2026-10-28): the live TST code of 2026-10-27 i
   `Connect2_LegacyShared.AssembleTheme.css`. All HTTP 200.
 - Kept in the session scratchpad only (not in the project). Result: `../clarify/review/publish2-diff.md` § "The unidentified manifest entries".
 
+
+
+| Compiled screens and blocks (2026-11-05, static check of the 17 routes without a capture) | Files | Screens and blocks |
+|---|---|---|
+| `Connect2_Assemble_MUI` | 17 | `Assemble.AssembleCommon_VirtualMeetingDetails`, `Assemble.AssembleCommon_VirtualMeetingDetails_Entry`, `Assemble.AssembleCommon_VirtualMeetingURL`, `Assemble.AssembleEventDetail`, `Assemble.AssembleEventDetail_AttendeeSubdivision`, `Assemble.AssembleEventDetail_AttendeeSubdivisionList_Skelet`, `Assemble.AssembleEventDetail_Contact`, `Assemble.AssembleEventDetail_ContactList`, `Assemble.AssembleEv |
+| `Connect2_LegacyShared` | 14 | `Email.ScreenBlock_Household_Email`, `Layout.BaseLayoutBlank_UpdatedOSUI`, `Layout_OrbitTheme.Layout_OrbitBlank`, `MyBookmarks.BookmarkNoteAddEdit`, `NewConnect_Skeleton.NC_Card_Item_Text__Skeleton`, `NewConnect_Skeleton.NC_Result_Item__Image__Skeleton`, `NewConnect_Utilities.NC_Card_Item_Visual`, `NewConnect_Utilities.NC_Result_Item_Badge`, `NewConnect_Utilities.NC_Result_Item__Card`, `NewConnect |
+| `Connect2_OrbitMobile_MUI` | 15 | `Orbit_Blocks.Popup_QRCodeScan_Milestone`, `Orbit_Generic_Blocks.DoubleAction`, `Orbit_Generic_Blocks.LoadingSpinner`, `Orbit_Generic_Blocks.NoResults`, `Orbit_Generic_Blocks.OrbitErrorMessage`, `Orbit_Generic_Blocks.Orbit_FooterWithActions`, `Orbit_Generic_Blocks.Skeleton_Loading`, `Orbit_ScreenBlocks.ScreenBlock_GuestArrangements`, `Orbit_ScreenBlocks.ScreenBlock_TransportDetail`, `Orbit_ScreenB |
+| `NavigationHandler` | 2 | `ConfirmationDialogs.NavigationConfirmationDialog`, `ScrollAnchors.FocusScrollAnchorOnBack` |
+| `OrbitPassportScanC2` | 1 | `PassportScan.ScreenBlock_PassportScan` |
+| `OutSystemsUI_2_23` | 5 | `Interaction.Animate`, `Interaction.DropdownTags`, `Utilities.AlignCenter`, `Utilities.DEPRECATED_ButtonLoading`, `Utilities.Separator` |
+| `UBTConnect` | 13 | `App_Common.UnsupportedVersion`, `App_Common.UnsupportedVersion_Browser`, `App_Common.UnsupportedVersion_Native`, `App_Common.UnsupportedVersion_WebView`, `App_Common.UnsupportedVersion_Wrapper`, `App_Common_Blocks_PopupDialogs.Dialog_Navigation`, `App_Policies.AcceptPendingPolicies`, `App_Policies.Policy_Checker`, `App_Policies.Policy_Custom_AcceptPendingPolicies`, `Home.FeedItemDetail`, `Legacy_ |
+| `UBTConnect_Utils` | 3 | `CW_Search.SearchResult_Item`, `CW_Share.ShareSheet_Section`, `CW_Share.ShareSheet_SectionTitle` |
+| `UBT_AppManager_Mobile` | 1 | `Fingerprint.FingerprintScanner` |
+
+Fetched read-only (static GET, no session) from the manifest versions of `moduleinfo.json`, for `route-actions`
+(`check_route.py` static mode: the 17 build routes without a TST capture). 71 files; `Connect2_LegacyShared.Utility.ShowMoreShowLessContainer.mvc.js` is not in the manifest.

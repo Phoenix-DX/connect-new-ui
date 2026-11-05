@@ -22,7 +22,8 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 |---|---|
 | Server calls of the route on TST | 2: React makes 2, **0 missing** |
 | Differences found | **0** (see [section 3](#3-differences-found)) |
-| Questions | 6 (see [section 4](#4-questions)) |
+| Questions | 3 (see [section 4](#4-questions)) |
+| React calls reached only through shared code | 1: see the last section |
 | User actions of the route (own code) | OutSystems: 2. React: 3 |
 | Screen and blocks of the UI flow with a React port | 1 of 1 |
 | Navigation targets found in React | 3 of 3 |
@@ -37,12 +38,11 @@ None.
 
 ## 4. Questions
 
-1. React calls `/api/UBTConnect_Utils/ActionGetUserInformation` from `fetchUserInformation()` [`api/member/userInformation.ts:6`](../../app/src/api/member/userInformation.ts#L6) (shell + page). TST HelpersDetail has no chain to this call. Does the call belong to this route?
-2. React calls `/api/UBTConnect_Utils/CacheControl_Policies/DataActionGetCacheInfo` from `fetchPolicies()` [`api/app/repository.ts:54`](../../app/src/api/app/repository.ts#L54) (shell + page). TST HelpersDetail has no chain to this call. Does the call belong to this route?
-3. React calls `/api/UBTConnect_Utils/ActionGetSignedImagesInBulk` from `cache_SignedImageURL_GetCallback()` [`lib/ubtConnectUtils/actions.ts:124`](../../app/src/lib/ubtConnectUtils/actions.ts#L124) (page). TST HelpersDetail has no chain to this call. Does the call belong to this route?
-4. React calls `/api/Connect2_LegacyShared/ActionGetSignedImagesInBulk` from `fetchLegacySignedImagesInBulk()` [`api/image/repository.ts:21`](../../app/src/api/image/repository.ts#L21) (page). TST HelpersDetail has no chain to this call. Does the call belong to this route?
-5. React calls `/api/Connect2_LegacyShared/ActionGetTimezoneInformation` from `getTimezoneInformation()` [`lib/legacyShared/actions.ts:360`](../../app/src/lib/legacyShared/actions.ts#L360) (page). TST HelpersDetail has no chain to this call. Does the call belong to this route?
-6. React calls `/api/Connect2_LegacyShared/ActionGetMemberContactByCacheKey` from `fetchMemberContacts()` [`api/message/repository.ts:271`](../../app/src/api/message/repository.ts#L271) (page). TST HelpersDetail has no chain to this call. Does the call belong to this route?
+1. React calls `/api/Connect2_LegacyShared/ActionGetSignedImagesInBulk` from `fetchLegacySignedImagesInBulk()` [`api/image/repository.ts:21`](../../app/src/api/image/repository.ts#L21) (page). TST HelpersDetail has no chain to this call. Does the call belong to this route?
+2. React calls `/api/Connect2_LegacyShared/ActionGetTimezoneInformation` from `getTimezoneInformation()` [`lib/legacyShared/actions.ts:360`](../../app/src/lib/legacyShared/actions.ts#L360) (page). TST HelpersDetail has no chain to this call. Does the call belong to this route?
+3. React calls `/api/Connect2_LegacyShared/ActionGetMemberContactByCacheKey` from `fetchMemberContacts()` [`api/message/repository.ts:271`](../../app/src/api/message/repository.ts#L271) (page). TST HelpersDetail has no chain to this call. Does the call belong to this route?
+
+1 more React calls without a TST chain on this route are reached only through shared containers, components or app code. They are in the last section, not here.
 
 ## 5. Server calls
 
@@ -290,3 +290,11 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 
 </details>
 
+
+### React calls reached only through shared code
+
+Calls that React can make on this route, without a TST chain on this route. Every reference chain starts in a shared container, component or app code (`containers/`, `components/`, `platform/`, `legacy/`, `lib/`), not in the screen files. TST makes these calls on a user action of the shared block, which the capture did not record, or on another screen.
+
+| Call | React action | Reached through |
+|---|---|---|
+| `/api/UBTConnect_Utils/ActionGetSignedImagesInBulk` | `cache_SignedImageURL_GetCallback()` [`lib/ubtConnectUtils/actions.ts:124`](../../app/src/lib/ubtConnectUtils/actions.ts#L124) | `EntityLazyImage` [`components/ui/EntityLazyImage/EntityLazyImage.tsx`](../../app/src/components/ui/EntityLazyImage/EntityLazyImage.tsx) |

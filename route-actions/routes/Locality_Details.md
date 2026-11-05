@@ -22,7 +22,8 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 |---|---|
 | Server calls of the route on TST | 9: React makes 9, **0 missing** |
 | Differences found | **0** (see [section 3](#3-differences-found)) |
-| Questions | 11 (see [section 4](#4-questions)) |
+| Questions | 0 (see [section 4](#4-questions)) |
+| React calls reached only through shared code | 10: see the last section |
 | User actions of the route (own code) | OutSystems: 6. React: 11 |
 | Screen and blocks of the UI flow with a React port | 4 of 4 |
 | Navigation targets found in React | 13 of 13 |
@@ -37,17 +38,9 @@ None.
 
 ## 4. Questions
 
-1. React calls `/api/UBTConnect_Utils/CacheControl_Policies/DataActionGetCacheInfo` from `fetchPolicies()` [`api/app/repository.ts:54`](../../app/src/api/app/repository.ts#L54) (shell + page). TST Locality_Details has no chain to this call. Does the call belong to this route?
-2. React calls `/api/UBTConnect_Utils/ActionCS_ShareObject` from `csShareObject()` [`api/share/shareSheet.ts:25`](../../app/src/api/share/shareSheet.ts#L25) (page). TST Locality_Details has no chain to this call. Does the call belong to this route?
-3. React calls `/api/UBTConnect_Utils/ShareSheet/DataActionGetAvailableMembers` from `fetchAvailableMembers()` [`api/member/repository.ts:12`](../../app/src/api/member/repository.ts#L12) (page). TST Locality_Details has no chain to this call. Does the call belong to this route?
-4. React calls `/api/UBTConnect_Utils/ShareSheet/DataActionGetRecentlyShared` from `fetchRecentlyShared()` [`api/share/shareSheet.ts:14`](../../app/src/api/share/shareSheet.ts#L14) (page). TST Locality_Details has no chain to this call. Does the call belong to this route?
-5. React calls `/api/UBTConnect_Utils/ServiceAPIDeleteNoteByNoteId` from `deleteNote()` [`api/note/repository.ts:73`](../../app/src/api/note/repository.ts#L73) (page). TST Locality_Details has no chain to this call. Does the call belong to this route?
-6. React calls `/api/UBTConnect_Utils/ServiceAPIUpdateNote` from `updateNote()` [`api/note/repository.ts:66`](../../app/src/api/note/repository.ts#L66) (page). TST Locality_Details has no chain to this call. Does the call belong to this route?
-7. React calls `/api/UBTConnect_Utils/ServiceAPIAddNote` from `addNote()` [`api/note/repository.ts:54`](../../app/src/api/note/repository.ts#L54) (page). TST Locality_Details has no chain to this call. Does the call belong to this route?
-8. React calls `/api/UBTConnect/ServiceAPIDeleteBookmarkByBookmarkId2` from `deleteC2Bookmark()` [`api/bookmark/repository.ts:52`](../../app/src/api/bookmark/repository.ts#L52) (page). TST Locality_Details has no chain to this call. Does the call belong to this route?
-9. React calls `/api/UBTConnect/ServiceAPIAddBookmark2` from `addC2Bookmark()` [`api/bookmark/repository.ts:41`](../../app/src/api/bookmark/repository.ts#L41) (page). TST Locality_Details has no chain to this call. Does the call belong to this route?
-10. React calls `/api/UBTConnect/HouseholdDetails_Block/DataActionGetHousehold_Coordinates` from `fetchHouseholdCoordinates()` [`api/household/repository.ts:49`](../../app/src/api/household/repository.ts#L49) (page). TST Locality_Details has no chain to this call. Does the call belong to this route?
-11. React calls `/api/UBTConnect/HouseholdDetails_Block/DataActionGetHousehold` from `fetchHousehold()` [`api/household/repository.ts:43`](../../app/src/api/household/repository.ts#L43) (page). TST Locality_Details has no chain to this call. Does the call belong to this route?
+None.
+
+React reaches 10 more calls without a TST chain on this route only through shared containers, components or app code. The last section lists them, not this one.
 
 ## 5. Server calls
 
@@ -476,3 +469,20 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 
 </details>
 
+
+### React calls reached only through shared code
+
+Calls that React can make on this route, without a TST chain on this route. Every reference chain starts in a shared container, component or app code (`containers/`, `components/`, `platform/`, `legacy/`, `lib/`), not in the screen files. TST makes these calls on a user action of the shared block, which the capture did not record, or on another screen.
+
+| Call | React action | Reached through |
+|---|---|---|
+| `/api/UBTConnect_Utils/ActionCS_ShareObject` | `csShareObject()` [`api/share/shareSheet.ts:25`](../../app/src/api/share/shareSheet.ts#L25) | `ShareSheetContainer` [`containers/ShareSheet/ShareSheetContainer.tsx`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx) |
+| `/api/UBTConnect_Utils/ShareSheet/DataActionGetAvailableMembers` | `fetchAvailableMembers()` [`api/member/repository.ts:12`](../../app/src/api/member/repository.ts#L12) | `ShareSheetContainer` [`containers/ShareSheet/ShareSheetContainer.tsx`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx) |
+| `/api/UBTConnect_Utils/ShareSheet/DataActionGetRecentlyShared` | `fetchRecentlyShared()` [`api/share/shareSheet.ts:14`](../../app/src/api/share/shareSheet.ts#L14) | `ShareSheetContainer` [`containers/ShareSheet/ShareSheetContainer.tsx`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx) |
+| `/api/UBTConnect_Utils/ServiceAPIDeleteNoteByNoteId` | `deleteNote()` [`api/note/repository.ts:73`](../../app/src/api/note/repository.ts#L73) | `NoteListActionsContainer` [`containers/NoteListActions/NoteListActionsContainer.tsx`](../../app/src/containers/NoteListActions/NoteListActionsContainer.tsx) |
+| `/api/UBTConnect_Utils/ServiceAPIUpdateNote` | `updateNote()` [`api/note/repository.ts:66`](../../app/src/api/note/repository.ts#L66) | `NoteListActionsContainer` [`containers/NoteListActions/NoteListActionsContainer.tsx`](../../app/src/containers/NoteListActions/NoteListActionsContainer.tsx) |
+| `/api/UBTConnect_Utils/ServiceAPIAddNote` | `addNote()` [`api/note/repository.ts:54`](../../app/src/api/note/repository.ts#L54) | `NotesSheet` [`components/note/NotesSheet/NotesSheet.tsx`](../../app/src/components/note/NotesSheet/NotesSheet.tsx) |
+| `/api/UBTConnect/ServiceAPIDeleteBookmarkByBookmarkId2` | `deleteC2Bookmark()` [`api/bookmark/repository.ts:52`](../../app/src/api/bookmark/repository.ts#L52) | `EntityDetailsActionsContainer` [`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx) |
+| `/api/UBTConnect/ServiceAPIAddBookmark2` | `addC2Bookmark()` [`api/bookmark/repository.ts:41`](../../app/src/api/bookmark/repository.ts#L41) | `EntityDetailsActionsContainer` [`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx) |
+| `/api/UBTConnect/HouseholdDetails_Block/DataActionGetHousehold_Coordinates` | `fetchHouseholdCoordinates()` [`api/household/repository.ts:49`](../../app/src/api/household/repository.ts#L49) | `HouseholdDetailsContainer` [`containers/HouseholdDetails/HouseholdDetailsContainer.tsx`](../../app/src/containers/HouseholdDetails/HouseholdDetailsContainer.tsx) |
+| `/api/UBTConnect/HouseholdDetails_Block/DataActionGetHousehold` | `fetchHousehold()` [`api/household/repository.ts:43`](../../app/src/api/household/repository.ts#L43) | `HouseholdDetailsContainer` [`containers/HouseholdDetails/HouseholdDetailsContainer.tsx`](../../app/src/containers/HouseholdDetails/HouseholdDetailsContainer.tsx) |

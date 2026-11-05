@@ -14,6 +14,13 @@ def _split_os(rows):
     return own, [x for x in rows if OS_SHARED.match(x["file"])]
 
 
+def os_dir(raw, f):
+    """The folder of a TST compiled file: one folder for a captured route, one per file for a static check."""
+    if isinstance(raw, dict):
+        return raw.get(f) or next(iter(raw.values()), "")
+    return raw
+
+
 def _line(lk):
     """A link with the line number only (`L123`): the file is in another column."""
     return re.sub(r"^\[`[^`]*:(\d+)`\]", r"[`L\1`]", lk)
@@ -60,11 +67,11 @@ def sections(r, start, link, short, emit=lambda name, mmd: None, v2=False):
             return lines
         return ["", f"<details><summary>{summary}</summary>", *lines, "", "</details>"]
     ox, rx = r["osExtras"], r["reactExtras"]
-    raw = r["osRaw"]  # folder of the TST compiled files
+    raw = r["osRaw"]  # folder of the TST compiled files, or {file: folder} for a static check
 
     def op(f, line=None):
         # the TST compiled file by its name only (the folder is in the section intro)
-        lk = link(f if "/" in f else f"{raw}/{f}", line)
+        lk = link(f if "/" in f else f"{os_dir(raw, f)}/{f}", line)
         return re.sub(r"^\[`[^`]*/([^`/]+)`\]", r"[`\1`]", lk)
 
     def blk(f):
@@ -76,7 +83,9 @@ def sections(r, start, link, short, emit=lambda name, mmd: None, v2=False):
     L += [f"## {n}. Screen inputs and navigation parameters", "",
           "The input parameters of the screen, the parameters that the route reads, and the parameters that the route "
           "gives when it opens another screen. A navigation without parameters is only in section 2.",
-          f"The OutSystems files are in `{raw}/`.", "",
+          (f"The OutSystems files are in `{raw}/`." if not isinstance(raw, dict) else
+           "The OutSystems files are in `migration/runtime-sources/` and in the `analysis/sources/raw/` folders of "
+           "the captured routes (static check)."), "",
           f"### {n}.1 OutSystems (TST)", ""]
     if ox["inputs"]:
         L += ["| Input | Type | Mandatory | Place |", "|---|---|---|---|"]

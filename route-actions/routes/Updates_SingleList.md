@@ -22,7 +22,8 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 |---|---|
 | Server calls of the route on TST | 12: React makes 11, **1 missing** |
 | Differences found | **2** (see [section 3](#3-differences-found)) |
-| Questions | 3 (see [section 4](#4-questions)) |
+| Questions | 0 (see [section 4](#4-questions)) |
+| React calls reached only through shared code | 1: see the last section |
 | User actions of the route (own code) | OutSystems: 8. React: 12 |
 | Screen and blocks of the UI flow with a React port | 4 of 4 |
 | Navigation targets found in React | 10 of 10 |
@@ -42,9 +43,9 @@ Each line is a fact of both sides: a TST call, navigation or variable, and the R
 
 ## 4. Questions
 
-1. React calls `/api/UBTConnect_Utils/ActionGetSignedImagesInBulk` from `cache_SignedImageURL_GetCallback()` [`lib/ubtConnectUtils/actions.ts:124`](../../app/src/lib/ubtConnectUtils/actions.ts#L124) (page). TST Updates_SingleList has no chain to this call. Does the call belong to this route?
-2. React calls `/api/UBTConnect_Utils/ActionGetUserInformation` from `fetchUserInformation()` [`api/member/userInformation.ts:6`](../../app/src/api/member/userInformation.ts#L6) (shell + page). TST Updates_SingleList has no chain to this call. Does the call belong to this route?
-3. React calls `/api/UBTConnect_Utils/CacheControl_Policies/DataActionGetCacheInfo` from `fetchPolicies()` [`api/app/repository.ts:54`](../../app/src/api/app/repository.ts#L54) (shell + page). TST Updates_SingleList has no chain to this call. Does the call belong to this route?
+None.
+
+React reaches 1 more call without a TST chain on this route only through shared containers, components or app code. The last section lists it, not this one.
 
 ## 5. Server calls
 
@@ -605,3 +606,11 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 
 </details>
 
+
+### React calls reached only through shared code
+
+Calls that React can make on this route, without a TST chain on this route. Every reference chain starts in a shared container, component or app code (`containers/`, `components/`, `platform/`, `legacy/`, `lib/`), not in the screen files. TST makes these calls on a user action of the shared block, which the capture did not record, or on another screen.
+
+| Call | React action | Reached through |
+|---|---|---|
+| `/api/UBTConnect_Utils/ActionGetSignedImagesInBulk` | `cache_SignedImageURL_GetCallback()` [`lib/ubtConnectUtils/actions.ts:124`](../../app/src/lib/ubtConnectUtils/actions.ts#L124) | `EntityLazyImage` [`components/ui/EntityLazyImage/EntityLazyImage.tsx`](../../app/src/components/ui/EntityLazyImage/EntityLazyImage.tsx) |

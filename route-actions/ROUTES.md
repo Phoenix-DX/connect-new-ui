@@ -1,6 +1,6 @@
 # Routes: OutSystems actions against React
 
-One file per route in `routes/`. Run `python3 route-actions/tools/check_route.py <Route>` (see [README](README.md)). Progress: **51 of 68** build routes done.
+One file per route in `routes/`. Run `python3 route-actions/tools/check_route.py <Route>` (see [README](README.md)). Progress: **68 of 68** build routes done.
 
 The app shell (`CommonUI_InsideLayout` and its blocks on TST; the code that `main.tsx` loads in React) is in [APP_SHELL.md](APP_SHELL.md). The tool merges it from the checked routes.
 
@@ -20,16 +20,16 @@ UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read 2026-11-05.
 | [`PINChange`](routes/PINChange.md) | `App_PIN` | done |
 | [`PINRegister`](routes/PINRegister.md) | `App_PIN` | done |
 | [`PINUnlock`](routes/PINUnlock.md) | `App_PIN` | done |
-| `AcceptPendingPolicies` | `App_Policies` | todo |
+| [`AcceptPendingPolicies`](routes/AcceptPendingPolicies.md) | `App_Policies` | done (static) |
 | [`Profile`](routes/Profile.md) | `App_Profile` | done |
 | [`Services`](routes/Services.md) | `App_Services` | done |
 | [`Bookmarks`](routes/Bookmarks.md) | `Bookmarks` | done |
 | [`MyEntertaining`](routes/MyEntertaining.md) | `Calendar` | done |
-| `ContactByEmailLDMCoordinator` | `ContactFlow` | todo |
+| [`ContactByEmailLDMCoordinator`](routes/ContactByEmailLDMCoordinator.md) | `ContactFlow` | done (static) |
 | [`ContactByEmailMember`](routes/ContactByEmailMember.md) | `ContactFlow` | done |
 | [`ContactByEmailOneSchoolGlobal`](routes/ContactByEmailOneSchoolGlobal.md) | `ContactFlow` | done |
 | [`ContactByEmailOrbitHelpdesk`](routes/ContactByEmailOrbitHelpdesk.md) | `ContactFlow` | done |
-| `ContactByEmailOrbitHost` | `ContactFlow` | todo |
+| [`ContactByEmailOrbitHost`](routes/ContactByEmailOrbitHost.md) | `ContactFlow` | done (static) |
 | [`HouseholdCarousel`](routes/HouseholdCarousel.md) | `Directory_Household` | done |
 | [`HouseholdDetails`](routes/HouseholdDetails.md) | `Directory_Household` | done |
 | [`Household_Relations`](routes/Household_Relations.md) | `Directory_Household` | done |
@@ -45,33 +45,33 @@ UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read 2026-11-05.
 | [`SupperMeeting_Carousel`](routes/SupperMeeting_Carousel.md) | `Directory_SupperMeetings` | done |
 | [`SupperMeeting_Details`](routes/SupperMeeting_Details.md) | `Directory_SupperMeetings` | done |
 | [`Updates_SingleList`](routes/Updates_SingleList.md) | `Directory_Updates` | done |
-| `FeedItemDetail` | `Home` | todo |
+| [`FeedItemDetail`](routes/FeedItemDetail.md) | `Home` | done (static) |
 | [`HomeFeed`](routes/HomeFeed.md) | `Home` | done |
-| `AssembleDetail` | `Legacy_AssembleFlow` | todo |
+| [`AssembleDetail`](routes/AssembleDetail.md) | `Legacy_AssembleFlow` | done (static) |
 | [`AssembleEvents`](routes/AssembleEvents.md) | `Legacy_AssembleFlow` | done |
 | [`Assemble_BrowseByCountry`](routes/Assemble_BrowseByCountry.md) | `Legacy_AssembleFlow` | done |
-| `EmailTarget` | `Legacy_LDMEventsFlow` | todo |
-| `LDM_Email_V2` | `Legacy_LDMEventsFlow_V2` | todo |
+| [`EmailTarget`](routes/EmailTarget.md) | `Legacy_LDMEventsFlow` | done (static) |
+| [`LDM_Email_V2`](routes/LDM_Email_V2.md) | `Legacy_LDMEventsFlow_V2` | done (static) |
 | [`LDM_EventDetail_V2`](routes/LDM_EventDetail_V2.md) | `Legacy_LDMEventsFlow_V2` | done |
 | [`LDM_MyEvents_V2`](routes/LDM_MyEvents_V2.md) | `Legacy_LDMEventsFlow_V2` | done |
 | [`MessageDetail`](routes/MessageDetail.md) | `Legacy_MyNotificationsFlow` | done |
 | [`MessageList`](routes/MessageList.md) | `Legacy_MyNotificationsFlow` | done |
-| `OrbitAdminEventDetail` | `Legacy_OrbitAdminFlow` | todo |
+| [`OrbitAdminEventDetail`](routes/OrbitAdminEventDetail.md) | `Legacy_OrbitAdminFlow` | done (static) |
 | [`OrbitAdminLanding`](routes/OrbitAdminLanding.md) | `Legacy_OrbitAdminFlow` | done |
-| `OrbitAdminMilestoneDetail` | `Legacy_OrbitAdminFlow` | todo |
-| `OrbitAdminMilestones` | `Legacy_OrbitAdminFlow` | todo |
-| `EmailContact` | `Legacy_OrbitEventsFlow` | todo |
-| `EventBooklet` | `Legacy_OrbitEventsFlow` | todo |
+| [`OrbitAdminMilestoneDetail`](routes/OrbitAdminMilestoneDetail.md) | `Legacy_OrbitAdminFlow` | done (static) |
+| [`OrbitAdminMilestones`](routes/OrbitAdminMilestones.md) | `Legacy_OrbitAdminFlow` | done (static) |
+| [`EmailContact`](routes/EmailContact.md) | `Legacy_OrbitEventsFlow` | done (static) |
+| [`EventBooklet`](routes/EventBooklet.md) | `Legacy_OrbitEventsFlow` | done (static) |
 | [`EventDetail`](routes/EventDetail.md) | `Legacy_OrbitEventsFlow` | done |
-| `GuestArrangements` | `Legacy_OrbitEventsFlow` | todo |
+| [`GuestArrangements`](routes/GuestArrangements.md) | `Legacy_OrbitEventsFlow` | done (static) |
 | [`HelpersDetail`](routes/HelpersDetail.md) | `Legacy_OrbitEventsFlow` | done |
 | [`HostSurvey`](routes/HostSurvey.md) | `Legacy_OrbitEventsFlow` | done |
 | [`MilestoneDetail`](routes/MilestoneDetail.md) | `Legacy_OrbitEventsFlow` | done |
 | [`OrbitLanding`](routes/OrbitLanding.md) | `Legacy_OrbitEventsFlow` | done |
-| `PassportScan` | `Legacy_OrbitEventsFlow` | todo |
-| `TransportDetail` | `Legacy_OrbitEventsFlow` | todo |
-| `ViewDocuments` | `Legacy_OrbitEventsFlow` | todo |
-| `QRCodeGenerate` | `Legacy_OrbitQRCodeFlow` | todo |
+| [`PassportScan`](routes/PassportScan.md) | `Legacy_OrbitEventsFlow` | done (static) |
+| [`TransportDetail`](routes/TransportDetail.md) | `Legacy_OrbitEventsFlow` | done (static) |
+| [`ViewDocuments`](routes/ViewDocuments.md) | `Legacy_OrbitEventsFlow` | done (static) |
+| [`QRCodeGenerate`](routes/QRCodeGenerate.md) | `Legacy_OrbitQRCodeFlow` | done (static) |
 | [`ConnectShare`](routes/ConnectShare.md) | `Legacy_Share` | done |
 | [`LegacyShareObject`](routes/LegacyShareObject.md) | `Legacy_Share` | done |
 | [`Notes`](routes/Notes.md) | `Notes` | done |

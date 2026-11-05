@@ -50,7 +50,7 @@ None.
 10. React calls `/api/Connect2_OrbitMobile_MUI/ScreenBlock_AccommodationGuest/DataActionGetCaptions` from `fetchMilestoneBlockCaptions()` [`api/event/milestoneBlocks.ts:398`](../../app/src/api/event/milestoneBlocks.ts#L398) (page). TST MilestoneDetail has no chain to this call. Does the call belong to this route?
 11. React calls `/api/Connect2_OrbitMobile_MUI/ScreenBlock_AccommodationHelper/DataActionGetCaptions` from `fetchMilestoneBlockCaptions()` [`api/event/milestoneBlocks.ts:398`](../../app/src/api/event/milestoneBlocks.ts#L398) (page). TST MilestoneDetail has no chain to this call. Does the call belong to this route?
 
-1 more React calls without a TST chain on this route are reached only through shared containers, components or app code. They are in the last section, not here.
+React reaches 1 more call without a TST chain on this route only through shared containers, components or app code. The last section lists it, not this one.
 
 ## 5. Server calls
 

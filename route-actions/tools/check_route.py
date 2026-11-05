@@ -33,6 +33,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import mcp_client  # noqa: E402
 import os_extras  # noqa: E402
 import render_v2  # noqa: E402
+import os_static  # noqa: E402
 
 OUT = os.path.join(HERE, "routes")          # the route files
 DATA = os.path.join(cfg("cache"), "data")   # git ignores route-actions/.cache/
@@ -101,7 +102,7 @@ def read_status():
     st = {}
     p = routes_md_path()
     if os.path.exists(p):
-        for m in re.finditer(r"^\| \[?`?(\w+)`?\]?[^|]*\| [^|]*\| (todo|done) \|", open(p, encoding="utf-8").read(), re.M):
+        for m in re.finditer(r"^\| \[?`?(\w+)`?\]?[^|]*\| [^|]*\| (todo|done|done \(static\)) \|", open(p, encoding="utf-8").read(), re.M):
             st[m.group(1)] = m.group(2)
     return st
 
@@ -113,8 +114,8 @@ def status():
     txt = open(routes_md_path(), encoding="utf-8").read().split("## Out of scope")[0]
     order = re.findall(r"^\| \[?`(\w+)`", txt, re.M)
     has = lambda r: os.path.exists(os.path.join(cfg("tst", "screens"), r, "analysis", "facts.json"))
-    done = [r for r in order if st.get(r) == "done"]
-    todo = [r for r in order if st.get(r) != "done"]
+    done = [r for r in order if str(st.get(r, "")).startswith("done")]
+    todo = [r for r in order if not str(st.get(r, "")).startswith("done")]
     nxt = next((r for r in todo if has(r)), None)
     print(f"done: {len(done)} of {len(order)}: {', '.join(done) or '-'}")
     print(f"next: {nxt or '-'}")
@@ -128,7 +129,8 @@ def status():
 def write_routes(done=None):
     st = read_status()
     if done:
-        st[done] = "done"
+        has_capture = os.path.exists(os.path.join(cfg("tst", "screens"), done, "analysis", "facts.json"))
+        st[done] = "done" if has_capture else "done (static)"
     flows = ui_flows()
     board = board_rows()
     routes = generated_routes()
@@ -137,7 +139,7 @@ def write_routes(done=None):
     by_flow = collections.defaultdict(list)
     for r in build:
         by_flow[flows.get(r["screen"], "unclear (not in MCP list)")].append(r["screen"])
-    n_done = sum(1 for r in build if st.get(r["screen"]) == "done")
+    n_done = sum(1 for r in build if str(st.get(r["screen"], "")).startswith("done"))
     L = ["# Routes: OutSystems actions against React", "",
          f"One file per route in `routes/`. Run `python3 route-actions/tools/check_route.py <Route>` (see "
          f"[README](README.md)). Progress: **{n_done} of {len(build)}** build routes done.", "",
@@ -287,7 +289,10 @@ def check(route):
     sfile, sv, survey = survey_screen(route)
     tst = tst_route(route)
     if tst is None:
-        sys.exit(f"{route}: no TST capture (migration/screens/{route}/analysis/facts.json); the pilot covers captured routes")
+        # no capture: the static closure of the TST survey and the compiled code (user, 2026-11-05)
+        tst = os_static.build(sv)
+        print(f"{route}: no TST capture; static check from the compiled code "
+              f"({len(tst['facts']['renderedFiles'])} files, {len(tst['missing'])} missing)")
     facts = tst["facts"]
     shell_r, page_r, all_r = react_data(route)
     cpaths = contract_paths()
@@ -516,7 +521,9 @@ def check(route):
     react_inputs = re.findall(r'"([^"]+)"', gm.group(1)) if gm else []
     result = {"route": route, "screenFile": sfile, "screenFileRaw": facts.get("screenFile"), "osExtras": os_x,
               "reactExtras": react_x, "reactExtrasAll": react_x_all, "reactInputsDeclared": react_inputs,
-              "osRaw": os.path.relpath(os.path.join(cfg("tst", "screens"), route, "analysis", "sources", "raw"), ROOT), "userActions": uacts, "reactActions": react_acts, "flow": flow, "survey": sv, "meta": meta, "endpoints": eps,
+              "osRaw": tst["dirs"] if tst.get("static") else os.path.relpath(os.path.join(cfg("tst", "screens"), route, "analysis", "sources", "raw"), ROOT),
+              "static": {"missing": tst["missing"], "closure": facts["static"]["closure"]} if tst.get("static") else None,
+              "userActions": uacts, "reactActions": react_acts, "flow": flow, "survey": sv, "meta": meta, "endpoints": eps,
               "reactOnly": react_only, "reactUnknown": react_unknown,
               "blocks": blocks, "osNav": {k: sorted(v) for k, v in os_nav.items()},
               "reactNav": {k: sorted(v) for k, v in react_nav.items()}, "observedCount": len(tst["calls"]),
@@ -1253,10 +1260,13 @@ def render_app_shell():
          "", "## 5. Missing in React", "",
          *missing_lines(ep_list, blist, sorted(nav_missing), nav),
          "", "## 6. Questions", ""]
-    ql = [f"React calls `{c['apiPath']}` from `{c['fn']}()` {link(c['file'], c['line'])} in the app shell. TST has no "
-          f"chain to this call on {', '.join(c['routes'])}. Does the app shell make this call on these routes?"
-          for c in qs.values()]
+    ql = [f"React calls `{c['apiPath']}` from `{c['fn']}()` {link(c['file'], c['line'])} in the app shell. "
+          f"TST has no chain to this call on {len(c['routes'])} route{'s' if len(c['routes']) > 1 else ''} (table below). "
+          "Does the app shell make this call on these routes?" for c in qs.values()]
     L += [f"{i}. {q}" for i, q in enumerate(ql, 1)] or ["None."]
+    if qs:
+        L += ["", "| # | Routes without a TST chain to the call |", "|---|---|"]
+        L += [f"| {i} | " + ", ".join(f"`{r}`" for r in c["routes"]) + " |" for i, c in enumerate(qs.values(), 1)]
     p = os.path.join(HERE, "APP_SHELL.md")
     open(p, "w", encoding="utf-8").write("\n".join(L) + "\n")
     render_svgs(["APP_SHELL"] + names)
