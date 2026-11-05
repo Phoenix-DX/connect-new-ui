@@ -5,10 +5,10 @@ section "Context notes".
 
 ## Now
 - Goal (user 2026-10-14): replace the OutSystems app in production; UI/UX 1:1. **Current focus (user 2026-10-17): local demo for colleagues, no production work.**
-- 2026-11-05: route actions pipeline in **`route-actions/`** at the repository root ([context-074](context-074-route-actions-pilot.md)). Facts only. 51 of 68 routes done in layout v2 (conclusions first); 40 differences; 17 routes have no capture.
+- 2026-11-05: route actions pipeline in **`route-actions/`** at the repository root ([context-074](context-074-route-actions-pilot.md)). Facts only. 68 of 68 routes done (17 static, from the compiled code); 48 differences to fix toward production.
 - 2026-11-04: convention review of `app/src` ([context-073](context-073-app-conventions-review.md)): D1–D8 open. 2026-11-03: principal review ([context-072](context-072-app-principal-review.md)): WPs and V1–V6 open.
 - TST has 84 routes: 68 build (all finished), 16 skip. Demo: `npm --prefix app run build:demo`; dev http://localhost:5173/UBTConnect/HomeFeed (`?review=1`).
-- Next: route actions: the user decides on the 17 routes without a TST capture. Read `route-actions/README.md` first.
+- Next: route actions: the user chooses the first gap to fix in `app/` (section 3 of the route files). Read `route-actions/README.md` first.
 
 ## Contexts
 | id | date | topic | status |

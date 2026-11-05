@@ -27,7 +27,7 @@ from the project root. Reply to the user in Vietnamese; the files stay in Englis
 1. Run `check_route.py --status`.
 2. Tell the user in at most 5 lines:
    - the done count and names, the next route, the count of routes left;
-   - the routes without a TST capture (the tool stops for them);
+   - the routes without a TST capture (static check from the compiled code, status `done (static)`);
    - any uncommitted change in `route-actions/`.
 3. Do not run a route. Ask whether to continue.
 
@@ -37,7 +37,7 @@ from the project root. Reply to the user in Vietnamese; the files stay in Englis
 
 ### `run <Route>`
 1. Run `check_route.py <Route>` (about 10–15 s). It writes `route-actions/routes/<Route>.md`, `APP_SHELL.md`,
-   `ROUTES.md`. If it stops (no TST capture, not a build route), tell the user and stop.
+   `ROUTES.md`. If it stops (not a build route), tell the user and stop. A route without a TST capture gets a static check (compiled code of the TST survey closure); the file says so at the top.
 2. Run `python3 migration/tools/ste_lint.py route-actions/routes/<Route>.md route-actions/APP_SHELL.md`; 0 errors.
 3. Hand-check, against the code at the given `file:line`:
    - each line of section 3 "Differences found" (open the React code and the TST code it cites);

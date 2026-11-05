@@ -96,6 +96,11 @@ blocks and components of the route are in the last section, by name.
 | 12. Data flow | One flowchart per screen, block, component or hook with a server, state, client variable or navigation edge: source → target, label = input, event or action. Folded, with the edge table. |
 | 13. Shared blocks and components | The blocks of other UI flows and the React files outside `pages/` that the route renders, with their React port and their user actions (table only). |
 
+Static check (user, 2026-11-05): a route without a TST capture (`migration/screens/<R>/no-capture.json`) gets its
+OutSystems facts from the compiled code (`tools/os_static.py`). The files are the screen and its static closure
+(`migration/survey/screens.json`), read from `migration/runtime-sources/` and the raw folders of the captured routes.
+No observed call, no screenshot; `ROUTES.md` shows `done (static)`.
+
 Method of the facts: `os_extras.py` reads the TST compiled files (`sources/raw/*.mvc.js`) and the UI flow controllers
 of `migration/shell/sources/`; `react_calls.mjs` reads the React screen files through ts-morph. A step comes from a
 node comment of the compiled action (`// Execute Action: X`) or from its condition. A navigation parameter comes from
