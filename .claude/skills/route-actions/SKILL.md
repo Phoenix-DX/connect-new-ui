@@ -39,9 +39,9 @@ from the project root. Reply to the user in Vietnamese; the files stay in Englis
 1. Run `check_route.py <Route>` (about 10–15 s). It writes `route-actions/routes/<Route>.md`, `APP_SHELL.md`,
    `ROUTES.md`. If it stops (not a build route), tell the user and stop. A route without a TST capture gets a static
    check (compiled code of the TST survey closure); the file says so at the top.
-   Live code: some captured routes have compiled files that TST changed after the capture
-   (`migration/knowledge/tst-drift-2026-11-05.md`). The tool checks those routes against the live copies in
-   `migration/runtime-sources/live/`. The file says "Live code" at the top, with TST links to the live copies.
+   - Live code: some captured routes have compiled files that TST changed after the capture
+     (`migration/knowledge/tst-drift-2026-11-05.md`). The tool checks those routes against the live copies in
+     `migration/runtime-sources/live/`. The file says "Live code" at the top, with TST links to the live copies.
 2. Run `python3 migration/tools/ste_lint.py route-actions/routes/<Route>.md route-actions/APP_SHELL.md`; 0 errors.
 3. Hand-check, against the code at the given `file:line`:
    - each line of section 3 "Differences found" (open the React code and the TST code it cites);
