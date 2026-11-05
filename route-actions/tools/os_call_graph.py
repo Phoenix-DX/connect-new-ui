@@ -49,6 +49,10 @@ def call_graph(sources):
                     defs.append((m.start(), node(f"evt:{fname}:{name}", f"event {name} of {_short(fname)}", "block event")))
             for m in re.finditer(r'Controller\.prototype\.on(Initialize|Ready|Render|Destroy|ParametersChanged)EventHandler\s*=\s*function', src):
                 defs.append((m.start(), node(f"life:{fname}:{m.group(1)}", f"{_short(fname)}.On{m.group(1)}", "lifecycle")))
+            # the refresh of a data action or aggregate (`<x>$DataActRefresh = function`, e.g. NotificationDetails.mvc.js:800):
+            # its body holds the call and the `.then` to the OnAfterFetch handler, so it owns them (2026-11-05)
+            for m in re.finditer(r'Controller\.prototype\.(\w+?)\$(DataActRefresh|AggrRefresh)\s*=\s*function', src):
+                defs.append((m.start(), node(f"da:{fname}:{m.group(1)}", f"{_short(fname)}.{m.group(1)}", "data action")))
         for m in re.finditer(r'define\("', src):
             defs.append((m.start(), None))
         defs.sort()
@@ -78,14 +82,21 @@ def call_graph(sources):
                 if o in nodes and nodes[o]["kind"] == "server action":
                     nodes[o]["label"] = f"server {m.group(1)}"
         for m in re.finditer(r'call(?:DataAction|Aggregate\w*)\("(\w+)",\s*"([^"]+)"', src):
-            nid = node(f"da:{fname}:{m.group(1)}", f"{_short(fname)}.{m.group(1)}", "data action")
+            o = owner(m.start())
+            if o and o.startswith("da:"):
+                nid = o  # the refresh function of the data action owns the call (its label shows the call name)
+                nodes[nid]["label"] = f"{_short(fname)}.{m.group(1)}"
+            else:
+                nid = node(f"da:{fname}:{m.group(1)}", f"{_short(fname)}.{m.group(1)}", "data action")
             endpoints.setdefault(m.group(2), set()).add(nid)
             start = node(f"start:{fname}", f"{_short(fname)} fetch at start", "lifecycle")
             edges.add((start, nid))
-            base = re.sub(r"^(DataAction|Aggregate)", "", m.group(1))
-            after = f"act:{fname}:onAfterFetch_{base}"
-            edges.add((nid, after))
-            node(after, f"{_short(fname)}.onAfterFetch_{base}", "client action")
+            if nid != o:
+                # no refresh definition around the call: a synthetic OnAfterFetch node keeps the shape
+                base = re.sub(r"^(DataAction|Aggregate|ScreenDataSet)", "", m.group(1))
+                after = f"act:{fname}:onAfterFetch_{base}"
+                node(after, f"{_short(fname)}.onAfterFetch_{base}", "client action")
+                edges.add((nid, after))
 
         # calls inside definitions
         for m in re.finditer(r'(?<![\w.])controller\.(\w+?)\$(Action|ServerAction|DataActRefresh|AggrRefresh)\(', src):

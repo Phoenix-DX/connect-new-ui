@@ -67,6 +67,13 @@
         "title": "No binding in the TST view",
         "reason": "Every chain roots in a client action of the screen or of a block of its UI flow. No view event, lifecycle event or block event binds that action.",
         "evidence": "facts.json callSites rootKinds of the call (the call graph of the compiled code, tools/os_call_graph.py)."
+      },
+      {
+        "id": "noCaller",
+        "kind": "noCaller",
+        "title": "Declared, never fetched",
+        "reason": "The data action or aggregate fetches on demand (dataFetchDependenciesOriginal -1) and no action of the compiled code refreshes it: TST never calls it.",
+        "evidence": "facts.json callSites: the only chain is the synthetic 'fetch at start' root of the call graph; the fetch mode of the compiled file (tools/os_extras.py fetch_modes)."
       }
     ]
   },

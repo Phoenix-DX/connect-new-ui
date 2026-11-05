@@ -439,11 +439,17 @@ def check(route):
 
     def real_chains(e):
         return [ch for ch in e["chains"] if not (len(ch) == 2 and ch[0].endswith(" fetch at start") and
-                                                (ch[0][:-len(" fetch at start")], ch[1].split(".")[-1].replace("DataAction", "", 1)) in on_demand)]
+                                                (ch[0][:-len(" fetch at start")],
+                                                 re.sub(r"^(DataAction|ScreenDataSet|Aggregate)", "", ch[1].split(".")[-1])) in on_demand)]
     for e in eps:
         if e["status"] != "missing" or not e["chains"]:
             continue
-        chains = real_chains(e) or e["chains"]
+        chains = real_chains(e)
+        if not chains:
+            # declared on demand, no caller in the compiled code: TST never fetches it (user, 2026-11-05: facts only)
+            e["status"] = "not applicable"
+            e["notApplicable"] = "noCaller"
+            continue
         for rule in CFG.get("notApplicable", {}).get("rules", []):
             if rule["kind"] == "chainStep":
                 hit = all(any(step in rule["steps"] for step in ch) for ch in chains)

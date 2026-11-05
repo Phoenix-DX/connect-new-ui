@@ -162,10 +162,11 @@ def fetch_modes(lines):
         if "this.dataFetchDependenciesOriginal = {" in ln:
             j = i
             while j < len(lines) and not lines[j].startswith("}"):
-                m = re.match(r"(\w+)\$DataActRefresh: (-?\d+)", lines[j].strip())
+                m = re.match(r"(\w+)\$(DataActRefresh|AggrRefresh): (-?\d+)", lines[j].strip())
                 if m:
-                    out.append({"name": m.group(1)[0].upper() + m.group(1)[1:], "mode": "at start" if m.group(2) == "0" else "on demand",
-                                "value": int(m.group(2)), "line": j + 1})
+                    out.append({"name": m.group(1)[0].upper() + m.group(1)[1:], "mode": "at start" if m.group(3) == "0" else "on demand",
+                                "value": int(m.group(3)), "line": j + 1,
+                                "kind": "aggregate" if m.group(2) == "AggrRefresh" else "data action"})
                 j += 1
             break
     return out

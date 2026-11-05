@@ -1132,3 +1132,7 @@ date,screen,phase,tokens,agent,tier,note
 2026-11-05,HouseholdDetails,analyze,82823,sonnet,,drift facts gallery
 2026-11-05,NotificationDetails,analyze,153379,sonnet,,drift facts notifications
 2026-11-05,Search,analyze,113928,sonnet,,drift facts search
+2026-11-05,HouseholdDetails,fix,215238,opus,,drift decision rounds 1-2
+2026-11-05,Bookmarks,fix,244653,opus,,drift decision rounds 1-2
+2026-11-05,Search,fix,299261,opus,,drift decision rounds 1-2
+2026-11-05,NotificationDetails,fix,326640,opus,,drift decision rounds 1-2

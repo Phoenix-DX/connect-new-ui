@@ -168,3 +168,9 @@ Fetched read-only (static GET, no session) from the manifest versions of `module
 | `APIDomain_Directory_IS.model.js` | 1.2 MB | `Directory_ImageDetails` (the household gallery row) |
 | `Connect_Household_CS.model.js` | 48 kB | `UI_HouseholdTimelineImages` |
 | From the survey file (no new GET): `HouseholdDetails_TimelinePhoto_List`, `SearchResult_Section`, `FilterSheet_Icon_Label`, `Unavailable_Image`, `ScreenBlock_MessageDetail`, `Legacy_MyNotificationsFlow.MessageDetail` `.mvc.js` | — | The live blocks of the drift decisions of 2026-11-05 |
+
+CSS and fonts (2026-11-05, static GET): `UBTConnectLibrary.UBTConnectBase.css`, `UBTConnectLibrary.UBTConnectLibrary.css`,
+`UBTConnectLibrary.ConnectPatterns.Unavailable_Image.css` (live copies in `migration/runtime-sources/live/css/`), and the
+font `connect-icon.ttf` / `connect-icon.woff`. Rule diff against `app/public/UBTConnect/css/`: UBTConnectBase.css adds the
+icons `connect-icon-transport_car`, `_plane`, `_train`, the `line-clamp-1..3` utilities and a new font version; the other
+two files are equal. The app copies were replaced by the live ones (the icon font with them).
