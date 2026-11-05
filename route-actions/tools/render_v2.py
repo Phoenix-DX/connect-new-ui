@@ -149,7 +149,7 @@ def render(r, h):
          "The method is in [README.md](../README.md).", "",
          "Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of "
          f"`app/src/pages/{route}/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks "
-         f"and components that the route uses are in [section 13](#13-shared-blocks-and-components-on-this-route).", "",
+         "and components that the route uses are in the last section.", "",
          "## 1. Route", "",
          "| Item | Value | Source |", "|---|---|---|",
          f"| Route | `/UBTConnect/{route}` | `app/src/app/routes.generated.ts` |",
@@ -167,7 +167,7 @@ def render(r, h):
          f"| User actions of the route (own code) | OutSystems: {len(os_own_acts)}. React: {len(re_own_acts)} |",
          f"| Screen and blocks of the UI flow with a React port | {blocks_ported} of {len(own_blocks)} |",
          f"| Navigation targets found in React | {len(own_nav) - len(nav_missing)} of {len(own_nav)} |",
-         f"| Shared blocks and components on the route | OutSystems {len(shared_blocks)}, React {len({a['file'] for a in re_shared_acts})} with user actions: see [section 13](#13-shared-blocks-and-components-on-this-route) |",
+         f"| Shared blocks and components on the route | OutSystems {len(shared_blocks)}, React {len({a['file'] for a in re_shared_acts})} with user actions: see the last section |",
          f"| App shell on this route | {len(shell_eps)} calls: see [APP_SHELL.md](../APP_SHELL.md) |",
          "", "## 3. Differences found", "",
          "Each line is a fact of both sides: a TST call, navigation or variable, and the React code that has it or "
@@ -192,7 +192,7 @@ def render(r, h):
     xl, nx = X.sections(r_own, 7, h.link, h.short, emit, v2=True)
     L += xl
     names += xnames
-    # 13. shared
+    # last section: shared
     L += [f"## {nx}. Shared blocks and components on this route", "",
           "Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pages/` (React) that the "
           "route renders. Their facts belong to them, not to the route. This section gives their user actions once, "

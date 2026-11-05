@@ -177,6 +177,7 @@ def read_by(lines, name, files):
     var = name[0].lower() + name[1:] + "DataAct"
     view_start = next((i for i, ln in enumerate(lines) if re.match(r'define\("[\w.]+\.mvc\$view"', ln)), None)
     view_end = next((i for i, ln in enumerate(lines) if re.match(r'define\("[\w.]+\.mvc\$controller"', ln)), len(lines))
+    ctrl_end = next((i for i, ln in enumerate(lines) if re.match(r'define\("[\w.]+\.mvc\$debugger"', ln)), len(lines))
     out = []
     child = None
     for i, ln in enumerate(lines):
@@ -191,13 +192,13 @@ def read_by(lines, name, files):
             k = re.match(r"(\w+): ", s)
             if "$if(" in s:
                 out.append(("shown if" + (f" ({child})" if child else ""), i + 1))
-            elif k and child and not k.group(1).startswith("_"):
+            elif k and child and not k.group(1).startswith("_") and "dataFetchStatus" not in k.group(1):
                 out.append((f"{child}.{k.group(1)}", i + 1))
             elif "$text(" in s or "asPrimitiveValue" in s:
                 out.append(("text", i + 1))
             else:
                 out.append(("view", i + 1))
-        elif i >= view_end and f"model.variables.{var}" in ln and "DataActRefresh" not in ln and "replaceWith" not in ln and "dataFetchStatusAttr" not in ln:
+        elif view_end <= i < ctrl_end and f"model.variables.{var}" in ln and "DataActRefresh" not in ln and "replaceWith" not in ln and "dataFetchStatusAttr" not in ln:
             act = None
             for j in range(i, -1, -1):
                 mm = re.match(r"Controller\.prototype\._(\w+)\$Action = function", lines[j])

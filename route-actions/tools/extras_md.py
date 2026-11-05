@@ -244,8 +244,6 @@ def sections(r, start, link, short, emit=lambda name, mmd: None, v2=False):
           "(`app/src/platform/feedback/flowErrors.ts`). The tool lists `.catch`, `try/catch` and `onError` that do "
           "not give the error to it.", ""]
     n += 1
-
-    n += 1
     return L, n
 
 
