@@ -1230,7 +1230,13 @@ def render(r, extras=False):
          ""]
     nx = 7
     if extras:
-        xl, nx = extras_md.sections(r, 7, link, short)
+        xnames = []
+
+        def emit(name, mmd):
+            open(os.path.join(DATA, f"{name}.mmd"), "w").write(mmd)
+            xnames.append(name)
+        xl, nx = extras_md.sections(r, 7, link, short, emit)
+        names += xnames
         L += xl
     L += [f"## {nx}. Missing in React", "", *missing_lines(eps, own_blocks, nav_missing, own_nav),
           "", f"## {nx + 1}. Questions", ""]
