@@ -76,17 +76,33 @@ A route file has only the parts of the route. `route-actions/APP_SHELL.md` has t
 
 Each route run writes `APP_SHELL.md` again from all `data/check-*.json`. Its call table gives the routes of each call.
 
+Layout v2 (pilot, `--extras`, HomeFeed 2026-11-05): the conclusions first, the evidence after. Own code only in the
+main sections: the screen and the blocks of its UI flow (OutSystems), `app/src/pages/<Route>/` (React). The shared
+blocks and components of the route are in the last section, by name.
+
 | Section | Content |
 |---|---|
-| 1. Route | The route, the OutSystems screen, the UI flow, the React screen and its route rules. |
-| 2. Result | The counts, and the count of the app shell parts on the route. |
-| 3. Screenshots | The images of the last parity run, per state. Without parity: the React review images, else the TST capture images. |
-| 4. Diagram | Block or module of the direct caller (TST) → server call → React action → React component. A red box is a call that React does not make. |
-| 5. User actions | Two independent lists, no mapping between them. 5.1 OutSystems: each event binding of the TST views with an effect. 5.2 React: each JSX `on<Event>={handler}` with an effect. One Mermaid sequence diagram per binding and per branch of its handler. |
-| 6. Server calls | One row per call of the route: direct caller, chains, seen on TST, React action, React references, status. |
-| 7. Missing in React | The calls, blocks and navigation targets of the route that React does not have, with the lines of the React code that name them. |
-| 8. Questions | The React calls of the screen that the TST code of the route has no chain to. |
-| 9. Method | How the tool gets each fact. |
+| 1. Route | The route, the OutSystems screen, the UI flow, the React screen and its route rules, the parity folder. |
+| 2. Result | The counts. |
+| 3. Differences found | Every difference the tool reads from both sides: server calls, blocks, navigation targets, navigation parameters, client variables. Each with its places. |
+| 4. Questions | The React calls of the screen that the TST code of the route has no chain to. |
+| 5. Server calls | One row per call of the route: direct caller, chains, seen on TST, React action, React references, status. |
+| 6. User actions | Two independent lists, no mapping. 6.1 OutSystems: each event binding of the TST views with an effect. 6.2 React: each JSX `on<Event>={handler}` with an effect. A sequence diagram only for a handler with two or more effects, folded. |
+| 7. Inputs and navigation parameters | The screen inputs, the parameters read, the parameters given to other screens. |
+| 8. Lifecycle | OutSystems: the steps of each event handler (node comments and conditions of the compiled action); the fetch mode of each data action (`0` at start, `-1` on demand). React: `useEffect` with its dependencies, cleanup and effects; the queries. Sequence diagrams of the screen handlers, folded. |
+| 9. Client state | Client variables and browser storage that the route reads or writes. |
+| 10. Access | `checkPermissions` of the screen (TST); access and lock of the route (React). |
+| 11. Errors | `Handle Error` nodes of the actions and the `OnException` chain of the UI flow (TST); `.catch`, `try/catch`, `onError`, `raiseToFlowHandler` (React). |
+| 12. Data flow | One flowchart per screen, block, component or hook with a server, state, client variable or navigation edge: source → target, label = input, event or action. Folded, with the edge table. |
+| 13. Shared blocks and components | The blocks of other UI flows and the React files outside `pages/` that the route renders, with their React port and their user actions (table only). |
+
+Method of the facts: `os_extras.py` reads the TST compiled files (`sources/raw/*.mvc.js`) and the UI flow controllers
+of `migration/shell/sources/`; `react_calls.mjs` reads the React screen files through ts-morph. A step comes from a
+node comment of the compiled action (`// Execute Action: X`) or from its condition. A navigation parameter comes from
+`generateScreenURL(url, {…})` (TST) and from `navigate(path, {…})` (React).
+
+Layout v1 (the 51 done routes): 1 Route · 2 Result · 3 Screenshots · 4 Diagram (calls) · 5 User actions · 6 Server
+calls · 7 Missing in React · 8 Questions · 9 Method.
 
 ## Files
 

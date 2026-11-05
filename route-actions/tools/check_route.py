@@ -33,6 +33,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import mcp_client  # noqa: E402
 import os_extras  # noqa: E402
 import extras_md  # noqa: E402
+import render_v2  # noqa: E402
 
 OUT = os.path.join(HERE, "routes")          # the route files
 DATA = os.path.join(cfg("cache"), "data")   # git ignores route-actions/.cache/
@@ -1379,7 +1380,10 @@ def main():
         write_routes(done=a.route)
         return
     r = check(a.route)
-    render(r, extras=a.extras)
+    if a.extras:
+        render_v2.render(r, sys.modules[__name__])
+    else:
+        render(r)
     render_app_shell()
     write_routes()
 

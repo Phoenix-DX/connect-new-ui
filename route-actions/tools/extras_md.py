@@ -37,23 +37,40 @@ def _effects(effs, link):
     return "<br>".join(dict.fromkeys(out))
 
 
+def _has_data(edges, react=False):
+    src = {"server", "state", "clientvar", "input"} if react else {"server", "clientvar"}
+    dst = {"nav", "state", "clientvar"} if react else {"nav", "clientvar"}
+    return any(e["src"][0] in src or e["dst"][0] in dst for e in edges)
+
+
 def _edge_table(edges, place):
     def nm(x):
         return f"{x[0]} `{_cell(x[1])}`"
-    L = ["<details><summary>Edges and places (" + str(len(edges)) + ")</summary>", "",
-         "| From | To | Label | Place |", "|---|---|---|---|"]
-    L += [f"| {nm(e['src'])} | {nm(e['dst'])} | {_cell(e['label'])} | {place(e)} |" for e in edges]
-    return L + ["", "</details>", ""]
+
+    def ln(e):  # the line only: the file is the title of the diagram
+        return re.sub(r"^\[`[^`]*:(\d+)`\]", r"[`L\1`]", place(e))
+    L = ["| From | To | Label | Line |", "|---|---|---|---|"]
+    L += [f"| {nm(e['src'])} | {nm(e['dst'])} | {_cell(e['label'])} | {ln(e)} |" for e in edges]
+    return L + [""]
 
 
-def sections(r, start, link, short, emit=lambda name, mmd: None):
-    """[markdown lines], number of the next section. `emit(name, mermaid)` gets each diagram (syntax check)."""
+def sections(r, start, link, short, emit=lambda name, mmd: None, v2=False):
+    """[markdown lines], number of the next section. `emit(name, mermaid)` gets each diagram (syntax check).
+    v2: the diagrams fold in <details>, the lifecycle diagrams are only those of the screen file, the data flow
+    keeps only the files with a server, state, client variable or navigation edge."""
     dcount = [0]
 
     def diagram(title, mmd):
         dcount[0] += 1
         emit(f"{r['route']}-x{dcount[0]}", mmd)
         return ["", f"#### {title}", "", "```mermaid", mmd, "```"]
+
+    def fold(summary, lines):
+        if not lines:
+            return []
+        if not v2:
+            return lines
+        return ["", f"<details><summary>{summary}</summary>", *lines, "", "</details>"]
     ox, rx = r["osExtras"], r["reactExtras"]
     raw = r["osRaw"]  # folder of the TST compiled files
 
@@ -120,11 +137,14 @@ def sections(r, start, link, short, emit=lambda name, mmd: None):
     if lc_shared:
         L += ["", f"The shared pattern and plugin blocks (OutSystems UI, `UBTConnectLibrary`, plugins) of the route have "
               f"{len(lc_shared)} more event handlers: " + ", ".join(sorted({f"`{short(x['file'])}`" for x in lc_shared})) + "."]
-    if lc_own:
-        L += ["", "One sequence diagram per event handler. The diagram keeps the order of the steps in the compiled "
-              "action. The code does not give the order of the handlers of different blocks."]
-        for i, x in enumerate(lc_own, 1):
-            L += diagram(f"{n}.1.{i} {short(x['file'])}: {x['event']}", os_lifecycle_mmd(x, short(x["file"])))
+    lc_diag = [x for x in lc_own if not v2 or x["file"] == r.get("screenFileRaw")]
+    if lc_diag:
+        dl = []
+        for i, x in enumerate(lc_diag, 1):
+            dl += diagram(f"{n}.1.{i} {short(x['file'])}: {x['event']}", os_lifecycle_mmd(x, short(x["file"])))
+        L += fold(f"Sequence diagrams of the screen event handlers ({len(lc_diag)})",
+                  ["", "The diagram keeps the order of the steps in the compiled action. The code does not give the "
+                   "order of the handlers of different blocks.", *dl])
     L += ["", "Data actions and aggregates. The tool reads `dataFetchDependenciesOriginal`: `0` is a fetch when the "
           "block opens, `-1` is a fetch only on demand (a `Refresh Query` step).", ""]
     if ox["fetch"]:
@@ -149,9 +169,10 @@ def sections(r, start, link, short, emit=lambda name, mmd: None):
               ", ".join(sorted({f"`{x['in']}`" for x in shared_quiet})) + "."]
     with_eff = [x for x in own_eff if x["effects"]]
     if with_eff:
-        L += ["", "One sequence diagram per effect with a call, a navigation, a message or a refresh."]
+        dl = []
         for i, x in enumerate(with_eff, 1):
-            L += diagram(f"{n}.2.{i} {x['in']}: {x['hook']}", react_lifecycle_mmd(x))
+            dl += diagram(f"{n}.2.{i} {x['in']}: {x['hook']}", react_lifecycle_mmd(x))
+        L += fold(f"Sequence diagrams of the effects with a call, a navigation, a message or a refresh ({len(with_eff)})", dl)
     L += ["", "Queries. A query fetches when its component mounts and when its key changes.", ""]
     if rx["queries"]:
         L += ["| File | Hook (function) | Calls | Place |", "|---|---|---|---|"]
@@ -247,21 +268,32 @@ def sections(r, start, link, short, emit=lambda name, mmd: None):
           "| `([hook: X])` | `([action: X])`: result of an action | result of a hook |", "",
           f"### {n}.1 OutSystems (TST)", ""]
     df_own, df_shared = _split_os(ox.get("dataflow") or [])
+    if v2:
+        df_own = [x for x in df_own if _has_data(x["edges"])]
+        L += ["Only the screen and the blocks with a server, client variable or navigation edge. A block that only "
+              "passes its inputs to its children does not appear.", ""]
     if not df_own:
         L += ["None.", ""]
+    dl = []
     for i, x in enumerate(df_own, 1):
-        L += diagram(f"{n}.1.{i} {short(x['file'])}", dataflow_mmd(x["edges"]))
-        L += [""] + _edge_table(x["edges"], lambda e, f=x["file"]: op(f, e["line"]))
+        dl += diagram(f"{n}.1.{i} {short(x['file'])}", dataflow_mmd(x["edges"]))
+        dl += [""] + _edge_table(x["edges"], lambda e, f=x["file"]: op(f, e["line"]))
+    L += fold(f"Data flow diagrams ({len(df_own)})", dl) + [""]
     if df_shared:
         L += [f"The shared pattern and plugin blocks have data flows too: " +
               ", ".join(sorted({f"`{short(x['file'])}`" for x in df_shared})) + ". The tool does not show them.", ""]
     L += [f"### {n}.2 React", ""]
     rdf = rx.get("dataflow") or []
+    if v2:
+        rdf = [x for x in rdf if _has_data(x["edges"], react=True)]
+        L += ["Only the components and hooks with a server, state, client variable or navigation edge.", ""]
     if not rdf:
         L += ["None.", ""]
+    dl = []
     for i, x in enumerate(rdf, 1):
-        L += diagram(f"{n}.2.{i} {x['fn']} ({x['file'].rsplit('/', 1)[-1]})", dataflow_mmd(x["edges"]))
-        L += [""] + _edge_table(x["edges"], lambda e, f=x["file"]: link(f, e["line"]))
+        dl += diagram(f"{n}.2.{i} {x['fn']} ({x['file'].rsplit('/', 1)[-1]})", dataflow_mmd(x["edges"]))
+        dl += [""] + _edge_table(x["edges"], lambda e, f=x["file"]: link(f, e["line"]))
+    L += fold(f"Data flow diagrams ({len(rdf)})", dl) + [""]
     n += 1
     return L, n
 
