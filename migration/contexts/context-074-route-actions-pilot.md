@@ -19,27 +19,24 @@
 - User 2026-11-04: one route at a time; facts only, no inference; two independent user action lists, no mapping;
   no KB; MCP only for the UI flow; Mermaid text, no SVG; folder `route-actions/` at the root; inputs through `config.json`.
 - User 2026-11-05: layout v2; no data flow section (a `Read by` column keeps its one useful fact).
-- User 2026-11-05: questions by rule, not by hand: a call site in the shell closure is a shell question
-  (`APP_SHELL.md`); a call reached only through shared code goes to the shared section; the rest is a route question.
-- User 2026-11-05: the 17 routes without a capture get a static check from the compiled code (71 files fetched
-  read-only from the TST manifest, logged in `migration/knowledge/runtime-sources.md`).
+- User 2026-11-05: questions by rule. A call site in the shell closure is a shell question (`APP_SHELL.md`). A call
+  reached only through shared code goes to the shared section. The rest is a route question.
+- User 2026-11-05: the 17 routes without a capture get a static check from the compiled code. Claude fetched 71 files
+  read-only from the TST manifest (`migration/knowledge/runtime-sources.md`).
 - User 2026-11-05: goal = fix the remaining gaps toward production; BE mock; MCP may build mock data for screens
   that the web capture cannot reach.
 
 ## Facts learned (evidence)
 - React reads client variables through `clientVar.<name>` accessors (`platform/session/session.ts`) and gives
-  navigation parameters through `{ path, inputs }` objects and functions; the scan reads these forms.
-- A static GET of a manifest script works without a session (`/UBTConnect/scripts/<file>?<version>`).
+  navigation parameters through `{ path, inputs }` objects; a static GET of a manifest script needs no session.
 
 ## Files changed
-- `route-actions/`: `tools/render_v2.py`, `tools/os_extras.py`, `tools/extras_md.py`, `tools/os_static.py` (new),
-  `tools/check_route.py`, `tools/react_calls.mjs`, README, 68 route files, `APP_SHELL.md`, `ROUTES.md`.
-- `migration/runtime-sources/` (+71 compiled files), `migration/knowledge/runtime-sources.md`, the skill
-  `route-actions`. This context, `INDEX.md`.
+- `route-actions/` (tools, README, 68 route files, `APP_SHELL.md`, `ROUTES.md`), `migration/runtime-sources/`
+  (+71 files), `migration/knowledge/runtime-sources.md`, the skill `route-actions`, this context, `INDEX.md`.
 
 ## Open issues
-- The 29 route questions (MilestoneDetail 11, AssembleDetail 6, HelpersDetail 3, Profile 2, HostSurvey 2, the
-  static routes 5) and the 8 app shell questions: the user answers them per route.
+- 29 route questions: MilestoneDetail 11, AssembleDetail 6, HelpersDetail 3, Profile 2, HostSurvey 2, static
+  routes 5. 8 app shell questions. The user answers them per route.
 - The gaps above are not fixed in `app/` yet.
 
 ## Next
