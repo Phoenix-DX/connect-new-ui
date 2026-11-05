@@ -18,15 +18,15 @@
 ## Decisions (who, date)
 - User 2026-11-04: one route at a time; facts only, no inference; two independent user action lists, no mapping;
   no KB; MCP only for the UI flow; Mermaid text, no SVG; folder `route-actions/` at the root; inputs through `config.json`.
-- User 2026-11-05: layout v2 (conclusions first, own code only, a diagram only for a handler with two or more
-  effects, folded; no screenshot table, no call flowchart, no method). The data flow section was built, judged not
-  useful for a developer or an agent, and dropped; a `Read by` column of the data actions and queries keeps its one
-  useful fact (a fetch that nothing reads).
+- User 2026-11-05: layout v2. Conclusions first, own code only, folded diagrams. A diagram only for a handler
+  with two or more effects. No screenshot table, no call flowchart, no method.
+- User 2026-11-05: no data flow section. Claude built it; it did not help a developer or an agent. A `Read by`
+  column of the data actions and queries keeps its one useful fact: a fetch that nothing reads.
 
 ## Facts learned (evidence)
 - 17 of 68 build routes have `no-capture.json` and no `facts.json`. The tool stops for them.
-- The bottom bar and the notification icon are placed by each screen (TST view, `HomeFeed.mvc.js`), not by
-  `CommonUI_InsideLayout`: they are shared blocks of the route, not the app shell.
+- Each screen places the bottom bar and the notification icon itself (TST view, `HomeFeed.mvc.js`), not
+  `CommonUI_InsideLayout`. They count as shared blocks of the route, not as the app shell.
 - React reads client variables through `clientVar.<name>` accessors (`platform/session/session.ts`) and gives
   navigation parameters through `{ path, inputs }` objects and functions; the scan reads these forms.
 
