@@ -57,8 +57,8 @@ navigation away while OnReady waits for the user starts no refresh" (`AssembleEv
 times alone: a timing flake of the full run under load (LegacyPopupMenu showed the same once). Not a change of this
 work.
 
-Final gate (2026-11-05, commit after the two test fixes): `npm run ci` green end to end: gen:api, typecheck, lint,
-arch, arch:baselines, dup, unused, flags, flow-fetch, format:check, the whole `vitest run` (731 files, 4757 tests,
-0 flakes after the fixes of `AssembleEvents.test.tsx` and `PopupMenu.test.tsx`), `vite build`. Parity sweep of the
-same day: 50 of 51 clean (Notifications: the relative-age label).
+Final gate (2026-11-05, commit after the two test fixes): `npm run ci` green end to end. Steps: gen:api, typecheck,
+lint, arch, arch:baselines, dup, unused, flags, flow-fetch, format:check, the whole `vitest run`, `vite build`. The
+test run: 731 files, 4757 tests, 0 flakes after the fixes of `AssembleEvents.test.tsx` and `PopupMenu.test.tsx`.
+Parity sweep of the same day: 50 of 51 clean (Notifications: the relative-age label).
 
