@@ -1,8 +1,10 @@
 import { act, fireEvent, screen, waitFor } from '@testing-library/react';
+import { http } from 'msw';
 import { afterAll, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ASSEMBLE_MEETINGS, USER_HALL_ID } from '@/mocks/fictional/assemble';
 import { resetNavigation, renderRoutes } from '@/platform/navigation/testRouter';
 import { applyTestSession } from '@/platform/session/testSession';
+import { server } from '@/test/setup';
 import { freshPage } from '@/test/testSupport';
 import AssembleEvents from './AssembleEventsPage';
 
@@ -107,17 +109,33 @@ describe('AssembleEvents', () => {
   });
 
   it('flow scope (item 8, R3): a navigation away while OnReady waits for the user starts no refresh and no FetchCountries', async () => {
-    sessionStorage.setItem('mock:latency', '40');
+    // Deterministic, not a latency race: GetUserInformation answers only after the user left. The gate handler
+    // returns nothing, so MSW goes on to the mock of the call once the gate opens.
+    let openGate: () => void = () => undefined;
+    const gate = new Promise<void>((resolve) => {
+      openGate = resolve;
+    });
+    server.use(
+      http.post('/api/Connect2_LegacyShared/ActionGetUserInformation', async () => {
+        await gate;
+      }),
+    );
     const { container, router } = renderRoutes(
       { [PATH]: <AssembleEvents />, '/UBTConnect/HomeFeed': <div id="home" /> },
       '/UBTConnect/HomeFeed',
     );
     window.__osCalls = [];
     await act(() => router.navigate(PATH));
-    await settle(5);
+    await waitFor(() => {
+      expect((window.__osCalls ?? []).some((c) => c.action === 'ActionGetUserInformation')).toBe(true);
+    });
     await act(() => router.navigate(-1));
-    await settle(200);
-    expect(container.querySelector('[data-block="Assemble.ScreenBlock_AssembleEvents"]')).toBeNull();
+    // the back navigation unmounts the screen on a later tick: wait for it, then let the answer through
+    await waitFor(() => {
+      expect(container.querySelector('[data-block="Assemble.ScreenBlock_AssembleEvents"]')).toBeNull();
+    });
+    openGate();
+    await settle(50);
     // GetCacheableUserInfo is a module action: it runs once. The refreshes of AssembleSummary_List and FetchCountries
     // of Assemble_FilterSheet are own client actions of the left blocks (R3): they do not start.
     const watched = [
