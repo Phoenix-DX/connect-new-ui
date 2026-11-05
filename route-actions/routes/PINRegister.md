@@ -1,12 +1,8 @@
-# PINRegister: server calls and user actions in OutSystems and React
+# PINRegister: OutSystems (TST) and React
 
-This file compares the route `/UBTConnect/PINRegister` in OutSystems (TST) with the React app.
-The tool `route-actions/tools/check_route.py` wrote this file on 2026-11-04.
-The tool reads the code. It does not run the app.
+The route `/UBTConnect/PINRegister`, read from the TST compiled code and from the React code by `route-actions/tools/check_route.py` on 2026-11-05. Facts only, each with its place. The method is in [README.md](../README.md).
 
-The app shell is in [APP_SHELL.md](../APP_SHELL.md), not here.
-- OutSystems app shell: `CommonUI_InsideLayout` with its blocks (TST survey), and the chains that start in a module action.
-- React app shell: the code that `app/src/main.tsx` loads (router, `AppFrame`, app start, hosts).
+Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/PINRegister/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
 ## 1. Route
 
@@ -17,71 +13,67 @@ The app shell is in [APP_SHELL.md](../APP_SHELL.md), not here.
 | UI flow | `App_PIN` | MCP `getScreenNames` (DEV) |
 | React screen | [`pages/PINRegister/PINRegisterPage.tsx`](../../app/src/pages/PINRegister/PINRegisterPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `ignore`, flag redirect none | `app/src/app/routes.ts` |
-| Code read | OutSystems: 12 screen and block files of the route, 16 app shell files. React: 121 screen files | TST `facts.json`, `react_calls.mjs` |
+| Screenshots | [`migration/screens/PINRegister/parity`](../../migration/screens/PINRegister/parity) | `route.py parity` |
+| Code read | OutSystems: 2 files of the UI flow, 10 shared blocks, 16 app shell files. React: 121 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
 | Check | Result |
 |---|---|
 | Server calls of the route on TST | 1: React makes 0, **1 missing** |
-| User actions of the route | OutSystems: 3 diagrams. React: 5 diagrams |
-| React calls of the screen that TST does not make | 1 (see [questions](#8-questions)) |
-| Screen and blocks with a React port | 12 of 12 |
+| Differences found | **1** (see [section 3](#3-differences-found)) |
+| Questions | 1 (see [section 4](#4-questions)) |
+| User actions of the route (own code) | OutSystems: 3. React: 2 |
+| Screen and blocks of the UI flow with a React port | 2 of 2 |
 | Navigation targets found in React | 4 of 4 |
-| App shell on this route | 8 calls; event bindings: OutSystems 5, React 7: see [APP_SHELL.md](../APP_SHELL.md) |
+| Shared blocks and components on the route | OutSystems 10, React 1 with user actions: see the last section |
+| App shell on this route | 8 calls: see [APP_SHELL.md](../APP_SHELL.md) |
 
-## 3. Screenshots
+## 3. Differences found
 
-The screenshots come from the last parity run (`route.py parity`). The TST capture hides personal text with dots. The React build shows fictional mock data.
+Each line is a fact of both sides: a TST call, navigation or variable, and the React code that has it or not. The tool does not judge the behaviour.
 
-| State | TST (expected) | React (build) | Difference |
-|---|---|---|---|
-| `default`<br>390x844, mock `real`<br>2026-10-29<br>pixel difference 0.0% | <img src="../../migration/screens/PINRegister/parity/default.expected.png" width="200" alt="default expected"> | <img src="../../migration/screens/PINRegister/parity/default.build.png" width="200" alt="default build"> | <img src="../../migration/screens/PINRegister/parity/default.diff.png" width="200" alt="default diff"> |
-| `loading`<br>390x844, mock `loading`<br>2026-10-29<br>pixel difference 0.0% | <img src="../../migration/screens/PINRegister/parity/loading.expected.png" width="200" alt="loading expected"> | <img src="../../migration/screens/PINRegister/parity/loading.build.png" width="200" alt="loading build"> | <img src="../../migration/screens/PINRegister/parity/loading.diff.png" width="200" alt="loading diff"> |
-| `offline`<br>390x844, mock `error`<br>2026-10-29<br>pixel difference 0.0% | <img src="../../migration/screens/PINRegister/parity/offline.expected.png" width="200" alt="offline expected"> | <img src="../../migration/screens/PINRegister/parity/offline.build.png" width="200" alt="offline build"> | <img src="../../migration/screens/PINRegister/parity/offline.diff.png" width="200" alt="offline diff"> |
+- Call `UBT_AppManager/ActionAppManager_Logout`. Chain on TST: onClick in PINRegister → PINRegister.onClick_BackToLogin → UBT_AppManager.appManager_Logout → server AppManager_Logout.
+  - No React code makes this call.
+  - Note in [`platform/auth/mockAuth.ts:24`](../../app/src/platform/auth/mockAuth.ts#L24): "/** The server logout of AppManager_Logout: no call (app-shell spec 10). */"
+  - Note in [`platform/session/auth.ts:84`](../../app/src/platform/session/auth.ts#L84): "/** Connect_Logout (UC:1062-1066): Cache_InvalidateEverything, then AppManager_Logout (AM:3649-3720): server logout"
+  - Note in [`platform/session/pin.ts:66`](../../app/src/platform/session/pin.ts#L66): "/** PIN_Delete(UserId, AppName), part of AppManager_Logout (AM:3712). */"
 
-## 4. Diagram
+## 4. Questions
 
-- A box on the left is the block or module of the action that calls the server (TST code).
-- A line connects each call to the React action that makes the same call.
-- The right column shows the React components that use each React action.
-- A red box is a call that React does not make.
+1. React calls `/api/UBTConnect_Utils/CacheControl_Policies/DataActionGetCacheInfo` from `fetchPolicies()` [`api/app/repository.ts:54`](../../app/src/api/app/repository.ts#L54) (shell + page). TST PINRegister has no chain to this call. Does the call belong to this route?
 
-```mermaid
-flowchart LR
-  subgraph OS["OutSystems (TST compiled)"]
-    subgraph OS_screen["Screen and its blocks"]
-      o0["UBT_AppManager"]
-    end
-  end
-  subgraph EP["Server calls (TST)"]
-    e1["ActionAppManager_Logout"]
-  end
-  o0 --> e1
-  classDef missing fill:#fde2e1,stroke:#c0392b,color:#7b241c
-  classDef ok fill:#e3f4e8,stroke:#2e7d4f,color:#1d4d31
-  class e1 missing
-```
+## 5. Server calls
 
-## 5. User actions
+All columns come from the code, without interpretation:
 
-The two lists are independent: the OutSystems list comes from the TST compiled code, the React list from the React code. The tool does not map one list to the other.
+- **Direct caller (TST):** the block or module of the action that calls the server (the step before the server call in the chain).
+- **Chain (TST):** the chains of client actions in the TST compiled code, from their start to the call.
+  A long chain shows its first 2 steps, …, and its last 2 steps.
+- **Seen on TST:** `yes` when TST made the call in the capture.
+- **React action:** the React function with the `callAction` of the same call (`file:line`), and the code that loads it: `shell` (from `main.tsx`), `page` (from the screen), or both.
+- **Used by (React references):** the functions and components that reference the React action, up to the nearest component. A reference is not always a call.
+- **Status:** `implemented` when the contract path of the React call gives the same TST URL. It does not prove the same behaviour.
 
-- **OutSystems:** each event binding of the compiled views (`<event>$Action: function` of a child block or widget, `on<Event>: function` of an HTML element) with its handler.
-- **React:** each JSX attribute `on<Event>={handler}` with its handler.
-- Both lists keep only the bindings whose handler has an effect: a server call, a navigation, an external link, a message or a confirm dialog. The tool follows the called functions 3 levels deep.
-- When the handler has branches in the code (`switch` case, `if` with `===`), each branch has its own diagram. The branch name is the constant of the condition. `other` is the last `else` or `default`.
-- An arrow to the server gives the inputs of the call, the return arrow its outputs (contract `app/src/api/openapi.yaml`).
+| # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
+|---|---|---|---|---|---|---|---|---|
+| 1 | `UBT_AppManager/ActionAppManager_Logout` | server action | `UBT_AppManager` | onClick in PINRegister → PINRegister.onClick_BackToLogin → UBT_AppManager.appManager_Logout → server AppManager_Logout | no | – | – | **missing** |
 
-### 5.1 OutSystems (TST)
+## 6. User actions
+
+Two independent lists: the event bindings of the TST views, and the JSX event bindings of the React files. The effects come from the handler and the functions it calls, 3 levels deep. No mapping.
+
+### 6.1 OutSystems (TST)
 
 | # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
 |---|---|---|---|---|---|
-| [1](#511-block_pinregister_contentwrapper-event_pincode_registerpinregistrationsuccess) | `Block_PINRegister_ContentWrapper` | `pinRegistrationSuccess of Register` | `event_Pincode_RegisterPinRegistrationSuccess` | – | goes to Menu, URL getResumeLoginLink.uRLOut, URL client variable LastURL, HomeFeed; shows a message |
-| [2](#512-block_pinregister_contentwrapper-event_pincode_registerpinregistrationerror) | `Block_PINRegister_ContentWrapper` | `pinRegistrationError of Register` | `event_Pincode_RegisterPinRegistrationError` | – | shows a message |
-| [3](#513-pinregister-onclick_backtologin) | `PINRegister` | `onClick (HTML element)` | `onClick_BackToLogin` | – | calls AppManager_Logout, AppManager_SynchAppContext; goes to Login |
+| [1](#611-block_pinregister_contentwrapper-event_pincode_registerpinregistrationsuccess) | `Block_PINRegister_ContentWrapper` | `pinRegistrationSuccess of Register` | `event_Pincode_RegisterPinRegistrationSuccess` | – | goes to Menu, URL getResumeLoginLink.uRLOut, URL client variable LastURL, HomeFeed; shows a message |
+| 2 | `Block_PINRegister_ContentWrapper` | `pinRegistrationError of Register` | `event_Pincode_RegisterPinRegistrationError` | – | shows a message |
+| [3](#613-pinregister-onclick_backtologin) | `PINRegister` | `onClick (HTML element)` | `onClick_BackToLogin` | – | calls AppManager_Logout, AppManager_SynchAppContext; goes to Login |
 
-#### 5.1.1 Block_PINRegister_ContentWrapper: event_Pincode_RegisterPinRegistrationSuccess
+<details><summary>2 diagrams (handlers with two or more effects)</summary>
+
+#### 6.1.1 Block_PINRegister_ContentWrapper: event_Pincode_RegisterPinRegistrationSuccess
 
 ```mermaid
 sequenceDiagram
@@ -97,18 +89,7 @@ sequenceDiagram
   B->>N: go to HomeFeed
 ```
 
-#### 5.1.2 Block_PINRegister_ContentWrapper: event_Pincode_RegisterPinRegistrationError
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as Block_PINRegister_ContentWrapper
-  U->>B: pinRegistrationError of Register → event_Pincode_RegisterPinRegistrationError
-  Note over B: message FeedbackMessage_AutoClose
-```
-
-#### 5.1.3 PINRegister: onClick_BackToLogin
+#### 6.1.3 PINRegister: onClick_BackToLogin
 
 ```mermaid
 sequenceDiagram
@@ -126,30 +107,21 @@ sequenceDiagram
   B->>N: go to Login
 ```
 
-### 5.2 React
+
+</details>
+
+
+### 6.2 React
 
 | # | File | Element | Event prop | Handler | Branch | Effects |
 |---|---|---|---|---|---|---|
-| [1](#521-oslink-onclick) | [`pages/PINRegister/PINRegisterPage.tsx:29`](../../app/src/pages/PINRegister/PINRegisterPage.tsx#L29) | `<OSLink>` | `onClick` | `inline` | – | goes to Login |
-| [2](#522-pinregistercontent-onsetpin-newpincode) | [`pages/PINRegister/PINRegisterPage.tsx:59`](../../app/src/pages/PINRegister/PINRegisterPage.tsx#L59) | `<PinRegisterContent>` | `onSetPin` | `registration.onSetPin` | `newPinCode` | goes to Menu, URL resumeLink, URL lastUrl, HomeFeed; shows a message |
-| [3](#523-pinregistercontent-onsetpin-other) | [`pages/PINRegister/PINRegisterPage.tsx:59`](../../app/src/pages/PINRegister/PINRegisterPage.tsx#L59) | `<PinRegisterContent>` | `onSetPin` | `registration.onSetPin` | `other` | shows a message |
-| [4](#524-preventbacknavigation-onbacknavigationprevented) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:80`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L80) | `<PreventBackNavigation>` | `onBackNavigationPrevented` | `redirectHome` | – | goes to HomeFeed |
-| [5](#525-backnavigationhandler-onbacknavigation) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:82`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L82) | `<BackNavigationHandler>` | `onBackNavigation` | `maybeRedirectHome` | – | goes to HomeFeed |
+| 1 | [`pages/PINRegister/PINRegisterPage.tsx:29`](../../app/src/pages/PINRegister/PINRegisterPage.tsx#L29) | `<OSLink>` | `onClick` | `inline` | – | goes to Login |
+| [2](#622-pinregistercontent-onsetpin-newpincode) | [`pages/PINRegister/PINRegisterPage.tsx:59`](../../app/src/pages/PINRegister/PINRegisterPage.tsx#L59) | `<PinRegisterContent>` | `onSetPin` | `registration.onSetPin` | `newPinCode` | goes to Menu, URL resumeLink, URL lastUrl, HomeFeed; shows a message |
+| [3](#623-pinregistercontent-onsetpin-other) | [`pages/PINRegister/PINRegisterPage.tsx:59`](../../app/src/pages/PINRegister/PINRegisterPage.tsx#L59) | `<PinRegisterContent>` | `onSetPin` | `registration.onSetPin` | `other` | shows a message |
 
-#### 5.2.1 OSLink: onClick
+<details><summary>2 diagrams (handlers with two or more effects)</summary>
 
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as OSLink · PINRegisterPage.tsx
-  participant N as Navigation
-  U->>H: onClick → inline
-  Note over H: via onClickBackToLogin()
-  H->>N: go to Login
-```
-
-#### 5.2.2 PinRegisterContent: onSetPin (newPinCode)
+#### 6.2.2 PinRegisterContent: onSetPin (newPinCode)
 
 ```mermaid
 sequenceDiagram
@@ -168,7 +140,7 @@ sequenceDiagram
   H->>N: go to HomeFeed
 ```
 
-#### 5.2.3 PinRegisterContent: onSetPin (other)
+#### 6.2.3 PinRegisterContent: onSetPin (other)
 
 ```mermaid
 sequenceDiagram
@@ -182,68 +154,131 @@ sequenceDiagram
   Note over H: message { title: '', message: errorMessage, messageType: 'error', encodedHtml: true, extendedClass
 ```
 
-#### 5.2.4 PreventBackNavigation: onBackNavigationPrevented
 
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as PreventBackNavigation · CommonUiLayout.tsx
-  participant N as Navigation
-  U->>H: onBackNavigationPrevented → redirectHome
-  H->>N: go to HomeFeed
-```
+</details>
 
-#### 5.2.5 BackNavigationHandler: onBackNavigation
 
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as BackNavigationHandler · CommonUiLayout.tsx
-  participant N as Navigation
-  U->>H: onBackNavigation → maybeRedirectHome
-  Note over H: via actionRedirectHome()
-  H->>N: go to HomeFeed
-```
+## 7. Screen inputs and navigation parameters
 
-## 6. Server calls
+The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
+The OutSystems files are in `migration/screens/PINRegister/analysis/sources/raw/`.
 
-All columns come from the code, without interpretation:
+### 7.1 OutSystems (TST)
 
-- **Direct caller (TST):** the block or module of the action that calls the server (the step before the server call in the chain).
-- **Chain (TST):** the chains of client actions in the TST compiled code, from their start to the call.
-  A long chain shows its first 2 steps, …, and its last 2 steps.
-- **Seen on TST:** `yes` when TST made the call in the capture.
-- **React action:** the React function with the `callAction` of the same call (`file:line`), and the code that loads it: `shell` (from `main.tsx`), `page` (from the screen), or both.
-- **Used by (React references):** the functions and components that reference the React action, up to the nearest component. A reference is not always a call.
-- **Status:** `implemented` when the contract path of the React call gives the same TST URL. It does not prove the same behaviour.
+Screen inputs: none. `setInputs` of `PINRegister` reads no input.
 
-| # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
-|---|---|---|---|---|---|---|---|---|
-| 1 | `UBT_AppManager/ActionAppManager_Logout` | server action | `UBT_AppManager` | onClick in PINRegister → PINRegister.onClick_BackToLogin → UBT_AppManager.appManager_Logout → server AppManager_Logout | no | – | – | **missing** |
+Navigations with parameters: none.
 
-## 7. Missing in React
+### 7.2 React
 
-- Call `UBT_AppManager/ActionAppManager_Logout`. Chain on TST: onClick in PINRegister → PINRegister.onClick_BackToLogin → UBT_AppManager.appManager_Logout → server AppManager_Logout.
-  - No React code makes this call.
-  - Note in [`platform/auth/mockAuth.ts:24`](../../app/src/platform/auth/mockAuth.ts#L24): "/** The server logout of AppManager_Logout: no call (app-shell spec 10). */"
-  - Note in [`platform/session/auth.ts:84`](../../app/src/platform/session/auth.ts#L84): "/** Connect_Logout (UC:1062-1066): Cache_InvalidateEverything, then AppManager_Logout (AM:3649-3720): server logout"
-  - Note in [`platform/session/pin.ts:66`](../../app/src/platform/session/pin.ts#L66): "/** PIN_Delete(UserId, AppName), part of AppManager_Logout (AM:3712). */"
+Declared inputs of the route: none (`app/src/app/routes.generated.ts`).
 
-## 8. Questions
+Parameters read (`useSearchParams`, `useParams`): none.
 
-1. React calls `/api/UBTConnect_Utils/CacheControl_Policies/DataActionGetCacheInfo` from `fetchPolicies()` [`api/app/repository.ts:54`](../../app/src/api/app/repository.ts#L54) (shell + page). TST PINRegister has no chain to this call. Does the call belong to this route?
+Navigations with parameters: none.
 
-## 9. Method
+## 8. Lifecycle
 
-1. **OutSystems (TST).** The tool reads `facts.json` and the compiled code of `migration/screens/PINRegister/analysis/`:
-   - the rendered files;
-   - each server call with its chain of client actions, and the calls that TST made in the capture;
-   - the effects of each user action.
-2. **Route and app shell.** OutSystems: a chain belongs to the app shell when it starts in `CommonUI_InsideLayout`, one of its blocks, or a module action. React: a binding belongs to the app shell when its file is in the code that `main.tsx` loads.
-3. **MCP (DEV).** The tool reads the UI flow with `getScreenNames`. TST wins when DEV is different.
-4. **React.** `react_calls.mjs` reads the app shell from `app/src/main.tsx` and the screen from its `<Route>Page.tsx`. It counts only the code that the app uses.
-5. **Match.** `callAction(M, A)` gives `/api/M/A`. The `x-os-paths` of `app/src/api/openapi.yaml` give the TST call. The status is `implemented` when the TST call is the same. Else the status is `missing`.
+What runs when the screen and its blocks open and close, without a user action.
 
-Limit: a name or a call match does not prove the same behaviour. The parity checks of the migration compare the behaviour.
+### 8.1 OutSystems (TST)
+
+Event handlers. The steps are the node comments and the conditions of the compiled action.
+
+| Block | Event | Action | Steps |
+|---|---|---|---|
+| `Block_PINRegister_ContentWrapper` | OnInitialize ([`UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js:698`](../../migration/screens/PINRegister/analysis/sources/raw/UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js#L698)) | `screenEvent_OnInitialize` | 1. If enableName ([`L572`](../../migration/screens/PINRegister/analysis/sources/raw/UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js#L572))<br>2. Execute Action: AppManager_GetCachedUserInfo ([`L574`](../../migration/screens/PINRegister/analysis/sources/raw/UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js#L574))<br>3. UserName = AppManager_GetCachedUserInfo.UserInformation.FirstName + " " + AppManager_GetCachedUserInfo.UserInformation.LastName ([`L578`](../../migration/screens/PINRegister/analysis/sources/raw/UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js#L578))<br>4. Else ([`L581`](../../migration/screens/PINRegister/analysis/sources/raw/UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js#L581)) |
+
+Data actions and aggregates. The tool reads `dataFetchDependenciesOriginal`: `0` is a fetch when the block opens, `-1` is a fetch only on demand (a `Refresh Query` step). `Read by` lists the child block inputs, conditions, text widgets and actions that read the result.
+
+None.
+
+### 8.2 React
+
+Effects (`useEffect`, `useLayoutEffect`) of the screen files, and the effects of shared components that make a call, a navigation or a message.
+
+None.
+
+Queries. A query fetches when its component mounts and when its key changes. `Read by` lists what reads the result in the same file.
+
+None.
+
+## 9. Client state
+
+Client variables and browser storage that the route reads or writes. Other screens can read this state.
+
+### 9.1 OutSystems (TST)
+
+| Block | Operation | Variable | Places |
+|---|---|---|---|
+| `Block_PINRegister_ContentWrapper` | set | `UBTConnect.IsNavigateToHomeOnBack` | [`UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js:626`](../../migration/screens/PINRegister/analysis/sources/raw/UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js#L626), [`UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js:647`](../../migration/screens/PINRegister/analysis/sources/raw/UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js#L647) |
+| `Block_PINRegister_ContentWrapper` | get | `UBTConnect.LastURL` | [`UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js:637`](../../migration/screens/PINRegister/analysis/sources/raw/UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js#L637), [`UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js:641`](../../migration/screens/PINRegister/analysis/sources/raw/UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js#L641) |
+
+### 9.2 React
+
+None.
+
+## 10. Access
+
+Who can open the route, and the role checks in the screen and block code.
+
+| Side | Rule | Place |
+|---|---|---|
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.App_PIN.PINRegister.mvc.js:368`](../../migration/screens/PINRegister/analysis/sources/raw/UBTConnect.App_PIN.PINRegister.mvc.js#L368) |
+| React | access `member`, lock `ignore`, flag redirect none | `app/src/app/routes.ts` |
+
+Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.
+
+## 11. Errors
+
+What the route does when an action or a call fails.
+
+### 11.1 OutSystems (TST)
+
+The actions of the screen and its blocks have no `Handle Error` node.
+
+An error without a handler goes to the `OnException` of the UI flow (`handleError`):
+
+1. UI flow `App_PIN` [`UBTConnect.App_PIN.controller.js:12`](../../migration/shell/sources/UBTConnect.App_PIN.controller.js#L12). Handled errors: none, it goes to the next flow.
+2. UI flow `App_Common` [`UBTConnect.App_Common.controller.js:12`](../../migration/shell/sources/UBTConnect.App_Common.controller.js#L12). Handled errors: `BubbleCommunicationException` ([`UBTConnect.App_Common.controller.js:31`](../../migration/shell/sources/UBTConnect.App_Common.controller.js#L31)), `CommunicationException` ([`UBTConnect.App_Common.controller.js:46`](../../migration/shell/sources/UBTConnect.App_Common.controller.js#L46)), `SecurityException` ([`UBTConnect.App_Common.controller.js:61`](../../migration/shell/sources/UBTConnect.App_Common.controller.js#L61)), `AllExceptions` ([`UBTConnect.App_Common.controller.js:91`](../../migration/shell/sources/UBTConnect.App_Common.controller.js#L91)).
+
+### 11.2 React
+
+None.
+
+`flow handler`: `raiseToFlowHandler` gives the error to the flow handler of the screen (`app/src/platform/feedback/flowErrors.ts`). The tool lists `.catch`, `try/catch` and `onError` that do not give the error to it.
+
+## 12. Shared blocks and components on this route
+
+Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pages/` (React) that the route renders. Their facts belong to them, not to the route. This section gives their user actions once, without diagrams.
+
+### OutSystems (TST)
+
+| Block | Module | React port | User actions |
+|---|---|---|---|
+| `Layout_LoginFlow` | `UBTConnectLibrary` | [`components/layout/LoginLayout/LoginLayout.tsx`](../../app/src/components/layout/LoginLayout/LoginLayout.tsx) | 0 |
+| `LayoutRuntime_Top` | `NavigationHandler` | [`components/layout/LayoutRuntimeTop/LayoutRuntimeTop.tsx`](../../app/src/components/layout/LayoutRuntimeTop/LayoutRuntimeTop.tsx) | 0 |
+| `SVG_Background_LoginWrapper` | `UBTConnectLibrary` | [`components/ui/SvgBackgroundLogin/SvgBackgroundLogin.tsx`](../../app/src/components/ui/SvgBackgroundLogin/SvgBackgroundLogin.tsx) | 0 |
+| `SVG_Background_Custom` | `UBTConnectLibrary` | [`components/ui/SvgBackground/SvgBackground.tsx`](../../app/src/components/ui/SvgBackground/SvgBackground.tsx) | 0 |
+| `InlineSVG` | `OutSystemsUI_2_23` | [`components/ui/InlineSVG/InlineSVG.tsx`](../../app/src/components/ui/InlineSVG/InlineSVG.tsx) | 0 |
+| `IconText` | `UBTConnectLibrary` | [`components/ui/IconText/IconText.tsx`](../../app/src/components/ui/IconText/IconText.tsx) | 0 |
+| `Columns_Two` | `UBTConnectLibrary` | [`components/ui/ColumnsTwo/ColumnsTwo.tsx`](../../app/src/components/ui/ColumnsTwo/ColumnsTwo.tsx) | 0 |
+| `Columns2` | `OutSystemsUI_2_23` | [`components/ui/Columns2/Columns2.tsx`](../../app/src/components/ui/Columns2/Columns2.tsx) | 0 |
+| `Pincode_Register` | `UBT_AppManager` | [`components/auth/PinCodeRegister/PinCodeRegister.tsx`](../../app/src/components/auth/PinCodeRegister/PinCodeRegister.tsx), [`platform/session/usePinCodeRegister.ts`](../../app/src/platform/session/usePinCodeRegister.ts) | 0 |
+| `PinCode` | `UBT_AppManager` | [`components/auth/PinCode/PinCode.tsx`](../../app/src/components/auth/PinCode/PinCode.tsx) | 0 |
+
+### React
+
+| File | User actions |
+|---|---|
+| [`components/layout/CommonUiLayout/CommonUiLayout.tsx`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx) | 2 |
+
+<details><summary>User actions of the shared components (2)</summary>
+
+| # | File | Element | Event prop | Handler | Branch | Effects |
+|---|---|---|---|---|---|---|
+| 1 | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:80`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L80) | `<PreventBackNavigation>` | `onBackNavigationPrevented` | `redirectHome` | – | goes to HomeFeed |
+| 2 | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:82`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L82) | `<BackNavigationHandler>` | `onBackNavigation` | `maybeRedirectHome` | – | goes to HomeFeed |
+
+</details>
+

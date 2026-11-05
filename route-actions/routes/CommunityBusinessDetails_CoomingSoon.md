@@ -1,12 +1,8 @@
-# CommunityBusinessDetails_CoomingSoon: server calls and user actions in OutSystems and React
+# CommunityBusinessDetails_CoomingSoon: OutSystems (TST) and React
 
-This file compares the route `/UBTConnect/CommunityBusinessDetails_CoomingSoon` in OutSystems (TST) with the React app.
-The tool `route-actions/tools/check_route.py` wrote this file on 2026-11-04.
-The tool reads the code. It does not run the app.
+The route `/UBTConnect/CommunityBusinessDetails_CoomingSoon`, read from the TST compiled code and from the React code by `route-actions/tools/check_route.py` on 2026-11-05. Facts only, each with its place. The method is in [README.md](../README.md).
 
-The app shell is in [APP_SHELL.md](../APP_SHELL.md), not here.
-- OutSystems app shell: `CommonUI_InsideLayout` with its blocks (TST survey), and the chains that start in a module action.
-- React app shell: the code that `app/src/main.tsx` loads (router, `AppFrame`, app start, hosts).
+Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/CommunityBusinessDetails_CoomingSoon/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
 ## 1. Route
 
@@ -17,72 +13,153 @@ The app shell is in [APP_SHELL.md](../APP_SHELL.md), not here.
 | UI flow | `zDEV_Directory_CommunityBusinessBlocks` | MCP `getScreenNames` (DEV) |
 | React screen | [`pages/CommunityBusinessDetails_CoomingSoon/CommunityBusinessDetails_CoomingSoonPage.tsx`](../../app/src/pages/CommunityBusinessDetails_CoomingSoon/CommunityBusinessDetails_CoomingSoonPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
-| Code read | OutSystems: 9 screen and block files of the route, 0 app shell files. React: 29 screen files | TST `facts.json`, `react_calls.mjs` |
+| Screenshots | [`migration/screens/CommunityBusinessDetails_CoomingSoon/parity`](../../migration/screens/CommunityBusinessDetails_CoomingSoon/parity) | `route.py parity` |
+| Code read | OutSystems: 1 files of the UI flow, 8 shared blocks, 0 app shell files. React: 29 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
 | Check | Result |
 |---|---|
 | Server calls of the route on TST | 0: React makes 0, **0 missing** |
-| User actions of the route | OutSystems: 0 diagrams. React: 0 diagrams |
-| React calls of the screen that TST does not make | 0 (see [questions](#8-questions)) |
-| Screen and blocks with a React port | 9 of 9 |
+| Differences found | **0** (see [section 3](#3-differences-found)) |
+| Questions | 0 (see [section 4](#4-questions)) |
+| User actions of the route (own code) | OutSystems: 0. React: 0 |
+| Screen and blocks of the UI flow with a React port | 1 of 1 |
 | Navigation targets found in React | 0 of 0 |
-| App shell on this route | 7 calls; event bindings: OutSystems 0, React 7: see [APP_SHELL.md](../APP_SHELL.md) |
+| Shared blocks and components on the route | OutSystems 8, React 0 with user actions: see the last section |
+| App shell on this route | 7 calls: see [APP_SHELL.md](../APP_SHELL.md) |
 
-## 3. Screenshots
+## 3. Differences found
 
-The screenshots come from the last parity run (`route.py parity`). The TST capture hides personal text with dots. The React build shows fictional mock data.
+Each line is a fact of both sides: a TST call, navigation or variable, and the React code that has it or not. The tool does not judge the behaviour.
 
-| State | TST (expected) | React (build) | Difference |
+None.
+
+## 4. Questions
+
+None.
+
+## 5. Server calls
+
+None.
+
+## 6. User actions
+
+Two independent lists: the event bindings of the TST views, and the JSX event bindings of the React files. The effects come from the handler and the functions it calls, 3 levels deep. No mapping.
+
+### 6.1 OutSystems (TST)
+
+None.
+
+### 6.2 React
+
+None.
+
+## 7. Screen inputs and navigation parameters
+
+The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
+The OutSystems files are in `migration/screens/CommunityBusinessDetails_CoomingSoon/analysis/sources/raw/`.
+
+### 7.1 OutSystems (TST)
+
+| Input | Type | Mandatory | Place |
 |---|---|---|---|
-| `default`<br>390x844, mock `real`<br>2026-10-29<br>pixel difference 0.0% | <img src="../../migration/screens/CommunityBusinessDetails_CoomingSoon/parity/default.expected.png" width="200" alt="default expected"> | <img src="../../migration/screens/CommunityBusinessDetails_CoomingSoon/parity/default.build.png" width="200" alt="default build"> | <img src="../../migration/screens/CommunityBusinessDetails_CoomingSoon/parity/default.diff.png" width="200" alt="default diff"> |
-| `loading`<br>390x844, mock `loading`<br>2026-10-29<br>pixel difference 0.0% | <img src="../../migration/screens/CommunityBusinessDetails_CoomingSoon/parity/loading.expected.png" width="200" alt="loading expected"> | <img src="../../migration/screens/CommunityBusinessDetails_CoomingSoon/parity/loading.build.png" width="200" alt="loading build"> | <img src="../../migration/screens/CommunityBusinessDetails_CoomingSoon/parity/loading.diff.png" width="200" alt="loading diff"> |
-| `offline`<br>390x844, mock `error`<br>2026-10-29<br>pixel difference 0.0% | <img src="../../migration/screens/CommunityBusinessDetails_CoomingSoon/parity/offline.expected.png" width="200" alt="offline expected"> | <img src="../../migration/screens/CommunityBusinessDetails_CoomingSoon/parity/offline.build.png" width="200" alt="offline build"> | <img src="../../migration/screens/CommunityBusinessDetails_CoomingSoon/parity/offline.diff.png" width="200" alt="offline diff"> |
+| `In_CommunityBusinessId` | LongInteger | yes | [`UBTConnect.zDEV_Directory_CommunityBusinessBlocks.CommunityBusinessDetails_CoomingSoon.mvc.js:59`](../../migration/screens/CommunityBusinessDetails_CoomingSoon/analysis/sources/raw/UBTConnect.zDEV_Directory_CommunityBusinessBlocks.CommunityBusinessDetails_CoomingSoon.mvc.js#L59) |
 
-## 4. Diagram
+Navigations with parameters: none.
 
-None. The route makes no server call on TST.
+### 7.2 React
 
-## 5. User actions
+Declared inputs of the route: `In_CommunityBusinessId: LongInteger` (`app/src/app/routes.generated.ts`).
 
-The two lists are independent: the OutSystems list comes from the TST compiled code, the React list from the React code. The tool does not map one list to the other.
+| Hook | Keys read | Place |
+|---|---|---|
+| `useSearchParams` | none | [`pages/CommunityBusinessDetails_CoomingSoon/CommunityBusinessDetails_CoomingSoonPage.tsx:15`](../../app/src/pages/CommunityBusinessDetails_CoomingSoon/CommunityBusinessDetails_CoomingSoonPage.tsx#L15) |
 
-- **OutSystems:** each event binding of the compiled views (`<event>$Action: function` of a child block or widget, `on<Event>: function` of an HTML element) with its handler.
-- **React:** each JSX attribute `on<Event>={handler}` with its handler.
-- Both lists keep only the bindings whose handler has an effect: a server call, a navigation, an external link, a message or a confirm dialog. The tool follows the called functions 3 levels deep.
-- When the handler has branches in the code (`switch` case, `if` with `===`), each branch has its own diagram. The branch name is the constant of the condition. `other` is the last `else` or `default`.
-- An arrow to the server gives the inputs of the call, the return arrow its outputs (contract `app/src/api/openapi.yaml`).
+Navigations with parameters: none.
 
-### 5.1 OutSystems (TST)
+## 8. Lifecycle
 
-None found.
+What runs when the screen and its blocks open and close, without a user action.
 
-### 5.2 React
+### 8.1 OutSystems (TST)
 
-None found.
-
-## 6. Server calls
+Event handlers. The steps are the node comments and the conditions of the compiled action.
 
 None.
 
-## 7. Missing in React
+Data actions and aggregates. The tool reads `dataFetchDependenciesOriginal`: `0` is a fetch when the block opens, `-1` is a fetch only on demand (a `Refresh Query` step). `Read by` lists the child block inputs, conditions, text widgets and actions that read the result.
 
 None.
 
-## 8. Questions
+### 8.2 React
+
+Effects (`useEffect`, `useLayoutEffect`) of the screen files, and the effects of shared components that make a call, a navigation or a message.
 
 None.
 
-## 9. Method
+Queries. A query fetches when its component mounts and when its key changes. `Read by` lists what reads the result in the same file.
 
-1. **OutSystems (TST).** The tool reads `facts.json` and the compiled code of `migration/screens/CommunityBusinessDetails_CoomingSoon/analysis/`:
-   - the rendered files;
-   - each server call with its chain of client actions, and the calls that TST made in the capture;
-   - the effects of each user action.
-2. **Route and app shell.** OutSystems: a chain belongs to the app shell when it starts in `CommonUI_InsideLayout`, one of its blocks, or a module action. React: a binding belongs to the app shell when its file is in the code that `main.tsx` loads.
-3. **MCP (DEV).** The tool reads the UI flow with `getScreenNames`. TST wins when DEV is different.
-4. **React.** `react_calls.mjs` reads the app shell from `app/src/main.tsx` and the screen from its `<Route>Page.tsx`. It counts only the code that the app uses.
-5. **Match.** `callAction(M, A)` gives `/api/M/A`. The `x-os-paths` of `app/src/api/openapi.yaml` give the TST call. The status is `implemented` when the TST call is the same. Else the status is `missing`.
+None.
 
-Limit: a name or a call match does not prove the same behaviour. The parity checks of the migration compare the behaviour.
+## 9. Client state
+
+Client variables and browser storage that the route reads or writes. Other screens can read this state.
+
+### 9.1 OutSystems (TST)
+
+None.
+
+### 9.2 React
+
+None.
+
+## 10. Access
+
+Who can open the route, and the role checks in the screen and block code.
+
+| Side | Rule | Place |
+|---|---|---|
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.zDEV_Directory_CommunityBusinessBlocks.CommunityBusinessDetails_CoomingSoon.mvc.js:265`](../../migration/screens/CommunityBusinessDetails_CoomingSoon/analysis/sources/raw/UBTConnect.zDEV_Directory_CommunityBusinessBlocks.CommunityBusinessDetails_CoomingSoon.mvc.js#L265) |
+| React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
+
+Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.
+
+## 11. Errors
+
+What the route does when an action or a call fails.
+
+### 11.1 OutSystems (TST)
+
+The actions of the screen and its blocks have no `Handle Error` node.
+
+An error without a handler goes to the `OnException` of the UI flow (`handleError`):
+
+1. UI flow `zDEV_Directory_CommunityBusinessBlocks` not in `migration/shell/sources/`. Handled errors: none.
+
+### 11.2 React
+
+None.
+
+`flow handler`: `raiseToFlowHandler` gives the error to the flow handler of the screen (`app/src/platform/feedback/flowErrors.ts`). The tool lists `.catch`, `try/catch` and `onError` that do not give the error to it.
+
+## 12. Shared blocks and components on this route
+
+Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pages/` (React) that the route renders. Their facts belong to them, not to the route. This section gives their user actions once, without diagrams.
+
+### OutSystems (TST)
+
+| Block | Module | React port | User actions |
+|---|---|---|---|
+| `Layout_MainPages` | `UBTConnectLibrary` | [`components/layout/MainLayout/MainLayout.tsx`](../../app/src/components/layout/MainLayout/MainLayout.tsx) | 0 |
+| `LayoutRuntime_Top` | `NavigationHandler` | [`components/layout/LayoutRuntimeTop/LayoutRuntimeTop.tsx`](../../app/src/components/layout/LayoutRuntimeTop/LayoutRuntimeTop.tsx) | 0 |
+| `Columns_Two` | `UBTConnectLibrary` | [`components/ui/ColumnsTwo/ColumnsTwo.tsx`](../../app/src/components/ui/ColumnsTwo/ColumnsTwo.tsx) | 0 |
+| `Columns2` | `OutSystemsUI_2_23` | [`components/ui/Columns2/Columns2.tsx`](../../app/src/components/ui/Columns2/Columns2.tsx) | 0 |
+| `StaticInput` | `UBTConnectLibrary` | [`components/ui/StaticInput/StaticInput.tsx`](../../app/src/components/ui/StaticInput/StaticInput.tsx) | 0 |
+| `Icon` | `UBTConnectLibrary` | [`components/ui/Icon/Icon.tsx`](../../app/src/components/ui/Icon/Icon.tsx) | 0 |
+| `TextEllipsis` | `UBTConnectLibrary` | [`components/ui/TextEllipsis/TextEllipsis.tsx`](../../app/src/components/ui/TextEllipsis/TextEllipsis.tsx) | 0 |
+| `BlankSlate` | `OutSystemsUI_2_23` | [`components/ui/BlankSlate/BlankSlate.tsx`](../../app/src/components/ui/BlankSlate/BlankSlate.tsx) | 0 |
+
+### React
+
+None.

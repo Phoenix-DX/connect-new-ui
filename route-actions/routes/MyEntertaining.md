@@ -1,12 +1,8 @@
-# MyEntertaining: server calls and user actions in OutSystems and React
+# MyEntertaining: OutSystems (TST) and React
 
-This file compares the route `/UBTConnect/MyEntertaining` in OutSystems (TST) with the React app.
-The tool `route-actions/tools/check_route.py` wrote this file on 2026-11-04.
-The tool reads the code. It does not run the app.
+The route `/UBTConnect/MyEntertaining`, read from the TST compiled code and from the React code by `route-actions/tools/check_route.py` on 2026-11-05. Facts only, each with its place. The method is in [README.md](../README.md).
 
-The app shell is in [APP_SHELL.md](../APP_SHELL.md), not here.
-- OutSystems app shell: `CommonUI_InsideLayout` with its blocks (TST survey), and the chains that start in a module action.
-- React app shell: the code that `app/src/main.tsx` loads (router, `AppFrame`, app start, hosts).
+Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/MyEntertaining/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
 ## 1. Route
 
@@ -17,219 +13,33 @@ The app shell is in [APP_SHELL.md](../APP_SHELL.md), not here.
 | UI flow | `Calendar` | MCP `getScreenNames` (DEV) |
 | React screen | [`pages/MyEntertaining/MyEntertainingPage.tsx`](../../app/src/pages/MyEntertaining/MyEntertainingPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
-| Code read | OutSystems: 4 screen and block files of the route, 21 app shell files. React: 128 screen files | TST `facts.json`, `react_calls.mjs` |
+| Screenshots | [`migration/screens/MyEntertaining/parity`](../../migration/screens/MyEntertaining/parity) | `route.py parity` |
+| Code read | OutSystems: 2 files of the UI flow, 2 shared blocks, 21 app shell files. React: 128 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
 | Check | Result |
 |---|---|
 | Server calls of the route on TST | 2: React makes 2, **0 missing** |
-| User actions of the route | OutSystems: 4 diagrams. React: 6 diagrams |
-| React calls of the screen that TST does not make | 1 (see [questions](#8-questions)) |
-| Screen and blocks with a React port | 4 of 4 |
+| Differences found | **0** (see [section 3](#3-differences-found)) |
+| Questions | 1 (see [section 4](#4-questions)) |
+| User actions of the route (own code) | OutSystems: 3. React: 4 |
+| Screen and blocks of the UI flow with a React port | 2 of 2 |
 | Navigation targets found in React | 0 of 0 |
-| App shell on this route | 8 calls; event bindings: OutSystems 10, React 7: see [APP_SHELL.md](../APP_SHELL.md) |
+| Shared blocks and components on the route | OutSystems 2, React 1 with user actions: see the last section |
+| App shell on this route | 8 calls: see [APP_SHELL.md](../APP_SHELL.md) |
 
-## 3. Screenshots
+## 3. Differences found
 
-The screenshots come from the last parity run (`route.py parity`). The TST capture hides personal text with dots. The React build shows fictional mock data.
+Each line is a fact of both sides: a TST call, navigation or variable, and the React code that has it or not. The tool does not judge the behaviour.
 
-| State | TST (expected) | React (build) | Difference |
-|---|---|---|---|
-| `default`<br>390x844, mock `real`<br>2026-10-29<br>pixel difference 0.0% | <img src="../../migration/screens/MyEntertaining/parity/default.expected.png" width="200" alt="default expected"> | <img src="../../migration/screens/MyEntertaining/parity/default.build.png" width="200" alt="default build"> | <img src="../../migration/screens/MyEntertaining/parity/default.diff.png" width="200" alt="default diff"> |
-| `loading`<br>390x844, mock `loading`<br>2026-10-29<br>pixel difference 0.0% | <img src="../../migration/screens/MyEntertaining/parity/loading.expected.png" width="200" alt="loading expected"> | <img src="../../migration/screens/MyEntertaining/parity/loading.build.png" width="200" alt="loading build"> | <img src="../../migration/screens/MyEntertaining/parity/loading.diff.png" width="200" alt="loading diff"> |
-| `offline`<br>390x844, mock `error`<br>2026-10-29<br>pixel difference 0.0% | <img src="../../migration/screens/MyEntertaining/parity/offline.expected.png" width="200" alt="offline expected"> | <img src="../../migration/screens/MyEntertaining/parity/offline.build.png" width="200" alt="offline build"> | <img src="../../migration/screens/MyEntertaining/parity/offline.diff.png" width="200" alt="offline diff"> |
+None.
 
-## 4. Diagram
+## 4. Questions
 
-- A box on the left is the block or module of the action that calls the server (TST code).
-- A line connects each call to the React action that makes the same call.
-- The right column shows the React components that use each React action.
-- A red box is a call that React does not make.
+1. React calls `/api/UBTConnect_Utils/CacheControl_Policies/DataActionGetCacheInfo` from `fetchPolicies()` [`api/app/repository.ts:54`](../../app/src/api/app/repository.ts#L54) (shell + page). TST MyEntertaining has no chain to this call. Does the call belong to this route?
 
-```mermaid
-flowchart LR
-  subgraph OS["OutSystems (TST compiled)"]
-    subgraph OS_screen["Screen and its blocks"]
-      o0["Embedded_MyEntertaining"]
-    end
-  end
-  subgraph EP["Server calls (TST)"]
-    e1["DataActionGetEntertainingConfig"]
-    e2["ActionAppManager_Get_UserIdToken"]
-  end
-  subgraph RE["React actions"]
-    subgraph RE_page["Screen"]
-      r3["fetchEntertainingConfig()"]
-      r4["fetchUserIdToken()"]
-    end
-  end
-  subgraph RC["React components"]
-    c5["EntertainingCalendar"]
-  end
-  r3 --- c5
-  r4 --- c5
-  o0 --> e1
-  o0 --> e2
-  e1 --- r3
-  e2 --- r4
-  classDef missing fill:#fde2e1,stroke:#c0392b,color:#7b241c
-  classDef ok fill:#e3f4e8,stroke:#2e7d4f,color:#1d4d31
-  class e1,e2 ok
-```
-
-## 5. User actions
-
-The two lists are independent: the OutSystems list comes from the TST compiled code, the React list from the React code. The tool does not map one list to the other.
-
-- **OutSystems:** each event binding of the compiled views (`<event>$Action: function` of a child block or widget, `on<Event>: function` of an HTML element) with its handler.
-- **React:** each JSX attribute `on<Event>={handler}` with its handler.
-- Both lists keep only the bindings whose handler has an effect: a server call, a navigation, an external link, a message or a confirm dialog. The tool follows the called functions 3 levels deep.
-- When the handler has branches in the code (`switch` case, `if` with `===`), each branch has its own diagram. The branch name is the constant of the condition. `other` is the last `else` or `default`.
-- An arrow to the server gives the inputs of the call, the return arrow its outputs (contract `app/src/api/openapi.yaml`).
-
-### 5.1 OutSystems (TST)
-
-| # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
-|---|---|---|---|---|---|
-| [1](#511-myentertaining-handle_navback) | `MyEntertaining` | `onNavBack of Embedded` | `handle_NavBack` | – | goes to previous screen |
-| [2](#512-myentertaining_embedded-handle_error) | `MyEntertaining_Embedded` | `onError of MyEntertaining` | `handle_Error` | – | shows a message |
-| [3](#513-myentertaining_embedded-handle_openmap) | `MyEntertaining_Embedded` | `onOpenMap of MyEntertaining` | `handle_OpenMap` | – | opens an external link |
-| [4](#514-layout_detailpage-onclick_backnavigation) | `Layout_DetailPage` | `click of Icon` | `onClick_BackNavigation` | – | goes to previous screen |
-
-#### 5.1.1 MyEntertaining: handle_NavBack
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as MyEntertaining
-  participant N as Navigation
-  U->>B: onNavBack of Embedded → handle_NavBack
-  B->>N: go to previous screen
-```
-
-#### 5.1.2 MyEntertaining_Embedded: handle_Error
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as MyEntertaining_Embedded
-  U->>B: onError of MyEntertaining → handle_Error
-  Note over B: message FeedbackMessage_AutoClose
-```
-
-#### 5.1.3 MyEntertaining_Embedded: handle_OpenMap
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as MyEntertaining_Embedded
-  participant X as External link
-  U->>B: onOpenMap of MyEntertaining → handle_OpenMap
-  B->>X: OpenInApp_OpenExternalLink
-```
-
-#### 5.1.4 Layout_DetailPage: onClick_BackNavigation
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as Layout_DetailPage
-  participant N as Navigation
-  U->>B: click of Icon → onClick_BackNavigation
-  B->>N: go to previous screen
-```
-
-### 5.2 React
-
-| # | File | Element | Event prop | Handler | Branch | Effects |
-|---|---|---|---|---|---|---|
-| [1](#521-embedded_myentertaining-onrefreshtoken) | [`pages/MyEntertaining/MyEntertainingPage.tsx:35`](../../app/src/pages/MyEntertaining/MyEntertainingPage.tsx#L35) | `<Embedded_MyEntertaining>` | `onRefreshToken` | `calendar.refreshToken` | – | calls ActionAppManager_Get_UserIdToken |
-| [2](#522-embedded_myentertaining-ononerror) | [`pages/MyEntertaining/MyEntertainingPage.tsx:36`](../../app/src/pages/MyEntertaining/MyEntertainingPage.tsx#L36) | `<Embedded_MyEntertaining>` | `onOnError` | `flow.onError` | – | shows a message |
-| [3](#523-embedded_myentertaining-ononopenmap) | [`pages/MyEntertaining/MyEntertainingPage.tsx:37`](../../app/src/pages/MyEntertaining/MyEntertainingPage.tsx#L37) | `<Embedded_MyEntertaining>` | `onOnOpenMap` | `flow.onOpenMap` | – | opens an external link |
-| [4](#524-myentertaining_embedded-onnavback) | [`pages/MyEntertaining/MyEntertainingPage.tsx:59`](../../app/src/pages/MyEntertaining/MyEntertainingPage.tsx#L59) | `<MyEntertaining_Embedded>` | `onNavBack` | `navigateBack` | – | goes to previous screen |
-| [5](#525-preventbacknavigation-onbacknavigationprevented) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:80`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L80) | `<PreventBackNavigation>` | `onBackNavigationPrevented` | `redirectHome` | – | goes to HomeFeed |
-| [6](#526-backnavigationhandler-onbacknavigation) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:82`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L82) | `<BackNavigationHandler>` | `onBackNavigation` | `maybeRedirectHome` | – | goes to HomeFeed |
-
-#### 5.2.1 Embedded_MyEntertaining: onRefreshToken
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as Embedded_MyEntertaining · MyEntertainingPage.tsx
-  participant A as Server (React api)
-  U->>H: onRefreshToken → calendar.refreshToken
-  Note over H: via fetchUserIdToken()
-  H->>A: ActionAppManager_Get_UserIdToken(EspaceName)
-  A-->>H: IdToken
-```
-
-#### 5.2.2 Embedded_MyEntertaining: onOnError
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as Embedded_MyEntertaining · MyEntertainingPage.tsx
-  U->>H: onOnError → flow.onError
-  Note over H: message { title: '', message, messageType: 'info', encodedHtml: true, extendedClass: '', delayMs: 
-```
-
-#### 5.2.3 Embedded_MyEntertaining: onOnOpenMap
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as Embedded_MyEntertaining · MyEntertainingPage.tsx
-  participant X as External link
-  U->>H: onOnOpenMap → flow.onOpenMap
-  H->>X: openInApp_OpenExternalLink
-```
-
-#### 5.2.4 MyEntertaining_Embedded: onNavBack
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as MyEntertaining_Embedded · MyEntertainingPage.tsx
-  participant N as Navigation
-  U->>H: onNavBack → navigateBack
-  H->>N: go to previous screen
-```
-
-#### 5.2.5 PreventBackNavigation: onBackNavigationPrevented
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as PreventBackNavigation · CommonUiLayout.tsx
-  participant N as Navigation
-  U->>H: onBackNavigationPrevented → redirectHome
-  H->>N: go to HomeFeed
-```
-
-#### 5.2.6 BackNavigationHandler: onBackNavigation
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as BackNavigationHandler · CommonUiLayout.tsx
-  participant N as Navigation
-  U->>H: onBackNavigation → maybeRedirectHome
-  Note over H: via actionRedirectHome()
-  H->>N: go to HomeFeed
-```
-
-## 6. Server calls
+## 5. Server calls
 
 All columns come from the code, without interpretation:
 
@@ -246,23 +56,171 @@ All columns come from the code, without interpretation:
 | 1 | `UBTConnect_EmbedMyEntertaining/Blocks/Embedded_MyEntertaining/ActionAppManager_Get_UserIdToken` | server action | `Embedded_MyEntertaining` | Embedded_MyEntertaining.action_RefreshToken → server AppManager_Get_UserIdToken | no | `fetchUserIdToken()` [`api/entertaining/repository.ts:25`](../../app/src/api/entertaining/repository.ts#L25) (page) | `EntertainingCalendar → useEntertainingCalendar → refreshToken → fetchUserIdToken`<br>[`pages/MyEntertaining/MyEntertainingPage.tsx`](../../app/src/pages/MyEntertaining/MyEntertainingPage.tsx) | implemented |
 | 2 | `UBTConnect_EmbedMyEntertaining/Blocks/Embedded_MyEntertaining/DataActionGetEntertainingConfig` | data action | `Embedded_MyEntertaining` | Embedded_MyEntertaining fetch at start → Embedded_MyEntertaining.DataActionGetEntertainingConfig | yes | `fetchEntertainingConfig()` [`api/entertaining/repository.ts:13`](../../app/src/api/entertaining/repository.ts#L13) (page) | `EntertainingCalendar → useEntertainingCalendar → useEntertainingConfigQuery → fetchEntertainingConfig`<br>[`pages/MyEntertaining/MyEntertainingPage.tsx`](../../app/src/pages/MyEntertaining/MyEntertainingPage.tsx) | implemented |
 
-## 7. Missing in React
+## 6. User actions
+
+Two independent lists: the event bindings of the TST views, and the JSX event bindings of the React files. The effects come from the handler and the functions it calls, 3 levels deep. No mapping.
+
+### 6.1 OutSystems (TST)
+
+| # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
+|---|---|---|---|---|---|
+| 1 | `MyEntertaining` | `onNavBack of Embedded` | `handle_NavBack` | – | goes to previous screen |
+| 2 | `MyEntertaining_Embedded` | `onError of MyEntertaining` | `handle_Error` | – | shows a message |
+| 3 | `MyEntertaining_Embedded` | `onOpenMap of MyEntertaining` | `handle_OpenMap` | – | opens an external link |
+
+### 6.2 React
+
+| # | File | Element | Event prop | Handler | Branch | Effects |
+|---|---|---|---|---|---|---|
+| 1 | [`pages/MyEntertaining/MyEntertainingPage.tsx:35`](../../app/src/pages/MyEntertaining/MyEntertainingPage.tsx#L35) | `<Embedded_MyEntertaining>` | `onRefreshToken` | `calendar.refreshToken` | – | calls ActionAppManager_Get_UserIdToken |
+| 2 | [`pages/MyEntertaining/MyEntertainingPage.tsx:36`](../../app/src/pages/MyEntertaining/MyEntertainingPage.tsx#L36) | `<Embedded_MyEntertaining>` | `onOnError` | `flow.onError` | – | shows a message |
+| 3 | [`pages/MyEntertaining/MyEntertainingPage.tsx:37`](../../app/src/pages/MyEntertaining/MyEntertainingPage.tsx#L37) | `<Embedded_MyEntertaining>` | `onOnOpenMap` | `flow.onOpenMap` | – | opens an external link |
+| 4 | [`pages/MyEntertaining/MyEntertainingPage.tsx:59`](../../app/src/pages/MyEntertaining/MyEntertainingPage.tsx#L59) | `<MyEntertaining_Embedded>` | `onNavBack` | `navigateBack` | – | goes to previous screen |
+
+## 7. Screen inputs and navigation parameters
+
+The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
+The OutSystems files are in `migration/screens/MyEntertaining/analysis/sources/raw/`.
+
+### 7.1 OutSystems (TST)
+
+| Input | Type | Mandatory | Place |
+|---|---|---|---|
+| `MyCalendarEventSourceId` | Text | yes | [`UBTConnect.Calendar.MyEntertaining.mvc.js:59`](../../migration/screens/MyEntertaining/analysis/sources/raw/UBTConnect.Calendar.MyEntertaining.mvc.js#L59) |
+
+Navigations with parameters: none.
+
+### 7.2 React
+
+Declared inputs of the route: `MyCalendarEventSourceId: Text` (`app/src/app/routes.generated.ts`).
+
+| Hook | Keys read | Place |
+|---|---|---|
+| `useSearchParams` | none | [`pages/MyEntertaining/MyEntertainingPage.tsx:50`](../../app/src/pages/MyEntertaining/MyEntertainingPage.tsx#L50) |
+
+Navigations with parameters: none.
+
+## 8. Lifecycle
+
+What runs when the screen and its blocks open and close, without a user action.
+
+### 8.1 OutSystems (TST)
+
+Event handlers. The steps are the node comments and the conditions of the compiled action.
+
+| Block | Event | Action | Steps |
+|---|---|---|---|
+| `MyEntertaining_Embedded` | OnInitialize ([`UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js:478`](../../migration/screens/MyEntertaining/analysis/sources/raw/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L478)) | `onInitialize` | 1. If (in_InitialEventSouceId === UBTConnectModel.staticEntities.type_MyCalendarEventSource.orbi… ([`L292`](../../migration/screens/MyEntertaining/analysis/sources/raw/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L292))<br>2. PreloadedSource = "orbit" ([`L294`](../../migration/screens/MyEntertaining/analysis/sources/raw/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L294))<br>3. Else ([`L297`](../../migration/screens/MyEntertaining/analysis/sources/raw/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L297))<br>4. If in_InitialEventSouceId === UBTConnectModel.staticEntities.type_MyCalendarEventSource.lDM ([`L298`](../../migration/screens/MyEntertaining/analysis/sources/raw/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L298))<br>5. PreloadedSource = "ldm" ([`L300`](../../migration/screens/MyEntertaining/analysis/sources/raw/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L300))<br>6. Else ([`L303`](../../migration/screens/MyEntertaining/analysis/sources/raw/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L303))<br>7. If in_InitialEventSouceId === UBTConnectModel.staticEntities.type_MyCalendarEventSource.assem… ([`L304`](../../migration/screens/MyEntertaining/analysis/sources/raw/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L304))<br>8. PreloadedSource = "assemble" ([`L306`](../../migration/screens/MyEntertaining/analysis/sources/raw/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L306))<br>9. Else ([`L309`](../../migration/screens/MyEntertaining/analysis/sources/raw/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L309))<br>10. If in_InitialEventSouceId === UBTConnectModel.staticEntities.type_MyCalendarEventSource.userC… ([`L310`](../../migration/screens/MyEntertaining/analysis/sources/raw/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L310))<br>11. PreloadedSource = "personal" ([`L312`](../../migration/screens/MyEntertaining/analysis/sources/raw/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L312))<br>12. Else ([`L315`](../../migration/screens/MyEntertaining/analysis/sources/raw/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L315)) |
+
+Data actions and aggregates. The tool reads `dataFetchDependenciesOriginal`: `0` is a fetch when the block opens, `-1` is a fetch only on demand (a `Refresh Query` step). `Read by` lists the child block inputs, conditions, text widgets and actions that read the result.
 
 None.
 
-## 8. Questions
+### 8.2 React
 
-1. React calls `/api/UBTConnect_Utils/CacheControl_Policies/DataActionGetCacheInfo` from `fetchPolicies()` [`api/app/repository.ts:54`](../../app/src/api/app/repository.ts#L54) (shell + page). TST MyEntertaining has no chain to this call. Does the call belong to this route?
+Effects (`useEffect`, `useLayoutEffect`) of the screen files, and the effects of shared components that make a call, a navigation or a message.
 
-## 9. Method
+| File | Hook (function) | Dependencies | Cleanup | Effects | Place |
+|---|---|---|---|---|---|
+| `Embedded_MyEntertaining.tsx` | `useLayoutEffect` (`Embedded_MyEntertaining`) | `none (every render)` | no | none | [`pages/MyEntertaining/components/Embedded_MyEntertaining.tsx:99`](../../app/src/pages/MyEntertaining/components/Embedded_MyEntertaining.tsx#L99) |
+| `Embedded_MyEntertaining.tsx` | `useEffect` (`Embedded_MyEntertaining`) | `[config, containerId]` | yes | none | [`pages/MyEntertaining/components/Embedded_MyEntertaining.tsx:107`](../../app/src/pages/MyEntertaining/components/Embedded_MyEntertaining.tsx#L107) |
+| `Embedded_MyEntertaining.tsx` | `useEffect` (`Embedded_MyEntertaining`) | `[view, theme, sources, b2CTenant]` | no | none | [`pages/MyEntertaining/components/Embedded_MyEntertaining.tsx:197`](../../app/src/pages/MyEntertaining/components/Embedded_MyEntertaining.tsx#L197) |
 
-1. **OutSystems (TST).** The tool reads `facts.json` and the compiled code of `migration/screens/MyEntertaining/analysis/`:
-   - the rendered files;
-   - each server call with its chain of client actions, and the calls that TST made in the capture;
-   - the effects of each user action.
-2. **Route and app shell.** OutSystems: a chain belongs to the app shell when it starts in `CommonUI_InsideLayout`, one of its blocks, or a module action. React: a binding belongs to the app shell when its file is in the code that `main.tsx` loads.
-3. **MCP (DEV).** The tool reads the UI flow with `getScreenNames`. TST wins when DEV is different.
-4. **React.** `react_calls.mjs` reads the app shell from `app/src/main.tsx` and the screen from its `<Route>Page.tsx`. It counts only the code that the app uses.
-5. **Match.** `callAction(M, A)` gives `/api/M/A`. The `x-os-paths` of `app/src/api/openapi.yaml` give the TST call. The status is `implemented` when the TST call is the same. Else the status is `missing`.
+Queries. A query fetches when its component mounts and when its key changes. `Read by` lists what reads the result in the same file.
 
-Limit: a name or a call match does not prove the same behaviour. The parity checks of the migration compare the behaviour.
+| File | Hook (function) | Calls | Read by | Place |
+|---|---|---|---|---|
+| `useEntertainingCalendar.ts` | `useEntertainingConfigQuery` (`useEntertainingCalendar`) | `/api/UBTConnect_EmbedMyEntertaining/Embedded_MyEntertaining/DataActionGetEntertainingConfig` | `return` ([`L38`](../../app/src/pages/MyEntertaining/hooks/useEntertainingCalendar.ts#L38)) | [`pages/MyEntertaining/hooks/useEntertainingCalendar.ts:37`](../../app/src/pages/MyEntertaining/hooks/useEntertainingCalendar.ts#L37) |
+
+## 9. Client state
+
+Client variables and browser storage that the route reads or writes. Other screens can read this state.
+
+### 9.1 OutSystems (TST)
+
+| Block | Operation | Variable | Places |
+|---|---|---|---|
+| `MyEntertaining_Embedded` | get | `UBTConnect.Embedd_B2CTenant` | [`UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js:169`](../../migration/screens/MyEntertaining/analysis/sources/raw/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L169), [`UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js:254`](../../migration/screens/MyEntertaining/analysis/sources/raw/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L254) |
+
+### 9.2 React
+
+| File | Operation | Variable or key | Place |
+|---|---|---|---|
+| `useMyEntertaining.ts` | `useClientVar` | `UBTConnect.Embedd_B2CTenant` | [`pages/MyEntertaining/hooks/useMyEntertaining.ts:54`](../../app/src/pages/MyEntertaining/hooks/useMyEntertaining.ts#L54) |
+
+## 10. Access
+
+Who can open the route, and the role checks in the screen and block code.
+
+| Side | Rule | Place |
+|---|---|---|
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Calendar.MyEntertaining.mvc.js:259`](../../migration/screens/MyEntertaining/analysis/sources/raw/UBTConnect.Calendar.MyEntertaining.mvc.js#L259) |
+| React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
+
+Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.
+
+## 11. Errors
+
+What the route does when an action or a call fails.
+
+### 11.1 OutSystems (TST)
+
+The actions of the screen and its blocks have no `Handle Error` node.
+
+An error without a handler goes to the `OnException` of the UI flow (`handleError`):
+
+1. UI flow `Calendar` not in `migration/shell/sources/`. Handled errors: none.
+
+### 11.2 React
+
+| File | Kind | Function | Effects | Place |
+|---|---|---|---|---|
+| `Embedded_MyEntertaining.tsx` | onError | `Embedded_MyEntertaining` | none | [`pages/MyEntertaining/components/Embedded_MyEntertaining.tsx:151`](../../app/src/pages/MyEntertaining/components/Embedded_MyEntertaining.tsx#L151) |
+| `useEntertainingCalendar.ts` | flow handler | `refreshToken` | none | [`pages/MyEntertaining/hooks/useEntertainingCalendar.ts:26`](../../app/src/pages/MyEntertaining/hooks/useEntertainingCalendar.ts#L26) |
+| `useMyEntertaining.ts` | onError | `useMyEntertaining` | message `{
+    title: '',
+    message,
+    messageType: 'info',
+    encodedHtml: true,
+    extendedClass: '',
+    delayMs: 0,
+    useDebounce: false,
+  }` | [`pages/MyEntertaining/hooks/useMyEntertaining.ts:55`](../../app/src/pages/MyEntertaining/hooks/useMyEntertaining.ts#L55) |
+
+`flow handler`: `raiseToFlowHandler` gives the error to the flow handler of the screen (`app/src/platform/feedback/flowErrors.ts`). The tool lists `.catch`, `try/catch` and `onError` that do not give the error to it.
+
+## 12. Shared blocks and components on this route
+
+Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pages/` (React) that the route renders. Their facts belong to them, not to the route. This section gives their user actions once, without diagrams.
+
+### OutSystems (TST)
+
+| Block | Module | React port | User actions |
+|---|---|---|---|
+| `Layout_DetailPage` | `UBTConnectLibrary` | [`components/layout/DetailLayout/DetailLayout.tsx`](../../app/src/components/layout/DetailLayout/DetailLayout.tsx) | 1 |
+| `Embedded_MyEntertaining` | `UBTConnect_EmbedMyEntertaining` | [`pages/MyEntertaining/components/Embedded_MyEntertaining.tsx`](../../app/src/pages/MyEntertaining/components/Embedded_MyEntertaining.tsx), [`pages/MyEntertaining/hooks/useEntertainingCalendar.ts`](../../app/src/pages/MyEntertaining/hooks/useEntertainingCalendar.ts) | 0 |
+
+<details><summary>User actions of the shared blocks (1)</summary>
+
+| # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
+|---|---|---|---|---|---|
+| 1 | `Layout_DetailPage` | `click of Icon` | `onClick_BackNavigation` | – | goes to previous screen |
+
+</details>
+
+
+### React
+
+| File | User actions |
+|---|---|
+| [`components/layout/CommonUiLayout/CommonUiLayout.tsx`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx) | 2 |
+
+<details><summary>User actions of the shared components (2)</summary>
+
+| # | File | Element | Event prop | Handler | Branch | Effects |
+|---|---|---|---|---|---|---|
+| 1 | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:80`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L80) | `<PreventBackNavigation>` | `onBackNavigationPrevented` | `redirectHome` | – | goes to HomeFeed |
+| 2 | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:82`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L82) | `<BackNavigationHandler>` | `onBackNavigation` | `maybeRedirectHome` | – | goes to HomeFeed |
+
+</details>
+

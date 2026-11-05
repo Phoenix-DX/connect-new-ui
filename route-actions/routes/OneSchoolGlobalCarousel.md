@@ -1,12 +1,8 @@
-# OneSchoolGlobalCarousel: server calls and user actions in OutSystems and React
+# OneSchoolGlobalCarousel: OutSystems (TST) and React
 
-This file compares the route `/UBTConnect/OneSchoolGlobalCarousel` in OutSystems (TST) with the React app.
-The tool `route-actions/tools/check_route.py` wrote this file on 2026-11-04.
-The tool reads the code. It does not run the app.
+The route `/UBTConnect/OneSchoolGlobalCarousel`, read from the TST compiled code and from the React code by `route-actions/tools/check_route.py` on 2026-11-05. Facts only, each with its place. The method is in [README.md](../README.md).
 
-The app shell is in [APP_SHELL.md](../APP_SHELL.md), not here.
-- OutSystems app shell: `CommonUI_InsideLayout` with its blocks (TST survey), and the chains that start in a module action.
-- React app shell: the code that `app/src/main.tsx` loads (router, `AppFrame`, app start, hosts).
+Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/OneSchoolGlobalCarousel/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
 ## 1. Route
 
@@ -17,1039 +13,48 @@ The app shell is in [APP_SHELL.md](../APP_SHELL.md), not here.
 | UI flow | `Directory_OneSchoolGlobal` | MCP `getScreenNames` (DEV) |
 | React screen | [`pages/OneSchoolGlobalCarousel/OneSchoolGlobalCarouselPage.tsx`](../../app/src/pages/OneSchoolGlobalCarousel/OneSchoolGlobalCarouselPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
-| Code read | OutSystems: 36 screen and block files of the route, 28 app shell files. React: 235 screen files | TST `facts.json`, `react_calls.mjs` |
+| Screenshots | [`migration/screens/OneSchoolGlobalCarousel/parity`](../../migration/screens/OneSchoolGlobalCarousel/parity) | `route.py parity` |
+| Code read | OutSystems: 2 files of the UI flow, 34 shared blocks, 28 app shell files. React: 235 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
 | Check | Result |
 |---|---|
 | Server calls of the route on TST | 13: React makes 10, **3 missing** |
-| User actions of the route | OutSystems: 21 diagrams. React: 36 diagrams |
-| React calls of the screen that TST does not make | 5 (see [questions](#8-questions)) |
-| Screen and blocks with a React port | 36 of 36 |
+| Differences found | **3** (see [section 3](#3-differences-found)) |
+| Questions | 5 (see [section 4](#4-questions)) |
+| User actions of the route (own code) | OutSystems: 0. React: 0 |
+| Screen and blocks of the UI flow with a React port | 2 of 2 |
 | Navigation targets found in React | 9 of 9 |
-| App shell on this route | 2 calls; event bindings: OutSystems 10, React 7: see [APP_SHELL.md](../APP_SHELL.md) |
-
-## 3. Screenshots
-
-The screenshots come from the last parity run (`route.py parity`). The TST capture hides personal text with dots. The React build shows fictional mock data.
-
-| State | TST (expected) | React (build) | Difference |
-|---|---|---|---|
-| `default`<br>390x844, mock `captured`<br>2026-10-29<br>pixel difference 0.0% | <img src="../../migration/screens/OneSchoolGlobalCarousel/parity/default.expected.png" width="200" alt="default expected"> | <img src="../../migration/screens/OneSchoolGlobalCarousel/parity/default.build.png" width="200" alt="default build"> | <img src="../../migration/screens/OneSchoolGlobalCarousel/parity/default.diff.png" width="200" alt="default diff"> |
-| `loading`<br>390x844, mock `captured`<br>2026-10-29<br>pixel difference 0.0% | <img src="../../migration/screens/OneSchoolGlobalCarousel/parity/loading.expected.png" width="200" alt="loading expected"> | <img src="../../migration/screens/OneSchoolGlobalCarousel/parity/loading.build.png" width="200" alt="loading build"> | <img src="../../migration/screens/OneSchoolGlobalCarousel/parity/loading.diff.png" width="200" alt="loading diff"> |
-| `offline`<br>390x844, mock `error`<br>2026-10-29<br>pixel difference 0.3% | <img src="../../migration/screens/OneSchoolGlobalCarousel/parity/offline.expected.png" width="200" alt="offline expected"> | <img src="../../migration/screens/OneSchoolGlobalCarousel/parity/offline.build.png" width="200" alt="offline build"> | <img src="../../migration/screens/OneSchoolGlobalCarousel/parity/offline.diff.png" width="200" alt="offline diff"> |
-
-## 4. Diagram
-
-- A box on the left is the block or module of the action that calls the server (TST code).
-- A line connects each call to the React action that makes the same call.
-- The right column shows the React components that use each React action.
-- A red box is a call that React does not make.
-
-```mermaid
-flowchart LR
-  subgraph OS["OutSystems (TST compiled)"]
-    subgraph OS_screen["Screen and its blocks"]
-      o0["Connect2_LegacyShared"]
-      o1["Directory_EntityDetailsActions"]
-      o2["NotesSheet"]
-      o3["OneSchoolGlobalDetails_Block"]
-      o4["ShareSheet"]
-      o5["UBTConnect"]
-      o6["UBTConnect_Utils"]
-    end
-  end
-  subgraph EP["Server calls (TST)"]
-    e7["DataActionFetchContactDetails"]
-    e8["DataActionFetchNotes"]
-    e9["DataActionGetOneSchoolGlobalDetails"]
-    e10["ServiceAPIAddNote"]
-    e11["ActionCS_CreateShareProfileLink"]
-    e12["ActionCS_ShareObject"]
-    e13["DataActionGetAvailableMembers"]
-    e14["DataActionGetRecentlyShared"]
-    e15["ServiceAPIAddBookmark2"]
-    e16["ServiceAPIDeleteBookmarkByBookmarkId2"]
-    e17["ServiceAPIGet_UI_UpdateItems_UnreadCount_All"]
-    e18["ActionCS_CreateShareProfileLink"]
-    e19["ActionGetAllApplicationEvents"]
-  end
-  subgraph RE["React actions"]
-    subgraph RE_page["Screen"]
-      r20["addC2Bookmark()"]
-      r21["addNote()"]
-      r22["csShareObject()"]
-      r23["deleteC2Bookmark()"]
-      r24["fetchAvailableMembers()"]
-      r25["fetchEntityContactDetails()"]
-      r26["fetchEntityNotes()"]
-      r27["fetchOneSchoolGlobalDetails()"]
-      r28["fetchRecentlyShared()"]
-      r29["fetchUnreadUpdateItemsCount()"]
-    end
-  end
-  subgraph RC["React components"]
-    c30["BottomBar"]
-    c31["EntityDetailsActionsContainer"]
-    c32["NotesSheet"]
-    c33["OneSchoolGlobalDetailsContainer"]
-    c34["ShareSheetContainer"]
-  end
-  r20 --- c31
-  r23 --- c31
-  r25 --- c31
-  r26 --- c31
-  r27 --- c33
-  r21 --- c32
-  r22 --- c34
-  r24 --- c34
-  r28 --- c34
-  r29 --- c30
-  o1 --> e7
-  o1 --> e8
-  o3 --> e9
-  o2 --> e10
-  o4 --> e11
-  o4 --> e12
-  o4 --> e13
-  o4 --> e14
-  o5 --> e15
-  o5 --> e16
-  o5 --> e17
-  o6 --> e18
-  o0 --> e19
-  e7 --- r25
-  e8 --- r26
-  e9 --- r27
-  e10 --- r21
-  e12 --- r22
-  e13 --- r24
-  e14 --- r28
-  e15 --- r20
-  e16 --- r23
-  e17 --- r29
-  classDef missing fill:#fde2e1,stroke:#c0392b,color:#7b241c
-  classDef ok fill:#e3f4e8,stroke:#2e7d4f,color:#1d4d31
-  class e11,e18,e19 missing
-  class e7,e8,e9,e10,e12,e13,e14,e15,e16,e17 ok
-```
-
-## 5. User actions
-
-The two lists are independent: the OutSystems list comes from the TST compiled code, the React list from the React code. The tool does not map one list to the other.
-
-- **OutSystems:** each event binding of the compiled views (`<event>$Action: function` of a child block or widget, `on<Event>: function` of an HTML element) with its handler.
-- **React:** each JSX attribute `on<Event>={handler}` with its handler.
-- Both lists keep only the bindings whose handler has an effect: a server call, a navigation, an external link, a message or a confirm dialog. The tool follows the called functions 3 levels deep.
-- When the handler has branches in the code (`switch` case, `if` with `===`), each branch has its own diagram. The branch name is the constant of the condition. `other` is the last `else` or `default`.
-- An arrow to the server gives the inputs of the call, the return arrow its outputs (contract `app/src/api/openapi.yaml`).
-
-### 5.1 OutSystems (TST)
-
-| # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
-|---|---|---|---|---|---|
-| [1](#511-bottombarmenu-event_bottombar_clicked-home) | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `home` | goes to HomeFeed |
-| [2](#512-bottombarmenu-event_bottombar_clicked-directory) | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `directory` | goes to CountryList, Locality_Details |
-| [3](#513-bottombarmenu-event_bottombar_clicked-updates) | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `updates` | goes to Updates_SingleList |
-| [4](#514-bottombarmenu-event_bottombar_clicked-bookmarks) | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `bookmarks` | goes to Bookmarks |
-| [5](#515-bottombarmenu-event_bottombar_clicked-menu) | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `menu` | goes to Menu |
-| [6](#516-directory_entitydetailsactions-handle_bookmark) | `Directory_EntityDetailsActions` | `event_Click_Bookmark of ActionsMenu`<br>`event_Click_Unbookmark of ActionsMenu` | `handle_Bookmark` | – | calls AddBookmark2, DeleteBookmarkByBookmarkId2 |
-| [7](#517-directory_entitydetailsactions-handler_addnotesonclick) | `Directory_EntityDetailsActions` | `event_Click_Notes of ActionsMenu` | `handler_AddNotesOnClick` | – | calls FetchNotes |
-| [8](#518-directory_entitydetailsactions-handle_mail) | `Directory_EntityDetailsActions` | `event_Cancel of Wrapper`<br>`event_Click_Email of ActionsMenu` | `handle_Mail` | – | goes to ContactByEmailOneSchoolGlobal |
-| [9](#519-directory_entitydetailsactions-handle_mail_page) | `Directory_EntityDetailsActions` | `event_Email of Wrapper` | `handle_Mail_Page` | – | goes to ContactByEmailMember |
-| [10](#5110-directory_entitydetailsactions-handle_share_connect) | `Directory_EntityDetailsActions` | `event_ShareToConnect of SharePopup` | `handle_Share_Connect` | – | goes to LegacyShareObject |
-| [11](#5111-directory_entitydetailsactions-handle_share_others) | `Directory_EntityDetailsActions` | `event_ShareToOthers of SharePopup` | `handle_Share_Others` | – | calls GetAllApplicationEvents, CS_CreateShareProfileLink, AppManager_SynchAppContext |
-| [12](#5112-layout_detailpage-onclick_backnavigation) | `Layout_DetailPage` | `click of Icon` | `onClick_BackNavigation` | – | goes to previous screen |
-| [13](#5113-addresspopup_wrapper-handler_openinmapsorgooglemaps) | `AddressPopup_Wrapper` | `event_OpenInGoogleMaps of AddressPopup`<br>`event_OpenInMaps of AddressPopup` | `handler_OpenInMapsOrGoogleMaps` | – | goes to URL mapsAddress; opens an external link; shows a message |
-| [14](#5114-contactbymessage_wrapper-handler_selectedmessagechannel) | `ContactByMessage_Wrapper` | `event_SelectedMessageChannel of ByMessage` | `handler_SelectedMessageChannel` | – | opens an external link |
-| [15](#5115-contactpopup_byphone-onclick_callbutton) | `ContactPopup_ByPhone` | `event_Clicked of ContactPopup` | `onClick_CallButton` | – | opens an external link |
-| [16](#5116-notessheet-handler_onsubmitnote) | `NotesSheet` | `onSubmitRequested of AddNote` | `handler_OnSubmitNote` | – | calls AddNote; shows a message |
-| [17](#5117-sharesheet-handler_onclickrecentmember) | `ShareSheet` | `onClick of WithLabel` | `handler_OnClickRecentMember` | – | calls CS_ShareObject; shows a message; asks for a confirmation |
-| [18](#5118-sharesheet-handler_onclickexternaloption) | `ShareSheet` | `onClick of WithLabel` | `handler_OnClickExternalOption` | – | calls CS_CreateShareProfileLink |
-| [19](#5119-sharesheet-handler_inputeventsubmit) | `ShareSheet` | `event_Submit of Input` | `handler_InputEventSubmit` | – | calls GetAvailableMembers |
-| [20](#5120-sharesheet-handler_searchresultitemonselect) | `ShareSheet` | `click of Icon` | `handler_SearchResultItemOnSelect` | – | shows a message |
-| [21](#5121-sharesheet-handler_onclicksend) | `ShareSheet` | `buttonOnClick of Button` | `handler_OnClickSend` | – | calls CS_ShareObject; shows a message |
-
-#### 5.1.1 BottomBarMenu: event_BottomBar_Clicked (home)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as BottomBarMenu
-  participant N as Navigation
-  U->>B: onClick (HTML element) → event_BottomBar_Clicked (home)
-  B->>N: go to HomeFeed
-```
-
-#### 5.1.2 BottomBarMenu: event_BottomBar_Clicked (directory)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as BottomBarMenu
-  participant N as Navigation
-  U->>B: onClick (HTML element) → event_BottomBar_Clicked (directory)
-  B->>N: go to CountryList
-  B->>N: go to Locality_Details
-```
-
-#### 5.1.3 BottomBarMenu: event_BottomBar_Clicked (updates)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as BottomBarMenu
-  participant N as Navigation
-  U->>B: onClick (HTML element) → event_BottomBar_Clicked (updates)
-  B->>N: go to Updates_SingleList
-```
-
-#### 5.1.4 BottomBarMenu: event_BottomBar_Clicked (bookmarks)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as BottomBarMenu
-  participant N as Navigation
-  U->>B: onClick (HTML element) → event_BottomBar_Clicked (bookmarks)
-  B->>N: go to Bookmarks
-```
-
-#### 5.1.5 BottomBarMenu: event_BottomBar_Clicked (menu)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as BottomBarMenu
-  participant N as Navigation
-  U->>B: onClick (HTML element) → event_BottomBar_Clicked (menu)
-  B->>N: go to Menu
-```
-
-#### 5.1.6 Directory_EntityDetailsActions: handle_Bookmark
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as Directory_EntityDetailsActions
-  participant S as Server (TST calls)
-  U->>B: event_Click_Bookmark of ActionsMenu → handle_Bookmark
-  Note over B: via UBTConnect.toggleBookmarkItem_C2
-  B->>S: AddBookmark2(In_BookmarkCategoryId, In_ItemId)
-  S-->>B: Bookmark_Added, Success
-  B->>S: DeleteBookmarkByBookmarkId2(BookmarkId)
-  S-->>B: Success, WasFound
-```
-
-#### 5.1.7 Directory_EntityDetailsActions: handler_AddNotesOnClick
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as Directory_EntityDetailsActions
-  participant S as Server (TST calls)
-  U->>B: event_Click_Notes of ActionsMenu → handler_AddNotesOnClick
-  B->>S: FetchNotes(ContactPopUp_OverrideOptions, EnableOptions, EntityId, …)
-  S-->>B: Notes
-```
-
-#### 5.1.8 Directory_EntityDetailsActions: handle_Mail
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as Directory_EntityDetailsActions
-  participant N as Navigation
-  U->>B: event_Cancel of Wrapper → handle_Mail
-  B->>N: go to ContactByEmailOneSchoolGlobal
-```
-
-#### 5.1.9 Directory_EntityDetailsActions: handle_Mail_Page
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as Directory_EntityDetailsActions
-  participant N as Navigation
-  U->>B: event_Email of Wrapper → handle_Mail_Page
-  B->>N: go to ContactByEmailMember
-```
-
-#### 5.1.10 Directory_EntityDetailsActions: handle_Share_Connect
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as Directory_EntityDetailsActions
-  participant N as Navigation
-  U->>B: event_ShareToConnect of SharePopup → handle_Share_Connect
-  B->>N: go to LegacyShareObject
-```
-
-#### 5.1.11 Directory_EntityDetailsActions: handle_Share_Others
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as Directory_EntityDetailsActions
-  participant S as Server (TST calls)
-  U->>B: event_ShareToOthers of SharePopup → handle_Share_Others
-  Note over B: via UBTConnect_Utils.shareEntity_ByURL
-  B->>S: GetAllApplicationEvents()
-  S-->>B: EventList
-  B->>S: CS_CreateShareProfileLink()
-  S-->>B: outputs not in the contract
-  B->>S: AppManager_SynchAppContext(EspaceName)
-  S-->>B: AppManager_ClientConfig, FirebaseRealTimeDB_Token, PermissionList, …
-```
-
-#### 5.1.12 Layout_DetailPage: onClick_BackNavigation
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as Layout_DetailPage
-  participant N as Navigation
-  U->>B: click of Icon → onClick_BackNavigation
-  B->>N: go to previous screen
-```
-
-#### 5.1.13 AddressPopup_Wrapper: handler_OpenInMapsOrGoogleMaps
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as AddressPopup_Wrapper
-  participant N as Navigation
-  participant X as External link
-  U->>B: event_OpenInGoogleMaps of AddressPopup → handler_OpenInMapsOrGoogleMaps
-  B->>N: go to URL mapsAddress
-  B->>X: https: link
-  Note over B: message "Map is not available"
-```
-
-#### 5.1.14 ContactByMessage_Wrapper: handler_SelectedMessageChannel
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as ContactByMessage_Wrapper
-  participant X as External link
-  U->>B: event_SelectedMessageChannel of ByMessage → handler_SelectedMessageChannel
-  B->>X: tel: link
-```
-
-#### 5.1.15 ContactPopup_ByPhone: onClick_CallButton
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as ContactPopup_ByPhone
-  participant X as External link
-  U->>B: event_Clicked of ContactPopup → onClick_CallButton
-  B->>X: tel: link
-```
-
-#### 5.1.16 NotesSheet: handler_OnSubmitNote
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as NotesSheet
-  participant S as Server (TST calls)
-  U->>B: onSubmitRequested of AddNote → handler_OnSubmitNote
-  B->>S: AddNote(ItemId, Note, NoteCategoryId)
-  S-->>B: Note_Added, Success
-  Note over B: via UBTConnect_Utils.note_SendFeedbackMessages
-  Note over B: message messageVar
-  Note over B: message messageVar
-  Note over B: via UBTConnect_Utils.note_SendFeedbackMessages
-  Note over B: message messageVar
-  Note over B: message messageVar
-  Note over B: via UBTConnect_Utils.note_SendFeedbackMessages
-  Note over B: message messageVar
-  Note over B: message messageVar
-```
-
-#### 5.1.17 ShareSheet: handler_OnClickRecentMember
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as ShareSheet
-  participant S as Server (TST calls)
-  U->>B: onClick of WithLabel → handler_OnClickRecentMember
-  Note over B: via UBTConnect_Utils.app_Subscription_ShowUpgradePopUp
-  Note over B: confirm dialog
-  B->>S: CS_ShareObject(In_ShareObjectTypeId, In_SharedObjectId, In_SharingProfileName, …)
-  S-->>B: IsAllowed, IsSuccess, Message, …
-  Note over B: message submitMessageVar + " has been shared."
-  Note over B: message "Share failed. Please try again."
-```
-
-#### 5.1.18 ShareSheet: handler_OnClickExternalOption
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as ShareSheet
-  participant S as Server (TST calls)
-  U->>B: onClick of WithLabel → handler_OnClickExternalOption
-  B->>S: CS_CreateShareProfileLink(In_ShareObjectTypeId, In_SharedObjectId, In_UpdateDate, …)
-  S-->>B: ShareId, URL
-```
-
-#### 5.1.19 ShareSheet: handler_InputEventSubmit
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as ShareSheet
-  participant S as Server (TST calls)
-  U->>B: event_Submit of Input → handler_InputEventSubmit
-  B->>S: GetAvailableMembers(AvatarImageSize_HorizontalList, AvatarImageSize_VerticalList, AvatarSize_HorizontalList, …)
-  S-->>B: Out_SearchResultItemList
-```
-
-#### 5.1.20 ShareSheet: handler_SearchResultItemOnSelect
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as ShareSheet
-  U->>B: click of Icon → handler_SearchResultItemOnSelect
-  Note over B: message FeedbackMessage_AutoClose
-```
-
-#### 5.1.21 ShareSheet: handler_OnClickSend
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as ShareSheet
-  participant S as Server (TST calls)
-  U->>B: buttonOnClick of Button → handler_OnClickSend
-  B->>S: CS_ShareObject(In_ShareObjectTypeId, In_SharedObjectId, In_SharingProfileName, …)
-  S-->>B: IsAllowed, IsSuccess, Message, …
-  Note over B: message submitMessageVar + " has been shared."
-  Note over B: message "Share failed. Please try again."
-```
-
-### 5.2 React
-
-| # | File | Element | Event prop | Handler | Branch | Effects |
-|---|---|---|---|---|---|---|
-| [1](#521-preventbacknavigation-onbacknavigationprevented) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:80`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L80) | `<PreventBackNavigation>` | `onBackNavigationPrevented` | `redirectHome` | – | goes to HomeFeed |
-| [2](#522-backnavigationhandler-onbacknavigation) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:82`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L82) | `<BackNavigationHandler>` | `onBackNavigation` | `maybeRedirectHome` | – | goes to HomeFeed |
-| [3](#523-oslink-onclick-home) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Home` | goes to HomeFeed |
-| [4](#524-oslink-onclick-directory) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Directory` | goes to CountryList, Locality_Details |
-| [5](#525-oslink-onclick-updates) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Updates` | goes to Updates_SingleList |
-| [6](#526-oslink-onclick-bookmarks) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Bookmarks` | goes to Bookmarks |
-| [7](#527-oslink-onclick-menu) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Menu` | goes to Menu |
-| [8](#528-oslink-onclick-other) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `other` | calls the prop onBottomBarClicked() |
-| [9](#529-bottombariconbadge-ononclick-home) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Home` | goes to HomeFeed |
-| [10](#5210-bottombariconbadge-ononclick-directory) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Directory` | goes to CountryList, Locality_Details |
-| [11](#5211-bottombariconbadge-ononclick-updates) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Updates` | goes to Updates_SingleList |
-| [12](#5212-bottombariconbadge-ononclick-bookmarks) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Bookmarks` | goes to Bookmarks |
-| [13](#5213-bottombariconbadge-ononclick-menu) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Menu` | goes to Menu |
-| [14](#5214-bottombariconbadge-ononclick-other) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `other` | calls the prop onBottomBarClicked() |
-| [15](#5215-detaillayout-onback) | [`containers/DetailLayout/DetailLayoutContainer.tsx:66`](../../app/src/containers/DetailLayout/DetailLayoutContainer.tsx#L66) | `<DetailLayout>` | `onBack` | `navigateBack` | – | goes to previous screen |
-| [16](#5216-actionsmenu-oneventclickbookmark) | [`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:100`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx#L100) | `<ActionsMenu>` | `onEventClickBookmark` | `onClickBookmark` | – | calls ServiceAPIDeleteBookmarkByBookmarkId2, ServiceAPIAddBookmark2; shows a message; calls the prop onOnChangeBookmark() |
-| [17](#5217-actionsmenu-oneventclickunbookmark) | [`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:101`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx#L101) | `<ActionsMenu>` | `onEventClickUnbookmark` | `onClickBookmark` | – | calls ServiceAPIDeleteBookmarkByBookmarkId2, ServiceAPIAddBookmark2; shows a message; calls the prop onOnChangeBookmark() |
-| [18](#5218-actionsmenu-oneventclicknotes) | [`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:109`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx#L109) | `<ActionsMenu>` | `onEventClickNotes` | `inline` | – | calls DataActionFetchNotes |
-| [19](#5219-actionsmenu-oneventclickemail) | [`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:112`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx#L112) | `<ActionsMenu>` | `onEventClickEmail` | `inline` | – | goes to ContactByEmailOneSchoolGlobal |
-| [20](#5220-contactbymessage-oneventcancel) | [`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:123`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx#L123) | `<ContactByMessage>` | `onEventCancel` | `inline` | – | goes to ContactByEmailOneSchoolGlobal |
-| [21](#5221-contactbymessage-oneventemail) | [`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:126`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx#L126) | `<ContactByMessage>` | `onEventEmail` | `handleMailPage` | – | goes to ContactByEmailMember |
-| [22](#5222-sharepopup-oneventsharetoconnect) | [`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:155`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx#L155) | `<SharePopup>` | `onEventShareToConnect` | `inline` | – | goes to LegacyShareObject |
-| [23](#5223-sharesheetfirststep-onclickrecentmember) | [`containers/ShareSheet/ShareSheetContainer.tsx:111`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L111) | `<ShareSheetFirstStep>` | `onClickRecentMember` | `onClickRecentMember` | – | calls ActionCS_ShareObject; shows a message; asks for a confirmation |
-| [24](#5224-sharesheetsearchstep-onsubmit) | [`containers/ShareSheet/ShareSheetContainer.tsx:127`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L127) | `<ShareSheetSearchStep>` | `onSubmit` | `onSubmit` | – | setSearchFetchId(): a query fetches again |
-| [25](#5225-sharesheetsearchstep-onselect) | [`containers/ShareSheet/ShareSheetContainer.tsx:129`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L129) | `<ShareSheetSearchStep>` | `onSelect` | `onSelect` | – | shows a message |
-| [26](#5226-sharesheetsearchstep-onclickupgradesubscription) | [`containers/ShareSheet/ShareSheetContainer.tsx:130`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L130) | `<ShareSheetSearchStep>` | `onClickUpgradeSubscription` | `onClickUpgradeSubscription` | – | opens an external link |
-| [27](#5227-actionbutton-onbuttononclick) | [`containers/ShareSheet/ShareSheetContainer.tsx:148`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L148) | `<ActionButton>` | `onButtonOnClick` | `onClickSend` | – | calls ActionCS_ShareObject; shows a message |
-| [28](#5228-addnote-ononsubmitrequested) | [`components/note/NotesSheet/NotesSheet.tsx:175`](../../app/src/components/note/NotesSheet/NotesSheet.tsx#L175) | `<AddNote>` | `onOnSubmitRequested` | `addNoteRequested` | – | calls ServiceAPIAddNote; shows a message; calls the prop onOnNotesChanged() |
-| [29](#5229-notelist-onondeleterequested) | [`containers/NoteListActions/NoteListActionsContainer.tsx:157`](../../app/src/containers/NoteListActions/NoteListActionsContainer.tsx#L157) | `<NoteList>` | `onOnDeleteRequested` | `inline` | – | calls ServiceAPIDeleteNoteByNoteId; shows a message; calls the prop onOnNoteDeleted() |
-| [30](#5230-notelist-ononsaveeditrequested) | [`containers/NoteListActions/NoteListActionsContainer.tsx:160`](../../app/src/containers/NoteListActions/NoteListActionsContainer.tsx#L160) | `<NoteList>` | `onOnSaveEditRequested` | `inline` | – | calls ServiceAPIUpdateNote; shows a message; calls the prop onOnSaveEditNote(); calls the prop onOnEditingStateChanged(); calls the prop onOnSaveEditNote(); calls the prop onOnEditingStateChanged() |
-| [31](#5231-contactpopup-oneventclicked) | [`components/contact/ContactPopupByPhone/ContactPopupByPhone.tsx:66`](../../app/src/components/contact/ContactPopupByPhone/ContactPopupByPhone.tsx#L66) | `<ContactPopup>` | `onEventClicked` | `inline` | – | opens an external link; calls the prop onEventCall() |
-| [32](#5232-contactpopupbymessage-oneventselectedmessagechannel-email) | [`components/contact/ContactByMessage/ContactByMessage.tsx:64`](../../app/src/components/contact/ContactByMessage/ContactByMessage.tsx#L64) | `<ContactPopupByMessage>` | `onEventSelectedMessageChannel` | `handlerSelectedMessageChannel` | `Email` | calls the prop onEventMessageChannel(); calls the prop onEventEmail() |
-| [33](#5233-contactpopupbymessage-oneventselectedmessagechannel-call) | [`components/contact/ContactByMessage/ContactByMessage.tsx:64`](../../app/src/components/contact/ContactByMessage/ContactByMessage.tsx#L64) | `<ContactPopupByMessage>` | `onEventSelectedMessageChannel` | `handlerSelectedMessageChannel` | `Call` | opens an external link; calls the prop onEventMessageChannel(); calls the prop onEventCall() |
-| [34](#5234-icontext-onclicked) | [`containers/OneSchoolGlobalDetails/components/External_Link.tsx:56`](../../app/src/containers/OneSchoolGlobalDetails/components/External_Link.tsx#L56) | `<IconText>` | `onClicked` | `linkClicked` | – | opens an external link |
-| [35](#5235-addresspopup-oneventopeningooglemaps) | [`components/contact/AddressPopupWrapper/AddressPopupWrapper.tsx:110`](../../app/src/components/contact/AddressPopupWrapper/AddressPopupWrapper.tsx#L110) | `<AddressPopup>` | `onEventOpenInGoogleMaps` | `inline` | – | opens an external link; shows a message |
-| [36](#5236-addresspopup-oneventopeninmaps) | [`components/contact/AddressPopupWrapper/AddressPopupWrapper.tsx:113`](../../app/src/components/contact/AddressPopupWrapper/AddressPopupWrapper.tsx#L113) | `<AddressPopup>` | `onEventOpenInMaps` | `inline` | – | opens an external link; shows a message |
-
-#### 5.2.1 PreventBackNavigation: onBackNavigationPrevented
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as PreventBackNavigation · CommonUiLayout.tsx
-  participant N as Navigation
-  U->>H: onBackNavigationPrevented → redirectHome
-  H->>N: go to HomeFeed
-```
-
-#### 5.2.2 BackNavigationHandler: onBackNavigation
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as BackNavigationHandler · CommonUiLayout.tsx
-  participant N as Navigation
-  U->>H: onBackNavigation → maybeRedirectHome
-  Note over H: via actionRedirectHome()
-  H->>N: go to HomeFeed
-```
-
-#### 5.2.3 OSLink: onClick (Home)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as OSLink · BottomBar.tsx
-  participant N as Navigation
-  U->>H: onClick → click (Home)
-  Note over H: via event_BottomBar_Clicked()
-  H->>N: go to HomeFeed
-```
-
-#### 5.2.4 OSLink: onClick (Directory)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as OSLink · BottomBar.tsx
-  participant N as Navigation
-  U->>H: onClick → click (Directory)
-  Note over H: via event_BottomBar_Clicked()
-  H->>N: go to CountryList
-  H->>N: go to Locality_Details
-```
-
-#### 5.2.5 OSLink: onClick (Updates)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as OSLink · BottomBar.tsx
-  participant N as Navigation
-  U->>H: onClick → click (Updates)
-  Note over H: via event_BottomBar_Clicked()
-  H->>N: go to Updates_SingleList
-```
-
-#### 5.2.6 OSLink: onClick (Bookmarks)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as OSLink · BottomBar.tsx
-  participant N as Navigation
-  U->>H: onClick → click (Bookmarks)
-  Note over H: via event_BottomBar_Clicked()
-  H->>N: go to Bookmarks
-```
-
-#### 5.2.7 OSLink: onClick (Menu)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as OSLink · BottomBar.tsx
-  participant N as Navigation
-  U->>H: onClick → click (Menu)
-  Note over H: via event_BottomBar_Clicked()
-  H->>N: go to Menu
-```
-
-#### 5.2.8 OSLink: onClick (other)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as OSLink · BottomBar.tsx
-  U->>H: onClick → click (other)
-  Note over H: via event_BottomBar_Clicked()
-  Note over H: calls the prop onBottomBarClicked()
-```
-
-#### 5.2.9 BottomBarIconBadge: onOnClick (Home)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as BottomBarIconBadge · BottomBar.tsx
-  participant N as Navigation
-  U->>H: onOnClick → click (Home)
-  Note over H: via event_BottomBar_Clicked()
-  H->>N: go to HomeFeed
-```
-
-#### 5.2.10 BottomBarIconBadge: onOnClick (Directory)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as BottomBarIconBadge · BottomBar.tsx
-  participant N as Navigation
-  U->>H: onOnClick → click (Directory)
-  Note over H: via event_BottomBar_Clicked()
-  H->>N: go to CountryList
-  H->>N: go to Locality_Details
-```
-
-#### 5.2.11 BottomBarIconBadge: onOnClick (Updates)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as BottomBarIconBadge · BottomBar.tsx
-  participant N as Navigation
-  U->>H: onOnClick → click (Updates)
-  Note over H: via event_BottomBar_Clicked()
-  H->>N: go to Updates_SingleList
-```
-
-#### 5.2.12 BottomBarIconBadge: onOnClick (Bookmarks)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as BottomBarIconBadge · BottomBar.tsx
-  participant N as Navigation
-  U->>H: onOnClick → click (Bookmarks)
-  Note over H: via event_BottomBar_Clicked()
-  H->>N: go to Bookmarks
-```
-
-#### 5.2.13 BottomBarIconBadge: onOnClick (Menu)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as BottomBarIconBadge · BottomBar.tsx
-  participant N as Navigation
-  U->>H: onOnClick → click (Menu)
-  Note over H: via event_BottomBar_Clicked()
-  H->>N: go to Menu
-```
-
-#### 5.2.14 BottomBarIconBadge: onOnClick (other)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as BottomBarIconBadge · BottomBar.tsx
-  U->>H: onOnClick → click (other)
-  Note over H: via event_BottomBar_Clicked()
-  Note over H: calls the prop onBottomBarClicked()
-```
-
-#### 5.2.15 DetailLayout: onBack
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as DetailLayout · DetailLayoutContainer.tsx
-  participant N as Navigation
-  U->>H: onBack → navigateBack
-  H->>N: go to previous screen
-```
-
-#### 5.2.16 ActionsMenu: onEventClickBookmark
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as ActionsMenu · EntityDetailsActionsContainer.tsx
-  participant A as Server (React api)
-  U->>H: onEventClickBookmark → onClickBookmark
-  Note over H: via handleBookmark()
-  Note over H: via toggleBookmarkItem_C2()
-  Note over H: via deleteBookmarkByBookmarkId2()
-  H->>A: ServiceAPIDeleteBookmarkByBookmarkId2(BookmarkId)
-  A-->>H: Success, WasFound
-  Note over H: via bookmark_SendFeedbackMessage()
-  Note over H: message isCreate ? 'Bookmark could not be added. Please try again later.' : 'Bookmark could not be
-  Note over H: message isCreate ? 'Added to your Bookmarks' : 'Removed from your Bookmarks'
-  Note over H: via bookmark_SendFeedbackMessage()
-  Note over H: message isCreate ? 'Bookmark could not be added. Please try again later.' : 'Bookmark could not be
-  Note over H: message isCreate ? 'Added to your Bookmarks' : 'Removed from your Bookmarks'
-  Note over H: via addBookmark2()
-  H->>A: ServiceAPIAddBookmark2(In_BookmarkCategoryId, In_ItemId)
-  A-->>H: Bookmark_Added, Success
-  Note over H: via bookmark_SendFeedbackMessage()
-  Note over H: message isCreate ? 'Bookmark could not be added. Please try again later.' : 'Bookmark could not be
-  Note over H: message isCreate ? 'Added to your Bookmarks' : 'Removed from your Bookmarks'
-  Note over H: via bookmark_SendFeedbackMessage()
-  Note over H: message isCreate ? 'Bookmark could not be added. Please try again later.' : 'Bookmark could not be
-  Note over H: message isCreate ? 'Added to your Bookmarks' : 'Removed from your Bookmarks'
-  Note over H: via bookmark_SendFeedbackMessage()
-  Note over H: message isCreate ? 'Bookmark could not be added. Please try again later.' : 'Bookmark could not be
-  Note over H: message isCreate ? 'Added to your Bookmarks' : 'Removed from your Bookmarks'
-  Note over H: calls the prop onOnChangeBookmark()
-```
-
-#### 5.2.17 ActionsMenu: onEventClickUnbookmark
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as ActionsMenu · EntityDetailsActionsContainer.tsx
-  participant A as Server (React api)
-  U->>H: onEventClickUnbookmark → onClickBookmark
-  Note over H: via handleBookmark()
-  Note over H: via toggleBookmarkItem_C2()
-  Note over H: via deleteBookmarkByBookmarkId2()
-  H->>A: ServiceAPIDeleteBookmarkByBookmarkId2(BookmarkId)
-  A-->>H: Success, WasFound
-  Note over H: via bookmark_SendFeedbackMessage()
-  Note over H: message isCreate ? 'Bookmark could not be added. Please try again later.' : 'Bookmark could not be
-  Note over H: message isCreate ? 'Added to your Bookmarks' : 'Removed from your Bookmarks'
-  Note over H: via bookmark_SendFeedbackMessage()
-  Note over H: message isCreate ? 'Bookmark could not be added. Please try again later.' : 'Bookmark could not be
-  Note over H: message isCreate ? 'Added to your Bookmarks' : 'Removed from your Bookmarks'
-  Note over H: via addBookmark2()
-  H->>A: ServiceAPIAddBookmark2(In_BookmarkCategoryId, In_ItemId)
-  A-->>H: Bookmark_Added, Success
-  Note over H: via bookmark_SendFeedbackMessage()
-  Note over H: message isCreate ? 'Bookmark could not be added. Please try again later.' : 'Bookmark could not be
-  Note over H: message isCreate ? 'Added to your Bookmarks' : 'Removed from your Bookmarks'
-  Note over H: via bookmark_SendFeedbackMessage()
-  Note over H: message isCreate ? 'Bookmark could not be added. Please try again later.' : 'Bookmark could not be
-  Note over H: message isCreate ? 'Added to your Bookmarks' : 'Removed from your Bookmarks'
-  Note over H: via bookmark_SendFeedbackMessage()
-  Note over H: message isCreate ? 'Bookmark could not be added. Please try again later.' : 'Bookmark could not be
-  Note over H: message isCreate ? 'Added to your Bookmarks' : 'Removed from your Bookmarks'
-  Note over H: calls the prop onOnChangeBookmark()
-```
-
-#### 5.2.18 ActionsMenu: onEventClickNotes
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as ActionsMenu · EntityDetailsActionsContainer.tsx
-  participant A as Server (React api)
-  U->>H: onEventClickNotes → inline
-  Note over H: via handlerAddNotes()
-  Note over H: via refreshFetchNotes()
-  Note over H: via fetchNotes()
-  H->>A: DataActionFetchNotes(ContactPopUp_OverrideOptions, EnableOptions, EntityId, …)
-  A-->>H: Notes
-```
-
-#### 5.2.19 ActionsMenu: onEventClickEmail
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as ActionsMenu · EntityDetailsActionsContainer.tsx
-  participant N as Navigation
-  U->>H: onEventClickEmail → inline
-  Note over H: via handleMail()
-  H->>N: go to ContactByEmailOneSchoolGlobal
-```
-
-#### 5.2.20 ContactByMessage: onEventCancel
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as ContactByMessage · EntityDetailsActionsContainer.tsx
-  participant N as Navigation
-  U->>H: onEventCancel → inline
-  Note over H: via handleMail()
-  H->>N: go to ContactByEmailOneSchoolGlobal
-```
-
-#### 5.2.21 ContactByMessage: onEventEmail
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as ContactByMessage · EntityDetailsActionsContainer.tsx
-  participant N as Navigation
-  U->>H: onEventEmail → handleMailPage
-  H->>N: go to ContactByEmailMember
-```
-
-#### 5.2.22 SharePopup: onEventShareToConnect
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as SharePopup · EntityDetailsActionsContainer.tsx
-  participant N as Navigation
-  U->>H: onEventShareToConnect → inline
-  H->>N: go to LegacyShareObject
-```
-
-#### 5.2.23 ShareSheetFirstStep: onClickRecentMember
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as ShareSheetFirstStep · ShareSheetContainer.tsx
-  participant A as Server (React api)
-  U->>H: onClickRecentMember → onClickRecentMember
-  Note over H: via showUpgradePopUp()
-  Note over H: confirm dialog dialogId
-  Note over H: via submitShare()
-  Note over H: via csShareObject()
-  H->>A: ActionCS_ShareObject(In_ShareObjectTypeId, In_SharedObjectId, In_SharingProfileName, …)
-  A-->>H: IsAllowed, IsSuccess, Message, …
-  Note over H: message `${submitMessage} has been shared.`
-  Note over H: message 'Share failed. Please try again.'
-```
-
-#### 5.2.24 ShareSheetSearchStep: onSubmit
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as ShareSheetSearchStep · ShareSheetContainer.tsx
-  U->>H: onSubmit → onSubmit
-  Note over H: setSearchFetchId(): a query fetches again
-```
-
-#### 5.2.25 ShareSheetSearchStep: onSelect
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as ShareSheetSearchStep · ShareSheetContainer.tsx
-  U->>H: onSelect → onSelect
-  Note over H: message { title: '', message: 'You can select up to 50 recipients only.', messageType: 'error', en
-```
-
-#### 5.2.26 ShareSheetSearchStep: onClickUpgradeSubscription
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as ShareSheetSearchStep · ShareSheetContainer.tsx
-  participant X as External link
-  U->>H: onClickUpgradeSubscription → onClickUpgradeSubscription
-  Note over H: via navigateToUpgrade()
-  H->>X: openInApp_OpenExternalLink
-```
-
-#### 5.2.27 ActionButton: onButtonOnClick
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as ActionButton · ShareSheetContainer.tsx
-  participant A as Server (React api)
-  U->>H: onButtonOnClick → onClickSend
-  Note over H: via submitShare()
-  Note over H: via csShareObject()
-  H->>A: ActionCS_ShareObject(In_ShareObjectTypeId, In_SharedObjectId, In_SharingProfileName, …)
-  A-->>H: IsAllowed, IsSuccess, Message, …
-  Note over H: message `${submitMessage} has been shared.`
-  Note over H: message 'Share failed. Please try again.'
-```
-
-#### 5.2.28 AddNote: onOnSubmitRequested
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as AddNote · NotesSheet.tsx
-  participant A as Server (React api)
-  U->>H: onOnSubmitRequested → addNoteRequested
-  Note over H: via addNote()
-  H->>A: ServiceAPIAddNote(ItemId, Note, NoteCategoryId)
-  A-->>H: Note_Added, Success
-  Note over H: calls the prop onOnNotesChanged()
-  Note over H: via note_SendFeedbackMessages()
-  Note over H: message message
-  Note over H: via note_SendFeedbackMessages()
-  Note over H: message message
-  Note over H: via note_SendFeedbackMessages()
-  Note over H: message message
-```
-
-#### 5.2.29 NoteList: onOnDeleteRequested
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as NoteList · NoteListActionsContainer.tsx
-  participant A as Server (React api)
-  U->>H: onOnDeleteRequested → inline
-  Note over H: via deleteNoteRequested()
-  Note over H: via deleteNoteByNoteId()
-  H->>A: ServiceAPIDeleteNoteByNoteId()
-  A-->>H: outputs
-  Note over H: calls the prop onOnNoteDeleted()
-  Note over H: via note_SendFeedbackMessages()
-  Note over H: message message
-  Note over H: via note_SendFeedbackMessages()
-  Note over H: message message
-  Note over H: via note_SendFeedbackMessages()
-  Note over H: message message
-```
-
-#### 5.2.30 NoteList: onOnSaveEditRequested
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as NoteList · NoteListActionsContainer.tsx
-  participant A as Server (React api)
-  U->>H: onOnSaveEditRequested → inline
-  Note over H: via saveEditRequested()
-  Note over H: via updateNote()
-  H->>A: ServiceAPIUpdateNote()
-  A-->>H: outputs
-  Note over H: calls the prop onOnSaveEditNote()
-  Note over H: calls the prop onOnEditingStateChanged()
-  Note over H: via note_SendFeedbackMessages()
-  Note over H: message message
-  Note over H: calls the prop onOnSaveEditNote()
-  Note over H: calls the prop onOnEditingStateChanged()
-  Note over H: via note_SendFeedbackMessages()
-  Note over H: message message
-  Note over H: via note_SendFeedbackMessages()
-  Note over H: message message
-  Note over H: via note_SendFeedbackMessages()
-  Note over H: message message
-```
-
-#### 5.2.31 ContactPopup: onEventClicked
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as ContactPopup · ContactPopupByPhone.tsx
-  participant X as External link
-  U->>H: onEventClicked → inline
-  Note over H: calls the prop onEventCall()
-  H->>X: tel: link
-```
-
-#### 5.2.32 ContactPopupByMessage: onEventSelectedMessageChannel (Email)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as ContactPopupByMessage · ContactByMessage.tsx
-  U->>H: onEventSelectedMessageChannel → handlerSelectedMessageChannel (Email)
-  Note over H: calls the prop onEventMessageChannel()
-  Note over H: calls the prop onEventEmail()
-```
-
-#### 5.2.33 ContactPopupByMessage: onEventSelectedMessageChannel (Call)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as ContactPopupByMessage · ContactByMessage.tsx
-  participant X as External link
-  U->>H: onEventSelectedMessageChannel → handlerSelectedMessageChannel (Call)
-  Note over H: calls the prop onEventMessageChannel()
-  Note over H: calls the prop onEventCall()
-  H->>X: tel: link
-```
-
-#### 5.2.34 IconText: onClicked
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as IconText · External_Link.tsx
-  participant X as External link
-  U->>H: onClicked → linkClicked
-  H->>X: openInApp_OpenExternalLink
-```
-
-#### 5.2.35 AddressPopup: onEventOpenInGoogleMaps
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as AddressPopup · AddressPopupWrapper.tsx
-  participant X as External link
-  U->>H: onEventOpenInGoogleMaps → inline
-  Note over H: via openInMapsOrGoogleMaps()
-  Note over H: message 'Map is not available'
-  H->>X: changeWindowLocation
-  H->>X: https: link
-```
-
-#### 5.2.36 AddressPopup: onEventOpenInMaps
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as AddressPopup · AddressPopupWrapper.tsx
-  participant X as External link
-  U->>H: onEventOpenInMaps → inline
-  Note over H: via openInMapsOrGoogleMaps()
-  Note over H: message 'Map is not available'
-  H->>X: changeWindowLocation
-  H->>X: https: link
-```
-
-## 6. Server calls
+| Shared blocks and components on the route | OutSystems 34, React 11 with user actions: see the last section |
+| App shell on this route | 2 calls: see [APP_SHELL.md](../APP_SHELL.md) |
+
+## 3. Differences found
+
+Each line is a fact of both sides: a TST call, navigation or variable, and the React code that has it or not. The tool does not judge the behaviour.
+
+- Call `UBTConnect_Utils/CW_Share/ShareSheet/ActionCS_CreateShareProfileLink`. Chain on TST: onClick in CircleButton_WithLabel → CircleButton_WithLabel.action_OnClick → event onClick of CircleButton_WithLabel → ShareSheet.handler_OnClickExternalOption → server CS_CreateShareProfileLink.
+  - React has the function, but this route does not use it: `csCreateShareProfileLink()` [`api/share/shareSheet.ts:39`](../../app/src/api/share/shareSheet.ts#L39).
+  - Note in [`api/share/shareSheet.ts:35`](../../app/src/api/share/shareSheet.ts#L35): "/** CS_CreateShareProfileLink (Handler_OnClickExternalOption, ShareSheet.mvc.js:2250-2301): the share id and URL. */"
+  - Note in [`components/feed/EmbeddedFeed/README.md:66`](../../app/src/components/feed/EmbeddedFeed/README.md#L66): "is not wired: ShareEntity_ByURL (UBTConnect_Utils) is not ported (SocialSharing plugin + CS_CreateShareProfileLink),"
+  - Note in [`containers/ShareSheet/README.md:56`](../../app/src/containers/ShareSheet/README.md#L56): "- ActionCS_CreateShareProfileLink (`cs_CreateShareProfileLink`)."
+- Call `UBTConnect_Utils/ActionCS_CreateShareProfileLink`. Chain on TST: event event_Clicked of ContactPopup → SharePopup.onClick_CallButton → … → UBTConnect_Utils.shareEntity_ByURL → server CS_CreateShareProfileLink.
+  - No React code makes this call.
+  - Note in [`api/share/shareSheet.ts:35`](../../app/src/api/share/shareSheet.ts#L35): "/** CS_CreateShareProfileLink (Handler_OnClickExternalOption, ShareSheet.mvc.js:2250-2301): the share id and URL. */"
+  - Note in [`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:160`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx#L160): "// Handle_Share_Others: closes, then UBTConnect_Utils ShareEntity_ByURL (not ported, README)."
+  - Note in [`components/feed/EmbeddedFeed/README.md:65`](../../app/src/components/feed/EmbeddedFeed/README.md#L65): "- Event_ShareToOthers → Handle_Share_Others (:257, :775-807: close, then ShareEntity_ByURL(Type_ShareObject.Feed, Id))"
+- Call `Connect2_LegacyShared/ActionGetAllApplicationEvents`. Chain on TST: SharePopup.onClick_CallButton → event event_ShareToOthers of SharePopup → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents.
+  - No React code makes this call.
+
+## 4. Questions
+
+1. React calls `/api/UBTConnect_Utils/ActionGetUserInformation` from `fetchUserInformation()` [`api/member/userInformation.ts:6`](../../app/src/api/member/userInformation.ts#L6) (shell + page). TST OneSchoolGlobalCarousel has no chain to this call. Does the call belong to this route?
+2. React calls `/api/UBTConnect_Utils/CacheControl_Policies/DataActionGetCacheInfo` from `fetchPolicies()` [`api/app/repository.ts:54`](../../app/src/api/app/repository.ts#L54) (shell + page). TST OneSchoolGlobalCarousel has no chain to this call. Does the call belong to this route?
+3. React calls `/api/UBTConnect_Utils/ActionGetSignedImagesInBulk` from `cache_SignedImageURL_GetCallback()` [`lib/ubtConnectUtils/actions.ts:124`](../../app/src/lib/ubtConnectUtils/actions.ts#L124) (page). TST OneSchoolGlobalCarousel has no chain to this call. Does the call belong to this route?
+4. React calls `/api/UBTConnect_Utils/ServiceAPIDeleteNoteByNoteId` from `deleteNote()` [`api/note/repository.ts:73`](../../app/src/api/note/repository.ts#L73) (page). TST OneSchoolGlobalCarousel has no chain to this call. Does the call belong to this route?
+5. React calls `/api/UBTConnect_Utils/ServiceAPIUpdateNote` from `updateNote()` [`api/note/repository.ts:66`](../../app/src/api/note/repository.ts#L66) (page). TST OneSchoolGlobalCarousel has no chain to this call. Does the call belong to this route?
+
+## 5. Server calls
 
 All columns come from the code, without interpretation:
 
@@ -1077,38 +82,269 @@ All columns come from the code, without interpretation:
 | 12 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx) | implemented |
 | 13 | `UBTConnect_Utils/ActionCS_CreateShareProfileLink` | server action | `UBTConnect_Utils` | event event_Clicked of ContactPopup → SharePopup.onClick_CallButton → … → UBTConnect_Utils.shareEntity_ByURL → server CS_CreateShareProfileLink | no | – | – | **missing** |
 
-## 7. Missing in React
+## 6. User actions
 
-- Call `UBTConnect_Utils/CW_Share/ShareSheet/ActionCS_CreateShareProfileLink`. Chain on TST: onClick in CircleButton_WithLabel → CircleButton_WithLabel.action_OnClick → event onClick of CircleButton_WithLabel → ShareSheet.handler_OnClickExternalOption → server CS_CreateShareProfileLink.
-  - React has the function, but this route does not use it: `csCreateShareProfileLink()` [`api/share/shareSheet.ts:39`](../../app/src/api/share/shareSheet.ts#L39).
-  - Note in [`api/share/shareSheet.ts:35`](../../app/src/api/share/shareSheet.ts#L35): "/** CS_CreateShareProfileLink (Handler_OnClickExternalOption, ShareSheet.mvc.js:2250-2301): the share id and URL. */"
-  - Note in [`components/feed/EmbeddedFeed/README.md:66`](../../app/src/components/feed/EmbeddedFeed/README.md#L66): "is not wired: ShareEntity_ByURL (UBTConnect_Utils) is not ported (SocialSharing plugin + CS_CreateShareProfileLink),"
-  - Note in [`containers/ShareSheet/README.md:56`](../../app/src/containers/ShareSheet/README.md#L56): "- ActionCS_CreateShareProfileLink (`cs_CreateShareProfileLink`)."
-- Call `UBTConnect_Utils/ActionCS_CreateShareProfileLink`. Chain on TST: event event_Clicked of ContactPopup → SharePopup.onClick_CallButton → … → UBTConnect_Utils.shareEntity_ByURL → server CS_CreateShareProfileLink.
-  - No React code makes this call.
-  - Note in [`api/share/shareSheet.ts:35`](../../app/src/api/share/shareSheet.ts#L35): "/** CS_CreateShareProfileLink (Handler_OnClickExternalOption, ShareSheet.mvc.js:2250-2301): the share id and URL. */"
-  - Note in [`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:160`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx#L160): "// Handle_Share_Others: closes, then UBTConnect_Utils ShareEntity_ByURL (not ported, README)."
-  - Note in [`components/feed/EmbeddedFeed/README.md:65`](../../app/src/components/feed/EmbeddedFeed/README.md#L65): "- Event_ShareToOthers → Handle_Share_Others (:257, :775-807: close, then ShareEntity_ByURL(Type_ShareObject.Feed, Id))"
-- Call `Connect2_LegacyShared/ActionGetAllApplicationEvents`. Chain on TST: SharePopup.onClick_CallButton → event event_ShareToOthers of SharePopup → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents.
-  - No React code makes this call.
+Two independent lists: the event bindings of the TST views, and the JSX event bindings of the React files. The effects come from the handler and the functions it calls, 3 levels deep. No mapping.
 
-## 8. Questions
+### 6.1 OutSystems (TST)
 
-1. React calls `/api/UBTConnect_Utils/ActionGetUserInformation` from `fetchUserInformation()` [`api/member/userInformation.ts:6`](../../app/src/api/member/userInformation.ts#L6) (shell + page). TST OneSchoolGlobalCarousel has no chain to this call. Does the call belong to this route?
-2. React calls `/api/UBTConnect_Utils/CacheControl_Policies/DataActionGetCacheInfo` from `fetchPolicies()` [`api/app/repository.ts:54`](../../app/src/api/app/repository.ts#L54) (shell + page). TST OneSchoolGlobalCarousel has no chain to this call. Does the call belong to this route?
-3. React calls `/api/UBTConnect_Utils/ActionGetSignedImagesInBulk` from `cache_SignedImageURL_GetCallback()` [`lib/ubtConnectUtils/actions.ts:124`](../../app/src/lib/ubtConnectUtils/actions.ts#L124) (page). TST OneSchoolGlobalCarousel has no chain to this call. Does the call belong to this route?
-4. React calls `/api/UBTConnect_Utils/ServiceAPIDeleteNoteByNoteId` from `deleteNote()` [`api/note/repository.ts:73`](../../app/src/api/note/repository.ts#L73) (page). TST OneSchoolGlobalCarousel has no chain to this call. Does the call belong to this route?
-5. React calls `/api/UBTConnect_Utils/ServiceAPIUpdateNote` from `updateNote()` [`api/note/repository.ts:66`](../../app/src/api/note/repository.ts#L66) (page). TST OneSchoolGlobalCarousel has no chain to this call. Does the call belong to this route?
+None.
 
-## 9. Method
+### 6.2 React
 
-1. **OutSystems (TST).** The tool reads `facts.json` and the compiled code of `migration/screens/OneSchoolGlobalCarousel/analysis/`:
-   - the rendered files;
-   - each server call with its chain of client actions, and the calls that TST made in the capture;
-   - the effects of each user action.
-2. **Route and app shell.** OutSystems: a chain belongs to the app shell when it starts in `CommonUI_InsideLayout`, one of its blocks, or a module action. React: a binding belongs to the app shell when its file is in the code that `main.tsx` loads.
-3. **MCP (DEV).** The tool reads the UI flow with `getScreenNames`. TST wins when DEV is different.
-4. **React.** `react_calls.mjs` reads the app shell from `app/src/main.tsx` and the screen from its `<Route>Page.tsx`. It counts only the code that the app uses.
-5. **Match.** `callAction(M, A)` gives `/api/M/A`. The `x-os-paths` of `app/src/api/openapi.yaml` give the TST call. The status is `implemented` when the TST call is the same. Else the status is `missing`.
+None.
 
-Limit: a name or a call match does not prove the same behaviour. The parity checks of the migration compare the behaviour.
+## 7. Screen inputs and navigation parameters
+
+The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
+The OutSystems files are in `migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/`.
+
+### 7.1 OutSystems (TST)
+
+| Input | Type | Mandatory | Place |
+|---|---|---|---|
+| `In_StartingObjectId` | LongInteger | yes | [`UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalCarousel.mvc.js:71`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalCarousel.mvc.js#L71) |
+
+Navigations with parameters: none.
+
+### 7.2 React
+
+Declared inputs of the route: `In_StartingObjectId: LongInteger` (`app/src/app/routes.generated.ts`).
+
+| Hook | Keys read | Place |
+|---|---|---|
+| `useSearchParams` | none | [`pages/OneSchoolGlobalCarousel/OneSchoolGlobalCarouselPage.tsx:22`](../../app/src/pages/OneSchoolGlobalCarousel/OneSchoolGlobalCarouselPage.tsx#L22) |
+
+Navigations with parameters: none.
+
+## 8. Lifecycle
+
+What runs when the screen and its blocks open and close, without a user action.
+
+### 8.1 OutSystems (TST)
+
+Event handlers. The steps are the node comments and the conditions of the compiled action.
+
+| Block | Event | Action | Steps |
+|---|---|---|---|
+| `OneSchoolGlobalCarousel` | OnInitialize ([`UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalCarousel.mvc.js:453`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalCarousel.mvc.js#L453)) | `screenEvent_OnInitialize` | 1. If preloadedCarousel.carouselItemIds.isEmpty ([`L341`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalCarousel.mvc.js#L341))<br>2. Execute Action: GetPreloadObject ([`L343`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalCarousel.mvc.js#L343))<br>3. Execute Action: AssignFromObject ([`L347`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalCarousel.mvc.js#L347))<br>4. Execute Action: ListIndexOf ([`L351`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalCarousel.mvc.js#L351))<br>5. If ((listIndexOf.position) !== (-1)) ([`L356`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalCarousel.mvc.js#L356))<br>6. StartingPosition = ListIndexOf.Position ([`L358`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalCarousel.mvc.js#L358))<br>7. Foreach PreloadedCarousel.CarouselItemIds ([`L362`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalCarousel.mvc.js#L362))<br>8. Execute Action: ListAppend ([`L369`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalCarousel.mvc.js#L369))<br>9. Else ([`L383`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalCarousel.mvc.js#L383)) |
+| `OneSchoolGlobalDetails_Block` | OnInitialize ([`UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js:1324`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js#L1324)) | `onInitialize` | 1. If isRestoredFromCache ([`L1246`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js#L1246))<br>2. Else ([`L1248`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js#L1248))<br>3. Selected_OneschoolGlobal_SubsectionId = Type_OneschoolGlobal_SubsectionId.UpcomingEvents ([`L1250`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js#L1250)) |
+| `OneSchoolGlobalDetails_Block` | OnReady ([`UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js:1342`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js#L1342)) | `onReady` | 1. If isRestoredFromCache ([`L1160`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js#L1160))<br>2. Else ([`L1162`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js#L1162))<br>3. Execute Action: Get_LookupSection ([`L1164`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js#L1164))<br>4. LookupSections = Get_LookupSection.Out_Lookup ([`L1168`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js#L1168))<br>5. Execute Action: GetSkeleton_UI_OneSchoolGlobal_DetailCard ([`L1171`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js#L1171))<br>6. GetOneSchoolGlobalDetails.Out_OneSchoolGlobal.OneSchoolGlobal_DetailCard = GetSkeleton_UI_OneSchoolGlobal_DetailCard.UI_OneSchoolGlobal_DetailCard ([`L1175`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js#L1175))<br>7. Refresh Query: GetOneSchoolGlobalDetails ([`L1178`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js#L1178)) |
+| `OneSchoolGlobalDetails_Block` | OnParametersChanged ([`UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js:1362`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js#L1362)) | `onParametersChanged` | 1. Execute Action: OnReady ([`L1277`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js#L1277)) |
+
+<details><summary>Sequence diagrams of the screen event handlers (1)</summary>
+
+The diagram keeps the order of the steps in the compiled action. The code does not give the order of the handlers of different blocks.
+
+#### 8.1.1 OneSchoolGlobalCarousel: OnInitialize
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant R as OutSystems runtime
+  participant B as OneSchoolGlobalCarousel
+  R->>B: OnInitialize → screenEvent_OnInitialize
+  alt preloadedCarousel.carouselItemIds.isEmpty
+    B->>B: action GetPreloadObject
+    B->>B: action AssignFromObject
+    B->>B: action ListIndexOf
+    alt ((listIndexOf.position) !== (-1))
+      Note over B: StartingPosition = ListIndexOf.Position
+    end
+    Note over B: Foreach PreloadedCarousel.CarouselItemIds
+    B->>B: action ListAppend
+  else other
+    Note over B: no step
+  end
+```
+
+</details>
+
+Data actions and aggregates. The tool reads `dataFetchDependenciesOriginal`: `0` is a fetch when the block opens, `-1` is a fetch only on demand (a `Refresh Query` step). `Read by` lists the child block inputs, conditions, text widgets and actions that read the result.
+
+| Block | Data action | Fetch | Read by | Place |
+|---|---|---|---|---|
+| `OneSchoolGlobalDetails_Block` | `GetOneSchoolGlobalDetails` | on demand (`-1`) | `SkeletonSection.In_IsLoading` ([`UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js:207`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js#L207)), `UBT_LazyImage.ImageURL` ([`UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js:255`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js#L255)), `view` ([`UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js:256`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js#L256)), `UBT_LazyImage.EntityId` ([`UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js:257`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js#L257)), `ImageCard__Content.In_Title` ([`UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js:284`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js#L284)), `CustomText.In_Text` ([`UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js:334`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js#L334)), `AddressPopup_Wrapper.In_Address` ([`UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js:414`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js#L414)), `AddressPopup_Wrapper.In_Coordinates` ([`UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js:416`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js#L416)), `AddressPopup_Wrapper.source` ([`UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js:440`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js#L440)), `text` ([`UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js:461`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js#L461)), `action onReady` ([`UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js:1176`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js#L1176)) | [`UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js:1105`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js#L1105) |
+
+### 8.2 React
+
+Effects (`useEffect`, `useLayoutEffect`) of the screen files, and the effects of shared components that make a call, a navigation or a message.
+
+None.
+
+Queries. A query fetches when its component mounts and when its key changes. `Read by` lists what reads the result in the same file.
+
+None.
+
+## 9. Client state
+
+Client variables and browser storage that the route reads or writes. Other screens can read this state.
+
+### 9.1 OutSystems (TST)
+
+None.
+
+### 9.2 React
+
+None.
+
+## 10. Access
+
+Who can open the route, and the role checks in the screen and block code.
+
+| Side | Rule | Place |
+|---|---|---|
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalCarousel.mvc.js:478`](../../migration/screens/OneSchoolGlobalCarousel/analysis/sources/raw/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalCarousel.mvc.js#L478) |
+| React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
+
+Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.
+
+## 11. Errors
+
+What the route does when an action or a call fails.
+
+### 11.1 OutSystems (TST)
+
+The actions of the screen and its blocks have no `Handle Error` node.
+
+An error without a handler goes to the `OnException` of the UI flow (`handleError`):
+
+1. UI flow `Directory_OneSchoolGlobal` not in `migration/shell/sources/`. Handled errors: none.
+
+### 11.2 React
+
+None.
+
+`flow handler`: `raiseToFlowHandler` gives the error to the flow handler of the screen (`app/src/platform/feedback/flowErrors.ts`). The tool lists `.catch`, `try/catch` and `onError` that do not give the error to it.
+
+## 12. Shared blocks and components on this route
+
+Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pages/` (React) that the route renders. Their facts belong to them, not to the route. This section gives their user actions once, without diagrams.
+
+### OutSystems (TST)
+
+| Block | Module | React port | User actions |
+|---|---|---|---|
+| `Layout_DetailPage` | `UBTConnectLibrary` | [`components/layout/DetailLayout/DetailLayout.tsx`](../../app/src/components/layout/DetailLayout/DetailLayout.tsx), [`containers/DetailLayout/DetailLayoutContainer.tsx`](../../app/src/containers/DetailLayout/DetailLayoutContainer.tsx) | 1 |
+| `EntitiesCarousel` | `UBTConnect` | [`components/directory/EntitiesCarousel/EntitiesCarousel.tsx`](../../app/src/components/directory/EntitiesCarousel/EntitiesCarousel.tsx) | 0 |
+| `Carousel` | `OutSystemsUI_2_23` | [`components/ui/Carousel/Carousel.tsx`](../../app/src/components/ui/Carousel/Carousel.tsx) | 0 |
+| `EntitiesCarousel_Element` | `UBTConnect` | [`components/directory/EntitiesCarouselElement/EntitiesCarouselElement.tsx`](../../app/src/components/directory/EntitiesCarouselElement/EntitiesCarouselElement.tsx) | 0 |
+| `EntitiesCarousel_OneSchoolGlobal` | `UBTConnect` | [`components/directory/CarouselOneSchoolGlobalDetails/CarouselOneSchoolGlobalDetails.tsx`](../../app/src/components/directory/CarouselOneSchoolGlobalDetails/CarouselOneSchoolGlobalDetails.tsx) | 0 |
+| `SubLayout_DirectoryDetailScreen` | `UBTConnect` | [`components/layout/DirectoryDetailLayout/DirectoryDetailLayout.tsx`](../../app/src/components/layout/DirectoryDetailLayout/DirectoryDetailLayout.tsx) | 0 |
+| `ImageCard_LazyLoading` | `UBTConnectLibrary` | [`components/ui/ImageCard/ImageCard.tsx`](../../app/src/components/ui/ImageCard/ImageCard.tsx) | 0 |
+| `UBT_LazyImage` | `UBTConnect_Utils` | [`components/ui/EntityLazyImage/EntityLazyImage.tsx`](../../app/src/components/ui/EntityLazyImage/EntityLazyImage.tsx) | 0 |
+| `LazyImage` | `UBTConnectLibrary` | [`components/ui/LazyImage/LazyImage.tsx`](../../app/src/components/ui/LazyImage/LazyImage.tsx) | 0 |
+| `ImageCard__Content` | `UBTConnectLibrary` | [`components/ui/ImageCardContent/ImageCardContent.tsx`](../../app/src/components/ui/ImageCardContent/ImageCardContent.tsx) | 0 |
+| `AddressPopup_Wrapper` | `UBTConnect_Utils` | [`components/contact/AddressPopupWrapper/AddressPopupWrapper.tsx`](../../app/src/components/contact/AddressPopupWrapper/AddressPopupWrapper.tsx) | 1 |
+| `AddressPopup` | `UBTConnect_Utils` | [`components/contact/AddressPopup/AddressPopup.tsx`](../../app/src/components/contact/AddressPopup/AddressPopup.tsx) | 0 |
+| `ContactPopup` | `UBTConnect_Utils` | [`components/contact/ContactPopup/ContactPopup.tsx`](../../app/src/components/contact/ContactPopup/ContactPopup.tsx) | 0 |
+| `Directory_EntityDetailsActions` | `UBTConnect` | [`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx), [`containers/EntityDetailsActions/entityDetailsActionsState.ts`](../../app/src/containers/EntityDetailsActions/entityDetailsActionsState.ts), [`containers/EntityDetailsActions/useEntityDetailsActions.ts`](../../app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts) | 6 |
+| `ActionsMenu` | `UBTConnectLibrary` | [`components/ui/ActionsMenu/ActionsMenu.tsx`](../../app/src/components/ui/ActionsMenu/ActionsMenu.tsx) | 0 |
+| `CircleButton_IconPrimary` | `UBTConnectLibrary` | [`components/ui/CircleButtonIconPrimary/CircleButtonIconPrimary.tsx`](../../app/src/components/ui/CircleButtonIconPrimary/CircleButtonIconPrimary.tsx) | 0 |
+| `CircleButton_WithLabel` | `UBTConnectLibrary` | [`components/ui/CircleButtonWithLabel/CircleButtonWithLabel.tsx`](../../app/src/components/ui/CircleButtonWithLabel/CircleButtonWithLabel.tsx) | 0 |
+| `CircleButton` | `UBTConnectLibrary` | [`components/ui/CircleButton/CircleButton.tsx`](../../app/src/components/ui/CircleButton/CircleButton.tsx) | 0 |
+| `ContactByMessage_Wrapper` | `UBTConnect_Utils` | [`components/contact/ContactByMessage/ContactByMessage.tsx`](../../app/src/components/contact/ContactByMessage/ContactByMessage.tsx) | 1 |
+| `ContactPopup_ByMessage` | `UBTConnect_Utils` | [`components/contact/ContactPopupByMessage/ContactPopupByMessage.tsx`](../../app/src/components/contact/ContactPopupByMessage/ContactPopupByMessage.tsx) | 0 |
+| `ContactPopup_ByPhone` | `UBTConnect_Utils` | [`components/contact/ContactPopupByPhone/ContactPopupByPhone.tsx`](../../app/src/components/contact/ContactPopupByPhone/ContactPopupByPhone.tsx) | 1 |
+| `SharePopup` | `UBTConnect_Utils` | [`components/share/SharePopup/SharePopup.tsx`](../../app/src/components/share/SharePopup/SharePopup.tsx) | 0 |
+| `ExpandableSection` | `UBTConnectLibrary` | [`containers/OneSchoolGlobalDetails/components/ExpandableSection.tsx`](../../app/src/containers/OneSchoolGlobalDetails/components/ExpandableSection.tsx) | 0 |
+| `IconText` | `UBTConnectLibrary` | [`components/ui/IconText/IconText.tsx`](../../app/src/components/ui/IconText/IconText.tsx) | 0 |
+| `ComingSoon` | `UBTConnectLibrary` | [`components/ui/ComingSoon/ComingSoon.tsx`](../../app/src/components/ui/ComingSoon/ComingSoon.tsx) | 0 |
+| `EntitiesCarousel_HeaderGenerator` | `UBTConnect` | [`components/directory/EntitiesCarouselHeader/EntitiesCarouselHeader.tsx`](../../app/src/components/directory/EntitiesCarouselHeader/EntitiesCarouselHeader.tsx) | 0 |
+| `BottomBarMenu` | `UBTConnect` | [`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx) | 1 |
+| `BottomBarContent` | `UBTConnect` | [`components/layout/BottomBarContent/BottomBarContent.tsx`](../../app/src/components/layout/BottomBarContent/BottomBarContent.tsx) | 0 |
+| `BottomBarItem` | `OutSystemsUI_2_23` | [`components/ui/BottomBarItem/BottomBarItem.tsx`](../../app/src/components/ui/BottomBarItem/BottomBarItem.tsx) | 0 |
+| `App_IconBadge` | `UBTConnect` | [`components/layout/BottomBarIconBadge/BottomBarIconBadge.tsx`](../../app/src/components/layout/BottomBarIconBadge/BottomBarIconBadge.tsx) | 0 |
+| `IconBadge` | `UBTConnectLibrary` | [`components/ui/IconBadge/IconBadge.tsx`](../../app/src/components/ui/IconBadge/IconBadge.tsx) | 0 |
+| `Badge` | `UBTConnectLibrary` | [`components/ui/Badge/Badge.tsx`](../../app/src/components/ui/Badge/Badge.tsx) | 0 |
+| `NotesSheet` | `UBTConnect_Utils` | [`components/note/NotesSheet/NotesSheet.tsx`](../../app/src/components/note/NotesSheet/NotesSheet.tsx) | 1 |
+| `ShareSheet` | `UBTConnect_Utils` | [`containers/ShareSheet/ShareSheetContainer.tsx`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx), [`containers/ShareSheet/components/ShareSheetFirstStep.tsx`](../../app/src/containers/ShareSheet/components/ShareSheetFirstStep.tsx), [`containers/ShareSheet/components/ShareSheetSearchStep.tsx`](../../app/src/containers/ShareSheet/components/ShareSheetSearchStep.tsx), [`containers/ShareSheet/shareSheetState.ts`](../../app/src/containers/ShareSheet/shareSheetState.ts), [`containers/ShareSheet/useShareSheet.ts`](../../app/src/containers/ShareSheet/useShareSheet.ts) | 5 |
+
+<details><summary>User actions of the shared blocks (21)</summary>
+
+| # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
+|---|---|---|---|---|---|
+| 1 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `home` | goes to HomeFeed |
+| 2 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `directory` | goes to CountryList, Locality_Details |
+| 3 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `updates` | goes to Updates_SingleList |
+| 4 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `bookmarks` | goes to Bookmarks |
+| 5 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `menu` | goes to Menu |
+| 6 | `Directory_EntityDetailsActions` | `event_Click_Bookmark of ActionsMenu`<br>`event_Click_Unbookmark of ActionsMenu` | `handle_Bookmark` | – | calls AddBookmark2, DeleteBookmarkByBookmarkId2 |
+| 7 | `Directory_EntityDetailsActions` | `event_Click_Notes of ActionsMenu` | `handler_AddNotesOnClick` | – | calls FetchNotes |
+| 8 | `Directory_EntityDetailsActions` | `event_Cancel of Wrapper`<br>`event_Click_Email of ActionsMenu` | `handle_Mail` | – | goes to ContactByEmailOneSchoolGlobal |
+| 9 | `Directory_EntityDetailsActions` | `event_Email of Wrapper` | `handle_Mail_Page` | – | goes to ContactByEmailMember |
+| 10 | `Directory_EntityDetailsActions` | `event_ShareToConnect of SharePopup` | `handle_Share_Connect` | – | goes to LegacyShareObject |
+| 11 | `Directory_EntityDetailsActions` | `event_ShareToOthers of SharePopup` | `handle_Share_Others` | – | calls GetAllApplicationEvents, CS_CreateShareProfileLink, AppManager_SynchAppContext |
+| 12 | `Layout_DetailPage` | `click of Icon` | `onClick_BackNavigation` | – | goes to previous screen |
+| 13 | `AddressPopup_Wrapper` | `event_OpenInGoogleMaps of AddressPopup`<br>`event_OpenInMaps of AddressPopup` | `handler_OpenInMapsOrGoogleMaps` | – | goes to URL mapsAddress; opens an external link; shows a message |
+| 14 | `ContactByMessage_Wrapper` | `event_SelectedMessageChannel of ByMessage` | `handler_SelectedMessageChannel` | – | opens an external link |
+| 15 | `ContactPopup_ByPhone` | `event_Clicked of ContactPopup` | `onClick_CallButton` | – | opens an external link |
+| 16 | `NotesSheet` | `onSubmitRequested of AddNote` | `handler_OnSubmitNote` | – | calls AddNote; shows a message |
+| 17 | `ShareSheet` | `onClick of WithLabel` | `handler_OnClickRecentMember` | – | calls CS_ShareObject; shows a message; asks for a confirmation |
+| 18 | `ShareSheet` | `onClick of WithLabel` | `handler_OnClickExternalOption` | – | calls CS_CreateShareProfileLink |
+| 19 | `ShareSheet` | `event_Submit of Input` | `handler_InputEventSubmit` | – | calls GetAvailableMembers |
+| 20 | `ShareSheet` | `click of Icon` | `handler_SearchResultItemOnSelect` | – | shows a message |
+| 21 | `ShareSheet` | `buttonOnClick of Button` | `handler_OnClickSend` | – | calls CS_ShareObject; shows a message |
+
+</details>
+
+
+### React
+
+| File | User actions |
+|---|---|
+| [`components/contact/AddressPopupWrapper/AddressPopupWrapper.tsx`](../../app/src/components/contact/AddressPopupWrapper/AddressPopupWrapper.tsx) | 2 |
+| [`components/contact/ContactByMessage/ContactByMessage.tsx`](../../app/src/components/contact/ContactByMessage/ContactByMessage.tsx) | 1 |
+| [`components/contact/ContactPopupByPhone/ContactPopupByPhone.tsx`](../../app/src/components/contact/ContactPopupByPhone/ContactPopupByPhone.tsx) | 1 |
+| [`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx) | 2 |
+| [`components/layout/CommonUiLayout/CommonUiLayout.tsx`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx) | 2 |
+| [`components/note/NotesSheet/NotesSheet.tsx`](../../app/src/components/note/NotesSheet/NotesSheet.tsx) | 1 |
+| [`containers/DetailLayout/DetailLayoutContainer.tsx`](../../app/src/containers/DetailLayout/DetailLayoutContainer.tsx) | 1 |
+| [`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx) | 7 |
+| [`containers/NoteListActions/NoteListActionsContainer.tsx`](../../app/src/containers/NoteListActions/NoteListActionsContainer.tsx) | 2 |
+| [`containers/OneSchoolGlobalDetails/components/External_Link.tsx`](../../app/src/containers/OneSchoolGlobalDetails/components/External_Link.tsx) | 1 |
+| [`containers/ShareSheet/ShareSheetContainer.tsx`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx) | 5 |
+
+<details><summary>User actions of the shared components (36)</summary>
+
+| # | File | Element | Event prop | Handler | Branch | Effects |
+|---|---|---|---|---|---|---|
+| 1 | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:80`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L80) | `<PreventBackNavigation>` | `onBackNavigationPrevented` | `redirectHome` | – | goes to HomeFeed |
+| 2 | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:82`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L82) | `<BackNavigationHandler>` | `onBackNavigation` | `maybeRedirectHome` | – | goes to HomeFeed |
+| 3 | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Home` | goes to HomeFeed |
+| 4 | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Directory` | goes to CountryList, Locality_Details |
+| 5 | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Updates` | goes to Updates_SingleList |
+| 6 | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Bookmarks` | goes to Bookmarks |
+| 7 | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Menu` | goes to Menu |
+| 8 | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `other` | calls the prop onBottomBarClicked() |
+| 9 | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Home` | goes to HomeFeed |
+| 10 | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Directory` | goes to CountryList, Locality_Details |
+| 11 | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Updates` | goes to Updates_SingleList |
+| 12 | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Bookmarks` | goes to Bookmarks |
+| 13 | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Menu` | goes to Menu |
+| 14 | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `other` | calls the prop onBottomBarClicked() |
+| 15 | [`containers/DetailLayout/DetailLayoutContainer.tsx:66`](../../app/src/containers/DetailLayout/DetailLayoutContainer.tsx#L66) | `<DetailLayout>` | `onBack` | `navigateBack` | – | goes to previous screen |
+| 16 | [`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:100`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx#L100) | `<ActionsMenu>` | `onEventClickBookmark` | `onClickBookmark` | – | calls ServiceAPIDeleteBookmarkByBookmarkId2, ServiceAPIAddBookmark2; shows a message; calls the prop onOnChangeBookmark() |
+| 17 | [`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:101`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx#L101) | `<ActionsMenu>` | `onEventClickUnbookmark` | `onClickBookmark` | – | calls ServiceAPIDeleteBookmarkByBookmarkId2, ServiceAPIAddBookmark2; shows a message; calls the prop onOnChangeBookmark() |
+| 18 | [`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:109`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx#L109) | `<ActionsMenu>` | `onEventClickNotes` | `inline` | – | calls DataActionFetchNotes |
+| 19 | [`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:112`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx#L112) | `<ActionsMenu>` | `onEventClickEmail` | `inline` | – | goes to ContactByEmailOneSchoolGlobal |
+| 20 | [`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:123`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx#L123) | `<ContactByMessage>` | `onEventCancel` | `inline` | – | goes to ContactByEmailOneSchoolGlobal |
+| 21 | [`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:126`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx#L126) | `<ContactByMessage>` | `onEventEmail` | `handleMailPage` | – | goes to ContactByEmailMember |
+| 22 | [`containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx:155`](../../app/src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx#L155) | `<SharePopup>` | `onEventShareToConnect` | `inline` | – | goes to LegacyShareObject |
+| 23 | [`containers/ShareSheet/ShareSheetContainer.tsx:111`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L111) | `<ShareSheetFirstStep>` | `onClickRecentMember` | `onClickRecentMember` | – | calls ActionCS_ShareObject; shows a message; asks for a confirmation |
+| 24 | [`containers/ShareSheet/ShareSheetContainer.tsx:127`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L127) | `<ShareSheetSearchStep>` | `onSubmit` | `onSubmit` | – | setSearchFetchId(): a query fetches again |
+| 25 | [`containers/ShareSheet/ShareSheetContainer.tsx:129`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L129) | `<ShareSheetSearchStep>` | `onSelect` | `onSelect` | – | shows a message |
+| 26 | [`containers/ShareSheet/ShareSheetContainer.tsx:130`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L130) | `<ShareSheetSearchStep>` | `onClickUpgradeSubscription` | `onClickUpgradeSubscription` | – | opens an external link |
+| 27 | [`containers/ShareSheet/ShareSheetContainer.tsx:148`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx#L148) | `<ActionButton>` | `onButtonOnClick` | `onClickSend` | – | calls ActionCS_ShareObject; shows a message |
+| 28 | [`components/note/NotesSheet/NotesSheet.tsx:175`](../../app/src/components/note/NotesSheet/NotesSheet.tsx#L175) | `<AddNote>` | `onOnSubmitRequested` | `addNoteRequested` | – | calls ServiceAPIAddNote; shows a message; calls the prop onOnNotesChanged() |
+| 29 | [`containers/NoteListActions/NoteListActionsContainer.tsx:157`](../../app/src/containers/NoteListActions/NoteListActionsContainer.tsx#L157) | `<NoteList>` | `onOnDeleteRequested` | `inline` | – | calls ServiceAPIDeleteNoteByNoteId; shows a message; calls the prop onOnNoteDeleted() |
+| 30 | [`containers/NoteListActions/NoteListActionsContainer.tsx:160`](../../app/src/containers/NoteListActions/NoteListActionsContainer.tsx#L160) | `<NoteList>` | `onOnSaveEditRequested` | `inline` | – | calls ServiceAPIUpdateNote; shows a message; calls the prop onOnSaveEditNote(); calls the prop onOnEditingStateChanged(); calls the prop onOnSaveEditNote(); calls the prop onOnEditingStateChanged() |
+| 31 | [`components/contact/ContactPopupByPhone/ContactPopupByPhone.tsx:66`](../../app/src/components/contact/ContactPopupByPhone/ContactPopupByPhone.tsx#L66) | `<ContactPopup>` | `onEventClicked` | `inline` | – | opens an external link; calls the prop onEventCall() |
+| 32 | [`components/contact/ContactByMessage/ContactByMessage.tsx:64`](../../app/src/components/contact/ContactByMessage/ContactByMessage.tsx#L64) | `<ContactPopupByMessage>` | `onEventSelectedMessageChannel` | `handlerSelectedMessageChannel` | `Email` | calls the prop onEventMessageChannel(); calls the prop onEventEmail() |
+| 33 | [`components/contact/ContactByMessage/ContactByMessage.tsx:64`](../../app/src/components/contact/ContactByMessage/ContactByMessage.tsx#L64) | `<ContactPopupByMessage>` | `onEventSelectedMessageChannel` | `handlerSelectedMessageChannel` | `Call` | opens an external link; calls the prop onEventMessageChannel(); calls the prop onEventCall() |
+| 34 | [`containers/OneSchoolGlobalDetails/components/External_Link.tsx:56`](../../app/src/containers/OneSchoolGlobalDetails/components/External_Link.tsx#L56) | `<IconText>` | `onClicked` | `linkClicked` | – | opens an external link |
+| 35 | [`components/contact/AddressPopupWrapper/AddressPopupWrapper.tsx:110`](../../app/src/components/contact/AddressPopupWrapper/AddressPopupWrapper.tsx#L110) | `<AddressPopup>` | `onEventOpenInGoogleMaps` | `inline` | – | opens an external link; shows a message |
+| 36 | [`components/contact/AddressPopupWrapper/AddressPopupWrapper.tsx:113`](../../app/src/components/contact/AddressPopupWrapper/AddressPopupWrapper.tsx#L113) | `<AddressPopup>` | `onEventOpenInMaps` | `inline` | – | opens an external link; shows a message |
+
+</details>
+

@@ -1,12 +1,8 @@
-# LegacyShareObject: server calls and user actions in OutSystems and React
+# LegacyShareObject: OutSystems (TST) and React
 
-This file compares the route `/UBTConnect/LegacyShareObject` in OutSystems (TST) with the React app.
-The tool `route-actions/tools/check_route.py` wrote this file on 2026-11-04.
-The tool reads the code. It does not run the app.
+The route `/UBTConnect/LegacyShareObject`, read from the TST compiled code and from the React code by `route-actions/tools/check_route.py` on 2026-11-05. Facts only, each with its place. The method is in [README.md](../README.md).
 
-The app shell is in [APP_SHELL.md](../APP_SHELL.md), not here.
-- OutSystems app shell: `CommonUI_InsideLayout` with its blocks (TST survey), and the chains that start in a module action.
-- React app shell: the code that `app/src/main.tsx` loads (router, `AppFrame`, app start, hosts).
+Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/LegacyShareObject/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
 ## 1. Route
 
@@ -17,245 +13,34 @@ The app shell is in [APP_SHELL.md](../APP_SHELL.md), not here.
 | UI flow | `Legacy_Share` | MCP `getScreenNames` (DEV) |
 | React screen | [`pages/LegacyShareObject/LegacyShareObjectPage.tsx`](../../app/src/pages/LegacyShareObject/LegacyShareObjectPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
-| Code read | OutSystems: 12 screen and block files of the route, 23 app shell files. React: 158 screen files | TST `facts.json`, `react_calls.mjs` |
+| Screenshots | [`migration/screens/LegacyShareObject/parity`](../../migration/screens/LegacyShareObject/parity) | `route.py parity` |
+| Code read | OutSystems: 1 files of the UI flow, 11 shared blocks, 23 app shell files. React: 158 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
 | Check | Result |
 |---|---|
 | Server calls of the route on TST | 6: React makes 6, **0 missing** |
-| User actions of the route | OutSystems: 5 diagrams. React: 5 diagrams |
-| React calls of the screen that TST does not make | 2 (see [questions](#8-questions)) |
-| Screen and blocks with a React port | 12 of 12 |
+| Differences found | **0** (see [section 3](#3-differences-found)) |
+| Questions | 2 (see [section 4](#4-questions)) |
+| User actions of the route (own code) | OutSystems: 1. React: 2 |
+| Screen and blocks of the UI flow with a React port | 1 of 1 |
 | Navigation targets found in React | 0 of 0 |
-| App shell on this route | 9 calls; event bindings: OutSystems 10, React 7: see [APP_SHELL.md](../APP_SHELL.md) |
+| Shared blocks and components on the route | OutSystems 11, React 2 with user actions: see the last section |
+| App shell on this route | 9 calls: see [APP_SHELL.md](../APP_SHELL.md) |
 
-## 3. Screenshots
+## 3. Differences found
 
-The screenshots come from the last parity run (`route.py parity`). The TST capture hides personal text with dots. The React build shows fictional mock data.
+Each line is a fact of both sides: a TST call, navigation or variable, and the React code that has it or not. The tool does not judge the behaviour.
 
-| State | TST (expected) | React (build) | Difference |
-|---|---|---|---|
-| `default`<br>390x844, mock `real`<br>2026-10-29<br>pixel difference 0.0% | <img src="../../migration/screens/LegacyShareObject/parity/default.expected.png" width="200" alt="default expected"> | <img src="../../migration/screens/LegacyShareObject/parity/default.build.png" width="200" alt="default build"> | <img src="../../migration/screens/LegacyShareObject/parity/default.diff.png" width="200" alt="default diff"> |
-| `loading`<br>390x844, mock `loading`<br>2026-10-29<br>pixel difference 0.0% | <img src="../../migration/screens/LegacyShareObject/parity/loading.expected.png" width="200" alt="loading expected"> | <img src="../../migration/screens/LegacyShareObject/parity/loading.build.png" width="200" alt="loading build"> | <img src="../../migration/screens/LegacyShareObject/parity/loading.diff.png" width="200" alt="loading diff"> |
-| `offline`<br>390x844, mock `error`<br>2026-10-29<br>pixel difference 0.0% | <img src="../../migration/screens/LegacyShareObject/parity/offline.expected.png" width="200" alt="offline expected"> | <img src="../../migration/screens/LegacyShareObject/parity/offline.build.png" width="200" alt="offline build"> | <img src="../../migration/screens/LegacyShareObject/parity/offline.diff.png" width="200" alt="offline diff"> |
+None.
 
-## 4. Diagram
+## 4. Questions
 
-- A box on the left is the block or module of the action that calls the server (TST code).
-- A line connects each call to the React action that makes the same call.
-- The right column shows the React components that use each React action.
-- A red box is a call that React does not make.
+1. React calls `/api/UBTConnect_Utils/CacheControl_Policies/DataActionGetCacheInfo` from `fetchPolicies()` [`api/app/repository.ts:54`](../../app/src/api/app/repository.ts#L54) (shell + page). TST LegacyShareObject has no chain to this call. Does the call belong to this route?
+2. React calls `/api/Connect2_LegacyShared/ActionGetSignedPhotosInBulk` from `getSignedPhotosInBulk()` [`lib/legacyShared/actions.ts:49`](../../app/src/lib/legacyShared/actions.ts#L49) (page). TST LegacyShareObject has no chain to this call. Does the call belong to this route?
 
-```mermaid
-flowchart LR
-  subgraph OS["OutSystems (TST compiled)"]
-    subgraph OS_screen["Screen and its blocks"]
-      o0["ProfileList"]
-      o1["ScreenBlock_ShareObject"]
-    end
-  end
-  subgraph EP["Server calls (TST)"]
-    e2["ScreenDataSetGetShareObjectTypeById"]
-    e3["ServiceAPIGetHouseholdDetails"]
-    e4["DataActionGetAvailableUsers"]
-    e5["ActionShareObject"]
-    e6["ServiceAPIGet_UI_CommunityBusinessShareCard"]
-    e7["ActionShareObject"]
-  end
-  subgraph RE["React actions"]
-    subgraph RE_page["Screen"]
-      r8["fetchAvailableUsers()"]
-      r9["fetchCommunityBusinessShareCard()"]
-      r10["fetchHouseholdShareCard()"]
-      r11["fetchShareObjectTypeLabel()"]
-      r12["shareObject()"]
-    end
-  end
-  subgraph RC["React components"]
-    c13["ProfileListBlock"]
-    c14["ShareObjectBlock"]
-  end
-  r9 --- c14
-  r10 --- c14
-  r11 --- c14
-  r8 --- c13
-  r12 --- c13
-  o1 --> e2
-  o1 --> e3
-  o1 --> e5
-  o1 --> e6
-  o0 --> e4
-  o0 --> e7
-  e2 --- r11
-  e3 --- r10
-  e4 --- r8
-  e5 --- r12
-  e6 --- r9
-  e7 --- r12
-  classDef missing fill:#fde2e1,stroke:#c0392b,color:#7b241c
-  classDef ok fill:#e3f4e8,stroke:#2e7d4f,color:#1d4d31
-  class e2,e3,e4,e5,e6,e7 ok
-```
-
-## 5. User actions
-
-The two lists are independent: the OutSystems list comes from the TST compiled code, the React list from the React code. The tool does not map one list to the other.
-
-- **OutSystems:** each event binding of the compiled views (`<event>$Action: function` of a child block or widget, `on<Event>: function` of an HTML element) with its handler.
-- **React:** each JSX attribute `on<Event>={handler}` with its handler.
-- Both lists keep only the bindings whose handler has an effect: a server call, a navigation, an external link, a message or a confirm dialog. The tool follows the called functions 3 levels deep.
-- When the handler has branches in the code (`switch` case, `if` with `===`), each branch has its own diagram. The branch name is the constant of the condition. `other` is the last `else` or `default`.
-- An arrow to the server gives the inputs of the call, the return arrow its outputs (contract `app/src/api/openapi.yaml`).
-
-### 5.1 OutSystems (TST)
-
-| # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
-|---|---|---|---|---|---|
-| [1](#511-menuicon_back-inline) | `MenuIcon_Back` | `onClick (HTML element)` | `inline` | – | goes to previous screen |
-| [2](#512-profilelist-input_searchfilteronkeyup) | `ProfileList` | `onKeyUp (HTML element)` | `input_SearchFilterOnKeyup` | – | calls GetAvailableUsers |
-| [3](#513-profilelist-input_searchfilteronchange) | `ProfileList` | `onChange (HTML element)` | `input_SearchFilterOnChange` | – | calls GetAvailableUsers |
-| [4](#514-freesubscriptionactiondialog-onconfirmed) | `FreeSubscriptionActionDialog` | `confirmed of ActionConfirmationDialog` | `onConfirmed` | – | goes to URL getCacheableUserInfo…subscriptionManageLink |
-| [5](#515-legacyshareobject-handler_shareobject_subscriptiondenied) | `LegacyShareObject` | `subscriptionDenied of ShareObject` | `handler_ShareObject_SubscriptionDenied` | – | asks for a confirmation |
-
-#### 5.1.1 MenuIcon_Back: inline
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as MenuIcon_Back
-  participant N as Navigation
-  U->>B: onClick (HTML element) → inline
-  B->>N: go to previous screen
-```
-
-#### 5.1.2 ProfileList: input_SearchFilterOnKeyup
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as ProfileList
-  participant S as Server (TST calls)
-  U->>B: onKeyUp (HTML element) → input_SearchFilterOnKeyup
-  B->>S: GetAvailableUsers(HasSearched, MaxRecords, NoResultsFoundMessage, …)
-  S-->>B: Label, Response
-```
-
-#### 5.1.3 ProfileList: input_SearchFilterOnChange
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as ProfileList
-  participant S as Server (TST calls)
-  U->>B: onChange (HTML element) → input_SearchFilterOnChange
-  B->>S: GetAvailableUsers(HasSearched, MaxRecords, NoResultsFoundMessage, …)
-  S-->>B: Label, Response
-```
-
-#### 5.1.4 FreeSubscriptionActionDialog: onConfirmed
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as FreeSubscriptionActionDialog
-  participant N as Navigation
-  U->>B: confirmed of ActionConfirmationDialog → onConfirmed
-  B->>N: go to URL getCacheableUserInfo…subscriptionManageLink
-```
-
-#### 5.1.5 LegacyShareObject: handler_ShareObject_SubscriptionDenied
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as LegacyShareObject
-  U->>B: subscriptionDenied of ShareObject → handler_ShareObject_SubscriptionDenied
-  Note over B: via UBTConnect_Utils.app_Subscription_ShowUpgradePopUp
-  Note over B: confirm dialog
-```
-
-### 5.2 React
-
-| # | File | Element | Event prop | Handler | Branch | Effects |
-|---|---|---|---|---|---|---|
-| [1](#521-profilelistblock-onsubscriptiondenied) | [`pages/LegacyShareObject/LegacyShareObjectPage.tsx:61`](../../app/src/pages/LegacyShareObject/LegacyShareObjectPage.tsx#L61) | `<ProfileListBlock>` | `onSubscriptionDenied` | `showUpgradePopUp` | – | asks for a confirmation |
-| [2](#522-profilelist-onshare) | [`pages/LegacyShareObject/LegacyShareObjectPage.tsx:27`](../../app/src/pages/LegacyShareObject/LegacyShareObjectPage.tsx#L27) | `<ProfileList>` | `onShare` | `flows.onShare` | – | calls ActionShareObject; shows a message; calls the prop onSubscriptionDenied() |
-| [3](#523-preventbacknavigation-onbacknavigationprevented) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:80`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L80) | `<PreventBackNavigation>` | `onBackNavigationPrevented` | `redirectHome` | – | goes to HomeFeed |
-| [4](#524-backnavigationhandler-onbacknavigation) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:82`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L82) | `<BackNavigationHandler>` | `onBackNavigation` | `maybeRedirectHome` | – | goes to HomeFeed |
-| [5](#525-oslink-onclick) | [`components/layout/MenuIconBack/MenuIconBack.tsx:19`](../../app/src/components/layout/MenuIconBack/MenuIconBack.tsx#L19) | `<OSLink>` | `onClick` | `navigateBack` | – | goes to previous screen |
-
-#### 5.2.1 ProfileListBlock: onSubscriptionDenied
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as ProfileListBlock · LegacyShareObjectPage.tsx
-  U->>H: onSubscriptionDenied → showUpgradePopUp
-  Note over H: confirm dialog dialogId
-```
-
-#### 5.2.2 ProfileList: onShare
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as ProfileList · LegacyShareObjectPage.tsx
-  participant A as Server (React api)
-  U->>H: onShare → flows.onShare
-  Note over H: via deferredHandleShareObjectList()
-  Note over H: via shareObject()
-  H->>A: ActionShareObject(In_ShareObjectTypeId, In_SharedObjectId, In_SharingProfileName, …)
-  A-->>H: IsAllowed, IsSuccess, Message, …
-  Note over H: message result.message
-  Note over H: calls the prop onSubscriptionDenied()
-```
-
-#### 5.2.3 PreventBackNavigation: onBackNavigationPrevented
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as PreventBackNavigation · CommonUiLayout.tsx
-  participant N as Navigation
-  U->>H: onBackNavigationPrevented → redirectHome
-  H->>N: go to HomeFeed
-```
-
-#### 5.2.4 BackNavigationHandler: onBackNavigation
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as BackNavigationHandler · CommonUiLayout.tsx
-  participant N as Navigation
-  U->>H: onBackNavigation → maybeRedirectHome
-  Note over H: via actionRedirectHome()
-  H->>N: go to HomeFeed
-```
-
-#### 5.2.5 OSLink: onClick
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as OSLink · MenuIconBack.tsx
-  participant N as Navigation
-  U->>H: onClick → navigateBack
-  H->>N: go to previous screen
-```
-
-## 6. Server calls
+## 5. Server calls
 
 All columns come from the code, without interpretation:
 
@@ -276,24 +61,210 @@ All columns come from the code, without interpretation:
 | 5 | `Connect2_LegacyShared/Share_UI/ScreenBlock_ShareObject/ServiceAPIGetHouseholdDetails` | service action | `ScreenBlock_ShareObject` | ScreenBlock_ShareObject.OnReady → ScreenBlock_ShareObject.onReady → server GetHouseholdDetails | yes | `fetchHouseholdShareCard()` [`api/household/repository.ts:138`](../../app/src/api/household/repository.ts#L138) (page) | `ShareObjectBlock → useShareObject → fetchHouseholdShareCard`<br>[`pages/LegacyShareObject/LegacyShareObjectPage.tsx`](../../app/src/pages/LegacyShareObject/LegacyShareObjectPage.tsx) | implemented |
 | 6 | `Connect2_LegacyShared/Share_UI/ScreenBlock_ShareObject/ServiceAPIGet_UI_CommunityBusinessShareCard` | service action | `ScreenBlock_ShareObject` | ScreenBlock_ShareObject.OnReady → ScreenBlock_ShareObject.onReady → server Get_UI_CommunityBusinessShareCard | no | `fetchCommunityBusinessShareCard()` [`api/locality/repository.ts:210`](../../app/src/api/locality/repository.ts#L210) (page) | `ShareObjectBlock → useShareObject → fetchCommunityBusinessShareCard`<br>[`pages/LegacyShareObject/LegacyShareObjectPage.tsx`](../../app/src/pages/LegacyShareObject/LegacyShareObjectPage.tsx) | implemented |
 
-## 7. Missing in React
+## 6. User actions
+
+Two independent lists: the event bindings of the TST views, and the JSX event bindings of the React files. The effects come from the handler and the functions it calls, 3 levels deep. No mapping.
+
+### 6.1 OutSystems (TST)
+
+| # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
+|---|---|---|---|---|---|
+| 1 | `LegacyShareObject` | `subscriptionDenied of ShareObject` | `handler_ShareObject_SubscriptionDenied` | – | asks for a confirmation |
+
+### 6.2 React
+
+| # | File | Element | Event prop | Handler | Branch | Effects |
+|---|---|---|---|---|---|---|
+| 1 | [`pages/LegacyShareObject/LegacyShareObjectPage.tsx:61`](../../app/src/pages/LegacyShareObject/LegacyShareObjectPage.tsx#L61) | `<ProfileListBlock>` | `onSubscriptionDenied` | `showUpgradePopUp` | – | asks for a confirmation |
+| [2](#622-profilelist-onshare) | [`pages/LegacyShareObject/LegacyShareObjectPage.tsx:27`](../../app/src/pages/LegacyShareObject/LegacyShareObjectPage.tsx#L27) | `<ProfileList>` | `onShare` | `flows.onShare` | – | calls ActionShareObject; shows a message; calls the prop onSubscriptionDenied() |
+
+<details><summary>1 diagrams (handlers with two or more effects)</summary>
+
+#### 6.2.2 ProfileList: onShare
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as ProfileList · LegacyShareObjectPage.tsx
+  participant A as Server (React api)
+  U->>H: onShare → flows.onShare
+  Note over H: via deferredHandleShareObjectList()
+  Note over H: via shareObject()
+  H->>A: ActionShareObject(In_ShareObjectTypeId, In_SharedObjectId, In_SharingProfileName, …)
+  A-->>H: IsAllowed, IsSuccess, Message, …
+  Note over H: message result.message
+  Note over H: calls the prop onSubscriptionDenied()
+```
+
+
+</details>
+
+
+## 7. Screen inputs and navigation parameters
+
+The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
+The OutSystems files are in `migration/screens/LegacyShareObject/analysis/sources/raw/`.
+
+### 7.1 OutSystems (TST)
+
+| Input | Type | Mandatory | Place |
+|---|---|---|---|
+| `In_ShareObjectTypeId` | Text | yes | [`UBTConnect.Legacy_Share.LegacyShareObject.mvc.js:74`](../../migration/screens/LegacyShareObject/analysis/sources/raw/UBTConnect.Legacy_Share.LegacyShareObject.mvc.js#L74) |
+| `In_ObjectId` | Text | yes | [`UBTConnect.Legacy_Share.LegacyShareObject.mvc.js:78`](../../migration/screens/LegacyShareObject/analysis/sources/raw/UBTConnect.Legacy_Share.LegacyShareObject.mvc.js#L78) |
+| `In_CustomTitle` | Text | yes | [`UBTConnect.Legacy_Share.LegacyShareObject.mvc.js:82`](../../migration/screens/LegacyShareObject/analysis/sources/raw/UBTConnect.Legacy_Share.LegacyShareObject.mvc.js#L82) |
+
+Navigations with parameters: none.
+
+### 7.2 React
+
+Declared inputs of the route: `In_ShareObjectTypeId: Text`, `In_ObjectId: Text`, `In_CustomTitle: Text` (`app/src/app/routes.generated.ts`).
+
+| Hook | Keys read | Place |
+|---|---|---|
+| `useSearchParams` | none | [`pages/LegacyShareObject/LegacyShareObjectPage.tsx:77`](../../app/src/pages/LegacyShareObject/LegacyShareObjectPage.tsx#L77) |
+
+Navigations with parameters: none.
+
+## 8. Lifecycle
+
+What runs when the screen and its blocks open and close, without a user action.
+
+### 8.1 OutSystems (TST)
+
+Event handlers. The steps are the node comments and the conditions of the compiled action.
+
+| Block | Event | Action | Steps |
+|---|---|---|---|
+| `LegacyShareObject` | OnInitialize ([`UBTConnect.Legacy_Share.LegacyShareObject.mvc.js:352`](../../migration/screens/LegacyShareObject/analysis/sources/raw/UBTConnect.Legacy_Share.LegacyShareObject.mvc.js#L352)) | `onInitialize` | 1. Execute Action: GetUserInformation_Wrapper ([`L279`](../../migration/screens/LegacyShareObject/analysis/sources/raw/UBTConnect.Legacy_Share.LegacyShareObject.mvc.js#L279))<br>2. User_AgeVisibility = GetUserInformation_Wrapper.UserInformation.Directory_UserCurrent_Visibility.DisplayAge ([`L285`](../../migration/screens/LegacyShareObject/analysis/sources/raw/UBTConnect.Legacy_Share.LegacyShareObject.mvc.js#L285)) |
+
+<details><summary>Sequence diagrams of the screen event handlers (1)</summary>
+
+The diagram keeps the order of the steps in the compiled action. The code does not give the order of the handlers of different blocks.
+
+#### 8.1.1 LegacyShareObject: OnInitialize
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant R as OutSystems runtime
+  participant B as LegacyShareObject
+  R->>B: OnInitialize → onInitialize
+  B->>B: action GetUserInformation_Wrapper
+  Note over B: User_AgeVisibility = GetUserInformation_Wrapper.UserInformation.Directory_UserCu…
+```
+
+</details>
+
+Data actions and aggregates. The tool reads `dataFetchDependenciesOriginal`: `0` is a fetch when the block opens, `-1` is a fetch only on demand (a `Refresh Query` step). `Read by` lists the child block inputs, conditions, text widgets and actions that read the result.
 
 None.
 
-## 8. Questions
+### 8.2 React
 
-1. React calls `/api/UBTConnect_Utils/CacheControl_Policies/DataActionGetCacheInfo` from `fetchPolicies()` [`api/app/repository.ts:54`](../../app/src/api/app/repository.ts#L54) (shell + page). TST LegacyShareObject has no chain to this call. Does the call belong to this route?
-2. React calls `/api/Connect2_LegacyShared/ActionGetSignedPhotosInBulk` from `getSignedPhotosInBulk()` [`lib/legacyShared/actions.ts:49`](../../app/src/lib/legacyShared/actions.ts#L49) (page). TST LegacyShareObject has no chain to this call. Does the call belong to this route?
+Effects (`useEffect`, `useLayoutEffect`) of the screen files, and the effects of shared components that make a call, a navigation or a message.
 
-## 9. Method
+| File | Hook (function) | Dependencies | Cleanup | Effects | Place |
+|---|---|---|---|---|---|
+| `useProfileList.ts` | `useEffect` (`useProfileList`) | `[query.status, query.isFetching, query.isPlaceholderData, qu…` | no | none | [`pages/LegacyShareObject/hooks/useProfileList.ts:114`](../../app/src/pages/LegacyShareObject/hooks/useProfileList.ts#L114) |
+| `LegacyShareObjectPage.tsx` | `useEffect` (`LegacyShareObject`) | `[]` | no | none | [`pages/LegacyShareObject/LegacyShareObjectPage.tsx:86`](../../app/src/pages/LegacyShareObject/LegacyShareObjectPage.tsx#L86) |
 
-1. **OutSystems (TST).** The tool reads `facts.json` and the compiled code of `migration/screens/LegacyShareObject/analysis/`:
-   - the rendered files;
-   - each server call with its chain of client actions, and the calls that TST made in the capture;
-   - the effects of each user action.
-2. **Route and app shell.** OutSystems: a chain belongs to the app shell when it starts in `CommonUI_InsideLayout`, one of its blocks, or a module action. React: a binding belongs to the app shell when its file is in the code that `main.tsx` loads.
-3. **MCP (DEV).** The tool reads the UI flow with `getScreenNames`. TST wins when DEV is different.
-4. **React.** `react_calls.mjs` reads the app shell from `app/src/main.tsx` and the screen from its `<Route>Page.tsx`. It counts only the code that the app uses.
-5. **Match.** `callAction(M, A)` gives `/api/M/A`. The `x-os-paths` of `app/src/api/openapi.yaml` give the TST call. The status is `implemented` when the TST call is the same. Else the status is `missing`.
+Queries. A query fetches when its component mounts and when its key changes. `Read by` lists what reads the result in the same file.
 
-Limit: a name or a call match does not prove the same behaviour. The parity checks of the migration compare the behaviour.
+| File | Hook (function) | Calls | Read by | Place |
+|---|---|---|---|---|
+| `useProfileList.ts` | `useAvailableUsersQuery` (`useProfileList`) | `/api/Connect2_LegacyShared/ProfileList/DataActionGetAvailableUsers` | `useEffect()` ([`L115`](../../app/src/pages/LegacyShareObject/hooks/useProfileList.ts#L115)), `availableUsersFetched()` ([`L118`](../../app/src/pages/LegacyShareObject/hooks/useProfileList.ts#L118)), `return` ([`L161`](../../app/src/pages/LegacyShareObject/hooks/useProfileList.ts#L161)) | [`pages/LegacyShareObject/hooks/useProfileList.ts:101`](../../app/src/pages/LegacyShareObject/hooks/useProfileList.ts#L101) |
+| `useShareObject.ts` | `useShareObjectTypeLabelQuery` (`useShareObject`) | `/api/Connect2_LegacyShared/ScreenBlock_ShareObject/ScreenDataSetGetShareObjectTypeById` | `return` ([`L94`](../../app/src/pages/LegacyShareObject/hooks/useShareObject.ts#L94)) | [`pages/LegacyShareObject/hooks/useShareObject.ts:53`](../../app/src/pages/LegacyShareObject/hooks/useShareObject.ts#L53) |
+
+## 9. Client state
+
+Client variables and browser storage that the route reads or writes. Other screens can read this state.
+
+### 9.1 OutSystems (TST)
+
+None.
+
+### 9.2 React
+
+None.
+
+## 10. Access
+
+Who can open the route, and the role checks in the screen and block code.
+
+| Side | Rule | Place |
+|---|---|---|
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Legacy_Share.LegacyShareObject.mvc.js:377`](../../migration/screens/LegacyShareObject/analysis/sources/raw/UBTConnect.Legacy_Share.LegacyShareObject.mvc.js#L377) |
+| React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
+
+Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.
+
+## 11. Errors
+
+What the route does when an action or a call fails.
+
+### 11.1 OutSystems (TST)
+
+The actions of the screen and its blocks have no `Handle Error` node.
+
+An error without a handler goes to the `OnException` of the UI flow (`handleError`):
+
+1. UI flow `Legacy_Share` not in `migration/shell/sources/`. Handled errors: none.
+
+### 11.2 React
+
+| File | Kind | Function | Effects | Place |
+|---|---|---|---|---|
+| `LegacyShareObjectPage.tsx` | flow handler | `LegacyShareObject` | none | [`pages/LegacyShareObject/LegacyShareObjectPage.tsx:92`](../../app/src/pages/LegacyShareObject/LegacyShareObjectPage.tsx#L92) |
+
+`flow handler`: `raiseToFlowHandler` gives the error to the flow handler of the screen (`app/src/platform/feedback/flowErrors.ts`). The tool lists `.catch`, `try/catch` and `onError` that do not give the error to it.
+
+## 12. Shared blocks and components on this route
+
+Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pages/` (React) that the route renders. Their facts belong to them, not to the route. This section gives their user actions once, without diagrams.
+
+### OutSystems (TST)
+
+| Block | Module | React port | User actions |
+|---|---|---|---|
+| `ScreenBlock_ShareObject` | `Connect2_LegacyShared` | [`pages/LegacyShareObject/components/ShareObjectView.tsx`](../../app/src/pages/LegacyShareObject/components/ShareObjectView.tsx), [`pages/LegacyShareObject/hooks/shareObjectState.ts`](../../app/src/pages/LegacyShareObject/hooks/shareObjectState.ts), [`pages/LegacyShareObject/hooks/useShareObject.ts`](../../app/src/pages/LegacyShareObject/hooks/useShareObject.ts) | 0 |
+| `Layout` | `Connect2_LegacyShared` | [`components/layout/LegacyLayout/LegacyLayout.tsx`](../../app/src/components/layout/LegacyLayout/LegacyLayout.tsx) | 0 |
+| `BaseLayout_UpdatedOSUI` | `Connect2_LegacyShared` | [`components/layout/BaseLayout/BaseLayout.tsx`](../../app/src/components/layout/BaseLayout/BaseLayout.tsx) | 0 |
+| `MenuIcon_Back` | `Connect2_LegacyShared` | [`components/layout/MenuIconBack/MenuIconBack.tsx`](../../app/src/components/layout/MenuIconBack/MenuIconBack.tsx) | 1 |
+| `Result_Item_Image` | `Connect2_LegacyShared` | [`components/ui/ResultItemImage/ResultItemImage.tsx`](../../app/src/components/ui/ResultItemImage/ResultItemImage.tsx) | 0 |
+| `UBT_LazyImage` | `UBTConnect_Utils` | [`components/ui/EntityLazyImage/EntityLazyImage.tsx`](../../app/src/components/ui/EntityLazyImage/EntityLazyImage.tsx) | 0 |
+| `LazyImage` | `UBTConnectLibrary` | [`components/ui/LazyImage/LazyImage.tsx`](../../app/src/components/ui/LazyImage/LazyImage.tsx) | 0 |
+| `ProfileList` | `Connect2_LegacyShared` | [`pages/LegacyShareObject/components/ProfileList.tsx`](../../app/src/pages/LegacyShareObject/components/ProfileList.tsx), [`pages/LegacyShareObject/hooks/profileListState.ts`](../../app/src/pages/LegacyShareObject/hooks/profileListState.ts), [`pages/LegacyShareObject/hooks/useProfileList.ts`](../../app/src/pages/LegacyShareObject/hooks/useProfileList.ts) | 2 |
+| `InputWithIcon` | `OutSystemsUI_2_23` | [`components/ui/InputWithIcon/InputWithIcon.tsx`](../../app/src/components/ui/InputWithIcon/InputWithIcon.tsx) | 0 |
+| `HighlightSearch` | `Connect2_LegacyShared` | [`pages/LegacyShareObject/components/HighlightSearch.tsx`](../../app/src/pages/LegacyShareObject/components/HighlightSearch.tsx) | 0 |
+| `FreeSubscriptionActionDialog` | `Connect2_LegacyShared` | [`containers/FreeSubscriptionActionDialog/FreeSubscriptionActionDialog.tsx`](../../app/src/containers/FreeSubscriptionActionDialog/FreeSubscriptionActionDialog.tsx) | 1 |
+
+<details><summary>User actions of the shared blocks (4)</summary>
+
+| # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
+|---|---|---|---|---|---|
+| 1 | `MenuIcon_Back` | `onClick (HTML element)` | `inline` | – | goes to previous screen |
+| 2 | `ProfileList` | `onKeyUp (HTML element)` | `input_SearchFilterOnKeyup` | – | calls GetAvailableUsers |
+| 3 | `ProfileList` | `onChange (HTML element)` | `input_SearchFilterOnChange` | – | calls GetAvailableUsers |
+| 4 | `FreeSubscriptionActionDialog` | `confirmed of ActionConfirmationDialog` | `onConfirmed` | – | goes to URL getCacheableUserInfo…subscriptionManageLink |
+
+</details>
+
+
+### React
+
+| File | User actions |
+|---|---|
+| [`components/layout/CommonUiLayout/CommonUiLayout.tsx`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx) | 2 |
+| [`components/layout/MenuIconBack/MenuIconBack.tsx`](../../app/src/components/layout/MenuIconBack/MenuIconBack.tsx) | 1 |
+
+<details><summary>User actions of the shared components (3)</summary>
+
+| # | File | Element | Event prop | Handler | Branch | Effects |
+|---|---|---|---|---|---|---|
+| 1 | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:80`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L80) | `<PreventBackNavigation>` | `onBackNavigationPrevented` | `redirectHome` | – | goes to HomeFeed |
+| 2 | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:82`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L82) | `<BackNavigationHandler>` | `onBackNavigation` | `maybeRedirectHome` | – | goes to HomeFeed |
+| 3 | [`components/layout/MenuIconBack/MenuIconBack.tsx:19`](../../app/src/components/layout/MenuIconBack/MenuIconBack.tsx#L19) | `<OSLink>` | `onClick` | `navigateBack` | – | goes to previous screen |
+
+</details>
+

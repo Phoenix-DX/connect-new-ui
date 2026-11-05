@@ -1,12 +1,8 @@
-# Services: server calls and user actions in OutSystems and React
+# Services: OutSystems (TST) and React
 
-This file compares the route `/UBTConnect/Services` in OutSystems (TST) with the React app.
-The tool `route-actions/tools/check_route.py` wrote this file on 2026-11-04.
-The tool reads the code. It does not run the app.
+The route `/UBTConnect/Services`, read from the TST compiled code and from the React code by `route-actions/tools/check_route.py` on 2026-11-05. Facts only, each with its place. The method is in [README.md](../README.md).
 
-The app shell is in [APP_SHELL.md](../APP_SHELL.md), not here.
-- OutSystems app shell: `CommonUI_InsideLayout` with its blocks (TST survey), and the chains that start in a module action.
-- React app shell: the code that `app/src/main.tsx` loads (router, `AppFrame`, app start, hosts).
+Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/Services/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
 ## 1. Route
 
@@ -17,146 +13,33 @@ The app shell is in [APP_SHELL.md](../APP_SHELL.md), not here.
 | UI flow | `App_Services` | MCP `getScreenNames` (DEV) |
 | React screen | [`pages/Services/ServicesPage.tsx`](../../app/src/pages/Services/ServicesPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
-| Code read | OutSystems: 21 screen and block files of the route, 0 app shell files. React: 94 screen files | TST `facts.json`, `react_calls.mjs` |
+| Screenshots | [`migration/screens/Services/parity`](../../migration/screens/Services/parity) | `route.py parity` |
+| Code read | OutSystems: 1 files of the UI flow, 20 shared blocks, 0 app shell files. React: 94 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
 | Check | Result |
 |---|---|
 | Server calls of the route on TST | 2: React makes 2, **0 missing** |
-| User actions of the route | OutSystems: 2 diagrams. React: 2 diagrams |
-| React calls of the screen that TST does not make | 0 (see [questions](#8-questions)) |
-| Screen and blocks with a React port | 21 of 21 |
+| Differences found | **0** (see [section 3](#3-differences-found)) |
+| Questions | 0 (see [section 4](#4-questions)) |
+| User actions of the route (own code) | OutSystems: 1. React: 2 |
+| Screen and blocks of the UI flow with a React port | 1 of 1 |
 | Navigation targets found in React | 0 of 0 |
-| App shell on this route | 7 calls; event bindings: OutSystems 0, React 7: see [APP_SHELL.md](../APP_SHELL.md) |
+| Shared blocks and components on the route | OutSystems 20, React 0 with user actions: see the last section |
+| App shell on this route | 7 calls: see [APP_SHELL.md](../APP_SHELL.md) |
 
-## 3. Screenshots
+## 3. Differences found
 
-The screenshots come from the last parity run (`route.py parity`). The TST capture hides personal text with dots. The React build shows fictional mock data.
+Each line is a fact of both sides: a TST call, navigation or variable, and the React code that has it or not. The tool does not judge the behaviour.
 
-| State | TST (expected) | React (build) | Difference |
-|---|---|---|---|
-| `default`<br>390x844, mock `real`<br>2026-10-29<br>pixel difference 0.0% | <img src="../../migration/screens/Services/parity/default.expected.png" width="200" alt="default expected"> | <img src="../../migration/screens/Services/parity/default.build.png" width="200" alt="default build"> | <img src="../../migration/screens/Services/parity/default.diff.png" width="200" alt="default diff"> |
-| `loading`<br>390x844, mock `loading`<br>2026-10-29<br>pixel difference 0.0% | <img src="../../migration/screens/Services/parity/loading.expected.png" width="200" alt="loading expected"> | <img src="../../migration/screens/Services/parity/loading.build.png" width="200" alt="loading build"> | <img src="../../migration/screens/Services/parity/loading.diff.png" width="200" alt="loading diff"> |
-| `offline`<br>390x844, mock `error`<br>2026-10-29<br>pixel difference 0.0% | <img src="../../migration/screens/Services/parity/offline.expected.png" width="200" alt="offline expected"> | <img src="../../migration/screens/Services/parity/offline.build.png" width="200" alt="offline build"> | <img src="../../migration/screens/Services/parity/offline.diff.png" width="200" alt="offline diff"> |
+None.
 
-## 4. Diagram
+## 4. Questions
 
-- A box on the left is the block or module of the action that calls the server (TST code).
-- A line connects each call to the React action that makes the same call.
-- The right column shows the React components that use each React action.
-- A red box is a call that React does not make.
+None.
 
-```mermaid
-flowchart LR
-  subgraph OS["OutSystems (TST compiled)"]
-    subgraph OS_screen["Screen and its blocks"]
-      o0["Services"]
-    end
-  end
-  subgraph EP["Server calls (TST)"]
-    e1["DataActionGetServices"]
-    e2["ServiceAPIService_ConnectServices_ChangeOrder_Bulk"]
-  end
-  subgraph RE["React actions"]
-    subgraph RE_page["Screen"]
-      r3["changeServicesOrder()"]
-      r4["fetchUserServices()"]
-    end
-  end
-  subgraph RC["React components"]
-    c5["Services"]
-  end
-  r3 --- c5
-  r4 --- c5
-  o0 --> e1
-  o0 --> e2
-  e1 --- r4
-  e2 --- r3
-  classDef missing fill:#fde2e1,stroke:#c0392b,color:#7b241c
-  classDef ok fill:#e3f4e8,stroke:#2e7d4f,color:#1d4d31
-  class e1,e2 ok
-```
-
-## 5. User actions
-
-The two lists are independent: the OutSystems list comes from the TST compiled code, the React list from the React code. The tool does not map one list to the other.
-
-- **OutSystems:** each event binding of the compiled views (`<event>$Action: function` of a child block or widget, `on<Event>: function` of an HTML element) with its handler.
-- **React:** each JSX attribute `on<Event>={handler}` with its handler.
-- Both lists keep only the bindings whose handler has an effect: a server call, a navigation, an external link, a message or a confirm dialog. The tool follows the called functions 3 levels deep.
-- When the handler has branches in the code (`switch` case, `if` with `===`), each branch has its own diagram. The branch name is the constant of the condition. `other` is the last `else` or `default`.
-- An arrow to the server gives the inputs of the call, the return arrow its outputs (contract `app/src/api/openapi.yaml`).
-
-### 5.1 OutSystems (TST)
-
-| # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
-|---|---|---|---|---|---|
-| [1](#511-services-onclick_savechanges) | `Services` | `buttonOnClick of Button` | `onClick_SaveChanges` | – | calls Service_ConnectServices_ChangeOrder_Bulk; shows a message |
-| [2](#512-layout_detailpage-onclick_backnavigation) | `Layout_DetailPage` | `click of Icon` | `onClick_BackNavigation` | – | goes to previous screen |
-
-#### 5.1.1 Services: onClick_SaveChanges
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as Services
-  participant S as Server (TST calls)
-  U->>B: buttonOnClick of Button → onClick_SaveChanges
-  B->>S: Service_ConnectServices_ChangeOrder_Bulk(CurrentServices)
-  S-->>B: no outputs
-  Note over B: message FeedbackMessage_AutoClose
-```
-
-#### 5.1.2 Layout_DetailPage: onClick_BackNavigation
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as Layout_DetailPage
-  participant N as Navigation
-  U->>B: click of Icon → onClick_BackNavigation
-  B->>N: go to previous screen
-```
-
-### 5.2 React
-
-| # | File | Element | Event prop | Handler | Branch | Effects |
-|---|---|---|---|---|---|---|
-| [1](#521-detaillayout-onback) | [`pages/Services/ServicesPage.tsx:27`](../../app/src/pages/Services/ServicesPage.tsx#L27) | `<DetailLayout>` | `onBack` | `navigateBack` | – | goes to previous screen |
-| [2](#522-servicesfooter-onsavechanges) | [`pages/Services/ServicesPage.tsx:43`](../../app/src/pages/Services/ServicesPage.tsx#L43) | `<ServicesFooter>` | `onSaveChanges` | `onSaveChanges` | – | calls ServiceAPIService_ConnectServices_ChangeOrder_Bulk; shows a message |
-
-#### 5.2.1 DetailLayout: onBack
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as DetailLayout · ServicesPage.tsx
-  participant N as Navigation
-  U->>H: onBack → navigateBack
-  H->>N: go to previous screen
-```
-
-#### 5.2.2 ServicesFooter: onSaveChanges
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as ServicesFooter · ServicesPage.tsx
-  participant A as Server (React api)
-  U->>H: onSaveChanges → onSaveChanges
-  Note over H: via saveChanges()
-  Note over H: via changeServicesOrder()
-  H->>A: ServiceAPIService_ConnectServices_ChangeOrder_Bulk(CurrentServices)
-  A-->>H: no outputs
-  Note over H: message { title: '', message: 'Your changes were saved.', messageType: UBT_MessageType_Success, en
-```
-
-## 6. Server calls
+## 5. Server calls
 
 All columns come from the code, without interpretation:
 
@@ -173,23 +56,205 @@ All columns come from the code, without interpretation:
 | 1 | `UBTConnect/App_Services/Services/DataActionGetServices` | data action | `Services` | Services fetch at start → Services.DataActionGetServices | yes | `fetchUserServices()` [`api/service/repository.ts:27`](../../app/src/api/service/repository.ts#L27) (page) | `Services → useServices → useUserServicesQuery → fetchUserServices`<br>[`pages/Services/ServicesPage.tsx`](../../app/src/pages/Services/ServicesPage.tsx) | implemented |
 | 2 | `UBTConnect/App_Services/Services/ServiceAPIService_ConnectServices_ChangeOrder_Bulk` | service action | `Services` | onClick in Button → event event_OnClick of Button → event buttonOnClick of Button → Services.onClick_SaveChanges → server Service_ConnectServices_ChangeOrder_Bulk | no | `changeServicesOrder()` [`api/service/repository.ts:41`](../../app/src/api/service/repository.ts#L41) (page) | `Services → useServices → changeServicesOrder`<br>[`pages/Services/ServicesPage.tsx`](../../app/src/pages/Services/ServicesPage.tsx) | implemented |
 
-## 7. Missing in React
+## 6. User actions
+
+Two independent lists: the event bindings of the TST views, and the JSX event bindings of the React files. The effects come from the handler and the functions it calls, 3 levels deep. No mapping.
+
+### 6.1 OutSystems (TST)
+
+| # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
+|---|---|---|---|---|---|
+| [1](#611-services-onclick_savechanges) | `Services` | `buttonOnClick of Button` | `onClick_SaveChanges` | – | calls Service_ConnectServices_ChangeOrder_Bulk; shows a message |
+
+<details><summary>1 diagrams (handlers with two or more effects)</summary>
+
+#### 6.1.1 Services: onClick_SaveChanges
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as Services
+  participant S as Server (TST calls)
+  U->>B: buttonOnClick of Button → onClick_SaveChanges
+  B->>S: Service_ConnectServices_ChangeOrder_Bulk(CurrentServices)
+  S-->>B: no outputs
+  Note over B: message FeedbackMessage_AutoClose
+```
+
+
+</details>
+
+
+### 6.2 React
+
+| # | File | Element | Event prop | Handler | Branch | Effects |
+|---|---|---|---|---|---|---|
+| 1 | [`pages/Services/ServicesPage.tsx:27`](../../app/src/pages/Services/ServicesPage.tsx#L27) | `<DetailLayout>` | `onBack` | `navigateBack` | – | goes to previous screen |
+| [2](#622-servicesfooter-onsavechanges) | [`pages/Services/ServicesPage.tsx:43`](../../app/src/pages/Services/ServicesPage.tsx#L43) | `<ServicesFooter>` | `onSaveChanges` | `onSaveChanges` | – | calls ServiceAPIService_ConnectServices_ChangeOrder_Bulk; shows a message |
+
+<details><summary>1 diagrams (handlers with two or more effects)</summary>
+
+#### 6.2.2 ServicesFooter: onSaveChanges
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as ServicesFooter · ServicesPage.tsx
+  participant A as Server (React api)
+  U->>H: onSaveChanges → onSaveChanges
+  Note over H: via saveChanges()
+  Note over H: via changeServicesOrder()
+  H->>A: ServiceAPIService_ConnectServices_ChangeOrder_Bulk(CurrentServices)
+  A-->>H: no outputs
+  Note over H: message { title: '', message: 'Your changes were saved.', messageType: UBT_MessageType_Success, en
+```
+
+
+</details>
+
+
+## 7. Screen inputs and navigation parameters
+
+The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
+The OutSystems files are in `migration/screens/Services/analysis/sources/raw/`.
+
+### 7.1 OutSystems (TST)
+
+Screen inputs: none. `setInputs` of `Services` reads no input.
+
+Navigations with parameters: none.
+
+### 7.2 React
+
+Declared inputs of the route: none (`app/src/app/routes.generated.ts`).
+
+Parameters read (`useSearchParams`, `useParams`): none.
+
+Navigations with parameters: none.
+
+## 8. Lifecycle
+
+What runs when the screen and its blocks open and close, without a user action.
+
+### 8.1 OutSystems (TST)
+
+Event handlers. The steps are the node comments and the conditions of the compiled action.
 
 None.
 
-## 8. Questions
+Data actions and aggregates. The tool reads `dataFetchDependenciesOriginal`: `0` is a fetch when the block opens, `-1` is a fetch only on demand (a `Refresh Query` step). `Read by` lists the child block inputs, conditions, text widgets and actions that read the result.
+
+| Block | Data action | Fetch | Read by | Place |
+|---|---|---|---|---|
+| `Services` | `GetServices` | at start (`0`) | `SkeletonSection.In_IsLoading` ([`UBTConnect.App_Services.Services.mvc.js:190`](../../migration/screens/Services/analysis/sources/raw/UBTConnect.App_Services.Services.mvc.js#L190)), `CustomText.source` ([`UBTConnect.App_Services.Services.mvc.js:315`](../../migration/screens/Services/analysis/sources/raw/UBTConnect.App_Services.Services.mvc.js#L315)), `view` ([`UBTConnect.App_Services.Services.mvc.js:323`](../../migration/screens/Services/analysis/sources/raw/UBTConnect.App_Services.Services.mvc.js#L323)), `SortableList_Draggable.Id` ([`UBTConnect.App_Services.Services.mvc.js:394`](../../migration/screens/Services/analysis/sources/raw/UBTConnect.App_Services.Services.mvc.js#L394)), `IconText.Text` ([`UBTConnect.App_Services.Services.mvc.js:529`](../../migration/screens/Services/analysis/sources/raw/UBTConnect.App_Services.Services.mvc.js#L529)), `Icon.In_IconId` ([`UBTConnect.App_Services.Services.mvc.js:550`](../../migration/screens/Services/analysis/sources/raw/UBTConnect.App_Services.Services.mvc.js#L550)), `text` ([`UBTConnect.App_Services.Services.mvc.js:572`](../../migration/screens/Services/analysis/sources/raw/UBTConnect.App_Services.Services.mvc.js#L572)), `shown if (Icon)` ([`UBTConnect.App_Services.Services.mvc.js:584`](../../migration/screens/Services/analysis/sources/raw/UBTConnect.App_Services.Services.mvc.js#L584)), `action onClick_SaveChanges` ([`UBTConnect.App_Services.Services.mvc.js:1301`](../../migration/screens/Services/analysis/sources/raw/UBTConnect.App_Services.Services.mvc.js#L1301)), `action action_ChangeOrderLocal` ([`UBTConnect.App_Services.Services.mvc.js:1457`](../../migration/screens/Services/analysis/sources/raw/UBTConnect.App_Services.Services.mvc.js#L1457)), `action onAfterFetch_GetServices` ([`UBTConnect.App_Services.Services.mvc.js:1649`](../../migration/screens/Services/analysis/sources/raw/UBTConnect.App_Services.Services.mvc.js#L1649)) | [`UBTConnect.App_Services.Services.mvc.js:1223`](../../migration/screens/Services/analysis/sources/raw/UBTConnect.App_Services.Services.mvc.js#L1223) |
+
+### 8.2 React
+
+Effects (`useEffect`, `useLayoutEffect`) of the screen files, and the effects of shared components that make a call, a navigation or a message.
+
+| File | Hook (function) | Dependencies | Cleanup | Effects | Place |
+|---|---|---|---|---|---|
+| `SortableList_Draggable.tsx` | `useEffect` (`SortableList_Draggable`) | `[]` | no | none | [`pages/Services/components/SortableList_Draggable.tsx:25`](../../app/src/pages/Services/components/SortableList_Draggable.tsx#L25) |
+| `SortableList.tsx` | `useEffect` (`SortableList`) | `none (every render)` | no | none | [`pages/Services/components/SortableList.tsx:31`](../../app/src/pages/Services/components/SortableList.tsx#L31) |
+| `SortableList.tsx` | `useEffect` (`SortableList`) | `[]` | no | none | [`pages/Services/components/SortableList.tsx:34`](../../app/src/pages/Services/components/SortableList.tsx#L34) |
+
+Queries. A query fetches when its component mounts and when its key changes. `Read by` lists what reads the result in the same file.
+
+| File | Hook (function) | Calls | Read by | Place |
+|---|---|---|---|---|
+| `useServices.ts` | `useUserServicesQuery` (`useServices`) | `/api/UBTConnect/Services/DataActionGetServices` | `var isDataFetched` ([`L52`](../../app/src/pages/Services/hooks/useServices.ts#L52)), `var hasFetchError` ([`L53`](../../app/src/pages/Services/hooks/useServices.ts#L53)), `var lists` ([`L54`](../../app/src/pages/Services/hooks/useServices.ts#L54)), `var referenceServices` ([`L56`](../../app/src/pages/Services/hooks/useServices.ts#L56)) | [`pages/Services/hooks/useServices.ts:48`](../../app/src/pages/Services/hooks/useServices.ts#L48) |
+
+## 9. Client state
+
+Client variables and browser storage that the route reads or writes. Other screens can read this state.
+
+### 9.1 OutSystems (TST)
 
 None.
 
-## 9. Method
+### 9.2 React
 
-1. **OutSystems (TST).** The tool reads `facts.json` and the compiled code of `migration/screens/Services/analysis/`:
-   - the rendered files;
-   - each server call with its chain of client actions, and the calls that TST made in the capture;
-   - the effects of each user action.
-2. **Route and app shell.** OutSystems: a chain belongs to the app shell when it starts in `CommonUI_InsideLayout`, one of its blocks, or a module action. React: a binding belongs to the app shell when its file is in the code that `main.tsx` loads.
-3. **MCP (DEV).** The tool reads the UI flow with `getScreenNames`. TST wins when DEV is different.
-4. **React.** `react_calls.mjs` reads the app shell from `app/src/main.tsx` and the screen from its `<Route>Page.tsx`. It counts only the code that the app uses.
-5. **Match.** `callAction(M, A)` gives `/api/M/A`. The `x-os-paths` of `app/src/api/openapi.yaml` give the TST call. The status is `implemented` when the TST call is the same. Else the status is `missing`.
+None.
 
-Limit: a name or a call match does not prove the same behaviour. The parity checks of the migration compare the behaviour.
+## 10. Access
+
+Who can open the route, and the role checks in the screen and block code.
+
+| Side | Rule | Place |
+|---|---|---|
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.App_Services.Services.mvc.js:1838`](../../migration/screens/Services/analysis/sources/raw/UBTConnect.App_Services.Services.mvc.js#L1838) |
+| React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
+
+Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.
+
+## 11. Errors
+
+What the route does when an action or a call fails.
+
+### 11.1 OutSystems (TST)
+
+| Block | Action | Error | Steps of the handler |
+|---|---|---|---|
+| `Services` | `onClick_SaveChanges` | `NotRegistered` ([`UBTConnect.App_Services.Services.mvc.js:1320`](../../migration/screens/Services/analysis/sources/raw/UBTConnect.App_Services.Services.mvc.js#L1320)) | 1. Raise Error: NotRegistered ([`L1328`](../../migration/screens/Services/analysis/sources/raw/UBTConnect.App_Services.Services.mvc.js#L1328)) |
+| `Services` | `onClick_SaveChanges` | `CommunicationException` ([`UBTConnect.App_Services.Services.mvc.js:1333`](../../migration/screens/Services/analysis/sources/raw/UBTConnect.App_Services.Services.mvc.js#L1333)) | 1. isLoading = False ([`L1341`](../../migration/screens/Services/analysis/sources/raw/UBTConnect.App_Services.Services.mvc.js#L1341))<br>2. Raise Error: BubbleCommunicationException ([`L1344`](../../migration/screens/Services/analysis/sources/raw/UBTConnect.App_Services.Services.mvc.js#L1344)) |
+| `Services` | `onClick_SaveChanges` | `AllExceptions` ([`UBTConnect.App_Services.Services.mvc.js:1349`](../../migration/screens/Services/analysis/sources/raw/UBTConnect.App_Services.Services.mvc.js#L1349)) | 1. isLoading = False ([`L1357`](../../migration/screens/Services/analysis/sources/raw/UBTConnect.App_Services.Services.mvc.js#L1357))<br>2. Raise Error: BubbleGenericException ([`L1360`](../../migration/screens/Services/analysis/sources/raw/UBTConnect.App_Services.Services.mvc.js#L1360)) |
+| `Services` | `handler_SortableListOnDragEnd` | `CommunicationException` ([`UBTConnect.App_Services.Services.mvc.js:1706`](../../migration/screens/Services/analysis/sources/raw/UBTConnect.App_Services.Services.mvc.js#L1706)) | 1. isLoading = False ([`L1713`](../../migration/screens/Services/analysis/sources/raw/UBTConnect.App_Services.Services.mvc.js#L1713))<br>2. Raise Error: BubbleCommunicationException ([`L1716`](../../migration/screens/Services/analysis/sources/raw/UBTConnect.App_Services.Services.mvc.js#L1716)) |
+| `Services` | `handler_SortableListOnDragEnd` | `NotRegistered` ([`UBTConnect.App_Services.Services.mvc.js:1720`](../../migration/screens/Services/analysis/sources/raw/UBTConnect.App_Services.Services.mvc.js#L1720)) | 1. Raise Error: NotRegistered ([`L1727`](../../migration/screens/Services/analysis/sources/raw/UBTConnect.App_Services.Services.mvc.js#L1727)) |
+| `Services` | `handler_SortableListOnDragEnd` | `AllExceptions` ([`UBTConnect.App_Services.Services.mvc.js:1731`](../../migration/screens/Services/analysis/sources/raw/UBTConnect.App_Services.Services.mvc.js#L1731)) | 1. isLoading = False ([`L1738`](../../migration/screens/Services/analysis/sources/raw/UBTConnect.App_Services.Services.mvc.js#L1738))<br>2. Raise Error: BubbleGenericException ([`L1741`](../../migration/screens/Services/analysis/sources/raw/UBTConnect.App_Services.Services.mvc.js#L1741)) |
+
+An error without a handler goes to the `OnException` of the UI flow (`handleError`):
+
+1. UI flow `App_Services` not in `migration/shell/sources/`. Handled errors: none.
+
+### 11.2 React
+
+| File | Kind | Function | Effects | Place |
+|---|---|---|---|---|
+| `useServices.ts` | try/catch | `onDragEnd` | none | [`pages/Services/hooks/useServices.ts:95`](../../app/src/pages/Services/hooks/useServices.ts#L95) |
+| `useServices.ts` | try/catch | `saveChanges` | none | [`pages/Services/hooks/useServices.ts:122`](../../app/src/pages/Services/hooks/useServices.ts#L122) |
+
+`flow handler`: `raiseToFlowHandler` gives the error to the flow handler of the screen (`app/src/platform/feedback/flowErrors.ts`). The tool lists `.catch`, `try/catch` and `onError` that do not give the error to it.
+
+## 12. Shared blocks and components on this route
+
+Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pages/` (React) that the route renders. Their facts belong to them, not to the route. This section gives their user actions once, without diagrams.
+
+### OutSystems (TST)
+
+| Block | Module | React port | User actions |
+|---|---|---|---|
+| `Layout_DetailPage` | `UBTConnectLibrary` | [`components/layout/DetailLayout/DetailLayout.tsx`](../../app/src/components/layout/DetailLayout/DetailLayout.tsx) | 1 |
+| `LayoutRuntime_Top` | `NavigationHandler` | [`components/layout/LayoutRuntimeTop/LayoutRuntimeTop.tsx`](../../app/src/components/layout/LayoutRuntimeTop/LayoutRuntimeTop.tsx) | 0 |
+| `Icon` | `UBTConnectLibrary` | [`components/ui/Icon/Icon.tsx`](../../app/src/components/ui/Icon/Icon.tsx) | 0 |
+| `SkeletonSection` | `UBTConnectLibrary` | [`components/ui/Skeleton/Skeleton.tsx`](../../app/src/components/ui/Skeleton/Skeleton.tsx) | 0 |
+| `SortableList` | `SortableJS` | [`pages/Services/components/SortableList.tsx`](../../app/src/pages/Services/components/SortableList.tsx) | 0 |
+| `CustomContainer` | `UBTConnectLibrary` | [`components/ui/CustomContainer/CustomContainer.tsx`](../../app/src/components/ui/CustomContainer/CustomContainer.tsx) | 0 |
+| `CustomText` | `UBTConnectLibrary` | [`components/ui/CustomText/CustomText.tsx`](../../app/src/components/ui/CustomText/CustomText.tsx) | 0 |
+| `IconInline_Internal` | `UBTConnectLibrary` | [`components/ui/IconInline/IconInline.tsx`](../../app/src/components/ui/IconInline/IconInline.tsx) | 0 |
+| `Columns_Two` | `UBTConnectLibrary` | [`components/ui/ColumnsTwo/ColumnsTwo.tsx`](../../app/src/components/ui/ColumnsTwo/ColumnsTwo.tsx) | 0 |
+| `Columns2` | `OutSystemsUI_2_23` | [`components/ui/Columns2/Columns2.tsx`](../../app/src/components/ui/Columns2/Columns2.tsx) | 0 |
+| `SortableList_Draggable` | `SortableJS` | [`pages/Services/components/SortableList_Draggable.tsx`](../../app/src/pages/Services/components/SortableList_Draggable.tsx) | 0 |
+| `IconText` | `UBTConnectLibrary` | [`components/ui/IconText/IconText.tsx`](../../app/src/components/ui/IconText/IconText.tsx) | 0 |
+| `SectionSeparator` | `UBTConnect` | [`components/ui/SectionSeparator/SectionSeparator.tsx`](../../app/src/components/ui/SectionSeparator/SectionSeparator.tsx) | 0 |
+| `Columns_Three` | `UBTConnectLibrary` | [`components/ui/ColumnsThree/ColumnsThree.tsx`](../../app/src/components/ui/ColumnsThree/ColumnsThree.tsx) | 0 |
+| `Columns3` | `OutSystemsUI_2_23` | [`components/ui/Columns3/Columns3.tsx`](../../app/src/components/ui/Columns3/Columns3.tsx) | 0 |
+| `IconSVG` | `UBTConnectLibrary` | [`components/ui/IconSvg/IconSvg.tsx`](../../app/src/components/ui/IconSvg/IconSvg.tsx) | 0 |
+| `FixedFooter` | `UBTConnectLibrary` | [`components/ui/FixedFooter/FixedFooter.tsx`](../../app/src/components/ui/FixedFooter/FixedFooter.tsx) | 0 |
+| `ButtonLoading` | `OutSystemsUI_2_23` | [`components/ui/ButtonLoading/ButtonLoading.tsx`](../../app/src/components/ui/ButtonLoading/ButtonLoading.tsx) | 0 |
+| `Button` | `UBTConnect_Utils` | [`components/ui/ActionButton/ActionButton.tsx`](../../app/src/components/ui/ActionButton/ActionButton.tsx) | 0 |
+| `Button` | `UBTConnectLibrary` | [`components/ui/Button/Button.tsx`](../../app/src/components/ui/Button/Button.tsx) | 0 |
+
+<details><summary>User actions of the shared blocks (1)</summary>
+
+| # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
+|---|---|---|---|---|---|
+| 1 | `Layout_DetailPage` | `click of Icon` | `onClick_BackNavigation` | – | goes to previous screen |
+
+</details>
+
+
+### React
+
+None.

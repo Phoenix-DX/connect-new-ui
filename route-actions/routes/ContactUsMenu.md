@@ -1,12 +1,8 @@
-# ContactUsMenu: server calls and user actions in OutSystems and React
+# ContactUsMenu: OutSystems (TST) and React
 
-This file compares the route `/UBTConnect/ContactUsMenu` in OutSystems (TST) with the React app.
-The tool `route-actions/tools/check_route.py` wrote this file on 2026-11-04.
-The tool reads the code. It does not run the app.
+The route `/UBTConnect/ContactUsMenu`, read from the TST compiled code and from the React code by `route-actions/tools/check_route.py` on 2026-11-05. Facts only, each with its place. The method is in [README.md](../README.md).
 
-The app shell is in [APP_SHELL.md](../APP_SHELL.md), not here.
-- OutSystems app shell: `CommonUI_InsideLayout` with its blocks (TST survey), and the chains that start in a module action.
-- React app shell: the code that `app/src/main.tsx` loads (router, `AppFrame`, app start, hosts).
+Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/ContactUsMenu/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
 ## 1. Route
 
@@ -17,154 +13,209 @@ The app shell is in [APP_SHELL.md](../APP_SHELL.md), not here.
 | UI flow | `App_Menu_ContactUs` | MCP `getScreenNames` (DEV) |
 | React screen | [`pages/ContactUsMenu/ContactUsMenuPage.tsx`](../../app/src/pages/ContactUsMenu/ContactUsMenuPage.tsx) | `app/src/pages/` |
 | React route rules | access `anonymous`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
-| Code read | OutSystems: 6 screen and block files of the route, 26 app shell files. React: 124 screen files | TST `facts.json`, `react_calls.mjs` |
+| Screenshots | [`migration/screens/ContactUsMenu/parity`](../../migration/screens/ContactUsMenu/parity) | `route.py parity` |
+| Code read | OutSystems: 1 files of the UI flow, 5 shared blocks, 26 app shell files. React: 124 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
 | Check | Result |
 |---|---|
 | Server calls of the route on TST | 0: React makes 0, **0 missing** |
-| User actions of the route | OutSystems: 2 diagrams. React: 4 diagrams |
-| React calls of the screen that TST does not make | 1 (see [questions](#8-questions)) |
-| Screen and blocks with a React port | 6 of 6 |
+| Differences found | **0** (see [section 3](#3-differences-found)) |
+| Questions | 1 (see [section 4](#4-questions)) |
+| User actions of the route (own code) | OutSystems: 1. React: 2 |
+| Screen and blocks of the UI flow with a React port | 1 of 1 |
 | Navigation targets found in React | 1 of 1 |
-| App shell on this route | 8 calls; event bindings: OutSystems 10, React 7: see [APP_SHELL.md](../APP_SHELL.md) |
+| Shared blocks and components on the route | OutSystems 5, React 1 with user actions: see the last section |
+| App shell on this route | 8 calls: see [APP_SHELL.md](../APP_SHELL.md) |
 
-## 3. Screenshots
+## 3. Differences found
 
-The screenshots come from the last parity run (`route.py parity`). The TST capture hides personal text with dots. The React build shows fictional mock data.
-
-| State | TST (expected) | React (build) | Difference |
-|---|---|---|---|
-| `default`<br>390x844, mock `real`<br>2026-10-29<br>pixel difference 0.0% | <img src="../../migration/screens/ContactUsMenu/parity/default.expected.png" width="200" alt="default expected"> | <img src="../../migration/screens/ContactUsMenu/parity/default.build.png" width="200" alt="default build"> | <img src="../../migration/screens/ContactUsMenu/parity/default.diff.png" width="200" alt="default diff"> |
-| `loading`<br>390x844, mock `loading`<br>2026-10-29<br>pixel difference 0.0% | <img src="../../migration/screens/ContactUsMenu/parity/loading.expected.png" width="200" alt="loading expected"> | <img src="../../migration/screens/ContactUsMenu/parity/loading.build.png" width="200" alt="loading build"> | <img src="../../migration/screens/ContactUsMenu/parity/loading.diff.png" width="200" alt="loading diff"> |
-| `offline`<br>390x844, mock `error`<br>2026-10-29<br>pixel difference 0.0% | <img src="../../migration/screens/ContactUsMenu/parity/offline.expected.png" width="200" alt="offline expected"> | <img src="../../migration/screens/ContactUsMenu/parity/offline.build.png" width="200" alt="offline build"> | <img src="../../migration/screens/ContactUsMenu/parity/offline.diff.png" width="200" alt="offline diff"> |
-
-## 4. Diagram
-
-None. The route makes no server call on TST.
-
-## 5. User actions
-
-The two lists are independent: the OutSystems list comes from the TST compiled code, the React list from the React code. The tool does not map one list to the other.
-
-- **OutSystems:** each event binding of the compiled views (`<event>$Action: function` of a child block or widget, `on<Event>: function` of an HTML element) with its handler.
-- **React:** each JSX attribute `on<Event>={handler}` with its handler.
-- Both lists keep only the bindings whose handler has an effect: a server call, a navigation, an external link, a message or a confirm dialog. The tool follows the called functions 3 levels deep.
-- When the handler has branches in the code (`switch` case, `if` with `===`), each branch has its own diagram. The branch name is the constant of the condition. `other` is the last `else` or `default`.
-- An arrow to the server gives the inputs of the call, the return arrow its outputs (contract `app/src/api/openapi.yaml`).
-
-### 5.1 OutSystems (TST)
-
-| # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
-|---|---|---|---|---|---|
-| [1](#511-contactusmenu-onclick_menuoption) | `ContactUsMenu` | `onClick_MenuOption of List` | `onClick_MenuOption` | – | goes to ContactUsDetails |
-| [2](#512-layout_detailpage-onclick_backnavigation) | `Layout_DetailPage` | `click of Icon` | `onClick_BackNavigation` | – | goes to previous screen |
-
-#### 5.1.1 ContactUsMenu: onClick_MenuOption
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as ContactUsMenu
-  participant N as Navigation
-  U->>B: onClick_MenuOption of List → onClick_MenuOption
-  B->>N: go to ContactUsDetails
-```
-
-#### 5.1.2 Layout_DetailPage: onClick_BackNavigation
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as Layout_DetailPage
-  participant N as Navigation
-  U->>B: click of Icon → onClick_BackNavigation
-  B->>N: go to previous screen
-```
-
-### 5.2 React
-
-| # | File | Element | Event prop | Handler | Branch | Effects |
-|---|---|---|---|---|---|---|
-| [1](#521-detaillayout-onback) | [`pages/ContactUsMenu/ContactUsMenuPage.tsx:26`](../../app/src/pages/ContactUsMenu/ContactUsMenuPage.tsx#L26) | `<DetailLayout>` | `onBack` | `navigateBack` | – | goes to previous screen |
-| [2](#522-menulist-ononclickmenuoption) | [`pages/ContactUsMenu/ContactUsMenuPage.tsx:54`](../../app/src/pages/ContactUsMenu/ContactUsMenuPage.tsx#L54) | `<MenuList>` | `onOnClickMenuOption` | `inline` | – | goes to ContactUsDetails |
-| [3](#523-preventbacknavigation-onbacknavigationprevented) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:80`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L80) | `<PreventBackNavigation>` | `onBackNavigationPrevented` | `redirectHome` | – | goes to HomeFeed |
-| [4](#524-backnavigationhandler-onbacknavigation) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:82`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L82) | `<BackNavigationHandler>` | `onBackNavigation` | `maybeRedirectHome` | – | goes to HomeFeed |
-
-#### 5.2.1 DetailLayout: onBack
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as DetailLayout · ContactUsMenuPage.tsx
-  participant N as Navigation
-  U->>H: onBack → navigateBack
-  H->>N: go to previous screen
-```
-
-#### 5.2.2 MenuList: onOnClickMenuOption
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as MenuList · ContactUsMenuPage.tsx
-  participant N as Navigation
-  U->>H: onOnClickMenuOption → inline
-  Note over H: via onClickMenuOption()
-  H->>N: go to ContactUsDetails
-```
-
-#### 5.2.3 PreventBackNavigation: onBackNavigationPrevented
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as PreventBackNavigation · CommonUiLayout.tsx
-  participant N as Navigation
-  U->>H: onBackNavigationPrevented → redirectHome
-  H->>N: go to HomeFeed
-```
-
-#### 5.2.4 BackNavigationHandler: onBackNavigation
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as BackNavigationHandler · CommonUiLayout.tsx
-  participant N as Navigation
-  U->>H: onBackNavigation → maybeRedirectHome
-  Note over H: via actionRedirectHome()
-  H->>N: go to HomeFeed
-```
-
-## 6. Server calls
+Each line is a fact of both sides: a TST call, navigation or variable, and the React code that has it or not. The tool does not judge the behaviour.
 
 None.
 
-## 7. Missing in React
-
-None.
-
-## 8. Questions
+## 4. Questions
 
 1. React calls `/api/UBTConnect_Utils/CacheControl_Policies/DataActionGetCacheInfo` from `fetchPolicies()` [`api/app/repository.ts:54`](../../app/src/api/app/repository.ts#L54) (shell + page). TST ContactUsMenu has no chain to this call. Does the call belong to this route?
 
-## 9. Method
+## 5. Server calls
 
-1. **OutSystems (TST).** The tool reads `facts.json` and the compiled code of `migration/screens/ContactUsMenu/analysis/`:
-   - the rendered files;
-   - each server call with its chain of client actions, and the calls that TST made in the capture;
-   - the effects of each user action.
-2. **Route and app shell.** OutSystems: a chain belongs to the app shell when it starts in `CommonUI_InsideLayout`, one of its blocks, or a module action. React: a binding belongs to the app shell when its file is in the code that `main.tsx` loads.
-3. **MCP (DEV).** The tool reads the UI flow with `getScreenNames`. TST wins when DEV is different.
-4. **React.** `react_calls.mjs` reads the app shell from `app/src/main.tsx` and the screen from its `<Route>Page.tsx`. It counts only the code that the app uses.
-5. **Match.** `callAction(M, A)` gives `/api/M/A`. The `x-os-paths` of `app/src/api/openapi.yaml` give the TST call. The status is `implemented` when the TST call is the same. Else the status is `missing`.
+None.
 
-Limit: a name or a call match does not prove the same behaviour. The parity checks of the migration compare the behaviour.
+## 6. User actions
+
+Two independent lists: the event bindings of the TST views, and the JSX event bindings of the React files. The effects come from the handler and the functions it calls, 3 levels deep. No mapping.
+
+### 6.1 OutSystems (TST)
+
+| # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
+|---|---|---|---|---|---|
+| 1 | `ContactUsMenu` | `onClick_MenuOption of List` | `onClick_MenuOption` | – | goes to ContactUsDetails |
+
+### 6.2 React
+
+| # | File | Element | Event prop | Handler | Branch | Effects |
+|---|---|---|---|---|---|---|
+| 1 | [`pages/ContactUsMenu/ContactUsMenuPage.tsx:26`](../../app/src/pages/ContactUsMenu/ContactUsMenuPage.tsx#L26) | `<DetailLayout>` | `onBack` | `navigateBack` | – | goes to previous screen |
+| 2 | [`pages/ContactUsMenu/ContactUsMenuPage.tsx:54`](../../app/src/pages/ContactUsMenu/ContactUsMenuPage.tsx#L54) | `<MenuList>` | `onOnClickMenuOption` | `inline` | – | goes to ContactUsDetails |
+
+## 7. Screen inputs and navigation parameters
+
+The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
+The OutSystems files are in `migration/screens/ContactUsMenu/analysis/sources/raw/`.
+
+### 7.1 OutSystems (TST)
+
+Screen inputs: none. `setInputs` of `ContactUsMenu` reads no input.
+
+| Block | Target | Parameters | Place |
+|---|---|---|---|
+| `ContactUsMenu` | `ContactUsDetails` | `In_ContactSubjectId` = `textToIdentifier(contactUs_Menu.getCurrent(iterationContext).menuOptions.getItem(listIndex…`<br>`In_ContactSubjectTitle` = `contactUs_Menu.getCurrent(iterationContext).sectionTitle`<br>`In_ListMenuOptionLabel` = `contactUs_Menu.getCurrent(iterationContext).menuOptions.getItem(listIndexOf.position).labe…` | [`UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js:431`](../../migration/screens/ContactUsMenu/analysis/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L431) |
+
+### 7.2 React
+
+Declared inputs of the route: none (`app/src/app/routes.generated.ts`).
+
+Parameters read (`useSearchParams`, `useParams`): none.
+
+| File | Target | Parameters | Place |
+|---|---|---|---|
+| `useContactUsMenu.ts` | `ContactUsDetails` | `In_ContactSubjectId` = `row.Id ?? ''`<br>`In_ContactSubjectTitle` = `section.SectionTitle ?? ''`<br>`In_ListMenuOptionLabel` = `row.Label ?? ''` | [`pages/ContactUsMenu/hooks/useContactUsMenu.ts:46`](../../app/src/pages/ContactUsMenu/hooks/useContactUsMenu.ts#L46) |
+
+## 8. Lifecycle
+
+What runs when the screen and its blocks open and close, without a user action.
+
+### 8.1 OutSystems (TST)
+
+Event handlers. The steps are the node comments and the conditions of the compiled action.
+
+| Block | Event | Action | Steps |
+|---|---|---|---|
+| `ContactUsMenu` | OnInitialize ([`UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js:475`](../../migration/screens/ContactUsMenu/analysis/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L475)) | `screenEvent_OnInitialize` | 1. Execute Action: PIN_Check ([`L358`](../../migration/screens/ContactUsMenu/analysis/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L358))<br>2. IgnorePolices = GetUserId = NullIdentifier or PIN_Check.NeedRegister ([`L362`](../../migration/screens/ContactUsMenu/analysis/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L362))<br>3. IgnoreLockedScreen = GetUserId <> NullIdentifier and PIN_Check.NeedRegister ([`L365`](../../migration/screens/ContactUsMenu/analysis/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L365))<br>4. JavaScript: IsViewRestoredFromCache ([`L368`](../../migration/screens/ContactUsMenu/analysis/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L368))<br>5. Check if IsViewRestoredFromCache IsRestoredFromCache ([`L375`](../../migration/screens/ContactUsMenu/analysis/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L375))<br>6. If isViewRestoredFromCache.isRestoredFromCache ([`L376`](../../migration/screens/ContactUsMenu/analysis/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L376))<br>7. Else ([`L378`](../../migration/screens/ContactUsMenu/analysis/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L378))<br>8. Execute Action: Get_ContactUsMenuSections ([`L380`](../../migration/screens/ContactUsMenu/analysis/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L380))<br>9. ContactUs_Menu = Get_ContactUsMenuSections.Out_ContactUsMenuSections ([`L384`](../../migration/screens/ContactUsMenu/analysis/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L384)) |
+
+<details><summary>Sequence diagrams of the screen event handlers (1)</summary>
+
+The diagram keeps the order of the steps in the compiled action. The code does not give the order of the handlers of different blocks.
+
+#### 8.1.1 ContactUsMenu: OnInitialize
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant R as OutSystems runtime
+  participant B as ContactUsMenu
+  R->>B: OnInitialize → screenEvent_OnInitialize
+  B->>B: action PIN_Check
+  Note over B: IgnorePolices = GetUserId = NullIdentifier or PIN_Check.NeedRegister
+  Note over B: IgnoreLockedScreen = GetUserId <> NullIdentifier and PIN_Check.NeedRegister
+  B->>B: JavaScript IsViewRestoredFromCache
+  Note over B: Check if IsViewRestoredFromCache IsRestoredFromCache
+  alt isViewRestoredFromCache.isRestoredFromCache
+    Note over B: no step
+  else other
+    B->>B: action Get_ContactUsMenuSections
+    Note over B: ContactUs_Menu = Get_ContactUsMenuSections.Out_ContactUsMenuSections
+  end
+```
+
+</details>
+
+Data actions and aggregates. The tool reads `dataFetchDependenciesOriginal`: `0` is a fetch when the block opens, `-1` is a fetch only on demand (a `Refresh Query` step). `Read by` lists the child block inputs, conditions, text widgets and actions that read the result.
+
+None.
+
+### 8.2 React
+
+Effects (`useEffect`, `useLayoutEffect`) of the screen files, and the effects of shared components that make a call, a navigation or a message.
+
+| File | Hook (function) | Dependencies | Cleanup | Effects | Place |
+|---|---|---|---|---|---|
+| `useContactUsMenu.ts` | `useEffect` (`useContactUsMenu`) | `[contactUsMenu, setCached]` | no | none | [`pages/ContactUsMenu/hooks/useContactUsMenu.ts:39`](../../app/src/pages/ContactUsMenu/hooks/useContactUsMenu.ts#L39) |
+
+Queries. A query fetches when its component mounts and when its key changes. `Read by` lists what reads the result in the same file.
+
+None.
+
+## 9. Client state
+
+Client variables and browser storage that the route reads or writes. Other screens can read this state.
+
+### 9.1 OutSystems (TST)
+
+None.
+
+### 9.2 React
+
+None.
+
+## 10. Access
+
+Who can open the route, and the role checks in the screen and block code.
+
+| Side | Rule | Place |
+|---|---|---|
+| OutSystems (TST) | anonymous (no check) | [`UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js:500`](../../migration/screens/ContactUsMenu/analysis/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L500) |
+| React | access `anonymous`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
+
+Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.
+
+## 11. Errors
+
+What the route does when an action or a call fails.
+
+### 11.1 OutSystems (TST)
+
+The actions of the screen and its blocks have no `Handle Error` node.
+
+An error without a handler goes to the `OnException` of the UI flow (`handleError`):
+
+1. UI flow `App_Menu_ContactUs` not in `migration/shell/sources/`. Handled errors: none.
+
+### 11.2 React
+
+| File | Kind | Function | Effects | Place |
+|---|---|---|---|---|
+| `useContactUsMenu.ts` | flow handler | `onClickMenuOption` | none | [`pages/ContactUsMenu/hooks/useContactUsMenu.ts:48`](../../app/src/pages/ContactUsMenu/hooks/useContactUsMenu.ts#L48) |
+
+`flow handler`: `raiseToFlowHandler` gives the error to the flow handler of the screen (`app/src/platform/feedback/flowErrors.ts`). The tool lists `.catch`, `try/catch` and `onError` that do not give the error to it.
+
+## 12. Shared blocks and components on this route
+
+Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pages/` (React) that the route renders. Their facts belong to them, not to the route. This section gives their user actions once, without diagrams.
+
+### OutSystems (TST)
+
+| Block | Module | React port | User actions |
+|---|---|---|---|
+| `Layout_DetailPage` | `UBTConnectLibrary` | [`components/layout/DetailLayout/DetailLayout.tsx`](../../app/src/components/layout/DetailLayout/DetailLayout.tsx) | 1 |
+| `Menu_List` | `UBTConnect` | [`components/menu/MenuList/MenuList.tsx`](../../app/src/components/menu/MenuList/MenuList.tsx) | 0 |
+| `SectionSeparator` | `UBTConnect` | [`components/ui/SectionSeparator/SectionSeparator.tsx`](../../app/src/components/ui/SectionSeparator/SectionSeparator.tsx) | 0 |
+| `Columns_Three` | `UBTConnectLibrary` | [`components/ui/ColumnsThree/ColumnsThree.tsx`](../../app/src/components/ui/ColumnsThree/ColumnsThree.tsx) | 0 |
+| `Columns3` | `OutSystemsUI_2_23` | [`components/ui/Columns3/Columns3.tsx`](../../app/src/components/ui/Columns3/Columns3.tsx) | 0 |
+
+<details><summary>User actions of the shared blocks (1)</summary>
+
+| # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
+|---|---|---|---|---|---|
+| 1 | `Layout_DetailPage` | `click of Icon` | `onClick_BackNavigation` | – | goes to previous screen |
+
+</details>
+
+
+### React
+
+| File | User actions |
+|---|---|
+| [`components/layout/CommonUiLayout/CommonUiLayout.tsx`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx) | 2 |
+
+<details><summary>User actions of the shared components (2)</summary>
+
+| # | File | Element | Event prop | Handler | Branch | Effects |
+|---|---|---|---|---|---|---|
+| 1 | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:80`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L80) | `<PreventBackNavigation>` | `onBackNavigationPrevented` | `redirectHome` | – | goes to HomeFeed |
+| 2 | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:82`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L82) | `<BackNavigationHandler>` | `onBackNavigation` | `maybeRedirectHome` | – | goes to HomeFeed |
+
+</details>
+

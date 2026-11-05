@@ -1,12 +1,8 @@
-# OrbitAdminLanding: server calls and user actions in OutSystems and React
+# OrbitAdminLanding: OutSystems (TST) and React
 
-This file compares the route `/UBTConnect/OrbitAdminLanding` in OutSystems (TST) with the React app.
-The tool `route-actions/tools/check_route.py` wrote this file on 2026-11-04.
-The tool reads the code. It does not run the app.
+The route `/UBTConnect/OrbitAdminLanding`, read from the TST compiled code and from the React code by `route-actions/tools/check_route.py` on 2026-11-05. Facts only, each with its place. The method is in [README.md](../README.md).
 
-The app shell is in [APP_SHELL.md](../APP_SHELL.md), not here.
-- OutSystems app shell: `CommonUI_InsideLayout` with its blocks (TST survey), and the chains that start in a module action.
-- React app shell: the code that `app/src/main.tsx` loads (router, `AppFrame`, app start, hosts).
+Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/OrbitAdminLanding/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
 ## 1. Route
 
@@ -17,188 +13,63 @@ The app shell is in [APP_SHELL.md](../APP_SHELL.md), not here.
 | UI flow | `Legacy_OrbitAdminFlow` | MCP `getScreenNames` (DEV) |
 | React screen | [`pages/OrbitAdminLanding/OrbitAdminLandingPage.tsx`](../../app/src/pages/OrbitAdminLanding/OrbitAdminLandingPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
-| Code read | OutSystems: 12 screen and block files of the route, 25 app shell files. React: 154 screen files | TST `facts.json`, `react_calls.mjs` |
+| Screenshots | [`migration/screens/OrbitAdminLanding/parity`](../../migration/screens/OrbitAdminLanding/parity) | `route.py parity` |
+| Code read | OutSystems: 1 files of the UI flow, 11 shared blocks, 25 app shell files. React: 154 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
 | Check | Result |
 |---|---|
 | Server calls of the route on TST | 3: React makes 3, **0 missing** |
-| User actions of the route | OutSystems: 8 diagrams. React: 16 diagrams |
-| React calls of the screen that TST does not make | 1 (see [questions](#8-questions)) |
-| Screen and blocks with a React port | 12 of 12 |
+| Differences found | **0** (see [section 3](#3-differences-found)) |
+| Questions | 1 (see [section 4](#4-questions)) |
+| User actions of the route (own code) | OutSystems: 1. React: 1 |
+| Screen and blocks of the UI flow with a React port | 1 of 1 |
 | Navigation targets found in React | 8 of 8 |
-| App shell on this route | 8 calls; event bindings: OutSystems 10, React 7: see [APP_SHELL.md](../APP_SHELL.md) |
+| Shared blocks and components on the route | OutSystems 11, React 3 with user actions: see the last section |
+| App shell on this route | 8 calls: see [APP_SHELL.md](../APP_SHELL.md) |
 
-## 3. Screenshots
+## 3. Differences found
 
-The screenshots come from the last parity run (`route.py parity`). The TST capture hides personal text with dots. The React build shows fictional mock data.
+Each line is a fact of both sides: a TST call, navigation or variable, and the React code that has it or not. The tool does not judge the behaviour.
 
-| State | TST (expected) | React (build) | Difference |
-|---|---|---|---|
-| `default`<br>390x844, mock `noadminevents`<br>2026-10-29<br>pixel difference 0.0% | <img src="../../migration/screens/OrbitAdminLanding/parity/default.expected.png" width="200" alt="default expected"> | <img src="../../migration/screens/OrbitAdminLanding/parity/default.build.png" width="200" alt="default build"> | <img src="../../migration/screens/OrbitAdminLanding/parity/default.diff.png" width="200" alt="default diff"> |
-| `loading`<br>390x844, mock `loading`<br>2026-10-29<br>pixel difference 0.0% | <img src="../../migration/screens/OrbitAdminLanding/parity/loading.expected.png" width="200" alt="loading expected"> | <img src="../../migration/screens/OrbitAdminLanding/parity/loading.build.png" width="200" alt="loading build"> | <img src="../../migration/screens/OrbitAdminLanding/parity/loading.diff.png" width="200" alt="loading diff"> |
-| `offline`<br>390x844, mock `error`<br>2026-10-29<br>pixel difference 0.0% | <img src="../../migration/screens/OrbitAdminLanding/parity/offline.expected.png" width="200" alt="offline expected"> | <img src="../../migration/screens/OrbitAdminLanding/parity/offline.build.png" width="200" alt="offline build"> | <img src="../../migration/screens/OrbitAdminLanding/parity/offline.diff.png" width="200" alt="offline diff"> |
+None.
 
-## 4. Diagram
+## 4. Questions
 
-- A box on the left is the block or module of the action that calls the server (TST code).
-- A line connects each call to the React action that makes the same call.
-- The right column shows the React components that use each React action.
-- A red box is a call that React does not make.
+1. React calls `/api/UBTConnect_Utils/CacheControl_Policies/DataActionGetCacheInfo` from `fetchPolicies()` [`api/app/repository.ts:54`](../../app/src/api/app/repository.ts#L54) (shell + page). TST OrbitAdminLanding has no chain to this call. Does the call belong to this route?
 
-```mermaid
-flowchart LR
-  subgraph OS["OutSystems (TST compiled)"]
-    subgraph OS_screen["Screen and its blocks"]
-      o0["OrbitAdminLanding"]
-      o1["ScreenBlock_AdminLanding"]
-      o2["UBTConnect"]
-    end
-  end
-  subgraph EP["Server calls (TST)"]
-    e3["DataActionGet_AdminEventsList"]
-    e4["ActionGetMilestoneScanFF"]
-    e5["ServiceAPIGet_UI_UpdateItems_UnreadCount_All"]
-  end
-  subgraph RE["React actions"]
-    subgraph RE_page["Screen"]
-      r6["fetchAdminEvents()"]
-      r7["fetchUnreadUpdateItemsCount()"]
-      r8["getMilestoneScanFF()"]
-    end
-  end
-  subgraph RC["React components"]
-    c9["BottomBar"]
-    c10["OrbitAdminLanding"]
-  end
-  r6 --- c10
-  r8 --- c10
-  r7 --- c9
-  o1 --> e3
-  o0 --> e4
-  o2 --> e5
-  e3 --- r6
-  e4 --- r8
-  e5 --- r7
-  classDef missing fill:#fde2e1,stroke:#c0392b,color:#7b241c
-  classDef ok fill:#e3f4e8,stroke:#2e7d4f,color:#1d4d31
-  class e3,e4,e5 ok
-```
+## 5. Server calls
 
-## 5. User actions
+All columns come from the code, without interpretation:
 
-The two lists are independent: the OutSystems list comes from the TST compiled code, the React list from the React code. The tool does not map one list to the other.
+- **Direct caller (TST):** the block or module of the action that calls the server (the step before the server call in the chain).
+- **Chain (TST):** the chains of client actions in the TST compiled code, from their start to the call.
+  A long chain shows its first 2 steps, …, and its last 2 steps.
+- **Seen on TST:** `yes` when TST made the call in the capture.
+- **React action:** the React function with the `callAction` of the same call (`file:line`), and the code that loads it: `shell` (from `main.tsx`), `page` (from the screen), or both.
+- **Used by (React references):** the functions and components that reference the React action, up to the nearest component. A reference is not always a call.
+- **Status:** `implemented` when the contract path of the React call gives the same TST URL. It does not prove the same behaviour.
 
-- **OutSystems:** each event binding of the compiled views (`<event>$Action: function` of a child block or widget, `on<Event>: function` of an HTML element) with its handler.
-- **React:** each JSX attribute `on<Event>={handler}` with its handler.
-- Both lists keep only the bindings whose handler has an effect: a server call, a navigation, an external link, a message or a confirm dialog. The tool follows the called functions 3 levels deep.
-- When the handler has branches in the code (`switch` case, `if` with `===`), each branch has its own diagram. The branch name is the constant of the condition. `other` is the last `else` or `default`.
-- An arrow to the server gives the inputs of the call, the return arrow its outputs (contract `app/src/api/openapi.yaml`).
+| # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
+|---|---|---|---|---|---|---|---|---|
+| 1 | `UBTConnect/Legacy_OrbitAdminFlow/OrbitAdminLanding/ActionGetMilestoneScanFF` | server action | `OrbitAdminLanding` | ScreenBlock_AdminLanding.onHandle_EventCardClicked → event navigateTo_EventDetail of ScreenBlock_AdminLanding → OrbitAdminLanding.onHandle_NavigateToEventDetail → server GetMilestoneScanFF | no | `getMilestoneScanFF()` [`api/event/adminMilestones.ts:70`](../../app/src/api/event/adminMilestones.ts#L70) (page) | `OrbitAdminLanding → useNavigateToEventDetail → getMilestoneScanFF`<br>[`pages/OrbitAdminLanding/OrbitAdminLandingPage.tsx`](../../app/src/pages/OrbitAdminLanding/OrbitAdminLandingPage.tsx) | implemented |
+| 2 | `Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks_AdminFlow/ScreenBlock_AdminLanding/DataActionGet_AdminEventsList` | data action | `ScreenBlock_AdminLanding` | ScreenBlock_AdminLanding.OnReady → ScreenBlock_AdminLanding.onReady → ScreenBlock_AdminLanding.refresh_GetEventsByMemberId → ScreenBlock_AdminLanding.DataActionGet_AdminEventsList<br>ScreenBlock_AdminLanding fetch at start → ScreenBlock_AdminLanding.DataActionGet_AdminEventsList | yes | `fetchAdminEvents()` [`api/event/repository.ts:275`](../../app/src/api/event/repository.ts#L275) (page) | `OrbitAdminLanding → useAdminLanding → fetchAdminEvents`<br>[`pages/OrbitAdminLanding/OrbitAdminLandingPage.tsx`](../../app/src/pages/OrbitAdminLanding/OrbitAdminLandingPage.tsx) | implemented |
+| 3 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx) | implemented |
 
-### 5.1 OutSystems (TST)
+## 6. User actions
+
+Two independent lists: the event bindings of the TST views, and the JSX event bindings of the React files. The effects come from the handler and the functions it calls, 3 levels deep. No mapping.
+
+### 6.1 OutSystems (TST)
 
 | # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
 |---|---|---|---|---|---|
-| [1](#511-menuicon__updatedosui-onback) | `MenuIcon__UpdatedOSUI` | `onClick (HTML element)` | `onBack` | – | goes to previous screen |
-| [2](#512-screenblock_adminlanding-onhandle_eventcardclicked) | `ScreenBlock_AdminLanding` | `clickedEvent of Event` | `onHandle_EventCardClicked` | – | calls GetAllApplicationEvents, AppManager_SynchAppContext |
-| [3](#513-bottombarmenu-event_bottombar_clicked-home) | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `home` | goes to HomeFeed |
-| [4](#514-bottombarmenu-event_bottombar_clicked-directory) | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `directory` | goes to CountryList, Locality_Details |
-| [5](#515-bottombarmenu-event_bottombar_clicked-updates) | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `updates` | goes to Updates_SingleList |
-| [6](#516-bottombarmenu-event_bottombar_clicked-bookmarks) | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `bookmarks` | goes to Bookmarks |
-| [7](#517-bottombarmenu-event_bottombar_clicked-menu) | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `menu` | goes to Menu |
-| [8](#518-orbitadminlanding-onhandle_navigatetoeventdetail) | `OrbitAdminLanding` | `navigateTo_EventDetail of AdminLanding` | `onHandle_NavigateToEventDetail` | – | calls GetMilestoneScanFF; goes to OrbitAdminMilestones, OrbitAdminEventDetail |
+| [1](#611-orbitadminlanding-onhandle_navigatetoeventdetail) | `OrbitAdminLanding` | `navigateTo_EventDetail of AdminLanding` | `onHandle_NavigateToEventDetail` | – | calls GetMilestoneScanFF; goes to OrbitAdminMilestones, OrbitAdminEventDetail |
 
-#### 5.1.1 MenuIcon__UpdatedOSUI: onBack
+<details><summary>1 diagrams (handlers with two or more effects)</summary>
 
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as MenuIcon__UpdatedOSUI
-  participant N as Navigation
-  U->>B: onClick (HTML element) → onBack
-  B->>N: go to previous screen
-```
-
-#### 5.1.2 ScreenBlock_AdminLanding: onHandle_EventCardClicked
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as ScreenBlock_AdminLanding
-  participant S as Server (TST calls)
-  U->>B: clickedEvent of Event → onHandle_EventCardClicked
-  Note over B: via Connect2_OrbitMobile_MUI.onApplicationEvent_ClickEvent
-  B->>S: GetAllApplicationEvents()
-  S-->>B: EventList
-  B->>S: AppManager_SynchAppContext(EspaceName)
-  S-->>B: AppManager_ClientConfig, FirebaseRealTimeDB_Token, PermissionList, …
-```
-
-#### 5.1.3 BottomBarMenu: event_BottomBar_Clicked (home)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as BottomBarMenu
-  participant N as Navigation
-  U->>B: onClick (HTML element) → event_BottomBar_Clicked (home)
-  B->>N: go to HomeFeed
-```
-
-#### 5.1.4 BottomBarMenu: event_BottomBar_Clicked (directory)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as BottomBarMenu
-  participant N as Navigation
-  U->>B: onClick (HTML element) → event_BottomBar_Clicked (directory)
-  B->>N: go to CountryList
-  B->>N: go to Locality_Details
-```
-
-#### 5.1.5 BottomBarMenu: event_BottomBar_Clicked (updates)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as BottomBarMenu
-  participant N as Navigation
-  U->>B: onClick (HTML element) → event_BottomBar_Clicked (updates)
-  B->>N: go to Updates_SingleList
-```
-
-#### 5.1.6 BottomBarMenu: event_BottomBar_Clicked (bookmarks)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as BottomBarMenu
-  participant N as Navigation
-  U->>B: onClick (HTML element) → event_BottomBar_Clicked (bookmarks)
-  B->>N: go to Bookmarks
-```
-
-#### 5.1.7 BottomBarMenu: event_BottomBar_Clicked (menu)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as BottomBarMenu
-  participant N as Navigation
-  U->>B: onClick (HTML element) → event_BottomBar_Clicked (menu)
-  B->>N: go to Menu
-```
-
-#### 5.1.8 OrbitAdminLanding: onHandle_NavigateToEventDetail
+#### 6.1.1 OrbitAdminLanding: onHandle_NavigateToEventDetail
 
 ```mermaid
 sequenceDiagram
@@ -214,28 +85,19 @@ sequenceDiagram
   B->>N: go to OrbitAdminEventDetail
 ```
 
-### 5.2 React
+
+</details>
+
+
+### 6.2 React
 
 | # | File | Element | Event prop | Handler | Branch | Effects |
 |---|---|---|---|---|---|---|
-| [1](#521-adminlandingview-oneventcardclicked) | [`pages/OrbitAdminLanding/OrbitAdminLandingPage.tsx:26`](../../app/src/pages/OrbitAdminLanding/OrbitAdminLandingPage.tsx#L26) | `<AdminLandingView>` | `onEventCardClicked` | `onEventCardClicked` | – | calls ActionGetMilestoneScanFF; goes to OrbitAdminMilestones, OrbitAdminEventDetail |
-| [2](#522-preventbacknavigation-onbacknavigationprevented) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:80`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L80) | `<PreventBackNavigation>` | `onBackNavigationPrevented` | `redirectHome` | – | goes to HomeFeed |
-| [3](#523-backnavigationhandler-onbacknavigation) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:82`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L82) | `<BackNavigationHandler>` | `onBackNavigation` | `maybeRedirectHome` | – | goes to HomeFeed |
-| [4](#524-oslink-onclick-home) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Home` | goes to HomeFeed |
-| [5](#525-oslink-onclick-directory) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Directory` | goes to CountryList, Locality_Details |
-| [6](#526-oslink-onclick-updates) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Updates` | goes to Updates_SingleList |
-| [7](#527-oslink-onclick-bookmarks) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Bookmarks` | goes to Bookmarks |
-| [8](#528-oslink-onclick-menu) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Menu` | goes to Menu |
-| [9](#529-oslink-onclick-other) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `other` | calls the prop onBottomBarClicked() |
-| [10](#5210-bottombariconbadge-ononclick-home) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Home` | goes to HomeFeed |
-| [11](#5211-bottombariconbadge-ononclick-directory) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Directory` | goes to CountryList, Locality_Details |
-| [12](#5212-bottombariconbadge-ononclick-updates) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Updates` | goes to Updates_SingleList |
-| [13](#5213-bottombariconbadge-ononclick-bookmarks) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Bookmarks` | goes to Bookmarks |
-| [14](#5214-bottombariconbadge-ononclick-menu) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Menu` | goes to Menu |
-| [15](#5215-bottombariconbadge-ononclick-other) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `other` | calls the prop onBottomBarClicked() |
-| [16](#5216-div-onclick) | [`components/layout/MenuIcon/MenuIcon.tsx:34`](../../app/src/components/layout/MenuIcon/MenuIcon.tsx#L34) | `<div>` | `onClick` | `inline` | – | goes to previous screen |
+| [1](#621-adminlandingview-oneventcardclicked) | [`pages/OrbitAdminLanding/OrbitAdminLandingPage.tsx:26`](../../app/src/pages/OrbitAdminLanding/OrbitAdminLandingPage.tsx#L26) | `<AdminLandingView>` | `onEventCardClicked` | `onEventCardClicked` | – | calls ActionGetMilestoneScanFF; goes to OrbitAdminMilestones, OrbitAdminEventDetail |
 
-#### 5.2.1 AdminLandingView: onEventCardClicked
+<details><summary>1 diagrams (handlers with two or more effects)</summary>
+
+#### 6.2.1 AdminLandingView: onEventCardClicked
 
 ```mermaid
 sequenceDiagram
@@ -254,234 +116,162 @@ sequenceDiagram
   H->>N: go to OrbitAdminEventDetail
 ```
 
-#### 5.2.2 PreventBackNavigation: onBackNavigationPrevented
 
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as PreventBackNavigation · CommonUiLayout.tsx
-  participant N as Navigation
-  U->>H: onBackNavigationPrevented → redirectHome
-  H->>N: go to HomeFeed
-```
+</details>
 
-#### 5.2.3 BackNavigationHandler: onBackNavigation
 
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as BackNavigationHandler · CommonUiLayout.tsx
-  participant N as Navigation
-  U->>H: onBackNavigation → maybeRedirectHome
-  Note over H: via actionRedirectHome()
-  H->>N: go to HomeFeed
-```
+## 7. Screen inputs and navigation parameters
 
-#### 5.2.4 OSLink: onClick (Home)
+The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
+The OutSystems files are in `migration/screens/OrbitAdminLanding/analysis/sources/raw/`.
 
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as OSLink · BottomBar.tsx
-  participant N as Navigation
-  U->>H: onClick → click (Home)
-  Note over H: via event_BottomBar_Clicked()
-  H->>N: go to HomeFeed
-```
+### 7.1 OutSystems (TST)
 
-#### 5.2.5 OSLink: onClick (Directory)
+Screen inputs: none. `setInputs` of `OrbitAdminLanding` reads no input.
 
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as OSLink · BottomBar.tsx
-  participant N as Navigation
-  U->>H: onClick → click (Directory)
-  Note over H: via event_BottomBar_Clicked()
-  H->>N: go to CountryList
-  H->>N: go to Locality_Details
-```
+| Block | Target | Parameters | Place |
+|---|---|---|---|
+| `OrbitAdminLanding` | `OrbitAdminMilestones` | `EventId` = `eventId` | [`UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js:275`](../../migration/screens/OrbitAdminLanding/analysis/sources/raw/UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js#L275) |
+| `OrbitAdminLanding` | `OrbitAdminEventDetail` | `In_EventId` = `eventId`<br>`In_EventStartDate` = `eventStartDate`<br>`In_EventLocation` = `eventLocation`<br>`In_EventName` = `eventName`<br>`In_EventEndDate` = `eventEndDate`<br>`In_EventTypeFriendly` = `eventTypeFriendly` | [`UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js:281`](../../migration/screens/OrbitAdminLanding/analysis/sources/raw/UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js#L281) |
 
-#### 5.2.6 OSLink: onClick (Updates)
+### 7.2 React
 
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as OSLink · BottomBar.tsx
-  participant N as Navigation
-  U->>H: onClick → click (Updates)
-  Note over H: via event_BottomBar_Clicked()
-  H->>N: go to Updates_SingleList
-```
+Declared inputs of the route: none (`app/src/app/routes.generated.ts`).
 
-#### 5.2.7 OSLink: onClick (Bookmarks)
+Parameters read (`useSearchParams`, `useParams`): none.
 
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as OSLink · BottomBar.tsx
-  participant N as Navigation
-  U->>H: onClick → click (Bookmarks)
-  Note over H: via event_BottomBar_Clicked()
-  H->>N: go to Bookmarks
-```
+| File | Target | Parameters | Place |
+|---|---|---|---|
+| `useNavigateToEventDetail.ts` | `OrbitAdminMilestones` | `EventId` = `target.eventId` | [`pages/OrbitAdminLanding/hooks/useNavigateToEventDetail.ts:19`](../../app/src/pages/OrbitAdminLanding/hooks/useNavigateToEventDetail.ts#L19) |
+| `useNavigateToEventDetail.ts` | `OrbitAdminEventDetail` | `In_EventId` = `target.eventId`<br>`In_EventStartDate` = `wireDateTimeParam(target.eventStartDate)`<br>`In_EventLocation` = `target.eventLocation`<br>`In_EventName` = `target.eventName`<br>`In_EventEndDate` = `wireDateTimeParam(target.eventEndDate)`<br>`In_EventTypeFriendly` = `target.eventTypeFriendly` | [`pages/OrbitAdminLanding/hooks/useNavigateToEventDetail.ts:21`](../../app/src/pages/OrbitAdminLanding/hooks/useNavigateToEventDetail.ts#L21) |
 
-#### 5.2.8 OSLink: onClick (Menu)
+## 8. Lifecycle
 
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as OSLink · BottomBar.tsx
-  participant N as Navigation
-  U->>H: onClick → click (Menu)
-  Note over H: via event_BottomBar_Clicked()
-  H->>N: go to Menu
-```
+What runs when the screen and its blocks open and close, without a user action.
 
-#### 5.2.9 OSLink: onClick (other)
+### 8.1 OutSystems (TST)
 
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as OSLink · BottomBar.tsx
-  U->>H: onClick → click (other)
-  Note over H: via event_BottomBar_Clicked()
-  Note over H: calls the prop onBottomBarClicked()
-```
-
-#### 5.2.10 BottomBarIconBadge: onOnClick (Home)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as BottomBarIconBadge · BottomBar.tsx
-  participant N as Navigation
-  U->>H: onOnClick → click (Home)
-  Note over H: via event_BottomBar_Clicked()
-  H->>N: go to HomeFeed
-```
-
-#### 5.2.11 BottomBarIconBadge: onOnClick (Directory)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as BottomBarIconBadge · BottomBar.tsx
-  participant N as Navigation
-  U->>H: onOnClick → click (Directory)
-  Note over H: via event_BottomBar_Clicked()
-  H->>N: go to CountryList
-  H->>N: go to Locality_Details
-```
-
-#### 5.2.12 BottomBarIconBadge: onOnClick (Updates)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as BottomBarIconBadge · BottomBar.tsx
-  participant N as Navigation
-  U->>H: onOnClick → click (Updates)
-  Note over H: via event_BottomBar_Clicked()
-  H->>N: go to Updates_SingleList
-```
-
-#### 5.2.13 BottomBarIconBadge: onOnClick (Bookmarks)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as BottomBarIconBadge · BottomBar.tsx
-  participant N as Navigation
-  U->>H: onOnClick → click (Bookmarks)
-  Note over H: via event_BottomBar_Clicked()
-  H->>N: go to Bookmarks
-```
-
-#### 5.2.14 BottomBarIconBadge: onOnClick (Menu)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as BottomBarIconBadge · BottomBar.tsx
-  participant N as Navigation
-  U->>H: onOnClick → click (Menu)
-  Note over H: via event_BottomBar_Clicked()
-  H->>N: go to Menu
-```
-
-#### 5.2.15 BottomBarIconBadge: onOnClick (other)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as BottomBarIconBadge · BottomBar.tsx
-  U->>H: onOnClick → click (other)
-  Note over H: via event_BottomBar_Clicked()
-  Note over H: calls the prop onBottomBarClicked()
-```
-
-#### 5.2.16 div: onClick
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as div · MenuIcon.tsx
-  participant N as Navigation
-  U->>H: onClick → inline
-  H->>N: go to previous screen
-```
-
-## 6. Server calls
-
-All columns come from the code, without interpretation:
-
-- **Direct caller (TST):** the block or module of the action that calls the server (the step before the server call in the chain).
-- **Chain (TST):** the chains of client actions in the TST compiled code, from their start to the call.
-  A long chain shows its first 2 steps, …, and its last 2 steps.
-- **Seen on TST:** `yes` when TST made the call in the capture.
-- **React action:** the React function with the `callAction` of the same call (`file:line`), and the code that loads it: `shell` (from `main.tsx`), `page` (from the screen), or both.
-- **Used by (React references):** the functions and components that reference the React action, up to the nearest component. A reference is not always a call.
-- **Status:** `implemented` when the contract path of the React call gives the same TST URL. It does not prove the same behaviour.
-
-| # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
-|---|---|---|---|---|---|---|---|---|
-| 1 | `UBTConnect/Legacy_OrbitAdminFlow/OrbitAdminLanding/ActionGetMilestoneScanFF` | server action | `OrbitAdminLanding` | ScreenBlock_AdminLanding.onHandle_EventCardClicked → event navigateTo_EventDetail of ScreenBlock_AdminLanding → OrbitAdminLanding.onHandle_NavigateToEventDetail → server GetMilestoneScanFF | no | `getMilestoneScanFF()` [`api/event/adminMilestones.ts:70`](../../app/src/api/event/adminMilestones.ts#L70) (page) | `OrbitAdminLanding → useNavigateToEventDetail → getMilestoneScanFF`<br>[`pages/OrbitAdminLanding/OrbitAdminLandingPage.tsx`](../../app/src/pages/OrbitAdminLanding/OrbitAdminLandingPage.tsx) | implemented |
-| 2 | `Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks_AdminFlow/ScreenBlock_AdminLanding/DataActionGet_AdminEventsList` | data action | `ScreenBlock_AdminLanding` | ScreenBlock_AdminLanding.OnReady → ScreenBlock_AdminLanding.onReady → ScreenBlock_AdminLanding.refresh_GetEventsByMemberId → ScreenBlock_AdminLanding.DataActionGet_AdminEventsList<br>ScreenBlock_AdminLanding fetch at start → ScreenBlock_AdminLanding.DataActionGet_AdminEventsList | yes | `fetchAdminEvents()` [`api/event/repository.ts:275`](../../app/src/api/event/repository.ts#L275) (page) | `OrbitAdminLanding → useAdminLanding → fetchAdminEvents`<br>[`pages/OrbitAdminLanding/OrbitAdminLandingPage.tsx`](../../app/src/pages/OrbitAdminLanding/OrbitAdminLandingPage.tsx) | implemented |
-| 3 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx) | implemented |
-
-## 7. Missing in React
+Event handlers. The steps are the node comments and the conditions of the compiled action.
 
 None.
 
-## 8. Questions
+Data actions and aggregates. The tool reads `dataFetchDependenciesOriginal`: `0` is a fetch when the block opens, `-1` is a fetch only on demand (a `Refresh Query` step). `Read by` lists the child block inputs, conditions, text widgets and actions that read the result.
 
-1. React calls `/api/UBTConnect_Utils/CacheControl_Policies/DataActionGetCacheInfo` from `fetchPolicies()` [`api/app/repository.ts:54`](../../app/src/api/app/repository.ts#L54) (shell + page). TST OrbitAdminLanding has no chain to this call. Does the call belong to this route?
+None.
 
-## 9. Method
+### 8.2 React
 
-1. **OutSystems (TST).** The tool reads `facts.json` and the compiled code of `migration/screens/OrbitAdminLanding/analysis/`:
-   - the rendered files;
-   - each server call with its chain of client actions, and the calls that TST made in the capture;
-   - the effects of each user action.
-2. **Route and app shell.** OutSystems: a chain belongs to the app shell when it starts in `CommonUI_InsideLayout`, one of its blocks, or a module action. React: a binding belongs to the app shell when its file is in the code that `main.tsx` loads.
-3. **MCP (DEV).** The tool reads the UI flow with `getScreenNames`. TST wins when DEV is different.
-4. **React.** `react_calls.mjs` reads the app shell from `app/src/main.tsx` and the screen from its `<Route>Page.tsx`. It counts only the code that the app uses.
-5. **Match.** `callAction(M, A)` gives `/api/M/A`. The `x-os-paths` of `app/src/api/openapi.yaml` give the TST call. The status is `implemented` when the TST call is the same. Else the status is `missing`.
+Effects (`useEffect`, `useLayoutEffect`) of the screen files, and the effects of shared components that make a call, a navigation or a message.
 
-Limit: a name or a call match does not prove the same behaviour. The parity checks of the migration compare the behaviour.
+None.
+
+Queries. A query fetches when its component mounts and when its key changes. `Read by` lists what reads the result in the same file.
+
+None.
+
+## 9. Client state
+
+Client variables and browser storage that the route reads or writes. Other screens can read this state.
+
+### 9.1 OutSystems (TST)
+
+None.
+
+### 9.2 React
+
+None.
+
+## 10. Access
+
+Who can open the route, and the role checks in the screen and block code.
+
+| Side | Rule | Place |
+|---|---|---|
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js:377`](../../migration/screens/OrbitAdminLanding/analysis/sources/raw/UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js#L377) |
+| React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
+
+Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.
+
+## 11. Errors
+
+What the route does when an action or a call fails.
+
+### 11.1 OutSystems (TST)
+
+The actions of the screen and its blocks have no `Handle Error` node.
+
+An error without a handler goes to the `OnException` of the UI flow (`handleError`):
+
+1. UI flow `Legacy_OrbitAdminFlow` not in `migration/shell/sources/`. Handled errors: none.
+
+### 11.2 React
+
+None.
+
+`flow handler`: `raiseToFlowHandler` gives the error to the flow handler of the screen (`app/src/platform/feedback/flowErrors.ts`). The tool lists `.catch`, `try/catch` and `onError` that do not give the error to it.
+
+## 12. Shared blocks and components on this route
+
+Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pages/` (React) that the route renders. Their facts belong to them, not to the route. This section gives their user actions once, without diagrams.
+
+### OutSystems (TST)
+
+| Block | Module | React port | User actions |
+|---|---|---|---|
+| `ScreenBlock_AdminLanding` | `Connect2_OrbitMobile_MUI` | [`pages/OrbitAdminLanding/components/AdminLandingView.tsx`](../../app/src/pages/OrbitAdminLanding/components/AdminLandingView.tsx), [`pages/OrbitAdminLanding/hooks/adminLandingState.ts`](../../app/src/pages/OrbitAdminLanding/hooks/adminLandingState.ts), [`pages/OrbitAdminLanding/hooks/useAdminLanding.ts`](../../app/src/pages/OrbitAdminLanding/hooks/useAdminLanding.ts) | 1 |
+| `Layout_Orbit` | `Connect2_LegacyShared` | [`components/layout/OrbitLayout/OrbitLayout.tsx`](../../app/src/components/layout/OrbitLayout/OrbitLayout.tsx) | 0 |
+| `BaseLayout_UpdatedOSUI` | `Connect2_LegacyShared` | [`components/layout/BaseLayout/BaseLayout.tsx`](../../app/src/components/layout/BaseLayout/BaseLayout.tsx) | 0 |
+| `MenuIcon__UpdatedOSUI` | `Connect2_LegacyShared` | [`components/layout/MenuIcon/MenuIcon.tsx`](../../app/src/components/layout/MenuIcon/MenuIcon.tsx) | 1 |
+| `NoInformation_Orbit` | `Connect2_OrbitMobile_MUI` | [`components/orbit/OrbitNoInformation/OrbitNoInformation.tsx`](../../app/src/components/orbit/OrbitNoInformation/OrbitNoInformation.tsx) | 0 |
+| `BottomBarMenu` | `UBTConnect` | [`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx) | 1 |
+| `BottomBarContent` | `UBTConnect` | [`components/layout/BottomBarContent/BottomBarContent.tsx`](../../app/src/components/layout/BottomBarContent/BottomBarContent.tsx) | 0 |
+| `BottomBarItem` | `OutSystemsUI_2_23` | [`components/ui/BottomBarItem/BottomBarItem.tsx`](../../app/src/components/ui/BottomBarItem/BottomBarItem.tsx) | 0 |
+| `App_IconBadge` | `UBTConnect` | [`components/layout/BottomBarIconBadge/BottomBarIconBadge.tsx`](../../app/src/components/layout/BottomBarIconBadge/BottomBarIconBadge.tsx) | 0 |
+| `IconBadge` | `UBTConnectLibrary` | [`components/ui/IconBadge/IconBadge.tsx`](../../app/src/components/ui/IconBadge/IconBadge.tsx) | 0 |
+| `Badge` | `UBTConnectLibrary` | [`components/ui/Badge/Badge.tsx`](../../app/src/components/ui/Badge/Badge.tsx) | 0 |
+
+<details><summary>User actions of the shared blocks (7)</summary>
+
+| # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
+|---|---|---|---|---|---|
+| 1 | `MenuIcon__UpdatedOSUI` | `onClick (HTML element)` | `onBack` | – | goes to previous screen |
+| 2 | `ScreenBlock_AdminLanding` | `clickedEvent of Event` | `onHandle_EventCardClicked` | – | calls GetAllApplicationEvents, AppManager_SynchAppContext |
+| 3 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `home` | goes to HomeFeed |
+| 4 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `directory` | goes to CountryList, Locality_Details |
+| 5 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `updates` | goes to Updates_SingleList |
+| 6 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `bookmarks` | goes to Bookmarks |
+| 7 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `menu` | goes to Menu |
+
+</details>
+
+
+### React
+
+| File | User actions |
+|---|---|
+| [`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx) | 2 |
+| [`components/layout/CommonUiLayout/CommonUiLayout.tsx`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx) | 2 |
+| [`components/layout/MenuIcon/MenuIcon.tsx`](../../app/src/components/layout/MenuIcon/MenuIcon.tsx) | 1 |
+
+<details><summary>User actions of the shared components (15)</summary>
+
+| # | File | Element | Event prop | Handler | Branch | Effects |
+|---|---|---|---|---|---|---|
+| 1 | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:80`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L80) | `<PreventBackNavigation>` | `onBackNavigationPrevented` | `redirectHome` | – | goes to HomeFeed |
+| 2 | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:82`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L82) | `<BackNavigationHandler>` | `onBackNavigation` | `maybeRedirectHome` | – | goes to HomeFeed |
+| 3 | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Home` | goes to HomeFeed |
+| 4 | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Directory` | goes to CountryList, Locality_Details |
+| 5 | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Updates` | goes to Updates_SingleList |
+| 6 | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Bookmarks` | goes to Bookmarks |
+| 7 | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Menu` | goes to Menu |
+| 8 | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `other` | calls the prop onBottomBarClicked() |
+| 9 | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Home` | goes to HomeFeed |
+| 10 | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Directory` | goes to CountryList, Locality_Details |
+| 11 | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Updates` | goes to Updates_SingleList |
+| 12 | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Bookmarks` | goes to Bookmarks |
+| 13 | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Menu` | goes to Menu |
+| 14 | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `other` | calls the prop onBottomBarClicked() |
+| 15 | [`components/layout/MenuIcon/MenuIcon.tsx:34`](../../app/src/components/layout/MenuIcon/MenuIcon.tsx#L34) | `<div>` | `onClick` | `inline` | – | goes to previous screen |
+
+</details>
+

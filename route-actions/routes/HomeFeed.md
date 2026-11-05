@@ -21,7 +21,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | Check | Result |
 |---|---|
 | Server calls of the route on TST | 14: React makes 11, **3 missing** |
-| Differences found | **6** (see [section 3](#3-differences-found)) |
+| Differences found | **4** (see [section 3](#3-differences-found)) |
 | Questions | 2 (see [section 4](#4-questions)) |
 | User actions of the route (own code) | OutSystems: 15. React: 14 |
 | Screen and blocks of the UI flow with a React port | 6 of 6 |
@@ -46,8 +46,6 @@ Each line is a fact of both sides: a TST call, navigation or variable, and the R
 - Call `Connect2_LegacyShared/ActionGetAllApplicationEvents`. Chain on TST: SharePopup.onClick_CallButton → event event_ShareToOthers of SharePopup → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents.
   - No React code makes this call.
 - Navigation to `HouseholdDetails` with the parameters `HouseholdId` ([`UBTConnect.Home.FeedBlock_Updates.mvc.js:706`](../../migration/screens/HomeFeed/analysis/sources/raw/UBTConnect.Home.FeedBlock_Updates.mvc.js#L706)). No React navigation to `HouseholdDetails` gives parameters. React names `HouseholdDetails` in: [`app/routes.ts:76`](../../app/src/app/routes.ts#L76).
-- Navigation to `LegacyShareObject` with the parameters `In_ShareObjectTypeId`, `In_CustomTitle`, `In_ObjectId` ([`UBTConnect.Home.Feed_Embeded.mvc.js:438`](../../migration/screens/HomeFeed/analysis/sources/raw/UBTConnect.Home.Feed_Embeded.mvc.js#L438)). No React navigation to `LegacyShareObject` gives parameters. React names `LegacyShareObject` in: [`platform/session/useEmbeddedFeed.ts:51`](../../app/src/platform/session/useEmbeddedFeed.ts#L51).
-- Client variable `UBTConnect.Embedd_B2CTenant`: TST gets it ([`UBTConnect.Home.Feed_Embeded.mvc.js:157`](../../migration/screens/HomeFeed/analysis/sources/raw/UBTConnect.Home.Feed_Embeded.mvc.js#L157)). No React file of the route names it (`getClientVar`, `setClientVar`, `useClientVar`).
 
 ## 4. Questions
 
@@ -474,6 +472,11 @@ What the route does when an action or a call fails.
 ### 11.1 OutSystems (TST)
 
 The actions of the screen and its blocks have no `Handle Error` node.
+
+An error without a handler goes to the `OnException` of the UI flow (`handleError`):
+
+1. UI flow `Home` [`UBTConnect.Home.controller.js:12`](../../migration/shell/sources/UBTConnect.Home.controller.js#L12). Handled errors: none, it goes to the next flow.
+2. UI flow `App_Common` [`UBTConnect.App_Common.controller.js:12`](../../migration/shell/sources/UBTConnect.App_Common.controller.js#L12). Handled errors: `BubbleCommunicationException` ([`UBTConnect.App_Common.controller.js:31`](../../migration/shell/sources/UBTConnect.App_Common.controller.js#L31)), `CommunicationException` ([`UBTConnect.App_Common.controller.js:46`](../../migration/shell/sources/UBTConnect.App_Common.controller.js#L46)), `SecurityException` ([`UBTConnect.App_Common.controller.js:61`](../../migration/shell/sources/UBTConnect.App_Common.controller.js#L61)), `AllExceptions` ([`UBTConnect.App_Common.controller.js:91`](../../migration/shell/sources/UBTConnect.App_Common.controller.js#L91)).
 
 ### 11.2 React
 

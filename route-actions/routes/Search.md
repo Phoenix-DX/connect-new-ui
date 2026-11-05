@@ -1,12 +1,8 @@
-# Search: server calls and user actions in OutSystems and React
+# Search: OutSystems (TST) and React
 
-This file compares the route `/UBTConnect/Search` in OutSystems (TST) with the React app.
-The tool `route-actions/tools/check_route.py` wrote this file on 2026-11-04.
-The tool reads the code. It does not run the app.
+The route `/UBTConnect/Search`, read from the TST compiled code and from the React code by `route-actions/tools/check_route.py` on 2026-11-05. Facts only, each with its place. The method is in [README.md](../README.md).
 
-The app shell is in [APP_SHELL.md](../APP_SHELL.md), not here.
-- OutSystems app shell: `CommonUI_InsideLayout` with its blocks (TST survey), and the chains that start in a module action.
-- React app shell: the code that `app/src/main.tsx` loads (router, `AppFrame`, app start, hosts).
+Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/Search/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
 ## 1. Route
 
@@ -17,750 +13,36 @@ The app shell is in [APP_SHELL.md](../APP_SHELL.md), not here.
 | UI flow | `Directory_Search` | MCP `getScreenNames` (DEV) |
 | React screen | [`pages/Search/SearchPage.tsx`](../../app/src/pages/Search/SearchPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
-| Code read | OutSystems: 29 screen and block files of the route, 28 app shell files. React: 186 screen files | TST `facts.json`, `react_calls.mjs` |
+| Screenshots | [`migration/screens/Search/parity`](../../migration/screens/Search/parity) | `route.py parity` |
+| Code read | OutSystems: 2 files of the UI flow, 27 shared blocks, 28 app shell files. React: 186 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
 | Check | Result |
 |---|---|
 | Server calls of the route on TST | 6: React makes 6, **0 missing** |
-| User actions of the route | OutSystems: 16 diagrams. React: 28 diagrams |
-| React calls of the screen that TST does not make | 4 (see [questions](#8-questions)) |
-| Screen and blocks with a React port | 29 of 29 |
+| Differences found | **0** (see [section 3](#3-differences-found)) |
+| Questions | 4 (see [section 4](#4-questions)) |
+| User actions of the route (own code) | OutSystems: 5. React: 7 |
+| Screen and blocks of the UI flow with a React port | 2 of 2 |
 | Navigation targets found in React | 8 of 8 |
-| App shell on this route | 8 calls; event bindings: OutSystems 10, React 7: see [APP_SHELL.md](../APP_SHELL.md) |
+| Shared blocks and components on the route | OutSystems 27, React 7 with user actions: see the last section |
+| App shell on this route | 8 calls: see [APP_SHELL.md](../APP_SHELL.md) |
 
-## 3. Screenshots
+## 3. Differences found
 
-The screenshots come from the last parity run (`route.py parity`). The TST capture hides personal text with dots. The React build shows fictional mock data.
+Each line is a fact of both sides: a TST call, navigation or variable, and the React code that has it or not. The tool does not judge the behaviour.
 
-| State | TST (expected) | React (build) | Difference |
-|---|---|---|---|
-| `default`<br>390x844, mock `real`<br>2026-10-29<br>pixel difference 0.1% | <img src="../../migration/screens/Search/parity/default.expected.png" width="200" alt="default expected"> | <img src="../../migration/screens/Search/parity/default.build.png" width="200" alt="default build"> | <img src="../../migration/screens/Search/parity/default.diff.png" width="200" alt="default diff"> |
-| `loading`<br>390x844, mock `loading`<br>2026-10-29<br>pixel difference 0.0% | <img src="../../migration/screens/Search/parity/loading.expected.png" width="200" alt="loading expected"> | <img src="../../migration/screens/Search/parity/loading.build.png" width="200" alt="loading build"> | <img src="../../migration/screens/Search/parity/loading.diff.png" width="200" alt="loading diff"> |
-| `offline`<br>390x844, mock `error`<br>2026-10-29<br>pixel difference 0.1% | <img src="../../migration/screens/Search/parity/offline.expected.png" width="200" alt="offline expected"> | <img src="../../migration/screens/Search/parity/offline.build.png" width="200" alt="offline build"> | <img src="../../migration/screens/Search/parity/offline.diff.png" width="200" alt="offline diff"> |
+None.
 
-## 4. Diagram
+## 4. Questions
 
-- A box on the left is the block or module of the action that calls the server (TST code).
-- A line connects each call to the React action that makes the same call.
-- The right column shows the React components that use each React action.
-- A red box is a call that React does not make.
+1. React calls `/api/UBTConnect_Utils/CacheControl_AllLocalities/DataActionGetCacheInfo` from `fetchAllLocalities()` [`api/locality/repository.ts:157`](../../app/src/api/locality/repository.ts#L157) (page). TST Search has no chain to this call. Does the call belong to this route?
+2. React calls `/api/UBTConnect_Utils/ActionGetUserInformation` from `fetchUserInformation()` [`api/member/userInformation.ts:6`](../../app/src/api/member/userInformation.ts#L6) (shell + page). TST Search has no chain to this call. Does the call belong to this route?
+3. React calls `/api/UBTConnect_Utils/CacheControl_Policies/DataActionGetCacheInfo` from `fetchPolicies()` [`api/app/repository.ts:54`](../../app/src/api/app/repository.ts#L54) (shell + page). TST Search has no chain to this call. Does the call belong to this route?
+4. React calls `/api/UBTConnect_Utils/ActionGetSignedImagesInBulk` from `cache_SignedImageURL_GetCallback()` [`lib/ubtConnectUtils/actions.ts:124`](../../app/src/lib/ubtConnectUtils/actions.ts#L124) (page). TST Search has no chain to this call. Does the call belong to this route?
 
-```mermaid
-flowchart LR
-  subgraph OS["OutSystems (TST compiled)"]
-    subgraph OS_screen["Screen and its blocks"]
-      o0["CacheControl_AllCountries"]
-      o1["CacheControl_UserInfo"]
-      o2["ScreenBlock_Search"]
-      o3["UBTConnect"]
-    end
-  end
-  subgraph EP["Server calls (TST)"]
-    e4["ScreenDataSetGet_SearchBirthdayOptions"]
-    e5["DataActionGetCacheInfo"]
-    e6["DataActionGetCacheInfo"]
-    e7["DataActionGet_FilteredRecentClickedResults"]
-    e8["DataActionFetchSearchResults"]
-    e9["ServiceAPIGet_UI_UpdateItems_UnreadCount_All"]
-  end
-  subgraph RE["React actions"]
-    subgraph RE_page["Screen"]
-      r10["UserInfoCacheControl()"]
-      r11["fetchAllCountries()"]
-      r12["fetchSearchBirthdayOptions()"]
-      r13["fetchSearchResults()"]
-      r14["fetchUnreadUpdateItemsCount()"]
-      r15["getFilteredRecentClickedResults()"]
-    end
-  end
-  subgraph RC["React components"]
-    c16["BottomBar"]
-    c17["FilterSheetContainer"]
-    c18["Search"]
-  end
-  r12 --- c18
-  r13 --- c18
-  r15 --- c18
-  r10 --- c17
-  r11 --- c17
-  r14 --- c16
-  o2 --> e4
-  o2 --> e7
-  o2 --> e8
-  o0 --> e5
-  o1 --> e6
-  o3 --> e9
-  e4 --- r12
-  e5 --- r11
-  e6 --- r10
-  e7 --- r15
-  e8 --- r13
-  e9 --- r14
-  classDef missing fill:#fde2e1,stroke:#c0392b,color:#7b241c
-  classDef ok fill:#e3f4e8,stroke:#2e7d4f,color:#1d4d31
-  class e4,e5,e6,e7,e8,e9 ok
-```
-
-## 5. User actions
-
-The two lists are independent: the OutSystems list comes from the TST compiled code, the React list from the React code. The tool does not map one list to the other.
-
-- **OutSystems:** each event binding of the compiled views (`<event>$Action: function` of a child block or widget, `on<Event>: function` of an HTML element) with its handler.
-- **React:** each JSX attribute `on<Event>={handler}` with its handler.
-- Both lists keep only the bindings whose handler has an effect: a server call, a navigation, an external link, a message or a confirm dialog. The tool follows the called functions 3 levels deep.
-- When the handler has branches in the code (`switch` case, `if` with `===`), each branch has its own diagram. The branch name is the constant of the condition. `other` is the last `else` or `default`.
-- An arrow to the server gives the inputs of the call, the return arrow its outputs (contract `app/src/api/openapi.yaml`).
-
-### 5.1 OutSystems (TST)
-
-| # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
-|---|---|---|---|---|---|
-| [1](#511-bottombarmenu-event_bottombar_clicked-home) | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `home` | goes to HomeFeed |
-| [2](#512-bottombarmenu-event_bottombar_clicked-directory) | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `directory` | goes to CountryList, Locality_Details |
-| [3](#513-bottombarmenu-event_bottombar_clicked-updates) | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `updates` | goes to Updates_SingleList |
-| [4](#514-bottombarmenu-event_bottombar_clicked-bookmarks) | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `bookmarks` | goes to Bookmarks |
-| [5](#515-bottombarmenu-event_bottombar_clicked-menu) | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `menu` | goes to Menu |
-| [6](#516-filtersheet_icon-iconclick) | `FilterSheet_Icon` | `click of Icon` | `iconClick` | – | asks for a confirmation |
-| [7](#517-filtersheet_optionlist_item-selectionoption_listnotenabledonclick) | `FilterSheet_OptionList_Item` | `notEnabledOnClick of List` | `selectionOption_ListNotEnabledOnClick` | – | asks for a confirmation |
-| [8](#518-screenblock_search-inputevent_submit) | `ScreenBlock_Search` | `event_Submit of Input` | `inputEvent_Submit` | – | calls FetchSearchResults; shows a message |
-| [9](#519-screenblock_search-event_horizontaltaglistchanged) | `ScreenBlock_Search` | `changed of HorizontalTagList` | `event_HorizontalTagListChanged` | – | calls FetchSearchResults |
-| [10](#5110-screenblock_search-event_sectiononitemclick-locality) | `ScreenBlock_Search` | `onClick (HTML element)`<br>`onItemClick of Section` | `event_SectionOnItemClick` | `locality` | goes to Locality_Details; asks for a confirmation |
-| [11](#5111-screenblock_search-event_sectiononitemclick-other) | `ScreenBlock_Search` | `onClick (HTML element)`<br>`onItemClick of Section` | `event_SectionOnItemClick` | `other` | goes to HouseholdCarousel, HouseholdDetails; asks for a confirmation |
-| [12](#5112-screenblock_search-onclick_recentsearchterm) | `ScreenBlock_Search` | `clicked of IconText`<br>`selected of BirthdayOptions` | `onClick_RecentSearchTerm` | – | calls FetchSearchResults |
-| [13](#5113-screenblock_search-event_applyfilters) | `ScreenBlock_Search` | `applyFilters of FilterSheet` | `event_ApplyFilters` | – | calls FetchSearchResults |
-| [14](#5114-layout_detailpage-onclick_backnavigation) | `Layout_DetailPage` | `click of Icon` | `onClick_BackNavigation` | – | goes to previous screen |
-| [15](#5115-cachecontrol_allcountries-cachecontrolonnoncachehit) | `CacheControl_AllCountries` | `onNonCacheHit of CacheControl` | `cacheControlOnNonCacheHit` | – | calls GetCacheInfo |
-| [16](#5116-cachecontrol_userinfo-cachecontrolonnoncachehit) | `CacheControl_UserInfo` | `onNonCacheHit of CacheControl` | `cacheControlOnNonCacheHit` | – | calls GetCacheInfo |
-
-#### 5.1.1 BottomBarMenu: event_BottomBar_Clicked (home)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as BottomBarMenu
-  participant N as Navigation
-  U->>B: onClick (HTML element) → event_BottomBar_Clicked (home)
-  B->>N: go to HomeFeed
-```
-
-#### 5.1.2 BottomBarMenu: event_BottomBar_Clicked (directory)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as BottomBarMenu
-  participant N as Navigation
-  U->>B: onClick (HTML element) → event_BottomBar_Clicked (directory)
-  B->>N: go to CountryList
-  B->>N: go to Locality_Details
-```
-
-#### 5.1.3 BottomBarMenu: event_BottomBar_Clicked (updates)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as BottomBarMenu
-  participant N as Navigation
-  U->>B: onClick (HTML element) → event_BottomBar_Clicked (updates)
-  B->>N: go to Updates_SingleList
-```
-
-#### 5.1.4 BottomBarMenu: event_BottomBar_Clicked (bookmarks)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as BottomBarMenu
-  participant N as Navigation
-  U->>B: onClick (HTML element) → event_BottomBar_Clicked (bookmarks)
-  B->>N: go to Bookmarks
-```
-
-#### 5.1.5 BottomBarMenu: event_BottomBar_Clicked (menu)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as BottomBarMenu
-  participant N as Navigation
-  U->>B: onClick (HTML element) → event_BottomBar_Clicked (menu)
-  B->>N: go to Menu
-```
-
-#### 5.1.6 FilterSheet_Icon: iconClick
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as FilterSheet_Icon
-  U->>B: click of Icon → iconClick
-  Note over B: via UBTConnect_Utils.app_Subscription_ShowUpgradePopUp
-  Note over B: confirm dialog
-```
-
-#### 5.1.7 FilterSheet_OptionList_Item: selectionOption_ListNotEnabledOnClick
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as FilterSheet_OptionList_Item
-  U->>B: notEnabledOnClick of List → selectionOption_ListNotEnabledOnClick
-  Note over B: via UBTConnect_Utils.app_Subscription_ShowUpgradePopUp
-  Note over B: confirm dialog
-```
-
-#### 5.1.8 ScreenBlock_Search: inputEvent_Submit
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as ScreenBlock_Search
-  participant S as Server (TST calls)
-  U->>B: event_Submit of Input → inputEvent_Submit
-  B->>S: FetchSearchResults(BottomSheetId_Filter, BottomSheetId_Filter_IsLoaded, BottomSheetId_Filter_ShowSubscriptionOnClick, …)
-  S-->>B: Households, People, Places
-  Note over B: message FeedbackMessage_AutoClose
-```
-
-#### 5.1.9 ScreenBlock_Search: event_HorizontalTagListChanged
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as ScreenBlock_Search
-  participant S as Server (TST calls)
-  U->>B: changed of HorizontalTagList → event_HorizontalTagListChanged
-  B->>S: FetchSearchResults(BottomSheetId_Filter, BottomSheetId_Filter_IsLoaded, BottomSheetId_Filter_ShowSubscriptionOnClick, …)
-  S-->>B: Households, People, Places
-```
-
-#### 5.1.10 ScreenBlock_Search: event_SectionOnItemClick (locality)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as ScreenBlock_Search
-  participant N as Navigation
-  U->>B: onClick (HTML element) → event_SectionOnItemClick (locality)
-  Note over B: via UBTConnect_Utils.app_Subscription_ShowUpgradePopUp
-  Note over B: confirm dialog
-  B->>N: go to Locality_Details
-```
-
-#### 5.1.11 ScreenBlock_Search: event_SectionOnItemClick (other)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as ScreenBlock_Search
-  participant N as Navigation
-  U->>B: onClick (HTML element) → event_SectionOnItemClick (other)
-  Note over B: via UBTConnect_Utils.app_Subscription_ShowUpgradePopUp
-  Note over B: confirm dialog
-  B->>N: go to HouseholdCarousel
-  B->>N: go to HouseholdDetails
-```
-
-#### 5.1.12 ScreenBlock_Search: onClick_RecentSearchTerm
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as ScreenBlock_Search
-  participant S as Server (TST calls)
-  U->>B: clicked of IconText → onClick_RecentSearchTerm
-  B->>S: FetchSearchResults(BottomSheetId_Filter, BottomSheetId_Filter_IsLoaded, BottomSheetId_Filter_ShowSubscriptionOnClick, …)
-  S-->>B: Households, People, Places
-```
-
-#### 5.1.13 ScreenBlock_Search: event_ApplyFilters
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as ScreenBlock_Search
-  participant S as Server (TST calls)
-  U->>B: applyFilters of FilterSheet → event_ApplyFilters
-  B->>S: FetchSearchResults(BottomSheetId_Filter, BottomSheetId_Filter_IsLoaded, BottomSheetId_Filter_ShowSubscriptionOnClick, …)
-  S-->>B: Households, People, Places
-```
-
-#### 5.1.14 Layout_DetailPage: onClick_BackNavigation
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as Layout_DetailPage
-  participant N as Navigation
-  U->>B: click of Icon → onClick_BackNavigation
-  B->>N: go to previous screen
-```
-
-#### 5.1.15 CacheControl_AllCountries: cacheControlOnNonCacheHit
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as CacheControl_AllCountries
-  participant S as Server (TST calls)
-  U->>B: onNonCacheHit of CacheControl → cacheControlOnNonCacheHit
-  B->>S: GetCacheInfo(CacheKey, CacheTypeId, TimeToLiveSeconds)
-  S-->>B: CacheControl_Response
-```
-
-#### 5.1.16 CacheControl_UserInfo: cacheControlOnNonCacheHit
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant B as CacheControl_UserInfo
-  participant S as Server (TST calls)
-  U->>B: onNonCacheHit of CacheControl → cacheControlOnNonCacheHit
-  B->>S: GetCacheInfo(CacheKey, CacheTypeId)
-  S-->>B: CacheControl_Response, TTL
-```
-
-### 5.2 React
-
-| # | File | Element | Event prop | Handler | Branch | Effects |
-|---|---|---|---|---|---|---|
-| [1](#521-searchview-onsubmit) | [`pages/Search/SearchPage.tsx:12`](../../app/src/pages/Search/SearchPage.tsx#L12) | `<SearchView>` | `onSubmit` | `search.onSubmit` | – | calls DataActionFetchSearchResults; shows a message |
-| [2](#522-searchview-ontaglistchanged) | [`pages/Search/SearchPage.tsx:12`](../../app/src/pages/Search/SearchPage.tsx#L12) | `<SearchView>` | `onTagListChanged` | `search.onTagListChanged` | – | calls DataActionGet_FilteredRecentClickedResults, DataActionFetchSearchResults |
-| [3](#523-searchview-onrecentsearchterm) | [`pages/Search/SearchPage.tsx:12`](../../app/src/pages/Search/SearchPage.tsx#L12) | `<SearchView>` | `onRecentSearchTerm` | `search.onRecentSearchTerm` | – | calls DataActionFetchSearchResults |
-| [4](#524-searchview-onrecentresultclick-locality) | [`pages/Search/SearchPage.tsx:12`](../../app/src/pages/Search/SearchPage.tsx#L12) | `<SearchView>` | `onRecentResultClick` | `search.onRecentResultClick` | `Locality` | goes to Locality_Details; asks for a confirmation; calls the prop onEventSearchResultClick() |
-| [5](#525-searchview-onrecentresultclick-other) | [`pages/Search/SearchPage.tsx:12`](../../app/src/pages/Search/SearchPage.tsx#L12) | `<SearchView>` | `onRecentResultClick` | `search.onRecentResultClick` | `other` | goes to HouseholdCarousel, HouseholdDetails; asks for a confirmation; calls the prop onEventSearchResultClick() |
-| [6](#526-searchview-onresultclick-locality) | [`pages/Search/SearchPage.tsx:12`](../../app/src/pages/Search/SearchPage.tsx#L12) | `<SearchView>` | `onResultClick` | `search.onResultClick` | `Locality` | goes to Locality_Details; asks for a confirmation; calls the prop onEventSearchResultClick() |
-| [7](#527-searchview-onresultclick-other) | [`pages/Search/SearchPage.tsx:12`](../../app/src/pages/Search/SearchPage.tsx#L12) | `<SearchView>` | `onResultClick` | `search.onResultClick` | `other` | goes to HouseholdCarousel, HouseholdDetails; asks for a confirmation; calls the prop onEventSearchResultClick() |
-| [8](#528-searchview-onapplyfilters) | [`pages/Search/SearchPage.tsx:12`](../../app/src/pages/Search/SearchPage.tsx#L12) | `<SearchView>` | `onApplyFilters` | `search.onApplyFilters` | – | calls DataActionFetchSearchResults |
-| [9](#529-filtersheeticon-onshowupgradepopup) | [`pages/Search/components/SearchView.tsx:106`](../../app/src/pages/Search/components/SearchView.tsx#L106) | `<FilterSheetIcon>` | `onShowUpgradePopUp` | `showUpgradePopUp` | – | asks for a confirmation |
-| [10](#5210-filtersheet-onshowupgradepopup) | [`containers/FilterSheet/FilterSheetContainer.tsx:43`](../../app/src/containers/FilterSheet/FilterSheetContainer.tsx#L43) | `<FilterSheet>` | `onShowUpgradePopUp` | `showUpgradePopUp` | – | asks for a confirmation |
-| [11](#5211-cachecontrol-onnoncachehit) | [`legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx:52`](../../app/src/legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx#L52) | `<CacheControl>` | `onNonCacheHit` | `onNonCacheHit` | – | calls DataActionGetCacheInfo |
-| [12](#5212-cachecontrol-onnoncachehit) | [`legacy/os/cache/AllLocalitiesCacheControl/AllLocalitiesCacheControl.tsx:55`](../../app/src/legacy/os/cache/AllLocalitiesCacheControl/AllLocalitiesCacheControl.tsx#L55) | `<CacheControl>` | `onNonCacheHit` | `onNonCacheHit` | – | calls DataActionGetCacheInfo |
-| [13](#5213-cachecontrol-onnoncachehit) | [`legacy/os/cache/AllCountriesCacheControl/AllCountriesCacheControl.tsx:55`](../../app/src/legacy/os/cache/AllCountriesCacheControl/AllCountriesCacheControl.tsx#L55) | `<CacheControl>` | `onNonCacheHit` | `onNonCacheHit` | – | calls DataActionGetCacheInfo |
-| [14](#5214-preventbacknavigation-onbacknavigationprevented) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:80`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L80) | `<PreventBackNavigation>` | `onBackNavigationPrevented` | `redirectHome` | – | goes to HomeFeed |
-| [15](#5215-backnavigationhandler-onbacknavigation) | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:82`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L82) | `<BackNavigationHandler>` | `onBackNavigation` | `maybeRedirectHome` | – | goes to HomeFeed |
-| [16](#5216-oslink-onclick-home) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Home` | goes to HomeFeed |
-| [17](#5217-oslink-onclick-directory) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Directory` | goes to CountryList, Locality_Details |
-| [18](#5218-oslink-onclick-updates) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Updates` | goes to Updates_SingleList |
-| [19](#5219-oslink-onclick-bookmarks) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Bookmarks` | goes to Bookmarks |
-| [20](#5220-oslink-onclick-menu) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Menu` | goes to Menu |
-| [21](#5221-oslink-onclick-other) | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `other` | calls the prop onBottomBarClicked() |
-| [22](#5222-bottombariconbadge-ononclick-home) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Home` | goes to HomeFeed |
-| [23](#5223-bottombariconbadge-ononclick-directory) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Directory` | goes to CountryList, Locality_Details |
-| [24](#5224-bottombariconbadge-ononclick-updates) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Updates` | goes to Updates_SingleList |
-| [25](#5225-bottombariconbadge-ononclick-bookmarks) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Bookmarks` | goes to Bookmarks |
-| [26](#5226-bottombariconbadge-ononclick-menu) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Menu` | goes to Menu |
-| [27](#5227-bottombariconbadge-ononclick-other) | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `other` | calls the prop onBottomBarClicked() |
-| [28](#5228-detaillayout-onback) | [`containers/DetailLayout/DetailLayoutContainer.tsx:66`](../../app/src/containers/DetailLayout/DetailLayoutContainer.tsx#L66) | `<DetailLayout>` | `onBack` | `navigateBack` | – | goes to previous screen |
-
-#### 5.2.1 SearchView: onSubmit
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as SearchView · SearchPage.tsx
-  participant A as Server (React api)
-  U->>H: onSubmit → search.onSubmit
-  Note over H: via refreshSearch()
-  Note over H: via fetchSearchResults()
-  H->>A: DataActionFetchSearchResults(BottomSheetId_Filter, BottomSheetId_Filter_IsLoaded, BottomSheetId_Filter_ShowSubscriptionOnClick, …)
-  A-->>H: Households, People, Places
-  Note over H: message { title: '', message: validation.errorMessage, messageType: 'error', encodedHtml: true, ex
-```
-
-#### 5.2.2 SearchView: onTagListChanged
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as SearchView · SearchPage.tsx
-  participant A as Server (React api)
-  U->>H: onTagListChanged → search.onTagListChanged
-  Note over H: via onTagListChanged()
-  Note over H: via recentClickedOnAfterFetch()
-  Note over H: via getFilteredRecentClickedResults()
-  H->>A: DataActionGet_FilteredRecentClickedResults(BottomSheetId_Filter, BottomSheetId_Filter_IsLoaded, BottomSheetId_Filter_ShowSubscriptionOnClick, …)
-  A-->>H: Out_IdsToRemove, Out_RecentClickedResults
-  Note over H: via refreshSearch()
-  Note over H: via fetchSearchResults()
-  H->>A: DataActionFetchSearchResults(BottomSheetId_Filter, BottomSheetId_Filter_IsLoaded, BottomSheetId_Filter_ShowSubscriptionOnClick, …)
-  A-->>H: Households, People, Places
-```
-
-#### 5.2.3 SearchView: onRecentSearchTerm
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as SearchView · SearchPage.tsx
-  participant A as Server (React api)
-  U->>H: onRecentSearchTerm → search.onRecentSearchTerm
-  Note over H: via refreshSearch()
-  Note over H: via fetchSearchResults()
-  H->>A: DataActionFetchSearchResults(BottomSheetId_Filter, BottomSheetId_Filter_IsLoaded, BottomSheetId_Filter_ShowSubscriptionOnClick, …)
-  A-->>H: Households, People, Places
-```
-
-#### 5.2.4 SearchView: onRecentResultClick (Locality)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as SearchView · SearchPage.tsx
-  participant N as Navigation
-  U->>H: onRecentResultClick → search.onRecentResultClick (Locality)
-  Note over H: via itemClick()
-  Note over H: via showUpgradePopUp()
-  Note over H: confirm dialog dialogId
-  Note over H: calls the prop onEventSearchResultClick()
-  H->>N: go to Locality_Details
-```
-
-#### 5.2.5 SearchView: onRecentResultClick (other)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as SearchView · SearchPage.tsx
-  participant N as Navigation
-  U->>H: onRecentResultClick → search.onRecentResultClick (other)
-  Note over H: via itemClick()
-  Note over H: via showUpgradePopUp()
-  Note over H: confirm dialog dialogId
-  Note over H: calls the prop onEventSearchResultClick()
-  H->>N: go to HouseholdCarousel
-  H->>N: go to HouseholdDetails
-```
-
-#### 5.2.6 SearchView: onResultClick (Locality)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as SearchView · SearchPage.tsx
-  participant N as Navigation
-  U->>H: onResultClick → search.onResultClick (Locality)
-  Note over H: via itemClick()
-  Note over H: via showUpgradePopUp()
-  Note over H: confirm dialog dialogId
-  Note over H: calls the prop onEventSearchResultClick()
-  H->>N: go to Locality_Details
-```
-
-#### 5.2.7 SearchView: onResultClick (other)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as SearchView · SearchPage.tsx
-  participant N as Navigation
-  U->>H: onResultClick → search.onResultClick (other)
-  Note over H: via itemClick()
-  Note over H: via showUpgradePopUp()
-  Note over H: confirm dialog dialogId
-  Note over H: calls the prop onEventSearchResultClick()
-  H->>N: go to HouseholdCarousel
-  H->>N: go to HouseholdDetails
-```
-
-#### 5.2.8 SearchView: onApplyFilters
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as SearchView · SearchPage.tsx
-  participant A as Server (React api)
-  U->>H: onApplyFilters → search.onApplyFilters
-  Note over H: via refreshSearch()
-  Note over H: via fetchSearchResults()
-  H->>A: DataActionFetchSearchResults(BottomSheetId_Filter, BottomSheetId_Filter_IsLoaded, BottomSheetId_Filter_ShowSubscriptionOnClick, …)
-  A-->>H: Households, People, Places
-```
-
-#### 5.2.9 FilterSheetIcon: onShowUpgradePopUp
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as FilterSheetIcon · SearchView.tsx
-  U->>H: onShowUpgradePopUp → showUpgradePopUp
-  Note over H: confirm dialog dialogId
-```
-
-#### 5.2.10 FilterSheet: onShowUpgradePopUp
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as FilterSheet · FilterSheetContainer.tsx
-  U->>H: onShowUpgradePopUp → showUpgradePopUp
-  Note over H: confirm dialog dialogId
-```
-
-#### 5.2.11 CacheControl: onNonCacheHit
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as CacheControl · UserInfoCacheControl.tsx
-  participant A as Server (React api)
-  U->>H: onNonCacheHit → onNonCacheHit
-  H->>A: DataActionGetCacheInfo(CacheKey, CacheTypeId)
-  A-->>H: CacheControl_Response, TTL
-```
-
-#### 5.2.12 CacheControl: onNonCacheHit
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as CacheControl · AllLocalitiesCacheControl.tsx
-  participant A as Server (React api)
-  U->>H: onNonCacheHit → onNonCacheHit
-  Note over H: via fetchAllLocalities()
-  H->>A: DataActionGetCacheInfo()
-  A-->>H: outputs
-```
-
-#### 5.2.13 CacheControl: onNonCacheHit
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as CacheControl · AllCountriesCacheControl.tsx
-  participant A as Server (React api)
-  U->>H: onNonCacheHit → onNonCacheHit
-  Note over H: via fetchAllCountries()
-  H->>A: DataActionGetCacheInfo(CacheKey, CacheTypeId, TimeToLiveSeconds)
-  A-->>H: CacheControl_Response
-```
-
-#### 5.2.14 PreventBackNavigation: onBackNavigationPrevented
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as PreventBackNavigation · CommonUiLayout.tsx
-  participant N as Navigation
-  U->>H: onBackNavigationPrevented → redirectHome
-  H->>N: go to HomeFeed
-```
-
-#### 5.2.15 BackNavigationHandler: onBackNavigation
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as BackNavigationHandler · CommonUiLayout.tsx
-  participant N as Navigation
-  U->>H: onBackNavigation → maybeRedirectHome
-  Note over H: via actionRedirectHome()
-  H->>N: go to HomeFeed
-```
-
-#### 5.2.16 OSLink: onClick (Home)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as OSLink · BottomBar.tsx
-  participant N as Navigation
-  U->>H: onClick → click (Home)
-  Note over H: via event_BottomBar_Clicked()
-  H->>N: go to HomeFeed
-```
-
-#### 5.2.17 OSLink: onClick (Directory)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as OSLink · BottomBar.tsx
-  participant N as Navigation
-  U->>H: onClick → click (Directory)
-  Note over H: via event_BottomBar_Clicked()
-  H->>N: go to CountryList
-  H->>N: go to Locality_Details
-```
-
-#### 5.2.18 OSLink: onClick (Updates)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as OSLink · BottomBar.tsx
-  participant N as Navigation
-  U->>H: onClick → click (Updates)
-  Note over H: via event_BottomBar_Clicked()
-  H->>N: go to Updates_SingleList
-```
-
-#### 5.2.19 OSLink: onClick (Bookmarks)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as OSLink · BottomBar.tsx
-  participant N as Navigation
-  U->>H: onClick → click (Bookmarks)
-  Note over H: via event_BottomBar_Clicked()
-  H->>N: go to Bookmarks
-```
-
-#### 5.2.20 OSLink: onClick (Menu)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as OSLink · BottomBar.tsx
-  participant N as Navigation
-  U->>H: onClick → click (Menu)
-  Note over H: via event_BottomBar_Clicked()
-  H->>N: go to Menu
-```
-
-#### 5.2.21 OSLink: onClick (other)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as OSLink · BottomBar.tsx
-  U->>H: onClick → click (other)
-  Note over H: via event_BottomBar_Clicked()
-  Note over H: calls the prop onBottomBarClicked()
-```
-
-#### 5.2.22 BottomBarIconBadge: onOnClick (Home)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as BottomBarIconBadge · BottomBar.tsx
-  participant N as Navigation
-  U->>H: onOnClick → click (Home)
-  Note over H: via event_BottomBar_Clicked()
-  H->>N: go to HomeFeed
-```
-
-#### 5.2.23 BottomBarIconBadge: onOnClick (Directory)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as BottomBarIconBadge · BottomBar.tsx
-  participant N as Navigation
-  U->>H: onOnClick → click (Directory)
-  Note over H: via event_BottomBar_Clicked()
-  H->>N: go to CountryList
-  H->>N: go to Locality_Details
-```
-
-#### 5.2.24 BottomBarIconBadge: onOnClick (Updates)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as BottomBarIconBadge · BottomBar.tsx
-  participant N as Navigation
-  U->>H: onOnClick → click (Updates)
-  Note over H: via event_BottomBar_Clicked()
-  H->>N: go to Updates_SingleList
-```
-
-#### 5.2.25 BottomBarIconBadge: onOnClick (Bookmarks)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as BottomBarIconBadge · BottomBar.tsx
-  participant N as Navigation
-  U->>H: onOnClick → click (Bookmarks)
-  Note over H: via event_BottomBar_Clicked()
-  H->>N: go to Bookmarks
-```
-
-#### 5.2.26 BottomBarIconBadge: onOnClick (Menu)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as BottomBarIconBadge · BottomBar.tsx
-  participant N as Navigation
-  U->>H: onOnClick → click (Menu)
-  Note over H: via event_BottomBar_Clicked()
-  H->>N: go to Menu
-```
-
-#### 5.2.27 BottomBarIconBadge: onOnClick (other)
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as BottomBarIconBadge · BottomBar.tsx
-  U->>H: onOnClick → click (other)
-  Note over H: via event_BottomBar_Clicked()
-  Note over H: calls the prop onBottomBarClicked()
-```
-
-#### 5.2.28 DetailLayout: onBack
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as DetailLayout · DetailLayoutContainer.tsx
-  participant N as Navigation
-  U->>H: onBack → navigateBack
-  H->>N: go to previous screen
-```
-
-## 6. Server calls
+## 5. Server calls
 
 All columns come from the code, without interpretation:
 
@@ -781,26 +63,413 @@ All columns come from the code, without interpretation:
 | 5 | `UBTConnect/Directory_Search/ScreenBlock_Search/ScreenDataSetGet_SearchBirthdayOptions` | aggregate | `ScreenBlock_Search` | ScreenBlock_Search.OnReady → ScreenBlock_Search.screenEvent_OnReady → ScreenBlock_Search.ScreenDataSetGet_SearchBirthdayOptions<br>ScreenBlock_Search fetch at start → ScreenBlock_Search.ScreenDataSetGet_SearchBirthdayOptions | yes | `fetchSearchBirthdayOptions()` [`api/search/repository.ts:41`](../../app/src/api/search/repository.ts#L41) (page) | `Search → useSearch → useSearchBirthdayOptionsQuery → fetchSearchBirthdayOptions`<br>[`pages/Search/SearchPage.tsx`](../../app/src/pages/Search/SearchPage.tsx) | implemented |
 | 6 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx) | implemented |
 
-## 7. Missing in React
+## 6. User actions
 
-None.
+Two independent lists: the event bindings of the TST views, and the JSX event bindings of the React files. The effects come from the handler and the functions it calls, 3 levels deep. No mapping.
 
-## 8. Questions
+### 6.1 OutSystems (TST)
 
-1. React calls `/api/UBTConnect_Utils/CacheControl_AllLocalities/DataActionGetCacheInfo` from `fetchAllLocalities()` [`api/locality/repository.ts:157`](../../app/src/api/locality/repository.ts#L157) (page). TST Search has no chain to this call. Does the call belong to this route?
-2. React calls `/api/UBTConnect_Utils/ActionGetUserInformation` from `fetchUserInformation()` [`api/member/userInformation.ts:6`](../../app/src/api/member/userInformation.ts#L6) (shell + page). TST Search has no chain to this call. Does the call belong to this route?
-3. React calls `/api/UBTConnect_Utils/CacheControl_Policies/DataActionGetCacheInfo` from `fetchPolicies()` [`api/app/repository.ts:54`](../../app/src/api/app/repository.ts#L54) (shell + page). TST Search has no chain to this call. Does the call belong to this route?
-4. React calls `/api/UBTConnect_Utils/ActionGetSignedImagesInBulk` from `cache_SignedImageURL_GetCallback()` [`lib/ubtConnectUtils/actions.ts:124`](../../app/src/lib/ubtConnectUtils/actions.ts#L124) (page). TST Search has no chain to this call. Does the call belong to this route?
+| # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
+|---|---|---|---|---|---|
+| [1](#611-screenblock_search-inputevent_submit) | `ScreenBlock_Search` | `event_Submit of Input` | `inputEvent_Submit` | – | calls FetchSearchResults; shows a message |
+| 2 | `ScreenBlock_Search` | `changed of HorizontalTagList` | `event_HorizontalTagListChanged` | – | calls FetchSearchResults |
+| [3](#613-screenblock_search-event_sectiononitemclick-locality) | `ScreenBlock_Search` | `onClick (HTML element)`<br>`onItemClick of Section` | `event_SectionOnItemClick` | `locality` | goes to Locality_Details; asks for a confirmation |
+| [4](#614-screenblock_search-event_sectiononitemclick-other) | `ScreenBlock_Search` | `onClick (HTML element)`<br>`onItemClick of Section` | `event_SectionOnItemClick` | `other` | goes to HouseholdCarousel, HouseholdDetails; asks for a confirmation |
+| 5 | `ScreenBlock_Search` | `clicked of IconText`<br>`selected of BirthdayOptions` | `onClick_RecentSearchTerm` | – | calls FetchSearchResults |
+| 6 | `ScreenBlock_Search` | `applyFilters of FilterSheet` | `event_ApplyFilters` | – | calls FetchSearchResults |
 
-## 9. Method
+<details><summary>3 diagrams (handlers with two or more effects)</summary>
 
-1. **OutSystems (TST).** The tool reads `facts.json` and the compiled code of `migration/screens/Search/analysis/`:
-   - the rendered files;
-   - each server call with its chain of client actions, and the calls that TST made in the capture;
-   - the effects of each user action.
-2. **Route and app shell.** OutSystems: a chain belongs to the app shell when it starts in `CommonUI_InsideLayout`, one of its blocks, or a module action. React: a binding belongs to the app shell when its file is in the code that `main.tsx` loads.
-3. **MCP (DEV).** The tool reads the UI flow with `getScreenNames`. TST wins when DEV is different.
-4. **React.** `react_calls.mjs` reads the app shell from `app/src/main.tsx` and the screen from its `<Route>Page.tsx`. It counts only the code that the app uses.
-5. **Match.** `callAction(M, A)` gives `/api/M/A`. The `x-os-paths` of `app/src/api/openapi.yaml` give the TST call. The status is `implemented` when the TST call is the same. Else the status is `missing`.
+#### 6.1.1 ScreenBlock_Search: inputEvent_Submit
 
-Limit: a name or a call match does not prove the same behaviour. The parity checks of the migration compare the behaviour.
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as ScreenBlock_Search
+  participant S as Server (TST calls)
+  U->>B: event_Submit of Input → inputEvent_Submit
+  B->>S: FetchSearchResults(BottomSheetId_Filter, BottomSheetId_Filter_IsLoaded, BottomSheetId_Filter_ShowSubscriptionOnClick, …)
+  S-->>B: Households, People, Places
+  Note over B: message FeedbackMessage_AutoClose
+```
+
+#### 6.1.3 ScreenBlock_Search: event_SectionOnItemClick (locality)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as ScreenBlock_Search
+  participant N as Navigation
+  U->>B: onClick (HTML element) → event_SectionOnItemClick (locality)
+  Note over B: via UBTConnect_Utils.app_Subscription_ShowUpgradePopUp
+  Note over B: confirm dialog
+  B->>N: go to Locality_Details
+```
+
+#### 6.1.4 ScreenBlock_Search: event_SectionOnItemClick (other)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant B as ScreenBlock_Search
+  participant N as Navigation
+  U->>B: onClick (HTML element) → event_SectionOnItemClick (other)
+  Note over B: via UBTConnect_Utils.app_Subscription_ShowUpgradePopUp
+  Note over B: confirm dialog
+  B->>N: go to HouseholdCarousel
+  B->>N: go to HouseholdDetails
+```
+
+
+</details>
+
+
+### 6.2 React
+
+| # | File | Element | Event prop | Handler | Branch | Effects |
+|---|---|---|---|---|---|---|
+| [1](#621-searchview-onsubmit) | [`pages/Search/SearchPage.tsx:12`](../../app/src/pages/Search/SearchPage.tsx#L12) | `<SearchView>` | `onSubmit` | `search.onSubmit` | – | calls DataActionFetchSearchResults; shows a message |
+| [2](#622-searchview-ontaglistchanged) | [`pages/Search/SearchPage.tsx:12`](../../app/src/pages/Search/SearchPage.tsx#L12) | `<SearchView>` | `onTagListChanged` | `search.onTagListChanged` | – | calls DataActionGet_FilteredRecentClickedResults, DataActionFetchSearchResults |
+| 3 | [`pages/Search/SearchPage.tsx:12`](../../app/src/pages/Search/SearchPage.tsx#L12) | `<SearchView>` | `onRecentSearchTerm` | `search.onRecentSearchTerm` | – | calls DataActionFetchSearchResults |
+| [4](#624-searchview-onrecentresultclick-locality) | [`pages/Search/SearchPage.tsx:12`](../../app/src/pages/Search/SearchPage.tsx#L12) | `<SearchView>` | `onRecentResultClick` | `search.onRecentResultClick` | `Locality` | goes to Locality_Details; asks for a confirmation; calls the prop onEventSearchResultClick() |
+| [5](#625-searchview-onrecentresultclick-other) | [`pages/Search/SearchPage.tsx:12`](../../app/src/pages/Search/SearchPage.tsx#L12) | `<SearchView>` | `onRecentResultClick` | `search.onRecentResultClick` | `other` | goes to HouseholdCarousel, HouseholdDetails; asks for a confirmation; calls the prop onEventSearchResultClick() |
+| [6](#626-searchview-onresultclick-locality) | [`pages/Search/SearchPage.tsx:12`](../../app/src/pages/Search/SearchPage.tsx#L12) | `<SearchView>` | `onResultClick` | `search.onResultClick` | `Locality` | goes to Locality_Details; asks for a confirmation; calls the prop onEventSearchResultClick() |
+| [7](#627-searchview-onresultclick-other) | [`pages/Search/SearchPage.tsx:12`](../../app/src/pages/Search/SearchPage.tsx#L12) | `<SearchView>` | `onResultClick` | `search.onResultClick` | `other` | goes to HouseholdCarousel, HouseholdDetails; asks for a confirmation; calls the prop onEventSearchResultClick() |
+| 8 | [`pages/Search/SearchPage.tsx:12`](../../app/src/pages/Search/SearchPage.tsx#L12) | `<SearchView>` | `onApplyFilters` | `search.onApplyFilters` | – | calls DataActionFetchSearchResults |
+| 9 | [`pages/Search/components/SearchView.tsx:106`](../../app/src/pages/Search/components/SearchView.tsx#L106) | `<FilterSheetIcon>` | `onShowUpgradePopUp` | `showUpgradePopUp` | – | asks for a confirmation |
+
+<details><summary>6 diagrams (handlers with two or more effects)</summary>
+
+#### 6.2.1 SearchView: onSubmit
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as SearchView · SearchPage.tsx
+  participant A as Server (React api)
+  U->>H: onSubmit → search.onSubmit
+  Note over H: via refreshSearch()
+  Note over H: via fetchSearchResults()
+  H->>A: DataActionFetchSearchResults(BottomSheetId_Filter, BottomSheetId_Filter_IsLoaded, BottomSheetId_Filter_ShowSubscriptionOnClick, …)
+  A-->>H: Households, People, Places
+  Note over H: message { title: '', message: validation.errorMessage, messageType: 'error', encodedHtml: true, ex
+```
+
+#### 6.2.2 SearchView: onTagListChanged
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as SearchView · SearchPage.tsx
+  participant A as Server (React api)
+  U->>H: onTagListChanged → search.onTagListChanged
+  Note over H: via onTagListChanged()
+  Note over H: via recentClickedOnAfterFetch()
+  Note over H: via getFilteredRecentClickedResults()
+  H->>A: DataActionGet_FilteredRecentClickedResults(BottomSheetId_Filter, BottomSheetId_Filter_IsLoaded, BottomSheetId_Filter_ShowSubscriptionOnClick, …)
+  A-->>H: Out_IdsToRemove, Out_RecentClickedResults
+  Note over H: via refreshSearch()
+  Note over H: via fetchSearchResults()
+  H->>A: DataActionFetchSearchResults(BottomSheetId_Filter, BottomSheetId_Filter_IsLoaded, BottomSheetId_Filter_ShowSubscriptionOnClick, …)
+  A-->>H: Households, People, Places
+```
+
+#### 6.2.4 SearchView: onRecentResultClick (Locality)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as SearchView · SearchPage.tsx
+  participant N as Navigation
+  U->>H: onRecentResultClick → search.onRecentResultClick (Locality)
+  Note over H: via itemClick()
+  Note over H: via showUpgradePopUp()
+  Note over H: confirm dialog dialogId
+  Note over H: calls the prop onEventSearchResultClick()
+  H->>N: go to Locality_Details
+```
+
+#### 6.2.5 SearchView: onRecentResultClick (other)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as SearchView · SearchPage.tsx
+  participant N as Navigation
+  U->>H: onRecentResultClick → search.onRecentResultClick (other)
+  Note over H: via itemClick()
+  Note over H: via showUpgradePopUp()
+  Note over H: confirm dialog dialogId
+  Note over H: calls the prop onEventSearchResultClick()
+  H->>N: go to HouseholdCarousel
+  H->>N: go to HouseholdDetails
+```
+
+#### 6.2.6 SearchView: onResultClick (Locality)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as SearchView · SearchPage.tsx
+  participant N as Navigation
+  U->>H: onResultClick → search.onResultClick (Locality)
+  Note over H: via itemClick()
+  Note over H: via showUpgradePopUp()
+  Note over H: confirm dialog dialogId
+  Note over H: calls the prop onEventSearchResultClick()
+  H->>N: go to Locality_Details
+```
+
+#### 6.2.7 SearchView: onResultClick (other)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as SearchView · SearchPage.tsx
+  participant N as Navigation
+  U->>H: onResultClick → search.onResultClick (other)
+  Note over H: via itemClick()
+  Note over H: via showUpgradePopUp()
+  Note over H: confirm dialog dialogId
+  Note over H: calls the prop onEventSearchResultClick()
+  H->>N: go to HouseholdCarousel
+  H->>N: go to HouseholdDetails
+```
+
+
+</details>
+
+
+## 7. Screen inputs and navigation parameters
+
+The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
+The OutSystems files are in `migration/screens/Search/analysis/sources/raw/`.
+
+### 7.1 OutSystems (TST)
+
+Screen inputs: none. `setInputs` of `Search` reads no input.
+
+| Block | Target | Parameters | Place |
+|---|---|---|---|
+| `ScreenBlock_Search` | `Locality_Details` | `LocalityId` = `integerToLongInteger(textToInteger(searchResult.id))` | [`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:3120`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3120) |
+| `ScreenBlock_Search` | `HouseholdCarousel` | `In_StartingHouseholdId` = `integerToLongInteger(textToInteger(searchResult.householderId))` | [`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:3298`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3298) |
+| `ScreenBlock_Search` | `HouseholdDetails` | `HouseholdId` = `integerToLongInteger(textToInteger(searchResult.householderId))` | [`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:3304`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3304) |
+
+### 7.2 React
+
+Declared inputs of the route: none (`app/src/app/routes.generated.ts`).
+
+Parameters read (`useSearchParams`, `useParams`): none.
+
+| File | Target | Parameters | Place |
+|---|---|---|---|
+| `useSearch.ts` | `Locality_Details` | `LocalityId` = `searchResult.id` | [`pages/Search/hooks/useSearch.ts:390`](../../app/src/pages/Search/hooks/useSearch.ts#L390) |
+| `useSearch.ts` | `HouseholdCarousel` | `In_StartingHouseholdId` = `searchResult.householderId` | [`pages/Search/hooks/useSearch.ts:411`](../../app/src/pages/Search/hooks/useSearch.ts#L411) |
+| `useSearch.ts` | `HouseholdDetails` | `HouseholdId` = `searchResult.householderId` | [`pages/Search/hooks/useSearch.ts:413`](../../app/src/pages/Search/hooks/useSearch.ts#L413) |
+
+## 8. Lifecycle
+
+What runs when the screen and its blocks open and close, without a user action.
+
+### 8.1 OutSystems (TST)
+
+Event handlers. The steps are the node comments and the conditions of the compiled action.
+
+| Block | Event | Action | Steps |
+|---|---|---|---|
+| `ScreenBlock_Search` | OnInitialize ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:4188`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L4188)) | `screenEvent_OnInitialize` | 1. If tagList.isEmpty ([`L3424`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3424))<br>2. Execute Action: SearchCategory_GetList ([`L3426`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3426))<br>3. TagList = SearchCategory_GetList.SearchCategoryItemsList ([`L3430`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3430))<br>4. Else ([`L3439`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3439)) |
+| `ScreenBlock_Search` | OnReady ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:4206`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L4206)) | `screenEvent_OnReady` | 1. isBirthdaySearchEnabled = Connect_OutSystems_PermissionCheck(C2EnableSearchByBirthday) ([`L3381`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3381))<br>2. If isBirthdaySearchEnabled ([`L3386`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3386))<br>3. Refresh Query: Get_SearchBirthdayOptions ([`L3388`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3388))<br>4. Else ([`L3394`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3394)) |
+
+Data actions and aggregates. The tool reads `dataFetchDependenciesOriginal`: `0` is a fetch when the block opens, `-1` is a fetch only on demand (a `Refresh Query` step). `Read by` lists the child block inputs, conditions, text widgets and actions that read the result.
+
+| Block | Data action | Fetch | Read by | Place |
+|---|---|---|---|---|
+| `ScreenBlock_Search` | `Get_FilteredRecentClickedResults` | on demand (`-1`) | `shown if (SectionSeparator)` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:525`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L525)), `shown if (CustomContainer)` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:557`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L557)), `shown if (CustomText)` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:637`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L637)), `text` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:699`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L699)), `SkeletonSection.In_IsLoading` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:736`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L736)), `LazyImage.In_ForceLoadingState` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:829`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L829)), `action get_RecentClickedResultsOnAfterFetch` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:2379`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2379)) | [`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:1837`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L1837) |
+| `ScreenBlock_Search` | `FetchSearchResults` | on demand (`-1`) | `Section.Items` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:1378`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L1378)), `view` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:1379`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L1379)), `Section.HideSeparator` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:1421`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L1421)), `text` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:1674`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L1674)), `action action_RefreshSearch` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:2620`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2620)), `action action_ClearResults` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:2769`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2769)), `action event_SectionOnItemClick` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:3242`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3242)), `action onAfterFetch_FetchSearchResults` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:4010`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L4010)) | [`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:1838`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L1838) |
+
+### 8.2 React
+
+Effects (`useEffect`, `useLayoutEffect`) of the screen files, and the effects of shared components that make a call, a navigation or a message.
+
+| File | Hook (function) | Dependencies | Cleanup | Effects | Place |
+|---|---|---|---|---|---|
+| `useSearch.ts` | `useEffect` (`useSearch`) | `[flags.birthdaySearch]` | yes | none | [`pages/Search/hooks/useSearch.ts:172`](../../app/src/pages/Search/hooks/useSearch.ts#L172) |
+| `useSearch.ts` | `useLayoutEffect` (`useSearch`) | `none (every render)` | no | none | [`pages/Search/hooks/useSearch.ts:239`](../../app/src/pages/Search/hooks/useSearch.ts#L239) |
+| `useSearch.ts` | `useEffect` (`useSearch`) | `[inSearchTargetId]` | yes | call `/api/UBTConnect/ScreenBlock_Search/DataActionGet_FilteredRecentClickedResults` | [`pages/Search/hooks/useSearch.ts:255`](../../app/src/pages/Search/hooks/useSearch.ts#L255) |
+
+<details><summary>Sequence diagrams of the effects with a call, a navigation, a message or a refresh (1)</summary>
+
+#### 8.2.1 useSearch: useEffect
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant R as React
+  participant H as useSearch · useSearch.ts
+  participant A as Server (React api)
+  R->>H: useEffect (after the mount and when [inSearchTargetId] changes)
+  H->>A: DataActionGet_FilteredRecentClickedResults
+  A-->>H: DataActionGet_FilteredRecentClickedResults
+  R->>H: cleanup (unmount or before the next run)
+```
+
+</details>
+
+Queries. A query fetches when its component mounts and when its key changes. `Read by` lists what reads the result in the same file.
+
+| File | Hook (function) | Calls | Read by | Place |
+|---|---|---|---|---|
+| `useSearch.ts` | `useSearchBirthdayOptionsQuery` (`useSearch`) | `/api/UBTConnect/ScreenBlock_Search/ScreenDataSetGet_SearchBirthdayOptions` | `return` ([`L421`](../../app/src/pages/Search/hooks/useSearch.ts#L421)) | [`pages/Search/hooks/useSearch.ts:181`](../../app/src/pages/Search/hooks/useSearch.ts#L181) |
+
+## 9. Client state
+
+Client variables and browser storage that the route reads or writes. Other screens can read this state.
+
+### 9.1 OutSystems (TST)
+
+| Block | Operation | Variable | Places |
+|---|---|---|---|
+| `ScreenBlock_Search` | get | `UBTConnect.Search_RecenctClickedResultsLimit` | [`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:3084`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3084), [`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:3089`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L3089) |
+
+### 9.2 React
+
+| File | Operation | Variable or key | Place |
+|---|---|---|---|
+| `useSearch.ts` | `clientVar.get` | `UBTConnect.Search_RecenctClickedResultsLimit` | [`pages/Search/hooks/useSearch.ts:384`](../../app/src/pages/Search/hooks/useSearch.ts#L384) |
+
+## 10. Access
+
+Who can open the route, and the role checks in the screen and block code.
+
+| Side | Rule | Place |
+|---|---|---|
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Directory_Search.Search.mvc.js:187`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.Search.mvc.js#L187) |
+| React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
+
+Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.
+
+## 11. Errors
+
+What the route does when an action or a call fails.
+
+### 11.1 OutSystems (TST)
+
+| Block | Action | Error | Steps of the handler |
+|---|---|---|---|
+| `ScreenBlock_Search` | `action_RefreshSearch` | `NotRegistered` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:2668`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2668)) | 1. Raise Error: NotRegistered ([`L2676`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2676)) |
+| `ScreenBlock_Search` | `action_RefreshSearch` | `BubbleCommunicationException` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:2681`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2681)) | 1. Execute Action: Action_ClearResults3 ([`L2689`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2689))<br>2. IsLoading = False ([`L2692`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2692))<br>3. Raise Error: BubbleCommunicationException ([`L2695`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2695)) |
+| `ScreenBlock_Search` | `action_RefreshSearch` | `AllExceptions` ([`UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js:2701`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2701)) | 1. Execute Action: Action_ClearResults2 ([`L2709`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2709))<br>2. IsLoading = False ([`L2712`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2712))<br>3. Raise Error: BubbleGenericException ([`L2715`](../../migration/screens/Search/analysis/sources/raw/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js#L2715)) |
+
+An error without a handler goes to the `OnException` of the UI flow (`handleError`):
+
+1. UI flow `Directory_Search` not in `migration/shell/sources/`. Handled errors: none.
+
+### 11.2 React
+
+| File | Kind | Function | Effects | Place |
+|---|---|---|---|---|
+| `useSearch.ts` | try/catch | `refreshSearch` | none | [`pages/Search/hooks/useSearch.ts:296`](../../app/src/pages/Search/hooks/useSearch.ts#L296) |
+
+`flow handler`: `raiseToFlowHandler` gives the error to the flow handler of the screen (`app/src/platform/feedback/flowErrors.ts`). The tool lists `.catch`, `try/catch` and `onError` that do not give the error to it.
+
+## 12. Shared blocks and components on this route
+
+Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pages/` (React) that the route renders. Their facts belong to them, not to the route. This section gives their user actions once, without diagrams.
+
+### OutSystems (TST)
+
+| Block | Module | React port | User actions |
+|---|---|---|---|
+| `Layout_DetailPage` | `UBTConnectLibrary` | [`components/layout/DetailLayout/DetailLayout.tsx`](../../app/src/components/layout/DetailLayout/DetailLayout.tsx), [`containers/DetailLayout/DetailLayoutContainer.tsx`](../../app/src/containers/DetailLayout/DetailLayoutContainer.tsx) | 1 |
+| `Input` | `UBTConnectLibrary` | [`components/ui/Input/Input.tsx`](../../app/src/components/ui/Input/Input.tsx) | 0 |
+| `InputWithIcon` | `OutSystemsUI_2_23` | [`components/ui/InputWithIcon/InputWithIcon.tsx`](../../app/src/components/ui/InputWithIcon/InputWithIcon.tsx) | 0 |
+| `FilterSheet_Icon` | `UBTConnect` | [`components/filter/FilterSheetIcon/FilterSheetIcon.tsx`](../../app/src/components/filter/FilterSheetIcon/FilterSheetIcon.tsx) | 1 |
+| `HorizontalTagList` | `UBTConnectLibrary` | [`components/ui/HorizontalTagList/HorizontalTagList.tsx`](../../app/src/components/ui/HorizontalTagList/HorizontalTagList.tsx) | 0 |
+| `TagToggle` | `UBTConnectLibrary` | [`components/ui/TagToggle/TagToggle.tsx`](../../app/src/components/ui/TagToggle/TagToggle.tsx) | 0 |
+| `SectionSeparator` | `UBTConnect` | [`components/ui/SectionSeparator/SectionSeparator.tsx`](../../app/src/components/ui/SectionSeparator/SectionSeparator.tsx) | 0 |
+| `BottomBarMenu` | `UBTConnect` | [`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx) | 1 |
+| `BottomBarContent` | `UBTConnect` | [`components/layout/BottomBarContent/BottomBarContent.tsx`](../../app/src/components/layout/BottomBarContent/BottomBarContent.tsx) | 0 |
+| `BottomBarItem` | `OutSystemsUI_2_23` | [`components/ui/BottomBarItem/BottomBarItem.tsx`](../../app/src/components/ui/BottomBarItem/BottomBarItem.tsx) | 0 |
+| `App_IconBadge` | `UBTConnect` | [`components/layout/BottomBarIconBadge/BottomBarIconBadge.tsx`](../../app/src/components/layout/BottomBarIconBadge/BottomBarIconBadge.tsx) | 0 |
+| `IconBadge` | `UBTConnectLibrary` | [`components/ui/IconBadge/IconBadge.tsx`](../../app/src/components/ui/IconBadge/IconBadge.tsx) | 0 |
+| `Badge` | `UBTConnectLibrary` | [`components/ui/Badge/Badge.tsx`](../../app/src/components/ui/Badge/Badge.tsx) | 0 |
+| `FilterSheet` | `UBTConnect` | [`components/filter/FilterSheet/FilterSheet.tsx`](../../app/src/components/filter/FilterSheet/FilterSheet.tsx), [`components/filter/FilterSheet/filterSheetActions.ts`](../../app/src/components/filter/FilterSheet/filterSheetActions.ts), [`components/filter/FilterSheet/filterSheetState.ts`](../../app/src/components/filter/FilterSheet/filterSheetState.ts), [`components/filter/FilterSheet/useFilterSheet.ts`](../../app/src/components/filter/FilterSheet/useFilterSheet.ts), [`containers/FilterSheet/FilterSheetContainer.tsx`](../../app/src/containers/FilterSheet/FilterSheetContainer.tsx) | 0 |
+| `BottomSheet` | `UBTConnectLibrary` | [`components/ui/ConnectBottomSheet/ConnectBottomSheet.tsx`](../../app/src/components/ui/ConnectBottomSheet/ConnectBottomSheet.tsx) | 0 |
+| `BottomSheet` | `OutSystemsUI_2_23` | [`components/ui/BottomSheet/BottomSheet.tsx`](../../app/src/components/ui/BottomSheet/BottomSheet.tsx) | 0 |
+| `Columns_Three` | `UBTConnectLibrary` | [`components/ui/ColumnsThree/ColumnsThree.tsx`](../../app/src/components/ui/ColumnsThree/ColumnsThree.tsx) | 0 |
+| `Columns3` | `OutSystemsUI_2_23` | [`components/ui/Columns3/Columns3.tsx`](../../app/src/components/ui/Columns3/Columns3.tsx) | 0 |
+| `FilterSheet_OptionList_Item` | `UBTConnect` | [`components/filter/FilterOptionList/FilterOptionList.tsx`](../../app/src/components/filter/FilterOptionList/FilterOptionList.tsx) | 1 |
+| `SelectionOption_List` | `UBTConnectLibrary` | [`components/ui/SelectionOptionList/SelectionOptionList.tsx`](../../app/src/components/ui/SelectionOptionList/SelectionOptionList.tsx) | 0 |
+| `IconText` | `UBTConnectLibrary` | [`components/ui/IconText/IconText.tsx`](../../app/src/components/ui/IconText/IconText.tsx) | 0 |
+| `LazyImage` | `UBTConnectLibrary` | [`components/ui/LazyImage/LazyImage.tsx`](../../app/src/components/ui/LazyImage/LazyImage.tsx) | 0 |
+| `Button` | `UBTConnectLibrary` | [`components/ui/Button/Button.tsx`](../../app/src/components/ui/Button/Button.tsx) | 0 |
+| `CacheControl_AllCountries` | `UBTConnect_Utils` | [`legacy/os/cache/AllCountriesCacheControl/AllCountriesCacheControl.tsx`](../../app/src/legacy/os/cache/AllCountriesCacheControl/AllCountriesCacheControl.tsx) | 1 |
+| `CacheControl` | `UBTConnect_Utils` | [`legacy/os/cache/CacheControl/CacheControl.tsx`](../../app/src/legacy/os/cache/CacheControl/CacheControl.tsx) | 0 |
+| `CacheControl_UserInfo_Wrapper` | `UBTConnect` | [`platform/session/UserInfoCache/UserInfoCache.tsx`](../../app/src/platform/session/UserInfoCache/UserInfoCache.tsx) | 0 |
+| `CacheControl_UserInfo` | `UBTConnect_Utils` | [`legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx`](../../app/src/legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx) | 1 |
+
+<details><summary>User actions of the shared blocks (10)</summary>
+
+| # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
+|---|---|---|---|---|---|
+| 1 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `home` | goes to HomeFeed |
+| 2 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `directory` | goes to CountryList, Locality_Details |
+| 3 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `updates` | goes to Updates_SingleList |
+| 4 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `bookmarks` | goes to Bookmarks |
+| 5 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `menu` | goes to Menu |
+| 6 | `FilterSheet_Icon` | `click of Icon` | `iconClick` | – | asks for a confirmation |
+| 7 | `FilterSheet_OptionList_Item` | `notEnabledOnClick of List` | `selectionOption_ListNotEnabledOnClick` | – | asks for a confirmation |
+| 8 | `Layout_DetailPage` | `click of Icon` | `onClick_BackNavigation` | – | goes to previous screen |
+| 9 | `CacheControl_AllCountries` | `onNonCacheHit of CacheControl` | `cacheControlOnNonCacheHit` | – | calls GetCacheInfo |
+| 10 | `CacheControl_UserInfo` | `onNonCacheHit of CacheControl` | `cacheControlOnNonCacheHit` | – | calls GetCacheInfo |
+
+</details>
+
+
+### React
+
+| File | User actions |
+|---|---|
+| [`components/layout/BottomBar/BottomBar.tsx`](../../app/src/components/layout/BottomBar/BottomBar.tsx) | 2 |
+| [`components/layout/CommonUiLayout/CommonUiLayout.tsx`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx) | 2 |
+| [`containers/DetailLayout/DetailLayoutContainer.tsx`](../../app/src/containers/DetailLayout/DetailLayoutContainer.tsx) | 1 |
+| [`containers/FilterSheet/FilterSheetContainer.tsx`](../../app/src/containers/FilterSheet/FilterSheetContainer.tsx) | 1 |
+| [`legacy/os/cache/AllCountriesCacheControl/AllCountriesCacheControl.tsx`](../../app/src/legacy/os/cache/AllCountriesCacheControl/AllCountriesCacheControl.tsx) | 1 |
+| [`legacy/os/cache/AllLocalitiesCacheControl/AllLocalitiesCacheControl.tsx`](../../app/src/legacy/os/cache/AllLocalitiesCacheControl/AllLocalitiesCacheControl.tsx) | 1 |
+| [`legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx`](../../app/src/legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx) | 1 |
+
+<details><summary>User actions of the shared components (19)</summary>
+
+| # | File | Element | Event prop | Handler | Branch | Effects |
+|---|---|---|---|---|---|---|
+| 1 | [`containers/FilterSheet/FilterSheetContainer.tsx:43`](../../app/src/containers/FilterSheet/FilterSheetContainer.tsx#L43) | `<FilterSheet>` | `onShowUpgradePopUp` | `showUpgradePopUp` | – | asks for a confirmation |
+| 2 | [`legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx:52`](../../app/src/legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx#L52) | `<CacheControl>` | `onNonCacheHit` | `onNonCacheHit` | – | calls DataActionGetCacheInfo |
+| 3 | [`legacy/os/cache/AllLocalitiesCacheControl/AllLocalitiesCacheControl.tsx:55`](../../app/src/legacy/os/cache/AllLocalitiesCacheControl/AllLocalitiesCacheControl.tsx#L55) | `<CacheControl>` | `onNonCacheHit` | `onNonCacheHit` | – | calls DataActionGetCacheInfo |
+| 4 | [`legacy/os/cache/AllCountriesCacheControl/AllCountriesCacheControl.tsx:55`](../../app/src/legacy/os/cache/AllCountriesCacheControl/AllCountriesCacheControl.tsx#L55) | `<CacheControl>` | `onNonCacheHit` | `onNonCacheHit` | – | calls DataActionGetCacheInfo |
+| 5 | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:80`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L80) | `<PreventBackNavigation>` | `onBackNavigationPrevented` | `redirectHome` | – | goes to HomeFeed |
+| 6 | [`components/layout/CommonUiLayout/CommonUiLayout.tsx:82`](../../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx#L82) | `<BackNavigationHandler>` | `onBackNavigation` | `maybeRedirectHome` | – | goes to HomeFeed |
+| 7 | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Home` | goes to HomeFeed |
+| 8 | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Directory` | goes to CountryList, Locality_Details |
+| 9 | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Updates` | goes to Updates_SingleList |
+| 10 | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Bookmarks` | goes to Bookmarks |
+| 11 | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `Menu` | goes to Menu |
+| 12 | [`components/layout/BottomBar/BottomBar.tsx:130`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L130) | `<OSLink>` | `onClick` | `click` | `other` | calls the prop onBottomBarClicked() |
+| 13 | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Home` | goes to HomeFeed |
+| 14 | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Directory` | goes to CountryList, Locality_Details |
+| 15 | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Updates` | goes to Updates_SingleList |
+| 16 | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Bookmarks` | goes to Bookmarks |
+| 17 | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `Menu` | goes to Menu |
+| 18 | [`components/layout/BottomBar/BottomBar.tsx:140`](../../app/src/components/layout/BottomBar/BottomBar.tsx#L140) | `<BottomBarIconBadge>` | `onOnClick` | `click` | `other` | calls the prop onBottomBarClicked() |
+| 19 | [`containers/DetailLayout/DetailLayoutContainer.tsx:66`](../../app/src/containers/DetailLayout/DetailLayoutContainer.tsx#L66) | `<DetailLayout>` | `onBack` | `navigateBack` | – | goes to previous screen |
+
+</details>
+
