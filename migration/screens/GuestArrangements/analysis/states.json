@@ -1,0 +1,86 @@
+{
+ "default": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/GuestArrangements?In_EventId=2085&In_EventName=&In_MilestoneTitle=Accommodation&In_HostId=52768&In_MemberId=52989&In_MilestoneId=GMP15700&In_OrbitMilestoneTypeId=accommodation-host",
+  "via": {
+   "from": "/UBTConnect/MilestoneDetail?In_OrbitMilestoneTypeId=accommodation-host&In_HostId=52768&In_EventId=2085&In_MilestoneId=GMP15700",
+   "settleMs": 8000,
+   "pre": [
+    {
+     "sel": ".section-expandable-title",
+     "nth": 0,
+     "waitMs": 3000
+    }
+   ],
+   "click": "text=Guest Arrangements",
+   "nth": 0,
+   "dispatch": true
+  },
+  "steps": [],
+  "scenario": "real",
+  "auto": null,
+  "htmlClass": "",
+  "bodyClass": "phone portrait orbit-theme osx is-ltr",
+  "bodyStyle": "--header-size-content: 0px; --footer-height: 0px; --viewport-height: 844px;",
+  "dpr": 1
+ },
+ "loading": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/GuestArrangements?In_EventId=2085&In_EventName=&In_MilestoneTitle=Accommodation&In_HostId=52768&In_MemberId=52989&In_MilestoneId=GMP15700&In_OrbitMilestoneTypeId=accommodation-host",
+  "via": {
+   "from": "/UBTConnect/MilestoneDetail?In_OrbitMilestoneTypeId=accommodation-host&In_HostId=52768&In_EventId=2085&In_MilestoneId=GMP15700",
+   "settleMs": 8000,
+   "pre": [
+    {
+     "sel": ".section-expandable-title",
+     "nth": 0,
+     "waitMs": 3000
+    }
+   ],
+   "click": "text=Guest Arrangements",
+   "nth": 0,
+   "dispatch": true
+  },
+  "steps": [],
+  "scenario": "loading",
+  "auto": "loading",
+  "htmlClass": "",
+  "bodyClass": "phone portrait orbit-theme osx is-ltr",
+  "bodyStyle": "--header-size-content: 0px; --footer-height: 0px; --viewport-height: 844px;",
+  "dpr": 1
+ },
+ "offline": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/GuestArrangements?In_EventId=2085&In_EventName=&In_MilestoneTitle=Accommodation&In_HostId=52768&In_MemberId=52989&In_MilestoneId=GMP15700&In_OrbitMilestoneTypeId=accommodation-host",
+  "via": {
+   "from": "/UBTConnect/MilestoneDetail?In_OrbitMilestoneTypeId=accommodation-host&In_HostId=52768&In_EventId=2085&In_MilestoneId=GMP15700",
+   "settleMs": 8000,
+   "pre": [
+    {
+     "sel": ".section-expandable-title",
+     "nth": 0,
+     "waitMs": 3000
+    }
+   ],
+   "click": "text=Guest Arrangements",
+   "nth": 0,
+   "dispatch": true
+  },
+  "steps": [],
+  "scenario": "error",
+  "auto": "offline",
+  "htmlClass": "",
+  "bodyClass": "phone portrait orbit-theme osx is-ltr",
+  "bodyStyle": "--header-size-content: 0px; --footer-height: 0px; --viewport-height: 844px;",
+  "dpr": 1
+ }
+}

@@ -1,0 +1,72 @@
+{
+ "state": "offline",
+ "route": "/UBTConnect/ContactByEmailLDMCoordinator?In_EmailTo=minneapolisbreakteam%40gmail.com&In_ContactName=Minneapolis+Break+Team&In_EventDate=2026-06-13&In_AvatarURL=%2FUBTConnect%2Fimg%2FConnect2_OrbitMobile_MUI.LDM_Logo.svg%3F_cb1n5I2ixjwYGeenhCMkQ&In_Subject=Saturday+Meal+at+Minneapolis+-+13%2F06%2F2026&In_EventLocality=Minneapolis+%28US%29&mocksession=unlocked",
+ "mock": "error",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "76024f919eb950157a33",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "visibleOnly": false,
+  "full": true,
+  "replay": "builder",
+  "skipKinds": [],
+  "selfRef": false
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 87,
+  "texts": 10,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-11-06T14:10:43.043Z",
+ "counts": {
+  "pixel": 1
+ },
+ "exemptionsUsed": {
+  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 1,
+  "CAPTURE-LOADING-BODYCLASS": 1
+ },
+ "pixel": {
+  "ratio": 0.00391,
+  "maxCell": 0.1344,
+  "maxCellRatio": 0.03,
+  "diffPixels": 1270,
+  "comparedPixels": 325088,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 2,
+  "hotspots": [
+   "40,200 (215px)",
+   "80,200 (201px)",
+   "240,200 (183px)",
+   "120,200 (178px)",
+   "160,200 (174px)"
+  ],
+  "diffPng": "migration/screens/ContactByEmailLDMCoordinator/parity/offline.diff.png"
+ },
+ "calls": null,
+ "diffs": [
+  {
+   "kind": "pixel",
+   "path": "screenshot",
+   "detail": "0.39% pixels differ (max 0.20%), worst 40px tile 13.4% (max 3.0%), hotspots 40,200 (215px); 80,200 (201px); 240,200 (183px); 120,200 (178px); 160,200 (174px); see migration/screens/ContactByEmailLDMCoordinator/parity/offline.diff.png"
+  }
+ ]
+}
