@@ -63,7 +63,12 @@ async function settle(page, profile, secrets, url) {
         if (!unlocked) { await settle(page, profile, secrets, url); unlocked = true; }   // same tab keeps the unlock
         else { await page.waitForSelector('.layout', { timeout: 20000 }).catch(() => {}); await page.waitForLoadState('networkidle', { timeout: 20000 }).catch(() => {}); await sleep(1500); }
         if (job.settleMs) await sleep(job.settleMs);   // "settleMs": extra wait for lists whose skeleton clears late
-        for (const sel of job.pre || []) { await page.locator(sel).first().click({ timeout: 15000 }); await sleep(2000); }
+        for (const pre of job.pre || []) {   // a selector, or { "sel", "nth", "dispatch", "waitMs" } (the same options as the click)
+          const o = typeof pre === 'string' ? { sel: pre } : pre;
+          const l = page.locator(o.sel).nth(o.nth || 0);
+          if (o.dispatch) await l.dispatchEvent('click'); else await l.click({ timeout: 15000 });
+          await sleep(o.waitMs || 2000);
+        }
         if (!job.click) {   // look only: list the blocks shown after the pre clicks (names only)
           await page.waitForLoadState('networkidle', { timeout: 20000 }).catch(() => {}); await sleep(1500);
           const names = await page.evaluate(() => { const c = {}; for (const e of document.querySelectorAll('[data-block]')) { const n = e.getAttribute('data-block'); c[n] = (c[n] || 0) + 1; } return c; });
