@@ -1,22 +1,8 @@
 {
- "LDM_EventDetail_V2": [
-  "default 20525 KB, 51 blocks, masked 4",
-  "runtime 3 calls, 0 phase mark(s)",
-  "auto loading (3 call(s) held)",
-  "auto offline",
-  "analyzed"
- ],
- "EventDetail": [
-  "default 20419 KB, 48 blocks, masked 13",
-  "runtime 6 calls, 0 phase mark(s)",
+ "AssembleDetail": [
+  "default 19389 KB, 59 blocks, masked 7",
+  "runtime 2 calls, 0 phase mark(s)",
   "auto loading (2 call(s) held)",
-  "auto offline",
-  "analyzed"
- ],
- "MilestoneDetail": [
-  "default 20393 KB, 36 blocks, masked 41",
-  "runtime 3 calls, 0 phase mark(s)",
-  "auto loading (1 call(s) held)",
   "auto offline",
   "analyzed"
  ]
