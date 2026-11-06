@@ -89,7 +89,7 @@ async function settle(page, profile, secrets, url) {
         results[job.expect || screen] = { from: job.from, click: job.click, screen, params, textParams, at: new Date().toISOString() };
         console.log(`${ok ? 'ok ' : 'UNEXPECTED'} ${job.from} → ${screen} ${JSON.stringify(params)}${textParams.length ? ' (text: ' + textParams.join(', ') + ')' : ''}`);
         if (job.dump) {
-          await page.waitForLoadState('networkidle', { timeout: 20000 }).catch(() => {}); await sleep(2000);
+          await page.waitForLoadState('networkidle', { timeout: 20000 }).catch(() => {}); await sleep(job.dumpWaitMs || 2000);   // "dumpWaitMs": data that arrives late
           const names = await page.evaluate(() => { const c = {}; for (const e of document.querySelectorAll('[data-block]')) { const n = e.getAttribute('data-block'); c[n] = (c[n] || 0) + 1; } return c; });
           const skip = /^(BasePatterns|Adaptive|Layout|Layouts|NavigationHandler|LayoutRuntime|Utilities|Private|App_PIN|PIN|Fingerprint|OutSystemsUIOverrides)\.|SkeletonSection|Icon$|IconInline/;
           console.log('   blocks:', Object.entries(names).filter(([n]) => !skip.test(n)).sort((a, b) => b[1] - a[1]).slice(0, 25).map(([n, k]) => `${n}×${k}`).join(', '));

@@ -118,7 +118,12 @@ async function openVia(page, sc, defaults, base, url, beforeClick, settle) {
   await waitReady(page, {}, defaults).catch(() => {});
   if (settle && !sc.auth && await settleAuth(page, fromUrl, sc, defaults)) await waitReady(page, {}, defaults).catch(() => {});
   if (sc.via.settleMs) await sleep(sc.via.settleMs);   // lists whose skeleton clears late
-  for (const sel of sc.via.pre || []) { await page.locator(sel).first().click({ timeout: 15000 }); await sleep(2000); }
+  for (const pre of sc.via.pre || []) {   // a selector, or { "sel", "nth", "dispatch", "waitMs" }
+    const o = typeof pre === 'string' ? { sel: pre } : pre;
+    const l = page.locator(o.sel).nth(o.nth || 0);
+    if (o.dispatch) await l.dispatchEvent('click'); else await l.click({ timeout: 15000 });
+    await sleep(o.waitMs || 2000);
+  }
   const clickTarget = page.locator(sc.via.click).nth(sc.via.nth || 0);
   await clickTarget.waitFor({ state: 'visible', timeout: 30000 });
   if (beforeClick) await beforeClick();
