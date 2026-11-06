@@ -172,7 +172,7 @@ function created(daysAgo: number, time: string): string {
 
 type RowFields =
   'Id' | 'DateTimeCreated' | 'Title' | 'ProfileIconURL' | 'IsRead' | 'MessageTemplateId' | 'CreatedByMemberId';
-const row = (fields: Pick<MessageListItemRow, RowFields>) => ({
+const row = (fields: Pick<MessageListItemRow, RowFields> & Partial<Pick<MessageListItemRow, 'Summary'>>) => ({
   CreatedByUserId: 0,
   IsClear: false,
   MessageInfoTypeId: 0,
@@ -200,20 +200,59 @@ export const notificationRows = () =>
   );
 
 /* The record of the NotificationDetails capture (MessageInstanceId 5496739, a read notification that is not one of
-   the 68 above): its title as captured (a TST test label, unmasked), Summary empty as captured, a fictional date (the
-   capture masks it; a Wednesday, as the title says). No logo, so it is sent as a user: the header shows the name of
-   its invented author (Rebecca Lindsay, content.ts); its body is empty (the capture shows none). */
+   the 68 above), as the capture of 2026-11-06 shows it: title and summary as captured (TST test labels, unmasked), a
+   fictional date (the capture masks it; a Wednesday, as the title says). Sent as Lord's Day Meal (its logo), so the
+   header shows "Meal Allocation" (messageTitle); its body is an adaptive card (the capture masks the text; the words
+   below are fictional) with the two actions of the capture. */
 const CAPTURED_DETAILS: Record<string, MessageListItemRow> = {
   '5496739': row({
     Id: '5496739',
     DateTimeCreated: '2026-10-28T09:30:00',
     Title: 'Your Host on Wednesday',
-    ProfileIconURL: '',
+    Summary: 'Host for Wednesday Meal',
+    ProfileIconURL: LORDS_DAY_MEAL_LOGO,
     IsRead: true,
     MessageTemplateId: '47702',
     CreatedByMemberId: '900110',
   }),
 };
+
+/** The adaptive card of the captured record: one dark text block with the line breaks of the capture, a medium
+    spacing, two positive submit actions; the words are fictional. */
+export const CAPTURED_DETAIL_CARD = JSON.stringify({
+  type: 'AdaptiveCard',
+  version: '1.3',
+  body: [
+    {
+      type: 'TextBlock',
+      wrap: true,
+      color: 'dark',
+      text: 'Dear Daniel,\n\nYou have been allocated as the host for the Wednesday meal on 12 November at Millbrook Hall.\nThe meal starts at 6:30 pm and the guests arrive from 6 pm, so please be there by 5:30 pm.\nTwelve guests have confirmed so far.\n\nPlease confirm with the event coordinator that you can host on that day. If you cannot, tell the coordinator as soon as possible so that another host can be arranged.\n\nKind Regards,\nMeal Allocation Team',
+    },
+    {
+      type: 'ActionSet',
+      spacing: 'medium',
+      actions: [
+        {
+          type: 'Action.Submit',
+          title: 'Contact Event Coordinator',
+          style: 'positive',
+          data: {
+            action: 'ContactEventCoordinator',
+          },
+        },
+        {
+          type: 'Action.Submit',
+          title: 'View Event',
+          style: 'positive',
+          data: {
+            action: 'ViewEvent',
+          },
+        },
+      ],
+    },
+  ],
+});
 
 /** The notification of that id: a row of the collection (with the read state that MarkAsRead and
     Wrapper_NotificationOpened set), else the captured record; undefined for an unknown id. */
@@ -222,7 +261,7 @@ export function findNotificationRow(messageInstanceId: string): MessageListItemR
   return stored ?? CAPTURED_DETAILS[messageInstanceId];
 }
 
-/** The captured record 5496739 has an empty body. */
+/** The captured record 5496739: its body is CAPTURED_DETAIL_CARD. */
 export const isCapturedDetail = (messageInstanceId: string): boolean => messageInstanceId in CAPTURED_DETAILS;
 
 /** The sender target (Connect2_LegacyShared MessageSenderTarget id, static-entities-tst.json) that a notification

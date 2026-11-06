@@ -15,27 +15,28 @@ flowchart TB
       B1["LayoutRuntime_NavigationHandler.LayoutRuntime_Top<br/>NavigationHandler<br/>lifecycle"]
       B2["BasePatterns.CustomContainer<br/>UBTConnectLibrary<br/>lifecycle"]
       B3["BasePatterns.Columns_Two<br/>UBTConnectLibrary<br/>lifecycle"]
-      B4["App_Common.BottomBarMenu<br/>UBTConnect<br/>navigation, lifecycle"]
-      B5["App_Common.BottomBarContent<br/>UBTConnect<br/>markup"]
-      B6["Navigation.BottomBarItem<br/>OutSystemsUI_2_23<br/>markup"]
-      B7["ConnectPatterns.SkeletonSection<br/>UBTConnectLibrary<br/>lifecycle"]
-      B8["App_Common.CommonUI_InsideLayout<br/>UBTConnect<br/>navigation, lifecycle"]
-      B9["Private.OfflineDataSyncCore<br/>OutSystemsUI_2_23<br/>lifecycle"]
-      B10["Private.NetworkStatusChanged<br/>OutSystemsUI_2_23<br/>lifecycle"]
-      B11["App_PIN.Block_PINUnlock<br/>UBTConnect<br/>navigation, lifecycle"]
-      B12["Layouts.Layout_LoginFlow<br/>UBTConnectLibrary<br/>lifecycle"]
-      B13["Layouts.SVG_Background_LoginWrapper<br/>UBTConnectLibrary<br/>markup"]
-      B14["Layouts.SVG_Background_Custom<br/>UBTConnectLibrary<br/>lifecycle"]
-      B15["Utilities.InlineSVG<br/>OutSystemsUI_2_23<br/>lifecycle"]
-      B16["App_PIN.Block_PINUnlock_ContentWrapper<br/>UBTConnect<br/>navigation, lifecycle"]
-      B17["PIN.Pincode_Unlock<br/>UBT_AppManager<br/>lifecycle"]
-      B18["PIN.InactivityTimer<br/>UBT_AppManager<br/>lifecycle"]
-      B19["CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction<br/>UBTConnect_Utils<br/>lifecycle"]
-      B20["ConfirmationDialogs.ActionConfirmationDialog<br/>NavigationHandler<br/>lifecycle"]
-      B21["AndroidAppLinks.AndroidAppLinkOnResumeHandler<br/>Connect2_AndroidAppLinksPlugin<br/>lifecycle"]
-      B22["EventfulDeeplinksPlugin.DeeplinkHandlerCentral<br/>EventfulDeeplinksPlugin<br/>lifecycle"]
-      B23["Utility.HandleImageLoadError<br/>Connect2_LegacyShared<br/>lifecycle"]
-      B24["NavigationHandler.BackNavigationHandler<br/>NavigationHandler<br/>lifecycle"]
+      B4["Widgets.AdaptiveCardViewer<br/>Connect2_LegacyShared<br/>lifecycle"]
+      B5["App_Common.BottomBarMenu<br/>UBTConnect<br/>navigation, lifecycle"]
+      B6["App_Common.BottomBarContent<br/>UBTConnect<br/>markup"]
+      B7["Navigation.BottomBarItem<br/>OutSystemsUI_2_23<br/>markup"]
+      B8["ConnectPatterns.SkeletonSection<br/>UBTConnectLibrary<br/>lifecycle"]
+      B9["App_Common.CommonUI_InsideLayout<br/>UBTConnect<br/>navigation, lifecycle"]
+      B10["Private.OfflineDataSyncCore<br/>OutSystemsUI_2_23<br/>lifecycle"]
+      B11["Private.NetworkStatusChanged<br/>OutSystemsUI_2_23<br/>lifecycle"]
+      B12["App_PIN.Block_PINUnlock<br/>UBTConnect<br/>navigation, lifecycle"]
+      B13["Layouts.Layout_LoginFlow<br/>UBTConnectLibrary<br/>lifecycle"]
+      B14["Layouts.SVG_Background_LoginWrapper<br/>UBTConnectLibrary<br/>markup"]
+      B15["Layouts.SVG_Background_Custom<br/>UBTConnectLibrary<br/>lifecycle"]
+      B16["Utilities.InlineSVG<br/>OutSystemsUI_2_23<br/>lifecycle"]
+      B17["App_PIN.Block_PINUnlock_ContentWrapper<br/>UBTConnect<br/>navigation, lifecycle"]
+      B18["PIN.Pincode_Unlock<br/>UBT_AppManager<br/>lifecycle"]
+      B19["PIN.InactivityTimer<br/>UBT_AppManager<br/>lifecycle"]
+      B20["CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction<br/>UBTConnect_Utils<br/>lifecycle"]
+      B21["ConfirmationDialogs.ActionConfirmationDialog<br/>NavigationHandler<br/>lifecycle"]
+      B22["AndroidAppLinks.AndroidAppLinkOnResumeHandler<br/>Connect2_AndroidAppLinksPlugin<br/>lifecycle"]
+      B23["EventfulDeeplinksPlugin.DeeplinkHandlerCentral<br/>EventfulDeeplinksPlugin<br/>lifecycle"]
+      B24["Utility.HandleImageLoadError<br/>Connect2_LegacyShared<br/>lifecycle"]
+      B25["NavigationHandler.BackNavigationHandler<br/>NavigationHandler<br/>lifecycle"]
     end
     Cache["View cache / preload<br/>IsRestoredFromCacheJS"]
     Vars["Client variables read<br/>App_PIN_BiometricEnabled, App_Policies_HasPolicyToAccept, Directory_Updates_UnreadCount, IsNavigateToHomeOnBack, PIN_IsLocked …"]
@@ -43,27 +44,31 @@ flowchart TB
   end
   subgraph Server["OutSystems server · screenservices"]
     direction LR
-    S0["DataActionFetchMessageInstance<br/>data action / aggregate, observed"]
-    S1["ActionAppManager_SynchAppContext<br/>observed"]
-    S2["ActionAppManager_AfterInitialize<br/>observed"]
-    S3["ActionSync_Info_GetMain<br/>observed"]
-    S4["ActionGetUserInformation<br/>observed"]
-    S5["ActionGetNumberUnreadMessages<br/>observed"]
-    S6["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
-    S7["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
+    S0["DataActionFetchMessageInstance<br/>data action / aggregate, declared, not observed"]
+    S1["DataActionGetMessageInstance<br/>data action / aggregate, observed"]
+    S2["ScreenDataSetGetMessageTemplateParametersByMessageTemplateId<br/>data action / aggregate, declared, not observed"]
+    S3["ActionAppManager_SynchAppContext<br/>observed"]
+    S4["ActionAppManager_AfterInitialize<br/>observed"]
+    S5["ActionSync_Info_GetMain<br/>observed"]
+    S6["ActionGetUserInformation<br/>observed"]
+    S7["ActionGetNumberUnreadMessages<br/>observed"]
+    S8["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
+    S9["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
   end
   Backend["Backend<br/>not visible from the browser"]
-  Content --> S0
-  Content -.-> S1
+  Content -.-> S0
+  Content --> S1
   Content -.-> S2
   Content -.-> S3
   Content -.-> S4
   Content -.-> S5
   Content -.-> S6
   Content -.-> S7
+  Content -.-> S8
+  Content -.-> S9
   S0 -.-> Backend
   classDef unknown stroke-dasharray: 5 4;
-  class Backend unknown;
+  class S0,S2,Backend unknown;
 ```
 
 ## Sequence: enter the screen (draft)
@@ -81,7 +86,11 @@ sequenceDiagram
     S->>S: TODO keep cached data?
   end
   S->>API: DataActionFetchMessageInstance
-  API-->>S: UI_NotificationDetail
+  API-->>S: TODO outputs
+  S->>API: DataActionGetMessageInstance
+  API-->>S: Message, IsRetracted, IsCleared, PlaceholderDelimiters
+  S->>API: ScreenDataSetGetMessageTemplateParametersByMessageTemplateId
+  API-->>S: TODO outputs
   S->>API: ServiceAPIFetchData_CacheableMapEntities
   Note over S,API: observed in capture, trigger unverified (TODO)
   API-->>S: TODO outputs

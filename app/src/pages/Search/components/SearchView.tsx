@@ -1,7 +1,8 @@
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
-import { FilterSheetIcon } from '@/components/filter/FilterSheetIcon';
+import { FilterSheet_Icon_Label } from '@/components/filter/FilterSheetIconLabel';
+import { Horizontal_Filter_TagList } from '@/components/filter/HorizontalFilterTagList';
 import { FilterSheetContainer } from '@/containers/FilterSheet';
 import type { SearchFlows } from '@/pages/Search/hooks/useSearch';
 import { showsCategory } from '@/pages/Search/hooks/searchState';
@@ -9,7 +10,6 @@ import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { SectionSeparator } from '@/components/ui/SectionSeparator';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
-import { HorizontalTagList } from '@/components/ui/HorizontalTagList';
 import { Input } from '@/components/ui/Input';
 import { DetailLayoutContainer } from '@/containers/DetailLayout';
 import { Skeleton } from '@/components/ui/Skeleton';
@@ -98,32 +98,41 @@ export function SearchView({
             onEventSubmit={onSubmit}
           />
         }
-        placeholderHeaderRight={
-          <FilterSheetIcon
-            id="b1-$b3"
-            showSubscriptionOnClick={filterSheet.showSubscriptionOnClick}
-            isLoaded={filterSheet.isLoaded}
-            haveFiltersApplied={hasFiltersApplied}
-            bottomSheetId={filterSheet.bottomSheetId}
-            onShowUpgradePopUp={showUpgradePopUp}
-          />
-        }
         headerContent={
+          /* Live ScreenBlock_Search (capture of 2026-11-06): no FilterSheet_Icon in the header; the header content holds
+             the FilterPills container with Horizontal_Filter_TagList (the Filter label and the six category pills). */
           <CustomContainer
-            id="b1-$b4"
+            id="b1-$b3"
             options={{
               Background: { BackgroundColor: UBT_Color.Neutral0 },
               PaddingSize: { VerticalSizeId: UBT_Size.Small },
             }}
           >
-            <HorizontalTagList
-              id="b1-$b5"
-              inTagToggleList={tagList}
-              inIsSingleSelection
-              inHorizontalPadding={UBT_Size.Base}
-              inIsMandatorySelection
-              onChanged={onTagListChanged}
-            />
+            <CustomContainer
+              id="b1-FilterPills"
+              extendedClasses="background-neutral-0"
+              options={{ PaddingSize: { HorizontalSizeId: UBT_Size.Base }, MarginSize: {}, DisplayOptions: {} }}
+            >
+              <Horizontal_Filter_TagList
+                id="b1-$b5"
+                inHorizontalPadding={UBT_Size.Base}
+                inIsMandatorySelection
+                inTagToggleList={tagList}
+                inTagsLoading={isLoading}
+                inIsSingleSelection
+                onChanged={onTagListChanged}
+                filter={
+                  <FilterSheet_Icon_Label
+                    id="b1-$b6"
+                    isLoaded={!isLoading}
+                    showSubscriptionOnClick={false}
+                    haveFiltersApplied={hasFiltersApplied}
+                    bottomSheetId={filterSheet.bottomSheetId}
+                    onShowUpgradePopUp={showUpgradePopUp}
+                  />
+                }
+              />
+            </CustomContainer>
           </CustomContainer>
         }
         content={

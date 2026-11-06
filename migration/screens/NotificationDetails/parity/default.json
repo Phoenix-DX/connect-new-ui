@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "dba6bbc5a07a47b56932",
+ "fingerprint": "2bf68c499e75ea3606c6",
  "options": {
   "text": true,
   "style": true,
@@ -19,31 +19,27 @@
  },
  "replay": {
   "mode": "builder",
-  "elements": 177,
-  "texts": 20,
+  "elements": 203,
+  "texts": 30,
   "comments": 0,
   "dropped": 0,
   "endTagMismatch": 0,
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-05T13:10:34.327Z",
+ "at": "2026-11-06T03:31:13.961Z",
  "counts": {},
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
-  "TST-DRIFT-2026-11-05-NOTIFICATIONDETAILS-HEADER": 5,
-  "TST-DRIFT-2026-11-05-NOTIFICATIONDETAILS-CONTENT": 4,
   "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
-  "ignoreSubtrees": 1,
-  "TST-DRIFT-2026-11-05-NOTIFICATIONDETAILS-PIXEL": 1,
-  "TST-DRIFT-2026-11-05-NOTIFICATIONDETAILS-CALLS": 4
+  "ignoreSubtrees": 1
  },
  "pixel": {
-  "ratio": 0.06972,
-  "maxCell": 0.875,
+  "ratio": 0.00025,
+  "maxCell": 0.0219,
   "maxCellRatio": 0.03,
-  "diffPixels": 22530,
-  "comparedPixels": 323164,
+  "diffPixels": 60,
+  "comparedPixels": 237241,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -54,13 +50,10 @@
    390,
    844
   ],
-  "masks": 3,
+  "masks": 4,
   "hotspots": [
-   "200,200 (1400px)",
-   "240,200 (1400px)",
-   "280,200 (1400px)",
-   "320,200 (1400px)",
-   "160,200 (1376px)"
+   "200,800 (35px)",
+   "200,760 (25px)"
   ],
   "diffPng": "migration/screens/NotificationDetails/parity/default.diff.png"
  },
@@ -69,7 +62,7 @@
    "load"
   ],
   "expected": 8,
-  "actual": 9
+  "actual": 8
  },
  "diffs": []
 }

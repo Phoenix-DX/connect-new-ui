@@ -1,4 +1,4 @@
-define("UBTConnect.Directory_Search.ScreenBlock_Search.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnectLibrary.model", "Connect_CommonEntities_DB.model", "Connect_Search_CS.model", "UBTConnect.controller", "UBTJavaScriptUtils.controller", "UBTConnect.entities", "UBTConnect_Utils.controller", "NavigationHandler.controller", "UBTConnect_Utils.model", "UBTConnectLibrary.Layouts.Layout_DetailPage.mvc$model", "UBTConnectLibrary.ConnectPatterns.Input.mvc$model", "UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon.mvc$model", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$model", "UBTConnectLibrary.ConnectPatterns.HorizontalTagList.mvc$model", "UBTConnect.App_Common_Blocks.SectionSeparator.mvc$model", "UBTConnectLibrary.BasePatterns.Columns_Two.mvc$model", "UBTConnectLibrary.BasePatterns.CustomText.mvc$model", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$model", "UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc$model", "UBTConnectLibrary.ConnectPatterns.IconText.mvc$model", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$model", "UBTConnect.Directory_Search.Search_BirthdayOptions.mvc$model", "UBTConnect.Directory_Search.SearchResult_Section.mvc$model", "UBTConnect.App_Common.BottomBarMenu.mvc$model", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$model", "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc$model", "UBTConnectLibrary.model$TagRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$TagList", "UBTConnect.model$ConnectSearch_RecentClickedResultsList", "UBTConnectLibrary.model$SearchInputRec", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnect.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$InlineIconRec", "UBTConnectLibrary.model$LazyImageSizeRec", "Connect_CommonEntities_DB.model$Connect_SearchBirthdayOptionsRec", "UBTConnect.referencesHealth$Connect_CommonEntities_DB", "UBTConnect.model$Connect_SearchBirthdayOptionsList", "Connect_Search_CS.model$SearchResultRec", "UBTConnect.referencesHealth$Connect_Search_CS", "UBTConnect.model$SearchResultList", "UBTConnect.model$Filter_CommonRec", "UBTConnect.model$Filter_Common_OptionsRec", "UBTConnect.model$Filter_Common_Options_ChoiceRec", "UBTConnect.model$Filter_Common_Options_ListRec", "UBTConnect.model$Filter_Common_Control_ListList", "UBTConnectLibrary.model$SelectionOption_ItemRec", "UBTConnect.model$SelectionOption_ItemList", "UBTConnect.model$Filter_Common_Control_ChoiceList", "UBTConnect.controller$ValidateSearchPhoneNumber", "UBTJavaScriptUtils.controller$FeedbackMessage_AutoClose", "UBTConnect.referencesHealth$UBTJavaScriptUtils", "UBTConnect.model$ConnectSearch_RecentClickedResultsRecordList", "UBTConnect.model$ConnectSearch_RecentClickedResultsRec", "UBTConnect.model$ConnectSearch_RecentSearchTermRecord", "UBTConnect.model$ConnectSearch_RecentSearchTermRecordList", "UBTConnect.model$ConnectSearch_RecentSearchTermRec", "UBTConnect_Utils.controller$GetHasCarouselEnabled", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.model$ConnectSearch_RecentClickedResultsRecord", "NavigationHandler.controller$SetPreloadObject", "UBTConnect.referencesHealth$NavigationHandler", "UBTConnect_Utils.controller$App_Subscription_ShowUpgradePopUp", "UBTConnect.model$LongIntegerBooleanRecordList", "UBTConnect.model$SwipeActionLongIntegerRecordList", "UBTConnect.model$CarouselPreloadedHouseholdsRec", "UBTConnect_Utils.controller$Connect_OutSystems_PermissionCheck", "UBTConnect_Utils.model$SearchCategory_ItemRec", "UBTConnect.model$SearchCategory_ItemList", "UBTConnect_Utils.controller$SearchCategory_GetList", "UBTConnect.model$Connect_SearchBirthdayOptionsRecordList"], function (OutSystems, UBTConnectModel, UBTConnectLibraryModel, Connect_CommonEntities_DBModel, Connect_Search_CSModel, UBTConnectController, UBTJavaScriptUtilsController, UBTConnectEntities, UBTConnect_UtilsController, NavigationHandlerController, UBTConnect_UtilsModel, UBTConnectLibrary_Layouts_Layout_DetailPage_mvcModel, UBTConnectLibrary_ConnectPatterns_Input_mvcModel, UBTConnect_App_CommonBlocks_Filter_FilterSheet_Icon_mvcModel, UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel, UBTConnectLibrary_ConnectPatterns_HorizontalTagList_mvcModel, UBTConnect_App_Common_Blocks_SectionSeparator_mvcModel, UBTConnectLibrary_BasePatterns_Columns_Two_mvcModel, UBTConnectLibrary_BasePatterns_CustomText_mvcModel, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel, UBTConnect_Utils_CW_Image_UBT_LazyImage_mvcModel, UBTConnectLibrary_ConnectPatterns_IconText_mvcModel, UBTConnectLibrary_ConnectPatterns_Icon_mvcModel, UBTConnect_Directory_Search_Search_BirthdayOptions_mvcModel, UBTConnect_Directory_Search_SearchResult_Section_mvcModel, UBTConnect_App_Common_BottomBarMenu_mvcModel, UBTConnect_App_Common_CommonUI_InsideLayout_mvcModel, UBTConnect_App_CommonBlocks_Filter_FilterSheet_mvcModel) {
+define("UBTConnect.Directory_Search.ScreenBlock_Search.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnectLibrary.model", "Connect_CommonEntities_DB.model", "Connect_Search_CS.model", "UBTConnect.controller", "UBTJavaScriptUtils.controller", "UBTConnect.entities", "UBTConnect_Utils.controller", "NavigationHandler.controller", "UBTConnect_Utils.model", "UBTConnectLibrary.Layouts.Layout_DetailPage.mvc$model", "UBTConnectLibrary.ConnectPatterns.Input.mvc$model", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$model", "UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc$model", "UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon_Label.mvc$model", "UBTConnect.App_Common_Blocks.SectionSeparator.mvc$model", "UBTConnectLibrary.BasePatterns.Columns_Two.mvc$model", "UBTConnectLibrary.BasePatterns.CustomText.mvc$model", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$model", "UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc$model", "UBTConnectLibrary.ConnectPatterns.IconText.mvc$model", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$model", "UBTConnect.Directory_Search.Search_BirthdayOptions.mvc$model", "UBTConnect.Directory_Search.SearchResult_Section.mvc$model", "UBTConnect.App_Common.BottomBarMenu.mvc$model", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$model", "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc$model", "UBTConnectLibrary.model$TagRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$TagList", "UBTConnect.model$ConnectSearch_RecentClickedResultsList", "UBTConnectLibrary.model$SearchInputRec", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnect.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$InlineIconRec", "UBTConnectLibrary.model$LazyImageSizeRec", "Connect_CommonEntities_DB.model$Connect_SearchBirthdayOptionsRec", "UBTConnect.referencesHealth$Connect_CommonEntities_DB", "UBTConnect.model$Connect_SearchBirthdayOptionsList", "Connect_Search_CS.model$SearchResultRec", "UBTConnect.referencesHealth$Connect_Search_CS", "UBTConnect.model$SearchResultList", "UBTConnect.model$Filter_CommonRec", "UBTConnect.model$Filter_Common_OptionsRec", "UBTConnect.model$Filter_Common_Options_ChoiceRec", "UBTConnect.model$Filter_Common_Options_ListRec", "UBTConnect.model$Filter_Common_Control_ListList", "UBTConnectLibrary.model$SelectionOption_ItemRec", "UBTConnect.model$SelectionOption_ItemList", "UBTConnect.model$Filter_Common_Control_ChoiceList", "UBTConnect.controller$ValidateSearchPhoneNumber", "UBTJavaScriptUtils.controller$FeedbackMessage_AutoClose", "UBTConnect.referencesHealth$UBTJavaScriptUtils", "UBTConnect.model$ConnectSearch_RecentClickedResultsRecordList", "UBTConnect.model$ConnectSearch_RecentClickedResultsRec", "UBTConnect.model$ConnectSearch_RecentSearchTermRecord", "UBTConnect.model$ConnectSearch_RecentSearchTermRecordList", "UBTConnect.model$ConnectSearch_RecentSearchTermRec", "UBTConnect_Utils.controller$GetHasCarouselEnabled", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.model$ConnectSearch_RecentClickedResultsRecord", "NavigationHandler.controller$SetPreloadObject", "UBTConnect.referencesHealth$NavigationHandler", "UBTConnect_Utils.controller$App_Subscription_ShowUpgradePopUp", "UBTConnect.model$LongIntegerBooleanRecordList", "UBTConnect.model$SwipeActionLongIntegerRecordList", "UBTConnect.model$CarouselPreloadedHouseholdsRec", "UBTConnect_Utils.controller$Connect_OutSystems_PermissionCheck", "UBTConnect_Utils.model$SearchCategory_ItemRec", "UBTConnect.model$SearchCategory_ItemList", "UBTConnect_Utils.controller$SearchCategory_GetList", "UBTConnect.model$Connect_SearchBirthdayOptionsRecordList"], function (OutSystems, UBTConnectModel, UBTConnectLibraryModel, Connect_CommonEntities_DBModel, Connect_Search_CSModel, UBTConnectController, UBTJavaScriptUtilsController, UBTConnectEntities, UBTConnect_UtilsController, NavigationHandlerController, UBTConnect_UtilsModel, UBTConnectLibrary_Layouts_Layout_DetailPage_mvcModel, UBTConnectLibrary_ConnectPatterns_Input_mvcModel, UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel, UBTConnectLibrary_ConnectPatterns_Horizontal_Filter_TagList_mvcModel, UBTConnect_App_CommonBlocks_Filter_FilterSheet_Icon_Label_mvcModel, UBTConnect_App_Common_Blocks_SectionSeparator_mvcModel, UBTConnectLibrary_BasePatterns_Columns_Two_mvcModel, UBTConnectLibrary_BasePatterns_CustomText_mvcModel, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel, UBTConnect_Utils_CW_Image_UBT_LazyImage_mvcModel, UBTConnectLibrary_ConnectPatterns_IconText_mvcModel, UBTConnectLibrary_ConnectPatterns_Icon_mvcModel, UBTConnect_Directory_Search_Search_BirthdayOptions_mvcModel, UBTConnect_Directory_Search_SearchResult_Section_mvcModel, UBTConnect_App_Common_BottomBarMenu_mvcModel, UBTConnect_App_Common_CommonUI_InsideLayout_mvcModel, UBTConnect_App_CommonBlocks_Filter_FilterSheet_mvcModel) {
 var OS = OutSystems.Internal;
 var Get_RecentClickedResultsAggrRec = (function (_super) {
 __extends(Get_RecentClickedResultsAggrRec, _super);
@@ -61,6 +61,12 @@ return OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.SearchResultList()
 }, true, UBTConnectModel.SearchResultList), 
 this.attr("Places", "placesOut", "Places", true, false, OS.DataTypes.DataTypes.RecordList, function () {
 return OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.SearchResultList());
+}, true, UBTConnectModel.SearchResultList), 
+this.attr("Events", "eventsOut", "Events", true, false, OS.DataTypes.DataTypes.RecordList, function () {
+return OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.SearchResultList());
+}, true, UBTConnectModel.SearchResultList), 
+this.attr("Schools", "schoolsOut", "Schools", true, false, OS.DataTypes.DataTypes.RecordList, function () {
+return OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.SearchResultList());
 }, true, UBTConnectModel.SearchResultList)
 ].concat(_super.attributesToDeclare.call(this));
 };
@@ -109,6 +115,12 @@ this.attr("HasHouseholds", "hasHouseholdsVar", "HasHouseholds", true, false, OS.
 return false;
 }, false), 
 this.attr("HasPlaces", "hasPlacesVar", "HasPlaces", true, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
+}, false), 
+this.attr("HasEvents", "hasEventsVar", "HasEvents", true, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
+}, false), 
+this.attr("HasSchool", "hasSchoolVar", "HasSchool", true, false, OS.DataTypes.DataTypes.Boolean, function () {
 return false;
 }, false), 
 this.attr("isBirthdayKeyWord", "isBirthdayKeyWordVar", "isBirthdayKeyWord", true, false, OS.DataTypes.DataTypes.Boolean, function () {
@@ -195,7 +207,7 @@ enumerable: true,
 configurable: true,
 get: function () {
 if((Model._hasValidationWidgetsValue === undefined)) {
-Model._hasValidationWidgetsValue = ((((((((((((((((UBTConnectLibrary_Layouts_Layout_DetailPage_mvcModel.hasValidationWidgets || UBTConnectLibrary_ConnectPatterns_Input_mvcModel.hasValidationWidgets) || UBTConnect_App_CommonBlocks_Filter_FilterSheet_Icon_mvcModel.hasValidationWidgets) || UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_HorizontalTagList_mvcModel.hasValidationWidgets) || UBTConnect_App_Common_Blocks_SectionSeparator_mvcModel.hasValidationWidgets) || UBTConnectLibrary_BasePatterns_Columns_Two_mvcModel.hasValidationWidgets) || UBTConnectLibrary_BasePatterns_CustomText_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel.hasValidationWidgets) || UBTConnect_Utils_CW_Image_UBT_LazyImage_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_IconText_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_Icon_mvcModel.hasValidationWidgets) || UBTConnect_Directory_Search_Search_BirthdayOptions_mvcModel.hasValidationWidgets) || UBTConnect_Directory_Search_SearchResult_Section_mvcModel.hasValidationWidgets) || UBTConnect_App_Common_BottomBarMenu_mvcModel.hasValidationWidgets) || UBTConnect_App_Common_CommonUI_InsideLayout_mvcModel.hasValidationWidgets) || UBTConnect_App_CommonBlocks_Filter_FilterSheet_mvcModel.hasValidationWidgets);
+Model._hasValidationWidgetsValue = ((((((((((((((((UBTConnectLibrary_Layouts_Layout_DetailPage_mvcModel.hasValidationWidgets || UBTConnectLibrary_ConnectPatterns_Input_mvcModel.hasValidationWidgets) || UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_Horizontal_Filter_TagList_mvcModel.hasValidationWidgets) || UBTConnect_App_CommonBlocks_Filter_FilterSheet_Icon_Label_mvcModel.hasValidationWidgets) || UBTConnect_App_Common_Blocks_SectionSeparator_mvcModel.hasValidationWidgets) || UBTConnectLibrary_BasePatterns_Columns_Two_mvcModel.hasValidationWidgets) || UBTConnectLibrary_BasePatterns_CustomText_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel.hasValidationWidgets) || UBTConnect_Utils_CW_Image_UBT_LazyImage_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_IconText_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_Icon_mvcModel.hasValidationWidgets) || UBTConnect_Directory_Search_Search_BirthdayOptions_mvcModel.hasValidationWidgets) || UBTConnect_Directory_Search_SearchResult_Section_mvcModel.hasValidationWidgets) || UBTConnect_App_Common_BottomBarMenu_mvcModel.hasValidationWidgets) || UBTConnect_App_Common_CommonUI_InsideLayout_mvcModel.hasValidationWidgets) || UBTConnect_App_CommonBlocks_Filter_FilterSheet_mvcModel.hasValidationWidgets);
 }
 
 return Model._hasValidationWidgetsValue;
@@ -232,7 +244,7 @@ return Model;
 })(OS.Model.BaseViewModel);
 return new OS.Model.ModelFactory(Model, "Directory_Search.ScreenBlock_Search");
 });
-define("UBTConnect.Directory_Search.ScreenBlock_Search.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnectLibrary.model", "Connect_CommonEntities_DB.model", "Connect_Search_CS.model", "UBTJavaScriptUtils.controller", "UBTConnect.entities", "UBTConnect_Utils.controller", "NavigationHandler.controller", "UBTConnect_Utils.model", "react", "OutSystems/ReactView/Main", "UBTConnect.Directory_Search.ScreenBlock_Search.mvc$model", "UBTConnect.Directory_Search.ScreenBlock_Search.mvc$controller", "UBTConnect.clientVariables", "UBTConnectLibrary.Layouts.Layout_DetailPage.mvc$view", "OutSystems/ReactWidgets/Main", "UBTConnectLibrary.ConnectPatterns.Input.mvc$view", "UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon.mvc$view", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$view", "UBTConnectLibrary.ConnectPatterns.HorizontalTagList.mvc$view", "UBTConnect.App_Common_Blocks.SectionSeparator.mvc$view", "UBTConnectLibrary.BasePatterns.Columns_Two.mvc$view", "UBTConnectLibrary.BasePatterns.CustomText.mvc$view", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$view", "UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc$view", "UBTConnectLibrary.ConnectPatterns.IconText.mvc$view", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$view", "UBTConnect.Directory_Search.Search_BirthdayOptions.mvc$view", "UBTConnect.Directory_Search.SearchResult_Section.mvc$view", "UBTConnect.App_Common.BottomBarMenu.mvc$view", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$view", "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc$view", "UBTConnectLibrary.model$TagRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$TagList", "UBTConnect.model$ConnectSearch_RecentClickedResultsList", "UBTConnectLibrary.model$SearchInputRec", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnect.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$InlineIconRec", "UBTConnectLibrary.model$LazyImageSizeRec", "Connect_CommonEntities_DB.model$Connect_SearchBirthdayOptionsRec", "UBTConnect.referencesHealth$Connect_CommonEntities_DB", "UBTConnect.model$Connect_SearchBirthdayOptionsList", "Connect_Search_CS.model$SearchResultRec", "UBTConnect.referencesHealth$Connect_Search_CS", "UBTConnect.model$SearchResultList", "UBTConnect.model$Filter_CommonRec", "UBTConnect.model$Filter_Common_OptionsRec", "UBTConnect.model$Filter_Common_Options_ChoiceRec", "UBTConnect.model$Filter_Common_Options_ListRec", "UBTConnect.model$Filter_Common_Control_ListList", "UBTConnectLibrary.model$SelectionOption_ItemRec", "UBTConnect.model$SelectionOption_ItemList", "UBTConnect.model$Filter_Common_Control_ChoiceList", "UBTConnect.controller$ValidateSearchPhoneNumber", "UBTJavaScriptUtils.controller$FeedbackMessage_AutoClose", "UBTConnect.referencesHealth$UBTJavaScriptUtils", "UBTConnect.model$ConnectSearch_RecentClickedResultsRecordList", "UBTConnect.model$ConnectSearch_RecentClickedResultsRec", "UBTConnect.model$ConnectSearch_RecentSearchTermRecord", "UBTConnect.model$ConnectSearch_RecentSearchTermRecordList", "UBTConnect.model$ConnectSearch_RecentSearchTermRec", "UBTConnect_Utils.controller$GetHasCarouselEnabled", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.model$ConnectSearch_RecentClickedResultsRecord", "NavigationHandler.controller$SetPreloadObject", "UBTConnect.referencesHealth$NavigationHandler", "UBTConnect_Utils.controller$App_Subscription_ShowUpgradePopUp", "UBTConnect.model$LongIntegerBooleanRecordList", "UBTConnect.model$SwipeActionLongIntegerRecordList", "UBTConnect.model$CarouselPreloadedHouseholdsRec", "UBTConnect_Utils.controller$Connect_OutSystems_PermissionCheck", "UBTConnect_Utils.model$SearchCategory_ItemRec", "UBTConnect.model$SearchCategory_ItemList", "UBTConnect_Utils.controller$SearchCategory_GetList", "UBTConnect.model$Connect_SearchBirthdayOptionsRecordList"], function (OutSystems, UBTConnectModel, UBTConnectController, UBTConnectLibraryModel, Connect_CommonEntities_DBModel, Connect_Search_CSModel, UBTJavaScriptUtilsController, UBTConnectEntities, UBTConnect_UtilsController, NavigationHandlerController, UBTConnect_UtilsModel, React, OSView, UBTConnect_Directory_Search_ScreenBlock_Search_mvc_model, UBTConnect_Directory_Search_ScreenBlock_Search_mvc_controller, UBTConnectClientVariables, UBTConnectLibrary_Layouts_Layout_DetailPage_mvc_view, OSWidgets, UBTConnectLibrary_ConnectPatterns_Input_mvc_view, UBTConnect_App_CommonBlocks_Filter_FilterSheet_Icon_mvc_view, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnectLibrary_ConnectPatterns_HorizontalTagList_mvc_view, UBTConnect_App_Common_Blocks_SectionSeparator_mvc_view, UBTConnectLibrary_BasePatterns_Columns_Two_mvc_view, UBTConnectLibrary_BasePatterns_CustomText_mvc_view, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, UBTConnect_Utils_CW_Image_UBT_LazyImage_mvc_view, UBTConnectLibrary_ConnectPatterns_IconText_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnect_Directory_Search_Search_BirthdayOptions_mvc_view, UBTConnect_Directory_Search_SearchResult_Section_mvc_view, UBTConnect_App_Common_BottomBarMenu_mvc_view, UBTConnect_App_Common_CommonUI_InsideLayout_mvc_view, UBTConnect_App_CommonBlocks_Filter_FilterSheet_mvc_view) {
+define("UBTConnect.Directory_Search.ScreenBlock_Search.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnectLibrary.model", "Connect_CommonEntities_DB.model", "Connect_Search_CS.model", "UBTJavaScriptUtils.controller", "UBTConnect.entities", "UBTConnect_Utils.controller", "NavigationHandler.controller", "UBTConnect_Utils.model", "react", "OutSystems/ReactView/Main", "UBTConnect.Directory_Search.ScreenBlock_Search.mvc$model", "UBTConnect.Directory_Search.ScreenBlock_Search.mvc$controller", "UBTConnect.clientVariables", "UBTConnectLibrary.Layouts.Layout_DetailPage.mvc$view", "OutSystems/ReactWidgets/Main", "UBTConnectLibrary.ConnectPatterns.Input.mvc$view", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$view", "UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc$view", "UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon_Label.mvc$view", "UBTConnect.App_Common_Blocks.SectionSeparator.mvc$view", "UBTConnectLibrary.BasePatterns.Columns_Two.mvc$view", "UBTConnectLibrary.BasePatterns.CustomText.mvc$view", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$view", "UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc$view", "UBTConnectLibrary.ConnectPatterns.IconText.mvc$view", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$view", "UBTConnect.Directory_Search.Search_BirthdayOptions.mvc$view", "UBTConnect.Directory_Search.SearchResult_Section.mvc$view", "UBTConnect.App_Common.BottomBarMenu.mvc$view", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$view", "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc$view", "UBTConnectLibrary.model$TagRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$TagList", "UBTConnect.model$ConnectSearch_RecentClickedResultsList", "UBTConnectLibrary.model$SearchInputRec", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnect.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$InlineIconRec", "UBTConnectLibrary.model$LazyImageSizeRec", "Connect_CommonEntities_DB.model$Connect_SearchBirthdayOptionsRec", "UBTConnect.referencesHealth$Connect_CommonEntities_DB", "UBTConnect.model$Connect_SearchBirthdayOptionsList", "Connect_Search_CS.model$SearchResultRec", "UBTConnect.referencesHealth$Connect_Search_CS", "UBTConnect.model$SearchResultList", "UBTConnect.model$Filter_CommonRec", "UBTConnect.model$Filter_Common_OptionsRec", "UBTConnect.model$Filter_Common_Options_ChoiceRec", "UBTConnect.model$Filter_Common_Options_ListRec", "UBTConnect.model$Filter_Common_Control_ListList", "UBTConnectLibrary.model$SelectionOption_ItemRec", "UBTConnect.model$SelectionOption_ItemList", "UBTConnect.model$Filter_Common_Control_ChoiceList", "UBTConnect.controller$ValidateSearchPhoneNumber", "UBTJavaScriptUtils.controller$FeedbackMessage_AutoClose", "UBTConnect.referencesHealth$UBTJavaScriptUtils", "UBTConnect.model$ConnectSearch_RecentClickedResultsRecordList", "UBTConnect.model$ConnectSearch_RecentClickedResultsRec", "UBTConnect.model$ConnectSearch_RecentSearchTermRecord", "UBTConnect.model$ConnectSearch_RecentSearchTermRecordList", "UBTConnect.model$ConnectSearch_RecentSearchTermRec", "UBTConnect_Utils.controller$GetHasCarouselEnabled", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.model$ConnectSearch_RecentClickedResultsRecord", "NavigationHandler.controller$SetPreloadObject", "UBTConnect.referencesHealth$NavigationHandler", "UBTConnect_Utils.controller$App_Subscription_ShowUpgradePopUp", "UBTConnect.model$LongIntegerBooleanRecordList", "UBTConnect.model$SwipeActionLongIntegerRecordList", "UBTConnect.model$CarouselPreloadedHouseholdsRec", "UBTConnect_Utils.controller$Connect_OutSystems_PermissionCheck", "UBTConnect_Utils.model$SearchCategory_ItemRec", "UBTConnect.model$SearchCategory_ItemList", "UBTConnect_Utils.controller$SearchCategory_GetList", "UBTConnect.model$Connect_SearchBirthdayOptionsRecordList"], function (OutSystems, UBTConnectModel, UBTConnectController, UBTConnectLibraryModel, Connect_CommonEntities_DBModel, Connect_Search_CSModel, UBTJavaScriptUtilsController, UBTConnectEntities, UBTConnect_UtilsController, NavigationHandlerController, UBTConnect_UtilsModel, React, OSView, UBTConnect_Directory_Search_ScreenBlock_Search_mvc_model, UBTConnect_Directory_Search_ScreenBlock_Search_mvc_controller, UBTConnectClientVariables, UBTConnectLibrary_Layouts_Layout_DetailPage_mvc_view, OSWidgets, UBTConnectLibrary_ConnectPatterns_Input_mvc_view, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnectLibrary_ConnectPatterns_Horizontal_Filter_TagList_mvc_view, UBTConnect_App_CommonBlocks_Filter_FilterSheet_Icon_Label_mvc_view, UBTConnect_App_Common_Blocks_SectionSeparator_mvc_view, UBTConnectLibrary_BasePatterns_Columns_Two_mvc_view, UBTConnectLibrary_BasePatterns_CustomText_mvc_view, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, UBTConnect_Utils_CW_Image_UBT_LazyImage_mvc_view, UBTConnectLibrary_ConnectPatterns_IconText_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnect_Directory_Search_Search_BirthdayOptions_mvc_view, UBTConnect_Directory_Search_SearchResult_Section_mvc_view, UBTConnect_App_Common_BottomBarMenu_mvc_view, UBTConnect_App_Common_CommonUI_InsideLayout_mvc_view, UBTConnect_App_CommonBlocks_Filter_FilterSheet_mvc_view) {
     var OS = OutSystems.Internal;
 var PlaceholderContent = OSView.Widget.PlaceholderContent;
 var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
@@ -264,7 +276,7 @@ var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
             return [];
         };
         View.getBlocks = function() {
-            return [UBTConnectLibrary_Layouts_Layout_DetailPage_mvc_view, UBTConnectLibrary_ConnectPatterns_Input_mvc_view, UBTConnect_App_CommonBlocks_Filter_FilterSheet_Icon_mvc_view, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnectLibrary_ConnectPatterns_HorizontalTagList_mvc_view, UBTConnect_App_Common_Blocks_SectionSeparator_mvc_view, UBTConnectLibrary_BasePatterns_Columns_Two_mvc_view, UBTConnectLibrary_BasePatterns_CustomText_mvc_view, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, UBTConnect_Utils_CW_Image_UBT_LazyImage_mvc_view, UBTConnectLibrary_ConnectPatterns_IconText_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnect_Directory_Search_Search_BirthdayOptions_mvc_view, UBTConnect_Directory_Search_SearchResult_Section_mvc_view, UBTConnect_App_Common_BottomBarMenu_mvc_view, UBTConnect_App_Common_CommonUI_InsideLayout_mvc_view, UBTConnect_App_CommonBlocks_Filter_FilterSheet_mvc_view];
+            return [UBTConnectLibrary_Layouts_Layout_DetailPage_mvc_view, UBTConnectLibrary_ConnectPatterns_Input_mvc_view, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnectLibrary_ConnectPatterns_Horizontal_Filter_TagList_mvc_view, UBTConnect_App_CommonBlocks_Filter_FilterSheet_Icon_Label_mvc_view, UBTConnect_App_Common_Blocks_SectionSeparator_mvc_view, UBTConnectLibrary_BasePatterns_Columns_Two_mvc_view, UBTConnectLibrary_BasePatterns_CustomText_mvc_view, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, UBTConnect_Utils_CW_Image_UBT_LazyImage_mvc_view, UBTConnectLibrary_ConnectPatterns_IconText_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnect_Directory_Search_Search_BirthdayOptions_mvc_view, UBTConnect_Directory_Search_SearchResult_Section_mvc_view, UBTConnect_App_Common_BottomBarMenu_mvc_view, UBTConnect_App_Common_CommonUI_InsideLayout_mvc_view, UBTConnect_App_CommonBlocks_Filter_FilterSheet_mvc_view];
         };
         Object.defineProperty(View.prototype, "modelFactory", {
             get: function () {
@@ -399,31 +411,7 @@ _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
 })];
 }),
-placeholder_Header_Right: new PlaceholderContent(function () {
-return [React.createElement(UBTConnect_App_CommonBlocks_Filter_FilterSheet_Icon_mvc_view, {
-inputs: {
-ShowSubscriptionOnClick: model.variables.bottomSheetId_Filter_ShowSubscriptionOnClickVar,
-isLoaded: model.variables.bottomSheetId_Filter_IsLoadedVar,
-HaveFiltersApplied: model.variables.hasFiltersAppliedVar,
-BottomSheetId: model.variables.bottomSheetId_FilterVar
-},
-events: {
-_handleError: function (ex) {
-controller.handleError(ex);
-}
-},
-_validationProps: {
-validationService: validationService
-},
-_idProps: {
-service: idService,
-uuid: "2",
-alias: "3"
-},
-_widgetRecordProvider: widgetsRecordProvider,
-_dependencies: []
-})];
-}),
+placeholder_Header_Right: PlaceholderContent.Empty,
 headerContent: new PlaceholderContent(function () {
 return [React.createElement(UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, {
 inputs: {
@@ -454,18 +442,58 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "3",
+uuid: "2",
+alias: "3"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+placeholders: {
+content: new PlaceholderContent(function () {
+return [React.createElement(UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, {
+inputs: {
+ExtendedClasses: "background-neutral-0",
+Options: model.getCachedValue(idService.getId("FilterPills.Options"), function () {
+return function () {
+var rec = new UBTConnectLibraryModel.ContainerOptionsRec();
+rec.paddingSizeAttr = function () {
+var rec = new UBTConnectLibraryModel.SpacingOptionsRec();
+rec.horizontalSizeIdAttr = UBTConnectModel.staticEntities.uBT_Size.base;
+return rec;
+}();
+rec.marginSizeAttr = function () {
+var rec = new UBTConnectLibraryModel.SpacingOptionsRec();
+return rec;
+}();
+rec.displayOptionsAttr = function () {
+var rec = new UBTConnectLibraryModel.DisplayOptionsRec();
+return rec;
+}();
+return rec;
+}();
+})
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+name: "FilterPills",
 alias: "4"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
 content: new PlaceholderContent(function () {
-return [React.createElement(UBTConnectLibrary_ConnectPatterns_HorizontalTagList_mvc_view, {
+return [React.createElement(UBTConnectLibrary_ConnectPatterns_Horizontal_Filter_TagList_mvc_view, {
 inputs: {
-In_TagToggleList: model.variables.tagListVar,
-In_IsSingleSelection: true,
 In_HorizontalPadding: UBTConnectModel.staticEntities.uBT_Size.base,
-In_IsMandatorySelection: true
+In_IsMandatorySelection: true,
+In_TagToggleList: model.variables.tagListVar,
+In_TagsLoading: model.variables.isLoadingVar,
+In_IsSingleSelection: true
 },
 events: {
 _handleError: function (ex) {
@@ -478,7 +506,7 @@ return OS.Flow.tryFinally(function () {
 var varBag = {};
 controller.pushDebuggerContext(eventHandlerContext);
 
-OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectPatterns/HorizontalTagList Changed");
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectPatterns/Horizontal_Filter_TagList Changed");
 return controller.event_HorizontalTagListChanged$Action(updatedTagListIn, controller.callContext(eventHandlerContext));
 }, function () {
 controller.popDebuggerContext(eventHandlerContext);
@@ -496,11 +524,42 @@ uuid: "4",
 alias: "5"
 },
 _widgetRecordProvider: widgetsRecordProvider,
+placeholders: {
+filter: new PlaceholderContent(function () {
+return [React.createElement(UBTConnect_App_CommonBlocks_Filter_FilterSheet_Icon_Label_mvc_view, {
+inputs: {
+isLoaded: !(model.variables.isLoadingVar),
+ShowSubscriptionOnClick: false,
+HaveFiltersApplied: model.variables.hasFiltersAppliedVar,
+BottomSheetId: model.variables.bottomSheetId_FilterVar
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+uuid: "5",
+alias: "6"
+},
+_widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
 })];
 })
 },
-_dependencies: [asPrimitiveValue(model.variables.tagListVar)]
+_dependencies: [asPrimitiveValue(model.variables.bottomSheetId_FilterVar), asPrimitiveValue(model.variables.hasFiltersAppliedVar), asPrimitiveValue(model.variables.isLoadingVar)]
+})];
+})
+},
+_dependencies: [asPrimitiveValue(model.variables.bottomSheetId_FilterVar), asPrimitiveValue(model.variables.hasFiltersAppliedVar), asPrimitiveValue(model.variables.isLoadingVar), asPrimitiveValue(model.variables.tagListVar)]
+})];
+})
+},
+_dependencies: [asPrimitiveValue(model.variables.bottomSheetId_FilterVar), asPrimitiveValue(model.variables.hasFiltersAppliedVar), asPrimitiveValue(model.variables.isLoadingVar), asPrimitiveValue(model.variables.tagListVar)]
 })];
 }),
 content: new PlaceholderContent(function () {
@@ -517,8 +576,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "5",
-alias: "6"
+uuid: "6",
+alias: "7"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
@@ -549,7 +608,7 @@ validationService: validationService
 _idProps: {
 service: idService,
 name: "RecentSearch",
-alias: "7"
+alias: "8"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
@@ -579,8 +638,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "7",
-alias: "8"
+uuid: "8",
+alias: "9"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
@@ -597,8 +656,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "8",
-alias: "9"
+uuid: "9",
+alias: "10"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
@@ -626,8 +685,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "9",
-alias: "10"
+uuid: "10",
+alias: "11"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
@@ -644,7 +703,7 @@ style: "text-align: right;"
 visible: true,
 _idProps: {
 service: idService,
-uuid: "10"
+uuid: "11"
 },
 _widgetRecordProvider: widgetsRecordProvider
 }, React.createElement(UBTConnectLibrary_BasePatterns_CustomText_mvc_view, {
@@ -685,8 +744,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "11",
-alias: "11"
+uuid: "12",
+alias: "12"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
@@ -726,7 +785,7 @@ validationService: validationService
 _idProps: {
 service: idService,
 name: "Recent_SearchResults",
-alias: "12"
+alias: "13"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
@@ -745,8 +804,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "13",
-alias: "13"
+uuid: "14",
+alias: "14"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
@@ -765,7 +824,7 @@ style: "list list-group recent-search-list",
 tag: "div",
 _idProps: {
 service: idService,
-uuid: "14"
+uuid: "15"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
@@ -807,7 +866,7 @@ style: "recent-search-item overflow-wrap-anywhere",
 visible: true,
 _idProps: {
 service: idService,
-uuid: "15"
+uuid: "16"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: [asPrimitiveValue(model.variables.get_FilteredRecentClickedResultsDataAct.isDataFetchedAttr), asPrimitiveValue(model.variables.recentClickedResultsVar.getCurrent(callContext.iterationContext).nameAttr), asPrimitiveValue(model.variables.recentClickedResultsVar.getCurrent(callContext.iterationContext).entityTypeAttr), asPrimitiveValue(model.variables.recentClickedResultsVar.getCurrent(callContext.iterationContext).entityIdAttr)]
@@ -838,8 +897,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "16",
-alias: "14"
+uuid: "17",
+alias: "15"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
@@ -866,8 +925,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "17",
-alias: "15"
+uuid: "18",
+alias: "16"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
@@ -934,8 +993,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "19",
-alias: "16"
+uuid: "20",
+alias: "17"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
@@ -961,8 +1020,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "20",
-alias: "17"
+uuid: "21",
+alias: "18"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
@@ -1008,8 +1067,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "21",
-alias: "18"
+uuid: "22",
+alias: "19"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
@@ -1030,8 +1089,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "22",
-alias: "19"
+uuid: "23",
+alias: "20"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
@@ -1073,8 +1132,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "23",
-alias: "20"
+uuid: "24",
+alias: "21"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
@@ -1125,8 +1184,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "24",
-alias: "21"
+uuid: "25",
+alias: "22"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
@@ -1165,7 +1224,7 @@ validationService: validationService
 _idProps: {
 service: idService,
 name: "Padding",
-alias: "22"
+alias: "23"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
@@ -1207,8 +1266,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "26",
-alias: "23"
+uuid: "27",
+alias: "24"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
@@ -1236,8 +1295,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "27",
-alias: "24"
+uuid: "28",
+alias: "25"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
@@ -1265,8 +1324,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "28",
-alias: "25"
+uuid: "29",
+alias: "26"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
@@ -1301,8 +1360,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "29",
-alias: "26"
+uuid: "30",
+alias: "27"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
@@ -1337,8 +1396,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "30",
-alias: "27"
+uuid: "31",
+alias: "28"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
@@ -1363,8 +1422,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "31",
-alias: "28"
+uuid: "32",
+alias: "29"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
@@ -1404,14 +1463,14 @@ validationService: validationService
 _idProps: {
 service: idService,
 name: "PlacesSection",
-alias: "29"
+alias: "30"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
 })];
 }, function () {
 return [];
-}), $if((model.variables.hasHouseholdsVar || model.variables.isLoadingVar), true, this, function () {
+}), $if((model.variables.hasHouseholdsVar || (model.variables.isLoadingVar && (((model.variables.selectedCategoryVar === OS.BuiltinFunctions.nullTextIdentifier()) || (model.variables.selectedCategoryVar === UBTConnectModel.staticEntities.connect_SearchCategories.all)) || (model.variables.selectedCategoryVar === UBTConnectModel.staticEntities.connect_SearchCategories.households)))), true, this, function () {
 return [React.createElement(UBTConnect_Directory_Search_SearchResult_Section_mvc_view, {
 inputs: {
 Type: UBTConnectModel.staticEntities.connect_SearchCategories.households,
@@ -1447,14 +1506,14 @@ validationService: validationService
 _idProps: {
 service: idService,
 name: "HouseholdsSection",
-alias: "30"
+alias: "31"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
 })];
 }, function () {
 return [];
-}), $if((model.variables.hasPeopleVar || model.variables.isLoadingVar), false, this, function () {
+}), $if((model.variables.hasPeopleVar || (model.variables.isLoadingVar && (((model.variables.selectedCategoryVar === OS.BuiltinFunctions.nullTextIdentifier()) || (model.variables.selectedCategoryVar === UBTConnectModel.staticEntities.connect_SearchCategories.all)) || (model.variables.selectedCategoryVar === UBTConnectModel.staticEntities.connect_SearchCategories.people)))), false, this, function () {
 return [React.createElement(UBTConnect_Directory_Search_SearchResult_Section_mvc_view, {
 inputs: {
 SearchTerm: model.variables.searchKey_CurrentVar,
@@ -1490,14 +1549,100 @@ validationService: validationService
 _idProps: {
 service: idService,
 name: "MembersSection",
-alias: "31"
+alias: "32"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
 })];
 }, function () {
 return [];
-}), $if((((!(model.variables.hasPeopleVar) && !(model.variables.hasHouseholdsVar)) && !(model.variables.hasPlacesVar)) && !(model.variables.isLoadingVar)), false, this, function () {
+}), $if((model.variables.hasEventsVar || (model.variables.isLoadingVar && (((model.variables.selectedCategoryVar === OS.BuiltinFunctions.nullTextIdentifier()) || (model.variables.selectedCategoryVar === UBTConnectModel.staticEntities.connect_SearchCategories.all)) || (model.variables.selectedCategoryVar === UBTConnectModel.staticEntities.connect_SearchCategories.events)))), false, this, function () {
+return [React.createElement(UBTConnect_Directory_Search_SearchResult_Section_mvc_view, {
+inputs: {
+HideSeparator: ((((model.variables.searchKey_CurrentVar) !== (model.variables.searchKey_LastSearchedVar)) && model.variables.fetchSearchResultsDataAct.eventsOut.isEmpty) && model.variables.fetchSearchResultsDataAct.peopleOut.isEmpty),
+_hideSeparatorInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.fetchSearchResultsDataAct.dataFetchStatusAttr),
+Items: model.variables.fetchSearchResultsDataAct.eventsOut,
+_itemsInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.fetchSearchResultsDataAct.dataFetchStatusAttr),
+SearchTerm: model.variables.searchKey_CurrentVar,
+Type: UBTConnectModel.staticEntities.connect_SearchCategories.events
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+},
+onItemClick$Action: function (searchResultIn) {
+return Promise.resolve().then(function () {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "Directory_Search/SearchResult_Section OnItemClick");
+return controller.event_SectionOnItemClick$Action(searchResultIn, false, controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+});
+;
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+name: "MembersSection2",
+alias: "33"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+_dependencies: []
+})];
+}, function () {
+return [];
+}), $if((model.variables.hasSchoolVar || (model.variables.isLoadingVar && (((model.variables.selectedCategoryVar === OS.BuiltinFunctions.nullTextIdentifier()) || (model.variables.selectedCategoryVar === UBTConnectModel.staticEntities.connect_SearchCategories.all)) || (model.variables.selectedCategoryVar === UBTConnectModel.staticEntities.connect_SearchCategories.schools)))), false, this, function () {
+return [React.createElement(UBTConnect_Directory_Search_SearchResult_Section_mvc_view, {
+inputs: {
+HideSeparator: ((((model.variables.searchKey_CurrentVar) !== (model.variables.searchKey_LastSearchedVar)) && model.variables.fetchSearchResultsDataAct.schoolsOut.isEmpty) && model.variables.fetchSearchResultsDataAct.eventsOut.isEmpty),
+_hideSeparatorInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.fetchSearchResultsDataAct.dataFetchStatusAttr),
+SearchTerm: model.variables.searchKey_CurrentVar,
+Items: model.variables.fetchSearchResultsDataAct.schoolsOut,
+_itemsInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.fetchSearchResultsDataAct.dataFetchStatusAttr),
+Type: UBTConnectModel.staticEntities.connect_SearchCategories.schools
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+},
+onItemClick$Action: function (searchResultIn) {
+return Promise.resolve().then(function () {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "Directory_Search/SearchResult_Section OnItemClick");
+return controller.event_SectionOnItemClick$Action(searchResultIn, false, controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+});
+;
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+name: "SchoolsSection",
+alias: "34"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+_dependencies: []
+})];
+}, function () {
+return [];
+}), $if((((((!(model.variables.hasPeopleVar) && !(model.variables.hasHouseholdsVar)) && !(model.variables.hasPlacesVar)) && !(model.variables.hasEventsVar)) && !(model.variables.hasSchoolVar)) && !(model.variables.isLoadingVar)), false, this, function () {
 return [$if((model.variables.searchKey_CurrentVar === model.variables.searchKey_LastSearchedVar), false, this, function () {
 return [React.createElement(UBTConnect_App_Common_Blocks_SectionSeparator_mvc_view, {
 inputs: {},
@@ -1511,8 +1656,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "35",
-alias: "32"
+uuid: "38",
+alias: "35"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
@@ -1545,7 +1690,7 @@ validationService: validationService
 _idProps: {
 service: idService,
 name: "NoResults",
-alias: "33"
+alias: "36"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
@@ -1575,8 +1720,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "37",
-alias: "34"
+uuid: "40",
+alias: "37"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
@@ -1590,7 +1735,7 @@ style: "text-align: center;"
 visible: true,
 _idProps: {
 service: idService,
-uuid: "38"
+uuid: "41"
 },
 _widgetRecordProvider: widgetsRecordProvider
 }, React.createElement(UBTConnectLibrary_BasePatterns_CustomText_mvc_view, {
@@ -1617,8 +1762,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "39",
-alias: "35"
+uuid: "42",
+alias: "38"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
@@ -1656,8 +1801,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "40",
-alias: "36"
+uuid: "43",
+alias: "39"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
@@ -1671,7 +1816,7 @@ return [];
 })];
 })
 },
-_dependencies: [asPrimitiveValue(model.variables.hasPeopleVar), asPrimitiveValue(model.variables.hasHouseholdsVar), asPrimitiveValue(model.variables.fetchSearchResultsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.fetchSearchResultsDataAct.peopleOut), asPrimitiveValue(model.variables.fetchSearchResultsDataAct.householdsOut), asPrimitiveValue(model.variables.fetchSearchResultsDataAct.placesOut), asPrimitiveValue(model.variables.searchKey_LastSearchedVar), asPrimitiveValue(model.variables.searchKey_CurrentVar), asPrimitiveValue(model.variables.selectedCategoryVar), asPrimitiveValue(model.variables.isLoadingVar), asPrimitiveValue(model.variables.hasPlacesVar)]
+_dependencies: [asPrimitiveValue(model.variables.hasSchoolVar), asPrimitiveValue(model.variables.hasEventsVar), asPrimitiveValue(model.variables.hasPeopleVar), asPrimitiveValue(model.variables.hasHouseholdsVar), asPrimitiveValue(model.variables.fetchSearchResultsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.fetchSearchResultsDataAct.schoolsOut), asPrimitiveValue(model.variables.fetchSearchResultsDataAct.eventsOut), asPrimitiveValue(model.variables.fetchSearchResultsDataAct.peopleOut), asPrimitiveValue(model.variables.fetchSearchResultsDataAct.householdsOut), asPrimitiveValue(model.variables.fetchSearchResultsDataAct.placesOut), asPrimitiveValue(model.variables.searchKey_LastSearchedVar), asPrimitiveValue(model.variables.searchKey_CurrentVar), asPrimitiveValue(model.variables.selectedCategoryVar), asPrimitiveValue(model.variables.isLoadingVar), asPrimitiveValue(model.variables.hasPlacesVar)]
 })];
 }, function () {
 return [];
@@ -1693,8 +1838,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "41",
-alias: "37"
+uuid: "44",
+alias: "40"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
@@ -1714,15 +1859,15 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "42",
-alias: "38"
+uuid: "45",
+alias: "41"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
 })];
 })
 },
-_dependencies: [asPrimitiveValue(model.variables.in_IsInScreenSearchIn), asPrimitiveValue(model.variables.hasPeopleVar), asPrimitiveValue(model.variables.hasHouseholdsVar), asPrimitiveValue(model.variables.fetchSearchResultsDataAct.peopleOut), asPrimitiveValue(model.variables.fetchSearchResultsDataAct.householdsOut), asPrimitiveValue(model.variables.fetchSearchResultsDataAct.placesOut), asPrimitiveValue(model.variables.selectedCategoryVar), asPrimitiveValue(model.variables.hasPlacesVar), asPrimitiveValue(model.variables.isLoadingVar), asPrimitiveValue(model.variables.get_SearchBirthdayOptionsAggr.listOut), asPrimitiveValue(model.variables.recentClickedResultsVar), asPrimitiveValue(model.variables._in_IsInScreenSearchInDataFetchStatus), asPrimitiveValue(model.variables.fetchSearchResultsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_SearchBirthdayOptionsAggr.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_RecentSearchTermsAggr.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_FilteredRecentClickedResultsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.isBirthdayKeyWordVar), asPrimitiveValue(model.variables.isBirthdaySearchEnabledVar), asPrimitiveValue(model.variables.get_RecentSearchTermsAggr.listOut), asPrimitiveValue(model.variables.get_FilteredRecentClickedResultsDataAct.isDataFetchedAttr), asPrimitiveValue(model.variables.get_FilteredRecentClickedResultsDataAct.out_RecentClickedResultsOut.isEmpty), asPrimitiveValue(model.variables.searchKey_LastSearchedVar), asPrimitiveValue(model.variables.hasSearchedVar), asPrimitiveValue(model.variables.tagListVar), asPrimitiveValue(model.variables.bottomSheetId_FilterVar), asPrimitiveValue(model.variables.hasFiltersAppliedVar), asPrimitiveValue(model.variables.bottomSheetId_Filter_IsLoadedVar), asPrimitiveValue(model.variables.bottomSheetId_Filter_ShowSubscriptionOnClickVar), asPrimitiveValue(model.variables.searchKey_CurrentVar)]
+_dependencies: [asPrimitiveValue(model.variables.in_IsInScreenSearchIn), asPrimitiveValue(model.variables.hasSchoolVar), asPrimitiveValue(model.variables.hasEventsVar), asPrimitiveValue(model.variables.hasPeopleVar), asPrimitiveValue(model.variables.hasHouseholdsVar), asPrimitiveValue(model.variables.fetchSearchResultsDataAct.schoolsOut), asPrimitiveValue(model.variables.fetchSearchResultsDataAct.eventsOut), asPrimitiveValue(model.variables.fetchSearchResultsDataAct.peopleOut), asPrimitiveValue(model.variables.fetchSearchResultsDataAct.householdsOut), asPrimitiveValue(model.variables.fetchSearchResultsDataAct.placesOut), asPrimitiveValue(model.variables.selectedCategoryVar), asPrimitiveValue(model.variables.hasPlacesVar), asPrimitiveValue(model.variables.get_SearchBirthdayOptionsAggr.listOut), asPrimitiveValue(model.variables.recentClickedResultsVar), asPrimitiveValue(model.variables._in_IsInScreenSearchInDataFetchStatus), asPrimitiveValue(model.variables.fetchSearchResultsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_SearchBirthdayOptionsAggr.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_RecentSearchTermsAggr.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_FilteredRecentClickedResultsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.isBirthdayKeyWordVar), asPrimitiveValue(model.variables.isBirthdaySearchEnabledVar), asPrimitiveValue(model.variables.get_RecentSearchTermsAggr.listOut), asPrimitiveValue(model.variables.get_FilteredRecentClickedResultsDataAct.isDataFetchedAttr), asPrimitiveValue(model.variables.get_FilteredRecentClickedResultsDataAct.out_RecentClickedResultsOut.isEmpty), asPrimitiveValue(model.variables.searchKey_LastSearchedVar), asPrimitiveValue(model.variables.hasSearchedVar), asPrimitiveValue(model.variables.bottomSheetId_FilterVar), asPrimitiveValue(model.variables.hasFiltersAppliedVar), asPrimitiveValue(model.variables.isLoadingVar), asPrimitiveValue(model.variables.tagListVar), asPrimitiveValue(model.variables.searchKey_CurrentVar)]
 }), $if(false, false, this, function () {
 return [];
 }, function () {
@@ -1809,8 +1954,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "43",
-alias: "39"
+uuid: "46",
+alias: "42"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
@@ -2193,9 +2338,9 @@ return OS.Flow.tryFinally(function () {
 var varBag = {};
 controller.pushDebuggerContext(callContext);
 
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:HOiixtSk00CGVQHreJKGVQ:/NRWebFlows.SL8K4QWPmUuYK_Un+Uh_LA/NodesShownInESpaceTree.BgyAyR5gyUCviAR8VhUs+Q/DataActions.HOiixtSk00CGVQHreJKGVQ:Aio_iLuY03KMPKoBH7Scvg", "UBTConnect", "FetchSearchResults", "NRFlows.DataScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:HOiixtSk00CGVQHreJKGVQ:/NRWebFlows.SL8K4QWPmUuYK_Un+Uh_LA/NodesShownInESpaceTree.BgyAyR5gyUCviAR8VhUs+Q/DataActions.HOiixtSk00CGVQHreJKGVQ:xViR2+wljQbFnw8OOQs+ag", "UBTConnect", "FetchSearchResults", "NRFlows.DataScreenActionFlow", callContext.id, varBag);
 OutSystemsDebugger.setThreadStartName(callContext.id, "Directory_Search/ScreenBlock_Search/FetchSearchResults");
-return controller.callDataAction("DataActionFetchSearchResults", "screenservices/UBTConnect/Directory_Search/ScreenBlock_Search/DataActionFetchSearchResults", "6ASqh9u5_Vx88uwuCc6p3g", function (b) {
+return controller.callDataAction("DataActionFetchSearchResults", "screenservices/UBTConnect/Directory_Search/ScreenBlock_Search/DataActionFetchSearchResults", "DW7PuMvbNsDRMO_m2wy1LA", function (b) {
 model.variables.fetchSearchResultsDataAct.dataFetchStatusAttr = b;
 }, function (json) {
 model.variables.fetchSearchResultsDataAct.replaceWith(OS.DataConversion.ServerDataConverter.from(json, model.variables.fetchSearchResultsDataAct.constructor));
@@ -2446,7 +2591,7 @@ varBag.bubbleCommunicationExceptionVar = bubbleCommunicationExceptionVar;
 varBag.allExceptionsVar = allExceptionsVar;
 varBag.createOrUpdateConnectSearch_RecentSearchTermVar = createOrUpdateConnectSearch_RecentSearchTermVar;
 varBag.checkIfSearchtermAlreadyExistVar = checkIfSearchtermAlreadyExistVar;
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:1NmcMRW6uEKdRSgjbWherg:/NRWebFlows.SL8K4QWPmUuYK_Un+Uh_LA/NodesShownInESpaceTree.BgyAyR5gyUCviAR8VhUs+Q/ClientActions.1NmcMRW6uEKdRSgjbWherg:3lTPKG8wbmPeui4ocRtoAw", "UBTConnect", "Action_RefreshSearch", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:1NmcMRW6uEKdRSgjbWherg:/NRWebFlows.SL8K4QWPmUuYK_Un+Uh_LA/NodesShownInESpaceTree.BgyAyR5gyUCviAR8VhUs+Q/ClientActions.1NmcMRW6uEKdRSgjbWherg:2ktBFEN1e9P4pTnPhK15yw", "UBTConnect", "Action_RefreshSearch", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:PlsmPKwnG0uJl+rpEDRjcw", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 // Has Search Term
@@ -2613,6 +2758,20 @@ rec.typeAttr = UBTConnectModel.staticEntities.connect_Entity.household;
 return rec;
 }(), callContext);
 }).then(function () {
+// Events
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:C7kWry7TBUmVWCuX+OvbNA", callContext.id) && ((model.variables.selectedCategoryVar === UBTConnectModel.staticEntities.connect_SearchCategories.all) || (model.variables.selectedCategoryVar === UBTConnectModel.staticEntities.connect_SearchCategories.events)))) {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Th1UysPz8EG_MgVldq3PYw", callContext.id);
+// Execute Action: LoadingPlaces2
+OS.SystemActions.listAppendAll(model.variables.fetchSearchResultsDataAct.eventsOut, vars.value.loadingListVar, callContext);
+}
+
+// Schools
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:YH675x1z5kOiZPzQDReq9w", callContext.id) && ((model.variables.selectedCategoryVar === UBTConnectModel.staticEntities.connect_SearchCategories.all) || (model.variables.selectedCategoryVar === UBTConnectModel.staticEntities.connect_SearchCategories.schools)))) {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:AJBtdbiksEKhwa33StmAag", callContext.id);
+// Execute Action: LoadingPlaces3
+OS.SystemActions.listAppendAll(model.variables.fetchSearchResultsDataAct.schoolsOut, vars.value.loadingListVar, callContext);
+}
+
 // Places
 if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:ZXRrz+qVz0aPWuhfIhA9sA", callContext.id) && ((model.variables.selectedCategoryVar === UBTConnectModel.staticEntities.connect_SearchCategories.all) || (model.variables.selectedCategoryVar === UBTConnectModel.staticEntities.connect_SearchCategories.places)))) {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Q6LRI5ppFUWvfHgQyf_sew", callContext.id);
@@ -2750,7 +2909,7 @@ varBag.idService = idService;
 controller.ensureControllerAlive("Action_ClearResults");
 callContext = controller.callContext(callContext);
 varBag.callContext = callContext;
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:Pa_8ObG++EWIEexjeCJueQ:/NRWebFlows.SL8K4QWPmUuYK_Un+Uh_LA/NodesShownInESpaceTree.BgyAyR5gyUCviAR8VhUs+Q/ClientActions.Pa_8ObG++EWIEexjeCJueQ:vDCbYgSJlkWAgh69KBLTQA", "UBTConnect", "Action_ClearResults", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:Pa_8ObG++EWIEexjeCJueQ:/NRWebFlows.SL8K4QWPmUuYK_Un+Uh_LA/NodesShownInESpaceTree.BgyAyR5gyUCviAR8VhUs+Q/ClientActions.Pa_8ObG++EWIEexjeCJueQ:JJru2ErW1B2_kvFFudAh0A", "UBTConnect", "Action_ClearResults", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:GbiIIjFluUqEETv0_R8OUA", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:E4d2dbJOzES0OBlHVVgn5A", callContext.id);
@@ -2773,6 +2932,12 @@ OS.SystemActions.listClear(model.variables.fetchSearchResultsDataAct.householdsO
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:3N13vM4T_Ei1K4iJtBcAIw", callContext.id);
 // Execute Action: ListClear_People
 OS.SystemActions.listClear(model.variables.fetchSearchResultsDataAct.peopleOut, callContext);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:47RL8Kxqjka3k_VsK7rhug", callContext.id);
+// Execute Action: ListClear_Schools
+OS.SystemActions.listClear(model.variables.fetchSearchResultsDataAct.schoolsOut, callContext);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:BknibEi_I0m8V3LCjpRmkg", callContext.id);
+// Execute Action: ListClear_Events
+OS.SystemActions.listClear(model.variables.fetchSearchResultsDataAct.eventsOut, callContext);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:8o4Z7pqXrUS2St5dEPVqvQ", callContext.id);
 // HasSearched = False
 model.variables.hasSearchedVar = false;
@@ -2817,7 +2982,7 @@ varBag.listDistinctVar = listDistinctVar;
 varBag.getAllSearchRecentClickedResultsByUserIdVar = getAllSearchRecentClickedResultsByUserIdVar;
 varBag.allRecenctClickedResultsVar = allRecenctClickedResultsVar;
 varBag.getConnectSearchRecentClickedResultsByUserIdVar = getConnectSearchRecentClickedResultsByUserIdVar;
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:43DRV1XubUG9XYbYXB9oHw:/NRWebFlows.SL8K4QWPmUuYK_Un+Uh_LA/NodesShownInESpaceTree.BgyAyR5gyUCviAR8VhUs+Q/ClientActions.43DRV1XubUG9XYbYXB9oHw:3ZatGOWdkgSJELfH2Rn4pw", "UBTConnect", "Event_SectionOnItemClick", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:43DRV1XubUG9XYbYXB9oHw:/NRWebFlows.SL8K4QWPmUuYK_Un+Uh_LA/NodesShownInESpaceTree.BgyAyR5gyUCviAR8VhUs+Q/ClientActions.43DRV1XubUG9XYbYXB9oHw:NHEKQU5M4pbOmqp0zbhqag", "UBTConnect", "Event_SectionOnItemClick", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:jAyspD2IWUy5KbSKHWyFxg", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 return OS.Flow.executeSequence(function () {
@@ -3121,6 +3286,35 @@ return OS.Flow.returnAsync(OS.Navigation.navigateTo(OS.Navigation.generateScreen
 LocalityId: OS.DataConversion.ServerDataConverter.asString(OS.BuiltinFunctions.integerToLongInteger(OS.BuiltinFunctions.textToInteger(vars.value.searchResultInLocal.idAttr)), OS.DataTypes.DataTypes.LongInteger)
 }), OS.Transitions.createTransition(OS.Transitions.TransitionAnimation.Default), callContext, true));
 } else {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:zm5WKSZayUaaSgVLNXV4uw", callContext.id);
+// Execute Action: GetHasCarouselEnabled
+getHasCarouselEnabledVar.value = UBTConnect_UtilsController.default.getHasCarouselEnabled$Action(callContext);
+
+return OS.Flow.executeSequence(function () {
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:0GM4YuB+k0Wq6s6bcVefSA", callContext.id) && ((vars.value.searchResultInLocal.typeAttr === UBTConnectModel.staticEntities.connect_Entity.oneSchoolGlobal) && true))) {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:afz7QLSS2EO3o6VVnoH9bw", callContext.id);
+// Destination: /UBTConnect/OneSchoolGlobalDetails
+return OS.Flow.returnAsync(OS.Navigation.navigateTo(OS.Navigation.generateScreenURL("/UBTConnect/OneSchoolGlobalDetails", {
+In_OneSchoolGlobalId: OS.DataConversion.ServerDataConverter.asString(OS.BuiltinFunctions.textToLongInteger(vars.value.searchResultInLocal.idAttr), OS.DataTypes.DataTypes.LongInteger)
+}), OS.Transitions.createTransition(OS.Transitions.TransitionAnimation.Default), callContext, true));
+} else {
+return OS.Flow.executeSequence(function () {
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:3X2xHCWPVEeyJazciiHHOQ", callContext.id) && (vars.value.searchResultInLocal.event_SourceAttr === UBTConnectModel.staticEntities.connect_EventTypes.assemble))) {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:ymXYiP6u8UW2McXPP2Iv1A", callContext.id);
+// Destination: /UBTConnect/AssembleDetail
+return OS.Flow.returnAsync(OS.Navigation.navigateTo(OS.Navigation.generateScreenURL("/UBTConnect/AssembleDetail", {
+EventId: OS.DataConversion.ServerDataConverter.asString(vars.value.searchResultInLocal.idAttr, OS.DataTypes.DataTypes.Text)
+}), OS.Transitions.createTransition(OS.Transitions.TransitionAnimation.Default), callContext, true));
+} else {
+return OS.Flow.executeSequence(function () {
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:k5s4TC+lBUycyCsUCEvPnQ", callContext.id) && (vars.value.searchResultInLocal.event_SourceAttr === UBTConnectModel.staticEntities.connect_EventTypes.lDM))) {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:lyJqdEBDaUaYVASAB0pVAg", callContext.id);
+// Destination: /UBTConnect/LDM_EventDetail_V2
+return OS.Flow.returnAsync(OS.Navigation.navigateTo(OS.Navigation.generateScreenURL("/UBTConnect/LDM_EventDetail_V2", {
+EventHostId: OS.DataConversion.ServerDataConverter.asString(OS.BuiltinFunctions.textToLongInteger(vars.value.searchResultInLocal.event_EventHostIdAttr), OS.DataTypes.DataTypes.LongInteger),
+EventId: OS.DataConversion.ServerDataConverter.asString(OS.BuiltinFunctions.textToLongInteger(vars.value.searchResultInLocal.idAttr), OS.DataTypes.DataTypes.LongInteger)
+}), OS.Transitions.createTransition(OS.Transitions.TransitionAnimation.Default), callContext, true));
+} else {
 return OS.Flow.executeSequence(function () {
 if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:VAymEHAIakWeF+fWvyxqQQ", callContext.id) && vars.value.isRecentResultInLocal)) {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:gQ_OFCQx3UmFdQoOi0RE6A", callContext.id);
@@ -3266,10 +3460,6 @@ OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:EA8vHQA6AkmjOC56UXVM
 }
 
 }).then(function () {
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:zm5WKSZayUaaSgVLNXV4uw", callContext.id);
-// Execute Action: GetHasCarouselEnabled
-getHasCarouselEnabledVar.value = UBTConnect_UtilsController.default.getHasCarouselEnabled$Action(callContext);
-
 if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:cdAijcWl3UKdlYOxw8N7ag", callContext.id) && getHasCarouselEnabledVar.value.hasCarouselEnabledOut)) {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:aNVpRn3+DUGOficRB5+laA", callContext.id);
 // Execute Action: ListFilter_AvailableHouseholds
@@ -3304,6 +3494,15 @@ OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:k4W721A0GkyO1g0HrMVa
 return OS.Flow.returnAsync(OS.Navigation.navigateTo(OS.Navigation.generateScreenURL("/UBTConnect/HouseholdDetails", {
 HouseholdId: OS.DataConversion.ServerDataConverter.asString(OS.BuiltinFunctions.integerToLongInteger(OS.BuiltinFunctions.textToInteger(vars.value.searchResultInLocal.householderIdAttr)), OS.DataTypes.DataTypes.LongInteger)
 }), OS.Transitions.createTransition(OS.Transitions.TransitionAnimation.Default), callContext, true));
+}
+
+});
+}
+
+});
+}
+
+});
 }
 
 });
@@ -3419,16 +3618,16 @@ callContext = controller.callContext(callContext);
 var searchCategory_GetListVar = new OS.DataTypes.VariableHolder();
 varBag.callContext = callContext;
 varBag.searchCategory_GetListVar = searchCategory_GetListVar;
-try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:NzpebtpAlEij1IXaLmuTYA:/NRWebFlows.SL8K4QWPmUuYK_Un+Uh_LA/NodesShownInESpaceTree.BgyAyR5gyUCviAR8VhUs+Q/ClientActions.NzpebtpAlEij1IXaLmuTYA:y70PpdUIjp+DBtlKJtnRnw", "UBTConnect", "ScreenEvent_OnInitialize", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:NzpebtpAlEij1IXaLmuTYA:/NRWebFlows.SL8K4QWPmUuYK_Un+Uh_LA/NodesShownInESpaceTree.BgyAyR5gyUCviAR8VhUs+Q/ClientActions.NzpebtpAlEij1IXaLmuTYA:8U24rbjaifV27_JEFu6ihQ", "UBTConnect", "ScreenEvent_OnInitialize", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:tWIx_mlz8Ei0q4q9mQzt4g", callContext.id);
 if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:uZ+UvEQxg0KCsJt++Sg3TA", callContext.id) && model.variables.tagListVar.isEmpty)) {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:A_WKn4JwDk6XU3c8F6qpHA", callContext.id);
 // Execute Action: SearchCategory_GetList
-searchCategory_GetListVar.value = UBTConnect_UtilsController.default.searchCategory_GetList$Action(callContext);
+searchCategory_GetListVar.value = UBTConnect_UtilsController.default.searchCategory_GetList$Action("", callContext);
 
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:tpCbzMDRkUq8DDzIuuCRIg", callContext.id);
-// TagList = SearchCategory_GetList.SearchCategoryItemsList
-model.variables.tagListVar = OS.DataConversion.JSConversions.typeConvertRecordList(searchCategory_GetListVar.value.searchCategoryItemsListOut, new UBTConnectModel.TagList(), function (source, target) {
+// TagList = SearchCategory_GetList.Out_SearchCategoryItemsList
+model.variables.tagListVar = OS.DataConversion.JSConversions.typeConvertRecordList(searchCategory_GetListVar.value.out_SearchCategoryItemsListOut, new UBTConnectModel.TagList(), function (source, target) {
 target.textAttr = source.labelAttr;
 target.identifierAttr = source.searchCategoryIdAttr;
 target.iconIdAttr = source.uBTIconAttr;
@@ -4000,7 +4199,7 @@ varBag.idService = idService;
 controller.ensureControllerAlive("OnAfterFetch_FetchSearchResults");
 callContext = controller.callContext(callContext);
 varBag.callContext = callContext;
-try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:iIJE4lkkUkWBOUJ1eeER_w:/NRWebFlows.SL8K4QWPmUuYK_Un+Uh_LA/NodesShownInESpaceTree.BgyAyR5gyUCviAR8VhUs+Q/ClientActions.iIJE4lkkUkWBOUJ1eeER_w:4qAFAw36PL_M_YUn5D+M+Q", "UBTConnect", "OnAfterFetch_FetchSearchResults", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:iIJE4lkkUkWBOUJ1eeER_w:/NRWebFlows.SL8K4QWPmUuYK_Un+Uh_LA/NodesShownInESpaceTree.BgyAyR5gyUCviAR8VhUs+Q/ClientActions.iIJE4lkkUkWBOUJ1eeER_w:EUQ2dpqQh26jSjAP6I9cAA", "UBTConnect", "OnAfterFetch_FetchSearchResults", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:YT1CI1NDB0aWCb0EpUjghw", callContext.id);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:FjsA7xNti0uU_M6xs4zz_w", callContext.id);
 // IsLoading = False
@@ -4014,6 +4213,12 @@ model.variables.hasHouseholdsVar = (!(model.variables.fetchSearchResultsDataAct.
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:FjsA7xNti0uU_M6xs4zz_w", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "4");
 // HasPlaces = notFetchSearchResults.Places.Empty and SelectedCategory = NullTextIdentifier or SelectedCategory = All or SelectedCategory = Places
 model.variables.hasPlacesVar = (!(model.variables.fetchSearchResultsDataAct.placesOut.isEmpty) && (((model.variables.selectedCategoryVar === OS.BuiltinFunctions.nullTextIdentifier()) || (model.variables.selectedCategoryVar === UBTConnectModel.staticEntities.connect_SearchCategories.all)) || (model.variables.selectedCategoryVar === UBTConnectModel.staticEntities.connect_SearchCategories.places)));
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:FjsA7xNti0uU_M6xs4zz_w", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "5");
+// HasEvents = notFetchSearchResults.Events.Empty and SelectedCategory = NullTextIdentifier or SelectedCategory = All or SelectedCategory = Events
+model.variables.hasEventsVar = (!(model.variables.fetchSearchResultsDataAct.eventsOut.isEmpty) && (((model.variables.selectedCategoryVar === OS.BuiltinFunctions.nullTextIdentifier()) || (model.variables.selectedCategoryVar === UBTConnectModel.staticEntities.connect_SearchCategories.all)) || (model.variables.selectedCategoryVar === UBTConnectModel.staticEntities.connect_SearchCategories.events)));
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:FjsA7xNti0uU_M6xs4zz_w", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "6");
+// HasSchool = notFetchSearchResults.Schools.Empty and SelectedCategory = NullTextIdentifier or SelectedCategory = All or SelectedCategory = Schools
+model.variables.hasSchoolVar = (!(model.variables.fetchSearchResultsDataAct.schoolsOut.isEmpty) && (((model.variables.selectedCategoryVar === OS.BuiltinFunctions.nullTextIdentifier()) || (model.variables.selectedCategoryVar === UBTConnectModel.staticEntities.connect_SearchCategories.all)) || (model.variables.selectedCategoryVar === UBTConnectModel.staticEntities.connect_SearchCategories.schools)));
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:6pLBagf2K0GACRq+aJGI0w", callContext.id);
 } catch (ex) {
 OutSystemsDebugger.handleException(ex, callContext.id);
@@ -4179,7 +4384,7 @@ return Promise.resolve();
 Controller.prototype.pushDebuggerContext = function (callContext) {
 var varBag = {};
 OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:SL8K4QWPmUuYK_Un+Uh_LA:/NRWebFlows.SL8K4QWPmUuYK_Un+Uh_LA:3Wo_76LXOCU7x0L+1+Cyxw", "UBTConnect", "Directory_Search", "NRFlows.WebFlow", callContext.id, varBag);
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:BgyAyR5gyUCviAR8VhUs+Q:/NRWebFlows.SL8K4QWPmUuYK_Un+Uh_LA/NodesShownInESpaceTree.BgyAyR5gyUCviAR8VhUs+Q:hdQ1OgIQtwWFxuM1pdpQIQ", "UBTConnect", "ScreenBlock_Search", "NRNodes.WebBlock", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:BgyAyR5gyUCviAR8VhUs+Q:/NRWebFlows.SL8K4QWPmUuYK_Un+Uh_LA/NodesShownInESpaceTree.BgyAyR5gyUCviAR8VhUs+Q:ezi7K4ljlutfbukjY4h8oQ", "UBTConnect", "ScreenBlock_Search", "NRNodes.WebBlock", callContext.id, varBag);
 };
 Controller.prototype.popDebuggerContext = function (callContext) {
 OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:BgyAyR5gyUCviAR8VhUs+Q", callContext.id);
@@ -4495,6 +4700,18 @@ return varBag.model.variables.hasPlacesVar;
 },
 dataType: OS.DataTypes.DataTypes.Boolean
 },
+"gyrnEQOX0Eiu_tN_qvV+jg": {
+getter: function (varBag, idService) {
+return varBag.model.variables.hasEventsVar;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"QVBS5IKE9kSPPQEy0TwwoQ": {
+getter: function (varBag, idService) {
+return varBag.model.variables.hasSchoolVar;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
 "AORTx10sUECnBqFXuJU6Qg": {
 getter: function (varBag, idService) {
 return varBag.model.variables.isBirthdayKeyWordVar;
@@ -4597,6 +4814,27 @@ return model.widgets.get(idService.getId("HeaderContent"));
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("Content"));
+})(varBag.model, idService);
+}
+},
+"iLG13+ZXIE6+Ws8potRnyQ": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("FilterPills"));
+})(varBag.model, idService);
+}
+},
+"k_kC1o55Gk6DwQOf0g+TVw": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("Content"));
+})(varBag.model, idService);
+}
+},
+"DCndB4GYS06M3uy2GEks6Q": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("Filter"));
 })(varBag.model, idService);
 }
 },
@@ -4807,6 +5045,34 @@ return model.widgets.get(idService.getId("HasPeople_"));
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("MembersSection"));
+})(varBag.model, idService);
+}
+},
+"HjmGwyRPOUmskEy4wunw8Q": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("HasEvents_"));
+})(varBag.model, idService);
+}
+},
+"eItwisVStEugzpQQ8qP+Eg": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("MembersSection2"));
+})(varBag.model, idService);
+}
+},
+"eAjTQ3n730ynBsM_KoZM6A": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("HasSchool_"));
+})(varBag.model, idService);
+}
+},
+"5PnramKTtE+SI0L3tp2Gyw": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("SchoolsSection"));
 })(varBag.model, idService);
 }
 },

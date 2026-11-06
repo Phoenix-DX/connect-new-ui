@@ -305,6 +305,10 @@ tive .header-right, .ubt-layout-main.layout-native .header-right, .phone .ubt-la
 ```css
 .connect-icon-contacts:before { content: "\f04c"; }
 ```
+### .connect-icon-expand_more  (1 rule)
+```css
+.connect-icon-expand_more:before { content: "\f064"; }
+```
 ### .connect-icon-home  (1 rule)
 ```css
 .connect-icon-home:before { content: "\f052"; }
@@ -350,13 +354,13 @@ tive .header-right, .ubt-layout-main.layout-native .header-right, .phone .ubt-la
 .ubt-skeleton-section .ubt-icon:not(.ignore-loading) { border-radius: var(--border-radius-medium); color: transparent; }
 an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section .ubt-icon:not(.ignore-loading), .ubt-skeleton-section .form > div, .ubt-skeleton-section .osui-dropdown-search, .ubt-skeleton-section .badge { background: var(--ubt-background-skeleton-light); animation: var(--ubt-skeleton-animation); border-color: var(--ubt-background-skeleton-light) }
 ```
+### .text-cyan-dark  (1 rule)
+```css
+.text-cyan-dark { color:var(--text-color-cyan-dark, var(--color-cyan-dark)); }
+```
 ### .text-inherit  (1 rule)
 ```css
 .text-inherit { color: inherit; }
-```
-### .text-neutral-0  (1 rule)
-```css
-.text-neutral-0 { color:var(--text-color-neutral-0, var(--color-neutral-0)); }
 ```
 ### .text-neutral-5  (1 rule)
 ```css
@@ -513,6 +517,10 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 ```
 ## BasePatterns.CustomContainer
 
+### .align-items-center  (1 rule)
+```css
+.align-items-center { -webkit-box-align:center; -ms-flex-align:center; align-items:center; }
+```
 ### .background-neutral-0  (4 rules)
 ```css
 .tag.background-neutral-0 { color:var(--text-color-primary, var(--color-primary)); }
@@ -570,6 +578,10 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 .country-flag img { object-fit: cover; }
 .ubt-options-list .option-disabled .country-flag img { filter: grayscale(0.5); opacity: 0.2; }
 ```
+### .display-inline-flex  (1 rule)
+```css
+.display-inline-flex { display:-webkit-inline-box; display:-ms-inline-flexbox; display:inline-flex; }
+```
 ### .font-semi-bold  (1 rule)
 ```css
 .font-semi-bold { font-weight:var(--font-semi-bold); }
@@ -577,6 +589,15 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 ### .font-size-s  (1 rule)
 ```css
 .font-size-s { font-size:var(--font-size-s); }
+```
+### .horizontal-tabs-filter  (1 rule)
+```css
+.horizontal-tabs-filter { flex: 0 0 auto; }
+```
+### .horizontal-tabs-filter-container  (2 rules)
+```css
+.horizontal-tabs-filter-container { display: flex; align-items: center; flex-wrap: nowrap; }
+.horizontal-tabs-filter-container > .OSBlockWidget:has(.horizontal-tabs-list) { flex: 1 1 auto; min-width: 0; }
 ```
 ### .inline-block  (4 rules)
 ```css
@@ -592,6 +613,11 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 ### .padding-base  (1 rule)
 ```css
 .padding-base { padding:var(--space-base); }
+```
+### .padding-right-xs  (2 rules)
+```css
+.padding-right-xs { padding-right:var(--space-xs); }
+.is-rtl .padding-right-xs { padding-left:var(--space-xs); padding-right:var(--space-none); }
 ```
 ### .padding-s  (1 rule)
 ```css
@@ -621,6 +647,10 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 ```css
 .text-align-left { text-align:left; }
 .is-rtl [align=left], .is-rtl .text-align-left { text-align:right; }
+```
+### .text-neutral-0  (1 rule)
+```css
+.text-neutral-0 { color:var(--text-color-neutral-0, var(--color-neutral-0)); }
 ```
 ### .text-neutral-7  (1 rule)
 ```css
@@ -663,8 +693,13 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 .ubt-tag span, .ubt-tag-toggle span { white-space: nowrap; }
 .connect-weekdays-tag-list .ubt-tag-toggle { border-radius: var(--border-radius-circle); width: 40px; aspect-ratio: 1/1; padding: var(--space-none); display: flex; justify-content: center; align-items: center; line-height:1 }
 ```
-## ConnectPatterns.HorizontalTagList
+## ConnectPatterns.SkeletonSection
 
+### .horizontal-tabs-list  (2 rules)
+```css
+.horizontal-tabs-filter-container > .OSBlockWidget:has(.horizontal-tabs-list) { flex: 1 1 auto; min-width: 0; }
+.horizontal-tabs-list { min-width: 0; }
+```
 ### .list-group  (25 rules)
 ```css
 .list.list-group { overflow:hidden; position:relative; }
@@ -704,6 +739,20 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 .ubt-tag-list.list.list-group::-webkit-scrollbar { display: none; /* Safari and Chrome */ }
 .ubt-tag-list .OSBlockWidget:has(> .inline-block) { width: max-content; }
 .connect-weekdays-tag-list.list.ubt-tag-list > div { margin-right: var(--space-none) }
+```
+## BasePatterns.CustomText
+
+### .font-size-xs  (1 rule)
+```css
+.font-size-xs { font-size:var(--font-size-xs); }
+```
+### .padding-x-xs  (1 rule)
+```css
+.padding-x-xs { padding-left:var(--space-xs); padding-right:var(--space-xs); }
+```
+### .text-neutral-10  (1 rule)
+```css
+.text-neutral-10 { color:var(--text-color-neutral-10, var(--color-neutral-10)); }
 ```
 ## App_Common.BottomBarContent
 
@@ -745,16 +794,6 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 ### .bottom-bar-item-text  (1 rule)
 ```css
 .bottom-bar-item-text { font-size:10px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; word-wrap:break-word; }
-```
-## BasePatterns.CustomText
-
-### .font-size-xs  (1 rule)
-```css
-.font-size-xs { font-size:var(--font-size-xs); }
-```
-### .text-neutral-10  (1 rule)
-```css
-.text-neutral-10 { color:var(--text-color-neutral-10, var(--color-neutral-10)); }
 ```
 ## OutSystemsUIOverrides.IconBadge
 
@@ -973,7 +1012,7 @@ an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section 
 .osui-bottom-sheet--is-open + .osui-bottom-sheet-overlay { pointer-events: auto; }
 .ubt-bottom-sheet--transparent-overlay.osui-bottom-sheet--is-open + .osui-bottom-sheet-overlay { opacity: 0; }
 ```
-### .osui-bottom-sheet__content  (13 rules)
+### .osui-bottom-sheet__content  (12 rules)
 ```css
 .osui-bottom-sheet .osui-bottom-sheet__content:empty, .osui-bottom-sheet .osui-bottom-sheet__header__top-bar:empty {  }
 .osui-bottom-sheet__content { max-height:var(--bottom-sheet-max-height); overflow-y:scroll; padding:var(--space-base); padding-bottom:calc(var(--bottom-bar-size) + var(--space-m) + var(--os-safe-area-bottom)); }
@@ -985,8 +1024,7 @@ ottom-sheet--is-active .osui-bottom-sheet__content .osui-datepicker, .osui-botto
 .landscape .photobook-carousel .osui-bottom-sheet.photobook-carousel-bottom-sheet .osui-bottom-sheet__content { padding-right: calc(var(--space-s) + var(--os-safe-area-right)); padding-left: calc(var(--space-s) + var(--os-safe-area-left)); padding-bottom: calc(var(--space-s) + var(--os-safe-area-bottom)); }
 .connect-share-sheet .osui-bottom-sheet__content { padding: 0; display: flex; flex-direction: column; flex: 1; gap: var(--share-sheet-gap, var(--space-s)); }
 .connect-share-sheet.osui-bottom-sheet .osui-bottom-sheet__content .ubt-bottom-sheet--content { margin: 0; flex: 1; }
-.osui-bottom-sheet__content *:has(.connect-share-sheet__results) { display: flex; flex-direction: column; min-height: 0; }
-.osui-bottom-sheet__content *:has(.connect-share-sheet__fill-parent-end) { flex: 1; }
+.osui-bottom-sheet__content *:has(.connect-share-sheet__content__search-list), .connect-share-sheet__content__search-list { display: flex; flex-direction: column; flex: 1; min-height: 0; }
 .connect-share-sheet .osui-bottom-sheet__content .connect-share-sheet__results { flex: 1 1 auto; min-height: 0; overflow-y: auto; }
 ```
 ### .osui-bottom-sheet__header  (10 rules)
@@ -1053,10 +1091,6 @@ ottom-sheet--is-active .osui-bottom-sheet__content .osui-datepicker, .osui-botto
 ```
 ## Adaptive.Columns3
 
-### .align-items-center  (1 rule)
-```css
-.align-items-center { -webkit-box-align:center; -ms-flex-align:center; align-items:center; }
-```
 ### .columns3  (4 rules)
 ```css
 tem, .phone .columns.columns-medium-left.phone-break-middle > .columns-item, .phone .columns.columns-small-right.phone-break-middle > .columns-item, .phone .columns.columns-medium-right.phone-break-middle > .columns-item { -webkit-box-flex:0; -ms-flex:none; flex:none; width:100%; }

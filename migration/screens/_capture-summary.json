@@ -1,8 +1,22 @@
 {
- "AssembleEvents": [
-  "default 18987 KB, 54 blocks, masked 51",
-  "runtime 11 calls, 0 phase mark(s)",
-  "auto loading (4 call(s) held)",
+ "NotificationDetails": [
+  "default 15691 KB, 39 blocks, masked 8",
+  "runtime 8 calls, 0 phase mark(s)",
+  "auto loading (3 call(s) held)",
+  "auto offline",
+  "analyzed"
+ ],
+ "Search": [
+  "default 16605 KB, 56 blocks, masked 15",
+  "runtime 10 calls, 0 phase mark(s)",
+  "auto loading (6 call(s) held)",
+  "auto offline",
+  "analyzed"
+ ],
+ "Household_Relations": [
+  "default 15880 KB, 42 blocks, masked 1",
+  "runtime 10 calls, 0 phase mark(s)",
+  "auto loading (5 call(s) held)",
   "auto offline",
   "analyzed"
  ]

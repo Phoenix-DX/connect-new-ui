@@ -6,19 +6,31 @@ Directory_Search.ScreenBlock_Search
       Interaction.InputWithIcon
         ConnectPatterns.Icon
         Interaction.InputWithIcon
-    App_CommonBlocks_Filter.FilterSheet_Icon
-      ConnectPatterns.SkeletonSection
-        ConnectPatterns.Icon
     BasePatterns.CustomContainer
-      ConnectPatterns.HorizontalTagList
-        ConnectPatterns.TagToggle
+      BasePatterns.CustomContainer
+        ConnectPatterns.Horizontal_Filter_TagList
           BasePatterns.CustomContainer
-        ConnectPatterns.TagToggle
-          BasePatterns.CustomContainer
-        ConnectPatterns.TagToggle
-          BasePatterns.CustomContainer
-        ConnectPatterns.TagToggle
-          BasePatterns.CustomContainer
+            BasePatterns.CustomContainer
+              App_CommonBlocks_Filter.FilterSheet_Icon_Label
+                ConnectPatterns.SkeletonSection
+                  BasePatterns.CustomContainer
+                    ConnectPatterns.Icon
+                    BasePatterns.CustomText
+                      ConnectPatterns.IconInline_Internal
+                    ConnectPatterns.Icon
+            ConnectPatterns.SkeletonSection
+              ConnectPatterns.TagToggle
+                BasePatterns.CustomContainer
+              ConnectPatterns.TagToggle
+                BasePatterns.CustomContainer
+              ConnectPatterns.TagToggle
+                BasePatterns.CustomContainer
+              ConnectPatterns.TagToggle
+                BasePatterns.CustomContainer
+              ConnectPatterns.TagToggle
+                BasePatterns.CustomContainer
+              ConnectPatterns.TagToggle
+                BasePatterns.CustomContainer
     App_Common_Blocks.SectionSeparator
       BasePatterns.CustomContainer
     App_Common.BottomBarMenu

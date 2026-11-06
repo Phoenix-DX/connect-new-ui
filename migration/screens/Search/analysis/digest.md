@@ -2,7 +2,7 @@
 
 - Path: `/UBTConnect/Search`
 - Viewport at capture: {'width': 390, 'height': 844, 'dpr': 1}
-- body class: `phone portrait osx is-ltr`; body style: `--header-size-content: 47px; --footer-height: 56px; --viewport-height: 844px;`
+- body class: `phone portrait osx is-ltr`; body style: `--header-size-content: 62px; --footer-height: 42px; --viewport-height: 844px;`
 - PWA: manifest `/UBTConnect/moduleservices/pwa/manifest`, service workers []
 - Screen file: `UBTConnect.Directory_Search.Search.mvc.js`
 
@@ -16,19 +16,31 @@ Directory_Search.ScreenBlock_Search
       Interaction.InputWithIcon
         ConnectPatterns.Icon
         Interaction.InputWithIcon
-    App_CommonBlocks_Filter.FilterSheet_Icon
-      ConnectPatterns.SkeletonSection
-        ConnectPatterns.Icon
     BasePatterns.CustomContainer
-      ConnectPatterns.HorizontalTagList
-        ConnectPatterns.TagToggle
+      BasePatterns.CustomContainer
+        ConnectPatterns.Horizontal_Filter_TagList
           BasePatterns.CustomContainer
-        ConnectPatterns.TagToggle
-          BasePatterns.CustomContainer
-        ConnectPatterns.TagToggle
-          BasePatterns.CustomContainer
-        ConnectPatterns.TagToggle
-          BasePatterns.CustomContainer
+            BasePatterns.CustomContainer
+              App_CommonBlocks_Filter.FilterSheet_Icon_Label
+                ConnectPatterns.SkeletonSection
+                  BasePatterns.CustomContainer
+                    ConnectPatterns.Icon
+                    BasePatterns.CustomText
+                      ConnectPatterns.IconInline_Internal
+                    ConnectPatterns.Icon
+            ConnectPatterns.SkeletonSection
+              ConnectPatterns.TagToggle
+                BasePatterns.CustomContainer
+              ConnectPatterns.TagToggle
+                BasePatterns.CustomContainer
+              ConnectPatterns.TagToggle
+                BasePatterns.CustomContainer
+              ConnectPatterns.TagToggle
+                BasePatterns.CustomContainer
+              ConnectPatterns.TagToggle
+                BasePatterns.CustomContainer
+              ConnectPatterns.TagToggle
+                BasePatterns.CustomContainer
     App_Common_Blocks.SectionSeparator
       BasePatterns.CustomContainer
     App_Common.BottomBarMenu
@@ -327,6 +339,8 @@ Directory_Search.ScreenBlock_Search
 | Households | output | RecordList | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.SearchResultList())` |
 | People | output | RecordList | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.SearchResultList())` |
 | Places | output | RecordList | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.SearchResultList())` |
+| Events | output | RecordList | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.SearchResultList())` |
+| Schools | output | RecordList | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.SearchResultList())` |
 | SearchKey_Current | local | Text | `""` |
 | SearchKey_LastSearched | local | Text | `""` |
 | HasSearched | local | Boolean | `false` |
@@ -339,6 +353,8 @@ Directory_Search.ScreenBlock_Search
 | HasPeople | local | Boolean | `false` |
 | HasHouseholds | local | Boolean | `false` |
 | HasPlaces | local | Boolean | `false` |
+| HasEvents | local | Boolean | `false` |
+| HasSchool | local | Boolean | `false` |
 | isBirthdayKeyWord | local | Boolean | `false` |
 | isBirthdaySearchEnabled | local | Boolean | `false` |
 | BottomSheetId_Filter_IsLoaded | local | Boolean | `false` |
@@ -357,9 +373,9 @@ Directory_Search.ScreenBlock_Search
 - Aggregates: `ScreenDataSetGet_SearchBirthdayOptions` → `screenservices/UBTConnect/Directory_Search/ScreenBlock_Search/ScreenDataSetGet_SearchBirthdayOptions`
 - Lifecycle handlers: Initialize, Ready
 - Client actions / event handlers: `inputEvent_Submit`, `onClick_RecentSearchTerm`, `event_FilterBottomSheet_tInitialized`, `get_RecentClickedResultsOnAfterFetch`, `action_RefreshSearch`, `action_ClearResults`, `event_SectionOnItemClick`, `screenEvent_OnReady`, `screenEvent_OnInitialize`, `inputEvent_ClearString`, `onClick_RecentSearch_RemoveAll`, `event_ApplyFilters`, `handler_FilterSheetLoaded`, `onClick_RecentSearchTerm_Remove`, `inputEvent_OnChange`, `onAfterFetch_FetchSearchResults`, `event_HorizontalTagListChanged`, `event_SearchResultClick`
-- Navigation: `/UBTConnect/Locality_Details`(LocalityId); `/UBTConnect/HouseholdCarousel`(In_StartingHouseholdId); `/UBTConnect/HouseholdDetails`(HouseholdId)
+- Navigation: `/UBTConnect/Locality_Details`(LocalityId); `/UBTConnect/OneSchoolGlobalDetails`(In_OneSchoolGlobalId); `/UBTConnect/AssembleDetail`(EventId); `/UBTConnect/LDM_EventDetail_V2`(EventHostId, EventId); `/UBTConnect/HouseholdCarousel`(In_StartingHouseholdId); `/UBTConnect/HouseholdDetails`(HouseholdId)
 - Exceptions handled: NotRegisteredException, UserException
-- Static entities / flags: `connect_SearchCategories.all`, `type_SearchTarget.global`, `shape.rounded`, `uBT_Color.neutral0`, `uBT_Size.small`, `uBT_Size.base`, `uBT_Color.neutral9`, `uBT_FontSize.small`, `uBT_FontWeight.semiBold`, `uBT_Color.primary`, `uBT_Shape.soft`, `uBT_ImageSize.extraSmall_32`, `connect_Entity.member`, `uBT_ImageSize.square`, `uBT_Color.neutral10`, `uBT_FontSize.extraSmall`, `uBT_Color.neutral3`, `uBT_ColumnBehaviour.reduceLast`, `uBT_VerticalAlign.center`, `uBT_FontWeight.regular`, `uBT_IconsSize.base_24`, `uBT_Icons2.history`, `uBT_Icons2.close`, `uBT_Color.neutral7`, `connect_SearchCategories.places`, `connect_SearchCategories.households`, `connect_SearchCategories.people`, `uBT_FontSize.base`, `connect_Entity.household`, `connect_Entity.locality`
+- Static entities / flags: `connect_SearchCategories.all`, `type_SearchTarget.global`, `shape.rounded`, `uBT_Color.neutral0`, `uBT_Size.small`, `uBT_Size.base`, `uBT_Color.neutral9`, `uBT_FontSize.small`, `uBT_FontWeight.semiBold`, `uBT_Color.primary`, `uBT_Shape.soft`, `uBT_ImageSize.extraSmall_32`, `connect_Entity.member`, `uBT_ImageSize.square`, `uBT_Color.neutral10`, `uBT_FontSize.extraSmall`, `uBT_Color.neutral3`, `uBT_ColumnBehaviour.reduceLast`, `uBT_VerticalAlign.center`, `uBT_FontWeight.regular`, `uBT_IconsSize.base_24`, `uBT_Icons2.history`, `uBT_Icons2.close`, `uBT_Color.neutral7`, `connect_SearchCategories.places`, `connect_SearchCategories.households`, `connect_SearchCategories.people`, `connect_SearchCategories.events`, `connect_SearchCategories.schools`, `uBT_FontSize.base`
 - Client variables: getSearch_RecenctClickedResultsLimit
 
 ## `UBTConnectLibrary.Layouts.Layout_DetailPage.mvc.js`
@@ -418,26 +434,6 @@ Directory_Search.ScreenBlock_Search
 | AlignIconRight | input | Boolean | `false` |
 | ExtendedClass | input | Text | `""` |
 
-## `UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon.mvc.js`
-| variable | kind | type | default |
-|---|---|---|---|
-| HaveFiltersApplied | input | Boolean | `false` |
-| BottomSheetId | input | Text | `""` |
-| isLoaded | input | Boolean | `false` |
-| ShowSubscriptionOnClick | input | Boolean | `false` |
-- Client actions / event handlers: `iconClick`
-- Static entities / flags: `uBT_Icons2.errorFill`, `uBT_IconsSize.nonStandard_14`, `uBT_Color.red`, `uBT_IconsSize.base_24`, `uBT_Icons2.tune`, `uBT_Color.neutral0`
-
-## `UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc.js`
-| variable | kind | type | default |
-|---|---|---|---|
-| In_IsLoading | input | Boolean | `false` |
-| In_ExtendedClass | input | Text | `""` |
-| In_IsActiveWhileLoading | input | Boolean | `false` |
-- Lifecycle handlers: Ready, ParametersChanged
-- Client actions / event handlers: `onReady`, `screenEvent_OnParametersChanged`
-- JavaScript nodes: `UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$controller.ScreenEvent_OnParametersChanged.Delayed_SetInertJS`
-
 ## `UBTConnectLibrary.BasePatterns.CustomContainer.mvc.js`
 | variable | kind | type | default |
 |---|---|---|---|
@@ -447,7 +443,7 @@ Directory_Search.ScreenBlock_Search
 - Lifecycle handlers: Ready, ParametersChanged
 - Client actions / event handlers: `onReady`, `onParametersChanged`, `clicked`
 
-## `UBTConnectLibrary.ConnectPatterns.HorizontalTagList.mvc.js`
+## `UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc.js`
 | variable | kind | type | default |
 |---|---|---|---|
 | MainContainerClass | local | Text | `"ubt-tag-list"` |
@@ -459,7 +455,51 @@ Directory_Search.ScreenBlock_Search
 | In_HorizontalPadding | input | Text | `""` |
 | ExtendedClasses | input | Text | `""` |
 | isEnabled | input | Boolean | `true` |
-- Client actions / event handlers: `tagToggleToggle`, `changed`
+| In_TagsLoading | input | Boolean | `false` |
+- Lifecycle handlers: Ready, ParametersChanged
+- Client actions / event handlers: `scrollToSelectedPill`, `onParametersChanged`, `tagToggleToggle`, `onReady`, `changed`
+- JavaScript nodes: `UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc$controller.ScrollToSelectedPill.JavaScript1JS`
+- Static entities / flags: `uBT_Size.extraSmall`
+
+## `UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon_Label.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| HaveFiltersApplied | input | Boolean | `false` |
+| BottomSheetId | input | Text | `""` |
+| isLoaded | input | Boolean | `false` |
+| ShowSubscriptionOnClick | input | Boolean | `false` |
+- Client actions / event handlers: `iconClick`
+- Static entities / flags: `uBT_Color.red`, `uBT_IconsSize.nonStandard_14`, `uBT_Icons2.errorFill`, `uBT_Size.extraSmall`, `uBT_Display.inlineFlex`, `uBT_AlignItems.center`, `uBT_Icons2.tune`, `uBT_IconsSize.base_24`, `uBT_Color.cyanDark`, `uBT_FontSize.small`, `uBT_FontWeight.semiBold`, `uBT_Icons2.expandMore`, `uBT_IconsSize.medium_20`
+
+## `UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| In_IsLoading | input | Boolean | `false` |
+| In_ExtendedClass | input | Text | `""` |
+| In_IsActiveWhileLoading | input | Boolean | `false` |
+- Lifecycle handlers: Ready, ParametersChanged
+- Client actions / event handlers: `onReady`, `screenEvent_OnParametersChanged`
+- JavaScript nodes: `UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$controller.ScreenEvent_OnParametersChanged.Delayed_SetInertJS`
+
+## `UBTConnectLibrary.BasePatterns.CustomText.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| In_Text | input | Text | `""` |
+| In_TextOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())` |
+| In_PaddingOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.SpacingOptionsRec())` |
+| In_HighlightWords | input | Text | `""` |
+| In_HighlightOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())` |
+| ExtendedClasses | input | Text | `""` |
+| FitContent | input | Boolean | `false` |
+| InJustifyText | input | Boolean | `false` |
+| NoWrap | input | Boolean | `false` |
+| InlineIcon | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.InlineIconRec())` |
+- Client actions / event handlers: `clicked`
+
+## `UBTConnectLibrary.ConnectPatterns.IconInline_Internal.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| InlineIcon | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.InlineIconRec())` |
 
 ## `UBTConnectLibrary.ConnectPatterns.TagToggle.mvc.js`
 | variable | kind | type | default |
@@ -491,26 +531,6 @@ Directory_Search.ScreenBlock_Search
 | variable | kind | type | default |
 |---|---|---|---|
 | ExtendedClass | input | Text | `""` |
-
-## `UBTConnectLibrary.BasePatterns.CustomText.mvc.js`
-| variable | kind | type | default |
-|---|---|---|---|
-| In_Text | input | Text | `""` |
-| In_TextOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())` |
-| In_PaddingOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.SpacingOptionsRec())` |
-| In_HighlightWords | input | Text | `""` |
-| In_HighlightOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())` |
-| ExtendedClasses | input | Text | `""` |
-| FitContent | input | Boolean | `false` |
-| InJustifyText | input | Boolean | `false` |
-| NoWrap | input | Boolean | `false` |
-| InlineIcon | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.InlineIconRec())` |
-- Client actions / event handlers: `clicked`
-
-## `UBTConnectLibrary.ConnectPatterns.IconInline_Internal.mvc.js`
-| variable | kind | type | default |
-|---|---|---|---|
-| InlineIcon | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.InlineIconRec())` |
 
 ## `UBTConnect.App_Common_Blocks.App_IconBadge.mvc.js`
 | variable | kind | type | default |
@@ -962,16 +982,16 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 2805 ms
-- 2. `ScreenDataSetGet_SearchBirthdayOptions` (200) at 3729 ms
-- 3. `DataActionGetCacheInfo` (200) at 3752 ms
-- 4. `DataActionGetCacheInfo` (200) at 3830 ms
-- 5. `DataActionGet_FilteredRecentClickedResults` (200) at 4005 ms
-- 6. `ActionAppManager_AfterInitialize` (200) at 6715 ms
-- 7. `ActionSync_Info_GetMain` (200) at 7207 ms
-- 8. `ActionGetNumberUnreadMessages` (200) at 7500 ms
-- 9. `ServiceAPIFetchData_CacheableMapEntities` (200) at 10298 ms
-- 10. `ServiceAPIFetchData_CacheableHouseholds` (200) at 13066 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 3038 ms
+- 2. `ScreenDataSetGet_SearchBirthdayOptions` (200) at 3811 ms
+- 3. `DataActionGetCacheInfo` (200) at 3837 ms
+- 4. `DataActionGetCacheInfo` (200) at 4001 ms
+- 5. `DataActionGet_FilteredRecentClickedResults` (200) at 4010 ms
+- 6. `ActionAppManager_AfterInitialize` (200) at 6003 ms
+- 7. `ActionSync_Info_GetMain` (200) at 6480 ms
+- 8. `ActionGetNumberUnreadMessages` (200) at 6712 ms
+- 9. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8071 ms
+- 10. `ServiceAPIFetchData_CacheableHouseholds` (200) at 8626 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

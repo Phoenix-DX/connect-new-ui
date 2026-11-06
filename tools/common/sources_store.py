@@ -15,7 +15,8 @@ Layout (repository root relative):
   migration/screens/<S>/analysis/manifest.json  {"raw": {name: path}, "pretty": {...}, "styles": {...}}
 
 Only raw, pretty and styles are per route (manifest). The other four kinds are plain folders: `check` and `gc` leave
-them alone.
+them alone. `migration/sources/pinned.txt` lists older versions that a document still cites: `check` and `gc` treat
+them as referenced.
 
 Rules:
   * a store file is never overwritten: same content (sha1) = no-op; another content under a used name gets
@@ -51,6 +52,7 @@ RUNTIME = os.path.join(STORE, "runtime")
 CONTRACT = os.path.join(STORE, "contract")
 SHELL = os.path.join(STORE, "shell")
 LIVE_LIST = os.path.join(RUNTIME, "live-files.txt")
+PINNED = os.path.join(STORE, "pinned.txt")  # older versions a document still cites: check and gc keep them
 SURVEY = os.path.join(ROOT, "migration", "survey", "survey-UBTConnect.json")
 _SURVEY_SOURCES: dict | None = None
 
@@ -209,6 +211,19 @@ def live_files() -> set[str]:
         return set()
 
 
+def pinned() -> set[str]:
+    """Absolute paths of the store files that pinned.txt keeps (an older version a document still cites)."""
+    out = set()
+    try:
+        for ln in open(PINNED, encoding="utf-8"):
+            ln = ln.split("#", 1)[0].strip()
+            if ln:
+                out.add(os.path.normpath(os.path.join(ROOT, ln)))
+    except OSError:
+        pass
+    return out
+
+
 def runtime_path(name: str) -> str | None:
     """Store path (repository root relative) of a runtime file, or None."""
     p = os.path.join(RUNTIME, name)
@@ -265,7 +280,10 @@ def cmd_migrate(keep_copies: bool = False) -> int:
 
 def cmd_check() -> int:
     bad = 0
-    referenced = set()
+    referenced = set(pinned())
+    for p in referenced:
+        if not os.path.isfile(p):
+            print(f"pinned but missing: {rel(p)}"); bad += 1
     for screen, m in all_manifests().items():
         for kind in KINDS:
             for name, p in m.get(kind, {}).items():
@@ -291,7 +309,7 @@ def cmd_check() -> int:
 
 
 def cmd_gc() -> int:
-    referenced = set()
+    referenced = set(pinned())
     for m in all_manifests().values():
         for kind in KINDS:
             referenced.update(os.path.normpath(os.path.join(ROOT, p)) for p in m.get(kind, {}).values())

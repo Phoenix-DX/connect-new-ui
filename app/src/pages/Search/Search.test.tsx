@@ -40,15 +40,18 @@ afterEach(() => {
 });
 
 describe('Search page', () => {
-  it('shows the search block: input, filter icon, category tags, bottom bar and the country filter sheet', () => {
+  it('shows the search block: input, filter label, category tags, bottom bar and the country filter sheet', () => {
     const { container } = renderRoutes(routes, PATH);
     const block = container.querySelector('[data-block="Directory_Search.ScreenBlock_Search"]');
     if (block === null) throw new Error('search block not rendered');
     expect(block.id).toBe('$b1');
     expect(block.querySelector('[data-block="Layouts.Layout_DetailPage"]')?.id).toBe('b1-$b1');
     expect(searchInput()).toBeInTheDocument();
-    expect(block.querySelector('[data-block="App_CommonBlocks_Filter.FilterSheet_Icon"]')?.id).toBe('b1-$b3');
-    for (const tag of ['All', 'Households', 'Members', 'Places']) expect(screen.getByText(tag)).toBeInTheDocument();
+    expect(block.querySelector('[data-block="App_CommonBlocks_Filter.FilterSheet_Icon"]')).toBeNull();
+    expect(block.querySelector('[data-block="App_CommonBlocks_Filter.FilterSheet_Icon_Label"]')?.id).toBe('b1-$b6');
+    for (const tag of ['All', 'Households', 'Members', 'Places', 'Events', 'Schools']) {
+      expect(screen.getByText(tag)).toBeInTheDocument();
+    }
     expect(screen.queryByText('Showing results for')).toBeNull();
     const sheet = block.querySelector('[data-block="App_CommonBlocks_Filter.FilterSheet"]');
     expect(sheet?.id).toBe('b1-$b39');

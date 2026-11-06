@@ -1,5 +1,5 @@
 import { SEARCH_RESULT_EVENT_DEFAULTS, type SearchResult, type SearchResults } from '@/api/search';
-import { Connect_SearchCategories } from '@/pages/Search/components/staticEntities';
+import { Type_SearchTarget, Connect_SearchCategories } from '@/pages/Search/components/staticEntities';
 import { Connect_Entity } from '@/lib/ubtConnectUtils/staticEntities';
 import type { ConnectSearch_RecentClickedResults } from '@/platform/storage/localEntities';
 import type { Tag } from '@/components/ui/HorizontalTagList';
@@ -75,9 +75,10 @@ export interface SearchCategory_Item {
   UBTIcon: string;
 }
 
-/** UBTConnect_Utils SearchCategory_GetList: All, Households, Members (People), Places, in this order; UBTIcon keeps
+/** UBTConnect_Utils SearchCategory_GetList (live 2026-11-06): All, Households, Members (People), Places, Events (not for
+    the map target), Schools, in this order; UBTIcon keeps
     its default "". */
-export function searchCategory_GetList(): SearchCategory_Item[] {
+export function searchCategory_GetList(inSearchTarget = ''): SearchCategory_Item[] {
   return [
     { SearchCategoryId: Connect_SearchCategories.All, Order: 1, Label: Connect_SearchCategories.All, UBTIcon: '' },
     {
@@ -91,6 +92,23 @@ export function searchCategory_GetList(): SearchCategory_Item[] {
       SearchCategoryId: Connect_SearchCategories.Places,
       Order: 4,
       Label: Connect_SearchCategories.Places,
+      UBTIcon: '',
+    },
+    // Events: not for the map search (live UBTConnect_Utils SearchCategory_GetList, In_SearchTarget "Map")
+    ...(inSearchTarget === Type_SearchTarget.Map
+      ? []
+      : [
+          {
+            SearchCategoryId: Connect_SearchCategories.Events,
+            Order: 5,
+            Label: Connect_SearchCategories.Events,
+            UBTIcon: '',
+          },
+        ]),
+    {
+      SearchCategoryId: Connect_SearchCategories.Schools,
+      Order: 6,
+      Label: Connect_SearchCategories.Schools,
       UBTIcon: '',
     },
   ];

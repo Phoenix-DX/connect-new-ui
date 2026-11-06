@@ -4,12 +4,12 @@ For every service call: the chains of code that lead to it, from a root (user ev
 
 ## Observed in the capture (this screen)
 
+### `UBTConnect/App_Notifications/NotificationDetails/DataActionGetMessageInstance`
+- `NotificationDetails fetch at start` → `NotificationDetails.DataActionGetMessageInstance`
+
 ### `UBT_AppManager/ActionAppManager_SynchAppContext`
 - `HandleImageLoadError.applicationEvent_ImageError` → `Connect2_LegacyShared.zOnApplicationEvent_Wrapper` → `UBT_AppManager.azureInsights_CreateCustomEvent` → `UBT_AppManager.appManager_CheckAppContext` → `UBT_AppManager.appManager_GetConfiguration` → `UBT_AppManager.appManager_SynchAppContext` → `UBT_AppManager.appManager_SynchAppContextInternal` → `server AppManager_SynchAppContext`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 - (5 chain(s) starting in blocks of other screens omitted)
-
-### `UBTConnect/App_Notifications/NotificationDetails/DataActionFetchMessageInstance`
-- `NotificationDetails fetch at start` → `NotificationDetails.DataActionFetchMessageInstance`
 
 ### `UBT_AppManager/ActionAppManager_AfterInitialize`
 - `UBT_AppManager.appManager_OnAppReady_Web` → `UBT_AppManager.appManager_InitializeWebComponents` → `UBT_AppManager.appManager_AfterInitialize` → `server AppManager_AfterInitialize`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
@@ -33,6 +33,16 @@ For every service call: the chains of code that lead to it, from a root (user ev
 - `UBTConnect.get_Cacheable_MapHouseholds` → `server FetchData_CacheableHouseholds`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 
 ## Declared and reachable from the rendered blocks, not observed
+
+### `UBTConnect/App_Notifications/NotificationDetails/ActionWrapper_NotificationOpened`
+- `NotificationDetails.getMessageInstanceByIdOnAfterFetch` → `server Wrapper_NotificationOpened`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
+
+### `UBTConnect/App_Notifications/NotificationDetails/ScreenDataSetGetMessageTemplateParametersByMessageTemplateId`
+- `server Wrapper_NotificationOpened` → `NotificationDetails.getMessageInstanceByIdOnAfterFetch` → `NotificationDetails.ScreenDataSetGetMessageTemplateParametersByMessageTemplateId`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
+- `NotificationDetails fetch at start` → `NotificationDetails.ScreenDataSetGetMessageTemplateParametersByMessageTemplateId`
+
+### `UBTConnect/App_Notifications/NotificationDetails/DataActionFetchMessageInstance`
+- `NotificationDetails fetch at start` → `NotificationDetails.DataActionFetchMessageInstance`
 
 ### `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All`
 - `BottomBarMenu.OnReady` → `BottomBarMenu.onReady` → `UBTConnect.directory_Updates_RefreshBottomBarCount` → `server Get_UI_UpdateItems_UnreadCount_All`

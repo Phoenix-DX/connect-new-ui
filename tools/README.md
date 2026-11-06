@@ -36,6 +36,8 @@ Every compiled TST file of the project is in `migration/sources/` (since 2026-11
 
 Before 2026-11-06 the last four were `migration/blocks/sources/`, `migration/runtime-sources/` (with a `live/` copy
 of 286 files), `migration/contract/sources/raw/` and `migration/shell/sources/`; `check` and `gc` leave them alone.
+`migration/sources/pinned.txt` lists older versions that a document or a comment still cites after a re-capture:
+`check` and `gc` keep them. Delete the line when the citations move to the newer version.
 
 Rules: a store file is never overwritten. The same sha1 is a no-op. Another content under a used name gets
 `<stem>@<sha8><ext>`; the first version keeps the plain name. The `styles/` files are always suffixed.

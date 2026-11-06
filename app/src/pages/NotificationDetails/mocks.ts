@@ -7,6 +7,7 @@ import {
   notificationRows,
   notificationSenderTarget,
   type MessageListItemRow,
+  CAPTURED_DETAIL_CARD,
 } from '@/mocks/fictional/notifications';
 import { scenario } from '@/mocks/scenario';
 import { statefulHandler } from '@/mocks/store';
@@ -37,7 +38,8 @@ function seedOf(row: MessageListItemRow): MessageSeed {
     Id: row.Id,
     Title: row.Title,
     ...(target === undefined ? {} : { SenderTarget: target }),
-    ...(isCapturedDetail(row.Id) ? { Content: '' } : {}),
+    Summary: row.Summary,
+    ...(isCapturedDetail(row.Id) ? { AdaptiveCardContent: CAPTURED_DETAIL_CARD } : {}),
     DateTimeCreated: row.DateTimeCreated,
     IsRead: row.IsRead,
     IsClear: row.IsClear,

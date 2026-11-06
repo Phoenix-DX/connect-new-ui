@@ -16,7 +16,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/NotificationDetails/NotificationDetailsPage.tsx`](../../../app/src/pages/NotificationDetails/NotificationDetailsPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 | Screenshots | [`migration/screens/NotificationDetails/parity`](../../screens/NotificationDetails/parity) | `route.py parity` |
-| Code read | OutSystems: 1 files of the UI flow, 10 shared blocks, 28 app shell files. React: 154 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
+| Code read | OutSystems: 1 files of the UI flow, 11 shared blocks, 28 app shell files. React: 154 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
@@ -29,7 +29,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | User actions of the route (own code) | OutSystems: 1. React: 1 |
 | Screen and blocks of the UI flow with a React port | 1 of 1 |
 | Navigation targets found in React | 8 of 8 |
-| Shared blocks and components on the route | OutSystems 10, React 2 with user actions: see the last section |
+| Shared blocks and components on the route | OutSystems 11, React 2 with user actions: see the last section |
 | App shell on this route | 8 calls: see [APP_SHELL.md](../APP_SHELL.md) |
 
 ## 3. Differences found
@@ -81,8 +81,8 @@ All columns come from the code, without interpretation:
 | # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
 |---|---|---|---|---|---|---|---|---|
 | 1 | `UBTConnect/App_Notifications/NotificationDetails/ActionWrapper_NotificationOpened` | server action | `NotificationDetails` | NotificationDetails fetch at start → NotificationDetails.DataActionGetMessageInstance → NotificationDetails.getMessageInstanceByIdOnAfterFetch → server Wrapper_NotificationOpened | no | `markNotificationDetailsOpened()` [`api/notification/notificationDetail.ts:20`](../../../app/src/api/notification/notificationDetail.ts#L20) (page) | `NotificationDetails → useNotificationDetail → markNotificationDetailsOpened`<br>[`pages/NotificationDetails/NotificationDetailsPage.tsx`](../../../app/src/pages/NotificationDetails/NotificationDetailsPage.tsx) | implemented |
-| 2 | `UBTConnect/App_Notifications/NotificationDetails/DataActionFetchMessageInstance` | data action | `NotificationDetails` | NotificationDetails fetch at start → NotificationDetails.DataActionFetchMessageInstance | yes | – | – | not applicable (noCaller) |
-| 3 | `UBTConnect/App_Notifications/NotificationDetails/DataActionGetMessageInstance` | data action | `NotificationDetails` | NotificationDetails fetch at start → NotificationDetails.DataActionGetMessageInstance | no | `fetchNotificationMessageInstance()` [`api/message/repository.ts:215`](../../../app/src/api/message/repository.ts#L215) (page) | `NotificationDetails → useNotificationDetail → fetchNotificationMessageInstance`<br>[`pages/NotificationDetails/NotificationDetailsPage.tsx`](../../../app/src/pages/NotificationDetails/NotificationDetailsPage.tsx) | implemented |
+| 2 | `UBTConnect/App_Notifications/NotificationDetails/DataActionFetchMessageInstance` | data action | `NotificationDetails` | NotificationDetails fetch at start → NotificationDetails.DataActionFetchMessageInstance | no | – | – | not applicable (noCaller) |
+| 3 | `UBTConnect/App_Notifications/NotificationDetails/DataActionGetMessageInstance` | data action | `NotificationDetails` | NotificationDetails fetch at start → NotificationDetails.DataActionGetMessageInstance | yes | `fetchNotificationMessageInstance()` [`api/message/repository.ts:215`](../../../app/src/api/message/repository.ts#L215) (page) | `NotificationDetails → useNotificationDetail → fetchNotificationMessageInstance`<br>[`pages/NotificationDetails/NotificationDetailsPage.tsx`](../../../app/src/pages/NotificationDetails/NotificationDetailsPage.tsx) | implemented |
 | 4 | `UBTConnect/App_Notifications/NotificationDetails/ScreenDataSetGetMessageTemplateParametersByMessageTemplateId` | aggregate | `NotificationDetails` | NotificationDetails fetch at start → NotificationDetails.DataActionGetMessageInstance → NotificationDetails.getMessageInstanceByIdOnAfterFetch → NotificationDetails.ScreenDataSetGetMessageTemplateParametersByMessageTemplateId<br>NotificationDetails fetch at start → NotificationDetails.ScreenDataSetGetMessageTemplateParametersByMessageTemplateId | no | `fetchNotificationTemplateParameters()` [`api/message/repository.ts:225`](../../../app/src/api/message/repository.ts#L225) (page) | `NotificationDetails → useNotificationDetail → fetchNotificationTemplateParameters`<br>[`pages/NotificationDetails/NotificationDetailsPage.tsx`](../../../app/src/pages/NotificationDetails/NotificationDetailsPage.tsx) | implemented |
 | 5 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../../app/src/components/layout/BottomBar/BottomBar.tsx) | implemented |
 
@@ -210,6 +210,7 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | `IconText` | `UBTConnectLibrary` | [`components/ui/IconText/IconText.tsx`](../../../app/src/components/ui/IconText/IconText.tsx) | 0 |
 | `CircleButton` | `UBTConnectLibrary` | [`components/ui/CircleButton/CircleButton.tsx`](../../../app/src/components/ui/CircleButton/CircleButton.tsx) | 0 |
 | `SectionSeparator` | `UBTConnect` | [`components/ui/SectionSeparator/SectionSeparator.tsx`](../../../app/src/components/ui/SectionSeparator/SectionSeparator.tsx) | 0 |
+| `AdaptiveCardViewer` | `Connect2_LegacyShared` | [`components/widgets/AdaptiveCardViewer/AdaptiveCardViewer.tsx`](../../../app/src/components/widgets/AdaptiveCardViewer/AdaptiveCardViewer.tsx) | 0 |
 | `BottomBarMenu` | `UBTConnect` | [`components/layout/BottomBar/BottomBar.tsx`](../../../app/src/components/layout/BottomBar/BottomBar.tsx) | 1 |
 | `BottomBarContent` | `UBTConnect` | [`components/layout/BottomBarContent/BottomBarContent.tsx`](../../../app/src/components/layout/BottomBarContent/BottomBarContent.tsx) | 0 |
 | `BottomBarItem` | `OutSystemsUI_2_23` | [`components/ui/BottomBarItem/BottomBarItem.tsx`](../../../app/src/components/ui/BottomBarItem/BottomBarItem.tsx) | 0 |

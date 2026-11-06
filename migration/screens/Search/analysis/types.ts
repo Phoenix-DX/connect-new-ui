@@ -234,24 +234,14 @@ export interface OrbitStaticEntities {
   HelperRoles: HelperRolesItem[] /* wire: { List: [...] } */;
 }
 
-export interface LocalBookmarkItem {
-  Id: string /* Long Integer as string */;
-  UserId: number;
-  BookmarkId: string /* Long Integer as string */;
-  ObjectType: string;
-  ObjectId: string /* Long Integer as string */;
-  Group: string;
-  DateCreatedUtc: string /* ISO DateTime */;
-  Note: string /* "" in capture */;
+export interface LocalBookmark {
+  List: unknown[] /* empty in capture */;
+  EmptyListItem: EmptyListItem;
 }
 
-export interface LocalBookmarksC2Item {
-  Id: string /* Long Integer as string */;
-  UserId: number;
-  BookmarkId: string /* Long Integer as string */;
-  BookmarkCategoryId: string;
-  ItemId: string /* Long Integer as string */;
-  CreatedAtDateUtc: string /* ISO DateTime */;
+export interface LocalBookmarksC2 {
+  List: unknown[] /* empty in capture */;
+  EmptyListItem: EmptyListItem;
 }
 
 export interface LocalNotes {
@@ -260,8 +250,8 @@ export interface LocalNotes {
 }
 
 export interface LocalEntities_App {
-  LocalBookmark: LocalBookmarkItem[] /* wire: { List: [...] } */;
-  LocalBookmarksC2: LocalBookmarksC2Item[] /* wire: { List: [...] } */;
+  LocalBookmark: LocalBookmark;
+  LocalBookmarksC2: LocalBookmarksC2;
   LocalNotes: LocalNotes;
 }
 

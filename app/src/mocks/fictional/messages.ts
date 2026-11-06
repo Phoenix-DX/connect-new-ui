@@ -20,6 +20,8 @@ export interface MessageSeed {
   /** Message content of a seeded message (else "<p>" + Title + "</p>"). */
   Content?: string;
   AdaptiveCardContent?: string;
+  /** MessageTemplate.Summary (the line above the body); "" when absent. */
+  Summary?: string;
   DateTimeCreated: string;
   IsRead: boolean;
   IsClear: boolean;
@@ -41,7 +43,7 @@ export function wireMessage(d: MessageSeed | undefined) {
       Id: d ? '1' : '0',
       IsAdaptiveCard: d?.AdaptiveCardContent !== undefined,
       Title: d?.Title ?? '',
-      Summary: '',
+      Summary: d?.Summary ?? '',
       MessageContentId: d ? '1' : '0',
       CreatedByUser: 0,
       CreatedDate: NULL_DATE,

@@ -29,12 +29,14 @@ const result = (id: string, type: string): SearchResult => ({
 });
 
 describe('search client actions', () => {
-  it('initialTagList: All, Households, Members, Places; the selected category is selected', () => {
+  it('initialTagList: All, Households, Members, Places, Events, Schools; the selected category is selected', () => {
     expect(initialTagList('All')).toEqual([
       { Text: 'All', Identifier: 'All', IconId: '', IsSelected: true, Enabled: true },
       { Text: 'Households', Identifier: 'Households', IconId: '', IsSelected: false, Enabled: true },
       { Text: 'Members', Identifier: 'People', IconId: '', IsSelected: false, Enabled: true },
       { Text: 'Places', Identifier: 'Places', IconId: '', IsSelected: false, Enabled: true },
+      { Text: 'Events', Identifier: 'Events', IconId: '', IsSelected: false, Enabled: true },
+      { Text: 'Schools', Identifier: 'Schools', IconId: '', IsSelected: false, Enabled: true },
     ]);
     expect(
       initialTagList('Places')

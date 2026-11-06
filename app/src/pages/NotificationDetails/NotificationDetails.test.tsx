@@ -96,8 +96,8 @@ describe('NotificationDetails page', () => {
     await waitFor(() => {
       expect(title()).toBe('Your Host on Wednesday');
     });
-    // Sent as a user: the header is the name of the fictional author.
-    expect(headerTitle()).toBe('Rebecca Lindsay');
+    // Sent as Lord's Day Meal (capture of 2026-11-06): the header is "Meal Allocation".
+    expect(headerTitle()).toBe('Meal Allocation');
     const calls = (window.__osCalls ?? []).filter((c) => c.action === 'DataActionGetMessageInstance');
     expect(calls).toHaveLength(1);
     expect(calls[0]?.module).toBe('UBTConnect');
@@ -121,7 +121,10 @@ describe('NotificationDetails page', () => {
       marginTop: '10px',
       padding: '15px 0px 10px',
     });
-    expect(textOf('.notification-detail-content')).toBe('');
+    // The body is the adaptive card of the capture (two actions), not the HTML content.
+    expect(container.querySelector('.notification-detail-content')).toBeNull();
+    expect(container.querySelector('[data-block="Widgets.AdaptiveCardViewer"]')?.id).toBe('$b9');
+    expect(textOf('#Notification_Content')).toContain('Host for Wednesday Meal');
     expect(container.querySelector('.connect-icon-calendar_busy.text-primary')).not.toBeNull();
     expect(container.querySelector('[data-block="App_Common_Blocks.SectionSeparator"]')).not.toBeNull();
     expect(container.querySelector('[data-block="App_Common.BottomBarMenu"]')?.id).toBe('$b13');
