@@ -12,7 +12,7 @@ What is known:
 - `pwaServiceWorker.js` is in neither the TST moduleinfo manifest nor the fetched runtime scripts.
   `OutSystems.js` `VersionsManager.supportsResourceCache` only checks `navigator.serviceWorker.getRegistrations()`.
   Something else registers the worker. Assumption: the PWA `index.html` registers it. Nobody has fetched that file.
-- Content read 2026-10-17 (user approved the fetch): `migration/runtime-sources/UBTConnect.pwaServiceWorker.js`.
+- Content read 2026-10-17 (user approved the fetch): `migration/sources/runtime/UBTConnect.pwaServiceWorker.js`.
   It is 133 kB, served with `cache-control: max-age=2592000` and last modified 2026-10-15. See the next section.
 
 ## What `pwaServiceWorker.js` does (OutSystems-generated)

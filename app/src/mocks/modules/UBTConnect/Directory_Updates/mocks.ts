@@ -71,7 +71,7 @@ export const updateItems = collection(
 );
 
 /* Server action UBTConnect UpdateItem_MarkAsRead(In_UpdateItemId) (UBTConnect.controller.js:18574-18584, copy in
-   migration/screens/HouseholdCarousel/analysis/sources/raw/), called by Directory_Updates_CarouselSwipeAction
+   migration/sources/raw/), called by Directory_Updates_CarouselSwipeAction
    (:1625-1660) when an updates carousel item is swiped (CR-HouseholdCarousel-1). A write, never recorded: it marks the
    update read in the update items the ServiceAPI MarkAsRead / MarkAsUnread handlers change (HomeFeed.updateItems, the
    collection HomeFeed's FetchUpdates reads; one shared collection for every Updates screen is CR-Updates_SingleList-1),

@@ -1,10 +1,10 @@
 # Route spec: EmailContact
 
-Sources (analysis/sources/):
+Sources (migration/sources/):
 - `S` = UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js (survey copy). The TST copy in
-  migration/runtime-sources/ differs only in debugger ids.
+  migration/sources/runtime/ differs only in debugger ids.
 - `CF` = Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.
-  ScreenBlock_ContactForm.mvc.js (TST copy from migration/runtime-sources/). It is identical to the survey copy apart from debugger ids.
+  ScreenBlock_ContactForm.mvc.js (TST copy from migration/sources/runtime/). It is identical to the survey copy apart from debugger ids.
 
 There is no capture (no-capture.json, user 2026-10-16). The React app is built from the compiled code.
 

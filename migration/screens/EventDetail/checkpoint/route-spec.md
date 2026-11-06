@@ -1,10 +1,14 @@
 # Screen spec: EventDetail
 
 ## 0. Summary
-Detail of one Orbit event for a member of the signed-in household: dates, location and type, the host survey status
-(host events), the host allocation (hosted milestones + helpers), the itinerary by day (day selector + milestone
-cards) and the Contact Orbit Helpdesk footer. Reached from the OrbitLanding event card. Four on-demand data actions in
-OnReady; no writes. [pack.md; ScreenBlock_EventDetail.mvc.js]
+This screen shows the detail of one Orbit event for a member of the signed-in household. It shows:
+- dates, location and type;
+- the host survey status (host events only);
+- the host allocation (hosted milestones and helpers);
+- the itinerary by day (day selector and milestone cards);
+- the Contact Orbit Helpdesk footer.
+
+The user reaches the screen from the OrbitLanding event card. OnReady runs four on-demand data actions. The screen makes no writes. [pack.md; ScreenBlock_EventDetail.mvc.js]
 
 | Item | Value |
 |---|---|
@@ -70,11 +74,14 @@ flowchart TB
 
 ## 3. DOM and markup contract
 Markup = `analysis/dom/default.html:31-345` (pack.md § Markup). Body class `phone portrait orbit-theme osx is-ltr`.
-Dynamic classes: paper clip `icon orbit-icon-paper-clip padding-none font-size-1-5em` + ` margin-left-base` when the QR
-icon shows [SB :477]; QR button `orbit-generate-qrcode-button` + ` orbit-generate-qrcode-button-disabled` [SB :740];
-pill icon/style by status Sent / other [SB :845, :854]; edge `event-date-selector-selected` [ES :190-235].
-Inline styles only as captured (`cursor: pointer`); the compiled `line-height: initial` of the two header-right
-containers is left out (rule 21, not captured; Decisions).
+
+Dynamic classes:
+- Paper clip: `icon orbit-icon-paper-clip padding-none font-size-1-5em` + ` margin-left-base` when the QR icon shows [SB :477].
+- QR button: `orbit-generate-qrcode-button` + ` orbit-generate-qrcode-button-disabled` [SB :740].
+- Pill icon/style: by status Sent / other [SB :845, :854].
+- Edge: `event-date-selector-selected` [ES :190-235].
+
+Inline styles only as captured (`cursor: pointer`). The spec leaves out the compiled `line-height: initial` of the two header-right containers (rule 21, not captured; Decisions).
 
 ## 4. Visual specification
 Original CSS only (no route CSS). Orbit theme classes from Layout_Orbit; card colours through `var(--orbit-<c>-<n>)`
@@ -101,11 +108,14 @@ Inputs: the block variables (screenData) [calls.md]; the route sends the scalar 
 Variables [SB model :90-170]: EventDetails, DateFilters, IsFetchingData, HostAllocation, HasQRCode, HasScanned,
 HasDocuments, IsEventUnavailable, UserInformation; plus Get_EventDetails.Response.Milestones / IsDataFetched,
 Get_HostSurveyStatus.Response.Id, GetLocalSurveyStatusByJSONName.List.
-OnReady [SB :1799-1910]: restored from cache → nothing (P-BACK, useViewState); else IsFetchingData True → Get_EventDetails
-→ OnAfterFetch [:2260-2330] (EventDetails, DateFilters, IsEventUnavailable; milestones of the selected day via
-FilterMilestonesByDateGroup DAY, or BEFORE without days) → Cache_UserInfo_Get ids → host event: Get_HostSurveyStatus →
-OnAfterFetch [:2356-2394] (status ≠ "" → aggregate → Confirmed → HostAllocation = GetHostAllocation(all milestones)
-[:1712-1748]) → Get_HasDocuments → day has milestones: Get_HasQRCode → IsFetchingData False.
+OnReady [SB :1799-1910]:
+1. If the cache restores the view, nothing runs (P-BACK, useViewState).
+2. Otherwise, IsFetchingData becomes True and Get_EventDetails runs.
+3. OnAfterFetch [:2260-2330] sets EventDetails, DateFilters and IsEventUnavailable. It sets the milestones of the selected day with FilterMilestonesByDateGroup DAY, or BEFORE when there are no days.
+4. Cache_UserInfo_Get sets the ids.
+5. For a host event, Get_HostSurveyStatus runs. In its OnAfterFetch [:2356-2394], when the status is not "", an aggregate runs. When the status is Confirmed, HostAllocation = GetHostAllocation(all milestones) [:1712-1748].
+6. Get_HasDocuments runs. When the day has milestones, Get_HasQRCode runs. Then IsFetchingData becomes False.
+
 EventDateSelection OnReady [ES :288-350]; OnClick_Date [ES :380-470]; parent OnHandle_ClickedDate [SB :2395-2502].
 
 ## 8. Render logic
@@ -167,49 +177,67 @@ sequenceDiagram
 | Sent survey, not householder | Error | "Only Householder is able to edit the survey." |
 
 ## 12. Strings
-Host, View Host Survey / Complete Host Survey, Host Survey, Host Allocation, Helper, View, Itinerary, B, A, View Event
-Guest List, GENERATE QR CODE / QR CODE GENERATED, Contact Orbit Helpdesk, "Your itinerary will be available once it
-has been published by the event organiser.", "The Event is no longer available for you.", messages of section 11.
+- Host
+- View Host Survey / Complete Host Survey
+- Host Survey
+- Host Allocation
+- Helper
+- View
+- Itinerary
+- B
+- A
+- View Event Guest List
+- GENERATE QR CODE / QR CODE GENERATED
+- Contact Orbit Helpdesk
+- "Your itinerary will be available once it has been published by the event organiser."
+- "The Event is no longer available for you."
+- The messages of section 11.
 
 ## 13. Accessibility, platform and security notes
-Server-side authorization of the four data actions (member / event ownership) is not visible from the client: the
-backend must check that In_MemberId belongs to the signed-in household. Flags only hide UI.
+You cannot see the server-side authorization of the four data actions (member / event ownership) in the client. The backend must check that In_MemberId belongs to the signed-in household. Flags only hide UI.
 
 ## 13a. Feature flags
 - mobileOrbitAccess (GetHasOrbitAccess): default-only on (user 2026-10-14) → `useFlagOn('mobileOrbitAccess')`.
 - mobileOrbitHostSurvey (GetHasOrbitHostSurvey): default-only on (user 2026-10-14) → `useFlagOn('mobileOrbitHostSurvey')`.
-- mobileOrbitEventBooklet (GetHasOrbitEventBooklet): TST true, no MCP; Q1 → A default-only on (pending orchestrator
-  answer) → `useFlagOn('mobileOrbitEventBooklet')` (needs `flags.py decide` + `export`; captured IsBookletVisible
-  False, so no captured state depends on it).
+- mobileOrbitEventBooklet (GetHasOrbitEventBooklet): TST true, no MCP; Q1 → A default-only on (answered, `flags.py decide` + `export` done [questions.md Q1])
+  → `useFlagOn('mobileOrbitEventBooklet')` (captured IsBookletVisible False, so no captured state depends on it).
 - App_PIN_BiometricEnabled: not a flag (user 2026-10-14).
 
 ## 14. Unclear points
 | # | What | Question | Status |
 |---|---|---|---|
-| 1 | Booklet flag branches | Q1 | auto: A (pending orchestrator answer) |
-| 2 | LocalSurveyStatus / LocalOrbitMilestoneType not synced by the shell | Q2, CR-EventDetail-1 | auto: A (pending) |
-| 3 | ActionGetAllApplicationEvents in the capture | Q3 | auto: A (pending) |
-| 4 | Mock event 7301 as a Host event | Q4 | auto: A (pending) |
-| 5 | TST SurveyStatus labels / JSON_Name | Q5 (fact) | open, fictional values in orbit.ts |
-| 6 | MenuIcon Auto back arrow when opened by URL | proposed exemption VIA-BACK-MENUICON-EVENTDETAIL | pending |
+| 1 | Booklet flag branches | Q1 | answered: A [questions.md Q1] |
+| 2 | LocalSurveyStatus / LocalOrbitMilestoneType not synced by the shell | Q2, CR-EventDetail-1 | answered: A [questions.md Q2]; CR-EventDetail-1 applied |
+| 3 | ActionGetAllApplicationEvents in the capture | Q3 | answered: A [questions.md Q3]; exemption merged into parity-exemptions.json |
+| 4 | Mock event 7301 as a Host event | Q4 | answered: A [questions.md Q4] |
+| 5 | TST SurveyStatus labels / JSON_Name | Q5 (fact) | answered: no source, fictional values in orbit.ts [questions.md Q5] |
+| 6 | MenuIcon Auto back arrow when opened by URL | exemption VIA-BACK-MENUICON-EVENTDETAIL | merged into parity-exemptions.json |
 
 ## 15. Acceptance criteria
-1. default (with the captured inputs, see Decisions): info rows "Fri 23 Oct 2026 - Sun 25 Oct 2026"-style dates,
-   location, "Host", type of event; Itinerary with three days (first selected) and two cards (Accommodation with View
-   Guests, Meeting 11:59 PM); footer. 2. loading: Skeleton_Loading EventDetail, empty header right and footer.
-3. offline: skeleton + shell Service Interruption. 4. Calls in order EventDetails → HostSurveyStatus → HasDocuments →
-   HasQRCode. 5. Navigations of section 9 with the original parameter names.
+1. State default (with the captured inputs, see Decisions): the screen shows
+   - info rows with dates in the style "Fri 23 Oct 2026 - Sun 25 Oct 2026", location, "Host" and type of event;
+   - a "View Event Guest List" row (booklet visible) and a Confirmed pill. Three host-allocation rows: accommodation,
+     accommodation, meal. Itinerary with three days 23/24/25 (first selected) and two cards: Accommodation with View
+     Guests, Meeting "Seat: Row 3" at 6:00 PM. Source: the real capture of 2026-11-06 (`analysis/dom/default.html`);
+   - the footer.
+2. State loading: Skeleton_Loading EventDetail, empty header right and footer.
+3. State offline: skeleton and shell Service Interruption.
+4. Calls in order: EventDetails → HostSurveyStatus → HasDocuments → HasQRCode.
+5. Navigations of section 9 with the original parameter names.
 
 ## 16. Decisions to confirm
-- Q1 → A: flag mobileOrbitEventBooklet default-only on (pending orchestrator answer; `flags.py decide` + `export`).
-- Q2 → A: CR-EventDetail-1; host survey row and Host Allocation accordion behind `<NotCaptured>` until applied.
-- Q3 → A: proposed call exemption CALL-IMAGE-ERROR-APPEVENTS-EVENTDETAIL; mock handler answers an empty EventList.
-- Q4 → A: shared mock event 7301 is a Host event (ORBIT_EVENT_TYPES.host, same colour/icon, OrbitLanding unchanged);
-  host milestones (two accommodation nights, meetings), hosts "Mr Julián & Mrs Fiorella Vitale", fictional type of
-  event "Weekend Conference Program", survey status JSON_Name "confirmed".
+- Q1 → A: flag mobileOrbitEventBooklet default-only on (answered; `flags.py decide` + `export` done) [questions.md Q1].
+- Q2 → A: CR-EventDetail-1 is applied [questions.md Q2; CR-EventDetail-1 status]. The route no longer shows `<NotCaptured>` for the host survey row and the Host Allocation accordion.
+- Q3 → A: call exemption CALL-IMAGE-ERROR-APPEVENTS-EVENTDETAIL (merged into parity-exemptions.json); mock handler answers an empty EventList.
+- Q4 → A: shared mock event 7301 is a Host event (ORBIT_EVENT_TYPES.host, same colour/icon, OrbitLanding unchanged). The mock data is:
+  - host milestones: two accommodation nights, meetings and a Saturday midday meal (meal-host, since the capture of
+    2026-11-06). The event's booklet is visible. The days follow the first Friday the 23rd at least a week after today;
+  - hosts: "Mr Julián & Mrs Fiorella Vitale";
+  - fictional type of event: "Weekend Conference Program";
+  - survey status JSON_Name: "confirmed".
 - Parity needs capture-plan `cloneQuery` with the captured inputs (proposed-exemptions.json `_comment`): parity opens
   the bare route while the capture came via OrbitLanding.
-- Proposed exemptions: VIA-BACK-MENUICON-EVENTDETAIL, CAPTURE-SKELETON-SHIMMER-PHASE-EVENTDETAIL.
+- Exemptions merged into parity-exemptions.json: VIA-BACK-MENUICON-EVENTDETAIL, CAPTURE-SKELETON-SHIMMER-PHASE-EVENTDETAIL.
 - Header-right QR / documents containers built from the compiled view without `line-height: initial` (rule 21; not
   captured); "View Event Guest List", GENERATE QR CODE, B/A edges, unavailable and no-milestone branches: compiled
   view, not captured.
@@ -217,10 +245,15 @@ backend must check that In_MemberId belongs to the signed-in household. Flags on
   unknown).
 
 ## 17. Patterns used
-- P-PARAMS: index.tsx inputs and navigations. P-DATA / P-CALLS: api.ts, OnReady order. P-MOCKS: mocks.ts
-  (contractHandler, shared Orbit world). P-STATES: skeleton, NoInformation, NotCaptured. P-BACK: useViewState /
-  useWasRestoredFromCache (block and EventDateSelection). P-LIST: OSList (host allocation, cards). P-OSUI:
-  DEPRECATED_AccordionItem via Accordion_Orbit. P-FLAGS: useFlagOn. P-DIALOG: showFeedbackMessage.
+- P-PARAMS: index.tsx inputs and navigations.
+- P-DATA / P-CALLS: api.ts, OnReady order.
+- P-MOCKS: mocks.ts (contractHandler, shared Orbit world).
+- P-STATES: skeleton, NoInformation.
+- P-BACK: useViewState / useWasRestoredFromCache (block and EventDateSelection).
+- P-LIST: OSList (host allocation, cards).
+- P-OSUI: DEPRECATED_AccordionItem via Accordion_Orbit.
+- P-FLAGS: useFlagOn.
+- P-DIALOG: showFeedbackMessage.
 
 ## 18. Builder notes
 Route files: `app/src/screens/EventDetail/{index.tsx,types.ts,api.ts,mocks.ts,components/}`; shared mock world

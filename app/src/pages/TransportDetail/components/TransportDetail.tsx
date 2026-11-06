@@ -8,7 +8,7 @@ import { getFormattedDateTimeById } from '@/lib/orbit/actions';
 import { OrbitMilestoneType } from '@/lib/orbit/staticEntities';
 import { TransportDetail_TravelInfo } from './TransportDetail_TravelInfo';
 
-/* TransportDetail (TD = analysis/sources/Connect2_OrbitMobile_MUI.Orbit_Blocks.TransportDetail.mvc.js: model :1-100,
+/* TransportDetail (TD = migration/sources/Connect2_OrbitMobile_MUI.Orbit_Blocks.TransportDetail.mvc.js: model :1-100,
    view :130-1432, controller :1433-1546). No capture: markup from the compiled view (Container = div[data-container]
    with its Style Classes or the extended `class` that replaces them; Expression = span[data-expression]; Icon =
    i[data-icon] "<style> fa fa-<icon> fa-1x", or only the extended `class`; OutSystemsReactWidgets.js). Both Lists are

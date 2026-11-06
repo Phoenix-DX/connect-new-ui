@@ -4,7 +4,7 @@ import { createBackEvent, runBackHandlers } from './backQueue';
 import { isBackTo, isInitialEntry } from './historyStack';
 import { enterView, saveView } from './viewCache';
 
-/* Navigation.onBeforeNavigate of NavigationEventsJS (NH:902-944; p:migration/screens/BookmarksByGroup/analysis/sources/
+/* Navigation.onBeforeNavigate of NavigationEventsJS (NH:902-944; p:migration/sources/
    pretty/NavigationHandler.controller.js), run by React Router's blocker before every navigation. A history navigation
    is blocked while the app navigates away from the current screen (NH:903-914). Unless AllowUpcomingNavigation was
    called (skipEvents, NH:915-916): a back navigation first goes through the back-navigation queue

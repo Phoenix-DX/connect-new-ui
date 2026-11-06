@@ -1,7 +1,7 @@
 # NavigationHandler.ConfirmationDialogs.NavigationConfirmationDialog
 
 - Kind: shared; build screens using it: ContactByEmailMember, ContactByEmailOneSchoolGlobal, ContactUsDetails, Profile
-- Compiled source: `migration/blocks/sources/NavigationHandler.ConfirmationDialogs.NavigationConfirmationDialog.mvc.js`
+- Compiled source: `migration/sources/survey/NavigationHandler.ConfirmationDialogs.NavigationConfirmationDialog.mvc.js`
 - Child blocks: NavigationHandler.NavigationHandler.NavigationHandler, NavigationHandler.NavigationHandler.PreventBackNavigation (queue: -)
 
 ## Inputs
@@ -275,4 +275,4 @@ _dependencies: []
         return View;
     })(OSView.BaseView.BaseWebBlock);
 ```
-(… 2 more lines in `migration/blocks/sources/NavigationHandler.ConfirmationDialogs.NavigationConfirmationDialog.mvc.js`)
+(… 2 more lines in `migration/sources/survey/NavigationHandler.ConfirmationDialogs.NavigationConfirmationDialog.mvc.js`)

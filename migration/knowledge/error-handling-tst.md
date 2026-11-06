@@ -6,10 +6,10 @@ the error page of item 8: `migration/clarify/review/item8-solution.md`.
 
 Evidence keys, as in the findings:
 
-- `W<n>`: character offset in `migration/runtime-sources/OutSystems.js`.
-- `R<n>`: character offset in `migration/runtime-sources/OutSystemsReactView.js`.
-- `ACF:<line>`: line in `migration/shell/sources/UBTConnect.App_Common.controller.js`.
-- `SW<n>`: character offset in `migration/runtime-sources/UBTConnect.pwaServiceWorker.js`.
+- `W<n>`: character offset in `migration/sources/runtime/OutSystems.js`.
+- `R<n>`: character offset in `migration/sources/runtime/OutSystemsReactView.js`.
+- `ACF:<line>`: line in `migration/sources/shell/UBTConnect.App_Common.controller.js`.
+- `SW<n>`: character offset in `migration/sources/runtime/UBTConnect.pwaServiceWorker.js`.
 
 ## What the user sees on TST
 

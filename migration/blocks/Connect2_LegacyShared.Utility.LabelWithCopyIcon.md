@@ -1,7 +1,7 @@
 # Connect2_LegacyShared.Utility.LabelWithCopyIcon
 
 - Kind: shared; build screens using it: AssembleDetail, AssembleEvents
-- Compiled source: `migration/blocks/sources/Connect2_LegacyShared.Utility.LabelWithCopyIcon.mvc.js`
+- Compiled source: `migration/sources/survey/Connect2_LegacyShared.Utility.LabelWithCopyIcon.mvc.js`
 - Child blocks: OutSystemsUI_2_23.Utilities.AlignCenter (queue: -)
 
 ## Inputs

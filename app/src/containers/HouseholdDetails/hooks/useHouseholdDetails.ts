@@ -1,4 +1,11 @@
-import { fetchHousehold, fetchHouseholdCoordinates, type Household, type HouseholdCallInputs } from '@/api/household';
+import {
+  fetchHousehold,
+  fetchHouseholdCoordinates,
+  fetchHouseholdGallery,
+  type Household,
+  type HouseholdCallInputs,
+} from '@/api/household';
+import type { UI_HouseholdTimelineImages } from '@/lib/ubtConnect/structures';
 import { cardContent, isDeceasedOrAncestry } from '@/components/household';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
@@ -41,7 +48,8 @@ export interface HouseholdDetailsParameters {
 export interface HouseholdDetailsFlags {
   hasPhotobookAccess: boolean;
   hasExtendedShare: boolean;
-  /** LD check mobileDirectoryHouseholdGallery (live TST of 2026-10-27): on hides the Coming Soon box of Photos. */
+  /** LD check mobileDirectoryHouseholdGallery (live TST of 2026-11-05, HouseholdDetails_Block.mvc.js:1274-1392): on
+      shows the gallery (GetHouseHold_Gallery) in the Photos tag, off only the Coming Soon box. */
   hasHouseholdGallery: boolean;
 }
 
@@ -61,11 +69,11 @@ export interface HouseholdDetailsEvents {
 
 /** The state and the event handlers of the household details.
     OnInitialize = OnReady: GetUserInformation; unless the view cache restored the view with the same age visibility,
-    the skeleton household, IsSkeletonOnly = the input, and the refresh of both data actions; then the two tags.
+    the skeleton household, IsSkeletonOnly = the input, and the refresh of the three data actions; then the two tags.
     OnParametersChanged: with a preview, its age visibility and GetHousehold; then, when In_IsSkeletonOnly turned
-    false, the refresh of both data actions. The state and the triggers of both flows come from useFlowState: the
+    false, the refresh of the three data actions. The state and the triggers of both flows come from useFlowState: the
     flows read `latest`, `parameters` and `flow.events`, as OutSystems assigns variables at once.
-    Flow scope (item 8): GetHousehold and GetHousehold_Coordinates are data actions (R1, `flow.fetch`): after the
+    Flow scope (item 8): GetHousehold, GetHousehold_Coordinates and GetHouseHold_Gallery are data actions (R1, `flow.fetch`): after the
     unmount their answer and their failure are dropped, so OnAfterFetch_GetHouseholdDetail, the event and the rest of
     OnParametersChanged do not run. Handler_OnClickNavigateTomarriedChildren_Household is an own action of the block
     (R3, `flow.own`, HouseholdDetails_Block.js:1745-1750). The "Refreshes" node of OnInitialize, after
@@ -133,13 +141,30 @@ export function useHouseholdDetails(
     const coordinates = await flow.fetch(fetchHouseholdCoordinates(callInputs())); // R1
     if (isAlive()) dispatch({ type: 'coordinatesFetched', coordinates });
   };
-  /** The "Refreshes" node: both refreshes, not awaited. Refresh_GetHouseholdDetail and
-      Refresh_GetHouseholdDetail_Coordinates are own actions of the block (R3, ensureControllerAlive,
-      HouseholdDetails_Block.js:2326+, 2512+): after the unmount the call throws ControllerDisposedException, so the
-      flow that calls it stops there and the handler ignores the exception. */
+  /** GetHouseHold_Gallery refresh (live TST of 2026-11-05, HouseholdDetails_Block.mvc.js:1995): Fetching when the
+      call starts, Fetched with the images, Error on a failure that is not a ViewHasChangedException. Its OnAfterFetch
+      is empty (:2612-2635). */
+  const refreshGallery = async (isAlive: IsAlive) => {
+    dispatch({ type: 'galleryFetchStarted' });
+    let images: UI_HouseholdTimelineImages[];
+    try {
+      images = await flow.fetch(fetchHouseholdGallery(callInputs())); // R1
+    } catch (error) {
+      if (isAlive() && !isViewHasChangedException(error)) dispatch({ type: 'galleryFetchFailed' });
+      throw error;
+    }
+    if (isAlive()) dispatch({ type: 'galleryFetched', images });
+  };
+  /** The "Refreshes" node: the three refreshes, not awaited, in the order of the live code of 2026-11-05
+      (ScreenEvent_OnReady.RefreshesJS and ScreenEvent_OnParametersChanged.RefreshesJS, HouseholdDetails_Block.mvc.js
+      :3174-3178, 3187-3191). Refresh_GetHouseholdDetail, Refresh_GetHouseholdCoordinates and
+      Refresh_GetHouseHold_Gallery are own actions of the block (R3, ensureControllerAlive, :2507): after the unmount
+      the call throws ControllerDisposedException, so the flow that calls it stops there and the handler ignores the
+      exception. */
   const refreshes = flow.own((isAlive: IsAlive) => {
     flow.run(() => refreshHousehold(isAlive));
     flow.run(() => refreshCoordinates(isAlive));
+    flow.run(() => refreshGallery(isAlive));
   });
 
   /** OnInitialize (OnReady). After the unmount, GetUserInformation_Wrapper (a module action) still answers; the

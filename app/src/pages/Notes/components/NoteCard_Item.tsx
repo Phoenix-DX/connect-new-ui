@@ -16,9 +16,8 @@ export interface NoteCard_ItemProps {
 }
 
 /** One note card (survey UBTConnect.Notes.NoteCard_Item.mvc.js): the card with notes (`containers/CardWithNotes`:
-    ItemCard_WithNotes with the event dates of NoteCardContent (TST publish of 2026-10-29), the note preview and the
-    NotesSheet), with the Add Note action. The block keeps its own copy of
-    NoteCardItem (`useCardNotes`): Handler_OnNotesChanged replaces its notes, Handler_OnNoteDeleted removes the note
+    ItemCard_WithNotes (live TST of 2026-11-05: no event time row), the note preview and the NotesSheet), with the Add
+    Note action. The block keeps its own copy of NoteCardItem (`useCardNotes`): Handler_OnNotesChanged replaces its notes, Handler_OnNoteDeleted removes the note
     (Total = length) or, for the last note, raises UpdateNoteCardsList. */
 export function NoteCard_Item({
   id,

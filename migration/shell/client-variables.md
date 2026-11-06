@@ -1,6 +1,6 @@
 # Client variables (from TST compiled code, 2026-10-14)
 
-Source: `migration/shell/sources/<Module>.clientVariables.js` (static GET from TST). Names, types and compiled defaults (no default = the type default: false, 0, ""). Runtime values come from app-start calls (e.g. SynchAppContext) and are not listed.
+Source: `migration/sources/shell/<Module>.clientVariables.js` (static GET from TST). Names, types and compiled defaults (no default = the type default: false, 0, ""). Runtime values come from app-start calls (e.g. SynchAppContext) and are not listed.
 
 | Module | Variable | Type | Default |
 |---|---|---|---|

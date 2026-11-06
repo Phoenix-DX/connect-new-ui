@@ -151,4 +151,24 @@ describe('householdDetailsReducer', () => {
     );
     expect(state.timelineImages.map((i) => i.IsCurrent)).toEqual([false, true]);
   });
+
+  it('GetHouseHold_Gallery: Fetching at first, Fetched with the images, Error on a failure', () => {
+    expect(INITIAL_HOUSEHOLD_DETAILS_STATE.gallery).toEqual({ images: [], dataFetchStatus: DataFetchStatus.Fetching });
+    const images = [{ SignedURL: 'https://img.example/a.jpg' }];
+    let state = householdDetailsReducer(INITIAL_HOUSEHOLD_DETAILS_STATE, { type: 'galleryFetched', images });
+    expect(state.gallery).toEqual({ images, dataFetchStatus: DataFetchStatus.Fetched });
+    state = householdDetailsReducer(state, { type: 'galleryFetchStarted' });
+    expect(state.gallery).toEqual({ images, dataFetchStatus: DataFetchStatus.Fetching });
+    state = householdDetailsReducer(state, { type: 'galleryFetchFailed' });
+    expect(state.gallery).toEqual({ images, dataFetchStatus: DataFetchStatus.Error });
+    expect(state.household).toBe(INITIAL_HOUSEHOLD_DETAILS_STATE.household);
+  });
+
+  it('Handler_TimelinePhotoSelected loops TEMP_TimelineImages only: the gallery stays as it is (:2942-2972)', () => {
+    const images = [{ SignedURL: 'https://img.example/a.jpg' }];
+    const before = householdDetailsReducer(INITIAL_HOUSEHOLD_DETAILS_STATE, { type: 'galleryFetched', images });
+    const after = householdDetailsReducer(before, { type: 'timelinePhotoSelected', date: '2021-01-01' });
+    expect(after.gallery).toBe(before.gallery);
+    expect(after.timelineImages).toEqual([]);
+  });
 });

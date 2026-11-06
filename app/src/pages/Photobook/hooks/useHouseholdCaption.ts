@@ -7,7 +7,7 @@ import { bottomSheetClose, bottomSheetOpen } from '@/components/ui/lib/actions';
     shows. The block calls this hook and renders the info button and the sheet with the result.
     @origin UBTConnect.Directory_Photobook.Photobook_Options_Left */
 
-/** GetSkeleton_UI_PhotobookCaption (UBTConnect.controller.js, raw copy in analysis/sources/raw): the caption shown
+/** GetSkeleton_UI_PhotobookCaption (UBTConnect.controller.js, raw copy in migration/sources/raw/): the caption shown
     until DataActionGetHouseholdCaption answers. */
 export const SKELETON_CAPTION =
   'SURNAME (Name - Local) Name & Name (Name Name* - Locality, AA) First name m, Name m, Name m (Locality) Name 00/00, Name';

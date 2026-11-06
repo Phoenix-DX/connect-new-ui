@@ -1,7 +1,7 @@
 # Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item_Badge
 
 - Kind: shared; build screens using it: AssembleDetail, AssembleEvents
-- Compiled source: `migration/blocks/sources/Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item_Badge.mvc.js`
+- Compiled source: `migration/sources/survey/Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item_Badge.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

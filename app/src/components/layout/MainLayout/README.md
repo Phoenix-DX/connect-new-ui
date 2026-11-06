@@ -1,7 +1,7 @@
 # Layout_MainPages
 
 OutSystems: `UBTConnectLibrary.Layouts.Layout_MainPages` · pack `migration/blocks/UBTConnectLibrary.Layouts.Layout_MainPages.md`
-· compiled source `migration/screens/CommunityBusinessDetails_CoomingSoon/analysis/sources/pretty/UBTConnectLibrary.Layouts.Layout_MainPages.mvc.js`
+· compiled source `migration/sources/pretty/UBTConnectLibrary.Layouts.Layout_MainPages.mvc.js`
 
 | Input                       | Type    | Prop                          | Default |
 | --------------------------- | ------- | ----------------------------- | ------- |
@@ -30,7 +30,7 @@ Placeholders `Placeholder_Header_Title`, `Placeholder_Header_Right`, `Placeholde
 
 - IsHeaderScrolled background (`header-top-content ph background-primary-gradient-radial`), PullToRefresh, AddHeaderGap
   False, accessibility class: compiled code only, tested with `it`.
-- **SetMainScroll** (`../lib/actions.ts`, port of ScrollEvent.mainScroll, runtime-sources/UBTConnectLibrary.ScrollAnimations.js
+- **SetMainScroll** (`../lib/actions.ts`, port of ScrollEvent.mainScroll, sources/runtime/UBTConnectLibrary.ScrollAnimations.js
   :206-271): as SetMainFixedScroll with the whole `header` as the header size. SetScrollShadow / RemoveScrollEvents /
   ClearTimeout as in Layout_DetailPage.
 - OutSystems UI LayoutReady / SetLang / LayoutDestroy / SkipToContent: not ported (as the other layouts). AddFavicon's

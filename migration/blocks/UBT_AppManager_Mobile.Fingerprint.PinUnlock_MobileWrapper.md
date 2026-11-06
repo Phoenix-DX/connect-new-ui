@@ -1,7 +1,7 @@
 # UBT_AppManager_Mobile.Fingerprint.PinUnlock_MobileWrapper
 
 - Kind: shell; build screens using it: AcceptPendingPolicies, BookmarksByGroup, BrowseCountries, BrowseDirectory, CommunityBusinessDetails_CoomingSoon, ConnectShare, ContactByEmailMember, ContactByEmailOneSchoolGlobal, ContactUsDetails, ContactUsMenu, CountryDetails, CountryList, FeedItemDetail, HomeFeed, HouseholdCarousel, HouseholdDetails, Household_Relations, LegacyShareObject, Locality_Details, Login, Menu, MessageDetail, MessageList, MyBookmarks, MyEntertaining, Notes, Notifications, OneSchoolGlobalDetails, PINBiometricsMenu, PINChange, PINRegister, PINUnlock, Photobook, Profile, Search, Services, Splash, SupperMeeting_Carousel, SupperMeeting_Details, TermsAndPoliciesMenu, Updates_SingleList
-- Compiled source: `migration/screens/BookmarksByGroup/analysis/sources/pretty/UBT_AppManager_Mobile.Fingerprint.PinUnlock_MobileWrapper.mvc.js`
+- Compiled source: `migration/sources/pretty/UBT_AppManager_Mobile.Fingerprint.PinUnlock_MobileWrapper.mvc.js`
 - Child blocks: UBT_AppManager.PIN.Pincode_Unlock, UBT_AppManager_Mobile.Fingerprint.FingerprintScanner (queue: UBT_AppManager.PIN.Pincode_Unlock, UBT_AppManager_Mobile.Fingerprint.FingerprintScanner)
 
 ## Inputs
@@ -290,4 +290,4 @@ define("UBT_AppManager_Mobile.Fingerprint.PinUnlock_MobileWrapper.mvc$view", ["O
                             }
                         }))];
 ```
-(… 41 more lines in `migration/screens/BookmarksByGroup/analysis/sources/pretty/UBT_AppManager_Mobile.Fingerprint.PinUnlock_MobileWrapper.mvc.js`)
+(… 41 more lines in `migration/sources/pretty/UBT_AppManager_Mobile.Fingerprint.PinUnlock_MobileWrapper.mvc.js`)

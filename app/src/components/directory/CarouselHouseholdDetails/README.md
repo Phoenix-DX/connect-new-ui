@@ -1,7 +1,7 @@
 # EntitiesCarousel_HouseholdDetails
 
 `UBTConnect.Directory_Caroussel.EntitiesCarousel_HouseholdDetails`: a household slide. Compiled source:
-`migration/screens/HouseholdCarousel/analysis/sources/pretty/UBTConnect.Directory_Caroussel.EntitiesCarousel_HouseholdDetails.mvc.js`.
+`migration/sources/pretty/UBTConnect.Directory_Caroussel.EntitiesCarousel_HouseholdDetails.mvc.js`.
 
 | Input                         | Prop               | Default |
 | ----------------------------- | ------------------ | ------- |

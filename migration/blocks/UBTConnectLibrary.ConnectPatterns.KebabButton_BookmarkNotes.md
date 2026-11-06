@@ -1,7 +1,7 @@
 # UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes
 
 - Kind: shared; build screens using it: HouseholdCarousel, HouseholdDetails, Household_Relations, Locality_Details, Notes, OneSchoolGlobalDetails, Profile, SupperMeeting_Carousel, SupperMeeting_Details
-- Compiled source: `migration/blocks/sources/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.mvc.js`
+- Compiled source: `migration/sources/survey/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.mvc@e2889f0e.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.ConnectCorePatterns.ContextMenu (queue: -)
 
 ## Inputs

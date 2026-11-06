@@ -1,7 +1,7 @@
 # UBTConnectLibrary.ConnectPatterns.ImageCard__Content
 
 - Kind: shared; build screens using it: HouseholdCarousel, HouseholdDetails, Locality_Details, OneSchoolGlobalDetails, Profile, SupperMeeting_Carousel, SupperMeeting_Details
-- Compiled source: `migration/screens/HouseholdCarousel/analysis/sources/pretty/UBTConnectLibrary.ConnectPatterns.ImageCard__Content.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnectLibrary.ConnectPatterns.ImageCard__Content.mvc.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.CustomContainer (queue: -)
 
 ## Inputs

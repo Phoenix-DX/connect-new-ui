@@ -4,7 +4,7 @@ Managed by route.py. Facts may be answered by the OutSystems MCP; decisions and 
 
 ## Q1 [decision] uncaptured branches (answered)
 - Question: The capture shows only a guest view with the host allocation pending (IsPublished False). Build the other branches of the compiled view (host view: Adults/Children in the banner, Special Needs section with Dietary/Mobility/Other sub-sections; published allocation: host photo, name, address + Directions, Guest Households list of EventDetail_ListItem rows) from the compiled code, or render them as NotCaptured?
-- Evidence: analysis/sources/pretty/Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc.js view :319-1100; EventDetail_Banner/HostCard/Section/ListItem .mvc.js views; survey sources EventDetail_SpecialNeeds_ListItem.mvc.js; dom/default.html:66-148 (only the pending guest view)
+- Evidence: migration/sources/pretty/Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc.js view :319-1100; EventDetail_Banner/HostCard/Section/ListItem .mvc.js views; survey sources EventDetail_SpecialNeeds_ListItem.mvc.js; dom/default.html:66-148 (only the pending guest view)
 - OutSystems MCP: MCP not available to route agents
 - Options: A: build from the compiled code with fictional data | B: NotCaptured (recommended: A)
 - Answer (user, 2026-10-16T10:42:47): A (recommended), auto-accepted (user instruction 2026-10-16 night): uncaptured host and published branches built from the compiled code
@@ -34,3 +34,9 @@ Managed by route.py. Facts may be answered by the OutSystems MCP; decisions and 
 - Evidence: route-spec.md, parity reports, feedback.md
 - Options: confirm | change (say what)
 - Answer (user, 2026-10-16T11:23:43): confirm (auto-confirmed: user instruction 2026-10-15 16:59)
+
+## Q6 [review] review round 3 (answered, blocking)
+- Question: Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A (answered A, user 2026-10-16) [questions.md Q1]: uncaptured branches built from the compiled code.; Q2 → A (answered A, user 2026-10-16) [questions.md Q2]: cloneQuery `mocksession=unlocked&EventHostId=88231&EventId=70415`.; Q3 → A (answered A, user 2026-10-16) [questions.md Q3]: 70415 pending as captured; the other four meals published.; Fictional data for the three unrecorded calls (shared `src/mocks/fictional/ldm.ts`).; MenuIcon: the Orbit `MenuAction.Auto` goes to MenuIcon as Back, as captured (`app-menu-icon back`, dom/default.html).; CR-LDM_EventDetail_V2-1: move flipHouseholdName / getLocalityName / addAuditEvent_LDM / generateScreenURL to shared.; Proposed exemptions (not applied, `proposed-exemptions.json`):; Person_Contact_Options link cursor (capture href artifact).; Banner locality/date column offset (masked text).; With the Q2 cloneQuery, the diagnostic parity is default style 6 + position 1 (both covered). Loading and offline; Without the Q2 cloneQuery, default shows "No event information." (EventId 0). Feature flags: action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); action:getHasCarouselEnabled → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)
+- Evidence: route-spec.md, parity reports, feedback.md
+- Options: confirm | change (say what)
+- Answer (user, 2026-11-06T20:35:27): confirm (user, 2026-11-06: 'ok làm tiếp đi tôi accept' for AcceptPendingPolicies, EventDetail, MilestoneDetail, LDM_EventDetail_V2, AssembleDetail)

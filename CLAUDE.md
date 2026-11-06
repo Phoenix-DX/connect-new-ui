@@ -1,19 +1,21 @@
 # connect-new: UBTConnect (OutSystems 11) → React
 
 Migrate the OutSystems app **UBTConnect TST** (`https://ubtm-tst.ubtconnectglobal.com/UBTConnect/`) to a React app
-(`app/`) with mock data, screen by screen, matching the original 1:1. All 64 routes are migrated. The project skill
+(`app/`) with mock data, screen by screen, matching the original 1:1. TST has 84 routes (live survey, 2026-10-28): all 68 `build` routes are migrated, and the
+16 `skip` routes show the `NotMigrated` placeholder. The project skill
 **outsystems-screen-spec** (`.claude/skills/outsystems-screen-spec/`) is a reference for how the routes were captured,
 specified and checked. Use it to re-capture or re-check a route. Architecture work follows the Refactor section below.
 
 ## Paths
 
-- `SK=.claude/skills/outsystems-screen-spec/scripts`: every command below is `python3 $SK/<x>.py` or `node $SK/<x>.cjs`,
-  always run from the project root (scripts default to `migration/`, `app/`, `.auth/`, `capture/` relative to it).
-- `capture/survey-UBTConnect.json`: static survey (compiled code only).
+- `SK=tools/pipeline`: every command below is `python3 $SK/<x>.py` or `node $SK/<x>.cjs`,
+  always run from the project root (scripts default to `migration/`, `app/`, `.auth/` relative to it).
+- `migration/survey/survey-UBTConnect.json`: static survey of the compiled code (live, not in git; the copy of 2026-10-13 is tracked).
 - `migration/`: board, survey, catalog, stack, patterns, flags, per-route captures/specs/questions/parity.
 - `app/`: the React app. Folders of `app/src/`: `app`, `pages`, `containers`, `components`, `api`, `platform`, `lib`,
   `legacy/os`, `mocks`, `styles`, `vendor`, `pwa`, `sw`, `test`. Read `app/README.md` and
   `app/docs/architecture/overview.md` first.
+- `migration/route-check/`: the check of the routes, OutSystems against React (facts only). Start with `migration/route-check/README.md`.
 - `.auth/`: credentials and session. **SECRET.**
 
 ## Hard rules
@@ -39,7 +41,7 @@ specified and checked. Use it to re-capture or re-check a route. Architecture wo
 
 - Reply to me in Vietnamese, whatever language I write in (Vietnamese or English). Keep code, commands, file names and
   identifiers in English. Files written in the project (specs, docs, notes) stay in English and follow
-  `migration/english-docs/style-rules.md`.
+  `migration/style/style-rules.md`.
 - Questions to me: one session per topic (scope, stack, flags), grouped, each with evidence, options and a recommendation.
 - At the start of every session: `python3 $SK/route.py plan`, read `migration/contexts/INDEX.md`, and tell me in 5 lines
   where we are and what is next.
@@ -66,7 +68,7 @@ specified and checked. Use it to re-capture or re-check a route. Architecture wo
 - Run it only through the skill **refactor-master**: `/refactor-master status | start | continue | phase P<n> | step <id>`.
   The master routes each step to the agents `refactor-developer`, `refactor-tester`, `refactor-documenter`
   (`.claude/agents/`). State: `migration/refactor/state.json`; guide: `migration/refactor/README.md`.
-- The refactor does not use `route.py` (D4). Its parity gate is `migration/tools/refactor_parity.py` (built in P0-2).
+- The refactor does not use `route.py` (D4). Its parity gate is `tools/parity/refactor_parity.py` (built in P0-2).
 
 ## Environment
 

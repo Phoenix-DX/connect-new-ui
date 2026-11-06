@@ -1,7 +1,7 @@
 # UBTConnectLibrary.Layouts.Layout_HomePage
 
 - Kind: shared; build screens using it: HomeFeed, Profile
-- Compiled source: `migration/screens/HomeFeed/analysis/sources/pretty/UBTConnectLibrary.Layouts.Layout_HomePage.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnectLibrary.Layouts.Layout_HomePage.mvc.js`
 - Child blocks: NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top, OutSystemsUI_2_23.Private.PullToRefresh, UBTConnectLibrary.BasePatterns.Columns_Two, UBTConnectLibrary.ConnectPatterns.Icon, UBTConnectLibrary.Layouts.SVG_Background_Custom, UBTConnectLibrary.Layouts.SubLayout_HomePageSearch (queue: UBTConnectLibrary.Layouts.SubLayout_HomePageSearch)
 
 ## Inputs
@@ -372,4 +372,4 @@ define("UBTConnectLibrary.Layouts.Layout_HomePage.mvc$view", ["OutSystems/Client
                                         return OS.Flow.tryFinally(function() {
                                             var varBag = {};
 ```
-(… 207 more lines in `migration/screens/HomeFeed/analysis/sources/pretty/UBTConnectLibrary.Layouts.Layout_HomePage.mvc.js`)
+(… 207 more lines in `migration/sources/pretty/UBTConnectLibrary.Layouts.Layout_HomePage.mvc.js`)

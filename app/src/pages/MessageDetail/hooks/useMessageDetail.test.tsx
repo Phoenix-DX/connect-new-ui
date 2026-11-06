@@ -18,19 +18,24 @@ import { IgnorableSystemException } from '@/legacy/os/os-exceptions';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { getHasAssemble, getHasOrbitAccess, getHasOrbitHostSurvey } from '@/pages/MessageDetail/actions';
 import type { MessageDetailInputs } from '@/pages/MessageDetail/inputs';
-import { MessageInfoType, MessageSenderTarget, MessageType, ParameterName } from '@/pages/MessageDetail/staticEntities';
+import {
+  MessageInfoType,
+  MessageSenderTarget,
+  MessageType,
+  ParameterName,
+} from '@/containers/MessageInstance/staticEntities';
 import { feedbackMessageAutoClose, showFeedbackMessage } from '@/platform/feedback';
 import { replaceOnUpcomingNavigation } from '@/platform/navigation';
 import { MOCK_USER_ID, mockUserInformation } from '@/platform/session/mockUser';
 import { getClientVar, setClientVar, setSignedInUser } from '@/platform/session/session';
 import { getUserInformation } from '@/platform/session/userInfo';
 import { cache_SignedImageURL_Get } from '@/lib/ubtConnectUtils/actions';
-import { messageDetailReducer } from './messageDetailState';
+import { messageDetailReducer } from '@/containers/MessageInstance/messageDetailState';
 import { useMessageDetail, type MessageDetailFlows } from './useMessageDetail';
 
 /** The reducer as a spy, so a test sees every state write. */
-vi.mock('./messageDetailState', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('./messageDetailState')>();
+vi.mock('@/containers/MessageInstance/messageDetailState', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/containers/MessageInstance/messageDetailState')>();
   return { ...actual, messageDetailReducer: vi.fn(actual.messageDetailReducer) };
 });
 

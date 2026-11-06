@@ -1,7 +1,7 @@
 # UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper
 
 - Kind: shell; build screens using it: AcceptPendingPolicies, BookmarksByGroup, BrowseCountries, BrowseDirectory, CommunityBusinessDetails_CoomingSoon, ConnectShare, ContactByEmailMember, ContactByEmailOneSchoolGlobal, ContactUsDetails, ContactUsMenu, CountryDetails, CountryList, FeedItemDetail, HomeFeed, HouseholdCarousel, HouseholdDetails, Household_Relations, LegacyShareObject, Locality_Details, Login, Menu, MessageDetail, MessageList, MyBookmarks, MyEntertaining, Notes, Notifications, OneSchoolGlobalDetails, PINBiometricsMenu, PINChange, PINRegister, PINUnlock, Photobook, Profile, Search, Services, Splash, SupperMeeting_Carousel, SupperMeeting_Details, TermsAndPoliciesMenu, Updates_SingleList
-- Compiled source: `migration/screens/BookmarksByGroup/analysis/sources/pretty/UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.mvc.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.Columns_Two, UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.BasePatterns.CustomText, UBTConnectLibrary.ConnectPatterns.Icon, UBTConnectLibrary.ConnectPatterns.SkeletonSection, UBTConnect_Utils.CacheControl.CacheControl_Policies, UBT_AppManager_Mobile.Fingerprint.PinUnlock_MobileWrapper (queue: UBT_AppManager_Mobile.Fingerprint.PinUnlock_MobileWrapper)
 
 ## Inputs
@@ -291,4 +291,4 @@ define("UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.mvc$view", ["OutSystem
                         }, React.createElement(UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, {
                             inputs: {
 ```
-(… 326 more lines in `migration/screens/BookmarksByGroup/analysis/sources/pretty/UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.mvc.js`)
+(… 326 more lines in `migration/sources/pretty/UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.mvc.js`)

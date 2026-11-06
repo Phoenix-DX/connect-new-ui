@@ -9,7 +9,7 @@ the scope decisions. It has no content about the React app
 
 | Path | Content |
 |---|---|
-| `build_dashboard.py` | Builder. Reads the repository data and writes `site/`. |
+| `build_dashboard.py` | Builder. Reads the repository data and writes `site/`. Git ignores `site/` since 2026-11-06: build it before you publish. |
 | `src/page.html` | Page template (layout, styles, script). The builder puts the data into it. |
 | `content/content.en.json` | Text for areas, flows, scope reasons and decisions. A writer agent and a reviewer agent made it. |
 | `site/index.html` | The built page. This is the artifact page. |
@@ -23,7 +23,7 @@ step is not a link in the TST code.
 | `site-review/` | Contact sheets for the privacy check. Local only (`.gitignore`). Never publish them. |
 
 Data sources: `migration/survey/dev-inventory.json` (DEV snapshot from the OutSystems MCP),
-`migration/survey/screens.json`, `migration/board.md`, `migration/tools/sitemap.py`, the route specifications and
+`migration/survey/screens.json`, `migration/board.md`, `tools/generate/sitemap.py`, the route specifications and
 `migration/screens/<Screen>/parity/*.expected.png` (TST captures with masked data).
 
 ## Build

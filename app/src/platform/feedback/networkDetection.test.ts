@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 import { networkDetection, PING_URL, startNetworkDetection } from './networkDetection';
 
-/* NetworkDetection (ND = migration/shell/sources/NetworkDetection.controller.js; shell-facts U11). */
+/* NetworkDetection (ND = migration/sources/shell/NetworkDetection.controller.js; shell-facts U11). */
 
 let stop: () => void = () => undefined;
 let pingOk: boolean | 'reject' = true;

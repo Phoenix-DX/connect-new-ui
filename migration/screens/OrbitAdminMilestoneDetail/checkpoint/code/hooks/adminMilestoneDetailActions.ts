@@ -2,7 +2,7 @@ import { getFormattedDateTime, getFormattedTime_FromDateTime } from '@/lib/orbit
 import { osDate } from '@/lib/os-wire';
 
 /** The client logic of ScreenBlock_AdminMilestoneDetail without React (SB = the compiled block in
-    migration/screens/OrbitAdminMilestoneDetail/sources/): the admin id rule of ScannerAdminInfo (OnHandle_ScanCode)
+    migration/sources/runtime/): the admin id rule of ScannerAdminInfo (OnHandle_ScanCode)
     and the expressions of the milestone rows. useAdminMilestoneDetail and the view call them. The reading of a scanned
     QR code (deserializeQRCodeInformation) is in lib/orbit/actions.ts and containsIgnoreCase in
     lib/ubtConnectUtils/actions.ts, shared with OrbitAdminEventDetail (auto decision O2, 2026-10-29).

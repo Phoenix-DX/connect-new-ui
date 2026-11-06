@@ -240,10 +240,75 @@ function meetingsOf(hall: AssembleHall, today: Date): AssembleEventSummaryWire[]
   return out;
 }
 
-/** Every hall's meetings, oldest first (computed once per page load, relative to the day the mock starts). */
-export const ASSEMBLE_MEETINGS: readonly AssembleEventSummaryWire[] = ASSEMBLE_HALLS.flatMap((h) =>
-  meetingsOf(h, new Date()),
-);
+/* ---- One-off meetings (outside the weekly programme) ----
+   The Bahia Blanca halls pray together online on the day the mock starts, at 07:00, hosted by the user's hall. The
+   meeting link is shared in the local Signal chat, so the event has none ("Link is not available, refer to local
+   signal chat"), and the card shows the virtual-meeting picture (IsPBCC False, IsVirtual True). The counts are the
+   three Bahia Blanca halls together. Its shape is the first real TST capture of AssembleDetail (2026-11-06,
+   migration/screens/AssembleDetail/analysis/dom/default.html: a virtual meeting without link, one invited locality,
+   no interchange locality, no GMS local contact, no note). */
+function onlinePrayerMeeting(today: Date): AssembleEventSummaryWire {
+  const host = ASSEMBLE_HALLS.find((h) => h.id === USER_HALL_ID);
+  if (host === undefined) throw new Error(`no hall ${USER_HALL_ID} in ASSEMBLE_HALLS`);
+  const halls = ASSEMBLE_HALLS.filter((h) => h.locality === host.locality);
+  const key = dateKey(today);
+  const type = ASSEMBLE_EVENT_TYPES[3];
+  return {
+    EventId: `${host.id}-${key.replaceAll('-', '')}-${type.Id}-online`,
+    SeriesId: `${host.id}-once-${type.Id}-online`,
+    DateTime: `${key}T07:00:00`,
+    HostingSubdivisionId: host.id,
+    HostingLocation: host.name,
+    HostingSubdivisionFormattedAddress: host.address,
+    HostingSubdivisionUseCoordinates: false,
+    HostingSubdivisionLatitude: host.latitude,
+    HostingSubdivisionLongitude: host.longitude,
+    HostingSubdivisionHallPhotoSignedURL: '',
+    AssembleEventType: { Id: type.Id, Title: type.Title },
+    RecurrenceTypeId: 'once',
+    RecurrenceTypeLabel: 'Once',
+    IsCustomRecurrence: false,
+    RecurrencyFirstDate: key,
+    IsAllDay: false,
+    BrothersCount: String(halls.reduce((n, h) => n + h.brothers, 0)),
+    SistersCount: String(halls.reduce((n, h) => n + h.sisters, 0)),
+    IsVirtual: true,
+    Notes: '',
+    LocalityName: host.locality,
+    CountryName: host.country,
+    VirtualMeetingTypeLabel: 'Video call',
+    VirtualMeetingLink: '',
+    VirtualMeetingId: '',
+    VirtualMeetingPassword: '',
+    IsPBCC: false,
+    IsUnavailable: false,
+  };
+}
+
+const ONLINE_PRAYER_MEETING = onlinePrayerMeeting(new Date());
+
+/** Every hall's meetings and the one-off meetings, oldest first (computed once per page load, relative to the day the
+    mock starts). */
+export const ASSEMBLE_MEETINGS: readonly AssembleEventSummaryWire[] = [
+  ...ASSEMBLE_HALLS.flatMap((h) => meetingsOf(h, new Date())),
+  ONLINE_PRAYER_MEETING,
+].sort((a, b) => a.DateTime.localeCompare(b.DateTime));
+
+/* ---- Ids of the TST account of the capture of 2026-11-06 ----
+   The capture plan opens AssembleDetail with the ids of the TST account (migration/capture-plan.json: EventId
+   58dbb5ab-…, SeriesId 888d1cfc-…, Start 2026-11-06T07:00:00.000Z), and the parity opens the React route with the same
+   query. The world keeps its own ids; the route's mocks translate a TST id with assembleWorldId() before they look the
+   world up and answer with the ids the request sent (AssembleDetail/mocks.ts). Add the ids of another capture here,
+   never a second copy of the meeting. */
+const ASSEMBLE_TST_ID_ALIASES: Readonly<Record<string, string>> = {
+  /** EventId of the captured meeting: the online prayer meeting of the world. */
+  '58dbb5ab-047e-469d-9558-2f8967a7ec41': ONLINE_PRAYER_MEETING.EventId,
+  /** SeriesId of the captured meeting. */
+  '888d1cfc-697a-4d0e-88bc-2c5a3e3f898d': ONLINE_PRAYER_MEETING.SeriesId,
+};
+
+/** The id of the fictional world for an id of the capture plan (an id of the world stays as it is). */
+export const assembleWorldId = (id: string): string => ASSEMBLE_TST_ID_ALIASES[id] ?? id;
 
 export const hallName = (subdivisionId: string): string =>
   ASSEMBLE_HALLS.find((h) => h.id === subdivisionId)?.name ?? '';
@@ -255,7 +320,8 @@ export const hallName = (subdivisionId: string): string =>
    households of that hall in the directory cast (./directory.ts), at least 4. The hall's household rows themselves come
    from GetCacheableSubdivision_V2 (CR-AssembleDetail-1), so the event sends none. GMS local contacts: two members of
    the Herrera household of the Orbit cast (./orbit.ts, ids the Connect2_LegacyShared member-contact mock resolves),
-   for the Bahia Blanca halls only. */
+   for the Bahia Blanca halls only. A virtual meeting invites the hosting locality only and has no GMS local contact
+   (nobody visits a hall; the captured virtual meeting of 2026-11-06 has one locality and no contact). */
 
 const HALL_LOCALITY_IDS: Readonly<Record<string, string>> = {
   'Bahia Blanca': '252',
@@ -298,9 +364,10 @@ export function assembleEventOf(
 ): AssembleEventWire | undefined {
   const summary = ASSEMBLE_MEETINGS.find((m) => m.EventId === eventId);
   if (!summary) return undefined;
-  const interchange = INTERCHANGE_EVENT_TYPES.has(summary.AssembleEventType.Id)
-    ? INTERCHANGE_LOCALITY[summary.LocalityName]
-    : undefined;
+  const interchange =
+    !summary.IsVirtual && INTERCHANGE_EVENT_TYPES.has(summary.AssembleEventType.Id)
+      ? INTERCHANGE_LOCALITY[summary.LocalityName]
+      : undefined;
   return {
     AssembleEventSummary: summary,
     AssembleAttendeeSubdivisionList: wireList([localityDetails(summary.LocalityName, householdCount)]),
@@ -308,6 +375,8 @@ export function assembleEventOf(
       interchange === undefined ? [] : [localityDetails(interchange, householdCount)],
     ),
     AssembleAttendeeSpecialGuestList: wireList([]),
-    GSMContactList: wireList(summary.LocalityName === 'Bahia Blanca' ? [...ASSEMBLE_GMS_CONTACT_IDS] : []),
+    GSMContactList: wireList(
+      !summary.IsVirtual && summary.LocalityName === 'Bahia Blanca' ? [...ASSEMBLE_GMS_CONTACT_IDS] : [],
+    ),
   };
 }

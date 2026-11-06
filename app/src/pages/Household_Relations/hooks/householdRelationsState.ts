@@ -26,10 +26,13 @@ export const MEMBER_DEFAULTS: HouseholdMember = {
   HasCTAs: false,
 };
 
-/** The block variables: the inputs that the data actions send (UserAge_Visibility, isLoading, ShowNotesSheet) and the
-    three data actions. FetchNotes is never refreshed: the notes sheet only edits the local list. */
+/** The block variables: the inputs that the data actions send (UserAge_Visibility, isLoading, ShowNotesSheet),
+    IsBookmarked and the three data actions. FetchNotes is never refreshed: the notes sheet only edits the local list. */
 export interface HouseholdRelationsState {
   UserAge_Visibility: boolean;
+  /** IsBookmarked (Boolean, default False; live HouseholdRelations_Block.mvc.js:100-102): the type of the Bookmark
+      button. The view cache keeps it: OnInitialize does not read the bookmark of a restored view (:2226-2228). */
+  IsBookmarked: boolean;
   isLoading: boolean;
   ShowNotesSheet: boolean;
   Get_MemberDetails: MemberRelations & { dataFetchStatus: DataFetchStatus };
@@ -40,6 +43,7 @@ export interface HouseholdRelationsState {
 /** The variables with their default values: the state of a view that the view cache restores without this block. */
 export const INITIAL_HOUSEHOLD_RELATIONS_STATE: HouseholdRelationsState = {
   UserAge_Visibility: false,
+  IsBookmarked: false,
   isLoading: true,
   ShowNotesSheet: false,
   Get_MemberDetails: {
@@ -89,6 +93,10 @@ export const isNotFetched = (status: DataFetchStatus): boolean =>
 export type HouseholdRelationsAction =
   /** OnReady: UserAge_Visibility = the DisplayAge of the user information. */
   | { type: 'userAgeVisibilitySet'; displayAge: boolean }
+  /** OnInitialize of a new view: IsBookmarked = GetLocal_Bookmark_C2.IsBookmarked (live mvc.js:2259-2260). */
+  | { type: 'bookmarkRead'; isBookmarked: boolean }
+  /** OnClick_Bookmark, after ToggleBookmarkItem_C2: IsBookmarked = not IsBookmarked (live mvc.js:2186). */
+  | { type: 'bookmarkToggled' }
   /** Actions_DefineLoading(IsRefresh). */
   | { type: 'loadingDefined'; isRefresh: boolean }
   /** Get_MemberDetails: the call starts, answers or fails. */
@@ -99,9 +107,12 @@ export type HouseholdRelationsAction =
   | { type: 'siblingsFetching' }
   | { type: 'siblingsFetched'; details: SiblingRelations }
   | { type: 'siblingsFailed' }
-  /** Handler_AddNotes and Handler_OnNotesSheetClosed. */
+  /** Handler_AddNotes (Refresh Query FetchNotes, then ShowNotesSheet = True) and Handler_OnNotesSheetClosed. */
   | { type: 'notesSheetOpened' }
   | { type: 'notesSheetClosed' }
+  | { type: 'notesFetching' }
+  | { type: 'notesFetched'; notes: Notes }
+  | { type: 'notesFailed' }
   /** Handler_OnNotesChanged: FetchNotes.Notes = NewNotes. */
   | { type: 'notesChanged'; notes: Notes }
   /** Handler_OnNoteDeleted: the note leaves the list and Total is the length of the list. */
@@ -115,6 +126,10 @@ export function householdRelationsReducer(
   switch (action.type) {
     case 'userAgeVisibilitySet':
       return { ...state, UserAge_Visibility: action.displayAge };
+    case 'bookmarkRead':
+      return { ...state, IsBookmarked: action.isBookmarked };
+    case 'bookmarkToggled':
+      return { ...state, IsBookmarked: !state.IsBookmarked };
     case 'loadingDefined':
       // IsRefresh: isLoading = True; else isLoading = not IsDataFetched and not HasFetchError of both data actions.
       return {
@@ -149,6 +164,12 @@ export function householdRelationsReducer(
       return { ...state, ShowNotesSheet: true };
     case 'notesSheetClosed':
       return { ...state, ShowNotesSheet: false };
+    case 'notesFetching':
+      return { ...state, FetchNotes: { ...state.FetchNotes, dataFetchStatus: DataFetchStatus.Fetching } };
+    case 'notesFetched':
+      return { ...state, FetchNotes: { Notes: action.notes, dataFetchStatus: DataFetchStatus.Fetched } };
+    case 'notesFailed':
+      return { ...state, FetchNotes: { ...state.FetchNotes, dataFetchStatus: DataFetchStatus.Error } };
     case 'notesChanged':
       return { ...state, FetchNotes: { ...state.FetchNotes, Notes: action.notes } };
     case 'noteDeleted': {

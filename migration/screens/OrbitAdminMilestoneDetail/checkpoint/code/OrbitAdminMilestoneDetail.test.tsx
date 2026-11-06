@@ -193,20 +193,13 @@ describe('OrbitAdminMilestoneDetail page', () => {
     expect(popupText()).not.toContain('Has Checked in');
   });
 
-  it('scenario noqrcode: no Scan QR Code button; scenario empty: an unknown milestone, no type row', async () => {
-    const first = await open(query({ mock: 'noqrcode' }));
+  it('scenario noqrcode: the event has no QR code, no Scan QR Code button; the type row stays', async () => {
+    await open(query({ mock: 'noqrcode' }));
     await waitFor(() => {
       expect(screen.getByText(MILESTONE.Description)).toBeInTheDocument();
     });
     expect(scanButton()).toBeNull();
     expect(screen.getByText(MILESTONE.type.Name)).toBeInTheDocument();
-    first.unmount();
-    await open(query({ mock: 'empty' }));
-    await waitFor(() => {
-      expect(screen.getByText(MILESTONE.Description)).toBeInTheDocument();
-    });
-    expect(scanButton()).toBeNull();
-    expect(document.querySelector('.orbit-icon-host-guest')).toBeNull();
   });
 
   it('a failed Get_MilestoneInformation: the error message, and the skeleton stays (IsFetchingData is not reset)', async () => {

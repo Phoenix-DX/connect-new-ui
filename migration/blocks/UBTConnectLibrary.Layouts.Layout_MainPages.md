@@ -1,7 +1,7 @@
 # UBTConnectLibrary.Layouts.Layout_MainPages
 
 - Kind: shared; build screens using it: CommunityBusinessDetails_CoomingSoon, CountryList, Locality_Details
-- Compiled source: `migration/screens/CommunityBusinessDetails_CoomingSoon/analysis/sources/pretty/UBTConnectLibrary.Layouts.Layout_MainPages.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnectLibrary.Layouts.Layout_MainPages.mvc.js`
 - Child blocks: NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top, OutSystemsUI_2_23.Private.PullToRefresh, UBTConnectLibrary.BasePatterns.Columns_Two (queue: -)
 
 ## Inputs
@@ -465,4 +465,4 @@ define("UBTConnectLibrary.Layouts.Layout_MainPages.mvc$view", ["OutSystems/Clien
                 animate: false,
                 style: "ubt-layout-main__search",
 ```
-(… 183 more lines in `migration/screens/CommunityBusinessDetails_CoomingSoon/analysis/sources/pretty/UBTConnectLibrary.Layouts.Layout_MainPages.mvc.js`)
+(… 183 more lines in `migration/sources/pretty/UBTConnectLibrary.Layouts.Layout_MainPages.mvc.js`)

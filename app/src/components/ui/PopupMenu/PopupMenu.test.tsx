@@ -5,6 +5,12 @@ import { PopupMenu } from './PopupMenu';
 import * as stories from './PopupMenu.stories';
 import { popupPosition } from './position';
 
+/** Flushes the passive effects of the last render (the listeners of the popup attach there). */
+const flushEffects = () =>
+  act(async () => {
+    await Promise.resolve();
+  });
+
 const captures = import.meta.glob<string>('./__captures__/*.html', { query: '?raw', import: 'default', eager: true });
 const bodyPopup = () => document.body.querySelector(':scope > .dx-popup-menu-container');
 
@@ -40,6 +46,7 @@ describe('PopupMenu', () => {
     await waitFor(() => {
       expect(popup).toHaveStyle({ position: 'fixed' });
     });
+    await flushEffects(); // the click-outside listener attaches in a passive effect after the open render
     expect(popup?.querySelector('.dx-popup-menu-content')).toHaveTextContent('menu');
     fireEvent.click(document.body);
     expect(onOnClose).toHaveBeenCalledTimes(1);
@@ -56,12 +63,14 @@ describe('PopupMenu', () => {
     await waitFor(() => {
       expect(isOpen()).toBe(true);
     });
+    await flushEffects(); // the close listeners attach in a passive effect after the open render
     fireEvent.click(screen.getByText('anchor'));
     expect(isOpen()).toBe(false);
     fireEvent.click(screen.getByText('anchor'));
     await waitFor(() => {
       expect(isOpen()).toBe(true);
     });
+    await flushEffects(); // the close listeners attach in a passive effect after the open render
     act(() => {
       window.dispatchEvent(new Event('dx-before-navigation'));
     });

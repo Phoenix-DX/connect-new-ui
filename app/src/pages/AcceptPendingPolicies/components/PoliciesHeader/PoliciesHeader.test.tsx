@@ -13,7 +13,7 @@ describe('AcceptPendingPolicies header (PoliciesHeader)', () => {
       /UBTConnect\.ConnectLogoWhite\.svg$/,
     );
     expect(screen.getByText('Connect and Directory')).toBeInTheDocument();
-    expect(screen.getByText('Terms and Conditions & Privacy Policy')).toBeInTheDocument();
+    expect(screen.getByText('Terms & Conditions and Privacy Policy Agreement')).toBeInTheDocument();
   });
 
   it('keeps the instance ids of the screen blocks', () => {

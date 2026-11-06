@@ -1,6 +1,6 @@
 # Screen spec: Household_Relations
 
-Abbreviations: **S** = `analysis/sources/pretty/UBTConnect.Directory_Household.Household_Relations.mvc.js`,
+Abbreviations: **S** = `migration/sources/pretty/UBTConnect.Directory_Household.Household_Relations.mvc.js`,
 **B** = `…/UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js`,
 **MR** = `…/UBTConnectLibrary.ConnectCorePatterns.MemberRelation_ListItem.mvc.js`, **dom** = `analysis/dom/`.
 
@@ -109,7 +109,7 @@ Original CSS only (routes add none). Captured: avatar xl (98×98) for the member
 - `Get_MemberDetails`: MemberName, FamilyName, Father, Mother (UI_HouseholdMember), FormerSpouses (list),
   ParentHouseholdId [types.ts, calls.md]. `Get_ParentHouseholdDetails`: Out_siblingRelations (list of UI_HouseholdMember).
 - UI_HouseholdMember defaults: HouseholdId `'0'`, HasNavigation **True**, HasCTAs False, texts `""`
-  [migration/contract/sources/raw/Connect_Household_CS.model.js:250-315].
+  [migration/sources/contract/Connect_Household_CS.model.js:250-315].
 - Block variables: UserAge_Visibility False, isLoading **True**, ShowNotesSheet False [B:86-94]; screen PageTitle "" [S:13].
 - Static entities (TST, static-entities-tst.json):
   - uBT_Icons2 tooltip/bookmark

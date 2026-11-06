@@ -74,6 +74,9 @@ describe('AssembleDetail', () => {
     });
     expect(title(container)).toBe('Gospel Preaching');
     expect(calls('DataActionGetAssembleEvent')).toBe(1);
+    // GetAssembleNotes, the screen data action fetched at start (route-actions gap 8).
+    expect(calls('DataActionGetAssembleNotes')).toBe(1);
+    expect(container.querySelector('[data-block="ConnectCorePatterns.ItemCard_ActionBar"]')).not.toBeNull();
     expect(byId('b2-b4-b14-Header')).toHaveTextContent('Host Locality');
     expect(byId('b2-b4-b15-Header')).toHaveTextContent('Interchange Meetings');
     // One loading row per contact id, then the contacts of GetCacheableMemberContactList.
@@ -208,6 +211,34 @@ describe('AssembleDetail', () => {
       expect(byId(`${HALL}-$b3-0`)).not.toBeNull();
       expect(calls('ActionGetBulkSubdivisions_V2')).toBe(3);
     });
+  });
+
+  it('the ids of the TST capture (the capture plan) answer the online prayer meeting of the world', async () => {
+    // migration/capture-plan.json AssembleDetail: EventId, SeriesId and Start of the capture of 2026-11-06.
+    const { container, router } = renderScreen();
+    await act(() =>
+      router.navigate(
+        `${PATH}?Start=2026-11-06T07%3A00%3A00.000Z&EventId=58dbb5ab-047e-469d-9558-2f8967a7ec41&SeriesId=888d1cfc-697a-4d0e-88bc-2c5a3e3f898d`,
+      ),
+    );
+    await waitFor(() => {
+      expect(byId('b2-b4-b14-Header')).toHaveTextContent('Host Locality');
+    });
+    // The card of a virtual meeting without link, the title from the meeting type, no interchange locality, no GMS
+    // contact, no note (the captured structure).
+    expect(title(container)).toBe('Prayer Meeting');
+    expect(
+      container
+        .querySelector('[data-block="NewConnect_Utilities.NC_Card_Item_Visual"] img[data-image]')
+        ?.getAttribute('src'),
+    ).toContain('VirtualMeeting.svg');
+    expect(container.querySelector('[data-block="Assemble.AssembleCommon_VirtualMeetingURL"]')).toHaveTextContent(
+      'Link is not available, refer to local signal chat',
+    );
+    expect(byId('b2-b4-b15-Header')).toBeNull();
+    expect(byId('b2-b4-Section_GSMContacts')?.children).toHaveLength(0);
+    expect(byId('b2-MeetingNotes')).toHaveTextContent('Your notes will appear here.');
+    expect(byId('b2-Menu')).toBeNull();
   });
 
   it('mock scenario notfound: "Meeting not found"', async () => {

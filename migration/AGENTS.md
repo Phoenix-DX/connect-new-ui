@@ -7,7 +7,7 @@ You are rebuilding the UBTConnect mobile web front end (OutSystems 11) in React,
 ```
 migration/
 ├── AGENTS.md                      this file
-├── board.md                       status board: read it with `python3 <skill>/scripts/board.py show ...`, change it only with `board.py set`
+├── board.md                       status board: read it with `python3 tools/pipeline/board.py show ...`, change it only with `board.py set`
 ├── catalog/                       blocks.md (what is shared and where it is built), actions.md, foundation-queue.md
 ├── knowledge/actions/<Action>.md  cached server-side answers (OutSystems MCP)
 ├── change-requests/CR-<n>.md      requests for platform/legacy/lib changes
@@ -25,7 +25,7 @@ app/                               the React app (Vite + React 19 + TS + React R
 | Route agent for `<S>` | `app/src/pages/<S>/`; where the page template puts code: `app/src/api/<domain>/`, `app/src/components/`, `app/src/containers/`, `app/src/mocks/`, `app/src/app/routes*.ts`; `migration/screens/<S>/`, `migration/change-requests/CR-<S>-*.md`, route state via `route.py` | everything else, in particular `app/src/platform`, `app/src/legacy`, `app/src/lib`, `app/src/styles`, `app/src/vendor`, `app/public/UBTConnect/css`, other pages, exemptions |
 | Foundation owner | `app/src/platform`, `app/src/legacy`, `app/src/lib`, `app/src/styles`, legacy CSS (only to add missing original stylesheets), `package.json` and lockfile (only for accepted ADRs), change requests | pages (except to remove a `<NotCaptured>` marker for a closed CR, with the page's owner) |
 
-Layout of a route: `app/docs/guides/page-template.md`. `python3 <skill>/scripts/scope_guard.py --screen <S>` must pass before a route is finished (`route.py ready` and `finish` run it). It checks the files changed since the route's `startCommit` (in `run.json`, written by `route.py start`) and the working tree. It also allows the pages and `migration/screens/` folders of the other routes in progress and `migration/clarify/`, because several routes are built at the same time in one tree.
+Layout of a route: `app/docs/guides/page-template.md`. `python3 tools/pipeline/scope_guard.py --screen <S>` must pass before a route is finished (`route.py ready` and `finish` run it). It checks the files changed since the route's `startCommit` (in `run.json`, written by `route.py start`) and the working tree. It also allows the pages and `migration/screens/` folders of the other routes in progress and `migration/clarify/`, because several routes are built at the same time in one tree.
 
 ## Stack and patterns are fixed
 
@@ -39,12 +39,13 @@ Layout of a route: `app/docs/guides/page-template.md`. `python3 <skill>/scripts/
 Never use screenshots or memory of "how apps usually look" to decide markup, classes, sizes, colors or text.
 
 ### Where the compiled code is (check all before calling a source "missing")
-- Screen and block views (`*.mvc.js`): `capture/survey-UBTConnect.json` → `sources` (every screen and block, even ones
-  no capture loaded); readable copies of block sources in `migration/blocks/sources/`.
-- Module controllers and models (`<Module>.controller.js`, `<Module>.model.js`): `migration/screens/*/analysis/sources/raw/`
-  (identical copies across screens), `migration/shell/sources/`, `migration/contract/sources/raw/`.
+- Screen and block views (`*.mvc.js`): `migration/survey/survey-UBTConnect.json` → `sources` (every screen and block, even ones
+  no capture loaded); readable copies of block sources in `migration/sources/survey/`.
+- Module controllers and models (`<Module>.controller.js`, `<Module>.model.js`): the shared store `migration/sources/raw/`
+  (one copy per content; `migration/screens/<S>/analysis/manifest.json` names the files of a route),
+  `migration/sources/shell/`, `migration/sources/contract/`.
 - OutSystems runtime, OSUI providers, plugin and SDK scripts, `moduleinfo.json`, `OutSystemsSettings.js`:
-  `migration/runtime-sources/` (index: `migration/knowledge/runtime-sources.md`).
+  `migration/sources/runtime/` (index: `migration/knowledge/runtime-sources.md`).
 - Static-entity values of TST by name: `migration/knowledge/static-entities-tst.json`.
 Only when a file is in none of these, name it in your report: the orchestrator fetches it read-only.
 
@@ -78,7 +79,7 @@ Only when a file is in none of these, name it in your report: the orchestrator f
 
 1. `route.py start <S> --owner <you>` (resets partial work; earlier answers are kept; a spec recorded with `spec-done` whose inputs are unchanged is kept, and the route restarts at build). Protocol: the skill's `references/route-agent.md`; do not read SKILL.md.
 2. If the capture is not reused: `route.py step <S> capture`, run `batch_capture.cjs run --only <S> --analyze`.
-3. `route.py step <S> spec`: generate `pack.md`, write `route-spec.md` (lite: `route-spec-template.md`, full: `spec-template.md`). Every unclear point gets a question (`route.py ask`); resolve facts with the OutSystems MCP; ask the user the decisions before writing code. When no blocking question is open: `route.py spec-done <S>` (again after any later spec edit or new answer).
+3. `route.py step <S> spec`: generate `pack.md`, write `route-spec.md` (`route-spec-template.md`). Every unclear point gets a question (`route.py ask`); resolve facts with the OutSystems MCP; ask the user the decisions before writing code. When no blocking question is open: `route.py spec-done <S>` (again after any later spec edit or new answer).
 4. `route.py step <S> build`: create `src/pages/<S>/` with `<S>Page.tsx`, `inputs.ts`, `hooks/`, `mocks.ts` (and `components/` for code only this page uses); put server calls in `src/api/<domain>/` and props-only components in `src/components/<domain>/`, as `app/docs/guides/page-template.md` says; `npm run typecheck`, `npm run build` and `npm run arch`.
 5. `route.py step <S> parity`, then `route.py parity <S> --app http://localhost:5173` until every state is clean (all viewports, flag variants, steps, loading/offline; DOM, styles, pseudo-elements, positions, text, pixels and calls). Re-run it after the last code change: reports are fingerprinted. What cannot be fixed becomes a change request or a decision question.
 6. Fill "Decisions to confirm" (and "Feature flags" when the route has flags) in `route-spec.md`, run `consistency_check.py --screen <S>`, then `route.py ready <S>` and present the review message to the user. The user tests the route.

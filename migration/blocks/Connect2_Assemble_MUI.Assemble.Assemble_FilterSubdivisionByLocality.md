@@ -1,7 +1,7 @@
 # Connect2_Assemble_MUI.Assemble.Assemble_FilterSubdivisionByLocality
 
 - Kind: shared; build screens using it: AssembleEvents, Assemble_BrowseByCountry
-- Compiled source: `migration/blocks/sources/Connect2_Assemble_MUI.Assemble.Assemble_FilterSubdivisionByLocality.mvc.js`
+- Compiled source: `migration/sources/survey/Connect2_Assemble_MUI.Assemble.Assemble_FilterSubdivisionByLocality.mvc.js`
 - Child blocks: Connect2_LegacyShared.Reusable.RadioButtonListItem, Connect2_LegacyShared.Reusable.Spinner, OutSystemsUI_2_23.Interaction.InputWithIcon, OutSystemsUI_2_23.Utilities.Separator (queue: Connect2_LegacyShared.Reusable.RadioButtonListItem)
 
 ## Inputs
@@ -275,4 +275,4 @@ value: model.variables.filteredSubdivisionsListVar.getCurrent(callContext.iterat
 _idProps: {
 service: idService,
 ```
-(… 31 more lines in `migration/blocks/sources/Connect2_Assemble_MUI.Assemble.Assemble_FilterSubdivisionByLocality.mvc.js`)
+(… 31 more lines in `migration/sources/survey/Connect2_Assemble_MUI.Assemble.Assemble_FilterSubdivisionByLocality.mvc.js`)

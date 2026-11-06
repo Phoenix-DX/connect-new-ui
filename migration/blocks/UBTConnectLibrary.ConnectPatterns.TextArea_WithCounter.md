@@ -1,7 +1,7 @@
 # UBTConnectLibrary.ConnectPatterns.TextArea_WithCounter
 
 - Kind: shared; build screens using it: ContactByEmailMember, ContactByEmailOneSchoolGlobal, ContactUsDetails, HouseholdCarousel, HouseholdDetails, Household_Relations, Locality_Details, Notes, OneSchoolGlobalDetails, Profile, SupperMeeting_Carousel, SupperMeeting_Details
-- Compiled source: `migration/screens/ContactByEmailMember/analysis/sources/pretty/UBTConnectLibrary.ConnectPatterns.TextArea_WithCounter.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnectLibrary.ConnectPatterns.TextArea_WithCounter.mvc.js`
 - Child blocks: UBTConnectLibrary.ConnectPatterns.InputCounter (queue: UBTConnectLibrary.ConnectPatterns.InputCounter)
 
 ## Inputs

@@ -8,7 +8,7 @@ import { screenOf } from '@/platform/navigation/paths';
    getCssDependencies, `_Basic.css` first), in a stable order: css_observe.cjs on TST, HomeFeed ⇄ MessageList.
    The clone does the same with the original files, unchanged, served from public/UBTConnect/css. Their relative
    url()s (../<font>, ../img/<image>) resolve to public/UBTConnect/. Sets per route: routes.css.generated.ts
-   (migration/tools/css_sets.py).
+   (tools/generate/css_sets.py).
    On a navigation the new screen's files are added at once and the others stay until the screen transition has ended,
    so the leaving screen keeps its styles while it leaves: BaseWebScreen.loadResources → CSSHelper.scheduleCSSPreparation
    (OutSystemsReactView.js offsets 181383, 200146) removes them on the runtime TransitionEnd, only when no newer

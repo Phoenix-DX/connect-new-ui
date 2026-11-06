@@ -16,12 +16,12 @@ import { sampleHouseholds } from '@/containers/HouseholdDetails/mockData';
 import { notesCollection } from '@/containers/NoteListActions/mocks';
 import { BookmarkCategory, Connect_Entity } from '@/lib/ubtConnect/staticEntities';
 
-/* The C2 bookmark writes of UBTConnect ToggleBookmarkItem_C2 (UBTConnect.controller.js:17105-17280, copy in
-   migration/screens/BookmarksByGroup/analysis/sources/raw/), called by this block's Handle_Bookmark: AddBookmark2
-   (:18251-18286) and DeleteBookmarkByBookmarkId2 (:18312-18336). Never recorded (x-mock-source fictional): they change
+/* The C2 bookmark writes of UBTConnect_Utils ToggleBookmarkItem_C2 (migration/sources/runtime/UBTConnect_Utils
+   .controller.js:5661-5770; live module of 2026-11-05), called by this block's Handle_Bookmark: AddBookmark2
+   (:5819-5835) and DeleteBookmarkByBookmarkId2 (:5892-5906). Never recorded (x-mock-source fictional): they change
    the in-memory bookmarks collection of the mock user (P-MUTATION), never the real server. A row is a
    Connect_Bookmarks_CS UI_Bookmark_Added (Id, BookmarkCategoryId, ItemId, DateCreatedUtc); the device keeps its copy in
-   the local entity UBTConnect_Bookmarks_MCS.LocalBookmark (src/shell/localEntities/localBookmarks.ts, BookmarkId = the
+   the local entity UBTConnect_Bookmarks_MCS.LocalBookmark (src/platform/storage/localEntities/localBookmarks.ts, BookmarkId = the
    row's Id). The mock user has no C2 bookmarks at start (empty seed), except school 1430 in scenario `captured`
    (seedCapturedBookmark, below). The Sync_Info_GetMain mock sends this collection as LocalBookmarksC2 to
    SynchBookmarksC2 (platform/bootstrap/mocks.ts, UC:1135-1143), and a reload starts again from that seed. */
@@ -33,21 +33,25 @@ const nowUtc = () => new Date().toISOString().slice(0, 19);
 
 /** AddBookmark2 (fictional): always adds a row and answers Success with it, even with an empty In_BookmarkCategoryId
     (what the block sends while C2NewBookmarks is off, known original bug B4, app/docs/known-original-bugs.md). */
-const addBookmark2 = contractHandler('UBTConnect', 'ServiceAPIAddBookmark2', ({ In_BookmarkCategoryId, In_ItemId }) => {
-  const row = bookmarksCollection().upsert({
-    Id: '',
-    BookmarkCategoryId: In_BookmarkCategoryId,
-    ItemId: In_ItemId,
-    DateCreatedUtc: nowUtc(),
-  }) as BookmarkRow;
-  return { Success: true, Bookmark_Added: { ...row } };
-});
+const addBookmark2 = contractHandler(
+  'UBTConnect_Utils',
+  'ServiceAPIAddBookmark2',
+  ({ In_BookmarkCategoryId, In_ItemId }) => {
+    const row = bookmarksCollection().upsert({
+      Id: '',
+      BookmarkCategoryId: In_BookmarkCategoryId,
+      ItemId: In_ItemId,
+      DateCreatedUtc: nowUtc(),
+    }) as BookmarkRow;
+    return { Success: true, Bookmark_Added: { ...row } };
+  },
+);
 
 /** DeleteBookmarkByBookmarkId2 (fictional): removes the row; Success and WasFound (an output of the live TST action,
     contract regeneration of I10-6) tell whether it existed (as the notes delete mock,
     UBTConnect_Utils/NoteListActions/mocks.ts). */
 const deleteBookmarkByBookmarkId2 = contractHandler(
-  'UBTConnect',
+  'UBTConnect_Utils',
   'ServiceAPIDeleteBookmarkByBookmarkId2',
   ({ BookmarkId }) => {
     const bookmarks = bookmarksCollection();

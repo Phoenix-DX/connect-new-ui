@@ -15,14 +15,16 @@ import { getLocalBookmarkByObjectId } from '@/platform/storage/localEntities';
 import { useClientVar } from '@/platform/session/session';
 import { ACTIONS_MENU_ENABLE_OPTIONS_DEFAULT } from '@/lib/ubtConnectLibrary/actions';
 import type { ActionsMenuEnableOptions, ActionsMenuOptions, Notes } from '@/lib/ubtConnectLibrary/structures';
-import { getHasExtendedShare } from '@/lib/ubtConnectUtils/actions';
-import type { ContactPopupData } from '@/lib/ubtConnectUtils/structures';
 import {
   bookmarkServerActions,
-  getBookmarkCategoryId_ByEntityTypeId,
-  getNameAndSurname_ByFullName,
+  getHasExtendedShare,
   toggleBookmarkItem_C2,
   type BookmarkServerActions,
+} from '@/lib/ubtConnectUtils/actions';
+import type { ContactPopupData } from '@/lib/ubtConnectUtils/structures';
+import {
+  getBookmarkCategoryId_ByEntityTypeId,
+  getNameAndSurname_ByFullName,
   notes_InterchangeId_ComposeId,
 } from '@/lib/ubtConnect/actions';
 import { Connect_Entity } from '@/lib/ubtConnect/staticEntities';
@@ -63,7 +65,7 @@ export function useEntityDetailsActions({
   const wasRestored = useWasRestoredFromCache();
   const [isRestoredFromCache] = useState(() => wasRestored && isLoaded);
   // EnableOptions: a record whose unset fields keep the ActionsMenuEnableOptions defaults (UBTConnectLibrary.model.js
-  // ActionsMenuEnableOptionsRec, copy in migration/screens/SupperMeeting_Details/analysis/sources/raw/ :4135-4156), as
+  // ActionsMenuEnableOptionsRec, copy in migration/sources/raw/ :4135-4156), as
   // HouseholdDetails_Block's literal sets only EnableNotes / EnableShare (HouseholdDetails_Block.mvc.js:1509-1514).
   const [localEnableOptions, setLocalEnableOptions] = useViewState<ActionsMenuEnableOptions>(`${scope}-EnableOptions`, {
     ...ACTIONS_MENU_ENABLE_OPTIONS_DEFAULT,
@@ -80,7 +82,22 @@ export function useEntityDetailsActions({
   const [showCallPopUp, setShowCallPopUp] = useState(false);
   const [showEmailPopUp, setShowEmailPopUp] = useState(false);
   const [showSharePopup, setShowSharePopup] = useState(false);
-  const [showNotesSheet, setShowNotesSheet] = useState(false);
+  // ShowNotesSheet and PendingOpen (model, live mvc.js:122): the ref mirrors ShowNotesSheet for Handler_AddNotesOnClick,
+  // which reads it after an await.
+  const [showNotesSheet, setShowNotesSheetState] = useState(false);
+  const showNotesSheetRef = useRef(false);
+  const setShowNotesSheet = (show: boolean) => {
+    showNotesSheetRef.current = show;
+    setShowNotesSheetState(show);
+  };
+  const pendingOpenRef = useRef(false);
+  const reopenTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  useEffect(
+    () => () => {
+      clearTimeout(reopenTimerRef.current);
+    },
+    [],
+  );
   // Local_isBookmarked and Local_BookmarkTypeId (model, mvc.js:80-85): the C2 bookmarks only (TST removed the legacy
   // branch and Local_isBookmarked_C2 / Local_BookmarkType / Local_BookmarkGroup).
   const [isBookmarked, setIsBookmarked] = useViewState(`${scope}-Local_isBookmarked`, false);
@@ -169,7 +186,8 @@ export function useEntityDetailsActions({
 
   /** OnReady (controller mvc.js:1700-1900), after the menu set-up and share type of onReadyInit (an InvalidAction goes to
       the flow handler). With HasBookmark or HasUnbookmark (:1864-1887): GetBookmarkCategoryId_ByEntityTypeId
-      (Local_BookmarkTypeId), GetLocalBookmarkByObjectId_C2 (UBTConnect_Bookmarks_MCS), Local_isBookmarked = Id <>
+      (Local_BookmarkTypeId), GetLocalBookmarkByObjectId_C2 (UBTConnect_Bookmarks_MCS) with the item and that category
+      (live mvc.js:1920-1924), Local_isBookmarked = Id <>
       NullIdentifier, OnChange_Bookmark, Action_RefreshFetchNotes. No flag: TST removed the GetHasNewBookmarks branch.
       Then isLoaded = not isFetchContacts or FetchContactDetails.IsDataFetched or HasFetchError. Runs once, as OnReady
       (OnParametersChanged only updates the contact details); a view restored from the cache ends before the set-up
@@ -185,7 +203,7 @@ export function useEntityDetailsActions({
       if (onReady.options.HasBookmark !== true && onReady.options.HasUnbookmark !== true) return;
       const typeId = getBookmarkCategoryId_ByEntityTypeId(type);
       setBookmarkTypeId(typeId);
-      const local = await getLocalBookmarkByObjectId(id);
+      const local = await getLocalBookmarkByObjectId(id, typeId);
       const bookmarked = local.Id !== '0';
       setIsBookmarked(bookmarked);
       onChangeBookmarkRef.current?.(bookmarked);
@@ -350,10 +368,24 @@ export function useEntityDetailsActions({
   const onClickBookmark = () => {
     if (bookmarkServerActions) handleBookmark(bookmarkServerActions).catch(raiseToFlowHandler);
   };
-  /** Handler_AddNotesOnClick (mvc.js:1366-1395): Action_RefreshFetchNotes, then ShowNotesSheet = True. */
+  /** Handler_AddNotesOnClick (live mvc.js:1395-1435): Action_RefreshFetchNotes, then PendingOpen = True when the sheet
+      is still open (ShowNotesSheet), else ShowNotesSheet = True. */
   const handlerAddNotes = async () => {
     await refreshFetchNotes();
-    setShowNotesSheet(true);
+    if (showNotesSheetRef.current) pendingOpenRef.current = true;
+    else setShowNotesSheet(true);
+  };
+  /** Handler_OnNotesSheetClosed (live mvc.js:1114-1148): ShowNotesSheet = False; with PendingOpen: PendingOpen = False
+      and the JavaScript node `setTimeout(Handler_OpenNotesSheetDeferred, 50)` ("Reopen once the close has been
+      processed", :2478-2484); Handler_OpenNotesSheetDeferred (:1151-1166) sets ShowNotesSheet = True. */
+  const handlerOnNotesSheetClosed = () => {
+    setShowNotesSheet(false);
+    if (pendingOpenRef.current) {
+      pendingOpenRef.current = false;
+      reopenTimerRef.current = setTimeout(() => {
+        setShowNotesSheet(true);
+      }, 50);
+    }
   };
   return {
     isEnabled,
@@ -383,11 +415,11 @@ export function useEntityDetailsActions({
     showSharePopup,
     setShowSharePopup,
     showNotesSheet,
-    setShowNotesSheet,
     popupData,
     handleMail,
     handleMailPage,
     onClickBookmark,
     handlerAddNotes,
+    handlerOnNotesSheetClosed,
   };
 }

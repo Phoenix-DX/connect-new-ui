@@ -635,21 +635,21 @@ export interface Household_MarkersItem {
 ## Look up on demand
 
 - `migration/screens/AssembleEvents/analysis/dom/<state>.html` full markup (line numbers in collapsed markers refer to dom/default.html)
-- `migration/screens/AssembleEvents/analysis/sources/pretty/UBTConnect.Legacy_AssembleFlow.AssembleEvents.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
-- `migration/screens/AssembleEvents/analysis/sources/pretty/OutSystemsUI_2_23.Private.OfflineDataSyncCore.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
-- `migration/screens/AssembleEvents/analysis/sources/pretty/OutSystemsUI_2_23.Private.NetworkStatusChanged.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
-- `migration/screens/AssembleEvents/analysis/sources/pretty/Connect2_AndroidAppLinksPlugin.AndroidAppLinks.AndroidAppLinkOnResumeHandler.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
-- `migration/screens/AssembleEvents/analysis/sources/pretty/EventfulDeeplinksPlugin.EventfulDeeplinksPlugin.DeeplinkHandlerCentral.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
-- `migration/screens/AssembleEvents/analysis/sources/pretty/Connect2_Assemble_MUI.Assemble.ScreenBlock_AssembleEvents.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
-- `migration/screens/AssembleEvents/analysis/sources/pretty/Connect2_Assemble_MUI.Assemble.AssembleSummary_List.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
-- `migration/screens/AssembleEvents/analysis/sources/pretty/Connect2_LegacyShared.Share.StickyHeader.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
-- `migration/screens/AssembleEvents/analysis/sources/pretty/Connect2_LegacyShared.Reusable.HorizontalTags.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
-- `migration/screens/AssembleEvents/analysis/sources/pretty/Connect2_LegacyShared.Reusable.HorizontalScrollTiles.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
-- `migration/screens/AssembleEvents/analysis/sources/pretty/Connect2_Assemble_MUI.Assemble.AssembleSummary_List__Header.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
-- `migration/screens/AssembleEvents/analysis/sources/pretty/Connect2_LegacyShared.NewConnect_Utilities.NC_ErrorScreen.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
-- `migration/screens/AssembleEvents/analysis/sources/pretty/Connect2_Assemble_MUI.Assemble.AssembleSummary_FilterDrawer.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
-- `migration/screens/AssembleEvents/analysis/sources/pretty/Connect2_LegacyShared.NewConnect.InBlock_ActionMenu.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
-- `migration/screens/AssembleEvents/analysis/sources/pretty/Connect2_Assemble_MUI.Assemble.Assemble_FilterSheet.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/UBTConnect.Legacy_AssembleFlow.AssembleEvents.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/OutSystemsUI_2_23.Private.OfflineDataSyncCore.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/OutSystemsUI_2_23.Private.NetworkStatusChanged.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/Connect2_AndroidAppLinksPlugin.AndroidAppLinks.AndroidAppLinkOnResumeHandler.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/EventfulDeeplinksPlugin.EventfulDeeplinksPlugin.DeeplinkHandlerCentral.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/Connect2_Assemble_MUI.Assemble.ScreenBlock_AssembleEvents.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/Connect2_Assemble_MUI.Assemble.AssembleSummary_List.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/Connect2_LegacyShared.Share.StickyHeader.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/Connect2_LegacyShared.Reusable.HorizontalTags.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/Connect2_LegacyShared.Reusable.HorizontalScrollTiles.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/Connect2_Assemble_MUI.Assemble.AssembleSummary_List__Header.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/Connect2_LegacyShared.NewConnect_Utilities.NC_ErrorScreen.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/Connect2_Assemble_MUI.Assemble.AssembleSummary_FilterDrawer.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/Connect2_LegacyShared.NewConnect.InBlock_ActionMenu.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/Connect2_Assemble_MUI.Assemble.Assemble_FilterSheet.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
 - `migration/screens/AssembleEvents/analysis/css-relevant.md` only when a visual diff cannot be explained by markup
 
 ## Cut to fit the budget

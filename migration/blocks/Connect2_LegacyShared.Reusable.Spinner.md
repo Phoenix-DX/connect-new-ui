@@ -1,7 +1,7 @@
 # Connect2_LegacyShared.Reusable.Spinner
 
 - Kind: shared; build screens using it: BookmarksByGroup, MessageDetail, MessageList, MyBookmarks
-- Compiled source: `migration/screens/MessageList/analysis/sources/pretty/Connect2_LegacyShared.Reusable.Spinner.mvc.js`
+- Compiled source: `migration/sources/pretty/Connect2_LegacyShared.Reusable.Spinner.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

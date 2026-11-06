@@ -1,7 +1,7 @@
 # OutSystemsUI_2_23.Content.Card
 
 - Kind: osui; build screens using it: MessageDetail
-- Compiled source: `migration/screens/MessageDetail/analysis/sources/pretty/OutSystemsUI_2_23.Content.Card.mvc.js`
+- Compiled source: `migration/sources/pretty/OutSystemsUI_2_23.Content.Card.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

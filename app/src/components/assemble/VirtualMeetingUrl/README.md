@@ -2,7 +2,7 @@
 
 OutSystems: `Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingURL` · pack
 `migration/blocks/Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingURL.md` · source
-`migration/blocks/sources/Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingURL.mvc.js`
+`migration/sources/survey/Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingURL.mvc.js`
 
 | Input                  | Type | Prop                     | Default |
 | ---------------------- | ---- | ------------------------ | ------- |

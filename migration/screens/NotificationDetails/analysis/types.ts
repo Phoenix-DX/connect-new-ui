@@ -1,5 +1,120 @@
 // Generated from captured response shapes. Long Integer / Decimal travel as strings.
 
+export interface MessagePriority {
+  Id: number /* 0 in capture */;
+  Label: string /* "" in capture */;
+  Order: number /* 0 in capture */;
+  Is_Active: boolean;
+}
+
+export interface MessageContent {
+  Id: string /* Long Integer as string */;
+  MessageContent: string /* "" in capture */;
+}
+
+export interface MessageTemplate {
+  Id: string /* Long Integer as string */;
+  IsAdaptiveCard: boolean;
+  Title: string;
+  Summary: string;
+  MessageContentId: string /* Long Integer as string */;
+  CreatedByUser: number /* 0 in capture */;
+  CreatedDate: string /* "1900-01-01..." = no value */;
+  LastUpdated: string /* "1900-01-01..." = no value */;
+  UpdatedBy: number /* 0 in capture */;
+  MessageTemplateStatusId: number /* 0 in capture */;
+  MessageTemplateTypeId: number;
+  MessageTemplatePriorityId: number /* 0 in capture */;
+  MessageInfoTypeId: number;
+  AdaptiveCardJSONId: string /* Long Integer as string */;
+  SentAs: number;
+  SavedTemplateId: string /* Long Integer as string */;
+  MessageSendToTypeId: number /* 0 in capture */;
+  MessageApplicationTargetId: number /* 0 in capture */;
+  RecalledBy: number /* 0 in capture */;
+  IsPushNotificationOnly: boolean;
+  HideTitleOnPushNotification: boolean;
+  HideBodyOnPushNotification: boolean;
+}
+
+export interface MessageSenderTarget {
+  Id: number;
+  Name: string;
+  ProfileIconURL: string /* "" in capture */;
+  Order: number /* 0 in capture */;
+  Is_Active: boolean;
+  NotificationIcon: string /* "" in capture */;
+  NotificationHeading: string /* "" in capture */;
+}
+
+export interface MessageInstance {
+  Id: string /* Long Integer as string */;
+  MessageTemplateId: string /* Long Integer as string */;
+  UserId: number;
+  DeviceHardwareId: string /* "" in capture */;
+  IsSent: boolean;
+  IsReceived: boolean;
+  IsRead: boolean;
+  IsReplied: boolean;
+  IsClear: boolean;
+  DateTimeCreated: string /* ISO DateTime */;
+  NotificationUUID: string /* "" in capture */;
+  SendAttemptCount: number /* 0 in capture */;
+  LastSendAttemptDateTime: string /* "1900-01-01..." = no value */;
+  NextSendAttemptDateTime: string /* "1900-01-01..." = no value */;
+  CheckForReceiptCount: number /* 0 in capture */;
+  LastCheckForReceiptDateTime: string /* "1900-01-01..." = no value */;
+  NextCheckForReceiptDateTime: string /* "1900-01-01..." = no value */;
+  SentToWebDevice: boolean;
+  MessageError: string /* "" in capture */;
+}
+
+export interface AdaptiveCardJSON {
+  Id: string /* Long Integer as string */;
+  AdaptiveCardContent: string;
+}
+
+export interface User {
+  Id: number /* 0 in capture */;
+  Name: string /* "" in capture */;
+  Username: string /* "" in capture */;
+  Password: string /* "" in capture */;
+  Email: string /* "" in capture */;
+  MobilePhone: string /* "" in capture */;
+  External_Id: string /* "" in capture */;
+  Creation_Date: string /* "1900-01-01..." = no value */;
+  Last_Login: string /* "1900-01-01..." = no value */;
+  Is_Active: boolean;
+}
+
+export interface Message {
+  MessagePriority: MessagePriority;
+  MessageContent: MessageContent;
+  MessageTemplate: MessageTemplate;
+  MessageSenderTarget: MessageSenderTarget;
+  MessageInstance: MessageInstance;
+  AdaptiveCardJSON: AdaptiveCardJSON;
+  User: User;
+  CreatedByMemberId: string /* "" in capture */;
+}
+
+export interface Delimiters {
+  Delimiter_Function: string /* "" in capture */;
+  Delimiter_Parameter: string /* "" in capture */;
+  Delimiter_Placeholder: string /* "" in capture */;
+}
+
+export interface PlaceholderDelimiters {
+  Delimiters: Delimiters;
+}
+
+export interface GetMessageInstanceResponse {
+  Message: Message;
+  IsRetracted: boolean;
+  IsCleared: boolean;
+  PlaceholderDelimiters: PlaceholderDelimiters;
+}
+
 export interface AppManager_ClientCache {
   BaseURL: string;
   Environment: string;
@@ -48,25 +163,6 @@ export interface AppManager_SynchAppContextResponse {
   isSuccess: boolean;
   PermissionList: string[] /* wire: { List: [...] } */ /* wire: { List: [...] } */;
   FirebaseRealTimeDB_Token: string;
-}
-
-export interface UI_NotificationDetail {
-  Id: string /* Long Integer as string */;
-  MessageTemplateTypeId: number /* 0 in capture */;
-  Title: string;
-  Summary: string /* "" in capture */;
-  DateTimeCreated: string /* ISO DateTime */;
-  MessageTemplatePriorityId: number /* 0 in capture */;
-  ProfileIconURL: string /* "" in capture */;
-  IsClear: boolean;
-  IsRead: boolean;
-  CreatedByUserId: number /* 0 in capture */;
-  MessageInfoTypeId: number /* 0 in capture */;
-  MessageSenderTargetName: string /* "" in capture */;
-}
-
-export interface FetchMessageInstanceResponse {
-  UI_NotificationDetail: UI_NotificationDetail;
 }
 
 export interface AppManager_AfterInitializeResponse {
@@ -193,35 +289,25 @@ export interface OrbitStaticEntities {
   HelperRoles: HelperRolesItem[] /* wire: { List: [...] } */;
 }
 
-export interface LocalBookmarkItem {
-  Id: string /* Long Integer as string */;
-  UserId: number;
-  BookmarkId: string /* Long Integer as string */;
-  ObjectType: string;
-  ObjectId: string /* Long Integer as string */;
-  Group: string;
-  DateCreatedUtc: string /* ISO DateTime */;
-  Note: string /* "" in capture */;
-}
-
-export interface LocalBookmarksC2Item {
-  Id: string /* Long Integer as string */;
-  UserId: number;
-  BookmarkId: string /* Long Integer as string */;
-  BookmarkCategoryId: string;
-  ItemId: string /* Long Integer as string */;
-  CreatedAtDateUtc: string /* ISO DateTime */;
-}
-
 export interface EmptyListItem {
   Id: string /* Long Integer as string */;
   UserId: number /* 0 in capture */;
-  NoteId: string /* Long Integer as string */;
-  NoteCategoryId: string /* "" in capture */;
-  ItemId: string /* "" in capture */;
+  BookmarkId: string /* Long Integer as string */;
+  ObjectType: string /* "" in capture */;
+  ObjectId: string /* Long Integer as string */;
+  Group: string /* "" in capture */;
   DateCreatedUtc: string /* "1900-01-01..." = no value */;
-  DateEditedUtc: string /* "1900-01-01..." = no value */;
-  NotesTotalCount: string /* Long Integer as string */;
+  Note: string /* "" in capture */;
+}
+
+export interface LocalBookmark {
+  List: unknown[] /* empty in capture */;
+  EmptyListItem: EmptyListItem;
+}
+
+export interface LocalBookmarksC2 {
+  List: unknown[] /* empty in capture */;
+  EmptyListItem: EmptyListItem;
 }
 
 export interface LocalNotes {
@@ -230,8 +316,8 @@ export interface LocalNotes {
 }
 
 export interface LocalEntities_App {
-  LocalBookmark: LocalBookmarkItem[] /* wire: { List: [...] } */;
-  LocalBookmarksC2: LocalBookmarksC2Item[] /* wire: { List: [...] } */;
+  LocalBookmark: LocalBookmark;
+  LocalBookmarksC2: LocalBookmarksC2;
   LocalNotes: LocalNotes;
 }
 
@@ -286,10 +372,10 @@ export interface Directory_UserCurrent_Subscription {
 }
 
 export interface Photo {
-  Bucket: string;
-  Path: string;
-  Type: string;
-  SignedURL: string;
+  Bucket: string /* "" in capture */;
+  Path: string /* "" in capture */;
+  Type: string /* "" in capture */;
+  SignedURL: string /* "" in capture */;
 }
 
 export interface AddressItemsListItem {
@@ -315,6 +401,8 @@ export interface Directory_UserCurrent_Member {
   SpouseIsHouseholder: boolean;
   Photo: Photo;
   Address: Address;
+  HouseholderLatitude: string /* Decimal as string */;
+  HouseholderLongitude: string /* Decimal as string */;
 }
 
 export interface Directory_UserCurrent {

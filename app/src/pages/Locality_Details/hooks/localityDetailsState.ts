@@ -1,6 +1,6 @@
 import type { LocalityDetails, LocalityDetailsCallInputs } from '@/api/locality';
-import { getSample_FilterTags } from '@/pages/Locality_Details/components/actions';
-import { LocalityMenu } from '@/pages/Locality_Details/components/staticEntities';
+import { getSample_FilterTags, setTagSelected } from '@/pages/Locality_Details/components/actions';
+import { LocalityMenu } from '@/lib/ubtConnect/actions';
 import type { LocalityDetailsInputs } from '@/pages/Locality_Details/inputs';
 import type { Tag } from '@/lib/ubtConnectLibrary/structures';
 
@@ -51,14 +51,27 @@ export const NO_LOCALITY_DETAILS: LocalityDetails = {
 /** Action_SetLocalityLabel: LocalityName + ", " + CountryName. */
 export const localityLabelOf = (localityName: string, countryName: string): string => `${localityName}, ${countryName}`;
 
+/** SetTags (live Locality_Details.mvc.js:1455-1500, TST 2026-11-05): TagsList_SelectedTag "" → Households and
+    TagsList = GetSample_FilterTags(IsUserLocality); else TagsList = SetTagSelected(GetSample_FilterTags(IsUserLocality),
+    TagsList_SelectedTag). */
+const setTags = (
+  isUserLocality: boolean,
+  tagsList_SelectedTag: string,
+): Pick<LocalityDetailsState, 'tagsList' | 'tagsList_SelectedTag'> =>
+  tagsList_SelectedTag === ''
+    ? { tagsList: getSample_FilterTags(isUserLocality), tagsList_SelectedTag: LocalityMenu.Households }
+    : { tagsList: setTagSelected(getSample_FilterTags(isUserLocality), tagsList_SelectedTag), tagsList_SelectedTag };
+
 /** The default values, the inputs, then ScreenEvent_OnInitialize: LocalityLabel = PreloadedLocalityLabel when it is
-    empty; TagsList = GetSample_FilterTags(IsUserLocality) when it is empty (IsUserLocality defaults to True). */
+    empty; the tags of SetTags (IsUserLocality defaults to True) with TagsList_SelectedTag = the input. Without the
+    input, TagsList_SelectedTag stays "" until Action_InitializeScreen (no tag block before the screen is
+    initialized, as before the input existed). */
 export function initialLocalityDetailsState(inputs: LocalityDetailsInputs): LocalityDetailsState {
   const isUserLocality = true;
   return {
-    tagsList: getSample_FilterTags(isUserLocality),
+    tagsList: setTags(isUserLocality, inputs.TagsList_SelectedTag).tagsList,
     headerIsScrolled: false,
-    tagsList_SelectedTag: '',
+    tagsList_SelectedTag: inputs.TagsList_SelectedTag,
     logged_User: { householdId: '0', localityId: '0' },
     isUserLocality,
     localityLabel: inputs.PreloadedLocalityLabel,
@@ -70,8 +83,8 @@ export function initialLocalityDetailsState(inputs: LocalityDetailsInputs): Loca
 }
 
 /** Action_InitializeScreen after GetUserInformation_Wrapper: LoggedUser; without a LocalityId, the locality of the user
-    and its label; IsUserLocality; TagsList cleared and filled again (GetSample_FilterTags(IsUserLocality));
-    TagsList_SelectedTag = Households; IsScreenInitialized. */
+    and its label; IsUserLocality; SetTags (TagsList cleared and filled again; TagsList_SelectedTag = Households when it
+    is "", else that tag selected); IsScreenInitialized. */
 export function initializeScreen(
   state: LocalityDetailsState,
   loggedUser: LoggedUser,
@@ -86,8 +99,7 @@ export function initializeScreen(
     localityId,
     localityLabel: ownLocality ? userLocalityLabel : state.localityLabel,
     isUserLocality,
-    tagsList: getSample_FilterTags(isUserLocality),
-    tagsList_SelectedTag: LocalityMenu.Households,
+    ...setTags(isUserLocality, state.tagsList_SelectedTag),
     isScreenInitialized: true,
   };
 }

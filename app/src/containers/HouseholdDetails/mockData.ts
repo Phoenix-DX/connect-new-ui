@@ -1,3 +1,4 @@
+import type { HouseholdGalleryImage } from '@/api/household';
 import type { components } from '@/api/schema.d';
 import {
   ORTIZ,
@@ -183,3 +184,30 @@ Object.assign(sampleHouseholds, {
   // Slide 4 (`b3-l1-1152_3`): 6 members, all with photos.
   [LOCALITY_HOUSEHOLDS[3]?.id ?? '']: mock(LOCALITY_HOUSEHOLDS[3] as CastHousehold, 7401),
 });
+
+/* ---- DataActionGetHouseHold_Gallery (live TST of 2026-11-05, HouseholdDetails_Block.mvc.js:1995) ---- */
+
+/** Neutral, non-person pictures shipped with the app (Person images in mocks, Q-W2C-1). */
+const L = `${import.meta.env.BASE_URL}mock-images/placeholder-landscape.svg`;
+const S = `${import.meta.env.BASE_URL}mock-images/placeholder-square.svg`;
+
+/** The pictures of each household gallery (L = landscape, S = square). Never recorded (the gallery is new in the live
+    code, without a capture): fictional. LOCALITY_HOUSEHOLDS[2] has none (the Unavailable_Image box), and any other
+    household has none either. */
+const GALLERY_PICTURES: Readonly<Record<string, readonly string[]>> = {
+  [VITALE.id]: [L, S, L, S],
+  [WARD.id]: [L, L, L],
+  [LOCALITY_HOUSEHOLDS[1]?.id ?? '']: [L, S, S, L, S],
+  [LOCALITY_HOUSEHOLDS[2]?.id ?? '']: [],
+  [LOCALITY_HOUSEHOLDS[3]?.id ?? '']: [S, L],
+};
+
+/** The Directory_ImageDetails rows of a household gallery (Ids from 7001, visible, not deceased). */
+export function galleryOf(householdId: string): HouseholdGalleryImage[] {
+  return (GALLERY_PICTURES[householdId] ?? []).map((signedUrl, n) => ({
+    Id: String(7001 + n),
+    SignedUrl: signedUrl,
+    isDeceased: false,
+    IsHidden: false,
+  }));
+}

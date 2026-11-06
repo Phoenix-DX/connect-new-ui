@@ -14,6 +14,7 @@ import {
   UBT_VerticalAlign,
 } from '@/lib/ubtConnectLibrary/staticEntities';
 import type { SearchResult } from '@/api/search';
+import type { SearchResult as SearchResultRecord } from '@/components/search/SearchResultItem';
 import { UBT_FontWeight_Bold } from './staticEntities';
 
 export interface SearchResult_SectionProps {
@@ -27,7 +28,32 @@ export interface SearchResult_SectionProps {
   onItemClick?: (searchResult: SearchResult) => void;
 }
 
-/** UBTConnect Directory_Search.SearchResult_Section (capture/survey-UBTConnect.json sources
+/** The whole record as In_SearchResult (live UBTConnect.Directory_Search.SearchResult_Section.mvc.js:375: Items.Current).
+    Score is not in the domain type: it keeps its default. */
+const toRecord = (item: SearchResult): SearchResultRecord => ({
+  Id: item.id,
+  HouseholderId: item.householderId,
+  Name: item.name,
+  AdditionalInformation: item.additionalInformation,
+  Location: item.location,
+  Type: item.type,
+  Latitude: item.latitude,
+  Longitude: item.longitude,
+  RecordDisabled: item.recordDisabled,
+  DisplayHouseholdName: item.displayHouseholdName,
+  DisplayAddress: item.displayAddress,
+  Event_IsPersonal: item.eventIsPersonal,
+  Event_EventTypeTitle: item.eventEventTypeTitle,
+  Event_HostSubdivisionId: item.eventHostSubdivisionId,
+  Event_HostHouseholderId: item.eventHostHouseholderId,
+  Event_Source: item.eventSource,
+  Event_EventHostId: item.eventEventHostId,
+  Event_StartDate: item.eventStartDate,
+  Event_EndDate: item.eventEndDate,
+  Event_OrbitEventType: item.eventOrbitEventType,
+});
+
+/** UBTConnect Directory_Search.SearchResult_Section (migration/survey/survey-UBTConnect.json sources
     UBTConnect.Directory_Search.SearchResult_Section.mvc.js, view internalRender, prettier line numbers :334-650):
     SectionSeparator unless HideSeparator; CustomContainer (horizontal Base, top Base unless HideSeparator, bottom Base)
     with Columns_Two (ReduceLast, Center: Type | "<n> Results") and the list of SearchResult_Item. */
@@ -83,15 +109,7 @@ export function SearchResult_Section({
             <SearchResultItem
               // The loading rows of Action_RefreshSearch share Type and an empty Id: the row number keeps keys unique.
               key={`${String(index)}-${item.type}-${item.id}`}
-              inSearchResult={{
-                Id: item.id,
-                HouseholderId: item.householderId,
-                Name: item.name,
-                AdditionalInformation: item.additionalInformation,
-                Location: item.location,
-                Type: item.type,
-                RecordDisabled: item.recordDisabled,
-              }}
+              inSearchResult={toRecord(item)}
               inSearchTerm={searchTerm}
               onOnClick={() => {
                 onItemClick?.(item);

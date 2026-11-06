@@ -165,6 +165,23 @@ describe('useUpdatesSingleList after an unmount (flow scope, item 8)', () => {
     expect(raisedErrors()).toEqual([]);
   });
 
+  it('a tap with the carousel off marks the item read, then opens HouseholdDetails(HouseholdId)', async () => {
+    const view = renderHook(() => useUpdatesSingleList({ ...FLAGS, carousel: false }), { wrapper });
+    vi.mocked(fetchUpdatesList).mockResolvedValueOnce({
+      items: [{ updateItemId: '9101', householdId: '8101', isRead: false, hasAccess: true }],
+      unreadCount: 1,
+    } as never);
+    await settle();
+    vi.mocked(markUpdateItemAsRead).mockResolvedValueOnce(undefined);
+    act(() => {
+      view.result.current.onItemClick(0);
+    });
+    await settle();
+    expect(markUpdateItemAsRead).toHaveBeenCalledWith('9101');
+    expect(navigate).toHaveBeenCalledWith('/UBTConnect/HouseholdDetails', { HouseholdId: '8101' });
+    expect(raisedErrors()).toEqual([]);
+  });
+
   it('R2 + R3: unmount while the MarkAsRead of a tap is pending: no scroll capture, no navigation', async () => {
     const view = renderFlows();
     vi.mocked(fetchUpdatesList).mockResolvedValueOnce({

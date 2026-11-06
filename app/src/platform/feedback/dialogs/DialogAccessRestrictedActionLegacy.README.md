@@ -3,7 +3,7 @@
 OutSystems: `UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy` · pack
 `migration/blocks/UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy.md`
 (compiled source
-`migration/screens/BookmarksByGroup/analysis/sources/pretty/UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy.mvc.js`)
+`migration/sources/pretty/UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy.mvc.js`)
 
 Inputs, events, placeholders: none. Props: `id` is the instance id, the id the caller gives `confirmAction` (for example
 `b1-FreeSubscriptionAlert`). `scope` is the id prefix of its own elements (for example `b1-b20`; default `id` without

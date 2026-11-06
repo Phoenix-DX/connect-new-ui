@@ -2,6 +2,8 @@ import type { RequestHandler } from 'msw';
 import { wireList } from '@/lib/os-wire';
 import { contractHandler } from '@/mocks/contract';
 import { VITALE, VITALE_PARENTS } from '@/mocks/fictional/directory';
+import { notesCollection } from '@/containers/NoteListActions/mocks';
+import { NoteCategory2 } from '@/lib/ubtConnect/staticEntities';
 
 /* Never recorded (members and relations are person data, migration/knowledge/mock-fixtures.md): the relations of
    Julián Vitale, householder of the route's household 42438 (the Vitale household of the directory cast,
@@ -72,6 +74,20 @@ const sibling = (id: string, title: string, partner = '', rest = '') => ({
 });
 
 export const handlers: RequestHandler[] = [
+  // DataActionFetchNotes (Handler_AddNotes): the notes of the member in the in-memory notes collection (P-MUTATION,
+  // as the entity notes of Directory_EntityDetailsActions), category Member, item MemberId.
+  contractHandler('UBTConnect', 'HouseholdRelations_Block/DataActionFetchNotes', ({ MemberId }) => {
+    const rows = notesCollection()
+      .all()
+      .filter((n) => String(n.ItemId) === (MemberId ?? '') && n.NoteCategoryId === NoteCategory2.Member);
+    const items = rows.map((n) => ({
+      Id: String(n.Id),
+      Note: String(n.Note),
+      DateCreatedUtc: String(n.DateCreatedUtc),
+      DateEditedUtc: String(n.DateEditedUtc),
+    }));
+    return { Notes: { Total: rows.length, Note_Item_List: wireList(items) } };
+  }),
   contractHandler('UBTConnect', 'HouseholdRelations_Block/DataActionGet_MemberDetails', () => ({
     MemberName: `${VITALE.householder} ${VITALE.surname}`,
     FamilyName: 'The Vitales',
@@ -80,6 +96,9 @@ export const handlers: RequestHandler[] = [
     Mother: parent('7102', 'María Ana Fernández', VITALE_PARENTS.members[1]?.born ?? ''),
     FormerSpouses: wireList([]),
     ParentHouseholdId: PARENTS_HOUSEHOLD_ID,
+    // live TST of 2026-11-05: AwayParents (a structure never captured, empty here) and NoDisplaySiblings (a member list)
+    AwayParents: { CountryName: '', HouseholdId: '0', LocalityName: '', Title: '' },
+    NoDisplaySiblings: wireList([]),
   })),
   contractHandler('UBTConnect', 'HouseholdRelations_Block/DataActionGet_ParentHouseholdDetails', () => ({
     Out_siblingRelations: wireList([

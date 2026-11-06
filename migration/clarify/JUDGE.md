@@ -63,7 +63,7 @@ the KB, `migration/clarify/.dump/`, the MCP (the orchestrator's review pass call
 - Severity: blocker (the user cannot complete the flow), major (a visible behaviour, rule or data differs), minor
   (text, class, edge case), info (no user impact).
 - Questions `Q<n>`: evidence, options, recommendation. Do not answer them.
-- Run `python3 migration/tools/ste_lint.py migration/clarify/flows/<Flow>/report.md`; 0 errors.
+- Run `python3 tools/docs/ste_lint.py migration/clarify/flows/<Flow>/report.md`; 0 errors.
 - Never write a PIN value, password, account e-mail or real member data.
 
 ## Way of work

@@ -1,7 +1,7 @@
 import type { RequestHandler } from 'msw';
 import { scenario } from '@/mocks/scenario';
 import { collection, statefulHandler } from '@/mocks/store';
-import { messageSenderName } from '@/mocks/fictional/content';
+import { wireMessage, type MessageSeed } from '@/mocks/fictional/messages';
 
 /* DataActionGetMessageInstance was never recorded (no fixture) and messages are person data: fictional values with
    the captured shape (analysis/calls.md #2). The captured message (MessageInstanceId 5965247): sender target Directory
@@ -21,25 +21,6 @@ import { messageSenderName } from '@/mocks/fictional/content';
    shared household for ShareId 9001 and an unavailable share for any other id.
    Scenarios: real, empty (not found), error (HTTP 500), loading (never answers). */
 const DIRECTORY_LOGO = '/UBT_CW/img/UBT_CW.directory_entity_logo.png';
-const DIRECTORY = { Id: 3, Name: 'Directory' };
-
-interface DetailSeed {
-  Id: string;
-  Title: string;
-  /** Sender target of a seeded Orbit, host survey or Assemble message (else Directory or a user, see above). */
-  SenderTarget?: { Id: number; Name: string };
-  /** Message content of a seeded message (else "<p>" + Title + "</p>"). */
-  Content?: string;
-  AdaptiveCardContent?: string;
-  DateTimeCreated: string;
-  IsRead: boolean;
-  IsClear: boolean;
-  ProfileIconURL: string;
-  CreatedByMemberId: string;
-  MessageTemplateTypeId: number;
-  MessageTemplatePriorityId: number;
-  MessageInfoTypeId: number;
-}
 
 const seed = (): Record<string, unknown>[] => [
   {
@@ -178,87 +159,10 @@ const listRows = () => collection('MessageList.messages', () => [], 'Id');
 
 const NULL_DATE = '1900-01-01T00:00:00';
 
-function wireMessage(d: DetailSeed | undefined) {
-  const sentAsDirectory = d !== undefined && d.ProfileIconURL !== '';
-  const target = d?.SenderTarget ?? (sentAsDirectory ? DIRECTORY : { Id: 0, Name: '' });
-  return {
-    MessagePriority: { Id: 0, Label: '', Order: 0, Is_Active: false },
-    MessageContent: { Id: d ? '1' : '0', MessageContent: d ? (d.Content ?? `<p>${d.Title}</p>`) : '' },
-    MessageTemplate: {
-      Id: d ? '1' : '0',
-      IsAdaptiveCard: d?.AdaptiveCardContent !== undefined,
-      Title: d?.Title ?? '',
-      Summary: '',
-      MessageContentId: d ? '1' : '0',
-      CreatedByUser: 0,
-      CreatedDate: NULL_DATE,
-      LastUpdated: NULL_DATE,
-      UpdatedBy: 0,
-      MessageTemplateStatusId: 0,
-      MessageTemplateTypeId: d?.MessageTemplateTypeId ?? 0,
-      MessageTemplatePriorityId: d?.MessageTemplatePriorityId ?? 0,
-      MessageInfoTypeId: d?.MessageInfoTypeId ?? 0,
-      AdaptiveCardJSONId: '0',
-      SentAs: target.Id,
-      SavedTemplateId: '0',
-      MessageSendToTypeId: 0,
-      MessageApplicationTargetId: 0,
-      RecalledBy: 0,
-      IsPushNotificationOnly: false,
-      HideTitleOnPushNotification: false,
-      HideBodyOnPushNotification: false,
-    },
-    MessageSenderTarget: {
-      Id: target.Id,
-      Name: target.Name,
-      ProfileIconURL: d !== undefined && sentAsDirectory ? d.ProfileIconURL : '',
-      Order: 0,
-      Is_Active: target.Id !== 0,
-      NotificationIcon: '',
-      NotificationHeading: '',
-    },
-    MessageInstance: {
-      Id: d?.Id ?? '0',
-      MessageTemplateId: d ? '1' : '0',
-      UserId: 0,
-      DeviceHardwareId: '',
-      IsSent: d !== undefined,
-      IsReceived: d !== undefined,
-      IsRead: d?.IsRead ?? false,
-      IsReplied: false,
-      IsClear: d?.IsClear ?? false,
-      DateTimeCreated: d?.DateTimeCreated ?? NULL_DATE,
-      NotificationUUID: '',
-      SendAttemptCount: 0,
-      LastSendAttemptDateTime: NULL_DATE,
-      NextSendAttemptDateTime: NULL_DATE,
-      CheckForReceiptCount: 0,
-      LastCheckForReceiptDateTime: NULL_DATE,
-      NextCheckForReceiptDateTime: NULL_DATE,
-      SentToWebDevice: false,
-      MessageError: '',
-    },
-    AdaptiveCardJSON: { Id: '0', AdaptiveCardContent: d?.AdaptiveCardContent ?? '' },
-    User: {
-      Id: 0,
-      Name: target.Id !== 0 || d === undefined ? '' : messageSenderName(d.CreatedByMemberId),
-      Username: '',
-      Password: '',
-      Email: '',
-      MobilePhone: '',
-      External_Id: '',
-      Creation_Date: NULL_DATE,
-      Last_Login: NULL_DATE,
-      Is_Active: false,
-    },
-    CreatedByMemberId: d?.CreatedByMemberId ?? '0',
-  };
-}
-
-function findDetail(id: unknown): DetailSeed | undefined {
-  const own = details.get(id) as unknown as DetailSeed | undefined;
+function findDetail(id: unknown): MessageSeed | undefined {
+  const own = details.get(id) as unknown as MessageSeed | undefined;
   if (own) return own;
-  const row = listRows().get(id) as unknown as DetailSeed | undefined;
+  const row = listRows().get(id) as unknown as MessageSeed | undefined;
   return row;
 }
 

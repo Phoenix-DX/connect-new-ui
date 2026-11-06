@@ -1,19 +1,32 @@
 import type { RequestHandler } from 'msw';
-import { contractHandler } from '../../mocks/contract';
+import type { ActionOutputs, PathOf } from '@/api/client/callAction';
+import { contractHandler } from '@/mocks/contract';
 import {
   ORBIT_MILESTONE_TYPES,
   orbitEventsOfMember,
+  orbitWorldId,
   type OrbitEvent,
   type OrbitMilestone,
   type OrbitMilestoneTypeMock,
-} from '../../mocks/fictional/orbit';
-import type { Get_EventDetailsWire, MilestoneWire } from './types';
+} from '@/mocks/fictional/orbit';
+
+/** DataActionGet_EventDetails of ScreenBlock_EventDetail as it travels, typed by the API contract (captured shape:
+    analysis/calls.md § DataActionGet_EventDetails). */
+type Get_EventDetailsWire = ActionOutputs<
+  PathOf<'Connect2_OrbitMobile_MUI', 'ScreenBlock_EventDetail/DataActionGet_EventDetails'>
+>;
+/** Milestone_ScreenRec as it travels. */
+type MilestoneWire = Get_EventDetailsWire['Response']['Milestones']['List'][number];
 
 /* The four data actions of ScreenBlock_EventDetail were not recorded: fictional data from the shared Orbit world
-   (src/mocks/fictional/orbit.ts) in the captured shapes (analysis/calls.md). Captured (dom/default.html): event 7301
-   as a host event of the signed-in household (type row "Host"), three conference days with the first selected
-   (:198-246), day 1 = Accommodation (View Guests) then a meeting at 11:59 PM (:248-334), two hosted accommodation
-   nights (:129-170), host survey Confirmed (:104-111), no documents, no QR code, no booklet.
+   (src/mocks/fictional/orbit.ts) in the captured shapes (analysis/calls.md). Captured (dom/default.html of
+   2026-11-06, the TST account global#1 with a real Orbit event): a host event of the signed-in household (type row
+   "Host", :85-90), the "View Event Guest List" row (:92-100), host survey Confirmed (:189-198), the Host Allocation
+   accordion with two accommodation rows, a meal row and the helper row (:213-275), three conference days with the first
+   selected (:294-336), day 1 = Accommodation (hosts, home, View Guests) then a meeting with "Seat: Row 3" at 6:00 PM
+   (:339-452), the Contact Orbit Helpdesk footer (:460-466); no documents, no QR code (empty header right, :52-56).
+   The capture plan opens the route with the ids of that account (In_EventId 2085, In_MemberId 75835): the handlers
+   translate them to the world's ids with orbitWorldId (ORBIT_TST_ID_ALIASES) and answer the conference of the world.
    Shapes mirrored from calls.md: Response.HostSurvey empty, OrbitEventType with Name / MainColorVar / MainIcon empty,
    MilestoneInfo dates at the null date and Description empty, transport fields of the milestone types empty.
    An event the member is not assigned to answers IsNullResponse True (the "no longer available" branch).
@@ -70,8 +83,11 @@ const milestoneRow = (m: OrbitMilestone): MilestoneWire => ({
   },
 });
 
+/** The event In_EventId of the member In_MemberId in the world (ids of the capture plan translated first). */
 const findEvent = (memberId: string, eventId: string): OrbitEvent | undefined =>
-  orbitEventsOfMember(memberId).find((e) => e.EventId === eventId && e.detail !== undefined);
+  orbitEventsOfMember(orbitWorldId(memberId)).find(
+    (e) => e.EventId === orbitWorldId(eventId) && e.detail !== undefined,
+  );
 
 const EMPTY_EVENT: Get_EventDetailsWire['Response'] = {
   EventId: '0',
@@ -108,7 +124,8 @@ export function eventDetailsAnswer(memberId: string, eventId: string): Get_Event
   const days = [...new Set(milestones.map((m) => m.DateForFilter))].filter((day) => day !== NULL_DATE).sort();
   return {
     Response: {
-      EventId: e.EventId,
+      // The ids as the request sent them (a TST id of the capture plan stays as it is).
+      EventId: eventId,
       MemberId: memberId,
       EventType: e.EventType.Id,
       EventName: e.Title,

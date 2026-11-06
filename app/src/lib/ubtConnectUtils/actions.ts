@@ -1,7 +1,8 @@
 /* Client actions of UBTConnect_Utils used by the shared blocks, ported 1:1 from UBTConnect_Utils.controller.js
-   (copy in migration/screens/Login/analysis/sources/raw/). */
+   (copy in migration/sources/raw/). */
 import { cacheKeyPart, getCacheableObjectInBulk, getCacheKeyParts, type BulkCacheResult } from '@/api/client/cache';
 import { callAction } from '@/api/client/callAction';
+import { addC2Bookmark, deleteC2Bookmark, type BookmarkDeleted, type C2BookmarkAdded } from '@/api/bookmark';
 import { imageCache } from '@/api/image';
 import { osList, wireList } from '@/lib/os-wire';
 import { flagValue } from '@/platform/flags';
@@ -9,6 +10,12 @@ import { log } from '@/platform/log/log';
 import { feedbackMessageAutoClose, PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { pageRedirect } from '@/platform/feedback/pageRedirect';
 import { getClientVar } from '@/platform/session/session';
+import {
+  create_LocalBookmark,
+  delete_LocalBookmarkByBookmarkId,
+  getLocalBookmarkByObjectId,
+} from '@/platform/storage/localEntities';
+import { SystemException, isInstanceOf } from '@/legacy/os/os-exceptions';
 import { jSUtils_PageOpenInNewTab } from '@/lib/jsUtils';
 import { dropdownClose } from '@/components/ui/lib/actions';
 import {
@@ -155,7 +162,7 @@ export const containsIgnoreCase = (text: string, search: string): boolean =>
 
 /**
  * OpenInApp_OpenExternalLink(Url, InNewTab = False) (UBTConnect_Utils.controller.js:4491-4538, copy in
- * migration/screens/HomeFeed/analysis/sources/raw/):
+ * migration/sources/raw/):
  * - CheckInAppBrowserPlugin.IsAvailable and the Url holds "http://" or "https://" (:4508-4511): InAppBrowser Open(Url,
  *   Target SYSTEM when InNewTab, else IN_APP_BROWSER) (:4513-4514). The clone has no Cordova InAppBrowser: decision U18
  *   (app-shell.spec.md §12a) puts a new tab in the in-app browser's place, so the plugin counts as available and both
@@ -172,7 +179,7 @@ export function openInApp_OpenExternalLink(url: string, inNewTab = false): void 
   }
 }
 
-/** CommonPlugin GetPlatform (runtime-sources/CommonPlugin.controller.js:236-280): ToLower(cordova.platformId) when
+/** CommonPlugin GetPlatform (sources/runtime/CommonPlugin.controller.js:236-280): ToLower(cordova.platformId) when
     IsCordovaDefined (:425-512, `typeof(cordova) === "undefined"` → False), else the output default "". */
 function getPlatform(): string {
   const cordova = (window as Window & { cordova?: { platformId?: string } }).cordova;
@@ -190,9 +197,9 @@ export function getOperatingSystem(): string {
 
 /**
  * OpenInApp_OpenApp(Package) (UBTConnect_Utils.controller.js:4360-4462, copy in
- * migration/screens/HomeFeed/analysis/sources/raw/), browser path:
+ * migration/sources/raw/), browser path:
  * - CheckAppLauncherPlugin (:4384): `!!window.cordova && !!window.plugins.launcher`
- *   (runtime-sources/Connect2_AppLauncherPlugin.controller.js:302) is False without Cordova, so CanLaunchWithData /
+ *   (sources/runtime/Connect2_AppLauncherPlugin.controller.js:302) is False without Cordova, so CanLaunchWithData /
  *   LaunchWithData (:4386-4412) never run.
  * - IsCordovaDefined (:4421-4426, market:// link when True) is False (CommonPlugin.controller.js:508-512).
  * - GetOperatingSystem (:4430-4441): Android or Windows → OpenInApp_OpenExternalLink("https://play.google.com/store/
@@ -219,7 +226,7 @@ export function openInApp_OpenApp(packageName: string): void {
 
 /** Note_SendFeedbackMessages(ActionType, IsSuccess, IsNotFound = False) (UBTConnect_Utils.controller.js, define
     "UBTConnect_Utils.controller$Note_SendFeedbackMessages", TST copy in
-    migration/screens/SupperMeeting_Details/analysis/sources/raw/): the add / edit / delete message, as a Success or an
+    migration/sources/raw/): the add / edit / delete message, as a Success or an
     Error feedback message; another action type shows nothing. */
 export function note_SendFeedbackMessages(actionType: string, isSuccess: boolean, isNotFound = false): void {
   let message: string;
@@ -237,13 +244,13 @@ export function note_SendFeedbackMessages(actionType: string, isSuccess: boolean
 }
 
 /** CleanAddressForMaps(Address) (UBTConnect_Utils.controller.js:1153-1215, JS node CleanAddressJS; copy in
-    migration/screens/Login/analysis/sources/raw/): newlines / carriage returns, then runs of whitespace, become one
+    migration/sources/raw/): newlines / carriage returns, then runs of whitespace, become one
     space. Returns AddressSafe. */
 export function cleanAddressForMaps(address: string): string {
   return address.replace(/(\n|\r)+/g, ' ').replace(/\s+/g, ' ');
 }
 
-/** Connect2_AppLauncherPlugin CheckAppLauncherPlugin (runtime-sources/Connect2_AppLauncherPlugin.controller.js:302):
+/** Connect2_AppLauncherPlugin CheckAppLauncherPlugin (sources/runtime/Connect2_AppLauncherPlugin.controller.js:302):
     `!!window.cordova && !!window.plugins.launcher`; False in the clone (no Cordova), so CanLaunchWithData /
     LaunchWithData never run. */
 export function checkAppLauncherPlugin(): boolean {
@@ -255,7 +262,7 @@ export function checkAppLauncherPlugin(): boolean {
 /** Bookmark_SendFeedbackMessage(IsCreate, isError) (UBTConnect_Utils.controller.js:92-149, BookmarksByGroup copy): an
     Error message "Bookmark could not be added / removed. Please try again later." when isError, else a Success
     message "Added to / Removed from your Bookmarks" (IsCreate picks the text). */
-export function bookmark_SendFeedbackMessage(isCreate = false, isError = false): void {
+function bookmark_SendFeedbackMessage(isCreate = false, isError = false): void {
   if (isError) {
     showFeedbackMessage(
       isCreate
@@ -271,6 +278,74 @@ export function bookmark_SendFeedbackMessage(isCreate = false, isError = false):
   }
 }
 
+/* ---- ToggleBookmarkItem_C2 (live module of 2026-11-05: TST moved it from UBTConnect to UBTConnect_Utils) ---- */
+
+/** The two server actions of ToggleBookmarkItem_C2. */
+export interface BookmarkServerActions {
+  /** AddBookmark2(In_BookmarkCategoryId, In_ItemId) (UBTConnect_Utils.controller.js:5819-5835): Success, Bookmark_Added
+      (Connect_Bookmarks_CS UI_Bookmark_Added; Id and DateCreatedUtc are used). */
+  addBookmark2(in_BookmarkCategoryId: string, in_ItemId: string): Promise<C2BookmarkAdded>;
+  /** DeleteBookmarkByBookmarkId2(BookmarkId) (UBTConnect_Utils.controller.js:5892-5906): Success (WasFound is not
+      read). */
+  deleteBookmarkByBookmarkId2(bookmarkId: string): Promise<BookmarkDeleted>;
+}
+
+/** The two server actions in the domain api/bookmark (addC2Bookmark and deleteC2Bookmark; contract operations
+    `UBTConnect_Utils/ServiceAPIAddBookmark2` and `…/ServiceAPIDeleteBookmarkByBookmarkId2`); mocks in
+    `containers/EntityDetailsActions/mocks.ts`. Typed nullable so callers keep their guard. */
+export const bookmarkServerActions: BookmarkServerActions | null = {
+  addBookmark2: addC2Bookmark,
+  deleteBookmarkByBookmarkId2: deleteC2Bookmark,
+};
+
+/** ToggleBookmarkItem_C2(In_ItemId, In_BookmarkType, IsBookmarked_C2) (UBTConnect_Utils.controller.js:5661-5770):
+    - bookmarked: GetLocalBookmarkByObjectId(In_ItemId, In_BookmarkType) (:5690) → DeleteBookmarkByBookmarkId2(its
+      BookmarkId) (:5694); on Success Delete_LocalBookmarkByBookmarkId(BookmarkId, In_BookmarkType) (:5703) and
+      Bookmark_SendFeedbackMessage(not IsBookmarked_C2, False), else the error message;
+    - not bookmarked: LogMessage("In_BookmarkType " + In_BookmarkType, "UBTConnect") (:5722), AddBookmark2(
+      In_BookmarkType, In_ItemId) (:5723); on Success Create_LocalBookmark(In_ItemId, In_BookmarkType,
+      Bookmark_Added.Id, Bookmark_Added.DateCreatedUtc) and the success message, else the error message;
+    - AllExceptions (not system, :5750-5758): OS.Logger.error, the error message, then the action ends normally;
+      system exceptions are raised.
+    No outputs (:5765-5770). */
+export async function toggleBookmarkItem_C2(
+  in_ItemId: string,
+  in_BookmarkType: string,
+  isBookmarked_C2: boolean,
+  server: BookmarkServerActions,
+): Promise<void> {
+  try {
+    if (isBookmarked_C2) {
+      const local = await getLocalBookmarkByObjectId(in_ItemId, in_BookmarkType);
+      const deleted = await server.deleteBookmarkByBookmarkId2(local.BookmarkId);
+      if (deleted.Success) {
+        await delete_LocalBookmarkByBookmarkId(local.BookmarkId, in_BookmarkType);
+        bookmark_SendFeedbackMessage(!isBookmarked_C2, false);
+      } else {
+        bookmark_SendFeedbackMessage(!isBookmarked_C2, true);
+      }
+    } else {
+      log.info(`In_BookmarkType ${in_BookmarkType}`, { module: 'UBTConnect' });
+      const added = await server.addBookmark2(in_BookmarkType, in_ItemId);
+      if (added.Success) {
+        await create_LocalBookmark(
+          in_ItemId,
+          in_BookmarkType,
+          added.Bookmark_Added.Id,
+          added.Bookmark_Added.DateCreatedUtc,
+        );
+        bookmark_SendFeedbackMessage(!isBookmarked_C2, false);
+      } else {
+        bookmark_SendFeedbackMessage(!isBookmarked_C2, true);
+      }
+    }
+  } catch (ex) {
+    if (isInstanceOf(ex, SystemException)) throw ex;
+    log.error('ToggleBookmarkItem_C2', ex);
+    bookmark_SendFeedbackMessage(!isBookmarked_C2, true);
+  }
+}
+
 /* ---- Wave 4E (HouseholdDetails_Block) ---- */
 /** GetHasPhotobookAccess (UBTConnect_Utils.controller.js:3537-3575, BookmarksByGroup copy): HasAccess of
     Connect_LaunchDarkly_PermissionCheck(LaunchDarkly_FF.MobilePhotobook) (migration/knowledge/feature-flag-helpers.md;
@@ -280,7 +355,7 @@ export const getHasPhotobookAccess = (): boolean => flagValue('mobilePhotobook')
 /* ---- F11 (CR-MilestoneDetail-3): open a document ---- */
 
 /** OpenInApp_ViewFile_Fallback(DownloadUrl) (UBTConnect_Utils.controller.js:4830-4895, copy in
-    migration/screens/OrbitLanding/analysis/sources/raw/): CheckInAppBrowserPlugin.IsAvailable → InAppBrowser
+    migration/sources/raw/): CheckInAppBrowserPlugin.IsAvailable → InAppBrowser
     Open(DownloadUrl, Target SYSTEM); else the JS node `window.setTimeout(() => window.open(DownloadUrl, "_blank"))`.
     As in openInApp_OpenExternalLink, decision U18 counts the in-app browser as available and opens a new tab. */
 export function openInApp_ViewFile_Fallback(downloadUrl: string): void {
@@ -304,7 +379,7 @@ const isCordovaDefined = (): boolean => (window as Window & { cordova?: unknown 
 
 /**
  * OpenInApp_TryOpenFileInApp(Filename, DownloadUrl, FolderToSave, FileExtension) → IsInApp, Filepath
- * (UBTConnect_Utils.controller.js:4568-4816, copy in migration/screens/OrbitLanding/analysis/sources/raw/). Once
+ * (UBTConnect_Utils.controller.js:4568-4816, copy in migration/sources/raw/). Once
  * through a do-while(False): Get_FileExtension(Filename); with an extension, CheckFileTransferPlugin, CheckFilePlugin and
  * CheckFileViewerPlugin; when all three are available, a PDF is downloaded into the cache folder FolderToSave
  * (CreateDirectory, GetMetadata, DownloadFile: the FileTransfer plugin then answers through HandleDownload), any other
@@ -338,7 +413,7 @@ export function openInApp_TryOpenFileInApp(
 export const POLICY_NOT_FOUND = "This policy couldn't be found.";
 
 /** ApplicationPolicies_CW CanOpenApplicationPolicyDirectlyViaUrl: CanOpenDirectly = IsWeb, JS node
-    `$parameters.IsWeb = !window.cordova` (migration/shell/sources/ApplicationPolicies_CW.controller.js, IsWebJS). */
+    `$parameters.IsWeb = !window.cordova` (migration/sources/shell/ApplicationPolicies_CW.controller.js, IsWebJS). */
 const canOpenApplicationPolicyDirectlyViaUrl = (): boolean => !(window as { cordova?: unknown }).cordova;
 
 /** UBTConnect_Utils OpenPolicy(PolicyInformation, ErrorMessage) (UBTConnect_Utils.controller.js, `openPolicy$Action`):
@@ -359,7 +434,7 @@ export function openPolicy(
 }
 
 /** DropdownTags_CloseOtherOnClick (controller.js:1462-1489, JavaScript1 :1490-1516; copy in
-    migration/screens/AssembleEvents/analysis/sources/raw/UBTConnect_Utils.controller.js): on every
+    migration/sources/raw/UBTConnect_Utils.controller.js): on every
     `.osui-dropdown-tags` present now, a capture-phase click listener that closes each other one through
     DropdownAPI.Close(its `name`, the unique id) when it has a name. As compiled, the listeners are never removed and
     elements rendered later get none. CR-EventBooklet-2. */

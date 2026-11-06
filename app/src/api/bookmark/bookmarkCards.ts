@@ -6,24 +6,16 @@ import type { Notes } from '@/lib/ubtConnectLibrary/structures';
    (Bookmarks.mvc.js pretty:690-702, refresh only) and the server action Get_BookmarkPills_ByBookmarkCategoryIds of
    UBTConnect_Bookmarks_MCS (called by Get_LocalDynamicBookmarkPills, UBTConnect_Bookmarks_MCS.controller.js:1193).
    Own file, as notification/notificationDetail.ts. Both operations come from the contract (regenerated for I10-6).
-   The contract's UI_Bookmark_CardItem (Connect_Bookmarks_CS) has no channel and event fields yet, so
-   BookmarkCardItemWire adds the five of the TST record (Bookmarks_Card_Item.mvc.js:160-410) as optional; the mapper
-   reads three of them, with the record defaults ("" and NullDate), as NoteCardItemWireTst of api/note/mapper.ts. */
-
-const NULL_DATE_TIME = '1900-01-01T00:00:00';
+   UI_Bookmark_CardItem (Connect_Bookmarks_CS, live model of 2026-11-05,
+   migration/sources/runtime/Connect_Bookmarks_CS.model.js): ItemId is Text, with ItemId2 (the household of a
+   member), HasDetailAccess and the channel fields ChannelName, ChannelLogo, PublishedAt; no event dates. */
 
 /** Out_Bookmarks of DataActionGetBookmarks (Connect_Bookmarks_CS UI_Bookmarks): Total (Long Integer, as text) and the
     cards of the page. */
 export type BookmarkCardsWire = ActionOutputs<PathOf<'UBTConnect', 'Bookmarks/DataActionGetBookmarks'>>;
 
-/** Connect_Bookmarks_CS UI_Bookmark_CardItem of the contract, with the channel fields of the TST record. */
-export type BookmarkCardItemWire = BookmarkCardsWire['Out_Bookmarks']['BookmarkCardItemList']['List'][number] & {
-  ChannelName?: string;
-  ChannelLogo?: string;
-  EventStartDate?: string;
-  EventEndDate?: string;
-  PublishedAt?: string;
-};
+/** Connect_Bookmarks_CS UI_Bookmark_CardItem of the contract. */
+export type BookmarkCardItemWire = BookmarkCardsWire['Out_Bookmarks']['BookmarkCardItemList']['List'][number];
 
 /** Out_BookmarkPills of Get_BookmarkPills_ByBookmarkCategoryIds: a pill for each bookmark category. */
 type BookmarkPillsWire = ActionOutputs<
@@ -32,7 +24,12 @@ type BookmarkPillsWire = ActionOutputs<
 
 /** A bookmark card (UI_Bookmark_CardItem). */
 export interface BookmarkCardItem {
+  /** Text: a Long Integer, or "<LocalityId>:<InterchangeLocalityId>" for an Interchange. */
   itemId: string;
+  /** Text: the household of a Member card (Household_Relations HouseholdId); "" for the other categories. */
+  itemId2: string;
+  /** False: a click shows "This <category> is no longer available." instead of the detail. */
+  hasDetailAccess: boolean;
   /** A BookmarkCategory identifier ("Household", "OneSchool Global", "Supper Meeting", …). */
   bookmarkCategoryId: string;
   channelName: string;
@@ -40,10 +37,6 @@ export interface BookmarkCardItem {
   channelLogo: string;
   /** DateTime ("yyyy-MM-ddTHH:mm:ss"); NullDate when the card has no channel. */
   publishedAt: string;
-  /** EventStartDate and EventEndDate (DateTime) of UI_Bookmark_CardItem: the event time row of ItemCard_WithNotes
-      (TST publish of 2026-10-29); NullDate when the card is not an event. */
-  eventStartDate?: string;
-  eventEndDate?: string;
   title: string;
   subtitle: string;
   sourceHeader: { iconId: string; imageURL: string; initials: string; label: string };
@@ -81,12 +74,12 @@ export const toBookmarkCardItem = (w: BookmarkCardItemWire): BookmarkCardItem =>
   const c = w.Bookmark_Card_Content;
   return {
     itemId: w.ItemId,
+    itemId2: w.ItemId2,
+    hasDetailAccess: w.HasDetailAccess,
     bookmarkCategoryId: w.BookmarkCategoryId,
-    channelName: w.ChannelName ?? '',
-    channelLogo: w.ChannelLogo ?? '',
-    publishedAt: w.PublishedAt ?? NULL_DATE_TIME,
-    eventStartDate: w.EventStartDate ?? NULL_DATE_TIME,
-    eventEndDate: w.EventEndDate ?? NULL_DATE_TIME,
+    channelName: w.ChannelName,
+    channelLogo: w.ChannelLogo,
+    publishedAt: w.PublishedAt,
     title: c.Title,
     subtitle: c.Subtitle,
     sourceHeader: {

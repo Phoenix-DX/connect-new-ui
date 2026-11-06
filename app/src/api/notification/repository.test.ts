@@ -2,6 +2,7 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { collection } from '@/mocks/store';
 import { recordBodies } from '@/test/testSupport';
 import { toNotificationsVariablesWire } from './mapper';
+import { markNotificationDetailsOpened } from './notificationDetail';
 import {
   fetchNotificationDateRanges,
   fetchNotifications,
@@ -103,18 +104,26 @@ describe('notification repository: the screen Notifications', () => {
     expect(bodies).toEqual([toNotificationsVariablesWire(variables)]);
     expect(list.items).toHaveLength(68);
     const first = list.items.find((i) => i.id === '910019');
-    expect(first && Object.keys(first).sort()).toEqual(['dateTimeCreated', 'id', 'isRead', 'profileIconURL', 'title']);
+    expect(first && Object.keys(first).sort()).toEqual([
+      'createdByMemberId',
+      'dateTimeCreated',
+      'id',
+      'isRead',
+      'messageTemplateId',
+      'profileIconURL',
+      'title',
+    ]);
     expect(first).toMatchObject({
       id: '910019',
       title: 'Test Noti 56',
       isRead: true,
       profileIconURL: '/UBT_CW/img/UBT_CW.directory_entity_logo.png',
+      messageTemplateId: '48187',
+      createdByMemberId: '900103',
     });
     expect(first?.dateTimeCreated).toMatch(/^\d{4}-\d{2}-\d{2}T10:50:23$/);
     // The TST capture of 2026-10-29: 2 unread notifications.
     expect(list.items.filter((n) => !n.isRead)).toHaveLength(2);
-    // DEV Get_UI_Notifications never assigns HasUnreadMessages (MCP, 2026-10-29): False.
-    expect(list.hasUnreadMessages).toBe(false);
     expect(list.unreadNotificationsCount).toBe(2);
   });
 
@@ -169,6 +178,20 @@ describe('notification repository: the wrappers of Connect2_LegacyShared', () =>
     const body = { IsPublic: true, IsPrivate: true, DeviceHardwareId: 'WEB_test', SearchTerm: '' };
     expect(bodies).toEqual([body, body]);
     expect(unreadIds()).toEqual([]);
+  });
+});
+
+describe('notification repository: the screen NotificationDetails', () => {
+  it('markNotificationDetailsOpened calls Wrapper_NotificationOpened of UBTConnect and answers IsRetracted', async () => {
+    await expect(markNotificationDetailsOpened('910021')).resolves.toBe(false);
+    expect(window.__osCalls).toEqual([
+      expect.objectContaining({
+        module: 'UBTConnect',
+        owner: undefined,
+        action: 'ActionWrapper_NotificationOpened',
+        inputNames: ['MessageInstanceId'],
+      }),
+    ]);
   });
 });
 

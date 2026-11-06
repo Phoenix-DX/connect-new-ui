@@ -21,6 +21,17 @@ const resultWire = (id: string, type: string, name: string, recordDisabled = fal
   Longitude: '-62.2724',
   RecordDisabled: recordDisabled,
   Score: '12',
+  DisplayHouseholdName: false,
+  DisplayAddress: false,
+  Event_IsPersonal: false,
+  Event_EventTypeTitle: '',
+  Event_HostSubdivisionId: '0',
+  Event_HostHouseholderId: '0',
+  Event_Source: '',
+  Event_EventHostId: '',
+  Event_StartDate: '1900-01-01',
+  Event_EndDate: '1900-01-01',
+  Event_OrbitEventType: '',
 });
 
 const variables: SearchVariables = {
@@ -39,13 +50,15 @@ const variables: SearchVariables = {
 };
 
 describe('search mapper', () => {
-  it('toSearchResults keeps the three lists in the server order, without Score', () => {
+  it('toSearchResults keeps the five lists in the server order, without Score', () => {
     const results = toSearchResults({
       Households: { List: [resultWire('7300', 'Household', 'Rojas Household')] },
       People: {
         List: [resultWire('7302', 'Member', 'Lucía Rojas'), resultWire('7303', 'Member', 'Tomás Rojas', true)],
       },
       Places: { List: [] },
+      Events: { List: [] },
+      Schools: { List: [] },
     });
     expect(results.households).toEqual([
       {
@@ -58,6 +71,17 @@ describe('search mapper', () => {
         latitude: '-38.7196',
         longitude: '-62.2724',
         recordDisabled: false,
+        displayHouseholdName: false,
+        displayAddress: false,
+        eventIsPersonal: false,
+        eventEventTypeTitle: '',
+        eventHostSubdivisionId: '0',
+        eventHostHouseholderId: '0',
+        eventSource: '',
+        eventEventHostId: '',
+        eventStartDate: '1900-01-01',
+        eventEndDate: '1900-01-01',
+        eventOrbitEventType: '',
       },
     ]);
     expect(results.people.map((r) => [r.id, r.name, r.recordDisabled])).toEqual([
@@ -65,6 +89,53 @@ describe('search mapper', () => {
       ['7303', 'Tomás Rojas', true],
     ]);
     expect(results.places).toEqual([]);
+    expect([results.events, results.schools]).toEqual([[], []]);
+  });
+
+  // live ScreenBlock_Search.mvc.js:50-72: the Events and Schools outputs, with the event fields of the record.
+  it('toSearchResults maps the Events and Schools lists with the event fields', () => {
+    const results = toSearchResults({
+      Households: { List: [] },
+      People: { List: [] },
+      Places: { List: [] },
+      Events: {
+        List: [
+          {
+            ...resultWire('1210-20261101-1', '', "Lord's Supper"),
+            Event_Source: 'Assemble',
+            Event_HostSubdivisionId: '1210',
+            Event_EventTypeTitle: "Lord's Supper",
+            Event_StartDate: '2026-11-01',
+            Event_EndDate: '2026-11-01',
+          },
+          {
+            ...resultWire('70415', '', 'Saturday Meal at Bahia Blanca'),
+            Event_Source: 'LDM',
+            Event_EventHostId: '88231',
+            Event_HostHouseholderId: '7400',
+            Event_IsPersonal: true,
+            Event_StartDate: '2026-10-17',
+          },
+        ],
+      },
+      Schools: {
+        List: [{ ...resultWire('1431', 'OneSchool Global', 'OneSchool Bahia Blanca'), DisplayAddress: true }],
+      },
+    });
+    expect(results.events.map((r) => [r.id, r.eventSource, r.eventHostSubdivisionId, r.eventStartDate])).toEqual([
+      ['1210-20261101-1', 'Assemble', '1210', '2026-11-01'],
+      ['70415', 'LDM', '0', '2026-10-17'],
+    ]);
+    expect(results.events[0]).toMatchObject({ eventEventTypeTitle: "Lord's Supper", eventEndDate: '2026-11-01' });
+    expect(results.events[1]).toMatchObject({
+      eventEventHostId: '88231',
+      eventHostHouseholderId: '7400',
+      eventIsPersonal: true,
+      eventOrbitEventType: '',
+    });
+    expect(results.schools.map((r) => [r.id, r.type, r.name, r.displayAddress])).toEqual([
+      ['1431', 'OneSchool Global', 'OneSchool Bahia Blanca', true],
+    ]);
   });
 
   it('toBirthdayOptions keeps the Connect_SearchBirthdayOptions part of each row', () => {

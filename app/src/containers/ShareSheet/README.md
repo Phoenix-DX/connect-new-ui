@@ -1,7 +1,7 @@
 # ShareSheet
 
 OutSystems: `UBTConnect_Utils.CW_Share.ShareSheet` · pack `migration/blocks/UBTConnect_Utils.CW_Share.ShareSheet.md`
-· compiled source `migration/screens/BookmarksByGroup/analysis/sources/pretty/UBTConnect_Utils.CW_Share.ShareSheet.mvc.js`
+· compiled source `migration/sources/pretty/UBTConnect_Utils.CW_Share.ShareSheet.mvc.js`
 
 | Input                | Type            | Prop                  | Default |
 | -------------------- | --------------- | --------------------- | ------- |

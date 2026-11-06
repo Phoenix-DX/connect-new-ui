@@ -19,7 +19,9 @@ export interface HouseholdDetailsState {
   tags: Tag[];
   /** [TagsList_SelectedTag] The identifier of the selected tag. */
   selectedTag: string;
-  /** [TEMP_TimelineImages] The timeline images of the Photos tag. The block never fills them. */
+  /** [TEMP_TimelineImages] The block never fills them, and since the live code of 2026-11-05 the list no longer shows
+      them (it shows GetHouseHold_Gallery); Handler_TimelinePhotoSelected still loops them (HouseholdDetails_Block.mvc.js
+      :2942-2972), so a click changes nothing visible. */
   timelineImages: UI_HouseholdTimelineImages[];
   /** [LocalIsBookmarked] The entity actions changed the bookmark. */
   isBookmarked: boolean;
@@ -35,6 +37,15 @@ export interface HouseholdDetailsState {
   household: Household & { dataFetchStatus: DataFetchStatus };
   /** [GetHousehold_Coordinates] The map coordinates of the address. */
   coordinates: HouseholdCoordinates;
+  /** [GetHouseHold_Gallery] The gallery images (only SignedURL) with the data fetch status of the data action
+      (Fetching by default). @origin HouseholdDetails_Block.mvc.js:1995 (live TST of 2026-11-05) */
+  gallery: HouseholdGallery;
+}
+
+/** The gallery of the Photos tag: the images of GetHouseHold_Gallery and its data fetch status. */
+interface HouseholdGallery {
+  images: UI_HouseholdTimelineImages[];
+  dataFetchStatus: DataFetchStatus;
 }
 
 export const INITIAL_HOUSEHOLD_DETAILS_STATE: HouseholdDetailsState = {
@@ -54,6 +65,7 @@ export const INITIAL_HOUSEHOLD_DETAILS_STATE: HouseholdDetailsState = {
     isVisible: false,
   },
   coordinates: {},
+  gallery: { images: [], dataFetchStatus: DataFetchStatus.Fetching },
 };
 
 /** The changes of the state, in the order in which the flows make them. */
@@ -71,6 +83,10 @@ export type HouseholdDetailsAction =
   /** OnAfterFetch: the household (with the preview data) and the Photos tag enabled or not. */
   | { type: 'householdFetched'; household: Household }
   | { type: 'coordinatesFetched'; coordinates: HouseholdCoordinates }
+  /** GetHouseHold_Gallery: OnAfterFetch is empty (HouseholdDetails_Block.mvc.js:2612-2635). */
+  | { type: 'galleryFetchStarted' }
+  | { type: 'galleryFetchFailed' }
+  | { type: 'galleryFetched'; images: UI_HouseholdTimelineImages[] }
   /** OnChangeTag and Action_SetHideActionsPhotobook. */
   | { type: 'tagsChanged'; tags: Tag[]; hasPhotobookAccess: boolean }
   | { type: 'bookmarkChanged'; isBookmarked: boolean }
@@ -108,6 +124,12 @@ export function householdDetailsReducer(
       };
     case 'coordinatesFetched':
       return { ...state, coordinates: action.coordinates };
+    case 'galleryFetchStarted':
+      return { ...state, gallery: { ...state.gallery, dataFetchStatus: DataFetchStatus.Fetching } };
+    case 'galleryFetchFailed':
+      return { ...state, gallery: { ...state.gallery, dataFetchStatus: DataFetchStatus.Error } };
+    case 'galleryFetched':
+      return { ...state, gallery: { images: action.images, dataFetchStatus: DataFetchStatus.Fetched } };
     case 'tagsChanged': {
       const selected = selectedTagOf(action.tags);
       return {

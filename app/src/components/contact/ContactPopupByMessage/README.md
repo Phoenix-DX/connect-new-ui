@@ -2,7 +2,7 @@
 
 OutSystems: `UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByMessage` · pack
 `migration/blocks/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByMessage.md` · compiled source
-`migration/screens/HouseholdCarousel/analysis/sources/pretty/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByMessage.mvc.js`
+`migration/sources/pretty/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByMessage.mvc.js`
 
 | Input                   | Type                         | Prop                     | Default                 |
 | ----------------------- | ---------------------------- | ------------------------ | ----------------------- |

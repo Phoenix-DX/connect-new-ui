@@ -5,7 +5,7 @@ import { ROUTE_CSS } from '@/app/routes.css.generated';
 
 /* tokens.css is in the app layer, so a token wins over the value that the original CSS sets on :root. While the
    original files load, each token must equal that value on every route screen, or the token changes the rendering
-   (rule of migration/tools/refactor/p8-1-tokens.py, which wrote the file). */
+   (rule of the refactor step P8-1 script p8-1-tokens.py, which wrote the file; deleted 2026-11-05, in git history). */
 
 // Vitest runs from app/ (jsdom: import.meta.url is not a file URL)
 const read = (path: string) => readFileSync(resolve(process.cwd(), path), 'utf8');

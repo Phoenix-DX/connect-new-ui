@@ -25,7 +25,7 @@ export interface OverlappingImagesProps {
 /** The photo shown for an empty URL (OverlappingImages.mvc.js view style expression). */
 const DEFAULT_PHOTO = '/UBT_CW/img/UBT_CW.User_rectangle.png';
 
-/** Overlapping round photos (analysis/sources/pretty/Connect2_LegacyShared.Widgets.OverlappingImages.mvc.js = OI).
+/** Overlapping round photos (migration/sources/pretty/Connect2_LegacyShared.Widgets.OverlappingImages.mvc.js = OI).
     OnReady / OnParametersChanged (OI ctrl :360-395): RemainingCount = Length(In_ImageURLs) - In_MaxDisplayImage and
     ImageURLs = the first In_MaxDisplayImage URLs. ImageList (view): one `overlapping-photo-cropper` per URL whose
     style sets the diameter, the photo (or the default image) and translateX((Length - (Row + 1)) × In_OverlapPercent %)

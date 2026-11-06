@@ -5,7 +5,6 @@ import {
   INITIAL_NOTES_STATE,
   getNotes_FilterYear,
   noteCardTarget,
-  unauthorizedObjectMessage,
   notePillTags,
   notesReducer,
   selectedCategoryId,
@@ -137,20 +136,10 @@ describe('notesState', () => {
     });
     expect(noteCardTarget('252:5', '0', 'Interchange', context)).toEqual({
       path: '/UBTConnect/Locality_Details',
-      inputs: { LocalityId: '252' },
+      inputs: { LocalityId: '252', TagsList_SelectedTag: 'Interchange' },
     });
     for (const other of ['LDM Event', 'locality', 'Locality Contact', 'Orbit Event', 'Update', 'X'])
       expect(noteCardTarget('5', '0', other, context)).toBeNull();
-  });
-
-  it('Handler_OnClickUnauthorizedObject: the pill text of the category, lower case, without a final "s"', () => {
-    const pills = notePillTags([
-      { text: 'Households', identifier: 'Household' },
-      { text: 'OneSchool Global', identifier: 'OneSchool Global' },
-    ]);
-    expect(unauthorizedObjectMessage('Household', pills)).toBe('This household is no longer available.');
-    expect(unauthorizedObjectMessage('OneSchool Global', pills)).toBe('This oneschool global is no longer available.');
-    expect(unauthorizedObjectMessage('Member', pills)).toBe('This  is no longer available.');
   });
 
   it('GetNotes_FilterYear: Get_RecentYears(3), the current year and the two years before it', () => {

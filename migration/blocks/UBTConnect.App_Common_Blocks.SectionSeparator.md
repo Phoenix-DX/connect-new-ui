@@ -1,7 +1,7 @@
 # UBTConnect.App_Common_Blocks.SectionSeparator
 
 - Kind: shared; build screens using it: ContactUsDetails, ContactUsMenu, Menu, PINBiometricsMenu, Profile, Search, Services, TermsAndPoliciesMenu
-- Compiled source: `migration/screens/ContactUsDetails/analysis/sources/pretty/UBTConnect.App_Common_Blocks.SectionSeparator.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.App_Common_Blocks.SectionSeparator.mvc.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.CustomContainer (queue: -)
 
 ## Inputs

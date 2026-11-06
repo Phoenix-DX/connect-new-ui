@@ -4,7 +4,7 @@
   "kind": "decision",
   "topic": "embed loader",
   "question": "How does React hold the Orbit Passport embed loader (scripts/OrbitPassportScanC2.PassportScan.js, the portal team's 'host embed loader' v1.0.0, ES5 IIFE that sets window.OrbitPassport)?",
-  "evidence": "ScreenBlock_PassportScan.mvc.js:148 (JS dependency), :699-782 (configure/open/destroy/back/isConfigured); runtime-sources/OrbitPassportScanC2.PassportScan.js:1-40, 213-245, 600-700; vendored precedent src/vendor/barcodeplugin (ADR-11)",
+  "evidence": "ScreenBlock_PassportScan.mvc.js:148 (JS dependency), :699-782 (configure/open/destroy/back/isConfigured); sources/runtime/OrbitPassportScanC2.PassportScan.js:1-40, 213-245, 600-700; vendored precedent src/vendor/barcodeplugin (ADR-11)",
   "mcp": "Not an MCP fact (design choice).",
   "options": [
    "a: vendor the loader byte-identical in app/src/vendor/orbitpassport/ (SOURCE.md, typed loader index.ts that adds one classic <script> on first use, as barcodeplugin); the protocol, origin checks and camera image parsing stay the portal team's code; an upgrade is a file swap; needs an ADR row like ADR-11 and a scope exception for src/vendor",

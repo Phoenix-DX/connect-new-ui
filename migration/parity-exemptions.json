@@ -5,7 +5,7 @@
    "id": "CAPTURE-SVG-PRESERVEASPECTRATIO",
    "classRegex": "^ubt-header-svg$",
    "reason": "The header background SVG is drawn with preserveAspectRatio=\"none\" (compiled SVGCode); the capture drops that attribute, so the replayed reference scales the SVG uniformly (path offset 0,32 and 390x665 instead of 0,0 and 390x720). Its subtree and screen area are not comparable.",
-   "evidence": "migration/screens/Login/analysis/sources/pretty/UBTConnectLibrary.Layouts.SVG_Background_Custom.mvc.js:202; migration/screens/Login/parity/default.expected.png vs default.build.png; Login Q6"
+   "evidence": "migration/sources/pretty/UBTConnectLibrary.Layouts.SVG_Background_Custom.mvc.js:202; migration/screens/Login/parity/default.expected.png vs default.build.png; Login Q6"
   },
   {
    "id": "CAPTURE-LOGO-REPLAY",
@@ -378,9 +378,9 @@
     "pseudo"
    ],
    "states": "^(loading|offline)$",
-   "pathRegex": "\\[Reusable\\.Spinner\\] > div\\.list-updating-cont > div\\.list-updating$",
+   "pathRegex": "(\\[Reusable\\.Spinner\\] > div\\.list-updating-cont|\\[App_Policies\\.Policy_Custom_AcceptPendingPolicies\\]) > div\\.list-updating$",
    "reason": "The Spinner's ::before rotates (CSS animation); the capture and the build are photographed at different rotation phases (transform matrix differs). Auto-accepted recommendation in the user's 3h window 2026-10-15 (MessageDetail Q3).",
-   "evidence": "migration/screens/MessageDetail/parity/loading.json, offline.json; MessageDetail Q3"
+   "evidence": "migration/screens/MessageDetail/parity/loading.json, offline.json; MessageDetail Q3; AcceptPendingPolicies parity/offline.json 2026-11-06 (the block renders its own div.list-updating)"
   },
   {
    "id": "CAPTURE-DATA-DRIFT-MESSAGELIST-READ",
@@ -764,7 +764,7 @@
    "pathRegex": "div#b4-b6-Photobook_Gallery_List\\.OSFillParent\\.list\\.list-group > div#b4-b6-l1-43_\\d+-\\$b3\\.OSBlockWidget\\[Directory_Photobook\\.Photobook_Gallery_Item\\]$",
    "detailRegex": "^offset in parent (195,0 → 179|235,0 → 219|275,0 → 259|315,0 → 299|355,0 → 339|395,0 → 379|435,0 → 419|475,0 → 459|515,0 → 499|555,0 → 539|595,0 → 579|635,0 → 619|675,0 → 659|715,0 → 699|755,0 → 739|795,0 → 779|835,0 → 819|875,0 → 859|915,0 → 899|955,0 → 939|995,0 → 979|1035,0 → 1019|1075,0 → 1059),0$",
    "reason": "The thumbnail list is scrolled by 16 px at runtime: the List's componentdidmount runs ScrollSelectedIntoPosition(IsInstantScroll True), scrollAmount = SelectedItemPosition (SelectedPosition + 1 = 1) × 40 (32 px item + 8 px margin-right) − (8/2 + 40/2) = 16, which centres the first thumbnail (list padding = half the width). The reference is rebuilt from the captured HTML, which cannot carry an element's scrollLeft, so it always shows scroll 0: every thumbnail sits exactly 16 px further right. Capture artifact; the build follows the compiled JS (same selector and formula).",
-   "evidence": "migration/screens/Photobook/analysis/sources/pretty/UBTConnect.Directory_Photobook.Photobook_Gallery.mvc.js:247-252 (componentdidmount), :578-589 (ScrollIntoPosition parameters; :587 SelectedItemPosition = SelectedPosition + 1), :703-727 (ScrollIntoPositionJS); .claude/skills/outsystems-screen-spec/scripts/parity_check.cjs:612-626 (reference rebuilt from dom/default.html by buildDom) and :395-397 (offsets from getBoundingClientRect, which includes the parent's scroll); app/src/screens/Photobook/components/Photobook_Gallery.tsx scrollIntoPosition"
+   "evidence": "migration/sources/pretty/UBTConnect.Directory_Photobook.Photobook_Gallery.mvc.js:247-252 (componentdidmount), :578-589 (ScrollIntoPosition parameters; :587 SelectedItemPosition = SelectedPosition + 1), :703-727 (ScrollIntoPositionJS); tools/pipeline/parity_check.cjs:612-626 (reference rebuilt from dom/default.html by buildDom) and :395-397 (offsets from getBoundingClientRect, which includes the parent's scroll); app/src/screens/Photobook/components/Photobook_Gallery.tsx scrollIntoPosition"
   },
   {
    "id": "CAPTURE-MASKED-IMAGE-LEGACYSHAREOBJECT",
@@ -895,7 +895,7 @@
    "states": "^(default|loading|offline)$",
    "routeRegex": "^/UBTConnect/ContactByEmail(OneSchoolGlobal|Member)(\\?|$)",
    "pathRegex": "form#b2-Form1\\.OSFillParent\\.form > div > (div#b2-\\$b3\\.OSBlockWidget\\[BasePatterns\\.CustomContainer\\] > div#b2-b3-Content\\.font-size-s\\.ubt-custom-container > (div#b2-\\$b4\\.OSBlockWidget\\[ConnectPatterns\\.DynamicTextArea\\]( > div\\.resizable-text-area\\.resizable-text-area--bounded( > div#b2-b4-Placeholder_TextArea( > span( > textarea#b2-TextArea_Subject\\.OSFillParent\\.form-control)?)?)?)?|div#b2-\\$b5\\.OSBlockWidget\\[ConnectPatterns\\.InputCounter\\])|div#b2-\\$b7\\.OSBlockWidget\\[ConnectPatterns\\.TextArea_WithCounter\\] > div\\.ubt-input-with-counter > (div#b2-b7-Placeholder_Input( > span( > textarea#b2-TextArea_Message\\.OSFillParent\\.form-control)?)?|div#b2-b7-\\$b1\\.OSBlockWidget\\[ConnectPatterns\\.InputCounter\\]))$",
-   "reason": "The capture serializer keeps only the attributes of KEEP_ATTR (.claude/skills/outsystems-screen-spec/scripts/capture.js:285), which drops `rows` (and `maxlength`) of the ContactByEmailForm text areas, so the replayed reference shows both at the browser default rows=2 (60 px). TST renders TextArea_Subject with textLines 1 and TextArea_Message with textLines 3 (UBTConnect.ContactFlow.ContactByEmailForm.mvc.js:400, :556; OutSystemsReactWidgets.js TextArea render `rows:this.props.textLines`), which the clone does (39 px and 81 px: line 21 px + padding/border 18 px). The subject shrinks by 21 px and the message grows by 21 px, so nothing after the form moves. Layout of the two text areas, their DynamicTextArea / placeholder wrappers and the counters below them. Auto-accepted in the user's auto mode 2026-10-15 Applies to both ContactByEmail screens (shared ContactByEmailForm). capture.js KEEP_ATTR (line 285) dropped rows/maxlength; OutSystemsReactWidgets TextArea renders rows = textLines. Fixed in capture.js for future captures. Auto-accepted (user instruction 2026-10-15 16:59)",
+   "reason": "The capture serializer keeps only the attributes of KEEP_ATTR (tools/pipeline/capture.js:285), which drops `rows` (and `maxlength`) of the ContactByEmailForm text areas, so the replayed reference shows both at the browser default rows=2 (60 px). TST renders TextArea_Subject with textLines 1 and TextArea_Message with textLines 3 (UBTConnect.ContactFlow.ContactByEmailForm.mvc.js:400, :556; OutSystemsReactWidgets.js TextArea render `rows:this.props.textLines`), which the clone does (39 px and 81 px: line 21 px + padding/border 18 px). The subject shrinks by 21 px and the message grows by 21 px, so nothing after the form moves. Layout of the two text areas, their DynamicTextArea / placeholder wrappers and the counters below them. Auto-accepted in the user's auto mode 2026-10-15 Applies to both ContactByEmail screens (shared ContactByEmailForm). capture.js KEEP_ATTR (line 285) dropped rows/maxlength; OutSystemsReactWidgets TextArea renders rows = textLines. Fixed in capture.js for future captures. Auto-accepted (user instruction 2026-10-15 16:59)",
    "evidence": "migration/screens/ContactByEmailOneSchoolGlobal/parity/default.json, loading.json, offline.json (358×60 → 358×39 subject, 358×60 → 358×81 message); analysis/dom/default.html:79, :104 (textareas without rows/maxlength; the input of ContactByEmailMember also lacks its compiled maxlength 100)"
   },
   {
@@ -909,7 +909,7 @@
    "states": "^(default|loading|offline)$",
    "routeRegex": "^/UBTConnect/ContactByEmail(OneSchoolGlobal|Member)(\\?|$)",
    "pathRegex": "form#b2-Form1\\.OSFillParent\\.form > div > div#b2-\\$b3\\.OSBlockWidget\\[BasePatterns\\.CustomContainer\\] > div#b2-b3-Content\\.font-size-s\\.ubt-custom-container > div#b2-\\$b4\\.OSBlockWidget\\[ConnectPatterns\\.DynamicTextArea\\] > div\\.resizable-text-area\\.resizable-text-area--bounded > div#b2-b4-Placeholder_TextArea > span$",
-   "reason": "The capture serializer keeps only the attributes of KEEP_ATTR (.claude/skills/outsystems-screen-spec/scripts/capture.js:285), which drops `rows` (and `maxlength`) of the ContactByEmailForm text areas, so the replayed reference shows both at the browser default rows=2 (60 px). TST renders TextArea_Subject with textLines 1 and TextArea_Message with textLines 3 (UBTConnect.ContactFlow.ContactByEmailForm.mvc.js:400, :556; OutSystemsReactWidgets.js TextArea render `rows:this.props.textLines`), which the clone does (39 px and 81 px: line 21 px + padding/border 18 px). The subject shrinks by 21 px and the message grows by 21 px, so nothing after the form moves. Follows: the DynamicTextArea span grid row (60px → 39px). Auto-accepted in the user's auto mode 2026-10-15 Applies to both ContactByEmail screens (shared ContactByEmailForm). capture.js KEEP_ATTR (line 285) dropped rows/maxlength; OutSystemsReactWidgets TextArea renders rows = textLines. Fixed in capture.js for future captures. Auto-accepted (user instruction 2026-10-15 16:59)",
+   "reason": "The capture serializer keeps only the attributes of KEEP_ATTR (tools/pipeline/capture.js:285), which drops `rows` (and `maxlength`) of the ContactByEmailForm text areas, so the replayed reference shows both at the browser default rows=2 (60 px). TST renders TextArea_Subject with textLines 1 and TextArea_Message with textLines 3 (UBTConnect.ContactFlow.ContactByEmailForm.mvc.js:400, :556; OutSystemsReactWidgets.js TextArea render `rows:this.props.textLines`), which the clone does (39 px and 81 px: line 21 px + padding/border 18 px). The subject shrinks by 21 px and the message grows by 21 px, so nothing after the form moves. Follows: the DynamicTextArea span grid row (60px → 39px). Auto-accepted in the user's auto mode 2026-10-15 Applies to both ContactByEmail screens (shared ContactByEmailForm). capture.js KEEP_ATTR (line 285) dropped rows/maxlength; OutSystemsReactWidgets TextArea renders rows = textLines. Fixed in capture.js for future captures. Auto-accepted (user instruction 2026-10-15 16:59)",
    "evidence": "migration/screens/ContactByEmailOneSchoolGlobal/parity/default.json, loading.json, offline.json (358×60 → 358×39 subject, 358×60 → 358×81 message); analysis/dom/default.html:79, :104 (textareas without rows/maxlength; the input of ContactByEmailMember also lacks its compiled maxlength 100)"
   },
   {
@@ -921,7 +921,7 @@
    "routeRegex": "^/UBTConnect/ContactByEmail(OneSchoolGlobal|Member)(\\?|$)",
    "pathRegex": "form#b2-Form1\\.OSFillParent\\.form > div > div#b2-\\$b3\\.OSBlockWidget\\[BasePatterns\\.CustomContainer\\] > div#b2-b3-Content\\.font-size-s\\.ubt-custom-container > div#b2-\\$b4\\.OSBlockWidget\\[ConnectPatterns\\.DynamicTextArea\\] > div\\.resizable-text-area\\.resizable-text-area--bounded > div#b2-b4-Placeholder_TextArea > span$",
    "detailRegex": "^::after height 44px → 23px$",
-   "reason": "The capture serializer keeps only the attributes of KEEP_ATTR (.claude/skills/outsystems-screen-spec/scripts/capture.js:285), which drops `rows` (and `maxlength`) of the ContactByEmailForm text areas, so the replayed reference shows both at the browser default rows=2 (60 px). TST renders TextArea_Subject with textLines 1 and TextArea_Message with textLines 3 (UBTConnect.ContactFlow.ContactByEmailForm.mvc.js:400, :556; OutSystemsReactWidgets.js TextArea render `rows:this.props.textLines`), which the clone does (39 px and 81 px: line 21 px + padding/border 18 px). The subject shrinks by 21 px and the message grows by 21 px, so nothing after the form moves. Follows: the bounded ::after stretched to the grid row (44px → 23px content height). Auto-accepted in the user's auto mode 2026-10-15 Applies to both ContactByEmail screens (shared ContactByEmailForm). capture.js KEEP_ATTR (line 285) dropped rows/maxlength; OutSystemsReactWidgets TextArea renders rows = textLines. Fixed in capture.js for future captures. Auto-accepted (user instruction 2026-10-15 16:59)",
+   "reason": "The capture serializer keeps only the attributes of KEEP_ATTR (tools/pipeline/capture.js:285), which drops `rows` (and `maxlength`) of the ContactByEmailForm text areas, so the replayed reference shows both at the browser default rows=2 (60 px). TST renders TextArea_Subject with textLines 1 and TextArea_Message with textLines 3 (UBTConnect.ContactFlow.ContactByEmailForm.mvc.js:400, :556; OutSystemsReactWidgets.js TextArea render `rows:this.props.textLines`), which the clone does (39 px and 81 px: line 21 px + padding/border 18 px). The subject shrinks by 21 px and the message grows by 21 px, so nothing after the form moves. Follows: the bounded ::after stretched to the grid row (44px → 23px content height). Auto-accepted in the user's auto mode 2026-10-15 Applies to both ContactByEmail screens (shared ContactByEmailForm). capture.js KEEP_ATTR (line 285) dropped rows/maxlength; OutSystemsReactWidgets TextArea renders rows = textLines. Fixed in capture.js for future captures. Auto-accepted (user instruction 2026-10-15 16:59)",
    "evidence": "migration/screens/ContactByEmailOneSchoolGlobal/parity/default.json, loading.json, offline.json (358×60 → 358×39 subject, 358×60 → 358×81 message); analysis/dom/default.html:79, :104 (textareas without rows/maxlength; the input of ContactByEmailMember also lacks its compiled maxlength 100)"
   },
   {
@@ -933,7 +933,7 @@
    "routeRegex": "^/UBTConnect/ContactByEmail(OneSchoolGlobal|Member)(\\?|$)",
    "pathRegex": "^screenshot$",
    "detailRegex": "^[01]\\.\\d\\d% pixels differ .*migration/screens/ContactByEmail(OneSchoolGlobal|Member)/parity/(default|loading|offline)\\.diff\\.png$",
-   "reason": "The capture serializer keeps only the attributes of KEEP_ATTR (.claude/skills/outsystems-screen-spec/scripts/capture.js:285), which drops `rows` (and `maxlength`) of the ContactByEmailForm text areas, so the replayed reference shows both at the browser default rows=2 (60 px). TST renders TextArea_Subject with textLines 1 and TextArea_Message with textLines 3 (UBTConnect.ContactFlow.ContactByEmailForm.mvc.js:400, :556; OutSystemsReactWidgets.js TextArea render `rows:this.props.textLines`), which the clone does (39 px and 81 px: line 21 px + padding/border 18 px). The subject shrinks by 21 px and the message grows by 21 px, so nothing after the form moves. Follows: the screenshot differs only in the text area band (hotspots y 280-360, parity/default.diff.png); bounded to < 2 % and to this route. Auto-accepted in the user's auto mode 2026-10-15 Applies to both ContactByEmail screens (shared ContactByEmailForm). capture.js KEEP_ATTR (line 285) dropped rows/maxlength; OutSystemsReactWidgets TextArea renders rows = textLines. Fixed in capture.js for future captures. Auto-accepted (user instruction 2026-10-15 16:59)",
+   "reason": "The capture serializer keeps only the attributes of KEEP_ATTR (tools/pipeline/capture.js:285), which drops `rows` (and `maxlength`) of the ContactByEmailForm text areas, so the replayed reference shows both at the browser default rows=2 (60 px). TST renders TextArea_Subject with textLines 1 and TextArea_Message with textLines 3 (UBTConnect.ContactFlow.ContactByEmailForm.mvc.js:400, :556; OutSystemsReactWidgets.js TextArea render `rows:this.props.textLines`), which the clone does (39 px and 81 px: line 21 px + padding/border 18 px). The subject shrinks by 21 px and the message grows by 21 px, so nothing after the form moves. Follows: the screenshot differs only in the text area band (hotspots y 280-360, parity/default.diff.png); bounded to < 2 % and to this route. Auto-accepted in the user's auto mode 2026-10-15 Applies to both ContactByEmail screens (shared ContactByEmailForm). capture.js KEEP_ATTR (line 285) dropped rows/maxlength; OutSystemsReactWidgets TextArea renders rows = textLines. Fixed in capture.js for future captures. Auto-accepted (user instruction 2026-10-15 16:59)",
    "evidence": "migration/screens/ContactByEmailOneSchoolGlobal/parity/default.json, loading.json, offline.json (358×60 → 358×39 subject, 358×60 → 358×81 message); analysis/dom/default.html:79, :104 (textareas without rows/maxlength; the input of ContactByEmailMember also lacks its compiled maxlength 100)"
   },
   {
@@ -956,7 +956,7 @@
    "states": "^default$",
    "routeRegex": "/UBTConnect/Profile\\b",
    "pathRegex": "span > input#Switch[23]\\.switch$",
-   "reason": "A switch's checked state is a DOM property, not an attribute, so the captured HTML (dom/default.raw.html) replays both switches unchecked; TST had them on: the notes under them read \"Display mobile number on your profile.\" / \"Display work number on your profile.\" (If(ShowMobileNumber/ShowWorkNumber, \"Display\", \"Hide\"), Profile.mvc.js:2073, :2286), and the OS Switch widget starts from the variable value (state={value:e.variable.value}, runtime-sources/OutSystemsReactWidgets.js). auto-accepted in the user's auto mode 2026-10-15",
+   "reason": "A switch's checked state is a DOM property, not an attribute, so the captured HTML (dom/default.raw.html) replays both switches unchecked; TST had them on: the notes under them read \"Display mobile number on your profile.\" / \"Display work number on your profile.\" (If(ShowMobileNumber/ShowWorkNumber, \"Display\", \"Hide\"), Profile.mvc.js:2073, :2286), and the OS Switch widget starts from the variable value (state={value:e.variable.value}, sources/runtime/OutSystemsReactWidgets.js). auto-accepted in the user's auto mode 2026-10-15",
    "evidence": "migration/screens/Profile/analysis/dom/default.html:372-374, :390, :414-416, :436; parity Profile/default (?mock=spouse): ::before background rgb(233,236,239) → rgb(0,129,156), ::after transform 4px → 28px on Switch2 and Switch3 only"
   },
   {
@@ -1680,6 +1680,140 @@
    "detailRegex": "^0\\.[0-4]\\d% pixels differ .*hotspots 360,40 .*migration/screens/OneSchoolGlobalCarousel/parity/offline\\.diff\\.png$",
    "reason": "Device data, not code: the TST device held a C2 local bookmark of school 1430 when the offline state was captured (the carousel was opened from that Bookmarks card), so TST shows the bookmarked image card (ribbon) and 'Unmark'. The mock keeps no bookmark in its default scenario so that OneSchoolGlobalDetails (captured 'Bookmark') stays equal; with the 'captured' scenario this state gave 52 differences (measured 2026-10-29). React renders the bookmarked look correctly when the bookmark exists (default and loading states of this route, scenario 'captured', are clean). User decision (2026-10-29, round 2): (a) a narrow exemption for these rows of this route's offline state. Pixel: the ribbon of the bookmarked image card (hotspot x 360, y 40) and the Unmark button.",
    "evidence": "migration/screens/OneSchoolGlobalCarousel/parity/offline.json"
+  },
+  {
+   "id": "TST-DRIFT-2026-11-05-HOUSEHOLDRELATIONS-BOOKMARK-BUTTON",
+   "kinds": [
+    "class",
+    "style",
+    "attr",
+    "pseudo"
+   ],
+   "routeRegex": "^/UBTConnect/Household_Relations(\\?|$)",
+   "states": "^(default|loading|offline)$",
+   "pathRegex": "b3-\\$b10\\.OSBlockWidget\\[CW_Common\\.Button\\]",
+   "detailRegex": ".",
+   "reason": "Baseline of 2026-10-29 predates the TST change of 2026-11-05: the live HouseholdRelations_Block enables the Bookmark button (secondary when not bookmarked, primary when bookmarked; it was a disabled primary placeholder). Re-capture needed; remove these rules then.",
+   "evidence": "migration/sources/runtime/UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js:553-590 (button), :2167-2195 (OnClick_Bookmark), :2237-2260 (the read); the October copy migration/sources/raw/…HouseholdRelations_Block.mvc.js:540-556; migration/knowledge/tst-drift-2026-11-05.md (second look)."
+  },
+  {
+   "id": "TST-DRIFT-2026-11-05-HOUSEHOLDRELATIONS-BOOKMARK-PIXEL",
+   "kinds": [
+    "pixel"
+   ],
+   "routeRegex": "^/UBTConnect/Household_Relations(\\?|$)",
+   "states": "^(default|loading|offline)$",
+   "pathRegex": "^screenshot$",
+   "detailRegex": "^0\\.[0-2]\\d% pixels differ .*worst 40px tile [0-5]\\.\\d%",
+   "reason": "Baseline of 2026-10-29 predates the TST change of 2026-11-05: the live HouseholdRelations_Block enables the Bookmark button (secondary when not bookmarked, primary when bookmarked; it was a disabled primary placeholder). Re-capture needed; remove these rules then. The pixels that differ are the button's fill and text.",
+   "evidence": "migration/sources/runtime/UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js:553-590 (button), :2167-2195 (OnClick_Bookmark), :2237-2260 (the read); the October copy migration/sources/raw/…HouseholdRelations_Block.mvc.js:540-556; migration/knowledge/tst-drift-2026-11-05.md (second look)."
+  },
+  {
+   "id": "CAPTURE-2026-11-06-ASSEMBLEDETAIL-MASKED-ROW-MARGIN",
+   "routeRegex": "^/UBTConnect/AssembleDetail(\\?|$)",
+   "kinds": [
+    "style"
+   ],
+   "props": [
+    "margin-left"
+   ],
+   "pathRegex": "\\[Assemble\\.AssembleSummary_Card_Row\\].*Placeholder_Icon_Right\\.OSInline\\.assemble-summary-row__icon-placeholder--right$",
+   "reason": "The right icon placeholder of a summary row has margin-left auto, so its computed margin follows the width of the row text; the capture masks that text (\"•••••• • •••••••\"), the fictional meeting text has another width.",
+   "evidence": "migration/screens/AssembleDetail/parity/default.json (2026-11-06); analysis/dom/default.html rows of AssembleEventDetail; same family as CAPTURE-BADGE-MASKED-TEXT-HOMEFEED"
+  },
+  {
+   "id": "CAPTURE-2026-11-06-ASSEMBLEDETAIL-MASKED-DESCRIPTION-WIDTH",
+   "routeRegex": "^/UBTConnect/AssembleDetail(\\?|$)",
+   "kinds": [
+    "layout"
+   ],
+   "pathRegex": "Result_Item_Text_Cont > div#[^ ]*Description_Placeholder\\.font-size-xs\\.text-neutral-7$",
+   "reason": "The empty description placeholder of the locality row is as wide as the locality title above it; the capture masks the title (\"••••••\"), the fictional locality name has another width.",
+   "evidence": "migration/screens/AssembleDetail/parity/default.json (2026-11-06): 28×0 vs 81×0"
+  },
+  {
+   "id": "CAPTURE-2026-11-06-ASSEMBLEDETAIL-OFFLINE-EMPTY-TITLE",
+   "routeRegex": "^/UBTConnect/AssembleDetail(\\?|$)",
+   "kinds": [
+    "pseudo"
+   ],
+   "states": "^offline$",
+   "pathRegex": "h1\\.header-title\\.text-align-center > div#[^ ]*Title > div#[^ ]*Title > span$",
+   "reason": "Offline the fetch fails and the React title stays empty, so OutSystemsReactWidgets.css [data-expression]:empty:after adds the ::after. The capture navigated from the AssembleEvents list, whose SetPreloadObject gave the title before the fetch; the parity opens the route by URL without that preload object.",
+   "evidence": "migration/screens/AssembleDetail/parity/offline.json (2026-11-06); analysis/states.json via; OutSystemsReactWidgets.css:219"
+  },
+  {
+   "id": "VIA-LEGACY-THEME-BODY-CONTACTBYEMAILLDMCOORDINATOR",
+   "routeRegex": "^/UBTConnect/ContactByEmailLDMCoordinator(\\?|$)",
+   "kinds": [
+    "class"
+   ],
+   "states": "^(default|offline)$",
+   "pathRegex": "^body$",
+   "detailRegex": "^missing \\.connect-theme",
+   "reason": "The states were captured via LDM_EventDetail_V2 (states.json via), a Legacy-layout screen whose OnInitialize puts connect-theme on the body and nothing removes it (app/src/legacy/os/bodyTheme.ts). Parity opens the route by URL with no Legacy screen before, so the body has no theme class. Capture artifact, the same as VIA-ORBIT-THEME-BODY-CONTACTBYEMAILORBITHELPDESK.",
+   "evidence": "migration/screens/ContactByEmailLDMCoordinator/parity/default.json (2026-11-06); analysis/states.json via; analysis/dom/default.html:1"
+  },
+  {
+   "id": "CAPTURE-DROPPED-SUBJECT-VALUE-PIXELS-CONTACTBYEMAILLDMCOORDINATOR",
+   "routeRegex": "^/UBTConnect/ContactByEmailLDMCoordinator(\\?|$)",
+   "kinds": [
+    "pixel"
+   ],
+   "states": "^(default|offline)$",
+   "pathRegex": "^screenshot$",
+   "detailRegex": "^0\\.[0-4]\\d% pixels differ .*parity/(default|offline)\\.diff\\.png$",
+   "reason": "Screenshot difference limited to the subject input (rows y 227-243): the capture drops input values (capture.js removes the value attribute), so the reference shows the placeholder in the disabled input; the build shows In_Subject from the query as the compiled form sets it (ContactByEmailForm.mvc.js:830, :451). Capture artifact, the same family as CAPTURE-MASKED-SUBJECT-PIXELS-CONTACTBYEMAILORBITHELPDESK.",
+   "evidence": "migration/screens/ContactByEmailLDMCoordinator/parity/default.diff.png and offline.diff.png (0.39%, hotspots y 200-243), 2026-11-06"
+  },
+  {
+   "id": "VIA-BACK-MENUICON-GUESTARRANGEMENTS",
+   "routeRegex": "^/UBTConnect/GuestArrangements(\\?|$)",
+   "kinds": [
+    "class",
+    "layout",
+    "position",
+    "style"
+   ],
+   "pathRegex": "(header#b1-b1-b2-Header\\.header\\.orbit-detail(\\b| > .*)|div#b1-b1-b2-ContentWrapper\\.content\\.orbit-detail(\\b| > div#b1-b1-b2-MainContentWrapper\\.ThemeGrid_Container\\.main-content)?)$",
+   "reason": "MenuIcon__UpdatedOSUI with MenuAction Auto shows the back arrow when there is a screen to go back to: the states were captured via OrbitLanding → EventDetail (states.json via), parity opens the route by URL with no previous screen, so the clone shows no back arrow (missing .back, 41x38 → 20x0) and the title / header-right shift by its width. Capture artifact; auto-accepted in the user's auto mode 2026-10-15 Copied for GuestArrangements on 2026-11-06 (same capture path and artifact). On GuestArrangements the missing back arrow also changes the header height (86 → 76 px), the title width and the content offset below it; all under the header and the content wrapper.",
+   "evidence": "migration/screens/HelpersDetail/analysis/states.json (via); parity/default.json, loading.json, offline.json (class missing .back); same rule as VIA-BACK-MENUICON-EVENTDETAIL / -MILESTONEDETAIL; GuestArrangements parity 2026-11-06 (captured via MilestoneDetail, same header ids b1-b1-b2-*)"
+  },
+  {
+   "id": "CAPTURE-SKELETON-SHIMMER-PHASE-GUESTARRANGEMENTS",
+   "routeRegex": "^/UBTConnect/GuestArrangements(\\?|$)",
+   "kinds": [
+    "style"
+   ],
+   "props": [
+    "background-position"
+   ],
+   "states": "^(loading|offline)$",
+   "pathRegex": "div\\.orbit-skeleton-item-height-(s|sm)\\.orbit-skeleton-loading-item(\\.orbit-skeleton-loading-item-margin-s)?$",
+   "reason": "Skeleton shimmer animation (background-position keyframes of .orbit-skeleton-loading-item) photographed at another phase (50.0037% vs 59.5201%); same markup, classes and other styles. Animation-phase capture artifact; auto-accepted in the user's auto mode 2026-10-15 Copied for GuestArrangements on 2026-11-06 (same capture path and artifact).",
+   "evidence": "parity/offline.json (style background-position on .orbit-skeleton-loading-item); GuestArrangements parity 2026-11-06 (captured via MilestoneDetail, same header ids b1-b1-b2-*)"
+  },
+  {
+   "id": "CAPTURE-VIA-MASK-SHIFT-GUESTARRANGEMENTS-PIXELS",
+   "routeRegex": "^/UBTConnect/GuestArrangements(\\?|$)",
+   "kinds": [
+    "pixel"
+   ],
+   "pathRegex": "^screenshot$",
+   "detailRegex": "^(([0-3]\\.\\d\\d% pixels differ .*parity/default\\.diff\\.png)|([0-3]\\.\\d\\d% pixels differ .*parity/loading\\.diff\\.png)|([0-3]\\.\\d\\d% pixels differ .*parity/offline\\.diff\\.png))$",
+   "reason": "Screenshot differences that follow from the artifacts above: the missing back arrow (via), the masked one-line title (16 px shift of the content), the skeleton shimmer phase and, in loading/offline, the empty sub-header type (CR-HelpersDetail-1). Auto-accepted in the user's auto mode 2026-10-15 except the CR part Copied for GuestArrangements on 2026-11-06 (same capture path and artifact).",
+   "evidence": "parity/default.diff.png (3.20%), loading.diff.png (0.47%), offline.diff.png (4.50%); GuestArrangements parity 2026-11-06 (captured via MilestoneDetail, same header ids b1-b1-b2-*)"
+  },
+  {
+   "id": "CAPTURE-MASKED-TITLE-GUESTARRANGEMENTS-HEADER",
+   "routeRegex": "^/UBTConnect/GuestArrangements(\\?|$)",
+   "kinds": [
+    "layout"
+   ],
+   "pathRegex": "div#b1-b1-b2-ContentWrapper\\.content\\.orbit-detail( > div#b1-b1-b2-MainContentWrapper\\.ThemeGrid_Container\\.main-content)?$",
+   "detailRegex": "^390×758 → 390×742$",
+   "reason": "The header title (In_EventName) was masked by the capture: its bullets fit one line, the fictional title of the same word lengths (7 5 11 1 5 3 4, mocks/fictional/orbit.ts) wraps to two lines in the clone, so the header is 16 px taller and the content wrapper 16 px shorter (758 → 742). Text-mask capture artifact (as CAPTURE-MASKED-TITLE-EVENTDETAIL-HEADER); auto-accepted in the user's auto mode 2026-10-15 Copied for GuestArrangements on 2026-11-06 (same capture path and artifact).",
+   "evidence": "parity/default.expected.png vs default.build.png (one line of bullets vs two lines); parity/*.json layout 390×758 → 390×742; GuestArrangements parity 2026-11-06 (captured via MilestoneDetail, same header ids)"
   }
  ],
  "ignoreClasses": [
@@ -1793,5 +1927,9 @@
   ],
   "reason": "The app-start chain (shell startup.ts: SynchAppContext → AfterInitialize → Sync_Info_GetMain → GetUserInformation → GetNumberUnreadMessages → CacheableMapEntities + CacheableHouseholds) runs on every app open. States captured via another screen (capture-plan `via`, states.json) recorded only the calls after arriving, so these ran on the source screen on TST; parity opens the route by URL, where they run here. Applied only to via states and only when the capture lacks the action. HouseholdCarousel proposal CALL-APPSTART-VIA-HOUSEHOLDCAROUSEL, auto-accepted (user instruction 2026-10-15 16:59)",
   "evidence": "app/src/shell/startup.ts; migration/screens/HouseholdCarousel/analysis/states.json (via); migration/screens/HouseholdCarousel/analysis/calls.json (no app-start call)"
- }
+ },
+ "ignoreCalls": [
+  "^DataActionGetHouseHold_Gallery$"
+ ],
+ "_ignoreCallsNote": "Calls that the October captures predate: GetHouseHold_Gallery runs on every open of HouseholdDetails_Block since the TST publish of 2026-11-05 (live UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js:1995, :3174-3192; migration/knowledge/tst-drift-2026-11-05.md). Remove after a re-capture."
 }

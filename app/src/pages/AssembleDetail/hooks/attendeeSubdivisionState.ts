@@ -1,6 +1,7 @@
 import type { AssembleAttendeeGuest, AssembleAttendeeSubdivision } from '@/api/event';
-import type { SubdivisionInformation } from '@/api/locality';
-import type { LegacyLocalBookmark } from '@/platform/storage/localEntities';
+import { subdivisionHouseholdRows, type SubdivisionInformation } from '@/api/locality';
+import type { LocalBookmark } from '@/platform/storage/localEntities';
+import { longIntegerText } from '@/lib/ubtConnect/actions';
 import { flipHouseholdName } from '@/lib/legacyShared/actions';
 import type { UI_ShareableObject_Generic } from '@/lib/ubtConnectUtils/structures';
 
@@ -74,26 +75,10 @@ export const initialAttendeeSubdivisionState = (
     view cache restored with it keeps its rows and makes no call. */
 export const hasHallHouseholds = (state: AttendeeSubdivisionState): boolean => state.localityId !== '0';
 
-/** The households of GetCacheableSubdivision_V2 as the hall's rows: Id, Name, FamilyNames = Family, Location,
-    IsBookmarked and AvatarURL = Photo340's Bucket, Path, Type and SignedURL (IsDisabled at its default, False). A
-    missing record (undefined) has no households. */
-export function householdRowsOf(info: SubdivisionInformation | undefined): AssembleAttendeeGuest[] {
-  if (!info) return [];
-  return info.HouseholdListResponse.List.map((h) => ({
-    Id: h.Id,
-    Name: h.Name,
-    FamilyNames: h.Family,
-    Location: h.Location,
-    IsBookmarked: h.IsBookmarked,
-    IsDisabled: false,
-    AvatarURL: {
-      Bucket: h.Photo340.Bucket,
-      Path: h.Photo340.Path,
-      Type: h.Photo340.Type,
-      SignedURL: h.Photo340.SignedURL,
-    },
-  }));
-}
+/** The households of GetCacheableSubdivision_V2 as the hall's rows (the mapper `subdivisionHouseholdRows` of `@/api/locality`
+    reads the wire record; a missing record has no households). */
+export const householdRowsOf = (info: SubdivisionInformation | undefined): AssembleAttendeeGuest[] =>
+  subdivisionHouseholdRows(info);
 
 /** CountryCode = Subdivision.Locality.Country.Code and LocalityId = Subdivision.Locality.Id ("" and "0" for a missing
     record). */
@@ -104,12 +89,13 @@ export const hallLocationOf = (
   localityId: info?.Subdivision.Locality.Id ?? '0',
 });
 
-/** Set_SelectedAssembleAttendeeListBookmarks: each row's IsBookmarked = a legacy local bookmark has the row's id as
-    ObjectId (ListIndexOf). */
+/** Set_SelectedAssembleAttendeeListBookmarks: each row's IsBookmarked = a C2 local bookmark has
+    LongIntegerToText(row.Id) as ItemId (ListIndexOf, live …AttendeeSubdivision.mvc.js:1173-1179). */
 export const withLocalBookmarks = (
   rows: readonly AssembleAttendeeGuest[],
-  bookmarks: readonly Pick<LegacyLocalBookmark, 'ObjectId'>[],
-): AssembleAttendeeGuest[] => rows.map((r) => ({ ...r, IsBookmarked: bookmarks.some((b) => b.ObjectId === r.Id) }));
+  bookmarks: readonly Pick<LocalBookmark, 'ItemId'>[],
+): AssembleAttendeeGuest[] =>
+  rows.map((r) => ({ ...r, IsBookmarked: bookmarks.some((b) => b.ItemId === longIntegerText(r.Id)) }));
 
 /** ShareableObject_Generic of a household row: the household entity, the FlipHouseholdName title, the family names,
     the location and the avatar. */

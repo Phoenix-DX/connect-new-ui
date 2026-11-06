@@ -1,6 +1,6 @@
 import { NavigationType, type Location } from 'react-router';
 
-/* Screen transitions of the OutSystems runtime (F18, CR-F18-1). Sources, all in migration/runtime-sources/:
+/* Screen transitions of the OutSystems runtime (F18, CR-F18-1). Sources, all in migration/sources/runtime/:
    - OutSystems.js `OutSystems/ClientRuntime/TransitionAnimation` (enum) and `.../Transitions` (createTransition,
      reverseTransition, sanitizeTransition, Default), byte offsets 29257-31000;
    - OutSystems.js public API `Navigation` (offset ~505860): navigateTo(url, transition, isReplace) resolves
@@ -36,7 +36,7 @@ const NAMES: Readonly<Record<TransitionAnimation, TransitionName>> = {
 
 /** `Transitions.Default`: set at app start by `setDefaultTransition(getDefaultTransition())` (OutSystems.js line 16,
     after ScreenStateCache.clear) from the app definition's `defaultTransition: "SlideFromRight"`
-    (runtime-sources/UBTConnect.appDefinition.js). */
+    (sources/runtime/UBTConnect.appDefinition.js). */
 export const DEFAULT_TRANSITION: TransitionName = NAMES[TransitionAnimation.SlideFromRight];
 
 /** Root render: `timeout: animate ? 300 : 0`. */

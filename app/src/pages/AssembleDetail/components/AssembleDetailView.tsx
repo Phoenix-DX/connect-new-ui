@@ -19,8 +19,9 @@ export interface AssembleDetailViewProps {
 }
 
 /** The view of the block ScreenBlock_AssembleDetail, props only. Layout: the back arrow, the title, then
-    NewConnectContent with the meeting detail and FocusScrollAnchorOnBack, the BottomBar and the empty Menu and
-    CommonUI_Elements placeholders. The flows are in useAssembleDetail.
+    NewConnectContent with the meeting detail and FocusScrollAnchorOnBack, the BottomBar and the empty
+    CommonUI_Elements placeholder. The Menu placeholder is empty (the block gives it no content; the capture of
+    2026-11-06 shows `b2-b1-Menu` without a child). The flows are in useAssembleDetail.
     @origin Connect2_Assemble_MUI.Assemble.ScreenBlock_AssembleDetail */
 export function AssembleDetailView({ id, title, eventDetail, focusScrollAnchor, bottomBar }: AssembleDetailViewProps) {
   const scope = id.replace(/\$/g, '');
@@ -28,7 +29,6 @@ export function AssembleDetailView({ id, title, eventDetail, focusScrollAnchor, 
     <OSBlock name="Assemble.ScreenBlock_AssembleDetail" id={id}>
       <LegacyLayout
         id={`${scope}-Layout`}
-        menu={<div id={`${scope}-Menu`} />}
         headerLeft={<MenuIcon id={`${scope}-$b2`} menuAction={MenuAction.Back} />}
         title={<span data-expression="">{title}</span>}
         content={

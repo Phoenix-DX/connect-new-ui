@@ -1,7 +1,7 @@
 # UBTConnect_Utils.CacheControl.CacheControl_AllCountries
 
 - Kind: shared; build screens using it: CountryDetails, Notes, Search, Updates_SingleList
-- Compiled source: `migration/screens/CountryDetails/analysis/sources/pretty/UBTConnect_Utils.CacheControl.CacheControl_AllCountries.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect_Utils.CacheControl.CacheControl_AllCountries.mvc.js`
 - Child blocks: UBTConnect_Utils.CacheControl.CacheControl (queue: -)
 
 ## Inputs

@@ -1,7 +1,7 @@
 # UBTConnectLibrary.ConnectCorePatterns.ContextMenu
 
 - Kind: shared; build screens using it: HomeFeed, HouseholdCarousel, HouseholdDetails, Household_Relations, Locality_Details, MessageDetail, Notes, OneSchoolGlobalDetails, Profile, SupperMeeting_Carousel, SupperMeeting_Details, Updates_SingleList
-- Compiled source: `migration/screens/HomeFeed/analysis/sources/pretty/UBTConnectLibrary.ConnectCorePatterns.ContextMenu.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnectLibrary.ConnectCorePatterns.ContextMenu.mvc.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.ConnectPatterns.CircleButton_IconPrimary, UBTConnectLibrary.ConnectPatterns.ContextMenu_Item, UBTConnectLibrary.ConnectPatterns.Icon, UBTConnectLibrary.ConnectPatterns.PopupMenu (queue: UBTConnectLibrary.ConnectPatterns.CircleButton_IconPrimary, UBTConnectLibrary.ConnectPatterns.ContextMenu_Item, UBTConnectLibrary.ConnectPatterns.PopupMenu)
 
 ## Inputs
@@ -287,4 +287,4 @@ define("UBTConnectLibrary.ConnectCorePatterns.ContextMenu.mvc$view", ["OutSystem
                                                 name: "MenuOption_MarkAsRead",
                                                 alias: "6"
 ```
-(… 208 more lines in `migration/screens/HomeFeed/analysis/sources/pretty/UBTConnectLibrary.ConnectCorePatterns.ContextMenu.mvc.js`)
+(… 208 more lines in `migration/sources/pretty/UBTConnectLibrary.ConnectCorePatterns.ContextMenu.mvc.js`)

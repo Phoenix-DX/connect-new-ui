@@ -1,5 +1,5 @@
 /* FileTransferPlugin.FileTransfer.HandleDownload (block without markup; compiled code in
-   migration/screens/MilestoneDetail/analysis/sources/raw/FileTransferPlugin.FileTransfer.HandleDownload.mvc.js = HD,
+   migration/sources/raw/FileTransferPlugin.FileTransfer.HandleDownload.mvc.js = HD,
    FileTransferPlugin.controller.js = FT). The block relays the FileTransfer plugin's download callbacks to its events
    OnDownloadProgress / OnDownloadComplete / OnDownloadError. Web port: a hook the owning block calls; the owner keeps the
    block's <OSBlock name="FileTransfer.HandleDownload"> for the markup. */

@@ -38,7 +38,7 @@ export interface EventCard_GuestsProps {
   onClickMessage: (data: UI_ContactByMessage_WrapperData, countryName: string) => void;
 }
 
-/** Guests line of an LDM card (analysis/sources/pretty/Connect2_OrbitMobile_MUI.LDM_Blocks.EventCard_Guests.mvc.js =
+/** Guests line of an LDM card (migration/sources/pretty/Connect2_OrbitMobile_MUI.LDM_Blocks.EventCard_Guests.mvc.js =
     EG). OnInitialize (EG :640-650): Guests = In_Guests. View (EG :179-330), visible when In_IsExpandable: the people
     icon and BuildGuestString(In_GuestCount) (both only when In_GuestCount <> ""), then the photos (OverlappingImages of
     the guests' SignedImagePath, 40 % overlap, diameter max(30px, 7vw), at most 5, remaining count shown) with

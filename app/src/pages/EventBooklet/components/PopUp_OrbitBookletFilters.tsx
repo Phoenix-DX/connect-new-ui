@@ -10,7 +10,7 @@ import type { DropdownOption } from '@/components/ui/lib/structures';
 import { dropdownTags_CloseOtherOnClick } from '@/lib/ubtConnectUtils/actions';
 import type { PopupFilters } from '@/pages/EventBooklet/types';
 
-/* PopUp_OrbitBookletFilters (PF = analysis/sources/Connect2_OrbitMobile_MUI.Orbit_Blocks.PopUp_OrbitBookletFilters.mvc.js:
+/* PopUp_OrbitBookletFilters (PF = migration/sources/Connect2_OrbitMobile_MUI.Orbit_Blocks.PopUp_OrbitBookletFilters.mvc.js:
    model :1-89, view :90-685, controller :686-1507). No capture: markup from the compiled view. The OutSystems UI
    client actions DropdownClear / DropdownClearValidation / DropdownTogglePopup (components/ui/lib/actions.ts) and
    UBTConnect_Utils DropdownTags_CloseOtherOnClick (lib/ubtConnectUtils/actions.ts) as compiled

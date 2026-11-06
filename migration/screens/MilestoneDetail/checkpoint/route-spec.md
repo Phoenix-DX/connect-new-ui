@@ -1,17 +1,21 @@
 # Screen spec: MilestoneDetail
 
-Sources: `S` = analysis/sources/pretty/UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js, `MW` = …Connect2_OrbitMobile_MUI.
+Sources: `S` = migration/sources/pretty/UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js, `MW` = …Connect2_OrbitMobile_MUI.
 Orbit_ScreenBlocks.ScreenBlock_MilestoneWrapper.mvc.js, `SB` = …ScreenBlock_AccommodationHost.mvc.js, `C` =
-migration/runtime-sources/Connect2_OrbitMobile_MUI.controller.js, `LS` = migration/runtime-sources/Connect2_LegacyShared.controller.js,
+migration/sources/runtime/Connect2_OrbitMobile_MUI.controller.js, `LS` = migration/sources/runtime/Connect2_LegacyShared.controller.js,
 `DOM` = analysis/dom/default.html.
 
 ## 0. Summary
 Orbit milestone detail. The screen hosts ScreenBlock_MilestoneWrapper, which picks the block of the milestone type
-(MW :257-1010). Captured once (state `default`, phone 390x844, full-permission account) via OrbitLanding → EventDetail →
-Accommodation card: type `accommodation-host` → ScreenBlock_AccommodationHost: header (event name, "Accommodation (Host)"),
-"Accommodation Allocation" with the date, an accordion of six rooms (floor, type, beds, guests with member cards), the
-Contact Orbit Helpdesk footer (DOM :1-990). Loading and offline states could not be captured (states.json). Built:
-the wrapper, ScreenBlock_AccommodationHost (all its branches), the screen's navigations; other types → `<NotCaptured>` (Q5).
+(MW :257-1010). The capture has one state, `default` (phone 390x844, full-permission account). The path was
+OrbitLanding → EventDetail → Accommodation card: type `accommodation-host` → ScreenBlock_AccommodationHost. The block shows:
+- the header (event name, "Accommodation (Host)");
+- "Accommodation Allocation" with the date;
+- an accordion of six rooms (floor, type, beds, guests with member cards);
+- the Contact Orbit Helpdesk footer (DOM :1-990).
+
+Capture of the loading and offline states was not possible (states.json). The React app builds the wrapper,
+ScreenBlock_AccommodationHost (all its branches) and the navigations of the screen. Other types render `<NotCaptured>` (Q5).
 
 ## 1. Entry and routing
 `/UBTConnect/MilestoneDetail`, inputs In_FromNotification (Boolean), In_MilestoneId (Text), In_EventId, In_HostId (Long
@@ -66,14 +70,20 @@ restored); else IsFetchingData True, #1 (OnAfterFetch: AccommodationData), #2 (H
 IsFetchingData False; a failure goes to the global handler (skeleton stays), as in EventDetail.
 
 ## 8. Render logic
-Content (SB :416-1560): fetching → Skeleton_Loading(GetSkeletonLoadingIdFromMilestoneTypeId, C :4526-4590); fetched and
-HasData: rooms → title + date (GetFormattedDateTimeById, "Friday, 23 Oct 2026") + Helper/s accordion (helpers) + rooms
-accordion; no rooms, helpers → title + Helper/s accordion; neither → NoInformation "No guests have been allocated…";
-not HasData → NoInformation "This accommodation milestone is still being organised…". Room info row when Floor, Type or
-Beds is set (SB :786-795). Card: In_DisplayDot from the guest item, admin tag placeholder OrbitAdminTag (`<NotCaptured>`,
-never in the mock), Guest Arrangements link when HasGuestArrangements (SB :1120-1160). Header: event / milestone name from
-the data else the preloaded inputs (SB :306-330); document icon when not fetching, HasData, rooms and HasDocument
-(SB :367-415). Footer when HasData (SB :1578-1600).
+Content (SB :416-1560):
+- While the block fetches data: Skeleton_Loading(GetSkeletonLoadingIdFromMilestoneTypeId, C :4526-4590).
+- When the fetch ends and HasData is true:
+  - Rooms exist: title + date (GetFormattedDateTimeById, "Friday, 23 Oct 2026") + Helper/s accordion (helpers) + rooms
+    accordion.
+  - No rooms, but helpers exist: title + Helper/s accordion.
+  - Neither: NoInformation "No guests have been allocated…".
+- When HasData is false: NoInformation "This accommodation milestone is still being organised…".
+- Room info row: when Floor, Type or Beds has a value (SB :786-795).
+- Card: In_DisplayDot from the guest item; admin tag placeholder OrbitAdminTag (`<NotCaptured>`, never in the mock);
+  Guest Arrangements link when HasGuestArrangements (SB :1120-1160).
+- Header: the event / milestone name comes from the data, else from the preloaded inputs (SB :306-330).
+- Document icon: when the block is not fetching, HasData is true, rooms exist and HasDocument is true (SB :367-415).
+- Footer: when HasData is true (SB :1578-1600).
 
 ## 9. Interactions and navigation
 - Guest photo / name → OnHandle_ClickedMember → (CheckDirectoryAccess, Q1 A) → HouseholdDetails(HouseholdId) (S :618-655)
@@ -112,19 +122,21 @@ flag (shell).
   names, localities) are fictional with the captured lengths (orbit.ts).
 
 ## 15. Acceptance criteria
-Default state matches with the cloneQuery (diagnostic: structure / text / call 0; remaining diffs = proposed exemptions);
-calls #1-#3 in the load phase; navigations with the compiled parameter names.
+- The default state matches the cloneQuery (diagnostic: structure / text / call 0). The remaining differences are
+  accepted exemptions [parity-exemptions.json].
+- Calls #1-#3 go out in the load phase.
+- Navigations use the compiled parameter names.
 
 ## 16. Decisions to confirm
-- Q1 → A (pending orchestrator answer): member click navigates to HouseholdDetails (GetDirectoryAccess missing, CR-MilestoneDetail-1).
-- Q2 → A: phone popup with phone, name, photo, no timezone (CR-MilestoneDetail-2).
+- Q1 → A [questions.md Q1]: member click navigates to HouseholdDetails (GetDirectoryAccess missing, CR-MilestoneDetail-1).
+- Q2 → A: phone dialog with phone, name, photo, no timezone (CR-MilestoneDetail-2).
 - Q3 → A: from a notification `<NotCaptured>`, GetGmpMilestoneHost skipped (CR-MilestoneDetail-1).
 - Q4 → A: no document in the mock; document click not ported (CR-MilestoneDetail-3).
 - Q5 → A: only ScreenBlock_AccommodationHost built; other types `<NotCaptured>`.
 - Q6 → A: cloneQuery (see proposed-exemptions.json `_comment`).
 - CR-MilestoneDetail-4: MilestoneHeader remounted (React key) once LocalOrbitMilestoneType is synced (shell timing).
 - Mock world: ORBIT_HOSTED_ROOMS in `app/src/mocks/fictional/orbit.ts` (two visiting families, six rooms, both nights).
-- Proposed exemptions: VIA-BACK-MENUICON-MILESTONEDETAIL, CAPTURE-MASKED-ROOM-INFO-MILESTONEDETAIL, CAPTURE-VIA-MASK-SHIFT-MILESTONEDETAIL-PIXELS.
+- Accepted exemptions [parity-exemptions.json]: VIA-BACK-MENUICON-MILESTONEDETAIL, CAPTURE-MASKED-ROOM-INFO-MILESTONEDETAIL, CAPTURE-VIA-MASK-SHIFT-MILESTONEDETAIL-PIXELS.
 
 ## 17. Patterns used
 P-PARAMS, P-STATES, P-DATA, P-CALLS, P-MOCKS, P-LIST, P-OSUI, P-DIALOG, P-BACK, P-FLAGS (reference: EventDetail).

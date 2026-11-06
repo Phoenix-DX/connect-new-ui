@@ -42,7 +42,7 @@ The iframe size comes from the original CSS
 
 ## SDK (ported)
 
-`connect2Feed.ts` and its modules port the Connect2Feed SDK (`migration/runtime-sources/UBTConnect_EmbedFeed.EmbedFeed.js`).
+`connect2Feed.ts` and its modules port the Connect2Feed SDK (`migration/sources/runtime/UBTConnect_EmbedFeed.EmbedFeed.js`).
 `connect2Feed.ts` has configure, loadFeeds, destroy, embed and reset. `connect2FeedState.ts` has the shared state, the
 defaults and mergeConfig. The exported record `sdk` there holds the module variables of the SDK as fields, because an ES
 module cannot assign a variable of another module. `connect2FeedIframe.ts` has the iframe code, `connect2FeedMessages.ts`

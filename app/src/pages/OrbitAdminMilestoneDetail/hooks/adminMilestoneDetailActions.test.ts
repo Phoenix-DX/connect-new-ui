@@ -8,7 +8,7 @@ import {
 import { adminMilestoneInformationInputs, INITIAL_ADMIN_MILESTONE_DETAIL_STATE } from './adminMilestoneDetailState';
 
 /* The pure client logic of ScreenBlock_AdminMilestoneDetail (SB = the compiled block in
-   migration/screens/OrbitAdminMilestoneDetail/sources/). */
+   migration/sources/runtime/). */
 const NULL = '1900-01-01T00:00:00';
 
 describe('client helpers', () => {

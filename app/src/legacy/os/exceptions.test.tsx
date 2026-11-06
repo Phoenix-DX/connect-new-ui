@@ -24,7 +24,7 @@ import {
 import { IgnorableSystemException, ViewHasChangedException } from './os-exceptions';
 
 /* The App_Common flow handler (raiseToFlowHandler), App_Common OnException in
-   migration/shell/sources/UBTConnect.App_Common.controller.js (ACF): the SecurityException branch (ACF:61-89, G1) and
+   migration/sources/shell/UBTConnect.App_Common.controller.js (ACF): the SecurityException branch (ACF:61-89, G1) and
    the branches around it. */
 
 vi.mock('@/platform/feedback/pageRedirect', () => ({ pageRedirect: vi.fn() }));
@@ -126,7 +126,7 @@ describe('SecurityException, signed-in user (Has User Id? True, ACF:66-75)', () 
     expect(signOut).not.toHaveBeenCalled();
     expect(getShellState()).toMatchObject({ signedIn: false, userId: null, hasLocalPin: false });
     expect(readPin()).toBeNull();
-    expect(calledActions()).toEqual(['ActionAppManager_SynchAppContext']);
+    expect(calledActions()).toEqual(['ActionAppManager_Logout', 'ActionAppManager_SynchAppContext']);
   });
 
   test('ends in the same state and storage as ShowExceptionMessage(message, ForceLogout = True)', async () => {

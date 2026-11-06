@@ -216,7 +216,9 @@ You cannot see the server-side authorization of the four data actions (member / 
 ## 15. Acceptance criteria
 1. State default (with the captured inputs, see Decisions): the screen shows
    - info rows with dates in the style "Fri 23 Oct 2026 - Sun 25 Oct 2026", location, "Host" and type of event;
-   - Itinerary with three days (first selected) and two cards (Accommodation with View Guests, Meeting 11:59 PM);
+   - a "View Event Guest List" row (booklet visible) and a Confirmed pill. Three host-allocation rows: accommodation,
+     accommodation, meal. Itinerary with three days 23/24/25 (first selected) and two cards: Accommodation with View
+     Guests, Meeting "Seat: Row 3" at 6:00 PM. Source: the real capture of 2026-11-06 (`analysis/dom/default.html`);
    - the footer.
 2. State loading: Skeleton_Loading EventDetail, empty header right and footer.
 3. State offline: skeleton and shell Service Interruption.
@@ -228,7 +230,8 @@ You cannot see the server-side authorization of the four data actions (member / 
 - Q2 → A: CR-EventDetail-1 is applied [questions.md Q2; CR-EventDetail-1 status]. The route no longer shows `<NotCaptured>` for the host survey row and the Host Allocation accordion.
 - Q3 → A: call exemption CALL-IMAGE-ERROR-APPEVENTS-EVENTDETAIL (merged into parity-exemptions.json); mock handler answers an empty EventList.
 - Q4 → A: shared mock event 7301 is a Host event (ORBIT_EVENT_TYPES.host, same colour/icon, OrbitLanding unchanged). The mock data is:
-  - host milestones: two accommodation nights and meetings;
+  - host milestones: two accommodation nights, meetings and a Saturday midday meal (meal-host, since the capture of
+    2026-11-06). The event's booklet is visible. The days follow the first Friday the 23rd at least a week after today;
   - hosts: "Mr Julián & Mrs Fiorella Vitale";
   - fictional type of event: "Weekend Conference Program";
   - survey status JSON_Name: "confirmed".

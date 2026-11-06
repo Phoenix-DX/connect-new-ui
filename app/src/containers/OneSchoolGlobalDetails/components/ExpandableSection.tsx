@@ -22,7 +22,7 @@ interface ExpandableSectionProps {
 /** MainContainerClass (model :16-18). */
 const MAIN_CONTAINER_CLASS = 'ubt-expandable-section';
 
-/** UBTConnectLibrary.ConnectPatterns.ExpandableSection (analysis/sources/pretty/
+/** UBTConnectLibrary.ConnectPatterns.ExpandableSection (migration/sources/pretty/
     UBTConnectLibrary.ConnectPatterns.ExpandableSection.mvc.js; only OneSchoolGlobalDetails uses it,
     catalog/blocks.md:248). View: the main container (FormatClasses(FormatClasses(MainContainerClass, ExtendedClasses),
     "expanded" | "closed")) holds the title row (CustomContainer padding y medium / x base > Columns_Two reduce last,

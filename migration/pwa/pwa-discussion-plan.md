@@ -26,10 +26,10 @@ Accepted items become ADRs and update the stack item `pwa` only after the user c
   an external app opened by package name (`migration/screens/HomeFeed/route-spec.md:120, 168`; 0 hits in `board.md`). To be
   confirmed with the user.
 
-Evidence keys: `AM` / `UC` = `migration/screens/HomeFeed/analysis/sources/raw/UBT_AppManager.controller.js` /
-`UBTConnect.controller.js`; `RS/` = `migration/runtime-sources/`; `OSJS:N` = `RS/OutSystems.js` physical line N
+Evidence keys: `AM` / `UC` = `migration/sources/raw/UBT_AppManager.controller.js` /
+`UBTConnect.controller.js`; `RS/` = `migration/sources/runtime/`; `OSJS:N` = `RS/OutSystems.js` physical line N
 (minified); `SV:<file>` = `capture/survey-UBTConnect.json` → `sources[<file>]`; `MD/` =
-`migration/screens/MilestoneDetail/analysis/sources/raw/`.
+`migration/sources/raw/`.
 
 ## 1. What the original does (facts)
 
@@ -38,8 +38,8 @@ Evidence keys: `AM` / `UC` = `migration/screens/HomeFeed/analysis/sources/raw/UB
 | App type | OutSystems Mobile app (`isWeb: false`, home module UBTConnect, default transition SlideFromRight) | `RS/UBTConnect.appDefinition.js` |
 | PWA manifest | All 51 runtime captures link `/UBTConnect/moduleservices/pwa/manifest`. The manifest content was never fetched. `cordova.js` is loaded too | `migration/screens/*/capture/runtime-*.json` → `environment.manifestLink`; `migration/app-shell.spec.md:21` |
 | "Running as PWA" | `DeviceInfo_IsRunningAsPWA` = OSUI `IsRunningAsPWA.IsStandalone`. Only sent in the device/mobile context (telemetry); no UI branch found | AM:2825-2869, 832-833; clone `app/src/shell/deviceContext.ts:15-17, 37` |
-| Service worker | Unknown on 2026-10-16 (answered 2026-10-17: TST registers `/UBTConnect/pwaServiceWorker.js`, F2 in section 7). Captures run with `serviceWorkers: 'block'`, so `[]` proves nothing. The runtime's `supportsResourceCache` picks "Pre-caching resources with Service Worker" whenever `navigator.serviceWorker` exists (`getRegistrations() !== null`) and native is false | `.claude/skills/outsystems-screen-spec/scripts/batch_capture.cjs:147`; `migration/knowledge/shell-observed.md:3`; OSJS:16 |
-| Version / upgrade | The runtime VersionsManager checks for a new version in the background on navigation, upgrades resources and data model, and keeps `$OS_UBTConnect$UpgradeStatus` in sessionStorage. A 404 or API change raises `ViewHasChangedException`. Splash has `OnUpgradeProgress` | OSJS:15-16, 3; `runtime-HomeFeed.json` sessionStorageKeys; `migration/screens/Splash/analysis/sources/pretty/OutSystemsUI_2_23.Private.ApplicationLoadEvents.mvc.js:169-217` |
+| Service worker | Unknown on 2026-10-16 (answered 2026-10-17: TST registers `/UBTConnect/pwaServiceWorker.js`, F2 in section 7). Captures run with `serviceWorkers: 'block'`, so `[]` proves nothing. The runtime's `supportsResourceCache` picks "Pre-caching resources with Service Worker" whenever `navigator.serviceWorker` exists (`getRegistrations() !== null`) and native is false | `tools/pipeline/batch_capture.cjs:147`; `migration/knowledge/shell-observed.md:3`; OSJS:16 |
+| Version / upgrade | The runtime VersionsManager checks for a new version in the background on navigation, upgrades resources and data model, and keeps `$OS_UBTConnect$UpgradeStatus` in sessionStorage. A 404 or API change raises `ViewHasChangedException`. Splash has `OnUpgradeProgress` | OSJS:15-16, 3; `runtime-HomeFeed.json` sessionStorageKeys; `migration/sources/pretty/OutSystemsUI_2_23.Private.ApplicationLoadEvents.mvc.js:169-217` |
 | Unsupported version | `Get_IsUnsupportedSystem` = app or browser below the minimum. "Upgrade" opens the Play Store (`market://`). TST has no minimum versions | UC:4518-4589, 17773-17790, 15869-15903; `app-shell.spec.md` §12a U2, U16 |
 | Offline sync | `OfflineDataSync` is empty. Config: SyncOnOnline/Login/Resume True, Retry False, 30 s. OSUI `OfflineDataSyncCore` relays to `window.offlineDataSync` | UC:15118-15140, 15168-15180; `SV:OutSystemsUI_2_23.Private.OfflineDataSyncCore.mvc.js:823-848` |
 | Network status | OSUI `NetworkStatusChanged` listens to `online`/`offline` on `document` (Cordova style). NetworkDetection pings `status/network-ping.txt` every 30 s (visible tab only) and only sets `App_NetworkStatus_IsOnline_IsPersistent`, which picks the toast text "No internet connection…" vs "Service Interruption". No offline screen, no body class | `SV:OutSystemsUI_2_23.Private.NetworkStatusChanged.mvc.js:629-630, 656-668`; `migration/knowledge/shell-facts.md` U10, U11 |
@@ -132,7 +132,7 @@ registry was not checked offline.
 
 | Phase | Deliverables | Effort | Needs the user's decision before | Risks |
 |---|---|---|---|---|
-| 0. Facts | F1 static GET of `/UBTConnect/moduleservices/pwa/manifest` (name, icons, colours, start_url). F2 does TST register a service worker (user checks DevTools > Application, or one observe run without the SW block, reads only)? F3 fetch `FileTransferPlugin.wrapper.js` and `FirebaseCloudMessagingPlugin.controller.js` (TST manifest files, standing approval, logged in `runtime-sources.md`). F4 does TST web receive push at all? | 0.5–1 d | Approval for F1 (not in the survey manifest list) and F2 (changes the capture setting) | F2 may show an OutSystems SW that the cutover must replace (P15) |
+| 0. Facts | F1 static GET of `/UBTConnect/moduleservices/pwa/manifest` (name, icons, colours, start_url). F2 does TST register a service worker (user checks DevTools > Application, or one observe run without the SW block, reads only)? F3 fetch `FileTransferPlugin.wrapper.js` and `FirebaseCloudMessagingPlugin.controller.js` (TST manifest files, standing approval, logged in `migration/sources/runtime.md`). F4 does TST web receive push at all? | 0.5–1 d | Approval for F1 (not in the survey manifest list) and F2 (changes the capture setting) | F2 may show an OutSystems SW that the cutover must replace (P15) |
 | 1. Installable shell | ADR-9 "PWA service worker". `vite-plugin-pwa` (injectManifest), manifest + icons + `apple-touch-icon` + theme-color, precache of the shell and original CSS, navigation fallback, SW only in non-mock builds, silent update flow. `app/docs/guides/pwa.md` | 2–4 d | P2, P3, P4, P11, P16, version list | Stale cached CSS breaks parity (hash all assets); SW interfering with MSW |
 | 2. Offline parity | Offline reload shows the shell. NetworkDetection ping (`status/network-ping.txt`, `no-store`) and toasts as the original. `storage.persist()`, eviction recovery, clear on logout | 1–3 d | P1, P10 | IndexedDB personal-data exception; Safari eviction |
 | 3. Device features | Barcode scanner (vendored web scanner behind `barcodePlugin.ts` / `src/lib/device`), file open, deep links + resume link, external apps unchanged, keyboard/orientation as U18 | 3–5 d | P7, P8, P9, P13 | Camera permission UX on iOS standalone; scanner CSS parity |
@@ -154,7 +154,7 @@ done. Phase 4 waits for the backend/BFF. Phase 5 comes last.
     switch), never 404.
   - **Decided (user, 2026-10-17): option A, ADR-14**: our worker at `/UBTConnect/pwaServiceWorker.js`, deleting
     the `UBTConnect-*` caches (`migration/knowledge/pwa-tst-service-worker.md`). Implementation is phase 5 work.
-- **Parity tooling.** The parity gate and the captures block service workers (`.claude/skills/outsystems-screen-spec/scripts/parity_check.cjs:590`,
+- **Parity tooling.** The parity gate and the captures block service workers (`tools/pipeline/parity_check.cjs:590`,
   `batch_capture.cjs:147`). PWA behaviour needs its own e2e tests and cannot rely on the parity reports.
 - **Personal data at rest (P10).** IndexedDB already holds bookmarks, notes and search history (as TST does). The stack
   rule says no personal data in browser storage. Accepted by the user: P10 keeps IndexedDB, ADR-10 (2026-10-16).
@@ -181,7 +181,7 @@ done. Phase 4 waits for the backend/BFF. Phase 5 comes last.
 | Id | Answer | Who, date |
 |---|---|---|
 | P1 | **(a) online-first**: installable shell, offline shows the original toasts | user, 2026-10-16 |
-| F1 | approved, done: `migration/runtime-sources/UBTConnect.pwa-manifest.json` ("Connect 2.0", standalone, theme `#1992ab`, background `#ffffff`, 4 PNG icons 48–512, start_url `/UBTConnect/`, portrait, no `scope`) | user, 2026-10-16 |
+| F1 | approved, done: `migration/sources/runtime/UBTConnect.pwa-manifest.json` ("Connect 2.0", standalone, theme `#1992ab`, background `#ffffff`, 4 PNG icons 48–512, start_url `/UBTConnect/`, portrait, no `scope`) | user, 2026-10-16 |
 | F2 | the user checks TST in DevTools > Application > Service Workers and reports | user, 2026-10-16; **answered 2026-10-17**: TST registers `/UBTConnect/pwaServiceWorker.js` (scope `/UBTConnect/`); the origin also has `/ConnectMobile/pwaServiceWorker.js` (other app). `migration/knowledge/pwa-tst-service-worker.md` |
 | Trove | **external app**, kept as built (OpenInApp_OpenApp; no screen) | user, 2026-10-16 |
 | P4 | **copy the TST manifest values** (F1) + **browser default install prompt only** (no custom banner) | user, 2026-10-16 |

@@ -1,5 +1,5 @@
 /* OutSystems UI Dropdown Search provider glue for Virtual Select, ported from
-   migration/runtime-sources/OutSystemsUI_2_23.OutSystemsUI.js ("U"): the configs AbstractVirtualSelectConfig
+   migration/sources/runtime/OutSystemsUI_2_23.OutSystemsUI.js ("U"): the configs AbstractVirtualSelectConfig
    (U:20193-20339), Enum (U:20353-20399) and VirtualSelectSearchConfig (U:20528-20569). The provider: provider.ts. */
 
 /** A DropdownOption record in its JSON form (OutSystemsUI_2_23.model.js DropdownOptionRec JSON names), as the block

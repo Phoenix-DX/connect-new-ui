@@ -25,8 +25,9 @@ import { DialogAccessRestrictedActionLegacy } from '@/platform/feedback/dialogs'
     while IsFetchingData; once GetGuestArrangements is fetched, with data (HasData) the member's name and one accordion
     per non-empty list (Special Need/s, Arrival Details, Meal Details, Departure Details), without data
     NoInformation_Orbit. BottomBar: ContactHelpdesk_Footer when HasData. After the layout: the legacy access-restricted
-    dialog FreeSubscriptionAlert. No capture: the markup comes from the compiled view (Container = div[data-container]
-    with its Style Classes; Expression = span[data-expression]; Icon = i[data-icon] "<style> fa fa-flag fa-1x").
+    dialog FreeSubscriptionAlert. Built from the compiled view (Container = div[data-container] with its Style
+    Classes; Expression = span[data-expression]; Icon = i[data-icon] "<style> fa fa-flag fa-1x"); the capture of
+    2026-11-06 (one "Meal Details" item, one day) confirms the markup (migration/screens/GuestArrangements/analysis).
     Containers with Animate render plain, as in the other Orbit routes. The flows are in `useGuestArrangements`.
     @origin Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_GuestArrangements */
 

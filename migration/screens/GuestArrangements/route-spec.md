@@ -1,16 +1,17 @@
 # Route spec: GuestArrangements
 
-Sources (analysis/sources/, extracted unchanged from capture/survey-UBTConnect.json `sources`): `S` =
+Sources (migration/sources/, extracted unchanged from migration/survey/survey-UBTConnect.json `sources`): `S` =
 UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js, `SB` = Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.
-ScreenBlock_GuestArrangements.mvc.js, `C` = migration/runtime-sources/Connect2_OrbitMobile_MUI.controller.js.
-No capture (no-capture.json, user 2026-10-16): built from the compiled code.
+ScreenBlock_GuestArrangements.mvc.js, `C` = migration/sources/runtime/Connect2_OrbitMobile_MUI.controller.js.
+Built from the compiled code on 2026-10-16 (no-capture.json). First real capture on 2026-11-06 (analysis/dom/default.html,
+analysis/calls.md, analysis/states.json: via MilestoneDetail, the first room's accordion, link "Guest Arrangements").
 
 ## Summary
 | Item | Value |
 |---|---|
 | Route | `/UBTConnect/GuestArrangements` with In_MilestoneId (Text), In_EventId, In_MemberId, In_HostId (Long Integer), In_OrbitMilestoneTypeId, In_MilestoneTitle, In_EventName (Text) [S model :12-55] |
 | Tier | lite |
-| Captured | not captured (no-capture.json: not reachable read-only on TST) |
+| Captured | 2026-11-06, phone 390x844: default, loading, offline (states.json). Query: the TST ids of capture-plan.json (In_MemberId 52989, In_EventId 2085, In_HostId 52768, In_MilestoneId GMP15700). |
 | Shared/shell components used | Layout_Orbit, MenuIcon__UpdatedOSUI (shared/Connect2_LegacyShared); Accordion_Orbit, Card_MemberInformation, MilestoneHeader, NoInformation_Orbit, Skeleton_Loading, ContactHelpdesk_Footer, lib checkDirectoryAccess / getFormattedDateTime (shared/Connect2_OrbitMobile_MUI); DEPRECATED_AccordionItem (shared/osui); Dialog_AccessRestrictedAction_Legacy (shared/UBTConnect_Utils); CommonUI_InsideLayout (shared/UBTConnect); OSBlock, OSList; useViewState, useWasRestoredFromCache, raiseToFlowHandler, showFeedbackMessage, showUpgradePopUp (shell) |
 | Screen-specific components | ScreenBlock_GuestArrangements (own block, not built elsewhere); components/actions.ts (C ports, as MilestoneDetail) |
 
@@ -62,7 +63,7 @@ Other parts of the screen block:
 ### Data
 | Call | Kind | Trigger (call-sites root) | Inputs | Outputs used | Server side (MCP / cache) | Mock scenarios |
 |---|---|---|---|---|---|---|
-| Connect2_OrbitMobile_MUI `ScreenBlock_GuestArrangements/DataActionGetGuestArrangements` | data action (on demand) | OnReady → RefreshData [SB :1466-1520, :1549-1582] | block variables IsFetchingData, In_MemberId, In_EventId, In_HostId, In_MilestoneId, In_PreloadEventName, In_PreloadMilestoneName, In_OrbitMilestoneTypeId (record GuestArrangementsData left out, as the other Orbit routes) | Response (GetGuestArrangements_ScreenRec), HasData | not in MCP; must check that the signed-in member hosts (or is) In_MemberId for In_EventId | real (orbit.ts orbitGuestArrangements: members of the Herrera / Ramos households for event 7301; others → HasData False), empty, loading, error |
+| Connect2_OrbitMobile_MUI `ScreenBlock_GuestArrangements/DataActionGetGuestArrangements` | data action (on demand) | OnReady → RefreshData [SB :1466-1520, :1549-1582] | block variables IsFetchingData, In_MemberId, In_EventId, In_HostId, In_MilestoneId, In_PreloadEventName, In_PreloadMilestoneName, In_OrbitMilestoneTypeId (record GuestArrangementsData left out, as the other Orbit routes) | Response (GetGuestArrangements_ScreenRec), HasData | not in MCP; must check that the signed-in member hosts (or is) In_MemberId for In_EventId | real (orbit.ts orbitGuestArrangements: members of the Herrera / Ramos households for event 7301; the TST ids are translated with orbitWorldId(), 52989 = Martín Herrera; others → HasData False), empty, loading, error |
 | Connect2_OrbitMobile_MUI CheckDirectoryAccess (GetDirectoryAccess) | server action via client action | member card click [SB :1614-1700] | HouseholdId, Type Member | HasAccess | shared mock (all access) | shared |
 | Connect2_LegacyShared GetSignedImagesInBulk | server action via GetCacheableSignedImageURL | Card_MemberInformation OnReady | Id, Type, Size | SignedURL | shared mock | shared |
 
@@ -78,10 +79,10 @@ Other parts of the screen block:
 ### States
 | State | Condition (expression) | Captured | Scenario |
 |---|---|---|---|
-| default | fetched, HasData [SB :334-335] | no | real (review URLs, Q1) |
-| loading | IsFetchingData [SB :333] | no | loading |
+| default | fetched, HasData [SB :334-335] | yes (2026-11-06): name row, one "Meal Details" item with one day, helpdesk footer [dom/default.html] | real (review URLs, Q1) |
+| loading | IsFetchingData [SB :333] | yes (2026-11-06): skeleton | loading |
 | no data | fetched, not HasData [SB :1286-1295] | no | real with another member |
-| error | data action fails → flow handler | no | error |
+| error | data action fails → flow handler | offline captured (2026-11-06): skeleton stays | error |
 
 ## Patterns used
 - P-PARAMS: query inputs with the original names; navigation with the original parameter names.
@@ -96,7 +97,10 @@ Other parts of the screen block:
 - `action:getHasOrbitAccess`: decision default-only, TST value on (user, 2026-10-14); useFlagOn('mobileOrbitAccess') with both paths of the handler (no-access branch as compiled).
 
 ## Unclear points
-- Mock data and review entry without capture → Q1 (decision, answered A) [questions.md Q1].
+- Mock data and review entry without capture → Q1 (decision, answered A) [questions.md Q1]. The capture of 2026-11-06
+  changed the Herrera data: see Decisions to confirm.
+- The captured guest (TST 52989) has only meal details: one day, "Midday Meal: " empty, an evening meal text
+  [dom/default.html, calls.md MiddayMeal EMPTY]. The other branches stay fictional (Ramos family).
 - Kept 1:1 (user rule 2026-10-14, bugs kept) [SB :690-760, :1132-1200]:
   - The arrival date row is visible by the start but shows the end. The departure date row is the reverse.
   - The travel-identifier row is visible by the location, not by the identifier.
@@ -104,14 +108,17 @@ Other parts of the screen block:
 
 ## Decisions to confirm
 - Q1 → A (answered) [questions.md Q1]: fictional arrangements of the two families the Vitale household hosts for
-  event 7301 (orbit.ts orbitGuestArrangements); MilestoneDetail stays as captured (no Guest Arrangements link).
+  event 7301 (orbit.ts orbitGuestArrangements). Since the capture of 2026-11-06 (TST wins), the Herrera family has
+  the captured structure: Meal Details only, one day, empty midday meal. The Ramos family keeps the other branches:
+  three members with special needs, own car, two meal days. MilestoneDetail shows the "Guest Arrangements" link on
+  every guest card (its capture of 2026-11-06).
   Review URLs:
-  - Herrera family (coach, three members with special needs, three meal days):
-    `/UBTConnect/GuestArrangements?mocksession=unlocked&In_MilestoneId=7301-1&In_EventId=7301&In_MemberId=880101&In_HostId=990002&In_OrbitMilestoneTypeId=accommodation-host&In_MilestoneTitle=Accommodation&In_EventName=Weekend%20Bible%20Conferences%20-%20Bahia%20and%20Azul`
-  - Ramos family (own car, arrival without number plate → "Not available", no special needs): the same URL with
-    `In_MemberId=880201`.
+  - As captured (Martín Herrera, the TST ids of the capture plan):
+    `/UBTConnect/GuestArrangements?mocksession=unlocked&In_EventId=2085&In_EventName=&In_MilestoneTitle=Accommodation&In_HostId=52768&In_MemberId=52989&In_MilestoneId=GMP15700&In_OrbitMilestoneTypeId=accommodation-host`
+  - Ramos family (special needs, own car, arrival without number plate → "Not available"):
+    `/UBTConnect/GuestArrangements?mocksession=unlocked&In_MilestoneId=7301-1&In_EventId=7301&In_MemberId=880201&In_HostId=990002&In_OrbitMilestoneTypeId=accommodation-host&In_MilestoneTitle=Accommodation&In_EventName=Weekend%20Bible%20Conferences%20-%20Bahia%20and%20Azul`
   - no data: `In_MemberId=880301`; loading: add `&mock=loading`; error: `&mock=error`.
-- Markup not captured: built from the compiled view (SB).
+- Markup: matches the capture of 2026-11-06 (parity below). Before, built from the compiled view (SB).
 
 ## Change requests
 - none
@@ -119,7 +126,22 @@ Other parts of the screen block:
 ## Parity
 | State | Scenario | structure | class | attr | style | layout | Exemptions fired |
 |---|---|---|---|---|---|---|---|
-| – | no capture (no-capture.json) | – | – | – | – | – | – |
+| default | real | 0 | 1 | 0 | 2 | 17 (+7 position, pixel 2.73%) | ignoreSubtrees 1; open: via-back header (below) |
+| loading | loading | 0 | 0 | 0 | 0 | 0 | clean |
+| offline | error | 0 | 1 | 0 | 7 | 19 (+7 position, pixel 3.28%) | ignoreSubtrees 1; open: via-back header, skeleton shimmer (below) |
+
+Parity run 2026-11-06 after the capture. Every open difference is a capture artifact that the sibling routes exempt
+(not added here, rule 22):
+- Via-back header (default, offline, 26 + 1 differences): the state was captured via MilestoneDetail, so
+  MenuIcon__UpdatedOSUI (Auto) shows the back arrow (`app-menu-icon back`, 41x38). Parity opens the route by URL with
+  no previous screen. The title, header-right and ContentWrapper (offset 0,86 → 0,76; offline height 758 → 768) shift
+  by it. Exempted on 2026-11-06 by the rules `*-GUESTARRANGEMENTS` (copies of the HelpersDetail rules, same ids `b1-b1-b2-*`).
+- Skeleton shimmer phase (offline, 5 style differences, background-position): same rule as
+  CAPTURE-SKELETON-SHIMMER-PHASE-HELPERSDETAIL.
+- Pixels (default 2.73%, offline 3.28%): the back arrow shift and the masked texts (name, date, evening meal); same
+  rule as CAPTURE-VIA-MASK-SHIFT-HELPERSDETAIL-PIXELS.
+- Fixed in the shared block SectionExpandable (2026-11-06): OnParametersChanged ran on the StrictMode double mount
+  and left an item open from the start `is--animating` (pointer-events none on its title).
 
 ## Server-side notes
 - GetGuestArrangements must return only arrangements the signed-in member may see (In_MemberId, In_EventId are client

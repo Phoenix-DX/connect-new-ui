@@ -1,6 +1,6 @@
 # OrbitErrorMessage
 
-OutSystems: `Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.OrbitErrorMessage` · source `capture/survey-UBTConnect.json`
+OutSystems: `Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.OrbitErrorMessage` · source `migration/survey/survey-UBTConnect.json`
 sources `Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.OrbitErrorMessage.mvc.js` (view :149-254, controller :279-311)
 
 | Input          | Type    | Prop             | Default |

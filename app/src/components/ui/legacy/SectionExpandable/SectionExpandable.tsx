@@ -25,7 +25,7 @@ export interface SectionExpandableProps {
 }
 
 /** OutSystems UI 2.23 DEPRECATED_AccordionItem (`:<n>` = line of
-    migration/screens/EventDetail/analysis/sources/pretty/OutSystemsUI_2_23.Content.DEPRECATED_AccordionItem.mvc.js).
+    migration/sources/pretty/OutSystemsUI_2_23.Content.DEPRECATED_AccordionItem.mvc.js).
     View :183-347: SectionItem `osui-deprecated section-expandable ` + (` open is--open` | `is--closed`) +
     (` is--disabled`) + " " + ExtendedClass with data-expanded / aria-expanded / aria-disabled; TitleWrapper
     (`section-expandable-title`, click → OnClick) holding the Title placeholder (`dividers full-width`, + ` text-ellipsis`
@@ -138,13 +138,21 @@ export function SectionExpandable({
   useLayoutEffect(() => {
     readyRef.current(false);
   }, []);
-  /* OnParametersChanged: the inputs are copied into the model, then OnReady runs again. */
-  const first = useRef(true);
+  /* OnParametersChanged: the inputs are copied into the model, then OnReady runs again. The original runs it only when
+     an input changes: the effect compares the inputs with the last applied ones, so the mount (also the double mount
+     of StrictMode, which re-runs a mount effect) does not expand or collapse an item a second time (GuestArrangements,
+     2026-11-06: an item open from the start was left `is--animating` with no transition to end). */
+  const applied = useRef({ isExpanded, usePadding, isDisabled, extendedClass });
   useEffect(() => {
-    if (first.current) {
-      first.current = false;
+    const a = applied.current;
+    if (
+      a.isExpanded === isExpanded &&
+      a.usePadding === usePadding &&
+      a.isDisabled === isDisabled &&
+      a.extendedClass === extendedClass
+    )
       return;
-    }
+    applied.current = { isExpanded, usePadding, isDisabled, extendedClass };
     vars.current.isExpanded = isExpanded;
     setExpandedState(isExpanded);
     readyRef.current(true);

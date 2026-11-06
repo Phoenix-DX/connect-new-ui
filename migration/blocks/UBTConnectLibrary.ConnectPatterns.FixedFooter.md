@@ -1,7 +1,7 @@
 # UBTConnectLibrary.ConnectPatterns.FixedFooter
 
 - Kind: shared; build screens using it: AcceptPendingPolicies, ContactByEmailMember, ContactByEmailOneSchoolGlobal, ContactUsDetails, Profile, Services
-- Compiled source: `migration/screens/ContactByEmailMember/analysis/sources/pretty/UBTConnectLibrary.ConnectPatterns.FixedFooter.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnectLibrary.ConnectPatterns.FixedFooter.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

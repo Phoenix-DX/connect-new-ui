@@ -1,7 +1,7 @@
 # UnsupportedVersion
 
 OutSystems: `UBTConnect.App_Common.UnsupportedVersion` · pack `migration/blocks/UBTConnect.App_Common.UnsupportedVersion.md`
-(survey only: compiled source in `capture/survey-UBTConnect.json`)
+(survey only: compiled source in `migration/survey/survey-UBTConnect.json`)
 
 | Input            | Type    | Prop              | Default |
 | ---------------- | ------- | ----------------- | ------- |

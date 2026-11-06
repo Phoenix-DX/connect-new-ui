@@ -7,7 +7,7 @@ import * as stories from './AvatarDouble.stories';
 const { CompiledView } = composeStories(stories);
 
 /* No captured DOM exists for this block: the checks follow the compiled view
-   (migration/blocks/sources/UBTConnectLibrary.ConnectPatterns.AvatarDouble.mvc.js:171-278). */
+   (migration/sources/survey/UBTConnectLibrary.ConnectPatterns.AvatarDouble.mvc.js:171-278). */
 describe('AvatarDouble', () => {
   it('renders both avatars at the same size inside the wrapper', () => {
     const { container } = render(<CompiledView />);

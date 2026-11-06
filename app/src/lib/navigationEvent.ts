@@ -1,5 +1,5 @@
 /* NavigationHandler client actions on a NavigationEvent, ported 1:1
-   (p:migration/screens/HomeFeed/analysis/sources/pretty/NavigationHandler.controller.js, "NH"). A NavigationEvent is
+   (p:migration/sources/pretty/NavigationHandler.controller.js, "NH"). A NavigationEvent is
    the `dx-before-navigation` CustomEvent of NavigationEventsJS (NH:858-877): cancelable, detail `location`, `replace`
    and `resume()`. */
 

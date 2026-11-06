@@ -14,6 +14,12 @@ export interface TagContentProps {
   backgroundColorId?: string;
   /** UBT_Color identifier; no text colour class when empty. */
   textColorId?: string;
+  /** In_VerticalPaddingSizeId: UBT_Size identifier, default ExtraSmall (live TagContent.mvc.js:39-41). */
+  inVerticalPaddingSizeId?: string;
+  /** In_HorizontalPaddingSizeId: UBT_Size identifier, default Small (live TagContent.mvc.js:45-47). */
+  inHorizontalPaddingSizeId?: string;
+  /** In_ShapeId: UBT_Shape identifier, default Rounded (live TagContent.mvc.js:51-53). */
+  inShapeId?: string;
   /** Event Clicked. */
   onClicked?: () => void;
 }
@@ -26,6 +32,9 @@ export function TagContent({
   extendedClasses = '',
   backgroundColorId = '',
   textColorId = '',
+  inVerticalPaddingSizeId = UBT_Size.ExtraSmall,
+  inHorizontalPaddingSizeId = UBT_Size.Small,
+  inShapeId = UBT_Shape.Rounded,
   onClicked,
 }: TagContentProps) {
   return (
@@ -34,8 +43,9 @@ export function TagContent({
         extendedClasses={formatClasses(formatClasses(MAIN_CONTAINER_CLASS, 'inline-block'), extendedClasses)}
         options={{
           Background: { BackgroundColor: backgroundColorId },
-          PaddingSize: { VerticalSizeId: UBT_Size.ExtraSmall, HorizontalSizeId: UBT_Size.Small },
-          BorderOptions: { Radius: { GeneralSizeId: UBT_Shape.Rounded } },
+          // Options (live TagContent.mvc.js:244-284): the padding and the radius come from the three inputs.
+          PaddingSize: { VerticalSizeId: inVerticalPaddingSizeId, HorizontalSizeId: inHorizontalPaddingSizeId },
+          BorderOptions: { Radius: { GeneralSizeId: inShapeId } },
           TextOptions: {
             Color: textColorId,
             FontSize: UBT_FontSize.DoubleExtraSmall,

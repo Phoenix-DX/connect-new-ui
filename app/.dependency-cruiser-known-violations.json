@@ -464,28 +464,6 @@
   {
     "type": "dependency",
     "from": "src/lib/assemble/actions.ts",
-    "to": "src/api/bookmark/index.ts",
-    "unresolvedTo": "@/api/bookmark",
-    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
-    "rule": {
-      "severity": "error",
-      "name": "rule-6-lib-imports-lib-only"
-    }
-  },
-  {
-    "type": "dependency",
-    "from": "src/lib/assemble/actions.ts",
-    "to": "src/platform/feedback/feedbackStore.ts",
-    "unresolvedTo": "@/platform/feedback/feedbackStore",
-    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
-    "rule": {
-      "severity": "error",
-      "name": "rule-6-lib-imports-lib-only"
-    }
-  },
-  {
-    "type": "dependency",
-    "from": "src/lib/assemble/actions.ts",
     "to": "src/platform/log/log.ts",
     "unresolvedTo": "@/platform/log/log",
     "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
@@ -543,17 +521,6 @@
     "from": "src/lib/leaflet/actions.ts",
     "to": "src/legacy/os/os-exceptions.ts",
     "unresolvedTo": "@/legacy/os/os-exceptions",
-    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
-    "rule": {
-      "severity": "error",
-      "name": "rule-6-lib-imports-lib-only"
-    }
-  },
-  {
-    "type": "dependency",
-    "from": "src/lib/legacyShared/actions.ts",
-    "to": "src/api/bookmark/keys.ts",
-    "unresolvedTo": "@/api/bookmark/keys",
     "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
     "rule": {
       "severity": "error",
@@ -783,17 +750,6 @@
   {
     "type": "dependency",
     "from": "src/lib/ubtConnect/actions.ts",
-    "to": "src/api/bookmark/index.ts",
-    "unresolvedTo": "@/api/bookmark",
-    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
-    "rule": {
-      "severity": "error",
-      "name": "rule-6-lib-imports-lib-only"
-    }
-  },
-  {
-    "type": "dependency",
-    "from": "src/lib/ubtConnect/actions.ts",
     "to": "src/api/update/index.ts",
     "unresolvedTo": "@/api/update",
     "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
@@ -851,17 +807,6 @@
     "from": "src/lib/ubtConnect/actions.ts",
     "to": "src/platform/session/userInfo.ts",
     "unresolvedTo": "@/platform/session/userInfo",
-    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
-    "rule": {
-      "severity": "error",
-      "name": "rule-6-lib-imports-lib-only"
-    }
-  },
-  {
-    "type": "dependency",
-    "from": "src/lib/ubtConnect/actions.ts",
-    "to": "src/platform/storage/localEntities/index.ts",
-    "unresolvedTo": "@/platform/storage/localEntities",
     "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
     "rule": {
       "severity": "error",
@@ -998,6 +943,50 @@
     "rule": {
       "severity": "error",
       "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/ubtConnectUtils/actions.ts",
+    "to": "src/api/bookmark/index.ts",
+    "unresolvedTo": "@/api/bookmark",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/ubtConnectUtils/actions.ts",
+    "to": "src/legacy/os/os-exceptions.ts",
+    "unresolvedTo": "@/legacy/os/os-exceptions",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/ubtConnectUtils/actions.ts",
+    "to": "src/platform/storage/localEntities/index.ts",
+    "unresolvedTo": "@/platform/storage/localEntities",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/ubtConnectUtils/actions.ts",
+    "to": "src/legacy/os/os-exceptions.ts",
+    "unresolvedTo": "@/legacy/os/os-exceptions",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-9-legacy-os-importers"
     }
   },
   {
@@ -1394,6 +1383,17 @@
     "rule": {
       "severity": "error",
       "name": "rule-9-legacy-os-importers"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/ubtConnect/actions.ts",
+    "to": "src/platform/storage/localEntities/index.ts",
+    "unresolvedTo": "@/platform/storage/localEntities",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
     }
   },
   {

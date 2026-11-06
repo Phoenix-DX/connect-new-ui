@@ -1,7 +1,7 @@
 # UBTConnect_Utils.CW_Share.ShareSheet_SectionTitle
 
 - Kind: shared; build screens using it: BookmarksByGroup, FeedItemDetail, HomeFeed, HouseholdCarousel, HouseholdDetails, Locality_Details, OneSchoolGlobalDetails, Profile, SupperMeeting_Carousel, SupperMeeting_Details, Updates_SingleList
-- Compiled source: `migration/blocks/sources/UBTConnect_Utils.CW_Share.ShareSheet_SectionTitle.mvc.js`
+- Compiled source: `migration/sources/survey/UBTConnect_Utils.CW_Share.ShareSheet_SectionTitle.mvc.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.CustomContainer (queue: -)
 
 ## Inputs

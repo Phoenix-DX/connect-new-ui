@@ -10,9 +10,9 @@ import { server } from '@/test/setup';
 import { usePendingPoliciesForm, type PendingPoliciesFormEvents } from './usePendingPoliciesForm';
 import { testQueryClient } from '@/platform/navigation/testRouter';
 
-/* The flows of Policy_Custom_AcceptPendingPolicies against the MSW mocks of the page (two fictional Connect policies,
-   7001 and 7002; ActionAcceptPolicies removes the accepted ids, so the test that accepts runs last). The flow handler
-   is replaced by a spy. */
+/* The flows of Policy_Custom_AcceptPendingPolicies against the MSW mocks of the page (one fictional Connect policy,
+   7001, as captured on 2026-11-06; ActionAcceptPolicies removes the accepted ids, so the test that accepts runs last).
+   The flow handler is replaced by a spy. */
 // The flow handler itself: the hook and the query-cache subscription (flowErrors.ts) both call it.
 vi.mock('@/legacy/os/exceptions', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/legacy/os/exceptions')>()),
@@ -59,7 +59,7 @@ describe('usePendingPoliciesForm (Policy_Custom_AcceptPendingPolicies)', () => {
     const { result } = renderForm();
     expect(result.current.rows).toBeUndefined();
     await waitFor(() => {
-      expect(result.current.rows?.map((r) => r.id)).toEqual(['7001', '7002']);
+      expect(result.current.rows?.map((r) => r.id)).toEqual(['7001']);
     });
     expect(result.current.isAllSelected).toBe(false);
     expect(calls()).toEqual(['DataActionGetPendingPolicies']);
@@ -75,27 +75,28 @@ describe('usePendingPoliciesForm (Policy_Custom_AcceptPendingPolicies)', () => {
   it('IsAllSelected follows the row checkboxes, and "I agree to all" sets every row', async () => {
     const { result } = renderForm();
     await waitFor(() => {
-      expect(result.current.rows).toHaveLength(2);
+      expect(result.current.rows).toHaveLength(1);
     });
     act(() => {
       result.current.toggleCheckBox(0);
     });
-    expect(result.current.rows?.map((r) => r.isSelected)).toEqual([true, false]);
-    expect(result.current.isAllSelected).toBe(false);
-    act(() => {
-      result.current.toggleCheckBox(1);
-    });
+    expect(result.current.rows?.map((r) => r.isSelected)).toEqual([true]);
     expect(result.current.isAllSelected).toBe(true);
     act(() => {
-      result.current.toggleSelectAllCheckBox();
+      result.current.toggleCheckBox(0);
     });
-    expect(result.current.rows?.map((r) => r.isSelected)).toEqual([false, false]);
+    expect(result.current.rows?.map((r) => r.isSelected)).toEqual([false]);
     expect(result.current.isAllSelected).toBe(false);
     act(() => {
       result.current.toggleSelectAllCheckBox();
     });
-    expect(result.current.rows?.map((r) => r.isSelected)).toEqual([true, true]);
+    expect(result.current.rows?.map((r) => r.isSelected)).toEqual([true]);
     expect(result.current.isAllSelected).toBe(true);
+    act(() => {
+      result.current.toggleSelectAllCheckBox();
+    });
+    expect(result.current.rows?.map((r) => r.isSelected)).toEqual([false]);
+    expect(result.current.isAllSelected).toBe(false);
     expect(calls()).toEqual(['DataActionGetPendingPolicies']);
   });
 
@@ -104,7 +105,7 @@ describe('usePendingPoliciesForm (Policy_Custom_AcceptPendingPolicies)', () => {
     const onNetworkError = vi.fn();
     const { result } = renderForm({ onAcceptedAll, onNetworkError });
     await waitFor(() => {
-      expect(result.current.rows).toHaveLength(2);
+      expect(result.current.rows).toHaveLength(1);
     });
     sessionStorage.setItem('mock:mock', 'error');
     await act(() => result.current.continueOnClick());
@@ -121,7 +122,7 @@ describe('usePendingPoliciesForm (Policy_Custom_AcceptPendingPolicies)', () => {
     );
     const { result } = renderForm({ onAcceptedAll, onNetworkError });
     await waitFor(() => {
-      expect(result.current.rows).toHaveLength(2);
+      expect(result.current.rows).toHaveLength(1);
     });
     await act(() => result.current.continueOnClick());
     expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
@@ -163,7 +164,7 @@ describe('usePendingPoliciesForm (Policy_Custom_AcceptPendingPolicies)', () => {
     const bodies = recordBodies('UBTConnect/ActionAcceptPolicies');
     const { result } = renderForm({ onAcceptedAll, onNetworkError });
     await waitFor(() => {
-      expect(result.current.rows).toHaveLength(2);
+      expect(result.current.rows).toHaveLength(1);
     });
     act(() => {
       result.current.toggleSelectAllCheckBox();
@@ -172,7 +173,7 @@ describe('usePendingPoliciesForm (Policy_Custom_AcceptPendingPolicies)', () => {
     expect(calls()).toEqual(['DataActionGetPendingPolicies', 'ActionAcceptPolicies']);
     expect(bodies).toEqual([
       {
-        Policies: { List: ['7001', '7002'] },
+        Policies: { List: ['7001'] },
         DeviceDetails: expect.objectContaining({
           ClientIP: '',
           Platform: 'Web',

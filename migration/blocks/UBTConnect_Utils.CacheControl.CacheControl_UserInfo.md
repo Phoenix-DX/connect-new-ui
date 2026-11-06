@@ -1,7 +1,7 @@
 # UBTConnect_Utils.CacheControl.CacheControl_UserInfo
 
 - Kind: shared; build screens using it: ContactUsDetails, CountryDetails, CountryList, Menu, Notes, Notifications, Profile, Search, Updates_SingleList
-- Compiled source: `migration/screens/ContactUsDetails/analysis/sources/pretty/UBTConnect_Utils.CacheControl.CacheControl_UserInfo.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect_Utils.CacheControl.CacheControl_UserInfo.mvc.js`
 - Child blocks: UBTConnect_Utils.CacheControl.CacheControl (queue: -)
 
 ## Inputs

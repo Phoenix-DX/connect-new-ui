@@ -17,8 +17,14 @@ interface Bookmarks_Card_ListProps {
   inBookmarks: BookmarkCardItem[];
   inIsLoading?: boolean;
   inSearchString?: string;
-  /** Event OnClick_BookmarkCardItem(ObjectId, ObjectType). */
-  onOnClickBookmarkCardItem?: (objectId: string, objectType: string) => void;
+  /** Event OnClick_BookmarkCardItem(ObjectId, ObjectId2, ObjectType, HasDetailAccess) (live
+      Bookmarks_Card_List.mvc.js:402-409: ItemId, ItemId2, BookmarkCategoryId, HasDetailAccess of the card). */
+  onOnClickBookmarkCardItem?: (
+    objectId: string,
+    objectId2: string,
+    objectType: string,
+    hasDetailAccess: boolean,
+  ) => void;
   /** Event Item_Unbookmarked. */
   onItemUnbookmarked?: () => void;
   /** ToggleBookmarkItem_C2 for the Unmark action of the cards (given by the page). */
@@ -93,7 +99,14 @@ export function Bookmarks_Card_List({
                   bookmark_CardItem={card}
                   inSearchString={inSearchString}
                   unbookmark={unbookmark}
-                  onOnClickCardItem={() => onOnClickBookmarkCardItem?.(card.itemId, card.bookmarkCategoryId)}
+                  onOnClickCardItem={() =>
+                    onOnClickBookmarkCardItem?.(
+                      card.itemId,
+                      card.itemId2,
+                      card.bookmarkCategoryId,
+                      card.hasDetailAccess,
+                    )
+                  }
                   onItem_Unbookmarked={onItemUnbookmarked}
                 />
               )}

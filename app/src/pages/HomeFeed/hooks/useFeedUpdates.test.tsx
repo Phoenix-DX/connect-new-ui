@@ -93,15 +93,17 @@ describe('FeedBlock_Updates flows (useFeedUpdates)', () => {
     expect(preload.CarouselHouseholdItem.map((h) => h.Household)).toEqual(['8101', '8102', '8103']);
   });
 
-  it('with the carousel off, a click only marks the item read (the other branch is not built)', async () => {
+  it('with the carousel off, a click marks the item read and opens HouseholdDetails(HouseholdId)', async () => {
     const { result } = await loaded({}, { ...FLAGS, hasCarouselEnabled: false });
+    const item = first(result.current.flow);
     act(() => {
-      result.current.flow.onItemClick(first(result.current.flow));
+      result.current.flow.onItemClick(item);
     });
     await waitFor(() => {
-      expect(calledActions()).toContain('ServiceAPIAction_UI_UpdateItem_MarkAsRead');
+      expect(result.current.at.pathname).toBe('/UBTConnect/HouseholdDetails');
     });
-    expect(result.current.at.pathname).toBe('/UBTConnect/HomeFeed');
+    expect(result.current.at.search).toContain(`HouseholdId=${item.householdId}`);
+    expect(calledActions()).toContain('ServiceAPIAction_UI_UpdateItem_MarkAsRead');
   });
 
   it('a click on an item without access opens no screen and marks nothing', async () => {

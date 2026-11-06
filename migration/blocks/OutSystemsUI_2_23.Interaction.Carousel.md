@@ -1,7 +1,7 @@
 # OutSystemsUI_2_23.Interaction.Carousel
 
 - Kind: osui; build screens using it: HomeFeed, HouseholdCarousel, Photobook, SupperMeeting_Carousel
-- Compiled source: `migration/screens/HomeFeed/analysis/sources/pretty/OutSystemsUI_2_23.Interaction.Carousel.mvc.js`
+- Compiled source: `migration/sources/pretty/OutSystemsUI_2_23.Interaction.Carousel.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

@@ -1,6 +1,6 @@
 # Route spec: ContactByEmailOneSchoolGlobal
 
-Sources: `p:` = `analysis/sources/pretty/UBTConnect.ContactFlow.ContactByEmailOneSchoolGlobal.mvc.js`; `dom:` =
+Sources: `p:` = `migration/sources/pretty/UBTConnect.ContactFlow.ContactByEmailOneSchoolGlobal.mvc.js`; `dom:` =
 `analysis/dom/default.html`.
 
 ## Summary

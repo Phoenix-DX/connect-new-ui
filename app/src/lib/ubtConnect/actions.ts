@@ -7,18 +7,16 @@ import type {
   UI_Screen_SubdivisionDetails,
   UI_SubdivisionHousehold,
 } from './structures';
-import { addC2Bookmark, deleteC2Bookmark, type BookmarkDeleted, type C2BookmarkAdded } from '@/api/bookmark';
 import { fetchUnreadUpdateItemsCount } from '@/api/update';
 import { log } from '@/platform/log/log';
 import { osList } from '@/lib/os-wire';
 import { getClientVar, setClientVar } from '@/platform/session/session';
 import { getUserInformation } from '@/platform/session/userInfo';
-import { SystemException, UserException, isInstanceOf } from '@/legacy/os/os-exceptions';
+import { getLocalBookmarkByObjectId } from '@/platform/storage/localEntities';
+import { UserException } from '@/legacy/os/os-exceptions';
 import {
   BookmarkCategory,
   Connect_Entity,
-  MyBookmarks_Group,
-  MyBookmarks_ObjectType,
   NoteCategory2,
   Photobook_Speed,
   Type_CarouselItemSwipeAction,
@@ -29,12 +27,6 @@ import {
 import { getLookupConcepts, setLookupLabel_MaybeLowercase } from '@/lib/ubtConnectLibrary/actions';
 import { jSUtils_String_Split } from '@/lib/jsUtils';
 import { setCarouselStartingPosition } from '@/components/ui/lib/actions';
-import { bookmark_SendFeedbackMessage } from '@/lib/ubtConnectUtils/actions';
-import {
-  create_LocalBookmark,
-  delete_LocalBookmarkByBookmarkId,
-  getLocalBookmarkByObjectId,
-} from '@/platform/storage/localEntities';
 import type {
   CarouselPreloadedHouseholds,
   CarouselSwipeCallbackParametersItem,
@@ -80,7 +72,7 @@ export function scrollTop(scrollContainer: string, behaviour: ScrollBehavior): v
   container.scroll({ top: 0, behavior: behaviour });
 }
 
-/** JSON Serialize(Updates_CarouselSwipeCallbackParameters) with its defaults (runtime-sources/OutSystems.js JSONUtils
+/** JSON Serialize(Updates_CarouselSwipeCallbackParameters) with its defaults (sources/runtime/OutSystems.js JSONUtils
     serializeToJSON(record, false, false) → JSONConverter.to: an attribute equal to its default is left out, then
     JSON.stringify). UpdateItemId is a Long Integer: written as a JSON number. */
 function serializeSwipeCallbackParameters(p: Updates_CarouselSwipeCallbackParameters | undefined): string {
@@ -90,7 +82,7 @@ function serializeSwipeCallbackParameters(p: Updates_CarouselSwipeCallbackParame
 
 /**
  * Directory_Updates_GetCarouselPreloadedHouseholds(In_ParametersList) (UBTConnect.controller.js:1828-1925, copy in
- * migration/screens/HomeFeed/analysis/sources/raw/): for each item, in order (:1843-1880), a read item gets an empty
+ * migration/sources/raw/): for each item, in order (:1843-1880), a read item gets an empty
  * swipe callback (ActionId NullTextIdentifier, Parameters "", :1849-1856); an unread one gets UpdatesCarousel_SetIsRead
  * with its Updates_CarouselSwipeCallbackParameters as JSON (:1858-1866); ListAppend {Household = HouseholdId,
  * SwipeAction} (:1869-1875); Out_CarouselPreloadedHouseholds (:1884). Records are values: each appended item keeps its
@@ -151,7 +143,7 @@ export function getDescriptor_Subdivision_HouseholdCount(in_HouseholdCount: numb
 }
 
 /** Get_NoteCategoryId_ByEntityTypeId(EntityTypeId) (UBTConnect.controller.js:6403-6489, copy in
-    migration/screens/SupperMeeting_Details/analysis/sources/raw/): the note category of each entity type; any other
+    migration/sources/raw/): the note category of each entity type; any other
     type raises InvalidAction "Notes not available". */
 export function get_NoteCategoryId_ByEntityTypeId(entityTypeId: string): string {
   switch (entityTypeId) {
@@ -175,14 +167,14 @@ export function get_NoteCategoryId_ByEntityTypeId(entityTypeId: string): string 
 }
 
 /** Notes_InterchangeId_ComposeId(LocalityId, InterchangeLocalityId) (UBTConnect.controller.js, TST publish of
-    2026-10-29, copy in migration/screens/Notes/analysis/sources/raw/): the note item id of an interchange,
+    2026-10-29, copy in migration/sources/raw/): the note item id of an interchange,
     "<LocalityId>:<InterchangeLocalityId>" when LocalityId is not empty, else InterchangeLocalityId. */
 export function notes_InterchangeId_ComposeId(localityId: string, interchangeLocalityId: string): string {
   return localityId !== '' ? `${localityId}:${interchangeLocalityId}` : interchangeLocalityId;
 }
 
 /** Notes_InterchangeId_ExtractId(NoteInterchangeId) (UBTConnect.controller.js:15189-15260, TST publish of 2026-10-29,
-    copy in migration/screens/Notes/analysis/sources/raw/): JSUtils_String_Split(NoteInterchangeId, ":"); an empty list
+    copy in migration/sources/raw/): JSUtils_String_Split(NoteInterchangeId, ":"); an empty list
     or one part gives LocalityId = NoteInterchangeId (InterchangeLocalityId stays ""), else LocalityId = part 0 and
     InterchangeLocalityId = part 1. */
 export function notes_InterchangeId_ExtractId(noteInterchangeId: string): {
@@ -192,6 +184,45 @@ export function notes_InterchangeId_ExtractId(noteInterchangeId: string): {
   const list = jSUtils_String_Split(noteInterchangeId, ':');
   if (list.length <= 1) return { LocalityId: noteInterchangeId, InterchangeLocalityId: '' };
   return { LocalityId: list[0] ?? '', InterchangeLocalityId: list[1] ?? '' };
+}
+
+/** GetLocalityMenu().LocalityMenuOptions (live UBTConnect.controller.js:9586-9620): the defaults of
+    Entities_LocalityMenuOptionsRec, the tag texts and identifiers of the locality menu of Locality_Details. */
+export const LocalityMenu = {
+  Households: 'Households',
+  Subdivsion: 'Supper Meetings',
+  Interchange: 'Interchange',
+  OneSchoolGlobal: 'OneSchool Global',
+  LocalityContacts: 'Locality Contacts',
+  MyHousehold: 'My Household',
+} as const;
+
+/** LongIntegerToText(TextToLongInteger(text)) for an item id that the wire sends as Text: an invalid text is 0
+    (BigInt keeps the Long Integers above 2^53). */
+export const longIntegerText = (v: string): string => {
+  const trimmed = v.trim();
+  return /^[-+]?\d+$/.test(trimmed) ? BigInt(trimmed).toString() : '0';
+};
+
+/** GetLocal_Bookmark_C2(ObjectType, ObjectId) (live migration/sources/runtime/UBTConnect.controller.js:9315-9381):
+    GetLocalBookmarkByObjectId_C2(LongIntegerToText(ObjectId), ObjectType) (:9334), then IsBookmarked =
+    GetLocalBookmarkByObjectId_C2.LocalBookmark.Id <> NullIdentifier (:9339; the C2 UBTConnect_Bookmarks_MCS
+    LocalBookmark). ObjectType is the bookmark category; ObjectId is the Long Integer as text. */
+export async function getLocal_Bookmark_C2(objectType: string, objectId: string): Promise<boolean> {
+  const bookmark = await getLocalBookmarkByObjectId(objectId, objectType);
+  return bookmark.Id !== '' && bookmark.Id !== '0';
+}
+
+/** Handler_OnClickUnauthorizedObject(CategoryId) of Bookmarks (live UBTConnect.Bookmarks.Bookmarks.mvc.js:788-817) and
+    of Notes (live UBTConnect.Notes.Notes.mvc.js:1353-1394), the same logic: ObjectLabelSingular = ToLower(the Text of
+    the first pill with that Identifier; "" when none), without a final "s"; the message of FeedbackMessage_AutoClose. */
+export function unauthorizedObjectMessage(
+  categoryId: string,
+  pills: ReadonlyArray<{ Text?: string; Identifier?: string }>,
+): string {
+  const label = (pills.find((p) => p.Identifier === categoryId)?.Text ?? '').toLowerCase();
+  const singular = label.length > 0 && label.endsWith('s') ? label.slice(0, -1) : label;
+  return `This ${singular} is no longer available.`;
 }
 
 /** GetShareType_FromEntity(EntityType, In_IsMyHousehold) (TST UBTConnect.controller.js:11102-11223, BR-UBTCON-244), in
@@ -250,88 +281,6 @@ export function getBookmarkCategoryId_ByEntityTypeId(entityType: string): string
     default:
       throw new UserException('Bookmarks not available', 'UBTConnect.InvalidAction');
   }
-}
-
-/** GetBookmarkType_FromEntity(EntityType) (UC:7410-7540): the legacy bookmark type and group; Member and any other type
-    raise InvalidAction "Bookmarks not available". */
-export function getBookmarkType_FromEntity(entityType: string): { BookmarkType: string; BookmarkGroup: string } {
-  switch (entityType) {
-    case Connect_Entity.Locality:
-    case Connect_Entity.Interchange:
-      return { BookmarkType: MyBookmarks_ObjectType.Locality, BookmarkGroup: MyBookmarks_Group.Locations };
-    case Connect_Entity.Household:
-      return { BookmarkType: MyBookmarks_ObjectType.Contact, BookmarkGroup: MyBookmarks_Group.Contacts };
-    case Connect_Entity.SupperMeetings_aka_Subdivisions:
-      return { BookmarkType: MyBookmarks_ObjectType.Subdivision, BookmarkGroup: MyBookmarks_Group.Locations };
-    case Connect_Entity.OneSchoolGlobal:
-      return { BookmarkType: MyBookmarks_ObjectType.OneSchoolGlobal, BookmarkGroup: MyBookmarks_Group.Entities };
-    default:
-      throw new UserException('Bookmarks not available', 'UBTConnect.InvalidAction');
-  }
-}
-
-/** The two server actions of ToggleBookmarkItem_C2. */
-export interface BookmarkServerActions {
-  /** ServiceAPIAddBookmark2(In_BookmarkCategoryId, In_ItemId as text) (UC:18251-18286): Success, Bookmark_Added
-      (Connect_Bookmarks_CS UI_Bookmark_Added; Id and DateCreatedUtc are used). */
-  addBookmark2(in_BookmarkCategoryId: string, in_ItemId: string): Promise<C2BookmarkAdded>;
-  /** ServiceAPIDeleteBookmarkByBookmarkId2(BookmarkId) (UC:18312-18336): Success. */
-  deleteBookmarkByBookmarkId2(bookmarkId: string): Promise<BookmarkDeleted>;
-}
-
-/** The two server actions in the domain api/bookmark (addC2Bookmark and deleteC2Bookmark; contract operations
-    `UBTConnect/ServiceAPIAddBookmark2` and `…/ServiceAPIDeleteBookmarkByBookmarkId2`, CR-W4A-1); mocks in
-    `../Directory_EntityDetailsActions/mocks.ts`. Typed nullable so callers keep their guard. */
-export const bookmarkServerActions: BookmarkServerActions | null = {
-  addBookmark2: addC2Bookmark,
-  deleteBookmarkByBookmarkId2: deleteC2Bookmark,
-};
-
-/** ToggleBookmarkItem_C2(In_ItemId, In_BookmarkType, IsBookmarked_C2) (UC:17105-17280):
-    - bookmarked: GetLocalBookmarkByObjectId(In_ItemId) → DeleteBookmarkByBookmarkId2(its BookmarkId); on Success
-      Delete_LocalBookmarkByBookmarkId and Bookmark_SendFeedbackMessage(not IsBookmarked_C2, False), else the error
-      message;
-    - not bookmarked: AddBookmark2(In_BookmarkType, LongIntegerToText(In_ItemId)); on Success Create_LocalBookmark(
-      In_ItemId, In_BookmarkType, Bookmark_Added.Id, Bookmark_Added.DateCreatedUtc) and the success message, else the
-      error message;
-    - AllExceptions (not system): the error message, then the action ends normally; system exceptions are raised.
-    Its outputs Out_LocalBookmarkId and Out_CreatedBookmarkId are never assigned (their defaults, "0"). */
-export async function toggleBookmarkItem_C2(
-  in_ItemId: string,
-  in_BookmarkType: string,
-  isBookmarked_C2: boolean,
-  server: BookmarkServerActions,
-): Promise<{ Out_LocalBookmarkId: string; Out_CreatedBookmarkId: string }> {
-  const out = { Out_LocalBookmarkId: '0', Out_CreatedBookmarkId: '0' };
-  try {
-    if (isBookmarked_C2) {
-      const local = await getLocalBookmarkByObjectId(in_ItemId);
-      const deleted = await server.deleteBookmarkByBookmarkId2(local.BookmarkId);
-      if (deleted.Success) {
-        await delete_LocalBookmarkByBookmarkId(local.BookmarkId);
-        bookmark_SendFeedbackMessage(!isBookmarked_C2, false);
-      } else {
-        bookmark_SendFeedbackMessage(!isBookmarked_C2, true);
-      }
-    } else {
-      const added = await server.addBookmark2(in_BookmarkType, in_ItemId);
-      if (added.Success) {
-        await create_LocalBookmark(
-          in_ItemId,
-          in_BookmarkType,
-          added.Bookmark_Added.Id,
-          added.Bookmark_Added.DateCreatedUtc,
-        );
-        bookmark_SendFeedbackMessage(!isBookmarked_C2, false);
-      } else {
-        bookmark_SendFeedbackMessage(!isBookmarked_C2, true);
-      }
-    }
-  } catch (ex) {
-    if (isInstanceOf(ex, SystemException)) throw ex;
-    bookmark_SendFeedbackMessage(!isBookmarked_C2, true);
-  }
-  return out;
 }
 
 /* ---- Wave 4C (household details and supper meeting blocks). UC = UBTConnect.controller.js (raw copy of the screen
@@ -557,7 +506,7 @@ export function get_IsInsideRenderBuffer(
 }
 
 /** Carousel_SetCurrentPosition(In_CarouselWidgetId, In_Position) (UBTConnect.controller.js:908-, copy in
-    migration/screens/SupperMeeting_Carousel/analysis/sources/raw/; SetCurrentPositionJS): writes the Carousel's
+    migration/sources/raw/; SetCurrentPositionJS): writes the Carousel's
     StartingPosition config, so a later redraw keeps the current slide. A failure is only logged (the JS catch). */
 export function carousel_SetCurrentPosition(in_CarouselWidgetId: string, in_Position: number): void {
   try {

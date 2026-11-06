@@ -12,7 +12,7 @@ export interface NetworkWarningProps {
   onTryAgain?: () => void;
 }
 
-/** Orange "network problems" card with a Try again button (migration/runtime-sources/
+/** Orange "network problems" card with a Try again button (migration/sources/runtime/
     Connect2_LegacyShared.Widgets.NetworkWarning.mvc.js, fetched read-only from TST 2026-10-16: view :84-215, the
     Button OnClick calls the event TryAgain, controller `tryAgain$Action` :237 is `Promise.resolve()`). It sits in
     an Animate (topToBottom, normal, no Delay input). */

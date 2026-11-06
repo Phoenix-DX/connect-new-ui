@@ -87,6 +87,8 @@ describe('MilestoneDetail page', () => {
     expect(roomTitle(0)).toBe('Room: 1-Master Guest');
     expect(roomTitle(5)).toBe('Room: Guest 3');
     expect(document.querySelectorAll('[data-block="Orbit_Blocks.Card_MemberInformation"]')).toHaveLength(10);
+    // The capture of 2026-11-06: a "Guest Arrangements" link under every member card.
+    expect(document.querySelectorAll('.orbit-member-list-item-arrangements')).toHaveLength(10);
     expect(document.body.textContent).toContain('Accommodation Allocation');
     await waitFor(() => {
       expect(calls(GET_DOCUMENT)).toBe(1);

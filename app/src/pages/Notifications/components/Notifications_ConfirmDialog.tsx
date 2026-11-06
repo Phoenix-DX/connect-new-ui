@@ -51,7 +51,7 @@ interface Notifications_ConfirmDialogProps {
 }
 
 /** UBTConnect.App_Notifications.Notifications_ConfirmDialog (survey copy of the block,
-    capture/survey-UBTConnect.json; the live TST copy is not captured because the popup is closed in every state):
+    migration/survey/survey-UBTConnect.json; the live TST copy is not captured because the popup is closed in every state):
     a white CustomContainer (padding base, radius large, centred) with the delete icon in a cyan-lightest
     CircleButton, the title ("Delete notification" / "Delete all notifications?"), the text, and Columns_Two with the
     buttons Cancel (event Cancel) and Delete (event Confirm). */

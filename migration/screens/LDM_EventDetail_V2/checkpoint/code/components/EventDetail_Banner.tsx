@@ -1,7 +1,6 @@
-// @os-block Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Banner
 import { useEffect, useRef, useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { useWasRestoredFromCache } from '../../../shell/navigation';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { useWasRestoredFromCache } from '@/platform/navigation';
 import { formatDateForEventBanner } from './actions';
 
 export interface EventDetail_BannerProps {
@@ -22,14 +21,15 @@ export interface EventDetail_BannerProps {
   onSetContainerHeight: (bannerHeight: number) => void;
 }
 
-/** Banner of the LDM event detail (analysis/sources/pretty/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Banner.mvc.js
+/** Banner of the LDM event detail (migration/sources/pretty/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Banner.mvc.js
     = B; view :180-560, controller :565-860). The hall photo, an overlay and the text box, each `height` /
     `min-height` ActiveHeight px: "Host" / "Guest", the locality (bold) and FormatDateForEventBanner(EventDate), then
     for a host the Adults / Children counts ("Adult" / "Child" for 1) and the "Contact Coordinator" button (enabled when
     the coordinator is available; `min-height: 51px` for a guest). OnInitialize / OnParametersChanged (B:700-790):
     SetActiveHeight (ActiveHeight = In_MinHeight). OnReady (B:600-660): CorrectHeightJS reads the text box's
     offsetHeight; a different height becomes ActiveHeight and raises SetContainerHeight. A view restored from the
-    cache skips all three. */
+    cache skips all three.
+    @origin Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Banner */
 export function EventDetail_Banner({
   id,
   inImageURL,

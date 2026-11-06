@@ -1,7 +1,7 @@
 # OutSystemsUI_2_23.Utilities.SwipeEvents
 
 - Kind: osui; build screens using it: LDM_MyEvents_V2
-- Compiled source: `migration/blocks/sources/OutSystemsUI_2_23.Utilities.SwipeEvents.mvc.js`
+- Compiled source: `migration/sources/survey/OutSystemsUI_2_23.Utilities.SwipeEvents.mvc.js`
 - Child blocks: OutSystemsUI_2_23.Utilities.TouchEvents (queue: -)
 
 ## Inputs

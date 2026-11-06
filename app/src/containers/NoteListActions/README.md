@@ -2,7 +2,7 @@
 
 OutSystems: `UBTConnect_Utils.CW_Notes.NoteListActions` · pack
 `migration/blocks/UBTConnect_Utils.CW_Notes.NoteListActions.md` (compiled source
-`migration/blocks/sources/UBTConnect_Utils.CW_Notes.NoteListActions.mvc.js`)
+`migration/sources/survey/UBTConnect_Utils.CW_Notes.NoteListActions.mvc@fd5116c1.js`)
 
 | Input              | Type           | Prop                | Default |
 | ------------------ | -------------- | ------------------- | ------- |

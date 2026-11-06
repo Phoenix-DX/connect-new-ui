@@ -1,4 +1,4 @@
-/* OutSystems UI BottomSheet drag-to-close, ported from the provider (OSUI = migration/runtime-sources/
+/* OutSystems UI BottomSheet drag-to-close, ported from the provider (OSUI = migration/sources/runtime/
    OutSystemsUI_2_23.OutSystemsUI.js): DeviceInfo.IsNative / IsTouch (:2684-2715), the touch gesture of the header
    (AbstractGestureEvent + DragEvent, :1779-1876), AnimateOnDrag (:668-806) and SpringAnimation (:820-880). The sheet
    uses them as BottomSheet._handleGestureEvents / _onGesture* (:4940-4963) with springAnimationConfigs (:4923-4930). */

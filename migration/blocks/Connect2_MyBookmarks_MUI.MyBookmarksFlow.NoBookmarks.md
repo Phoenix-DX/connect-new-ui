@@ -1,7 +1,7 @@
 # Connect2_MyBookmarks_MUI.MyBookmarksFlow.NoBookmarks
 
 - Kind: shared; build screens using it: BookmarksByGroup, MyBookmarks
-- Compiled source: `migration/blocks/sources/Connect2_MyBookmarks_MUI.MyBookmarksFlow.NoBookmarks.mvc.js`
+- Compiled source: `migration/sources/survey/Connect2_MyBookmarks_MUI.MyBookmarksFlow.NoBookmarks.mvc.js`
 - Child blocks: Connect2_LegacyShared.Reusable.ConnectBlankSlate (queue: Connect2_LegacyShared.Reusable.ConnectBlankSlate)
 
 ## Inputs

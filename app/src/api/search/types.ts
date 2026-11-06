@@ -16,13 +16,37 @@ export interface SearchResult {
   latitude: string;
   longitude: string;
   recordDisabled: boolean;
+  /** [DisplayHouseholdName] */
+  displayHouseholdName: boolean;
+  /** [DisplayAddress] */
+  displayAddress: boolean;
+  /** [Event_IsPersonal] */
+  eventIsPersonal: boolean;
+  /** [Event_EventTypeTitle] */
+  eventEventTypeTitle: string;
+  /** [Event_HostSubdivisionId] LongInteger as text: the hall of an Assemble meeting. */
+  eventHostSubdivisionId: string;
+  /** [Event_HostHouseholderId] LongInteger as text: the host of an LDM event. */
+  eventHostHouseholderId: string;
+  /** [Event_Source] A Connect_EventTypes identifier (Assemble, Orbit, LDM), or "" for a row that is not an event. */
+  eventSource: string;
+  /** [Event_EventHostId] */
+  eventEventHostId: string;
+  /** [Event_StartDate] Date "yyyy-MM-dd" ("1900-01-01" is the null date). */
+  eventStartDate: string;
+  /** [Event_EndDate] Date "yyyy-MM-dd". */
+  eventEndDate: string;
+  /** [Event_OrbitEventType] "" for a row that is not an Orbit event. */
+  eventOrbitEventType: string;
 }
 
-/** FetchSearchResults outputs (Households, People, Places). */
+/** FetchSearchResults outputs (Households, People, Places, Events, Schools; live ScreenBlock_Search.mvc.js:50-72). */
 export interface SearchResults {
   households: SearchResult[];
   people: SearchResult[];
   places: SearchResult[];
+  events: SearchResult[];
+  schools: SearchResult[];
 }
 
 /** Connect_SearchBirthdayOptions row. */

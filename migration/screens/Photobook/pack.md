@@ -854,20 +854,20 @@ Trigger chains (call-sites.md):
 ## Look up on demand
 
 - `migration/screens/Photobook/analysis/dom/<state>.html` full markup (line numbers in collapsed markers refer to dom/default.html)
-- `migration/screens/Photobook/analysis/sources/pretty/UBTConnect.Directory_Photobook.Photobook.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
-- `migration/screens/Photobook/analysis/sources/pretty/OutSystemsUI_2_23.Private.OfflineDataSyncCore.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
-- `migration/screens/Photobook/analysis/sources/pretty/OutSystemsUI_2_23.Private.NetworkStatusChanged.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
-- `migration/screens/Photobook/analysis/sources/pretty/Connect2_AndroidAppLinksPlugin.AndroidAppLinks.AndroidAppLinkOnResumeHandler.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
-- `migration/screens/Photobook/analysis/sources/pretty/EventfulDeeplinksPlugin.EventfulDeeplinksPlugin.DeeplinkHandlerCentral.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
-- `migration/screens/Photobook/analysis/sources/pretty/UBTConnect.Directory_Photobook.Photobook_Carousel.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
-- `migration/screens/Photobook/analysis/sources/pretty/UBTConnect.Directory_Photobook.Photobook_Item.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
-- `migration/screens/Photobook/analysis/sources/pretty/PanZoom.PanZoom.PanZoom.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
-- `migration/screens/Photobook/analysis/sources/pretty/UBTConnect.Directory_Photobook.Photobook_Options_Left.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
-- `migration/screens/Photobook/analysis/sources/pretty/UBTConnect.Directory_Photobook.Photobook_Options_Right.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
-- `migration/screens/Photobook/analysis/sources/pretty/UBTConnect.Directory_Photobook.Photobook_Options_Player.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
-- `migration/screens/Photobook/analysis/sources/pretty/UBTConnect.Directory_Photobook.Photobook_Gallery.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
-- `migration/screens/Photobook/analysis/sources/pretty/UBTConnect.Directory_Photobook.Photobook_Options_Bottom.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
-- `migration/screens/Photobook/analysis/sources/pretty/UBTConnect.Directory_Photobook.Photobook_Gallery_Item.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/UBTConnect.Directory_Photobook.Photobook.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/OutSystemsUI_2_23.Private.OfflineDataSyncCore.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/OutSystemsUI_2_23.Private.NetworkStatusChanged.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/Connect2_AndroidAppLinksPlugin.AndroidAppLinks.AndroidAppLinkOnResumeHandler.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/EventfulDeeplinksPlugin.EventfulDeeplinksPlugin.DeeplinkHandlerCentral.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/UBTConnect.Directory_Photobook.Photobook_Carousel.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/UBTConnect.Directory_Photobook.Photobook_Item.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/PanZoom.PanZoom.PanZoom.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/UBTConnect.Directory_Photobook.Photobook_Options_Left.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/UBTConnect.Directory_Photobook.Photobook_Options_Right.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/UBTConnect.Directory_Photobook.Photobook_Options_Player.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/UBTConnect.Directory_Photobook.Photobook_Gallery.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/UBTConnect.Directory_Photobook.Photobook_Options_Bottom.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/UBTConnect.Directory_Photobook.Photobook_Gallery_Item.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
 - `migration/screens/Photobook/analysis/css-relevant.md` only when a visual diff cannot be explained by markup
 
 ## Cut to fit the budget

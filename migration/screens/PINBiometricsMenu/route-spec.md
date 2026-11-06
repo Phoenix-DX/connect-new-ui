@@ -1,6 +1,6 @@
 # Route spec: PINBiometricsMenu
 
-Sources: `p:` = `migration/screens/PINBiometricsMenu/analysis/sources/pretty/UBTConnect.App_Menu.PINBiometricsMenu.mvc.js`.
+Sources: `p:` = `migration/sources/pretty/UBTConnect.App_Menu.PINBiometricsMenu.mvc.js`.
 
 ## Summary
 | Item | Value |

@@ -18,7 +18,7 @@ import {
 } from './actions';
 import { MessageDetailView } from './components/MessageDetailView';
 import { ShareObjectDetail_ExtendedShare } from './components/ShareObjectDetail_ExtendedShare';
-import { textToLongInteger } from './hooks/messageDetailState';
+import { textToLongInteger } from '@/containers/MessageInstance/messageDetailState';
 import { useMessageDetail } from './hooks/useMessageDetail';
 import { readMessageDetailInputs } from './inputs';
 

@@ -4,13 +4,14 @@ Load order of stylesheets (keep this order in the build):
 
 1. `/UBTConnect/css/_Basic.css`
 2. `/UBTConnect/css/OutSystemsReactWidgets.css`
-3. `/UBTConnect/css/UBT_AppManager.PIN.PinCode.css`
-4. `/UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css`
-5. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css`
-6. `/UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css`
-7. `/UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css`
-8. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect.css`
-9. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css`
+3. `/UBTConnect/css/Connect2_LegacyShared.Widgets.AdaptiveCardViewer.css`
+4. `/UBTConnect/css/UBT_AppManager.PIN.PinCode.css`
+5. `/UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css`
+6. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css`
+7. `/UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css`
+8. `/UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css`
+9. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect.css`
+10. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css`
 
 Rules below are those whose selector contains a class used on the captured page, grouped by the block that owns the element. Full source: `styles/bundle.css`.
 
@@ -417,6 +418,10 @@ div:has(div > div.ubt-icon.header-filter-enabled) { position: relative; }
 ```css
 .border-size-s, .border-s { border: var(--border-size-s) solid var(--border-color, currentColor); }
 ```
+### .margin-top-base  (1 rule)
+```css
+.margin-top-base { margin-top:var(--space-base); }
+```
 ### .padding-s  (1 rule)
 ```css
 .padding-s { padding:var(--space-s); }
@@ -534,6 +539,26 @@ only-child > .columns-item:not(:last-child), .phone .columns.gutter-xs.phone-bre
 ### .text-neutral-5  (1 rule)
 ```css
 .text-neutral-5 { color:var(--text-color-neutral-5, var(--color-neutral-5)); }
+```
+## Widgets.AdaptiveCardViewer
+
+### .ac-actionSet  (1 rule)
+```css
+.ac-actionSet { flex-direction: column !important; justify-content: center !important; }
+```
+### .ac-pushButton  (2 rules)
+```css
+button.ac-pushButton.style-default { margin: var(--space-s) 0; width: 100%; background-color: var(--color-neutral-2); border: 1px solid var(--color-primary); border-radius: 4px; color: var(--color-primary); font-size: 0.8em; padding: var(--space-xs); /*font-weight: bold;*/ }
+button.ac-pushButton.style-default.primary { color: var(--color-neutral-0 ); background-color: var(--color-primary); }
+```
+### .primary  (1 rule)
+```css
+button.ac-pushButton.style-default.primary { color: var(--color-neutral-0 ); background-color: var(--color-primary); }
+```
+### .style-default  (2 rules)
+```css
+button.ac-pushButton.style-default { margin: var(--space-s) 0; width: 100%; background-color: var(--color-neutral-2); border: 1px solid var(--color-primary); border-radius: 4px; color: var(--color-primary); font-size: 0.8em; padding: var(--space-xs); /*font-weight: bold;*/ }
+button.ac-pushButton.style-default.primary { color: var(--color-neutral-0 ); background-color: var(--color-primary); }
 ```
 ## App_Common.BottomBarContent
 
@@ -844,6 +869,7 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 - `--color-neutral-0`: `#ffffff` (in `@charset "UTF-8";    :root`)
 - `--color-neutral-10`: `#101213` (in `@charset "UTF-8";    :root`)
 - `--color-neutral-11`: `#d8dcde` (in `:root`)
+- `--color-neutral-2`: `#f1f3f5` (in `@charset "UTF-8";    :root`)
 - `--color-neutral-3`: `#e9ecef` (in `@charset "UTF-8";    :root`)
 - `--color-neutral-4`: `#dee2e6` (in `@charset "UTF-8";    :root`)
 - `--color-neutral-5`: `#ced4da` (in `@charset "UTF-8";    :root`)

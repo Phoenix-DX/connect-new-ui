@@ -6,7 +6,7 @@ started: the user gives the start (D5).** Written 2026-10-22.
 This plan replaces §4 to §8 of `refactor-plan.md` (the draft). §1 to §3 of the draft stay valid: goal, measured state,
 principles. This plan does not repeat them. The decisions D1 to D4 of the draft stay (§9).
 
-Writing rules: `migration/english-docs/style-rules.md`. Terms: `migration/english-docs/glossary.md`. In this plan the
+Writing rules: `migration/style/style-rules.md`. Terms: `migration/style/glossary.md`. In this plan the
 React terms **page**, **container**, **component** and **hook** have the meanings of §2.1.
 
 Decided (user, 2026-10-22): R1 (b), R2 (b), R3 (b), R4 (b), R5 (a), R6 (a) for now, R7 (b), R8 (b). The

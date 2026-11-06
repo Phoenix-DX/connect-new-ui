@@ -1,5 +1,5 @@
 /* The web camera of the OutSystems CameraPlugin, ported 1:1 (PassportScan Q2 (a), user 2026-10-29) from the TST
-   scripts in migration/runtime-sources/ that AddDependencies loads (CameraPlugin.controller.js :1-56):
+   scripts in migration/sources/runtime/ that AddDependencies loads (CameraPlugin.controller.js :1-56):
    - CameraPlugin.Errors.js: the error codes (`OS-PLUG-CAMR-000${code}`);
    - CameraPlugin.Camera.js: isMobileOrTablet and WebCamera, which picks the camera view (CameraStream) on a desktop, or
      in a batch, and the camera input (NativeCamera) on a phone or tablet;

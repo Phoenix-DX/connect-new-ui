@@ -1,5 +1,7 @@
 import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 import { osList } from '@/lib/os-wire';
+import type { Notes } from '@/lib/ubtConnectLibrary/structures';
+import type { UI_HouseholdTimelineImages } from '@/lib/ubtConnect/structures';
 import type {
   Household,
   HouseholdCaption,
@@ -8,6 +10,7 @@ import type {
   HouseholdCardMembers,
   HouseholdCoordinates,
   HouseholdDetails,
+  HouseholdGalleryImage,
   HouseholdMember,
   HouseholdShareCard,
   LocalityHousehold,
@@ -90,6 +93,39 @@ export const toHouseholdCoordinates = (wire: HouseholdCoordinatesWire): Househol
   UseCoordinates: wire.HouseholdCoordinates.UseCoordinates,
 });
 
+/** The outputs of DataActionGetHouseHold_Gallery, as the contract describes them (Out_ImageDetails is x-unknown). */
+type HouseholdGalleryWire = ActionOutputs<
+  PathOf<'UBTConnect', 'HouseholdDetails_Block/DataActionGetHouseHold_Gallery'>
+>;
+
+const isRecord = (value: unknown): value is Readonly<Record<string, unknown>> =>
+  typeof value === 'object' && value !== null && !Array.isArray(value);
+
+/** The items of an OutSystems list on the wire ({ List: [...] } or a bare array), as unknown values. */
+const wireItems = (value: unknown): readonly unknown[] => {
+  if (Array.isArray(value)) return value;
+  if (isRecord(value) && Array.isArray(value.List)) return value.List;
+  return [];
+};
+
+/** One Directory_ImageDetails row; a missing or mistyped attribute takes the OutSystems default. */
+const toHouseholdGalleryImage = (row: Readonly<Record<string, unknown>>): HouseholdGalleryImage => ({
+  Id: typeof row.Id === 'string' || typeof row.Id === 'number' ? String(row.Id) : '0',
+  SignedUrl: typeof row.SignedUrl === 'string' ? row.SignedUrl : '',
+  isDeceased: row.isDeceased === true,
+  IsHidden: row.IsHidden === true,
+});
+
+/** The rows of Out_ImageDetails of DataActionGetHouseHold_Gallery (a Directory_ImageDetails list). */
+export const toHouseholdGalleryImages = (wire: HouseholdGalleryWire): HouseholdGalleryImage[] =>
+  wireItems(wire.Out_ImageDetails).filter(isRecord).map(toHouseholdGalleryImage);
+
+/** The gallery as the timeline photo list reads it: only SignedURL = SignedUrl is mapped; Date, Label and IsCurrent
+    keep the structure defaults.
+    @origin migration/sources/runtime/UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js:1288-1290 */
+export const toTimelineImages = (rows: readonly HouseholdGalleryImage[]): UI_HouseholdTimelineImages[] =>
+  rows.map((row) => ({ SignedURL: row.SignedUrl }));
+
 /** The outputs of DataActionGetLocalityHouseholdIds (Photobook), as the contract describes them. */
 type LocalityHouseholdIdsWire = ActionOutputs<PathOf<'UBTConnect', 'Photobook/DataActionGetLocalityHouseholdIds'>>;
 /** The outputs of DataActionGetHouseholdCaption (Photobook_Options_Left), as the contract describes them. */
@@ -141,6 +177,19 @@ export const toHouseholdCaption = (wire: HouseholdCaptionWire): HouseholdCaption
 
 /** The outputs of DataActionGet_MemberDetails (HouseholdRelations_Block), as the contract describes them. */
 type MemberRelationsWire = ActionOutputs<PathOf<'UBTConnect', 'HouseholdRelations_Block/DataActionGet_MemberDetails'>>;
+/** The Notes output of DataActionFetchNotes (HouseholdRelations_Block): the UBTConnectLibrary Notes structure. */
+type NotesWire = ActionOutputs<PathOf<'UBTConnect', 'HouseholdRelations_Block/DataActionFetchNotes'>>['Notes'];
+
+/** The notes of the member (UBTConnectLibrary Notes: Total and Note_Item_List). */
+export const toNotes = (wire: NotesWire): Notes => ({
+  Total: wire.Total,
+  Note_Item_List: osList(wire.Note_Item_List).map((n) => ({
+    Id: n.Id,
+    Note: n.Note,
+    DateCreatedUtc: n.DateCreatedUtc,
+    DateEditedUtc: n.DateEditedUtc,
+  })),
+});
 /** The outputs of DataActionGet_ParentHouseholdDetails (HouseholdRelations_Block), as the contract describes them. */
 type SiblingRelationsWire = ActionOutputs<
   PathOf<'UBTConnect', 'HouseholdRelations_Block/DataActionGet_ParentHouseholdDetails'>

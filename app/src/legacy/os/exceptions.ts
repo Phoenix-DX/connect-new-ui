@@ -15,7 +15,7 @@ import { TransitionAnimation } from '@/platform/navigation/screenTransition';
 import { setAppCallbackCurrentLocation } from '@/platform/session/resume';
 import { currentUserId } from '@/platform/session/session';
 
-/* OutSystems exceptions as client action flows test them (runtime: migration/runtime-sources/OutSystems.js:2,
+/* OutSystems exceptions as client action flows test them (runtime: migration/sources/runtime/OutSystems.js:2,
    OutSystems/ClientRuntime/Exceptions; classes in src/lib/os-exceptions.ts). callAction (src/lib/api.ts) raises the
    server's own exception from the contract's error answer { error, exception, specificType? }, or a
    CommunicationException when the request fails or the answer is not a server answer (OutSystems.js:3). A ported
@@ -60,7 +60,7 @@ export const exceptionMessage = (error: unknown): string => (error instanceof Er
 
 /**
  * An error a flow did not handle, going up to the screen's handleError and the App_Common flow handler: App_Common
- * OnException (migration/shell/sources/UBTConnect.App_Common.controller.js, "ACF", :12-125; the MCP shows the same
+ * OnException (migration/sources/shell/UBTConnect.App_Common.controller.js, "ACF", :12-125; the MCP shows the same
  * nodes in the DEV model). In the compiled order:
  *   ignorable error         OS.ErrorHandling.ignoreError first (ACF:24-26): an IgnorableSystemException (such as
  *                           ViewHasChangedException) is ignored silently. Item 2 D1. LicensingException (the

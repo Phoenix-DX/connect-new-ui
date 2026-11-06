@@ -2,7 +2,7 @@
 
 OutSystems UI: `OutSystemsUI_2_23.Utilities.DEPRECATED_ButtonLoading` · pack
 `migration/blocks/OutSystemsUI_2_23.Utilities.DEPRECATED_ButtonLoading.md` · compiled source
-`migration/blocks/sources/OutSystemsUI_2_23.Utilities.DEPRECATED_ButtonLoading.mvc.js`
+`migration/sources/survey/OutSystemsUI_2_23.Utilities.DEPRECATED_ButtonLoading.mvc.js`
 
 | Input               | Type    | Prop                  | Default |
 | ------------------- | ------- | --------------------- | ------- |

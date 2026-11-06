@@ -25,12 +25,12 @@ square, Medium_60, rounded image; otherwise auto, ListThumbnail_104, soft; In_Im
 ## Captured variants (0)
 
 No screen capture renders it (only ShareSheet uses it, closed in every capture). It is built from the compiled view
-(`migration/blocks/sources/`). The stories are `CompiledView`, `Locality`, `SubscriptionWarning`, checks in the test.
+(`migration/sources/survey/`). The stories are `CompiledView`, `Locality`, `SubscriptionWarning`, checks in the test.
 
 ## Not captured / not settled
 
 - `UBT_Icons.InfoFill` (subscription warning icon) = `connect-icon-info_fill`, confirmed by the TST value
   (migration/knowledge/static-entities.md "TST values"); Icon inputs BlueDark / NonStandard_16 / InfoFill as the compiled
-  view (`migration/blocks/sources/UBTConnect_Utils.CW_Search.SearchResult_Item.mvc.js:484-488`). No capture shows it.
+  view (`migration/sources/survey/UBTConnect_Utils.CW_Search.SearchResult_Item.mvc.js:484-488`). No capture shows it.
 - Static values from the original CSS: `font-bold`, `text-blue-dark`, `icon-non-standard-16`,
   `connect-icon-home_pin_fill` (captured elsewhere), `ubt-lazy-image--width-list-thumbnail` (ListThumbnail_104).

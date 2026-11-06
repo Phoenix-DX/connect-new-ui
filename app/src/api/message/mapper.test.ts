@@ -17,6 +17,9 @@ import {
   toMessageListInputs,
   toMessageParameters,
   toMessagesResult,
+  toNotificationMessageInstanceResult,
+  toNotificationMessageParameters,
+  toNotificationTemplateParametersInputs,
   toMessageTemplateParametersInputs,
   toOrbitContactEmailInputs,
   toSendContactUsMessageInputs,
@@ -434,6 +437,36 @@ describe('message detail mappers', () => {
       { id: '1', messageTemplateId: '31', parameterNameId: 1, parameterValue: '7301', tenantId: 1 },
       { id: '2', messageTemplateId: '31', parameterNameId: 4, parameterValue: 'Arrival', tenantId: 1 },
     ]);
+  });
+
+  it('the NotificationDetails mappers read the UBTConnect records as the Connect2_LegacyShared ones', () => {
+    const wire = messageInstanceWire({ id: '81012', sentAs: 3, created: '2026-10-07T11:25:00' });
+    expect(toNotificationMessageInstanceResult(wire)).toEqual(toMessageInstanceResult(wire));
+    const list = {
+      List: [
+        {
+          MessageParameter: {
+            Id: '1',
+            MessageTemplateId: '47702',
+            ParameterNameId: 18,
+            ParameterValue: '4410',
+            Tenant_Id: 1,
+          },
+        },
+      ],
+    };
+    expect(toNotificationMessageParameters({ Count: 1, List: list })).toEqual([
+      { id: '1', messageTemplateId: '47702', parameterNameId: 18, parameterValue: '4410', tenantId: 1 },
+    ]);
+    const variables = {
+      FeedItemId: '',
+      HardwareId: '',
+      IsLoading: true,
+      MessageInstanceId: '910019',
+      MessageTemplateId: '48171',
+      ShowAssembleAction: false,
+    };
+    expect(toNotificationTemplateParametersInputs(variables)).toEqual({ ...variables, MaxRecords: 50, StartIndex: 0 });
   });
 
   it('toListOfMessageParameters sends the parameters back as Comms_CS MessageParameter records', () => {

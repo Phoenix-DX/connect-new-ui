@@ -1,0 +1,46 @@
+{
+ "raw": {
+  "NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top.mvc.js": "migration/sources/raw/NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top.mvc.js",
+  "NavigationHandler.controller.js": "migration/sources/raw/NavigationHandler.controller.js",
+  "NavigationHandler.languageResources.js": "migration/sources/raw/NavigationHandler.languageResources.js",
+  "NavigationHandler.model.js": "migration/sources/raw/NavigationHandler.model.js",
+  "OutSystemsUI_2_23.Adaptive.Columns2.mvc.js": "migration/sources/raw/OutSystemsUI_2_23.Adaptive.Columns2.mvc.js",
+  "OutSystemsUI_2_23.Content.BlankSlate.mvc.js": "migration/sources/raw/OutSystemsUI_2_23.Content.BlankSlate.mvc.js",
+  "OutSystemsUI_2_23.controller.js": "migration/sources/raw/OutSystemsUI_2_23.controller.js",
+  "OutSystemsUI_2_23.languageResources.js": "migration/sources/raw/OutSystemsUI_2_23.languageResources.js",
+  "OutSystemsUI_2_23.model.js": "migration/sources/raw/OutSystemsUI_2_23.model.js",
+  "UBTConnect.controller.js": "migration/sources/raw/UBTConnect.controller.js",
+  "UBTConnect.languageResources.js": "migration/sources/raw/UBTConnect.languageResources.js",
+  "UBTConnect.model.js": "migration/sources/raw/UBTConnect.model.js",
+  "UBTConnect.zDEV_Directory_CommunityBusinessBlocks.CommunityBusinessDetails_CoomingSoon.mvc.js": "migration/sources/raw/UBTConnect.zDEV_Directory_CommunityBusinessBlocks.CommunityBusinessDetails_CoomingSoon.mvc.js",
+  "UBTConnectLibrary.BasePatterns.Columns_Two.mvc.js": "migration/sources/raw/UBTConnectLibrary.BasePatterns.Columns_Two.mvc.js",
+  "UBTConnectLibrary.ConnectPatterns.Icon.mvc.js": "migration/sources/raw/UBTConnectLibrary.ConnectPatterns.Icon.mvc.js",
+  "UBTConnectLibrary.ConnectPatterns.StaticInput.mvc.js": "migration/sources/raw/UBTConnectLibrary.ConnectPatterns.StaticInput.mvc.js",
+  "UBTConnectLibrary.ConnectPatterns.TextEllipsis.mvc.js": "migration/sources/raw/UBTConnectLibrary.ConnectPatterns.TextEllipsis.mvc.js",
+  "UBTConnectLibrary.Layouts.Layout_MainPages.mvc.js": "migration/sources/raw/UBTConnectLibrary.Layouts.Layout_MainPages.mvc.js",
+  "UBTConnectLibrary.controller.js": "migration/sources/raw/UBTConnectLibrary.controller.js",
+  "UBTConnectLibrary.languageResources.js": "migration/sources/raw/UBTConnectLibrary.languageResources.js",
+  "UBTConnectLibrary.model.js": "migration/sources/raw/UBTConnectLibrary.model.js"
+ },
+ "pretty": {
+  "NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top.mvc.js": "migration/sources/pretty/NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top.mvc.js",
+  "NavigationHandler.controller.js": "migration/sources/pretty/NavigationHandler.controller.js",
+  "NavigationHandler.languageResources.js": "migration/sources/pretty/NavigationHandler.languageResources.js",
+  "NavigationHandler.model.js": "migration/sources/pretty/NavigationHandler.model.js",
+  "OutSystemsUI_2_23.Adaptive.Columns2.mvc.js": "migration/sources/pretty/OutSystemsUI_2_23.Adaptive.Columns2.mvc.js",
+  "OutSystemsUI_2_23.Content.BlankSlate.mvc.js": "migration/sources/pretty/OutSystemsUI_2_23.Content.BlankSlate.mvc.js",
+  "OutSystemsUI_2_23.languageResources.js": "migration/sources/pretty/OutSystemsUI_2_23.languageResources.js",
+  "UBTConnect.languageResources.js": "migration/sources/pretty/UBTConnect.languageResources.js",
+  "UBTConnect.zDEV_Directory_CommunityBusinessBlocks.CommunityBusinessDetails_CoomingSoon.mvc.js": "migration/sources/pretty/UBTConnect.zDEV_Directory_CommunityBusinessBlocks.CommunityBusinessDetails_CoomingSoon.mvc.js",
+  "UBTConnectLibrary.BasePatterns.Columns_Two.mvc.js": "migration/sources/pretty/UBTConnectLibrary.BasePatterns.Columns_Two.mvc.js",
+  "UBTConnectLibrary.ConnectPatterns.Icon.mvc.js": "migration/sources/pretty/UBTConnectLibrary.ConnectPatterns.Icon.mvc.js",
+  "UBTConnectLibrary.ConnectPatterns.StaticInput.mvc.js": "migration/sources/pretty/UBTConnectLibrary.ConnectPatterns.StaticInput.mvc.js",
+  "UBTConnectLibrary.ConnectPatterns.TextEllipsis.mvc.js": "migration/sources/pretty/UBTConnectLibrary.ConnectPatterns.TextEllipsis.mvc.js",
+  "UBTConnectLibrary.Layouts.Layout_MainPages.mvc.js": "migration/sources/pretty/UBTConnectLibrary.Layouts.Layout_MainPages.mvc.js",
+  "UBTConnectLibrary.languageResources.js": "migration/sources/pretty/UBTConnectLibrary.languageResources.js"
+ },
+ "styles": {
+  "assets.json": "migration/sources/styles/assets@35f0396b.json",
+  "bundle.css": "migration/sources/styles/bundle@3cfa95d1.css"
+ }
+}

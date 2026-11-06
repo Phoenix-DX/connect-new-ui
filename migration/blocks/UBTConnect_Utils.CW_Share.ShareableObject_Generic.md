@@ -1,7 +1,7 @@
 # UBTConnect_Utils.CW_Share.ShareableObject_Generic
 
 - Kind: shared; build screens using it: BookmarksByGroup, FeedItemDetail, HomeFeed, HouseholdCarousel, HouseholdDetails, Locality_Details, MessageDetail, OneSchoolGlobalDetails, Profile, SupperMeeting_Carousel, SupperMeeting_Details
-- Compiled source: `migration/blocks/sources/UBTConnect_Utils.CW_Share.ShareableObject_Generic.mvc.js`
+- Compiled source: `migration/sources/survey/UBTConnect_Utils.CW_Share.ShareableObject_Generic.mvc.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.BasePatterns.CustomText, UBTConnectLibrary.ConnectPatterns.Icon, UBTConnectLibrary.ConnectPatterns.IconText, UBTConnect_Utils.CW_Image.UBT_LazyImage (queue: -)
 
 ## Inputs
@@ -275,4 +275,4 @@ SpacingSize: UBTConnect_UtilsModel.staticEntities.uBT_Size.extraSmall
 events: {
 _handleError: function (ex) {
 ```
-(… 52 more lines in `migration/blocks/sources/UBTConnect_Utils.CW_Share.ShareableObject_Generic.mvc.js`)
+(… 52 more lines in `migration/sources/survey/UBTConnect_Utils.CW_Share.ShareableObject_Generic.mvc.js`)

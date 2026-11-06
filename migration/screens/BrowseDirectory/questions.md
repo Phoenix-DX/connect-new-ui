@@ -6,7 +6,7 @@ Managed by route.py. Facts may be answered by the OutSystems MCP; decisions and 
 - Question: What does the Directory_Locality UI flow's exception handler do with an error of DataActionGetLocalityStatistics (controller.handleError → _flow_UBTConnect_Directory_LocalityController.handleError)? The flow controller UBTConnect.Directory_Locality.controller.js is not in the local sources.
 - Evidence: BrowseDirectory.mvc.js:1448-1450; migration/knowledge/shell-facts.md:57 (28 flow controllers not fetched; the fetched ones delegate to App_Common); dom/offline.html shows no feedback message
 - OutSystems MCP: not available to route agents (no MCP in this run)
-- Answer (code, 2026-10-15T17:19:24): migration/runtime-sources/UBTConnect.Directory_Locality.controller.js:12-16 (fetched read-only): handleError delegates to App_Common.handleError, so raiseToFlowHandler is right
+- Answer (code, 2026-10-15T17:19:24): migration/sources/runtime/UBTConnect.Directory_Locality.controller.js:12-16 (fetched read-only): handleError delegates to App_Common.handleError, so raiseToFlowHandler is right
 
 ## Q2 [decision] mock data (answered)
 - Question: DataActionGetLocalityStatistics is recorded for CountryCode=AR only. What should the mock answer for another CountryCode?

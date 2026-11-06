@@ -2,7 +2,7 @@
  "screen": "EventDetail",
  "env": {
   "path": "/UBTConnect/EventDetail",
-  "collectedAt": "2026-10-29T09:32:06.293Z",
+  "collectedAt": "2026-11-06T05:06:36.932Z",
   "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.37 Safari/537.36",
   "viewport": {
    "width": 390,
@@ -472,8 +472,8 @@
   }
  },
  "report": {
-  "maskedTexts": 11,
-  "keptTexts": 18,
+  "maskedTexts": 13,
+  "keptTexts": 20,
   "removedUserImages": 0,
   "failed": []
  },
@@ -3837,22 +3837,6 @@
    "aggregates": [],
    "serverActions": [
     {
-     "name": "AddBookmark",
-     "url": "screenservices/UBTConnect/ActionAddBookmark"
-    },
-    {
-     "name": "AddBookmark2",
-     "url": "screenservices/UBTConnect/ServiceAPIAddBookmark2"
-    },
-    {
-     "name": "DeleteBookmarkByBookmarkId",
-     "url": "screenservices/UBTConnect/ActionDeleteBookmarkByBookmarkId"
-    },
-    {
-     "name": "DeleteBookmarkByBookmarkId2",
-     "url": "screenservices/UBTConnect/ServiceAPIDeleteBookmarkByBookmarkId2"
-    },
-    {
      "name": "FetchData_CacheableHouseholds",
      "url": "screenservices/UBTConnect/ServiceAPIFetchData_CacheableHouseholds"
     },
@@ -3886,8 +3870,7 @@
    "images": [],
    "feedbackMessages": [
     "\"Incorrect year value\", /*Info*/ 0)",
-    "\"Incorrect date value\", /*Info*/ 0)",
-    "\"Bookmark could not be removed. Please try again later.\", /*Info*/ 0)"
+    "\"Incorrect date value\", /*Info*/ 0)"
    ],
    "exceptions": [
     "UserException",
@@ -4446,8 +4429,16 @@
    "aggregates": [],
    "serverActions": [
     {
+     "name": "AddBookmark2",
+     "url": "screenservices/UBTConnect_Utils/ServiceAPIAddBookmark2"
+    },
+    {
      "name": "CS_CreateShareProfileLink",
      "url": "screenservices/UBTConnect_Utils/ActionCS_CreateShareProfileLink"
+    },
+    {
+     "name": "DeleteBookmarkByBookmarkId2",
+     "url": "screenservices/UBTConnect_Utils/ServiceAPIDeleteBookmarkByBookmarkId2"
     },
     {
      "name": "Get_RuntimeVersion",
@@ -4601,6 +4592,9 @@
     "connect_SearchCategories.households",
     "connect_SearchCategories.people",
     "connect_SearchCategories.places",
+    "type_SearchTarget.map",
+    "connect_SearchCategories.events",
+    "connect_SearchCategories.schools",
     "uBT_MessageType.info"
    ],
    "clientVariables": [
@@ -5767,7 +5761,7 @@
  "calls": [
   {
    "order": 1,
-   "t": 580,
+   "t": 442,
    "action": "ActionGetAllApplicationEvents",
    "path": "/UBTConnect/screenservices/Connect2_LegacyShared/ActionGetAllApplicationEvents",
    "status": 200,
@@ -5775,23 +5769,23 @@
   },
   {
    "order": 2,
-   "t": 2860,
-   "action": "DataActionFetchEventNotes",
-   "path": "/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionFetchEventNotes",
-   "status": 200,
-   "scope": "this screen"
-  },
-  {
-   "order": 3,
-   "t": 2966,
+   "t": 2399,
    "action": "DataActionGet_EventDetails",
    "path": "/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_EventDetails",
    "status": 200,
    "scope": "this screen"
   },
   {
+   "order": 3,
+   "t": 2416,
+   "action": "DataActionFetchEventNotes",
+   "path": "/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionFetchEventNotes",
+   "status": 200,
+   "scope": "this screen"
+  },
+  {
    "order": 4,
-   "t": 3272,
+   "t": 2635,
    "action": "DataActionGet_HostSurveyStatus",
    "path": "/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_HostSurveyStatus",
    "status": 200,
@@ -5799,7 +5793,7 @@
   },
   {
    "order": 5,
-   "t": 3810,
+   "t": 3105,
    "action": "DataActionGet_HasDocuments",
    "path": "/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_HasDocuments",
    "status": 200,
@@ -5807,7 +5801,7 @@
   },
   {
    "order": 6,
-   "t": 4268,
+   "t": 3378,
    "action": "DataActionGet_HasQRCode",
    "path": "/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_HasQRCode",
    "status": 200,
@@ -5836,14 +5830,6 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.ItemNotesSection.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostAllocation_List.mvc.js",
-   "count": 1
-  },
-  {
    "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.ContactHelpdesk_Footer.mvc.js",
    "count": 1
   },
@@ -5852,7 +5838,7 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Content.DEPRECATED_AccordionItem.mvc.js",
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostAllocation_List.mvc.js",
    "count": 1
   },
   {
@@ -5860,7 +5846,11 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectCorePatterns.ItemCard_ActionBar.mvc.js",
+   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.ItemNotesSection.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Content.DEPRECATED_AccordionItem.mvc.js",
    "count": 1
   },
   {
@@ -5868,11 +5858,7 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostAllocation_HelperItem.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.NoteListActions.mvc.js",
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.ListOfDaySelectors.mvc.js",
    "count": 1
   },
   {
@@ -5880,11 +5866,15 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js",
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectCorePatterns.ItemCard_ActionBar.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.ListOfDaySelectors.mvc.js",
+   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.NoteListActions.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js",
    "count": 1
   },
   {
@@ -5892,19 +5882,7 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/Connect_Notes_CS.model.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Note_Item_List.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.AddNote.mvc.js",
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostAllocation_HelperItem.mvc.js",
    "count": 1
   },
   {
@@ -5912,7 +5890,15 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/SocialSharingPlugin.referencesHealth.js",
+   "request": "script /UBTConnect/scripts/Connect_Notes_CS.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.AddNote.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Note_Item_List.mvc.js",
    "count": 1
   },
   {
@@ -5920,15 +5906,11 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Popup.mvc.js",
+   "request": "script /UBTConnect/scripts/SocialSharingPlugin.referencesHealth.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Interaction.BottomSheet.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.Columns_Three.mvc.js",
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc.js",
    "count": 1
   },
   {
@@ -5936,7 +5918,19 @@
    "count": 1
   },
   {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Popup.mvc.js",
+   "count": 1
+  },
+  {
    "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Note_Item.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.Columns_Three.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Interaction.BottomSheet.mvc.js",
    "count": 1
   },
   {
@@ -5948,11 +5942,7 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton_IconPrimary.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.TextArea_WithCounter.mvc.js",
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.mvc.js",
    "count": 1
   },
   {
@@ -5960,11 +5950,11 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.mvc.js",
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.TextArea_WithCounter.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton_WithLabel.mvc.js",
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton_IconPrimary.mvc.js",
    "count": 1
   },
   {
@@ -5972,7 +5962,7 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.ContextMenu_Item.mvc.js",
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton_WithLabel.mvc.js",
    "count": 1
   },
   {
@@ -5980,7 +5970,11 @@
    "count": 1
   },
   {
-   "request": "link /UBTConnect/css/UBTConnect_Utils.CW_Notes.NotesSheet.css",
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.ContextMenu_Item.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "link /UBTConnect/css/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css",
    "count": 1
   },
   {
@@ -5992,16 +5986,16 @@
    "count": 1
   },
   {
-   "request": "link /UBTConnect/css/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css",
+   "request": "link /UBTConnect/css/UBTConnect_Utils.CW_Notes.NotesSheet.css",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.aggregates.IDB.js",
    "count": 1
   },
   {
    "request": "xmlhttprequest https://australiaeast-0.in.applicationinsights.azure.com/v2/track",
    "count": 2
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.aggregates.IDB.js",
-   "count": 1
   },
   {
    "request": "xmlhttprequest /UBTConnect/moduleservices/moduleversioninfo",
@@ -6200,10 +6194,6 @@
    "count": 1
   },
   {
-   "request": "fetch /UBTConnect/status/network-ping.txt",
-   "count": 2
-  },
-  {
    "request": "fetch /UBTConnect/scripts/EventfulDeeplinksPlugin.EventfulDeeplinksPlugin.DeeplinkHandlerCentral.mvc.js",
    "count": 1
   },
@@ -6241,6 +6231,10 @@
   },
   {
    "request": "fetch /UBTConnect/scripts/Connect2_LegacyShared.controller.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/status/network-ping.txt",
    "count": 1
   },
   {
@@ -6883,30 +6877,6 @@
   },
   {
    "file": "UBTConnect.controller.js",
-   "name": "AddBookmark",
-   "url": "screenservices/UBTConnect/ActionAddBookmark",
-   "observed": false
-  },
-  {
-   "file": "UBTConnect.controller.js",
-   "name": "AddBookmark2",
-   "url": "screenservices/UBTConnect/ServiceAPIAddBookmark2",
-   "observed": false
-  },
-  {
-   "file": "UBTConnect.controller.js",
-   "name": "DeleteBookmarkByBookmarkId",
-   "url": "screenservices/UBTConnect/ActionDeleteBookmarkByBookmarkId",
-   "observed": false
-  },
-  {
-   "file": "UBTConnect.controller.js",
-   "name": "DeleteBookmarkByBookmarkId2",
-   "url": "screenservices/UBTConnect/ServiceAPIDeleteBookmarkByBookmarkId2",
-   "observed": false
-  },
-  {
-   "file": "UBTConnect.controller.js",
    "name": "FetchData_CacheableHouseholds",
    "url": "screenservices/UBTConnect/ServiceAPIFetchData_CacheableHouseholds",
    "observed": false
@@ -7057,8 +7027,20 @@
   },
   {
    "file": "UBTConnect_Utils.controller.js",
+   "name": "AddBookmark2",
+   "url": "screenservices/UBTConnect_Utils/ServiceAPIAddBookmark2",
+   "observed": false
+  },
+  {
+   "file": "UBTConnect_Utils.controller.js",
    "name": "CS_CreateShareProfileLink",
    "url": "screenservices/UBTConnect_Utils/ActionCS_CreateShareProfileLink",
+   "observed": false
+  },
+  {
+   "file": "UBTConnect_Utils.controller.js",
+   "name": "DeleteBookmarkByBookmarkId2",
+   "url": "screenservices/UBTConnect_Utils/ServiceAPIDeleteBookmarkByBookmarkId2",
    "observed": false
   },
   {
@@ -7140,22 +7122,6 @@
     "ItemNotesSection.handler_OnShareToOthers"
    ]
   },
-  "Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionFetchEventNotes": {
-   "observed": true,
-   "defined": true,
-   "chains": [
-    [
-     "ScreenBlock_EventDetail fetch at start",
-     "ScreenBlock_EventDetail.DataActionFetchEventNotes"
-    ]
-   ],
-   "rootKinds": [
-    "lifecycle"
-   ],
-   "rootLabels": [
-    "ScreenBlock_EventDetail fetch at start"
-   ]
-  },
   "Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_EventDetails": {
    "observed": true,
    "defined": true,
@@ -7175,6 +7141,22 @@
    ],
    "rootLabels": [
     "ScreenBlock_EventDetail.OnReady",
+    "ScreenBlock_EventDetail fetch at start"
+   ]
+  },
+  "Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionFetchEventNotes": {
+   "observed": true,
+   "defined": true,
+   "chains": [
+    [
+     "ScreenBlock_EventDetail fetch at start",
+     "ScreenBlock_EventDetail.DataActionFetchEventNotes"
+    ]
+   ],
+   "rootKinds": [
+    "lifecycle"
+   ],
+   "rootLabels": [
     "ScreenBlock_EventDetail fetch at start"
    ]
   },

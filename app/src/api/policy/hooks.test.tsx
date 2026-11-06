@@ -47,7 +47,7 @@ describe('usePendingPoliciesQuery', () => {
     await waitFor(() => {
       expect(result.current.isSuccess).toBe(true);
     });
-    expect(result.current.data?.map((p) => p.id)).toEqual(['7001', '7002']);
+    expect(result.current.data?.map((p) => p.id)).toEqual(['7001']);
     expect(bodies).toEqual([expect.objectContaining({ IsAllSelected: true })]);
     isAllSelected = false;
     rerender();
@@ -66,7 +66,7 @@ describe('usePendingPoliciesQuery', () => {
     });
     rerender({ contentBlockId: 'b1-Main' });
     expect(result.current.isPlaceholderData).toBe(true);
-    expect(result.current.data?.length).toBe(2);
+    expect(result.current.data?.length).toBe(1);
     await waitFor(() => {
       expect(result.current.isPlaceholderData).toBe(false);
     });

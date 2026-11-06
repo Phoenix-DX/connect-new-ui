@@ -561,10 +561,10 @@ export interface Household_MarkersItem {
 ## Look up on demand
 
 - `migration/screens/ContactUsDetails/analysis/dom/<state>.html` full markup (line numbers in collapsed markers refer to dom/default.html)
-- `migration/screens/ContactUsDetails/analysis/sources/pretty/UBTConnect.App_Menu_ContactUs.ContactUsDetails.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
-- `migration/screens/ContactUsDetails/analysis/sources/pretty/UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_Information.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
-- `migration/screens/ContactUsDetails/analysis/sources/pretty/OutSystemsUI_2_23.Private.OfflineDataSyncCore.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
-- `migration/screens/ContactUsDetails/analysis/sources/pretty/OutSystemsUI_2_23.Private.NetworkStatusChanged.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
-- `migration/screens/ContactUsDetails/analysis/sources/pretty/Connect2_AndroidAppLinksPlugin.AndroidAppLinks.AndroidAppLinkOnResumeHandler.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
-- `migration/screens/ContactUsDetails/analysis/sources/pretty/EventfulDeeplinksPlugin.EventfulDeeplinksPlugin.DeeplinkHandlerCentral.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/UBTConnect.App_Menu_ContactUs.ContactUsDetails.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_Information.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/OutSystemsUI_2_23.Private.OfflineDataSyncCore.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/OutSystemsUI_2_23.Private.NetworkStatusChanged.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/Connect2_AndroidAppLinksPlugin.AndroidAppLinks.AndroidAppLinkOnResumeHandler.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/EventfulDeeplinksPlugin.EventfulDeeplinksPlugin.DeeplinkHandlerCentral.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
 - `migration/screens/ContactUsDetails/analysis/css-relevant.md` only when a visual diff cannot be explained by markup

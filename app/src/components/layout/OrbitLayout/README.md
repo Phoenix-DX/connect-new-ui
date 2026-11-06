@@ -2,7 +2,7 @@
 
 OutSystems: `Connect2_LegacyShared.Layout_OrbitTheme.Layout_Orbit` · pack
 `migration/blocks/Connect2_LegacyShared.Layout_OrbitTheme.Layout_Orbit.md` · source
-`migration/screens/EventDetail/analysis/sources/pretty/Connect2_LegacyShared.Layout_OrbitTheme.Layout_Orbit.mvc.js`
+`migration/sources/pretty/Connect2_LegacyShared.Layout_OrbitTheme.Layout_Orbit.mvc.js`
 
 | Input            | Type    | Prop               | Default |
 | ---------------- | ------- | ------------------ | ------- |

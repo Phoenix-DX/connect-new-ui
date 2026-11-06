@@ -25,6 +25,22 @@ export type SearchBirthdayOptionsWire = ActionOutputs<
 /** One row of Get_SearchBirthdayOptions (Connect_SearchBirthdayOptions). */
 export type SearchBirthdayOptionWire = SearchBirthdayOptionsWire['List']['List'][number];
 
+/** The fields of Connect_Search_CS.SearchResult that a row which is not an event keeps at their defaults (live
+    Connect_Search_CS.model.js SearchResultRec: False, "", LongInteger 0, the null Date). */
+export const SEARCH_RESULT_EVENT_DEFAULTS = {
+  displayHouseholdName: false,
+  displayAddress: false,
+  eventIsPersonal: false,
+  eventEventTypeTitle: '',
+  eventHostSubdivisionId: '0',
+  eventHostHouseholderId: '0',
+  eventSource: '',
+  eventEventHostId: '',
+  eventStartDate: '1900-01-01',
+  eventEndDate: '1900-01-01',
+  eventOrbitEventType: '',
+} as const satisfies Partial<SearchResult>;
+
 /** One search result: every field of the record except Score, which the block does not read. */
 export const toSearchResult = (w: SearchResultWire): SearchResult => ({
   id: w.Id,
@@ -36,13 +52,26 @@ export const toSearchResult = (w: SearchResultWire): SearchResult => ({
   latitude: w.Latitude,
   longitude: w.Longitude,
   recordDisabled: w.RecordDisabled,
+  displayHouseholdName: w.DisplayHouseholdName,
+  displayAddress: w.DisplayAddress,
+  eventIsPersonal: w.Event_IsPersonal,
+  eventEventTypeTitle: w.Event_EventTypeTitle,
+  eventHostSubdivisionId: w.Event_HostSubdivisionId,
+  eventHostHouseholderId: w.Event_HostHouseholderId,
+  eventSource: w.Event_Source,
+  eventEventHostId: w.Event_EventHostId,
+  eventStartDate: w.Event_StartDate,
+  eventEndDate: w.Event_EndDate,
+  eventOrbitEventType: w.Event_OrbitEventType,
 });
 
-/** The three lists of the answer, in the server order. */
+/** The five lists of the answer, in the server order (live ScreenBlock_Search.mvc.js:50-72). */
 export const toSearchResults = (w: FetchSearchResultsWire): SearchResults => ({
   households: osList(w.Households).map(toSearchResult),
   people: osList(w.People).map(toSearchResult),
   places: osList(w.Places).map(toSearchResult),
+  events: osList(w.Events).map(toSearchResult),
+  schools: osList(w.Schools).map(toSearchResult),
 });
 
 /** One birthday option: the Connect_SearchBirthdayOptions part of the aggregate row. */

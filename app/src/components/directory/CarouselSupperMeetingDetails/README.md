@@ -1,7 +1,7 @@
 # EntitiesCarouse_lSupperMeetingDetails
 
 `UBTConnect.Directory_Caroussel.EntitiesCarouse_lSupperMeetingDetails` (sic, the original name): a supper meeting slide.
-Compiled source: `migration/screens/SupperMeeting_Carousel/analysis/sources/pretty/UBTConnect.Directory_Caroussel.EntitiesCarouse_lSupperMeetingDetails.mvc.js`.
+Compiled source: `migration/sources/pretty/UBTConnect.Directory_Caroussel.EntitiesCarouse_lSupperMeetingDetails.mvc.js`.
 
 | Input                           | Prop              | Default |
 | ------------------------------- | ----------------- | ------- |

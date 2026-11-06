@@ -39,7 +39,7 @@ const PROPERTY_ORDER: DropdownSearchProperty[] = [
   'ExtendedClass',
 ];
 
-/** OutSystems UI Dropdown Tags (p:migration/blocks/sources/OutSystemsUI_2_23.Interaction.DropdownTags.mvc.js): a
+/** OutSystems UI Dropdown Tags (p:migration/sources/survey/OutSystemsUI_2_23.Interaction.DropdownTags.mvc.js): a
     `osui-dropdown-tags` container named after the UniqueId (view :205-217) filled by the Virtual Select provider in its
     Tags mode (stack: same provider, Virtual Select 1.3.0 vendored in `../DropdownSearch/vendor/`, reused through
     `DropdownSearchProvider` with variant `tags`: multiple selection, values as tags). OnInitialize builds InternalConfigs

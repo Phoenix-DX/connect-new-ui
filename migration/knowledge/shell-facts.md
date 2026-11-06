@@ -7,7 +7,7 @@ Summary (2026-10-14, TST compiled code only; no runtime observation here):
 - U10: every fetched flow delegates to App_Common, which handles BubbleCommunication, Communication, Security and All exceptions. `ScreenController_RaiseError` passes the error to that handler.
 - U11: NetworkDetection pings `status/network-ping.txt` every 30 s (300 000 ms abort) and watches XHR events. In UBTConnect it only sets `App_NetworkStatus_IsOnline_IsPersistent`; no toast, no class.
 
-Keys: `AM`/`UC` = `migration/screens/HomeFeed/analysis/sources/raw/UBT_AppManager.controller.js` / `UBTConnect.controller.js`; `SPL` = `migration/screens/Splash/analysis/sources/pretty/UBTConnect.App_Common.Splash.mvc.js`, `ALE` = same folder `OutSystemsUI_2_23.Private.ApplicationLoadEvents.mvc.js`; `JSU`, `ND`, `ACF` = `migration/shell/sources/UBTJavaScriptUtils.controller.js`, `NetworkDetection.controller.js`, `UBTConnect.App_Common.controller.js`; `OSUI` = HomeFeed `raw/OutSystemsUI_2_23.controller.js`; `survey:<file>:N` = `capture/survey-UBTConnect.json` → `sources[file]`, line N.
+Keys: `AM`/`UC` = `migration/sources/raw/UBT_AppManager.controller.js` / `UBTConnect.controller.js`; `SPL` = `migration/sources/pretty/UBTConnect.App_Common.Splash.mvc.js`, `ALE` = same folder `OutSystemsUI_2_23.Private.ApplicationLoadEvents.mvc.js`; `JSU`, `ND`, `ACF` = `migration/sources/shell/UBTJavaScriptUtils.controller.js`, `NetworkDetection.controller.js`, `UBTConnect.App_Common.controller.js`; `OSUI` = HomeFeed `raw/OutSystemsUI_2_23.controller.js`; `survey:<file>:N` = `migration/survey/survey-UBTConnect.json` → `sources[file]`, line N.
 
 ## U1 (code side): `/UBTConnect/` and signed-out visitors
 - Route table and default screen are not in local code. `UBTConnect.index.js`, `UBTConnect.appDefinition.js` and the runtime `OutSystems.js` appear in the survey `manifest`, but no source exists in the survey or in any screen capture. DefaultScreen = HomeFeed comes only from MCP/DEV (knowledge/navigation.md:7).
@@ -15,10 +15,10 @@ Keys: `AM`/`UC` = `migration/screens/HomeFeed/analysis/sources/raw/UBT_AppManage
 - Signed-out user on a protected screen:
   - The runtime raises `NotRegisteredException`, which goes to the screen's flow handler (App_Common, U10). App_Common has no NotRegistered branch.
   - Its SecurityException branch (ACF:61-89) checks `GetUserId() = NullIdentifier`. If true, `AppManager_SetAppCallback_CurrentLocation` sets `OutSystems_LastURL = window.location.pathname` (AM:4250-4259, 4286-4290), then the app navigates to `/UBTConnect/Login?In_IsFromInvalidPermissions=True` (ACF:79-84).
-  - Login with that flag skips `AppManager_SetAppCallback("")`, so the protected path stays as the sign-in callback (`migration/screens/Login/analysis/sources/pretty/UBTConnect.App_Common.Login.mvc.js:950-953`).
+  - Login with that flag skips `AppManager_SetAppCallback("")`, so the protected path stays as the sign-in callback (`migration/sources/pretty/UBTConnect.App_Common.Login.mvc.js:950-953`).
   - Screen handlers re-raise `NotRegisteredException` so that it reaches the flow (survey:UBTConnect.Directory_Locality.CountryList.mvc.js:1394-1404).
 - InvalidPermissions: no code navigates to it. Content: title "Invalid Permissions". A warning BlankSlate with "You don't have permissions to view the required screen.". A button to `/UBTConnect/Login` (survey:UBTConnect.App_Common.InvalidPermissions.mvc.js:163-165, 201-213).
-- `InvalidLoginException` and `NotRegisteredException` extend `SecurityException` (`migration/runtime-sources/OutSystems.js` line 2). They take the SecurityException branch (G1, 2026-10-23).
+- `InvalidLoginException` and `NotRegisteredException` extend `SecurityException` (`migration/sources/runtime/OutSystems.js` line 2). They take the SecurityException branch (G1, 2026-10-23).
 - Open:
   - Does `/UBTConnect/` render Splash first? See U3.
   - A private-window run on TST, or the runtime/index scripts, can settle both.
@@ -48,7 +48,7 @@ Keys: `AM`/`UC` = `migration/screens/HomeFeed/analysis/sources/raw/UBT_AppManage
 - Delay (146-157, 273-279): `window.setTimeout(DelayMs)` re-calls the action with `DelayMs=0, useDebounce=False`. Bugs:
   - `MessageType` receives `DelayMs` (149), so the toast type becomes `DelayMs - 1`.
   - The re-call gets the already wrapped message and the same `Title`, so a titled delayed toast is wrapped twice and gets "." after `</div>`.
-- Auto-close is CSS only: `.phone .feedback-message.feedback-message-autoclose`, animation `feedbackMessageSlideDownThenUpPhone`, `--message-autoclose-duration: 5000ms` (`migration/screens/HomeFeed/analysis/styles/bundle.css:4460-4462, 20374, 23078-23079`). No JS timer removes the node.
+- Auto-close is CSS only: `.phone .feedback-message.feedback-message-autoclose`, animation `feedbackMessageSlideDownThenUpPhone`, `--message-autoclose-duration: 5000ms` (`migration/sources/styles/bundle@96c7860f.css:4460-4462, 20374, 23078-23079`). No JS timer removes the node.
 - Captured markup has the class twice: `feedback-message-info feedback-message-autoclose feedback-message-autoclose`, plus title and body divs with raw `\r\n` text (`migration/screens/CountryList/analysis/dom/loading.html:2-13`).
 - Platform toast for comparison (`OS.FeedbackMessageService.showFeedbackMessage(msg, 3)`, ND:947): no title, no autoclose class (so no CSS slide-out), no debounce. How long it stays and how it closes is runtime behaviour (not captured).
 - Open:
@@ -121,7 +121,7 @@ Keys: `AM`/`UC` = `migration/screens/HomeFeed/analysis/sources/raw/UBT_AppManage
 
 ## Unverified points kept as built (user, 2026-10-14)
 - Cross-origin `navigateTo` (ScreenController_NavigateToPage with a URL of another origin): **settled 2026-10-14** from
-  `migration/runtime-sources/OutSystems.js`.
+  `migration/sources/runtime/OutSystems.js`.
   - The screen API `navigateTo(URL, transition, isReplace)` (:16:26318) calls Navigation.navigateTo (:8:698).
   - `getUrlInfo` (:8:7127) marks the URL internal when it belongs to this application.
   - An internal URL goes to the router: `goTo(urlInfo, transition, replace)`.

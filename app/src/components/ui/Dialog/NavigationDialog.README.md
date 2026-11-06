@@ -4,7 +4,7 @@ OutSystems: `NavigationHandler.ConfirmationDialogs.NavigationConfirmationDialog`
 `UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_Navigation` (variant `connect`; merged here in P7-2). Packs
 `migration/blocks/NavigationHandler.ConfirmationDialogs.NavigationConfirmationDialog.md` and
 `migration/blocks/UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_Navigation.md` (compiled sources in
-`migration/blocks/sources/`).
+`migration/sources/survey/`).
 
 | OutSystems                                                   | Prop           | Default (`connect`) |
 | ------------------------------------------------------------ | -------------- | ------------------- |

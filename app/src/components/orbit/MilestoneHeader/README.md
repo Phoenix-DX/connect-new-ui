@@ -2,7 +2,7 @@
 
 OutSystems: `Connect2_OrbitMobile_MUI.Orbit_Blocks.MilestoneHeader` · pack
 `migration/blocks/Connect2_OrbitMobile_MUI.Orbit_Blocks.MilestoneHeader.md` · source
-`migration/screens/HelpersDetail/analysis/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.MilestoneHeader.mvc.js`
+`migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.MilestoneHeader.mvc.js`
 
 | Input                   | Type | Prop                     | Default |
 | ----------------------- | ---- | ------------------------ | ------- |

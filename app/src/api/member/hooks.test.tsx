@@ -36,7 +36,12 @@ const accountForm: MemberAccountForm = {
     WorkNumber: '',
   },
   AccountForm_IdentificationInformation: { AccountNumber: 'NZ-4471', MemberId: '11' },
-  AccountForm_PersonalInformation: { Email: 'ada@example.org', ShowLifeCycleDates: false, Username: 'aharlow' },
+  AccountForm_PersonalInformation: {
+    Email: 'ada@example.org',
+    ShowEmail: true,
+    ShowLifeCycleDates: false,
+    Username: 'aharlow',
+  },
 };
 
 /** A client with the library defaults (retry 3), so the tests see the options of the hooks. */

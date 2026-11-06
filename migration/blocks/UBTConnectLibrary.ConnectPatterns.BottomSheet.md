@@ -1,7 +1,7 @@
 # UBTConnectLibrary.ConnectPatterns.BottomSheet
 
 - Kind: shared; build screens using it: BookmarksByGroup, CountryDetails, CountryList, FeedItemDetail, HomeFeed, HouseholdCarousel, HouseholdDetails, Household_Relations, Locality_Details, Notes, Notifications, OneSchoolGlobalDetails, Photobook, Profile, Search, SupperMeeting_Carousel, SupperMeeting_Details, Updates_SingleList
-- Compiled source: `migration/screens/CountryDetails/analysis/sources/pretty/UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc.js`
 - Child blocks: OutSystemsUI_2_23.Interaction.BottomSheet, UBTConnectLibrary.BasePatterns.Columns_Three, UBTConnectLibrary.BasePatterns.CustomText, UBTConnectLibrary.ConnectPatterns.Icon (queue: OutSystemsUI_2_23.Interaction.BottomSheet)
 
 ## Inputs
@@ -291,4 +291,4 @@ define("UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc$view", ["OutSystems/Cl
                                                 alias: "5"
                                             },
 ```
-(… 120 more lines in `migration/screens/CountryDetails/analysis/sources/pretty/UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc.js`)
+(… 120 more lines in `migration/sources/pretty/UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc.js`)

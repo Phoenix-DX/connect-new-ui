@@ -1,7 +1,7 @@
 # UBTConnect_Utils.CW_Image.UBT_LazyImage
 
 - Kind: shared; build screens using it: BookmarksByGroup, ContactByEmailMember, ContactUsDetails, CountryDetails, CountryList, FeedItemDetail, HomeFeed, HouseholdCarousel, HouseholdDetails, Household_Relations, LegacyShareObject, Locality_Details, Menu, MessageDetail, OneSchoolGlobalDetails, Photobook, Profile, Search, SupperMeeting_Carousel, SupperMeeting_Details, Updates_SingleList
-- Compiled source: `migration/screens/ContactByEmailMember/analysis/sources/pretty/UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc.js`
 - Child blocks: UBTConnectLibrary.ConnectPatterns.LazyImage, UBTConnectLibrary.ConnectPatterns.SkeletonSection (queue: UBTConnectLibrary.ConnectPatterns.LazyImage)
 
 ## Inputs

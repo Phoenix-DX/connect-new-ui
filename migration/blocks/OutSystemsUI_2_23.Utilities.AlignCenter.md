@@ -1,7 +1,7 @@
 # OutSystemsUI_2_23.Utilities.AlignCenter
 
 - Kind: osui; build screens using it: BookmarksByGroup, MessageList
-- Compiled source: `migration/blocks/sources/OutSystemsUI_2_23.Utilities.AlignCenter.mvc.js`
+- Compiled source: `migration/sources/survey/OutSystemsUI_2_23.Utilities.AlignCenter.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

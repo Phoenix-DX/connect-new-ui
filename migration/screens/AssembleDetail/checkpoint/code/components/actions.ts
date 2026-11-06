@@ -1,9 +1,9 @@
-/* Client actions used only by AssembleDetail. C = migration/screens/AssembleEvents/analysis/sources/pretty/
-   Connect2_Assemble_MUI.controller.js; FSA = migration/screens/AssembleDetail/sources/NavigationHandler.ScrollAnchors
+/* Client actions used only by AssembleDetail. C = migration/sources/pretty/
+   Connect2_Assemble_MUI.controller.js; FSA = migration/sources/runtime/NavigationHandler.ScrollAnchors
    .FocusScrollAnchorOnBack.mvc.js. DateTimes are "yyyy-MM-ddTHH:mm:ss" wall-clock strings. */
-import { hasAccessToRegion } from '../../../shared/Connect2_Assemble_MUI/lib/actions';
-import { showUpgradePopUp } from '../../../shell/dialogs/subscription';
-import { feedbackMessageAutoClose } from '../../../shell/feedback/feedbackMessageAutoClose';
+import { hasAccessToRegion } from '@/lib/assemble/actions';
+import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
+import { feedbackMessageAutoClose } from '@/platform/feedback/feedbackMessageAutoClose';
 
 /** OffsetDateTimeByUserUTCOffset(DateTime, IsForServer) (C:1393-1474): the clone's DateTimes travel as wall-clock text,
     so the device-offset shift and the platform's UTC conversion cancel: unchanged (as AssembleEvents). */
@@ -30,11 +30,7 @@ export async function maybeDisplaySubscriptionPopup(countryCode: string, localit
   return true;
 }
 
-/** window.dx.Navigation.Storage of the original (FSA:464-472): only FocusScrollAnchorOnBack writes it in this route;
-    the reader (the list's ScrollAnchor focus on back) is not part of the clone, so the value is kept here only. */
-export const navigationStorage = new Map<string, { id: string; index: number }>();
-
-/** Connect2_LegacyShared ShowUnknownErrorMessage(Message, Title) (migration/runtime-sources/Connect2_LegacyShared
+/** Connect2_LegacyShared ShowUnknownErrorMessage(Message, Title) (migration/sources/runtime/Connect2_LegacyShared
     .controller.js, define "…$ShowUnknownErrorMessage"): in TST it ignores its inputs and calls
     ShowCustomFeedbackMessageAndTitle("Service Interruption", <the high-traffic text>, Info, False,
     "feedback-with-title", True, ""), shown through the shell's auto-closing feedback message. */

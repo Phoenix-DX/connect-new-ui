@@ -45,7 +45,8 @@ export default function Bookmarks() {
           <Input
             id="$b4"
             inOptions={{
-              IsEnabled: true, // Bookmarks sets no IsEnabled (Bookmarks.mvc.js pretty:295-302): the record default
+              IsEnabled: true, // Bookmarks sets no IsEnabled (Bookmarks.mvc.js pretty:295-307): the record default
+              InitalString: v.bookmarksFilter.searchText, // Bookmarks_Filter.SearchText (pretty:302), as Notes
               MaxLength: 50,
               SearchPrompt: 'Search',
               Debounce_DelayMS: 200,

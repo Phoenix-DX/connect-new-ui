@@ -9,7 +9,7 @@ Generated from `migration/screens/*/questions.json` (answers containing the auto
 | BookmarksByGroup | Q3 | decision |  | A (recommended), auto-accepted (user instruction 2026-10-15 16:59): legacy local-bookmark delete skipped until CR-BookmarksByGroup-2 (shell, foundation F7) |
 | BookmarksByGroup | Q4 | fact | by code | MemoryClientCache.controller.js (fetched read-only 2026-10-15): UnlimitedTimeToLiveSeconds returns TimeToLiveSeconds = 604800 (7 days). The route now uses 604800 (compone |
 | BrowseCountries | Q1 | decision |  | A (recommended): build the subscription upgrade popup with the shell's showUpgradePopUp — auto-accepted (user instruction 2026-10-15 16:59) |
-| BrowseDirectory | Q1 | fact | by code | migration/runtime-sources/UBTConnect.Directory_Locality.controller.js:12-16 (fetched read-only): handleError delegates to App_Common.handleError, so raiseToFlowHandler is |
+| BrowseDirectory | Q1 | fact | by code | migration/sources/runtime/UBTConnect.Directory_Locality.controller.js:12-16 (fetched read-only): handleError delegates to App_Common.handleError, so raiseToFlowHandler is |
 | BrowseDirectory | Q2 | decision |  | A (recommended), auto-accepted (user instruction 2026-10-15 16:59): the AR recording serves every CountryCode |
 | BrowseDirectory | Q3 | decision |  | A (recommended), auto-accepted (user instruction 2026-10-15 16:59): module client actions ported; moved to shared by CR-BrowseDirectory-1 / CR-CountryDetails-1 |
 | BrowseDirectory | Q4 | decision |  | A (recommended), auto-accepted (user instruction 2026-10-15 16:59): StatisticsList keys fixed in shared (CR-BrowseDirectory-2) |
@@ -53,7 +53,7 @@ Generated from `migration/screens/*/questions.json` (answers containing the auto
 | MyBookmarks | Q3 | fact | TO CONFIRM | No source: GetGroupSummaries is server-side (Connect2_MyBookmarks, not in the local sources nor in the DEV MCP modules). Scope D2(a) builds the TST branch with C2NewBookm |
 | MyBookmarks | Q4 | decision |  | A (recommended), auto-accepted (user instruction 2026-10-15 16:59): loading request-timeout capture artifact exempted (route-scoped) |
 | MyBookmarks | Q5 | decision |  | A (recommended), auto-accepted (user instruction 2026-10-15 16:59): error scenario fails GetGroupSummaries as a network error |
-| OneSchoolGlobalDetails | Q1 | fact | by code | migration/runtime-sources/UBTConnect.Directory_OneSchoolGlobal.controller.js (fetched read-only): handleError delegates to App_Common.handleError, so raiseToFlowHandler i |
+| OneSchoolGlobalDetails | Q1 | fact | by code | migration/sources/runtime/UBTConnect.Directory_OneSchoolGlobal.controller.js (fetched read-only): handleError delegates to App_Common.handleError, so raiseToFlowHandler i |
 | OneSchoolGlobalDetails | Q2 | decision |  | A (recommended), auto-accepted (user instruction 2026-10-15 16:59) |
 | OneSchoolGlobalDetails | Q3 | decision |  | A (recommended), auto-accepted (user instruction 2026-10-15 16:59) |
 | OneSchoolGlobalDetails | Q4 | decision |  | A (recommended), auto-accepted (user instruction 2026-10-15 16:59) |

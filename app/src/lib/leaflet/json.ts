@@ -1,6 +1,6 @@
 /* JSON Serialize of the Leaflet structures as the JS nodes read them: JSON.parse of
    OS.JSONUtils.serializeToJSON(record, SerializeDefaultValues, false). TST runs the classic converter
-   (migration/runtime-sources/OutSystemsSettings.js: UseNewJSONSerialization = false; OutSystems.js JSONConverter.to):
+   (migration/sources/runtime/OutSystemsSettings.js: UseNewJSONSerialization = false; OutSystems.js JSONConverter.to):
    every attribute under its JSON name (Leaflet.model.js `this.attr(Name, …, JSONName, …)`), nested records and lists
    always written; with Serialize Default Values False a basic value (also a list item) equal to its default becomes null
    (basicTypeToJSON), and the stringify replacer drops null members (a null list item stays null). Defaults from

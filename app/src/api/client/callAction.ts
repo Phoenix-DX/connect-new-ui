@@ -17,7 +17,7 @@ import {
    Today MSW answers with mock data; later the backend implements the same contract.
    Screens never call fetch directly: they call an adapter in src/screens/<Screen>/api.ts.
    Errors are the OutSystems exceptions of src/lib/os-exceptions.ts, as the runtime's server call raises them
-   (migration/runtime-sources/OutSystems.js:3):
+   (migration/sources/runtime/OutSystems.js:3):
      no answer within the module's timeout           CommunicationException 'The connection has timed out' (onTimeout)
      request failed (fetch rejects)                 CommunicationException 'Request failed with an error'  (onError)
      error answer { error, exception, specificType } that exception (UserException, SecurityException, ...)
@@ -46,10 +46,10 @@ export type ContractModule = ModuleOf<ActionPath>;
    The runtime takes applicationDefaultTimeout || the call's own timeout || the controller's getDefaultTimeout()
    (getEffectiveTimeoutForServerCall, OutSystems.js:17 offset 523471) for server actions (innerCallServerAction, same
    place), data actions (innerCallDataAction, offset 532649) and aggregates (innerCallAggregate, offset 531787).
-   On TST applicationDefaultTimeout is 0 (runtime-sources/moduleinfo.json), no call sets its own timeout (no
+   On TST applicationDefaultTimeout is 0 (sources/runtime/moduleinfo.json), no call sets its own timeout (no
    withTimeout in the compiled code; every callDataAction / callAggregate* passes `undefined`), so the module value
-   decides. A timeout of 0 would mean none (OutSystems.js:3 offset 71295, `if(r)`). Sources (o: runtime-sources/,
-   s: screens/<S>/analysis/sources/): */
+   decides. A timeout of 0 would mean none (OutSystems.js:3 offset 71295, `if(r)`). Sources (o: sources/runtime/,
+   s: migration/sources/): */
 export const SERVER_REQUEST_TIMEOUT: Readonly<Record<ContractModule, number>> = {
   Connect2_Assemble_MUI: 10, // s:AssembleEvents raw/Connect2_Assemble_MUI.controller.js:1745
   Connect2_LegacyShared: 10, // o:Connect2_LegacyShared.controller.js:7976
@@ -131,7 +131,7 @@ export async function callAction<M extends ContractModule, A extends string>(
     before the answer is in, the request is aborted and the call raises CommunicationException 'The connection has
     timed out' (onTimeout, offset 74168), after the runtime's trace line (innerCallServerAction / callServerDataSource,
     OutSystems.js:17). The answer clears the timer (onFinish → clearTimeout). TST is published with debugEnabled
-    (runtime-sources/UBTConnect.appDefinition.js:9), so its timer first asks the server whether the Service Studio
+    (sources/runtime/UBTConnect.appDefinition.js:9), so its timer first asks the server whether the Service Studio
     debugger holds the request (GET moduleservices/checkrequestsuspended, offset 70947) and times out when it does
     not; the clone has no debugger, so it times out when the timer fires. */
 function startTimeout(seconds: number, endpoint: string, isDataFetch: boolean) {

@@ -1,0 +1,63 @@
+{
+ "state": "offline",
+ "route": "/UBTConnect/AssembleDetail?Start=2026-11-06T07%3A00%3A00.000Z&EventId=58dbb5ab-047e-469d-9558-2f8967a7ec41&SeriesId=888d1cfc-697a-4d0e-88bc-2c5a3e3f898d&mocksession=unlocked",
+ "mock": "error",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "9556e88279c610b01e8c",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "visibleOnly": false,
+  "full": true,
+  "replay": "builder",
+  "skipKinds": [],
+  "selfRef": false
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 256,
+  "texts": 19,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-11-06T13:40:02.342Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "ignoreSubtrees": 1,
+  "CAPTURE-2026-11-06-ASSEMBLEDETAIL-OFFLINE-EMPTY-TITLE": 1,
+  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 45,
+  "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1
+ },
+ "pixel": {
+  "ratio": 0.00006,
+  "maxCell": 0.0069,
+  "maxCellRatio": 0.03,
+  "diffPixels": 20,
+  "comparedPixels": 328142,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 3,
+  "hotspots": [
+   "200,800 (11px)",
+   "200,760 (9px)"
+  ],
+  "diffPng": "migration/screens/AssembleDetail/parity/offline.diff.png"
+ },
+ "calls": null,
+ "diffs": []
+}

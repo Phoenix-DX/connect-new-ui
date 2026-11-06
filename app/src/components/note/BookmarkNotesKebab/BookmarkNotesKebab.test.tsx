@@ -23,7 +23,7 @@ const option = (label: string) => {
 };
 
 /* No captured DOM exists for this block: the checks follow the compiled view
-   (migration/blocks/sources/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.mvc.js:130-270). */
+   (migration/sources/survey/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.mvc@e2889f0e.js:130-270). */
 describe('KebabButton_BookmarkNotes', () => {
   it('ubt-kebab-menu container > container > ContextMenu (plain icon anchor), options Edit note / Delete note', () => {
     const { container } = render(<CompiledView />);

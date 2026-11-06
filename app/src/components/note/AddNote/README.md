@@ -1,7 +1,7 @@
 # AddNote
 
 OutSystems: `UBTConnectLibrary.ConnectPatterns.AddNote` · pack `migration/blocks/UBTConnectLibrary.ConnectPatterns.AddNote.md`
-(compiled source `migration/blocks/sources/UBTConnectLibrary.ConnectPatterns.AddNote.mvc.js`)
+(compiled source `migration/sources/survey/UBTConnectLibrary.ConnectPatterns.AddNote.mvc@9fb7f442.js`)
 
 Inputs: none. Event `OnSubmitRequested(Note)` → `onOnSubmitRequested` (awaited; then Note = "",
 Handler_OnSubmitNote :317-348). Placeholders: none.

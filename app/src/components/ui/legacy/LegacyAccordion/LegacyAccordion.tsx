@@ -34,7 +34,7 @@ function updateAccordionJS(accordion: HTMLElement, multipleItems: boolean): void
   }
 }
 
-/** OutSystems UI 2.23 DEPRECATED_Accordion (migration/screens/EventDetail/analysis/sources/pretty/
+/** OutSystems UI 2.23 DEPRECATED_Accordion (migration/sources/pretty/
     OutSystemsUI_2_23.Content.DEPRECATED_Accordion.mvc.js, view :140-173): the Content placeholder itself with class
     `osui-deprecated accordion` (+ " " + ExtendedClass), `data-multiple-items` True / False and role `tablist`.
     OnReady (:198-223, after the items' own OnReady) runs CloseAllItems; OnParametersChanged (:225-252) runs

@@ -9,8 +9,8 @@ import {
   localBookmarksSchemas,
   memoryDatabase,
   setLocalBookmarksDatabase,
-  synchBookmarks,
-  type LegacyLocalBookmark,
+  synchBookmarksC2,
+  type LocalBookmark,
 } from '@/platform/storage/localEntities';
 import { defaultActionGetLocalityInformation_Output } from '@/mocks/modules/Connect2_LegacyShared/mockDefaults';
 import {
@@ -135,16 +135,15 @@ describe('HasAccessToRegion of Connect2_Assemble_MUI (controller.js:1140-1254)',
   });
 });
 
-describe('GetLocalBookmarkedLocalityInformation (controller.js:741-992) and GetLocality (:1006-1055)', () => {
-  const bookmark = (ObjectType: string, ObjectId: string): LegacyLocalBookmark => ({
-    Id: '0',
+describe('GetLocalBookmarkedLocalityInformation (live controller.js:668-912) and GetLocality', () => {
+  let nextId = 1;
+  const bookmark = (BookmarkCategoryId: string, ItemId: string): LocalBookmark => ({
+    Id: String(nextId++),
     UserId: Number(MOCK_USER_ID),
     BookmarkId: '0',
-    ObjectType,
-    ObjectId,
-    Group: '',
-    DateCreatedUtc: '1900-01-01T00:00:00',
-    Note: '',
+    BookmarkCategoryId,
+    ItemId,
+    CreatedAtDateUtc: '1900-01-01T00:00:00',
   });
   const flags = (list: { List: { IsBookmarked: boolean }[] }) => list.List.map((i) => i.IsBookmarked);
   /** List items over the generated EmptyListItem (every attribute at its default, mockDefaults.ts). */
@@ -160,17 +159,14 @@ describe('GetLocalBookmarkedLocalityInformation (controller.js:741-992) and GetL
     setLocalBookmarksDatabase(null);
   });
 
-  it('sets IsBookmarked of the locality and of each list from its object type, on a copy', async () => {
+  /** A locality with two items in each list. */
+  const twoOfEach = () => {
     const info = defaultActionGetLocalityInformation_Output().CacheableLocalityInformation;
-    info.IsBookmarked = true; // overwritten: the locality itself is not bookmarked below
     info.LocalityInterchanges.List = items(info.LocalityInterchanges, [
       { InterchangeLocalityId: '253' },
       { InterchangeLocalityId: '300' },
     ]);
-    info.LocalityHouseholdsList.List = items(info.LocalityHouseholdsList, [
-      { Id: '11', IsBookmarked: true },
-      { Id: '12', IsBookmarked: true },
-    ]);
+    info.LocalityHouseholdsList.List = items(info.LocalityHouseholdsList, [{ Id: '11' }, { Id: '12' }]);
     info.LocalitySubdivisionsList.List = items(info.LocalitySubdivisionsList, [{ Id: '9202' }, { Id: '9203' }]);
     info.LocalitySchools.List = items(info.LocalitySchools, [
       { CommunityBusinessID: '21' },
@@ -180,32 +176,76 @@ describe('GetLocalBookmarkedLocalityInformation (controller.js:741-992) and GetL
       { CommunityBusinessID: '31' },
       { CommunityBusinessID: '32' },
     ]);
-    await synchBookmarks([
-      bookmark('Locality', '253'), // an interchange is a locality bookmark
-      bookmark('Contact', '12'),
-      bookmark('Subdivision', '9203'),
-      bookmark('OneSchool Global', '21'),
-      bookmark('Campus&Co', '32'),
-      bookmark('Contact', '9202'), // another object type: not a supper meeting bookmark
-    ]);
-    const out = await getLocalBookmarkedLocalityInformation('252', info);
+    return info;
+  };
+
+  it('Locality (:705-737): the locality and each interchange through the same Locality set', async () => {
+    await synchBookmarksC2([bookmark('Locality', '252'), bookmark('Locality', '300')]);
+    const out = await getLocalBookmarkedLocalityInformation('252', twoOfEach());
+    expect(out.IsBookmarked).toBe(true);
+    expect(flags(out.LocalityInterchanges)).toEqual([false, true]);
+    expect(flags(out.LocalityHouseholdsList)).toEqual([false, false]);
+  });
+
+  it('Household (:741-766): the households by Id', async () => {
+    await synchBookmarksC2([bookmark('Household', '12')]);
+    const out = await getLocalBookmarkedLocalityInformation('252', twoOfEach());
     expect(out.IsBookmarked).toBe(false);
-    expect(flags(out.LocalityInterchanges)).toEqual([true, false]);
     expect(flags(out.LocalityHouseholdsList)).toEqual([false, true]);
-    expect(flags(out.LocalitySubdivisionsList)).toEqual([false, true]);
-    expect(flags(out.LocalitySchools)).toEqual([true, false]);
-    expect(flags(out.LocalityStores)).toEqual([false, true]);
-    // In_LocalityInformation is cloned (:746): the caller's record keeps its values
+  });
+
+  it('Supper Meeting (:772-797): the supper meetings by Id', async () => {
+    await synchBookmarksC2([bookmark('Supper Meeting', '9202')]);
+    const out = await getLocalBookmarkedLocalityInformation('252', twoOfEach());
+    expect(flags(out.LocalitySubdivisionsList)).toEqual([true, false]);
+  });
+
+  it('OneSchool Global (:803-860): the schools, and the stores with a second read of the same category', async () => {
+    await synchBookmarksC2([bookmark('OneSchool Global', '22'), bookmark('OneSchool Global', '31')]);
+    const out = await getLocalBookmarkedLocalityInformation('252', twoOfEach());
+    expect(flags(out.LocalitySchools)).toEqual([false, true]);
+    expect(flags(out.LocalityStores)).toEqual([true, false]);
+  });
+
+  it('rows of another category, or of another user, are ignored', async () => {
+    await synchBookmarksC2([
+      bookmark('Household', '252'), // not a Locality row
+      bookmark('Interchange', '253'), // interchanges match through Locality rows only
+      bookmark('Household', '9202'), // not a Supper Meeting row
+      bookmark('Member', '21'),
+      { ...bookmark('Household', '11'), UserId: Number(MOCK_USER_ID) + 1 },
+    ]);
+    const out = await getLocalBookmarkedLocalityInformation('252', twoOfEach());
+    expect(out.IsBookmarked).toBe(false);
+    expect(flags(out.LocalityInterchanges)).toEqual([false, false]);
+    expect(flags(out.LocalityHouseholdsList)).toEqual([false, false]);
+    expect(flags(out.LocalitySubdivisionsList)).toEqual([false, false]);
+    expect(flags(out.LocalitySchools)).toEqual([false, false]);
+    expect(flags(out.LocalityStores)).toEqual([false, false]);
+  });
+
+  it('In_LocalityInformation is cloned (:673): the input keeps its values', async () => {
+    const info = twoOfEach();
+    info.IsBookmarked = true; // overwritten on the copy: the locality is not bookmarked
+    info.LocalityHouseholdsList.List = items(info.LocalityHouseholdsList, [
+      { Id: '11', IsBookmarked: true },
+      { Id: '12', IsBookmarked: true },
+    ]);
+    await synchBookmarksC2([bookmark('Household', '12')]);
+    const out = await getLocalBookmarkedLocalityInformation('252', info);
+    expect(out).not.toBe(info);
+    expect(out.IsBookmarked).toBe(false);
+    expect(flags(out.LocalityHouseholdsList)).toEqual([false, true]);
     expect(info.IsBookmarked).toBe(true);
     expect(flags(info.LocalityHouseholdsList)).toEqual([true, true]);
   });
 
   it("GetLocality: the cached locality with the device's bookmarks of each read, the cache left untouched", async () => {
-    await synchBookmarks([bookmark('Locality', '252'), bookmark('Subdivision', '9202')]);
+    await synchBookmarksC2([bookmark('Locality', '252'), bookmark('Supper Meeting', '9202')]);
     const first = await getLocality('252');
     expect(first.IsBookmarked).toBe(true);
     expect(flags(first.LocalitySubdivisionsList)).toEqual([false, true, false]);
-    await synchBookmarks([]);
+    await synchBookmarksC2([]);
     const second = await getLocality('252');
     expect(second.IsBookmarked).toBe(false);
     expect(flags(second.LocalitySubdivisionsList)).toEqual([false, false, false]);

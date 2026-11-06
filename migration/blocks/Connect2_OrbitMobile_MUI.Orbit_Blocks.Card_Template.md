@@ -1,7 +1,7 @@
 # Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Template
 
 - Kind: shared; build screens using it: EventDetail, OrbitAdminLanding, OrbitLanding
-- Compiled source: `migration/screens/EventDetail/analysis/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Template.mvc.js`
+- Compiled source: `migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Template.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

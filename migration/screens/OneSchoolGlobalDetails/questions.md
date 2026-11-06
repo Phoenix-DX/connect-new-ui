@@ -6,7 +6,7 @@ Managed by route.py. Facts may be answered by the OutSystems MCP; decisions and 
 - Question: What does the Directory_OneSchoolGlobal flow exception handler (OneSchoolGlobalDetails controller handleError → _flow_UBTConnect_Directory_OneSchoolGlobalController.handleError) do? UBTConnect.Directory_OneSchoolGlobal.controller.js is not in any local source. Built conservatively like Directory_Locality (→ App_Common.handleError = shell raiseToFlowHandler).
 - Evidence: OneSchoolGlobalDetails.mvc.js:1450-1452; migration/knowledge/runtime-sources.md (Directory_Locality.controller.js → App_Common.handleError); loading dom shows the App_Common high-traffic message after the fetch timeout (dom/loading.html:2-19)
 - OutSystems MCP: MCP not available to route agents
-- Answer (code, 2026-10-15T17:38:12): migration/runtime-sources/UBTConnect.Directory_OneSchoolGlobal.controller.js (fetched read-only): handleError delegates to App_Common.handleError, so raiseToFlowHandler is right
+- Answer (code, 2026-10-15T17:38:12): migration/sources/runtime/UBTConnect.Directory_OneSchoolGlobal.controller.js (fetched read-only): handleError delegates to App_Common.handleError, so raiseToFlowHandler is right
 
 ## Q2 [decision] mocks (answered)
 - Question: DataActionGetOneSchoolGlobalDetails has one recording, whose In_OneSchoolGlobalId was anonymised (4281) and differs from the captured route id (1430). Serve that recording for every In_OneSchoolGlobalId (recordedHandler matchInputs off, no console warning), or match inputs (warning on every call, same data)?
@@ -17,7 +17,7 @@ Managed by route.py. Facts may be answered by the OutSystems MCP; decisions and 
 
 ## Q3 [decision] platform widget (answered)
 - Question: The screen renders the platform ButtonGroup / ButtonGroupItem widgets (OSWidgets, not an OSUI pattern), used by no other built route. Port them in the route (app/src/screens/OneSchoolGlobalDetails/components/ButtonGroup.tsx, from OutSystemsReactWidgets.js AbstractButtonGroup / ButtonGroupItem), or file a change request for a foundation component next to OSList?
-- Evidence: OneSchoolGlobalDetails.mvc.js:935-984; migration/runtime-sources/OutSystemsReactWidgets.js (AbstractButtonGroup, ButtonGroupItem); grep: no button-group in app/src
+- Evidence: OneSchoolGlobalDetails.mvc.js:935-984; migration/sources/runtime/OutSystemsReactWidgets.js (AbstractButtonGroup, ButtonGroupItem); grep: no button-group in app/src
 - OutSystems MCP: n/a
 - Options: A: port in the route's components now | B: change request to foundation (NotCaptured until built) (recommended: A)
 - Answer (user, 2026-10-15T17:38:12): A (recommended), auto-accepted (user instruction 2026-10-15 16:59)
@@ -49,6 +49,6 @@ Managed by route.py. Facts may be answered by the OutSystems MCP; decisions and 
 
 ## Q8 [decision] ComingSoon inline icon (answered)
 - Question: TST UBTConnectLibrary ComingSoon now gives its CustomText an InlineIcon (calendar, medium_20, neutral0): IconInline_Internal 24x18 with an Icon. The React components/ui/ComingSoon has no icon. Shared component, outside this route's files; other routes have older captures.
-- Evidence: migration/screens/OneSchoolGlobalDetails/analysis/sources/pretty/UBTConnectLibrary.ConnectPatterns.ComingSoon.mvc.js:192-203; analysis/dom/default.html id b3-b24-b2-b2-$b1 (connect-icon-calendar text-neutral-0 icon-medium padding-right-xs inline-block); parity default/offline of both routes (Icon missing in build)
+- Evidence: migration/sources/pretty/UBTConnectLibrary.ConnectPatterns.ComingSoon.mvc.js:192-203; analysis/dom/default.html id b3-b24-b2-b2-$b1 (connect-icon-calendar text-neutral-0 icon-medium padding-right-xs inline-block); parity default/offline of both routes (Icon missing in build)
 - Options: a) port the icon in components/ui/ComingSoon and re-run parity of the routes that use it (re-capture those with older captures) | b) keep the old form until a full re-capture (recommended: a)
 - Answer (user, 2026-10-29T12:13:33): Deferred (user scope decision, 2026-10-29, option (a)): this wave closes items 9 and 10; this TST drift of a shared block goes to the separate drift wave (re-capture of all routes, triage per shared block).

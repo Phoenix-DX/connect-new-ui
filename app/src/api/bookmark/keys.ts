@@ -1,6 +1,6 @@
 import { cacheEntry } from '@/api/client/cache';
 
-/** MemoryClientCache UnlimitedTimeToLiveSeconds(): 604800 s (runtime-sources/MemoryClientCache.controller.js,
+/** MemoryClientCache UnlimitedTimeToLiveSeconds(): 604800 s (sources/runtime/MemoryClientCache.controller.js,
     unlimitedTimeToLiveSeconds$Action). */
 const UNLIMITED_TIME_TO_LIVE_SECONDS = 604800;
 

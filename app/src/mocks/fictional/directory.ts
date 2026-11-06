@@ -396,46 +396,6 @@ export const MOCK_USER = {
 /** The Profile capture's account (spouse scenario): Amanda Ward (word lengths 6 4). */
 export const PROFILE_SPOUSE_NAME = 'Amanda Ward';
 
-/** Households bookmarked by the mock user outside its locality (rows 1-3 and 5-7 of a capture of the retired legacy
-    bookmark list), with the captured ScrollAnchor ids as household ids. Titles of rows 1-3 use narrow letters, as the
-    captured ones. */
-export const BOOKMARKED_ELSEWHERE = {
-  riley: {
-    id: '51207',
-    title: 'Riley, Felix & Juliet',
-    children: 'Ella, Matilda, Isabel, William, Lilly',
-    place: ['Seattle', 'United States'],
-  },
-  ellis: { id: '35419', title: 'Ellis, Julian & Lilian', children: '', place: ['Auckland', 'New Zealand'] },
-  fields: {
-    id: '296',
-    title: 'Fields, Elliot & Lillie',
-    children: 'Ruby, Noah',
-    place: ['San Marcos', 'United States'],
-  },
-  whitcombe: {
-    id: '6299',
-    title: 'Whitcombe, Peter & Helen',
-    children: 'Thomas, Michael',
-    place: ['Wicklow', 'Ireland'],
-  },
-  martinez: { id: '24824', title: 'Martínez, Elisa', children: '', place: ['Rosario', 'Argentina'] },
-  ashcroft: {
-    id: '15715',
-    title: 'Ashcroft, Michael & Cordelia',
-    children: 'Abigail',
-    place: ['Bristol', 'United Kingdom'],
-  },
-} as const;
-
-/** Bookmarked places: two supper meetings and two localities elsewhere in Argentina (real towns). */
-export const BOOKMARKED_PLACES = {
-  mainHall: 'Lules (Main Hall)',
-  supperMeeting: 'Villa Elisa Oeste',
-  locality1: 'Villa del Totoral',
-  locality2: 'San Isidro de Lules',
-} as const;
-
 const ascii = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 
 /** A fictional email of the reserved example.com domain. */

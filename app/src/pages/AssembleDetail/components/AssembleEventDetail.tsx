@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { AssembleSummarySkeleton } from '@/components/assemble/AssembleSummarySkeleton';
 import { AssembleSummaryCardContainer } from '@/containers/AssembleSummaryCard';
@@ -19,7 +20,6 @@ import { AssembleEventDetail_ContactList } from './AssembleEventDetail_ContactLi
 import { AssembleEventDetail_LocalitiesList } from './AssembleEventDetail_LocalitiesList';
 import { AssembleEventDetail_Section } from './AssembleEventDetail_Section';
 import { NC_Result_Item__Image__Skeleton } from './NC_Result_Item__Image__Skeleton';
-import { ShowMoreShowLessContainer } from './ShowMoreShowLessContainer';
 
 export interface AssembleEventDetailProps
   extends AssembleEventDetailEvents, AssembleEventContactEvents, AttendeeSubdivisionEvents {
@@ -29,6 +29,11 @@ export interface AssembleEventDetailProps
   inputs: AssembleEventDetailParameters;
   /** The flags of the halls, read by the page. */
   flags: AttendeeSubdivisionFlags;
+  /** The MeetingNotes placeholder (the notes preview and its action bar), rendered in `<scope>-MeetingNotes` once the
+      meeting is fetched (capture of 2026-11-06: `b2-b4-MeetingNotes` is absent while loading). The live TST block of
+      2026-11-05 has no Section_MeetingNotes ("Meeting Note", the summary text) any more; the survey copy of 2026-10-13
+      had one (decision 2026-11-05, migration/clarify/auto-decisions-2026-11-05.md row 11). */
+  meetingNotes?: ReactNode;
 }
 
 const MEETING_NOT_FOUND_SUBTITLE =
@@ -36,8 +41,8 @@ const MEETING_NOT_FOUND_SUBTITLE =
 
 /** IsNotFound or IsUnavailable → AssembleEventDetail__Error "Meeting not found" with the search-off icon. Otherwise
     `assemble-detail-content` > DIV_DetailCard (the detail header skeleton until the first fetch, then
-    AssembleSummaryCard with its actions, not a list item) and DIV_Content (`padding-x-base`) with three sections:
-    - Section_MeetingNotes ("Meeting Note"; ShowMoreShowLessContainer of the notes, 3 lines);
+    AssembleSummaryCard with its actions, not a list item) and DIV_Content (`padding-x-base`) with the MeetingNotes
+    placeholder (once the meeting is fetched) and two sections:
     - Section_Attendees ("Meeting Attendees": two attendee skeletons while loading; the "Host Locality" and
       "Interchange Meetings" localities);
     - Section_GSMContacts (" GMS Local Contact": a round image skeleton while loading; the contact list).
@@ -47,6 +52,7 @@ export function AssembleEventDetail({
   id,
   inputs,
   flags,
+  meetingNotes,
   onUpdateTitle,
   onEmailContact,
   onNavigateToHousehold,
@@ -69,7 +75,6 @@ export function AssembleEventDetail({
 
   const event = data?.AssembleEvent;
   const summary = event?.AssembleEventSummary;
-  const notes = summary?.Notes ?? '';
   const attendees = event?.AssembleAttendeeSubdivisionList ?? [];
   const special = event?.AssembleSpecialAttendeeSubdivisionList ?? [];
   const guests = event?.AssembleAttendeeSpecialGuestList ?? [];
@@ -108,33 +113,7 @@ export function AssembleEventDetail({
           )}
         </div>
         <div className="padding-x-base" data-container="" id={`${scope}-DIV_Content`}>
-          <AssembleEventDetail_Section
-            id={`${scope}-Section_MeetingNotes`}
-            isLoading={!isDataFetched}
-            isVisible={notes !== '' || !isDataFetched}
-            header={
-              <div data-container="" id={`${scope}-DIV_MeetingNotes__Title`}>
-                Meeting Note
-              </div>
-            }
-            contentLoading={
-              <div className="padding-y-s" data-container="">
-                <CardTextSkeleton id={`${scope}-$b9`} />
-              </div>
-            }
-            content={
-              <div className="margin-top-xs" data-container="" id={`${scope}-Div_EventNotes__Content`}>
-                <ShowMoreShowLessContainer
-                  id={`${scope}-$b10`}
-                  sectionHeaderId={`${scope}-DIV_MeetingNotes__Title`}
-                  maximumNumberOfLines={3}
-                  placeholderContent={<span data-expression="">{notes}</span>}
-                  showMoreLabel="Read more"
-                  showLessLabel="Show less"
-                />
-              </div>
-            }
-          />
+          {isDataFetched && <div id={`${scope}-MeetingNotes`}>{meetingNotes}</div>}
           <AssembleEventDetail_Section
             id={`${scope}-Section_Attendees`}
             isVisible={!isDataFetched || attendees.length > 0 || special.length > 0 || guests.length > 0}

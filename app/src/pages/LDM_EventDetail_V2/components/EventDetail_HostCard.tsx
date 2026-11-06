@@ -42,7 +42,7 @@ export interface EventDetail_HostCardProps {
   onNoteDeleted: (noteId: string) => void;
 }
 
-/** Host card of the LDM event detail, shown to a guest (analysis/sources/pretty/Connect2_OrbitMobile_MUI.LDM_Blocks
+/** Host card of the LDM event detail, shown to a guest (migration/sources/pretty/Connect2_OrbitMobile_MUI.LDM_Blocks
     .EventDetail_HostCard.mvc.js view :170-560). The content row is hidden for a host whose allocation is not
     published: the host photo (an assigned host with a photo) or the blank `fa-users` box, "Host" and the host name
     ("Your Host" when empty, "Host Allocation Pending" when not assigned), Person_Contact_Options (Phone, Email) and the

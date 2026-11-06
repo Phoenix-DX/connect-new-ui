@@ -7,7 +7,7 @@ import * as stories from './AddNote.stories';
 const { CompiledView } = composeStories(stories);
 
 /* No captured DOM exists for this block: the checks follow the compiled view
-   (migration/blocks/sources/UBTConnectLibrary.ConnectPatterns.AddNote.mvc.js:100-295). */
+   (migration/sources/survey/UBTConnectLibrary.ConnectPatterns.AddNote.mvc@9fb7f442.js:100-295). */
 describe('AddNote', () => {
   it('a padded container with a top border, Columns_Two: text input + counter | send button', () => {
     const { container } = render(<CompiledView />);

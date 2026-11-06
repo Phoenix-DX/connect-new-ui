@@ -1,7 +1,7 @@
 # UBTConnect.Home.Feed_Embeded
 
 - Kind: shared; build screens using it: FeedItemDetail, HomeFeed, MessageDetail
-- Compiled source: `migration/screens/HomeFeed/analysis/sources/pretty/UBTConnect.Home.Feed_Embeded.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.Home.Feed_Embeded.mvc.js`
 - Child blocks: FileTransferPlugin.FileTransfer.HandleDownload, UBTConnect_EmbedFeed.Blocks.Embedded_FeedCMS, UBTConnect_Utils.CW_CTA_PopUps.SharePopup (queue: UBTConnect_EmbedFeed.Blocks.Embedded_FeedCMS, UBTConnect_Utils.CW_CTA_PopUps.SharePopup)
 
 ## Inputs

@@ -1,7 +1,7 @@
 # Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Skeleton_Loading
 
 - Kind: shared; build screens using it: EventBooklet, EventDetail, GuestArrangements, HelpersDetail, HostSurvey, MilestoneDetail, OrbitAdminEventDetail, OrbitAdminLanding, OrbitLanding, QRCodeGenerate, TransportDetail, ViewDocuments
-- Compiled source: `migration/blocks/sources/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Skeleton_Loading.mvc.js`
+- Compiled source: `migration/sources/survey/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Skeleton_Loading.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs
@@ -326,4 +326,4 @@ _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
 content: new IteratorPlaceholderContent(function (idService, callContext) {
 ```
-(… 618 more lines in `migration/blocks/sources/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Skeleton_Loading.mvc.js`)
+(… 618 more lines in `migration/sources/survey/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Skeleton_Loading.mvc.js`)

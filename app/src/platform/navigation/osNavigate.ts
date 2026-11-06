@@ -32,7 +32,7 @@ function formatParam(value: string | number | boolean): string {
 }
 
 /** A DateTime screen input as the original puts it in the URL: OS.DataConversion.ServerDataConverter.asString(value,
-    DateTime) (runtime-sources/OutSystems.js line 9, functions i → h: `case DateTime: return e.toString()`) calls the
+    DateTime) (sources/runtime/OutSystems.js line 9, functions i → h: `case DateTime: return e.toString()`) calls the
     DateTime's toString() without arguments (line 4, the DateTime class used since OutSystemsSettings.js:9
     DateTimeRevamp = false): the null DateTime (new Date(1900, 0, 1) local, `nativeDefaultDate`) gives
     "1900-01-01T00:00:00", any other value `this.date.toISOString()`, the instant in UTC with milliseconds and "Z"
@@ -161,7 +161,7 @@ export function setHostNavigate(next: NavigateFunction | null): void {
 
 /** OS.Navigation.navigateTo outside a component: the navigation of useOsNavigate, through the router of the
     NavigationHost. Without a router, the runtime's navigateTo changes the window location instead
-    (runtime-sources/OutSystems.js:8, navigateTo: no router goTo → changeWindowLocation), so this sets `location.href`. */
+    (sources/runtime/OutSystems.js:8, navigateTo: no router goTo → changeWindowLocation), so this sets `location.href`. */
 export function osNavigateTo(path: string, params?: OsParams, options?: OsNavigateOptions): void {
   if (hostNavigate === null) {
     window.location.href = screenUrl(path, params);
@@ -189,7 +189,7 @@ export function useNavigateBack(): (transition?: TransitionAnimation) => void {
   );
 }
 
-/** OS.Navigation.generateScreenURL(url, params) (runtime-sources/OutSystems.js, function G): url + "?" + the encoded
+/** OS.Navigation.generateScreenURL(url, params) (sources/runtime/OutSystems.js, function G): url + "?" + the encoded
     `name=value` pairs when there are any, even when the url already has a query (so ".../dir/?api=1?api=1&query=…", as
     the original). For external URLs (Google Maps); app screens use screenUrl. */
 export function generateScreenURL(url: string, params: Readonly<Record<string, string>>): string {

@@ -1,7 +1,7 @@
 # UBTConnect.Directory_Caroussel.EntitiesCarouse_lSupperMeetingDetails
 
 - Kind: shared; build screens using it: HouseholdCarousel, SupperMeeting_Carousel
-- Compiled source: `migration/screens/SupperMeeting_Carousel/analysis/sources/pretty/UBTConnect.Directory_Caroussel.EntitiesCarouse_lSupperMeetingDetails.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.Directory_Caroussel.EntitiesCarouse_lSupperMeetingDetails.mvc.js`
 - Child blocks: UBTConnect.Directory_SupperMeetings.SupperMeeting_DetailsBlock (queue: UBTConnect.Directory_SupperMeetings.SupperMeeting_DetailsBlock)
 
 ## Inputs

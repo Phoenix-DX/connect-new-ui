@@ -26,7 +26,8 @@ import { Locality_Households } from './components/Locality_Households';
 import { Locality_Interchange } from './components/Locality_Interchange';
 import { Locality_OneSchoolGlobal } from './components/Locality_OneSchoolGlobal';
 import { Locality_Subdivisions } from './components/Locality_Subdivisions';
-import { LocalityMenu, UBT_AlignItems_Center, UBT_Icons2_Locality } from './components/staticEntities';
+import { LocalityMenu } from '@/lib/ubtConnect/actions';
+import { UBT_AlignItems_Center, UBT_Icons2_Locality } from './components/staticEntities';
 import { SubHeader_MainPages } from './components/SubHeader_MainPages';
 import { useLocalityDetails } from './hooks/useLocalityDetails';
 import { readLocalityDetailsInputs } from './inputs';
@@ -53,7 +54,7 @@ function Locality_DetailsScreen() {
   const [params] = useSearchParams();
   const mapsEnabled = useFlagOn('C2EnableMaps'); // GetHasMapsEnabled
   const hasCarouselEnabled = useFlagOn('C2EnableCarousel'); // GetHasCarouselEnabled
-  const hasNewBookmarks = useFlagOn('C2NewBookmarks'); // GetHasNewBookmarks: the GetLocal_Bookmark_C2 branch (decided off)
+  const hasNewBookmarks = useFlagOn('C2NewBookmarks'); // GetHasNewBookmarks: on (registry default), the GetLocal_Bookmark_C2 branch
   const householdDetailsFlags = useHouseholdDetailsFlags();
   // The LD check of the Locality Contacts section: it decides which branch (and block id) shows ComingSoon_V2.
   const hasLocalityContactsCheck = useFlagOn('mobileDirectoryLocalityContacts');

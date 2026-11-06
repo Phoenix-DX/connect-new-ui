@@ -2,7 +2,7 @@
 
 OutSystems: `Connect2_LegacyShared.NewConnect_Skeleton.NC_Card_Item_Text__Skeleton` · pack
 `migration/blocks/Connect2_LegacyShared.NewConnect_Skeleton.NC_Card_Item_Text__Skeleton.md` · compiled source
-`migration/blocks/sources/Connect2_LegacyShared.NewConnect_Skeleton.NC_Card_Item_Text__Skeleton.mvc.js`
+`migration/sources/survey/Connect2_LegacyShared.NewConnect_Skeleton.NC_Card_Item_Text__Skeleton.mvc.js`
 
 | Input         | Type | Prop            | Default |
 | ------------- | ---- | --------------- | ------- |

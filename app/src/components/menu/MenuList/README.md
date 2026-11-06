@@ -1,7 +1,7 @@
 # Menu_List
 
 OutSystems: `UBTConnect.App_Menu.Menu_List` · pack `migration/blocks/UBTConnect.App_Menu.Menu_List.md` · compiled source
-`migration/screens/ContactUsMenu/analysis/sources/pretty/UBTConnect.App_Menu.Menu_List.mvc.js`
+`migration/sources/pretty/UBTConnect.App_Menu.Menu_List.mvc.js`
 
 | Input          | Type              | Prop            | Default                                     |
 | -------------- | ----------------- | --------------- | ------------------------------------------- |

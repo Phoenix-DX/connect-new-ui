@@ -23,7 +23,7 @@
   "kind": "fact",
   "topic": "Orbit audit actions",
   "question": "What do Connect2_OrbitMobile_MUI client actions OnApplicationEvent_EmailHost (branch In_AuditEventId = OrbitApplicationEvent.EmailHost) and AddAuditEventDetailEvent (branch LDM event date/locality set) do: server write, telemetry only, navigation? Their controller (Connect2_OrbitMobile_MUI.controller.js) is not in the local sources. Built conservatively: both only write a log entry (no network); the EmailHost branch ends after it as compiled (no feedback, no navigateBack, IsLoading stays True).",
-  "evidence": "mvc.js:684-704 (EmailHost branch, ends at :704), :708-720 (AddAuditEventDetailEvent); manifest /UBTConnect/scripts/Connect2_OrbitMobile_MUI.controller.js, not in migration/runtime-sources, contract/sources/raw or screens/*/analysis/sources/raw",
+  "evidence": "mvc.js:684-704 (EmailHost branch, ends at :704), :708-720 (AddAuditEventDetailEvent); manifest /UBTConnect/scripts/Connect2_OrbitMobile_MUI.controller.js, not in migration/sources/runtime, contract/sources/raw or migration/sources/raw",
   "mcp": "MCP not available to route agents",
   "options": [],
   "recommend": "",

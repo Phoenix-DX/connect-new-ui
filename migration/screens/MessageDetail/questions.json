@@ -4,7 +4,7 @@
   "kind": "decision",
   "topic": "uncaptured message kinds",
   "question": "Only a plain Directory message was captured. Sharing messages (ShareObjectDetail / ShareObjectDetail_ExtendedShare + Feed_Embeded), adaptive-card messages (AdaptiveCardViewer: Microsoft Adaptive Cards renderer, not in the package allow-list; its submit flow calls StoreAdaptiveCardResponses and opens LDM screens), Assemble messages (content built by BuildAssembleNotificationContent -> PlaceholderLib.SetTextPlaceholdersValue, controller source not local; 'View Meeting' button) and Orbit / Orbit host survey messages ('View Event' / 'Go to Host Survey' buttons, Get_Orbit*NotificationParameters) never rendered. How should the clone treat them?",
-  "evidence": "dom/default.html (Directory message only); ScreenBlock_MessageDetail.mvc.js view :392-630, controller :916-1203, :1213-1500, :1573-1706; catalog/blocks.md :168-175 (not built); PlaceholderLib.controller.js missing (only contract/sources/raw/PlaceholderLib.model.js)",
+  "evidence": "dom/default.html (Directory message only); ScreenBlock_MessageDetail.mvc.js view :392-630, controller :916-1203, :1213-1500, :1573-1706; catalog/blocks.md :168-175 (not built); PlaceholderLib.controller.js missing (only sources/contract/PlaceholderLib.model.js)",
   "mcp": "not available (no MCP in this run)",
   "options": [
    "A: keep <NotCaptured> for these parts now (the data flow and calls are built); record a Sharing, an adaptive-card, an Assemble and an Orbit message on TST later, then build them",

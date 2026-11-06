@@ -20,7 +20,7 @@ Sources (read at build time, nothing copied by hand):
 - migration/board.md: the scope decision of each screen;
 - migration/screens/<Screen>/route-spec.md: a specification exists;
 - migration/screens/<Screen>/parity/<state>.expected.png: the TST screenshots (captured, data masked);
-- migration/tools/sitemap.py AREAS: UI flow → area;
+- tools/generate/sitemap.py AREAS: UI flow → area;
 - content/content.en.json: the written text (areas, flows, scope reasons, decisions).
 Nothing is read from .auth/ or migration/.raw/.
 """
@@ -67,7 +67,7 @@ def read_json(path):
 
 
 def areas_from_sitemap():
-    src = open(os.path.join(MIG, "tools", "sitemap.py"), encoding="utf-8").read()
+    src = open(os.path.join(ROOT, "tools", "generate", "sitemap.py"), encoding="utf-8").read()
     return ast.literal_eval(re.search(r"AREAS = (\[.*?\n\])", src, re.S).group(1))
 
 

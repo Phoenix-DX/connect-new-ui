@@ -128,7 +128,7 @@ export function HouseholdDetailsContainer({
       isBookmarked={state.isBookmarked}
       isSkeletonOnly={state.isSkeletonOnly}
       hidePhotobookActions={state.hidePhotobookActions}
-      timelineImages={state.timelineImages}
+      gallery={state.gallery}
       hasHouseholdGallery={flags.hasHouseholdGallery}
       carouselTag={carouselTag}
       entityActions={entityActions}

@@ -40,7 +40,7 @@ const menuOption = (index: number, label: string) => {
 };
 
 /* No captured DOM exists for this block: the checks follow the compiled controller
-   (migration/blocks/sources/UBTConnect_Utils.CW_Notes.NoteListActions.mvc.js:300-860). */
+   (migration/sources/survey/UBTConnect_Utils.CW_Notes.NoteListActions.mvc@fd5116c1.js:300-860). */
 describe('NoteListActions', () => {
   beforeEach(() => {
     setLocalNotesDatabase(memoryDatabase(localNotesSchemas()));

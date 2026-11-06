@@ -13,6 +13,17 @@ interface TagToggleListOptions<T> {
   isMandatorySelection: boolean;
   /** Event Changed: the list after a toggle. */
   onChanged?: (tagToggleList: T[]) => void;
+  /** The other inputs of the block. When set, a change of the list or of any input runs OnParametersChanged of the
+      live HorizontalTagList (UBTConnectLibrary.ConnectPatterns.HorizontalTagList.mvc.js:445-490, 2026-11-05): with
+      single selection, CurrentListIndex = ListIndexOf(In_TagToggleList, IsSelected).Position. Left out (the
+      October flow, Horizontal_Filter_TagList), a new input does not change CurrentListIndex. */
+  parameters?: readonly unknown[];
+}
+
+const NO_PARAMETERS: readonly unknown[] = [];
+
+function sameParameters(a: readonly unknown[], b: readonly unknown[]) {
+  return a.length === b.length && a.every((value, i) => Object.is(value, b[i]));
 }
 
 /** The tag list of HorizontalTagList and Horizontal_Filter_TagList: the block's own copy of In_TagToggleList (a new
@@ -22,19 +33,31 @@ interface TagToggleListOptions<T> {
     UBTConnectLibrary.model.js :1269-1274). */
 export function useTagToggleList<T extends ToggleTag>(
   inTagToggleList: T[],
-  { isSingleSelection, isMandatorySelection, onChanged }: TagToggleListOptions<T>,
+  { isSingleSelection, isMandatorySelection, onChanged, parameters }: TagToggleListOptions<T>,
 ) {
+  const blockInputs =
+    parameters === undefined ? NO_PARAMETERS : [isSingleSelection, isMandatorySelection, ...parameters];
   const [input, setInput] = useState(inTagToggleList);
   const [list, setList] = useState(inTagToggleList);
-  if (input !== inTagToggleList) {
+  const [otherInputs, setOtherInputs] = useState(blockInputs);
+  /* CurrentListIndex: default 0 (HorizontalTagList.mvc.js:18-20). */
+  const [currentListIndex, setCurrentListIndex] = useState(0);
+  const listChanged = input !== inTagToggleList;
+  if (listChanged || !sameParameters(otherInputs, blockInputs)) {
+    const current = listChanged ? inTagToggleList : list;
     setInput(inTagToggleList);
-    setList(inTagToggleList);
+    setList(current);
+    setOtherInputs(blockInputs);
+    /* OnParametersChanged (:445-490): only the live HorizontalTagList declares it; ListIndexOf gives -1 when no tag
+       is selected; an omitted IsSelected is True. */
+    if (parameters !== undefined && isSingleSelection) {
+      setCurrentListIndex(current.findIndex((t) => t.IsSelected ?? true));
+    }
   }
-  const currentListIndex = useRef(0);
   const selectedTagId = useRef('');
   const toggle = (isSelected: boolean, listIndex: number, isTagEnabled: boolean) => {
-    if (isSingleSelection && listIndex === currentListIndex.current) return;
-    currentListIndex.current = listIndex;
+    if (isSingleSelection && listIndex === currentListIndex) return;
+    setCurrentListIndex(listIndex);
     if (!isTagEnabled) return;
     if (isSelected && isMandatorySelection && !(list.filter((t) => t.IsSelected ?? true).length > 1)) return;
     const next = list.map((t, i) => (i === listIndex ? { ...t, IsSelected: !isSelected } : t));

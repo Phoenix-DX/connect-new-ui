@@ -54,7 +54,7 @@ export interface NoteItemProps {
 const NULL_DATE_TIME = '1900-01-01T00:00:00';
 
 /** One note: icon, text (highlighted by the search), relative time and kebab menu; or the edit form
-    (migration/blocks/sources/UBTConnectLibrary.ConnectPatterns.Note_Item.mvc.js: view :211-790, controller :795-925). */
+    (migration/sources/survey/UBTConnectLibrary.ConnectPatterns.Note_Item.mvc@154f53eb.js: view :211-790, controller :795-925). */
 export function NoteItem({
   id,
   inNoteId = '0',

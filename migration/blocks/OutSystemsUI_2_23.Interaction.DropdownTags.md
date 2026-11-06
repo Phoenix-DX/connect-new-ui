@@ -1,7 +1,7 @@
 # OutSystemsUI_2_23.Interaction.DropdownTags
 
 - Kind: osui; build screens using it: EventBooklet
-- Compiled source: `migration/blocks/sources/OutSystemsUI_2_23.Interaction.DropdownTags.mvc.js`
+- Compiled source: `migration/sources/survey/OutSystemsUI_2_23.Interaction.DropdownTags.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

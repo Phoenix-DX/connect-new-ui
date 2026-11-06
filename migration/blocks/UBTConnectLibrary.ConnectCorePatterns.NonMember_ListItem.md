@@ -1,7 +1,7 @@
 # UBTConnectLibrary.ConnectCorePatterns.NonMember_ListItem
 
 - Kind: shared; build screens using it: HouseholdCarousel, HouseholdDetails, Household_Relations, Locality_Details, Profile, SupperMeeting_Carousel
-- Compiled source: `migration/screens/HouseholdCarousel/analysis/sources/pretty/UBTConnectLibrary.ConnectCorePatterns.NonMember_ListItem.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnectLibrary.ConnectCorePatterns.NonMember_ListItem.mvc.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.Columns_Three, UBTConnectLibrary.BasePatterns.CustomText (queue: -)
 
 ## Inputs
@@ -291,4 +291,4 @@ define("UBTConnectLibrary.ConnectCorePatterns.NonMember_ListItem.mvc$view", ["Ou
                                     }();
                                 }),
 ```
-(… 71 more lines in `migration/screens/HouseholdCarousel/analysis/sources/pretty/UBTConnectLibrary.ConnectCorePatterns.NonMember_ListItem.mvc.js`)
+(… 71 more lines in `migration/sources/pretty/UBTConnectLibrary.ConnectCorePatterns.NonMember_ListItem.mvc.js`)

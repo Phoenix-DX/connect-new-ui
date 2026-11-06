@@ -19,7 +19,7 @@ export interface RadioButtonListItemProps {
   children?: ReactNode;
 }
 
-/** Radio list item (p:migration/blocks/sources/Connect2_LegacyShared.Reusable.RadioButtonListItem.mvc.js; view
+/** Radio list item (p:migration/sources/survey/Connect2_LegacyShared.Reusable.RadioButtonListItem.mvc.js; view
     :147-215): a RadioGroup `radio-group radio-group--list-item <ExtendedClass>` bound to RadioButtonValue with one
     RadioButton `radio-button` whose value is SelectedValue, label = placeholder Title. The RadioButton's onClick raises
     Selected (:189-197; the controller's selected$Action :252-254 is the event's empty default). Inputs (model :12-29)

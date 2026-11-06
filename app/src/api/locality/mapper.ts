@@ -23,6 +23,7 @@ import type {
   SubdivisionInformationResult,
   SubdivisionListCallInputs,
   SubdivisionNameCallInputs,
+  SubdivisionInformation,
 } from './types';
 
 /* The wire types of the locality calls, as the contract describes them. */
@@ -433,3 +434,35 @@ export const toCommunityBusinessShareCard = (wire: CommunityBusinessShareCardWir
     photoSignedPath: card.PhotoSignedPath,
   };
 };
+
+/** A household of a hall (GetCacheableSubdivision_V2.HouseholdListResponse) as the attendee row of AssembleDetail reads
+    it; the same fields as AssembleAttendeeGuest of `@/api/event`. */
+interface SubdivisionHouseholdRow {
+  Id: string;
+  Name: string;
+  FamilyNames: string;
+  Location: string;
+  IsBookmarked: boolean;
+  IsDisabled: boolean;
+  AvatarURL: { Bucket: string; Path: string; Type: string; SignedURL: string };
+}
+
+/** The households of SubdivisionInformation as rows: Id, Name, FamilyNames = Family, Location, IsBookmarked, IsDisabled
+    false and AvatarURL = Photo340's Bucket, Path, Type and SignedURL. A missing record (undefined) has no households. */
+export function subdivisionHouseholdRows(info: SubdivisionInformation | undefined): SubdivisionHouseholdRow[] {
+  if (!info) return [];
+  return info.HouseholdListResponse.List.map((h) => ({
+    Id: h.Id,
+    Name: h.Name,
+    FamilyNames: h.Family,
+    Location: h.Location,
+    IsBookmarked: h.IsBookmarked,
+    IsDisabled: false,
+    AvatarURL: {
+      Bucket: h.Photo340.Bucket,
+      Path: h.Photo340.Path,
+      Type: h.Photo340.Type,
+      SignedURL: h.Photo340.SignedURL,
+    },
+  }));
+}

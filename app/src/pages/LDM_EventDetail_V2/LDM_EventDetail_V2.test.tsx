@@ -79,6 +79,19 @@ describe('LDM_EventDetail_V2 page', () => {
     expect(eventCalls()).toHaveLength(1);
   });
 
+  it('answers the ids of the TST capture (EventId 88271, EventHostId 1808338) with the pending guest meal', async () => {
+    // migration/capture-plan.json, LDM_EventDetail_V2 route query of 2026-11-06; the mock aliases them to meal 70415.
+    const { container } = await open(query('88271', '1808338'));
+    expect(title()).toMatch(DATE_TITLE);
+    expect(container.querySelector('[data-block="LDM_Blocks.EventsDetail_Content"]')?.id).toBe('b1-$b3');
+    expect(container.querySelector('.event-detail-banner-text')?.textContent).toContain('Guest');
+    expect(container.querySelector('.event-detail-hostcard-content-info-name')?.textContent).toBe(
+      'Host Allocation Pending',
+    );
+    expect(container.querySelector('[data-block="CW_Notes.ItemNotesSection"]')?.id).toBe('b1-b5-$b2');
+    expect(container.querySelector('[data-block="UtilityFlow.ErrorScreen"]')).toBeNull();
+  });
+
   it('sends the inputs EventHostId and EventId to both data actions', async () => {
     const eventBodies = recordBodies(`Connect2_OrbitMobile_MUI/${GET_EVENT}`);
     const coordinatorBodies = recordBodies(`Connect2_OrbitMobile_MUI/${GET_COORDINATOR}`);

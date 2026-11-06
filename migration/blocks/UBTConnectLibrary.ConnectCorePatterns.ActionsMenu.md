@@ -1,7 +1,7 @@
 # UBTConnectLibrary.ConnectCorePatterns.ActionsMenu
 
 - Kind: shared; build screens using it: HouseholdCarousel, HouseholdDetails, Locality_Details, OneSchoolGlobalDetails, Profile, SupperMeeting_Carousel, SupperMeeting_Details
-- Compiled source: `migration/screens/HouseholdCarousel/analysis/sources/pretty/UBTConnectLibrary.ConnectCorePatterns.ActionsMenu.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnectLibrary.ConnectCorePatterns.ActionsMenu.mvc.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.ConnectPatterns.CircleButton_IconPrimary (queue: -)
 
 ## Inputs
@@ -288,4 +288,4 @@ define("UBTConnectLibrary.ConnectCorePatterns.ActionsMenu.mvc$view", ["OutSystem
                                             controller.popDebuggerContext(eventHandlerContext);
                                         });
 ```
-(… 202 more lines in `migration/screens/HouseholdCarousel/analysis/sources/pretty/UBTConnectLibrary.ConnectCorePatterns.ActionsMenu.mvc.js`)
+(… 202 more lines in `migration/sources/pretty/UBTConnectLibrary.ConnectCorePatterns.ActionsMenu.mvc.js`)

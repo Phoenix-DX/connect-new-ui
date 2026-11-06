@@ -3,7 +3,7 @@
 Not captured (user decision I10-2 (a), 2026-10-29; `no-capture.json`). Every statement cites the compiled TST code in
 `sources/` (S = `UBTConnect.Legacy_OrbitEventsFlow.PassportScan.mvc.js`, B = `OrbitPassportScanC2.PassportScan.ScreenBlock_PassportScan.mvc.js`,
 L = `Connect2_LegacyShared.Layout_OrbitTheme.Layout_OrbitBlank.mvc.js`, BL = `Connect2_LegacyShared.Layout.BaseLayoutBlank_UpdatedOSUI.mvc.js`,
-NH = `NavigationHandler.NavigationHandler.BackNavigationHandler.mvc.js`) or in `migration/runtime-sources/`
+NH = `NavigationHandler.NavigationHandler.BackNavigationHandler.mvc.js`) or in `migration/sources/runtime/`
 (E = `OrbitPassportScanC2.PassportScan.js`, the embed loader; MC = `OrbitPassportScanC2.controller.js`).
 
 ## Summary

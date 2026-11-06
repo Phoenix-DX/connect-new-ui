@@ -1,4 +1,4 @@
-/* The Connect2Feed embed SDK, ported from migration/runtime-sources/UBTConnect_EmbedFeed.EmbedFeed.js (SDK below;
+/* The Connect2Feed embed SDK, ported from migration/sources/runtime/UBTConnect_EmbedFeed.EmbedFeed.js (SDK below;
    fetched read-only from TST). Same configuration keys and defaults, iframe URLs and attributes, preload iframe,
    postMessage protocol and callbacks, in the original order. The SDK expects `baseUrl` to be the CMS origin: the iframe
    URL is `<baseUrl>/embed/feeds?…` (:51-71), messages are accepted only from `event.origin === baseUrl` (:183, :617)

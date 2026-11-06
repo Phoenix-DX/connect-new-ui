@@ -1,7 +1,7 @@
 # UBTConnect_EmbedFeed.Blocks.Embedded_FeedCMS
 
 - Kind: shared; build screens using it: FeedItemDetail, HomeFeed, MessageDetail
-- Compiled source: `migration/screens/HomeFeed/analysis/sources/pretty/UBTConnect_EmbedFeed.Blocks.Embedded_FeedCMS.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect_EmbedFeed.Blocks.Embedded_FeedCMS.mvc.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.ConnectPatterns.LazyImage, UBTConnectLibrary.ConnectPatterns.SkeletonSection (queue: -)
 
 ## Inputs

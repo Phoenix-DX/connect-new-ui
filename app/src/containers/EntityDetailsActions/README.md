@@ -2,7 +2,7 @@
 
 OutSystems: `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions` Â· pack
 `migration/blocks/UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.md` Â· compiled source
-`migration/screens/HouseholdCarousel/analysis/sources/pretty/UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js`
+`migration/sources/pretty/UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js`
 
 | Input                        | Type                            | Prop                          | Default        |
 | ---------------------------- | ------------------------------- | ----------------------------- | -------------- |
@@ -36,6 +36,11 @@ OutSystems: `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions` Â
   (Handler_AddNotesOnClick), through Action_RefreshFetchNotes. OnAfterFetch_FetchNotes sets EntityNotes, the In_Notes of
   the sheet. TST also computes FetchNoteId (Notes_InterchangeId_ComposeId for an interchange); the contract inputs do
   not list it, so the call does not send it.
+- **PendingOpen** (live code of 2026-11-05): Handler_AddNotesOnClick (mvc.js:1395-1435) refreshes the notes, then sets
+  PendingOpen when the sheet is still open, else opens it. Handler_OnNotesSheetClosed (:1114-1148) closes the sheet;
+  with PendingOpen it clears PendingOpen and its JavaScript node reopens the sheet after 50 ms
+  (`setTimeout(Handler_OpenNotesSheetDeferred, 50)`, :2478-2484). The hook keeps the timer and clears it on unmount.
+  Tests: `useEntityDetailsActions.test.tsx`, `notesSheetReopen.test.tsx`.
 - **NotesSheet popup** (TST code of 2026-10-27, mvc.js:927-1000): the sheet is in an OSWidgets.Popup with ShowPopup True
   and the style `popup-dialog connect-share-portal`. Each block instance has its own `<body>` portal, before the share
   portal. The Popup widget (`OSPopupWidget`) puts `popup-disable-scroll` on `<html>` and `aria-hidden` on
@@ -54,20 +59,22 @@ OutSystems: `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions` Â
 ## Bookmarks (CR-W4A-1; C2 only since the drift wave, user decision H-Q2 a, 2026-10-29)
 
 - **OnReady** (TST code of 2026-10-27, mvc.js:1864-1887): with HasBookmark / HasUnbookmark the block runs
-  GetBookmarkCategoryId_ByEntityTypeId (Local_BookmarkTypeId) and UBTConnect_Bookmarks_MCS GetLocalBookmarkByObjectId,
-  sets Local_isBookmarked, raises OnChange_Bookmark and runs Action_RefreshFetchNotes. TST removed the GetHasNewBookmarks
+  GetBookmarkCategoryId_ByEntityTypeId (Local_BookmarkTypeId) and UBTConnect_Bookmarks_MCS GetLocalBookmarkByObjectId
+  with the item and that category (live code of 2026-11-05, mvc.js:1920-1924), sets Local_isBookmarked, raises OnChange_Bookmark and runs Action_RefreshFetchNotes. TST removed the GetHasNewBookmarks
   branch (the legacy store, Local_isBookmarked_C2, Local_BookmarkType, Local_BookmarkGroup).
   - Then the block sets isLoaded to true when isFetchContacts is false, or the contact fetch is done or failed.
   - Local copies: `src/platform/storage/localEntities` (`localBookmarks.ts`). The shell synchronizes them at app start.
-- **Handle_Bookmark** (:1400-1470): ToggleBookmarkItem_C2(EntityId, Local_BookmarkTypeId, Local_isBookmarked), then
+- **Handle_Bookmark** (:1400-1470): UBTConnect_Utils ToggleBookmarkItem_C2(EntityId, Local_BookmarkTypeId,
+  Local_isBookmarked) (`lib/ubtConnectUtils/actions.ts`; TST moved it from UBTConnect, live code of 2026-11-05), then
   Local_isBookmarked flips and the block raises OnChange_Bookmark(Local_isBookmarked). The menu reads Local_isBookmarked
   (view :375-376), so the label follows the click. The known original bug B4 (empty category while the flag was off) is
   gone from the TST code.
-- **Server calls**: ServiceAPIAddBookmark2 and ServiceAPIDeleteBookmarkByBookmarkId2 (`bookmarkServerActions`). Their
+- **Server calls**: ServiceAPIAddBookmark2 and ServiceAPIDeleteBookmarkByBookmarkId2 of UBTConnect_Utils
+  (`bookmarkServerActions`). Their
   fictional mocks (`mocks.ts`) change the in-memory `bookmarksCollection`. It is empty at the start, except school 1430
   in scenario `captured` (OneSchoolGlobalCarousel). The Sync_Info_GetMain mock and the `unlocked` test session copy it to
   the device (LocalBookmarksC2).
-- Tests: `bookmarks.test.tsx`, `mocks.test.ts`.
+- Tests: `bookmarks.test.tsx`, `mocks.test.ts`, `../../lib/ubtConnectUtils/actions.test.ts`.
 
 ## Not ported / not settled
 

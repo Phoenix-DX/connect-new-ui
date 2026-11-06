@@ -6,8 +6,8 @@ import { osList, wireList } from '@/lib/os-wire';
 import { Choice } from '@/lib/ubtConnect/staticEntities';
 
 /* Mocks of Bookmarks (P-MOCKS). Both handlers are contractHandler (the operations came with the regeneration of the
-   contract, I10-6); the cards add the TST fields that the contract's UI_Bookmark_CardItem does not have yet
-   (BookmarkCardItemWire of api/bookmark/bookmarkCards.ts).
+   contract, I10-6); the cards are UI_Bookmark_CardItem of the live model of 2026-11-05 (ItemId Text, ItemId2,
+   HasDetailAccess, channel fields).
    - UBTConnect_Bookmarks_MCS/ActionGet_BookmarkPills_ByBookmarkCategoryIds: MOCK ASSUMPTION: the 9 pills that TST
      answered to the test account (capture of 2026-10-29, dom/default.html:169-250), whatever ids are sent. The 5th
      pill is masked in the capture (5 characters): "Feeds" (Feed Item) here.
@@ -15,7 +15,7 @@ import { Choice } from '@/lib/ubtConnect/staticEntities';
      Bookmarks_Filter fields: BookmarkCategoryId ('' = all), SearchText (case-insensitive "contains" on the title),
      Years (the bookmark's year; empty = all), SortByNewest (Choice.No = oldest first), PageNumber / PageSize.
      FICTIONAL: the cards below (no real household, member or school).
-   Scenarios: real (the 8 fictional cards with one Feed card with a channel, the demo default), empty (no bookmarks), captured (the 3 cards of the TST
+   Scenarios: real (the 9 fictional cards with one Feed card with a channel, the demo default), empty (no bookmarks), captured (the 3 cards of the TST
    capture; parity of state default, Bookmarks Q2 (a), user 2026-10-29). */
 
 const PILLS: [string, string][] = [
@@ -39,6 +39,10 @@ interface FictionalBookmark {
   iconId: string;
   year: string;
   notes: string[];
+  /** Id of the bookmark record (Long Integer); none = the item id. */
+  bookmarkId?: string;
+  /** ItemId2: the household of a Member card (Household_Relations HouseholdId); none = "". */
+  itemId2?: string;
   /** ChannelName, ChannelLogo and PublishedAt of the card (the channel row of ItemCard_WithNotes); none = "" and
       NullDate. */
   channel?: { name: string; logo: string; publishedAt: string };
@@ -115,6 +119,21 @@ const BOOKMARKS: FictionalBookmark[] = [
     iconId: '',
     year: '2025',
     notes: [],
+    /* The Vitale household (mocks/fictional/directory.ts, VITALE_ID). */
+    itemId2: '42438',
+  },
+  {
+    /* "<LocalityId>:<InterchangeLocalityId>" (Notes_InterchangeId_ComposeId): locality 252 and its interchange 253
+       (mocks/fictional/directory.ts, LOCALITY and INTERCHANGE). */
+    itemId: '252:253',
+    bookmarkId: '61253',
+    category: 'Interchange',
+    title: 'Monte Hermoso',
+    subtitle: 'Argentina',
+    initials: 'M',
+    iconId: '',
+    year: '2025',
+    notes: [],
   },
   {
     itemId: '7311',
@@ -179,14 +198,15 @@ const CAPTURED: FictionalBookmark[] = [
 const ROWS: Partial<Record<string, FictionalBookmark[]>> = { empty: [], captured: CAPTURED };
 
 const card = (b: FictionalBookmark): BookmarkCardItemWire => ({
-  /* The Id of the bookmark record: fictional, the item id (the screen does not read it). */
-  Id: b.itemId,
+  /* The Id of the bookmark record: fictional, the item id when it is a number (the screen does not read it). */
+  Id: b.bookmarkId ?? b.itemId,
   ItemId: b.itemId,
+  ItemId2: b.itemId2 ?? '',
+  /* MOCK ASSUMPTION: the mock user has detail access to every bookmark. */
+  HasDetailAccess: true,
   BookmarkCategoryId: b.category,
   ChannelName: b.channel?.name ?? '',
   ChannelLogo: b.channel?.logo ?? '',
-  EventStartDate: '1900-01-01T00:00:00',
-  EventEndDate: '1900-01-01T00:00:00',
   PublishedAt: b.channel?.publishedAt ?? '1900-01-01T00:00:00',
   Bookmark_Card_Content: {
     Title: b.title,

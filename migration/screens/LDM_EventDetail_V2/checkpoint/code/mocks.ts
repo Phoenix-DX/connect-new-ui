@@ -1,6 +1,6 @@
 import type { RequestHandler } from 'msw';
-import { coordinatorDetails, eventCalendarDetail, householdCoordinates, ldmEventById } from '../../mocks/fictional/ldm';
-import { contractHandler } from '../../mocks/contract';
+import { coordinatorDetails, eventCalendarDetail, householdCoordinates, ldmEventById } from '@/mocks/fictional/ldm';
+import { contractHandler } from '@/mocks/contract';
 
 /* The route's calls were not recorded (person data): fictional data from the shared LDM world
    (src/mocks/fictional/ldm.ts) in the captured shapes (analysis/calls.md). The event is found by EventId (the inputs

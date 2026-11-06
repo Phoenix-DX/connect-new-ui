@@ -32,6 +32,7 @@ import {
   saveRecentClickedResult,
   saveRecentSearchTerm,
 } from '@/platform/storage/localEntities';
+import { Connect_EventTypes } from '@/lib/ubtConnect/staticEntities';
 import { Connect_Entity } from '@/lib/ubtConnectUtils/staticEntities';
 import { Type_SearchTarget } from '@/pages/Search/components/staticEntities';
 import type { Tag } from '@/components/ui/HorizontalTagList';
@@ -380,7 +381,8 @@ export function useSearch(inputs: SearchInputs, flags: SearchFlags, events: Sear
       return;
     }
     const target = parameters.current.inSearchTargetId;
-    // CreateOrUpdateConnectSearch_RecentClickedResults, then the ones beyond the limit are deleted
+    // CreateOrUpdateConnectSearch_RecentClickedResults, then the ones beyond the limit are deleted. The record keeps no
+    // Event_* field (live ScreenBlock_Search.mvc.js:3100-3139): a recent event opens as its Type, as on TST.
     await saveRecentClickedResult(target, searchResult, clientVar.searchRecentClickedResultsLimit.get());
     if (parameters.current.inIsEventNavigation) {
       flow.events.onEventSearchResultClick?.(searchResult); // Trigger Event: Event_SearchResultClick (R3)
@@ -388,6 +390,23 @@ export function useSearch(inputs: SearchInputs, flags: SearchFlags, events: Sear
     }
     if (searchResult.type === Connect_Entity.Locality) {
       navigate('/UBTConnect/Locality_Details', { LocalityId: searchResult.id }); // R4 in useOsNavigate
+      return;
+    }
+    // GetHasCarouselEnabled runs here on TST (live ScreenBlock_Search.mvc.js:3290): the hook reads flags.carousel.
+    // A school, then an event by its Event_Source (live ScreenBlock_Search.mvc.js:3294-3314).
+    if (searchResult.type === Connect_Entity.OneSchoolGlobal) {
+      navigate('/UBTConnect/OneSchoolGlobalDetails', { In_OneSchoolGlobalId: searchResult.id });
+      return;
+    }
+    if (searchResult.eventSource === Connect_EventTypes.Assemble) {
+      navigate('/UBTConnect/AssembleDetail', { EventId: searchResult.id });
+      return;
+    }
+    if (searchResult.eventSource === Connect_EventTypes.LDM) {
+      navigate('/UBTConnect/LDM_EventDetail_V2', {
+        EventHostId: searchResult.eventEventHostId,
+        EventId: searchResult.id,
+      });
       return;
     }
     const { results } = latest.current;

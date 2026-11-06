@@ -5,7 +5,11 @@ import type { MilestoneInformationWire, ScanMilestoneQRCodeInputsWire, ScanMiles
    (migration/clarify/builds/item10-test-fixes.md). */
 import { EMPTY_ADMIN_MILESTONE_TYPE } from '@/api/event/adminMilestoneDetail';
 import { orbitAdminAttendees, type OrbitAdminAttendee } from '@/mocks/fictional/orbitAdmin';
-import { orbitAdminMilestones, type OrbitAdminMilestone } from '@/mocks/fictional/orbitAdminMilestones';
+import {
+  ORBIT_ADMIN_MILESTONE_TYPES,
+  orbitAdminMilestones,
+  type OrbitAdminMilestone,
+} from '@/mocks/fictional/orbitAdminMilestones';
 import { scenario } from '@/mocks/scenario';
 import { contractHandler } from '@/mocks/contract';
 import { collection, statefulHandler } from '@/mocks/store';
@@ -17,9 +21,10 @@ import { QRCodeErrorType } from './staticEntities';
    event (orbitAdmin.ts). No-capture route (user decision I10-3 (a)): no recorded call, shapes from the compiled
    records. Both operations are in the contract since its regeneration (I10-6): Get_MilestoneInformation is a
    contractHandler; GetScanMilestoneQRCode stays a statefulHandler, because it writes the in-memory collection.
-   - Get_MilestoneInformation: HasQRCode (every listed admin milestone uses QR codes) and its OrbitMilestoneType; the
-     milestone is found by its MilestoneRef (the In_MilestoneId of the entry); an unknown milestone gives the default
-     record (no QR code, no type).
+   - Get_MilestoneInformation (MCP DEV row 16 of mcp-session-2026-10-29.md): the data action does not read the
+     milestone. OrbitMilestoneType is always the AdminMeeting record (GetOrbitMilestoneTypeRecord(AdminMeeting)); its
+     Name "Admin" is the Name of all six admin types (row 7). HasQRCode is GetHasQRCode(In_EventId), the Orbit API flag
+     of the event: true for the mock events, false in scenario noqrcode.
    - GetScanMilestoneQRCode: never called on TST by this migration, because on TST a scan WRITES (Q1, answered by MCP
      DEV, migration/clarify/review/mcp-session-2026-10-29.md row 5): Connect2_OrbitMobile_BL calls the Orbit API
      check-in (Connect2_OrbitMobile_IS Get_ScanMilestoneQRCode, with the user token) and, for CheckedIn,
@@ -33,8 +38,8 @@ import { QRCodeErrorType } from './staticEntities';
      MilestoneDetail (GetSignedImagesInBulk).
    - Scanner: the fictional BarcodePlugin scanner of the mock phase, installed by the OrbitAdminEventDetail mocks; it
      reads the QR codes of the attendees of In_EventId in turn (scenarios scanwrongevent, scanunreadable, scancancel).
-   Scenarios: real; noqrcode (no Scan QR Code button); empty (an unknown milestone); notallocated (every check-in
-   fails); loading (skeleton); error (HTTP 500: the skeleton stays, the error message). */
+   Scenarios: real; noqrcode (the event has no QR code: no Scan QR Code button); notallocated (every check-in fails);
+   loading (skeleton); error (HTTP 500: the skeleton stays, the error message). */
 
 const MODULE = 'Connect2_OrbitMobile_MUI';
 
@@ -58,7 +63,8 @@ export const QRCodeScanResultUserMessage: Record<QRCodeErrorTypeId, string> = {
 const API_NOT_ALLOCATED = 'Guest is not allocated to this milestone.';
 
 interface ScanOutcome {
-  QRCodeErrorTypeId: QRCodeErrorTypeId;
+  /** "" (NullTextIdentifier) when GetScanMilestoneQRCode assigns no value (an API success, MCP row 15). */
+  QRCodeErrorTypeId: QRCodeErrorTypeId | '';
   Success: boolean;
   ErrorMessage: string;
 }
@@ -68,14 +74,14 @@ interface ScanOutcome {
     - localDuplicate: the member is already recorded locally for the milestone: no API call, Success False and the
       AlreadyCheckedInForMilestone message;
     - apiFailure: any other API failure keeps the API response (Success False, the API message).
-    QRCodeErrorTypeId: row 5 states the AlreadyCheckedInForMilestone record id for the failure branches only (the local
-    duplicate, and any other API failure: the outcome lookup always reads that record, so its GenericError fallback
-    does not run). For checkedIn (success) the value is an ASSUMPTION: row 5 does not state it; the mock keeps the same
-    id (an open MCP fact, auto decision F2 of 2026-10-29). GenericError comes only from a failed local create (not
-    mocked). The block reads only Response.Status. */
+    QRCodeErrorTypeId: the AlreadyCheckedInForMilestone record id for the failure branches (the local duplicate, and
+    any other API failure: the outcome lookup always reads that record, so its GenericError fallback does not run).
+    An API success assigns no value: "" (MCP DEV row 15 of mcp-session-2026-10-29.md, 2026-10-29; it closes auto
+    decision F2). GenericError comes only from a failed local create (not mocked). The block reads only
+    Response.Status. */
 export function scanOutcome(kind: 'checkedIn' | 'localDuplicate' | 'apiFailure', apiMessage = ''): ScanOutcome {
   const QRCodeErrorTypeId = QRCodeErrorType.AlreadyCheckedInForMilestone;
-  if (kind === 'checkedIn') return { QRCodeErrorTypeId, Success: true, ErrorMessage: '' };
+  if (kind === 'checkedIn') return { QRCodeErrorTypeId: '', Success: true, ErrorMessage: '' };
   if (kind === 'localDuplicate')
     return { QRCodeErrorTypeId, Success: false, ErrorMessage: QRCodeScanResultUserMessage[QRCodeErrorTypeId] };
   return { QRCodeErrorTypeId, Success: false, ErrorMessage: apiMessage };
@@ -131,12 +137,10 @@ function checkInAnswer(
 }
 
 export const handlers: RequestHandler[] = [
-  contractHandler(MODULE, 'ScreenBlock_AdminMilestoneDetail/DataActionGet_MilestoneInformation', (inputs) => {
-    const milestone =
-      scenario() === 'empty' ? undefined : findMilestone(inputs.In_EventId ?? '', inputs.In_MilestoneId ?? '');
+  contractHandler(MODULE, 'ScreenBlock_AdminMilestoneDetail/DataActionGet_MilestoneInformation', () => {
     const answer: MilestoneInformationWire = {
-      HasQRCode: scenario() === 'noqrcode' ? false : milestone !== undefined,
-      OrbitMilestoneType: milestone ? { ...EMPTY_ADMIN_MILESTONE_TYPE, ...milestone.type } : EMPTY_ADMIN_MILESTONE_TYPE,
+      HasQRCode: scenario() !== 'noqrcode',
+      OrbitMilestoneType: { ...EMPTY_ADMIN_MILESTONE_TYPE, ...ORBIT_ADMIN_MILESTONE_TYPES.adminMeeting },
     };
     return answer;
   }),

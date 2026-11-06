@@ -1,7 +1,7 @@
 # UBTConnect.Directory_CommonBlocks.Directory_EmptyState
 
 - Kind: shared; build screens using it: HouseholdCarousel, Locality_Details, SupperMeeting_Carousel, SupperMeeting_Details
-- Compiled source: `migration/blocks/sources/UBTConnect.Directory_CommonBlocks.Directory_EmptyState.mvc.js`
+- Compiled source: `migration/sources/survey/UBTConnect.Directory_CommonBlocks.Directory_EmptyState.mvc.js`
 - Child blocks: UBTConnectLibrary.ConnectPatterns.EmptyList (queue: -)
 
 ## Inputs

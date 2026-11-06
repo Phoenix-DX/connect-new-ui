@@ -17,7 +17,7 @@ export interface LabelWithCopyIconProps {
   placeholderValue?: ReactNode;
 }
 
-/** Label, copy icon and value (p:migration/blocks/sources/Connect2_LegacyShared.Utility.LabelWithCopyIcon.mvc.js;
+/** Label, copy icon and value (p:migration/sources/survey/Connect2_LegacyShared.Utility.LabelWithCopyIcon.mvc.js;
     view :127-230): container `font-size-s` > AlignCenter (inputs left at their defaults) with Placeholder_Label
     (`font-semi-bold`, OSInline) and Placeholder_Icon (`margin-left-s line-height-1`, OSInline, click → cursor pointer),
     then a plain container with Placeholder_Value. Placeholder_IconOnClick (controller :253-287) runs the JS node

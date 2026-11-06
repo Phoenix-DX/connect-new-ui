@@ -1,6 +1,6 @@
 # Screen spec: OneSchoolGlobalDetails
 
-Paths are relative to `migration/screens/OneSchoolGlobalDetails/`; `mvc.js` = `analysis/sources/pretty/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js`.
+Paths are relative to `migration/screens/OneSchoolGlobalDetails/`; `mvc.js` = `migration/sources/pretty/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js`.
 
 ## 0. Summary
 The detail screen of one OneSchool Global school (directory) has these parts:
@@ -55,7 +55,7 @@ Layout_DetailPage $b1                                   [shared]
 |---|---|---|---|---|
 | ExpandableSection `components/ExpandableSection.tsx` | StartExpanded (True), ExtendedClasses | none | Title, Content | isExpanded toggled by the icon container click; class `expanded`/`closed` [ExpandableSection.mvc.js view, :420, :445] |
 | External_Link `components/External_Link.tsx` | In_Link, IsEnabled (True), IconVisible (True) | none | none | LinkClicked: iOS → navigateTo(Link), else OpenInApp_OpenExternalLink(Link, False) [External_Link.mvc.js:284-318] |
-| ButtonGroup `components/ButtonGroup.tsx` | variable, items | change | items | port of OSWidgets ButtonGroup/ButtonGroupItem [runtime-sources/OutSystemsReactWidgets.js] (Q3) |
+| ButtonGroup `components/ButtonGroup.tsx` | variable, items | change | items | port of OSWidgets ButtonGroup/ButtonGroupItem [sources/runtime/OutSystemsReactWidgets.js] (Q3) |
 
 ## 2a. Architecture diagram
 ```mermaid
@@ -141,7 +141,7 @@ When a fetch fails:
 - List `list-error`.
 - The error goes to the screen's handleError → the Directory_OneSchoolGlobal flow handler.
   Its handleError delegates to App_Common.handleError, so `raiseToFlowHandler` is right [questions.md Q1].
-  The controller is migration/runtime-sources/UBTConnect.Directory_OneSchoolGlobal.controller.js.
+  The controller is migration/sources/runtime/UBTConnect.Directory_OneSchoolGlobal.controller.js.
 
 ## 12. Strings
 "OneSchool Global", "Educating Students From:", "Show student numbers" (Get_LookupSection), "Upcoming events",
@@ -159,7 +159,7 @@ No write from this screen; bookmark/notes writes are the shared block's (mocked)
 
 ## 14. Unclear points
 - Q1 (fact): Directory_OneSchoolGlobal flow handler — `UBTConnect.Directory_OneSchoolGlobal.controller.js` was missing
-  locally. It was fetched to migration/runtime-sources/. Its handleError delegates to App_Common.handleError, so the
+  locally. It was fetched to migration/sources/runtime/. Its handleError delegates to App_Common.handleError, so the
   App_Common handler (`raiseToFlowHandler`) is right, as Directory_Locality [questions.md Q1].
 
 ## 15. Acceptance criteria

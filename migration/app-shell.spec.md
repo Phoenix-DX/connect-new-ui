@@ -8,10 +8,10 @@ spec. Every open point is in section 12. The spec never quotes the values of cli
 | Key | File |
 |---|---|
 | `HF` | `migration/screens/HomeFeed/analysis/` (`<S>` = same folder of screen `<S>`) |
-| `p:<file>:N` / `r:<file>:N` | `<screen>/analysis/sources/pretty/<file>` / `sources/raw/<file>` (HomeFeed unless a screen is named) |
+| `p:<file>:N` / `r:<file>:N` | `migration/sources/pretty/<file>` / `migration/sources/raw/<file>` (HomeFeed unless a screen is named) |
 | `UC:N` / `AM:N` | `HF r:UBTConnect.controller.js:N` / `HF r:UBT_AppManager.controller.js:N` |
 | `NH:N` / `CUI:N` | `HF p:NavigationHandler.controller.js:N` / `HF p:UBTConnect.App_Common.CommonUI_InsideLayout.mvc.js:N` |
-| `survey:<file>:N` | `capture/survey-UBTConnect.json` → `sources["<file>"]`, line N of that source (blocks no screen loaded) |
+| `survey:<file>:N` | `migration/survey/survey-UBTConnect.json` → `sources["<file>"]`, line N of that source (blocks no screen loaded) |
 | `dom:N`, `css:N`, `bundle:N`, `calls:N` | `dom/default.html`, `css-relevant.md`, `styles/bundle.css`, `calls.md` of the screen named (HF if none) |
 
 ## 0. Summary

@@ -1,4 +1,4 @@
-/* The math of DropdownCustom.updateState (migration/runtime-sources/OutSystemsReactWidgets.js W14151-15700): the place
+/* The math of DropdownCustom.updateState (migration/sources/runtime/OutSystemsReactWidgets.js W14151-15700): the place
    of the open list and the side it opens to. Numbers in, no DOM: useDropdownListEffects reads the rects and the window,
    then applies the result. */
 

@@ -1,7 +1,7 @@
 # Policy_Checker
 
 OutSystems: `UBTConnect.App_Policies.Policy_Checker` · pack `migration/blocks/UBTConnect.App_Policies.Policy_Checker.md`
-(survey only: compiled source in `capture/survey-UBTConnect.json`)
+(survey only: compiled source in `migration/survey/survey-UBTConnect.json`)
 
 Inputs: none. Events: none. Placeholders: none. Renders an empty wrapper (compiled view).
 

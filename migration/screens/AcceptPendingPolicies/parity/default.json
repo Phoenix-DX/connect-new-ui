@@ -1,0 +1,63 @@
+{
+ "state": "default",
+ "route": "/UBTConnect/AcceptPendingPolicies?mocksession=unlocked",
+ "mock": "real",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "b3aeaeff07731ca1cf82",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "visibleOnly": false,
+  "full": true,
+  "replay": "builder",
+  "skipKinds": [],
+  "selfRef": false
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 121,
+  "texts": 24,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-11-06T14:27:25.439Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "ignoreSubtrees": 3
+ },
+ "pixel": {
+  "ratio": 0,
+  "maxCell": 0,
+  "maxCellRatio": 0.03,
+  "diffPixels": 0,
+  "comparedPixels": 0,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 3,
+  "hotspots": [],
+  "diffPng": "migration/screens/AcceptPendingPolicies/parity/default.diff.png"
+ },
+ "calls": {
+  "phases": [
+   "load"
+  ],
+  "expected": 9,
+  "actual": 9
+ },
+ "diffs": []
+}

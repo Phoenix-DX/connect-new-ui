@@ -2,7 +2,7 @@
 
 OutSystems: `Connect2_Assemble_MUI.Assemble.Assemble_FilterSubdivisionByLocality` · pack
 `migration/blocks/Connect2_Assemble_MUI.Assemble.Assemble_FilterSubdivisionByLocality.md` · compiled source
-`migration/blocks/sources/Connect2_Assemble_MUI.Assemble.Assemble_FilterSubdivisionByLocality.mvc.js`
+`migration/sources/survey/Connect2_Assemble_MUI.Assemble.Assemble_FilterSubdivisionByLocality.mvc.js`
 
 | Input                 | Type         | Prop                    | Default |
 | --------------------- | ------------ | ----------------------- | ------- |
@@ -18,7 +18,7 @@ The Spinner shows while IsFetchingSubdivisions is True (default True). Then come
 - The animated list of RadioButtonListItem (the main hall's title in primary) or "No results found".
 
 OnReady: `getLocality` (`../lib/actions.ts`: GetCacheableLocality, 20 min memory cache, then
-GetLocalBookmarkedLocalityInformation: IsBookmarked flags from the device's legacy bookmarks; this block reads none). The
+GetLocalBookmarkedLocalityInformation: IsBookmarked flags from the device's C2 bookmarks, by category; this block reads none). The
 search filters by name (`listFilterByName`, diacritics and case ignored); an empty term reloads through GetLocality.
 
 Users: `Assemble_FilterLocalityByCountry` (AssembleEvents, Assemble_BrowseByCountry).

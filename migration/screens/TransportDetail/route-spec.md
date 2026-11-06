@@ -1,16 +1,16 @@
 # Route spec: TransportDetail
 
-Sources (analysis/sources/, extracted unchanged, CRLF → LF, from capture/survey-UBTConnect.json `sources`). The newer TST
-copies in migration/runtime-sources/ of the screen, TransportDetail and TransportDetail_TravelInfo differ only in
+Sources (migration/sources/, extracted unchanged, CRLF → LF, from migration/survey/survey-UBTConnect.json `sources`). The newer TST
+copies in migration/sources/runtime/ of the screen, TransportDetail and TransportDetail_TravelInfo differ only in
 debugger ids. Keys:
 - `S` = UBTConnect.Legacy_OrbitEventsFlow.TransportDetail.mvc.js
 - `SB` = Connect2_OrbitMobile_MUI.
   Orbit_ScreenBlocks.ScreenBlock_TransportDetail.mvc.js
 - `TD` = Connect2_OrbitMobile_MUI.Orbit_Blocks.TransportDetail.mvc.js
 - `TI` = Connect2_OrbitMobile_MUI.Orbit_Blocks.TransportDetail_TravelInfo.mvc.js
-- `C` = migration/runtime-sources/
+- `C` = migration/sources/runtime/
   Connect2_OrbitMobile_MUI.controller.js
-- `TF` = migration/runtime-sources/Connect2_OrbitMobile_MUI.TimeFormat.js.
+- `TF` = migration/sources/runtime/Connect2_OrbitMobile_MUI.TimeFormat.js.
 
 No capture (no-capture.json, user 2026-10-16): built from the compiled code.
 

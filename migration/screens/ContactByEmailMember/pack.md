@@ -383,5 +383,5 @@ export interface Household_MarkersItem {
 ## Look up on demand
 
 - `migration/screens/ContactByEmailMember/analysis/dom/<state>.html` full markup (line numbers in collapsed markers refer to dom/default.html)
-- `migration/screens/ContactByEmailMember/analysis/sources/pretty/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
 - `migration/screens/ContactByEmailMember/analysis/css-relevant.md` only when a visual diff cannot be explained by markup

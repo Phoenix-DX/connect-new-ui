@@ -34,7 +34,7 @@ export interface NoteListActionsContainerProps {
   onOnShowAllNotesRequested?: () => void;
 }
 
-/** Edit and delete of the notes around Note_Item_List (migration/blocks/sources/
+/** Edit and delete of the notes around Note_Item_List (migration/sources/survey/
     UBTConnect_Utils.CW_Notes.NoteListActions.mvc.js: view :250-300, controller :300-860), keeping the device's local
     copy of the notes in step (shell/localEntities). */
 export function NoteListActionsContainer({

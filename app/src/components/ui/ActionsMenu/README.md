@@ -2,7 +2,7 @@
 
 OutSystems: `UBTConnectLibrary.ConnectCorePatterns.ActionsMenu` · pack
 `migration/blocks/UBTConnectLibrary.ConnectCorePatterns.ActionsMenu.md` · compiled source
-`migration/screens/HouseholdCarousel/analysis/sources/pretty/UBTConnectLibrary.ConnectCorePatterns.ActionsMenu.mvc.js`
+`migration/sources/pretty/UBTConnectLibrary.ConnectCorePatterns.ActionsMenu.mvc.js`
 
 | Input                   | Type                        | Prop                     | Default                                        |
 | ----------------------- | --------------------------- | ------------------------ | ---------------------------------------------- |

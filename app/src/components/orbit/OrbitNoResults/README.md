@@ -2,7 +2,7 @@
 
 OutSystems: `Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.NoResults` · pack
 `migration/blocks/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.NoResults.md` · source
-`migration/blocks/sources/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.NoResults.mvc.js`
+`migration/sources/survey/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.NoResults.mvc.js`
 
 No inputs, no events. Placeholders `Placeholder_Title`, `Placeholder_Message` → `placeholderTitle`,
 `placeholderMessage`.

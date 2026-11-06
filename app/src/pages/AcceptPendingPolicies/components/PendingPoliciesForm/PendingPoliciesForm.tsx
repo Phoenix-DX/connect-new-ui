@@ -2,15 +2,12 @@ import type { PendingPolicy } from '@/api/policy';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
 import { CustomContainer } from '@/components/ui/CustomContainer';
-import { CustomText } from '@/components/ui/CustomText';
 import { FixedFooter } from '@/components/ui/FixedFooter';
 import { Icon } from '@/components/ui/Icon';
 import {
   UBT_Color,
   UBT_ColumnBehaviour,
   UBT_FlexDirection,
-  UBT_FontSize,
-  UBT_FontWeight,
   UBT_Shadow,
   UBT_Size,
 } from '@/lib/ubtConnectLibrary/staticEntities';
@@ -33,21 +30,16 @@ export interface PendingPoliciesFormProps {
   onToggleAll?: () => void;
   /** The Continue button. */
   onContinue?: () => void;
-  /** The policy type name of one row. */
-  onPolicyClick?: (policy: PendingPolicy) => void;
 }
 
-const TEXT_SMALL_REGULAR = {
-  Color: UBT_Color.Neutral0,
-  FontSize: UBT_FontSize.Small,
-  FontWeight: UBT_FontWeight.Regular,
-};
-
 /** @origin UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies
-    The view of the block, props only: the list of the pending policies with a checkbox each, "I agree to all" when
-    there are 2 or more, and the fixed footer with Continue (disabled until all are selected). While the first fetch
-    runs: the list-updating container; with no policy: the "accepted all" message. The flows are in
-    hooks/usePendingPoliciesForm.ts. */
+    The view of the block, props only: the list of the pending policies with a checkbox each, "I agree to all Terms &
+    Conditions and the Privacy Policy" when there are 2 or more, and the fixed footer with Continue (disabled until all
+    are selected). While the first fetch runs: the list-updating container; with no policy: the "accepted all" message.
+    The flows are in hooks/usePendingPoliciesForm.ts.
+    Captured 2026-11-06 (one pending policy, analysis/dom/default.html). The texts of a row and of "agree to all" are
+    plain Expression widgets (Policy_Custom_AcceptPendingPolicies.mvc.js:419-445, :632-660); the CustomText containers
+    of the older version are `visible: false` (:332-336, :539-543) and do not render, so the policy name has no click. */
 export function PendingPoliciesForm({
   id,
   rows,
@@ -56,7 +48,6 @@ export function PendingPoliciesForm({
   onToggle,
   onToggleAll,
   onContinue,
-  onPolicyClick,
 }: PendingPoliciesFormProps) {
   const prefix = id?.replace('$', '');
   const childId = (n: number) => (prefix === undefined ? undefined : `${prefix}-$b${String(n)}`);
@@ -88,31 +79,23 @@ export function PendingPoliciesForm({
           columnOptions={{ ColumnBehaviour: UBT_ColumnBehaviour.ReduceLast, FlexDirection: UBT_FlexDirection.Column }}
           extendedClasses="ubt-policies--columns"
           left={
-            <div className="list list-group ubt-policies--list OSFillParent" data-list="">
+            <div className="list list-group ubt-policies--list text-align-left OSFillParent" data-list="">
               {rows.map((policy, index) => (
-                <div className="display-flex margin-y-xl" data-container="" key={policy.id}>
+                <div className="display-flex margin-y-xl margin-right-l" data-container="" key={policy.id}>
                   {checkbox(policy.isSelected, () => {
                     onToggle?.(index);
                   })}
-                  <div className="margin-left-xs white-space-nowrap" data-container="">
-                    <CustomText
-                      fitContent
-                      inText={`I agree to the ${policy.applicationName} - `}
-                      inTextOptions={TEXT_SMALL_REGULAR}
-                    />
-                    <CustomText
-                      inTextOptions={{
-                        Color: UBT_Color.Neutral0,
-                        FontSize: UBT_FontSize.Small,
-                        FontWeight: UBT_FontWeight.SemiBold,
-                        IsUnderlined: true,
-                      }}
-                      inText={policy.policyTypeName}
-                      fitContent
-                      onClicked={() => {
-                        onPolicyClick?.(policy);
-                      }}
-                    />
+                  <div className="margin-left-xs" data-container="">
+                    <span className="font-size-s font-regular" data-expression="">
+                      {'I have read and agree to the '}
+                    </span>
+                    <span
+                      className="font-size-s font-semi-bold text-underline"
+                      data-expression=""
+                      style={{ marginLeft: '0px' }}
+                    >
+                      {`${policy.applicationName} ${policy.policyTypeName}`}
+                    </span>
                   </div>
                 </div>
               ))}
@@ -130,7 +113,16 @@ export function PendingPoliciesForm({
                     onClick={onToggleAll}
                   />
                   <div className="margin-left-xs" data-container="">
-                    <CustomText id={childId(9)} inTextOptions={TEXT_SMALL_REGULAR} fitContent inText="I agree to all" />
+                    <span className="font-size-s font-regular" data-expression="">
+                      {'I agree to '}
+                    </span>
+                    <span
+                      className="font-size-s font-semi-bold text-underline"
+                      data-expression=""
+                      style={{ marginLeft: '0px' }}
+                    >
+                      all Terms &amp; Conditions and the Privacy Policy
+                    </span>
                   </div>
                 </div>
               </div>
@@ -138,13 +130,13 @@ export function PendingPoliciesForm({
           }
         />
         <FixedFooter
-          id={childId(10)}
+          id={childId(11)}
           useBottomBar={false}
           expectedFooterHeight="calc(2 * var(--space-base) + var(--ubt-button-height-m))"
           contentContainerId={contentBlockId}
         >
           <CustomContainer
-            id={childId(11)}
+            id={childId(12)}
             options={{
               Background: { BackgroundColor: UBT_Color.Neutral0 },
               PaddingSize: { GeneralSizeId: UBT_Size.Base },
@@ -152,7 +144,7 @@ export function PendingPoliciesForm({
             }}
           >
             <ActionButton
-              id={childId(12)}
+              id={childId(13)}
               isDisabled={!isAllSelected}
               buttonText="Continue"
               onButtonOnClick={onContinue}

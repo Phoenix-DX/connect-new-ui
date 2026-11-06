@@ -20,6 +20,17 @@ const member = (n: number, name: string, location: string): SearchResultWire => 
   Score: '0',
   Latitude: '0',
   Longitude: '0',
+  DisplayHouseholdName: false,
+  DisplayAddress: false,
+  Event_IsPersonal: false,
+  Event_EventTypeTitle: '',
+  Event_HostSubdivisionId: '0',
+  Event_HostHouseholderId: '0',
+  Event_Source: '',
+  Event_EventHostId: '',
+  Event_StartDate: '1900-01-01',
+  Event_EndDate: '1900-01-01',
+  Event_OrbitEventType: '',
 });
 const MEMBERS = SHARE_MEMBERS.map(([name, location], i) => member(i + 1, name, location));
 

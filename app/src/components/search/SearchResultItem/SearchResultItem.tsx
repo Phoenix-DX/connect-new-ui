@@ -2,14 +2,19 @@
 // @os-block UBTConnect_Utils.CW_Search.SearchResult_Item
 import { useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
+import { AvatarImage } from '@/components/ui/AvatarImage';
 import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
 import { Icon } from '@/components/ui/Icon';
 import { IconText } from '@/components/ui/IconText';
+import { TagContent } from '@/components/ui/TagContent';
+import { formatConnectDate_WithYear } from '@/lib/ubtConnectLibrary/actions';
 import { UBT_ColumnBehaviour, UBT_VerticalAlign } from '@/lib/ubtConnectLibrary/staticEntities';
+import { Connect_EventTypes } from '@/lib/ubtConnect/staticEntities';
 import {
   Connect_Entity,
+  UBT_AvatarSize,
   UBT_Color,
   UBT_FontSize,
   UBT_FontWeight,
@@ -46,16 +51,40 @@ export interface SearchResultItemProps {
   children?: ReactNode;
 }
 
-/** OnInitialize (SearchResult_Item.mvc.js:745-778): a Member gets a square, Medium_60 wide, rounded image; any other
-    entity an auto height, ListThumbnail_104 wide, soft image; In_ImageHeightId / In_ImageWidthId then override. */
-function imageOptions(type: string, heightId: string, widthId: string) {
-  const isMember = type === Connect_Entity.Member;
+/** OnInitialize (live UBTConnect_Utils.CW_Search.SearchResult_Item.mvc.js:918-964). The image entity: an Assemble event
+    shows its hall (SupperMeetings_aka_Subdivisions, Event_HostSubdivisionId), an LDM event its host household
+    (Household, Event_HostHouseholderId), any other row its own Type and Id. A Member or an Orbit event
+    (Event_OrbitEventType not "") gets a square, Medium_60 wide, rounded image; any other row an auto height,
+    ListThumbnail_104 wide, soft image; In_ImageHeightId / In_ImageWidthId then override. */
+function imageOptions(searchResult: SearchResult, heightId: string, widthId: string) {
+  const source = searchResult.Event_Source ?? '';
+  const entity =
+    source === Connect_EventTypes.Assemble
+      ? { type: Connect_Entity.SupperMeetings_aka_Subdivisions, id: searchResult.Event_HostSubdivisionId ?? '0' }
+      : source === Connect_EventTypes.LDM
+        ? { type: Connect_Entity.Household, id: searchResult.Event_HostHouseholderId ?? '0' }
+        : { type: searchResult.Type ?? '', id: searchResult.Id ?? '' };
+  const isSquare = searchResult.Type === Connect_Entity.Member || (searchResult.Event_OrbitEventType ?? '') !== '';
   return {
-    height: heightId !== '' ? heightId : isMember ? UBT_ImageSize.Square : UBT_ImageSize.Auto,
-    width: widthId !== '' ? widthId : isMember ? UBT_ImageSize.Medium_60 : UBT_ImageSize.ListThumbnail_104,
-    shape: isMember ? UBT_Shape.Rounded : UBT_Shape.Soft,
+    entityType: entity.type,
+    entityId: entity.id,
+    height: heightId !== '' ? heightId : isSquare ? UBT_ImageSize.Square : UBT_ImageSize.Auto,
+    width: widthId !== '' ? widthId : isSquare ? UBT_ImageSize.Medium_60 : UBT_ImageSize.ListThumbnail_104,
+    shape: isSquare ? UBT_Shape.Rounded : UBT_Shape.Soft,
   };
 }
+
+/** The Orbit event avatar (SearchResult_Item.mvc.js:363-382): AvatarImage with no URL, the TransportPlane fallback icon
+    in Primary, a Neutral3 Small border, icon NonStandard_40, size Medium_60, circle. */
+const ORBIT_AVATAR = {
+  FallbackOptions: {
+    IconId: UBT_Icons.TransportPlane,
+    FontColor: UBT_Color.Primary,
+    BorderColor: UBT_Color.Neutral3,
+    BorderSize: UBT_Size.Small,
+    IconSizeId: UBT_IconSize.NonStandard_40,
+  },
+};
 
 const HIGHLIGHT = { Color: UBT_Color.Primary, FontWeight: UBT_FontWeight.Bold };
 const GREY_XS = { Color: UBT_Color.Neutral7, FontSize: UBT_FontSize.ExtraSmall };
@@ -75,9 +104,10 @@ export function SearchResultItem({
   children,
 }: SearchResultItemProps) {
   // OnInitialize runs once (no OnParametersChanged handler).
-  const [image] = useState(() => imageOptions(inSearchResult.Type ?? '', inImageHeightId, inImageWidthId));
+  const [image] = useState(() => imageOptions(inSearchResult, inImageHeightId, inImageWidthId));
   const additionalInformation = inSearchResult.AdditionalInformation ?? '';
   const location = inSearchResult.Location ?? '';
+  const eventSource = inSearchResult.Event_Source ?? '';
   return (
     <OSBlock name="CW_Search.SearchResult_Item" id={id}>
       <CustomContainer
@@ -98,13 +128,21 @@ export function SearchResultItem({
                 VerticalAlign: UBT_VerticalAlign.Center,
               }}
               left={
-                <EntityLazyImage
-                  entityId={inSearchResult.Id ?? ''}
-                  inBorderRadius={image.shape}
-                  imageSize={{ Height: image.height, Width: image.width }}
-                  entityType={inSearchResult.Type ?? ''}
-                  imageURL={inImageURL}
-                />
+                (inSearchResult.Event_OrbitEventType ?? '') !== '' ? (
+                  <AvatarImage
+                    inAvatarImage={ORBIT_AVATAR}
+                    inSizeId={UBT_AvatarSize.Medium_60}
+                    inBorderRadius={UBT_Shape.Circle}
+                  />
+                ) : (
+                  <EntityLazyImage
+                    entityId={image.entityId}
+                    inBorderRadius={image.shape}
+                    imageSize={{ Height: image.height, Width: image.width }}
+                    entityType={image.entityType}
+                    imageURL={inImageURL}
+                  />
+                )
               }
               right={
                 <>
@@ -163,6 +201,36 @@ export function SearchResultItem({
                               inColorId={UBT_Color.Neutral7}
                             />
                           </IconText>
+                        </CustomContainer>
+                      )}
+                      {/* An event row (SearchResult_Item.mvc.js:699-830): its source tag and its start date. */}
+                      {eventSource !== '' && (
+                        <CustomContainer options={{ MarginSize: { TopSizeId: UBT_Size.ExtraSmall } }}>
+                          <ColumnsTwo
+                            columnOptions={{
+                              ColumnBehaviour: UBT_ColumnBehaviour.ReduceFirst,
+                              SpacingSize: UBT_Size.ExtraSmall,
+                              VerticalAlign: UBT_VerticalAlign.Center,
+                            }}
+                            left={
+                              /* TagContent (live SearchResult_Item.mvc.js:757-783) with the padding and shape inputs of
+                                 the live TagContent (2026-11-05). */
+                              <TagContent
+                                inShapeId={UBT_Shape.Soft}
+                                inHorizontalPaddingSizeId={UBT_Size.ExtraSmall}
+                                inVerticalPaddingSizeId={UBT_Size.ExtraSmall}
+                                textColorId={UBT_Color.Primary}
+                                backgroundColorId={UBT_Color.CyanLighter}
+                                text={eventSource}
+                              />
+                            }
+                            right={
+                              <CustomText
+                                inText={formatConnectDate_WithYear(inSearchResult.Event_StartDate ?? '').LongLabel}
+                                inTextOptions={{ FontSize: UBT_FontSize.ExtraSmall }}
+                              />
+                            }
+                          />
                         </CustomContainer>
                       )}
                     </>

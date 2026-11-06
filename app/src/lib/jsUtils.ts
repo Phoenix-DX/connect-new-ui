@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { useOsNavigate } from '@/platform/navigation';
 
 /* Client actions of UBTJavaScriptUtils used by the shared blocks, ported 1:1 from UBTJavaScriptUtils.controller.js
-   (copy in migration/shell/sources/). One function per action, named after it in lowerCamelCase. */
+   (copy in migration/sources/shell/). One function per action, named after it in lowerCamelCase. */
 
 /** JSUtils_SetStyleProperty (:2912-2920): sets a style property on the element with that id, if any. */
 export function jSUtils_SetStyleProperty(objectId: string, propertyName: string, propertyValue: string): void {
@@ -23,7 +23,7 @@ export function appPathOf(url: string): string | null {
 
 export type ScreenController_NavigateToPage = (url: string, replaceInHistory: boolean) => void;
 
-/** Navigation.changeWindowLocation(URL) with its defaults (runtime-sources/OutSystems.js:8:6637): no invalidation
+/** Navigation.changeWindowLocation(URL) with its defaults (sources/runtime/OutSystems.js:8:6637): no invalidation
     suffix, replace False, so `location.href = URL` (a new history entry). The runtime runs it after flushing its log
     storage; the clone has none, so it runs at once. */
 export function changeWindowLocation(url: string, location: Pick<Location, 'href'> = window.location): void {
@@ -32,7 +32,7 @@ export function changeWindowLocation(url: string, location: Pick<Location, 'href
 
 /** ScreenController_NavigateToPage(URL, ReplaceInHistory) (:3713-3789): the screen controller's
     `publicApiHelper.Navigation.navigateTo(URL, transition, isReplace)` → runtime Navigation.navigateTo
-    (runtime-sources/OutSystems.js:16:26318 → :8:698). The runtime asks getUrlInfo (:8:7127) whether the URL belongs to
+    (sources/runtime/OutSystems.js:16:26318 → :8:698). The runtime asks getUrlInfo (:8:7127) whether the URL belongs to
     this application: an internal URL goes to the router's goTo with the replace flag (here the shell navigation,
     `useOsNavigate`, so a pending ReplaceOnUpcomingNavigation still applies); any other URL goes to changeWindowLocation
     with its defaults, so ReplaceInHistory is ignored and the page is loaded with `location.href` in both cases.
@@ -50,7 +50,7 @@ export function useScreenController_NavigateToPage(): ScreenController_NavigateT
   );
 }
 
-/** JSUtils_PageOpenInNewTab (UBTJavaScriptUtils.controller.js, TST copy in migration/shell/sources, :2133-2177):
+/** JSUtils_PageOpenInNewTab (UBTJavaScriptUtils.controller.js, TST copy in migration/sources/shell, :2133-2177):
     `window.open(URL, '_blank')`. */
 export function jSUtils_PageOpenInNewTab(url: string): void {
   window.open(url, '_blank');

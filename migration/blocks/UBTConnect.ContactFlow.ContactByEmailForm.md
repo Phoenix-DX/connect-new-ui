@@ -1,7 +1,7 @@
 # UBTConnect.ContactFlow.ContactByEmailForm
 
 - Kind: shared; build screens using it: ContactByEmailMember, ContactByEmailOneSchoolGlobal
-- Compiled source: `migration/screens/ContactByEmailMember/analysis/sources/pretty/UBTConnect.ContactFlow.ContactByEmailForm.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.ContactFlow.ContactByEmailForm.mvc.js`
 - Child blocks: OutSystemsUI_2_23.Utilities.ButtonLoading, UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_Navigation, UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.ConnectPatterns.DynamicTextArea, UBTConnectLibrary.ConnectPatterns.FixedFooter, UBTConnectLibrary.ConnectPatterns.InputCounter, UBTConnectLibrary.ConnectPatterns.TextArea_WithCounter, UBTConnect_Utils.CW_Common.Button (queue: UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_Navigation, UBTConnectLibrary.ConnectPatterns.DynamicTextArea)
 
 ## Inputs
@@ -293,4 +293,4 @@ define("UBTConnect.ContactFlow.ContactByEmailForm.mvc$view", ["OutSystems/Client
                                             _dependencies: [asPrimitiveValue(model.variables._isLoadingInDataFetchStatus), asPrimitiveValue(model.variables._in_SubjectInDataFetchStatus), asPrimitiveValue(model.variables.isLoadingIn), asPrimitiveValue(model.variables.in_SubjectIn), asPrimitiveValue(model.variables.subjectVar)]
                                         }), $if(((model.variables.in_SubjectIn) !== ("")), false, this, function() {
 ```
-(… 343 more lines in `migration/screens/ContactByEmailMember/analysis/sources/pretty/UBTConnect.ContactFlow.ContactByEmailForm.mvc.js`)
+(… 343 more lines in `migration/sources/pretty/UBTConnect.ContactFlow.ContactByEmailForm.mvc.js`)

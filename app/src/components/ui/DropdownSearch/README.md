@@ -2,7 +2,7 @@
 
 OutSystems UI: `OutSystemsUI_2_23.Interaction.DropdownSearch` · pack
 `migration/blocks/OutSystemsUI_2_23.Interaction.DropdownSearch.md` · compiled source
-`migration/blocks/sources/OutSystemsUI_2_23.Interaction.DropdownSearch.mvc.js` · stack `osui:DropdownSearch` = same
+`migration/sources/survey/OutSystemsUI_2_23.Interaction.DropdownSearch.mvc.js` · stack `osui:DropdownSearch` = same
 provider as the original: Virtual Select v1.3.0, vendored from TST in `vendor/` (SOURCE.md, ADR-5).
 
 | Input             | Type                       | Prop                | Default                        |
@@ -18,7 +18,7 @@ Events `Initialized(DropdownSearchId)` → `onInitialized`, `OnChanged(DropdownI
 
 Ported: OnInitialize (InternalConfigs with the block defaults), OnReady (DropdownCreate + Initialize), OnParametersChanged
 (one changeProperty per changed input, compiled order), OnDestroy, OnSelectHandler / InitializedHandler. Provider glue
-`provider.ts` (the provider class) and `providerConfig.ts` (types, option grouping, `getProviderConfig`) from `migration/runtime-sources/OutSystemsUI_2_23.OutSystemsUI.js` (AbstractVirtualSelect, the Search
+`provider.ts` (the provider class) and `providerConfig.ts` (types, option grouping, `getProviderConfig`) from `migration/sources/runtime/OutSystemsUI_2_23.OutSystemsUI.js` (AbstractVirtualSelect, the Search
 mode, their configs; line refs inside). The vscomp / osui-dropdown CSS is the original OSUI stylesheet.
 
 ## Captured variants

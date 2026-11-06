@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { SearchResult } from '@/api/search';
+import { SEARCH_RESULT_EVENT_DEFAULTS, type SearchResult } from '@/api/search';
 import {
   INITIAL_SEARCH_STATE,
   NO_RESULTS,
@@ -25,15 +25,18 @@ const result = (id: string, type: string): SearchResult => ({
   latitude: '0',
   longitude: '0',
   recordDisabled: false,
+  ...SEARCH_RESULT_EVENT_DEFAULTS,
 });
 
 describe('search client actions', () => {
-  it('initialTagList: All, Households, Members, Places; the selected category is selected', () => {
+  it('initialTagList: All, Households, Members, Places, Events, Schools; the selected category is selected', () => {
     expect(initialTagList('All')).toEqual([
       { Text: 'All', Identifier: 'All', IconId: '', IsSelected: true, Enabled: true },
       { Text: 'Households', Identifier: 'Households', IconId: '', IsSelected: false, Enabled: true },
       { Text: 'Members', Identifier: 'People', IconId: '', IsSelected: false, Enabled: true },
       { Text: 'Places', Identifier: 'Places', IconId: '', IsSelected: false, Enabled: true },
+      { Text: 'Events', Identifier: 'Events', IconId: '', IsSelected: false, Enabled: true },
+      { Text: 'Schools', Identifier: 'Schools', IconId: '', IsSelected: false, Enabled: true },
     ]);
     expect(
       initialTagList('Places')
@@ -95,7 +98,11 @@ describe('searchReducer', () => {
   });
 
   it('a search: resultsCleared, searchStarted, then resultsFetched shows the sections of the category', () => {
-    const results = { households: [result('7300', 'Household')], people: [result('7302', 'Member')], places: [] };
+    const results = {
+      ...NO_RESULTS,
+      households: [result('7300', 'Household')],
+      people: [result('7302', 'Member')],
+    };
     let state = searchReducer(INITIAL_SEARCH_STATE, { type: 'searchKeySet', text: 'Rojas' });
     state = searchReducer(state, { type: 'resultsCleared' });
     state = searchReducer(state, { type: 'searchStarted', searchKey: 'Rojas' });
@@ -152,7 +159,61 @@ describe('searchReducer', () => {
       latitude: '',
       longitude: '',
       recordDisabled: false,
+      ...SEARCH_RESULT_EVENT_DEFAULTS,
     });
+  });
+
+  // OnAfterFetch_FetchSearchResults (live ScreenBlock_Search.mvc.js:4217-4221): HasEvents and HasSchool.
+  it('resultsFetched: HasEvents and HasSchool when the list is not empty and the category is null, All or its own', () => {
+    const results = {
+      ...NO_RESULTS,
+      events: [{ ...result('70415', ''), eventSource: 'LDM' }],
+      schools: [result('1431', 'OneSchool Global')],
+    };
+    const flags = (selectedCategory: string) => {
+      const s = searchReducer(INITIAL_SEARCH_STATE, { type: 'resultsFetched', results, selectedCategory });
+      return [s.hasEvents, s.hasSchool];
+    };
+    expect(flags('All')).toEqual([true, true]);
+    expect(flags('')).toEqual([true, true]);
+    expect(flags('Events')).toEqual([true, false]);
+    expect(flags('Schools')).toEqual([false, true]);
+    expect(flags('People')).toEqual([false, false]);
+    const empty = searchReducer(INITIAL_SEARCH_STATE, {
+      type: 'resultsFetched',
+      results: NO_RESULTS,
+      selectedCategory: 'All',
+    });
+    expect([empty.hasEvents, empty.hasSchool]).toEqual([false, false]);
+  });
+
+  // live ScreenBlock_Search.mvc.js:2761-2772: Events and Schools get the loading rows, Type Household.
+  it('withLoadingRows: Events and Schools get three Household rows for All or their own category', () => {
+    const types = (r: SearchResult[]) => r.map((x) => x.type);
+    const all = withLoadingRows(NO_RESULTS, 'All');
+    expect([types(all.events), types(all.schools)]).toEqual([
+      ['Household', 'Household', 'Household'],
+      ['Household', 'Household', 'Household'],
+    ]);
+    const events = withLoadingRows(NO_RESULTS, 'Events');
+    expect([events.places, events.households, events.people, events.schools].map((l) => l.length)).toEqual([
+      0, 0, 0, 0,
+    ]);
+    expect(events.events).toHaveLength(3);
+    const schools = withLoadingRows(NO_RESULTS, 'Schools');
+    expect([schools.events.length, schools.schools.length]).toEqual([0, 3]);
+    expect([withLoadingRows(NO_RESULTS, 'People').events, withLoadingRows(NO_RESULTS, 'Places').schools]).toEqual([
+      [],
+      [],
+    ]);
+  });
+
+  it('resultsCleared empties the Events and Schools lists too', () => {
+    const state = {
+      ...INITIAL_SEARCH_STATE,
+      results: { ...NO_RESULTS, events: [result('70415', '')], schools: [result('1431', 'OneSchool Global')] },
+    };
+    expect(searchReducer(state, { type: 'resultsCleared' }).results).toEqual(NO_RESULTS);
   });
 
   // Action_RefreshSearch (ScreenBlock_Search.mvc.js:2475-2533): LoadingList appended to each list in scope.

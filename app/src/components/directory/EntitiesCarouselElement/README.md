@@ -1,7 +1,7 @@
 # EntitiesCarousel_Element
 
 `UBTConnect.Directory_Caroussel.EntitiesCarousel_Element`: one slide of EntitiesCarousel. Compiled source:
-`migration/screens/HouseholdCarousel/analysis/sources/pretty/UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc.js`.
+`migration/sources/pretty/UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc.js`.
 
 | Input                                   | Prop                       | Default |
 | --------------------------------------- | -------------------------- | ------- |

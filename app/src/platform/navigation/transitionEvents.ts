@@ -1,5 +1,5 @@
 /* NavigationHandler OnApplicationReady_NavigationHandler.TransitionEventsJS (NavigationHandler.controller.js:1288-1490,
-   copy in migration/screens/HomeFeed/analysis/sources/raw/): the window events `dx-navigation-transition-start` and
+   copy in migration/sources/raw/): the window events `dx-navigation-transition-start` and
    `dx-navigation-transition-end` that blocks listen to (OnApplicationReady_BottomBarSlider in UBTConnectLibrary,
    LockOrientationWithNavigationTransition in UBTConnect). The original patches react-transition-group's
    Transition.safeSetState around the screen containers of the runtime's TransitionGroup. The clone renders the same

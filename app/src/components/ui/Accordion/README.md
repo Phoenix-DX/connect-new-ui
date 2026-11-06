@@ -1,7 +1,7 @@
 # Accordion (OutSystems UI)
 
 OutSystems UI: `OutSystemsUI_2_23.Content.Accordion` · pack `migration/blocks/OutSystemsUI_2_23.Content.Accordion.md` ·
-compiled source `migration/screens/HostSurvey/analysis/sources/pretty/OutSystemsUI_2_23.Content.Accordion.mvc.js`
+compiled source `migration/sources/pretty/OutSystemsUI_2_23.Content.Accordion.mvc.js`
 
 | Input         | Type    | Prop            | Default |
 | ------------- | ------- | --------------- | ------- |
@@ -11,7 +11,7 @@ compiled source `migration/screens/HostSurvey/analysis/sources/pretty/OutSystems
 Event `Initialized(AccordionId)` → `onInitialized`. Placeholder `Content` → `children` (AccordionItem blocks).
 
 Stack decision (`osui:Accordion`): hand-written, no library. Provider ported from
-`migration/runtime-sources/OutSystemsUI_2_23.OutSystemsUI.js` (Accordion :4066-4245): role `list` on the first `.list`
+`migration/sources/runtime/OutSystemsUI_2_23.OutSystemsUI.js` (Accordion :4066-4245): role `list` on the first `.list`
 inside (else on the accordion), items register through `AccordionContext` (`accordionContext.ts`: Add / Click /
 Removed notifications, CollapseAllItems), single open item unless MultipleItems, MultipleItems → False collapses all.
 

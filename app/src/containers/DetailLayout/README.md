@@ -39,7 +39,7 @@ subset covers each combination that occurs; the other states differ in placehold
   compiled code only, tested. No capture has header-right or header content.
 - **SetScrollEvents (OnReady, controller :511-540) / OnDestroy (:549)**: SetScrollShadow / RemoveScrollEvents /
   ClearTimeout (`../lib/actions.ts`), ports of the global `ScrollEvent` of
-  `migration/runtime-sources/UBTConnectLibrary.ScrollAnimations.js` (shadowScroll :151-205, removeEvents :426-435,
+  `migration/sources/runtime/UBTConnectLibrary.ScrollAnimations.js` (shadowScroll :151-205, removeEvents :426-435,
   clearTimeout :436-440). The actions set `--footer-shadow-scroll` (hidden at the bottom) and `--header-shadow-scroll`
   (visible once scrolled) on the `.active-screen.screen-container` that holds the layout. They set them 200 ms after
   OnReady and on each scroll. The tests scroll the container (no capture is scrolled).

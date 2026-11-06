@@ -1,7 +1,7 @@
 # OutSystemsUI_2_23.Adaptive.Columns2
 
 - Kind: osui; build screens using it: AcceptPendingPolicies, BookmarksByGroup, BrowseCountries, BrowseDirectory, CommunityBusinessDetails_CoomingSoon, ConnectShare, ContactByEmailMember, ContactByEmailOneSchoolGlobal, ContactUsDetails, ContactUsMenu, CountryDetails, CountryList, FeedItemDetail, HomeFeed, HouseholdCarousel, HouseholdDetails, Household_Relations, LegacyShareObject, Locality_Details, Login, Menu, MessageDetail, MessageList, MyBookmarks, MyEntertaining, Notes, Notifications, OneSchoolGlobalDetails, PINBiometricsMenu, PINChange, PINRegister, PINUnlock, Photobook, Profile, Search, Services, SupperMeeting_Carousel, SupperMeeting_Details, TermsAndPoliciesMenu, Updates_SingleList
-- Compiled source: `migration/screens/BrowseCountries/analysis/sources/pretty/OutSystemsUI_2_23.Adaptive.Columns2.mvc.js`
+- Compiled source: `migration/sources/pretty/OutSystemsUI_2_23.Adaptive.Columns2.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

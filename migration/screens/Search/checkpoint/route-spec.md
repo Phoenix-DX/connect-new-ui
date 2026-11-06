@@ -61,11 +61,11 @@ In_IsInScreenSearch = False, In_IsEventNavigation = False, In_SearchTargetId = "
 - P-MOCKS: `mocks.ts` recordedHandler for the birthday options, contractHandler for the fictional search results.
 - P-CALLS: birthday options on OnReady (load), FetchSearchResults only on user events.
 - P-FLAGS: `useFlagOn('C2EnableSearchByBirthday')`, `useFlagOn('C2EnableCarousel')`.
-- P-DIALOG: upgrade popup through the shell (`showUpgradePopUp`), error messages through `raiseToFlowHandler`.
+- P-DIALOG: upgrade dialog through the shell (`showUpgradePopUp`), error messages through `raiseToFlowHandler`.
 - P-BACK: block variables (search key, category, results) kept with `useViewState`.
 
 ## Feature flags
-- `outSystems_FF.c2EnableSearchByBirthday`: MCP unavailable; decision default-only, TST value on (user, 2026-10-14); implemented as `useFlagOn('C2EnableSearchByBirthday')` gating the birthday options call and block.
+- `outSystems_FF.c2EnableSearchByBirthday`: MCP unavailable; decision default-only, TST value on (user, 2026-10-14); implemented as `useFlagOn('C2EnableSearchByBirthday')`, which controls the birthday options call and block.
 - `action:getHasCarouselEnabled` (C2EnableCarousel): decision default-only, TST on (user, 2026-10-14); `useFlagOn('C2EnableCarousel')` in the item click.
 - `action:getHasC1DirectoryView`, `action:getHasNewBookmarks`, `launchDarkly_FF.mobileDirectoryBookmarkNote`, `action:connect_LaunchDarkly_PermissionCheck`, `clientVar:App_PIN_BiometricEnabled`, `registeredCallbackEvents.onToggle`, `action:getFlagURLByCountryCode`: read inside shared/shell blocks (BottomBarMenu, FilterSheet, CommonUI); not read by this route's code (decisions user, 2026-10-14).
 
@@ -75,17 +75,17 @@ In_IsInScreenSearch = False, In_IsEventNavigation = False, In_SearchTargetId = "
 - Q3 (submit validation): answered by the user (2026-10-15) — ValidateSearchPhoneNumber ported (`components/actions.ts`).
 - Q4 (input focus): answered by user — exemption CAPTURE-UNFOCUSED-SEARCH-INPUT.
 - Q5 (extra GetUserInformation): answered by the user (2026-10-15) — CR-Search-3 applied in the shell; no extra call.
-- SearchResults_Recent.mvc.js (survey sources) is a separate block that ScreenBlock_Search does not use: the recent UI is inline in ScreenBlock_Search's view (:502-1119) and is built from there.
+- SearchResults_Recent.mvc.js (survey sources) is a separate block that ScreenBlock_Search does not use. The recent UI is inline in the view of ScreenBlock_Search (:502-1119), and the React app builds it from there.
 
 ## Decisions to confirm
 - FetchSearchResults is not recorded: fictional contract mock (2 households, 3 members, 1 place, any term; `empty` = none).
-- Recent search, result sections, birthday options and the no-results texts are built from the compiled views but no captured state shows them (review by hand: type a term, submit, open a result, come back).
+- No captured state shows the recent search, the result sections, the birthday options and the no-results texts. The React app builds them from the compiled views (review by hand: type a term, submit, open a result, come back).
 - Named widget ids (`b1-RecentSearch`, `b1-Recent_SearchResults`, `b1-Recent_SearchTerms`, `b1-Padding`, `b1-PlacesSection`, …) follow the OutSystems naming but are not captured.
 - OSWidgets.List markup of the uncaptured lists (`list list-group OSFillParent` + `data-list`; recent clicked also `data-animation-disabled`/`data-virtualization-disabled`) follows the captured lists of other blocks.
 - Static values not in the shared constants taken from TST (knowledge/static-entities-tst.json): icons history/calendar/close, space xs, font weight bold.
-- Recent lists are stored in IndexedDB as TST does (no tokens; user id, terms and clicked result names stay on the device).
+- The React app stores the recent lists in IndexedDB, as TST does (no tokens; user id, terms and clicked result names stay on the device).
 - Input FocusOnReady kept; captured unfocused border masked by the accepted exemption CAPTURE-UNFOCUSED-SEARCH-INPUT (Q4).
-- Shell change (CR-Search-3): signed-in app start waits for the first screen before Sync_Info_GetMain, and user-info readers wait for the app start's step; regression parity 0 on Login, PINUnlock, PINRegister, Splash, HomeFeed, MyEntertaining.
+- Shell change (CR-Search-3): the signed-in app start waits for the first screen before Sync_Info_GetMain. User-info readers wait for the step of the app start. Regression parity is 0 on Login, PINUnlock, PINRegister, Splash, HomeFeed, MyEntertaining.
 
 ## Change requests
 - CR-Search-1: shell local entities (applied; IndexedDB follow-up done)
@@ -102,4 +102,4 @@ In_IsInScreenSearch = False, In_IsEventNavigation = False, In_SearchTargetId = "
 Two consecutive runs after the last change, 2026-10-15.
 
 ## Server-side notes
-- DataActionFetchSearchResults must scope results to what the session user may see (RecordDisabled marks subscription-locked items; the client only shows the upgrade popup).
+- DataActionFetchSearchResults must scope results to what the session user may see (RecordDisabled marks subscription-locked items; the client only shows the upgrade dialog).

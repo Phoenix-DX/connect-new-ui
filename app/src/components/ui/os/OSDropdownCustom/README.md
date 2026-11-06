@@ -1,7 +1,7 @@
 # OSDropdownCustom (OutSystems Dropdown widget, Custom mode)
 
 Platform widget `OSWidgets.Dropdown` with `dropdownMode: 1` (Custom). It ports the DropdownCustom module of
-`migration/runtime-sources/OutSystemsReactWidgets.js` (W11610-21275; `W<n>` = character offset). It is not an
+`migration/sources/runtime/OutSystemsReactWidgets.js` (W11610-21275; `W<n>` = character offset). It is not an
 OutSystems block: no `@os-block` tag, no `OSBlockWidget` root. The app has 8 such dropdowns (F2 in
 `migration/clarify/review/item3-dropdowns.md`).
 

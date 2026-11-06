@@ -1,7 +1,7 @@
 # Connect2_OrbitMobile_MUI.Orbit_Blocks.MilestoneHeader
 
 - Kind: shared; build screens using it: GuestArrangements, HelpersDetail, MilestoneDetail
-- Compiled source: `migration/screens/HelpersDetail/analysis/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.MilestoneHeader.mvc.js`
+- Compiled source: `migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.MilestoneHeader.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

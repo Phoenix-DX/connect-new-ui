@@ -17,7 +17,7 @@ Locality_Details.
 The data actions come from `src/api/household/`. The old `api.ts`, `logic.ts`, `types.ts` and block `mocks.ts` no
 longer exist. The callers read the flags with `useHouseholdDetailsFlags()` and pass `flags`. The container gives
 `entityActions`, `renderMemberActions` and `shareSheet` to the view as slots. Compiled source:
-`migration/screens/HouseholdCarousel/analysis/sources/pretty/UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js`
+`migration/sources/pretty/UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js`
 (view :241-1886, controller :1887-3058); line numbers in the code are from this file.
 
 The page reads the route input in `pages/HouseholdDetails/inputs.ts`.
@@ -39,7 +39,8 @@ DeceasedOrAncestry_View)` → `onHouseholdDataFetched`, raised after every GetHo
 
 ## Data
 
-- `DataActionGetHousehold` / `DataActionGetHousehold_Coordinates` (domain `src/api/household/`), on demand only: OnReady (unless restored
+- `DataActionGetHousehold` / `DataActionGetHousehold_Coordinates` / `DataActionGetHouseHold_Gallery` (live TST of
+  2026-11-05; domain `src/api/household/`), on demand only, in that order: OnReady (unless restored
   from the view cache with the same age visibility) and OnParametersChanged (preview used, or In_IsSkeletonOnly turned
   False). Sent: the block inputs and `UserAge_Visibility`.
 - Never recorded (households, members and coordinates are person data): `containers/HouseholdDetails/mocks.ts` answers fictional records from
@@ -66,8 +67,10 @@ HouseholdMemberList and ShareSheet (`<!-- nested block -->`). Their own tests co
 ## Not captured (rendered from the compiled code, tested in `HouseholdDetailsContainer.test.tsx` and `HouseholdDetailsView.test.tsx`)
 
 - Photos tab:
-  - "Household gallery" title, HouseholdTimelinePhotos with the shared HouseholdDetails_TimelinePhoto_List (TEMP_TimelineImages: the block never fills it, so the
-    list is empty) and Coming soon.
+  - "Household gallery" title, then by the flag `mobileDirectoryHouseholdGallery` (live TST of 2026-11-05): on, the
+    Container "HouseholdGallery" with HouseholdDetails_TimelinePhoto_List of GetHouseHold_Gallery (only SignedURL; no
+    images: the Unavailable_Image box); off, only Coming soon. The fictional gallery: 4 / 3 / 5 / 0 / 2 pictures
+    (`mockData.ts` `galleryOf`). TEMP_TimelineImages stays (never filled, no longer shown).
   - The Photobook link, or no call-to-action without photobook access.
 - Deceased / ancestry / hidden household (photo without id, no address, `link-disabled-view` links, Photos tag
   disabled).

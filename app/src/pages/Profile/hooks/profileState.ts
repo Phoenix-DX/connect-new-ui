@@ -94,7 +94,7 @@ type ProfileAction =
 
 /** Default UI_AccountForm record (Connect_Household_CS defaults: "" / False / empty list). */
 export const EMPTY_ACCOUNT_FORM: AccountForm = {
-  AccountForm_PersonalInformation: { Username: '', Email: '', ShowLifeCycleDates: false },
+  AccountForm_PersonalInformation: { Username: '', Email: '', ShowEmail: false, ShowLifeCycleDates: false },
   AccountForm_ContactInformation: {
     HomeNumber: '',
     MobileNumber: '',
@@ -154,6 +154,8 @@ export function fromUserInformation(user: Directory_UserCurrent, current: Accoun
     AccountForm_PersonalInformation: {
       Username: user.UserName,
       Email: user.Email,
+      // live TST of 2026-11-05: UI_AccountForm_PersonalInformation gained ShowEmail; Visibility has no email flag
+      ShowEmail: false,
       ShowLifeCycleDates: visibility.DisplayAge,
     },
     AccountForm_IdentificationInformation: { MemberId: user.MemberID, AccountNumber: user.AccountNumber },

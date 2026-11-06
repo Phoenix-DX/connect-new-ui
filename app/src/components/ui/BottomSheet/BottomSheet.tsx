@@ -44,7 +44,7 @@ const FOCUSABLE =
     tabindex -1, focus-trap spans around the sheet, overlay after it; closed sheets are inert (the caller's
     IsNotInertWhenClosed removes it). BottomSheetOpen adds `osui-bottom-sheet--is-open` and the body class, focuses the
     sheet and enables the focus trap; Escape or BottomSheetClose closes it and gives the focus back; each toggle raises
-    OnToggle. A scrolled content adds `osui-bottom-sheet--has-scroll`. Provider (runtime-sources/
+    OnToggle. A scrolled content adds `osui-bottom-sheet--has-scroll`. Provider (sources/runtime/
     OutSystemsUI_2_23.OutSystemsUI.js, BottomSheet :4913-5136): on a touch device the header drags the sheet down and a
     fast enough swipe closes it (dragToClose.ts; gestures bound from the first toggle on, :5044-5049); the only body
     effect is the `osui-bottom-sheet--is-active` class (:4993-5002), the original CSS has no scroll-lock rule for it. */

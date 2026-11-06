@@ -1,7 +1,7 @@
 # UBTConnectLibrary.ConnectPatterns.EmptyList
 
 - Kind: shared; build screens using it: BookmarksByGroup, CountryDetails, FeedItemDetail, HomeFeed, HouseholdCarousel, HouseholdDetails, Locality_Details, Notes, OneSchoolGlobalDetails, Profile, SupperMeeting_Carousel, SupperMeeting_Details, Updates_SingleList
-- Compiled source: `migration/screens/Notes/analysis/sources/pretty/UBTConnectLibrary.ConnectPatterns.EmptyList.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnectLibrary.ConnectPatterns.EmptyList.mvc.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.ConnectPatterns.CircleButton, UBTConnectLibrary.ConnectPatterns.Icon (queue: UBTConnectLibrary.ConnectPatterns.CircleButton)
 
 ## Inputs

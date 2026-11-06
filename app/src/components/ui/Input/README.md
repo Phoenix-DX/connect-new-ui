@@ -47,7 +47,7 @@ Behaviour (controller :376-875):
   the input, `aria-describedby`, `span.validation-message` after it, shared with `components/ui/os/OSValidation` (no caller
   sets IsMandatory or IsForceInvalid).
 - SearchInput defaults = the structure's attribute defaults (`UBTConnectLibrary.model.js:1477-1516`, SearchInputRec,
-  copy in migration/screens/BrowseDirectory/analysis/sources/raw/).
+  copy in migration/sources/raw/).
   The defaults are: IsEnabled True, IsMandatory False, ValidationMessage
   "Required", MaxLength 50. The other defaults are: InitalString "", SearchPrompt "Search", IsForceInvalid False, Debounce_DelayMS -1,
   BorderRadius Shape.SoftRounded (`soft`, TST value), EnableAutocompleteHTML False, FocusOnReady False,

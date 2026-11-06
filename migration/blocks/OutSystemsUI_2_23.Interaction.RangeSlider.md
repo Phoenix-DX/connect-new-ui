@@ -1,7 +1,7 @@
 # OutSystemsUI_2_23.Interaction.RangeSlider
 
 - Kind: osui; build screens using it: ContactUsDetails
-- Compiled source: `migration/blocks/sources/OutSystemsUI_2_23.Interaction.RangeSlider.mvc.js`
+- Compiled source: `migration/sources/survey/OutSystemsUI_2_23.Interaction.RangeSlider.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

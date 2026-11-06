@@ -1,7 +1,7 @@
 # ReactiveHtmlSanitizer.HtmlSanitizer.SanitizedHtml
 
 - Kind: shared; build screens using it: MessageDetail, Notifications, Photobook
-- Compiled source: `migration/screens/MessageDetail/analysis/sources/pretty/ReactiveHtmlSanitizer.HtmlSanitizer.SanitizedHtml.mvc.js`
+- Compiled source: `migration/sources/pretty/ReactiveHtmlSanitizer.HtmlSanitizer.SanitizedHtml.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

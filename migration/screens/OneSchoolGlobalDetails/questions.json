@@ -11,7 +11,7 @@
   "blocking": false,
   "status": "answered",
   "askedAt": "2026-10-15T17:25:15",
-  "answer": "migration/runtime-sources/UBTConnect.Directory_OneSchoolGlobal.controller.js (fetched read-only): handleError delegates to App_Common.handleError, so raiseToFlowHandler is right",
+  "answer": "migration/sources/runtime/UBTConnect.Directory_OneSchoolGlobal.controller.js (fetched read-only): handleError delegates to App_Common.handleError, so raiseToFlowHandler is right",
   "answeredBy": "code",
   "answeredAt": "2026-10-15T17:38:12"
  },
@@ -39,7 +39,7 @@
   "kind": "decision",
   "topic": "platform widget",
   "question": "The screen renders the platform ButtonGroup / ButtonGroupItem widgets (OSWidgets, not an OSUI pattern), used by no other built route. Port them in the route (app/src/screens/OneSchoolGlobalDetails/components/ButtonGroup.tsx, from OutSystemsReactWidgets.js AbstractButtonGroup / ButtonGroupItem), or file a change request for a foundation component next to OSList?",
-  "evidence": "OneSchoolGlobalDetails.mvc.js:935-984; migration/runtime-sources/OutSystemsReactWidgets.js (AbstractButtonGroup, ButtonGroupItem); grep: no button-group in app/src",
+  "evidence": "OneSchoolGlobalDetails.mvc.js:935-984; migration/sources/runtime/OutSystemsReactWidgets.js (AbstractButtonGroup, ButtonGroupItem); grep: no button-group in app/src",
   "mcp": "n/a",
   "options": [
    "A: port in the route's components now",
@@ -152,7 +152,7 @@
   "kind": "decision",
   "topic": "ComingSoon inline icon",
   "question": "TST UBTConnectLibrary ComingSoon now gives its CustomText an InlineIcon (calendar, medium_20, neutral0): IconInline_Internal 24x18 with an Icon. The React components/ui/ComingSoon has no icon. Shared component, outside this route's files; other routes have older captures.",
-  "evidence": "migration/screens/OneSchoolGlobalDetails/analysis/sources/pretty/UBTConnectLibrary.ConnectPatterns.ComingSoon.mvc.js:192-203; analysis/dom/default.html id b3-b24-b2-b2-$b1 (connect-icon-calendar text-neutral-0 icon-medium padding-right-xs inline-block); parity default/offline of both routes (Icon missing in build)",
+  "evidence": "migration/sources/pretty/UBTConnectLibrary.ConnectPatterns.ComingSoon.mvc.js:192-203; analysis/dom/default.html id b3-b24-b2-b2-$b1 (connect-icon-calendar text-neutral-0 icon-medium padding-right-xs inline-block); parity default/offline of both routes (Icon missing in build)",
   "mcp": "",
   "options": [
    "a) port the icon in components/ui/ComingSoon and re-run parity of the routes that use it (re-capture those with older captures)",

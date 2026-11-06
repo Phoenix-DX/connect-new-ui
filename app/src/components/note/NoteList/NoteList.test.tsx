@@ -9,13 +9,13 @@ const { CompiledView, Preview, Editing, Empty } = composeStories(stories);
 const items = (container: HTMLElement) => container.querySelectorAll('[data-block="ConnectPatterns.Note_Item"]');
 
 /* No captured DOM exists for this block: the checks follow the compiled view
-   (migration/blocks/sources/UBTConnectLibrary.ConnectPatterns.Note_Item_List.mvc.js:181-848). */
+   (migration/sources/survey/UBTConnectLibrary.ConnectPatterns.Note_Item_List.mvc@86fe890b.js:181-848). */
 describe('Note_Item_List', () => {
-  it('all notes in a list inside a soft, padded neutral-0 container (min height 88px)', () => {
+  it('all notes in a list inside a soft, padded neutral-0 container (min height 44px)', () => {
     const { container } = render(<CompiledView />);
     const box = container.querySelector('[data-block="ConnectPatterns.Note_Item_List"] > [data-block] > div');
     expect(box).toHaveClass('background-neutral-0', 'padding-s', 'margin-bottom-xs', 'border-radius-soft');
-    expect(box).toHaveStyle({ minHeight: '88px' });
+    expect(box).toHaveStyle({ minHeight: '44px' });
     expect(box?.querySelector(':scope > .list.list-group.OSFillParent')).not.toBeNull();
     expect(items(container)).toHaveLength(3);
     expect(screen.queryByText(/Show all notes/)).toBeNull();

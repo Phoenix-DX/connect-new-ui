@@ -17,6 +17,7 @@ import {
   toEventByEventIdData,
   toEventDetailsResult,
   toEventDocuments,
+  toAssembleNotes,
   toEventNotes,
   toEventQRCodeData,
   toEventQRCodeStatus,
@@ -47,6 +48,7 @@ import type {
   AdminEventsCallInputs,
   AssembleEventCallInputs,
   AssembleEventResult,
+  AssembleNotesCallInputs,
   AssembleEventTypeItem,
   AssembleMeeting,
   AssembleMeetingListQuery,
@@ -92,6 +94,12 @@ import type {
 const ORBIT = 'Connect2_OrbitMobile_MUI';
 
 /* ---- Assemble meetings (Connect2_Assemble_MUI) ---- */
+
+/** DataActionGetAssembleNotes of the AssembleDetail screen (UBTConnect), fetched at start: the user's notes on the
+    meeting (AssembleDetail.mvc.js:312-345: NoteListActions and NotesSheet read Out_Notes; route-actions 2026-11-05). */
+export async function fetchAssembleNotes(inputs: AssembleNotesCallInputs): Promise<Notes> {
+  return toAssembleNotes(await callAction('UBTConnect', 'AssembleDetail/DataActionGetAssembleNotes', inputs));
+}
 
 /** DataActionGetAssembleEvent of AssembleEventDetail: the meeting, its invited localities and guests. */
 export async function fetchAssembleEvent(inputs: AssembleEventCallInputs): Promise<AssembleEventResult> {

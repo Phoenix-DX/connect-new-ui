@@ -1,0 +1,89 @@
+{
+ "default": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/ContactByEmailLDMCoordinator?In_EmailTo=minneapolisbreakteam%40gmail.com&In_ContactName=Minneapolis+Break+Team&In_EventDate=2026-06-13&In_AvatarURL=%2FUBTConnect%2Fimg%2FConnect2_OrbitMobile_MUI.LDM_Logo.svg%3F_cb1n5I2ixjwYGeenhCMkQ&In_Subject=Saturday+Meal+at+Minneapolis+-+13%2F06%2F2026&In_EventLocality=Minneapolis+%28US%29",
+  "via": {
+   "from": "/UBTConnect/LDM_EventDetail_V2?EventId=88271&EventHostId=1808338",
+   "settleMs": 8000,
+   "pre": [
+    {
+     "sel": "button:has-text('Contact Coordinator')",
+     "nth": 0,
+     "dispatch": true,
+     "waitMs": 3000
+    }
+   ],
+   "click": "text=Email",
+   "nth": 0,
+   "dispatch": true
+  },
+  "steps": [],
+  "scenario": "real",
+  "auto": null,
+  "htmlClass": "",
+  "bodyClass": "phone portrait connect-theme osx is-ltr",
+  "bodyStyle": "--header-size-content: 0px; --footer-height: 0px; --viewport-height: 844px;",
+  "dpr": 1
+ },
+ "loading": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/ContactByEmailLDMCoordinator?In_EmailTo=minneapolisbreakteam%40gmail.com&In_ContactName=Minneapolis+Break+Team&In_EventDate=2026-06-13&In_AvatarURL=%2FUBTConnect%2Fimg%2FConnect2_OrbitMobile_MUI.LDM_Logo.svg%3F_cb1n5I2ixjwYGeenhCMkQ&In_Subject=Saturday+Meal+at+Minneapolis+-+13%2F06%2F2026&In_EventLocality=Minneapolis+%28US%29",
+  "via": {
+   "from": "/UBTConnect/LDM_EventDetail_V2?EventId=88271&EventHostId=1808338",
+   "settleMs": 8000,
+   "pre": [
+    {
+     "sel": "button:has-text('Contact Coordinator')",
+     "nth": 0,
+     "dispatch": true,
+     "waitMs": 3000
+    }
+   ],
+   "click": "text=Email",
+   "nth": 0,
+   "dispatch": true
+  },
+  "steps": [],
+  "scenario": "loading",
+  "auto": "loading",
+  "htmlClass": "",
+  "bodyClass": "phone portrait connect-theme osx is-ltr",
+  "bodyStyle": "--header-size-content: 0px; --footer-height: 0px; --viewport-height: 844px;",
+  "dpr": 1
+ },
+ "offline": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/ContactByEmailLDMCoordinator?In_EmailTo=minneapolisbreakteam%40gmail.com&In_ContactName=Minneapolis+Break+Team&In_EventDate=2026-06-13&In_AvatarURL=%2FUBTConnect%2Fimg%2FConnect2_OrbitMobile_MUI.LDM_Logo.svg%3F_cb1n5I2ixjwYGeenhCMkQ&In_Subject=Saturday+Meal+at+Minneapolis+-+13%2F06%2F2026&In_EventLocality=Minneapolis+%28US%29",
+  "via": {
+   "from": "/UBTConnect/LDM_EventDetail_V2?EventId=88271&EventHostId=1808338",
+   "settleMs": 8000,
+   "pre": [
+    {
+     "sel": "button:has-text('Contact Coordinator')",
+     "nth": 0,
+     "dispatch": true,
+     "waitMs": 3000
+    }
+   ],
+   "click": "text=Email",
+   "nth": 0,
+   "dispatch": true
+  },
+  "steps": [],
+  "scenario": "error",
+  "auto": "offline",
+  "htmlClass": "",
+  "bodyClass": "phone portrait connect-theme osx is-ltr",
+  "bodyStyle": "--header-size-content: 0px; --footer-height: 0px; --viewport-height: 844px;",
+  "dpr": 1
+ }
+}

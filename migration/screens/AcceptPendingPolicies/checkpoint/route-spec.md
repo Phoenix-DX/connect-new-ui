@@ -1,50 +1,63 @@
 # Route spec: AcceptPendingPolicies
 
-Sources: `capture/survey-UBTConnect.json` → `UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js` ("SCR") and
+Sources: `migration/survey/survey-UBTConnect.json` → `UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js` ("SCR") and
 `UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js` ("BLK"); `UBTConnect.controller.js` TST copy in
-`migration/screens/MessageList/analysis/sources/raw/` ("UC"). No capture, no `analysis/` folder, no pack
-(`context_pack.py` needs `analysis/facts.json`): the user decided Q7 c (build from the compiled code,
-`migration/capture-notes.md`).
+`migration/sources/raw/` ("UC"). Built first without a capture (Q7 c, `migration/capture-notes.md`). Captured on
+2026-11-06 with an account that has one pending policy (`analysis/`, states default, loading, offline); the live TST
+block differs from the first compiled copy (see "TST drift of 2026-11-06" below). Pretty compiled copies:
+`analysis/manifest.json` → `migration/sources/pretty/`.
 
 ## Summary
 | Item | Value |
 |---|---|
 | Route | `/UBTConnect/AcceptPendingPolicies`, no inputs [SCR model `setInputs` is empty] |
 | Tier | lite |
-| Captured | not captured (Q7 c); every state below is "not captured" |
+| Captured | 2026-11-06, 390x844: default (one pending policy), loading, offline (`analysis/states.json`) |
 | Shared/shell components used | `shared/UBTConnectLibrary/Layout_LoginFlow`, `CustomContainer`, `CustomText`, `Columns_Two`, `Icon`, `FixedFooter`; `shared/UBTConnect_Utils/Button` (CW_Common.Button); `shared/osui/Separator`; `shared/NavigationHandler/BackNavigationHandler`; `shared/UBTConnect/CommonUI_InsideLayout`; shell `userInfo`, `memoryCache`, `session`, `navigation`, `feedback` |
 | Screen-specific components | `components/Policy_Custom_AcceptPendingPolicies.tsx` (block `App_Policies.Policy_Custom_AcceptPendingPolicies`, catalog "own", 1 user) |
 
 ## Specification
 ### Structure
-- `Layout_LoginFlow` id `$b1`, `In_HasOverlay` = `useOverlay` (True), `In_ExtendedClass` "ubt-policies"; header
-  placeholder empty [SCR view].
-- Content placeholder: container `Content` (`ubt-policies--content`, style `text-align: center;`) →
-  container `ubt-policies--header` (CustomContainer $b2 padding bottom Small → CustomText $b3 "Welcome to"
-  neutral-0/Heading3/SemiBold; Image `img/UBTConnect.ConnectLogoWhite.svg` class `login-screen__connect-logo` + grid
-  class `ThemeGrid_MarginGutter`; CustomContainer $b4 padding top Base/bottom Medium → CustomText $b5 "Connect and
-  Directory", CustomText $b6 "Terms and Conditions & Privacy Policy", neutral-0/Base/SemiBold) → block $b7
-  `Policy_Custom_AcceptPendingPolicies` (Country = UserCountry, PolicyApplications = [Connect, Directory, Orbit],
-  ContentBlockId = MainContainer); then `BackNavigationHandler` $b8 [SCR view].
+- `Layout_LoginFlow` id `$b1`, `In_HasOverlay` = `useOverlay` (True), `In_ExtendedClass` "ubt-policies". The header
+  placeholder is empty [SCR view].
+- Content placeholder: container `Content` (`ubt-policies--content`, style `text-align: center;`) → container
+  `ubt-policies--header` → block $b7 `Policy_Custom_AcceptPendingPolicies` (Country = UserCountry, PolicyApplications =
+  [Connect, Directory, Orbit], ContentBlockId = MainContainer). Then `BackNavigationHandler` $b8 [SCR view].
+  - Content of `ubt-policies--header`:
+    - CustomContainer $b2 (padding bottom Small) → CustomText $b3 "Welcome to" (neutral-0/Heading3/SemiBold).
+    - Image `img/UBTConnect.ConnectLogoWhite.svg` with class `login-screen__connect-logo` and grid class
+      `ThemeGrid_MarginGutter`.
+    - CustomContainer $b4 (padding top Base/bottom Medium) → CustomText $b5 "Connect and Directory" and CustomText $b6
+      "Terms and Conditions & Privacy Policy" (neutral-0/Base/SemiBold).
 - CommonUI placeholder: `CommonUI_InsideLayout` $b9 with `In_IgnorePolicy` True [SCR view].
-- Block [BLK view]: not fetched → container `list-updating`; fetched and empty → container
-  `background-blue-lighter text-align-center padding-x-l padding-y-l` with "You have accepted all required
-  policies." `<br>` "No more policies available to accept."; fetched with rows → `Columns_Two` $b1 (ReduceLast,
-  FlexDirection Column, ExtendedClasses `ubt-policies--columns`): left = List `list list-group ubt-policies--list` +
-  grid `OSFillParent`, each row `display-flex margin-y-xl` → Icon (checkbox / checkbox_outline_blank, neutral-0,
-  click ToggleCheckBox) + `margin-left-xs white-space-nowrap` → CustomText "I agree to the " + ApplicationName + " - "
-  (neutral-0/Small/Regular, FitContent) + CustomText PolicyTypeName (neutral-0/Small/SemiBold/underlined, FitContent,
-  Clicked → OnClickPolicy); right = only when `Policies.Length > 1`: `ubt-policies--agree-to-all` → Separator →
-  `display-flex padding-top-xl` → Icon (IsAllSelected checkbox / outline, click ToggleSelectAllCheckBox) +
-  `margin-left-xs` → CustomText "I agree to all"; then `FixedFooter` $b10 (useBottomBar False, ExpectedFooterHeight
-  `calc(2 * var(--space-base) + var(--ubt-button-height-m))`, ContentContainerId = ContentBlockId) → CustomContainer
-  $b11 (background neutral-0, padding general Base, shadow ExtraSmallTop) → CW_Common Button $b12 "Continue",
-  IsDisabled = not IsAllSelected.
-- Static entity values not in the shared lib (screen `components/staticEntities.ts`, from the class patterns of the
-  shared lib and the original CSS in `app/public/UBTConnect/css/`): FontSize Heading3 → `h3` (`.font-size-h3`), FlexDirection Column →
-  `flex-direction-column`, Icons2 Checkbox → `connect-icon-checkbox`, CheckboxOutlineBlank →
-  `connect-icon-checkbox_outline_blank`, Shadow ExtraSmallTop → `xs-top` (`.shadow-xs-top`). Connect_Applications
-  identifiers are only sent, never rendered: opaque constants.
+- Block [BLK view]. The markup depends on three conditions:
+  - Not fetched → container `list-updating`.
+  - Fetched and empty → container `background-blue-lighter text-align-center padding-x-l padding-y-l` with "You have
+    accepted all required policies." `<br>` "No more policies available to accept."
+  - Fetched with rows → `Columns_Two` $b1 (ReduceLast, FlexDirection Column, ExtendedClasses `ubt-policies--columns`),
+    then `FixedFooter` $b10.
+    - Left: List `list list-group ubt-policies--list text-align-left` + grid `OSFillParent` [BLK pretty :236]. Each row
+      is `display-flex margin-y-xl margin-right-l` [:249] → Icon (checkbox / checkbox_outline_blank, neutral-0, click
+      ToggleCheckBox). Then `margin-left-xs` [:419-445] → Expression `font-size-s font-regular` "I have read and agree
+      to the " + Expression `font-size-s font-semi-bold text-underline` (margin-left 0) ApplicationName + " " +
+      PolicyTypeName. No click. The older container `margin-left-xs white-space-nowrap` with the CustomTexts
+      ("I agree to the ", Clicked → OnClickPolicy) is `visible: false` [:332-336] and does not render.
+    - Right, only when `Policies.Length > 1`: `ubt-policies--agree-to-all` → Separator → `display-flex padding-top-xl` →
+      Icon (IsAllSelected checkbox / outline, click ToggleSelectAllCheckBox) + `margin-left-xs` [:626-660] →
+      Expression `font-size-s font-regular` "I agree to " + Expression `font-size-s font-semi-bold text-underline`
+      (margin-left 0) "all Terms & Conditions and the Privacy Policy". The older CustomText container is
+      `visible: false` [:539-543]. Not captured (the captured account has one pending policy).
+    - `FixedFooter` $b10: useBottomBar False, ExpectedFooterHeight `calc(2 * var(--space-base) + var(--ubt-button-height-m))`,
+      ContentContainerId = ContentBlockId. It contains CustomContainer $b11 (background neutral-0, padding general Base,
+      shadow ExtraSmallTop) → CW_Common Button $b12 "Continue", IsDisabled = not IsAllSelected.
+- Static entity values that the shared lib does not have are in the screen file `components/staticEntities.ts`. They come
+  from the class patterns of the shared lib and the original CSS in `app/public/UBTConnect/css/`:
+  - FontSize Heading3 → `h3` (`.font-size-h3`).
+  - FlexDirection Column → `flex-direction-column`.
+  - Icons2 Checkbox → `connect-icon-checkbox`.
+  - CheckboxOutlineBlank → `connect-icon-checkbox_outline_blank`.
+  - Shadow ExtraSmallTop → `xs-top` (`.shadow-xs-top`).
+- The screen only sends the Connect_Applications identifiers and never renders them. They are opaque constants.
 
 ### Data
 | Call | Kind | Trigger (call-sites root) | Inputs | Outputs used | Server side (MCP / cache) | Mock scenarios |
@@ -61,7 +74,7 @@ Sources: `capture/survey-UBTConnect.json` → `UBTConnect.App_Policies.AcceptPen
 | block | OnAfterFetch | Policies empty → Wait 5 s (JS setTimeout) → AcceptedAll [BLK] | – | back | – |
 | row icon | Click | ToggleCheckBox: Current.IsSelected = not; IsAllSelected = ListAll(IsSelected) [BLK] | – | – | – |
 | agree-to-all icon | Click | IsAllSelected = not; every row IsSelected = IsAllSelected [BLK] | – | – | – |
-| policy name | Clicked | OnClickPolicy: CanOpenApplicationPolicyDirectlyViaUrl = IsWeb → JSUtils_PageOpenInNewTab(Current.Url) (`window.open(url, '_blank')`); DetailsOnClick is the native branch, not built [Q1; ApplicationPolicies_CW / UBTJavaScriptUtils TST copies in `migration/shell/sources`] | – | new tab (policy Url) | – |
+| policy name | Clicked | OnClickPolicy: CanOpenApplicationPolicyDirectlyViaUrl = IsWeb → JSUtils_PageOpenInNewTab(Current.Url) (`window.open(url, '_blank')`); DetailsOnClick is the native branch, not built [Q1; ApplicationPolicies_CW / UBTJavaScriptUtils TST copies in `migration/sources/shell`] | – | new tab (policy Url) | – |
 | Continue | ButtonOnClick | ListFilter selected → AcceptPolicies → AcceptedAll; CommunicationException → NetworkError → ShowCommunicationExceptionMessage [BLK, SCR]; other errors → App_Policies flow → App_Common handler → ShowExceptionMessage(message, False) [Q2] | AcceptPolicies | back | communication message |
 | AcceptedAll (screen) | event | Cache_UserInfo_Get; HasPoliciesToAccept = False; PutCacheableObject(DirectoryUser, UniqueKey, user info, 7200); App_Policies_HasPolicyToAccept = False; ReplaceOnUpcomingNavigation; AllowUpcomingNavigation; PreviousScreen [SCR] | – | history back | – |
 | BackNavigationHandler | BackNavigation | PreventNavigation (back is blocked on this screen) [SCR] | – | – | – |
@@ -76,21 +89,22 @@ Sources: `capture/survey-UBTConnect.json` → `UBTConnect.App_Policies.AcceptPen
 | error | data action fails → ShowExceptionMessage(message, False), the list stays `list-updating` (Q2) | not captured | `?mock=error` |
 
 ## Patterns used
-- P-PARAMS: no inputs; the screen is opened by the shell's `Policy_Checker` (`?mockuser=policies`).
-- P-STATES: loading / list / empty follow the block's `$if` conditions; nothing captured, so states are listed above.
+- P-PARAMS: no inputs. The shell's `Policy_Checker` opens the screen (`?mockuser=policies`).
+- P-STATES: loading / list / empty follow the block's `$if` conditions. The route has no capture, so the States table above
+  lists the states.
 - P-DATA: `api.ts` adapters with `callAction`, query key `[AcceptPendingPolicies, DataActionGetPendingPolicies, inputs]`.
 - P-CALLS: data action on load and on ContentBlockId change; AcceptPolicies only on Continue.
 - P-MOCKS: fictional data with the contract types (`contractHandler`), `mockDelay` via the helper.
 - P-MUTATION: collection `AcceptPendingPolicies.pending` in `src/mocks/store.ts`; AcceptPolicies removes rows.
 - P-OSUI: Separator from `src/shared/osui/Separator`.
 - P-BACK: BackNavigationHandler prevents back; AcceptedAll bypasses it with AllowUpcomingNavigation.
-- P-LIST: the shared OS list component does not exist yet; the List markup is written in place (as `PinCode` does).
+- P-LIST: the shared OS list component does not exist yet. The screen contains the List markup itself, as `PinCode` does.
 
 ## Feature flags
 - none (no flag read in SCR or BLK).
 
 ## Unclear points
-- What clicking a policy name does on the web → Q1 (decision answered by user: new tab with the policy Url)
+- What happens when the user clicks a policy name on the web → Q1 (decision answered by user: new tab with the policy Url)
 - What the App_Policies flow exception handler shows → Q2 (decision answered by user: App_Common handler,
   ShowExceptionMessage(message, False); communication errors → communication message)
 - Fictional pending policies: count and content → Q3 (decision answered by user: Terms and Conditions + Privacy Policy
@@ -99,40 +113,55 @@ Sources: `capture/survey-UBTConnect.json` → `UBTConnect.App_Policies.AcceptPen
 - Country input: shell `appManager_GetCachedUserInfo()` (CR-AcceptPendingPolicies-2, applied 2026-10-14)
 
 ## Decisions to confirm
-- The whole route is built from the compiled code; no state was captured (Q7 c); parity has no captured state to run.
-  No parity for this route (no-capture recorded by the user); `route.py spec-done` accepts the spec without a pack
-  (coarser inputs). The user reviews the states by hand (`review/*.png`).
-- `allowUpcomingNavigation` is imported from `src/shell/navigation` (exported since CR-Splash-2).
-- Smoke test (headless Chrome, `?mocksession=unlocked&mockuser=policies`): 2 rows render, DataActionGetPendingPolicies
-  is sent twice (ContentBlockId "" then "b1-Main", as OnParametersChanged does), "I agree to all" enables Continue,
-  AcceptPolicies sends ids 7001/7002 and the screen goes back.
-- Policy name opens the policy Url in a new tab (Q1). With the Q3 seed this is the recorded TST policy URL
-  (`…/ApplicationPoliciesMT/rest/Policy/1343` and `/1344`), so the click opens the real TST document (a GET, signed-in
-  TST session needed); checked in headless Chrome (popup URL = recorded Url).
-- Errors (Q2): failed DataActionGetPendingPolicies and non-communication AcceptPolicies errors → ShowExceptionMessage
-  (message, False), communication errors → communication message. With `?mock=error` the toast reads the mock text
-  "HTTP 500." and the policy area keeps its spinner (`review/error.png`).
-- Seed (Q3): "Terms and Conditions" and "Privacy Policy" of Connect; Url, file name and content type from the recorded
-  CacheControl_Policies fixture (both recorded file names are "Privacy Policy TST 236 (1).pdf", as recorded).
+- TST drift of 2026-11-06 (capture `analysis/dom/default.html`, pretty BLK and SCR): the heading $b6 reads "Terms &
+  Conditions and Privacy Policy Agreement" [SCR pretty :355]; the row and "agree to all" texts are plain Expressions
+  (see Structure), the policy name has no click; the list has `text-align-left`, the row `margin-right-l`; the block
+  ids are FixedFooter `$b11`, CustomContainer `$b12`, Button `$b13`. The React page follows the capture. Open points:
+  the hook keeps `onClickPolicy` (Q1) although no view calls it; the seed of Q3 (2 policies) is now 1 policy, as
+  captured.
+- First build (2026-10-14): the whole route came from the compiled code, no captured state (Q7 c); the user reviewed
+  the states by hand (`review/*.png`).
+- The screen imports `allowUpcomingNavigation` from `src/shell/navigation`. The shell exports it since CR-Splash-2.
+- Smoke test (headless Chrome, `?mocksession=unlocked&mockuser=policies`) results:
+  - 2 rows render.
+  - The screen sends DataActionGetPendingPolicies twice: ContentBlockId "" first, then "b1-Main", as OnParametersChanged
+    does.
+  - "I agree to all" enables Continue.
+  - AcceptPolicies sends ids 7001/7002 and the screen goes back.
+- A click on a policy name opens the policy Url in a new tab (Q1). With the Q3 seed, the Url is the recorded TST policy
+  URL (`…/ApplicationPoliciesMT/rest/Policy/1343` and `/1344`). The click then opens the real TST document. This is a
+  GET and needs a signed-in TST session. Headless Chrome check: the URL of the window that `window.open` opens equals the recorded Url.
+- Errors (Q2):
+  - A failed DataActionGetPendingPolicies and a non-communication AcceptPolicies error → ShowExceptionMessage
+    (message, False).
+  - A communication error → communication message.
+  - With `?mock=error`, the toast shows the mock text "HTTP 500." and the policy area keeps its spinner
+    (`review/error.png`).
+- Seed (Q3, changed by the capture of 2026-11-06): one pending policy, "Privacy Policy" of Connect (the captured row
+  reads "Connect Privacy Policy"); Url, file name and content type from the recorded CacheControl_Policies fixture.
 - UniqueId generated once per page load in memory, not stored (Q4, AGENTS rule 16).
-- Country = the cached user's CountryCode (CR-AcceptPendingPolicies-2 applied): the mock sign-in and `?mocksession=`
-  store CountryCode `AR` only (the mock user's Directory country); headless check: both DataActionGetPendingPolicies
+- Country = the cached user's CountryCode (CR-AcceptPendingPolicies-2 applied). The mock sign-in and `?mocksession=`
+  store only CountryCode `AR`, the mock user's Directory country. Headless check: both DataActionGetPendingPolicies
   bodies carry `"Country":"AR"`.
-- Stylesheets: the screen gets the 10-file set of `src/app/routes.css.generated.ts`, taken from the compiled
-  `getCssDependencies` of the screen and its blocks (no capture). Checked 2026-10-14 in headless Chrome at 390x844:
-  the `<link>`s equal the set and all load. The 3 rules of `UBTConnect.App_Policies.AcceptPendingPolicies.css` match
-  the DOM: content padding-top 48px and max-height = `--current-svg-height`; the policy column has max-height 40vh
-  and scrolls; the fixed-footer margin-bottom is 0. `ubt-policies--header/columns/list/agree-to-all` have no rule in
-  any original sheet: they are hooks only. No markup change was needed.
-- The logo keeps the grid class `ThemeGrid_MarginGutter` from the compiled `gridProperties`: with the OSUI CSS it
-  gets margin-left ~7px, so the logo sits about 4px right of centre. This follows the compiled code; TST was not
+- Stylesheets: the screen gets the 10-file set of `src/app/routes.css.generated.ts`. The set comes from the compiled
+  `getCssDependencies` of the screen and its blocks (no capture). Check on 2026-10-14 in headless Chrome at 390x844: the
+  `<link>`s equal the set and all load.
+  - The 3 rules of `UBTConnect.App_Policies.AcceptPendingPolicies.css` match the DOM:
+    - Content padding-top is 48px and max-height = `--current-svg-height`.
+    - The policy column has max-height 40vh and scrolls.
+    - The fixed-footer margin-bottom is 0.
+  - `ubt-policies--header/columns/list/agree-to-all` have no rule in any original sheet: they are hooks only.
+  - The markup did not need a change.
+- The logo keeps the grid class `ThemeGrid_MarginGutter` from the compiled `gridProperties`. With the OSUI CSS, the logo
+  gets margin-left ~7px, so the logo sits about 4px right of centre. This follows the compiled code. TST was not
   captured to confirm it.
 - Error state (`?mock=error`): exception toast plus the `list-updating` spinner (Q2, see above).
   Review screenshots: `review/default.png`, `review/error.png` (390x844).
 - Ids of blocks inside the List rows (`b7-l1-<n>_<i>-$b2`) are runtime counters and are not rendered.
 - Image grid class order `login-screen__connect-logo ThemeGrid_MarginGutter` follows the captured List rule (style, then grid class).
 - The shell mock user keeps HasPoliciesToAccept True after a reload; only the in-memory user-info cache and the client variable change, as in the original.
-- After an accept, a reload of this screen shows the empty state and goes back after 5 s (store keeps the accepted ids for the page life).
+- After an accept, a reload of this screen shows the empty state and goes back after 5 s. The store keeps the accepted
+  ids for the life of the page.
 
 ## Change requests
 - CR-AcceptPendingPolicies-1: original screen stylesheet `UBTConnect.App_Policies.AcceptPendingPolicies.css`
@@ -143,7 +172,11 @@ Sources: `capture/survey-UBTConnect.json` → `UBTConnect.App_Policies.AcceptPen
 ## Parity
 | State | Scenario | structure | class | attr | style | layout | Exemptions fired |
 |---|---|---|---|---|---|---|---|
-| none captured | – | – | – | – | – | – | – |
+| default | real | 0 | 0 | 0 | 0 | 0 | ignoreSubtrees×3 |
+| loading | loading | 0 | 0 | 0 | 0 | 0 | ignoreSubtrees×1 |
+| offline | error | 0 | 0 | 0 | 0 | 0 | ignoreSubtrees×3; 1 pseudo: `.list-updating::before` transform (the spinner's rotation angle at the snapshot; the same element passes in `loading`) |
+
+Parity of 2026-11-06 (`parity/*.json`), after the TST drift build.
 
 ## Server-side notes
 - AcceptPolicies must accept only policy ids pending for the session user and record the device details server-side.

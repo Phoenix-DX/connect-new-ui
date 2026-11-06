@@ -1,6 +1,6 @@
 /* Client actions of Connect2_OrbitMobile_MUI ported 1:1 for the shared blocks. `C:<n>` = line of
-   migration/runtime-sources/Connect2_OrbitMobile_MUI.controller.js; `TF:<n>` = line of the module script
-   migration/runtime-sources/Connect2_OrbitMobile_MUI.TimeFormat.js (global `TimeFormat`). A Date is "yyyy-MM-dd",
+   migration/sources/runtime/Connect2_OrbitMobile_MUI.controller.js; `TF:<n>` = line of the module script
+   migration/sources/runtime/Connect2_OrbitMobile_MUI.TimeFormat.js (global `TimeFormat`). A Date is "yyyy-MM-dd",
    handed to the JS nodes as a local-midnight Date (lib/osDateTime.ts parseOsDate). */
 import { callAction } from '@/api/client/callAction';
 import { fetchBookletGuestsMaxRows, fetchBookletHelpersMaxRows } from '@/api/event';
@@ -185,7 +185,7 @@ export function getFormattedTime_FromDateTime(inDateTime: string): string {
 
 /* ---- Wave 8, batch O-A2, part b (Card_MemberInformation, MilestoneHeader, HostSurvey_PillItem, EventDetail_SubSection) ---- */
 
-/** Card_MemberInformation.mvc.js = migration/screens/MilestoneDetail/analysis/sources/pretty/Connect2_OrbitMobile_MUI.
+/** Card_MemberInformation.mvc.js = migration/sources/pretty/Connect2_OrbitMobile_MUI.
     Orbit_Blocks.Card_MemberInformation.mvc.js (`CMI:<n>`). */
 
 /** GetCacheableSignedImageURL (Connect2_LegacyShared.controller.js:3692-, called at CMI:578-): the signed photo URL of

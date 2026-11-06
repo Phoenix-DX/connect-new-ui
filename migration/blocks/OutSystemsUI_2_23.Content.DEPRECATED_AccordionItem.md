@@ -1,7 +1,7 @@
 # OutSystemsUI_2_23.Content.DEPRECATED_AccordionItem
 
 - Kind: osui; build screens using it: EventDetail, GuestArrangements, HelpersDetail, MilestoneDetail
-- Compiled source: `migration/screens/EventDetail/analysis/sources/pretty/OutSystemsUI_2_23.Content.DEPRECATED_AccordionItem.mvc.js`
+- Compiled source: `migration/sources/pretty/OutSystemsUI_2_23.Content.DEPRECATED_AccordionItem.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

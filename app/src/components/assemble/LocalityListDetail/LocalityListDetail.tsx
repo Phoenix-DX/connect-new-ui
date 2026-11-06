@@ -27,7 +27,7 @@ export function formatCount(n: number): string {
   return n < 0 && rounded !== 0 ? `-${grouped}` : grouped;
 }
 
-/** Country list with members, households and localities counts (p:migration/screens/AssembleEvents/analysis/sources/
+/** Country list with members, households and localities counts (p:migration/sources/
     pretty/Connect2_LegacyShared.Directory.LocalityListDetail.mvc.js view :120-300): an optional header
     (`!HideHeader`), then the List (`list list-group`, no animation, no virtualization) of ListItems `list-item`, each
     raising OnClick_GoToBrowseCountry with the row's Code and map position (:204-216). */

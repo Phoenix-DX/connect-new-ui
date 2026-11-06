@@ -4,7 +4,7 @@
   "viewportName": "phone",
   "variant": null,
   "flags": {},
-  "route": "/UBTConnect/EventDetail",
+  "route": "/UBTConnect/EventDetail?In_EventId=2085&In_MemberId=75835",
   "via": {
    "from": "/UBTConnect/OrbitLanding",
    "click": "[data-block='Orbit_Blocks.Card_Event'] .orbit-card-cont",
@@ -23,7 +23,7 @@
   "viewportName": "phone",
   "variant": null,
   "flags": {},
-  "route": "/UBTConnect/EventDetail",
+  "route": "/UBTConnect/EventDetail?In_EventId=2085&In_MemberId=75835",
   "via": {
    "from": "/UBTConnect/OrbitLanding",
    "click": "[data-block='Orbit_Blocks.Card_Event'] .orbit-card-cont",
@@ -42,7 +42,7 @@
   "viewportName": "phone",
   "variant": null,
   "flags": {},
-  "route": "/UBTConnect/EventDetail",
+  "route": "/UBTConnect/EventDetail?In_EventId=2085&In_MemberId=75835",
   "via": {
    "from": "/UBTConnect/OrbitLanding",
    "click": "[data-block='Orbit_Blocks.Card_Event'] .orbit-card-cont",

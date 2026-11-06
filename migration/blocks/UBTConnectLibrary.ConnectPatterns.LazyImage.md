@@ -1,7 +1,7 @@
 # UBTConnectLibrary.ConnectPatterns.LazyImage
 
 - Kind: shell; build screens using it: AcceptPendingPolicies, BookmarksByGroup, BrowseCountries, BrowseDirectory, CommunityBusinessDetails_CoomingSoon, ConnectShare, ContactByEmailMember, ContactByEmailOneSchoolGlobal, ContactUsDetails, ContactUsMenu, CountryDetails, CountryList, FeedItemDetail, HomeFeed, HouseholdCarousel, HouseholdDetails, Household_Relations, LegacyShareObject, Locality_Details, Login, Menu, MessageDetail, MessageList, MyBookmarks, MyEntertaining, Notes, Notifications, OneSchoolGlobalDetails, PINBiometricsMenu, PINChange, PINRegister, PINUnlock, Photobook, Profile, Search, Services, Splash, SupperMeeting_Carousel, SupperMeeting_Details, TermsAndPoliciesMenu, Updates_SingleList
-- Compiled source: `migration/screens/ContactByEmailMember/analysis/sources/pretty/UBTConnectLibrary.ConnectPatterns.LazyImage.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnectLibrary.ConnectPatterns.LazyImage.mvc.js`
 - Child blocks: OutSystemsUI_2_23.Utilities.InlineSVG, UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.BasePatterns.CustomText, UBTConnectLibrary.ConnectPatterns.Icon, UBTConnectLibrary.ConnectPatterns.SkeletonSection (queue: -)
 
 ## Inputs
@@ -289,4 +289,4 @@ define("UBTConnectLibrary.ConnectPatterns.LazyImage.mvc$view", ["OutSystems/Clie
                                                 value_dataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables._fallbackOptionsInDataFetchStatus)
                                             })];
 ```
-(… 105 more lines in `migration/screens/ContactByEmailMember/analysis/sources/pretty/UBTConnectLibrary.ConnectPatterns.LazyImage.mvc.js`)
+(… 105 more lines in `migration/sources/pretty/UBTConnectLibrary.ConnectPatterns.LazyImage.mvc.js`)

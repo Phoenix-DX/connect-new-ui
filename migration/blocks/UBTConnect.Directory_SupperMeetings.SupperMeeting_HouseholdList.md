@@ -1,7 +1,7 @@
 # UBTConnect.Directory_SupperMeetings.SupperMeeting_HouseholdList
 
 - Kind: shared; build screens using it: HouseholdCarousel, SupperMeeting_Carousel, SupperMeeting_Details
-- Compiled source: `migration/screens/SupperMeeting_Carousel/analysis/sources/pretty/UBTConnect.Directory_SupperMeetings.SupperMeeting_HouseholdList.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.Directory_SupperMeetings.SupperMeeting_HouseholdList.mvc.js`
 - Child blocks: UBTConnect.Directory_Household_Blocks.Household_GalleryCard_List (queue: UBTConnect.Directory_Household_Blocks.Household_GalleryCard_List)
 
 ## Inputs

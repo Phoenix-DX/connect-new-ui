@@ -14,7 +14,7 @@ interface Popup_QRCodeScan_MilestoneProps {
   onDone: () => void;
 }
 
-/** The scan result inside Popup_QRCode (PQM = migration/screens/OrbitAdminMilestoneDetail/sources/
+/** The scan result inside Popup_QRCode (PQM = migration/sources/runtime/
     Connect2_OrbitMobile_MUI.Orbit_Blocks.Popup_QRCodeScan_Milestone.mvc.js, view :160-548), in the frame
     QRCodeScanResult (name :166-192, photo :193-222, result :420-476, Done :477-545). The bold details (:223-418): the
     milestone name and today's date on success, Description, Locality, Country, Role, Row, Venue, GMP Tag when not

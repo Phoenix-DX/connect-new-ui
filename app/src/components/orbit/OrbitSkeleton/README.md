@@ -2,7 +2,7 @@
 
 OutSystems: `Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Skeleton_Loading` · pack
 `migration/blocks/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Skeleton_Loading.md` · source
-`migration/blocks/sources/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Skeleton_Loading.mvc.js`
+`migration/sources/survey/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Skeleton_Loading.mvc.js`
 
 | Input                | Type                           | Prop                  | Default |
 | -------------------- | ------------------------------ | --------------------- | ------- |

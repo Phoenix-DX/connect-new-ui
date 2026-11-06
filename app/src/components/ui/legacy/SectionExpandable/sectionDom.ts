@@ -1,6 +1,6 @@
 /* JS nodes of OutSystems UI DEPRECATED_AccordionItem, ported as DOM functions on the SectionItem element (the
    original works on the DOM the same way, by element id). `:<n>` = line of
-   migration/screens/EventDetail/analysis/sources/pretty/OutSystemsUI_2_23.Content.DEPRECATED_AccordionItem.mvc.js. */
+   migration/sources/pretty/OutSystemsUI_2_23.Content.DEPRECATED_AccordionItem.mvc.js. */
 
 /** SectionItem element with the functions SetGlobalActions attaches to it (:1138-1154), which DEPRECATED_Accordion
     and the CloseAll node call on the other items. */

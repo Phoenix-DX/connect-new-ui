@@ -1,7 +1,7 @@
 # Feed_Embeded
 
 OutSystems: `UBTConnect.Home.Feed_Embeded` · pack `migration/blocks/UBTConnect.Home.Feed_Embeded.md` · compiled source
-`migration/screens/HomeFeed/analysis/sources/pretty/UBTConnect.Home.Feed_Embeded.mvc.js` (cited as `:line`). Used by
+`migration/sources/pretty/UBTConnect.Home.Feed_Embeded.mvc.js` (cited as `:line`). Used by
 HomeFeed, FeedItemDetail and MessageDetail.
 
 | Input      | Type | Prop         | Default |

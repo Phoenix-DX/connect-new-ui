@@ -237,9 +237,17 @@ export function eventLocalities(): EventLocalitiesFilterWire[] {
   return [...seen].map(([id, name]) => ({ IdAsText: id, Name: name, IsSelected: false }));
 }
 
+/** The ids TST sent for the LDM_EventDetail_V2 capture of 2026-11-06 (migration/capture-plan.json, route
+    `?EventId=88271&EventHostId=1808338`: the first My Timeline card of the capture account, a guest whose host
+    allocation is pending). They resolve to the first fictional meal, which mirrors that capture (Q3); the meal keeps
+    its own ids 70415 / 88231, which the other routes and their tests use (Q2 cloneQuery). */
+const LDM_CAPTURED_EVENT_IDS = { eventId: '88271', eventHostId: '1808338' } as const;
+const capturedMeal = (): LdmEvent => LDM_PAST_EVENTS[0] as LdmEvent;
+
 /** An LDM event by its EventHostId (LDM_EventDetail_V2 inputs EventId / EventHostId). */
 export const ldmEventByHostId = (eventHostId: string): LdmEvent | undefined =>
-  LDM_PAST_EVENTS.find((e) => e.eventHostId === eventHostId);
+  LDM_PAST_EVENTS.find((e) => e.eventHostId === eventHostId) ??
+  (eventHostId === LDM_CAPTURED_EVENT_IDS.eventHostId ? capturedMeal() : undefined);
 
 /* ---- LDM_EventDetail_V2: the detail of one meal (GetEventByEventId, GetCoordinatorDetails, GetHouseholdCoordinates) ----
    Captured on TST (LDM_EventDetail_V2/default, the first past event of LDM_MyEvents_V2): the user is a guest and the
@@ -345,7 +353,8 @@ const householderPhone = (h: CastHousehold) => `+54 291 555 0${String(200 + (Num
 
 /** An LDM event by its EventId (GetEventByEventId reads the inputs EventId and EventHostId). */
 export const ldmEventById = (eventId: string): LdmEvent | undefined =>
-  LDM_PAST_EVENTS.find((e) => e.eventId === eventId);
+  LDM_PAST_EVENTS.find((e) => e.eventId === eventId) ??
+  (eventId === LDM_CAPTURED_EVENT_IDS.eventId ? capturedMeal() : undefined);
 
 function detailGuest(e: LdmEvent, i: number): DetailGuestItem_V2Wire {
   const g = e.guests[i] as LdmGuest;

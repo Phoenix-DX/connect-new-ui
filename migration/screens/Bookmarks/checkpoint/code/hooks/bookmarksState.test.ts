@@ -13,6 +13,8 @@ import {
 
 const card = (itemId: string, bookmarkCategoryId: string): BookmarkCardItem => ({
   itemId,
+  itemId2: '',
+  hasDetailAccess: true,
   bookmarkCategoryId,
   channelName: '',
   channelLogo: '',
@@ -60,20 +62,56 @@ describe('Bookmarks screen variables and actions', () => {
   });
 
   it('a card opens its screen; OneSchool Global always opens the carousel with the preloaded ids', () => {
-    expect(bookmarkCardTarget('7', 'OneSchool Global', LIST)).toEqual({
+    expect(bookmarkCardTarget('7', '', 'OneSchool Global', LIST)).toEqual({
       path: '/UBTConnect/OneSchoolGlobalCarousel',
       inputs: { In_StartingObjectId: '7' },
       preload: { CarouselItemIds: ['7', '8'] },
     });
-    expect(bookmarkCardTarget('2', 'Household', LIST)).toEqual({
+    expect(bookmarkCardTarget('2', '', 'Household', LIST)).toEqual({
       path: '/UBTConnect/HouseholdCarousel',
       inputs: { In_StartingHouseholdId: '2' },
       preload: { CarouselHouseholdItem: [{ Household: '1' }, { Household: '2' }] },
     });
-    expect(bookmarkCardTarget('5', 'Supper Meeting', LIST)).toEqual({
+    expect(bookmarkCardTarget('5', '', 'Supper Meeting', LIST)).toEqual({
       path: '/UBTConnect/SupperMeeting_Details',
       inputs: { In_SubdivsionId: '5' },
     });
-    expect(bookmarkCardTarget('9', 'Member', LIST)).toBeNull();
+  });
+
+  it('the item ids are Text: the preloads and the inputs go through TextToLongInteger (live :1137-1138, :1170-1172)', () => {
+    const list = [card('007', 'OneSchool Global'), card(' 41021', 'Household'), card('x', 'Household')];
+    expect(bookmarkCardTarget('007', '', 'OneSchool Global', list)).toEqual({
+      path: '/UBTConnect/OneSchoolGlobalCarousel',
+      inputs: { In_StartingObjectId: '7' },
+      preload: { CarouselItemIds: ['7'] },
+    });
+    expect(bookmarkCardTarget(' 41021', '', 'Household', list)?.preload).toEqual({
+      CarouselHouseholdItem: [{ Household: '41021' }, { Household: '0' }],
+    });
+  });
+
+  it('Member (live :1121-1127): Household_Relations with HouseholdId = ObjectId2 and MemberId = ObjectId', () => {
+    expect(bookmarkCardTarget('90817', '42438', 'Member', LIST)).toEqual({
+      path: '/UBTConnect/Household_Relations',
+      inputs: { HouseholdId: '42438', MemberId: '90817' },
+    });
+  });
+
+  it('Interchange (live :1098-1110): Locality_Details of the interchange locality, with the Interchange tag', () => {
+    expect(bookmarkCardTarget('252:253', '', 'Interchange', LIST)).toEqual({
+      path: '/UBTConnect/Locality_Details',
+      inputs: { LocalityId: '253', TagsList_SelectedTag: 'Interchange' },
+    });
+    /* An id without ":" gives an empty InterchangeLocalityId: TextToLongInteger("") = 0. */
+    expect(bookmarkCardTarget('253', '', 'Interchange', LIST)?.inputs).toEqual({
+      LocalityId: '0',
+      TagsList_SelectedTag: 'Interchange',
+    });
+  });
+
+  it('the other categories do nothing (empty branches)', () => {
+    for (const other of ['Feed Item', 'Assemble Event', 'LDM Event', 'Locality', 'Locality Contact', 'Orbit Event'])
+      expect(bookmarkCardTarget('5', '', other, LIST)).toBeNull();
+    for (const other of ['Personal Event', 'Update', 'X']) expect(bookmarkCardTarget('5', '', other, LIST)).toBeNull();
   });
 });

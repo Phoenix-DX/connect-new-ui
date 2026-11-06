@@ -1,7 +1,7 @@
 # TouchEvents (OutSystems UI)
 
 OutSystems: `OutSystemsUI_2_23.Utilities.TouchEvents` · pack `migration/blocks/OutSystemsUI_2_23.Utilities.TouchEvents.md` ·
-compiled source `migration/screens/Photobook/analysis/sources/pretty/OutSystemsUI_2_23.Utilities.TouchEvents.mvc.js`
+compiled source `migration/sources/pretty/OutSystemsUI_2_23.Utilities.TouchEvents.mvc.js`
 
 | Input           | Type    | Prop              | Default |
 | --------------- | ------- | ----------------- | ------- |
@@ -19,7 +19,7 @@ Events `Start(X, Y)`, `Move(X, Y, OffsetX, OffsetY, Evt)`, `End(X, Y, OffsetX, O
 
 ## Behaviour (ported)
 
-`touchTrack.ts` is `scripts/OutSystemsUI_2_23.TouchTrack.js` (migration/runtime-sources/) ported 1:1:
+`touchTrack.ts` is `scripts/OutSystemsUI_2_23.TouchTrack.js` (migration/sources/runtime/) ported 1:1:
 
 - touchstart records the start point and time and raises Start.
 - touchmove (only during a touch) raises Move with the offsets and the event.

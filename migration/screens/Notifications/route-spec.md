@@ -1,11 +1,11 @@
 # Screen spec: Notifications
 
-Sources: `analysis/sources/pretty/UBTConnect.App_Notifications.Notifications.mvc.js` (SCR), its blocks
+Sources: `migration/sources/pretty/UBTConnect.App_Notifications.Notifications.mvc.js` (SCR), its blocks
 (`…Notifications_Action`, `…NotificationsListBreakpoints`, `…NotificationsList`, `…Notifications_Header`,
 `…Notifications_SortSheet`, `…Notifications_MoreActionSheet`, `…App_CommonBlocks_Filter.SortSheet` (SORT),
 `…App_CommonBlocks_Filter.MoreActionSheet` (MORE), `UBTConnectLibrary.ConnectCorePatterns.Notification_ListItem` (ITEM),
 `UBTConnectLibrary.Layouts.Layout_MainPages_Upgrade` (LAY)), `sources/raw/UBTConnect.controller.js` (UC),
-`BookmarksByGroup/analysis/sources/raw/UBTConnectLibrary.controller.js` (ULC), `analysis/dom/*.html`, `analysis/calls.json`.
+`migration/sources/raw/UBTConnectLibrary.controller.js` (ULC), `analysis/dom/*.html`, `analysis/calls.json`.
 
 ## 0. Summary
 `/UBTConnect/Notifications`, no inputs. The bell opens the notification centre when the flag C2NewNotifications is on (D11 c, user 2026-10-14). The bell is shared.

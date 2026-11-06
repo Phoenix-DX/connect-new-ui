@@ -1,7 +1,7 @@
 # UBTConnect.Directory_Caroussel.CarouselTag
 
 - Kind: shared; build screens using it: HouseholdCarousel, SupperMeeting_Carousel
-- Compiled source: `migration/screens/HouseholdCarousel/analysis/sources/pretty/UBTConnect.Directory_Caroussel.CarouselTag.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.Directory_Caroussel.CarouselTag.mvc.js`
 - Child blocks: UBTConnectLibrary.ConnectPatterns.TagContent (queue: -)
 
 ## Inputs

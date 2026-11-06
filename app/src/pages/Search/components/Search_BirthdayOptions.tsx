@@ -14,7 +14,7 @@ export interface Search_BirthdayOptionsProps {
   onSelected?: (keyWord: string) => void;
 }
 
-/** UBTConnect Directory_Search.Search_BirthdayOptions (capture/survey-UBTConnect.json sources
+/** UBTConnect Directory_Search.Search_BirthdayOptions (migration/survey/survey-UBTConnect.json sources
     UBTConnect.Directory_Search.Search_BirthdayOptions.mvc.js, view internalRender, prettier line numbers :223-385): a
     list of CustomContainer (vertical Small, bottom border Neutral3 Small) with IconText (SearchName, spacing Base,
     calendar icon); a click raises Selected(SearchName). */

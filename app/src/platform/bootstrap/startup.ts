@@ -2,12 +2,7 @@ import { fetchAppContext, fetchSyncInfoMain, type ClientConfig } from '@/api/app
 import { fetchNumberUnreadMessages } from '@/api/message/unreadMessages';
 import { log } from '@/platform/log/log';
 import { CommunicationException, UserException, isInstanceOf } from '@/legacy/os/os-exceptions';
-import {
-  syncAllOrbitStaticEntities,
-  type LegacyLocalBookmark,
-  type LocalBookmark,
-  type LocalNote,
-} from '@/platform/storage/localEntities';
+import { syncAllOrbitStaticEntities, type LocalBookmark, type LocalNote } from '@/platform/storage/localEntities';
 import { APP_ID } from '@/platform/navigation/paths';
 import { getClientVar, setClientVar } from '@/platform/session/session';
 import { setSettings } from '@/platform/settings';
@@ -17,7 +12,7 @@ import { setSettings } from '@/platform/settings';
    SynchronizeNumberUnreadMessages. The calls of the first two are in the domain api/app, GetNumberUnreadMessages is in
    the domain api/message. The redirects that follow the app start are the route guard's (app/RouteGuard.tsx). */
 
-/** OutSystems CommunicationException of a server call (runtime-sources/OutSystems.js:3, raised by callAction): a failed
+/** OutSystems CommunicationException of a server call (sources/runtime/OutSystems.js:3, raised by callAction): a failed
     request, or an answer that is not ok and is neither a 404 (ViewHasChangedException) nor the server's own exception
     (the contract's error answer), e.g. "Request failed with status 500". The app start handles only this exception in
     AppManager_SynchAppContextInternal and SynchronizeNumberUnreadMessages, so an all-calls-failed start (the offline
@@ -54,23 +49,27 @@ export async function synchAppContext(): Promise<ClientConfig | null> {
     'app.minWebViewChrome': c.MinWebViewVersion_Chrome,
     'app.minWebViewSafari': c.MinWebViewVersion_Safari,
   });
+  // AppManager_SetDeviceContext: DeviceInfo_PackageName = AppManager_ClientCache.PackageName (the device context that
+  // AppManager_Logout sends; migration/shell/client-variables.md:68).
+  setClientVar('UBT_AppManager.DeviceInfo_PackageName', c.PackageName);
   return out.AppManager_ClientConfig;
 }
 
-/** The local-entity outputs of Sync_Info_Main: Bookmarks, Bookmarks_C2, Notes (UC:16636-16689). */
+/** The local-entity outputs of Sync_Info_Main that the app start uses: Bookmarks_C2, Notes (UC:16636-16689). The
+    legacy Bookmarks output is not kept: the live app start syncs the C2 bookmarks only (live
+    migration/sources/runtime/UBTConnect.controller.js:1129-1133). */
 export interface SyncLocalEntities {
-  bookmarks: readonly LegacyLocalBookmark[];
   bookmarks_C2: readonly LocalBookmark[];
   notes: readonly LocalNote[];
 }
-export const NO_LOCAL_ENTITIES: SyncLocalEntities = { bookmarks: [], bookmarks_C2: [], notes: [] };
+export const NO_LOCAL_ENTITIES: SyncLocalEntities = { bookmarks_C2: [], notes: [] };
 
-/** Sync_Info_Main (UC:16557-16655 of migration/screens/EventDetail/analysis/sources/raw/UBTConnect.controller.js);
+/** Sync_Info_Main (UC:16557-16655 of migration/sources/raw/UBTConnect.controller.js);
     errors are swallowed by its AllExceptions handler (UC:16611-16626), and its outputs then keep their defaults, empty
     lists. After Sync_Info_GetMain, when not from the login, SyncAllOrbitStaticEntities(Sync_Info_GetMain.
     OrbitStaticEntities) (UC:16579-16583; shell/localEntities/orbitStaticEntities.ts, CR-EventDetail-1); its error too
     leaves the outputs empty, as the assignments come after it. Then Bookmarks = .LocalEntities_App.LocalBookmark
-    (UC:16590), Embedd_B2CTenant (UC:16599), Bookmarks_C2 = .LocalBookmarksC2 (UC:16602), Notes = .LocalNotes
+    (UC:16590; not kept, see SyncLocalEntities), Embedd_B2CTenant (UC:16599), Bookmarks_C2 = .LocalBookmarksC2 (UC:16602), Notes = .LocalNotes
     (UC:16605) and Sync_SetSiteProperties (UC:16608). */
 export async function syncInfoMain(isFromLogin: boolean): Promise<SyncLocalEntities> {
   try {

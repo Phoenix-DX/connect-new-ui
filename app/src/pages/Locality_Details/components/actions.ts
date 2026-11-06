@@ -1,12 +1,11 @@
 import type { OneSchoolCard, SubdivisionCard } from '@/api/locality';
-import { getLocalBookmarkByObjectId, get_LocalBookmarkByObjectId } from '@/platform/storage/localEntities';
 import { currDateTime, formatDateTime } from '@/lib/osDateTime';
 import { getConnectWeekdayLabel_ByDate, getLookupConcepts } from '@/lib/ubtConnectLibrary/actions';
 import type { LookupItem, Tag } from '@/lib/ubtConnectLibrary/structures';
-import { LocalityMenu } from './staticEntities';
+import { LocalityMenu } from '@/lib/ubtConnect/actions';
 
 /* Client actions of the UBTConnect module this route calls (UC = UBTConnect.controller.js, copy in
-   migration/screens/BookmarksByGroup/analysis/sources/raw/). */
+   migration/sources/raw/). */
 
 const tag = (text: string, isSelected: boolean): Tag => ({
   Text: text,
@@ -27,8 +26,14 @@ export function getSample_FilterTags(showMyHouseholdTag: boolean): Tag[] {
   return tags;
 }
 
+/** SetTagSelected(In_TagToggleList, InSelectedTagIdentifier) (live UBTConnect.controller.js:16311-16345, TST
+    2026-11-05): for each tag IsSelected = (Identifier = InSelectedTagIdentifier); Out_TagToggleList = the list. */
+export function setTagSelected(in_TagToggleList: Tag[], inSelectedTagIdentifier: string): Tag[] {
+  return in_TagToggleList.map((t) => ({ ...t, IsSelected: t.Identifier === inSelectedTagIdentifier }));
+}
+
 /** GetLocalityCurrentTimeLabel(In_UTCOffsetSeconds, In_LocalDateTime) (UC GetLocalityCurrentTimeLabel): the device
-    time moved to UTC (JSUtils_DateTime_GetUTCOffset = new Date().getTimezoneOffset(), migration/shell/sources/
+    time moved to UTC (JSUtils_DateTime_GetUTCOffset = new Date().getTimezoneOffset(), migration/sources/shell/
     UBTJavaScriptUtils.controller.js:1082) plus the locality offset; "<weekday long label>, <hh:mm tt> (UTC ± h[:mm])". */
 export function getLocalityCurrentTimeLabel(in_UTCOffsetSeconds: number, in_LocalDateTime: Date): string {
   const utcOffsetMinutes = new Date().getTimezoneOffset();
@@ -43,22 +48,7 @@ export function getLocalityCurrentTimeLabel(in_UTCOffsetSeconds: number, in_Loca
   return `${weekday}, ${time} (UTC${in_UTCOffsetSeconds < 0 ? ' - ' : ' + '}${offsetLabel})`;
 }
 
-/** GetLocal_Bookmark(ObjectType, ObjectId) (UC:9191+): IsBookmarked = Get_LocalBookmarkByObjectId(…).Id <> NullIdentifier
-    (legacy Connect2_LegacyShared.LocalBookmark through the shell adapter). */
-export async function getLocal_Bookmark(objectType: string, objectId: string): Promise<boolean> {
-  const bookmark = await get_LocalBookmarkByObjectId(objectType, objectId);
-  return bookmark.Id !== '' && bookmark.Id !== '0';
-}
-
-/** GetLocal_Bookmark_C2(ObjectType, ObjectId) (UC:9270-9310): IsBookmarked = GetLocalBookmarkByObjectId_C2(ObjectId)
-    .LocalBookmark.Id <> NullIdentifier (the C2 UBTConnect_Bookmarks_MCS.LocalBookmark). ObjectType is an input that
-    the flow does not read. */
-export async function getLocal_Bookmark_C2(_objectType: string, objectId: string): Promise<boolean> {
-  const bookmark = await getLocalBookmarkByObjectId(objectId);
-  return bookmark.Id !== '' && bookmark.Id !== '0';
-}
-
-/* ---- Tags (feedback F1). UC = migration/screens/Locality_Details/analysis/sources/raw/UBTConnect.controller.js,
+/* ---- Tags (feedback F1). UC = migration/sources/raw/UBTConnect.controller.js,
    ULC = …/raw/UBTConnectLibrary.controller.js. ---- */
 
 /** GetSkeleton_UI_SubdivisionCard (UC:12238-12270) with GetSkeleton_UI_SubdivisionCardContent: SubdivisionId keeps

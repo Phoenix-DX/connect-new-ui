@@ -36,7 +36,11 @@ vi.mock('@/platform/navigation', async (importOriginal) => ({
 
 /* The flows of the locality screen, with the calls and the navigation replaced by spies. The mock user lives in
    locality 585 ("Bahia Blanca, Argentina"); the route opens locality 252. Fictional data. */
-const inputs: LocalityDetailsInputs = { LocalityId: '252', PreloadedLocalityLabel: 'Bahia Blanca, Argentina' };
+const inputs: LocalityDetailsInputs = {
+  LocalityId: '252',
+  PreloadedLocalityLabel: 'Bahia Blanca, Argentina',
+  TagsList_SelectedTag: '',
+};
 const flags: LocalityDetailsFlags = { hasC1DirectoryView: true };
 const DETAILS: LocalityDetails = {
   ...NO_LOCALITY_DETAILS,
@@ -118,7 +122,7 @@ describe('useLocalityDetails OnReady', () => {
   });
 
   it('opens the locality of the user when the route has no LocalityId', async () => {
-    const { result } = renderFlows({ LocalityId: '0', PreloadedLocalityLabel: '' });
+    const { result } = renderFlows({ LocalityId: '0', PreloadedLocalityLabel: '', TagsList_SelectedTag: '' });
     await settle();
     expect(sentLocalityId()).toBe('585');
     expect(result.current.state).toMatchObject({ localityId: '585', isUserLocality: true });
@@ -146,7 +150,7 @@ describe('useLocalityDetails after an unmount and in StrictMode (flow scope, ite
   it('no LocalityId: Action_SetLocalityLabel stops the flow after GetUserInformation_Wrapper (R3)', async () => {
     const user = pending<ReturnType<typeof mockUserInformation>>();
     vi.mocked(getUserInformation).mockReturnValue(user.promise);
-    const { unmount } = renderFlows({ LocalityId: '0', PreloadedLocalityLabel: '' });
+    const { unmount } = renderFlows({ LocalityId: '0', PreloadedLocalityLabel: '', TagsList_SelectedTag: '' });
     unmount();
     vi.mocked(localityDetailsReducer).mockClear();
     user.resolve(mockUserInformation());

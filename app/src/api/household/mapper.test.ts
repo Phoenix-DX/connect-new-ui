@@ -6,6 +6,7 @@ import {
   toHouseholdCardMembers,
   toHouseholdCoordinates,
   toHouseholdCoordinatesById,
+  toHouseholdGalleryImages,
   toLocalityHouseholdIds,
   toLocalityHouseholdIdsInputs,
   toLocalityHouseholds,
@@ -13,6 +14,7 @@ import {
   toMemberRelations,
   toOrbitHouseholdMembers,
   toSiblingRelations,
+  toTimelineImages,
   type HouseholdWire,
 } from './mapper';
 
@@ -303,6 +305,9 @@ describe('household mapper of the relations (HouseholdRelations_Block)', () => {
       Mother: memberWire({ Id: '32', HouseholdId: '7010', Title: 'Ruth Lane', IsDeceased: true }),
       FormerSpouses: { List: [memberWire({ Id: '33', Title: 'Tom Reed', MarriageText: 'Divorced' })] },
       ParentHouseholdId: '7010',
+      // live TST of 2026-11-05: two more outputs (AwayParents, a structure never captured; NoDisplaySiblings)
+      AwayParents: { CountryName: '', HouseholdId: '0', LocalityName: '', Title: '' },
+      NoDisplaySiblings: { List: [] },
     });
     expect(relations.MemberName).toBe('Ada Harlow');
     expect(relations.FamilyName).toBe('The Harlows');
@@ -428,5 +433,31 @@ describe('household mapper: LDM_EventDetail_V2', () => {
       Longitude: '0',
       UseCoordinates: false,
     });
+  });
+});
+
+describe('DataActionGetHouseHold_Gallery (live TST 2026-11-05, HouseholdDetails_Block.mvc.js:1288-1290)', () => {
+  it('reads the Directory_ImageDetails rows of Out_ImageDetails (typed since the live model of 2026-11-05)', () => {
+    const rows = toHouseholdGalleryImages({
+      Out_ImageDetails: {
+        List: [
+          { Id: '7001', SignedUrl: 'https://img.example/a.jpg', isDeceased: false, IsHidden: true },
+          { Id: '7002', SignedUrl: '', isDeceased: false, IsHidden: false },
+        ],
+      },
+    });
+    expect(rows).toEqual([
+      { Id: '7001', SignedUrl: 'https://img.example/a.jpg', isDeceased: false, IsHidden: true },
+      { Id: '7002', SignedUrl: '', isDeceased: false, IsHidden: false },
+    ]);
+    expect(toHouseholdGalleryImages({ Out_ImageDetails: { List: [] } })).toEqual([]);
+  });
+
+  it('maps only SignedURL to the timeline images (Date, Label and IsCurrent keep the defaults)', () => {
+    const images = toTimelineImages([
+      { Id: '7001', SignedUrl: 'https://img.example/a.jpg', isDeceased: true, IsHidden: true },
+      { Id: '7002', SignedUrl: 'https://img.example/b.jpg', isDeceased: false, IsHidden: false },
+    ]);
+    expect(images).toEqual([{ SignedURL: 'https://img.example/a.jpg' }, { SignedURL: 'https://img.example/b.jpg' }]);
   });
 });

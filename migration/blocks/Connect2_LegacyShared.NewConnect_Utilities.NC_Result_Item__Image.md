@@ -1,7 +1,7 @@
 # Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item__Image
 
 - Kind: shared; build screens using it: AssembleDetail, AssembleEvents
-- Compiled source: `migration/blocks/sources/Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item__Image.mvc.js`
+- Compiled source: `migration/sources/survey/Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item__Image.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs
@@ -275,4 +275,4 @@ return model.variables.in_IsRoundImageIn;
 _idProps: {
 service: idService,
 ```
-(… 92 more lines in `migration/blocks/sources/Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item__Image.mvc.js`)
+(… 92 more lines in `migration/sources/survey/Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item__Image.mvc.js`)

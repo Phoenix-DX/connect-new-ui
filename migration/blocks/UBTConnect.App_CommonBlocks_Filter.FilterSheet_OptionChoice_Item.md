@@ -1,7 +1,7 @@
 # UBTConnect.App_CommonBlocks_Filter.FilterSheet_OptionChoice_Item
 
 - Kind: shared; build screens using it: CountryDetails, Notes, Notifications, Search, Updates_SingleList
-- Compiled source: `migration/screens/Notes/analysis/sources/pretty/UBTConnect.App_CommonBlocks_Filter.FilterSheet_OptionChoice_Item.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.App_CommonBlocks_Filter.FilterSheet_OptionChoice_Item.mvc.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.BasePatterns.CustomText, UBTConnectLibrary.ConnectPatterns.SelectionOption_List (queue: UBTConnectLibrary.ConnectPatterns.SelectionOption_List)
 
 ## Inputs

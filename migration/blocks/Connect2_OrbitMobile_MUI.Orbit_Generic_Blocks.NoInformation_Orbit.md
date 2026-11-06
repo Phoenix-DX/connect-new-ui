@@ -1,7 +1,7 @@
 # Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.NoInformation_Orbit
 
 - Kind: shared; build screens using it: EventDetail, GuestArrangements, HelpersDetail, HostSurvey, MilestoneDetail, OrbitAdminEventDetail, OrbitAdminLanding, OrbitLanding, QRCodeGenerate, ViewDocuments
-- Compiled source: `migration/screens/HelpersDetail/analysis/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.NoInformation_Orbit.mvc.js`
+- Compiled source: `migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.NoInformation_Orbit.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

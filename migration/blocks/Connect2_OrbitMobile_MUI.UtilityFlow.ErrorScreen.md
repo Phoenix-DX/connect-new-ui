@@ -1,7 +1,7 @@
 # Connect2_OrbitMobile_MUI.UtilityFlow.ErrorScreen
 
 - Kind: shared; build screens using it: LDM_Email_V2, LDM_EventDetail_V2, LDM_MyEvents_V2
-- Compiled source: `migration/blocks/sources/Connect2_OrbitMobile_MUI.UtilityFlow.ErrorScreen.mvc.js`
+- Compiled source: `migration/sources/survey/Connect2_OrbitMobile_MUI.UtilityFlow.ErrorScreen.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

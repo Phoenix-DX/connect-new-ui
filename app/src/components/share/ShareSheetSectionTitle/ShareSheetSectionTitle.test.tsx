@@ -6,7 +6,7 @@ import * as stories from './ShareSheetSectionTitle.stories';
 const { CompiledView, DoubleExtraSmall } = composeStories(stories);
 
 /* No captured DOM exists for this block: the checks follow the compiled view
-   (migration/blocks/sources/UBTConnect_Utils.CW_Share.ShareSheet_SectionTitle.mvc.js). */
+   (migration/sources/survey/UBTConnect_Utils.CW_Share.ShareSheet_SectionTitle.mvc.js). */
 describe('ShareSheet_SectionTitle', () => {
   it('Small font: bottom padding S, semi-bold label', () => {
     const { container } = render(<CompiledView />);

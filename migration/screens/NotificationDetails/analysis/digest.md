@@ -25,6 +25,7 @@ Layouts.Layout_MainPages_Upgrade
   BasePatterns.CustomContainer
     BasePatterns.CustomText
       ConnectPatterns.IconInline_Internal
+    Widgets.AdaptiveCardViewer
   BasePatterns.CustomContainer
     BasePatterns.CustomText
       ConnectPatterns.IconInline_Internal
@@ -82,10 +83,28 @@ Layouts.Layout_MainPages_Upgrade
 | variable | kind | type | default |
 |---|---|---|---|
 | UI_NotificationDetail | output | Record | `OS.DataTypes.ImmutableBase.getData(new Connect2_Notification_CSModel.MessageListItemRec())` |
+| Message | output | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.MessagePriorityMessageContentMessageTemplateMessageSenderTargetMe` |
+| IsRetracted | output | Boolean | `false` |
+| IsCleared | output | Boolean | `false` |
+| PlaceholderDelimiters | output | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.Delimiter_FunctionDelimiter_ParameterDelimiter_PlaceholderRecordR` |
+| IsLoading | local | Boolean | `true` |
+| ShowAssembleAction | local | Boolean | `false` |
+| FeedItemId | local | Text | `""` |
 | MessageInstanceId | input | LongInteger | `OS.DataTypes.LongInteger.defaultValue` |
+| MessageTemplateId | input | LongInteger | `OS.DataTypes.LongInteger.defaultValue` |
+| HardwareId | input | Text | `""` |
+| GetMessageTemplateParametersByMessageTemplateId | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new GetMessageTemplateParametersByMessageTemplateIdAggrRec())` |
 | FetchMessageInstance | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new FetchMessageInstanceDataActRec())` |
-- Data actions: `DataActionFetchMessageInstance` → `screenservices/UBTConnect/App_Notifications/NotificationDetails/DataActionFetchMessageInstance`
-- Static entities / flags: `uBT_Color.neutral0`, `uBT_Size.small`, `uBT_FontWeight.semiBold`, `uBT_Color.neutral6`, `uBT_Icons2.calendarBusy`, `uBT_Color.primary`, `uBT_Color.neutral10`, `uBT_Color.neutral5`, `uBT_FontSize.small`
+| GetMessageInstance | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new GetMessageInstanceDataActRec())` |
+- Data actions: `DataActionFetchMessageInstance` → `screenservices/UBTConnect/App_Notifications/NotificationDetails/DataActionFetchMessageInstance`, `DataActionGetMessageInstance` → `screenservices/UBTConnect/App_Notifications/NotificationDetails/DataActionGetMessageInstance`
+- Aggregates: `ScreenDataSetGetMessageTemplateParametersByMessageTemplateId` → `screenservices/UBTConnect/App_Notifications/NotificationDetails/ScreenDataSetGetMessageTemplateParametersByMessageTemplateId`
+- Server actions: `Wrapper_NotificationOpened` → `screenservices/UBTConnect/App_Notifications/NotificationDetails/ActionWrapper_NotificationOpened`
+- Client actions / event handlers: `handler_BackNavigationHandlerBackNavigation`, `handler_NavigateTo_OrbitHostSurvey`, `getMessageInstanceByIdOnAfterFetch`, `handler_NavigateTo_MessageList`, `handler_NavigateTo_OrbitMilestone`, `getMessageTemplateParametersOnAfterFetch`, `messageRetractedFlow`, `handler_NavigateTo_OrbitEventDetails`, `handler_NavigateTo_AssembleDetail`, `handler_SetFeedItemId`, `handler_NavigateTo_Login`, `handler_NavigateTo_ShareObjectDetail`, `adaptiveCardViewerOnExecuteAction`, `handler_SubscriptionDenied`, `handler_AddAuditAndNavigateTo_EventEmail`, `handler_AddAuditAndNavigateTo_EventDetail`
+- Navigation: `/UBTConnect/HomeFeed`(); `/UBTConnect/HostSurvey`(In_EventId, In_EventStartDate, In_EventName, In_MemberId, In_EventEndDate); `/UBTConnect/Notifications`(); `/UBTConnect/MilestoneDetail`(In_EventName, In_EventId, In_MilestoneId, In_FromNotification); `/UBTConnect/EventDetail`(In_FromNotification, In_EventId, In_MemberId, In_EventName); `/UBTConnect/AssembleDetail`(AssembleEventTypeTile, SeriesId, EventId); `/UBTConnect/Login`(); `/UBTConnect/HouseholdDetails`(HouseholdId); `/UBTConnect/OneSchoolGlobalDetails`(In_OneSchoolGlobalId); `/UBTConnect/SupperMeeting_Details`(In_SubdivsionId); `/UBTConnect/FeedItemDetail`(FeedItemId); `/UBTConnect/LDM_Email_V2`(EventHostId, In_IsContactOrganiser, In_IsMessageGuest, In_EventId); `/UBTConnect/LDM_Email`(In_IsContactOrganiser, EventHostId, In_EventId, In_IsMessageGuest); `/UBTConnect/LDM_EventDetail_V2`(EventHostId, EventId); `/UBTConnect/LDM_EventDetail`(EventHostId, EventId)
+- JavaScript nodes: `UBTConnect.App_Notifications.NotificationDetails.mvc$controller.Handler_BackNavigationHandlerBackNavigation.CheckIfInvalidLocationJS`, `UBTConnect.App_Notifications.NotificationDetails.mvc$controller.GetMessageInstanceByIdOnAfterFetch.WasCurrentViewRestoredFromCacheJS`
+- Feedback messages: `"Please check your internet connection!", /*Info*/ 0)`
+- Exceptions handled: CommunicationException
+- Static entities / flags: `messageSenderTarget.lordsDayMeal`, `uBT_Color.neutral0`, `uBT_Size.small`, `uBT_FontWeight.semiBold`, `uBT_Color.neutral6`, `uBT_Icons2.calendarBusy`, `uBT_Color.primary`, `uBT_Color.neutral10`, `messageInfoType.sharing`, `adaptiveCardsConfig.events`, `uBT_Color.neutral5`, `uBT_FontSize.small`, `uBT_MessageType.error`, `messageType2.private`, `messageInfoType.whatsNew`, `connect_Entity.member`, `imageSize.small`, `messageSenderTarget.orbit`, `messageSenderTarget.orbitHostSurvey`, `messageSenderTarget.assemble`, `parameterName.assembleEventParentId`, `parameterName.assembleEventInstanceId`, `type_ShareObject.household`, `type_ShareObject.update`, `type_ShareObject.myHousehold`, `type_ShareObject.oneSchoolGlobal`, `type_ShareObject.supperMeeting`, `type_ShareObject.feed`, `applicationEvents_LDM.notificationContactOrganiser`, `applicationEvents_LDM.notificationViewEvent`
 
 ## `UBTConnectLibrary.Layouts.Layout_MainPages_Upgrade.mvc.js`
 | variable | kind | type | default |
@@ -199,6 +218,16 @@ Layouts.Layout_MainPages_Upgrade
 | variable | kind | type | default |
 |---|---|---|---|
 | InlineIcon | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.InlineIconRec())` |
+
+## `Connect2_LegacyShared.Widgets.AdaptiveCardViewer.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| In_AdaptiveCardJson | input | Text | `""` |
+| In_HostConfig | input | Record | `OS.DataTypes.ImmutableBase.getData(new Connect2_LegacySharedModel.HostConfigRec())` |
+- Lifecycle handlers: Ready, ParametersChanged
+- Client actions / event handlers: `onParametersChanged`, `renderAdaptiveCardAction`, `onReady`, `onExecuteAction_JSBinder`, `onExecuteAction`
+- JavaScript nodes: `Connect2_LegacyShared.Widgets.AdaptiveCardViewer.mvc$controller.RenderAdaptiveCardAction.RenderAdaptiveCardJS`
+- Candidate static strings: `OnExecuteAction_JSBinder`
 
 ## `UBTConnect.App_Common.BottomBarMenu.mvc.js`
 | variable | kind | type | default |
@@ -470,14 +499,14 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 2914 ms
-- 2. `DataActionFetchMessageInstance` (200) at 2915 ms
-- 3. `ActionAppManager_AfterInitialize` (200) at 6039 ms
-- 4. `ActionSync_Info_GetMain` (200) at 6526 ms
-- 5. `ActionGetUserInformation` (200) at 6871 ms
-- 6. `ActionGetNumberUnreadMessages` (200) at 7222 ms
-- 7. `ServiceAPIFetchData_CacheableMapEntities` (200) at 9845 ms
-- 8. `ServiceAPIFetchData_CacheableHouseholds` (200) at 11915 ms
+- 1. `DataActionGetMessageInstance` (200) at 2727 ms
+- 2. `ActionAppManager_SynchAppContext` (200) at 2737 ms
+- 3. `ActionAppManager_AfterInitialize` (200) at 5553 ms
+- 4. `ActionSync_Info_GetMain` (200) at 6109 ms
+- 5. `ActionGetUserInformation` (200) at 6622 ms
+- 6. `ActionGetNumberUnreadMessages` (200) at 6877 ms
+- 7. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8635 ms
+- 8. `ServiceAPIFetchData_CacheableHouseholds` (200) at 9209 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`
@@ -486,6 +515,7 @@ These come from referenced blocks or from earlier captures. Use them to describe
 - `ConnectPatterns.HighlightSearch`
 - `ConnectPatterns.IconSVG`
 - `Fingerprint.FingerprintScanner`
+- `HtmlSanitizer.SanitizedHtml`
 - `NavigationHandler.PreventBackNavigation`
 - `PIN.PinCode`
 - `Private.PullToRefresh`

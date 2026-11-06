@@ -1,7 +1,7 @@
 # UBTConnectLibrary.BasePatterns.Columns_Three
 
 - Kind: shared; build screens using it: BookmarksByGroup, ContactByEmailMember, ContactUsMenu, CountryDetails, CountryList, FeedItemDetail, HomeFeed, HouseholdCarousel, HouseholdDetails, Household_Relations, Locality_Details, Menu, MessageDetail, Notes, Notifications, OneSchoolGlobalDetails, PINBiometricsMenu, Photobook, Profile, Search, Services, SupperMeeting_Carousel, SupperMeeting_Details, TermsAndPoliciesMenu, Updates_SingleList
-- Compiled source: `migration/screens/ContactByEmailMember/analysis/sources/pretty/UBTConnectLibrary.BasePatterns.Columns_Three.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnectLibrary.BasePatterns.Columns_Three.mvc.js`
 - Child blocks: OutSystemsUI_2_23.Adaptive.Columns3 (queue: OutSystemsUI_2_23.Adaptive.Columns3)
 
 ## Inputs

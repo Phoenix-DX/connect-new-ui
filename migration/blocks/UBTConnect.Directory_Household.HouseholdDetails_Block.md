@@ -1,7 +1,7 @@
 # UBTConnect.Directory_Household.HouseholdDetails_Block
 
 - Kind: shared; build screens using it: HouseholdCarousel, HouseholdDetails, Locality_Details, Profile, SupperMeeting_Carousel
-- Compiled source: `migration/screens/HouseholdCarousel/analysis/sources/pretty/UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js`
 - Child blocks: UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions, UBTConnect.Directory_Household_Blocks.HouseholdDetails_Members_Block, UBTConnect.Directory_Household_Blocks.HouseholdDetails_TimelinePhoto_List, UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen, UBTConnectLibrary.BasePatterns.Columns_Two, UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.BasePatterns.CustomText, UBTConnectLibrary.ConnectCorePatterns.ImageCard_LazyLoading, UBTConnectLibrary.ConnectCorePatterns.KebabButtonMenu, UBTConnectLibrary.ConnectPatterns.ComingSoon, UBTConnectLibrary.ConnectPatterns.HorizontalTagList, UBTConnectLibrary.ConnectPatterns.Icon, UBTConnectLibrary.ConnectPatterns.IconText, UBTConnectLibrary.ConnectPatterns.ImageCard__Content, UBTConnectLibrary.ConnectPatterns.SeeMoreSection, UBTConnectLibrary.ConnectPatterns.SkeletonSection, UBTConnect_Utils.CW_CTA_PopUps.AddressPopup_Wrapper, UBTConnect_Utils.CW_Image.UBT_LazyImage, UBTConnect_Utils.CW_Share.ShareSheet, UBTConnect_Utils.CW_Share.ShareableObject_Generic (queue: UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions, UBTConnect.Directory_Household_Blocks.HouseholdDetails_Members_Block, UBTConnect.Directory_Household_Blocks.HouseholdDetails_TimelinePhoto_List, UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen, UBTConnectLibrary.ConnectCorePatterns.ImageCard_LazyLoading, UBTConnectLibrary.ConnectCorePatterns.KebabButtonMenu, UBTConnectLibrary.ConnectPatterns.ComingSoon, UBTConnectLibrary.ConnectPatterns.HorizontalTagList, UBTConnectLibrary.ConnectPatterns.ImageCard__Content, UBTConnectLibrary.ConnectPatterns.SeeMoreSection, UBTConnect_Utils.CW_CTA_PopUps.AddressPopup_Wrapper, UBTConnect_Utils.CW_Share.ShareSheet, UBTConnect_Utils.CW_Share.ShareableObject_Generic)
 
 ## Inputs
@@ -294,4 +294,4 @@ define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$view", ["OutSy
                                                                             _idProps: {
                                                                                 service: idService,
 ```
-(… 1347 more lines in `migration/screens/HouseholdCarousel/analysis/sources/pretty/UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js`)
+(… 1347 more lines in `migration/sources/pretty/UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js`)

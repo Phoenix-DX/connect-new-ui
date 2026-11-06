@@ -1,7 +1,7 @@
 # Connect2_LegacyShared.Utility.Result_Item_Image
 
 - Kind: shared; build screens using it: BookmarksByGroup, LegacyShareObject, MessageDetail
-- Compiled source: `migration/screens/BookmarksByGroup/analysis/sources/pretty/Connect2_LegacyShared.Utility.Result_Item_Image.mvc.js`
+- Compiled source: `migration/sources/pretty/Connect2_LegacyShared.Utility.Result_Item_Image.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs
@@ -444,4 +444,4 @@ define("Connect2_LegacyShared.Utility.Result_Item_Image.mvc$view", ["OutSystems/
                         return Promise.resolve().then(function() {
                             var eventHandlerContext = callContext.clone();
 ```
-(… 93 more lines in `migration/screens/BookmarksByGroup/analysis/sources/pretty/Connect2_LegacyShared.Utility.Result_Item_Image.mvc.js`)
+(… 93 more lines in `migration/sources/pretty/Connect2_LegacyShared.Utility.Result_Item_Image.mvc.js`)

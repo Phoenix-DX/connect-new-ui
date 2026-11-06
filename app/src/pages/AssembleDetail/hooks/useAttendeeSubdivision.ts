@@ -3,8 +3,9 @@ import type { AssembleAttendeeGuest, AssembleAttendeeSubdivision } from '@/api/e
 import { confirmAction } from '@/platform/feedback/dialogs/confirmAction';
 import { rememberFocusedScrollAnchor, setPreloadObject, useFlowState } from '@/platform/navigation';
 import { getLocalBookmarksByObjectType } from '@/platform/storage/localEntities';
-import { toggleBookmarkItem } from '@/lib/assemble/actions';
-import { MyBookmarks_Group, MyBookmarks_ObjectType } from '@/lib/assemble/staticEntities';
+import { longIntegerText } from '@/lib/ubtConnect/actions';
+import { BookmarkCategory } from '@/lib/ubtConnect/staticEntities';
+import { bookmarkServerActions, toggleBookmarkItem_C2 } from '@/lib/ubtConnectUtils/actions';
 import { getCacheableSubdivision_V2 } from '@/lib/legacyShared/actions';
 import { maybeDisplaySubscriptionPopup } from '@/pages/AssembleDetail/components/actions';
 import {
@@ -107,11 +108,12 @@ export function useAttendeeSubdivision(
   });
   const bookmarkNote = useRef('');
 
-  /** Set_SelectedAssembleAttendeeListBookmarks: GetLocalBookmarksByObjectType(Contact) (a module action), then the
-      IsBookmarked of each row of the newest rows, read after the answer as TST (:1167-1180). An own action of the
-      block (R3). `isAlive` guards a superseded OnParametersChanged run (item 8 §6, point 5 (a)). */
+  /** Set_SelectedAssembleAttendeeListBookmarks (live Connect2_Assemble_MUI.Assemble.AssembleEventDetail_AttendeeSubdivision
+      .mvc.js:1141-1180): UBTConnect_Bookmarks_MCS GetLocalBookmarksByObjectType(bookmarkCategory Household) (:1161),
+      then the IsBookmarked of each row of the newest rows, read after the answer as TST (:1173-1179). An own action of
+      the block (R3). `isAlive` guards a superseded OnParametersChanged run (item 8 §6, point 5 (a)). */
   const setSelectedAssembleAttendeeListBookmarks = flow.own(async (isAlive: () => boolean = flow.alive) => {
-    const bookmarks = await getLocalBookmarksByObjectType(MyBookmarks_ObjectType.Contact);
+    const bookmarks = await getLocalBookmarksByObjectType(BookmarkCategory.Household);
     if (isAlive()) dispatch({ type: 'set', patch: { rows: withLocalBookmarks(latest.current.rows, bookmarks) } });
   });
 
@@ -137,16 +139,21 @@ export function useAttendeeSubdivision(
     flow.events.onNavigateToHouseholdCarousel(index, row.Id); // R3
   };
 
+  /** Handler_OnClickBookmarkButton (live …AttendeeSubdivision.mvc.js:926-1000): MaybeDisplaySubscriptionPopup (a
+      popup shown ends the flow); a row not bookmarked asks ConfirmAction(Bookmark_Note) and trims the note (:961-967);
+      UBTConnect_Utils ToggleBookmarkItem_C2(LongIntegerToText(row.Id), bookmarkCategory Household, row.IsBookmarked)
+      (:977); the row flips (:980) and BookmarkNote = "" (:983). The note is never sent (the toggle has no Note
+      input). */
   const onClickBookmarkButton = async (row: AssembleAttendeeGuest, index: number, isItemBookmarked: boolean) => {
     if (await maybeDisplaySubscriptionPopup(state.countryCode, state.localityId)) return;
     if (!row.IsBookmarked && (await confirmAction(bookmarkNoteId))) bookmarkNote.current = bookmarkNote.current.trim();
-    await toggleBookmarkItem(
-      row.IsBookmarked,
-      MyBookmarks_ObjectType.Contact,
-      row.Id,
-      MyBookmarks_Group.Contacts,
-      bookmarkNote.current,
-    );
+    if (bookmarkServerActions)
+      await toggleBookmarkItem_C2(
+        longIntegerText(row.Id),
+        BookmarkCategory.Household,
+        row.IsBookmarked,
+        bookmarkServerActions,
+      );
     dispatch({ type: 'rowBookmarked', index, isBookmarked: !isItemBookmarked });
     bookmarkNote.current = '';
   };

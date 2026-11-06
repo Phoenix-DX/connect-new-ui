@@ -2,7 +2,7 @@
 
 OutSystems: `UBTConnectLibrary.ConnectPatterns.Note_Item` · pack
 `migration/blocks/UBTConnectLibrary.ConnectPatterns.Note_Item.md` (compiled source
-`migration/blocks/sources/UBTConnectLibrary.ConnectPatterns.Note_Item.mvc.js`)
+`migration/sources/survey/UBTConnectLibrary.ConnectPatterns.Note_Item.mvc@154f53eb.js`)
 
 | Input           | Type         | Prop             | Default                 |
 | --------------- | ------------ | ---------------- | ----------------------- |

@@ -1,6 +1,6 @@
 # Route spec: Bookmarks
 
-Source: TST compiled code (`analysis/sources/pretty/`, p = `UBTConnect.Bookmarks.Bookmarks.mvc.js`), capture of
+Source: TST compiled code (`migration/sources/pretty/`, p = `UBTConnect.Bookmarks.Bookmarks.mvc.js`), capture of
 2026-10-29 (`analysis/dom/`). Scope: user decisions of 2026-10-28 (build; retire MyBookmarks and BookmarksByGroup),
 I10-4 (a) and I10-6 (a).
 

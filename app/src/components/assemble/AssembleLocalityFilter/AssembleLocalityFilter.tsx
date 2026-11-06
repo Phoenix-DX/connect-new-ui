@@ -31,7 +31,7 @@ async function exitFullscreen(): Promise<void> {
   if (document.fullscreenElement) await document.exitFullscreen();
 }
 
-/** Localities of a country, each opening its supper meetings (p:migration/blocks/sources/Connect2_Assemble_MUI.Assemble
+/** Localities of a country, each opening its supper meetings (p:migration/sources/survey/Connect2_Assemble_MUI.Assemble
     .Assemble_FilterLocalityByCountry.mvc.js; model :1-103, view :170-535, controller :539-950). IsFetchingLocalities
     (default False) shows the Spinner; else DIV_Title "View Localities in " + CountryName, DIV_FilterByLocality with the
     search (Input_SearchTerm "Search Locality", max 50) and the list (not animated, virtualization off) of ListItems

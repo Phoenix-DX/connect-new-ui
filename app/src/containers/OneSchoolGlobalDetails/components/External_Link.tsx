@@ -26,7 +26,7 @@ interface External_LinkProps {
 /** FontSize local variable (model :13-15): UBT_FontSize Small. */
 const FONT_SIZE = UBT_FontSize.Small;
 
-/** UBTJavaScriptUtils CheckIOsPlatform (migration/shell/sources/UBTJavaScriptUtils.controller.js:1-60, JS node
+/** UBTJavaScriptUtils CheckIOsPlatform (migration/sources/shell/UBTJavaScriptUtils.controller.js:1-60, JS node
     GetPlatformIOS_PreventSwipe :61-80): navigator.platform holds "iphone", "ipad" or "ipod" (lower case). */
 function checkIOsPlatform(): boolean {
   // eslint-disable-next-line @typescript-eslint/no-deprecated -- the original reads navigator.platform (JS :63-68)
@@ -34,7 +34,7 @@ function checkIOsPlatform(): boolean {
   return platform.includes('iphone') || platform.includes('ipad') || platform.includes('ipod');
 }
 
-/** UBTConnect.App_Common_Blocks.External_Link (analysis/sources/pretty/UBTConnect.App_Common_Blocks.External_Link.mvc.js;
+/** UBTConnect.App_Common_Blocks.External_Link (migration/sources/pretty/UBTConnect.App_Common_Blocks.External_Link.mvc.js;
     only OneSchoolGlobalDetails uses it, catalog/blocks.md:199). View: IconText (text In_Link.Text, spacing xs, text
     primary when enabled else neutral 7, font size FontSize, regular, underlined) with the Icon OpenNew (same colour,
     NonStandard_16, visible IconVisible). Clicked → LinkClicked (:284-318): on iOS Navigate to In_Link.Link (runtime

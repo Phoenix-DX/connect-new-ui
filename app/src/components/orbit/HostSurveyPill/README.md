@@ -2,7 +2,7 @@
 
 OutSystems: `Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_PillItem` · pack
 `migration/blocks/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_PillItem.md` · source
-`migration/screens/EventDetail/analysis/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_PillItem.mvc.js`
+`migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_PillItem.mvc.js`
 
 | Input            | Type    | Prop              | Default |
 | ---------------- | ------- | ----------------- | ------- |

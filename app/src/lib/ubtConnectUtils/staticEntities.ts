@@ -57,6 +57,9 @@ export const UBT_Icons = {
   OpenNew: 'connect-icon-open_new',
   ContentCopy: 'connect-icon-content_copy',
   LocationOnFill: 'connect-icon-location_on_fill',
+  /** TST value (live moduleinfo.json of 2026-11-05, `uBT_Icons.transportPlane`): the fallback icon of an Orbit event
+      row in SearchResult_Item (UBTConnect_Utils.CW_Search.SearchResult_Item.mvc.js:369). */
+  TransportPlane: 'connect-icon-transport_plane',
 } as const;
 
 /** Connect_Entity (UBTConnect_Utils): TST values (migration/knowledge/static-entities-tst.json
@@ -118,6 +121,9 @@ export const UBT_IconSize = {
   NonStandard_108: 'icon-non-standard-108',
   NonStandard_16: 'icon-non-standard-16',
   Small_12: 'icon-small',
+  /** TST value (static-entities-tst.json `UBTConnect.uBT_IconsSize.nonStandard_40`; live moduleinfo.json): the Orbit
+      event avatar of SearchResult_Item (SearchResult_Item.mvc.js:373). */
+  NonStandard_40: 'icon-non-standard-40',
 } as const;
 
 /** "background-" / "text-" / "border-color-" + Id: captured `background-cyan-lightest`, `text-cyan-darker`,
@@ -132,6 +138,9 @@ export const UBT_Color = {
   Neutral10: 'neutral-10',
   Primary: 'primary',
   BlueDark: 'blue-dark',
+  /** TST value (static-entities-tst.json `UBTConnect.uBT_Color.cyanLighter`; live moduleinfo.json): the event source
+      tag of SearchResult_Item (SearchResult_Item.mvc.js:763). */
+  CyanLighter: 'cyan-lighter',
 } as const;
 
 /** "border-" + Id: captured `border-none` (UBT_LazyImage default), `border-s` (member); "padding-" + Base. */
@@ -165,7 +174,13 @@ export const UBT_FontWeight = { Regular: 'regular', SemiBold: 'semi-bold', Bold:
 export const UBT_FlexDirection = { Column: 'flex-direction-column' } as const;
 /** UBT_AvatarSize: "ubt-avatar-image-" + Id (CircleButton_WithLabel SizeId). Small_40 `s` (captured, library
     UBT_AvatarSize); SmallBase_48 `sb` from the original CSS (`.ubt-avatar-image-sb`, ShareSheet lists, no capture). */
-export const UBT_AvatarSize = { Small_40: 's', SmallBase_48: 'sb' } as const;
+export const UBT_AvatarSize = {
+  Small_40: 's',
+  SmallBase_48: 'sb',
+  /** TST value (static-entities-tst.json `UBTConnect.uBT_AvatarSize.medium_60`): the Orbit event avatar of
+      SearchResult_Item (SearchResult_Item.mvc.js:379). */
+  Medium_60: 'm',
+} as const;
 /* ShareSheet icons added to UBT_Icons (original CSS, no capture): `.connect-icon-lock`, `.connect-icon-checkbox_fill`,
    `.connect-icon-checkbox_outline_blank`, `.connect-icon-remove-fill` (the only remove-fill class). */
 

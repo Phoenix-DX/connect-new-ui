@@ -1,7 +1,7 @@
 # UBTConnectLibrary.ConnectCorePatterns.ImageCard_LazyLoading
 
 - Kind: shared; build screens using it: HouseholdCarousel, HouseholdDetails, Locality_Details, OneSchoolGlobalDetails, Profile, SupperMeeting_Carousel, SupperMeeting_Details
-- Compiled source: `migration/screens/HouseholdCarousel/analysis/sources/pretty/UBTConnectLibrary.ConnectCorePatterns.ImageCard_LazyLoading.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnectLibrary.ConnectCorePatterns.ImageCard_LazyLoading.mvc.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.CustomContainer (queue: -)
 
 ## Inputs
@@ -290,4 +290,4 @@ define("UBTConnectLibrary.ConnectCorePatterns.ImageCard_LazyLoading.mvc$view", [
                             _widgetRecordProvider: widgetsRecordProvider,
                             placeholders: {
 ```
-(… 21 more lines in `migration/screens/HouseholdCarousel/analysis/sources/pretty/UBTConnectLibrary.ConnectCorePatterns.ImageCard_LazyLoading.mvc.js`)
+(… 21 more lines in `migration/sources/pretty/UBTConnectLibrary.ConnectCorePatterns.ImageCard_LazyLoading.mvc.js`)

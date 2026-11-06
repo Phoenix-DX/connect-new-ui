@@ -10,7 +10,7 @@ import { DROPDOWN_CLASSES as C, focusClosedDropdown, navigateList } from './drop
 import { useDropdownListEffects } from './useDropdownListEffects';
 
 /* Platform widget OSWidgets.Dropdown in Custom mode (dropdownMode 1): the DropdownCustom module of
-   migration/runtime-sources/OutSystemsReactWidgets.js (W11610-21275, `W<n>` = character offset). The position math is
+   migration/sources/runtime/OutSystemsReactWidgets.js (W11610-21275, `W<n>` = character offset). The position math is
    in dropdownListPosition.ts, the DOM helpers in dropdownListDom.ts, the after-render effect in
    useDropdownListEffects.ts. Not ported: setVariable (W13531), which sets the first row and raises OnChange only when
    the widget has no Empty Value (all 8 dropdowns of the app have one, F2). */

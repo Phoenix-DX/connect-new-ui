@@ -1,7 +1,7 @@
 # UBTConnectLibrary.Layouts.Layout_MainPages_FixedTitle
 
 - Kind: shared; build screens using it: Notes, Updates_SingleList
-- Compiled source: `migration/screens/Notes/analysis/sources/pretty/UBTConnectLibrary.Layouts.Layout_MainPages_FixedTitle.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnectLibrary.Layouts.Layout_MainPages_FixedTitle.mvc.js`
 - Child blocks: NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top, OutSystemsUI_2_23.Private.PullToRefresh, UBTConnectLibrary.BasePatterns.Columns_Two (queue: -)
 
 ## Inputs
@@ -535,4 +535,4 @@ define("UBTConnectLibrary.Layouts.Layout_MainPages_FixedTitle.mvc$view", ["OutSy
                 animate: false,
                 style: "header-top-search",
 ```
-(… 195 more lines in `migration/screens/Notes/analysis/sources/pretty/UBTConnectLibrary.Layouts.Layout_MainPages_FixedTitle.mvc.js`)
+(… 195 more lines in `migration/sources/pretty/UBTConnectLibrary.Layouts.Layout_MainPages_FixedTitle.mvc.js`)

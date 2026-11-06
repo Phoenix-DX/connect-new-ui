@@ -52,7 +52,7 @@ const USER_IMAGE = 'img/Connect2_LegacyShared.User_rectangle.png';
 const DIVISION_RECTANGLE = 'img/Connect2_LegacyShared.no_division_rectangle.png';
 const DIVISION_SQUARE = 'img/Connect2_LegacyShared.no_division_square.png';
 
-/** Result row with an image (p:migration/blocks/sources/Connect2_LegacyShared.NewConnect_Utilities.
+/** Result row with an image (p:migration/sources/survey/Connect2_LegacyShared.NewConnect_Utilities.
     NC_Result_Item__Image.mvc.js view :330-600, controller OnClick_Result_Item :715-740, LoadPhotoAsync :642-700 run by
     OnReady :765 and OnParametersChanged :785 → useLoadPhotoAsync). The Label placeholder, then the row
     `display-flex align-items-center gap-base [flex-direction-row-reverse] <CustomClass>`: the image column

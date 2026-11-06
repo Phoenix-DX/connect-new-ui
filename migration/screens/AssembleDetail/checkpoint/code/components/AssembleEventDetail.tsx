@@ -1,209 +1,67 @@
-// @os-block Connect2_Assemble_MUI.Assemble.AssembleEventDetail
-// @os-block Connect2_Assemble_MUI.Assemble.AssembleEventDetail_Section
-// @os-block Connect2_Assemble_MUI.Assemble.AssembleEventDetail__Error
-// @os-block Connect2_Assemble_MUI.Assemble.AssembleEventDetail_AttendeeSubdivisionList_Skelet
-import { useEffect, useRef, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList } from '../../../components/OSList';
-import { AssembleSummaryCard } from '../../../shared/Connect2_Assemble_MUI/AssembleSummaryCard';
-import { AssembleSummaryDetailHeader_Skeleton } from '../../../shared/Connect2_Assemble_MUI/AssembleSummaryDetailHeader_Skeleton';
-import { NC_Card_Item_Text__Skeleton } from '../../../shared/Connect2_LegacyShared/NC_Card_Item_Text__Skeleton';
-import { raiseToFlowHandler } from '../../../shell/exceptions';
-import { useViewState, useWasRestoredFromCache } from '../../../shell/navigation';
-import { getAssembleEvent } from '../api';
-import type { AssembleDetailInputs, GetAssembleEventResult } from '../types';
-import { getIANATimezone, offsetDateTimeByUserUTCOffset, showUnknownErrorMessage } from './actions';
-import { AssembleEventDetail_ContactList, type EmailContactArgs } from './AssembleEventDetail_Contacts';
-import { AssembleEventDetail_LocalitiesList, type AttendeeNavigation } from './AssembleEventDetail_Localities';
-import { NC_Result_Item__Image__Skeleton, ShowMoreShowLessContainer } from './LegacySharedBlocks';
+import type { ReactNode } from 'react';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { AssembleSummarySkeleton } from '@/components/assemble/AssembleSummarySkeleton';
+import { AssembleSummaryCardContainer } from '@/containers/AssembleSummaryCard';
+import { CardTextSkeleton } from '@/components/ui/CardTextSkeleton';
+import { isMeetingNotFound } from '@/pages/AssembleDetail/hooks/assembleEventDetailState';
+import {
+  useAssembleEventDetail,
+  type AssembleEventDetailEvents,
+  type AssembleEventDetailParameters,
+} from '@/pages/AssembleDetail/hooks/useAssembleEventDetail';
+import type { AssembleEventContactEvents } from '@/pages/AssembleDetail/hooks/useAssembleEventContact';
+import type {
+  AttendeeSubdivisionEvents,
+  AttendeeSubdivisionFlags,
+} from '@/pages/AssembleDetail/hooks/useAttendeeSubdivision';
+import { AssembleEventDetail__Error } from './AssembleEventDetail__Error';
+import { AssembleEventDetail_AttendeeSubdivisionList_Skelet } from './AssembleEventDetail_AttendeeSubdivisionList_Skelet';
+import { AssembleEventDetail_ContactList } from './AssembleEventDetail_ContactList';
+import { AssembleEventDetail_LocalitiesList } from './AssembleEventDetail_LocalitiesList';
+import { AssembleEventDetail_Section } from './AssembleEventDetail_Section';
+import { NC_Result_Item__Image__Skeleton } from './NC_Result_Item__Image__Skeleton';
 
-/* Sources: migration/screens/AssembleDetail/sources/Connect2_Assemble_MUI.Assemble.AssembleEventDetail.mvc.js (ED),
-   …_Section.mvc.js (SE), …__Error.mvc.js (ER), …_AttendeeSubdivisionList_Skelet.mvc.js (SK). */
-
-const scopeOf = (id: string) => id.replace(/\$/g, '');
-
-/** Assemble.AssembleEventDetail_Section (SE view :208-346): AssembleDetailSection (visible IsVisible) > Section_Header
-    (`section-header margin-top-base`: a ThemeGrid_Width7 text skeleton while IsLoading, else Placeholder_Header), then
-    Placeholder_Content__Loading or Placeholder_Content. */
-export function AssembleEventDetail_Section({
-  id,
-  isLoading,
-  isVisible,
-  header,
-  contentLoading,
-  content,
-}: {
+export interface AssembleEventDetailProps
+  extends AssembleEventDetailEvents, AssembleEventContactEvents, AttendeeSubdivisionEvents {
+  /** OutSystems instance id of the block. */
   id: string;
-  isLoading: boolean;
-  isVisible: boolean;
-  header?: ReactNode;
-  contentLoading?: ReactNode;
-  content?: ReactNode;
-}) {
-  const scope = scopeOf(id);
-  return (
-    <OSBlock name="Assemble.AssembleEventDetail_Section" id={id}>
-      {isVisible && (
-        <div data-container="" id={`${scope}-AssembleDetailSection`}>
-          <div className="section-header margin-top-base" data-container="" id={`${scope}-Section_Header`}>
-            {isLoading ? (
-              <div className="ThemeGrid_Width7" data-container="">
-                <NC_Card_Item_Text__Skeleton id={`${scope}-$b1`} />
-              </div>
-            ) : (
-              <div id={`${scope}-Placeholder_Header`}>{header}</div>
-            )}
-          </div>
-          {isLoading ? (
-            <div id={`${scope}-Placeholder_Content__Loading`}>{contentLoading}</div>
-          ) : (
-            <div id={`${scope}-Placeholder_Content`}>{content}</div>
-          )}
-        </div>
-      )}
-    </OSBlock>
-  );
-}
-
-/** Assemble.AssembleEventDetail__Error (ER view :193-304): DIV_CustomErrorScreen (`nc-error-screen-info text-align-center
-    assemble-details-error`) > the Icon placeholder (`assemble-details-error__icon`, OSInline), the Title (`heading3`)
-    and the Subtitle (`font-size-s`, `padding-x-base`). */
-export function AssembleEventDetail__Error({
-  id,
-  title,
-  subtitle,
-  icon,
-}: {
-  id: string;
-  title: string;
-  subtitle: string;
-  icon?: ReactNode;
-}) {
-  const scope = scopeOf(id);
-  return (
-    <OSBlock name="Assemble.AssembleEventDetail__Error" id={id}>
-      <div
-        className="nc-error-screen-info text-align-center assemble-details-error"
-        data-container=""
-        id={`${scope}-DIV_CustomErrorScreen`}
-      >
-        <div className="text-align-center" data-container="">
-          <div className="assemble-details-error__icon OSInline" id={`${scope}-Icon`}>
-            {icon}
-          </div>
-        </div>
-        <div className="assemble-details-error__title" data-container="">
-          <span className="heading3" data-expression="">
-            {title}
-          </span>
-        </div>
-        <div className="assemble-details-error__subtitle padding-x-base" data-container="">
-          <span className="font-size-s" data-expression="">
-            {subtitle}
-          </span>
-        </div>
-      </div>
-    </OSBlock>
-  );
-}
-
-/** Assemble.AssembleEventDetail_AttendeeSubdivisionList_Skelet (SK view :210-330, OnInitialize :366-466: SkeletonList of
-    SkeletonListLength items): a ThemeGrid_Width4 `margin-bottom-base` text skeleton, then a `list list-group
-    margin-bottom-s` List of round image skeletons in `padding-bottom-s` rows. */
-export function AssembleEventDetail_AttendeeSubdivisionList_Skelet({
-  id,
-  skeletonListLength,
-}: {
-  id: string;
-  skeletonListLength: number;
-}) {
-  const scope = scopeOf(id);
-  const skeletonList = Array.from({ length: skeletonListLength }, (_, i) => i);
-  return (
-    <OSBlock name="Assemble.AssembleEventDetail_AttendeeSubdivisionList_Skelet" id={id}>
-      <div className="margin-bottom-base ThemeGrid_Width4" data-container="">
-        <NC_Card_Item_Text__Skeleton id={`${scope}-$b1`} />
-      </div>
-      <OSList className="list list-group margin-bottom-s" animateItems source={skeletonList} keyOf={(i) => i}>
-        {(i) => (
-          <div className="padding-bottom-s" data-container="">
-            <NC_Result_Item__Image__Skeleton id={`${scope}-$b2-${String(i)}`} inIsRoundImage />
-          </div>
-        )}
-      </OSList>
-    </OSBlock>
-  );
-}
-
-export interface AssembleEventDetailProps extends AttendeeNavigation {
-  id: string;
-  inputs: Pick<AssembleDetailInputs, 'EventId' | 'SeriesId' | 'Start'>;
-  onNavigateToHousehold: (householdId: string) => void;
-  onEmailContact: (args: EmailContactArgs) => void;
-  onUpdateTitle: (title: string) => void;
+  /** SeriesId, EventId, Start. */
+  inputs: AssembleEventDetailParameters;
+  /** The flags of the halls, read by the page. */
+  flags: AttendeeSubdivisionFlags;
+  /** The MeetingNotes placeholder (the notes preview and its action bar), rendered in `<scope>-MeetingNotes` once the
+      meeting is fetched (capture of 2026-11-06: `b2-b4-MeetingNotes` is absent while loading). The live TST block of
+      2026-11-05 has no Section_MeetingNotes ("Meeting Note", the summary text) any more; the survey copy of 2026-10-13
+      had one (decision 2026-11-05, migration/clarify/auto-decisions-2026-11-05.md row 11). */
+  meetingNotes?: ReactNode;
 }
 
 const MEETING_NOT_FOUND_SUBTITLE =
   'This meeting might have been deleted or rescheduled, tap the Assemble icon on the bottom bar to refresh the page.';
 
-/** Assemble.AssembleEventDetail (ED view :420-1590, controller :1596-2183). IsNotFound or IsUnavailable → __Error
-    "Meeting not found" with the search-off icon; else `assemble-detail-content` > DIV_DetailCard (the detail header
-    skeleton until the first fetch, then AssembleSummaryCard, not a list item) and DIV_Content (`padding-x-base`) with
-    three sections: Section_MeetingNotes ("Meeting Note"; ShowMoreShowLess of the notes, 3 lines), Section_Attendees
-    ("Meeting Attendees": two attendee skeletons while loading; "Host Locality" and "Interchange Meetings" localities)
-    and Section_GSMContacts (" GMS Local Contact": round image skeleton while loading; the contact list).
-    OnInitialize: DeviceTimezone = GetIANATimezone. OnReady: restored from cache with data → nothing; else
-    GetAssembleEvent (on demand) and GetAssembleEvent_OnAfterFetch: IsUnavailable → ShowUnknownErrorMessage
-    (GetUnavailableEventErrorMessage); else DateTime = OffsetDateTimeByUserUTCOffset(DateTime), the null DateTime →
-    Start; UpdateTitle(event type title); IsDataFetched = True. EventNotFound is never raised by this block. */
+/** IsNotFound or IsUnavailable → AssembleEventDetail__Error "Meeting not found" with the search-off icon. Otherwise
+    `assemble-detail-content` > DIV_DetailCard (the detail header skeleton until the first fetch, then
+    AssembleSummaryCard with its actions, not a list item) and DIV_Content (`padding-x-base`) with the MeetingNotes
+    placeholder (once the meeting is fetched) and two sections:
+    - Section_Attendees ("Meeting Attendees": two attendee skeletons while loading; the "Host Locality" and
+      "Interchange Meetings" localities);
+    - Section_GSMContacts (" GMS Local Contact": a round image skeleton while loading; the contact list).
+    The flows are in useAssembleEventDetail.
+    @origin Connect2_Assemble_MUI.Assemble.AssembleEventDetail */
 export function AssembleEventDetail({
   id,
   inputs,
-  onNavigateToHousehold,
-  onEmailContact,
+  flags,
+  meetingNotes,
   onUpdateTitle,
-  ...nav
+  onEmailContact,
+  onNavigateToHousehold,
+  ...attendeeEvents
 }: AssembleEventDetailProps) {
-  const scope = scopeOf(id);
-  const fromCache = useWasRestoredFromCache();
-  const [deviceTimezone] = useViewState(`${scope}-DeviceTimezone`, getIANATimezone());
-  const [isDataFetched, setIsDataFetched] = useViewState(`${scope}-IsDataFetched`, false);
-  const [data, setData] = useViewState<GetAssembleEventResult | null>(`${scope}-GetAssembleEvent`, null);
+  const scope = id.replace(/\$/g, '');
+  const { isDataFetched, getAssembleEvent: data } = useAssembleEventDetail(id, inputs, { onUpdateTitle });
 
-  const ready = useRef(false);
-  useEffect(() => {
-    if (ready.current) return;
-    ready.current = true;
-    if (fromCache && data !== null) return;
-    void (async () => {
-      const result = await getAssembleEvent({
-        ...inputs,
-        DeviceTimezone: deviceTimezone,
-        IsDataFetched: isDataFetched,
-      });
-      const summary = result.AssembleEvent.AssembleEventSummary;
-      if (summary.IsUnavailable) {
-        setData(result);
-        // ShowUnknownErrorMessage(GetUnavailableEventErrorMessage, GetUnavailableEventErrorMessage) (ED :1945-1966).
-        showUnknownErrorMessage();
-        return;
-      }
-      const converted = offsetDateTimeByUserUTCOffset(summary.DateTime);
-      const dateTime = converted === '' ? inputs.Start : converted;
-      setData({
-        ...result,
-        AssembleEvent: { ...result.AssembleEvent, AssembleEventSummary: { ...summary, DateTime: dateTime } },
-      });
-      onUpdateTitle(summary.AssembleEventType?.Title ?? '');
-      setIsDataFetched(true);
-    })().catch(raiseToFlowHandler);
-    // OnReady runs once.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const event = data?.AssembleEvent;
-  const summary = event?.AssembleEventSummary;
-  if (data !== null && (data.IsNotFound || summary?.IsUnavailable))
+  if (isMeetingNotFound(data))
     return (
       <OSBlock name="Assemble.AssembleEventDetail" id={id}>
         <AssembleEventDetail__Error
@@ -215,28 +73,30 @@ export function AssembleEventDetail({
       </OSBlock>
     );
 
-  const notes = summary?.Notes ?? '';
+  const event = data?.AssembleEvent;
+  const summary = event?.AssembleEventSummary;
   const attendees = event?.AssembleAttendeeSubdivisionList ?? [];
   const special = event?.AssembleSpecialAttendeeSubdivisionList ?? [];
   const guests = event?.AssembleAttendeeSpecialGuestList ?? [];
   const contacts = event?.GSMContactList ?? [];
+  const attendee = { flags, ...attendeeEvents };
 
   return (
     <OSBlock name="Assemble.AssembleEventDetail" id={id}>
       <div className="assemble-detail-content" data-container="">
         <div data-container="" id={`${scope}-DIV_DetailCard`}>
           {!isDataFetched && (summary?.EventId ?? '') === '' ? (
-            <AssembleSummaryDetailHeader_Skeleton
+            <AssembleSummarySkeleton
               id={`${scope}-$b2`}
-              placeholderImage={<NC_Card_Item_Text__Skeleton id={`${scope}-$b3`} />}
+              placeholderImage={<CardTextSkeleton id={`${scope}-$b3`} />}
               placeholderSubtitleTop={
                 <div className="ThemeGrid_Width9" data-container="">
-                  <NC_Card_Item_Text__Skeleton id={`${scope}-$b4`} extendedClass="border-radius-bottom-none" />
+                  <CardTextSkeleton id={`${scope}-$b4`} extendedClass="border-radius-bottom-none" />
                 </div>
               }
               placeholderTitle={
                 <div className="ThemeGrid_Width9" data-container="">
-                  <NC_Card_Item_Text__Skeleton
+                  <CardTextSkeleton
                     id={`${scope}-$b5`}
                     extendedClass="border-radius-top-none border-radius-bottom-none"
                   />
@@ -244,42 +104,16 @@ export function AssembleEventDetail({
               }
               placeholderSubtitleBottom={
                 <div className="ThemeGrid_Width9" data-container="">
-                  <NC_Card_Item_Text__Skeleton id={`${scope}-$b6`} extendedClass="border-radius-top-none" />
+                  <CardTextSkeleton id={`${scope}-$b6`} extendedClass="border-radius-top-none" />
                 </div>
               }
             />
           ) : (
-            <AssembleSummaryCard id={`${scope}-$b7`} assembleEventSummary={summary} isListItem={false} />
+            <AssembleSummaryCardContainer id={`${scope}-$b7`} assembleEventSummary={summary} isListItem={false} />
           )}
         </div>
         <div className="padding-x-base" data-container="" id={`${scope}-DIV_Content`}>
-          <AssembleEventDetail_Section
-            id={`${scope}-Section_MeetingNotes`}
-            isLoading={!isDataFetched}
-            isVisible={notes !== '' || !isDataFetched}
-            header={
-              <div data-container="" id={`${scope}-DIV_MeetingNotes__Title`}>
-                Meeting Note
-              </div>
-            }
-            contentLoading={
-              <div className="padding-y-s" data-container="">
-                <NC_Card_Item_Text__Skeleton id={`${scope}-$b9`} />
-              </div>
-            }
-            content={
-              <div className="margin-top-xs" data-container="" id={`${scope}-Div_EventNotes__Content`}>
-                <ShowMoreShowLessContainer
-                  id={`${scope}-$b10`}
-                  sectionHeaderId={`${scope}-DIV_MeetingNotes__Title`}
-                  maximumNumberOfLines={3}
-                  placeholderContent={<span data-expression="">{notes}</span>}
-                  showMoreLabel="Read more"
-                  showLessLabel="Show less"
-                />
-              </div>
-            }
-          />
+          {isDataFetched && <div id={`${scope}-MeetingNotes`}>{meetingNotes}</div>}
           <AssembleEventDetail_Section
             id={`${scope}-Section_Attendees`}
             isVisible={!isDataFetched || attendees.length > 0 || special.length > 0 || guests.length > 0}
@@ -299,7 +133,7 @@ export function AssembleEventDetail({
                       id={`${scope}-$b14`}
                       assembleAttendeeSubdivisionList={attendees}
                       header="Host Locality"
-                      {...nav}
+                      {...attendee}
                     />
                   </div>
                 )}
@@ -309,7 +143,7 @@ export function AssembleEventDetail({
                       id={`${scope}-$b15`}
                       assembleAttendeeSubdivisionList={special}
                       header="Interchange Meetings"
-                      {...nav}
+                      {...attendee}
                     />
                   </div>
                 )}

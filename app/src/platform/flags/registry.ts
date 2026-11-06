@@ -11,8 +11,8 @@
    - routes: the routes that read the flag (flags.generated.json "routes").
    mobileDirectoryLocalityContacts is not in flags.generated.json: its decision is a route decision (Locality_Details Q2,
    default-only off, 2026-10-15), and Locality_Details reads it. mobileDirectoryHouseholdGallery (live TST of
-   2026-10-27, HouseholdDetails_Block.mvc.js:1298-1301): default on as TST (read-only probe of 2026-10-29; user
-   decision (a), drift wave round 2).
+   2026-11-05, HouseholdDetails_Block.mvc.js:1274-1392: on shows GetHouseHold_Gallery in the Photos tag, off only the
+   Coming Soon box): default on as TST (read-only probe of 2026-10-29; user decision (a), drift wave round 2).
    The routes follow `flags.py export` of 2026-10-29 (the full scan of the live survey; user decision (a)): names that
    share a key give one flag with the routes of all, retired routes are left out. The TST bottom bar of 2026-10-27
    reads neither C2NewBookmarks nor mobileDirectoryBookmarkNote, so their routes shrank to the screens that still read
@@ -287,7 +287,7 @@ export const FLAGS = {
     routes: ['Locality_Details'],
   },
   mobileDirectoryHouseholdGallery: {
-    description: 'Hides the Coming Soon box of the household Photos tag (HouseholdDetails_Block).',
+    description: 'Shows the household gallery (GetHouseHold_Gallery) in the Photos tag; off shows the Coming Soon box',
     ...UNSET,
     source: 'server',
     default: true,

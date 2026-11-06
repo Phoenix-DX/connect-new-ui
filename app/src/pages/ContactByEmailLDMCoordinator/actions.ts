@@ -1,7 +1,7 @@
 import { log } from '@/platform/log/log';
 import { showFeedbackMessage } from '@/platform/feedback';
 
-/* Client actions and the JavaScript node the screen calls (S = runtime-sources/UBTConnect.ContactFlow
+/* Client actions and the JavaScript node the screen calls (S = sources/runtime/UBTConnect.ContactFlow
    .ContactByEmailLDMCoordinator.mvc.js). Local copies (no import across routes; CR-LDM_EventDetail_V2-1). */
 
 /** UBTConnect.lDMApplicationEvent.myTimelineCoordinatorEmailed (S :535, :543; TST value,

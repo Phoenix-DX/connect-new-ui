@@ -2,7 +2,8 @@ import { act, renderHook } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import { MemoryRouter } from 'react-router';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { fetchHousehold, fetchHouseholdCoordinates, type Household } from '@/api/household';
+import { fetchHousehold, fetchHouseholdCoordinates, fetchHouseholdGallery, type Household } from '@/api/household';
+import { DataFetchStatus } from '@/components/ui/os/OSList';
 import {
   CommunicationException,
   ControllerDisposedException,
@@ -26,6 +27,7 @@ vi.mock('@/api/household', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/api/household')>()),
   fetchHousehold: vi.fn(),
   fetchHouseholdCoordinates: vi.fn(),
+  fetchHouseholdGallery: vi.fn(),
 }));
 vi.mock('@/platform/session/userInfo', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/platform/session/userInfo')>()),
@@ -108,6 +110,7 @@ beforeEach(() => {
   vi.mocked(getUserInformation).mockResolvedValue(mockUserInformation());
   vi.mocked(fetchHousehold).mockResolvedValue(HOUSEHOLD);
   vi.mocked(fetchHouseholdCoordinates).mockResolvedValue({});
+  vi.mocked(fetchHouseholdGallery).mockResolvedValue([]);
 });
 
 describe('useHouseholdDetails after an unmount (flow scope, item 8)', () => {
@@ -130,6 +133,7 @@ describe('useHouseholdDetails after an unmount (flow scope, item 8)', () => {
     await settle();
     expect(fetchHousehold).not.toHaveBeenCalled();
     expect(fetchHouseholdCoordinates).not.toHaveBeenCalled();
+    expect(fetchHouseholdGallery).not.toHaveBeenCalled();
     expect(householdDetailsReducer).not.toHaveBeenCalled();
     expect(events.onHouseholdDataFetched).not.toHaveBeenCalled();
     // The own action throws ControllerDisposedException (ensureControllerAlive); the handler ignores it.
@@ -234,5 +238,47 @@ describe('useHouseholdDetails after an unmount (flow scope, item 8)', () => {
     });
     await settle();
     expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
+  });
+});
+
+describe('useHouseholdDetails: GetHouseHold_Gallery (live TST of 2026-11-05)', () => {
+  const GALLERY = [{ SignedURL: 'https://img.example/a.jpg' }, { SignedURL: 'https://img.example/b.jpg' }];
+
+  it('OnReady refreshes the three data actions in order, with the same inputs (RefreshesJS, :3174-3178)', async () => {
+    vi.mocked(fetchHouseholdGallery).mockResolvedValue(GALLERY);
+    const { result } = renderFlows();
+    expect(result.current.state.gallery).toEqual({ images: [], dataFetchStatus: DataFetchStatus.Fetching });
+    await settle();
+    expect(fetchHousehold).toHaveBeenCalledTimes(1);
+    expect(fetchHouseholdCoordinates).toHaveBeenCalledTimes(1);
+    expect(fetchHouseholdGallery).toHaveBeenCalledTimes(1);
+    expect(vi.mocked(fetchHouseholdGallery).mock.calls[0]?.[0]).toEqual(vi.mocked(fetchHousehold).mock.calls[0]?.[0]);
+    const order = [fetchHousehold, fetchHouseholdCoordinates, fetchHouseholdGallery].map(
+      (fn) => vi.mocked(fn).mock.invocationCallOrder[0] ?? 0,
+    );
+    expect([...order].sort((a, b) => a - b)).toEqual(order);
+    expect(result.current.state.gallery).toEqual({ images: GALLERY, dataFetchStatus: DataFetchStatus.Fetched });
+  });
+
+  it('OnParametersChanged (skeleton only ended) refreshes the three data actions again (:3187-3191)', async () => {
+    const { rerender } = renderFlows({ ...INPUTS, isSkeletonOnly: true });
+    await settle();
+    expect(fetchHouseholdGallery).toHaveBeenCalledTimes(1);
+    rerender({ inputs: { ...INPUTS, isSkeletonOnly: false } });
+    await settle();
+    expect(fetchHousehold).toHaveBeenCalledTimes(2);
+    expect(fetchHouseholdCoordinates).toHaveBeenCalledTimes(2);
+    expect(fetchHouseholdGallery).toHaveBeenCalledTimes(2);
+  });
+
+  it('a gallery failure sets its status to Error and leaves the household alone', async () => {
+    const error = new CommunicationException('The connection has timed out');
+    vi.mocked(fetchHouseholdGallery).mockRejectedValueOnce(error);
+    const { result } = renderFlows();
+    await settle();
+    expect(result.current.state.gallery.dataFetchStatus).toBe(DataFetchStatus.Error);
+    expect(result.current.state.household.dataFetchStatus).toBe(DataFetchStatus.Fetched);
+    expect(result.current.state.household.Household).toEqual(HOUSEHOLD.Household);
+    expect(raisedErrors()).toEqual([error]);
   });
 });

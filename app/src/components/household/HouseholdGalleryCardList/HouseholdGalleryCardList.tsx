@@ -29,7 +29,7 @@ export interface HouseholdGalleryCardListProps {
   onEventOnClickHouseholdGalleryCard?: (householdId: string) => void;
 }
 
-/** Households section of a supper meeting (p:migration/screens/SupperMeeting_Carousel/analysis/sources/pretty/
+/** Households section of a supper meeting (p:migration/sources/pretty/
     UBTConnect.Directory_Household_Blocks.Household_GalleryCard_List.mvc.js:161-322): SkeletonSection(In_IsLoading) >
     SubLayout_DirectoryDetailScreen_Section titled Get_LookupSection(False).Households.Plural > Directory_EmptyState
     (Household) when the list is empty, else a Gallery of ItemsPerRow on every device with a List "list list-group"

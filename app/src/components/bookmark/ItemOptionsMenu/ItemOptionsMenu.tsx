@@ -20,7 +20,7 @@ export interface ItemOptionsMenuProps {
   anchorPlaceholder?: ReactNode;
 }
 
-/** Connect2_LegacyShared Utility.ItemOptionsMenu (migration/screens/BookmarksByGroup/analysis/sources/pretty/Connect2_LegacyShared.Utility.ItemOptionsMenu
+/** Connect2_LegacyShared Utility.ItemOptionsMenu (migration/sources/pretty/Connect2_LegacyShared.Utility.ItemOptionsMenu
     .mvc.js: model :1-122, view :179-490, controller :493-655). When In_IsRecordAvailable, a Widgets.PopupMenu
     (ExtendedClass "backwards-compatibility") with Anchor_Placeholder as anchor and, as menu: the bookmark item
     ("Unmark" when IsBookmarked, else "Bookmark"); when IsShareImplemented, "Share" (GetHasExtendedShare, TST on) or

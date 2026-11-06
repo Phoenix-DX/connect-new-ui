@@ -46,7 +46,7 @@ The other four pack variants are the same sheets in other screens (covered by Co
 
 - No capture shows an open sheet. The tests of open/close, focus, body class and has-scroll follow the documented
   behaviour of the provider, not a capture.
-- Provider ported from `migration/runtime-sources/OutSystemsUI_2_23.OutSystemsUI.js` (BottomSheet :4913-5136).
+- Provider ported from `migration/sources/runtime/OutSystemsUI_2_23.OutSystemsUI.js` (BottomSheet :4913-5136).
   Tests: `BottomSheet.test.tsx` (drag-to-close).
   - Drag-to-close (`dragToClose.ts`) works only when DeviceInfo.IsNative or IsTouch (:2684-2715, :4940-4945).
   - The touch gesture of the header (:1779-1876) moves the sheet down: `no-transition` during the drag, translateY in a

@@ -47,6 +47,7 @@ Every route is built with exactly this stack and these patterns. Route agents ne
 | Web equivalent of Leaflet | npm package leaflet 1.9.4 + leaflet.markercluster 1.5.3 | confirmed | Third-party component found in the survey; no default without knowing its use. | user 2026-10-14T13:13:51 |
 | Web equivalent of ReactiveHtmlSanitizer | npm package dompurify 3 configured with the module's allow lists | confirmed | Third-party component found in the survey; no default without knowing its use. | user 2026-10-14T13:13:52 |
 | Web equivalent of SortableJS | npm package sortablejs 1.15.7 | confirmed | Third-party component found in the survey; no default without knowing its use. | user 2026-10-14T13:13:51 |
+| Web equivalent of AdaptiveCards (Connect2_LegacyShared) | npm package adaptivecards 2.5.0, the version of the TST bundle (decision PD7, user, 2026-10-28) | confirmed | Third-party component found in the clarify build wave; the TST bundle ships adaptivecards. | user 2026-10-28T00:00:00 |
 
 ## Allowed dependencies (pinned)
 
@@ -54,6 +55,7 @@ Every route is built with exactly this stack and these patterns. Route agents ne
 |---|---|---|
 | `@splidejs/splide` | 4.1.3 | runtime |
 | `@tanstack/react-query` | 5.101.4 | runtime |
+| `adaptivecards` | 2.5.0 | runtime |
 | `dompurify` | 3.4.17 | runtime |
 | `gsap` | 3.13.0 | runtime |
 | `leaflet` | 1.9.4 | runtime |
@@ -106,9 +108,9 @@ Every route is built with exactly this stack and these patterns. Route agents ne
 
 ## Consistency rules (consistency_check.py)
 
-- Required files per route: index.tsx; when the route has calls also api.ts, mocks.ts, types.ts
-- Imports allowed from: the route's own folder, src/shared, src/shell, src/lib, src/components, src/mocks, src/vendor, and allowed packages
-- NO-RAW-FETCH: server calls only through callAction in api.ts
+- Required files per route (in app/src/pages/<S>/, {screen} = route name): {screen}Page.tsx
+- Imports: packages only from the allow-list; folder imports are checked by `npm run arch`
+- NO-RAW-FETCH: server calls only through the repositories of src/api (flow.fetch wraps them, R1)
 - NO-BROWSER-STORAGE: no tokens or personal data in browser storage; use the shell's stores
 - NO-ROUTE-CSS: the original CSS is global; routes add no CSS
 - NO-INLINE-COLOR: visual differences are fixed in markup, not inline styles (inline CSS variables from the capture are fine)
@@ -173,7 +175,7 @@ Every route is built with exactly this stack and these patterns. Route agents ne
 
 ### ADR-7: Vendor the TST PanZoom (anvaka panzoom) script for Photobook (accepted)
 - Context: Photobook's zoom block (Photobook Q1) uses PanZoom.anvaka_panzoom_js.js shipped by the original app; it is not an npm dependency of the clone
-- Decision: Vendor the exact TST file (migration/runtime-sources/PanZoom.anvaka_panzoom_js.js, fetched read-only 2026-10-15) into app/src/vendor/panzoom/, as ADR-5 did for Virtual Select; same version as TST
+- Decision: Vendor the exact TST file (migration/sources/runtime/PanZoom.anvaka_panzoom_js.js, fetched read-only 2026-10-15) into app/src/vendor/panzoom/, as ADR-5 did for Virtual Select; same version as TST
 - Consequences: No new npm package; the vendored file is wrapped by a typed module; upgrades only together with the original
 - accepted by user 2026-10-15T19:11:48
 
@@ -184,7 +186,7 @@ Every route is built with exactly this stack and these patterns. Route agents ne
 - accepted by user 2026-10-15T19:47:02
 
 ### ADR-9: PWA: installable online-first app with a Workbox service worker (vite-plugin-pwa injectManifest) (accepted)
-- Context: ADR-1 fixes web/PWA only; stack pwa said no service worker in the mock phase. The user decided the PWA plan on 2026-10-16 (migration/pwa/pwa-discussion-plan.md section 7: P1 online-first, P2 injectManifest, P3 caching table 3a, P4 TST manifest values + browser default install prompt, P11 silent update, P13 iOS 16+ degrade, P16 app SW only in non-mock builds). TST manifest fetched (migration/runtime-sources/UBTConnect.pwa-manifest.json). Versions by the stable rule (major line >= 9 months, version >= 60 days, checked 2026-10-16): vite-plugin-pwa 1.3.0 (1.x since 2025-03-29; 2.0.0 is from 2026-10-03, too young; peer vite ^7), workbox-* 7.4.1 (7.x since 2023-05-31; 7.4.1 from 2026-05-04).
+- Context: ADR-1 fixes web/PWA only; stack pwa said no service worker in the mock phase. The user decided the PWA plan on 2026-10-16 (migration/pwa/pwa-discussion-plan.md section 7: P1 online-first, P2 injectManifest, P3 caching table 3a, P4 TST manifest values + browser default install prompt, P11 silent update, P13 iOS 16+ degrade, P16 app SW only in non-mock builds). TST manifest fetched (migration/sources/runtime/UBTConnect.pwa-manifest.json). Versions by the stable rule (major line >= 9 months, version >= 60 days, checked 2026-10-16): vite-plugin-pwa 1.3.0 (1.x since 2025-03-29; 2.0.0 is from 2026-10-03, too young; peer vite ^7), workbox-* 7.4.1 (7.x since 2023-05-31; 7.4.1 from 2026-05-04).
 - Decision: Add vite-plugin-pwa 1.3.0 (dev) and workbox-build 7.4.1 (dev); workbox-window, workbox-core, workbox-precaching, workbox-routing, workbox-strategies, workbox-expiration 7.4.1. Own SW file (injectManifest) built and registered only when VITE_USE_MOCKS=false; mock/demo builds keep MSW and unregister a stale app SW. Manifest = TST values (name/short_name Connect 2.0, standalone, theme #1992ab, background #ffffff, TST icons 48-512, start_url and scope /UBTConnect/, portrait), browser default install prompt only. Caching per table 3a: precache hashed bundles + original per-screen CSS + fonts; navigations network-first with the precached index.html fallback; original images cache-first 30 days; never API, signed photos, /bff/*, auth callback, network-ping. Silent update: the new SW waits for the next cold start (no skipWaiting); forced reload only when the API contract version changes (hook ready, wired with the BFF). Offline keeps the original toasts (no offline screen).
 - Consequences: Parity and captures keep blocking service workers; PWA behaviour gets its own Playwright e2e (P14, phase 5). Two build modes to document (mock with MSW, production with the app SW). iOS: no install prompt, separate storage, features degrade without errors. Push, WebAuthn, BFF auth and the barcode scanner come in later phases with their own ADRs.
 - accepted by user 2026-10-16T16:38:39
@@ -196,8 +198,8 @@ Every route is built with exactly this stack and these patterns. Route agents ne
 - accepted by user 2026-10-16T16:38:39
 
 ### ADR-11: Vendor the TST BarcodePlugin web scanner (OSBarcodePlugin.js) for PWA scanning (accepted)
-- Context: PWA decision P7 (user, 2026-10-16): vendor the TST scanner. The original BarcodePlugin, without Cordova and with navigator.mediaDevices, loads OSBarcodePlugin.js (html5-qrcode + ZXing web scanner, BarcodeDetector when supported, rear camera) (migration/runtime-sources/BarcodePlugin.controller.js:21-94, 201-203). The clone answers CheckBarcodePlugin 'not available' (OS-PLUG-BARC-0011) and registers a fictional scanner in the mock phase (OrbitAdminEventDetail Q1 = A). Rule: libraries the original ships keep the TST version.
-- Decision: Vendor migration/runtime-sources/BarcodePlugin.OSBarcodePlugin.js unchanged (as ADR-5/7), with its CSS as AddCSSJS injects it, behind a device adapter (src/lib/device, named by ADR-1). Port CheckBarcodePlugin / ScanBarcode web branches 1:1. Production uses the web scanner; dev and demo keep the fictional scanner by default (Q1 = A) and use the web scanner with ?scanner=web.
+- Context: PWA decision P7 (user, 2026-10-16): vendor the TST scanner. The original BarcodePlugin, without Cordova and with navigator.mediaDevices, loads OSBarcodePlugin.js (html5-qrcode + ZXing web scanner, BarcodeDetector when supported, rear camera) (migration/sources/runtime/BarcodePlugin.controller.js:21-94, 201-203). The clone answers CheckBarcodePlugin 'not available' (OS-PLUG-BARC-0011) and registers a fictional scanner in the mock phase (OrbitAdminEventDetail Q1 = A). Rule: libraries the original ships keep the TST version.
+- Decision: Vendor migration/sources/runtime/BarcodePlugin.OSBarcodePlugin.js unchanged (as ADR-5/7), with its CSS as AddCSSJS injects it, behind a device adapter (src/lib/device, named by ADR-1). Port CheckBarcodePlugin / ScanBarcode web branches 1:1. Production uses the web scanner; dev and demo keep the fictional scanner by default (Q1 = A) and use the web scanner with ?scanner=web.
 - Consequences: Needs HTTPS (or localhost) and camera permission; iOS has no BarcodeDetector, so ZXing decodes. The vendored file is third-party code (html5-qrcode and ZXing, Apache-2.0 per its headers, to verify) with no npm updates; upgrades follow TST.
 - accepted by user 2026-10-16T20:17:32
 
@@ -255,7 +257,7 @@ Every route is built with exactly this stack and these patterns. Route agents ne
     - Route guard: the route meta (`app/routes.ts`: `access`, `lock`, `flagRedirect`) and the one `RouteGuard` (`app/RouteGuard.tsx`, reads the session status) keep the redirect table of the old `startup.ts` unchanged. `platform/` does not import `app/`, so `LockHost` gets `ignoresLockScreen` as a prop.
   - Parity and API (§4.1, D1, D2): two parity levels, `strict` (all checks) and `visual` (no DOM checks), plus a self-parity reference. The API contract stays unchanged behind `api/<domain>/`.
   - Scope and sequence (R1 b, R7 b): phases 0 to 7 in about 50 days, and phases 8 and 9 as a stretch goal. Phase 2 builds a walking skeleton on HouseholdDetails before the mass work.
-  - Tools (§4.4, D3 as changed by Q2 and Q4): dependency-cruiser checks rules 3 to 10 and exports the import graph. ESLint core `no-restricted-imports` checks rule 11. jscpd reports duplicate code, and knip reports unused files and exports. ts-morph runs the codemod `migration/tools/refactor/move.ts`.
+  - Tools (§4.4, D3 as changed by Q2 and Q4): dependency-cruiser checks rules 3 to 10 and exports the import graph. ESLint core `no-restricted-imports` checks rule 11. jscpd reports duplicate code, and knip reports unused files and exports. ts-morph runs the codemod `tools/refactor/move.ts`.
   - Q5 (auto-accepted under the user's delegation, 2026-10-22): the 4 `DEPRECATED_*` OutSystems UI patterns stay as legacy UI components with business names in `components/ui/legacy/` (phase P7, shape `ui`). They are not deleted, because the DOM must stay the same (R3).
   - Q6 (auto-accepted under the user's delegation, 2026-10-22): the 5 `ContactByEmail*` pages share a `ContactEmailForm` and two card components. Each page has a config object and one submit hook, and there is no container. `EmailContact`, `EmailTarget` and `LDM_Email_V2` stay separate.
 - Consequences: After the user accepts this ADR at the P0-5 gate, `stack.py dep add --dev --adr ADR-15` allows the packages below.
@@ -263,7 +265,7 @@ Every route is built with exactly this stack and these patterns. Route agents ne
   - Security patches to allow under the ADR-2 security exception (decision Q3): `vite` 7.3.7, `vitest` 4.1.12, `storybook` 10.6.3 and `@storybook/react-vite` 10.6.3. They replace `vite` 7.3.6, `vitest` 4.1.11 and the two `storybook` packages 10.5.8 in the allow-list.
   - D3 changes by auto decision Q4: the refactor drops `eslint-plugin-boundaries`, and dependency-cruiser checks rules 3 to 9 because it resolves the `@/` alias. Decision Q2 adds no `eslint-plugin-import-x` and no `tsx`. ESLint core `no-restricted-imports` checks rule 11, and the codemod runs on plain Node 24. Plan v2 still names the dropped packages in §4.3 to §4.5, step P1-1 and the D3 row of §9. These places need a text update.
   - Accepted advisory: `braces` GHSA-vfj7-8cjw-p6xm (high, stack exhaustion on deeply nested patterns) has no patched version. It comes only through the dev-only CLIs `knip` and `jscpd` (through `fast-glob` and `micromatch`) and does not reach the app bundle. The only fix path, `knip` 6.42.1, fails the stable rule, and `jscpd` 4.3.0 keeps the path. Check the advisory again at Phase 9.
-  - The refactor does not use `route.py` (D4). `migration/tools/refactor_parity.py` runs the parity at the level of each step, against the OutSystems captures and the self-parity reference. Self-parity exemptions go to `migration/refactor-exemptions.json` with the step id, the reason and the user's confirm.
+  - The refactor does not use `route.py` (D4). `tools/parity/refactor_parity.py` runs the parity at the level of each step, against the OutSystems captures and the self-parity reference. Self-parity exemptions go to `migration/refactor-exemptions.json` with the step id, the reason and the user's confirm.
   - Open point: the consistency rules of `stack.json` (`requiredFiles`, `requiredIfCalls`, `allowedImportRoots`, NO-ROUTE-CSS) describe the folders of the migration. They need a change before the code moves to the new folders.
   - Plan v2 §2.2 example "containers/ (ShareSheet, FilterSheet, BottomBar)" needs a text update: FilterSheet and BottomBar are not containers (no data action; `component` and `hook+component`).
   - The memoryCache readers (`CacheControl`, `CacheControl_*`, `CacheControl_UserInfo_Wrapper`) are rewritten in P5-4, where they are; P6 only moves the files.
@@ -275,4 +277,10 @@ Every route is built with exactly this stack and these patterns. Route agents ne
 - Decision: Remove nouislider and wnumb from the allowed dependencies and remove the osui:RangeSlider item. ADR-3 stays as the record of the earlier decision (user, 2026-10-24).
 - Consequences: ContactUsDetails does not use a range slider library. A new use of a range slider needs a new ADR and a version check.
 - accepted by user 2026-10-24T00:00:00
+
+### ADR-17: Vendor the TST Orbit Passport loader (OrbitPassportScanC2.PassportScan.js) for PassportScan (accepted)
+- Context: PassportScan Q1 (a) (user, 2026-10-29): vendor the TST loader. The original block OrbitPassportScanC2.PassportScan.ScreenBlock_PassportScan loads OrbitPassportScanC2.PassportScan.js as its JS dependency and calls window.OrbitPassport.embed from its JS nodes. The loader puts the portal page in an iframe and talks to it with postMessage. Rule: libraries the original ships keep the TST version. Recorded in stack.json on 2026-11-05 (user, option a): the ADR had been written by hand into the generated stack.md.
+- Decision: Vendor the TST file unchanged in src/vendor/orbitpassport/ (byte-identical copy, version 1.0.0, as ADR-5, ADR-7 and ADR-11), behind a typed adapter (src/vendor/orbitpassport/index.ts). SOURCE.md of that folder records the URL, size and sha256. Upgrades follow TST.
+- Consequences: The vendored file is third-party code with no npm updates. The file states no license: confirm it with the Orbit Passport portal owner before production. The portal origin must allow the iframe of the app host.
+- accepted by user 2026-10-29T00:00:00
 

@@ -14,7 +14,7 @@ export interface ConnectBlankSlateProps {
   subtitle?: ReactNode;
 }
 
-/** Empty state of the legacy (Connect2) screens (p:migration/screens/ConnectShare/analysis/sources/pretty/
+/** Empty state of the legacy (Connect2) screens (p:migration/sources/pretty/
     Connect2_LegacyShared.Reusable.ConnectBlankSlate.mvc.js, view :110-160): a `connect-blank-slate-container` with the
     Image, Title and Subtitle placeholders. No input, event or action. */
 export function ConnectBlankSlate({ id, image, title, subtitle }: ConnectBlankSlateProps) {

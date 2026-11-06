@@ -150,5 +150,39 @@
   "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
   "answeredBy": "user",
   "answeredAt": "2026-10-16T12:25:50"
+ },
+ {
+  "id": "Q8",
+  "kind": "review",
+  "topic": "review round 3",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A: flag mobileOrbitEventBooklet default-only on (answered; `flags.py decide` + `export` done) [questions.md Q1].; Q2 → A: CR-EventDetail-1 is applied [questions.md Q2; CR-EventDetail-1 status]. The route no longer shows `<NotCaptured>` for the host survey row and the Host Allocation accordion.; Q3 → A: call exemption CALL-IMAGE-ERROR-APPEVENTS-EVENTDETAIL (merged into parity-exemptions.json); mock handler answers an empty EventList.; Q4 → A: shared mock event 7301 is a Host event (ORBIT_EVENT_TYPES.host, same colour/icon, OrbitLanding unchanged). The mock data is:; host milestones: two accommodation nights, meetings and a Saturday midday meal (meal-host, since the capture of; hosts: \"Mr Julián & Mrs Fiorella Vitale\";; fictional type of event: \"Weekend Conference Program\";; survey status JSON_Name: \"confirmed\".; Parity needs capture-plan `cloneQuery` with the captured inputs (proposed-exemptions.json `_comment`): parity opens; Exemptions merged into parity-exemptions.json: VIA-BACK-MENUICON-EVENTDETAIL, CAPTURE-SKELETON-SHIMMER-PHASE-EVENTDETAIL.; Header-right QR / documents containers built from the compiled view without `line-height: initial` (rule 21; not; Mock: MilestoneInfo dates null and Description empty as captured; DayFilter IsSelected on the first day (server rule Feature flags: action:getHasOrbitAccess → default-only: TST value on (user, 2026-10-14); action:getHasOrbitEventBooklet → default-only: wraps launchDarkly_FF.mobileOrbitEventBooklet (decided on); TST shows the booklet entry branch; auto-accepted (user instruction 2026-10-16 night); action:getHasOrbitHostSurvey → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-11-06T20:34:56",
+  "items": [
+   "Q1 → A: flag mobileOrbitEventBooklet default-only on (answered; `flags.py decide` + `export` done) [questions.md Q1].",
+   "Q2 → A: CR-EventDetail-1 is applied [questions.md Q2; CR-EventDetail-1 status]. The route no longer shows `<NotCaptured>` for the host survey row and the Host Allocation accordion.",
+   "Q3 → A: call exemption CALL-IMAGE-ERROR-APPEVENTS-EVENTDETAIL (merged into parity-exemptions.json); mock handler answers an empty EventList.",
+   "Q4 → A: shared mock event 7301 is a Host event (ORBIT_EVENT_TYPES.host, same colour/icon, OrbitLanding unchanged). The mock data is:",
+   "host milestones: two accommodation nights, meetings and a Saturday midday meal (meal-host, since the capture of",
+   "hosts: \"Mr Julián & Mrs Fiorella Vitale\";",
+   "fictional type of event: \"Weekend Conference Program\";",
+   "survey status JSON_Name: \"confirmed\".",
+   "Parity needs capture-plan `cloneQuery` with the captured inputs (proposed-exemptions.json `_comment`): parity opens",
+   "Exemptions merged into parity-exemptions.json: VIA-BACK-MENUICON-EVENTDETAIL, CAPTURE-SKELETON-SHIMMER-PHASE-EVENTDETAIL.",
+   "Header-right QR / documents containers built from the compiled view without `line-height: initial` (rule 21; not",
+   "Mock: MilestoneInfo dates null and Description empty as captured; DayFilter IsSelected on the first day (server rule"
+  ],
+  "fixed": [],
+  "answer": "confirm (user, 2026-11-06: 'ok làm tiếp đi tôi accept' for AcceptPendingPolicies, EventDetail, MilestoneDetail, LDM_EventDetail_V2, AssembleDetail)",
+  "answeredBy": "user",
+  "answeredAt": "2026-11-06T20:34:56"
  }
 ]

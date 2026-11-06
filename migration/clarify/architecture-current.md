@@ -591,7 +591,7 @@ relative-import and rule-4 patterns (`eslint.config.js:61-73`); Prettier 3.9.6 f
 The architecture checks (`package.json:25-32`; `app/knip.json`; `app/.jscpd.json`):
 
 - dependency-cruiser 17.4.3 with the rules of §3;
-- shrink-only baselines: `build/check-arch-baselines.mjs` and `migration/tools/refactor/arch_baseline.py check --strict`;
+- shrink-only baselines: `build/check-arch-baselines.mjs` and `tools/refactor/arch_baseline.py check --strict`;
 - knip 5.88.1 for unused files and exports;
 - jscpd 4.3.0 with a 0.57 % threshold;
 - `build/check-flags.mjs` for the flag readers.
@@ -607,12 +607,12 @@ The PWA has a Playwright e2e suite (`build/e2e/pwa.e2e.ts`, playwright 1.62.1) a
 (`build/lighthouse/`, lighthouse 13.4.1; ADR-12, ADR-13).
 
 Parity tools: `parity_check.cjs` of the skill compares DOM, classes, attributes, text, styles, positions, pixels and
-server calls against the TST captures. `migration/tools/refactor_parity.py` runs it at the `strict` or `visual`
+server calls against the TST captures. `tools/parity/refactor_parity.py` runs it at the `strict` or `visual`
 level against the OutSystems capture and a self-recorded reference (`refactor_parity.py:1-30`). The call parity reads
 `window.__osCalls` (`callAction.ts:98-108`). The parity reports of the routes stay frozen under
 `migration/screens/<Route>/parity/` (not read in this pass).
 
-The clarify tools (`migration/clarify/tools/`):
+The clarify tools (`tools/clarify/`):
 
 - `flow_pack.py` writes one pack per UI flow from the DEV dump;
 - `app_index.py` lists the React files of each screen, `kb_index.py` the KB pages;
@@ -620,7 +620,7 @@ The clarify tools (`migration/clarify/tools/`):
 - `answers.py` and `decisions_index.py` collect the user answers and the decisions;
 - `aggregate.py` builds `review/aggregate.md`, `collect.py` builds `INDEX.md`, `agent_cost.py` the ledger.
 
-The style lint is `migration/tools/ste_lint.py`.
+The style lint is `tools/docs/ste_lint.py`.
 
 ## 12. What is real, what is mock, what is missing
 

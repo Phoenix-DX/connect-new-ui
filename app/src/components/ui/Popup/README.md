@@ -1,7 +1,7 @@
 # Popup
 
 OutSystems: `UBTConnectLibrary.ConnectPatterns.Popup` · pack `migration/blocks/UBTConnectLibrary.ConnectPatterns.Popup.md`
-(compiled source `migration/blocks/sources/UBTConnectLibrary.ConnectPatterns.Popup.mvc.js`)
+(compiled source `migration/sources/survey/UBTConnectLibrary.ConnectPatterns.Popup.mvc@f483688e.js`)
 
 | Input           | Type    | Prop              | Default |
 | --------------- | ------- | ----------------- | ------- |

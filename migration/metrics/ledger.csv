@@ -1127,3 +1127,32 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-29,clarify-drift,analyze,201935,publish2-opus,opus,"publish 2 diff: 38/50 identified, 4 gap groups G1-G4, wave ports verified; 56 calls"
 2026-10-29,clarify-drift,fix,83208,ldmtest-opus,opus,LDM timeline filter test race fixed (wait for the active filter icon); 22 calls
 2026-10-29,drift-wave,fix,214644,general-purpose,opus,publish 2 gaps G1-G4; 90 tool calls; 7 routes parity clean
+2026-11-05,HostSurvey,fix,91763,opus,,store-gate race proposal (decision row 18)
+2026-11-05,Bookmarks,analyze,87148,sonnet,,drift facts Bookmarks+Notes
+2026-11-05,HouseholdDetails,analyze,82823,sonnet,,drift facts gallery
+2026-11-05,NotificationDetails,analyze,153379,sonnet,,drift facts notifications
+2026-11-05,Search,analyze,113928,sonnet,,drift facts search
+2026-11-05,HouseholdDetails,fix,215238,opus,,drift decision rounds 1-2
+2026-11-05,Bookmarks,fix,244653,opus,,drift decision rounds 1-2
+2026-11-05,Search,fix,299261,opus,,drift decision rounds 1-2
+2026-11-05,NotificationDetails,fix,326640,opus,,drift decision rounds 1-2
+2026-11-05,Bookmarks,build,176543,opus,,drift build Bookmarks/Notes/Locality_Details
+2026-11-05,HouseholdDetails,build,184692,opus,,drift build gallery
+2026-11-05,Search,build,202241,opus,,drift build Search lists
+2026-11-05,AssembleDetail,analyze,143440,sonnet,,facts Assemble/EDA bookmark drift
+2026-11-05,Search,build,116707,opus,,drift build shared blocks TagContent/AvatarImage/HorizontalTagList
+2026-11-05,NotificationDetails,build,309558,opus,,drift build NotificationDetails + Notifications
+2026-11-05,HouseholdDetails,fix,171069,opus,,bookmark module move proposal (decision row 24)
+2026-11-05,NotificationDetails,fix,85725,sonnet,,contract regen fallout (live module files)
+2026-11-05,AssembleDetail,build,255384,opus,,bookmark module move build (row 24)
+2026-11-05,Household_Relations,fix,103344,opus,,bookmark drift proposal
+2026-11-05,Household_Relations,build,124131,opus,,bookmark button build
+2026-11-05,Locality_Details,fix,142587,opus,,legacy bookmark store removal proposal (row 26)
+2026-11-05,Locality_Details,build,140224,opus,,legacy bookmark store removal build (row 26)
+2026-11-06,LDM_EventDetail_V2,fix,98000,sub-ldm,,real capture 2026-11-06: id aliases in the fictional LDM world; parity clean
+2026-11-06,MilestoneDetail,fix,137000,sub-milestone,,"real capture 2026-11-06: TST id aliases, HasGuestArrangements; parity clean"
+2026-11-06,AcceptPendingPolicies,fix,150000,sub-policies,,"first real capture 2026-11-06 (pending policy account): heading, row structure, seed 1 policy; parity clean (offline spinner phase)"
+2026-11-06,EventDetail,fix,230000,sub-eventdetail,,"real capture 2026-11-06: TST id aliases, event 7301 booklet/meeting/meal milestone, Friday-23 rule; parity clean"
+2026-11-06,AssembleDetail,fix,165000,sub-assemble,,"first real capture 2026-11-06: id aliases, menu placeholder empty, ids as captured; shared ResultItemBadge px size and NoteList 44px"
+2026-11-06,ContactByEmailLDMCoordinator,fix,95000,sub-ldmcoord,,first real capture 2026-11-06 (via LDM_EventDetail_V2): markup already 1:1; two capture artefacts
+2026-11-06,GuestArrangements,fix,210000,sub-guestarr,,"first real capture 2026-11-06 (via MilestoneDetail): TST id alias, Herrera arrangements reshaped; shared SectionExpandable StrictMode fix"

@@ -14,8 +14,9 @@ The shell depends on no screen. Screens call the APIs below.
 - Signed in: SynchAppContext, AfterInitialize, Sync_Info_GetMain, GetUserInformation (user-info cache miss),
   GetNumberUnreadMessages, then CacheableMapEntities + CacheableHouseholds together (not awaited).
 - Between GetUserInformation and GetNumberUnreadMessages, Connect_SetLoggedContext runs three syncs:
-  - SynchBookmarks and SynchBookmarksC2 (UC:1135-1141, local bookmark copies = `LocalEntities_App.LocalBookmark` /
-    `.LocalBookmarksC2`). The mock user has no local bookmarks.
+  - SynchBookmarksC2 (live UC:1129-1133, the local C2 bookmark copy = `LocalEntities_App.LocalBookmarksC2`). The live
+    app has no legacy SynchBookmarks: `LocalEntities_App.LocalBookmark` stays in the contract but is not synced (the
+    mock sends an empty list). The mock user has no local bookmarks.
   - SyncNotes (UC:1145): the local notes copy becomes the `LocalEntities_App.LocalNotes` of Sync_Info_GetMain.
     A sign-in fetches its own Sync_Info_GetMain first (UC:1121).
 - The app start is a list of 8 named steps, `APP_START_STEPS`: `synchAppContext`, `fetchFlags`, `initializeWebComponents`,
@@ -126,7 +127,7 @@ Client entities store DateTimes as DateTimeRevamp = false does: UTC `yyyy-MM-dd 
 | Adapter                                    | Entities (table)                                                                                                                          | Module actions                                                                                                                                                                                       |
 | ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `localNotes.ts`                            | UBTConnect_Notes_MCS.LocalNote                                                                                                            | CreateOrUpdate_LocalNote, Delete_LocalNoteBy*, Get_LocalNoteByNoteId, year/category lookups, SyncNotes                                                                                               |
-| `localBookmarks.ts`                        | UBTConnect_Bookmarks_MCS.LocalBookmark (`OSUSR_HCR_LOCALBOOKMARK`), Connect2_LegacyShared.LocalBookmark (`OSUSR_B3N_LOCALBOOKMARK`)       | GetLocalBookmarkByObjectId, GetLocalBookmarkByBookmarkId, Create_LocalBookmark, Delete_LocalBookmarkBy(Bookmark)Id, SynchBookmarksC2; legacy Get_LocalBookmarkByObjectId, SynchBookmarks (CR-W4A-1)  |
+| `localBookmarks.ts`                        | UBTConnect_Bookmarks_MCS.LocalBookmark (`OSUSR_HCR_LOCALBOOKMARK`)                                                                        | GetLocalBookmarkByObjectId, GetLocalBookmarkByBookmarkId, GetLocalBookmarksByObjectType, Create_LocalBookmark, Delete_LocalBookmarkBy(Bookmark)Id, SynchBookmarksC2 (CR-W4A-1)                       |
 | `recentSearch.ts`, `localSearchHistory.ts` | ConnectSearch recent terms / clicked results, local search history                                                                        | see the files                                                                                                                                                                                        |
 | `orbitStaticEntities.ts`                   | Connect2_OrbitMobile_MUI.LocalSurveyStatus (`OSUSR_HQ9_LOCALSURVEYSTATUS`), LocalOrbitMilestoneType (`OSUSR_HQ9_LOCALORBITMILESTONETYPE`) | SyncAllOrbitStaticEntities, SyncOrbitSurveyStatus, SyncOrbitMilestoneTypes, GetLocalOrbitMilestoneTypeById (Entity.get), aggregates by JSON_Name / Id; in-memory mirror for first-render reads (F12) |
 
@@ -150,16 +151,17 @@ Local entities in practice:
   delete, `replaceAll`). `database.ts` holds the IndexedDB layer: one database (`DATABASE_NAME`), one object store per
   table, one index per column.
 - Each adapter has a `set<...>Database` function, so tests inject an in-memory database.
-- **Bookmark sync (ADR-8).** `SynchBookmarks` and `SynchBookmarksC2` run at app start.
+- **Bookmark sync (ADR-8).** `SynchBookmarksC2` runs at app start (the live app has no legacy `SynchBookmarks`).
   - The original deletes all rows and then re-creates them in two transactions. A read in between sees no bookmark
     (known bug B5, see [known original bugs](../known-original-bugs.md)).
   - The React app does it in one transaction (`entityService.replaceAll`, used in `localBookmarks.ts`), so a read sees
     the old or the new rows, never none.
   - Keep it that way (decision: [ADR-8](../reference/stack.md)).
 
-UBTConnect ToggleBookmarkItem_C2 (`src/lib/ubtConnect/actions.ts`) uses the C2 bookmark actions. Its two server
-calls (ServiceAPIAddBookmark2, ServiceAPIDeleteBookmarkByBookmarkId2) are not in the API contract yet
-(`bookmarkServerActions` null, CR-W4A-1).
+UBTConnect_Utils ToggleBookmarkItem_C2 (`src/lib/ubtConnectUtils/actions.ts`) uses the C2 bookmark actions. Each
+read, create and delete uses the item and the bookmark category (live TST code of 2026-11-05). Its two server calls
+(ServiceAPIAddBookmark2, ServiceAPIDeleteBookmarkByBookmarkId2 of UBTConnect_Utils) are in the API contract
+(`bookmarkServerActions`).
 
 Device: `UBT_AppManager.DeviceInfo_IsNative` (Boolean, type default; UBT_AppManager.clientVariables.js:242-247) stays
 false in the browser (the device context of the React app is never native). Read it with `appManager_GetIsNative()`
@@ -235,7 +237,7 @@ Review markers: the `<NotCaptured>` frames (pink, "Not captured: …") are off b
 | `useWasRestoredFromCache()`, `useViewState(name, initial)`                              | `wasCurrentViewRestoredFromCache`, screen variables kept by the cache                                      |
 
 - **Screen transitions (F18, CR-F18-1).** `ScreenTransitionGroup` ports the TransitionGroup of the runtime Root
-  (`migration/runtime-sources/OutSystemsReactView.js` Root render; `screenTransition.ts` cites each rule):
+  (`migration/sources/runtime/OutSystemsReactView.js` Root render; `screenTransition.ts` cites each rule):
   - One `.screen-container` per history entry, keyed by `location.key`.
     - During a transition, the new container comes first and the container that leaves comes after it.
     - Both stay in the document until the container that leaves has left. Its DOM, state and own location are kept.
@@ -276,21 +278,14 @@ Review markers: the `<NotCaptured>` frames (pink, "Not captured: …") are off b
     `link[rel=stylesheet]`. The font preload reacts to `load` events of links. The link `load` event fires after the
     import, so the first-render wait still works.
   - The barcode plugin CSS (`platform/device/barcodePluginCss.ts`) is also in `@layer legacy`.
-  - New CSS goes in `@layer app` (plan v2 §2.8): `styles/tokens.css` (generated by
-    `migration/tools/refactor/p8-1-tokens.py`; 238 variables that every route CSS set puts on `:root` with the same
+  - New CSS goes in `@layer app` (plan v2 §2.8): `styles/tokens.css` (generated once by
+    `p8-1-tokens.py`, deleted; 238 variables that every route CSS set puts on `:root` with the same
     value) and `styles/review.css`. `styles/tokens.test.ts` fails when a token differs from the legacy `:root` value
     on any route. A future Content-Security-Policy must allow `style-src data:` (follow-up F44).
-  - Remove unused legacy CSS (P8-2; run again in P9-3). The tools are in `migration/tools/refactor/`:
-    `css-coverage-preload.cjs` records the CSS rule usage of Chromium, `css-coverage-node.sh` starts `node` with it, and
-    `css-prune.py` deletes the unused rules.
-  - Step 1: run the parity with `CSS_COVERAGE_DIR=<raw>` and `--node migration/tools/refactor/css-coverage-node.sh`
-    (the full command is in the docstring of `css-prune.py`). Each run writes one JSON file of used rule ranges.
-  - Step 2: `python3 migration/tools/refactor/css-prune.py --raw <raw> --out <handoff>/ plan [files...]` writes only the
-    summary (sizes and rule counts). The `apply` mode changes the files in `public/UBTConnect/css/` and writes the
-    deleted selectors to `<handoff>/deleted-selectors/`.
-  - Guards: the tool keeps at-rules other than `@media`, state selectors, custom properties, vendor pseudo-classes and
-    third-party widget CSS. It skips each stylesheet that a screen without parity states loads (follow-up F27).
-    `plan --relax` is an estimate only (`apply` refuses it).
+  - Unused legacy CSS was removed in P8-2 and again in P9-3. The tool `css-prune.py` read the CSS coverage of Chromium
+    over every parity state (tools deleted on 2026-11-06, last in commit `d12b6041`). It kept at-rules other than
+    `@media`, state selectors, custom properties, vendor pseudo-classes and third-party widget CSS. It skipped each
+    stylesheet that a screen without parity states loads (follow-up F27).
   - After `apply`, run the parity `visual` `--all`. Restore each stylesheet with a difference from git.
   - Tests: `screenTransition.test.ts`, `ScreenTransitionGroup.test.tsx`. Mid-transition headless check: sample the
     classes at ~50 / ~150 ms after a bottom-bar click.

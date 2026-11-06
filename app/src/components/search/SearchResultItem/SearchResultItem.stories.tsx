@@ -51,3 +51,31 @@ export const Locality: Story = {
 };
 /** No capture: In_ShowSubscriptionWarning replaces the additional information and the location. */
 export const SubscriptionWarning: Story = { args: { inSearchResult: member, inShowSubscriptionWarning: true } };
+/** No capture: an Assemble meeting row of the search (live SearchResult_Item.mvc.js:699-830): the hall image, the
+    source tag and the start date under the location. Fictional values of src/mocks/fictional/assemble.ts. */
+export const AssembleEvent: Story = {
+  args: {
+    inSearchResult: {
+      Id: '1210-20261101-1',
+      Name: 'Zapiola (Main Meeting Room)',
+      AdditionalInformation: "Lord's Supper",
+      Location: 'Bahia Blanca, Argentina',
+      Event_Source: 'Assemble',
+      Event_HostSubdivisionId: '0',
+      Event_StartDate: '2026-11-01',
+    },
+  },
+};
+/** No capture: an Orbit event row: the avatar with the transport plane icon instead of the image. */
+export const OrbitEvent: Story = {
+  args: {
+    inSearchResult: {
+      Id: '0',
+      Name: 'Flight to Córdoba',
+      Location: 'Córdoba, Argentina',
+      Event_Source: 'Orbit',
+      Event_OrbitEventType: 'Flight',
+      Event_StartDate: '2026-11-12',
+    },
+  },
+};

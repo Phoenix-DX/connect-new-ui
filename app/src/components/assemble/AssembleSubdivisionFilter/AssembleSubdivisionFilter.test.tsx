@@ -5,7 +5,7 @@ import { applyTestSession } from '@/platform/session/testSession';
 import { freshPage } from '@/test/testSupport';
 import { AssembleSubdivisionFilter } from './AssembleSubdivisionFilter';
 
-/* Compiled view and controller: migration/blocks/sources/Connect2_Assemble_MUI.Assemble
+/* Compiled view and controller: migration/sources/survey/Connect2_Assemble_MUI.Assemble
    .Assemble_FilterSubdivisionByLocality.mvc.js (view :162-392, controller :396-650); data from the fictional
    Connect2_LegacyShared mocks (lib/mocks.ts). Not captured. */
 const names = (container: HTMLElement) =>

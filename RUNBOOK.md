@@ -1,13 +1,13 @@
 # RUNBOOK: migrate UBTConnect → React with the Claude Code CLI
 
-`$SK` = `.claude/skills/outsystems-screen-spec/scripts`. Run every command in the root folder `connect-new/`.
+`$SK` = `tools/pipeline`. Run every command in the root folder `connect-new/`.
 
 ## A. Prepare the machine (normal terminal, do this once)
 
 ```bash
 # 0. Required: Node 20 or 22, Python 3.10+, git, Claude Code (the `claude` command)
 cd connect-new
-cp ~/Downloads/credentials.json .auth/credentials.json      # the credentials file you received separately
+cp ~/Downloads/accounts.json .auth/accounts.json            # the test accounts file you received separately (roles, users, password, PIN)
 git init && git add -A && git status                         # .auth/ must NOT appear in the list
 git commit -m "chore: migration workspace"
 npm install                                                   # Playwright for capture/parity
@@ -94,8 +94,7 @@ I read REVIEW.md and I accept it. Run har_to_fixtures.py review --by user, cover
 
 ### Step 10. Foundation: app, shell, shared blocks (phase 5)
 ```
-Phase 5 (foundation owner): scaffold_react_app.py --survey migration/survey --shell-analysis migration/screens/<home screen>/analysis
---out app --stack migration/stack.json; npm install in app; npx msw init public. Write the app-shell spec, build the shell
+Phase 5 (foundation owner): the app skeleton is in app/ (built once with scaffold_react_app.py, deleted on 2026-11-06). Write the app-shell spec, build the shell
 and every block in foundation-queue.md (also the OSUI blocks, tag @os-block, one snapshot test for each state). Ask me about every unclear point.
 When done, freeze and commit.
 ```
@@ -146,4 +145,4 @@ Continue the migration: run route.py plan and tell me where we are and what the 
 - `user field not found` / `password field not found`: the B2C page uses other selectors. Run again with `--headed`, take a screenshot, and send it to Claude. Claude then adjusts `login.user` / `login.password` in `assets/site-profiles/ubtconnect-tst.json` (or copies that profile to `migration/site.json` and edits it there).
 - `did not return to the app … (MFA, captcha …)`: the account has MFA on. Use the normal `login` (you sign in yourself once). The session is still saved and reused.
 - `still on the PIN page`: the PIN is wrong, or the page has a separate confirm button. Add the selector of that button to `pin.submit`.
-- `secrets: NOT found`: the file `.auth/credentials.json` is missing.
+- `secrets: NOT found`: the file `.auth/accounts.json` (or `.auth/credentials.json`) is missing.

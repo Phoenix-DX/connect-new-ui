@@ -117,6 +117,7 @@ export const Connect_Subscription_Plan = {
 /** NoteCategory2 (UBTConnect): TST values (static-entities-tst.json `UBTConnect.noteCategory2`), the ones
     Get_NoteCategoryId_ByEntityTypeId returns. */
 export const NoteCategory2 = {
+  AssembleEvent: 'Assemble Event',
   Household: 'Household',
   SupperMeeting: 'Supper Meeting',
   Interchange: 'Interchange',
@@ -154,27 +155,13 @@ export const BookmarkCategory = {
   Locality: 'Locality',
   LocalityContact: 'Locality Contact',
   Member: 'Member',
-  OneSchoolGlobal: 'OneSchoolGlobal',
+  /** Key oneSchoolGlobal2. */
+  OneSchoolGlobal: 'OneSchool Global',
   OrbitEvent: 'Orbit Event',
   PersonalEvent: 'Personal Event',
   SupperMeeting: 'Supper Meeting',
   Update: 'Update',
 } as const;
-
-/** MyBookmarks_ObjectType (UBTConnect): TST values (static-entities-tst.json `UBTConnect.myBookmarks_ObjectType`): the
-    ObjectType of a legacy local bookmark. */
-export const MyBookmarks_ObjectType = {
-  CampusCo: 'Campus&Co',
-  CommunityBusiness: 'Community Business',
-  Contact: 'Contact',
-  Locality: 'Locality',
-  News: 'News',
-  OneSchoolGlobal: 'OneSchool Global',
-  Subdivision: 'Subdivision',
-} as const;
-
-/** MyBookmarks_Group (UBTConnect): TST values (static-entities-tst.json `UBTConnect.myBookmarks_Group`). */
-export const MyBookmarks_Group = { Contacts: 'Contacts', Entities: 'Entities', Locations: 'Locations' } as const;
 
 /* ---- Wave 4C (household details and supper meeting blocks) ---- */
 /** Connect_HouseholdMemberRole: only compared (HouseholdDetails_Members_Block: MemberRole <> Child), never rendered.
@@ -205,3 +192,11 @@ export const BooleanTypes = { True: 'true', False: 'false', Unset: 'unset' } as 
 /** CarouselNavigation (UBTConnect's copy, EntitiesCarousel passes None): TST values (static-entities-tst.json
     `UBTConnect.carouselNavigation`), the same as OutSystems UI's (`osui/lib/staticEntities.ts`). */
 export const CarouselNavigation = { Arrows: 'arrows', Both: 'both', Dots: 'dots', None: 'none' } as const;
+
+/** Connect_EventTypes (UBTConnect, live moduleinfo.json of 2026-11-05: Assemble, Orbit, LDM; text identifier = label):
+    the Event_Source of a search result (Directory_Search.ScreenBlock_Search.mvc.js:3302, 3310 of the live copy). */
+export const Connect_EventTypes = {
+  Assemble: 'Assemble',
+  Orbit: 'Orbit',
+  LDM: 'LDM',
+} as const;

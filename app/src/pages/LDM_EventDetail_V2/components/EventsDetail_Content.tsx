@@ -10,7 +10,7 @@ export interface EventsDetail_ContentProps {
   content: ReactNode;
 }
 
-/** Frame of the LDM event detail (analysis/sources/pretty/Connect2_OrbitMobile_MUI.LDM_Blocks.EventsDetail_Content.mvc.js
+/** Frame of the LDM event detail (migration/sources/pretty/Connect2_OrbitMobile_MUI.LDM_Blocks.EventsDetail_Content.mvc.js
     view :170-215): the top part with Banner_Placeholder (`height` ActiveBannerHeight px) and GuestView_Placeholder,
     then Content_Placeholder. OnInitialize / OnParametersChanged (controller :20-100): ActiveBannerHeight =
     In_MinBannerHeight, so the height follows the input.

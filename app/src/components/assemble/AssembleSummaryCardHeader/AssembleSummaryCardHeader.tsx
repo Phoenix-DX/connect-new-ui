@@ -9,7 +9,7 @@ export interface AssembleSummaryCardHeaderProps {
   headerLabel?: string;
 }
 
-/** Card header (p:migration/blocks/sources/Connect2_Assemble_MUI.Assemble.AssembleSummaryCard__Header.mvc.js; view
+/** Card header (p:migration/sources/survey/Connect2_Assemble_MUI.Assemble.AssembleSummaryCard__Header.mvc.js; view
     :122-146): the HeaderLabel expression `bold font-size-h6 margin-y-s`. No actions. */
 export function AssembleSummaryCardHeader({ id, headerLabel = '' }: AssembleSummaryCardHeaderProps) {
   return (

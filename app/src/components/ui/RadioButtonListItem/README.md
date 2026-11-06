@@ -2,7 +2,7 @@
 
 OutSystems: `Connect2_LegacyShared.Reusable.RadioButtonListItem` · pack
 `migration/blocks/Connect2_LegacyShared.Reusable.RadioButtonListItem.md` · source
-`migration/blocks/sources/Connect2_LegacyShared.Reusable.RadioButtonListItem.mvc.js`
+`migration/sources/survey/Connect2_LegacyShared.Reusable.RadioButtonListItem.mvc.js`
 
 | Input            | Type | Prop               | Default |
 | ---------------- | ---- | ------------------ | ------- |

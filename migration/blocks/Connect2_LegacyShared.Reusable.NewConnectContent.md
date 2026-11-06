@@ -1,7 +1,7 @@
 # Connect2_LegacyShared.Reusable.NewConnectContent
 
 - Kind: shared; build screens using it: AssembleDetail, AssembleEvents
-- Compiled source: `migration/screens/AssembleEvents/analysis/sources/pretty/Connect2_LegacyShared.Reusable.NewConnectContent.mvc.js`
+- Compiled source: `migration/sources/pretty/Connect2_LegacyShared.Reusable.NewConnectContent.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

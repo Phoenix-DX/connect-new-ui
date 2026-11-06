@@ -1,7 +1,7 @@
 # PopupMenu
 
 OutSystems: `Connect2_LegacyShared.Widgets.PopupMenu` · compiled source
-`migration/screens/BookmarksByGroup/analysis/sources/pretty/Connect2_LegacyShared.Widgets.PopupMenu.mvc.js` (no pack:
+`migration/sources/pretty/Connect2_LegacyShared.Widgets.PopupMenu.mvc.js` (no pack:
 built in wave 8 O-B3 from the BookmarksByGroup copy)
 
 | Input         | Type    | Prop            | Default |

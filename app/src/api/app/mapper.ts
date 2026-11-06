@@ -51,14 +51,13 @@ export const toAppContext = (wire: SynchAppContextWire): AppContext => {
   };
 };
 
-/** The tenant, the months of the updates feed, the Orbit static entities as they are, and the three local-entity
-    lists unwrapped (each record as it is). */
+/** The tenant, the months of the updates feed, the Orbit static entities as they are, and the C2 bookmark and note
+    lists unwrapped (each record as it is; the legacy LocalBookmark list is not mapped, types.ts). */
 export const toSyncInfoMain = (wire: SyncInfoMainWire): SyncInfoMain => ({
   b2cTenant: wire.B2CTenant,
   updatesFeedMonthsToShow: wire.Sync_SiteProperties.UpdatesFeed_MonthsToShow,
   orbitStaticEntities: wire.OrbitStaticEntities,
   localEntities: {
-    bookmarks: osList(wire.LocalEntities_App.LocalBookmark),
     bookmarks_C2: osList(wire.LocalEntities_App.LocalBookmarksC2),
     notes: osList(wire.LocalEntities_App.LocalNotes),
   },

@@ -4,7 +4,7 @@ import { deviceUniqueId } from '@/platform/device/deviceUniqueId';
    (a node of ContinueOnClick in Policy_Custom_AcceptPendingPolicies). They read the page and the browser only. */
 
 /** GetSVGMetric (UBTConnect client action, JavaScript1 node; TST copy of UBTConnect.controller.js in
-    migration/screens/MessageList/analysis/sources/raw/): height of `.ubt-header-svg svg path` and the largest V and Q
+    migration/sources/raw/): height of `.ubt-header-svg svg path` and the largest V and Q
     values of its `d`; HeightWithoutCurve = HeightPx * MaxV / MaxQ. Without the path (or its `d`) the node returns
     early and every output keeps its default 0. */
 export function getSVGMetric(): { HeightPx: number; HeightWithoutCurve: number } {

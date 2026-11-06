@@ -14,14 +14,15 @@ vi.mock('@/platform/feedback', async (importOriginal) => {
 });
 
 /* The page with the flows of its block (useGuestArrangements) and the MSW mocks of the route, in the app frame on a
-   memory router. The guests are the fictional Herrera family at event 7301 (src/mocks/fictional/orbit.ts). */
+   memory router. The guests are the fictional Ramos family at event 7301 (src/mocks/fictional/orbit.ts: three members
+   with special needs, a drive, two meal days); the Herrera family follows the capture of 2026-11-06 (one meal day). */
 const PATH = '/UBTConnect/GuestArrangements';
 const HOME = '/UBTConnect/HomeFeed';
 const OTHER = '/UBTConnect/Search';
 const ACTION = 'ScreenBlock_GuestArrangements/DataActionGetGuestArrangements';
 const QUERY =
-  '?In_MilestoneId=55&In_EventId=7301&In_MemberId=880102&In_HostId=880001' +
-  '&In_OrbitMilestoneTypeId=accommodation-host&In_MilestoneTitle=Hosting%20the%20Herreras' +
+  '?In_MilestoneId=55&In_EventId=7301&In_MemberId=880202&In_HostId=880001' +
+  '&In_OrbitMilestoneTypeId=accommodation-host&In_MilestoneTitle=Hosting%20the%20Ramos%20family' +
   '&In_EventName=Bahia%20Blanca%20Conference';
 const routes = {
   [HOME]: <p>HomeFeed screen</p>,
@@ -65,9 +66,9 @@ describe('GuestArrangements page', () => {
     await waitFor(() => {
       expect(sectionTitles()).toEqual(['Special Need/s', 'Arrival Details', 'Meal Details', 'Departure Details']);
     });
-    expect(block()?.textContent).toContain('Mrs Laura Herrera');
+    expect(block()?.textContent).toContain('Mrs Sonia Ramos');
     expect(block()?.textContent).toContain('Bahia Blanca Conference');
-    expect(block()?.textContent).toContain('Hosting the Herreras');
+    expect(block()?.textContent).toContain('Hosting the Ramos family');
     expect(document.querySelectorAll('[data-block="Orbit_Blocks.Card_MemberInformation"]')).toHaveLength(3);
     expect(document.querySelector('[data-block="Orbit_Blocks.ContactHelpdesk_Footer"]')).not.toBeNull();
     expect(skeleton()).toBeNull();
@@ -75,19 +76,35 @@ describe('GuestArrangements page', () => {
     expect(bodies).toEqual([
       expect.objectContaining({
         IsFetchingData: true,
-        In_MemberId: '880102',
+        In_MemberId: '880202',
         In_EventId: '7301',
         In_HostId: '880001',
         In_MilestoneId: '55',
         In_PreloadEventName: 'Bahia Blanca Conference',
-        In_PreloadMilestoneName: 'Hosting the Herreras',
+        In_PreloadMilestoneName: 'Hosting the Ramos family',
         In_OrbitMilestoneTypeId: 'accommodation-host',
       }),
     ]);
   });
 
+  it('answers the TST ids of the capture with the captured structure: the guest and one meal day only', async () => {
+    const bodies = recordBodies(`Connect2_OrbitMobile_MUI/${ACTION}`);
+    await open(
+      '?In_EventId=2085&In_EventName=&In_MilestoneTitle=Accommodation&In_HostId=52768&In_MemberId=52989' +
+        '&In_MilestoneId=GMP15700&In_OrbitMilestoneTypeId=accommodation-host',
+    );
+    await waitFor(() => {
+      expect(sectionTitles()).toEqual(['Meal Details']);
+    });
+    expect(block()?.textContent).toContain('Mr Martín Herrera');
+    expect(block()?.textContent).toContain('Midday Meal: Evening Meal: Not catered - hosts providing');
+    expect(document.querySelectorAll('[data-block="Orbit_Blocks.Card_MemberInformation"]')).toHaveLength(0);
+    expect(document.querySelector('[data-block="Orbit_Blocks.ContactHelpdesk_Footer"]')).not.toBeNull();
+    expect(bodies).toEqual([expect.objectContaining({ In_MemberId: '52989', In_EventId: '2085' })]);
+  });
+
   it('shows the no-information message for a member without arrangements', async () => {
-    await open(QUERY.replace('In_MemberId=880102', 'In_MemberId=123'));
+    await open(QUERY.replace('In_MemberId=880202', 'In_MemberId=123'));
     await waitFor(() => {
       expect(document.querySelector('[data-block="Orbit_Generic_Blocks.NoInformation_Orbit"]')).not.toBeNull();
     });
@@ -111,7 +128,7 @@ describe('GuestArrangements page', () => {
     await act(() => router.navigate(OTHER));
     await act(() => router.navigate(-1));
     await waitFor(() => {
-      expect(block()?.textContent).toContain('Mrs Laura Herrera');
+      expect(block()?.textContent).toContain('Mrs Sonia Ramos');
     });
     expect(sectionTitles()).toHaveLength(4);
     expect(guestCalls()).toEqual([ACTION]);
@@ -130,7 +147,7 @@ describe('GuestArrangements page', () => {
     await waitFor(() => {
       expect(router.state.location.pathname).toBe('/UBTConnect/HouseholdDetails');
     });
-    expect(at()).toBe('/UBTConnect/HouseholdDetails?HouseholdId=880101');
+    expect(at()).toBe('/UBTConnect/HouseholdDetails?HouseholdId=880201');
   });
 
   it('with Orbit access, the helpdesk footer opens ContactByEmailOrbitHelpdesk with the subject', async () => {
@@ -147,8 +164,8 @@ describe('GuestArrangements page', () => {
     });
     const params = new URLSearchParams(router.state.location.search);
     expect(params.get('In_EventId')).toBe('7301');
-    expect(params.get('In_Subject')).toMatch(/^Bahia Blanca Conference - Hosting the Herreras - .+ - /);
-    expect(params.get('In_EventName')).toBe('Hosting the Herreras');
+    expect(params.get('In_Subject')).toMatch(/^Bahia Blanca Conference - Hosting the Ramos family - .+ - /);
+    expect(params.get('In_EventName')).toBe('Hosting the Ramos family');
     expect(params.get('In_MilestoneId')).toBe('');
     await settle(600);
     expect(showFeedbackMessage).not.toHaveBeenCalled();
@@ -193,12 +210,12 @@ describe('GuestArrangements inputs', () => {
   it('gives the block the milestone title and the event name as its preload names', () => {
     const inputs = readGuestArrangementsInputs(new URLSearchParams(QUERY));
     expect(toGuestArrangementsBlockInputs(inputs)).toEqual({
-      In_MemberId: '880102',
+      In_MemberId: '880202',
       In_EventId: '7301',
       In_HostId: '880001',
       In_MilestoneId: '55',
       In_PreloadEventName: 'Bahia Blanca Conference',
-      In_PreloadMilestoneName: 'Hosting the Herreras',
+      In_PreloadMilestoneName: 'Hosting the Ramos family',
       In_OrbitMilestoneTypeId: 'accommodation-host',
     });
   });

@@ -1,14 +1,21 @@
 {
- "finishedAt": "2026-10-16T12:25:51",
+ "finishedAt": "2026-11-06T20:34:59",
  "files": {
-  "src/screens/EventDetail/api.ts": "501eaef7b474632f",
-  "src/screens/EventDetail/components/EventDateSelection.tsx": "aacf3291834822a2",
-  "src/screens/EventDetail/components/HostAllocation_List.tsx": "55c6403fba1bcc23",
-  "src/screens/EventDetail/components/ScreenBlock_EventDetail.tsx": "54bd58dfc8bcee9a",
-  "src/screens/EventDetail/components/actions.ts": "68eb80cfd826765d",
-  "src/screens/EventDetail/components/staticEntities.ts": "b5cee9c3f24ae439",
-  "src/screens/EventDetail/index.tsx": "edd6a02a87029a05",
-  "src/screens/EventDetail/mocks.ts": "2ba070a5ebf03b2c",
-  "src/screens/EventDetail/types.ts": "b007684b4e782b89"
+  "src/pages/EventDetail/EventDetail.test.tsx": "ac2282bc32263714",
+  "src/pages/EventDetail/EventDetailPage.tsx": "24cabaa11f49318b",
+  "src/pages/EventDetail/components/EventDateSelection.tsx": "a0a0d9171b73667f",
+  "src/pages/EventDetail/components/EventDetailView.test.tsx": "2962fe809f0fb2d4",
+  "src/pages/EventDetail/components/EventDetailView.tsx": "d5d16989bfe6e88d",
+  "src/pages/EventDetail/components/HostAllocation_List.tsx": "14a3b4051f7c175c",
+  "src/pages/EventDetail/hooks/eventDetailActions.test.ts": "301daa643b8b4bc7",
+  "src/pages/EventDetail/hooks/eventDetailActions.ts": "1c0d375c617b9e36",
+  "src/pages/EventDetail/hooks/eventDetailNotes.test.ts": "f14a5e805d6cd302",
+  "src/pages/EventDetail/hooks/eventDetailState.test.ts": "148225506c21e7cd",
+  "src/pages/EventDetail/hooks/eventDetailState.ts": "9f6d3853271f7b15",
+  "src/pages/EventDetail/hooks/useEventDetail.test.tsx": "01b00fc3c8c4eb13",
+  "src/pages/EventDetail/hooks/useEventDetail.ts": "e8bc919db2ab900c",
+  "src/pages/EventDetail/inputs.ts": "06ec3df54bdab084",
+  "src/pages/EventDetail/mocks.ts": "fcb27758d7e32e21",
+  "src/pages/EventDetail/staticEntities.ts": "b5cee9c3f24ae439"
  }
 }

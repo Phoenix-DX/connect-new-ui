@@ -6,6 +6,7 @@ import {
   fetchHouseholdCardMembers,
   fetchHouseholdCoordinates,
   fetchHouseholdCoordinatesById,
+  fetchHouseholdGallery,
   fetchHouseholdShareCard,
   fetchLocalityHouseholdIds,
   fetchLocalityHouseholds,
@@ -63,6 +64,21 @@ describe('household repository', () => {
       }),
     ]);
     expect(coordinates).toEqual({ Latitude: '-33.8688', Longitude: '151.2093', UseCoordinates: true });
+  });
+
+  it('fetchHouseholdGallery calls DataActionGetHouseHold_Gallery with the same inputs (live TST, :1995)', async () => {
+    const images = await fetchHouseholdGallery({ ...inputs, HouseholdId: VITALE.id });
+    expect(window.__osCalls).toEqual([
+      expect.objectContaining({
+        module: 'UBTConnect',
+        owner: 'HouseholdDetails_Block',
+        action: 'DataActionGetHouseHold_Gallery',
+        inputNames: Object.keys(inputs).sort(),
+      }),
+    ]);
+    expect(images).toHaveLength(4);
+    expect(Object.keys(images[0] ?? {})).toEqual(['SignedURL']);
+    expect(images[0]?.SignedURL).toMatch(/placeholder-landscape\.svg$/);
   });
 
   it('a failed call raises the exception of callAction', async () => {

@@ -2,7 +2,7 @@
 
 OutSystems: `Connect2_LegacyShared.Reusable.ConnectBlankSlate` · pack
 `migration/blocks/Connect2_LegacyShared.Reusable.ConnectBlankSlate.md` (compiled source
-`migration/screens/ConnectShare/analysis/sources/pretty/Connect2_LegacyShared.Reusable.ConnectBlankSlate.mvc.js`)
+`migration/sources/pretty/Connect2_LegacyShared.Reusable.ConnectBlankSlate.mvc.js`)
 
 Inputs, events: none. Placeholders: `Image` → `image`, `Title` → `title`, `Subtitle` → `subtitle`.
 

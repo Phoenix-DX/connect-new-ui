@@ -13,9 +13,33 @@ import { useNotifications } from './useNotifications';
 /* The flows of the Notifications screen, with the two data actions, the bottom bar count, the scroll, the bottom
    sheet and the flow handler replaced by spies. The day is fixed (Friday 2026-10-16), so the date ranges are known. */
 const ITEMS: NotificationItem[] = [
-  { id: '9', title: 'Choir practice moved', dateTimeCreated: '2026-10-16T08:00:00', isRead: false, profileIconURL: '' },
-  { id: '8', title: 'Harvest supper', dateTimeCreated: '2026-10-01T10:00:00', isRead: true, profileIconURL: '' },
-  { id: '7', title: 'Hall roof workday', dateTimeCreated: '2026-07-01T10:00:00', isRead: false, profileIconURL: '' },
+  {
+    id: '9',
+    title: 'Choir practice moved',
+    dateTimeCreated: '2026-10-16T08:00:00',
+    isRead: false,
+    profileIconURL: '',
+    messageTemplateId: '0',
+    createdByMemberId: '0',
+  },
+  {
+    id: '8',
+    title: 'Harvest supper',
+    dateTimeCreated: '2026-10-01T10:00:00',
+    isRead: true,
+    profileIconURL: '',
+    messageTemplateId: '0',
+    createdByMemberId: '0',
+  },
+  {
+    id: '7',
+    title: 'Hall roof workday',
+    dateTimeCreated: '2026-07-01T10:00:00',
+    isRead: false,
+    profileIconURL: '',
+    messageTemplateId: '0',
+    createdByMemberId: '0',
+  },
 ];
 
 vi.mock('@/api/notification', async (importOriginal) => ({
@@ -263,7 +287,7 @@ describe('useNotifications', () => {
       () =>
         new Promise((resolve) => {
           answerList = () => {
-            resolve({ items: ITEMS, hasUnreadMessages: true, unreadNotificationsCount: 2 });
+            resolve({ items: ITEMS, unreadNotificationsCount: 2 });
           };
         }),
     );

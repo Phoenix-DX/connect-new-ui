@@ -1,33 +1,30 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { CommunicationException } from '@/legacy/os/os-exceptions';
-import * as feedback from '@/platform/feedback';
+import { describe, expect, it, vi } from 'vitest';
+import { getClientVar, setSignedInUser } from '@/platform/session/session';
 import {
-  getLocalBookmarkByObjectId,
   localBookmarksSchemas,
   memoryDatabase,
   setLocalBookmarksDatabase,
   synchBookmarksC2,
 } from '@/platform/storage/localEntities';
-import { setSignedInUser } from '@/platform/session/session';
-import { getClientVar } from '@/platform/session/session';
 import { freshPage } from '@/test/testSupport';
 import {
   directory_Updates_GetCarouselPreloadedHouseholds,
   getBookmarkCategoryId_ByEntityTypeId,
-  getBookmarkType_FromEntity,
   getNameAndSurname_ByFullName,
   getShareType_FromEntity,
   set_InitialClientVariables,
-  toggleBookmarkItem_C2,
   get_LookupSection,
   getDescriptor_Subdivision_GenderSplit,
+  getLocal_Bookmark_C2,
   getSkeletonList_UI_HouseholdMembers,
   getSkeletonList_UI_SubdivisionHousehold,
   isStringEquals,
+  longIntegerText,
   notes_InterchangeId_ComposeId,
   notes_InterchangeId_ExtractId,
+  unauthorizedObjectMessage,
 } from './actions';
-import { Type_CarouselItemSwipeAction } from './staticEntities';
+import { BookmarkCategory, Type_CarouselItemSwipeAction } from './staticEntities';
 import {
   directory_BrowseByCountry_TooltipBuilder,
   getLocalityLabel,
@@ -72,79 +69,11 @@ describe('directory_Updates_GetCarouselPreloadedHouseholds (UC:1828-1925)', () =
   });
 });
 
-describe('bookmarks (CR-W4A-1)', () => {
-  const server = (success: boolean, fail?: Error) => ({
-    addBookmark2: vi.fn(() =>
-      fail
-        ? Promise.reject(fail)
-        : Promise.resolve({ Success: success, Bookmark_Added: { Id: '900', DateCreatedUtc: '2026-10-15T09:00:00' } }),
-    ),
-    deleteBookmarkByBookmarkId2: vi.fn(() => (fail ? Promise.reject(fail) : Promise.resolve({ Success: success }))),
-  });
-  beforeEach(() => {
-    setLocalBookmarksDatabase(memoryDatabase(localBookmarksSchemas()));
-    setSignedInUser('990001');
-    return () => {
-      setLocalBookmarksDatabase(null);
-      setSignedInUser(null);
-      vi.restoreAllMocks();
-    };
-  });
-
-  it('GetBookmarkCategoryId_ByEntityTypeId and GetBookmarkType_FromEntity map the entity types', () => {
+describe('bookmark categories (CR-W4A-1)', () => {
+  it('GetBookmarkCategoryId_ByEntityTypeId maps the entity types', () => {
     expect(getBookmarkCategoryId_ByEntityTypeId('Supper Meetings')).toBe('Supper Meeting');
-    expect(getBookmarkCategoryId_ByEntityTypeId('OneSchool Global')).toBe('OneSchoolGlobal');
+    expect(getBookmarkCategoryId_ByEntityTypeId('OneSchool Global')).toBe('OneSchool Global');
     expect(() => getBookmarkCategoryId_ByEntityTypeId('Member')).toThrow('Bookmarks not available');
-    expect(getBookmarkType_FromEntity('Household')).toEqual({ BookmarkType: 'Contact', BookmarkGroup: 'Contacts' });
-    expect(getBookmarkType_FromEntity('Interchange')).toEqual({ BookmarkType: 'Locality', BookmarkGroup: 'Locations' });
-    expect(() => getBookmarkType_FromEntity('Feed Item')).toThrow('Bookmarks not available');
-  });
-
-  it('ToggleBookmarkItem_C2 adds: AddBookmark2 with the item as text, local row, success message', async () => {
-    const show = vi.spyOn(feedback, 'showFeedbackMessage');
-    const s = server(true);
-    await toggleBookmarkItem_C2('42', 'Household', false, s);
-    expect(s.addBookmark2).toHaveBeenCalledWith('Household', '42');
-    expect(await getLocalBookmarkByObjectId('42')).toMatchObject({
-      BookmarkId: '900',
-      BookmarkCategoryId: 'Household',
-    });
-    expect(show).toHaveBeenCalledWith('Added to your Bookmarks', feedback.PLATFORM_MESSAGE_TYPE.success);
-  });
-
-  it('ToggleBookmarkItem_C2 removes by the local BookmarkId; failures show the error message', async () => {
-    const show = vi.spyOn(feedback, 'showFeedbackMessage');
-    await synchBookmarksC2([
-      {
-        Id: '1',
-        UserId: 990001,
-        BookmarkId: '420',
-        BookmarkCategoryId: 'Household',
-        ItemId: '42',
-        CreatedAtDateUtc: '1900-01-01T00:00:00',
-      },
-    ]);
-    await toggleBookmarkItem_C2('42', 'Household', true, server(false));
-    expect((await getLocalBookmarkByObjectId('42')).Id).toBe('1');
-    expect(show).toHaveBeenLastCalledWith(
-      'Bookmark could not be removed. Please try again later.',
-      feedback.PLATFORM_MESSAGE_TYPE.error,
-    );
-    const s = server(true);
-    await toggleBookmarkItem_C2('42', 'Household', true, s);
-    expect(s.deleteBookmarkByBookmarkId2).toHaveBeenCalledWith('420');
-    expect((await getLocalBookmarkByObjectId('42')).Id).toBe('0');
-    expect(show).toHaveBeenLastCalledWith('Removed from your Bookmarks', feedback.PLATFORM_MESSAGE_TYPE.success);
-    await expect(
-      toggleBookmarkItem_C2('43', 'Household', false, server(true, new CommunicationException('x'))),
-    ).resolves.toEqual({
-      Out_LocalBookmarkId: '0',
-      Out_CreatedBookmarkId: '0',
-    });
-    expect(show).toHaveBeenLastCalledWith(
-      'Bookmark could not be added. Please try again later.',
-      feedback.PLATFORM_MESSAGE_TYPE.error,
-    );
   });
 });
 
@@ -244,7 +173,7 @@ describe('directory map screens actions', () => {
 });
 
 /* Notes_InterchangeId_ComposeId and Notes_InterchangeId_ExtractId (UBTConnect.controller.js, TST publish of
-   2026-10-29, copy in migration/screens/Notes/analysis/sources/raw/). Fictional ids. */
+   2026-10-29, copy in migration/sources/raw/). Fictional ids. */
 describe('Notes_InterchangeId_ComposeId / Notes_InterchangeId_ExtractId', () => {
   it('ComposeId: "<LocalityId>:<InterchangeLocalityId>", or the interchange id alone', () => {
     expect(notes_InterchangeId_ComposeId('252', '5')).toBe('252:5');
@@ -263,5 +192,53 @@ describe('Notes_InterchangeId_ComposeId / Notes_InterchangeId_ExtractId', () => 
       LocalityId: '252',
       InterchangeLocalityId: '5',
     });
+  });
+});
+
+describe('LongIntegerToText(TextToLongInteger(text))', () => {
+  it('a number keeps its digits, an invalid text is 0', () => {
+    expect(longIntegerText(' 0042438 ')).toBe('42438');
+    expect(longIntegerText('9007199254740993')).toBe('9007199254740993');
+    expect(longIntegerText('252:253')).toBe('0');
+    expect(longIntegerText('')).toBe('0');
+  });
+});
+
+/* GetLocal_Bookmark_C2 (live UBTConnect.controller.js:9315-9381): a fictional C2 Member bookmark of user 990002. */
+describe('GetLocal_Bookmark_C2', () => {
+  it('is True only for a C2 bookmark row of that category and item', async () => {
+    setLocalBookmarksDatabase(memoryDatabase(localBookmarksSchemas()));
+    setSignedInUser('990002');
+    try {
+      await synchBookmarksC2([
+        {
+          Id: '1',
+          UserId: 990002,
+          BookmarkId: '601',
+          BookmarkCategoryId: BookmarkCategory.Member,
+          ItemId: '42438',
+          CreatedAtDateUtc: '2026-11-01T08:00:00',
+        },
+      ]);
+      expect(await getLocal_Bookmark_C2(BookmarkCategory.Member, '42438')).toBe(true);
+      expect(await getLocal_Bookmark_C2(BookmarkCategory.Household, '42438')).toBe(false);
+      expect(await getLocal_Bookmark_C2(BookmarkCategory.Member, '42439')).toBe(false);
+    } finally {
+      setLocalBookmarksDatabase(null);
+      setSignedInUser(null);
+    }
+  });
+});
+
+/* Handler_OnClickUnauthorizedObject of Bookmarks (live Bookmarks.mvc.js:788-817) and Notes (live Notes.mvc.js:1353+). */
+describe('unauthorizedObjectMessage', () => {
+  it('the pill text of the category, lower case, without a final "s"', () => {
+    const pills = [
+      { Text: 'Households', Identifier: 'Household', IsSelected: false },
+      { Text: 'OneSchool Global', Identifier: 'OneSchool Global', IsSelected: false },
+    ];
+    expect(unauthorizedObjectMessage('Household', pills)).toBe('This household is no longer available.');
+    expect(unauthorizedObjectMessage('OneSchool Global', pills)).toBe('This oneschool global is no longer available.');
+    expect(unauthorizedObjectMessage('Member', pills)).toBe('This  is no longer available.');
   });
 });

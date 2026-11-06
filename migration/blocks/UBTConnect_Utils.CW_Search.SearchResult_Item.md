@@ -1,7 +1,7 @@
 # UBTConnect_Utils.CW_Search.SearchResult_Item
 
 - Kind: shared; build screens using it: BookmarksByGroup, FeedItemDetail, HomeFeed, HouseholdCarousel, HouseholdDetails, Locality_Details, OneSchoolGlobalDetails, Profile, Search, SupperMeeting_Carousel, SupperMeeting_Details, Updates_SingleList
-- Compiled source: `migration/blocks/sources/UBTConnect_Utils.CW_Search.SearchResult_Item.mvc.js`
+- Compiled source: `migration/sources/survey/UBTConnect_Utils.CW_Search.SearchResult_Item.mvc.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.Columns_Two, UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.BasePatterns.CustomText, UBTConnectLibrary.ConnectPatterns.Icon, UBTConnectLibrary.ConnectPatterns.IconText, UBTConnect_Utils.CW_Image.UBT_LazyImage (queue: -)
 
 ## Inputs
@@ -275,4 +275,4 @@ return function () {
 var rec = new UBTConnectLibraryModel.TextOptionsRec();
 rec.colorAttr = UBTConnect_UtilsModel.staticEntities.uBT_Color.blueDark;
 ```
-(… 235 more lines in `migration/blocks/sources/UBTConnect_Utils.CW_Search.SearchResult_Item.mvc.js`)
+(… 235 more lines in `migration/sources/survey/UBTConnect_Utils.CW_Search.SearchResult_Item.mvc.js`)

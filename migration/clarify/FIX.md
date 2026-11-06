@@ -7,7 +7,7 @@ commit (the orchestrator commits).
 ## Source of truth and evidence
 
 - TST behaviour is the target: the finding row (report §5) names the TST file and lines. Read them yourself with
-  `cd /Users/khaitruong/Projects/connect-new && python3 migration/clarify/tools/tst_source.py grep "<regex>" <file>` and
+  `cd /Users/khaitruong/Projects/connect-new && python3 tools/clarify/tst_source.py grep "<regex>" <file>` and
   `show <file> | sed -n 'A,Bp'` (no whole-file dumps). The React location is in the same row.
 - The checklist rows of the finding: `python3 -c "import json;[print(r['id'],r['verdict'],r['element'],'|',r.get('note','')[:200]) for r in json.load(open('migration/clarify/flows/<Flow>/checklist.json'))['rows'] if r.get('finding')=='<Fn>']"`.
 - The user's decision, when one exists, is in `migration/clarify/decisions.md` (grep the finding id); follow it.
@@ -37,7 +37,7 @@ commit (the orchestrator commits).
 1. The code and test changes in `app/`.
 2. `migration/clarify/fixes/<group>.md` (English), one section per finding. Each section has: id, TST evidence
    (file:line), files changed (path:line), what changed in one or two sentences, the tests you ran. It ends with the
-   proposed verdict of the rows (`match`, or still open with the reason). Lint: `python3 migration/tools/ste_lint.py <file>`,
+   proposed verdict of the rows (`match`, or still open with the reason). Lint: `python3 tools/docs/ste_lint.py <file>`,
    0 errors.
 3. Final message (English, short): findings fixed, findings left open with the reason, files changed, test results.
 

@@ -530,7 +530,7 @@ export interface Household_MarkersItem {
 ## Look up on demand
 
 - `migration/screens/Services/analysis/dom/<state>.html` full markup (line numbers in collapsed markers refer to dom/default.html)
-- `migration/screens/Services/analysis/sources/pretty/UBTConnect.App_Services.Services.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
-- `migration/screens/Services/analysis/sources/pretty/SortableJS.Sortable.SortableList.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
-- `migration/screens/Services/analysis/sources/pretty/SortableJS.Sortable.SortableList_Draggable.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/UBTConnect.App_Services.Services.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/SortableJS.Sortable.SortableList.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/SortableJS.Sortable.SortableList_Draggable.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
 - `migration/screens/Services/analysis/css-relevant.md` only when a visual diff cannot be explained by markup

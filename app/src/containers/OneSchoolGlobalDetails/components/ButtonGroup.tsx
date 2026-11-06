@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 
 /* Platform widgets OSWidgets.ButtonGroup / ButtonGroupItem (not OutSystems blocks: no OSBlockWidget root), ported from
-   migration/runtime-sources/OutSystemsReactWidgets.js AbstractButtonGroup / ButtonGroup / ButtonGroupItem (Q3,
+   migration/sources/runtime/OutSystemsReactWidgets.js AbstractButtonGroup / ButtonGroup / ButtonGroupItem (Q3,
    recommendation A, pending the orchestrator's answer). Group: `<div data-button-group class=<style>
    role="radiogroup" aria-activedescendant=<id of the selected item>>` > `<div>` > the items (the validation element
    adds nothing for a non-mandatory group). Item: `<button data-button-group-item class=<style>[ button-group-selected-item]

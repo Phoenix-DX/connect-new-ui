@@ -2,7 +2,7 @@
 
 OutSystems: `Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_MemberInformation` · pack
 `migration/blocks/Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_MemberInformation.md` · source
-`migration/screens/MilestoneDetail/analysis/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_MemberInformation.mvc.js`
+`migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_MemberInformation.mvc.js`
 
 | Input                     | Type              | Prop                       | Default |
 | ------------------------- | ----------------- | -------------------------- | ------- |

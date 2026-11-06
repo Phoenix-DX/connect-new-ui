@@ -1,20 +1,20 @@
 # Route agent: one route, nothing else
 
-You build or fix ONE route. Read this file, `migration/AGENTS.md` (the rules) and your `pack.md`. That is your whole starting context. Do not read the skill's SKILL.md, `route-loop.md`, `end-to-end.md` or other references: they are for the orchestrator. Commands below are `python3 <skill>/scripts/route.py …` (shortened to `route.py`).
+You build or fix ONE route. Read this file, `migration/AGENTS.md` (the rules) and your `pack.md`. That is your whole starting context. Do not read the skill's SKILL.md, `route-loop.md`, `end-to-end.md` or other references: they are for the orchestrator. Commands below are `python3 tools/pipeline/route.py …` (shortened to `route.py`).
 
 ## 1. Start
 
 `route.py start <S> --owner <you>`, then do what it prints:
 - **"route-spec.md and pack.md KEPT"**: the spec survived a reset. Go to section 3 (build). Do not rewrite the spec. If it lists answers recorded after spec-done, update only the spec parts those answers touch, then `route.py spec-done <S>`.
 - **"restored to the last review checkpoint"**: you are fixing feedback. Go to section 5.
-- **"capture needed"**: `route.py step <S> capture`, then `node <skill>/scripts/batch_capture.cjs run --only <S> --analyze …` (the orchestrator gives the arguments). If the capture fails: `route.py fail <S> --reason "…"` and stop.
+- **"capture needed"**: `route.py step <S> capture`, then `node tools/pipeline/batch_capture.cjs run --only <S> --analyze …` (the orchestrator gives the arguments). If the capture fails: `route.py fail <S> --reason "…"` and stop.
 - Otherwise: section 2.
 
 ## 2. Spec
 
-1. `route.py step <S> spec`, then `python3 <skill>/scripts/context_pack.py --screen <S> --analysis migration/screens/<S>/analysis`. Read `pack.md` once, fully.
-2. If the route has feature flags (pack section "Feature flags"): `python3 <skill>/scripts/flags.py questions --route <S>`.
-3. Write `migration/screens/<S>/route-spec.md` from `<skill>/assets/route-spec-template.md` (lite) or `spec-template.md` (full). Required headings: Summary, Patterns used, Unclear points, Decisions to confirm, and Feature flags when the route has flags. Every statement cites its evidence.
+1. `route.py step <S> spec`, then `python3 tools/pipeline/context_pack.py --screen <S> --analysis migration/screens/<S>/analysis`. Read `pack.md` once, fully.
+2. If the route has feature flags (pack section "Feature flags"): `python3 tools/pipeline/flags.py questions --route <S>`.
+3. Write `migration/screens/<S>/route-spec.md` from `tools/pipeline/assets/route-spec-template.md`. Required headings: Summary, Patterns used, Unclear points, Decisions to confirm, and Feature flags when the route has flags. Every statement cites its evidence.
 4. Every point without evidence is a question (section 4). Ask during this step, before code.
 5. When no blocking question is open: `route.py spec-done <S>`. It records the spec with the hashes of its inputs, so a later interruption does not cost a new spec. Run it again after any later edit of the spec or any new answer; `ready` checks this.
 

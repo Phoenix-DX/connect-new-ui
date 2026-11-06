@@ -1,7 +1,7 @@
 # Connect2_LegacyShared.NewConnect_Skeleton.NC_Card_Item_Text__Skeleton
 
 - Kind: shared; build screens using it: AssembleDetail, AssembleEvents
-- Compiled source: `migration/blocks/sources/Connect2_LegacyShared.NewConnect_Skeleton.NC_Card_Item_Text__Skeleton.mvc.js`
+- Compiled source: `migration/sources/survey/Connect2_LegacyShared.NewConnect_Skeleton.NC_Card_Item_Text__Skeleton.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

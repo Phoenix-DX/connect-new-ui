@@ -19,4 +19,10 @@ describe('NC_Result_Item_Badge', () => {
     expect(circle?.getAttribute('style')).toBe('background-color: var(--color-primary); height: 48px; width: 48px;');
     expect(circle).toContainElement(getByText('12'));
   });
+
+  it('the default Size 40 (no unit) renders as 40px, as the original does', () => {
+    const { container } = render(<ResultItemBadge />);
+    const circle = container.querySelector('.border-radius-circle');
+    expect(circle?.getAttribute('style')).toBe('background-color: var(--color-neutral-2); height: 40px; width: 40px;');
+  });
 });

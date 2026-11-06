@@ -394,8 +394,8 @@ body{
 
 @font-face {
     font-family: "connect-icon";
-    src: url("../fonts/connect-icon.ttf?HT_uwn+T2VKou8HgfRa7Ng") format("truetype"),
-        url("../fonts/connect-icon.woff?jalxyxpdQKM4kTZYDVDUYQ") format("woff");
+    src: url("../fonts/connect-icon.ttf?SMRPKWPqHEtjS_bc9N4v8w") format("truetype"),
+        url("../fonts/connect-icon.woff?tgOo1xQsEOpFtJRfAYtZYA") format("woff");
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -611,6 +611,9 @@ body{
 .connect-icon-remove-fill:before {content: "\f0bf";}
 .connect-icon-Arrow-up1:before {content: "\f0c2";}
 .connect-icon-Arrow-down:before {content: "\f0c1";}
+.connect-icon-transport_train:before { content: "\f0c4";}
+.connect-icon-transport_car:before {content: "\f0c5";}
+.connect-icon-transport_plane:before {content: "\f0c0";}
 
 
 /* === 2. Resets === */
@@ -3467,6 +3470,17 @@ h6,
   -webkit-box-shadow: var(--shadow-xs-top);
           box-shadow: var(--shadow-xs-top);
 }
+
+[class^="line-clamp-"],
+[class*=" line-clamp-"] {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-1 { -webkit-line-clamp: 1; line-clamp: 1; }
+.line-clamp-2 { -webkit-line-clamp: 2; line-clamp: 2; }
+.line-clamp-3 { -webkit-line-clamp: 3; line-clamp: 3; }
 
     /*  8.6. Colors  */
 

@@ -1,18 +1,21 @@
 {
  "state": "offline",
- "route": "/UBTConnect/EventDetail?mocksession=unlocked&In_MemberId=990001&In_EventId=7301&In_EventName=Weekend%20Bible%20Conferences%20-%20Bahia%20and%20Azul&In_FromNotification=False",
+ "route": "/UBTConnect/EventDetail?In_EventId=2085&In_MemberId=75835&mocksession=unlocked&In_MemberId=990001&In_EventId=7301&In_EventName=Weekend%20Bible%20Conferences%20-%20Bahia%20and%20Azul&In_FromNotification=False",
  "mock": "error",
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "dd6d9bd8576b6860f79d",
+ "fingerprint": "dc81fe0001414c67ae59",
  "options": {
   "text": true,
   "style": true,
   "pixel": true,
   "calls": true,
+  "visibleOnly": false,
   "full": true,
-  "replay": "builder"
+  "replay": "builder",
+  "skipKinds": [],
+  "selfRef": false
  },
  "replay": {
   "mode": "builder",
@@ -24,7 +27,7 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-16T05:25:49.110Z",
+ "at": "2026-11-06T13:34:53.800Z",
  "counts": {},
  "exemptionsUsed": {
   "VIA-BACK-MENUICON-EVENTDETAIL": 14,

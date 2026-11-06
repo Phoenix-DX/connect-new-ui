@@ -46,7 +46,7 @@ Short names below: `S` = `sources/UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminMil
   (Text), `UserMemberId` (Long Integer), input `EventId`.
 - Data action `Get_AdminMilestoneList` (`B:454-473`), on demand (only `Refresh_GetMilestonesByEventId` runs it, `:475`).
   Output `Response`: list of `GetAdminOrbitMilestone_Screen` = `OrbitAdminMilestone` (Connect2_OrbitMobile_IS
-  `AdminMilestoneRec`, `migration/runtime-sources/Connect2_OrbitMobile_IS.model.js:3842-3905`) + `OrbitMilestoneType`
+  `AdminMilestoneRec`, `migration/sources/runtime/Connect2_OrbitMobile_IS.model.js:3842-3905`) + `OrbitMilestoneType`
   (`Connect2_OrbitMobile_BL.model.js:146-164`). Wire keys = the first `attr` argument (`migration/tools/contract_gen.py:41-42`).
 - `OnAfterFetch_Get_AdminMilestoneList` (`B:506-530`): `Milestones` = the Response mapped to `Milestone_Screen`:
   MilestoneId = MilestoneRef, Type = OrbitMilestoneType.Type, Title = MilestoneName, MilestoneDateTime = EventDate,

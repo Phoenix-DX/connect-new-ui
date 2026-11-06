@@ -73,4 +73,40 @@ describe('HorizontalTagList', () => {
     click(container, 2);
     expect(onChanged).not.toHaveBeenCalled();
   });
+
+  it('OnParametersChanged: with single selection a new input sets CurrentListIndex to the selected row (live :445-490)', () => {
+    const onChanged = vi.fn();
+    const selectB = [
+      { Text: 'A', Identifier: 'a', IsSelected: false },
+      { Text: 'B', Identifier: 'b', IsSelected: true },
+      { Text: 'C', Identifier: 'c', IsSelected: false },
+    ];
+    const { container, rerender } = render(
+      <HorizontalTagList inTagToggleList={tags()} inIsSingleSelection onChanged={onChanged} />,
+    );
+    rerender(<HorizontalTagList inTagToggleList={selectB} inIsSingleSelection onChanged={onChanged} />);
+    click(container, 1);
+    expect(onChanged).not.toHaveBeenCalled();
+    click(container, 0);
+    expect(onChanged).toHaveBeenLastCalledWith([
+      expect.objectContaining({ Identifier: 'a', IsSelected: true }),
+      expect.objectContaining({ Identifier: 'b', IsSelected: false }),
+      expect.objectContaining({ Identifier: 'c', IsSelected: false }),
+    ]);
+  });
+
+  it('OnParametersChanged: a change of another input runs ListIndexOf on the current list; no selected row gives -1', () => {
+    const onChanged = vi.fn();
+    const none = tags().map((t) => ({ ...t, IsSelected: false }));
+    const { container, rerender } = render(
+      <HorizontalTagList inTagToggleList={none} inIsSingleSelection onChanged={onChanged} />,
+    );
+    click(container, 0);
+    expect(onChanged).not.toHaveBeenCalled();
+    rerender(
+      <HorizontalTagList inTagToggleList={none} inIsSingleSelection extendedClasses="x" onChanged={onChanged} />,
+    );
+    click(container, 0);
+    expect(onChanged).toHaveBeenCalledTimes(1);
+  });
 });

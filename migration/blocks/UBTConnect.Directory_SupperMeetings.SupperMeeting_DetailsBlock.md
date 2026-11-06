@@ -1,7 +1,7 @@
 # UBTConnect.Directory_SupperMeetings.SupperMeeting_DetailsBlock
 
 - Kind: shared; build screens using it: HouseholdCarousel, SupperMeeting_Carousel, SupperMeeting_Details
-- Compiled source: `migration/screens/SupperMeeting_Carousel/analysis/sources/pretty/UBTConnect.Directory_SupperMeetings.SupperMeeting_DetailsBlock.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.Directory_SupperMeetings.SupperMeeting_DetailsBlock.mvc.js`
 - Child blocks: UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions, UBTConnect.Directory_SupperMeetings.SupperMeeting_HouseholdList, UBTConnect.Directory_SupperMeetings.SupperMeeting_ImageCard_Content, UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen, UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen_Section, UBTConnectLibrary.ConnectCorePatterns.ImageCard_LazyLoading, UBTConnectLibrary.ConnectPatterns.SkeletonSection, UBTConnect_Utils.CW_Image.UBT_LazyImage (queue: UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions, UBTConnect.Directory_SupperMeetings.SupperMeeting_HouseholdList, UBTConnect.Directory_SupperMeetings.SupperMeeting_ImageCard_Content, UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen, UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen_Section, UBTConnectLibrary.ConnectCorePatterns.ImageCard_LazyLoading)
 
 ## Inputs
@@ -285,4 +285,4 @@ define("UBTConnect.Directory_SupperMeetings.SupperMeeting_DetailsBlock.mvc$view"
                                                             return model.variables.getSubdivisionDataAct.subdivisionOut.subdivision_CardAttr.subdivision_Card_ContentAttr.nameAttr;
                                                         }),
 ```
-(… 77 more lines in `migration/screens/SupperMeeting_Carousel/analysis/sources/pretty/UBTConnect.Directory_SupperMeetings.SupperMeeting_DetailsBlock.mvc.js`)
+(… 77 more lines in `migration/sources/pretty/UBTConnect.Directory_SupperMeetings.SupperMeeting_DetailsBlock.mvc.js`)

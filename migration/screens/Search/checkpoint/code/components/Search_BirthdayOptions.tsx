@@ -1,10 +1,10 @@
-// @os-block UBTConnect.Directory_Search.Search_BirthdayOptions
-import { OSBlock } from '../../../components/OSBlock';
-import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
-import { Icon } from '../../../shared/UBTConnectLibrary/Icon';
-import { IconText } from '../../../shared/UBTConnectLibrary/IconText';
-import { UBT_Color, UBT_Size } from '../../../shared/UBTConnectLibrary/lib/staticEntities';
-import type { SearchBirthdayOption } from '../types';
+/** @origin UBTConnect.Directory_Search.Search_BirthdayOptions */
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { Icon } from '@/components/ui/Icon';
+import { IconText } from '@/components/ui/IconText';
+import { UBT_Color, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
+import type { SearchBirthdayOption } from '@/api/search';
 import { UBT_Icons2_Search } from './staticEntities';
 
 export interface Search_BirthdayOptionsProps {
@@ -14,7 +14,7 @@ export interface Search_BirthdayOptionsProps {
   onSelected?: (keyWord: string) => void;
 }
 
-/** UBTConnect Directory_Search.Search_BirthdayOptions (capture/survey-UBTConnect.json sources
+/** UBTConnect Directory_Search.Search_BirthdayOptions (migration/survey/survey-UBTConnect.json sources
     UBTConnect.Directory_Search.Search_BirthdayOptions.mvc.js, view internalRender, prettier line numbers :223-385): a
     list of CustomContainer (vertical Small, bottom border Neutral3 Small) with IconText (SearchName, spacing Base,
     calendar icon); a click raises Selected(SearchName). */

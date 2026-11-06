@@ -2,7 +2,7 @@
 
 OutSystems: `Connect2_LegacyShared.Utility.LabelWithCopyIcon` · pack
 `migration/blocks/Connect2_LegacyShared.Utility.LabelWithCopyIcon.md` · source
-`migration/blocks/sources/Connect2_LegacyShared.Utility.LabelWithCopyIcon.mvc.js`
+`migration/sources/survey/Connect2_LegacyShared.Utility.LabelWithCopyIcon.mvc.js`
 
 | Input          | Type | Prop             | Default |
 | -------------- | ---- | ---------------- | ------- |

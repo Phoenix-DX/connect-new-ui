@@ -10,9 +10,9 @@ import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { rememberFocusedScrollAnchor, setPreloadObject } from '@/platform/navigation';
 import { resetNavigation } from '@/platform/navigation/testRouter';
 import { enterView, saveView } from '@/platform/navigation/viewCache';
-import { getLocalBookmarksByObjectType, type LegacyLocalBookmark } from '@/platform/storage/localEntities';
-import { toggleBookmarkItem } from '@/lib/assemble/actions';
-import { MyBookmarks_Group, MyBookmarks_ObjectType } from '@/lib/assemble/staticEntities';
+import { getLocalBookmarksByObjectType, type LocalBookmark } from '@/platform/storage/localEntities';
+import { BookmarkCategory } from '@/lib/ubtConnect/staticEntities';
+import { bookmarkServerActions, toggleBookmarkItem_C2 } from '@/lib/ubtConnectUtils/actions';
 import { getCacheableSubdivision_V2 } from '@/lib/legacyShared/actions';
 import { maybeDisplaySubscriptionPopup } from '@/pages/AssembleDetail/components/actions';
 import { attendeeSubdivisionReducer, SHARE_OBJECT_HOUSEHOLD, SKELETON_ID } from './attendeeSubdivisionState';
@@ -36,9 +36,9 @@ vi.mock('@/pages/AssembleDetail/components/actions', async (importOriginal) => (
   maybeDisplaySubscriptionPopup: vi.fn(),
 }));
 vi.mock('@/platform/feedback/dialogs/confirmAction', () => ({ confirmAction: vi.fn() }));
-vi.mock('@/lib/assemble/actions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/lib/assemble/actions')>()),
-  toggleBookmarkItem: vi.fn(),
+vi.mock('@/lib/ubtConnectUtils/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/ubtConnectUtils/actions')>()),
+  toggleBookmarkItem_C2: vi.fn(),
 }));
 vi.mock('@/platform/feedback/flowErrors', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/platform/feedback/flowErrors')>()),
@@ -76,16 +76,14 @@ const INFO: SubdivisionInformation = {
   },
   Subdivision: { Locality: { Id: '252', Country: { Code: 'AR' } } },
 };
-/** A legacy local bookmark of the household. */
-const BOOKMARK: LegacyLocalBookmark = {
+/** A C2 local bookmark of the household (UBTConnect_Bookmarks_MCS.LocalBookmark). */
+const BOOKMARK: LocalBookmark = {
   Id: '1',
   UserId: 880101,
-  BookmarkId: 'bm-91004',
-  ObjectType: 'Contact',
-  ObjectId: '91004',
-  Group: 'Contacts',
-  DateCreatedUtc: '2026-10-20T14:00:00Z',
-  Note: '',
+  BookmarkId: '7104',
+  BookmarkCategoryId: 'Household',
+  ItemId: '91004',
+  CreatedAtDateUtc: '2026-10-20T14:00:00',
 };
 const FLAGS = { hasBookmarkNote: false, hasExtendedShare: false };
 const EVENTS: AttendeeSubdivisionEvents = { onNavigateToShareObject: vi.fn(), onNavigateToHouseholdCarousel: vi.fn() };
@@ -124,7 +122,7 @@ beforeEach(() => {
   vi.mocked(getLocalBookmarksByObjectType).mockResolvedValue([]);
   vi.mocked(maybeDisplaySubscriptionPopup).mockResolvedValue(false);
   vi.mocked(confirmAction).mockResolvedValue(true);
-  vi.mocked(toggleBookmarkItem).mockResolvedValue({ Out_LocalBookmarkId: '7', Out_CreatedBookmarkId: 'bm-91004' });
+  vi.mocked(toggleBookmarkItem_C2).mockResolvedValue(undefined);
 });
 afterEach(() => {
   vi.clearAllMocks();
@@ -164,6 +162,7 @@ describe('useAttendeeSubdivision: OnReady', () => {
       expect(result.current.state.rows[0]?.IsBookmarked).toBe(true);
     });
     expect(getLocalBookmarksByObjectType).toHaveBeenCalledTimes(2);
+    expect(getLocalBookmarksByObjectType).toHaveBeenCalledWith(BookmarkCategory.Household);
     expect(getCacheableSubdivision_V2).toHaveBeenCalledTimes(1);
     expect(result.current.state.isSelected).toBe(true);
   });
@@ -277,19 +276,18 @@ describe('useAttendeeSubdivision: the household click (port gap N4)', () => {
 });
 
 describe('useAttendeeSubdivision: the bookmark and the share', () => {
-  it('a row that is not bookmarked: ConfirmAction(Bookmark_Note), ToggleBookmarkItem, then the row is bookmarked', async () => {
+  it('a row that is not bookmarked: ConfirmAction(Bookmark_Note), ToggleBookmarkItem_C2 (no note), then the row is bookmarked', async () => {
     const { result, row } = await renderLoadedHall();
     act(() => {
       result.current.onClickBookmarkButton(row, 0, false);
     });
     await settle();
     expect(confirmAction).toHaveBeenCalledWith('b2-b4-b14-b1-0-b3-0-Bookmark_Note');
-    expect(toggleBookmarkItem).toHaveBeenCalledWith(
-      false,
-      MyBookmarks_ObjectType.Contact,
+    expect(toggleBookmarkItem_C2).toHaveBeenCalledWith(
       '91004',
-      MyBookmarks_Group.Contacts,
-      '',
+      BookmarkCategory.Household,
+      false,
+      bookmarkServerActions,
     );
     expect(result.current.state.rows[0]?.IsBookmarked).toBe(true);
   });
@@ -371,27 +369,27 @@ describe('useAttendeeSubdivision after an unmount (flow scope, item 8)', () => {
     expect(raisedErrors()).toEqual([]);
   });
 
-  it('R2: unmount while ToggleBookmarkItem is pending: the bookmark is written, the row write and the raise are not', async () => {
+  it('R2: unmount while ToggleBookmarkItem_C2 is pending: the bookmark is written, the row write and the raise are not', async () => {
     const { result, row, unmount } = await renderLoadedHall();
-    const toggle = deferred<{ Out_LocalBookmarkId: string; Out_CreatedBookmarkId: string }>();
-    vi.mocked(toggleBookmarkItem).mockReturnValueOnce(toggle.promise);
+    const toggle = deferred<undefined>();
+    vi.mocked(toggleBookmarkItem_C2).mockReturnValueOnce(toggle.promise);
     act(() => {
       result.current.onClickBookmarkButton(row, 0, false);
     });
     await settle();
     unmount();
     vi.mocked(attendeeSubdivisionReducer).mockClear();
-    toggle.resolve({ Out_LocalBookmarkId: '7', Out_CreatedBookmarkId: 'bm-91004' });
+    toggle.resolve(undefined);
     await settle();
-    expect(toggleBookmarkItem).toHaveBeenCalledTimes(1);
+    expect(toggleBookmarkItem_C2).toHaveBeenCalledTimes(1);
     expect(attendeeSubdivisionReducer).not.toHaveBeenCalled();
     expect(raisedErrors()).toEqual([]);
   });
 
-  it('R2: a ToggleBookmarkItem failure after the unmount reaches the handler with the scope', async () => {
+  it('R2: a ToggleBookmarkItem_C2 failure after the unmount reaches the handler with the scope', async () => {
     const { result, row, unmount } = await renderLoadedHall();
-    const toggle = deferred<{ Out_LocalBookmarkId: string; Out_CreatedBookmarkId: string }>();
-    vi.mocked(toggleBookmarkItem).mockReturnValueOnce(toggle.promise);
+    const toggle = deferred<undefined>();
+    vi.mocked(toggleBookmarkItem_C2).mockReturnValueOnce(toggle.promise);
     act(() => {
       result.current.onClickBookmarkButton(row, 0, false);
     });

@@ -14,7 +14,7 @@ import {
 } from './entities';
 
 /* The Orbit local entities of Connect2_OrbitMobile_MUI that the app start fills (CR-EventDetail-1), ported 1:1 from
-   C = migration/runtime-sources/Connect2_OrbitMobile_MUI.controller.js, E = …Connect2_OrbitMobile_MUI.entities.js.
+   C = migration/sources/runtime/Connect2_OrbitMobile_MUI.controller.js, E = …Connect2_OrbitMobile_MUI.entities.js.
 
    Who uses them in the original:
    - writes: UBTConnect Sync_Info_Main (UBTConnect.controller.js:16579-16584): after Sync_Info_GetMain, when not from
@@ -23,7 +23,7 @@ import {
    - reads: ScreenBlock_EventDetail aggregate GetLocalSurveyStatusByJSONName (host survey row, Host Allocation),
      HostAllocation_HelperItem aggregate GetLocalOrbitMilestoneTypeHelper, MilestoneHeader GetLocalOrbitMilestoneTypeById,
      ScreenBlock_HostSurvey aggregates GetLocalHostSurveySteps, GetLocalHouseFloors, GetLocalGenderPreferences, … (HS =
-     migration/screens/HostSurvey/analysis/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_HostSurvey.
+     migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_HostSurvey.
      ScreenBlock_HostSurvey.mvc.js; CR-HostSurvey-1).
 
    Storage (F12, CR-HelpersDetail-1, CR-HostSurvey-1): as the original, the rows live in the device database, one
@@ -39,7 +39,9 @@ import {
      stored rows (ids given by the database included), in primary-key order as the IndexedDB store returns them;
    - a sync also writes its rows to the mirror when it is called, before its transaction (write-through), and re-reads
      the table if the transaction fails: readers see the new rows a few milliseconds early (the original's readers see
-     the old rows, or none between its DeleteAll and CreateOrUpdate transactions);
+     the old rows, or none between its DeleteAll and CreateOrUpdate transactions); the app start's sync of all the
+     tables writes every mirror before its first transaction, so a reader never sees the first tables without the
+     later ones;
    - a table not read yet reads as empty; `localOrbitMilestoneTypesRead()` / `localHostSurveyStepsRead()` tell the
      readers whether it was.
    Readers and the app start (CR-MilestoneDetail-4): in the original a screen's OnReady reads rows that earlier app
@@ -379,7 +381,8 @@ export function useOrbitStaticEntitiesVersion(): number {
 export const localOrbitMilestoneTypesRead = (): boolean => mirrorOf(LOCAL_ORBIT_MILESTONE_TYPE).rows !== null;
 
 /** Whether the LocalHostSurveyStep rows were read from the database (or written by a sync) on this page: the load of
-    the app start reads every table in one transaction, so the other HostSurvey tables are then read too. */
+    the app start reads every table in one transaction, and its sync writes every mirror before its first transaction
+    (replaceAllRows), so the other HostSurvey tables are then read too. */
 export const localHostSurveyStepsRead = (): boolean => mirrorOf(LOCAL_HOST_SURVEY_STEP).rows !== null;
 
 const byId = <R extends Record<string, unknown>>(a: R, b: R) => {
@@ -423,21 +426,67 @@ export function loadOrbitStaticEntities(): Promise<void> {
   return readMirror(ENTITIES);
 }
 
-/** A sync's rows: written to the mirror now, then replaced in the database (DeleteAll + CreateOrUpdate, one
-    transaction as entityService.replaceAll), then read back (ids the database gave); on a failed transaction the
-    table is read again and the error raised. */
-async function replaceRows(entity: EntityInfo, rows: readonly object[]): Promise<void> {
+/** Writes a sync's rows to the mirror (no notification); gives the rows the mirror had, for a restore. */
+function writeMirror(entity: EntityInfo, rows: readonly object[]): Record<string, unknown>[] | null {
   const mirror = mirrorOf(entity);
+  const before = mirror.rows;
   mirror.writes += 1;
   mirror.rows = rows.map((r) => ({ ...r })).sort(byId);
-  notifyChanged();
+  return before;
+}
+
+/** Puts the rows of before the sync back into the mirror (a table whose transaction never ran). */
+function restoreMirror(entity: EntityInfo, rows: Record<string, unknown>[] | null): void {
+  const mirror = mirrorOf(entity);
+  mirror.writes += 1;
+  mirror.rows = rows;
+}
+
+/** Replaces a table in the database (DeleteAll + CreateOrUpdate, one transaction as entityService.replaceAll), then
+    reads it back (ids the database gave); on a failed transaction the mirror gets its rows of before the sync back
+    (`before`; a table never synced stays "not read"), the table is read again and the error raised. */
+async function persistRows(
+  entity: EntityInfo,
+  rows: readonly object[],
+  before: Record<string, unknown>[] | null,
+): Promise<void> {
   try {
     await entities.replaceAll(entity, rows);
   } catch (error) {
+    restoreMirror(entity, before);
     await readMirror([entity]).catch(() => undefined);
     throw error;
   }
   await readMirror([entity]);
+}
+
+/** A sync's rows: written to the mirror now, then replaced in the database. */
+async function replaceRows(entity: EntityInfo, rows: readonly object[]): Promise<void> {
+  const before = writeMirror(entity, rows);
+  notifyChanged();
+  await persistRows(entity, rows, before);
+}
+
+/** The syncs of SyncAllOrbitStaticEntities, in TST order, each table only when its list is not empty ("Has … ?"):
+    all their rows are written to the mirror before the first transaction (one notification), then the transactions
+    run one after another. Readers that wait for one table (localHostSurveyStepsRead) then find the other tables
+    of the same sync too; before this, a page that read between two transactions found the first tables only
+    (HostSurvey on a first visit: the step rows without the status row, 2026-11-05). On a failed transaction the
+    tables after it get their earlier rows back (the database never had the new ones) and the error is raised. */
+async function replaceAllRows(plan: readonly (readonly [EntityInfo, readonly object[]])[]): Promise<void> {
+  const before = plan.map(([entity, rows]) => writeMirror(entity, rows));
+  notifyChanged();
+  for (const [i, [entity, rows]] of plan.entries()) {
+    try {
+      await persistRows(entity, rows, before[i] ?? null);
+    } catch (error) {
+      plan.slice(i + 1).forEach(([later], k) => {
+        restoreMirror(later, before[i + 1 + k] ?? null);
+      });
+      notifyChanged();
+      throw error;
+    }
+  }
 }
 
 /* ---- Sync actions (C) ---- */
@@ -445,72 +494,68 @@ async function replaceRows(entity: EntityInfo, rows: readonly object[]): Promise
 /** SyncOrbitSurveyStatus(HostSurveyStatus) (C:7514-7550): DeleteAllLocalSurveyStatus, then CreateOrUpdateSome with Id,
     Label and JSON_Name (C:7531-7535). Id 0 takes LASTIDENTIFIER + 1 (YesIfEmpty, metadata row OSSYS_ENTITY), a larger
     id moves it. */
+const surveyStatusRows = (hostSurveyStatus: readonly Partial<SurveyStatusRecord>[]) =>
+  hostSurveyStatus.map((source) => ({
+    Id: source.Id ?? 0,
+    Label: source.Label ?? '',
+    JSON_Name: source.JSON_Name ?? '',
+  }));
 export function syncOrbitSurveyStatus(hostSurveyStatus: readonly Partial<SurveyStatusRecord>[]): Promise<void> {
-  return replaceRows(
-    LOCAL_SURVEY_STATUS,
-    hostSurveyStatus.map((source) => ({
-      Id: source.Id ?? 0,
-      Label: source.Label ?? '',
-      JSON_Name: source.JSON_Name ?? '',
-    })),
-  );
+  return replaceRows(LOCAL_SURVEY_STATUS, surveyStatusRows(hostSurveyStatus));
 }
 
 /** SyncOrbitMilestoneTypes(OrbitMilestoneTypes) (C:7447-7490): DeleteAll, then CreateOrUpdateAll with the fields
     mapped one by one (C:7465-7476); Name takes the source Type (C:7468, as compiled), Is_Active and
     TravelInfoHeaderIcon are not copied. */
+const milestoneTypeRows = (orbitMilestoneTypes: readonly OrbitMilestoneTypeRecord[]) =>
+  orbitMilestoneTypes.map((source) => ({
+    Id: source.Id ?? '',
+    Order: source.Order ?? 0,
+    Type: source.Type ?? '',
+    Name: source.Type ?? '',
+    MainColorVar: source.MainColorVar ?? '',
+    MainIcon: source.MainIcon ?? '',
+    CanHost: source.CanHost ?? false,
+    IsTransportMilestone: source.IsTransportMilestone ?? false,
+    IconTransportDeparture: source.IconTransportDeparture ?? '',
+    IconTransportArrival: source.IconTransportArrival ?? '',
+    TransportHeaderClass: source.TransportHeaderClass ?? '',
+    TravelInfoHeader: source.TravelInfoHeader ?? '',
+  }));
 export function syncOrbitMilestoneTypes(orbitMilestoneTypes: readonly OrbitMilestoneTypeRecord[]): Promise<void> {
-  return replaceRows(
-    LOCAL_ORBIT_MILESTONE_TYPE,
-    orbitMilestoneTypes.map((source) => ({
-      Id: source.Id ?? '',
-      Order: source.Order ?? 0,
-      Type: source.Type ?? '',
-      Name: source.Type ?? '',
-      MainColorVar: source.MainColorVar ?? '',
-      MainIcon: source.MainIcon ?? '',
-      CanHost: source.CanHost ?? false,
-      IsTransportMilestone: source.IsTransportMilestone ?? false,
-      IconTransportDeparture: source.IconTransportDeparture ?? '',
-      IconTransportArrival: source.IconTransportArrival ?? '',
-      TransportHeaderClass: source.TransportHeaderClass ?? '',
-      TravelInfoHeader: source.TravelInfoHeader ?? '',
-    })),
-  );
+  return replaceRows(LOCAL_ORBIT_MILESTONE_TYPE, milestoneTypeRows(orbitMilestoneTypes));
 }
 
 /** SyncOrbitEventTypes(OrbitEventTypes) (C:6949-7008): DeleteAll, then CreateOrUpdateAll with Id, Type, Name,
     MainColorVar and MainIcon (C:6967-6971); Is_Active is not copied. */
+const eventTypeRows = (orbitEventTypes: readonly Partial<Schemas['Connect2_OrbitMobile_BL__OrbitEventType']>[]) =>
+  orbitEventTypes.map((source) => ({
+    Id: source.Id ?? '',
+    Type: source.Type ?? '',
+    Name: source.Name ?? '',
+    MainColorVar: source.MainColorVar ?? '',
+    MainIcon: source.MainIcon ?? '',
+  }));
 export function syncOrbitEventTypes(
   orbitEventTypes: readonly Partial<Schemas['Connect2_OrbitMobile_BL__OrbitEventType']>[],
 ) {
-  return replaceRows(
-    LOCAL_ORBIT_EVENT_TYPE,
-    orbitEventTypes.map((source) => ({
-      Id: source.Id ?? '',
-      Type: source.Type ?? '',
-      Name: source.Name ?? '',
-      MainColorVar: source.MainColorVar ?? '',
-      MainIcon: source.MainIcon ?? '',
-    })),
-  );
+  return replaceRows(LOCAL_ORBIT_EVENT_TYPE, eventTypeRows(orbitEventTypes));
 }
 
 /** SyncOrbitSurveyStep(SurveyStep) (C:7615-7674): DeleteAll, then CreateOrUpdateAll with Id, HeaderLabel, AddLabel,
     Order and IsDataStep (C:7633-7637). */
+const surveyStepRows = (surveyStep: readonly Partial<Schemas['Connect2_OrbitMobile_MUI__HostSurveyStep']>[]) =>
+  surveyStep.map((source) => ({
+    Id: source.Id ?? 0,
+    HeaderLabel: source.HeaderLabel ?? '',
+    AddLabel: source.AddLabel ?? '',
+    Order: source.Order ?? 0,
+    IsDataStep: source.IsDataStep ?? false,
+  }));
 export function syncOrbitSurveyStep(
   surveyStep: readonly Partial<Schemas['Connect2_OrbitMobile_MUI__HostSurveyStep']>[],
 ) {
-  return replaceRows(
-    LOCAL_HOST_SURVEY_STEP,
-    surveyStep.map((source) => ({
-      Id: source.Id ?? 0,
-      HeaderLabel: source.HeaderLabel ?? '',
-      AddLabel: source.AddLabel ?? '',
-      Order: source.Order ?? 0,
-      IsDataStep: source.IsDataStep ?? false,
-    })),
-  );
+  return replaceRows(LOCAL_HOST_SURVEY_STEP, surveyStepRows(surveyStep));
 }
 
 type LabelledSource = { Id?: number | string; Label?: string; JSON_Name?: string; Order?: number };
@@ -562,17 +607,16 @@ export const syncOrbitMealType = (mealType: readonly Partial<Schemas['Connect2_O
 /** SyncOrbitHelperRoles(HelperRoles: LocalHelperRole List) (C:7068-7123): DeleteAll, then CreateOrUpdateAll of
     LocalHelperRoleRecord.fromStructure (C:7085-7088). SyncAllOrbitStaticEntities converts the HelperRole list first:
     Id, Label, Order, JSON_Name, isReadOnly (C:6771-6779); Is_Active is not copied. */
+const helperRoleRows = (helperRoles: readonly Partial<Schemas['Connect2_OrbitMobile_BL__HelperRole']>[]) =>
+  helperRoles.map((source) => ({
+    Id: source.Id ?? 0,
+    Label: source.Label ?? '',
+    Order: source.Order ?? 0,
+    JSON_Name: source.JSON_Name ?? '',
+    isReadOnly: source.isReadOnly ?? false,
+  }));
 export const syncOrbitHelperRoles = (helperRoles: readonly Partial<Schemas['Connect2_OrbitMobile_BL__HelperRole']>[]) =>
-  replaceRows(
-    LOCAL_HELPER_ROLE,
-    helperRoles.map((source) => ({
-      Id: source.Id ?? 0,
-      Label: source.Label ?? '',
-      Order: source.Order ?? 0,
-      JSON_Name: source.JSON_Name ?? '',
-      isReadOnly: source.isReadOnly ?? false,
-    })),
-  );
+  replaceRows(LOCAL_HELPER_ROLE, helperRoleRows(helperRoles));
 
 /** SyncAllOrbitStaticEntities(OrbitStaticEntities) (C:6638-6800), in its order, each list synced only when not empty
     ("Has … ?"): OrbitEventTypes (C:6652-6658), OrbitMilestoneTypes (C:6661-6667); then GetHasOrbitHostSurvey
@@ -580,25 +624,32 @@ export const syncOrbitHelperRoles = (helperRoles: readonly Partial<Schemas['Conn
     OrbitBedSize (:6686-6692), OrbitGenderPreference (:6696-6702), OrbitHouseFloor (:6706-6712), OrbitVehicleOwner
     (:6716-6722), OrbitVehicleType (:6726-6732), HelperStatus (:6736-6742), SurveyStatus (:6746-6752), MealType
     (:6756-6762), HelperRoles (:6766-6785). Without it: SurveyStatus always (SyncOrbitSurveyStatus2, C:6787-6791, so an
-    empty list empties the table) and nothing else. Errors are raised to the caller (Sync_Info_Main's AllExceptions). */
+    empty list empties the table) and nothing else. Errors are raised to the caller (Sync_Info_Main's AllExceptions).
+    The transactions run in that order; the mirror gets every table first (replaceAllRows). */
 export async function syncAllOrbitStaticEntities(orbitStaticEntities: StaticEntities_Orbit): Promise<void> {
   const o = orbitStaticEntities;
-  if (o.OrbitEventTypes.List.length > 0) await syncOrbitEventTypes(o.OrbitEventTypes.List);
-  if (o.OrbitMilestoneTypes.List.length > 0) await syncOrbitMilestoneTypes(o.OrbitMilestoneTypes.List);
+  const plan: (readonly [EntityInfo, readonly object[]])[] = [];
+  const add = <T>(list: readonly T[], entity: EntityInfo, rows: (list: readonly T[]) => readonly object[]) => {
+    if (list.length > 0) plan.push([entity, rows(list)]);
+  };
+  add(o.OrbitEventTypes.List, LOCAL_ORBIT_EVENT_TYPE, eventTypeRows);
+  add(o.OrbitMilestoneTypes.List, LOCAL_ORBIT_MILESTONE_TYPE, milestoneTypeRows);
   if (!isOn('mobileOrbitHostSurvey')) {
-    await syncOrbitSurveyStatus(o.SurveyStatus.List);
+    plan.push([LOCAL_SURVEY_STATUS, surveyStatusRows(o.SurveyStatus.List)]);
+    await replaceAllRows(plan);
     return;
   }
-  if (o.HostSurveyStep.List.length > 0) await syncOrbitSurveyStep(o.HostSurveyStep.List);
-  if (o.OrbitBedSize.List.length > 0) await syncOrbitBedSize(o.OrbitBedSize.List);
-  if (o.OrbitGenderPreference.List.length > 0) await syncOrbitGenderPreference(o.OrbitGenderPreference.List);
-  if (o.OrbitHouseFloor.List.length > 0) await syncOrbitHouseFloor(o.OrbitHouseFloor.List);
-  if (o.OrbitVehicleOwner.List.length > 0) await syncOrbitVehicleOwner(o.OrbitVehicleOwner.List);
-  if (o.OrbitVehicleType.List.length > 0) await syncOrbitVehicleType(o.OrbitVehicleType.List);
-  if (o.HelperStatus.List.length > 0) await syncOrbitHelperStatus(o.HelperStatus.List);
-  if (o.SurveyStatus.List.length > 0) await syncOrbitSurveyStatus(o.SurveyStatus.List);
-  if (o.MealType.List.length > 0) await syncOrbitMealType(o.MealType.List);
-  if (o.HelperRoles.List.length > 0) await syncOrbitHelperRoles(o.HelperRoles.List);
+  add(o.HostSurveyStep.List, LOCAL_HOST_SURVEY_STEP, surveyStepRows);
+  add(o.OrbitBedSize.List, LOCAL_BED_SIZE, (l) => labelledRows(l, '0', true));
+  add(o.OrbitGenderPreference.List, LOCAL_GENDER_PREFERENCE, (l) => labelledRows(l, 0, true));
+  add(o.OrbitHouseFloor.List, LOCAL_HOUSE_FLOOR, (l) => labelledRows(l, 0, true));
+  add(o.OrbitVehicleOwner.List, LOCAL_VEHICLE_OWNER, (l) => labelledRows(l, '0', true));
+  add(o.OrbitVehicleType.List, LOCAL_VEHICLE_TYPE, (l) => labelledRows(l, '0', true));
+  add(o.HelperStatus.List, LOCAL_HELPER_STATUS, (l) => labelledRows(l, 0, false));
+  add(o.SurveyStatus.List, LOCAL_SURVEY_STATUS, surveyStatusRows);
+  add(o.MealType.List, LOCAL_MEAL_TYPE, (l) => labelledRows(l, 0, false));
+  add(o.HelperRoles.List, LOCAL_HELPER_ROLE, helperRoleRows);
+  await replaceAllRows(plan);
 }
 
 /* ---- Reads ---- */

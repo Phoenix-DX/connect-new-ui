@@ -1,7 +1,7 @@
 # OutSystemsUI_2_23.Utilities.DEPRECATED_ButtonLoading
 
 - Kind: osui; build screens using it: EmailContact, EmailTarget
-- Compiled source: `migration/blocks/sources/OutSystemsUI_2_23.Utilities.DEPRECATED_ButtonLoading.mvc.js`
+- Compiled source: `migration/sources/survey/OutSystemsUI_2_23.Utilities.DEPRECATED_ButtonLoading.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

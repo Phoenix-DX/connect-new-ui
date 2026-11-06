@@ -24,7 +24,7 @@
   "kind": "decision",
   "topic": "admin milestone types (change request, lib)",
   "question": "The live TST moduleinfo (version 15682) now has the six Admin* OrbitMilestoneType records (adminMeeting=meeting-admin, adminMeal=meeting-meal, adminMealAtHall=meal-at-hall-admin, adminAccommodation=accommodation-admin, adminTransportVehicle=transport-vehicle-admin, adminBreak=break-admin). React app/src/lib/orbit/staticEntities.ts:49-75 keeps them undefined (old moduleinfo), so the Card_Milestone admin branch (description, date, start-end times) never renders, and an admin milestone card shows only its title. lib/ is outside the route scope. Update the lib?",
-  "evidence": "migration/runtime-sources/moduleinfo.json (entity 3cdbee62-a275-4b90-8413-7962d4974850); Connect2_OrbitMobile_MUI.model.js:20232-20356; app/src/components/orbit/MilestoneCard/MilestoneCard.tsx:220-254",
+  "evidence": "migration/sources/runtime/moduleinfo.json (entity 3cdbee62-a275-4b90-8413-7962d4974850); Connect2_OrbitMobile_MUI.model.js:20232-20356; app/src/components/orbit/MilestoneCard/MilestoneCard.tsx:220-254",
   "mcp": "Fact from the live TST moduleinfo; not asked to MCP (DEV).",
   "options": [
    "a) Change request: the orchestrator sets the six live Ids in lib/orbit/staticEntities.ts (and the comment); the admin cards then render as TST; other cards are unchanged (no other milestone has these Ids)",

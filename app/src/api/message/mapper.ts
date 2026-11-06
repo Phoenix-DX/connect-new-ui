@@ -12,6 +12,7 @@ import type {
   MessageClearResult,
   MessageDetailCallInputs,
   MessageInstanceResult,
+  NotificationDetailsCallInputs,
   MessageItem,
   MessageListCallInputs,
   MessageParameter,
@@ -243,6 +244,46 @@ export const toListOfMessageParameters = (parameters: MessageParameter[]) =>
       Tenant_Id: p.tenantId,
     })),
   );
+
+/* ---- The screen NotificationDetails of UBTConnect ----
+   The contract has the two records of its GetMessageInstance and the list of its aggregate as x-unknown (their
+   UBTConnect copies are not in the captures). The live TST model of 2026-11-05 (UBTConnect.model.js) proves that they
+   are the Connect2_LegacyShared structures: MessagePriority…UserTextRecord = MessagePriority, MessageContent,
+   MessageTemplate, MessageSenderTarget, MessageInstance, AdaptiveCardJSON (Comms_CS), User (ServiceCenter) and
+   CreatedByMemberId; MessageParameterRecord = Comms_CS.MessageParameter. The guards check the record parts, then the
+   mappers of ScreenBlock_MessageDetail read them.
+   @origin UBTConnect.App_Notifications.NotificationDetails */
+
+type NotificationDetailsPath<A extends string> = PathOf<'UBTConnect', `NotificationDetails/${A}`>;
+/** The outputs of DataActionGetMessageInstance of NotificationDetails. */
+type NotificationMessageInstanceWire = ActionOutputs<NotificationDetailsPath<'DataActionGetMessageInstance'>>;
+/** The inputs of the aggregate GetMessageTemplateParametersByMessageTemplateId of NotificationDetails. */
+type NotificationTemplateParametersInputsWire = ActionInputs<
+  NotificationDetailsPath<'ScreenDataSetGetMessageTemplateParametersByMessageTemplateId'>
+>;
+/** The outputs of that aggregate. */
+type NotificationTemplateParametersWire = ActionOutputs<
+  NotificationDetailsPath<'ScreenDataSetGetMessageTemplateParametersByMessageTemplateId'>
+>;
+
+/** GetMessageInstance of NotificationDetails, read as the one of ScreenBlock_MessageDetail: the live contract types
+    its records like the Connect2_LegacyShared ones (UBTConnect.model.js of 2026-11-05, decision row 22). */
+export const toNotificationMessageInstanceResult = (wire: NotificationMessageInstanceWire): MessageInstanceResult =>
+  toMessageInstanceResult(wire);
+
+/** The screen variables of the aggregate, with MaxRecords 50 and StartIndex 0 (GetMessageInstanceByIdOnAfterFetch,
+    NotificationDetails.mvc.js:1124-1135). */
+export const toNotificationTemplateParametersInputs = (
+  inputs: NotificationDetailsCallInputs,
+): NotificationTemplateParametersInputsWire => ({
+  ...inputs,
+  MaxRecords: 50,
+  StartIndex: 0,
+});
+
+/** The parameters of the aggregate of NotificationDetails, read as the ones of ScreenBlock_MessageDetail. */
+export const toNotificationMessageParameters = (wire: NotificationTemplateParametersWire): MessageParameter[] =>
+  toMessageParameters(wire);
 
 /** The outputs of Get_OrbitHostSurveyNotificationParameters. */
 type OrbitHostSurveyNotificationParametersWire = ActionOutputs<

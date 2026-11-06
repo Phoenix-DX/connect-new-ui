@@ -30,7 +30,7 @@
 |---|---|---|---|---|---|---|
 | Connect2_LegacyShared/ActionGetUserInformation | server (GetCacheableUserInfo) | OnReady [mvc.js:879-946] | none | Subdivision.Id | memory cache User/"UserInfo" 7200 s | shared LegacyShared mock |
 | UBTConnect_Utils/ActionGetUserInformation | server (Cache_UserInfo_Get, shell cache) | FetchCountries [mvc.js:1025-1100] | none | Directory_UserCurrent_Subscription.SubscriptionRegionId | shell user-info cache (app start fills it) | shell mock |
-| Connect2_LegacyShared/ActionGetCountriesBySubscription | server (GetCacheableRegionSubscribedCountries) | FetchCountries; search cleared [mvc.js:630-660] | SubscriptionRegionId | Countries (CountryWithMapPosition) | memory cache RegionSubscribedCountries/region id 1200 s; "" raises ObjectNotFound [runtime-sources/Connect2_LegacyShared.controller.js:3551-3688, 5281-5337] | real (17 fictional countries, `src/mocks/fictional/assemble.ts`), empty, error, loading |
+| Connect2_LegacyShared/ActionGetCountriesBySubscription | server (GetCacheableRegionSubscribedCountries) | FetchCountries; search cleared [mvc.js:630-660] | SubscriptionRegionId | Countries (CountryWithMapPosition) | memory cache RegionSubscribedCountries/region id 1200 s; "" raises ObjectNotFound [sources/runtime/Connect2_LegacyShared.controller.js:3551-3688, 5281-5337] | real (17 fictional countries, `src/mocks/fictional/assemble.ts`), empty, error, loading |
 
 App-start calls (#1, #5-#9) belong to the shell [calls.json].
 

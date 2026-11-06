@@ -42,25 +42,17 @@ export {
   setLocalSearchHistoryDatabase,
 } from './localSearchHistory';
 export {
-  type LegacyLocalBookmark,
   type LocalBookmark,
-  LEGACY_LOCAL_BOOKMARK,
   LOCAL_BOOKMARK,
   create_LocalBookmark,
   delete_LocalBookmarkByBookmarkId,
   delete_LocalBookmarkById,
-  get_LocalBookmarkByBookmarkId,
-  get_LocalBookmarkByObjectId,
   getLocalBookmarkByBookmarkId,
   getLocalBookmarkByObjectId,
   getLocalBookmarksByObjectType,
-  legacyCreate_LocalBookmark,
-  legacyDelete_LocalBookmarkByBookmarkId,
-  legacyDelete_LocalBookmarkById,
   localBookmarksDatabase,
   localBookmarksSchemas,
   setLocalBookmarksDatabase,
-  synchBookmarks,
   synchBookmarksC2,
 } from './localBookmarks';
 export {

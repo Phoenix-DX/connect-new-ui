@@ -1,7 +1,7 @@
 # UBTConnectLibrary.ConnectPatterns.SelectionOption_List
 
 - Kind: shared; build screens using it: CountryDetails, Notes, Notifications, Search, Updates_SingleList
-- Compiled source: `migration/screens/CountryDetails/analysis/sources/pretty/UBTConnectLibrary.ConnectPatterns.SelectionOption_List.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnectLibrary.ConnectPatterns.SelectionOption_List.mvc.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.Columns_Two, UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.BasePatterns.CustomText, UBTConnectLibrary.ConnectPatterns.Icon, UBTConnectLibrary.ConnectPatterns.IconText, UBTConnectLibrary.ConnectPatterns.LazyImage (queue: -)
 
 ## Inputs
@@ -353,4 +353,4 @@ define("UBTConnectLibrary.ConnectPatterns.SelectionOption_List.mvc$view", ["OutS
                                                                             }, function() {
                                                                                 return model.variables.selectionOption_ItemListIn.getCurrent(callContext.iterationContext).countryCodeAttr;
 ```
-(… 178 more lines in `migration/screens/CountryDetails/analysis/sources/pretty/UBTConnectLibrary.ConnectPatterns.SelectionOption_List.mvc.js`)
+(… 178 more lines in `migration/sources/pretty/UBTConnectLibrary.ConnectPatterns.SelectionOption_List.mvc.js`)

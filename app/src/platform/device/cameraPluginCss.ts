@@ -1,4 +1,4 @@
-/* LoadCSSJS of AddDependencies (migration/runtime-sources/CameraPlugin.controller.js :58-69): the stylesheet of the web
+/* LoadCSSJS of AddDependencies (migration/sources/runtime/CameraPlugin.controller.js :58-69): the stylesheet of the web
    camera and of its image editor, injected once as <style title="camera-plugin-css">. The text is the original's,
    unchanged (one line, as compiled), inside the `legacy` cascade layer with the other original CSS (styles/layers.css),
    as barcodePluginCss.ts does. */

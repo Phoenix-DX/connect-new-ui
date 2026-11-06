@@ -1,5 +1,5 @@
 /* Records, static entities and defaults of the OutSystems BarcodePlugin module (CheckBarcodePlugin, ScanBarcode), as
-   the callers read them. Sources: migration/runtime-sources/BarcodePlugin.controller.js (actions, proxies :180-199,
+   the callers read them. Sources: migration/sources/runtime/BarcodePlugin.controller.js (actions, proxies :180-199,
    :709-723), BarcodePlugin.model.js (ScanResultRec, ScannerResultInternalRec), CommonPlugin ErrorRec, and
    migration/knowledge/static-entities-tst.json (BarcodePlugin.* values). */
 

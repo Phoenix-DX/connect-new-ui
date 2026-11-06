@@ -1,7 +1,7 @@
 # Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.ListOfDaySelectors
 
 - Kind: shared; build screens using it: EventBooklet, EventDetail
-- Compiled source: `migration/screens/EventDetail/analysis/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.ListOfDaySelectors.mvc.js`
+- Compiled source: `migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.ListOfDaySelectors.mvc.js`
 - Child blocks: Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.DaySelector (queue: Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.DaySelector)
 
 ## Inputs

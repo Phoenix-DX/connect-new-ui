@@ -1,7 +1,7 @@
 # Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.NoResults
 
 - Kind: shared; build screens using it: EventBooklet, HostSurvey
-- Compiled source: `migration/blocks/sources/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.NoResults.mvc.js`
+- Compiled source: `migration/sources/survey/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.NoResults.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

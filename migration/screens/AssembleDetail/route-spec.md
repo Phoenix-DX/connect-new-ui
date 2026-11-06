@@ -1,17 +1,31 @@
 # Route spec: AssembleDetail
 
-Sources are readable prettier copies in `migration/screens/AssembleDetail/sources/`. Each citation has the form `<file>:<line>`.
+Sources are readable prettier copies in `migration/sources/runtime/`. Each citation has the form `<file>:<line>`.
 
-The screen source is `UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js` ("SCR", TST copy of F9, `migration/runtime-sources/`).
-The other sources come from `capture/survey-UBTConnect.json`: `Connect2_Assemble_MUI.Assemble.ScreenBlock_AssembleDetail` ("SB"),
+The screen source is `UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js` ("SCR", TST copy of F9, `migration/sources/runtime/`).
+The other sources come from `migration/survey/survey-UBTConnect.json`: `Connect2_Assemble_MUI.Assemble.ScreenBlock_AssembleDetail` ("SB"),
 `…AssembleEventDetail` ("ED"), `…_Section`, `…__Error`, `…_AttendeeSubdivisionList_Skelet`, `…_LocalitiesList` ("LL"),
 `…_LocalitySubdivisionList` ("LS"), `…_AttendeeSubdivision` ("AS"), `…_ContactList` ("CL"), `…_Contact` ("CT"),
 `NavigationHandler.ScrollAnchors.FocusScrollAnchorOnBack` ("FSA"), `Connect2_LegacyShared.Utility.ShowMoreShowLessContainer`,
 `.NewConnect_Skeleton.NC_Result_Item__Image__Skeleton`, `.NewConnect_Utilities.NC_Result_Item__Tag`, `.Share.ContextMenu`,
-`.MyBookmarks.BookmarkNoteAddEdit`. Assemble controller: `migration/screens/AssembleEvents/analysis/sources/pretty/
-Connect2_Assemble_MUI.controller.js` ("C"). No capture, no `analysis/`, no pack.
+`.MyBookmarks.BookmarkNoteAddEdit`. Assemble controller: `migration/sources/pretty/
+Connect2_Assemble_MUI.controller.js` ("C").
 
-The user decided no-capture (`no-capture.json`, 2026-10-16: not reachable read-only with the test account).
+The user decided no-capture on 2026-10-16 (`no-capture.json`: not reachable read-only with the test account). The
+route was built from the compiled code.
+
+Capture of 2026-11-06, the first one, with an account that has Assemble meetings:
+- states default, loading, offline (`analysis/`; the compiled files are in `analysis/manifest.json`);
+- a virtual meeting without link ("Link is not available, refer to local signal chat");
+- one invited locality (collapsed), no interchange locality, no GMS local contact, no note.
+
+The mocks answer the ids of the capture plan with the online prayer meeting of the fictional world
+(`assembleWorldId`, `app/src/mocks/fictional/assemble.ts`). Fixed against the capture on 2026-11-06:
+- the empty Menu placeholder, the `MeetingNotes` wrappers;
+- the screen instance ids ($b3 NoteListActions, $b4 ItemCard_ActionBar, $b5 BottomBarMenu, $b6 ShareSheet, $b7 NotesSheet);
+- the inline `cursor: pointer` of the locality header;
+- the 40px locality badge (`ResultItemBadge`, shared) and the 44px minimum height of Note_Item_List (`NoteList`, shared).
+
 Inline styles come from the compiled views cited here (LegacySharedBlocks: ShowMoreShowLessContainer `text-align: right;`, NC_Result_Item__Image__Skeleton
 `min-width` / `height` / `width` / `border-radius`).
 
@@ -20,7 +34,7 @@ Inline styles come from the compiled views cited here (LegacySharedBlocks: ShowM
 |---|---|
 | Route | `/UBTConnect/AssembleDetail?EventId=<Text>&SeriesId=<Text>&Start=<DateTime>&AssembleEventTypeTile=<Text>` [SCR :219-248] |
 | Tier | lite |
-| Captured | not captured (no-capture); every state below is "not captured" |
+| Captured | 2026-11-06 (default, loading, offline; phone 390x844); before, built from the compiled code only |
 | Shared/shell components used | CommonUI_InsideLayout, BottomBarMenu, ShareSheet, ShareableObject_Generic, Layout, MenuIcon__UpdatedOSUI, NewConnectContent, AssembleSummaryCard, AssembleSummaryDetailHeader_Skeleton, NC_Card_Item_Text__Skeleton, NC_Result_Item__Image, NC_Result_Item_Badge, ItemOptionsMenu, InputCounter, Person_Contact_Options, ContactPopup_ByPhone, ContactByMessage_Wrapper, Dialog_AccessRestrictedAction_Legacy, ScrollAnchor, BackNavigationHandler, shell ActionConfirmationDialog / confirmAction / showUpgradePopUp, OSList |
 | Screen-specific components | `components/`: ScreenBlock_AssembleDetail + FocusScrollAnchorOnBack, AssembleEventDetail (+ Section, __Error, AttendeeSubdivisionList_Skelet), AssembleEventDetail_Localities (LocalitiesList, LocalitySubdivisionList, AttendeeSubdivision), AssembleEventDetail_Contacts (ContactList, Contact), LegacySharedBlocks (the five Connect2_LegacyShared "own" blocks), actions.ts |
 
@@ -65,11 +79,11 @@ Inline styles come from the compiled views cited here (LegacySharedBlocks: ShowM
 ### States
 | State | Condition | Captured | Scenario |
 |---|---|---|---|
-| loading | before the first fetch | not captured | `?latency=` |
-| default | meeting found (e.g. an EventId of AssembleEvents) | not captured | real |
+| loading | before the first fetch | 2026-11-06 | `?latency=` |
+| default | meeting found (the ids of the capture plan, or an EventId of AssembleEvents) | 2026-11-06 | real |
+| offline | data action fails → flow handler | 2026-11-06 | error |
 | not found | IsNotFound | not captured | notfound / unknown EventId |
 | unavailable | IsUnavailable | not captured | unavailable |
-| error | data action fails → flow handler | not captured | error |
 
 ## Patterns used
 - P-PARAMS (`api.ts readInputs`, original names; Start comes from `dateTimeParam`)
@@ -98,11 +112,20 @@ Inline styles come from the compiled views cited here (LegacySharedBlocks: ShowM
   reachable; the screen handler ignores `In_IsExternalSharing = True`.
 
 ## Decisions to confirm
-- No-capture route: built from the compiled code; the user reviews by hand (no parity).
+- Built from the compiled code (no-capture, 2026-10-16); captured and checked by parity since 2026-11-06.
 - Mock world: `mocks/fictional/assemble.ts` extended with meeting details. The details are:
   - the invited halls of the locality
-  - the interchange locality for Gospel Preaching / Ministry Meeting
-  - two GMS contacts of the Orbit cast for the Bahia Blanca halls
+  - the interchange locality for Gospel Preaching / Ministry Meeting (hall meetings only)
+  - two GMS contacts of the Orbit cast for the Bahia Blanca hall meetings (a virtual meeting has none)
+  - one one-off online prayer meeting of the Bahia Blanca halls (the shape of the capture of 2026-11-06). The ids
+    of the capture plan are translated to it (`assembleWorldId`)
+- Parity differences exempted on 2026-11-06 (rules `CAPTURE-2026-11-06-ASSEMBLEDETAIL-*`, masked-text family):
+  - default: the `margin-left` of the three `Placeholder_Icon_Right` of the summary card rows, and the width of the
+    empty `Description_Placeholder` of the locality row. Both follow the width of masked user text. The parity masks
+    the text itself, not the computed width of the siblings.
+  - offline: the header title is empty in the build (`::after` of the empty expression). The parity opens the route
+    by URL without the preload object that the AssembleEvents list sets. The capture went through the list (`via` in
+    `analysis/states.json`), so TST shows the preloaded meeting type title.
 - Q1 → A, Q2 → A (answered, auto-accepted 2026-10-16 [questions.md Q1, Q2]).
 
 ## Change requests
@@ -112,7 +135,9 @@ Inline styles come from the compiled views cited here (LegacySharedBlocks: ShowM
 ## Parity
 | State | Scenario | structure | class | attr | style | layout | Exemptions fired |
 |---|---|---|---|---|---|---|---|
-| none captured | – | – | – | – | – | – | – |
+| default (2026-11-06) | real | 0 | 0 | 0 | 3 (masked-text widths) | 1 (masked-text width) | ignoreSubtrees, CAPTURE-LINK-HREF-CURSOR-HOMEFEED, CAPTURE-BADGE-MASKED-TEXT-HOMEFEED |
+| loading (2026-11-06) | loading | 0 | 0 | 0 | 0 | 0 | ignoreSubtrees |
+| offline (2026-11-06) | error | 0 | 0 | 0 | 0 (1 pseudo: empty title) | 0 | ignoreSubtrees, CAPTURE-LINK-HREF-CURSOR-HOMEFEED, CAPTURE-BADGE-MASKED-TEXT-HOMEFEED |
 
 ## Server-side notes
 - DataActionGetAssembleEvent must authorize the meeting for the signed-in user (region subscription); the client only

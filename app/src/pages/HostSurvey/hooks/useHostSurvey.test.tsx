@@ -269,6 +269,48 @@ describe('useHostSurvey: OnReady and GetHostSurvey', () => {
     expect(fetchHostSurvey).toHaveBeenCalledTimes(1);
   });
 
+  it('first visit: the survey answers while the app start sync runs (steps stored, status not yet): summary only', async () => {
+    // Nothing stored on this device: the mirror stays "not read" after the load (readers wait for the sync).
+    const database = memoryDatabase(orbitStaticEntitiesSchemas());
+    setOrbitStaticEntitiesDatabase(database);
+    await loadOrbitStaticEntities();
+    const { result } = renderFlows();
+    await settle();
+    expect(result.current.state.isFetchingData).toBe(true);
+    // The sync's transactions wait; the page reads between the first and the second one.
+    const release: (() => void)[] = [];
+    setOrbitStaticEntitiesDatabase({
+      transaction: (tables, mode, body) =>
+        mode === 'readonly'
+          ? database.transaction(tables, mode, body)
+          : new Promise<void>((resolve) => {
+              release.push(resolve);
+            }).then(() => database.transaction(tables, mode, body)),
+    });
+    const synced = { value: false };
+    const sync = syncAllOrbitStaticEntities(orbitStaticEntities()).then(() => {
+      synced.value = true;
+    });
+    const releaseOne = () => {
+      for (const r of release.splice(0)) r();
+    };
+    await settle();
+    releaseOne();
+    await settle();
+    expect(synced.value).toBe(false);
+    expect(result.current.state.isConfirmedSurvey).toBe(true);
+    expect(result.current.state.currentStep.step.Id).toBe(HostSurveyStep.summary);
+    expect(result.current.state.hasDataSteps).toBe(false);
+    expect(result.current.state.isFetchingData).toBe(false);
+    while (!synced.value) {
+      releaseOne();
+      await settle();
+    }
+    await sync;
+    expect(result.current.state.currentStep.step.Id).toBe(HostSurveyStep.summary);
+    expect(fetchHostSurvey).toHaveBeenCalledTimes(1);
+  });
+
   it('a view restored from the view cache keeps its saved variables and makes no call', async () => {
     const saved: HostSurveyState = { ...INITIAL_HOST_SURVEY_STATE, isFetchingData: false, isConfirmedSurvey: true };
     viewCache.restored = true;

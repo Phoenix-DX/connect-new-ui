@@ -15,6 +15,7 @@ Layouts.Layout_MainPages_Upgrade
   BasePatterns.CustomContainer
     BasePatterns.CustomText
       ConnectPatterns.IconInline_Internal
+    Widgets.AdaptiveCardViewer
   BasePatterns.CustomContainer
     BasePatterns.CustomText
       ConnectPatterns.IconInline_Internal

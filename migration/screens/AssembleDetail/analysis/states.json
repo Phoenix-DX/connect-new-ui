@@ -1,0 +1,65 @@
+{
+ "default": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/AssembleDetail?Start=2026-11-06T07%3A00%3A00.000Z&EventId=58dbb5ab-047e-469d-9558-2f8967a7ec41&SeriesId=888d1cfc-697a-4d0e-88bc-2c5a3e3f898d",
+  "via": {
+   "from": "/UBTConnect/AssembleEvents",
+   "click": "[data-block='Assemble.AssembleSummaryCard'] [style*='cursor: pointer']",
+   "nth": 0,
+   "dispatch": true,
+   "settleMs": 7000
+  },
+  "steps": [],
+  "scenario": "real",
+  "auto": null,
+  "htmlClass": "",
+  "bodyClass": "phone portrait connect-theme osx is-ltr",
+  "bodyStyle": "--header-size-content: 0px; --footer-height: 56px; --viewport-height: 844px;",
+  "dpr": 1
+ },
+ "loading": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/AssembleDetail?Start=2026-11-06T07%3A00%3A00.000Z&EventId=58dbb5ab-047e-469d-9558-2f8967a7ec41&SeriesId=888d1cfc-697a-4d0e-88bc-2c5a3e3f898d",
+  "via": {
+   "from": "/UBTConnect/AssembleEvents",
+   "click": "[data-block='Assemble.AssembleSummaryCard'] [style*='cursor: pointer']",
+   "nth": 0,
+   "dispatch": true,
+   "settleMs": 7000
+  },
+  "steps": [],
+  "scenario": "loading",
+  "auto": "loading",
+  "htmlClass": "",
+  "bodyClass": "phone portrait connect-theme osx is-ltr",
+  "bodyStyle": "--header-size-content: 0px; --footer-height: 56px; --viewport-height: 844px;",
+  "dpr": 1
+ },
+ "offline": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/AssembleDetail?Start=2026-11-06T07%3A00%3A00.000Z&EventId=58dbb5ab-047e-469d-9558-2f8967a7ec41&SeriesId=888d1cfc-697a-4d0e-88bc-2c5a3e3f898d",
+  "via": {
+   "from": "/UBTConnect/AssembleEvents",
+   "click": "[data-block='Assemble.AssembleSummaryCard'] [style*='cursor: pointer']",
+   "nth": 0,
+   "dispatch": true,
+   "settleMs": 7000
+  },
+  "steps": [],
+  "scenario": "error",
+  "auto": "offline",
+  "htmlClass": "",
+  "bodyClass": "phone portrait connect-theme osx is-ltr",
+  "bodyStyle": "--header-size-content: 0px; --footer-height: 56px; --viewport-height: 844px;",
+  "dpr": 1
+ }
+}

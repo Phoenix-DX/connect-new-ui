@@ -87,9 +87,9 @@ Open items for the user:
 
 ## Next steps, in order
 
-1. Record the user's decisions on the open items above with `python3 migration/clarify/tools/answers.py set <Flow>
-   <Qn|Cn> "<answer>" --date YYYY-MM-DD`, then `python3 migration/clarify/tools/collect.py` and
-   `python3 migration/clarify/tools/aggregate.py`.
+1. Record the user's decisions on the open items above with `python3 tools/clarify/answers.py set <Flow>
+   <Qn|Cn> "<answer>" --date YYYY-MM-DD`, then `python3 tools/clarify/collect.py` and
+   `python3 tools/clarify/aggregate.py`.
 2. Keep the artifacts in step with the documents. After a change, rebuild and republish to the same URL (see above).
    The user allows a publish without an accept step (2026-10-27).
 3. When the user orders a build: one route or block at a time, from the TST compiled code (`tools/tst_source.py`).
@@ -116,7 +116,7 @@ Open items for the user:
 
 | Tool | Use |
 |---|---|
-| `tools/flow_pack.py [--block-flows] [Flow …]` | packs from the MCP dump (`.dump/espace.json`; re-dump with the MCP `getSerializedObject` + `migration/tools/mcp/unwrap.py` when DEV changes) |
+| `tools/flow_pack.py [--block-flows] [Flow …]` | packs from the MCP dump (`.dump/espace.json`; re-dump with the MCP `getSerializedObject` + `tools/mcp/unwrap.py` when DEV changes) |
 | `tools/app_index.py`, `tools/kb_index.py`, `tools/decisions_index.py` | the React, KB and decision indexes of a pack |
 | `tools/tst_source.py list|show|grep` | TST compiled code (survey + `migration/runtime-sources/` + `migration/shell/sources/`) |
 | `tools/collect.py [--questions G<n>]` | `INDEX.md`; the questions of a group |

@@ -2,12 +2,12 @@
 
 | # | t (ms) | call | status | scope | path |
 |---|---|---|---|---|---|
-| 1 | 580 | `ActionGetAllApplicationEvents` | 200 | this screen | `/UBTConnect/screenservices/Connect2_LegacyShared/ActionGetAllApplicationEvents` |
-| 2 | 2860 | `DataActionFetchEventNotes` | 200 | this screen | `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionFetchEventNotes` |
-| 3 | 2966 | `DataActionGet_EventDetails` | 200 | this screen | `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_EventDetails` |
-| 4 | 3272 | `DataActionGet_HostSurveyStatus` | 200 | this screen | `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_HostSurveyStatus` |
-| 5 | 3810 | `DataActionGet_HasDocuments` | 200 | this screen | `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_HasDocuments` |
-| 6 | 4268 | `DataActionGet_HasQRCode` | 200 | this screen | `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_HasQRCode` |
+| 1 | 442 | `ActionGetAllApplicationEvents` | 200 | this screen | `/UBTConnect/screenservices/Connect2_LegacyShared/ActionGetAllApplicationEvents` |
+| 2 | 2399 | `DataActionGet_EventDetails` | 200 | this screen | `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_EventDetails` |
+| 3 | 2416 | `DataActionFetchEventNotes` | 200 | this screen | `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionFetchEventNotes` |
+| 4 | 2635 | `DataActionGet_HostSurveyStatus` | 200 | this screen | `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_HostSurveyStatus` |
+| 5 | 3105 | `DataActionGet_HasDocuments` | 200 | this screen | `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_HasDocuments` |
+| 6 | 3378 | `DataActionGet_HasQRCode` | 200 | this screen | `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_HasQRCode` |
 
 ## ActionGetAllApplicationEvents
 - Scope: this screen
@@ -32,38 +32,6 @@
      }
     }
    ]
-  }
- }
-}
-```
-
-## DataActionFetchEventNotes
-- Scope: this screen
-- Path: `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionFetchEventNotes`
-- Server action input parameters: (none)
-- Screen variables sent with the call (OutSystems sends these automatically; React does not need to): `EventDetails`, `DateFilters`, `IsFetchingData`, `HostAllocation`, `HasQRCode`, `HasScanned`, `HasDocuments`, `IsEventUnavailable`, `UserInformation`, `EventNotes`, `In_MemberId`, `_in_MemberIdInDataFetchStatus`, `In_EventId`, `_in_EventIdInDataFetchStatus`, `In_EventName`, `_in_EventNameInDataFetchStatus`, `In_FromNotification`, `_in_FromNotificationInDataFetchStatus`, `Get_HostSurveyStatus`
-- Other request keys: (none)
-- Response type: `FetchEventNotesResponse` (see types.ts)
-```json
-{
- "versionInfo": {
-  "hasModuleVersionChanged": false,
-  "hasApiVersionChanged": false
- },
- "data": {
-  "Notes": {
-   "Total": "number (0)",
-   "Note_Item_List": {
-    "List": [
-     "(empty array)"
-    ],
-    "EmptyListItem": {
-     "Id": "numeric string",
-     "Note": "string (EMPTY)",
-     "DateCreatedUtc": "date (1900 default)",
-     "DateEditedUtc": "date (1900 default)"
-    }
-   }
   }
  }
 }
@@ -169,6 +137,38 @@
 }
 ```
 
+## DataActionFetchEventNotes
+- Scope: this screen
+- Path: `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionFetchEventNotes`
+- Server action input parameters: (none)
+- Screen variables sent with the call (OutSystems sends these automatically; React does not need to): `EventDetails`, `DateFilters`, `IsFetchingData`, `HostAllocation`, `HasQRCode`, `HasScanned`, `HasDocuments`, `IsEventUnavailable`, `UserInformation`, `EventNotes`, `In_MemberId`, `_in_MemberIdInDataFetchStatus`, `In_EventId`, `_in_EventIdInDataFetchStatus`, `In_EventName`, `_in_EventNameInDataFetchStatus`, `In_FromNotification`, `_in_FromNotificationInDataFetchStatus`, `Get_HostSurveyStatus`
+- Other request keys: (none)
+- Response type: `FetchEventNotesResponse` (see types.ts)
+```json
+{
+ "versionInfo": {
+  "hasModuleVersionChanged": false,
+  "hasApiVersionChanged": false
+ },
+ "data": {
+  "Notes": {
+   "Total": "number (0)",
+   "Note_Item_List": {
+    "List": [
+     "(empty array)"
+    ],
+    "EmptyListItem": {
+     "Id": "numeric string",
+     "Note": "string (EMPTY)",
+     "DateCreatedUtc": "date (1900 default)",
+     "DateEditedUtc": "date (1900 default)"
+    }
+   }
+  }
+ }
+}
+```
+
 ## DataActionGet_HostSurveyStatus
 - Scope: this screen
 - Path: `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_HostSurveyStatus`
@@ -238,48 +238,48 @@
 | `script /UBTConnect/scripts/UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_PillItem.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.ItemNotesSection.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostAllocation_List.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.ContactHelpdesk_Footer.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Accordion_Orbit.mvc.js` | 1 |
-| `script /UBTConnect/scripts/OutSystemsUI_2_23.Content.DEPRECATED_AccordionItem.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostAllocation_List.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.EventDateSelection.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectCorePatterns.ItemCard_ActionBar.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.ItemNotesSection.mvc.js` | 1 |
+| `script /UBTConnect/scripts/OutSystemsUI_2_23.Content.DEPRECATED_AccordionItem.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostAllocation_ListItem.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostAllocation_HelperItem.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.NoteListActions.mvc.js` | 1 |
-| `script /UBTConnect/scripts/OutSystemsUI_2_23.Content.DEPRECATED_Accordion.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.ListOfDaySelectors.mvc.js` | 1 |
+| `script /UBTConnect/scripts/OutSystemsUI_2_23.Content.DEPRECATED_Accordion.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectCorePatterns.ItemCard_ActionBar.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.NoteListActions.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js` | 1 |
 | `script /UBTConnect/scripts/SocialSharingPlugin.controller.js` | 1 |
-| `script /UBTConnect/scripts/Connect_Notes_CS.model.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Note_Item_List.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.AddNote.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostAllocation_HelperItem.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.DaySelector.mvc.js` | 1 |
-| `script /UBTConnect/scripts/SocialSharingPlugin.referencesHealth.js` | 1 |
+| `script /UBTConnect/scripts/Connect_Notes_CS.model.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.AddNote.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Note_Item_List.mvc.js` | 1 |
 | `script /UBTConnect/scripts/SocialSharingPlugin.model.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Popup.mvc.js` | 1 |
-| `script /UBTConnect/scripts/OutSystemsUI_2_23.Interaction.BottomSheet.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.Columns_Three.mvc.js` | 1 |
+| `script /UBTConnect/scripts/SocialSharingPlugin.referencesHealth.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Popup.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Note_Item.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.Columns_Three.mvc.js` | 1 |
+| `script /UBTConnect/scripts/OutSystemsUI_2_23.Interaction.BottomSheet.mvc.js` | 1 |
 | `script /UBTConnect/scripts/OutSystemsUI_2_23.Adaptive.Columns3.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.TextEllipsis.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton_IconPrimary.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.TextArea_WithCounter.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.InputCounter.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton_WithLabel.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.InputCounter.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.TextArea_WithCounter.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton_IconPrimary.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnectLibrary.ConnectCorePatterns.ContextMenu.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.ContextMenu_Item.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton_WithLabel.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.PopupMenu.mvc.js` | 1 |
-| `link /UBTConnect/css/UBTConnect_Utils.CW_Notes.NotesSheet.css` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.ContextMenu_Item.mvc.js` | 1 |
+| `link /UBTConnect/css/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css` | 1 |
 | `link /UBTConnect/css/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.css` | 1 |
 | `link /UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Note_Item.css` | 1 |
-| `link /UBTConnect/css/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css` | 1 |
-| `xmlhttprequest https://australiaeast-0.in.applicationinsights.azure.com/v2/track` | 2 |
+| `link /UBTConnect/css/UBTConnect_Utils.CW_Notes.NotesSheet.css` | 1 |
 | `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.aggregates.IDB.js` | 1 |
+| `xmlhttprequest https://australiaeast-0.in.applicationinsights.azure.com/v2/track` | 2 |
 | `xmlhttprequest /UBTConnect/moduleservices/moduleversioninfo` | 1 |
 | `fetch /UBTConnect/EventDetail` | 1 |
 | `fetch /UBTConnect/moduleservices/moduleinfo` | 1 |
@@ -329,7 +329,6 @@
 | `fetch /UBTConnect/scripts/NavigationHandler.ConfirmationDialogs.ActionConfirmationDialog.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect.Legacy_Share.HandleOnResumeOpenLink.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/Connect2_AndroidAppLinksPlugin.AndroidAppLinks.AndroidAppLinkOnResumeHandler.mvc.js` | 1 |
-| `fetch /UBTConnect/status/network-ping.txt` | 2 |
 | `fetch /UBTConnect/scripts/EventfulDeeplinksPlugin.EventfulDeeplinksPlugin.DeeplinkHandlerCentral.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/Connect2_LegacyShared.Utility.HandleImageLoadError.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/NavigationHandler.NavigationHandler.BackNavigationHandler.mvc.js` | 1 |
@@ -340,6 +339,7 @@
 | `fetch /UBTConnect/scripts/Connect2_OrbitMobile_MUI.model.js` | 1 |
 | `fetch /UBTConnect/scripts/Connect2_OrbitMobile_MUI.languageResources.js` | 1 |
 | `fetch /UBTConnect/scripts/Connect2_LegacyShared.controller.js` | 1 |
+| `fetch /UBTConnect/status/network-ping.txt` | 1 |
 | `fetch /UBTConnect/scripts/Connect2_LegacyShared.model.js` | 1 |
 | `fetch /UBTConnect/scripts/Connect2_LegacyShared.languageResources.js` | 1 |
 | `fetch /UBTConnect/scripts/NavigationHandler.controller.js` | 1 |

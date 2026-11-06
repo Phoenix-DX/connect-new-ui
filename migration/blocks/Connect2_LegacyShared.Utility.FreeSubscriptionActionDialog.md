@@ -1,7 +1,7 @@
 # Connect2_LegacyShared.Utility.FreeSubscriptionActionDialog
 
 - Kind: shared; build screens using it: LegacyShareObject, MessageDetail
-- Compiled source: `migration/screens/LegacyShareObject/analysis/sources/pretty/Connect2_LegacyShared.Utility.FreeSubscriptionActionDialog.mvc.js`
+- Compiled source: `migration/sources/pretty/Connect2_LegacyShared.Utility.FreeSubscriptionActionDialog.mvc.js`
 - Child blocks: NavigationHandler.ConfirmationDialogs.ActionConfirmationDialog (queue: -)
 
 ## Inputs

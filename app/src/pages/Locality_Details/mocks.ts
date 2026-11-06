@@ -23,8 +23,8 @@ import { markNoPhoto } from '@/components/ui/EntityLazyImage/mocks';
 
 /* The 23 households of locality 252 in the directory cast (src/mocks/fictional/directory.ts), in the captured card
    order, whose names and children keep the captured word lengths; member avatars: 2 per card, 1 for the two single
-   householders (cards 13 and 14). Card 1 is household 42438 (decision A, 2026-10-16), the captured bookmarked first card (bookmark row 4, shell
-   mockLocalBookmarks). */
+   householders (cards 13 and 14). Card 1 is household 42438 (decision A, 2026-10-16), the captured bookmarked first card (bookmark row 4 of
+   the retired legacy bookmark list). */
 export const sampleHouseholds = LOCALITY_HOUSEHOLDS.map((h) => ({
   HouseholdId: h.id,
   HouseholdName: householdName(h),

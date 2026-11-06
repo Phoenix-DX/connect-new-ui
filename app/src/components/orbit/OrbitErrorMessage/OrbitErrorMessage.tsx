@@ -13,7 +13,7 @@ interface OrbitErrorMessageProps {
   onClickedOk: () => void;
 }
 
-/** Orbit error popup (capture/survey-UBTConnect.json sources `Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks
+/** Orbit error popup (migration/survey/survey-UBTConnect.json sources `Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks
     .OrbitErrorMessage.mvc.js` = OEM; view :149-254, controller :279-311). Root container `subscription-message`
     (componentDidUpdate → CopyClassesAcrossPortal(Root, UnknownErrorPopup), :279-302) with the Popup
     "popup-dialog onTop padding-x-l padding-y-l" (ShowPopup = IsShowMessage): the heading "Oops! Something went

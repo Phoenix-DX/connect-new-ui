@@ -1,7 +1,7 @@
 # UBTConnect.App_Cache.CacheControl_UserInfo_Wrapper
 
 - Kind: shared; build screens using it: ContactUsDetails, CountryDetails, CountryList, Menu, Notes, Notifications, Profile, Search, Updates_SingleList
-- Compiled source: `migration/screens/ContactUsDetails/analysis/sources/pretty/UBTConnect.App_Cache.CacheControl_UserInfo_Wrapper.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.App_Cache.CacheControl_UserInfo_Wrapper.mvc.js`
 - Child blocks: UBTConnect_Utils.CacheControl.CacheControl_UserInfo (queue: UBTConnect_Utils.CacheControl.CacheControl_UserInfo)
 
 ## Inputs

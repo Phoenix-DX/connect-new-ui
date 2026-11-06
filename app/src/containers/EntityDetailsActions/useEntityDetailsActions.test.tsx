@@ -11,7 +11,7 @@ import {
 } from '@/legacy/os/os-exceptions';
 import { Connect_Entity } from '@/lib/ubtConnect/staticEntities';
 import { freshPage } from '@/test/testSupport';
-import { fetchContactDetails } from './api';
+import { fetchContactDetails, fetchNotes } from './api';
 import { CONTACT_POPUP_DATA_DEFAULT, type ContactDetails } from './entityDetailsActionsState';
 import type { EntityDetailsActionsContainerProps } from './types';
 import { useEntityDetailsActions } from './useEntityDetailsActions';
@@ -19,6 +19,7 @@ import { useEntityDetailsActions } from './useEntityDetailsActions';
 vi.mock('./api', async (importOriginal) => ({
   ...(await importOriginal<typeof import('./api')>()),
   fetchContactDetails: vi.fn(),
+  fetchNotes: vi.fn(),
 }));
 vi.mock('@/legacy/os/exceptions', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/legacy/os/exceptions')>()),
@@ -50,7 +51,54 @@ describe('useEntityDetailsActions', () => {
   });
   afterEach(() => {
     vi.mocked(fetchContactDetails).mockReset();
+    vi.mocked(fetchNotes).mockReset();
     vi.mocked(raiseToFlowHandler).mockReset();
+    vi.useRealTimers();
+  });
+
+  it('Handler_AddNotesOnClick on an open sheet sets PendingOpen; the close reopens it once after 50 ms (live mvc.js:1114-1166, :1395-1435)', async () => {
+    vi.mocked(fetchContactDetails).mockResolvedValue(CONTACT);
+    vi.mocked(fetchNotes).mockResolvedValue({});
+    const { result, unmount } = renderMember();
+    await act(() => result.current.handlerAddNotes());
+    expect(result.current.showNotesSheet).toBe(true);
+    await act(() => result.current.handlerAddNotes());
+    expect(result.current.showNotesSheet).toBe(true);
+    vi.useFakeTimers();
+    act(() => {
+      result.current.handlerOnNotesSheetClosed();
+    });
+    expect(result.current.showNotesSheet).toBe(false);
+    act(() => {
+      vi.advanceTimersByTime(49);
+    });
+    expect(result.current.showNotesSheet).toBe(false);
+    act(() => {
+      vi.advanceTimersByTime(1);
+    });
+    expect(result.current.showNotesSheet).toBe(true);
+    // PendingOpen was cleared: the next close keeps the sheet closed.
+    act(() => {
+      result.current.handlerOnNotesSheetClosed();
+      vi.advanceTimersByTime(100);
+    });
+    expect(result.current.showNotesSheet).toBe(false);
+    unmount();
+  });
+
+  it('the deferred reopen is cancelled when the block unmounts', async () => {
+    vi.mocked(fetchContactDetails).mockResolvedValue(CONTACT);
+    vi.mocked(fetchNotes).mockResolvedValue({});
+    const { result, unmount } = renderMember();
+    await act(() => result.current.handlerAddNotes());
+    await act(() => result.current.handlerAddNotes());
+    vi.useFakeTimers();
+    act(() => {
+      result.current.handlerOnNotesSheetClosed();
+    });
+    expect(vi.getTimerCount()).toBe(1);
+    unmount();
+    expect(vi.getTimerCount()).toBe(0);
   });
 
   it('OnParametersChanged fetches the contact details on every input change, compared by value', async () => {

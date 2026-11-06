@@ -19,7 +19,7 @@ in the message that sent you here.
   real app, no MCP. Never open `.auth/` or `migration/.raw/`.
 - Node 24 (`PATH=$HOME/.nvm/versions/node/v24.21.0/bin:$PATH`), npm in `app/`. Dev server http://localhost:5173 runs
   (do not start/stop it); it serves the original `/UBTConnect/img/*` and `/UBT_CW/img/*`. Parity:
-  `python3 .claude/skills/outsystems-screen-spec/scripts/route.py parity <S> --app http://localhost:5173`. A capture-plan
+  `python3 tools/pipeline/route.py parity <S> --app http://localhost:5173`. A capture-plan
   entry may set per-state `scenarios` / `latencies` (route.py passes them).
 - References: Login (P-PARAMS, P-STATES, P-DIALOG), AcceptPendingPolicies (P-DATA, P-MOCKS, P-MUTATION, P-CALLS,
   P-BACK), HomeFeed (P-FLAGS, P-OSUI), `app/src/components/OSList` (P-LIST, every OutSystems List). Close examples:

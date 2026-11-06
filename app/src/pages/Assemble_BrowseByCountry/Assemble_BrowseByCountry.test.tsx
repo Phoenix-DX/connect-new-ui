@@ -8,7 +8,7 @@ import { applyTestSession } from '@/platform/session/testSession';
 import { freshPage } from '@/test/testSupport';
 import Assemble_BrowseByCountry from './Assemble_BrowseByCountryPage';
 
-/* Compiled view and controller: analysis/sources/pretty/Connect2_Assemble_MUI.Assemble.ScreenBlock_Assemble_Filter
+/* Compiled view and controller: migration/sources/pretty/Connect2_Assemble_MUI.Assemble.ScreenBlock_Assemble_Filter
    .mvc.js. The mock user's SubscriptionRegionId is '' until CR-Assemble_BrowseByCountry-1; these tests give it the
    CR's value '1' (as TST's Global account has one, calls.json #4). */
 const PATH = '/UBTConnect/Assemble_BrowseByCountry';

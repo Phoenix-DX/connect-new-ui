@@ -1,9 +1,9 @@
 # Screen spec: Updates_SingleList
 
-Tier full. Sources: pack.md; compiled `analysis/sources/pretty/UBTConnect.Directory_Updates.Updates_SingleList.mvc.js`
+Tier full. Sources: pack.md; compiled `migration/sources/pretty/UBTConnect.Directory_Updates.Updates_SingleList.mvc.js`
 (SCR; view :225-1194, controller :1200-3375, JS nodes :3377-3630), `…UpdateItem_Header.mvc.js` (UIH),
 `…SectionHeader.mvc.js` (SH), `…Directory_Updates_FilterSheet.mvc.js` (DUFS); module actions
-`analysis/sources/raw/UBTConnect.controller.js` (UC: Directory_Updates_AugmentDateRanges / GetBreakpoints /
+`migration/sources/raw/UBTConnect.controller.js` (UC: Directory_Updates_AugmentDateRanges / GetBreakpoints /
 GetListBreakpoint / GetUpdatedBreakpoints / MarkAllAsRead / MinDateToShow, GetSkeletonList_UI_Updates); captures
 `analysis/dom/{default,loading,offline}.html` (dom/…).
 

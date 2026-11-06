@@ -2,7 +2,7 @@
 
 OutSystems: `Connect2_OrbitMobile_MUI.UtilityFlow.ErrorScreen` · pack
 `migration/blocks/Connect2_OrbitMobile_MUI.UtilityFlow.ErrorScreen.md` · source
-`migration/blocks/sources/Connect2_OrbitMobile_MUI.UtilityFlow.ErrorScreen.mvc.js`
+`migration/sources/survey/Connect2_OrbitMobile_MUI.UtilityFlow.ErrorScreen.mvc.js`
 
 | Input                     | Type    | Prop                       | Default                       |
 | ------------------------- | ------- | -------------------------- | ----------------------------- |

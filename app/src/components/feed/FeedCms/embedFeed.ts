@@ -1,5 +1,5 @@
 /* Client actions of UBTConnect_EmbedFeed, ported 1:1 from UBTConnect_EmbedFeed.controller.js (copy in
-   migration/screens/HomeFeed/analysis/sources/pretty/). */
+   migration/sources/pretty/). */
 
 /** GetIframeObject (controller.js:76-80): the first iframe of the container. */
 export function getIframeObject(containerId: string): HTMLIFrameElement | null {

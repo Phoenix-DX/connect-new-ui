@@ -4,7 +4,7 @@
   "kind": "decision",
   "topic": "mock data",
   "question": "No TST call was recorded (no-capture). SendContactLDMCoordinatorEmail is a write: mock it with a P-MUTATION collection of the sent coordinator e-mails (UBTConnect.sentContactLDMCoordinatorEmails) and the action's empty answer, never the real server; the screen's data (coordinator name, e-mail, avatar = LDM logo, subject, date, locality) comes from its inputs, which LDM_EventDetail_V2 fills from the shared LDM world. OK?",
-  "evidence": "migration/runtime-sources/UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js:466-476 (ServiceAPISendContactLDMCoordinatorEmail), :499-560 (Handler_SubmitForm); contract-report.md:111 (fictional, not captured); app/src/screens/LDM_EventDetail_V2/index.tsx:60-70 (navigation with In_EmailTo, In_ContactName, In_EventDate, In_AvatarURL, In_Subject, In_EventLocality)",
+  "evidence": "migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js:466-476 (ServiceAPISendContactLDMCoordinatorEmail), :499-560 (Handler_SubmitForm); contract-report.md:111 (fictional, not captured); app/src/screens/LDM_EventDetail_V2/index.tsx:60-70 (navigation with In_EmailTo, In_ContactName, In_EventDate, In_AvatarURL, In_Subject, In_EventLocality)",
   "mcp": "",
   "options": [
    "A: P-MUTATION collection, inputs from LDM_EventDetail_V2",

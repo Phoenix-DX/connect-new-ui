@@ -1,7 +1,7 @@
 # UBTConnectLibrary.ConnectPatterns.CircleButton_WithLabel
 
 - Kind: shared; build screens using it: BookmarksByGroup, ContactUsDetails, FeedItemDetail, HomeFeed, HouseholdCarousel, HouseholdDetails, Household_Relations, Locality_Details, MessageDetail, Notes, OneSchoolGlobalDetails, Profile, SupperMeeting_Carousel, SupperMeeting_Details, Updates_SingleList
-- Compiled source: `migration/screens/HomeFeed/analysis/sources/pretty/UBTConnectLibrary.ConnectPatterns.CircleButton_WithLabel.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnectLibrary.ConnectPatterns.CircleButton_WithLabel.mvc.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.ConnectPatterns.CircleButton (queue: UBTConnectLibrary.ConnectPatterns.CircleButton)
 
 ## Inputs

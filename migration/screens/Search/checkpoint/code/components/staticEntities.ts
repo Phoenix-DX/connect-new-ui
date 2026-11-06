@@ -1,10 +1,13 @@
-/** Connect_SearchCategories (UBTConnect_Utils / UBTConnect, TST: migration/knowledge/static-entities-tst.json):
-    identifiers and labels All, Households, People, Places. */
+/** Connect_SearchCategories (UBTConnect_Utils / UBTConnect, TST: migration/knowledge/static-entities-tst.json; Events and
+    Schools from the live moduleinfo.json of 2026-11-05): identifiers and labels People, All, Households, Places, Events,
+    Schools. */
 export const Connect_SearchCategories = {
   All: 'All',
   Households: 'Households',
   People: 'People',
   Places: 'Places',
+  Events: 'Events',
+  Schools: 'Schools',
 } as const;
 
 /** Type_SearchTarget (UBTConnect, TST): Global, Map. */
@@ -20,5 +23,4 @@ export const UBT_Icons2_Search = {
   Calendar: 'connect-icon-calendar',
   Close: 'connect-icon-close',
 } as const;
-export const Space_ExtraSmall = 'xs';
 export const UBT_FontWeight_Bold = 'bold';

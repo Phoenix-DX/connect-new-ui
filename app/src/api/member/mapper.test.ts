@@ -16,6 +16,17 @@ const searchResultWire = (fields: Partial<SearchResultWire>): SearchResultWire =
   RecordDisabled: false,
   Score: '0',
   Type: '',
+  DisplayHouseholdName: false,
+  DisplayAddress: false,
+  Event_IsPersonal: false,
+  Event_EventTypeTitle: '',
+  Event_HostSubdivisionId: '0',
+  Event_HostHouseholderId: '0',
+  Event_Source: '',
+  Event_EventHostId: '',
+  Event_StartDate: '1900-01-01',
+  Event_EndDate: '1900-01-01',
+  Event_OrbitEventType: '',
   ...fields,
 });
 
@@ -37,7 +48,12 @@ const accountForm: MemberAccountForm = {
     WorkNumber: '',
   },
   AccountForm_IdentificationInformation: { AccountNumber: 'NZ-4471', MemberId: '11' },
-  AccountForm_PersonalInformation: { Email: 'ada@example.org', ShowLifeCycleDates: true, Username: 'aharlow' },
+  AccountForm_PersonalInformation: {
+    Email: 'ada@example.org',
+    ShowEmail: true,
+    ShowLifeCycleDates: true,
+    Username: 'aharlow',
+  },
 };
 
 describe('member mapper', () => {

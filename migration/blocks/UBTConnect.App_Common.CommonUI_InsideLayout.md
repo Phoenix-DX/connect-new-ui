@@ -1,7 +1,7 @@
 # UBTConnect.App_Common.CommonUI_InsideLayout
 
 - Kind: shell; build screens using it: AcceptPendingPolicies, BookmarksByGroup, BrowseCountries, BrowseDirectory, CommunityBusinessDetails_CoomingSoon, ConnectShare, ContactByEmailMember, ContactByEmailOneSchoolGlobal, ContactUsDetails, ContactUsMenu, CountryDetails, CountryList, FeedItemDetail, HomeFeed, HouseholdCarousel, HouseholdDetails, Household_Relations, LegacyShareObject, Locality_Details, Login, Menu, MessageDetail, MessageList, MyBookmarks, MyEntertaining, Notes, Notifications, OneSchoolGlobalDetails, PINBiometricsMenu, PINChange, PINRegister, PINUnlock, Photobook, Profile, Search, Services, Splash, SupperMeeting_Carousel, SupperMeeting_Details, TermsAndPoliciesMenu, Updates_SingleList
-- Compiled source: `migration/screens/BookmarksByGroup/analysis/sources/pretty/UBTConnect.App_Common.CommonUI_InsideLayout.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.App_Common.CommonUI_InsideLayout.mvc.js`
 - Child blocks: Connect2_LegacyShared.Utility.HandleImageLoadError, NavigationHandler.NavigationHandler.BackNavigationHandler, NavigationHandler.NavigationHandler.PreventBackNavigation, UBTConnect.App_Common.OfflineDataSyncEvents, UBTConnect.App_PIN.Block_PINUnlock, UBTConnect.App_Policies.Policy_Checker, UBTConnect.Legacy_Share.HandleOnResumeOpenLink, UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction (queue: -)
 
 ## Inputs
@@ -304,4 +304,4 @@ define("UBTConnect.App_Common.CommonUI_InsideLayout.mvc$view", ["OutSystems/Clie
             }));
         };
 ```
-(… 4 more lines in `migration/screens/BookmarksByGroup/analysis/sources/pretty/UBTConnect.App_Common.CommonUI_InsideLayout.mvc.js`)
+(… 4 more lines in `migration/sources/pretty/UBTConnect.App_Common.CommonUI_InsideLayout.mvc.js`)

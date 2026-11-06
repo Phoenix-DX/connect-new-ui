@@ -1,6 +1,6 @@
 /* Device adapter for the OutSystems CameraPlugin actions CheckCameraPlugin and TakePhoto (ADR-1; the ADR-11 pattern of
    barcodePlugin.ts; docs/guides/device.md). User decision PassportScan Q2 (a), 2026-10-29: the web camera path, as TST,
-   in every build. The web branches are ported 1:1 from migration/runtime-sources/CameraPlugin.controller.js (C below):
+   in every build. The web branches are ported 1:1 from migration/sources/runtime/CameraPlugin.controller.js (C below):
    - CheckCameraPlugin (C :71-282): IsCordovaDefined → Native_CheckCameraPlugin; else CheckMediaAPIJS
      (`!!navigator.mediaDevices`, C :283-287) → AddDependencies (C :1-69: LoadCSSJS and the camera scripts) →
      IsAvailable, IsPWA, ErrorCode "0"; else OS-PLUG-CAMR-0004. AllExceptions → "-1".
@@ -77,7 +77,7 @@ interface TakePhotoResult {
   MediaResult: MediaResult;
 }
 
-/** The static entities TakePhoto reads (identifiers from migration/runtime-sources/moduleinfo.json, CameraPlugin.model.js
+/** The static entities TakePhoto reads (identifiers from migration/sources/runtime/moduleinfo.json, CameraPlugin.model.js
     :540-570). */
 export const CameraPluginEntities = {
   EncodingType: { JPEG: 1, PNG: 2 },

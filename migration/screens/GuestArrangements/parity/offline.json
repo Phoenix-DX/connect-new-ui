@@ -1,0 +1,66 @@
+{
+ "state": "offline",
+ "route": "/UBTConnect/GuestArrangements?In_EventId=2085&In_EventName=&In_MilestoneTitle=Accommodation&In_HostId=52768&In_MemberId=52989&In_MilestoneId=GMP15700&In_OrbitMilestoneTypeId=accommodation-host&mocksession=unlocked",
+ "mock": "error",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "a6e79ccdcfb31bcb3769",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "visibleOnly": false,
+  "full": true,
+  "replay": "builder",
+  "skipKinds": [],
+  "selfRef": false
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 107,
+  "texts": 13,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-11-06T14:30:49.908Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "VIA-BACK-MENUICON-GUESTARRANGEMENTS": 29,
+  "CAPTURE-SKELETON-SHIMMER-PHASE-GUESTARRANGEMENTS": 5,
+  "ignoreSubtrees": 1,
+  "CAPTURE-VIA-MASK-SHIFT-GUESTARRANGEMENTS-PIXELS": 1
+ },
+ "pixel": {
+  "ratio": 0.03282,
+  "maxCell": 0.6162,
+  "maxCellRatio": 0.03,
+  "diffPixels": 10804,
+  "comparedPixels": 329160,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 1,
+  "hotspots": [
+   "320,80 (986px)",
+   "320,120 (973px)",
+   "120,40 (537px)",
+   "160,40 (532px)",
+   "80,40 (501px)"
+  ],
+  "diffPng": "migration/screens/GuestArrangements/parity/offline.diff.png"
+ },
+ "calls": null,
+ "diffs": []
+}

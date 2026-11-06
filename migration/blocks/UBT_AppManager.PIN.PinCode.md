@@ -1,7 +1,7 @@
 # UBT_AppManager.PIN.PinCode
 
 - Kind: shell; build screens using it: AcceptPendingPolicies, BookmarksByGroup, BrowseCountries, BrowseDirectory, CommunityBusinessDetails_CoomingSoon, ConnectShare, ContactByEmailMember, ContactByEmailOneSchoolGlobal, ContactUsDetails, ContactUsMenu, CountryDetails, CountryList, FeedItemDetail, HomeFeed, HouseholdCarousel, HouseholdDetails, Household_Relations, LegacyShareObject, Locality_Details, Login, Menu, MessageDetail, MessageList, MyBookmarks, MyEntertaining, Notes, Notifications, OneSchoolGlobalDetails, PINBiometricsMenu, PINChange, PINRegister, PINUnlock, Photobook, Profile, Search, Services, Splash, SupperMeeting_Carousel, SupperMeeting_Details, TermsAndPoliciesMenu, Updates_SingleList
-- Compiled source: `migration/screens/PINChange/analysis/sources/pretty/UBT_AppManager.PIN.PinCode.mvc.js`
+- Compiled source: `migration/sources/pretty/UBT_AppManager.PIN.PinCode.mvc.js`
 - Child blocks: NavigationHandler.NavigationHandler.PreventBackNavigation (queue: -)
 
 ## Inputs
@@ -591,4 +591,4 @@ define("UBT_AppManager.PIN.PinCode.mvc$view", ["OutSystems/ClientRuntime/Main", 
                     service: idService,
                     uuid: "15"
 ```
-(… 558 more lines in `migration/screens/PINChange/analysis/sources/pretty/UBT_AppManager.PIN.PinCode.mvc.js`)
+(… 558 more lines in `migration/sources/pretty/UBT_AppManager.PIN.PinCode.mvc.js`)

@@ -22,6 +22,7 @@ Orbit_ScreenBlocks.ScreenBlock_EventDetail
             Orbit_Blocks.HostAllocation_List
               Orbit_Blocks.HostAllocation_ListItem
               Orbit_Blocks.HostAllocation_ListItem
+              Orbit_Blocks.HostAllocation_ListItem
               Orbit_Blocks.HostAllocation_HelperItem
       Orbit_Blocks.EventDateSelection
         Orbit_Generic_Blocks.ListOfDaySelectors

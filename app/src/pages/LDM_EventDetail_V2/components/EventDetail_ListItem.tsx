@@ -26,7 +26,7 @@ export interface EventDetail_ListItemProps {
 
 const plural = (n: number, one: string, many: string) => `${String(n)}${n > 1 ? many : one}`;
 
-/** One guest household of the LDM event detail (analysis/sources/pretty/Connect2_OrbitMobile_MUI.LDM_Blocks
+/** One guest household of the LDM event detail (migration/sources/pretty/Connect2_OrbitMobile_MUI.LDM_Blocks
     .EventDetail_ListItem.mvc.js = L; view :175-560, controller :565-790). A click on the row raises
     Clicked(Guest.HouseholdDisplay) (L:625-645). The photo (or the static User_rectangle image), the household name
     (bold), the locality, for a host the adults / children ("1 Adult", "2 Adults", ", 1 Child"…), "Including: …" and

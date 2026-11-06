@@ -32,6 +32,7 @@ Orbit_ScreenBlocks.ScreenBlock_EventDetail
             Orbit_Blocks.HostAllocation_List
               Orbit_Blocks.HostAllocation_ListItem
               Orbit_Blocks.HostAllocation_ListItem
+              Orbit_Blocks.HostAllocation_ListItem
               Orbit_Blocks.HostAllocation_HelperItem
       Orbit_Blocks.EventDateSelection
         Orbit_Generic_Blocks.ListOfDaySelectors
@@ -594,12 +595,12 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionGetAllApplicationEvents` (200) at 580 ms
-- 2. `DataActionFetchEventNotes` (200) at 2860 ms
-- 3. `DataActionGet_EventDetails` (200) at 2966 ms
-- 4. `DataActionGet_HostSurveyStatus` (200) at 3272 ms
-- 5. `DataActionGet_HasDocuments` (200) at 3810 ms
-- 6. `DataActionGet_HasQRCode` (200) at 4268 ms
+- 1. `ActionGetAllApplicationEvents` (200) at 442 ms
+- 2. `DataActionGet_EventDetails` (200) at 2399 ms
+- 3. `DataActionFetchEventNotes` (200) at 2416 ms
+- 4. `DataActionGet_HostSurveyStatus` (200) at 2635 ms
+- 5. `DataActionGet_HasDocuments` (200) at 3105 ms
+- 6. `DataActionGet_HasQRCode` (200) at 3378 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

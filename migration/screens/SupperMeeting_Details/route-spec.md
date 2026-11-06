@@ -20,7 +20,7 @@ The screen itself has no variables, no lifecycle handler and no call of its own
 ## 1. Entry and routing
 - Reached from HouseholdDetails_Block, Locality_Subdivisions, MyBookmarks/BookmarksByGroup (legacy and new), MessageDetail,
   ConnectShare, Map_PoIPreview and Notes (navigation to `SupperMeeting_Details` in their compiled code,
-  capture/survey-UBTConnect.json `sources`). Not a root page, no bottom bar (`bottom: PlaceholderContent.Empty`, mvc.js:214).
+  migration/survey/survey-UBTConnect.json `sources`). Not a root page, no bottom bar (`bottom: PlaceholderContent.Empty`, mvc.js:214).
 - Input `In_SubdivsionId` from the query string, OutSystems Long Integer conversion, default 0 [mvc.js:61-65].
   Captured with `In_SubdivsionId=1210` [states.json].
 - Layout: `Layout_DetailPage` with `In_AlignTitleLeft: false` [mvc.js:142]; `In_IsPrimaryColor` not set → default

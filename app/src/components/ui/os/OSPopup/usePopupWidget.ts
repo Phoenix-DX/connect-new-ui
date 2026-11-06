@@ -2,8 +2,8 @@ import { useLayoutEffect, useRef, useState, useSyncExternalStore, type RefObject
 import { getShellState, subscribe } from '@/platform/session/session';
 
 /* Page-level side effects of the OutSystems platform Popup widget (OSWidgets.Popup, "OutSystems/ReactWidgets/Popup" in
-   migration/runtime-sources/OutSystemsReactWidgets.js; readable copy
-   migration/screens/MessageList/analysis/sources/pretty/OutSystemsReactWidgets.js:2819-2912). Every port of a Popup
+   migration/sources/runtime/OutSystemsReactWidgets.js; readable copy
+   migration/sources/pretty/OutSystemsReactWidgets.js:2819-2912). Every port of a Popup
    widget calls the hook for as long as the widget is in the view, open or not: a closed widget (ShowPopup False)
    renders nothing but still runs these effects on mount, on every update and on unmount. */
 
@@ -26,7 +26,7 @@ function updateMainContainerAriaHiddenAttr(showPopup: boolean): void {
 
 /** focusFirstFocusableElement (:2865-2873): with ShowPopup, the first "input, button, textarea, select, a" inside the
     widget's HTML node (Widget.getHTMLNode = findDOMNode of the widget, i.e. the first element its Portal renders,
-    runtime-sources/OutSystemsReactView.js getHTMLNode) gets the focus. */
+    sources/runtime/OutSystemsReactView.js getHTMLNode) gets the focus. */
 function focusFirstFocusableElement(showPopup: boolean, node: Element | null | undefined): void {
   if (!showPopup || !node) return;
   const first = node.querySelector<HTMLElement>('input, button, textarea, select, a');
@@ -48,7 +48,7 @@ function focusFirstFocusableElement(showPopup: boolean, node: Element | null | u
     `popupNode` (the element the widget's Portal renders) when the caller passes it; without it no focus is moved. */
 export function usePopupWidget(showPopup: boolean, popupNode?: RefObject<Element | null>): void {
   /* Every OutSystems controller subscribes to the ClientVariablesService in fireInitialize
-     (migration/runtime-sources/OutSystems.js:530153); a client variable change bumps the model's
+     (migration/sources/runtime/OutSystems.js:530153); a client variable change bumps the model's
      clientVariablesGeneration and flushes it (clientVariablesHandler, OutSystems.js:527146), so the block that owns
      this Popup re-renders, and with it the Popup (no _dependencies and children: Widget.shouldComponentUpdate is true,
      OutSystemsReactView.js:208266 area). Its UNSAFE_componentWillUpdate then re-applies disableScroll(ShowPopup) in

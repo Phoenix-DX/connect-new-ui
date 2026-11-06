@@ -1,7 +1,7 @@
 # ComingSoon_V2
 
 OutSystems: `UBTConnectLibrary.ConnectPatterns.ComingSoon_V2` · source
-`migration/runtime-sources/UBTConnectLibrary.ConnectPatterns.ComingSoon_V2.mvc.js` (static GET from the TST manifest,
+`migration/sources/runtime/UBTConnectLibrary.ConnectPatterns.ComingSoon_V2.mvc.js` (static GET from the TST manifest,
 2026-10-29; `migration/knowledge/runtime-sources.md`)
 
 No inputs. No events. No placeholders.

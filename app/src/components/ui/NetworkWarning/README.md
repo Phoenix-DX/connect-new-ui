@@ -1,7 +1,7 @@
 # NetworkWarning
 
 OutSystems: `Connect2_LegacyShared.Widgets.NetworkWarning`. No pack exists; compiled source
-`migration/runtime-sources/Connect2_LegacyShared.Widgets.NetworkWarning.mvc.js` (fetched read-only from TST,
+`migration/sources/runtime/Connect2_LegacyShared.Widgets.NetworkWarning.mvc.js` (fetched read-only from TST,
 2026-10-16, row in `migration/knowledge/runtime-sources.md`). Used by LDM_MyEvents_V2, LDM_Email_V2, MyBookmarks.
 
 Inputs: none. Prop `id` (the block instance id, e.g. `b1-b9-$b5`): the inner Animate gets `<id without $>-$b1`

@@ -4,7 +4,7 @@ import { preventNavigation } from '@/lib/navigationEvent';
 import { NavigationDialog } from './NavigationDialog';
 
 /* No captured DOM exists for these blocks: the checks follow the compiled views and controller
-   (migration/blocks/sources/NavigationHandler.ConfirmationDialogs.NavigationConfirmationDialog.mvc.js and
+   (migration/sources/survey/NavigationHandler.ConfirmationDialogs.NavigationConfirmationDialog.mvc.js and
    UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_Navigation.mvc.js). The back-navigation queue is the platform
    hook that the test setup connects, as app/ does; the back navigation while shown is tested in app/dialogs.test. */
 const navigate = (resume = vi.fn()) => {

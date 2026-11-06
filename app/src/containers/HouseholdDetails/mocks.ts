@@ -3,18 +3,19 @@ import { contractHandler } from '@/mocks/contract';
 import { markNoPhoto } from '@/components/ui/EntityLazyImage/mocks';
 import { markContactOnly } from '@/containers/EntityDetailsActions/mocks';
 import { Connect_Entity } from '@/lib/ubtConnect/staticEntities';
-import { HOUSEHOLD_DETAILS_ID, membersOf, sampleHouseholds } from './mockData';
+import { galleryOf, HOUSEHOLD_DETAILS_ID, membersOf, sampleHouseholds } from './mockData';
 
 /* The household details (this container, used by HouseholdDetails, HouseholdCarousel, Profile and Locality_Details)
-   call DataActionGetHousehold and DataActionGetHousehold_Coordinates, answered here; the HouseholdDetails screen calls
-   no action of its own. The contact details, signed images and bottom-bar calls are answered by their own shared and
-   platform mocks.
+   call DataActionGetHousehold, DataActionGetHousehold_Coordinates and DataActionGetHouseHold_Gallery (live TST of
+   2026-11-05), answered here; the HouseholdDetails screen calls no action of its own. The contact details, signed
+   images and bottom-bar calls are answered by their own shared and platform mocks.
    Scenarios: `real`, `loading` (never answers: skeleton) and `error` (calls fail: skeleton stays).
    Never recorded (households, members and their coordinates are person data): fictional, with the captured shapes and
    counts (HouseholdDetails/default: 5 members, no married children, visible; Profile/default: 3 members, CR-Profile-1;
    HouseholdCarousel/default slides 2-4: CR-HouseholdCarousel-2). Any other HouseholdId answers the HouseholdDetails
-   household. Members captured without photo or with one contact channel register their ids with the image and contact
-   mocks. */
+   household. The gallery is fictional (no capture): 4 pictures for HouseholdDetails, 3 for Profile, 5 / 0 / 2 for
+   HouseholdCarousel slides 2-4; any other HouseholdId has none (the Unavailable_Image box). Members captured without
+   photo or with one contact channel register their ids with the image and contact mocks. */
 for (const [id, sample] of Object.entries(sampleHouseholds)) {
   if (!sample) continue;
   const members = membersOf(id, sample);
@@ -37,5 +38,8 @@ export const handlers: RequestHandler[] = [
   }),
   contractHandler('UBTConnect', 'HouseholdDetails_Block/DataActionGetHousehold_Coordinates', () => ({
     HouseholdCoordinates: { Latitude: '-33.8688', Longitude: '151.2093', UseCoordinates: true },
+  })),
+  contractHandler('UBTConnect', 'HouseholdDetails_Block/DataActionGetHouseHold_Gallery', ({ HouseholdId }) => ({
+    Out_ImageDetails: { List: galleryOf(HouseholdId ?? '0') },
   })),
 ];

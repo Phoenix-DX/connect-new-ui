@@ -1,7 +1,7 @@
 # OutSystemsUI_2_23.Adaptive.Columns4
 
 - Kind: osui; build screens using it: HostSurvey
-- Compiled source: `migration/blocks/sources/OutSystemsUI_2_23.Adaptive.Columns4.mvc.js`
+- Compiled source: `migration/sources/survey/OutSystemsUI_2_23.Adaptive.Columns4.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

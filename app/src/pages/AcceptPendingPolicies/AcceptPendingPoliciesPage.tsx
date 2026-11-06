@@ -17,7 +17,7 @@ const POLICY_APPLICATIONS = [Connect_Applications.Connect, Connect_Applications.
     The route of the pending policies: the sign-in layout with the overlay (class ubt-policies), the header and the
     pending policies form as content, a back handler that prevents the back navigation, and CommonUI_InsideLayout
     without the policy checker. The screen flows are in hooks/useAcceptPendingPolicies.ts, the block flows in
-    hooks/usePendingPoliciesForm.ts. Not captured (Q7 c): built from the compiled code. */
+    hooks/usePendingPoliciesForm.ts. Captured 2026-11-06 with one pending policy (analysis/dom/default.html). */
 export default function AcceptPendingPolicies() {
   const screen = useAcceptPendingPolicies();
   const form = usePendingPoliciesForm(
@@ -46,7 +46,6 @@ export default function AcceptPendingPolicies() {
               onContinue={() => {
                 void form.continueOnClick();
               }}
-              onPolicyClick={form.onClickPolicy}
             />
           </div>
           <BackNavigationHandler

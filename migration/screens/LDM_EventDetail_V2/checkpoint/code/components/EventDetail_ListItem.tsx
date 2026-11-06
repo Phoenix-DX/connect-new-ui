@@ -1,16 +1,12 @@
-// @os-block Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_ListItem
-import { OSBlock } from '../../../components/OSBlock';
-import { styleFromCssText } from '../../../shared/lib/cssText';
-import { osImage } from '../../../lib/os-assets';
-import { Person_Contact_Options } from '../../../shared/Connect2_LegacyShared/Person_Contact_Options';
-import type {
-  ContactByPhonePopupData,
-  UI_ContactByMessage_WrapperData,
-} from '../../../shared/UBTConnect_Utils/lib/structures';
-import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '../../../shell/feedback';
-import type { DetailGuestItem } from '../types';
-import { flipHouseholdName } from '../../../shared/Connect2_LegacyShared/lib/actions';
-import { getLocalityName } from '../../../shared/Connect2_OrbitMobile_MUI/lib/actions';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { styleFromCssText } from '@/lib/cssText';
+import { osImage } from '@/lib/os-assets';
+import { PersonContactOptions } from '@/components/contact/PersonContactOptions';
+import type { ContactByPhonePopupData, UI_ContactByMessage_WrapperData } from '@/lib/ubtConnectUtils/structures';
+import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
+import type { DetailGuestItem } from '@/api/event';
+import { flipHouseholdName } from '@/lib/legacyShared/actions';
+import { getLocalityName } from '@/lib/orbit/actions';
 
 export interface EventDetail_ListItemProps {
   id: string;
@@ -30,7 +26,7 @@ export interface EventDetail_ListItemProps {
 
 const plural = (n: number, one: string, many: string) => `${String(n)}${n > 1 ? many : one}`;
 
-/** One guest household of the LDM event detail (analysis/sources/pretty/Connect2_OrbitMobile_MUI.LDM_Blocks
+/** One guest household of the LDM event detail (migration/sources/pretty/Connect2_OrbitMobile_MUI.LDM_Blocks
     .EventDetail_ListItem.mvc.js = L; view :175-560, controller :565-790). A click on the row raises
     Clicked(Guest.HouseholdDisplay) (L:625-645). The photo (or the static User_rectangle image), the household name
     (bold), the locality, for a host the adults / children ("1 Adult", "2 Adults", ", 1 Child"…), "Including: …" and
@@ -38,7 +34,8 @@ const plural = (n: number, one: string, many: string) => `${String(n)}${n > 1 ? 
     is hidden (`visibility: hidden`) when the household is not displayed. OnHandle_CallClicked (L:570-620):
     OnClick_PhoneCall with the household's contact data. OnHandle_EmailClicked (L:650-720): online, OnClick_Message
     with the email, the mobile phone and the flipped name; offline, the Info message "Please check your network
-    connection and try again". */
+    connection and try again".
+    @origin Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_ListItem */
 export function EventDetail_ListItem({
   id,
   scope,
@@ -163,7 +160,7 @@ export function EventDetail_ListItem({
               ) : null}
             </div>
             <div className="padding-left-xs" data-container="">
-              <Person_Contact_Options
+              <PersonContactOptions
                 id={`${scope}-$b1`}
                 phone={g.HomePhone + g.MobilePhone + g.WorkPhone}
                 emailAddress={g.Email}

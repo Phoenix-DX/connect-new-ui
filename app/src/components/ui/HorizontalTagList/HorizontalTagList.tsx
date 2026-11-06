@@ -37,11 +37,14 @@ export function HorizontalTagList({
   isEnabled = true,
   onChanged,
 }: HorizontalTagListProps) {
-  /* TagToggleToggle (:322-430): useTagToggleList. An omitted Enabled is True (TagRec defaults, :1269-1274). */
+  /* TagToggleToggle (:322-430) and OnParametersChanged (live HorizontalTagList.mvc.js:445-490): useTagToggleList. An
+     omitted Enabled is True (TagRec defaults, :1269-1274). */
   const { list, toggle } = useTagToggleList(inTagToggleList, {
     isSingleSelection: inIsSingleSelection,
     isMandatorySelection: inIsMandatorySelection,
     onChanged,
+    /* The inputs that run OnParametersChanged besides the list and the two selection flags (:21-56). */
+    parameters: [inHorizontalPadding, extendedClasses, isEnabled],
   });
 
   const listClass =

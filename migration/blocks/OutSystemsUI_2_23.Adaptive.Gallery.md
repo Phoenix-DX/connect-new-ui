@@ -1,7 +1,7 @@
 # OutSystemsUI_2_23.Adaptive.Gallery
 
 - Kind: osui; build screens using it: HomeFeed, HouseholdCarousel, Search, SupperMeeting_Carousel, SupperMeeting_Details
-- Compiled source: `migration/screens/HomeFeed/analysis/sources/pretty/OutSystemsUI_2_23.Adaptive.Gallery.mvc.js`
+- Compiled source: `migration/sources/pretty/OutSystemsUI_2_23.Adaptive.Gallery.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

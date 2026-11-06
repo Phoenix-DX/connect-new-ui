@@ -6,7 +6,7 @@ import { MilestoneTimeType } from '@/lib/orbit/staticEntities';
 
 /** The client actions of Connect2_OrbitMobile_MUI that ScreenBlock_EventDetail calls, ported 1:1, without React.
     useEventDetail, the reducer of eventDetailState and EventDetailView call them. `C:<n>` = line of
-    migration/runtime-sources/Connect2_OrbitMobile_MUI.controller.js. Dates are OutSystems values as text; "" is the
+    migration/sources/runtime/Connect2_OrbitMobile_MUI.controller.js. Dates are OutSystems values as text; "" is the
     null date.
     @origin Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail */
 

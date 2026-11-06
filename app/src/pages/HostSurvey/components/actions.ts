@@ -8,7 +8,7 @@ import type {
 } from '@/platform/storage/localEntities';
 
 /* Client actions of Connect2_OrbitMobile_MUI that the HostSurvey blocks call, ported 1:1. `C:<n>` = line of
-   migration/runtime-sources/Connect2_OrbitMobile_MUI.controller.js, `TF:<n>` = Connect2_OrbitMobile_MUI.TimeFormat.js. */
+   migration/sources/runtime/Connect2_OrbitMobile_MUI.controller.js, `TF:<n>` = Connect2_OrbitMobile_MUI.TimeFormat.js. */
 
 const EMPTY_RECORD: LocalLabelledRecord = { Id: 0, Label: '', JSON_Name: '', Order: 0 };
 

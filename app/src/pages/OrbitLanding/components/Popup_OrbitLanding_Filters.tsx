@@ -25,7 +25,7 @@ export interface Popup_OrbitLanding_FiltersProps {
 const selectedClass = (on: boolean) => (on ? 'color-orbit-primary-7 bold' : '');
 
 /** Filters popup of the Orbit landing (Connect2_OrbitMobile_MUI.Orbit_Blocks.Popup_OrbitLanding_Filters.mvc.js from
-    capture/survey-UBTConnect.json `sources`; captured dom/popup-filters.raw.html). On its own copies of the inputs:
+    migration/survey/survey-UBTConnect.json `sources`; captured dom/popup-filters.raw.html). On its own copies of the inputs:
     close icon (ClosePopup); options `max-height: calc(100vh - <Bottom + Top>px)`; RadioGroup_Filters Upcoming / Past
     (OnChange_RadioGroup_Filter: Upcoming → OnClick_ClearYearFilters); with Past and years: "Clear all" (bold while
     AnySelected), "Filter By" and one row per year with Checkbox_Year (OnChange_Checkbox_Year → AnySelected); Apply →

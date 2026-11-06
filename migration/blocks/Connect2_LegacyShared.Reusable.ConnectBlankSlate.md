@@ -1,7 +1,7 @@
 # Connect2_LegacyShared.Reusable.ConnectBlankSlate
 
 - Kind: shared; build screens using it: BookmarksByGroup, ConnectShare, MyBookmarks
-- Compiled source: `migration/screens/ConnectShare/analysis/sources/pretty/Connect2_LegacyShared.Reusable.ConnectBlankSlate.mvc.js`
+- Compiled source: `migration/sources/pretty/Connect2_LegacyShared.Reusable.ConnectBlankSlate.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

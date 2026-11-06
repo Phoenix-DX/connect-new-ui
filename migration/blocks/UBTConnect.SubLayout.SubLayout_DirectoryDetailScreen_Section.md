@@ -1,7 +1,7 @@
 # UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen_Section
 
 - Kind: shared; build screens using it: ContactUsDetails, HouseholdCarousel, HouseholdDetails, Household_Relations, Locality_Details, Profile, SupperMeeting_Carousel, SupperMeeting_Details
-- Compiled source: `migration/screens/ContactUsDetails/analysis/sources/pretty/UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen_Section.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen_Section.mvc.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.BasePatterns.CustomText, UBTConnectLibrary.Layouts.SubLayout_Section (queue: UBTConnectLibrary.Layouts.SubLayout_Section)
 
 ## Inputs

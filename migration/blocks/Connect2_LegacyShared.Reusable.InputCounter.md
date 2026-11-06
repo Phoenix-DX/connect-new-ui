@@ -1,7 +1,7 @@
 # Connect2_LegacyShared.Reusable.InputCounter
 
 - Kind: shared; build screens using it: AssembleDetail, BookmarksByGroup, EmailContact, EmailTarget, HostSurvey, LDM_Email_V2
-- Compiled source: `migration/blocks/sources/Connect2_LegacyShared.Reusable.InputCounter.mvc.js`
+- Compiled source: `migration/sources/survey/Connect2_LegacyShared.Reusable.InputCounter.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

@@ -36,17 +36,20 @@ export const CLIENT_VAR_DEFAULTS = {
   'UBT_AppManager.PIN_IsLocked': false,
   'UBT_AppManager.PIN_HasUnlocked': false,
   'UBT_AppManager.DeviceInfo_UUID': '',
+  // Text, type default (migration/shell/client-variables.md:68): AppManager_ClientCache.PackageName, set by the app
+  // start (AppManager_SetDeviceContext); the device context of AppManager_Logout reads it.
+  'UBT_AppManager.DeviceInfo_PackageName': '',
   // Boolean, type default (UBT_AppManager.clientVariables.js:242-247; migration/shell/client-variables.md:74). The original
   // sets it from AppManager_MobileContext.isNativeDevice in AppManager_SetDeviceContext (UBT_AppManager.controller.js:
   // 4418-4419); the clone's device context is never native (deviceContext.ts), so it stays false in the browser.
   'UBT_AppManager.DeviceInfo_IsNative': false,
   // JSON of AppManager_CachedUserInfoRec, written by AppManager_SetCachedUserInfo (AM:4355-4375)
   'UBT_AppManager.AppManager_UserExtended': '',
-  // Connect2_LegacyShared.clientVariables.js (migration/runtime-sources/, :8-24): Long Integer, type default 0
+  // Connect2_LegacyShared.clientVariables.js (migration/sources/runtime/, :8-24): Long Integer, type default 0
   'Connect2_LegacyShared.UnreadNotificationsNumber': 0,
   'Connect2_LegacyShared.UnreadPublicMessagesNumber': 0,
   'Connect2_LegacyShared.UnreadWhatsNewsNumber': 0, // CR-MessageDetail-1
-  // Connect2_OrbitMobile_MUI.clientVariables.js (migration/runtime-sources/, fetched 2026-10-17, :8-19): Integer, no
+  // Connect2_OrbitMobile_MUI.clientVariables.js (migration/sources/runtime/, fetched 2026-10-17, :8-19): Integer, no
   // compiled default (getVariable without a 4th argument) → type default 0; SetBookletMaxRows fills them from the
   // server (CR-EventBooklet-1).
   'Connect2_OrbitMobile_MUI.BookletGuestsMaxRows': 0,

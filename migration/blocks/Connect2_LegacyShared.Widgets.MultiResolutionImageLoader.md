@@ -1,7 +1,7 @@
 # Connect2_LegacyShared.Widgets.MultiResolutionImageLoader
 
 - Kind: shared; build screens using it: HostSurvey, MilestoneDetail
-- Compiled source: `migration/blocks/sources/Connect2_LegacyShared.Widgets.MultiResolutionImageLoader.mvc.js`
+- Compiled source: `migration/sources/survey/Connect2_LegacyShared.Widgets.MultiResolutionImageLoader.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

@@ -1,0 +1,5 @@
+# Store files kept although no manifest names them (an older version that a document or a comment still cites).
+# One repository-root relative path per line; `sources_store.py check` and `gc` treat them as referenced.
+# Delete a line when the citations move to the newer version.
+migration/sources/pretty/UBTConnect.App_Notifications.NotificationDetails.mvc.js  # cited by migration/screens/NotificationDetails/pack.md (capture of 2026-10-29)
+migration/sources/pretty/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js  # cited by app/src/platform/storage/localEntities/recentSearch.ts and migration/screens/Search/pack.md

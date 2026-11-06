@@ -13,7 +13,7 @@ Consistency across dozens of routes built by different agents at different times
 
 ## 1. Items to confirm
 
-`stack.py init` proposes a value, options and a reason for each item. The proposals match what `scaffold_react_app.py` builds; choosing differently is allowed but means adapting the scaffold under an ADR.
+`stack.py init` proposes a value, options and a reason for each item. The proposals match what the app skeleton implements (`SCAFFOLD` in `stack.py`); choosing differently is allowed but means adapting the app under an ADR.
 
 | Group | Items |
 |---|---|
@@ -30,7 +30,7 @@ Consistency across dozens of routes built by different agents at different times
 2. `stack.py questions`: present every open item, pattern and proposed ADR in one message, each with the proposal, the options, the reason and the evidence. Use the client's question tool when available.
 3. Record exactly what the user said: `stack.py confirm <key> --value "<choice>" --by user --note "<context>"`. For option labels such as "npm package", record the concrete package and version. `confirm-all-proposed` is for an explicit "accept all as listed" from the user, after they saw the list; items without a proposal must be answered one by one.
 4. Accept patterns the user agrees with (`stack.py pattern accept <ID> --by user`); edit or drop the others before accepting.
-5. `stack.py check` must report OK before scaffolding (`scaffold_react_app.py --stack migration/stack.json`) and before any route starts.
+5. `stack.py check` must report OK before the app skeleton is built and before any route starts.
 
 ## 3. Patterns and reference implementations
 
@@ -45,9 +45,9 @@ A pattern (`migration/patterns/P-<ID>.md`) states how this app does one recurrin
 
 Any change after confirmation (new package, different library, new rule) is an Architecture Decision Record:
 ```bash
-python3 scripts/stack.py adr new --title "<change>" --context "<why, evidence, routes affected>" --decision "<what>" --consequences "<cost, migration of existing routes>"
-python3 scripts/stack.py adr accept ADR-<n> --by user          # only after the user agrees
-python3 scripts/stack.py dep add <package> <version> --adr ADR-<n>
+python3 tools/pipeline/stack.py adr new --title "<change>" --context "<why, evidence, routes affected>" --decision "<what>" --consequences "<cost, migration of existing routes>"
+python3 tools/pipeline/stack.py adr accept ADR-<n> --by user          # only after the user agrees
+python3 tools/pipeline/stack.py dep add <package> <version> --adr ADR-<n>
 ```
 The foundation owner applies it (package.json, lockfile, shared code), runs `stack.py check`, and re-runs consistency and parity on affected finished routes. Route agents only ask; they never edit `package.json`, the lockfile, `stack.json` or patterns.
 

@@ -19,8 +19,8 @@ export interface AssembleEventDetail_LocalitySubdivisionListProps extends Attend
   flags: AttendeeSubdivisionFlags;
 }
 
-/** DIV_Locality_Header (`list-sticky-records__sticky-record`, `--active` when selected; a click toggles IsSelected)
-    with NC_Result_Item__Image (round; the map-marker badge as image, the locality name as title, the angle up or down
+/** DIV_Locality_Header (`list-sticky-records__sticky-record`, `--active` when selected; a click toggles IsSelected;
+    inline `cursor: pointer` as captured) with NC_Result_Item__Image (round; the map-marker badge as image, the locality name as title, the angle up or down
     as action), and when it is selected DIV_LocalitySubdivisions_List > a List (`list list-group list-sticky-records
     margin-bottom-s`) of AssembleEventDetail_AttendeeSubdivision. OnReady: the local copy is the input, collapsed; the
     view cache keeps IsSelected (useLocalitySubdivisionList).
@@ -40,6 +40,7 @@ export function AssembleEventDetail_LocalitySubdivisionList({
         }
         data-container=""
         id={`${scope}-DIV_Locality_Header`}
+        style={{ cursor: 'pointer' }}
         onClick={onToggleSelected}
       >
         <ResultItemMedia

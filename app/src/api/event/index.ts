@@ -38,6 +38,7 @@ export {
   fetchAdminEvents,
   fetchAssembleEvent,
   fetchAssembleEventTypes,
+  fetchAssembleNotes,
   fetchAssembleMeetings,
   fetchBookletGuestsMaxRows,
   fetchBookletHelpersMaxRows,

@@ -2,7 +2,7 @@
 
 OutSystems: `UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes` · pack
 `migration/blocks/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.md` (compiled source
-`migration/blocks/sources/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.mvc.js`)
+`migration/sources/survey/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.mvc@e2889f0e.js`)
 
 | Input    | Type    | Prop       | Default |
 | -------- | ------- | ---------- | ------- |

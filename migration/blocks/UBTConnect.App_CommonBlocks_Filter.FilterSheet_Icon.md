@@ -1,7 +1,7 @@
 # UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon
 
 - Kind: shared; build screens using it: Search, Updates_SingleList
-- Compiled source: `migration/screens/Search/analysis/sources/pretty/UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon.mvc.js`
 - Child blocks: UBTConnectLibrary.ConnectPatterns.Icon, UBTConnectLibrary.ConnectPatterns.SkeletonSection (queue: -)
 
 ## Inputs

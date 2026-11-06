@@ -20,7 +20,7 @@ export interface ContextMenuItemProps {
 const MAIN_CONTAINER_CLASS = 'ubt-context-menu-option';
 
 /** One option of ContextMenu: an IconText (icon + label) in a padded container. View from
-    migration/blocks/sources/UBTConnectLibrary.ConnectPatterns.ContextMenu_Item.mvc.js:171-260 (no events). */
+    migration/sources/survey/UBTConnectLibrary.ConnectPatterns.ContextMenu_Item.mvc@04578ac2.js:171-260 (no events). */
 export function ContextMenuItem({ id, inUBTIconsId = '', inLabel = '', inUBTIconColorId = '' }: ContextMenuItemProps) {
   return (
     <OSBlock name="ConnectPatterns.ContextMenu_Item" id={id}>

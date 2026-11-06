@@ -1,7 +1,7 @@
 # Connect2_LegacyShared.Reusable.MessageList_NoResults
 
 - Kind: shared; build screens using it: BookmarksByGroup, MessageList
-- Compiled source: `migration/blocks/sources/Connect2_LegacyShared.Reusable.MessageList_NoResults.mvc.js`
+- Compiled source: `migration/sources/survey/Connect2_LegacyShared.Reusable.MessageList_NoResults.mvc.js`
 - Child blocks: OutSystemsUI_2_23.Utilities.AlignCenter (queue: OutSystemsUI_2_23.Utilities.AlignCenter)
 
 ## Inputs

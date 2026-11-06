@@ -22,5 +22,5 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-/** The only state: the header shows the same texts on each visit (the route was not captured, Q7 c). */
+/** The only state: the header shows the same texts on each visit (captured 2026-11-06). */
 export const Default: Story = { args: { logoSrc: osImage('img/UBTConnect.ConnectLogoWhite.svg') } };

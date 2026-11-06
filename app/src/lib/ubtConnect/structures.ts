@@ -2,7 +2,7 @@ import type { ActionsMenuOptions, LookupItem } from '@/lib/ubtConnectLibrary/str
 import type { UI_StatisticsTexts } from '@/lib/geography/structures';
 import type { SelectionOption_Item, StatisticsOptions } from '@/lib/ubtConnectLibrary/structures';
 /* UBTConnect structures used by the shared actions (UBTConnect.model.js, copy in
-   migration/screens/BookmarksByGroup/analysis/sources/raw/). Fields named as in OutSystems, all optional = OutSystems
+   migration/sources/raw/). Fields named as in OutSystems, all optional = OutSystems
    default. Long Integer → string. */
 
 /** Updates_CarouselSwipeCallbackParameters (model :5057-5080). */

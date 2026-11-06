@@ -1,7 +1,7 @@
 # UBTConnectLibrary.ConnectPatterns.ComingSoon
 
 - Kind: shared; build screens using it: HouseholdCarousel, HouseholdDetails, Locality_Details, OneSchoolGlobalDetails, Profile, SupperMeeting_Carousel
-- Compiled source: `migration/screens/OneSchoolGlobalDetails/analysis/sources/pretty/UBTConnectLibrary.ConnectPatterns.ComingSoon.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnectLibrary.ConnectPatterns.ComingSoon.mvc.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.BasePatterns.CustomText (queue: -)
 
 ## Inputs

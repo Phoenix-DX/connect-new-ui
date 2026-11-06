@@ -1,7 +1,7 @@
 # UBT_AppManager.PIN.Pincode_Unlock
 
 - Kind: shell; build screens using it: AcceptPendingPolicies, BookmarksByGroup, BrowseCountries, BrowseDirectory, CommunityBusinessDetails_CoomingSoon, ConnectShare, ContactByEmailMember, ContactByEmailOneSchoolGlobal, ContactUsDetails, ContactUsMenu, CountryDetails, CountryList, FeedItemDetail, HomeFeed, HouseholdCarousel, HouseholdDetails, Household_Relations, LegacyShareObject, Locality_Details, Login, Menu, MessageDetail, MessageList, MyBookmarks, MyEntertaining, Notes, Notifications, OneSchoolGlobalDetails, PINBiometricsMenu, PINChange, PINRegister, PINUnlock, Photobook, Profile, Search, Services, Splash, SupperMeeting_Carousel, SupperMeeting_Details, TermsAndPoliciesMenu, Updates_SingleList
-- Compiled source: `migration/screens/BookmarksByGroup/analysis/sources/pretty/UBT_AppManager.PIN.Pincode_Unlock.mvc.js`
+- Compiled source: `migration/sources/pretty/UBT_AppManager.PIN.Pincode_Unlock.mvc.js`
 - Child blocks: UBT_AppManager.PIN.InactivityTimer, UBT_AppManager.PIN.PinCode (queue: UBT_AppManager.PIN.PinCode)
 
 ## Inputs

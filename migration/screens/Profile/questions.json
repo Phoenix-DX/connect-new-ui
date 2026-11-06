@@ -42,7 +42,7 @@
   "kind": "fact",
   "topic": "built-in form validation",
   "question": "OnClick_Save runs ScreenController_ValidateWidgets (validationService.validate()) and reads DetailsForm.Valid. Which built-in checks and messages apply to the captured widgets (Email input type Email, Phone inputs, none mandatory)? The OutSystems runtime messages are not in the local sources.",
-  "evidence": "Profile.mvc.js:3527-3531; UBTJavaScriptUtils.controller.js:4093-4096; runtime-sources/OutSystems.js has emailAddressValidate but no message texts",
+  "evidence": "Profile.mvc.js:3527-3531; UBTJavaScriptUtils.controller.js:4093-4096; sources/runtime/OutSystems.js has emailAddressValidate but no message texts",
   "mcp": "not available",
   "options": [],
   "recommend": "",

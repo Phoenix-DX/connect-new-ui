@@ -2,7 +2,7 @@
 
 OutSystems: `Connect2_Assemble_MUI.Assemble.Assemble_FilterLocalityByCountry` · pack
 `migration/blocks/Connect2_Assemble_MUI.Assemble.Assemble_FilterLocalityByCountry.md` · compiled source
-`migration/blocks/sources/Connect2_Assemble_MUI.Assemble.Assemble_FilterLocalityByCountry.mvc.js`
+`migration/sources/survey/Connect2_Assemble_MUI.Assemble.Assemble_FilterLocalityByCountry.mvc.js`
 
 | Input       | Type | Prop          | Default |
 | ----------- | ---- | ------------- | ------- |

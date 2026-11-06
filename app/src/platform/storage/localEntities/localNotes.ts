@@ -3,7 +3,7 @@ import { indexedDbDatabase, memoryDatabase, type LocalDatabase } from './databas
 import { DATABASE_NAME, LOCAL_NOTE, METADATA_TABLE, NULL_DATE_TIME, entityService, tableSchema } from './entities';
 
 /* UBTConnect_Notes_MCS: the device's local copy of the user's notes (client entity LocalNote) and its client actions,
-   ported 1:1. C = migration/runtime-sources/UBTConnect_Notes_MCS.controller.js, A = …aggregates.IDB.js.
+   ported 1:1. C = migration/sources/runtime/UBTConnect_Notes_MCS.controller.js, A = …aggregates.IDB.js.
 
    Who uses it in the original:
    - writes: CW_Notes.NotesSheet add (CreateOrUpdate_LocalNote), CW_Notes.NoteListActions edit (CreateOrUpdate_LocalNote;

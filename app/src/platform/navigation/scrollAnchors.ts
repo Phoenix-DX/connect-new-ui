@@ -1,4 +1,4 @@
-/* The scroll-anchor actions of the NavigationHandler module (NH = migration/runtime-sources/NavigationHandler.controller.js).
+/* The scroll-anchor actions of the NavigationHandler module (NH = migration/sources/runtime/NavigationHandler.controller.js).
    A list screen remembers the tapped row (RememberFocusedScrollAnchor); a detail screen with FocusScrollAnchorOnBack
    stores the row to focus on back in the navigation storage; the list screen reads it (GetFocusedScrollAnchorOnBack).
    The original also patches the List widget's view-cache restore with both anchors (NH:1050-1126); that patch is not

@@ -1,7 +1,7 @@
 # UBTConnectLibrary.ConnectPatterns.TagContent
 
 - Kind: shared; build screens using it: HomeFeed, HouseholdCarousel, MessageDetail, SupperMeeting_Carousel, Updates_SingleList
-- Compiled source: `migration/screens/HomeFeed/analysis/sources/pretty/UBTConnectLibrary.ConnectPatterns.TagContent.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnectLibrary.ConnectPatterns.TagContent.mvc.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.CustomContainer (queue: -)
 
 ## Inputs

@@ -1,10 +1,11 @@
 import type { BookmarkCardItem, BookmarkPill, BookmarksFilter } from '@/api/bookmark';
 import { OS_NULL_DATE_TIME } from '@/lib/osDateTime';
 import { APP_ID } from '@/platform/navigation/paths';
+import { LocalityMenu, longIntegerText, notes_InterchangeId_ExtractId } from '@/lib/ubtConnect/actions';
 import type { Tag } from '@/lib/ubtConnectLibrary/structures';
 
 /* The screen variables of UBTConnect.Bookmarks.Bookmarks and the pure parts of its client actions
-   (p = migration/screens/Bookmarks/analysis/sources/pretty/UBTConnect.Bookmarks.Bookmarks.mvc.js). */
+   (p = migration/sources/pretty/UBTConnect.Bookmarks.Bookmarks.mvc.js). */
 
 /** UBTConnect BookmarkCategory (TST values, migration/knowledge/static-entities-tst.json). */
 const BookmarkCategory = {
@@ -60,6 +61,8 @@ export const skeletonLoader_Pills = (): Tag[] => [tag('All'), tag('Dumyy size'),
 
 const skeletonCard = (title: string, subtitle: string): BookmarkCardItem => ({
   itemId: '0',
+  itemId2: '',
+  hasDetailAccess: false,
   bookmarkCategoryId: '',
   channelName: '',
   channelLogo: '',
@@ -125,47 +128,67 @@ export const selectedCategoryId = (updatedTagList: Tag[]): string =>
 export const canLoadMore = (state: BookmarksState): boolean =>
   state.getBookmarksList.length > 0 && state.getBookmarksList.length < Number(state.maxRecords);
 
-/** Where a card goes (Handler_OnClickBookmarkCardItem, p:1000-1170), with the preload object to set before. */
+/** Where a card goes (Handler_OnClickBookmarkCardItem, live Bookmarks.mvc.js:1067-1219), with the preload object to
+    set before. */
 interface BookmarkCardTarget {
   path: string;
   inputs: Record<string, string>;
   preload?: unknown;
 }
 
+/** The item ids of the cards of a category, as Long Integers (TextToLongInteger(ItemId): ItemId is Text). */
 const idsOf = (list: BookmarkCardItem[], category: string) =>
-  list.filter((c) => c.bookmarkCategoryId === category).map((c) => c.itemId);
+  list.filter((c) => c.bookmarkCategoryId === category).map((c) => longIntegerText(c.itemId));
 
-/** Handler_OnClickBookmarkCardItem(ObjectId, ObjectType):
-    - OneSchool Global: PreloadedCarousel.CarouselItemIds = the item ids of the OneSchool Global cards of Bookmarks_List,
-      SetPreloadObject, then OneSchoolGlobalCarousel(In_StartingObjectId). The code tests the same type twice, so the
-      OneSchoolGlobalDetails branch never runs (item10-new-screens.md §6).
-    - Supper Meeting: SupperMeeting_Details(In_SubdivsionId).
-    - Household: HouseholdIdList.CarouselHouseholdItem = the household cards of Bookmarks_List, SetPreloadObject, then
-      HouseholdCarousel(In_StartingHouseholdId) (its flag redirect opens HouseholdDetails when the carousel is off).
+/** Handler_OnClickBookmarkCardItem(ObjectId, ObjectId2, ObjectType, HasDetailAccess), the branch with detail access
+    (live Bookmarks.mvc.js:1092-1219, TST 2026-11-05). The ids are Text; each branch reads them with TextToLongInteger:
+    - Interchange (:1098-1110): Notes_InterchangeId_ExtractId(ObjectId), then Locality_Details with LocalityId = the
+      InterchangeLocalityId and TagsList_SelectedTag = GetLocalityMenu().Interchange.
+    - Member (:1121-1127): Household_Relations with HouseholdId = ObjectId2 and MemberId = ObjectId.
+    - OneSchool Global (:1129-1150): PreloadedCarousel.CarouselItemIds = the item ids of the OneSchool Global cards of
+      Bookmarks_List, SetPreloadObject3, then OneSchoolGlobalCarousel(In_StartingObjectId).
+    - Supper Meeting (:1157-1162): SupperMeeting_Details(In_SubdivsionId).
+    - Household (:1167-1188): HouseholdIdList.CarouselHouseholdItem = the household cards of Bookmarks_List,
+      SetPreloadObject, then HouseholdCarousel(In_StartingHouseholdId) (its flag redirect opens HouseholdDetails when
+      the carousel is off).
     - Every other category: nothing (empty branches). */
 export function bookmarkCardTarget(
   objectId: string,
+  objectId2: string,
   objectType: string,
   list: BookmarkCardItem[],
 ): BookmarkCardTarget | null {
-  if (objectType === BookmarkCategory.OneSchoolGlobal2) {
-    return {
-      path: `/${APP_ID}/OneSchoolGlobalCarousel`,
-      inputs: { In_StartingObjectId: objectId },
-      preload: { CarouselItemIds: idsOf(list, BookmarkCategory.OneSchoolGlobal2) },
-    };
+  switch (objectType) {
+    case BookmarkCategory.Interchange:
+      return {
+        path: `/${APP_ID}/Locality_Details`,
+        inputs: {
+          LocalityId: longIntegerText(notes_InterchangeId_ExtractId(objectId).InterchangeLocalityId),
+          TagsList_SelectedTag: LocalityMenu.Interchange,
+        },
+      };
+    case BookmarkCategory.Member:
+      return {
+        path: `/${APP_ID}/Household_Relations`,
+        inputs: { HouseholdId: longIntegerText(objectId2), MemberId: longIntegerText(objectId) },
+      };
+    case BookmarkCategory.OneSchoolGlobal2:
+      return {
+        path: `/${APP_ID}/OneSchoolGlobalCarousel`,
+        inputs: { In_StartingObjectId: longIntegerText(objectId) },
+        preload: { CarouselItemIds: idsOf(list, BookmarkCategory.OneSchoolGlobal2) },
+      };
+    case BookmarkCategory.SupperMeeting:
+      return { path: `/${APP_ID}/SupperMeeting_Details`, inputs: { In_SubdivsionId: longIntegerText(objectId) } };
+    case BookmarkCategory.Household:
+      return {
+        path: `/${APP_ID}/HouseholdCarousel`,
+        inputs: { In_StartingHouseholdId: longIntegerText(objectId) },
+        preload: {
+          CarouselHouseholdItem: idsOf(list, BookmarkCategory.Household).map((household) => ({ Household: household })),
+        },
+      };
+    default:
+      return null;
   }
-  if (objectType === BookmarkCategory.SupperMeeting) {
-    return { path: `/${APP_ID}/SupperMeeting_Details`, inputs: { In_SubdivsionId: objectId } };
-  }
-  if (objectType === BookmarkCategory.Household) {
-    return {
-      path: `/${APP_ID}/HouseholdCarousel`,
-      inputs: { In_StartingHouseholdId: objectId },
-      preload: {
-        CarouselHouseholdItem: idsOf(list, BookmarkCategory.Household).map((household) => ({ Household: household })),
-      },
-    };
-  }
-  return null;
 }

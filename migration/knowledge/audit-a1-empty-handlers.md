@@ -9,7 +9,7 @@ original". HomeFeed.mvc.js:708-723 navigates to Search. This was fixed before th
    - `() => undefined`, `() => {}` and `noop`.
    - Handler props set to `undefined`.
    - Comments that say a handler is empty, not ported, not wired or never raised.
-2. Scan every compiled view in `capture/survey-UBTConnect.json` → `sources` statically. Each
+2. Scan every compiled view in `migration/survey/survey-UBTConnect.json` → `sources` statically. Each
    `React.createElement(<child>.mvc$view, { events: { <name>$Action } })` is a binding (821 parent → child bindings with events).
    Compare each binding with the JSX of the React parent (the event props that the parent passes to the child component).
    For every binding that the React app does not pass, or passes as a no-op, read the compiled handler and its action flow.
@@ -18,7 +18,7 @@ original". HomeFeed.mvc.js:708-723 navigates to Search. This was fixed before th
    When the parent binds the event, the parent's handler replaces the default.
    So the declaration is NOT evidence that the click does nothing.
 
-Paths: `SB` = the route's `migration/screens/<S>/analysis/sources/pretty/<file>.mvc.js` (or `analysis/sources/` for
+Paths: `SB` = the route's `migration/sources/pretty/<file>.mvc.js` (or `migration/sources/` for
 ViewDocuments).
 
 ## Fixed (behaviour added)

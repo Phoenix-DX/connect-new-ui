@@ -1,7 +1,7 @@
 # UBTConnect_Utils.CW_CTA_PopUps.SharePopup
 
 - Kind: shared; build screens using it: FeedItemDetail, HomeFeed, HouseholdCarousel, HouseholdDetails, Locality_Details, MessageDetail, OneSchoolGlobalDetails, Profile, SupperMeeting_Carousel, SupperMeeting_Details
-- Compiled source: `migration/screens/HomeFeed/analysis/sources/pretty/UBTConnect_Utils.CW_CTA_PopUps.SharePopup.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect_Utils.CW_CTA_PopUps.SharePopup.mvc.js`
 - Child blocks: UBTConnect_Utils.CW_CTA_PopUps.ContactPopup (queue: UBTConnect_Utils.CW_CTA_PopUps.ContactPopup)
 
 ## Inputs

@@ -11,8 +11,14 @@ export interface NotificationsListBreakpointsProps {
   breakpoints: NotificationBreakpoint[];
   isLoading?: boolean;
   uiNotificationItemList: NotificationItem[];
-  /** Event NotificationDetail(MessageInstanceId, IsRead) of NotificationsList (NotificationsListBreakpoints.mvc.js:238). */
-  onNotificationDetail?: (messageInstanceId: string, isRead: boolean) => void;
+  /** Event NotificationDetail(MessageInstanceId, IsRead, MessageTemplateId, HardwareId) of NotificationsList
+      (NotificationsListBreakpoints.mvc.js:238; the two last inputs since the live TST code of 2026-11-05). */
+  onNotificationDetail?: (
+    messageInstanceId: string,
+    isRead: boolean,
+    messageTemplateId: string,
+    hardwareId: string,
+  ) => void;
   /** Event UpdateReadCount(AddToCount, IsDelete, IsRead). */
   onUpdateReadCount?: (addToCount: boolean, isDelete: boolean, isRead: boolean) => void;
 }

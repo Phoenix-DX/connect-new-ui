@@ -19,8 +19,9 @@ __pycache__/
 *.tsbuildinfo
 # personal Claude Code permissions
 .claude/settings.local.json
-# privacy review sheets of the UI Flows dashboard screenshots (local only, not published)
+# privacy review sheets of the UI Flows dashboard screenshots (local only, not published) and the built site (rebuild with build_dashboard.py)
 migration/flows-dashboard/site-review/
+migration/flows-dashboard/site/
 # masked DOM of journey runs (local only, large)
 migration/journeys/runs/*/dom/
 migration/journeys/runs/*/debug-*
@@ -39,6 +40,8 @@ app/docs/refactor/graph.json
 # clarify-screens: DEV model dump from the MCP (reference only, large)
 migration/clarify/.dump/
 # live TST copies of the survey drift check (2026-10-28): large, not committed (user, 2026-10-28); the survey of
-# 2026-10-13 stays committed as capture/survey-UBTConnect-2026-10-13.json
-capture/survey-UBTConnect.json
-capture/runtime-sources-live-*/
+# 2026-10-13 stays committed as migration/survey/survey-UBTConnect-2026-10-13.json
+migration/survey/survey-UBTConnect.json
+
+# route-check pipeline: MCP (DEV) cache
+migration/route-check/.cache/

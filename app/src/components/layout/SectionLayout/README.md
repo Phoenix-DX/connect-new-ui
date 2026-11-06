@@ -2,7 +2,7 @@
 
 OutSystems: `UBTConnectLibrary.Layouts.SubLayout_Section` · pack
 `migration/blocks/UBTConnectLibrary.Layouts.SubLayout_Section.md` · compiled source
-`migration/screens/ContactUsDetails/analysis/sources/pretty/UBTConnectLibrary.Layouts.SubLayout_Section.mvc.js`
+`migration/sources/pretty/UBTConnectLibrary.Layouts.SubLayout_Section.mvc.js`
 
 | Input           | Type            | Prop              | Default                  |
 | --------------- | --------------- | ----------------- | ------------------------ |

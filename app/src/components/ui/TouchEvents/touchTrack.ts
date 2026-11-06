@@ -1,5 +1,5 @@
 /* TouchTrack, the provider of OutSystems UI TouchEvents: `scripts/OutSystemsUI_2_23.TouchTrack.js` (copy in
-   migration/runtime-sources/, line numbers below), ported 1:1. `createTouchTrack()` is `new TouchTrack()` (the
+   migration/sources/runtime/, line numbers below), ported 1:1. `createTouchTrack()` is `new TouchTrack()` (the
    constructor returns this object). */
 
 /** callbackStart(X, Y) (:60). */

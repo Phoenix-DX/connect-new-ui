@@ -43,10 +43,10 @@ with `export PATH=$HOME/.nvm/versions/node/v24.21.0/bin:$PATH &&`.
 3. Change only what the step asks. When the change needs more than about 40 files in a `change` step, stop with
    status `question` and give the reason.
 4. Do not change the behavior of the app. When the step needs a behavior change, stop with status `question`.
-5. In a `move` step, only file paths and import lines change in code files. Use the codemod
-   `migration/tools/refactor/move.ts` when it exists. Do not update imports by hand in a move step after P0-3.
+5. In a `move` step, only file paths and import lines change in code files. Update every import
+   of the moved files with a script, not by hand (the codemod `move.ts` of the refactor is in git history).
 6. Do not use `sed -i` or other in-place shell edits. Use the Edit tool or a script that you keep in
-   `migration/tools/refactor/`.
+   `tools/refactor/`.
 7. Do not change `app/src/api/openapi.yaml`, the fixtures in `app/src/mocks/`, or `app/public/UBTConnect/css/`.
 8. Do not delete a test. Move the test with its code. When a merge makes a test obsolete, write the replacement test
    in the same change.

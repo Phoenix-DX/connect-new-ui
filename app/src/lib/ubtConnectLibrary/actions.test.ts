@@ -170,7 +170,7 @@ describe('onApplicationReady_BottomBarSlider (UBTConnectLibrary.controller.js:78
   });
 });
 
-/* SetScrollShadow (ScrollEvent.shadowScroll, migration/runtime-sources/UBTConnectLibrary.ScrollAnimations.js:151-205):
+/* SetScrollShadow (ScrollEvent.shadowScroll, migration/sources/runtime/UBTConnectLibrary.ScrollAnimations.js:151-205):
    the first evaluation runs once, 200 ms after the layout calls it (SA:187-190), not at the first frame; after it, only
    a scroll evaluates again. So a page that is taller than the screen at 200 ms (the loading cards) and shorter later
    (the empty state) keeps the footer shadow, as on TST (drift WP9, Notes default). */

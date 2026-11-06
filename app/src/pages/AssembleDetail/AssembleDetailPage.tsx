@@ -1,7 +1,12 @@
+import type { ReactNode } from 'react';
 import { useSearchParams } from 'react-router';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { ShareSheetContainer } from '@/containers/ShareSheet';
+import { NoteListActionsContainer } from '@/containers/NoteListActions';
+import { ItemCard_ActionBar } from '@/components/note/ItemCardActions';
+import { NotesSheet } from '@/components/note/NotesSheet';
+import { NoteCategory2 } from '@/lib/ubtConnect/staticEntities';
 import { useFlagOn } from '@/platform/flags/flags';
 import { getPreloadObject, setPreloadObject, useOsNavigate, useViewState } from '@/platform/navigation';
 import { getNameAndSurname_ByFullName } from '@/lib/ubtConnect/actions';
@@ -10,6 +15,7 @@ import { AssembleEventDetail } from './components/AssembleEventDetail';
 import { FocusScrollAnchorOnBack } from './components/FocusScrollAnchorOnBack';
 import { CURRENT_ITEM_POSITION } from './hooks/assembleDetailState';
 import { useAssembleDetail } from './hooks/useAssembleDetail';
+import { useAssembleNotes } from './hooks/useAssembleNotes';
 import type { AssembleEventContactEvents } from './hooks/useAssembleEventContact';
 import type { AttendeeSubdivisionEvents, AttendeeSubdivisionFlags } from './hooks/useAttendeeSubdivision';
 import { readAssembleDetailInputs, type AssembleDetailInputs } from './inputs';
@@ -28,10 +34,11 @@ const SCOPE = 'b2';
 type AssembleDetailScreenEvents = AssembleEventContactEvents & AttendeeSubdivisionEvents;
 
 /** @origin UBTConnect.Legacy_AssembleFlow.AssembleDetail
-    Inputs EventId, SeriesId, Start (DateTime) and AssembleEventTypeTile. CommonUI_InsideLayout, then
-    ScreenBlock_AssembleDetail (AssembleDetailView, flows in useAssembleDetail) with BottomBarMenu in its BottomBar, and
-    a household ShareSheet whose IsShareOpen is never set to True (only Handler_CloseShareSheet writes it). The block
-    restarts when EventId, SeriesId or Start changes. The flags are read here. Handlers of the block events:
+    Inputs EventId, SeriesId, Start (DateTime) and AssembleEventTypeTile. CommonUI_InsideLayout ($b1), then
+    ScreenBlock_AssembleDetail ($b2; AssembleDetailView, flows in useAssembleDetail) with the MeetingNotes ($b3, $b4)
+    and BottomBarMenu ($b5) in its placeholders, a household ShareSheet ($b6) whose IsShareOpen is never set to True
+    (only Handler_CloseShareSheet writes it) and the NotesSheet ($b7) (instance ids: the capture of 2026-11-06). The
+    block restarts when EventId, SeriesId or Start changes. The flags are read here. Handlers of the block events:
     - NavigateTo_Household → HouseholdDetails(HouseholdId);
     - NavigateTo_HouseholdCarousel: GetHasCarouselEnabled (flag C2EnableCarousel) and a preloaded id list (AssignFromObject)
       with the household → SetPreloadObject(CarouselHouseholdItem of every id) and
@@ -53,6 +60,33 @@ export default function AssembleDetail() {
   };
   const [isShareOpen, setIsShareOpen] = useViewState('IsShareOpen', false);
   const [shareableObjectId] = useViewState('ShareableObjectId', '');
+  // GetAssembleNotes (fetched at start) and IsAddNote, with the note handlers of the screen (route-actions gap 8).
+  const notes = useAssembleNotes({ inputs, isShareOpen, shareableObjectId });
+  /* The MeetingNotes placeholder of ScreenBlock_AssembleDetail (AssembleDetail.mvc.js:312-412, rendered as
+     `b2-MeetingNotes`): NoteListActions ($b3) in preview with the notes of the meeting, then a `margin-top-xs`
+     container (:384) with ItemCard_ActionBar ($b4) with Add note (ActionBarOptions: ShowAddNote, IsAddNoteEnabled).
+     Show all and Add note open the notes sheet (OpenNoteSheet). */
+  const meetingNotes = (
+    <div id={`${SCOPE}-MeetingNotes`}>
+      <NoteListActionsContainer
+        id="$b3"
+        inShowPreviewOnly
+        notes={notes.notes}
+        inItemId={inputs.EventId}
+        inNoteCategoryId={NoteCategory2.AssembleEvent}
+        onOnShowAllNotesRequested={notes.openNoteSheet}
+        onOnSaveEditNote={notes.onNotesChanged}
+        onOnNoteDeleted={notes.onNoteDeleted}
+      />
+      <div className="margin-top-xs" data-container="">
+        <ItemCard_ActionBar
+          id="$b4"
+          actionBarOptions={{ showUnbookmark: false, showAddNote: true, showShare: false }}
+          onEventAddNote={notes.openNoteSheet}
+        />
+      </div>
+    </div>
+  );
 
   const navigateToHousehold = (householdId: string) => {
     navigate('/UBTConnect/HouseholdDetails', { HouseholdId: householdId });
@@ -65,6 +99,7 @@ export default function AssembleDetail() {
         key={`${inputs.EventId}-${inputs.SeriesId}-${inputs.Start}`}
         inputs={inputs}
         flags={flags}
+        meetingNotes={meetingNotes}
         events={{
           onNavigateToHousehold: navigateToHousehold,
           onNavigateToHouseholdCarousel: (_itemPosition, selectedHouseholdId) => {
@@ -101,13 +136,23 @@ export default function AssembleDetail() {
         }}
       />
       <ShareSheetContainer
-        id="$b4"
+        id="$b6"
         inShareObjectTypeId={SHARE_OBJECT_HOUSEHOLD}
         inIsOpen={isShareOpen}
         inShareableObjectId={shareableObjectId}
         onEventClosedShareSheet={() => {
           setIsShareOpen(false);
         }}
+      />
+      <NotesSheet
+        id="$b7"
+        inIsOpen={notes.isAddNote}
+        inNotes={notes.notes}
+        inItemId={inputs.EventId}
+        inNoteCategoryId={NoteCategory2.AssembleEvent}
+        onOnNotesChanged={notes.onNotesChanged}
+        onOnNoteDeleted={notes.onNoteDeleted}
+        onOnNoteSheetClosed={notes.onNoteSheetClosed}
       />
     </>
   );
@@ -119,10 +164,12 @@ export default function AssembleDetail() {
 function AssembleDetailBlock({
   inputs,
   flags,
+  meetingNotes,
   events,
 }: {
   inputs: AssembleDetailInputs;
   flags: AttendeeSubdivisionFlags;
+  meetingNotes: ReactNode;
   events: AssembleDetailScreenEvents;
 }) {
   const { state, onUpdateTitle } = useAssembleDetail(BLOCK_ID, inputs.AssembleEventTypeTile);
@@ -135,6 +182,7 @@ function AssembleDetailBlock({
           id={`${SCOPE}-$b4`}
           inputs={{ SeriesId: inputs.SeriesId, EventId: inputs.EventId, Start: inputs.Start }}
           flags={flags}
+          meetingNotes={meetingNotes}
           onUpdateTitle={onUpdateTitle}
           {...events}
         />
@@ -146,7 +194,7 @@ function AssembleDetailBlock({
           scrollAnchorId={String(state.preloadedFromListIndex)}
         />
       }
-      bottomBar={<BottomBar id="$b3" />}
+      bottomBar={<BottomBar id="$b5" />}
     />
   );
 }

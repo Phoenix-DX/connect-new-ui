@@ -2,7 +2,7 @@
 
 OutSystems: `Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Template` · pack
 `migration/blocks/Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Template.md` · compiled source
-`migration/screens/EventDetail/analysis/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Template.mvc.js`
+`migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Template.mvc.js`
 
 | Input              | Type | Prop                | Default |
 | ------------------ | ---- | ------------------- | ------- |

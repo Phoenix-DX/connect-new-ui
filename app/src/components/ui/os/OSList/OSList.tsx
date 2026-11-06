@@ -2,7 +2,7 @@ import { Fragment, useEffect, useRef, type Key, type ReactNode } from 'react';
 
 /* OutSystems platform List widget (OSWidgets.List), P-LIST reference implementation. Markup from the captures (README
    → Captures); behaviour from OutSystemsReactWidgets.js, cited as `W:<n>` in the readable copy
-   migration/screens/MessageList/analysis/sources/pretty/OutSystemsReactWidgets.js. ListItem / ListItemAction:
+   migration/sources/pretty/OutSystemsReactWidgets.js. ListItem / ListItemAction:
    OSListItem.tsx. */
 
 type ScrollHost = HTMLElement | Window;

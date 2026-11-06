@@ -2,7 +2,7 @@
 
 OutSystems: `UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_CustomChoice` · pack
 `migration/blocks/UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_CustomChoice.md` (compiled source
-`migration/screens/Menu/analysis/sources/pretty/UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_CustomChoice.mvc.js`)
+`migration/sources/pretty/UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_CustomChoice.mvc.js`)
 
 | Input                  | Type    | Prop                     | Default |
 | ---------------------- | ------- | ------------------------ | ------- |

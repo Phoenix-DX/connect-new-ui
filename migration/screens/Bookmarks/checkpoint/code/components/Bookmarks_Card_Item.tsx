@@ -18,8 +18,8 @@ interface Bookmarks_Card_ItemProps {
 }
 
 /** One bookmark card (Bookmarks_Card_Item.mvc.js view :160-430): the card with notes (`containers/CardWithNotes`:
-    ItemCard_WithNotes with the source header, title, subtitle and total notes of Bookmark_Card_Content, the note
-    preview and the NotesSheet), with ItemCardActions (Unmark and Add Note; ObjectId = ItemId, BookmarkType =
+    ItemCard_WithNotes with the source header, title, subtitle and total notes of Bookmark_Card_Content and the channel
+    of the card item (live TST of 2026-11-05: no event time row), the note preview and the NotesSheet), with ItemCardActions (Unmark and Add Note; ObjectId = ItemId, BookmarkType =
     BookmarkCategoryId). The block keeps its own copy of the card (`useCardNotes`): Handler_OnNotesChanged replaces its
     notes, Handler_OnNoteDeleted (:519-571) removes the note and sets Total to the length of the list. The note category
     of the note blocks is the bookmark category (the identifiers of both static entities are the same texts). */

@@ -1,7 +1,7 @@
 # OutSystemsUI_2_23.Interaction.InputWithIcon
 
 - Kind: osui; build screens using it: BookmarksByGroup, BrowseCountries, BrowseDirectory, CountryDetails, FeedItemDetail, HomeFeed, HouseholdCarousel, HouseholdDetails, LegacyShareObject, Locality_Details, MessageList, Notes, Notifications, OneSchoolGlobalDetails, Profile, Search, SupperMeeting_Carousel, SupperMeeting_Details, Updates_SingleList
-- Compiled source: `migration/screens/BrowseCountries/analysis/sources/pretty/OutSystemsUI_2_23.Interaction.InputWithIcon.mvc.js`
+- Compiled source: `migration/sources/pretty/OutSystemsUI_2_23.Interaction.InputWithIcon.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

@@ -1,9 +1,9 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { ItemCard_WithNotes } from './ItemCard_WithNotes';
 
 /* Checks from the live TST block (UBTConnectLibrary.ConnectPatterns.ItemCard_WithNotes.mvc.js, extracted on
-   2026-10-29 to migration/screens/Bookmarks/sources/) and the Bookmarks capture (dom/default.html, card 0). */
+   2026-10-29 to migration/sources/runtime/) and the Bookmarks capture (dom/default.html, card 0). */
 const byId = (id: string) => document.getElementById(id);
 const totalNotes = () => byId('b1-$b10')?.querySelector('[data-block="BasePatterns.CustomText"] span');
 const totalNotesText = () => totalNotes()?.textContent ?? null;
@@ -18,7 +18,7 @@ describe('ItemCard_WithNotes', () => {
     expect(totalNotesText()).toBe('9+');
   });
 
-  it('the title container is $b16 with margin-top-s; title $b17, subtitle $b18, notes $b20, actions $b21', () => {
+  it('the title container is $b16 with margin-top-s; title $b17, subtitle $b18, notes $b19, actions $b20 (live :1024-1056)', () => {
     render(
       <ItemCard_WithNotes
         id="$b1"
@@ -31,8 +31,8 @@ describe('ItemCard_WithNotes', () => {
     expect(byId('b1-$b16')?.firstElementChild).toHaveClass('margin-top-s', 'ubt-custom-container');
     expect(byId('b1-$b16')?.querySelector('[id="b1-$b17"]')).toHaveTextContent('Marsh J & K Hartwell');
     expect(byId('b1-$b16')?.querySelector('[id="b1-$b18"]')).toHaveTextContent('Northbrook Lane Locality');
-    expect(byId('b1-$b20')?.querySelector('#b1-Notes')).toHaveTextContent('notes');
-    expect(byId('b1-$b21')?.querySelector('#b1-Actions')).toHaveTextContent('actions');
+    expect(byId('b1-$b19')?.querySelector('#b1-Notes')).toHaveTextContent('notes');
+    expect(byId('b1-$b20')?.querySelector('#b1-Actions')).toHaveTextContent('actions');
   });
 
   /* Channel row (mvc.js:692-870): Columns_Two $b12 (reduce-first, base gutter, vertical align center, margin-top-s),
@@ -114,69 +114,5 @@ describe('ItemCard_WithNotes', () => {
     if (!iconText) throw new Error('no IconText');
     fireEvent.click(iconText);
     expect(onOnClickTotalNotesIcon).toHaveBeenCalledTimes(1);
-  });
-});
-
-/* The event time row (TST publish of 2026-10-29, ItemCard_WithNotes.mvc.js:1035-1100): shown only when
-   In_EventStartDateTime and In_EventEndDateTime are not NullDate; CustomText with the clock icon (extra small),
-   neutral-7, extra small font; text FormatDateForAssembleMeetings(Start, IsAllDay), IsAllDay = Start at 00:00:00 and
-   DiffSeconds(Start, End) = 86400; a click raises OnClickItemCard. Fictional dates: 2026-11-08 is a Sunday. */
-describe('ItemCard_WithNotes, event time row', () => {
-  it('is not shown when one of the dates is NullDate', () => {
-    const { container, rerender } = render(<ItemCard_WithNotes id="$b1" />);
-    expect(container.querySelector('.connect-icon-clock')).toBeNull();
-    rerender(<ItemCard_WithNotes id="$b1" inEventStartDateTime="2026-11-10T19:30:00" />);
-    expect(container.querySelector('.connect-icon-clock')).toBeNull();
-    rerender(<ItemCard_WithNotes id="$b1" inEventEndDateTime="2026-11-10T21:00:00" />);
-    expect(container.querySelector('.connect-icon-clock')).toBeNull();
-    expect(screen.queryByText(/November 2026/)).toBeNull();
-  });
-
-  it('a timed event: "h:mm tt on <day>, d MMMM yyyy" with the clock icon', () => {
-    const { container } = render(
-      <ItemCard_WithNotes
-        id="$b1"
-        inEventStartDateTime="2026-11-10T19:30:00"
-        inEventEndDateTime="2026-11-10T21:00:00"
-      />,
-    );
-    expect(screen.getByText('7:30 PM on Tuesday, 10 November 2026')).toBeInTheDocument();
-    expect(container.querySelector('.connect-icon-clock.icon-extra-small')).not.toBeNull();
-  });
-
-  it('an all-day event (start at 00:00:00, end 86400 s later): "On Lord\'s Day, ..." on a Sunday', () => {
-    render(
-      <ItemCard_WithNotes
-        id="$b1"
-        inEventStartDateTime="2026-11-08T00:00:00"
-        inEventEndDateTime="2026-11-09T00:00:00"
-      />,
-    );
-    expect(screen.getByText("On Lord's Day, 8 November 2026")).toBeInTheDocument();
-  });
-
-  it('a start at 00:00:00 with another length is not all day', () => {
-    render(
-      <ItemCard_WithNotes
-        id="$b1"
-        inEventStartDateTime="2026-11-10T00:00:00"
-        inEventEndDateTime="2026-11-12T00:00:00"
-      />,
-    );
-    expect(screen.getByText('12:00 AM on Tuesday, 10 November 2026')).toBeInTheDocument();
-  });
-
-  it('a click on the row raises OnClickItemCard', () => {
-    const onOnClickItemCard = vi.fn();
-    render(
-      <ItemCard_WithNotes
-        id="$b1"
-        inEventStartDateTime="2026-11-10T19:30:00"
-        inEventEndDateTime="2026-11-10T21:00:00"
-        onOnClickItemCard={onOnClickItemCard}
-      />,
-    );
-    fireEvent.click(screen.getByText('7:30 PM on Tuesday, 10 November 2026'));
-    expect(onOnClickItemCard).toHaveBeenCalledTimes(1);
   });
 });

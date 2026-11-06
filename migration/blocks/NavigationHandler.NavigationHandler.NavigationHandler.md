@@ -1,7 +1,7 @@
 # NavigationHandler.NavigationHandler.NavigationHandler
 
 - Kind: shared; build screens using it: ContactByEmailMember, ContactByEmailOneSchoolGlobal, ContactUsDetails, Profile, Splash
-- Compiled source: `migration/screens/Splash/analysis/sources/pretty/NavigationHandler.NavigationHandler.NavigationHandler.mvc.js`
+- Compiled source: `migration/sources/pretty/NavigationHandler.NavigationHandler.NavigationHandler.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

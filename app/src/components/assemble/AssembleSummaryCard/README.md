@@ -2,7 +2,7 @@
 
 OutSystems: `Connect2_Assemble_MUI.Assemble.AssembleSummaryCard` · pack
 `migration/blocks/Connect2_Assemble_MUI.Assemble.AssembleSummaryCard.md` · source
-`migration/blocks/sources/Connect2_Assemble_MUI.Assemble.AssembleSummaryCard.mvc.js`
+`migration/sources/survey/Connect2_Assemble_MUI.Assemble.AssembleSummaryCard.mvc.js`
 
 | Input                | Type                    | Prop                   | Default |
 | -------------------- | ----------------------- | ---------------------- | ------- |

@@ -1,7 +1,7 @@
 # UBTConnectLibrary.ConnectPatterns.DynamicTextArea
 
 - Kind: shared; build screens using it: ContactByEmailMember, ContactByEmailOneSchoolGlobal
-- Compiled source: `migration/screens/ContactByEmailOneSchoolGlobal/analysis/sources/pretty/UBTConnectLibrary.ConnectPatterns.DynamicTextArea.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnectLibrary.ConnectPatterns.DynamicTextArea.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

@@ -1,7 +1,7 @@
 # UBTConnectLibrary.ConnectPatterns.AddNote
 
 - Kind: shared; build screens using it: HouseholdCarousel, HouseholdDetails, Household_Relations, Locality_Details, Notes, OneSchoolGlobalDetails, Profile, SupperMeeting_Carousel, SupperMeeting_Details
-- Compiled source: `migration/blocks/sources/UBTConnectLibrary.ConnectPatterns.AddNote.mvc.js`
+- Compiled source: `migration/sources/survey/UBTConnectLibrary.ConnectPatterns.AddNote.mvc@9fb7f442.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.Columns_Two, UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.ConnectPatterns.CircleButton_IconPrimary, UBTConnectLibrary.ConnectPatterns.InputCounter (queue: UBTConnectLibrary.ConnectPatterns.InputCounter)
 
 ## Inputs

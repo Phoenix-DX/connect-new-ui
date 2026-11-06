@@ -1,7 +1,7 @@
 # OutSystemsUI_2_23.Content.Accordion
 
 - Kind: osui; build screens using it: HostSurvey
-- Compiled source: `migration/screens/HostSurvey/analysis/sources/pretty/OutSystemsUI_2_23.Content.Accordion.mvc.js`
+- Compiled source: `migration/sources/pretty/OutSystemsUI_2_23.Content.Accordion.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

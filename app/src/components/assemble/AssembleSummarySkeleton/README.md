@@ -2,7 +2,7 @@
 
 OutSystems: `Connect2_Assemble_MUI.AssembleSkeleton.AssembleSummaryDetailHeader_Skeleton` · pack
 `migration/blocks/Connect2_Assemble_MUI.AssembleSkeleton.AssembleSummaryDetailHeader_Skeleton.md` · source
-`migration/blocks/sources/Connect2_Assemble_MUI.AssembleSkeleton.AssembleSummaryDetailHeader_Skeleton.mvc.js`
+`migration/sources/survey/Connect2_Assemble_MUI.AssembleSkeleton.AssembleSummaryDetailHeader_Skeleton.mvc.js`
 
 No inputs, events or actions. Placeholders `Placeholder_Image`, `Placeholder_SubtitleTop`, `Placeholder_Title`,
 `Placeholder_Subtitle_Bottom`, `Placeholder_Right`, `Placeholder_Location` → `placeholderImage`,

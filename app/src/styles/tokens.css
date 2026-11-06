@@ -1,6 +1,6 @@
 /* Design tokens (plan v2 §2.8, R3): the --color-*, --space-* and --font-* variables of the original OutSystems CSS
    (public/UBTConnect/css), named by the UBTConnectLibrary static entities UBT_Color, UBT_Size, UBT_FontSize and
-   UBT_FontWeight (migration/knowledge/static-entities-tst.json). Written by migration/tools/refactor/p8-1-tokens.py.
+   UBT_FontWeight (migration/knowledge/static-entities-tst.json). Written by the refactor step P8-1 script p8-1-tokens.py (deleted 2026-11-05, in git history).
    Each token is a variable that the original CSS sets on :root with this value on every route screen, so the tokens
    change no rendering. They are in the app layer (styles/layers.css): while the original files load, a token wins
    over the legacy :root value, and tokens.test.ts keeps the two equal. New CSS uses the tokens.

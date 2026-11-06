@@ -8,6 +8,8 @@ const item = (id: string, isRead: boolean): NotificationItem => ({
   dateTimeCreated: '2026-10-20T09:00:00',
   isRead,
   profileIconURL: '',
+  messageTemplateId: '0',
+  createdByMemberId: '0',
 });
 const range = { range: 'Last 7 Days', from: '2026-10-19', to: '2026-10-25' };
 const bp = (sectionName: string, badgeCount: number): NotificationBreakpoint => ({

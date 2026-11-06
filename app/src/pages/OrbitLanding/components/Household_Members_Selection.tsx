@@ -15,7 +15,7 @@ export interface Household_Members_SelectionProps {
   onClickedHouseholdMember: (memberList: OrbitHouseholdMember[], memberId: string) => void;
 }
 
-/** The household member bar of the Orbit landing (HM = analysis/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks
+/** The household member bar of the Orbit landing (HM = migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks
     .Household_Members_Selection.mvc.js; view :132-224, controller :248-500). One container per member with its first
     name; the selected one gets the inline underline style (:204-207).
     - OnInitialize (:327-362): IsItemFound False; InitialPosition = index of the selected member in the list the block

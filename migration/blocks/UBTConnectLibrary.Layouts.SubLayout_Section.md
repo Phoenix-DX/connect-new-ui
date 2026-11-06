@@ -1,7 +1,7 @@
 # UBTConnectLibrary.Layouts.SubLayout_Section
 
 - Kind: shared; build screens using it: ContactUsDetails, HouseholdCarousel, HouseholdDetails, Household_Relations, Locality_Details, Profile, SupperMeeting_Carousel, SupperMeeting_Details
-- Compiled source: `migration/screens/ContactUsDetails/analysis/sources/pretty/UBTConnectLibrary.Layouts.SubLayout_Section.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnectLibrary.Layouts.SubLayout_Section.mvc.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.CustomContainer (queue: -)
 
 ## Inputs

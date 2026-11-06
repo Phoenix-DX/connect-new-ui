@@ -19,7 +19,6 @@ Names and categories only; no values were captured. Inferences are marked as suc
 - `permissions-policy`: **missing**
 
 ## Third-party hosts contacted
-- `js.monitor.azure.com`
 - `www.googleapis.com`
 
 ## Client storage by category

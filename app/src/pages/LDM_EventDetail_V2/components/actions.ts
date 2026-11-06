@@ -2,8 +2,8 @@ import type { DetailGuestItem } from '@/api/event';
 import { Connect_Subscription_Plan } from '@/lib/ubtConnect/staticEntities';
 import { getUserInformation } from '@/platform/session/userInfo';
 
-/* Client actions and JavaScript nodes the route's blocks call (runtime-sources/Connect2_OrbitMobile_MUI.controller.js
-   = C, analysis/sources/pretty/*.mvc.js). The ones LDM_MyEvents_V2 calls too are shared (CR-LDM_EventDetail_V2-1):
+/* Client actions and JavaScript nodes the route's blocks call (sources/runtime/Connect2_OrbitMobile_MUI.controller.js
+   = C, migration/sources/pretty/*.mvc.js). The ones LDM_MyEvents_V2 calls too are shared (CR-LDM_EventDetail_V2-1):
    flipHouseholdName (src/lib/legacyShared), getLocalityName, addAuditEvent_LDM and
    getCurrentTimeInMill (src/lib/orbit), generateScreenURL (src/shell/navigation). */
 

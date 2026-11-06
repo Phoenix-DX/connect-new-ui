@@ -1,5 +1,5 @@
 /* Connect_Geography_CS structures used by the shared blocks (Connect_Geography_CS.model.js, copy in
-   migration/contract/sources/raw/). Fields named as in OutSystems, all optional = OutSystems default. */
+   migration/sources/contract/). Fields named as in OutSystems, all optional = OutSystems default. */
 import type { StatisticsOptions } from '@/lib/ubtConnectLibrary/structures';
 
 /** UI_StatisticsTexts (model :86-121): the formatted counts of a country or locality, all Text. */

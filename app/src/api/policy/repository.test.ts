@@ -4,9 +4,9 @@ import { freshPage, recordBodies } from '@/test/testSupport';
 import { acceptPolicies, fetchPendingPolicies } from './repository';
 import type { PendingPoliciesInputs } from './types';
 
-/* The MSW mocks of the test setup: AcceptPendingPolicies/mocks.ts answers two fictional Connect policies (7001 and
-   7002) from an in-memory collection; ActionAcceptPolicies removes the accepted ids from it. The collection lives as
-   long as this test file, so the tests run in order: read, then accept. */
+/* The MSW mocks of the test setup: AcceptPendingPolicies/mocks.ts answers one fictional Connect policy (7001, as
+   captured on 2026-11-06) from an in-memory collection; ActionAcceptPolicies removes the accepted ids from it. The
+   collection lives as long as this test file, so the tests run in order: read, then accept. */
 // The Connect_Applications identifiers are the TST GUID texts (pages/AcceptPendingPolicies/staticEntities.ts).
 const inputs: PendingPoliciesInputs = {
   policyApplications: ['65d96f75-9f71-42aa-8447-fd622aa09e7e', 'd8997dfa-7ae3-4eb1-bb48-0a14e151034a'],
@@ -43,8 +43,7 @@ describe('policy repository', () => {
       },
     ]);
     expect(policies.map((p) => [p.id, p.applicationName, p.policyTypeName, p.isSelected])).toEqual([
-      ['7001', 'Connect', 'Terms and Conditions', false],
-      ['7002', 'Connect', 'Privacy Policy', false],
+      ['7001', 'Connect', 'Privacy Policy', false],
     ]);
     expect(policies[0]?.url).not.toBe('');
   });
@@ -78,6 +77,6 @@ describe('policy repository', () => {
       },
     ]);
     const rest = await fetchPendingPolicies(inputs, false);
-    expect(rest.map((p) => p.id)).toEqual(['7002']);
+    expect(rest.map((p) => p.id)).toEqual([]);
   });
 });

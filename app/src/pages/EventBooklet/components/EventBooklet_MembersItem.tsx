@@ -4,7 +4,7 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { getFormattedDate_Weekday } from '@/lib/orbit/actions';
 
-/* EventBooklet_MembersItem (MI = analysis/sources/Connect2_OrbitMobile_MUI.Orbit_Blocks.EventBooklet_MembersItem.mvc.js,
+/* EventBooklet_MembersItem (MI = migration/sources/Connect2_OrbitMobile_MUI.Orbit_Blocks.EventBooklet_MembersItem.mvc.js,
    view :122-286). No capture: markup from the compiled view. */
 
 export interface EventBooklet_MembersItemProps {

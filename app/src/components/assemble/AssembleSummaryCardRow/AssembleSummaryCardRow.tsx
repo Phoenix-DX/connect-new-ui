@@ -14,7 +14,7 @@ export interface AssembleSummaryCardRowProps {
   placeholderIconRight?: ReactNode;
 }
 
-/** One summary row (p:migration/blocks/sources/Connect2_Assemble_MUI.Assemble.AssembleSummary_Card_Row.mvc.js; view
+/** One summary row (p:migration/sources/survey/Connect2_Assemble_MUI.Assemble.AssembleSummary_Card_Row.mvc.js; view
     :107-168): container `assemble-summary-row text-neutral-7` with three inline placeholders (left icon, content,
     right icon). No inputs, no actions. */
 export function AssembleSummaryCardRow({
