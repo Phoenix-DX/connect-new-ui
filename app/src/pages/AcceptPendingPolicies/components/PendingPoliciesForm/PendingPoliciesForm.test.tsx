@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import * as stories from './PendingPoliciesForm.stories';
 
-const { Default, AllSelected, OnePolicy, Loading, AcceptedAll } = composeStories(stories);
+const { Default, TwoPolicies, AllSelected, Loading, AcceptedAll } = composeStories(stories);
 
 const block = (root: Element) => root.querySelector('[data-block="App_Policies.Policy_Custom_AcceptPendingPolicies"]');
 const rowCheckboxes = (root: Element) =>
@@ -13,18 +13,25 @@ const agreeToAll = (root: Element) =>
 const continueButton = () => screen.getByRole('button', { name: 'Continue' });
 
 describe('Policy_Custom_AcceptPendingPolicies (PendingPoliciesForm)', () => {
-  it('shows one row per pending policy and "I agree to all" for two or more', () => {
+  it('shows one row per pending policy, as captured, and no "I agree to all" for one policy', () => {
     const { container } = render(<Default />);
     expect(block(container)).not.toBeNull();
-    expect(screen.getAllByText('I agree to the Connect -')).toHaveLength(2);
-    expect(screen.getByText('Terms and Conditions')).toBeInTheDocument();
-    expect(screen.getByText('Privacy Policy')).toBeInTheDocument();
-    expect(screen.getByText('I agree to all')).toBeInTheDocument();
-    expect(container.querySelectorAll('.ubt-policies--list .connect-icon-checkbox_outline_blank')).toHaveLength(2);
+    expect(screen.getAllByText('I have read and agree to the')).toHaveLength(1);
+    expect(screen.getByText('Connect Privacy Policy')).toHaveClass('font-size-s', 'font-semi-bold', 'text-underline');
+    expect(container.querySelector('.ubt-policies--list.text-align-left')).not.toBeNull();
+    expect(container.querySelector('.ubt-policies--list .display-flex.margin-y-xl.margin-right-l')).not.toBeNull();
+    expect(container.querySelectorAll('.ubt-policies--list .connect-icon-checkbox_outline_blank')).toHaveLength(1);
+    expect(screen.queryByText(/I agree to/)).toBeNull();
+    expect(continueButton()).toBeDisabled();
   });
 
-  it('disables Continue until every policy is selected', () => {
-    render(<Default />);
+  it('shows "I agree to all Terms & Conditions and the Privacy Policy" for two or more policies', () => {
+    const { container } = render(<TwoPolicies />);
+    expect(screen.getAllByText('I have read and agree to the')).toHaveLength(2);
+    expect(screen.getByText('Connect Terms and Conditions')).toBeInTheDocument();
+    expect(screen.getByText('I agree to')).toBeInTheDocument();
+    expect(screen.getByText('all Terms & Conditions and the Privacy Policy')).toHaveClass('text-underline');
+    expect(container.querySelectorAll('.ubt-policies--list .connect-icon-checkbox_outline_blank')).toHaveLength(2);
     expect(continueButton()).toBeDisabled();
   });
 
@@ -33,12 +40,6 @@ describe('Policy_Custom_AcceptPendingPolicies (PendingPoliciesForm)', () => {
     expect(container.querySelectorAll('.ubt-policies--list .connect-icon-checkbox')).toHaveLength(2);
     expect(container.querySelector('.ubt-policies--agree-to-all .connect-icon-checkbox')).not.toBeNull();
     expect(continueButton()).toBeEnabled();
-  });
-
-  it('has no "I agree to all" for one policy', () => {
-    render(<OnePolicy />);
-    expect(screen.getAllByText('I agree to the Connect -')).toHaveLength(1);
-    expect(screen.queryByText('I agree to all')).toBeNull();
   });
 
   it('shows the list-updating container while the first fetch runs', () => {
@@ -54,14 +55,11 @@ describe('Policy_Custom_AcceptPendingPolicies (PendingPoliciesForm)', () => {
     expect(screen.queryByRole('button', { name: 'Continue' })).toBeNull();
   });
 
-  it('raises the row checkbox with its index, "I agree to all", the policy link and Continue', () => {
+  it('raises the row checkbox with its index, "I agree to all" and Continue; the policy name has no click', () => {
     const onToggle = vi.fn();
     const onToggleAll = vi.fn();
-    const onPolicyClick = vi.fn();
     const onContinue = vi.fn();
-    const { container, rerender } = render(
-      <Default onToggle={onToggle} onToggleAll={onToggleAll} onPolicyClick={onPolicyClick} />,
-    );
+    const { container, rerender } = render(<TwoPolicies onToggle={onToggle} onToggleAll={onToggleAll} />);
     const second = rowCheckboxes(container)[1];
     if (!second) throw new Error('no row checkbox');
     fireEvent.click(second);
@@ -70,8 +68,7 @@ describe('Policy_Custom_AcceptPendingPolicies (PendingPoliciesForm)', () => {
     if (!all) throw new Error('no "I agree to all" checkbox');
     fireEvent.click(all);
     expect(onToggleAll).toHaveBeenCalledTimes(1);
-    fireEvent.click(screen.getByText('Privacy Policy'));
-    expect(onPolicyClick).toHaveBeenCalledWith(expect.objectContaining({ id: '7002' }));
+    expect(screen.getByText('Connect Privacy Policy').onclick).toBeNull();
 
     rerender(<AllSelected onContinue={onContinue} />);
     fireEvent.click(continueButton());

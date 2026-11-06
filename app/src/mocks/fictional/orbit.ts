@@ -60,14 +60,17 @@ export const ORBIT_EVENT_TYPES = {
 } as const;
 
 /** OrbitMilestoneType records (Sync_Info_GetMain OrbitStaticEntities.OrbitMilestoneTypes; Ids = static entity
-    Connect2_OrbitMobile_MUI.orbitMilestoneType). Captured on EventDetail: accommodation purple with the accommodation
-    icon, named "Accommodation" (dom/default.html:131-133, :250-262: "Accommodation:" of the host allocation row);
-    meeting green with the video-meeting icon (:300-312); helper with the person-wave icon (:173-176). Only the
-    accommodation type can be hosted (the host allocation lists the CanHost milestones, GetHostAllocation, and the
-    capture lists only accommodation rows). Type "Host" of accommodation-host and helper-host: the " (Host)" of the
-    MilestoneHeader captures (components/orbit/MilestoneHeader/__captures__/v1.html, v2.html: Name + " ("
-    + LocalOrbitMilestoneType.Type + ")"); meeting-host's Type is not captured. Order is fictional. The shell's app
-    start syncs these records into LocalOrbitMilestoneType (shell/mocks.ts Sync_Info_GetMain, CR-EventDetail-1). */
+    Connect2_OrbitMobile_MUI.orbitMilestoneType). Captured on EventDetail (dom/default.html of 2026-11-06):
+    accommodation purple with the accommodation icon, named "Accommodation" (:217-219, :321-325: "Accommodation:" of
+    the host allocation rows); meal with the meal icon (:249-251, the third host allocation row, "Meal:" of 5 letters);
+    meeting green with the video-meeting icon (:374-376); helper with the person-wave icon (:263-266). The
+    accommodation and the meal types can be hosted (the host allocation lists the CanHost milestones, GetHostAllocation,
+    and the capture lists two accommodation rows and a meal row). The meal's colour is not captured (the meal is not on
+    the captured day): orange, as the MilestoneCard fixtures. Type "Host" of accommodation-host and helper-host: the
+    " (Host)" of the MilestoneHeader captures (components/orbit/MilestoneHeader/__captures__/v1.html, v2.html: Name
+    + " (" + LocalOrbitMilestoneType.Type + ")"); meal-host's and meeting-host's Type are not captured. Order is
+    fictional (the accommodation rows come before the meal row, as captured). The shell's app start syncs these records
+    into LocalOrbitMilestoneType (shell/mocks.ts Sync_Info_GetMain, CR-EventDetail-1). */
 export const ORBIT_MILESTONE_TYPES = {
   accommodationHost: {
     Id: 'accommodation-host',
@@ -77,6 +80,17 @@ export const ORBIT_MILESTONE_TYPES = {
     Name: 'Accommodation',
     MainColorVar: 'purple',
     MainIcon: 'orbit-icon-accommodation',
+    CanHost: true,
+    IsTransportMilestone: false,
+  },
+  mealHost: {
+    Id: 'meal-host',
+    Is_Active: true,
+    Order: 2,
+    Type: 'Host',
+    Name: 'Meal',
+    MainColorVar: 'orange',
+    MainIcon: 'orbit-icon-meal',
     CanHost: true,
     IsTransportMilestone: false,
   },
@@ -283,7 +297,8 @@ export interface OrbitRoom {
    names, localities and ages are fictional with the captured lengths where they were masked (title 2-4 letters, names
    and surnames of the captured word lengths, locality "San Nicolás" 3 7 and "Necochea" 8 + " - AR"). Ages as captured
    (43 43, two one-digit, 20 17, 40 42, 12, 10); a dot on the parents' photos (DisplayDot, householder or spouse); a
-   phone icon for the adults and the two eldest daughters only; no guest arrangements, no Orbit admin. */
+   phone icon for the adults and the two eldest daughters only; a "Guest Arrangements" link on every card (capture of
+   2026-11-06, dom/default.html:183-190; MilestoneDetail/mocks.ts roomRow), no Orbit admin. */
 const HERRERA: OrbitGuestHousehold = {
   HouseholderId: '880101',
   Surname: 'Herrera',
@@ -558,10 +573,16 @@ const utcAt = (from: Date, days: number, hh: number, mm = 0): string => {
   return d.toISOString().replace('.000Z', 'Z');
 };
 
-/** The first Friday at least a week after `today` (the meetings run Friday to Sunday). */
+/** The first Friday the 23rd at least a week after `today` (the meetings run Friday to Sunday). The conference is on
+    the 23rd, 24th and 25th: the captured day selectors of EventDetail show "23", "24", "25" (dom/default.html:294-336,
+    labels that the parity compares), and the landing keeps the event upcoming (ScreenBlock_OrbitLanding.mvc.js ctrl
+    :1796-1806). */
 const meetingsFriday = (today: Date): Date => {
   const base = new Date(today.getTime() + 7 * DAY_MS);
-  return new Date(base.getTime() + ((5 - base.getUTCDay() + 7) % 7) * DAY_MS);
+  for (let months = 0; ; months += 1) {
+    const day = new Date(Date.UTC(base.getUTCFullYear(), base.getUTCMonth() + months, 23));
+    if (day.getTime() >= base.getTime() && day.getUTCDay() === 5) return day;
+  }
 };
 
 /** The Orbit events of the mock world, built for `today` (default: now). */
@@ -587,9 +608,11 @@ export function orbitEvents(today: Date = new Date()): OrbitEvent[] {
       EventLocation: hall,
       SequenceNo: '1',
       attendees: [MOCK_USER_ID, memberId('Julián'), memberId('Fiorella')],
-      /* The household hosts two visiting families for the Friday and Saturday nights; each conference day
-         has its meeting (EventDetail dom/default.html:216-317: day 1 = Accommodation then a meeting at 11:59 PM,
-         no location; the host allocation lists two accommodation nights, :129-170). */
+      /* The household hosts two visiting families for the Friday and Saturday nights and cooks the Saturday midday
+         meal; each conference day has its meeting (EventDetail dom/default.html of 2026-11-06, :339-452: day 1 =
+         Accommodation with the hosts, the home and "View Guests", then a meeting with a masked title of the word
+         lengths 7 1 2 4 6, "Seat: Row 3" and no location at 6:00 PM; the host allocation lists two accommodation
+         nights and a meal, :215-262). */
       milestones: [
         {
           MilestoneId: '7301-1',
@@ -607,12 +630,12 @@ export function orbitEvents(today: Date = new Date()): OrbitEvent[] {
         {
           MilestoneId: '7301-2',
           OrbitMilestoneTypeId: ORBIT_MILESTONE_TYPES.meetingHost.Id,
-          Title: 'Meeting',
-          MilestoneStartDateTime: utcAt(fri, 0, 23, 59),
-          MilestoneEndDateTime: utcAt(fri, 1, 1),
+          Title: 'Meeting - at Main Centre',
+          MilestoneStartDateTime: utcAt(fri, 0, 18),
+          MilestoneEndDateTime: utcAt(fri, 0, 20),
           Location: '',
-          Seating: '',
-          Description: 'Online welcome meeting for the hosting households.',
+          Seating: 'Seat: Row 3',
+          Description: 'Opening meeting of the conference for the hosting households.',
           SequenceNo: '2',
         },
         {
@@ -650,10 +673,27 @@ export function orbitEvents(today: Date = new Date()): OrbitEvent[] {
           Description: '',
           SequenceNo: '1',
         },
+        /* The Saturday midday meal the household cooks for its guests: the meal row of the host allocation
+           (EventDetail dom/default.html:245-260, "Meal: d Mon yyyy" of the word lengths 5 2 3 4). The day is not
+           captured (the itinerary of day 2 was not opened): fictional. */
+        {
+          MilestoneId: '7301-6',
+          OrbitMilestoneTypeId: ORBIT_MILESTONE_TYPES.mealHost.Id,
+          Title: 'Midday Meal',
+          MilestoneStartDateTime: utcAt(fri, 1, 12, 30),
+          MilestoneEndDateTime: utcAt(fri, 1, 14),
+          Location: home,
+          Seating: '',
+          Description: 'The household cooks the midday meal for the two families it hosts.',
+          host: hosts,
+          SequenceNo: '3',
+        },
       ],
+      /* IsBookletVisible: the captured "View Event Guest List" row (EventDetail dom/default.html:92-100, shown when
+         the flag mobileOrbitEventBooklet is on and the event's booklet is visible). */
       detail: {
         TypeOfEvent: 'Weekend Conference Program',
-        IsBookletVisible: false,
+        IsBookletVisible: true,
         SetUpMeals: false,
         Meals: false,
         Accommodations: true,
@@ -674,6 +714,29 @@ export function orbitEvents(today: Date = new Date()): OrbitEvent[] {
 /** The events a member is assigned to. */
 export const orbitEventsOfMember = (id: string, today: Date = new Date()): OrbitEvent[] =>
   orbitEvents(today).filter((e) => e.attendees.includes(id));
+
+/* ---- Ids of the TST account of the captures of 2026-11-06 ----
+   Since 2026-11-06 the capture plan opens the Orbit routes with the ids of the TST account global#1 (route_discovery
+   sweep; migration/capture-plan.json: MilestoneDetail In_EventId=2085, In_MilestoneId=GMP15700, In_HostId=52768;
+   EventDetail In_EventId=2085, In_MemberId=75835), and
+   the parity opens the React route with the same query (the first value of a repeated query parameter wins). The
+   fictional world keeps its own ids (event 7301, its first accommodation night 7301-1, host Julián Vitale); a route's
+   mocks translate a TST id with orbitWorldId() before they look the world up and answer with the id the request sent
+   (MilestoneDetail/mocks.ts). Add the ids of another capture here, never a second copy of the event. */
+const ORBIT_TST_ID_ALIASES: Readonly<Record<string, string>> = {
+  /** Event 2085 of TST: the conference of the world. */
+  '2085': '7301',
+  /** Milestone GMP15700 of TST: the accommodation-host milestone of the first night (six rooms, ten guests). */
+  GMP15700: '7301-1',
+  /** Host 52768 of TST: the hosting householder of the world. */
+  '52768': memberId('Julián'),
+  /** Member 75835 of TST (In_MemberId of the EventDetail capture, a member of the hosting household): the signed-in
+      mock user, a member of the hosting household of the world. */
+  '75835': MOCK_USER_ID,
+};
+
+/** The id of the fictional world for an id of the capture plan (an id of the world stays as it is). */
+export const orbitWorldId = (id: string): string => ORBIT_TST_ID_ALIASES[id] ?? id;
 
 /* ---- Host survey (HostSurvey route, DataActionGetHostSurvey of ScreenBlock_HostSurvey) ---- */
 

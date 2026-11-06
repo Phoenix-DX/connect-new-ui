@@ -1149,3 +1149,7 @@ date,screen,phase,tokens,agent,tier,note
 2026-11-05,Household_Relations,build,124131,opus,,bookmark button build
 2026-11-05,Locality_Details,fix,142587,opus,,legacy bookmark store removal proposal (row 26)
 2026-11-05,Locality_Details,build,140224,opus,,legacy bookmark store removal build (row 26)
+2026-11-06,LDM_EventDetail_V2,fix,98000,sub-ldm,,real capture 2026-11-06: id aliases in the fictional LDM world; parity clean
+2026-11-06,MilestoneDetail,fix,137000,sub-milestone,,"real capture 2026-11-06: TST id aliases, HasGuestArrangements; parity clean"
+2026-11-06,AcceptPendingPolicies,fix,150000,sub-policies,,"first real capture 2026-11-06 (pending policy account): heading, row structure, seed 1 policy; parity clean (offline spinner phase)"
+2026-11-06,EventDetail,fix,230000,sub-eventdetail,,"real capture 2026-11-06: TST id aliases, event 7301 booklet/meeting/meal milestone, Friday-23 rule; parity clean"

@@ -2,7 +2,7 @@
 // with the saved session (read-only guard on with the plan's allow list; PIN unlock / sign-in by site_auth.cjs), click
 // the nth element matching a selector, and record the URL the app navigates to. Only id / code parameter values are
 // kept; text parameters are recorded by name (the capture plan uses fictional text, Q3 a). No response body is read.
-// Usage (project root): node tools/tst/route_discovery.cjs <jobs.json> [--out migration/capture-ids.json] [--storage .auth/state.json]
+// Usage (project root): node tools/tst/route_discovery.cjs <jobs.json> [--out migration/capture-ids.json] [--storage .auth/state.json] [--headed]
 //   jobs: [ { "from": "/UBTConnect/MessageList", "click": "<css selector>", "nth": 0, "expect": "MessageDetail" } ]
 //   "keepText": true keeps text values too: only for app labels (menu subjects, place names), never personal data.
 //   "pre": ["<selector>", …] clicked first (e.g. a tab); "dump": true lists the block names on the target (names only);
@@ -50,7 +50,7 @@ async function settle(page, profile, secrets, url) {
   const secrets = auth.loadSecrets(profile, {});
   if (!profile || !secrets) throw new Error('site profile or secrets missing (see site_auth.cjs)');
   const results = fs.existsSync(out) ? JSON.parse(fs.readFileSync(out, 'utf8')) : {};
-  const browser = await chromium.launch();
+  const browser = await chromium.launch({ headless: !process.argv.includes('--headed') });   // --headed: a visible browser (lazy lists that never load headless)
   try {
     const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: 'block', storageState: STORAGE });
     await guard.installGuard(ctx, allow);

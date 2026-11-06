@@ -733,6 +733,7 @@ describe('event repository: the answers', () => {
       '7301-3',
       '7301-4',
       '7301-5',
+      '7301-6',
     ]);
     expect(result.response.Milestones[0]?.MilestoneInfo?.MilestoneStartDateTime).toBe('');
     expect(result.dateFilters.DayFilterList.map((d) => d.IsSelected)).toEqual([true, false, false]);

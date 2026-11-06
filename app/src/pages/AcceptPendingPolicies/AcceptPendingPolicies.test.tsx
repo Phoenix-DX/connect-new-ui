@@ -4,8 +4,7 @@ import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter'
 import { freshPage, recordBodies } from '@/test/testSupport';
 import AcceptPendingPolicies from './AcceptPendingPoliciesPage';
 
-/* The page against the MSW mocks of the route (two fictional Connect policies). The route was not captured (Q7 c):
-   the test checks what the compiled code shows. */
+/* The page against the MSW mocks of the route (one fictional Connect policy, as captured on 2026-11-06). */
 const PATH = '/UBTConnect/AcceptPendingPolicies';
 
 beforeEach(() => {
@@ -17,21 +16,22 @@ afterEach(() => {
 });
 
 describe('AcceptPendingPolicies page', () => {
-  it('shows the header and the pending policies in the sign-in layout, Continue disabled', async () => {
+  it('shows the header and the pending policy in the sign-in layout, Continue disabled', async () => {
     const { container } = renderRoutes({ [PATH]: <AcceptPendingPolicies /> }, PATH);
     expect(screen.getByText('Welcome to')).toBeInTheDocument();
     expect(screen.getByText('Connect and Directory')).toBeInTheDocument();
-    expect(screen.getByText('Terms and Conditions & Privacy Policy')).toBeInTheDocument();
+    expect(screen.getByText('Terms & Conditions and Privacy Policy Agreement')).toBeInTheDocument();
     expect(container.querySelector('.ubt-layout--login.ubt-policies')).not.toBeNull();
-    expect(await screen.findByText('Terms and Conditions')).toBeInTheDocument();
-    expect(screen.getByText('Privacy Policy')).toBeInTheDocument();
+    expect(await screen.findByText('Connect Privacy Policy')).toBeInTheDocument();
+    expect(screen.getByText('I have read and agree to the')).toBeInTheDocument();
+    expect(screen.queryByText(/I agree to/)).toBeNull();
     expect(screen.getByRole('button', { name: 'Continue' })).toBeDisabled();
   });
 
   it('sends the three applications and the id of the layout main container', async () => {
     const bodies = recordBodies('UBTConnect/Policy_Custom_AcceptPendingPolicies/DataActionGetPendingPolicies');
     renderRoutes({ [PATH]: <AcceptPendingPolicies /> }, PATH);
-    await screen.findByText('Terms and Conditions');
+    await screen.findByText('Connect Privacy Policy');
     await waitFor(() => {
       expect(bodies).toContainEqual(expect.objectContaining({ ContentBlockId: 'b1-Main' }));
     });

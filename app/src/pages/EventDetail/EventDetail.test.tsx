@@ -14,8 +14,8 @@ import EventDetail from './EventDetailPage';
 
 /* The page with the flows of its block (useEventDetail) in the app frame on a memory router, with the MSW mocks of the
    route: the fictional event 7301 of the shared Orbit world, hosted by the mock user's household (three days, the
-   host survey Confirmed, no documents, no QR code, no booklet). The local survey statuses and milestone types are
-   synced first, as the app start does. */
+   host survey Confirmed, two accommodation nights and a meal in the host allocation, the booklet visible, no
+   documents, no QR code). The local survey statuses and milestone types are synced first, as the app start does. */
 const PATH = '/UBTConnect/EventDetail';
 const HOME = '/UBTConnect/HomeFeed';
 const QUERY = `?In_MemberId=${MOCK_USER_ID}&In_EventId=7301&In_EventName=Weekend%20Conferences`;
@@ -96,6 +96,34 @@ describe('EventDetail page', () => {
       `${BLOCK}/DataActionGet_HasDocuments`,
       `${BLOCK}/DataActionGet_HasQRCode`,
     ]);
+  });
+
+  it('answers the ids of the capture plan (event 2085, member 75835) with the conference of the world, as captured', async () => {
+    // The capture of 2026-11-06 (dom/default.html): the booklet row, three host allocation rows (accommodation,
+    // accommodation, meal) and the helper, days 23 / 24 / 25, day 1 = Accommodation with View Guests, then the meeting
+    // with "Seat: Row 3" at 6:00 PM, and the footer.
+    await open('?In_MemberId=75835&In_EventId=2085&In_EventName=Weekend%20Conferences&In_FromNotification=False');
+    await loaded();
+    expect(byId('b1-$b14')).toBeNull();
+    expect(document.body.textContent).toContain('View Event Guest List');
+    expect(byId('b1-$b4')?.textContent).toContain('Confirmed');
+    const allocationIcons = [...document.querySelectorAll('#b1-\\$b7 .host-allocation-list-item-left i')].map(
+      (i) => i.className,
+    );
+    expect(allocationIcons).toEqual([
+      'icon orbit-icon-accommodation',
+      'icon orbit-icon-accommodation',
+      'icon orbit-icon-meal',
+      'icon orbit-icon-person-wave',
+    ]);
+    expect(days().map((d) => d.textContent)).toEqual(['23', '24', '25']);
+    expect(days()[0]?.className).toContain('event-date-selector-selected');
+    const [accommodation, meeting] = cards();
+    expect(accommodation?.querySelector('.orbit-card-title-cont')?.textContent).toBe('Accommodation');
+    expect(accommodation?.querySelector('button')?.textContent).toBe('View Guests');
+    expect(meeting?.querySelector('.orbit-icon-seat')?.parentElement?.textContent).toBe('Seat: Row 3');
+    expect(meeting?.querySelector('.orbit-icon-date-time')?.parentElement?.textContent).toBe('6:00 PM');
+    expect(meeting?.querySelector('.orbit-icon-location')).toBeNull();
   });
 
   it('sends the inputs and the block variables to Get_EventDetails', async () => {

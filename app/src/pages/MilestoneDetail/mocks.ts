@@ -5,6 +5,7 @@ import { contractHandler } from '@/mocks/contract';
 import {
   ORBIT_HOSTED_ROOMS,
   orbitEvents,
+  orbitWorldId,
   type OrbitGuestHousehold,
   type OrbitMilestone,
   type OrbitRoom,
@@ -101,7 +102,13 @@ const roomRow = (room: OrbitRoom): RoomWire => ({
       Locality: h.Locality,
       CountryCode: h.CountryCode,
       DisplayDot: true,
-      MemberInformation: wireList(h.members.filter((m) => memberIds.includes(m.MemberId)).map((m) => memberRow(h, m))),
+      /* Every guest of the hosted accommodation has guest arrangements: the capture of 2026-11-06 shows the "Guest
+         Arrangements" link under each of the ten member cards (dom/default.html:183-190 and the nine others). */
+      MemberInformation: wireList(
+        h.members
+          .filter((m) => memberIds.includes(m.MemberId))
+          .map((m) => memberRow(h, m, { HasGuestArrangements: true })),
+      ),
     })),
   ),
 });
@@ -117,14 +124,16 @@ const emptyResponse = (): AccommodationResponseWire => ({
   Rooms: { List: [] },
 });
 
-/** The hosted accommodation milestone In_MilestoneId of event In_EventId. */
+/** The hosted accommodation milestone In_MilestoneId of event In_EventId. The ids of the capture plan (event 2085,
+    milestone GMP15700 of the capture of 2026-11-06) are translated to the world's (ORBIT_TST_ID_ALIASES). */
 function findMilestone(
   eventId: string,
   milestoneId: string,
 ): { title: string; location: string; m: OrbitMilestone } | undefined {
-  const e = orbitEvents().find((x) => x.EventId === eventId);
+  const e = orbitEvents().find((x) => x.EventId === orbitWorldId(eventId));
+  const worldMilestoneId = orbitWorldId(milestoneId);
   const m = e?.milestones.find(
-    (x) => x.MilestoneId === milestoneId && x.OrbitMilestoneTypeId === OrbitMilestoneType.AccommodationHost,
+    (x) => x.MilestoneId === worldMilestoneId && x.OrbitMilestoneTypeId === OrbitMilestoneType.AccommodationHost,
   );
   return e && m ? { title: e.Title, location: e.EventLocation, m } : undefined;
 }
@@ -163,9 +172,10 @@ export function accommodationHostAnswer(eventId: string, milestoneId: string): G
     (the household's allocation, "0" without one) and Status.Success; an unknown milestone answers Success False (the
     wrapper's "This Event could not be found" layout). ErrorMessage is not shown by the block: "". */
 export function gmpMilestoneHostAnswer(milestoneId: string) {
+  const worldMilestoneId = orbitWorldId(milestoneId);
   const m = orbitEvents()
     .flatMap((e) => e.milestones)
-    .find((x) => x.MilestoneId === milestoneId);
+    .find((x) => x.MilestoneId === worldMilestoneId);
   return {
     Response: {
       MilestoneType: m?.OrbitMilestoneTypeId ?? '',
@@ -302,7 +312,7 @@ const specialNeedsRows = () => {
 
 /** The event of the request, the meal or night date (Saturday of the event at hh:mm UTC) and HasData. */
 function blockEvent(eventId: string, hh: number, mm: number) {
-  const e = orbitEvents().find((x) => x.EventId === eventId);
+  const e = orbitEvents().find((x) => x.EventId === orbitWorldId(eventId));
   const start = new Date(e?.StartEventDate ?? '1900-01-01T00:00:00Z');
   const day = new Date(Date.UTC(start.getUTCFullYear(), start.getUTCMonth(), start.getUTCDate() + 1, hh, mm));
   const accommodationHost = e?.milestones.find((m) => m.host !== undefined)?.host;
@@ -447,7 +457,7 @@ export function accommodationHelperAnswer(eventId: string, milestoneId: string) 
 
 /** DataActionGetCaptions of a block: the Fernández caption for an event of the world, else Success False. */
 const captionsAnswer = (eventId: string) => {
-  const found = orbitEvents().some((e) => e.EventId === eventId);
+  const found = orbitEvents().some((e) => e.EventId === orbitWorldId(eventId));
   return { Success: found, PhotobookCaption: found ? FERNANDEZ_CAPTION : '' };
 };
 

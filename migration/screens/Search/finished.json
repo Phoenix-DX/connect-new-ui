@@ -1,14 +1,18 @@
 {
- "finishedAt": "2026-10-16T06:57:28",
+ "finishedAt": "2026-11-06T13:35:31",
  "files": {
-  "src/screens/Search/api.ts": "fa14397acfe31f56",
-  "src/screens/Search/components/ScreenBlock_Search.tsx": "eafd590f5f8440c4",
-  "src/screens/Search/components/SearchResult_Section.tsx": "f01709ab77ab3d46",
-  "src/screens/Search/components/Search_BirthdayOptions.tsx": "afea1281a9964606",
-  "src/screens/Search/components/actions.ts": "c61f95e28b18b685",
-  "src/screens/Search/components/staticEntities.ts": "f53a7417669dab64",
-  "src/screens/Search/index.tsx": "c4e53dde1a522357",
-  "src/screens/Search/mocks.ts": "d1a63f19e1aaf21c",
-  "src/screens/Search/types.ts": "61e89dec6f7d61f8"
+  "src/pages/Search/Search.test.tsx": "bf65601302d93dcc",
+  "src/pages/Search/SearchPage.tsx": "78f9286dd89e3c09",
+  "src/pages/Search/components/RecentSearch.test.tsx": "4d7822e206a67d20",
+  "src/pages/Search/components/RecentSearch.tsx": "8081f1c8498e900d",
+  "src/pages/Search/components/SearchResult_Section.tsx": "cc4490d3b3c38481",
+  "src/pages/Search/components/SearchView.tsx": "36c5cc31a2568688",
+  "src/pages/Search/components/Search_BirthdayOptions.tsx": "c524b364cbc0b835",
+  "src/pages/Search/components/staticEntities.ts": "1a81f51add68bb70",
+  "src/pages/Search/hooks/searchState.test.ts": "908aa31652804cd8",
+  "src/pages/Search/hooks/searchState.ts": "3c88091b8fac7114",
+  "src/pages/Search/hooks/useSearch.test.tsx": "727d2e9329f0950c",
+  "src/pages/Search/hooks/useSearch.ts": "a2b3da80d7b2c774",
+  "src/pages/Search/mocks.ts": "e12472de9d3d194c"
  }
 }

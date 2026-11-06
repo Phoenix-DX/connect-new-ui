@@ -378,9 +378,9 @@
     "pseudo"
    ],
    "states": "^(loading|offline)$",
-   "pathRegex": "\\[Reusable\\.Spinner\\] > div\\.list-updating-cont > div\\.list-updating$",
+   "pathRegex": "(\\[Reusable\\.Spinner\\] > div\\.list-updating-cont|\\[App_Policies\\.Policy_Custom_AcceptPendingPolicies\\]) > div\\.list-updating$",
    "reason": "The Spinner's ::before rotates (CSS animation); the capture and the build are photographed at different rotation phases (transform matrix differs). Auto-accepted recommendation in the user's 3h window 2026-10-15 (MessageDetail Q3).",
-   "evidence": "migration/screens/MessageDetail/parity/loading.json, offline.json; MessageDetail Q3"
+   "evidence": "migration/screens/MessageDetail/parity/loading.json, offline.json; MessageDetail Q3; AcceptPendingPolicies parity/offline.json 2026-11-06 (the block renders its own div.list-updating)"
   },
   {
    "id": "CAPTURE-DATA-DRIFT-MESSAGELIST-READ",

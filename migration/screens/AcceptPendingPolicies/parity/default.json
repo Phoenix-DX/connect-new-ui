@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "aab6d47f08e76fd63c58",
+ "fingerprint": "493107eb9293c351ac74",
  "options": {
   "text": true,
   "style": true,
@@ -27,15 +27,8 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-06T05:11:20.235Z",
- "counts": {
-  "layout": 19,
-  "text": 1,
-  "position": 3,
-  "class": 3,
-  "style": 5,
-  "structure": 6
- },
+ "at": "2026-11-06T06:56:22.670Z",
+ "counts": {},
  "exemptionsUsed": {
   "ignoreSubtrees": 3
  },
@@ -66,191 +59,5 @@
   "expected": 9,
   "actual": 9
  },
- "diffs": [
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content",
-   "detail": "390×374 → 390×496"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div.ubt-policies--header",
-   "detail": "358×198 → 358×174"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div.ubt-policies--header > div#$b4.OSBlockWidget[BasePatterns.CustomContainer]",
-   "detail": "358×112 → 358×88"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div.ubt-policies--header > div#$b4.OSBlockWidget[BasePatterns.CustomContainer] > div#b4-Content.padding-bottom-m.padding-top-base.ubt-custom-container",
-   "detail": "358×112 → 358×88"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div.ubt-policies--header > div#$b4.OSBlockWidget[BasePatterns.CustomContainer] > div#b4-Content.padding-bottom-m.padding-top-base.ubt-custom-container > div#$b6.OSBlockWidget[BasePatterns.CustomText]",
-   "detail": "358×48 → 358×24"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div.ubt-policies--header > div#$b4.OSBlockWidget[BasePatterns.CustomContainer] > div#b4-Content.padding-bottom-m.padding-top-base.ubt-custom-container > div#$b6.OSBlockWidget[BasePatterns.CustomText] > div.font-semi-bold.font-size-base.text-neutral-0",
-   "detail": "358×48 → 358×24"
-  },
-  {
-   "kind": "text",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div.ubt-policies--header > div#$b4.OSBlockWidget[BasePatterns.CustomContainer] > div#b4-Content.padding-bottom-m.padding-top-base.ubt-custom-container > div#$b6.OSBlockWidget[BasePatterns.CustomText] > div.font-semi-bold.font-size-base.text-neutral-0 > span",
-   "detail": "\"Terms & Conditions and Privacy Policy Agreement\" → \"Terms and Conditions & Privacy Policy\""
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div.ubt-policies--header > div#$b4.OSBlockWidget[BasePatterns.CustomContainer] > div#b4-Content.padding-bottom-m.padding-top-base.ubt-custom-container > div#$b6.OSBlockWidget[BasePatterns.CustomText] > div.font-semi-bold.font-size-base.text-neutral-0 > span",
-   "detail": "294×42 → 290×18"
-  },
-  {
-   "kind": "position",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div#$b7.OSBlockWidget[App_Policies.Policy_Custom_AcceptPendingPolicies]",
-   "detail": "offset in parent 16,246 → 16,222"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div#$b7.OSBlockWidget[App_Policies.Policy_Custom_AcceptPendingPolicies]",
-   "detail": "358×128 → 358×274"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div#$b7.OSBlockWidget[App_Policies.Policy_Custom_AcceptPendingPolicies] > div#b7-$b1.OSBlockWidget[BasePatterns.Columns_Two]",
-   "detail": "358×128 → 358×274"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div#$b7.OSBlockWidget[App_Policies.Policy_Custom_AcceptPendingPolicies] > div#b7-$b1.OSBlockWidget[BasePatterns.Columns_Two] > div#b7-b1-$b1.OSBlockWidget[Adaptive.Columns2]",
-   "detail": "358×128 → 358×274"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div#$b7.OSBlockWidget[App_Policies.Policy_Custom_AcceptPendingPolicies] > div#b7-$b1.OSBlockWidget[BasePatterns.Columns_Two] > div#b7-b1-$b1.OSBlockWidget[Adaptive.Columns2] > div.columns.columns2.flex-direction-column",
-   "detail": "358×128 → 358×274"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div#$b7.OSBlockWidget[App_Policies.Policy_Custom_AcceptPendingPolicies] > div#b7-$b1.OSBlockWidget[BasePatterns.Columns_Two] > div#b7-b1-$b1.OSBlockWidget[Adaptive.Columns2] > div.columns.columns2.flex-direction-column > div#b7-b1-b1-Column1.columns-item",
-   "detail": "358×128 → 358×174"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div#$b7.OSBlockWidget[App_Policies.Policy_Custom_AcceptPendingPolicies] > div#b7-$b1.OSBlockWidget[BasePatterns.Columns_Two] > div#b7-b1-$b1.OSBlockWidget[Adaptive.Columns2] > div.columns.columns2.flex-direction-column > div#b7-b1-b1-Column1.columns-item > div#b7-b1-Left.ubt-columns--column.ubt-columns--left",
-   "detail": "358×128 → 358×174"
-  },
-  {
-   "kind": "class",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div#$b7.OSBlockWidget[App_Policies.Policy_Custom_AcceptPendingPolicies] > div#b7-$b1.OSBlockWidget[BasePatterns.Columns_Two] > div#b7-b1-$b1.OSBlockWidget[Adaptive.Columns2] > div.columns.columns2.flex-direction-column > div#b7-b1-b1-Column1.columns-item > div#b7-b1-Left.ubt-columns--column.ubt-columns--left > div.OSFillParent.list.list-group",
-   "detail": "missing .text-align-left"
-  },
-  {
-   "kind": "style",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div#$b7.OSBlockWidget[App_Policies.Policy_Custom_AcceptPendingPolicies] > div#b7-$b1.OSBlockWidget[BasePatterns.Columns_Two] > div#b7-b1-$b1.OSBlockWidget[Adaptive.Columns2] > div.columns.columns2.flex-direction-column > div#b7-b1-b1-Column1.columns-item > div#b7-b1-Left.ubt-columns--column.ubt-columns--left > div.OSFillParent.list.list-group",
-   "detail": "text-align left → center"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div#$b7.OSBlockWidget[App_Policies.Policy_Custom_AcceptPendingPolicies] > div#b7-$b1.OSBlockWidget[BasePatterns.Columns_Two] > div#b7-b1-$b1.OSBlockWidget[Adaptive.Columns2] > div.columns.columns2.flex-direction-column > div#b7-b1-b1-Column1.columns-item > div#b7-b1-Left.ubt-columns--column.ubt-columns--left > div.OSFillParent.list.list-group",
-   "detail": "358×128 → 358×174"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div#$b7.OSBlockWidget[App_Policies.Policy_Custom_AcceptPendingPolicies] > div#b7-$b1.OSBlockWidget[BasePatterns.Columns_Two] > div#b7-b1-$b1.OSBlockWidget[Adaptive.Columns2] > div.columns.columns2.flex-direction-column > div#b7-b1-b1-Column1.columns-item > div#b7-b1-Left.ubt-columns--column.ubt-columns--left > div.OSFillParent.list.list-group > div.display-flex.margin-y-xl",
-   "detail": "extra in build"
-  },
-  {
-   "kind": "class",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div#$b7.OSBlockWidget[App_Policies.Policy_Custom_AcceptPendingPolicies] > div#b7-$b1.OSBlockWidget[BasePatterns.Columns_Two] > div#b7-b1-$b1.OSBlockWidget[Adaptive.Columns2] > div.columns.columns2.flex-direction-column > div#b7-b1-b1-Column1.columns-item > div#b7-b1-Left.ubt-columns--column.ubt-columns--left > div.OSFillParent.list.list-group > div.display-flex.margin-right-l.margin-y-xl",
-   "detail": "missing .margin-right-l"
-  },
-  {
-   "kind": "style",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div#$b7.OSBlockWidget[App_Policies.Policy_Custom_AcceptPendingPolicies] > div#b7-$b1.OSBlockWidget[BasePatterns.Columns_Two] > div#b7-b1-$b1.OSBlockWidget[Adaptive.Columns2] > div.columns.columns2.flex-direction-column > div#b7-b1-b1-Column1.columns-item > div#b7-b1-Left.ubt-columns--column.ubt-columns--left > div.OSFillParent.list.list-group > div.display-flex.margin-right-l.margin-y-xl",
-   "detail": "margin-right 32px → 0px; text-align left → center"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div#$b7.OSBlockWidget[App_Policies.Policy_Custom_AcceptPendingPolicies] > div#b7-$b1.OSBlockWidget[BasePatterns.Columns_Two] > div#b7-b1-$b1.OSBlockWidget[Adaptive.Columns2] > div.columns.columns2.flex-direction-column > div#b7-b1-b1-Column1.columns-item > div#b7-b1-Left.ubt-columns--column.ubt-columns--left > div.OSFillParent.list.list-group > div.display-flex.margin-right-l.margin-y-xl",
-   "detail": "326×48 → 358×27"
-  },
-  {
-   "kind": "style",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div#$b7.OSBlockWidget[App_Policies.Policy_Custom_AcceptPendingPolicies] > div#b7-$b1.OSBlockWidget[BasePatterns.Columns_Two] > div#b7-b1-$b1.OSBlockWidget[Adaptive.Columns2] > div.columns.columns2.flex-direction-column > div#b7-b1-b1-Column1.columns-item > div#b7-b1-Left.ubt-columns--column.ubt-columns--left > div.OSFillParent.list.list-group > div.display-flex.margin-right-l.margin-y-xl > div#b7-l1-41_0-$b3.OSBlockWidget[ConnectPatterns.Icon]",
-   "detail": "text-align left → center"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div#$b7.OSBlockWidget[App_Policies.Policy_Custom_AcceptPendingPolicies] > div#b7-$b1.OSBlockWidget[BasePatterns.Columns_Two] > div#b7-b1-$b1.OSBlockWidget[Adaptive.Columns2] > div.columns.columns2.flex-direction-column > div#b7-b1-b1-Column1.columns-item > div#b7-b1-Left.ubt-columns--column.ubt-columns--left > div.OSFillParent.list.list-group > div.display-flex.margin-right-l.margin-y-xl > div#b7-l1-41_0-$b3.OSBlockWidget[ConnectPatterns.Icon]",
-   "detail": "24×48 → 24×27"
-  },
-  {
-   "kind": "style",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div#$b7.OSBlockWidget[App_Policies.Policy_Custom_AcceptPendingPolicies] > div#b7-$b1.OSBlockWidget[BasePatterns.Columns_Two] > div#b7-b1-$b1.OSBlockWidget[Adaptive.Columns2] > div.columns.columns2.flex-direction-column > div#b7-b1-b1-Column1.columns-item > div#b7-b1-Left.ubt-columns--column.ubt-columns--left > div.OSFillParent.list.list-group > div.display-flex.margin-right-l.margin-y-xl > div#b7-l1-41_0-$b3.OSBlockWidget[ConnectPatterns.Icon] > div.connect-icon-checkbox_outline_blank.text-neutral-0.ubt-icon",
-   "detail": "text-align left → center"
-  },
-  {
-   "kind": "class",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div#$b7.OSBlockWidget[App_Policies.Policy_Custom_AcceptPendingPolicies] > div#b7-$b1.OSBlockWidget[BasePatterns.Columns_Two] > div#b7-b1-$b1.OSBlockWidget[Adaptive.Columns2] > div.columns.columns2.flex-direction-column > div#b7-b1-b1-Column1.columns-item > div#b7-b1-Left.ubt-columns--column.ubt-columns--left > div.OSFillParent.list.list-group > div.display-flex.margin-right-l.margin-y-xl > div.margin-left-xs",
-   "detail": "extra .white-space-nowrap"
-  },
-  {
-   "kind": "style",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div#$b7.OSBlockWidget[App_Policies.Policy_Custom_AcceptPendingPolicies] > div#b7-$b1.OSBlockWidget[BasePatterns.Columns_Two] > div#b7-b1-$b1.OSBlockWidget[Adaptive.Columns2] > div.columns.columns2.flex-direction-column > div#b7-b1-b1-Column1.columns-item > div#b7-b1-Left.ubt-columns--column.ubt-columns--left > div.OSFillParent.list.list-group > div.display-flex.margin-right-l.margin-y-xl > div.margin-left-xs",
-   "detail": "text-align left → center; white-space normal → nowrap"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div#$b7.OSBlockWidget[App_Policies.Policy_Custom_AcceptPendingPolicies] > div#b7-$b1.OSBlockWidget[BasePatterns.Columns_Two] > div#b7-b1-$b1.OSBlockWidget[Adaptive.Columns2] > div.columns.columns2.flex-direction-column > div#b7-b1-b1-Column1.columns-item > div#b7-b1-Left.ubt-columns--column.ubt-columns--left > div.OSFillParent.list.list-group > div.display-flex.margin-right-l.margin-y-xl > div.margin-left-xs",
-   "detail": "298×48 → 305×27"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div#$b7.OSBlockWidget[App_Policies.Policy_Custom_AcceptPendingPolicies] > div#b7-$b1.OSBlockWidget[BasePatterns.Columns_Two] > div#b7-b1-$b1.OSBlockWidget[Adaptive.Columns2] > div.columns.columns2.flex-direction-column > div#b7-b1-b1-Column1.columns-item > div#b7-b1-Left.ubt-columns--column.ubt-columns--left > div.OSFillParent.list.list-group > div.display-flex.margin-right-l.margin-y-xl > div.margin-left-xs > span.font-regular.font-size-s",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div#$b7.OSBlockWidget[App_Policies.Policy_Custom_AcceptPendingPolicies] > div#b7-$b1.OSBlockWidget[BasePatterns.Columns_Two] > div#b7-b1-$b1.OSBlockWidget[Adaptive.Columns2] > div.columns.columns2.flex-direction-column > div#b7-b1-b1-Column1.columns-item > div#b7-b1-Left.ubt-columns--column.ubt-columns--left > div.OSFillParent.list.list-group > div.display-flex.margin-right-l.margin-y-xl > div.margin-left-xs > span.font-semi-bold.font-size-s.text-underline",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div#$b7.OSBlockWidget[App_Policies.Policy_Custom_AcceptPendingPolicies] > div#b7-$b1.OSBlockWidget[BasePatterns.Columns_Two] > div#b7-b1-$b1.OSBlockWidget[Adaptive.Columns2] > div.columns.columns2.flex-direction-column > div#b7-b1-b1-Column1.columns-item > div#b7-b1-Left.ubt-columns--column.ubt-columns--left > div.OSFillParent.list.list-group > div.display-flex.margin-right-l.margin-y-xl > div.margin-left-xs > div.OSBlockWidget[BasePatterns.CustomText]",
-   "detail": "extra in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div#$b7.OSBlockWidget[App_Policies.Policy_Custom_AcceptPendingPolicies] > div#b7-$b1.OSBlockWidget[BasePatterns.Columns_Two] > div#b7-b1-$b1.OSBlockWidget[Adaptive.Columns2] > div.columns.columns2.flex-direction-column > div#b7-b1-b1-Column1.columns-item > div#b7-b1-Left.ubt-columns--column.ubt-columns--left > div.OSFillParent.list.list-group > div.display-flex.margin-right-l.margin-y-xl > div.margin-left-xs > div.OSBlockWidget[BasePatterns.CustomText]",
-   "detail": "extra in build"
-  },
-  {
-   "kind": "position",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div#$b7.OSBlockWidget[App_Policies.Policy_Custom_AcceptPendingPolicies] > div#b7-$b1.OSBlockWidget[BasePatterns.Columns_Two] > div#b7-b1-$b1.OSBlockWidget[Adaptive.Columns2] > div.columns.columns2.flex-direction-column > div#b7-b1-b1-Column2.columns-item",
-   "detail": "offset in parent 0,128 → 0,174"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div#$b7.OSBlockWidget[App_Policies.Policy_Custom_AcceptPendingPolicies] > div#b7-$b1.OSBlockWidget[BasePatterns.Columns_Two] > div#b7-b1-$b1.OSBlockWidget[Adaptive.Columns2] > div.columns.columns2.flex-direction-column > div#b7-b1-b1-Column2.columns-item",
-   "detail": "358×0 → 358×100"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div#$b7.OSBlockWidget[App_Policies.Policy_Custom_AcceptPendingPolicies] > div#b7-$b1.OSBlockWidget[BasePatterns.Columns_Two] > div#b7-b1-$b1.OSBlockWidget[Adaptive.Columns2] > div.columns.columns2.flex-direction-column > div#b7-b1-b1-Column2.columns-item > div#b7-b1-Right.ubt-columns--column.ubt-columns--right",
-   "detail": "358×0 → 358×100"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div#$b7.OSBlockWidget[App_Policies.Policy_Custom_AcceptPendingPolicies] > div#b7-$b1.OSBlockWidget[BasePatterns.Columns_Two] > div#b7-b1-$b1.OSBlockWidget[Adaptive.Columns2] > div.columns.columns2.flex-direction-column > div#b7-b1-b1-Column2.columns-item > div#b7-b1-Right.ubt-columns--column.ubt-columns--right > div.ubt-policies--agree-to-all",
-   "detail": "extra in build"
-  },
-  {
-   "kind": "position",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-fixed-footer--content.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div#$b7.OSBlockWidget[App_Policies.Policy_Custom_AcceptPendingPolicies] > div#b7-$b11.OSBlockWidget[ConnectPatterns.FixedFooter] > div.ubt-fixed-footer.ubt-fixed-footer--no-bottom-bar",
-   "detail": "offset in parent -195,390 → -195,268"
-  }
- ]
+ "diffs": []
 }

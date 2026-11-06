@@ -22,7 +22,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-/** Two fictional Connect policies, as the mocks of the page answer them (the route was not captured, Q7 c). */
+/** Fictional Connect policies, as the mocks of the page answer them. */
 const policy = (id: string, policyTypeName: string, file: string, isSelected = false): PendingPolicy => ({
   id,
   applicationName: 'Connect',
@@ -32,26 +32,27 @@ const policy = (id: string, policyTypeName: string, file: string, isSelected = f
   url: `https://policies.example.org/connect/${file}`,
   isSelected,
 });
-const TERMS = policy('7001', 'Terms and Conditions', 'connect-terms-and-conditions.pdf');
-const PRIVACY = policy('7002', 'Privacy Policy', 'connect-privacy-policy.pdf');
+const PRIVACY = policy('7001', 'Privacy Policy', 'connect-privacy-policy.pdf');
+const TERMS = policy('7002', 'Terms and Conditions', 'connect-terms-and-conditions.pdf');
 
-/** Two pending policies, none selected: "I agree to all" shows and Continue is disabled. */
-export const Default: Story = { args: { id: '$b7', rows: [TERMS, PRIVACY], isAllSelected: false } };
+/** The captured state (2026-11-06): one pending policy, not selected; no "I agree to all"; Continue disabled. */
+export const Default: Story = { args: { id: '$b7', rows: [PRIVACY], isAllSelected: false } };
+
+/** Two pending policies, none selected: "I agree to all" shows and Continue is disabled (compiled code, not
+    captured). */
+export const TwoPolicies: Story = { args: { id: '$b7', rows: [PRIVACY, TERMS], isAllSelected: false } };
 
 /** Every policy selected: both checkboxes and "I agree to all" are checked, Continue is enabled. */
 export const AllSelected: Story = {
   args: {
     id: '$b7',
     rows: [
-      { ...TERMS, isSelected: true },
       { ...PRIVACY, isSelected: true },
+      { ...TERMS, isSelected: true },
     ],
     isAllSelected: true,
   },
 };
-
-/** One pending policy: no "I agree to all". */
-export const OnePolicy: Story = { args: { id: '$b7', rows: [PRIVACY], isAllSelected: false } };
 
 /** The first fetch runs: the list-updating container. */
 export const Loading: Story = { args: { id: '$b7', rows: undefined } };
