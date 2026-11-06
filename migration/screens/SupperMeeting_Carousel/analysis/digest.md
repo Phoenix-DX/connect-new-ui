@@ -258,10 +258,6 @@ Layouts.Layout_DetailPage
                           ConnectPatterns.LazyImage
                             ConnectPatterns.SkeletonSection
                               BasePatterns.CustomContainer
-                              BasePatterns.CustomContainer
-                                ConnectPatterns.Icon
-                                BasePatterns.CustomText
-                                  ConnectPatterns.IconInline_Internal
                       Directory_Caroussel.CarouselTag
                         ConnectPatterns.TagContent
                           BasePatterns.CustomContainer
@@ -1471,25 +1467,25 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `DataActionGetSubdivisionHouseholds` (200) at 2418 ms
-- 2. `DataActionGetSubdivisionHouseholds` (200) at 2488 ms
-- 3. `DataActionGetSubdivisionHouseholds` (200) at 2496 ms
-- 4. `DataActionFetchNotes` (200) at 2537 ms
-- 5. `DataActionFetchNotes` (200) at 2566 ms
-- 6. `DataActionFetchNotes` (200) at 2576 ms
-- 7. `DataActionGetSubdivision` (200) at 3652 ms
-- 8. `DataActionFetchContactDetails` (200) at 3669 ms
-- 9. `DataActionFetchContactDetails` (200) at 4775 ms
-- 10. `DataActionFetchContactDetails` (200) at 4785 ms
-- 11. `DataActionGetSubdivision` (200) at 5001 ms
-- 12. `DataActionFetchContactDetails` (200) at 5332 ms
-- 13. `DataActionGetSubdivision` (200) at 5574 ms
-- 14. `DataActionFetchContactDetails` (200) at 5653 ms
-- 15. `DataActionFetchContactDetails` (200) at 5693 ms
-- 16. `DataActionFetchContactDetails` (200) at 5740 ms
-- 17. `DataActionFetchContactDetails` (200) at 5851 ms
-- 18. `ActionGetSignedImagesInBulk` (200) at 5852 ms
-- 19. `DataActionFetchContactDetails` (200) at 6074 ms
+- 1. `DataActionGetSubdivisionHouseholds` (200) at 2931 ms
+- 2. `DataActionGetSubdivisionHouseholds` (200) at 2948 ms
+- 3. `DataActionGetSubdivisionHouseholds` (200) at 2956 ms
+- 4. `DataActionFetchContactDetails` (200) at 3005 ms
+- 5. `DataActionFetchNotes` (200) at 3042 ms
+- 6. `DataActionFetchNotes` (200) at 3075 ms
+- 7. `DataActionFetchNotes` (200) at 3086 ms
+- 8. `DataActionGetSubdivision` (200) at 3786 ms
+- 9. `DataActionGetSubdivision` (200) at 4187 ms
+- 10. `DataActionFetchContactDetails` (200) at 5340 ms
+- 11. `DataActionFetchContactDetails` (200) at 5422 ms
+- 12. `DataActionFetchContactDetails` (200) at 5474 ms
+- 13. `DataActionFetchContactDetails` (200) at 5875 ms
+- 14. `DataActionGetSubdivision` (200) at 5979 ms
+- 15. `DataActionFetchContactDetails` (200) at 6112 ms
+- 16. `DataActionFetchContactDetails` (200) at 6142 ms
+- 17. `DataActionFetchContactDetails` (200) at 6180 ms
+- 18. `ActionGetSignedImagesInBulk` (200) at 6270 ms
+- 19. `DataActionFetchContactDetails` (200) at 6366 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

@@ -165,18 +165,6 @@ export interface GetHouseHold_GalleryResponse {
   Out_ImageDetails: Out_ImageDetailsItem[] /* wire: { List: [...] } */;
 }
 
-export interface ResultsItem {
-  Id: string /* Long Integer as string */;
-  Type: string;
-  Size: string;
-  SignedURL: string;
-  Error: string /* "" in capture */;
-}
-
-export interface GetSignedImagesInBulkResponse {
-  Results: ResultsItem[] /* wire: { List: [...] } */;
-}
-
 export interface HouseholdCoordinates {
   Longitude: string /* Decimal as string */;
   Latitude: string /* Decimal as string */;
@@ -199,4 +187,16 @@ export interface Notes {
 
 export interface FetchNotesResponse {
   Notes: Notes;
+}
+
+export interface ResultsItem {
+  Id: string /* Long Integer as string */;
+  Type: string;
+  Size: string;
+  SignedURL: string;
+  Error: string /* "" in capture */;
+}
+
+export interface GetSignedImagesInBulkResponse {
+  Results: ResultsItem[] /* wire: { List: [...] } */;
 }

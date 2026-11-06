@@ -2,25 +2,25 @@
 
 | # | t (ms) | call | status | scope | path |
 |---|---|---|---|---|---|
-| 1 | 2418 | `DataActionGetSubdivisionHouseholds` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_SupperMeetings/SupperMeeting_HouseholdList/DataActionGetSubdivisionHouseholds` |
-| 2 | 2488 | `DataActionGetSubdivisionHouseholds` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_SupperMeetings/SupperMeeting_HouseholdList/DataActionGetSubdivisionHouseholds` |
-| 3 | 2496 | `DataActionGetSubdivisionHouseholds` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_SupperMeetings/SupperMeeting_HouseholdList/DataActionGetSubdivisionHouseholds` |
-| 4 | 2537 | `DataActionFetchNotes` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchNotes` |
-| 5 | 2566 | `DataActionFetchNotes` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchNotes` |
-| 6 | 2576 | `DataActionFetchNotes` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchNotes` |
-| 7 | 3652 | `DataActionGetSubdivision` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_SupperMeetings/SupperMeeting_DetailsBlock/DataActionGetSubdivision` |
-| 8 | 3669 | `DataActionFetchContactDetails` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails` |
-| 9 | 4775 | `DataActionFetchContactDetails` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails` |
-| 10 | 4785 | `DataActionFetchContactDetails` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails` |
-| 11 | 5001 | `DataActionGetSubdivision` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_SupperMeetings/SupperMeeting_DetailsBlock/DataActionGetSubdivision` |
-| 12 | 5332 | `DataActionFetchContactDetails` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails` |
-| 13 | 5574 | `DataActionGetSubdivision` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_SupperMeetings/SupperMeeting_DetailsBlock/DataActionGetSubdivision` |
-| 14 | 5653 | `DataActionFetchContactDetails` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails` |
-| 15 | 5693 | `DataActionFetchContactDetails` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails` |
-| 16 | 5740 | `DataActionFetchContactDetails` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails` |
-| 17 | 5851 | `DataActionFetchContactDetails` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails` |
-| 18 | 5852 | `ActionGetSignedImagesInBulk` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect_Utils/ActionGetSignedImagesInBulk` |
-| 19 | 6074 | `DataActionFetchContactDetails` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails` |
+| 1 | 2931 | `DataActionGetSubdivisionHouseholds` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_SupperMeetings/SupperMeeting_HouseholdList/DataActionGetSubdivisionHouseholds` |
+| 2 | 2948 | `DataActionGetSubdivisionHouseholds` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_SupperMeetings/SupperMeeting_HouseholdList/DataActionGetSubdivisionHouseholds` |
+| 3 | 2956 | `DataActionGetSubdivisionHouseholds` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_SupperMeetings/SupperMeeting_HouseholdList/DataActionGetSubdivisionHouseholds` |
+| 4 | 3005 | `DataActionFetchContactDetails` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails` |
+| 5 | 3042 | `DataActionFetchNotes` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchNotes` |
+| 6 | 3075 | `DataActionFetchNotes` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchNotes` |
+| 7 | 3086 | `DataActionFetchNotes` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchNotes` |
+| 8 | 3786 | `DataActionGetSubdivision` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_SupperMeetings/SupperMeeting_DetailsBlock/DataActionGetSubdivision` |
+| 9 | 4187 | `DataActionGetSubdivision` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_SupperMeetings/SupperMeeting_DetailsBlock/DataActionGetSubdivision` |
+| 10 | 5340 | `DataActionFetchContactDetails` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails` |
+| 11 | 5422 | `DataActionFetchContactDetails` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails` |
+| 12 | 5474 | `DataActionFetchContactDetails` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails` |
+| 13 | 5875 | `DataActionFetchContactDetails` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails` |
+| 14 | 5979 | `DataActionGetSubdivision` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_SupperMeetings/SupperMeeting_DetailsBlock/DataActionGetSubdivision` |
+| 15 | 6112 | `DataActionFetchContactDetails` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails` |
+| 16 | 6142 | `DataActionFetchContactDetails` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails` |
+| 17 | 6180 | `DataActionFetchContactDetails` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails` |
+| 18 | 6270 | `ActionGetSignedImagesInBulk` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect_Utils/ActionGetSignedImagesInBulk` |
+| 19 | 6366 | `DataActionFetchContactDetails` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails` |
 
 ## DataActionGetSubdivisionHouseholds
 - Scope: this screen
@@ -45,6 +45,53 @@
     }
    ]
   }
+ }
+}
+```
+
+## DataActionFetchContactDetails
+- Scope: this screen
+- Path: `/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails`
+- Server action input parameters: (none)
+- Screen variables sent with the call (OutSystems sends these automatically; React does not need to): `Local_isBookmarked`, `Local_BookmarkTypeId`, `Local_In_ActionsMenuOptions`, `isLoaded`, `Local_ShareType`, `ShowCallPopUp`, `ShowEmailPopUp`, `ShowSharePopup`, `ShowNotesSheet`, `isFetchContacts`, `ShowIconLabels`, `ShareSheet_OverwriteImageURL`, `NoteCategoryId`, `EntityNotes`, `FetchNoteId`, `PendingOpen`, `IsEnabled`, `_isEnabledInDataFetchStatus`, `EntityType`, `_entityTypeInDataFetchStatus`, `EntityId`, `_entityIdInDataFetchStatus`, `ContactPopUp_OverrideOptions`, `_contactPopUp_OverrideOptionsInDataFetchStatus`, `EnableOptions`, `_enableOptionsInDataFetchStatus`, `useViewDetails`, `_useViewDetailsInDataFetchStatus`, `In_LocalityId`, `_in_LocalityIdInDataFetchStatus`
+- Other request keys: (none)
+- Response type: `FetchContactDetailsResponse` (see types.ts)
+```json
+{
+ "versionInfo": {
+  "hasModuleVersionChanged": false,
+  "hasApiVersionChanged": false
+ },
+ "data": {
+  "ContactPopupData": {
+   "ImageURL": "string (EMPTY)",
+   "EntityTypeId": "string (EMPTY)",
+   "EntityId": "numeric string",
+   "IsAvatarImage": "boolean",
+   "ActionName": "string (EMPTY)",
+   "Name": "string (EMPTY)",
+   "Locality": "string (EMPTY)",
+   "TimezoneName": "string (EMPTY)",
+   "TimezoneOffset": "number (0)",
+   "ShowPopup": "boolean",
+   "DisplayContactNumber": "string (EMPTY)",
+   "IsFetchingTimezone": "boolean",
+   "IsLoading": "boolean",
+   "ShowTimezone": "boolean",
+   "ShowImage": "boolean",
+   "CountryName": "string (EMPTY)",
+   "TitleTerminator": "string (EMPTY)"
+  },
+  "Phone": "string (EMPTY)",
+  "MobilePhone": "string (EMPTY)",
+  "HomePhone": "string (EMPTY)",
+  "WorkPhone": "string (EMPTY)",
+  "Email": "string (EMPTY)",
+  "CountryName": "string",
+  "LocalityId": "numeric string",
+  "LocalityName": "string",
+  "EntitySubtitle": "string (EMPTY)",
+  "EntityName": "string"
  }
 }
 ```
@@ -122,53 +169,6 @@
 }
 ```
 
-## DataActionFetchContactDetails
-- Scope: this screen
-- Path: `/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails`
-- Server action input parameters: (none)
-- Screen variables sent with the call (OutSystems sends these automatically; React does not need to): `Local_isBookmarked`, `Local_BookmarkTypeId`, `Local_In_ActionsMenuOptions`, `isLoaded`, `Local_ShareType`, `ShowCallPopUp`, `ShowEmailPopUp`, `ShowSharePopup`, `ShowNotesSheet`, `isFetchContacts`, `ShowIconLabels`, `ShareSheet_OverwriteImageURL`, `NoteCategoryId`, `EntityNotes`, `FetchNoteId`, `PendingOpen`, `IsEnabled`, `_isEnabledInDataFetchStatus`, `EntityType`, `_entityTypeInDataFetchStatus`, `EntityId`, `_entityIdInDataFetchStatus`, `ContactPopUp_OverrideOptions`, `_contactPopUp_OverrideOptionsInDataFetchStatus`, `EnableOptions`, `_enableOptionsInDataFetchStatus`, `useViewDetails`, `_useViewDetailsInDataFetchStatus`, `In_LocalityId`, `_in_LocalityIdInDataFetchStatus`
-- Other request keys: (none)
-- Response type: `FetchContactDetailsResponse` (see types.ts)
-```json
-{
- "versionInfo": {
-  "hasModuleVersionChanged": false,
-  "hasApiVersionChanged": false
- },
- "data": {
-  "ContactPopupData": {
-   "ImageURL": "string (EMPTY)",
-   "EntityTypeId": "string (EMPTY)",
-   "EntityId": "numeric string",
-   "IsAvatarImage": "boolean",
-   "ActionName": "string (EMPTY)",
-   "Name": "string (EMPTY)",
-   "Locality": "string (EMPTY)",
-   "TimezoneName": "string (EMPTY)",
-   "TimezoneOffset": "number (0)",
-   "ShowPopup": "boolean",
-   "DisplayContactNumber": "string (EMPTY)",
-   "IsFetchingTimezone": "boolean",
-   "IsLoading": "boolean",
-   "ShowTimezone": "boolean",
-   "ShowImage": "boolean",
-   "CountryName": "string (EMPTY)",
-   "TitleTerminator": "string (EMPTY)"
-  },
-  "Phone": "string (EMPTY)",
-  "MobilePhone": "string (EMPTY)",
-  "HomePhone": "string (EMPTY)",
-  "WorkPhone": "string (EMPTY)",
-  "Email": "string (EMPTY)",
-  "CountryName": "string",
-  "LocalityId": "numeric string",
-  "LocalityName": "string",
-  "EntitySubtitle": "string (EMPTY)",
-  "EntityName": "string"
- }
-}
-```
-
 ## ActionGetSignedImagesInBulk
 - Scope: this screen
 - Path: `/UBTConnect/screenservices/UBTConnect_Utils/ActionGetSignedImagesInBulk`
@@ -210,53 +210,54 @@
 | `script /UBTConnect/scripts/UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnect.Directory_Caroussel.EntitiesCarousel_HeaderGenerator.mvc.js` | 1 |
 | `script /UBTConnect/scripts/OutSystemsUI_2_23.Interaction.Carousel.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect.Directory_Caroussel.CarouselTag.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnect.Directory_Caroussel.EntitiesCarousel_OneSchoolGlobal.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnect.Directory_Caroussel.EntitiesCarouse_lSupperMeetingDetails.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect.Directory_Caroussel.CarouselTag.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnect.Directory_Caroussel.EntitiesCarousel_HouseholdDetails.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnect.Directory_SupperMeetings.SupperMeeting_DetailsBlock.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnect.Directory_SupperMeetings.SupperMeeting_HouseholdList.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect_CommunityBusiness_CS.referencesHealth.js` | 1 |
-| `xmlhttprequest https://australiaeast-0.in.applicationinsights.azure.com/v2/track` | 3 |
 | `script /UBTConnect/scripts/UBTConnect.Directory_Household_Blocks.Household_GalleryCard_List.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnect.Directory_Household_Blocks.Household_GalleryCard.mvc.js` | 1 |
 | `script /UBTConnect/scripts/OutSystemsUI_2_23.Adaptive.Gallery.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnect.App_Common_Blocks.External_Link.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.ExpandableSection.mvc.js` | 1 |
-| `link /UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Note_Item.css` | 1 |
 | `link /UBTConnect/css/UBTConnect.Directory_Caroussel.EntitiesCarousel.css` | 1 |
+| `link /UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Note_Item.css` | 1 |
+| `script /UBTConnect/scripts/OutSystemsUI_2_23.Splide.js` | 1 |
 | `link /UBTConnect/css/UBTConnect_Utils.CW_Notes.NotesSheet.css` | 1 |
 | `link /UBTConnect/css/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css` | 1 |
-| `script /UBTConnect/scripts/OutSystemsUI_2_23.Splide.js` | 1 |
+| `fetch /UBTConnect/status/network-ping.txt` | 2 |
 | `img https://cbcdn.ubtconnect.com/5/AR/252/1210/42438/131995_720.jpg` | 2 |
-| `img https://cbcdn.ubtconnect.com/5/AR/252/1210/42448/125259_720.jpg` | 2 |
 | `img https://cbcdn.ubtconnect.com/5/AR/252/1210/42453/118993_720.jpg` | 2 |
-| `img https://cbcdn.ubtconnect.com/5/AR/252/1210/42498/131806_720.jpg` | 2 |
-| `img https://cbcdn.ubtconnect.com/5/AR/252/1210/42455/118629_720.jpg` | 2 |
 | `img https://cbcdn.ubtconnect.com/5/AR/252/1210/42484/126827_720.jpg` | 2 |
-| `img https://cbcdn.ubtconnect.com/5/AR/252/1210/42493/126742_720.jpg` | 2 |
-| `img https://cbcdn.ubtconnect.com/5/AR/252/1210/42525/134052_720.jpg` | 2 |
+| `img https://cbcdn.ubtconnect.com/5/AR/252/1210/42455/118629_720.jpg` | 2 |
 | `img https://cbcdn.ubtconnect.com/5/AR/252/1210/42491/120457_720.jpg` | 2 |
+| `img https://cbcdn.ubtconnect.com/5/AR/252/1210/42448/125259_720.jpg` | 2 |
+| `img https://cbcdn.ubtconnect.com/5/AR/252/1210/42493/126742_720.jpg` | 2 |
+| `img https://cbcdn.ubtconnect.com/5/AR/252/1210/42498/131806_720.jpg` | 2 |
 | `img https://cbcdn.ubtconnect.com/5/AR/252/1209/42492/113064_720.jpg` | 2 |
 | `img https://cbcdn.ubtconnect.com/5/AR/252/1210/42506/132788_720.jpg` | 2 |
-| `img https://cbcdn.ubtconnect.com/5/AR/252/1209/42468/126705_720.jpg` | 2 |
 | `img https://cbcdn.ubtconnect.com/5/AR/252/1209/42475/124281_720.jpg` | 2 |
+| `img https://cbcdn.ubtconnect.com/5/AR/252/1209/42468/126705_720.jpg` | 2 |
+| `img https://cbcdn.ubtconnect.com/5/AR/252/1209/42480/93905_720.jpg` | 2 |
 | `img https://cbcdn.ubtconnect.com/5/AR/252/1209/42391/120713_720.jpg` | 2 |
 | `img https://cbcdn.ubtconnect.com/5/AR/252/1209/42518/124740_720.jpg` | 2 |
-| `img https://cbcdn.ubtconnect.com/5/AR/252/1209/42480/93905_720.jpg` | 2 |
 | `img https://cbcdn.ubtconnect.com/5/AR/252/1209/42512/130780_720.jpg` | 2 |
 | `img https://cbcdn.ubtconnect.com/5/AR/252/1209/42520/133971_720.jpg` | 2 |
-| `img https://cbcdn.ubtconnect.com/5/AR/252/2533/42445/126704_720.jpg` | 2 |
-| `img https://cbcdn.ubtconnect.com/5/AR/252/2533/42447/128160_720.jpg` | 2 |
 | `img https://cbcdn.ubtconnect.com/5/AR/252/1209/42456/120548_720.jpg` | 2 |
 | `img https://cbcdn.ubtconnect.com/5/AR/252/1209/42478/124712_720.jpg` | 2 |
+| `img https://cbcdn.ubtconnect.com/5/AR/252/2533/42445/126704_720.jpg` | 2 |
+| `img https://cbcdn.ubtconnect.com/5/AR/252/2533/42447/128160_720.jpg` | 2 |
+| `img https://cbcdn.ubtconnect.com/5/AR/252/1210/42525/134052_720.jpg` | 2 |
 | `img https://cbcdn.ubtconnect.com/5/AR/252/2533/42523/126826_720.jpg` | 2 |
-| `xmlhttprequest /UBTConnect/moduleservices/moduleversioninfo` | 1 |
+| `xmlhttprequest https://australiaeast-0.in.applicationinsights.azure.com/v2/track` | 2 |
 | `img https://cbcdn.ubtconnect.com/5/AR/252/1210/hall_726_720.jpg` | 2 |
+| `xmlhttprequest /UBTConnect/moduleservices/moduleversioninfo` | 1 |
+| `img https://cbcdn.ubtconnect.com/5/AR/252/1209/hall_1433_720.jpg` | 2 |
 | `fetch /UBTConnect/SupperMeeting_Carousel` | 2 |
 | `fetch /UBTConnect/moduleservices/moduleinfo` | 1 |
-| `img https://cbcdn.ubtconnect.com/5/AR/252/1209/hall_1433_720.jpg` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect.Directory_SupperMeetings.SupperMeeting_Carousel.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnectLibrary.Layouts.Layout_DetailPage.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top.mvc.js` | 1 |
@@ -299,7 +300,6 @@
 | `fetch /UBTConnect/scripts/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect_Utils.CW_CTA_PopUps.SharePopup.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect.Directory_SupperMeetings.SupperMeeting_HouseholdList.mvc.js` | 1 |
-| `fetch /UBTConnect/status/network-ping.txt` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect.Directory_Household_Blocks.Household_GalleryCard_List.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/OutSystemsUI_2_23.Adaptive.Gallery.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect.Directory_Household_Blocks.Household_GalleryCard.mvc.js` | 1 |

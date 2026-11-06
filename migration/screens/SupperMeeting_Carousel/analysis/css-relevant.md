@@ -614,22 +614,6 @@ ubt-household-image-card__background-image ubt-background-image--xs  .ubt-entiti
 .directory-detail-screen { display: flex; flex-direction: column; gap: var(--space-xs); background-color: var(--color-neutral-4); }
 .directory-detail-screen > div:empty { display: none; }
 ```
-## ConnectPatterns.SkeletonSection
-
-### .ubt-skeleton-section  (11 rules)
-```css
-.ubt-skeleton-section * { text-decoration: none; }
-.ubt-skeleton-section *:has(>span:only-child) { /* padding: 0;*/ min-height: 1lh; display: flex; align-items: center; background: unset; }
-.ubt-skeleton-section span { color: transparent; }
-.ubt-skeleton-section .ubt-icon:not(.ignore-loading) { border-radius: var(--border-radius-medium); color: transparent; }
-.ubt-skeleton-section span, .ubt-skeleton-section .osui-dropdown-search { height: 1.2em; align-items: center; border-radius: var(--border-radius-medium); }
-.ubt-skeleton-section .ubt-skeleton-section__element span { height: unset; }
-.ubt-skeleton-section span:empty { --skeleton-span-length: 12ch; width: var(--_skeleton-span-legth,var(--skeleton-span-length)) }
-.ubt-skeleton-section .ubt-skeleton-section__multi-line { display: block; height: 1lh; }
-.ubt-skeleton-section .ubt-skeleton-section__multi-line span { width: 100%; display: block; }
-an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section .ubt-icon:not(.ignore-loading), .ubt-skeleton-section .form > div, .ubt-skeleton-section .osui-dropdown-search, .ubt-skeleton-section .badge { background: var(--ubt-background-skeleton-light); animation: var(--ubt-skeleton-animation); border-color: var(--ubt-background-skeleton-light) }
-keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section *::after, .ubt-skeleton-section input, .ubt-skeleton-section .osui-dropdown-search .vscomp-ele-wrapper, .ubt-skeleton-section .ubt-icon img { visibility: hidden; transition-property: visibility; transition-duration: 0ms; }
-```
 ## BasePatterns.CustomContainer
 
 ### .absolute-bottom-right  (1 rule)
@@ -1305,7 +1289,6 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 - `--shadow-xl`: `0 8px 10px rgba(0, 0, 0, 0.1)` (in `@charset "UTF-8";    :root`); `0px 8px 10px 0px rgba(0, 0, 0, 0.1)` (in `:root, .connect-legacy-compatibily-containter`)
 - `--shadow-xs`: `0 1px 2px rgba(0, 0, 0, 0.1)` (in `@charset "UTF-8";    :root`); `0 1px 2px rgba(0, 0, 0, 0.1)` (in `:root, .connect-legacy-compatibily-containter`)
 - `--side-menu-size`: `300px` (in `@charset "UTF-8";    :root`); `264px` (in `e, .tablet .layout-native.aside-visible, .tablet .layout-native.aside-expandable`)
-- `--skeleton-span-length`: `12ch` (in `.ubt-skeleton-section span:empty`)
 - `--space-base`: `16px` (in `@charset "UTF-8";    :root`); `16px` (in `:root, .connect-legacy-compatibily-containter--spacing`)
 - `--space-l`: `32px` (in `@charset "UTF-8";    :root`); `32px` (in `:root, .connect-legacy-compatibily-containter--spacing`)
 - `--space-m`: `24px` (in `@charset "UTF-8";    :root`); `24px` (in `:root, .connect-legacy-compatibily-containter--spacing`)

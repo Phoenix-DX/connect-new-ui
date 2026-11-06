@@ -17,9 +17,6 @@ For every service call: the chains of code that lead to it, from a root (user ev
 - `HouseholdDetails_Block.refresh_GetHouseHold_Gallery` → `HouseholdDetails_Block.DataActionGetHouseHold_Gallery`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 - `HouseholdDetails_Block fetch at start` → `HouseholdDetails_Block.DataActionGetHouseHold_Gallery`
 
-### `UBTConnect_Utils/ActionGetSignedImagesInBulk`
-- `UBTConnect_Utils.cache_SignedImageURL_GetCallback` → `server GetSignedImagesInBulk`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
-
 ### `UBTConnect/Directory_Household/HouseholdDetails_Block/DataActionGetHousehold_Coordinates`
 - `HouseholdDetails_Block.refresh_GetHouseholdCoordinates` → `HouseholdDetails_Block.DataActionGetHousehold_Coordinates`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 - `HouseholdDetails_Block fetch at start` → `HouseholdDetails_Block.DataActionGetHousehold_Coordinates`
@@ -28,6 +25,9 @@ For every service call: the chains of code that lead to it, from a root (user ev
 - `Directory_EntityDetailsActions.OnReady` → `Directory_EntityDetailsActions.onReady` → `Directory_EntityDetailsActions.action_UpdateBookmarksAndNotes` → `Directory_EntityDetailsActions.action_RefreshFetchNotes` → `Directory_EntityDetailsActions.DataActionFetchNotes`
 - `onClick in CircleButton_WithLabel` → `CircleButton_WithLabel.action_OnClick` → `event onClick of CircleButton_WithLabel` → `CircleButton_IconPrimary.circleButton_WithLabelOnClick` → `event onClick of CircleButton_IconPrimary` → `event event_Click_Notes of ActionsMenu` → `Directory_EntityDetailsActions.handler_AddNotesOnClick` → `Directory_EntityDetailsActions.action_RefreshFetchNotes` → `Directory_EntityDetailsActions.DataActionFetchNotes`
 - `Directory_EntityDetailsActions fetch at start` → `Directory_EntityDetailsActions.DataActionFetchNotes`
+
+### `UBTConnect_Utils/ActionGetSignedImagesInBulk`
+- `UBTConnect_Utils.cache_SignedImageURL_GetCallback` → `server GetSignedImagesInBulk`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 
 ## Declared and reachable from the rendered blocks, not observed
 

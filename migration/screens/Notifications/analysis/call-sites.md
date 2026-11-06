@@ -31,10 +31,6 @@ For every service call: the chains of code that lead to it, from a root (user ev
 ### `UBTConnect_Utils/ActionGetUserInformation`
 - `UBTConnect_Utils.cache_UserInfo_GetCallback` → `server GetUserInformation`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 
-### `Connect2_LegacyShared/ActionGetNumberUnreadMessages`
-- `UBTConnect.onApplicationReady` → `UBTConnect.connect_SetLoggedContext` → `Connect2_LegacyShared.synchronizeNumberUnreadMessages` → `server GetNumberUnreadMessages`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
-- `UBTConnect.fCM_NotificationCallback` → `Connect2_LegacyShared.synchronizeNumberUnreadMessages` → `server GetNumberUnreadMessages`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
-
 ### `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All`
 - `BottomBarMenu.OnReady` → `BottomBarMenu.onReady` → `UBTConnect.directory_Updates_RefreshBottomBarCount` → `server Get_UI_UpdateItems_UnreadCount_All`
 - `onClick in IconText` → `event clicked of IconText` → `MoreActionSheet.markAllAsReadClicked` → `event markAllAsRead of MoreActionSheet` → `Notifications_MoreActionSheet.handler_MarkAllAsRead` → `event markAllAsRead of Notifications_MoreActionSheet` → `Notifications.handler_MoreActionSheetMarkAllAsRead` → `UBTConnect.directory_Updates_RefreshBottomBarCount` → `server Get_UI_UpdateItems_UnreadCount_All`
@@ -45,6 +41,10 @@ For every service call: the chains of code that lead to it, from a root (user ev
 
 ### `UBTConnect_Utils/ActionGetSignedImagesInBulk`
 - `UBTConnect_Utils.cache_SignedImageURL_GetCallback` → `server GetSignedImagesInBulk`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
+
+### `Connect2_LegacyShared/ActionGetNumberUnreadMessages`
+- `UBTConnect.onApplicationReady` → `UBTConnect.connect_SetLoggedContext` → `Connect2_LegacyShared.synchronizeNumberUnreadMessages` → `server GetNumberUnreadMessages`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
+- `UBTConnect.fCM_NotificationCallback` → `Connect2_LegacyShared.synchronizeNumberUnreadMessages` → `server GetNumberUnreadMessages`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 
 ### `UBTConnect/ServiceAPIFetchData_CacheableMapEntities`
 - `UBTConnect.get_Cacheable_MapEntities` → `server FetchData_CacheableMapEntities`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)

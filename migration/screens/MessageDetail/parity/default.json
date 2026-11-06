@@ -1,11 +1,11 @@
 {
  "state": "default",
- "route": "/UBTConnect/MessageDetail?MessageInstanceId=5982748&mocksession=unlocked",
+ "route": "/UBTConnect/MessageDetail?MessageInstanceId=5981096&mocksession=unlocked",
  "mock": "real",
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "2dabdc24f8eaacee75d0",
+ "fingerprint": "436ce06436e54f878295",
  "options": {
   "text": true,
   "style": true,
@@ -19,26 +19,26 @@
  },
  "replay": {
   "mode": "builder",
-  "elements": 1372,
-  "texts": 77,
+  "elements": 171,
+  "texts": 20,
   "comments": 0,
   "dropped": 0,
   "endTagMismatch": 0,
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-06T20:05:04.543Z",
+ "at": "2026-11-06T20:19:18.495Z",
  "counts": {
-  "structure": 4,
+  "structure": 2,
   "pixel": 1,
-  "call": 3
+  "call": 1
  },
  "exemptionsUsed": {},
  "pixel": {
-  "ratio": 0.12238,
-  "maxCell": 1,
+  "ratio": 0.11103,
+  "maxCell": 0.5156,
   "maxCellRatio": 0.03,
-  "diffPixels": 40282,
+  "diffPixels": 36546,
   "comparedPixels": 329160,
   "maxRatio": 0.002,
   "threshold": 0.1,
@@ -52,11 +52,11 @@
   ],
   "masks": 0,
   "hotspots": [
-   "240,0 (1600px)",
-   "280,0 (1600px)",
-   "320,0 (1600px)",
-   "200,0 (1540px)",
-   "40,720 (1344px)"
+   "40,280 (825px)",
+   "40,200 (786px)",
+   "40,120 (766px)",
+   "0,280 (654px)",
+   "40,720 (651px)"
   ],
   "diffPng": "migration/screens/MessageDetail/parity/default.diff.png"
  },
@@ -64,49 +64,29 @@
   "phases": [
    "load"
   ],
-  "expected": 11,
-  "actual": 9
+  "expected": 9,
+  "actual": 10
  },
  "diffs": [
   {
    "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade]",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b18.OSBlockWidget[App_Notifications.Notifications_SortSheet]",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b19.OSBlockWidget[App_Notifications.Notifications_MoreActionSheet]",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
    "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[MyNotifications.ScreenBlock_MessageDetail]",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[MyNotifications.ScreenBlock_MessageList]",
    "detail": "extra in build"
   },
   {
    "kind": "pixel",
    "path": "screenshot",
-   "detail": "12.24% pixels differ (max 0.20%), worst 40px tile 100.0% (max 3.0%), hotspots 240,0 (1600px); 280,0 (1600px); 320,0 (1600px); 200,0 (1540px); 40,720 (1344px); see migration/screens/MessageDetail/parity/default.diff.png"
+   "detail": "11.10% pixels differ (max 0.20%), worst 40px tile 51.6% (max 3.0%), hotspots 40,280 (825px); 40,200 (786px); 40,120 (766px); 0,280 (654px); 40,720 (651px); see migration/screens/MessageDetail/parity/default.diff.png"
   },
   {
    "kind": "call",
    "path": "calls:load",
-   "detail": "data action DataActionGetDateRanges not called"
-  },
-  {
-   "kind": "call",
-   "path": "calls:load",
-   "detail": "data action DataActionFetchNotifications not called"
-  },
-  {
-   "kind": "call",
-   "path": "calls:load",
-   "detail": "ServiceAPIGet_UI_UpdateItems_UnreadCount_All called 0× in build, 1× in capture (order-free call)"
+   "detail": "extra call Connect2_LegacyShared/DataActionGetMessages"
   }
  ]
 }

@@ -12,7 +12,7 @@
   "Connect2_LegacyShared.MyNotifications.MessageImage.mvc.js": "migration/sources/raw/Connect2_LegacyShared.MyNotifications.MessageImage.mvc.js",
   "Connect2_LegacyShared.MyNotifications.MessageListBlock.mvc.js": "migration/sources/raw/Connect2_LegacyShared.MyNotifications.MessageListBlock.mvc.js",
   "Connect2_LegacyShared.MyNotifications.MessageListItem.mvc.js": "migration/sources/raw/Connect2_LegacyShared.MyNotifications.MessageListItem.mvc.js",
-  "Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js": "migration/sources/raw/Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js",
+  "Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js": "migration/sources/raw/Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc@89aba05a.js",
   "Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageList.mvc.js": "migration/sources/raw/Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageList.mvc.js",
   "Connect2_LegacyShared.Reusable.Spinner.mvc.js": "migration/sources/raw/Connect2_LegacyShared.Reusable.Spinner.mvc.js",
   "Connect2_LegacyShared.Utility.HandleImageLoadError.mvc.js": "migration/sources/raw/Connect2_LegacyShared.Utility.HandleImageLoadError.mvc.js",
@@ -121,7 +121,7 @@
   "Connect2_LegacyShared.MyNotifications.MessageImage.mvc.js": "migration/sources/pretty/Connect2_LegacyShared.MyNotifications.MessageImage.mvc.js",
   "Connect2_LegacyShared.MyNotifications.MessageListBlock.mvc.js": "migration/sources/pretty/Connect2_LegacyShared.MyNotifications.MessageListBlock.mvc.js",
   "Connect2_LegacyShared.MyNotifications.MessageListItem.mvc.js": "migration/sources/pretty/Connect2_LegacyShared.MyNotifications.MessageListItem.mvc.js",
-  "Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js": "migration/sources/pretty/Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js",
+  "Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js": "migration/sources/pretty/Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc@f45b7969.js",
   "Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageList.mvc.js": "migration/sources/pretty/Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageList.mvc.js",
   "Connect2_LegacyShared.Reusable.Spinner.mvc.js": "migration/sources/pretty/Connect2_LegacyShared.Reusable.Spinner.mvc.js",
   "Connect2_LegacyShared.Utility.HandleImageLoadError.mvc.js": "migration/sources/pretty/Connect2_LegacyShared.Utility.HandleImageLoadError.mvc.js",
@@ -208,7 +208,7 @@
   "UBT_AppManager_Mobile.model.js": "migration/sources/pretty/UBT_AppManager_Mobile.model.js"
  },
  "styles": {
-  "assets.json": "migration/sources/styles/assets@af17e537.json",
-  "bundle.css": "migration/sources/styles/bundle@584b358a.css"
+  "assets.json": "migration/sources/styles/assets@abc696d6.json",
+  "bundle.css": "migration/sources/styles/bundle@6a5c3b8b.css"
  }
 }

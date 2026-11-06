@@ -55,8 +55,8 @@ flowchart TB
     S1["DataActionFetchNotes<br/>data action / aggregate, declared, not observed"]
     S2["DataActionGet_MemberDetails<br/>data action / aggregate, observed"]
     S3["ActionAppManager_SynchAppContext<br/>observed"]
-    S4["ActionGetUserInformation<br/>observed"]
-    S5["ActionGetSignedImagesInBulk<br/>observed"]
+    S4["ActionGetSignedImagesInBulk<br/>observed"]
+    S5["ActionGetUserInformation<br/>observed"]
     S6["ActionAppManager_AfterInitialize<br/>observed"]
     S7["ActionSync_Info_GetMain<br/>observed"]
     S8["ActionGetNumberUnreadMessages<br/>observed"]
@@ -135,25 +135,6 @@ sequenceDiagram
   end
 ```
 
-### Action: ActionGetUserInformation
-```mermaid
-%% DRAFT: trigger from call-sites.md; replace TODOs with the result handling of the calling action
-sequenceDiagram
-  actor U as User
-  participant S as Directory_Household.HouseholdRelations_Block
-  participant API as screenservices
-  U->>S: TODO user event
-  Note over S: chain stops at UBTConnect_Utils.cache_UserInfo_GetCallback (see call-sites.md)
-  Note over S: via UBTConnect_Utils.cache_UserInfo_GetCallback → server GetUserInformation
-  S->>API: ActionGetUserInformation(TODO inputs)
-  API-->>S: TODO outputs
-  alt TODO branch
-    S-->>U: TODO
-  else TODO branch
-    S-->>U: TODO
-  end
-```
-
 ### Action: ActionGetSignedImagesInBulk
 ```mermaid
 %% DRAFT: trigger from call-sites.md; replace TODOs with the result handling of the calling action
@@ -165,6 +146,25 @@ sequenceDiagram
   Note over S: chain stops at UBTConnect_Utils.cache_SignedImageURL_GetCallback (see call-sites.md)
   Note over S: via UBTConnect_Utils.cache_SignedImageURL_GetCallback → server GetSignedImagesInBulk
   S->>API: ActionGetSignedImagesInBulk(TODO inputs)
+  API-->>S: TODO outputs
+  alt TODO branch
+    S-->>U: TODO
+  else TODO branch
+    S-->>U: TODO
+  end
+```
+
+### Action: ActionGetUserInformation
+```mermaid
+%% DRAFT: trigger from call-sites.md; replace TODOs with the result handling of the calling action
+sequenceDiagram
+  actor U as User
+  participant S as Directory_Household.HouseholdRelations_Block
+  participant API as screenservices
+  U->>S: TODO user event
+  Note over S: chain stops at UBTConnect_Utils.cache_UserInfo_GetCallback (see call-sites.md)
+  Note over S: via UBTConnect_Utils.cache_UserInfo_GetCallback → server GetUserInformation
+  S->>API: ActionGetUserInformation(TODO inputs)
   API-->>S: TODO outputs
   alt TODO branch
     S-->>U: TODO

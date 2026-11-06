@@ -2,7 +2,7 @@
 
 - UI states captured: default, loading, offline
 - Runtime captures: 1 file(s), 19 call(s)
-- Masked text nodes: 44, user images removed: 24
+- Masked text nodes: 48, user images removed: 25
 - Fetch failures during snapshot: 0
 
 ## Blocks referenced in code but not rendered in any captured state

@@ -248,10 +248,6 @@ Layouts.Layout_DetailPage
                           ConnectPatterns.LazyImage
                             ConnectPatterns.SkeletonSection
                               BasePatterns.CustomContainer
-                              BasePatterns.CustomContainer
-                                ConnectPatterns.Icon
-                                BasePatterns.CustomText
-                                  ConnectPatterns.IconInline_Internal
                       Directory_Caroussel.CarouselTag
                         ConnectPatterns.TagContent
                           BasePatterns.CustomContainer

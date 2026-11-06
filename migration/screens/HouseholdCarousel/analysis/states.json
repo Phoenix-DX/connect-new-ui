@@ -8,7 +8,8 @@
   "via": {
    "from": "/UBTConnect/Locality_Details?LocalityId=252",
    "click": "[data-block='Directory_Household_Blocks.Household_Card']",
-   "nth": 0
+   "nth": 0,
+   "settleMs": 6000
   },
   "steps": [],
   "scenario": "real",
@@ -27,7 +28,8 @@
   "via": {
    "from": "/UBTConnect/Locality_Details?LocalityId=252",
    "click": "[data-block='Directory_Household_Blocks.Household_Card']",
-   "nth": 0
+   "nth": 0,
+   "settleMs": 6000
   },
   "steps": [],
   "scenario": "loading",
@@ -46,7 +48,8 @@
   "via": {
    "from": "/UBTConnect/Locality_Details?LocalityId=252",
    "click": "[data-block='Directory_Household_Blocks.Household_Card']",
-   "nth": 0
+   "nth": 0,
+   "settleMs": 6000
   },
   "steps": [],
   "scenario": "error",

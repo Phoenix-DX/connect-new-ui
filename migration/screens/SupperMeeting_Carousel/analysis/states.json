@@ -11,7 +11,8 @@
     "[data-block='ConnectPatterns.TagToggle'] >> nth=1"
    ],
    "click": "[data-block='ConnectCorePatterns.ImageCard_LazyLoading']",
-   "nth": 0
+   "nth": 0,
+   "settleMs": 6000
   },
   "steps": [],
   "scenario": "real",
@@ -33,7 +34,8 @@
     "[data-block='ConnectPatterns.TagToggle'] >> nth=1"
    ],
    "click": "[data-block='ConnectCorePatterns.ImageCard_LazyLoading']",
-   "nth": 0
+   "nth": 0,
+   "settleMs": 6000
   },
   "steps": [],
   "scenario": "loading",
@@ -55,12 +57,13 @@
     "[data-block='ConnectPatterns.TagToggle'] >> nth=1"
    ],
    "click": "[data-block='ConnectCorePatterns.ImageCard_LazyLoading']",
-   "nth": 0
+   "nth": 0,
+   "settleMs": 6000
   },
   "steps": [],
   "scenario": "error",
   "auto": "offline",
-  "htmlClass": "",
+  "htmlClass": "popup-disable-scroll",
   "bodyClass": "phone portrait osx is-ltr",
   "bodyStyle": "--header-size-content: 0px; --footer-height: 0px; --viewport-height: 844px;",
   "dpr": 1

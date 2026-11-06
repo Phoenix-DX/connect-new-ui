@@ -2,18 +2,18 @@
 
 | # | t (ms) | call | status | scope | path |
 |---|---|---|---|---|---|
-| 1 | 3848 | `ActionAppManager_SynchAppContext` | 200 | this screen | `/UBTConnect/screenservices/UBT_AppManager/ActionAppManager_SynchAppContext` |
-| 2 | 5637 | `ActionGetUserInformation` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect_Utils/ActionGetUserInformation` |
-| 3 | 5638 | `ActionGetSignedImagesInBulk` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect_Utils/ActionGetSignedImagesInBulk` |
-| 4 | 5936 | `DataActionGet_MemberDetails` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionGet_MemberDetails` |
-| 5 | 6268 | `DataActionGet_SibllingsRelations` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionGet_SibllingsRelations` |
-| 6 | 6269 | `ActionGetSignedImagesInBulk` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect_Utils/ActionGetSignedImagesInBulk` |
-| 7 | 6583 | `ActionGetSignedImagesInBulk` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect_Utils/ActionGetSignedImagesInBulk` |
-| 8 | 7297 | `ActionAppManager_AfterInitialize` | 200 | this screen | `/UBTConnect/screenservices/UBT_AppManager/ActionAppManager_AfterInitialize` |
-| 9 | 7734 | `ActionSync_Info_GetMain` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/ActionSync_Info_GetMain` |
-| 10 | 8018 | `ActionGetNumberUnreadMessages` | 200 | this screen | `/UBTConnect/screenservices/Connect2_LegacyShared/ActionGetNumberUnreadMessages` |
-| 11 | 9252 | `ServiceAPIFetchData_CacheableMapEntities` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/ServiceAPIFetchData_CacheableMapEntities` |
-| 12 | 13857 | `ServiceAPIFetchData_CacheableHouseholds` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/ServiceAPIFetchData_CacheableHouseholds` |
+| 1 | 2485 | `ActionAppManager_SynchAppContext` | 200 | this screen | `/UBTConnect/screenservices/UBT_AppManager/ActionAppManager_SynchAppContext` |
+| 2 | 3869 | `ActionGetSignedImagesInBulk` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect_Utils/ActionGetSignedImagesInBulk` |
+| 3 | 3879 | `ActionGetUserInformation` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect_Utils/ActionGetUserInformation` |
+| 4 | 4137 | `DataActionGet_MemberDetails` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionGet_MemberDetails` |
+| 5 | 4408 | `ActionGetSignedImagesInBulk` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect_Utils/ActionGetSignedImagesInBulk` |
+| 6 | 4465 | `DataActionGet_SibllingsRelations` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionGet_SibllingsRelations` |
+| 7 | 4806 | `ActionGetSignedImagesInBulk` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect_Utils/ActionGetSignedImagesInBulk` |
+| 8 | 5282 | `ActionAppManager_AfterInitialize` | 200 | this screen | `/UBTConnect/screenservices/UBT_AppManager/ActionAppManager_AfterInitialize` |
+| 9 | 5702 | `ActionSync_Info_GetMain` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/ActionSync_Info_GetMain` |
+| 10 | 5943 | `ActionGetNumberUnreadMessages` | 200 | this screen | `/UBTConnect/screenservices/Connect2_LegacyShared/ActionGetNumberUnreadMessages` |
+| 11 | 7794 | `ServiceAPIFetchData_CacheableMapEntities` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/ServiceAPIFetchData_CacheableMapEntities` |
+| 12 | 10282 | `ServiceAPIFetchData_CacheableHouseholds` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/ServiceAPIFetchData_CacheableHouseholds` |
 
 ## ActionAppManager_SynchAppContext
 - Scope: this screen
@@ -78,6 +78,35 @@
    }
   },
   "FirebaseRealTimeDB_Token": "string"
+ }
+}
+```
+
+## ActionGetSignedImagesInBulk
+- Scope: this screen
+- Path: `/UBTConnect/screenservices/UBTConnect_Utils/ActionGetSignedImagesInBulk`
+- Server action input parameters: `BulkSignedImagesParameters`
+- Screen variables sent with the call (OutSystems sends these automatically; React does not need to): (none)
+- Other request keys: (none)
+- Response type: `GetSignedImagesInBulkResponse` (see types.ts)
+```json
+{
+ "versionInfo": {
+  "hasModuleVersionChanged": false,
+  "hasApiVersionChanged": false
+ },
+ "data": {
+  "Results": {
+   "List": [
+    {
+     "Id": "numeric string",
+     "Type": "string",
+     "Size": "string",
+     "SignedURL": "string",
+     "Error": "string (EMPTY)"
+    }
+   ]
+  }
  }
 }
 ```
@@ -179,35 +208,6 @@
     }
    },
    "HasPoliciesToAccept": "boolean"
-  }
- }
-}
-```
-
-## ActionGetSignedImagesInBulk
-- Scope: this screen
-- Path: `/UBTConnect/screenservices/UBTConnect_Utils/ActionGetSignedImagesInBulk`
-- Server action input parameters: `BulkSignedImagesParameters`
-- Screen variables sent with the call (OutSystems sends these automatically; React does not need to): (none)
-- Other request keys: (none)
-- Response type: `GetSignedImagesInBulkResponse` (see types.ts)
-```json
-{
- "versionInfo": {
-  "hasModuleVersionChanged": false,
-  "hasApiVersionChanged": false
- },
- "data": {
-  "Results": {
-   "List": [
-    {
-     "Id": "numeric string",
-     "Type": "string",
-     "Size": "string",
-     "SignedURL": "string",
-     "Error": "string (EMPTY)"
-    }
-   ]
   }
  }
 }
@@ -1078,247 +1078,247 @@
 ## Other requests during capture (no bodies)
 | request | count |
 |---|---|
+| `script /UBTConnect/scripts/UBTConnect.index.js` | 1 |
 | `script /UBTConnect/scripts/OutSystemsManifestLoader.js` | 1 |
+| `script /UBTConnect/scripts/cordova.js` | 1 |
 | `script /UBTConnect/scripts/OutSystemsSettings.js` | 1 |
-| `xmlhttprequest /UBTConnect/moduleservices/moduleversioninfo` | 1 |
-| `script /UBTConnect/scripts/OutSystemsReactView.js` | 1 |
-| `script /UBTConnect/scripts/OutSystems.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect.appDefinition.js` | 1 |
 | `link /UBTConnect/css/_Basic.css` | 1 |
 | `script /UBTConnect/scripts/Debugger.js` | 1 |
-| `script /UBTConnect/scripts/cordova.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect.appDefinition.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect.index.js` | 1 |
 | `script /UBTConnect/scripts/OutSystemsReactWidgets.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect_Notes_MCS.entities.js` | 1 |
+| `script /UBTConnect/scripts/OutSystemsReactView.js` | 1 |
+| `script /UBTConnect/scripts/OutSystems.js` | 1 |
+| `xmlhttprequest /UBTConnect/moduleservices/moduleversioninfo` | 1 |
+| `script /UBTConnect/scripts/AppInsightsConnector_Mobile.entities.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnect_Bookmarks_MCS.entities.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_LegacyShared.entities.js` | 1 |
-| `script /UBTConnect/scripts/AppInsightsConnector_Mobile.entities.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.entities.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect_Notes_MCS.entities.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect.entities.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnect.Directory_Household.Household_Relations.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnect.Directory_Household.controller.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect.entities.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect_Notes_MCS.model.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect_Bookmarks_MCS.model.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.Layouts.Layout_DetailPage.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.entities.js` | 1 |
 | `script /UBTConnect/scripts/AppInsightsConnector_Mobile.model.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.CustomText.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect.controller.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Icon.mvc.js` | 1 |
-| `script /UBTConnect/scripts/NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_LegacyShared.model.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.model.js` | 1 |
-| `script /UBTConnect/scripts/OutSystemsUI_2_23.model.js` | 1 |
-| `script /UBTConnect/scripts/Connect_Household_CS.model.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.CustomContainer.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect_Utils.controller.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect.clientVariables.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect_Bookmarks_MCS.model.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect_Notes_MCS.model.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.Layouts.Layout_DetailPage.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnect.App_Common.BottomBarMenu.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect.App_Common.CommonUI_InsideLayout.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnect.languageResources.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect.App_Common.controller.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.controller.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnect.referencesHealth.js` | 1 |
-| `script /UBTConnect/scripts/OutSystemsUI_2_23.controller.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect_Utils.clientVariables.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect_Utils.referencesHealth.js` | 1 |
-| `script /UBTConnect/scripts/Connect_Bookmarks_CS.model.js` | 1 |
-| `script /UBTConnect/scripts/MemoryClientCache.controller.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.HighlightSearch.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect.App_Common_Blocks.App_IconBadge.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction.mvc.js` | 1 |
-| `script /UBTConnect/scripts/OutSystemsUI_2_23.Navigation.BottomBarItem.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect.App_Common.BottomBarContent.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.referencesHealth.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect.App_Common.OfflineDataSyncEvents.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect.App_PIN.Block_PINUnlock.mvc.js` | 1 |
-| `script /UBTConnect/scripts/NavigationHandler.NavigationHandler.PreventBackNavigation.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect.App_Policies.Policy_Checker.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_LegacyShared.Utility.HandleImageLoadError.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.IconInline_Internal.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect.App_Common.controller.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect.clientVariables.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect.App_Common.CommonUI_InsideLayout.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnectLibrary.model.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect.controller.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_LegacyShared.model.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.HighlightSearch.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect_Household_CS.model.js` | 1 |
+| `script /UBTConnect/scripts/NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.CustomContainer.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Icon.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect.App_Common.BottomBarContent.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.IconInline_Internal.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.referencesHealth.js` | 1 |
+| `script /UBTConnect/scripts/OutSystemsUI_2_23.Navigation.BottomBarItem.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc.js` | 1 |
+| `script /UBTConnect/scripts/NavigationHandler.controller.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnectLibrary.ConnectCorePatterns.MemberRelation_ListItem.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect_Utils.CW_Common.Button.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect.App_Common.OfflineDataSyncEvents.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnectLibrary.ConnectCorePatterns.NonMember_ListItem.mvc.js` | 1 |
-| `script /UBTConnect/scripts/MemoryClientCache.model.js` | 1 |
-| `script /UBTConnect/scripts/UBT_AppManager.controller.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen_Section.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.Columns_Two.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.OutSystemsUIOverrides.IconBadge.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc.js` | 1 |
-| `script /UBTConnect/scripts/OutSystemsUI_2_23.Private.OfflineDataSyncCore.mvc.js` | 1 |
-| `script /UBTConnect/scripts/CommonPlugin.model.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect.App_Common.UnsupportedVersion_Wrapper.mvc.js` | 1 |
-| `script /UBTConnect/scripts/NavigationHandler.ConfirmationDialogs.ActionConfirmationDialog.mvc.js` | 1 |
-| `script /UBTConnect/scripts/InAppBrowserPlugin.controller.js` | 1 |
-| `script /UBTConnect/scripts/InAppBrowserPlugin.model.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.IconSVG.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.Layouts.Layout_LoginFlow.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect_Bookmarks_MCS.controller.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.mvc.js` | 1 |
-| `script /UBTConnect/scripts/NavigationHandler.model.js` | 1 |
-| `script /UBTConnect/scripts/APIDomain_Directory_IS.model.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.Columns_Three.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.IconText.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Button.mvc.js` | 1 |
-| `script /UBTConnect/scripts/NavigationHandler.controller.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_LegacyShared.controller.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.AddNote.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBT_AppManager.model.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.NoteListActions.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBT_AppManager.referencesHealth.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBT_AppManager.clientVariables.js` | 1 |
-| `script /UBTConnect/scripts/ApplicationInsightsConnector.model.js` | 1 |
-| `script /UBTConnect/scripts/Connect_Notes_CS.model.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.OutSystemsUIOverrides.Badge.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect_Notes_MCS.controller.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.Layouts.SubLayout_Section.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.LazyImage.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Firebase.controller.js` | 1 |
-| `script /UBTConnect/scripts/OutSystemsUI_2_23.Adaptive.Columns2.mvc.js` | 1 |
-| `script /UBTConnect/scripts/OutSystemsUI_2_23.Private.NetworkStatusChanged.mvc.js` | 1 |
-| `script /UBTConnect/scripts/InAppBrowserPlugin.referencesHealth.js` | 1 |
-| `script /UBTConnect/scripts/ApplicationInsightsConnector.controller.js` | 1 |
-| `script /UBTConnect/scripts/CommonPlugin.controller.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect.App_Common.UnsupportedVersion_Native.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect.App_Common.UnsupportedVersion_WebView.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect.App_Common.UnsupportedVersion_Browser.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.Layouts.SVG_Background_LoginWrapper.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect_Utils.CacheControl.CacheControl_Policies.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBT_AppManager_Mobile.Fingerprint.PinUnlock_MobileWrapper.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect.model.js` | 1 |
-| `script /UBTConnect/scripts/ApplicationPolicies_CW.controller.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen_Section.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect_Utils.CW_Common.Button.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect.App_Policies.Policy_Checker.mvc.js` | 1 |
+| `script /UBTConnect/scripts/NavigationHandler.NavigationHandler.PreventBackNavigation.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_LegacyShared.Utility.HandleImageLoadError.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnect.Legacy_Share.HandleOnResumeOpenLink.mvc.js` | 1 |
-| `script /UBTConnect/scripts/NavigationHandler.NavigationHandler.BackNavigationHandler.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect.App_Common_Blocks.App_IconBadge.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect_Utils.controller.js` | 1 |
+| `script /UBTConnect/scripts/MemoryClientCache.model.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect.model.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.controller.js` | 1 |
+| `script /UBTConnect/scripts/OutSystemsUI_2_23.model.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnect_Utils.model.js` | 1 |
+| `script /UBTConnect/scripts/UBT_AppManager.controller.js` | 1 |
+| `script /UBTConnect/scripts/UBTJavaScriptUtils.controller.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.model.js` | 1 |
+| `script /UBTConnect/scripts/NavigationHandler.model.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.IconSVG.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.LazyImage.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect_Utils.referencesHealth.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.Columns_Three.mvc.js` | 1 |
+| `script /UBTConnect/scripts/OutSystemsUI_2_23.Adaptive.Columns2.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.IconText.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.Layouts.SubLayout_Section.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect_Notes_CS.model.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.AddNote.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.NoteListActions.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Button.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_AndroidAppLinksPlugin.model.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.OutSystemsUIOverrides.IconBadge.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_AndroidAppLinksPlugin.AndroidAppLinks.AndroidAppLinkOnResumeHandler.mvc.js` | 1 |
+| `script /UBTConnect/scripts/EventfulDeeplinksPlugin.EventfulDeeplinksPlugin.DeeplinkHandlerCentral.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect_Notes_MCS.controller.js` | 1 |
+| `script /UBTConnect/scripts/OutSystemsUI_2_23.Private.OfflineDataSyncCore.mvc.js` | 1 |
+| `script /UBTConnect/scripts/APIDomain_Directory_IS.model.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect_Utils.clientVariables.js` | 1 |
+| `script /UBTConnect/scripts/Connect_Bookmarks_CS.model.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnectLibrary.clientVariables.js` | 1 |
-| `script /UBTConnect/scripts/OutSystemsUI_2_23.Adaptive.Columns3.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_LegacyShared.referencesHealth.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_LegacyShared.clientVariables.js` | 1 |
-| `script /UBTConnect/scripts/UBT_AppManager_CS.model.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Note_Item_List.mvc.js` | 1 |
-| `script /UBTConnect/scripts/OutSystemsUI_2_23.Interaction.BottomSheet.mvc.js` | 1 |
-| `script /UBTConnect/scripts/OutSystemsUI_2_23.Utilities.InlineSVG.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_AndroidAppLinksPlugin.controller.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_LegacyShared.controller.js` | 1 |
+| `script /UBTConnect/scripts/EventfulDeeplinksPlugin.controller.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_LocalNotificationPlugin.controller.js` | 1 |
+| `script /UBTConnect/scripts/KeyboardPlugin.controller.js` | 1 |
 | `script /UBTConnect/scripts/Firebase.model.js` | 1 |
-| `script /UBTConnect/scripts/ApplicationInsightsConnector.clientVariables.js` | 1 |
+| `script /UBTConnect/scripts/UBT_AppManager_Mobile.controller.js` | 1 |
+| `script /UBTConnect/scripts/UBT_AppManager_Mobile.model.js` | 1 |
+| `script /UBTConnect/scripts/CommonPlugin.model.js` | 1 |
+| `script /UBTConnect/scripts/ScreenOrientationPlugin.controller.js` | 1 |
+| `script /UBTConnect/scripts/FirebaseCloudMessagingPlugin.model.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.referencesHealth.js` | 1 |
+| `script /UBTConnect/scripts/MemoryClientCache.controller.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_OrbitMobile_BL.model.js` | 1 |
+| `script /UBTConnect/scripts/OutSystemsUI_2_23.Utilities.InlineSVG.mvc.js` | 1 |
+| `script /UBTConnect/scripts/OutSystemsUI_2_23.Adaptive.Columns3.mvc.js` | 1 |
+| `script /UBTConnect/scripts/OutSystemsUI_2_23.Interaction.BottomSheet.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Note_Item_List.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect.App_PIN.Block_PINUnlock.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.OutSystemsUIOverrides.Badge.mvc.js` | 1 |
+| `script /UBTConnect/scripts/EventfulDeeplinksPlugin.referencesHealth.js` | 1 |
+| `script /UBTConnect/scripts/OutSystemsUI_2_23.controller.js` | 1 |
+| `script /UBTConnect/scripts/EventfulDeeplinksPlugin.model.js` | 1 |
+| `script /UBTConnect/scripts/OutSystemsUI_2_23.Private.NetworkStatusChanged.mvc.js` | 1 |
+| `script /UBTConnect/scripts/NavigationHandler.NavigationHandler.BackNavigationHandler.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_AndroidAppLinksPlugin.referencesHealth.js` | 1 |
+| `script /UBTConnect/scripts/UBT_AppManager_Mobile.referencesHealth.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_LegacyShared.clientVariables.js` | 1 |
+| `script /UBTConnect/scripts/CommonPlugin.controller.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_LegacyShared.referencesHealth.js` | 1 |
+| `script /UBTConnect/scripts/ScreenOrientationPlugin.referencesHealth.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_LocalNotificationPlugin.model.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_LocalNotificationPlugin.clientVariables.js` | 1 |
+| `script /UBTConnect/scripts/KeyboardPlugin.referencesHealth.js` | 1 |
+| `script /UBTConnect/scripts/KeyboardPlugin.model.js` | 1 |
+| `script /UBTConnect/scripts/PrivacyScreenPlugin.controller.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect_Bookmarks_MCS.controller.js` | 1 |
+| `script /UBTConnect/scripts/AppVersionPlugin.controller.js` | 1 |
+| `script /UBTConnect/scripts/ScreenOrientationPlugin.model.js` | 1 |
+| `script /UBTConnect/scripts/AppInsightsConnector_Mobile.controller.js` | 1 |
+| `script /UBTConnect/scripts/FirebaseCrashlyticsPlugin.controller.js` | 1 |
+| `script /UBTConnect/scripts/ContentProviderPlugin.controller.js` | 1 |
+| `script /UBTConnect/scripts/InAppBrowserPlugin.controller.js` | 1 |
+| `script /UBTConnect/scripts/TouchIdPlugin.controller.js` | 1 |
+| `script /UBTConnect/scripts/NetworkDetection.controller.js` | 1 |
+| `script /UBTConnect/scripts/FirebaseCloudMessagingPlugin.controller.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Popup.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect.App_Common.UnsupportedVersion_Wrapper.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Note_Item.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.Layouts.Layout_LoginFlow.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.mvc.js` | 1 |
+| `script /UBTConnect/scripts/NavigationHandler.ConfirmationDialogs.ActionConfirmationDialog.mvc.js` | 1 |
+| `script /UBTConnect/scripts/InAppBrowserPlugin.model.js` | 1 |
+| `script /UBTConnect/scripts/PrivacyScreenPlugin.model.js` | 1 |
+| `script /UBTConnect/scripts/AppVersionPlugin.model.js` | 1 |
+| `script /UBTConnect/scripts/FirebaseCrashlyticsPlugin.model.js` | 1 |
+| `script /UBTConnect/scripts/UBT_AppManager.clientVariables.js` | 1 |
+| `script /UBTConnect/scripts/TouchIdPlugin.referencesHealth.js` | 1 |
+| `script /UBTConnect/scripts/Leaflet.model.js` | 1 |
+| `script /UBTConnect/scripts/ApplicationInsightsConnector.model.js` | 1 |
+| `script /UBTConnect/scripts/UBTJavaScriptUtils.model.js` | 1 |
+| `script /UBTConnect/scripts/AppVersionPlugin.referencesHealth.js` | 1 |
+| `script /UBTConnect/scripts/AppInsightsConnector_Mobile.referencesHealth.js` | 1 |
+| `script /UBTConnect/scripts/ContentProviderPlugin.model.js` | 1 |
+| `script /UBTConnect/scripts/InAppBrowserPlugin.referencesHealth.js` | 1 |
+| `script /UBTConnect/scripts/FirebaseCrashlyticsPlugin.referencesHealth.js` | 1 |
+| `script /UBTConnect/scripts/TouchIdPlugin.model.js` | 1 |
+| `script /UBTConnect/scripts/NetworkDetection.model.js` | 1 |
+| `script /UBTConnect/scripts/NetworkDetection.clientVariables.js` | 1 |
+| `script /UBTConnect/scripts/FirebaseCloudMessagingPlugin.referencesHealth.js` | 1 |
+| `script /UBTConnect/scripts/Connect_Map_CS.model.js` | 1 |
+| `script /UBTConnect/scripts/UBT_AppManager.model.js` | 1 |
+| `script /UBTConnect/scripts/UBT_AppManager.referencesHealth.js` | 1 |
+| `script /UBTConnect/scripts/UBTJavaScriptUtils.referencesHealth.js` | 1 |
+| `script /UBTConnect/scripts/Firebase.controller.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect.App_Common.UnsupportedVersion_WebView.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect.App_Common.UnsupportedVersion_Native.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.Layouts.SVG_Background_LoginWrapper.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBT_AppManager_Mobile.Fingerprint.PinUnlock_MobileWrapper.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect_Utils.CacheControl.CacheControl_Policies.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect.App_Common.UnsupportedVersion_Browser.mvc.js` | 1 |
+| `script /UBTConnect/scripts/ApplicationPolicies_CW.controller.js` | 1 |
+| `script /UBTConnect/scripts/ApplicationInsightsConnector.controller.js` | 1 |
+| `script /UBTConnect/scripts/Connect_Map_CS.referencesHealth.js` | 1 |
+| `script /UBTConnect/scripts/UBT_AppManager_CS.model.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnect.App_Common.UnsupportedVersion.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBT_AppManager.PIN.Pincode_Unlock.mvc.js` | 1 |
+| `script /UBTConnect/scripts/ApplicationPolicies_CW.clientVariables.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnectLibrary.Layouts.SVG_Background_Custom.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnect_Utils.CacheControl.CacheControl.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBT_AppManager_Mobile.model.js` | 1 |
-| `script /UBTConnect/scripts/UBT_AppManager_Mobile.referencesHealth.js` | 1 |
 | `script /UBTConnect/scripts/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_LocalNotificationPlugin.controller.js` | 1 |
-| `script /UBTConnect/scripts/ApplicationPolicies_CW.clientVariables.js` | 1 |
-| `script /UBTConnect/scripts/Connect_Map_CS.model.js` | 1 |
-| `script /UBTConnect/scripts/EventfulDeeplinksPlugin.controller.js` | 1 |
+| `script /UBTConnect/scripts/UBT_AppManager.PIN.Pincode_Unlock.mvc.js` | 1 |
 | `script /UBTConnect/scripts/ApplicationPolicies_CW.model.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_AndroidAppLinksPlugin.controller.js` | 1 |
-| `script /UBTConnect/scripts/UBT_AppManager_Mobile.controller.js` | 1 |
-| `script /UBTConnect/scripts/KeyboardPlugin.controller.js` | 1 |
-| `script /UBTConnect/scripts/ScreenOrientationPlugin.controller.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.referencesHealth.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_OrbitMobile_BL.model.js` | 1 |
-| `script /UBTConnect/scripts/Leaflet.model.js` | 1 |
-| `script /UBTConnect/scripts/EventfulDeeplinksPlugin.EventfulDeeplinksPlugin.DeeplinkHandlerCentral.mvc.js` | 1 |
-| `script /UBTConnect/scripts/FirebaseCloudMessagingPlugin.model.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_AndroidAppLinksPlugin.model.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_AndroidAppLinksPlugin.AndroidAppLinks.AndroidAppLinkOnResumeHandler.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTJavaScriptUtils.controller.js` | 1 |
+| `script /UBTConnect/scripts/ApplicationInsightsConnector.clientVariables.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.controller.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Note_Item.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Popup.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnect.App_Common.WelcomeToConnect.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBT_AppManager.PIN.InactivityTimer.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBT_AppManager.PIN.PinCode.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_LocalNotificationPlugin.model.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_LocalNotificationPlugin.clientVariables.js` | 1 |
-| `script /UBTConnect/scripts/EventfulDeeplinksPlugin.referencesHealth.js` | 1 |
-| `script /UBTConnect/scripts/Connect_Map_CS.referencesHealth.js` | 1 |
-| `script /UBTConnect/scripts/EventfulDeeplinksPlugin.model.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_AndroidAppLinksPlugin.referencesHealth.js` | 1 |
-| `script /UBTConnect/scripts/AppVersionPlugin.controller.js` | 1 |
-| `script /UBTConnect/scripts/FirebaseCrashlyticsPlugin.controller.js` | 1 |
-| `script /UBTConnect/scripts/ContentProviderPlugin.controller.js` | 1 |
-| `script /UBTConnect/scripts/AppInsightsConnector_Mobile.controller.js` | 1 |
-| `script /UBTConnect/scripts/ScreenOrientationPlugin.model.js` | 1 |
-| `script /UBTConnect/scripts/ScreenOrientationPlugin.referencesHealth.js` | 1 |
-| `script /UBTConnect/scripts/PrivacyScreenPlugin.controller.js` | 1 |
-| `script /UBTConnect/scripts/KeyboardPlugin.model.js` | 1 |
-| `script /UBTConnect/scripts/KeyboardPlugin.referencesHealth.js` | 1 |
-| `script /UBTConnect/scripts/NetworkDetection.controller.js` | 1 |
-| `script /UBTConnect/scripts/TouchIdPlugin.controller.js` | 1 |
-| `script /UBTConnect/scripts/FirebaseCloudMessagingPlugin.controller.js` | 1 |
-| `script /UBTConnect/scripts/UBTJavaScriptUtils.model.js` | 1 |
-| `script /UBTConnect/scripts/UBTJavaScriptUtils.referencesHealth.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.clientVariables.js` | 1 |
-| `script /UBTConnect/scripts/AppVersionPlugin.model.js` | 1 |
-| `script /UBTConnect/scripts/AppVersionPlugin.referencesHealth.js` | 1 |
-| `script /UBTConnect/scripts/FirebaseCrashlyticsPlugin.referencesHealth.js` | 1 |
-| `script /UBTConnect/scripts/PrivacyScreenPlugin.model.js` | 1 |
-| `script /UBTConnect/scripts/ContentProviderPlugin.model.js` | 1 |
-| `script /UBTConnect/scripts/AppInsightsConnector_Mobile.referencesHealth.js` | 1 |
-| `script /UBTConnect/scripts/FirebaseCrashlyticsPlugin.model.js` | 1 |
-| `script /UBTConnect/scripts/NetworkDetection.model.js` | 1 |
-| `script /UBTConnect/scripts/NetworkDetection.clientVariables.js` | 1 |
-| `script /UBTConnect/scripts/TouchIdPlugin.model.js` | 1 |
-| `script /UBTConnect/scripts/TouchIdPlugin.referencesHealth.js` | 1 |
-| `script /UBTConnect/scripts/FirebaseCloudMessagingPlugin.referencesHealth.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.languageResources.js` | 1 |
-| `script /UBTConnect/scripts/NavigationHandler.languageResources.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect_Utils.languageResources.js` | 1 |
-| `script /UBTConnect/scripts/OutSystemsUI_2_23.languageResources.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.TextEllipsis.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.TextArea_WithCounter.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.InputCounter.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton_IconPrimary.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBT_AppManager.languageResources.js` | 1 |
+| `script /UBTConnect/scripts/NavigationHandler.languageResources.js` | 1 |
+| `script /UBTConnect/scripts/OutSystemsUI_2_23.languageResources.js` | 1 |
 | `script /UBTConnect/scripts/UBT_AppManager_Mobile.languageResources.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_AndroidAppLinksPlugin.languageResources.js` | 1 |
 | `script /UBTConnect/scripts/EventfulDeeplinksPlugin.languageResources.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_LegacyShared.languageResources.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.languageResources.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect_Utils.languageResources.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.TextEllipsis.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.TextArea_WithCounter.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.InputCounter.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBT_AppManager.languageResources.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_AndroidAppLinksPlugin.languageResources.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton_WithLabel.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Firebase.FirebaseApp.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnectLibrary.ConnectCorePatterns.ContextMenu.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton_WithLabel.mvc.js` | 1 |
 | `fetch /UBTConnect/status/network-ping.txt` | 2 |
 | `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.PopupMenu.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.ContextMenu_Item.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Firebase.FirebaseAuth.js` | 1 |
+| `link /UBTConnect/css/UBTConnect_Utils.CW_Notes.NotesSheet.css` | 1 |
 | `link /UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css` | 1 |
+| `link /UBTConnect/css/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css` | 1 |
+| `script /UBTConnect/scripts/CommonPlugin.PluginManager.js` | 1 |
+| `script /UBTConnect/scripts/OutSystemsUI_2_23.OfflineDataSync.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ScrollAnimations.js` | 1 |
+| `link /UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css` | 1 |
+| `link /UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Note_Item.css` | 1 |
+| `link /UBTConnect/css/UBT_AppManager.PIN.PinCode.css` | 1 |
 | `link /UBTConnect/css/Connect2_LegacyShared.UBTConnect.css` | 1 |
+| `link /UBTConnect/css/OutSystemsReactWidgets.css` | 1 |
 | `link /UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css` | 1 |
 | `link /UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css` | 1 |
-| `link /UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css` | 1 |
-| `link /UBTConnect/css/UBT_AppManager.PIN.PinCode.css` | 1 |
-| `link /UBTConnect/css/UBTConnect_Utils.CW_Notes.NotesSheet.css` | 1 |
-| `link /UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Note_Item.css` | 1 |
-| `link /UBTConnect/css/OutSystemsReactWidgets.css` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ScrollAnimations.js` | 1 |
-| `script /UBTConnect/scripts/CommonPlugin.PluginManager.js` | 1 |
-| `link /UBTConnect/css/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css` | 1 |
-| `script /UBTConnect/scripts/OutSystemsUI_2_23.OfflineDataSync.js` | 1 |
 | `script /UBTConnect/scripts/Firebase.FirebaseDatabase.js` | 1 |
 | `link /UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css` | 1 |
 | `script /UBTConnect/scripts/OutSystemsUI_2_23.OutSystemsUI.js` | 1 |
 | `script /UBTConnect/scripts/OutSystemsUI_2_23.MWO.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnect_Bookmarks_MCS.aggregates.IDB.js` | 1 |
 | `xmlhttprequest https://www.googleapis.com/identitytoolkit/v3/relyingparty/getAccountInfo` | 2 |
-| `css /UBTConnect/fonts/connect-icon.ttf` | 1 |
 | `img https://cbcdn.ubtconnect.com/5/AR/252/1210/42438/131995_f_42438.jpg` | 2 |
+| `css /UBTConnect/fonts/connect-icon.ttf` | 1 |
 | `xmlhttprequest https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyCustomToken` | 1 |
-| `script /UBTConnect/scripts/ApplicationInsightsConnector.AppInsights_v3_4_nightly.js` | 1 |
 | `img https://cbcdn.ubtconnect.com/5/AR/253/1789/42440/94263_f_42440.jpg` | 2 |
 | `img https://cbcdn.ubtconnect.com/5/AR/253/1789/42440/94263_f_42441.jpg` | 2 |
-| `fetch https://js.monitor.azure.com/scripts/b/ai.config.1.cfg.json` | 1 |
 | `img https://cbcdn.ubtconnect.com/5/AR/253/1789/42440/94263_f_42444.jpg` | 2 |
 | `img https://cbcdn.ubtconnect.com/3/CA/374/1622/57088/137016_f_57089.jpg` | 2 |
-| `img https://cbcdn.ubtconnect.com/3/CA/374/1621/57086/133815_f_42442.jpg` | 2 |
 | `img https://cbcdn.ubtconnect.com/2/AU/202/818/42443/134731_f_42443.jpg` | 2 |
+| `script /UBTConnect/scripts/ApplicationInsightsConnector.AppInsights_v3_4_nightly.js` | 1 |
+| `fetch https://js.monitor.azure.com/scripts/b/ai.config.1.cfg.json` | 1 |
+| `img https://cbcdn.ubtconnect.com/3/CA/374/1621/57086/133815_f_42442.jpg` | 2 |
 | `fetch /UBTConnect/Household_Relations` | 1 |
 | `fetch /UBTConnect/moduleservices/moduleinfo` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect.Directory_Household.Household_Relations.mvc.js` | 1 |
@@ -1327,6 +1327,7 @@
 | `fetch /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Icon.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.CustomText.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.IconInline_Internal.mvc.js` | 1 |
+| `xmlhttprequest https://australiaeast-0.in.applicationinsights.azure.com/v2/track` | 2 |
 | `fetch /UBTConnect/scripts/UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.CustomContainer.mvc.js` | 1 |
@@ -1342,7 +1343,6 @@
 | `fetch /UBTConnect/scripts/UBTConnectLibrary.ConnectCorePatterns.MemberRelation_ListItem.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.Columns_Three.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/OutSystemsUI_2_23.Adaptive.Columns3.mvc.js` | 1 |
-| `xmlhttprequest https://australiaeast-0.in.applicationinsights.azure.com/v2/track` | 2 |
 | `fetch /UBTConnect/scripts/UBTConnectLibrary.ConnectCorePatterns.NonMember_ListItem.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.HighlightSearch.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js` | 1 |

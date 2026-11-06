@@ -783,18 +783,18 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 3848 ms
-- 2. `ActionGetUserInformation` (200) at 5637 ms
-- 3. `ActionGetSignedImagesInBulk` (200) at 5638 ms
-- 4. `DataActionGet_MemberDetails` (200) at 5936 ms
-- 5. `DataActionGet_SibllingsRelations` (200) at 6268 ms
-- 6. `ActionGetSignedImagesInBulk` (200) at 6269 ms
-- 7. `ActionGetSignedImagesInBulk` (200) at 6583 ms
-- 8. `ActionAppManager_AfterInitialize` (200) at 7297 ms
-- 9. `ActionSync_Info_GetMain` (200) at 7734 ms
-- 10. `ActionGetNumberUnreadMessages` (200) at 8018 ms
-- 11. `ServiceAPIFetchData_CacheableMapEntities` (200) at 9252 ms
-- 12. `ServiceAPIFetchData_CacheableHouseholds` (200) at 13857 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 2485 ms
+- 2. `ActionGetSignedImagesInBulk` (200) at 3869 ms
+- 3. `ActionGetUserInformation` (200) at 3879 ms
+- 4. `DataActionGet_MemberDetails` (200) at 4137 ms
+- 5. `ActionGetSignedImagesInBulk` (200) at 4408 ms
+- 6. `DataActionGet_SibllingsRelations` (200) at 4465 ms
+- 7. `ActionGetSignedImagesInBulk` (200) at 4806 ms
+- 8. `ActionAppManager_AfterInitialize` (200) at 5282 ms
+- 9. `ActionSync_Info_GetMain` (200) at 5702 ms
+- 10. `ActionGetNumberUnreadMessages` (200) at 5943 ms
+- 11. `ServiceAPIFetchData_CacheableMapEntities` (200) at 7794 ms
+- 12. `ServiceAPIFetchData_CacheableHouseholds` (200) at 10282 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

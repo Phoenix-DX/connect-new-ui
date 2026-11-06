@@ -1160,3 +1160,7 @@ date,screen,phase,tokens,agent,tier,note
 2026-11-07,sync,other,131886,explore-arch-gates,sonnet,sync wave plan 2026-11-06
 2026-11-07,sync,other,153266,explore-agent-team,sonnet,sync wave plan 2026-11-06
 2026-11-07,sync,other,135094,plan-review,fable,sync wave plan 2026-11-06
+2026-11-07,sync,analyze,100792,triage-reader-3,sonnet,"triage 2026-11-07, 10 routes, 15 calls"
+2026-11-07,sync,analyze,92178,triage-reader-2,sonnet,"triage 2026-11-07, 10 routes, 16 calls"
+2026-11-07,sync,analyze,107807,triage-reader-1,sonnet,"triage 2026-11-07, 10 routes, 21 calls"
+2026-11-07,sync,analyze,114103,triage-judge,opus,"triage 2026-11-07, 30 routes, 19 calls"

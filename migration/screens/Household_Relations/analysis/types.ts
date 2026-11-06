@@ -50,6 +50,18 @@ export interface AppManager_SynchAppContextResponse {
   FirebaseRealTimeDB_Token: string;
 }
 
+export interface ResultsItem {
+  Id: string /* Long Integer as string */;
+  Type: string;
+  Size: string;
+  SignedURL: string;
+  Error: string /* "" in capture */;
+}
+
+export interface GetSignedImagesInBulkResponse {
+  Results: ResultsItem[] /* wire: { List: [...] } */;
+}
+
 export interface Directory_UserCurrent_Visibility {
   DisplayWorkPhone: boolean;
   DisplayMobilePhone: boolean;
@@ -147,18 +159,6 @@ export interface UserInformation {
 
 export interface GetUserInformationResponse {
   UserInformation: UserInformation;
-}
-
-export interface ResultsItem {
-  Id: string /* Long Integer as string */;
-  Type: string;
-  Size: string;
-  SignedURL: string;
-  Error: string /* "" in capture */;
-}
-
-export interface GetSignedImagesInBulkResponse {
-  Results: ResultsItem[] /* wire: { List: [...] } */;
 }
 
 export interface Father {

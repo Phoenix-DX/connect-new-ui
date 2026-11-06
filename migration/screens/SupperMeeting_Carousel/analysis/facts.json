@@ -2,7 +2,7 @@
  "screen": "SupperMeeting_Carousel",
  "env": {
   "path": "/UBTConnect/SupperMeeting_Carousel",
-  "collectedAt": "2026-11-06T19:28:43.025Z",
+  "collectedAt": "2026-11-06T20:33:31.717Z",
   "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.37 Safari/537.36",
   "viewport": {
    "width": 390,
@@ -469,9 +469,9 @@
   }
  },
  "report": {
-  "maskedTexts": 44,
-  "keptTexts": 32,
-  "removedUserImages": 24,
+  "maskedTexts": 48,
+  "keptTexts": 27,
+  "removedUserImages": 25,
   "failed": []
  },
  "blocksOnPage": [
@@ -7616,7 +7616,7 @@
  "calls": [
   {
    "order": 1,
-   "t": 2418,
+   "t": 2931,
    "action": "DataActionGetSubdivisionHouseholds",
    "path": "/UBTConnect/screenservices/UBTConnect/Directory_SupperMeetings/SupperMeeting_HouseholdList/DataActionGetSubdivisionHouseholds",
    "status": 200,
@@ -7624,7 +7624,7 @@
   },
   {
    "order": 2,
-   "t": 2488,
+   "t": 2948,
    "action": "DataActionGetSubdivisionHouseholds",
    "path": "/UBTConnect/screenservices/UBTConnect/Directory_SupperMeetings/SupperMeeting_HouseholdList/DataActionGetSubdivisionHouseholds",
    "status": 200,
@@ -7632,7 +7632,7 @@
   },
   {
    "order": 3,
-   "t": 2496,
+   "t": 2956,
    "action": "DataActionGetSubdivisionHouseholds",
    "path": "/UBTConnect/screenservices/UBTConnect/Directory_SupperMeetings/SupperMeeting_HouseholdList/DataActionGetSubdivisionHouseholds",
    "status": 200,
@@ -7640,15 +7640,15 @@
   },
   {
    "order": 4,
-   "t": 2537,
-   "action": "DataActionFetchNotes",
-   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchNotes",
+   "t": 3005,
+   "action": "DataActionFetchContactDetails",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
    "status": 200,
    "scope": "this screen"
   },
   {
    "order": 5,
-   "t": 2566,
+   "t": 3042,
    "action": "DataActionFetchNotes",
    "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchNotes",
    "status": 200,
@@ -7656,7 +7656,7 @@
   },
   {
    "order": 6,
-   "t": 2576,
+   "t": 3075,
    "action": "DataActionFetchNotes",
    "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchNotes",
    "status": 200,
@@ -7664,31 +7664,31 @@
   },
   {
    "order": 7,
-   "t": 3652,
+   "t": 3086,
+   "action": "DataActionFetchNotes",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchNotes",
+   "status": 200,
+   "scope": "this screen"
+  },
+  {
+   "order": 8,
+   "t": 3786,
    "action": "DataActionGetSubdivision",
    "path": "/UBTConnect/screenservices/UBTConnect/Directory_SupperMeetings/SupperMeeting_DetailsBlock/DataActionGetSubdivision",
    "status": 200,
    "scope": "this screen"
   },
   {
-   "order": 8,
-   "t": 3669,
-   "action": "DataActionFetchContactDetails",
-   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
-   "status": 200,
-   "scope": "this screen"
-  },
-  {
    "order": 9,
-   "t": 4775,
-   "action": "DataActionFetchContactDetails",
-   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
+   "t": 4187,
+   "action": "DataActionGetSubdivision",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_SupperMeetings/SupperMeeting_DetailsBlock/DataActionGetSubdivision",
    "status": 200,
    "scope": "this screen"
   },
   {
    "order": 10,
-   "t": 4785,
+   "t": 5340,
    "action": "DataActionFetchContactDetails",
    "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
    "status": 200,
@@ -7696,15 +7696,15 @@
   },
   {
    "order": 11,
-   "t": 5001,
-   "action": "DataActionGetSubdivision",
-   "path": "/UBTConnect/screenservices/UBTConnect/Directory_SupperMeetings/SupperMeeting_DetailsBlock/DataActionGetSubdivision",
+   "t": 5422,
+   "action": "DataActionFetchContactDetails",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
    "status": 200,
    "scope": "this screen"
   },
   {
    "order": 12,
-   "t": 5332,
+   "t": 5474,
    "action": "DataActionFetchContactDetails",
    "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
    "status": 200,
@@ -7712,23 +7712,23 @@
   },
   {
    "order": 13,
-   "t": 5574,
-   "action": "DataActionGetSubdivision",
-   "path": "/UBTConnect/screenservices/UBTConnect/Directory_SupperMeetings/SupperMeeting_DetailsBlock/DataActionGetSubdivision",
-   "status": 200,
-   "scope": "this screen"
-  },
-  {
-   "order": 14,
-   "t": 5653,
+   "t": 5875,
    "action": "DataActionFetchContactDetails",
    "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
    "status": 200,
    "scope": "this screen"
   },
   {
+   "order": 14,
+   "t": 5979,
+   "action": "DataActionGetSubdivision",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_SupperMeetings/SupperMeeting_DetailsBlock/DataActionGetSubdivision",
+   "status": 200,
+   "scope": "this screen"
+  },
+  {
    "order": 15,
-   "t": 5693,
+   "t": 6112,
    "action": "DataActionFetchContactDetails",
    "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
    "status": 200,
@@ -7736,7 +7736,7 @@
   },
   {
    "order": 16,
-   "t": 5740,
+   "t": 6142,
    "action": "DataActionFetchContactDetails",
    "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
    "status": 200,
@@ -7744,7 +7744,7 @@
   },
   {
    "order": 17,
-   "t": 5851,
+   "t": 6180,
    "action": "DataActionFetchContactDetails",
    "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
    "status": 200,
@@ -7752,7 +7752,7 @@
   },
   {
    "order": 18,
-   "t": 5852,
+   "t": 6270,
    "action": "ActionGetSignedImagesInBulk",
    "path": "/UBTConnect/screenservices/UBTConnect_Utils/ActionGetSignedImagesInBulk",
    "status": 200,
@@ -7760,7 +7760,7 @@
   },
   {
    "order": 19,
-   "t": 6074,
+   "t": 6366,
    "action": "DataActionFetchContactDetails",
    "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
    "status": 200,
@@ -7801,15 +7801,15 @@
    "count": 1
   },
   {
+   "request": "script /UBTConnect/scripts/UBTConnect.Directory_Caroussel.CarouselTag.mvc.js",
+   "count": 1
+  },
+  {
    "request": "script /UBTConnect/scripts/UBTConnect.Directory_Caroussel.EntitiesCarousel_OneSchoolGlobal.mvc.js",
    "count": 1
   },
   {
    "request": "script /UBTConnect/scripts/UBTConnect.Directory_Caroussel.EntitiesCarouse_lSupperMeetingDetails.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect.Directory_Caroussel.CarouselTag.mvc.js",
    "count": 1
   },
   {
@@ -7833,10 +7833,6 @@
    "count": 1
   },
   {
-   "request": "xmlhttprequest https://australiaeast-0.in.applicationinsights.azure.com/v2/track",
-   "count": 3
-  },
-  {
    "request": "script /UBTConnect/scripts/UBTConnect.Directory_Household_Blocks.Household_GalleryCard_List.mvc.js",
    "count": 1
   },
@@ -7857,11 +7853,15 @@
    "count": 1
   },
   {
+   "request": "link /UBTConnect/css/UBTConnect.Directory_Caroussel.EntitiesCarousel.css",
+   "count": 1
+  },
+  {
    "request": "link /UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Note_Item.css",
    "count": 1
   },
   {
-   "request": "link /UBTConnect/css/UBTConnect.Directory_Caroussel.EntitiesCarousel.css",
+   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Splide.js",
    "count": 1
   },
   {
@@ -7873,15 +7873,11 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Splide.js",
-   "count": 1
-  },
-  {
-   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1210/42438/131995_720.jpg",
+   "request": "fetch /UBTConnect/status/network-ping.txt",
    "count": 2
   },
   {
-   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1210/42448/125259_720.jpg",
+   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1210/42438/131995_720.jpg",
    "count": 2
   },
   {
@@ -7889,7 +7885,7 @@
    "count": 2
   },
   {
-   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1210/42498/131806_720.jpg",
+   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1210/42484/126827_720.jpg",
    "count": 2
   },
   {
@@ -7897,7 +7893,11 @@
    "count": 2
   },
   {
-   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1210/42484/126827_720.jpg",
+   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1210/42491/120457_720.jpg",
+   "count": 2
+  },
+  {
+   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1210/42448/125259_720.jpg",
    "count": 2
   },
   {
@@ -7905,11 +7905,7 @@
    "count": 2
   },
   {
-   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1210/42525/134052_720.jpg",
-   "count": 2
-  },
-  {
-   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1210/42491/120457_720.jpg",
+   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1210/42498/131806_720.jpg",
    "count": 2
   },
   {
@@ -7921,11 +7917,15 @@
    "count": 2
   },
   {
+   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1209/42475/124281_720.jpg",
+   "count": 2
+  },
+  {
    "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1209/42468/126705_720.jpg",
    "count": 2
   },
   {
-   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1209/42475/124281_720.jpg",
+   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1209/42480/93905_720.jpg",
    "count": 2
   },
   {
@@ -7937,23 +7937,11 @@
    "count": 2
   },
   {
-   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1209/42480/93905_720.jpg",
-   "count": 2
-  },
-  {
    "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1209/42512/130780_720.jpg",
    "count": 2
   },
   {
    "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1209/42520/133971_720.jpg",
-   "count": 2
-  },
-  {
-   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/2533/42445/126704_720.jpg",
-   "count": 2
-  },
-  {
-   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/2533/42447/128160_720.jpg",
    "count": 2
   },
   {
@@ -7965,7 +7953,27 @@
    "count": 2
   },
   {
+   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/2533/42445/126704_720.jpg",
+   "count": 2
+  },
+  {
+   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/2533/42447/128160_720.jpg",
+   "count": 2
+  },
+  {
+   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1210/42525/134052_720.jpg",
+   "count": 2
+  },
+  {
    "request": "img https://cbcdn.ubtconnect.com/5/AR/252/2533/42523/126826_720.jpg",
+   "count": 2
+  },
+  {
+   "request": "xmlhttprequest https://australiaeast-0.in.applicationinsights.azure.com/v2/track",
+   "count": 2
+  },
+  {
+   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1210/hall_726_720.jpg",
    "count": 2
   },
   {
@@ -7973,7 +7981,7 @@
    "count": 1
   },
   {
-   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1210/hall_726_720.jpg",
+   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1209/hall_1433_720.jpg",
    "count": 2
   },
   {
@@ -7982,10 +7990,6 @@
   },
   {
    "request": "fetch /UBTConnect/moduleservices/moduleinfo",
-   "count": 1
-  },
-  {
-   "request": "img https://cbcdn.ubtconnect.com/5/AR/252/1209/hall_1433_720.jpg",
    "count": 1
   },
   {
@@ -8154,10 +8158,6 @@
   },
   {
    "request": "fetch /UBTConnect/scripts/UBTConnect.Directory_SupperMeetings.SupperMeeting_HouseholdList.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "fetch /UBTConnect/status/network-ping.txt",
    "count": 1
   },
   {
@@ -8722,6 +8722,28 @@
     "SupperMeeting_HouseholdList fetch at start"
    ]
   },
+  "UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails": {
+   "observed": true,
+   "defined": true,
+   "chains": [
+    [
+     "Directory_EntityDetailsActions.action_AsyncRefresh_ContactDetails",
+     "Directory_EntityDetailsActions.DataActionFetchContactDetails"
+    ],
+    [
+     "Directory_EntityDetailsActions fetch at start",
+     "Directory_EntityDetailsActions.DataActionFetchContactDetails"
+    ]
+   ],
+   "rootKinds": [
+    "client action",
+    "lifecycle"
+   ],
+   "rootLabels": [
+    "Directory_EntityDetailsActions.action_AsyncRefresh_ContactDetails",
+    "Directory_EntityDetailsActions fetch at start"
+   ]
+  },
   "UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchNotes": {
    "observed": true,
    "defined": true,
@@ -8779,28 +8801,6 @@
    "rootLabels": [
     "SupperMeeting_DetailsBlock.OnReady",
     "SupperMeeting_DetailsBlock fetch at start"
-   ]
-  },
-  "UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails": {
-   "observed": true,
-   "defined": true,
-   "chains": [
-    [
-     "Directory_EntityDetailsActions.action_AsyncRefresh_ContactDetails",
-     "Directory_EntityDetailsActions.DataActionFetchContactDetails"
-    ],
-    [
-     "Directory_EntityDetailsActions fetch at start",
-     "Directory_EntityDetailsActions.DataActionFetchContactDetails"
-    ]
-   ],
-   "rootKinds": [
-    "client action",
-    "lifecycle"
-   ],
-   "rootLabels": [
-    "Directory_EntityDetailsActions.action_AsyncRefresh_ContactDetails",
-    "Directory_EntityDetailsActions fetch at start"
    ]
   },
   "UBTConnect_Utils/ActionGetSignedImagesInBulk": {

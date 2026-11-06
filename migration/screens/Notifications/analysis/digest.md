@@ -2,7 +2,7 @@
 
 - Path: `/UBTConnect/Notifications`
 - Viewport at capture: {'width': 390, 'height': 844, 'dpr': 1}
-- body class: `phone portrait osx is-ltr`; body style: `--header-size-content: 42px; --footer-height: 56px; --viewport-height: 844px;`
+- body class: `phone portrait osx is-ltr`; body style: `--header-size-content: 116px; --footer-height: 42px; --viewport-height: 844px;`
 - PWA: manifest `/UBTConnect/moduleservices/pwa/manifest`, service workers []
 - Screen file: `UBTConnect.App_Notifications.Notifications.mvc.js`
 
@@ -1189,17 +1189,17 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 2110 ms
-- 2. `DataActionGetDateRanges` (200) at 2816 ms
-- 3. `ActionAppManager_AfterInitialize` (200) at 4329 ms
-- 4. `ActionSync_Info_GetMain` (200) at 4801 ms
-- 5. `DataActionFetchNotifications` (200) at 5127 ms
-- 6. `ActionGetUserInformation` (200) at 5136 ms
-- 7. `ActionGetNumberUnreadMessages` (200) at 5367 ms
-- 8. `ServiceAPIGet_UI_UpdateItems_UnreadCount_All` (200) at 5394 ms
-- 9. `ActionGetSignedImagesInBulk` (200) at 5523 ms
-- 10. `ServiceAPIFetchData_CacheableMapEntities` (200) at 7395 ms
-- 11. `ServiceAPIFetchData_CacheableHouseholds` (200) at 9443 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 3192 ms
+- 2. `DataActionGetDateRanges` (200) at 4482 ms
+- 3. `ActionAppManager_AfterInitialize` (200) at 6216 ms
+- 4. `ActionSync_Info_GetMain` (200) at 6742 ms
+- 5. `DataActionFetchNotifications` (200) at 6835 ms
+- 6. `ActionGetUserInformation` (200) at 7087 ms
+- 7. `ServiceAPIGet_UI_UpdateItems_UnreadCount_All` (200) at 7137 ms
+- 8. `ActionGetSignedImagesInBulk` (200) at 7338 ms
+- 9. `ActionGetNumberUnreadMessages` (200) at 7380 ms
+- 10. `ServiceAPIFetchData_CacheableMapEntities` (200) at 9165 ms
+- 11. `ServiceAPIFetchData_CacheableHouseholds` (200) at 11891 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Cache.CacheControl_UserInfo_Wrapper`

@@ -54,9 +54,9 @@ flowchart TB
     S3["ActionAppManager_AfterInitialize<br/>observed"]
     S4["ActionSync_Info_GetMain<br/>observed"]
     S5["ActionGetUserInformation<br/>observed"]
-    S6["ActionGetNumberUnreadMessages<br/>observed"]
-    S7["ServiceAPIGet_UI_UpdateItems_UnreadCount_All<br/>observed"]
-    S8["ActionGetSignedImagesInBulk<br/>observed"]
+    S6["ServiceAPIGet_UI_UpdateItems_UnreadCount_All<br/>observed"]
+    S7["ActionGetSignedImagesInBulk<br/>observed"]
+    S8["ActionGetNumberUnreadMessages<br/>observed"]
     S9["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
     S10["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
   end
@@ -192,6 +192,25 @@ sequenceDiagram
   end
 ```
 
+### Action: ActionGetSignedImagesInBulk
+```mermaid
+%% DRAFT: trigger from call-sites.md; replace TODOs with the result handling of the calling action
+sequenceDiagram
+  actor U as User
+  participant S as Layouts.Layout_MainPages_Upgrade
+  participant API as screenservices
+  U->>S: TODO user event
+  Note over S: chain stops at UBTConnect_Utils.cache_SignedImageURL_GetCallback (see call-sites.md)
+  Note over S: via UBTConnect_Utils.cache_SignedImageURL_GetCallback → server GetSignedImagesInBulk
+  S->>API: ActionGetSignedImagesInBulk(TODO inputs)
+  API-->>S: TODO outputs
+  alt TODO branch
+    S-->>U: TODO
+  else TODO branch
+    S-->>U: TODO
+  end
+```
+
 ### Action: ActionGetNumberUnreadMessages
 ```mermaid
 %% DRAFT: trigger from call-sites.md; replace TODOs with the result handling of the calling action
@@ -204,25 +223,6 @@ sequenceDiagram
   Note over S: via UBTConnect.onApplicationReady → UBTConnect.connect_SetLoggedContext → Connect2_LegacyShared.synchronizeNumberUnreadMessages → server GetNumberUnreadMessages
   Note over S: 1 other caller chain(s) in call-sites.md
   S->>API: ActionGetNumberUnreadMessages(TODO inputs)
-  API-->>S: TODO outputs
-  alt TODO branch
-    S-->>U: TODO
-  else TODO branch
-    S-->>U: TODO
-  end
-```
-
-### Action: ActionGetSignedImagesInBulk
-```mermaid
-%% DRAFT: trigger from call-sites.md; replace TODOs with the result handling of the calling action
-sequenceDiagram
-  actor U as User
-  participant S as Layouts.Layout_MainPages_Upgrade
-  participant API as screenservices
-  U->>S: TODO user event
-  Note over S: chain stops at UBTConnect_Utils.cache_SignedImageURL_GetCallback (see call-sites.md)
-  Note over S: via UBTConnect_Utils.cache_SignedImageURL_GetCallback → server GetSignedImagesInBulk
-  S->>API: ActionGetSignedImagesInBulk(TODO inputs)
   API-->>S: TODO outputs
   alt TODO branch
     S-->>U: TODO

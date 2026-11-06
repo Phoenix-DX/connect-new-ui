@@ -354,11 +354,6 @@ export interface GetUserInformationResponse {
   UserInformation: UserInformation;
 }
 
-export interface GetNumberUnreadMessagesResponse {
-  NumberPublicUnreadMessages: string /* Long Integer as string */;
-  NumberPrivateUnreadMessages: string /* Long Integer as string */;
-}
-
 export interface ServiceAPIGet_UI_UpdateItems_UnreadCount_AllResponse {
   UnreadCount: number;
 }
@@ -373,6 +368,11 @@ export interface ResultsItem {
 
 export interface GetSignedImagesInBulkResponse {
   Results: ResultsItem[] /* wire: { List: [...] } */;
+}
+
+export interface GetNumberUnreadMessagesResponse {
+  NumberPublicUnreadMessages: string /* Long Integer as string */;
+  NumberPrivateUnreadMessages: string /* Long Integer as string */;
 }
 
 export interface Latlng {

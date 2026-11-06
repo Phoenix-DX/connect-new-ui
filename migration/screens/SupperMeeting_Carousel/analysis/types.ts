@@ -10,6 +10,40 @@ export interface GetSubdivisionHouseholdsResponse {
   Household_GalleryCard_List: Household_GalleryCard_ListItem[] /* wire: { List: [...] } */;
 }
 
+export interface ContactPopupData {
+  ImageURL: string /* "" in capture */;
+  EntityTypeId: string /* "" in capture */;
+  EntityId: string /* Long Integer as string */;
+  IsAvatarImage: boolean;
+  ActionName: string /* "" in capture */;
+  Name: string /* "" in capture */;
+  Locality: string /* "" in capture */;
+  TimezoneName: string /* "" in capture */;
+  TimezoneOffset: number /* 0 in capture */;
+  ShowPopup: boolean;
+  DisplayContactNumber: string /* "" in capture */;
+  IsFetchingTimezone: boolean;
+  IsLoading: boolean;
+  ShowTimezone: boolean;
+  ShowImage: boolean;
+  CountryName: string /* "" in capture */;
+  TitleTerminator: string /* "" in capture */;
+}
+
+export interface FetchContactDetailsResponse {
+  ContactPopupData: ContactPopupData;
+  Phone: string /* "" in capture */;
+  MobilePhone: string /* "" in capture */;
+  HomePhone: string /* "" in capture */;
+  WorkPhone: string /* "" in capture */;
+  Email: string /* "" in capture */;
+  CountryName: string;
+  LocalityId: string /* Long Integer as string */;
+  LocalityName: string;
+  EntitySubtitle: string /* "" in capture */;
+  EntityName: string;
+}
+
 export interface EmptyListItem {
   Id: string /* Long Integer as string */;
   Note: string /* "" in capture */;
@@ -63,40 +97,6 @@ export interface Subdivision {
 
 export interface GetSubdivisionResponse {
   Subdivision: Subdivision;
-}
-
-export interface ContactPopupData {
-  ImageURL: string /* "" in capture */;
-  EntityTypeId: string /* "" in capture */;
-  EntityId: string /* Long Integer as string */;
-  IsAvatarImage: boolean;
-  ActionName: string /* "" in capture */;
-  Name: string /* "" in capture */;
-  Locality: string /* "" in capture */;
-  TimezoneName: string /* "" in capture */;
-  TimezoneOffset: number /* 0 in capture */;
-  ShowPopup: boolean;
-  DisplayContactNumber: string /* "" in capture */;
-  IsFetchingTimezone: boolean;
-  IsLoading: boolean;
-  ShowTimezone: boolean;
-  ShowImage: boolean;
-  CountryName: string /* "" in capture */;
-  TitleTerminator: string /* "" in capture */;
-}
-
-export interface FetchContactDetailsResponse {
-  ContactPopupData: ContactPopupData;
-  Phone: string /* "" in capture */;
-  MobilePhone: string /* "" in capture */;
-  HomePhone: string /* "" in capture */;
-  WorkPhone: string /* "" in capture */;
-  Email: string /* "" in capture */;
-  CountryName: string;
-  LocalityId: string /* Long Integer as string */;
-  LocalityName: string;
-  EntitySubtitle: string /* "" in capture */;
-  EntityName: string;
 }
 
 export interface Results {

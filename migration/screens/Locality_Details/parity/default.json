@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "1facae649c454907b94b",
+ "fingerprint": "58b94f7b15df31ee9302",
  "options": {
   "text": true,
   "style": true,
@@ -27,7 +27,7 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-06T20:03:59.870Z",
+ "at": "2026-11-06T20:39:25.308Z",
  "counts": {
   "layout": 240,
   "style": 25,
@@ -67,7 +67,7 @@
    "load"
   ],
   "expected": 39,
-  "actual": 61
+  "actual": 60
  },
  "diffs": [
   {

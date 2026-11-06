@@ -918,23 +918,6 @@ Layouts.Layout_DetailPage
                                       ConnectPatterns.LazyImage
                                         ConnectPatterns.SkeletonSection
                                           BasePatterns.CustomContainer
-                                          BasePatterns.CustomContainer
-                                            ConnectPatterns.Icon
-                                  BasePatterns.CustomText
-                                    ConnectPatterns.IconInline_Internal
-                                  BasePatterns.CustomText
-                                    ConnectPatterns.IconInline_Internal
-                                  BasePatterns.CustomContainer
-                            ConnectCorePatterns.Member_ListItem
-                              BasePatterns.Columns_Three
-                                Adaptive.Columns3
-                                  CW_Image.UBT_LazyImage
-                                    ConnectPatterns.SkeletonSection
-                                      ConnectPatterns.LazyImage
-                                        ConnectPatterns.SkeletonSection
-                                          BasePatterns.CustomContainer
-                                          BasePatterns.CustomContainer
-                                            ConnectPatterns.Icon
                                   BasePatterns.CustomText
                                     ConnectPatterns.IconInline_Internal
                                   BasePatterns.CustomText
@@ -961,8 +944,19 @@ Layouts.Layout_DetailPage
                                       ConnectPatterns.LazyImage
                                         ConnectPatterns.SkeletonSection
                                           BasePatterns.CustomContainer
+                                  BasePatterns.CustomText
+                                    ConnectPatterns.IconInline_Internal
+                                  BasePatterns.CustomText
+                                    ConnectPatterns.IconInline_Internal
+                                  BasePatterns.CustomContainer
+                            ConnectCorePatterns.Member_ListItem
+                              BasePatterns.Columns_Three
+                                Adaptive.Columns3
+                                  CW_Image.UBT_LazyImage
+                                    ConnectPatterns.SkeletonSection
+                                      ConnectPatterns.LazyImage
+                                        ConnectPatterns.SkeletonSection
                                           BasePatterns.CustomContainer
-                                            ConnectPatterns.Icon
                                   BasePatterns.CustomText
                                     ConnectPatterns.IconInline_Internal
                                   BasePatterns.CustomText
@@ -2020,41 +2014,41 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `DataActionGetHousehold` (200) at 2618 ms
-- 2. `DataActionFetchContactDetails` (200) at 2660 ms
-- 3. `DataActionGetHousehold` (200) at 2683 ms
-- 4. `DataActionGetHousehold` (200) at 2701 ms
-- 5. `DataActionGetHousehold` (200) at 2720 ms
-- 6. `DataActionFetchContactDetails` (200) at 2738 ms
-- 7. `DataActionFetchContactDetails` (200) at 2738 ms
-- 8. `DataActionGetHouseHold_Gallery` (200) at 2837 ms
-- 9. `DataActionGetHouseHold_Gallery` (200) at 2838 ms
-- 10. `DataActionFetchContactDetails` (200) at 2853 ms
-- 11. `DataActionFetchContactDetails` (200) at 2892 ms
-- 12. `DataActionFetchContactDetails` (200) at 2945 ms
-- 13. `ActionGetSignedImagesInBulk` (200) at 2947 ms
-- 14. `DataActionGetHousehold_Coordinates` (200) at 2967 ms
-- 15. `DataActionFetchContactDetails` (200) at 2980 ms
-- 16. `DataActionFetchContactDetails` (200) at 2998 ms
-- 17. `DataActionFetchNotes` (200) at 3006 ms
-- 18. `DataActionFetchNotes` (200) at 3068 ms
-- 19. `DataActionGetHousehold_Coordinates` (200) at 3127 ms
-- 20. `DataActionGetHousehold_Coordinates` (200) at 3143 ms
-- 21. `DataActionGetHousehold_Coordinates` (200) at 3228 ms
-- 22. `DataActionFetchContactDetails` (200) at 3242 ms
-- 23. `DataActionFetchContactDetails` (200) at 3262 ms
-- 24. `DataActionFetchContactDetails` (200) at 3281 ms
-- 25. `DataActionFetchContactDetails` (200) at 3282 ms
-- 26. `ActionGetSignedImagesInBulk` (200) at 3294 ms
-- 27. `DataActionFetchContactDetails` (200) at 3337 ms
-- 28. `DataActionGetHouseHold_Gallery` (200) at 3488 ms
-- 29. `DataActionFetchNotes` (200) at 3536 ms
-- 30. `DataActionFetchNotes` (200) at 3544 ms
-- 31. `DataActionFetchContactDetails` (200) at 3581 ms
-- 32. `DataActionGetHouseHold_Gallery` (200) at 3599 ms
-- 33. `DataActionFetchContactDetails` (200) at 3602 ms
-- 34. `ActionGetSignedImagesInBulk` (200) at 3695 ms
-- 35. `DataActionFetchContactDetails` (200) at 4029 ms
+- 1. `DataActionGetHousehold` (200) at 2873 ms
+- 2. `DataActionFetchContactDetails` (200) at 2886 ms
+- 3. `DataActionGetHousehold` (200) at 2928 ms
+- 4. `DataActionGetHousehold` (200) at 2959 ms
+- 5. `DataActionFetchContactDetails` (200) at 2972 ms
+- 6. `DataActionGetHousehold` (200) at 2988 ms
+- 7. `DataActionFetchContactDetails` (200) at 2989 ms
+- 8. `DataActionFetchContactDetails` (200) at 2990 ms
+- 9. `DataActionGetHouseHold_Gallery` (200) at 2991 ms
+- 10. `DataActionGetHouseHold_Gallery` (200) at 3035 ms
+- 11. `DataActionGetHouseHold_Gallery` (200) at 3043 ms
+- 12. `DataActionGetHouseHold_Gallery` (200) at 3076 ms
+- 13. `DataActionGetHousehold_Coordinates` (200) at 3093 ms
+- 14. `DataActionFetchContactDetails` (200) at 3146 ms
+- 15. `DataActionFetchContactDetails` (200) at 3212 ms
+- 16. `DataActionGetHousehold_Coordinates` (200) at 3216 ms
+- 17. `DataActionGetHousehold_Coordinates` (200) at 3216 ms
+- 18. `DataActionFetchNotes` (200) at 3223 ms
+- 19. `DataActionFetchNotes` (200) at 3223 ms
+- 20. `DataActionFetchNotes` (200) at 3232 ms
+- 21. `DataActionFetchNotes` (200) at 3235 ms
+- 22. `DataActionFetchContactDetails` (200) at 3246 ms
+- 23. `DataActionFetchContactDetails` (200) at 3256 ms
+- 24. `ActionGetSignedImagesInBulk` (200) at 3316 ms
+- 25. `ActionGetSignedImagesInBulk` (200) at 3327 ms
+- 26. `DataActionGetHousehold_Coordinates` (200) at 3404 ms
+- 27. `DataActionFetchContactDetails` (200) at 3408 ms
+- 28. `DataActionFetchContactDetails` (200) at 3444 ms
+- 29. `DataActionFetchContactDetails` (200) at 3461 ms
+- 30. `DataActionFetchContactDetails` (200) at 3471 ms
+- 31. `DataActionFetchContactDetails` (200) at 3472 ms
+- 32. `DataActionFetchContactDetails` (200) at 3496 ms
+- 33. `DataActionFetchContactDetails` (200) at 3523 ms
+- 34. `DataActionFetchContactDetails` (200) at 3524 ms
+- 35. `ActionGetSignedImagesInBulk` (200) at 3658 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`
