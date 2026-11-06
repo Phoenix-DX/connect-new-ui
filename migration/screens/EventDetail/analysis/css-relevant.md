@@ -551,6 +551,10 @@ e-from-left-leave-active .content.browse-country-screen > .main-content::after, 
 ```css
 .orbit-host-survey-link-new { font-size: 0.85em; display: flex; align-items: center; justify-content: space-between; background-color: var(--orbit-primary-6); color: var(--color-neutral-0); padding: var(--space-base) var(--space-m); border-radius: var(--space-base); }
 ```
+### .orbit-icon-arrow  (1 rule)
+```css
+.orbit-icon-arrow:before { content: "\e940"; }
+```
 ### .orbit-icon-date-time  (1 rule)
 ```css
 .orbit-icon-date-time:before { content: "\e917"; }
@@ -941,6 +945,10 @@ rea-content.horizontal-scroll .osui-carousel .list.list-group, .scrollable-area-
 ```css
 .orbit-icon-accommodation:before { content: "\e909"; }
 ```
+### .orbit-icon-meal  (1 rule)
+```css
+.orbit-icon-meal:before { content: "\e908"; }
+```
 ## Orbit_Blocks.HostAllocation_HelperItem
 
 ### .orbit-icon-person-wave  (1 rule)
@@ -1031,6 +1039,10 @@ rea-content.horizontal-scroll .osui-carousel .list.list-group, .scrollable-area-
 ### .orbit-card-title-cont  (1 rule)
 ```css
 .orbit-card-title-cont { font-size: 1.3em; font-weight: bold; margin-bottom: var(--space-m); }
+```
+### .orbit-icon-seat  (1 rule)
+```css
+.orbit-icon-seat:before { content: "\e901"; }
 ```
 ### .orbit-icon-video-meeting  (1 rule)
 ```css

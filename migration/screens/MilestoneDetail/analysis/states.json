@@ -4,7 +4,7 @@
   "viewportName": "phone",
   "variant": null,
   "flags": {},
-  "route": "/UBTConnect/MilestoneDetail",
+  "route": "/UBTConnect/MilestoneDetail?In_OrbitMilestoneTypeId=accommodation-host&In_HostId=52768&In_EventId=2085&In_MilestoneId=GMP15700",
   "via": {
    "from": "/UBTConnect/OrbitLanding",
    "pre": [
@@ -26,7 +26,7 @@
   "viewportName": "phone",
   "variant": null,
   "flags": {},
-  "route": "/UBTConnect/MilestoneDetail",
+  "route": "/UBTConnect/MilestoneDetail?In_OrbitMilestoneTypeId=accommodation-host&In_HostId=52768&In_EventId=2085&In_MilestoneId=GMP15700",
   "via": {
    "from": "/UBTConnect/OrbitLanding",
    "pre": [
@@ -48,7 +48,7 @@
   "viewportName": "phone",
   "variant": null,
   "flags": {},
-  "route": "/UBTConnect/MilestoneDetail",
+  "route": "/UBTConnect/MilestoneDetail?In_OrbitMilestoneTypeId=accommodation-host&In_HostId=52768&In_EventId=2085&In_MilestoneId=GMP15700",
   "via": {
    "from": "/UBTConnect/OrbitLanding",
    "pre": [

@@ -1,11 +1,11 @@
 {
  "state": "default",
- "route": "/UBTConnect/MilestoneDetail?mocksession=unlocked&In_FromNotification=False&In_MilestoneId=7301-1&In_EventId=7301&In_HostId=990002&In_OrbitMilestoneTypeId=accommodation-host&In_MilestoneName=Accommodation&In_EventName=Weekend%20Bible%20Conferences%20-%20Bahia%20and%20Azul",
+ "route": "/UBTConnect/MilestoneDetail?In_OrbitMilestoneTypeId=accommodation-host&In_HostId=52768&In_EventId=2085&In_MilestoneId=GMP15700&mocksession=unlocked&In_FromNotification=False&In_MilestoneId=7301-1&In_EventId=7301&In_HostId=990002&In_OrbitMilestoneTypeId=accommodation-host&In_MilestoneName=Accommodation&In_EventName=Weekend%20Bible%20Conferences%20-%20Bahia%20and%20Azul",
  "mock": "real",
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "408eed20d0446adcb157",
+ "fingerprint": "de99fa5502bf51dd11f0",
  "options": {
   "text": true,
   "style": true,
@@ -19,29 +19,32 @@
  },
  "replay": {
   "mode": "builder",
-  "elements": 511,
-  "texts": 83,
+  "elements": 541,
+  "texts": 93,
   "comments": 0,
   "dropped": 0,
   "endTagMismatch": 0,
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-05T13:10:00.794Z",
- "counts": {},
+ "at": "2026-11-06T05:11:40.526Z",
+ "counts": {
+  "position": 1,
+  "structure": 3,
+  "layout": 3,
+  "pixel": 1,
+  "call": 1
+ },
  "exemptionsUsed": {
   "VIA-BACK-MENUICON-MILESTONEDETAIL": 14,
-  "CAPTURE-RUNTIME-LIST-KEY-ARIA-CONTROLS-MILESTONEDETAIL": 6,
-  "CAPTURE-MASKED-ROOM-INFO-MILESTONEDETAIL": 11,
-  "ignoreSubtrees": 2,
-  "CAPTURE-VIA-MASK-SHIFT-MILESTONEDETAIL-PIXELS": 1
+  "ignoreSubtrees": 2
  },
  "pixel": {
-  "ratio": 0.06297,
+  "ratio": 0.07053,
   "maxCell": 0.6512,
   "maxCellRatio": 0.03,
-  "diffPixels": 16258,
-  "comparedPixels": 258206,
+  "diffPixels": 22258,
+  "comparedPixels": 315576,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -52,7 +55,7 @@
    390,
    844
   ],
-  "masks": 43,
+  "masks": 3,
   "hotspots": [
    "80,80 (1042px)",
    "120,80 (1020px)",
@@ -67,7 +70,7 @@
    "load"
   ],
   "expected": 3,
-  "actual": 10,
+  "actual": 9,
   "viaAppStartSkipped": [
    "ActionAppManager_AfterInitialize",
    "ActionAppManager_SynchAppContext",
@@ -78,5 +81,51 @@
    "ServiceAPIFetchData_CacheableMapEntities"
   ]
  },
- "diffs": []
+ "diffs": [
+  {
+   "kind": "position",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Orbit_ScreenBlocks.ScreenBlock_MilestoneWrapper] > div#b1-$b5.OSBlockWidget[Orbit_ScreenBlocks.ScreenBlock_AccommodationHost] > div#b1-b5-$b1.OSBlockWidget[Layout_OrbitTheme.Layout_Orbit] > div.backwards-compatibility.orbit-theme > div#b1-b5-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b5-b1-b2-LayoutWrapper.aside-overlay.ios-bounce.layout > div.main.screen > div#b1-b5-b1-b2-ContentWrapper.content.orbit-detail > div#b1-b5-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b5-b1-b2-Content.content-middle",
+   "detail": "offset in parent 0,15 → 0,0"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Orbit_ScreenBlocks.ScreenBlock_MilestoneWrapper] > div#b1-$b5.OSBlockWidget[Orbit_ScreenBlocks.ScreenBlock_AccommodationHost] > div#b1-b5-$b1.OSBlockWidget[Layout_OrbitTheme.Layout_Orbit] > div.backwards-compatibility.orbit-theme > div#b1-b5-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b5-b1-b2-LayoutWrapper.aside-overlay.ios-bounce.layout > div.main.screen > div#b1-b5-b1-b2-ContentWrapper.content.orbit-detail > div#b1-b5-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b5-b1-b2-Content.content-middle > div#b1-b5-b1-Content > div.full-width.margin-top-m",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Orbit_ScreenBlocks.ScreenBlock_MilestoneWrapper] > div#b1-$b5.OSBlockWidget[Orbit_ScreenBlocks.ScreenBlock_AccommodationHost] > div#b1-b5-$b1.OSBlockWidget[Layout_OrbitTheme.Layout_Orbit] > div.backwards-compatibility.orbit-theme > div#b1-b5-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b5-b1-b2-LayoutWrapper.aside-overlay.ios-bounce.layout > div.main.screen > div#b1-b5-b1-b2-ContentWrapper.content.orbit-detail > div#b1-b5-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b5-b1-b2-Content.content-middle > div#b1-b5-b1-Content > div#b1-b5-$b15.OSBlockWidget[Orbit_Generic_Blocks.NoInformation_Orbit]",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Orbit_ScreenBlocks.ScreenBlock_MilestoneWrapper] > div#b1-$b5.OSBlockWidget[Orbit_ScreenBlocks.ScreenBlock_AccommodationHost] > div#b1-b5-$b1.OSBlockWidget[Layout_OrbitTheme.Layout_Orbit] > div.backwards-compatibility.orbit-theme > div#b1-b5-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b5-b1-b2-LayoutWrapper.aside-overlay.ios-bounce.layout > div.main.screen > footer.content-bottom",
+   "detail": "390×63 → 390×0"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Orbit_ScreenBlocks.ScreenBlock_MilestoneWrapper] > div#b1-$b5.OSBlockWidget[Orbit_ScreenBlocks.ScreenBlock_AccommodationHost] > div#b1-b5-$b1.OSBlockWidget[Layout_OrbitTheme.Layout_Orbit] > div.backwards-compatibility.orbit-theme > div#b1-b5-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b5-b1-b2-LayoutWrapper.aside-overlay.ios-bounce.layout > div.main.screen > footer.content-bottom > div#b1-b5-b1-b2-Bottom.bottom.footer.ph",
+   "detail": "390×63 → 390×0"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Orbit_ScreenBlocks.ScreenBlock_MilestoneWrapper] > div#b1-$b5.OSBlockWidget[Orbit_ScreenBlocks.ScreenBlock_AccommodationHost] > div#b1-b5-$b1.OSBlockWidget[Layout_OrbitTheme.Layout_Orbit] > div.backwards-compatibility.orbit-theme > div#b1-b5-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b5-b1-b2-LayoutWrapper.aside-overlay.ios-bounce.layout > div.main.screen > footer.content-bottom > div#b1-b5-b1-b2-Bottom.bottom.footer.ph > div#b1-b5-b1-BottomBar",
+   "detail": "390×63 → 390×0"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Orbit_ScreenBlocks.ScreenBlock_MilestoneWrapper] > div#b1-$b5.OSBlockWidget[Orbit_ScreenBlocks.ScreenBlock_AccommodationHost] > div#b1-b5-$b1.OSBlockWidget[Layout_OrbitTheme.Layout_Orbit] > div.backwards-compatibility.orbit-theme > div#b1-b5-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b5-b1-b2-LayoutWrapper.aside-overlay.ios-bounce.layout > div.main.screen > footer.content-bottom > div#b1-b5-b1-b2-Bottom.bottom.footer.ph > div#b1-b5-b1-BottomBar > div#b1-b5-$b17.OSBlockWidget[Orbit_Blocks.ContactHelpdesk_Footer]",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "pixel",
+   "path": "screenshot",
+   "detail": "7.05% pixels differ (max 0.20%), worst 40px tile 65.1% (max 3.0%), hotspots 80,80 (1042px); 120,80 (1020px); 160,80 (1005px); 40,80 (959px); 0,80 (804px); see migration/screens/MilestoneDetail/parity/default.diff.png"
+  },
+  {
+   "kind": "call",
+   "path": "calls:load",
+   "detail": "ActionGetSignedImagesInBulk called 0× in build, 1× in capture (order-free call)"
+  }
+ ]
 }

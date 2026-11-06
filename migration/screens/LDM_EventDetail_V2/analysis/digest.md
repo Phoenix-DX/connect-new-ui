@@ -658,9 +658,9 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `DataActionFetchEventNotes` (200) at 2795 ms
-- 2. `DataActionGetCoordinatorDetails` (200) at 2816 ms
-- 3. `DataActionGetEventByEventId` (200) at 3210 ms
+- 1. `DataActionFetchEventNotes` (200) at 2950 ms
+- 2. `DataActionGetCoordinatorDetails` (200) at 2992 ms
+- 3. `DataActionGetEventByEventId` (200) at 3055 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

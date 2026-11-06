@@ -1,0 +1,113 @@
+{
+ "state": "offline",
+ "route": "/UBTConnect/AcceptPendingPolicies?mocksession=unlocked",
+ "mock": "error",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "7be3914ba0ba2f34895b",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "visibleOnly": false,
+  "full": true,
+  "replay": "builder",
+  "skipKinds": [],
+  "selfRef": false
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 82,
+  "texts": 21,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-11-06T05:11:26.280Z",
+ "counts": {
+  "layout": 7,
+  "text": 1,
+  "position": 1,
+  "pseudo": 1
+ },
+ "exemptionsUsed": {
+  "ignoreSubtrees": 3
+ },
+ "pixel": {
+  "ratio": 0,
+  "maxCell": 0,
+  "maxCellRatio": 0.03,
+  "diffPixels": 0,
+  "comparedPixels": 0,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 3,
+  "hotspots": [],
+  "diffPng": "migration/screens/AcceptPendingPolicies/parity/offline.diff.png"
+ },
+ "calls": null,
+ "diffs": [
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content",
+   "detail": "390×310 → 390×286"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div.ubt-policies--header",
+   "detail": "358×198 → 358×174"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div.ubt-policies--header > div#$b4.OSBlockWidget[BasePatterns.CustomContainer]",
+   "detail": "358×112 → 358×88"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div.ubt-policies--header > div#$b4.OSBlockWidget[BasePatterns.CustomContainer] > div#b4-Content.padding-bottom-m.padding-top-base.ubt-custom-container",
+   "detail": "358×112 → 358×88"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div.ubt-policies--header > div#$b4.OSBlockWidget[BasePatterns.CustomContainer] > div#b4-Content.padding-bottom-m.padding-top-base.ubt-custom-container > div#$b6.OSBlockWidget[BasePatterns.CustomText]",
+   "detail": "358×48 → 358×24"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div.ubt-policies--header > div#$b4.OSBlockWidget[BasePatterns.CustomContainer] > div#b4-Content.padding-bottom-m.padding-top-base.ubt-custom-container > div#$b6.OSBlockWidget[BasePatterns.CustomText] > div.font-semi-bold.font-size-base.text-neutral-0",
+   "detail": "358×48 → 358×24"
+  },
+  {
+   "kind": "text",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div.ubt-policies--header > div#$b4.OSBlockWidget[BasePatterns.CustomContainer] > div#b4-Content.padding-bottom-m.padding-top-base.ubt-custom-container > div#$b6.OSBlockWidget[BasePatterns.CustomText] > div.font-semi-bold.font-size-base.text-neutral-0 > span",
+   "detail": "\"Terms & Conditions and Privacy Policy Agreement\" → \"Terms and Conditions & Privacy Policy\""
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div.ubt-policies--header > div#$b4.OSBlockWidget[BasePatterns.CustomContainer] > div#b4-Content.padding-bottom-m.padding-top-base.ubt-custom-container > div#$b6.OSBlockWidget[BasePatterns.CustomText] > div.font-semi-bold.font-size-base.text-neutral-0 > span",
+   "detail": "294×42 → 290×18"
+  },
+  {
+   "kind": "position",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div#$b7.OSBlockWidget[App_Policies.Policy_Custom_AcceptPendingPolicies]",
+   "detail": "offset in parent 16,270 → 16,246"
+  },
+  {
+   "kind": "pseudo",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_LoginFlow] > div#b1-Main.ubt-layout--login.ubt-policies > div#b1-Placeholder_Content.ubt-layout--login__content > div#Content.ubt-policies--content > div#$b7.OSBlockWidget[App_Policies.Policy_Custom_AcceptPendingPolicies] > div.list-updating",
+   "detail": "::before transform matrix(-0.309047, 0.951047, -0.951047, -0.309047, 0, 0) → matrix(0.951179, 0.308641, -0.308641, 0.951179, 0, 0)"
+  }
+ ]
+}

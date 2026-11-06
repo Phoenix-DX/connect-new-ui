@@ -4,7 +4,7 @@
   "viewportName": "phone",
   "variant": null,
   "flags": {},
-  "route": "/UBTConnect/LDM_EventDetail_V2",
+  "route": "/UBTConnect/LDM_EventDetail_V2?EventId=88271&EventHostId=1808338",
   "via": {
    "from": "/UBTConnect/LDM_MyEvents_V2",
    "click": "[data-block='LDM_Blocks_V2.EventCard_V2'] .event-card-box",
@@ -23,7 +23,7 @@
   "viewportName": "phone",
   "variant": null,
   "flags": {},
-  "route": "/UBTConnect/LDM_EventDetail_V2",
+  "route": "/UBTConnect/LDM_EventDetail_V2?EventId=88271&EventHostId=1808338",
   "via": {
    "from": "/UBTConnect/LDM_MyEvents_V2",
    "click": "[data-block='LDM_Blocks_V2.EventCard_V2'] .event-card-box",
@@ -42,7 +42,7 @@
   "viewportName": "phone",
   "variant": null,
   "flags": {},
-  "route": "/UBTConnect/LDM_EventDetail_V2",
+  "route": "/UBTConnect/LDM_EventDetail_V2?EventId=88271&EventHostId=1808338",
   "via": {
    "from": "/UBTConnect/LDM_MyEvents_V2",
    "click": "[data-block='LDM_Blocks_V2.EventCard_V2'] .event-card-box",

@@ -1,11 +1,11 @@
 {
  "state": "loading",
- "route": "/UBTConnect/LDM_EventDetail_V2?mocksession=unlocked&EventHostId=88231&EventId=70415",
+ "route": "/UBTConnect/LDM_EventDetail_V2?EventId=88271&EventHostId=1808338&mocksession=unlocked&EventHostId=88231&EventId=70415",
  "mock": "loading",
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "39279e8f28af460fedcf",
+ "fingerprint": "ed2ad5e6d6cc2b75fa5e",
  "options": {
   "text": true,
   "style": true,
@@ -27,7 +27,7 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-05T13:07:48.616Z",
+ "at": "2026-11-06T05:11:53.116Z",
  "counts": {},
  "exemptionsUsed": {
   "ignoreSubtrees": 1

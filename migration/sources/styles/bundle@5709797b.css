@@ -1096,14 +1096,12 @@ div.feedback-message-warning {
     height: 100%;
     background-color: var(--color-neutral-0);
 }
-/* ==== /UBTConnect/css/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.css ==== */
+/* ==== /UBTConnect/css/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.css ==== */
 /*these classes are here becuase they are to modify components in legacy where 
 the main classes from C2 don't apply or get overwritten padding-base for instance is reflected as 10px
 instead of 16px. Once this is moved to C2 these classes should disappear.*/
-
-.orbit-event-notes {
-    margin-top: 24px;
-    margin-bottom: 24px;
+.ldm-notes {
+padding: 16px;
 }
 
 /* ==== /UBTConnect/css/UBT_AppManager.PIN.PinCode.css ==== */
@@ -20462,6 +20460,7 @@ body{
     -moz-osx-font-smoothing: grayscale;
 }
 
+.connect-icon-circle_fill:before {content: "\f0c3";}
 .connect-icon-link:before {content: "\f0be";}
 .connect-icon-fork_spoon:before {content: "\f0bd";}
 .connect-icon-boy:before {content: "\f0bc";}
@@ -20656,6 +20655,9 @@ body{
 .connect-icon-remove-fill:before {content: "\f0bf";}
 .connect-icon-Arrow-up1:before {content: "\f0c2";}
 .connect-icon-Arrow-down:before {content: "\f0c1";}
+.connect-icon-transport_train:before { content: "\f0c4";}
+.connect-icon-transport_car:before {content: "\f0c5";}
+.connect-icon-transport_plane:before {content: "\f0c0";}
 
 
 /* === 2. Resets === */
@@ -23512,6 +23514,17 @@ h6,
   -webkit-box-shadow: var(--shadow-xs-top);
           box-shadow: var(--shadow-xs-top);
 }
+
+[class^="line-clamp-"],
+[class*=" line-clamp-"] {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-1 { -webkit-line-clamp: 1; line-clamp: 1; }
+.line-clamp-2 { -webkit-line-clamp: 2; line-clamp: 2; }
+.line-clamp-3 { -webkit-line-clamp: 3; line-clamp: 3; }
 
     /*  8.6. Colors  */
 
@@ -27049,6 +27062,7 @@ connect-login-screen:has(.unsupported-card--webview),
     position: absolute;
     right: -6px;
     top: -6px;
+    z-index: 100;
 }
 
 div:has(div > div.ubt-icon.header-filter-enabled) {
@@ -28605,20 +28619,21 @@ therefore the final listed last element on the list will not be considered the l
 
 
 /* every ancestor of the results list: column, can shrink */
-.osui-bottom-sheet__content *:has(.connect-share-sheet__results) {
+/* sheet content → search list: always fill the available height */
+
+.osui-bottom-sheet__content *:has(.connect-share-sheet__content__search-list),
+.connect-share-sheet__content__search-list {
     display: flex;
     flex-direction: column;
+    flex: 1;
     min-height: 0;
 }
 
-/* ancestors of the marker also fill the available height */
-.osui-bottom-sheet__content *:has(.connect-share-sheet__fill-parent-end) {
-    flex: 1;
-}
-
-/* Div_SearchList takes the space left after the search input and avatar row */
-.connect-share-sheet__content__search-list {
-    flex: 1 1 auto;
+/* inside the search list → results: can shrink so the results can scroll */
+.connect-share-sheet__content__search-list *:has(.connect-share-sheet__results) {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
 }
 
 /* the results list is the scroll container */

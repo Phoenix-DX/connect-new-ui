@@ -839,6 +839,10 @@ rea-content.horizontal-scroll .osui-carousel .list.list-group, .scrollable-area-
 ```css
 .member-info-text-title { display: flex; flex-direction: row; align-items: center; }
 ```
+### .orbit-icon-arrangements  (1 rule)
+```css
+.orbit-icon-arrangements:before { content: "\e928"; }
+```
 ### .orbit-icon-circle-arrow  (1 rule)
 ```css
 .orbit-icon-circle-arrow:before { content: "\e90a"; }
@@ -846,6 +850,10 @@ rea-content.horizontal-scroll .osui-carousel .list.list-group, .scrollable-area-
 ### .orbit-icon-phone  (1 rule)
 ```css
 .orbit-icon-phone:before { content: "\e903"; }
+```
+### .orbit-member-list-item-arrangements  (1 rule)
+```css
+.orbit-member-list-item-arrangements { margin-left: var(--space-base); display: flex; justify-content: center; align-items: center; line-height: 1; background-color: var(--orbit-primary-6); border-radius: 15px; color: white; padding: var(--space-xs) var(--space-base); font-size: var(--font-size-s); }
 ```
 ## Orbit_Blocks.ContactHelpdesk_Footer
 
@@ -1079,6 +1087,7 @@ ibility) .screen-container.active-screen:not([class*=-enter]) + .screen-containe
 - `--layer-local-tier-1`: `1` (in `@charset "UTF-8";    :root`)
 - `--loading-dot-size`: `10px` (in `:root`)
 - `--orbit-primary-1`: `#F0F5FF` (in `:root`)
+- `--orbit-primary-6`: `#2857D8` (in `:root`); `var(--color-primary)` (in `:root`)
 - `--orbit-primary-7`: `#1D39C4` (in `:root`); `var(--color-primary)` (in `:root`)
 - `--os-safe-area-bottom`: `max(env(safe-area-inset-bottom), var(--safe-area-inset-bottom, 0px))` (in `@charset "UTF-8";    :root`); `env(safe-area-inset-bottom)` (in `.ignore-backwards-compatibility-content`)
 - `--os-safe-area-left`: `max(env(safe-area-inset-left), var(--safe-area-inset-left, 0px))` (in `@charset "UTF-8";    :root`); `env(safe-area-inset-left)` (in `.ignore-backwards-compatibility-content`)
