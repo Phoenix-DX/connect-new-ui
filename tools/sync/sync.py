@@ -205,6 +205,8 @@ def parse_triage(text: str) -> list[dict]:
     rows, header_seen = [], False
     for line in text.splitlines():
         if not line.startswith("|"):
+            if header_seen and line.strip() == "":
+                break  # the items table ends at the first blank line; later tables are not items
             continue
         cells = [x.strip() for x in line.strip().strip("|").split("|")]
         if not header_seen:

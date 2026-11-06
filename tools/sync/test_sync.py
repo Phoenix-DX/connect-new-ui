@@ -133,3 +133,25 @@ class Repo(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TriageDraft(unittest.TestCase):
+    def test_rows_from_parity_reports(self):
+        import triage_draft as td
+        tmp = Path(tempfile.mkdtemp())
+        try:
+            for r, counts in (("R1", {"text": 2, "pixel": 1}), ("R2", {}), ("R3", {"call": 1})):
+                (tmp / r / "parity").mkdir(parents=True)
+                (tmp / r / "finished.json").write_text("{}")
+                (tmp / r / "parity/default.json").write_text(json.dumps({"state": "default", "counts": counts, "exemptionsUsed": [{"id": "X", "count": 2}]}))
+            states, kinds, exempt = td.route_rows(str(tmp))
+            self.assertEqual(states, {"R1": {"default": 3}, "R3": {"default": 1}})
+            self.assertEqual(kinds["R1"], {"text", "pixel"})
+            self.assertEqual(exempt["R2"], {"X": 2})
+            files = td.drift_files({"routes": {"changed": {"M.F.A.mvc.js": {"routes": ["R1", "R2"]}}}})
+            text = td.render("2026-01-01", states, kinds, exempt, files, None)
+            self.assertIn("| `R1` | ? | default:3 | text, pixel | `M.F.A.mvc.js` | - | opus | - | |", text)
+            self.assertIn("- `R2`: `A`", text)
+            self.assertEqual(sync.parse_triage(text.replace("| ? |", "| A |"))[0]["id"], "R1")
+        finally:
+            shutil.rmtree(tmp)
