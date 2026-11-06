@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check the prose of Markdown files against the measurable rules of migration/english-docs/style-rules.md.
+"""Check the prose of Markdown files against the measurable rules of migration/style/style-rules.md.
 
 Run from the project root:
   python3 tools/docs/ste_lint.py FILE…             # one summary line per file

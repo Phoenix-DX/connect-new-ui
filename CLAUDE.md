@@ -41,7 +41,7 @@ specified and checked. Use it to re-capture or re-check a route. Architecture wo
 
 - Reply to me in Vietnamese, whatever language I write in (Vietnamese or English). Keep code, commands, file names and
   identifiers in English. Files written in the project (specs, docs, notes) stay in English and follow
-  `migration/english-docs/style-rules.md`.
+  `migration/style/style-rules.md`.
 - Questions to me: one session per topic (scope, stack, flags), grouped, each with evidence, options and a recommendation.
 - At the start of every session: `python3 $SK/route.py plan`, read `migration/contexts/INDEX.md`, and tell me in 5 lines
   where we are and what is next.

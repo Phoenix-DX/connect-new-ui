@@ -8,7 +8,7 @@ argument-hint: "status | continue | run <Route> | done <Route> | app-shell"
 
 The reports and the config are in `route-check/` at the repository root; the tools are in `tools/route-check/`. Read `route-check/README.md` once per session before
 the first run. The tool is `python3 tools/route-check/check_route.py` (below: `check_route.py`). Run every command
-from the project root. Reply to the user in Vietnamese; the files stay in English (STE, `migration/english-docs/style-rules.md`).
+from the project root. Reply to the user in Vietnamese; the files stay in English (STE, `migration/style/style-rules.md`).
 
 ## Rules (user, 2026-11-04)
 

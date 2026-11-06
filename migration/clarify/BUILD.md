@@ -7,7 +7,7 @@ You change code, tests, mocks and docs. You make no commit (the orchestrator com
 ## Source of truth and evidence
 
 - TST compiled code is the target. The finding row (report §5) names the TST file and lines. Read them yourself:
-  `cd /Users/khaitruong/Projects/connect-new && python3 migration/clarify/tools/tst_source.py grep "<regex>" <file>` and
+  `cd /Users/khaitruong/Projects/connect-new && python3 tools/clarify/tst_source.py grep "<regex>" <file>` and
   `show <file> | sed -n 'A,Bp'`. `list <name>` finds the file. The React location is in the same row.
   - No whole-file dumps: a block file can be 400 KB. Read the model, the view and the actions you need, part by part.
 - The checklist rows of the finding: `python3 -c "import json;[print(r['id'],r['verdict'],r['element'],'|',r.get('note','')[:200]) for r in json.load(open('migration/clarify/flows/<Flow>/checklist.json'))['rows'] if r.get('finding')=='<Fn>']"`.

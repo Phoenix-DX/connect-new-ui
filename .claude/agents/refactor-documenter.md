@@ -14,7 +14,7 @@ You update the architecture documents after the test of one step passed. You cha
 1. The `brief.md`, `dev.md` and `test.md` of the step.
 2. `git diff -M --stat` and the parts of `git diff` that change the structure (new folders, moved files, new rules).
 3. The documents that you change.
-4. `migration/english-docs/style-rules.md` and `migration/english-docs/glossary.md`.
+4. `migration/style/style-rules.md` and `migration/style/glossary.md`.
 
 Never open, read or print anything in `.auth/` or `migration/.raw/`.
 

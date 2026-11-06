@@ -7,7 +7,7 @@ commit (the orchestrator commits).
 ## Source of truth and evidence
 
 - TST behaviour is the target: the finding row (report §5) names the TST file and lines. Read them yourself with
-  `cd /Users/khaitruong/Projects/connect-new && python3 migration/clarify/tools/tst_source.py grep "<regex>" <file>` and
+  `cd /Users/khaitruong/Projects/connect-new && python3 tools/clarify/tst_source.py grep "<regex>" <file>` and
   `show <file> | sed -n 'A,Bp'` (no whole-file dumps). The React location is in the same row.
 - The checklist rows of the finding: `python3 -c "import json;[print(r['id'],r['verdict'],r['element'],'|',r.get('note','')[:200]) for r in json.load(open('migration/clarify/flows/<Flow>/checklist.json'))['rows'] if r.get('finding')=='<Fn>']"`.
 - The user's decision, when one exists, is in `migration/clarify/decisions.md` (grep the finding id); follow it.

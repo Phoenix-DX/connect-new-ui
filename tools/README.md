@@ -11,6 +11,7 @@ packages from `requirements.txt`. Each script describes itself in its docstring 
 | `generate/` | `contract_gen.py`, `docs_gen.py`, `css_sets.py`, `sitemap.py`, `static_entities.py`, `block_pack.py`, `review_page.py` | generated files in `app/` and `migration/` (each carries a banner with the tool name) |
 | `docs/` | `ste_lint.py`, `check_mermaid.cjs` | the English documents (ASD-STE100) |
 | `tst/` | `journey_capture.cjs`, `flag_probe.cjs`, `route_discovery.cjs` | read-only runs on TST (journeys, flag values, route ids) |
+| `clarify/` | `tst_source.py`, `flow_pack.py`, `collect.py`, `aggregate.py`, `answers.py`, `artifact_*.py`, … (ex `migration/clarify/tools/`, moved 2026-11-06) | the clarify program (`migration/clarify/`) and its two artifacts |
 | `refactor/` | `rf.py`, `gen_steps.py`, `test_rf.py`, `arch_baseline.py` (`npm --prefix app run ci` calls it) | the skill `refactor-master` and its agents |
 | `route-check/` | `check_route.py`, `os_static.py`, `os_extras.py`, `os_call_graph.py`, `extras_md.py`, `render_v2.py`, `mcp_client.py`, `unwrap.py`, `paths.py`, `react_calls.mjs`, `render_svg.cjs` | the skill `route-check`; reports in `route-check/` |
 

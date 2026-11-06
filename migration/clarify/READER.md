@@ -27,7 +27,7 @@ Model: Sonnet. You change no code. You make no commit.
 |---|---|
 | `migration/clarify/flows/<Flow>/pack/*.md` (one `cat` of all of them) | The checklist: the DEV model of the flow |
 | `app.md` of the pack → the React files it names; `cat -n` of a screen's page, hooks and containers in one command | Where each item lives in React |
-| `python3 migration/clarify/tools/tst_source.py show <Screen or Block>` for each screen and own block | TST presence check and input constraints (MaxLength, Enabled, Mandatory) that the DEV dump omits |
+| `python3 tools/clarify/tst_source.py show <Screen or Block>` for each screen and own block | TST presence check and input constraints (MaxLength, Enabled, Mandatory) that the DEV dump omits |
 | `references.md` → the TST file of a referenced block when the screen's behaviour depends on it | Its compiled code |
 | `grep -n "^| <Screen> " migration/board.md` | The board row of a screen that is not built |
 

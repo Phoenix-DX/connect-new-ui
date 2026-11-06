@@ -612,7 +612,7 @@ level against the OutSystems capture and a self-recorded reference (`refactor_pa
 `window.__osCalls` (`callAction.ts:98-108`). The parity reports of the routes stay frozen under
 `migration/screens/<Route>/parity/` (not read in this pass).
 
-The clarify tools (`migration/clarify/tools/`):
+The clarify tools (`tools/clarify/`):
 
 - `flow_pack.py` writes one pack per UI flow from the DEV dump;
 - `app_index.py` lists the React files of each screen, `kb_index.py` the KB pages;

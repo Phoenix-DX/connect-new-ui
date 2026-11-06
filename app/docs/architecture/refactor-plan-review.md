@@ -4,7 +4,7 @@ Status: **review by Claude, for the user**. Written 2026-10-22. The user asked f
 `refactor-plan.md` and of the React app in `src/`, with a score from 1 to 10. The user also asked for a design of the
 feature flags and of the sign-in flow. The detailed plan that follows this review is `refactor-plan-v2.md`.
 
-Writing rules: `migration/english-docs/style-rules.md`.
+Writing rules: `migration/style/style-rules.md`.
 
 Evidence: the files named in each row. Counts come from `grep` and `find` on 2026-10-22, on the branch
 `refactor/architecture`, commit `b3c9704`.

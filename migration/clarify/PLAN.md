@@ -108,14 +108,14 @@ Each item gets one verdict:
 
 1. Dump the module once: MCP `getSerializedObject` (eSpace `UBTConnect`, about 13.5 MB) → `tools/mcp/unwrap.py`
    → `migration/clarify/.dump/espace.json` (gitignored; DEV model, reference only).
-2. `migration/clarify/tools/flow_pack.py`: from `espace.json`, write one pack per UI flow in `flows/<Flow>/pack/`.
+2. `tools/clarify/flow_pack.py`: from `espace.json`, write one pack per UI flow in `flows/<Flow>/pack/`.
    Files: `screens.md` (one section per screen, all items of §4) and `blocks.md`. Also `actions.md` (module client
    actions the flow calls, with their node flows), `data.md` (data actions → server/service actions → entities) and
    `strings.md`.
    The pack keeps dead branches and marks them (`IsDisabled`, `If(False)`), because the report must say they exist.
-3. `migration/clarify/tools/app_index.py`: for each built screen, the React files of the screen: page folder, hooks,
+3. `tools/clarify/app_index.py`: for each built screen, the React files of the screen: page folder, hooks,
    containers, components, `api` domain, mocks, route meta, flags. Output `flows/<Flow>/pack/app.md`.
-4. `migration/clarify/tools/kb_index.py`: the KB pages and rule ids that name the flow's screens, blocks and actions
+4. `tools/clarify/kb_index.py`: the KB pages and rule ids that name the flow's screens, blocks and actions
    (from `../ubt_sharing_kb/.../UBTConnect/ui/*.md`, `rules/`, `xcut/validation.md`, and the referenced modules).
    Output `flows/<Flow>/pack/kb.md`.
 5. Report template `templates/report.md` and checklist schema `templates/checklist.schema.json`; agent brief

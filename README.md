@@ -86,4 +86,4 @@ call that is not a read. Only the actions that the user confirmed in `migration/
 
 - Never write a password, PIN or account email into a file, a commit or a chat.
 - No `git push`. Commit only when the owner asks. Commit messages are in English.
-- Documents in this repository are in English and follow `migration/english-docs/style-rules.md`.
+- Documents in this repository are in English and follow `migration/style/style-rules.md`.

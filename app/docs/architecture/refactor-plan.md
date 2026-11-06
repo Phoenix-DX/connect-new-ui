@@ -3,7 +3,7 @@
 Status: **draft, in review by the user**. Written 2026-10-22. The user approved these items on 2026-10-22: the
 page-first model, the "component and container" vocabulary, and decisions D1 to D4 (§8). The start date is open (D5).
 
-Writing rules: `migration/english-docs/style-rules.md` (ASD-STE100 writing rules).
+Writing rules: `migration/style/style-rules.md` (ASD-STE100 writing rules).
 
 Review and detailed proposal (2026-10-22): `refactor-plan-review.md` (score, findings, flag and sign-in design, decisions
 R1 to R8) and `refactor-plan-v2.md` (steps for an agent). The user decides which plan applies.

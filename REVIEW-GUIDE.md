@@ -1,7 +1,7 @@
 # Review guide
 
 This guide is for a reviewer of this project. It tells you what the project is, where the files are, and what to
-read first. The terms have one meaning each: see `migration/english-docs/glossary.md`.
+read first. The terms have one meaning each: see `migration/style/glossary.md`.
 
 ## 1. The project
 
@@ -31,13 +31,13 @@ read first. The terms have one meaning each: see `migration/english-docs/glossar
 | `migration/screens/<Screen>/route-spec.md` | The spec of one screen | Read samples |
 | `migration/app-shell.spec.md` | The spec of the shell (start, sign-in, PIN, navigation) | Read |
 | `migration/architecture.md` | Stack and architecture decision records (ADR), generated | Read |
-| `migration/scope-review.md`, `migration/scope-plan.md` | How the scope was decided | Optional |
+| `migration/scope-review.md` | How the scope was decided | Optional |
 | `migration/knowledge/` | Facts about the original app, with evidence | Optional |
 | `migration/patterns/` | Rules for all screens (project patterns) | Optional |
 | `migration/screens/<Screen>/analysis/`, `capture/`, `parity/` | Machine output: captured DOM, compiled code, comparison reports | Evidence only |
 | `migration/blocks/`, `migration/catalog/`, `migration/survey/`, `migration/sitemap.md` | Generated lists and maps | Reference |
 | `migration/contexts/`, `migration/change-requests/` | Session notes and change requests | History |
-| `migration/english-docs/` | The English rewrite of the docs: plan, glossary, style rules | Reference |
+| `migration/style/` | The writing rules of the documents (ASD-STE100) and the glossary | Reference |
 | `CLAUDE.md`, `migration/AGENTS.md`, `.claude/` | Instructions for the AI agents | Optional |
 | `RUNBOOK.md` | How to run the migration with Claude Code | Optional |
 
@@ -71,6 +71,5 @@ To run the React app, see `app/docs/guides/getting-started.md`.
   call (which service action and which entities).
 - Some specs are older than later fixes. When a spec and the code are different, the feedback of the screen
   (`feedback.md`) and its change requests (`migration/change-requests/`) give the newer state.
-- The rewrite of the specs to ASD-STE100 writing rules is in progress. The status is in
-  `migration/english-docs/PLAN.md`. History records (contexts, change requests, questions, feedback) keep
-  their original text.
+- The specs follow the ASD-STE100 writing rules (`migration/style/style-rules.md`, done 2026-10-21). History
+  records (contexts, change requests, questions, feedback) keep their original text.

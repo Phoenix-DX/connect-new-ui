@@ -33,7 +33,7 @@ of each group of Phase 6. Answer in the chat. The master records your words and 
 | `steps.json`       | The 121 steps (115 in scope, R1 b). Made by `gen_steps.py`. Do not edit by hand.   |
 | `state.json`       | Progress: begun, active step and stage, done steps with commits, gates, questions. |
 | `log.md`           | One line per event.                                                                |
-| `handoffs/<step>/` | `brief.md`, `dev.md`, `test.md`, `docs.md` of each step. Committed with the step.  |
+| `handoffs/<step>/` | `brief.md`, `dev.md`, `test.md`, `docs.md` of each step, committed with the step. The handoffs of the finished refactor were deleted on 2026-11-06 (last in commit `8fd581a8`). |
 
 ## Tools
 

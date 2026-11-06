@@ -19,8 +19,9 @@ __pycache__/
 *.tsbuildinfo
 # personal Claude Code permissions
 .claude/settings.local.json
-# privacy review sheets of the UI Flows dashboard screenshots (local only, not published)
+# privacy review sheets of the UI Flows dashboard screenshots (local only, not published) and the built site (rebuild with build_dashboard.py)
 migration/flows-dashboard/site-review/
+migration/flows-dashboard/site/
 # masked DOM of journey runs (local only, large)
 migration/journeys/runs/*/dom/
 migration/journeys/runs/*/debug-*
